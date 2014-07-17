@@ -1,0 +1,944 @@
+/* Widget Styling CSS
+
+- ANIMATION PACE cubic-bezier(0, 0.275, 0.125, 1) 0s
+- ACCENT COLOR #0289C0
+- ACCENT HOVER #0D5F83
+
+
+
+
+*/
+
+/*----------------------------------*/
+/*- HIDING NONE HATCH WIDGETS ------*/
+#available-widgets .widget-tpl{
+    display: none !important;
+}
+#available-widgets .widget-tpl[id*='obox-hatch-widget']{
+    display: block !important;
+}
+
+/*----------------------------------*/
+/*- WORDPRESS RESETS / OVERRIDES ---*/
+div[id*='obox-hatch-widget'].widget-tpl .widget .widget-description{color: #777 !important;}
+div[id*='obox-hatch-widget'].widget-tpl .widget .widget-title:before{color: #222 !important;}
+div[id*='obox-hatch-widget'].widget-tpl .widget .widget-title h4{color: #222 !important;}
+
+div[id*='obox-hatch-widget'] .widget-top{
+    background: #0289C0;
+    border-color: #0D5F83;
+}
+div[id*='obox-hatch-widget'] .widget-top:hover{
+    border-color: #094D6A !important;
+}
+div[id*='obox-hatch-widget'] .widget-top .widget-title h4{
+    color: #fff;
+}
+div[id*='obox-hatch-widget'] .widget-top .widget-title .in-widget-title{
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.customize-control-widget_form.wide-widget-control.expanded:not(.collapsing) div[id*='obox-hatch-widget'] .widget-top{
+    background: #0BA6E0;
+    border-color: #0D5F83;
+    color: #3D454E;
+}
+.customize-control-widget_form.wide-widget-control div[id*='obox-hatch-widget'] .widget-inside{
+    width: 0;
+    height: 100%;
+    max-height: none;
+    padding: 0 !important;
+    top: 0 !important;
+    border-top: none !important;
+    border-right: none !important;
+    transition: width 0.4s ease-in-out, top 0.2s ease-in-out, opacity 0.15s ease-in-out, box-shadow 0.7s ease-in-out;
+    opacity: 0;
+    z-index: 1;
+    overflow: hidden;
+    box-shadow: 3px 0 3px rgba(0, 0, 0, 0.1);
+}
+.customize-control-widget_form.wide-widget-control.expanded div[id*='obox-hatch-widget'] .widget-inside{
+    opacity: 1;
+    width: 980px;
+    box-shadow: 5px 0 18px rgba(0, 0, 0, 0.2), 4px 0 4px rgba(0, 0, 0, 0.10);
+    overflow-y: visible;
+}
+.customize-control-widget_form.wide-widget-control.collapsing div[id*='obox-hatch-widget'] .widget-inside{
+    transition: width 0.25s ease-in-out, opacity 0.15s ease-in-out;
+    opacity: 0;
+    width: 0;
+}
+
+.customize-control-widget_form.wide-widget-control div[id*='obox-hatch-widget'] .widget-inside .form{
+    padding: 0 !important;
+    min-width: 980px;
+    position: relative;
+    left: -200px;
+    transition: all 0.35s ease-in-out 0.1s;
+}
+.customize-control-widget_form.wide-widget-control.expanded div[id*='obox-hatch-widget'] .widget-inside .form{
+    left: 0;
+    opacity: 1;
+}
+.customize-control-widget_form.wide-widget-control.collapsing div[id*='obox-hatch-widget'] .widget-inside .form{
+    left: -200px;
+    opacity: 0;
+}
+
+/*- COLLAPSED SIDEBAR ------------*/
+.collapsed .customize-control-widget_form.wide-widget-control div[id*='obox-hatch-widget'] .widget-inside{
+    width: 0;
+    left: -300px;
+    transition-delay: none;
+}
+.collapsed .customize-control-widget_form.wide-widget-control div[id*='obox-hatch-widget'] .widget-inside .form{
+    opacity: 0;
+    transition-delay: none;
+}
+
+
+div[id*='obox-hatch-widget'] .widget-control-actions{
+    width: 100%;
+    max-width: 300px;
+    padding: 10px 20px;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    border-radius: 4px;
+    background: rgba(255, 255, 255, 0.8);
+}
+.hatch-container-large{padding-bottom: 50px; position: relative;}
+
+/*---------------------------*/
+/*- THE GRID ----------------*/
+
+.hatch-row:before, .hatch-row:after{content: " "; display: table;}
+.hatch-row:after{clear: both;}
+.hatch-row{*zoom: 1;}
+
+
+.hatch-column{float: left; margin: 0 2% 20px 0; position: relative;}
+.hatch-column-flush{float: left; margin: 0; position: relative;}
+.hatch-row .hatch-column:last-child{margin-right: 0;}
+
+    .hatch-span-1{width: 6.5%;}
+    .hatch-span-2{width: 15%;}
+    .hatch-span-3{width: 23.5%;}
+    .hatch-span-4{width: 32%;}
+    .hatch-span-5{width: 40.5%;}
+    .hatch-span-6{width: 49%;}
+    .hatch-span-7{width: 57.5%;}
+    .hatch-span-8{width: 66%;}
+    .hatch-span-9{width: 74.5%;}
+    .hatch-span-10{width: 83%;}
+    .hatch-span-11{width: 91.5%;}
+    .hatch-span-12{width: 100%;}
+
+    .hatch-column-flush.span-1{width: 8.333333%;}
+    .hatch-column-flush.span-2{width: 16.6667%;}
+    .hatch-column-flush.span-3{width: 25%;}
+    .hatch-column-flush.span-4{width: 33.33333%;}
+    .hatch-column-flush.span-5{width: 41.66665%;}
+    .hatch-column-flush.span-6{width: 50%;}
+    .hatch-column-flush.span-7{width: 58.1%;}
+    .hatch-column-flush.span-8{width: 66.4%;}
+    .hatch-column-flush.span-9{width: 74.7%;}
+    .hatch-column-flush.span-10{width: 83%;}
+    .hatch-column-flush.span-11{width: 91.3%;}
+    .hatch-column-flush.span-12{width: 100%;}
+
+    .hatch-row .hatch-column.hatch-span-1:nth-child(12n+12){margin-right: 0;}
+    .hatch-row .hatch-column.hatch-span-2:nth-child(6n+6){margin-right: 0;}
+
+    .hatch-row .hatch-column.hatch-span-3:nth-child(4n+4){margin-right: 0;}
+    .hatch-row .hatch-column.hatch-span-3:nth-child(4n+5){clear: left;}
+
+    .hatch-row .hatch-column.hatch-span-4:nth-child(3n+3){margin-right: 0;}
+    .hatch-row .hatch-column.hatch-span-4:nth-child(3n+4){clear: left;}
+
+    .hatch-row .hatch-column.hatch-span-6:nth-child(2n+2){margin-right: 0;}
+    .hatch-row .hatch-column.hatch-span-6:nth-child(2n+3){clear: left;}
+
+    /*-----------------------*/
+    /*- BROAD BASED COLUMNS -*/
+    div[class*='hatch-columns-'] div[class*='hatch-span'], div[class*='hatch-columns-'] .hatch-sortable-drop{
+        float: left;
+        padding: 10px;
+        margin: 0;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        transition: all 0.2s ease-in-out;
+        transform: scale(1);
+    }
+    div[class*='hatch-columns-'] div[class*='hatch-span'].ui-sortable-helper{
+        transition: none;
+    }
+    div[class*='hatch-columns-'] div[class*='hatch-span'].ui-sortable-helper:active{
+    }
+    .hatch-columns-4 .hatch-span, .hatch-columns-4 .hatch-sortable-drop{width: 25%;}
+    .hatch-columns-3 .hatch-span, .hatch-columns-3 .hatch-sortable-drop{width: 33%;}
+    .hatch-columns-2 .hatch-span, .hatch-columns-2 .hatch-sortable-drop{width: 50%;}
+    .hatch-columns-1 .hatch-span, .hatch-columns-1 .hatch-sortable-drop{width: 100%;}
+
+        .hatch-columns-3 .hatch-span-position-4{display: none;}
+
+        .hatch-columns-2 .hatch-span-position-3,
+        .hatch-columns-2 .hatch-span-position-4{display: none;}
+
+        .hatch-columns-1 .hatch-span-position-2,
+        .hatch-columns-1 .hatch-span-position-3,
+        .hatch-columns-1 .hatch-span-position-4{display: none;}
+
+    /*-----------------------*/
+    /*- COLUMN TWEAKERS -----*/
+    .no-gutter{margin-right: 0;}
+    .middled, .row .column.middled{float: none; margin: auto;}
+
+    .hatch-drag{
+        display: block;
+        height: 8px;
+        margin-bottom: 10px;
+        background: url(images/drag.png) top center repeat-x;
+        cursor: move;
+        opacity: 0.5;
+        transition: 0.2s all ease-in-out
+    }
+    .hatch-drag:hover{opacity: 1;}
+
+/*---------------------------*/
+/*- ELEMENT CONTROLLERS -----*/
+.hatch-pull-right{float: right;}
+.hatch-pull-left{float: left;}
+.hatch-clear{clear: both;}
+.hatch-no-push-bottom{margin-bottom: 0 !important;}
+.hatch-push-bottom{margin-bottom: 20px !important;}
+
+.hatch-animate{transition: all 0.2s ease-in-out;}
+
+/*---------------------------*/
+/*- CONTAINERS --------------*/
+.hatch-content{padding: 20px;}
+
+/*---------------------------*/
+/*- FORM ELEMENTS -----------*/
+.hatch-form-item{
+    padding: 0;
+    margin: 0 0 15px;
+}
+.hatch-form-item:last-child{margin-bottom: 0;}
+
+.hatch-form-item label{
+    display: block;
+    margin-bottom: 2px;
+    font-size: 11px;
+    text-transform: uppercase;
+    color: #777;
+    font-weight: 600;
+}
+
+.customize-control .hatch-form-item select{
+    width: 100%;
+    margin: 0;
+}
+.customize-control .hatch-textarea{
+    width: 100%;
+    padding: 8px;
+    margin: 0;
+    background: #fff;
+    border: 1px solid #ddd;
+    box-shadow: inset 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.hatch-form-item input[type=text],
+.hatch-form-item input[type=email],
+.hatch-form-item input[type=number],
+.hatch-form-item input[type=password],
+.hatch-form-item input[type=link]{
+	display: block;
+    width: 100%;
+    padding: 8px;
+    margin: 0;
+    background: #fff;
+    border: 1px solid #ddd;
+    box-shadow: inset 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+.hatch-form-item input[type=text]:hover,
+.hatch-form-item input[type=email]:hover,
+.hatch-form-item input[type=number]:hover,
+.hatch-form-item input[type=password]:hover,
+.hatch-form-item input[type=link]:hover,
+.customize-control .hatch-textarea:hover{
+    border-color: #ccc;
+}
+.hatch-form-item input[type=text]:focus,
+.hatch-form-item input[type=email]:focus,
+.hatch-form-item input[type=number]:focus,
+.hatch-form-item input[type=password]:focus,
+.hatch-form-item input[type=link]:focus,
+.customize-control .hatch-textarea:focus{
+    border-color: #0289C0;
+}
+
+.hatch-form-item input[type=text].hatch-large,
+.hatch-form-item input[type=email].hatch-large,
+.hatch-form-item input[type=number].hatch-large,
+.hatch-form-item input[type=password].hatch-large,
+.hatch-form-item input[type=link].hatch-large{
+    font-size: 24px;
+    line-height: 34px;
+}
+.customize-control .hatch-textarea.hatch-large{
+    font-size: 20px;
+    line-height: 30px;
+}
+
+    /*-----------------------*/
+    /*- CHECKBOX ------------*/
+    .hatch-checkbox input[type=checkbox]{
+        display: none;
+    }
+    .hatch-checkbox{
+        clear: both;
+        margin: 0;
+    }
+    .hatch-checkbox input[type=submit], .hatch-checkbox button{
+        float: left;
+        margin: 0;
+    }
+    .hatch-checkbox label:before{
+        content:"";
+        display: inline-block;
+        width: 16px;
+        height: 16px;
+        margin-right: 10px;
+        background: #fff url(images/checkbox.png) 0 -32px no-repeat;
+        background-size: 16px 16px;
+        border: 1px solid #ccc;
+        box-shadow: inset 1px 1px 3px rgba(0, 0, 0, 0.1);
+        /*border-radius: 4px;*/
+        transition: all 0.2s ease-in-out;
+        vertical-align: bottom;
+    }
+    .hatch-checkbox input[type=checkbox]:checked + label:before{
+        background-color: #0289C0;
+        background-position: 0 0;
+        border-color: #0289C0;
+        box-shadow: none;
+    }
+    .hatch-checkbox label{
+        clear: none;
+        display: inline-block;
+        font-size: 13px;
+        line-height: 18px;
+        font-weight: 400;
+    }
+
+    /*-----------------------*/
+    /*- RADIO ---------------*/
+    .hatch-radio input[type=radio]{
+        display: none;
+    }
+    .hatch-radio{
+        clear: both;
+        margin: 0;
+    }
+    .hatch-radio label:before{
+        content:"";
+        display: inline-block;
+        width: 16px;
+        height: 16px;
+        margin-right: 10px;
+        background: #fff url(images/radio.png) 0 -32px no-repeat;
+        background-size: 16px 16px;
+        border: 1px solid #ccc;
+        box-shadow: inset 1px 1px 3px rgba(0, 0, 0, 0.1);
+        border-radius: 100px;
+        transition: all 0.2s ease-in-out;
+        vertical-align: bottom;
+    }
+    .hatch-radio input[type=radio]:checked + label:before{
+        background-color: #0289C0;
+        background-position: 0 0;
+        border-color: #0289C0;
+        box-shadow: none;
+    }
+    .hatch-radio label{
+        clear: none;
+        display: inline-block;
+        font-size: 13px;
+        line-height: 18px;
+        font-weight: 400;
+    }
+
+    /*-----------------------*/
+    /*- CHECKBOX/RADIO LIST -*/
+    .hatch-checkbox-list{margin: 0; padding: 0;}
+    .hatch-checkbox-list .hatch-checkbox{
+        margin: 0 0 8px;
+        padding: 0;
+    }
+    .hatch-checkbox-list .hatch-radio{
+        margin: 0 0 8px;
+        padding: 0;
+    }
+
+
+/*---------------------------*/
+/*- TITLES ------------------*/
+.hatch-controls-title{
+    padding: 20px;
+    background: #0289C0;
+    /*border-bottom: 2px solid #0D5F83;*/
+    overflow: hidden;
+    color: #fff;
+}
+.hatch-controls-title .hatch-heading{
+    margin: 0;
+    padding: 0;
+    color: #fff;
+    font-size: 28px;
+    line-height: 32px;
+    font-weight: 300;
+    text-indent: 0;
+}
+
+.hatch-section-title{
+    margin-bottom: 20px;
+}
+.hatch-section-title .heading{
+    margin: 0;
+    padding: 0;
+    font-size: 16px;
+    line-height: 26px;
+    color: #222;
+}
+.hatch-section-title .excerpt{
+    max-width: 440px;
+    margin: 10px 0 0;
+    padding: 0;
+    font-size: 12px;
+    line-height: 22px;
+    color: #777;
+}
+
+/*---------------------------*/
+/*- BUTTONS -----------------*/
+.hatch-button{
+    display: inline-block;
+    padding: 8px 10px;
+    background: #0289C0;
+    border: none;
+    border-radius: 4px;
+    text-align: center;
+    font-weight: 600;
+    color: #fff;
+    vertical-align: middle;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    text-transform: uppercase;
+}
+.hatch-button:hover{
+    background: #0D5F83;
+    color: #fff;
+}
+
+    /*-----------------------*/
+    /*- PRIMARY BUTTON ------*/
+    .btn-primary{background: #fc0; color: #5E2500;}
+    .btn-primary:hover{background: #f93; color: #5E2500;}
+
+    /*-----------------------*/
+    /*- SECONDARY BUTTON ----*/
+    .btn-secondary{background: #A3C567; color: #37451D;}
+    .btn-secondary:hover{background: #93B25E; color: #37451D;}
+
+    /*-----------------------*/
+    /*- SUBTLE BUTTON -------*/
+    .btn-subtle{background: #EBEFF2; color: #3D556C;}
+    .btn-subtle:hover{background: #E1E5EB; color: #2D3339;}
+
+    /*-----------------------*/
+    /*- ERROR BUTTON --------*/
+    .btn-error{background: #FF5353; color: #fff;}
+    .btn-error:hover{background: #F2413D; color: #fff;}
+
+    /*-----------------------*/
+    /*- LIGHT BUTTON --------*/
+    .hatch-button.light{border: 2px solid #fff; color: #fff;}
+
+    /*-----------------------*/
+    /*- LINK BUTTON ---------*/
+    .btn-link{background: none; text-decoration: underline; color: #3D556C;}
+    .btn-link:hover{background: none; color: #2D3339;}
+
+    /*-----------------------*/
+    /*- BUTTON SIZES --------*/
+    .hatch-button.btn-small{padding: 1px 10px; font-size: 11px; font-weight: 600;}
+    .hatch-button.btn-medium{padding: 4px 10px; font-size: 12px;}
+    .hatch-button.btn-large{padding: 12px 20px;}
+    .hatch-button.btn-massive{padding: 15px 30px; font-size: 20px;}
+    .hatch-button.btn-full{display: block;}
+
+
+/*---------------------------*/
+/*- ACCORDIONS --------------*/
+.hatch-accordions{
+    padding: 0;
+    margin: 0;
+}
+.hatch-accordion-item{margin-bottom: 0;}
+.hatch-accordion-title{
+    display: block;
+    margin: 0;
+    padding: 15px 20px;
+    position: relative;
+    font-size: 14px;
+    line-height: 16px;
+    font-weight: 600;
+    background: #fff;
+    border-bottom: 1px solid #ddd;
+    color: #555;
+    cursor: pointer;
+
+    transform: scale(1);
+    transition: transform 0.2s cubic-bezier(0, 0.275, 0.125, 1) 0s;
+
+    -webkit-transform: scale(1);
+    -webkit-transition: -webkit-transform 0.2s cubic-bezier(0, 0.275, 0.125, 1) 0s;
+
+}
+.hatch-accordion-title:active{
+    transform: scale(1.01);
+    -webkit-transform: scale(1.01);
+}
+.hatch-accordion-item.open .hatch-accordion-title{
+    background: #f5f5f5;
+}
+
+.hatch-accordion-title:after{
+    display: block;
+    border-left: 1px solid #ddd;
+    padding: 0 10px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 1;
+    content: '\f140';
+    font: 400 20px/47px dashicons;
+    color: #aaa;
+}
+.hatch-accordion-item.open .hatch-accordion-title:after{
+    color: #555;
+    content: '\f142';
+}
+.hatch-accordion-title:hover{
+    background: #f0f0f0; color: #555;
+}
+.hatch-accordion-title:hover:after{
+    color: #555;
+}
+.hatch-accordion-item:first-child .hatch-accordion-title{
+    border-top-width: 0;
+}
+
+.hatch-accordion-section{
+    overflow: hidden;
+    background: #fff;
+    border-bottom: 1px solid #ddd;
+}
+.hatch-accordion-item:last-child .hatch-accordion-section{
+    border-bottom: none;
+}
+
+/*---------------------------*/
+/*- ACCORDIONS - SORTABLE ---*/
+.hatch-accordions-sortable{}
+.hatch-accordions-sortable .hatch-accordion-item{
+    margin-bottom: 10px;
+    border: 1px solid #eee;
+}
+.hatch-accordions-sortable .hatch-accordion-item:hover{
+    border-color: #ccc;
+}
+.hatch-accordions-sortable .hatch-accordion-item:active{
+}
+.hatch-accordions-sortable .hatch-accordion-title{
+    padding: 10px;
+    border-top: none;
+    border-bottom:  1px solid #eee;
+    cursor: move;
+}
+.hatch-accordions-sortable .hatch-accordion-title:after{
+    line-height: 37px;
+    border-color: #eee;
+}
+.hatch-accordions-sortable .hatch-accordion-section{
+    border-bottom: none;
+}
+
+/*---------------------------*/
+/*- SORTING (DRAG N DROPS) --*/
+.hatch-sortable-drop{
+    min-height: 37px;
+    background: #fff;
+    border: 1px dashed #A3C567;
+}
+.ui-sortable-helper{
+    background-color: #fff;
+    opacity: 0.95;
+}
+
+/*---------------------------*/
+/*- PANEL -------------------*/
+.hatch-panel{}
+.hatch-panel-title{
+    display: block;
+    margin: 0;
+    padding: 10px;
+    font-size: 14px;
+    line-height: 16px;
+    font-weight: 600;
+    background: #f5f5f5;
+    border-radius: 4px;
+    color: #555;
+}
+.hatch-panel-title .heading{
+    padding: 0;
+    margin: 0;
+}
+.hatch-panel .hatch-content{
+    padding: 10px;
+}
+
+/*---------------------------*/
+/*- TOOLTIPS ----------------*/
+.tooltip{
+    float: right;
+    width: 16px;
+    height: 16px;
+    background: #fff url(images/icon-info.png) center no-repeat;
+    background-size: 16px 16px;
+    border: 1px solid #ccc;
+    border-radius: 100%;
+    position: relative;
+    cursor: help;
+}
+.tooltip:after{
+    width: 220px;
+    padding: 15px;
+    background: rgba(0, 0, 0, 0.85);
+    border-radius: 4px;
+    position: absolute;
+    right: -10px;
+    top: 16px;
+    z-index: 98;
+    color: #f0f0f0;
+    content: attr(tooltip);
+    line-height: 24px;
+    visibility: hidden;
+    opacity: 0;
+    transition: all 0.2s ease-in-out;
+
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 22px;
+    text-transform: none;
+}
+.tooltip:before{
+    border: solid;
+    border-color: rgba(0, 0, 0, 0.85) transparent;
+    border-width: 0 6px 6px 6px;
+    content: "";
+    position: absolute;
+    right: 2px;
+    top: 10px;
+    z-index: 99;
+    visibility: hidden;
+    opacity: 0;
+    transition: all 0.2s ease-in-out;}
+
+.tooltip:hover:after{opacity: 1; visibility: visible; top: 25px;}
+.tooltip:hover:before{opacity: 1; visibility: visible; top: 19px;}
+
+.hatch-accordion-title .tooltip{
+    margin-right: 35px;
+}
+
+
+/*---------------------------*/
+/*- ICON STYLING ------------*/
+input[type=radio][id*=obox-hatch]{display: none;}
+
+.hatch-icon{
+    text-indent: -999px;
+    overflow: hidden;
+}
+
+.hatch-settings-icon{
+    display: block;
+    float: left;
+    width: 68px;
+    margin: 0 10px 10px 0;
+    border: 2px solid #f5f5f5;
+    border-radius: 4px;
+    text-align: center;
+    padding: 5px;
+    background-color: #fff;
+    background-size: 68px 26px;
+    background-repeat: no-repeat;
+    background-position: center 5px;
+}
+.hatch-settings-icon span{
+    display: block;
+    padding: 0 5px;
+    margin: 35px 0 0;
+    background-color: #f5f5f5;
+    color: #777;
+    font-size: 9px;
+    font-weight: 700;
+    line-height: 17px;
+    text-transform: uppercase;
+    border-radius: 3px;
+    transition: all 0.2s ease-in-out;
+}
+input[type=radio]:checked + .hatch-settings-icon{
+    background-color: #f5f5f5;
+}
+input[type=radio]:checked + .hatch-settings-icon span{
+    background-color: #0289C0;
+    color: #fff;
+}
+
+.hatch-settings-icon:last-child{margin-right: 0;}
+.hatch-settings-icon:hover{border-color: #0289C0}
+
+    .icon-banner-small{display: block; float: left; width: 32px; height: 32px; margin-right: 8px; background: url(images/icon-banner-large.png) left no-repeat; background-size: 32px 32px;}
+    .icon-bgimage-small{display: block; width: 32px; height: 32px; margin: auto; background: url(images/icon-bgimage-small.png) center no-repeat; background-size: 32px 32px;}
+    .icon-get-support{display: block; float: left; width: 16px; height: 16px; margin-right: 5px; background: url(images/icon-support-small.png) left no-repeat; background-size: 16px 16px;}
+    .icon-get-support-invert{display: block; float: left; width: 16px; height: 16px; margin-right: 5px; background: url(images/icon-support-invert.png) left no-repeat; background-size: 16px 16px;}
+    .icon-location-small{display: block; float: left; width: 32px; height: 32px; margin-right: 8px; background: url(images/icon-location-large.png) left no-repeat; background-size: 32px 32px;}
+    .icon-module-small{display: block; float: left; width: 32px; height: 32px; margin-right: 8px; background: url(images/icon-widget-large.png) left no-repeat; background-size: 32px 32px;}
+    .icon-portfolio-small{display: block; float: left; width: 32px; height: 32px; margin-right: 8px; background: url(images/icon-portfolio-large.png) left no-repeat; background-size: 32px 32px;}
+    .icon-quick-start{display: block; float: left; width: 16px; height: 16px; margin-right: 5px; background: url(images/icon-download-small.png) left no-repeat; background-size: 16px 16px;}
+    .icon-quick-start-invert{display: block; float: left; width: 16px; height: 16px; margin-right: 5px; background: url(images/icon-download-invert.png) left no-repeat; background-size: 16px 16px;}
+    .icon-services-small{display: block; float: left; width: 32px; height: 32px; margin-right: 8px; background: url(images/icon-services-large.png) left no-repeat; background-size: 32px 32px;}
+    .icon-settings-small{display: block; float: left; width: 32px; height: 32px; margin-right: 8px; background: url(images/icon-settings-large.png) left no-repeat; background-size: 32px 32px;}
+    .icon-social-small{display: block; float: left; width: 32px; height: 32px; margin-right: 8px; background: url(images/icon-social-large.png) left no-repeat; background-size: 32px 32px;}
+    .icon-teams-small{display: block; float: left; width: 32px; height: 32px; margin-right: 8px; background: url(images/icon-teams-large.png) left no-repeat; background-size: 32px 32px;}
+    .icon-video-small{display: block; width: 32px; height: 32px; margin: auto; background: url(images/icon-video-small.png) center no-repeat; background-size: 32px 32px;}
+
+    /*-----------------------*/
+    /*- COLUMNS -------------*/
+    .hatch-settings-icon.hatch-icon-columns-1{background-image: url(images/icon-1-columns.png);}
+    .hatch-settings-icon.hatch-icon-columns-2{background-image: url(images/icon-2-columns.png);}
+    .hatch-settings-icon.hatch-icon-columns-3{background-image: url(images/icon-3-columns.png);}
+    .hatch-settings-icon.hatch-icon-columns-4{background-image: url(images/icon-4-columns.png);}
+    .hatch-settings-icon.hatch-icon-columns-5{background-image: url(images/icon-5-columns.png);}
+    .hatch-settings-icon.hatch-icon-columns-6{background-image: url(images/icon-6-columns.png);}
+
+    /*-----------------------*/
+    /*- IMAGE ALIGNMENT -----*/
+    .hatch-settings-icon.hatch-icon-image-left{background-image: url(images/icon-image-left.png);}
+    .hatch-settings-icon.hatch-icon-image-right{background-image: url(images/icon-image-right.png);}
+    .hatch-settings-icon.hatch-icon-image-top{background-image: url(images/icon-image-top.png);}
+
+    /*-----------------------*/
+    /*- LIST STYLE ----------*/
+    .hatch-settings-icon.hatch-icon-grid{background-image: url(images/icon-grid.png);}
+    .hatch-settings-icon.hatch-icon-list{background-image: url(images/icon-list.png);}
+    .hatch-settings-icon.hatch-icon-slider{background-image: url(images/icon-slider.png);}
+
+
+/*---------------------------*/
+/*- ONCE OFF CSS ------------*/
+.hatch-controls-title .btn-collection{}
+.hatch-controls-title .hatch-button{padding: 6px 10px; margin-left: 5px;}
+
+
+/*---------------------------*/
+/*- BACKGROUND UPLOADER -----*/
+.hatch-image-uploader{
+    display: block;
+    height: 200px;
+    margin-bottom: 15px;
+    border: 2px dashed #dfdfdf;
+    position: relative;
+    overflow: hidden;
+    transform-style: preserve-3d;
+    text-align: center;
+}
+.hatch-image-uploader p{
+    padding: 40px 10px 0;
+    margin: 60px 0 0;
+    background: url(images/icon-bgimage-small.png) top no-repeat;
+    background-size: 32px 32px;
+    color: #777;
+}
+.hatch-image-uploader:hover{
+    border-color: #168ABE;
+}
+.hatch-image-uploader.hatch-small{
+    min-height: 200px;
+}
+.hatch-image-uploader img{
+    display: block;
+    max-width: 100%;
+    height: auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+.hatch-image-remove{
+    display: none;
+    width: 16px;
+    height: 16px;
+    background: url('images/cross.png') no-repeat;
+    background-size: 16px 16px;
+    border: 2px solid #fff;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 2;
+    color: #fff;
+    font-size: 11px;
+    border-radius: 4px;
+    transition: all 0.2s ease-in-out;
+    opacity: 0.5;
+    text-indent: -999px;
+    overflow: hidden;
+}
+.hatch-image-remove:hover{
+    color: #fff;
+    opacity: 1;
+    background-color: #E2574C;
+    border-color: #E2574C;
+}
+.hatch-image-uploader.hatch-has-image{
+    border-style: solid;
+    height: 200px;
+}
+.hatch-image-uploader.hatch-has-image p{
+    display: none;
+}
+.hatch-image-uploader.hatch-has-image .hatch-image-remove{
+    display: block;
+}
+
+/*---------------------------*/
+/*- ELEMENT CONTROLLER ------*/
+.hatch-element-controller{
+    background: #f5f5f5;
+    border: 1px solid #ddd;
+    overflow: hidden;
+}
+.hatch-element-controller .hatch-section-links{
+    float: left;
+    width: 60px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    position: relative;
+    z-index: 2;
+}
+.hatch-element-controller .hatch-section-links li{
+    margin: 0;
+    border-bottom: 1px solid #ddd;
+}
+.hatch-element-controller .hatch-section-links li.active{
+    margin-right: -1px;
+    background: #fff;
+}
+.hatch-element-controller .hatch-section-links a{
+    width: auto;
+    padding: 14px;
+    transition: all 0.5s cubic-bezier(0, 0.275, 0.125, 1) 0s;
+    outline: none;
+}
+.hatch-element-controller .hatch-section-links a:hover{
+    background-color: #fff;
+}
+.hatch-element-controller .hatch-section-links li.active a{
+    padding-right: 15px;
+}
+
+.hatch-element-controller .hatch-controller-elements{
+    overflow: hidden;
+    background: #fff;
+    border-left: 1px solid #DDD;
+    position: relative;
+    z-index: 1;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+.hatch-element-controller .hatch-controller-elements .hatch-content{
+    height: 0;
+    padding: 0 20px;
+    opacity: 0;
+    visibility: hidden;
+    overflow: hidden;
+    transition: height 0.5s ease-in-out, padding 0.5s ease-in-out, opacity 0.5s ease-in-out, visibility 0.5s ease-in-out;
+}
+.hatch-element-controller .hatch-controller-elements .hatch-content.section-active{
+    height: 290px;
+    padding: 20px;
+    opacity: 1;
+    visibility: visible;
+}
+.hatch-element-controller .hatch-controller-elements .hatch-form-item{
+    margin: 20px 0 60px;
+    transition: margin 0.5s ease-in-out 0.2s;
+}
+.hatch-element-controller .hatch-controller-elements .section-active .hatch-form-item{
+    margin: 0 0 15px;
+}
+.hatch-element-controller .hatch-controller-elements .hatch-checkbox{
+    margin: 20px 0 100px;
+    transition: margin 0.5s ease-in-out 0.2s;
+}
+.hatch-element-controller .hatch-controller-elements .section-active .hatch-checkbox{
+    margin: 0 0 8px;
+}
+
+/*---------------------------*/
+/*- MAP CONTAINER -----------*/
+.hatch-map-container{
+    display: block;
+    padding: 0;
+    min-height: 300px;
+    background: #f8f8f8 url(images/icon-map-large.png) center no-repeat;
+    background-size: 64px 64px;
+    border: 2px solid transparent;
+    border-radius: 4px;
+}
+
+
+
+/*---------------------------*/
+/*- ANIMATION TEST ----------*/
+.test-container{
+    background: #f5f5f5;
+    border-radius: 5px;
+    padding: 1px 0;
+}
+.hatch-accordion-item .test-container .thisli{
+    margin-top: 65px;
+    padding: 0 20px 40px;
+    border-bottom: 1px solid ccc;
+    opacity: 0;
+    transition: opacity 0.6s ease-in-out, margin 0.6s ease-in-out, padding-top 0.25s ease-in-out, padding-bottom 0.9s ease-in-out;
+    -webkit-transition: opacity 0.2s ease-in-out, margin 0.5s ease-in-out, padding-top 0.25s ease-in-out, padding-bottom 0.6s ease-in-out;
+}
+.test-container .thisli:last-child{
+    border-bottom: none;
+}
+.test-container:hover .thisli{
+    margin-top: 0;
+    padding: 10px 20px;
+    opacity: 1;
+}
+
+

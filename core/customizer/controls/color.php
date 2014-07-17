@@ -6,7 +6,7 @@
  * @package Hatch
  * @since Hatch 1.0
  */
-if( !class_exists( 'Hatch_Banner_Widget' ) ) {
+if( !class_exists( 'Hatch_Customize_Color_Control' ) ) {
 
 	class Hatch_Customize_Color_Control extends WP_Customize_Control {
 		/**

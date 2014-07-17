@@ -424,7 +424,6 @@ class Hatch_Customizer_Regsitrar {
 						'section'     => $control['section'],
 						'settings'    => $control['setting'],
 						'priority'    => $control['priority'],
-						'choices'     => $control['choices'],
 						'description' => isset( $control['description'] ) ? $control['description'] : null,
 						'subtitle'    => isset( $control['subtitle'] ) ? $control['subtitle'] : '',
 						'separator'   => isset( $control['separator'] ) ? $control['separator'] : false,

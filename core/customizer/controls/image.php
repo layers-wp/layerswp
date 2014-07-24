@@ -125,7 +125,7 @@ if( !class_exists( 'Hatch_Customize_Image_Control' ) ) {
 				</div>
 
 				<div class="actions">
-					<a href="#" class="remove"><?php _e( 'Remove Image' ); ?></a>
+					<a href="#" class="remove"><?php _e( 'Remove Image' , HATCH_THEME_SLUG ); ?></a>
 				</div>
 			</div>
 			<?php if ( $this->separator ) echo '<hr class="customizer-separator">'; ?>
@@ -198,10 +198,10 @@ if( !class_exists( 'Hatch_Customize_Image_Control' ) ) {
 			} else {
 				?>
 				<div class="upload-dropzone">
-					<?php _e('Drop a file here or <a href="#" class="upload">select a file</a>.'); ?>
+					<?php _e('Drop a file here or <a href="#" class="upload">select a file</a>.' , HATCH_THEME_SLUG); ?>
 				</div>
 				<div class="upload-fallback">
-					<span class="button-secondary"><?php _e('Select File'); ?></span>
+					<span class="button-secondary"><?php _e( 'Select File' , HATCH_THEME_SLUG); ?></span>
 				</div>
 				<?php
 			}

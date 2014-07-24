@@ -70,8 +70,8 @@ if( !class_exists( 'Hatch_Customize_Upload_Control' ) ) {
 				<?php endif; ?>
 
 				<div>
-					<a href="#" class="button-secondary upload"><?php _e( 'Upload' ); ?></a>
-					<a href="#" class="remove"><?php _e( 'Remove' ); ?></a>
+					<a href="#" class="button-secondary upload"><?php _e( 'Upload' , HATCH_THEME_SLUG ); ?></a>
+					<a href="#" class="remove"><?php _e( 'Remove' , HATCH_THEME_SLUG ); ?></a>
 				</div>
 			</label>
 			<?php if ( $this->separator ) echo '<hr class="customizer-separator">'; ?>

@@ -179,7 +179,7 @@ class Hatch_Customizer_Regsitrar {
 						'settings'    => $control['setting'] . '_color',
 						'priority'    => $control['priority'],
 						'description' => isset( $control['description'] ) ? $control['description'] : null,
-						'subtitle'    => __( 'Background Color', HATCH_THEME_SLUG ),
+						'subtitle'    => isset( $control['subtitle'] ) ? $control['subtitle'] : __( 'Background Color', HATCH_THEME_SLUG ),
 						'required'    => isset( $control['required'] ) ? $control['required'] : array(),
 						// 'transport'   => 'postMessage',
 					) )

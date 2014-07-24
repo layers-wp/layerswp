@@ -96,7 +96,7 @@ if( !class_exists( 'Hatch_Customize_Color_Control' ) ) {
 				<?php endif; ?>
 
 				<div class="customize-control-content">
-					<input class="color-picker-hex" type="text" maxlength="7" placeholder="<?php esc_attr_e( 'Hex Value' ); ?>"<?php echo $default_attr; ?> />
+					<input class="color-picker-hex" type="text" maxlength="7" placeholder="<?php esc_attr_e( 'Hex Value' , HATCH_THEME_SLUG ); ?>"<?php echo $default_attr; ?> />
 				</div>
 			</label>
 			<?php if ( $this->separator ) echo '<hr class="customizer-separator">'; ?>

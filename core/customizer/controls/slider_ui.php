@@ -50,7 +50,9 @@ if( !class_exists( 'Hatch_Customize_Sliderui_Control' ) ) {
 			</label>
 
 			<div id="slider_<?php echo $this->id; ?>" class="ss-slider"></div>
+
 			<?php if ( $this->separator ) echo '<hr class="customizer-separator">'; ?>
+
 			<script>
 			jQuery(document).ready(function($) {
 				$( "#slider_<?php echo $this->id; ?>" ).slider({

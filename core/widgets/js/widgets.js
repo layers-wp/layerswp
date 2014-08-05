@@ -21,6 +21,7 @@ jQuery(document).ready(function($) {
 
 		$that.siblings('img').remove();
 		$that.closest( '.hatch-image-uploader' ).removeClass( 'hatch-has-image' );
+		$that.siblings('input').val('').trigger("change");
 		$that.fadeOut();
 		return false;
 	});
@@ -88,6 +89,62 @@ jQuery(document).ready(function($) {
 		file_frame.open();
 	});
 
+	$(document).on( 'click' , '.hatch-file-remove' , function(e){
+		e.preventDefault();
+
+		// "Hi Mom"
+		$that = $(this);
+
+		$that.siblings('span').text('');
+		$that.siblings('input').val('').trigger("change");
+
+		$that.fadeOut();
+		return false;
+	});
+
+
+	$(document).on( 'click' , '.hatch-regular-uploader' , function(e){
+		e.preventDefault();
+
+		// "Hi Mom"
+ 		$that = $(this);
+
+		// If the media frame already exists, reopen it.
+		if ( file_frame ) {
+			file_frame.close();
+		}
+
+		// Create the media frame.
+		file_frame = wp.media.frames.file_frame = wp.media({
+			title: $that.data( 'title' ),
+			button: {
+				text: $that.data( 'button_text' ),
+			},
+			multiple: false  // Set to true to allow multiple files to be selected
+		});
+
+		// When an image is selected, run a callback.
+		file_frame.on( 'select', function() {
+			// We set multiple to false so only get one image from the uploader
+			attachment = file_frame.state().get('selection').first().toJSON();
+
+			// Fade in Remove button
+			$that.siblings('small').fadeIn();
+
+			// Add file name to the <span>
+			$that.siblings('span').text( attachment.filename );
+
+			// Trigger change event
+			$that.siblings('input').val( attachment.id ).trigger("change");
+
+			return;
+		});
+
+		// Finally, open the modal
+		file_frame.open();
+
+	});
+
 	/**
 	* Background Selectors
 	*/
@@ -105,7 +162,7 @@ jQuery(document).ready(function($) {
 		$elements = $( $id + '-controller' ).find( '.hatch-controller-elements' );
 
 		// Change the input value
-		$( $id + '-type' ).val( $type );
+		$( $id + '-type' ).val( $type ).trigger("change");
 
 		// Switch the selectors
 		$that.addClass( 'active' );
@@ -142,7 +199,19 @@ jQuery(document).ready(function($) {
 
 	function hatch_set_sortable_cols(){
 		$( '.hatch-sortable' ).sortable({
-      			placeholder: "hatch-sortable-drop"
-    		});
+			placeholder: "hatch-sortable-drop"
+		});
 	}
+
+	/**
+	* TinyMCE Saving
+	*/
+	hatch_keep_tiny_mce()
 });
+
+function hatch_keep_tiny_mce(){
+	tinyMCE.init({
+		selector:'.hatch-tinymce',
+		skin : 'wp_theme'
+	});
+};

@@ -192,7 +192,7 @@ class Hatch_Widget_Elements {
 				<?php foreach( $input->options as $value => $label ) { ?>
 					<input type="radio" <?php echo implode ( ' ' , $input_props ); ?> id="<?php echo $input->id .'-' . $value; ?>" value="<?php echo $value; ?>" <?php checked( $input->value , $value , true ); ?> />
 					<label class="hatch-settings-icon hatch-icon-<?php echo $value; ?> <?php if( $value == $input->value ) echo 'hatch-active'; ?>" for="<?php echo $input->id .'-' . $value; ?>">
-						<span><?php echo $value; ?></span>
+						<span><?php echo $label; ?></span>
 					</label>
 				<?php } // foreach options ?>
 			<?php break;
@@ -206,18 +206,27 @@ class Hatch_Widget_Elements {
 			* Tiny MCE
 			*/
 			case 'tinymce' : ?>
-				<?php wp_editor(
-					$input->value ,
-					$input->id ,
-					array( 'textarea_name' => $input->name , 'textarea_rows' => ( isset( $input->rows ) ) ? $input->rows : 3, 'teeny' => ( isset( $input->teeny ) ) ? $input->teeny : false )
-				); ?>
+				<?php // @TODO: Figure out how to initiate TinyMCE after an ajax call
+				 if( ( defined('DOING_AJAX') && DOING_AJAX ) ) : ?>
+					<textarea class="hatch-tinymce" <?php echo implode ( ' ' , $input_props ); ?> <?php if( isset( $input->rows ) ) echo 'rows="' . $input->rows . '"'; ?>><?php echo $input->value; ?></textarea>
+				<?php else : ?>
+					<?php wp_editor(
+						$input->value ,
+						$input->id ,
+						array(
+							'textarea_name' => $input->name ,
+							'textarea_rows' => ( isset( $input->rows ) ) ? $input->rows : 3,
+							'teeny' => ( isset( $input->teeny ) ) ? $input->teeny : false
+						)
+					); ?>
+				<?php endif; ?>
 			<?php break;
 			/**
 			* Image Uploader
 			*/
 			case 'image' : ?>
 				<div class="hatch-form-item">
-					<div class="hatch-image-uploader hatch-animate hatch-push-bottom <?php if( isset( $input->value ) && '' != $input->value ) echo 'hatch-has-image'; ?>">
+					<div class="hatch-image-uploader hatch-animate hatch-push-bottom <?php if( isset( $input->value ) && '' != $input->value ) echo 'hatch-has-image'; ?>" data-title="<?php _e( 'Select an Image' , HATCH_THEME_SLUG ); ?>" data-button_text="<?php _e( 'Use Image' , HATCH_THEME_SLUG ); ?>">
 						<!-- Remove button -->
 						<a class="hatch-image-remove <?php if( !isset( $input->value ) ) echo 'hatch-hide'; ?>" href=""><?php _e( 'Remove' , HATCH_THEME_SLUG ); ?></a>
 
@@ -242,6 +251,18 @@ class Hatch_Widget_Elements {
 				</div>
 			<?php break;
 			/**
+			* Regular Uploader
+			*/
+			case 'upload' : ?>
+				<span>
+					<!-- Image -->
+					<?php if( isset( $input->value ) ) echo wp_basename( wp_get_attachment_url( $input->value ) , true ); ?>
+				</span>
+				<button  class="hatch-regular-uploader hatch-button btn-medium" data-title="<?php _e( 'Select a File' , HATCH_THEME_SLUG ); ?>" data-button_text="<?php _e( 'Use File' , HATCH_THEME_SLUG ); ?>"><?php _e( 'Choose a File' , HATCH_THEME_SLUG  ); ?></button>
+				<small class="<?php if( !isset( $input->value ) ) echo 'hide'; ?> hatch-file-remove"><?php _e( 'Remove' , HATCH_THEME_SLUG ); ?></small>
+				<input type="hidden" <?php echo implode ( ' ' , $input_props ); ?> value="<?php echo $input->value; ?>" />
+			<?php break;
+			/**
 			* Background Controller
 			*/
 			case 'background' :
@@ -252,7 +273,7 @@ class Hatch_Widget_Elements {
 				<div class="hatch-element-controller" id="<?php echo $input->id; ?>-controller">
 					<ul class="hatch-section-links hatch-background-selector">
 						<li <?php if( 'video' != $input_type ) echo 'class="active"'; ?> data-id="#<?php echo $input->id; ?>" data-type="image"><a href="" class="hatch-icon icon-bgimage-small"><?php _e( 'Background Image' , HATCH_THEME_SLUG ); ?></a></li>
-						<li <?php if( 'video' == $input_type ) echo 'class="active"'; ?> data-id="#<?php echo $input->id; ?>" data-type="background"><a href="" class="hatch-icon icon-video-small"><?php _e( 'Background Video' , HATCH_THEME_SLUG ); ?></a></li>
+						<li <?php if( 'video' == $input_type ) echo 'class="active"'; ?> data-id="#<?php echo $input->id; ?>" data-type="video"><a href="" class="hatch-icon icon-video-small"><?php _e( 'Background Video' , HATCH_THEME_SLUG ); ?></a></li>
 					</ul>
 
 					<!-- Background Type Input -->
@@ -351,7 +372,7 @@ class Hatch_Widget_Elements {
 								<label><?php _e( 'Enter your .mp4 link' , HATCH_THEME_SLUG ); ?></label>
 								<?php echo $this->input(
 									array(
-										'type' => 'text',
+										'type' => 'upload',
 										'name' => $input->name . '[mp4]' ,
 										'id' => $input->id . '-mp4',
 										'value' => ( isset( $input->value->mp4 ) ) ? $input->value->mp4 : NULL
@@ -362,7 +383,7 @@ class Hatch_Widget_Elements {
 								<label><?php _e( 'Enter your .ogv link' , HATCH_THEME_SLUG ); ?></label>
 								<?php echo $this->input(
 									array(
-										'type' => 'text',
+										'type' => 'upload',
 										'name' => $input->name . '[ogv]' ,
 										'id' => $input->id . '-ogv',
 										'value' => ( isset( $input->value->ogv ) ) ? $input->value->ogv : NULL
@@ -432,8 +453,7 @@ class Hatch_Widget_Elements {
 			/**
 			* Default to hidden field
 			*/
-			default :
-			?>
+			default : ?>
 				<input type="hidden" <?php echo implode ( ' ' , $input_props ); ?> value="<?php echo $input->value; ?>" />
 		<?php }
 

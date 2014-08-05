@@ -45,9 +45,39 @@ if( !class_exists( 'Hatch_Contact_Widget' ) ) {
 		/**
 		*  Widget front end display
 		*/
-	 	function widget( $args, $instance ) { ?>
-	 		<!-- Front-end HTML Here -->
-	 		<pre><?php if( isset( $instance ) ) print_r( $instance ); ?></pre>
+	 	function widget( $args, $instance ) {
+
+			// Turn $args array into variables.
+			extract( $args );
+
+			// Turn $instance into an object named $widget, makes for neater code
+			$widget = (object) $instance; ?>
+
+			<section class="widget row" id="<?php echo $widget_id; ?>">
+				<?php if( '' != $widget->title || '' != $widget->excerpt ) { ?>
+					<div class="container content-main clearfix">
+						<div class="section-title clearfix <?php echo $widget->title_size; ?> ">
+							<?php if( '' != $widget->title ) { ?>
+								<h3 class="heading"><?php echo $widget->title; ?></h3>
+							<?php } ?>
+							<?php if( '' != $widget->excerpt ) { ?>
+								<p class="excerpt"><?php echo $widget->excerpt; ?></p>
+							<?php } ?>
+						</div>
+					</div>
+				<?php } // if title || excerpt ?>
+				<?php if( '' != $widget->google_maps_location || '' != $widget->google_maps_long_lat ) { ?>
+					<div class="hatch-map invert with-background" style="height: 670px;" <?php if( '' != $widget->google_maps_location ) { ?>data-location="<?php echo $widget->google_maps_location; ?>"<?php } ?> <?php if( '' != $widget->google_maps_long_lat ) { ?>data-longlat="<?php echo $widget->google_maps_long_lat; ?>"<?php } ?>></div>
+				<?php } ?>
+			</section>
+
+	 		<!-- Front-end HTML Here
+	 		<?php print_r( $instance ); ?>-->
+
+	 		<?php // Enqueue the map js
+	 			wp_enqueue_script( HATCH_THEME_SLUG . " -map-api","http://maps.googleapis.com/maps/api/js?sensor=false");
+	 			wp_enqueue_script( HATCH_THEME_SLUG . "-map-trigger", get_template_directory_uri()."/core/widgets/js/maps.js", array( "jquery" ) );
+	 		?>
 	 	<?php }
 
 		/**
@@ -79,6 +109,9 @@ if( !class_exists( 'Hatch_Contact_Widget' ) ) {
 			$instance_defaults = array (
 				'title' => NULL,
 				'excerpt' => NULL,
+				'title_size' => '',
+				'google_maps_location' => NULL,
+				'google_maps_long_lat' => NULL,
 			);
 
 			// Parse $instance
@@ -129,6 +162,22 @@ if( !class_exists( 'Hatch_Contact_Widget' ) ) {
 										)
 									); ?>
 								</p>
+								<p class="hatch-form-item">
+									<?php echo $widget_elements->input(
+										array(
+											'type' => 'select',
+											'name' => $this->get_field_name( 'title_size' ) ,
+											'id' => $this->get_field_id( 'title_size' ) ,
+											'value' => ( isset( $title_size ) ) ? $title_size : NULL ,
+											'class' => 'hatch-select hatch-large',
+											'options' => array(
+													'small' => 'Small',
+													'' => 'Medium',
+													'large' => 'Large',
+												)
+										)
+									); ?>
+								</p>
 							</div>
 						</section>
 
@@ -144,7 +193,7 @@ if( !class_exists( 'Hatch_Contact_Widget' ) ) {
 
 						<section class="hatch-accordion-section hatch-content">
 
-							<div class="hatch-map-container hatch-push-bottom"><!-- Map HTML here --></div>
+							<div class="hatch-map hatch-map-container hatch-push-bottom" <?php if( NULL != $google_maps_location ) { ?>data-location="<?php echo $google_maps_location; ?>"<?php } ?> <?php if( NULL != $google_maps_long_lat ) { ?>data-longlat="<?php echo $google_maps_long_lat; ?>"<?php } ?>><!-- Map HTML here --></div>
 
 							<div class="hatch-row clearfix">
 								<div class="hatch-column hatch-span-6">
@@ -194,7 +243,7 @@ if( !class_exists( 'Hatch_Contact_Widget' ) ) {
 													)
 												); ?>
 											</p>
-											<a href="" class="hatch-button"><?php _e( 'Check Address' , HATCH_THEME_SLUG ); ?></a>
+											<a href="" class="hatch-button hatch-check-address"><?php _e( 'Check Address' , HATCH_THEME_SLUG ); ?></a>
 										</div>
 									</div>
 								</div>

@@ -24,6 +24,7 @@ class Hatch_Customizer {
 	*/
 
 	public function __construct() {
+		global $wp_customize;
 
 		// Setup some folder variables
 		$customizer_dir = HATCH_TEMPLATE_DIR . '/core/customizer/';
@@ -47,6 +48,12 @@ class Hatch_Customizer {
 
 		// Include The Panel and Section Registration Class
 		require $customizer_dir . 'registration.php';
+
+		// If we are in a builder page, update the Widgets title
+		if( isset( $_GET[ 'hatch-builder' ] ) ) {
+			$wp_customize->get_panel( 'widgets' )->title = __('Hatch: Page Builder', HATCH_THEME_SLUG );
+			$wp_customize->get_panel( 'widgets' )->description = __('Use this area to add widgets to your page, use the (Hatch) widgets for the Body section.', HATCH_THEME_SLUG );
+		}
 
 		// Enqueue Styles
 		add_action( 'admin_enqueue_scripts', array( $this, 'admin_enqueue_scripts' ) , 50 );

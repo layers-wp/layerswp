@@ -41,7 +41,6 @@ if( !class_exists( 'Hatch_Customize_Number_Control' ) ) {
 				<?php } ?>
 			</label>
 			<?php if ( $this->separator ) echo '<hr class="customizer-separator">'; ?>
-			<?php
-		}
+		<?php	}
 	}
 } // !class_exists( 'Hatch_Customize_Number_Control' )

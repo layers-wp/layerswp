@@ -70,7 +70,7 @@ class Hatch_Widgets {
 		foreach($pages as $page){
 			register_sidebar( array(
 				'id'		=> 'obox-hatch-builder-' . $page->post_name,
-				'name'		=> $page->post_title,
+				'name'		=> $page->post_title . __( ' Body' , HATCH_THEME_SLUG ),
 				'description'	=> __( '' , HATCH_THEME_SLUG ),
 				'before_widget'	=> '<aside id="%1$s" class="widget %2$s">',
 				'after_widget'	=> '</aside>',
@@ -113,15 +113,25 @@ class Hatch_Widgets {
 			true
 		);
 
+		// Contact Widget
+		wp_enqueue_script( HATCH_THEME_SLUG . " -map-api","http://maps.googleapis.com/maps/api/js?sensor=false");
+		wp_register_script(
+			HATCH_THEME_SLUG . '-admin-widgets-maps' ,
+			get_template_directory_uri() . '/core/widgets/js/maps.js' ,
+			array(),
+			HATCH_VERSION,
+			true
+		);;
+
 		// Widget general
 		wp_enqueue_script(
 			HATCH_THEME_SLUG . '-admin-widgets' ,
 			get_template_directory_uri() . '/core/widgets/js/widgets.js' ,
 			array(
-
 				HATCH_THEME_SLUG . '-admin-widgets-accordians',
 				HATCH_THEME_SLUG . '-admin-widgets-banners',
 				HATCH_THEME_SLUG . '-admin-widgets-modules',
+				HATCH_THEME_SLUG . '-admin-widgets-maps',
 				'backbone',
 				'jquery',
 				'wp-color-picker'

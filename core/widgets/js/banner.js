@@ -21,6 +21,9 @@ jQuery(document).ready(function($){
 
 			// Trigger change for ajax save
 			$bannerInput.val( $banner_guids.join() ).trigger("change");
+
+			// Make sure tinyMCE works
+			hatch_keep_tiny_mce(); // See core/js/widgets.js
 		}
 	});
 
@@ -65,6 +68,9 @@ jQuery(document).ready(function($){
 
 				// Trigger color selectors
 				jQuery('.hatch-color-selector').wpColorPicker();
+
+				// Trigger TinyMCE
+				hatch_keep_tiny_mce(); // See core/js/widgets.js
 			}
 		) // $.post
 	});

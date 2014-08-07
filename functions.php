@@ -38,6 +38,11 @@ function hatch_set_content_width() {
 add_action( 'template_redirect', 'hatch_set_content_width' );
 
 /*
+ * Third Party Scripts
+ */
+require get_template_directory() . '/core/third_party/wp_editor.php';
+
+/*
  * Load Widgets
  */
 require get_template_directory() . '/core/widgets/init.php';
@@ -95,6 +100,7 @@ function hatch_scripts(){
 
 	// Front end Scripts
 
+	// Unslide JS
 	wp_enqueue_script(
 		HATCH_THEME_SLUG . '-slider-js' ,
 		get_template_directory_uri() . '/core/widgets/js/unslide.js',

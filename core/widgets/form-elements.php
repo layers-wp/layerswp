@@ -206,19 +206,24 @@ class Hatch_Widget_Elements {
 			* Tiny MCE
 			*/
 			case 'tinymce' : ?>
+				<?php wp_editor(
+					$input->value ,
+					$input->id ,
+					array(
+						'textarea_name' => $input->name ,
+						'textarea_rows' => ( isset( $input->rows ) ) ? $input->rows : 3,
+						'teeny' => ( isset( $input->teeny ) ) ? $input->teeny : false
+					)
+				); ?>
 				<?php // @TODO: Figure out how to initiate TinyMCE after an ajax call
-				 if( ( defined('DOING_AJAX') && DOING_AJAX ) ) : ?>
-					<textarea class="hatch-tinymce" <?php echo implode ( ' ' , $input_props ); ?> <?php if( isset( $input->rows ) ) echo 'rows="' . $input->rows . '"'; ?>><?php echo $input->value; ?></textarea>
-				<?php else : ?>
-					<?php wp_editor(
-						$input->value ,
-						$input->id ,
-						array(
-							'textarea_name' => $input->name ,
-							'textarea_rows' => ( isset( $input->rows ) ) ? $input->rows : 3,
-							'teeny' => ( isset( $input->teeny ) ) ? $input->teeny : false
-						)
-					); ?>
+				 if( ( defined('DOING_AJAX') && DOING_AJAX ) ) :
+				 	$wp_editor_box = new wp_editor_box();
+					$mce_init = $wp_editor_box->get_mce_init( $input->id );
+					$qt_init = $wp_editor_box->get_qt_init( $input->id ); ?>
+					<script type="text/javascript">
+						tinyMCEPreInit.mceInit = jQuery.extend( tinyMCEPreInit.mceInit, <?php echo $mce_init ?>);
+						tinyMCEPreInit.qtInit = jQuery.extend( tinyMCEPreInit.qtInit, <?php echo $qt_init ?>);
+					</script>
 				<?php endif; ?>
 			<?php break;
 			/**

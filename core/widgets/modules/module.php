@@ -42,15 +42,16 @@ if( !class_exists( 'Hatch_Module_Widget' ) ) {
 
 			// Turn $instance into an object named $widget, makes for neater code
 			$widget = (object) $instance; ?>
-			<section class="widget row" id="<?php echo $widget_id; ?>">
 
+			<section class="widget row" id="<?php echo $widget_id; ?>">
 				<?php // Set the span class for each column
-				$span_class = 'span-' . ( 12/$widget->columns );  ?>
+				$col_count = str_ireplace('columns-', '', $widget->columns );
+				$span_class = 'span-' . ( 12/ $col_count );  ?>
 
 				<div class="container content-main clearfix">
-					<div class="row">
+					<div class="row push-bottom-medium">
 						<?php if( '' != $widget->title || '' != $widget->excerpt ) { ?>
-							<div class="section-title <?php echo $widget->title_size; ?> clearfix">
+							<div class="section-title <?php if( isset( $widget->title_size ) ) echo $widget->title_size; ?> <?php if( isset( $widget->title_alignment ) ) echo $widget->title_alignment; ?> clearfix"> <?php // @TODO: get alignment to work here ?>
 								<?php if( '' != $widget->title ) { ?>
 									<h3 class="heading"><?php echo $widget->title; ?></h3>
 								<?php } ?>
@@ -65,7 +66,7 @@ if( !class_exists( 'Hatch_Module_Widget' ) ) {
 							<?php $col = 1; ?>
 							<?php foreach ( $widget->modules as $key => $module) {
 								$module = (object) $module;?>
-								<?php if( $col <= $widget->columns ) { ?>
+								<?php if( $col <= $col_count ) { ?>
 									<div class="column <?php echo $span_class; ?>">
 										<div class="marketing marketing-centered">
 											<?php if( isset( $module->image ) && '' != $module->image ) { ?>
@@ -123,9 +124,10 @@ if( !class_exists( 'Hatch_Module_Widget' ) ) {
 
 			// $instance Defaults
 			$instance_defaults = array (
-				'title_size' => '',
 				'title' => NULL,
 				'excerpt' => NULL,
+				'title_alignment' => 't-left',
+				'title_size' => '',
 				'columns' => 3,
 				'module_ids' => rand( 1 , 1000 ) . ',' . rand( 1 , 1000 ) . ',' . rand( 1 , 1000 ) . ',' . rand( 1 , 1000 )
 			);
@@ -154,79 +156,125 @@ if( !class_exists( 'Hatch_Module_Widget' ) ) {
 							); ?>
 
 							<section class="hatch-accordion-section hatch-content">
-
 								<div class="hatch-row hatch-push-bottom clearfix">
-									<p class="hatch-form-item">
-										<?php echo $widget_elements->input(
-											array(
-												'type' => 'text',
-												'name' => $this->get_field_name( 'title' ) ,
-												'id' => $this->get_field_id( 'title' ) ,
-												'placeholder' => __( 'Enter title here', HATCH_THEME_SLUG ),
-												'value' => ( isset( $title ) ) ? $title : NULL ,
-												'class' => 'hatch-text hatch-large'
-											)
-										); ?>
-									</p>
-									<p class="hatch-form-item">
-										<?php echo $widget_elements->input(
-											array(
-												'type' => 'textarea',
-												'name' => $this->get_field_name( 'excerpt' ) ,
-												'id' => $this->get_field_id( 'excerpt' ) ,
-												'placeholder' =>  __( 'Short Excerpt', HATCH_THEME_SLUG ),
-												'value' => ( isset( $excerpt ) ) ? $excerpt : NULL ,
-												'class' => 'hatch-textarea hatch-large'
-											)
-										); ?>
-									</p>
-									<p class="hatch-form-item">
-										<?php echo $widget_elements->input(
-											array(
-												'type' => 'select',
-												'name' => $this->get_field_name( 'title_size' ) ,
-												'id' => $this->get_field_id( 'title_size' ) ,
-												'value' => ( isset( $title_size ) ) ? $title_size : NULL ,
-												'class' => 'hatch-select hatch-large',
-												'options' => array(
-														'small' => 'Small',
-														'' => 'Medium',
-														'large' => 'Large',
-													)
-											)
-										); ?>
-									</p>
-								</div>
-								<div class="hatch-row hatch-push-bottom clearfix">
-									<p class="hatch-form-item hatch-span-2">
-										<label for="<?php echo $this->get_field_id( 'columns' ); ?>"><?php _e( 'Columns' , HATCH_THEME_SLUG ); ?></label>
-										<?php echo $widget_elements->input(
-											array(
-												'type' => 'select',
-												'name' => $this->get_field_name( 'columns' ) ,
-												'id' => 'module_columns_' . $this->number,
-												'data' => array( 'module_list' => '#module_list_' . $this->number ),
-												'value' => ( isset( $columns ) ) ? $columns : NULL,
-												'options' => $widget_elements->get_incremental_options( array() , 1 , 4 , 1)
-											)
-										); ?>
-									</p>
+									<div class="hatch-column hatch-span-7">
+										<div class="hatch-panel">
+											<?php $widget_elements->section_panel_title(
+												array(
+													'type' => 'panel',
+													'title' => __( 'Title &amp; Excerpt' , HATCH_THEME_SLUG ),
+													'tooltip' => __(  'Place your help text here please.', HATCH_THEME_SLUG )
+												)
+											); ?>
+											<div class="hatch-content">
+												<p class="hatch-form-item">
+													<?php echo $widget_elements->input(
+														array(
+															'type' => 'text',
+															'name' => $this->get_field_name( 'title' ) ,
+															'id' => $this->get_field_id( 'title' ) ,
+															'placeholder' => __( 'Enter title here', HATCH_THEME_SLUG ),
+															'value' => ( isset( $title ) ) ? $title : NULL ,
+															'class' => 'hatch-text hatch-large'
+														)
+													); ?>
+												</p>
+												<p class="hatch-form-item">
+													<?php echo $widget_elements->input(
+														array(
+															'type' => 'textarea',
+															'name' => $this->get_field_name( 'excerpt' ) ,
+															'id' => $this->get_field_id( 'excerpt' ) ,
+															'placeholder' =>  __( 'Short Excerpt', HATCH_THEME_SLUG ),
+															'value' => ( isset( $excerpt ) ) ? $excerpt : NULL ,
+															'class' => 'hatch-textarea hatch-large'
+														)
+													); ?>
+												</p>
+											</div>
+										</div>
+									</div>
+									<div class="hatch-column hatch-span-5">
+										<div class="hatch-panel">
+											<?php $widget_elements->section_panel_title(
+												array(
+													'type' => 'panel',
+													'title' => __( 'Size &amp; Position' , HATCH_THEME_SLUG ),
+													'tooltip' => __(  'Place your help text here please.', HATCH_THEME_SLUG )
+												)
+											); ?>
+											<div class="hatch-content">
+												<p class="hatch-form-item">
+													<label for="<?php echo $this->get_field_id( 'title_alignment' ); ?>"><?php _e( 'Alignment' , HATCH_THEME_SLUG ); ?></label>
+													<?php echo $widget_elements->input(
+														array(
+															'type' => 'select',
+															'name' => $this->get_field_name( 'title_alignment' ) ,
+															'id' => $this->get_field_id( 'title_alignment' ) ,
+															'value' => ( isset( $title_alignment ) ) ? $title_alignment : NULL ,
+															'class' => 'hatch-select hatch-large',
+															'options' => array(
+																	't-left' => 'Left',
+																	't-center' => 'Center',
+																	't-right' => 'Right',
+																)
+														)
+													); ?>
+												</p>
+												<p class="hatch-form-item">
+													<label for="<?php echo $this->get_field_id( 'title_size' ); ?>"><?php _e( 'Font Size' , HATCH_THEME_SLUG ); ?></label>
+													<?php echo $widget_elements->input(
+														array(
+															'type' => 'select',
+															'name' => $this->get_field_name( 'title_size' ) ,
+															'id' => $this->get_field_id( 'title_size' ) ,
+															'value' => ( isset( $title_size ) ) ? $title_size : NULL ,
+															'class' => 'hatch-select hatch-large',
+															'options' => array(
+																	'small' => 'Small',
+																	'' => 'Medium',
+																	'large' => 'Large',
+																)
+														)
+													); ?>
+												</p>
 
-									<?php echo $widget_elements->input(
-										array(
-											'type' => 'hidden',
-											'name' => $this->get_field_name( 'module_ids' ) ,
-											'id' => 'module_ids_input_' . $this->number,
-											'value' => ( isset( $module_ids ) ) ? $module_ids : NULL
-										)
-									); ?>
-
+												<p class="hatch-form-item">
+													<label for="<?php echo $this->get_field_id( 'columns' ) . '_module_columns'; ?>"><?php _e( 'Columns' , HATCH_THEME_SLUG ); ?></label>
+													<?php echo $widget_elements->input(
+														array(
+															'type' => 'select-icons',
+															'name' => $this->get_field_name( 'columns' ) ,
+															'id' => $this->get_field_id( 'columns' ) . '_module_columns',
+															'data' => array( 'module_list' => '#module_list_' . $this->number ),
+															'value' => ( isset( $columns ) ) ? $columns : NULL,
+															'options' => array(
+																'columns-1' => __( '1 Column' , HATCH_THEME_SLUG ),
+																'columns-2' => __( '2 Column' , HATCH_THEME_SLUG ),
+																'columns-3' => __( '3 Column' , HATCH_THEME_SLUG ),
+																'columns-4' => __( '4 Column' , HATCH_THEME_SLUG )
+															)
+														)
+													); ?>
+												</p>
+											</div>
+										</div>
+									</div>
 								</div>
+
+								<?php echo $widget_elements->input(
+									array(
+										'type' => 'hidden',
+										'name' => $this->get_field_name( 'module_ids' ) ,
+										'id' => 'module_ids_input_' . $this->number,
+										'value' => ( isset( $module_ids ) ) ? $module_ids : NULL
+									)
+								); ?>
 
 								<?php // If we have some banners, let's break out their IDs into an array
 								if( isset( $module_ids ) && '' != $module_ids ) $modules = explode( ',' , $module_ids ); ?>
 
-								<div class="hatch-row hatch-columns-<?php echo $columns; ?>" id="module_list_<?php echo $this->number; ?>" data-id_base="<?php echo $this->id_base; ?>" data-number="<?php echo $this->number; ?>">
+								<div class="hatch-row hatch-<?php echo $columns; ?>" id="module_list_<?php echo $this->number; ?>" data-id_base="<?php echo $this->id_base; ?>" data-number="<?php echo $this->number; ?>">
 
 									<?php // Start the column counter from 0
 									$this->column_count = 0; ?>
@@ -239,9 +287,7 @@ if( !class_exists( 'Hatch_Module_Widget' ) ) {
 												( isset( $instance[ 'modules' ][ $module ] ) ) ? $instance[ 'modules' ][ $module ] : NULL );
 									} ?>
 								</div>
-
 							</section>
-
 						</li>
 					</ul>
 

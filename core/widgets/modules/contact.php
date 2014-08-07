@@ -54,9 +54,14 @@ if( !class_exists( 'Hatch_Contact_Widget' ) ) {
 			$widget = (object) $instance; ?>
 
 			<section class="widget row" id="<?php echo $widget_id; ?>">
-				<?php if( '' != $widget->title || '' != $widget->excerpt ) { ?>
-					<div class="container content-main clearfix">
-						<div class="section-title clearfix <?php echo $widget->title_size; ?> ">
+				<?php if( '' != $widget->title || '' != $widget->excerpt  || '' != $widget->address_shown ) { ?>
+					<div class="container content clearfix">
+						<div class="section-title clearfix <?php if( isset( $widget->title_size ) ) echo $widget->title_size; ?>">
+							<?php if( '' != $widget->address_shown ) { ?>
+								<small class="pull-right span-2">
+									<?php echo $widget->address_shown; ?>
+								</small>
+							<?php } ?>
 							<?php if( '' != $widget->title ) { ?>
 								<h3 class="heading"><?php echo $widget->title; ?></h3>
 							<?php } ?>
@@ -192,9 +197,6 @@ if( !class_exists( 'Hatch_Contact_Widget' ) ) {
 						); ?>
 
 						<section class="hatch-accordion-section hatch-content">
-
-							<div class="hatch-map hatch-map-container hatch-push-bottom" <?php if( NULL != $google_maps_location ) { ?>data-location="<?php echo $google_maps_location; ?>"<?php } ?> <?php if( NULL != $google_maps_long_lat ) { ?>data-longlat="<?php echo $google_maps_long_lat; ?>"<?php } ?>><!-- Map HTML here --></div>
-
 							<div class="hatch-row clearfix">
 								<div class="hatch-column hatch-span-6">
 									<div class="hatch-panel">
@@ -243,7 +245,6 @@ if( !class_exists( 'Hatch_Contact_Widget' ) ) {
 													)
 												); ?>
 											</p>
-											<a href="" class="hatch-button hatch-check-address"><?php _e( 'Check Address' , HATCH_THEME_SLUG ); ?></a>
 										</div>
 									</div>
 								</div>

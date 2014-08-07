@@ -4,7 +4,7 @@ jQuery(document).ready(function($){
 	* Column Selector
 	*/
 
-	$( document ).on( 'change' , 'select[id^="module_columns_"]' , function(){
+	$( document ).on( 'change' , 'input[id$="_module_columns"]' , function(){
 		// "Hi Mom"
 		$that = $(this);
 
@@ -15,7 +15,7 @@ jQuery(document).ready(function($){
 		$moduleList = $($list);
 
 		$moduleList.removeClass( 'hatch-columns-1 hatch-columns-2 hatch-columns-3 hatch-columns-4 hatch-columns-5');
-		$moduleList.addClass( 'hatch-columns-' + $that.val() );
+		$moduleList.addClass( 'hatch-' + $that.val() );
 	});
 
 	/**

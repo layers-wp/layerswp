@@ -121,7 +121,7 @@ class Hatch_Widgets {
 			array(),
 			HATCH_VERSION,
 			true
-		);;
+		);
 
 		// Widget general
 		wp_enqueue_script(
@@ -132,6 +132,7 @@ class Hatch_Widgets {
 				HATCH_THEME_SLUG . '-admin-widgets-banners',
 				HATCH_THEME_SLUG . '-admin-widgets-modules',
 				HATCH_THEME_SLUG . '-admin-widgets-maps',
+				HATCH_THEME_SLUG . '-admin-wp-editor' ,
 				'backbone',
 				'jquery',
 				'wp-color-picker'

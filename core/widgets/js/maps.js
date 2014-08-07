@@ -37,6 +37,7 @@ function hatch_check_address($){
 
 		$map = new google.maps.Map( $that[0] ,
 			{
+				scrollwheel: false,
 				zoom: 10,
   				center: latlng,
   				mapTypeId: google.maps.MapTypeId.ROADMAP

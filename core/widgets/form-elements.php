@@ -215,16 +215,6 @@ class Hatch_Widget_Elements {
 						'teeny' => ( isset( $input->teeny ) ) ? $input->teeny : false
 					)
 				); ?>
-				<?php // @TODO: Figure out how to initiate TinyMCE after an ajax call
-				 if( ( defined('DOING_AJAX') && DOING_AJAX ) ) :
-				 	$wp_editor_box = new wp_editor_box();
-					$mce_init = $wp_editor_box->get_mce_init( $input->id );
-					$qt_init = $wp_editor_box->get_qt_init( $input->id ); ?>
-					<script type="text/javascript">
-						tinyMCEPreInit.mceInit = jQuery.extend( tinyMCEPreInit.mceInit, <?php echo $mce_init ?>);
-						tinyMCEPreInit.qtInit = jQuery.extend( tinyMCEPreInit.qtInit, <?php echo $qt_init ?>);
-					</script>
-				<?php endif; ?>
 			<?php break;
 			/**
 			* Image Uploader

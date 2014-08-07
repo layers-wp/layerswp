@@ -202,16 +202,4 @@ jQuery(document).ready(function($) {
 			placeholder: "hatch-sortable-drop"
 		});
 	}
-
-	/**
-	* TinyMCE Saving
-	*/
-	hatch_keep_tiny_mce()
 });
-
-function hatch_keep_tiny_mce(){
-	tinyMCE.init({
-		selector:'.hatch-tinymce',
-		skin : 'wp_theme'
-	});
-};

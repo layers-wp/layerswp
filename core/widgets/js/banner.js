@@ -3,8 +3,13 @@ jQuery(document).ready(function($){
 	/**
 	* Sortable items
 	*/
+	var textareaID;
 	$( 'ul[id^="banner_list_"]' ).sortable({
 		placeholder: "hatch-sortable-drop",
+		start: function(e , li){
+ 			textareaID = $(li.item).find('.wp-editor-area').attr('id');
+			try { tinyMCE.execCommand('mceRemoveControl', false, textareaID); } catch(e){}
+		},
 		stop: function(e , li){
 
 			// Banner UL, looking up from our current target
@@ -23,7 +28,7 @@ jQuery(document).ready(function($){
 			$bannerInput.val( $banner_guids.join() ).trigger("change");
 
 			// Make sure tinyMCE works
-			hatch_keep_tiny_mce(); // See core/js/widgets.js
+			try { tinyMCE.execCommand('mceAddControl', false, textareaID); } catch(e){}
 		}
 	});
 
@@ -63,14 +68,28 @@ jQuery(document).ready(function($){
 					$banner_guids.push( $(this).data( 'guid' ) );
 				});
 
+				var mces = new Array();
+				i = 0;
+				$('.wp-editor-area').each(function(){
+					mces[i] = $(this).attr('id');
+					i++;
+					try { tinyMCE.execCommand('mceRemoveControl', false, mces[i]); } catch(e){}
+				})
+
 				// Trigger change for ajax save
 				$bannerInput.val( $banner_guids.join() ).trigger("change");
+
+				i = 0;
+				$('.wp-editor-area').each(function(){
+					mces[i] = $(this).attr('id');
+					i++;
+					try { tinyMCE.execCommand('mceAddControl', false, mces[i] ); } catch(e){}
+				})
 
 				// Trigger color selectors
 				jQuery('.hatch-color-selector').wpColorPicker();
 
-				// Trigger TinyMCE
-				hatch_keep_tiny_mce(); // See core/js/widgets.js
+
 			}
 		) // $.post
 	});

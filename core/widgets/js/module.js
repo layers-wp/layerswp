@@ -3,8 +3,7 @@ jQuery(document).ready(function($){
 	/**
 	* Column Selector
 	*/
-
-	$( document ).on( 'change' , 'input[id$="_module_columns"]' , function(){
+	$( document ).on( 'change' , 'input[id*="_module_columns"]' , function(){
 		// "Hi Mom"
 		$that = $(this);
 
@@ -30,14 +29,19 @@ jQuery(document).ready(function($){
 	});
 
 	function hatch_set_sortable_module(){
+		var textareaID;
 		$( 'div[id^="module_list_"]' ).sortable({
 			placeholder: "hatch-sortable-drop hatch-column hatch-span class",
+			start: function(e , li){
+	 			textareaID = $(li.item).find('.wp-editor-area').attr('id');
+				try { tinyMCE.execCommand('mceRemoveControl', false, textareaID); } catch( err ){ console.log( err ); }
+			},
 			stop: function(e , div){
 
 				// Banner UL, looking up from our current target
 				$moduleList = div.item.closest( 'div[id^="module_list_"]' );
 
-				// Banners <input>
+				// Modules <input>
 				$moduleInput = $( '#module_ids_input_' + $moduleList.data( 'number' ) );
 
 				// Apply new module order & classes
@@ -56,6 +60,13 @@ jQuery(document).ready(function($){
 
 				// Trigger change for ajax save
 				$moduleInput.val( $module_guids.join() ).trigger("change");
+
+				// Make sure tinyMCE works
+				try {
+					console.log( textareaID );
+					tinyMCE.execCommand('mceAddControl', false, textareaID );
+
+				} catch(e){}
 			}
 		});
 	}

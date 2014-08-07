@@ -113,6 +113,23 @@ class Hatch_Widgets {
 			true
 		);
 
+		// Tiny MCE Initiator
+		wp_register_script(
+			HATCH_THEME_SLUG . '-admin-widgets-tinymce' ,
+			get_template_directory_uri() . '/core/widgets/js/tinymce.js' ,
+			array(
+				'editor',
+				'word-count',
+				'quicktags',
+				'wplink',
+				'wp-fullscreen',
+				'media-upload'
+			),
+			HATCH_VERSION,
+			true
+		);
+
+
 		// Contact Widget
 		wp_enqueue_script( HATCH_THEME_SLUG . " -map-api","http://maps.googleapis.com/maps/api/js?sensor=false");
 		wp_register_script(
@@ -132,7 +149,6 @@ class Hatch_Widgets {
 				HATCH_THEME_SLUG . '-admin-widgets-banners',
 				HATCH_THEME_SLUG . '-admin-widgets-modules',
 				HATCH_THEME_SLUG . '-admin-widgets-maps',
-				HATCH_THEME_SLUG . '-admin-wp-editor' ,
 				'backbone',
 				'jquery',
 				'wp-color-picker'

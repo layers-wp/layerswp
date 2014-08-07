@@ -40,7 +40,7 @@ add_action( 'template_redirect', 'hatch_set_content_width' );
 /*
  * Third Party Scripts
  */
-require get_template_directory() . '/core/third_party/wp_editor.php';
+// require get_template_directory() . '/core/third_party/wp_editor.php';
 
 /*
  * Load Widgets

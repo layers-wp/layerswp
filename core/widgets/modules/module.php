@@ -128,7 +128,7 @@ if( !class_exists( 'Hatch_Module_Widget' ) ) {
 				'excerpt' => NULL,
 				'title_alignment' => 't-left',
 				'title_size' => '',
-				'columns' => 3,
+				'columns' => 'columns-3',
 				'module_ids' => rand( 1 , 1000 ) . ',' . rand( 1 , 1000 ) . ',' . rand( 1 , 1000 ) . ',' . rand( 1 , 1000 )
 			);
 
@@ -273,7 +273,6 @@ if( !class_exists( 'Hatch_Module_Widget' ) ) {
 
 								<?php // If we have some banners, let's break out their IDs into an array
 								if( isset( $module_ids ) && '' != $module_ids ) $modules = explode( ',' , $module_ids ); ?>
-
 								<div class="hatch-row hatch-<?php echo $columns; ?>" id="module_list_<?php echo $this->number; ?>" data-id_base="<?php echo $this->id_base; ?>" data-number="<?php echo $this->number; ?>">
 
 									<?php // Start the column counter from 0
@@ -374,11 +373,11 @@ if( !class_exists( 'Hatch_Module_Widget' ) ) {
 				</p>
 				<?php echo $widget_elements->input(
 					array(
-						'type' => 'textarea',
+						'type' => 'tinymce',
 						'name' => 'widget-' . $widget_details->id_base . '[' . $widget_details->number . '][modules][' . $module_guid . '][excerpt]' ,
 						'id' => 'widget-' . $widget_details->id_base . '-' . $widget_details->number . '-' . $module_guid . '-excerpt' ,
 						'value' => ( isset( $excerpt ) ) ? $excerpt : NULL ,
-						'class' => 'hatch-textarea hatch-large',
+						'class' => 'hatch-tinymce hatch-textarea hatch-large',
 						'teeny' => true,
 						'rows' => 10
 					)

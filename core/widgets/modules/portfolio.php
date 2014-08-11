@@ -75,58 +75,97 @@ if( !class_exists( 'Hatch_Portfolio_Widget' ) ) {
 						"terms" => $widget->category
 					)
 				);
-			}
+			} elseif( !isset( $widget->hide_category_filter ) ) {
+				$terms = get_terms( $this->taxonomy );
+			} // if we haven't selected which category to show, let's load the $terms for use in the filter
 
 			// Do the WP_Query
 			$post_query = new WP_Query( $query_args ); ?>
 
-			<section class="widget row banner swiper-container" id="<?php echo $widget_id; ?>">
-				<div class="container content-main clearfix">
-					<div class="row push-bottom-medium">
-						<?php if( '' != $widget->title || '' != $widget->excerpt ) { ?>
-							<div class="section-title <?php if( isset( $widget->title_size ) ) echo $widget->title_size; ?> <?php if( isset( $widget->title_alignment ) ) echo $widget->title_alignment; ?> clearfix"> <?php // @TODO: get alignment to work here ?>
-								<?php if( '' != $widget->title ) { ?>
-									<h3 class="heading"><?php echo $widget->title; ?></h3>
-								<?php } ?>
-								<?php if( '' != $widget->excerpt ) { ?>
-									<p class="excerpt"><?php echo $widget->excerpt; ?></p>
-								<?php } ?>
-							</div>
-						<?php } ?>
+			<section class="widget container" id="<?php echo $widget_id; ?>">
+				<?php if( '' != $widget->title || '' != $widget->excerpt ) { ?>
+					<div class="row basement t-center">
+						<div class="section-title <?php if( isset( $widget->title_size ) ) echo $widget->title_size; ?> <?php if( isset( $widget->title_alignment ) ) echo $widget->title_alignment; ?> clearfix"> <?php // @TODO: get alignment to work here ?>
+							<?php if( '' != $widget->title ) { ?>
+								<h3 class="heading"><?php echo $widget->title; ?></h3>
+							<?php } ?>
+							<?php if( '' != $widget->excerpt ) { ?>
+								<p class="excerpt"><?php echo $widget->excerpt; ?></p>
+							<?php } ?>
+						</div>
 					</div>
+				<?php } ?>
+				<?php if( !isset( $widget->hide_category_filter ) && !is_wp_error( $terms ) ) { ?>
+					<ul class="nav nav-pills push-top">
+						<li><span><?php echo $widget->filter_label; ?></span></li>
+						<?php foreach( $terms as $term ) { ?>
+							<li data-filter="<?php echo $term->slug; ?>"><a href="#"><?php echo $term->name; ?></a></li>
+						<?php } // foreach $terms ?>
+					</ul>
+				<?php } ?>
+				<div class="row masonry">
+					<?php if( $post_query->have_posts() ) { ?>
+						<?php while( $post_query->have_posts() ) { global $post; ?>
+							<?php $terms = wp_get_post_terms( $post->ID, $this->taxonomy );
+							$term_list = array();
+							if( !empty( $terms ) ) {
+								foreach( $terms as $term ){
+									$term_list[] = $term->slug;
+								}
+							} ?>
+							<?php $post_query->the_post() ?>
+							<div class="column-flush <?php echo $span_class; ?> hatch-masonry-column <?php echo implode( $term_list, " " ); ?>">
+								<div class="thumbnail">
+									<a href="" class="thumbnail-media with-overlay">
+										<?php the_post_thumbnail( 'large' ); ?>
 
-					<div class="row push-bottom-large">
-						<?php if( $post_query->have_posts() ) { ?>
-							<?php while( $post_query->have_posts() ) { ?>
-								<?php $post_query->the_post() ?>
-								<div class="column-flush <?php echo $span_class; ?>">
-									<div class="thumbnail">
-										<a href="" class="thumbnail-media with-overlay">
-											<?php the_post_thumbnail( 'large' ); ?>
+										<!-- For non-overlay
+										<div class="thumbnail-body">
+											<h4 class="heading"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h4>
+											<?php the_excerpt(); ?>
+											<a href="" class="button">Call to action</a>
+										</div>
+										-->
 
-											<!-- For non-overlay
-											<div class="thumbnail-body">
-												<h4 class="heading"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h4>
-												<?php the_excerpt(); ?>
-												<a href="" class="button">Call to action</a>
-											</div>
-											-->
-
-											<span class="overlay">
+										<span class="overlay">
+											<?php if( isset( $widget->hide_titles ) ) { ?>
 												<span class="heading"><?php the_title(); ?></span>
-												<span class="button">Call to action</span>
-											</span>
-										</a>
-									</div>
+											<?php } // if hide_titles ?>
+											<span class="button">Call to action</span>
+										</span>
+									</a>
 								</div>
-							<?php }; // while have_posts ?>
-						<?php }; // if have_posts ?>
-					</div>
+							</div>
+						<?php }; // while have_posts ?>
+					<?php }; // if have_posts ?>
 				</div>
 			</section>
 			<script>
 				jQuery(function($){
-					var masonry = $('#<?php echo $widget_id; ?>').find('.row').masonry();
+					var masonry = $('#<?php echo $widget_id; ?>').find('.masonry').masonry();
+
+					$('#<?php echo $widget_id; ?>').find('.nav-pills li').on( 'click' , function(e){
+						e.preventDefault();
+
+						// "Hi Mom"
+						$that = $(this);
+
+						// Get term slug
+						$filter = $that.data( 'filter' );
+
+						// Toggle active
+						$that.toggleClass( 'active' ).siblings().removeClass('active');
+
+						jQuery.each( $('#<?php echo $widget_id; ?>').find( '.hatch-masonry-column' ) , function(){
+							if( jQuery(this).hasClass( $filter ) || !$that.hasClass( 'active' ) ){
+								jQuery(this).fadeIn();
+							} else {
+								jQuery(this).hide();
+							}
+						});
+
+						$('#<?php echo $widget_id; ?>').find('.masonry').masonry();
+					});
 				});
 			</script>
 			<!-- Front-end HTML Here
@@ -168,6 +207,8 @@ if( !class_exists( 'Hatch_Portfolio_Widget' ) ) {
 			$instance_defaults = array (
 				'title' => NULL,
 				'excerpt' => NULL,
+				'filter_label' => __( 'Filter:' , HATCH_THEME_SLUG ),
+				'category' => 0
 			);
 
 			// Parse $instance
@@ -252,7 +293,19 @@ if( !class_exists( 'Hatch_Portfolio_Widget' ) ) {
 													); ?>
 												</p>
 											<?php } // if !is_wp_error ?>
-
+											<?php if( 0 == $category ) { ?>
+												<p class="hatch-form-item">
+													<label for="<?php echo $this->get_field_id( 'filter_label' ); ?>"><?php echo __( 'Category Filter Label' , HATCH_THEME_SLUG ); ?></label>
+													<?php echo $widget_elements->input(
+														array(
+															'type' => 'text',
+															'name' => $this->get_field_name( 'filter_label' ) ,
+															'id' => $this->get_field_id( 'filter_label' ) ,
+															'value' => ( isset( $filter_label ) ) ? $filter_label : NULL
+														)
+													); ?>
+												</p>
+											<?php } // if 0 == category ?>
 											<p class="hatch-form-item">
 												<label for="<?php echo $this->get_field_id( 'posts_per_page' ); ?>"><?php echo __( 'Number of items to show' , HATCH_THEME_SLUG ); ?></label>
 												<?php $select_options[ '-1' ] = __( 'Show All' , HATCH_THEME_SLUG );
@@ -338,17 +391,19 @@ if( !class_exists( 'Hatch_Portfolio_Widget' ) ) {
 														)
 													); ?>
 												</li>
-												<li class="hatch-checkbox">
-													<?php echo $widget_elements->input(
-														array(
-															'type' => 'checkbox',
-															'name' => $this->get_field_name( 'hide_categories' ) ,
-															'id' => $this->get_field_id( 'hide_categories' ) ,
-															'value' => ( isset( $hide_categories ) ) ? $hide_categories : NULL,
-															'label' => __( 'Hide Categories' , HATCH_THEME_SLUG )
-														)
-													); ?>
-												</li>
+												<?php if( 0 == $category ) { ?>
+													<li class="hatch-checkbox">
+														<?php echo $widget_elements->input(
+															array(
+																'type' => 'checkbox',
+																'name' => $this->get_field_name( 'hide_category_filter' ) ,
+																'id' => $this->get_field_id( 'hide_category_filter' ) ,
+																'value' => ( isset( $hide_category_filter ) ) ? $hide_category_filter : NULL,
+																'label' => __( 'Hide Category Filter' , HATCH_THEME_SLUG )
+															)
+														); ?>
+													</li>
+												<?php } // if 0 == category ?>
 												<li class="hatch-checkbox">
 													<?php echo $widget_elements->input(
 														array(

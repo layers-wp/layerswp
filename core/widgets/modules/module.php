@@ -41,13 +41,13 @@ if( !class_exists( 'Hatch_Module_Widget' ) ) {
 			extract( $args );
 
 			// Turn $instance into an object named $widget, makes for neater code
-			$widget = (object) $instance; ?>
+			$widget = (object) $instance;
+
+			// Set the span class for each column
+			$col_count = str_ireplace('columns-', '', $widget->columns );
+			$span_class = 'span-' . ( 12/ $col_count ); ?>
 
 			<section class="widget row" id="<?php echo $widget_id; ?>">
-				<?php // Set the span class for each column
-				$col_count = str_ireplace('columns-', '', $widget->columns );
-				$span_class = 'span-' . ( 12/ $col_count );  ?>
-
 				<div class="container content-main clearfix">
 					<div class="row push-bottom-medium">
 						<?php if( '' != $widget->title || '' != $widget->excerpt ) { ?>

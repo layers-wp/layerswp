@@ -23,13 +23,13 @@ if( !class_exists( 'Hatch_Portfolio_Widget' ) ) {
 		private $post_type = 'jetpack-portfolio';
 		private $taxonomy = 'jetpack-portfolio-type';
 		public $checkboxes = array(
-				'show_titles',
-				'show_dates',
-				'show_excerpts',
-				'show_author',
-				'show_cagegories',
-				'show_tags',
-				'show_comment_count'
+				'hide_titles',
+				'hide_dates',
+				'hide_excerpts',
+				'hide_author',
+				'hide_cagegories',
+				'hide_tags',
+				'hide_comment_count'
 			); // @TODO: Try make this more dynamic, or leave a different note reminding users to change this if they add/remove checkboxes
 		/**
 		*  Widget construction
@@ -48,7 +48,83 @@ if( !class_exists( 'Hatch_Portfolio_Widget' ) ) {
 		/**
 		*  Widget front end display
 		*/
-	 	function widget( $args, $instance ) { ?>
+	 	function widget( $args, $instance ) {
+
+			// Turn $args array into variables.
+			extract( $args );
+
+			// Turn $instance into an object named $widget, makes for neater code
+			$widget = (object) $instance;
+
+ 			// Set the span class for each column
+			$col_count = str_ireplace('columns-', '', $widget->columns );
+			$span_class = 'span-' . ( 12/ $col_count );
+
+			// Begin query arguments
+			$query_args = array();
+			$query_args[ 'post_type' ] = $this->post_type;
+			$query_args[ 'posts_per_page' ] = $widget->posts_per_page;
+			$query_args[ 'order_by' ]  = $widget->order_by;
+
+			// Do the special taxonomy array()
+			if( isset( $widget->category ) && '' != $widget->category && 0 != $widget->category ){
+				$args['tax_query'] = array(
+					array(
+						"taxonomy" => $this->taxonomy,
+						"field" => "id",
+						"terms" => $widget->category
+					)
+				);
+			}
+
+			// Do the WP_Query
+			$post_query = new WP_Query( $query_args ); ?>
+
+			<section class="widget row banner swiper-container" id="<?php echo $widget_id; ?>">
+				<div class="container content-main clearfix">
+					<div class="row push-bottom-medium">
+						<?php if( '' != $widget->title || '' != $widget->excerpt ) { ?>
+							<div class="section-title <?php if( isset( $widget->title_size ) ) echo $widget->title_size; ?> <?php if( isset( $widget->title_alignment ) ) echo $widget->title_alignment; ?> clearfix"> <?php // @TODO: get alignment to work here ?>
+								<?php if( '' != $widget->title ) { ?>
+									<h3 class="heading"><?php echo $widget->title; ?></h3>
+								<?php } ?>
+								<?php if( '' != $widget->excerpt ) { ?>
+									<p class="excerpt"><?php echo $widget->excerpt; ?></p>
+								<?php } ?>
+							</div>
+						<?php } ?>
+					</div>
+
+					<div class="row push-bottom-large">
+						<?php if( $post_query->have_posts() ) { ?>
+						<?php while( $post_query->have_posts() ) { ?>
+							<?php $post_query->the_post() ?>
+							<div class="column-flush <?php echo $span_class; ?>">
+								<div class="thumbnail">
+									<a href="" class="thumbnail-media with-overlay">
+										<?php the_post_thumbnail( 'large' ); ?>
+
+										<!-- For non-overlay
+										<div class="thumbnail-body">
+											<h4 class="heading"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h4>
+											<?php the_excerpt(); ?>
+											<a href="" class="button">Call to action</a>
+										</div>
+										-->
+
+										<span class="overlay">
+											<span class="heading"><?php the_title(); ?></span>
+											<span class="button">Call to action</span>
+										</span>
+									</a>
+								</div>
+							</div>
+						<?php }; // while have_posts ?>
+						<?php }; // if have_posts ?>
+					</div>
+				</div>
+			</section>
+
 	 		<!-- Front-end HTML Here -->
 	 		<pre><?php if( isset( $instance ) ) print_r( $instance ); ?></pre>
 	 	<?php }
@@ -213,10 +289,10 @@ if( !class_exists( 'Hatch_Portfolio_Widget' ) ) {
 													<?php echo $widget_elements->input(
 														array(
 															'type' => 'checkbox',
-															'name' => $this->get_field_name( 'show_titles' ) ,
-															'id' => $this->get_field_id( 'show_titles' ) ,
-															'value' => ( isset( $show_titles ) ) ? $show_titles : NULL,
-															'label' => __( 'Show Item Titles' , HATCH_THEME_SLUG )
+															'name' => $this->get_field_name( 'hide_titles' ) ,
+															'id' => $this->get_field_id( 'hide_titles' ) ,
+															'value' => ( isset( $hide_titles ) ) ? $hide_titles : NULL,
+															'label' => __( 'Hide Item Titles' , HATCH_THEME_SLUG )
 														)
 													); ?>
 												</li>
@@ -224,10 +300,10 @@ if( !class_exists( 'Hatch_Portfolio_Widget' ) ) {
 													<?php echo $widget_elements->input(
 														array(
 															'type' => 'checkbox',
-															'name' => $this->get_field_name( 'show_dates' ) ,
-															'id' => $this->get_field_id( 'show_dates' ) ,
-															'value' => ( isset( $show_dates ) ) ? $show_dates : NULL,
-															'label' => __( 'Show Dates' , HATCH_THEME_SLUG )
+															'name' => $this->get_field_name( 'hide_dates' ) ,
+															'id' => $this->get_field_id( 'hide_dates' ) ,
+															'value' => ( isset( $hide_dates ) ) ? $hide_dates : NULL,
+															'label' => __( 'Hide Dates' , HATCH_THEME_SLUG )
 														)
 													); ?>
 												</li>
@@ -235,10 +311,10 @@ if( !class_exists( 'Hatch_Portfolio_Widget' ) ) {
 													<?php echo $widget_elements->input(
 														array(
 															'type' => 'checkbox',
-															'name' => $this->get_field_name( 'show_excerpts' ) ,
-															'id' => $this->get_field_id( 'show_excerpts' ) ,
-															'value' => ( isset( $show_excerpts ) ) ? $show_excerpts : NULL,
-															'label' => __( 'Show Excerpts' , HATCH_THEME_SLUG )
+															'name' => $this->get_field_name( 'hide_excerpts' ) ,
+															'id' => $this->get_field_id( 'hide_excerpts' ) ,
+															'value' => ( isset( $hide_excerpts ) ) ? $hide_excerpts : NULL,
+															'label' => __( 'Hide Excerpts' , HATCH_THEME_SLUG )
 														)
 													); ?>
 												</li>
@@ -246,10 +322,10 @@ if( !class_exists( 'Hatch_Portfolio_Widget' ) ) {
 													<?php echo $widget_elements->input(
 														array(
 															'type' => 'checkbox',
-															'name' => $this->get_field_name( 'show_author' ) ,
-															'id' => $this->get_field_id( 'show_author' ) ,
-															'value' => ( isset( $show_author ) ) ? $show_author : NULL,
-															'label' => __( 'Show Author' , HATCH_THEME_SLUG )
+															'name' => $this->get_field_name( 'hide_author' ) ,
+															'id' => $this->get_field_id( 'hide_author' ) ,
+															'value' => ( isset( $hide_author ) ) ? $hide_author : NULL,
+															'label' => __( 'Hide Author' , HATCH_THEME_SLUG )
 														)
 													); ?>
 												</li>
@@ -257,10 +333,10 @@ if( !class_exists( 'Hatch_Portfolio_Widget' ) ) {
 													<?php echo $widget_elements->input(
 														array(
 															'type' => 'checkbox',
-															'name' => $this->get_field_name( 'show_categories' ) ,
-															'id' => $this->get_field_id( 'show_categories' ) ,
-															'value' => ( isset( $show_categories ) ) ? $show_categories : NULL,
-															'label' => __( 'Show Categories' , HATCH_THEME_SLUG )
+															'name' => $this->get_field_name( 'hide_categories' ) ,
+															'id' => $this->get_field_id( 'hide_categories' ) ,
+															'value' => ( isset( $hide_categories ) ) ? $hide_categories : NULL,
+															'label' => __( 'Hide Categories' , HATCH_THEME_SLUG )
 														)
 													); ?>
 												</li>
@@ -268,10 +344,10 @@ if( !class_exists( 'Hatch_Portfolio_Widget' ) ) {
 													<?php echo $widget_elements->input(
 														array(
 															'type' => 'checkbox',
-															'name' => $this->get_field_name( 'show_tags' ) ,
-															'id' => $this->get_field_id( 'show_tags' ) ,
-															'value' => ( isset( $show_tags ) ) ? $show_tags : NULL,
-															'label' => __( 'Show Tags' , HATCH_THEME_SLUG )
+															'name' => $this->get_field_name( 'hide_tags' ) ,
+															'id' => $this->get_field_id( 'hide_tags' ) ,
+															'value' => ( isset( $hide_tags ) ) ? $hide_tags : NULL,
+															'label' => __( 'Hide Tags' , HATCH_THEME_SLUG )
 														)
 													); ?>
 												</li>
@@ -279,10 +355,10 @@ if( !class_exists( 'Hatch_Portfolio_Widget' ) ) {
 													<?php echo $widget_elements->input(
 														array(
 															'type' => 'checkbox',
-															'name' => $this->get_field_name( 'show_comment_count' ) ,
-															'id' => $this->get_field_id( 'show_comment_count' ) ,
-															'value' => ( isset( $show_comment_count ) ) ? $show_comment_count : NULL,
-															'label' => __( 'Show Comment Count' , HATCH_THEME_SLUG )
+															'name' => $this->get_field_name( 'hide_comment_count' ) ,
+															'id' => $this->get_field_id( 'hide_comment_count' ) ,
+															'value' => ( isset( $hide_comment_count ) ) ? $hide_comment_count : NULL,
+															'label' => __( 'Hide Comment Count' , HATCH_THEME_SLUG )
 														)
 													); ?>
 												</li>

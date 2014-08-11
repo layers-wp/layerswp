@@ -128,6 +128,11 @@ if( !class_exists( 'Hatch_Portfolio_Widget' ) ) {
 			<!-- Front-end HTML Here
 			<?php print_r( $instance ); ?>
 			 -->
+
+			<?php // Reset WP_Query
+				wp_reset_query();
+				wp_reset_postdata();
+			?>
 	 	<?php }
 
 		/**

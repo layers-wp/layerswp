@@ -125,8 +125,9 @@ if( !class_exists( 'Hatch_Portfolio_Widget' ) ) {
 				</div>
 			</section>
 
-	 		<!-- Front-end HTML Here -->
-	 		<pre><?php if( isset( $instance ) ) print_r( $instance ); ?></pre>
+			<!-- Front-end HTML Here
+			<?php print_r( $instance ); ?>
+			 -->
 	 	<?php }
 
 		/**

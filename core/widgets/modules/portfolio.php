@@ -112,7 +112,7 @@ if( !class_exists( 'Hatch_Portfolio_Widget' ) ) {
 								foreach( $terms as $term ){
 									$term_list[] = $term->slug;
 								}
-							} ?>
+							} // @TODO: Turn this into some sort of helper which just returns the slugs hatch_get_term_slugs_for_post() could work ?>
 							<?php $post_query->the_post() ?>
 							<div class="column-flush <?php echo $span_class; ?> hatch-masonry-column <?php echo implode( $term_list, " " ); ?>">
 								<div class="thumbnail">

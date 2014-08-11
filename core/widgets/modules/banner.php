@@ -46,28 +46,43 @@ if( !class_exists( 'Hatch_Banner_Widget' ) ) {
 			// Turn $instance into an object named $widget, makes for neater code
 			$widget = (object) $instance; ?>
 
-			<section class="widget row banner" id="<?php echo $widget_id; ?>">
+			<section class="widget row banner swiper-container" id="<?php echo $widget_id; ?>" <?php if( isset( $widget->banner_height ) && '' != $widget->banner_height ) echo 'style="height: ' . $widget->banner_height . 'px;"' ?>
+							 	>
 				<?php if( !empty( $widget->banners ) ) { ?>
-			 		<ul>
+			 		<div class="swiper-wrapper">
 						<?php $col = 1; ?>
 						<?php foreach ( $widget->banners as $key => $banner) {
 							$banner = (object) $banner;?>
-						 	<li id="<?php echo $widget_id; ?>-<?php echo $key; ?>" class="sky basement invert with-background"
+						 	<div id="<?php echo $widget_id; ?>-<?php echo $key; ?>" class="sky basement invert with-background swiper-slide"
 						 		style="float: left;
-							 	<?php if( !empty( $banner->background ) && 'image' == $banner->background['type'] ) { ?>
+						 		<?php if( !empty( $banner->background ) && 'image' == $banner->background['type'] ) { ?>
 							 		<?php // Fetch bg image
 							 		$image = wp_get_attachment_image_src( $banner->background['image'] , 'full' );?>
-							 		background: url('<?php echo esc_html( $image[0] ); ?>'); background-size: cover;
+							 		background-image: url('<?php echo esc_html( $image[0] ); ?>');
+							 		background-size: cover;
+							 	<?php } ?>
+							 	<?php if( isset( $banner->background['image_color'] ) && '' != $banner->background['image_color'] ) { ?>
+							 		background-color: <?php echo $banner->background['image_color']; ?>;
 							 	<?php } ?>">
 								<div class="section-title large clearfix container copy">
 									<?php if( isset( $banner->image ) && '' != $banner->image ) echo wp_get_attachment_image( $banner->image , 'medium' ); ?>
 									<?php echo $banner->excerpt; ?>
 								</div>
-							</li>
+							</div>
 						<?php } // foreach slides ?>
-			 		</ul>
+			 		</div>
 				<?php } // if !empty( $widget->slides ) ?>
 		 	</section>
+		 	<script>
+				jQuery(function($){
+					var swiper = $('.swiper-container').swiper({
+						//Your options here:
+						mode:'horizontal',
+						loop: true
+						<?php if( isset( $widget->autoplay_banners ) && isset( $widget->slide_time ) && is_numeric( $widget->slide_time ) ) {?>, autoplay: <?php echo $widget->slide_time; ?><?php }?>
+					});
+				})
+		 	</script>
 
 	 		<!-- Front-end HTML Here
 	 		<?php print_r( $instance ); ?>-->
@@ -104,6 +119,7 @@ if( !class_exists( 'Hatch_Banner_Widget' ) ) {
 			$instance_defaults = array (
 				'title' => NULL,
 				'excerpt' => NULL,
+				'banner_height' => '550',
 				'banner_ids' => rand( 1 , 1000 )
 			);
 

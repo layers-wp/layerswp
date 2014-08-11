@@ -57,7 +57,7 @@ if( !class_exists( 'Hatch_Contact_Widget' ) ) {
 				<?php if( '' != $widget->title || '' != $widget->excerpt  || '' != $widget->address_shown ) { ?>
 					<div class="container content clearfix">
 						<div class="section-title clearfix <?php if( isset( $widget->title_size ) ) echo $widget->title_size; ?>">
-							<?php if( '' != $widget->address_shown ) { ?>
+							<?php if( '' != $widget->address_shown && 'on' == $widget->show_address ) { ?>
 								<small class="pull-right span-2">
 									<?php echo $widget->address_shown; ?>
 								</small>
@@ -71,7 +71,7 @@ if( !class_exists( 'Hatch_Contact_Widget' ) ) {
 						</div>
 					</div>
 				<?php } // if title || excerpt ?>
-				<?php if( '' != $widget->google_maps_location || '' != $widget->google_maps_long_lat ) { ?>
+				<?php if( 'on' == $widget->show_google_map && ( '' != $widget->google_maps_location || '' != $widget->google_maps_long_lat ) ) { ?>
 					<div class="hatch-map invert with-background" style="height: 670px;" <?php if( '' != $widget->google_maps_location ) { ?>data-location="<?php echo $widget->google_maps_location; ?>"<?php } ?> <?php if( '' != $widget->google_maps_long_lat ) { ?>data-longlat="<?php echo $widget->google_maps_long_lat; ?>"<?php } ?>></div>
 				<?php } ?>
 			</section>
@@ -116,7 +116,7 @@ if( !class_exists( 'Hatch_Contact_Widget' ) ) {
 				'excerpt' => NULL,
 				'title_size' => '',
 				'google_maps_location' => NULL,
-				'google_maps_long_lat' => NULL,
+				'google_maps_long_lat' => NULL
 			);
 
 			// Parse $instance
@@ -266,7 +266,7 @@ if( !class_exists( 'Hatch_Contact_Widget' ) ) {
 															'type' => 'checkbox',
 															'name' => $this->get_field_name( 'show_google_map' ) ,
 															'id' => $this->get_field_id( 'show_google_map' ) ,
-															'value' => ( isset( $show_google_map ) ) ? $show_google_map : NULL,
+															'value' => ( isset( $show_google_map ) && 'off' != $show_google_map ) ? $show_google_map : NULL,
 															'label' => __( 'Show Google Map', HATCH_THEME_SLUG )
 														)
 													); ?>
@@ -277,7 +277,7 @@ if( !class_exists( 'Hatch_Contact_Widget' ) ) {
 															'type' => 'checkbox',
 															'name' => $this->get_field_name( 'show_address' ) ,
 															'id' => $this->get_field_id( 'show_address' ) ,
-															'value' => ( isset( $show_address ) ) ? $show_address : NULL,
+															'value' => ( isset( $show_address ) && 'off' != $show_google_map ) ? $show_address : NULL,
 															'label' => __( 'Show Address', HATCH_THEME_SLUG )
 														)
 													); ?>
@@ -288,7 +288,7 @@ if( !class_exists( 'Hatch_Contact_Widget' ) ) {
 															'type' => 'checkbox',
 															'name' => $this->get_field_name( 'show_contact_form' ) ,
 															'id' => $this->get_field_id( 'show_contact_form' ) ,
-															'value' => ( isset( $show_contact_form ) ) ? $show_contact_form : NULL,
+															'value' => ( isset( $show_contact_form ) && 'off' != $show_google_map ) ? $show_contact_form : NULL,
 															'label' => __( 'Show Contact Form', HATCH_THEME_SLUG )
 														)
 													); ?>

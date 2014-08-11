@@ -20,8 +20,8 @@ if( !class_exists( 'Hatch_Portfolio_Widget' ) ) {
 	 	*/
 		private $widget_title = 'Portfolio';
 		private $widget_id = 'portfolio';
-		private $post_type = 'portfolio';
-		private $taxonomy = 'portfolio-category';
+		private $post_type = 'jetpack-portfolio';
+		private $taxonomy = 'jetpack-portfolio-type';
 		public $checkboxes = array(
 				'show_titles',
 				'show_dates',

@@ -65,10 +65,25 @@ if( !class_exists( 'Hatch_Module_Widget' ) ) {
 						<?php if( !empty( $widget->modules ) ) { ?>
 							<?php $col = 1; ?>
 							<?php foreach ( $widget->modules as $key => $module) {
-								$module = (object) $module;?>
+								$module = (object) $module;
+
+								$module_layout = '';
+								if( isset( $module->image_layout ) ) {
+									switch( $module->image_layout ) {
+										case 'image-top' :
+											$module_layout = 't-center';
+										break;
+										case 'image-right' :
+											$module_layout = 'marketing-right';
+										break;
+										default:
+											$module_layout = '';
+										break;
+									}
+								} ?>
 								<?php if( $col <= $col_count ) { ?>
 									<div class="column <?php echo $span_class; ?>">
-										<div class="marketing marketing-centered">
+										<div class="marketing <?php echo $module_layout; ?>">
 											<?php if( isset( $module->image ) && '' != $module->image ) { ?>
 												<div class="marketing-icon"><a href="<?php echo esc_url( $module->link ); ?>"><?php echo wp_get_attachment_image( $module->image , 'medium' ); ?></a></div>
 											<?php } ?>

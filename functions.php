@@ -14,6 +14,7 @@ if ( defined( 'SCRIPT_DEBUG' ) && TRUE == SCRIPT_DEBUG ) {
 define( 'HATCH_TEMPLATE_URI' , get_template_directory_uri() );
 define( 'HATCH_TEMPLATE_DIR' , get_template_directory() );
 define( 'HATCH_THEME_SLUG' , 'obox-hatch' );
+define( 'HATCH_BUILDER_TEMPLATE' , 'builder.php' );
 define( 'OBOX_URL' , 'http://oboxthemes.com');
 
 /**
@@ -100,18 +101,26 @@ function hatch_scripts(){
 
 	// Front end Scripts
 
-	// Unslide JS
+	// Swiper JS
 	wp_enqueue_script(
 		HATCH_THEME_SLUG . '-slider-js' ,
-		get_template_directory_uri() . '/core/widgets/js/unslide.js',
+		get_template_directory_uri() . '/core/widgets/js/swiper.js',
 		array( "jquery" )
+	);
+	wp_register_style(
+		HATCH_THEME_SLUG . '-slider-css',
+		get_template_directory_uri() . '/core/widgets/css/swiper.css',
+		array(),
+		HATCH_VERSION
 	);
 
 	// Front end Styles
 	wp_enqueue_style(
 		HATCH_THEME_SLUG . '-style' ,
 		get_stylesheet_uri() ,
-		array() ,
+		array(
+			HATCH_THEME_SLUG . '-slider-css'
+		) ,
 		HATCH_VERSION
 	);
 

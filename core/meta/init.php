@@ -73,7 +73,7 @@ class Hatch_Custom_Meta {
 
 	public function admin_print_styles(){
 		global $pagenow;
-		if ( 'post.php' === $pagenow &&  ( 'builder.php' == basename( get_page_template() ) ) ) : ?>
+		if ( 'post.php' === $pagenow &&  ( HATCH_BUILDER_TEMPLATE == basename( get_page_template() ) ) ) : ?>
 			<style> #postdivrich { display: none; }</style>
 		<?php endif; ?>
 	<?php }

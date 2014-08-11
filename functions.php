@@ -115,10 +115,17 @@ function hatch_scripts(){
 	);
 
 	// Front end Styles
+	wp_register_style(
+		HATCH_THEME_SLUG . '-components-css',
+		get_template_directory_uri() . '/css/components.css',
+		array(),
+		HATCH_VERSION
+	);
 	wp_enqueue_style(
 		HATCH_THEME_SLUG . '-style' ,
 		get_stylesheet_uri() ,
 		array(
+			HATCH_THEME_SLUG . '-components-css',
 			HATCH_THEME_SLUG . '-slider-css'
 		) ,
 		HATCH_VERSION

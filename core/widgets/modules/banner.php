@@ -49,6 +49,17 @@ if( !class_exists( 'Hatch_Banner_Widget' ) ) {
 			<section class="widget row banner swiper-container" id="<?php echo $widget_id; ?>" <?php if( isset( $widget->banner_height ) && '' != $widget->banner_height ) echo 'style="height: ' . $widget->banner_height . 'px;"' ?>
 							 	>
 				<?php if( !empty( $widget->banners ) ) { ?>
+					<?php if( 1 < count( $widget->banners ) ) { ?>
+						 <div class="arrows">
+							<a href="" class="arrow-left animate"></a>
+							<a href="" class="arrow-right animate"></a>
+						</div>
+						<div class="pages animate">
+							<?php for( $i = 0; $i < count( $widget->banners ); $i++ ) { ?>
+								<a href="" class="page animate <?php if( 0 == $i ) echo 'active'; ?>"></a>
+							<?php } ?>
+						</div>
+					<?php } ?>
 			 		<div class="swiper-wrapper">
 						<?php $col = 1; ?>
 						<?php foreach ( $widget->banners as $key => $banner) {
@@ -66,7 +77,12 @@ if( !class_exists( 'Hatch_Banner_Widget' ) ) {
 							 	<?php } ?>">
 								<div class="section-title large clearfix container copy">
 									<?php if( isset( $banner->image ) && '' != $banner->image ) echo wp_get_attachment_image( $banner->image , 'medium' ); ?>
-									<?php echo $banner->excerpt; ?>
+									<?php if( isset( $banner->title ) && '' != $banner->title ) { ?>
+										<h3 class="heading"><?php echo $banner->title; ?></h3>
+									<?php } ?>
+									<?php if( isset( $banner->excerpt ) && '' != $banner->excerpt ) { ?>
+										<div class="excerpt"><?php echo $banner->excerpt; ?></div>
+									<?php } ?>
 								</div>
 							</div>
 						<?php } // foreach slides ?>
@@ -78,9 +94,27 @@ if( !class_exists( 'Hatch_Banner_Widget' ) ) {
 					var swiper = $('.swiper-container').swiper({
 						//Your options here:
 						mode:'horizontal',
+						pagination: '.pages',
+						// slidesPerView: 4,
+						paginationClickable: true,
+						watchActiveIndex: true,
 						loop: true
 						<?php if( isset( $widget->autoplay_banners ) && isset( $widget->slide_time ) && is_numeric( $widget->slide_time ) ) {?>, autoplay: <?php echo $widget->slide_time; ?><?php }?>
 					});
+					$('#<?php echo $widget_id; ?>').find('.arrows a').on( 'click' , function(e){
+						e.preventDefault();
+						// "Hi Mom"
+						$that = $(this);
+
+						if( $that.hasClass( 'swiper-pagination-switch' ) ){ // Anchors
+							swiper.swipeTo( $that.index() );
+						} else if( $that.hasClass( 'arrow-left' ) ){ // Previous
+							swiper.swipePrev();
+						} else if( $that.hasClass( 'arrow-right' ) ){ // Next
+							swiper.swipeNext();
+						}
+					});
+
 				})
 		 	</script>
 
@@ -371,15 +405,29 @@ if( !class_exists( 'Hatch_Banner_Widget' ) ) {
 						</div>
 
 						<div class="hatch-row">
-							<?php echo $widget_elements->input(
-								array(
-									'type' => 'tinymce',
-									'name' => 'widget-' . $widget_details->id_base . '[' . $widget_details->number . '][banners][' . $slide_guid . '][excerpt]' ,
-									'id' => 'widget-' . $widget_details->id_base . '-' . $widget_details->number . '-' . $slide_guid . '-excerpt' ,
-									'value' => ( isset( $excerpt ) ) ? $excerpt : NULL ,
-									'class' => 'hatch-textarea hatch-large'
-								)
-							); ?>
+
+							<p class="hatch-form-item">
+								<?php echo $widget_elements->input(
+									array(
+										'type' => 'text',
+										'name' => 'widget-' . $widget_details->id_base . '[' . $widget_details->number . '][banners][' . $slide_guid . '][title]' ,
+										'id' => 'widget-' . $widget_details->id_base . '-' . $widget_details->number . '-' . $slide_guid . '-title' ,
+										'value' => ( isset( $title ) ) ? $title : NULL ,
+										'class' => 'hatch-text hatch-large'
+									)
+								); ?>
+							</p>
+							<p class="hatch-form-item">
+								<?php echo $widget_elements->input(
+									array(
+										'type' => 'textarea',
+										'name' => 'widget-' . $widget_details->id_base . '[' . $widget_details->number . '][banners][' . $slide_guid . '][excerpt]' ,
+										'id' => 'widget-' . $widget_details->id_base . '-' . $widget_details->number . '-' . $slide_guid . '-excerpt' ,
+										'value' => ( isset( $excerpt ) ) ? $excerpt : NULL ,
+										'class' => 'hatch-textarea hatch-large'
+									)
+								); ?>
+							</p>
 						</div>
 					</section>
 				</li>

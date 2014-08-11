@@ -27,27 +27,27 @@ class Hatch_Customizer {
 		global $wp_customize;
 
 		// Setup some folder variables
-		$customizer_dir = HATCH_TEMPLATE_DIR . '/core/customizer/';
-		$controls_dir = HATCH_TEMPLATE_DIR . '/core/customizer/controls/';
+		$customizer_dir = '/core/customizer/';
+		$controls_dir = '/core/customizer/controls/';
 
 		// Include widget control classes
-		require $controls_dir . 'checkbox.php';
-		require $controls_dir . 'color.php';
-		require $controls_dir . 'image.php';
-		require $controls_dir . 'multi-check.php';
-		require $controls_dir . 'number.php';
-		require $controls_dir . 'radio.php';
-		require $controls_dir . 'select.php';
-		require $controls_dir . 'slider_ui.php';
-		require $controls_dir . 'text.php';
-		require $controls_dir . 'textarea.php';
-		require $controls_dir . 'upload.php';
+		locate_template( $controls_dir . 'checkbox.php' , true );
+		locate_template( $controls_dir . 'color.php' , true );
+		locate_template( $controls_dir . 'image.php' , true );
+		locate_template( $controls_dir . 'multi-check.php' , true );
+		locate_template( $controls_dir . 'number.php' , true );
+		locate_template( $controls_dir . 'radio.php' , true );
+		locate_template( $controls_dir . 'select.php' , true );
+		locate_template( $controls_dir . 'slider_ui.php' , true );
+		locate_template( $controls_dir . 'text.php' , true );
+		locate_template( $controls_dir . 'textarea.php' , true );
+		locate_template( $controls_dir . 'upload.php' , true );
 
 		// Include Config file(s)
-		require $customizer_dir . 'config.php';
+		locate_template( $customizer_dir . 'config.php' , true );
 
 		// Include The Panel and Section Registration Class
-		require $customizer_dir . 'registration.php';
+		locate_template( $customizer_dir . 'registration.php' , true );
 
 		// If we are in a builder page, update the Widgets title
 		if(

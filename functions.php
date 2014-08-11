@@ -46,17 +46,17 @@ add_action( 'template_redirect', 'hatch_set_content_width' );
 /*
  * Load Widgets
  */
-require get_template_directory() . '/core/widgets/init.php';
+locate_template( '/core/widgets/init.php' , true );
 
 /*
  * Load Customizer Support
  */
-require get_template_directory() . '/core/customizer/init.php';
+locate_template( '/core/customizer/init.php' , true );
 
 /*
  * Load Custom Post Meta
  */
-require get_template_directory() . '/core/meta/init.php';
+locate_template( '/core/meta/init.php' , true );
 
 if( ! function_exists( 'hatch_setup' ) ) {
 	function hatch_setup(){
@@ -98,14 +98,16 @@ if( ! function_exists( 'hatch_setup' ) ) {
 */
 function hatch_scripts(){
 
-
 	// Front end Scripts
 
 	// Swiper JS
 	wp_enqueue_script(
 		HATCH_THEME_SLUG . '-slider-js' ,
 		get_template_directory_uri() . '/core/widgets/js/swiper.js',
-		array( "jquery" )
+		array(
+			'jquery',
+			'masonry'
+		)
 	);
 	wp_register_style(
 		HATCH_THEME_SLUG . '-slider-css',

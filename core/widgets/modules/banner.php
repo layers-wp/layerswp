@@ -91,7 +91,7 @@ if( !class_exists( 'Hatch_Banner_Widget' ) ) {
 		 	</section>
 		 	<script>
 				jQuery(function($){
-					var swiper = $('.swiper-container').swiper({
+					var swiper = $('#<?php echo $widget_id; ?>').swiper({
 						//Your options here:
 						mode:'horizontal',
 						pagination: '.pages',

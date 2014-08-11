@@ -97,40 +97,43 @@ if( !class_exists( 'Hatch_Portfolio_Widget' ) ) {
 
 					<div class="row push-bottom-large">
 						<?php if( $post_query->have_posts() ) { ?>
-						<?php while( $post_query->have_posts() ) { ?>
-							<?php $post_query->the_post() ?>
-							<div class="column-flush <?php echo $span_class; ?>">
-								<div class="thumbnail">
-									<a href="" class="thumbnail-media with-overlay">
-										<?php the_post_thumbnail( 'large' ); ?>
+							<?php while( $post_query->have_posts() ) { ?>
+								<?php $post_query->the_post() ?>
+								<div class="column-flush <?php echo $span_class; ?>">
+									<div class="thumbnail">
+										<a href="" class="thumbnail-media with-overlay">
+											<?php the_post_thumbnail( 'large' ); ?>
 
-										<!-- For non-overlay
-										<div class="thumbnail-body">
-											<h4 class="heading"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h4>
-											<?php the_excerpt(); ?>
-											<a href="" class="button">Call to action</a>
-										</div>
-										-->
+											<!-- For non-overlay
+											<div class="thumbnail-body">
+												<h4 class="heading"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h4>
+												<?php the_excerpt(); ?>
+												<a href="" class="button">Call to action</a>
+											</div>
+											-->
 
-										<span class="overlay">
-											<span class="heading"><?php the_title(); ?></span>
-											<span class="button">Call to action</span>
-										</span>
-									</a>
+											<span class="overlay">
+												<span class="heading"><?php the_title(); ?></span>
+												<span class="button">Call to action</span>
+											</span>
+										</a>
+									</div>
 								</div>
-							</div>
-						<?php }; // while have_posts ?>
+							<?php }; // while have_posts ?>
 						<?php }; // if have_posts ?>
 					</div>
 				</div>
 			</section>
-
+			<script>
+				jQuery(function($){
+					var masonry = $('#<?php echo $widget_id; ?>').find('.row').masonry();
+				});
+			</script>
 			<!-- Front-end HTML Here
 			<?php print_r( $instance ); ?>
 			 -->
 
 			<?php // Reset WP_Query
-				wp_reset_query();
 				wp_reset_postdata();
 			?>
 	 	<?php }

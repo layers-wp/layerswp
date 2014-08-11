@@ -26,12 +26,12 @@ class Hatch_Custom_Meta {
 	public function __construct() {
 
 		// Setup some folder variables
-		$meta_dir = HATCH_TEMPLATE_DIR . '/core/meta/';
+		$meta_dir = '/core/meta/';
 
 		// Include widget control classes
 
 		// Include Config file(s)
-		require $meta_dir . 'config.php';
+		locate_template( $meta_dir . 'config.php' , true );
 
 		// Enqueue Styles
 		add_action( 'admin_enqueue_scripts', array( $this, 'admin_enqueue_scripts' ) , 50 );

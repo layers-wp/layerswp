@@ -4,9 +4,6 @@
 - ACCENT COLOR #0289C0
 - ACCENT HOVER #0D5F83
 
-
-
-
 */
 
 /*----------------------------------*/
@@ -116,9 +113,18 @@ div[id*='obox-hatch-widget'] .widget-control-actions{
 .hatch-row:after{clear: both;}
 .hatch-row{*zoom: 1;}
 
-
-.hatch-column{float: left; margin: 0 2% 20px 0; position: relative;}
-.hatch-column-flush{float: left; margin: 0; position: relative;}
+.hatch-column{
+    float: left;
+    margin: 0 2% 20px 0;
+    position: relative;
+    box-sizing: border-box;
+}
+.hatch-column-flush{
+    float: left;
+    margin: 0;
+    position: relative;
+    box-sizing: border-box;
+}
 .hatch-row .hatch-column:last-child{margin-right: 0;}
 
     .hatch-span-1{width: 6.5%;}
@@ -134,18 +140,18 @@ div[id*='obox-hatch-widget'] .widget-control-actions{
     .hatch-span-11{width: 91.5%;}
     .hatch-span-12{width: 100%;}
 
-    .hatch-column-flush.span-1{width: 8.333333%;}
-    .hatch-column-flush.span-2{width: 16.6667%;}
-    .hatch-column-flush.span-3{width: 25%;}
-    .hatch-column-flush.span-4{width: 33.33333%;}
-    .hatch-column-flush.span-5{width: 41.66665%;}
-    .hatch-column-flush.span-6{width: 50%;}
-    .hatch-column-flush.span-7{width: 58.1%;}
-    .hatch-column-flush.span-8{width: 66.4%;}
-    .hatch-column-flush.span-9{width: 74.7%;}
-    .hatch-column-flush.span-10{width: 83%;}
-    .hatch-column-flush.span-11{width: 91.3%;}
-    .hatch-column-flush.span-12{width: 100%;}
+    .hatch-column-flush.hatch-span-1{width: 8.333333%;}
+    .hatch-column-flush.hatch-span-2{width: 16.6667%;}
+    .hatch-column-flush.hatch-span-3{width: 25%;}
+    .hatch-column-flush.hatch-span-4{width: 33.33333%;}
+    .hatch-column-flush.hatch-span-5{width: 41.66665%;}
+    .hatch-column-flush.hatch-span-6{width: 50%;}
+    .hatch-column-flush.hatch-span-7{width: 58.1%;}
+    .hatch-column-flush.hatch-span-8{width: 66.4%;}
+    .hatch-column-flush.hatch-span-9{width: 74.7%;}
+    .hatch-column-flush.hatch-span-10{width: 83%;}
+    .hatch-column-flush.hatch-span-11{width: 91.3%;}
+    .hatch-column-flush.hatch-span-12{width: 100%;}
 
     .hatch-row .hatch-column.hatch-span-1:nth-child(12n+12){margin-right: 0;}
     .hatch-row .hatch-column.hatch-span-2:nth-child(6n+6){margin-right: 0;}
@@ -214,11 +220,16 @@ div[id*='obox-hatch-widget'] .widget-control-actions{
 .hatch-no-push-bottom{margin-bottom: 0 !important;}
 .hatch-push-bottom{margin-bottom: 20px !important;}
 
+.hatch-t-center{text-align: center;}
+
 .hatch-animate{transition: all 0.2s ease-in-out;}
 
 /*---------------------------*/
 /*- CONTAINERS --------------*/
-.hatch-content{padding: 20px;}
+.hatch-content{
+    padding: 20px;
+    position: relative;
+}
 
 /*---------------------------*/
 /*- FORM ELEMENTS -----------*/
@@ -612,6 +623,35 @@ div[id*='obox-hatch-widget'] .widget-control-actions{
 }
 
 /*---------------------------*/
+/*- MARKETING BLOCK ---------*/
+.hatch-marketing{
+    overflow: hidden;
+    margin-bottom: 20px;
+    display: block;
+}
+.hatch-marketing .hatch-marketing-icon{
+    float: none;
+    width: 100%;
+    text-align: center;
+    margin-right: auto;
+    margin-left: auto;
+}
+.hatch-marketing .hatch-marketing-body {
+    display: block;
+    float: none;
+    width: 100%;
+    text-align: center;
+    overflow: hidden;
+}
+.hatch-marketing .hatch-marketing-body .hatch-heading{
+    margin: 10px 0 0;
+    text-transform: uppercase;
+}
+.hatch-marketing .hatch-marketing-body .hatch-excerpt{
+    margin: 10px 0 0;
+}
+
+/*---------------------------*/
 /*- TOOLTIPS ----------------*/
 .tooltip{
     float: right;
@@ -714,7 +754,10 @@ input[type=radio]:checked + .hatch-settings-icon span{
 .hatch-settings-icon:hover{border-color: #0289C0}
 
     .icon-banner-small{display: block; float: left; width: 32px; height: 32px; margin-right: 8px; background: url(images/icon-banner-large.png) left no-repeat; background-size: 32px 32px;}
+
     .icon-bgimage-small{display: block; width: 32px; height: 32px; margin: auto; background: url(images/icon-bgimage-small.png) center no-repeat; background-size: 32px 32px;}
+    .icon-bgimage-large{display: block; width: 64px; height: 64px; margin: auto; background: url(images/icon-bgimage-small.png) center no-repeat; background-size: 64px 64px;}
+
     .icon-get-support{display: block; float: left; width: 16px; height: 16px; margin-right: 5px; background: url(images/icon-support-small.png) left no-repeat; background-size: 16px 16px;}
     .icon-get-support-invert{display: block; float: left; width: 16px; height: 16px; margin-right: 5px; background: url(images/icon-support-invert.png) left no-repeat; background-size: 16px 16px;}
     .icon-location-small{display: block; float: left; width: 32px; height: 32px; margin-right: 8px; background: url(images/icon-location-large.png) left no-repeat; background-size: 32px 32px;}
@@ -726,7 +769,9 @@ input[type=radio]:checked + .hatch-settings-icon span{
     .icon-settings-small{display: block; float: left; width: 32px; height: 32px; margin-right: 8px; background: url(images/icon-settings-large.png) left no-repeat; background-size: 32px 32px;}
     .icon-social-small{display: block; float: left; width: 32px; height: 32px; margin-right: 8px; background: url(images/icon-social-large.png) left no-repeat; background-size: 32px 32px;}
     .icon-teams-small{display: block; float: left; width: 32px; height: 32px; margin-right: 8px; background: url(images/icon-teams-large.png) left no-repeat; background-size: 32px 32px;}
+
     .icon-video-small{display: block; width: 32px; height: 32px; margin: auto; background: url(images/icon-video-small.png) center no-repeat; background-size: 32px 32px;}
+    .icon-video-large{display: block; width: 64px; height: 64px; margin: auto; background: url(images/icon-video-small.png) center no-repeat; background-size: 64px 64px;}
 
     /*-----------------------*/
     /*- COLUMNS -------------*/
@@ -755,7 +800,6 @@ input[type=radio]:checked + .hatch-settings-icon span{
 /*- ONCE OFF CSS ------------*/
 .hatch-controls-title .btn-collection{}
 .hatch-controls-title .hatch-button{padding: 6px 10px; margin-left: 5px;}
-
 
 /*---------------------------*/
 /*- BACKGROUND UPLOADER -----*/
@@ -918,8 +962,7 @@ input[type=radio]:checked + .hatch-settings-icon span{
     border: 2px solid transparent;
     border-radius: 4px;
 }
-
-
+.hatch-map img{max-width: none;}
 
 /*---------------------------*/
 /*- ANIMATION TEST ----------*/

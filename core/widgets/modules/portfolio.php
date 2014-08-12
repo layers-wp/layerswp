@@ -465,6 +465,7 @@ if( !class_exists( 'Hatch_Portfolio_Widget' ) ) {
 													'value' => ( isset( $content_display_type ) ) ? $content_display_type : NULL,
 													'options' => array(
 														'grid' => __( 'Grid' , HATCH_THEME_SLUG ),
+														'masonry' => __( 'Masonry' , HATCH_THEME_SLUG ),
 														'list' => __( 'List' , HATCH_THEME_SLUG ),
 														'slider' => __( 'Slider' , HATCH_THEME_SLUG )
 													)

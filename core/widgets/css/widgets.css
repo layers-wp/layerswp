@@ -746,6 +746,7 @@ input[type=radio]:checked + .hatch-settings-icon span{
     /*-----------------------*/
     /*- LIST STYLE ----------*/
     .hatch-settings-icon.hatch-icon-grid{background-image: url(images/icon-grid.png);}
+    .hatch-settings-icon.hatch-icon-masonry{background-image: url(images/icon-masonry.png);}
     .hatch-settings-icon.hatch-icon-list{background-image: url(images/icon-list.png);}
     .hatch-settings-icon.hatch-icon-slider{background-image: url(images/icon-slider.png);}
 

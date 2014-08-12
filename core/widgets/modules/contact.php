@@ -50,6 +50,16 @@ if( !class_exists( 'Hatch_Contact_Widget' ) ) {
 			// Turn $args array into variables.
 			extract( $args );
 
+			// $instance Defaults
+			$instance_defaults = array (
+				'title' => NULL,
+				'excerpt' => NULL,
+				'address_shown' => NULL,
+				'google_maps_location' => NULL,
+				'google_maps_long_lat' =>NULL
+			);
+			 $instance = wp_parse_args( $instance , $instance_defaults );
+
 			// Turn $instance into an object named $widget, makes for neater code
 			$widget = (object) $instance; ?>
 

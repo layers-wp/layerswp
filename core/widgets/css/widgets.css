@@ -935,6 +935,7 @@ input[type=radio]:checked + .hatch-settings-icon span{
     padding: 20px;
     opacity: 1;
     visibility: visible;
+    overflow-y: scroll;
 }
 .hatch-element-controller .hatch-controller-elements .hatch-form-item{
     margin: 20px 0 60px;

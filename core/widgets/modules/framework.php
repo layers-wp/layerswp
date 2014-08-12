@@ -28,7 +28,7 @@ if( !class_exists( 'Hatch_Framework_Widget' ) ) {
 			$control_ops = array( 'width' => 1000, 'height' => NULL, 'id_base' => HATCH_THEME_SLUG . '-widget-' . $this->widget_id );
 
 			/* Create the widget. */
-			$this->WP_Widget( HATCH_THEME_SLUG . '-widget-project', $this->widget_id , $widget_ops, $control_ops );
+			$this->WP_Widget( HATCH_THEME_SLUG . '-widget-' . $this->widget_id , $this->widget_title . ' Widget', $widget_ops, $control_ops );
 	 	}
 
 		/**
@@ -76,7 +76,10 @@ if( !class_exists( 'Hatch_Framework_Widget' ) ) {
 		</h2>
 	</div>
 
+
+	<!-- NEW Slider AREA -->
 	<ul class="hatch-accordions">
+
 		<li class="hatch-accordion-item">
 
 			<a class="hatch-accordion-title">
@@ -393,7 +396,7 @@ if( !class_exists( 'Hatch_Framework_Widget' ) ) {
 		<li class="hatch-accordion-item">
 			<a class="hatch-accordion-title">
 				<span class="tooltip" tooltip="Place your help text here please."></span>
-				<span>Banner Content</span>
+				<span>Slider Content</span>
 			</a>
 			<section class="hatch-accordion-section hatch-content">
 
@@ -417,28 +420,28 @@ if( !class_exists( 'Hatch_Framework_Widget' ) ) {
 												<li><a href="" class="hatch-icon icon-video-small">Background Video</a></li>
 											</ul>
 											<div class="hatch-controller-elements">
-
-												<div class="hatch-form-item">
-													<div class="hatch-image-uploader hatch-animate hatch-push-bottom">
-														<p>Drop a file here or <a href="">select a file.</a></p>
+												<div class="hatch-content section-active">
+													<div class="hatch-form-item">
+														<div class="hatch-image-uploader hatch-animate hatch-push-bottom">
+															<p>Drop a file here or <a href="">select a file.</a></p>
+														</div>
 													</div>
+
+													<ul class="hatch-checkbox-list">
+														<li class="hatch-checkbox">
+															<input type="checkbox" />
+															<label>Darken to improve readability</label>
+														</li>
+														<li class="hatch-checkbox">
+															<input type="checkbox" />
+															<label>Tile Background</label>
+														</li>
+														<li class="hatch-checkbox">
+															<input type="checkbox" />
+															<label>Fixed Background</label>
+														</li>
+													</ul>
 												</div>
-
-												<ul class="hatch-checkbox-list">
-													<li class="hatch-checkbox">
-														<input type="checkbox" />
-														<label>Darken to improve readability</label>
-													</li>
-													<li class="hatch-checkbox">
-														<input type="checkbox" />
-														<label>Tile Background</label>
-													</li>
-													<li class="hatch-checkbox">
-														<input type="checkbox" />
-														<label>Fixed Background</label>
-													</li>
-												</ul>
-
 											</div>
 										</div>
 									</div>
@@ -451,7 +454,7 @@ if( !class_exists( 'Hatch_Framework_Widget' ) ) {
 											</div>
 											<div class="hatch-content">
 												<a href="#" class="hatch-image-uploader hatch-small hatch-animate hatch-push-bottom">
-												<img class="image-reveal" src="http://demo.oboxsites.com/express/files/2013/12/graphy-tile.png">
+													<img class="image-reveal" src="http://demo.oboxsites.com/express/files/2013/12/graphy-tile.png">
 												</a>
 												<a class="hatch-settings-icon hatch-icon-image-left" href="">Image Left</a>
 												<a class="hatch-settings-icon hatch-icon-image-right" href="">Image Right</a>

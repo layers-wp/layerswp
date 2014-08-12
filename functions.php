@@ -88,6 +88,11 @@ if( ! function_exists( 'hatch_setup' ) ) {
 		register_nav_menus( array(
 			'primary' => __( 'Primary Menu', HATCH_THEME_SLUG )
 		) );
+
+		/**
+		 * Add support for Jetpack Portfolio
+		 */
+		add_theme_support( 'jetpack-portfolio' );
 	}
 	add_action( 'init' , 'hatch_setup' );
 }

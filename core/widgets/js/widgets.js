@@ -21,7 +21,7 @@ jQuery(document).ready(function($) {
 
 		$that.siblings('img').remove();
 		$that.closest( '.hatch-image-uploader' ).removeClass( 'hatch-has-image' );
-		$that.siblings('input').val('').trigger("change");
+		$that.siblings('input').val('').trigger("change").trigger("blur");
 		$that.fadeOut();
 		return false;
 	});
@@ -80,7 +80,7 @@ jQuery(document).ready(function($) {
 			$that.addClass( 'hatch-has-image' );
 
 			// Trigger change event
-			$that.find('input').val( attachment.id ).trigger("change");
+			$that.find('input').val( attachment.id ).trigger("change").trigger("blur");
 
 			return;
 		});
@@ -135,7 +135,7 @@ jQuery(document).ready(function($) {
 			$that.siblings('span').text( attachment.filename );
 
 			// Trigger change event
-			$that.siblings('input').val( attachment.id ).trigger("change");
+			$that.siblings('input').val( attachment.id ).trigger("change").trigger("blur");
 
 			return;
 		});
@@ -187,7 +187,7 @@ jQuery(document).ready(function($) {
 		jQuery('.hatch-color-selector').wpColorPicker({
 				change: function(event, ui){
 
-					$(event.target).val( ui.color.toString() ).trigger( 'change' );
+					$(event.target).val( ui.color.toString() ).trigger( 'change' ).trigger("blur");
 				}
 		});
 	}

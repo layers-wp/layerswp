@@ -234,6 +234,7 @@ div[id*='obox-hatch-widget'] .widget-control-actions{
 /*---------------------------*/
 /*- FORM ELEMENTS -----------*/
 .hatch-form-item{
+	clear: left;
     padding: 0;
     margin: 0 0 15px;
 }

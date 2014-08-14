@@ -45,6 +45,7 @@ class Hatch_Widgets {
 		require $module_dir . 'services.php';
 		require $module_dir . 'social.php';
 		require $module_dir . 'team.php';
+		require $module_dir . 'widget.php';
 
 		// Enqueue Styles
 		add_action( 'admin_enqueue_scripts', array( $this, 'admin_enqueue_scripts' ) , 50 );
@@ -77,6 +78,24 @@ class Hatch_Widgets {
 				'before_title'	=> '<h4 class="widget-title">',
 				'after_title'	=> '</h4>',
 			) );
+		}
+
+		$dynamic_widget_areas = get_option('widget_obox-hatch-widget-widget-columns');
+		foreach ( $dynamic_widget_areas as $key => $widget_area ){
+			$widget_id = 'obox-hatch-widget-widget-columns-' . $key;
+			if( isset( $widget_area['modules'] ) ){
+				foreach ( $widget_area['modules'] as $module_key => $module ){
+					register_sidebar( array(
+						'id'		=> $widget_id . '-' . $module_key,
+						'name'		=> $module[ 'title' ],
+						'description'	=> __( '' , HATCH_THEME_SLUG ),
+						'before_widget'	=> '<aside id="%1$s" class="widget %2$s">',
+						'after_widget'	=> '</aside>',
+						'before_title'	=> '<h4 class="widget-title">',
+						'after_title'	=> '</h4>',
+					) );
+				}
+			}
 		}
 	}
 

@@ -6,14 +6,14 @@
  * @package Hatch
  * @since Hatch 1.0
  */
-if( !class_exists( 'Hatch_Module_Widget' ) ) {
-	class Hatch_Module_Widget extends WP_Widget {
+if( !class_exists( 'Hatch_Widget_Column_Widget' ) ) {
+	class Hatch_Widget_Column_Widget extends WP_Widget {
 
 		/**
 		*  Widget variables
 		*/
-		private $widget_title = 'Modules';
-		private $widget_id = 'module';
+		private $widget_title = 'Widget Columns';
+		private $widget_id = 'widget-columns';
 		private $post_type = '';
 		private $taxonomy = '';
 		public $checkboxes = array();
@@ -21,7 +21,7 @@ if( !class_exists( 'Hatch_Module_Widget' ) ) {
 		/**
 		*  Widget construction
 		*/
-		function Hatch_Module_Widget(){
+		function Hatch_Widget_Column_Widget(){
 			/* Widget settings. */
 			$widget_ops = array( 'classname' => 'obox-hatch-' . $this->widget_id .'-widget', 'description' => 'This widget is used to display your ' . $this->widget_title . '.' );
 
@@ -58,54 +58,15 @@ if( !class_exists( 'Hatch_Module_Widget' ) ) {
 			$span_class = 'span-' . ( 12/ $col_count ); ?>
 
 			<section class="widget row" id="<?php echo $widget_id; ?>">
-				<div class="container clearfix">
-					<?php if( '' != $widget->title || '' != $widget->excerpt ) { ?>
-						<div class="row push-bottom-medium">
-							<div class="section-title <?php if( isset( $widget->title_size ) ) echo $widget->title_size; ?> <?php if( isset( $widget->title_alignment ) ) echo $widget->title_alignment; ?> clearfix"> <?php // @TODO: get alignment to work here ?>
-								<?php if( '' != $widget->title ) { ?>
-									<h3 class="heading"><?php echo $widget->title; ?></h3>
-								<?php } ?>
-								<?php if( '' != $widget->excerpt ) { ?>
-									<p class="excerpt"><?php echo $widget->excerpt; ?></p>
-								<?php } ?>
-							</div>
-						</div>
-					<?php } ?>
+				<div class="container content-main clearfix">
 					<div class="row push-bottom-large">
 						<?php if( !empty( $widget->modules ) ) { ?>
 							<?php $col = 1; ?>
 							<?php foreach ( $widget->modules as $key => $module) {
-								$module = (object) $module;
-
-								$module_layout = '';
-								if( isset( $module->image_layout ) ) {
-									switch( $module->image_layout ) {
-										case 'image-top' :
-											$module_layout = 't-center';
-										break;
-										case 'image-right' :
-											$module_layout = 'marketing-right';
-										break;
-										default:
-											$module_layout = '';
-										break;
-									}
-								} ?>
+								$module = (object) $module; ?>
 								<?php if( $col <= $col_count ) { ?>
 									<div class="column <?php echo $span_class; ?>">
-										<div class="marketing <?php echo $module_layout; ?>">
-											<?php if( isset( $module->image ) && '' != $module->image ) { ?>
-												<div class="marketing-icon"><a href="<?php echo esc_url( $module->link ); ?>"><?php echo wp_get_attachment_image( $module->image , 'medium' ); ?></a></div>
-											<?php } ?>
-											<div class="marketing-body">
-												<?php if( isset( $module->title ) && '' != $module->title ) { ?>
-													<h5 class="heading"><a href="<?php echo esc_url( $module->link ); ?>"><?php echo $module->title; ?></a></h5>
-												<?php } ?>
-												<?php if( isset( $module->excerpt ) && '' != $module->excerpt ) { ?>
-													<p class="excerpt"><?php echo $module->excerpt; ?></p>
-												<?php } ?>
-											</div>
-										</div>
+										<?php dynamic_sidebar( $widget_id . '-' . $key ); ?>
 									</div>
 								<?php } ?>
 								<?php $col++; ?>
@@ -330,8 +291,7 @@ if( !class_exists( 'Hatch_Module_Widget' ) ) {
 				// $instance Defaults
 				$instance_defaults = array (
 					'columns' => 4,
-					'image_layout' => 'image-left',
-					'title' => NULL,
+					'title' => 'Widget Area ' . $this->column_count,
 					'excerpt' => NULL
 				);
 
@@ -351,28 +311,6 @@ if( !class_exists( 'Hatch_Module_Widget' ) ) {
 			<div class="hatch-column hatch-span hatch-span-position-<?php echo $this->column_count; ?>" data-guid="<?php echo $module_guid; ?>">
 				<small class="hatch-drag"></small>
 				<!-- Widget Column Extention -->
-				<button class="hatch-button btn-subtle hatch-span-12"><?php _e( 'Convert to Widget Area' , HATCH_THEME_SLUG ); ?></button>
-				<?php echo $widget_elements->input(
-					array(
-						'type' => 'image',
-						'name' => 'widget-' . $widget_details->id_base . '[' . $widget_details->number . '][modules][' . $module_guid . '][image]' ,
-						'id' => 'widget-' . $widget_details->id_base . '-' . $widget_details->number . '-' . $module_guid . '-image' ,
-						'value' => ( isset( $image ) ) ? $image : NULL
-					)
-				); ?>
-				<?php echo $widget_elements->input(
-					array(
-						'type' => 'select-icons',
-						'name' => 'widget-' . $widget_details->id_base . '[' . $widget_details->number . '][modules][' . $module_guid . '][image_layout]' ,
-						'id' => 'widget-' . $widget_details->id_base . '-' . $widget_details->number . '-' . $module_guid . '-image_layout' ,
-						'value' => ( isset( $image_layout ) ) ? $image_layout : NULL,
-						'options' => array(
-							'image-left' => __( 'Left' , HATCH_THEME_SLUG ),
-							'image-top' => __( 'Top' , HATCH_THEME_SLUG ),
-							'image-right' => __( 'Right' , HATCH_THEME_SLUG )
-						)
-					)
-				); ?>
 				<p class="hatch-form-item">
 					<?php echo $widget_elements->input(
 						array(
@@ -380,38 +318,15 @@ if( !class_exists( 'Hatch_Module_Widget' ) ) {
 							'name' => 'widget-' . $widget_details->id_base . '[' . $widget_details->number . '][modules][' . $module_guid . '][title]' ,
 							'id' => 'widget-' . $widget_details->id_base . '-' . $widget_details->number . '-' . $module_guid . '-title' ,
 							'value' => ( isset( $title ) ) ? $title : NULL,
-							'placeholder' => __( 'Enter title here' , HATCH_THEME_SLUG ),
+							'placeholder' => __( 'Enter Sidebar Title' , HATCH_THEME_SLUG ),
 							'class' => 'hatch-text'
 						)
 					); ?>
 				</p>
-				<p class="hatch-form-item">
-					<?php echo $widget_elements->input(
-						array(
-							'type' => 'text',
-							'name' => 'widget-' . $widget_details->id_base . '[' . $widget_details->number . '][modules][' . $module_guid . '][link]' ,
-							'id' => 'widget-' . $widget_details->id_base . '-' . $widget_details->number . '-' . $module_guid . '-link' ,
-							'value' => ( isset( $link ) ) ? $link : NULL,
-							'placeholder' => __( 'Enter custom link' , HATCH_THEME_SLUG ),
-							'class' => 'hatch-text'
-						)
-					); ?>
-				</p>
-				<?php echo $widget_elements->input(
-					array(
-						'type' => 'tinymce',
-						'name' => 'widget-' . $widget_details->id_base . '[' . $widget_details->number . '][modules][' . $module_guid . '][excerpt]' ,
-						'id' => 'widget-' . $widget_details->id_base . '-' . $widget_details->number . '-' . $module_guid . '-excerpt' ,
-						'value' => ( isset( $excerpt ) ) ? $excerpt : NULL ,
-						'class' => 'hatch-tinymce hatch-textarea hatch-large',
-						'teeny' => true,
-						'rows' => 10
-					)
-				); ?>
 			</div>
 		<?php }
 	} // Class
 
 	// Add our function to the widgets_init hook.
-	 register_widget("Hatch_Module_Widget");
+	 register_widget("Hatch_Widget_Column_Widget");
 }

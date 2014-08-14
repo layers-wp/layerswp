@@ -46,43 +46,56 @@ if( !class_exists( 'Hatch_Banner_Widget' ) ) {
 			// Turn $instance into an object named $widget, makes for neater code
 			$widget = (object) $instance; ?>
 
-			<section class="widget row banner swiper-container" id="<?php echo $widget_id; ?>" <?php if( isset( $widget->banner_height ) && '' != $widget->banner_height ) echo 'style="height: ' . $widget->banner_height . 'px;"' ?>
-							 	>
+			<section class="widget row banner swiper-container" id="<?php echo $widget_id; ?>" <?php if( isset( $widget->banner_height ) && '' != $widget->banner_height ) echo 'style="height: ' . $widget->banner_height . 'px;"' ?>>
 				<?php if( !empty( $widget->banners ) ) { ?>
 					<?php if( 1 < count( $widget->banners ) ) { ?>
 						 <div class="arrows">
 							<a href="" class="arrow-left animate"></a>
 							<a href="" class="arrow-right animate"></a>
 						</div>
-						<div class="pages animate">
-							<?php for( $i = 0; $i < count( $widget->banners ); $i++ ) { ?>
-								<a href="" class="page animate <?php if( 0 == $i ) echo 'active'; ?>"></a>
-							<?php } ?>
-						</div>
 					<?php } ?>
+					<div class="pages animate">
+						<?php for( $i = 0; $i < count( $widget->banners ); $i++ ) { ?>
+							<a href="" class="page animate <?php if( 0 == $i ) echo 'active'; ?>"></a>
+						<?php } ?>
+					</div>
 			 		<div class="swiper-wrapper">
 						<?php $col = 1; ?>
 						<?php foreach ( $widget->banners as $key => $banner) {
 							$banner = (object) $banner;?>
-						 	<div id="<?php echo $widget_id; ?>-<?php echo $key; ?>" class="sky basement invert with-background swiper-slide"
-						 		style="float: left;
-						 		<?php if( !empty( $banner->background ) && 'image' == $banner->background['type'] ) { ?>
-							 		<?php // Fetch bg image
-							 		$image = wp_get_attachment_image_src( $banner->background['image'] , 'full' );?>
-							 		background-image: url('<?php echo esc_html( $image[0] ); ?>');
-							 		background-size: cover;
-							 	<?php } ?>
-							 	<?php if( isset( $banner->background['image_color'] ) && '' != $banner->background['image_color'] ) { ?>
-							 		background-color: <?php echo $banner->background['image_color']; ?>;
-							 	<?php } ?>">
-								<div class="section-title large clearfix container copy">
-									<?php if( isset( $banner->image ) && '' != $banner->image ) echo wp_get_attachment_image( $banner->image , 'medium' ); ?>
-									<?php if( isset( $banner->title ) && '' != $banner->title ) { ?>
-										<h3 class="heading"><?php echo $banner->title; ?></h3>
-									<?php } ?>
-									<?php if( isset( $banner->excerpt ) && '' != $banner->excerpt ) { ?>
-										<div class="excerpt"><?php echo $banner->excerpt; ?></div>
-									<?php } ?>
+							<div id="<?php echo $widget_id; ?>-<?php echo $key; ?>" class="invert swiper-slide <?php if( '' != $banner->image_layout ) echo $banner->image_layout; ?> <?php if( !empty( $banner->background ) ) echo 'with-background'; ?>"
+								style="float: left;
+								<?php if( isset( $widget->banner_height ) && '' != $widget->banner_height ) echo 'height: ' . $widget->banner_height . 'px;' ?>
+								<?php if( !empty( $banner->background ) && 'image' == $banner->background['type'] ) { ?>
+									<?php // Fetch bg image
+									$image = wp_get_attachment_image_src( $banner->background['image'] , 'full' );?>
+									background-image: url('<?php echo esc_html( $image[0] ); ?>');
+									background-size: cover;
+								<?php } ?>
+								<?php if( isset( $banner->background['image_color'] ) && '' != $banner->background['image_color'] ) { ?>
+									background-color: <?php echo $banner->background['image_color']; ?>;
+								<?php } ?>">
+								<div class="container" <?php if( isset( $widget->banner_height ) && '' != $widget->banner_height ) echo 'style="height: ' . $widget->banner_height . 'px;"' ?>><!-- height important for vertical positioning. Must match container height -->
+									<?php if( '' != $banner->title || '' != $banner->excerpt ) { ?>
+									<div class="copy-container">
+										<!-- your dynamic output goes here -->
+										<div class="section-title large">
+											<?php if( isset( $banner->title ) && '' != $banner->title ) { ?>
+												<h3 class="heading"><?php echo $banner->title; ?></h3>
+											<?php } ?>
+
+											<?php if( isset( $banner->excerpt ) && '' != $banner->excerpt ) { ?>
+												<div class="excerpt"><?php echo $banner->excerpt; ?></div>
+											<?php } ?>
+										</div>
+										<div class="copy"></div>
+									</div>
+									<?php } // if title || excerpt ?>
+									<?php if( isset( $banner->image ) && '' != $banner->image ) { ?>
+										<div class="image-container">
+											<?php echo wp_get_attachment_image( $banner->image , 'medium' ); ?>
+										</div>
+									<?php } // if $banner image ?>
 								</div>
 							</div>
 						<?php } // foreach slides ?>
@@ -380,7 +393,7 @@ if( !class_exists( 'Hatch_Banner_Widget' ) ) {
 
 						<div class="hatch-row">
 
-							<div class="hatch-column hatch-span-12">
+							<div class="hatch-column hatch-span-8">
 
 								<div class="hatch-panel">
 									<?php $widget_elements->section_panel_title(
@@ -402,6 +415,42 @@ if( !class_exists( 'Hatch_Banner_Widget' ) ) {
 									</div>
 								</div>
 							</div>
+
+							<div class="hatch-column hatch-span-4 no-gutter">
+								<div class="hatch-panel">
+									<?php $widget_elements->section_panel_title(
+										array(
+											'type' => 'panel',
+											'title' => __( 'Feature Image' , HATCH_THEME_SLUG ),
+											'tooltip' => __(  'Place your help text here please.', HATCH_THEME_SLUG )
+										)
+									); ?>
+									<div class="hatch-content">
+										<?php echo $widget_elements->input(
+											array(
+												'type' => 'image',
+												'name' => 'widget-' . $widget_details->id_base . '[' . $widget_details->number . '][banners][' . $slide_guid . '][image]' ,
+												'id' => 'widget-' . $widget_details->id_base . '-' . $widget_details->number . '-' . $slide_guid . '-image' ,
+												'value' => ( isset( $image ) ) ? $image : NULL
+											)
+										); ?>
+										<?php echo $widget_elements->input(
+											array(
+												'type' => 'select-icons',
+												'name' => 'widget-' . $widget_details->id_base . '[' . $widget_details->number . '][banners][' . $slide_guid . '][image_layout]' ,
+												'id' => 'widget-' . $widget_details->id_base . '-' . $widget_details->number . '-' . $slide_guid . '-image_layout' ,
+												'value' => ( isset( $image_layout ) ) ? $image_layout : NULL,
+												'options' => array(
+													'image-left' => __( 'Image Left' , HATCH_THEME_SLUG ),
+													'image-top' => __( 'Image Top' , HATCH_THEME_SLUG ),
+													'image-right' => __( 'Image Right' , HATCH_THEME_SLUG ),
+												)
+											)
+										); ?>
+									</div>
+								</div>
+							</div>
+
 						</div>
 
 						<div class="hatch-row">
@@ -412,6 +461,7 @@ if( !class_exists( 'Hatch_Banner_Widget' ) ) {
 										'type' => 'text',
 										'name' => 'widget-' . $widget_details->id_base . '[' . $widget_details->number . '][banners][' . $slide_guid . '][title]' ,
 										'id' => 'widget-' . $widget_details->id_base . '-' . $widget_details->number . '-' . $slide_guid . '-title' ,
+										'placeholder' => __( 'Enter title here', HATCH_THEME_SLUG ),
 										'value' => ( isset( $title ) ) ? $title : NULL ,
 										'class' => 'hatch-text hatch-large'
 									)
@@ -423,6 +473,7 @@ if( !class_exists( 'Hatch_Banner_Widget' ) ) {
 										'type' => 'textarea',
 										'name' => 'widget-' . $widget_details->id_base . '[' . $widget_details->number . '][banners][' . $slide_guid . '][excerpt]' ,
 										'id' => 'widget-' . $widget_details->id_base . '-' . $widget_details->number . '-' . $slide_guid . '-excerpt' ,
+										'placeholder' => __( 'Short Excerpt', HATCH_THEME_SLUG ),
 										'value' => ( isset( $excerpt ) ) ? $excerpt : NULL ,
 										'class' => 'hatch-textarea hatch-large'
 									)

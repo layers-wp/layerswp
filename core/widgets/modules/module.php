@@ -40,6 +40,16 @@ if( !class_exists( 'Hatch_Module_Widget' ) ) {
 			// Turn $args array into variables.
 			extract( $args );
 
+			// $instance Defaults
+			$instance_defaults = array (
+				'title' => NULL,
+				'excerpt' => NULL,
+				'title_alignment' => 't-left',
+				'title_size' => '',
+				'columns' => 'columns-3'
+			);
+			 $instance = wp_parse_args( $instance , $instance_defaults );
+
 			// Turn $instance into an object named $widget, makes for neater code
 			$widget = (object) $instance;
 
@@ -321,6 +331,7 @@ if( !class_exists( 'Hatch_Module_Widget' ) ) {
 				$instance_defaults = array (
 					'columns' => 4,
 					'image_layout' => 'image-left',
+					'title' => NULL,
 					'excerpt' => NULL
 				);
 

@@ -53,6 +53,21 @@ if( !class_exists( 'Hatch_Portfolio_Widget' ) ) {
 			// Turn $args array into variables.
 			extract( $args );
 
+			// $instance Defaults
+			$instance_defaults = array (
+				'title' => NULL,
+				'excerpt' => NULL,
+				'filter_label' => __( 'Filter:' , HATCH_THEME_SLUG ),
+				'category' => 0,
+				'columns' => 'columns-3',
+				'posts_per_page' => -1,
+				'content_display_type' => 'grid',
+				'order_by' => 'post_date'
+			);
+
+			// Parse $instance
+			$instance = wp_parse_args( $instance, $instance_defaults );
+
 			// Turn $instance into an object named $widget, makes for neater code
 			$widget = (object) $instance;
 
@@ -103,7 +118,7 @@ if( !class_exists( 'Hatch_Portfolio_Widget' ) ) {
 						<?php } // foreach $terms ?>
 					</ul>
 				<?php } ?>
-				<div class="row masonry">
+				<div class="row <?php  if( isset( $widget->content_display_type ) ) echo $widget->content_display_type; ?>">
 					<?php if( $post_query->have_posts() ) { ?>
 						<?php while( $post_query->have_posts() ) { global $post; ?>
 							<?php $terms = wp_get_post_terms( $post->ID, $this->taxonomy );
@@ -119,20 +134,23 @@ if( !class_exists( 'Hatch_Portfolio_Widget' ) ) {
 									<a href="" class="thumbnail-media with-overlay">
 										<?php the_post_thumbnail( 'large' ); ?>
 
-										<!-- For non-overlay
-										<div class="thumbnail-body">
-											<h4 class="heading"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h4>
-											<?php the_excerpt(); ?>
-											<a href="" class="button">Call to action</a>
-										</div>
-										-->
-
-										<span class="overlay">
-											<?php if( isset( $widget->hide_titles ) ) { ?>
-												<span class="heading"><?php the_title(); ?></span>
-											<?php } // if hide_titles ?>
-											<span class="button">Call to action</span>
-										</span>
+										<?php  if( isset( $widget->content_display_type ) && 'masonry' != $widget->content_display_type ) { ?>
+											<?php if( !isset( $widget->hide_titles ) || !isset( $widget->hide_excerpts ) ) { ?>
+											<div class="thumbnail-body">
+												<?php if( !isset( $widget->hide_titles ) ) { ?>
+													<h4 class="heading"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h4>
+												<?php } ?>
+												<?php if( !isset( $widget->hide_excerpts ) ) the_excerpt(); ?>
+											</div>
+											<?php } ?>
+										<?php } else { ?>
+											<span class="overlay">
+												<?php if( isset( $widget->hide_titles ) ) { ?>
+													<span class="heading"><?php the_title(); ?></span>
+												<?php } // if hide_titles ?>
+												<span class="button">Call to action</span>
+											</span>
+										<?php } ?>
 									</a>
 								</div>
 							</div>
@@ -140,6 +158,7 @@ if( !class_exists( 'Hatch_Portfolio_Widget' ) ) {
 					<?php }; // if have_posts ?>
 				</div>
 			</section>
+
 			<script>
 				jQuery(function($){
 					var masonry = $('#<?php echo $widget_id; ?>').find('.masonry').masonry();
@@ -165,6 +184,8 @@ if( !class_exists( 'Hatch_Portfolio_Widget' ) ) {
 						});
 
 						$('#<?php echo $widget_id; ?>').find('.masonry').masonry();
+
+						return false;
 					});
 				});
 			</script>
@@ -208,7 +229,9 @@ if( !class_exists( 'Hatch_Portfolio_Widget' ) ) {
 				'title' => NULL,
 				'excerpt' => NULL,
 				'filter_label' => __( 'Filter:' , HATCH_THEME_SLUG ),
-				'category' => 0
+				'category' => 0,
+				'columns' => 'columns-3',
+				'content_display_type' => 'grid',
 			);
 
 			// Parse $instance
@@ -249,6 +272,7 @@ if( !class_exists( 'Hatch_Portfolio_Widget' ) ) {
 										)
 									); ?>
 								</p>
+
 								<p class="hatch-form-item">
 									<?php echo $widget_elements->input(
 										array(
@@ -347,6 +371,19 @@ if( !class_exists( 'Hatch_Portfolio_Widget' ) ) {
 										); ?>
 										<div class="hatch-content">
 											<ul class="hatch-checkbox-list">
+												<?php if( 0 == $category ) { ?>
+													<li class="hatch-checkbox">
+														<?php echo $widget_elements->input(
+															array(
+																'type' => 'checkbox',
+																'name' => $this->get_field_name( 'hide_category_filter' ) ,
+																'id' => $this->get_field_id( 'hide_category_filter' ) ,
+																'value' => ( isset( $hide_category_filter ) ) ? $hide_category_filter : NULL,
+																'label' => __( 'Hide Category Filter' , HATCH_THEME_SLUG )
+															)
+														); ?>
+													</li>
+												<?php } // if 0 == category ?>
 												<li class="hatch-checkbox">
 													<?php echo $widget_elements->input(
 														array(
@@ -391,19 +428,6 @@ if( !class_exists( 'Hatch_Portfolio_Widget' ) ) {
 														)
 													); ?>
 												</li>
-												<?php if( 0 == $category ) { ?>
-													<li class="hatch-checkbox">
-														<?php echo $widget_elements->input(
-															array(
-																'type' => 'checkbox',
-																'name' => $this->get_field_name( 'hide_category_filter' ) ,
-																'id' => $this->get_field_id( 'hide_category_filter' ) ,
-																'value' => ( isset( $hide_category_filter ) ) ? $hide_category_filter : NULL,
-																'label' => __( 'Hide Category Filter' , HATCH_THEME_SLUG )
-															)
-														); ?>
-													</li>
-												<?php } // if 0 == category ?>
 												<li class="hatch-checkbox">
 													<?php echo $widget_elements->input(
 														array(
@@ -466,8 +490,7 @@ if( !class_exists( 'Hatch_Portfolio_Widget' ) ) {
 													'options' => array(
 														'grid' => __( 'Grid' , HATCH_THEME_SLUG ),
 														'masonry' => __( 'Masonry' , HATCH_THEME_SLUG ),
-														'list' => __( 'List' , HATCH_THEME_SLUG ),
-														'slider' => __( 'Slider' , HATCH_THEME_SLUG )
+														'list' => __( 'List' , HATCH_THEME_SLUG )
 													)
 												)
 											); ?>
@@ -496,7 +519,7 @@ if( !class_exists( 'Hatch_Portfolio_Widget' ) ) {
 														'columns-2' => __( '2 Column' , HATCH_THEME_SLUG ),
 														'columns-3' => __( '3 Column' , HATCH_THEME_SLUG ),
 														'columns-4' => __( '4 Column' , HATCH_THEME_SLUG ),
-														'columns-5' => __( '5 Column' , HATCH_THEME_SLUG ),
+														// 'columns-5' => __( '5 Column' , HATCH_THEME_SLUG ), @TODO: Figure Out a 5col method
 														'columns-6' => __( '6 Column' , HATCH_THEME_SLUG )
 													)
 												)
@@ -522,9 +545,9 @@ if( !class_exists( 'Hatch_Portfolio_Widget' ) ) {
 													'id' => $this->get_field_id( 'image_layout' ) ,
 													'value' => ( isset( $image_layout ) ) ? $image_layout : NULL,
 													'options' => array(
-														'image-left' => __( 'Image Left' , HATCH_THEME_SLUG ),
-														'image-right' => __( 'Image Right' , HATCH_THEME_SLUG ),
-														'image-top' => __( 'Image Top' , HATCH_THEME_SLUG )
+														'image-left' => __( 'Left' , HATCH_THEME_SLUG ),
+														'image-right' => __( 'Right' , HATCH_THEME_SLUG ),
+														'image-top' => __( 'Top' , HATCH_THEME_SLUG )
 													)
 												)
 											); ?>

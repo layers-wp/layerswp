@@ -12,10 +12,11 @@ if( !class_exists( 'Hatch_Widget_Column_Widget' ) ) {
 		/**
 		*  Widget variables
 		*/
-		private $widget_title = 'Widget Columns';
+		private $widget_title = 'Dynamic Sidebars';
 		private $widget_id = 'widget-columns';
 		private $post_type = '';
 		private $taxonomy = '';
+		private $warning = '<div class="container instructions instruction-warning t-center"><p class="push-top push-bottom">Select a column count, then click Save &amp; Publish to start adding widgets to this widget area.</p></div>';
 		public $checkboxes = array();
 
 		/**
@@ -48,7 +49,8 @@ if( !class_exists( 'Hatch_Widget_Column_Widget' ) ) {
 				'title_size' => '',
 				'columns' => 'columns-3'
 			);
-			 $instance = wp_parse_args( $instance , $instance_defaults );
+
+			$instance = wp_parse_args( $instance , $instance_defaults );
 
 			// Turn $instance into an object named $widget, makes for neater code
 			$widget = (object) $instance;
@@ -58,22 +60,24 @@ if( !class_exists( 'Hatch_Widget_Column_Widget' ) ) {
 			$span_class = 'span-' . ( 12/ $col_count ); ?>
 
 			<section class="widget row" id="<?php echo $widget_id; ?>">
-				<div class="container content-main clearfix">
-					<div class="row push-bottom-large">
-						<?php if( !empty( $widget->modules ) ) { ?>
-							<?php $col = 1; ?>
-							<?php foreach ( $widget->modules as $key => $module) {
-								$module = (object) $module; ?>
-								<?php if( $col <= $col_count ) { ?>
-									<div class="column <?php echo $span_class; ?>">
-										<?php dynamic_sidebar( $widget_id . '-' . $key ); ?>
-									</div>
+				<?php if( empty( $widget->module_ids ) ) { ?>
+					<?php _e( $this->warning , HATCH_THEME_SLUG ); // @TODO: Add a notice here about saving the widget before adding to the new sidebars ?>
+				<?php }  else { ?>
+					<div class="container content-main clearfix">
+						<div class="row push-bottom-large">
+								<?php $col = 1; ?>
+								<?php foreach ( $widget->modules as $key => $module) {
+									$module = (object) $module; ?>
+									<?php if( $col <= $col_count ) { ?>
+										<div class="column <?php echo $span_class; ?>">
+											<?php dynamic_sidebar( $widget_id . '-' . $key ); ?>
+										</div>
+									<?php } ?>
+									<?php $col++; ?>
 								<?php } ?>
-								<?php $col++; ?>
-							<?php } ?>
-						<?php } ?>
+						</div>
 					</div>
-				</div>
+				<?php }?>
 
 			</section>
 			<!-- Front-end HTML Here
@@ -114,14 +118,13 @@ if( !class_exists( 'Hatch_Widget_Column_Widget' ) ) {
 				'excerpt' => NULL,
 				'title_alignment' => 't-left',
 				'title_size' => '',
-				'columns' => 'columns-3',
+				'columns' => 'columns-0',
 				'module_ids' => rand( 1 , 1000 ) . ',' . rand( 1 , 1000 ) . ',' . rand( 1 , 1000 ) . ',' . rand( 1 , 1000 )
 			);
 
 			// Parse $instance
 			$instance_args = wp_parse_args( $instance, $instance_defaults );
-			extract( $instance_args, EXTR_SKIP );
-		?>
+			extract( $instance_args, EXTR_SKIP ); ?>
 			<div class="hatch-container-large">
 
 				<?php $widget_elements->header( array(
@@ -143,109 +146,30 @@ if( !class_exists( 'Hatch_Widget_Column_Widget' ) ) {
 
 							<section class="hatch-accordion-section hatch-content">
 								<div class="hatch-row hatch-push-bottom clearfix">
-									<div class="hatch-column hatch-span-7">
-										<div class="hatch-panel">
-											<?php $widget_elements->section_panel_title(
-												array(
-													'type' => 'panel',
-													'title' => __( 'Title &amp; Excerpt' , HATCH_THEME_SLUG ),
-													'tooltip' => __(  'Place your help text here please.', HATCH_THEME_SLUG )
-												)
-											); ?>
-											<div class="hatch-content">
-												<p class="hatch-form-item">
-													<?php echo $widget_elements->input(
-														array(
-															'type' => 'text',
-															'name' => $this->get_field_name( 'title' ) ,
-															'id' => $this->get_field_id( 'title' ) ,
-															'placeholder' => __( 'Enter title here', HATCH_THEME_SLUG ),
-															'value' => ( isset( $title ) ) ? $title : NULL ,
-															'class' => 'hatch-text hatch-large'
-														)
-													); ?>
-												</p>
-												<p class="hatch-form-item">
-													<?php echo $widget_elements->input(
-														array(
-															'type' => 'textarea',
-															'name' => $this->get_field_name( 'excerpt' ) ,
-															'id' => $this->get_field_id( 'excerpt' ) ,
-															'placeholder' =>  __( 'Short Excerpt', HATCH_THEME_SLUG ),
-															'value' => ( isset( $excerpt ) ) ? $excerpt : NULL ,
-															'class' => 'hatch-textarea hatch-large'
-														)
-													); ?>
-												</p>
-											</div>
-										</div>
-									</div>
-									<div class="hatch-column hatch-span-5">
-										<div class="hatch-panel">
-											<?php $widget_elements->section_panel_title(
-												array(
-													'type' => 'panel',
-													'title' => __( 'Size &amp; Position' , HATCH_THEME_SLUG ),
-													'tooltip' => __(  'Place your help text here please.', HATCH_THEME_SLUG )
-												)
-											); ?>
-											<div class="hatch-content">
-												<p class="hatch-form-item">
-													<label for="<?php echo $this->get_field_id( 'title_alignment' ); ?>"><?php _e( 'Alignment' , HATCH_THEME_SLUG ); ?></label>
-													<?php echo $widget_elements->input(
-														array(
-															'type' => 'select',
-															'name' => $this->get_field_name( 'title_alignment' ) ,
-															'id' => $this->get_field_id( 'title_alignment' ) ,
-															'value' => ( isset( $title_alignment ) ) ? $title_alignment : NULL ,
-															'class' => 'hatch-select hatch-large',
-															'options' => array(
-																	't-left' => 'Left',
-																	't-center' => 'Center',
-																	't-right' => 'Right',
-																)
-														)
-													); ?>
-												</p>
-												<p class="hatch-form-item">
-													<label for="<?php echo $this->get_field_id( 'title_size' ); ?>"><?php _e( 'Font Size' , HATCH_THEME_SLUG ); ?></label>
-													<?php echo $widget_elements->input(
-														array(
-															'type' => 'select',
-															'name' => $this->get_field_name( 'title_size' ) ,
-															'id' => $this->get_field_id( 'title_size' ) ,
-															'value' => ( isset( $title_size ) ) ? $title_size : NULL ,
-															'class' => 'hatch-select hatch-large',
-															'options' => array(
-																	'small' => 'Small',
-																	'' => 'Medium',
-																	'large' => 'Large',
-																)
-														)
-													); ?>
-												</p>
+									<?php if( !isset( $instance['module_ids'] ) ) { ?>
+										<p class="hatch-form-item">
+											<?php _e( $this->warning , HATCH_THEME_SLUG ); // @TODO: Add a notice here about saving the widget before adding to the new sidebars ?>
+										</p>
+									<?php } ?>
 
-												<p class="hatch-form-item">
-													<label for="<?php echo $this->get_field_id( 'columns' ) . '_module_columns'; ?>"><?php _e( 'Columns' , HATCH_THEME_SLUG ); ?></label>
-													<?php echo $widget_elements->input(
-														array(
-															'type' => 'select-icons',
-															'name' => $this->get_field_name( 'columns' ) ,
-															'id' => $this->get_field_id( 'columns' ) . '_module_columns',
-															'data' => array( 'module_list' => '#module_list_' . $this->number ),
-															'value' => ( isset( $columns ) ) ? $columns : NULL,
-															'options' => array(
-																'columns-1' => __( '1 Column' , HATCH_THEME_SLUG ),
-																'columns-2' => __( '2 Column' , HATCH_THEME_SLUG ),
-																'columns-3' => __( '3 Column' , HATCH_THEME_SLUG ),
-																'columns-4' => __( '4 Column' , HATCH_THEME_SLUG )
-															)
-														)
-													); ?>
-												</p>
-											</div>
-										</div>
-									</div>
+									<p class="hatch-form-item">
+										<label for="<?php echo $this->get_field_id( 'columns' ) . '_module_columns'; ?>"><?php _e( 'Columns' , HATCH_THEME_SLUG ); ?></label>
+										<?php echo $widget_elements->input(
+											array(
+												'type' => 'select-icons',
+												'name' => $this->get_field_name( 'columns' ) ,
+												'id' => $this->get_field_id( 'columns' ) . '_module_columns',
+												'data' => array( 'module_list' => '#module_list_' . $this->number ),
+												'value' => ( isset( $columns ) ) ? $columns : NULL,
+												'options' => array(
+													'columns-1' => __( '1 Column' , HATCH_THEME_SLUG ),
+													'columns-2' => __( '2 Column' , HATCH_THEME_SLUG ),
+													'columns-3' => __( '3 Column' , HATCH_THEME_SLUG ),
+													'columns-4' => __( '4 Column' , HATCH_THEME_SLUG )
+												)
+											)
+										); ?>
+									</p>
 								</div>
 
 								<?php echo $widget_elements->input(
@@ -285,20 +209,16 @@ if( !class_exists( 'Hatch_Widget_Column_Widget' ) ) {
 			// Update count for the columns
 			$this->column_count++;
 
-			// Extract Instance if it's there so that we can use the values in our inputs
-			if( NULL !== $instance ) {
+			// $instance Defaults
+			$instance_defaults = array (
+				'columns' => 4,
+				'title' => 'Widget Area ' . $this->column_count,
+				'excerpt' => NULL
+			);
 
-				// $instance Defaults
-				$instance_defaults = array (
-					'columns' => 4,
-					'title' => 'Widget Area ' . $this->column_count,
-					'excerpt' => NULL
-				);
-
-				// Parse $instance
-				$instance_args = wp_parse_args( $instance, $instance_defaults );
-				extract( $instance_args, EXTR_SKIP );
-			}
+			// Parse $instance
+			$instance_args = wp_parse_args( $instance, $instance_defaults );
+			extract( $instance_args, EXTR_SKIP );
 
 			// If there is no GUID create one. There should always be one but this is a fallback
 			if( ! isset( $module_guid ) ) $module_guid = rand( 1 , 1000 );

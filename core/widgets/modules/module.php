@@ -60,7 +60,7 @@ if( !class_exists( 'Hatch_Module_Widget' ) ) {
 			<section class="widget row" id="<?php echo $widget_id; ?>">
 				<div class="container clearfix">
 					<?php if( '' != $widget->title || '' != $widget->excerpt ) { ?>
-						<div class="row push-bottom-medium">
+						<div class="row content-main push-bottom-medium">
 							<div class="section-title <?php if( isset( $widget->title_size ) ) echo $widget->title_size; ?> <?php if( isset( $widget->title_alignment ) ) echo $widget->title_alignment; ?> clearfix"> <?php // @TODO: get alignment to work here ?>
 								<?php if( '' != $widget->title ) { ?>
 									<h3 class="heading"><?php echo $widget->title; ?></h3>
@@ -71,8 +71,8 @@ if( !class_exists( 'Hatch_Module_Widget' ) ) {
 							</div>
 						</div>
 					<?php } ?>
-					<div class="row push-bottom-large">
-						<?php if( !empty( $widget->modules ) ) { ?>
+					<?php if( !empty( $widget->modules ) ) { ?>
+						<div class="row push-bottom-large">
 							<?php $col = 1; ?>
 							<?php foreach ( $widget->modules as $key => $module) {
 								$module = (object) $module;
@@ -110,8 +110,8 @@ if( !class_exists( 'Hatch_Module_Widget' ) ) {
 								<?php } ?>
 								<?php $col++; ?>
 							<?php } ?>
-						<?php } ?>
-					</div>
+						</div>
+					<?php } ?>
 				</div>
 
 			</section>
@@ -350,8 +350,6 @@ if( !class_exists( 'Hatch_Module_Widget' ) ) {
 			$widget_details = (object) $widget_details;  ?>
 			<div class="hatch-column hatch-span hatch-span-position-<?php echo $this->column_count; ?>" data-guid="<?php echo $module_guid; ?>">
 				<small class="hatch-drag"></small>
-				<!-- Widget Column Extention -->
-				<button class="hatch-button btn-subtle hatch-span-12"><?php _e( 'Convert to Widget Area' , HATCH_THEME_SLUG ); ?></button>
 				<?php echo $widget_elements->input(
 					array(
 						'type' => 'image',

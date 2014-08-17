@@ -9,7 +9,7 @@
 /*----------------------------------*/
 /*- HIDING NONE HATCH WIDGETS ------*/
 #available-widgets .widget-tpl{
-    display: none !important;
+    //display: none !important;
 }
 #available-widgets .widget-tpl[id*='obox-hatch-widget']{
     display: block !important;

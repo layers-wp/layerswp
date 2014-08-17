@@ -93,8 +93,9 @@ if( ! function_exists( 'hatch_setup' ) ) {
 		 * Add support for Jetpack Portfolio
 		 */
 		add_theme_support( 'jetpack-portfolio' );
+
 	}
-	add_action( 'init' , 'hatch_setup' );
+	add_action( 'init' , 'hatch_setup', 10 );
 }
 
 

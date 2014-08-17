@@ -61,6 +61,8 @@ class Hatch_Widgets {
 	*/
 
 	public function register_sidebars(){
+		global $wp_customize , $temp_sidebars;
+
 		// Fetch Builder Pages
 		$pages = get_pages(array(
 			'meta_key' => '_wp_page_template',
@@ -80,13 +82,14 @@ class Hatch_Widgets {
 			) );
 		}
 
+		$dynamic_widget_id = 'obox-hatch-widget-widget-columns';
+
 		$dynamic_widget_areas = get_option('widget_obox-hatch-widget-widget-columns');
-		foreach ( $dynamic_widget_areas as $key => $widget_area ){
-			$widget_id = 'obox-hatch-widget-widget-columns-' . $key;
+		foreach ( $dynamic_widget_areas as $widget_key => $widget_area ){
 			if( isset( $widget_area['modules'] ) ){
-				foreach ( $widget_area['modules'] as $module_key => $module ){
+				foreach ( $widget_area['modules'] as $module_key => $module ){;
 					register_sidebar( array(
-						'id'		=> $widget_id . '-' . $module_key,
+						'id'		=> $dynamic_widget_id  .'-' . $widget_key . '-' . $module_key,
 						'name'		=> $module[ 'title' ],
 						'description'	=> __( '' , HATCH_THEME_SLUG ),
 						'before_widget'	=> '<aside id="%1$s" class="widget %2$s">',
@@ -208,4 +211,4 @@ function hatch_widgets_init(){
 	$hatch_widget = new Hatch_Widgets();
 	$hatch_widget->init();
 }
-add_action( 'widgets_init' , 'hatch_widgets_init' , 10 );
+add_action( 'widgets_init' , 'hatch_widgets_init' , 20 );

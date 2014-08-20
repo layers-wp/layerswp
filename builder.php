@@ -6,6 +6,7 @@ global $post;
 
 $mods = get_theme_mods();
 
+// Dynamic Sidebar for this page
 dynamic_sidebar( 'obox-hatch-builder-' . $post->post_name );
 
 echo '<!-- <pre>' . print_r( $mods , true ) . '</pre> -->';

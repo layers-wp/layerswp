@@ -47,7 +47,10 @@ if( !class_exists( 'Hatch_Widget_Column_Widget' ) ) {
 				'excerpt' => NULL,
 				'title_alignment' => 't-left',
 				'title_size' => '',
-				'columns' => 'columns-3'
+				'columns' => 'columns-3',
+				'columns' => 'columns-4',
+				'module_ids' => '1,2,3,4',
+				'modules' => array()
 			);
 
 			$instance = wp_parse_args( $instance , $instance_defaults );
@@ -60,21 +63,21 @@ if( !class_exists( 'Hatch_Widget_Column_Widget' ) ) {
 			$span_class = 'span-' . ( 12/ $col_count ); ?>
 
 			<section class="widget row" id="<?php echo $widget_id; ?>">
-				<?php if( empty( $widget->module_ids ) ) { ?>
+				<?php if( empty( $widget->modules ) ) { ?>
 					<?php _e( $this->warning , HATCH_THEME_SLUG ); // @TODO: Add a notice here about saving the widget before adding to the new sidebars ?>
 				<?php }  else { ?>
 					<div class="container content-main clearfix">
 						<div class="row push-bottom-large">
-								<?php $col = 1; ?>
-								<?php foreach ( $widget->modules as $key => $module) {
-									$module = (object) $module; ?>
-									<?php if( $col <= $col_count ) { ?>
-										<div class="column <?php echo $span_class; ?>">
-											<?php dynamic_sidebar( $widget_id . '-' . $key ); ?>
-										</div>
-									<?php } ?>
-									<?php $col++; ?>
+							<?php $col = 1; ?>
+							<?php foreach ( $widget->modules as $key => $module) {
+								$module = (object) $module; ?>
+								<?php if( $col <= $col_count ) { ?>
+									<div class="column <?php echo $span_class; ?>">
+										<?php dynamic_sidebar( $widget_id . '-' . $key ); ?>
+									</div>
 								<?php } ?>
+								<?php $col++; ?>
+							<?php } ?>
 						</div>
 					</div>
 				<?php }?>
@@ -118,8 +121,8 @@ if( !class_exists( 'Hatch_Widget_Column_Widget' ) ) {
 				'excerpt' => NULL,
 				'title_alignment' => 't-left',
 				'title_size' => '',
-				'columns' => 'columns-0',
-				'module_ids' => rand( 1 , 1000 ) . ',' . rand( 1 , 1000 ) . ',' . rand( 1 , 1000 ) . ',' . rand( 1 , 1000 )
+				'columns' => 'columns-4',
+				'module_ids' => '1,2,3,4'
 			);
 
 			// Parse $instance

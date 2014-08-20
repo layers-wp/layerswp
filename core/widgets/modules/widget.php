@@ -66,19 +66,17 @@ if( !class_exists( 'Hatch_Widget_Column_Widget' ) ) {
 				<?php if( empty( $widget->modules ) ) { ?>
 					<?php _e( $this->warning , HATCH_THEME_SLUG ); // @TODO: Add a notice here about saving the widget before adding to the new sidebars ?>
 				<?php }  else { ?>
-					<div class="container content-main clearfix">
-						<div class="row push-bottom-large">
-							<?php $col = 1; ?>
-							<?php foreach ( $widget->modules as $key => $module) {
-								$module = (object) $module; ?>
-								<?php if( $col <= $col_count ) { ?>
-									<div class="column <?php echo $span_class; ?>">
-										<?php dynamic_sidebar( $widget_id . '-' . $key ); ?>
-									</div>
-								<?php } ?>
-								<?php $col++; ?>
+					<div class="row <?php if( isset( $widget->layout ) && 'boxed' == $widget->layout ) echo 'container'; ?> push-bottom-large">
+						<?php $col = 1; ?>
+						<?php foreach ( $widget->modules as $key => $module) {
+							$module = (object) $module; ?>
+							<?php if( $col <= $col_count ) { ?>
+								<div class="column <?php echo $span_class; ?>">
+									<?php dynamic_sidebar( $widget_id . '-' . $key ); ?>
+								</div>
 							<?php } ?>
-						</div>
+							<?php $col++; ?>
+						<?php } ?>
 					</div>
 				<?php }?>
 
@@ -154,7 +152,21 @@ if( !class_exists( 'Hatch_Widget_Column_Widget' ) ) {
 											<?php _e( $this->warning , HATCH_THEME_SLUG ); // @TODO: Add a notice here about saving the widget before adding to the new sidebars ?>
 										</p>
 									<?php } ?>
-
+									<p class="hatch-form-item">
+										<label for="<?php echo $this->get_field_id( 'columns' ) . '_module_columns'; ?>"><?php _e( 'Columns' , HATCH_THEME_SLUG ); ?></label>
+										<?php echo $widget_elements->input(
+											array(
+												'type' => 'select',
+												'name' => $this->get_field_name( 'layout' ) ,
+												'id' => $this->get_field_id( 'layout' ) . '_module_columns',
+												'value' => ( isset( $layout ) ) ? $layout : NULL,
+												'options' => array(
+													'fullwidth' => __( 'Full Width' , HATCH_THEME_SLUG ),
+													'boxed' => __( 'Boxed' , HATCH_THEME_SLUG )
+												)
+											)
+										); ?>
+									</p>
 									<p class="hatch-form-item">
 										<label for="<?php echo $this->get_field_id( 'columns' ) . '_module_columns'; ?>"><?php _e( 'Columns' , HATCH_THEME_SLUG ); ?></label>
 										<?php echo $widget_elements->input(

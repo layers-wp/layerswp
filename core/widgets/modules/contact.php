@@ -82,7 +82,7 @@ if( !class_exists( 'Hatch_Contact_Widget' ) ) {
 					</div>
 				<?php } // if title || excerpt ?>
 				<?php if( !isset( $widget->hide_google_map ) && ( '' != $widget->google_maps_location || '' != $widget->google_maps_long_lat ) ) { ?>
-					<div class="hatch-map invert with-background" style="height: 670px;" <?php if( '' != $widget->google_maps_location ) { ?>data-location="<?php echo $widget->google_maps_location; ?>"<?php } ?> <?php if( '' != $widget->google_maps_long_lat ) { ?>data-longlat="<?php echo $widget->google_maps_long_lat; ?>"<?php } ?>></div>
+					<div class="hatch-map invert with-background <?php if( isset( $widget->layout ) && 'boxed' == $widget->layout ) echo 'container'; ?> " style="height: 670px;" <?php if( '' != $widget->google_maps_location ) { ?>data-location="<?php echo $widget->google_maps_location; ?>"<?php } ?> <?php if( '' != $widget->google_maps_long_lat ) { ?>data-longlat="<?php echo $widget->google_maps_long_lat; ?>"<?php } ?>></div>
 				<?php } ?>
 			</section>
 

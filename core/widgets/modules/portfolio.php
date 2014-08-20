@@ -97,9 +97,9 @@ if( !class_exists( 'Hatch_Portfolio_Widget' ) ) {
 			// Do the WP_Query
 			$post_query = new WP_Query( $query_args ); ?>
 
-			<section class="widget container" id="<?php echo $widget_id; ?>">
+			<section class="widget row" id="<?php echo $widget_id; ?>">
 				<?php if( '' != $widget->title || '' != $widget->excerpt ) { ?>
-					<div class="row basement t-center">
+					<div class="container content clearfix">
 						<div class="section-title <?php if( isset( $widget->title_size ) ) echo $widget->title_size; ?> <?php if( isset( $widget->title_alignment ) ) echo $widget->title_alignment; ?> clearfix"> <?php // @TODO: get alignment to work here ?>
 							<?php if( '' != $widget->title ) { ?>
 								<h3 class="heading"><?php echo $widget->title; ?></h3>
@@ -118,7 +118,7 @@ if( !class_exists( 'Hatch_Portfolio_Widget' ) ) {
 						<?php } // foreach $terms ?>
 					</ul>
 				<?php } ?>
-				<div class="row <?php  if( isset( $widget->content_display_type ) ) echo $widget->content_display_type; ?>">
+				<div class="row <?php if( isset( $widget->layout ) && 'boxed' == $widget->layout ) echo 'container'; ?>   <?php  if( isset( $widget->content_display_type ) ) echo $widget->content_display_type; ?>">
 					<?php if( $post_query->have_posts() ) { ?>
 						<?php while( $post_query->have_posts() ) { global $post; ?>
 							<?php $terms = wp_get_post_terms( $post->ID, $this->taxonomy );

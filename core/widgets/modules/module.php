@@ -216,6 +216,29 @@ if( !class_exists( 'Hatch_Module_Widget' ) ) {
 														)
 													); ?>
 												</p>
+
+												<div class="hatch-radio-pills-collection">
+													<div class="hatch-radio-pills">
+														<span>Text Align</span>
+														<input type="radio" />
+														<label>Left</label>
+														<input type="radio" checked="checked" />
+														<label>Center</label>
+														<input type="radio" />
+														<label>Middle</label>
+													</div>
+
+													<div class="hatch-radio-pills">
+														<span>Text Size</span>
+														<input type="radio" checked="checked" />
+														<label>Small</label>
+														<input type="radio" />
+														<label>Medium</label>
+														<input type="radio" />
+														<label>Large</label>
+													</div>
+												</div>
+
 											</div>
 										</div>
 									</div>

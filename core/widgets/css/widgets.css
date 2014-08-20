@@ -798,6 +798,47 @@ input[type=radio]:checked + .hatch-settings-icon span{
 
 
 /*---------------------------*/
+/*- RADIO PILLS -------------*/
+.hatch-radio-pills-collection{
+    overflow: hidden;
+}
+.hatch-radio-pills{
+    float: left;
+    margin-right: 10px;
+}
+.hatch-radio-pills input[type=radio]{
+    display: none;
+}
+.hatch-radio-pills span{
+    display: block;
+    float: left;
+    padding: 3px 10px 3px 0px;
+    color: #333;
+    font-size: 10px;
+    font-weight: 700;
+    line-height: 17px;
+}
+.hatch-radio-pills input[type=radio] + label{
+    display: block;
+    float: left;
+    padding: 3px 10px;
+    background: #f5f5f5;
+    color: #777;
+    font-size: 10px;
+    font-weight: 700;
+    line-height: 17px;
+    text-transform: uppercase;
+}
+.hatch-radio-pills input[type=radio] + label:hover{
+    background-color: #0289C0;
+    color: #fff;
+}
+
+.hatch-radio-pills input[type=radio]:first-child + label{border-radius: 4px 0px 0px 4px;}
+.hatch-radio-pills label:last-child{border-radius: 0px 4px 4px 0px;}
+
+
+/*---------------------------*/
 /*- ONCE OFF CSS ------------*/
 .hatch-controls-title .btn-collection{}
 .hatch-controls-title .hatch-button{padding: 6px 10px; margin-left: 5px;}

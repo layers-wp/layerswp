@@ -12,7 +12,7 @@ if( !class_exists( 'Hatch_Banner_Widget' ) ) {
 		/**
 		*  Widget variables
 		*/
-		private $widget_title = 'Banners';
+		private $widget_title = 'Sliders';
 		private $widget_id = 'banner';
 		private $post_type = '';
 		private $taxonomy = '';

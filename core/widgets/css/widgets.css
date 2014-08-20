@@ -113,6 +113,10 @@ div[id*='obox-hatch-widget'] .widget-control-actions{
 .hatch-row:after{clear: both;}
 .hatch-row{*zoom: 1;}
 
+.hatch-clearfix:before, .hatch-clearfix:after{content: " "; display: table;}
+.hatch-clearfix:after{clear: both;}
+.hatch-clearfix{*zoom: 1;}
+
 .hatch-column{
     float: left;
     margin: 0 2% 20px 0;
@@ -607,7 +611,7 @@ div[id*='obox-hatch-widget'] .widget-control-actions{
 .hatch-panel-title{
     display: block;
     margin: 0;
-    padding: 10px;
+    padding: 4px 4px 4px 10px;
     font-size: 14px;
     line-height: 16px;
     font-weight: 600;
@@ -618,6 +622,7 @@ div[id*='obox-hatch-widget'] .widget-control-actions{
 .hatch-panel-title .heading{
     padding: 0;
     margin: 0;
+    line-height: 26px;
 }
 .hatch-panel .hatch-content{
     padding: 10px;
@@ -919,12 +924,12 @@ input[type=radio]:checked + .hatch-settings-icon span{
 
 /*---------------------------*/
 /*- ELEMENT CONTROLLER ------*/
-.hatch-element-controller{
+.hatch-media-controller{
     background: #f5f5f5;
     border: 1px solid #ddd;
     overflow: hidden;
 }
-.hatch-element-controller .hatch-section-links{
+.hatch-media-controller .hatch-section-links{
     float: left;
     width: 60px;
     margin: 0;
@@ -933,28 +938,28 @@ input[type=radio]:checked + .hatch-settings-icon span{
     position: relative;
     z-index: 2;
 }
-.hatch-element-controller .hatch-section-links li{
+.hatch-media-controller .hatch-section-links li{
     margin: 0;
     border-bottom: 1px solid #ddd;
 }
-.hatch-element-controller .hatch-section-links li.active{
+.hatch-media-controller .hatch-section-links li.active{
     margin-right: -1px;
     background: #fff;
 }
-.hatch-element-controller .hatch-section-links a{
+.hatch-media-controller .hatch-section-links a{
     width: auto;
     padding: 14px;
     transition: all 0.5s cubic-bezier(0, 0.275, 0.125, 1) 0s;
     outline: none;
 }
-.hatch-element-controller .hatch-section-links a:hover{
+.hatch-media-controller .hatch-section-links a:hover{
     background-color: #fff;
 }
-.hatch-element-controller .hatch-section-links li.active a{
+.hatch-media-controller .hatch-section-links li.active a{
     padding-right: 15px;
 }
 
-.hatch-element-controller .hatch-controller-elements{
+.hatch-media-controller .hatch-controller-elements{
     overflow: hidden;
     background: #fff;
     border-left: 1px solid #DDD;
@@ -964,7 +969,7 @@ input[type=radio]:checked + .hatch-settings-icon span{
     -moz-box-sizing: border-box;
     box-sizing: border-box;
 }
-.hatch-element-controller .hatch-controller-elements .hatch-content{
+.hatch-media-controller .hatch-controller-elements .hatch-content{
     height: 0;
     padding: 0 20px;
     opacity: 0;
@@ -972,25 +977,25 @@ input[type=radio]:checked + .hatch-settings-icon span{
     overflow: hidden;
     transition: height 0.5s ease-in-out, padding 0.5s ease-in-out, opacity 0.5s ease-in-out, visibility 0.5s ease-in-out;
 }
-.hatch-element-controller .hatch-controller-elements .hatch-content.section-active{
+.hatch-media-controller .hatch-controller-elements .hatch-content.section-active{
     height: 290px;
     padding: 20px;
     opacity: 1;
     visibility: visible;
     overflow-y: scroll;
 }
-.hatch-element-controller .hatch-controller-elements .hatch-form-item{
+.hatch-media-controller .hatch-controller-elements .hatch-form-item{
     margin: 20px 0 60px;
     transition: margin 0.5s ease-in-out 0.2s;
 }
-.hatch-element-controller .hatch-controller-elements .section-active .hatch-form-item{
+.hatch-media-controller .hatch-controller-elements .section-active .hatch-form-item{
     margin: 0 0 15px;
 }
-.hatch-element-controller .hatch-controller-elements .hatch-checkbox{
+.hatch-media-controller .hatch-controller-elements .hatch-checkbox{
     margin: 20px 0 100px;
     transition: margin 0.5s ease-in-out 0.2s;
 }
-.hatch-element-controller .hatch-controller-elements .section-active .hatch-checkbox{
+.hatch-media-controller .hatch-controller-elements .section-active .hatch-checkbox{
     margin: 0 0 8px;
 }
 
@@ -1029,6 +1034,95 @@ input[type=radio]:checked + .hatch-settings-icon span{
     margin-top: 0;
     padding: 10px 20px;
     opacity: 1;
+}
+
+/*---------------------------*/
+/*- DESIGNER CONTROLLER -----*/
+.hatch-design-controls{
+    float: right;
+    padding-left: 16px;
+    background: url(images/icon-settings.png) left no-repeat;
+    background-size: 16px 16px;
+}
+.hatch-design-controller{
+    float: left;
+    margin: 0 0 0 5px;
+    position: relative;
+}
+.hatch-design-action{
+    display: block;
+    width: 62px;
+    height: 26px;
+    padding: 0;
+    background: #fff;
+    background-size: 11px 4px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+.hatch-design-action:hover{
+    border-color: #0D5F83;
+}
+.hatch-icon-name{
+    display: inline-block;
+    width: 41px;
+    height: 26px;
+    background: url(images/fake-temp-design-controller.png) center no-repeat;
+    text-indent: -9999px;
+    overflow: hidden;
+}
+.hatch-carrot{
+    display: inline-block;
+    width: 16px;
+    height: 26px;
+    background: url(images/icon-carrot-down.png) center no-repeat;
+    background-size: 6px 4px;
+    border-left: 1px solid #ccc;
+}
+.hatch-option{
+    position: absolute;
+    z-index: 1;
+    display: block;
+    width: 200px;
+    top: 28px; /*32px;*/
+    right: 0;
+    padding: 20px; 
+    background: #0289C0;
+    border: 2px solid #0D5F83;
+    border-radius: 4px;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.2s ease-in-out;
+    transform: scale(0.98);
+    transition-delay: 0.2s;
+}
+.hatch-design-controller:hover .hatch-option{
+    z-index: 1;
+    top: 34px;
+    opacity: 1;
+    visibility: visible;
+    transform: scale(1);
+    transition: all 0.4s ease-in-out;
+    transition-delay: 0s;
+}
+.hatch-option:before{
+    content: "";
+    display: block;
+    width: 0;
+    height: 0;
+    position: absolute;
+    top: -14px;
+    right: 1px;
+    border-style: solid;
+    border-width: 6px;
+    border-color: transparent transparent #0D5F83 transparent;
+}
+.hatch-option h5{
+    margin: 0 0 10px;
+    padding: 0;  
+    text-align: left;
+    font-size: 14px;
+    font-weight: 700;
+    color: #fff;
 }
 
 

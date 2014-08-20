@@ -119,11 +119,46 @@ if( !class_exists( 'Hatch_Framework_Widget' ) ) {
 				</div>
 
 				<div class="hatch-row clearfix">
-					<div class="hatch-column hatch-span-4">
+					<div class="hatch-column hatch-span-6">
 
 						<div class="hatch-panel">
-							<div class="hatch-panel-title">
-								<span class="tooltip" tooltip="Place your help text here please."></span>
+							<div class="hatch-panel-title hatch-clearfix">
+
+
+								<ul class="hatch-design-controls">
+									<li class="hatch-design-controller">
+										<a href="" class="hatch-design-action hatch-clearfix">
+											<span class="hatch-icon-name">Color</span>
+											<span class="hatch-carrot"></span>
+										</a>
+										<div class="hatch-option">
+											<h5>Text Align</h5>
+											<div class="hatch-radio-pills">
+												<input type="radio" checked="checked" />
+												<label>Small</label>
+												<input type="radio" />
+												<label>Medium</label>
+												<input type="radio" />
+												<label>Large</label>
+											</div>
+										</div>
+									</li>
+									<li class="hatch-design-controller">
+										<a href="" class="hatch-design-action hatch-clearfix">
+											<span class="hatch-icon-name">Color</span>
+											<span class="hatch-carrot"></span>
+										</a>
+									</li>
+									<li class="hatch-design-controller">
+										<a href="" class="hatch-design-action hatch-clearfix">
+											<span class="hatch-icon-name">Color</span>
+											<span class="hatch-carrot"></span>
+										</a>
+									</li>
+								</ul>
+
+
+
 								<h4 class="heading">Content Type</h4>
 							</div>
 							<div class="hatch-content">
@@ -151,7 +186,7 @@ if( !class_exists( 'Hatch_Framework_Widget' ) ) {
 						</div>
 
 					</div>
-					<div class="hatch-column hatch-span-4">
+					<div class="hatch-column hatch-span-6">
 						<div class="hatch-panel">
 							<div class="hatch-panel-title">
 								<span class="tooltip" tooltip="Place your help text here please."></span>
@@ -191,19 +226,6 @@ if( !class_exists( 'Hatch_Framework_Widget' ) ) {
 							</div>
 						</div>
 					</div>
-					<div class="hatch-column hatch-span-4">
-						<div class="hatch-panel">
-							<div class="hatch-panel-title">
-								<span class="tooltip" tooltip="Place your help text here please."></span>
-								<h4 class="heading">Image Alignment</h4>
-							</div>
-							<div class="hatch-content">
-								<a class="hatch-settings-icon hatch-icon-image-left" href="">Image Left</a>
-								<a class="hatch-settings-icon hatch-icon-image-right hatch-active" href="">Image Right</a>
-								<a class="hatch-settings-icon hatch-icon-image-top" href="">Image Top</a>
-							</div>
-						</div>
-					</div>
 				</div>
 			</section>
 
@@ -217,7 +239,7 @@ if( !class_exists( 'Hatch_Framework_Widget' ) ) {
 
 			<section class="hatch-accordion-section hatch-content">
 
-				<div class="hatch-element-controller">
+				<div class="hatch-media-controller">
 					<ul class="hatch-section-links">
 						<li class="active"><a href="" class="hatch-icon icon-bgimage-small">Background Image</a></li>
 						<li><a href="" class="hatch-icon icon-video-small">Background Video</a></li>
@@ -414,7 +436,7 @@ if( !class_exists( 'Hatch_Framework_Widget' ) ) {
 
 									<div class="hatch-column hatch-span-8">
 
-										<div class="hatch-element-controller">
+										<div class="hatch-media-controller">
 											<ul class="hatch-section-links">
 												<li class="active"><a href="" class="hatch-icon icon-bgimage-small">Background Image</a></li>
 												<li><a href="" class="hatch-icon icon-video-small">Background Video</a></li>

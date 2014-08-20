@@ -82,6 +82,7 @@ class Hatch_Widgets {
 				'after_title'	=> '</h4>',
 			) );
 		}
+	}
 
 	/**
 	 * Create Dynamic Widget Areas

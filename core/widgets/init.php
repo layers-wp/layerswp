@@ -54,6 +54,7 @@ class Hatch_Widgets {
 
 		// Register Sidebars
 		$this->register_sidebars();
+		$this->register_dynamic_sidebars();
 	}
 
 	/**
@@ -81,24 +82,44 @@ class Hatch_Widgets {
 				'after_title'	=> '</h4>',
 			) );
 		}
+	}
 
+	/**
+	 * Create Dynamic Widget Areas
+	 */
+
+	public function register_dynamic_sidebars(){
+
+		// Set the widget ID to search for
 		$dynamic_widget_id = 'obox-hatch-widget-widget-columns';
 
+		// Get registered sidebars
+		$sidebars = get_option( 'sidebars_widgets');
+
+		// Get the Dynamic Sidebar Widgets in use
 		$dynamic_widget_areas = get_option('widget_obox-hatch-widget-widget-columns');
+
+		// Loop over the Dynamic Sidebar Widgets
 		foreach ( $dynamic_widget_areas as $widget_key => $widget_area ){
-			if( isset( $widget_area['modules'] ) ){
-				foreach ( $widget_area['modules'] as $module_key => $module ){;
-					register_sidebar( array(
-						'id'		=> $dynamic_widget_id  .'-' . $widget_key . '-' . $module_key,
-						'name'		=> $module[ 'title' ],
-						'description'	=> __( '' , HATCH_THEME_SLUG ),
-						'before_widget'	=> '<aside id="%1$s" class="widget %2$s">',
-						'after_widget'	=> '</aside>',
-						'before_title'	=> '<h4 class="widget-title">',
-						'after_title'	=> '</h4>',
-					) );
-				}
-			}
+
+			// Check if this widget is inside an inactive sidebar (in which case skip)
+			if( !in_array( $dynamic_widget_id  . '-' . $widget_key , $sidebars[ 'wp_inactive_widgets'] ) ) {
+				if( isset( $widget_area['modules'] ) ){
+					foreach ( $widget_area['modules'] as $module_key => $module ){
+						$sidebar_key = $dynamic_widget_id  .'-' . $widget_key . '-' . $module_key;
+
+						register_sidebar( array(
+							'id'		=> $sidebar_key,
+							'name'		=> $module[ 'title' ],
+							'description'	=> __( '' , HATCH_THEME_SLUG ),
+							'before_widget'	=> '<aside id="%1$s" class="widget %2$s">',
+							'after_widget'	=> '</aside>',
+							'before_title'	=> '<h4 class="widget-title">',
+							'after_title'	=> '</h4>',
+						) );
+					} // foreach $widget_area['modules']
+				} // if isset $widget_area['modules']
+			} // if !in_array( $dynamic_widget_id )
 		}
 	}
 

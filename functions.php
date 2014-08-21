@@ -13,6 +13,7 @@ if ( defined( 'SCRIPT_DEBUG' ) && TRUE == SCRIPT_DEBUG ) {
 }
 define( 'HATCH_TEMPLATE_URI' , get_template_directory_uri() );
 define( 'HATCH_TEMPLATE_DIR' , get_template_directory() );
+define( 'HATCH_THEME_TITLE' , 'Hatch' );
 define( 'HATCH_THEME_SLUG' , 'obox-hatch' );
 define( 'HATCH_BUILDER_TEMPLATE' , 'builder.php' );
 define( 'OBOX_URL' , 'http://oboxthemes.com');

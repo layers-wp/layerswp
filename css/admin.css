@@ -1130,10 +1130,10 @@ input[type=radio]:checked + .hatch-settings-icon span{
 /*---------------------------*/
 /*- TABBED NAV --------------*/
 
-.hatch-nav-tabs{padding: 20px 20px 0; background: #eee; text-align: center;}
+.hatch-nav-tabs{padding: 20px 0px 0; text-align: center;}
 .hatch-nav-tabs ul{overflow: hidden; max-width: 1000px; margin: auto;}
 .hatch-nav-tabs li{float: left; margin-right: 10px;}
 .hatch-nav-tabs li:nth-child(2n+2){margin-right: 0;}
-.hatch-nav-tabs a{display: block; padding: 6px 15px; background: #F3F3F3; border-radius: 4px 4px 0 0; font-weight: 600; color: #8F8F8F;}
+.hatch-nav-tabs a{display: block; padding: 6px 15px; background: #F3F3F3; border-radius: 4px 4px 0 0; font-weight: 600; color: #8F8F8F; text-decoration: none;}
 .hatch-nav-tabs a:hover{color: #454545; background: #F3F3F3;}
-.hatch-nav-tabs .active a{background: #fff; color: #454545;}
+.hatch-nav-tabs .active a{background: #fff; border: #ccc solid 1px; border-bottom: 0 none; color: #454545;}

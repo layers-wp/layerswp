@@ -10,6 +10,7 @@
 class Hatch_Custom_Meta {
 
 	private static $instance;
+	var $custom_meta;
 
 	/**
 	*  Initiator
@@ -33,6 +34,13 @@ class Hatch_Custom_Meta {
 		// Include Config file(s)
 		locate_template( $meta_dir . 'config.php' , true );
 
+
+		// Instantiate meta config class
+		$meta_config = new Hatch_Meta_Config();
+
+		// Get post meta
+		$this->custom_meta = $meta_config->meta_data();
+
 		// Enqueue Styles
 		add_action( 'admin_enqueue_scripts', array( $this, 'admin_enqueue_scripts' ) , 50 );
 		add_action( 'admin_enqueue_scripts', array( $this, 'admin_print_styles' ) , 50 );
@@ -41,6 +49,9 @@ class Hatch_Custom_Meta {
 		// Page Builder Button
 		add_action( 'edit_form_after_title', array( $this , 'page_builder_button' ) );
 		add_action( 'wp_ajax_update_page_builder_meta' , array( $this , 'update_page_builder_meta' ) );
+
+		// Custom Fields
+		add_action('admin_menu', array( $this , 'post_meta_boxes' ) );
 
 	}
 
@@ -113,6 +124,47 @@ class Hatch_Custom_Meta {
 			delete_post_meta( $post_id , '_wp_page_template' );
 		}
 		die();
+	}
+
+	/**
+	* Custom Meta Register
+	*/
+
+	public function post_meta_boxes(){
+		global $post;
+
+		foreach( $this->custom_meta as $posttype => $custom_meta ){
+			add_meta_box(
+					HATCH_THEME_SLUG . '-' . $posttype,
+					$custom_meta[ 'title' ],
+					array( $this , 'display_post_meta' ) ,
+					$posttype ,
+					$custom_meta[ 'position' ],
+					'high'
+				);
+		}
+	}
+
+	/**
+	* Custom Meta Interface
+	*/
+	public function display_post_meta(){
+		global $post;
+
+		// Get post type
+		$posttype = get_post_type( $post->ID );
+
+		if( isset( $this->custom_meta[ $posttype ] ) ){ ?>
+			<div class="hatch-nav hatch-nav-tabs">
+				<ul class="hatch-tabs">
+					<?php foreach( $this->custom_meta[ $posttype ]['custom-meta'] as $key => $meta_option ){ ?>
+						<li <?php if( !isset( $inactive ) ) echo 'class="active"'; ?>><a href="#"><?php echo $meta_option[ 'title' ]; ?></a></li>
+						<?php $inactive=1; ?>
+					<?php }  ?>
+				</ul>
+			</div>
+		<?php }
+
 	}
 }
 

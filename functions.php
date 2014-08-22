@@ -168,7 +168,7 @@ if( ! function_exists( 'hatch_admin_scripts' ) ) {
 	function hatch_admin_scripts(){
 		wp_enqueue_style(
 			HATCH_THEME_SLUG . '-admin-css',
-			get_template_directory_uri() . '/css/admin.css',
+			get_template_directory_uri() . '/core/assets/admin.css',
 			array(),
 			HATCH_VERSION
 		); // Admin

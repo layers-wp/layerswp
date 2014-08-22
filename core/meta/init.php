@@ -133,6 +133,7 @@ class Hatch_Custom_Meta {
 	public function post_meta_boxes(){
 		global $post;
 
+		// Loop over each post type in the custom meta
 		foreach( $this->custom_meta as $posttype => $custom_meta ){
 			add_meta_box(
 					HATCH_THEME_SLUG . '-' . $posttype,

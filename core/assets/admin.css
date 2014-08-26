@@ -9,7 +9,7 @@
 /*----------------------------------*/
 /*- HIDING NONE HATCH WIDGETS ------*/
 #available-widgets .widget-tpl{
-    //display: none !important;
+    /*display: none !important;*/
 }
 #available-widgets .widget-tpl[id*='obox-hatch-widget']{
     display: block !important;
@@ -35,6 +35,9 @@ div[id*='obox-hatch-widget'] .widget-top .widget-title .in-widget-title{
     color: rgba(255, 255, 255, 0.8);
 }
 
+.hatch-hide{
+    display:  none;
+}
 .customize-control-widget_form.wide-widget-control.expanded:not(.collapsing) div[id*='obox-hatch-widget'] .widget-top{
     background: #0BA6E0;
     border-color: #0D5F83;

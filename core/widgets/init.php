@@ -29,9 +29,6 @@ class Hatch_Widgets {
 		$widget_dir = HATCH_TEMPLATE_DIR . '/core/widgets/';
 		$module_dir = HATCH_TEMPLATE_DIR . '/core/widgets/modules/';
 
-		// Include widget form item class
-		require $widget_dir . 'form-elements.php';
-
 		// Include ajax functions
 		require $widget_dir . 'ajax.php';
 
@@ -186,7 +183,7 @@ class Hatch_Widgets {
 		// Widget general
 		wp_enqueue_script(
 			HATCH_THEME_SLUG . '-admin-widgets' ,
-			get_template_directory_uri() . '/core/widgets/js/widgets.js' ,
+			FALSE,
 			array(
 				HATCH_THEME_SLUG . '-admin-widgets-accordians',
 				HATCH_THEME_SLUG . '-admin-widgets-banners',

@@ -48,7 +48,7 @@ class Hatch_Meta_Config {
 								'left' => __( 'Left' , HATCH_THEME_SLUG ),
 								'right' => __( 'Right' , HATCH_THEME_SLUG )
 							),
-						),
+						)
 					)
 				)
 			)
@@ -56,6 +56,33 @@ class Hatch_Meta_Config {
 
 		// Page Meta we just emulate the post meta
 		$custom_meta['page'] = $custom_meta['post'];
+
+		$custom_meta[ 'portfolio.php' ] = array(
+			'title' => HATCH_THEME_TITLE . __( ': Portfolio Options' , HATCH_THEME_SLUG ),
+			'description' => __( '' , HATCH_THEME_SLUG ), // @TODO
+			'position' => 'normal',
+			'custom-meta' => array(
+				'media' => array(
+						'title' => __( 'Layout' , HATCH_THEME_SLUG ),
+						'elements' => array(
+							'columns' => array(
+								'label' => __( 'Columns' , HATCH_THEME_SLUG ),
+								'type' => 'select-icons',
+								'default' => 'columns-3',
+								'options' => array(
+									'columns-1' => __( '1 Column' , HATCH_THEME_SLUG ),
+									'columns-2' => __( '2 Column' , HATCH_THEME_SLUG ),
+									'columns-3' => __( '3 Column' , HATCH_THEME_SLUG ),
+									'columns-4' => __( '4 Column' , HATCH_THEME_SLUG ),
+									// 'columns-5' => __( '5 Column' , HATCH_THEME_SLUG ), @TODO: Figure Out a 5col method
+									'columns-6' => __( '6 Column' , HATCH_THEME_SLUG )
+								)
+							)
+						)
+
+				)
+			)
+		);
 
 		return apply_filters( 'hatch_custom_meta', $custom_meta );
 	}

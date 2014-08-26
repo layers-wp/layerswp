@@ -14,7 +14,7 @@ if ( defined( 'SCRIPT_DEBUG' ) && TRUE == SCRIPT_DEBUG ) {
 define( 'HATCH_TEMPLATE_URI' , get_template_directory_uri() );
 define( 'HATCH_TEMPLATE_DIR' , get_template_directory() );
 define( 'HATCH_THEME_TITLE' , 'Hatch' );
-define( 'HATCH_THEME_SLUG' , 'obox-hatch' );
+define( 'HATCH_THEME_SLUG' , 'hatch' );
 define( 'HATCH_BUILDER_TEMPLATE' , 'builder.php' );
 define( 'OBOX_URL' , 'http://oboxthemes.com');
 
@@ -58,6 +58,14 @@ locate_template( '/core/customizer/init.php' , true );
  * Load Custom Post Meta
  */
 locate_template( '/core/meta/init.php' , true );
+
+/*
+ * Load Admin-specific files
+ */
+if( is_admin() ){
+	// Include form item class
+	locate_template( '/core/helpers/forms.php' , true );
+}
 
 if( ! function_exists( 'hatch_setup' ) ) {
 	function hatch_setup(){
@@ -171,7 +179,19 @@ if( ! function_exists( 'hatch_admin_scripts' ) ) {
 			get_template_directory_uri() . '/core/assets/admin.css',
 			array(),
 			HATCH_VERSION
-		); // Admin
+		); // Admin CSS
+
+		wp_enqueue_script(
+			HATCH_THEME_SLUG . '-admin-js' ,
+			get_template_directory_uri() . '/core/assets/admin.js',
+			array(
+				'jquery',
+				'wp-color-picker'
+			),
+			HATCH_VERSION,
+			true
+		); // Admin JS
+
 	}
 }
 

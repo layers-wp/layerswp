@@ -222,7 +222,7 @@ if( !class_exists( 'Hatch_Portfolio_Widget' ) ) {
 		function form( $instance ){
 
 			// Initiate Widget Inputs
-			$widget_elements = new Hatch_Widget_Elements();
+			$widget_elements = new Hatch_Form_Elements();
 
 			// $instance Defaults
 			$instance_defaults = array (

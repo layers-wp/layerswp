@@ -111,7 +111,7 @@ if( !class_exists( 'Hatch_Widget_Column_Widget' ) ) {
 		function form( $instance ){
 
 			// Initiate Widget Inputs
-			$widget_elements = new Hatch_Widget_Elements();
+			$widget_elements = new Hatch_Form_Elements();
 
 			// $instance Defaults
 			$instance_defaults = array (
@@ -239,7 +239,7 @@ if( !class_exists( 'Hatch_Widget_Column_Widget' ) ) {
 			if( ! isset( $module_guid ) ) $module_guid = rand( 1 , 1000 );
 
 			// Initiate Widget Inputs
-			$widget_elements = new Hatch_Widget_Elements();
+			$widget_elements = new Hatch_Form_Elements();
 
 			// Turn the widget details into an object, it makes the code cleaner
 			$widget_details = (object) $widget_details;  ?>

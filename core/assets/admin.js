@@ -5,13 +5,25 @@
  *
  * @package Hatch
  * @since Hatch 1.0
+ * Contents
+ * 1 - Media Uploaders
+ * 1.a - Image Remove Button
+ * 1.b - Image Upload Button
+ * 1.c - General File Remove Button
+ * 1.d - General File Upload Button
+ * 2 -Background Selectors
+ * 3 - Color Selectors
+ * 4 - Sortable Columns
+ * 5 - Tabs
 */
 
 jQuery(document).ready(function($) {
 
 	/**
-	* Media Uploaders
+	* 1 - Media Uploaders
 	*/
+
+	// 1.a - Image Remove Button
 	var file_frame;
 	$(document).on( 'click' , '.hatch-image-uploader .hatch-image-remove' , function(e){
 		e.preventDefault();
@@ -26,6 +38,7 @@ jQuery(document).ready(function($) {
 		return false;
 	});
 
+	// 1.b - Image Upload Button
 	$(document).on( 'click' , '.hatch-image-uploader' , function(e){
 		e.preventDefault();
 
@@ -89,6 +102,8 @@ jQuery(document).ready(function($) {
 		file_frame.open();
 	});
 
+
+	// 1.c - General File Remove Button
 	$(document).on( 'click' , '.hatch-file-remove' , function(e){
 		e.preventDefault();
 
@@ -102,7 +117,7 @@ jQuery(document).ready(function($) {
 		return false;
 	});
 
-
+	// 1.d - General File Upload Button
 	$(document).on( 'click' , '.hatch-regular-uploader' , function(e){
 		e.preventDefault();
 
@@ -146,7 +161,7 @@ jQuery(document).ready(function($) {
 	});
 
 	/**
-	* Background Selectors
+	* 2 -Background Selectors
 	*/
 	$(document).on( 'click', '.hatch-background-selector li' , function(e){
 		e.preventDefault();
@@ -174,7 +189,7 @@ jQuery(document).ready(function($) {
 	});
 
 	/**
-	* Color Selectors
+	* 3 - Color Selectors
 	*/
 	hatch_set_color_selectors();
 	$(document).on ( 'mouseup' , '#available-widgets .widget-tpl' , function(){
@@ -193,7 +208,7 @@ jQuery(document).ready(function($) {
 	}
 
 	/**
-	* Sortable Columns
+	* 4 - Sortable Columns
 	*/
 	hatch_set_sortable_cols();
 
@@ -202,4 +217,27 @@ jQuery(document).ready(function($) {
 			placeholder: "hatch-sortable-drop"
 		});
 	}
+
+
+	/**
+	* 4 - Tabs
+	*/
+	$( document ).on( 'click' , '.hatch-tabs li' , function(e){
+		e.preventDefault();
+		// "Hi Mom"
+		$that = $(this);
+
+		// Get the Tab Index
+		$i = $that.index();
+
+		// Make this tab active
+		$that.addClass( 'active' ).siblings().removeClass( 'active' );
+
+		// Get the nearest tab containers
+		$tab_nav = $that.closest( '.hatch-nav-tabs' );
+		$tab_container = $tab_nav.siblings('.hatch-tab-content');
+
+		// Show/Hide tabs
+		$tab_container.find( 'section' ).eq( $i ).slideDown().siblings().slideUp();
+	});
 });

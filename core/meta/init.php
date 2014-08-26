@@ -44,15 +44,15 @@ class Hatch_Custom_Meta {
 		// Enqueue Styles
 		add_action( 'admin_enqueue_scripts', array( $this, 'admin_enqueue_scripts' ) , 50 );
 		add_action( 'admin_enqueue_scripts', array( $this, 'admin_print_styles' ) , 50 );
-		add_action( 'customize_controls_print_styles' , array( $this, 'admin_print_styles' ) );
 
 		// Page Builder Button
 		add_action( 'edit_form_after_title', array( $this , 'page_builder_button' ) );
 		add_action( 'wp_ajax_update_page_builder_meta' , array( $this , 'update_page_builder_meta' ) );
 
 		// Custom Fields
-		add_action('admin_menu', array( $this , 'post_meta_boxes' ) );
-
+		add_action( 'admin_menu', array( $this , 'register_post_meta' ) );
+		add_action( 'save_post', array( $this , 'save_post_meta' ) );
+		add_action( 'publish_post', array( $this , 'save_post_meta' ) );
 	}
 
 	/**
@@ -133,45 +133,142 @@ class Hatch_Custom_Meta {
 	* Custom Meta Register
 	*/
 
-	public function post_meta_boxes(){
-		global $post;
+	public function register_post_meta(){
+		// If we have not published the post, don't set a post ID
+		if( isset( $_REQUEST[ 'post' ] ) ) {
+			$post_id = $_REQUEST[ 'post' ];
+		} else {
+			$post_id = NULL;
+		}
 
-		// Loop over each post type in the custom meta
-		foreach( $this->custom_meta as $posttype => $custom_meta ){
+		// Loop over the custom meta
+		foreach( $this->custom_meta as $meta_index => $custom_meta ){
 
-			// Register the metabox
-			add_meta_box(
-					HATCH_THEME_SLUG . '-' . $posttype, // Slug
-					$custom_meta[ 'title' ], // Title
-					array( $this , 'display_post_meta' ) , // Interface
-					$posttype , // Post Type
-					$custom_meta[ 'position' ], // Position
-					'high' // Priority
-				);
+			// If there is Post Meta,  register the metabox
+			if( isset( $this->custom_meta[ $meta_index ] ) ){
+
+				if( post_type_exists( $meta_index ) ) {
+					$post_type = $meta_index;
+					$callback_args = array(
+						'meta_index' =>$meta_index
+					);
+				} else {
+					// Set the post type
+					$post_type = 'page';
+
+					// Get the page template
+					$page_template = get_post_meta( $post_id, '_wp_page_template' , true );
+
+					// If there is no page template set, just return
+					if( '' == $page_template ) return;
+					// Now check to see that we've selected the right page template
+					if( $meta_index != $page_template) return;
+
+					$callback_args = array(
+						'meta_index' => $meta_index
+					);
+				}
+
+				add_meta_box(
+						HATCH_THEME_SLUG . '-' . $meta_index, // Slug
+						$custom_meta[ 'title' ], // Title
+						array( $this , 'display_post_meta' ) , // Interface
+						$post_type , // Post Type
+						$custom_meta[ 'position' ], // Position
+						'high', // Priority
+						$callback_args // Callback args
+					);
+			}
 		}
 	}
 
 	/**
 	* Custom Meta Interface
 	*/
-	public function display_post_meta(){
+
+	public function display_post_meta( $post , $callback_args ){
+
+		// Get post type
+		$post_type = get_post_type( $post->ID );
+
+		// Post Meta Value
+		$post_meta = get_post_meta( $post->ID, HATCH_THEME_SLUG . '-' . $post_type . '-meta' , true );
+
+		// Debug
+		// echo '<pre>' . print_r( $post_meta , true ) . '</pre>';
+
+		// Set the meta index ie. the array we will loop over for our options
+		$meta_index =$callback_args[ 'args' ][ 'meta_index' ];
+
+		// Instantiate form elements
+		$form_elements = new Hatch_Form_Elements();
+
+		// If there is Post Meta, loop over the tabs.
+		if( isset( $this->custom_meta[ $meta_index ] ) ){ ?>
+			<div class="hatch-nav hatch-nav-tabs">
+				<ul class="hatch-tabs">
+					<?php foreach( $this->custom_meta[ $meta_index ]['custom-meta'] as $key => $meta_option ){ ?>
+						<li <?php if( !isset( $inactive ) ) echo 'class="active"'; ?>><a href="#"><?php echo $meta_option[ 'title' ]; ?></a></li>
+						<?php $inactive=1; ?>
+					<?php } // foreach $this->custom_meta[ $post_type ]['custom-meta']  ?>
+				</ul>
+			</div>
+			<div class="hatch-tab-content">
+				<?php foreach( $this->custom_meta[ $meta_index ]['custom-meta'] as $key => $meta_option ){ ?>
+					<section class="hatch-accordion-section hatch-content <?php if( isset( $hide_tab ) ) echo 'hatch-hide'; ?> customize-control"> <?php // @TODO: Remove .customizer-control class ?>
+						<div class="hatch-row clearfix">
+							<?php if( isset( $meta_option[ 'elements' ] ) ) { ?>
+								<fieldset>
+									<?php foreach( $meta_option[ 'elements' ] as $input_key => $input ) { ?>
+										<p class="hatch-form-item">
+											<label><?php echo $input[ 'label' ]; ?></label>
+											<?php  echo $form_elements->input(
+												array(
+													'type' => $input[ 'type' ],
+													'name' => HATCH_THEME_SLUG . '-' . $post_type . '[' . $input_key . ']',
+													'id' => $input_key ,
+													'default' => ( isset( $input[ 'default' ] ) ) ? $input[ 'default' ] : NULL ,
+													'placeholder' => ( isset( $input[ 'placeholder' ] ) ) ? $input[ 'placeholder' ] : NULL ,
+													'value' => ( isset( $post_meta[ $input_key ] ) ) ? $post_meta[ $input_key ] : ( ( isset( $input[ 'default' ] ) ) ? $input[ 'default' ] : NULL ), // Check for a value, then check for a default, then finally settle on NULL
+													'options' =>  ( isset( $input[ 'options' ] ) ) ? $input[ 'options' ] : NULL,
+													'class' => 'hatch-' . $input[ 'type' ]
+
+												)
+											); ?>
+										</p>
+									<?php } // foreach $meta_option[ 'elements' ] ?>
+								</fieldset>
+							<?php } // if $meta_option[ 'elements' ] ?>
+						</div>
+					</section>
+					<?php $hide_tab = 1; ?>
+				<?php } // foreach $this->custom_meta[ $post_type ]['custom-meta'] ?>
+			</div>
+			<?php wp_nonce_field( HATCH_THEME_SLUG . '-post-meta' , '_wp_nonce_' . HATCH_THEME_SLUG ); ?>
+		<?php } // if $this->custom_meta[ $post_type ] ?>
+	<?php }
+
+	/**
+	* Custom Meta Interface
+	*/
+
+	public function save_post_meta( $post_id ){
 		global $post;
 
 		// Get post type
-		$posttype = get_post_type( $post->ID );
+		$post_type = get_post_type( $post_id );
 
-		// If there is Post Meta, loop over the tabs.
-		if( isset( $this->custom_meta[ $posttype ] ) ){ ?>
-			<div class="hatch-nav hatch-nav-tabs">
-				<ul class="hatch-tabs">
-					<?php foreach( $this->custom_meta[ $posttype ]['custom-meta'] as $key => $meta_option ){ ?>
-						<li <?php if( !isset( $inactive ) ) echo 'class="active"'; ?>><a href="#"><?php echo $meta_option[ 'title' ]; ?></a></li>
-						<?php $inactive=1; ?>
-					<?php }  ?>
-				</ul>
-			</div>
-		<?php }
+		// Verify our nonce
+		$nonce = $_REQUEST[ '_wp_nonce_' . HATCH_THEME_SLUG ];
 
+		// Form key
+		$form_key = HATCH_THEME_SLUG . '-' . $post_type;
+
+		if ( wp_verify_nonce( $nonce, HATCH_THEME_SLUG . '-post-meta' ) ) {
+			if( isset( $_REQUEST[ $form_key ] ) ) {
+				update_post_meta( $post_id, HATCH_THEME_SLUG . '-' . $post_type . '-meta' , $_REQUEST[ $form_key ] );
+			} // if isset( $this->custom_meta[ $post_type ] )
+		} // if nonce
 	}
 }
 

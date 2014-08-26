@@ -1,16 +1,16 @@
 <?php /**
- * Widget Element Class File
+ * Form Element Class File
  *
- * This file outputs common HTML elements for widget items, it's useful not to have to re-write ever part of HTML that we use inside the widgets
+ * This file outputs common HTML elements for form items used in the admin area of Hatch, it's useful not to have to re-write ever part of HTML that we use inside the widgets
  *
  * @package Hatch
  * @since Hatch 1.0
  */
 
-class Hatch_Widget_Elements {
+class Hatch_Form_Elements {
 
 	/**
-	* Load widget header HTML
+	* Load control title HTML
 	*
  	* @param  	array    		$args    	Configuration arguments.
  	* @echo 	string 				Title HTML

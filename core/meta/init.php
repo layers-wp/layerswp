@@ -117,7 +117,10 @@ class Hatch_Custom_Meta {
 	* Page Builder Meta Update
 	*/
 	public function update_page_builder_meta(){
+
+		// Get the Post ID
 		$post_id = $_POST['id'];
+
 		if( isset($_POST[ 'template' ] ) && 'builder.php' == $_POST[ 'template' ] ){
 			update_post_meta( $post_id , '_wp_page_template', $_POST[ 'template' ] );
 		} else {
@@ -135,13 +138,15 @@ class Hatch_Custom_Meta {
 
 		// Loop over each post type in the custom meta
 		foreach( $this->custom_meta as $posttype => $custom_meta ){
+
+			// Register the metabox
 			add_meta_box(
-					HATCH_THEME_SLUG . '-' . $posttype,
-					$custom_meta[ 'title' ],
-					array( $this , 'display_post_meta' ) ,
-					$posttype ,
-					$custom_meta[ 'position' ],
-					'high'
+					HATCH_THEME_SLUG . '-' . $posttype, // Slug
+					$custom_meta[ 'title' ], // Title
+					array( $this , 'display_post_meta' ) , // Interface
+					$posttype , // Post Type
+					$custom_meta[ 'position' ], // Position
+					'high' // Priority
 				);
 		}
 	}
@@ -155,6 +160,7 @@ class Hatch_Custom_Meta {
 		// Get post type
 		$posttype = get_post_type( $post->ID );
 
+		// If there is Post Meta, loop over the tabs.
 		if( isset( $this->custom_meta[ $posttype ] ) ){ ?>
 			<div class="hatch-nav hatch-nav-tabs">
 				<ul class="hatch-tabs">

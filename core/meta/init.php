@@ -192,7 +192,7 @@ class Hatch_Custom_Meta {
 		$post_type = get_post_type( $post->ID );
 
 		// Post Meta Value
-		$post_meta = get_post_meta( $post->ID, HATCH_THEME_SLUG . '-' . $post_type . '-meta' , true );
+		$post_meta = get_post_meta( $post->ID, HATCH_THEME_SLUG . '-' . $post_type , true );
 
 		// Debug
 		// echo '<pre>' . print_r( $post_meta , true ) . '</pre>';
@@ -266,7 +266,7 @@ class Hatch_Custom_Meta {
 
 		if ( wp_verify_nonce( $nonce, HATCH_THEME_SLUG . '-post-meta' ) ) {
 			if( isset( $_REQUEST[ $form_key ] ) ) {
-				update_post_meta( $post_id, HATCH_THEME_SLUG . '-' . $post_type . '-meta' , $_REQUEST[ $form_key ] );
+				update_post_meta( $post_id, HATCH_THEME_SLUG . '-' . $post_type , $_REQUEST[ $form_key ] );
 			} // if isset( $this->custom_meta[ $post_type ] )
 		} // if nonce
 	}

@@ -6,44 +6,46 @@
 
 */
 
+@import url(font.css);
+
 /*----------------------------------*/
 /*- HIDING NONE HATCH WIDGETS ------*/
 #available-widgets .widget-tpl{
     /*display: none !important;*/
 }
-#available-widgets .widget-tpl[id*='obox-hatch-widget']{
+#available-widgets .widget-tpl[id*='hatch-widget']{
     display: block !important;
 }
 
 /*----------------------------------*/
 /*- WORDPRESS RESETS / OVERRIDES ---*/
-div[id*='obox-hatch-widget'].widget-tpl .widget .widget-description{color: #777 !important;}
-div[id*='obox-hatch-widget'].widget-tpl .widget .widget-title:before{color: #222 !important;}
-div[id*='obox-hatch-widget'].widget-tpl .widget .widget-title h4{color: #222 !important;}
+div[id*='hatch-widget'].widget-tpl .widget .widget-description{color: #777 !important;}
+div[id*='hatch-widget'].widget-tpl .widget .widget-title:before{color: #222 !important;}
+div[id*='hatch-widget'].widget-tpl .widget .widget-title h4{color: #222 !important;}
 
-div[id*='obox-hatch-widget'] .widget-top{
+div[id*='hatch-widget'] .widget-top{
     background: #0289C0;
     border-color: #0D5F83;
 }
-div[id*='obox-hatch-widget'] .widget-top:hover{
+div[id*='hatch-widget'] .widget-top:hover{
     border-color: #094D6A !important;
 }
-div[id*='obox-hatch-widget'] .widget-top .widget-title h4{
+div[id*='hatch-widget'] .widget-top .widget-title h4{
     color: #fff;
 }
-div[id*='obox-hatch-widget'] .widget-top .widget-title .in-widget-title{
+div[id*='hatch-widget'] .widget-top .widget-title .in-widget-title{
     color: rgba(255, 255, 255, 0.8);
 }
 
 .hatch-hide{
     display:  none;
 }
-.customize-control-widget_form.wide-widget-control.expanded:not(.collapsing) div[id*='obox-hatch-widget'] .widget-top{
+.customize-control-widget_form.wide-widget-control.expanded:not(.collapsing) div[id*='hatch-widget'] .widget-top{
     background: #0BA6E0;
     border-color: #0D5F83;
     color: #3D454E;
 }
-.customize-control-widget_form.wide-widget-control div[id*='obox-hatch-widget'] .widget-inside{
+.customize-control-widget_form.wide-widget-control div[id*='hatch-widget'] .widget-inside{
     width: 0;
     height: 100%;
     max-height: none;
@@ -57,47 +59,47 @@ div[id*='obox-hatch-widget'] .widget-top .widget-title .in-widget-title{
     overflow: hidden;
     box-shadow: 3px 0 3px rgba(0, 0, 0, 0.1);
 }
-.customize-control-widget_form.wide-widget-control.expanded div[id*='obox-hatch-widget'] .widget-inside{
+.customize-control-widget_form.wide-widget-control.expanded div[id*='hatch-widget'] .widget-inside{
     opacity: 1;
     width: 980px;
     box-shadow: 5px 0 18px rgba(0, 0, 0, 0.2), 4px 0 4px rgba(0, 0, 0, 0.10);
     overflow-y: visible;
 }
-.customize-control-widget_form.wide-widget-control.collapsing div[id*='obox-hatch-widget'] .widget-inside{
+.customize-control-widget_form.wide-widget-control.collapsing div[id*='hatch-widget'] .widget-inside{
     transition: width 0.25s ease-in-out, opacity 0.15s ease-in-out;
     opacity: 0;
     width: 0;
 }
 
-.customize-control-widget_form.wide-widget-control div[id*='obox-hatch-widget'] .widget-inside .form{
+.customize-control-widget_form.wide-widget-control div[id*='hatch-widget'] .widget-inside .form{
     padding: 0 !important;
     min-width: 980px;
     position: relative;
     left: -200px;
     transition: all 0.35s ease-in-out 0.1s;
 }
-.customize-control-widget_form.wide-widget-control.expanded div[id*='obox-hatch-widget'] .widget-inside .form{
+.customize-control-widget_form.wide-widget-control.expanded div[id*='hatch-widget'] .widget-inside .form{
     left: 0;
     opacity: 1;
 }
-.customize-control-widget_form.wide-widget-control.collapsing div[id*='obox-hatch-widget'] .widget-inside .form{
+.customize-control-widget_form.wide-widget-control.collapsing div[id*='hatch-widget'] .widget-inside .form{
     left: -200px;
     opacity: 0;
 }
 
 /*- COLLAPSED SIDEBAR ------------*/
-.collapsed .customize-control-widget_form.wide-widget-control div[id*='obox-hatch-widget'] .widget-inside{
+.collapsed .customize-control-widget_form.wide-widget-control div[id*='hatch-widget'] .widget-inside{
     width: 0;
     left: -300px;
     transition-delay: none;
 }
-.collapsed .customize-control-widget_form.wide-widget-control div[id*='obox-hatch-widget'] .widget-inside .form{
+.collapsed .customize-control-widget_form.wide-widget-control div[id*='hatch-widget'] .widget-inside .form{
     opacity: 0;
     transition-delay: none;
 }
 
 
-div[id*='obox-hatch-widget'] .widget-control-actions{
+div[id*='hatch-widget'] .widget-control-actions{
     width: 100%;
     max-width: 300px;
     padding: 10px 20px;

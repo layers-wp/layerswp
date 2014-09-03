@@ -88,13 +88,16 @@ class Hatch_Widgets {
 	public function register_dynamic_sidebars(){
 
 		// Set the widget ID to search for
-		$dynamic_widget_id = 'obox-hatch-widget-widget-columns';
+		$dynamic_widget_id = 'hatch-widget-widget-columns';
 
 		// Get registered sidebars
 		$sidebars = get_option( 'sidebars_widgets');
 
 		// Get the Dynamic Sidebar Widgets in use
-		$dynamic_widget_areas = get_option('widget_obox-hatch-widget-widget-columns');
+		$dynamic_widget_areas = get_option( 'widget_' . $dynamic_widget_id );
+
+		// If there are no sidebars to register, return;
+		if( empty( $dynamic_widget_areas ) ) return;
 
 		// Loop over the Dynamic Sidebar Widgets
 		foreach ( $dynamic_widget_areas as $widget_key => $widget_area ){
@@ -117,7 +120,7 @@ class Hatch_Widgets {
 					} // foreach $widget_area['modules']
 				} // if isset $widget_area['modules']
 			} // if !in_array( $dynamic_widget_id )
-		}
+		} // foreach $dynamic_widget_areas
 	}
 
 	/**
@@ -125,15 +128,6 @@ class Hatch_Widgets {
 	*/
 
 	public function admin_enqueue_scripts(){
-
-		// Widget accordians
-		wp_register_script(
-			HATCH_THEME_SLUG . '-admin-widgets-accordians' ,
-			get_template_directory_uri() . '/core/widgets/js/widget-accordians.js' ,
-			array(),
-			HATCH_VERSION,
-			true
-		);
 
 		// Banner Widget
 		wp_register_script(
@@ -180,12 +174,12 @@ class Hatch_Widgets {
 			true
 		);
 
-		// Widget general
+
+		// Widget accordians
 		wp_enqueue_script(
 			HATCH_THEME_SLUG . '-admin-widgets' ,
-			FALSE,
+			get_template_directory_uri() . '/core/widgets/js/widget-accordians.js' ,
 			array(
-				HATCH_THEME_SLUG . '-admin-widgets-accordians',
 				HATCH_THEME_SLUG . '-admin-widgets-banners',
 				HATCH_THEME_SLUG . '-admin-widgets-modules',
 				HATCH_THEME_SLUG . '-admin-widgets-maps',
@@ -206,15 +200,6 @@ class Hatch_Widgets {
 	*/
 
 	public function admin_print_styles(){
-
-		// Widget styles
-		wp_register_style(
-			HATCH_THEME_SLUG . '-admin-widgets',
-			get_template_directory_uri() . '/core/widgets/css/widgets.css',
-			array(),
-			HATCH_VERSION
-		);
-		wp_enqueue_style( HATCH_THEME_SLUG . '-admin-widgets' );
 
 		// Color Picker styles
 		wp_enqueue_style( 'wp-color-picker' );

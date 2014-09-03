@@ -3,6 +3,7 @@ jQuery(document).ready(function($){
 	/**
 	* Sortable items
 	*/
+
 	$( 'ul[id^="banner_list_"]' ).sortable({
 		placeholder: "hatch-sortable-drop",
 		stop: function(e , li){
@@ -27,6 +28,7 @@ jQuery(document).ready(function($){
 	/**
 	* Banner Additions
 	*/
+
 	$(document).on( 'click' , '.hatch-add-widget-banner' , function(e){
 		e.preventDefault();
 

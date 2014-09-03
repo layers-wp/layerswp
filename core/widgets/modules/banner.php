@@ -32,7 +32,7 @@ if( !class_exists( 'Hatch_Banner_Widget' ) ) {
 			$control_ops = array( 'width' => 1000, 'height' => NULL, 'id_base' => HATCH_THEME_SLUG . '-widget-' . $this->widget_id );
 
 			/* Create the widget. */
-			$this->WP_Widget( HATCH_THEME_SLUG . '-widget-' . $this->widget_id , $this->widget_title . ' Widget', $widget_ops, $control_ops );
+			$this->WP_Widget( HATCH_THEME_SLUG . '-widget-' . $this->widget_id , '(' . HATCH_THEME_TITLE . ') ' . $this->widget_title . ' Widget', $widget_ops, $control_ops );
 	 	}
 
 		/**
@@ -102,34 +102,37 @@ if( !class_exists( 'Hatch_Banner_Widget' ) ) {
 			 		</div>
 				<?php } // if !empty( $widget->slides ) ?>
 		 	</section>
-		 	<script>
-				jQuery(function($){
-					var swiper = $('#<?php echo $widget_id; ?>').swiper({
-						//Your options here:
-						mode:'horizontal',
-						pagination: '.pages',
-						// slidesPerView: 4,
-						paginationClickable: true,
-						watchActiveIndex: true,
-						loop: true
-						<?php if( isset( $widget->autoplay_banners ) && isset( $widget->slide_time ) && is_numeric( $widget->slide_time ) ) {?>, autoplay: <?php echo $widget->slide_time; ?><?php }?>
-					});
-					$('#<?php echo $widget_id; ?>').find('.arrows a').on( 'click' , function(e){
-						e.preventDefault();
-						// "Hi Mom"
-						$that = $(this);
+		 	<?php if( !empty( $widget->banners ) ) { ?>
+			 	<script>
+					jQuery(function($){
 
-						if( $that.hasClass( 'swiper-pagination-switch' ) ){ // Anchors
-							swiper.swipeTo( $that.index() );
-						} else if( $that.hasClass( 'arrow-left' ) ){ // Previous
-							swiper.swipePrev();
-						} else if( $that.hasClass( 'arrow-right' ) ){ // Next
-							swiper.swipeNext();
-						}
-					});
+						var swiper = $('#<?php echo $widget_id; ?>').swiper({
+							//Your options here:
+							mode:'horizontal',
+							pagination: '.pages',
+							// slidesPerView: 4,
+							paginationClickable: true,
+							watchActiveIndex: true,
+							loop: true
+							<?php if( isset( $widget->autoplay_banners ) && isset( $widget->slide_time ) && is_numeric( $widget->slide_time ) ) {?>, autoplay: <?php echo $widget->slide_time; ?><?php }?>
+						});
+						$('#<?php echo $widget_id; ?>').find('.arrows a').on( 'click' , function(e){
+							e.preventDefault();
+							// "Hi Mom"
+							$that = $(this);
 
-				})
-		 	</script>
+							if( $that.hasClass( 'swiper-pagination-switch' ) ){ // Anchors
+								swiper.swipeTo( $that.index() );
+							} else if( $that.hasClass( 'arrow-left' ) ){ // Previous
+								swiper.swipePrev();
+							} else if( $that.hasClass( 'arrow-right' ) ){ // Next
+								swiper.swipeNext();
+							}
+						});
+
+					})
+			 	</script>
+			<?php } // if !empty( $widget->slides ) ?>
 
 	 		<!-- Front-end HTML Here
 	 		<?php print_r( $instance ); ?>-->

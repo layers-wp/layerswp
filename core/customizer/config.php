@@ -9,7 +9,7 @@
 
 class Hatch_Customizer_Config {
 
-	public function settings(){
+	public function settings( $settings = array() ){
 
 		// Framework Panel
 		$settings['framework'] = array(

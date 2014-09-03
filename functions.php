@@ -65,6 +65,9 @@ locate_template( '/core/meta/init.php' , true );
 if( is_admin() ){
 	// Include form item class
 	locate_template( '/core/helpers/forms.php' , true );
+
+	// Include pointers class
+	locate_template( '/core/helpers/pointers.php' , true );
 }
 
 if( ! function_exists( 'hatch_setup' ) ) {
@@ -186,6 +189,7 @@ if( ! function_exists( 'hatch_admin_scripts' ) ) {
 			get_template_directory_uri() . '/core/assets/admin.js',
 			array(
 				'jquery',
+				'jquery-ui-sortable',
 				'wp-color-picker'
 			),
 			HATCH_VERSION,

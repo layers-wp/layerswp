@@ -48,6 +48,7 @@ class Hatch_Custom_Meta {
 		// Page Builder Button
 		add_action( 'edit_form_after_title', array( $this , 'page_builder_button' ) );
 		add_action( 'wp_ajax_update_page_builder_meta' , array( $this , 'update_page_builder_meta' ) );
+		add_filter( 'hatch_pointer_settings' , array( $this , 'page_builder_button_pointer' ) );
 
 		// Custom Fields
 		add_action( 'admin_menu', array( $this , 'register_post_meta' ) );
@@ -104,18 +105,45 @@ class Hatch_Custom_Meta {
 
 		printf( '<div id="hatch_toggle_builder" class="updated below-h2">
 				<p>%1$s</p>
-				<a href="%2$s" class="button button-primary button-large  %3$s">%4$s</a>
+				<a href="%2$s" class="button button-primary button-large  %3$s" id="%4$s">%5$s</a>
 			</div>',
 			'Use the Hatch Page Builder to create your page', // %1
 			admin_url() . 'customize.php?url=' . esc_url( get_the_permalink() ) . '&hatch-builder=1', // %2
 			( true == $is_builder_used ? '' : 'hide' ), // %3
-			__( 'Build Your Page', HATCH_THEME_SLUG ) // %4
+			( isset( $post->ID ) ? 'builder-button-' . $post->ID : 'builder-button-' . rand(0,1) ), // %4,
+			__( 'Build Your Page', HATCH_THEME_SLUG ) // %5
 		);
+	}
+
+	/**
+	* Page Builder Button Pointer
+	*/
+	public function page_builder_button_pointer( $pointers ){
+		global $post;
+
+		// If we are not in the post edit screen, just return
+		if( !isset( $post ) ) return;
+
+		// This button is only used for pages
+		if ( !in_array( $post->post_type, array( 'page' ) ) || 'publish' != get_post_status() ) return;
+
+		$pointers[ HATCH_THEME_SLUG . '-builder-button-pointer-' . $post->ID ] = array(
+					'selector' 	=> '#builder-button-' . $post->ID,
+					'position'	=>  array(
+									'edge' => 'right', // bottom / top/ right / left
+									'align' => 'left' // left / center / right
+								),
+					'title'		=> __( 'Build Your Page' , HATCH_THEME_SLUG ),
+					'content'	=> __( 'Use the' . HATCH_THEME_TITLE . ' page builder to build a beautiful, dynamic page.' , HATCH_THEME_SLUG ),
+				);
+
+		return $pointers;
 	}
 
 	/**
 	* Page Builder Meta Update
 	*/
+
 	public function update_page_builder_meta(){
 
 		// Get the Post ID
@@ -148,12 +176,14 @@ class Hatch_Custom_Meta {
 			if( isset( $this->custom_meta[ $meta_index ] ) ){
 
 				if( post_type_exists( $meta_index ) ) {
+					// Set the post type
 					$post_type = $meta_index;
+
 					$callback_args = array(
 						'meta_index' =>$meta_index
 					);
 				} else {
-					// Set the post type
+					// Set the post type to 'page'
 					$post_type = 'page';
 
 					// Get the page template
@@ -161,6 +191,7 @@ class Hatch_Custom_Meta {
 
 					// If there is no page template set, just return
 					if( '' == $page_template ) return;
+
 					// Now check to see that we've selected the right page template
 					if( $meta_index != $page_template) return;
 
@@ -169,6 +200,7 @@ class Hatch_Custom_Meta {
 					);
 				}
 
+				// Add Meta Box
 				add_meta_box(
 						HATCH_THEME_SLUG . '-' . $meta_index, // Slug
 						$custom_meta[ 'title' ], // Title
@@ -205,6 +237,7 @@ class Hatch_Custom_Meta {
 
 		// If there is Post Meta, loop over the tabs.
 		if( isset( $this->custom_meta[ $meta_index ] ) ){ ?>
+			<!-- Tabs -->
 			<div class="hatch-nav hatch-nav-tabs">
 				<ul class="hatch-tabs">
 					<?php foreach( $this->custom_meta[ $meta_index ]['custom-meta'] as $key => $meta_option ){ ?>
@@ -213,6 +246,7 @@ class Hatch_Custom_Meta {
 					<?php } // foreach $this->custom_meta[ $post_type ]['custom-meta']  ?>
 				</ul>
 			</div>
+			<!-- Tab Content -->
 			<div class="hatch-tab-content">
 				<?php foreach( $this->custom_meta[ $meta_index ]['custom-meta'] as $key => $meta_option ){ ?>
 					<section class="hatch-accordion-section hatch-content <?php if( isset( $hide_tab ) ) echo 'hatch-hide'; ?> customize-control"> <?php // @TODO: Remove .customizer-control class ?>
@@ -259,11 +293,17 @@ class Hatch_Custom_Meta {
 		$post_type = get_post_type( $post_id );
 
 		// Verify our nonce
-		$nonce = $_REQUEST[ '_wp_nonce_' . HATCH_THEME_SLUG ];
+		$nonce_key = '_wp_nonce_' . HATCH_THEME_SLUG;
+
+		// If there is no nonce to use, can this function
+		if( !isset( $_REQUEST[ $nonce_key ] ) ) return;
+
+		$nonce = $_REQUEST[ $nonce_key ];
 
 		// Form key
 		$form_key = HATCH_THEME_SLUG . '-' . $post_type;
 
+		// Do some nonce
 		if ( wp_verify_nonce( $nonce, HATCH_THEME_SLUG . '-post-meta' ) ) {
 			if( isset( $_REQUEST[ $form_key ] ) ) {
 				update_post_meta( $post_id, HATCH_THEME_SLUG . '-' . $post_type , $_REQUEST[ $form_key ] );

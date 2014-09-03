@@ -200,10 +200,10 @@ jQuery(document).ready(function($) {
 	function hatch_set_color_selectors(){
 		jQuery('.color-field .wp-picker-container').remove();
 		jQuery('.hatch-color-selector').wpColorPicker({
-				change: function(event, ui){
+			change: function(event, ui){
 
-					$(event.target).val( ui.color.toString() ).trigger( 'change' ).trigger("blur");
-				}
+				$(event.target).val( ui.color.toString() ).trigger( 'change' ).trigger("blur");
+			}
 		});
 	}
 
@@ -213,6 +213,8 @@ jQuery(document).ready(function($) {
 	hatch_set_sortable_cols();
 
 	function hatch_set_sortable_cols(){
+		if( $.sortable == undefined ) return;
+
 		$( '.hatch-sortable' ).sortable({
 			placeholder: "hatch-sortable-drop"
 		});

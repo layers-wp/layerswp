@@ -127,6 +127,7 @@ class Hatch_Custom_Meta {
 		// This button is only used for pages
 		if ( !in_array( $post->post_type, array( 'page' ) ) || 'publish' != get_post_status() ) return;
 
+		// Add the pointer to the pointer config
 		$pointers[ HATCH_THEME_SLUG . '-builder-button-pointer-' . $post->ID ] = array(
 					'selector' 	=> '#builder-button-' . $post->ID,
 					'position'	=>  array(
@@ -176,6 +177,10 @@ class Hatch_Custom_Meta {
 			if( isset( $this->custom_meta[ $meta_index ] ) ){
 
 				if( post_type_exists( $meta_index ) ) {
+					/**
+					* Add post meta for posts & other post types
+					*/
+
 					// Set the post type
 					$post_type = $meta_index;
 
@@ -183,6 +188,10 @@ class Hatch_Custom_Meta {
 						'meta_index' =>$meta_index
 					);
 				} else {
+					/**
+					* Add post meta for page templates
+					*/
+
 					// Set the post type to 'page'
 					$post_type = 'page';
 
@@ -231,6 +240,9 @@ class Hatch_Custom_Meta {
 
 		// Set the meta index ie. the array we will loop over for our options
 		$meta_index =$callback_args[ 'args' ][ 'meta_index' ];
+
+		// If there is no post meta to show, return
+		if( !isset( $this->custom_meta[ $meta_index ] ) ) return;
 
 		// Instantiate form elements
 		$form_elements = new Hatch_Form_Elements();
@@ -313,7 +325,7 @@ class Hatch_Custom_Meta {
 }
 
 /**
-*  Kicking this off with the 'widgets_init' hook
+*  Kicking this off with the 'custom_meta_init' hook
 */
 
 function hatch_custom_meta_init(){

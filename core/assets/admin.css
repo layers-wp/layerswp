@@ -732,12 +732,13 @@ div[id*='hatch-widget'] .widget-control-actions{
     z-index: 100;
     width: 90px;
     background: #f5f5f5;
+    border-right: 1px solid #eee;
 }
 .hatch-design-bar-title{
-    padding: 2px 0;
-    margin: 0;
-    background: #f0f0f0;
-    color: #333;
+    padding: 19px 0px;
+    margin: 0px;
+    background: #eee; /*0074A2*/
+    color: #777;
     font-size: 10px;
     text-align: center;
     text-transform: uppercase;

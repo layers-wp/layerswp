@@ -65,7 +65,9 @@ if( !class_exists( 'Hatch_Framework_Widget' ) ) {
 			<!-- Form HTML Here -->
 
 	<div class="hatch-design-bar">
-		<h6 class="hatch-design-bar-title">Design Bar</h6>
+		<h6 class="hatch-design-bar-title">
+			<span class="icon-settings"></span>
+		</h6>
 		<ul>
 			<li class="hatch-design-control-container">
 				<a href="" class="hatch-design-control">

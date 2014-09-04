@@ -1,0 +1,1 @@
+<?php dynamic_sidebar( HATCH_THEME_SLUG . '-sidebar' );

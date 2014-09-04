@@ -106,8 +106,21 @@ if( ! function_exists( 'hatch_setup' ) ) {
 		 */
 		add_theme_support( 'jetpack-portfolio' );
 
+		/**
+		 * Register Standard Sidebar
+		  */
+		register_sidebar( array(
+			'id'		=> HATCH_THEME_SLUG . '-sidebar',
+			'name'		=> __( ' Sidebar' , HATCH_THEME_SLUG ),
+			'description'	=> __( '' , HATCH_THEME_SLUG ),
+			'before_widget'	=> '<aside id="%1$s" class="widget %2$s">',
+			'after_widget'	=> '</aside>',
+			'before_title'	=> '<h4 class="widget-title">',
+			'after_title'	=> '</h4>',
+		) );
+
 	}
-	add_action( 'init' , 'hatch_setup', 10 );
+	add_action( 'init' , 'hatch_setup', 0 );
 }
 
 

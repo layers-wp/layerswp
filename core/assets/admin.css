@@ -503,7 +503,7 @@ div[id*='hatch-widget'] .widget-control-actions{
     color: #000;
 }
 
-.hatch-design-properties{
+.hatch-design-properties-wrapper{
     position: absolute;
     top: 0;
     right: 100px;
@@ -513,21 +513,22 @@ div[id*='hatch-widget'] .widget-control-actions{
     border: 1px solid #ddd;
     border-radius: 4px;
     overflow: hidden;
-    opacity: 0;
     visibility: hidden;
     transition: all 0.3s cubic-bezier(0, 0.275, 0.125, 1) 0s;
+    opacity: 0;  
 }
-.hatch-design-control-container:hover .hatch-design-properties{
+.hatch-design-control-container:hover .hatch-design-properties-wrapper{
     right: 95px;
     opacity: 1;
     visibility: visible;
 }
-.hatch-design-control-container.hatch-last .hatch-design-properties{
+
+.hatch-design-control-container.hatch-last .hatch-design-properties-wrapper{
     top: auto;
     bottom: 0;
 }
 
-    .hatch-design-properties.hatch-small{
+    .hatch-design-properties-wrapper.hatch-small{
         width: 74px;
         padding: 0;
     }

@@ -117,6 +117,21 @@ div[id*='hatch-widget'] .widget-control-actions{
 }
 
 /*---------------------------*/
+/*- ICONS -------------------*/
+
+[class^="icon-"], [class*=" icon-"]{
+    font-size: 32px;
+}
+[class*="icon-"].hatch-small{
+    font-size: 16px;
+}
+[class*="icon-"].hatch-large{
+    font-size: 64px;
+}
+
+
+
+/*---------------------------*/
 /*- THE GRID ----------------*/
 
 .hatch-row:before, .hatch-row:after{content: " "; display: table;}
@@ -362,6 +377,9 @@ div[id*='hatch-widget'] .widget-control-actions{
         line-height: 18px;
         font-weight: 400;
     }
+    .hatch-invert .hatch-checkbox label{
+        color: #ccc;
+    }
 
     /*-----------------------*/
     /*- RADIO ---------------*/
@@ -414,21 +432,128 @@ div[id*='hatch-widget'] .widget-control-actions{
 
 
 /*---------------------------*/
+/*- DESIGN BAR --------------*/
+.hatch-design-bar{
+    float: right;
+    position: relative;
+    z-index: 100;
+    width: 91px;
+    background: #f5f5f5;
+}
+.hatch-design-bar-title{
+    padding: 13px 0px 13px;
+    margin: 0px;
+    background: #1A6082;
+    color: #fff;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.hatch-design-controllers{
+    border-left: 1px solid #ddd;
+}
+
+.hatch-design-control-container{
+    margin: 0;
+    position: relative;
+    padding: 5px;
+}
+.hatch-design-control{
+    display: block;
+    padding: 10px 5px 8px;
+    background: transparent;
+    border-radius: 4px;
+    text-align: center;
+    color: #444;
+}
+.hatch-design-control-container:hover > .hatch-design-control{
+    background: #0289C0;
+    color: #fff;
+}
+.hatch-control-description{
+    display: block;
+    font-size: 11px;
+    font-weight: 700;
+    margin-top: 3px;
+    opacity: 0.75;
+}
+.hatch-quick-links{
+    padding: 10px;
+    margin: 0;
+    overflow: hidden;
+    font-size: 16px;
+    line-height: 16px;
+    text-transform: uppercase;
+}
+.hatch-quick-links [class^="icon-"], .hatch-quick-links [class*=" icon-"]{
+    font-size: 16px;
+}
+.hatch-quick-links a{
+    float: left;
+    width: 43%;
+    margin: 3.5%;
+    padding: 4px;
+    border-radius: 2px;
+    box-sizing: border-box;
+    font-size: 16px;
+    text-align: center;
+    color: #777;
+}
+.hatch-quick-links a:hover{
+    color: #000;
+}
+
+.hatch-design-properties{
+    position: absolute;
+    top: 0;
+    right: 100px;
+    padding: 10px;
+    width: 200px;
+    background: #f5f5f5;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    overflow: hidden;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s cubic-bezier(0, 0.275, 0.125, 1) 0s;
+}
+.hatch-design-control-container:hover .hatch-design-properties{
+    right: 95px;
+    opacity: 1;
+    visibility: visible;
+}
+.hatch-design-control-container.hatch-last .hatch-design-properties{
+    top: auto;
+    bottom: 0;
+}
+
+    .hatch-design-properties.hatch-small{
+        width: 74px;
+        padding: 0;
+    }
+    .hatch-design-properties .hatch-design-control{
+        margin: 5px;
+        background: transparent;
+        color: #444;
+    }
+    .hatch-design-properties .hatch-design-control:hover{
+        background: #0289C0;
+        color: #fff;
+    }
+
+/*---------------------------*/
 /*- TITLES ------------------*/
 .hatch-controls-title{
-    padding: 20px;
-    background: #0289C0;
-    /*border-bottom: 2px solid #0D5F83;*/
+    padding: 8px 20px;
+    background: #288BBE;
+    border-bottom: 1px solid #1A6082;
     overflow: hidden;
-    color: #fff;
 }
 .hatch-controls-title .hatch-heading{
     margin: 0;
     padding: 0;
     color: #fff;
-    font-size: 28px;
-    line-height: 32px;
-    font-weight: 300;
+    font-size: 20px;
     text-indent: 0;
 }
 
@@ -724,113 +849,6 @@ div[id*='hatch-widget'] .widget-control-actions{
     margin-right: 35px;
 }
 
-/*---------------------------*/
-/*- DESIGN BAR --------------*/
-.hatch-design-bar{
-    float: left;
-    position: relative;
-    z-index: 100;
-    width: 90px;
-    background: #f5f5f5;
-    border-right: 1px solid #eee;
-}
-.hatch-design-bar-title{
-    padding: 19px 0px;
-    margin: 0px;
-    background: #eee; /*0074A2*/
-    color: #777;
-    font-size: 10px;
-    text-align: center;
-    text-transform: uppercase;
-}
-
-.hatch-design-control-container{
-    margin: 0;
-    position: relative;
-    padding: 5px;
-}
-.hatch-design-control{
-    display: block;
-    padding: 10px 5px 8px;
-    background: transparent;
-    border-radius: 4px;
-    text-align: center;
-    color: #444;
-}
-.hatch-design-control-container:hover > .hatch-design-control{
-    background: #0289C0;
-    color: #fff;
-}
-.hatch-control-description{
-    display: block;
-    font-size: 11px;
-    font-weight: 700;
-    margin-top: 3px;
-    opacity: 0.75;
-}
-.hatch-quick-links{
-    padding: 10px;
-    margin: 0;
-    overflow: hidden;
-    font-size: 16px;
-    line-height: 16px;
-    text-transform: uppercase;
-}
-.hatch-quick-links [class^="icon-"], .hatch-quick-links [class*=" icon-"]{
-    font-size: 16px;
-}
-.hatch-quick-links a{
-    float: left;
-    width: 43%;
-    margin: 3.5%;
-    padding: 4px;
-    border-radius: 2px;
-    box-sizing: border-box;
-    font-size: 16px;
-    text-align: center;
-    color: #777;
-}
-.hatch-quick-links a:hover{
-    color: #000;
-}
-
-.hatch-design-properties{
-    position: absolute;
-    top: 0;
-    left: 100px;
-    padding: 10px;
-    width: 200px;
-    background: #333;
-    border-radius: 4px;
-    overflow: hidden;
-    opacity: 0;
-    visibility: hidden;
-    transition: all 0.3s cubic-bezier(0, 0.275, 0.125, 1) 0s;
-}
-.hatch-design-control-container:hover .hatch-design-properties{
-    left: 90px;
-    opacity: 1;
-    visibility: visible;
-    border-radius: 0px 4px 4px 0px;
-}
-.hatch-design-control-container.hatch-last .hatch-design-properties{
-    top: auto;
-    bottom: 0;
-}
-
-    .hatch-design-properties.hatch-small{
-        width: 74px;
-        padding: 0;
-    }
-    .hatch-design-properties .hatch-design-control{
-        margin: 5px;
-        background: transparent;
-        color: #ccc;
-    }
-    .hatch-design-properties .hatch-design-control:hover{
-        background: #111;
-        color: #fff;
-    }
 
 /*---------------------------*/
 /*- ICON STYLING ------------*/
@@ -879,25 +897,6 @@ input[type=radio]:checked + .hatch-settings-icon span{
 .hatch-settings-icon:last-child{margin-right: 0;}
 .hatch-settings-icon:hover{border-color: #0289C0}
 
-    .icon-banner-small{display: block; float: left; width: 32px; height: 32px; margin-right: 8px; background: url(images/icon-banner-large.png) left no-repeat; background-size: 32px 32px;}
-
-    .icon-bgimage-small{display: block; width: 32px; height: 32px; margin: auto; background: url(images/icon-bgimage-small.png) center no-repeat; background-size: 32px 32px;}
-    .icon-bgimage-large{display: block; width: 64px; height: 64px; margin: auto; background: url(images/icon-bgimage-small.png) center no-repeat; background-size: 64px 64px;}
-
-    .icon-get-support{display: block; float: left; width: 16px; height: 16px; margin-right: 5px; background: url(images/icon-support-small.png) left no-repeat; background-size: 16px 16px;}
-    .icon-get-support-invert{display: block; float: left; width: 16px; height: 16px; margin-right: 5px; background: url(images/icon-support-invert.png) left no-repeat; background-size: 16px 16px;}
-    .icon-location-small{display: block; float: left; width: 32px; height: 32px; margin-right: 8px; background: url(images/icon-location-large.png) left no-repeat; background-size: 32px 32px;}
-    .icon-module-small{display: block; float: left; width: 32px; height: 32px; margin-right: 8px; background: url(images/icon-widget-large.png) left no-repeat; background-size: 32px 32px;}
-    .icon-portfolio-small{display: block; float: left; width: 32px; height: 32px; margin-right: 8px; background: url(images/icon-portfolio-large.png) left no-repeat; background-size: 32px 32px;}
-    .icon-quick-start{display: block; float: left; width: 16px; height: 16px; margin-right: 5px; background: url(images/icon-download-small.png) left no-repeat; background-size: 16px 16px;}
-    .icon-quick-start-invert{display: block; float: left; width: 16px; height: 16px; margin-right: 5px; background: url(images/icon-download-invert.png) left no-repeat; background-size: 16px 16px;}
-    .icon-services-small{display: block; float: left; width: 32px; height: 32px; margin-right: 8px; background: url(images/icon-services-large.png) left no-repeat; background-size: 32px 32px;}
-    .icon-settings-small{display: block; float: left; width: 32px; height: 32px; margin-right: 8px; background: url(images/icon-settings-large.png) left no-repeat; background-size: 32px 32px;}
-    .icon-social-small{display: block; float: left; width: 32px; height: 32px; margin-right: 8px; background: url(images/icon-social-large.png) left no-repeat; background-size: 32px 32px;}
-    .icon-teams-small{display: block; float: left; width: 32px; height: 32px; margin-right: 8px; background: url(images/icon-teams-large.png) left no-repeat; background-size: 32px 32px;}
-
-    .icon-video-small{display: block; width: 32px; height: 32px; margin: auto; background: url(images/icon-video-small.png) center no-repeat; background-size: 32px 32px;}
-    .icon-video-large{display: block; width: 64px; height: 64px; margin: auto; background: url(images/icon-video-small.png) center no-repeat; background-size: 64px 64px;}
 
 /*---------------------------*/
 /*- RADIO PILLS -------------*/
@@ -1223,14 +1222,40 @@ input[type=radio]:checked + .hatch-settings-icon span{
 }
 
 
-
 /*---------------------------*/
 /*- TABBED NAV --------------*/
+.hatch-nav-tabs{
+    padding: 20px 0px 0;
+    text-align: center;
+}
+.hatch-nav-tabs ul{
+    overflow: hidden;
+    max-width: 1000px;
+    margin: auto;
+}
+.hatch-nav-tabs li{
+    float: left;
+    margin-right: 10px;
+}
+.hatch-nav-tabs a{
+    display: block;
+    padding: 6px 15px;
+    background: #F3F3F3;
+    border-radius: 4px 4px 0 0;
+    font-weight: 600;
+    color: #8F8F8F;
+    text-decoration: none;
+}
+.hatch-nav-tabs a:hover{
+    color: #454545;
+    background: #F3F3F3;
+}
+.hatch-nav-tabs .active a{
+    background: #fff;
+    border: #ccc solid 1px;
+    border-bottom: 0 none;
+    color: #454545;
+}
 
-.hatch-nav-tabs{padding: 20px 0px 0; text-align: center;}
-.hatch-nav-tabs ul{overflow: hidden; max-width: 1000px; margin: auto;}
-.hatch-nav-tabs li{float: left; margin-right: 10px;}
-.hatch-nav-tabs li:nth-child(2n+2){margin-right: 0;}
-.hatch-nav-tabs a{display: block; padding: 6px 15px; background: #F3F3F3; border-radius: 4px 4px 0 0; font-weight: 600; color: #8F8F8F; text-decoration: none;}
-.hatch-nav-tabs a:hover{color: #454545; background: #F3F3F3;}
-.hatch-nav-tabs .active a{background: #fff; border: #ccc solid 1px; border-bottom: 0 none; color: #454545;}
+
+

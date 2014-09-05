@@ -64,149 +64,145 @@ if( !class_exists( 'Hatch_Framework_Widget' ) ) {
 		?>
 			<!-- Form HTML Here -->
 
-	<div class="hatch-design-bar">
-		<h6 class="hatch-design-bar-title">
-			<span class="icon-settings"></span>
-		</h6>
-		<ul>
-			<li class="hatch-design-control-container">
+<div class="hatch-design-bar">
+	<h6 class="hatch-design-bar-title">
+		<span class="icon-settings hatch-small"></span>
+	</h6>
+	<ul class="hatch-design-controllers">
+		<li class="hatch-design-control-container">
+			<a href="" class="hatch-design-control">
+				<span class="icon-display"></span>
+				<span class="hatch-control-description">
+					Display
+				</span>
+			</a>
+			<div class="hatch-design-properties">
+				<ul class="hatch-checkbox-list">
+					<li class="hatch-checkbox">
+						<input type="checkbox" id="widget-hatch-widget-map-3-hide_google_map" name="widget-hatch-widget-map[3][hide_google_map]"   />
+						<label for="widget-hatch-widget-map-3-hide_google_map">Hide Google Map</label>
+					</li>
+					<li class="hatch-checkbox">
+						<input type="checkbox" id="widget-hatch-widget-map-3-hide_address" name="widget-hatch-widget-map[3][hide_address]"   />
+						<label for="widget-hatch-widget-map-3-hide_address">Hide Address</label>
+					</li>
+					<li class="hatch-checkbox">
+						<input type="checkbox" id="widget-hatch-widget-map-3-hide_contact_form" name="widget-hatch-widget-map[3][hide_contact_form]"   />
+						<label for="widget-hatch-widget-map-3-hide_contact_form">Hide Contact Form</label>
+					</li>
+				</ul>
+			</div>
+		</li>
+
+		<li class="hatch-design-control-container">
+			<a href="" class="hatch-design-control">
+				<span class="icon-columns"></span>
+				<span class="hatch-control-description">
+					Columns
+				</span>
+			</a>
+		</li>
+
+		<li class="hatch-design-control-container">
+			<a href="" class="hatch-design-control">
+				<span class="icon-list-masonry"></span>
+				<span class="hatch-control-description">
+					List Style
+				</span>
+			</a>
+			<div class="hatch-design-properties hatch-small">
 				<a href="" class="hatch-design-control">
-					<span class="icon-display"></span>
+					<span class="icon-list-grid"></span>
 					<span class="hatch-control-description">
-						Display
+						Grid
 					</span>
 				</a>
-				<div class="hatch-design-properties hatch-invert">
-					<ul class="hatch-checkbox-list">
-						<li class="hatch-checkbox">
-							<input type="checkbox" id="widget-hatch-widget-map-3-hide_google_map" name="widget-hatch-widget-map[3][hide_google_map]"   />
-							<label for="widget-hatch-widget-map-3-hide_google_map">Hide Google Map</label>
-						</li>
-						<li class="hatch-checkbox">
-							<input type="checkbox" id="widget-hatch-widget-map-3-hide_address" name="widget-hatch-widget-map[3][hide_address]"   />
-							<label for="widget-hatch-widget-map-3-hide_address">Hide Address</label>
-						</li>
-						<li class="hatch-checkbox">
-							<input type="checkbox" id="widget-hatch-widget-map-3-hide_contact_form" name="widget-hatch-widget-map[3][hide_contact_form]"   />
-							<label for="widget-hatch-widget-map-3-hide_contact_form">Hide Contact Form</label>
-						</li>
-					</ul>
-				</div>
-			</li>
-
-			<li class="hatch-design-control-container">
-				<a href="" class="hatch-design-control">
-					<span class="icon-columns"></span>
-					<span class="hatch-control-description">
-						Columns
-					</span>
-				</a>
-			</li>
-
-			<li class="hatch-design-control-container">
 				<a href="" class="hatch-design-control">
 					<span class="icon-list-masonry"></span>
 					<span class="hatch-control-description">
-						List Style
+						Masonry
 					</span>
 				</a>
-				<div class="hatch-design-properties hatch-small">
-					<a href="" class="hatch-design-control">
-						<span class="icon-list-grid"></span>
-						<span class="hatch-control-description">
-							Grid
-						</span>
-					</a>
-					<a href="" class="hatch-design-control">
-						<span class="icon-list-masonry"></span>
-						<span class="hatch-control-description">
-							Masonry
-						</span>
-					</a>
-					<a href="" class="hatch-design-control">
-						<span class="icon-list-list"></span>
-						<span class="hatch-control-description">
-							List
-						</span>
-					</a>
-				</div>
-			</li>
-
-			<li class="hatch-design-control-container">
 				<a href="" class="hatch-design-control">
-					<span class="icon-slider"></span>
+					<span class="icon-list-list"></span>
 					<span class="hatch-control-description">
-						Slider
+						List
 					</span>
 				</a>
-			</li>
+			</div>
+		</li>
 
-			<li class="hatch-design-control-container">
-				<a href="" class="hatch-design-control">
-					<span class="icon-photo"></span>
-					<span class="hatch-control-description">
-						Background
-					</span>
-				</a>
-			</li>
+		<li class="hatch-design-control-container">
+			<a href="" class="hatch-design-control">
+				<span class="icon-slider"></span>
+				<span class="hatch-control-description">
+					Slider
+				</span>
+			</a>
+		</li>
 
-			<li class="hatch-design-control-container">
-				<a href="" class="hatch-design-control">
-					<span class="icon-advanced-layout-left"></span>
-					<span class="hatch-control-description">
-						Layout
-					</span>
-				</a>
-			</li>
+		<li class="hatch-design-control-container">
+			<a href="" class="hatch-design-control">
+				<span class="icon-photo"></span>
+				<span class="hatch-control-description">
+					Background
+				</span>
+			</a>
+		</li>
 
-			<li class="hatch-design-control-container hatch-last">
+		<li class="hatch-design-control-container">
+			<a href="" class="hatch-design-control">
+				<span class="icon-advanced-layout-left"></span>
+				<span class="hatch-control-description">
+					Layout
+				</span>
+			</a>
+		</li>
+
+		<li class="hatch-design-control-container hatch-last">
+			<a href="" class="hatch-design-control">
+				<span class="icon-image-left"></span>
+				<span class="hatch-control-description">
+					Image Align
+				</span>
+			</a>
+			<div class="hatch-design-properties hatch-small">
 				<a href="" class="hatch-design-control">
 					<span class="icon-image-left"></span>
 					<span class="hatch-control-description">
-						Image Align
+						Left
 					</span>
 				</a>
-				<div class="hatch-design-properties hatch-small">
-					<a href="" class="hatch-design-control">
-						<span class="icon-image-left"></span>
-						<span class="hatch-control-description">
-							Left
-						</span>
-					</a>
-					<a href="" class="hatch-design-control">
-						<span class="icon-image-right"></span>
-						<span class="hatch-control-description">
-							Right
-						</span>
-					</a>
-					<a href="" class="hatch-design-control">
-						<span class="icon-image-center"></span>
-						<span class="hatch-control-description">
-							Center
-						</span>
-					</a>
-				</div>
-			</li>
-			<li class="hatch-quick-links">
-				<a href="">
-					<span class="icon-support"></span>
+				<a href="" class="hatch-design-control">
+					<span class="icon-image-right"></span>
+					<span class="hatch-control-description">
+						Right
+					</span>
 				</a>
-				<a href="">
-					<span class="icon-arrow-left"></span>
+				<a href="" class="hatch-design-control">
+					<span class="icon-image-center"></span>
+					<span class="hatch-control-description">
+						Center
+					</span>
 				</a>
-			</li>
-		</ul>
-	</div>
+			</div>
+		</li>
+		<li class="hatch-quick-links">
+			<a href="">
+				<span class="icon-support"></span>
+			</a>
+			<a href="">
+				<span class="icon-arrow-left"></span>
+			</a>
+		</li>
+	</ul>
+</div>
 
 <div class="hatch-container-large">
 
-	<div class="hatch-controls-title">
-		<div class="hatch-pull-right btn-collection">
-			<a class="hatch-button btn-small light" href=""><i class="icon-quick-start-invert"></i> Quick Start</a>
-			<a class="hatch-button btn-small light" href=""><i class="icon-get-support-invert"></i>I need help</a>
-		</div>
+<div class="hatch-controls-title">
 		<h2 class="hatch-heading hatch-icon hatch-icon-services">
-			<i class="icon-settings-small"></i> Framework
+			Framework
 		</h2>
 	</div>
 

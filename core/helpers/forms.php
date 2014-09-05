@@ -26,12 +26,9 @@ class Hatch_Form_Elements {
 		$header = (object) wp_parse_args( $args, $defaults ); ?>
 
 		<div class="hatch-controls-title">
-			<div class="hatch-pull-right btn-collection">
-				<a class="hatch-button btn-small light" href="<?php echo OBOX_URL . '/quick-start'; ?>"><i class="icon-quick-start-invert"></i> <?php _e( 'Quick Start' , HATCH_THEME_SLUG ); ?></a>
-				<a class="hatch-button btn-small light" href="<?php echo OBOX_URL . '/get-support'; ?>"><i class="icon-get-support-invert"></i> <?php _e( 'I need help' , HATCH_THEME_SLUG ); ?></a>
-			</div>
 			<h2 class="hatch-heading hatch-icon hatch-icon-<?php $header->icon_class; ?>">
-				<i class="icon-<?php echo $header->icon_class; ?>-small"></i> <?php echo $header->title; ?>
+				<!-- <i class="icon-<?php echo $header->icon_class; ?>-small"></i> -->
+				<?php echo $header->title; ?>
 			</h2>
 		</div>
 

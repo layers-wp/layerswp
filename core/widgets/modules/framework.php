@@ -442,12 +442,7 @@ if( !class_exists( 'Hatch_Framework_Widget' ) ) {
 						</li>
 						<li>
 							<a href="" class="hatch-icon-wrapper">
-								<span class="icon-advanced-layout-top"></span>
-							</a>
-						</li>
-						<li>
-							<a href="" class="hatch-icon-wrapper">
-								<span class="icon-image-left"></span>
+								<span class="icon-video"></span>
 							</a>
 						</li>
 					</ul>
@@ -623,12 +618,7 @@ if( !class_exists( 'Hatch_Framework_Widget' ) ) {
 												</li>
 												<li>
 													<a href="" class="hatch-icon-wrapper">
-														<span class="icon-advanced-layout-top"></span>
-													</a>
-												</li>
-												<li>
-													<a href="" class="hatch-icon-wrapper">
-														<span class="icon-image-left"></span>
+														<span class="icon-video"></span>
 													</a>
 												</li>
 											</ul>

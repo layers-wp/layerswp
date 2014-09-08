@@ -128,7 +128,16 @@ div[id*='hatch-widget'] .widget-control-actions{
 [class*="icon-"].hatch-large{
     font-size: 64px;
 }
-
+.hatch-icon-wrapper{
+    display: block;
+}
+.hatch-icon-description{
+    display: block;
+    font-size: 11px;
+    font-weight: 700;
+    margin-top: 3px;
+    opacity: 0.75;
+}
 
 
 /*---------------------------*/
@@ -243,20 +252,32 @@ div[id*='hatch-widget'] .widget-control-actions{
 
 /*---------------------------*/
 /*- ELEMENT CONTROLLERS -----*/
-.hatch-pull-right{float: right;}
-.hatch-pull-left{float: left;}
-.hatch-clear{clear: both;}
-.hatch-no-push-bottom{margin-bottom: 0 !important;}
-.hatch-push-bottom{margin-bottom: 20px !important;}
-
-.hatch-t-center{text-align: center;}
-
-.hatch-animate{transition: all 0.2s ease-in-out;}
+.hatch-pull-right{
+    float: right;
+}
+.hatch-pull-left{
+    float: left;
+}
+.hatch-clear{
+    clear: both;
+}
+.hatch-no-push-bottom{
+    margin-bottom: 0 !important;
+}
+.hatch-push-bottom{
+    margin-bottom: 20px !important;
+}
+.hatch-t-center{
+    text-align: center;
+}
+.hatch-animate{
+    transition: all 0.2s ease-in-out;
+}
 
 /*---------------------------*/
 /*- CONTAINERS --------------*/
 .hatch-content-small{
-    padding: 1em;
+    padding: 10px;
 }
 .hatch-content{
     padding: 20px;
@@ -339,18 +360,18 @@ div[id*='hatch-widget'] .widget-control-actions{
 
     /*-----------------------*/
     /*- CHECKBOX ------------*/
-    .hatch-checkbox input[type=checkbox]{
+    .hatch-checkbox-wrapper input[type=checkbox]{
         display: none;
     }
-    .hatch-checkbox{
+    .hatch-checkbox-wrapper{
         clear: both;
-        margin: 0;
+        margin: 0 0 8px;
     }
-    .hatch-checkbox input[type=submit], .hatch-checkbox button{
+    .hatch-checkbox-wrapper input[type=submit], .hatch-checkbox-wrapper button{
         float: left;
         margin: 0;
     }
-    .hatch-checkbox label:before{
+    .hatch-checkbox-wrapper label:before{
         content:"";
         display: inline-block;
         width: 16px;
@@ -364,33 +385,33 @@ div[id*='hatch-widget'] .widget-control-actions{
         transition: all 0.2s ease-in-out;
         vertical-align: bottom;
     }
-    .hatch-checkbox input[type=checkbox]:checked + label:before{
+    .hatch-checkbox-wrapper input[type=checkbox]:checked + label:before{
         background-color: #0289C0;
         background-position: 0 0;
         border-color: #0289C0;
         box-shadow: none;
     }
-    .hatch-checkbox label{
+    .hatch-checkbox-wrapper label{
         clear: none;
         display: inline-block;
         font-size: 13px;
         line-height: 18px;
         font-weight: 400;
     }
-    .hatch-invert .hatch-checkbox label{
+    .hatch-invert .hatch-checkbox-wrapper label{
         color: #ccc;
     }
 
     /*-----------------------*/
     /*- RADIO ---------------*/
-    .hatch-radio input[type=radio]{
+    .hatch-radio-wrapper input[type=radio]{
         display: none;
     }
-    .hatch-radio{
+    .hatch-radio-wrapper{
         clear: both;
-        margin: 0;
+        margin: 0 0 8px;
     }
-    .hatch-radio label:before{
+    .hatch-radio-wrapper label:before{
         content:"";
         display: inline-block;
         width: 16px;
@@ -404,13 +425,13 @@ div[id*='hatch-widget'] .widget-control-actions{
         transition: all 0.2s ease-in-out;
         vertical-align: bottom;
     }
-    .hatch-radio input[type=radio]:checked + label:before{
+    .hatch-radio-wrapper input[type=radio]:checked + label:before{
         background-color: #0289C0;
         background-position: 0 0;
         border-color: #0289C0;
         box-shadow: none;
     }
-    .hatch-radio label{
+    .hatch-radio-wrapper label{
         clear: none;
         display: inline-block;
         font-size: 13px;
@@ -418,29 +439,15 @@ div[id*='hatch-widget'] .widget-control-actions{
         font-weight: 400;
     }
 
-    /*-----------------------*/
-    /*- CHECKBOX/RADIO LIST -*/
-    .hatch-checkbox-list{margin: 0; padding: 0;}
-    .hatch-checkbox-list .hatch-checkbox{
-        margin: 0 0 8px;
-        padding: 0;
-    }
-    .hatch-checkbox-list .hatch-radio{
-        margin: 0 0 8px;
-        padding: 0;
-    }
-
-
 /*---------------------------*/
 /*- DESIGN BAR --------------*/
-.hatch-design-bar{
-    float: right;
+.hatch-visuals{
     position: relative;
     z-index: 100;
     width: 91px;
     background: #f5f5f5;
 }
-.hatch-design-bar-title{
+.hatch-visuals-title{
     padding: 13px 0px 13px;
     margin: 0px;
     background: #1A6082;
@@ -448,35 +455,61 @@ div[id*='hatch-widget'] .widget-control-actions{
     text-align: center;
     text-transform: uppercase;
 }
-
-.hatch-design-controllers{
+.hatch-visuals-wrapper{
     border-left: 1px solid #ddd;
 }
-
-.hatch-design-control-container{
-    margin: 0;
+.hatch-visuals-item{
     position: relative;
-    padding: 5px;
 }
-.hatch-design-control{
-    display: block;
+.hatch-visuals-item .hatch-icon-wrapper{
     padding: 10px 5px 8px;
+    margin: 5px;
     background: transparent;
+    border: 2px solid transparent;
     border-radius: 4px;
     text-align: center;
     color: #444;
 }
-.hatch-design-control-container:hover > .hatch-design-control{
+.hatch-visuals-item .hatch-icon-wrapper.hatch-active{
+    background-color: #fff;
+    border-color: #ccc;
+}
+.hatch-visuals-item .hatch-icon-wrapper:hover,
+.hatch-visuals-item .hatch-icon-wrapper:hover.hatch-active{
     background: #0289C0;
+    border-color: transparent;
     color: #fff;
 }
-.hatch-control-description{
-    display: block;
-    font-size: 11px;
-    font-weight: 700;
-    margin-top: 3px;
-    opacity: 0.75;
+.hatch-visuals-settings-wrapper{
+    position: absolute;
+    top: -6px;
+    right: 100px;
+    width: 200px;
+    background: #f5f5f5;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    overflow: hidden;
+    visibility: hidden;
+    opacity: 0;
 }
+.hatch-visuals-settings-wrapper.hatch-small{
+    width: 84px;
+}
+.hatch-visuals-item:hover .hatch-visuals-settings-wrapper{
+    right: 95px;
+    opacity: 1;
+    visibility: visible;
+}
+.hatch-visuals-item.hatch-last .hatch-visuals-settings-wrapper{
+    top: auto;
+    bottom: -6px;
+}
+
+.hatch-visuals-settings img{
+    max-width: 100%;
+    border-radius: 4px;
+}
+
 .hatch-quick-links{
     padding: 10px;
     margin: 0;
@@ -485,7 +518,8 @@ div[id*='hatch-widget'] .widget-control-actions{
     line-height: 16px;
     text-transform: uppercase;
 }
-.hatch-quick-links [class^="icon-"], .hatch-quick-links [class*=" icon-"]{
+.hatch-quick-links [class^="icon-"],
+.hatch-quick-links [class*=" icon-"]{
     font-size: 16px;
 }
 .hatch-quick-links a{
@@ -502,45 +536,6 @@ div[id*='hatch-widget'] .widget-control-actions{
 .hatch-quick-links a:hover{
     color: #000;
 }
-
-.hatch-design-properties-wrapper{
-    position: absolute;
-    top: 0;
-    right: 100px;
-    padding: 10px;
-    width: 200px;
-    background: #f5f5f5;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    overflow: hidden;
-    visibility: hidden;
-    transition: all 0.3s cubic-bezier(0, 0.275, 0.125, 1) 0s;
-    opacity: 0;  
-}
-.hatch-design-control-container:hover .hatch-design-properties-wrapper{
-    right: 95px;
-    opacity: 1;
-    visibility: visible;
-}
-
-.hatch-design-control-container.hatch-last .hatch-design-properties-wrapper{
-    top: auto;
-    bottom: 0;
-}
-
-    .hatch-design-properties-wrapper.hatch-small{
-        width: 74px;
-        padding: 0;
-    }
-    .hatch-design-properties .hatch-design-control{
-        margin: 5px;
-        background: transparent;
-        color: #444;
-    }
-    .hatch-design-properties .hatch-design-control:hover{
-        background: #0289C0;
-        color: #fff;
-    }
 
 /*---------------------------*/
 /*- TITLES ------------------*/
@@ -581,59 +576,86 @@ div[id*='hatch-widget'] .widget-control-actions{
 /*- BUTTONS -----------------*/
 .hatch-button{
     display: inline-block;
-    padding: 8px 10px;
-    background: #0289C0;
-    border: none;
-    border-radius: 4px;
-    text-align: center;
-    font-weight: 600;
-    color: #fff;
+    height: 28px;
+    margin: 0px;
+    padding: 0px 10px 1px;
+    background: #f7f7f7;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    white-space: nowrap;
+    box-sizing: border-box;
+    box-shadow: 0px 1px 0px rgba(255, 255, 255, 0.4) inset, 0px 1px 0px rgba(0, 0, 0, 0.08);
     vertical-align: middle;
     cursor: pointer;
-    transition: all 0.2s ease-in-out;
-    text-transform: uppercase;
+    color: #555;
+    text-decoration: none;
+    font-size: 13px;
+    line-height: 26px;
+    text-align: center;
 }
 .hatch-button:hover{
-    background: #0D5F83;
-    color: #fff;
+    background-color: #f2f2f2;
+    color: #555;
 }
 
     /*-----------------------*/
     /*- PRIMARY BUTTON ------*/
-    .btn-primary{background: #fc0; color: #5E2500;}
-    .btn-primary:hover{background: #f93; color: #5E2500;}
+    .btn-primary{
+        background: none repeat scroll 0% 0% #2EA2CC;
+        border-color: #0074A2;
+        color: #fff;
+    }
+    .btn-primary:hover{
+        background: #1E8CBE;
+        color: #fff;
+    }
 
     /*-----------------------*/
     /*- SECONDARY BUTTON ----*/
-    .btn-secondary{background: #A3C567; color: #37451D;}
-    .btn-secondary:hover{background: #93B25E; color: #37451D;}
-
-    /*-----------------------*/
-    /*- SUBTLE BUTTON -------*/
-    .btn-subtle{background: #EBEFF2; color: #3D556C;}
-    .btn-subtle:hover{background: #E1E5EB; color: #2D3339;}
+    .btn-secondary{
+        background-color: #A3C567;
+        border-color: #668056;
+        color: #37451D;
+    }
+    .btn-secondary:hover{
+        background-color: #93B25E;
+        color: #37451D;
+    }
 
     /*-----------------------*/
     /*- ERROR BUTTON --------*/
-    .btn-error{background: #FF5353; color: #fff;}
-    .btn-error:hover{background: #F2413D; color: #fff;}
-
-    /*-----------------------*/
-    /*- LIGHT BUTTON --------*/
-    .hatch-button.light{border: 2px solid #fff; color: #fff;}
-
-    /*-----------------------*/
-    /*- LINK BUTTON ---------*/
-    .btn-link{background: none; text-decoration: underline; color: #3D556C;}
-    .btn-link:hover{background: none; color: #2D3339;}
+    .btn-error{
+        background-color: #FF5353;
+        border-color: #BC3F39;
+        color: #fff;
+    }
+    .btn-error:hover{
+        background-color: #F2413D;
+        color: #fff;
+    }
 
     /*-----------------------*/
     /*- BUTTON SIZES --------*/
-    .hatch-button.btn-small{padding: 1px 10px; font-size: 11px; font-weight: 600;}
-    .hatch-button.btn-medium{padding: 4px 10px; font-size: 12px;}
-    .hatch-button.btn-large{padding: 12px 20px;}
-    .hatch-button.btn-massive{padding: 15px 30px; font-size: 20px;}
-    .hatch-button.btn-full{display: block;}
+    .hatch-button.btn-small{
+        height: 24px;
+        font-size: 11px;
+        line-height: 22px;
+    }
+    .hatch-button.btn-large{
+        height: 38px;
+        font-weight: 700;
+        font-size: 16px;
+        line-height: 32px;
+    }
+    .hatch-button.btn-massive{
+        height: 44px;
+        font-weight: 700;
+        font-size: 18px;
+        line-height: 40px;
+    }
+    .hatch-button.btn-full{
+        display: block;
+    }
 
 
 /*---------------------------*/
@@ -1028,8 +1050,8 @@ input[type=radio]:checked + .hatch-settings-icon span{
 }
 .hatch-media-controller .hatch-section-links{
     float: left;
-    width: 60px;
-    margin: 0;
+    width: 52px;
+    margin: 0 0 10px;
     padding: 0;
     list-style: none;
     position: relative;
@@ -1045,15 +1067,17 @@ input[type=radio]:checked + .hatch-settings-icon span{
 }
 .hatch-media-controller .hatch-section-links a{
     width: auto;
-    padding: 14px;
+    padding: 10px;
     transition: all 0.5s cubic-bezier(0, 0.275, 0.125, 1) 0s;
     outline: none;
+    color: #777;
 }
 .hatch-media-controller .hatch-section-links a:hover{
     background-color: #fff;
+    color: #000;
 }
 .hatch-media-controller .hatch-section-links li.active a{
-    padding-right: 15px;
+    color: #000;
 }
 
 .hatch-media-controller .hatch-controller-elements{
@@ -1131,95 +1155,6 @@ input[type=radio]:checked + .hatch-settings-icon span{
     margin-top: 0;
     padding: 10px 20px;
     opacity: 1;
-}
-
-/*---------------------------*/
-/*- DESIGNER CONTROLLER -----*/
-.hatch-design-controls{
-    float: right;
-    padding-left: 16px;
-    background: url(images/icon-settings.png) left no-repeat;
-    background-size: 16px 16px;
-}
-.hatch-design-controller{
-    float: left;
-    margin: 0 0 0 5px;
-    position: relative;
-}
-.hatch-design-action{
-    display: block;
-    width: 62px;
-    height: 26px;
-    padding: 0;
-    background: #fff;
-    background-size: 11px 4px;
-    border: 1px solid #ccc;
-    border-radius: 3px;
-}
-.hatch-design-action:hover{
-    border-color: #0D5F83;
-}
-.hatch-icon-name{
-    display: inline-block;
-    width: 41px;
-    height: 26px;
-    background: url(images/fake-temp-design-controller.png) center no-repeat;
-    text-indent: -9999px;
-    overflow: hidden;
-}
-.hatch-carrot{
-    display: inline-block;
-    width: 16px;
-    height: 26px;
-    background: url(images/icon-carrot-down.png) center no-repeat;
-    background-size: 6px 4px;
-    border-left: 1px solid #ccc;
-}
-.hatch-option{
-    position: absolute;
-    z-index: 1;
-    display: block;
-    width: 200px;
-    top: 28px; /*32px;*/
-    right: 0;
-    padding: 20px;
-    background: #0289C0;
-    border: 2px solid #0D5F83;
-    border-radius: 4px;
-    opacity: 0;
-    visibility: hidden;
-    transition: all 0.2s ease-in-out;
-    transform: scale(0.98);
-    transition-delay: 0.2s;
-}
-.hatch-design-controller:hover .hatch-option{
-    z-index: 1;
-    top: 34px;
-    opacity: 1;
-    visibility: visible;
-    transform: scale(1);
-    transition: all 0.4s ease-in-out;
-    transition-delay: 0s;
-}
-.hatch-option:before{
-    content: "";
-    display: block;
-    width: 0;
-    height: 0;
-    position: absolute;
-    top: -14px;
-    right: 1px;
-    border-style: solid;
-    border-width: 6px;
-    border-color: transparent transparent #0D5F83 transparent;
-}
-.hatch-option h5{
-    margin: 0 0 10px;
-    padding: 0;
-    text-align: left;
-    font-size: 14px;
-    font-weight: 700;
-    color: #fff;
 }
 
 

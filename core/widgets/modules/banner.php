@@ -157,7 +157,7 @@ if( !class_exists( 'Hatch_Banner_Widget' ) ) {
 		/**
 		*  Widget form
 		*
-		* We use regulage HTML here, it makes reading the widget much easier than if we used just php to echo all the HTML out.
+		* We use regular HTML here, it makes reading the widget much easier than if we used just php to echo all the HTML out.
 		*
 		*/
 		function form( $instance ){

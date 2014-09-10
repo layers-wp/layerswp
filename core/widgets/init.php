@@ -31,6 +31,7 @@ class Hatch_Widgets {
 
 		// Include ajax functions
 		require $widget_dir . 'ajax.php';
+		require $widget_dir . 'design-controller.php';
 
 		// Include necessary widgets
 		require $module_dir . 'banner.php';

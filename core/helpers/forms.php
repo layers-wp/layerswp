@@ -187,10 +187,13 @@ class Hatch_Form_Elements {
 			*/
 			case 'select-icons' : ?>
 				<?php foreach( $input->options as $value => $label ) { ?>
-					<input type="radio" <?php echo implode ( ' ' , $input_props ); ?> id="<?php echo $input->id .'-' . $value; ?>" value="<?php echo $value; ?>" <?php checked( $input->value , $value , true ); ?> />
-					<label class="hatch-settings-icon hatch-icon-<?php echo $value; ?> <?php if( $value == $input->value ) echo 'hatch-active'; ?>" for="<?php echo $input->id .'-' . $value; ?>">
-						<span><?php echo $label; ?></span>
+					<label href="" class="hatch-icon-wrapper <?php if( $value == $input->value ) echo 'hatch-active'; ?>" for="<?php echo $input->id .'-' . $value; ?>">
+						<span class="icon-<?php echo $value; ?>"></span>
+						<span class="hatch-icon-description">
+							<?php echo $label; ?>
+						</span>
 					</label>
+					<input type="radio" <?php echo implode ( ' ' , $input_props ); ?> id="<?php echo $input->id .'-' . $value; ?>" value="<?php echo $value; ?>" <?php checked( $input->value , $value , true ); ?> class="hatch-hide" />
 				<?php } // foreach options ?>
 			<?php break;
 			/**
@@ -217,30 +220,27 @@ class Hatch_Form_Elements {
 			* Image Uploader
 			*/
 			case 'image' : ?>
-				<div class="hatch-form-item">
-					<div class="hatch-image-uploader hatch-animate hatch-push-bottom <?php if( isset( $input->value ) && '' != $input->value ) echo 'hatch-has-image'; ?>" data-title="<?php _e( 'Select an Image' , HATCH_THEME_SLUG ); ?>" data-button_text="<?php _e( 'Use Image' , HATCH_THEME_SLUG ); ?>">
-						<!-- Remove button -->
-						<a class="hatch-image-remove <?php if( !isset( $input->value ) ) echo 'hatch-hide'; ?>" href=""><?php _e( 'Remove' , HATCH_THEME_SLUG ); ?></a>
-
-						<!-- Instructions -->
-						<p>
-							<?php printf( __( 'Drop a file here or %s' , HATCH_THEME_SLUG ) , '<a href="#">select a file.</a>' ); ?>
-						</p>
-
-						<!-- Input -->
-						<?php echo $this->input(
-							array(
-								'type' => 'hidden',
-								'name' => $input->name,
-								'id' => $input->id,
-								'value' => ( isset( $input->value ) ) ? $input->value : NULL
-							)
-						); ?>
-
-						<!-- Image -->
-						<?php if( isset( $input->value ) ) echo wp_get_attachment_image( $input->value , 'large' ); ?>
-					</div>
-				</div>
+				<section class="hatch-push-bottom">
+					<!-- Remove button -->
+					<a class="hatch-image-remove <?php if( !isset( $input->value ) ) echo 'hatch-hide'; ?>" href=""><?php _e( 'Remove' , HATCH_THEME_SLUG ); ?></a>
+					<!-- Image -->
+					<?php if( isset( $input->value ) ) echo wp_get_attachment_image( $input->value , 'large' ); ?>
+				</section>
+				<section class="hatch-push-bottom">
+					<a href="#" class="hatch-image-uploader  hatch-button btn-primary btn-full <?php if( isset( $input->value ) && '' != $input->value ) echo 'hatch-has-image'; ?>"
+						data-title="<?php _e( 'Select an Image' , HATCH_THEME_SLUG ); ?>"
+						data-button_text="<?php _e( 'Use Image' , HATCH_THEME_SLUG ); ?>">
+						<?php echo ( isset( $input->label ) ? $input->label : __( 'Upload Image' , HATCH_THEME_SLUG ) ); ?>
+					</a>
+				</section>
+				<?php echo $this->input(
+					array(
+						'type' => 'hidden',
+						'name' => $input->name,
+						'id' => $input->id,
+						'value' => ( isset( $input->value ) ) ? $input->value : NULL
+					)
+				); ?>
 			<?php break;
 			/**
 			* Regular Uploader

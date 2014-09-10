@@ -53,7 +53,7 @@ div[id*='hatch-widget'] .widget-top .widget-title .in-widget-title{
     top: 0 !important;
     border-top: none !important;
     border-right: none !important;
-    transition: width 0.4s ease-in-out, top 0.2s ease-in-out, opacity 0.15s ease-in-out, box-shadow 0.7s ease-in-out;
+    transition: width 0.2s ease-in-out, top 0.2s ease-in-out, opacity 0.15s ease-in-out, box-shadow 0.7s ease-in-out;
     opacity: 0;
     z-index: 1;
     overflow: hidden;

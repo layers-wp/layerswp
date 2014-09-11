@@ -45,7 +45,7 @@ class Hatch_Design_Controller {
 									$component_args // Send through the inputs that will be used
 								);
 							}
-						} else {
+						} elseif ( 'custom' != $component ) {
 							$this->$component(
 								$widget, // Send through the wiget object
 								$values // Send through the wiget values

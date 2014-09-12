@@ -62,88 +62,274 @@ if( !class_exists( 'Hatch_Framework_Widget' ) ) {
 			$instance_args = wp_parse_args( $instance, $instance_defaults );
 			extract( $instance_args, EXTR_SKIP );
 		?>
+			<!-- Form HTML Here -->
 
-		<!-- Form HTML Here -->
-		<?php $design_controller = new Hatch_Design_Controller();
-		$design_controller->bar(
-			$this, // Widget Object
-			$instance, // Widget Values
-			array(
-				'custom',
-				'columns',
-				'layout',
-				'liststyle',
-				'textalign',
-				'imagealign',
-				'background',
+<div class="hatch-visuals hatch-pull-right">
+	<h6 class="hatch-visuals-title">
+		<span class="icon-settings hatch-small"></span>
+	</h6>
+	<ul class="hatch-visuals-wrapper">
+		<li class="hatch-visuals-item ">
+			<a href="" class="hatch-icon-wrapper">
+				<span class="icon-layout-fullwidth"></span>
+				<span class="hatch-icon-description">
+					Layout
+				</span>
+			</a>
+			<div class="hatch-visuals-settings-wrapper hatch-animate hatch-small">
+				<div class="hatch-visuals-settings">
+					<a href="" class="hatch-icon-wrapper hatch-active">
+						<span class="icon-layout-boxed"></span>
+						<span class="hatch-icon-description">
+							Boxed
+						</span>
+					</a>
+					<a href="" class="hatch-icon-wrapper">
+						<span class="icon-layout-fullwidth"></span>
+						<span class="hatch-icon-description">
+							Full Width
+						</span>
+					</a>
+				</div>
+			</div>
+		</li>
+		<li class="hatch-visuals-item">
 
-			), // Standard Components
-			array(
-				'display' => array(
-					'icon-css' => 'icon-slider',
-					'label' => 'Slider',
-					'elements' => array(
-						'hide_slider_arrows' => array(
-							'type' => 'checkbox',
-							'name' => $this->get_field_name( 'hide_slider_arrows' ) ,
-							'id' => $this->get_field_id( 'hide_slider_arrows' ) ,
-							'value' => ( isset( $hide_slider_arrows ) ) ? $hide_slider_arrows : NULL,
-							'label' => __( 'Hide Slider Arrows', HATCH_THEME_SLUG )
-						),
-						'autoplay_banners' => array(
-							'type' => 'checkbox',
-							'name' => $this->get_field_name( 'autoplay_banners' ) ,
-							'id' => $this->get_field_id( 'autoplay_banners' ) ,
-							'value' => ( isset( $autoplay_banners ) ) ? $autoplay_banners : NULL,
-							'label' => __( 'Autoplay Slides', HATCH_THEME_SLUG )
-						),
-						'slide_time' => array(
-							'type' => 'text',
-							'name' => $this->get_field_name( 'slide_time' ) ,
-							'id' => $this->get_field_id( 'slide_time' ) ,
-							'placeholder' => __( 'Leave blank for no slide', HATCH_THEME_SLUG ),
-							'value' => ( isset( $slide_time ) ) ? $slide_time : NULL,
-							'label' => __( 'Slide Time', HATCH_THEME_SLUG )
-						),
-						'slide_effect' => array(
-							'type' => 'select',
-							'name' => $this->get_field_name( 'slide_effect' ) ,
-							'id' => $this->get_field_id( 'slide_effect' ) ,
-							'value' => ( isset( $slide_effect ) ) ? $slide_effect : NULL ,
-							'options' => array(
-									'slide' => __( 'Slide', HATCH_THEME_SLUG ),
-									'fade' => __( 'Fade', HATCH_THEME_SLUG ),
-									'none' => __( 'None', HATCH_THEME_SLUG ),
+			<a href="" class="hatch-icon-wrapper">
+				<span class="icon-list-masonry"></span>
+				<span class="hatch-icon-description">
+					List Style
+				</span>
+			</a>
 
-								),
-							'label' => __( 'Slide Effect', HATCH_THEME_SLUG )
-						),
-						'banner_height' => array(
-							'type' => 'text',
-							'name' => $this->get_field_name( 'banner_height' ) ,
-							'id' => $this->get_field_id( 'banner_height' ) ,
-							'value' => ( isset( $banner_height ) ) ? $banner_height : NULL,
-							'label' => __( 'Slider Height', HATCH_THEME_SLUG )
-						),
-						'banner_width' => array(
-							'type' => 'select',
-							'name' => $this->get_field_name( 'banner_width' ) ,
-							'id' => $this->get_field_id( 'banner_width' ) ,
-							'value' => ( isset( $banner_height ) ) ? $banner_height : NULL ,
-							'options' => array(
-									'full-width' => __( 'Full Width', HATCH_THEME_SLUG ),
-									'boxed' => __( 'Boxed', HATCH_THEME_SLUG )
+			<div class="hatch-visuals-settings-wrapper hatch-animate hatch-small">
+				<div class="hatch-visuals-settings">
+					<a href="" class="hatch-icon-wrapper">
+						<span class="icon-list-grid"></span>
+						<span class="hatch-icon-description">
+							Grid
+						</span>
+					</a>
+					<a href="" class="hatch-icon-wrapper">
+						<span class="icon-list-masonry"></span>
+						<span class="hatch-icon-description">
+							Masonry
+						</span>
+					</a>
+					<a href="" class="hatch-icon-wrapper hatch-active">
+						<span class="icon-list-list"></span>
+						<span class="hatch-icon-description">
+							List
+						</span>
+					</a>
+				</div>
+			</div>
+		</li>
 
-								),
-							'label' => __( 'Slider Width', HATCH_THEME_SLUG )
-						)
-					)
-				)
-			) // Custom Elements
-		); ?>
+		<li class="hatch-visuals-item">
+			<a href="" class="hatch-icon-wrapper">
+				<span class="icon-display"></span>
+				<span class="hatch-icon-description">
+					Display
+				</span>
+			</a>
+			<div class="hatch-visuals-settings-wrapper hatch-animate hatch-content-small">
+				<div class="hatch-visuals-settings">
+					<p class="hatch-checkbox-wrapper">
+						<input type="checkbox"/>
+						<label>Checkbox</label>
+					</p>
+					<p class="hatch-checkbox-wrapper">
+						<input type="checkbox"/>
+						<label>Checkbox</label>
+					</p>
+					<p class="hatch-radio-wrapper">
+						<input type="radio"/>
+						<label>Radio</label>
+					</p>
+					<p class="hatch-radio-wrapper">
+						<input type="radio"/>
+						<label>Radio</label>
+					</p>
+				</div>
+			</div>
+		</li>
+
+		<li class="hatch-visuals-item">
+			<a href="" class="hatch-icon-wrapper">
+				<span class="icon-columns"></span>
+				<span class="hatch-icon-description">
+					Columns
+				</span>
+			</a>
+		</li>
+
+		<li class="hatch-visuals-item">
+			<a href="" class="hatch-icon-wrapper">
+				<span class="icon-font-size"></span>
+				<span class="hatch-icon-description">
+					Font
+				</span>
+			</a>
+		</li>
+
+		<li class="hatch-visuals-item">
+			<a href="" class="hatch-icon-wrapper">
+				<span class="icon-text-center"></span>
+				<span class="hatch-icon-description">
+					Text Align
+				</span>
+			</a>
+			<div class="hatch-visuals-settings-wrapper hatch-animate hatch-small">
+				<div class="hatch-visuals-settings">
+					<a href="" class="hatch-icon-wrapper hatch-active">
+						<span class="icon-text-left"></span>
+						<span class="hatch-icon-description">
+							Left
+						</span>
+					</a>
+					<a href="" class="hatch-icon-wrapper">
+						<span class="icon-text-right"></span>
+						<span class="hatch-icon-description">
+							Right
+						</span>
+					</a>
+					<a href="" class="hatch-icon-wrapper">
+						<span class="icon-text-center"></span>
+						<span class="hatch-icon-description">
+							Center
+						</span>
+					</a>
+					<a href="" class="hatch-icon-wrapper">
+						<span class="icon-text-justify"></span>
+						<span class="hatch-icon-description">
+							Justify
+						</span>
+					</a>
+				</div>
+			</div>
+		</li>
+
+		<li class="hatch-visuals-item">
+			<a href="" class="hatch-icon-wrapper">
+				<span class="icon-slider"></span>
+				<span class="hatch-icon-description">
+					Slider
+				</span>
+			</a>
+			<div class="hatch-visuals-settings-wrapper hatch-animate hatch-content-small">
+				<div class="hatch-visuals-settings">
+					<p class="hatch-checkbox-wrapper">
+						<input type="checkbox"/>
+						<label>Hide Slider Arrows</label>
+					</p>
+					<!-- only appear if you click 'hide slider arrows' -->
+						<p class="hatch-checkbox-wrapper">
+							<input type="checkbox"/>
+							<label>Autoplay Slides</label>
+						</p>
+						<p class="hatch-form-item">
+							<label>Slide Time</label>
+							<input type="text" placeholder="example: 8" />
+						</p>
+					<!-- /end -->
+					<p class="hatch-form-item">
+						<label>Banner Height</label>
+						<input type="text" placeholder="example: 550" />
+					</p>
+					<p class="hatch-form-item">
+						<label>Slide Effect</label>
+						<select size="1">
+							<option selected="selected" value="slide">Slide</option>
+							<option value="fade">Fade</option>
+							<option value="none">None</option>
+						</select>
+					</p>
+				</div>
+			</div>
+		</li>
+
+		<li class="hatch-visuals-item hatch-last">
+			<a href="" class="hatch-icon-wrapper">
+				<span class="icon-photo"></span>
+				<span class="hatch-icon-description">
+					Background
+				</span>
+			</a>
+			<div class="hatch-visuals-settings-wrapper hatch-animate hatch-content-small">
+				<div class="hatch-visuals-settings">
+					<section class="hatch-push-bottom">
+						<img src="http://obox.beta/wp-content/uploads/2014/08/city-scape.jpg" />
+					</section>
+					<section class="hatch-push-bottom">
+						<a href="#" class="hatch-button btn-primary btn-full">Upload Image</a>
+					</section>
+					<section>
+						<p class="hatch-checkbox-wrapper">
+							<input type="checkbox"/>
+							<label>Tile</label>
+						</p>
+						<p class="hatch-checkbox-wrapper">
+							<input type="checkbox"/>
+							<label>Stretch</label>
+						</p>
+						<p class="hatch-checkbox-wrapper">
+							<input type="checkbox"/>
+							<label>Fixed</label>
+						</p>
+						<p class="hatch-checkbox-wrapper">
+							<input type="checkbox"/>
+							<label>Darken</label>
+						</p>
+					</section>
+				</div>
+			</div>
+		</li>
+
+		<li class="hatch-visuals-item hatch-last">
+			<a href="" class="hatch-icon-wrapper">
+				<span class="icon-image-left"></span>
+				<span class="hatch-icon-description">
+					Image Align
+				</span>
+			</a>
+			<div class="hatch-visuals-settings-wrapper hatch-animate hatch-small">
+				<div class="hatch-visual-settings">
+					<a href="" class="hatch-icon-wrapper">
+						<span class="icon-image-left"></span>
+						<span class="hatch-icon-description">
+							Left
+						</span>
+					</a>
+					<a href="" class="hatch-icon-wrapper hatch-active">
+						<span class="icon-image-right"></span>
+						<span class="hatch-icon-description">
+							Right
+						</span>
+					</a>
+					<a href="" class="hatch-icon-wrapper">
+						<span class="icon-image-center"></span>
+						<span class="hatch-icon-description">
+							Center
+						</span>
+					</a>
+				</div>
+			</div>
+		</li>
+		<li class="hatch-quick-links">
+			<a href="">
+				<span class="icon-support"></span>
+			</a>
+			<a href="">
+				<span class="icon-arrow-left"></span>
+			</a>
+		</li>
+	</ul>
+</div>
+
 <div class="hatch-container-large">
 
-<div class="hatch-controls-title">
+	<div class="hatch-controls-title">
 		<h2 class="hatch-heading hatch-icon hatch-icon-services">
 			Framework
 		</h2>
@@ -151,6 +337,20 @@ if( !class_exists( 'Hatch_Framework_Widget' ) ) {
 
 	<!-- NEW Slider AREA -->
 	<ul class="hatch-accordions">
+		<li class="hatch-accordion-item">
+
+			<a class="hatch-accordion-title">
+				<span class="tooltip" tooltip="Place your help text here please."></span>
+				<span>Design Bar Horizontal</span>
+			</a>
+
+			<section class="hatch-accordion-section hatch-content">
+
+				<p>Check the slider accordion ;)</p>
+					
+			</section>
+
+		</li>
 		<li class="hatch-accordion-item">
 
 			<a class="hatch-accordion-title">
@@ -236,88 +436,8 @@ if( !class_exists( 'Hatch_Framework_Widget' ) ) {
 					</div>
 				</div>
 			</section>
+
 		</li>
-		<li class="hatch-accordion-item open">
-
-			<a class="hatch-accordion-title">
-				<span class="tooltip" tooltip="Place your help text here please."></span>
-				<span>New Background Uploader</span>
-			</a>
-
-			<section class="hatch-accordion-section hatch-content">
-
-				<div class="hatch-media-controller">
-					<ul class="hatch-section-links">
-						<li class="active">
-							<a href="" class="hatch-icon-wrapper">
-								<span class="icon-photo"></span>
-							</a>
-						</li>
-						<li>
-							<a href="" class="hatch-icon-wrapper">
-								<span class="icon-video"></span>
-							</a>
-						</li>
-					</ul>
-					<div class="hatch-controller-elements">
-
-						<!-- Image uploader -->
-						<div class="hatch-content">
-							<div class="hatch-form-item">
-								<div class="hatch-image-uploader hatch-animate hatch-push-bottom">
-									<p>Drop a file here or <a href="">select a file.</a></p>
-								</div>
-							</div>
-
-							<ul class="hatch-checkbox-wrapper-list">
-								<li class="hatch-checkbox-wrapper">
-									<input type="checkbox" />
-									<label>Darken to improve readability</label>
-								</li>
-								<li class="hatch-checkbox-wrapper">
-									<input type="checkbox" />
-									<label>Tile Background</label>
-								</li>
-								<li class="hatch-checkbox-wrapper">
-									<input type="checkbox" />
-									<label>Fixed Background</label>
-								</li>
-							</ul>
-						</div>
-
-						<!-- Video uploader -->
-						<div class="hatch-content">
-							<p class="hatch-form-item">
-								<label>Please add your .mp4 link</label>
-								<input type="text" />
-							</p>
-							<p class="hatch-form-item">
-								<label>Please add your .ogv link</label>
-								<input type="text" />
-							</p>
-
-							<ul class="hatch-checkbox-wrapper-list">
-								<li class="hatch-checkbox-wrapper">
-									<input type="checkbox" />
-									<label>Darken to improve readability</label>
-								</li>
-								<li class="hatch-checkbox-wrapper">
-									<input type="checkbox" />
-									<label>Tile Background</label>
-								</li>
-								<li class="hatch-checkbox-wrapper">
-									<input type="checkbox" />
-									<label>Fixed Background</label>
-								</li>
-							</ul>
-						</div>
-
-					</div>
-				</div>
-
-			</section>
-		</li>
-
 		<li class="hatch-accordion-item">
 
 			<a class="hatch-accordion-title">
@@ -418,66 +538,165 @@ if( !class_exists( 'Hatch_Framework_Widget' ) ) {
 							</a>
 							<section class="hatch-accordion-section hatch-content">
 
-								<div class="hatch-row">
-
-									<div class="hatch-column hatch-span-8">
-
-										<div class="hatch-media-controller">
-											<ul class="hatch-section-links">
-												<li class="active">
-													<a href="" class="hatch-icon-wrapper">
-														<span class="icon-photo"></span>
-													</a>
-												</li>
-												<li>
-													<a href="" class="hatch-icon-wrapper">
-														<span class="icon-video"></span>
-													</a>
-												</li>
-											</ul>
-											<div class="hatch-controller-elements">
-												<div class="hatch-content section-active">
-													<div class="hatch-form-item">
-														<div class="hatch-image-uploader hatch-animate hatch-push-bottom">
-															<p>Drop a file here or <a href="">select a file.</a></p>
-														</div>
-													</div>
-
-													<ul class="hatch-checkbox-wrapper-list">
-														<li class="hatch-checkbox-wrapper">
-															<input type="checkbox" />
-															<label>Darken to improve readability</label>
-														</li>
-														<li class="hatch-checkbox-wrapper">
-															<input type="checkbox" />
-															<label>Tile Background</label>
-														</li>
-														<li class="hatch-checkbox-wrapper">
-															<input type="checkbox" />
-															<label>Fixed Background</label>
-														</li>
-													</ul>
+								<div class="hatch-visuals hatch-visuals-horizontal">
+									<ul class="hatch-visuals-wrapper hatch-clearfix">
+										<li class="hatch-visuals-item">
+											<a href="" class="hatch-icon-wrapper">
+												<span class="icon-display"></span>
+												<span class="hatch-icon-description">
+													Display
+												</span>
+											</a>
+											<div class="hatch-visuals-settings-wrapper hatch-animate hatch-content-small">
+												<div class="hatch-visuals-settings">
+													<p class="hatch-checkbox-wrapper">
+														<input type="checkbox"/>
+														<label>Checkbox</label>
+													</p>
+													<p class="hatch-checkbox-wrapper">
+														<input type="checkbox"/>
+														<label>Checkbox</label>
+													</p>
+													<p class="hatch-radio-wrapper">
+														<input type="radio"/>
+														<label>Radio</label>
+													</p>
+													<p class="hatch-radio-wrapper">
+														<input type="radio"/>
+														<label>Radio</label>
+													</p>
 												</div>
 											</div>
-										</div>
-									</div>
+										</li>
 
-									<div class="hatch-column hatch-span-4 no-gutter">
-										<div class="hatch-panel">
-											<div class="hatch-panel-title">
-												<span class="tooltip" tooltip="Place your help text here please."></span>
-												<h4 class="heading">Feature Image</h4>
+										<li class="hatch-visuals-item">
+											<a href="" class="hatch-icon-wrapper">
+												<span class="icon-font-size"></span>
+												<span class="hatch-icon-description">
+													Font
+												</span>
+											</a>
+										</li>
+
+										<li class="hatch-visuals-item">
+											<a href="" class="hatch-icon-wrapper">
+												<span class="icon-text-center"></span>
+												<span class="hatch-icon-description">
+													Text Align
+												</span>
+											</a>
+											<div class="hatch-visuals-settings-wrapper hatch-animate hatch-small">
+												<div class="hatch-visuals-settings">
+													<a href="" class="hatch-icon-wrapper hatch-active">
+														<span class="icon-text-left"></span>
+														<span class="hatch-icon-description">
+															Left
+														</span>
+													</a>
+													<a href="" class="hatch-icon-wrapper">
+														<span class="icon-text-right"></span>
+														<span class="hatch-icon-description">
+															Right
+														</span>
+													</a>
+													<a href="" class="hatch-icon-wrapper">
+														<span class="icon-text-center"></span>
+														<span class="hatch-icon-description">
+															Center
+														</span>
+													</a>
+													<a href="" class="hatch-icon-wrapper">
+														<span class="icon-text-justify"></span>
+														<span class="hatch-icon-description">
+															Justify
+														</span>
+													</a>
+												</div>
 											</div>
-											<div class="hatch-content">
-												<a href="#" class="hatch-image-uploader hatch-small hatch-animate hatch-push-bottom">
-													<img class="image-reveal" src="http://demo.oboxsites.com/express/files/2013/12/graphy-tile.png">
-												</a>
-												<a class="hatch-settings-icon hatch-icon-image-left" href="">Image Left</a>
-												<a class="hatch-settings-icon hatch-icon-image-right" href="">Image Right</a>
-												<a class="hatch-settings-icon hatch-icon-image-top" href="">Image Top</a>
+										</li>
+
+										<li class="hatch-visuals-item hatch-last">
+											<a href="" class="hatch-icon-wrapper">
+												<span class="icon-photo"></span>
+												<span class="hatch-icon-description">
+													Background
+												</span>
+											</a>
+											<div class="hatch-visuals-settings-wrapper hatch-animate hatch-content-small">
+												<div class="hatch-visuals-settings">
+													<section class="hatch-push-bottom">
+														<img src="http://obox.beta/wp-content/uploads/2014/08/city-scape.jpg" />
+													</section>
+													<section class="hatch-push-bottom">
+														<a href="#" class="hatch-button btn-primary btn-full">Upload Image</a>
+													</section>
+													<section>
+														<p class="hatch-checkbox-wrapper">
+															<input type="checkbox"/>
+															<label>Tile</label>
+														</p>
+														<p class="hatch-checkbox-wrapper">
+															<input type="checkbox"/>
+															<label>Stretch</label>
+														</p>
+														<p class="hatch-checkbox-wrapper">
+															<input type="checkbox"/>
+															<label>Fixed</label>
+														</p>
+														<p class="hatch-checkbox-wrapper">
+															<input type="checkbox"/>
+															<label>Darken</label>
+														</p>
+													</section>
+												</div>
 											</div>
+										</li>
+
+										<li class="hatch-visuals-item hatch-last">
+											<a href="" class="hatch-icon-wrapper">
+												<span class="icon-image-left"></span>
+												<span class="hatch-icon-description">
+													Image Align
+												</span>
+											</a>
+											<div class="hatch-visuals-settings-wrapper hatch-animate hatch-small">
+												<div class="hatch-visual-settings">
+													<a href="" class="hatch-icon-wrapper">
+														<span class="icon-image-left"></span>
+														<span class="hatch-icon-description">
+															Left
+														</span>
+													</a>
+													<a href="" class="hatch-icon-wrapper hatch-active">
+														<span class="icon-image-right"></span>
+														<span class="hatch-icon-description">
+															Right
+														</span>
+													</a>
+													<a href="" class="hatch-icon-wrapper">
+														<span class="icon-image-center"></span>
+														<span class="hatch-icon-description">
+															Center
+														</span>
+													</a>
+												</div>
+											</div>
+										</li>
+									</ul>
+								</div>
+
+								<div class="hatch-row">
+									<div class="hatch-panel">
+										<div class="hatch-panel-title">
+											<span class="tooltip" tooltip="Place your help text here please."></span>
+											<h4 class="heading">Feature Image</h4>
 										</div>
-									</div>
+										<div class="hatch-content">
+											<a href="#" class="hatch-image-uploader hatch-small hatch-animate hatch-push-bottom">
+												<img class="image-reveal" src="http://demo.oboxsites.com/express/files/2013/12/graphy-tile.png">
+											</a>
+										</div>
+									</div>									
 								</div>
 
 								<div class="hatch-row">

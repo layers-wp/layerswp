@@ -25,7 +25,7 @@ if( !class_exists( 'Hatch_Framework_Widget' ) ) {
 			$widget_ops = array( 'classname' => 'obox-hatch-' . $this->widget_id .'-widget', 'description' => 'This widget is used to display general HTML framework.' );
 
 			/* Widget control settings. */
-			$control_ops = array( 'width' => 1000, 'height' => NULL, 'id_base' => HATCH_THEME_SLUG . '-widget-' . $this->widget_id );
+			$control_ops = array( 'width' => HATCH_WIDGET_WIDTH_LARGE, 'height' => NULL, 'id_base' => HATCH_THEME_SLUG . '-widget-' . $this->widget_id );
 
 			/* Create the widget. */
 			$this->WP_Widget( HATCH_THEME_SLUG . '-widget-' . $this->widget_id , '(' . HATCH_THEME_TITLE . ') ' . $this->widget_title . ' Widget', $widget_ops, $control_ops );
@@ -347,7 +347,7 @@ if( !class_exists( 'Hatch_Framework_Widget' ) ) {
 			<section class="hatch-accordion-section hatch-content">
 
 				<p>Check the slider accordion ;)</p>
-					
+
 			</section>
 
 		</li>
@@ -696,7 +696,7 @@ if( !class_exists( 'Hatch_Framework_Widget' ) ) {
 												<img class="image-reveal" src="http://demo.oboxsites.com/express/files/2013/12/graphy-tile.png">
 											</a>
 										</div>
-									</div>									
+									</div>
 								</div>
 
 								<div class="hatch-row">

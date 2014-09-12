@@ -29,6 +29,10 @@ class Hatch_Widgets {
 		$widget_dir = HATCH_TEMPLATE_DIR . '/core/widgets/';
 		$module_dir = HATCH_TEMPLATE_DIR . '/core/widgets/modules/';
 
+		// Setup some defined variables to use in each widget
+		define( 'HATCH_WIDGET_WIDTH_SMALL' , 660 );
+		define( 'HATCH_WIDGET_WIDTH_LARGE' , 980 );
+
 		// Include ajax functions
 		require $widget_dir . 'ajax.php';
 		require $widget_dir . 'design-controller.php';

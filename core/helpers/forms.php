@@ -46,7 +46,6 @@ class Hatch_Form_Elements {
 		$accordian_title = (object) wp_parse_args( $args, array() ); ?>
 
 		<a class="hatch-accordion-title">
-			 <?php if( isset( $accordian_title->tooltip ) ) { ?><span class="tooltip" tooltip=" <?php echo $accordian_title->tooltip; ?>"></span><?php } ?>
 			<span><?php echo $accordian_title->title; ?></span>
 		</a>
 	<?php }

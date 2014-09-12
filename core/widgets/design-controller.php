@@ -432,6 +432,17 @@ class Hatch_Design_Controller {
 								)
 							); ?>
 						</p>
+						<p class="hatch-checkbox-wrapper">
+							<?php echo $this->input(
+								array(
+									'type' => 'checkbox',
+									'label' => __( 'Parallax' , HATCH_THEME_SLUG ),
+									'name' => $widget->get_field_name( 'design' ) . '[background][parallax]' ,
+									'id' =>  $widget->get_field_id( 'design' ) . '-background-parallax' ,
+									'value' => ( isset( $values->background['parallax'] ) ) ? $values->background['parallax'] : NULL
+								)
+							); ?>
+						</p>
 					</section>
 				</div>
 			</div>

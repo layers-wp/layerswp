@@ -96,8 +96,6 @@ if( !class_exists( 'Hatch_Portfolio_Widget' ) ) {
 				$terms = get_terms( $this->taxonomy );
 			} // if we haven't selected which category to show, let's load the $terms for use in the filter
 
-			print_r( $widget->design );
-
 			// Do the WP_Query
 			$post_query = new WP_Query( $query_args ); ?>
 

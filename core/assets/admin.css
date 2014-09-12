@@ -38,7 +38,7 @@ div[id*='hatch-widget'] .widget-top .widget-title .in-widget-title{
 }
 
 .hatch-hide{
-    display:  none;
+    display: none !important;
 }
 .customize-control-widget_form.wide-widget-control.expanded:not(.collapsing) div[id*='hatch-widget'] .widget-top{
     background: #0BA6E0;
@@ -283,6 +283,11 @@ div[id*='hatch-widget'] .widget-control-actions{
     padding: 20px;
     position: relative;
 }
+.hatch-content img{
+    max-width: 100%;
+    height: auto;
+    border-radius: 4px;
+}
 
 /*---------------------------*/
 /*- FORM ELEMENTS -----------*/
@@ -291,7 +296,9 @@ div[id*='hatch-widget'] .widget-control-actions{
     padding: 0;
     margin: 0 0 15px;
 }
-.hatch-form-item:last-child{margin-bottom: 0;}
+.hatch-form-item:last-child{
+    margin-bottom: 0;
+}
 
 .hatch-form-item label{
     display: block;
@@ -491,6 +498,7 @@ div[id*='hatch-widget'] .widget-control-actions{
     overflow: hidden;
     visibility: hidden;
     opacity: 0;
+    transition: all 0.3s ease-in-out 0.3s;
 }
 .hatch-visuals-settings-wrapper.hatch-small{
     width: 84px;
@@ -499,17 +507,16 @@ div[id*='hatch-widget'] .widget-control-actions{
     right: 95px;
     opacity: 1;
     visibility: visible;
+    transition: all 0.1s ease-in-out 0.1s;
 }
 .hatch-visuals-item.hatch-last .hatch-visuals-settings-wrapper{
     top: auto;
     bottom: -6px;
 }
-
 .hatch-visuals-settings img{
     max-width: 100%;
     border-radius: 4px;
 }
-
 .hatch-quick-links{
     padding: 10px;
     margin: 0;

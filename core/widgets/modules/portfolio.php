@@ -23,13 +23,13 @@ if( !class_exists( 'Hatch_Portfolio_Widget' ) ) {
 		private $post_type = 'jetpack-portfolio';
 		private $taxonomy = 'jetpack-portfolio-type';
 		public $checkboxes = array(
-				'hide_titles',
-				'hide_dates',
-				'hide_excerpts',
-				'hide_author',
-				'hide_cagegories',
-				'hide_tags',
-				'hide_comment_count'
+				'show_titles',
+				'show_dates',
+				'show_excerpts',
+				'show_author',
+				'show_cagegories',
+				'show_tags',
+				'show_comment_count'
 			); // @TODO: Try make this more dynamic, or leave a different note reminding users to change this if they add/remove checkboxes
 		/**
 		*  Widget construction
@@ -59,10 +59,12 @@ if( !class_exists( 'Hatch_Portfolio_Widget' ) ) {
 				'excerpt' => NULL,
 				'filter_label' => __( 'Filter:' , HATCH_THEME_SLUG ),
 				'category' => 0,
-				'columns' => 'columns-3',
 				'posts_per_page' => -1,
-				'content_display_type' => 'grid',
-				'order_by' => 'post_date'
+				'order_by' => 'post_date',
+				'design' => array(
+					'columns' => 'columns-3',
+					'layout' => 'grid',
+				)
 			);
 
 			// Parse $instance
@@ -72,7 +74,7 @@ if( !class_exists( 'Hatch_Portfolio_Widget' ) ) {
 			$widget = (object) $instance;
 
  			// Set the span class for each column
-			$col_count = str_ireplace('columns-', '', $widget->columns );
+			$col_count = str_ireplace('columns-', '', $widget->design[ 'columns']  );
 			$span_class = 'span-' . ( 12/ $col_count );
 
 			// Begin query arguments
@@ -90,9 +92,11 @@ if( !class_exists( 'Hatch_Portfolio_Widget' ) ) {
 						"terms" => $widget->category
 					)
 				);
-			} elseif( !isset( $widget->hide_category_filter ) ) {
+			} elseif( !isset( $widget->show_category_filter ) ) {
 				$terms = get_terms( $this->taxonomy );
 			} // if we haven't selected which category to show, let's load the $terms for use in the filter
+
+			print_r( $widget->design );
 
 			// Do the WP_Query
 			$post_query = new WP_Query( $query_args ); ?>
@@ -110,7 +114,7 @@ if( !class_exists( 'Hatch_Portfolio_Widget' ) ) {
 						</div>
 					</div>
 				<?php } ?>
-				<?php if( !isset( $widget->hide_category_filter ) && !is_wp_error( $terms ) ) { ?>
+				<?php if( !isset( $widget->show_category_filter ) && !is_wp_error( $terms ) ) { ?>
 					<ul class="nav nav-pills push-top">
 						<li><span><?php echo $widget->filter_label; ?></span></li>
 						<?php foreach( $terms as $term ) { ?>
@@ -118,7 +122,7 @@ if( !class_exists( 'Hatch_Portfolio_Widget' ) ) {
 						<?php } // foreach $terms ?>
 					</ul>
 				<?php } ?>
-				<div class="row <?php if( isset( $widget->layout ) && 'boxed' == $widget->layout ) echo 'container'; ?>   <?php  if( isset( $widget->content_display_type ) ) echo $widget->content_display_type; ?>">
+				<div class="row <?php if( isset( $widget->design[ 'layout' ] ) && 'boxed' == $widget->design[ 'layout' ] ) echo 'container'; ?>   <?php  if( isset( $widget->design[ 'liststyle' ] ) ) echo $widget->design[ 'liststyle' ]; ?>">
 					<?php if( $post_query->have_posts() ) { ?>
 						<?php while( $post_query->have_posts() ) { global $post; ?>
 							<?php $terms = wp_get_post_terms( $post->ID, $this->taxonomy );
@@ -134,20 +138,20 @@ if( !class_exists( 'Hatch_Portfolio_Widget' ) ) {
 									<a href="" class="thumbnail-media with-overlay">
 										<?php the_post_thumbnail( 'large' ); ?>
 
-										<?php  if( isset( $widget->content_display_type ) && 'masonry' != $widget->content_display_type ) { ?>
-											<?php if( !isset( $widget->hide_titles ) || !isset( $widget->hide_excerpts ) ) { ?>
+										<?php  if( isset( $widget->design[ 'liststyle' ] ) && 'list-masonry' != $widget->design[ 'liststyle' ] ) { ?>
+											<?php if( !isset( $widget->show_titles ) || !isset( $widget->show_excerpts ) ) { ?>
 											<div class="thumbnail-body">
-												<?php if( !isset( $widget->hide_titles ) ) { ?>
+												<?php if( !isset( $widget->show_titles ) ) { ?>
 													<h4 class="heading"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h4>
 												<?php } ?>
-												<?php if( !isset( $widget->hide_excerpts ) ) the_excerpt(); ?>
+												<?php if( !isset( $widget->show_excerpts ) ) the_excerpt(); ?>
 											</div>
 											<?php } ?>
 										<?php } else { ?>
 											<span class="overlay">
-												<?php if( isset( $widget->hide_titles ) ) { ?>
+												<?php if( isset( $widget->show_titles ) ) { ?>
 													<span class="heading"><?php the_title(); ?></span>
-												<?php } // if hide_titles ?>
+												<?php } // if show_titles ?>
 												<span class="button">Call to action</span>
 											</span>
 										<?php } ?>
@@ -161,7 +165,7 @@ if( !class_exists( 'Hatch_Portfolio_Widget' ) ) {
 
 			<script>
 				jQuery(function($){
-					var masonry = $('#<?php echo $widget_id; ?>').find('.masonry').masonry();
+					var masonry = $('#<?php echo $widget_id; ?>').find('.list-masonry').masonry();
 
 					$('#<?php echo $widget_id; ?>').find('.nav-pills li').on( 'click' , function(e){
 						e.preventDefault();
@@ -230,14 +234,88 @@ if( !class_exists( 'Hatch_Portfolio_Widget' ) ) {
 				'excerpt' => NULL,
 				'filter_label' => __( 'Filter:' , HATCH_THEME_SLUG ),
 				'category' => 0,
-				'columns' => 'columns-3',
-				'content_display_type' => 'grid',
+				'design' => array(
+					'columns' => 'columns-3',
+					'layout' => 'grid',
+				)
 			);
 
 			// Parse $instance
 			$instance_args = wp_parse_args( $instance, $instance_defaults );
-			extract( $instance_args, EXTR_SKIP );
-		?>
+			extract( $instance_args, EXTR_SKIP ); ?>
+
+			<!-- Form HTML Here -->
+			<?php $design_controller = new Hatch_Design_Controller();
+			$design_controller->bar(
+				$this, // Widget Object
+				$instance, // Widget Values
+				array(
+					'layout',
+					'custom',
+					'columns',
+					'liststyle',
+					'textalign',
+					'imagealign',
+					'background'
+				), // Standard Components
+				array(
+					'display' => array(
+						'icon-css' => 'icon-display',
+						'label' => 'Display',
+						'elements' => array(
+								'show_category_filter' => array(
+									'type' => 'checkbox',
+									'name' => $this->get_field_name( 'show_category_filter' ) ,
+									'id' => $this->get_field_id( 'show_category_filter' ) ,
+									'value' => ( isset( $show_category_filter ) ) ? $show_category_filter : NULL,
+									'label' => __( 'Show  Category Filter' , HATCH_THEME_SLUG )
+								),
+								'show_titles' => array(
+									'type' => 'checkbox',
+									'name' => $this->get_field_name( 'show_titles' ) ,
+									'id' => $this->get_field_id( 'show_titles' ) ,
+									'value' => ( isset( $show_titles ) ) ? $show_titles : NULL,
+									'label' => __( 'Show  Item Titles' , HATCH_THEME_SLUG )
+								),
+								'show_dates' => array(
+									'type' => 'checkbox',
+									'name' => $this->get_field_name( 'show_dates' ) ,
+									'id' => $this->get_field_id( 'show_dates' ) ,
+									'value' => ( isset( $show_dates ) ) ? $show_dates : NULL,
+									'label' => __( 'Show  Dates' , HATCH_THEME_SLUG )
+								),
+								'show_excerpts' => array(
+									'type' => 'checkbox',
+									'name' => $this->get_field_name( 'show_excerpts' ) ,
+									'id' => $this->get_field_id( 'show_excerpts' ) ,
+									'value' => ( isset( $show_excerpts ) ) ? $show_excerpts : NULL,
+									'label' => __( 'Show  Excerpts' , HATCH_THEME_SLUG )
+								),
+								'show_author' => array(
+									'type' => 'checkbox',
+									'name' => $this->get_field_name( 'show_author' ) ,
+									'id' => $this->get_field_id( 'show_author' ) ,
+									'value' => ( isset( $show_author ) ) ? $show_author : NULL,
+									'label' => __( 'Show  Author' , HATCH_THEME_SLUG )
+								),
+								'show_tags' => array(
+									'type' => 'checkbox',
+									'name' => $this->get_field_name( 'show_tags' ) ,
+									'id' => $this->get_field_id( 'show_tags' ) ,
+									'value' => ( isset( $show_tags ) ) ? $show_tags : NULL,
+									'label' => __( 'Show  Tags' , HATCH_THEME_SLUG )
+								),
+								'show_comment_count' => array(
+									'type' => 'checkbox',
+									'name' => $this->get_field_name( 'show_comment_count' ) ,
+									'id' => $this->get_field_id( 'show_comment_count' ) ,
+									'value' => ( isset( $show_comment_count ) ) ? $show_comment_count : NULL,
+									'label' => __( 'Show  Comment Count' , HATCH_THEME_SLUG )
+								)
+							)
+					)
+				)
+			); ?>
 			<!-- Form HTML Here -->
 
 			<div class="hatch-container-large">
@@ -360,220 +438,7 @@ if( !class_exists( 'Hatch_Portfolio_Widget' ) ) {
 										</div>
 									</div>
 								</div>
-								<div class="hatch-column hatch-span-6">
-									<div class="hatch-panel">
-										<?php $widget_elements->section_panel_title(
-											array(
-												'type' => 'panel',
-												'title' => __( 'Display Elements' , HATCH_THEME_SLUG ),
-												'tooltip' => __(  'Place your help text here please.', HATCH_THEME_SLUG )
-											)
-										); ?>
-										<div class="hatch-content">
-											<ul class="hatch-checkbox-list">
-												<?php if( 0 == $category ) { ?>
-													<li class="hatch-checkbox">
-														<?php echo $widget_elements->input(
-															array(
-																'type' => 'checkbox',
-																'name' => $this->get_field_name( 'hide_category_filter' ) ,
-																'id' => $this->get_field_id( 'hide_category_filter' ) ,
-																'value' => ( isset( $hide_category_filter ) ) ? $hide_category_filter : NULL,
-																'label' => __( 'Hide Category Filter' , HATCH_THEME_SLUG )
-															)
-														); ?>
-													</li>
-												<?php } // if 0 == category ?>
-												<li class="hatch-checkbox">
-													<?php echo $widget_elements->input(
-														array(
-															'type' => 'checkbox',
-															'name' => $this->get_field_name( 'hide_titles' ) ,
-															'id' => $this->get_field_id( 'hide_titles' ) ,
-															'value' => ( isset( $hide_titles ) ) ? $hide_titles : NULL,
-															'label' => __( 'Hide Item Titles' , HATCH_THEME_SLUG )
-														)
-													); ?>
-												</li>
-												<li class="hatch-checkbox">
-													<?php echo $widget_elements->input(
-														array(
-															'type' => 'checkbox',
-															'name' => $this->get_field_name( 'hide_dates' ) ,
-															'id' => $this->get_field_id( 'hide_dates' ) ,
-															'value' => ( isset( $hide_dates ) ) ? $hide_dates : NULL,
-															'label' => __( 'Hide Dates' , HATCH_THEME_SLUG )
-														)
-													); ?>
-												</li>
-												<li class="hatch-checkbox">
-													<?php echo $widget_elements->input(
-														array(
-															'type' => 'checkbox',
-															'name' => $this->get_field_name( 'hide_excerpts' ) ,
-															'id' => $this->get_field_id( 'hide_excerpts' ) ,
-															'value' => ( isset( $hide_excerpts ) ) ? $hide_excerpts : NULL,
-															'label' => __( 'Hide Excerpts' , HATCH_THEME_SLUG )
-														)
-													); ?>
-												</li>
-												<li class="hatch-checkbox">
-													<?php echo $widget_elements->input(
-														array(
-															'type' => 'checkbox',
-															'name' => $this->get_field_name( 'hide_author' ) ,
-															'id' => $this->get_field_id( 'hide_author' ) ,
-															'value' => ( isset( $hide_author ) ) ? $hide_author : NULL,
-															'label' => __( 'Hide Author' , HATCH_THEME_SLUG )
-														)
-													); ?>
-												</li>
-												<li class="hatch-checkbox">
-													<?php echo $widget_elements->input(
-														array(
-															'type' => 'checkbox',
-															'name' => $this->get_field_name( 'hide_tags' ) ,
-															'id' => $this->get_field_id( 'hide_tags' ) ,
-															'value' => ( isset( $hide_tags ) ) ? $hide_tags : NULL,
-															'label' => __( 'Hide Tags' , HATCH_THEME_SLUG )
-														)
-													); ?>
-												</li>
-												<li class="hatch-checkbox">
-													<?php echo $widget_elements->input(
-														array(
-															'type' => 'checkbox',
-															'name' => $this->get_field_name( 'hide_comment_count' ) ,
-															'id' => $this->get_field_id( 'hide_comment_count' ) ,
-															'value' => ( isset( $hide_comment_count ) ) ? $hide_comment_count : NULL,
-															'label' => __( 'Hide Comment Count' , HATCH_THEME_SLUG )
-														)
-													); ?>
-												</li>
-											</ul>
-										</div>
-									</div>
-
-								</div>
 							</div>
-						</section>
-
-					</li>
-					<li class="hatch-accordion-item">
-
-						<?php $widget_elements->accordian_title(
-							array(
-								'title' => __( 'Layout' , HATCH_THEME_SLUG ),
-								'tooltip' => __( 'Place your help text here please.' , HATCH_THEME_SLUG )
-							)
-						); ?>
-
-						<section class="hatch-accordion-section hatch-content">
-
-							<div class="hatch-row hatch-push-bottom">
-								<div class="hatch-column hatch-span-4">
-									<div class="hatch-panel">
-										<?php $widget_elements->section_panel_title(
-											array(
-												'type' => 'panel',
-												'title' => __( 'List Style' , HATCH_THEME_SLUG ),
-												'tooltip' => __(  'Place your help text here please.', HATCH_THEME_SLUG )
-											)
-										); ?>
-										<div class="hatch-content">
-											<?php echo $widget_elements->input(
-												array(
-													'type' => 'select-icons',
-													'name' => $this->get_field_name( 'content_display_type' ) ,
-													'id' => $this->get_field_id( 'content_display_type' ) ,
-													'value' => ( isset( $content_display_type ) ) ? $content_display_type : NULL,
-													'options' => array(
-														'grid' => __( 'Grid' , HATCH_THEME_SLUG ),
-														'masonry' => __( 'Masonry' , HATCH_THEME_SLUG ),
-														'list' => __( 'List' , HATCH_THEME_SLUG )
-													)
-												)
-											); ?>
-										</div>
-									</div>
-								</div>
-
-								<div class="hatch-column hatch-span-4">
-									<div class="hatch-panel">
-										<?php $widget_elements->section_panel_title(
-											array(
-												'type' => 'panel',
-												'title' => __( 'Columns' , HATCH_THEME_SLUG ),
-												'tooltip' => __(  'Place your help text here please.', HATCH_THEME_SLUG )
-											)
-										); ?>
-										<div class="hatch-content">
-											<?php echo $widget_elements->input(
-												array(
-													'type' => 'select-icons',
-													'name' => $this->get_field_name( 'columns' ) ,
-													'id' => $this->get_field_id( 'columns' ) ,
-													'value' => ( isset( $columns ) ) ? $columns : NULL,
-													'options' => array(
-														'columns-1' => __( '1 Column' , HATCH_THEME_SLUG ),
-														'columns-2' => __( '2 Column' , HATCH_THEME_SLUG ),
-														'columns-3' => __( '3 Column' , HATCH_THEME_SLUG ),
-														'columns-4' => __( '4 Column' , HATCH_THEME_SLUG ),
-														// 'columns-5' => __( '5 Column' , HATCH_THEME_SLUG ), @TODO: Figure Out a 5col method
-														'columns-6' => __( '6 Column' , HATCH_THEME_SLUG )
-													)
-												)
-											); ?>
-										</div>
-									</div>
-								</div>
-
-								<div class="hatch-column hatch-span-4">
-									<div class="hatch-panel">
-										<?php $widget_elements->section_panel_title(
-											array(
-												'type' => 'panel',
-												'title' => __( 'Image Layout' , HATCH_THEME_SLUG ),
-												'tooltip' => __(  'Place your help text here please.', HATCH_THEME_SLUG )
-											)
-										); ?>
-										<div class="hatch-content">
-											<?php echo $widget_elements->input(
-												array(
-													'type' => 'select-icons',
-													'name' => $this->get_field_name( 'image_layout' ) ,
-													'id' => $this->get_field_id( 'image_layout' ) ,
-													'value' => ( isset( $image_layout ) ) ? $image_layout : NULL,
-													'options' => array(
-														'image-left' => __( 'Left' , HATCH_THEME_SLUG ),
-														'image-right' => __( 'Right' , HATCH_THEME_SLUG ),
-														'image-top' => __( 'Top' , HATCH_THEME_SLUG )
-													)
-												)
-											); ?>
-										</div>
-									</div>
-								</div>
-
-							</div>
-
-						</section>
-
-					</li>
-
-					<li class="hatch-accordion-item">
-
-						<?php $widget_elements->accordian_title(
-							array(
-								'title' => __( 'Design' , HATCH_THEME_SLUG ),
-								'tooltip' => __( 'Add a custom background color, image or video to this section of your page.' , HATCH_THEME_SLUG )
-							)
-						); ?>
-
-						<section class="hatch-accordion-section hatch-content">
-
-							Background :)
-
 						</section>
 
 					</li>

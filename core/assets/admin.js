@@ -15,6 +15,7 @@
  * 3 - Color Selectors
  * 4 - Sortable Columns
  * 5 - Tabs
+ * 6 - Design Controller toggles
 */
 
 jQuery(document).ready(function($) {
@@ -25,25 +26,31 @@ jQuery(document).ready(function($) {
 
 	// 1.a - Image Remove Button
 	var file_frame;
-	$(document).on( 'click' , '.hatch-image-uploader .hatch-image-remove' , function(e){
+	$(document).on( 'click' , '.hatch-image-container .hatch-image-remove' , function(e){
 		e.preventDefault();
 
 		// "Hi Mom"
 		$that = $(this);
 
+ 		// Get the container
+ 		$container = $that.closest( '.hatch-image-container' );
+
 		$that.siblings('img').remove();
-		$that.closest( '.hatch-image-uploader' ).removeClass( 'hatch-has-image' );
-		$that.siblings('input').val('').trigger("change").trigger("blur");
+		$container.removeClass( 'hatch-has-image' );
+		$container.find('input').val('').trigger("change").trigger("blur");
 		$that.fadeOut();
 		return false;
 	});
 
 	// 1.b - Image Upload Button
-	$(document).on( 'click' , '.hatch-image-uploader' , function(e){
+	$(document).on( 'click' , '.hatch-image-upload-button' , function(e){
 		e.preventDefault();
 
 		// "Hi Mom"
  		$that = $(this);
+
+ 		// Get the container
+ 		$container = $that.closest( '.hatch-image-container' );
 
 		// If the media frame already exists, reopen it.
 		if ( file_frame ) {
@@ -65,10 +72,10 @@ jQuery(document).ready(function($) {
 			attachment = file_frame.state().get('selection').first().toJSON();
 
 			// Remove any old image
-			$that.find('img').remove();
+			$container.find('img').remove();
 
 			// Fade in Remove button
-			$that.find('.hatch-image-remove').fadeIn();
+			$container.find('.hatch-image-remove').fadeIn();
 
 			// Set attachment to the larege/medium size if they're defined
 			if( undefined !== attachment.sizes.large ) {
@@ -87,13 +94,13 @@ jQuery(document).ready(function($) {
 				width: $attachment.width
 			});
 
-			$that.append( $image );
+			$container.children('.hatch-push-bottom').eq(0).append( $image );
 
 			// Add 'Has Image' Class
-			$that.addClass( 'hatch-has-image' );
+			$container.addClass( 'hatch-has-image' );
 
 			// Trigger change event
-			$that.find('input').val( attachment.id ).trigger("change").trigger("blur");
+			$container.find('input').val( attachment.id ).trigger("change").trigger("blur");
 
 			return;
 		});
@@ -222,7 +229,7 @@ jQuery(document).ready(function($) {
 
 
 	/**
-	* 4 - Tabs
+	* 5 - Tabs
 	*/
 	$( document ).on( 'click' , '.hatch-tabs li' , function(e){
 		e.preventDefault();
@@ -242,4 +249,21 @@ jQuery(document).ready(function($) {
 		// Show/Hide tabs
 		$tab_container.find( 'section' ).eq( $i ).slideDown().siblings().slideUp();
 	});
+
+
+	/**
+	* 6 - Design Controller Toggles
+	*/
+	$( document ).on( 'click' , '.hatch-visuals-wrapper li.hatch-visuals-item .hatch-icon-wrapper' , function(e){
+		e.preventDefault();
+		// "Hi Mom"
+		$that = $(this);
+
+		// Toggle active state
+		$that.parent().toggleClass( 'hatch-active' );
+
+		// Close siblings
+		$that.parent().siblings( '.hatch-visuals-item' ).removeClass( 'hatch-active' );
+	})
+
 });

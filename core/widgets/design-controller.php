@@ -384,7 +384,7 @@ class Hatch_Design_Controller {
 									'label' => __( 'Background Color' , HATCH_THEME_SLUG ),
 									'name' => $widget->get_field_name( 'design' ) . '[background][color]' ,
 									'id' =>  $widget->get_field_id( 'design' ) . '-background-color' ,
-									'value' => ( isset( $values->background['color'] ) ) ? $values->background['tile'] : NULL
+									'value' => ( isset( $values->background['color'] ) ) ? $values->background['color'] : NULL
 								)
 							); ?>
 						</p>

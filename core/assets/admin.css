@@ -38,7 +38,7 @@ div[id*='hatch-widget'] .widget-top .widget-title .in-widget-title{
 }
 
 .hatch-hide{
-    display:  none;
+    display: none !important;
 }
 .customize-control-widget_form.wide-widget-control.expanded:not(.collapsing) div[id*='hatch-widget'] .widget-top{
     background: #0BA6E0;
@@ -283,6 +283,11 @@ div[id*='hatch-widget'] .widget-control-actions{
     padding: 20px;
     position: relative;
 }
+.hatch-content img{
+    max-width: 100%;
+    height: auto;
+    border-radius: 4px;
+}
 
 /*---------------------------*/
 /*- FORM ELEMENTS -----------*/
@@ -291,7 +296,9 @@ div[id*='hatch-widget'] .widget-control-actions{
     padding: 0;
     margin: 0 0 15px;
 }
-.hatch-form-item:last-child{margin-bottom: 0;}
+.hatch-form-item:last-child{
+    margin-bottom: 0;
+}
 
 .hatch-form-item label{
     display: block;
@@ -460,6 +467,7 @@ div[id*='hatch-widget'] .widget-control-actions{
 }
 .hatch-visuals-item{
     position: relative;
+    margin: 0;
 }
 .hatch-visuals-item .hatch-icon-wrapper{
     padding: 10px 5px 8px;
@@ -480,6 +488,7 @@ div[id*='hatch-widget'] .widget-control-actions{
     border-color: transparent;
     color: #fff;
 }
+/*- pop menu -*/
 .hatch-visuals-settings-wrapper{
     position: absolute;
     top: -6px;
@@ -491,6 +500,7 @@ div[id*='hatch-widget'] .widget-control-actions{
     overflow: hidden;
     visibility: hidden;
     opacity: 0;
+    transition: all 0.3s ease-in-out 0.3s;
 }
 .hatch-visuals-settings-wrapper.hatch-small{
     width: 84px;
@@ -499,17 +509,16 @@ div[id*='hatch-widget'] .widget-control-actions{
     right: 95px;
     opacity: 1;
     visibility: visible;
+    transition: all 0.1s ease-in-out 0.1s;
 }
 .hatch-visuals-item.hatch-last .hatch-visuals-settings-wrapper{
     top: auto;
     bottom: -6px;
 }
-
 .hatch-visuals-settings img{
     max-width: 100%;
     border-radius: 4px;
 }
-
 .hatch-quick-links{
     padding: 10px;
     margin: 0;
@@ -537,6 +546,51 @@ div[id*='hatch-widget'] .widget-control-actions{
     color: #000;
 }
 
+    /*-----------------------*/
+    /*- HORIZONTAL ----------*/
+    .hatch-content .hatch-visuals.hatch-visuals-horizontal{
+        margin: -20px -20px 20px;
+        background-color: #f0f0f0;
+    }
+    .hatch-visuals.hatch-visuals-horizontal{
+        width: auto;
+        padding: 5px 10px;
+        border-bottom: 1px solid #eee;
+    }
+    .hatch-visuals.hatch-visuals-horizontal .hatch-visuals-wrapper{
+        border-left: none;
+    }
+    .hatch-visuals-horizontal .hatch-visuals-item{
+        float: left;
+    }
+    .hatch-visuals-horizontal .hatch-visuals-item .hatch-icon-wrapper{
+        padding: 5px;
+        margin: 0 5px 0 0;
+    }
+    .hatch-visuals-horizontal .hatch-visuals-item [class*="icon-"]{
+        font-size: 16px;
+    }
+    .hatch-visuals-horizontal .hatch-icon-description{
+        display: none;
+    }
+    .hatch-visuals-horizontal .hatch-visuals-settings-wrapper{
+        top: 54px !important;
+        right: auto;
+        left: 0;
+        bottom: auto !important;
+    }
+    .hatch-visuals-horizontal .hatch-visuals-item:hover .hatch-visuals-settings-wrapper{
+        top: 44px !important;
+        right: auto;
+        transition: all 0.1s ease-in-out 0.1s;
+    }
+    .hatch-visuals-horizontal .hatch-visuals-settings-wrapper.hatch-small{
+        width: auto;
+    }
+    .hatch-visuals-horizontal .hatch-visuals-settings-wrapper .hatch-icon-wrapper{
+        margin: 5px;
+    }
+
 /*---------------------------*/
 /*- TITLES ------------------*/
 .hatch-controls-title{
@@ -552,7 +606,6 @@ div[id*='hatch-widget'] .widget-control-actions{
     font-size: 20px;
     text-indent: 0;
 }
-
 .hatch-section-title{
     margin-bottom: 20px;
 }

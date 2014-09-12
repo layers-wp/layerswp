@@ -104,7 +104,7 @@ class Hatch_Design_Controller {
 				</span>
 			</a>
 			<?php if( isset( $args['elements'] ) ) { ?>
-			<div class="hatch-visuals-settings-wrapper hatch-animate hatch-content-small">
+			<div class="hatch-visuals-settings-wrapper hatch-content-small">
 				<div class="hatch-visuals-settings">
 					<?php foreach( $args['elements'] as $key => $form_args ) { ?>
 						<p class="hatch-<?php echo $form_args[ 'type' ]; ?>-wrapper hatch-form-item">
@@ -159,7 +159,7 @@ class Hatch_Design_Controller {
 	<?php }
 
 	/**
-	* List Style - Generic Option
+	* List Style - Static Option
 	*
 	* @param  	array     	$widget 	Widget Element
 	* @param  	array     	$values 	Accepts the value for this element
@@ -200,7 +200,7 @@ class Hatch_Design_Controller {
 	<?php }
 
 	/**
-	* Columns - Generic Option
+	* Columns - Static Option
 	*
 	* @param  	array     	$widget 	Widget Element
 	* @param  	array     	$values 	Accepts the value for this element
@@ -245,7 +245,7 @@ class Hatch_Design_Controller {
 	<?php }
 
 	/**
-	* Text Align - Generic Option
+	* Text Align - Static Option
 	*
 	* @param  	array     	$widget 	Widget Element
 	* @param  	array     	$values 	Accepts the value for this element
@@ -285,7 +285,7 @@ class Hatch_Design_Controller {
 	<?php  }
 
 	/**
-	* Image Align - Generic Option
+	* Image Align - Static Option
 	*
 	* @param  	array     	$widget 	Widget Element
 	* @param  	array     	$values 	Accepts the value for this element
@@ -324,7 +324,7 @@ class Hatch_Design_Controller {
 	<?php }
 
 	/**
-	* Fonts - Generic Option
+	* Fonts - Static Option
 	*
 	* @param  	array     	$widget 	Widget Element
 	* @param  	array     	$values 	Accepts the value for this element
@@ -346,7 +346,7 @@ class Hatch_Design_Controller {
 	<?php }
 
 	/**
-	* Background - Generic Option
+	* Background - Static Option
 	*
 	* @param  	array     	$widget 	Widget Element
 	* @param  	array     	$values 	Accepts the value for this element

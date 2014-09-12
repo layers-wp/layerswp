@@ -445,7 +445,7 @@ if( !class_exists( 'Hatch_Banner_Widget' ) ) {
 												'value' => ( isset( $image_layout ) ) ? $image_layout : NULL,
 												'options' => array(
 													'image-left' => __( 'Image Left' , HATCH_THEME_SLUG ),
-													'image-top' => __( 'Image Top' , HATCH_THEME_SLUG ),
+													'image-center' => __( 'Image Center' , HATCH_THEME_SLUG ),
 													'image-right' => __( 'Image Right' , HATCH_THEME_SLUG ),
 												)
 											)

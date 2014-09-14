@@ -29,8 +29,6 @@ class Hatch_Custom_Meta {
 		// Setup some folder variables
 		$meta_dir = '/core/meta/';
 
-		// Include widget control classes
-
 		// Include Config file(s)
 		locate_template( $meta_dir . 'config.php' , true );
 

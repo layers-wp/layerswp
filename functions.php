@@ -60,6 +60,11 @@ locate_template( '/core/customizer/init.php' , true );
 locate_template( '/core/meta/init.php' , true );
 
 /*
+ * Load Options Panel
+ */
+locate_template( '/core/options-panel/init.php' , true );
+
+/*
  * Load Admin-specific files
  */
 if( is_admin() ){
@@ -120,7 +125,7 @@ if( ! function_exists( 'hatch_setup' ) ) {
 		) );
 
 	}
-	add_action( 'init' , 'hatch_setup', 0 );
+	add_action( 'init' , 'hatch_setup', 10 );
 }
 
 

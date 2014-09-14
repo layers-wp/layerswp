@@ -477,6 +477,7 @@ div[id*='hatch-widget'] .widget-control-actions{
     border-radius: 4px;
     text-align: center;
     color: #444;
+    outline: 0;
 }
 .hatch-visuals-item .hatch-icon-wrapper.hatch-active{
     background-color: #fff;
@@ -500,16 +501,15 @@ div[id*='hatch-widget'] .widget-control-actions{
     overflow: hidden;
     visibility: hidden;
     opacity: 0;
-    transition: all 0.3s ease-in-out 0.3s;
+    transition: all 0.3s ease-in-out 0.1s;
 }
 .hatch-visuals-settings-wrapper.hatch-small{
     width: 84px;
 }
-.hatch-visuals-item:hover .hatch-visuals-settings-wrapper{
+.hatch-visuals-item.hatch-active .hatch-visuals-settings-wrapper{
     right: 95px;
     opacity: 1;
     visibility: visible;
-    transition: all 0.1s ease-in-out 0.1s;
 }
 .hatch-visuals-item.hatch-last .hatch-visuals-settings-wrapper{
     top: auto;
@@ -580,7 +580,7 @@ div[id*='hatch-widget'] .widget-control-actions{
         left: 0;
         bottom: auto !important;
     }
-    .hatch-visuals-horizontal .hatch-visuals-item:hover .hatch-visuals-settings-wrapper{
+    .hatch-visuals-horizontal .hatch-visuals-item.hatch-active .hatch-visuals-settings-wrapper{
         top: 44px !important;
         right: auto;
         transition: all 0.1s ease-in-out 0.1s;

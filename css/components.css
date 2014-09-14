@@ -1,11 +1,67 @@
 /*-------------------------------*/
+/*- ADVANCED LAYOUTS ------------*/
+/*-------------------------------*/
+.advanced-layout{display: flex; flex-direction: row;}
+.advanced-layout .container{margin: auto;}
+
+.advanced-layout header .container{padding: 0;}
+
+.advanced-layout-left header{order: 1; width: 20%;}
+.advanced-layout-left .wrapper-content{order: 2; width: 80%;}
+
+.advanced-layout-right header{order: 2; width: 20%;}
+.advanced-layout-right .wrapper-content{order: 1;}
+.advanced-layout-right .nav-vertical .sub-menu{left: -220px;}
+.advanced-layout-right .nav-vertical li:hover > .sub-menu{left: -210px;}
+
+/*-------------------------------*/
+/*- HEADERS ---------------------*/
+/*-------------------------------*/
+
+    /*---------------------------*/
+    /*- ALIGNMENT LEFT ----------*/
+    .header-left .logo{float: left; overflow: hidden;}
+    .header-left .mark{display: inline-block; vertical-align: middle; width: auto; margin: 0 10px 0 0;}
+    .header-left .sitename{display: inline-block; vertical-align: middle; margin: 0 10px 0 0;}
+    .header-left .tagline{display: inline-block; vertical-align: middle;}
+
+    .header-left nav{float: right;}
+
+    /*---------------------------*/
+    /*- ALIGNMENT RIGHT ---------*/
+    .header-right .logo{float: right; overflow: hidden;}
+    .header-right .mark{display: inline-block; vertical-align: middle; width: auto; margin: 0 10px 0 0;}
+    .header-right .sitename{display: inline-block; vertical-align: middle; margin: 0 10px 0 0;}
+    .header-right .tagline{display: inline-block; vertical-align: middle;}
+    .header-right nav{float: left;}
+
+    /*---------------------------*/
+    /*- ALIGNMENT CENTER --------*/
+    .header-center{text-align: center;}
+    .header-center .logo{float: none;}
+    .header-center .mark{display: block;}
+    .header-center .sitename{display: block;}
+    .header-center .tagline{display: block;}
+    .header-center nav{clear: both; text-align: center; margin-top: 20px;}
+
+    /*---------------------------*/
+    /*- POSITION OVERLAY --------*/
+    .header-fixed{background: none; position: absolute; top: 0px; left: 0; width: 100%; z-index: 100;}
+
+    /*---------------------------*/
+    /*- NAVIGATION POSITION -----*/
+    .nav-clear .logo{float: none;}
+    .nav-clear nav{float: none; clear: both; margin: 10px 0;}
+
+
+/*-------------------------------*/
 /*- SLIDER ----------------------*/
 /*-------------------------------*/
 
     /*---------------------------*/
     /*- SLIDER CONTENT ----------*/
 	.swiper-slide .copy-container{max-width: 1040px; margin: auto; padding: 0; position: relative; top: 50%; -webkit-transform: translateY(-50%); -ms-transform: translateY(-50%); transform: translateY(-50%); text-shadow: 0px 0px 20px rgba(0, 0, 0, 0.6);}
-	.swiper-slide .image-container{position: relative; top: 50%; -webkit-transform: translateY(-50%); -ms-transform: translateY(-50%); transform: translateY(-50%);}
+	.swiper-slide .image-container{position: relative; top: 50%; -webkit-transform: translateY(-50%); -ms-transform: translateY(-50%); transform: translateY(-50%); text-align: center;}
 	
     /*---------------------------*/
     /*- SLIDER IMAGES -----------*/
@@ -44,7 +100,7 @@
 
     /*---------------------------*/
     /*- PRICE & AMOUNT SETUP ----*/
-    .price{display: inline-block; padding: 2px 7px; background: #fff; border-radius: 4px; border: 1px solid #eee;}
+    .price{display: inline-block;}
     .amount{color: #93B25E; font-weight: 600;}
     .price del{color: #999; margin-right: 5px;}
     del .amount{color: #999; font-weight: 400;}
@@ -78,7 +134,7 @@
     .products li{padding: 20px; background: #f5f5f5; border-radius: 4px; overflow: hidden;}
     .products li a:first-child{display: block;}
     .products .img-wrap{margin: -20px -20px 20px;}
-    .products h3{margin: 0px 0px 10px; color: #8F8F8F; font-size: 2.0rem;}
+    .products h3{margin: 0px 0px 10px; font-size: 2.0rem;}
     .products li .star-rating{position: absolute; top: 8px; right: 10px;}
     .products .price{display: inline-block; margin: 0 0 20px;}
     .products .button.add_to_cart_button{}
@@ -102,7 +158,7 @@
             /*- PRODUCT CART ----*/
             .cart{margin-bottom: 20px; overflow: hidden;}
             .quantity{float: left; margin-right: 20px;}
-            .quantity input{float: left; height: 35px;}
+            .quantity input{float: left; height: 36px;}
             .qty{width: 60px; text-align: center; border-left: none; border-right: none; border-radius: 0px;}
             .minus, .plus{width: 40px; background: #454545; border-radius: 4px 0 0 4px; color: #fff; font-weight: 600; text-align: center;}
             .plus{border-radius: 0 4px 4px 0;}

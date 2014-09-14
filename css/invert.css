@@ -1,0 +1,46 @@
+
+
+    /*---------------------------*/
+    /*- INVERT ------------------*/
+    .invert{border: none; color: #fff;}
+    .invert h5{color: #323232;}
+    .invert code{background: rgba(255, 255, 255, 0.2); color: #fff; padding: 2px 4px;}
+    .invert label, .invert legend{color: #fff;}
+    .invert small{color: #ccc;}
+    .invert a{color: #fff;}
+    .invert a:hover{color: #fff;}
+    .invert .heading{color: #fff;}
+    .invert input, .invert textarea, .invert select{border-color: transparent;}
+    .invert .input-prepend .add-on, .invert .input-append .add-on{border-color: transparent; background: #323232; color: #fff;}
+
+    .invert .section-title .heading, .invert.section-title .heading{color: #fff;}
+    .invert .section-title .excerpt, .invert.section-title .excerpt{color: rgba(255, 255, 255, 0.8);}
+    .invert .avatar-image{border-color: #fff; box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.4);}
+    
+
+        /*-----------------------*/
+        /*- LOGO INVERT ---------*/
+        .invert .sitename{color: #fff;}
+        .invert .tagline{color: #fff; opacity: 0.9}
+
+        /*-----------------------*/
+        /*- PAGE TITLES INVERT --*/        
+        .invert .heading{color: #fff;}
+        .invert .sub-header{color: #fff; opacity: 0.9;}
+        .invert .excerpt{color: #fff; opacity: 0.8;}
+
+        /*-----------------------*/
+        /*- NAV INVERT ----------*/
+        .invert .nav a{color: #fff; opacity: 0.8;}
+        .invert .nav a:hover{color: #fff; opacity: 1;}
+
+
+    /*---------------------------*/
+    /*- INVERT BLOCK ------------*/
+    .invert-block{padding: 10px; margin: 20px 0 0; background: #323232; border-radius: 0 0 4px 4px; overflow: hidden; color: #ccc;}
+
+        .content .invert-block{padding: 20px; margin: 20px -20px -20px;}
+        .content-small .invert-block{padding: 10px; margin: 20px -10px -10px;}
+        .content-large .invert-block{padding: 10px 30px; margin: 20px -30px -30px;}
+
+        .thumbnail .invert-block{margin: 20px -20px -20px;}

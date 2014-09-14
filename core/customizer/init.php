@@ -54,6 +54,7 @@ class Hatch_Customizer {
 			isset( $_GET[ 'hatch-builder' ] )
 			|| ( !isset( $_GET[ 'url' ] ) && 0 != get_option( 'page_on_front' )  && HATCH_BUILDER_TEMPLATE == get_post_meta ( get_option( 'page_on_front' ) , '_wp_page_template' , true ) )
 		) {
+			$wp_customize->get_panel( 'widgets' )->position = 1;
 			$wp_customize->get_panel( 'widgets' )->title = __('Hatch: Page Builder', HATCH_THEME_SLUG );
 			$wp_customize->get_panel( 'widgets' )->description = __('Use this area to add widgets to your page, use the (Hatch) widgets for the Body section.', HATCH_THEME_SLUG );
 			// @TODO: Get rid of Warning: Creating default object from empty value in /Users/marc/Sites/obox.beta/wp-content/themes/hatch-theme/core/customizer/init.php on line 57

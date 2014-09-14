@@ -42,7 +42,7 @@ add_action( 'template_redirect', 'hatch_set_content_width' );
 /*
  * Third Party Scripts
  */
-// require get_template_directory() . '/core/third_party/wp_editor.php';
+locate_template( '/core/third_party/site-logo/site-logo.php' , true );
 
 /*
  * Load Widgets
@@ -98,6 +98,16 @@ if( ! function_exists( 'hatch_setup' ) ) {
 			),
 			'size' => 150,
 		) );
+
+		/**
+		 * Add support a custom background
+		 */
+		add_theme_support( 'custom-background' );
+
+		/**
+		 * Add support a custom background
+		 */
+		add_theme_support( 'custom-header' );
 
 		/**
 		 * This theme uses wp_nav_menu() in one location.

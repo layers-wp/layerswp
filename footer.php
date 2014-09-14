@@ -2,6 +2,7 @@
 			<a href="#top"><?php _e( 'Back to top' , HATCH_THEME_SLUG ); ?></a>
 		</div> <!-- back-to-top -->
 
+		<?php do_action( 'hatch_before_footer' ); ?>
 		<footer id="footer">
 			<div class="container content-main clearfix">
 
@@ -56,8 +57,10 @@
 			</div>
 
 		</footer><!-- END / FOOTER -->
+		<?php do_action( 'hatch_after_footer' ); ?>
 
-	</div><!-- END / MAIN SITE #wrapper -->
+	</section><!-- END / MAIN SITE #wrapper -->
+	<?php do_action( 'hatch_after_site_wrapper' ); ?>
 	<?php wp_footer(); ?>
 </body>
 </html>

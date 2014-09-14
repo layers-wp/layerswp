@@ -638,6 +638,10 @@ div[id*='hatch-widget'] .widget-control-actions{
     line-height: 30px;
     color: #777;
 }
+.hatch-section-title .hatch-excerpt + .hatch-button{
+    margin-top: 20px;
+}
+
 
         /*-----------------------*/
         /*- SECTION SIZE --------*/
@@ -653,8 +657,9 @@ div[id*='hatch-widget'] .widget-control-actions{
         .hatch-section-title.hatch-tiny .hatch-heading{font-size: 16px; line-height: 26px; font-weight:  700;}
         .hatch-section-title.hatch-tiny .hatch-excerpt{margin-top: 0px !important; font-size: 14px; line-height: 24px;}
 
+        .invert.hatch-section-title{text-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3);}
         .invert.hatch-section-title .hatch-heading{color: #fff;}
-        .invert.hatch-section-title .hatch-excerpt{color: rgba(255, 255, 255, 0.8);}
+        .invert.hatch-section-title .hatch-excerpt{color: rgba(255, 255, 255, 0.95);}
 
 
 
@@ -1278,3 +1283,25 @@ input[type=radio]:checked + .hatch-settings-icon span{
     border-bottom: 0 none;
     color: #454545;
 }
+
+
+/*---------------------------*/
+/*- INTERFACE COPY ----------*/
+
+    /*-----------------------*/
+    /*- FEATURE LIST --------*/
+    .hatch-feature-list{
+        margin-bottom: 26px;
+    }
+    .hatch-feature-list li{
+        padding-left: 26px;
+        margin-bottom: 10px;
+        background: url(images/copy-tick.png) 0 no-repeat;
+        background-size: 16px 16px;
+    }
+    .hatch-feature-list li.cross{
+        background-image: url(images/copy-cross.png);
+        background-size: 16px 16px;
+    }
+
+

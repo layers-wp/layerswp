@@ -60,8 +60,8 @@ class Site_Logo_Image_Control extends WP_Customize_Control {
 		wp_enqueue_media();
 
 		// Enqueue our control script and styles.
-		wp_enqueue_style( 'site-logo-control', plugins_url( '../css/site-logo-control.css', __FILE__ ) );
-		wp_enqueue_script( 'site-logo-control', plugins_url( '../js/site-logo-control.js', __FILE__ ), array( 'media-views', 'customize-controls', 'underscore' ), '', true );
+		wp_enqueue_style( 'site-logo-control', HATCH_TEMPLATE_URI . '/core/third_party/site-logo/css/site-logo-control.css' );
+		wp_enqueue_script( 'site-logo-control', HATCH_TEMPLATE_URI . '/core/third_party/site-logo/js/site-logo-control.js', array( 'media-views', 'customize-controls', 'underscore' ), '', true );
 	}
 
 	/**

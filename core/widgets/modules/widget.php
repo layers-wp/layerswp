@@ -123,6 +123,9 @@ if( !class_exists( 'Hatch_Widget_Column_Widget' ) ) {
 				'module_ids' => '1,2,3,4'
 			);
 
+			// If we have information in this widget, then ignore the defaults
+			if( !empty( $instance ) ) $instance_defaults = array();
+
 			// Parse $instance
 			$instance_args = wp_parse_args( $instance, $instance_defaults );
 			extract( $instance_args, EXTR_SKIP ); ?>
@@ -230,6 +233,9 @@ if( !class_exists( 'Hatch_Widget_Column_Widget' ) ) {
 				'title' => 'Widget Area ' . $this->column_count,
 				'excerpt' => NULL
 			);
+
+			// If we have information in this widget, then ignore the defaults
+			if( !empty( $instance ) ) $instance_defaults = array();
 
 			// Parse $instance
 			$instance_args = wp_parse_args( $instance, $instance_defaults );

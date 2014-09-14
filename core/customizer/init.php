@@ -61,7 +61,6 @@ class Hatch_Customizer {
 					'description' => __('Use this area to add widgets to your page, use the (Hatch) widgets for the Body section.', HATCH_THEME_SLUG )
 				)
 			);
-			// @TODO: Get rid of Warning: Creating default object from empty value in /Users/marc/Sites/obox.beta/wp-content/themes/hatch-theme/core/customizer/init.php on line 57
 		}
 
 		// Enqueue Styles
@@ -91,7 +90,11 @@ class Hatch_Customizer {
 		);
 
 		// Localize Scripts
-		wp_localize_script( HATCH_THEME_SLUG . '-admin-customizer' , "hatch_customizer_params", array( 'ajaxurl' => admin_url( "admin-ajax.php" ) , 'nonce' => wp_create_nonce( 'hatch-customizer-actions' ) ) );
+		wp_localize_script( HATCH_THEME_SLUG . '-admin-customizer' , "hatch_customizer_params", array(
+															'ajaxurl' => admin_url( "admin-ajax.php" ) ,
+															'nonce' => wp_create_nonce( 'hatch-customizer-actions' ),
+															'builder_page' => ( isset( $_GET[ 'hatch-builder' ] ) ? TRUE : FALSE )
+														) );
 	}
 
 	/**

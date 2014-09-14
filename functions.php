@@ -77,6 +77,7 @@ if( is_admin() ){
 
 if( ! function_exists( 'hatch_setup' ) ) {
 	function hatch_setup(){
+		global $pagenow;
 
 		/**
 		 * Add support for widgets inside the customizer
@@ -133,6 +134,14 @@ if( ! function_exists( 'hatch_setup' ) ) {
 			'before_title'	=> '<h4 class="widget-title">',
 			'after_title'	=> '</h4>',
 		) );
+
+		/**
+		* Welcome Redirect
+		*/
+		if( !get_option( 'hatch_welcome' ) && isset($_GET["activated"]) && $pagenow = "themes.php") {
+			update_option( 'hatch_welcome' , 1);
+			wp_redirect(admin_url('admin.php?page=' . HATCH_THEME_SLUG . '-welcome'));
+		}
 
 	}
 	add_action( 'init' , 'hatch_setup', 10 );

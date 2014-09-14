@@ -25,7 +25,7 @@ class Hatch_Design_Controller {
 		// Set widget values as an object ( we like working with objects)
 		if( empty( $instance ) ) {
 			$values = (object) array( 'design' => NULL );
-		} else {
+		} elseif( isset( $instance[ 'design' ] ) ) {
 			$values = (object) $instance[ 'design' ];
 		} ?>
 

@@ -23,9 +23,9 @@ if( !class_exists( 'Hatch_Contact_Widget' ) ) {
 		private $post_type = '';
 		private $taxonomy = '';
 		public $checkboxes = array(
-				'hide_google_map',
-				'hide_address',
-				'hide_contact_form'
+				'show_google_map',
+				'show_address',
+				'show_contact_form'
 			);
 
 		/**
@@ -67,7 +67,7 @@ if( !class_exists( 'Hatch_Contact_Widget' ) ) {
 				<?php if( '' != $widget->title || '' != $widget->excerpt  || '' != $widget->address_shown ) { ?>
 					<div class="container content clearfix">
 						<div class="section-title clearfix <?php if( isset( $widget->title_size ) ) echo $widget->title_size; ?>">
-							<?php if( '' != $widget->address_shown && !isset( $widget->hide_address ) ) { ?>
+							<?php if( '' != $widget->address_shown && !isset( $widget->show_address ) ) { ?>
 								<small class="pull-right span-2">
 									<?php echo $widget->address_shown; ?>
 								</small>
@@ -81,7 +81,7 @@ if( !class_exists( 'Hatch_Contact_Widget' ) ) {
 						</div>
 					</div>
 				<?php } // if title || excerpt ?>
-				<?php if( !isset( $widget->hide_google_map ) && ( '' != $widget->google_maps_location || '' != $widget->google_maps_long_lat ) ) { ?>
+				<?php if( !isset( $widget->show_google_map ) && ( '' != $widget->google_maps_location || '' != $widget->google_maps_long_lat ) ) { ?>
 					<div class="hatch-map invert with-background <?php if( isset( $widget->layout ) && 'boxed' == $widget->layout ) echo 'container'; ?> " style="height: 670px;" <?php if( '' != $widget->google_maps_location ) { ?>data-location="<?php echo $widget->google_maps_location; ?>"<?php } ?> <?php if( '' != $widget->google_maps_long_lat ) { ?>data-longlat="<?php echo $widget->google_maps_long_lat; ?>"<?php } ?>></div>
 				<?php } ?>
 			</section>
@@ -128,6 +128,9 @@ if( !class_exists( 'Hatch_Contact_Widget' ) ) {
 				'google_maps_location' => NULL,
 				'google_maps_long_lat' => NULL
 			);
+
+			// If we have information in this widget, then ignore the defaults
+			if( !empty( $instance ) ) $instance_defaults = array();
 
 			// Parse $instance
 			$instance_args = wp_parse_args( $instance, $instance_defaults );
@@ -274,9 +277,9 @@ if( !class_exists( 'Hatch_Contact_Widget' ) ) {
 													<?php echo $widget_elements->input(
 														array(
 															'type' => 'checkbox',
-															'name' => $this->get_field_name( 'hide_google_map' ) ,
-															'id' => $this->get_field_id( 'hide_google_map' ) ,
-															'value' => ( isset( $hide_google_map ) ) ? $hide_google_map : NULL,
+															'name' => $this->get_field_name( 'show_google_map' ) ,
+															'id' => $this->get_field_id( 'show_google_map' ) ,
+															'value' => ( isset( $show_google_map ) ) ? $show_google_map : NULL,
 															'label' => __( 'Hide Google Map', HATCH_THEME_SLUG )
 														)
 													); ?>
@@ -285,9 +288,9 @@ if( !class_exists( 'Hatch_Contact_Widget' ) ) {
 													<?php echo $widget_elements->input(
 														array(
 															'type' => 'checkbox',
-															'name' => $this->get_field_name( 'hide_address' ) ,
-															'id' => $this->get_field_id( 'hide_address' ) ,
-															'value' => ( isset( $hide_address ) ) ? $hide_address : NULL,
+															'name' => $this->get_field_name( 'show_address' ) ,
+															'id' => $this->get_field_id( 'show_address' ) ,
+															'value' => ( isset( $show_address ) ) ? $show_address : NULL,
 															'label' => __( 'Hide Address', HATCH_THEME_SLUG )
 														)
 													); ?>
@@ -296,9 +299,9 @@ if( !class_exists( 'Hatch_Contact_Widget' ) ) {
 													<?php echo $widget_elements->input(
 														array(
 															'type' => 'checkbox',
-															'name' => $this->get_field_name( 'hide_contact_form' ) ,
-															'id' => $this->get_field_id( 'hide_contact_form' ) ,
-															'value' => ( isset( $hide_contact_form ) ) ? $hide_contact_form : NULL,
+															'name' => $this->get_field_name( 'show_contact_form' ) ,
+															'id' => $this->get_field_id( 'show_contact_form' ) ,
+															'value' => ( isset( $show_contact_form ) ) ? $show_contact_form : NULL,
 															'label' => __( 'Hide Contact Form', HATCH_THEME_SLUG )
 														)
 													); ?>

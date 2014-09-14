@@ -44,6 +44,7 @@ class Hatch_Widgets {
 		require $module_dir . 'html.php';
 		require $module_dir . 'module.php';
 		require $module_dir . 'portfolio.php';
+		require $module_dir . 'posts.php';
 		require $module_dir . 'services.php';
 		require $module_dir . 'social.php';
 		require $module_dir . 'team.php';

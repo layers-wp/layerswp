@@ -83,6 +83,9 @@ if( !class_exists( 'Hatch_HTML_Widget' ) ) {
 				'html' => NULL,
 			);
 
+			// If we have information in this widget, then ignore the defaults
+			if( !empty( $instance ) ) $instance_defaults = array();
+
 			// Parse $instance
 			$instance_args = wp_parse_args( $instance, $instance_defaults );
 			extract( $instance_args, EXTR_SKIP );

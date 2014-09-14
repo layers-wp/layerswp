@@ -37,9 +37,9 @@ class Hatch_Options_Panel {
 	}
 
 	/**
-	*	Header
+	* Header
 	*/
-	public function header( $args = array() ){ 
+	public function header( $args = array() ){
 
 		// Turn $args into an object because it's nicer to use as a template
 		$vars = (object) $args; ?>
@@ -50,10 +50,10 @@ class Hatch_Options_Panel {
 	<?php }
 
 	/**
-	*	Body
+	* Body
 	*/
-	public function body( $partial = NULL ){ 
-		if( NULL == $partial ) return; 
+	public function body( $partial = NULL ){
+		if( NULL == $partial ) return;
 
 		// Include Partials, we're using require so that inside the partial we can use $this to access the header and footer
 		require $this->options_panel_dir . 'partials/' . $partial . '.php';
@@ -61,7 +61,7 @@ class Hatch_Options_Panel {
 	}
 
 	/**
-	*	Footer
+	* Footer
 	*/
 	public function footer( $args = array() ){ ?>
 		<footer>
@@ -69,21 +69,25 @@ class Hatch_Options_Panel {
 	<?php }
 }
 
+/**
+ * Add admin menu
+ */
 
 function hatch_options_panel_menu(){
 
-	/**
-	 * Add admin menu
-	 */
-
-	add_menu_page( HATCH_THEME_TITLE, HATCH_THEME_TITLE, 'edit_theme_options', HATCH_THEME_SLUG . '-welcome', 'hatch_options_panel_ui', 'dashicons-smiley', 3); 
-
-
+	// Welcome Page
+	add_menu_page(
+			HATCH_THEME_TITLE,
+			HATCH_THEME_TITLE,
+			'edit_theme_options',
+			HATCH_THEME_SLUG . '-welcome',
+			'hatch_options_panel_ui',
+			'dashicons-smiley',
+			3
+	);
 }
 
 add_action( 'admin_menu' , 'hatch_options_panel_menu' , 50 );
-
-
 
 /**
 *  Kicking this off with the 'ad' hook

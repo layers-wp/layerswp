@@ -1,13 +1,13 @@
 <?php  /**
- * Portfolio Widget
+ * Posts Widget
  *
  * This file is used to register and display the Hatch - Portfolio widget.
  *
  * @package Hatch
  * @since Hatch 1.0
  */
-if( !class_exists( 'Hatch_Portfolio_Widget' ) ) {
-	class Hatch_Portfolio_Widget extends WP_Widget {
+if( !class_exists( 'Hatch_Posts_Widget' ) ) {
+	class Hatch_Posts_Widget extends WP_Widget {
 
 		/**
 		* Widget variables
@@ -18,19 +18,24 @@ if( !class_exists( 'Hatch_Portfolio_Widget' ) ) {
 	 	* @param  	varchar    		$taxonomy    		(optional) Taxonomy slug for use as an ID/classname
 	 	* @param  	array 			$checkboxes    	(optional) Array of checkbox names to be saved in this widget. Don't forget these please!
 	 	*/
-		private $widget_title = 'Portfolio';
-		private $widget_id = 'portfolio';
-		private $post_type = 'jetpack-portfolio';
-		private $taxonomy = 'jetpack-portfolio-type';
+		private $widget_title = 'Posts';
+		private $widget_id = 'posts';
+		private $post_type = 'posts';
+		private $taxonomy = 'category';
 		public $checkboxes = array(
 				'show_titles',
+				'show_dates',
+				'show_featured_image',
 				'show_excerpts',
-				'show_category_filter'
+				'show_author',
+				'show_cagegories',
+				'show_tags',
+				'show_comment_count'
 			); // @TODO: Try make this more dynamic, or leave a different note reminding users to change this if they add/remove checkboxes
 		/**
 		*  Widget construction
 		*/
-	 	function Hatch_Portfolio_Widget(){
+	 	function Hatch_Posts_Widget(){
 	 		/* Widget settings. */
 			$widget_ops = array( 'classname' => 'obox-hatch-' . $this->widget_id .'-widget', 'description' => 'This widget is used to display your ' . $this->widget_title . '.' );
 
@@ -228,11 +233,10 @@ if( !class_exists( 'Hatch_Portfolio_Widget' ) ) {
 				'excerpt' => NULL,
 				'filter_label' => __( 'Filter:' , HATCH_THEME_SLUG ),
 				'category' => 0,
-				'show_titles' => 'on',
-				'show_excerpts' => 'on',
 				'design' => array(
 					'columns' => 'columns-3',
-					'layout' => 'grid',
+					'layout' => 'list-boxed',
+					'liststyle' => 'list-list',
 				)
 			);
 
@@ -275,6 +279,13 @@ if( !class_exists( 'Hatch_Portfolio_Widget' ) ) {
 									'id' => $this->get_field_id( 'show_titles' ) ,
 									'value' => ( isset( $show_titles ) ) ? $show_titles : NULL,
 									'label' => __( 'Show  Item Titles' , HATCH_THEME_SLUG )
+								),
+								'show_featured_image' => array(
+									'type' => 'checkbox',
+									'name' => $this->get_field_name( 'show_featured_image' ) ,
+									'id' => $this->get_field_id( 'show_featured_image' ) ,
+									'value' => ( isset( $show_featured_image ) ) ? $show_featured_image : NULL,
+									'label' => __( 'Show  Featured Images' , HATCH_THEME_SLUG )
 								),
 								'show_dates' => array(
 									'type' => 'checkbox',
@@ -320,8 +331,8 @@ if( !class_exists( 'Hatch_Portfolio_Widget' ) ) {
 			<div class="hatch-container-large">
 
 				<?php $widget_elements->header( array(
-					'title' =>  __( 'Portfolio' , HATCH_THEME_SLUG ),
-					'icon_class' =>'portfolio'
+					'title' =>  __( 'Posts' , HATCH_THEME_SLUG ),
+					'icon_class' =>'post'
 				) ); ?>
 
 				<ul class="hatch-accordions">
@@ -447,5 +458,5 @@ if( !class_exists( 'Hatch_Portfolio_Widget' ) ) {
 	} // Class
 
 	// Add our function to the widgets_init hook.
-	 register_widget("Hatch_Portfolio_Widget");
+	 register_widget("Hatch_Posts_Widget");
 }

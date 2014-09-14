@@ -109,16 +109,45 @@ div[id*='hatch-widget'] .widget-control-actions{
     border-radius: 4px;
     background: rgba(255, 255, 255, 0.8);
 }
+
+/*---------------------------*/
+/*- CONTAINERS --------------*/
+.hatch-container{
+    max-width: 1000px;
+    margin: auto;
+}
 .hatch-container-large{
     padding-bottom: 50px;
     position: relative;
     overflow: hidden;
     z-index: 99;
 }
+.hatch-content-small{
+    padding: 10px;
+}
+.hatch-content{
+    padding: 20px;
+    position: relative;
+}
+.hatch-content-large{
+    padding: 40px;
+    position: relative;
+}
+.hatch-content-massive{
+    padding: 60px;
+    position: relative;
+}
+.hatch-content img{
+    max-width: 100%;
+    height: auto;
+    border-radius: 4px;
+}
+.hatch-well{
+    background: #fff;
+}
 
 /*---------------------------*/
 /*- ICONS -------------------*/
-
 [class^="icon-"], [class*=" icon-"]{
     font-size: 32px;
 }
@@ -142,7 +171,6 @@ div[id*='hatch-widget'] .widget-control-actions{
 
 /*---------------------------*/
 /*- THE GRID ----------------*/
-
 .hatch-row:before, .hatch-row:after{content: " "; display: table;}
 .hatch-row:after{clear: both;}
 .hatch-row{*zoom: 1;}
@@ -272,21 +300,6 @@ div[id*='hatch-widget'] .widget-control-actions{
 }
 .hatch-animate{
     transition: all 0.2s ease-in-out;
-}
-
-/*---------------------------*/
-/*- CONTAINERS --------------*/
-.hatch-content-small{
-    padding: 10px;
-}
-.hatch-content{
-    padding: 20px;
-    position: relative;
-}
-.hatch-content img{
-    max-width: 100%;
-    height: auto;
-    border-radius: 4px;
 }
 
 /*---------------------------*/
@@ -610,21 +623,40 @@ div[id*='hatch-widget'] .widget-control-actions{
 .hatch-section-title{
     margin-bottom: 20px;
 }
-.hatch-section-title .heading{
+.hatch-section-title .hatch-heading{
     margin: 0;
     padding: 0;
-    font-size: 16px;
-    line-height: 26px;
+    font-size: 28px;
+    line-height: 38px;
     color: #222;
 }
-.hatch-section-title .excerpt{
-    max-width: 440px;
+.hatch-section-title .hatch-excerpt{
+    max-width: 830px;
     margin: 10px 0 0;
     padding: 0;
-    font-size: 12px;
-    line-height: 22px;
+    font-size: 20px;
+    line-height: 30px;
     color: #777;
 }
+
+        /*-----------------------*/
+        /*- SECTION SIZE --------*/
+        .hatch-section-title.hatch-large{margin-bottom: 15px;}
+        .hatch-section-title.hatch-large .hatch-heading{font-size: 44px; line-height: 54px;}
+        .hatch-section-title.hatch-large .hatch-excerpt{max-width: 830px; font-size: 26px; line-height: 36px;}
+
+        .hatch-section-title.hatch-small{margin-bottom: 15px;}
+        .hatch-section-title.hatch-small .hatch-heading{font-size: 24px; line-height: 34px;}
+        .hatch-section-title.hatch-small .hatch-excerpt{font-size: 16px; line-height: 26px;}
+
+        .hatch-section-title.hatch-tiny{margin-bottom: 15px;}
+        .hatch-section-title.hatch-tiny .hatch-heading{font-size: 16px; line-height: 26px; font-weight:  700;}
+        .hatch-section-title.hatch-tiny .hatch-excerpt{margin-top: 0px !important; font-size: 14px; line-height: 24px;}
+
+        .invert.hatch-section-title .hatch-heading{color: #fff;}
+        .invert.hatch-section-title .hatch-excerpt{color: rgba(255, 255, 255, 0.8);}
+
+
 
 /*---------------------------*/
 /*- BUTTONS -----------------*/
@@ -1246,6 +1278,3 @@ input[type=radio]:checked + .hatch-settings-icon span{
     border-bottom: 0 none;
     color: #454545;
 }
-
-
-

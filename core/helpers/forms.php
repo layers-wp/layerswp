@@ -149,6 +149,14 @@ class Hatch_Form_Elements {
 				<input type="text" <?php echo implode ( ' ' , $input_props ); ?> value="<?php echo $input->value; ?>" />
 			<?php break;
 			/**
+			* Number Inputs
+			*/
+			case 'number' :
+				$input_props['min'] = ( NULL != $input->min ) ? 'min="' .  $input->min . '"' : NULL ;
+				$input_props['max'] = ( NULL != $input->max ) ? 'max="' .  $input->max . '"' : NULL ; ?>
+				<input type="number" <?php echo implode ( ' ' , $input_props ); ?> value="<?php echo $input->value; ?>" />
+			<?php break;
+			/**
 			* Checkboxes - here we look for on/NULL, that's how WP widgets save them
 			*/
 			case 'checkbox' : ?>

@@ -366,15 +366,18 @@ class Hatch_Design_Controller {
 			</a>
 			<div class="hatch-visuals-settings-wrapper hatch-animate hatch-content-small">
 				<div class="hatch-visuals-settings">
-					<?php echo $this->input(
-						array(
-							'type' => 'image',
-							'label' => __( 'Upload Image' , HATCH_THEME_SLUG ),
-							'name' => $widget->get_field_name( 'design' ) . '[background][image]' ,
-							'id' =>  $widget->get_field_id( 'design' ) . '-background-image' ,
-							'value' => ( isset( $values->background['image'] ) ) ? $values->background['image'] : NULL
-						)
-					); ?>
+					<div class="background-image <?php if( isset( $values->background['image'] ) ) echo 'has-image'; ?>">
+						<a class="hatch-image-remove <?php if( !isset( $values->background['image'] ) ) echo 'hatch-hide'; ?>" href=""><?php _e( 'Remove' , HATCH_THEME_SLUG ); ?></a>
+						<?php echo $this->input(
+							array(
+								'type' => 'image',
+								'label' => __( 'Upload Image' , HATCH_THEME_SLUG ),
+								'name' => $widget->get_field_name( 'design' ) . '[background][image]' ,
+								'id' =>  $widget->get_field_id( 'design' ) . '-background-image' ,
+								'value' => ( isset( $values->background['image'] ) ) ? $values->background['image'] : NULL
+							)
+						); ?>
+					</div>
 					<section>
 						<p class="hatch-form-item">
 							<label><?php _e( 'Color' , HATCH_THEME_SLUG ); ?></label>
@@ -414,10 +417,10 @@ class Hatch_Design_Controller {
 							<?php echo $this->input(
 								array(
 									'type' => 'checkbox',
-									'label' => __( 'Fixed' , HATCH_THEME_SLUG ),
-									'name' => $widget->get_field_name( 'design' ) . '[background][fixed]' ,
-									'id' =>  $widget->get_field_id( 'design' ) . '-background-fixed' ,
-									'value' => ( isset( $values->background['fixed'] ) ) ? $values->background['fixed'] : NULL
+									'label' => __( 'Parallax' , HATCH_THEME_SLUG ),
+									'name' => $widget->get_field_name( 'design' ) . '[background][parallax]' ,
+									'id' =>  $widget->get_field_id( 'design' ) . '-background-parallax' ,
+									'value' => ( isset( $values->background['parallax'] ) ) ? $values->background['parallax'] : NULL
 								)
 							); ?>
 						</p>
@@ -429,17 +432,6 @@ class Hatch_Design_Controller {
 									'name' => $widget->get_field_name( 'design' ) . '[background][darken]' ,
 									'id' =>  $widget->get_field_id( 'design' ) . '-background-darken' ,
 									'value' => ( isset( $values->background['darken'] ) ) ? $values->background['darken'] : NULL
-								)
-							); ?>
-						</p>
-						<p class="hatch-checkbox-wrapper">
-							<?php echo $this->input(
-								array(
-									'type' => 'checkbox',
-									'label' => __( 'Parallax' , HATCH_THEME_SLUG ),
-									'name' => $widget->get_field_name( 'design' ) . '[background][parallax]' ,
-									'id' =>  $widget->get_field_id( 'design' ) . '-background-parallax' ,
-									'value' => ( isset( $values->background['parallax'] ) ) ? $values->background['parallax'] : NULL
 								)
 							); ?>
 						</p>

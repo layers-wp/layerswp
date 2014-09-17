@@ -7,17 +7,17 @@
  * @since Hatch 1.0
  */
 if( !class_exists( 'Hatch_Portfolio_Widget' ) ) {
-	class Hatch_Portfolio_Widget extends WP_Widget {
+	class Hatch_Portfolio_Widget extends Hatch_Widget {
 
 		/**
 		* Widget variables
 		*
-	 	* @param  	varchar    		$widget_title    	Widget title
-	 	* @param  	varchar    		$widget_id    		Widget slug for use as an ID/classname
-	 	* @param  	varchar    		$post_type    		(optional) Post type for use in widget options
-	 	* @param  	varchar    		$taxonomy    		(optional) Taxonomy slug for use as an ID/classname
-	 	* @param  	array 			$checkboxes    	(optional) Array of checkbox names to be saved in this widget. Don't forget these please!
-	 	*/
+		* @param  	varchar    		$widget_title    	Widget title
+		* @param  	varchar    		$widget_id    		Widget slug for use as an ID/classname
+		* @param  	varchar    		$post_type    		(optional) Post type for use in widget options
+		* @param  	varchar    		$taxonomy    		(optional) Taxonomy slug for use as an ID/classname
+		* @param  	array 			$checkboxes    	(optional) Array of checkbox names to be saved in this widget. Don't forget these please!
+		*/
 		private $widget_title = 'Portfolio';
 		private $widget_id = 'portfolio';
 		private $post_type = 'jetpack-portfolio';
@@ -30,8 +30,8 @@ if( !class_exists( 'Hatch_Portfolio_Widget' ) ) {
 		/**
 		*  Widget construction
 		*/
-	 	function Hatch_Portfolio_Widget(){
-	 		/* Widget settings. */
+		function Hatch_Portfolio_Widget(){
+			/* Widget settings. */
 			$widget_ops = array( 'classname' => 'obox-hatch-' . $this->widget_id .'-widget', 'description' => 'This widget is used to display your ' . $this->widget_title . '.' );
 
 			/* Widget control settings. */
@@ -39,29 +39,38 @@ if( !class_exists( 'Hatch_Portfolio_Widget' ) ) {
 
 			/* Create the widget. */
 			$this->WP_Widget( HATCH_THEME_SLUG . '-widget-' . $this->widget_id , '(' . HATCH_THEME_TITLE . ') ' . $this->widget_title . ' Widget', $widget_ops, $control_ops );
-	 	}
+
+			/* Setup Widget Defaults */
+			$this->defaults = array (
+				'title' => NULL,
+				'excerpt' => NULL,
+				'text_style' => 'regular',
+				'filter_label' => __( 'Filter:' , HATCH_THEME_SLUG ),
+				'category' => 0,
+				'show_titles' => 'on',
+				'show_excerpts' => 'on',
+				'design' => array(
+					'layout' => 'layout-boxed',
+					'textalign' => 'text-center',
+					'columns' => 'columns-3',
+					'layout' => 'grid',
+				)
+			);
+		}
 
 		/**
 		*  Widget front end display
 		*/
-	 	function widget( $args, $instance ) {
+		function widget( $args, $instance ) {
 
 			// Turn $args array into variables.
 			extract( $args );
 
 			// $instance Defaults
-			$instance_defaults = array (
-				'title' => NULL,
-				'excerpt' => NULL,
-				'filter_label' => __( 'Filter:' , HATCH_THEME_SLUG ),
-				'category' => 0,
-				'posts_per_page' => -1,
-				'order_by' => 'post_date',
-				'design' => array(
-					'columns' => 'columns-3',
-					'layout' => 'grid',
-				)
-			);
+			$instance_defaults = $this->defaults;
+
+			// If we have information in this widget, then ignore the defaults
+			if( !empty( $instance ) ) $instance_defaults = array();
 
 			// Parse $instance
 			$instance = wp_parse_args( $instance, $instance_defaults );
@@ -69,9 +78,16 @@ if( !class_exists( 'Hatch_Portfolio_Widget' ) ) {
 			// Turn $instance into an object named $widget, makes for neater code
 			$widget = (object) $instance;
 
- 			// Set the span class for each column
-			$col_count = str_ireplace('columns-', '', $widget->design[ 'columns']  );
-			$span_class = 'span-' . ( 12/ $col_count );
+			// Set the span class for each column
+			if( 'list-list' == $widget->design[ 'liststyle' ] ) {
+				$span_class = 'span-12';
+			} else {
+				$col_count = str_ireplace('columns-', '', $widget->design[ 'columns']  );
+				$span_class = 'span-' . ( 12/ $col_count );
+			}
+
+			// Set the background styling
+			if( !empty( $widget->design[ 'background' ] ) ) $this->widget_styles( $widget_id , 'background', $widget->design[ 'background' ] );
 
 			// Begin query arguments
 			$query_args = array();
@@ -98,7 +114,7 @@ if( !class_exists( 'Hatch_Portfolio_Widget' ) ) {
 			<section class="widget row" id="<?php echo $widget_id; ?>">
 				<?php if( '' != $widget->title || '' != $widget->excerpt ) { ?>
 					<div class="container content clearfix">
-						<div class="section-title <?php if( isset( $widget->title_size ) ) echo $widget->title_size; ?> <?php if( isset( $widget->title_alignment ) ) echo $widget->title_alignment; ?> clearfix"> <?php // @TODO: get alignment to work here ?>
+						<div class="section-title <?php if( isset( $widget->design['textalign'] ) ) echo $widget->design['textalign']; ?> clearfix">
 							<?php if( '' != $widget->title ) { ?>
 								<h3 class="heading"><?php echo $widget->title; ?></h3>
 							<?php } ?>
@@ -108,15 +124,17 @@ if( !class_exists( 'Hatch_Portfolio_Widget' ) ) {
 						</div>
 					</div>
 				<?php } ?>
-				<?php if( isset( $widget->show_category_filter ) && !is_wp_error( $terms ) ) { ?>
-					<ul class="nav nav-pills push-top">
-						<li><span><?php echo $widget->filter_label; ?></span></li>
-						<?php foreach( $terms as $term ) { ?>
-							<li data-filter="<?php echo $term->slug; ?>"><a href="#"><?php echo $term->name; ?></a></li>
-						<?php } // foreach $terms ?>
-					</ul>
-				<?php } ?>
-				<div class="row <?php if( isset( $widget->design[ 'layout' ] ) && 'boxed' == $widget->design[ 'layout' ] ) echo 'container'; ?>   <?php  if( isset( $widget->design[ 'liststyle' ] ) ) echo $widget->design[ 'liststyle' ]; ?>">
+						<?php if( isset( $widget->show_category_filter ) && !is_wp_error( $terms ) ) { ?>
+							<div class="row  <?php if( isset( $widget->design[ 'layout' ] ) && 'layout-boxed' == $widget->design[ 'layout' ] ) echo 'container'; ?>">
+								<ul class="nav nav-pills push-top">
+									<li><span><?php echo $widget->filter_label; ?></span></li>
+									<?php foreach( $terms as $term ) { ?>
+										<li data-filter="<?php echo $term->slug; ?>"><a href="#"><?php echo $term->name; ?></a></li>
+									<?php } // foreach $terms ?>
+								</ul>
+							</div>
+						<?php } ?>
+				<div class="row <?php if( isset( $widget->design[ 'layout' ] ) && 'layout-boxed' == $widget->design[ 'layout' ] ) echo 'container'; ?> <?php  if( isset( $widget->design[ 'liststyle' ] ) ) echo $widget->design[ 'liststyle' ]; ?>">
 					<?php if( $post_query->have_posts() ) { ?>
 						<?php while( $post_query->have_posts() ) { global $post; ?>
 							<?php $terms = wp_get_post_terms( $post->ID, $this->taxonomy );
@@ -126,32 +144,36 @@ if( !class_exists( 'Hatch_Portfolio_Widget' ) ) {
 									$term_list[] = $term->slug;
 								}
 							} // @TODO: Turn this into some sort of helper which just returns the slugs hatch_get_term_slugs_for_post() could work ?>
-							<?php $post_query->the_post() ?>
-							<div class="column-flush <?php echo $span_class; ?> hatch-masonry-column <?php echo implode( $term_list, " " ); ?>">
-								<div class="thumbnail">
-									<a href="" class="thumbnail-media with-overlay">
-										<?php the_post_thumbnail( 'large' ); ?>
+							<?php $post_query->the_post(); ?>
+							<?php if( 'list-list' == $widget->design[ 'liststyle' ] ) { ?>
+								<?php get_template_part( 'content' , 'list' ); ?>
+							<?php } else { ?>
+								<div class="column<?php if( 'list-masonry' == $widget->design[ 'liststyle' ] ) echo '-flush'; ?> <?php echo $span_class; ?> hatch-masonry-column <?php echo implode( $term_list, " " ); ?>">
+									<div class="thumbnail">
+										<a href="" class="thumbnail-media with-overlay">
+											<?php the_post_thumbnail( 'large' ); ?>
 
-										<?php  if( isset( $widget->design[ 'liststyle' ] ) && 'list-masonry' != $widget->design[ 'liststyle' ] ) { ?>
-											<?php if( isset( $widget->show_titles ) || isset( $widget->show_excerpts ) ) { ?>
-											<div class="thumbnail-body">
-												<?php if( isset( $widget->show_titles ) ) { ?>
-													<h4 class="heading"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h4>
+											<?php  if( isset( $widget->text_style ) && 'overlay' != $widget->text_style ) { ?>
+												<?php if( isset( $widget->show_titles ) || isset( $widget->show_excerpts ) ) { ?>
+													<div class="thumbnail-body">
+														<?php if( isset( $widget->show_titles ) ) { ?>
+															<h4 class="heading"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h4>
+														<?php } ?>
+														<?php if( isset( $widget->show_excerpts ) ) the_excerpt(); ?>
+													</div>
 												<?php } ?>
-												<?php if( isset( $widget->show_excerpts ) ) the_excerpt(); ?>
-											</div>
+											<?php } else { ?>
+												<span class="overlay">
+													<?php if( isset( $widget->show_titles ) ) { ?>
+														<span class="heading"><?php the_title(); ?></span>
+													<?php } // if show_titles ?>
+													<span class="button">Call to action</span>
+												</span>
 											<?php } ?>
-										<?php } else { ?>
-											<span class="overlay">
-												<?php if( isset( $widget->show_titles ) ) { ?>
-													<span class="heading"><?php the_title(); ?></span>
-												<?php } // if show_titles ?>
-												<span class="button">Call to action</span>
-											</span>
-										<?php } ?>
-									</a>
+										</a>
+									</div>
 								</div>
-							</div>
+							<?php }; // if list-list == liststyle ?>
 						<?php }; // while have_posts ?>
 					<?php }; // if have_posts ?>
 				</div>
@@ -194,13 +216,13 @@ if( !class_exists( 'Hatch_Portfolio_Widget' ) ) {
 			<?php // Reset WP_Query
 				wp_reset_postdata();
 			?>
-	 	<?php }
+		<?php }
 
 		/**
 		*  Widget update
 		*/
 
-	 	function update($new_instance, $old_instance) {
+		function update($new_instance, $old_instance) {
 			if ( isset( $this->checkboxes ) ) {
 				foreach( $this->checkboxes as $cb ) {
 					if( isset( $old_instance[ $cb ] ) ) {
@@ -223,18 +245,7 @@ if( !class_exists( 'Hatch_Portfolio_Widget' ) ) {
 			$widget_elements = new Hatch_Form_Elements();
 
 			// $instance Defaults
-			$instance_defaults = array (
-				'title' => NULL,
-				'excerpt' => NULL,
-				'filter_label' => __( 'Filter:' , HATCH_THEME_SLUG ),
-				'category' => 0,
-				'show_titles' => 'on',
-				'show_excerpts' => 'on',
-				'design' => array(
-					'columns' => 'columns-3',
-					'layout' => 'grid',
-				)
-			);
+			$instance_defaults = $this->defaults;
 
 			// If we have information in this widget, then ignore the defaults
 			if( !empty( $instance ) ) $instance_defaults = array();
@@ -254,7 +265,6 @@ if( !class_exists( 'Hatch_Portfolio_Widget' ) ) {
 					'columns',
 					'liststyle',
 					'textalign',
-					'imagealign',
 					'background'
 				), // Standard Components
 				array(
@@ -276,40 +286,23 @@ if( !class_exists( 'Hatch_Portfolio_Widget' ) ) {
 									'value' => ( isset( $show_titles ) ) ? $show_titles : NULL,
 									'label' => __( 'Show  Item Titles' , HATCH_THEME_SLUG )
 								),
-								'show_dates' => array(
-									'type' => 'checkbox',
-									'name' => $this->get_field_name( 'show_dates' ) ,
-									'id' => $this->get_field_id( 'show_dates' ) ,
-									'value' => ( isset( $show_dates ) ) ? $show_dates : NULL,
-									'label' => __( 'Show  Dates' , HATCH_THEME_SLUG )
-								),
 								'show_excerpts' => array(
 									'type' => 'checkbox',
 									'name' => $this->get_field_name( 'show_excerpts' ) ,
 									'id' => $this->get_field_id( 'show_excerpts' ) ,
 									'value' => ( isset( $show_excerpts ) ) ? $show_excerpts : NULL,
-									'label' => __( 'Show  Excerpts' , HATCH_THEME_SLUG )
+									'label' => __( 'Show Item Excerpts' , HATCH_THEME_SLUG )
 								),
-								'show_author' => array(
-									'type' => 'checkbox',
-									'name' => $this->get_field_name( 'show_author' ) ,
-									'id' => $this->get_field_id( 'show_author' ) ,
-									'value' => ( isset( $show_author ) ) ? $show_author : NULL,
-									'label' => __( 'Show  Author' , HATCH_THEME_SLUG )
-								),
-								'show_tags' => array(
-									'type' => 'checkbox',
-									'name' => $this->get_field_name( 'show_tags' ) ,
-									'id' => $this->get_field_id( 'show_tags' ) ,
-									'value' => ( isset( $show_tags ) ) ? $show_tags : NULL,
-									'label' => __( 'Show  Tags' , HATCH_THEME_SLUG )
-								),
-								'show_comment_count' => array(
-									'type' => 'checkbox',
-									'name' => $this->get_field_name( 'show_comment_count' ) ,
-									'id' => $this->get_field_id( 'show_comment_count' ) ,
-									'value' => ( isset( $show_comment_count ) ) ? $show_comment_count : NULL,
-									'label' => __( 'Show  Comment Count' , HATCH_THEME_SLUG )
+								'text_style' => array(
+									'type' => 'select',
+									'name' => $this->get_field_name( 'text_style' ) ,
+									'id' => $this->get_field_id( 'text_style' ) ,
+									'value' => ( isset( $text_position ) ) ? $text_position : NULL,
+									'label' => __( 'Title &amp; Excerpt Position' , HATCH_THEME_SLUG ),
+									'options' => array(
+											'regular' => __( 'Regular' , HATCH_THEME_SLUG ),
+											'overlay' => __( 'Overlay' , HATCH_THEME_SLUG )
+									)
 								)
 							)
 					)
@@ -365,7 +358,7 @@ if( !class_exists( 'Hatch_Portfolio_Widget' ) ) {
 							</div>
 
 							<div class="hatch-row clearfix">
-								<div class="hatch-column hatch-span-6">
+								<div class="hatch-column hatch-span-12">
 									<div class="hatch-panel">
 										<?php $widget_elements->section_panel_title(
 											array(
@@ -413,11 +406,12 @@ if( !class_exists( 'Hatch_Portfolio_Widget' ) ) {
 												$select_options = $widget_elements->get_incremental_options( $select_options , 1 , 20 , 1);
 												echo $widget_elements->input(
 													array(
-														'type' => 'select',
+														'type' => 'number',
 														'name' => $this->get_field_name( 'posts_per_page' ) ,
 														'id' => $this->get_field_id( 'posts_per_page' ) ,
 														'value' => ( isset( $posts_per_page ) ) ? $posts_per_page : NULL ,
-														'options' => $select_options
+														'min' => '-1',
+														'max' => '100'
 													)
 												); ?>
 											</p>

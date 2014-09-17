@@ -7,7 +7,6 @@ jQuery(document).ready(function($){
 	$( 'ul[id^="banner_list_"]' ).sortable({
 		placeholder: "hatch-sortable-drop",
 		stop: function(e , li){
-
 			// Banner UL, looking up from our current target
 			$bannerList = li.item.closest( 'ul' );
 

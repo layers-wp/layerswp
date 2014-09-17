@@ -16,9 +16,10 @@
  * 4 - Sortable Columns
  * 5 - Tabs
  * 6 - Design Controller toggles
+ * 7 - Design Controller Height Matcher
 */
 
-jQuery(document).ready(function($) {
+jQuery(function($) {
 
 	/**
 	* 1 - Media Uploaders
@@ -200,7 +201,6 @@ jQuery(document).ready(function($) {
 	*/
 	hatch_set_color_selectors();
 	$(document).on ( 'mouseup' , '#available-widgets .widget-tpl' , function(){
-		console.log( "mah" );
 		jQuery('.hatch-color-selector').wpColorPicker(); // @TODO: Get the color picker to work on new elements
 	} );
 
@@ -254,7 +254,7 @@ jQuery(document).ready(function($) {
 	/**
 	* 6 - Design Controller Toggles
 	*/
-	$( document ).on( 'click' , '.hatch-visuals-wrapper li.hatch-visuals-item .hatch-icon-wrapper' , function(e){
+	$( document ).on( 'click' , '.hatch-visuals-wrapper li.hatch-visuals-item a.hatch-icon-wrapper' , function(e){
 		e.preventDefault();
 		// "Hi Mom"
 		$that = $(this);
@@ -264,6 +264,31 @@ jQuery(document).ready(function($) {
 
 		// Close siblings
 		$that.parent().siblings( '.hatch-visuals-item' ).removeClass( 'hatch-active' );
-	})
+	});
+
+	$( document ).on( 'click' , '.hatch-visuals-wrapper li.hatch-visuals-item label.hatch-icon-wrapper' , function(e){
+		// "Hi Mom"
+		$that = $(this);
+
+		// Toggle active state
+		$that.addClass( 'hatch-active' );
+
+		// Close siblings
+		$that.siblings( '.hatch-icon-wrapper' ).removeClass( 'hatch-active' );
+	});
+
+
+	/**
+	* 7 - Design Controller Height Matcher
+	*/
+	$(window).bind( 'resize load', function(){
+		hatch_set_visual_wrapper_height();
+	} );
+	function hatch_set_visual_wrapper_height(){
+
+		// Set the visual wrapper to the same height as the window
+		$( '.hatch-visuals-wrapper' ).css( 'height' , $(window).height() );
+	}
 
 });
+

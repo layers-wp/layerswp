@@ -193,6 +193,15 @@ h1, h2, h3, h4, h5, h6{color: #000; font-weight: 200;}
 
     .clearit{clear: both;}
 
+    .text-left{text-align: left;}
+    .text-right{text-align: right;}
+    .text-center{text-align: center;}
+    .text-justify{text-align: justify;}
+
+    .image-left{}
+    .image-right{}
+    .image-center{}
+
 /*-------------------------------*/
 /*- CONTAINERS ------------------*/
 /*-------------------------------*/
@@ -219,17 +228,6 @@ h1, h2, h3, h4, h5, h6{color: #000; font-weight: 200;}
     .well{background: #F3F3F3;}
     .well-block{background: #fff; border: 3px solid #eee;}
 
-    .well-block.well-block-thin{border-width: 2px;}
-    .well-block:hover{border-color: #8F8F8F;}
-
-    .well-block.well-block-transparent{border-color: transparent;}
-    .well-block.well-block-transparent:hover{border-color: #ddd;}
-
-    .well-stitched{background: #fff; border: 3px dashed #eee; border-radius: 4px;}
-    a.well-stitched:hover{border-color: #8F8F8F;}
-
-    .well-stitched-secondary{background: #fff; border: 3px dashed #A3C567; border-radius: 4px;}
-
     /*---------------------------*/
     /*- SCROLL BLOCK ------------*/
     .scroll-block{overflow-y: scroll;}
@@ -244,11 +242,11 @@ h1, h2, h3, h4, h5, h6{color: #000; font-weight: 200;}
     .content-large{padding: 30px;}
     .content-extra-large{padding: 40px;}
     .content-massive{padding: 60px;}
-    
+
     .content-vertical{padding-top: 20px; padding-bottom: 20px;}
     .content-vertical-large{padding-top: 30px; padding-bottom: 30px;}
-	.content-vertical-extra-large{padding-top: 40px; padding-bottom: 40px;}
-	.content-vertical-massive{padding-top: 60px; padding-bottom: 60px;}
+    .content-vertical-extra-large{padding-top: 40px; padding-bottom: 40px;}
+    .content-vertical-massive{padding-top: 60px; padding-bottom: 60px;}
 
     .sky{padding-top: 100px;}
     .basement{padding-bottom: 60px;} /*-- content already adds 40px to the base --*/
@@ -281,14 +279,14 @@ h1, h2, h3, h4, h5, h6{color: #000; font-weight: 200;}
     /*---------------------------*/
     /*- LOGO --------------------*/
     .logo{float: left; padding: 0;}
-    .mark{display: inline-block; margin: auto;}
-    .sitename{font-size: 1.8rem; font-weight: 600; text-transform: uppercase;}
+    .site-logo-anchor, .mark{display: inline-block; margin: auto;}
+    .site-logo-anchor img, .mark img{display: inline-block; margin: auto; vertical-align: middle;}
+    .sitename{font-size: 1.8rem; font-weight: 600;}
     .tagline{display: block; color: #8F8F8F; font-size: 1.4rem; font-weight: 600;}
 
-	.mark + .sitename{margin-top: 10px;}
-    .mark.small{max-height: 40px;}
+    .mark + .sitename{margin-top: 10px;}
 
-	.column .logo{float: none;}
+    .column .logo{float: none;}
 
 
     /*---------------------------*/
@@ -301,14 +299,14 @@ h1, h2, h3, h4, h5, h6{color: #000; font-weight: 200;}
     .title-container .excerpt{max-width: 745px; margin-top: 10px; font-size: 2.4rem; color: #8F8F8F;}
     .title-container .excerpt + .btn-group{margin-top: 30px;}
     .title-container .excerpt + .btn-collection{margin-top: 30px;}
-    .title .t-center .excerpt{margin-left: auto; margin-right: auto;}
+    .title .text-center .excerpt{margin-left: auto; margin-right: auto;}
 
     .title{padding: 60px 20px; max-width: 1040px; margin: auto;}
     .title.small{padding: 10px;}
     .title.large{padding: 30px;}
     .title.extra-large{padding: 40px;}
     .title.massive{padding: 60px;}
-    
+
     .title .column{margin-bottom: 0;}
     .title img{display: block;}
 
@@ -351,8 +349,8 @@ h1, h2, h3, h4, h5, h6{color: #000; font-weight: 200;}
 
     /*---------------------------*/
     /*- SECTION ALIGNMENTS ------*/
-    .section-title.t-center{text-align: center;}
-    .section-title.t-center p{margin-left: auto; margin-right: auto;}
+    .section-title.text-center{text-align: center;}
+    .section-title.text-center p{margin-left: auto; margin-right: auto;}
     .section-title + .extra-margin{margin-top: 40px;}
 
     /*---------------------------*/
@@ -363,9 +361,9 @@ h1, h2, h3, h4, h5, h6{color: #000; font-weight: 200;}
 /*-------------------------------*/
 /*- FOOTER ----------------------*/
 /*-------------------------------*/
-#footer{}
-#footer .container{max-width: 1040px;}
-#footer .section-nav-title{color: #323232; margin-bottom: 15px;}
+.footer{clear: both;}
+.footer .container{max-width: 1040px;}
+.footer .section-nav-title{color: #323232; margin-bottom: 15px;}
 
 .link-list li{margin: 0 0 6px;}
 
@@ -402,7 +400,7 @@ h1, h2, h3, h4, h5, h6{color: #000; font-weight: 200;}
     /*---------------------------*/
     /*- HORIZONTAL NAV ----------*/
     .nav-horizontal{font-size: 1.4rem;}
-	.nav-horizontal li{float: left;}
+    .nav-horizontal li{float: left;}
     .nav-horizontal a{display: block; padding: 4px 10px; font-weight: 600; color: #323232; border-radius: 4px; text-transform: uppercase; text-align: center;}
     .nav-horizontal a:hover{color: #8F8F8F;}
 
@@ -418,8 +416,8 @@ h1, h2, h3, h4, h5, h6{color: #000; font-weight: 200;}
 
     /*---------------------------*/
     /*- HORIZONTAL NAV CENTERED -*/
-	.nav-centered{text-align: center; width: 100%;}
-	.nav-centered li{float: none; display: inline-block; margin: 0;}
+    .nav-centered{text-align: center; width: 100%;}
+    .nav-centered li{float: none; display: inline-block; margin: 0;}
 
 
     /*---------------------------*/
@@ -442,8 +440,8 @@ h1, h2, h3, h4, h5, h6{color: #000; font-weight: 200;}
 
     /*---------------------------*/
     /*- TABBED NAV --------------*/
-	.nav.large{font-size: 2.0rem;}
-	.nav.medium{font-size: 1.6rem;}
+    .nav.large{font-size: 2.0rem;}
+    .nav.medium{font-size: 1.6rem;}
 
     /*---------------------------*/
     /*- TABBED NAV --------------*/
@@ -533,7 +531,7 @@ h1, h2, h3, h4, h5, h6{color: #000; font-weight: 200;}
     .pagination li.next{margin-right: 10px; border: none;}
     .pagination li.next a{border-radius: 0 4px 4px 0;}
     .pagination li.next + li a{border-radius: 4px 0px 0px 4px;}
-    
+
 
 /*-------------------------------*/
 /*- COMPONENTS ------------------*/
@@ -586,10 +584,10 @@ h1, h2, h3, h4, h5, h6{color: #000; font-weight: 200;}
     .marketing .button{margin-top: 15px;}
     .marketing .btn-group .button{margin-top: 0px;}
 
-    .marketing.t-center .marketing-icon{float: none; width: 100%; text-align: center; margin-right: auto; margin-left: auto;}
-    .marketing.t-center .marketing-body{float: none; width: 100%; padding: 20px 0 0; text-align: center;}
+    .marketing.image-center .marketing-icon{float: none; width: 100%; text-align: center; margin-right: auto; margin-left: auto;}
+    .marketing.image-center .marketing-body{float: none; width: 100%; padding: 20px 0 0; text-align: center;}
 
-    .marketing.marketing-right .marketing-icon{float: right;}
+    .marketing.image-right .marketing-icon{float: right; margin-right: 0; margin-left: 15px;}
 
     .marketing.small .marketing-icon{margin-right: 10px;}
     .marketing.small .heading{font-size: 1.6rem; font-weight: 600; color: #323232;}
@@ -721,9 +719,9 @@ h1, h2, h3, h4, h5, h6{color: #000; font-weight: 200;}
     /*- TOOLTIPS ----------------*/
     .tooltip{cursor: help; position: relative;}
     .tooltip:after{width: 220px; padding: 15px; background: rgba(0, 0, 0, 0.85); border-radius: 4px; position: absolute; left: -15px; bottom: 40px; z-index: 98; color: #f0f0f0; content: attr(title);
-    				visibility: hidden; opacity: 0; transition: all 0.2s ease-in-out;}
+                    visibility: hidden; opacity: 0; transition: all 0.2s ease-in-out;}
     .tooltip:before{border: solid; border-color: rgba(0, 0, 0, 0.85) transparent; border-width: 6px 6px 0 6px; content: ""; position: absolute; left: 15px; bottom: 34px; z-index: 99;
-    				visibility: hidden; opacity: 0; transition: all 0.2s ease-in-out;}
+                    visibility: hidden; opacity: 0; transition: all 0.2s ease-in-out;}
 
     .tooltip:hover:after{opacity: 1; visibility: visible; bottom: 35px;}
     .tooltip:hover:before{opacity: 1; visibility: visible; bottom: 29px;}
@@ -736,8 +734,7 @@ h1, h2, h3, h4, h5, h6{color: #000; font-weight: 200;}
 
     /*---------------------------*/
     /*- FOOTER COPY -------------*/
-    .madeinafrica{font-size: 1.0rem; text-transform: uppercase; letter-spacing: 2px; color: #323232; font-weight: 600;}
-    .copyright{margin-top: 40px; padding-top: 20px; border-top: 2px solid rgba(0, 0, 0, 0.1); font-size: 1.2rem; color: #788898;}
+    .copyright{margin-top: 20px; padding-top: 20px; border-top: 2px solid rgba(0, 0, 0, 0.1); font-size: 1.2rem; color: #999;}
     .copyright .column{margin-bottom: 0;}
     .copyright .nav-horizontal li{margin: 0 0 0 10px;}
     .copyright .nav-horizontal a{padding: 0; color: #454545; text-transform: uppercase; font-weight: 600; font-size: 1.0rem; letter-spacing: 2px;}
@@ -759,9 +756,9 @@ h1, h2, h3, h4, h5, h6{color: #000; font-weight: 200;}
 
     /*---------------------------*/
     /*- FORM BUTTONS ------------*/
-    input[type=button],             input[type=submit], 			button{width: auto; border: none; cursor: pointer; font-weight: 600; font-size: 1.4rem; font-style: normal; -webkit-appearance: none; -moz-appearance: none;}
-    input[type=button]:hover,       input[type=submit]:hover, 		button:hover{cursor: pointer;}
-    input[type=button]:disabled,    input[type=submit]:disabled, 	button:hover{background: #ccc; color: #999;}
+    input[type=button],             input[type=submit],             button{width: auto; border: none; cursor: pointer; font-weight: 600; font-size: 1.4rem; font-style: normal; -webkit-appearance: none; -moz-appearance: none;}
+    input[type=button]:hover,       input[type=submit]:hover,       button:hover{cursor: pointer;}
+    input[type=button]:disabled,    input[type=submit]:disabled,    button:hover{background: #ccc; color: #999;}
     input[type=submit] + span{float: left; font-style: italic; margin: 2px 0px 0px 10px; font-size: 1.1rem;}
 
     /*---------------------------*/
@@ -792,10 +789,17 @@ h1, h2, h3, h4, h5, h6{color: #000; font-weight: 200;}
 
     /*---------------------------*/
     /*- FORM ROWS LARGE ---------*/
-    .large label{font-size: 1.6rem;}
-    .large input[type=email], .large input[type=text], .large input[type=password]{height: 47px; font-size: 2.0rem;}
-    .large .input-append .add-on, .large .input-prepend .add-on{line-height: 43px;}
-    .large .input-append input[type=submit], .large .input-append input[type=button], .large .input-append button{height: 47px;}
+    form.large label{font-size: 1.6rem;}
+    form.large input[type=email], form.large input[type=text], form.large input[type=password]{height: 47px; font-size: 2.0rem;}
+    form.large .input-append .add-on, form.large .input-prepend .add-on{line-height: 43px;}
+    form.large .input-append input[type=submit], form.large .input-append input[type=button], form.large .input-append button{height: 47px;}
+
+    /*---------------------------*/
+    /*- FORM ROWS SMALL ---------*/
+    form.small .form-row{margin-bottom: 5px;}
+    form.small input[type=email], form.small input[type=text], form.small input[type=password]{height: 32px; font-size: 1.4rem;}
+    form.small .input-append .add-on, form.small .input-prepend .add-on{line-height: 28px;}
+    form.small .input-append input[type=submit], form.small .input-append input[type=button], form.small .input-append button{height: 32px;}
 
     /*---------------------------*/
     /*- CHECKBOX ----------------*/
@@ -1012,10 +1016,10 @@ table.table-comfortable td{padding: 14px 10px;}
     .copy p{margin-bottom: 16px;}
     .copy ul{list-style: disc; margin: 0 0 26px;}
     .copy ul li{list-style: disc; margin: 0 0 6px 30px;}
-	
+
     .copy ol{list-style: decimal; margin: 0 0 26px;}
-	.copy ol li{list-style: decimal; margin: 0 0 6px 20px;}
-	
+    .copy ol li{list-style: decimal; margin: 0 0 6px 20px;}
+
     .copy ul ul, .copy ul ol, .copy ol ol, .copy ol ul{margin-bottom: 0;}
 
     .copy a{border-bottom: 1px solid #ddd;}
@@ -1037,7 +1041,7 @@ table.table-comfortable td{padding: 14px 10px;}
 
     .copy blockquote{padding-left: 26px; margin-bottom: 20px; font-weight: 600; font-size: 2.0rem;}
 
-	.copy a.button{border-bottom: none;}
+    .copy a.button{border-bottom: none;}
 
     .story{font-size: 2.0rem;}
 
@@ -1095,7 +1099,7 @@ table.table-comfortable td{padding: 14px 10px;}
 
         .highlight-contained{border: 4px solid #eee; background: #fff;}
 
-	.darken{background: #555;}
+    .darken{background: #555;}
 
 /*-------------------------------*/
 /*- ALIGNMENT -------------------*/
@@ -1109,7 +1113,7 @@ table.table-comfortable td{padding: 14px 10px;}
 
     .pull-top{margin-top: -60px;}
 
-    .t-center{text-align: center;}
+    .text-center{text-align: center;}
     .t-left{text-align: left;}
     .t-right{text-align: right;}
 
@@ -1151,255 +1155,3 @@ table.table-comfortable td{padding: 14px 10px;}
 .header-centered{text-align: center;}
 .header-centered .logo{float: none; margin: 0 0 0;}
 .header-centered .nav{float: none; margin: 40px auto 0;}
-
-/*------------------------------------------------*/
-/* layouts smaller than 600px, iPhone and mobiles */
-@media only screen and (max-width: 480px), screen and (max-device-width: 480px), screen and (max-width: 600px) {
-
-body{padding: 0px; overflow-x: hidden; -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility;}
-#wrapper{width: 100%; overflow: hidden;}
-
-.collapse{display: none;}
-.desktop-collapse{display: block;}
-
-/*---------------------------*/
-/*- HEADER ------------------*/
-#header{width: 100%; position: static; top: auto; left: auto;}
-.logo{float: left; margin: 0; text-align: center; font-size: 2.0rem; font-weight: 200;}
-
-
-/*---------------------------*/
-/*- FOOTER ------------------*/
-.madeinafrica{margin: 10px 0;}
-.copyright{font-size: 1.2rem; text-align: left;}
-
-#footer .nav-horizontal{display: block; margin: 0; height: auto; text-align: left; float: none;}
-#footer .nav-horizontal li{display: inline; margin: 0 10px 0 0;}
-#footer .nav-horizontal li a{display: inline; background: none;}
-
-
-/*---------------------------*/
-/*- GRIDS -------------------*/
-.column, .column-flush{clear: left; width: 100% !important;}
-
-
-/*---------------------------*/
-/*- ALIGNMENT ---------------*/
-.pull-left{float: left;}
-.pull-right{float: right;}
-.pull-margin-horizontal{margin-left: -2%; margin-right: -2%;}
-.pull-margin-vertical{margin-top: -2%; margin-bottom: -2%;}
-.pull-margin-bottom-max{margin-bottom: 0 !important;}
-
-
-/*---------------------------*/
-/*- CONTENT -----------------*/
-.content{padding: 20px;}
-.content-small{padding: 10px;}
-.content-large{padding: 20px;}
-.content-extra-large{padding: 20px;}
-.content-massive{padding: 20px;}
-
-.content-main{padding: 20px;}
-.extra-margin{margin-bottom: 20px;}
-
-.sky{padding-top: 20px;}
-.basement{padding-bottom: 20px;}
-.no-inset-bottom{padding-bottom: 0;}
-
-.section-title + .container{margin-top: 20px;}
-
-/*---------------------------*/
-/*- PAGE TITLES -------------*/
-.title-container .header{font-size: 3.0rem;}
-.title-container .excerpt{font-size: 2.0rem;}
-.title-container h5 + .btn-group{margin-top: 20px;}
-.title-container p{margin-top: 10px; font-size: 1.5rem;}
-.title-container p + .btn-group{margin-top: 20px;}
-.title-container p + .btn-collection{margin-top: 20px;}
-
-    .title{padding: 20px;}
-    .title .column:first-child{margin-bottom: 20px;}
-    .title-hero-tops{padding: 0;}
-    .title-hero-tops .title{padding: 85px 20px 0px;}
-    .title-hero-tops .column:first-child{padding: 0px; text-align: left;}
-
-    .title-small{padding: 20px;}
-    .title-hero-sides h3{padding-top: 0px;}
-
-.title-container .middled.content{padding: 0;}
-
-/*---------------------------*/
-/*- SECTION TITLES ----------*/
-.section-title{margin-bottom: 20px;}
-.section-title .heading{font-size: 2.5rem;}
-.section-title .excerpt{font-size: 1.5rem;}
-.section-title .heading + .excerpt{margin-top: 5px;}
-
-	.section-title.large .heading{font-size: 2.5rem;}
-	.section-title.large .excerpt{font-size: 1.5rem;}
-
-	.section-title.t-center{text-align: left;}
-
-/*---------------------------*/
-/*- SUB NAV -----------------*/
-.sub-menu{display: none;}
-
-
-/*---------------------------*/
-/*- ABOLUTE NAV -------------*/
-.nav-absolute{position: relative; background: rgba(0, 0, 0, 0.3);}
-
-/*---------------------------*/
-/*- INLINE NAV --------------*/
-.nav-inline{text-align: left;}
-.nav-inline li{margin: 0 10px 0 0;}
-
-
-/*---------------------------*/
-/*- TABBED NAV --------------*/
-.nav-tabs{padding: 20px 20px 10px; font-size: 1.2rem;}
-.nav-tabs li{width: 48%; margin: 0 10px 10px 0;}
-.nav-tabs li:nth-child(2n+2){margin-right: 0;}
-.nav-tabs a{padding: 5px 10px; border-radius: 4px;}
-
-
-/*---------------------------*/
-/*- PILL NAV ----------------*/
-.nav-pills-group{padding: 20px 20px 10px; margin: -20px -20px 20px; background: #e9e9e9;}
-.nav-pills-group.open{padding: 20px 20px 10px;}
-
-.nav-pills{display: block; font-size: 1.2rem; border: none;}
-.nav-pills li{width: 50%; margin: 0; padding: 0 10px 10px 0;}
-.nav-pills .nav-label{width: 100%; padding: 0;}
-
-.nav-pills a, .nav-pills span{padding: 2px 10px; margin: 0; border: none; border-radius: 4px;}
-.nav-pills a{background: #f4f4f4;}
-.nav-pills span{padding-left: 0 !important; text-transform: uppercase; font-size: 1.1rem; font-weight: bold; color: #777;}
-
-.nav-pills li:first-child a, .nav-pills li:first-child span{border: 0; border-radius: 4px;}
-.nav-pills li:last-child a{border: 0; border-radius: 4px;}
-
-
-/*---------------------------*/
-/*- BREAD CRUMBS ------------*/
-.title-small .bread-crumbs{margin: 0 0 5px;}
-
-
-/*---------------------------*/
-/*- MARKETING BLOCK ---------*/
-.marketing .marketing-icon{/*float: none;*/ margin: 0 10px 10px 0;}
-.marketing .marketing-body p{margin-top: 10px;}
-.marketing .marketing-body .btn-group{margin-top: 10px;}
-.marketing.marketing-centered .marketing-body{padding: 0;}
-
-
-/*---------------------------*/
-/*- BUTTON SIZES ------------*/
-.btn-large{padding: 5px 10px; text-transform: uppercase;}
-.btn-small{padding: 1px 6px; font-size: 1.2rem; font-weight: normal;}
-
-
-/*---------------------------*/
-/*- DATA --------------------*/
-.data-group .data{border: 1px solid #e0e0e0; border-top-width: 0;}
-.data-group .data:first-child{border-top-width: 1px;}
-.data-group .data:last-child{border-right: 1px solid #e0e0e0;}
-
-
-/*---------------------------*/
-/*- BLOG (TEMP) -------------*/
-.news-title{margin-bottom: 15px; text-align: left;}
-.news-title h3{font-size: 3.0rem;}
-.news-title .meta{margin-top: 15px; font-size: 1.4rem;}
-.news-image{padding: 5px;}
-.copy{font-size: 1.4rem;}
-
-
-/*-------------------------------*/
-/*- TABLES ----------------------*/
-/*-------------------------------*/
-table th{padding: 6px 5px;}
-table td{padding: 6px 5px;}
-table .total{font-size: 1.8rem; border-bottom: 1px solid #e0e0e0;}
-.section-table-title td{text-align: left;}
-
-
-/*-------------------------------*/
-/*- PRICING ----------------------*/
-/*-------------------------------*/
-.price-feature-list{display: none;}
-
-.price-variation{clear: none; float: left; width: 49% !important; margin-right: 2%;}
-.price-variation ul{display: none;}
-.price-variation .price-amount{border-radius: 0 0 4px 4px;}
-.price-variation .button{display: none;}
-
-/*-------------------------------*/
-/*- BROWSERS --------------------*/
-/*-------------------------------*/
-.browser-collection{max-height: 320px; margin: 0 0 10px; overflow: hidden; border-radius: 4px;}
-.browser{display: none; width: 100%;}
-.browser-collection.spread .browser{width: 100%;}
-.browser:nth-child(1){display: block; position: static;}
-.browser-collection.spread{padding: 0 20px; max-height: 320px;}
-.browser-alone{padding: 0 20px;}
-
-.title-hero-tops .browser-collection{margin: 0; border-radius: 4px 4px 0px 0px;}
-
-.row:hover .browser-collection.spread .browser:nth-child(1){width: 100%;}
-.row:hover .browser-collection.spread-small .browser:nth-child(1){width: 100%;}
-
-}
-
-/*---------------*/
-/* iPad PORTRAIT */
-@media only screen and (max-width: 768px){
-#header .container{padding: 10px 20px;}
-.desktop-collapse{display: block;}
-
-
-
-/*---------------------------*/
-/*- HORIZONTAL NAV ----------*/
-.responsive-nav{display: block;}
-.nav-horizontal{display: none;}
-.nav-horizontal li{float: none; width: auto; border-left: none;}
-.nav-horizontal li li{display: none;}
-.nav-horizontal a{padding: 5px 20px; background: rgba(0, 0, 0, 0.3);}
-
-.nav-horizontal .special{border: none; font-size: 88%;}
-.nav-horizontal .special{float: left; width: 50%;}
-.nav-horizontal .special a{background: #212F3C; margin: 10px;}
-.nav-horizontal .special:nth-child(odd) a{margin-right: 5px;}
-.nav-horizontal .special:nth-child(even) a{margin-left: 5px;}
-
-.nav-horizontal .nav-hidden{display: block; visibility: visible; width: auto; opacity: 1;}
-
-.burger{display: none;}
-
-/*---------------------------*/
-/*- DATA --------------------*/
-.data-group{border: none; border-radius: 0px;}
-.data-group .data{clear: both; width: 100%; padding: 10px 10px 0; margin: 0; background: none; border: 2px solid #e0e0e0; border-top-width: 0; border-radius: 0px;}
-.data-group .data:first-child{border-radius: 4px 4px 0 0; border-top-width: 2px;}
-.data-group .data:last-child{border-right: 2px solid #e0e0e0; border-radius: 0 0 4px 4px;}
-.data .data-graph{margin: 10px -10px 0px;}
-.data-group .data.span-6{width: 100%;}
-.panel .data-group .data{border-width: 1px;}
-
-    /*-----------------------*/
-    /*- DATA META -----------*/
-    .data-group .data .meta{margin: 0 -10px; padding: 10px;}
-
-
-/*---------------------------*/
-/*- DATE DROP DOWN ----------*/
-.dates{float: none; display: block; border: none; padding: 0 0 0 20px; background-position: left;}
-
-
-}
-
-/*---------------*/
-/* iPad PORTRAIT */
-@media only screen and (max-width: 768px) and (min-width: 481px) {}

@@ -48,7 +48,8 @@ if( !class_exists( 'Hatch_Contact_Widget' ) ) {
 				'address_shown' => NULL,
 				'title_size' => '',
 				'google_maps_location' => NULL,
-				'google_maps_long_lat' => NULL
+				'google_maps_long_lat' => NULL,
+				'map_height' => 350
 			);
 		}
 
@@ -78,7 +79,7 @@ if( !class_exists( 'Hatch_Contact_Widget' ) ) {
 				<?php if( '' != $widget->title || '' != $widget->excerpt  || '' != $widget->address_shown ) { ?>
 					<div class="container content clearfix">
 						<div class="section-title <?php if( isset( $widget->design['textalign'] ) ) echo $widget->design['textalign']; ?> clearfix">
-							<?php if( '' != $widget->address_shown && !isset( $widget->show_address ) ) { ?>
+							<?php if( '' != $widget->address_shown && isset( $widget->show_address ) ) { ?>
 								<small class="pull-right span-2">
 									<?php echo $widget->address_shown; ?>
 								</small>
@@ -92,8 +93,8 @@ if( !class_exists( 'Hatch_Contact_Widget' ) ) {
 						</div>
 					</div>
 				<?php } // if title || excerpt ?>
-				<?php if( !isset( $widget->show_google_map ) && ( '' != $widget->google_maps_location || '' != $widget->google_maps_long_lat ) ) { ?>
-					<div class="hatch-map invert with-background <?php if( isset( $widget->layout ) && 'boxed' == $widget->layout ) echo 'container'; ?> " style="height: 670px;" <?php if( '' != $widget->google_maps_location ) { ?>data-location="<?php echo $widget->google_maps_location; ?>"<?php } ?> <?php if( '' != $widget->google_maps_long_lat ) { ?>data-longlat="<?php echo $widget->google_maps_long_lat; ?>"<?php } ?>></div>
+				<?php if( isset( $widget->show_google_map ) && ( '' != $widget->google_maps_location || '' != $widget->google_maps_long_lat ) ) { ?>
+					<div class="hatch-map invert with-background <?php if( isset( $widget->layout ) && 'layout-boxed' == $widget->layout ) echo 'container'; ?> " style="height: <?php echo $widget->map_height; ?>px;" <?php if( '' != $widget->google_maps_location ) { ?>data-location="<?php echo $widget->google_maps_location; ?>"<?php } ?> <?php if( '' != $widget->google_maps_long_lat ) { ?>data-longlat="<?php echo $widget->google_maps_long_lat; ?>"<?php } ?>></div>
 				<?php } ?>
 			</section>
 
@@ -158,31 +159,40 @@ if( !class_exists( 'Hatch_Contact_Widget' ) ) {
 						'icon-css' => 'icon-display',
 						'label' => 'Display',
 						'elements' => array(
+								'map_height' => array(
+									'type' => 'number',
+									'name' => $this->get_field_name( 'map_height' ) ,
+									'id' => $this->get_field_id( 'map_height' ) ,
+									'min' => 150,
+									'max' => 1600,
+									'value' => ( isset( $map_height ) ) ? $map_height : NULL,
+									'label' => __( 'Map Height', HATCH_THEME_SLUG )
+								),
 								'show_google_map' => array(
 										'type' => 'checkbox',
 										'name' => $this->get_field_name( 'show_google_map' ) ,
 										'id' => $this->get_field_id( 'show_google_map' ) ,
 										'value' => ( isset( $show_google_map ) ) ? $show_google_map : NULL,
-										'label' => __( 'Hide Google Map', HATCH_THEME_SLUG )
-									)
-								),
+										'label' => __( 'Show Google Map', HATCH_THEME_SLUG )
+									),
 								'show_address' => array(
 										'type' => 'checkbox',
 										'name' => $this->get_field_name( 'show_address' ) ,
 										'id' => $this->get_field_id( 'show_address' ) ,
 										'value' => ( isset( $show_address ) ) ? $show_address : NULL,
-										'label' => __( 'Hide Address', HATCH_THEME_SLUG )
-									)
-								),
+										'label' => __( 'Show Address', HATCH_THEME_SLUG )
+									),
 								'show_contact_form' => array(
 										'type' => 'checkbox',
 										'name' => $this->get_field_name( 'show_contact_form' ) ,
 										'id' => $this->get_field_id( 'show_contact_form' ) ,
 										'value' => ( isset( $show_contact_form ) ) ? $show_contact_form : NULL,
-										'label' => __( 'Hide Contact Form', HATCH_THEME_SLUG )
+										'label' => __( 'Show Contact Form', HATCH_THEME_SLUG )
 									)
-								)
-							);?>
+							)
+						)
+					)
+				);?>
 			<div class="hatch-container-large">
 
 				<?php $widget_elements->header( array(

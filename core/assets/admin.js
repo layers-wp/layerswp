@@ -281,7 +281,7 @@ jQuery(function($) {
 	/**
 	* 7 - Design Controller Height Matcher
 	*/
-	$(window).resize( function(){
+	$(window).bind( 'resize load', function(){
 		hatch_set_visual_wrapper_height();
 	} );
 	function hatch_set_visual_wrapper_height(){

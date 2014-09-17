@@ -1093,7 +1093,7 @@ input[type=radio]:checked + .hatch-settings-icon span{
     display: block;
     height: 200px;
     margin-bottom: 15px;
-    border: 2px dashed #dfdfdf;
+    border: 1px dashed #ddd;
     position: relative;
     overflow: hidden;
     transform-style: preserve-3d;
@@ -1112,6 +1112,9 @@ input[type=radio]:checked + .hatch-settings-icon span{
 .hatch-image-uploader.hatch-small{
     min-height: 200px;
 }
+.hatch-image-container{
+    position: relative;
+}
 .hatch-image-uploader img{
     display: block;
     max-width: 100%;
@@ -1123,7 +1126,7 @@ input[type=radio]:checked + .hatch-settings-icon span{
     transform: translate(-50%, -50%);
 }
 .hatch-image-remove{
-    display: none;
+    /*display: none;*/
     width: 16px;
     height: 16px;
     background: url('images/cross.png') no-repeat;
@@ -1135,7 +1138,7 @@ input[type=radio]:checked + .hatch-settings-icon span{
     z-index: 2;
     color: #fff;
     font-size: 11px;
-    border-radius: 4px;
+    border-radius: 2px;
     transition: all 0.2s ease-in-out;
     opacity: 0.5;
     text-indent: -999px;

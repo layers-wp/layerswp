@@ -111,9 +111,9 @@ if( !class_exists( 'Hatch_Portfolio_Widget' ) ) {
 			// Do the WP_Query
 			$post_query = new WP_Query( $query_args ); ?>
 
-			<section class="widget row" id="<?php echo $widget_id; ?>">
+			<section class="widget row sky content-vertical-massive" id="<?php echo $widget_id; ?>">
 				<?php if( '' != $widget->title || '' != $widget->excerpt ) { ?>
-					<div class="container content clearfix">
+					<div class="container clearfix">
 						<div class="section-title <?php if( isset( $widget->design['textalign'] ) ) echo $widget->design['textalign']; ?> clearfix">
 							<?php if( '' != $widget->title ) { ?>
 								<h3 class="heading"><?php echo $widget->title; ?></h3>
@@ -124,16 +124,16 @@ if( !class_exists( 'Hatch_Portfolio_Widget' ) ) {
 						</div>
 					</div>
 				<?php } ?>
-						<?php if( isset( $widget->show_category_filter ) && !is_wp_error( $terms ) ) { ?>
-							<div class="row  <?php if( isset( $widget->design[ 'layout' ] ) && 'layout-boxed' == $widget->design[ 'layout' ] ) echo 'container'; ?>">
-								<ul class="nav nav-pills push-top">
-									<li><span><?php echo $widget->filter_label; ?></span></li>
-									<?php foreach( $terms as $term ) { ?>
-										<li data-filter="<?php echo $term->slug; ?>"><a href="#"><?php echo $term->name; ?></a></li>
-									<?php } // foreach $terms ?>
-								</ul>
-							</div>
-						<?php } ?>
+				<?php if( isset( $widget->show_category_filter ) && !is_wp_error( $terms ) ) { ?>
+					<div class="row container">
+						<ul class="nav nav-pills push-top">
+							<li><span><?php echo $widget->filter_label; ?></span></li>
+							<?php foreach( $terms as $term ) { ?>
+								<li data-filter="<?php echo $term->slug; ?>"><a href="#"><?php echo $term->name; ?></a></li>
+							<?php } // foreach $terms ?>
+						</ul>
+					</div>
+				<?php } ?>
 				<div class="row <?php if( isset( $widget->design[ 'layout' ] ) && 'layout-boxed' == $widget->design[ 'layout' ] ) echo 'container'; ?> <?php  if( isset( $widget->design[ 'liststyle' ] ) ) echo $widget->design[ 'liststyle' ]; ?>">
 					<?php if( $post_query->have_posts() ) { ?>
 						<?php while( $post_query->have_posts() ) { global $post; ?>

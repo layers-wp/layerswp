@@ -75,9 +75,9 @@ if( !class_exists( 'Hatch_Contact_Widget' ) ) {
 			// Set the background styling
 			if( !empty( $widget->design[ 'background' ] ) ) $this->widget_styles( $widget_id , 'background', $widget->design[ 'background' ] ); ?>
 
-			<section class="widget row" id="<?php echo $widget_id; ?>">
+			<section class="widget content-vertical-massive row" id="<?php echo $widget_id; ?>">
 				<?php if( '' != $widget->title || '' != $widget->excerpt  || '' != $widget->address_shown ) { ?>
-					<div class="container content clearfix">
+					<div class="container clearfix">
 						<div class="section-title <?php if( isset( $widget->design['textalign'] ) ) echo $widget->design['textalign']; ?> clearfix">
 							<?php if( '' != $widget->address_shown && isset( $widget->show_address ) ) { ?>
 								<small class="pull-right span-2">
@@ -94,7 +94,7 @@ if( !class_exists( 'Hatch_Contact_Widget' ) ) {
 					</div>
 				<?php } // if title || excerpt ?>
 				<?php if( isset( $widget->show_google_map ) && ( '' != $widget->google_maps_location || '' != $widget->google_maps_long_lat ) ) { ?>
-					<div class="hatch-map invert with-background <?php if( isset( $widget->layout ) && 'layout-boxed' == $widget->layout ) echo 'container'; ?> " style="height: <?php echo $widget->map_height; ?>px;" <?php if( '' != $widget->google_maps_location ) { ?>data-location="<?php echo $widget->google_maps_location; ?>"<?php } ?> <?php if( '' != $widget->google_maps_long_lat ) { ?>data-longlat="<?php echo $widget->google_maps_long_lat; ?>"<?php } ?>></div>
+					<div class="hatch-map <?php if( isset( $widget->layout ) && 'layout-boxed' == $widget->layout ) echo 'container'; ?> " style="height: <?php echo $widget->map_height; ?>px;" <?php if( '' != $widget->google_maps_location ) { ?>data-location="<?php echo $widget->google_maps_location; ?>"<?php } ?> <?php if( '' != $widget->google_maps_long_lat ) { ?>data-longlat="<?php echo $widget->google_maps_long_lat; ?>"<?php } ?>></div>
 				<?php } ?>
 			</section>
 

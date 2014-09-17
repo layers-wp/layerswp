@@ -163,10 +163,10 @@ div[id*='hatch-widget'] .widget-control-actions{
 }
 .hatch-icon-description{
     display: block;
-    font-size: 11px;
-    font-weight: 700;
     margin-top: 3px;
     opacity: 0.75;
+    font-size: 11px;
+    font-weight: 600;
 }
 
 
@@ -416,6 +416,7 @@ div[id*='hatch-widget'] .widget-control-actions{
         clear: none;
         display: inline-block;
         font-size: 13px;
+        text-transform: none;
         line-height: 18px;
         font-weight: 400;
     }
@@ -500,8 +501,8 @@ div[id*='hatch-widget'] .widget-control-actions{
     transition: all 0.15s ease-in-out;
 }
 .hatch-visuals-item.hatch-active > .hatch-icon-wrapper{
-    background-color: #fff;
-    color: #000;
+    background: #0289C0;
+    color: #fff;
 }
 .hatch-visuals-item .hatch-icon-wrapper.hatch-active{
     background-color: #fff;
@@ -543,15 +544,17 @@ div[id*='hatch-widget'] .widget-control-actions{
     bottom: 0px;
 }
 .hatch-visuals-settings .background-image{
-    vertical-align: middle;
-    border-radius: 4px;
     display: block;
     max-height: 150px;
-    overflow: hidden;
     margin-bottom: 15px;
+    position: relative;
+    vertical-align: middle;
+    border-radius: 4px;
+    overflow: hidden;
 }
 .hatch-visuals-settings img{
     max-width: 100%;
+    height: auto;
 }
 .hatch-quick-links{
     padding: 10px;
@@ -757,7 +760,7 @@ div[id*='hatch-widget'] .widget-control-actions{
     }
     .hatch-button.btn-large{
         height: 38px;
-        font-weight: 700;
+        font-weight: 600;
         font-size: 16px;
         line-height: 32px;
     }

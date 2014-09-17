@@ -57,19 +57,19 @@ if( !class_exists( 'Hatch_Module_Widget' ) ) {
 			$col_count = str_ireplace('columns-', '', $widget->columns );
 			$span_class = 'span-' . ( 12/ $col_count ); ?>
 
-			<section class="widget row" id="<?php echo $widget_id; ?>">
+			<section class="widget row content-vertical-massive" id="<?php echo $widget_id; ?>">
 				<div class="container clearfix">
 					<?php if( '' != $widget->title || '' != $widget->excerpt ) { ?>
-						<div class="row content-main push-bottom-medium">
-							<div class="section-title <?php if( isset( $widget->title_size ) ) echo $widget->title_size; ?> <?php if( isset( $widget->title_alignment ) ) echo $widget->title_alignment; ?> clearfix"> <?php // @TODO: get alignment to work here ?>
-								<?php if( '' != $widget->title ) { ?>
-									<h3 class="heading"><?php echo $widget->title; ?></h3>
-								<?php } ?>
-								<?php if( '' != $widget->excerpt ) { ?>
-									<p class="excerpt"><?php echo $widget->excerpt; ?></p>
-								<?php } ?>
-							</div>
+						
+						<div class="section-title <?php if( isset( $widget->title_size ) ) echo $widget->title_size; ?> <?php if( isset( $widget->title_alignment ) ) echo $widget->title_alignment; ?> clearfix"> <?php // @TODO: get alignment to work here ?>
+							<?php if( '' != $widget->title ) { ?>
+								<h3 class="heading"><?php echo $widget->title; ?></h3>
+							<?php } ?>
+							<?php if( '' != $widget->excerpt ) { ?>
+								<p class="excerpt"><?php echo $widget->excerpt; ?></p>
+							<?php } ?>
 						</div>
+							
 					<?php } ?>
 					<?php if( !empty( $widget->modules ) ) { ?>
 						<div class="row push-bottom-large">

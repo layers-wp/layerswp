@@ -111,7 +111,7 @@ if( !class_exists( 'Hatch_Portfolio_Widget' ) ) {
 			// Do the WP_Query
 			$post_query = new WP_Query( $query_args ); ?>
 
-			<section class="widget row sky content-vertical-massive" id="<?php echo $widget_id; ?>">
+			<section class="widget row content-vertical-massive" id="<?php echo $widget_id; ?>">
 				<?php if( '' != $widget->title || '' != $widget->excerpt ) { ?>
 					<div class="container clearfix">
 						<div class="section-title <?php if( isset( $widget->design['textalign'] ) ) echo $widget->design['textalign']; ?> clearfix">
@@ -127,7 +127,6 @@ if( !class_exists( 'Hatch_Portfolio_Widget' ) ) {
 				<?php if( isset( $widget->show_category_filter ) && !is_wp_error( $terms ) ) { ?>
 					<div class="row container">
 						<ul class="nav nav-pills push-top">
-							<li><span><?php echo $widget->filter_label; ?></span></li>
 							<?php foreach( $terms as $term ) { ?>
 								<li data-filter="<?php echo $term->slug; ?>"><a href="#"><?php echo $term->name; ?></a></li>
 							<?php } // foreach $terms ?>
@@ -272,12 +271,16 @@ if( !class_exists( 'Hatch_Portfolio_Widget' ) ) {
 						'icon-css' => 'icon-display',
 						'label' => 'Display',
 						'elements' => array(
-								'show_category_filter' => array(
-									'type' => 'checkbox',
-									'name' => $this->get_field_name( 'show_category_filter' ) ,
-									'id' => $this->get_field_id( 'show_category_filter' ) ,
-									'value' => ( isset( $show_category_filter ) ) ? $show_category_filter : NULL,
-									'label' => __( 'Show  Category Filter' , HATCH_THEME_SLUG )
+								'text_style' => array(
+									'type' => 'select',
+									'name' => $this->get_field_name( 'text_style' ) ,
+									'id' => $this->get_field_id( 'text_style' ) ,
+									'value' => ( isset( $text_position ) ) ? $text_position : NULL,
+									'label' => __( 'Title &amp; Excerpt Position' , HATCH_THEME_SLUG ),
+									'options' => array(
+											'regular' => __( 'Regular' , HATCH_THEME_SLUG ),
+											'overlay' => __( 'Overlay' , HATCH_THEME_SLUG )
+									)
 								),
 								'show_titles' => array(
 									'type' => 'checkbox',
@@ -292,17 +295,6 @@ if( !class_exists( 'Hatch_Portfolio_Widget' ) ) {
 									'id' => $this->get_field_id( 'show_excerpts' ) ,
 									'value' => ( isset( $show_excerpts ) ) ? $show_excerpts : NULL,
 									'label' => __( 'Show Item Excerpts' , HATCH_THEME_SLUG )
-								),
-								'text_style' => array(
-									'type' => 'select',
-									'name' => $this->get_field_name( 'text_style' ) ,
-									'id' => $this->get_field_id( 'text_style' ) ,
-									'value' => ( isset( $text_position ) ) ? $text_position : NULL,
-									'label' => __( 'Title &amp; Excerpt Position' , HATCH_THEME_SLUG ),
-									'options' => array(
-											'regular' => __( 'Regular' , HATCH_THEME_SLUG ),
-											'overlay' => __( 'Overlay' , HATCH_THEME_SLUG )
-									)
 								)
 							)
 					)

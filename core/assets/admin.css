@@ -73,6 +73,7 @@ div[id*='hatch-widget'] .widget-top .widget-title .in-widget-title{
 
 .customize-control-widget_form.wide-widget-control div[id*='hatch-widget'] .widget-inside .form{
     padding: 0 !important;
+    height: 100%;
     min-width: 660px;
     position: relative;
     left: -200px;
@@ -462,10 +463,14 @@ div[id*='hatch-widget'] .widget-control-actions{
 /*---------------------------*/
 /*- DESIGN BAR --------------*/
 .hatch-visuals{
-    position: relative;
+    position: absolute;
+    right: 0;
     z-index: 100;
     width: 91px;
     background: #f5f5f5;
+}
+.hatch-visuals + .hatch-container-large{
+    width: calc(100% - 91px);
 }
 .hatch-visuals-title{
     padding: 13px 0px 13px;
@@ -480,32 +485,41 @@ div[id*='hatch-widget'] .widget-control-actions{
 }
 .hatch-visuals-item{
     position: relative;
+    padding: 1px;
     margin: 0;
 }
 .hatch-visuals-item .hatch-icon-wrapper{
     padding: 10px 5px 8px;
-    margin: 5px;
+    margin: 4px;
     background: transparent;
     border: 2px solid transparent;
     border-radius: 4px;
     text-align: center;
     color: #444;
     outline: 0;
+    transition: all 0.15s ease-in-out;
+}
+.hatch-visuals-item.hatch-active > .hatch-icon-wrapper{
+    background-color: #fff;
+    color: #000;
 }
 .hatch-visuals-item .hatch-icon-wrapper.hatch-active{
     background-color: #fff;
     border-color: #ccc;
 }
+
 .hatch-visuals-item .hatch-icon-wrapper:hover,
-.hatch-visuals-item .hatch-icon-wrapper:hover.hatch-active{
+.hatch-visuals-item.hatch-active > .hatch-icon-wrapper:hover,
+.hatch-visuals-item .hatch-icon-wrapper.hatch-active:hover{
     background: #0289C0;
     border-color: transparent;
     color: #fff;
 }
+
 /*- pop menu -*/
 .hatch-visuals-settings-wrapper{
     position: absolute;
-    top: -6px;
+    top: 0px;
     right: 100px;
     width: 200px;
     background: #f5f5f5;
@@ -526,7 +540,7 @@ div[id*='hatch-widget'] .widget-control-actions{
 }
 .hatch-visuals-item.hatch-last .hatch-visuals-settings-wrapper{
     top: auto;
-    bottom: -6px;
+    bottom: 0px;
 }
 .hatch-visuals-settings img{
     max-width: 100%;
@@ -562,6 +576,8 @@ div[id*='hatch-widget'] .widget-control-actions{
     /*-----------------------*/
     /*- HORIZONTAL ----------*/
     .hatch-content .hatch-visuals.hatch-visuals-horizontal{
+        position: relative;
+        right: auto;
         margin: -20px -20px 20px;
         background-color: #fff;
     }

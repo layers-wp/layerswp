@@ -7,7 +7,7 @@
  * @since Hatch 1.0
  */
 if( !class_exists( 'Hatch_Banner_Widget' ) ) {
-	class Hatch_Banner_Widget extends WP_Widget {
+	class Hatch_Banner_Widget extends Hatch_Widget {
 
 		/**
 		*  Widget variables
@@ -62,19 +62,13 @@ if( !class_exists( 'Hatch_Banner_Widget' ) ) {
 			 		<div class="swiper-wrapper">
 						<?php $col = 1; ?>
 						<?php foreach ( $widget->banners as $key => $banner) {
-							$banner = (object) $banner;?>
-							<div id="<?php echo $widget_id; ?>-<?php echo $key; ?>" class="invert swiper-slide <?php if( '' != $banner->image_layout ) echo $banner->image_layout; ?> <?php if( !empty( $banner->background ) ) echo 'with-background'; ?>"
-								style="float: left;
-								<?php if( isset( $widget->banner_height ) && '' != $widget->banner_height ) echo 'height: ' . $widget->banner_height . 'px;' ?>
-								<?php if( !empty( $banner->background ) && 'image' == $banner->background['type'] ) { ?>
-									<?php // Fetch bg image
-									$image = wp_get_attachment_image_src( $banner->background['image'] , 'full' );?>
-									background-image: url('<?php echo esc_html( $image[0] ); ?>');
-									background-size: cover;
-								<?php } ?>
-								<?php if( isset( $banner->background['image_color'] ) && '' != $banner->background['image_color'] ) { ?>
-									background-color: <?php echo $banner->background['image_color']; ?>;
-								<?php } ?>">
+							$banner = (object) $banner;
+
+							// Set the background styling
+							if( !empty( $banner->design['background'] ) ) $this->widget_styles( $widget_id . '-' . $key , 'background', $banner->design[ 'background' ] ); ?>
+
+							<div id="<?php echo $widget_id; ?>-<?php echo $key; ?>" class="invert swiper-slide <?php if( '' != $banner->design[ 'imagealign' ] ) echo $banner->design[ 'imagealign' ]; ?>"
+								style="float: left; <?php if( isset( $widget->banner_height ) && '' != $widget->banner_height ) echo 'height: ' . $widget->banner_height . 'px;' ?>">
 								<div class="container" <?php if( isset( $widget->banner_height ) && '' != $widget->banner_height ) echo 'style="height: ' . $widget->banner_height . 'px;"' ?>><!-- height important for vertical positioning. Must match container height -->
 									<?php if( '' != $banner->title || '' != $banner->excerpt ) { ?>
 									<div class="copy-container">
@@ -93,7 +87,7 @@ if( !class_exists( 'Hatch_Banner_Widget' ) ) {
 									<?php } // if title || excerpt ?>
 									<?php if( isset( $banner->image ) && '' != $banner->image ) { ?>
 										<div class="image-container">
-											<?php echo wp_get_attachment_image( $banner->image , 'medium' ); ?>
+											<?php echo wp_get_attachment_image( $banner->image , 'large' ); ?>
 										</div>
 									<?php } // if $banner image ?>
 								</div>
@@ -199,7 +193,7 @@ if( !class_exists( 'Hatch_Banner_Widget' ) ) {
 						<section class="hatch-accordion-section hatch-content">
 
 
-								<a id="add_banner_<?php echo $this->number; ?>" class="hatch-button btn-large hatch-push-bottom hatch-add-widget-banner" data-number="<?php echo $this->number; ?>"><?php _e( '+ Add New Banner' , HATCH_THEME_SLUG ) ; ?></a>
+								<a id="add_banner_<?php echo $this->number; ?>" class="hatch-button btn-large hatch-push-bottom hatch-add-widget-banner" data-number="<?php echo $this->number; ?>"><?php _e( '+ Add New Slide' , HATCH_THEME_SLUG ) ; ?></a>
 
 								<?php echo $widget_elements->input(
 									array(
@@ -232,7 +226,7 @@ if( !class_exists( 'Hatch_Banner_Widget' ) ) {
 					<li class="hatch-accordion-item">
 						<?php $widget_elements->accordian_title(
 							array(
-								'title' => __( 'Banner Settings' , HATCH_THEME_SLUG ),
+								'title' => __( 'Slider Settings' , HATCH_THEME_SLUG ),
 								'tooltip' => __(  'Place your help text here please.', HATCH_THEME_SLUG )
 							)
 						); ?>
@@ -373,8 +367,13 @@ if( !class_exists( 'Hatch_Banner_Widget' ) ) {
 
 				// $instance Defaults
 				$instance_defaults = array (
-					'image_layout' => 'image-left',
-					'excerpt' => NULL
+					'title' => NULL,
+					'excerpt' => NULL,
+					'design' => array(
+						'imagealign' => 'image-left',
+						'textalign' => 'text-left',
+						'background' => NULL,
+					),
 				);
 
 				// Parse $instance
@@ -393,56 +392,24 @@ if( !class_exists( 'Hatch_Banner_Widget' ) ) {
 
 				<li class="hatch-accordion-item  <?php if( !isset( $_REQUEST['action'] ) ) echo 'open'; ?>" data-guid="<?php echo $slide_guid; ?>">
 					<a class="hatch-accordion-title">
-						<span><?php _e( 'Banner' , HATCH_THEME_SLUG ); // @TODO: Add Banner 1/Banner 2/Banner 3/Banner 4 numbering ?></span>
+						<span><?php _e( 'Slide' , HATCH_THEME_SLUG ); // @TODO: Add Banner 1/Banner 2/Banner 3/Banner 4 numbering ?></span>
 					</a>
 					<section class="hatch-accordion-section hatch-content">
-				
-						<p class="hatch-form-item">
-							<?php echo $widget_elements->input(
-								array(
-									'type' => 'text',
-									'name' => 'widget-' . $widget_details->id_base . '[' . $widget_details->number . '][banners][' . $slide_guid . '][title]' ,
-									'id' => 'widget-' . $widget_details->id_base . '-' . $widget_details->number . '-' . $slide_guid . '-title' ,
-									'placeholder' => __( 'Enter title here', HATCH_THEME_SLUG ),
-									'value' => ( isset( $title ) ) ? $title : NULL ,
-									'class' => 'hatch-text hatch-large'
-								)
-							); ?>
-						</p>
-						<p class="hatch-form-item">
-							<?php echo $widget_elements->input(
-								array(
-									'type' => 'textarea',
-									'name' => 'widget-' . $widget_details->id_base . '[' . $widget_details->number . '][banners][' . $slide_guid . '][excerpt]' ,
-									'id' => 'widget-' . $widget_details->id_base . '-' . $widget_details->number . '-' . $slide_guid . '-excerpt' ,
-									'placeholder' => __( 'Short Excerpt', HATCH_THEME_SLUG ),
-									'value' => ( isset( $excerpt ) ) ? $excerpt : NULL ,
-									'class' => 'hatch-textarea hatch-large'
-								)
-							); ?>
-						</p>
+						<?php $design_controller = new Hatch_Design_Controller();
+						$design_controller->bar(
+							'top', // CSS Class Name
+							array(
+								'name' => 'widget-' . $widget_details->id_base . '[' . $widget_details->number . '][banners][' . $slide_guid . '][design]',
+								'id' => 'widget-' . $widget_details->id_base . '-' . $widget_details->number . '-' . $slide_guid . '-design'
+							), // Widget Object
+							$instance, // Widget Values
+							array(
+								'textalign',
+								'imagealign',
+								'background'
+							) // Standard Components
+						); ?>
 
-						<div class="hatch-row">
-							<div class="hatch-panel">
-								<?php $widget_elements->section_panel_title(
-									array(
-										'type' => 'panel',
-										'title' => __( 'Background' , HATCH_THEME_SLUG ),
-										'tooltip' => __(  'Place your help text here please.', HATCH_THEME_SLUG )
-									)
-								); ?>
-								<div class="hatch-content">
-									<?php echo $widget_elements->input(
-										array(
-											'type' => 'background',
-											'name' => 'widget-' . $widget_details->id_base . '[' . $widget_details->number . '][banners][' . $slide_guid . '][background]' ,
-											'id' => 'widget-' . $widget_details->id_base . '-' . $widget_details->number . '-' . $slide_guid . '-background' ,
-											'value' => ( isset( $background ) ) ? $background : NULL
-										)
-									); ?>
-								</div>
-							</div>
-						</div>
 						<div class="hatch-row">
 							<div class="hatch-column hatch-span-4 hatch-panel">
 								<?php $widget_elements->section_panel_title(
@@ -461,19 +428,41 @@ if( !class_exists( 'Hatch_Banner_Widget' ) ) {
 											'value' => ( isset( $image ) ) ? $image : NULL
 										)
 									); ?>
-									<?php echo $widget_elements->input(
-										array(
-											'type' => 'select-icons',
-											'name' => 'widget-' . $widget_details->id_base . '[' . $widget_details->number . '][banners][' . $slide_guid . '][image_layout]' ,
-											'id' => 'widget-' . $widget_details->id_base . '-' . $widget_details->number . '-' . $slide_guid . '-image_layout' ,
-											'value' => ( isset( $image_layout ) ) ? $image_layout : NULL,
-											'options' => array(
-												'image-left' => __( 'Image Left' , HATCH_THEME_SLUG ),
-												'image-center' => __( 'Image Center' , HATCH_THEME_SLUG ),
-												'image-right' => __( 'Image Right' , HATCH_THEME_SLUG ),
+								</div>
+							</div>
+							<div class="hatch-column hatch-span-8 hatch-panel">
+								<?php $widget_elements->section_panel_title(
+									array(
+										'type' => 'panel',
+										'title' => __( 'Slide Content' , HATCH_THEME_SLUG ),
+										'tooltip' => __(  'Place your help text here please.', HATCH_THEME_SLUG )
+									)
+								); ?>
+								<div class="hatch-content">
+									<p class="hatch-form-item">
+										<?php echo $widget_elements->input(
+											array(
+												'type' => 'text',
+												'name' => 'widget-' . $widget_details->id_base . '[' . $widget_details->number . '][banners][' . $slide_guid . '][title]' ,
+												'id' => 'widget-' . $widget_details->id_base . '-' . $widget_details->number . '-' . $slide_guid . '-title' ,
+												'placeholder' => __( 'Enter title here', HATCH_THEME_SLUG ),
+												'value' => ( isset( $title ) ) ? $title : NULL ,
+												'class' => 'hatch-text'
 											)
-										)
-									); ?>
+										); ?>
+									</p>
+									<p class="hatch-form-item">
+										<?php echo $widget_elements->input(
+											array(
+												'type' => 'textarea',
+												'name' => 'widget-' . $widget_details->id_base . '[' . $widget_details->number . '][banners][' . $slide_guid . '][excerpt]' ,
+												'id' => 'widget-' . $widget_details->id_base . '-' . $widget_details->number . '-' . $slide_guid . '-excerpt' ,
+												'placeholder' => __( 'Short Excerpt', HATCH_THEME_SLUG ),
+												'value' => ( isset( $excerpt ) ) ? $excerpt : NULL ,
+												'class' => 'hatch-textarea'
+											)
+										); ?>
+									</p>
 								</div>
 							</div>
 						</div>

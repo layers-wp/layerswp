@@ -65,10 +65,10 @@ if( !class_exists( 'Hatch_Widget' ) ) {
 			$widget_css = '';
 			if( isset( $args['selectors'] ) ) {
 				foreach ( $args['selectors'] as $selector ) {
-					$widget_css .= ' section#' . $widget_id . ' ' . $selector . '{' . $css . '} ';
+					$widget_css .= ' #' . $widget_id . ' ' . $selector . '{' . $css . '} ';
 				}
 			} else {
-				$widget_css .= '  section#' . $widget_id . '{' . $css . '} ';
+				$widget_css .= '  #' . $widget_id . '{' . $css . '} ';
 			}
 
 			wp_enqueue_style( HATCH_THEME_SLUG . '-custom-widget-styles', get_template_directory_uri() . '/css/widgets.css' );

@@ -145,8 +145,11 @@ if( !class_exists( 'Hatch_Contact_Widget' ) ) {
 			<!-- Form HTML Here -->
 			<?php $design_controller = new Hatch_Design_Controller();
 			$design_controller->bar(
-				'hatch-pull-right', // CSS Class Name
-				$this, // Widget Object
+				'side', // CSS Class Name
+				array(
+					'name' => $this->get_field_name( 'design' ),
+					'id' => $this->get_field_id( 'design' ),
+				), // Widget Object
 				$instance, // Widget Values
 				array(
 					'layout',

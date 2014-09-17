@@ -685,6 +685,12 @@ if( !class_exists( 'Hatch_Framework_Widget' ) ) {
 												</div>
 											</div>
 										</li>
+
+										<li class="hatch-visuals-item hatch-pull-right">
+											<a href="" class="hatch-icon-wrapper hatch-icon-error">
+												<span class="icon-cross"></span>
+											</a>
+										</li>
 									</ul>
 								</div>
 

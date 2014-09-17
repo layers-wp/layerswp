@@ -512,13 +512,19 @@ div[id*='hatch-widget'] .widget-control-actions{
 .hatch-visuals-item.hatch-active > .hatch-icon-wrapper:hover,
 .hatch-visuals-item .hatch-icon-wrapper.hatch-active:hover{
     box-shadow: 0px 1px 0px rgba(255, 255, 255, 0.4) inset, 0px 1px 0px rgba(0, 0, 0, 0.08);
-    background: none repeat scroll 0% 0% #2EA2CC;
+    background: #2EA2CC;
     border-color: #0074A2;
-    
-    /*background: #0074A2;
-    border-color: transparent;*/
     color: #fff;
 }
+.hatch-visuals-item .hatch-icon-error{
+    color: #FF5353;
+}
+.hatch-visuals-item .hatch-icon-error:hover{
+    background-color: #FF5353;
+    border-color: #BC3F39;
+    color: #fff;
+}
+
 
 /*- pop menu -*/
 .hatch-visuals-settings-wrapper{
@@ -606,9 +612,17 @@ div[id*='hatch-widget'] .widget-control-actions{
         float: left;
         border-right: 1px solid #eee;
     }
+    .hatch-visuals-horizontal .hatch-visuals-item.hatch-pull-right{
+        float: right;
+        border-left: 1px solid #eee;
+        border-right: none;
+    }
     .hatch-visuals-horizontal .hatch-visuals-item .hatch-icon-wrapper{
         padding: 4px 10px;
         margin: 6px;
+    }
+    .hatch-visuals-horizontal .hatch-visuals-item.hatch-pull-right .hatch-icon-error{
+        padding: 4px;
     }
     .hatch-visuals-horizontal .hatch-visuals-item [class*="icon-"]{
         font-size: 16px;

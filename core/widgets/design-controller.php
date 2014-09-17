@@ -17,10 +17,10 @@ class Hatch_Design_Controller {
 	* @param  	array     	$options() 	Array of custom elements which are not common
 	*/
 
-	function bar( $css_class = 'hatch-pull-right' , $widget = NULL, $instance = array(), $components = array( 'columns' , 'background' , 'image-align' ) , $custom_components = array() ) {
+	function bar( $type = 'side' , $widget = NULL, $instance = array(), $components = array( 'columns' , 'background' , 'image-align' ) , $custom_components = array() ) {
 
 		// If there is no widget information provided, can the operation
-		if( NULL == $widget ) return;
+		if( NULL == $widget ) { return; } else { $widget = (object) $widget; }
 
 		// Set widget values as an object ( we like working with objects)
 		if( empty( $instance ) ) {
@@ -29,39 +29,48 @@ class Hatch_Design_Controller {
 			$values = (object) $instance[ 'design' ];
 		} ?>
 
-		<div class="hatch-visuals <?php echo $css_class; ?>">
-			<h6 class="hatch-visuals-title">
-				<span class="icon-settings hatch-small"></span>
-			</h6>
-			<ul class="hatch-visuals-wrapper">
+		<div class="hatch-visuals <?php if( 'side' == $type ) { echo 'hatch-pull-right'; } else { echo 'hatch-visuals-horizontal'; } ?> ">
+			<?php if( 'side' == $type ) { ?>
+				<h6 class="hatch-visuals-title">
+					<span class="icon-settings hatch-small"></span>
+				</h6>
+			<?php } // if side == type ?>
+			<ul class="hatch-visuals-wrapper hatch-clearfix">
 				<?php if( NULL !== $components ) {
 					foreach( $components as $component ) {
 						if( 'custom' == $component && !empty( $custom_components ) ) {
 							foreach ( $custom_components as $key => $component_args ) {
 								$this->custom_component(
-									$widget, // Send through the wiget object
-									$values, // Send through the wiget values
+									$widget, // Send through the widget name & id
+									$values, // Send through the widsget values
 									$key, // Give the component a key (will be used as class name too)
 									$component_args // Send through the inputs that will be used
 								);
 							}
 						} elseif ( 'custom' != $component ) {
 							$this->$component(
-								$widget, // Send through the wiget object
-								$values // Send through the wiget values
+								$widget, // Send through the widget name & id
+								$values // Send through the widget values
 							);
 						}
 					}
 				} // if $components is not NULL ?>
-
-				<li class="hatch-quick-links">
-					<a href="">
-						<span class="icon-support"></span>
-					</a>
-					<a href="#" id="hatch-widget-peep" data-widget_id="<?php echo $widget ->id; ?>">
-						<span class="icon-arrow-left"></span>
-					</a>
-				</li>
+				<?php if( 'side' == $type ) { ?>
+					<li class="hatch-quick-links">
+						<a href="">
+							<span class="icon-support"></span>
+						</a>
+						<a href="#" id="hatch-widget-peep" data-widget_id="<?php echo $widget ->id; ?>">
+							<span class="icon-arrow-left"></span>
+						</a>
+					</li>
+				<?php } else { ?>
+					<li class="hatch-visuals-item hatch-pull-right">
+						<a href="" class="hatch-icon-wrapper hatch-icon-error">
+							<span class="icon-cross"></span>
+						</a>
+					</li>
+				<?php } // if side != $type ?>
 			</ul>
 		</div>
 	<?php }
@@ -144,8 +153,8 @@ class Hatch_Design_Controller {
 					<?php echo $this->input(
 						array(
 							'type' => 'select-icons',
-							'name' => $widget->get_field_name( 'design' ) . '[layout]' ,
-							'id' =>  $widget->get_field_id( 'design' ) . '-layout' ,
+							'name' => $widget->name . '[layout]' ,
+							'id' =>  $widget->id . '-layout' ,
 							'value' => ( isset( $values->layout ) ) ? $values->layout : NULL,
 							'options' => array(
 								'layout-boxed' => __( 'Boxed' , HATCH_THEME_SLUG ),
@@ -184,8 +193,8 @@ class Hatch_Design_Controller {
 					<?php echo $this->input(
 						array(
 							'type' => 'select-icons',
-							'name' => $widget->get_field_name( 'design' ) . '[liststyle]' ,
-							'id' =>  $widget->get_field_id( 'design' ) . '-liststyle' ,
+							'name' => $widget->name . '[liststyle]' ,
+							'id' =>  $widget->id . '-liststyle' ,
 							'value' => ( isset( $values->liststyle ) ) ? $values->liststyle : NULL,
 							'options' => array(
 								'list-grid' => __( 'Grid' , HATCH_THEME_SLUG ),
@@ -222,12 +231,12 @@ class Hatch_Design_Controller {
 			<div class="hatch-visuals-settings-wrapper hatch-animate hatch-content-small">
 				<div class="hatch-visuals-settings">
 					<p class="hatch-form-item">
-						<label for="<?php echo  $widget->get_field_name( 'design' ) . '-columns'; ?>"><?php _e( 'Columns' , HATCH_THEME_SLUG ); ?></label>
+						<label for="<?php echo  $widget->name . '-columns'; ?>"><?php _e( 'Columns' , HATCH_THEME_SLUG ); ?></label>
 						<?php echo $this->input(
 							array(
 								'type' => 'select',
-								'name' => $widget->get_field_name( 'design' ) . '[columns]' ,
-								'id' =>  $widget->get_field_id( 'design' ) . '-columns' ,
+								'name' => $widget->name . '[columns]' ,
+								'id' =>  $widget->id . '-columns' ,
 								'value' => ( isset( $values->columns ) ) ? $values->columns : NULL,
 								'options' => array(
 									'1' => __( '1 Column' , HATCH_THEME_SLUG ),
@@ -268,8 +277,8 @@ class Hatch_Design_Controller {
 					<?php echo $this->input(
 						array(
 							'type' => 'select-icons',
-							'name' => $widget->get_field_name( 'design' ) . '[textalign]' ,
-							'id' =>  $widget->get_field_id( 'design' ) . '-textalign' ,
+							'name' => $widget->name . '[textalign]' ,
+							'id' =>  $widget->id . '-textalign' ,
 							'value' => ( isset( $values->textalign ) ) ? $values->textalign : NULL,
 							'options' => array(
 								'text-left' => __( 'Left' , HATCH_THEME_SLUG ),
@@ -308,8 +317,8 @@ class Hatch_Design_Controller {
 					<?php echo $this->input(
 						array(
 							'type' => 'select-icons',
-							'name' => $widget->get_field_name( 'design' ) . '[imagealign]' ,
-							'id' =>  $widget->get_field_id( 'design' ) . '-imagealign' ,
+							'name' => $widget->name . '[imagealign]' ,
+							'id' =>  $widget->id . '-imagealign' ,
 							'value' => ( isset( $values->imagealign ) ) ? $values->imagealign : NULL,
 							'options' => array(
 								'image-left' => __( 'Left' , HATCH_THEME_SLUG ),
@@ -372,8 +381,8 @@ class Hatch_Design_Controller {
 							array(
 								'type' => 'image',
 								'label' => __( 'Upload Image' , HATCH_THEME_SLUG ),
-								'name' => $widget->get_field_name( 'design' ) . '[background][image]' ,
-								'id' =>  $widget->get_field_id( 'design' ) . '-background-image' ,
+								'name' => $widget->name . '[background][image]' ,
+								'id' =>  $widget->id . '-background-image' ,
 								'value' => ( isset( $values->background['image'] ) ) ? $values->background['image'] : NULL
 							)
 						); ?>
@@ -385,8 +394,8 @@ class Hatch_Design_Controller {
 								array(
 									'type' => 'color',
 									'label' => __( 'Background Color' , HATCH_THEME_SLUG ),
-									'name' => $widget->get_field_name( 'design' ) . '[background][color]' ,
-									'id' =>  $widget->get_field_id( 'design' ) . '-background-color' ,
+									'name' => $widget->name . '[background][color]' ,
+									'id' =>  $widget->id . '-background-color' ,
 									'value' => ( isset( $values->background['color'] ) ) ? $values->background['color'] : NULL
 								)
 							); ?>
@@ -396,8 +405,8 @@ class Hatch_Design_Controller {
 								array(
 									'type' => 'checkbox',
 									'label' => __( 'Tile' , HATCH_THEME_SLUG ),
-									'name' => $widget->get_field_name( 'design' ) . '[background][tile]' ,
-									'id' =>  $widget->get_field_id( 'design' ) . '-background-tile' ,
+									'name' => $widget->name . '[background][tile]' ,
+									'id' =>  $widget->id . '-background-tile' ,
 									'value' => ( isset( $values->background['tile'] ) ) ? $values->background['tile'] : NULL
 								)
 							); ?>
@@ -407,8 +416,8 @@ class Hatch_Design_Controller {
 								array(
 									'type' => 'checkbox',
 									'label' => __( 'Stretch' , HATCH_THEME_SLUG ),
-									'name' => $widget->get_field_name( 'design' ) . '[background][stretch]' ,
-									'id' =>  $widget->get_field_id( 'design' ) . '-background-stretch' ,
+									'name' => $widget->name . '[background][stretch]' ,
+									'id' =>  $widget->id . '-background-stretch' ,
 									'value' => ( isset( $values->background['stretch'] ) ) ? $values->background['stretch'] : NULL
 								)
 							); ?>
@@ -418,8 +427,8 @@ class Hatch_Design_Controller {
 								array(
 									'type' => 'checkbox',
 									'label' => __( 'Parallax' , HATCH_THEME_SLUG ),
-									'name' => $widget->get_field_name( 'design' ) . '[background][parallax]' ,
-									'id' =>  $widget->get_field_id( 'design' ) . '-background-parallax' ,
+									'name' => $widget->name . '[background][parallax]' ,
+									'id' =>  $widget->id . '-background-parallax' ,
 									'value' => ( isset( $values->background['parallax'] ) ) ? $values->background['parallax'] : NULL
 								)
 							); ?>
@@ -429,8 +438,8 @@ class Hatch_Design_Controller {
 								array(
 									'type' => 'checkbox',
 									'label' => __( 'Darken' , HATCH_THEME_SLUG ),
-									'name' => $widget->get_field_name( 'design' ) . '[background][darken]' ,
-									'id' =>  $widget->get_field_id( 'design' ) . '-background-darken' ,
+									'name' => $widget->name . '[background][darken]' ,
+									'id' =>  $widget->id . '-background-darken' ,
 									'value' => ( isset( $values->background['darken'] ) ) ? $values->background['darken'] : NULL
 								)
 							); ?>

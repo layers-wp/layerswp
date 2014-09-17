@@ -7,7 +7,7 @@
  * @since Hatch 1.0
  */
 if( !class_exists( 'Hatch_Contact_Widget' ) ) {
-	class Hatch_Contact_Widget extends WP_Widget {
+	class Hatch_Contact_Widget extends Hatch_Widget {
 
 		/**
 		* Widget variables
@@ -40,7 +40,17 @@ if( !class_exists( 'Hatch_Contact_Widget' ) ) {
 
 			/* Create the widget. */
 			$this->WP_Widget( HATCH_THEME_SLUG . '-widget-' . $this->widget_id , '(' . HATCH_THEME_TITLE . ') ' . $this->widget_title . ' Widget', $widget_ops, $control_ops );
-	 	}
+
+			/* Setup Widget Defaults */
+			$this->defaults = array (
+				'title' => NULL,
+				'excerpt' => NULL,
+				'address_shown' => NULL,
+				'title_size' => '',
+				'google_maps_location' => NULL,
+				'google_maps_long_lat' => NULL
+			);
+		}
 
 		/**
 		*  Widget front end display
@@ -51,22 +61,23 @@ if( !class_exists( 'Hatch_Contact_Widget' ) ) {
 			extract( $args );
 
 			// $instance Defaults
-			$instance_defaults = array (
-				'title' => NULL,
-				'excerpt' => NULL,
-				'address_shown' => NULL,
-				'google_maps_location' => NULL,
-				'google_maps_long_lat' =>NULL
-			);
+			$instance_defaults = $this->defaults;
+
+			// If we have information in this widget, then ignore the defaults
+			if( !empty( $instance ) ) $instance_defaults = array();
+
 			 $instance = wp_parse_args( $instance , $instance_defaults );
 
 			// Turn $instance into an object named $widget, makes for neater code
-			$widget = (object) $instance; ?>
+			$widget = (object) $instance;
+
+			// Set the background styling
+			if( !empty( $widget->design[ 'background' ] ) ) $this->widget_styles( $widget_id , 'background', $widget->design[ 'background' ] ); ?>
 
 			<section class="widget row" id="<?php echo $widget_id; ?>">
 				<?php if( '' != $widget->title || '' != $widget->excerpt  || '' != $widget->address_shown ) { ?>
 					<div class="container content clearfix">
-						<div class="section-title clearfix <?php if( isset( $widget->title_size ) ) echo $widget->title_size; ?>">
+						<div class="section-title <?php if( isset( $widget->design['textalign'] ) ) echo $widget->design['textalign']; ?> clearfix">
 							<?php if( '' != $widget->address_shown && !isset( $widget->show_address ) ) { ?>
 								<small class="pull-right span-2">
 									<?php echo $widget->address_shown; ?>
@@ -121,13 +132,7 @@ if( !class_exists( 'Hatch_Contact_Widget' ) ) {
 			$widget_elements = new Hatch_Form_Elements();
 
 			// $instance Defaults
-			$instance_defaults = array (
-				'title' => NULL,
-				'excerpt' => NULL,
-				'title_size' => '',
-				'google_maps_location' => NULL,
-				'google_maps_long_lat' => NULL
-			);
+			$instance_defaults = $this->defaults;
 
 			// If we have information in this widget, then ignore the defaults
 			if( !empty( $instance ) ) $instance_defaults = array();
@@ -136,7 +141,48 @@ if( !class_exists( 'Hatch_Contact_Widget' ) ) {
 			$instance_args = wp_parse_args( $instance, $instance_defaults );
 			extract( $instance_args, EXTR_SKIP );
 		?>
-
+			<!-- Form HTML Here -->
+			<?php $design_controller = new Hatch_Design_Controller();
+			$design_controller->bar(
+				$this, // Widget Object
+				$instance, // Widget Values
+				array(
+					'layout',
+					'custom',
+					'liststyle',
+					'textalign',
+					'background'
+				), // Standard Components
+				array(
+					'display' => array(
+						'icon-css' => 'icon-display',
+						'label' => 'Display',
+						'elements' => array(
+								'show_google_map' => array(
+										'type' => 'checkbox',
+										'name' => $this->get_field_name( 'show_google_map' ) ,
+										'id' => $this->get_field_id( 'show_google_map' ) ,
+										'value' => ( isset( $show_google_map ) ) ? $show_google_map : NULL,
+										'label' => __( 'Hide Google Map', HATCH_THEME_SLUG )
+									)
+								),
+								'show_address' => array(
+										'type' => 'checkbox',
+										'name' => $this->get_field_name( 'show_address' ) ,
+										'id' => $this->get_field_id( 'show_address' ) ,
+										'value' => ( isset( $show_address ) ) ? $show_address : NULL,
+										'label' => __( 'Hide Address', HATCH_THEME_SLUG )
+									)
+								),
+								'show_contact_form' => array(
+										'type' => 'checkbox',
+										'name' => $this->get_field_name( 'show_contact_form' ) ,
+										'id' => $this->get_field_id( 'show_contact_form' ) ,
+										'value' => ( isset( $show_contact_form ) ) ? $show_contact_form : NULL,
+										'label' => __( 'Hide Contact Form', HATCH_THEME_SLUG )
+									)
+								)
+							);?>
 			<div class="hatch-container-large">
 
 				<?php $widget_elements->header( array(
@@ -180,38 +226,10 @@ if( !class_exists( 'Hatch_Contact_Widget' ) ) {
 										)
 									); ?>
 								</p>
-								<p class="hatch-form-item">
-									<?php echo $widget_elements->input(
-										array(
-											'type' => 'select',
-											'name' => $this->get_field_name( 'title_size' ) ,
-											'id' => $this->get_field_id( 'title_size' ) ,
-											'value' => ( isset( $title_size ) ) ? $title_size : NULL ,
-											'class' => 'hatch-select hatch-large',
-											'options' => array(
-													'small' => 'Small',
-													'' => 'Medium',
-													'large' => 'Large',
-												)
-										)
-									); ?>
-								</p>
 							</div>
-						</section>
 
-					</li>
-					<li class="hatch-accordion-item">
-
-						<?php $widget_elements->accordian_title(
-							array(
-								'title' => __( 'Map Details' , HATCH_THEME_SLUG ),
-								'tooltip' => __(  'Place your help text here please.', HATCH_THEME_SLUG )
-							)
-						); ?>
-
-						<section class="hatch-accordion-section hatch-content">
 							<div class="hatch-row clearfix">
-								<div class="hatch-column hatch-span-6">
+								<div class="hatch-column hatch-span-12">
 									<div class="hatch-panel">
 										<?php $widget_elements->section_panel_title(
 											array(
@@ -261,89 +279,8 @@ if( !class_exists( 'Hatch_Contact_Widget' ) ) {
 										</div>
 									</div>
 								</div>
-
-								<div class="hatch-column hatch-span-6">
-									<div class="hatch-panel">
-										<?php $widget_elements->section_panel_title(
-											array(
-												'type' => 'panel',
-												'title' => __( 'Display Elements' , HATCH_THEME_SLUG ),
-												'tooltip' => __(  'Place your help text here please.', HATCH_THEME_SLUG )
-											)
-										); ?>
-										<div class="hatch-content">
-											<ul class="hatch-checkbox-list">
-												<li class="hatch-checkbox">
-													<?php echo $widget_elements->input(
-														array(
-															'type' => 'checkbox',
-															'name' => $this->get_field_name( 'show_google_map' ) ,
-															'id' => $this->get_field_id( 'show_google_map' ) ,
-															'value' => ( isset( $show_google_map ) ) ? $show_google_map : NULL,
-															'label' => __( 'Hide Google Map', HATCH_THEME_SLUG )
-														)
-													); ?>
-												</li>
-												<li class="hatch-checkbox">
-													<?php echo $widget_elements->input(
-														array(
-															'type' => 'checkbox',
-															'name' => $this->get_field_name( 'show_address' ) ,
-															'id' => $this->get_field_id( 'show_address' ) ,
-															'value' => ( isset( $show_address ) ) ? $show_address : NULL,
-															'label' => __( 'Hide Address', HATCH_THEME_SLUG )
-														)
-													); ?>
-												</li>
-												<li class="hatch-checkbox">
-													<?php echo $widget_elements->input(
-														array(
-															'type' => 'checkbox',
-															'name' => $this->get_field_name( 'show_contact_form' ) ,
-															'id' => $this->get_field_id( 'show_contact_form' ) ,
-															'value' => ( isset( $show_contact_form ) ) ? $show_contact_form : NULL,
-															'label' => __( 'Hide Contact Form', HATCH_THEME_SLUG )
-														)
-													); ?>
-												</li>
-											</ul>
-										</div>
-									</div>
-								</div>
-
 							</div>
 
-						</section>
-					</li>
-
-					<li class="hatch-accordion-item">
-
-						<?php $widget_elements->accordian_title(
-							array(
-								'title' => __( 'Design' , HATCH_THEME_SLUG ),
-								'tooltip' => __(  'Place your help text here please.', HATCH_THEME_SLUG )
-							)
-						); ?>
-
-						<section class="hatch-accordion-section hatch-content">
-							<div class="hatch-row clearfix">
-								<div class="hatch-column hatch-span-8">
-									<p class="hatch-form-item">
-										<label>Background Image</label>
-										<a href="#" class="hatch-image-uploader hatch-animate hatch-push-bottom"></a>
-									</p>
-								</div>
-								<div class="hatch-column hatch-span-4 no-gutter">
-									<p class="hatch-form-item hatch-no-push-bottom">
-										<label>Background Color</label>
-										<a class="wp-color-result" tabindex="0" title="Select Color" data-current="Current Color"></a>
-									</p>
-									<p class="hatch-checkbox">
-										<input type="checkbox" />
-										<label>Darken to improve readability </label>
-									</p>
-								</div>
-							</div>
 						</section>
 					</li>
 

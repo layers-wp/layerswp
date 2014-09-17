@@ -366,7 +366,8 @@ class Hatch_Design_Controller {
 			</a>
 			<div class="hatch-visuals-settings-wrapper hatch-animate hatch-content-small">
 				<div class="hatch-visuals-settings">
-					<div class="background-image">
+					<div class="background-image <?php if( isset( $values->background['image'] ) ) echo 'has-image'; ?>">
+						<a class="hatch-image-remove <?php if( !isset( $values->background['image'] ) ) echo 'hatch-hide'; ?>" href=""><?php _e( 'Remove' , HATCH_THEME_SLUG ); ?></a>
 						<?php echo $this->input(
 							array(
 								'type' => 'image',

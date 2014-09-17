@@ -16,9 +16,10 @@
  * 4 - Sortable Columns
  * 5 - Tabs
  * 6 - Design Controller toggles
+ * 7 - Design Controller Height Matcher
 */
 
-jQuery(document).ready(function($) {
+jQuery(function($) {
 
 	/**
 	* 1 - Media Uploaders
@@ -274,6 +275,20 @@ jQuery(document).ready(function($) {
 
 		// Close siblings
 		$that.siblings( '.hatch-icon-wrapper' ).removeClass( 'hatch-active' );
-	})
+	});
+
+
+	/**
+	* 7 - Design Controller Height Matcher
+	*/
+	$(window).resize( function(){
+		hatch_set_visual_wrapper_height();
+	} );
+	function hatch_set_visual_wrapper_height(){
+
+		// Set the visual wrapper to the same height as the window
+		$( '.hatch-visuals-wrapper' ).css( 'height' , $(window).height() );
+	}
 
 });
+

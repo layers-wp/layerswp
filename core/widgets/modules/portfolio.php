@@ -69,6 +69,9 @@ if( !class_exists( 'Hatch_Portfolio_Widget' ) ) {
 			// $instance Defaults
 			$instance_defaults = $this->defaults;
 
+			// If we have information in this widget, then ignore the defaults
+			if( !empty( $instance ) ) $instance_defaults = array();
+
 			// Parse $instance
 			$instance = wp_parse_args( $instance, $instance_defaults );
 
@@ -355,7 +358,7 @@ if( !class_exists( 'Hatch_Portfolio_Widget' ) ) {
 							</div>
 
 							<div class="hatch-row clearfix">
-								<div class="hatch-column hatch-span-6">
+								<div class="hatch-column hatch-span-12">
 									<div class="hatch-panel">
 										<?php $widget_elements->section_panel_title(
 											array(
@@ -403,11 +406,12 @@ if( !class_exists( 'Hatch_Portfolio_Widget' ) ) {
 												$select_options = $widget_elements->get_incremental_options( $select_options , 1 , 20 , 1);
 												echo $widget_elements->input(
 													array(
-														'type' => 'select',
+														'type' => 'number',
 														'name' => $this->get_field_name( 'posts_per_page' ) ,
 														'id' => $this->get_field_id( 'posts_per_page' ) ,
 														'value' => ( isset( $posts_per_page ) ) ? $posts_per_page : NULL ,
-														'options' => $select_options
+														'min' => '-1',
+														'max' => '100'
 													)
 												); ?>
 											</p>

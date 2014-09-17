@@ -200,7 +200,6 @@ jQuery(document).ready(function($) {
 	*/
 	hatch_set_color_selectors();
 	$(document).on ( 'mouseup' , '#available-widgets .widget-tpl' , function(){
-		console.log( "mah" );
 		jQuery('.hatch-color-selector').wpColorPicker(); // @TODO: Get the color picker to work on new elements
 	} );
 
@@ -254,7 +253,7 @@ jQuery(document).ready(function($) {
 	/**
 	* 6 - Design Controller Toggles
 	*/
-	$( document ).on( 'click' , '.hatch-visuals-wrapper li.hatch-visuals-item .hatch-icon-wrapper' , function(e){
+	$( document ).on( 'click' , '.hatch-visuals-wrapper li.hatch-visuals-item a.hatch-icon-wrapper' , function(e){
 		e.preventDefault();
 		// "Hi Mom"
 		$that = $(this);

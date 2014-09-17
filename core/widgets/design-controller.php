@@ -17,7 +17,7 @@ class Hatch_Design_Controller {
 	* @param  	array     	$options() 	Array of custom elements which are not common
 	*/
 
-	function bar( $widget = NULL, $instance = array(), $components = array( 'columns' , 'background' , 'image-align' ) , $custom_components = array() ) {
+	function bar( $css_class = 'hatch-pull-right' , $widget = NULL, $instance = array(), $components = array( 'columns' , 'background' , 'image-align' ) , $custom_components = array() ) {
 
 		// If there is no widget information provided, can the operation
 		if( NULL == $widget ) return;
@@ -29,7 +29,7 @@ class Hatch_Design_Controller {
 			$values = (object) $instance[ 'design' ];
 		} ?>
 
-		<div class="hatch-visuals hatch-pull-right">
+		<div class="hatch-visuals <?php echo $css_class; ?>">
 			<h6 class="hatch-visuals-title">
 				<span class="icon-settings hatch-small"></span>
 			</h6>

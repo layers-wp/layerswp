@@ -149,19 +149,10 @@ if( !class_exists( 'Hatch_Portfolio_Widget' ) ) {
 							<?php } else { ?>
 								<div class="column<?php if( 'list-masonry' == $widget->design[ 'liststyle' ] ) echo '-flush'; ?> <?php echo $span_class; ?> hatch-masonry-column <?php echo implode( $term_list, " " ); ?>">
 									<div class="thumbnail">
-										<a href="" class="thumbnail-media with-overlay">
+										<a href="" class="thumbnail-media <?php if( isset( $widget->text_style ) && 'overlay' == $widget->text_style ) echo 'with-overlay'; ?>">
 											<?php the_post_thumbnail( 'large' ); ?>
 
-											<?php  if( isset( $widget->text_style ) && 'overlay' != $widget->text_style ) { ?>
-												<?php if( isset( $widget->show_titles ) || isset( $widget->show_excerpts ) ) { ?>
-													<div class="thumbnail-body">
-														<?php if( isset( $widget->show_titles ) ) { ?>
-															<h4 class="heading"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h4>
-														<?php } ?>
-														<?php if( isset( $widget->show_excerpts ) ) the_excerpt(); ?>
-													</div>
-												<?php } ?>
-											<?php } else { ?>
+											<?php if( isset( $widget->text_style ) && 'overlay' == $widget->text_style ) { ?>
 												<span class="overlay">
 													<?php if( isset( $widget->show_titles ) ) { ?>
 														<span class="heading"><?php the_title(); ?></span>
@@ -170,6 +161,16 @@ if( !class_exists( 'Hatch_Portfolio_Widget' ) ) {
 												</span>
 											<?php } ?>
 										</a>
+										<?php  if( isset( $widget->text_style ) && 'overlay' != $widget->text_style ) { ?>
+											<?php if( isset( $widget->show_titles ) || isset( $widget->show_excerpts ) ) { ?>
+												<div class="thumbnail-body">
+													<?php if( isset( $widget->show_titles ) ) { ?>
+														<h4 class="heading"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h4>
+													<?php } ?>
+													<?php if( isset( $widget->show_excerpts ) ) the_excerpt(); ?>
+												</div>
+											<?php } ?>
+										<?php } // if ! overlay?>
 									</div>
 								</div>
 							<?php }; // if list-list == liststyle ?>
@@ -256,6 +257,7 @@ if( !class_exists( 'Hatch_Portfolio_Widget' ) ) {
 			<!-- Form HTML Here -->
 			<?php $design_controller = new Hatch_Design_Controller();
 			$design_controller->bar(
+				'hatch-pull-right', // CSS Class Name
 				$this, // Widget Object
 				$instance, // Widget Values
 				array(

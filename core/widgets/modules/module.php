@@ -60,7 +60,6 @@ if( !class_exists( 'Hatch_Module_Widget' ) ) {
 			<section class="widget row content-vertical-massive" id="<?php echo $widget_id; ?>">
 				<div class="container clearfix">
 					<?php if( '' != $widget->title || '' != $widget->excerpt ) { ?>
-						
 						<div class="section-title <?php if( isset( $widget->title_size ) ) echo $widget->title_size; ?> <?php if( isset( $widget->title_alignment ) ) echo $widget->title_alignment; ?> clearfix"> <?php // @TODO: get alignment to work here ?>
 							<?php if( '' != $widget->title ) { ?>
 								<h3 class="heading"><?php echo $widget->title; ?></h3>
@@ -69,10 +68,9 @@ if( !class_exists( 'Hatch_Module_Widget' ) ) {
 								<p class="excerpt"><?php echo $widget->excerpt; ?></p>
 							<?php } ?>
 						</div>
-							
 					<?php } ?>
 					<?php if( !empty( $widget->modules ) ) { ?>
-						<div class="row push-bottom-large">
+						<div class="row">
 							<?php $col = 1; ?>
 							<?php foreach ( $widget->modules as $key => $module) {
 								$module = (object) $module;

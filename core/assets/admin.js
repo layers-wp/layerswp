@@ -263,6 +263,17 @@ jQuery(document).ready(function($) {
 
 		// Close siblings
 		$that.parent().siblings( '.hatch-visuals-item' ).removeClass( 'hatch-active' );
+	});
+
+	$( document ).on( 'click' , '.hatch-visuals-wrapper li.hatch-visuals-item label.hatch-icon-wrapper' , function(e){
+		// "Hi Mom"
+		$that = $(this);
+
+		// Toggle active state
+		$that.addClass( 'hatch-active' );
+
+		// Close siblings
+		$that.siblings( '.hatch-icon-wrapper' ).removeClass( 'hatch-active' );
 	})
 
 });

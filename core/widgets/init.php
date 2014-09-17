@@ -38,6 +38,7 @@ class Hatch_Widgets {
 		require $widget_dir . 'design-controller.php';
 
 		// Include necessary widgets
+		require $module_dir . 'base.php'; // Basis of all Hatch Widgets
 		require $module_dir . 'banner.php';
 		require $module_dir . 'contact.php';
 		require $module_dir . 'framework.php';

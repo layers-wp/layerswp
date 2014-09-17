@@ -528,9 +528,16 @@ div[id*='hatch-widget'] .widget-control-actions{
     top: auto;
     bottom: -6px;
 }
+.hatch-visuals-settings .background-image{
+    vertical-align: middle;
+    border-radius: 4px;
+    display: block;
+    max-height: 150px;
+    overflow: hidden;
+    margin-bottom: 15px;
+}
 .hatch-visuals-settings img{
     max-width: 100%;
-    border-radius: 4px;
 }
 .hatch-quick-links{
     padding: 10px;

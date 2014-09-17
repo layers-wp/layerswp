@@ -285,9 +285,8 @@ jQuery(function($) {
 		hatch_set_visual_wrapper_height();
 	} );
 	function hatch_set_visual_wrapper_height(){
-
 		// Set the visual wrapper to the same height as the window
-		$( '.hatch-visuals-wrapper' ).css( 'height' , $(window).height() );
+		// $( '.hatch-visuals-wrapper' ).css( 'height' , $(window).height() );
 	}
 
 });

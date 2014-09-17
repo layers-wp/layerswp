@@ -101,14 +101,13 @@ div[id*='hatch-widget'] .widget-top .widget-title .in-widget-title{
 
 
 div[id*='hatch-widget'] .widget-control-actions{
-    width: 100%;
     max-width: 300px;
     padding: 10px 20px;
     position: fixed;
-    bottom: 0;
-    right: 0;
+    bottom: 10px;
+    right: 10px;
     border-radius: 4px;
-    background: rgba(255, 255, 255, 0.8);
+    border: 2px solid #fff;
 }
 
 /*---------------------------*/

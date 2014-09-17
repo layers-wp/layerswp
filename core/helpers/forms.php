@@ -273,8 +273,12 @@ class Hatch_Form_Elements {
 
 				<div class="hatch-media-controller" id="<?php echo $input->id; ?>-controller">
 					<ul class="hatch-section-links hatch-background-selector">
-						<li <?php if( 'video' != $input_type ) echo 'class="active"'; ?> data-id="#<?php echo $input->id; ?>" data-type="image"><a href="" class="hatch-icon icon-bgimage-small"><?php _e( 'Background Image' , HATCH_THEME_SLUG ); ?></a></li>
-						<li <?php if( 'video' == $input_type ) echo 'class="active"'; ?> data-id="#<?php echo $input->id; ?>" data-type="video"><a href="" class="hatch-icon icon-video-small"><?php _e( 'Background Video' , HATCH_THEME_SLUG ); ?></a></li>
+						<li <?php if( 'video' != $input_type ) echo 'class="active"'; ?> data-id="#<?php echo $input->id; ?>" data-type="image">
+							<a href="" class="icon-photo"></a>
+						</li>
+						<li <?php if( 'video' == $input_type ) echo 'class="active"'; ?> data-id="#<?php echo $input->id; ?>" data-type="video">
+							<a href="" class="icon-video"></a>
+						</li>
 					</ul>
 
 					<!-- Background Type Input -->

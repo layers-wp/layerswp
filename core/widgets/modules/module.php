@@ -76,19 +76,7 @@ if( !class_exists( 'Hatch_Module_Widget' ) ) {
 								$module = (object) $module;
 
 								$module_layout = '';
-								if( isset( $module->image_layout ) ) {
-									switch( $module->image_layout ) {
-										case 'image-top' :
-											$module_layout = 't-center';
-										break;
-										case 'image-right' :
-											$module_layout = 'marketing-right';
-										break;
-										default:
-											$module_layout = '';
-										break;
-									}
-								} ?>
+								if( isset( $module->image_layout ) ) $module_layout = $module->image_layout; ?>
 								<?php if( $col <= $col_count ) { ?>
 									<div class="column <?php echo $span_class; ?>">
 										<div class="marketing <?php echo $module_layout; ?>">
@@ -217,28 +205,6 @@ if( !class_exists( 'Hatch_Module_Widget' ) ) {
 														)
 													); ?>
 												</p>
-
-												<div class="hatch-radio-pills-collection">
-													<div class="hatch-radio-pills">
-														<span>Text Align</span>
-														<input type="radio" />
-														<label>Left</label>
-														<input type="radio" checked="checked" />
-														<label>Center</label>
-														<input type="radio" />
-														<label>Middle</label>
-													</div>
-
-													<div class="hatch-radio-pills">
-														<span>Text Size</span>
-														<input type="radio" checked="checked" />
-														<label>Small</label>
-														<input type="radio" />
-														<label>Medium</label>
-														<input type="radio" />
-														<label>Large</label>
-													</div>
-												</div>
 
 											</div>
 										</div>
@@ -382,19 +348,24 @@ if( !class_exists( 'Hatch_Module_Widget' ) ) {
 						'value' => ( isset( $image ) ) ? $image : NULL
 					)
 				); ?>
-				<?php echo $widget_elements->input(
-					array(
-						'type' => 'select-icons',
-						'name' => 'widget-' . $widget_details->id_base . '[' . $widget_details->number . '][modules][' . $module_guid . '][image_layout]' ,
-						'id' => 'widget-' . $widget_details->id_base . '-' . $widget_details->number . '-' . $module_guid . '-image_layout' ,
-						'value' => ( isset( $image_layout ) ) ? $image_layout : NULL,
-						'options' => array(
-							'image-left' => __( 'Left' , HATCH_THEME_SLUG ),
-							'image-top' => __( 'Top' , HATCH_THEME_SLUG ),
-							'image-right' => __( 'Right' , HATCH_THEME_SLUG )
+
+				<p class="hatch-form-item">
+					<label for="<?php echo $this->get_field_id( 'widget-' . $widget_details->id_base . '-' . $widget_details->number . '-' . $module_guid . '-image_layout' ); ?>"><?php echo __( 'Image Position' , HATCH_THEME_SLUG ); ?></label>
+					<?php echo $widget_elements->input(
+						array(
+							'type' => 'select',
+							'name' => 'widget-' . $widget_details->id_base . '[' . $widget_details->number . '][modules][' . $module_guid . '][image_layout]' ,
+							'id' => 'widget-' . $widget_details->id_base . '-' . $widget_details->number . '-' . $module_guid . '-image_layout' ,
+							'value' => ( isset( $image_layout ) ) ? $image_layout : NULL,
+							'options' => array(
+								'image-left' => __( 'Left' , HATCH_THEME_SLUG ),
+								'image-center' => __( 'Top' , HATCH_THEME_SLUG ),
+								'image-right' => __( 'Right' , HATCH_THEME_SLUG )
+							)
 						)
-					)
-				); ?>
+					); ?>
+				</p>
+
 				<p class="hatch-form-item">
 					<?php echo $widget_elements->input(
 						array(
@@ -421,7 +392,7 @@ if( !class_exists( 'Hatch_Module_Widget' ) ) {
 				</p>
 				<?php echo $widget_elements->input(
 					array(
-						'type' => 'tinymce',
+						'type' => 'textarea',
 						'name' => 'widget-' . $widget_details->id_base . '[' . $widget_details->number . '][modules][' . $module_guid . '][excerpt]' ,
 						'id' => 'widget-' . $widget_details->id_base . '-' . $widget_details->number . '-' . $module_guid . '-excerpt' ,
 						'value' => ( isset( $excerpt ) ) ? $excerpt : NULL ,

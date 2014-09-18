@@ -41,6 +41,20 @@ if( !class_exists( 'Hatch_Banner_Widget' ) ) {
 				'banner_height' => '550',
 				'banner_ids' => rand( 1 , 1000 )
 			);
+			$this->banner_defaults = array (
+				'title' => NULL,
+				'excerpt' => NULL,
+				'design' => array(
+					'imagealign' => 'image-left',
+					'textalign' => 'text-left',
+					'background' => NULL,
+				),
+				'font_style' => array(
+					'size' => '',
+					'color' => '#ffffff',
+					'shadow' => ''
+				)
+			);
 		}
 
 		/**
@@ -73,25 +87,27 @@ if( !class_exists( 'Hatch_Banner_Widget' ) ) {
 							$banner = (object) $banner;
 
 							// Set the background styling
-							if( !empty( $banner->design['background'] ) ) $this->widget_styles( $widget_id . '-' . $key , 'background', $banner->design[ 'background' ] ); ?>
+							if( !empty( $banner->design[ 'background' ] ) ) $this->widget_styles( $widget_id . '-' . $key , 'background', $banner->design[ 'background' ] );
+							if( !empty( $banner->font_style[ 'color' ] ) ) $this->widget_styles( $widget_id . '-' . $key , 'color', array( 'selectors' => array( 'h3.heading' , 'div.excerpt' ) , 'color' => $banner->font_style[ 'color' ] ) );
+							if( !empty( $banner->font_style[ 'shadow' ] ) ) $this->widget_styles( $widget_id . '-' . $key , 'text-shadow', array( 'selectors' => array( 'h3.heading' , 'div.excerpt' )  , 'text-shadow' => $banner->font_style[ 'shadow' ] ) ); ?>
 
 							<div id="<?php echo $widget_id; ?>-<?php echo $key; ?>" class="invert swiper-slide <?php if( isset( $banner->design[ 'imagealign' ] ) && '' != $banner->design[ 'imagealign' ] ) echo $banner->design[ 'imagealign' ]; ?>"
 								style="float: left; <?php if( isset( $widget->banner_height ) && '' != $widget->banner_height ) echo 'height: ' . $widget->banner_height . 'px;' ?>">
 								<div class="container" <?php if( isset( $widget->banner_height ) && '' != $widget->banner_height ) echo 'style="height: ' . $widget->banner_height . 'px;"' ?>><!-- height important for vertical positioning. Must match container height -->
 									<?php if( '' != $banner->title || '' != $banner->excerpt ) { ?>
-									<div class="copy-container">
-										<!-- your dynamic output goes here -->
-										<div class="section-title large">
-											<?php if( isset( $banner->title ) && '' != $banner->title ) { ?>
-												<h3 class="heading"><?php echo $banner->title; ?></h3>
-											<?php } ?>
+										<div class="copy-container">
+											<!-- your dynamic output goes here -->
+											<div class="section-title <?php if( !empty( $banner->font_style[ 'size' ] ) ) echo $banner->font_style[ 'size' ]; ?>">
+												<?php if( isset( $banner->title ) && '' != $banner->title ) { ?>
+													<h3 class="heading"><?php echo $banner->title; ?></h3>
+												<?php } ?>
 
-											<?php if( isset( $banner->excerpt ) && '' != $banner->excerpt ) { ?>
-												<div class="excerpt"><?php echo $banner->excerpt; ?></div>
-											<?php } ?>
+												<?php if( isset( $banner->excerpt ) && '' != $banner->excerpt ) { ?>
+													<div class="excerpt"><?php echo $banner->excerpt; ?></div>
+												<?php } ?>
+											</div>
+											<div class="copy"></div>
 										</div>
-										<div class="copy"></div>
-									</div>
 									<?php } // if title || excerpt ?>
 									<?php if( isset( $banner->image ) && '' != $banner->image ) { ?>
 										<div class="image-container">
@@ -192,7 +208,7 @@ if( !class_exists( 'Hatch_Banner_Widget' ) ) {
 				array(
 					'display' => array(
 						'icon-css' => 'icon-slider',
-						'label' => 'Slider Settings',
+						'label' => 'Slider',
 						'elements' => array(
 								'hide_slider_arrows' => array(
 									'type' => 'checkbox',
@@ -232,8 +248,8 @@ if( !class_exists( 'Hatch_Banner_Widget' ) ) {
 			<div class="hatch-container-large" id="hatch-banner-widget-<?php echo $this->number; ?>">
 
 				<?php $widget_elements->header( array(
-					'title' =>'Banners',
-					'icon_class' =>'banner'
+					'title' =>'Slides',
+					'icon_class' =>'slider'
 				) ); ?>
 
 
@@ -241,7 +257,7 @@ if( !class_exists( 'Hatch_Banner_Widget' ) ) {
 					<li class="hatch-accordion-item open">
 						<?php $widget_elements->accordian_title(
 							array(
-								'title' => __( 'Banner Content' , HATCH_THEME_SLUG ),
+								'title' => __( 'Slide Content' , HATCH_THEME_SLUG ),
 								'tooltip' => __(  'Place your help text here please.', HATCH_THEME_SLUG )
 							)
 						); ?>
@@ -291,15 +307,7 @@ if( !class_exists( 'Hatch_Banner_Widget' ) ) {
 			if( NULL !== $instance ) {
 
 				// $instance Defaults
-				$instance_defaults = array (
-					'title' => NULL,
-					'excerpt' => NULL,
-					'design' => array(
-						'imagealign' => 'image-left',
-						'textalign' => 'text-left',
-						'background' => NULL,
-					),
-				);
+				$instance_defaults = $this->banner_defaults;
 
 				// Parse $instance
 				$instance_args = wp_parse_args( $instance, $instance_defaults );
@@ -332,9 +340,45 @@ if( !class_exists( 'Hatch_Banner_Widget' ) ) {
 							), // Widget Object
 							$instance, // Widget Values
 							array(
+								'textalign',
 								'imagealign',
-								'background'
-							) // Standard Components
+								'background',
+								'custom'
+							), // Standard Components
+							array(
+								'fonts' => array(
+									'icon-css' => 'icon-font-size',
+									'label' => '',
+									'elements' => array(
+										'font-size' => array(
+												'type' => 'select',
+												'name' => 'widget-' . $widget_details->id_base . '[' . $widget_details->number . '][banners][' . $slide_guid . '][font_style][size]',
+												'id' => 'widget-' . $widget_details->id_base . '-' . $widget_details->number . '-' . $slide_guid . '-font-size',
+												'value' => ( isset( $font_style[ 'size' ] ) ) ? $font_style[ 'size' ] : '',
+												'label' => __( 'Size' , HATCH_THEME_SLUG ),
+												'options' => array(
+														'small' => __( 'Small' , HATCH_THEME_SLUG ),
+														'' => __( 'Medium' , HATCH_THEME_SLUG ),
+														'large' => __( 'Large' , HATCH_THEME_SLUG )
+												)
+											),
+										'font-color' => array(
+												'type' => 'color',
+												'name' => 'widget-' . $widget_details->id_base . '[' . $widget_details->number . '][banners][' . $slide_guid . '][font_style][color]',
+												'id' => 'widget-' . $widget_details->id_base . '-' . $widget_details->number . '-' . $slide_guid . '-font-color',
+												'value' => ( isset( $font_style[ 'color' ] ) ) ? $font_style[ 'color' ] : '',
+												'label' => __( 'Color' , HATCH_THEME_SLUG )
+											),
+										'font-shadow' => array(
+												'type' => 'color',
+												'name' => 'widget-' . $widget_details->id_base . '[' . $widget_details->number . '][banners][' . $slide_guid . '][font_style][shadow]',
+												'id' => 'widget-' . $widget_details->id_base . '-' . $widget_details->number . '-' . $slide_guid . '-font-shadow',
+												'value' => ( isset( $font_style[ 'shadow' ] ) ) ? $font_style[ 'shadow' ] : '',
+												'label' => __( 'Shadow' , HATCH_THEME_SLUG )
+											)
+									)
+								),
+							)
 						); ?>
 
 						<div class="hatch-row">
@@ -369,7 +413,8 @@ if( !class_exists( 'Hatch_Banner_Widget' ) ) {
 											'id' => 'widget-' . $widget_details->id_base . '-' . $widget_details->number . '-' . $slide_guid . '-excerpt' ,
 											'placeholder' => __( 'Short Excerpt', HATCH_THEME_SLUG ),
 											'value' => ( isset( $excerpt ) ) ? $excerpt : NULL ,
-											'class' => 'hatch-textarea'
+											'class' => 'hatch-textarea',
+											'rows' => 15
 										)
 									); ?>
 								</p>

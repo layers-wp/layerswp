@@ -43,6 +43,7 @@ add_action( 'template_redirect', 'hatch_set_content_width' );
  * Third Party Scripts
  */
 locate_template( '/core/third_party/site-logo/site-logo.php' , true );
+locate_template( '/core/third_party/hex-to-rgb.php' , true );
 
 /*
  * Load Widgets

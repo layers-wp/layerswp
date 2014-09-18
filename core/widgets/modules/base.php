@@ -28,9 +28,13 @@ if( !class_exists( 'Hatch_Widget' ) ) {
 			$css = '';
 			$input = $widget_id;
 
+			if( empty( $args ) || ( !is_array( $args ) && '' == $args ) ) return;
+
 			switch ( $type ) {
 
 				case 'background' :
+
+					if( '' == $args[ 'color' ] && '' == $args[ 'image' ] ) return ;
 
 					if( isset( $args['color'] ) ){
 						$css .= 'background-color: ' . $args['color'] . '; ';
@@ -56,7 +60,15 @@ if( !class_exists( 'Hatch_Widget' ) ) {
 
 				case 'color' :
 
-					$css .= 'color: ' . $input . ';';
+					if( '' == $args[ 'color' ] ) return ;
+					$css .= 'color: ' . $args[ 'color' ] . ';';
+
+				break;
+
+				case 'text-shadow' :
+
+					if( '' == $args[ 'text-shadow' ] ) return ;
+					$css .= 'text-shadow: 0px 0px 10px rgba(' . implode( ', ' , hex2rgb( $args[ 'text-shadow' ] ) ) . ', 0.75);';
 
 				break;
 
@@ -70,11 +82,10 @@ if( !class_exists( 'Hatch_Widget' ) ) {
 			} else {
 				$widget_css .= '  #' . $widget_id . '{' . $css . '} ';
 			}
-
 			wp_enqueue_style( HATCH_THEME_SLUG . '-custom-widget-styles', get_template_directory_uri() . '/css/widgets.css' );
 			wp_add_inline_style( HATCH_THEME_SLUG . '-custom-widget-styles', $widget_css );
 
-			return $css;
+			return $widget_css;
 
 		}
 

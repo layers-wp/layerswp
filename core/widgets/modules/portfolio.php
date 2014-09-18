@@ -52,6 +52,7 @@ if( !class_exists( 'Hatch_Portfolio_Widget' ) ) {
 				'design' => array(
 					'layout' => 'layout-boxed',
 					'textalign' => 'text-center',
+					'liststyle' => 'list-grid',
 					'columns' => 'columns-3',
 					'layout' => 'grid',
 				)

@@ -107,6 +107,7 @@ div[id*='hatch-widget'] .widget-control-actions{
     bottom: 10px;
     right: 10px;
     border-radius: 4px;
+    background-color: rgba(255, 255, 255, 0.8);
     border: 2px solid #fff;
 }
 
@@ -481,8 +482,6 @@ div[id*='hatch-widget'] .widget-control-actions{
     text-align: center;
     text-transform: uppercase;
 }
-.hatch-visuals-wrapper{
-}
 .hatch-visuals-item{
     position: relative;
     padding: 1px;
@@ -499,9 +498,12 @@ div[id*='hatch-widget'] .widget-control-actions{
     outline: 0;
     transition: all 0.2s ease-in-out;
 }
-.hatch-visuals-item.hatch-active > .hatch-icon-wrapper{
-    background: #0074A2;
-    color: #fff;
+.hatch-visuals-item.hatch-active > .hatch-icon-wrapper,
+.hatch-visuals-item.hatch-active > .hatch-icon-wrapper:hover{
+    background: #e7e7e7;
+    border-color: #ccc;
+    color: #444;
+    box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.1);
 }
 .hatch-visuals-item .hatch-icon-wrapper.hatch-active{
     background-color: #fff;
@@ -509,7 +511,6 @@ div[id*='hatch-widget'] .widget-control-actions{
 }
 
 .hatch-visuals-item .hatch-icon-wrapper:hover,
-.hatch-visuals-item.hatch-active > .hatch-icon-wrapper:hover,
 .hatch-visuals-item .hatch-icon-wrapper.hatch-active:hover{
     box-shadow: 0px 1px 0px rgba(255, 255, 255, 0.4) inset, 0px 1px 0px rgba(0, 0, 0, 0.08);
     background: #2EA2CC;
@@ -605,6 +606,13 @@ div[id*='hatch-widget'] .widget-control-actions{
         padding: 0px;
         border-bottom: 1px solid #eee;
     }
+    .hatch-visuals.hatch-visuals-horizontal .hatch-visuals-title{
+        float: left;
+        padding: 12px 16px 9px;
+        margin: 0px;
+        background: none repeat scroll 0% 0% #F0F0F0;
+        color: #999;
+    }
     .hatch-visuals.hatch-visuals-horizontal .hatch-visuals-wrapper{
         border-left: none;
     }
@@ -614,15 +622,14 @@ div[id*='hatch-widget'] .widget-control-actions{
     }
     .hatch-visuals-horizontal .hatch-visuals-item.hatch-pull-right{
         float: right;
-        border-left: 1px solid #eee;
         border-right: none;
     }
     .hatch-visuals-horizontal .hatch-visuals-item .hatch-icon-wrapper{
-        padding: 4px 10px;
-        margin: 6px;
+        padding: 6px 10px;
+        margin: 4px 6px;
     }
     .hatch-visuals-horizontal .hatch-visuals-item.hatch-pull-right .hatch-icon-error{
-        padding: 4px;
+        padding: 6px 4px;
     }
     .hatch-visuals-horizontal .hatch-visuals-item [class*="icon-"]{
         font-size: 16px;
@@ -854,7 +861,6 @@ div[id*='hatch-widget'] .widget-control-actions{
 }
 
 .hatch-accordion-section{
-    overflow: hidden;
     background: #fff;
     border-bottom: 1px solid #ddd;
 }

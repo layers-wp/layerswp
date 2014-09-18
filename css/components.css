@@ -89,6 +89,10 @@
 	
 	.image-right .copy-container{float: left; width: 49%;}
 	.image-right .image-container{float: right; width: 49%;}
+    
+    .image-center .container{padding-top: 60px;}
+    .image-center .copy-container{clear: both; top: auto; -webkit-transform: none; -ms-transform: none; transform: none;}
+    .image-center .image-container{clear: both; top: auto; -webkit-transform: none; -ms-transform: none; transform: none;}
 
     /*---------------------------*/
     /*- SLIDER NAVIGATION -------*/

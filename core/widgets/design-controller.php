@@ -27,6 +27,8 @@ class Hatch_Design_Controller {
 			$values = (object) array( 'design' => NULL );
 		} elseif( isset( $instance[ 'design' ] ) ) {
 			$values = (object) $instance[ 'design' ];
+		} else {
+			$values = NULL;
 		} ?>
 
 		<div class="hatch-visuals <?php if( 'side' == $type ) { echo 'hatch-pull-right'; } else { echo 'hatch-visuals-horizontal'; } ?> ">
@@ -64,10 +66,10 @@ class Hatch_Design_Controller {
 							<span class="icon-arrow-left"></span>
 						</a>
 					</li>
-				<?php } else { ?>
+				<?php } elseif( isset( $widget->number ) ) { ?>
 					<li class="hatch-visuals-item hatch-pull-right">
 						<a href="" class="hatch-icon-wrapper hatch-icon-error">
-							<span class="icon-cross"></span>
+							<span class="icon-cross" data-number="<?php echo $widget->number; ?>"></span>
 						</a>
 					</li>
 				<?php } // if side != $type ?>
@@ -380,7 +382,7 @@ class Hatch_Design_Controller {
 						<?php echo $this->input(
 							array(
 								'type' => 'image',
-								'label' => __( 'Upload Image' , HATCH_THEME_SLUG ),
+								'label' => __( 'Select Image' , HATCH_THEME_SLUG ),
 								'name' => $widget->name . '[background][image]' ,
 								'id' =>  $widget->id . '-background-image' ,
 								'value' => ( isset( $values->background['image'] ) ) ? $values->background['image'] : NULL
@@ -415,10 +417,10 @@ class Hatch_Design_Controller {
 							<?php echo $this->input(
 								array(
 									'type' => 'checkbox',
-									'label' => __( 'Stretch' , HATCH_THEME_SLUG ),
-									'name' => $widget->name . '[background][stretch]' ,
-									'id' =>  $widget->id . '-background-stretch' ,
-									'value' => ( isset( $values->background['stretch'] ) ) ? $values->background['stretch'] : NULL
+									'label' => __( 'Fixed' , HATCH_THEME_SLUG ),
+									'name' => $widget->name . '[background][fixed]' ,
+									'id' =>  $widget->id . '-background-fixed' ,
+									'value' => ( isset( $values->background['fixed'] ) ) ? $values->background['fixed'] : NULL
 								)
 							); ?>
 						</p>
@@ -426,10 +428,10 @@ class Hatch_Design_Controller {
 							<?php echo $this->input(
 								array(
 									'type' => 'checkbox',
-									'label' => __( 'Parallax' , HATCH_THEME_SLUG ),
-									'name' => $widget->name . '[background][parallax]' ,
-									'id' =>  $widget->id . '-background-parallax' ,
-									'value' => ( isset( $values->background['parallax'] ) ) ? $values->background['parallax'] : NULL
+									'label' => __( 'Stretch' , HATCH_THEME_SLUG ),
+									'name' => $widget->name . '[background][stretch]' ,
+									'id' =>  $widget->id . '-background-stretch' ,
+									'value' => ( isset( $values->background['stretch'] ) ) ? $values->background['stretch'] : NULL
 								)
 							); ?>
 						</p>

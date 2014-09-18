@@ -259,7 +259,7 @@ class Hatch_Custom_Meta {
 			<!-- Tab Content -->
 			<div class="hatch-tab-content">
 				<?php foreach( $this->custom_meta[ $meta_index ]['custom-meta'] as $key => $meta_option ){ ?>
-					<section class="hatch-accordion-section hatch-content <?php if( isset( $hide_tab ) ) echo 'hatch-hide'; ?> customize-control"> <?php // @TODO: Remove .customizer-control class ?>
+					<section class="hatch-accordion-section hatch-content hatch-tab-content <?php if( isset( $hide_tab ) ) echo 'hatch-hide'; ?> customize-control"> <?php // @TODO: Remove .customizer-control class ?>
 						<div class="hatch-row clearfix">
 							<?php if( isset( $meta_option[ 'elements' ] ) ) { ?>
 								<fieldset>

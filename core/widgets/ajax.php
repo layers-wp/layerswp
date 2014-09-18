@@ -35,10 +35,7 @@ if( !class_exists( 'Hatch_Widget_Ajax' ) ) {
 
 			$widget = new Hatch_Banner_Widget();
 			if( 'add' == $_POST[ 'widget_action'] ) {
-				$widget->banner_item(
-					array( 'id_base' => $_POST[ 'id_base' ] , 'number' => $_POST[ 'number' ] ),
-					$_POST[ 'guid' ]
-				);
+				$widget->banner_item( array( 'id_base' => $_POST[ 'id_base' ] , 'number' => $_POST[ 'number' ] ) );
 			}
 			die();
 		}

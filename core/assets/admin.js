@@ -247,7 +247,7 @@ jQuery(function($) {
 		$tab_container = $tab_nav.siblings('.hatch-tab-content');
 
 		// Show/Hide tabs
-		$tab_container.find( 'section' ).eq( $i ).slideDown().siblings().slideUp();
+		$tab_container.find( 'section.hatch-tab-content' ).eq( $i ).slideDown().siblings( 'section.hatch-tab-content' ).slideUp();
 	});
 
 
@@ -275,6 +275,10 @@ jQuery(function($) {
 
 		// Close siblings
 		$that.siblings( '.hatch-icon-wrapper' ).removeClass( 'hatch-active' );
+
+		// Trigger change
+		$that.find('input ').trigger( 'change' ).trigger( 'blur' );
+		$that.siblings('input ').trigger( 'change' ).trigger( 'blur' );
 	});
 
 

@@ -6,14 +6,7 @@ jQuery(document).ready(function($){
 
 	$( 'ul[id^="banner_list_"]' ).sortable({
 		placeholder: "hatch-sortable-drop",
-		start: function(e , li){
-			// Get the current tab index
-			$current_index = li.item.index();
-		},
 		stop: function(e , li){
-			// Get the new tab index
-			$new_index = li.item.index();
-
 			// Banner UL, looking up from our current target
 			$bannerList = li.item.closest( 'ul' );
 
@@ -22,26 +15,12 @@ jQuery(document).ready(function($){
 
 			// Apply new banner order
 			$banner_guids = [];
-			$bannerList.find( 'li' ).each(function(){
+			$bannerList.find( 'li.hatch-accordion-item' ).each(function(){
 				$banner_guids.push( $(this).data( 'guid' ) );
 			});
 
 			// Trigger change for ajax save
 			$bannerInput.val( $banner_guids.join() ).trigger("change");
-
-			// Get the nearest tab containers
-			$tab_nav = li.item.closest( '.hatch-nav-tabs' );
-			$tab_container = $tab_nav.siblings('.hatch-tab-content');
-
-			// Re-order the tab body
-			$tab_content = $tab_container.find( 'section.hatch-tab-content' ).eq( $current_index ).remove();
-			if( 0 == $new_index ){
-				$tab_container.prepend( $tab_content );
-			} else {
-				$tab_content.insertAfter(  $tab_container.find( 'section.hatch-tab-content' ).eq( ( +$new_index-1) ) );
-			}
-
-
 		}
 	});
 
@@ -49,11 +28,16 @@ jQuery(document).ready(function($){
 	* Banner Additions
 	*/
 
-	$(document).on( 'click' , 'hatch-tabs li .icon-cross' , function(e){
+	$(document).on( 'click' , '.icon-cross' , function(e){
 		e.preventDefault();
 
 		// "Hi Mom"
 		$that = $(this);
+
+		// Confirmation message @TODO: Make JS confirmation module
+		$remove_slide = confirm( "Are you sure you want to remove this slide?" );
+		if( false == $remove_slide ) return;
+
 
 		// Banner UL
 		$bannerList = $( '#banner_list_' + $that.data( 'number' ) );
@@ -66,7 +50,8 @@ jQuery(document).ready(function($){
 
 		// Curate banner IDs
 		$banner_guids = [];
-		$bannerList.find( 'li' ).each(function(){
+
+		$bannerList.find( 'li.hatch-accordion-item' ).each(function(){
 			$banner_guids.push( $(this).data( 'guid' ) );
 		});
 
@@ -87,13 +72,6 @@ jQuery(document).ready(function($){
 		// Banners <input>
 		$bannerInput = $( '#banner_ids_input_' + $bannerList.data( 'number' ) );
 
-		// Get the nearest tab containers
-		$tab_nav = $bannerList.closest( '.hatch-nav-tabs' );
-		$tab_container = $tab_nav.siblings('.hatch-tab-content');
-
-		// Generate a unique GUID for this slide
-		$guid = Math.floor((Math.random() * 1000) + 1);
-
 		$.post(
 			hatch_widget_params.ajaxurl,
 			{
@@ -101,20 +79,17 @@ jQuery(document).ready(function($){
 				widget_action: 'add',
 				id_base: $bannerList.data( 'id_base' ),
 				number: $bannerList.data( 'number' ),
-				nonce: hatch_widget_params.nonce,
-				guid: $guid
+				nonce: hatch_widget_params.nonce
 
 			},
 			function(data){
 
 				// Append banner HTML
-				$bannerList.append( '<li data-guid="' + $guid + '"><a href="#">Slide <span class="icon-cross hatch-small" data-number="' + $bannerList.data( 'number' ) + '"></span></a></li>' );
-				$tab_container.append( data );
-				$tab_container.find( 'section.hatch-tab-content' ).last().hide();
+				$bannerList.append( data );
 
-				// Curate banner IDs
+				// Append banner IDs to the banners input
 				$banner_guids = [];
-				$bannerList.find( 'li' ).each(function(){
+				$bannerList.find( 'li.hatch-accordion-item' ).each(function(){
 					$banner_guids.push( $(this).data( 'guid' ) );
 				});
 

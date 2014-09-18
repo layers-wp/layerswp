@@ -33,7 +33,15 @@ if( !class_exists( 'Hatch_Banner_Widget' ) ) {
 
 			/* Create the widget. */
 			$this->WP_Widget( HATCH_THEME_SLUG . '-widget-' . $this->widget_id , '(' . HATCH_THEME_TITLE . ') ' . $this->widget_title . ' Widget', $widget_ops, $control_ops );
-	 	}
+
+			/* Setup Widget Defaults */
+			$this->defaults = array (
+				'title' => NULL,
+				'excerpt' => NULL,
+				'banner_height' => '550',
+				'banner_ids' => rand( 1 , 1000 )
+			);
+		}
 
 		/**
 		*  Widget front end display
@@ -46,7 +54,7 @@ if( !class_exists( 'Hatch_Banner_Widget' ) ) {
 			// Turn $instance into an object named $widget, makes for neater code
 			$widget = (object) $instance; ?>
 
-			<section class="widget row banner swiper-container" id="<?php echo $widget_id; ?>" <?php if( isset( $widget->banner_height ) && '' != $widget->banner_height ) echo 'style="height: ' . $widget->banner_height . 'px;"' ?>>
+			<section class="widget row banner swiper-container <?php if( isset( $widget->design[ 'layout' ] ) && 'layout-boxed' == $widget->design[ 'layout' ] ) echo 'container'; ?>" id="<?php echo $widget_id; ?>" <?php if( isset( $widget->banner_height ) && '' != $widget->banner_height ) echo 'style="height: ' . $widget->banner_height . 'px;"' ?>>
 				<?php if( !empty( $widget->banners ) ) { ?>
 					<?php if( 1 < count( $widget->banners ) ) { ?>
 						 <div class="arrows">
@@ -67,7 +75,7 @@ if( !class_exists( 'Hatch_Banner_Widget' ) ) {
 							// Set the background styling
 							if( !empty( $banner->design['background'] ) ) $this->widget_styles( $widget_id . '-' . $key , 'background', $banner->design[ 'background' ] ); ?>
 
-							<div id="<?php echo $widget_id; ?>-<?php echo $key; ?>" class="invert swiper-slide <?php if( '' != $banner->design[ 'imagealign' ] ) echo $banner->design[ 'imagealign' ]; ?>"
+							<div id="<?php echo $widget_id; ?>-<?php echo $key; ?>" class="invert swiper-slide <?php if( isset( $banner->design[ 'imagealign' ] ) && '' != $banner->design[ 'imagealign' ] ) echo $banner->design[ 'imagealign' ]; ?>"
 								style="float: left; <?php if( isset( $widget->banner_height ) && '' != $widget->banner_height ) echo 'height: ' . $widget->banner_height . 'px;' ?>">
 								<div class="container" <?php if( isset( $widget->banner_height ) && '' != $widget->banner_height ) echo 'style="height: ' . $widget->banner_height . 'px;"' ?>><!-- height important for vertical positioning. Must match container height -->
 									<?php if( '' != $banner->title || '' != $banner->excerpt ) { ?>
@@ -108,7 +116,7 @@ if( !class_exists( 'Hatch_Banner_Widget' ) ) {
 							paginationClickable: true,
 							watchActiveIndex: true,
 							loop: true
-							<?php if( isset( $widget->autoplay_banners ) && isset( $widget->slide_time ) && is_numeric( $widget->slide_time ) ) {?>, autoplay: <?php echo $widget->slide_time; ?><?php }?>
+							<?php if( isset( $widget->autoplay_banners ) && isset( $widget->slide_time ) && is_numeric( $widget->slide_time ) ) {?>, autoplay: <?php echo ($widget->slide_time*1000); ?><?php }?>
 						});
 						$('#<?php echo $widget_id; ?>').find('.arrows a').on( 'click' , function(e){
 							e.preventDefault();
@@ -160,12 +168,7 @@ if( !class_exists( 'Hatch_Banner_Widget' ) ) {
 			$widget_elements = new Hatch_Form_Elements();
 
 			// $instance Defaults
-			$instance_defaults = array (
-				'title' => NULL,
-				'excerpt' => NULL,
-				'banner_height' => '550',
-				'banner_ids' => rand( 1 , 1000 )
-			);
+			$instance_defaults = $this->defaults;
 
 			// If we have information in this widget, then ignore the defaults
 			if( !empty( $instance ) ) $instance_defaults = array();
@@ -173,7 +176,59 @@ if( !class_exists( 'Hatch_Banner_Widget' ) ) {
 			// Parse $instance
 			$instance_args = wp_parse_args( $instance, $instance_defaults );
 			extract( $instance_args, EXTR_SKIP ); ?>
-
+			<!-- Form HTML Here -->
+			<?php $design_controller = new Hatch_Design_Controller();
+			$design_controller->bar(
+				'side', // CSS Class Name
+				array(
+					'name' => $this->get_field_name( 'design' ),
+					'id' => $this->get_field_id( 'design' ),
+				), // Widget Object
+				$instance, // Widget Values
+				array(
+					'layout',
+					'custom',
+				), // Standard Components
+				array(
+					'display' => array(
+						'icon-css' => 'icon-display',
+						'label' => 'Display',
+						'elements' => array(
+								'hide_slider_arrows' => array(
+									'type' => 'checkbox',
+									'name' => $this->get_field_name( 'hide_slider_arrows' ) ,
+									'id' => $this->get_field_id( 'hide_slider_arrows' ) ,
+									'value' => ( isset( $hide_slider_arrows ) ) ? $hide_slider_arrows : NULL,
+									'label' => __( 'Hide Slider Arrows', HATCH_THEME_SLUG )
+								),
+								'autoplay_banners' => array(
+									'type' => 'checkbox',
+									'name' => $this->get_field_name( 'autoplay_banners' ) ,
+									'id' => $this->get_field_id( 'autoplay_banners' ) ,
+									'value' => ( isset( $autoplay_banners ) ) ? $autoplay_banners : NULL,
+									'label' => __( 'Autoplay Slides', HATCH_THEME_SLUG )
+								),
+								'slide_time' => array(
+									'type' => 'number',
+									'name' => $this->get_field_name( 'slide_time' ) ,
+									'id' => $this->get_field_id( 'slide_time' ) ,
+									'min' => 1,
+									'max' => 10,
+									'placeholder' => __( 'Leave blank for no slide', HATCH_THEME_SLUG ),
+									'value' => ( isset( $slide_time ) ) ? $slide_time : NULL,
+									'label' => __( 'Slide Interval', HATCH_THEME_SLUG )
+								),
+								'banner_height' => array(
+									'type' => 'text',
+									'name' => $this->get_field_name( 'banner_height' ) ,
+									'id' => $this->get_field_id( 'banner_height' ) ,
+									'value' => ( isset( $banner_height ) ) ? $banner_height : NULL,
+									'label' => __( 'Slider Height', HATCH_THEME_SLUG )
+								)
+							)
+					)
+				)
+			); ?>
 			<div class="hatch-container-large" id="hatch-banner-widget-<?php echo $this->number; ?>">
 
 				<?php $widget_elements->header( array(
@@ -222,137 +277,6 @@ if( !class_exists( 'Hatch_Banner_Widget' ) ) {
 									<?php }?>
 								</ul>
 
-						</section>
-					</li>
-					<li class="hatch-accordion-item">
-						<?php $widget_elements->accordian_title(
-							array(
-								'title' => __( 'Slider Settings' , HATCH_THEME_SLUG ),
-								'tooltip' => __(  'Place your help text here please.', HATCH_THEME_SLUG )
-							)
-						); ?>
-						<section class="hatch-accordion-section hatch-content">
-							<div class="hatch-row">
-								<div class="hatch-column hatch-span-4">
-									<div class="hatch-panel">
-										<?php $widget_elements->section_panel_title(
-											array(
-												'type' => 'panel',
-												'title' => __( 'Slideshow Display' , HATCH_THEME_SLUG ),
-												'tooltip' => __(  'Place your help text here please.', HATCH_THEME_SLUG )
-											)
-										); ?>
-										<div class="hatch-content">
-											<ul class="hatch-checkbox-list">
-												<li class="hatch-checkbox">
-													<?php echo $widget_elements->input(
-														array(
-															'type' => 'checkbox',
-															'name' => $this->get_field_name( 'hide_slider_arrows' ) ,
-															'id' => $this->get_field_id( 'hide_slider_arrows' ) ,
-															'value' => ( isset( $hide_slider_arrows ) ) ? $hide_slider_arrows : NULL,
-															'label' => __( 'Hide Slider Arrows', HATCH_THEME_SLUG )
-														)
-													); ?>
-												</li>
-												<li class="hatch-checkbox">
-													<?php echo $widget_elements->input(
-														array(
-															'type' => 'checkbox',
-															'name' => $this->get_field_name( 'autoplay_banners' ) ,
-															'id' => $this->get_field_id( 'autoplay_banners' ) ,
-															'value' => ( isset( $autoplay_banners ) ) ? $autoplay_banners : NULL,
-															'label' => __( 'Autoplay Slides', HATCH_THEME_SLUG )
-														)
-													); ?>
-												</li>
-											</ul>
-										</div>
-									</div>
-								</div>
-								<div class="hatch-column hatch-span-4">
-									<div class="hatch-panel">
-										<?php $widget_elements->section_panel_title(
-											array(
-												'type' => 'panel',
-												'title' => __( 'Slideshow Effects' , HATCH_THEME_SLUG ),
-												'tooltip' => __(  'Place your help text here please.', HATCH_THEME_SLUG )
-											)
-										); ?>
-										<div class="hatch-content">
-											<p class="hatch-form-item">
-												<label for="<?php echo $this->get_field_id( 'slide_time' ); ?>"><?php _e( 'Slide Time' , HATCH_THEME_SLUG ); ?></label>
-												<?php echo $widget_elements->input(
-													array(
-														'type' => 'text',
-														'name' => $this->get_field_name( 'slide_time' ) ,
-														'id' => $this->get_field_id( 'slide_time' ) ,
-														'placeholder' => __( 'Leave blank for no slide', HATCH_THEME_SLUG ),
-														'value' => ( isset( $slide_time ) ) ? $slide_time : NULL
-													)
-												); ?>
-											</p>
-											<p class="hatch-form-item">
-												<label for="<?php echo $this->get_field_id( 'slide_effect' ); ?>"><?php _e( 'Slide Effect' , HATCH_THEME_SLUG ); ?></label>
-												<?php echo $widget_elements->input(
-													array(
-														'type' => 'select',
-														'name' => $this->get_field_name( 'slide_effect' ) ,
-														'id' => $this->get_field_id( 'slide_effect' ) ,
-														'value' => ( isset( $slide_effect ) ) ? $slide_effect : NULL ,
-														'options' => array(
-																'slide' => __( 'Slide', HATCH_THEME_SLUG ),
-																'fade' => __( 'Fade', HATCH_THEME_SLUG ),
-																'none' => __( 'None', HATCH_THEME_SLUG ),
-
-															)
-													)
-												); ?>
-											</p>
-										</div>
-									</div>
-								</div>
-								<div class="hatch-column hatch-span-4">
-									<div class="hatch-panel">
-										<?php $widget_elements->section_panel_title(
-											array(
-												'type' => 'panel',
-												'title' => __( 'Slideshow Dimensions' , HATCH_THEME_SLUG ),
-												'tooltip' => __(  'Place your help text here please.', HATCH_THEME_SLUG )
-											)
-										); ?>
-										<div class="hatch-content">
-											<p class="hatch-form-item">
-												<label for="<?php echo $this->get_field_id( 'banner_height' ); ?>"><?php _e( 'Banner Height' , HATCH_THEME_SLUG ); ?></label>
-												<?php echo $widget_elements->input(
-													array(
-														'type' => 'text',
-														'name' => $this->get_field_name( 'banner_height' ) ,
-														'id' => $this->get_field_id( 'banner_height' ) ,
-														'value' => ( isset( $banner_height ) ) ? $banner_height : NULL
-													)
-												); ?>
-											</p>
-											<p class="hatch-form-item">
-												<label for="<?php echo $this->get_field_id( 'banner_width' ); ?>"><?php _e( 'Banner Width' , HATCH_THEME_SLUG ); ?></label>
-												<?php echo $widget_elements->input(
-													array(
-														'type' => 'select',
-														'name' => $this->get_field_name( 'banner_width' ) ,
-														'id' => $this->get_field_id( 'banner_width' ) ,
-														'value' => ( isset( $banner_height ) ) ? $banner_height : NULL ,
-														'options' => array(
-																'full-width' => __( 'Full Width', HATCH_THEME_SLUG ),
-																'boxed' => __( 'Boxed', HATCH_THEME_SLUG )
-
-															)
-													)
-												); ?>
-											</p>
-										</div>
-									</div>
-								</div>
-							</div>
 						</section>
 					</li>
 				</ul>
@@ -414,13 +338,6 @@ if( !class_exists( 'Hatch_Banner_Widget' ) ) {
 
 						<div class="hatch-row">
 							<div class="hatch-column hatch-span-4 hatch-panel">
-								<?php $widget_elements->section_panel_title(
-									array(
-										'type' => 'panel',
-										'title' => __( 'Feature Image' , HATCH_THEME_SLUG ),
-										'tooltip' => __(  'Place your help text here please.', HATCH_THEME_SLUG )
-									)
-								); ?>
 								<div class="hatch-content">
 									<?php echo $widget_elements->input(
 										array(
@@ -433,13 +350,6 @@ if( !class_exists( 'Hatch_Banner_Widget' ) ) {
 								</div>
 							</div>
 							<div class="hatch-column hatch-span-8 hatch-panel">
-								<?php $widget_elements->section_panel_title(
-									array(
-										'type' => 'panel',
-										'title' => __( 'Slide Content' , HATCH_THEME_SLUG ),
-										'tooltip' => __(  'Place your help text here please.', HATCH_THEME_SLUG )
-									)
-								); ?>
 								<div class="hatch-content">
 									<p class="hatch-form-item">
 										<?php echo $widget_elements->input(

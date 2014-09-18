@@ -94,7 +94,7 @@ if( !class_exists( 'Hatch_Contact_Widget' ) ) {
 					</div>
 				<?php } // if title || excerpt ?>
 				<?php if( isset( $widget->show_google_map ) && ( '' != $widget->google_maps_location || '' != $widget->google_maps_long_lat ) ) { ?>
-					<div class="hatch-map <?php if( isset( $widget->layout ) && 'layout-boxed' == $widget->layout ) echo 'container'; ?> " style="height: <?php echo $widget->map_height; ?>px;" <?php if( '' != $widget->google_maps_location ) { ?>data-location="<?php echo $widget->google_maps_location; ?>"<?php } ?> <?php if( '' != $widget->google_maps_long_lat ) { ?>data-longlat="<?php echo $widget->google_maps_long_lat; ?>"<?php } ?>></div>
+					<div class="hatch-map <?php if( isset( $widget->design[ 'layout' ] ) && 'layout-boxed' == $widget->design[ 'layout' ] ) echo 'container'; ?>" style="height: <?php echo $widget->map_height; ?>px;" <?php if( '' != $widget->google_maps_location ) { ?>data-location="<?php echo $widget->google_maps_location; ?>"<?php } ?> <?php if( '' != $widget->google_maps_long_lat ) { ?>data-longlat="<?php echo $widget->google_maps_long_lat; ?>"<?php } ?>></div>
 				<?php } ?>
 			</section>
 
@@ -154,7 +154,6 @@ if( !class_exists( 'Hatch_Contact_Widget' ) ) {
 				array(
 					'layout',
 					'custom',
-					'liststyle',
 					'textalign',
 					'background'
 				), // Standard Components

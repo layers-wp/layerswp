@@ -192,7 +192,7 @@ if( !class_exists( 'Hatch_Banner_Widget' ) ) {
 				array(
 					'display' => array(
 						'icon-css' => 'icon-slider',
-						'label' => 'Slider Settings',
+						'label' => 'Slider',
 						'elements' => array(
 								'hide_slider_arrows' => array(
 									'type' => 'checkbox',

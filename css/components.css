@@ -91,7 +91,8 @@
     .image-right .image-container{float: right; width: 49%;}
 
     .image-center .container{padding-top: 60px;}
-    .image-center .copy-container{clear: both; top: auto; -webkit-transform: none; -ms-transform: none; transform: none;}
+    .image-center .copy-container{clear: both;  margin: auto; text-align: center; top: auto; -webkit-transform: none; -ms-transform: none; transform: none;}
+    .image-center .copy-container .excerpt{ margin: auto; }
     .image-center .image-container{clear: both; top: auto; -webkit-transform: none; -ms-transform: none; transform: none;}
 
     /*---------------------------*/

@@ -152,9 +152,9 @@ class Hatch_Form_Elements {
 			* Number Inputs
 			*/
 			case 'number' :
-				$input_props['min'] = ( NULL != $input->min ) ? 'min="' .  $input->min . '"' : NULL ;
-				$input_props['max'] = ( NULL != $input->max ) ? 'max="' .  $input->max . '"' : NULL ;
-				$input_props['step'] = ( NULL != $input->step ) ? 'step="' .  $input->step . '"' : NULL ; ?>
+				$input_props['min'] = ( isset( $input->min ) ) ? 'min="' .  $input->min . '"' : NULL ;
+				$input_props['max'] = ( isset( $input->max ) ) ? 'max="' .  $input->max . '"' : NULL ;
+				$input_props['step'] = ( isset( $input->step ) ) ? 'step="' .  $input->step . '"' : NULL ; ?>
 				<input type="number" <?php echo implode ( ' ' , $input_props ); ?> value="<?php echo $input->value; ?>" />
 			<?php break;
 			/**

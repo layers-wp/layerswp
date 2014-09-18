@@ -95,7 +95,7 @@ if( !class_exists( 'Hatch_Banner_Widget' ) ) {
 								style="float: left; <?php if( isset( $widget->banner_height ) && '' != $widget->banner_height ) echo 'height: ' . $widget->banner_height . 'px;' ?>">
 								<div class="container" <?php if( isset( $widget->banner_height ) && '' != $widget->banner_height ) echo 'style="height: ' . $widget->banner_height . 'px;"' ?>><!-- height important for vertical positioning. Must match container height -->
 									<?php if( '' != $banner->title || '' != $banner->excerpt ) { ?>
-										<div class="copy-container">
+										<div class="copy-container <?php if( !isset( $banner->image ) || ( isset( $banner->image ) && '' == $banner->image ) ) echo 'no-image'; ?>">
 											<!-- your dynamic output goes here -->
 											<div class="section-title <?php if( !empty( $banner->font_style[ 'size' ] ) ) echo $banner->font_style[ 'size' ]; ?>">
 												<?php if( isset( $banner->title ) && '' != $banner->title ) { ?>

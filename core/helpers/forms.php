@@ -227,10 +227,10 @@ class Hatch_Form_Elements {
 			* Image Uploader
 			*/
 			case 'image' : ?>
-				<section class="hatch-image-container">
+				<section class="hatch-image-container <?php if( isset( $input->value ) && NULL != $input->value ) echo 'has-image'; ?>">
 					<div class="hatch-push-bottom">
 						<!-- Remove button -->
-						<a class="hatch-image-remove <?php if( !isset( $input->value ) ) echo 'hatch-hide'; ?>" href=""><?php _e( 'Remove' , HATCH_THEME_SLUG ); ?></a>
+						<a class="hatch-image-remove" href=""><?php _e( 'Remove' , HATCH_THEME_SLUG ); ?></a>
 						<!-- Image -->
 						<?php if( isset( $input->value ) ) echo wp_get_attachment_image( $input->value , 'large' ); ?>
 					</div>

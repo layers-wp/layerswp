@@ -250,6 +250,17 @@ class Hatch_Design_Controller {
 							)
 						); ?>
 					</p>
+					<p class="hatch-checkbox-wrapper">
+						<?php echo $this->input(
+							array(
+								'type' => 'checkbox',
+								'label' => __( 'Remove Spacing' , HATCH_THEME_SLUG ),
+								'name' => $widget->name . '[columnflush]' ,
+								'id' =>  $widget->id . '-column-flush' ,
+								'value' => ( isset( $values->columnflush ) ) ? $values->columnflush : NULL
+							)
+						); ?>
+					</p>
 				</div>
 			</div>
 		</li>

@@ -1,6 +1,11 @@
 jQuery(document).ready(function($){
 
 	/**
+	* Title Updates
+	*/
+
+
+	/**
 	* Sortable items
 	*/
 

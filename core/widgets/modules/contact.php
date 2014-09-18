@@ -47,9 +47,14 @@ if( !class_exists( 'Hatch_Contact_Widget' ) ) {
 				'excerpt' => NULL,
 				'address_shown' => NULL,
 				'title_size' => '',
+				'show_google_map' => 'on',
 				'google_maps_location' => NULL,
 				'google_maps_long_lat' => NULL,
-				'map_height' => 350
+				'map_height' => 400,
+				'design' => array(
+					'layout' => 'layout-boxed',
+					'textalign' => 'text-center',
+				)
 			);
 		}
 
@@ -67,7 +72,8 @@ if( !class_exists( 'Hatch_Contact_Widget' ) ) {
 			// If we have information in this widget, then ignore the defaults
 			if( !empty( $instance ) ) $instance_defaults = array();
 
-			 $instance = wp_parse_args( $instance , $instance_defaults );
+			$instance = wp_parse_args( $instance , $instance_defaults );
+
 
 			// Turn $instance into an object named $widget, makes for neater code
 			$widget = (object) $instance;
@@ -140,8 +146,7 @@ if( !class_exists( 'Hatch_Contact_Widget' ) ) {
 
 			// Parse $instance
 			$instance_args = wp_parse_args( $instance, $instance_defaults );
-			extract( $instance_args, EXTR_SKIP );
-		?>
+			extract( $instance_args, EXTR_SKIP ); ?>
 			<!-- Form HTML Here -->
 			<?php $design_controller = new Hatch_Design_Controller();
 			$design_controller->bar(

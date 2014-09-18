@@ -147,7 +147,7 @@ if( !class_exists( 'Hatch_Portfolio_Widget' ) ) {
 							<?php if( 'list-list' == $widget->design[ 'liststyle' ] ) { ?>
 								<?php get_template_part( 'content' , 'list' ); ?>
 							<?php } else { ?>
-								<div class="column<?php if( 'list-masonry' == $widget->design[ 'liststyle' ] ) echo '-flush'; ?> <?php echo $span_class; ?> hatch-masonry-column <?php echo implode( $term_list, " " ); ?>">
+								<div class="column<?php if( isset( $widget->design[ 'columnflush' ] ) ) echo '-flush'; ?> <?php echo $span_class; ?> hatch-masonry-column <?php echo implode( $term_list, " " ); ?>">
 									<div class="thumbnail">
 										<a href="" class="thumbnail-media <?php if( isset( $widget->text_style ) && 'overlay' == $widget->text_style ) echo 'with-overlay'; ?>">
 											<?php the_post_thumbnail( 'large' ); ?>

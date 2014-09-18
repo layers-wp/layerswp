@@ -191,8 +191,8 @@ if( !class_exists( 'Hatch_Banner_Widget' ) ) {
 				), // Standard Components
 				array(
 					'display' => array(
-						'icon-css' => 'icon-display',
-						'label' => 'Display',
+						'icon-css' => 'icon-slider',
+						'label' => 'Slider Settings',
 						'elements' => array(
 								'hide_slider_arrows' => array(
 									'type' => 'checkbox',
@@ -317,7 +317,9 @@ if( !class_exists( 'Hatch_Banner_Widget' ) ) {
 
 				<li class="hatch-accordion-item  <?php if( !isset( $_REQUEST['action'] ) ) echo 'open'; ?>" data-guid="<?php echo $slide_guid; ?>">
 					<a class="hatch-accordion-title">
-						<span><?php _e( 'Slide' , HATCH_THEME_SLUG ); // @TODO: Add Banner 1/Banner 2/Banner 3/Banner 4 numbering ?></span>
+						<span>
+							<?php _e( 'Slide' , HATCH_THEME_SLUG ); ?><span class="hatch-detail"><?php echo ( isset( $title ) ? ': ' . $title : NULL ); ?></span>
+						</span>
 					</a>
 					<section class="hatch-accordion-section hatch-content">
 						<?php $design_controller = new Hatch_Design_Controller();
@@ -337,45 +339,41 @@ if( !class_exists( 'Hatch_Banner_Widget' ) ) {
 						); ?>
 
 						<div class="hatch-row">
-							<div class="hatch-column hatch-span-4 hatch-panel">
-								<div class="hatch-content">
+							<div class="hatch-column hatch-span-4">
+								<?php echo $widget_elements->input(
+									array(
+										'type' => 'image',
+										'name' => 'widget-' . $widget_details->id_base . '[' . $widget_details->number . '][banners][' . $slide_guid . '][image]' ,
+										'id' => 'widget-' . $widget_details->id_base . '-' . $widget_details->number . '-' . $slide_guid . '-image' ,
+										'value' => ( isset( $image ) ) ? $image : NULL
+									)
+								); ?>
+							</div>
+							<div class="hatch-column hatch-span-8">
+								<p class="hatch-form-item">
 									<?php echo $widget_elements->input(
 										array(
-											'type' => 'image',
-											'name' => 'widget-' . $widget_details->id_base . '[' . $widget_details->number . '][banners][' . $slide_guid . '][image]' ,
-											'id' => 'widget-' . $widget_details->id_base . '-' . $widget_details->number . '-' . $slide_guid . '-image' ,
-											'value' => ( isset( $image ) ) ? $image : NULL
+											'type' => 'text',
+											'name' => 'widget-' . $widget_details->id_base . '[' . $widget_details->number . '][banners][' . $slide_guid . '][title]' ,
+											'id' => 'widget-' . $widget_details->id_base . '-' . $widget_details->number . '-' . $slide_guid . '-title' ,
+											'placeholder' => __( 'Enter title here', HATCH_THEME_SLUG ),
+											'value' => ( isset( $title ) ) ? $title : NULL ,
+											'class' => 'hatch-text'
 										)
 									); ?>
-								</div>
-							</div>
-							<div class="hatch-column hatch-span-8 hatch-panel">
-								<div class="hatch-content">
-									<p class="hatch-form-item">
-										<?php echo $widget_elements->input(
-											array(
-												'type' => 'text',
-												'name' => 'widget-' . $widget_details->id_base . '[' . $widget_details->number . '][banners][' . $slide_guid . '][title]' ,
-												'id' => 'widget-' . $widget_details->id_base . '-' . $widget_details->number . '-' . $slide_guid . '-title' ,
-												'placeholder' => __( 'Enter title here', HATCH_THEME_SLUG ),
-												'value' => ( isset( $title ) ) ? $title : NULL ,
-												'class' => 'hatch-text'
-											)
-										); ?>
-									</p>
-									<p class="hatch-form-item">
-										<?php echo $widget_elements->input(
-											array(
-												'type' => 'textarea',
-												'name' => 'widget-' . $widget_details->id_base . '[' . $widget_details->number . '][banners][' . $slide_guid . '][excerpt]' ,
-												'id' => 'widget-' . $widget_details->id_base . '-' . $widget_details->number . '-' . $slide_guid . '-excerpt' ,
-												'placeholder' => __( 'Short Excerpt', HATCH_THEME_SLUG ),
-												'value' => ( isset( $excerpt ) ) ? $excerpt : NULL ,
-												'class' => 'hatch-textarea'
-											)
-										); ?>
-									</p>
-								</div>
+								</p>
+								<p class="hatch-form-item">
+									<?php echo $widget_elements->input(
+										array(
+											'type' => 'textarea',
+											'name' => 'widget-' . $widget_details->id_base . '[' . $widget_details->number . '][banners][' . $slide_guid . '][excerpt]' ,
+											'id' => 'widget-' . $widget_details->id_base . '-' . $widget_details->number . '-' . $slide_guid . '-excerpt' ,
+											'placeholder' => __( 'Short Excerpt', HATCH_THEME_SLUG ),
+											'value' => ( isset( $excerpt ) ) ? $excerpt : NULL ,
+											'class' => 'hatch-textarea'
+										)
+									); ?>
+								</p>
 							</div>
 						</div>
 					</section>

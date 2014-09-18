@@ -281,8 +281,8 @@ h1, h2, h3, h4, h5, h6{color: #000; font-weight: 200;}
     .logo{float: left; padding: 0;}
     .site-logo-anchor, .mark{display: inline-block; vertical-align: middle; margin: auto; font-size: 0;}
     .site-logo-anchor img, .mark img{display: inline-block; margin: auto;}
-    .sitename{display: inline-block; vertical-align: baseline; font-size: 1.8rem; line-height: 2rem; font-weight: 600;}
-    .tagline{display: inline-block; vertical-align: baseline; color: #8F8F8F; font-size: 1.4rem; line-height: 2rem; font-weight: 600;}
+    .sitename{display: inline-block; vertical-align: middle; font-size: 2rem; font-weight: 600;}
+    .tagline{display: inline-block; vertical-align: middle; color: #8F8F8F; font-weight: 600;}
 
 	.mark + .sitename{margin-top: 10px;}
 
@@ -348,8 +348,7 @@ h1, h2, h3, h4, h5, h6{color: #000; font-weight: 200;}
     /*---------------------------*/
     /*- SECTION ALIGNMENTS ------*/
     .section-title.text-center{text-align: center;}
-    .section-title.text-center p{margin-left: auto; margin-right: auto;}
-    .section-title + .extra-margin{margin-top: 40px;}
+    .section-title.text-center .excerpt{margin-left: auto; margin-right: auto;}
 
     /*---------------------------*/
     /*- SECTION NAV -------------*/

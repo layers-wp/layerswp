@@ -22,8 +22,7 @@
     /*- ALIGNMENT LEFT ----------*/
     .header-left .logo{float: left; overflow: hidden;}
     .header-left .site-logo-anchor{margin: 0 10px 0 0;}
-    .header-left .sitename{display: inline-block; vertical-align: middle; margin: 0 10px 0 0;}
-    .header-left .tagline{display: inline-block; vertical-align: middle;}
+    .header-left .sitename{margin: 0 10px 0 0;}
 
     .header-left .site-logo-anchor img{max-height: 40px; width: auto;}
     .header-left nav{float: right;}
@@ -32,8 +31,7 @@
     /*- ALIGNMENT RIGHT ---------*/
     .header-right .logo{float: right; overflow: hidden;}
     .header-right .site-logo-anchor{margin: 0 10px 0 0;}
-    .header-right .sitename{display: inline-block; vertical-align: middle; margin: 0 10px 0 0;}
-    .header-right .tagline{display: inline-block; vertical-align: middle;}
+    .header-right .sitename{margin: 0 10px 0 0;}
 
     .header-right .site-logo-anchor img{max-height: 40px; width: auto;}
     .header-right nav{float: left;}
@@ -45,7 +43,17 @@
     .header-center .mark{display: block;}
     .header-center .sitename{display: block;}
     .header-center .tagline{display: block;}
+
+        .header-center .site-logo-anchor + .sitename{margin-top: 10px;}
+        .header-center .site-logo-anchor + .tagline{margin-top: 10px;}
+        .header-center .sitename + .tagline{margin-top: 5px;}
+
     .header-center nav{clear: both; text-align: center; margin-top: 20px;}
+
+    /*---------------------------*/
+    /*- ALIGNMENT INLINE --------*/
+    .header-inline .logo{text-align: center;}
+    .header-inline .site-logo-anchor img{max-height: 40px; width: auto;}
 
     /*---------------------------*/
     /*- POSITION OVERLAY --------*/
@@ -54,6 +62,14 @@
     /*---------------------------*/
     /*- NAVIGATION POSITION -----*/
     .nav-clear .logo{float: none;}
+    .nav-clear .site-logo-anchor{display: block;}
+    .nav-clear .sitename{display: block;}
+    .nav-clear .tagline{display: block;}
+
+        .nav-clear .site-logo-anchor + .sitename{margin-top: 10px;}
+        .nav-clear .site-logo-anchor + .tagline{margin-top: 10px;}
+        .nav-clear .sitename + .tagline{margin-top: 5px;}
+
     .nav-clear nav{float: none; clear: both; margin: 10px 0;}
 
 

@@ -332,7 +332,6 @@ if( !class_exists( 'Hatch_Banner_Widget' ) ) {
 							), // Widget Object
 							$instance, // Widget Values
 							array(
-								'textalign',
 								'imagealign',
 								'background'
 							) // Standard Components

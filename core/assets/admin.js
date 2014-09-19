@@ -17,6 +17,8 @@
  * 5 - Tabs
  * 6 - Design Controller toggles
  * 7 - Design Controller Height Matcher
+ * 8 - Widget Focussing
+ * 9 - Widget Closing when clicking on the canvas
 */
 
 jQuery(function($) {
@@ -313,8 +315,6 @@ jQuery(function($) {
 
 		}
 	});
-
-
 
 });
 

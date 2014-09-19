@@ -1,14 +1,4 @@
-var $window;
-var $header;
-var $footer;
-var $dashboard_menu_toggle_button;
-var $container_sidebar;
-var $container_content;
-var $back_to_top;
-var $page_content_top;
-var $pop_wrap;
-
-$(function() {
+jQuery(function($) {
     $window = $(window);
     $header = $("#header");
     $footer = $("#footer");
@@ -108,6 +98,13 @@ $(function() {
             scrollTop: $($that.attr('href')).offset().top
         }, speed);
     }); // click slide-to
+
+    $( document ).on( 'click' , 'html'  , function(e){
+
+        // Close widgets
+        $(window.parent.document).find( '.control-panel-content .widget-rendered.expanded' ).removeClass( 'expanded' );
+
+    });
 }); // document.ready
 
 (function ($) {

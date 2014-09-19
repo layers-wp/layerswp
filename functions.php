@@ -178,6 +178,14 @@ if( ! function_exists( 'hatch_scripts' ) ) {
 			)
 		); // Slider
 
+		wp_enqueue_script(
+			HATCH_THEME_SLUG . '-framework-js' ,
+			get_template_directory_uri() . '/js/framework.js',
+			array(
+				'jquery'
+			)
+		); // Framework
+
 
 		if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 			wp_enqueue_script( 'comment-reply' );

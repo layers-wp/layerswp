@@ -101,20 +101,20 @@ class Hatch_Custom_Meta {
 		// Check if we're using the builder for this page
 		$is_builder_used = ( 'builder.php' == basename( get_page_template() ) ) ? true : false;
 
-		printf( '<div class="hatch-section-title hatch-large invert hatch-content-massive" style="background: url( %7$s/images/beta-zero.jpg) top repeat;">
-				<div class="hatch-container">
+		printf( '<div class="hatch-section-title hatch-medium invert hatch-content-massive" style="background: url( %7$s/images/beta-zero.jpg) top repeat;">
+					<div class="hatch-heading">
+						%1$s
+					</div>
 					<p class="hatch-excerpt">
-						%1$s <br />
-						<small>%5$s</small>
+						%5$s
 					</p>
-						<a href="%2$s" class="button button-primary button-large  %3$s" id="%4$s">%6$s</a>
-				</div>
-			</div>',
-			'Use ' . HATCH_THEME_TITLE . ' to build a beautiful page.', // %1
+					<a href="%2$s" class="hatch-button btn-massive btn-secondary  %3$s" id="%4$s">%6$s</a>
+				</div>',
+			'Your page is ready for building', // %1
 			admin_url() . 'customize.php?url=' . esc_url( get_the_permalink() ) . '&hatch-builder=1', // %2
 			( true == $is_builder_used ? '' : 'hide' ), // %3
 			( isset( $post->ID ) ? 'builder-button-' . $post->ID : 'builder-button-' . rand(0,1) ), // %4,
-			__( 'Add widgets to your page body using the visual customizer, and see your page come to life.', HATCH_THEME_SLUG ), // %5
+			__( 'You are one step away from building your page. Head over to the Visual Customizer where you can drag and drop widgets, edit content and tweak the design. Click the button below and see your page come to life.', HATCH_THEME_SLUG ), // %5
 			__( 'Build Your Page', HATCH_THEME_SLUG ), // %6
 			get_template_directory_uri() // %7,
 		);

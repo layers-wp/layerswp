@@ -33,10 +33,10 @@ class Hatch_Design_Controller {
 
 		<div class="hatch-visuals <?php if( 'side' == $type ) { echo 'hatch-pull-right'; } else { echo 'hatch-visuals-horizontal'; } ?> ">
 			<?php if( 'side' == $type ) { ?>
-				<h6 class="hatch-visuals-title">
-					<span class="icon-settings hatch-small"></span>
-				</h6>
 			<?php } // if side == type ?>
+			<h6 class="hatch-visuals-title">
+				<span class="icon-settings hatch-small"></span>
+			</h6>
 			<ul class="hatch-visuals-wrapper hatch-clearfix">
 				<?php if( NULL !== $components ) {
 					foreach( $components as $component ) {

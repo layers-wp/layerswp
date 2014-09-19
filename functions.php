@@ -90,6 +90,16 @@ if( ! function_exists( 'hatch_setup' ) ) {
 		 */
 		add_theme_support( 'post-thumbnails' );
 
+		// Set Large Image Sizes
+		add_image_size( 'square-large', 800, 800, true );
+		add_image_size( 'portrait-large', 600, 800, true );
+		add_image_size( 'landscape-large', 800, 600, true );
+
+		// Set Medium Image Sizes
+		add_image_size( 'square-medium', 300, 300, true );
+		add_image_size( 'portrait-medium', 300, 400, true );
+		add_image_size( 'landscape-medium', 400, 300, true );
+
 		/**
 		 * Add support for the WP logo feature
 		 */

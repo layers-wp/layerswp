@@ -48,6 +48,7 @@ if( !class_exists( 'Hatch_Portfolio_Widget' ) ) {
 				'show_titles' => 'on',
 				'show_excerpts' => 'on',
 				'design' => array(
+					'imageratios' => '',
 					'layout' => 'layout-boxed',
 					'textalign' => 'text-center',
 					'liststyle' => 'list-grid',
@@ -88,27 +89,25 @@ if( !class_exists( 'Hatch_Portfolio_Widget' ) ) {
 			// Set the background styling
 			if( !empty( $widget->design[ 'background' ] ) ) $this->widget_styles( $widget_id , 'background', $widget->design[ 'background' ] );
 
+			// Set Image Sizes
+			if( isset( $widget->design[ 'imageratios' ] ) && 'list-masonry' != $widget->design[ 'liststyle' ] ){
+				if( $col_count > 2 ){
+					$imageratios = $widget->design[ 'imageratios' ] . '-medium';
+				} else {
+					$imageratios = $widget->design[ 'imageratios' ] . '-large';
+				}
+			} else {
+				$imageratios = 'large';
+			}
+
 			// Begin query arguments
 			$query_args = array();
 			$query_args[ 'post_type' ] = $this->post_type;
 			$query_args[ 'posts_per_page' ] = $widget->posts_per_page;
 			$query_args[ 'order_by' ]  = $widget->order_by;
 
-			// Do the special taxonomy array()
-			if( isset( $widget->category ) && '' != $widget->category && 0 != $widget->category ){
-				$args['tax_query'] = array(
-					array(
-						"taxonomy" => $this->taxonomy,
-						"field" => "id",
-						"terms" => $widget->category
-					)
-				);
-			} elseif( isset( $widget->show_category_filter ) ) {
-				$terms = get_terms( $this->taxonomy );
-			} // if we haven't selected which category to show, let's load the $terms for use in the filter
-
 			// Do the WP_Query
-			$post_query = new WP_Query( $query_args ); ?>
+			$portfolio_query = new WP_Query( $query_args ); ?>
 
 			<section class="widget row content-vertical-massive" id="<?php echo $widget_id; ?>">
 				<?php if( '' != $widget->title || '' != $widget->excerpt ) { ?>
@@ -124,30 +123,23 @@ if( !class_exists( 'Hatch_Portfolio_Widget' ) ) {
 					</div>
 				<?php } ?>
 				<div class="row <?php if( isset( $widget->design[ 'layout' ] ) && 'layout-boxed' == $widget->design[ 'layout' ] ) echo 'container'; ?> <?php  if( isset( $widget->design[ 'liststyle' ] ) ) echo $widget->design[ 'liststyle' ]; ?>">
-					<?php if( $post_query->have_posts() ) { ?>
-						<?php while( $post_query->have_posts() ) { global $post; ?>
-							<?php $terms = wp_get_post_terms( $post->ID, $this->taxonomy );
-							$term_list = array();
-							if( !empty( $terms ) ) {
-								foreach( $terms as $term ){
-									$term_list[] = $term->slug;
-								}
-							} // @TODO: Turn this into some sort of helper which just returns the slugs hatch_get_term_slugs_for_post() could work ?>
-							<?php $post_query->the_post(); ?>
+					<?php if( $portfolio_query->have_posts() ) { ?>
+						<?php while( $portfolio_query->have_posts() ) {
+							$portfolio_query->the_post();
+							global $post; ?>
 							<?php if( 'list-list' == $widget->design[ 'liststyle' ] ) { ?>
 								<?php get_template_part( 'content' , 'list' ); ?>
 							<?php } else { ?>
-								<div class="column<?php if( isset( $widget->design[ 'columnflush' ] ) ) echo '-flush'; ?> <?php echo $span_class; ?> hatch-masonry-column <?php echo implode( $term_list, " " ); ?>">
+								<div class="column<?php if( isset( $widget->design[ 'columnflush' ] ) ) echo '-flush'; ?> <?php echo $span_class; ?> hatch-masonry-column">
 									<div class="thumbnail">
 										<a href="" class="thumbnail-media <?php if( isset( $widget->text_style ) && 'overlay' == $widget->text_style ) echo 'with-overlay'; ?>">
-											<?php the_post_thumbnail( 'large' ); ?>
+											<?php the_post_thumbnail( $imageratios );  ?>
 
 											<?php if( isset( $widget->text_style ) && 'overlay' == $widget->text_style ) { ?>
 												<span class="overlay">
 													<?php if( isset( $widget->show_titles ) ) { ?>
 														<span class="heading"><?php the_title(); ?></span>
 													<?php } // if show_titles ?>
-													<span class="button">Call to action</span>
 												</span>
 											<?php } ?>
 										</a>
@@ -259,6 +251,7 @@ if( !class_exists( 'Hatch_Portfolio_Widget' ) ) {
 					'columns',
 					'liststyle',
 					'textalign',
+					'imageratios',
 					'background'
 				), // Standard Components
 				array(

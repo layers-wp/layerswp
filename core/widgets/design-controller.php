@@ -17,7 +17,7 @@ class Hatch_Design_Controller {
 	* @param  	array     	$options() 	Array of custom elements which are not common
 	*/
 
-	function bar( $type = 'side' , $widget = NULL, $instance = array(), $components = array( 'columns' , 'background' , 'image-align' ) , $custom_components = array() ) {
+	function bar( $type = 'side' , $widget = NULL, $instance = array(), $components = array( 'columns' , 'background' , 'imagealign' ) , $custom_components = array() ) {
 
 		// If there is no widget information provided, can the operation
 		if( NULL == $widget ) { return; } else { $widget = (object) $widget; }
@@ -340,6 +340,49 @@ class Hatch_Design_Controller {
 							)
 						)
 					); ?>
+				</div>
+			</div>
+		</li>
+	<?php }
+
+	/**
+	* Image Size - Static Option
+	*
+	* @param  	array     	$widget 	Widget Element
+	* @param  	array     	$values 	Accepts the value for this element
+	*/
+
+	function imageratios( $widget = NULL, $values = NULL ){
+
+		// If there is no widget information provided, can the operation
+		if( NULL == $widget ) return; ?>
+
+		<li class="hatch-visuals-item hatch-last">
+			<a href="" class="hatch-icon-wrapper">
+				<span class="icon-image"></span>
+				<span class="hatch-icon-description">
+					<?php _e( 'Image Ratios' , HATCH_THEME_SLUG ); ?>
+				</span>
+			</a>
+			<div class="hatch-visuals-settings-wrapper hatch-animate hatch-content-small">
+				<div class="hatch-visual-settings">
+					<p class="hatch-select-wrapper hatch-form-item">
+						<label><?php _e( 'Image Ratio' , HATCH_THEME_SLUG ); ?></label>
+						<?php echo $this->input(
+							array(
+								'type' => 'select',
+								'name' => $widget->name . '[imageratios]' ,
+								'id' =>  $widget->id . '-imageratios' ,
+								'value' => ( isset( $values->imageratios ) ) ? $values->imageratios : NULL,
+								'options' => array(
+									'' => __( 'No Cropping' , HATCH_THEME_SLUG ),
+									'portrait' => __( 'Portrait' , HATCH_THEME_SLUG ),
+									'landscape' => __( 'Landscape' , HATCH_THEME_SLUG ),
+									'square' => __( 'Square' , HATCH_THEME_SLUG )
+								)
+							)
+						); ?>
+					</p>
 				</div>
 			</div>
 		</li>

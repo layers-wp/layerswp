@@ -293,5 +293,28 @@ jQuery(function($) {
 		// $( '.hatch-visuals-wrapper' ).css( 'height' , $(window).height() );
 	}
 
+	/**
+	* 8 - Widget Focussing
+	*/
+	$( document ).on( 'click focus' , '.control-panel-content .widget-rendered' , function(e){
+		// "Hi Mom"
+		$that = $(this);
+
+		if( !$that.hasClass( 'expanded' ) ){
+
+			// Get the id of this widget
+			$widget_id = $that.find( '.widget-id' ).val();
+
+			// Scroll to this widget
+			$iframe = $( '#customize-preview iframe' ).contents();
+			$iframe.find('html, body').animate({
+				scrollTop: $iframe.find( '#' + $widget_id ).offset().top
+		    }, 850);
+
+		}
+	});
+
+
+
 });
 

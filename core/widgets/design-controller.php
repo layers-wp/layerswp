@@ -69,7 +69,7 @@ class Hatch_Design_Controller {
 				<?php } elseif( isset( $widget->number ) ) { ?>
 					<li class="hatch-visuals-item hatch-pull-right">
 						<a href="" class="hatch-icon-wrapper hatch-icon-error">
-							<span class="icon-cross" data-number="<?php echo $widget->number; ?>"></span>
+							<span class="icon-trash" data-number="<?php echo $widget->number; ?>"></span>
 						</a>
 					</li>
 				<?php } // if side != $type ?>

@@ -45,8 +45,8 @@ if( !class_exists( 'Hatch_Banner_Widget' ) ) {
 				'title' => NULL,
 				'excerpt' => NULL,
 				'design' => array(
-					'imagealign' => 'image-left',
-					'textalign' => 'text-left',
+					'imagealign' => 'image-center',
+					'textalign' => 'text-center',
 					'background' => NULL,
 				),
 				'font_style' => array(
@@ -100,7 +100,7 @@ if( !class_exists( 'Hatch_Banner_Widget' ) ) {
 									<?php if( '' != $banner->title || '' != $banner->excerpt ) { ?>
 										<div class="copy-container <?php if( !isset( $banner->image ) || ( isset( $banner->image ) && '' == $banner->image ) ) echo 'no-image'; ?>">
 											<!-- your dynamic output goes here -->
-											<div class="section-title <?php if( !empty( $banner->font_style[ 'size' ] ) ) echo $banner->font_style[ 'size' ]; ?>">
+											<div class="section-title <?php echo ( isset( $banner->font_style[ 'size' ] ) ? $banner->font_style[ 'size' ] : '' ); ?>">
 												<?php if( isset( $banner->title ) && '' != $banner->title ) { ?>
 													<h3 class="heading"><?php echo $banner->title; ?></h3>
 												<?php } ?>

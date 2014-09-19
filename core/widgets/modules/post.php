@@ -47,6 +47,10 @@ if( !class_exists( 'Hatch_Posts_Widget' ) ) {
 				'category' => 0,
 				'show_titles' => 'on',
 				'show_excerpts' => 'on',
+				'show_dates' => 'on',
+				'show_category' => 'on',
+				'show_tags' => 'on',
+				'show_author' => 'on',
 				'design' => array(
 					'imageratios' => '',
 					'layout' => 'layout-boxed',
@@ -275,15 +279,43 @@ if( !class_exists( 'Hatch_Posts_Widget' ) ) {
 									'name' => $this->get_field_name( 'show_titles' ) ,
 									'id' => $this->get_field_id( 'show_titles' ) ,
 									'value' => ( isset( $show_titles ) ) ? $show_titles : NULL,
-									'label' => __( 'Show  Item Titles' , HATCH_THEME_SLUG )
+									'label' => __( 'Show Titles' , HATCH_THEME_SLUG )
 								),
 								'show_excerpts' => array(
 									'type' => 'checkbox',
 									'name' => $this->get_field_name( 'show_excerpts' ) ,
 									'id' => $this->get_field_id( 'show_excerpts' ) ,
 									'value' => ( isset( $show_excerpts ) ) ? $show_excerpts : NULL,
-									'label' => __( 'Show Item Excerpts' , HATCH_THEME_SLUG )
+									'label' => __( 'Show Excerpts' , HATCH_THEME_SLUG )
 								)
+								'show_dates' => array(
+									'type' => 'checkbox',
+									'name' => $this->get_field_name( 'show_dates' ) ,
+									'id' => $this->get_field_id( 'show_dates' ) ,
+									'value' => ( isset( $show_dates ) ) ? $show_dates : NULL,
+									'label' => __( 'Show Post Dates' , HATCH_THEME_SLUG )
+								),
+								'show_category' => array(
+									'type' => 'checkbox',
+									'name' => $this->get_field_name( 'show_category' ) ,
+									'id' => $this->get_field_id( 'show_category' ) ,
+									'value' => ( isset( $show_category ) ) ? $show_category : NULL,
+									'label' => __( 'Show Categories' , HATCH_THEME_SLUG )
+								),
+								'show_tags' => array(
+									'type' => 'checkbox',
+									'name' => $this->get_field_name( 'show_tags' ) ,
+									'id' => $this->get_field_id( 'show_tags' ) ,
+									'value' => ( isset( $show_tags ) ) ? $show_tags : NULL,
+									'label' => __( 'Show Tags' , HATCH_THEME_SLUG )
+								),
+								'show_author' => array(
+									'type' => 'checkbox',
+									'name' => $this->get_field_name( 'show_author' ) ,
+									'id' => $this->get_field_id( 'show_author' ) ,
+									'value' => ( isset( $show_author ) ) ? $show_author : NULL,
+									'label' => __( 'Show Post Author' , HATCH_THEME_SLUG )
+								),
 							)
 					)
 				)

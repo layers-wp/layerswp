@@ -8,7 +8,7 @@
 				Hatch is a powerful site builder that gives you the tools to create not only the site you want but the site you need.
 				The aim of Hatch is to turn the task of making a website into a joyful and easy experience.
 			</p>
-			<a href="/wp-admin/customize.php" class="hatch-button btn-massive btn-primary">Get Started</a>
+			<a href="<?php echo admin_url( 'customize.php' ); ?>" class="hatch-button btn-massive btn-primary">Get Started</a>
 		</div>
 	</div>
 

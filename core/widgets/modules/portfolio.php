@@ -24,8 +24,7 @@ if( !class_exists( 'Hatch_Portfolio_Widget' ) ) {
 		private $taxonomy = 'jetpack-portfolio-type';
 		public $checkboxes = array(
 				'show_titles',
-				'show_excerpts',
-				'show_category_filter'
+				'show_excerpts'
 			); // @TODO: Try make this more dynamic, or leave a different note reminding users to change this if they add/remove checkboxes
 		/**
 		*  Widget construction
@@ -45,7 +44,6 @@ if( !class_exists( 'Hatch_Portfolio_Widget' ) ) {
 				'title' => NULL,
 				'excerpt' => NULL,
 				'text_style' => 'regular',
-				'filter_label' => __( 'Filter:' , HATCH_THEME_SLUG ),
 				'category' => 0,
 				'show_titles' => 'on',
 				'show_excerpts' => 'on',
@@ -123,15 +121,6 @@ if( !class_exists( 'Hatch_Portfolio_Widget' ) ) {
 								<p class="excerpt"><?php echo $widget->excerpt; ?></p>
 							<?php } ?>
 						</div>
-					</div>
-				<?php } ?>
-				<?php if( isset( $widget->show_category_filter ) && !is_wp_error( $terms ) ) { ?>
-					<div class="row container">
-						<ul class="nav nav-pills push-top">
-							<?php foreach( $terms as $term ) { ?>
-								<li data-filter="<?php echo $term->slug; ?>"><a href="#"><?php echo $term->name; ?></a></li>
-							<?php } // foreach $terms ?>
-						</ul>
 					</div>
 				<?php } ?>
 				<div class="row <?php if( isset( $widget->design[ 'layout' ] ) && 'layout-boxed' == $widget->design[ 'layout' ] ) echo 'container'; ?> <?php  if( isset( $widget->design[ 'liststyle' ] ) ) echo $widget->design[ 'liststyle' ]; ?>">
@@ -353,82 +342,53 @@ if( !class_exists( 'Hatch_Portfolio_Widget' ) ) {
 										)
 									); ?>
 								</p>
-							</div>
-
-							<div class="hatch-row clearfix">
-								<div class="hatch-column hatch-span-12">
-									<div class="hatch-panel">
-										<?php $widget_elements->section_panel_title(
+								<?php // Grab the terms as an array and loop 'em to generate the $options for the input
+								$terms = get_terms( $this->taxonomy );
+								if( !is_wp_error( $terms ) ) { ?>
+									<p class="hatch-form-item">
+										<label for="<?php echo $this->get_field_id( 'category' ); ?>"><?php echo __( 'Category to Display' , HATCH_THEME_SLUG ); ?></label>
+										<?php $category_options[ 0 ] ="All";
+										foreach ( $terms as $t ) $category_options[ $t->term_id ] = $t->name;
+										echo $widget_elements->input(
 											array(
-												'type' => 'panel',
-												'title' => __( 'Content to Display' , HATCH_THEME_SLUG ),
-												'tooltip' => __(  'Place your help text here please.', HATCH_THEME_SLUG )
+												'type' => 'select',
+												'name' => $this->get_field_name( 'category' ) ,
+												'id' => $this->get_field_id( 'category' ) ,
+												'placeholder' => __( 'Select a Category' , HATCH_THEME_SLUG ),
+												'value' => ( isset( $category ) ) ? $category : NULL ,
+												'options' => $category_options
 											)
 										); ?>
-										<div class="hatch-content">
-											<?php // Grab the terms as an array and loop 'em to generate the $options for the input
-											$terms = get_terms( $this->taxonomy );
-											if( !is_wp_error( $terms ) ) { ?>
-												<p class="hatch-form-item">
-													<label for="<?php echo $this->get_field_id( 'category' ); ?>"><?php echo __( 'Category to Display' , HATCH_THEME_SLUG ); ?></label>
-													<?php $category_options[ 0 ] ="All";
-													foreach ( $terms as $t ) $category_options[ $t->term_id ] = $t->name;
-													echo $widget_elements->input(
-														array(
-															'type' => 'select',
-															'name' => $this->get_field_name( 'category' ) ,
-															'id' => $this->get_field_id( 'category' ) ,
-															'placeholder' => __( 'Select a Category' , HATCH_THEME_SLUG ),
-															'value' => ( isset( $category ) ) ? $category : NULL ,
-															'options' => $category_options
-														)
-													); ?>
-												</p>
-											<?php } // if !is_wp_error ?>
-											<?php if( 0 == $category ) { ?>
-												<p class="hatch-form-item">
-													<label for="<?php echo $this->get_field_id( 'filter_label' ); ?>"><?php echo __( 'Category Filter Label' , HATCH_THEME_SLUG ); ?></label>
-													<?php echo $widget_elements->input(
-														array(
-															'type' => 'text',
-															'name' => $this->get_field_name( 'filter_label' ) ,
-															'id' => $this->get_field_id( 'filter_label' ) ,
-															'value' => ( isset( $filter_label ) ) ? $filter_label : NULL
-														)
-													); ?>
-												</p>
-											<?php } // if 0 == category ?>
-											<p class="hatch-form-item">
-												<label for="<?php echo $this->get_field_id( 'posts_per_page' ); ?>"><?php echo __( 'Number of items to show' , HATCH_THEME_SLUG ); ?></label>
-												<?php $select_options[ '-1' ] = __( 'Show All' , HATCH_THEME_SLUG );
-												$select_options = $widget_elements->get_incremental_options( $select_options , 1 , 20 , 1);
-												echo $widget_elements->input(
-													array(
-														'type' => 'number',
-														'name' => $this->get_field_name( 'posts_per_page' ) ,
-														'id' => $this->get_field_id( 'posts_per_page' ) ,
-														'value' => ( isset( $posts_per_page ) ) ? $posts_per_page : NULL ,
-														'min' => '-1',
-														'max' => '100'
-													)
-												); ?>
-											</p>
+									</p>
+								<?php } // if !is_wp_error ?>
+								<p class="hatch-form-item">
+									<label for="<?php echo $this->get_field_id( 'posts_per_page' ); ?>"><?php echo __( 'Number of items to show' , HATCH_THEME_SLUG ); ?></label>
+									<?php $select_options[ '-1' ] = __( 'Show All' , HATCH_THEME_SLUG );
+									$select_options = $widget_elements->get_incremental_options( $select_options , 1 , 20 , 1);
+									echo $widget_elements->input(
+										array(
+											'type' => 'number',
+											'name' => $this->get_field_name( 'posts_per_page' ) ,
+											'id' => $this->get_field_id( 'posts_per_page' ) ,
+											'value' => ( isset( $posts_per_page ) ) ? $posts_per_page : NULL ,
+											'min' => '-1',
+											'max' => '100'
+										)
+									); ?>
+								</p>
 
-											<p class="hatch-form-item">
-												<label for="<?php echo $this->get_field_id( 'order_by' ); ?>"><?php echo __( 'Sort by' , HATCH_THEME_SLUG ); ?></label>
-												<?php echo $widget_elements->input(
-													array(
-														'type' => 'select',
-														'name' => $this->get_field_name( 'order_by' ) ,
-														'id' => $this->get_field_id( 'order_by' ) ,
-														'value' => ( isset( $order_by ) ) ? $order_by : NULL ,
-														'options' => $widget_elements->get_default_sort_options()
-													)
-												); ?>
-											</p>
-										</div>
-									</div>
-								</div>
+								<p class="hatch-form-item">
+									<label for="<?php echo $this->get_field_id( 'order_by' ); ?>"><?php echo __( 'Sort by' , HATCH_THEME_SLUG ); ?></label>
+									<?php echo $widget_elements->input(
+										array(
+											'type' => 'select',
+											'name' => $this->get_field_name( 'order_by' ) ,
+											'id' => $this->get_field_id( 'order_by' ) ,
+											'value' => ( isset( $order_by ) ) ? $order_by : NULL ,
+											'options' => $widget_elements->get_default_sort_options()
+										)
+									); ?>
+								</p>
 							</div>
 						</section>
 

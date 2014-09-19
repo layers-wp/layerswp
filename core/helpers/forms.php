@@ -229,11 +229,11 @@ class Hatch_Form_Elements {
 			*/
 			case 'image' : ?>
 				<section class="hatch-image-container <?php if( isset( $input->value ) && NULL != $input->value ) echo 'has-image'; ?>">
-					<div class="hatch-push-bottom">
-						<!-- Remove button -->
-						<a class="hatch-image-remove" href=""><?php _e( 'Remove' , HATCH_THEME_SLUG ); ?></a>
+					<div class="hatch-image-display">
 						<!-- Image -->
 						<?php if( isset( $input->value ) ) echo wp_get_attachment_image( $input->value , 'large' ); ?>
+						<!-- Remove button -->
+						<a class="hatch-image-remove" href=""><?php _e( 'Remove' , HATCH_THEME_SLUG ); ?></a>
 					</div>
 					<div class="hatch-push-bottom">
 						<a href="#" class="hatch-image-upload-button  hatch-button btn-primary btn-full <?php if( isset( $input->value ) && '' != $input->value ) echo 'hatch-has-image'; ?>"

@@ -599,6 +599,7 @@ div[id*='hatch-widget'] .widget-control-actions{
         position: relative;
         right: auto;
         margin: -20px -20px 20px;
+        height: auto;
         background-color: #fff;
     }
     .hatch-visuals.hatch-visuals-horizontal{
@@ -1135,23 +1136,28 @@ input[type=radio]:checked + .hatch-settings-icon span{
 .hatch-image-container{
     position: relative;
 }
-.hatch-image-uploader img{
-    display: block;
-    max-width: 100%;
+.hatch-image-container .hatch-image-display{
+    background: #F0F0F0 url(images/icon-bg-image-small.png) center no-repeat;
+    background-size: 32px 32px;
+    border: 1px dashed #ddd;
+    height: 108px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+}
+.hatch-image-container.has-image .hatch-image-display,
+.hatch-image-container.hatch-has-image .hatch-image-display{
+    background: none;
+    border: none;
     height: auto;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    -webkit-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
+    margin: 0;
 }
 .hatch-image-remove{
-    /*display: none;*/
+    display: none;
     width: 16px;
     height: 16px;
-    background: url('images/cross.png') no-repeat;
+    background: #FF5353 url('images/cross.png') no-repeat;
     background-size: 16px 16px;
-    border: 2px solid #fff;
+    border: 1px solid #BC3F39;
     position: absolute;
     top: 10px;
     right: 10px;
@@ -1160,28 +1166,18 @@ input[type=radio]:checked + .hatch-settings-icon span{
     font-size: 11px;
     border-radius: 2px;
     transition: all 0.2s ease-in-out;
-    opacity: 0.5;
     text-indent: -999px;
     overflow: hidden;
+    box-shadow: 0px 1px 0px rgba(255, 255, 255, 0.4) inset, 0px 1px 0px rgba(0, 0, 0, 0.08);
 }
 .hatch-image-remove:hover{
-    color: #fff;
-    opacity: 1;
-    background-color: #E2574C;
-    border-color: #E2574C;
+    background-color: #F2413D;
 }
-.hatch-image-uploader.hatch-has-image{
-    border-style: solid;
-    height: 200px;
+.hatch-image-display img{
+    margin-bottom: 10px;
 }
-.hatch-image-uploader.hatch-has-image p{
-    display: none;
-}
-.hatch-has-image .hatch-image-remove{
+.hatch-image-display img + .hatch-image-remove{
     display: block;
-}
-.hatch-file-remove{
-    color: #ff0000;
 }
 
 /*---------------------------*/

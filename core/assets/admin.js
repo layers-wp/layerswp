@@ -95,7 +95,7 @@ jQuery(function($) {
 				width: $attachment.width
 			});
 
-			$container.children('.hatch-push-bottom').eq(0).append( $image );
+			$container.children('.hatch-image-display').eq(0).append( $image );
 
 			// Add 'Has Image' Class
 			$container.addClass( 'hatch-has-image' );

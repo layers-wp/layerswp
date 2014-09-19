@@ -362,7 +362,7 @@ if( !class_exists( 'Hatch_Banner_Widget' ) ) {
 												'name' => 'widget-' . $widget_details->id_base . '[' . $widget_details->number . '][banners][' . $slide_guid . '][font_style][size]',
 												'id' => 'widget-' . $widget_details->id_base . '-' . $widget_details->number . '-' . $slide_guid . '-font-size',
 												'value' => ( isset( $font_style[ 'size' ] ) ) ? $font_style[ 'size' ] : '',
-												'label' => __( 'Size' , HATCH_THEME_SLUG ),
+												'label' => __( 'Text Size' , HATCH_THEME_SLUG ),
 												'options' => array(
 														'small' => __( 'Small' , HATCH_THEME_SLUG ),
 														'' => __( 'Medium' , HATCH_THEME_SLUG ),
@@ -374,14 +374,14 @@ if( !class_exists( 'Hatch_Banner_Widget' ) ) {
 												'name' => 'widget-' . $widget_details->id_base . '[' . $widget_details->number . '][banners][' . $slide_guid . '][font_style][color]',
 												'id' => 'widget-' . $widget_details->id_base . '-' . $widget_details->number . '-' . $slide_guid . '-font-color',
 												'value' => ( isset( $font_style[ 'color' ] ) ) ? $font_style[ 'color' ] : '',
-												'label' => __( 'Color' , HATCH_THEME_SLUG )
+												'label' => __( 'Text Color' , HATCH_THEME_SLUG )
 											),
 										'font-shadow' => array(
 												'type' => 'color',
 												'name' => 'widget-' . $widget_details->id_base . '[' . $widget_details->number . '][banners][' . $slide_guid . '][font_style][shadow]',
 												'id' => 'widget-' . $widget_details->id_base . '-' . $widget_details->number . '-' . $slide_guid . '-font-shadow',
 												'value' => ( isset( $font_style[ 'shadow' ] ) ) ? $font_style[ 'shadow' ] : '',
-												'label' => __( 'Shadow' , HATCH_THEME_SLUG )
+												'label' => __( 'Text Shadow' , HATCH_THEME_SLUG )
 											)
 									)
 								),

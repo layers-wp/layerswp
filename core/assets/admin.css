@@ -1164,7 +1164,7 @@ input[type=radio]:checked + .hatch-settings-icon span{
     z-index: 2;
     color: #fff;
     font-size: 11px;
-    border-radius: 2px;
+    border-radius: 4px;
     transition: all 0.2s ease-in-out;
     text-indent: -999px;
     overflow: hidden;

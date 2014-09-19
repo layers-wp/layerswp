@@ -91,7 +91,10 @@ if( !class_exists( 'Hatch_Banner_Widget' ) ) {
 							if( !empty( $banner->font_style[ 'color' ] ) ) $this->widget_styles( $widget_id . '-' . $key , 'color', array( 'selectors' => array( 'h3.heading' , 'div.excerpt' ) , 'color' => $banner->font_style[ 'color' ] ) );
 							if( !empty( $banner->font_style[ 'shadow' ] ) ) $this->widget_styles( $widget_id . '-' . $key , 'text-shadow', array( 'selectors' => array( 'h3.heading' , 'div.excerpt' )  , 'text-shadow' => $banner->font_style[ 'shadow' ] ) ); ?>
 
-							<div id="<?php echo $widget_id; ?>-<?php echo $key; ?>" class="invert swiper-slide <?php if( isset( $banner->design[ 'imagealign' ] ) && '' != $banner->design[ 'imagealign' ] ) echo $banner->design[ 'imagealign' ]; ?>"
+							<div id="<?php echo $widget_id; ?>-<?php echo $key; ?>" class="invert swiper-slide
+								<?php if( isset( $banner->design[ 'imagealign' ] ) && '' != $banner->design[ 'imagealign' ] ) echo $banner->design[ 'imagealign' ]; ?>
+								<?php if( isset( $banner->design[ 'textalign' ] ) && '' != $banner->design[ 'textalign' ] ) echo $banner->design[ 'textalign' ]; ?>
+								"
 								style="float: left; <?php if( isset( $widget->banner_height ) && '' != $widget->banner_height ) echo 'height: ' . $widget->banner_height . 'px;' ?>">
 								<div class="container" <?php if( isset( $widget->banner_height ) && '' != $widget->banner_height ) echo 'style="height: ' . $widget->banner_height . 'px;"' ?>><!-- height important for vertical positioning. Must match container height -->
 									<?php if( '' != $banner->title || '' != $banner->excerpt ) { ?>
@@ -134,6 +137,10 @@ if( !class_exists( 'Hatch_Banner_Widget' ) ) {
 							loop: true
 							<?php if( isset( $widget->autoplay_banners ) && isset( $widget->slide_time ) && is_numeric( $widget->slide_time ) ) {?>, autoplay: <?php echo ($widget->slide_time*1000); ?><?php }?>
 						});
+
+						// Allow keyboard control
+						swiper.enableKeyboardControl();
+
 						$('#<?php echo $widget_id; ?>').find('.arrows a').on( 'click' , function(e){
 							e.preventDefault();
 							// "Hi Mom"

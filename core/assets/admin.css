@@ -1314,6 +1314,9 @@ input[type=radio]:checked + .hatch-settings-icon span{
     height: 170px !important;
     border-radius: 4px;
 }
+.wp-picker-container .iris-border .iris-picker-inner{
+    width: 200px;
+}
 .wp-picker-container .iris-picker .iris-square{
     width: 159px !important;
     height: 150px !important;

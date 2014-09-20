@@ -279,8 +279,11 @@ h1, h2, h3, h4, h5, h6{color: #000; font-weight: 200;}
     /*---------------------------*/
     /*- LOGO --------------------*/
     .logo{float: left; padding: 0;}
+    
     .site-logo-anchor, .mark{display: inline-block; vertical-align: middle; margin: auto; font-size: 0;}
-    .site-logo-anchor img, .mark img{display: inline-block; margin: auto;}
+    .site-logo-anchor img, .mark img{display: inline-block; margin: auto; width: auto;}
+    .site-logo-anchor.small img{max-height: 40px;}
+
     .sitename{display: inline-block; vertical-align: middle; font-size: 2rem; font-weight: 600;}
     .tagline{display: inline-block; vertical-align: middle; color: #8F8F8F; font-weight: 600;}
 
@@ -608,7 +611,7 @@ h1, h2, h3, h4, h5, h6{color: #000; font-weight: 200;}
 
     .thumbnail-body{padding: 20px; overflow: hidden; background: #f5f5f5;}
 
-    .thumbnail .heading{margin: 5px 0 0; color: #8F8F8F; font-size: 2.0rem;}
+    .thumbnail .heading{margin: 0; color: #8F8F8F; font-size: 1.8rem;}
     .thumbnail .heading.small{font-size: 1.2rem;}
 
     .thumbnail-body p{margin: 10px 0 0;}

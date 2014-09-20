@@ -279,13 +279,14 @@ h1, h2, h3, h4, h5, h6{color: #000; font-weight: 200;}
     /*---------------------------*/
     /*- LOGO --------------------*/
     .logo{float: left; padding: 0;}
-    
+
     .site-logo-anchor, .mark{display: inline-block; vertical-align: middle; margin: auto; font-size: 0;}
     .site-logo-anchor img, .mark img{display: inline-block; margin: auto; width: auto;}
     .site-logo-anchor.small img{max-height: 40px;}
-
-    .sitename{display: inline-block; vertical-align: middle; font-size: 2rem; font-weight: 600;}
-    .tagline{display: inline-block; vertical-align: middle; color: #8F8F8F; font-weight: 600;}
+    
+    .site-description{display: inline-block; vertical-align: middle;}
+    .sitename{font-size: 2rem; font-weight: 600;}
+    .tagline{color: #8F8F8F; font-weight: 600;}
 
 	.mark + .sitename{margin-top: 10px;}
 
@@ -372,9 +373,9 @@ h1, h2, h3, h4, h5, h6{color: #000; font-weight: 200;}
 /*- NAVIGATION ------------------*/
 /*-------------------------------*/
 
-    header nav{line-height: 40px;}
+    header nav{margin: 10px 0; line-height: 40px;}
 
-    .nav{vertical-align: middle;}
+    .nav{vertical-align: middle; display: inline-block;}
     .nav li{position: relative;}
     .nav a{transition: all 0.2s ease-in-out; color: #323232;}
     .nav a:hover{color: #8f8f8f;}
@@ -401,10 +402,8 @@ h1, h2, h3, h4, h5, h6{color: #000; font-weight: 200;}
 
 
     /*---------------------------*/
-    /*- HORIZONTAL NAV ----------*/
-    .nav-horizontal{font-size: 1.4rem;}
-	.nav-horizontal li{float: left;}
-    .nav-horizontal a{display: block; padding: 0 10px; font-weight: 600; color: #323232; text-align: center;}
+	.nav-horizontal li{float: left; margin: 0 10px}
+    .nav-horizontal a{display: block; font-weight: 600; color: #323232; text-align: center;}
     .nav-horizontal a:hover{color: #8F8F8F;}
 
     .nav-horizontal .special{border: none; font-size: 88%;;}

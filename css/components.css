@@ -24,7 +24,7 @@
     .header-left .site-logo-anchor{margin: 0 10px 0 0;}
     .header-left .sitename{margin: 0 10px 0 0;}
 
-    .header-left .site-logo-anchor img{max-height: 40px; width: auto;}
+    .header-left .site-logo-anchor img{max-height: 60px; width: auto;}
     .header-left nav{float: right;}
 
     /*---------------------------*/
@@ -33,27 +33,25 @@
     .header-right .site-logo-anchor{margin: 0 10px 0 0;}
     .header-right .sitename{margin: 0 10px 0 0;}
 
-    .header-right .site-logo-anchor img{max-height: 40px; width: auto;}
+    .header-right .site-logo-anchor img{max-height: 60px; width: auto;}
     .header-right nav{float: left;}
 
     /*---------------------------*/
     /*- ALIGNMENT CENTER --------*/
     .header-center{text-align: center;}
     .header-center .logo{float: none;}
-    .header-center .mark{display: block;}
-    .header-center .sitename{display: block;}
-    .header-center .tagline{display: block;}
+    .header-center .site-description{display: block;}
 
         .header-center .site-logo-anchor + .sitename{margin-top: 10px;}
         .header-center .site-logo-anchor + .tagline{margin-top: 10px;}
         .header-center .sitename + .tagline{margin-top: 5px;}
 
-    .header-center nav{clear: both; text-align: center; margin-top: 20px;}
+    .header-center nav{clear: both; text-align: center; margin-top: 20px; line-height: unset;}
 
     /*---------------------------*/
     /*- ALIGNMENT INLINE --------*/
     .header-inline .logo{text-align: center;}
-    .header-inline .site-logo-anchor img{max-height: 40px; width: auto;}
+    .header-inline .site-logo-anchor img{max-height: 60px; width: auto;}
 
     /*---------------------------*/
     /*- POSITION OVERLAY --------*/
@@ -72,6 +70,10 @@
 
     .nav-clear nav{float: none; clear: both; margin: 10px 0;}
 
+    /*---------------------------*/
+    /*- SECONDARY HEADER --------*/
+    .header-secondary{}
+    .header-secondary nav{margin: 0; font-size: 1.2rem;}
 
 /*-------------------------------*/
 /*- SLIDER ----------------------*/

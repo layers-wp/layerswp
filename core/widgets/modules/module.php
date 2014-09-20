@@ -78,9 +78,9 @@ if( !class_exists( 'Hatch_Module_Widget' ) ) {
 			$col_count = $widget->design[ 'columns' ];
 			$span_class = 'span-' . ( 12 / $col_count ); ?>
 
-			<section class="widget row content-vertical-massive  <?php if( isset( $widget->design[ 'layout' ] ) && 'layout-boxed' == $widget->design[ 'layout' ] ) echo 'container'; ?>" id="<?php echo $widget_id; ?>">
-				<div class="clearfix">
-					<?php if( '' != $widget->title || '' != $widget->excerpt ) { ?>
+			<section class="widget row content-vertical-massive" id="<?php echo $widget_id; ?>">
+				<?php if( '' != $widget->title || '' != $widget->excerpt ) { ?>
+					<div class="container">
 						<div class="section-title <?php if( isset( $widget->title_size ) ) echo $widget->title_size; ?> <?php if( isset( $widget->title_alignment ) ) echo $widget->title_alignment; ?> clearfix"> <?php // @TODO: get alignment to work here ?>
 							<?php if( '' != $widget->title ) { ?>
 								<h3 class="heading"><?php echo $widget->title; ?></h3>
@@ -89,40 +89,40 @@ if( !class_exists( 'Hatch_Module_Widget' ) ) {
 								<p class="excerpt"><?php echo $widget->excerpt; ?></p>
 							<?php } ?>
 						</div>
-					<?php } ?>
-					<?php if( !empty( $widget->modules ) ) { ?>
-						<div class="row">
-							<?php $col = 1; ?>
-							<?php foreach ( $widget->modules as $key => $module) {
+					</div>
+				<?php } ?>
+				<?php if( !empty( $widget->modules ) ) { ?>
+					<div class="row <?php if( isset( $widget->design[ 'layout' ] ) && 'layout-boxed' == $widget->design[ 'layout' ] ) echo 'container'; ?>">
+						<?php $col = 1; ?>
+						<?php foreach ( $widget->modules as $key => $module) {
 
-								$module = (object) $module;
-								// Set the background styling
-								if( !empty( $module->design[ 'background' ] ) ) $this->widget_styles( $widget_id . '-' . $key , 'background', $module->design[ 'background' ] );
-								if( !empty( $module->font_style[ 'color' ] ) ) $this->widget_styles( $widget_id . '-' . $key , 'color', array( 'selectors' => array( 'h5.heading a' , 'p.excerpt' ) , 'color' => $module->font_style[ 'color' ] ) );
-								if( !empty( $module->font_style[ 'shadow' ] ) ) $this->widget_styles( $widget_id . '-' . $key , 'text-shadow', array( 'selectors' => array( 'h5.heading a' , 'p.excerpt' )  , 'text-shadow' => $module->font_style[ 'shadow' ] ) ); ?>
+							$module = (object) $module;
+							// Set the background styling
+							if( !empty( $module->design[ 'background' ] ) ) $this->widget_styles( $widget_id . '-' . $key , 'background', $module->design[ 'background' ] );
+							if( !empty( $module->font_style[ 'color' ] ) ) $this->widget_styles( $widget_id . '-' . $key , 'color', array( 'selectors' => array( 'h5.heading a' , 'p.excerpt' ) , 'color' => $module->font_style[ 'color' ] ) );
+							if( !empty( $module->font_style[ 'shadow' ] ) ) $this->widget_styles( $widget_id . '-' . $key , 'text-shadow', array( 'selectors' => array( 'h5.heading a' , 'p.excerpt' )  , 'text-shadow' => $module->font_style[ 'shadow' ] ) ); ?>
 
-								<?php if( $col <= $col_count ) { ?>
-									<div id="<?php echo $widget_id; ?>-<?php echo $key; ?>" class="column <?php echo $span_class; ?>">
-										<div class="marketing <?php echo ( isset( $module->design[ 'imagealign' ] ) ? $module->design[ 'imagealign' ] : '' ); ?>  <?php echo ( isset( $module->font_style[ 'size' ] ) ? $module->font_style[ 'size' ] : '' ); ?>">
-											<?php if( isset( $module->image ) && '' != $module->image ) { ?>
-												<div class="marketing-icon"><a href="<?php echo esc_url( $module->link ); ?>"><?php echo wp_get_attachment_image( $module->image , 'medium' ); ?></a></div>
+							<?php if( $col <= $col_count ) { ?>
+								<div id="<?php echo $widget_id; ?>-<?php echo $key; ?>" class="column <?php echo $span_class; ?>">
+									<div class="marketing <?php echo ( isset( $module->design[ 'imagealign' ] ) ? $module->design[ 'imagealign' ] : '' ); ?>  <?php echo ( isset( $module->font_style[ 'size' ] ) ? $module->font_style[ 'size' ] : '' ); ?>">
+										<?php if( isset( $module->image ) && '' != $module->image ) { ?>
+											<div class="marketing-icon"><a href="<?php echo esc_url( $module->link ); ?>"><?php echo wp_get_attachment_image( $module->image , 'medium' ); ?></a></div>
+										<?php } ?>
+										<div class="marketing-body <?php echo ( isset( $module->design[ 'textalign' ] ) ) ? $module->design[ 'textalign' ] : ''; ?>">
+											<?php if( isset( $module->title ) && '' != $module->title ) { ?>
+												<h5 class="heading"><a href="<?php echo esc_url( $module->link ); ?>"><?php echo $module->title; ?></a></h5>
 											<?php } ?>
-											<div class="marketing-body <?php echo ( isset( $module->design[ 'textalign' ] ) ) ? $module->design[ 'textalign' ] : ''; ?>">
-												<?php if( isset( $module->title ) && '' != $module->title ) { ?>
-													<h5 class="heading"><a href="<?php echo esc_url( $module->link ); ?>"><?php echo $module->title; ?></a></h5>
-												<?php } ?>
-												<?php if( isset( $module->excerpt ) && '' != $module->excerpt ) { ?>
-													<p class="excerpt"><?php echo $module->excerpt; ?></p>
-												<?php } ?>
-											</div>
+											<?php if( isset( $module->excerpt ) && '' != $module->excerpt ) { ?>
+												<p class="excerpt"><?php echo $module->excerpt; ?></p>
+											<?php } ?>
 										</div>
 									</div>
-								<?php } ?>
-								<?php $col++; ?>
+								</div>
 							<?php } ?>
-						</div>
-					<?php } ?>
-				</div>
+							<?php $col++; ?>
+						<?php } ?>
+					</div>
+				<?php } ?>
 
 			</section>
 

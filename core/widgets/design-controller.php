@@ -359,9 +359,9 @@ class Hatch_Design_Controller {
 
 		<li class="hatch-visuals-item hatch-last">
 			<a href="" class="hatch-icon-wrapper">
-				<span class="icon-image"></span>
+				<span class="icon-image-size"></span>
 				<span class="hatch-icon-description">
-					<?php _e( 'Image Ratios' , HATCH_THEME_SLUG ); ?>
+					<?php _e( 'Image Ratio' , HATCH_THEME_SLUG ); ?>
 				</span>
 			</a>
 			<div class="hatch-visuals-settings-wrapper hatch-animate hatch-content-small">

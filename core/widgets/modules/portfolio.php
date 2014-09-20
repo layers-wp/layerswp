@@ -48,7 +48,7 @@ if( !class_exists( 'Hatch_Portfolio_Widget' ) ) {
 				'show_titles' => 'on',
 				'show_excerpts' => 'on',
 				'design' => array(
-					'imageratios' => '',
+					'imageratios' => 'image-size',
 					'layout' => 'layout-boxed',
 					'textalign' => 'text-center',
 					'liststyle' => 'list-grid',

@@ -1,10 +1,10 @@
 @font-face {
 	font-family: 'hatch-interface';
-	src:url('fonts/hatch-interface.eot?-p9vlbe');
-	src:url('fonts/hatch-interface.eot?#iefix-p9vlbe') format('embedded-opentype'),
-		url('fonts/hatch-interface.woff?-p9vlbe') format('woff'),
-		url('fonts/hatch-interface.ttf?-p9vlbe') format('truetype'),
-		url('fonts/hatch-interface.svg?-p9vlbe#hatch-interface') format('svg');
+	src:url('fonts/hatch-interface.eot?y5pwup');
+	src:url('fonts/hatch-interface.eot?#iefixy5pwup') format('embedded-opentype'),
+		url('fonts/hatch-interface.woff?y5pwup') format('woff'),
+		url('fonts/hatch-interface.ttf?y5pwup') format('truetype'),
+		url('fonts/hatch-interface.svg?y5pwup#hatch-interface') format('svg');
 	font-weight: normal;
 	font-style: normal;
 }
@@ -23,6 +23,18 @@
 	-moz-osx-font-smoothing: grayscale;
 }
 
+.icon-image-portrait:before {
+	content: "\e61d";
+}
+.icon-image-landscape:before {
+	content: "\e61e";
+}
+.icon-image-square:before {
+	content: "\e61f";
+}
+.icon-image-size:before {
+	content: "\e620";
+}
 .icon-trash:before {
 	content: "\e61c";
 }

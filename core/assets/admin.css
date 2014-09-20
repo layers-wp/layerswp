@@ -1307,6 +1307,23 @@ input[type=radio]:checked + .hatch-settings-icon span{
     color: #454545;
 }
 
+/*---------------------------*/
+/*- INTERFACE COPY ----------*/
+.wp-picker-container .iris-picker{
+    width: 200px !important;
+    height: 170px !important;
+    border-radius: 4px;
+}
+.wp-picker-container .iris-picker .iris-square{
+    width: 159px !important;
+    height: 150px !important;
+    margin-right: 4px !important;
+}
+.wp-picker-container .iris-picker .iris-strip{
+    height: 150px !important;
+    width: 20px !important;
+}
+
 
 /*---------------------------*/
 /*- INTERFACE COPY ----------*/

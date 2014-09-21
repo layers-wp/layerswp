@@ -97,7 +97,7 @@ if( !class_exists( 'Hatch_Portfolio_Widget' ) ) {
 					$imageratios = $widget->design[ 'imageratios' ] . '-large';
 				}
 			} else {
-				$imageratios = 'large';
+				$imageratios = 'medium';
 			}
 
 			// Begin query arguments

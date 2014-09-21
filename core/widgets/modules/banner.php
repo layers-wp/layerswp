@@ -46,6 +46,7 @@ if( !class_exists( 'Hatch_Banner_Widget' ) ) {
 				'excerpt' => NULL,
 				'design' => array(
 					'imagealign' => 'image-center',
+					'imageratios' => NULL,
 					'textalign' => 'text-center',
 					'background' => NULL,
 				),
@@ -89,7 +90,14 @@ if( !class_exists( 'Hatch_Banner_Widget' ) ) {
 							// Set the background styling
 							if( !empty( $banner->design[ 'background' ] ) ) $this->widget_styles( $widget_id . '-' . $key , 'background', $banner->design[ 'background' ] );
 							if( !empty( $banner->font_style[ 'color' ] ) ) $this->widget_styles( $widget_id . '-' . $key , 'color', array( 'selectors' => array( 'h3.heading' , 'div.excerpt' ) , 'color' => $banner->font_style[ 'color' ] ) );
-							if( !empty( $banner->font_style[ 'shadow' ] ) ) $this->widget_styles( $widget_id . '-' . $key , 'text-shadow', array( 'selectors' => array( 'h3.heading' , 'div.excerpt' )  , 'text-shadow' => $banner->font_style[ 'shadow' ] ) ); ?>
+							if( !empty( $banner->font_style[ 'shadow' ] ) ) $this->widget_styles( $widget_id . '-' . $key , 'text-shadow', array( 'selectors' => array( 'h3.heading' , 'div.excerpt' )  , 'text-shadow' => $banner->font_style[ 'shadow' ] ) );
+
+							// Set Image Sizes
+							if( isset( $banner->design[ 'imageratios' ] ) ){
+									$imageratios = $banner->design[ 'imageratios' ] . '-medium';
+							} else {
+								$imageratios = 'medium';
+							} ?>
 
 							<div id="<?php echo $widget_id; ?>-<?php echo $key; ?>" class="invert swiper-slide
 								<?php if( isset( $banner->design[ 'imagealign' ] ) && '' != $banner->design[ 'imagealign' ] ) echo $banner->design[ 'imagealign' ]; ?>
@@ -114,7 +122,7 @@ if( !class_exists( 'Hatch_Banner_Widget' ) ) {
 									<?php } // if title || excerpt ?>
 									<?php if( isset( $banner->image ) && '' != $banner->image ) { ?>
 										<div class="image-container">
-											<?php echo wp_get_attachment_image( $banner->image , 'large' ); ?>
+											<?php echo wp_get_attachment_image( $banner->image , $imageratios ); ?>
 										</div>
 									<?php } // if $banner image ?>
 								</div>
@@ -223,6 +231,13 @@ if( !class_exists( 'Hatch_Banner_Widget' ) ) {
 									'id' => $this->get_field_id( 'hide_slider_arrows' ) ,
 									'value' => ( isset( $hide_slider_arrows ) ) ? $hide_slider_arrows : NULL,
 									'label' => __( 'Hide Slider Arrows', HATCH_THEME_SLUG )
+								),
+								'slider_arrow_color' => array(
+									'type' => 'checkbox',
+									'name' => $this->get_field_name( 'slider_arrow_color' ) ,
+									'id' => $this->get_field_id( 'slider_arrow_color' ) ,
+									'value' => ( isset( $slider_arrow_color ) ) ? $slider_arrow_color : NULL,
+									'label' => __( 'Slider Arrow Color', HATCH_THEME_SLUG )
 								),
 								'autoplay_banners' => array(
 									'type' => 'checkbox',
@@ -349,6 +364,7 @@ if( !class_exists( 'Hatch_Banner_Widget' ) ) {
 							array(
 								'textalign',
 								'imagealign',
+								'imageratios',
 								'background',
 								'custom'
 							), // Standard Components

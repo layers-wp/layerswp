@@ -44,6 +44,7 @@ if( !class_exists( 'Hatch_Module_Widget' ) ) {
 				'design' => array(
 					'columns' => '3',
 					'imagealign' => 'image-center',
+					'imageratios' => NULL,
 					'textalign' => 'text-center',
 					'background' => NULL,
 				),
@@ -75,8 +76,15 @@ if( !class_exists( 'Hatch_Module_Widget' ) ) {
 			// Turn $instance into an object named $widget, makes for neater code
 			$widget = (object) $instance;// Set the span class for each column
 
-			$col_count = $widget->design[ 'columns' ];
-			$span_class = 'span-' . ( 12 / $col_count ); ?>
+			if( !isset( $widget->design[ 'columns' ] ) ) {
+				$col_count = 3;
+			} else {
+				$col_count = $widget->design[ 'columns' ];
+			}
+			$span_class = 'span-' . ( 12 / $col_count );
+
+			// Set the background styling
+			if( !empty( $widget->design[ 'background' ] ) ) $this->widget_styles( $widget_id , 'background', $widget->design[ 'background' ] ); ?>
 
 			<section class="widget row content-vertical-massive" id="<?php echo $widget_id; ?>">
 				<?php if( '' != $widget->title || '' != $widget->excerpt ) { ?>
@@ -100,13 +108,24 @@ if( !class_exists( 'Hatch_Module_Widget' ) ) {
 							// Set the background styling
 							if( !empty( $module->design[ 'background' ] ) ) $this->widget_styles( $widget_id . '-' . $key , 'background', $module->design[ 'background' ] );
 							if( !empty( $module->font_style[ 'color' ] ) ) $this->widget_styles( $widget_id . '-' . $key , 'color', array( 'selectors' => array( 'h5.heading a' , 'p.excerpt' ) , 'color' => $module->font_style[ 'color' ] ) );
-							if( !empty( $module->font_style[ 'shadow' ] ) ) $this->widget_styles( $widget_id . '-' . $key , 'text-shadow', array( 'selectors' => array( 'h5.heading a' , 'p.excerpt' )  , 'text-shadow' => $module->font_style[ 'shadow' ] ) ); ?>
+							if( !empty( $module->font_style[ 'shadow' ] ) ) $this->widget_styles( $widget_id . '-' . $key , 'text-shadow', array( 'selectors' => array( 'h5.heading a' , 'p.excerpt' )  , 'text-shadow' => $module->font_style[ 'shadow' ] ) );
+
+							// Set Image Sizes
+							if( isset( $module->design[ 'imageratios' ] ) ){
+								if( $col_count > 1 ){
+									$imageratios = $module->design[ 'imageratios' ] . '-medium';
+								} else {
+									$imageratios = $module->design[ 'imageratios' ] . '-large';
+								}
+							} else {
+								$imageratios = 'medium';
+							} ?>
 
 							<?php if( $col <= $col_count ) { ?>
 								<div id="<?php echo $widget_id; ?>-<?php echo $key; ?>" class="column <?php echo $span_class; ?>">
 									<div class="marketing <?php echo ( isset( $module->design[ 'imagealign' ] ) ? $module->design[ 'imagealign' ] : '' ); ?>  <?php echo ( isset( $module->font_style[ 'size' ] ) ? $module->font_style[ 'size' ] : '' ); ?>">
 										<?php if( isset( $module->image ) && '' != $module->image ) { ?>
-											<div class="marketing-icon"><a href="<?php echo esc_url( $module->link ); ?>"><?php echo wp_get_attachment_image( $module->image , 'medium' ); ?></a></div>
+											<div class="marketing-icon"><a href="<?php echo esc_url( $module->link ); ?>"><?php echo wp_get_attachment_image( $module->image , $imageratios ); ?></a></div>
 										<?php } ?>
 										<div class="marketing-body <?php echo ( isset( $module->design[ 'textalign' ] ) ) ? $module->design[ 'textalign' ] : ''; ?>">
 											<?php if( isset( $module->title ) && '' != $module->title ) { ?>
@@ -177,7 +196,8 @@ if( !class_exists( 'Hatch_Module_Widget' ) ) {
 				$instance, // Widget Values
 				array(
 					'layout',
-					'columns'
+					'columns',
+					'background'
 				) // Standard Components
 			); ?>
 			<div class="hatch-container-large" id="hatch-banner-widget-<?php echo $this->number; ?>">
@@ -300,6 +320,7 @@ if( !class_exists( 'Hatch_Module_Widget' ) ) {
 							array(
 								'textalign',
 								'imagealign',
+								'imageratios',
 								'background',
 								'custom'
 							), // Standard Components
@@ -370,7 +391,7 @@ if( !class_exists( 'Hatch_Module_Widget' ) ) {
 											'name' => 'widget-' . $widget_details->id_base . '[' . $widget_details->number . '][modules][' . $slide_guid . '][link]' ,
 											'id' => 'widget-' . $widget_details->id_base . '-' . $widget_details->number . '-' . $slide_guid . '-link' ,
 											'placeholder' => __( 'Link', HATCH_THEME_SLUG ),
-											'value' => ( isset( $excerpt ) ) ? $excerpt : NULL ,
+											'value' => ( isset( $link ) ) ? $link : NULL ,
 											'class' => 'hatch-text',
 										)
 									); ?>

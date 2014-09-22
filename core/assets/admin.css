@@ -120,7 +120,6 @@ div[id*='hatch-widget'] .widget-control-actions{
 .hatch-container-large{
     padding-bottom: 50px;
     position: relative;
-    overflow: hidden;
     z-index: 99;
 }
 .hatch-content-small{

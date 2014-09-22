@@ -127,8 +127,8 @@ if( !class_exists( 'Hatch_Widget_Column_Widget' ) ) {
 			if( !empty( $instance ) ) $instance_defaults = array();
 
 			// Parse $instance
-			$instance_args = wp_parse_args( $instance, $instance_defaults );
-			extract( $instance_args, EXTR_SKIP ); ?>
+			$instance = wp_parse_args( $instance, $instance_defaults );
+			extract( $instance, EXTR_SKIP ); ?>
 			<div class="hatch-container-large">
 
 				<?php $widget_elements->header( array(
@@ -238,8 +238,8 @@ if( !class_exists( 'Hatch_Widget_Column_Widget' ) ) {
 			if( !empty( $instance ) ) $instance_defaults = array();
 
 			// Parse $instance
-			$instance_args = wp_parse_args( $instance, $instance_defaults );
-			extract( $instance_args, EXTR_SKIP );
+			$instance = wp_parse_args( $instance, $instance_defaults );
+			extract( $instance, EXTR_SKIP );
 
 			// If there is no GUID create one. There should always be one but this is a fallback
 			if( ! isset( $module_guid ) ) $module_guid = rand( 1 , 1000 );

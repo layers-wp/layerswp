@@ -62,8 +62,8 @@ if( !class_exists( 'Hatch_Framework_Widget' ) ) {
 			if( !empty( $instance ) ) $instance_defaults = array();
 
 			// Parse $instance
-			$instance_args = wp_parse_args( $instance, $instance_defaults );
-			extract( $instance_args, EXTR_SKIP );
+			$instance = wp_parse_args( $instance, $instance_defaults );
+			extract( $instance, EXTR_SKIP );
 		?>
 			<!-- Form HTML Here -->
 

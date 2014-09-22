@@ -35,23 +35,25 @@ if( !class_exists( 'Hatch_Module_Widget' ) ) {
 			$this->defaults = array (
 				'title' => NULL,
 				'excerpt' => NULL,
-				'module_height' => '550',
-				'module_ids' => rand( 1 , 1000 )
+				'design' => array(
+					'columns' => '4'
+				),
+				'module_ids' => rand( 1 , 1000 ) . ',' . rand( 1 , 1000 ). ',' . rand( 1 , 1000 ). ',' . rand( 1 , 1000 )
 			);
+
 			$this->module_defaults = array (
 				'title' => NULL,
 				'excerpt' => NULL,
 				'design' => array(
-					'columns' => '3',
 					'imagealign' => 'image-center',
 					'imageratios' => NULL,
 					'textalign' => 'text-center',
 					'background' => NULL,
 				),
 				'font_style' => array(
-					'size' => '',
-					'color' => '#ffffff',
-					'shadow' => ''
+					'size' => NULL,
+					'color' => NULL,
+					'shadow' => NULL
 				)
 			);
 		}
@@ -87,7 +89,7 @@ if( !class_exists( 'Hatch_Module_Widget' ) ) {
 			if( !empty( $widget->design[ 'background' ] ) ) $this->widget_styles( $widget_id , 'background', $widget->design[ 'background' ] ); ?>
 
 			<section class="widget row content-vertical-massive" id="<?php echo $widget_id; ?>">
-				<?php if( '' != $widget->title || '' != $widget->excerpt ) { ?>
+				<?php if( ( isset( $widget->title ) && '' != $widget->title ) || ( isset( $widget->title ) && '' != $widget->excerpt ) ) { ?>
 					<div class="container">
 						<div class="section-title <?php if( isset( $widget->title_size ) ) echo $widget->title_size; ?> <?php if( isset( $widget->title_alignment ) ) echo $widget->title_alignment; ?> clearfix"> <?php // @TODO: get alignment to work here ?>
 							<?php if( '' != $widget->title ) { ?>
@@ -183,8 +185,9 @@ if( !class_exists( 'Hatch_Module_Widget' ) ) {
 			if( !empty( $instance ) ) $instance_defaults = array();
 
 			// Parse $instance
-			$instance_args = wp_parse_args( $instance, $instance_defaults );
-			extract( $instance_args, EXTR_SKIP ); ?>
+			$instance = wp_parse_args( $instance, $instance_defaults );
+			extract( $instance, EXTR_SKIP ); ?>
+
 			<!-- Form HTML Here -->
 			<?php $design_controller = new Hatch_Design_Controller();
 			$design_controller->bar(
@@ -282,15 +285,13 @@ if( !class_exists( 'Hatch_Module_Widget' ) ) {
 		function module_item( $widget_details = array() , $slide_guid = NULL , $instance = NULL ){
 
 			// Extract Instance if it's there so that we can use the values in our inputs
-			if( NULL !== $instance ) {
 
-				// $instance Defaults
-				$instance_defaults = $this->module_defaults;
+			// $instance Defaults
+			$instance_defaults = $this->module_defaults;
 
-				// Parse $instance
-				$instance_args = wp_parse_args( $instance, $instance_defaults );
-				extract( $instance_args, EXTR_SKIP );
-			}
+			// Parse $instance
+			$instance = wp_parse_args( $instance, $instance_defaults );
+			extract( $instance, EXTR_SKIP );
 
 			// If there is no GUID create one. There should always be one but this is a fallback
 			if( ! isset( $slide_guid ) ) $slide_guid = rand( 1 , 1000 );

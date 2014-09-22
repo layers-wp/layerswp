@@ -205,8 +205,8 @@ if( !class_exists( 'Hatch_Banner_Widget' ) ) {
 			if( !empty( $instance ) ) $instance_defaults = array();
 
 			// Parse $instance
-			$instance_args = wp_parse_args( $instance, $instance_defaults );
-			extract( $instance_args, EXTR_SKIP ); ?>
+			$instance = wp_parse_args( $instance, $instance_defaults );
+			extract( $instance, EXTR_SKIP ); ?>
 			<!-- Form HTML Here -->
 			<?php $design_controller = new Hatch_Design_Controller();
 			$design_controller->bar(
@@ -326,15 +326,14 @@ if( !class_exists( 'Hatch_Banner_Widget' ) ) {
 		function banner_item( $widget_details = array() , $slide_guid = NULL , $instance = NULL ){
 
 			// Extract Instance if it's there so that we can use the values in our inputs
-			if( NULL !== $instance ) {
 
-				// $instance Defaults
-				$instance_defaults = $this->banner_defaults;
 
-				// Parse $instance
-				$instance_args = wp_parse_args( $instance, $instance_defaults );
-				extract( $instance_args, EXTR_SKIP );
-			}
+			// $instance Defaults
+			$instance_defaults = $this->banner_defaults;
+
+			// Parse $instance
+			$instance = wp_parse_args( $instance, $instance_defaults );
+			extract( $instance, EXTR_SKIP );
 
 			// If there is no GUID create one. There should always be one but this is a fallback
 			if( ! isset( $slide_guid ) ) $slide_guid = rand( 1 , 1000 );

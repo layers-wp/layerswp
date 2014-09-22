@@ -45,7 +45,7 @@ if( !class_exists( 'Hatch_Banner_Widget' ) ) {
 				'title' => NULL,
 				'excerpt' => NULL,
 				'design' => array(
-					'imagealign' => 'image-center',
+					'imagealign' => 'image-right',
 					'imageratios' => NULL,
 					'textalign' => 'text-center',
 					'background' => NULL,

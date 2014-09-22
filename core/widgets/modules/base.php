@@ -42,6 +42,8 @@ if( !class_exists( 'Hatch_Widget' ) ) {
 
 					if( isset( $args['tile'] ) ){
 						$css .= 'background-repeat: repeat;';
+					} else {
+						$css .= 'background-repeat: no-repeat;';
 					}
 
 					if( isset( $args['stretch'] ) ){

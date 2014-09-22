@@ -97,7 +97,7 @@ if( !class_exists( 'Hatch_Portfolio_Widget' ) ) {
 					$imageratios = $widget->design[ 'imageratios' ] . '-large';
 				}
 			} else {
-				$imageratios = 'medium';
+				$imageratios = 'large';
 			}
 
 			// Begin query arguments
@@ -149,7 +149,13 @@ if( !class_exists( 'Hatch_Portfolio_Widget' ) ) {
 													<?php if( isset( $widget->show_titles ) ) { ?>
 														<h4 class="heading"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h4>
 													<?php } ?>
-													<?php if( isset( $widget->show_excerpts ) ) the_excerpt(); ?>
+													<?php if( isset( $widget->show_excerpts ) ) {
+                                                        if( isset( $widget->excerpt_length ) && 0 != $widget->excerpt_length && strlen( get_the_excerpt() ) > $widget->excerpt_length ){
+                                                            echo substr( get_the_excerpt() , 0 , $widget->excerpt_length ) . '&ellip;';
+                                                        } else {
+                                                            the_excerpt();
+                                                        }
+                                                    }; ?>
 												</div>
 											<?php } ?>
 										<?php } // if ! overlay?>
@@ -264,7 +270,7 @@ if( !class_exists( 'Hatch_Portfolio_Widget' ) ) {
 									'name' => $this->get_field_name( 'text_style' ) ,
 									'id' => $this->get_field_id( 'text_style' ) ,
 									'value' => ( isset( $text_position ) ) ? $text_position : NULL,
-									'label' => __( 'Title &amp; Excerpt Position' , HATCH_THEME_SLUG ),
+									'label' => __( 'Widget Title &amp; Excerpt Position' , HATCH_THEME_SLUG ),
 									'options' => array(
 											'regular' => __( 'Regular' , HATCH_THEME_SLUG ),
 											'overlay' => __( 'Overlay' , HATCH_THEME_SLUG )
@@ -283,7 +289,16 @@ if( !class_exists( 'Hatch_Portfolio_Widget' ) ) {
 									'id' => $this->get_field_id( 'show_excerpts' ) ,
 									'value' => ( isset( $show_excerpts ) ) ? $show_excerpts : NULL,
 									'label' => __( 'Show Item Excerpts' , HATCH_THEME_SLUG )
-								)
+								),
+                                'excerpt_length' => array(
+                                    'type' => 'number',
+                                    'name' => $this->get_field_name( 'excerpt_length' ) ,
+                                    'id' => $this->get_field_id( 'excerpt_length' ) ,
+                                    'min' => 0,
+                                    'max' => 10000,
+                                    'value' => ( isset( $excerpt_length ) ) ? $excerpt_length : NULL,
+                                    'label' => __( 'Excerpts Length' , HATCH_THEME_SLUG )
+                                )
 							)
 					)
 				)

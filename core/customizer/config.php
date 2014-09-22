@@ -332,6 +332,9 @@ class Hatch_Customizer_Config {
 				)
 			); // Image Radio
 
+		/*
 		return apply_filters( 'hatch_customizer_settings', $settings );
+		*/
+		return array();
 	}
 }

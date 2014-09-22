@@ -114,12 +114,12 @@ if( ! function_exists( 'hatch_setup' ) ) {
 		/**
 		 * Add support a custom background
 		 */
-		add_theme_support( 'custom-background' );
+		// add_theme_support( 'custom-background' );
 
 		/**
 		 * Add support a custom background
 		 */
-		add_theme_support( 'custom-header' );
+		// add_theme_support( 'custom-header' );
 
 		/**
 		 * This theme uses wp_nav_menu() in one location.

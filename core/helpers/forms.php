@@ -65,7 +65,6 @@ class Hatch_Form_Elements {
 
 		$panel_title = (object) wp_parse_args( $args, $defaults ); ?>
 		<div class="hatch-<?php echo $panel_title->type; ?>-title">
-			<?php if( isset( $panel_title->tooltip ) ) { ?><span class="tooltip" tooltip=" <?php echo $panel_title->tooltip; ?>"></span><?php } ?>
 			<h4 class="heading"><?php echo $panel_title->title; ?></h4>
 		</div>
 	<?php }

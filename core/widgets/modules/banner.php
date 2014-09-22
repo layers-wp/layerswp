@@ -357,7 +357,8 @@ if( !class_exists( 'Hatch_Banner_Widget' ) ) {
 							array(
 								'name' => 'widget-' . $widget_details->id_base . '[' . $widget_details->number . '][banners][' . $slide_guid . '][design]',
 								'id' => 'widget-' . $widget_details->id_base . '-' . $widget_details->number . '-' . $slide_guid . '-design',
-								'number' => $widget_details->number
+								'number' => $widget_details->number,
+								'show_trash' => true
 							), // Widget Object
 							$instance, // Widget Values
 							array(

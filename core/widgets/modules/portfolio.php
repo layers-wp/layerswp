@@ -47,12 +47,14 @@ if( !class_exists( 'Hatch_Portfolio_Widget' ) ) {
 				'category' => 0,
 				'show_titles' => 'on',
 				'show_excerpts' => 'on',
+                'posts_per_page' => -1,
+                'order_by' => 'post_date',
 				'design' => array(
-					'imageratios' => 'image-size',
+					'imageratios' => 'square-large',
 					'layout' => 'layout-boxed',
 					'textalign' => 'text-center',
 					'liststyle' => 'list-grid',
-					'columns' => 'columns-3',
+					'columns' => '3',
 					'layout' => 'grid',
 				)
 			);
@@ -80,6 +82,7 @@ if( !class_exists( 'Hatch_Portfolio_Widget' ) ) {
 
 			// Set the span class for each column
 			if( 'list-list' == $widget->design[ 'liststyle' ] ) {
+                $col_count = 1;
 				$span_class = 'span-12';
 			} else {
 				$col_count = str_ireplace('columns-', '', $widget->design[ 'columns']  );
@@ -130,7 +133,7 @@ if( !class_exists( 'Hatch_Portfolio_Widget' ) ) {
 							<?php if( 'list-list' == $widget->design[ 'liststyle' ] ) { ?>
 								<?php get_template_part( 'content' , 'list' ); ?>
 							<?php } else { ?>
-								<div class="column<?php if( isset( $widget->design[ 'columnflush' ] ) ) echo '-flush'; ?> <?php echo $span_class; ?> hatch-masonry-column">
+								<div class="column<?php if( isset( $widget->design[ 'columnflush' ] ) ) echo '-flush'; ?> <?php echo $span_class; ?> hatch-masonry-column" data-cols="<?php echo $col_count; ?>">
 									<div class="thumbnail">
 										<a href="" class="thumbnail-media <?php if( isset( $widget->text_style ) && 'overlay' == $widget->text_style ) echo 'with-overlay'; ?>">
 											<?php the_post_thumbnail( $imageratios );  ?>
@@ -151,7 +154,7 @@ if( !class_exists( 'Hatch_Portfolio_Widget' ) ) {
 													<?php } ?>
 													<?php if( isset( $widget->show_excerpts ) ) {
                                                         if( isset( $widget->excerpt_length ) && 0 != $widget->excerpt_length && strlen( get_the_excerpt() ) > $widget->excerpt_length ){
-                                                            echo substr( get_the_excerpt() , 0 , $widget->excerpt_length ) . '&ellip;';
+                                                            echo substr( get_the_excerpt() , 0 , $widget->excerpt_length ) . '&#8230;';
                                                         } else {
                                                             the_excerpt();
                                                         }

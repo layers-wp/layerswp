@@ -66,7 +66,7 @@ class Hatch_Design_Controller {
 							<span class="icon-arrow-left"></span>
 						</a>
 					</li>
-				<?php } elseif( isset( $widget->number ) ) { ?>
+				<?php } elseif( isset( $widget->show_trash ) ) { ?>
 					<li class="hatch-visuals-item hatch-pull-right">
 						<a href="" class="hatch-icon-wrapper hatch-icon-error">
 							<span class="icon-trash" data-number="<?php echo $widget->number; ?>"></span>

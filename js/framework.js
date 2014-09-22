@@ -105,6 +105,11 @@ jQuery(function($) {
         $(window.parent.document).find( '.control-panel-content .widget-rendered.expanded' ).removeClass( 'expanded' );
 
     });
+
+    $('.list-grid').equal_row_height({
+            selector: '.column',
+            per_row: $(this).data('cols')
+    });
 }); // document.ready
 
 (function ($) {
@@ -123,7 +128,6 @@ jQuery(function($) {
             max_height = (max_height < oh) ? oh : max_height;
             row.push($that);
 
-            if (row.length === settings.per_row) {
                 // Set all the elements in this row to the max_height
                 $.each(row, function(i, e) {
                     e.css({
@@ -134,7 +138,6 @@ jQuery(function($) {
                 // Reset
                 row = [];
                 max_height = 0;
-            } // end of row
         }); // for each item
     }; // equal_row_height
 }(jQuery));

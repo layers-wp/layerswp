@@ -203,6 +203,7 @@ jQuery(function($) {
 	*/
 	hatch_set_color_selectors();
 	$(document).on ( 'mouseup' , '#available-widgets .widget-tpl' , function(){
+		console.log( $(this) );
 		jQuery('.hatch-color-selector').wpColorPicker(); // @TODO: Get the color picker to work on new elements
 	} );
 

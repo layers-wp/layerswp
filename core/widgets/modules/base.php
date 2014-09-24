@@ -34,23 +34,23 @@ if( !class_exists( 'Hatch_Widget' ) ) {
 
 				case 'background' :
 
-					if( '' == $args[ 'color' ] && '' == $args[ 'image' ] ) return ;
+					if( '' == $args[ 'color' ] && '' == $args[ 'color' ] ) return ;
 
 					if( isset( $args['color'] ) ){
 						$css .= 'background-color: ' . $args['color'] . '; ';
 					}
 
-					if( isset( $args['tile'] ) ){
+					if( isset( $args['tile'] ) && '' != isset( $args['tile'] ) ){
 						$css .= 'background-repeat: repeat;';
 					} else {
 						$css .= 'background-repeat: no-repeat;';
 					}
 
-					if( isset( $args['stretch'] ) ){
+					if( isset( $args['stretch'] ) && '' != isset( $args['stretch'] ) ){
 						$css .= 'background-size: cover;';
 					}
 
-					if( isset( $args['fixed'] ) ){
+					if( isset( $args['fixed'] ) && '' != isset( $args['fixed'] ) ){
 						$css .= 'background-attachment: fixed;';
 					}
 

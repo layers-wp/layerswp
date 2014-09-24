@@ -511,14 +511,38 @@ class Hatch_Design_Controller {
 								)
 							); ?>
 						</p>
-						<p class="hatch-checkbox-wrapper">
+						<p class="hatch-select-wrapper hatch-form-item">
+							<label><?php _e( 'Repeat' , HATCH_THEME_SLUG ); ?></label>
 							<?php echo $this->input(
 								array(
-									'type' => 'checkbox',
-									'label' => __( 'Tile' , HATCH_THEME_SLUG ),
-									'name' => $widget->name . '[background][tile]' ,
-									'id' =>  $widget->id . '-background-tile' ,
-									'value' => ( isset( $values->background['tile'] ) ) ? $values->background['tile'] : NULL
+									'type' => 'select',
+									'name' => $widget->name . '[background][repeat]' ,
+									'id' =>  $widget->id . '-background-repeat' ,
+									'value' => ( isset( $values->background['repeat'] ) ) ? $values->background['repeat'] : NULL,
+									'options' => array(
+											'no-repeat' => __( 'No Repeat' , HATCH_THEME_SLUG ),
+											'repeat' => __( 'Repeat' , HATCH_THEME_SLUG ),
+											'repeat-x' => __( 'Repeat Horizontal' , HATCH_THEME_SLUG ),
+											'repeat-y' => __( 'Repeat Vertical' , HATCH_THEME_SLUG )
+										)
+								)
+							); ?>
+						</p>
+						<p class="hatch-select-wrapper hatch-form-item">
+							<label><?php _e( 'Position' , HATCH_THEME_SLUG ); ?></label>
+							<?php echo $this->input(
+								array(
+									'type' => 'select',
+									'name' => $widget->name . '[background][position]' ,
+									'id' =>  $widget->id . '-background-position' ,
+									'value' => ( isset( $values->background['position'] ) ) ? $values->background['position'] : NULL,
+									'options' => array(
+											'center' => __( 'Center' , HATCH_THEME_SLUG ),
+											'top' => __( 'Top' , HATCH_THEME_SLUG ),
+											'bottom' => __( 'Bottom' , HATCH_THEME_SLUG ),
+											'left' => __( 'Left' , HATCH_THEME_SLUG ),
+											'right' => __( 'Right' , HATCH_THEME_SLUG )
+										)
 								)
 							); ?>
 						</p>

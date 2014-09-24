@@ -38,19 +38,19 @@ if( !class_exists( 'Hatch_Widget' ) ) {
 						$css .= 'background-color: ' . $args['color'] . '; ';
 					}
 
-					if( isset( $args['repeat'] ) && '' != isset( $args['repeat'] ) ){
+					if( isset( $args['repeat'] ) && '' != $args['repeat'] ){
 						$css .= 'background-repeat: repeat;';
 					}
 
-					if( isset( $args['stretch'] ) && '' != isset( $args['stretch'] ) ){
+					if( isset( $args['stretch'] ) && '' != $args['stretch'] ){
 						$css .= 'background-size: cover;';
 					}
 
-					if( isset( $args['fixed'] ) && '' != isset( $args['fixed'] ) ){
+					if( isset( $args['fixed'] ) && '' != $args['fixed'] ){
 						$css .= 'background-attachment: fixed;';
 					}
 
-					if( isset( $args['image'] ) && $args['image'] != '' ){
+					if( isset( $args['image'] ) && '' != $args['image'] ){
 						$image = wp_get_attachment_image_src( $args['image'] , 'full' );
 						$css.= 'background-image: url(\'' . $image[0] .'\');';
 					}

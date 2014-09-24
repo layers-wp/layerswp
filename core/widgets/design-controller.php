@@ -327,7 +327,7 @@ class Hatch_Design_Controller {
 							'options' => array(
 								'image-left' => __( 'Left' , HATCH_THEME_SLUG ),
 								'image-right' => __( 'Right' , HATCH_THEME_SLUG ),
-								'image-center' => __( 'Center' , HATCH_THEME_SLUG )
+								'image-top' => __( 'Top' , HATCH_THEME_SLUG )
 							)
 						)
 					); ?>
@@ -395,14 +395,14 @@ class Hatch_Design_Controller {
 			<a href="" class="hatch-icon-wrapper">
 				<span class="icon-font-size"></span>
 				<span class="hatch-icon-description">
-					<?php _e( 'Fonts' , HATCH_THEME_SLUG ); ?>
+					<?php _e( 'Text' , HATCH_THEME_SLUG ); ?>
 				</span>
 			</a>
 			<div class="hatch-visuals-settings-wrapper hatch-animate hatch-content-small">
 				<div class="hatch-visuals-settings">
 					<section>
 						<div class="hatch-form-item">
-							<label><?php _e( 'Alignment' , HATCH_THEME_SLUG ); ?></label>
+							<label><?php _e( 'Text Align' , HATCH_THEME_SLUG ); ?></label>
 							<div class="hatch-icon-group">
 								<?php echo $this->input(
 									array(
@@ -421,7 +421,7 @@ class Hatch_Design_Controller {
 							</div>
 						</div>
 						<div class="hatch-form-item">
-							<label><?php _e( 'Text Size' , HATCH_THEME_SLUG ); ?></label>
+							<label><?php _e( 'Font Size' , HATCH_THEME_SLUG ); ?></label>
 							<?php echo $this->input(
 								array(
 									'type' => 'select',
@@ -437,7 +437,7 @@ class Hatch_Design_Controller {
 							); ?>
 						</div>
 						<div class="hatch-form-item">
-							<label><?php _e( 'Text Color' , HATCH_THEME_SLUG ); ?></label>
+							<label><?php _e( 'Font Color' , HATCH_THEME_SLUG ); ?></label>
 							<?php echo $this->input(
 								array(
 									'type' => 'color',

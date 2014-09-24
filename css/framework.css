@@ -187,20 +187,11 @@ h1, h2, h3, h4, h5, h6{color: #000; font-weight: 200;}
 
     .separate{padding-bottom: 20px; margin-bottom: 40px; border-bottom: 2px solid #ddd;}
 
+    .list-masonry .column{margin: 0 0 20px;}
+
     .with-background{background-size: cover; background-position: center; background-repeat: no-repeat;}
 
     .hold{position: relative;}
-
-    .clearit{clear: both;}
-
-    .text-left{text-align: left;}
-    .text-right{text-align: right;}
-    .text-center{text-align: center;}
-    .text-justify{text-align: justify;}
-
-    .image-left{}
-    .image-right{}
-    .image-center{}
 
 /*-------------------------------*/
 /*- CONTAINERS ------------------*/
@@ -1109,15 +1100,17 @@ table.table-comfortable td{padding: 14px 10px;}
 
     .pull-left{float: left;}
     .pull-right{float: right;}
-    .pull-margin-horizontal{margin-left: -2%; margin-right: -2%;}
-    .pull-margin-vertical{margin-top: -2%; margin-bottom: -2%;}
-    .pull-margin-bottom-max{margin-bottom: -1000px !important;}
 
-    .pull-top{margin-top: -60px;}
+    .clearit{clear: both;}
 
+    .text-left{text-align: left;}
+    .text-right{text-align: right;}
     .text-center{text-align: center;}
-    .t-left{text-align: left;}
-    .t-right{text-align: right;}
+    .text-justify{text-align: justify;}
+
+    .image-left{}
+    .image-right{}
+    .image-center{}
 
     .va-top{vertical-align: top;}
     .va-bottom{vertical-align: bottom;}

@@ -47,6 +47,7 @@ if( !class_exists( 'Hatch_Banner_Widget' ) ) {
 				'design' => array(
 					'imagealign' => 'image-right',
 					'imageratios' => NULL,
+					'background' => array(
 						'position' => 'center',
 						'repeat' => 'no-repeat',
 						'color' => '#000',

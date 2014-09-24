@@ -42,18 +42,20 @@ if( !class_exists( 'Hatch_Banner_Widget' ) ) {
 				'banner_ids' => rand( 1 , 1000 )
 			);
 			$this->banner_defaults = array (
-				'title' => "Entere a Title",
-				'excerpt' => "Add an Excerpt",
+				'title' => "Enter a Title",
+				'excerpt' => "Add a description of your product, service or feature. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
 				'design' => array(
-					'imagealign' => 'image-center',
+					'imagealign' => 'image-right',
 					'imageratios' => NULL,
 					'background' => array(
-						'color' => '#000'
+						'color' => '#000',
+						'size' => 'cover',
+						'position' => 'center'
 					),
 					'fonts' => array(
-						'align' => 'text-center',
+						'align' => 'text-left',
 						'size' => 'large',
-						'color' => '#ffffff',
+						'color' => '#fff',
 						'shadow' => ''
 					)
 				)
@@ -259,7 +261,7 @@ if( !class_exists( 'Hatch_Banner_Widget' ) ) {
 									'label' => __( 'Slide Interval', HATCH_THEME_SLUG )
 								),
 								'banner_height' => array(
-									'type' => 'text',
+									'type' => 'number',
 									'name' => $this->get_field_name( 'banner_height' ) ,
 									'id' => $this->get_field_id( 'banner_height' ) ,
 									'value' => ( isset( $banner_height ) ) ? $banner_height : NULL,
@@ -442,7 +444,7 @@ if( !class_exists( 'Hatch_Banner_Widget' ) ) {
 											'placeholder' => __( 'Short Excerpt', HATCH_THEME_SLUG ),
 											'value' => ( isset( $excerpt ) ) ? $excerpt : NULL ,
 											'class' => 'hatch-textarea',
-											'rows' => 15
+											'rows' => 6
 										)
 									); ?>
 								</p>

@@ -169,12 +169,24 @@ div[id*='hatch-widget'] .widget-control-actions{
 }
 .hatch-icon-group{
     overflow: hidden;
+    padding: 2px 1px;
+    background: #fff;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+    display: inline-block;
 }
 .hatch-icon-group .hatch-icon-wrapper{
     display: block;
     float: left;
     width: 16px;
-    margin: 0 5px 0 0 !important;
+    margin: 0 1px !important;
+    padding: 3px 10px !important;
+}
+.hatch-icon-group .hatch-icon-wrapper [class^="icon-"], .hatch-icon-group .hatch-icon-wrapper [class*=" icon-"]{
+    font-size: 16px;
+}
+.hatch-icon-group .hatch-icon-wrapper .hatch-icon-description{
+    display: none !important;
 }
 
 
@@ -1169,6 +1181,8 @@ input[type=radio]:checked + .hatch-settings-icon span{
 .hatch-image-container.hatch-has-image .hatch-image-display{
     background: none;
     border: none;
+    height: auto;
+    max-height: 108px;
 }
 .hatch-image-remove{
     display: none;
@@ -1195,6 +1209,7 @@ input[type=radio]:checked + .hatch-settings-icon span{
 .hatch-image-display img{
     display: block;
     margin: 0 auto 10px;
+    border-radius: 4px;
 }
 .hatch-image-display img + .hatch-image-remove{
     display: block;

@@ -357,7 +357,7 @@ class Hatch_Design_Controller {
 		// If there is no widget information provided, can the operation
 		if( NULL == $widget ) return; ?>
 
-		<li class="hatch-visuals-item hatch-last">
+		<li class="hatch-visuals-item">
 			<a href="" class="hatch-icon-wrapper">
 				<span class="icon-image-size"></span>
 				<span class="hatch-icon-description">
@@ -422,7 +422,7 @@ class Hatch_Design_Controller {
 		// If there is no widget information provided, can the operation
 		if( NULL == $widget ) return; ?>
 
-		<li class="hatch-visuals-item hatch-last">
+		<li class="hatch-visuals-item">
 			<a href="" class="hatch-icon-wrapper">
 				<span class="icon-photo"></span>
 				<span class="hatch-icon-description">

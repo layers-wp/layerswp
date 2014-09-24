@@ -97,11 +97,13 @@ class Hatch_Form_Elements {
 	*/
 
 	public function get_default_sort_options( $options = array() ){
-		$options[ "date" ] = __( 'Newest First' , HATCH_THEME_SLUG );
-		$options[ "rand" ] = __( 'Random' , HATCH_THEME_SLUG );
-		$options[ "title" ] = __( 'Titles A-Z' , HATCH_THEME_SLUG );
-		$options[ "comment_count" ] = __( 'Comment Count' , HATCH_THEME_SLUG );
-		$options[ "menu_order" ] = __( 'Custom Order' , HATCH_THEME_SLUG );
+		$options[ json_encode( array( 'orderby' => 'date', 'order' => 'desc' ) ) ] = __( 'Newest First' , HATCH_THEME_SLUG );
+		$options[ json_encode( array( 'orderby' => 'date', 'order' => 'asc' ) ) ] = __( 'Oldest First' , HATCH_THEME_SLUG );
+		$options[ json_encode( array( 'orderby' => 'rand', 'order' => 'desc' ) ) ] = __( 'Random' , HATCH_THEME_SLUG );
+		$options[ json_encode( array( 'orderby' => 'title', 'order' => 'asc' ) ) ] = __( 'Titles A-Z' , HATCH_THEME_SLUG );
+		$options[ json_encode( array( 'orderby' => 'title', 'order' => 'desc' ) ) ] = __( 'Titles Z-A' , HATCH_THEME_SLUG );
+		$options[ json_encode( array( 'orderby' => 'comment_count', 'order' => 'desc' ) ) ] = __( 'Most Comments' , HATCH_THEME_SLUG );
+		$options[ json_encode( array( 'orderby' => 'menu_order', 'order' => 'desc' ) ) ] = __( 'Custom Order' , HATCH_THEME_SLUG );
 		return $options;
 	} // @TODO: Make this smater to work with order_by AND order
 
@@ -145,7 +147,7 @@ class Hatch_Form_Elements {
 			* Text Inputs
 			*/
 			case 'text' : ?>
-				<input type="text" <?php echo implode ( ' ' , $input_props ); ?> value="<?php echo $input->value; ?>" />
+				<input type="text" <?php echo implode ( ' ' , $input_props ); ?> value="<?php echo esc_attr( $input->value ); ?>" />
 			<?php break;
 			/**
 			* Number Inputs
@@ -154,7 +156,7 @@ class Hatch_Form_Elements {
 				$input_props['min'] = ( isset( $input->min ) ) ? 'min="' .  $input->min . '"' : NULL ;
 				$input_props['max'] = ( isset( $input->max ) ) ? 'max="' .  $input->max . '"' : NULL ;
 				$input_props['step'] = ( isset( $input->step ) ) ? 'step="' .  $input->step . '"' : NULL ; ?>
-				<input type="number" <?php echo implode ( ' ' , $input_props ); ?> value="<?php echo $input->value; ?>" />
+				<input type="number" <?php echo implode ( ' ' , $input_props ); ?> value="<?php echo esc_attr( $input->value ); ?>" />
 			<?php break;
 			/**
 			* Checkboxes - here we look for on/NULL, that's how WP widgets save them
@@ -183,7 +185,7 @@ class Hatch_Form_Elements {
 						<option value=''><?php echo $input->placeholder; ?></option>
 					<?php } // if NULL != placeholder ?>
 					<?php foreach( $input->options as $value => $label ) { ?>
-						<option value="<?php echo $value; ?>" <?php selected( $input->value , $value, true ); ?>>
+						<option value='<?php echo $value; ?>' <?php selected( $input->value , $value, true ); ?>>
 							<?php echo $label; ?>
 						</option>
 					<?php } // foreach options ?>
@@ -207,7 +209,7 @@ class Hatch_Form_Elements {
 			* Text areas
 			*/
 			case 'textarea' : ?>
-				<textarea <?php echo implode ( ' ' , $input_props ); ?> <?php if( isset( $input->rows ) ) echo 'rows="' . $input->rows . '"'; ?>><?php echo $input->value; ?></textarea>
+				<textarea <?php echo implode ( ' ' , $input_props ); ?> <?php if( isset( $input->rows ) ) echo 'rows="' . $input->rows . '"'; ?>><?php echo esc_attr( $input->value ); ?></textarea>
 			<?php break;
 			/**
 			* Tiny MCE
@@ -240,7 +242,7 @@ class Hatch_Form_Elements {
 						data-button_text="<?php _e( 'Use Image' , HATCH_THEME_SLUG ); ?>">
 						<?php echo ( isset( $input->label ) ? $input->label : __( 'Choose Image' , HATCH_THEME_SLUG ) ); ?>
 					</a>
-				
+
 					<?php echo $this->input(
 						array(
 							'type' => 'hidden',
@@ -265,7 +267,7 @@ class Hatch_Form_Elements {
 				<small class="<?php if( !isset( $input->value ) ) echo 'hide'; ?> hatch-file-remove">
 					<?php _e( 'Remove' , HATCH_THEME_SLUG ); ?>
 				</small>
-				<input type="hidden" <?php echo implode ( ' ' , $input_props ); ?> value="<?php echo $input->value; ?>" />
+				<input type="hidden" <?php echo implode ( ' ' , $input_props ); ?> value="<?php echo esc_attr( $input->value ); ?>" />
 			<?php break;
 			/**
 			* Background Controller
@@ -457,13 +459,13 @@ class Hatch_Form_Elements {
 			* Color Selector
 			*/
 			case 'color' : ?>
-				<input type="hidden" <?php echo implode ( ' ' , $input_props ); ?> value="<?php echo $input->value; ?>" class="hatch-color-selector" />
+				<input type="hidden" <?php echo implode ( ' ' , $input_props ); ?> value="<?php echo esc_attr( $input->value ); ?>" class="hatch-color-selector" />
 			<?php break;
 			/**
 			* Default to hidden field
 			*/
 			default : ?>
-				<input type="hidden" <?php echo implode ( ' ' , $input_props ); ?> value="<?php echo $input->value; ?>" />
+				<input type="hidden" <?php echo implode ( ' ' , $input_props ); ?> value="<?php echo esc_attr( $input->value ); ?>" />
 		<?php }
 
 	}

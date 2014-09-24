@@ -53,7 +53,8 @@ if( !class_exists( 'Hatch_Contact_Widget' ) ) {
 				'design' => array(
 					'layout' => 'layout-boxed',
 					'background' => array(
-						'repeat' => 'repeat'
+						'position' => 'center',
+						'repeat' => 'no-repeat'
 					),
 					'fonts' => array(
 						'align' => 'text-center',

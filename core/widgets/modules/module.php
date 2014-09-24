@@ -41,8 +41,8 @@ if( !class_exists( 'Hatch_Module_Widget' ) ) {
 					'columflush' => false,
 					'background' => array(
 						'position' => 'center',
-						'size' => 'cover'
-					)
+						'repeat' => 'no-repeat'
+					),
 				),
 				'module_ids' => rand( 1 , 1000 )
 			);

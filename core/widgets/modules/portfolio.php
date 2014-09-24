@@ -34,7 +34,7 @@ if( !class_exists( 'Hatch_Portfolio_Widget' ) ) {
 			$widget_ops = array( 'classname' => 'obox-hatch-' . $this->widget_id .'-widget', 'description' => 'This widget is used to display your ' . $this->widget_title . '.' );
 
 			/* Widget control settings. */
-			$control_ops = array( 'width' => HATCH_WIDGET_WIDTH_SMALL, 'height' => NULL, 'id_base' => HATCH_THEME_SLUG . '-widget-' . $this->widget_id );
+			$control_ops = array( 'width' => HATCH_WIDGET_WIDTH_TINY, 'height' => NULL, 'id_base' => HATCH_THEME_SLUG . '-widget-' . $this->widget_id );
 
 			/* Create the widget. */
 			$this->WP_Widget( HATCH_THEME_SLUG . '-widget-' . $this->widget_id , '(' . HATCH_THEME_TITLE . ') ' . $this->widget_title . ' Widget', $widget_ops, $control_ops );
@@ -48,7 +48,7 @@ if( !class_exists( 'Hatch_Portfolio_Widget' ) ) {
 				'show_titles' => 'on',
 				'show_excerpts' => 'on',
                 'posts_per_page' => -1,
-                'order_by' => 'post_date',
+                'order' => NULL,
 				'design' => array(
 					'imageratios' => 'square-large',
 					'layout' => 'layout-boxed',
@@ -57,6 +57,10 @@ if( !class_exists( 'Hatch_Portfolio_Widget' ) ) {
 					'columns' => '3',
 					'columflush' => false,
 					'layout' => 'grid',
+					'background' => array(
+						'position' => 'center',
+						'repeat' => 'no-repeat'
+					),
 				)
 			);
 		}
@@ -108,7 +112,12 @@ if( !class_exists( 'Hatch_Portfolio_Widget' ) ) {
 			$query_args = array();
 			$query_args[ 'post_type' ] = $this->post_type;
 			$query_args[ 'posts_per_page' ] = $widget->posts_per_page;
-			$query_args[ 'order_by' ]  = $widget->order_by;
+			if( isset( $widget->order ) ) {
+				$decode_order = json_decode( $widget->order );
+				foreach( $decode_order as $key => $value ){
+					$query_args[ $key ] = $value;
+				}
+			}
 
 			// Do the WP_Query
 			$portfolio_query = new WP_Query( $query_args ); ?>
@@ -390,13 +399,13 @@ if( !class_exists( 'Hatch_Portfolio_Widget' ) ) {
 								</p>
 
 								<p class="hatch-form-item">
-									<label for="<?php echo $this->get_field_id( 'order_by' ); ?>"><?php echo __( 'Sort by' , HATCH_THEME_SLUG ); ?></label>
+									<label for="<?php echo $this->get_field_id( 'order' ); ?>"><?php echo __( 'Sort by' , HATCH_THEME_SLUG ); ?></label>
 									<?php echo $widget_elements->input(
 										array(
 											'type' => 'select',
-											'name' => $this->get_field_name( 'order_by' ) ,
-											'id' => $this->get_field_id( 'order_by' ) ,
-											'value' => ( isset( $order_by ) ) ? $order_by : NULL ,
+											'name' => $this->get_field_name( 'order' ) ,
+											'id' => $this->get_field_id( 'order' ) ,
+											'value' => ( isset( $order ) ) ? $order : NULL ,
 											'options' => $widget_elements->get_default_sort_options()
 										)
 									); ?>

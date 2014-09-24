@@ -42,6 +42,10 @@ if( !class_exists( 'Hatch_Widget' ) ) {
 						$css .= 'background-repeat: repeat;';
 					}
 
+					if( isset( $args['position'] ) && '' != $args['position'] ){
+						$css .= 'background-position: ' . $args['position'] . ';';
+					}
+
 					if( isset( $args['stretch'] ) && '' != $args['stretch'] ){
 						$css .= 'background-size: cover;';
 					}

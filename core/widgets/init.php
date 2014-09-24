@@ -30,6 +30,7 @@ class Hatch_Widgets {
 		$module_dir = HATCH_TEMPLATE_DIR . '/core/widgets/modules/';
 
 		// Setup some defined variables to use in each widget
+		define( 'HATCH_WIDGET_WIDTH_TINY' , 500 );
 		define( 'HATCH_WIDGET_WIDTH_SMALL' , 660 );
 		define( 'HATCH_WIDGET_WIDTH_LARGE' , 980 );
 

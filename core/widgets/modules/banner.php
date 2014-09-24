@@ -47,16 +47,10 @@ if( !class_exists( 'Hatch_Banner_Widget' ) ) {
 				'design' => array(
 					'imagealign' => 'image-right',
 					'imageratios' => NULL,
-					'background' => array(
-<<<<<<< HEAD
 						'position' => 'center',
 						'repeat' => 'no-repeat',
-						'color' => '#000'
-=======
 						'color' => '#000',
-						'size' => 'cover',
-						'position' => 'center'
->>>>>>> fb34a53e165dd94d7218c25dd13816012a411164
+						'size' => 'cover'
 					),
 					'fonts' => array(
 						'align' => 'text-left',

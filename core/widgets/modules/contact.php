@@ -46,14 +46,21 @@ if( !class_exists( 'Hatch_Contact_Widget' ) ) {
 				'title' => NULL,
 				'excerpt' => NULL,
 				'address_shown' => NULL,
-				'title_size' => '',
 				'show_google_map' => 'on',
 				'google_maps_location' => NULL,
 				'google_maps_long_lat' => NULL,
 				'map_height' => 400,
 				'design' => array(
 					'layout' => 'layout-boxed',
-					'textalign' => 'text-center',
+					'background' => array(
+						'repeat' => 'repeat'
+					),
+					'fonts' => array(
+						'align' => 'text-center',
+						'size' => NULL,
+						'color' => NULL,
+						'shadow' => NULL
+					)
 				)
 			);
 		}
@@ -79,12 +86,13 @@ if( !class_exists( 'Hatch_Contact_Widget' ) ) {
 			$widget = (object) $instance;
 
 			// Set the background styling
-			if( !empty( $widget->design[ 'background' ] ) ) $this->widget_styles( $widget_id , 'background', $widget->design[ 'background' ] ); ?>
+			if( !empty( $widget->design[ 'background' ] ) ) $this->widget_styles( $widget_id , 'background', $widget->design[ 'background' ] );
+			if( !empty( $widget->design['fonts'][ 'color' ] ) ) $this->widget_styles( $widget_id , 'color', array( 'selectors' => array( '.section-title h3.heading' , '.section-title p.excerpt' , '.section-title small' ) , 'color' => $widget->design['fonts'][ 'color' ] ) ); ?>
 
 			<section class="widget content-vertical-massive row" id="<?php echo $widget_id; ?>">
 				<?php if( '' != $widget->title || '' != $widget->excerpt  || '' != $widget->address_shown ) { ?>
 					<div class="container clearfix">
-						<div class="section-title <?php if( isset( $widget->design['textalign'] ) ) echo $widget->design['textalign']; ?> clearfix">
+						<div class="section-title <?php if( isset( $widget->design['fonts']['align'] ) ) echo $widget->design['fonts']['align']; ?> clearfix">
 							<?php if( '' != $widget->address_shown && isset( $widget->show_address ) ) { ?>
 								<small class="pull-right span-2">
 									<?php echo $widget->address_shown; ?>
@@ -159,7 +167,7 @@ if( !class_exists( 'Hatch_Contact_Widget' ) ) {
 				array(
 					'layout',
 					'custom',
-					'textalign',
+					'fonts',
 					'background'
 				), // Standard Components
 				array(

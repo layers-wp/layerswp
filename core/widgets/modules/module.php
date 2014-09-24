@@ -36,6 +36,7 @@ if( !class_exists( 'Hatch_Module_Widget' ) ) {
 				'title' => NULL,
 				'excerpt' => NULL,
 				'design' => array(
+					'layout' => 'layout-boxed',
 					'columns' => '3',
 					'columflush' => false,
 					'background' => array(

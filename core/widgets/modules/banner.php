@@ -47,15 +47,15 @@ if( !class_exists( 'Hatch_Banner_Widget' ) ) {
 				'design' => array(
 					'imagealign' => 'image-center',
 					'imageratios' => NULL,
-					'textalign' => 'text-center',
 					'background' => array(
 						'color' => '#000'
 					),
-				),
-				'font_style' => array(
-					'size' => 'large',
-					'color' => '#ffffff',
-					'shadow' => ''
+					'fonts' => array(
+						'align' => 'text-center',
+						'size' => 'large',
+						'color' => '#ffffff',
+						'shadow' => ''
+					)
 				)
 			);
 		}
@@ -91,8 +91,8 @@ if( !class_exists( 'Hatch_Banner_Widget' ) ) {
 
 							// Set the background styling
 							if( !empty( $banner->design[ 'background' ] ) ) $this->widget_styles( $widget_id . '-' . $key , 'background', $banner->design[ 'background' ] );
-							if( !empty( $banner->font_style[ 'color' ] ) ) $this->widget_styles( $widget_id . '-' . $key , 'color', array( 'selectors' => array( 'h3.heading' , 'div.excerpt' ) , 'color' => $banner->font_style[ 'color' ] ) );
-							if( !empty( $banner->font_style[ 'shadow' ] ) ) $this->widget_styles( $widget_id . '-' . $key , 'text-shadow', array( 'selectors' => array( 'h3.heading' , 'div.excerpt' )  , 'text-shadow' => $banner->font_style[ 'shadow' ] ) );
+							if( !empty( $banner->design['fonts'][ 'color' ] ) ) $this->widget_styles( $widget_id . '-' . $key , 'color', array( 'selectors' => array( 'h3.heading' , 'div.excerpt' ) , 'color' => $banner->design['fonts'][ 'color' ] ) );
+							if( !empty( $banner->design['fonts'][ 'shadow' ] ) ) $this->widget_styles( $widget_id . '-' . $key , 'text-shadow', array( 'selectors' => array( 'h3.heading' , 'div.excerpt' )  , 'text-shadow' => $banner->design['fonts'][ 'shadow' ] ) );
 
 							// Set Image Sizes
 							if( isset( $banner->design[ 'imageratios' ] ) ){
@@ -103,14 +103,14 @@ if( !class_exists( 'Hatch_Banner_Widget' ) ) {
 
 							<div id="<?php echo $widget_id; ?>-<?php echo $key; ?>" class="invert swiper-slide
 								<?php if( isset( $banner->design[ 'imagealign' ] ) && '' != $banner->design[ 'imagealign' ] ) echo $banner->design[ 'imagealign' ]; ?>
-								<?php if( isset( $banner->design[ 'textalign' ] ) && '' != $banner->design[ 'textalign' ] ) echo $banner->design[ 'textalign' ]; ?>
+								<?php if( isset( $banner->design['fonts'][ 'align' ] ) && '' != $banner->design['fonts'][ 'align' ] ) echo $banner->design['fonts'][ 'align' ]; ?>
 								"
 								style="float: left; <?php if( isset( $widget->banner_height ) && '' != $widget->banner_height ) echo 'height: ' . $widget->banner_height . 'px;' ?>">
 								<div class="container" <?php if( isset( $widget->banner_height ) && '' != $widget->banner_height ) echo 'style="height: ' . $widget->banner_height . 'px;"' ?>><!-- height important for vertical positioning. Must match container height -->
 									<?php if( '' != $banner->title || '' != $banner->excerpt ) { ?>
 										<div class="copy-container <?php if( !isset( $banner->image ) || ( isset( $banner->image ) && '' == $banner->image ) ) echo 'no-image'; ?>">
 											<!-- your dynamic output goes here -->
-											<div class="section-title <?php echo ( isset( $banner->font_style[ 'size' ] ) ? $banner->font_style[ 'size' ] : '' ); ?>">
+											<div class="section-title <?php echo ( isset( $banner->design['fonts'][ 'size' ] ) ? $banner->design['fonts'][ 'size' ] : '' ); ?>">
 												<?php if( isset( $banner->title ) && '' != $banner->title ) { ?>
 													<h3 class="heading"><?php echo $banner->title; ?></h3>
 												<?php } ?>
@@ -369,8 +369,7 @@ if( !class_exists( 'Hatch_Banner_Widget' ) ) {
 							$instance, // Widget Values
 							array(
 								'background',
-								'textalign',
-								'custom',
+								'fonts',
 								'imagealign',
 								'imageratios',
 							), // Standard Components
@@ -381,9 +380,9 @@ if( !class_exists( 'Hatch_Banner_Widget' ) ) {
 									'elements' => array(
 										'font-size' => array(
 												'type' => 'select',
-												'name' => 'widget-' . $widget_details->id_base . '[' . $widget_details->number . '][banners][' . $slide_guid . '][font_style][size]',
+												'name' => 'widget-' . $widget_details->id_base . '[' . $widget_details->number . '][banners][' . $slide_guid . '][fonts][size]',
 												'id' => 'widget-' . $widget_details->id_base . '-' . $widget_details->number . '-' . $slide_guid . '-font-size',
-												'value' => ( isset( $font_style[ 'size' ] ) ) ? $font_style[ 'size' ] : '',
+												'value' => ( isset( $fonts[ 'size' ] ) ) ? $fonts[ 'size' ] : '',
 												'label' => __( 'Text Size' , HATCH_THEME_SLUG ),
 												'options' => array(
 														'small' => __( 'Small' , HATCH_THEME_SLUG ),
@@ -393,16 +392,16 @@ if( !class_exists( 'Hatch_Banner_Widget' ) ) {
 											),
 										'font-color' => array(
 												'type' => 'color',
-												'name' => 'widget-' . $widget_details->id_base . '[' . $widget_details->number . '][banners][' . $slide_guid . '][font_style][color]',
+												'name' => 'widget-' . $widget_details->id_base . '[' . $widget_details->number . '][banners][' . $slide_guid . '][fonts][color]',
 												'id' => 'widget-' . $widget_details->id_base . '-' . $widget_details->number . '-' . $slide_guid . '-font-color',
-												'value' => ( isset( $font_style[ 'color' ] ) ) ? $font_style[ 'color' ] : '',
+												'value' => ( isset( $fonts[ 'color' ] ) ) ? $fonts[ 'color' ] : '',
 												'label' => __( 'Text Color' , HATCH_THEME_SLUG )
 											),
 										'font-shadow' => array(
 												'type' => 'color',
-												'name' => 'widget-' . $widget_details->id_base . '[' . $widget_details->number . '][banners][' . $slide_guid . '][font_style][shadow]',
+												'name' => 'widget-' . $widget_details->id_base . '[' . $widget_details->number . '][banners][' . $slide_guid . '][fonts][shadow]',
 												'id' => 'widget-' . $widget_details->id_base . '-' . $widget_details->number . '-' . $slide_guid . '-font-shadow',
-												'value' => ( isset( $font_style[ 'shadow' ] ) ) ? $font_style[ 'shadow' ] : '',
+												'value' => ( isset( $fonts[ 'shadow' ] ) ) ? $fonts[ 'shadow' ] : '',
 												'label' => __( 'Text Shadow' , HATCH_THEME_SLUG )
 											)
 									)

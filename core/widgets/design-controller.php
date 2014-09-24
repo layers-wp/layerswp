@@ -398,7 +398,72 @@ class Hatch_Design_Controller {
 					<?php _e( 'Fonts' , HATCH_THEME_SLUG ); ?>
 				</span>
 			</a>
+			<div class="hatch-visuals-settings-wrapper hatch-animate hatch-content-small">
+				<div class="hatch-visuals-settings">
+					<section>
+						<p class="hatch-form-item">
+							<label><?php _e( 'Alignment' , HATCH_THEME_SLUG ); ?></label>
+							<div class="hatch-icon-group">
+								<?php echo $this->input(
+									array(
+										'type' => 'select-icons',
+										'name' => $widget->name . '[fonts][align]' ,
+										'id' =>  $widget->id . '-fonts-align' ,
+										'value' => ( isset( $values->textalign ) ) ? $values->textalign : NULL,
+										'options' => array(
+											'text-left' => __( 'Left' , HATCH_THEME_SLUG ),
+											'text-right' => __( 'Right' , HATCH_THEME_SLUG ),
+											'text-center' => __( 'Center' , HATCH_THEME_SLUG ),
+											'text-justify' => __( 'Justify' , HATCH_THEME_SLUG )
+										)
+									)
+								); ?>
+							</div>
+						</p>
+						<p class="hatch-form-item">
+							<label><?php _e( 'Text Size' , HATCH_THEME_SLUG ); ?></label>
+							<?php echo $this->input(
+								array(
+									'type' => 'select',
+									'name' => $widget->name . '[fonts][size]' ,
+									'id' =>  $widget->id . '-fonts-size' ,
+									'value' => ( isset( $values->fonts['size'] ) ) ? $values->fonts['size'] : NULL,
+									'options' => array(
+											'small' => __( 'Small' , HATCH_THEME_SLUG ),
+											'' => __( 'Medium' , HATCH_THEME_SLUG ),
+											'large' => __( 'Large' , HATCH_THEME_SLUG )
+									)
+								)
+							); ?>
+						</p>
+						<p class="hatch-form-item">
+							<label><?php _e( 'Text Color' , HATCH_THEME_SLUG ); ?></label>
+							<?php echo $this->input(
+								array(
+									'type' => 'color',
+									'name' => $widget->name . '[fonts][color]' ,
+									'id' =>  $widget->id . '-fonts-color' ,
+									'value' => ( isset( $values->fonts['color'] ) ) ? $values->fonts['color'] : NULL
+								)
+							); ?>
+						</p>
+						<p class="hatch-form-item">
+							<label><?php _e( 'Text Shadow' , HATCH_THEME_SLUG ); ?></label>
+							<?php echo $this->input(
+								array(
+									'type' => 'color',
+									'name' => $widget->name . '[fonts][shadow]' ,
+									'id' =>  $widget->id . '-fonts-shadow' ,
+									'value' => ( isset( $values->fonts['shadow'] ) ) ? $values->fonts['shadow'] : NULL
+								)
+							); ?>
+						</p>
+					</section>
+				</div>
+			</div>
 		</li>
+
+
 	<?php }
 
 	/**
@@ -422,32 +487,6 @@ class Hatch_Design_Controller {
 			</a>
 			<div class="hatch-visuals-settings-wrapper hatch-animate hatch-content-small">
 				<div class="hatch-visuals-settings">
-				<div class="hatch-icon-group">
-															<a href="" class="hatch-icon-wrapper hatch-active">
-																<span class="icon-text-left"></span>
-																<span class="hatch-icon-description">
-																	Left
-																</span>
-															</a>
-															<a href="" class="hatch-icon-wrapper">
-																<span class="icon-text-right"></span>
-																<span class="hatch-icon-description">
-																	Right
-																</span>
-															</a>
-															<a href="" class="hatch-icon-wrapper">
-																<span class="icon-text-center"></span>
-																<span class="hatch-icon-description">
-																	Center
-																</span>
-															</a>
-															<a href="" class="hatch-icon-wrapper">
-																<span class="icon-text-justify"></span>
-																<span class="hatch-icon-description">
-																	Justify
-																</span>
-															</a>
-														</div>
 					<div class="background-image">
 						<?php echo $this->input(
 							array(

@@ -48,13 +48,13 @@ if( !class_exists( 'Hatch_Module_Widget' ) ) {
 				'design' => array(
 					'imagealign' => 'image-center',
 					'imageratios' => NULL,
-					'textalign' => 'text-center',
 					'background' => NULL,
-				),
-				'font_style' => array(
-					'size' => NULL,
-					'color' => NULL,
-					'shadow' => NULL
+					'fonts' => array(
+						'align' => 'text-center',
+						'size' => NULL,
+						'color' => NULL,
+						'shadow' => NULL
+					)
 				)
 			);
 		}
@@ -110,8 +110,8 @@ if( !class_exists( 'Hatch_Module_Widget' ) ) {
 							$module = (object) $module;
 							// Set the background styling
 							if( !empty( $module->design[ 'background' ] ) ) $this->widget_styles( $widget_id . '-' . $key , 'background', $module->design[ 'background' ] );
-							if( !empty( $module->font_style[ 'color' ] ) ) $this->widget_styles( $widget_id . '-' . $key , 'color', array( 'selectors' => array( 'h5.heading a' , 'p.excerpt' ) , 'color' => $module->font_style[ 'color' ] ) );
-							if( !empty( $module->font_style[ 'shadow' ] ) ) $this->widget_styles( $widget_id . '-' . $key , 'text-shadow', array( 'selectors' => array( 'h5.heading a' , 'p.excerpt' )  , 'text-shadow' => $module->font_style[ 'shadow' ] ) );
+							if( !empty( $module->design['fonts'][ 'color' ] ) ) $this->widget_styles( $widget_id . '-' . $key , 'color', array( 'selectors' => array( 'h5.heading a' , 'p.excerpt' ) , 'color' => $module->design['fonts'][ 'color' ] ) );
+							if( !empty( $module->design['fonts'][ 'shadow' ] ) ) $this->widget_styles( $widget_id . '-' . $key , 'text-shadow', array( 'selectors' => array( 'h5.heading a' , 'p.excerpt' )  , 'text-shadow' => $module->design['fonts'][ 'shadow' ] ) );
 
 							// Set Image Sizes
 							if( isset( $module->design[ 'imageratios' ] ) ){
@@ -125,11 +125,11 @@ if( !class_exists( 'Hatch_Module_Widget' ) ) {
 							} ?>
 
 							<div id="<?php echo $widget_id; ?>-<?php echo $key; ?>" class="column<?php if( isset( $widget->design[ 'columnflush' ] ) ) echo '-flush'; ?> <?php echo $span_class; ?>">
-								<div class="marketing <?php echo ( isset( $module->design[ 'imagealign' ] ) ? $module->design[ 'imagealign' ] : '' ); ?>  <?php echo ( isset( $module->font_style[ 'size' ] ) ? $module->font_style[ 'size' ] : '' ); ?>">
+								<div class="marketing <?php echo ( isset( $module->design[ 'imagealign' ] ) ? $module->design[ 'imagealign' ] : '' ); ?>  <?php echo ( isset( $module->design['fonts'][ 'size' ] ) ? $module->design['fonts'][ 'size' ] : '' ); ?>">
 									<?php if( isset( $module->image ) && '' != $module->image ) { ?>
 										<div class="marketing-icon"><a href="<?php echo esc_url( $module->link ); ?>"><?php echo wp_get_attachment_image( $module->image , $imageratios ); ?></a></div>
 									<?php } ?>
-									<div class="marketing-body <?php echo ( isset( $module->design[ 'textalign' ] ) ) ? $module->design[ 'textalign' ] : ''; ?>">
+									<div class="marketing-body <?php echo ( isset( $module->design['fonts'][ 'align' ] ) ) ? $module->design['fonts'][ 'align' ] : ''; ?>">
 										<?php if( isset( $module->title ) && '' != $module->title ) { ?>
 											<h5 class="heading"><a href="<?php echo esc_url( $module->link ); ?>"><?php echo $module->title; ?></a></h5>
 										<?php } ?>
@@ -325,45 +325,10 @@ if( !class_exists( 'Hatch_Module_Widget' ) ) {
 							$instance, // Widget Values
 							array(
 								'background',
-								'textalign',
-								'custom',
+								'fonts',
 								'imagealign',
 								'imageratios',
-							), // Standard Components
-							array(
-								'fonts' => array(
-									'icon-css' => 'icon-font-size',
-									'label' => '',
-									'elements' => array(
-										'font-size' => array(
-												'type' => 'select',
-												'name' => 'widget-' . $widget_details->id_base . '[' . $widget_details->number . '][modules][' . $column_guid . '][font_style][size]',
-												'id' => 'widget-' . $widget_details->id_base . '-' . $widget_details->number . '-' . $column_guid . '-font-size',
-												'value' => ( isset( $font_style[ 'size' ] ) ) ? $font_style[ 'size' ] : '',
-												'label' => __( 'Text Size' , HATCH_THEME_SLUG ),
-												'options' => array(
-														'small' => __( 'Small' , HATCH_THEME_SLUG ),
-														'' => __( 'Medium' , HATCH_THEME_SLUG ),
-														'large' => __( 'Large' , HATCH_THEME_SLUG )
-												)
-											),
-										'font-color' => array(
-												'type' => 'color',
-												'name' => 'widget-' . $widget_details->id_base . '[' . $widget_details->number . '][modules][' . $column_guid . '][font_style][color]',
-												'id' => 'widget-' . $widget_details->id_base . '-' . $widget_details->number . '-' . $column_guid . '-font-color',
-												'value' => ( isset( $font_style[ 'color' ] ) ) ? $font_style[ 'color' ] : '',
-												'label' => __( 'Text Color' , HATCH_THEME_SLUG )
-											),
-										'font-shadow' => array(
-												'type' => 'color',
-												'name' => 'widget-' . $widget_details->id_base . '[' . $widget_details->number . '][modules][' . $column_guid . '][font_style][shadow]',
-												'id' => 'widget-' . $widget_details->id_base . '-' . $widget_details->number . '-' . $column_guid . '-font-shadow',
-												'value' => ( isset( $font_style[ 'shadow' ] ) ) ? $font_style[ 'shadow' ] : '',
-												'label' => __( 'Text Shadow' , HATCH_THEME_SLUG )
-											)
-									)
-								),
-							)
+							) // Standard Components
 						); ?>
 
 						<div class="hatch-row">

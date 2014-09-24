@@ -91,12 +91,13 @@ if( !class_exists( 'Hatch_Module_Widget' ) ) {
 			$span_class = 'span-' . ( 12 / $col_count );
 
 			// Set the background styling
-			if( !empty( $widget->design[ 'background' ] ) ) $this->widget_styles( $widget_id , 'background', $widget->design[ 'background' ] ); ?>
+			if( !empty( $widget->design[ 'background' ] ) ) $this->widget_styles( $widget_id , 'background', $widget->design[ 'background' ] );
+			if( !empty( $widget->design['fonts'][ 'color' ] ) ) $this->widget_styles( $widget_id , 'color', array( 'selectors' => array( '.section-title h3.heading' , '.section-title p.excerpt' ) , 'color' => $widget->design['fonts'][ 'color' ] ) ); ?>
 
 			<section class="widget row content-vertical-massive" id="<?php echo $widget_id; ?>">
 				<?php if( ( isset( $widget->title ) && '' != $widget->title ) || ( isset( $widget->title ) && '' != $widget->excerpt ) ) { ?>
 					<div class="container">
-						<div class="section-title <?php if( isset( $widget->title_size ) ) echo $widget->title_size; ?> <?php if( isset( $widget->title_alignment ) ) echo $widget->title_alignment; ?> clearfix"> <?php // @TODO: get alignment to work here ?>
+						<div class="section-title <?php if( isset( $widget->design['fonts'][ 'size' ] ) ) echo $widget->design['fonts'][ 'size' ]; ?> <?php if( isset( $widget->design['fonts'][ 'align' ] ) ) echo $widget->design['fonts'][ 'align' ]; ?> clearfix"> <?php // @TODO: get alignment to work here ?>
 							<?php if( '' != $widget->title ) { ?>
 								<h3 class="heading"><?php echo $widget->title; ?></h3>
 							<?php } ?>
@@ -203,7 +204,8 @@ if( !class_exists( 'Hatch_Module_Widget' ) ) {
 				array(
 					'layout',
 					'columns',
-					'background'
+					'background',
+					'fonts'
 				) // Standard Components
 			); ?>
 			<div class="hatch-container-large" id="hatch-banner-widget-<?php echo $this->number; ?>">

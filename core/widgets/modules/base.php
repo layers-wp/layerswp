@@ -34,9 +34,7 @@ if( !class_exists( 'Hatch_Widget' ) ) {
 
 				case 'background' :
 
-					if( '' == $args[ 'color' ] && '' == $args[ 'color' ] ) return ;
-
-					if( isset( $args['color'] ) ){
+					if( isset( $args['color'] ) && '' != $args['color'] ){
 						$css .= 'background-color: ' . $args['color'] . '; ';
 					}
 

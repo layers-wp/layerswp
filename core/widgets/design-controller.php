@@ -57,16 +57,7 @@ class Hatch_Design_Controller {
 						}
 					}
 				} // if $components is not NULL ?>
-				<?php if( 'side' == $type ) { ?>
-					<li class="hatch-quick-links">
-						<a href="">
-							<span class="icon-support"></span>
-						</a>
-						<a href="#" id="hatch-widget-peep" data-widget_id="<?php echo $widget ->id; ?>">
-							<span class="icon-arrow-left"></span>
-						</a>
-					</li>
-				<?php } elseif( isset( $widget->show_trash ) ) { ?>
+				<?php if( isset( $widget->show_trash ) ) { ?>
 					<li class="hatch-visuals-item hatch-pull-right">
 						<a href="" class="hatch-icon-wrapper hatch-icon-error">
 							<span class="icon-trash" data-number="<?php echo $widget->number; ?>"></span>

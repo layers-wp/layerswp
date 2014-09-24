@@ -43,8 +43,8 @@ if( !class_exists( 'Hatch_Module_Widget' ) ) {
 			);
 
 			$this->module_defaults = array (
-				'title' => NULL,
-				'excerpt' => NULL,
+				'title' => "Entere a Title",
+				'excerpt' => "Add an Excerpt",
 				'design' => array(
 					'imagealign' => 'image-center',
 					'imageratios' => NULL,

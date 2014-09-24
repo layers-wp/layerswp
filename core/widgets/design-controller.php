@@ -109,12 +109,12 @@ class Hatch_Design_Controller {
 			<div class="hatch-visuals-settings-wrapper hatch-content-small">
 				<div class="hatch-visuals-settings">
 					<?php foreach( $args['elements'] as $key => $form_args ) { ?>
-						<p class="hatch-<?php echo $form_args[ 'type' ]; ?>-wrapper hatch-form-item">
+						<div class="hatch-<?php echo $form_args[ 'type' ]; ?>-wrapper hatch-form-item">
 							<?php if( 'checkbox' != $form_args[ 'type' ] ) { ?>
 								<label><?php echo $form_args[ 'label' ]; ?></label>
 							<?php } ?>
 							<?php echo $this->input( $form_args ); ?>
-						</p>
+						</div>
 					<?php } ?>
 				</div>
 			</div>
@@ -223,7 +223,7 @@ class Hatch_Design_Controller {
 
 			<div class="hatch-visuals-settings-wrapper hatch-animate hatch-content-small">
 				<div class="hatch-visuals-settings">
-					<p class="hatch-form-item">
+					<div class="hatch-form-item">
 						<label for="<?php echo  $widget->name . '-columns'; ?>"><?php _e( 'Columns' , HATCH_THEME_SLUG ); ?></label>
 						<?php echo $this->input(
 							array(
@@ -240,8 +240,8 @@ class Hatch_Design_Controller {
 								)
 							)
 						); ?>
-					</p>
-					<p class="hatch-checkbox-wrapper">
+					</div>
+					<div class="hatch-checkbox-wrapper">
 						<?php echo $this->input(
 							array(
 								'type' => 'checkbox',
@@ -251,7 +251,7 @@ class Hatch_Design_Controller {
 								'value' => ( isset( $values->columnflush ) ) ? $values->columnflush : NULL
 							)
 						); ?>
-					</p>
+					</div>
 				</div>
 			</div>
 		</li>
@@ -357,7 +357,7 @@ class Hatch_Design_Controller {
 			</a>
 			<div class="hatch-visuals-settings-wrapper hatch-animate hatch-content-small">
 				<div class="hatch-visual-settings">
-					<p class="hatch-select-wrapper hatch-form-item">
+					<div class="hatch-select-wrapper hatch-form-item">
 						<label><?php _e( 'Image Ratio' , HATCH_THEME_SLUG ); ?></label>
 						<?php echo $this->input(
 							array(
@@ -373,7 +373,7 @@ class Hatch_Design_Controller {
 								)
 							)
 						); ?>
-					</p>
+					</div>
 				</div>
 			</div>
 		</li>
@@ -401,7 +401,7 @@ class Hatch_Design_Controller {
 			<div class="hatch-visuals-settings-wrapper hatch-animate hatch-content-small">
 				<div class="hatch-visuals-settings">
 					<section>
-						<p class="hatch-form-item">
+						<div class="hatch-form-item">
 							<label><?php _e( 'Alignment' , HATCH_THEME_SLUG ); ?></label>
 							<div class="hatch-icon-group">
 								<?php echo $this->input(
@@ -419,8 +419,8 @@ class Hatch_Design_Controller {
 									)
 								); ?>
 							</div>
-						</p>
-						<p class="hatch-form-item">
+						</div>
+						<div class="hatch-form-item">
 							<label><?php _e( 'Text Size' , HATCH_THEME_SLUG ); ?></label>
 							<?php echo $this->input(
 								array(
@@ -435,8 +435,8 @@ class Hatch_Design_Controller {
 									)
 								)
 							); ?>
-						</p>
-						<p class="hatch-form-item">
+						</div>
+						<div class="hatch-form-item">
 							<label><?php _e( 'Text Color' , HATCH_THEME_SLUG ); ?></label>
 							<?php echo $this->input(
 								array(
@@ -446,8 +446,8 @@ class Hatch_Design_Controller {
 									'value' => ( isset( $values->fonts['color'] ) ) ? $values->fonts['color'] : NULL
 								)
 							); ?>
-						</p>
-						<p class="hatch-form-item">
+						</div>
+						<div class="hatch-form-item">
 							<label><?php _e( 'Text Shadow' , HATCH_THEME_SLUG ); ?></label>
 							<?php echo $this->input(
 								array(
@@ -457,7 +457,7 @@ class Hatch_Design_Controller {
 									'value' => ( isset( $values->fonts['shadow'] ) ) ? $values->fonts['shadow'] : NULL
 								)
 							); ?>
-						</p>
+						</div>
 					</section>
 				</div>
 			</div>
@@ -499,7 +499,7 @@ class Hatch_Design_Controller {
 						); ?>
 					</div>
 					<section>
-						<p class="hatch-form-item">
+						<div class="hatch-form-item">
 							<label><?php _e( 'Color' , HATCH_THEME_SLUG ); ?></label>
 							<?php echo $this->input(
 								array(
@@ -510,8 +510,8 @@ class Hatch_Design_Controller {
 									'value' => ( isset( $values->background['color'] ) ) ? $values->background['color'] : NULL
 								)
 							); ?>
-						</p>
-						<p class="hatch-select-wrapper hatch-form-item">
+						</div>
+						<div class="hatch-select-wrapper hatch-form-item">
 							<label><?php _e( 'Repeat' , HATCH_THEME_SLUG ); ?></label>
 							<?php echo $this->input(
 								array(
@@ -527,8 +527,8 @@ class Hatch_Design_Controller {
 										)
 								)
 							); ?>
-						</p>
-						<p class="hatch-select-wrapper hatch-form-item">
+						</div>
+						<div class="hatch-select-wrapper hatch-form-item">
 							<label><?php _e( 'Position' , HATCH_THEME_SLUG ); ?></label>
 							<?php echo $this->input(
 								array(
@@ -545,8 +545,8 @@ class Hatch_Design_Controller {
 										)
 								)
 							); ?>
-						</p>
-						<p class="hatch-checkbox-wrapper">
+						</div>
+						<div class="hatch-checkbox-wrapper">
 							<?php echo $this->input(
 								array(
 									'type' => 'checkbox',
@@ -556,8 +556,8 @@ class Hatch_Design_Controller {
 									'value' => ( isset( $values->background['fixed'] ) ) ? $values->background['fixed'] : NULL
 								)
 							); ?>
-						</p>
-						<p class="hatch-checkbox-wrapper">
+						</div>
+						<div class="hatch-checkbox-wrapper">
 							<?php echo $this->input(
 								array(
 									'type' => 'checkbox',
@@ -567,8 +567,8 @@ class Hatch_Design_Controller {
 									'value' => ( isset( $values->background['stretch'] ) ) ? $values->background['stretch'] : NULL
 								)
 							); ?>
-						</p>
-						<p class="hatch-checkbox-wrapper">
+						</div>
+						<div class="hatch-checkbox-wrapper">
 							<?php echo $this->input(
 								array(
 									'type' => 'checkbox',
@@ -578,7 +578,7 @@ class Hatch_Design_Controller {
 									'value' => ( isset( $values->background['darken'] ) ) ? $values->background['darken'] : NULL
 								)
 							); ?>
-						</p>
+						</div>
 					</section>
 				</div>
 			</div>

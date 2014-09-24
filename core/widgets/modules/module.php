@@ -324,11 +324,11 @@ if( !class_exists( 'Hatch_Module_Widget' ) ) {
 							), // Widget Object
 							$instance, // Widget Values
 							array(
+								'background',
 								'textalign',
+								'custom'
 								'imagealign',
 								'imageratios',
-								'background',
-								'custom'
 							), // Standard Components
 							array(
 								'fonts' => array(

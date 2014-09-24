@@ -27,7 +27,7 @@ jQuery(document).ready(function($){
 	* Module Removal & Additions
 	*/
 
-	$(document).on( 'click' , 'ul[id^="module_list_"] .icon-cross' , function(e){
+	$(document).on( 'click' , 'ul[id^="module_list_"] .icon-trash' , function(e){
 		e.preventDefault();
 
 		// "Hi Mom"

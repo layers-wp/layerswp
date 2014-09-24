@@ -28,7 +28,7 @@ jQuery(document).ready(function($){
 	* Banner Removal & Additions
 	*/
 
-	$(document).on( 'click' , 'ul[id^="banner_list_"] .icon-cross' , function(e){
+	$(document).on( 'click' , 'ul[id^="banner_list_"] .icon-trash' , function(e){
 		e.preventDefault();
 
 		// "Hi Mom"

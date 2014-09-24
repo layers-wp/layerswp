@@ -42,16 +42,18 @@ if( !class_exists( 'Hatch_Banner_Widget' ) ) {
 				'banner_ids' => rand( 1 , 1000 )
 			);
 			$this->banner_defaults = array (
-				'title' => NULL,
-				'excerpt' => NULL,
+				'title' => "Entere a Title",
+				'excerpt' => "Add an Excerpt",
 				'design' => array(
-					'imagealign' => 'image-right',
+					'imagealign' => 'image-center',
 					'imageratios' => NULL,
 					'textalign' => 'text-center',
-					'background' => NULL,
+					'background' => array(
+						'color' => '#000'
+					),
 				),
 				'font_style' => array(
-					'size' => '',
+					'size' => 'large',
 					'color' => '#ffffff',
 					'shadow' => ''
 				)

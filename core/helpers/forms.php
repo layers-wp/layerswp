@@ -234,13 +234,13 @@ class Hatch_Form_Elements {
 						<!-- Remove button -->
 						<a class="hatch-image-remove" href=""><?php _e( 'Remove' , HATCH_THEME_SLUG ); ?></a>
 					</div>
-					<div class="hatch-push-bottom">
-						<a href="#" class="hatch-image-upload-button  hatch-button btn-full <?php if( isset( $input->value ) && '' != $input->value ) echo 'hatch-has-image'; ?>"
-							data-title="<?php _e( 'Select an Image' , HATCH_THEME_SLUG ); ?>"
-							data-button_text="<?php _e( 'Use Image' , HATCH_THEME_SLUG ); ?>">
-							<?php echo ( isset( $input->label ) ? $input->label : __( 'Choose Image' , HATCH_THEME_SLUG ) ); ?>
-						</a>
-					</div>
+
+					<a href="#" class="hatch-image-upload-button  hatch-button btn-full <?php if( isset( $input->value ) && '' != $input->value ) echo 'hatch-has-image'; ?>"
+						data-title="<?php _e( 'Select an Image' , HATCH_THEME_SLUG ); ?>"
+						data-button_text="<?php _e( 'Use Image' , HATCH_THEME_SLUG ); ?>">
+						<?php echo ( isset( $input->label ) ? $input->label : __( 'Choose Image' , HATCH_THEME_SLUG ) ); ?>
+					</a>
+				
 					<?php echo $this->input(
 						array(
 							'type' => 'hidden',

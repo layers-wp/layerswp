@@ -107,7 +107,7 @@ h1, h2, h3, h4, h5, h6{color: #000; font-weight: 200;}
     .span-9{width: 74.5%;}
     .span-10{width: 83%;}
     .span-11{width: 91.5%;}
-    .span-12{width: 100%;}
+    .span-12{clear: both; float: none; width: 100%; margin-right: 0;}
 
     .column-flush.span-1{width: 8.333333%;}
     .column-flush.span-2{width: 16.6667%;}
@@ -566,9 +566,9 @@ h1, h2, h3, h4, h5, h6{color: #000; font-weight: 200;}
 
     .marketing .marketing-body{display: block; overflow: hidden;}
 
-    .marketing .heading{display: block; font-size: 2.0rem; font-weight: 600;}
+    .marketing .heading{font-size: 2.0rem; font-weight: 600;}
     .marketing .heading span{display: block; text-transform: uppercase; color: #8F8F8F; font-size: 1.2rem; font-weight: 600;}
-    .marketing .heading + .excerpt{display: block; font-size: 1.6rem; margin-top: 8px;}
+    .marketing .heading + .excerpt{font-size: 1.6rem; margin-top: 8px;}
 
     .marketing p{margin-top: 8px;}
     .marketing ul{margin-top: 8px;}
@@ -577,8 +577,8 @@ h1, h2, h3, h4, h5, h6{color: #000; font-weight: 200;}
     .marketing .button{margin-top: 15px;}
     .marketing .btn-group .button{margin-top: 0px;}
 
-    .marketing.image-center .marketing-icon{float: none; width: 100%; text-align: center; margin-right: auto; margin-left: auto;}
-    .marketing.image-center .marketing-body{float: none; width: 100%; padding: 20px 0 0; text-align: center;}
+    .marketing.image-top .marketing-icon{float: none; width: 100%; text-align: center; margin-right: auto; margin-left: auto;}
+    .marketing.image-top .marketing-body{float: none; width: 100%; padding: 20px 0 0;}
 
     .marketing.image-right .marketing-icon{float: right; margin-right: 0; margin-left: 15px;}
 
@@ -1110,7 +1110,7 @@ table.table-comfortable td{padding: 14px 10px;}
 
     .image-left{}
     .image-right{}
-    .image-center{}
+    .image-top{}
 
     .va-top{vertical-align: top;}
     .va-bottom{vertical-align: bottom;}

@@ -326,7 +326,7 @@ if( !class_exists( 'Hatch_Module_Widget' ) ) {
 							array(
 								'background',
 								'textalign',
-								'custom'
+								'custom',
 								'imagealign',
 								'imageratios',
 							), // Standard Components

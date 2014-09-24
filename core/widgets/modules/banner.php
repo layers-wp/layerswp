@@ -370,7 +370,7 @@ if( !class_exists( 'Hatch_Banner_Widget' ) ) {
 							array(
 								'background',
 								'textalign',
-								'custom'
+								'custom',
 								'imagealign',
 								'imageratios',
 							), // Standard Components

@@ -55,6 +55,7 @@ if( !class_exists( 'Hatch_Portfolio_Widget' ) ) {
 					'textalign' => 'text-center',
 					'liststyle' => 'list-grid',
 					'columns' => '3',
+					'columflush' => false,
 					'layout' => 'grid',
 				)
 			);
@@ -272,7 +273,7 @@ if( !class_exists( 'Hatch_Portfolio_Widget' ) ) {
 									'type' => 'select',
 									'name' => $this->get_field_name( 'text_style' ) ,
 									'id' => $this->get_field_id( 'text_style' ) ,
-									'value' => ( isset( $text_position ) ) ? $text_position : NULL,
+									'value' => ( isset( $text_style ) ) ? $text_style : NULL,
 									'label' => __( 'Widget Title &amp; Excerpt Position' , HATCH_THEME_SLUG ),
 									'options' => array(
 											'regular' => __( 'Regular' , HATCH_THEME_SLUG ),

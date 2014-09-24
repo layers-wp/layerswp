@@ -246,12 +246,14 @@ div[id*='hatch-widget'] .widget-control-actions{
         float: left;
         padding: 10px;
         margin: 0;
+        text-align: center;
         -webkit-box-sizing: border-box;
         -moz-box-sizing: border-box;
         box-sizing: border-box;
         transition: all 0.2s ease-in-out;
         transform: scale(1);
     }
+
     div[class*='hatch-columns-'] div[class*='hatch-span'].ui-sortable-helper{
         transition: none;
     }
@@ -908,7 +910,17 @@ div[id*='hatch-widget'] .widget-control-actions{
     min-height: 37px;
     background: #fff;
     border: 1px dashed #A3C567;
+    text-align: center;
 }
+
+.hatch-sortable-drop a{
+    color: #000;
+    display: block;
+    font-weight: bold;
+    padding: 10px 5px;
+    text-align: center;
+}
+
 .ui-sortable-helper{
     background-color: #fff;
     opacity: 0.95;

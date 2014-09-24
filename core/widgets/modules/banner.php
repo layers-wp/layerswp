@@ -284,10 +284,6 @@ if( !class_exists( 'Hatch_Banner_Widget' ) ) {
 							)
 						); ?>
 						<section class="hatch-accordion-section hatch-content">
-
-
-								<a id="add_banner_<?php echo $this->number; ?>" class="hatch-button btn-large hatch-push-bottom hatch-add-widget-banner" data-number="<?php echo $this->number; ?>"><?php _e( '+ Add New Slide' , HATCH_THEME_SLUG ) ; ?></a>
-
 								<?php echo $widget_elements->input(
 									array(
 										'type' => 'hidden',
@@ -313,6 +309,7 @@ if( !class_exists( 'Hatch_Banner_Widget' ) ) {
 									<?php } else { ?>
 										<?php $this->banner_item( array( 'id_base' => $this->id_base , 'number' => $this->number ) ); ?>
 									<?php }?>
+									<li class="hatch-button btn-primary hatch-add-widget-banner" data-number="<?php echo $this->number; ?>"><?php _e( '+ Add New Slide' , HATCH_THEME_SLUG ) ; ?></li>
 								</ul>
 
 						</section>
@@ -342,9 +339,16 @@ if( !class_exists( 'Hatch_Banner_Widget' ) ) {
 			$widget_elements = new Hatch_Form_Elements();
 
 			// Turn the widget details into an object, it makes the code cleaner
-			$widget_details = (object) $widget_details; ?>
+			$widget_details = (object) $widget_details;
 
-				<li class="hatch-accordion-item  <?php if( !isset( $_REQUEST['action'] ) ) echo 'open'; ?>" data-guid="<?php echo $slide_guid; ?>">
+			// Set a count for each row
+			if( !isset( $this->module_item_count ) ) {
+				$this->banner_item_count = 0;
+			} else {
+				$this->banner_item_count++;
+			}?>
+
+				<li class="hatch-accordion-item  <?php if( !isset( $_REQUEST['action'] ) && $this->banner_item_count == 1 ) echo 'open'; ?>" data-guid="<?php echo $slide_guid; ?>">
 					<a class="hatch-accordion-title">
 						<span>
 							<?php _e( 'Slide' , HATCH_THEME_SLUG ); ?><span class="hatch-detail"><?php echo ( isset( $title ) ? ': ' . $title : NULL ); ?></span>

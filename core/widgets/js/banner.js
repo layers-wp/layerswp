@@ -1,11 +1,6 @@
 jQuery(document).ready(function($){
 
 	/**
-	* Title Updates
-	*/
-
-
-	/**
 	* Sortable items
 	*/
 
@@ -30,10 +25,10 @@ jQuery(document).ready(function($){
 	});
 
 	/**
-	* Banner Additions
+	* Banner Removal & Additions
 	*/
 
-	$(document).on( 'click' , '.icon-cross' , function(e){
+	$(document).on( 'click' , 'ul[id^="banner_list_"] .icon-cross' , function(e){
 		e.preventDefault();
 
 		// "Hi Mom"
@@ -71,8 +66,11 @@ jQuery(document).ready(function($){
 		// "Hi Mom"
 		$that = $(this);
 
+		// Create the list selector
+		$bannerListId = '#banner_list_' + $that.data( 'number' );
+
 		// Banner UL
-		$bannerList = $( '#banner_list_' + $that.data( 'number' ) );
+		$bannerList = $( $bannerListId );
 
 		// Banners <input>
 		$bannerInput = $( '#banner_ids_input_' + $bannerList.data( 'number' ) );
@@ -89,8 +87,8 @@ jQuery(document).ready(function($){
 			},
 			function(data){
 
-				// Append banner HTML
-				$bannerList.append( data );
+				// Append module HTML
+				$( data ).insertBefore( $bannerListId + ' .hatch-add-widget-banner' );
 
 				// Append banner IDs to the banners input
 				$banner_guids = [];
@@ -105,6 +103,23 @@ jQuery(document).ready(function($){
 				jQuery('.hatch-color-selector').wpColorPicker();
 			}
 		) // $.post
+	});
+
+	/**
+	* Banner Title Update
+	*/
+
+	$(document).on( 'keyup' , 'ul[id^="banner_list_"] input[id*="-title"]' , function(e){
+
+		// "Hi Mom"
+		$that = $(this);
+
+		// Set the Title
+		$string = ': ' + $that.val();
+
+		// Update the accordian title
+		$that.closest( '.hatch-accordian-item' ).find( 'span.hatch-detail' ).html( $new_title );
+
 	});
 
 }); //jQuery

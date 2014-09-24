@@ -421,7 +421,7 @@ class Hatch_Design_Controller {
 							</div>
 						</div>
 						<div class="hatch-form-item">
-							<label><?php _e( 'Font Size' , HATCH_THEME_SLUG ); ?></label>
+							<label><?php _e( 'Text Size' , HATCH_THEME_SLUG ); ?></label>
 							<?php echo $this->input(
 								array(
 									'type' => 'select',
@@ -437,7 +437,7 @@ class Hatch_Design_Controller {
 							); ?>
 						</div>
 						<div class="hatch-form-item">
-							<label><?php _e( 'Font Color' , HATCH_THEME_SLUG ); ?></label>
+							<label><?php _e( 'Text Color' , HATCH_THEME_SLUG ); ?></label>
 							<?php echo $this->input(
 								array(
 									'type' => 'color',

@@ -36,21 +36,25 @@ if( !class_exists( 'Hatch_Module_Widget' ) ) {
 				'title' => NULL,
 				'excerpt' => NULL,
 				'design' => array(
-					'columns' => '4',
+					'columns' => '3',
 					'columflush' => false,
+					'background' => array(
+						'position' => 'center',
+						'size' => 'cover'
+					)
 				),
 				'module_ids' => rand( 1 , 1000 )
 			);
 
 			$this->module_defaults = array (
-				'title' => "Entere a Title",
-				'excerpt' => "Add an Excerpt",
+				'title' => "Enter a Title",
+				'excerpt' => "Add a description of your product, service or feature. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
 				'design' => array(
-					'imagealign' => 'image-center',
+					'imagealign' => 'image-right',
 					'imageratios' => NULL,
 					'background' => NULL,
 					'fonts' => array(
-						'align' => 'text-center',
+						'align' => 'text-left',
 						'size' => NULL,
 						'color' => NULL,
 						'shadow' => NULL
@@ -376,7 +380,7 @@ if( !class_exists( 'Hatch_Module_Widget' ) ) {
 											'placeholder' => __( 'Short Excerpt', HATCH_THEME_SLUG ),
 											'value' => ( isset( $excerpt ) ) ? $excerpt : NULL ,
 											'class' => 'hatch-textarea',
-											'rows' => 15
+											'rows' => 6
 										)
 									); ?>
 								</p>

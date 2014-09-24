@@ -235,7 +235,7 @@ class Hatch_Form_Elements {
 						<a class="hatch-image-remove" href=""><?php _e( 'Remove' , HATCH_THEME_SLUG ); ?></a>
 					</div>
 					<div class="hatch-push-bottom">
-						<a href="#" class="hatch-image-upload-button  hatch-button btn-primary btn-full <?php if( isset( $input->value ) && '' != $input->value ) echo 'hatch-has-image'; ?>"
+						<a href="#" class="hatch-image-upload-button  hatch-button btn-full <?php if( isset( $input->value ) && '' != $input->value ) echo 'hatch-has-image'; ?>"
 							data-title="<?php _e( 'Select an Image' , HATCH_THEME_SLUG ); ?>"
 							data-button_text="<?php _e( 'Use Image' , HATCH_THEME_SLUG ); ?>">
 							<?php echo ( isset( $input->label ) ? $input->label : __( 'Choose Image' , HATCH_THEME_SLUG ) ); ?>
@@ -259,8 +259,12 @@ class Hatch_Form_Elements {
 					<!-- Image -->
 					<?php if( isset( $input->value ) ) echo wp_basename( wp_get_attachment_url( $input->value ) , true ); ?>
 				</span>
-				<button  class="hatch-regular-uploader hatch-button btn-medium" data-title="<?php _e( 'Select a File' , HATCH_THEME_SLUG ); ?>" data-button_text="<?php _e( 'Use File' , HATCH_THEME_SLUG ); ?>"><?php _e( 'Choose a File' , HATCH_THEME_SLUG  ); ?></button>
-				<small class="<?php if( !isset( $input->value ) ) echo 'hide'; ?> hatch-file-remove"><?php _e( 'Remove' , HATCH_THEME_SLUG ); ?></small>
+				<button  class="hatch-regular-uploader hatch-button btn-medium" data-title="<?php _e( 'Select a File' , HATCH_THEME_SLUG ); ?>" data-button_text="<?php _e( 'Use File' , HATCH_THEME_SLUG ); ?>">
+					<?php _e( 'Choose a File' , HATCH_THEME_SLUG  ); ?>
+				</button>
+				<small class="<?php if( !isset( $input->value ) ) echo 'hide'; ?> hatch-file-remove">
+					<?php _e( 'Remove' , HATCH_THEME_SLUG ); ?>
+				</small>
 				<input type="hidden" <?php echo implode ( ' ' , $input_props ); ?> value="<?php echo $input->value; ?>" />
 			<?php break;
 			/**

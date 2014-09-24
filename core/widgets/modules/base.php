@@ -40,10 +40,8 @@ if( !class_exists( 'Hatch_Widget' ) ) {
 						$css .= 'background-color: ' . $args['color'] . '; ';
 					}
 
-					if( isset( $args['tile'] ) && '' != isset( $args['tile'] ) ){
+					if( isset( $args['repeat'] ) && '' != isset( $args['repeat'] ) ){
 						$css .= 'background-repeat: repeat;';
-					} else {
-						$css .= 'background-repeat: no-repeat;';
 					}
 
 					if( isset( $args['stretch'] ) && '' != isset( $args['stretch'] ) ){

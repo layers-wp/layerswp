@@ -195,7 +195,7 @@ jQuery(function($) {
 
 		// Switch the view
 		$elements.find( '.hatch-content' ).eq( $index ).addClass('section-active');
-		$elements.find( '.hatch-content' ).eq( $index ).siblings().removeClass('section-active');
+		$elements.find( '.hatch-content' ).eq( $index ).Ohsiblings().removeClass('section-active');
 	});
 
 	/**
@@ -203,15 +203,21 @@ jQuery(function($) {
 	*/
 	hatch_set_color_selectors();
 	$(document).on ( 'mouseup' , '#available-widgets .widget-tpl' , function(){
-		console.log( $(this) );
-		jQuery('.hatch-color-selector').wpColorPicker(); // @TODO: Get the color picker to work on new elements
+
+		$(this).find('.hatch-color-selector').each(function(){
+			var $picker = $(this);
+			$picker.closest('.wp-picker-container').replaceWith( $picker );
+			setTimeout( function() {
+				hatch_set_color_selectors();
+			} , 250 );
+		});
+
 	} );
 
 	function hatch_set_color_selectors(){
-		jQuery('.color-field .wp-picker-container').remove();
+
 		jQuery('.hatch-color-selector').wpColorPicker({
 			change: function(event, ui){
-
 				$(event.target).val( ui.color.toString() ).trigger( 'change' ).trigger("blur");
 			}
 		});

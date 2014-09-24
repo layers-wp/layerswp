@@ -409,7 +409,7 @@ class Hatch_Design_Controller {
 										'type' => 'select-icons',
 										'name' => $widget->name . '[fonts][align]' ,
 										'id' =>  $widget->id . '-fonts-align' ,
-										'value' => ( isset( $values->textalign ) ) ? $values->textalign : NULL,
+										'value' => ( isset( $values->fonts['align'] ) ) ? $values->fonts['align'] : NULL,
 										'options' => array(
 											'text-left' => __( 'Left' , HATCH_THEME_SLUG ),
 											'text-right' => __( 'Right' , HATCH_THEME_SLUG ),

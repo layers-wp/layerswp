@@ -114,7 +114,7 @@ if( !class_exists( 'Hatch_Banner_Widget' ) ) {
 												<?php if( isset( $banner->title ) && '' != $banner->title ) { ?>
 													<h3 class="heading"><?php echo $banner->title; ?></h3>
 												<?php } ?>
-
+												<?php print_r( $banner->design['fonts'] );?>
 												<?php if( isset( $banner->excerpt ) && '' != $banner->excerpt ) { ?>
 													<div class="excerpt"><?php echo $banner->excerpt; ?></div>
 												<?php } ?>

@@ -422,6 +422,32 @@ class Hatch_Design_Controller {
 			</a>
 			<div class="hatch-visuals-settings-wrapper hatch-animate hatch-content-small">
 				<div class="hatch-visuals-settings">
+				<div class="hatch-icon-group">
+															<a href="" class="hatch-icon-wrapper hatch-active">
+																<span class="icon-text-left"></span>
+																<span class="hatch-icon-description">
+																	Left
+																</span>
+															</a>
+															<a href="" class="hatch-icon-wrapper">
+																<span class="icon-text-right"></span>
+																<span class="hatch-icon-description">
+																	Right
+																</span>
+															</a>
+															<a href="" class="hatch-icon-wrapper">
+																<span class="icon-text-center"></span>
+																<span class="hatch-icon-description">
+																	Center
+																</span>
+															</a>
+															<a href="" class="hatch-icon-wrapper">
+																<span class="icon-text-justify"></span>
+																<span class="hatch-icon-description">
+																	Justify
+																</span>
+															</a>
+														</div>
 					<div class="background-image">
 						<?php echo $this->input(
 							array(

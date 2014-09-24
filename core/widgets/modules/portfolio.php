@@ -94,7 +94,7 @@ if( !class_exists( 'Hatch_Portfolio_Widget' ) ) {
 			if( !empty( $widget->design[ 'background' ] ) ) $this->widget_styles( $widget_id , 'background', $widget->design[ 'background' ] );
 
 			// Set Image Sizes
-			if( isset( $widget->design[ 'imageratios' ] ) && 'list-masonry' != $widget->design[ 'liststyle' ] ){
+			if( isset( $widget->design[ 'imageratios' ] ) ){
 				if( $col_count > 2 ){
 					$imageratios = $widget->design[ 'imageratios' ] . '-medium';
 				} else {

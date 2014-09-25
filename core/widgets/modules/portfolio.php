@@ -35,7 +35,7 @@ if( !class_exists( 'Hatch_Portfolio_Widget' ) ) {
 			$widget_ops = array( 'classname' => 'obox-hatch-' . $this->widget_id .'-widget', 'description' => 'This widget is used to display your ' . $this->widget_title . '.' );
 
 			/* Widget control settings. */
-			$control_ops = array( 'width' => HATCH_WIDGET_WIDTH_TINY, 'height' => NULL, 'id_base' => HATCH_THEME_SLUG . '-widget-' . $this->widget_id );
+			$control_ops = array( 'width' => HATCH_WIDGET_WIDTH_SMALL, 'height' => NULL, 'id_base' => HATCH_THEME_SLUG . '-widget-' . $this->widget_id );
 
 			/* Create the widget. */
 			$this->WP_Widget( HATCH_THEME_SLUG . '-widget-' . $this->widget_id , '(' . HATCH_THEME_TITLE . ') ' . $this->widget_title . ' Widget', $widget_ops, $control_ops );
@@ -48,15 +48,15 @@ if( !class_exists( 'Hatch_Portfolio_Widget' ) ) {
 				'category' => 0,
 				'show_titles' => 'on',
 				'show_excerpts' => 'on',
-				'excerpt_length' => 180,
+				'excerpt_length' => 200,
 				'show_call_to_action' => 'on',
 				'call_to_action' => __( 'View Project' , HATCH_THEME_SLUG ),
-                'posts_per_page' => -1,
+                'posts_per_page' => 6,
                 'order' => NULL,
 				'design' => array(
 					'imageratios' => 'square-large',
 					'layout' => 'layout-boxed',
-					'textalign' => 'text-center',
+					'textalign' => 'text-left',
 					'liststyle' => 'list-grid',
 					'columns' => '3',
 					'columflush' => false,
@@ -162,7 +162,9 @@ if( !class_exists( 'Hatch_Portfolio_Widget' ) ) {
 													<?php } ?>
 													<?php if( isset( $widget->show_excerpts ) ) {
 														if( isset( $widget->excerpt_length ) && '' == $widget->excerpt_length ) {
-															the_content();
+															echo '<div class="excerpt">';
+																the_content();
+															echo '</div>';
 	                                                    } else if( isset( $widget->excerpt_length ) && 0 != $widget->excerpt_length && strlen( get_the_excerpt() ) > $widget->excerpt_length ){
 	                                                        echo '<p class="excerpt">' . substr( get_the_excerpt() , 0 , $widget->excerpt_length ) . '&#8230;</p>';
 	                                                    } else {

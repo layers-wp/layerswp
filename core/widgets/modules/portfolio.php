@@ -66,7 +66,7 @@ if( !class_exists( 'Hatch_Portfolio_Widget' ) ) {
 					),
 					'fonts' => array(
 						'align' => 'text-left',
-						'size' => 'medium',
+						'size' => 'large',
 						'color' => NULL,
 						'shadow' => NULL
 					)

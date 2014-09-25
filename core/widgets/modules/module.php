@@ -56,7 +56,7 @@ if( !class_exists( 'Hatch_Module_Widget' ) ) {
 					'background' => NULL,
 					'fonts' => array(
 						'align' => 'text-left',
-						'size' => NULL,
+						'size' => 'large',
 						'color' => NULL,
 						'shadow' => NULL
 					)

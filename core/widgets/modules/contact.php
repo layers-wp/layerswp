@@ -58,7 +58,7 @@ if( !class_exists( 'Hatch_Contact_Widget' ) ) {
 					),
 					'fonts' => array(
 						'align' => 'text-center',
-						'size' => NULL,
+						'size' => 'large',
 						'color' => NULL,
 						'shadow' => NULL
 					)

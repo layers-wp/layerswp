@@ -217,101 +217,88 @@ if( !class_exists( 'Hatch_Contact_Widget' ) ) {
 					'icon_class' =>'location'
 				) ); ?>
 
-				<ul class="hatch-accordions">
-					<li class="hatch-accordion-item open">
+				<section class="hatch-accordion-section hatch-content">
+					<div class="hatch-row hatch-push-bottom clearfix">
+						<p class="hatch-form-item">
+							<?php echo $widget_elements->input(
+								array(
+									'type' => 'text',
+									'name' => $this->get_field_name( 'title' ) ,
+									'id' => $this->get_field_id( 'title' ) ,
+									'placeholder' => __( 'Enter title here', HATCH_THEME_SLUG ),
+									'value' => ( isset( $title ) ) ? $title : NULL ,
+									'class' => 'hatch-text hatch-large'
+								)
+							); ?>
+						</p>
+						<p class="hatch-form-item">
+							<?php echo $widget_elements->input(
+								array(
+									'type' => 'textarea',
+									'name' => $this->get_field_name( 'excerpt' ) ,
+									'id' => $this->get_field_id( 'excerpt' ) ,
+									'placeholder' =>  __( 'Short Excerpt', HATCH_THEME_SLUG ),
+									'value' => ( isset( $excerpt ) ) ? $excerpt : NULL ,
+									'class' => 'hatch-textarea hatch-large'
+								)
+							); ?>
+						</p>
+					</div>
 
-						<?php $widget_elements->accordian_title(
-							array(
-								'title' => __( 'Content' , HATCH_THEME_SLUG ),
-								'tooltip' => __(  'Place your help text here please.', HATCH_THEME_SLUG )
-							)
-						); ?>
-
-						<section class="hatch-accordion-section hatch-content">
-							<div class="hatch-row hatch-push-bottom clearfix">
-								<p class="hatch-form-item">
-									<?php echo $widget_elements->input(
-										array(
-											'type' => 'text',
-											'name' => $this->get_field_name( 'title' ) ,
-											'id' => $this->get_field_id( 'title' ) ,
-											'placeholder' => __( 'Enter title here', HATCH_THEME_SLUG ),
-											'value' => ( isset( $title ) ) ? $title : NULL ,
-											'class' => 'hatch-text hatch-large'
-										)
-									); ?>
-								</p>
-								<p class="hatch-form-item">
-									<?php echo $widget_elements->input(
-										array(
-											'type' => 'textarea',
-											'name' => $this->get_field_name( 'excerpt' ) ,
-											'id' => $this->get_field_id( 'excerpt' ) ,
-											'placeholder' =>  __( 'Short Excerpt', HATCH_THEME_SLUG ),
-											'value' => ( isset( $excerpt ) ) ? $excerpt : NULL ,
-											'class' => 'hatch-textarea hatch-large'
-										)
-									); ?>
-								</p>
-							</div>
-
-							<div class="hatch-row clearfix">
-								<div class="hatch-column hatch-span-12">
-									<div class="hatch-panel">
-										<?php $widget_elements->section_panel_title(
+					<div class="hatch-row clearfix">
+						<div class="hatch-column hatch-span-12">
+							<div class="hatch-panel">
+								<?php $widget_elements->section_panel_title(
+									array(
+										'type' => 'panel',
+										'title' => __( 'Address' , HATCH_THEME_SLUG ),
+										'tooltip' => __(  'Place your help text here please.', HATCH_THEME_SLUG )
+									)
+								); ?>
+								<div class="hatch-content">
+									<p class="hatch-form-item">
+										<label for="<?php echo $this->get_field_id( 'google_maps_location' ); ?>"><?php _e( 'Google Maps Location' , HATCH_THEME_SLUG ); ?></label>
+										<?php echo $widget_elements->input(
 											array(
-												'type' => 'panel',
-												'title' => __( 'Address' , HATCH_THEME_SLUG ),
-												'tooltip' => __(  'Place your help text here please.', HATCH_THEME_SLUG )
+												'type' => 'text',
+												'name' => $this->get_field_name( 'google_maps_location' ) ,
+												'id' => $this->get_field_id( 'google_maps_location' ) ,
+												'placeholder' => __( 'e.g. 300 Prestwich Str, Cape Town, South Africa', HATCH_THEME_SLUG ),
+												'value' => ( isset( $google_maps_location ) ) ? $google_maps_location : NULL
 											)
 										); ?>
-										<div class="hatch-content">
-											<p class="hatch-form-item">
-												<label for="<?php echo $this->get_field_id( 'google_maps_location' ); ?>"><?php _e( 'Google Maps Location' , HATCH_THEME_SLUG ); ?></label>
-												<?php echo $widget_elements->input(
-													array(
-														'type' => 'text',
-														'name' => $this->get_field_name( 'google_maps_location' ) ,
-														'id' => $this->get_field_id( 'google_maps_location' ) ,
-														'placeholder' => __( 'e.g. 300 Prestwich Str, Cape Town, South Africa', HATCH_THEME_SLUG ),
-														'value' => ( isset( $google_maps_location ) ) ? $google_maps_location : NULL
-													)
-												); ?>
-											</p>
-											<p class="hatch-form-item">
-												<label for="<?php echo $this->get_field_id( 'google_maps_long_lat' ); ?>"><?php _e( 'Google Maps Latitude & Longitude (Optional)' , HATCH_THEME_SLUG ); ?></label>
-												<?php echo $widget_elements->input(
-													array(
-														'type' => 'text',
-														'name' => $this->get_field_name( 'google_maps_long_lat' ) ,
-														'id' => $this->get_field_id( 'google_maps_long_lat' ) ,
-														'placeholder' => __( 'e.g. 33.9253 S, 18.4239 E', HATCH_THEME_SLUG ),
-														'value' => ( isset( $google_maps_long_lat ) ) ? $google_maps_long_lat : NULL
-													)
-												); ?>
-											</p>
-											<p class="hatch-form-item">
-												<label for="<?php echo $this->get_field_id( 'address_shown' ); ?>"><?php _e( 'Address Shown' , HATCH_THEME_SLUG ); ?></label>
-												<?php echo $widget_elements->input(
-													array(
-														'type' => 'textarea',
-														'name' => $this->get_field_name( 'address_shown' ) ,
-														'id' => $this->get_field_id( 'address_shown' ) ,
-														'placeholder' => __( 'e.g. Prestwich Str, Cape Town', HATCH_THEME_SLUG ),
-														'value' => ( isset( $address_shown ) ) ? $address_shown : NULL,
-														'class' => 'hatch-textarea'
-													)
-												); ?>
-											</p>
-										</div>
-									</div>
+									</p>
+									<p class="hatch-form-item">
+										<label for="<?php echo $this->get_field_id( 'google_maps_long_lat' ); ?>"><?php _e( 'Google Maps Latitude & Longitude (Optional)' , HATCH_THEME_SLUG ); ?></label>
+										<?php echo $widget_elements->input(
+											array(
+												'type' => 'text',
+												'name' => $this->get_field_name( 'google_maps_long_lat' ) ,
+												'id' => $this->get_field_id( 'google_maps_long_lat' ) ,
+												'placeholder' => __( 'e.g. 33.9253 S, 18.4239 E', HATCH_THEME_SLUG ),
+												'value' => ( isset( $google_maps_long_lat ) ) ? $google_maps_long_lat : NULL
+											)
+										); ?>
+									</p>
+									<p class="hatch-form-item">
+										<label for="<?php echo $this->get_field_id( 'address_shown' ); ?>"><?php _e( 'Address Shown' , HATCH_THEME_SLUG ); ?></label>
+										<?php echo $widget_elements->input(
+											array(
+												'type' => 'textarea',
+												'name' => $this->get_field_name( 'address_shown' ) ,
+												'id' => $this->get_field_id( 'address_shown' ) ,
+												'placeholder' => __( 'e.g. Prestwich Str, Cape Town', HATCH_THEME_SLUG ),
+												'value' => ( isset( $address_shown ) ) ? $address_shown : NULL,
+												'class' => 'hatch-textarea'
+											)
+										); ?>
+									</p>
 								</div>
 							</div>
+						</div>
+					</div>
 
-						</section>
-					</li>
-
-				</ul>
+				</section>
 			</div>
 
 

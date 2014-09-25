@@ -280,47 +280,36 @@ if( !class_exists( 'Hatch_Banner_Widget' ) ) {
 					'icon_class' =>'slider'
 				) ); ?>
 
-
-				<ul class="hatch-accordions">
-					<li class="hatch-accordion-item open">
-						<?php $widget_elements->accordian_title(
+				<section class="hatch-accordion-section hatch-content">
+						<?php echo $widget_elements->input(
 							array(
-								'title' => __( 'Slide Content' , HATCH_THEME_SLUG ),
-								'tooltip' => __(  'Place your help text here please.', HATCH_THEME_SLUG )
+								'type' => 'hidden',
+								'name' => $this->get_field_name( 'banner_ids' ) ,
+								'id' => 'banner_ids_input_' . $this->number,
+								'value' => ( isset( $banner_ids ) ) ? $banner_ids : NULL
 							)
 						); ?>
-						<section class="hatch-accordion-section hatch-content">
-								<?php echo $widget_elements->input(
-									array(
-										'type' => 'hidden',
-										'name' => $this->get_field_name( 'banner_ids' ) ,
-										'id' => 'banner_ids_input_' . $this->number,
-										'value' => ( isset( $banner_ids ) ) ? $banner_ids : NULL
-									)
-								); ?>
 
-								<?php // If we have some banners, let's break out their IDs into an array
-								if( isset( $banner_ids ) && '' != $banner_ids ) $banners = explode( ',' , $banner_ids ); ?>
+						<?php // If we have some banners, let's break out their IDs into an array
+						if( isset( $banner_ids ) && '' != $banner_ids ) $banners = explode( ',' , $banner_ids ); ?>
 
-								<ul id="banner_list_<?php echo $this->number; ?>" class="hatch-accordions-sortable hatch-sortable" data-id_base="<?php echo $this->id_base; ?>" data-number="<?php echo $this->number; ?>">
-									<?php if( isset( $banners ) && is_array( $banners ) ) { ?>
-										<?php foreach( $banners as $banner ) {
-											$this->banner_item( array(
-														'id_base' => $this->id_base ,
-														'number' => $this->number
-													) ,
-													$banner ,
-													( isset( $instance[ 'banners' ][ $banner ] ) ) ? $instance[ 'banners' ][ $banner ] : NULL );
-										} ?>
-									<?php } else { ?>
-										<?php $this->banner_item( array( 'id_base' => $this->id_base , 'number' => $this->number ) ); ?>
-									<?php }?>
-									<li class="hatch-button btn-primary hatch-add-widget-banner" data-number="<?php echo $this->number; ?>"><?php _e( '+ Add New Slide' , HATCH_THEME_SLUG ) ; ?></li>
-								</ul>
+						<ul id="banner_list_<?php echo $this->number; ?>" class="hatch-accordions-sortable hatch-sortable" data-id_base="<?php echo $this->id_base; ?>" data-number="<?php echo $this->number; ?>">
+							<?php if( isset( $banners ) && is_array( $banners ) ) { ?>
+								<?php foreach( $banners as $banner ) {
+									$this->banner_item( array(
+												'id_base' => $this->id_base ,
+												'number' => $this->number
+											) ,
+											$banner ,
+											( isset( $instance[ 'banners' ][ $banner ] ) ) ? $instance[ 'banners' ][ $banner ] : NULL );
+								} ?>
+							<?php } else { ?>
+								<?php $this->banner_item( array( 'id_base' => $this->id_base , 'number' => $this->number ) ); ?>
+							<?php }?>
+							<li class="hatch-button btn-primary hatch-add-widget-banner" data-number="<?php echo $this->number; ?>"><?php _e( '+ Add New Slide' , HATCH_THEME_SLUG ) ; ?></li>
+						</ul>
 
-						</section>
-					</li>
-				</ul>
+				</section>
 
 			</div>
 

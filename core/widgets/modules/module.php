@@ -216,72 +216,60 @@ if( !class_exists( 'Hatch_Module_Widget' ) ) {
 					'icon_class' =>'text'
 				) ); ?>
 
-				<ul class="hatch-accordions">
-					<li class="hatch-accordion-item open">
-						<?php $widget_elements->accordian_title(
+				<section class="hatch-accordion-section hatch-content">
+					<p class="hatch-form-item">
+						<?php echo $widget_elements->input(
 							array(
-								'title' => __( 'Content' , HATCH_THEME_SLUG ),
-								'tooltip' => __(  'Place your help text here please.', HATCH_THEME_SLUG )
+								'type' => 'text',
+								'name' => $this->get_field_name( 'title' ) ,
+								'id' => $this->get_field_id( 'title' ) ,
+								'placeholder' => __( 'Enter title here', HATCH_THEME_SLUG ),
+								'value' => ( isset( $title ) ) ? $title : NULL ,
+								'class' => 'hatch-text hatch-large'
 							)
 						); ?>
-						<section class="hatch-accordion-section hatch-content">
-								<p class="hatch-form-item">
-									<?php echo $widget_elements->input(
-										array(
-											'type' => 'text',
-											'name' => $this->get_field_name( 'title' ) ,
-											'id' => $this->get_field_id( 'title' ) ,
-											'placeholder' => __( 'Enter title here', HATCH_THEME_SLUG ),
-											'value' => ( isset( $title ) ) ? $title : NULL ,
-											'class' => 'hatch-text hatch-large'
-										)
-									); ?>
-								</p>
-								<p class="hatch-form-item">
-									<?php echo $widget_elements->input(
-										array(
-											'type' => 'textarea',
-											'name' => $this->get_field_name( 'excerpt' ) ,
-											'id' => $this->get_field_id( 'excerpt' ) ,
-											'placeholder' =>  __( 'Short Excerpt', HATCH_THEME_SLUG ),
-											'value' => ( isset( $excerpt ) ) ? $excerpt : NULL ,
-											'class' => 'hatch-textarea hatch-large'
-										)
-									); ?>
-								</p>
+					</p>
+					<p class="hatch-form-item">
+						<?php echo $widget_elements->input(
+							array(
+								'type' => 'textarea',
+								'name' => $this->get_field_name( 'excerpt' ) ,
+								'id' => $this->get_field_id( 'excerpt' ) ,
+								'placeholder' =>  __( 'Short Excerpt', HATCH_THEME_SLUG ),
+								'value' => ( isset( $excerpt ) ) ? $excerpt : NULL ,
+								'class' => 'hatch-textarea hatch-large'
+							)
+						); ?>
+					</p>
 
-								<?php echo $widget_elements->input(
-									array(
-										'type' => 'hidden',
-										'name' => $this->get_field_name( 'module_ids' ) ,
-										'id' => 'module_ids_input_' . $this->number,
-										'value' => ( isset( $module_ids ) ) ? $module_ids : NULL
-									)
-								); ?>
+					<?php echo $widget_elements->input(
+						array(
+							'type' => 'hidden',
+							'name' => $this->get_field_name( 'module_ids' ) ,
+							'id' => 'module_ids_input_' . $this->number,
+							'value' => ( isset( $module_ids ) ) ? $module_ids : NULL
+						)
+					); ?>
 
-								<?php // If we have some modules, let's break out their IDs into an array
-								if( isset( $module_ids ) && '' != $module_ids ) $modules = explode( ',' , $module_ids ); ?>
+					<?php // If we have some modules, let's break out their IDs into an array
+					if( isset( $module_ids ) && '' != $module_ids ) $modules = explode( ',' , $module_ids ); ?>
 
-								<ul id="module_list_<?php echo $this->number; ?>" class="hatch-accordions-sortable hatch-sortable" data-id_base="<?php echo $this->id_base; ?>" data-number="<?php echo $this->number; ?>">
-									<?php if( isset( $modules ) && is_array( $modules ) ) { ?>
-										<?php foreach( $modules as $module ) {
-											$this->module_item( array(
-														'id_base' => $this->id_base ,
-														'number' => $this->number
-													) ,
-													$module ,
-													( isset( $instance[ 'modules' ][ $module ] ) ) ? $instance[ 'modules' ][ $module ] : NULL );
-										} ?>
-									<?php } else { ?>
-										<?php $this->module_item( array( 'id_base' => $this->id_base , 'number' => $this->number ) ); ?>
-									<?php }?>
-									<li class="hatch-button btn-primary hatch-add-widget-module" data-number="<?php echo $this->number; ?>"><?php _e( '+ Add New Column' , HATCH_THEME_SLUG ) ; ?></li>
-								</ul>
-
-						</section>
-					</li>
-				</ul>
-
+					<ul id="module_list_<?php echo $this->number; ?>" class="hatch-accordions-sortable hatch-sortable" data-id_base="<?php echo $this->id_base; ?>" data-number="<?php echo $this->number; ?>">
+						<?php if( isset( $modules ) && is_array( $modules ) ) { ?>
+							<?php foreach( $modules as $module ) {
+								$this->module_item( array(
+											'id_base' => $this->id_base ,
+											'number' => $this->number
+										) ,
+										$module ,
+										( isset( $instance[ 'modules' ][ $module ] ) ) ? $instance[ 'modules' ][ $module ] : NULL );
+							} ?>
+						<?php } else { ?>
+							<?php $this->module_item( array( 'id_base' => $this->id_base , 'number' => $this->number ) ); ?>
+						<?php }?>
+						<li class="hatch-button btn-primary hatch-add-widget-module" data-number="<?php echo $this->number; ?>"><?php _e( '+ Add New Column' , HATCH_THEME_SLUG ) ; ?></li>
+					</ul>
+				</section>
 			</div>
 
 		<?php } // Form

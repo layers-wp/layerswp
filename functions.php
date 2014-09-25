@@ -257,3 +257,14 @@ if( ! function_exists( 'hatch_admin_scripts' ) ) {
 
 add_action( 'customize_controls_print_footer_scripts' , 'hatch_admin_scripts' );
 add_action( 'admin_enqueue_scripts' , 'hatch_admin_scripts' );
+
+
+/**
+*  Make sure that all excerpts have class="excerpt"
+*/
+if( !function_exists( 'hatch_excerpt_class' ) ) {
+	function hatch_excerpt_class( $excerpt ) {
+	    return str_replace('<p', '<p class="excerpt"', $excerpt);
+	}
+	add_filter( "the_excerpt", "hatch_excerpt_class" );
+} // hatch_excerpt_class

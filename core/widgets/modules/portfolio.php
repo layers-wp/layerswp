@@ -24,7 +24,8 @@ if( !class_exists( 'Hatch_Portfolio_Widget' ) ) {
 		private $taxonomy = 'jetpack-portfolio-type';
 		public $checkboxes = array(
 				'show_titles',
-				'show_excerpts'
+				'show_excerpts',
+				'show_call_to_action'
 			); // @TODO: Try make this more dynamic, or leave a different note reminding users to change this if they add/remove checkboxes
 		/**
 		*  Widget construction
@@ -47,6 +48,9 @@ if( !class_exists( 'Hatch_Portfolio_Widget' ) ) {
 				'category' => 0,
 				'show_titles' => 'on',
 				'show_excerpts' => 'on',
+				'excerpt_length' => 180,
+				'show_call_to_action' => 'on',
+				'call_to_action' => __( 'View Project' , HATCH_THEME_SLUG ),
                 'posts_per_page' => -1,
                 'order' => NULL,
 				'design' => array(
@@ -143,39 +147,36 @@ if( !class_exists( 'Hatch_Portfolio_Widget' ) ) {
 							<?php if( 'list-list' == $widget->design[ 'liststyle' ] ) { ?>
 								<?php get_template_part( 'content' , 'list' ); ?>
 							<?php } else { ?>
-								<div class="column<?php if( isset( $widget->design[ 'columnflush' ] ) ) echo '-flush'; ?> <?php echo $span_class; ?> hatch-masonry-column" data-cols="<?php echo $col_count; ?>">
-									<div class="thumbnail">
-										<?php if( ( isset( $widget->text_style ) && 'overlay' == $widget->text_style ) || has_post_thumbnail() ) { ?>
-											<a href="" class="thumbnail-media <?php if( isset( $widget->text_style ) && 'overlay' == $widget->text_style ) echo 'with-overlay'; ?>">
+								<article class="column<?php if( isset( $widget->design[ 'columnflush' ] ) ) echo '-flush'; ?> <?php echo $span_class; ?> hatch-masonry-column" data-cols="<?php echo $col_count; ?>">
+									<a href="<?php the_permalink(); ?>" class="thumbnail <?php if( isset( $widget->text_style ) && 'overlay' == $widget->text_style ) echo 'with-overlay'; ?>">
+										<?php if( has_post_thumbnail() ) { ?>
+											<div class="thumbnail-media">
 												<?php the_post_thumbnail( $imageratios );  ?>
-
-												<?php if( isset( $widget->text_style ) && 'overlay' == $widget->text_style ) { ?>
-													<span class="overlay">
-														<?php if( isset( $widget->show_titles ) ) { ?>
-															<span class="heading"><?php the_title(); ?></span>
-														<?php } // if show_titles ?>
-													</span>
-												<?php } ?>
-											</a>
-										<?php } // if overlay || post thumbnail ?>
-										<?php  if( isset( $widget->text_style ) && 'overlay' != $widget->text_style ) { ?>
-											<?php if( isset( $widget->show_titles ) || isset( $widget->show_excerpts ) ) { ?>
-												<div class="thumbnail-body">
+											</div>
+										<?php } // if post thumbnail ?>
+										<?php if( isset( $widget->show_titles ) || isset( $widget->show_excerpts ) ) { ?>
+											<div class="thumbnail-body">
+												<div class="overlay">
 													<?php if( isset( $widget->show_titles ) ) { ?>
-														<h4 class="heading"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h4>
+														<h4 class="heading"><?php the_title(); ?></h4>
 													<?php } ?>
 													<?php if( isset( $widget->show_excerpts ) ) {
-                                                        if( isset( $widget->excerpt_length ) && 0 != $widget->excerpt_length && strlen( get_the_excerpt() ) > $widget->excerpt_length ){
-                                                            echo substr( get_the_excerpt() , 0 , $widget->excerpt_length ) . '&#8230;';
-                                                        } else {
-                                                            the_excerpt();
-                                                        }
-                                                    }; ?>
+														if( isset( $widget->excerpt_length ) && '' == $widget->excerpt_length ) {
+															the_content();
+	                                                    } else if( isset( $widget->excerpt_length ) && 0 != $widget->excerpt_length && strlen( get_the_excerpt() ) > $widget->excerpt_length ){
+	                                                        echo '<p class="excerpt">' . substr( get_the_excerpt() , 0 , $widget->excerpt_length ) . '&#8230;</p>';
+	                                                    } else {
+	                                                        echo '<p class="excerpt">' . get_the_excerpt() . '</p>';
+	                                                    }
+	                                                }; ?>
+	                                                <?php if( isset( $widget->show_call_to_action ) && isset( $widget->call_to_action ) && '' != $widget->call_to_action ) { ?>
+														<span class="button"><?php echo $widget->call_to_action; ?></span>
+													<?php } // show call to action ?>
 												</div>
-											<?php } ?>
-										<?php } // if ! overlay?>
-									</div>
-								</div>
+											</div>
+										<?php } // if show titles || show excerpt ?>
+									</a>
+								</article>
 							<?php }; // if list-list == liststyle ?>
 						<?php }; // while have_posts ?>
 					<?php }; // if have_posts ?>
@@ -184,10 +185,12 @@ if( !class_exists( 'Hatch_Portfolio_Widget' ) ) {
 
 			<script>
 				jQuery(function($){
-					var masonry = $('#<?php echo $widget_id; ?>').find('.list-masonry').masonry({
-						'itemSelector': '.hatch-masonry-column'
-						<?php if( !isset( $widget->design[ 'columnflush' ] ) ) echo ', "gutter": 20'; ?>
-					});
+					setTimeout(function(){
+						var masonry = $('#<?php echo $widget_id; ?>').find('.list-masonry').masonry({
+							'itemSelector': '.hatch-masonry-column'
+							<?php if( !isset( $widget->design[ 'columnflush' ] ) ) echo ', "gutter": 20'; ?>
+						});
+					}, 500 );
 
 					$('#<?php echo $widget_id; ?>').find('.nav-pills li').on( 'click' , function(e){
 						e.preventDefault();
@@ -316,7 +319,21 @@ if( !class_exists( 'Hatch_Portfolio_Widget' ) ) {
                                     'max' => 10000,
                                     'value' => ( isset( $excerpt_length ) ) ? $excerpt_length : NULL,
                                     'label' => __( 'Excerpts Length' , HATCH_THEME_SLUG )
-                                )
+                                ),
+								'show_call_to_action' => array(
+									'type' => 'checkbox',
+									'name' => $this->get_field_name( 'show_call_to_action' ) ,
+									'id' => $this->get_field_id( 'show_call_to_action' ) ,
+									'value' => ( isset( $show_call_to_action ) ) ? $show_call_to_action : NULL,
+									'label' => __( 'Show "Read More" Buttons' , HATCH_THEME_SLUG )
+								),
+                                'call_to_action' => array(
+                                    'type' => 'text',
+                                    'name' => $this->get_field_name( 'call_to_action' ) ,
+                                    'id' => $this->get_field_id( 'call_to_action' ) ,
+                                    'value' => ( isset( $call_to_action ) ) ? $call_to_action : NULL,
+                                    'label' => __( '"Read More" Text' , HATCH_THEME_SLUG )
+                                ),
 							)
 					)
 				)

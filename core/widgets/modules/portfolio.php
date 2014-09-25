@@ -99,7 +99,7 @@ if( !class_exists( 'Hatch_Portfolio_Widget' ) ) {
 
 			// Set Image Sizes
 			if( isset( $widget->design[ 'imageratios' ] ) ){
-				if( $col_count > 2 ){
+				if( $col_count > 3 ){
 					$imageratios = $widget->design[ 'imageratios' ] . '-medium';
 				} else {
 					$imageratios = $widget->design[ 'imageratios' ] . '-large';
@@ -145,17 +145,19 @@ if( !class_exists( 'Hatch_Portfolio_Widget' ) ) {
 							<?php } else { ?>
 								<div class="column<?php if( isset( $widget->design[ 'columnflush' ] ) ) echo '-flush'; ?> <?php echo $span_class; ?> hatch-masonry-column" data-cols="<?php echo $col_count; ?>">
 									<div class="thumbnail">
-										<a href="" class="thumbnail-media <?php if( isset( $widget->text_style ) && 'overlay' == $widget->text_style ) echo 'with-overlay'; ?>">
-											<?php the_post_thumbnail( $imageratios );  ?>
+										<?php if( ( isset( $widget->text_style ) && 'overlay' == $widget->text_style ) || has_post_thumbnail() ) { ?>
+											<a href="" class="thumbnail-media <?php if( isset( $widget->text_style ) && 'overlay' == $widget->text_style ) echo 'with-overlay'; ?>">
+												<?php the_post_thumbnail( $imageratios );  ?>
 
-											<?php if( isset( $widget->text_style ) && 'overlay' == $widget->text_style ) { ?>
-												<span class="overlay">
-													<?php if( isset( $widget->show_titles ) ) { ?>
-														<span class="heading"><?php the_title(); ?></span>
-													<?php } // if show_titles ?>
-												</span>
-											<?php } ?>
-										</a>
+												<?php if( isset( $widget->text_style ) && 'overlay' == $widget->text_style ) { ?>
+													<span class="overlay">
+														<?php if( isset( $widget->show_titles ) ) { ?>
+															<span class="heading"><?php the_title(); ?></span>
+														<?php } // if show_titles ?>
+													</span>
+												<?php } ?>
+											</a>
+										<?php } // if overlay || post thumbnail ?>
 										<?php  if( isset( $widget->text_style ) && 'overlay' != $widget->text_style ) { ?>
 											<?php if( isset( $widget->show_titles ) || isset( $widget->show_excerpts ) ) { ?>
 												<div class="thumbnail-body">
@@ -182,7 +184,10 @@ if( !class_exists( 'Hatch_Portfolio_Widget' ) ) {
 
 			<script>
 				jQuery(function($){
-					var masonry = $('#<?php echo $widget_id; ?>').find('.list-masonry').masonry();
+					var masonry = $('#<?php echo $widget_id; ?>').find('.list-masonry').masonry({
+						'itemSelector': '.hatch-masonry-column'
+						<?php if( !isset( $widget->design[ 'columnflush' ] ) ) echo ', "gutter": 20'; ?>
+					});
 
 					$('#<?php echo $widget_id; ?>').find('.nav-pills li').on( 'click' , function(e){
 						e.preventDefault();

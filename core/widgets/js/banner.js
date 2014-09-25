@@ -109,7 +109,7 @@ jQuery(document).ready(function($){
 	* Banner Title Update
 	*/
 
-	$(document).on( 'keyup' , 'ul[id^="banner_list_"] input[id*="-title"]' , function(e){
+	$(document).on( 'blur' , 'ul[id^="banner_list_"] input[id*="-title"]' , function(e){
 
 		// "Hi Mom"
 		$that = $(this);

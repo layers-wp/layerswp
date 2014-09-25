@@ -187,6 +187,7 @@ h1, h2, h3, h4, h5, h6{color: #000; font-weight: 200;}
 
     .separate{padding-bottom: 20px; margin-bottom: 40px; border-bottom: 2px solid #ddd;}
 
+    .container.list-masonry { padding: 0 }
     .list-masonry .column{margin: 0 0 20px;}
 
     .with-background{background-size: cover; background-position: center; background-repeat: no-repeat;}
@@ -233,7 +234,7 @@ h1, h2, h3, h4, h5, h6{color: #000; font-weight: 200;}
     .content-large{padding: 30px;}
     .content-extra-large{padding: 40px;}
     .content-massive{padding: 60px;}
-    
+
     .content-vertical{padding-top: 20px; padding-bottom: 20px;}
     .content-vertical-large{padding-top: 30px; padding-bottom: 30px;}
 	.content-vertical-extra-large{padding-top: 40px; padding-bottom: 40px;}
@@ -274,7 +275,7 @@ h1, h2, h3, h4, h5, h6{color: #000; font-weight: 200;}
     .site-logo-anchor, .mark{display: inline-block; vertical-align: middle; margin: auto; font-size: 0;}
     .site-logo-anchor img, .mark img{display: inline-block; margin: auto; width: auto;}
     .site-logo-anchor.small img{max-height: 40px;}
-    
+
     .site-description{display: inline-block; vertical-align: middle;}
     .sitename{font-size: 2rem; font-weight: 600;}
     .tagline{color: #8F8F8F; font-weight: 600;}
@@ -300,7 +301,7 @@ h1, h2, h3, h4, h5, h6{color: #000; font-weight: 200;}
     .title.large{padding: 30px;}
     .title.extra-large{padding: 40px;}
     .title.massive{padding: 60px;}
-    
+
     .title .column{margin-bottom: 0;}
     .title img{display: block;}
 
@@ -524,7 +525,7 @@ h1, h2, h3, h4, h5, h6{color: #000; font-weight: 200;}
     .pagination li.next{margin-right: 10px; border: none;}
     .pagination li.next a{border-radius: 0 4px 4px 0;}
     .pagination li.next + li a{border-radius: 4px 0px 0px 4px;}
-    
+
 
 /*-------------------------------*/
 /*- COMPONENTS ------------------*/
@@ -1009,10 +1010,10 @@ table.table-comfortable td{padding: 14px 10px;}
     .copy p{margin-bottom: 16px;}
     .copy ul{list-style: disc; margin: 0 0 26px;}
     .copy ul li{list-style: disc; margin: 0 0 6px 30px;}
-	
+
     .copy ol{list-style: decimal; margin: 0 0 26px;}
 	.copy ol li{list-style: decimal; margin: 0 0 6px 20px;}
-	
+
     .copy ul ul, .copy ul ol, .copy ol ol, .copy ol ul{margin-bottom: 0;}
 
     .copy a{border-bottom: 1px solid #ddd;}

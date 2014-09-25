@@ -209,14 +209,14 @@ class Hatch_Form_Elements {
 			* Text areas
 			*/
 			case 'textarea' : ?>
-				<textarea <?php echo implode ( ' ' , $input_props ); ?> <?php if( isset( $input->rows ) ) echo 'rows="' . $input->rows . '"'; ?>><?php echo esc_attr( $input->value ); ?></textarea>
+				<textarea <?php echo implode ( ' ' , $input_props ); ?> <?php if( isset( $input->rows ) ) echo 'rows="' . $input->rows . '"'; ?>><?php echo esc_html( $input->value ); ?></textarea>
 			<?php break;
 			/**
 			* Tiny MCE
 			*/
 			case 'tinymce' : ?>
 				<?php wp_editor(
-					$input->value ,
+					esc_html( $input->value ),
 					$input->id ,
 					array(
 						'textarea_name' => $input->name ,

@@ -54,17 +54,22 @@ if( !class_exists( 'Hatch_Portfolio_Widget' ) ) {
                 'posts_per_page' => 6,
                 'order' => NULL,
 				'design' => array(
-					'imageratios' => 'square-large',
 					'layout' => 'layout-boxed',
+					'imageratios' => 'square-large',
 					'textalign' => 'text-left',
 					'liststyle' => 'list-grid',
 					'columns' => '3',
 					'columflush' => false,
-					'layout' => 'grid',
 					'background' => array(
 						'position' => 'center',
 						'repeat' => 'no-repeat'
 					),
+					'fonts' => array(
+						'align' => 'text-left',
+						'size' => 'medium',
+						'color' => NULL,
+						'shadow' => NULL
+					)
 				)
 			);
 		}
@@ -79,9 +84,6 @@ if( !class_exists( 'Hatch_Portfolio_Widget' ) ) {
 
 			// $instance Defaults
 			$instance_defaults = $this->defaults;
-
-			// If we have information in this widget, then ignore the defaults
-			if( !empty( $instance ) ) $instance_defaults = array();
 
 			// Parse $instance
 			$instance = wp_parse_args( $instance, $instance_defaults );
@@ -98,8 +100,9 @@ if( !class_exists( 'Hatch_Portfolio_Widget' ) ) {
 				$span_class = 'span-' . ( 12/ $col_count );
 			}
 
-			// Set the background styling
+			// Set the background & font styling
 			if( !empty( $widget->design[ 'background' ] ) ) $this->widget_styles( $widget_id , 'background', $widget->design[ 'background' ] );
+			if( !empty( $widget->design['fonts'][ 'color' ] ) ) $this->widget_styles( $widget_id , 'color', array( 'selectors' => array( '.section-title h3.heading' , '.section-title p.excerpt' ) , 'color' => $widget->design['fonts'][ 'color' ] ) );
 
 			// Set Image Sizes
 			if( isset( $widget->design[ 'imageratios' ] ) ){
@@ -129,7 +132,7 @@ if( !class_exists( 'Hatch_Portfolio_Widget' ) ) {
 			<section class="widget row content-vertical-massive" id="<?php echo $widget_id; ?>">
 				<?php if( '' != $widget->title || '' != $widget->excerpt ) { ?>
 					<div class="container clearfix">
-						<div class="section-title <?php if( isset( $widget->design['textalign'] ) ) echo $widget->design['textalign']; ?> clearfix">
+						<div class="section-title <?php if( isset( $widget->design['fonts'][ 'size' ] ) ) echo $widget->design['fonts'][ 'size' ]; ?> <?php if( isset( $widget->design['fonts'][ 'align' ] ) ) echo $widget->design['fonts'][ 'align' ]; ?> clearfix">
 							<?php if( '' != $widget->title ) { ?>
 								<h3 class="heading"><?php echo $widget->title; ?></h3>
 							<?php } ?>
@@ -279,9 +282,9 @@ if( !class_exists( 'Hatch_Portfolio_Widget' ) ) {
 					'custom',
 					'columns',
 					'liststyle',
-					'textalign',
 					'imageratios',
-					'background'
+					'background',
+					'fonts'
 				), // Standard Components
 				array(
 					'display' => array(

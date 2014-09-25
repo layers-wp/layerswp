@@ -98,7 +98,7 @@ if( !class_exists( 'Hatch_Module_Widget' ) ) {
 			<section class="widget row content-vertical-massive" id="<?php echo $widget_id; ?>">
 				<?php if( ( isset( $widget->title ) && '' != $widget->title ) || ( isset( $widget->title ) && '' != $widget->excerpt ) ) { ?>
 					<div class="container">
-						<div class="section-title <?php if( isset( $widget->design['fonts'][ 'size' ] ) ) echo $widget->design['fonts'][ 'size' ]; ?> <?php if( isset( $widget->design['fonts'][ 'align' ] ) ) echo $widget->design['fonts'][ 'align' ]; ?> clearfix"> <?php // @TODO: get alignment to work here ?>
+						<div class="section-title <?php if( isset( $widget->design['fonts'][ 'size' ] ) ) echo $widget->design['fonts'][ 'size' ]; ?> <?php if( isset( $widget->design['fonts'][ 'align' ] ) ) echo $widget->design['fonts'][ 'align' ]; ?> clearfix">
 							<?php if( '' != $widget->title ) { ?>
 								<h3 class="heading"><?php echo $widget->title; ?></h3>
 							<?php } ?>

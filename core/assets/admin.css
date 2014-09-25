@@ -107,6 +107,7 @@ div[id*='hatch-widget'] .widget-control-actions{
     background-color: #FFF;
     border-top: 1px solid #EEE;
     width: 100%;
+    max-width: 570px;
 }
 div[id*='hatch-widget'] .widget-control-actions a{
     background: #f0f0f0;
@@ -891,7 +892,6 @@ div[id*='hatch-widget'] .widget-control-actions a{
 
 .hatch-accordion-section{
     background: #fff;
-    border-bottom: 1px solid #ddd;
 }
 .hatch-accordion-item:last-child .hatch-accordion-section{
     border-bottom: none;

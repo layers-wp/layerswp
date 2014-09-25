@@ -109,26 +109,28 @@ if( !class_exists( 'Hatch_Banner_Widget' ) ) {
 								<?php if( isset( $banner->design['fonts'][ 'align' ] ) && '' != $banner->design['fonts'][ 'align' ] ) echo $banner->design['fonts'][ 'align' ]; ?>
 								"
 								style="float: left; <?php if( isset( $widget->banner_height ) && '' != $widget->banner_height ) echo 'height: ' . $widget->banner_height . 'px;' ?>">
-								<div class="container" <?php if( isset( $widget->banner_height ) && '' != $widget->banner_height ) echo 'style="height: ' . $widget->banner_height . 'px;"' ?>><!-- height important for vertical positioning. Must match container height -->
-									<?php if( '' != $banner->title || '' != $banner->excerpt ) { ?>
-										<div class="copy-container <?php if( !isset( $banner->image ) || ( isset( $banner->image ) && '' == $banner->image ) ) echo 'no-image'; ?>">
-											<!-- your dynamic output goes here -->
-											<div class="section-title <?php echo ( isset( $banner->design['fonts'][ 'size' ] ) ? $banner->design['fonts'][ 'size' ] : '' ); ?>">
-												<?php if( isset( $banner->title ) && '' != $banner->title ) { ?>
-													<h3 class="heading"><?php echo $banner->title; ?></h3>
-												<?php } ?>
-												<?php if( isset( $banner->excerpt ) && '' != $banner->excerpt ) { ?>
-													<div class="excerpt"><?php echo $banner->excerpt; ?></div>
-												<?php } ?>
+								<div class="overlay">
+									<div class="container" <?php if( isset( $widget->banner_height ) && '' != $widget->banner_height ) echo 'style="height: ' . $widget->banner_height . 'px;"' ?>><!-- height important for vertical positioning. Must match container height -->
+										<?php if( '' != $banner->title || '' != $banner->excerpt ) { ?>
+											<div class="copy-container <?php if( !isset( $banner->image ) || ( isset( $banner->image ) && '' == $banner->image ) ) echo 'no-image'; ?>">
+												<!-- your dynamic output goes here -->
+												<div class="section-title <?php echo ( isset( $banner->design['fonts'][ 'size' ] ) ? $banner->design['fonts'][ 'size' ] : '' ); ?>">
+													<?php if( isset( $banner->title ) && '' != $banner->title ) { ?>
+														<h3 class="heading"><?php echo $banner->title; ?></h3>
+													<?php } ?>
+													<?php if( isset( $banner->excerpt ) && '' != $banner->excerpt ) { ?>
+														<div class="excerpt"><?php echo $banner->excerpt; ?></div>
+													<?php } ?>
+												</div>
+												<div class="copy"></div>
 											</div>
-											<div class="copy"></div>
-										</div>
-									<?php } // if title || excerpt ?>
-									<?php if( isset( $banner->image ) && '' != $banner->image ) { ?>
-										<div class="image-container">
-											<?php echo wp_get_attachment_image( $banner->image , $imageratios ); ?>
-										</div>
-									<?php } // if $banner image ?>
+										<?php } // if title || excerpt ?>
+										<?php if( isset( $banner->image ) && '' != $banner->image ) { ?>
+											<div class="image-container">
+												<?php echo wp_get_attachment_image( $banner->image , $imageratios ); ?>
+											</div>
+										<?php } // if $banner image ?>
+									</div>
 								</div>
 							</div>
 						<?php } // foreach slides ?>

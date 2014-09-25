@@ -267,4 +267,5 @@ if( !function_exists( 'hatch_excerpt_class' ) ) {
 	    return str_replace('<p', '<p class="excerpt"', $excerpt);
 	}
 	add_filter( "the_excerpt", "hatch_excerpt_class" );
+	add_filter( "get_the_excerpt", "hatch_excerpt_class" );
 } // hatch_excerpt_class

@@ -274,9 +274,10 @@ h1, h2, h3, h4, h5, h6{color: #000; font-weight: 200;}
 
     .site-logo-anchor, .mark{display: inline-block; vertical-align: middle; margin: auto; font-size: 0;}
     .site-logo-anchor img, .mark img{display: inline-block; margin: auto; width: auto;}
-    .site-logo-anchor.small img{max-height: 40px;}
+    .site-logo-anchor.small img{max-height: 60px;}
     
     .site-description{display: inline-block; vertical-align: middle;}
+    .site-logo-anchor + .site-description{margin-left: 10px;}
     .sitename{font-size: 2rem; font-weight: 600;}
     .tagline{color: #8F8F8F; font-weight: 600;}
 
@@ -411,7 +412,7 @@ h1, h2, h3, h4, h5, h6{color: #000; font-weight: 200;}
     /*---------------------------*/
     /*- HORIZONTAL NAV CENTERED -*/
 	.nav-centered{text-align: center; width: 100%;}
-	.nav-centered li{float: none; display: inline-block; margin: 0;}
+	.nav-centered li{float: none; display: inline-block; margin: 0 inherit;}
 
 
     /*---------------------------*/
@@ -472,18 +473,19 @@ h1, h2, h3, h4, h5, h6{color: #000; font-weight: 200;}
 
     /*---------------------------*/
     /*- SUB NAV -----------------*/
-    .sub-menu{visibility: hidden; opacity: 0; background: #fff; border-radius: 4px; border: 2px solid #ddd; position: absolute; top: 30px; z-index: 5; transition: all 0.2s ease-in-out;}
-    .sub-menu li{clear: both; display: block; margin: 0; border: none; border-bottom: 1px dotted #ddd;}
+    .sub-menu{visibility: hidden; opacity: 0; background: #fff; border-radius: 4px; border: 2px solid #ddd; position: absolute; top: 30px; z-index: 5; transition: all 0.4s ease-in-out; line-height: normal;}
+    .sub-menu li{clear: both; display: block; width: 200px; margin: 0; border: none; border-bottom: 1px dotted #ddd;}
     .sub-menu li:last-child{border-bottom: none;}
     .sub-menu li a{display: block; padding: 6px 10px; background: none; color: #454545; border-radius: 0; text-transform: none; text-align: left;}
-    .sub-menu li a:hover{background: #454545; color: #fff;}
-    .sub-menu li:first-child a{border-radius: 3px 3px 0 0;}
-    .sub-menu li:last-child a{border-radius: 0 0 3px 3px;}
+    .sub-menu li a:hover{background: #333; color: #fff;}
+    .sub-menu > li:first-child a{border-radius: 3px 3px 0 0;}
+    .sub-menu li:last-child > a{border-radius: 0 0 3px 3px;}
 
     .nav-vertical .sub-menu{width: 200px; left: 150px; top: -3px; box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.1);}
-    .nav-vertical .sub-menu{}
-    .nav-vertical li:hover > .sub-menu{top: -3px; left: 140px;}
-    nav li:hover > .sub-menu {visibility: visible; opacity: 1; top: 40px;}
+    .nav-vertical   li:hover > .sub-menu{top: -3px; left: 140px;}
+    .nav            li:hover > .sub-menu {visibility: visible; opacity: 1; top: 30px; transition: all 0.2s ease-in-out;}
+    .nav            li .sub-menu .sub-menu,
+    .nav            li:hover > .sub-menu .sub-menu{left: 205px; top: -3px;}
 
     /*---------------------------*/
     /*- ABOLUTE NAV -------------*/
@@ -622,12 +624,12 @@ h1, h2, h3, h4, h5, h6{color: #000; font-weight: 200;}
         .with-overlay .heading{color: #fff; opacity: 0; transition: 0.2s all ease-in-out 0.2s;}
         .with-overlay .button{margin-top: 15px; background: none; border: 2px solid #fff; position: relative; top: 10px; opacity: 0; transition: 0.2s all ease-in-out 0.25s;}
         .with-overlay .excerpt{display: none;}
+
             /*-------------------*/
             /*- OVERLAY HOVER ---*/
             .with-overlay:hover .thumbnail-body{visibility: visible; opacity: 1;}
             .with-overlay:hover .heading{top: 0; opacity: 1;}
             .with-overlay:hover .button{top: 0; opacity: 1;}
-
 
         /*-----------------------*/
         /*- SLIDE2REVEAL THUMB --*/

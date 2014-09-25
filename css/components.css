@@ -21,7 +21,6 @@
     /*---------------------------*/
     /*- ALIGNMENT LEFT ----------*/
     .header-left .logo{float: left; overflow: hidden;}
-    .header-left .site-logo-anchor{margin: 0 10px 0 0;}
     .header-left .sitename{margin: 0 10px 0 0;}
 
     .header-left .site-logo-anchor img{max-height: 60px; width: auto;}
@@ -30,7 +29,6 @@
     /*---------------------------*/
     /*- ALIGNMENT RIGHT ---------*/
     .header-right .logo{float: right; overflow: hidden;}
-    .header-right .site-logo-anchor{margin: 0 10px 0 0;}
     .header-right .sitename{margin: 0 10px 0 0;}
 
     .header-right .site-logo-anchor img{max-height: 60px; width: auto;}
@@ -40,11 +38,10 @@
     /*- ALIGNMENT CENTER --------*/
     .header-center{text-align: center;}
     .header-center .logo{float: none;}
-    .header-center .site-description{display: block;}
+    .header-center .site-description{display: block; margin: 0;}
 
-        .header-center .site-logo-anchor + .sitename{margin-top: 10px;}
+        .header-center .site-logo-anchor + .site-description{margin-top: 10px;}
         .header-center .site-logo-anchor + .tagline{margin-top: 10px;}
-        .header-center .sitename + .tagline{margin-top: 5px;}
 
     .header-center nav{clear: both; text-align: center; margin-top: 20px; line-height: unset;}
 
@@ -60,9 +57,6 @@
     /*---------------------------*/
     /*- NAVIGATION POSITION -----*/
     .nav-clear .logo{float: none;}
-    .nav-clear .site-logo-anchor{display: block;}
-    .nav-clear .sitename{display: block;}
-    .nav-clear .tagline{display: block;}
 
         .nav-clear .site-logo-anchor + .sitename{margin-top: 10px;}
         .nav-clear .site-logo-anchor + .tagline{margin-top: 10px;}

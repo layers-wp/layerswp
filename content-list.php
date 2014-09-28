@@ -1,10 +1,8 @@
-<?php global $post; ?>
+<?php global $post, $post_meta_to_display; ?>
 <article class="row">
     <header class="section-title">
         <h1 class="heading"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h1>
-        <?php if( 'post' == get_post_type() ) { ?>
-            <h5 class="the-date"><?php the_date(); ?></h5>
-        <?php } ?>
+        <?php if( 'post' == get_post_type() && !empty( $post_meta_to_display ) ) hatch_post_meta( $post->ID, $post_meta_to_display );?>
     </header>
     <div class="row">
         <?php $content_class = 'span-12'; ?>

@@ -117,8 +117,9 @@ jQuery(document).ready(function($){
 		$string = ': ' + $that.val();
 
 		// Update the accordian title
-		$that.closest( '.hatch-accordian-item' ).find( 'span.hatch-detail' ).html( $new_title );
+		$that.closest( '.hatch-accordion-item' ).find( 'span.hatch-detail' ).text( $string );
 
 	});
+
 
 }); //jQuery

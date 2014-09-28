@@ -109,7 +109,7 @@ jQuery(document).ready(function($){
 	* Banner Title Update
 	*/
 
-	$(document).on( 'blur' , 'ul[id^="banner_list_"] input[id*="-title"]' , function(e){
+	$(document).on( 'keyup' , 'ul[id^="banner_list_"] input[id*="-title"]' , function(e){
 
 		// "Hi Mom"
 		$that = $(this);
@@ -118,7 +118,7 @@ jQuery(document).ready(function($){
 		$string = ': ' + $that.val();
 
 		// Update the accordian title
-		$that.closest( '.hatch-accordian-item' ).find( 'span.hatch-detail' ).html( $new_title );
+		$that.closest( '.hatch-accordion-item' ).find( 'span.hatch-detail' ).text( $string );
 
 	});
 

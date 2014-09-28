@@ -55,7 +55,7 @@ if( !class_exists( 'Hatch_Portfolio_Widget' ) ) {
                 'order' => NULL,
 				'design' => array(
 					'layout' => 'layout-boxed',
-					'imageratios' => 'square-large',
+					'imageratios' => 'square',
 					'textalign' => 'text-left',
 					'liststyle' => 'list-grid',
 					'columns' => '3',
@@ -84,6 +84,9 @@ if( !class_exists( 'Hatch_Portfolio_Widget' ) ) {
 
 			// $instance Defaults
 			$instance_defaults = $this->defaults;
+
+			// If we have information in this widget, then ignore the defaults
+			if( !empty( $instance ) ) $instance_defaults = array();
 
 			// Parse $instance
 			$instance = wp_parse_args( $instance, $instance_defaults );
@@ -307,14 +310,14 @@ if( !class_exists( 'Hatch_Portfolio_Widget' ) ) {
 									'name' => $this->get_field_name( 'show_titles' ) ,
 									'id' => $this->get_field_id( 'show_titles' ) ,
 									'value' => ( isset( $show_titles ) ) ? $show_titles : NULL,
-									'label' => __( 'Show  Item Titles' , HATCH_THEME_SLUG )
+									'label' => __( 'Show  Project Titles' , HATCH_THEME_SLUG )
 								),
 								'show_excerpts' => array(
 									'type' => 'checkbox',
 									'name' => $this->get_field_name( 'show_excerpts' ) ,
 									'id' => $this->get_field_id( 'show_excerpts' ) ,
 									'value' => ( isset( $show_excerpts ) ) ? $show_excerpts : NULL,
-									'label' => __( 'Show Item Excerpts' , HATCH_THEME_SLUG )
+									'label' => __( 'Show Project Excerpts' , HATCH_THEME_SLUG )
 								),
                                 'excerpt_length' => array(
                                     'type' => 'number',

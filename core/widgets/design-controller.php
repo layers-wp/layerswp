@@ -241,7 +241,7 @@ class Hatch_Design_Controller {
 							)
 						); ?>
 					</div>
-					<div class="hatch-checkbox-wrapper">
+					<div class="hatch-checkbox-wrapper hatch-form-item">
 						<?php echo $this->input(
 							array(
 								'type' => 'checkbox',
@@ -546,7 +546,7 @@ class Hatch_Design_Controller {
 								)
 							); ?>
 						</div>
-						<div class="hatch-checkbox-wrapper">
+						<div class="hatch-checkbox-wrapper hatch-form-item">
 							<?php echo $this->input(
 								array(
 									'type' => 'checkbox',
@@ -557,7 +557,7 @@ class Hatch_Design_Controller {
 								)
 							); ?>
 						</div>
-						<div class="hatch-checkbox-wrapper">
+						<div class="hatch-checkbox-wrapper hatch-form-item">
 							<?php echo $this->input(
 								array(
 									'type' => 'checkbox',
@@ -568,7 +568,7 @@ class Hatch_Design_Controller {
 								)
 							); ?>
 						</div>
-						<div class="hatch-checkbox-wrapper">
+						<div class="hatch-checkbox-wrapper hatch-form-item">
 							<?php echo $this->input(
 								array(
 									'type' => 'checkbox',

@@ -42,8 +42,8 @@ if( !class_exists( 'Hatch_Banner_Widget' ) ) {
 				'banner_ids' => rand( 1 , 1000 )
 			);
 			$this->banner_defaults = array (
-				'title' => "Enter a Title",
-				'excerpt' => "Add a description of your product, service or feature. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+				'title' => NULL,
+				'excerpt' => NULL,
 				'design' => array(
 					'imagealign' => 'image-right',
 					'imageratios' => NULL,
@@ -419,6 +419,7 @@ if( !class_exists( 'Hatch_Banner_Widget' ) ) {
 										array(
 											'type' => 'text',
 											'name' => 'widget-' . $widget_details->id_base . '[' . $widget_details->number . '][banners][' . $slide_guid . '][title]' ,
+											'placeholder' => __( 'Enter a Title' , HATCH_THEME_SLUG ),
 											'id' => 'widget-' . $widget_details->id_base . '-' . $widget_details->number . '-' . $slide_guid . '-title' ,
 											'placeholder' => __( 'Enter title here', HATCH_THEME_SLUG ),
 											'value' => ( isset( $title ) ) ? $title : NULL ,

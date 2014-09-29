@@ -48,8 +48,8 @@ if( !class_exists( 'Hatch_Module_Widget' ) ) {
 			);
 
 			$this->module_defaults = array (
-				'title' => "Enter a Title",
-				'excerpt' => "Add a description of your product, service or feature. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+				'title' => NULL,
+				'excerpt' => NULL,
 				'design' => array(
 					'imagealign' => 'image-right',
 					'imageratios' => NULL,

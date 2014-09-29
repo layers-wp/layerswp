@@ -316,7 +316,7 @@ h1, h2, h3, h4, h5, h6{color: #000; font-weight: 200;}
     .section-title .excerpt{max-width: 745px; font-size: 2.0rem; color: #8F8F8F;}
     .section-title .heading + p{margin-top: 5px;}
     .section-title .excerpt + .button{margin-top: 15px;}
-    .section-title .the-date{margin-top: 5px; font-size: 1.4rem; text-transform: uppercase; color: #8F8F8F;}
+    .meta-info{font-size: 1.2rem; color: #8F8F8F}
 
         /*-----------------------*/
         /*- SECTION SIZE --------*/
@@ -621,15 +621,20 @@ h1, h2, h3, h4, h5, h6{color: #000; font-weight: 200;}
         .with-overlay{width: 100%; overflow: hidden; text-shadow: 0px 1px 2px rgba(0, 0, 0, 0.6);}
         .with-overlay .thumbnail-body{position: absolute; top: 0; left: 0; width: 100%; height: 100%; visibility: hidden; opacity: 0; background: rgba(0,0,0,0.65); transition: 0.2s all ease-in-out; text-align: center;}
         .with-overlay .overlay{display: block; position: relative; top: 50%; -webkit-transform: translateY(-50%); -ms-transform: translateY(-50%); transform: translateY(-50%);}
-        .with-overlay .heading{color: #fff; opacity: 0; transition: 0.2s all ease-in-out 0.2s;}
-        .with-overlay .button{margin-top: 15px; background: none; border: 2px solid #fff; position: relative; top: 10px; opacity: 0; transition: 0.2s all ease-in-out 0.25s;}
+        
+        .with-overlay .heading{color: #fff; opacity: 0; transform: translate3d(0, 10px, 0); transition: 0.2s all ease-in-out 0.2s;}
+        .with-overlay .heading a{color: #fff;}
+        
+        .with-overlay .button{margin-top: 15px; background: none; border: 2px solid #fff; position: relative; opacity: 0; transform: translate3d(0, 20px, 0); transition: 0.2s all ease-in-out 0.25s;}
+        
         .with-overlay .excerpt{display: none;}
+        .with-overlay .meta-info{display: none;}
 
             /*-------------------*/
             /*- OVERLAY HOVER ---*/
             .with-overlay:hover .thumbnail-body{visibility: visible; opacity: 1;}
-            .with-overlay:hover .heading{top: 0; opacity: 1;}
-            .with-overlay:hover .button{top: 0; opacity: 1;}
+            .with-overlay:hover .heading{transform: translate3d(0, 0, 0); opacity: 1;}
+            .with-overlay:hover .button{transform: translate3d(0, 0, 0); opacity: 1;}
 
         /*-----------------------*/
         /*- SLIDE2REVEAL THUMB --*/

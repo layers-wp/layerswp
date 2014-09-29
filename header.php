@@ -40,11 +40,9 @@
 				</div>
 				<?php do_action( 'hatch_after_logo' ); ?>
 
-				<?php do_action( 'hatch_before_nav' ); ?>
-				<nav>
-					<?php wp_nav_menu( array( 'theme_location' => 'primary' , 'container_class' => 'nav nav-horizontal' )); ?>
-				</nav>
-				<?php do_action( 'hatch_after_nav' ); ?>
+				<?php do_action( 'hatch_before_header_nav' ); ?>
+				<?php wp_nav_menu( array( 'theme_location' => 'primary' ,'container' => 'nav', 'container_class' => 'nav nav-horizontal', 'fallback_cb' => false )); ?>
+				<?php do_action( 'hatch_after_header_nav' ); ?>
 			</div>
 			<?php do_action( 'hatch_after_header_inner' ); ?>
 		</header>

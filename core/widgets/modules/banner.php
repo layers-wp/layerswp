@@ -42,8 +42,8 @@ if( !class_exists( 'Hatch_Banner_Widget' ) ) {
 				'banner_ids' => rand( 1 , 1000 )
 			);
 			$this->banner_defaults = array (
-				'title' => "Enter a Title",
-				'excerpt' => "Add a description of your product, service or feature. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+				'title' => NULL,
+				'excerpt' => NULL,
 				'design' => array(
 					'imagealign' => 'image-right',
 					'imageratios' => NULL,
@@ -76,7 +76,7 @@ if( !class_exists( 'Hatch_Banner_Widget' ) ) {
 
 			<section class="widget row banner swiper-container <?php if( isset( $widget->design[ 'layout' ] ) && 'layout-boxed' == $widget->design[ 'layout' ] ) echo 'container'; ?>" id="<?php echo $widget_id; ?>" <?php if( isset( $widget->banner_height ) && '' != $widget->banner_height ) echo 'style="height: ' . $widget->banner_height . 'px;"' ?>>
 				<?php if( !empty( $widget->banners ) ) { ?>
-					<?php if( 1 < count( $widget->banners ) ) { ?>
+					<?php if( 1 < count( $widget->banners ) && !isset( $widget->hide_slider_arrows ) ) { ?>
 						 <div class="arrows">
 							<a href="" class="arrow-left animate"></a>
 							<a href="" class="arrow-right animate"></a>
@@ -239,7 +239,7 @@ if( !class_exists( 'Hatch_Banner_Widget' ) ) {
 									'label' => __( 'Hide Slider Arrows', HATCH_THEME_SLUG )
 								),
 								'slider_arrow_color' => array(
-									'type' => 'checkbox',
+									'type' => 'color',
 									'name' => $this->get_field_name( 'slider_arrow_color' ) ,
 									'id' => $this->get_field_id( 'slider_arrow_color' ) ,
 									'value' => ( isset( $slider_arrow_color ) ) ? $slider_arrow_color : NULL,
@@ -419,6 +419,7 @@ if( !class_exists( 'Hatch_Banner_Widget' ) ) {
 										array(
 											'type' => 'text',
 											'name' => 'widget-' . $widget_details->id_base . '[' . $widget_details->number . '][banners][' . $slide_guid . '][title]' ,
+											'placeholder' => __( 'Enter a Title' , HATCH_THEME_SLUG ),
 											'id' => 'widget-' . $widget_details->id_base . '-' . $widget_details->number . '-' . $slide_guid . '-title' ,
 											'placeholder' => __( 'Enter title here', HATCH_THEME_SLUG ),
 											'value' => ( isset( $title ) ) ? $title : NULL ,

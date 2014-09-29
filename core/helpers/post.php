@@ -19,7 +19,7 @@
 */
 
 if( !function_exists( 'hatch_post_meta' ) ) {
-    function hatch_post_meta( $post_id = NULL , $display = array( 'date', 'author', 'categories', 'tags' ), $wrapper = 'h5', $wrapper_class = 'the-date' ) {
+    function hatch_post_meta( $post_id = NULL , $display = array( 'date', 'author', 'categories', 'tags' ), $wrapper = 'footer', $wrapper_class = 'meta-info' ) {
         // If there is no post ID specified, use the current post, does not affect post author, yet.
         if( NULL == $post_id ) {
             global $post;
@@ -61,7 +61,9 @@ if( !function_exists( 'hatch_post_meta' ) ) {
 
         if( !empty( $meta_to_display ) ) {
             echo '<' . $wrapper . ( ( '' != $wrapper_class ) ? ' class="' . $wrapper_class .'"' : NULL ) . '>';
-            echo __( 'Written ' , HATCH_THEME_SLUG ) . implode( ' ' , $meta_to_display );
+                echo '<p>';
+                    echo __( 'Written ' , HATCH_THEME_SLUG ) . implode( ' ' , $meta_to_display );
+                echo '</p>';
             echo '</' . $wrapper . '>';
         }
     }

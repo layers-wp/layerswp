@@ -170,7 +170,7 @@ if( !class_exists( 'Hatch_Post_Widget' ) ) {
 								<?php get_template_part( 'content' , 'list' ); ?>
 							<?php } else { ?>
 								<article class="column<?php if( isset( $widget->design[ 'columnflush' ] ) ) echo '-flush'; ?> <?php echo $span_class; ?> hatch-masonry-column" data-cols="<?php echo $col_count; ?>">
-									<div href="<?php the_permalink(); ?>" class="thumbnail <?php if( isset( $widget->text_style ) && 'overlay' == $widget->text_style ) echo 'with-overlay'; ?>">
+									<div class="thumbnail <?php if( isset( $widget->text_style ) && 'overlay' == $widget->text_style ) echo 'with-overlay'; ?>">
 										<?php if( has_post_thumbnail() ) { ?>
 											<div class="thumbnail-media">
 												<?php the_post_thumbnail( $imageratios );  ?>
@@ -180,9 +180,13 @@ if( !class_exists( 'Hatch_Post_Widget' ) ) {
 											<div class="thumbnail-body">
 												<div class="overlay">
 													<?php if( isset( $widget->show_titles ) ) { ?>
-														<h4 class="heading"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h4>
+														<header class="article-title">
+															<h4 class="heading"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h4>
+														</header>
 													<?php } ?>
-        											<?php if( 'post' == get_post_type() && !empty( $post_meta_to_display ) ) hatch_post_meta( $post->ID, $post_meta_to_display );?>
+													<?php if( ! ( isset( $widget->text_style ) && 'overlay' == $widget->text_style ) ) { ?>
+        												<?php if( 'post' == get_post_type() && !empty( $post_meta_to_display ) ) hatch_post_meta( $post->ID, $post_meta_to_display );?>
+        											<?php } // Don't show meta if we have chosen overlay ?>
 													<?php if( isset( $widget->show_excerpts ) ) {
 														if( isset( $widget->excerpt_length ) && '' == $widget->excerpt_length ) {
 															echo '<div class="excerpt">';
@@ -316,7 +320,7 @@ if( !class_exists( 'Hatch_Post_Widget' ) ) {
 									'name' => $this->get_field_name( 'text_style' ) ,
 									'id' => $this->get_field_id( 'text_style' ) ,
 									'value' => ( isset( $text_style ) ) ? $text_style : NULL,
-									'label' => __( 'Widget Title &amp; Excerpt Position' , HATCH_THEME_SLUG ),
+									'label' => __( 'Title &amp; Excerpt Position' , HATCH_THEME_SLUG ),
 									'options' => array(
 											'regular' => __( 'Regular' , HATCH_THEME_SLUG ),
 											'overlay' => __( 'Overlay' , HATCH_THEME_SLUG )

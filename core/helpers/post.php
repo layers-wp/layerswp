@@ -48,7 +48,7 @@ if( !function_exists( 'hatch_post_meta' ) ) {
                     $tags = '';
 
                     // If there are no tags, skip to the next case
-                    if( empty( get_the_tags( $post_id ) ) ) continue;
+                    if( !get_the_tags( $post_id ) ) continue;
 
                     foreach ( get_the_tags( $post_id ) as $tag ){
                         $tags .= ' <a href="'.get_category_link( $tag->term_id ).'" title="' . esc_attr( sprintf( __( "View all posts tagged %s", HATCH_THEME_SLUG ), $tag->name ) ) . '">'.$tag->name.'</a>';

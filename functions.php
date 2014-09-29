@@ -130,7 +130,9 @@ if( ! function_exists( 'hatch_setup' ) ) {
 		 * This theme uses wp_nav_menu() in one location.
 		 */
 		register_nav_menus( array(
-			'primary' => __( 'Primary Menu', HATCH_THEME_SLUG )
+			'primary' => __( 'Primary Menu', HATCH_THEME_SLUG ),
+			'footer' => __( 'Footer Menu', HATCH_THEME_SLUG ),
+
 		) );
 
 		/**
@@ -150,6 +152,21 @@ if( ! function_exists( 'hatch_setup' ) ) {
 			'before_title'	=> '<h4 class="widget-title">',
 			'after_title'	=> '</h4>',
 		) );
+
+		/**
+		 * Register Footer Sidebars
+		 */
+		for( $footer = 1; $footer < 5; $footer++ ) {
+			register_sidebar( array(
+				'id'		=> HATCH_THEME_SLUG . '-footer-' . $footer,
+				'name'		=> __( 'Footer ' . $footer , HATCH_THEME_SLUG ),
+				'description'	=> __( '' , HATCH_THEME_SLUG ),
+				'before_widget'	=> '<section id="%1$s" class="column span-3 %2$s">',
+				'after_widget'	=> '</section>',
+				'before_title'	=> '<h5 class="section-nav-title">',
+				'after_title'	=> '</h5>',
+			) );
+		} // for footers
 
 		/**
 		* Welcome Redirect

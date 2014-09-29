@@ -239,7 +239,7 @@ if( !class_exists( 'Hatch_Banner_Widget' ) ) {
 									'label' => __( 'Hide Slider Arrows', HATCH_THEME_SLUG )
 								),
 								'slider_arrow_color' => array(
-									'type' => 'checkbox',
+									'type' => 'color',
 									'name' => $this->get_field_name( 'slider_arrow_color' ) ,
 									'id' => $this->get_field_id( 'slider_arrow_color' ) ,
 									'value' => ( isset( $slider_arrow_color ) ) ? $slider_arrow_color : NULL,

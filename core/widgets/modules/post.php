@@ -180,7 +180,9 @@ if( !class_exists( 'Hatch_Post_Widget' ) ) {
 											<div class="thumbnail-body">
 												<div class="overlay">
 													<?php if( isset( $widget->show_titles ) ) { ?>
-														<h4 class="heading"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h4>
+														<header class="article-title">
+															<h4 class="heading"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h4>
+														</header>
 													<?php } ?>
         											<?php if( 'post' == get_post_type() && !empty( $post_meta_to_display ) ) hatch_post_meta( $post->ID, $post_meta_to_display );?>
 													<?php if( isset( $widget->show_excerpts ) ) {

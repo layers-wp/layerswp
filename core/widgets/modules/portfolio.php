@@ -153,39 +153,39 @@ if( !class_exists( 'Hatch_Portfolio_Widget' ) ) {
 							<?php if( 'list-list' == $widget->design[ 'liststyle' ] ) { ?>
 								<?php get_template_part( 'content' , 'list' ); ?>
 							<?php } else { ?>
-								<article class="column<?php if( isset( $widget->design[ 'columnflush' ] ) ) echo '-flush'; ?> <?php echo $span_class; ?> hatch-masonry-column" data-cols="<?php echo $col_count; ?>">
-									<a href="<?php the_permalink(); ?>" class="thumbnail <?php if( isset( $widget->text_style ) && 'overlay' == $widget->text_style ) echo 'with-overlay'; ?>">
-										<?php if( has_post_thumbnail() ) { ?>
-											<div class="thumbnail-media">
+								<article class="column<?php if( isset( $widget->design[ 'columnflush' ] ) ) echo '-flush'; ?> <?php echo $span_class; ?> hatch-masonry-column thumbnail <?php if( isset( $widget->text_style ) && 'overlay' == $widget->text_style ) echo 'with-overlay'; ?>" data-cols="<?php echo $col_count; ?>">
+									<?php if( has_post_thumbnail() ) { ?>
+										<div class="thumbnail-media">
+											<a href="<?php the_permalink(); ?>">
 												<?php the_post_thumbnail( $imageratios );  ?>
+											</a>
+										</div>
+									<?php } // if post thumbnail ?>
+									<?php if( isset( $widget->show_titles ) || isset( $widget->show_excerpts ) ) { ?>
+										<div class="thumbnail-body">
+											<div class="overlay">
+												<?php if( isset( $widget->show_titles ) ) { ?>
+													<header class="article-title">
+														<h4 class="heading"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h4>
+													</header>
+												<?php } ?>
+												<?php if( isset( $widget->show_excerpts ) ) {
+													if( isset( $widget->excerpt_length ) && '' == $widget->excerpt_length ) {
+														echo '<div class="excerpt">';
+															the_content();
+														echo '</div>';
+                                                    } else if( isset( $widget->excerpt_length ) && 0 != $widget->excerpt_length && strlen( get_the_excerpt() ) > $widget->excerpt_length ){
+                                                        echo '<p class="excerpt">' . substr( get_the_excerpt() , 0 , $widget->excerpt_length ) . '&#8230;</p>';
+                                                    } else {
+                                                        echo '<p class="excerpt">' . get_the_excerpt() . '</p>';
+                                                    }
+                                                }; ?>
+                                                <?php if( isset( $widget->show_call_to_action ) && isset( $widget->call_to_action ) && '' != $widget->call_to_action ) { ?>
+													<span class="button"><?php echo $widget->call_to_action; ?></span>
+												<?php } // show call to action ?>
 											</div>
-										<?php } // if post thumbnail ?>
-										<?php if( isset( $widget->show_titles ) || isset( $widget->show_excerpts ) ) { ?>
-											<div class="thumbnail-body">
-												<div class="overlay">
-													<?php if( isset( $widget->show_titles ) ) { ?>
-														<header class="article-title">
-															<h4 class="heading"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h4>
-														</header>
-													<?php } ?>
-													<?php if( isset( $widget->show_excerpts ) ) {
-														if( isset( $widget->excerpt_length ) && '' == $widget->excerpt_length ) {
-															echo '<div class="excerpt">';
-																the_content();
-															echo '</div>';
-	                                                    } else if( isset( $widget->excerpt_length ) && 0 != $widget->excerpt_length && strlen( get_the_excerpt() ) > $widget->excerpt_length ){
-	                                                        echo '<p class="excerpt">' . substr( get_the_excerpt() , 0 , $widget->excerpt_length ) . '&#8230;</p>';
-	                                                    } else {
-	                                                        echo '<p class="excerpt">' . get_the_excerpt() . '</p>';
-	                                                    }
-	                                                }; ?>
-	                                                <?php if( isset( $widget->show_call_to_action ) && isset( $widget->call_to_action ) && '' != $widget->call_to_action ) { ?>
-														<span class="button"><?php echo $widget->call_to_action; ?></span>
-													<?php } // show call to action ?>
-												</div>
-											</div>
-										<?php } // if show titles || show excerpt ?>
-									</a>
+										</div>
+									<?php } // if show titles || show excerpt ?>
 								</article>
 							<?php }; // if list-list == liststyle ?>
 						<?php }; // while have_posts ?>

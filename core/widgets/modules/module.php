@@ -362,19 +362,17 @@ if( !class_exists( 'Hatch_Module_Widget' ) ) {
 										)
 									); ?>
 								</p>
-								<p class="hatch-form-item">
-									<?php echo $widget_elements->input(
-										array(
-											'type' => 'textarea',
-											'name' => 'widget-' . $widget_details->id_base . '[' . $widget_details->number . '][modules][' . $column_guid . '][excerpt]' ,
-											'id' => 'widget-' . $widget_details->id_base . '-' . $widget_details->number . '-' . $column_guid . '-excerpt' ,
-											'placeholder' => __( 'Short Excerpt', HATCH_THEME_SLUG ),
-											'value' => ( isset( $excerpt ) ) ? $excerpt : NULL ,
-											'class' => 'hatch-textarea',
-											'rows' => 6
-										)
-									); ?>
-								</p>
+								<?php echo $widget_elements->input(
+									array(
+										'type' => 'tinymce',
+										'name' => 'widget-' . $widget_details->id_base . '[' . $widget_details->number . '][modules][' . $column_guid . '][excerpt]' ,
+										'id' => 'widget-' . $widget_details->id_base . '-' . $widget_details->number . '-' . $column_guid . '-excerpt' ,
+										'placeholder' => __( 'Short Excerpt', HATCH_THEME_SLUG ),
+										'value' => ( isset( $excerpt ) ) ? $excerpt : NULL ,
+										'class' => 'hatch-form-item hatch-textarea',
+										'rows' => 6
+									)
+								); ?>
 							</div>
 						</div>
 					</section>

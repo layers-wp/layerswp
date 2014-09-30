@@ -215,15 +215,8 @@ class Hatch_Form_Elements {
 			* Tiny MCE
 			*/
 			case 'tinymce' : ?>
-				<?php wp_editor(
-					esc_html( $input->value ),
-					$input->id ,
-					array(
-						'textarea_name' => $input->name ,
-						'textarea_rows' => ( isset( $input->rows ) ) ? $input->rows : 3,
-						'teeny' => ( isset( $input->teeny ) ) ? $input->teeny : false
-					)
-				); ?>
+				<div class="editible editible-<?php echo $input->id; ?>" data-id="<?php echo $input->id; ?>"><?php echo esc_html( $input->value ); ?></div>
+				<textarea class="hatch-hide" <?php echo implode ( ' ' , $input_props ); ?> <?php if( isset( $input->rows ) ) echo 'rows="' . $input->rows . '"'; ?>><?php echo esc_html( $input->value ); ?></textarea>
 			<?php break;
 			/**
 			* Image Uploader

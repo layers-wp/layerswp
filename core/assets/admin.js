@@ -18,7 +18,7 @@
  * 6 - Design Controller toggles
  * 7 - Design Controller Height Matcher
  * 8 - Widget Focussing
- * 9 - Widget Closing when clicking on the canvas
+ * 9 - Init 'Medium' editors
 */
 
 jQuery(function($) {
@@ -323,5 +323,30 @@ jQuery(function($) {
 		}
 	});
 
+	/**
+	* 9 - Init 'Medium' editors
+	*/
+
+	$( '.editible' ).each( function(){
+		// "Hi Mom"
+		$that = $(this);
+
+		// Set the ID for this element
+		var id = $that.data ( 'id' );
+
+		var editor = new MediumEditor('.editible-' + id, {
+				anchorButton: true,
+				anchorButtonClass: 'button'
+			});
+		$( '.editible-' + id  ).on( 'input' , function(e){
+			// "Hi Mom!"
+			$that = $(this);
+
+			// Set the input
+			var textarea = $( '#' + id );
+			textarea.html( $that.html() );
+			textarea.trigger( 'change' );
+		});
+	});
 });
 

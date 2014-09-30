@@ -256,14 +256,29 @@ add_action( 'wp_enqueue_scripts' , 'hatch_scripts' );
 if( ! function_exists( 'hatch_admin_scripts' ) ) {
 	function hatch_admin_scripts(){
 		wp_enqueue_style(
-			HATCH_THEME_SLUG . '-admin-css',
+			HATCH_THEME_SLUG . '-admin',
 			get_template_directory_uri() . '/core/assets/admin.css',
 			array(),
 			HATCH_VERSION
 		); // Admin CSS
 
+		wp_enqueue_style(
+			HATCH_THEME_SLUG . '-admin-editor',
+			get_template_directory_uri() . '/core/assets/editor.min.css',
+			array(),
+			HATCH_VERSION
+		); // Admin CSS
+
 		wp_enqueue_script(
-			HATCH_THEME_SLUG . '-admin-js' ,
+			HATCH_THEME_SLUG . '-admin-editor' ,
+			get_template_directory_uri() . '/core/assets/editor.min.js' ,
+			array( 'jquery' ),
+			HATCH_VERSION,
+			true
+		);
+
+		wp_enqueue_script(
+			HATCH_THEME_SLUG . '-admin' ,
 			get_template_directory_uri() . '/core/assets/admin.js',
 			array(
 				'jquery',
@@ -273,6 +288,7 @@ if( ! function_exists( 'hatch_admin_scripts' ) ) {
 			HATCH_VERSION,
 			true
 		); // Admin JS
+
 
 	}
 }

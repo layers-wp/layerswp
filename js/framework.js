@@ -106,10 +106,6 @@ jQuery(function($) {
 
     });
 
-    $('.list-grid').equal_row_height({
-            selector: '.column',
-            per_row: $(this).data('cols')
-    });
 }); // document.ready
 
 (function ($) {

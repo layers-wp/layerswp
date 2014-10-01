@@ -487,7 +487,6 @@ class Hatch_Design_Controller {
 			</a>
 			<div class="hatch-visuals-settings-wrapper hatch-animate hatch-content-small">
 				<div class="hatch-visuals-settings">
-					<label><?php _e( 'Background' , HATCH_THEME_SLUG ); ?></label>
 					<div class="background-image">
 						<?php echo $this->input(
 							array(
@@ -566,17 +565,6 @@ class Hatch_Design_Controller {
 									'name' => $widget->name . '[background][stretch]' ,
 									'id' =>  $widget->id . '-background-stretch' ,
 									'value' => ( isset( $values->background['stretch'] ) ) ? $values->background['stretch'] : NULL
-								)
-							); ?>
-						</div>
-						<div class="hatch-checkbox-wrapper hatch-form-item">
-							<?php echo $this->input(
-								array(
-									'type' => 'checkbox',
-									'label' => __( 'Darken' , HATCH_THEME_SLUG ),
-									'name' => $widget->name . '[background][darken]' ,
-									'id' =>  $widget->id . '-background-darken' ,
-									'value' => ( isset( $values->background['darken'] ) ) ? $values->background['darken'] : NULL
 								)
 							); ?>
 						</div>

@@ -74,7 +74,7 @@ if( !class_exists( 'Hatch_Post_Widget' ) ) {
 					),
 					'fonts' => array(
 						'align' => 'text-left',
-						'size' => 'large',
+						'size' => 'medium',
 						'color' => NULL,
 						'shadow' => NULL
 					)

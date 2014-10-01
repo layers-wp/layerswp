@@ -398,6 +398,7 @@ h1, h2, h3, h4, h5, h6{color: #000; font-weight: 200;}
 
 
     /*---------------------------*/
+    /*- HORIZONTAL NAV ----------*/
 	.nav-horizontal li{float: left; margin: 0 10px}
     .nav-horizontal a{display: block; font-weight: 600; color: #323232; text-align: center;}
     .nav-horizontal a:hover{color: #8F8F8F;}
@@ -476,19 +477,24 @@ h1, h2, h3, h4, h5, h6{color: #000; font-weight: 200;}
 
     /*---------------------------*/
     /*- SUB NAV -----------------*/
-    .sub-menu{visibility: hidden; opacity: 0; background: #fff; border-radius: 4px; border: 2px solid #ddd; position: absolute; top: 30px; z-index: 5; transition: all 0.4s ease-in-out; line-height: normal;}
+    .sub-menu{visibility: hidden; opacity: 0; background: #fff; border-radius: 4px; border: 2px solid #ddd; position: absolute; top: 30px; right: 0; z-index: 5; transition: all 0.4s ease-in-out; line-height: normal;}
     .sub-menu li{clear: both; display: block; width: 200px; margin: 0; border: none; border-bottom: 1px dotted #ddd;}
     .sub-menu li:last-child{border-bottom: none;}
     .sub-menu li a{display: block; padding: 6px 10px; background: none; color: #454545; border-radius: 0; text-transform: none; text-align: left;}
     .sub-menu li a:hover{background: #333; color: #fff;}
     .sub-menu > li:first-child a{border-radius: 3px 3px 0 0;}
     .sub-menu li:last-child > a{border-radius: 0 0 3px 3px;}
+    
+    .nav li:hover > .sub-menu{visibility: visible; opacity: 1; top: 40px; transition: all 0.2s ease-in-out;}
+    .nav li .sub-menu .sub-menu,
+    .nav li:hover > .sub-menu .sub-menu{right: 205px; top: -3px;}
 
-    .nav-vertical .sub-menu{width: 200px; left: 150px; top: -3px; box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.1);}
+    .nav-vertical .sub-menu{left: 150px; right: auto; top: -3px; box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.1);}
     .nav-vertical   li:hover > .sub-menu{top: -3px; left: 140px;}
-    .nav            li:hover > .sub-menu {visibility: visible; opacity: 1; top: 40px; transition: all 0.2s ease-in-out;}
-    .nav            li .sub-menu .sub-menu,
-    .nav            li:hover > .sub-menu .sub-menu{left: 205px; top: -3px;}
+    .nav-vertical   li:hover > .sub-menu .sub-menu{left: 205px; right: auto; top: -3px;}
+
+    .header-secondary .sub-nav,
+    .copyright .sub-nav{display: none;}
 
     /*---------------------------*/
     /*- ABOLUTE NAV -------------*/
@@ -740,7 +746,6 @@ h1, h2, h3, h4, h5, h6{color: #000; font-weight: 200;}
     .copyright .nav-horizontal li{margin: 0 0 0 10px;}
     .copyright .nav-horizontal a{padding: 0; color: #454545; text-transform: uppercase; font-weight: 600; font-size: 1.0rem; letter-spacing: 2px;}
     .copyright .nav-horizontal a:hover{background: none; color: #323232;}
-
 
 /*-------------------------------*/
 /*- FORMS -----------------------*/

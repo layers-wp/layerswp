@@ -286,8 +286,8 @@ class Hatch_Design_Controller {
 							'value' => ( isset( $values->textalign ) ) ? $values->textalign : NULL,
 							'options' => array(
 								'text-left' => __( 'Left' , HATCH_THEME_SLUG ),
-								'text-right' => __( 'Right' , HATCH_THEME_SLUG ),
 								'text-center' => __( 'Center' , HATCH_THEME_SLUG ),
+								'text-right' => __( 'Right' , HATCH_THEME_SLUG ),
 								'text-justify' => __( 'Justify' , HATCH_THEME_SLUG )
 							)
 						)

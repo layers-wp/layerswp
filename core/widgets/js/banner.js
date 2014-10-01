@@ -6,7 +6,7 @@ jQuery(document).ready(function($){
 
 	$( 'ul[id^="banner_list_"]' ).sortable({
 		placeholder: "hatch-sortable-drop",
-		cancel: "div.editible, select, input, textarea, .hatch-icon-wrapper",
+		handle: ".hatch-accordion-title",
 		stop: function(e , li){
 			// Banner UL, looking up from our current target
 			$bannerList = li.item.closest( 'ul' );

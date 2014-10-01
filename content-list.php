@@ -14,7 +14,7 @@
         <div class="column <?php echo $content_class; ?>">
             <div class="copy">
                 <?php the_excerpt(); ?>
-            <?php hatch_post_meta( $post->ID ); ?>
+                <?php hatch_post_meta( $post->ID ); ?>
                 <a href="<?php the_permalink(); ?>" class="button"><?php _e( 'Read Post &rarr;' , HATCH_THEME_SLUG ); ?></a>
             </div>
         </div>

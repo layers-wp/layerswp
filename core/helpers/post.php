@@ -39,7 +39,18 @@ if( !function_exists( 'hatch_post_meta' ) ) {
                     break;
                 case 'categories' :
                     $categories = '';
-                    foreach ( get_the_category( $post_id ) as $category ){
+
+                    // Use different terms for different post types
+                    if( 'post' == get_post_type( $post_id ) ){
+                        $the_categories = get_the_category( $post_id );
+                    } elseif( 'jetpack-portfolio' == get_post_type( $post_id ) ) {
+                        $the_categories = get_the_terms( $post_id , 'jetpack-portfolio-type' );
+                    }
+
+                    // If there are no categories, skip to the next case
+                    if( !$the_categories ) continue;
+
+                    foreach ( $the_categories as $category ){
                         $categories .= ' <a href="'.get_category_link( $category->term_id ).'" title="' . esc_attr( sprintf( __( "View all posts in %s", HATCH_THEME_SLUG ), $category->name ) ) . '">'.$category->name.'</a>';
                     }
                     $meta_to_display[] = __( 'in ', HATCH_THEME_SLUG ) . $categories;
@@ -47,10 +58,16 @@ if( !function_exists( 'hatch_post_meta' ) ) {
                 case 'tags' :
                     $tags = '';
 
-                    // If there are no tags, skip to the next case
-                    if( !get_the_tags( $post_id ) ) continue;
+                    if( 'post' == get_post_type( $post_id ) ){
+                        $the_tags = get_the_tags( $post_id );
+                    } elseif( 'jetpack-portfolio' == get_post_type( $post_id ) ) {
+                        $the_tags = get_the_terms( $post_id , 'jetpack-portfolio-tag' );
+                    }
 
-                    foreach ( get_the_tags( $post_id ) as $tag ){
+                    // If there are no tags, skip to the next case
+                    if( !$the_tags ) continue;
+
+                    foreach ( $the_tags as $tag ){
                         $tags[] = ' <a href="'.get_category_link( $tag->term_id ).'" title="' . esc_attr( sprintf( __( "View all posts tagged %s", HATCH_THEME_SLUG ), $tag->name ) ) . '">'.$tag->name.'</a>';
                     }
                     $meta_to_display[] = __( 'tagged ', HATCH_THEME_SLUG ) . implode( __( ', ', HATCH_THEME_SLUG ), $tags );

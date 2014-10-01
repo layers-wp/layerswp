@@ -69,6 +69,7 @@ locate_template( '/core/options-panel/init.php' , true );
  * Load Front-end helpers
  */
 locate_template( '/core/helpers/post.php' , true );
+locate_template( '/core/helpers/template.php' , true );
 
 /*
  * Load Admin-specific files

@@ -44,6 +44,8 @@ if( !class_exists( 'Hatch_Banner_Widget' ) ) {
 			$this->banner_defaults = array (
 				'title' => NULL,
 				'excerpt' => NULL,
+				'link' => NULL,
+				'link_text' => NULL,
 				'design' => array(
 					'imagealign' => 'image-right',
 					'imageratios' => NULL,
@@ -116,13 +118,19 @@ if( !class_exists( 'Hatch_Banner_Widget' ) ) {
 												<!-- your dynamic output goes here -->
 												<div class="section-title <?php echo ( isset( $banner->design['fonts'][ 'size' ] ) ? $banner->design['fonts'][ 'size' ] : '' ); ?>">
 													<?php if( isset( $banner->title ) && '' != $banner->title ) { ?>
-														<h3 class="heading"><?php echo $banner->title; ?></h3>
+														<?php if( '' != $banner->link ) { ?>
+															<h3 class="heading"><a href="<?php echo $banner->link; ?>"><?php echo $banner->title; ?></a></h3>
+														<?php } else { ?>
+															<h3 class="heading"><?php echo $banner->title; ?></h3>
+														<?php } ?>
 													<?php } ?>
 													<?php if( isset( $banner->excerpt ) && '' != $banner->excerpt ) { ?>
 														<div class="excerpt"><?php echo $banner->excerpt; ?></div>
 													<?php } ?>
+													<?php if( isset( $banner->link ) && isset( $banner->link_text ) && '' != $banner->link_text ) { ?>
+														<a href="<?php echo $banner->link; ?>" class="button"><?php echo $banner->link_text; ?></a>
+													<?php } ?>
 												</div>
-												<div class="copy"></div>
 											</div>
 										<?php } // if title || excerpt ?>
 										<?php if( isset( $banner->image ) && '' != $banner->image ) { ?>
@@ -427,17 +435,43 @@ if( !class_exists( 'Hatch_Banner_Widget' ) ) {
 										)
 									); ?>
 								</p>
-								<?php echo $widget_elements->input(
-									array(
-										'type' => 'textarea',
-										'name' => 'widget-' . $widget_details->id_base . '[' . $widget_details->number . '][banners][' . $slide_guid . '][excerpt]' ,
-										'id' => 'widget-' . $widget_details->id_base . '-' . $widget_details->number . '-' . $slide_guid . '-excerpt' ,
-										'placeholder' => __( 'Short Excerpt', HATCH_THEME_SLUG ),
-										'value' => ( isset( $excerpt ) ) ? $excerpt : NULL ,
-										'class' => 'hatch-textarea',
-										'rows' => 6
-									)
-								); ?>
+								<p class="hatch-form-item">
+									<?php echo $widget_elements->input(
+										array(
+											'type' => 'textarea',
+											'name' => 'widget-' . $widget_details->id_base . '[' . $widget_details->number . '][banners][' . $slide_guid . '][excerpt]' ,
+											'id' => 'widget-' . $widget_details->id_base . '-' . $widget_details->number . '-' . $slide_guid . '-excerpt' ,
+											'placeholder' => __( 'Short Excerpt', HATCH_THEME_SLUG ),
+											'value' => ( isset( $excerpt ) ) ? $excerpt : NULL ,
+											'class' => 'hatch-textarea',
+											'rows' => 6
+										)
+									); ?>
+								</p>
+								<p class="hatch-form-item">
+									<label for="<?php echo $this->get_field_id( 'link' ); ?>"><?php _e( 'Link' , HATCH_THEME_SLUG ); ?></label>
+									<?php echo $widget_elements->input(
+										array(
+											'type' => 'text',
+											'name' => 'widget-' . $widget_details->id_base . '[' . $widget_details->number . '][banners][' . $slide_guid . '][link]' ,
+											'id' => 'widget-' . $widget_details->id_base . '-' . $widget_details->number . '-' . $slide_guid . '-link' ,
+											'placeholder' => __( 'e.g. http://'.get_bloginfo( 'url' ) , HATCH_THEME_SLUG ),
+											'value' => ( isset( $link ) ) ? $link : NULL ,
+										)
+									); ?>
+								</p>
+								<p class="hatch-form-item">
+									<label for="<?php echo $this->get_field_id( 'link' ); ?>"><?php _e( 'Button Text' , HATCH_THEME_SLUG ); ?></label>
+									<?php echo $widget_elements->input(
+										array(
+											'type' => 'text',
+											'name' => 'widget-' . $widget_details->id_base . '[' . $widget_details->number . '][banners][' . $slide_guid . '][link_text]' ,
+											'id' => 'widget-' . $widget_details->id_base . '-' . $widget_details->number . '-' . $slide_guid . '-link_text' ,
+											'placeholder' => __( 'e.g. "Read More"' , HATCH_THEME_SLUG ),
+											'value' => ( isset( $link_text ) ) ? $link_text : NULL ,
+										)
+									); ?>
+								</p>
 							</div>
 						</div>
 					</section>

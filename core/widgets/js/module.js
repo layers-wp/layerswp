@@ -5,7 +5,7 @@ jQuery(document).ready(function($){
 
 	$( 'ul[id^="module_list_"]' ).sortable({
 		placeholder: "hatch-sortable-drop",
-		cancel: "div.editible, select, input, .hatch-icon-wrapper",
+		cancel: "div.editible, select, input, textarea, .hatch-icon-wrapper",
 		stop: function(e , li){
 			// Module UL, looking up from our current target
 			$moduleList = li.item.closest( 'ul' );

@@ -131,15 +131,15 @@ class Hatch_Form_Elements {
 		$input = (object) wp_parse_args( $args, $defaults );
 
 		// If the value of this element is in fact a collection of inputs, turn it into an object, it's nicer to work with
-		if( NULL != $input->value && is_array( $input->value ) ) $input->value = (object) $input->value;
+		if( NULL != $input->value && is_array( $input->value ) ) $input->value = (object) esc_attr( $input->value );
 
 		// Create the input attributes
 		$input_props = array();
 		$input_props['id'] = ( NULL != $input->id && 'select-icons' != $input->type ) ? 'id="' .  $input->id . '"' : NULL ;
 		$input_props['name'] = ( NULL != $input->name ) ? 'name="' .  $input->name . '"' : NULL ;
-		$input_props['placeholder'] = ( NULL != $input->placeholder ) ? 'placeholder="' .  $input->placeholder . '"' : NULL ;
+		$input_props['placeholder'] = ( NULL != $input->placeholder ) ? 'placeholder="' .  esc_attr( $input->placeholder ) . '"' : NULL ;
 		$input_props['class'] = ( NULL != $input->class ) ? 'class="' .  $input->class . '"' : NULL ;
-		if( NULL != $input->data ) { foreach( $input->data as $data_key => $data_value ){ $input_props[ 'data-' . $data_key ] = 'data-' . $data_key . '="' . $data_value . '"'; } }
+		if( NULL != $input->data ) { foreach( $input->data as $data_key => $data_value ){ $input_props[ 'data-' . $data_key ] = 'data-' . $data_key . '="' . esc_attr( $data_value ) . '"'; } }
 
 		// Switch our input type
 		switch( $input->type ) {
@@ -147,7 +147,7 @@ class Hatch_Form_Elements {
 			* Text Inputs
 			*/
 			case 'text' : ?>
-				<input type="text" <?php echo implode ( ' ' , $input_props ); ?> value="<?php echo esc_attr( $input->value ); ?>" />
+				<input type="text" <?php echo implode ( ' ' , $input_props ); ?> value="<?php echo $input->value; ?>" />
 			<?php break;
 			/**
 			* Number Inputs
@@ -156,7 +156,7 @@ class Hatch_Form_Elements {
 				$input_props['min'] = ( isset( $input->min ) ) ? 'min="' .  $input->min . '"' : NULL ;
 				$input_props['max'] = ( isset( $input->max ) ) ? 'max="' .  $input->max . '"' : NULL ;
 				$input_props['step'] = ( isset( $input->step ) ) ? 'step="' .  $input->step . '"' : NULL ; ?>
-				<input type="number" <?php echo implode ( ' ' , $input_props ); ?> value="<?php echo esc_attr( $input->value ); ?>" />
+				<input type="number" <?php echo implode ( ' ' , $input_props ); ?> value="<?php echo $input->value; ?>" />
 			<?php break;
 			/**
 			* Checkboxes - here we look for on/NULL, that's how WP widgets save them
@@ -209,14 +209,14 @@ class Hatch_Form_Elements {
 			* Text areas
 			*/
 			case 'textarea' : ?>
-				<textarea <?php echo implode ( ' ' , $input_props ); ?> <?php if( isset( $input->rows ) ) echo 'rows="' . $input->rows . '"'; ?>><?php echo esc_html( $input->value ); ?></textarea>
+				<textarea <?php echo implode ( ' ' , $input_props ); ?> <?php if( isset( $input->rows ) ) echo 'rows="' . $input->rows . '"'; ?>><?php echo $input->value; ?></textarea>
 			<?php break;
 			/**
 			* Tiny MCE
 			*/
 			case 'tinymce' : ?>
 				<div class="editible editible-<?php echo $input->id; ?>" data-id="<?php echo $input->id; ?>"><?php echo esc_html( $input->value ); ?></div>
-				<textarea class="hatch-hide" <?php echo implode ( ' ' , $input_props ); ?> <?php if( isset( $input->rows ) ) echo 'rows="' . $input->rows . '"'; ?>><?php echo esc_html( $input->value ); ?></textarea>
+				<textarea class="hatch-hide" <?php echo implode ( ' ' , $input_props ); ?> <?php if( isset( $input->rows ) ) echo 'rows="' . $input->rows . '"'; ?>><?php echo $input->value; ?></textarea>
 			<?php break;
 			/**
 			* Image Uploader
@@ -260,7 +260,7 @@ class Hatch_Form_Elements {
 				<small class="<?php if( !isset( $input->value ) ) echo 'hide'; ?> hatch-file-remove">
 					<?php _e( 'Remove' , HATCH_THEME_SLUG ); ?>
 				</small>
-				<input type="hidden" <?php echo implode ( ' ' , $input_props ); ?> value="<?php echo esc_attr( $input->value ); ?>" />
+				<input type="hidden" <?php echo implode ( ' ' , $input_props ); ?> value="<?php echo $input->value; ?>" />
 			<?php break;
 			/**
 			* Background Controller
@@ -452,13 +452,13 @@ class Hatch_Form_Elements {
 			* Color Selector
 			*/
 			case 'color' : ?>
-				<input type="hidden" <?php echo implode ( ' ' , $input_props ); ?> value="<?php echo esc_attr( $input->value ); ?>" class="hatch-color-selector" />
+				<input type="hidden" <?php echo implode ( ' ' , $input_props ); ?> value="<?php echo $input->value; ?>" class="hatch-color-selector" />
 			<?php break;
 			/**
 			* Default to hidden field
 			*/
 			default : ?>
-				<input type="hidden" <?php echo implode ( ' ' , $input_props ); ?> value="<?php echo esc_attr( $input->value ); ?>" />
+				<input type="hidden" <?php echo implode ( ' ' , $input_props ); ?> value="<?php echo $input->value; ?>" />
 		<?php }
 
 	}

@@ -123,7 +123,8 @@
 /*-------------------------------*/
 /*- MAP - ADD ON ----------------*/
 /*-------------------------------*/
-#hatch-map img{width: auto;}
+.row.has-map{padding-bottom: 0;}
+.hatch-map img{width: auto; max-width: none;}
 
 /*-------------------------------*/
 /*- WOOCOMMERCE - ADD ON --------*/

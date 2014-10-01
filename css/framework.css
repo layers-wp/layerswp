@@ -218,6 +218,7 @@ h1, h2, h3, h4, h5, h6{color: #000; font-weight: 200;}
     /*---------------------------*/
     /*- WELLS -------------------*/
     .well{background: #F3F3F3;}
+    .well .well{background: #eee;}
     .well-block{background: #fff; border: 3px solid #eee;}
 
     /*---------------------------*/
@@ -316,7 +317,9 @@ h1, h2, h3, h4, h5, h6{color: #000; font-weight: 200;}
     .section-title .excerpt{max-width: 745px; font-size: 2.0rem; color: #8F8F8F;}
     .section-title .heading + p{margin-top: 5px;}
     .section-title .excerpt + .button{margin-top: 15px;}
+
     .meta-info{font-size: 1.2rem; color: #8F8F8F}
+    .meta-info + .heading{margin-top: 15px;}
 
         /*-----------------------*/
         /*- SECTION SIZE --------*/
@@ -1011,6 +1014,7 @@ table.table-comfortable td{padding: 14px 10px;}
 /*-------------------------------*/
 
     .copy{font-size: 1.6rem;}
+    .copy.small{font-size: 1.4rem;}
 
     .copy p{margin-bottom: 16px;}
     .copy ul{list-style: disc; margin: 0 0 26px;}

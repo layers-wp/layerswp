@@ -218,6 +218,7 @@ class Hatch_Custom_Meta {
 				}
 
 				// Add Meta Box
+				/*
 				add_meta_box(
 						HATCH_THEME_SLUG . '-' . $meta_index, // Slug
 						$custom_meta[ 'title' ], // Title
@@ -227,6 +228,7 @@ class Hatch_Custom_Meta {
 						'high', // Priority
 						$callback_args // Callback args
 					);
+				*/
 			}
 		}
 	}

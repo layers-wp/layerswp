@@ -162,7 +162,7 @@ if( !class_exists( 'Hatch_Portfolio_Widget' ) ) {
 					</div>
 				<?php } ?>
 				<?php if( isset( $widget->show_category_filter ) && !is_wp_error( $terms ) ) { ?>
-					<div class="container clearfix">
+					<div class="container text-center <?php if( isset( $widget->design['fonts'][ 'align' ] ) ) echo $widget->design['fonts'][ 'align' ]; ?> clearfix">
 						<ul class="nav nav-pills push-top">
 							<?php foreach( $terms as $term ) { ?>
 								<li data-filter="<?php echo $term->slug; ?>"><a href="#"><?php echo $term->name; ?></a></li>

@@ -118,7 +118,7 @@ if( !class_exists( 'Hatch_Banner_Widget' ) ) {
 												<!-- your dynamic output goes here -->
 												<div class="section-title <?php echo ( isset( $banner->design['fonts'][ 'size' ] ) ? $banner->design['fonts'][ 'size' ] : '' ); ?>">
 													<?php if( isset( $banner->title ) && '' != $banner->title ) { ?>
-														<?php if( '' != $banner->link ) { ?>
+														<?php if( isset( $banner->link ) && '' != $banner->link ) { ?>
 															<h3 class="heading"><a href="<?php echo $banner->link; ?>"><?php echo $banner->title; ?></a></h3>
 														<?php } else { ?>
 															<h3 class="heading"><?php echo $banner->title; ?></h3>

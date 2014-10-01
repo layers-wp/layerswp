@@ -483,7 +483,7 @@ h1, h2, h3, h4, h5, h6{color: #000; font-weight: 200;}
 
     .nav-vertical .sub-menu{width: 200px; left: 150px; top: -3px; box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.1);}
     .nav-vertical   li:hover > .sub-menu{top: -3px; left: 140px;}
-    .nav            li:hover > .sub-menu {visibility: visible; opacity: 1; top: 30px; transition: all 0.2s ease-in-out;}
+    .nav            li:hover > .sub-menu {visibility: visible; opacity: 1; top: 40px; transition: all 0.2s ease-in-out;}
     .nav            li .sub-menu .sub-menu,
     .nav            li:hover > .sub-menu .sub-menu{left: 205px; top: -3px;}
 
@@ -618,7 +618,7 @@ h1, h2, h3, h4, h5, h6{color: #000; font-weight: 200;}
 
         /*-----------------------*/
         /*- OVERLAY -------------*/
-        .with-overlay{width: 100%; overflow: hidden; text-shadow: 0px 1px 2px rgba(0, 0, 0, 0.6);}
+        .with-overlay{overflow: hidden; text-shadow: 0px 1px 2px rgba(0, 0, 0, 0.6);}
         .with-overlay .thumbnail-body{position: absolute; top: 0; left: 0; width: 100%; height: 100%; visibility: hidden; opacity: 0; background: rgba(0,0,0,0.65); transition: 0.2s all ease-in-out; text-align: center;}
         .with-overlay .overlay{display: block; position: relative; top: 50%; -webkit-transform: translateY(-50%); -ms-transform: translateY(-50%); transform: translateY(-50%);}
         

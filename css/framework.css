@@ -517,14 +517,13 @@ h1, h2, h3, h4, h5, h6{color: #000; font-weight: 200;}
     /*---------------------------*/
     /*- PAGINATION --------------*/
     .pagination{display: inline-block; overflow: hidden; margin: 0 20px 20px 0;}
-    .pagination li{float: left; border-right: 1px solid #eee; font-weight: 600; font-size: 1.2rem; text-align: center;}
-    .pagination li:first-child a{border-radius: 4px 0px 0px 4px;}
-    .pagination li:last-child{border-right: none;}
-    .pagination li:last-child a{border-radius: 0px 4px 4px 0px;}
-    .pagination a{display: inline-block; min-width: 38px; padding: 4px 10px; background: #f5f5f5; color: #454545;}
+    .pagination li{float: left; border-right: 1px solid #eee; font-weight: 600; font-size: 1.2rem; text-align: center; overflow: hidden;}
+    .pagination li:first-child{border-radius: 4px 0px 0px 4px;}
+    .pagination li:last-child{border-right: none; border-radius: 0px 4px 4px 0px;}
+    .pagination a, .pagination span{display: inline-block; min-width: 38px; padding: 4px 10px; background: #f5f5f5; color: #454545;}
     .pagination a:hover{background: #454545; color: #fff;}
-    .pagination .active{border-color: #323232;}
-    .pagination .active a{background: #454545; color: #fff;}
+    .pagination .current{border-color: #323232;}
+    .pagination .current{background: #454545; color: #fff;}
 
     .pagination li.previous a{border-radius: 4px 0px 0px 4px;}
     .pagination li.next{margin-right: 10px; border: none;}

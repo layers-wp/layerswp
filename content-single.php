@@ -5,7 +5,7 @@
         <?php } // if post ?>
         <h1 class="heading"><?php the_title(); ?></h1>
     </header>
-    <div class="thumbnail"><?php echo the_post_thumbnail( 'large' ); ?></div>
+    <div class="thumbnail push-bottom"><?php echo the_post_thumbnail( 'large' ); ?></div>
     <div class="story">
         <?php the_content(); ?>
     </div>

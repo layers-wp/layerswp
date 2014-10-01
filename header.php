@@ -12,6 +12,7 @@
 	<?php do_action( 'hatch_before_site_wrapper' ); ?>
 	<section class="wrapper-site">
 		<?php do_action( 'hatch_before_header' ); ?>
+		<?php get_template_part( 'partials/header' , 'secondary' ); ?>
 		<header class="header-left">
 			<?php do_action( 'hatch_before_header_inner' ); ?>
 			<div class="container content-vertical clearfix">

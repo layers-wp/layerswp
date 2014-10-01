@@ -147,9 +147,9 @@ if( ! function_exists( 'hatch_setup' ) ) {
 			'id'		=> HATCH_THEME_SLUG . '-sidebar',
 			'name'		=> __( ' Sidebar' , HATCH_THEME_SLUG ),
 			'description'	=> __( '' , HATCH_THEME_SLUG ),
-			'before_widget'	=> '<aside id="%1$s" class="widget %2$s">',
+			'before_widget'	=> '<aside id="%1$s" class="content well push-bottom widget %2$s">',
 			'after_widget'	=> '</aside>',
-			'before_title'	=> '<h4 class="widget-title">',
+			'before_title'	=> '<h5 class="section-nav-title">',
 			'after_title'	=> '</h4>',
 		) );
 

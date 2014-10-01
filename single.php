@@ -8,17 +8,18 @@
 					<?php echo the_post_thumbnail( 'full' ); ?>
 				</div>
 			<?php } // if has_post_thumbnail() ?>
-			<header class="section-title">
-				<h1 class="heading"><?php the_title(); ?></h1>
-				<h5 class="the-date"><?php the_date(); ?></h5>
-			</header>
 			<div class="row">
 				<div class="column span-7">
-					<div class="copy">
+					<header class="section-title large">
+						<h5 class="meta-info"><?php the_date(); ?></h5>
+						<h1 class="heading"><?php the_title(); ?></h1>
+					</header>
+					<div class="story">
 						<?php the_content(); ?>
 					</div>
+					<?php hatch_post_meta( $post->ID ); ?>
 				</div>
-				<div class="column span-4 pull-right well content">
+                <div class="column span-4 pull-right sidebar">
 					<?php get_sidebar(); ?>
 				</div>
 			</div>

@@ -137,16 +137,30 @@ if( !class_exists( 'Hatch_Post_Widget' ) ) {
 				}
 			}
 
+			// Do the special taxonomy array()
+			if( isset( $widget->category ) && '' != $widget->category && 0 != $widget->category ){
+				$query_args['tax_query'] = array(
+					array(
+						"taxonomy" => $this->taxonomy,
+						"field" => "id",
+						"terms" => $widget->category
+					)
+				);
+			} elseif( !isset( $widget->hide_category_filter ) ) {
+				$terms = get_terms( $this->taxonomy );
+			} // if we haven't selected which category to show, let's load the $terms for use in the filter
+
+			// Do the WP_Query
+			$post_query = new WP_Query( $query_args );
+
+
 			// Set the meta to display
 			global $post_meta_to_display;
 			$post_meta_to_display = array();
 			if( isset( $widget->show_dates ) ) $post_meta_to_display[] = 'date';
 			if( isset( $widget->show_author ) ) $post_meta_to_display[] = 'author';
 			if( isset( $widget->show_categories ) ) $post_meta_to_display[] = 'categories';
-			if( isset( $widget->show_tags ) ) $post_meta_to_display[] = 'tags';
-
-			// Do the WP_Query
-			$post_query = new WP_Query( $query_args ); ?>
+			if( isset( $widget->show_tags ) ) $post_meta_to_display[] = 'tags'; ?>
 
 			<section class="widget row content-vertical-massive" id="<?php echo $widget_id; ?>">
 				<?php if( '' != $widget->title || '' != $widget->excerpt ) { ?>

@@ -133,7 +133,7 @@ if( !class_exists( 'Hatch_Portfolio_Widget' ) ) {
 
 			// Do the special taxonomy array()
 			if( isset( $widget->category ) && '' != $widget->category && 0 != $widget->category ){
-				$args['tax_query'] = array(
+				$query_args['tax_query'] = array(
 					array(
 						"taxonomy" => $this->taxonomy,
 						"field" => "id",
@@ -143,7 +143,6 @@ if( !class_exists( 'Hatch_Portfolio_Widget' ) ) {
 			} elseif( !isset( $widget->hide_category_filter ) ) {
 				$terms = get_terms( $this->taxonomy );
 			} // if we haven't selected which category to show, let's load the $terms for use in the filter
-
 
 			// Do the WP_Query
 			$portfolio_query = new WP_Query( $query_args ); ?>
@@ -161,7 +160,7 @@ if( !class_exists( 'Hatch_Portfolio_Widget' ) ) {
 						</div>
 					</div>
 				<?php } ?>
-				<?php if( isset( $widget->show_category_filter ) && !is_wp_error( $terms ) ) { ?>
+				<?php if( isset( $widget->show_category_filter ) && isset( $terms ) &&  !is_wp_error( $terms ) ) { ?>
 					<div class="container text-center <?php if( isset( $widget->design['fonts'][ 'align' ] ) ) echo $widget->design['fonts'][ 'align' ]; ?> clearfix">
 						<ul class="nav nav-pills push-top">
 							<?php foreach( $terms as $term ) { ?>

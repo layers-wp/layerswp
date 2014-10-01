@@ -25,6 +25,7 @@ if( !class_exists( 'Hatch_Portfolio_Widget' ) ) {
 		public $checkboxes = array(
 				'show_titles',
 				'show_excerpts',
+				'show_category_filter',
 				'show_call_to_action'
 			); // @TODO: Try make this more dynamic, or leave a different note reminding users to change this if they add/remove checkboxes
 		/**
@@ -48,6 +49,7 @@ if( !class_exists( 'Hatch_Portfolio_Widget' ) ) {
 				'category' => 0,
 				'show_titles' => 'on',
 				'show_excerpts' => 'on',
+				'show_category_filter' => 'on',
 				'excerpt_length' => 200,
 				'show_call_to_action' => 'on',
 				'call_to_action' => __( 'View Project' , HATCH_THEME_SLUG ),
@@ -129,6 +131,20 @@ if( !class_exists( 'Hatch_Portfolio_Widget' ) ) {
 				}
 			}
 
+			// Do the special taxonomy array()
+			if( isset( $widget->category ) && '' != $widget->category && 0 != $widget->category ){
+				$args['tax_query'] = array(
+					array(
+						"taxonomy" => $this->taxonomy,
+						"field" => "id",
+						"terms" => $widget->category
+					)
+				);
+			} elseif( !isset( $widget->hide_category_filter ) ) {
+				$terms = get_terms( $this->taxonomy );
+			} // if we haven't selected which category to show, let's load the $terms for use in the filter
+
+
 			// Do the WP_Query
 			$portfolio_query = new WP_Query( $query_args ); ?>
 
@@ -143,6 +159,13 @@ if( !class_exists( 'Hatch_Portfolio_Widget' ) ) {
 								<p class="excerpt"><?php echo $widget->excerpt; ?></p>
 							<?php } ?>
 						</div>
+				<?php if( isset( $widget->show_category_filter ) && !is_wp_error( $terms ) ) { ?>
+					<ul class="nav nav-pills push-top">
+						<?php foreach( $terms as $term ) { ?>
+							<li data-filter="<?php echo $term->slug; ?>"><a href="#"><?php echo $term->name; ?></a></li>
+						<?php } // foreach $terms ?>
+					</ul>
+				<?php } ?>
 					</div>
 				<?php } ?>
 				<div class="row <?php if( isset( $widget->design[ 'layout' ] ) && 'layout-boxed' == $widget->design[ 'layout' ] ) echo 'container'; ?> <?php  if( isset( $widget->design[ 'liststyle' ] ) ) echo $widget->design[ 'liststyle' ]; ?>">
@@ -153,7 +176,14 @@ if( !class_exists( 'Hatch_Portfolio_Widget' ) ) {
 							<?php if( 'list-list' == $widget->design[ 'liststyle' ] ) { ?>
 								<?php get_template_part( 'content' , 'list' ); ?>
 							<?php } else { ?>
-								<article class="column<?php if( isset( $widget->design[ 'columnflush' ] ) ) echo '-flush'; ?> <?php echo $span_class; ?> hatch-masonry-column thumbnail <?php if( isset( $widget->text_style ) && 'overlay' == $widget->text_style ) echo 'with-overlay'; ?>" data-cols="<?php echo $col_count; ?>">
+								<?php $terms = wp_get_post_terms( $post->ID, $this->taxonomy );
+								$term_list = array();
+								if( !empty( $terms ) ) {
+									foreach( $terms as $term ){
+										$term_list[] = $term->slug;
+									}
+								} ?>
+								<article class="column<?php if( isset( $widget->design[ 'columnflush' ] ) ) echo '-flush'; ?> <?php echo $span_class; ?> hatch-masonry-column thumbnail <?php if( isset( $widget->text_style ) && 'overlay' == $widget->text_style ) echo 'with-overlay'; ?> <?php echo implode( $term_list, " " ); ?>"  data-cols="<?php echo $col_count; ?>">
 									<?php if( has_post_thumbnail() ) { ?>
 										<div class="thumbnail-media">
 											<a href="<?php the_permalink(); ?>">
@@ -222,7 +252,10 @@ if( !class_exists( 'Hatch_Portfolio_Widget' ) ) {
 							}
 						});
 
-						$('#<?php echo $widget_id; ?>').find('.masonry').masonry();
+						$('#<?php echo $widget_id; ?>').find('.list-masonry').masonry({
+							'itemSelector': '.hatch-masonry-column'
+							<?php if( !isset( $widget->design[ 'columnflush' ] ) ) echo ', "gutter": 20'; ?>
+						});
 
 						return false;
 					});
@@ -306,6 +339,13 @@ if( !class_exists( 'Hatch_Portfolio_Widget' ) ) {
 											'regular' => __( 'Regular' , HATCH_THEME_SLUG ),
 											'overlay' => __( 'Overlay' , HATCH_THEME_SLUG )
 									)
+								),
+								'show_category_filter' => array(
+									'type' => 'checkbox',
+									'name' => $this->get_field_name( 'show_category_filter' ) ,
+									'id' => $this->get_field_id( 'show_category_filter' ) ,
+									'value' => ( isset( $show_category_filter ) ) ? $show_category_filter : NULL,
+									'label' => __( 'Show Project Filter' , HATCH_THEME_SLUG )
 								),
 								'show_titles' => array(
 									'type' => 'checkbox',

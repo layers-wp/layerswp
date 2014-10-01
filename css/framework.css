@@ -493,6 +493,9 @@ h1, h2, h3, h4, h5, h6{color: #000; font-weight: 200;}
     .nav-vertical   li:hover > .sub-menu{top: -3px; left: 140px;}
     .nav-vertical   li:hover > .sub-menu .sub-menu{left: 205px; right: auto; top: -3px;}
 
+    .header-secondary .sub-nav,
+    .copyright .sub-nav{display: none;}
+
     /*---------------------------*/
     /*- ABOLUTE NAV -------------*/
     .nav-absolute{width: 100%; padding: 5px 10px; position: absolute; font-size: 1.2rem; color: #999;}
@@ -743,7 +746,6 @@ h1, h2, h3, h4, h5, h6{color: #000; font-weight: 200;}
     .copyright .nav-horizontal li{margin: 0 0 0 10px;}
     .copyright .nav-horizontal a{padding: 0; color: #454545; text-transform: uppercase; font-weight: 600; font-size: 1.0rem; letter-spacing: 2px;}
     .copyright .nav-horizontal a:hover{background: none; color: #323232;}
-    .copyright .nav-horizontal .sub-menu{display: none;}
 
 /*-------------------------------*/
 /*- FORMS -----------------------*/

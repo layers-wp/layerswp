@@ -76,15 +76,15 @@ div[id*='hatch-widget'] .widget-top .widget-title .in-widget-title{
     height: 100%;
     min-width: 660px;
     position: relative;
-    left: -200px;
-    transition: all 0.35s ease-in-out 0.1s;
+    transform: translateX(-20px);
+    transition: all 0.35s ease-in-out;
 }
 .customize-control-widget_form.wide-widget-control.expanded div[id*='hatch-widget'] .widget-inside .form{
-    left: 0;
+    transform: translateX(0px);
     opacity: 1;
 }
 .customize-control-widget_form.wide-widget-control.collapsing div[id*='hatch-widget'] .widget-inside .form{
-    left: -200px;
+    transform: translateX(-20px);
     opacity: 0;
 }
 

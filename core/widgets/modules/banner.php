@@ -96,8 +96,8 @@ if( !class_exists( 'Hatch_Banner_Widget' ) ) {
 
 							// Set the background styling
 							if( !empty( $banner->design[ 'background' ] ) ) $this->widget_styles( $widget_id . '-' . $key , 'background', $banner->design[ 'background' ] );
-							if( !empty( $banner->design['fonts'][ 'color' ] ) ) $this->widget_styles( $widget_id . '-' . $key , 'color', array( 'selectors' => array( 'h3.heading', 'h3.heading a'  , 'div.excerpt' ) , 'color' => $banner->design['fonts'][ 'color' ] ) );
-							if( !empty( $banner->design['fonts'][ 'shadow' ] ) ) $this->widget_styles( $widget_id . '-' . $key , 'text-shadow', array( 'selectors' => array( 'h3.heading' , 'div.excerpt' )  , 'text-shadow' => $banner->design['fonts'][ 'shadow' ] ) );
+							if( !empty( $banner->design['fonts'][ 'color' ] ) ) $this->widget_styles( $widget_id . '-' . $key , 'color', array( 'selectors' => array( 'h3.heading', 'h3.heading a', 'div.excerpt' ) , 'color' => $banner->design['fonts'][ 'color' ] ) );
+							if( !empty( $banner->design['fonts'][ 'shadow' ] ) ) $this->widget_styles( $widget_id . '-' . $key , 'text-shadow', array( 'selectors' => array( 'h3.heading', 'h3.heading a',  'div.excerpt' )  , 'text-shadow' => $banner->design['fonts'][ 'shadow' ] ) );
 
 							// Set Image Sizes
 							if( isset( $banner->design[ 'imageratios' ] ) ){

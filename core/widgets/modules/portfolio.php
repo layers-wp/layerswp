@@ -176,12 +176,12 @@ if( !class_exists( 'Hatch_Portfolio_Widget' ) ) {
 														echo '</div>';
                                                     } else if( isset( $widget->excerpt_length ) && 0 != $widget->excerpt_length && strlen( get_the_excerpt() ) > $widget->excerpt_length ){
                                                         echo '<p class="excerpt">' . substr( get_the_excerpt() , 0 , $widget->excerpt_length ) . '&#8230;</p>';
-                                                    } else {
+                                                    } else if( '' != get_the_excerpt() ){
                                                         echo '<p class="excerpt">' . get_the_excerpt() . '</p>';
                                                     }
                                                 }; ?>
                                                 <?php if( isset( $widget->show_call_to_action ) && isset( $widget->call_to_action ) && '' != $widget->call_to_action ) { ?>
-													<span class="button"><?php echo $widget->call_to_action; ?></span>
+													<a href="<?php the_permalink(); ?>" class="button"><?php echo $widget->call_to_action; ?></span>
 												<?php } // show call to action ?>
 											</div>
 										</div>

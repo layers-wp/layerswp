@@ -34,6 +34,7 @@
 	// 1.b - Accodian Init
 
 	function hatch_init_accordians(){
+		console.log( 'init accordians' );
 		$( '.hatch-accordions' ).each( function(){
 			var $that = $(this);
 

@@ -81,10 +81,10 @@ class Hatch_Widgets {
 				'id'		=> 'obox-hatch-builder-' . $page->post_name,
 				'name'		=> $page->post_title . __( ' Body' , HATCH_THEME_SLUG ),
 				'description'	=> __( '' , HATCH_THEME_SLUG ),
-				'before_widget'	=> '<aside id="%1$s" class="widget %2$s">',
+				'before_widget'	=> '<aside id="%1$s" class="widget container push-bottom-medium %2$s">',
 				'after_widget'	=> '</aside>',
-				'before_title'	=> '<h4 class="widget-title">',
-				'after_title'	=> '</h4>',
+				'before_title'	=> '<div class="section-title clearfix"><h4 class="heading">',
+				'after_title'	=> '</h4></div>',
 			) );
 		}
 	}

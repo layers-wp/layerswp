@@ -487,6 +487,7 @@ class Hatch_Design_Controller {
 			</a>
 			<div class="hatch-visuals-settings-wrapper hatch-animate hatch-content-small">
 				<div class="hatch-visuals-settings">
+					<label><?php _e( 'Background' , HATCH_THEME_SLUG ); ?></label>
 					<div class="background-image">
 						<?php echo $this->input(
 							array(

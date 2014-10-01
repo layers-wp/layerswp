@@ -223,7 +223,7 @@ class Hatch_Form_Elements {
 			*/
 			case 'image' : ?>
 				<section class="hatch-image-container <?php if( isset( $input->value ) && NULL != $input->value ) echo 'has-image'; ?>">
-					<div class="hatch-image-display">
+					<div class="hatch-image-display hatch-image-upload-button">
 						<!-- Image -->
 						<?php if( isset( $input->value ) ) echo wp_get_attachment_image( $input->value , 'large' ); ?>
 						<!-- Remove button -->

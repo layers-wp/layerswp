@@ -337,13 +337,13 @@ if( !class_exists( 'Hatch_Banner_Widget' ) ) {
 			$widget_details = (object) $widget_details;
 
 			// Set a count for each row
-			if( !isset( $this->module_item_count ) ) {
+			if( !isset( $this->banner_item_count ) ) {
 				$this->banner_item_count = 0;
 			} else {
 				$this->banner_item_count++;
 			}?>
 
-				<li class="hatch-accordion-item  <?php if( !isset( $_REQUEST['action'] ) && $this->banner_item_count == 1 ) echo 'open'; ?>" data-guid="<?php echo $slide_guid; ?>">
+				<li class="hatch-accordion-item <?php echo $this->banner_item_count; ?> <?php if( '1' == $this->banner_item_count ) echo 'open'; ?>" data-guid="<?php echo $slide_guid; ?>">
 					<a class="hatch-accordion-title">
 						<span>
 							<?php _e( 'Slide' , HATCH_THEME_SLUG ); ?><span class="hatch-detail"><?php echo ( isset( $title ) ? ': ' . $title : NULL ); ?></span>
@@ -429,7 +429,7 @@ if( !class_exists( 'Hatch_Banner_Widget' ) ) {
 								</p>
 								<?php echo $widget_elements->input(
 									array(
-										'type' => 'tinymce',
+										'type' => 'textarea',
 										'name' => 'widget-' . $widget_details->id_base . '[' . $widget_details->number . '][banners][' . $slide_guid . '][excerpt]' ,
 										'id' => 'widget-' . $widget_details->id_base . '-' . $widget_details->number . '-' . $slide_guid . '-excerpt' ,
 										'placeholder' => __( 'Short Excerpt', HATCH_THEME_SLUG ),

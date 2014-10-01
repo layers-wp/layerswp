@@ -301,7 +301,7 @@ if( !class_exists( 'Hatch_Module_Widget' ) ) {
 				$this->module_item_count++;
 			} ?>
 
-				<li class="hatch-accordion-item  <?php if( !isset( $_REQUEST['action'] ) && $this->module_item_count == 1 ) echo 'open'; ?>" data-guid="<?php echo $column_guid; ?>">
+				<li class="hatch-accordion-item  <?php if( $this->module_item_count == 0 ) echo 'open'; ?>" data-guid="<?php echo $column_guid; ?>">
 					<a class="hatch-accordion-title">
 						<span>
 							<?php _e( 'Column' , HATCH_THEME_SLUG ); ?><span class="hatch-detail"><?php echo ( isset( $title ) ? ': ' . $title : NULL ); ?></span>
@@ -364,7 +364,7 @@ if( !class_exists( 'Hatch_Module_Widget' ) ) {
 								</p>
 								<?php echo $widget_elements->input(
 									array(
-										'type' => 'tinymce',
+										'type' => 'textarea',
 										'name' => 'widget-' . $widget_details->id_base . '[' . $widget_details->number . '][modules][' . $column_guid . '][excerpt]' ,
 										'id' => 'widget-' . $widget_details->id_base . '-' . $widget_details->number . '-' . $column_guid . '-excerpt' ,
 										'placeholder' => __( 'Short Excerpt', HATCH_THEME_SLUG ),

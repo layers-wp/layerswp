@@ -11,4 +11,6 @@
     <?php if( 'post' == get_post_type() ) { ?>
         <?php hatch_post_meta( $post->ID ); ?>
     <?php } // if post ?>
+
+    <?php comments_template(); ?>
 </article>

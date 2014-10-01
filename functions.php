@@ -122,12 +122,6 @@ if( ! function_exists( 'hatch_setup' ) ) {
 		// Automatic Feed Links
 		add_theme_support( 'automatic-feed-links' );
 
-		// Custom Background
-		add_theme_support( 'custom-background' );
-
-		// Custom Header
-		add_theme_support( 'custom-header' );
-
 		/**
 		 * This theme uses wp_nav_menu() in one location.
 		 */

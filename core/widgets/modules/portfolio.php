@@ -159,6 +159,7 @@ if( !class_exists( 'Hatch_Portfolio_Widget' ) ) {
 								<p class="excerpt"><?php echo $widget->excerpt; ?></p>
 							<?php } ?>
 						</div>
+<<<<<<< HEAD
 				<?php if( isset( $widget->show_category_filter ) && !is_wp_error( $terms ) ) { ?>
 					<nav class="nav nav-pills push-top <?php if( isset( $widget->design['fonts'][ 'align' ] ) ) echo $widget->design['fonts'][ 'align' ]; ?>">
 						<ul>
@@ -167,7 +168,17 @@ if( !class_exists( 'Hatch_Portfolio_Widget' ) ) {
 							<?php } // foreach $terms ?>
 						</ul>
 					</nav>
+=======
+					</div>
+>>>>>>> 9491627124e3bba283a3502f9208c80dd599cc26
 				<?php } ?>
+				<?php if( isset( $widget->show_category_filter ) && !is_wp_error( $terms ) ) { ?>
+					<div class="container clearfix">
+						<ul class="nav nav-pills push-top">
+							<?php foreach( $terms as $term ) { ?>
+								<li data-filter="<?php echo $term->slug; ?>"><a href="#"><?php echo $term->name; ?></a></li>
+							<?php } // foreach $terms ?>
+						</ul>
 					</div>
 				<?php } ?>
 				<div class="row <?php if( isset( $widget->design[ 'layout' ] ) && 'layout-boxed' == $widget->design[ 'layout' ] ) echo 'container'; ?> <?php  if( isset( $widget->design[ 'liststyle' ] ) ) echo $widget->design[ 'liststyle' ]; ?>">

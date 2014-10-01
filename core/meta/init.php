@@ -83,7 +83,7 @@ class Hatch_Custom_Meta {
 
 	public function admin_print_styles(){
 		global $pagenow;
-		if ( 'post.php' === $pagenow &&  ( HATCH_BUILDER_TEMPLATE == basename( get_page_template() ) ) ) : ?>
+		if ( 'post.php' === $pagenow && ( HATCH_BUILDER_TEMPLATE == basename( get_page_template() ) ) ) : ?>
 			<style> #postdivrich { display: none; }</style>
 		<?php endif; ?>
 	<?php }
@@ -99,7 +99,10 @@ class Hatch_Custom_Meta {
 		if ( !in_array( $post->post_type, array( 'page' ) ) || 'publish' != get_post_status() ) return;
 
 		// Check if we're using the builder for this page
+
 		$is_builder_used = ( 'builder.php' == basename( get_page_template() ) ) ? true : false;
+
+		if( !$is_builder_used ) return;
 
 		printf( '<div class="hatch-section-title hatch-medium invert hatch-content-massive" style="background: url( %7$s/images/beta-zero.jpg) top repeat;">
 					<div class="hatch-heading">

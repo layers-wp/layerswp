@@ -17,7 +17,8 @@
 */
 
 if( !function_exists( 'hatch_bread_crumbs' ) ) {
-    function hatch_bread_crumbs( $wrapper = 'nav', $wrapper_class = 'bread-crumbs' ) { ?>
+    function hatch_bread_crumbs( $wrapper = 'nav', $wrapper_class = 'bread-crumbs' ) {
+        global $post; ?>
         <<?php echo $wrapper; ?> class="<?php echo $wrapper_class; ?>">
             <ul>
                 <?php /* Home */ ?>
@@ -150,8 +151,8 @@ if( !function_exists( 'hatch_bread_crumbs' ) ) {
                     // If this is a product, make sure we're using the right term slug
                     if( is_post_type_archive( 'product' ) || ( get_post_type() == "product" ) ) {
                         $taxonomy = 'product_cat';
-                    } elseif( !empty( $post_type ) && isset( $post_type->labels->slug ) ) {
-                        $taxonomy = $post_type->labels->slug . '-category';
+                    } elseif( !empty( $post_type ) && isset( $post_type->taxonomies[0] ) ) {
+                        $taxonomy = $post_type->taxonomies[0];
                     };
 
                     if( isset( $taxonomy ) && !is_wp_error( $taxonomy ) ) {
@@ -282,6 +283,7 @@ if( !function_exists( 'hatch_pagination' ) ) {
 */
 if( !function_exists( 'hatch_get_page_title' ) ) {
     function hatch_get_page_title() {
+        global $post;
 
         // Setup return
         $title_array = array();
@@ -294,18 +296,29 @@ if( !function_exists( 'hatch_get_page_title' ) ) {
             $parentpage = get_template_link(get_post_type().".php");
             $title_array['title'] = $parentpage->post_title;
             if($parentpage->post_excerpt != '') $title_array['excerpt'] = $parentpage->post_excerpt;
-        } elseif( ( get_post_type() == "post" && is_category() ) || is_search() ) {
+        } elseif( ( get_post_type() == "post" && is_category() ) ) {
             $title_array['title' ] = wp_title( '', false);
-            $title_array['excerpt'] = category_description();
-        } elseif(get_post_type() == "post" && is_single()) {
-            $category = get_the_category();
-            $title_array['title' ] = $category[0]->cat_name;
-            $title_array['excerpt'] = category_description();
-        } else {
+        } elseif( is_page() ) {
             while ( have_posts() ) { the_post();
-                $title_array['title' ] = get_the_title();
+                $title_array['title'] = get_the_title();
                 if( $post->post_excerpt != "") $title_array['excerpt'] = strip_tags( get_the_excerpt() );
             };
+        } elseif( is_search() ) {
+            $title_array['title'] = __( 'Search' , HATCH_THEME_SLUG );
+            $title_array['excerpt'] = the_search_query();
+        } elseif( is_tag() ) {
+            $title_array['title'] = single_tag_title();
+        } elseif( is_category() ) {
+            $title_array['title'] = single_category_title();
+            $title_array['excerpt'] = category_description();
+        } elseif ( is_day() ) {
+            $title_array['title' ] = sprintf( __( 'Daily Archives: %s', HATCH_THEME_SLUG ), get_the_date() );
+        } elseif ( is_month() ) {
+            $title_array['title' ] = sprintf( __( 'Monthly Archives: %s', HATCH_THEME_SLUG ), get_the_date( _x( 'F Y', 'monthly archives date format', HATCH_THEME_SLUG ) ) );
+        } elseif ( is_year() ) {
+            $title_array['title' ] = sprintf( __( 'Yearly Archives: %s', HATCH_THEME_SLUG ), get_the_date( _x( 'Y', 'yearly archives date format', HATCH_THEME_SLUG ) ) );
+        } else {
+            $title_array['title' ] = __( 'Archives', HATCH_THEME_SLUG );
         }
 
         return apply_filters( 'hatch_page_title' , $title_array );

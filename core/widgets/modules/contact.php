@@ -45,8 +45,10 @@ if( !class_exists( 'Hatch_Contact_Widget' ) ) {
 			$this->defaults = array (
 				'title' => NULL,
 				'excerpt' => NULL,
+				'contact_form' => NULL,
 				'address_shown' => NULL,
 				'show_google_map' => 'on',
+				'show_contact_form' => 'on',
 				'google_maps_location' => NULL,
 				'google_maps_long_lat' => NULL,
 				'map_height' => 400,
@@ -86,11 +88,15 @@ if( !class_exists( 'Hatch_Contact_Widget' ) ) {
 			// Turn $instance into an object named $widget, makes for neater code
 			$widget = (object) $instance;
 
+			// Check if we have a map present
+			if( isset( $widget->show_google_map ) && ( '' != $widget->google_maps_location || '' != $widget->google_maps_long_lat ) ) {
+				$hasmap = true;
+			}
 			// Set the background styling
 			if( !empty( $widget->design[ 'background' ] ) ) $this->widget_styles( $widget_id , 'background', $widget->design[ 'background' ] );
 			if( !empty( $widget->design['fonts'][ 'color' ] ) ) $this->widget_styles( $widget_id , 'color', array( 'selectors' => array( '.section-title h3.heading' , '.section-title p.excerpt' , '.section-title small' ) , 'color' => $widget->design['fonts'][ 'color' ] ) ); ?>
 
-			<section class="widget content-vertical-massive row" id="<?php echo $widget_id; ?>">
+			<section class="widget content-vertical-massive row <?php if(isset( $hasmap ) ) echo 'has-map'; ?>" id="<?php echo $widget_id; ?>">
 				<?php if( '' != $widget->title || '' != $widget->excerpt  || '' != $widget->address_shown ) { ?>
 					<div class="container clearfix">
 						<div class="section-title <?php if( isset( $widget->design['fonts']['align'] ) ) echo $widget->design['fonts']['align']; ?> clearfix">
@@ -108,7 +114,12 @@ if( !class_exists( 'Hatch_Contact_Widget' ) ) {
 						</div>
 					</div>
 				<?php } // if title || excerpt ?>
-				<?php if( isset( $widget->show_google_map ) && ( '' != $widget->google_maps_location || '' != $widget->google_maps_long_lat ) ) { ?>
+				<?php if( isset( $widget->show_contact_form ) && '' != $widget->contact_form ) { ?>
+					<div class="form <?php if( isset( $widget->design[ 'layout' ] ) && 'layout-boxed' == $widget->design[ 'layout' ] ) echo 'container'; ?>">
+						<?php echo do_shortcode( $widget->contact_form ); ?>
+					</div>
+				<?php } ?>
+				<?php if( isset( $hasmap ) ) { ?>
 					<div class="hatch-map <?php if( isset( $widget->design[ 'layout' ] ) && 'layout-boxed' == $widget->design[ 'layout' ] ) echo 'container'; ?>" style="height: <?php echo $widget->map_height; ?>px;" <?php if( '' != $widget->google_maps_location ) { ?>data-location="<?php echo $widget->google_maps_location; ?>"<?php } ?> <?php if( '' != $widget->google_maps_long_lat ) { ?>data-longlat="<?php echo $widget->google_maps_long_lat; ?>"<?php } ?>></div>
 				<?php } ?>
 			</section>
@@ -239,6 +250,18 @@ if( !class_exists( 'Hatch_Contact_Widget' ) ) {
 									'id' => $this->get_field_id( 'excerpt' ) ,
 									'placeholder' =>  __( 'Short Excerpt', HATCH_THEME_SLUG ),
 									'value' => ( isset( $excerpt ) ) ? $excerpt : NULL ,
+									'class' => 'hatch-textarea hatch-large'
+								)
+							); ?>
+						</p>
+						<p class="hatch-form-item">
+							<?php echo $widget_elements->input(
+								array(
+									'type' => 'textarea',
+									'name' => $this->get_field_name( 'contact_form' ) ,
+									'id' => $this->get_field_id( 'contact_form' ) ,
+									'placeholder' =>  __( 'Contact Form Embed Code', HATCH_THEME_SLUG ),
+									'value' => ( isset( $contact_form ) ) ? $contact_form : NULL ,
 									'class' => 'hatch-textarea hatch-large'
 								)
 							); ?>

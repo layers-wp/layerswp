@@ -181,7 +181,7 @@ if( !class_exists( 'Hatch_Portfolio_Widget' ) ) {
                                                     }
                                                 }; ?>
                                                 <?php if( isset( $widget->show_call_to_action ) && isset( $widget->call_to_action ) && '' != $widget->call_to_action ) { ?>
-													<a href="<?php the_permalink(); ?>" class="button"><?php echo $widget->call_to_action; ?></span>
+													<a href="<?php the_permalink(); ?>" class="button"><?php echo $widget->call_to_action; ?></a>
 												<?php } // show call to action ?>
 											</div>
 										</div>

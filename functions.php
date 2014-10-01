@@ -132,9 +132,9 @@ if( ! function_exists( 'hatch_setup' ) ) {
 		 * This theme uses wp_nav_menu() in one location.
 		 */
 		register_nav_menus( array(
+			HATCH_THEME_SLUG . '-secondary-left' => __( 'Top Left Menu', HATCH_THEME_SLUG ),
+			HATCH_THEME_SLUG . '-secondary-right' => __( 'Top Right Menu', HATCH_THEME_SLUG ),
 			HATCH_THEME_SLUG . '-primary' => __( 'Primary Menu', HATCH_THEME_SLUG ),
-			HATCH_THEME_SLUG . '-secondary-left' => __( 'Left Secondary Menu', HATCH_THEME_SLUG ),
-			HATCH_THEME_SLUG . '-secondary-right' => __( 'Right Secondary Menu', HATCH_THEME_SLUG ),
 			HATCH_THEME_SLUG . '-footer' => __( 'Footer Menu', HATCH_THEME_SLUG ),
 
 		) );

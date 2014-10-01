@@ -5,11 +5,14 @@
     <?php /**
      * Display Site Logo
      */
+
     if( function_exists( 'the_site_logo' ) ) the_site_logo(); ?>
-    <div class="site-description">
-        <h3 class="sitename"><?php echo get_bloginfo( 'title' ); ?></h3>
-        <p class="tagline"><?php echo get_bloginfo( 'description' ); ?></p>
-    </div>
+    <?php if('blank' != get_theme_mod('header_textcolor') ) { ?>
+        <div class="site-description">
+            <h3 class="sitename"><?php echo get_bloginfo( 'title' ); ?></h3>
+            <p class="tagline"><?php echo get_bloginfo( 'description' ); ?></p>
+        </div>
+    <?php } ?>
 
     <?php do_action( 'hatch_after_logo_inner' ); ?>
 </div>

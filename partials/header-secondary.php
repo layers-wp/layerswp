@@ -1,3 +1,4 @@
+<?php if ( has_nav_menu( HATCH_THEME_SLUG . '-secondary-left' ) || has_nav_menu( HATCH_THEME_SLUG . '-secondary-right' ) ) { ?>
 <div class="header-secondary content-small darken invert">
     <?php do_action( 'hatch_before_header_secondary_inner' ); ?>
         <div class="container clearfix">
@@ -11,3 +12,4 @@
         </div>
     <?php do_action( 'hatch_after_header_secondary_inner' ); ?>
 </div>
+<?php } // if has_nav_menu

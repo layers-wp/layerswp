@@ -449,7 +449,7 @@ if( !class_exists( 'Hatch_Banner_Widget' ) ) {
 									); ?>
 								</p>
 								<p class="hatch-form-item">
-									<label for="<?php echo $this->get_field_id( 'link' ); ?>"><?php _e( 'Link' , HATCH_THEME_SLUG ); ?></label>
+									<label for="<?php echo $this->get_field_id( 'link' ); ?>"><?php _e( 'Button Link' , HATCH_THEME_SLUG ); ?></label>
 									<?php echo $widget_elements->input(
 										array(
 											'type' => 'text',

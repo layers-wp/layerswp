@@ -160,11 +160,13 @@ if( !class_exists( 'Hatch_Portfolio_Widget' ) ) {
 							<?php } ?>
 						</div>
 				<?php if( isset( $widget->show_category_filter ) && !is_wp_error( $terms ) ) { ?>
-					<ul class="nav nav-pills push-top">
-						<?php foreach( $terms as $term ) { ?>
-							<li data-filter="<?php echo $term->slug; ?>"><a href="#"><?php echo $term->name; ?></a></li>
-						<?php } // foreach $terms ?>
-					</ul>
+					<nav class="nav nav-pills push-top <?php if( isset( $widget->design['fonts'][ 'align' ] ) ) echo $widget->design['fonts'][ 'align' ]; ?>">
+						<ul>
+							<?php foreach( $terms as $term ) { ?>
+								<li data-filter="<?php echo $term->slug; ?>"><a href="#"><?php echo $term->name; ?></a></li>
+							<?php } // foreach $terms ?>
+						</ul>
+					</nav>
 				<?php } ?>
 					</div>
 				<?php } ?>

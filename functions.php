@@ -107,8 +107,10 @@ if( ! function_exists( 'hatch_setup' ) ) {
 		add_image_size( 'landscape-medium', 400, 300, true );
 
 		/**
-		 * Add support for the WP logo feature
+		 * Add theme support
 		 */
+
+		// Custom Site Logo
 		add_theme_support( 'site-logo', array(
 			'header-text' => array(
 				'sitetitle',
@@ -117,22 +119,23 @@ if( ! function_exists( 'hatch_setup' ) ) {
 			'size' => 150,
 		) );
 
-		/**
-		 * Add support a custom background
-		 */
-		// add_theme_support( 'custom-background' );
+		// Automatic Feed Links
+		add_theme_support( 'automatic-feed-links' );
 
-		/**
-		 * Add support a custom background
-		 */
-		// add_theme_support( 'custom-header' );
+		// Custom Background
+		add_theme_support( 'custom-background' );
+
+		// Custom Header
+		add_theme_support( 'custom-header' );
 
 		/**
 		 * This theme uses wp_nav_menu() in one location.
 		 */
 		register_nav_menus( array(
-			'primary' => __( 'Primary Menu', HATCH_THEME_SLUG ),
-			'footer' => __( 'Footer Menu', HATCH_THEME_SLUG ),
+			HATCH_THEME_SLUG . '-primary' => __( 'Primary Menu', HATCH_THEME_SLUG ),
+			HATCH_THEME_SLUG . '-secondary-left' => __( 'Left Secondary Menu', HATCH_THEME_SLUG ),
+			HATCH_THEME_SLUG . '-secondary-right' => __( 'Right Secondary Menu', HATCH_THEME_SLUG ),
+			HATCH_THEME_SLUG . '-footer' => __( 'Footer Menu', HATCH_THEME_SLUG ),
 
 		) );
 

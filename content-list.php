@@ -1,22 +1,18 @@
 <?php global $post, $post_meta_to_display; ?>
-<article class="row">
+<article class="push-bottom-large">
     <header class="section-title large">
-        <h1 class="heading"><?php the_title(); ?></h1>
+        <h1 class="heading"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h1>
     </header>
-    <div class="row">
-        <?php $content_class = 'span-12'; ?>
-        <?php if( has_post_thumbnail() ) { ?>
-            <div class="column span-4 thumbnail-media">
-                <?php echo the_post_thumbnail( 'medium' ); ?>
-            </div>
-            <?php $content_class = 'span-8'; ?>
-        <?php } // if has_post_thumbnail() ?>
-        <div class="column <?php echo $content_class; ?>">
-            <div class="copy">
-                <?php the_excerpt(); ?>
-                <?php hatch_post_meta( $post->ID ); ?>
-                <a href="<?php the_permalink(); ?>" class="button"><?php _e( 'Read Post &rarr;' , HATCH_THEME_SLUG ); ?></a>
-            </div>
+    <?php if( has_post_thumbnail() ) { ?>
+        <div class="thumbnail push-bottom">
+            <a href="<?php the_permalink(); ?>">
+                <?php echo the_post_thumbnail( 'large' ); ?>
+            </a>
         </div>
+    <?php } // if has_post_thumbnail() ?>
+    <div class="copy">
+        <?php the_excerpt(); ?>
     </div>
+    <?php hatch_post_meta( $post->ID, NULL, 'footer', 'meta-info push-bottom' ); ?>
+    <p><a href="<?php the_permalink(); ?>" class="button"><?php _e( 'Read More' , HATCH_THEME_SLUG ); ?></a></p>
 </article>

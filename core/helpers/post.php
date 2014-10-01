@@ -19,7 +19,7 @@
 */
 
 if( !function_exists( 'hatch_post_meta' ) ) {
-    function hatch_post_meta( $post_id = NULL , $display = array( 'date', 'author', 'categories', 'tags' ), $wrapper = 'footer', $wrapper_class = 'meta-info' ) {
+    function hatch_post_meta( $post_id = NULL , $display = NULL, $wrapper = 'footer', $wrapper_class = 'meta-info' ) {
         // If there is no post ID specified, use the current post, does not affect post author, yet.
         if( NULL == $post_id ) {
             global $post;
@@ -27,7 +27,7 @@ if( !function_exists( 'hatch_post_meta' ) ) {
         }
 
         // If there are no items to display, return nothing
-        if( empty( $display ) ) return;
+        if( NULL == $display ) $display = array( 'date', 'author', 'categories', 'tags' );
 
         foreach ( $display as $meta ) {
             switch ( $meta ) {

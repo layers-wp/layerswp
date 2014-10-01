@@ -19,7 +19,7 @@
 						<p class="site-text"><?php _e( ' Made at the tip of Africa. &copy; ', HATCH_THEME_SLUG ); ?> <?php echo date( 'Y' ); ?> <?php bloginfo( 'name' ); ?>.</p>
 					</div>
 					<div class="column span-6 clearfix t-right">
-						<?php wp_nav_menu( array( 'theme_location' => 'footer' , 'container' => 'nav', 'container_class' => 'nav nav-horizontal pull-right', 'fallback_cb' => false )); ?>
+						<?php wp_nav_menu( array( 'theme_location' => HATCH_THEME_SLUG . '-footer' , 'container' => 'nav', 'container_class' => 'nav nav-horizontal pull-right', 'fallback_cb' => false )); ?>
 					</div>
 				</div>
 				<?php do_action( 'hatch_after_footer_copyright' ); ?>

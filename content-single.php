@@ -5,10 +5,13 @@
         <?php } // if post ?>
         <h1 class="heading"><?php the_title(); ?></h1>
     </header>
+    <div class="thumbnail"><?php echo the_post_thumbnail( 'large' ); ?></div>
     <div class="story">
         <?php the_content(); ?>
     </div>
     <?php if( 'post' == get_post_type() ) { ?>
         <?php hatch_post_meta( $post->ID ); ?>
     <?php } // if post ?>
+
+    <?php comments_template(); ?>
 </article>

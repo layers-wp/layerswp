@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html <?php language_attributes(); ?>
 <head>
 	<meta charset="<?php bloginfo( 'charset' ); ?>">
 	<meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
@@ -13,7 +13,7 @@
 	<section class="wrapper-site">
 		<?php do_action( 'hatch_before_header' ); ?>
 		<?php get_template_part( 'partials/header' , 'secondary' ); ?>
-		<header class="header-left">
+		<header class="header-left well">
 			<?php do_action( 'hatch_before_header_inner' ); ?>
 			<div class="container content-vertical clearfix">
 
@@ -23,26 +23,10 @@
 					<span class="icon-bar"></span>
 				</a>
 
-				<?php do_action( 'hatch_before_logo' ); ?>
-
-				<div class="logo">
-					<?php do_action( 'hatch_before_logo_inner' ); ?>
-
-					<?php /**
-					 * Display Site Logo
-					 */
-					if( function_exists( 'the_site_logo' ) ) the_site_logo(); ?>
-					<div class="site-description">
-						<h3 class="sitename"><?php echo get_bloginfo( 'title' ); ?></h3>
-						<p class="tagline"><?php echo get_bloginfo( 'description' ); ?></p>
-					</div>
-
-					<?php do_action( 'hatch_after_logo_inner' ); ?>
-				</div>
-				<?php do_action( 'hatch_after_logo' ); ?>
+				<?php get_template_part( 'partials/header' , 'logo' ); ?>
 
 				<?php do_action( 'hatch_before_header_nav' ); ?>
-				<?php wp_nav_menu( array( 'theme_location' => 'primary' ,'container' => 'nav', 'container_class' => 'nav nav-horizontal', 'fallback_cb' => false )); ?>
+				<?php wp_nav_menu( array( 'theme_location' => HATCH_THEME_SLUG . '-primary' ,'container' => 'nav', 'container_class' => 'nav nav-horizontal', 'fallback_cb' => false )); ?>
 				<?php do_action( 'hatch_after_header_nav' ); ?>
 			</div>
 			<?php do_action( 'hatch_after_header_inner' ); ?>

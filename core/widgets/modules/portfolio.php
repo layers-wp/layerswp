@@ -68,7 +68,7 @@ if( !class_exists( 'Hatch_Portfolio_Widget' ) ) {
 					),
 					'fonts' => array(
 						'align' => 'text-left',
-						'size' => 'large',
+						'size' => 'medium',
 						'color' => NULL,
 						'shadow' => NULL
 					)
@@ -163,7 +163,7 @@ if( !class_exists( 'Hatch_Portfolio_Widget' ) ) {
 				<?php } ?>
 				<?php if( isset( $widget->show_category_filter ) && !is_wp_error( $terms ) ) { ?>
 					<div class="container clearfix">
-						<ul class="nav nav-pills push-top">
+						<ul class="nav nav-pills push-bottom-large">
 							<?php foreach( $terms as $term ) { ?>
 								<li data-filter="<?php echo $term->slug; ?>"><a href="#"><?php echo $term->name; ?></a></li>
 							<?php } // foreach $terms ?>

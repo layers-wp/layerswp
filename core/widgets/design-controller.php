@@ -430,7 +430,7 @@ class Hatch_Design_Controller {
 									'value' => ( isset( $values->fonts['size'] ) ) ? $values->fonts['size'] : NULL,
 									'options' => array(
 											'small' => __( 'Small' , HATCH_THEME_SLUG ),
-											'' => __( 'Medium' , HATCH_THEME_SLUG ),
+											'medium' => __( 'Medium' , HATCH_THEME_SLUG ),
 											'large' => __( 'Large' , HATCH_THEME_SLUG )
 									)
 								)

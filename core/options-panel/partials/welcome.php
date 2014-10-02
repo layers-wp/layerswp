@@ -1,4 +1,10 @@
 <?php $user = wp_get_current_user(); ?>
+<?php $find_builder_page = new WP_Query( array( 'post_type' => 'page' , 'meta_key' => '_wp_page_template', 'meta_value' => HATCH_BUILDER_TEMPLATE ) ); ?>
+<?php while( $find_builder_page->have_posts() ) {
+	$find_builder_page->the_post();
+	$page_id = get_the_ID();
+	break;
+}  ?>
 <section class="hatch-container hatch-content-large">
 
 	<div class="hatch-section-title hatch-large invert hatch-content-massive" style="background: url(<?php echo get_template_directory_uri(); ?>/images/beta-zero.jpg) top repeat;">
@@ -8,7 +14,7 @@
 				Hatch is a powerful site builder that gives you the tools to create not only the site you want but the site you need.
 				The aim of Hatch is to turn the task of making a website into a joyful and easy experience.
 			</p>
-			<a href="<?php echo admin_url( 'customize.php' ); ?>" class="hatch-button btn-massive btn-primary">Get Started</a>
+			<a href="#start" class="hatch-button btn-massive btn-primary">Get Started</a>
 		</div>
 	</div>
 
@@ -49,7 +55,7 @@
 			</div>
 		</div>
 	</div>
-
+	<a  name="start"></a>
 	<div class="hatch-row hatch-well hatch-content-large hatch-push-bottom">
 		<div class="hatch-section-title">
 			<h3 class="hatch-heading">Getting Started</h3>
@@ -59,14 +65,22 @@
 			</p>
 		</div>
 		<p>To get you started we have added some demo content to this theme so that you don't start from a blank page. If you would like a fresh start, click here.</p>
-		<ol>
-			<li>Create a new Page</li>
-			<li>Choose "Page Builder" under the Template drop down</li>
-			<li>Click Publish</li>
-			<li>Click "Build your Page"</li>
-			<li>Click the "Page Builder" accordion</li>
-		</ol>
-		<a href="/wp-admin/customize.php" class="hatch-button btn-primary">Create a Page</a>
+		<?php  if( $find_builder_page->have_posts() ) { ?>
+			<ol>
+				<li>Click the "Page Builder" accordion</li>
+				<li>Start adding widgets labelled (Hatch) to the Page Builder Body section</li>
+			</ol>
+			<a href="<?php echo admin_url( 'customize.php?url=' .esc_url( get_permalink( $page_id ) ).'&hatch-builder=1'  ); ?>" class="hatch-button btn-massive btn-primary">Build Your Page</a>
+		<?php } else { ?>
+			<ol>
+				<li>Create a new Page</li>
+				<li>Choose "Page Builder" under the Template drop down</li>
+				<li>Click Publish</li>
+				<li>Click "Build your Page"</li>
+				<li>Click the "Page Builder" accordion</li>
+			</ol>
+			<a href="<?php echo admin_url( 'post-new.php?post_type=page' ); ?>" class="hatch-button btn-primary">Create a Page</a>
+		<?php } // if builder page exists ?>
 	</div>
 
 	<footer class="hatch-row">

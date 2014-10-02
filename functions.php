@@ -169,8 +169,17 @@ if( ! function_exists( 'hatch_setup' ) ) {
 		/**
 		* Welcome Redirect
 		*/
-		if( !get_option( 'hatch_welcome' ) && isset($_GET["activated"]) && $pagenow = "themes.php") {
+		if( isset($_GET["activated"]) && $pagenow = "themes.php") {
 			update_option( 'hatch_welcome' , 1);
+			$find_builder_page = new WP_Query( array( 'post_type' => 'page' , 'meta_key' => '_wp_page_template', 'meta_value' => HATCH_BUILDER_TEMPLATE ) );
+			if( false == $find_builder_page->have_posts() ){
+				$page['post_type']    = 'page';
+				$page['post_title']   = 'Builder Page';
+				$pageid = wp_insert_post ($page);
+				if ($pageid != 0) {
+					update_post_meta( $pageid , '_wp_page_template', HATCH_BUILDER_TEMPLATE );
+				}
+			}
 			wp_redirect(admin_url('admin.php?page=' . HATCH_THEME_SLUG . '-welcome'));
 		}
 

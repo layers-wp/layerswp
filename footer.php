@@ -8,9 +8,11 @@
 			<div class="container content-main clearfix">
 
 				<div class="row">
+					<?php do_action( 'hatch_before_footer_sidebar' ); ?>
 					<?php for( $footer = 1; $footer < 5; $footer++ ) { ?>
 						<?php dynamic_sidebar( HATCH_THEME_SLUG . '-footer-' . $footer ); ?>
 					<?php } ?>
+					<?php do_action( 'hatch_after_footer_sidebar' ); ?>
 				</div>
 
 				<?php do_action( 'hatch_before_footer_copyright' ); ?>

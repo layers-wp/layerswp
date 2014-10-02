@@ -480,7 +480,7 @@ class Hatch_Design_Controller {
 						<?php echo $this->input(
 							array(
 								'type' => 'image',
-								'label' => __( 'Choose Image' , HATCH_THEME_SLUG ),
+								'label' => __( 'Choose Background' , HATCH_THEME_SLUG ),
 								'name' => $widget->name . '[background][image]' ,
 								'id' =>  $widget->id . '-background-image' ,
 								'value' => ( isset( $values->background['image'] ) ) ? $values->background['image'] : NULL

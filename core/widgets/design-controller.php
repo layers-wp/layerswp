@@ -489,11 +489,10 @@ class Hatch_Design_Controller {
 					</div>
 					<section>
 						<div class="hatch-form-item">
-							<label><?php _e( 'Color' , HATCH_THEME_SLUG ); ?></label>
+							<label><?php _e( 'Background Color' , HATCH_THEME_SLUG ); ?></label>
 							<?php echo $this->input(
 								array(
 									'type' => 'color',
-									'label' => __( 'Background Color' , HATCH_THEME_SLUG ),
 									'name' => $widget->name . '[background][color]' ,
 									'id' =>  $widget->id . '-background-color' ,
 									'value' => ( isset( $values->background['color'] ) ) ? $values->background['color'] : NULL

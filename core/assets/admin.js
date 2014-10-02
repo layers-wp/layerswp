@@ -359,6 +359,8 @@ jQuery(function($) {
 
 		// If there is no change, try again
 		if( false ==  $changed ) $(this).hatch_trigger_change();
+
+		console.log( $(this).attr('id') + " - Change triggered" );
 	};
 
 	/**

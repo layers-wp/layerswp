@@ -204,7 +204,6 @@ jQuery(function($) {
 	*/
 	hatch_set_color_selectors();
 	$(document).on ( 'mouseup' , '#available-widgets .widget-tpl' , function(){
-
 		$(this).find('.hatch-color-selector').each(function(){
 			var $picker = $(this);
 			$picker.closest('.wp-picker-container').replaceWith( $picker );
@@ -361,6 +360,20 @@ jQuery(function($) {
 		// If there is no change, try again
 		if( false ==  $changed ) $(this).hatch_trigger_change();
 	};
+
+	/**
+	* 11 - Trigger input changes
+	*/
+
+	$('.hatch-visuals-wrapper').each(function(){
+			// "Hi Mom!"
+			$that = $(this);
+
+			if( $that.find( 'li' ).length > 2 ){
+				$that.find( 'li' ).eq(-1).addClass( 'hatch-last' );
+				$that.find( 'li' ).eq(-2).addClass( 'hatch-last' );
+			}
+	});
 
 });
 

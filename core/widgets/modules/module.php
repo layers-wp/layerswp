@@ -50,7 +50,7 @@ if( !class_exists( 'Hatch_Module_Widget' ) ) {
 						'shadow' => NULL
 					)
 				),
-				'module_ids' => rand( 1 , 1000 )
+				'module_ids' => rand( 1 , 1000 ).','.rand( 1 , 1000 ).','.rand( 1 , 1000 )
 			);
 
 			$this->module_defaults = array (
@@ -63,7 +63,7 @@ if( !class_exists( 'Hatch_Module_Widget' ) ) {
 					'fonts' => array(
 						'align' => 'text-center',
 						'size' => 'medium',
-						'color' => NULL,
+						'color' => '#000',
 						'shadow' => NULL
 					)
 				)

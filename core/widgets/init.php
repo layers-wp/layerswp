@@ -42,15 +42,9 @@ class Hatch_Widgets {
 		require $module_dir . 'base.php'; // Basis of all Hatch Widgets
 		require $module_dir . 'banner.php';
 		require $module_dir . 'contact.php';
-		require $module_dir . 'framework.php';
-		require $module_dir . 'html.php';
 		require $module_dir . 'module.php';
 		require $module_dir . 'portfolio.php';
 		require $module_dir . 'post.php';
-		require $module_dir . 'services.php';
-		require $module_dir . 'social.php';
-		require $module_dir . 'team.php';
-		require $module_dir . 'widget.php';
 
 		// Enqueue Styles
 		add_action( 'admin_enqueue_scripts', array( $this, 'admin_enqueue_scripts' ) , 50 );

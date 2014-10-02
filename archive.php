@@ -9,12 +9,8 @@
 			<?php hatch_pagination(); ?>
 		</div>
 	<?php endif; // if has_post() ?>
-<<<<<<< HEAD
-    <div class="column span-4 pull-right sidebar">
-=======
 
-	<div class="column span-4 pull-right content">
->>>>>>> 0fd98254c18d2bbb1f9536c973b0b7e8765f57a8
+    <div class="column span-4 pull-right sidebar">
 		<?php get_sidebar(); ?>
 	</div>
 </section>

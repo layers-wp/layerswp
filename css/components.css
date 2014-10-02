@@ -14,6 +14,7 @@
 .advanced-layout-right .nav-vertical .sub-menu{left: -220px;}
 .advanced-layout-right .nav-vertical li:hover > .sub-menu{left: -210px;}
 
+
 /*-------------------------------*/
 /*- HEADERS ---------------------*/
 /*-------------------------------*/
@@ -69,6 +70,7 @@
     .header-secondary{}
     .header-secondary nav{margin: 0; font-size: 1.2rem;}
 
+
 /*-------------------------------*/
 /*- SLIDER ----------------------*/
 /*-------------------------------*/
@@ -123,20 +125,72 @@
 /*-------------------------------*/
 /*- SIDEBAR ---------------------*/
 /*-------------------------------*/
-.sidebar .widget li{
-    padding: 0 0 6px;
-    margin: 0 0 6px;
-    border-bottom: 1px solid #ddd;
-}
-.sidebar .widget li:last-child{
-    border-bottom: none;
-    padding-bottom: 0;
-    margin-bottom: 0;
-}
-.sidebar .widget li ul{
-    margin: 6px 0 0 10px;
-}
+.sidebar .widget li{padding: 0 0 6px; margin: 0 0 6px; border-bottom: 1px solid #ddd;}
+.sidebar .widget li:last-child{border-bottom: none; padding-bottom: 0; margin-bottom: 0;}
+.sidebar .widget li ul{margin: 6px 0 0 10px;}
 
+
+/*-------------------------------*/
+/*- STORY -----------------------*/
+/*-------------------------------*/
+.story{font-size: 1.8rem;}
+
+.story p{margin-bottom: 26px;}
+.story ul{list-style: disc; margin: 0 0 26px 35px;}
+.story ul li{list-style: disc; margin: 0 0 6px;}
+
+.story ol{list-style: decimal; margin: 0 0 26px 35px;}
+.story ol li{list-style: decimal; margin: 0 0 6px;}
+
+.story ul ul, .story ul ol, .story ol ol, .story ol ul{margin-bottom: 0;}
+
+.story a{border-bottom: 1px solid #ddd;}
+.story a:hover{border-color: #999;}
+
+.story .feature-list{list-style: none; margin-left: 15px;}
+
+.story dl{margin: 0 0 26px;}
+.story dd{margin-left: 36px;}
+
+.story code, .story pre{}
+.story img{display: block; max-width: 98%; height: auto;}
+
+.story h1{margin-bottom: 26px; font-size: 3.2rem; font-weight: 600; color: #323232;}
+.story h2{margin-bottom: 26px; font-size: 2.2rem; font-weight: 400; color: #323232;}
+.story h3{margin-bottom: 26px; font-size: 2.0rem; font-weight: 400; color: #323232;}
+.story h4{margin-bottom: 26px; font-size: 1.8rem; font-weight: 400; color: #323232;}
+.story h5{margin-bottom: 26px; font-size: 1.4rem; font-weight: 400; color: #323232;}
+
+.story table{width: 100%; margin-bottom: 35px; background: #f5f5f5; color: #000; font-size: 16px;}
+.story table th{padding: 5px 10px; border-bottom: 2px solid #ccc; text-transform: uppercase;}
+.story table td{padding: 5px 10px; border-bottom: 1px solid #e0e0e0;}
+.story table a{border: none;}
+
+.story blockquote{padding: 20px; margin-bottom: 26px; background: #f0f0f0; color: #999;}
+.story blockquote p:last-child{margin-bottom: 0;}
+
+.wp-caption{max-width: 100%; padding: 10px; background: #f0f0f0;}
+.wp-caption.alignright, .story img.alignright{float: right; max-width: 320px; margin: -10px 0px 10px 20px;}
+.wp-caption.alignleft{float: left; max-width: 320px; margin: 0 20px 10px 0;}
+.wp-caption p.wp-caption-text{padding: 10px 5px 5px; margin: 0; color: #777; font-size: 1.4rem;}
+.wp-caption.alignnone {margin: 5px 20px 20px 0;}
+
+
+/*-------------------------------*/
+/*- COMMENTS --------------------*/
+/*-------------------------------*/
+
+
+/*-------------------------------*/
+/*- COMMENTS FORM ---------------*/
+/*-------------------------------*/
+.comment-respond{}
+.comment-reply-title{font-size: 2.8rem; color: #323232;}
+.logged-in-as{font-size: 1.6rem; color: #8F8F8F; margin-bottom: 20px;}
+.form-allowed-tags{font-size: 1.4rem; margin-bottom: 15px;}
+.form-allowed-tags code{padding: 0; background: none;}
+.form-submit input[type=submit]{display: inline-block; padding: 4px 14px; background: #454545; border: none; border-radius: 4px; text-align: center; font-weight: 600; color: #fff; vertical-align: middle; cursor: pointer; transition: all 0.2s ease-in-out;}
+.form-submit input[type=submit]:hover{background: #323232; color: #fff;}
 
 /*-------------------------------*/
 /*- MAP - ADD ON ----------------*/

@@ -447,17 +447,6 @@ class Hatch_Design_Controller {
 								)
 							); ?>
 						</div>
-						<div class="hatch-form-item">
-							<label><?php _e( 'Text Shadow' , HATCH_THEME_SLUG ); ?></label>
-							<?php echo $this->input(
-								array(
-									'type' => 'color',
-									'name' => $widget->name . '[fonts][shadow]' ,
-									'id' =>  $widget->id . '-fonts-shadow' ,
-									'value' => ( isset( $values->fonts['shadow'] ) ) ? $values->fonts['shadow'] : NULL
-								)
-							); ?>
-						</div>
 					</section>
 				</div>
 			</div>

@@ -29,7 +29,7 @@ class Hatch_Customizer_Regsitrar {
 			$wp_customize->$panel_or_section['function'](
 					HATCH_THEME_SLUG . '-' . $panel_or_section['key'] ,
 					array(
-						'title'    => __( 'Hatch: ' , HATCH_THEME_SLUG ) . $panel_or_section['title'],
+						'title'    => $panel_or_section['title'],
 						'description' => $panel_or_section['description'],
 						'priority' => $panel_priority
 					)

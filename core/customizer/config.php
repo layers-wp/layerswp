@@ -17,14 +17,14 @@ class Hatch_Customizer_Config {
 				'priority' => 100,
 				'key' => 'footer',
 				'title' =>  __( 'Footer' , HATCH_THEME_SLUG ) ,
-				'description' => __( 'Your description here' , HATCH_THEME_SLUG ) // @TODO Put a helper here
+				'description' => __( 'Control your footer\'s custom text.' , HATCH_THEME_SLUG ) // @TODO Put a helper here
 			);
 
 		// Header Panel -> Sections
 		$settings['footer']['sections'] = array(
 			'layout' => array(
-				'section_key' => 'layouts',
-				'section_title' =>__( 'Layouts' , HATCH_THEME_SLUG )
+				'section_key' => 'layout',
+				'section_title' =>__( 'Layout' , HATCH_THEME_SLUG )
 			)
 		);
 

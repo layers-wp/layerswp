@@ -63,7 +63,7 @@ if( !class_exists( 'Hatch_Module_Widget' ) ) {
 					'fonts' => array(
 						'align' => 'text-left',
 						'size' => 'medium',
-						'color' => '#000',
+						'color' => NULL,
 						'shadow' => NULL
 					)
 				)

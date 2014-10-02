@@ -447,7 +447,7 @@ if( !class_exists( 'Hatch_Banner_Widget' ) ) {
 											'type' => 'text',
 											'name' => 'widget-' . $widget_details->id_base . '[' . $widget_details->number . '][banners][' . $slide_guid . '][link]' ,
 											'id' => 'widget-' . $widget_details->id_base . '-' . $widget_details->number . '-' . $slide_guid . '-link' ,
-											'placeholder' => __( 'e.g. http://'.get_bloginfo( 'url' ) , HATCH_THEME_SLUG ),
+											'placeholder' => __( 'Link', HATCH_THEME_SLUG ),
 											'value' => ( isset( $link ) ) ? $link : NULL ,
 										)
 									); ?>

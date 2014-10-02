@@ -163,6 +163,7 @@ if( !class_exists( 'Hatch_Portfolio_Widget' ) ) {
 				<?php if( isset( $widget->show_category_filter ) && isset( $terms ) &&  !is_wp_error( $terms ) ) { ?>
 					<div class="container <?php echo $this->check_and_return( $widget , 'design', 'fonts', 'align' ); ?> clearfix">
 						<ul class="nav nav-pills push-bottom-large">
+								<li data-filter=""><a href="#"><?php _e( 'All' , HATCH_THEME_SLUG ); ?></a></li>
 							<?php foreach( $terms as $term ) { ?>
 								<li data-filter="<?php echo $term->slug; ?>"><a href="#"><?php echo $term->name; ?></a></li>
 							<?php } // foreach $terms ?>
@@ -243,10 +244,14 @@ if( !class_exists( 'Hatch_Portfolio_Widget' ) ) {
 						$filter = $that.data( 'filter' );
 
 						// Toggle active
-						$that.toggleClass( 'active' ).siblings().removeClass('active');
+						if( '' == $filter) {
+							$that.removeClass( 'active' ).siblings().removeClass('active');
+						} else {
+							$that.toggleClass( 'active' ).siblings().removeClass('active');
+						}
 
 						jQuery.each( $('#<?php echo $widget_id; ?>').find( '.hatch-masonry-column' ) , function(){
-							if( jQuery(this).hasClass( $filter ) || !$that.hasClass( 'active' ) ){
+							if( '' == $filter || jQuery(this).hasClass( $filter ) || !$that.hasClass( 'active' ) ){
 								jQuery(this).fadeIn();
 							} else {
 								jQuery(this).hide();

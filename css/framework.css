@@ -336,6 +336,8 @@ h1, h2, h3, h4, h5, h6{color: #000; font-weight: 200;}
 
     .section-title + .container{margin-top: 60px;}
 
+    .section-title.text-right .excerpt{float: right;}
+
     /*---------------------------*/
     /*- SECTION HEROES ----------*/
     .section-hero h3{padding-top: 60px;}
@@ -591,7 +593,9 @@ h1, h2, h3, h4, h5, h6{color: #000; font-weight: 200;}
     .marketing.image-top .marketing-icon{float: none; width: 100%; text-align: center; margin-right: auto; margin-left: auto;}
     .marketing.image-top .marketing-body{float: none; width: 100%; padding: 20px 0 0;}
 
-    .marketing.image-right .marketing-icon{float: right; margin-right: 0; margin-left: 15px;}
+    .marketing.image-left .marketing-icon.{max-width: 50%;}
+
+    .marketing.image-right .marketing-icon{float: right; max-width: 50%; margin-right: 0; margin-left: 15px;}
 
     .marketing.small .marketing-icon{margin-right: 10px;}
     .marketing.small .heading{font-size: 1.6rem; font-weight: 600; color: #323232;}

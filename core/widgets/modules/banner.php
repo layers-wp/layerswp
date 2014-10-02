@@ -42,8 +42,8 @@ if( !class_exists( 'Hatch_Banner_Widget' ) ) {
 				'banner_ids' => rand( 1 , 1000 )
 			);
 			$this->banner_defaults = array (
-				'title' => 'Enter title here',
-				'excerpt' => 'Short Excerpt',
+				'title' => 'Enter your slide title here',
+				'excerpt' => 'Give a short description of the feature you want to promote.',
 				'link' => NULL,
 				'link_text' => 'See More',
 				'design' => array(

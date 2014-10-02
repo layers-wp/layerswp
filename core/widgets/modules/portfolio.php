@@ -43,8 +43,8 @@ if( !class_exists( 'Hatch_Portfolio_Widget' ) ) {
 
 			/* Setup Widget Defaults */
 			$this->defaults = array (
-				'title' => NULL,
-				'excerpt' => NULL,
+				'title' => 'Our Work',
+				'excerpt' => 'Browse through our finest work, created by a team of incredibly talented people.',
 				'text_style' => 'regular',
 				'category' => 0,
 				'show_titles' => 'on',

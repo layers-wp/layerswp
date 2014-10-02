@@ -8,17 +8,19 @@
 
 @import url(icons.css);
 
+/*------------------------------------*/
+/*- HIDE HATCH WIDGETS IN APPEARANCE -*/
+.widgets-php #widget-list [id*='hatch-widget']{display: none;}
+div#widgets-right .widgets-sortables [id*='hatch-widget']{display: none;}
+
 /*----------------------------------*/
 /*- HIDING NONE HATCH WIDGETS ------*/
-#available-widgets .widget-tpl{
-    /*display: none !important;*/
-}
-#available-widgets .widget-tpl[id*='hatch-widget']{
-    display: block !important;
-}
+#available-widgets .widget-tpl{}
+#available-widgets .widget-tpl[id*='hatch-widget']{display: block !important;}
 
 /*----------------------------------*/
 /*- WORDPRESS RESETS / OVERRIDES ---*/
+
 div[id*='hatch-widget'].widget-tpl .widget .widget-description{color: #777 !important;}
 div[id*='hatch-widget'].widget-tpl .widget .widget-title:before{color: #222 !important;}
 div[id*='hatch-widget'].widget-tpl .widget .widget-title h4{color: #222 !important;}
@@ -102,7 +104,7 @@ div[id*='hatch-widget'] .widget-top .widget-title .in-widget-title{
 div[id*='hatch-widget'] .widget-control-actions{
     padding: 10px 20px;
     position: absolute;
-    z-index: 10;
+    z-index: 99;
     bottom: 0px;
     left: 0px;
     background-color: #FFF;

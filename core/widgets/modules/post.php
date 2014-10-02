@@ -46,8 +46,8 @@ if( !class_exists( 'Hatch_Post_Widget' ) ) {
 
 			/* Setup Widget Defaults */
 			$this->defaults = array (
-				'title' => NULL,
-				'excerpt' => NULL,
+				'title' => 'Latest Posts',
+				'excerpt' => 'Stay up to date with all our latest news and launches. Only the best quality makes it onto our blog!',
 				'text_style' => 'regular',
 				'category' => 0,
 				'show_titles' => 'on',

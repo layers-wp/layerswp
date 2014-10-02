@@ -33,8 +33,8 @@ if( !class_exists( 'Hatch_Module_Widget' ) ) {
 
 			/* Setup Widget Defaults */
 			$this->defaults = array (
-				'title' => NULL,
-				'excerpt' => NULL,
+				'title' => 'Our Services',
+				'excerpt' => 'Our services run deep and are backed by over ten years of experience.',
 				'design' => array(
 					'layout' => 'layout-boxed',
 					'columns' => '3',
@@ -54,8 +54,8 @@ if( !class_exists( 'Hatch_Module_Widget' ) ) {
 			);
 
 			$this->module_defaults = array (
-				'title' => 'Enter title here',
-				'excerpt' => 'Short Excerpt',
+				'title' => 'Your service title',
+				'excerpt' => 'Give us a brief description of the service that you are promoting. Try keep it short so that it is easy for people to scan your page.',
 				'design' => array(
 					'imagealign' => 'image-left',
 					'imageratios' => NULL,

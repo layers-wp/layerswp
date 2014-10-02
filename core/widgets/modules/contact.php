@@ -43,8 +43,8 @@ if( !class_exists( 'Hatch_Contact_Widget' ) ) {
 
 			/* Setup Widget Defaults */
 			$this->defaults = array (
-				'title' => NULL,
-				'excerpt' => NULL,
+				'title' => 'Find Us',
+				'excerpt' => 'We are based in one of the most beautiful places on earth. Come visit us for a coffee!',
 				'contact_form' => NULL,
 				'address_shown' => NULL,
 				'show_google_map' => 'on',

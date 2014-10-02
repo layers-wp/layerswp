@@ -111,7 +111,7 @@ function hatch_comment($comment, $args, $depth) {
                 <?php echo get_avatar($comment, $size = '70'); ?>
             </a>
             <div class="avatar-body">
-                <h5><?php echo get_comment_author_link(); ?></h5>
+                <h5 class="avatar-name"><?php echo get_comment_author_link(); ?></h5>
                 <small><?php printf(__('%1$s at %2$s', HATCH_THEME_SLUG), get_comment_date(),  get_comment_time()) ?></small>
             </div>
         </div>

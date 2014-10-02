@@ -94,8 +94,11 @@ if( !class_exists( 'Hatch_Widget' ) ) {
 		/**
 		* Check option with isset() and echo it out if it exists, if it does not exist, return false
 		*
-		* @param  	varchar		$widget_id 	Widget ID
-		* @param  	array 		$values 	Background information
+		* @param  	object		$widget_id 	Widget Object
+		* @param  	varchar 	$option 	Widget option to check on
+		* @param  	varchar 	$array_level_1 	Array level one to check for (optional)
+		* @param  	varchar 	$array_level_2 	Array level two to check for (optional)
+		* @return  	varchar 	false if not set, otherwise returns value
 		*/
 
 		function check_and_return( $widget = NULL , $option = NULL, $array_level_1 = NULL, $array_level_2 = NULL ){

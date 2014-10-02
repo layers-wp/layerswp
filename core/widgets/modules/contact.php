@@ -84,7 +84,6 @@ if( !class_exists( 'Hatch_Contact_Widget' ) ) {
 
 			$instance = wp_parse_args( $instance , $instance_defaults );
 
-
 			// Turn $instance into an object named $widget, makes for neater code
 			$widget = (object) $instance;
 
@@ -94,11 +93,14 @@ if( !class_exists( 'Hatch_Contact_Widget' ) ) {
 			}
 			// Set the background styling
 			if( !empty( $widget->design[ 'background' ] ) ) $this->widget_styles( $widget_id , 'background', $widget->design[ 'background' ] );
-			if( !empty( $widget->design['fonts'][ 'color' ] ) ) $this->widget_styles( $widget_id , 'color', array( 'selectors' => array( '.section-title h3.heading' , '.section-title p.excerpt' , '.section-title small' ) , 'color' => $widget->design['fonts'][ 'color' ] ) ); ?>
+			if( !empty( $widget->design['fonts'][ 'color' ] ) ) $this->widget_styles( $widget_id , 'color', array( 'selectors' => array( '.section-title h3.heading' , '.section-title p.excerpt' , '.section-title small' ) , 'color' => $widget->design['fonts'][ 'color' ] ) );
+
+			// Set the map width
+			$mapwidth = 'span-12'; ?>
 
 			<section class="widget content-vertical-massive row" id="<?php echo $widget_id; ?>">
 
-				<?php if( '' != $widget->title || '' != $widget->excerpt  || '' != $widget->address_shown ) { ?>
+				<?php if( '' != $widget->title || '' != $widget->excerpt ) { ?>
 					<div class="container clearfix">
 						<div class="section-title <?php if( isset( $widget->design['fonts']['align'] ) ) echo $widget->design['fonts']['align']; ?> clearfix">
 							<?php if( '' != $widget->title ) { ?>
@@ -110,21 +112,24 @@ if( !class_exists( 'Hatch_Contact_Widget' ) ) {
 						</div>
 					</div>
 				<?php } // if title || excerpt ?>
-				
+
 				<div class="row <?php if( isset( $widget->design[ 'layout' ] ) && 'layout-boxed' == $widget->design[ 'layout' ] ) echo 'container'; ?>">
-					<div class="column span-6 form">
-						<?php if( '' != $widget->address_shown && isset( $widget->show_address ) ) { ?>
-							<address class="copy">
-								<p>
-									<?php echo $widget->address_shown; ?>
-								</p>
-							</address>
-						<?php } ?>
-						<?php if( isset( $widget->show_contact_form ) && '' != $widget->contact_form ) { ?>
-							<?php echo do_shortcode( $widget->contact_form ); ?>
-						<?php } ?>
-					</div>
-					<div class="column span-6">
+					<?php if( ( '' != $widget->address_shown && isset( $widget->show_address ) ) || ( isset( $widget->show_contact_form ) && '' != $widget->contact_form ) ) {?>
+						<div class="column span-6 form">
+							<?php if( isset( $widget->show_address ) &&  '' != $widget->address_shown ) { ?>
+								<address class="copy">
+									<p>
+										<?php echo $widget->address_shown; ?>
+									</p>
+								</address>
+							<?php } ?>
+							<?php if( isset( $widget->show_contact_form ) && '' != $widget->contact_form ) { ?>
+								<?php echo do_shortcode( $widget->contact_form ); ?>
+							<?php } ?>
+						</div>
+						<?php $mapwidth = 'span-6'; ?>
+					<?php } // if show_contact_form || address_shown ?>
+					<div class="column <?php echo $mapwidth; ?>">
 						<?php if( isset( $hasmap ) ) { ?>
 							<div class="hatch-map" style="height: <?php echo $widget->map_height; ?>px;" <?php if( '' != $widget->google_maps_location ) { ?>data-location="<?php echo $widget->google_maps_location; ?>"<?php } ?> <?php if( '' != $widget->google_maps_long_lat ) { ?>data-longlat="<?php echo $widget->google_maps_long_lat; ?>"<?php } ?>></div>
 						<?php } ?>

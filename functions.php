@@ -97,14 +97,14 @@ if( ! function_exists( 'hatch_setup' ) ) {
 		add_theme_support( 'post-thumbnails' );
 
 		// Set Large Image Sizes
-		add_image_size( 'square-large', 800, 800, true );
-		add_image_size( 'portrait-large', 600, 800, true );
-		add_image_size( 'landscape-large', 800, 600, true );
+		add_image_size( 'square-large', 960, 960, true );
+		add_image_size( 'portrait-large', 720, 960, true );
+		add_image_size( 'landscape-large', 960, 720, true );
 
 		// Set Medium Image Sizes
-		add_image_size( 'square-medium', 400, 400, true );
-		add_image_size( 'portrait-medium', 300, 400, true );
-		add_image_size( 'landscape-medium', 400, 300, true );
+		add_image_size( 'square-medium', 480, 480, true );
+		add_image_size( 'portrait-medium', 360, 480, true );
+		add_image_size( 'landscape-medium', 480, 360, true );
 
 		/**
 		 * Add theme support

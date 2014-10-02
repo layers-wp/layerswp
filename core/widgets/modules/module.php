@@ -157,9 +157,6 @@ if( !class_exists( 'Hatch_Module_Widget' ) ) {
 				<?php } ?>
 
 			</section>
-
-			<!-- Front-end HTML Here
-			<?php print_r( $instance ); ?>-->
 		<?php }
 
 		/**

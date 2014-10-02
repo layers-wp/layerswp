@@ -92,23 +92,21 @@ if( !class_exists( 'Hatch_Banner_Widget' ) ) {
 			 		<div class="swiper-wrapper">
 						<?php $col = 1; ?>
 						<?php foreach ( $widget->banners as $key => $banner) {
-							$banner = (object) $banner;
-
 							// Set the background styling
-							if( !empty( $banner->design[ 'background' ] ) ) $this->widget_styles( $widget_id . '-' . $key , 'background', $banner->design[ 'background' ] );
-							if( !empty( $banner->design['fonts'][ 'color' ] ) ) $this->widget_styles( $widget_id . '-' . $key , 'color', array( 'selectors' => array( 'h3.heading', 'h3.heading a', 'div.excerpt' ) , 'color' => $banner->design['fonts'][ 'color' ] ) );
-							if( !empty( $banner->design['fonts'][ 'shadow' ] ) ) $this->widget_styles( $widget_id . '-' . $key , 'text-shadow', array( 'selectors' => array( 'h3.heading', 'h3.heading a',  'div.excerpt' )  , 'text-shadow' => $banner->design['fonts'][ 'shadow' ] ) );
+							if( !empty( $banner['design'][ 'background' ] ) ) $this->widget_styles( $widget_id . '-' . $key , 'background', $banner['design'][ 'background' ] );
+							if( !empty( $banner['design']['fonts'][ 'color' ] ) ) $this->widget_styles( $widget_id . '-' . $key , 'color', array( 'selectors' => array( 'h3.heading', 'h3.heading a', 'div.excerpt' ) , 'color' => $banner['design']['fonts'][ 'color' ] ) );
+							if( !empty( $banner['design']['fonts'][ 'shadow' ] ) ) $this->widget_styles( $widget_id . '-' . $key , 'text-shadow', array( 'selectors' => array( 'h3.heading', 'h3.heading a',  'div.excerpt' )  , 'text-shadow' => $banner['design']['fonts'][ 'shadow' ] ) );
 
 							// Set Image Sizes
-							if( isset( $banner->design[ 'imageratios' ] ) ){
-									$imageratios = $banner->design[ 'imageratios' ] . '-medium';
+							if( isset( $banner['design'][ 'imageratios' ] ) ){
+									$imageratios = $banner['design'][ 'imageratios' ] . '-medium';
 							} else {
 								$imageratios = 'medium';
 							} ?>
 
 							<div id="<?php echo $widget_id; ?>-<?php echo $key; ?>" class="invert swiper-slide
-								<?php if( isset( $banner->design[ 'imagealign' ] ) && '' != $banner->design[ 'imagealign' ] ) echo $banner->design[ 'imagealign' ]; ?>
-								<?php if( isset( $banner->design['fonts'][ 'align' ] ) && '' != $banner->design['fonts'][ 'align' ] ) echo $banner->design['fonts'][ 'align' ]; ?>
+								<?php if( isset( $banner['design'][ 'imagealign' ] ) && '' != $banner['design'][ 'imagealign' ] ) echo $banner['design'][ 'imagealign' ]; ?>
+								<?php if( isset( $banner['design']['fonts'][ 'align' ] ) && '' != $banner['design']['fonts'][ 'align' ] ) echo $banner['design']['fonts'][ 'align' ]; ?>
 								"
 								style="float: left; <?php if( $this->check_and_return( $widget , 'banner_height' ) ) echo 'height: ' . $widget->banner_height . 'px;' ?>">
 								<div class="overlay">
@@ -116,7 +114,7 @@ if( !class_exists( 'Hatch_Banner_Widget' ) ) {
 										<?php if( '' != $banner->title || '' != $banner->excerpt ) { ?>
 											<div class="copy-container <?php if( false == $this->check_and_return( $banner , 'image' ) ) echo 'no-image'; ?>">
 												<!-- your dynamic output goes here -->
-												<div class="section-title <?php echo ( isset( $banner->design['fonts'][ 'size' ] ) ? $banner->design['fonts'][ 'size' ] : '' ); ?>">
+												<div class="section-title <?php echo ( isset( $banner['design']['fonts'][ 'size' ] ) ? $banner['design']['fonts'][ 'size' ] : '' ); ?>">
 													<?php if( $this->check_and_return( $banner , 'title' ) ) { ?>
 														<?php if( $this->check_and_return( $banner , 'link' ) ) { ?>
 															<h3 class="heading"><a href="<?php echo $banner->link; ?>"><?php echo $banner->title; ?></a></h3>

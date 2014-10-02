@@ -9,7 +9,7 @@
         </div>
     <?php endif; // if has_post() ?>
 
-    <div class="column span-4 pull-right well content">
+    <div class="column span-4 pull-right well sidebar">
         <?php get_sidebar(); ?>
     </div>
 </section>

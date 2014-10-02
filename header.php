@@ -3,7 +3,19 @@
 <head>
 	<meta charset="<?php bloginfo( 'charset' ); ?>">
 	<meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
-	<title><?php wp_title( '|', true, 'right' ); ?></title>
+	<title>
+		<?php
+			global $page, $paged, $post;
+			wp_title( '|', true, 'right' );
+			bloginfo( 'name' );
+			$site_description = get_bloginfo( 'description', 'display' );
+			if ( $site_description && ( is_home() || is_front_page() ) )
+				echo " | $site_description";
+
+			if ( $paged >= 2 || $page >= 2 )
+				echo ' | ' . sprintf( __( 'Page %s', HATCH_THEME_SLUG ), max( $paged, $page ) );
+		?>
+	</title>
 	<link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
 	<link rel="icon" href="images/temp-ts-fav.png" type="image/png" />
 	<?php wp_head(); ?>

@@ -356,11 +356,7 @@ jQuery(function($) {
 	$.fn.hatch_trigger_change = function() {
 		// Trigger 'change' and 'blur' to reset the customizer
 		$changed = $(this).trigger("change") .trigger("blur");
-
-		// If there is no change, try again
-		if( false ==  $changed ) $(this).hatch_trigger_change();
-
-		console.log( $(this).attr('id') + " - Change triggered" );
+		$( document ).trigger( 'widget-updated', $(this).closest( '.control-section' ).find( '.widget:first' ) );
 	};
 
 	/**

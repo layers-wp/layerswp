@@ -111,8 +111,10 @@ if( !class_exists( 'Hatch_Portfolio_Widget' ) ) {
 
 			// Set Image Sizes
 			if( isset( $widget->design[ 'imageratios' ] ) ){
-				if( $col_count > 3 ){
+				if( 'layout-boxed' == $this->check_and_return( $widget , 'design', 'layout' ) && $col_count > 2 ){
 					$imageratios = $widget->design[ 'imageratios' ] . '-medium';
+				} elseif( 'layout-boxed' != $this->check_and_return( $widget , 'design', 'layout' ) && $col_count > 3 ){
+					$imageratios = $widget->design[ 'imageratios' ] . '-large';
 				} else {
 					$imageratios = $widget->design[ 'imageratios' ] . '-large';
 				}

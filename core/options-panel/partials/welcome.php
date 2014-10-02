@@ -4,7 +4,7 @@
 	$find_builder_page->the_post();
 	$page_id = get_the_ID();
 	break;
-}  ?>
+} ?>
 <section class="hatch-container hatch-content-large">
 
 	<div class="hatch-section-title hatch-large invert hatch-content-massive" style="background: url(<?php echo get_template_directory_uri(); ?>/images/beta-zero.jpg) top repeat;">
@@ -65,7 +65,7 @@
 			</p>
 		</div>
 		<p>To get you started we have added some demo content to this theme so that you don't start from a blank page. If you would like a fresh start, click here.</p>
-		<?php  if( $find_builder_page->have_posts() ) { ?>
+		<?php  if( $find_builder_page->post_count > 0 ) { ?>
 			<ol>
 				<li>Click the "Page Builder" accordion</li>
 				<li>Start adding widgets labelled (Hatch) to the Page Builder Body section</li>

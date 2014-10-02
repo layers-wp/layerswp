@@ -116,7 +116,7 @@ if( ! function_exists( 'hatch_setup' ) ) {
 				'sitetitle',
 				'tagline',
 			),
-			'size' => 150,
+			'size' => 'medium',
 		) );
 
 		// Automatic Feed Links

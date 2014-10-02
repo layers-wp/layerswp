@@ -91,5 +91,43 @@ if( !class_exists( 'Hatch_Widget' ) ) {
 
 		}
 
+		/**
+		* Check option with isset() and echo it out if it exists, if it does not exist, return false
+		*
+		* @param  	varchar		$widget_id 	Widget ID
+		* @param  	array 		$values 	Background information
+		*/
+
+		function check_and_return( $widget = NULL , $option = NULL, $array_level_1 = NULL, $array_level_2 = NULL ){
+
+			// If there is no widget object
+			if( $widget == NULL ) return false;
+
+			if( !isset( $widget->$option ) ){
+				return false;
+			} else {
+				$widget_option = $widget->$option;
+			}
+
+			if( NULL != $array_level_1 ){
+				if( !isset( $widget_option[ $array_level_1 ] ) ){
+					return false;
+				} elseif( '' != $widget_option[ $array_level_1 ] ){
+					if( NULL != $array_level_2 ){
+						if( !isset( $widget_option[ $array_level_1 ][ $array_level_2 ] ) ){
+							return false;
+						} elseif( '' != $widget_option[ $array_level_1 ][ $array_level_2 ] ) {
+							return $widget_option[ $array_level_1 ][ $array_level_2 ];
+						}
+					} elseif( '' != $widget_option[ $array_level_1 ] )  {
+						return $widget_option[ $array_level_1 ];
+					}
+				}
+			} elseif( '' != $widget_option ){
+				return $widget_option;
+			}
+
+		}
+
 	}
 }

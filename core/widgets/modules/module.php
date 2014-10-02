@@ -43,19 +43,25 @@ if( !class_exists( 'Hatch_Module_Widget' ) ) {
 						'position' => 'center',
 						'repeat' => 'no-repeat'
 					),
+					'fonts' => array(
+						'align' => 'text-left',
+						'size' => 'medium',
+						'color' => NULL,
+						'shadow' => NULL
+					)
 				),
 				'module_ids' => rand( 1 , 1000 )
 			);
 
 			$this->module_defaults = array (
-				'title' => NULL,
-				'excerpt' => NULL,
+				'title' => 'Enter title here',
+				'excerpt' => 'Short Excerpt',
 				'design' => array(
-					'imagealign' => 'image-right',
+					'imagealign' => 'image-center',
 					'imageratios' => NULL,
 					'background' => NULL,
 					'fonts' => array(
-						'align' => 'text-left',
+						'align' => 'text-center',
 						'size' => 'medium',
 						'color' => NULL,
 						'shadow' => NULL
@@ -96,9 +102,9 @@ if( !class_exists( 'Hatch_Module_Widget' ) ) {
 			if( !empty( $widget->design['fonts'][ 'color' ] ) ) $this->widget_styles( $widget_id , 'color', array( 'selectors' => array( '.section-title h3.heading' , '.section-title p.excerpt' ) , 'color' => $widget->design['fonts'][ 'color' ] ) ); ?>
 
 			<section class="widget row content-vertical-massive" id="<?php echo $widget_id; ?>">
-				<?php if( ( isset( $widget->title ) && '' != $widget->title ) || ( isset( $widget->title ) && '' != $widget->excerpt ) ) { ?>
+				<?php if( $this->check_and_return( $widget , 'title' ) || $this->check_and_return( $widget , 'excerpt' ) ) { ?>
 					<div class="container">
-						<div class="section-title <?php if( isset( $widget->design['fonts'][ 'size' ] ) ) echo $widget->design['fonts'][ 'size' ]; ?> <?php if( isset( $widget->design['fonts'][ 'align' ] ) ) echo $widget->design['fonts'][ 'align' ]; ?> clearfix">
+						<div class="section-title <?php echo $this->check_and_return( $widget , 'design', 'fonts', 'size' ); ?> <?php echo $this->check_and_return( $widget , 'design', 'fonts', 'align' ); ?> clearfix">
 							<?php if( '' != $widget->title ) { ?>
 								<h3 class="heading"><?php echo $widget->title; ?></h3>
 							<?php } ?>
@@ -109,7 +115,7 @@ if( !class_exists( 'Hatch_Module_Widget' ) ) {
 					</div>
 				<?php } ?>
 				<?php if( !empty( $widget->modules ) ) { ?>
-					<div class="row <?php if( isset( $widget->design[ 'layout' ] ) && 'layout-boxed' == $widget->design[ 'layout' ] ) echo 'container'; ?>">
+					<div class="row <?php if('layout-boxed' == $this->check_and_return( $widget , 'design' , 'layout' ) ) echo 'container'; ?>">
 						<?php $col = 1; ?>
 						<?php foreach ( $widget->modules as $key => $module) {
 
@@ -204,9 +210,9 @@ if( !class_exists( 'Hatch_Module_Widget' ) ) {
 				$instance, // Widget Values
 				array(
 					'layout',
+					'fonts',
 					'columns',
-					'background',
-					'fonts'
+					'background'
 				) // Standard Components
 			); ?>
 			<div class="hatch-container-large" id="hatch-banner-widget-<?php echo $this->number; ?>">

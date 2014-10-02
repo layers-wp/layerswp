@@ -100,9 +100,9 @@ if( !class_exists( 'Hatch_Contact_Widget' ) ) {
 
 			<section class="widget content-vertical-massive row" id="<?php echo $widget_id; ?>">
 
-				<?php if( '' != $widget->title || '' != $widget->excerpt ) { ?>
+				<?php if( $this->check_and_return( $widget , 'title' ) || $this->check_and_return( $widget , 'excerpt' ) ) { ?>
 					<div class="container clearfix">
-						<div class="section-title <?php if( isset( $widget->design['fonts']['align'] ) ) echo $widget->design['fonts']['align']; ?> clearfix">
+						<div class="section-title <?php echo $this->check_and_return( $widget , 'design', 'fonts', 'size' ); ?> <?php echo $this->check_and_return( $widget , 'design', 'fonts', 'align' ); ?> clearfix">
 							<?php if( '' != $widget->title ) { ?>
 								<h3 class="heading"><?php echo $widget->title; ?></h3>
 							<?php } ?>
@@ -113,14 +113,13 @@ if( !class_exists( 'Hatch_Contact_Widget' ) ) {
 					</div>
 				<?php } // if title || excerpt ?>
 
-				<div class="row <?php if( isset( $widget->design[ 'layout' ] ) && 'layout-boxed' == $widget->design[ 'layout' ] ) echo 'container'; ?>">
+
+				<div class="row <?php if('layout-boxed' == $this->check_and_return( $widget , 'design' , 'layout' ) ) echo 'container'; ?>">
 					<?php if( ( '' != $widget->address_shown && isset( $widget->show_address ) ) || ( isset( $widget->show_contact_form ) && '' != $widget->contact_form ) ) {?>
 						<div class="column span-6 form">
 							<?php if( isset( $widget->show_address ) &&  '' != $widget->address_shown ) { ?>
 								<address class="copy">
-									<p>
-										<?php echo $widget->address_shown; ?>
-									</p>
+									<p><?php echo $widget->address_shown; ?></p>
 								</address>
 							<?php } ?>
 							<?php if( isset( $widget->show_contact_form ) && '' != $widget->contact_form ) { ?>
@@ -136,9 +135,6 @@ if( !class_exists( 'Hatch_Contact_Widget' ) ) {
 					</div>
 				</div>
 			</section>
-
-	 		<!-- Front-end HTML Here
-	 		<?php print_r( $instance ); ?>-->
 
 	 		<?php // Enqueue the map js
 	 			wp_enqueue_script( HATCH_THEME_SLUG . " -map-api","http://maps.googleapis.com/maps/api/js?sensor=false");
@@ -191,8 +187,8 @@ if( !class_exists( 'Hatch_Contact_Widget' ) ) {
 				$instance, // Widget Values
 				array(
 					'layout',
-					'custom',
 					'fonts',
+					'custom',
 					'background'
 				), // Standard Components
 				array(

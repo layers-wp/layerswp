@@ -148,9 +148,9 @@ if( !class_exists( 'Hatch_Portfolio_Widget' ) ) {
 			$portfolio_query = new WP_Query( $query_args ); ?>
 
 			<section class="widget row content-vertical-massive" id="<?php echo $widget_id; ?>">
-				<?php if( '' != $widget->title || '' != $widget->excerpt ) { ?>
+				<?php if( $this->check_and_return( $widget , 'title' ) || $this->check_and_return( $widget , 'excerpt' ) ) { ?>
 					<div class="container clearfix">
-						<div class="section-title <?php if( isset( $widget->design['fonts'][ 'size' ] ) ) echo $widget->design['fonts'][ 'size' ]; ?> <?php if( isset( $widget->design['fonts'][ 'align' ] ) ) echo $widget->design['fonts'][ 'align' ]; ?> clearfix">
+						<div class="section-title <?php echo $this->check_and_return( $widget , 'design', 'fonts', 'size' ); ?> <?php echo $this->check_and_return( $widget , 'design', 'fonts', 'align' ); ?> clearfix">
 							<?php if( '' != $widget->title ) { ?>
 								<h3 class="heading"><?php echo $widget->title; ?></h3>
 							<?php } ?>
@@ -161,7 +161,7 @@ if( !class_exists( 'Hatch_Portfolio_Widget' ) ) {
 					</div>
 				<?php } ?>
 				<?php if( isset( $widget->show_category_filter ) && isset( $terms ) &&  !is_wp_error( $terms ) ) { ?>
-					<div class="container text-center <?php if( isset( $widget->design['fonts'][ 'align' ] ) ) echo $widget->design['fonts'][ 'align' ]; ?> clearfix">
+					<div class="container <?php echo $this->check_and_return( $widget , 'design', 'fonts', 'align' ); ?> clearfix">
 						<ul class="nav nav-pills push-bottom-large">
 							<?php foreach( $terms as $term ) { ?>
 								<li data-filter="<?php echo $term->slug; ?>"><a href="#"><?php echo $term->name; ?></a></li>
@@ -169,12 +169,12 @@ if( !class_exists( 'Hatch_Portfolio_Widget' ) ) {
 						</ul>
 					</div>
 				<?php } ?>
-				<div class="row <?php if( isset( $widget->design[ 'layout' ] ) && 'layout-boxed' == $widget->design[ 'layout' ] ) echo 'container'; ?> <?php  if( isset( $widget->design[ 'liststyle' ] ) ) echo $widget->design[ 'liststyle' ]; ?>">
+				<div class="row <?php if('layout-boxed' == $this->check_and_return( $widget , 'design' , 'layout' ) ) echo 'container'; ?> <?php echo $this->check_and_return( $widget , 'design', 'liststyle' ); ?>">
 					<?php if( $portfolio_query->have_posts() ) { ?>
 						<?php while( $portfolio_query->have_posts() ) {
 							$portfolio_query->the_post();
 							global $post; ?>
-							<?php if( 'list-list' == $widget->design[ 'liststyle' ] ) { ?>
+							<?php if( 'list-list' == $this->check_and_return( $widget , 'design', 'liststyle' ) ) { ?>
 								<?php get_template_part( 'content' , 'list' ); ?>
 							<?php } else { ?>
 								<?php $terms = wp_get_post_terms( $post->ID, $this->taxonomy );
@@ -184,7 +184,7 @@ if( !class_exists( 'Hatch_Portfolio_Widget' ) ) {
 										$term_list[] = $term->slug;
 									}
 								} ?>
-								<article class="column<?php if( isset( $widget->design[ 'columnflush' ] ) ) echo '-flush'; ?> <?php echo $span_class; ?> hatch-masonry-column thumbnail <?php if( isset( $widget->text_style ) && 'overlay' == $widget->text_style ) echo 'with-overlay'; ?> <?php echo implode( $term_list, " " ); ?>"  data-cols="<?php echo $col_count; ?>">
+								<article class="column<?php if( isset( $widget->design[ 'columnflush' ] ) ) echo '-flush'; ?> <?php echo $span_class; ?> hatch-masonry-column thumbnail <?php if( 'overlay' == $this->check_and_return( $widget , 'text_style' ) ) echo 'with-overlay'; ?> <?php echo implode( $term_list, " " ); ?>"  data-cols="<?php echo $col_count; ?>">
 									<?php if( has_post_thumbnail() ) { ?>
 										<div class="thumbnail-media">
 											<a href="<?php the_permalink(); ?>">
@@ -211,7 +211,7 @@ if( !class_exists( 'Hatch_Portfolio_Widget' ) ) {
                                                         echo '<p class="excerpt">' . get_the_excerpt() . '</p>';
                                                     }
                                                 }; ?>
-                                                <?php if( isset( $widget->show_call_to_action ) && isset( $widget->call_to_action ) && '' != $widget->call_to_action ) { ?>
+                                                <?php if( isset( $widget->show_call_to_action ) && $this->check_and_return( $widget , 'call_to_action' ) ) { ?>
 													<a href="<?php the_permalink(); ?>" class="button"><?php echo $widget->call_to_action; ?></a>
 												<?php } // show call to action ?>
 											</div>
@@ -262,9 +262,7 @@ if( !class_exists( 'Hatch_Portfolio_Widget' ) ) {
 					});
 				});
 			</script>
-			<!-- Front-end HTML Here
-			<?php print_r( $instance ); ?>
-			 -->
+
 
 			<?php // Reset WP_Query
 				wp_reset_postdata();
@@ -318,12 +316,12 @@ if( !class_exists( 'Hatch_Portfolio_Widget' ) ) {
 				$instance, // Widget Values
 				array(
 					'layout',
+					'fonts',
 					'custom',
 					'columns',
 					'liststyle',
 					'imageratios',
-					'background',
-					'fonts'
+					'background'
 				), // Standard Components
 				array(
 					'display' => array(

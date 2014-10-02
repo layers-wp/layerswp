@@ -102,6 +102,7 @@ div[id*='hatch-widget'] .widget-top .widget-title .in-widget-title{
 div[id*='hatch-widget'] .widget-control-actions{
     padding: 10px 20px;
     position: absolute;
+    z-index: 10;
     bottom: 0px;
     left: 0px;
     background-color: #FFF;

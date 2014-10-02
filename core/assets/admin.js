@@ -19,6 +19,7 @@
  * 7 - Design Controller Height Matcher
  * 8 - Widget Focussing
  * 9 - Init 'Medium' editors
+ * 10 - Trigger input changes
 */
 
 jQuery(function($) {
@@ -40,7 +41,7 @@ jQuery(function($) {
 
 		$that.siblings('img').remove();
 		$container.removeClass( 'hatch-has-image' );
-		$container.find('input').val('').trigger("change").trigger("blur");
+		$container.find('input').val('').hatch_trigger_change();
 		$that.fadeOut();
 		return false;
 	});
@@ -103,7 +104,7 @@ jQuery(function($) {
 			$container.addClass( 'hatch-has-image' );
 
 			// Trigger change event
-			$container.find('input').val( attachment.id ).trigger("change").trigger("blur");
+			$container.find('input').val( attachment.id ).hatch_trigger_change();
 
 			return;
 		});
@@ -121,7 +122,7 @@ jQuery(function($) {
 		$that = $(this);
 
 		$that.siblings('span').text('');
-		$that.siblings('input').val('').trigger("change");
+		$that.siblings('input').val('').hatch_trigger_change();
 
 		$that.fadeOut();
 		return false;
@@ -160,7 +161,7 @@ jQuery(function($) {
 			$that.siblings('span').text( attachment.filename );
 
 			// Trigger change event
-			$that.siblings('input').val( attachment.id ).trigger("change").trigger("blur");
+			$that.siblings('input').val( attachment.id ).hatch_trigger_change();
 
 			return;
 		});
@@ -187,7 +188,7 @@ jQuery(function($) {
 		$elements = $( $id + '-controller' ).find( '.hatch-controller-elements' );
 
 		// Change the input value
-		$( $id + '-type' ).val( $type ).trigger("change");
+		$( $id + '-type' ).val( $type ).hatch_trigger_change();
 
 		// Switch the selectors
 		$that.addClass( 'active' );
@@ -218,7 +219,7 @@ jQuery(function($) {
 
 		jQuery('.hatch-color-selector').wpColorPicker({
 			change: function(event, ui){
-				$(event.target).val( ui.color.toString() ).trigger( 'change' ).trigger("blur");
+				$(event.target).val( ui.color.toString() ).hatch_trigger_change();
 			}
 		});
 	}
@@ -286,8 +287,8 @@ jQuery(function($) {
 		$that.siblings( '.hatch-icon-wrapper' ).removeClass( 'hatch-active' );
 
 		// Trigger change
-		$that.find('input ').trigger( 'change' ).trigger( 'blur' );
-		$that.siblings('input ').trigger( 'change' ).trigger( 'blur' );
+		$that.find('input ').hatch_trigger_change();
+		$that.siblings('input ').hatch_trigger_change();
 	});
 
 
@@ -345,8 +346,21 @@ jQuery(function($) {
 			// Set the input
 			var textarea = $( '#' + id );
 			textarea.html( $that.html() );
-			textarea.trigger( 'change' );
+			textarea.hatch_trigger_change();
 		});
 	});
+
+	/**
+	* 10 - Trigger input changes
+	*/
+
+	$.fn.hatch_trigger_change = function() {
+		// Trigger 'change' and 'blur' to reset the customizer
+		$changed = $(this).trigger("change") .trigger("blur");
+
+		// If there is no change, try again
+		if( false ==  $changed ) $(this).hatch_trigger_change();
+	};
+
 });
 

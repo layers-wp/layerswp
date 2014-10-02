@@ -21,7 +21,7 @@ jQuery(document).ready(function($){
 			});
 
 			// Trigger change for ajax save
-			$bannerInput.val( $banner_guids.join() ).trigger("change");
+			$bannerInput.val( $banner_guids.join() ).hatch_trigger_change();
 		}
 	});
 
@@ -57,7 +57,7 @@ jQuery(document).ready(function($){
 		});
 
 		// Trigger change for ajax save
-		$bannerInput.val( $banner_guids.join() ).trigger("change");
+		$bannerInput.val( $banner_guids.join() ).hatch_trigger_change();
 
 	});
 
@@ -98,7 +98,7 @@ jQuery(document).ready(function($){
 				});
 
 				// Trigger change for ajax save
-				$bannerInput.val( $banner_guids.join() ).trigger("change");
+				$bannerInput.val( $banner_guids.join() ).hatch_trigger_change();
 
 				// Trigger color selectors
 				jQuery('.hatch-color-selector').wpColorPicker();

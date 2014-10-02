@@ -245,13 +245,6 @@ if( !class_exists( 'Hatch_Banner_Widget' ) ) {
 									'value' => ( isset( $hide_slider_arrows ) ) ? $hide_slider_arrows : NULL,
 									'label' => __( 'Hide Slider Arrows', HATCH_THEME_SLUG )
 								),
-								'slider_arrow_color' => array(
-									'type' => 'color',
-									'name' => $this->get_field_name( 'slider_arrow_color' ) ,
-									'id' => $this->get_field_id( 'slider_arrow_color' ) ,
-									'value' => ( isset( $slider_arrow_color ) ) ? $slider_arrow_color : NULL,
-									'label' => __( 'Slider Arrow Color', HATCH_THEME_SLUG )
-								),
 								'autoplay_banners' => array(
 									'type' => 'checkbox',
 									'name' => $this->get_field_name( 'autoplay_banners' ) ,

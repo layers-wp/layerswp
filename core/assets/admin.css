@@ -19,6 +19,7 @@
 
 /*----------------------------------*/
 /*- WORDPRESS RESETS / OVERRIDES ---*/
+.widgets-php #widget-list [id*='hatch-widget']{ visibility: hidden; display: none; }
 div[id*='hatch-widget'].widget-tpl .widget .widget-description{color: #777 !important;}
 div[id*='hatch-widget'].widget-tpl .widget .widget-title:before{color: #222 !important;}
 div[id*='hatch-widget'].widget-tpl .widget .widget-title h4{color: #222 !important;}

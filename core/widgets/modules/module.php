@@ -57,11 +57,11 @@ if( !class_exists( 'Hatch_Module_Widget' ) ) {
 				'title' => 'Enter title here',
 				'excerpt' => 'Short Excerpt',
 				'design' => array(
-					'imagealign' => 'image-center',
+					'imagealign' => 'image-left',
 					'imageratios' => NULL,
 					'background' => NULL,
 					'fonts' => array(
-						'align' => 'text-center',
+						'align' => 'text-left',
 						'size' => 'medium',
 						'color' => '#000',
 						'shadow' => NULL

@@ -111,13 +111,31 @@
 
         /*-----------------------*/
         /*- ARROWS --------------*/
-        .swiper-container .arrows{position: absolute; top: 50%; width: 100%; z-index: 2000; margin-top: -8px;}
-        .swiper-container .arrows a{position: absolute; opacity: 0; display: block; width: 50px; height: 50px; background-repeat: no-repeat; background-position: center; background-size: 16px 30px; overflow: hidden;}
+        .swiper-container .arrows{position: absolute; top: 50%; width: 100%; z-index: 2000; margin-top: -50px;}
+        .swiper-container .arrows a{position: absolute; opacity: 0; display: block; width: 50px; height: 100px; background-repeat: no-repeat; background-position: center; background-size: 16px 30px; overflow: hidden;}
         .swiper-container .arrows .arrow-left{left: 0px; background-image: url(../images/slider-arrow-left.png);}
         .swiper-container .arrows .arrow-right{right: 0px; background-image: url(../images/slider-arrow-right.png);}
 
         .swiper-container:hover .arrows .arrow-left{left: 10px; opacity: 1;}
         .swiper-container:hover .arrows .arrow-right{right: 10px; opacity: 1;}
+
+
+/*-------------------------------*/
+/*- SIDEBAR ---------------------*/
+/*-------------------------------*/
+.sidebar .widget li{
+    padding: 0 0 6px;
+    margin: 0 0 6px;
+    border-bottom: 1px solid #ddd;
+}
+.sidebar .widget li:last-child{
+    border-bottom: none;
+    padding-bottom: 0;
+    margin-bottom: 0;
+}
+.sidebar .widget li ul{
+    margin: 6px 0 0 10px;
+}
 
 
 /*-------------------------------*/

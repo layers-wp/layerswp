@@ -1,10 +1,9 @@
 <?php global $post; ?>
-<article class="column span-4 thumbnail">
+<article class="column span-4 thumbnail with-overlay">
     <?php if( has_post_thumbnail() ) { ?>
-
         <div class="thumbnail-media">
             <a href="<?php the_permalink(); ?>">
-                <?php the_post_thumbnail( 'square-large' );  ?>
+                <?php the_post_thumbnail( 'landscape-medium' );  ?>
             </a>
         </div>
     <?php } // if post thumbnail ?>

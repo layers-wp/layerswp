@@ -16,14 +16,14 @@
 		<div class="hatch-section-title">
 			<h4 class="hatch-heading">What you can and can't do</h4>
 			<p class="hatch-excerpt">
-				We are calling this release 'Beta Zero' as it's just grown up to be out of private Alpha however it's not yet fully functional.
-				We have high ambitions and much to add however for now we have set some limits:
+				We are calling this release 'Beta Zero,' as it's just grown up to be out of private Alpha.
+				However, it's not yet fully functional. We have high ambitions and much to add, but for now we have set some limits:
 			</p>
 		</div>
 		<div class="hatch-row">
 			<div class="hatch-column hatch-span-6">
 				<div class="hatch-section-title hatch-tiny">
-					<h5 class="hatch-heading">Can</h5>
+					<h5 class="hatch-heading">What you can do:</h5>
 				</div>
 				<ul class="hatch-feature-list">
 					<li class="tick">Create a page builder template</li>
@@ -36,7 +36,7 @@
 			</div>
 			<div class="hatch-column hatch-span-6">
 				<div class="hatch-section-title hatch-tiny">
-					<h5 class="hatch-heading">Can't</h5>
+					<h5 class="hatch-heading">What you can't do:</h5>
 				</div>
 				<ul class="hatch-feature-list">
 					<li class="cross">Change headers</li>

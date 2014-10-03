@@ -237,6 +237,10 @@ if( ! function_exists( 'hatch_scripts' ) ) {
 			HATCH_VERSION
 		); // Compontents
 
+		$protocol = is_ssl() ? 'https' : 'http';
+		wp_enqueue_style( HATCH_THEME_SLUG . '-roboto-font', $protocol . '://fonts.googleapis.com/css?family=Roboto:400,400italic,500,700,700italic,900' );
+		wp_enqueue_style( HATCH_THEME_SLUG . '-open-sans-font', $protocol . '://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' );
+
 		wp_enqueue_style(
 			HATCH_THEME_SLUG . '-style' ,
 			get_stylesheet_uri() ,

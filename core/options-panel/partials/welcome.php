@@ -35,8 +35,9 @@
 					<li class="tick">Create a page builder template</li>
 					<li class="tick">Mess around with the design bar</li>
 					<li class="tick">Configure: Slider widget</li>
-					<li class="tick">Configure: Portfolio widget</li>
 					<li class="tick">Configure: Modules widget</li>
+					<li class="tick">Configure: Posts widget</li>
+					<li class="tick">Configure: Portfolio widget</li>
 					<li class="tick">Configure: Contact widget</li>
 				</ul>
 			</div>
@@ -85,7 +86,7 @@
 
 	<footer class="hatch-row">
 		<p>
-			Hatch is a product of <a href="http://oboxthemes.com/theme/">Obox Themes</a>. For questions and feedback please <a href="mailto:david@obox.co.za">email David directly</a>.
+			Hatch is a product of <a href="http://oboxthemes.com/">Obox Themes</a>. For questions and feedback please <a href="mailto:david@obox.co.za">email David directly</a>.
 		</p>
 	</footer>
 

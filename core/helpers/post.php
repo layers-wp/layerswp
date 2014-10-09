@@ -86,10 +86,10 @@ if( !function_exists( 'hatch_post_meta' ) ) {
     }
 } // hatch_post_meta
 
-if ( ! function_exists( 'hatch_get_the_author' ) ) :
-    /**
-     * Prints HTML with meta information for the current post-date/time and author.
-     */
+/**
+ * Prints HTML with meta information for the current post-date/time and author.
+ */
+if ( ! function_exists( 'hatch_get_the_author' ) ) {
     function hatch_get_the_author() {
         return sprintf( __( '<a href="%1$s" title="%2$s" rel="author">%3$s</a>', HATCH_THEME_SLUG ),
             esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ),
@@ -97,36 +97,82 @@ if ( ! function_exists( 'hatch_get_the_author' ) ) :
             esc_attr( get_the_author() )
         );
     }
-endif;
+} // hatch_get_the_author
 
-function hatch_comment($comment, $args, $depth) {
-    $GLOBALS['comment'] = $comment;?>
-    <?php if( 1 < $depth && isset( $GLOBALS['lastdepth'] ) && $depth != $GLOBALS['lastdepth'] ) { ?>
-        <div class="row comments-nested push-top">
-    <?php } ?>
-    <div <?php comment_class( 'content push-bottom well' ); ?> id="comment-<?php comment_ID(); ?>">
-        <div class="avatar push-bottom clearfix">
-            <?php edit_comment_link(__('(Edit)', HATCH_THEME_SLUG),'<small class="pull-right">','</small>') ?>
-            <a class="avatar-image" href="">
-                <?php echo get_avatar($comment, $size = '70'); ?>
-            </a>
-            <div class="avatar-body">
-                <h5 class="avatar-name"><?php echo get_comment_author_link(); ?></h5>
-                <small><?php printf(__('%1$s at %2$s', HATCH_THEME_SLUG), get_comment_date(),  get_comment_time()) ?></small>
+
+/**
+ * Prints Comment HTML
+ *
+ * @param    object          $comment        Comment objext
+ * @param    array           $args           Configuration arguments.
+ * @param    int             $depth          Current depth of comment, for example 2 for a reply
+ * @echo     string                          Comment HTML
+ */
+if( !function_exists( 'hatch_comment' ) ) {
+    function hatch_comment($comment, $args, $depth) {
+        $GLOBALS['comment'] = $comment;?>
+        <?php if( 1 < $depth && isset( $GLOBALS['lastdepth'] ) && $depth != $GLOBALS['lastdepth'] ) { ?>
+            <div class="row comments-nested push-top">
+        <?php } ?>
+        <div <?php comment_class( 'content push-bottom well' ); ?> id="comment-<?php comment_ID(); ?>">
+            <div class="avatar push-bottom clearfix">
+                <?php edit_comment_link(__('(Edit)', HATCH_THEME_SLUG),'<small class="pull-right">','</small>') ?>
+                <a class="avatar-image" href="">
+                    <?php echo get_avatar($comment, $size = '70'); ?>
+                </a>
+                <div class="avatar-body">
+                    <h5 class="avatar-name"><?php echo get_comment_author_link(); ?></h5>
+                    <small><?php printf(__('%1$s at %2$s', HATCH_THEME_SLUG), get_comment_date(),  get_comment_time()) ?></small>
+                </div>
             </div>
-        </div>
 
-        <div class="copy small">
-            <?php if ($comment->comment_approved == '0') : ?>
-                <em><?php _e('Your comment is awaiting moderation.', HATCH_THEME_SLUG) ?></em>
-                <br />
-            <?php endif; ?>
-            <?php comment_text() ?>
-            <?php comment_reply_link(array_merge( $args, array('depth' => $depth, 'max_depth' => $args['max_depth']))) ?>
-        </div>
-    <?php if( 1 < $depth && isset( $GLOBALS['lastdepth'] ) && $depth == $GLOBALS['lastdepth'] ) { ?>
-        </div>
-    <?php } ?>
+            <div class="copy small">
+                <?php if ($comment->comment_approved == '0') : ?>
+                    <em><?php _e('Your comment is awaiting moderation.', HATCH_THEME_SLUG) ?></em>
+                    <br />
+                <?php endif; ?>
+                <?php comment_text() ?>
+                <?php comment_reply_link(array_merge( $args, array('depth' => $depth, 'max_depth' => $args['max_depth']))) ?>
+            </div>
+        <?php if( 1 < $depth && isset( $GLOBALS['lastdepth'] ) && $depth == $GLOBALS['lastdepth'] ) { ?>
+            </div>
+        <?php } ?>
 
-    <?php $GLOBALS['lastdepth'] = $depth; ?>
+        <?php $GLOBALS['lastdepth'] = $depth; ?>
 <?php }
+} // hatch_comment
+
+/**
+ * Backs up builder pages as HTML
+ */
+if( !function_exists( 'hatch_backup_builder_pages' ) ) {
+
+    function hatch_backup_builder_pages(){
+
+        if( !isset( $_POST[ 'pageid' ] ) ) wp_die( __( 'You shall not pass' , HATCH_THEME_SLUG ) );
+
+        // Get the post data
+        $page_id = $_POST[ 'pageid' ];
+        $page = get_page( $page_id );
+
+        // Start the output buffer
+        ob_start();
+        dynamic_sidebar( 'obox-hatch-builder-' . $page->post_name );
+
+        $page_content = ob_get_clean();
+
+        // New page arguments
+        $updated_page = array(
+            'ID'           => $page_id,
+            'post_content' => strip_tags( $page_content , '<p><b><i><strong><em><quote><a><h1><h2><h3><h4><h5><img><script>' )
+        );
+
+        // Update the page into the database
+        wp_update_post( $updated_page );
+
+        // Flush the output buffer
+        ob_flush();
+    }
+
+    add_action( 'wp_ajax_hatch_backup_builder_pages', 'hatch_backup_builder_pages' );
+} // hatch_builder_page_backup

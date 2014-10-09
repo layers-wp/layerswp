@@ -26,7 +26,7 @@
 				<ul class="hatch-feature-list">
 					<?php while( $builder_pages->have_posts() ){
 						$builder_pages->the_post(); ?>
-						<li data-id="<?php echo get_the_ID(); ?>" class="<?php echo ( in_array( array() , get_the_ID() ) ? 'tick' : 'cross' ); ?>">
+						<li data-page_id="<?php echo get_the_ID(); ?>" class="<?php echo ( in_array( get_the_ID() , array() ) ? 'tick' : 'cross' ); ?>">
 							<?php echo the_title(); ?>
 						</li>
 					<?php } // foreach builder_page ?>
@@ -43,33 +43,53 @@
 
 </section>
 <script>
-	jQuery(function($) {
-		$(document).on( 'click', '#hatch-backup-pages', function(){
-			$total = $( '.hatch-feature-list li' ).length;
-			var $complete = 1;
-			var $i = 1;
-			$( '.hatch-progress' ).removeClass( 'zero' ).css('width' , 0);
-			$( '.hatch-feature-list li' ).each(function(){
-				// "Hi Mom"
-				var $that = $(this);
+	jQuery(function($){
+		var $total_pages = $( '.hatch-feature-list li' ).length;
+		var $complete_pages = 1;
 
-				setTimeout(function(){
-					// Page tick
-					$that.removeClass( 'cross' ).addClass( 'tick' );
+		function hatch_backup_builder_page( $pageid, $page_li ){
+			$.post(
+				'<?php echo admin_url( "admin-ajax.php" ); ?>',
+				{
+					action: 'hatch_backup_builder_pages',
+					pageid: $pageid,
+				},
+				function(data){
+
+					console.log( data );
+					// Check off this page
+					$page_li.removeClass( 'cross' ).addClass( 'tick' );
 
 					// Load Bar %
-					var $load_bar_width = $complete/$total;
+					var $load_bar_width = $complete_pages/$total_pages;
 					var $load_bar_percent = 100*$load_bar_width;
 					$( '.hatch-progress' ).animate({width: $load_bar_percent+"%"} ).text( Math.round($load_bar_percent)+'%');
 
 					if( 100 == $load_bar_percent ) $( '.hatch-progress' ).delay(500).addClass( 'complete' ).text( 'Your pages have been successfully backed up!' );;
 
 					// Set Complete count
-					$complete++;
+					$complete_pages++;
 
-				}, 1000*$i);
-	 			$i++;
-			});
+					if( $complete_pages <= $total_pages ){
+						var $next_page_li = $page_li.next();
+						var $pageid = $next_page_li.data( 'page_id' );
+
+						hatch_backup_builder_page( $pageid, $next_page_li );
+					}
+				}
+			) // $.post
+		}
+
+		$(document).on( 'click', '#hatch-backup-pages', function(){
+
+			// Adjust progress bar
+			$( '.hatch-progress' ).removeClass( 'zero complete' ).css('width' , 0);
+
+			// "Hi Mom"
+			var $that = $( '.hatch-feature-list li' ).eq(0);
+			var $pageid = $that.data( 'page_id' );
+
+			hatch_backup_builder_page( $pageid, $that );
 		});
 	});
 </script>

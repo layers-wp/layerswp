@@ -105,7 +105,7 @@ class Hatch_Form_Elements {
 		$options[ json_encode( array( 'orderby' => 'comment_count', 'order' => 'desc' ) ) ] = __( 'Most Comments' , HATCH_THEME_SLUG );
 		$options[ json_encode( array( 'orderby' => 'menu_order', 'order' => 'desc' ) ) ] = __( 'Custom Order' , HATCH_THEME_SLUG );
 		return $options;
-	} // @TODO: Make this smater to work with order_by AND order
+	}
 
 	/**
 	* Load input HTML

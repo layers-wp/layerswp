@@ -16,12 +16,12 @@ class Site_Logo_Image_Control extends WP_Customize_Control {
 	public function __construct( $wp_customize, $control_id, $args = array() ) {
 		// declare these first so they can be overridden
 		$this->l10n = array(
-			'upload' =>      __( 'Add logo' ),
-			'set' =>         __( 'Set as logo' ),
-			'choose' =>      __( 'Choose logo' ),
-			'change' =>      __( 'Change logo' ),
-			'remove' =>      __( 'Remove logo' ),
-			'placeholder' => __( 'No logo set' ),
+			'upload' =>      __( 'Add logo', HATCH_THEME_SLUG ),
+			'set' =>         __( 'Set as logo', HATCH_THEME_SLUG ),
+			'choose' =>      __( 'Choose logo', HATCH_THEME_SLUG ),
+			'change' =>      __( 'Change logo', HATCH_THEME_SLUG ),
+			'remove' =>      __( 'Remove logo', HATCH_THEME_SLUG ),
+			'placeholder' => __( 'No logo set', HATCH_THEME_SLUG ),
 		);
 
 		parent::__construct( $wp_customize, $control_id, $args );

@@ -235,7 +235,7 @@ if( !class_exists( 'Hatch_Module_Widget' ) ) {
 					<p class="hatch-form-item">
 						<?php echo $widget_elements->input(
 							array(
-								'type' => 'textarea',
+								'type' => 'tinymce',
 								'name' => $this->get_field_name( 'excerpt' ) ,
 								'id' => $this->get_field_id( 'excerpt' ) ,
 								'placeholder' =>  __( 'Short Excerpt', HATCH_THEME_SLUG ),

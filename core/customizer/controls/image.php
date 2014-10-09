@@ -35,12 +35,12 @@ if( !class_exists( 'Hatch_Customize_Image_Control' ) ) {
 		 * @param array $args
 		 */
 		public function __construct( $manager, $id, $args ) {
-			$this->statuses = array( '' => __('No Image') );
+			$this->statuses = array( '' => __('No Image', HATCH_THEME_SLUG) );
 
 			parent::__construct( $manager, $id, $args );
 
-			$this->add_tab( 'upload-new', __('Upload New'), array( $this, 'tab_upload_new' ) );
-			$this->add_tab( 'uploaded',   __('Uploaded'),   array( $this, 'tab_uploaded' ) );
+			$this->add_tab( 'upload-new', __('Upload New', HATCH_THEME_SLUG), array( $this, 'tab_upload_new' ) );
+			$this->add_tab( 'uploaded',   __('Uploaded', HATCH_THEME_SLUG),   array( $this, 'tab_uploaded' ) );
 
 			// Early priority to occur before $this->manager->prepare_controls();
 			add_action( 'customize_controls_init', array( $this, 'prepare_control' ), 5 );
@@ -163,7 +163,7 @@ if( !class_exists( 'Hatch_Customize_Image_Control' ) ) {
 		 */
 		public function tab_upload_new() {
 			if ( ! _device_can_upload() ) {
-				echo '<p>' . sprintf( __('The web browser on your device cannot be used to upload files. You may be able to use the <a href="%s">native app for your device</a> instead.'), 'https://wordpress.org/mobile/' ) . '</p>';
+				echo '<p>' . sprintf( __('The web browser on your device cannot be used to upload files. You may be able to use the <a href="%s">native app for your device</a> instead.', HATCH_THEME_SLUG), 'https://wordpress.org/mobile/' ) . '</p>';
 			} else {
 				?>
 				<div class="upload-dropzone">

@@ -8,6 +8,7 @@
     <div class="thumbnail push-bottom"><?php echo the_post_thumbnail( 'large' ); ?></div>
     <div class="story">
         <?php the_content(); ?>
+        <?php wp_link_pages(); ?>
     </div>
     <?php if( 'post' == get_post_type() ) { ?>
         <?php hatch_post_meta( $post->ID ); ?>

@@ -40,7 +40,7 @@ if( !class_exists( 'Hatch_Customize_Color_Control' ) ) {
 		 * @param array $args
 		 */
 		public function __construct( $manager, $id, $args = array() ) {
-			$this->statuses = array( '' => __('Default') );
+			$this->statuses = array( '' => __('Default', HATCH_THEME_SLUG) );
 			parent::__construct( $manager, $id, $args );
 		}
 

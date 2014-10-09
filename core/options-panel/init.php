@@ -85,6 +85,17 @@ function hatch_options_panel_menu(){
 			'dashicons-smiley',
 			3
 	);
+
+	// Welcome Page
+	//add_submenu_page( $parent_slug, $page_title, $menu_title, $capability, $menu_slug, $function );
+	add_submenu_page(
+			HATCH_THEME_SLUG . '-welcome',
+			__( 'Backup' , HATCH_THEME_SLUG ),
+			__( 'Backup' , HATCH_THEME_SLUG ),
+			'edit_theme_options',
+			HATCH_THEME_SLUG . '-backup',
+			'hatch_options_panel_ui'
+	);
 }
 
 add_action( 'admin_menu' , 'hatch_options_panel_menu' , 50 );

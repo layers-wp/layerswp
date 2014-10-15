@@ -215,8 +215,15 @@ class Hatch_Form_Elements {
 			* Tiny MCE
 			*/
 			case 'tinymce' : ?>
-				<div class="editible editible-<?php echo $input->id; ?>" data-id="<?php echo $input->id; ?>"><?php echo esc_html( $input->value ); ?></div>
-				<textarea class="hatch-hide" <?php echo implode ( ' ' , $input_props ); ?> <?php if( isset( $input->rows ) ) echo 'rows="' . $input->rows . '"'; ?>><?php echo $input->value; ?></textarea>
+				<div class="hatch-form-item" id="hatch-tinymce-<?php echo $input->id; ?>">
+					<a href="" class="hatch-t-right hatch-tiny-mce-switch" data-mode="visual"
+					data-visual_label="<?php _e( 'Visual Mode' , HATCH_THEME_SLUG ); ?>"
+					data-html_label="<?php _e( 'HTML Mode' , HATCH_THEME_SLUG ); ?>">
+						<?php _e( 'HTML Mode' , HATCH_THEME_SLUG ); ?>
+					</a>
+					<div class="editible editible-<?php echo $input->id; ?>" data-id="<?php echo $input->id; ?>"><?php echo esc_html( $input->value ); ?></div>
+					<textarea class="hatch-hide hatch-textarea hatch-tiny-mce-textarea" <?php echo implode ( ' ' , $input_props ); ?> <?php if( isset( $input->rows ) ) echo 'rows="' . $input->rows . '"'; ?>><?php echo $input->value; ?></textarea>
+				</div>
 			<?php break;
 			/**
 			* Image Uploader

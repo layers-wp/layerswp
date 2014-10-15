@@ -24,10 +24,10 @@ if( ! function_exists( 'site_logo_init' ) ) {
 		if ( current_theme_supports( 'site-logo' ) ) {
 
 			// Load our class for namespacing.
-			require( dirname( __FILE__ ) . '/inc/class-site-logo.php' );
+			locate_template( '/core/third_party/site-logo/inc/class-site-logo.php' , true );
 
 			// Load template tags.
-			require( dirname( __FILE__ ) . '/inc/functions.php' );
+			locate_template( '/core/third_party/site-logo/inc/functions.php' , true );
 		}
 	}
 }

@@ -387,6 +387,24 @@ div[id*='hatch-widget'] .widget-control-actions a{
     border-radius: 3px;
     box-shadow: inset 1px 1px 2px rgba(0, 0, 0, 0.1);
 }
+.editible{
+    clear: both;
+    color: #000;
+    font-size: 14px;
+    line-height: 1.4;
+    width: 95%;
+}
+.hatch-tiny-mce-switch{
+    /*background-color: #efefef;
+    border-radius: 2px;*/
+    clear: both;
+    color: #444;
+    display: inline-block;
+    float: right;
+    font-size: 11px;
+    margin-bottom: 0px;
+    padding: 4px 6px;
+}
 .hatch-form-item input[type=text]:hover,
 .hatch-form-item input[type=email]:hover,
 .hatch-form-item input[type=number]:hover,

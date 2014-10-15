@@ -204,6 +204,10 @@ jQuery(function($) {
 	*/
 	hatch_set_color_selectors();
 	$(document).on ( 'mouseup' , '#available-widgets .widget-tpl' , function(){
+		console.log( "Added widget " + $(this).find('input').eq(0) );
+
+		$(this).find('input').eq(0).hatch_trigger_change();
+
 		$(this).find('.hatch-color-selector').each(function(){
 			var $picker = $(this);
 			$picker.closest('.wp-picker-container').replaceWith( $picker );
@@ -329,7 +333,7 @@ jQuery(function($) {
 
 	$( '.editible' ).each( function(){
 		// "Hi Mom"
-		$that = $(this);
+		var $that = $(this);
 
 		// Set the ID for this element
 		var id = $that.data ( 'id' );
@@ -338,15 +342,54 @@ jQuery(function($) {
 				anchorButton: true,
 				anchorButtonClass: 'button'
 			});
+
 		$( '.editible-' + id  ).on( 'input' , function(e){
 			// "Hi Mom!"
 			$that = $(this);
 
 			// Set the input
 			var textarea = $( '#' + id );
-			textarea.html( $that.html() );
+
+			textarea.val( $that.html() );
 			textarea.hatch_trigger_change();
 		});
+	});
+
+	$( document ).on( 'keyup mouseup' , '.hatch-tiny-mce-textarea' , function(e){
+
+		// "Hi Mom!"
+		$that = $(this);
+
+		// Update the 'Medium Editor' with our information
+		$that.siblings( '.editible' ).html( $that.val() );
+	});
+
+	$( document ).on( 'click' , '.hatch-tiny-mce-switch' , function(e){
+		e.preventDefault();
+
+		// "Hi Mom!"
+		$that = $(this);
+
+		// Switch text editor mode
+		if( 'visual' ==  $that.data( 'mode' ) ){
+
+			// Switch modes
+			$that.data( 'mode' , 'html' );
+
+			// Change Button Label to 'Visual'
+			$that.text( $that.data( 'visual_label' ) );
+		} else {
+
+			// Switch modes
+			$that.data( 'mode' , 'visual' );
+
+			// Change Button Label to 'HTML'
+			$that.text( $that.data( 'html_label' ) );
+		}
+
+		$that.siblings( 'textarea' ).toggleClass( 'hatch-hide' );
+		$that.siblings( '.editible' ).toggleClass( 'hatch-hide' );
+
 	});
 
 	/**
@@ -354,6 +397,9 @@ jQuery(function($) {
 	*/
 
 	$.fn.hatch_trigger_change = function() {
+
+		console.log( $(this).val() );
+
 		// Trigger 'change' and 'blur' to reset the customizer
 		$changed = $(this).trigger("change") .trigger("blur");
 		$( document ).trigger( 'widget-updated', $(this).closest( '.control-section' ).find( '.widget:first' ) );

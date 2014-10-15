@@ -70,7 +70,7 @@ class Site_Logo {
 	 */
 	public function customize_register( $wp_customize ) {
 		// Include our custom control.
-		require( dirname( __FILE__ ) . '/class-site-logo-control.php' );
+		locate_template( '/core/third_party/site-logo/inc/class-site-logo-control.php' , true );
 
 		// Add a setting to hide header text if the theme isn't supporting the feature itself
 		if ( ! current_theme_supports( 'custom-header' ) ) {

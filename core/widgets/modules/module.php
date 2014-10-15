@@ -146,7 +146,7 @@ if( !class_exists( 'Hatch_Module_Widget' ) ) {
 											<h5 class="heading"><a href="<?php echo esc_url( $module->link ); ?>"><?php echo $module->title; ?></a></h5>
 										<?php } ?>
 										<?php if( isset( $module->excerpt ) && '' != $module->excerpt ) { ?>
-											<p class="excerpt"><?php echo $module->excerpt; ?></p>
+											<div class="excerpt"><?php echo apply_filters( 'the_content', $module->excerpt ); ?></div>
 										<?php } ?>
 									</div>
 								</div>
@@ -235,7 +235,7 @@ if( !class_exists( 'Hatch_Module_Widget' ) ) {
 					<p class="hatch-form-item">
 						<?php echo $widget_elements->input(
 							array(
-								'type' => 'tinymce',
+								'type' => 'textarea',
 								'name' => $this->get_field_name( 'excerpt' ) ,
 								'id' => $this->get_field_id( 'excerpt' ) ,
 								'placeholder' =>  __( 'Short Excerpt', HATCH_THEME_SLUG ),
@@ -367,7 +367,7 @@ if( !class_exists( 'Hatch_Module_Widget' ) ) {
 								</p>
 								<?php echo $widget_elements->input(
 									array(
-										'type' => 'textarea',
+										'type' => 'tinymce',
 										'name' => 'widget-' . $widget_details->id_base . '[' . $widget_details->number . '][modules][' . $column_guid . '][excerpt]' ,
 										'id' => 'widget-' . $widget_details->id_base . '-' . $widget_details->number . '-' . $column_guid . '-excerpt' ,
 										'placeholder' => __( 'Short Excerpt', HATCH_THEME_SLUG ),

@@ -325,8 +325,14 @@ div[id*='hatch-widget'] .widget-control-actions a{
 .hatch-push-bottom{
     margin-bottom: 20px !important;
 }
+.hatch-t-left{
+    text-align: left;
+}
 .hatch-t-center{
     text-align: center;
+}
+.hatch-t-right{
+    text-align: right;
 }
 .hatch-animate{
     transition: all 0.2s ease-in-out;

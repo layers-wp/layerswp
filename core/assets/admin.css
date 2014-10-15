@@ -10,8 +10,22 @@
 
 /*------------------------------------*/
 /*- HIDE HATCH WIDGETS IN APPEARANCE -*/
-.widgets-php #widget-list [id*='hatch-widget']{display: none;}
-div#widgets-right .widgets-sortables [id*='hatch-widget']{display: none;}
+div#widgets-right .widgets-sortables{
+    padding-bottom: 1px;
+}
+.widget-holder div[id*='hatch-widget'],
+.widget-holder.inactive div[id*='obox-hatch-builder'],
+.widgets-php #widget-list [id*='hatch-widget'],
+div#widgets-right .widgets-sortables [id*='hatch-widget'],
+div#widgets-right div[id*='obox-hatch-builder']{
+    display: none;
+}
+.widgets-holder-wrap{
+    border-width: 0px;
+}
+.widgets-holder-wrap .widget{
+    border-width: 1px;
+}
 
 /*----------------------------------*/
 /*- HIDING NONE HATCH WIDGETS ------*/

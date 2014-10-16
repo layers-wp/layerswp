@@ -33,20 +33,17 @@ if( !class_exists( 'Hatch_Customize_Radio_Control' ) ) {
 
 		public function render_content() {
 
-			if ( empty( $this->choices ) ) {
+			echo '<!--' . print_r( $this , true ) . '-->';
+
+			if ( empty( $this->options ) ) {
 				return;
 			}
 
-			$name = '_customize-radio-' . $this->id;
+			$name = '_customize-radio-' . $this->id; ?>
 
-			?>
 			<span class="customize-control-title">
 
 				<?php echo esc_html( $this->label ); ?>
-
-				<?php if ( isset( $this->description ) && '' != $this->description ) { ?>
-					<a href="#" class="button tooltip" title="<?php echo strip_tags( esc_html( $this->description ) ); ?>">?</a>
-				<?php } ?>
 
 			</span>
 
@@ -59,7 +56,7 @@ if( !class_exists( 'Hatch_Customize_Radio_Control' ) ) {
 				// JqueryUI Button Sets
 				if ( 'image' || 'buttonset' == $this->mode ) {
 
-					foreach ( $this->choices as $value => $label ) : ?>
+					foreach ( $this->options as $value => $label ) : ?>
 						<input type="radio" <?php if( 'image' == $this->mode ) echo 'class="image-select"'; ?> value="<?php echo esc_attr( $value ); ?>" name="<?php echo esc_attr( $name ); ?>" id="<?php echo $this->id . $value; ?>" <?php $this->link(); checked( $this->value(), $value ); ?> />
 						<label for="<?php echo $this->id . $value; ?>">
 							<?php if( 'image' == $this->mode ) { ?>
@@ -74,7 +71,7 @@ if( !class_exists( 'Hatch_Customize_Radio_Control' ) ) {
 				// Normal radios
 				} else {
 
-					foreach ( $this->choices as $value => $label ) :
+					foreach ( $this->options as $value => $label ) :
 						?>
 						<label class="customizer-radio">
 							<input type="radio" value="<?php echo esc_attr( $value ); ?>" name="<?php echo esc_attr( $name ); ?>" <?php $this->link(); checked( $this->value(), $value ); ?> />
@@ -86,8 +83,6 @@ if( !class_exists( 'Hatch_Customize_Radio_Control' ) ) {
 				}
 				?>
 			</div>
-
-			<?php if ( $this->separator ) echo '<hr class="customizer-separator">'; ?>
 
 			<?php if ( 'buttonset' == $this->mode || 'image' == $this->mode ) { ?>
 				<script>

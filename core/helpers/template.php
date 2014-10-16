@@ -321,6 +321,73 @@ if( !function_exists( 'hatch_get_page_title' ) ) {
             $title_array['title' ] = __( 'Archives', HATCH_THEME_SLUG );
         }
 
-        return apply_filters( 'hatch_page_title' , $title_array );
+        return apply_filters( 'hatch_get_page_title' , $title_array );
     }
-}
+} // hatch_get_page_title
+
+/**
+ * Retrieve the classes for the header element as an array.
+ *
+ * @param string|array $class One or more classes to add to the class list.
+ * @return array Array of classes.
+ */
+if( !function_exists( 'hatch_get_header_class' ) ) {
+    function hatch_get_header_class( $class = '' ){
+
+        $header_align_option = '';
+        $header_fixed_option = '';
+
+        $classes = array();
+
+        // Handle fixed / not fixed
+        if( 'fixed' == $header_fixed_option ){
+            $classes[] = 'header-fixed';
+        }
+
+        // Add alignment classes
+        if( 'left' == $header_align_option ){
+            $classes[] = 'header-left';
+        } else if( 'right' == $header_align_option ){
+            $classes[] = 'header-right';
+        } else if( 'clear' == $header_align_option ){
+            $classes[] = 'nav-clear';
+        } else if( 'center' == $header_align_option ){
+            $classes[] = 'header-center';
+        } else if( 'inline' == $header_align_option ){
+            $classes[] = 'header-inline';
+        }
+
+
+        if ( ! empty( $class ) ) {
+            if ( !is_array( $class ) )
+                $class = preg_split( '#\s+#', $class );
+            $classes = array_merge( $classes, $class );
+        } else {
+            // Ensure that we always coerce class to being an array.
+            $class = array();
+        }
+
+        // Default to Header Left if there are no matches above
+        if( empty( $classes ) ) $classes[] = 'header-left';
+
+        $classes = array_map( 'esc_attr', $classes );
+
+        $classes = apply_filters( 'hatch_header_class', $classes, $class );
+
+        return array_unique( $classes );
+
+    }
+} // hatch_get_header_class
+
+/**
+ * Display the classes for the header element.
+ *
+ * @param string|array $class One or more classes to add to the class list.
+ */
+
+if( !function_exists( 'hatch_header_class' ) ) {
+    function hatch_header_class( $class = '' ) {
+        // Separates classes with a single space, collates classes for body element
+        echo 'class="' . join( ' ', hatch_get_header_class( $class ) ) . '"';
+    }
+} // hatch_get_header_class

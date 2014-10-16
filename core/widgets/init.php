@@ -26,8 +26,8 @@ class Hatch_Widgets {
 	public function __construct() {
 
 		// Setup some folder variables
-		$widget_dir = HATCH_TEMPLATE_DIR . '/core/widgets/';
-		$module_dir = HATCH_TEMPLATE_DIR . '/core/widgets/modules/';
+		$widget_dir = '/core/widgets/';
+		$module_dir = '/core/widgets/modules/';
 
 		// Setup some defined variables to use in each widget
 		define( 'HATCH_WIDGET_WIDTH_TINY' , 500 );
@@ -35,16 +35,16 @@ class Hatch_Widgets {
 		define( 'HATCH_WIDGET_WIDTH_LARGE' , 980 );
 
 		// Include ajax functions
-		require $widget_dir . 'ajax.php';
-		require $widget_dir . 'design-controller.php';
+		locate_template( $widget_dir . 'ajax.php' , true );
+		locate_template( $widget_dir . 'design-controller.php' , true );
 
 		// Include necessary widgets
-		require $module_dir . 'base.php'; // Basis of all Hatch Widgets
-		require $module_dir . 'banner.php';
-		require $module_dir . 'contact.php';
-		require $module_dir . 'module.php';
-		require $module_dir . 'portfolio.php';
-		require $module_dir . 'post.php';
+		locate_template(  $module_dir . 'base.php' , true ); // Basis of all Hatch Widgets
+		locate_template( $module_dir . 'banner.php' , true );
+		locate_template( $module_dir . 'contact.php' , true );
+		locate_template( $module_dir . 'module.php' , true );
+		locate_template( $module_dir . 'portfolio.php' , true );
+		locate_template( $module_dir . 'post.php' , true );
 
 		// Enqueue Styles
 		add_action( 'admin_enqueue_scripts', array( $this, 'admin_enqueue_scripts' ) , 50 );

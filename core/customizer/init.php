@@ -31,17 +31,7 @@ class Hatch_Customizer {
 		$controls_dir = '/core/customizer/controls/';
 
 		// Include widget control classes
-		locate_template( $controls_dir . 'checkbox.php' , true );
-		locate_template( $controls_dir . 'color.php' , true );
-		locate_template( $controls_dir . 'image.php' , true );
-		locate_template( $controls_dir . 'multi-check.php' , true );
-		locate_template( $controls_dir . 'number.php' , true );
 		locate_template( $controls_dir . 'radio.php' , true );
-		locate_template( $controls_dir . 'select.php' , true );
-		locate_template( $controls_dir . 'slider_ui.php' , true );
-		locate_template( $controls_dir . 'text.php' , true );
-		locate_template( $controls_dir . 'textarea.php' , true );
-		locate_template( $controls_dir . 'upload.php' , true );
 
 		// Include Config file(s)
 		locate_template( $customizer_dir . 'config.php' , true );

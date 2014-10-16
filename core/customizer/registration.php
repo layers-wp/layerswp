@@ -146,10 +146,10 @@ class Hatch_Customizer_Regsitrar {
 			// Assign control to the relevant section
 			$control_data[ 'section' ] = $this->prefix . $panel_section_key;
 
-			if ( 'radio' == $control_data['type'] ) {
+			if ( 'select-images' == $control_data['type'] ) {
 
 				$this->customizer->add_control(
-					new Hatch_Customize_Radio_Control(
+					new Hatch_Customize_Select_Image_Control(
 						$this->customizer,
 						$this->prefix . $panel_section_key . '-' . $control_key ,
 						$control_data

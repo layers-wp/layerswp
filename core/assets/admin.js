@@ -295,6 +295,21 @@ jQuery(function($) {
 	});
 
 
+	$( document ).on( 'click' , '.customize-control label.hatch-icon-wrapper' , function(e){
+		// "Hi Mom"
+		$that = $(this);
+
+console.log( $that );
+
+		// Toggle active state
+		$that.addClass( 'hatch-active' );
+
+		// Close siblings
+		$that.siblings( '.hatch-icon-wrapper' ).removeClass( 'hatch-active' );
+
+	});
+
+
 	/**
 	* 7 - Design Controller Height Matcher
 	*/

@@ -30,8 +30,8 @@ class Hatch_Customizer {
 		$customizer_dir = '/core/customizer/';
 		$controls_dir = '/core/customizer/controls/';
 
-		// Include widget control classes
-		locate_template( $controls_dir . 'radio.php' , true );
+		// Include control classes
+		locate_template( $controls_dir . 'select-images.php' , true );
 
 		// Include Config file(s)
 		locate_template( $customizer_dir . 'config.php' , true );

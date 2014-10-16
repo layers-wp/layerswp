@@ -77,16 +77,16 @@ class Hatch_Customizer_Config {
 		// Header -> Layout -> Layout
 		$controls['header-layout'] = array(
 								'layout' => array(
-									'type'     => 'radio',
-									'mode'     => 'image',
+									'type'     => 'select-images',
 									'label'    => __( 'Header Layout', HATCH_THEME_SLUG ),
 									'default' => 'header-left',
-									'options' => array(
-										'left' => get_template_directory_uri() . $customizer_dir . '/images/header-layouts/header-left.png',
-										'right' => get_template_directory_uri() . $customizer_dir . '/images/header-layouts/header-right.png',
-										'nav-left' => get_template_directory_uri() . $customizer_dir . '/images/header-layouts/header-nav-left.png',
-										'clear' => get_template_directory_uri() . $customizer_dir . '/images/header-layouts/header-clear.png',
-										'inline' => get_template_directory_uri() . $customizer_dir . '/images/header-layouts/header-inline.png',
+									'choices' => array(
+                                        'left' => get_template_directory_uri() . $customizer_dir . '/images/header-layouts/header-left.png',
+                                        'right' => get_template_directory_uri() . $customizer_dir . '/images/header-layouts/header-right.png',
+                                        'fixed' => get_template_directory_uri() . $customizer_dir . '/images/header-layouts/header-fixed.png',
+                                        'center' => get_template_directory_uri() . $customizer_dir . '/images/header-layouts/header-center.png',
+                                        'clear' => get_template_directory_uri() . $customizer_dir . '/images/header-layouts/header-clear.png',
+                                        'inline' => get_template_directory_uri() . $customizer_dir . '/images/header-layouts/header-inline.png',
 									)
 								), // layout
 							); // header-layout
@@ -94,16 +94,10 @@ class Hatch_Customizer_Config {
 		// Footer -> Layout -> Layout
 		$controls['footer-layout'] = array(
 								'layout' => array(
-									'type'     => 'radio',
-									'mode'     => 'image',
+									'type'     => 'select-images',
 									'label'    => __( 'Header Layout', HATCH_THEME_SLUG ),
 									'default' => 'header-left',
-									'options' => array(
-										'left' => get_template_directory_uri() . $customizer_dir . '/images/header-layouts/header-left.png',
-										'right' => get_template_directory_uri() . $customizer_dir . '/images/header-layouts/header-right.png',
-										'nav-left' => get_template_directory_uri() . $customizer_dir . '/images/header-layouts/header-nav-left.png',
-										'clear' => get_template_directory_uri() . $customizer_dir . '/images/header-layouts/header-clear.png',
-										'inline' => get_template_directory_uri() . $customizer_dir . '/images/header-layouts/header-inline.png',
+									'choices' => array(
 									)
 								), // layout
 							); // footer-layout

@@ -210,6 +210,13 @@ div[id*='hatch-widget'] .widget-control-actions a{
     display: none !important;
 }
 
+.hatch-icon-group .hatch-icon-wrapper.hatch-select-images{
+    clear: both;
+    width: 100%;
+}
+.hatch-icon-group .hatch-icon-wrapper img{
+    max-width: 100%;
+}
 
 /*---------------------------*/
 /*- THE GRID ----------------*/

@@ -11,6 +11,8 @@
 						<h1 class="heading"><?php the_title(); ?></h1>
 					</header>
 
+
+					<!-- TODO: Wrap this in an if there's copy -->
 					<div class="copy push-bottom-large">
 						<?php the_content() ;?>
 					</div>

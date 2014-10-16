@@ -39,10 +39,10 @@ if( !class_exists( 'Hatch_Customize_Select_Image_Control' ) ) {
 					<div class="hatch-form-row"><?php echo $this->subtitle; ?></div>
 				<?php endif; ?>
 				<?php foreach ( $this->choices as $value => $label ) : ?>
-						<label href="" class="hatch-icon-wrapper hatch-select-images <?php if( $value == $this->value() ) echo 'hatch-active'; ?>" for="<?php echo $this->id . '-' . $value; ?>">
-							<img src="<?php echo esc_html( $label ); ?>">
+						<label href="" class="hatch-icon-wrapper hatch-select-images <?php if( $value == $this->value() ) echo 'hatch-active'; ?>">
+							<img src="<?php echo esc_html( $label ); ?>" style="max-width: 100%;" />
+							<input class="hatch-hide" type="radio" value="<?php echo esc_attr( $value ); ?>" name="<?php echo esc_attr( $name ); ?>" <?php $this->link(); checked( $this->value(), $value ); ?> />
 						</label>
-						<input type="radio"  class="hatch-hide" value="<?php echo esc_attr( $value ); ?>" name="<?php echo esc_attr( $name ); ?>" id="<?php echo $this->id . '-' . $value; ?>" <?php $this->link(); checked( $this->value(), $value ); ?> />
 				<?php endforeach; ?>
 			</div>
 

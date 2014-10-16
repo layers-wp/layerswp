@@ -334,7 +334,7 @@ if( !function_exists( 'hatch_get_page_title' ) ) {
 if( !function_exists( 'hatch_get_header_class' ) ) {
     function hatch_get_header_class( $class = '' ){
 
-        $header_align_option = '';
+        $header_align_option = get_theme_mod( 'hatch-header-layout-layout' );
         $header_fixed_option = '';
 
         $classes = array();
@@ -356,7 +356,6 @@ if( !function_exists( 'hatch_get_header_class' ) ) {
         } else if( 'inline' == $header_align_option ){
             $classes[] = 'header-inline';
         }
-
 
         if ( ! empty( $class ) ) {
             if ( !is_array( $class ) )

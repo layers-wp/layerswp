@@ -138,7 +138,7 @@ class Hatch_Customizer_Regsitrar {
 				$this->prefix . $panel_section_key . '-' . $control_key ,
 				array(
 					'default'    => $control_data['default'],
-					'type'       => 'option',
+					'type'       => 'theme_mod',
 					'capability' => 'edit_theme_options'
 				)
 			);

@@ -1,16 +1,16 @@
 @font-face {
-	font-family: 'icomoon';
-	src:url('fonts/icomoon.eot?egsecl');
-	src:url('fonts/icomoon.eot?#iefixegsecl') format('embedded-opentype'),
-		url('fonts/icomoon.woff?egsecl') format('woff'),
-		url('fonts/icomoon.ttf?egsecl') format('truetype'),
-		url('fonts/icomoon.svg?egsecl#icomoon') format('svg');
+	font-family: 'hatch-interface';
+	src:url('fonts/hatch-interface.eot?egsecl');
+	src:url('fonts/hatch-interface.eot?#iefixegsecl') format('embedded-opentype'),
+		url('fonts/hatch-interface.woff?egsecl') format('woff'),
+		url('fonts/hatch-interface.ttf?egsecl') format('truetype'),
+		url('fonts/hatch-interface.svg?egsecl#hatch-interface') format('svg');
 	font-weight: normal;
 	font-style: normal;
 }
 
 [class^="icon-"], [class*=" icon-"] {
-	font-family: 'icomoon';
+	font-family: 'hatch-interface';
 	speak: none;
 	font-style: normal;
 	font-weight: normal;

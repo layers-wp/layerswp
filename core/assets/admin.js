@@ -295,17 +295,15 @@ jQuery(function($) {
 	});
 
 
-	$( document ).on( 'click' , '.customize-control label.hatch-icon-wrapper' , function(e){
+	$( document ).on( 'click' , '.customize-control .hatch-visuals-item' , function(e){
 		// "Hi Mom"
 		$that = $(this);
-
-console.log( $that );
 
 		// Toggle active state
 		$that.addClass( 'hatch-active' );
 
 		// Close siblings
-		$that.siblings( '.hatch-icon-wrapper' ).removeClass( 'hatch-active' );
+		$that.siblings( '.hatch-visuals-item' ).removeClass( 'hatch-active' );
 
 	});
 

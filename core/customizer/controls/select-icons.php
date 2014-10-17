@@ -38,15 +38,19 @@ if( !class_exists( 'Hatch_Customize_Select_Icon_Control' ) ) {
 				<?php if ( '' != $this->subtitle ) : ?>
 					<div class="hatch-form-row"><?php echo $this->subtitle; ?></div>
 				<?php endif; ?>
-				<?php foreach ( $this->choices as $value => $label ) : ?>
-						<label href="" class="hatch-icon-wrapper hatch-select-images <?php if( $value == $this->value() ) echo 'hatch-active'; ?>">
-							<span class="icon-<?php echo $value; ?>"></span>
-							<span class="hatch-icon-description">
-								<?php echo $label; ?>
-							</span>
-							<input class="hatch-hide" type="radio" value="<?php echo esc_attr( $value ); ?>" name="<?php echo esc_attr( $name ); ?>" <?php $this->link(); checked( $this->value(), $value ); ?> />
-						</label>
-				<?php endforeach; ?>
+				<ul class="hatch-visuals-wrapper hatch-clearfix">
+					<?php foreach ( $this->choices as $value => $label ) : ?>
+							<li class="hatch-visuals-item <?php if( $value == $this->value() ) echo 'hatch-active'; ?>">
+								<label href="" class="hatch-icon-wrapper hatch-select-images">
+									<span class="icon-<?php echo $value; ?>"></span>
+									<span class="hatch-icon-description">
+										<?php echo $label; ?>
+									</span>
+									<input class="hatch-hide" type="radio" value="<?php echo esc_attr( $value ); ?>" name="<?php echo esc_attr( $name ); ?>" <?php $this->link(); checked( $this->value(), $value ); ?> />
+								</label>
+							</li>
+					<?php endforeach; ?>
+				</ul>
 			</div>
 
 		<?php }

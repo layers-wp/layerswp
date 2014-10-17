@@ -134,7 +134,7 @@ class Hatch_Design_Controller {
 		// If there is no widget information provided, can the operation
 		if( NULL == $widget ) return; ?>
 
-		<li class="hatch-visuals-item ">
+		<li class="hatch-visuals-item">
 			<a href="" class="hatch-icon-wrapper">
 				<span class="icon-layout-fullwidth"></span>
 				<span class="hatch-icon-description">

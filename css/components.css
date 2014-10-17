@@ -136,10 +136,6 @@
 /*-------------------------------*/
 .story{font-size: 1.8rem;}
 
-.story .alignleft{ float: left; }
-.story .alignright{ float: right; }
-.story .aligncenter{ margin: auto; }
-
 .story p{margin-bottom: 26px;}
 .story ul{list-style: disc; margin: 0 0 26px 35px;}
 .story ul li{list-style: disc; margin: 0 0 6px;}

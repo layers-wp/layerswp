@@ -128,7 +128,8 @@ if( ! function_exists( 'hatch_setup' ) ) {
 		register_nav_menus( array(
 			HATCH_THEME_SLUG . '-secondary-left' => __( 'Top Left Menu', HATCH_THEME_SLUG ),
 			HATCH_THEME_SLUG . '-secondary-right' => __( 'Top Right Menu', HATCH_THEME_SLUG ),
-			HATCH_THEME_SLUG . '-primary' => __( 'Primary Menu', HATCH_THEME_SLUG ),
+			HATCH_THEME_SLUG . '-primary' => __( 'Header Menu', HATCH_THEME_SLUG ),
+			HATCH_THEME_SLUG . '-primary-right' => __( 'Right Header Menu', HATCH_THEME_SLUG ),
 			HATCH_THEME_SLUG . '-footer' => __( 'Footer Menu', HATCH_THEME_SLUG ),
 
 		) );

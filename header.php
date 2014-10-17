@@ -22,11 +22,11 @@
 					<span class="icon-bar"></span>
 				</a>
 
-				<?php get_template_part( 'partials/header' , 'logo' ); ?>
-
-				<?php do_action( 'hatch_before_header_nav' ); ?>
-				<?php wp_nav_menu( array( 'theme_location' => HATCH_THEME_SLUG . '-primary' ,'container' => 'nav', 'container_class' => 'nav nav-horizontal', 'fallback_cb' => false )); ?>
-				<?php do_action( 'hatch_after_header_nav' ); ?>
+				<?php if( 'header-logo-center' == hatch_get_theme_mod( 'header-layout-layout' ) ) { ?>
+					<?php get_template_part( 'partials/header' , 'centered' ); ?>
+				<?php } else { ?>
+					<?php get_template_part( 'partials/header' , 'standard' ); ?>
+				<?php } // if centered header ?>
 			</div>
 			<?php do_action( 'hatch_after_header_inner' ); ?>
 		</header>

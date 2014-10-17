@@ -77,18 +77,26 @@ class Hatch_Customizer_Config {
 		// Header -> Layout -> Layout
 		$controls['header-layout'] = array(
 								'layout' => array(
-									'type'     => 'select-images',
+									'type'     => 'select-icons',
 									'label'    => __( 'Header Layout', HATCH_THEME_SLUG ),
 									'default' => 'header-left',
 									'choices' => array(
-                                        'left' => get_template_directory_uri() . $customizer_dir . '/images/header-layouts/header-left.png',
-                                        'right' => get_template_directory_uri() . $customizer_dir . '/images/header-layouts/header-right.png',
-                                        'fixed' => get_template_directory_uri() . $customizer_dir . '/images/header-layouts/header-fixed.png',
-                                        'center' => get_template_directory_uri() . $customizer_dir . '/images/header-layouts/header-center.png',
-                                        'clear' => get_template_directory_uri() . $customizer_dir . '/images/header-layouts/header-clear.png',
-                                        'inline' => get_template_directory_uri() . $customizer_dir . '/images/header-layouts/header-inline.png',
+                                        'header-logo-left' => __( 'Logo Left' , HATCH_THEME_SLUG ),
+                                        'header-logo-right' => __( 'Logo Right' , HATCH_THEME_SLUG ),
+                                        'header-logo-center-top' => __( 'Logo Center Top' , HATCH_THEME_SLUG ),
+                                        'header-logo-top' => __( 'Logo Top' , HATCH_THEME_SLUG ),
+                                        'header-logo-center' => __( 'Logo Center' , HATCH_THEME_SLUG )
 									)
-								), // layout
+								), // layout,
+                                'break' => array(
+                                    	'type'     => 'seperator'
+                                    ),
+                                'fixed' => array(
+                                    'type'     => 'checkbox',
+                                    'label'    => __( 'Fixed Header', HATCH_THEME_SLUG ),
+                                    'description' => __( 'Fixed header to the top of the screen when scrolling.', HATCH_THEME_SLUG ),
+                                    'default' => false,
+                                ) // fixed
 							); // header-layout
 
 		// Footer -> Layout -> Layout

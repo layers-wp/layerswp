@@ -137,7 +137,7 @@ class Hatch_Customizer_Regsitrar {
 			$this->customizer->add_setting(
 				$this->prefix . $panel_section_key . '-' . $control_key ,
 				array(
-					'default'    => $control_data['default'],
+					'default'    => ( isset( $control_data['default'] ) ? $control_data['default'] : NULL ) ,
 					'type'       => 'theme_mod',
 					'capability' => 'edit_theme_options'
 				)
@@ -155,7 +155,24 @@ class Hatch_Customizer_Regsitrar {
 						$control_data
 					)
 				);
+			} else if( 'select-icons' == $control_data['type'] ) {
 
+				$this->customizer->add_control(
+					new Hatch_Customize_Select_Icon_Control(
+						$this->customizer,
+						$this->prefix . $panel_section_key . '-' . $control_key ,
+						$control_data
+					)
+				);
+			} else if( 'seperator' == $control_data['type'] ) {
+
+				$this->customizer->add_control(
+					new Hatch_Customize_Seperator_Control(
+						$this->customizer,
+						$this->prefix . $panel_section_key . '-' . $control_key ,
+						$control_data
+					)
+				);
 			} else {
 
 				$this->customizer->add_control(

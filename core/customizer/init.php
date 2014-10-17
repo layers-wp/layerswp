@@ -31,7 +31,9 @@ class Hatch_Customizer {
 		$controls_dir = '/core/customizer/controls/';
 
 		// Include control classes
+		locate_template( $controls_dir . 'select-icons.php' , true );
 		locate_template( $controls_dir . 'select-images.php' , true );
+		locate_template( $controls_dir . 'seperator.php' , true );
 
 		// Include Config file(s)
 		locate_template( $customizer_dir . 'config.php' , true );

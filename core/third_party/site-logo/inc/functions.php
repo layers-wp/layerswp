@@ -77,7 +77,7 @@ function the_site_logo() {
 			$size,
 			false,
 			array(
-				'class'     => "site-logo attachment-$size",
+				'class'     => "site-logo attachment-$size small",
 				'data-size' => $size,
 			)
 		)

@@ -334,26 +334,26 @@ if( !function_exists( 'hatch_get_page_title' ) ) {
 if( !function_exists( 'hatch_get_header_class' ) ) {
     function hatch_get_header_class( $class = '' ){
 
-        $header_align_option = get_theme_mod( 'hatch-header-layout-layout' );
-        $header_fixed_option = '';
+        $header_align_option = hatch_get_theme_mod( 'header-layout-layout' );
+        $header_fixed_option = hatch_get_theme_mod( 'header-layout-fixed' );
 
         $classes = array();
 
         // Handle fixed / not fixed
-        if( 'fixed' == $header_fixed_option ){
-            $classes[] = 'header-fixed';
+        if( TRUE == $header_fixed_option ){
+            $classes[] = 'header-will-stick';
         }
 
         // Add alignment classes
-        if( 'left' == $header_align_option ){
+        if( 'header-logo-left' == $header_align_option ){
             $classes[] = 'header-left';
-        } else if( 'right' == $header_align_option ){
+        } else if( 'header-logo-right' == $header_align_option ){
             $classes[] = 'header-right';
-        } else if( 'clear' == $header_align_option ){
+        } else if( 'header-logo-top' == $header_align_option ){
             $classes[] = 'nav-clear';
-        } else if( 'center' == $header_align_option ){
+        } else if( 'header-logo-center-top' == $header_align_option ){
             $classes[] = 'header-center';
-        } else if( 'inline' == $header_align_option ){
+        } else if( 'header-logo-center' == $header_align_option ){
             $classes[] = 'header-inline';
         }
 
@@ -388,5 +388,22 @@ if( !function_exists( 'hatch_header_class' ) ) {
     function hatch_header_class( $class = '' ) {
         // Separates classes with a single space, collates classes for body element
         echo 'class="' . join( ' ', hatch_get_header_class( $class ) ) . '"';
+    }
+} // hatch_get_header_class
+
+
+
+/**
+ * Retrieve theme modification value for the current theme.
+ *
+ * @param string $name Theme modification name.
+ * @return string
+ */
+if( !function_exists( 'hatch_get_theme_mod' ) ) {
+    function hatch_get_theme_mod( $name = '' ) {
+        // Add the theme prefix to our hatch option
+        $name = HATCH_THEME_SLUG . '-' . $name;
+
+        return get_theme_mod( $name );
     }
 } // hatch_get_header_class

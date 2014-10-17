@@ -267,7 +267,7 @@ jQuery(function($) {
 	/**
 	* 6 - Design Controller Toggles
 	*/
-	$( document ).on( 'click' , '.hatch-visuals-wrapper li.hatch-visuals-item a.hatch-icon-wrapper' , function(e){
+	$( document ).on( 'click' , '.widget .hatch-visuals-wrapper li.hatch-visuals-item a.hatch-icon-wrapper' , function(e){
 		e.preventDefault();
 		// "Hi Mom"
 		$that = $(this);
@@ -279,7 +279,7 @@ jQuery(function($) {
 		$that.parent().siblings( '.hatch-visuals-item' ).removeClass( 'hatch-active' );
 	});
 
-	$( document ).on( 'click' , '.hatch-visuals-wrapper li.hatch-visuals-item label.hatch-icon-wrapper' , function(e){
+	$( document ).on( 'click' , '.widget .hatch-visuals-wrapper li.hatch-visuals-item label.hatch-icon-wrapper' , function(e){
 		// "Hi Mom"
 		$that = $(this);
 
@@ -295,7 +295,7 @@ jQuery(function($) {
 	});
 
 
-	$( document ).on( 'click' , '.customize-control .hatch-visuals-item' , function(e){
+	$( document ).on( 'click' , '[id^="input_hatch"] .hatch-visuals-item' , function(e){
 		// "Hi Mom"
 		$that = $(this);
 

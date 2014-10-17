@@ -20,27 +20,50 @@ class Hatch_Customizer_Config {
 		$panels = array(
 			'general'		=> array(
 									'title' => __( 'General', HATCH_THEME_SLUG ),
-									'priority' => 100
+									'priority' => 30
 								),
 			'color-scheme'	=> array(
 									'title' => __( 'Color Scheme', HATCH_THEME_SLUG ),
-									'priority' => 300
+									'priority' => 35
 								),
 			'header'		=> array(
 									'title' => __( 'Header', HATCH_THEME_SLUG ),
 									'description' => __( 'Control your header\'s layout, colors, font-type and intro messages.' , HATCH_THEME_SLUG ), // @TODO Put a helper here
-									'priority' => 400
+									'priority' => 40
+								),
+			'content'		=> array(
+									'title' => __( 'Content', HATCH_THEME_SLUG ),
+									'description' => __( 'Control your content\'s default layout.' , HATCH_THEME_SLUG ), // @TODO Put a helper here
+									'priority' => 40
 								),
 			'footer'		=> array(
 									'title' => __( 'Footer', HATCH_THEME_SLUG ),
 									'description' => __( 'Control your footer\'s custom text, widget areas and layout.' , HATCH_THEME_SLUG ), // @TODO Put a helper here
-									'priority' => 600
+									'priority' => 50
 								),
 		);
 
 		return apply_filters( 'hatch_customizer_panels', $panels );
 	}
 
+	/**
+	* Hatch Customiser Sections
+	*
+	* @return   array 			Sections to be registered in the customizer
+	*/
+
+	public function default_sections(){
+		$default_sections[ 'title_tagline' ] = array(
+													'panel' => 'general'
+												);
+		$default_sections[ 'static_front_page' ] = array(
+													'panel' => 'general'
+												);
+		$default_sections[ 'nav' ] = array(
+													'panel' => 'general'
+												);
+		return apply_filters( 'hatch_customizer_default_sections', $default_sections );
+	}
 	/**
 	* Hatch Customiser Sections
 	*
@@ -67,7 +90,6 @@ class Hatch_Customizer_Config {
 
 		return apply_filters( 'hatch_customizer_sections', $sections );
 	}
-
 
 	public function controls( $controls = array() ){
 

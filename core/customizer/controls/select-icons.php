@@ -41,7 +41,7 @@ if( !class_exists( 'Hatch_Customize_Select_Icon_Control' ) ) {
 				<ul class="hatch-visuals-wrapper hatch-clearfix">
 					<?php foreach ( $this->choices as $value => $label ) : ?>
 							<li class="hatch-visuals-item <?php if( $value == $this->value() ) echo 'hatch-active'; ?>">
-								<label href="" class="hatch-icon-wrapper hatch-select-images">
+								<label class="hatch-icon-wrapper hatch-select-images">
 									<span class="icon-<?php echo $value; ?>"></span>
 									<span class="hatch-icon-description">
 										<?php echo $label; ?>

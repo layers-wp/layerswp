@@ -43,6 +43,9 @@ class Hatch_Customizer_Regsitrar {
 
 		// Start registration with the panels
 		$this->register_panels( $this->config->panels() );
+
+		// Move default sections into Hatch Panels
+		$this->move_default_sections( $this->config->default_sections() );
 	}
 
 	/**
@@ -121,7 +124,7 @@ class Hatch_Customizer_Regsitrar {
 	* @panel_section_key  	varchar 		Unique key for which section this control belongs to
 	* @controls   			array 			Array of controls config
 	*/
-	public function register_controls( $panel_section_key = '' , $controls = array()){
+	public function register_controls( $panel_section_key = '' , $controls = array() ){
 
 		// If there are no sections, return
 		if( empty( $controls ) ) return;
@@ -182,6 +185,22 @@ class Hatch_Customizer_Regsitrar {
 			}
 
 		} // foreach controls panel_section_key
+	}
+
+	/**
+	* Move Default Sections
+	*/
+
+	public function move_default_sections( $sections = array() ){
+
+		foreach( $sections as $section_key => $setion_data ){
+
+			// Get the current section
+			$section = $this->customizer->get_section( $section_key );
+
+			// Move Site Title & Tagline section to General panel
+			$section->panel = $this->prefix . $setion_data[ 'panel' ];
+		}
 	}
 
 } // class Hatch_Customizer_Regsitrar

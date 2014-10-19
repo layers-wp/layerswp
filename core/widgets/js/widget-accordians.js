@@ -21,10 +21,12 @@
 	$( document ).on( 'click' , '.hatch-accordion-title' , function(e){
 		e.preventDefault();
 
+		// Toggle this accordian
 		$me = $(this).closest( 'li.hatch-accordion-item' );
 		$me.toggleClass( 'open' );
 		$me.find( '.hatch-accordion-section' ).first().slideToggle();
 
+		// Close non-active accordians
 		$siblings = $me.siblings();
 		$siblings.removeClass( 'open' );
 		$siblings.find( '.hatch-accordion-section' ).slideUp();
@@ -34,9 +36,11 @@
 	// 1.b - Accodian Init
 
 	function hatch_init_accordians(){
-		console.log( 'init accordians' );
+
 		$( '.hatch-accordions' ).each( function(){
 			var $that = $(this);
+
+			console.log( $that.html() );
 
 			$that.find( 'li.hatch-accordion-item' ).first().addClass( 'open' );
 
@@ -55,7 +59,7 @@
 
 	// 1.c - Accodian Widget Click
 
-	$( document ).on( 'click' , '.available-widgets div[id$=widget-tpl-obox-hatch]' , function(){ hatch_init_accordians() });
+	$( document ).on( 'click' , '#available-widgets div[id^="widget-tpl-hatch-"]' , function(){ hatch_init_accordians() });
 
 	/**
 	* 2 - Widget Peep Function

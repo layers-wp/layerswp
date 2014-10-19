@@ -293,7 +293,7 @@ if( !class_exists( 'Hatch_Banner_Widget' ) ) {
 						<?php // If we have some banners, let's break out their IDs into an array
 						if( isset( $banner_ids ) && '' != $banner_ids ) $banners = explode( ',' , $banner_ids ); ?>
 
-						<ul id="banner_list_<?php echo $this->number; ?>" class="hatch-accordions-sortable hatch-sortable" data-id_base="<?php echo $this->id_base; ?>" data-number="<?php echo $this->number; ?>">
+						<ul id="banner_list_<?php echo $this->number; ?>" class="hatch-accordions hatch-accordions-sortable hatch-sortable" data-id_base="<?php echo $this->id_base; ?>" data-number="<?php echo $this->number; ?>">
 							<?php if( isset( $banners ) && is_array( $banners ) ) { ?>
 								<?php foreach( $banners as $banner ) {
 									$this->banner_item( array(
@@ -343,7 +343,7 @@ if( !class_exists( 'Hatch_Banner_Widget' ) ) {
 				$this->banner_item_count++;
 			}?>
 
-				<li class="hatch-accordion-item <?php echo $this->banner_item_count; ?> <?php if( '1' == $this->banner_item_count ) echo 'open'; ?>" data-guid="<?php echo $slide_guid; ?>">
+				<li class="hatch-accordion-item <?php echo $this->banner_item_count; ?>" data-guid="<?php echo $slide_guid; ?>">
 					<a class="hatch-accordion-title">
 						<span>
 							<?php _e( 'Slide' , HATCH_THEME_SLUG ); ?><span class="hatch-detail"><?php echo ( isset( $title ) ? ': ' . $title : NULL ); ?></span>

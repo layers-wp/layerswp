@@ -204,7 +204,6 @@ jQuery(function($) {
 	*/
 	hatch_set_color_selectors();
 	$(document).on ( 'mouseup' , '#available-widgets .widget-tpl' , function(){
-		console.log( "Added widget " + $(this).find('input').eq(0) );
 
 		$(this).find('input').eq(0).hatch_trigger_change();
 
@@ -410,8 +409,6 @@ jQuery(function($) {
 	*/
 
 	$.fn.hatch_trigger_change = function() {
-
-		console.log( $(this).val() );
 
 		// Trigger 'change' and 'blur' to reset the customizer
 		$changed = $(this).trigger("change") .trigger("blur");

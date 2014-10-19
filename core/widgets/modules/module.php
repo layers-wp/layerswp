@@ -257,7 +257,7 @@ if( !class_exists( 'Hatch_Module_Widget' ) ) {
 					<?php // If we have some modules, let's break out their IDs into an array
 					if( isset( $module_ids ) && '' != $module_ids ) $modules = explode( ',' , $module_ids ); ?>
 
-					<ul id="module_list_<?php echo $this->number; ?>" class="hatch-accordions-sortable hatch-sortable" data-id_base="<?php echo $this->id_base; ?>" data-number="<?php echo $this->number; ?>">
+					<ul id="module_list_<?php echo $this->number; ?>" class="hatch-accordions hatch-accordions-sortable hatch-sortable" data-id_base="<?php echo $this->id_base; ?>" data-number="<?php echo $this->number; ?>">
 						<?php if( isset( $modules ) && is_array( $modules ) ) { ?>
 							<?php foreach( $modules as $module ) {
 								$this->module_item( array(
@@ -304,7 +304,7 @@ if( !class_exists( 'Hatch_Module_Widget' ) ) {
 				$this->module_item_count++;
 			} ?>
 
-				<li class="hatch-accordion-item  <?php if( $this->module_item_count == 0 ) echo 'open'; ?>" data-guid="<?php echo $column_guid; ?>">
+				<li class="hatch-accordion-item" data-guid="<?php echo $column_guid; ?>">
 					<a class="hatch-accordion-title">
 						<span>
 							<?php _e( 'Column' , HATCH_THEME_SLUG ); ?><span class="hatch-detail"><?php echo ( isset( $title ) ? ': ' . $title : NULL ); ?></span>

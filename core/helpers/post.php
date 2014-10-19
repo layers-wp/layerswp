@@ -160,11 +160,13 @@ if( !function_exists( 'hatch_backup_builder_pages' ) ) {
         dynamic_sidebar( 'obox-hatch-builder-' . $page->post_name );
 
         $page_content = ob_get_clean();
+        $page_content = preg_replace('#<script(.*?)>(.*?)</script>#is', '', $page_content);
+        $page_content = strip_tags( $page_content , '<p><b><i><strong><em><quote><a><h1><h2><h3><h4><h5><img><script>' );
 
         // New page arguments
         $updated_page = array(
             'ID'           => $page_id,
-            'post_content' => strip_tags( $page_content , '<p><b><i><strong><em><quote><a><h1><h2><h3><h4><h5><img><script>' )
+            'post_content' => $page_content
         );
 
         // Update the page into the database

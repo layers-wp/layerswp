@@ -10,9 +10,11 @@
             </a>
         </div>
     <?php } // if has_post_thumbnail() ?>
-    <div class="copy">
-        <?php the_excerpt(); ?>
-    </div>
+    <?php if( '' != get_the_excerpt() || '' != get_the_content() ) { ?>
+        <div class="copy">
+            <?php the_excerpt(); ?>
+        </div>
+    <?php } ?>
     <?php hatch_post_meta( $post->ID, NULL, 'footer', 'meta-info push-bottom' ); ?>
     <p><a href="<?php the_permalink(); ?>" class="button"><?php _e( 'Read More' , HATCH_THEME_SLUG ); ?></a></p>
 </article>

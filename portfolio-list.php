@@ -12,7 +12,11 @@
             <header class="article-title">
                 <h4 class="heading"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h4>
             </header>
-            <?php echo '<p class="excerpt">' . get_the_excerpt() . '</p>'; ?>
+            <?php if( '' != get_the_excerpt() || '' != get_the_content() ) { ?>
+                <div class="copy">
+                    <?php the_excerpt(); ?>
+                </div>
+            <?php } ?>
             <a href="<?php the_permalink(); ?>" class="button"><?php _e( 'View Project' , HATCH_THEME_SLUG ); ?></a>
         </div>
     </div>

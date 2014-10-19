@@ -19,8 +19,6 @@ if( !class_exists( 'Hatch_Customize_Select_Icon_Control' ) ) {
 
 		public function render_content() {
 
-			echo '<!--' . print_r( $this->choices , true ) . '-->';
-
 			if ( empty( $this->choices ) ) {
 				return;
 			}

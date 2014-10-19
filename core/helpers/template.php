@@ -339,6 +339,9 @@ if( !function_exists( 'hatch_get_header_class' ) ) {
 
         $classes = array();
 
+        // Add the general site header class
+        $classes[] = 'header-site';
+
         // Handle fixed / not fixed
         if( TRUE == $header_fixed_option ){
             $classes[] = 'header-will-stick';

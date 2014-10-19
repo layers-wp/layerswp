@@ -218,6 +218,23 @@ div[id*='hatch-widget'] .widget-control-actions a{
     max-width: 100%;
 }
 
+    /*---------------------------*/
+    /*- INLINE ICON DESCRIPTION -*/
+    .hatch-visuals-wrapper.hatch-visuals-inline .hatch-icon-wrapper{
+        text-align: left;
+    }
+    .hatch-visuals-wrapper.hatch-visuals-inline .hatch-icon-wrapper{
+        padding: 5px; margin: 0 0 5px;
+    }
+    .hatch-visuals-wrapper.hatch-visuals-inline .hatch-icon-wrapper [class^="icon-"],
+    .hatch-visuals-wrapper.hatch-visuals-inline .hatch-icon-wrapper [class*=" icon-"]{
+        vertical-align: middle;
+    }
+    .hatch-visuals-wrapper.hatch-visuals-inline .hatch-icon-wrapper .hatch-icon-description{
+        display: inline-block;
+        margin: 0 0 0 5px;
+    }
+
 /*---------------------------*/
 /*- THE GRID ----------------*/
 .hatch-row:before, .hatch-row:after{content: " "; display: table;}

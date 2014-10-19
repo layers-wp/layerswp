@@ -100,8 +100,7 @@ class Hatch_Customizer_Config {
 		$controls['header-layout'] = array(
 								'layout' => array(
 									'type'     => 'select-icons',
-									'label'    => __( 'Header Layout', HATCH_THEME_SLUG ),
-									'default' => 'header-left',
+									'default' => 'header-logo-left',
 									'choices' => array(
                                         'header-logo-left' => __( 'Logo Left' , HATCH_THEME_SLUG ),
                                         'header-logo-right' => __( 'Logo Right' , HATCH_THEME_SLUG ),
@@ -116,7 +115,7 @@ class Hatch_Customizer_Config {
                                 'fixed' => array(
                                     'type'     => 'checkbox',
                                     'label'    => __( 'Fixed Header', HATCH_THEME_SLUG ),
-                                    'description' => __( 'Fixed header to the top of the screen when scrolling.', HATCH_THEME_SLUG ),
+                                    'description' => __( 'Ticking this option will force your header to the to stick to the top of the page screen when scrolling.', HATCH_THEME_SLUG ),
                                     'default' => false,
                                 ) // fixed
 							); // header-layout

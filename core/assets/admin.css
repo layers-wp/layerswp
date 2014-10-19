@@ -114,22 +114,42 @@ div[id*='hatch-widget'] .widget-top .widget-title .in-widget-title{
     transition-delay: none;
 }
 
+/*---------------------------*/
+/*- DELETE / CLOSE / LOADING */
 div[id*='hatch-widget'] .widget-control-actions{
-    padding: 10px 20px;
+    padding: 0;
     position: absolute;
     z-index: 99;
-    bottom: 0px;
-    left: 0px;
-    background-color: #FFF;
-    border-top: 1px solid #EEE;
-    width: 100%;
-    max-width: 570px;
+    top: 11px;
+    right: 110px;
+    border-radius: 100px;
+    font-size: 0px;
 }
 div[id*='hatch-widget'] .widget-control-actions a{
-    background: #f0f0f0;
-    border-radius: 4px;
-    padding: 4px 10px;
     display: inline-block;
+    padding: 0 8px;
+    margin: 0;
+    border-radius: 4px 0px 0px 4px;
+    background-color: #2EA2CC;
+    border: 1px solid #0D5F83;
+    font-size: 11px;
+    font-weight: 600;
+    line-height: 22px;
+    color: #fff;
+}
+div[id*='hatch-widget'] .widget-control-actions a:last-child{
+    border-left: none;
+    border-radius: 0px 4px 4px 0px;
+}
+div[id*='hatch-widget'] .widget-control-actions a:hover{
+    background: #1E8CBE;
+}
+
+div[id*='hatch-widget'] .spinner{
+    margin: 2px -3px 0 5px;
+    background: url(images/spinner.gif) right no-repeat;
+    background-size: 20px 20px;
+    opacity: 1;
 }
 
 /*---------------------------*/

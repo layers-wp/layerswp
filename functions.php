@@ -123,7 +123,7 @@ if( ! function_exists( 'hatch_setup' ) ) {
 		add_theme_support( 'automatic-feed-links' );
 
 		/**
-		 * This theme uses wp_nav_menu() in one location.
+		 * Register nav menus
 		 */
 		register_nav_menus( array(
 			HATCH_THEME_SLUG . '-secondary-left' => __( 'Top Left Menu', HATCH_THEME_SLUG ),
@@ -160,7 +160,7 @@ if( ! function_exists( 'hatch_setup' ) ) {
 				'id'		=> HATCH_THEME_SLUG . '-footer-' . $footer,
 				'name'		=> __( 'Footer ' . $footer , HATCH_THEME_SLUG ),
 				'description'	=> __( '' , HATCH_THEME_SLUG ),
-				'before_widget'	=> '<section id="%1$s" class="column span-3 %2$s">',
+				'before_widget'	=> '<section id="%1$s" class="widget %2$s">',
 				'after_widget'	=> '</section>',
 				'before_title'	=> '<h5 class="section-nav-title">',
 				'after_title'	=> '</h5>',

@@ -9,8 +9,14 @@
 
 				<div class="row">
 					<?php do_action( 'hatch_before_footer_sidebar' ); ?>
-					<?php for( $footer = 1; $footer < 5; $footer++ ) { ?>
-						<?php dynamic_sidebar( HATCH_THEME_SLUG . '-footer-' . $footer ); ?>
+					<?php // Do logic related to the footer widget area count
+					$footer_sidebar_count = hatch_get_theme_mod( 'footer-layout-widget-area-count' );
+					if( '' == $footer_sidebar_count ) $footer_sidebar_count = 4;
+					$footer_sidebar_class = floor( 12/$footer_sidebar_count ); ?>
+					<?php for( $footer = 1; $footer <= $footer_sidebar_count; $footer++ ) { ?>
+						<div class="column span-<?php echo $footer_sidebar_class; ?> <?php if( $footer == $footer_sidebar_count ) echo 'last'; ?>">
+							<?php dynamic_sidebar( HATCH_THEME_SLUG . '-footer-' . $footer ); ?>
+						</div>
 					<?php } ?>
 					<?php do_action( 'hatch_after_footer_sidebar' ); ?>
 				</div>

@@ -122,11 +122,15 @@ class Hatch_Customizer_Config {
 
 		// Footer -> Layout -> Layout
 		$controls['footer-layout'] = array(
-								'layout' => array(
-									'type'     => 'select-images',
-									'label'    => __( 'Header Layout', HATCH_THEME_SLUG ),
-									'default' => 'header-left',
+								'widget-area-count' => array(
+									'type'     => 'select',
+									'label'    => __( 'Widget Areas', HATCH_THEME_SLUG ),
+									'default' => 4,
 									'choices' => array(
+										'1' => __( '1' , HATCH_THEME_SLUG ),
+										'2' => __( '2' , HATCH_THEME_SLUG ),
+										'3' => __( '3' , HATCH_THEME_SLUG ),
+										'4' => __( '4' , HATCH_THEME_SLUG ),
 									)
 								), // layout
 							); // footer-layout

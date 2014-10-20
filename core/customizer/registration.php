@@ -136,9 +136,11 @@ class Hatch_Customizer_Regsitrar {
 
 		foreach( $controls[ $panel_section_key ] as $control_key => $control_data ){
 
+			$setting_key = $this->prefix . $panel_section_key . '-' . $control_key;
+
 			// Add settings
 			$this->customizer->add_setting(
-				$this->prefix . $panel_section_key . '-' . $control_key ,
+				$setting_key,
 				array(
 					'default'    => ( isset( $control_data['default'] ) ? $control_data['default'] : NULL ) ,
 					'type'       => 'theme_mod',
@@ -154,7 +156,7 @@ class Hatch_Customizer_Regsitrar {
 				$this->customizer->add_control(
 					new Hatch_Customize_Select_Image_Control(
 						$this->customizer,
-						$this->prefix . $panel_section_key . '-' . $control_key ,
+						$setting_key ,
 						$control_data
 					)
 				);
@@ -163,7 +165,7 @@ class Hatch_Customizer_Regsitrar {
 				$this->customizer->add_control(
 					new Hatch_Customize_Select_Icon_Control(
 						$this->customizer,
-						$this->prefix . $panel_section_key . '-' . $control_key ,
+						$setting_key ,
 						$control_data
 					)
 				);
@@ -172,14 +174,14 @@ class Hatch_Customizer_Regsitrar {
 				$this->customizer->add_control(
 					new Hatch_Customize_Seperator_Control(
 						$this->customizer,
-						$this->prefix . $panel_section_key . '-' . $control_key ,
+						$setting_key ,
 						$control_data
 					)
 				);
 			} else {
 
 				$this->customizer->add_control(
-					$this->prefix . $panel_section_key . '-' . $control_key ,
+					$setting_key,
 					$control_data
 				);
 			}

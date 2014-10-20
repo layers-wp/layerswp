@@ -109,7 +109,15 @@ class Hatch_Customizer_Config {
                                         'header-logo-center' => __( 'Logo Center' , HATCH_THEME_SLUG )
 									)
 								), // layout,
-                                'break' => array(
+                                'break-0' => array(
+                                    	'type'     => 'seperator'
+                                    ),
+                                'display-top-header' => array(
+                                    'type'     => 'checkbox',
+                                    'label'    => __( 'Display Top Header', HATCH_THEME_SLUG ),
+                                    'default' => true,
+                                ), // top header display
+                                'break-1' => array(
                                     	'type'     => 'seperator'
                                     ),
                                 'fixed' => array(

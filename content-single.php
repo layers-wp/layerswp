@@ -8,7 +8,12 @@
     <div class="thumbnail push-bottom"><?php echo the_post_thumbnail( 'large' ); ?></div>
     <div class="story">
         <?php the_content(); ?>
-        <?php wp_link_pages(); ?>
+        <?php wp_link_pages( array(
+            'link_before'   => '<span>',
+            'link_after'    => '</span>',
+            'before'        => '<p class="inner-post-pagination">' . __('<span>Pages:</span>', 'ocmx'),
+            'after'     => '</p>'
+        )); ?>
     </div>
     <?php if( 'post' == get_post_type() ) { ?>
         <?php hatch_post_meta( $post->ID ); ?>

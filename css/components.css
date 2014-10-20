@@ -71,9 +71,8 @@
 
     /*---------------------------*/
     /*- SECONDARY HEADER --------*/
-    .header-secondary{}
     .header-secondary nav{margin: 0; font-size: 1.2rem;}
-
+    .header-secondary .sub-menu{display: none;}
 
 /*-------------------------------*/
 /*- SLIDER ----------------------*/
@@ -128,16 +127,6 @@
 
 
 /*-------------------------------*/
-/*- SIDEBAR ---------------------*/
-/*-------------------------------*/
-.sidebar .widget li{padding: 0 0 6px; margin: 0 0 6px; border-bottom: 1px solid #ddd;}
-.sidebar .widget li:last-child{border-bottom: none; padding-bottom: 0; margin-bottom: 0;}
-.sidebar .widget li ul{margin: 6px 0 0 10px;}
-
-.post-date{display: block; font-size: 1.2rem;}
-
-
-/*-------------------------------*/
 /*- STORY -----------------------*/
 /*-------------------------------*/
 .story{font-size: 1.8rem;}
@@ -184,14 +173,13 @@
 
 
 /*-------------------------------*/
-/*- COMMENTS --------------------*/
-/*-------------------------------*/
-
-
-/*-------------------------------*/
 /*- COMMENTS FORM ---------------*/
 /*-------------------------------*/
-.comment-respond{}
+.comment-notes{margin-bottom: 20px; font-size: 1.2rem; color: #999;}
+
+p[class*='comment-form'] input{margin-bottom: 15px;}
+p[class*='comment-form'] .required{color: #900;}
+
 .comment-reply-title{font-size: 2.8rem; color: #323232;}
 .logged-in-as{font-size: 1.6rem; color: #8F8F8F; margin-bottom: 20px;}
 .form-allowed-tags{font-size: 1.4rem; margin-bottom: 15px;}
@@ -199,11 +187,23 @@
 .form-submit input[type=submit]{display: inline-block; padding: 4px 14px; background: #454545; border: none; border-radius: 4px; text-align: center; font-weight: 600; color: #fff; vertical-align: middle; cursor: pointer; transition: all 0.2s ease-in-out;}
 .form-submit input[type=submit]:hover{background: #323232; color: #fff;}
 
+
+/*-------------------------------*/
+/*- WORDPRESS WIDGETS -----------*/
+/*-------------------------------*/
+.sidebar .widget li{padding: 0 0 6px; margin: 0 0 6px; border-bottom: 1px solid #ddd;}
+.sidebar .widget li:last-child{border-bottom: none; padding-bottom: 0; margin-bottom: 0;}
+.sidebar .widget li ul{margin: 6px 0 0 10px;}
+
+#footer .widget li{padding-bottom: 8px; margin-bottom: 8px; border-bottom: 1px solid #ddd;}
+
+
 /*-------------------------------*/
 /*- MAP - ADD ON ----------------*/
 /*-------------------------------*/
 .row.has-map{padding-top: 0;}
 .hatch-map img{width: auto; max-width: none;}
+
 
 /*-------------------------------*/
 /*- WOOCOMMERCE - ADD ON --------*/

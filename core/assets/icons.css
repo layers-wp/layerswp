@@ -1,10 +1,10 @@
 @font-face {
 	font-family: 'hatch-interface';
-	src:url('fonts/hatch-interface.eot?egsecl');
-	src:url('fonts/hatch-interface.eot?#iefixegsecl') format('embedded-opentype'),
-		url('fonts/hatch-interface.woff?egsecl') format('woff'),
-		url('fonts/hatch-interface.ttf?egsecl') format('truetype'),
-		url('fonts/hatch-interface.svg?egsecl#hatch-interface') format('svg');
+	src:url('fonts/hatch-interface.eot?4ogve');
+	src:url('fonts/hatch-interface.eot?#iefix4ogve') format('embedded-opentype'),
+		url('fonts/hatch-interface.woff?4ogve') format('woff'),
+		url('fonts/hatch-interface.ttf?4ogve') format('truetype'),
+		url('fonts/hatch-interface.svg?4ogve#hatch-interface') format('svg');
 	font-weight: normal;
 	font-style: normal;
 }
@@ -23,6 +23,12 @@
 	-moz-osx-font-smoothing: grayscale;
 }
 
+.icon-layout-full-screen:before {
+	content: "\e60f";
+}
+.icon-layout-fullwidth:before {
+	content: "\e627";
+}
 .icon-call-to-action:before {
 	content: "\e600";
 }
@@ -68,9 +74,6 @@
 .icon-layout-boxed:before {
 	content: "\e60e";
 }
-.icon-layout-fullwidth:before {
-	content: "\e60f";
-}
 .icon-slider:before {
 	content: "\e610";
 }
@@ -104,7 +107,7 @@
 .icon-image-left:before {
 	content: "\e61a";
 }
-.icon-image-center:before {
+.icon-image-top:before {
 	content: "\e61b";
 }
 .icon-image-right:before {

@@ -127,8 +127,8 @@ if( !class_exists( 'Hatch_Module_Widget' ) ) {
 							$module = (object) $module;
 							// Set the background styling
 							if( !empty( $module->design[ 'background' ] ) ) $this->widget_styles( $widget_id . '-' . $key , 'background', $module->design[ 'background' ] );
-							if( !empty( $module->design['fonts'][ 'color' ] ) ) $this->widget_styles( $widget_id . '-' . $key , 'color', array( 'selectors' => array( 'h5.heading a' , 'p.excerpt' ) , 'color' => $module->design['fonts'][ 'color' ] ) );
-							if( !empty( $module->design['fonts'][ 'shadow' ] ) ) $this->widget_styles( $widget_id . '-' . $key , 'text-shadow', array( 'selectors' => array( 'h5.heading a' , 'p.excerpt' )  , 'text-shadow' => $module->design['fonts'][ 'shadow' ] ) );
+							if( !empty( $module->design['fonts'][ 'color' ] ) ) $this->widget_styles( $widget_id . '-' . $key , 'color', array( 'selectors' => array( 'h5.heading a' , 'div.excerpt' , 'div.excerpt p' ) , 'color' => $module->design['fonts'][ 'color' ] ) );
+							if( !empty( $module->design['fonts'][ 'shadow' ] ) ) $this->widget_styles( $widget_id . '-' . $key , 'text-shadow', array( 'selectors' => array( 'h5.heading a' , 'div.excerpt' , 'div.excerpt p' )  , 'text-shadow' => $module->design['fonts'][ 'shadow' ] ) );
 
 							// Set Image Sizes
 							if( isset( $module->design[ 'imageratios' ] ) ){
@@ -372,7 +372,7 @@ if( !class_exists( 'Hatch_Module_Widget' ) ) {
 								</p>
 								<?php echo $widget_elements->input(
 									array(
-										'type' => 'tinymce',
+										'type' => 'textarea',
 										'name' => 'widget-' . $widget_details->id_base . '[' . $widget_details->number . '][modules][' . $column_guid . '][excerpt]' ,
 										'id' => 'widget-' . $widget_details->id_base . '-' . $widget_details->number . '-' . $column_guid . '-excerpt' ,
 										'placeholder' => __( 'Short Excerpt', HATCH_THEME_SLUG ),

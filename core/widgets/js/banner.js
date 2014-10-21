@@ -89,7 +89,8 @@ jQuery(document).ready(function($){
 			function(data){
 
 				// Append module HTML
-				$( data ).insertBefore( $bannerListId + ' .hatch-add-widget-banner' );
+				$bannerList.prepend( data );
+				//$( data ).insertBefore( $bannerListId + ' .hatch-add-widget-banner' );
 
 				// Append banner IDs to the banners input
 				$banner_guids = [];

@@ -41,12 +41,12 @@ class Hatch_Design_Controller {
 				<?php if( NULL !== $components ) {
 					foreach( $components as $component ) {
 						if( 'custom' == $component && !empty( $custom_components ) ) {
-							foreach ( $custom_components as $key => $component_args ) {
+							foreach ( $custom_components as $key => $custom_component_args ) {
 								$this->custom_component(
 									$widget, // Send through the widget name & id
-									$values, // Send through the widsget values
+									$values, // Send through the widget values
 									$key, // Give the component a key (will be used as class name too)
-									$component_args // Send through the inputs that will be used
+									$custom_component_args // Send through the inputs that will be used
 								);
 							}
 						} elseif ( 'custom' != $component ) {
@@ -127,9 +127,10 @@ class Hatch_Design_Controller {
 	*
 	* @param  	array     	$widget 	Widget Element
 	* @param  	array     	$values 	Accepts the value for this element
+	* @param  	array     	$args 		Additional arguments to pass to this function
 	*/
 
-	function layout( $widget = NULL, $values = NULL ){
+	function layout( $widget = NULL, $values = NULL, $args = NULL ){
 
 		// If there is no widget information provided, can the operation
 		if( NULL == $widget ) return; ?>
@@ -165,9 +166,10 @@ class Hatch_Design_Controller {
 	*
 	* @param  	array     	$widget 	Widget Element
 	* @param  	array     	$values 	Accepts the value for this element
+	* @param  	array     	$args 		Additional arguments to pass to this function
 	*/
 
-	function liststyle( $widget = NULL, $values = NULL ){
+	function liststyle( $widget = NULL, $values = NULL, $args = NULL ){
 
 		// If there is no widget information provided, can the operation
 		if( NULL == $widget ) return; ?>
@@ -206,9 +208,10 @@ class Hatch_Design_Controller {
 	*
 	* @param  	array     	$widget 	Widget Element
 	* @param  	array     	$values 	Accepts the value for this element
+	* @param  	array     	$args 		Additional arguments to pass to this function
 	*/
 
-	function columns( $widget = NULL, $values = NULL ){
+	function columns( $widget = NULL, $values = NULL, $args = NULL ){
 
 		// If there is no widget information provided, can the operation
 		if( NULL == $widget ) return; ?>
@@ -262,9 +265,10 @@ class Hatch_Design_Controller {
 	*
 	* @param  	array     	$widget 	Widget Element
 	* @param  	array     	$values 	Accepts the value for this element
+	* @param  	array     	$args 		Additional arguments to pass to this function
 	*/
 
-	function textalign( $widget = NULL, $values = NULL ){
+	function textalign( $widget = NULL, $values = NULL, $args = NULL ){
 
 		// If there is no widget information provided, can the operation
 		if( NULL == $widget ) return; ?>
@@ -302,9 +306,10 @@ class Hatch_Design_Controller {
 	*
 	* @param  	array     	$widget 	Widget Element
 	* @param  	array     	$values 	Accepts the value for this element
+	* @param  	array     	$args 		Additional arguments to pass to this function
 	*/
 
-	function imagealign( $widget = NULL, $values = NULL ){
+	function imagealign( $widget = NULL, $values = NULL, $args = NULL ){
 
 		// If there is no widget information provided, can the operation
 		if( NULL == $widget ) return; ?>
@@ -343,7 +348,7 @@ class Hatch_Design_Controller {
 	* @param  	array     	$values 	Accepts the value for this element
 	*/
 
-	function imageratios( $widget = NULL, $values = NULL ){
+	function imageratios( $widget = NULL, $values = NULL, $args = NULL ){
 
 		// If there is no widget information provided, can the operation
 		if( NULL == $widget ) return; ?>
@@ -384,9 +389,10 @@ class Hatch_Design_Controller {
 	*
 	* @param  	array     	$widget 	Widget Element
 	* @param  	array     	$values 	Accepts the value for this element
+	* @param  	array     	$args 		Additional arguments to pass to this function
 	*/
 
-	function fonts( $widget = NULL, $values = NULL ){
+	function fonts( $widget = NULL, $values = NULL, $args = NULL ){
 
 		// If there is no widget information provided, can the operation
 		if( NULL == $widget ) return; ?>
@@ -460,9 +466,10 @@ class Hatch_Design_Controller {
 	*
 	* @param  	array     	$widget 	Widget Element
 	* @param  	array     	$values 	Accepts the value for this element
+	* @param  	array     	$args 		Additional arguments to pass to this function
 	*/
 
-	function background( $widget = NULL, $values = NULL ){
+	function background( $widget = NULL, $values = NULL, $args = NULL ){
 
 		// If there is no widget information provided, can the operation
 		if( NULL == $widget ) return; ?>

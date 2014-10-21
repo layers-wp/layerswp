@@ -175,6 +175,7 @@ if( ! function_exists( 'hatch_setup' ) ) {
 			$find_builder_page = new WP_Query( array( 'post_type' => 'page' , 'meta_key' => '_wp_page_template', 'meta_value' => HATCH_BUILDER_TEMPLATE ) );
 			if( false == $find_builder_page->have_posts() ){
 				$page['post_type']    = 'page';
+				$page['post_status']  = 'publish';
 				$page['post_title']   = 'Builder Page';
 				$pageid = wp_insert_post ($page);
 				if ($pageid != 0) {

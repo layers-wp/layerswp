@@ -39,7 +39,7 @@ if( !class_exists( 'Hatch_Widget' ) ) {
 					}
 
 					if( isset( $args['repeat'] ) && '' != $args['repeat'] ){
-						$css .= 'background-repeat: repeat;';
+						$css .= 'background-repeat: ' . $args['repeat'] . ';';
 					}
 
 					if( isset( $args['position'] ) && '' != $args['position'] ){

@@ -12,7 +12,7 @@ if( !class_exists( 'Hatch_Banner_Widget' ) ) {
 		/**
 		*  Widget variables
 		*/
-		private $widget_title = 'Sliders';
+		private $widget_title = 'Banners';
 		private $widget_id = 'banner';
 		private $post_type = '';
 		private $taxonomy = '';
@@ -63,6 +63,11 @@ if( !class_exists( 'Hatch_Banner_Widget' ) ) {
 					)
 				)
 			);
+
+			// Setup the defaults for each banner
+			foreach( explode( ',', $this->defaults[ 'banner_ids' ] ) as $banner_id ) {
+					$this->defaults[ 'banners' ][ $banner_id ] = $this->banner_defaults;
+			}
 		}
 
 		/**
@@ -72,6 +77,15 @@ if( !class_exists( 'Hatch_Banner_Widget' ) ) {
 
 			// Turn $args array into variables.
 			extract( $args );
+
+			// $instance Defaults
+			$instance_defaults = $this->defaults;
+
+			// If we have information in this widget, then ignore the defaults
+			if( !empty( $instance ) ) $instance_defaults = array();
+
+			// Parse $instance
+			$instance = wp_parse_args( $instance, $instance_defaults );
 
 			// Turn $instance into an object named $widget, makes for neater code
 			$widget = (object) $instance; ?>
@@ -113,7 +127,7 @@ if( !class_exists( 'Hatch_Banner_Widget' ) ) {
 								style="float: left; <?php if( $this->check_and_return( $widget , 'banner_height' ) ) echo 'height: ' . $widget->banner_height . 'px;' ?>">
 								<div class="overlay">
 									<div class="container" <?php if( $this->check_and_return( $widget , 'banner_height' ) ) echo 'style="height: ' . $widget->banner_height . 'px;"' ?>><!-- height important for vertical positioning. Must match container height -->
-										<?php if( '' != $banner->title || '' != $banner->excerpt ) { ?>
+										<?php if( '' != $banner->title || '' != $banner->excerpt || '' != $banner->link ) { ?>
 											<div class="copy-container <?php if( false == $this->check_and_return( $banner , 'image' ) ) echo 'no-image'; ?>">
 												<!-- your dynamic output goes here -->
 												<div class="section-title <?php echo ( isset( $banner->design['fonts'][ 'size' ] ) ? $banner->design['fonts'][ 'size' ] : '' ); ?>">

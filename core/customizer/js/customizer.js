@@ -19,6 +19,7 @@ jQuery(document).ready(function($) {
 
 	if( true == hatch_customizer_params.builder_page ){
 			$( '#accordion-panel-widgets .accordion-section-title' ).trigger( 'click' );
-			$( 'li[id*="accordion-section-sidebar-widgets-obox-hatch-builder"] .accordion-section-title' ).trigger( 'click' );
+			//$( 'li[id*="accordion-section-sidebar-widgets-obox-hatch-builder"] .accordion-section-title' ).trigger( 'click' );
+            $( '#accordion-panel-widgets .control-section .accordion-section-title' ).eq(0).trigger( 'click' );
 	}
 });

@@ -68,6 +68,11 @@ if( !class_exists( 'Hatch_Module_Widget' ) ) {
 					)
 				)
 			);
+
+			// Setup the defaults for each module object
+			foreach( explode( ',', $this->defaults[ 'module_ids' ] ) as $module_id ) {
+					$this->defaults[ 'modules' ][ $module_id ] = $this->module_defaults;
+			}
 		}
 
 		/**
@@ -85,7 +90,7 @@ if( !class_exists( 'Hatch_Module_Widget' ) ) {
 			if( !empty( $instance ) ) $instance_defaults = array();
 
 			// Parse $instance
-			$instance_args = wp_parse_args( $instance, $instance_defaults );
+			$instance = wp_parse_args( $instance, $instance_defaults );
 
 			// Turn $instance into an object named $widget, makes for neater code
 			$widget = (object) $instance;// Set the span class for each column

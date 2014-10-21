@@ -40,8 +40,6 @@
 		$( '.hatch-accordions' ).each( function(){
 			var $that = $(this);
 
-			console.log( $that.html() );
-
 			$that.find( 'li.hatch-accordion-item' ).first().addClass( 'open' );
 
 			$that.find( 'li.hatch-accordion-item' ).each( function() {

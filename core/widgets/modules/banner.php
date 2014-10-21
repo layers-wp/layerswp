@@ -17,7 +17,8 @@ if( !class_exists( 'Hatch_Banner_Widget' ) ) {
 		private $post_type = '';
 		private $taxonomy = '';
 		public $checkboxes = array(
-				'hide_slider_arrows',
+				'show_slider_arrows',
+				'show_slider_dots',
 				'autoplay_banners'
 			);
 
@@ -39,7 +40,10 @@ if( !class_exists( 'Hatch_Banner_Widget' ) ) {
 				'title' => NULL,
 				'excerpt' => NULL,
 				'banner_height' => '550',
-				'banner_ids' => rand( 1 , 1000 )
+				'banner_ids' => rand( 1 , 1000 ),
+				'show_slider_arrows' => true,
+				'show_slider_dots' => true,
+
 			);
 			$this->banner_defaults = array (
 				'title' => 'Banner Title',
@@ -92,7 +96,7 @@ if( !class_exists( 'Hatch_Banner_Widget' ) ) {
 
 			<section class="widget row banner swiper-container <?php if('layout-boxed' == $this->check_and_return( $widget , 'design' , 'layout' ) ) echo 'container'; ?>" id="<?php echo $widget_id; ?>" <?php if( $this->check_and_return( $widget , 'banner_height' ) ) echo 'style="height: ' . $widget->banner_height . 'px;"' ?>>
 				<?php if( !empty( $widget->banners ) ) { ?>
-					<?php if( 1 < count( $widget->banners ) && !isset( $widget->hide_slider_arrows ) ) { ?>
+					<?php if( 1 < count( $widget->banners ) && isset( $widget->show_slider_arrows ) ) { ?>
 						 <div class="arrows">
 							<a href="" class="arrow-left animate"></a>
 							<a href="" class="arrow-right animate"></a>
@@ -166,7 +170,7 @@ if( !class_exists( 'Hatch_Banner_Widget' ) ) {
 						var swiper = $('#<?php echo $widget_id; ?>').swiper({
 							//Your options here:
 							mode:'horizontal',
-							pagination: '.pages',
+							<?php if( isset( $widget->show_slider_dots ) ) { ?>pagination: '.pages',<?php } ?>
 							// slidesPerView: 4,
 							paginationClickable: true,
 							watchActiveIndex: true,
@@ -179,6 +183,7 @@ if( !class_exists( 'Hatch_Banner_Widget' ) ) {
 
 						$('#<?php echo $widget_id; ?>').find('.arrows a').on( 'click' , function(e){
 							e.preventDefault();
+
 							// "Hi Mom"
 							$that = $(this);
 
@@ -189,6 +194,8 @@ if( !class_exists( 'Hatch_Banner_Widget' ) ) {
 							} else if( $that.hasClass( 'arrow-right' ) ){ // Next
 								swiper.swipeNext();
 							}
+
+							return false;
 						});
 
 					})
@@ -252,12 +259,19 @@ if( !class_exists( 'Hatch_Banner_Widget' ) ) {
 						'icon-css' => 'icon-slider',
 						'label' => 'Slider',
 						'elements' => array(
-								'hide_slider_arrows' => array(
+								'show_slider_arrows' => array(
 									'type' => 'checkbox',
-									'name' => $this->get_field_name( 'hide_slider_arrows' ) ,
-									'id' => $this->get_field_id( 'hide_slider_arrows' ) ,
-									'value' => ( isset( $hide_slider_arrows ) ) ? $hide_slider_arrows : NULL,
-									'label' => __( 'Hide Slider Arrows', HATCH_THEME_SLUG )
+									'name' => $this->get_field_name( 'show_slider_arrows' ) ,
+									'id' => $this->get_field_id( 'show_slider_arrows' ) ,
+									'value' => ( isset( $show_slider_arrows ) ) ? $show_slider_arrows : NULL,
+									'label' => __( 'Show Slider Arrows', HATCH_THEME_SLUG )
+								),
+								'show_slider_dots' => array(
+									'type' => 'checkbox',
+									'name' => $this->get_field_name( 'show_slider_dots' ) ,
+									'id' => $this->get_field_id( 'show_slider_dots' ) ,
+									'value' => ( isset( $show_slider_dots ) ) ? $show_slider_dots : NULL,
+									'label' => __( 'Show Slider Dots', HATCH_THEME_SLUG )
 								),
 								'autoplay_banners' => array(
 									'type' => 'checkbox',
@@ -281,7 +295,7 @@ if( !class_exists( 'Hatch_Banner_Widget' ) ) {
 									'name' => $this->get_field_name( 'banner_height' ) ,
 									'id' => $this->get_field_id( 'banner_height' ) ,
 									'value' => ( isset( $banner_height ) ) ? $banner_height : NULL,
-									'label' => __( 'Slider Height', HATCH_THEME_SLUG )
+									'label' => __( 'Banner Height', HATCH_THEME_SLUG )
 								)
 							)
 					)

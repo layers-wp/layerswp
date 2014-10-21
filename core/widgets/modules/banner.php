@@ -42,7 +42,7 @@ if( !class_exists( 'Hatch_Banner_Widget' ) ) {
 				'banner_ids' => rand( 1 , 1000 )
 			);
 			$this->banner_defaults = array (
-				'title' => 'Enter title here',
+				'title' => 'Banner Title',
 				'excerpt' => 'Short Excerpt',
 				'link' => NULL,
 				'link_text' => 'See More',

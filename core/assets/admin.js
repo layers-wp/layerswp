@@ -226,6 +226,10 @@ jQuery(function($) {
 		});
 	}
 
+	$(document).on( 'mouseup' , '.wp-picker-clear' , function(){
+		$(this).siblings( 'input' ).val('').trigger( 'change' ).trigger( 'blur' );
+	});
+
 	/**
 	* 4 - Sortable Columns
 	*/

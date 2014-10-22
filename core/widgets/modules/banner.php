@@ -126,7 +126,6 @@ if( !class_exists( 'Hatch_Banner_Widget' ) ) {
 
 							// Set Image Sizes
 							if( isset( $banner->design[ 'imageratios' ] ) ){
-
 									// Translate Image Ratio
 									$image_ratio = hatch_translate_image_ratios( $banner->design[ 'imageratios' ] );
 									$imageratios = $image_ratio . '-medium';
@@ -136,7 +135,7 @@ if( !class_exists( 'Hatch_Banner_Widget' ) ) {
 
 							<div id="<?php echo $widget_id; ?>-<?php echo $key; ?>" class="invert swiper-slide
 								<?php if( false != $this->check_and_return( $banner , 'image' ) ) echo 'has-image'; ?>
-								<?php if( false != $this->check_and_return( $banner , 'image' ) && isset( $banner->design[ 'imagealign' ] ) && '' != $banner->design[ 'imagealign' ] ) echo $banner->design[ 'imagealign' ]; ?>
+								<?php if( isset( $banner->design[ 'imagealign' ] ) && '' != $banner->design[ 'imagealign' ] ) echo $banner->design[ 'imagealign' ]; ?>
 								<?php if( isset( $banner->design['fonts'][ 'align' ] ) && '' != $banner->design['fonts'][ 'align' ] ) echo $banner->design['fonts'][ 'align' ]; ?>
 								"
 								style="float: left;">

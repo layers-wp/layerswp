@@ -94,7 +94,14 @@ if( !class_exists( 'Hatch_Banner_Widget' ) ) {
 			// Turn $instance into an object named $widget, makes for neater code
 			$widget = (object) $instance; ?>
 
-			<section class="widget row banner swiper-container <?php if('layout-boxed' == $this->check_and_return( $widget , 'design' , 'layout' ) ) echo 'container'; ?>" id="<?php echo $widget_id; ?>" <?php if( $this->check_and_return( $widget , 'banner_height' ) ) echo 'style="height: ' . $widget->banner_height . 'px;"' ?>>
+			<?php // Setup the layout class for boxed/full width/full screen
+			if( 'layout-boxed' == $this->check_and_return( $widget , 'design' , 'layout' ) ) {
+				$layout_class = 'container';
+			} elseif('layout-full-screen' == $this->check_and_return( $widget , 'design' , 'layout' ) ) {
+				$layout_class = 'full-screen';
+			}?>
+
+			<section class="widget row banner swiper-container <?php if( isset( $layout_class ) ) echo $layout_class; ?>" id="<?php echo $widget_id; ?>" <?php if( $this->check_and_return( $widget , 'banner_height' ) ) echo 'style="height: ' . $widget->banner_height . 'px;"' ?>>
 				<?php if( !empty( $widget->banners ) ) { ?>
 					<?php if( 1 < count( $widget->banners ) && isset( $widget->show_slider_arrows ) ) { ?>
 						 <div class="arrows">
@@ -129,34 +136,32 @@ if( !class_exists( 'Hatch_Banner_Widget' ) ) {
 								<?php if( isset( $banner->design['fonts'][ 'align' ] ) && '' != $banner->design['fonts'][ 'align' ] ) echo $banner->design['fonts'][ 'align' ]; ?>
 								"
 								style="float: left; <?php if( $this->check_and_return( $widget , 'banner_height' ) ) echo 'height: ' . $widget->banner_height . 'px;' ?>">
-								<div class="overlay">
-									<div class="container" <?php if( $this->check_and_return( $widget , 'banner_height' ) ) echo 'style="height: ' . $widget->banner_height . 'px;"' ?>><!-- height important for vertical positioning. Must match container height -->
-										<?php if( '' != $banner->title || '' != $banner->excerpt || '' != $banner->link ) { ?>
-											<div class="copy-container <?php if( false == $this->check_and_return( $banner , 'image' ) ) echo 'no-image'; ?>">
-												<!-- your dynamic output goes here -->
-												<div class="section-title <?php echo ( isset( $banner->design['fonts'][ 'size' ] ) ? $banner->design['fonts'][ 'size' ] : '' ); ?>">
-													<?php if( $this->check_and_return( $banner , 'title' ) ) { ?>
-														<?php if( $this->check_and_return( $banner , 'link' ) ) { ?>
-															<h3 class="heading"><a href="<?php echo $banner->link; ?>"><?php echo $banner->title; ?></a></h3>
-														<?php } else { ?>
-															<h3 class="heading"><?php echo $banner->title; ?></h3>
-														<?php } ?>
+								<div class="container" <?php if( $this->check_and_return( $widget , 'banner_height' ) ) echo 'style="height: ' . $widget->banner_height . 'px;"' ?>><!-- height important for vertical positioning. Must match container height -->
+									<?php if( '' != $banner->title || '' != $banner->excerpt || '' != $banner->link ) { ?>
+										<div class="copy-container <?php if( false == $this->check_and_return( $banner , 'image' ) ) echo 'no-image'; ?>">
+											<!-- your dynamic output goes here -->
+											<div class="section-title <?php echo ( isset( $banner->design['fonts'][ 'size' ] ) ? $banner->design['fonts'][ 'size' ] : '' ); ?>">
+												<?php if( $this->check_and_return( $banner , 'title' ) ) { ?>
+													<?php if( $this->check_and_return( $banner , 'link' ) ) { ?>
+														<h3 class="heading"><a href="<?php echo $banner->link; ?>"><?php echo $banner->title; ?></a></h3>
+													<?php } else { ?>
+														<h3 class="heading"><?php echo $banner->title; ?></h3>
 													<?php } ?>
-													<?php if( $this->check_and_return( $banner , 'excerpt' ) ) { ?>
-														<div class="excerpt"><?php echo $banner->excerpt; ?></div>
-													<?php } ?>
-													<?php if( isset( $banner->link ) && $this->check_and_return( $banner , 'link_text' ) ) { ?>
-														<a href="<?php echo $banner->link; ?>" class="button"><?php echo $banner->link_text; ?></a>
-													<?php } ?>
-												</div>
+												<?php } ?>
+												<?php if( $this->check_and_return( $banner , 'excerpt' ) ) { ?>
+													<div class="excerpt"><?php echo $banner->excerpt; ?></div>
+												<?php } ?>
+												<?php if( isset( $banner->link ) && $this->check_and_return( $banner , 'link_text' ) ) { ?>
+													<a href="<?php echo $banner->link; ?>" class="button"><?php echo $banner->link_text; ?></a>
+												<?php } ?>
 											</div>
-										<?php } // if title || excerpt ?>
-										<?php if( $this->check_and_return( $banner , 'image' ) ) { ?>
-											<div class="image-container">
-												<?php echo wp_get_attachment_image( $banner->image , $imageratios ); ?>
-											</div>
-										<?php } // if $banner image ?>
-									</div>
+										</div>
+									<?php } // if title || excerpt ?>
+									<?php if( $this->check_and_return( $banner , 'image' ) ) { ?>
+										<div class="image-container">
+											<?php echo wp_get_attachment_image( $banner->image , $imageratios ); ?>
+										</div>
+									<?php } // if $banner image ?>
 								</div>
 							</div>
 						<?php } // foreach slides ?>
@@ -251,10 +256,28 @@ if( !class_exists( 'Hatch_Banner_Widget' ) ) {
 				), // Widget Object
 				$instance, // Widget Values
 				array(
-					'layout',
 					'custom',
 				), // Standard Components
 				array(
+					'layout' => array(
+						'icon-css' => 'icon-layout-fullwidth',
+						'label' => 'Layout',
+						'wrapper-css' => 'hatch-visuals-settings-wrapper hatch-small',
+						'elements' => array(
+							'layout' => array(
+								'type' => 'select-icons',
+								'label' => __( '', HATCH_THEME_SLUG ),
+								'name' => $this->get_field_name( 'design' ) . '[layout]' ,
+								'id' => $this->get_field_id( 'design-layout' ) ,
+								'value' => ( isset( $design['layout'] ) ) ? $design['layout'] : NULL,
+								'options' => array(
+									'layout-boxed' => __( 'Boxed' , HATCH_THEME_SLUG ),
+									'layout-fullwidth' => __( 'Full Width' , HATCH_THEME_SLUG ),
+									'layout-full-screen' => __( 'Full Screen' , HATCH_THEME_SLUG )
+								)
+							)
+						)
+					),
 					'display' => array(
 						'icon-css' => 'icon-slider',
 						'label' => 'Slider',
@@ -389,7 +412,7 @@ if( !class_exists( 'Hatch_Banner_Widget' ) ) {
 							), // Widget Object
 							$instance, // Widget Values
 							array(
-								'background',
+								'background' ,
 								'fonts',
 								'imagealign',
 								'imageratios',

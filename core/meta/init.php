@@ -96,26 +96,24 @@ class Hatch_Custom_Meta {
 		global $post;
 
 		// This button is only used for pages
-		if ( !in_array( $post->post_type, array( 'page' ) ) || 'publish' != get_post_status() ) return;
+		if ( !in_array( $post->post_type, array( 'page' ) ) ) return;
 
 		// Check if we're using the builder for this page
 
 		$is_builder_used = ( 'builder.php' == basename( get_page_template() ) ) ? true : false;
 
-		if( !$is_builder_used ) return;
-
-		printf( '<div class="hatch-section-title hatch-medium invert hatch-content-massive" style="background: url( %7$s/images/beta-zero.jpg) top repeat;">
+		printf( '<div class="hatch-section-title hatch-medium invert hatch-content-massive %3$s" style="background: url( %7$s/images/beta-zero.jpg) top repeat;">
 					<div class="hatch-heading">
 						%1$s
 					</div>
 					<p class="hatch-excerpt">
 						%5$s
 					</p>
-					<a href="%2$s" class="hatch-button btn-massive btn-secondary  %3$s" id="%4$s">%6$s</a>
+					<a href="%2$s" class="hatch-button btn-massive btn-secondary" id="%4$s">%6$s</a>
 				</div>',
 			'Your page is ready for building', // %1
 			admin_url() . 'customize.php?url=' . esc_url( get_the_permalink() ) . '&hatch-builder=1', // %2
-			( true == $is_builder_used ? '' : 'hide' ), // %3
+			( true == $is_builder_used ? '' : 'hatch-hide' ), // %3
 			( isset( $post->ID ) ? 'builder-button-' . $post->ID : 'builder-button-' . rand(0,1) ), // %4,
 			__( 'You are one step away from building your page. Head over to the Visual Customizer where you can drag and drop widgets, edit content and tweak the design. Click the button below and see your page come to life.', HATCH_THEME_SLUG ), // %5
 			__( 'Build Your Page', HATCH_THEME_SLUG ), // %6

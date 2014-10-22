@@ -549,17 +549,6 @@ class Hatch_Design_Controller {
 							<?php echo $this->input(
 								array(
 									'type' => 'checkbox',
-									'label' => __( 'Darken' , HATCH_THEME_SLUG ),
-									'name' => $widget->name . '[background][darken]' ,
-									'id' =>  $widget->id . '-background-darken' ,
-									'value' => ( isset( $values->background['darken'] ) ) ? $values->background['darken'] : NULL
-								)
-							); ?>
-						</div>
-						<div class="hatch-checkbox-wrapper hatch-form-item">
-							<?php echo $this->input(
-								array(
-									'type' => 'checkbox',
 									'label' => __( 'Stretch' , HATCH_THEME_SLUG ),
 									'name' => $widget->name . '[background][stretch]' ,
 									'id' =>  $widget->id . '-background-stretch' ,

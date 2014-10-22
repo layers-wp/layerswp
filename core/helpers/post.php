@@ -157,7 +157,7 @@ if( !function_exists( 'hatch_backup_builder_pages' ) ) {
 
         // Start the output buffer
         ob_start();
-        dynamic_sidebar( 'obox-hatch-builder-' . $page->post_name );
+        dynamic_sidebar( 'obox-hatch-builder-' . $page->ID );
 
         $page_content = ob_get_clean();
         $page_content = preg_replace('#<script(.*?)>(.*?)</script>#is', '', $page_content);

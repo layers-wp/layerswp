@@ -159,7 +159,6 @@ div[id*='hatch-widget'] .spinner{
     margin: auto;
 }
 .hatch-container-large{
-    padding-bottom: 50px;
     position: relative;
     z-index: 99;
 }
@@ -207,6 +206,7 @@ div[id*='hatch-widget'] .spinner{
     opacity: 0.75;
     font-size: 11px;
     font-weight: 600;
+    text-transform: none;
 }
 .hatch-icon-group{
     overflow: hidden;

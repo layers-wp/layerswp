@@ -8,7 +8,7 @@
  * Contents
  * 1 - Screen Height Matching
 */
-jQuery(function($) {
+jQuery(document).ready(function($) {
 
     /**
     * 1 - Screen Height Matching

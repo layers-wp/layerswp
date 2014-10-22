@@ -8,7 +8,7 @@
  * Contents
  * 1 - Screen Height Matching
 */
-jQuery(document).ready(function($) {
+jQuery(window).load(function($) {
 
     /**
     * 1 - Screen Height Matching
@@ -17,6 +17,7 @@ jQuery(document).ready(function($) {
     $(window).resize(function(){
         hatch_match_to_screen_height();
     });
+
     hatch_match_to_screen_height();
 
     function hatch_match_to_screen_height(){

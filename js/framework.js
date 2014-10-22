@@ -22,7 +22,7 @@ jQuery(function($) {
 
     function hatch_match_to_screen_height(){
         $( '.full-screen' ).css( 'height' , $(window).height() );
-        $( '.full-screen' ).find( '.swiper-slide' ).css( 'height' , $(window).height() );
+        $( '.full-screen' ).find( '.swiper-slide .overlay' ).css( 'height' , $(window).height() );
     }
 }(jQuery));
 

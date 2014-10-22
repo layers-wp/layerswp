@@ -136,34 +136,36 @@ if( !class_exists( 'Hatch_Banner_Widget' ) ) {
 								<?php if( false != $this->check_and_return( $banner , 'image' ) && isset( $banner->design[ 'imagealign' ] ) && '' != $banner->design[ 'imagealign' ] ) echo $banner->design[ 'imagealign' ]; ?>
 								<?php if( isset( $banner->design['fonts'][ 'align' ] ) && '' != $banner->design['fonts'][ 'align' ] ) echo $banner->design['fonts'][ 'align' ]; ?>
 								"
-								style="float: left; <?php if( $this->check_and_return( $widget , 'banner_height' ) ) echo 'height: ' . $widget->banner_height . 'px;' ?>">
-								<div class="container">
-									<?php if( '' != $banner->title || '' != $banner->excerpt || '' != $banner->link ) { ?>
-										<div class="copy-container">
-											<!-- your dynamic output goes here -->
-											<div class="section-title <?php echo ( isset( $banner->design['fonts'][ 'size' ] ) ? $banner->design['fonts'][ 'size' ] : '' ); ?>">
-												<?php if( $this->check_and_return( $banner , 'title' ) ) { ?>
-													<?php if( $this->check_and_return( $banner , 'link' ) ) { ?>
-														<h3 class="heading"><a href="<?php echo $banner->link; ?>"><?php echo $banner->title; ?></a></h3>
-													<?php } else { ?>
-														<h3 class="heading"><?php echo $banner->title; ?></h3>
+								style="float: left;">
+								<div class="overlay <?php if( isset( $banner->design[ 'background' ][ 'darken' ] ) ) echo 'darken'; ?>"  <?php if( $this->check_and_return( $widget , 'banner_height' ) ) echo 'style="height: ' . $widget->banner_height . 'px;"' ?>>
+									<div class="container">
+										<?php if( '' != $banner->title || '' != $banner->excerpt || '' != $banner->link ) { ?>
+											<div class="copy-container">
+												<!-- your dynamic output goes here -->
+												<div class="section-title <?php echo ( isset( $banner->design['fonts'][ 'size' ] ) ? $banner->design['fonts'][ 'size' ] : '' ); ?>">
+													<?php if( $this->check_and_return( $banner , 'title' ) ) { ?>
+														<?php if( $this->check_and_return( $banner , 'link' ) ) { ?>
+															<h3 class="heading"><a href="<?php echo $banner->link; ?>"><?php echo $banner->title; ?></a></h3>
+														<?php } else { ?>
+															<h3 class="heading"><?php echo $banner->title; ?></h3>
+														<?php } ?>
 													<?php } ?>
-												<?php } ?>
-												<?php if( $this->check_and_return( $banner , 'excerpt' ) ) { ?>
-													<div class="excerpt"><?php echo $banner->excerpt; ?></div>
-												<?php } ?>
-												<?php if( isset( $banner->link ) && $this->check_and_return( $banner , 'link_text' ) ) { ?>
-													<a href="<?php echo $banner->link; ?>" class="button"><?php echo $banner->link_text; ?></a>
-												<?php } ?>
+													<?php if( $this->check_and_return( $banner , 'excerpt' ) ) { ?>
+														<div class="excerpt"><?php echo $banner->excerpt; ?></div>
+													<?php } ?>
+													<?php if( isset( $banner->link ) && $this->check_and_return( $banner , 'link_text' ) ) { ?>
+														<a href="<?php echo $banner->link; ?>" class="button btn-<?php echo $this->check_and_return( $banner , 'design' , 'fonts' , 'size' ); ?>"><?php echo $banner->link_text; ?></a>
+													<?php } ?>
+												</div>
 											</div>
-										</div>
-									<?php } // if title || excerpt ?>
-									<?php if( $this->check_and_return( $banner , 'image' ) ) { ?>
-										<div class="image-container">
-											<?php echo wp_get_attachment_image( $banner->image , $imageratios ); ?>
-										</div>
-									<?php } // if $banner image ?>
-								</div>
+										<?php } // if title || excerpt ?>
+										<?php if( $this->check_and_return( $banner , 'image' ) ) { ?>
+											<div class="image-container">
+												<?php echo wp_get_attachment_image( $banner->image , $imageratios ); ?>
+											</div>
+										<?php } // if $banner image ?>
+									</div> <!-- .container -->
+								</div> <!-- .overlay -->
 							</div>
 						<?php } // foreach slides ?>
 			 		</div>

@@ -136,7 +136,7 @@ if( !class_exists( 'Hatch_Banner_Widget' ) ) {
 								<?php if( isset( $banner->design['fonts'][ 'align' ] ) && '' != $banner->design['fonts'][ 'align' ] ) echo $banner->design['fonts'][ 'align' ]; ?>
 								"
 								style="float: left; <?php if( $this->check_and_return( $widget , 'banner_height' ) ) echo 'height: ' . $widget->banner_height . 'px;' ?>">
-								<div class="container" <?php if( $this->check_and_return( $widget , 'banner_height' ) ) echo 'style="height: ' . $widget->banner_height . 'px;"' ?>><!-- height important for vertical positioning. Must match container height -->
+								<div class="container" <?php if( $this->check_and_return( $widget , 'banner_height' ) ) echo 'style="height: ' . $widget->banner_height . 'px;"' ?>>
 									<?php if( '' != $banner->title || '' != $banner->excerpt || '' != $banner->link ) { ?>
 										<div class="copy-container <?php if( false == $this->check_and_return( $banner , 'image' ) ) echo 'no-image'; ?>">
 											<!-- your dynamic output goes here -->
@@ -327,7 +327,7 @@ if( !class_exists( 'Hatch_Banner_Widget' ) ) {
 			<div class="hatch-container-large" id="hatch-banner-widget-<?php echo $this->number; ?>">
 
 				<?php $widget_elements->header( array(
-					'title' =>'Slides',
+					'title' =>'Banners',
 					'icon_class' =>'slider'
 				) ); ?>
 
@@ -397,7 +397,7 @@ if( !class_exists( 'Hatch_Banner_Widget' ) ) {
 				<li class="hatch-accordion-item <?php echo $this->banner_item_count; ?>" data-guid="<?php echo $slide_guid; ?>">
 					<a class="hatch-accordion-title">
 						<span>
-							<?php _e( 'Slide' , HATCH_THEME_SLUG ); ?><span class="hatch-detail"><?php echo ( isset( $title ) ? ': ' . $title : NULL ); ?></span>
+							<?php _e( 'Banner' , HATCH_THEME_SLUG ); ?><span class="hatch-detail"><?php echo ( isset( $title ) ? ': ' . $title : NULL ); ?></span>
 						</span>
 					</a>
 					<section class="hatch-accordion-section hatch-content">

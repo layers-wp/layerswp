@@ -160,9 +160,9 @@ if( !class_exists( 'Hatch_Slider_Widget' ) ) {
 												</div>
 											</div>
 										<?php } // if title || excerpt ?>
-										<?php if( $this->check_and_return( $banner , 'image' ) ) { ?>
+										<?php if( $this->check_and_return( $banner , 'design' , 'featuredimage' ) ) { ?>
 											<div class="image-container">
-												<?php echo wp_get_attachment_image( $banner->image , $imageratios ); ?>
+												<?php echo wp_get_attachment_image( $banner->design[ 'featuredimage' ] , $imageratios ); ?>
 											</div>
 										<?php } // if $banner image ?>
 									</div> <!-- .container -->
@@ -416,10 +416,10 @@ if( !class_exists( 'Hatch_Slider_Widget' ) ) {
 							), // Widget Object
 							$instance, // Widget Values
 							array(
-								'background' ,
-								'fonts',
+								'background',
+								'featuredimage',
 								'imagealign',
-								'imageratios',
+								'fonts',
 							), // Standard Components
 							array(
 								'fonts' => array(
@@ -458,68 +458,56 @@ if( !class_exists( 'Hatch_Slider_Widget' ) ) {
 						); ?>
 
 						<div class="hatch-row">
-							<div class="hatch-column hatch-span-4">
+							<p class="hatch-form-item">
 								<?php echo $widget_elements->input(
 									array(
-										'type' => 'image',
-										'name' => 'widget-' . $widget_details->id_base . '[' . $widget_details->number . '][banners][' . $slide_guid . '][image]' ,
-										'id' => 'widget-' . $widget_details->id_base . '-' . $widget_details->number . '-' . $slide_guid . '-image' ,
-										'value' => ( isset( $image ) ) ? $image : NULL
+										'type' => 'text',
+										'name' => 'widget-' . $widget_details->id_base . '[' . $widget_details->number . '][banners][' . $slide_guid . '][title]' ,
+										'placeholder' => __( 'Enter a Title' , HATCH_THEME_SLUG ),
+										'id' => 'widget-' . $widget_details->id_base . '-' . $widget_details->number . '-' . $slide_guid . '-title' ,
+										'placeholder' => __( 'Enter title here', HATCH_THEME_SLUG ),
+										'value' => ( isset( $title ) ) ? $title : NULL ,
+										'class' => 'hatch-text'
 									)
 								); ?>
-							</div>
-							<div class="hatch-column hatch-span-8">
-								<p class="hatch-form-item">
-									<?php echo $widget_elements->input(
-										array(
-											'type' => 'text',
-											'name' => 'widget-' . $widget_details->id_base . '[' . $widget_details->number . '][banners][' . $slide_guid . '][title]' ,
-											'placeholder' => __( 'Enter a Title' , HATCH_THEME_SLUG ),
-											'id' => 'widget-' . $widget_details->id_base . '-' . $widget_details->number . '-' . $slide_guid . '-title' ,
-											'placeholder' => __( 'Enter title here', HATCH_THEME_SLUG ),
-											'value' => ( isset( $title ) ) ? $title : NULL ,
-											'class' => 'hatch-text'
-										)
-									); ?>
-								</p>
-								<p class="hatch-form-item">
-									<?php echo $widget_elements->input(
-										array(
-											'type' => 'textarea',
-											'name' => 'widget-' . $widget_details->id_base . '[' . $widget_details->number . '][banners][' . $slide_guid . '][excerpt]' ,
-											'id' => 'widget-' . $widget_details->id_base . '-' . $widget_details->number . '-' . $slide_guid . '-excerpt' ,
-											'placeholder' => __( 'Short Excerpt', HATCH_THEME_SLUG ),
-											'value' => ( isset( $excerpt ) ) ? $excerpt : NULL ,
-											'class' => 'hatch-textarea',
-											'rows' => 6
-										)
-									); ?>
-								</p>
-								<p class="hatch-form-item">
-									<label for="<?php echo $this->get_field_id( 'link' ); ?>"><?php _e( 'Button Link' , HATCH_THEME_SLUG ); ?></label>
-									<?php echo $widget_elements->input(
-										array(
-											'type' => 'text',
-											'name' => 'widget-' . $widget_details->id_base . '[' . $widget_details->number . '][banners][' . $slide_guid . '][link]' ,
-											'id' => 'widget-' . $widget_details->id_base . '-' . $widget_details->number . '-' . $slide_guid . '-link' ,
-											'placeholder' => __( 'Link', HATCH_THEME_SLUG ),
-											'value' => ( isset( $link ) ) ? $link : NULL ,
-										)
-									); ?>
-								</p>
-								<p class="hatch-form-item">
-									<label for="<?php echo $this->get_field_id( 'link' ); ?>"><?php _e( 'Button Text' , HATCH_THEME_SLUG ); ?></label>
-									<?php echo $widget_elements->input(
-										array(
-											'type' => 'text',
-											'name' => 'widget-' . $widget_details->id_base . '[' . $widget_details->number . '][banners][' . $slide_guid . '][link_text]' ,
-											'id' => 'widget-' . $widget_details->id_base . '-' . $widget_details->number . '-' . $slide_guid . '-link_text' ,
-											'placeholder' => __( 'e.g. "Read More"' , HATCH_THEME_SLUG ),
-											'value' => ( isset( $link_text ) ) ? $link_text : NULL ,
-										)
-									); ?>
-								</p>
-							</div>
+							</p>
+							<p class="hatch-form-item">
+								<?php echo $widget_elements->input(
+									array(
+										'type' => 'textarea',
+										'name' => 'widget-' . $widget_details->id_base . '[' . $widget_details->number . '][banners][' . $slide_guid . '][excerpt]' ,
+										'id' => 'widget-' . $widget_details->id_base . '-' . $widget_details->number . '-' . $slide_guid . '-excerpt' ,
+										'placeholder' => __( 'Short Excerpt', HATCH_THEME_SLUG ),
+										'value' => ( isset( $excerpt ) ) ? $excerpt : NULL ,
+										'class' => 'hatch-textarea',
+										'rows' => 6
+									)
+								); ?>
+							</p>
+							<p class="hatch-form-item">
+								<label for="<?php echo $this->get_field_id( 'link' ); ?>"><?php _e( 'Button Link' , HATCH_THEME_SLUG ); ?></label>
+								<?php echo $widget_elements->input(
+									array(
+										'type' => 'text',
+										'name' => 'widget-' . $widget_details->id_base . '[' . $widget_details->number . '][banners][' . $slide_guid . '][link]' ,
+										'id' => 'widget-' . $widget_details->id_base . '-' . $widget_details->number . '-' . $slide_guid . '-link' ,
+										'placeholder' => __( 'Link', HATCH_THEME_SLUG ),
+										'value' => ( isset( $link ) ) ? $link : NULL ,
+									)
+								); ?>
+							</p>
+							<p class="hatch-form-item">
+								<label for="<?php echo $this->get_field_id( 'link' ); ?>"><?php _e( 'Button Text' , HATCH_THEME_SLUG ); ?></label>
+								<?php echo $widget_elements->input(
+									array(
+										'type' => 'text',
+										'name' => 'widget-' . $widget_details->id_base . '[' . $widget_details->number . '][banners][' . $slide_guid . '][link_text]' ,
+										'id' => 'widget-' . $widget_details->id_base . '-' . $widget_details->number . '-' . $slide_guid . '-link_text' ,
+										'placeholder' => __( 'e.g. "Read More"' , HATCH_THEME_SLUG ),
+										'value' => ( isset( $link_text ) ) ? $link_text : NULL ,
+									)
+								); ?>
+							</p>
 						</div>
 					</section>
 				</li>

@@ -58,7 +58,6 @@ if( !class_exists( 'Hatch_Module_Widget' ) ) {
 				'excerpt' => 'Give us a brief description of the service that you are promoting. Try keep it short so that it is easy for people to scan your page.',
 				'design' => array(
 					'imagealign' => 'image-left',
-					'imageratios' => NULL,
 					'background' => NULL,
 					'fonts' => array(
 						'align' => 'text-left',
@@ -148,8 +147,8 @@ if( !class_exists( 'Hatch_Module_Widget' ) ) {
 
 							<div id="<?php echo $widget_id; ?>-<?php echo $key; ?>" class="column<?php if( isset( $widget->design[ 'columnflush' ] ) ) echo '-flush'; ?> <?php echo $span_class; ?> <?php if( '' != $this->check_and_return( $module, 'design' , 'background', 'image' ) || '' != $this->check_and_return( $module, 'design' , 'background', 'color' ) ) echo 'content'; ?>">
 								<div class="marketing <?php echo ( isset( $module->design[ 'imagealign' ] ) ? $module->design[ 'imagealign' ] : '' ); ?>  <?php echo ( isset( $module->design['fonts'][ 'size' ] ) ? $module->design['fonts'][ 'size' ] : '' ); ?>">
-									<?php if( isset( $module->image ) && '' != $module->image ) { ?>
-										<div class="marketing-icon"><a href="<?php echo esc_url( $module->link ); ?>"><?php echo wp_get_attachment_image( $module->image , $imageratios ); ?></a></div>
+									<?php if( $this->check_and_return( $module , 'design' , 'featuredimage' ) ) { ?>
+										<div class="marketing-icon"><a href="<?php echo esc_url( $module->link ); ?>"><?php echo wp_get_attachment_image( $module->design[ 'featuredimage' ] , $imageratios ); ?></a></div>
 									<?php } ?>
 									<div class="marketing-body <?php echo ( isset( $module->design['fonts'][ 'align' ] ) ) ? $module->design['fonts'][ 'align' ] : ''; ?>">
 										<?php if( isset( $module->title ) && '' != $module->title ) { ?>
@@ -333,60 +332,48 @@ if( !class_exists( 'Hatch_Module_Widget' ) ) {
 							$instance, // Widget Values
 							array(
 								'background',
-								'fonts',
+								'featuredimage',
 								'imagealign',
-								'imageratios',
+								'fonts',
 							) // Standard Components
 						); ?>
 
 						<div class="hatch-row">
-							<div class="hatch-column hatch-span-4">
+							<p class="hatch-form-item">
 								<?php echo $widget_elements->input(
 									array(
-										'type' => 'image',
-										'name' => 'widget-' . $widget_details->id_base . '[' . $widget_details->number . '][modules][' . $column_guid . '][image]' ,
-										'id' => 'widget-' . $widget_details->id_base . '-' . $widget_details->number . '-' . $column_guid . '-image' ,
-										'value' => ( isset( $image ) ) ? $image : NULL
+										'type' => 'text',
+										'name' => 'widget-' . $widget_details->id_base . '[' . $widget_details->number . '][modules][' . $column_guid . '][title]' ,
+										'id' => 'widget-' . $widget_details->id_base . '-' . $widget_details->number . '-' . $column_guid . '-title' ,
+										'placeholder' => __( 'Enter title here', HATCH_THEME_SLUG ),
+										'value' => ( isset( $title ) ) ? $title : NULL ,
+										'class' => 'hatch-text'
 									)
 								); ?>
-							</div>
-							<div class="hatch-column hatch-span-8">
-								<p class="hatch-form-item">
-									<?php echo $widget_elements->input(
-										array(
-											'type' => 'text',
-											'name' => 'widget-' . $widget_details->id_base . '[' . $widget_details->number . '][modules][' . $column_guid . '][title]' ,
-											'id' => 'widget-' . $widget_details->id_base . '-' . $widget_details->number . '-' . $column_guid . '-title' ,
-											'placeholder' => __( 'Enter title here', HATCH_THEME_SLUG ),
-											'value' => ( isset( $title ) ) ? $title : NULL ,
-											'class' => 'hatch-text'
-										)
-									); ?>
-								</p>
-								<p class="hatch-form-item">
-									<?php echo $widget_elements->input(
-										array(
-											'type' => 'text',
-											'name' => 'widget-' . $widget_details->id_base . '[' . $widget_details->number . '][modules][' . $column_guid . '][link]' ,
-											'id' => 'widget-' . $widget_details->id_base . '-' . $widget_details->number . '-' . $column_guid . '-link' ,
-											'placeholder' => __( 'Link', HATCH_THEME_SLUG ),
-											'value' => ( isset( $link ) ) ? $link : NULL ,
-											'class' => 'hatch-text',
-										)
-									); ?>
-								</p>
+							</p>
+							<p class="hatch-form-item">
 								<?php echo $widget_elements->input(
 									array(
-										'type' => 'textarea',
-										'name' => 'widget-' . $widget_details->id_base . '[' . $widget_details->number . '][modules][' . $column_guid . '][excerpt]' ,
-										'id' => 'widget-' . $widget_details->id_base . '-' . $widget_details->number . '-' . $column_guid . '-excerpt' ,
-										'placeholder' => __( 'Short Excerpt', HATCH_THEME_SLUG ),
-										'value' => ( isset( $excerpt ) ) ? $excerpt : NULL ,
-										'class' => 'hatch-form-item hatch-textarea',
-										'rows' => 6
+										'type' => 'text',
+										'name' => 'widget-' . $widget_details->id_base . '[' . $widget_details->number . '][modules][' . $column_guid . '][link]' ,
+										'id' => 'widget-' . $widget_details->id_base . '-' . $widget_details->number . '-' . $column_guid . '-link' ,
+										'placeholder' => __( 'Link', HATCH_THEME_SLUG ),
+										'value' => ( isset( $link ) ) ? $link : NULL ,
+										'class' => 'hatch-text',
 									)
 								); ?>
-							</div>
+							</p>
+							<?php echo $widget_elements->input(
+								array(
+									'type' => 'textarea',
+									'name' => 'widget-' . $widget_details->id_base . '[' . $widget_details->number . '][modules][' . $column_guid . '][excerpt]' ,
+									'id' => 'widget-' . $widget_details->id_base . '-' . $widget_details->number . '-' . $column_guid . '-excerpt' ,
+									'placeholder' => __( 'Short Excerpt', HATCH_THEME_SLUG ),
+									'value' => ( isset( $excerpt ) ) ? $excerpt : NULL ,
+									'class' => 'hatch-form-item hatch-textarea',
+									'rows' => 6
+								)
+							); ?>
 						</div>
 					</section>
 				</li>

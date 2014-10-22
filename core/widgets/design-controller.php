@@ -347,6 +347,62 @@ class Hatch_Design_Controller {
 	<?php }
 
 	/**
+	* Featured Image - Static Option
+	*
+	* @param  	array     	$widget 	Widget Element
+	* @param  	array     	$values 	Accepts the value for this element
+	*/
+
+	function featuredimage( $widget = NULL, $values = NULL, $args = NULL ){
+
+		// If there is no widget information provided, can the operation
+		if( NULL == $widget ) return; ?>
+
+		<li class="hatch-visuals-item">
+			<a href="" class="hatch-icon-wrapper">
+				<span class="icon-featured-image"></span>
+				<span class="hatch-icon-description">
+					<?php _e( 'Featured Image' , HATCH_THEME_SLUG ); ?>
+				</span>
+			</a>
+			<div class="hatch-visuals-settings-wrapper hatch-animate hatch-content-small">
+				<div class="hatch-visual-settings">
+					<div class="hatch-form-item">
+						<label><?php _e( 'Featured Image' , HATCH_THEME_SLUG ); ?></label>
+						<?php echo $this->input(
+							array(
+								'type' => 'image',
+								'name' => $widget->name . '[featuredimage]' ,
+								'id' =>  $widget->id . '-featuredimage' ,
+								'value' => ( isset( $values->featuredimage ) ) ? $values->featuredimage : NULL
+							)
+						); ?>
+					</div>
+					<div class="hatch-form-item">
+						<label><?php _e( 'Image Ratio' , HATCH_THEME_SLUG ); ?></label>
+						<div class="hatch-icon-group">
+							<?php echo $this->input(
+								array(
+									'type' => 'select-icons',
+									'name' => $widget->name . '[imageratios]' ,
+									'id' =>  $widget->id . '-imageratios' ,
+									'value' => ( isset( $values->imageratios ) ) ? $values->imageratios : NULL,
+									'options' => array(
+										'image-portrait' => __( 'Portrait' , HATCH_THEME_SLUG ),
+										'image-landscape' => __( 'Landscape' , HATCH_THEME_SLUG ),
+										'image-square' => __( 'Square' , HATCH_THEME_SLUG ),
+										'image-no-crop' => __( 'None' , HATCH_THEME_SLUG )
+									)
+								)
+							); ?>
+						</div>
+					</div>
+				</div>
+			</div>
+		</li>
+	<?php }
+
+	/**
 	* Image Size - Static Option
 	*
 	* @param  	array     	$widget 	Widget Element

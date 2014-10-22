@@ -375,10 +375,10 @@ class Hatch_Design_Controller {
 								'id' =>  $widget->id . '-imageratios' ,
 								'value' => ( isset( $values->imageratios ) ) ? $values->imageratios : NULL,
 								'options' => array(
-									'image-no-crop' => __( 'No Cropping' , HATCH_THEME_SLUG ),
 									'image-portrait' => __( 'Portrait' , HATCH_THEME_SLUG ),
 									'image-landscape' => __( 'Landscape' , HATCH_THEME_SLUG ),
-									'image-square' => __( 'Square' , HATCH_THEME_SLUG )
+									'image-square' => __( 'Square' , HATCH_THEME_SLUG ),
+									'image-no-crop' => __( 'None' , HATCH_THEME_SLUG )
 								)
 							)
 						); ?>

@@ -222,13 +222,12 @@ jQuery(function($) {
 		jQuery('.hatch-color-selector').wpColorPicker({
 			change: function(event, ui){
 				$(event.target).val( ui.color.toString() ).hatch_trigger_change();
-			}
+			},
+			clear: function() {
+				$(event.target).hatch_trigger_change();
+			},
 		});
 	}
-
-	$(document).on( 'mouseup' , '.wp-picker-clear' , function(){
-		$(this).siblings( 'input' ).val('').trigger( 'change' ).trigger( 'blur' );
-	});
 
 	/**
 	* 4 - Sortable Columns

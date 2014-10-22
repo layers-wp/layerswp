@@ -141,6 +141,7 @@ if( !class_exists( 'Hatch_Module_Widget' ) ) {
 								} else {
 									$imageratios = $image_ratio . '-large';
 								}
+
 							} else {
 								$imageratios = 'medium';
 							} ?>

@@ -121,8 +121,10 @@ if( !class_exists( 'Hatch_Post_Widget' ) ) {
 				// Translate Image Ratio
 				$image_ratio = hatch_translate_image_ratios( $widget->design[ 'imageratios' ] );
 
-				if( $col_count > 3 ){
+				if( 'layout-boxed' == $this->check_and_return( $widget , 'design', 'layout' ) && $col_count > 2 ){
 					$imageratios = $image_ratio . '-medium';
+				} elseif( 'layout-boxed' != $this->check_and_return( $widget , 'design', 'layout' ) && $col_count > 3 ){
+					$imageratios = $image_ratio . '-large';
 				} else {
 					$imageratios = $image_ratio . '-large';
 				}

@@ -20,6 +20,7 @@ jQuery(document).ready(function($) {
     hatch_match_to_screen_height();
     function hatch_match_to_screen_height(){
         $( '.full-screen' ).each(function(){
+            console.log( $(this) );
             $(this).css( 'height' , $(window).height() );
         });
     }

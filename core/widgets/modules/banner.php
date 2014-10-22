@@ -136,9 +136,9 @@ if( !class_exists( 'Hatch_Banner_Widget' ) ) {
 								<?php if( isset( $banner->design['fonts'][ 'align' ] ) && '' != $banner->design['fonts'][ 'align' ] ) echo $banner->design['fonts'][ 'align' ]; ?>
 								"
 								style="float: left; <?php if( $this->check_and_return( $widget , 'banner_height' ) ) echo 'height: ' . $widget->banner_height . 'px;' ?>">
-								<div class="container" <?php if( $this->check_and_return( $widget , 'banner_height' ) ) echo 'style="height: ' . $widget->banner_height . 'px;"' ?>>
+								<div class="container <?php if( false != $this->check_and_return( $banner , 'image' ) ) echo 'has-image'; ?>" <?php if( $this->check_and_return( $widget , 'banner_height' ) ) echo 'style="height: ' . $widget->banner_height . 'px;"' ?>>
 									<?php if( '' != $banner->title || '' != $banner->excerpt || '' != $banner->link ) { ?>
-										<div class="copy-container <?php if( false != $this->check_and_return( $banner , 'image' ) ) echo 'has-image'; ?>">
+										<div class="copy-container">
 											<!-- your dynamic output goes here -->
 											<div class="section-title <?php echo ( isset( $banner->design['fonts'][ 'size' ] ) ? $banner->design['fonts'][ 'size' ] : '' ); ?>">
 												<?php if( $this->check_and_return( $banner , 'title' ) ) { ?>

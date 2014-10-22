@@ -543,18 +543,19 @@ class Hatch_Design_Controller {
 			</a>
 			<div class="hatch-visuals-settings-wrapper hatch-animate hatch-content-small">
 				<div class="hatch-visuals-settings">
-					<div class="background-image">
-						<?php echo $this->input(
-							array(
-								'type' => 'image',
-								'label' => __( 'Choose Background' , HATCH_THEME_SLUG ),
-								'name' => $widget->name . '[background][image]' ,
-								'id' =>  $widget->id . '-background-image' ,
-								'value' => ( isset( $values->background['image'] ) ) ? $values->background['image'] : NULL
-							)
-						); ?>
-					</div>
 					<section>
+						<div class="hatch-form-item">
+							<label><?php _e( 'Background Image' , HATCH_THEME_SLUG ); ?></label>
+							<?php echo $this->input(
+								array(
+									'type' => 'image',
+									'label' => __( 'Choose Background' , HATCH_THEME_SLUG ),
+									'name' => $widget->name . '[background][image]' ,
+									'id' =>  $widget->id . '-background-image' ,
+									'value' => ( isset( $values->background['image'] ) ) ? $values->background['image'] : NULL
+								)
+							); ?>
+						</div>
 						<div class="hatch-form-item">
 							<label><?php _e( 'Background Color' , HATCH_THEME_SLUG ); ?></label>
 							<?php echo $this->input(

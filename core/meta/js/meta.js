@@ -28,10 +28,10 @@ jQuery(document).ready(function($) {
 
 		// If we use the builder, show the "build" button
 		if('builder.php' == $that.val() ){
-			$( '#hatch_toggle_builder' ).show();
+			$( '#hatch_toggle_builder' ).removeClass( 'hatch-hide' );
 			$( '#postdivrich' ).hide();
 		} else {
-			$( '#hatch_toggle_builder' ).hide();
+			$( '#hatch_toggle_builder' ).addClass( 'hatch-hide' );
 			$( '#postdivrich' ).show();
 		}
 

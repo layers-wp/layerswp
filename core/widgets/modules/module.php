@@ -132,10 +132,14 @@ if( !class_exists( 'Hatch_Module_Widget' ) ) {
 
 							// Set Image Sizes
 							if( isset( $module->design[ 'imageratios' ] ) ){
+
+								// Translate Image Ratio
+								$image_ratio = hatch_translate_image_ratios( $module->design[ 'imageratios' ] );
+
 								if( $col_count > 1 ){
-									$imageratios = $module->design[ 'imageratios' ] . '-medium';
+									$imageratios = $image_ratio . '-medium';
 								} else {
-									$imageratios = $module->design[ 'imageratios' ] . '-large';
+									$imageratios = $image_ratio . '-large';
 								}
 							} else {
 								$imageratios = 'medium';

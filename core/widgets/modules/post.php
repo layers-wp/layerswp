@@ -63,7 +63,7 @@ if( !class_exists( 'Hatch_Post_Widget' ) ) {
                 'order' => NULL,
 				'design' => array(
 					'layout' => 'layout-boxed',
-					'imageratios' => 'square',
+					'imageratios' => 'image-square',
 					'textalign' => 'text-left',
 					'liststyle' => 'list-grid',
 					'columns' => '3',
@@ -117,10 +117,14 @@ if( !class_exists( 'Hatch_Post_Widget' ) ) {
 
 			// Set Image Sizes
 			if( isset( $widget->design[ 'imageratios' ] ) ){
+
+				// Translate Image Ratio
+				$image_ratio = hatch_translate_image_ratios( $widget->design[ 'imageratios' ] );
+
 				if( $col_count > 3 ){
-					$imageratios = $widget->design[ 'imageratios' ] . '-medium';
+					$imageratios = $image_ratio . '-medium';
 				} else {
-					$imageratios = $widget->design[ 'imageratios' ] . '-large';
+					$imageratios = $image_ratio . '-large';
 				}
 			} else {
 				$imageratios = 'large';

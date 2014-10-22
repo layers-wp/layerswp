@@ -365,21 +365,20 @@ class Hatch_Design_Controller {
 					<?php _e( 'Image Ratio' , HATCH_THEME_SLUG ); ?>
 				</span>
 			</a>
-			<div class="hatch-visuals-settings-wrapper hatch-animate hatch-content-small">
+			<div class="hatch-visuals-settings-wrapper hatch-animate hatch-small">
 				<div class="hatch-visual-settings">
 					<div class="hatch-select-wrapper hatch-form-item">
-						<label><?php _e( 'Image Ratio' , HATCH_THEME_SLUG ); ?></label>
 						<?php echo $this->input(
 							array(
-								'type' => 'select',
+								'type' => 'select-icons',
 								'name' => $widget->name . '[imageratios]' ,
 								'id' =>  $widget->id . '-imageratios' ,
 								'value' => ( isset( $values->imageratios ) ) ? $values->imageratios : NULL,
 								'options' => array(
-									'' => __( 'No Cropping' , HATCH_THEME_SLUG ),
-									'portrait' => __( 'Portrait' , HATCH_THEME_SLUG ),
-									'landscape' => __( 'Landscape' , HATCH_THEME_SLUG ),
-									'square' => __( 'Square' , HATCH_THEME_SLUG )
+									'image-no-crop' => __( 'No Cropping' , HATCH_THEME_SLUG ),
+									'image-portrait' => __( 'Portrait' , HATCH_THEME_SLUG ),
+									'image-landscape' => __( 'Landscape' , HATCH_THEME_SLUG ),
+									'image-square' => __( 'Square' , HATCH_THEME_SLUG )
 								)
 							)
 						); ?>

@@ -394,8 +394,6 @@ if( !function_exists( 'hatch_header_class' ) ) {
     }
 } // hatch_get_header_class
 
-
-
 /**
  * Retrieve theme modification value for the current theme.
  *
@@ -408,5 +406,24 @@ if( !function_exists( 'hatch_get_theme_mod' ) ) {
         $name = HATCH_THEME_SLUG . '-' . $name;
 
         return get_theme_mod( $name );
+    }
+} // hatch_get_header_class
+
+/**
+ * Translates an image ratio select-icon input into a nice clean image ratio we can use
+ *
+ * @param string $value Value of the input
+ * @return string Image size
+ */
+if( !function_exists( 'hatch_translate_image_ratios' ) ) {
+    function hatch_translate_image_ratios( $value = '' ) {
+
+        if( 'image-no-crop' == $value ) {
+            $image_ratio = '';
+        } else {
+            $image_ratio = str_replace( 'image-' , '', $value );
+        }
+
+        return $image_ratio;
     }
 } // hatch_get_header_class

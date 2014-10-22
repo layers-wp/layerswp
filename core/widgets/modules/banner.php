@@ -126,7 +126,10 @@ if( !class_exists( 'Hatch_Banner_Widget' ) ) {
 
 							// Set Image Sizes
 							if( isset( $banner->design[ 'imageratios' ] ) ){
-									$imageratios = $banner->design[ 'imageratios' ] . '-medium';
+
+									// Translate Image Ratio
+									$image_ratio = hatch_translate_image_ratios( $banner->design[ 'imageratios' ] );
+									$imageratios = $image_ratio . '-medium';
 							} else {
 								$imageratios = 'medium';
 							} ?>

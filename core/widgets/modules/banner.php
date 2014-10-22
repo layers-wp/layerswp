@@ -1,18 +1,18 @@
 <?php  /**
- * Banners Widget
+ * Sliders Widget
  *
- * This file is used to register and display the Hatch - Banner widget.
+ * This file is used to register and display the Hatch - Slider widget.
  *
  * @package Hatch
  * @since Hatch 1.0
  */
-if( !class_exists( 'Hatch_Banner_Widget' ) ) {
-	class Hatch_Banner_Widget extends Hatch_Widget {
+if( !class_exists( 'Hatch_Slider_Widget' ) ) {
+	class Hatch_Slider_Widget extends Hatch_Widget {
 
 		/**
 		*  Widget variables
 		*/
-		private $widget_title = 'Banners';
+		private $widget_title = 'Sliders';
 		private $widget_id = 'banner';
 		private $post_type = '';
 		private $taxonomy = '';
@@ -25,7 +25,7 @@ if( !class_exists( 'Hatch_Banner_Widget' ) ) {
 		/**
 		*  Widget construction
 		*/
-	 	function Hatch_Banner_Widget(){
+	 	function Hatch_Slider_Widget(){
 	 		/* Widget settings. */
 			$widget_ops = array( 'classname' => 'obox-hatch-' . $this->widget_id .'-widget', 'description' => 'This widget is used to display your ' . $this->widget_title . '.' );
 
@@ -46,7 +46,7 @@ if( !class_exists( 'Hatch_Banner_Widget' ) ) {
 
 			);
 			$this->banner_defaults = array (
-				'title' => 'Banner Title',
+				'title' => 'Slider Title',
 				'excerpt' => 'Short Excerpt',
 				'link' => NULL,
 				'link_text' => 'See More',
@@ -140,10 +140,9 @@ if( !class_exists( 'Hatch_Banner_Widget' ) ) {
 								"
 								style="float: left;">
 								<div class="overlay <?php if( isset( $banner->design[ 'background' ][ 'darken' ] ) ) echo 'darken'; ?>"  <?php if( $this->check_and_return( $widget , 'banner_height' ) ) echo 'style="height: ' . $widget->banner_height . 'px;"' ?>>
-									<div class="container">
+									<div class="container clearfix">
 										<?php if( '' != $banner->title || '' != $banner->excerpt || '' != $banner->link ) { ?>
 											<div class="copy-container">
-												<!-- your dynamic output goes here -->
 												<div class="section-title <?php echo ( isset( $banner->design['fonts'][ 'size' ] ) ? $banner->design['fonts'][ 'size' ] : '' ); ?>">
 													<?php if( $this->check_and_return( $banner , 'title' ) ) { ?>
 														<?php if( $this->check_and_return( $banner , 'link' ) ) { ?>
@@ -323,7 +322,7 @@ if( !class_exists( 'Hatch_Banner_Widget' ) ) {
 									'name' => $this->get_field_name( 'banner_height' ) ,
 									'id' => $this->get_field_id( 'banner_height' ) ,
 									'value' => ( isset( $banner_height ) ) ? $banner_height : NULL,
-									'label' => __( 'Banner Height', HATCH_THEME_SLUG )
+									'label' => __( 'Slider Height', HATCH_THEME_SLUG )
 								)
 							)
 					)
@@ -332,7 +331,7 @@ if( !class_exists( 'Hatch_Banner_Widget' ) ) {
 			<div class="hatch-container-large" id="hatch-banner-widget-<?php echo $this->number; ?>">
 
 				<?php $widget_elements->header( array(
-					'title' =>'Banners',
+					'title' =>'Sliders',
 					'icon_class' =>'slider'
 				) ); ?>
 
@@ -362,7 +361,7 @@ if( !class_exists( 'Hatch_Banner_Widget' ) ) {
 							<?php } else { ?>
 								<?php $this->banner_item( array( 'id_base' => $this->id_base , 'number' => $this->number ) ); ?>
 							<?php }?>
-							<li class="hatch-button btn-primary hatch-add-widget-banner" data-number="<?php echo $this->number; ?>"><?php _e( '+ Add New Banner' , HATCH_THEME_SLUG ) ; ?></li>
+							<li class="hatch-button btn-primary hatch-add-widget-banner" data-number="<?php echo $this->number; ?>"><?php _e( '+ Add New Slider' , HATCH_THEME_SLUG ) ; ?></li>
 						</ul>
 
 				</section>
@@ -402,7 +401,7 @@ if( !class_exists( 'Hatch_Banner_Widget' ) ) {
 				<li class="hatch-accordion-item <?php echo $this->banner_item_count; ?>" data-guid="<?php echo $slide_guid; ?>">
 					<a class="hatch-accordion-title">
 						<span>
-							<?php _e( 'Banner' , HATCH_THEME_SLUG ); ?><span class="hatch-detail"><?php echo ( isset( $title ) ? ': ' . $title : NULL ); ?></span>
+							<?php _e( 'Slider' , HATCH_THEME_SLUG ); ?><span class="hatch-detail"><?php echo ( isset( $title ) ? ': ' . $title : NULL ); ?></span>
 						</span>
 					</a>
 					<section class="hatch-accordion-section hatch-content">
@@ -529,5 +528,5 @@ if( !class_exists( 'Hatch_Banner_Widget' ) ) {
 	} // Class
 
 	// Add our function to the widgets_init hook.
-	 register_widget("Hatch_Banner_Widget");
+	 register_widget("Hatch_Slider_Widget");
 }

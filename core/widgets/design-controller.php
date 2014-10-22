@@ -106,18 +106,23 @@ class Hatch_Design_Controller {
 				</span>
 			</a>
 			<?php if( isset( $args['elements'] ) ) { ?>
-			<div class="hatch-visuals-settings-wrapper hatch-content-small">
-				<div class="hatch-visuals-settings">
-					<?php foreach( $args['elements'] as $key => $form_args ) { ?>
-						<div class="hatch-<?php echo $form_args[ 'type' ]; ?>-wrapper hatch-form-item">
-							<?php if( 'checkbox' != $form_args[ 'type' ] ) { ?>
-								<label><?php echo $form_args[ 'label' ]; ?></label>
-							<?php } ?>
-							<?php echo $this->input( $form_args ); ?>
-						</div>
-					<?php } ?>
+				<?php if( isset( $args[ 'wrapper-css' ] ) ) {
+					$wrapper_class =$args[ 'wrapper-css' ];
+				} else {
+					$wrapper_class = 'hatch-visuals-settings-wrapper hatch-content-small';
+				} ?>
+				<div class="<?php echo $wrapper_class; ?>">
+					<div class="hatch-visuals-settings">
+						<?php foreach( $args['elements'] as $key => $form_args ) { ?>
+							<div class="hatch-<?php echo $form_args[ 'type' ]; ?>-wrapper hatch-form-item">
+								<?php if( 'checkbox' != $form_args[ 'type' ] ) { ?>
+									<label><?php echo $form_args[ 'label' ]; ?></label>
+								<?php } ?>
+								<?php echo $this->input( $form_args ); ?>
+							</div>
+						<?php } ?>
+					</div>
 				</div>
-			</div>
 			<?php } // if we have elements ?>
 		</li>
 	<?php }
@@ -538,6 +543,17 @@ class Hatch_Design_Controller {
 											'left' => __( 'Left' , HATCH_THEME_SLUG ),
 											'right' => __( 'Right' , HATCH_THEME_SLUG )
 										)
+								)
+							); ?>
+						</div>
+						<div class="hatch-checkbox-wrapper hatch-form-item">
+							<?php echo $this->input(
+								array(
+									'type' => 'checkbox',
+									'label' => __( 'Darken' , HATCH_THEME_SLUG ),
+									'name' => $widget->name . '[background][darken]' ,
+									'id' =>  $widget->id . '-background-darken' ,
+									'value' => ( isset( $values->background['darken'] ) ) ? $values->background['darken'] : NULL
 								)
 							); ?>
 						</div>

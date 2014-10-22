@@ -1,7 +1,7 @@
 /**
-* Widget JS file
+* Admin JS file
 *
-* This file contains global widget functions
+* This file contains global admin functions
  *
  * @package Hatch
  * @since Hatch 1.0

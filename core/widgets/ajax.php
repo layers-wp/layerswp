@@ -35,7 +35,7 @@ if( !class_exists( 'Hatch_Widget_Ajax' ) ) {
 		function banner_widget_actions(){
 			if( !wp_verify_nonce( $_REQUEST['nonce'], 'hatch-widget-actions' ) ) die( 'You threw a Nonce exception' ); // Nonce
 
-			$widget = new Hatch_Banner_Widget();
+			$widget = new Hatch_Slider_Widget();
 			if( 'add' == $_POST[ 'widget_action'] ) {
 				$widget->banner_item( array( 'id_base' => $_POST[ 'id_base' ] , 'number' => $_POST[ 'number' ] ) );
 			}

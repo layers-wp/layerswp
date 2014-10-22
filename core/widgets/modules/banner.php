@@ -51,7 +51,7 @@ if( !class_exists( 'Hatch_Slider_Widget' ) ) {
 				'link' => NULL,
 				'link_text' => 'See More',
 				'design' => array(
-					'imagealign' => 'image-right',
+					'imagealign' => 'image-top',
 					'imageratios' => NULL,
 					'background' => array(
 						'position' => 'center',
@@ -60,7 +60,7 @@ if( !class_exists( 'Hatch_Slider_Widget' ) ) {
 						'size' => 'cover'
 					),
 					'fonts' => array(
-						'align' => 'text-left',
+						'align' => 'text-center',
 						'size' => 'large',
 						'color' => '#fff',
 						'shadow' => ''
@@ -69,9 +69,8 @@ if( !class_exists( 'Hatch_Slider_Widget' ) ) {
 			);
 
 			// Setup the defaults for each banner
-			foreach( explode( ',', $this->defaults[ 'banner_ids' ] ) as $banner_id ) {
-					$this->defaults[ 'banners' ][ $banner_id ] = $this->banner_defaults;
-			}
+			$this->defaults[ 'banners' ][ $this->defaults[ 'banner_ids' ] ] = $this->banner_defaults;
+
 		}
 
 		/**

@@ -86,27 +86,27 @@
     .swiper-slide .image-container{position: relative; top: 50%; -webkit-transform: translateY(-50%); -ms-transform: translateY(-50%); transform: translateY(-50%); text-align: center;}
     .swiper-slide .overlay.darken{background-color: rgba(0, 0, 0, 0.2);}
 
+    .swiper-slide .section-title.large .excerpt{max-width: none;}
+    .swiper-slide.image-top.text-center .excerpt{max-width: 745px;}
+
     /*---------------------------*/
     /*- SLIDER IMAGES -----------*/
 
-    .image-left .copy-container{float: right;}
-    .image-left .image-container{float: left;}
+    .image-left .copy-container{float: right; width: 49%;}
+    .image-left .image-container{float: left; width: 49%;}
 
-    .image-right .copy-container{float: left;}
-    .image-right .image-container{float: right;}
+    .image-right .copy-container{float: left; width: 49%;}
+    .image-right .image-container{float: right; width: 49%;}
     
-    .has-image .copy-container{width: 49%; position: relative; top: 50%; -webkit-transform: translateY(-50%); -ms-transform: translateY(-50%); transform: translateY(-50%);}
-    .has-image .image-container{width: 49%;}
+    .has-image .copy-container{position: relative; top: 50%; -webkit-transform: translateY(-50%); -ms-transform: translateY(-50%); transform: translateY(-50%);}
 
     .has-image.image-top .copy-container{clear: both;  margin: auto; text-align: center; top: auto; -webkit-transform: none; -ms-transform: none; transform: none;}
     .has-image.image-top .image-container{clear: both; width: auto; top: auto; -webkit-transform: none; -ms-transform: none; transform: none;}
 
-    .image-top .copy-container .excerpt{margin: auto;}
 
     /*---------------------------*/
     /*- SLIDER COPY -------------*/
     .swiper-slide .section-title{margin-bottom: 20px;}
-    .swiper-slide.image-top .excerpt{margin-left: auto; margin-right: auto;}
     .swiper-slide.text-center .excerpt{margin-left: auto; margin-right: auto;}
 
     /*---------------------------*/

@@ -31,8 +31,8 @@
 
         /*-----------------------*/
         /*- NAV INVERT ----------*/
-        .invert .nav a{color: #fff; opacity: 0.8;}
-        .invert .nav a:hover{color: #fff; opacity: 1;}
+        .invert .nav > li a{color: #fff; opacity: 0.8;}
+        .invert .nav > li a:hover{color: #fff; opacity: 1;}
 
 
     /*---------------------------*/

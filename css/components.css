@@ -81,13 +81,14 @@
     /*---------------------------*/
     /*- SLIDER CONTENT ----------*/
     .swiper-slide .container{position: relative; top: 50%; transform: translateY(-50%);}
-    .swiper-slide .copy-container{max-width: 1040px; margin: auto; padding: 0; position: relative; top: 50%; -webkit-transform: translateY(-50%); -ms-transform: translateY(-50%); transform: translateY(-50%);}
+    .swiper-slide .copy-container{max-width: 1040px; margin: auto; padding: 0;}
     .swiper-slide .image-container{position: relative; top: 50%; -webkit-transform: translateY(-50%); -ms-transform: translateY(-50%); transform: translateY(-50%); text-align: center;}
-    .swiper-slide .overlay{background-color: rgba(0, 0, 0, 0.2);}
+    .swiper-slide .overlay.darken{background-color: rgba(0, 0, 0, 0.2);}
 
     /*---------------------------*/
     /*- SLIDER IMAGES -----------*/
-    .has-image .copy-container{width: 49%;}
+    
+    .has-image .copy-container{width: 49%; position: relative; top: 50%; -webkit-transform: translateY(-50%); -ms-transform: translateY(-50%); transform: translateY(-50%);}
     .has-image .image-container{width: 49%;}
 
     .image-left .copy-container{float: right;}

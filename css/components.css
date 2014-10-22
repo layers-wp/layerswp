@@ -92,11 +92,11 @@
     .image-right .copy-container{float: left; width: 49%;}
     .image-right .image-container{float: right; width: 49%;}
 
-    .image-center .container{padding-top: 60px;}
-    .image-center .copy-container{clear: both;  margin: auto; text-align: center; top: auto; -webkit-transform: none; -ms-transform: none; transform: none;}
-    .image-center .copy-container .excerpt{margin: auto;}
-    .image-center .copy-container.no-image{position: relative; top: 50%;}
-    .image-center .image-container{clear: both; top: auto; -webkit-transform: none; -ms-transform: none; transform: none;}
+    .image-top .container{padding-top: 60px;}
+    .image-top .copy-container{clear: both;  margin: auto; text-align: center; top: auto; -webkit-transform: none; -ms-transform: none; transform: none;}
+    .image-top .copy-container .excerpt{margin: auto;}
+    .image-top .copy-container.no-image{position: relative; top: 50%;}
+    .image-top .image-container{clear: both; top: auto; -webkit-transform: none; -ms-transform: none; transform: none;}
 
     /*---------------------------*/
     /*- SLIDER COPY -------------*/

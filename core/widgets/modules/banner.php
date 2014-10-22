@@ -45,6 +45,7 @@ if( !class_exists( 'Hatch_Slider_Widget' ) ) {
 				'show_slider_dots' => true,
 
 			);
+
 			$this->banner_defaults = array (
 				'title' => 'Slider Title',
 				'excerpt' => 'Short Excerpt',
@@ -129,7 +130,7 @@ if( !class_exists( 'Hatch_Slider_Widget' ) ) {
 									$image_ratio = hatch_translate_image_ratios( $banner->design[ 'imageratios' ] );
 									$imageratios = $image_ratio . '-medium';
 							} else {
-								$imageratios = 'medium';
+								$imageratios = 'large';
 							} ?>
 
 							<div id="<?php echo $widget_id; ?>-<?php echo $key; ?>" class="invert swiper-slide

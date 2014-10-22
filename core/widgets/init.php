@@ -65,6 +65,7 @@ class Hatch_Widgets {
 
 		// Fetch Builder Pages
 		$pages = get_pages(array(
+			'post_status' => 'publish,draft,private',
 			'meta_key' => '_wp_page_template',
 			'meta_value' => 'builder.php'
 		));
@@ -72,7 +73,7 @@ class Hatch_Widgets {
 		// Loop the Builder Pages and create their sidebars
 		foreach($pages as $page){
 			register_sidebar( array(
-				'id'		=> 'obox-hatch-builder-' . $page->post_name,
+				'id'		=> 'obox-hatch-builder-' . $page->ID,
 				'name'		=> $page->post_title . __( ' Body' , HATCH_THEME_SLUG ),
 				'description'	=> __( '' , HATCH_THEME_SLUG ),
 				'before_widget'	=> '<aside id="%1$s" class="widget container push-bottom-medium %2$s">',

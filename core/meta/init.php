@@ -47,6 +47,7 @@ class Hatch_Custom_Meta {
 		add_action( 'edit_form_after_title', array( $this , 'page_builder_button' ) );
 		add_action( 'wp_ajax_update_page_builder_meta' , array( $this , 'update_page_builder_meta' ) );
 		add_filter( 'hatch_pointer_settings' , array( $this , 'page_builder_button_pointer' ) );
+		add_action( 'page_row_actions' , array( $this , 'inline_page_builder_button' ), 10, 2 );
 
 		// Custom Fields
 		add_action( 'admin_menu', array( $this , 'register_post_meta' ) );
@@ -102,7 +103,7 @@ class Hatch_Custom_Meta {
 
 		$is_builder_used = ( 'builder.php' == basename( get_page_template() ) ) ? true : false;
 
-		printf( '<div class="hatch-section-title hatch-medium invert hatch-content-massive %3$s" style="background: url( %7$s/images/beta-zero.jpg) top repeat;">
+		printf( '<div id="hatch_toggle_builder" class="hatch-section-title hatch-medium invert hatch-content-massive %3$s" style="background: url( %7$s/images/beta-zero.jpg) top repeat;">
 					<div class="hatch-heading">
 						%1$s
 					</div>
@@ -119,6 +120,26 @@ class Hatch_Custom_Meta {
 			__( 'Build Your Page', HATCH_THEME_SLUG ), // %6
 			get_template_directory_uri() // %7,
 		);
+	}
+
+	/**
+	* Page Builder Inline Button
+	*/
+
+	function inline_page_builder_button($actions,$post) {
+
+		// Set the post object
+		$post_type_object = get_post_type_object( $post->post_type );
+
+		// Set user capability
+		$can_edit_post = current_user_can( $post_type_object->cap->edit_post, $post->ID );
+
+		// Add our button
+		if ( $can_edit_post && 'builder.php' == get_page_template_slug( $post->ID ) ) {
+			$actions['builder'] = '<a href="' . admin_url() . 'customize.php?url=' . esc_url( get_the_permalink() ) . '&hatch-builder=1" title="' . esc_attr( __( 'Build Page' ) ) . '">' . __( 'Build Page' ) . '</a>';
+		}
+
+		return $actions;
 	}
 
 	/**

@@ -134,7 +134,7 @@ if( !class_exists( 'Hatch_Slider_Widget' ) ) {
 							} ?>
 
 							<div id="<?php echo $widget_id; ?>-<?php echo $key; ?>" class="invert swiper-slide
-								<?php if( false != $this->check_and_return( $banner , 'image' ) ) echo 'has-image'; ?>
+								<?php if( false != $this->check_and_return( $banner , 'image' ) || 'image-left' == $banner->design[ 'imagealign' ] || 'image-right' == $banner->design[ 'imagealign' ] ) echo 'has-image'; ?>
 								<?php if( isset( $banner->design[ 'imagealign' ] ) && '' != $banner->design[ 'imagealign' ] ) echo $banner->design[ 'imagealign' ]; ?>
 								<?php if( isset( $banner->design['fonts'][ 'align' ] ) && '' != $banner->design['fonts'][ 'align' ] ) echo $banner->design['fonts'][ 'align' ]; ?>
 								"

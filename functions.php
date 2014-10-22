@@ -214,7 +214,9 @@ if( ! function_exists( 'hatch_scripts' ) ) {
 			get_template_directory_uri() . '/js/framework.js',
 			array(
 				'jquery'
-			)
+			),
+			NULL,
+			true
 		); // Framework
 
 

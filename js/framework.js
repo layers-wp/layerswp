@@ -8,7 +8,7 @@
  * Contents
  * 1 - Screen Height Matching
 */
-jQuery(window).load(function($) {
+jQuery(function($) {
 
     /**
     * 1 - Screen Height Matching
@@ -21,10 +21,8 @@ jQuery(window).load(function($) {
     hatch_match_to_screen_height();
 
     function hatch_match_to_screen_height(){
-        $( '.full-screen' ).each(function(){
-            $(this).css( 'height' , $(window).height() );
-            $(this).find( '.swiper-slide' ).css( 'height' , $(window).height() );
-        });
+        $( '.full-screen' ).css( 'height' , $(window).height() );
+        $( '.full-screen' ).find( '.swiper-slide' ).css( 'height' , $(window).height() );
     }
 }(jQuery));
 

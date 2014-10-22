@@ -80,7 +80,7 @@
 
     /*---------------------------*/
     /*- SLIDER CONTENT ----------*/
-    .swiper-container.container{padding: 0; width: 1000px;}
+    .swiper-container.container{padding: 0; max-width: 1000px;}
     
     .swiper-slide .container{position: relative; top: 50%;}
     
@@ -102,7 +102,10 @@
     .image-right .image-container{float: right; width: 49%;}
 
     .has-image.image-top .container{position: relative; top: 50%; transform: translateY(-50%);}
+    .has-image.image-top .copy-container{top: auto; transform: none;}
+    .has-image.image-top .image-container{top: auto; transform: none;}
 
+    .image-top .copy-container + .image-container{margin-top: 40px;}
 
     /*---------------------------*/
     /*- SLIDER COPY -------------*/

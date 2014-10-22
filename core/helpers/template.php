@@ -344,7 +344,8 @@ if( !function_exists( 'hatch_get_header_class' ) ) {
 
         // Handle fixed / not fixed
         if( TRUE == $header_fixed_option ){
-            $classes[] = 'header-will-stick';
+            $classes[] = 'header-fixed';
+            $classes[] = 'invert';
         }
 
         // Add alignment classes

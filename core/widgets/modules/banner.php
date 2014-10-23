@@ -89,10 +89,7 @@ if( !class_exists( 'Hatch_Slider_Widget' ) ) {
 			if( !empty( $instance ) ) $instance_defaults = array();
 
 			// Parse $instance
-			$instance = wp_parse_args( $instance, $instance_defaults );
-
-			// Turn $instance into an object named $widget, makes for neater code
-			$widget = (object) $instance; ?>
+			$widget = wp_parse_args( $instance, $instance_defaults ); ?>
 
 			<?php // Setup the layout class for boxed/full width/full screen
 			if( 'layout-boxed' == $this->check_and_return( $widget , 'design' , 'layout' ) ) {
@@ -101,68 +98,67 @@ if( !class_exists( 'Hatch_Slider_Widget' ) ) {
 				$layout_class = 'full-screen';
 			}?>
 
-			<section class="widget row banner swiper-container <?php if( isset( $layout_class ) ) echo $layout_class; ?>" id="<?php echo $widget_id; ?>" <?php if( $this->check_and_return( $widget , 'banner_height' ) ) echo 'style="height: ' . $widget->banner_height . 'px;"' ?>>
-				<?php if( !empty( $widget->banners ) ) { ?>
-					<?php if( 1 < count( $widget->banners ) && isset( $widget->show_slider_arrows ) ) { ?>
+			<section class="widget row banner swiper-container <?php if( isset( $layout_class ) ) echo $layout_class; ?>" id="<?php echo $widget_id; ?>" <?php if( $this->check_and_return( $widget , 'banner_height' ) ) echo 'style="height: ' . $widget['banner_height'] . 'px;"' ?>>
+				<?php if( !empty( $widget[ 'banners' ] ) ) { ?>
+					<?php if( 1 < count( $widget[ 'banners' ] ) && isset( $widget['show_slider_arrows'] ) ) { ?>
 						 <div class="arrows">
 							<a href="" class="arrow-left animate"></a>
 							<a href="" class="arrow-right animate"></a>
 						</div>
 					<?php } ?>
 					<div class="pages animate">
-						<?php for( $i = 0; $i < count( $widget->banners ); $i++ ) { ?>
+						<?php for( $i = 0; $i < count( $widget[ 'banners' ] ); $i++ ) { ?>
 							<a href="" class="page animate <?php if( 0 == $i ) echo 'active'; ?>"></a>
 						<?php } ?>
 					</div>
 			 		<div class="swiper-wrapper">
 						<?php $col = 1; ?>
-						<?php foreach ( $widget->banners as $key => $banner) {
-							$banner = (object) $banner;
+						<?php foreach ( $widget[ 'banners' ] as $key => $banner) {
 
 							// Set the background styling
-							if( !empty( $banner->design[ 'background' ] ) ) $this->widget_styles( $widget_id . '-' . $key , 'background', $banner->design[ 'background' ] );
-							if( !empty( $banner->design['fonts'][ 'color' ] ) ) $this->widget_styles( $widget_id . '-' . $key , 'color', array( 'selectors' => array( 'h3.heading', 'h3.heading a', 'div.excerpt' ) , 'color' => $banner->design['fonts'][ 'color' ] ) );
-							if( !empty( $banner->design['fonts'][ 'shadow' ] ) ) $this->widget_styles( $widget_id . '-' . $key , 'text-shadow', array( 'selectors' => array( 'h3.heading', 'h3.heading a',  'div.excerpt' )  , 'text-shadow' => $banner->design['fonts'][ 'shadow' ] ) );
+							if( !empty( $banner['design'][ 'background' ] ) ) $this->widget_styles( $widget_id . '-' . $key , 'background', $banner['design'][ 'background' ] );
+							if( !empty( $banner['design']['fonts'][ 'color' ] ) ) $this->widget_styles( $widget_id . '-' . $key , 'color', array( 'selectors' => array( 'h3.heading', 'h3.heading a', 'div.excerpt' ) , 'color' => $banner['design']['fonts'][ 'color' ] ) );
+							if( !empty( $banner['design']['fonts'][ 'shadow' ] ) ) $this->widget_styles( $widget_id . '-' . $key , 'text-shadow', array( 'selectors' => array( 'h3.heading', 'h3.heading a',  'div.excerpt' )  , 'text-shadow' => $banner['design']['fonts'][ 'shadow' ] ) );
 
 							// Set Image Sizes
-							if( isset( $banner->design[ 'imageratios' ] ) ){
+							if( isset( $banner['design'][ 'imageratios' ] ) ){
 									// Translate Image Ratio
-									$image_ratio = hatch_translate_image_ratios( $banner->design[ 'imageratios' ] );
+									$image_ratio = hatch_translate_image_ratios( $banner['design'][ 'imageratios' ] );
 									$imageratios = $image_ratio . '-medium';
 							} else {
 								$imageratios = 'large';
 							} ?>
 
 							<div id="<?php echo $widget_id; ?>-<?php echo $key; ?>" class="invert swiper-slide
-								<?php if( false != $this->check_and_return( $banner , 'image' ) || 'image-left' == $banner->design[ 'imagealign' ] || 'image-right' == $banner->design[ 'imagealign' ] ) echo 'has-image'; ?>
-								<?php if( isset( $banner->design[ 'imagealign' ] ) && '' != $banner->design[ 'imagealign' ] ) echo $banner->design[ 'imagealign' ]; ?>
-								<?php if( isset( $banner->design['fonts'][ 'align' ] ) && '' != $banner->design['fonts'][ 'align' ] ) echo $banner->design['fonts'][ 'align' ]; ?>
+								<?php if( false != $this->check_and_return( $banner , 'image' ) || 'image-left' == $banner['design'][ 'imagealign' ] || 'image-right' == $banner['design'][ 'imagealign' ] ) echo 'has-image'; ?>
+								<?php if( isset( $banner['design'][ 'imagealign' ] ) && '' != $banner['design'][ 'imagealign' ] ) echo $banner['design'][ 'imagealign' ]; ?>
+								<?php if( isset( $banner['design']['fonts'][ 'align' ] ) && '' != $banner['design']['fonts'][ 'align' ] ) echo $banner['design']['fonts'][ 'align' ]; ?>
 								"
 								style="float: left;">
-								<div class="overlay <?php if( isset( $banner->design[ 'background' ][ 'darken' ] ) ) echo 'darken'; ?>"  <?php if( $this->check_and_return( $widget , 'banner_height' ) ) echo 'style="height: ' . $widget->banner_height . 'px;"' ?>>
+								<div class="overlay <?php if( isset( $banner['design'][ 'background' ][ 'darken' ] ) ) echo 'darken'; ?>"  <?php if( $this->check_and_return( $widget , 'banner_height' ) ) echo 'style="height: ' . $widget['banner_height'] . 'px;"' ?>>
 									<div class="container clearfix">
-										<?php if( '' != $banner->title || '' != $banner->excerpt || '' != $banner->link ) { ?>
+										<?php if( '' != $banner['title'] || '' != $banner['excerpt'] || '' != $banner['link'] ) { ?>
 											<div class="copy-container">
-												<div class="section-title <?php echo ( isset( $banner->design['fonts'][ 'size' ] ) ? $banner->design['fonts'][ 'size' ] : '' ); ?>">
+												<div class="section-title <?php echo ( isset( $banner['design']['fonts'][ 'size' ] ) ? $banner['design']['fonts'][ 'size' ] : '' ); ?>">
 													<?php if( $this->check_and_return( $banner , 'title' ) ) { ?>
 														<?php if( $this->check_and_return( $banner , 'link' ) ) { ?>
-															<h3 class="heading"><a href="<?php echo $banner->link; ?>"><?php echo $banner->title; ?></a></h3>
+															<h3 class="heading"><a href="<?php echo $banner['link']; ?>"><?php echo $banner['title']; ?></a></h3>
 														<?php } else { ?>
-															<h3 class="heading"><?php echo $banner->title; ?></h3>
+															<h3 class="heading"><?php echo $banner['title']; ?></h3>
 														<?php } ?>
 													<?php } ?>
 													<?php if( $this->check_and_return( $banner , 'excerpt' ) ) { ?>
-														<div class="excerpt"><?php echo $banner->excerpt; ?></div>
+														<div class="excerpt"><?php echo $banner['excerpt']; ?></div>
 													<?php } ?>
-													<?php if( isset( $banner->link ) && $this->check_and_return( $banner , 'link_text' ) ) { ?>
-														<a href="<?php echo $banner->link; ?>" class="button btn-<?php echo $this->check_and_return( $banner , 'design' , 'fonts' , 'size' ); ?>"><?php echo $banner->link_text; ?></a>
+													<?php if( isset( $banner['link'] ) && $this->check_and_return( $banner , 'link_text' ) ) { ?>
+														<a href="<?php echo $banner['link']; ?>" class="button btn-<?php echo $this->check_and_return( $banner , 'design' , 'fonts' , 'size' ); ?>"><?php echo $banner['link_text']; ?></a>
 													<?php } ?>
 												</div>
 											</div>
 										<?php } // if title || excerpt ?>
 										<?php if( $this->check_and_return( $banner , 'design' , 'featuredimage' ) ) { ?>
 											<div class="image-container">
-												<?php echo wp_get_attachment_image( $banner->design[ 'featuredimage' ] , $imageratios ); ?>
+												<?php echo wp_get_attachment_image( $banner['design'][ 'featuredimage' ] , $imageratios ); ?>
 											</div>
 										<?php } // if $banner image ?>
 									</div> <!-- .container -->
@@ -172,19 +168,19 @@ if( !class_exists( 'Hatch_Slider_Widget' ) ) {
 			 		</div>
 				<?php } // if !empty( $widget->slides ) ?>
 		 	</section>
-		 	<?php if( !empty( $widget->banners ) ) { ?>
+		 	<?php if( !empty( $widget[ 'banners' ] ) ) { ?>
 			 	<script>
 					jQuery(function($){
 
 						var swiper = $('#<?php echo $widget_id; ?>').swiper({
 							//Your options here:
 							mode:'horizontal',
-							<?php if( isset( $widget->show_slider_dots ) ) { ?>pagination: '.pages',<?php } ?>
+							<?php if( isset( $widget['show_slider_dots'] ) ) { ?>pagination: '.pages',<?php } ?>
 							// slidesPerView: 4,
 							paginationClickable: true,
 							watchActiveIndex: true,
 							loop: true
-							<?php if( isset( $widget->autoplay_banners ) && isset( $widget->slide_time ) && is_numeric( $widget->slide_time ) ) {?>, autoplay: <?php echo ($widget->slide_time*1000); ?><?php }?>
+							<?php if( isset( $widget['autoplay_banners'] ) && isset( $widget['slide_time'] ) && is_numeric( $widget['slide_time'] ) ) {?>, autoplay: <?php echo ($widget['slide_time']*1000); ?><?php }?>
 						});
 
 						// Allow keyboard control

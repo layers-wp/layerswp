@@ -1,7 +1,4 @@
-<?php /*
-	Template Name: Portfolio
-*/
-
+<?php
 // Do the WP_Query
 global $paged;
 

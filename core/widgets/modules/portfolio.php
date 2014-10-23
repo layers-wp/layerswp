@@ -91,29 +91,26 @@ if( !class_exists( 'Hatch_Portfolio_Widget' ) ) {
 			if( !empty( $instance ) ) $instance_defaults = array();
 
 			// Parse $instance
-			$instance = wp_parse_args( $instance, $instance_defaults );
-
-			// Turn $instance into an object named $widget, makes for neater code
-			$widget = (object) $instance;
+			$widget = wp_parse_args( $instance, $instance_defaults );
 
 			// Set the span class for each column
-			if( 'list-list' == $widget->design[ 'liststyle' ] ) {
+			if( 'list-list' == $widget['design'][ 'liststyle' ] ) {
                 $col_count = 1;
 				$span_class = 'span-12';
 			} else {
-				$col_count = str_ireplace('columns-', '', $widget->design[ 'columns']  );
+				$col_count = str_ireplace('columns-', '', $widget['design'][ 'columns']  );
 				$span_class = 'span-' . ( 12/ $col_count );
 			}
 
 			// Set the background & font styling
-			if( !empty( $widget->design[ 'background' ] ) ) $this->widget_styles( $widget_id , 'background', $widget->design[ 'background' ] );
-			if( !empty( $widget->design['fonts'][ 'color' ] ) ) $this->widget_styles( $widget_id , 'color', array( 'selectors' => array( '.section-title h3.heading' , '.section-title p.excerpt' ) , 'color' => $widget->design['fonts'][ 'color' ] ) );
+			if( !empty( $widget['design'][ 'background' ] ) ) $this->widget_styles( $widget_id , 'background', $widget['design'][ 'background' ] );
+			if( !empty( $widget['design']['fonts'][ 'color' ] ) ) $this->widget_styles( $widget_id , 'color', array( 'selectors' => array( '.section-title h3.heading' , '.section-title p.excerpt' ) , 'color' => $widget['design']['fonts'][ 'color' ] ) );
 
 			// Set Image Sizes
-			if( isset( $widget->design[ 'imageratios' ] ) ){
+			if( isset( $widget['design'][ 'imageratios' ] ) ){
 
 				// Translate Image Ratio
-				$image_ratio = hatch_translate_image_ratios( $widget->design[ 'imageratios' ] );
+				$image_ratio = hatch_translate_image_ratios( $widget['design'][ 'imageratios' ] );
 
 				if( 'layout-boxed' == $this->check_and_return( $widget , 'design', 'layout' ) && $col_count > 2 ){
 					$imageratios = $image_ratio . '-medium';
@@ -129,24 +126,24 @@ if( !class_exists( 'Hatch_Portfolio_Widget' ) ) {
 			// Begin query arguments
 			$query_args = array();
 			$query_args[ 'post_type' ] = $this->post_type;
-			$query_args[ 'posts_per_page' ] = $widget->posts_per_page;
-			if( isset( $widget->order ) ) {
-				$decode_order = json_decode( $widget->order );
+			$query_args[ 'posts_per_page' ] = $widget['posts_per_page'];
+			if( isset( $widget['order'] ) ) {
+				$decode_order = json_decode( $widget['order'] );
 				foreach( $decode_order as $key => $value ){
 					$query_args[ $key ] = $value;
 				}
 			}
 
 			// Do the special taxonomy array()
-			if( isset( $widget->category ) && '' != $widget->category && 0 != $widget->category ){
+			if( isset( $widget['category'] ) && '' != $widget['category'] && 0 != $widget['category'] ){
 				$query_args['tax_query'] = array(
 					array(
 						"taxonomy" => $this->taxonomy,
 						"field" => "id",
-						"terms" => $widget->category
+						"terms" => $widget['category']
 					)
 				);
-			} elseif( !isset( $widget->hide_category_filter ) ) {
+			} elseif( !isset( $widget['hide_category_filter'] ) ) {
 				$terms = get_terms( $this->taxonomy );
 			} // if we haven't selected which category to show, let's load the $terms for use in the filter
 
@@ -157,16 +154,16 @@ if( !class_exists( 'Hatch_Portfolio_Widget' ) ) {
 				<?php if( $this->check_and_return( $widget , 'title' ) || $this->check_and_return( $widget , 'excerpt' ) ) { ?>
 					<div class="container clearfix">
 						<div class="section-title <?php echo $this->check_and_return( $widget , 'design', 'fonts', 'size' ); ?> <?php echo $this->check_and_return( $widget , 'design', 'fonts', 'align' ); ?> clearfix">
-							<?php if( '' != $widget->title ) { ?>
-								<h3 class="heading"><?php echo $widget->title; ?></h3>
+							<?php if( '' != $widget['title'] ) { ?>
+								<h3 class="heading"><?php echo $widget['title']; ?></h3>
 							<?php } ?>
-							<?php if( '' != $widget->excerpt ) { ?>
-								<p class="excerpt"><?php echo $widget->excerpt; ?></p>
+							<?php if( '' != $widget['excerpt'] ) { ?>
+								<p class="excerpt"><?php echo $widget['excerpt']; ?></p>
 							<?php } ?>
 						</div>
 					</div>
 				<?php } ?>
-				<?php if( isset( $widget->show_category_filter ) && isset( $terms ) &&  !is_wp_error( $terms ) ) { ?>
+				<?php if( isset( $widget['show_category_filter'] ) && isset( $terms ) &&  !is_wp_error( $terms ) ) { ?>
 					<div class="container <?php echo $this->check_and_return( $widget , 'design', 'fonts', 'align' ); ?> clearfix">
 						<ul class="nav nav-pills push-bottom-large">
 								<li data-filter=""><a href="#"><?php _e( 'All' , HATCH_THEME_SLUG ); ?></a></li>
@@ -191,7 +188,7 @@ if( !class_exists( 'Hatch_Portfolio_Widget' ) ) {
 										$term_list[] = $term->slug;
 									}
 								} ?>
-								<article class="column<?php if( isset( $widget->design[ 'columnflush' ] ) ) echo '-flush'; ?> <?php echo $span_class; ?> hatch-masonry-column thumbnail <?php if( 'overlay' == $this->check_and_return( $widget , 'text_style' ) ) echo 'with-overlay'; ?> <?php echo implode( $term_list, " " ); ?>"  data-cols="<?php echo $col_count; ?>">
+								<article class="column<?php if( isset( $widget['design'][ 'columnflush' ] ) ) echo '-flush'; ?> <?php echo $span_class; ?> hatch-masonry-column thumbnail <?php if( 'overlay' == $this->check_and_return( $widget , 'text_style' ) ) echo 'with-overlay'; ?> <?php echo implode( $term_list, " " ); ?>"  data-cols="<?php echo $col_count; ?>">
 									<?php if( has_post_thumbnail() ) { ?>
 										<div class="thumbnail-media">
 											<a href="<?php the_permalink(); ?>">
@@ -199,27 +196,27 @@ if( !class_exists( 'Hatch_Portfolio_Widget' ) ) {
 											</a>
 										</div>
 									<?php } // if post thumbnail ?>
-									<?php if( isset( $widget->show_titles ) || isset( $widget->show_excerpts ) ) { ?>
+									<?php if( isset( $widget['show_titles'] ) || isset( $widget['show_excerpts'] ) ) { ?>
 										<div class="thumbnail-body">
 											<div class="overlay">
-												<?php if( isset( $widget->show_titles ) ) { ?>
+												<?php if( isset( $widget['show_titles'] ) ) { ?>
 													<header class="article-title">
 														<h4 class="heading"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h4>
 													</header>
 												<?php } ?>
-												<?php if( isset( $widget->show_excerpts ) ) {
-													if( isset( $widget->excerpt_length ) && '' == $widget->excerpt_length ) {
+												<?php if( isset( $widget['show_excerpts'] ) ) {
+													if( isset( $widget['excerpt_length'] ) && '' == $widget['excerpt_length'] ) {
 														echo '<div class="excerpt">';
 															the_content();
 														echo '</div>';
-                                                    } else if( isset( $widget->excerpt_length ) && 0 != $widget->excerpt_length && strlen( get_the_excerpt() ) > $widget->excerpt_length ){
-                                                        echo '<p class="excerpt">' . substr( get_the_excerpt() , 0 , $widget->excerpt_length ) . '&#8230;</p>';
+                                                    } else if( isset( $widget['excerpt_length'] ) && 0 != $widget['excerpt_length'] && strlen( get_the_excerpt() ) > $widget['excerpt_length'] ){
+                                                        echo '<p class="excerpt">' . substr( get_the_excerpt() , 0 , $widget['excerpt_length'] ) . '&#8230;</p>';
                                                     } else if( '' != get_the_excerpt() ){
                                                         echo '<p class="excerpt">' . get_the_excerpt() . '</p>';
                                                     }
                                                 }; ?>
-                                                <?php if( isset( $widget->show_call_to_action ) && $this->check_and_return( $widget , 'call_to_action' ) ) { ?>
-													<a href="<?php the_permalink(); ?>" class="button"><?php echo $widget->call_to_action; ?></a>
+                                                <?php if( isset( $widget['show_call_to_action'] ) && $this->check_and_return( $widget , 'call_to_action' ) ) { ?>
+													<a href="<?php the_permalink(); ?>" class="button"><?php echo $widget['call_to_action']; ?></a>
 												<?php } // show call to action ?>
 											</div>
 										</div>
@@ -236,7 +233,7 @@ if( !class_exists( 'Hatch_Portfolio_Widget' ) ) {
 					setTimeout(function(){
 						var masonry = $('#<?php echo $widget_id; ?>').find('.list-masonry').masonry({
 							'itemSelector': '.hatch-masonry-column'
-							<?php if( !isset( $widget->design[ 'columnflush' ] ) ) echo ', "gutter": 20'; ?>
+							<?php if( !isset( $widget['design'][ 'columnflush' ] ) ) echo ', "gutter": 20'; ?>
 						});
 					}, 500 );
 
@@ -266,7 +263,7 @@ if( !class_exists( 'Hatch_Portfolio_Widget' ) ) {
 
 						$('#<?php echo $widget_id; ?>').find('.list-masonry').masonry({
 							'itemSelector': '.hatch-masonry-column'
-							<?php if( !isset( $widget->design[ 'columnflush' ] ) ) echo ', "gutter": 20'; ?>
+							<?php if( !isset( $widget['design'][ 'columnflush' ] ) ) echo ', "gutter": 20'; ?>
 						});
 
 						return false;

@@ -82,18 +82,15 @@ if( !class_exists( 'Hatch_Contact_Widget' ) ) {
 			// If we have information in this widget, then ignore the defaults
 			if( !empty( $instance ) ) $instance_defaults = array();
 
-			$instance = wp_parse_args( $instance , $instance_defaults );
-
-			// Turn $instance into an object named $widget, makes for neater code
-			$widget = (object) $instance;
+			$widget = wp_parse_args( $instance , $instance_defaults );
 
 			// Check if we have a map present
-			if( isset( $widget->show_google_map ) && ( '' != $widget->google_maps_location || '' != $widget->google_maps_long_lat ) ) {
+			if( isset( $widget['show_google_map'] ) && ( '' != $widget['google_maps_location'] || '' != $widget['google_maps_long_lat'] ) ) {
 				$hasmap = true;
 			}
 			// Set the background styling
-			if( !empty( $widget->design[ 'background' ] ) ) $this->widget_styles( $widget_id , 'background', $widget->design[ 'background' ] );
-			if( !empty( $widget->design['fonts'][ 'color' ] ) ) $this->widget_styles( $widget_id , 'color', array( 'selectors' => array( '.section-title h3.heading' , '.section-title p.excerpt' , '.section-title small' ) , 'color' => $widget->design['fonts'][ 'color' ] ) );
+			if( !empty( $widget['design'][ 'background' ] ) ) $this->widget_styles( $widget_id , 'background', $widget['design'][ 'background' ] );
+			if( !empty( $widget['design']['fonts'][ 'color' ] ) ) $this->widget_styles( $widget_id , 'color', array( 'selectors' => array( '.section-title h3.heading' , '.section-title p.excerpt' , '.section-title small' ) , 'color' => $widget['design']['fonts'][ 'color' ] ) );
 
 			// Set the map width
 			$mapwidth = 'span-12'; ?>
@@ -103,11 +100,11 @@ if( !class_exists( 'Hatch_Contact_Widget' ) ) {
 				<?php if( $this->check_and_return( $widget , 'title' ) || $this->check_and_return( $widget , 'excerpt' ) ) { ?>
 					<div class="container clearfix">
 						<div class="section-title <?php echo $this->check_and_return( $widget , 'design', 'fonts', 'size' ); ?> <?php echo $this->check_and_return( $widget , 'design', 'fonts', 'align' ); ?> clearfix">
-							<?php if( '' != $widget->title ) { ?>
-								<h3 class="heading"><?php echo $widget->title; ?></h3>
+							<?php if( '' != $widget['title'] ) { ?>
+								<h3 class="heading"><?php echo $widget['title']; ?></h3>
 							<?php } ?>
-							<?php if( '' != $widget->excerpt ) { ?>
-								<p class="excerpt"><?php echo $widget->excerpt; ?></p>
+							<?php if( '' != $widget['excerpt'] ) { ?>
+								<p class="excerpt"><?php echo $widget['excerpt']; ?></p>
 							<?php } ?>
 						</div>
 					</div>
@@ -115,22 +112,22 @@ if( !class_exists( 'Hatch_Contact_Widget' ) ) {
 
 
 				<div class="row <?php if('layout-boxed' == $this->check_and_return( $widget , 'design' , 'layout' ) ) echo 'container'; ?>">
-					<?php if( ( '' != $widget->address_shown && isset( $widget->show_address ) ) || ( isset( $widget->show_contact_form ) && '' != $widget->contact_form ) ) {?>
+					<?php if( ( '' != $widget['address_shown'] && isset( $widget['show_address'] ) ) || ( isset( $widget['show_contact_form'] ) && '' != $widget['contact_form'] ) ) {?>
 						<div class="column span-6 form">
-							<?php if( isset( $widget->show_address ) &&  '' != $widget->address_shown ) { ?>
+							<?php if( isset( $widget['show_address'] ) &&  '' != $widget['address_shown'] ) { ?>
 								<address class="copy">
-									<p><?php echo $widget->address_shown; ?></p>
+									<p><?php echo $widget['address_shown']; ?></p>
 								</address>
 							<?php } ?>
-							<?php if( isset( $widget->show_contact_form ) && '' != $widget->contact_form ) { ?>
-								<?php echo do_shortcode( $widget->contact_form ); ?>
+							<?php if( isset( $widget['show_contact_form'] ) && '' != $widget['contact_form'] ) { ?>
+								<?php echo do_shortcode( $widget['contact_form'] ); ?>
 							<?php } ?>
 						</div>
 						<?php $mapwidth = 'span-6'; ?>
 					<?php } // if show_contact_form || address_shown ?>
 					<div class="column <?php echo $mapwidth; ?>">
 						<?php if( isset( $hasmap ) ) { ?>
-							<div class="hatch-map" style="height: <?php echo $widget->map_height; ?>px;" <?php if( '' != $widget->google_maps_location ) { ?>data-location="<?php echo $widget->google_maps_location; ?>"<?php } ?> <?php if( '' != $widget->google_maps_long_lat ) { ?>data-longlat="<?php echo $widget->google_maps_long_lat; ?>"<?php } ?>></div>
+							<div class="hatch-map" style="height: <?php echo $widget['map_height']; ?>px;" <?php if( '' != $widget['google_maps_location'] ) { ?>data-location="<?php echo $widget['google_maps_location']; ?>"<?php } ?> <?php if( '' != $widget['google_maps_long_lat'] ) { ?>data-longlat="<?php echo $widget['google_maps_long_lat']; ?>"<?php } ?>></div>
 						<?php } ?>
 					</div>
 				</div>

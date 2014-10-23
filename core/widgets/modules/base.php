@@ -94,7 +94,7 @@ if( !class_exists( 'Hatch_Widget' ) ) {
 		/**
 		* Check option with isset() and echo it out if it exists, if it does not exist, return false
 		*
-		* @param  	object		$widget_id 	Widget Object
+		* @param  	array		$widget 	Widget Object
 		* @param  	varchar 	$option 	Widget option to check on
 		* @param  	varchar 	$array_level_1 	Array level one to check for (optional)
 		* @param  	varchar 	$array_level_2 	Array level two to check for (optional)
@@ -106,10 +106,10 @@ if( !class_exists( 'Hatch_Widget' ) ) {
 			// If there is no widget object
 			if( $widget == NULL ) return false;
 
-			if( !isset( $widget->$option ) ){
+			if( !isset( $widget[$option] ) ){
 				return false;
 			} else {
-				$widget_option = $widget->$option;
+				$widget_option = $widget[$option];
 			}
 
 			if( NULL != $array_level_1 ){

@@ -20,13 +20,13 @@ class Hatch_Design_Controller {
 	function bar( $type = 'side' , $widget = NULL, $instance = array(), $components = array( 'columns' , 'background' , 'imagealign' ) , $custom_components = array() ) {
 
 		// If there is no widget information provided, can the operation
-		if( NULL == $widget ) { return; } else { $widget = (object) $widget; }
+		if( NULL == $widget ) { return; } else { $widget = $widget; }
 
 		// Set widget values as an object ( we like working with objects)
 		if( empty( $instance ) ) {
-			$values = (object) array( 'design' => NULL );
+			$values = array( 'design' => NULL );
 		} elseif( isset( $instance[ 'design' ] ) ) {
-			$values = (object) $instance[ 'design' ];
+			$values = $instance[ 'design' ];
 		} else {
 			$values = NULL;
 		} ?>
@@ -57,10 +57,10 @@ class Hatch_Design_Controller {
 						}
 					}
 				} // if $components is not NULL ?>
-				<?php if( isset( $widget->show_trash ) ) { ?>
+				<?php if( isset( $widget['show_trash'] ) ) { ?>
 					<li class="hatch-visuals-item hatch-pull-right">
 						<a href="" class="hatch-icon-wrapper hatch-icon-error">
-							<span class="icon-trash" data-number="<?php echo $widget->number; ?>"></span>
+							<span class="icon-trash" data-number="<?php echo $widget['number']; ?>"></span>
 						</a>
 					</li>
 				<?php } // if side != $type ?>
@@ -152,9 +152,9 @@ class Hatch_Design_Controller {
 					<?php echo $this->input(
 						array(
 							'type' => 'select-icons',
-							'name' => $widget->name . '[layout]' ,
-							'id' =>  $widget->id . '-layout' ,
-							'value' => ( isset( $values->layout ) ) ? $values->layout : NULL,
+							'name' => $widget['name'] . '[layout]' ,
+							'id' =>  $widget['id'] . '-layout' ,
+							'value' => ( isset( $values['layout'] ) ) ? $values['layout'] : NULL,
 							'options' => array(
 								'layout-boxed' => __( 'Boxed' , HATCH_THEME_SLUG ),
 								'layout-fullwidth' => __( 'Full Width' , HATCH_THEME_SLUG )
@@ -193,9 +193,9 @@ class Hatch_Design_Controller {
 					<?php echo $this->input(
 						array(
 							'type' => 'select-icons',
-							'name' => $widget->name . '[liststyle]' ,
-							'id' =>  $widget->id . '-liststyle' ,
-							'value' => ( isset( $values->liststyle ) ) ? $values->liststyle : NULL,
+							'name' => $widget['name'] . '[liststyle]' ,
+							'id' =>  $widget['id'] . '-liststyle' ,
+							'value' => ( isset( $values[ 'liststyle' ] ) ) ? $values[ 'liststyle' ] : NULL,
 							'options' => array(
 								'list-grid' => __( 'Grid' , HATCH_THEME_SLUG ),
 								'list-list' => __( 'List' , HATCH_THEME_SLUG ),
@@ -232,13 +232,13 @@ class Hatch_Design_Controller {
 			<div class="hatch-visuals-settings-wrapper hatch-animate hatch-content-small">
 				<div class="hatch-visuals-settings">
 					<div class="hatch-form-item">
-						<label for="<?php echo  $widget->name . '-columns'; ?>"><?php _e( 'Columns' , HATCH_THEME_SLUG ); ?></label>
+						<label for="<?php echo  $widget['name'] . '-columns'; ?>"><?php _e( 'Columns' , HATCH_THEME_SLUG ); ?></label>
 						<?php echo $this->input(
 							array(
 								'type' => 'select',
-								'name' => $widget->name . '[columns]' ,
-								'id' =>  $widget->id . '-columns' ,
-								'value' => ( isset( $values->columns ) ) ? $values->columns : NULL,
+								'name' => $widget['name'] . '[columns]' ,
+								'id' =>  $widget['id'] . '-columns' ,
+								'value' => ( isset( $values['columns'] ) ) ? $values['columns'] : NULL,
 								'options' => array(
 									'1' => __( '1 Column' , HATCH_THEME_SLUG ),
 									'2' => __( '2 Columns' , HATCH_THEME_SLUG ),
@@ -254,9 +254,9 @@ class Hatch_Design_Controller {
 							array(
 								'type' => 'checkbox',
 								'label' => __( 'Remove Spacing' , HATCH_THEME_SLUG ),
-								'name' => $widget->name . '[columnflush]' ,
-								'id' =>  $widget->id . '-column-flush' ,
-								'value' => ( isset( $values->columnflush ) ) ? $values->columnflush : NULL
+								'name' => $widget['name'] . '[columnflush]' ,
+								'id' =>  $widget['id'] . '-column-flush' ,
+								'value' => ( isset( $values['columnflush'] ) ) ? $values['columnflush'] : NULL
 							)
 						); ?>
 					</div>
@@ -290,9 +290,9 @@ class Hatch_Design_Controller {
 					<?php echo $this->input(
 						array(
 							'type' => 'select-icons',
-							'name' => $widget->name . '[textalign]' ,
-							'id' =>  $widget->id . '-textalign' ,
-							'value' => ( isset( $values->textalign ) ) ? $values->textalign : NULL,
+							'name' => $widget['name'] . '[textalign]' ,
+							'id' =>  $widget['id'] . '-textalign' ,
+							'value' => ( isset( $values['textalign'] ) ) ? $values['textalign'] : NULL,
 							'options' => array(
 								'text-left' => __( 'Left' , HATCH_THEME_SLUG ),
 								'text-center' => __( 'Center' , HATCH_THEME_SLUG ),
@@ -331,9 +331,9 @@ class Hatch_Design_Controller {
 					<?php echo $this->input(
 						array(
 							'type' => 'select-icons',
-							'name' => $widget->name . '[imagealign]' ,
-							'id' =>  $widget->id . '-imagealign' ,
-							'value' => ( isset( $values->imagealign ) ) ? $values->imagealign : NULL,
+							'name' => $widget['name'] . '[imagealign]' ,
+							'id' =>  $widget['id'] . '-imagealign' ,
+							'value' => ( isset( $values['imagealign'] ) ) ? $values['imagealign'] : NULL,
 							'options' => array(
 								'image-left' => __( 'Left' , HATCH_THEME_SLUG ),
 								'image-right' => __( 'Right' , HATCH_THEME_SLUG ),
@@ -372,9 +372,9 @@ class Hatch_Design_Controller {
 						<?php echo $this->input(
 							array(
 								'type' => 'image',
-								'name' => $widget->name . '[featuredimage]' ,
-								'id' =>  $widget->id . '-featuredimage' ,
-								'value' => ( isset( $values->featuredimage ) ) ? $values->featuredimage : NULL
+								'name' => $widget['name'] . '[featuredimage]' ,
+								'id' =>  $widget['id'] . '-featuredimage' ,
+								'value' => ( isset( $values['featuredimage'] ) ) ? $values['featuredimage'] : NULL
 							)
 						); ?>
 					</div>
@@ -384,9 +384,9 @@ class Hatch_Design_Controller {
 							<?php echo $this->input(
 								array(
 									'type' => 'select-icons',
-									'name' => $widget->name . '[imageratios]' ,
-									'id' =>  $widget->id . '-imageratios' ,
-									'value' => ( isset( $values->imageratios ) ) ? $values->imageratios : NULL,
+									'name' => $widget['name'] . '[imageratios]' ,
+									'id' =>  $widget['id'] . '-imageratios' ,
+									'value' => ( isset( $values['imageratios'] ) ) ? $values['imageratios'] : NULL,
 									'options' => array(
 										'image-portrait' => __( 'Portrait' , HATCH_THEME_SLUG ),
 										'image-landscape' => __( 'Landscape' , HATCH_THEME_SLUG ),
@@ -427,9 +427,9 @@ class Hatch_Design_Controller {
 						<?php echo $this->input(
 							array(
 								'type' => 'select-icons',
-								'name' => $widget->name . '[imageratios]' ,
-								'id' =>  $widget->id . '-imageratios' ,
-								'value' => ( isset( $values->imageratios ) ) ? $values->imageratios : NULL,
+								'name' => $widget['name'] . '[imageratios]' ,
+								'id' =>  $widget['id'] . '-imageratios' ,
+								'value' => ( isset( $values['imageratios'] ) ) ? $values['imageratios'] : NULL,
 								'options' => array(
 									'image-portrait' => __( 'Portrait' , HATCH_THEME_SLUG ),
 									'image-landscape' => __( 'Landscape' , HATCH_THEME_SLUG ),
@@ -473,9 +473,9 @@ class Hatch_Design_Controller {
 								<?php echo $this->input(
 									array(
 										'type' => 'select-icons',
-										'name' => $widget->name . '[fonts][align]' ,
-										'id' =>  $widget->id . '-fonts-align' ,
-										'value' => ( isset( $values->fonts['align'] ) ) ? $values->fonts['align'] : NULL,
+										'name' => $widget['name'] . '[fonts][align]' ,
+										'id' =>  $widget['id'] . '-fonts-align' ,
+										'value' => ( isset( $values['fonts']['align'] ) ) ? $values['fonts']['align'] : NULL,
 										'options' => array(
 											'text-left' => __( 'Left' , HATCH_THEME_SLUG ),
 											'text-center' => __( 'Center' , HATCH_THEME_SLUG ),
@@ -491,9 +491,9 @@ class Hatch_Design_Controller {
 							<?php echo $this->input(
 								array(
 									'type' => 'select',
-									'name' => $widget->name . '[fonts][size]' ,
-									'id' =>  $widget->id . '-fonts-size' ,
-									'value' => ( isset( $values->fonts['size'] ) ) ? $values->fonts['size'] : NULL,
+									'name' => $widget['name'] . '[fonts][size]' ,
+									'id' =>  $widget['id'] . '-fonts-size' ,
+									'value' => ( isset( $values['fonts']['size'] ) ) ? $values['fonts']['size'] : NULL,
 									'options' => array(
 											'small' => __( 'Small' , HATCH_THEME_SLUG ),
 											'medium' => __( 'Medium' , HATCH_THEME_SLUG ),
@@ -507,9 +507,9 @@ class Hatch_Design_Controller {
 							<?php echo $this->input(
 								array(
 									'type' => 'color',
-									'name' => $widget->name . '[fonts][color]' ,
-									'id' =>  $widget->id . '-fonts-color' ,
-									'value' => ( isset( $values->fonts['color'] ) ) ? $values->fonts['color'] : NULL
+									'name' => $widget['name'] . '[fonts][color]' ,
+									'id' =>  $widget['id'] . '-fonts-color' ,
+									'value' => ( isset( $values['fonts']['color'] ) ) ? $values['fonts']['color'] : NULL
 								)
 							); ?>
 						</div>
@@ -550,9 +550,9 @@ class Hatch_Design_Controller {
 								array(
 									'type' => 'image',
 									'label' => __( 'Choose Background' , HATCH_THEME_SLUG ),
-									'name' => $widget->name . '[background][image]' ,
-									'id' =>  $widget->id . '-background-image' ,
-									'value' => ( isset( $values->background['image'] ) ) ? $values->background['image'] : NULL
+									'name' => $widget['name'] . '[background][image]' ,
+									'id' =>  $widget['id'] . '-background-image' ,
+									'value' => ( isset( $values['background']['image'] ) ) ? $values['background']['image'] : NULL
 								)
 							); ?>
 						</div>
@@ -561,9 +561,9 @@ class Hatch_Design_Controller {
 							<?php echo $this->input(
 								array(
 									'type' => 'color',
-									'name' => $widget->name . '[background][color]' ,
-									'id' =>  $widget->id . '-background-color' ,
-									'value' => ( isset( $values->background['color'] ) ) ? $values->background['color'] : NULL
+									'name' => $widget['name'] . '[background][color]' ,
+									'id' =>  $widget['id'] . '-background-color' ,
+									'value' => ( isset( $values['background']['color'] ) ) ? $values['background']['color'] : NULL
 								)
 							); ?>
 						</div>
@@ -572,9 +572,9 @@ class Hatch_Design_Controller {
 							<?php echo $this->input(
 								array(
 									'type' => 'select',
-									'name' => $widget->name . '[background][repeat]' ,
-									'id' =>  $widget->id . '-background-repeat' ,
-									'value' => ( isset( $values->background['repeat'] ) ) ? $values->background['repeat'] : NULL,
+									'name' => $widget['name'] . '[background][repeat]' ,
+									'id' =>  $widget['id'] . '-background-repeat' ,
+									'value' => ( isset( $values['background']['repeat'] ) ) ? $values['background']['repeat'] : NULL,
 									'options' => array(
 											'no-repeat' => __( 'No Repeat' , HATCH_THEME_SLUG ),
 											'repeat' => __( 'Repeat' , HATCH_THEME_SLUG ),
@@ -589,9 +589,9 @@ class Hatch_Design_Controller {
 							<?php echo $this->input(
 								array(
 									'type' => 'select',
-									'name' => $widget->name . '[background][position]' ,
-									'id' =>  $widget->id . '-background-position' ,
-									'value' => ( isset( $values->background['position'] ) ) ? $values->background['position'] : NULL,
+									'name' => $widget['name'] . '[background][position]' ,
+									'id' =>  $widget['id'] . '-background-position' ,
+									'value' => ( isset( $values['background']['position'] ) ) ? $values['background']['position'] : NULL,
 									'options' => array(
 											'center' => __( 'Center' , HATCH_THEME_SLUG ),
 											'top' => __( 'Top' , HATCH_THEME_SLUG ),
@@ -607,9 +607,9 @@ class Hatch_Design_Controller {
 								array(
 									'type' => 'checkbox',
 									'label' => __( 'Stretch' , HATCH_THEME_SLUG ),
-									'name' => $widget->name . '[background][stretch]' ,
-									'id' =>  $widget->id . '-background-stretch' ,
-									'value' => ( isset( $values->background['stretch'] ) ) ? $values->background['stretch'] : NULL
+									'name' => $widget['name'] . '[background][stretch]' ,
+									'id' =>  $widget['id'] . '-background-stretch' ,
+									'value' => ( isset( $values['background']['stretch'] ) ) ? $values['background']['stretch'] : NULL
 								)
 							); ?>
 						</div>

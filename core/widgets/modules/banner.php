@@ -487,7 +487,7 @@ if( !class_exists( 'Hatch_Slider_Widget' ) ) {
 										'type' => 'text',
 										'name' => 'widget-' . $widget_details->id_base . '[' . $widget_details->number . '][banners][' . $slide_guid . '][link]' ,
 										'id' => 'widget-' . $widget_details->id_base . '-' . $widget_details->number . '-' . $slide_guid . '-link' ,
-										'placeholder' => __( 'Link', HATCH_THEME_SLUG ),
+										'placeholder' => __( 'http://', HATCH_THEME_SLUG ),
 										'value' => ( isset( $link ) ) ? $link : NULL ,
 									)
 								); ?>

@@ -143,7 +143,7 @@ if( !class_exists( 'Hatch_Portfolio_Widget' ) ) {
 						"terms" => $widget['category']
 					)
 				);
-			} elseif( !isset( $widget['hide_category_filter'] ) ) {
+			} elseif( isset( $widget['show_category_filter'] ) ) {
 				$terms = get_terms( $this->taxonomy );
 			} // if we haven't selected which category to show, let's load the $terms for use in the filter
 

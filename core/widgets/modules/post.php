@@ -216,8 +216,8 @@ if( !class_exists( 'Hatch_Post_Widget' ) ) {
                                                 <?php if( ! ( isset( $widget['text_style'] ) && 'overlay' == $widget['text_style'] ) ) { ?>
     												<?php if( 'post' == get_post_type() && !empty( $post_meta_to_display ) ) hatch_post_meta( $post->ID, $post_meta_to_display );?>
     											<?php } // Don't show meta if we have chosen overlay ?>
-                                                <?php if( isset( $widget->show_call_to_action ) && $this->check_and_return( $widget , 'call_to_action' ) ) { ?>
-													<a href="<?php the_permalink(); ?>" class="button"><?php echo $widget->call_to_action; ?></a>
+                                                <?php if( isset( $widget['show_call_to_action'] ) && $this->check_and_return( $widget , 'call_to_action' ) ) { ?>
+													<a href="<?php the_permalink(); ?>" class="button"><?php echo $widget['call_to_action']; ?></a>
 												<?php } // show call to action ?>
 											</div>
 										</div>

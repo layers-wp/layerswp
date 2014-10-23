@@ -412,9 +412,9 @@ jQuery(function($) {
 	*/
 
 	$.fn.hatch_trigger_change = function() {
-		console.log( $(this) );
+
 		// Trigger 'change' and 'blur' to reset the customizer
-		$changed = $(this).trigger("change") .trigger("blur");
+		$changed = $(this).trigger("change").trigger("blur");
 		$( document ).trigger( 'widget-synced', $(this).closest( '.control-section' ).find( '.widget:first' ) );
 	};
 

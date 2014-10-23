@@ -459,7 +459,7 @@ class Hatch_Form_Elements {
 			* Color Selector
 			*/
 			case 'color' : ?>
-				<input type="hidden" <?php echo implode ( ' ' , $input_props ); ?> value="<?php echo $input->value; ?>" class="hatch-color-selector" />
+				<input type="text" <?php echo implode ( ' ' , $input_props ); ?> value="<?php echo $input->value; ?>" class="hatch-color-selector" />
 			<?php break;
 			/**
 			* Default to hidden field

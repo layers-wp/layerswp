@@ -4,7 +4,9 @@
 	<?php if( have_posts() ) : ?>
 		<?php while( have_posts() ) : the_post(); ?>
 			<div class="row">
-				<?php get_template_part( 'content-single' ); ?>
+				<article class="column span-7">
+					<?php get_template_part( 'content-single' ); ?>
+				</article>
                 <div class="column span-4 pull-right sidebar">
 					<?php get_sidebar(); ?>
 				</div>

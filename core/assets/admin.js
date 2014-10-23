@@ -205,7 +205,7 @@ jQuery(function($) {
 	hatch_set_color_selectors();
 	$(document).on ( 'mouseup' , '#available-widgets .widget-tpl' , function(){
 
-		$(this).find('input').eq(0).hatch_trigger_change();
+		$(this).find('input').hatch_trigger_change();
 
 		$(this).find('.hatch-color-selector').each(function(){
 			var $picker = $(this);

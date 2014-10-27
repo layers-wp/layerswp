@@ -1,4 +1,12 @@
-<?php global $post, $post_meta_to_display; ?>
+<?php
+/**
+ * This template is used for displaying posts in post lists
+ *
+ * @package Hatch
+ * @since Hatch 1.0
+ */
+
+global $post, $post_meta_to_display; ?>
 <article class="push-bottom-large">
     <header class="section-title large">
         <h1 class="heading"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h1>

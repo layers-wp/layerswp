@@ -1,4 +1,12 @@
-<?php get_header(); ?>
+<?php
+/**
+ * The template for displaying a page
+ *
+ * @package Hatch
+ * @since Hatch 1.0
+ */
+
+get_header(); ?>
 
 <section id="post-<?php the_ID(); ?>" <?php post_class( 'container content-main clearfix' ); ?>>
 	<?php if( have_posts() ) : ?>

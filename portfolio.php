@@ -1,6 +1,12 @@
-<?php /*
-	Template Name: Portfolio
-*/
+<?php
+/**
+ * Template Name: Portfolio
+ *
+ * The template for displaying portfolio posts
+ *
+ * @package Hatch
+ * @since Hatch 1.0
+ */
 
 // Do the WP_Query
 global $paged;

@@ -1,6 +1,13 @@
-<?php /*
-    Template Name:Full Width
-*/
+<?php
+/**
+ * Template Name:Full Width
+ *
+ * The template for displaying a full width page
+ *
+ * @package Hatch
+ * @since Hatch 1.0
+ */
+
 get_header(); ?>
 
 <section id="post-<?php the_ID(); ?>" <?php post_class( 'container content-main clearfix' ); ?>>

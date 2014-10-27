@@ -1,4 +1,12 @@
-<?php get_header(); ?>
+<?php
+/**
+ * Standard blog index page
+ *
+ * @package Hatch
+ * @since Hatch 1.0
+ */
+
+get_header(); ?>
 <section <?php post_class( 'container content-main archive clearfix' ); ?>>
     <?php if( have_posts() ) : ?>
         <div class="column span-7">

@@ -1,4 +1,12 @@
-<?php global $post; ?>
+<?php
+/**
+ * This partial is used to display portfolio list content
+ *
+ * @package Hatch
+ * @since Hatch 1.0
+ */
+
+global $post; ?>
 <article class="column span-4 thumbnail with-overlay">
     <?php if( has_post_thumbnail() ) { ?>
         <div class="thumbnail-media">

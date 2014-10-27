@@ -1,6 +1,13 @@
-<?php /*
-	Template Name: Page Builder
-*/
+<?php
+/**
+ * Template Name: Page Builder
+ *
+ * This template is used for displaying the Hatch page builder
+ *
+ * @package Hatch
+ * @since Hatch 1.0
+ */
+
 get_header();
 global $post;
 

@@ -1,3 +1,13 @@
+<?php
+/**
+ * This partial is used for displaying single post (or page) content
+ *
+ * @package Hatch
+ * @since Hatch 1.0
+ */
+
+global $post, $post_meta_to_display; ?>
+
 <header class="section-title large">
     <?php if( 'post' == get_post_type() ) { ?>
         <h5 class="meta-info"><?php the_date(); ?></h5>

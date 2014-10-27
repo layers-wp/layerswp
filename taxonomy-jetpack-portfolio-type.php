@@ -1,4 +1,11 @@
 <?php
+/**
+ * The template for displaying portfolio archives
+ *
+ * @package Hatch
+ * @since Hatch 1.0
+ */
+
 // Do the WP_Query
 global $paged;
 

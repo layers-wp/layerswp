@@ -70,6 +70,7 @@ locate_template( '/core/options-panel/init.php' , true );
  */
 locate_template( '/core/helpers/post.php' , true );
 locate_template( '/core/helpers/template.php' , true );
+locate_template( '/core/helpers/woocommerce.php' , true );
 
 /*
  * Load Admin-specific files
@@ -328,6 +329,8 @@ if( !function_exists( 'hatch_excerpt_class' ) ) {
 if( !function_exists( 'hatch_site_title' ) ) {
 	function hatch_site_title( $title ) {
 		global $paged, $page;
+
+		if( !isset( $sep ) ) $sep = '|';
 
 		if ( is_feed() )
 			return $title;

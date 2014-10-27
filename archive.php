@@ -1,4 +1,12 @@
-<?php get_header(); ?>
+<?php
+/**
+ * The template for displaying post archives
+ *
+ * @package Hatch
+ * @since Hatch 1.0
+ */
+
+get_header(); ?>
 <?php get_template_part( 'partials/header' , 'page-title' ); ?>
 <section <?php post_class( 'container content-main archive clearfix' ); ?>>
 	<?php if( have_posts() ) : ?>
@@ -6,6 +14,7 @@
 			<?php while( have_posts() ) : the_post(); ?>
 				<?php get_template_part( 'content' , 'list' ); ?>
 			<?php endwhile; // while has_post(); ?>
+
 			<?php hatch_pagination(); ?>
 		</div>
 	<?php endif; // if has_post() ?>

@@ -178,3 +178,20 @@ if( !function_exists( 'hatch_backup_builder_pages' ) ) {
 
     add_action( 'wp_ajax_hatch_backup_builder_pages', 'hatch_backup_builder_pages' );
 } // hatch_builder_page_backup
+
+
+
+
+/**
+*  Adjust the site title for static front pages
+*/
+if( !function_exists( 'hatch_post_class' ) ) {
+    function hatch_post_class( $classes ) {
+        if( is_post_type_archive( 'product' ) ) {
+            $classes[] = 'column span-4';
+        }
+
+        return $classes;
+    }
+    add_filter( 'post_class' , 'hatch_post_class' );
+}

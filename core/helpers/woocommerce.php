@@ -44,5 +44,8 @@ if (!function_exists('woocommerce_product_thumbnail_wrap_close')) {
 * Displays up to 3 related products on product posts (determined by common category/tag)
 */
 function woocommerce_output_related_products() {
-woocommerce_related_products(3,1); // Display 3 products in rows of 3
+woocommerce_related_products( array(
+        'posts_per_page' => 3,
+        'columns' => 3
+    )); // Display 3 products in rows of 3
 }

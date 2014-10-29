@@ -216,7 +216,7 @@ if( ! function_exists( 'hatch_scripts' ) ) {
 			array(
 				'jquery'
 			),
-			NULL,
+			HATCH_VERSION,
 			true
 		); // Framework
 

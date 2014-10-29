@@ -15,3 +15,25 @@ if ( defined( 'WOOCOMMERCE_VERSION' ) && version_compare( WOOCOMMERCE_VERSION, "
 } else {
     define( 'WOOCOMMERCE_USE_CSS', false );
 }
+
+
+/**
+* Add a wrap around product images, this allows us way more freedom re: styling
+*/
+
+add_action( 'woocommerce_before_shop_loop_item_title', 'woocommerce_product_thumbnail_wrap_open', 5, 2);
+add_action( 'woocommerce_before_subcategory_title', 'woocommerce_product_thumbnail_wrap_open', 5, 2);
+
+if (!function_exists('woocommerce_product_thumbnail_wrap_open')) {
+    function woocommerce_product_thumbnail_wrap_open() {
+        echo '<div class="img-wrap">';
+    }
+}
+
+add_action( 'woocommerce_before_shop_loop_item_title', 'woocommerce_product_thumbnail_wrap_close', 15, 2);
+add_action( 'woocommerce_before_subcategory_title', 'woocommerce_product_thumbnail_wrap_close', 15, 2);
+if (!function_exists('woocommerce_product_thumbnail_wrap_close')) {
+    function woocommerce_product_thumbnail_wrap_close() {
+        echo '</div> <!--/.wrap-->';
+    }
+}

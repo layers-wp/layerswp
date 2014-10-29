@@ -11,7 +11,7 @@
  * 1.b - Image Upload Button
  * 1.c - General File Remove Button
  * 1.d - General File Upload Button
- * 2 -Background Selectors
+ * 2 - Background Selectors
  * 3 - Color Selectors
  * 4 - Sortable Columns
  * 5 - Tabs
@@ -431,6 +431,7 @@ jQuery(function($) {
 				$that.find( 'li' ).eq(-2).addClass( 'hatch-last' );
 			}
 	});
+
 
 });
 

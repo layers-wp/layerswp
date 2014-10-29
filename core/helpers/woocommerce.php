@@ -37,3 +37,12 @@ if (!function_exists('woocommerce_product_thumbnail_wrap_close')) {
         echo '</div> <!--/.wrap-->';
     }
 }
+
+
+
+/**
+* Displays up to 3 related products on product posts (determined by common category/tag)
+*/
+function woocommerce_output_related_products() {
+woocommerce_related_products(3,1); // Display 3 products in rows of 3
+}

@@ -46,6 +46,9 @@ class Hatch_Widgets {
 		locate_template( $module_dir . 'portfolio.php' , true );
 		locate_template( $module_dir . 'post.php' , true );
 
+		// When switching to a child theme, preserve page builder pages
+		add_action('switch_theme', array( $this , 'preserve_widgets' ) );
+
 		// Enqueue Styles
 		add_action( 'admin_enqueue_scripts', array( $this, 'admin_enqueue_scripts' ) , 50 );
 		add_action( 'admin_enqueue_scripts', array( $this, 'admin_print_styles' ) , 50 );
@@ -83,6 +86,25 @@ class Hatch_Widgets {
 			) );
 		}
 	}
+
+	/**
+	 * Port Widgets between Hatch Parent theme and Child themes
+	 */
+	public function preserve_widgets( $theme ){
+		global $sidebars_widgets;
+
+		// If we are using a Hatch theme, then let's make sure widgets are kept between our theme switch
+		if( HATCH_THEME_SLUG == basename( get_template_directory() ) ){
+
+			// Fetch the old theme and its theme mods
+			$old_theme = get_option( 'theme_switched' );
+			$old_theme_mods = get_option( 'theme_mods_' . $old_theme );
+
+			// Update our 'new' theme with the widgets we have cultivated so nicely for our builder pages
+			set_theme_mod( 'sidebars_widgets' , $old_theme_mods[ 'sidebars_widgets' ] );
+		}
+	}
+
 
 	/**
 	 * Create Dynamic Widget Areas

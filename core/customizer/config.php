@@ -75,12 +75,18 @@ class Hatch_Customizer_Config {
 		$sections[ 'header' ] = array(
 								'layout' => array(
 									'title' =>__( 'Layout' , HATCH_THEME_SLUG ),
-								)
+								),
+								'scripts' => array(
+									'title' =>__( 'Additional Scripts' , HATCH_THEME_SLUG ),
+								),
 							);
 
 		$sections[ 'footer' ] = array(
 								'layout' => array(
 									'title' =>__( 'Layout' , HATCH_THEME_SLUG ),
+								),
+								'scripts' => array(
+									'title' =>__( 'Additional Scripts' , HATCH_THEME_SLUG ),
 								),
 								'text' => array(
 									'title' =>__( 'Text' , HATCH_THEME_SLUG ),
@@ -127,6 +133,16 @@ class Hatch_Customizer_Config {
                                     'default' => false,
                                 ) // fixed
 							); // header-layout
+
+		// Header -> Layout -> Scripts
+		$controls['header-scripts'] = array(
+			 					'scripts' => array(
+                                    'type'     => 'textarea',
+                                    'label'    => __( 'Scripts', HATCH_THEME_SLUG ),
+                                    'description' => __( 'Enter in any custom tracking script to include in your site\'s header.', HATCH_THEME_SLUG ),
+                                    'default' => '',
+                                ) // fixed
+							);
 
 		// Footer -> Layout -> Layout
 		$controls['footer-layout'] = array(

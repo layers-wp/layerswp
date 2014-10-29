@@ -1,12 +1,11 @@
 <?php  /**
- * Template helper funtions
+ * WooCommerce helper funtions
  *
  * This file is used to modify any WooCommerce related filtes, hooks & modifiers
  *
  * @package Hatch
  * @since Hatch 1.0
  */
-
 
 /**
 *  Disable WooCommerce styling

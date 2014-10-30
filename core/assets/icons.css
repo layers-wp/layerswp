@@ -1,10 +1,10 @@
 @font-face {
 	font-family: 'hatch-interface';
-	src:url('fonts/hatch-interface.eot?a9qxwj');
-	src:url('fonts/hatch-interface.eot?#iefixa9qxwj') format('embedded-opentype'),
-		url('fonts/hatch-interface.woff?a9qxwj') format('woff'),
-		url('fonts/hatch-interface.ttf?a9qxwj') format('truetype'),
-		url('fonts/hatch-interface.svg?a9qxwj#hatch-interface') format('svg');
+	src:url('fonts/hatch-interface.eot?l4cxir');
+	src:url('fonts/hatch-interface.eot?#iefixl4cxir') format('embedded-opentype'),
+		url('fonts/hatch-interface.woff?l4cxir') format('woff'),
+		url('fonts/hatch-interface.ttf?l4cxir') format('truetype'),
+		url('fonts/hatch-interface.svg?l4cxir#hatch-interface') format('svg');
 	font-weight: normal;
 	font-style: normal;
 }
@@ -82,6 +82,9 @@
 }
 .icon-slider:before {
 	content: "\e610";
+}
+.icon-advanced-layout-full:before {
+	content: "\e62a";
 }
 .icon-advanced-layout-left:before {
 	content: "\e611";

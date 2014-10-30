@@ -7,7 +7,6 @@
  */
 get_header(); ?>
 
-
 <section id="post-<?php the_ID(); ?>" <?php post_class( 'content-main container product' ); ?>>
     <?php if( have_posts() ) : ?>
         <?php while( have_posts() ) : the_post(); ?>

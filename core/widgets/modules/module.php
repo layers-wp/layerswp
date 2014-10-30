@@ -56,6 +56,7 @@ if( !class_exists( 'Hatch_Module_Widget' ) ) {
 			$this->module_defaults = array (
 				'title' => 'Your service title',
 				'excerpt' => 'Give us a brief description of the service that you are promoting. Try keep it short so that it is easy for people to scan your page.',
+				'width' => '6',
 				'design' => array(
 					'imagealign' => 'image-left',
 					'background' => NULL,
@@ -91,13 +92,6 @@ if( !class_exists( 'Hatch_Module_Widget' ) ) {
 			// Parse $instance
 			$widget = wp_parse_args( $instance, $instance_defaults );
 
-			if( !isset( $widget['design'][ 'columns' ] ) ) {
-				$col_count = 3;
-			} else {
-				$col_count = $widget['design'][ 'columns' ];
-			}
-			$span_class = 'span-' . ( 12 / $col_count );
-
 			// Set the background styling
 			if( !empty( $widget['design'][ 'background' ] ) ) $this->widget_styles( $widget_id , 'background', $widget['design'][ 'background' ] );
 			if( !empty( $widget['design']['fonts'][ 'color' ] ) ) $this->widget_styles( $widget_id , 'color', array( 'selectors' => array( '.section-title h3.heading' , '.section-title p.excerpt' ) , 'color' => $widget['design']['fonts'][ 'color' ] ) ); ?>
@@ -116,7 +110,7 @@ if( !class_exists( 'Hatch_Module_Widget' ) ) {
 					</div>
 				<?php } ?>
 				<?php if( !empty( $widget['modules'] ) ) { ?>
-					<div class="row <?php if('layout-boxed' == $this->check_and_return( $widget , 'design' , 'layout' ) ) echo 'container'; ?>">
+					<div class="row <?php if('layout-boxed' == $this->check_and_return( $widget , 'design' , 'layout' ) ) echo 'container'; ?> <?php echo $this->check_and_return( $widget , 'design', 'liststyle' ); ?>">
 						<?php $col = 1; ?>
 						<?php foreach ( $widget['modules'] as $key => $module) {
 
@@ -125,35 +119,49 @@ if( !class_exists( 'Hatch_Module_Widget' ) ) {
 							if( !empty( $module['design']['fonts'][ 'color' ] ) ) $this->widget_styles( $widget_id . '-' . $key , 'color', array( 'selectors' => array( 'h5.heading a' , 'div.excerpt' , 'div.excerpt p' ) , 'color' => $module['design']['fonts'][ 'color' ] ) );
 							if( !empty( $module['design']['fonts'][ 'shadow' ] ) ) $this->widget_styles( $widget_id . '-' . $key , 'text-shadow', array( 'selectors' => array( 'h5.heading a' , 'div.excerpt' , 'div.excerpt p' )  , 'text-shadow' => $module['design']['fonts'][ 'shadow' ] ) );
 
+							$span_class = 'span-' . $module[ 'width' ];
+
 							// Set Image Sizes
 							if( isset( $module['design'][ 'imageratios' ] ) ){
 
 								// Translate Image Ratio
 								$image_ratio = hatch_translate_image_ratios( $module['design'][ 'imageratios' ] );
 
-								if( $col_count > 1 ){
+								if( !isset( $module[ 'width' ] ) ) $module[ 'width' ] = 6;
+
+								if( 6 > $module['width'] ){
 									$imageratios = $image_ratio . '-medium';
 								} else {
 									$imageratios = $image_ratio . '-large';
 								}
 
 							} else {
-								$imageratios = 'medium';
+								if( 6 > $module['width'] ){
+									$imageratios = 'medium';
+								} else {
+									$imageratios = 'full';
+								}
 							} ?>
 
-							<div id="<?php echo $widget_id; ?>-<?php echo $key; ?>" class="column<?php if( isset( $widget['design'][ 'columnflush' ] ) ) echo '-flush'; ?> <?php echo $span_class; ?> <?php if( '' != $this->check_and_return( $module, 'design' , 'background', 'image' ) || '' != $this->check_and_return( $module, 'design' , 'background', 'color' ) ) echo 'content'; ?>">
-								<div class="marketing <?php echo ( isset( $module['design'][ 'imagealign' ] ) ? $module['design'][ 'imagealign' ] : '' ); ?>  <?php echo ( isset( $module['design']['fonts'][ 'size' ] ) ? $module['design']['fonts'][ 'size' ] : '' ); ?>">
+							<div id="<?php echo $widget_id; ?>-<?php echo $key; ?>" class="column<?php if( isset( $widget['design'][ 'columnflush' ] ) ) echo '-flush'; ?> <?php echo $span_class; ?> <?php if( '' != $this->check_and_return( $module, 'design' , 'background', 'image' ) || '' != $this->check_and_return( $module, 'design' , 'background', 'color' ) ) echo 'content'; ?> hatch-masonry-column">
+								<div class="marketing
+									<?php echo $this->check_and_return( $module, 'design', 'imagealign' ); ?>
+									<?php echo $this->check_and_return( $module, 'design', 'fonts' , 'size' ); ?>
+									<?php if( $this->check_and_return( $widget, 'design', 'columnflush' ) ) echo 'no-push-bottom'; ?>
+								">
 									<?php if( $this->check_and_return( $module , 'design' , 'featuredimage' ) ) { ?>
 										<div class="marketing-icon"><a href="<?php echo esc_url( $module['link'] ); ?>"><?php echo wp_get_attachment_image( $module['design'][ 'featuredimage' ] , $imageratios ); ?></a></div>
 									<?php } ?>
-									<div class="marketing-body <?php echo ( isset( $module['design']['fonts'][ 'align' ] ) ) ? $module['design']['fonts'][ 'align' ] : ''; ?>">
-										<?php if( isset( $module['title'] ) && '' != $module['title'] ) { ?>
-											<h5 class="heading"><a href="<?php echo esc_url( $module['link'] ); ?>"><?php echo $module['title']; ?></a></h5>
-										<?php } ?>
-										<?php if( isset( $module['excerpt'] ) && '' != $module['excerpt'] ) { ?>
-											<div class="excerpt"><?php echo apply_filters( 'the_content', $module['excerpt'] ); ?></div>
-										<?php } ?>
-									</div>
+									<?php if( '' != $module['title'] || '' != $module['excerpt'] ) { ?>
+										<div class="marketing-body <?php echo ( isset( $module['design']['fonts'][ 'align' ] ) ) ? $module['design']['fonts'][ 'align' ] : ''; ?>">
+											<?php if( isset( $module['title'] ) && '' != $module['title'] ) { ?>
+												<h5 class="heading"><a href="<?php echo esc_url( $module['link'] ); ?>"><?php echo $module['title']; ?></a></h5>
+											<?php } ?>
+											<?php if( isset( $module['excerpt'] ) && '' != $module['excerpt'] ) { ?>
+												<div class="excerpt"><?php echo apply_filters( 'the_content', $module['excerpt'] ); ?></div>
+											<?php } ?>
+										</div>
+									<?php } ?>
 								</div>
 							</div>
 							<?php $col++; ?>
@@ -162,6 +170,16 @@ if( !class_exists( 'Hatch_Module_Widget' ) ) {
 				<?php } ?>
 
 			</section>
+
+			<script>
+				jQuery(function($){
+					var masonry = $('#<?php echo $widget_id; ?>').find('.list-masonry').masonry({
+						'itemSelector': '.hatch-masonry-column'
+						<?php if( !isset( $widget['design'][ 'columnflush' ] ) ) echo ', "gutter": 20'; ?>
+					});
+				});
+			</script>
+
 		<?php }
 
 		/**
@@ -213,9 +231,35 @@ if( !class_exists( 'Hatch_Module_Widget' ) ) {
 				array(
 					'layout',
 					'fonts',
-					'columns',
-					'background'
-				) // Standard Components
+					'background',
+					'custom'
+				), // Standard Components
+				array(
+					'liststyle' => array(
+						'icon-css' => 'icon-list-masonry',
+						'label' => 'Columns',
+						'elements' => array(
+							'liststyle' => array(
+								'label' => __( 'List Style' , HATCH_THEME_SLUG ),
+								'type' => 'select-icons',
+								'name' => $this->get_field_name( 'design' ) . '[liststyle]' ,
+								'id' =>  $this->get_field_name( 'design-liststyle' ),
+								'value' => ( isset( $design[ 'liststyle' ] ) ) ? $design[ 'liststyle' ] : NULL,
+								'options' => array(
+									'list-grid' => __( 'Grid' , HATCH_THEME_SLUG ),
+									'list-masonry' => __( 'Masonry' , HATCH_THEME_SLUG )
+								)
+							),
+							'columnflush' => array(
+								'type' => 'checkbox',
+								'label' => __( 'Remove Spacing' , HATCH_THEME_SLUG ),
+								'name' => $this->get_field_name( 'design' ) . '[columnflush]' ,
+								'id' =>  $this->get_field_name( 'design-columnflush' ),
+								'value' => ( isset( $design['columnflush'] ) ) ? $design['columnflush'] : NULL
+							)
+						)
+					)
+				)
 			); ?>
 			<div class="hatch-container-large" id="hatch-banner-widget-<?php echo $this->number; ?>">
 
@@ -293,9 +337,6 @@ if( !class_exists( 'Hatch_Module_Widget' ) ) {
 			$instance = wp_parse_args( $instance, $instance_defaults );
 			extract( $instance, EXTR_SKIP );
 
-			// If there is no GUID create one. There should always be one but this is a fallback
-			if( ! isset( $column_guid ) ) $column_guid = rand( 1 , 1000 );
-
 			// Initiate Widget Inputs
 			$widget_elements = new Hatch_Form_Elements();
 
@@ -331,7 +372,31 @@ if( !class_exists( 'Hatch_Module_Widget' ) ) {
 								'featuredimage',
 								'imagealign',
 								'fonts',
-							) // Standard Components
+								'custom',
+							), // Standard Components
+							array(
+								'width' => array(
+									'icon-css' => 'icon-columns',
+									'label' => 'Column Width',
+									'elements' => array(
+										'layout' => array(
+											'type' => 'select',
+											'label' => __( '', HATCH_THEME_SLUG ),
+											'name' => 'widget-' . $widget_details->id_base . '[' . $widget_details->number . '][modules][' . $column_guid . '][width]' ,
+											'id' => 'widget-' . $widget_details->id_base . '-' . $widget_details->number . '-' . $column_guid . '-width' ,
+											'value' => ( isset( $width ) ) ? $width : NULL,
+											'options' => array(
+												'2' => __( '1/6' , HATCH_THEME_SLUG ),
+												'4' => __( '2/6' , HATCH_THEME_SLUG ),
+												'6' => __( '3/6' , HATCH_THEME_SLUG ),
+												'8' => __( '4/6' , HATCH_THEME_SLUG ),
+												'10' => __( '5/6' , HATCH_THEME_SLUG ),
+												'12' => __( '6/6' , HATCH_THEME_SLUG )
+											)
+										)
+									)
+								),
+							)
 						); ?>
 
 						<div class="hatch-row">

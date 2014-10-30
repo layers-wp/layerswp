@@ -206,7 +206,6 @@ if( ! function_exists( 'hatch_scripts' ) ) {
 			get_template_directory_uri() . '/core/widgets/js/swiper.js',
 			array(
 				'jquery',
-				'masonry'
 			)
 		); // Slider
 
@@ -214,7 +213,8 @@ if( ! function_exists( 'hatch_scripts' ) ) {
 			HATCH_THEME_SLUG . '-framework-js' ,
 			get_template_directory_uri() . '/js/framework.js',
 			array(
-				'jquery'
+				'jquery',
+				'masonry'
 			),
 			HATCH_VERSION,
 			true

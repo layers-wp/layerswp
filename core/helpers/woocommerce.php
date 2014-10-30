@@ -16,6 +16,7 @@ if ( defined( 'WOOCOMMERCE_VERSION' ) && version_compare( WOOCOMMERCE_VERSION, "
     define( 'WOOCOMMERCE_USE_CSS', false );
 }
 
+add_theme_support( 'woocommerce' );
 
 /**
 * Add a wrap around product images, this allows us way more freedom re: styling

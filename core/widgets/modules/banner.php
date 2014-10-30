@@ -416,41 +416,7 @@ if( !class_exists( 'Hatch_Slider_Widget' ) ) {
 								'featuredimage',
 								'imagealign',
 								'fonts',
-							), // Standard Components
-							array(
-								'fonts' => array(
-									'icon-css' => 'icon-font-size',
-									'label' => '',
-									'elements' => array(
-										'font-size' => array(
-												'type' => 'select',
-												'name' => 'widget-' . $widget_details->id_base . '[' . $widget_details->number . '][banners][' . $slide_guid . '][fonts][size]',
-												'id' => 'widget-' . $widget_details->id_base . '-' . $widget_details->number . '-' . $slide_guid . '-font-size',
-												'value' => ( isset( $fonts[ 'size' ] ) ) ? $fonts[ 'size' ] : '',
-												'label' => __( 'Text Size' , HATCH_THEME_SLUG ),
-												'options' => array(
-														'small' => __( 'Small' , HATCH_THEME_SLUG ),
-														'' => __( 'Medium' , HATCH_THEME_SLUG ),
-														'large' => __( 'Large' , HATCH_THEME_SLUG )
-												)
-											),
-										'font-color' => array(
-												'type' => 'color',
-												'name' => 'widget-' . $widget_details->id_base . '[' . $widget_details->number . '][banners][' . $slide_guid . '][fonts][color]',
-												'id' => 'widget-' . $widget_details->id_base . '-' . $widget_details->number . '-' . $slide_guid . '-font-color',
-												'value' => ( isset( $fonts[ 'color' ] ) ) ? $fonts[ 'color' ] : '',
-												'label' => __( 'Text Color' , HATCH_THEME_SLUG )
-											),
-										'font-shadow' => array(
-												'type' => 'color',
-												'name' => 'widget-' . $widget_details->id_base . '[' . $widget_details->number . '][banners][' . $slide_guid . '][fonts][shadow]',
-												'id' => 'widget-' . $widget_details->id_base . '-' . $widget_details->number . '-' . $slide_guid . '-font-shadow',
-												'value' => ( isset( $fonts[ 'shadow' ] ) ) ? $fonts[ 'shadow' ] : '',
-												'label' => __( 'Text Shadow' , HATCH_THEME_SLUG )
-											)
-									)
-								),
-							)
+							) // Standard Components
 						); ?>
 
 						<div class="hatch-row">

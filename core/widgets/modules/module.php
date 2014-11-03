@@ -179,7 +179,7 @@ if( !class_exists( 'Hatch_Module_Widget' ) ) {
 							}
 						}];
 
-					$('#<?php echo $widget_id; ?>').find('.list-masonry').hatch_masonry( hatch_isotope_settings[ '<?php echo $widget_id; ?>' ][0] );
+					$('#<?php echo $widget_id; ?>').find('.list-masonry').hatch_isotope( hatch_isotope_settings[ '<?php echo $widget_id; ?>' ][0] );
 				});
 			</script>
 		<?php }
@@ -236,9 +236,9 @@ if( !class_exists( 'Hatch_Module_Widget' ) ) {
 					'liststyle' => array(
 						'icon-css' => 'icon-list-masonry',
 						'label' => 'List Style',
+						'wrapper-css' => 'hatch-small to hatch-visuals-settings-wrapper hatch-animate',
 						'elements' => array(
 							'liststyle' => array(
-								'label' => __( 'List Style' , HATCH_THEME_SLUG ),
 								'type' => 'select-icons',
 								'name' => $this->get_field_name( 'design' ) . '[liststyle]' ,
 								'id' =>  $this->get_field_name( 'design-liststyle' ),

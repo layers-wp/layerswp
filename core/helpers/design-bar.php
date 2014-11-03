@@ -109,7 +109,7 @@ class Hatch_Design_Controller {
 			</a>
 			<?php if( isset( $args['elements'] ) ) { ?>
 				<?php if( isset( $args[ 'wrapper-css' ] ) ) {
-					$wrapper_class =$args[ 'wrapper-css' ];
+					$wrapper_class = $args[ 'wrapper-css' ];
 				} else {
 					$wrapper_class = 'hatch-visuals-settings-wrapper hatch-content-small';
 				} ?>
@@ -117,7 +117,7 @@ class Hatch_Design_Controller {
 					<div class="hatch-visuals-settings">
 						<?php foreach( $args['elements'] as $key => $form_args ) { ?>
 							<div class="hatch-<?php echo $form_args[ 'type' ]; ?>-wrapper hatch-form-item">
-								<?php if( 'checkbox' != $form_args[ 'type' ] ) { ?>
+								<?php if( 'checkbox' != $form_args[ 'type' ] && isset( $form_args[ 'label' ] ) ) { ?>
 									<label><?php echo $form_args[ 'label' ]; ?></label>
 								<?php } ?>
 								<?php echo $this->input( $form_args ); ?>
@@ -368,37 +368,39 @@ class Hatch_Design_Controller {
 				</span>
 			</a>
 			<div class="hatch-visuals-settings-wrapper hatch-animate hatch-content-small">
-				<div class="hatch-visual-settings">
-					<div class="hatch-form-item">
-						<label><?php _e( 'Featured Image' , HATCH_THEME_SLUG ); ?></label>
-						<?php echo $this->input(
-							array(
-								'type' => 'image',
-								'name' => $widget['name'] . '[featuredimage]' ,
-								'id' =>  $widget['id'] . '-featuredimage' ,
-								'value' => ( isset( $values['featuredimage'] ) ) ? $values['featuredimage'] : NULL
-							)
-						); ?>
-					</div>
-					<div class="hatch-form-item">
-						<label><?php _e( 'Image Ratio' , HATCH_THEME_SLUG ); ?></label>
-						<div class="hatch-icon-group">
+				<div class="hatch-visuals-settings">
+					<section>
+						<div class="hatch-form-item">
+							<label><?php _e( 'Featured Image' , HATCH_THEME_SLUG ); ?></label>
 							<?php echo $this->input(
 								array(
-									'type' => 'select-icons',
-									'name' => $widget['name'] . '[imageratios]' ,
-									'id' =>  $widget['id'] . '-imageratios' ,
-									'value' => ( isset( $values['imageratios'] ) ) ? $values['imageratios'] : NULL,
-									'options' => array(
-										'image-portrait' => __( 'Portrait' , HATCH_THEME_SLUG ),
-										'image-landscape' => __( 'Landscape' , HATCH_THEME_SLUG ),
-										'image-square' => __( 'Square' , HATCH_THEME_SLUG ),
-										'image-no-crop' => __( 'None' , HATCH_THEME_SLUG )
-									)
+									'type' => 'image',
+									'name' => $widget['name'] . '[featuredimage]' ,
+									'id' =>  $widget['id'] . '-featuredimage' ,
+									'value' => ( isset( $values['featuredimage'] ) ) ? $values['featuredimage'] : NULL
 								)
 							); ?>
 						</div>
-					</div>
+						<div class="hatch-form-item">
+							<label><?php _e( 'Image Ratio' , HATCH_THEME_SLUG ); ?></label>
+							<div class="hatch-icon-group">
+								<?php echo $this->input(
+									array(
+										'type' => 'select-icons',
+										'name' => $widget['name'] . '[imageratios]' ,
+										'id' =>  $widget['id'] . '-imageratios' ,
+										'value' => ( isset( $values['imageratios'] ) ) ? $values['imageratios'] : NULL,
+										'options' => array(
+											'image-portrait' => __( 'Portrait' , HATCH_THEME_SLUG ),
+											'image-landscape' => __( 'Landscape' , HATCH_THEME_SLUG ),
+											'image-square' => __( 'Square' , HATCH_THEME_SLUG ),
+											'image-no-crop' => __( 'None' , HATCH_THEME_SLUG )
+										)
+									)
+								); ?>
+							</div>
+						</div>
+					</section>
 				</div>
 			</div>
 		</li>

@@ -165,7 +165,7 @@ if( !class_exists( 'Hatch_Portfolio_Widget' ) ) {
 				<?php } ?>
 				<?php if( isset( $widget['show_category_filter'] ) && isset( $terms ) &&  !is_wp_error( $terms ) ) { ?>
 					<div class="container <?php echo $this->check_and_return( $widget , 'design', 'fonts', 'align' ); ?> clearfix">
-						<ul class="nav nav-pills push-bottom-large">
+						<ul class="nav nav-pills push-bottom-large hatch-isotope-filter" data-isotope-container="<?php echo $widget_id; ?>">
 								<li data-filter=""><a href="#"><?php _e( 'All' , HATCH_THEME_SLUG ); ?></a></li>
 							<?php foreach( $terms as $term ) { ?>
 								<li data-filter="<?php echo $term->slug; ?>"><a href="#"><?php echo $term->name; ?></a></li>
@@ -230,47 +230,14 @@ if( !class_exists( 'Hatch_Portfolio_Widget' ) ) {
 
 			<script>
 				jQuery(function($){
-					setTimeout(function(){
-						var isotope = $('#<?php echo $widget_id; ?>').find('.list-masonry').isotope({
-							itemSelector: '.hatch-masonry-column'
-							<?php if( !isset( $widget['design'][ 'columnflush' ] ) ){ ?>
-								,masonry: {
-									columnWidth: '.hatch-masonry-column'
-								}
-							<?php } ?>
-						});
-					}, 500 );
+					hatch_isotope_settings[ '<?php echo $widget_id; ?>' ] = [{
+							itemSelector: '.hatch-masonry-column',
+							masonry: {
+								gutter: <?php echo ( !isset( $widget['design'][ 'columnflush' ] ) ? 20 : 0 ); ?>
+							}
+						}];
 
-					$('#<?php echo $widget_id; ?>').find('.nav-pills li').on( 'click' , function(e){
-						e.preventDefault();
-
-						// "Hi Mom"
-						$that = $(this);
-
-						// Get term slug
-						$filter = $that.data( 'filter' );
-
-						// Toggle active
-						if( '' == $filter) {
-							$final_filter = '*';
-							$that.removeClass( 'active' ).siblings().removeClass('active');
-						} else {
-							$final_filter = '.' + $filter;
-							$that.toggleClass( 'active' ).siblings().removeClass('active');
-						}
-
-						$('#<?php echo $widget_id; ?>').find('.list-masonry').isotope({
-							filter: $final_filter,
-							itemSelector: '.hatch-masonry-column'
-							<?php if( !isset( $widget['design'][ 'columnflush' ] ) ){ ?>
-								,masonry: {
-									gutterWidth: <?php echo 20; ?>
-								}
-							<?php } ?>
-						});
-
-						return false;
-					});
+					$('#<?php echo $widget_id; ?>').find('.list-masonry').hatch_masonry( hatch_isotope_settings[ '<?php echo $widget_id; ?>' ][0] );
 				});
 			</script>
 

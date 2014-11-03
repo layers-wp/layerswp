@@ -209,6 +209,7 @@ if( ! function_exists( 'hatch_scripts' ) ) {
 			get_template_directory_uri() . '/core/widgets/js/swiper.js',
 			array(
 				'jquery',
+				'masonry'
 			)
 		); // Slider
 
@@ -218,11 +219,20 @@ if( ! function_exists( 'hatch_scripts' ) ) {
 			array(
 				'jquery',
 			)
-		); // Slider
+		); // Isotope
+
+		wp_enqueue_script(
+			HATCH_THEME_SLUG . '-hatch-masonry-js' ,
+			get_template_directory_uri() . '/js/hatch.masonry.js',
+			array(
+				'jquery'
+			)
+		); // Hatch Masonry Function
+
 
 		wp_enqueue_script(
 			HATCH_THEME_SLUG . '-framework-js' ,
-			get_template_directory_uri() . '/js/framework.js',
+			get_template_directory_uri() . '/js/hatch.framework.js',
 			array(
 				'jquery',
 			),

@@ -231,40 +231,16 @@ if( !class_exists( 'Hatch_Post_Widget' ) ) {
 
 			<script>
 				jQuery(function($){
-					setTimeout(function(){
-						var masonry = $('#<?php echo $widget_id; ?>').find('.list-masonry').masonry({
-							'itemSelector': '.hatch-masonry-column'
-							<?php if( !isset( $widget['design'][ 'columnflush' ] ) ) echo ', "gutter": 20'; ?>
-						});
-					}, 500 );
-
-					$('#<?php echo $widget_id; ?>').find('.nav-pills li').on( 'click' , function(e){
-						e.preventDefault();
-
-						// "Hi Mom"
-						$that = $(this);
-
-						// Get term slug
-						$filter = $that.data( 'filter' );
-
-						// Toggle active
-						$that.toggleClass( 'active' ).siblings().removeClass('active');
-
-						jQuery.each( $('#<?php echo $widget_id; ?>').find( '.hatch-masonry-column' ) , function(){
-							if( jQuery(this).hasClass( $filter ) || !$that.hasClass( 'active' ) ){
-								jQuery(this).fadeIn();
-							} else {
-								jQuery(this).hide();
+					hatch_isotope_settings[ '<?php echo $widget_id; ?>' ] = [{
+							itemSelector: '.hatch-masonry-column',
+							masonry: {
+								gutter: <?php echo ( !isset( $widget['design'][ 'columnflush' ] ) ? 20 : 0 ); ?>
 							}
-						});
+						}];
 
-						$('#<?php echo $widget_id; ?>').find('.masonry').masonry();
-
-						return false;
-					});
+					$('#<?php echo $widget_id; ?>').find('.list-masonry').hatch_masonry( hatch_isotope_settings[ '<?php echo $widget_id; ?>' ][0] );
 				});
 			</script>
-
 
 			<?php // Reset WP_Query
 				wp_reset_postdata();

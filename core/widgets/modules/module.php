@@ -173,13 +173,15 @@ if( !class_exists( 'Hatch_Module_Widget' ) ) {
 
 			<script>
 				jQuery(function($){
-					var masonry = $('#<?php echo $widget_id; ?>').find('.list-masonry').masonry({
-						'itemSelector': '.hatch-masonry-column'
-						<?php if( !isset( $widget['design'][ 'columnflush' ] ) ) echo ', "gutter": 20'; ?>
-					});
+					hatch_isotope_settings[ '<?php echo $widget_id; ?>' ] = [{
+							masonry: {
+								gutter: <?php echo ( !isset( $widget['design'][ 'columnflush' ] ) ? 20 : 0 ); ?>
+							}
+						}];
+
+					$('#<?php echo $widget_id; ?>').find('.list-masonry').hatch_masonry( hatch_isotope_settings[ '<?php echo $widget_id; ?>' ][0] );
 				});
 			</script>
-
 		<?php }
 
 		/**

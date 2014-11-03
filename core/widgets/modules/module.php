@@ -38,7 +38,7 @@ if( !class_exists( 'Hatch_Module_Widget' ) ) {
 				'design' => array(
 					'layout' => 'layout-boxed',
 					'columns' => '3',
-					'gutter' => true,
+					'gutter' => 'on',
 					'background' => array(
 						'position' => 'center',
 						'repeat' => 'no-repeat'

@@ -61,7 +61,7 @@ if( !class_exists( 'Hatch_Portfolio_Widget' ) ) {
 					'textalign' => 'text-left',
 					'liststyle' => 'list-grid',
 					'columns' => '3',
-					'gutter' => true,
+					'gutter' => 'on',
 					'background' => array(
 						'position' => 'center',
 						'repeat' => 'no-repeat'

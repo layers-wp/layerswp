@@ -234,9 +234,6 @@ if( !class_exists( 'Hatch_Slider_Widget' ) ) {
 		*/
 		function form( $instance ){
 
-			// Initiate Widget Inputs
-			$widget_elements = new Hatch_Form_Elements();
-
 			// $instance Defaults
 			$instance_defaults = $this->defaults;
 
@@ -247,8 +244,7 @@ if( !class_exists( 'Hatch_Slider_Widget' ) ) {
 			$instance = wp_parse_args( $instance, $instance_defaults );
 			extract( $instance, EXTR_SKIP ); ?>
 			<!-- Form HTML Here -->
-			<?php $design_controller = new Hatch_Design_Controller();
-			$design_controller->bar(
+			<?php $this->design_bar()->bar(
 				'side', // CSS Class Name
 				array(
 					'name' => $this->get_field_name( 'design' ),
@@ -326,13 +322,13 @@ if( !class_exists( 'Hatch_Slider_Widget' ) ) {
 			); ?>
 			<div class="hatch-container-large" id="hatch-banner-widget-<?php echo $this->number; ?>">
 
-				<?php $widget_elements->header( array(
+				<?php $this->form_elements()->header( array(
 					'title' =>'Sliders',
 					'icon_class' =>'slider'
 				) ); ?>
 
 				<section class="hatch-accordion-section hatch-content">
-						<?php echo $widget_elements->input(
+						<?php echo $this->form_elements()->input(
 							array(
 								'type' => 'hidden',
 								'name' => $this->get_field_name( 'banner_ids' ) ,
@@ -381,8 +377,7 @@ if( !class_exists( 'Hatch_Slider_Widget' ) ) {
 			// If there is no GUID create one. There should always be one but this is a fallback
 			if( ! isset( $slide_guid ) ) $slide_guid = rand( 1 , 1000 );
 
-			// Initiate Widget Inputs
-			$widget_elements = new Hatch_Form_Elements();
+
 
 			// Turn the widget details into an object, it makes the code cleaner
 			$widget_details = (object) $widget_details;
@@ -401,8 +396,7 @@ if( !class_exists( 'Hatch_Slider_Widget' ) ) {
 						</span>
 					</a>
 					<section class="hatch-accordion-section hatch-content">
-						<?php $design_controller = new Hatch_Design_Controller();
-						$design_controller->bar(
+						<?php $this->design_bar()->bar(
 							'top', // CSS Class Name
 							array(
 								'name' => 'widget-' . $widget_details->id_base . '[' . $widget_details->number . '][banners][' . $slide_guid . '][design]',
@@ -421,7 +415,7 @@ if( !class_exists( 'Hatch_Slider_Widget' ) ) {
 
 						<div class="hatch-row">
 							<p class="hatch-form-item">
-								<?php echo $widget_elements->input(
+								<?php echo $this->form_elements()->input(
 									array(
 										'type' => 'text',
 										'name' => 'widget-' . $widget_details->id_base . '[' . $widget_details->number . '][banners][' . $slide_guid . '][title]' ,
@@ -434,7 +428,7 @@ if( !class_exists( 'Hatch_Slider_Widget' ) ) {
 								); ?>
 							</p>
 							<p class="hatch-form-item">
-								<?php echo $widget_elements->input(
+								<?php echo $this->form_elements()->input(
 									array(
 										'type' => 'textarea',
 										'name' => 'widget-' . $widget_details->id_base . '[' . $widget_details->number . '][banners][' . $slide_guid . '][excerpt]' ,
@@ -448,7 +442,7 @@ if( !class_exists( 'Hatch_Slider_Widget' ) ) {
 							</p>
 							<p class="hatch-form-item">
 								<label for="<?php echo $this->get_field_id( 'link' ); ?>"><?php _e( 'Button Link' , HATCH_THEME_SLUG ); ?></label>
-								<?php echo $widget_elements->input(
+								<?php echo $this->form_elements()->input(
 									array(
 										'type' => 'text',
 										'name' => 'widget-' . $widget_details->id_base . '[' . $widget_details->number . '][banners][' . $slide_guid . '][link]' ,
@@ -460,7 +454,7 @@ if( !class_exists( 'Hatch_Slider_Widget' ) ) {
 							</p>
 							<p class="hatch-form-item">
 								<label for="<?php echo $this->get_field_id( 'link' ); ?>"><?php _e( 'Button Text' , HATCH_THEME_SLUG ); ?></label>
-								<?php echo $widget_elements->input(
+								<?php echo $this->form_elements()->input(
 									array(
 										'type' => 'text',
 										'name' => 'widget-' . $widget_details->id_base . '[' . $widget_details->number . '][banners][' . $slide_guid . '][link_text]' ,

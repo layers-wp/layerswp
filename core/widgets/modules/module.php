@@ -206,9 +206,6 @@ if( !class_exists( 'Hatch_Module_Widget' ) ) {
 		*/
 		function form( $instance ){
 
-			// Initiate Widget Inputs
-			$widget_elements = new Hatch_Form_Elements();
-
 			// $instance Defaults
 			$instance_defaults = $this->defaults;
 
@@ -220,8 +217,7 @@ if( !class_exists( 'Hatch_Module_Widget' ) ) {
 			extract( $instance, EXTR_SKIP ); ?>
 
 			<!-- Form HTML Here -->
-			<?php $design_controller = new Hatch_Design_Controller();
-			$design_controller->bar(
+			<?php $this->design_bar()->bar(
 				'side', // CSS Class Name
 				array(
 					'name' => $this->get_field_name( 'design' ),
@@ -230,14 +226,14 @@ if( !class_exists( 'Hatch_Module_Widget' ) ) {
 				$instance, // Widget Values
 				array(
 					'layout',
+					'custom',
 					'fonts',
-					'background',
-					'custom'
+					'background'
 				), // Standard Components
 				array(
 					'liststyle' => array(
 						'icon-css' => 'icon-list-masonry',
-						'label' => 'Columns',
+						'label' => 'List Style',
 						'elements' => array(
 							'liststyle' => array(
 								'label' => __( 'List Style' , HATCH_THEME_SLUG ),
@@ -263,14 +259,14 @@ if( !class_exists( 'Hatch_Module_Widget' ) ) {
 			); ?>
 			<div class="hatch-container-large" id="hatch-banner-widget-<?php echo $this->number; ?>">
 
-				<?php $widget_elements->header( array(
+				<?php $this->form_elements()->header( array(
 					'title' =>'Columns',
 					'icon_class' =>'text'
 				) ); ?>
 
 				<section class="hatch-accordion-section hatch-content">
 					<p class="hatch-form-item">
-						<?php echo $widget_elements->input(
+						<?php echo $this->form_elements()->input(
 							array(
 								'type' => 'text',
 								'name' => $this->get_field_name( 'title' ) ,
@@ -282,7 +278,7 @@ if( !class_exists( 'Hatch_Module_Widget' ) ) {
 						); ?>
 					</p>
 					<p class="hatch-form-item">
-						<?php echo $widget_elements->input(
+						<?php echo $this->form_elements()->input(
 							array(
 								'type' => 'textarea',
 								'name' => $this->get_field_name( 'excerpt' ) ,
@@ -294,7 +290,7 @@ if( !class_exists( 'Hatch_Module_Widget' ) ) {
 						); ?>
 					</p>
 
-					<?php echo $widget_elements->input(
+					<?php echo $this->form_elements()->input(
 						array(
 							'type' => 'hidden',
 							'name' => $this->get_field_name( 'module_ids' ) ,
@@ -337,8 +333,7 @@ if( !class_exists( 'Hatch_Module_Widget' ) ) {
 			$instance = wp_parse_args( $instance, $instance_defaults );
 			extract( $instance, EXTR_SKIP );
 
-			// Initiate Widget Inputs
-			$widget_elements = new Hatch_Form_Elements();
+
 
 			// Turn the widget details into an object, it makes the code cleaner
 			$widget_details = (object) $widget_details;
@@ -357,8 +352,7 @@ if( !class_exists( 'Hatch_Module_Widget' ) ) {
 						</span>
 					</a>
 					<section class="hatch-accordion-section hatch-content">
-						<?php $design_controller = new Hatch_Design_Controller();
-						$design_controller->bar(
+						<?php $this->design_bar()->bar(
 							'top', // CSS Class Name
 							array(
 								'name' => 'widget-' . $widget_details->id_base . '[' . $widget_details->number . '][modules][' . $column_guid . '][design]',
@@ -401,7 +395,7 @@ if( !class_exists( 'Hatch_Module_Widget' ) ) {
 
 						<div class="hatch-row">
 							<p class="hatch-form-item">
-								<?php echo $widget_elements->input(
+								<?php echo $this->form_elements()->input(
 									array(
 										'type' => 'text',
 										'name' => 'widget-' . $widget_details->id_base . '[' . $widget_details->number . '][modules][' . $column_guid . '][title]' ,
@@ -413,7 +407,7 @@ if( !class_exists( 'Hatch_Module_Widget' ) ) {
 								); ?>
 							</p>
 							<p class="hatch-form-item">
-								<?php echo $widget_elements->input(
+								<?php echo $this->form_elements()->input(
 									array(
 										'type' => 'text',
 										'name' => 'widget-' . $widget_details->id_base . '[' . $widget_details->number . '][modules][' . $column_guid . '][link]' ,
@@ -424,7 +418,7 @@ if( !class_exists( 'Hatch_Module_Widget' ) ) {
 									)
 								); ?>
 							</p>
-							<?php echo $widget_elements->input(
+							<?php echo $this->form_elements()->input(
 								array(
 									'type' => 'textarea',
 									'name' => 'widget-' . $widget_details->id_base . '[' . $widget_details->number . '][modules][' . $column_guid . '][excerpt]' ,

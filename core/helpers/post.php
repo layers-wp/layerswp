@@ -45,6 +45,8 @@ if( !function_exists( 'hatch_post_meta' ) ) {
                         $the_categories = get_the_category( $post_id );
                     } elseif( 'jetpack-portfolio' == get_post_type( $post_id ) ) {
                         $the_categories = get_the_terms( $post_id , 'jetpack-portfolio-type' );
+                    } else {
+                        $the_categories = FALSE;
                     }
 
                     // If there are no categories, skip to the next case
@@ -62,6 +64,8 @@ if( !function_exists( 'hatch_post_meta' ) ) {
                         $the_tags = get_the_tags( $post_id );
                     } elseif( 'jetpack-portfolio' == get_post_type( $post_id ) ) {
                         $the_tags = get_the_terms( $post_id , 'jetpack-portfolio-tag' );
+                    } else {
+                        $the_tags = FALSE;
                     }
 
                     // If there are no tags, skip to the next case

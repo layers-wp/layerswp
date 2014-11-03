@@ -12,9 +12,11 @@ class Hatch_Design_Controller {
 	/**
 	* Generate Design Options
 	*
-	* @param  	array     	$options() 	Widget $instance
-	* @param  	array     	$options() 	Element Support
-	* @param  	array     	$options() 	Array of custom elements which are not common
+	* @param  	varchar     $type 		Sidebar type, side/top
+	* @param  	array     	$widget 	Widget object (for name, id, etc)
+	* @param  	array     	$instance 	Widget $instance
+	* @param  	array     	$components Array of standard components to support
+	* @param  	array     	$custom_components Array of custom components and elements
 	*/
 
 	function bar( $type = 'side' , $widget = NULL, $instance = array(), $components = array( 'columns' , 'background' , 'imagealign' ) , $custom_components = array() ) {

@@ -132,5 +132,35 @@ if( !class_exists( 'Hatch_Widget' ) ) {
 
 		}
 
+		/**
+		* Design Bar Class Instantiation, we'd rather have it done here than in each widget
+		*
+		* @return  	html 		Design bar HTML
+		*/
+		public function design_bar() {
+
+			// Instantiate design bar
+			$design_bar = new Hatch_Design_Controller();
+
+			// Return design bar
+			return $design_bar;
+
+		}
+
+		/**
+		* Design Bar Class Instantiation, we'd rather have it done here than in each widget
+		*
+		* @return  	html 		Design bar HTML
+		*/
+		public function form_elements() {
+
+			// Instantiate Widget Inputs
+			$form_elements = new Hatch_Form_Elements();
+
+			// Return design bar
+			return $form_elements;
+
+		}
+
 	}
 }

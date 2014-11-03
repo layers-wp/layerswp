@@ -79,6 +79,9 @@ if( is_admin() ){
 	// Include form item class
 	locate_template( '/core/helpers/forms.php' , true );
 
+	// Include design bar class
+	locate_template( '/core/helpers/design-bar.php' , true );
+
 	// Include pointers class
 	locate_template( '/core/helpers/pointers.php' , true );
 }

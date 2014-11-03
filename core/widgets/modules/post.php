@@ -294,9 +294,6 @@ if( !class_exists( 'Hatch_Post_Widget' ) ) {
 		*/
 		function form( $instance ){
 
-			// Initiate Widget Inputs
-			$widget_elements = new Hatch_Form_Elements();
-
 			// $instance Defaults
 			$instance_defaults = $this->defaults;
 
@@ -309,8 +306,7 @@ if( !class_exists( 'Hatch_Post_Widget' ) ) {
 			extract( $instance, EXTR_SKIP ); ?>
 
 			<!-- Form HTML Here -->
-			<?php $design_controller = new Hatch_Design_Controller();
-			$design_controller->bar(
+			<?php $this->design_bar()->bar(
 				'side', // CSS Class Name
 				array(
 					'name' => $this->get_field_name( 'design' ),
@@ -415,7 +411,7 @@ if( !class_exists( 'Hatch_Post_Widget' ) ) {
 
 			<div class="hatch-container-large">
 
-				<?php $widget_elements->header( array(
+				<?php $this->form_elements()->header( array(
 					'title' =>  __( 'Post' , HATCH_THEME_SLUG ),
 					'icon_class' =>'post'
 				) ); ?>
@@ -424,7 +420,7 @@ if( !class_exists( 'Hatch_Post_Widget' ) ) {
 
 					<div class="hatch-row hatch-push-bottom">
 						<p class="hatch-form-item">
-							<?php echo $widget_elements->input(
+							<?php echo $this->form_elements()->input(
 								array(
 									'type' => 'text',
 									'name' => $this->get_field_name( 'title' ) ,
@@ -437,7 +433,7 @@ if( !class_exists( 'Hatch_Post_Widget' ) ) {
 						</p>
 
 						<p class="hatch-form-item">
-							<?php echo $widget_elements->input(
+							<?php echo $this->form_elements()->input(
 								array(
 									'type' => 'textarea',
 									'name' => $this->get_field_name( 'excerpt' ) ,
@@ -455,7 +451,7 @@ if( !class_exists( 'Hatch_Post_Widget' ) ) {
 								<label for="<?php echo $this->get_field_id( 'category' ); ?>"><?php echo __( 'Category to Display' , HATCH_THEME_SLUG ); ?></label>
 								<?php $category_options[ 0 ] ="All";
 								foreach ( $terms as $t ) $category_options[ $t->term_id ] = $t->name;
-								echo $widget_elements->input(
+								echo $this->form_elements()->input(
 									array(
 										'type' => 'select',
 										'name' => $this->get_field_name( 'category' ) ,
@@ -470,8 +466,8 @@ if( !class_exists( 'Hatch_Post_Widget' ) ) {
 						<p class="hatch-form-item">
 							<label for="<?php echo $this->get_field_id( 'posts_per_page' ); ?>"><?php echo __( 'Number of items to show' , HATCH_THEME_SLUG ); ?></label>
 							<?php $select_options[ '-1' ] = __( 'Show All' , HATCH_THEME_SLUG );
-							$select_options = $widget_elements->get_incremental_options( $select_options , 1 , 20 , 1);
-							echo $widget_elements->input(
+							$select_options = $this->form_elements()->get_incremental_options( $select_options , 1 , 20 , 1);
+							echo $this->form_elements()->input(
 								array(
 									'type' => 'number',
 									'name' => $this->get_field_name( 'posts_per_page' ) ,
@@ -485,13 +481,13 @@ if( !class_exists( 'Hatch_Post_Widget' ) ) {
 
 						<p class="hatch-form-item">
 							<label for="<?php echo $this->get_field_id( 'order' ); ?>"><?php echo __( 'Sort by' , HATCH_THEME_SLUG ); ?></label>
-							<?php echo $widget_elements->input(
+							<?php echo $this->form_elements()->input(
 								array(
 									'type' => 'select',
 									'name' => $this->get_field_name( 'order' ) ,
 									'id' => $this->get_field_id( 'order' ) ,
 									'value' => ( isset( $order ) ) ? $order : NULL ,
-									'options' => $widget_elements->get_default_sort_options()
+									'options' => $this->form_elements()->get_sort_options()
 								)
 							); ?>
 						</p>

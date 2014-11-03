@@ -161,9 +161,6 @@ if( !class_exists( 'Hatch_Contact_Widget' ) ) {
 		*/
 		function form( $instance ){
 
-			// Initiate Widget Inputs
-			$widget_elements = new Hatch_Form_Elements();
-
 			// $instance Defaults
 			$instance_defaults = $this->defaults;
 
@@ -174,8 +171,7 @@ if( !class_exists( 'Hatch_Contact_Widget' ) ) {
 			$instance = wp_parse_args( $instance, $instance_defaults );
 			extract( $instance, EXTR_SKIP ); ?>
 			<!-- Form HTML Here -->
-			<?php $design_controller = new Hatch_Design_Controller();
-			$design_controller->bar(
+			<?php $this->design_bar()->bar(
 				'side', // CSS Class Name
 				array(
 					'name' => $this->get_field_name( 'design' ),
@@ -229,7 +225,7 @@ if( !class_exists( 'Hatch_Contact_Widget' ) ) {
 				);?>
 			<div class="hatch-container-large">
 
-				<?php $widget_elements->header( array(
+				<?php $this->form_elements()->header( array(
 					'title' => __( 'Contact', HATCH_THEME_SLUG ),
 					'icon_class' =>'location'
 				) ); ?>
@@ -237,7 +233,7 @@ if( !class_exists( 'Hatch_Contact_Widget' ) ) {
 				<section class="hatch-accordion-section hatch-content">
 					<div class="hatch-row hatch-push-bottom clearfix">
 						<p class="hatch-form-item">
-							<?php echo $widget_elements->input(
+							<?php echo $this->form_elements()->input(
 								array(
 									'type' => 'text',
 									'name' => $this->get_field_name( 'title' ) ,
@@ -249,7 +245,7 @@ if( !class_exists( 'Hatch_Contact_Widget' ) ) {
 							); ?>
 						</p>
 						<p class="hatch-form-item">
-							<?php echo $widget_elements->input(
+							<?php echo $this->form_elements()->input(
 								array(
 									'type' => 'textarea',
 									'name' => $this->get_field_name( 'excerpt' ) ,
@@ -261,7 +257,7 @@ if( !class_exists( 'Hatch_Contact_Widget' ) ) {
 							); ?>
 						</p>
 						<p class="hatch-form-item">
-							<?php echo $widget_elements->input(
+							<?php echo $this->form_elements()->input(
 								array(
 									'type' => 'textarea',
 									'name' => $this->get_field_name( 'contact_form' ) ,
@@ -277,7 +273,7 @@ if( !class_exists( 'Hatch_Contact_Widget' ) ) {
 					<div class="hatch-row clearfix">
 						<div class="hatch-column hatch-span-12">
 							<div class="hatch-panel">
-								<?php $widget_elements->section_panel_title(
+								<?php $this->form_elements()->section_panel_title(
 									array(
 										'type' => 'panel',
 										'title' => __( 'Address' , HATCH_THEME_SLUG ),
@@ -287,7 +283,7 @@ if( !class_exists( 'Hatch_Contact_Widget' ) ) {
 								<div class="hatch-content">
 									<p class="hatch-form-item">
 										<label for="<?php echo $this->get_field_id( 'google_maps_location' ); ?>"><?php _e( 'Google Maps Location' , HATCH_THEME_SLUG ); ?></label>
-										<?php echo $widget_elements->input(
+										<?php echo $this->form_elements()->input(
 											array(
 												'type' => 'text',
 												'name' => $this->get_field_name( 'google_maps_location' ) ,
@@ -299,7 +295,7 @@ if( !class_exists( 'Hatch_Contact_Widget' ) ) {
 									</p>
 									<p class="hatch-form-item">
 										<label for="<?php echo $this->get_field_id( 'google_maps_long_lat' ); ?>"><?php _e( 'Google Maps Latitude & Longitude (Optional)' , HATCH_THEME_SLUG ); ?></label>
-										<?php echo $widget_elements->input(
+										<?php echo $this->form_elements()->input(
 											array(
 												'type' => 'text',
 												'name' => $this->get_field_name( 'google_maps_long_lat' ) ,
@@ -311,7 +307,7 @@ if( !class_exists( 'Hatch_Contact_Widget' ) ) {
 									</p>
 									<p class="hatch-form-item">
 										<label for="<?php echo $this->get_field_id( 'address_shown' ); ?>"><?php _e( 'Address Shown' , HATCH_THEME_SLUG ); ?></label>
-										<?php echo $widget_elements->input(
+										<?php echo $this->form_elements()->input(
 											array(
 												'type' => 'textarea',
 												'name' => $this->get_field_name( 'address_shown' ) ,

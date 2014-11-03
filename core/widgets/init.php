@@ -36,7 +36,6 @@ class Hatch_Widgets {
 
 		// Include ajax functions
 		locate_template( $widget_dir . 'ajax.php' , true );
-		locate_template( $widget_dir . 'design-controller.php' , true );
 
 		// Include necessary widgets
 		locate_template(  $module_dir . 'base.php' , true ); // Basis of all Hatch Widgets

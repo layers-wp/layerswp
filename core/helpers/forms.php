@@ -96,7 +96,7 @@ class Hatch_Form_Elements {
 	* @return 	array 		$options()	Array of options
 	*/
 
-	public function get_default_sort_options( $options = array() ){
+	public function get_sort_options( $options = array() ){
 		$options[ json_encode( array( 'orderby' => 'date', 'order' => 'desc' ) ) ] = __( 'Newest First' , HATCH_THEME_SLUG );
 		$options[ json_encode( array( 'orderby' => 'date', 'order' => 'asc' ) ) ] = __( 'Oldest First' , HATCH_THEME_SLUG );
 		$options[ json_encode( array( 'orderby' => 'rand', 'order' => 'desc' ) ) ] = __( 'Random' , HATCH_THEME_SLUG );

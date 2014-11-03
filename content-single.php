@@ -15,7 +15,10 @@ global $post, $post_meta_to_display; ?>
     <h1 class="heading"><?php the_title(); ?></h1>
 </header>
 <div class="thumbnail push-bottom"><?php echo the_post_thumbnail( 'large' ); ?></div>
-<div class="story">
+<?php if( 'template-blank.php' != get_page_template_slug() ) { ?>
+    <div class="story">
+<?php } ?>
+
     <?php the_content(); ?>
     <?php wp_link_pages( array(
         'link_before'   => '<span>',
@@ -23,8 +26,10 @@ global $post, $post_meta_to_display; ?>
         'before'        => '<p class="inner-post-pagination">' . __('<span>Pages:</span>', 'ocmx'),
         'after'     => '</p>'
     )); ?>
-</div>
-<?php if( 'post' == get_post_type() ) { ?>
+<?php if( 'template-blank.php' == get_page_template_slug() ) { ?>
+    </div>
+<?php } ?>
+<?php if( 'post' != get_post_type() ) { ?>
     <?php hatch_post_meta( $post->ID ); ?>
 <?php } // if post ?>
 

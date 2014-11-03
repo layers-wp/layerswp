@@ -459,12 +459,16 @@ p[class*='comment-form'] .required{color: #900;}
         #order_review .form-row.terms input[type="checkbox"]{display: inline; margin: 0 5px 0 0; vertical-align: middle;}
         #order_review .form-row.terms label{display: inline; vertical-align: middle; font-size: 1.2rem; font-weight: normal;}
 
-    
+
+    /*- ACCOUNT PAGE --*/
+    .col2-set .title{padding: 0; margin-bottom: 26px;}
+    .col2-set .title h3{display: inline; margin-bottom: 10px;}
+    .col2-set .title .edit{display: inline; margin-left: 15px; font-size: 1.2rem;}
 
 
     /*---------------------------*/
     /*- WOOMESSAGES -------------*/
-    .woocommerce-message{padding: 10px; background: #F5F5F5; overflow: hidden; margin-bottom: 20px; border-radius: 6px;}
+    .woocommerce-message{padding: 10px; background: #F5F5F5; overflow: hidden; margin-bottom: 20px; border-radius: 6px; font-size: 1.6rem;}
     .woocommerce-message a{margin-right: 10px; vertical-align: baseline;}
 
     .woocommerce-info{padding: 10px; background: #F5F5F5; overflow: hidden; margin-bottom: 20px; border-radius: 6px;}

@@ -175,7 +175,7 @@ if( !class_exists( 'Hatch_Module_Widget' ) ) {
 				jQuery(function($){
 					hatch_isotope_settings[ '<?php echo $widget_id; ?>' ] = [{
 							masonry: {
-								gutter: <?php echo ( !isset( $widget['design'][ 'gutter' ] ) ? 20 : 0 ); ?>
+								gutter: <?php echo ( isset( $widget['design'][ 'gutter' ] ) ? 20 : 0 ); ?>
 							}
 						}];
 

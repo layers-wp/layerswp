@@ -234,7 +234,7 @@ if( !class_exists( 'Hatch_Post_Widget' ) ) {
 					hatch_isotope_settings[ '<?php echo $widget_id; ?>' ] = [{
 							itemSelector: '.hatch-masonry-column',
 							masonry: {
-								gutter: <?php echo ( !isset( $widget['design'][ 'gutter' ] ) ? 20 : 0 ); ?>
+								gutter: <?php echo ( isset( $widget['design'][ 'gutter' ] ) ? 20 : 0 ); ?>
 							}
 						}];
 

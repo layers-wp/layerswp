@@ -111,10 +111,10 @@ class Hatch_Design_Controller {
 				<?php if( isset( $args[ 'wrapper-css' ] ) ) {
 					$wrapper_class = $args[ 'wrapper-css' ];
 				} else {
-					$wrapper_class = 'hatch-visuals-settings-wrapper hatch-content-small';
+					$wrapper_class = 'hatch-pop-menu-wrapper hatch-content-small';
 				} ?>
 				<div class="<?php echo $wrapper_class; ?>">
-					<div class="hatch-visuals-settings">
+					<div class="hatch-pop-menu-setting">
 						<?php foreach( $args['elements'] as $key => $form_args ) { ?>
 							<div class="hatch-<?php echo $form_args[ 'type' ]; ?>-wrapper hatch-form-item">
 								<?php if( 'checkbox' != $form_args[ 'type' ] && isset( $form_args[ 'label' ] ) ) { ?>
@@ -149,8 +149,8 @@ class Hatch_Design_Controller {
 					<?php _e( 'Layout' , HATCH_THEME_SLUG ); ?>
 				</span>
 			</a>
-			<div class="hatch-visuals-settings-wrapper hatch-animate hatch-small">
-				<div class="hatch-visuals-settings">
+			<div class="hatch-pop-menu-wrapper hatch-animate hatch-small">
+				<div class="hatch-pop-menu-setting">
 					<?php echo $this->input(
 						array(
 							'type' => 'select-icons',
@@ -190,8 +190,8 @@ class Hatch_Design_Controller {
 				</span>
 			</a>
 
-			<div class="hatch-visuals-settings-wrapper hatch-animate hatch-small">
-				<div class="hatch-visuals-settings">
+			<div class="hatch-pop-menu-wrapper hatch-animate hatch-small">
+				<div class="hatch-pop-menu-setting">
 					<?php echo $this->input(
 						array(
 							'type' => 'select-icons',
@@ -231,8 +231,8 @@ class Hatch_Design_Controller {
 				</span>
 			</a>
 
-			<div class="hatch-visuals-settings-wrapper hatch-animate hatch-content-small">
-				<div class="hatch-visuals-settings">
+			<div class="hatch-pop-menu-wrapper hatch-animate hatch-content-small">
+				<div class="hatch-pop-menu-setting">
 					<div class="hatch-form-item">
 						<label for="<?php echo  $widget['name'] . '-columns'; ?>"><?php _e( 'Columns' , HATCH_THEME_SLUG ); ?></label>
 						<?php echo $this->input(
@@ -255,10 +255,10 @@ class Hatch_Design_Controller {
 						<?php echo $this->input(
 							array(
 								'type' => 'checkbox',
-								'label' => __( 'Remove Spacing' , HATCH_THEME_SLUG ),
-								'name' => $widget['name'] . '[columnflush]' ,
-								'id' =>  $widget['id'] . '-column-flush' ,
-								'value' => ( isset( $values['columnflush'] ) ) ? $values['columnflush'] : NULL
+								'label' => __( 'Gutter' , HATCH_THEME_SLUG ),
+								'name' => $widget['name'] . '[gutter]' ,
+								'id' =>  $widget['id'] . '-gutter' ,
+								'value' => ( isset( $values['gutter'] ) ) ? $values['gutter'] : NULL
 							)
 						); ?>
 					</div>
@@ -287,8 +287,8 @@ class Hatch_Design_Controller {
 					<?php _e( 'Text Align' , HATCH_THEME_SLUG ); ?>
 				</span>
 			</a>
-			<div class="hatch-visuals-settings-wrapper hatch-animate hatch-small">
-				<div class="hatch-visuals-settings">
+			<div class="hatch-pop-menu-wrapper hatch-animate hatch-small">
+				<div class="hatch-pop-menu-setting">
 					<?php echo $this->input(
 						array(
 							'type' => 'select-icons',
@@ -328,8 +328,8 @@ class Hatch_Design_Controller {
 					<?php _e( 'Image Align' , HATCH_THEME_SLUG ); ?>
 				</span>
 			</a>
-			<div class="hatch-visuals-settings-wrapper hatch-animate hatch-small">
-				<div class="hatch-visual-settings">
+			<div class="hatch-pop-menu-wrapper hatch-animate hatch-small">
+				<div class="hatch-pop-menu-setting">
 					<?php echo $this->input(
 						array(
 							'type' => 'select-icons',
@@ -367,8 +367,8 @@ class Hatch_Design_Controller {
 					<?php _e( 'Featured Image' , HATCH_THEME_SLUG ); ?>
 				</span>
 			</a>
-			<div class="hatch-visuals-settings-wrapper hatch-animate hatch-content-small">
-				<div class="hatch-visuals-settings">
+			<div class="hatch-pop-menu-wrapper hatch-animate hatch-content-small">
+				<div class="hatch-pop-menu-setting">
 					<section>
 						<div class="hatch-form-item">
 							<label><?php _e( 'Featured Image' , HATCH_THEME_SLUG ); ?></label>
@@ -425,8 +425,8 @@ class Hatch_Design_Controller {
 					<?php _e( 'Image Ratio' , HATCH_THEME_SLUG ); ?>
 				</span>
 			</a>
-			<div class="hatch-visuals-settings-wrapper hatch-animate hatch-small">
-				<div class="hatch-visual-settings">
+			<div class="hatch-pop-menu-wrapper hatch-animate hatch-small">
+				<div class="hatch-pop-menu-setting">
 					<div class="hatch-select-wrapper hatch-form-item">
 						<?php echo $this->input(
 							array(
@@ -468,8 +468,8 @@ class Hatch_Design_Controller {
 					<?php _e( 'Text' , HATCH_THEME_SLUG ); ?>
 				</span>
 			</a>
-			<div class="hatch-visuals-settings-wrapper hatch-animate hatch-content-small">
-				<div class="hatch-visuals-settings">
+			<div class="hatch-pop-menu-wrapper hatch-animate hatch-content-small">
+				<div class="hatch-pop-menu-setting">
 					<section>
 						<div class="hatch-form-item">
 							<label><?php _e( 'Text Align' , HATCH_THEME_SLUG ); ?></label>
@@ -545,8 +545,8 @@ class Hatch_Design_Controller {
 					<?php _e( 'Background' , HATCH_THEME_SLUG ); ?>
 				</span>
 			</a>
-			<div class="hatch-visuals-settings-wrapper hatch-animate hatch-content-small">
-				<div class="hatch-visuals-settings">
+			<div class="hatch-pop-menu-wrapper hatch-animate hatch-content-small">
+				<div class="hatch-pop-menu-setting">
 					<section>
 						<div class="hatch-form-item">
 							<label><?php _e( 'Background Image' , HATCH_THEME_SLUG ); ?></label>

@@ -38,7 +38,7 @@ if( !class_exists( 'Hatch_Module_Widget' ) ) {
 				'design' => array(
 					'layout' => 'layout-boxed',
 					'columns' => '3',
-					'columflush' => false,
+					'gutter' => true,
 					'background' => array(
 						'position' => 'center',
 						'repeat' => 'no-repeat'
@@ -143,11 +143,11 @@ if( !class_exists( 'Hatch_Module_Widget' ) ) {
 								}
 							} ?>
 
-							<div id="<?php echo $widget_id; ?>-<?php echo $key; ?>" class="column<?php if( isset( $widget['design'][ 'columnflush' ] ) ) echo '-flush'; ?> <?php echo $span_class; ?> <?php if( '' != $this->check_and_return( $module, 'design' , 'background', 'image' ) || '' != $this->check_and_return( $module, 'design' , 'background', 'color' ) ) echo 'content'; ?> hatch-masonry-column">
+							<div id="<?php echo $widget_id; ?>-<?php echo $key; ?>" class="column<?php if( !isset( $widget['design'][ 'gutter' ] ) ) echo '-flush'; ?> <?php echo $span_class; ?> <?php if( '' != $this->check_and_return( $module, 'design' , 'background', 'image' ) || '' != $this->check_and_return( $module, 'design' , 'background', 'color' ) ) echo 'content'; ?> hatch-masonry-column">
 								<div class="marketing
 									<?php echo $this->check_and_return( $module, 'design', 'imagealign' ); ?>
 									<?php echo $this->check_and_return( $module, 'design', 'fonts' , 'size' ); ?>
-									<?php if( $this->check_and_return( $widget, 'design', 'columnflush' ) ) echo 'no-push-bottom'; ?>
+									<?php if( !$this->check_and_return( $widget, 'design', 'gutter' ) ) echo 'no-push-bottom'; ?>
 								">
 									<?php if( $this->check_and_return( $module , 'design' , 'featuredimage' ) ) { ?>
 										<div class="marketing-icon"><a href="<?php echo esc_url( $module['link'] ); ?>"><?php echo wp_get_attachment_image( $module['design'][ 'featuredimage' ] , $imageratios ); ?></a></div>
@@ -175,7 +175,7 @@ if( !class_exists( 'Hatch_Module_Widget' ) ) {
 				jQuery(function($){
 					hatch_isotope_settings[ '<?php echo $widget_id; ?>' ] = [{
 							masonry: {
-								gutter: <?php echo ( !isset( $widget['design'][ 'columnflush' ] ) ? 20 : 0 ); ?>
+								gutter: <?php echo ( !isset( $widget['design'][ 'gutter' ] ) ? 20 : 0 ); ?>
 							}
 						}];
 
@@ -236,7 +236,7 @@ if( !class_exists( 'Hatch_Module_Widget' ) ) {
 					'liststyle' => array(
 						'icon-css' => 'icon-list-masonry',
 						'label' => 'List Style',
-						'wrapper-css' => 'hatch-small to hatch-visuals-settings-wrapper hatch-animate',
+						'wrapper-css' => 'hatch-small to hatch-pop-menu-wrapper hatch-animate',
 						'elements' => array(
 							'liststyle' => array(
 								'type' => 'select-icons',
@@ -248,12 +248,12 @@ if( !class_exists( 'Hatch_Module_Widget' ) ) {
 									'list-masonry' => __( 'Masonry' , HATCH_THEME_SLUG )
 								)
 							),
-							'columnflush' => array(
+							'gutter' => array(
 								'type' => 'checkbox',
-								'label' => __( 'Remove Spacing' , HATCH_THEME_SLUG ),
-								'name' => $this->get_field_name( 'design' ) . '[columnflush]' ,
-								'id' =>  $this->get_field_name( 'design-columnflush' ),
-								'value' => ( isset( $design['columnflush'] ) ) ? $design['columnflush'] : NULL
+								'label' => __( 'Gutter' , HATCH_THEME_SLUG ),
+								'name' => $this->get_field_name( 'design' ) . '[gutter]' ,
+								'id' =>  $this->get_field_name( 'design-gutter' ),
+								'value' => ( isset( $design['gutter'] ) ) ? $design['gutter'] : NULL
 							)
 						)
 					)

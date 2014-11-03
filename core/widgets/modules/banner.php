@@ -258,7 +258,7 @@ if( !class_exists( 'Hatch_Slider_Widget' ) ) {
 					'layout' => array(
 						'icon-css' => 'icon-layout-fullwidth',
 						'label' => 'Layout',
-						'wrapper-css' => 'hatch-visuals-settings-wrapper hatch-small',
+						'wrapper-css' => 'hatch-pop-menu-wrapper hatch-small',
 						'elements' => array(
 							'layout' => array(
 								'type' => 'select-icons',

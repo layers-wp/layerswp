@@ -67,7 +67,7 @@ if( !class_exists( 'Hatch_Post_Widget' ) ) {
 					'textalign' => 'text-left',
 					'liststyle' => 'list-grid',
 					'columns' => '3',
-					'columflush' => false,
+					'gutter' => true,
 					'background' => array(
 						'position' => 'center',
 						'repeat' => 'no-repeat'
@@ -186,7 +186,7 @@ if( !class_exists( 'Hatch_Post_Widget' ) ) {
 							<?php if( 'list-list' == $widget['design'][ 'liststyle' ] ) { ?>
 								<?php get_template_part( 'content' , 'list' ); ?>
 							<?php } else { ?>
-								<article class="column<?php if( isset( $widget['design'][ 'columnflush' ] ) ) echo '-flush'; ?> <?php echo $span_class; ?> hatch-masonry-column thumbnail <?php if( 'overlay' == $this->check_and_return( $widget , 'text_style' ) ) echo 'with-overlay'; ?>" data-cols="<?php echo $col_count; ?>">
+								<article class="column<?php if( !isset( $widget['design'][ 'gutter' ] ) ) echo '-flush'; ?> <?php echo $span_class; ?> hatch-masonry-column thumbnail <?php if( 'overlay' == $this->check_and_return( $widget , 'text_style' ) ) echo 'with-overlay'; ?>" data-cols="<?php echo $col_count; ?>">
 									<?php if( has_post_thumbnail() ) { ?>
 										<div class="thumbnail-media">
 											<a href="<?php the_permalink(); ?>">
@@ -234,7 +234,7 @@ if( !class_exists( 'Hatch_Post_Widget' ) ) {
 					hatch_isotope_settings[ '<?php echo $widget_id; ?>' ] = [{
 							itemSelector: '.hatch-masonry-column',
 							masonry: {
-								gutter: <?php echo ( !isset( $widget['design'][ 'columnflush' ] ) ? 20 : 0 ); ?>
+								gutter: <?php echo ( !isset( $widget['design'][ 'gutter' ] ) ? 20 : 0 ); ?>
 							}
 						}];
 

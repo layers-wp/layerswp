@@ -207,10 +207,7 @@ section[class*=' off-canvas-']{
 .story h4{margin-bottom: 26px; font-size: 1.8rem; font-weight: 400; color: #323232;}
 .story h5{margin-bottom: 26px; font-size: 1.4rem; font-weight: 400; color: #323232;}
 
-.story table{width: 100%; margin-bottom: 35px; background: #f5f5f5; color: #000; font-size: 16px;}
-.story table th{padding: 5px 10px; border-bottom: 2px solid #ccc; text-transform: uppercase;}
-.story table td{padding: 5px 10px; border-bottom: 1px solid #e0e0e0;}
-.story table a{border: none;}
+.story table{font-size: 1.4rem;}
 
 .story blockquote{padding: 20px; margin-bottom: 26px; background: #f0f0f0; color: #999;}
 .story blockquote p:last-child{margin-bottom: 0;}
@@ -291,6 +288,13 @@ p[class*='comment-form'] .required{color: #900;}
     .stars span a.star-5{width: 90px; z-index: 6; }
 
     /*---------------------------*/
+    /*- SHOP PAGE ---------------*/
+    .woocommerce-result-count-container{padding: 10px; background: #f5f5f5; border-radius: 4px;}
+    .woocommerce-result-count{float: left; color: #000; font-size: 1.6rem; line-height: 30px;}
+    .woocommerce-ordering{float: right; font-size: 1.2rem;}
+    .woocommerce-ordering select{height: 30px; font-size: 1.2rem;}
+
+    /*---------------------------*/
     /*- PRODUCTS SETUP ----------*/
     .products li{padding: 20px; background: #f5f5f5; border-radius: 4px; overflow: hidden;}
     .products li a:first-child{display: block;}
@@ -349,7 +353,7 @@ p[class*='comment-form'] .required{color: #900;}
         .woocommerce-tabs .tabs a:hover{color: #454545; background: #F3F3F3;}
         .woocommerce-tabs .tabs .active a{background: #F3F3F3; color: #454545;}
 
-        .related.products li.product{width: 32%; margin-right: 2%; position: relative;}
+        .related.products li.product{float: left; width: 32%; margin-right: 2%; position: relative;}
         .related.products li.product:nth-child(3n+3){margin-right: 0;}
 
         .related h2{margin-bottom: 15px; font-size: 2.4rem;}
@@ -424,7 +428,27 @@ p[class*='comment-form'] .required{color: #900;}
 
     /*---------------------------*/
     /*- CHECKOUT PAGE -----------*/
-    .checkout_coupon p{display: inline-block; margin-right: 10px;}
+    
+        /*-----------------------*/
+        /*- LOGIN FORM ----------*/
+        .woocommerce .login{max-width: 490px; padding: 20px; margin-bottom: 20px; background: #f5f5f5; border-radius: 4px;}
+        .woocommerce .login p:first-child{margin-bottom: 26px; max-width: 740px; font-size: 1.6rem;}
+        .woocommerce .login .inline{display: inline; font-weight: normal;}
+        .woocommerce .login .lost_password a{font-size: 1.2rem; border-bottom: 1px solid #ddd;}
+    
+        /*-----------------------*/
+        /*- COUPON FORM ---------*/
+        .checkout_coupon{max-width: 490px; padding: 20px; margin-bottom: 20px; background: #f5f5f5; border-radius: 4px;}
+        .checkout_coupon p{display: inline-block; margin: 0 10px 0 0;}
+    
+        /*-----------------------*/
+        /*- CREATE ACCOUNT ------*/
+        .create-account{max-width: 490px; padding: 10px; margin-bottom: 20px; background: #f5f5f5; border-radius: 4px;}
+        div.create-account{padding: 20px;}
+        .create-account input[type="checkbox"]{display: inline; margin: 0 5px 0 0; vertical-align: middle;}
+        .create-account label{display: inline;}
+        .create-account p:first-child{margin-bottom: 26px; max-width: 740px; font-size: 1.6rem;}
+        .create-account .form-row{margin-bottom: 0;}
 
     .col2-set{overflow: hidden; margin-bottom: 40px;}
     .col-1{float: left; width: 49%; margin-right: 2%;}
@@ -458,13 +482,17 @@ p[class*='comment-form'] .required{color: #900;}
         #order_review .form-row.terms{margin: 5px 0 0; padding: 0; text-align: center;}
         #order_review .form-row.terms input[type="checkbox"]{display: inline; margin: 0 5px 0 0; vertical-align: middle;}
         #order_review .form-row.terms label{display: inline; vertical-align: middle; font-size: 1.2rem; font-weight: normal;}
-
-
-    /*- ACCOUNT PAGE --*/
+    
+    /*---------------------------*/
+    /*- INFORMATION PAGES -------*/
     .col2-set .title{padding: 0; margin-bottom: 26px;}
     .col2-set .title h3{display: inline; margin-bottom: 10px;}
     .col2-set .title .edit{display: inline; margin-left: 15px; font-size: 1.2rem;}
 
+    .woocommerce .order_details{border: 2px solid #eee; margin: 0 0 26px 0; padding: 0; list-style: none;}
+    .woocommerce .order_details li{padding: 10px; border-bottom: 1px solid #eee; list-style: none;}
+    .woocommerce .order_details li:last-child{border-bottom: none;}
+    .woocommerce .order_details:empty{display: none;}
 
     /*---------------------------*/
     /*- WOOMESSAGES -------------*/

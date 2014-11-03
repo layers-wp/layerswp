@@ -13,7 +13,9 @@ get_header(); ?>
 <div class="container sky basement clearfix">
     <div class="row">
 
-        <?php  do_action('woocommerce_before_shop_loop'); ?>
+        <div class="row push-bottom woocommerce-result-count-container">
+            <?php  do_action('woocommerce_before_shop_loop'); ?>
+        </div>
 
         <?php if ( have_posts()) : ?>
             <section class="column span-12">

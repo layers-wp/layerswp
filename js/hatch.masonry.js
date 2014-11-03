@@ -44,10 +44,12 @@ jQuery(function($){
         }
 
         // Set Isotope Container
-        $isotope_container_id = $that.closest( '.hatch-isotope-filter' ).data( 'isotope-container' );
+        $isotope_container_selector = $that.closest( '.hatch-isotope-filter' ).data( 'isotope-container' );
 
-        $isotop_container = $( '#' + $isotope_container_id );
+        // Target the isotope container
+        $isotop_container = $( $isotope_container_selector );
 
+        // Fetch the isotope options (setup in the relevant widget or plugin php file)
         var isotope_settings = hatch_isotope_settings[ $isotope_container_id ][0];
 
         // Add Filter

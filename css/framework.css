@@ -759,7 +759,7 @@ h1, h2, h3, h4, h5, h6{color: #000; font-weight: 200;}
 
     /*---------------------------*/
     /*- FORM ROWS ---------------*/
-    .form-row{margin-bottom: 25px; vertical-align: top;}
+    .form-row{margin-bottom: 15px; vertical-align: top;}
     .form-row:last-child{margin-bottom: 0px;}
     .title-container .form-row:first-child{margin-top: 0;}
 

@@ -713,6 +713,12 @@ input[type=text].hatch-color-selector.wp-color-picker{
         .hatch-visuals-item.hatch-last .hatch-pop-menu-wrapper.hatch-small{
             bottom: 0px;
         }
+        .hatch-small .hatch-pop-menu-setting input[type="checkbox"] + label{
+            font-size: 11px;
+        }
+        .hatch-small .hatch-checkbox-wrapper{
+            margin: 0 !important;
+        }
 
     /*-------------------------*/
     /*- SETTINGS - HORIZONTAL -*/

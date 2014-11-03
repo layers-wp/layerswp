@@ -15,6 +15,7 @@ global $post, $post_meta_to_display; ?>
     <h1 class="heading"><?php the_title(); ?></h1>
 </header>
 <div class="thumbnail push-bottom"><?php echo the_post_thumbnail( 'large' ); ?></div>
+
 <?php if( 'template-blank.php' != get_page_template_slug() ) { ?>
     <div class="story">
 <?php } ?>
@@ -29,7 +30,7 @@ global $post, $post_meta_to_display; ?>
 <?php if( 'template-blank.php' == get_page_template_slug() ) { ?>
     </div>
 <?php } ?>
-<?php if( 'post' != get_post_type() ) { ?>
+<?php if( 'post' == get_post_type() ) { ?>
     <?php hatch_post_meta( $post->ID ); ?>
 <?php } // if post ?>
 

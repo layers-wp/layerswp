@@ -773,16 +773,16 @@ input[type=text].hatch-color-selector.wp-color-picker{
     /*-----------------------*/
     /*- POP UP ANIMATIONS ---*/
     .hatch-visuals-settings .hatch-form-item{transform: translate3d(-10px, 0, 0);}
-    .hatch-visuals-settings .hatch-form-item:nth-child(2){transform: translate3d(-15px, 0, 0);}
-    .hatch-visuals-settings .hatch-form-item:nth-child(3){transform: translate3d(-20px, 0, 0);}
-    .hatch-visuals-settings .hatch-form-item:nth-child(4){transform: translate3d(-25px, 0, 0);}
-    .hatch-visuals-settings .hatch-form-item:nth-child(5){transform: translate3d(-30px, 0, 0);}
-    .hatch-visuals-settings .hatch-form-item:nth-child(6){transform: translate3d(-35px, 0, 0);}
-    .hatch-visuals-settings .hatch-form-item:nth-child(7){transform: translate3d(-40px, 0, 0);}
-    .hatch-visuals-settings .hatch-form-item:nth-child(8){transform: translate3d(-45px, 0, 0);}
-    .hatch-visuals-settings .hatch-form-item:nth-child(9){transform: translate3d(-50px, 0, 0);}
-    .hatch-visuals-settings .hatch-form-item:nth-child(10){transform: translate3d(-55px, 0, 0);}
-    .hatch-visuals-settings .hatch-form-item:nth-child(11){transform: translate3d(-60px, 0, 0);}
+    .hatch-visuals-settings .hatch-form-item:nth-child(2){transition-delay: 0.27s;}
+    .hatch-visuals-settings .hatch-form-item:nth-child(3){transition-delay: 0.29s;}
+    .hatch-visuals-settings .hatch-form-item:nth-child(4){transition-delay: 0.31s;}
+    .hatch-visuals-settings .hatch-form-item:nth-child(5){transition-delay: 0.33s;}
+    .hatch-visuals-settings .hatch-form-item:nth-child(6){transition-delay: 0.35s;}
+    .hatch-visuals-settings .hatch-form-item:nth-child(7){transition-delay: 0.37s;}
+    .hatch-visuals-settings .hatch-form-item:nth-child(8){transition-delay: 0.39s;}
+    .hatch-visuals-settings .hatch-form-item:nth-child(9){transition-delay: 0.41s;}
+    .hatch-visuals-settings .hatch-form-item:nth-child(10){transition-delay: 0.43s;}
+    .hatch-visuals-settings .hatch-form-item:nth-child(11){transition-delay: 0.45s;}
     
     .hatch-active .hatch-visuals-settings .hatch-form-item{
         opacity: 1;
@@ -794,11 +794,11 @@ input[type=text].hatch-color-selector.wp-color-picker{
         opacity: 0;
         transition: 0.25s opacity ease-in-out 0.25s, 0.25s transform ease-in-out 0.25s;
     }
-    .hatch-visuals-settings .hatch-icon-wrapper:nth-child(2){transform: translate3d(-15px, 0, 0);}
-    .hatch-visuals-settings .hatch-icon-wrapper:nth-child(3){transform: translate3d(-20px, 0, 0);}
-    .hatch-visuals-settings .hatch-icon-wrapper:nth-child(4){transform: translate3d(-25px, 0, 0);}
-    .hatch-visuals-settings .hatch-icon-wrapper:nth-child(5){transform: translate3d(-30px, 0, 0);}
-    .hatch-visuals-settings .hatch-icon-wrapper:nth-child(6){transform: translate3d(-35px, 0, 0);}
+    .hatch-visuals-settings .hatch-icon-wrapper:nth-child(2){transition-delay: 0.27s;}
+    .hatch-visuals-settings .hatch-icon-wrapper:nth-child(3){transition-delay: 0.29;}
+    .hatch-visuals-settings .hatch-icon-wrapper:nth-child(4){transition-delay: 0.31s;}
+    .hatch-visuals-settings .hatch-icon-wrapper:nth-child(5){transition-delay: 0.33s;}
+    .hatch-visuals-settings .hatch-icon-wrapper:nth-child(6){transition-delay: 0.35s;}
     
     .hatch-active .hatch-visuals-settings .hatch-icon-wrapper{
         opacity: 1;

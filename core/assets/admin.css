@@ -647,7 +647,7 @@ input[type=text].hatch-color-selector.wp-color-picker{
 
     /*-----------------------*/
     /*- SETTINGS POP MENU ---*/
-    .hatch-visuals-settings-wrapper{
+    .hatch-pop-menu-wrapper{
         position: absolute;
         top: 0px;
         right: 100px;
@@ -662,21 +662,21 @@ input[type=text].hatch-color-selector.wp-color-picker{
         opacity: 0;
         transition: all 0.3s ease-in-out 0.1s;
     }
-    .hatch-visuals-settings-wrapper.hatch-small{
+    .hatch-pop-menu-wrapper.hatch-small{
         width: 84px;
         max-height: none;
         overflow: hidden;
     }
-    .hatch-visuals-item.hatch-active .hatch-visuals-settings-wrapper{
+    .hatch-visuals-item.hatch-active .hatch-pop-menu-wrapper{
         right: 95px;
         opacity: 1;
         visibility: visible;
     }
-    .hatch-visuals-item.hatch-last .hatch-visuals-settings-wrapper{
+    .hatch-visuals-item.hatch-last .hatch-pop-menu-wrapper{
         top: auto;
         bottom: 0px;
     }
-    .hatch-visuals-settings .background-image{
+    .hatch-pop-menu-setting .background-image{
         display: block;
         max-height: 150px;
         margin-bottom: 15px;
@@ -685,25 +685,25 @@ input[type=text].hatch-color-selector.wp-color-picker{
         border-radius: 4px;
         overflow: hidden;
     }
-    .hatch-visuals-settings img{
+    .hatch-pop-menu-setting img{
         max-width: 100%;
         height: auto;
     }
-    .hatch-visuals-settings .hatch-form-item{
+    .hatch-pop-menu-setting .hatch-form-item{
         padding: 10px;
         margin: 0 -10px;
         border-bottom: 1px solid #ddd;
         opacity: 0;
         transition: 0.25s opacity ease-in-out 0.25s, 0.25s transform ease-in-out 0.25s;
     }
-    .hatch-visuals-settings .hatch-form-item:first-child{
+    .hatch-pop-menu-setting .hatch-form-item:first-child{
         padding-top: 0;
     }
-    .hatch-visuals-settings .hatch-form-item:last-child{
+    .hatch-pop-menu-setting .hatch-form-item:last-child{
         margin-bottom: -10px;
         border-bottom: none;
     }
-    .hatch-visuals-settings input[type='checkbox'] + label{
+    .hatch-pop-menu-setting input[type='checkbox'] + label{
         margin-bottom: 0;
     }
 
@@ -752,55 +752,55 @@ input[type=text].hatch-color-selector.wp-color-picker{
     .hatch-visuals-horizontal .hatch-icon-description{
         display: none;
     }
-    .hatch-visuals-horizontal .hatch-visuals-settings-wrapper{
+    .hatch-visuals-horizontal .hatch-pop-menu-wrapper{
         top: 54px !important;
         right: auto;
         left: 0;
         bottom: auto !important;
     }
-    .hatch-visuals-horizontal .hatch-visuals-item.hatch-active .hatch-visuals-settings-wrapper{
+    .hatch-visuals-horizontal .hatch-visuals-item.hatch-active .hatch-pop-menu-wrapper{
         top: 44px !important;
         right: auto;
         transition: all 0.1s ease-in-out 0.1s;
     }
-    .hatch-visuals-horizontal .hatch-visuals-settings-wrapper.hatch-small{
+    .hatch-visuals-horizontal .hatch-pop-menu-wrapper.hatch-small{
         width: auto;
     }
-    .hatch-visuals-horizontal .hatch-visuals-settings-wrapper .hatch-icon-wrapper{
+    .hatch-visuals-horizontal .hatch-pop-menu-wrapper .hatch-icon-wrapper{
         margin: 5px;
     }
 
     /*-----------------------*/
     /*- POP UP ANIMATIONS ---*/
-    .hatch-visuals-settings .hatch-form-item{transform: translate3d(-10px, 0, 0);}
-    .hatch-visuals-settings .hatch-form-item:nth-child(2){transition-delay: 0.27s;}
-    .hatch-visuals-settings .hatch-form-item:nth-child(3){transition-delay: 0.29s;}
-    .hatch-visuals-settings .hatch-form-item:nth-child(4){transition-delay: 0.31s;}
-    .hatch-visuals-settings .hatch-form-item:nth-child(5){transition-delay: 0.33s;}
-    .hatch-visuals-settings .hatch-form-item:nth-child(6){transition-delay: 0.35s;}
-    .hatch-visuals-settings .hatch-form-item:nth-child(7){transition-delay: 0.37s;}
-    .hatch-visuals-settings .hatch-form-item:nth-child(8){transition-delay: 0.39s;}
-    .hatch-visuals-settings .hatch-form-item:nth-child(9){transition-delay: 0.41s;}
-    .hatch-visuals-settings .hatch-form-item:nth-child(10){transition-delay: 0.43s;}
-    .hatch-visuals-settings .hatch-form-item:nth-child(11){transition-delay: 0.45s;}
+    .hatch-pop-menu-setting .hatch-form-item{transform: translate3d(-10px, 0, 0);}
+    .hatch-pop-menu-setting .hatch-form-item:nth-child(2){transition-delay: 0.27s;}
+    .hatch-pop-menu-setting .hatch-form-item:nth-child(3){transition-delay: 0.29s;}
+    .hatch-pop-menu-setting .hatch-form-item:nth-child(4){transition-delay: 0.31s;}
+    .hatch-pop-menu-setting .hatch-form-item:nth-child(5){transition-delay: 0.33s;}
+    .hatch-pop-menu-setting .hatch-form-item:nth-child(6){transition-delay: 0.35s;}
+    .hatch-pop-menu-setting .hatch-form-item:nth-child(7){transition-delay: 0.37s;}
+    .hatch-pop-menu-setting .hatch-form-item:nth-child(8){transition-delay: 0.39s;}
+    .hatch-pop-menu-setting .hatch-form-item:nth-child(9){transition-delay: 0.41s;}
+    .hatch-pop-menu-setting .hatch-form-item:nth-child(10){transition-delay: 0.43s;}
+    .hatch-pop-menu-setting .hatch-form-item:nth-child(11){transition-delay: 0.45s;}
     
-    .hatch-active .hatch-visuals-settings .hatch-form-item{
+    .hatch-active .hatch-pop-menu-setting .hatch-form-item{
         opacity: 1;
         transform: translate3d(0, 0, 0);
     }
     
-    .hatch-visuals-settings .hatch-icon-wrapper{
+    .hatch-pop-menu-setting .hatch-icon-wrapper{
         transform: translate3d(-10px, 0, 0);
         opacity: 0;
         transition: 0.25s opacity ease-in-out 0.25s, 0.25s transform ease-in-out 0.25s;
     }
-    .hatch-visuals-settings .hatch-icon-wrapper:nth-child(2){transition-delay: 0.27s;}
-    .hatch-visuals-settings .hatch-icon-wrapper:nth-child(3){transition-delay: 0.29;}
-    .hatch-visuals-settings .hatch-icon-wrapper:nth-child(4){transition-delay: 0.31s;}
-    .hatch-visuals-settings .hatch-icon-wrapper:nth-child(5){transition-delay: 0.33s;}
-    .hatch-visuals-settings .hatch-icon-wrapper:nth-child(6){transition-delay: 0.35s;}
+    .hatch-pop-menu-setting .hatch-icon-wrapper:nth-child(2){transition-delay: 0.27s;}
+    .hatch-pop-menu-setting .hatch-icon-wrapper:nth-child(3){transition-delay: 0.29;}
+    .hatch-pop-menu-setting .hatch-icon-wrapper:nth-child(4){transition-delay: 0.31s;}
+    .hatch-pop-menu-setting .hatch-icon-wrapper:nth-child(5){transition-delay: 0.33s;}
+    .hatch-pop-menu-setting .hatch-icon-wrapper:nth-child(6){transition-delay: 0.35s;}
     
-    .hatch-active .hatch-visuals-settings .hatch-icon-wrapper{
+    .hatch-active .hatch-pop-menu-setting .hatch-icon-wrapper{
         opacity: 1;
         transform: translate3d(0, 0, 0);
     }

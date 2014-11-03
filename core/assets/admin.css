@@ -91,15 +91,16 @@ div[id*='hatch-widget'] .widget-top .widget-title .in-widget-title{
     height: 100%;
     min-width: 660px;
     position: relative;
-    transform: translateX(-20px);
+    transform: translate3d(-50px, 0, 0);
+    opacity: 0;
     transition: all 0.35s ease-in-out;
 }
 .customize-control-widget_form.wide-widget-control.expanded div[id*='hatch-widget'] .widget-inside .form{
-    transform: translateX(0px);
+    transform: translate3d(0, 0, 0);
     opacity: 1;
 }
 .customize-control-widget_form.wide-widget-control.collapsing div[id*='hatch-widget'] .widget-inside .form{
-    transform: translateX(-20px);
+    transform: translate3d(-50px, 0, 0);
     opacity: 0;
 }
 
@@ -418,6 +419,7 @@ div[id*='hatch-widget'] .spinner{
 
 .customize-control .hatch-form-item select{
     width: 100%;
+    height: 38px;
     margin: 0;
 }
 .customize-control .hatch-textarea{
@@ -758,13 +760,41 @@ input[type=text].hatch-color-selector.wp-color-picker{
     }
     .hatch-visuals-horizontal .hatch-visuals-item.hatch-pull-right .hatch-icon-error{
         padding: 6px 4px;
+        position: relative;
     }
     .hatch-visuals-horizontal .hatch-visuals-item [class*="icon-"]{
         font-size: 16px;
     }
     .hatch-visuals-horizontal .hatch-icon-description{
-        display: none;
+        position: absolute;
+        top: 35px;
+        left: -50%;
+        width: 100px;
+        padding: 3px;
+        background: rgba(0, 0, 0, 0.7);
+        border-radius: 3px;
+        color: #fff;
+        font-size: 11px !important;
+        font-weight: normal;
+        opacity: 0;
+        visibility: hidden;
+        transform: translate3d(0, -5px, 0);
+        transition: all 0.05s ease-in-out;
     }
+    .hatch-visuals-horizontal .hatch-icon-wrapper:hover .hatch-icon-description{
+        opacity: 1;
+        visibility: visible;
+        transform: translate3d(0, 0, 0);
+        transition: all 0.2s ease-in-out 0.25s;
+    }
+    .hatch-visuals-horizontal .hatch-active .hatch-icon-wrapper:hover .hatch-icon-description{
+        opacity: 0;
+        visibility: hidden;
+        transform: translate3d(0, -5px, 0);
+        transition: all 0.1s ease-in-out;
+    }
+
+
     .hatch-visuals-horizontal .hatch-pop-menu-wrapper{
         top: 54px !important;
         right: auto;

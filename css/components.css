@@ -291,6 +291,13 @@ p[class*='comment-form'] .required{color: #900;}
     .stars span a.star-5{width: 90px; z-index: 6; }
 
     /*---------------------------*/
+    /*- SHOP PAGE ---------------*/
+    .woocommerce-result-count-container{padding: 10px; background: #f5f5f5; border-radius: 4px;}
+    .woocommerce-result-count{float: left; color: #000; font-size: 1.6rem; line-height: 30px;}
+    .woocommerce-ordering{float: right; font-size: 1.2rem;}
+    .woocommerce-ordering select{height: 30px; font-size: 1.2rem;}
+
+    /*---------------------------*/
     /*- PRODUCTS SETUP ----------*/
     .products li{padding: 20px; background: #f5f5f5; border-radius: 4px; overflow: hidden;}
     .products li a:first-child{display: block;}
@@ -349,7 +356,7 @@ p[class*='comment-form'] .required{color: #900;}
         .woocommerce-tabs .tabs a:hover{color: #454545; background: #F3F3F3;}
         .woocommerce-tabs .tabs .active a{background: #F3F3F3; color: #454545;}
 
-        .related.products li.product{width: 32%; margin-right: 2%; position: relative;}
+        .related.products li.product{float: left; width: 32%; margin-right: 2%; position: relative;}
         .related.products li.product:nth-child(3n+3){margin-right: 0;}
 
         .related h2{margin-bottom: 15px; font-size: 2.4rem;}

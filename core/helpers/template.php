@@ -317,6 +317,13 @@ if( !function_exists( 'hatch_get_page_title' ) ) {
             $title_array['title' ] = sprintf( __( 'Monthly Archives: %s', HATCH_THEME_SLUG ), get_the_date( _x( 'F Y', 'monthly archives date format', HATCH_THEME_SLUG ) ) );
         } elseif ( is_year() ) {
             $title_array['title' ] = sprintf( __( 'Yearly Archives: %s', HATCH_THEME_SLUG ), get_the_date( _x( 'Y', 'yearly archives date format', HATCH_THEME_SLUG ) ) );
+        } elseif( function_exists('is_shop') && ( is_post_type_archive( 'product' ) || ( get_post_type() == "product") ) ) {
+            if( function_exists( 'woocommerce_get_page_id' )  && '' != woocommerce_get_page_id('shop') ) {
+                $shop_page = get_post( woocommerce_get_page_id('shop') );
+                $title_array['title' ] = $shop_page->post_title;
+            } else {
+                $title_array['title' ] = __( 'Shop' , HATCH_THEME_SLUG );
+            }
         } else {
             $title_array['title' ] = __( 'Archives', HATCH_THEME_SLUG );
         }

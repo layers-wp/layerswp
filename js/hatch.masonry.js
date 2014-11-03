@@ -9,7 +9,7 @@ var hatch_isotope_settings = {};
 (function ( $ ) {
 
     // These are the defaults.
-    $.fn.hatch_masonry = function( options ) {
+    $.fn.hatch_isotope = function( options ) {
 
         var settings = $.extend({
             // These are the defaults.
@@ -54,6 +54,6 @@ jQuery(function($){
         isotope_settings.filter = $final_filter;
 
         // Initiate Isotope
-        $isotop_container.find('.list-masonry').hatch_masonry( isotope_settings );
+        $isotop_container.find('.list-masonry').hatch_isotope( isotope_settings );
     });
 });

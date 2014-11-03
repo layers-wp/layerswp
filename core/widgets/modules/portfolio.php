@@ -237,7 +237,7 @@ if( !class_exists( 'Hatch_Portfolio_Widget' ) ) {
 							}
 						}];
 
-					$('#<?php echo $widget_id; ?>').find('.list-masonry').hatch_masonry( hatch_isotope_settings[ '<?php echo $widget_id; ?>' ][0] );
+					$('#<?php echo $widget_id; ?>').find('.list-masonry').hatch_isotope( hatch_isotope_settings[ '<?php echo $widget_id; ?>' ][0] );
 				});
 			</script>
 

@@ -268,7 +268,7 @@ p[class*='comment-form'] .required{color: #900;}
 
     /*---------------------------*/
     /*- ON SALE SETUP -----------*/
-    .onsale{padding: 2px 10px; background: #454545; border-radius: 0 0 4px 4px; position: absolute; top: 0px; left: 10px; color: #fff; font-size: 1.2rem; font-weight: 600; text-transform: uppercase;}
+    .onsale{padding: 2px 10px; background: #454545; border-radius: 0 0 4px 4px; position: absolute; top: 0px; left: 20px; color: #fff; font-size: 1.2rem; font-weight: 600; text-transform: uppercase;}
 
     /*---------------------------*/
     /*- REMOVE ------------------*/
@@ -309,6 +309,12 @@ p[class*='comment-form'] .required{color: #900;}
         .product-images{position: relative;}
         .product-images img{display: block; border-radius: 4px;}
 
+            /*-------------------*/
+            /*- PRODUCT THUMBS --*/
+            .thumbnails a{display: inline-block; width: 23.5%; margin: 10px 2% 0 0;}
+            .thumbnails a:nth-child(4n+4){margin-right: 0;}
+            .thumbnails a img{display: block;}
+
         /*-----------------------*/
         /*- PRODUCT DESCRIPTION -*/
         .entry-title{font-size: 4.4rem;}/*-- section-title.large --*/
@@ -319,8 +325,8 @@ p[class*='comment-form'] .required{color: #900;}
             /*- PRODUCT CART ----*/
             .cart{margin-bottom: 20px; overflow: hidden;}
             .quantity{float: left; margin-right: 20px;}
-            .quantity input{float: left; height: 36px;}
-            .qty{width: 60px; text-align: center; border-left: none; border-right: none; border-radius: 0px;}
+            .quantity input{float: left; height: 30px;}
+            .quantity .qty{width: 60px; height: 30px; text-align: center; border-left: none; border-right: none; border-radius: 0px;}
             .minus, .plus{width: 40px; background: #454545; border-radius: 4px 0 0 4px; color: #fff; font-weight: 600; text-align: center;}
             .plus{border-radius: 0 4px 4px 0;}
             .single_add_to_cart_button{float: left;}
@@ -328,7 +334,9 @@ p[class*='comment-form'] .required{color: #900;}
             /*-------------------*/
             /*- PRODUCT META ----*/
             .product_meta{padding: 10px; margin-bottom: 20px; background: #f5f5f5; border-radius: 4px;}
-            .product_meta .sku_wrapper, .product_meta .posted_in{display: block; text-transform: uppercase; font-size: 1.0rem; font-weight: 600;}
+            .product_meta span{display: block; font-size: 1.1rem; font-weight: 600;}
+            .product_meta span span{display: inline; font-weight: normal; text-transform: none;}
+            .product_meta span a{font-weight: normal; text-transform: none;}
 
         /*-----------------------*/
         /*- WOOCOMMERCE TABS ----*/
@@ -341,9 +349,40 @@ p[class*='comment-form'] .required{color: #900;}
         .woocommerce-tabs .tabs a:hover{color: #454545; background: #F3F3F3;}
         .woocommerce-tabs .tabs .active a{background: #F3F3F3; color: #454545;}
 
+        .related.products li.product{width: 32%; margin-right: 2%; position: relative;}
+        .related.products li.product:nth-child(3n+3){margin-right: 0;}
+
+        .related h2{margin-bottom: 15px; font-size: 2.4rem;}
+
     /*---------------------------*/
     /*- ENTRY CONTENT -----------*/
-    .entry-content h2{margin-bottom: 10px; font-size: 2.4rem;}
+    .entry-content{font-size: 1.6rem;}
+
+    .entry-content p{margin-bottom: 16px;}
+    .entry-content ul{list-style: disc; margin: 0 0 26px;}
+    .entry-content ul li{list-style: disc; margin: 0 0 6px 30px;}
+
+    .entry-content ol{list-style: decimal; margin: 0 0 26px;}
+    .entry-content ol li{list-style: decimal; margin: 0 0 6px 20px;}
+
+    .entry-content ul ul, .entry-content ul ol, .entry-content ol ol, .entry-content ol ul{margin-bottom: 0;}
+
+    .entry-content a{border-bottom: 1px solid #ddd;}
+    .entry-content a:hover{border-color: #999;}
+
+    .entry-content dl{margin: 0 0 26px;}
+    .entry-content dd{margin-left: 36px;}
+
+    .entry-content code, .entry-content pre{}
+    .entry-content img{display: block; max-width: 98%; height: auto;}
+
+    .entry-content h1{font-size: 3.2rem; margin-bottom: 26px; color: #323232;}
+    .entry-content h2{font-size: 2.2rem; margin-bottom: 16px; color: #323232;}
+    .entry-content h3{font-size: 1.8rem; margin-bottom: 16px; color: #323232;}
+    .entry-content h4{font-size: 1.6rem; margin-bottom: 16px; color: #323232;}
+    .entry-content h5{font-size: 1.4rem; margin-bottom: 16px; color: #323232;}
+
+    .entry-content blockquote{padding-left: 26px; margin-bottom: 20px; font-weight: 600; font-size: 2.0rem;}
 
 
     /*---------------------------*/

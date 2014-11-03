@@ -27,10 +27,15 @@ global $post, $post_meta_to_display; ?>
         'before'        => '<p class="inner-post-pagination">' . __('<span>Pages:</span>', 'ocmx'),
         'after'     => '</p>'
     )); ?>
+
 <?php if( 'template-blank.php' == get_page_template_slug() ) { ?>
     </div>
 <?php } ?>
-<?php if( 'post' == get_post_type() ) { ?>
+
+<?php /**
+ * Only show post meta for posts
+ */
+if( 'post' == get_post_type() ) { ?>
     <?php hatch_post_meta( $post->ID ); ?>
 <?php } // if post ?>
 

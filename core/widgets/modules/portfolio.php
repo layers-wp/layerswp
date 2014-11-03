@@ -231,9 +231,13 @@ if( !class_exists( 'Hatch_Portfolio_Widget' ) ) {
 			<script>
 				jQuery(function($){
 					setTimeout(function(){
-						var masonry = $('#<?php echo $widget_id; ?>').find('.list-masonry').masonry({
-							'itemSelector': '.hatch-masonry-column'
-							<?php if( !isset( $widget['design'][ 'columnflush' ] ) ) echo ', "gutter": 20'; ?>
+						var isotope = $('#<?php echo $widget_id; ?>').find('.list-masonry').isotope({
+							itemSelector: '.hatch-masonry-column'
+							<?php if( !isset( $widget['design'][ 'columnflush' ] ) ){ ?>
+								,masonry: {
+									columnWidth: '.hatch-masonry-column'
+								}
+							<?php } ?>
 						});
 					}, 500 );
 
@@ -248,22 +252,21 @@ if( !class_exists( 'Hatch_Portfolio_Widget' ) ) {
 
 						// Toggle active
 						if( '' == $filter) {
+							$final_filter = '*';
 							$that.removeClass( 'active' ).siblings().removeClass('active');
 						} else {
+							$final_filter = '.' + $filter;
 							$that.toggleClass( 'active' ).siblings().removeClass('active');
 						}
 
-						jQuery.each( $('#<?php echo $widget_id; ?>').find( '.hatch-masonry-column' ) , function(){
-							if( '' == $filter || jQuery(this).hasClass( $filter ) || !$that.hasClass( 'active' ) ){
-								jQuery(this).fadeIn();
-							} else {
-								jQuery(this).hide();
-							}
-						});
-
-						$('#<?php echo $widget_id; ?>').find('.list-masonry').masonry({
-							'itemSelector': '.hatch-masonry-column'
-							<?php if( !isset( $widget['design'][ 'columnflush' ] ) ) echo ', "gutter": 20'; ?>
+						$('#<?php echo $widget_id; ?>').find('.list-masonry').isotope({
+							filter: $final_filter,
+							itemSelector: '.hatch-masonry-column'
+							<?php if( !isset( $widget['design'][ 'columnflush' ] ) ){ ?>
+								,masonry: {
+									gutterWidth: <?php echo 20; ?>
+								}
+							<?php } ?>
 						});
 
 						return false;

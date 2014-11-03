@@ -12,8 +12,11 @@ get_header(); ?>
 
 <div class="container sky basement clearfix">
     <div class="row">
+
+        <?php  do_action('woocommerce_before_shop_loop'); ?>
+
         <?php if ( have_posts()) : ?>
-            <section class="column span-9">
+            <section class="column span-12">
                 <?php // Sub category listing
                 woocommerce_product_subcategories(); ?>
                 <ul class="products">

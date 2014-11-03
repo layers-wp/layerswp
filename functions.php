@@ -213,11 +213,18 @@ if( ! function_exists( 'hatch_scripts' ) ) {
 		); // Slider
 
 		wp_enqueue_script(
+			HATCH_THEME_SLUG . '-isotope-js' ,
+			get_template_directory_uri() . '/js/isotope.js',
+			array(
+				'jquery',
+			)
+		); // Slider
+
+		wp_enqueue_script(
 			HATCH_THEME_SLUG . '-framework-js' ,
 			get_template_directory_uri() . '/js/framework.js',
 			array(
 				'jquery',
-				'masonry'
 			),
 			HATCH_VERSION,
 			true

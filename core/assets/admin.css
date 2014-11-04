@@ -765,34 +765,63 @@ input[type=text].hatch-color-selector.wp-color-picker{
     .hatch-visuals-horizontal .hatch-visuals-item [class*="icon-"]{
         font-size: 16px;
     }
-    .hatch-visuals-horizontal .hatch-icon-description{
-        position: absolute;
-        top: 35px;
-        left: -50%;
-        width: 100px;
-        padding: 3px;
-        background: rgba(0, 0, 0, 0.7);
-        border-radius: 3px;
-        color: #fff;
-        font-size: 11px !important;
-        font-weight: normal;
-        opacity: 0;
-        visibility: hidden;
-        transform: translate3d(0, -5px, 0);
-        transition: all 0.05s ease-in-out;
-    }
-    .hatch-visuals-horizontal .hatch-icon-wrapper:hover .hatch-icon-description{
-        opacity: 1;
-        visibility: visible;
-        transform: translate3d(0, 0, 0);
-        transition: all 0.2s ease-in-out 0.25s;
-    }
-    .hatch-visuals-horizontal .hatch-active .hatch-icon-wrapper:hover .hatch-icon-description{
-        opacity: 0;
-        visibility: hidden;
-        transform: translate3d(0, -5px, 0);
-        transition: all 0.1s ease-in-out;
-    }
+
+        /*-------------------*/
+        /*- TOOL TIP --------*/
+        .hatch-visuals-horizontal .hatch-icon-description{
+            position: absolute;
+            top: 43px;
+            left: -50%;
+            width: 100px;
+            padding: 3px;
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 3px;
+            color: #fff;
+            font-size: 11px !important;
+            font-weight: normal;
+            opacity: 1;
+            visibility: hidden;
+            transform: translate3d(0, -5px, 0);
+            transition: all 0.05s ease-in-out;
+        }
+        .hatch-visuals-horizontal .hatch-icon-wrapper:hover .hatch-icon-description{
+            opacity: 1;
+            visibility: visible;
+            transform: translate3d(0, 0, 0);
+            transition: all 0.2s ease-in-out 0.25s;
+        }
+        .hatch-visuals-horizontal .hatch-active .hatch-icon-wrapper:hover .hatch-icon-description{
+            opacity: 0;
+            visibility: hidden;
+            transform: translate3d(0, -5px, 0);
+            transition: all 0.1s ease-in-out;
+        }
+
+        /*-------------------*/
+        /*- TOOL TIP TIP ----*/
+        .hatch-visuals-horizontal .hatch-icon-description:before{
+            border: solid;
+            border-color: rgba(0, 0, 0, 0.7) transparent;
+            border-width: 0 6px 6px 6px;
+            content: "";
+            position: absolute;
+            right: 48px;
+            top: -6px;
+            z-index: 99;
+            visibility: hidden;
+            opacity: 0;
+            transition: all 0.05s ease-in-out;
+        }
+        .hatch-visuals-horizontal .hatch-icon-wrapper:hover .hatch-icon-description:before{
+            opacity: 1;
+            visibility: visible;
+            transition: all 0.21s ease-in-out 0.25s;
+        }
+        .hatch-visuals-horizontal .hatch-active .hatch-icon-wrapper:hover .hatch-icon-description:before{
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.1s ease-in-out;
+        }
 
 
     .hatch-visuals-horizontal .hatch-pop-menu-wrapper{

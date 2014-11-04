@@ -144,11 +144,20 @@ if( ! function_exists( 'hatch_setup' ) ) {
 		add_theme_support( 'jetpack-portfolio' );
 
 		/**
-		 * Register Standard Sidebar
+		 * Register Standard Sidebars
 		  */
 		register_sidebar( array(
-			'id'		=> HATCH_THEME_SLUG . '-sidebar',
-			'name'		=> __( ' Sidebar' , HATCH_THEME_SLUG ),
+			'id'		=> HATCH_THEME_SLUG . '-left-sidebar',
+			'name'		=> __( 'Left Sidebar' , HATCH_THEME_SLUG ),
+			'description'	=> __( '' , HATCH_THEME_SLUG ),
+			'before_widget'	=> '<aside id="%1$s" class="content well push-bottom widget %2$s">',
+			'after_widget'	=> '</aside>',
+			'before_title'	=> '<h5 class="section-nav-title">',
+			'after_title'	=> '</h4>',
+		) );
+		register_sidebar( array(
+			'id'		=> HATCH_THEME_SLUG . '-right-sidebar',
+			'name'		=> __( 'Right Sidebar' , HATCH_THEME_SLUG ),
 			'description'	=> __( '' , HATCH_THEME_SLUG ),
 			'before_widget'	=> '<aside id="%1$s" class="content well push-bottom widget %2$s">',
 			'after_widget'	=> '</aside>',

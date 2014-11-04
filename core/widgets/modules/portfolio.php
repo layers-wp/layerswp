@@ -180,7 +180,7 @@ if( !class_exists( 'Hatch_Portfolio_Widget' ) ) {
 							$portfolio_query->the_post();
 							global $post; ?>
 							<?php if( 'list-list' == $this->check_and_return( $widget , 'design', 'liststyle' ) ) { ?>
-								<?php get_template_part( 'content' , 'list' ); ?>
+								<?php get_template_part( 'partials/content' , 'list' ); ?>
 							<?php } else { ?>
 								<?php $terms = wp_get_post_terms( $post->ID, $this->taxonomy );
 								$term_list = array();

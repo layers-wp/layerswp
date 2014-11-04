@@ -400,8 +400,90 @@ if( !function_exists( 'hatch_header_class' ) ) {
         // Separates classes with a single space, collates classes for body element
         echo 'class="' . join( ' ', hatch_get_header_class( $class ) ) . '"';
     }
-} // hatch_get_header_class
+} // hatch_header_class
 
+/**
+ * Retrieve the classes for the center column on archive and single pages
+ *
+ * @param varchar $postid Post ID to check the page template on
+ * @return array Array of classes.
+ */
+if( !function_exists( 'hatch_get_center_column_class' ) ) {
+    function hatch_get_center_column_class( $postid = NULL, $class = '' ){
+
+        // Default to the current post object
+        if( NULL == $postid ){
+            global $post;
+            $postid = $post->ID;
+        }
+
+        $classes = array();
+
+        // This div will always have the .column class
+        $classes[] = 'column';
+
+        $left_sidebar_active = is_active_sidebar( HATCH_THEME_SLUG . '-left-sidebar' );
+        $right_sidebar_active = is_active_sidebar( HATCH_THEME_SLUG . '-right-sidebar' );
+
+        if( is_page() ) {
+            if( is_page_template( 'template-left-sidebar.php' ) ) {
+                $left_sidebar_active = ( $left_sidebar_active ? TRUE : FALSE );
+                $right_sidebar_active = FALSE;
+            } else if( is_page_template( 'template-right-sidebar.php' ) ) {
+                $left_sidebar_active = FALSE;
+                $right_sidebar_active = ( $right_sidebar_active ? TRUE : FALSE );
+            } else {
+                $right_sidebar_active = FALSE;
+                $left_sidebar_active = FALSE;
+            }
+        }
+
+        if( $left_sidebar_active && $right_sidebar_active ){
+            $classes[] = 'span-6';
+        } else if( $left_sidebar_active ){
+            $classes[] = 'span-8';
+        } else if( $right_sidebar_active ){
+            $classes[] = 'span-8';
+        } else {
+            $classes[] = 'span-12';
+        }
+
+/*
+        if( is_single() ) {
+            $show_left_sidebar = hatch_maybe_get_sidebar( 'left-sidebar' );
+            $header_fixed_option = hatch_get_theme_mod( 'header-layout-fixed' );
+        } else
+        } else if ( function_exists( 'is_shop' ) && is_post_type_archive( 'product' ) {
+        } else if ( is_archive() || is_search() ) {
+        } else {
+        }
+*/
+        // Default to Header Left if there are no matches above
+        if( empty( $classes ) ) {
+            $classes[] = 'span-7';
+        }
+
+        $classes = array_map( 'esc_attr', $classes );
+
+        $classes = apply_filters( 'hatch_center_column_class', $classes, $class );
+
+        return array_unique( $classes );
+
+    }
+} // hatch_center_column_class
+
+/**
+ * Display the classes for the header element.
+ *
+ * @param string|array $class One or more classes to add to the class list.
+ */
+
+if( !function_exists( 'hatch_center_column_class' ) ) {
+    function hatch_center_column_class( $class = '' ) {
+        // Separates classes with a single space, collates classes for body element
+        echo 'class="' . join( ' ', hatch_get_center_column_class( $class ) ) . '"';
+    }
+} // hatch_header_class
 /**
  * Retrieve theme modification value for the current theme.
  *
@@ -433,5 +515,35 @@ if( !function_exists( 'hatch_translate_image_ratios' ) ) {
         }
 
         return $image_ratio;
+    }
+} // hatch_get_header_class
+
+/**
+ * Check customizer and page template settings before displaying a sidebar
+ *
+ * @param   int     $sidebar                Sidebar slug to check
+ * @param   varchar $container_class       Sidebar container class
+ * @return  html    $sidebar                Sidebar template
+ */
+if( !function_exists( 'hatch_maybe_get_sidebar' ) ) {
+    function hatch_maybe_get_sidebar( $sidebar = 'left', $container_class = 'column', $return = FALSE ) {
+        global $post;
+        if ( is_page() ) {
+            $show_sidebar = ( is_page_template( 'template-' . $sidebar . '.php' ) || is_page_template( 'template-both-sidebar.php' ) ) ;
+        } else if ( function_exists( 'is_shop' ) && is_post_type_archive( 'product' ) ) {
+            $show_sidebar = hatch_get_theme_mod( 'woocommerce-' . $sidebar );
+        } else if ( is_archive() || is_search() ) {
+            $show_sidebar = hatch_get_theme_mod( 'archives-' . $sidebar );
+        } else if( is_single() ) {
+            $show_sidebar = hatch_get_theme_mod( 'post-' . $sidebar );
+        } else {
+            $show_sidebar = hatch_get_theme_mod( 'archives-' . $sidebar );
+        }
+
+        if( TRUE == $show_sidebar ) { ?>
+            <div class="<?php echo $container_class; ?>">
+                <?php dynamic_sidebar( HATCH_THEME_SLUG . '-' . $sidebar ); ?>
+            </div>
+        <?php }
     }
 } // hatch_get_header_class

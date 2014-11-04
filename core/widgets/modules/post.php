@@ -184,7 +184,7 @@ if( !class_exists( 'Hatch_Post_Widget' ) ) {
 							$post_query->the_post();
 							global $post; ?>
 							<?php if( 'list-list' == $widget['design'][ 'liststyle' ] ) { ?>
-								<?php get_template_part( 'content' , 'list' ); ?>
+								<?php get_template_part( 'partials/content' , 'list' ); ?>
 							<?php } else { ?>
 								<article class="column<?php if( !isset( $widget['design'][ 'gutter' ] ) ) echo '-flush'; ?> <?php echo $span_class; ?> hatch-masonry-column thumbnail <?php if( 'overlay' == $this->check_and_return( $widget , 'text_style' ) ) echo 'with-overlay'; ?>" data-cols="<?php echo $col_count; ?>">
 									<?php if( has_post_thumbnail() ) { ?>

@@ -15,7 +15,7 @@ get_header(); ?>
         <?php while( have_posts() ) : the_post(); ?>
             <div class="row">
                 <article class="column span-12">
-                    <?php get_template_part( 'content-single' ); ?>
+                    <?php get_template_part( 'partials/content', 'single' ); ?>
                 </article>
             </div>
         <?php endwhile; // while has_post(); ?>

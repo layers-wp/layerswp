@@ -58,7 +58,13 @@ jQuery(function($){
             $final_filter = '.' + $filter;
             $that.toggleClass( 'active' ).siblings().removeClass('active');
 
-            if( true == $isotope_disabled ){
+            if( !$that.hasClass( 'active' ) ) {
+                $final_filter = '*';
+            }
+
+            if( '*' == $final_filter ) {
+                $isotope_container.find( '.hatch-masonry-column' ).show();
+            } else if( true == $isotope_disabled  ){
                 $isotope_container.find( '.hatch-masonry-column' ).hide();
                 if( $that.hasClass( 'active' ) ){
                     $isotope_container.find( $final_filter ).show();

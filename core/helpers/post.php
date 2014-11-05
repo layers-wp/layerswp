@@ -192,7 +192,7 @@ if( !function_exists( 'hatch_backup_builder_pages' ) ) {
 if( !function_exists( 'hatch_post_class' ) ) {
     function hatch_post_class( $classes ) {
 
-        if( 'layout-fullwidth' != hatch_get_theme_mod( 'content-layout-layout' ) ){
+        if( 'layout-fullwidth' != hatch_get_theme_mod( 'content-layout-layout' ) && 'product' != get_post_type() ){
             $classes[] = 'container';
         }
 

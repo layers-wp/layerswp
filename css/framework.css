@@ -635,6 +635,7 @@ h1, h2, h3, h4, h5, h6{color: #000; font-weight: 200;}
 
             /*-------------------*/
             /*- OVERLAY HOVER ---*/
+            .with-overlay:hover .thumbnail-media img{transform: scale(1.01);}
             .with-overlay:hover .thumbnail-body{visibility: visible; opacity: 1;}
             .with-overlay:hover .heading{transform: translate3d(0, 0, 0); opacity: 1;}
             .with-overlay:hover .button{transform: translate3d(0, 0, 0); opacity: 1;}
@@ -1052,7 +1053,7 @@ table.table-comfortable td{padding: 14px 10px;}
 	.darken{background: #555;}
 
 /*-------------------------------*/
-/*- ALIGNMENT -------------------*/
+/*- ALIGNMENT & SPACING ---------*/
 /*-------------------------------*/
 
     .pull-left{float: left;}
@@ -1072,11 +1073,6 @@ table.table-comfortable td{padding: 14px 10px;}
     .va-top{vertical-align: top;}
     .va-bottom{vertical-align: bottom;}
     .va-middle{vertical-align: middle;}
-
-    .affix{position: fixed; z-index: 10;}
-    .affix.affix-left{left: 10px;}
-    .affix.affix-right{right: 0;}
-    .affix.affix-top-right{top: 20px; right: 20px;}
 
     /*.stick{position: absolute; top: 0; width: 100%; z-index: 10;}*/
 
@@ -1099,3 +1095,5 @@ table.table-comfortable td{padding: 14px 10px;}
 
     .no-inset-top{padding-top: 0;}
     .no-inset-bottom{padding-bottom: 0;}
+
+

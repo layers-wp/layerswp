@@ -3,7 +3,7 @@
 		</div> <!-- back-to-top -->
 
 		<?php do_action( 'hatch_before_footer' ); ?>
-		<footer id="footer" class="well">
+		<footer id="footer" class="footer-site well">
 			<?php do_action( 'hatch_before_footer_inner' ); ?>
 			<div class="container content-main clearfix">
 

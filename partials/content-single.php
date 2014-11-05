@@ -28,7 +28,7 @@ global $post, $post_meta_to_display; ?>
         'after'     => '</p>'
     )); ?>
 
-<?php if( 'template-blank.php' == get_page_template_slug() ) { ?>
+<?php if( 'template-blank.php' != get_page_template_slug() ) { ?>
     </div>
 <?php } ?>
 

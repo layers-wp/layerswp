@@ -8,11 +8,11 @@
 
 get_header(); ?>
 
-<section id="post-<?php the_ID(); ?>" <?php post_class( 'container content-main clearfix' ); ?>>
+<section id="post-<?php the_ID(); ?>" <?php post_class( 'content-main clearfix' ); ?>>
     <?php if( have_posts() ) : ?>
         <?php while( have_posts() ) : the_post(); ?>
             <div class="row">
-                <article <?php hatch_center_column_class( $post->ID ); ?>>
+                <article <?php hatch_center_column_class(); ?>>
                     <?php get_template_part( 'partials/content', 'single' ); ?>
                 </article>
             </div>

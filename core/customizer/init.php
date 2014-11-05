@@ -31,6 +31,7 @@ class Hatch_Customizer {
 		$controls_dir = '/core/customizer/controls/';
 
 		// Include control classes
+		locate_template( $controls_dir . 'heading.php' , true );
 		locate_template( $controls_dir . 'select-icons.php' , true );
 		locate_template( $controls_dir . 'select-images.php' , true );
 		locate_template( $controls_dir . 'seperator.php' , true );
@@ -44,7 +45,7 @@ class Hatch_Customizer {
 		// If we are in a builder page, update the Widgets title
 		if(
 			isset( $_GET[ 'hatch-builder' ] )
-			|| ( 0 != get_option( 'page_on_front' )  && HATCH_BUILDER_TEMPLATE == get_post_meta ( get_option( 'page_on_front' ) , '_wp_page_template' , true ) )
+			|| ( is_front_page() && 0 != get_option( 'page_on_front' )  && HATCH_BUILDER_TEMPLATE == get_post_meta ( get_option( 'page_on_front' ) , '_wp_page_template' , true ) )
 		) {
 			$wp_customize->add_panel(
 				'widgets', array(

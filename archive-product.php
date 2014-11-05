@@ -10,17 +10,22 @@ get_header(); ?>
 
 <?php get_template_part( 'partials/header' , 'page-title' ); ?>
 
-<div class="container sky basement clearfix">
-    <div class="row">
-
+<div class="<?php if( 'layout-fullwidth' != hatch_get_theme_mod( 'content-layout-layout' ) ) echo 'container'; ?> sky basement clearfix main-content content">
         <div class="row push-bottom woocommerce-result-count-container">
             <?php  do_action('woocommerce_before_shop_loop'); ?>
         </div>
 
+        <?php /**
+        * Maybe show the left sidebar
+        */
+        hatch_maybe_get_sidebar( 'left-woocommerce-sidebar', 'column pull-left sidebar span-4' ); ?>
+
         <?php if ( have_posts()) : ?>
-            <section class="column span-12">
+            <section <?php hatch_center_column_class(); ?>>
+
                 <?php // Sub category listing
                 woocommerce_product_subcategories(); ?>
+
                 <ul class="products">
                     <?php while (have_posts()) :  the_post(); ?>
                             <?php woocommerce_get_template_part( 'content' , 'product' ); ?>
@@ -32,6 +37,10 @@ get_header(); ?>
                 <?php woocommerce_product_loop_end(); ?>
             </section>
         <?php endif; ?>
-    </div>
+
+        <?php /**
+        * Maybe show the right sidebar
+        */
+        hatch_maybe_get_sidebar( 'right-woocommerce-sidebar', 'column pull-left sidebar span-4 no-gutter' ); ?>
 </div>
 <?php get_footer(); ?>

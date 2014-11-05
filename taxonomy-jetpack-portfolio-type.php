@@ -16,7 +16,7 @@ get_header(); ?>
 <?php get_template_part( 'partials/header' , 'page-title' ); ?>
 
 
-<section <?php post_class( 'container push-top-large clearfix' ); ?>>
+<section <?php post_class( 'push-top-large clearfix' ); ?>>
     <?php if( $wp_query->have_posts() ) { ?>
         <div class="row">
             <?php while( $wp_query->have_posts() ) {

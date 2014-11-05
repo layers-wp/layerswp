@@ -151,6 +151,9 @@ class Hatch_Customizer_Regsitrar {
 			// Assign control to the relevant section
 			$control_data[ 'section' ] = $this->prefix . $panel_section_key;
 
+			// Set control priority to obey order of setup
+			$control_data[ 'priority' ] = $control_priority;
+
 			if ( 'select-images' == $control_data['type'] ) {
 
 				$this->customizer->add_control(
@@ -178,6 +181,15 @@ class Hatch_Customizer_Regsitrar {
 						$control_data
 					)
 				);
+			} else if( 'heading' == $control_data['type'] ) {
+
+				$this->customizer->add_control(
+					new Hatch_Customize_Heading_Control(
+						$this->customizer,
+						$setting_key ,
+						$control_data
+					)
+				);
 			} else {
 
 				$this->customizer->add_control(
@@ -185,6 +197,8 @@ class Hatch_Customizer_Regsitrar {
 					$control_data
 				);
 			}
+
+			$control_priority++;
 
 		} // foreach controls panel_section_key
 	}

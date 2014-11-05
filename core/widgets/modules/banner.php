@@ -206,8 +206,6 @@ if( !class_exists( 'Hatch_Slider_Widget' ) ) {
 					})
 			 	</script>
 			<?php } // if !empty( $widget->slides ) ?>
-
-
 	 	<?php }
 
 		/**

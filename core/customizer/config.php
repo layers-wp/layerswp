@@ -32,9 +32,9 @@ class Hatch_Customizer_Config {
 									'priority' => 40
 								),
 			'content'		=> array(
-									'title' => __( 'Content', HATCH_THEME_SLUG ),
+									'title' => __( 'Content Area', HATCH_THEME_SLUG ),
 									'description' => __( 'Control your content\'s default layout.' , HATCH_THEME_SLUG ), // @TODO Put a helper here
-									'priority' => 40
+									'priority' => 45
 								),
 			'footer'		=> array(
 									'title' => __( 'Footer', HATCH_THEME_SLUG ),
@@ -81,6 +81,12 @@ class Hatch_Customizer_Config {
 								),
 							);
 
+		$sections[ 'content' ] = array(
+								'layout' => array(
+									'title' =>__( 'Layout' , HATCH_THEME_SLUG ),
+								)
+							);;
+
 		$sections[ 'footer' ] = array(
 								'layout' => array(
 									'title' =>__( 'Layout' , HATCH_THEME_SLUG ),
@@ -105,7 +111,7 @@ class Hatch_Customizer_Config {
 		// Header -> Layout -> Layout
 		$controls['header-layout'] = array(
 								'layout' => array(
-									'type'     => 'select-icons',
+                                    'type'     => 'select-icons',
 									'default' => 'header-logo-left',
 									'choices' => array(
                                         'header-logo-left' => __( 'Logo Left' , HATCH_THEME_SLUG ),
@@ -141,8 +147,58 @@ class Hatch_Customizer_Config {
                                     'label'    => __( 'Scripts', HATCH_THEME_SLUG ),
                                     'description' => __( 'Enter in any custom tracking script to include in your site\'s header.', HATCH_THEME_SLUG ),
                                     'default' => '',
-                                ) // fixed
+                                ) // scripts
 							);
+
+		// Header -> Layout -> Scripts
+		$controls['content-layout'] = array(
+                                'layout' => array(
+                                    'label' => __( 'Content Width' , HATCH_THEME_SLUG ),
+                                    'type'     => 'select-icons',
+                                    'default' => 'layout-boxed',
+                                    'choices' => array(
+                                        'layout-boxed' => __( 'Boxed' , HATCH_THEME_SLUG ),
+                                        'layout-fullwidth' => __( 'Full Width' , HATCH_THEME_SLUG )
+                                    )
+                                ), // layout,
+                                'break-' . rand() => array(
+                                    'type'     => 'seperator'
+                                ),
+                                'label-sidebar-archive' => array(
+									'type'  => 'heading',
+									'label'    => __( 'Post List Sidebar(s)', HATCH_THEME_SLUG ),
+                                	'description' => __( 'This option affects your index page, category & tag pages as well as search pages.', HATCH_THEME_SLUG ),
+                                ),
+			 					'archive-left-sidebar' => array(
+                                    'type'		=> 'checkbox',
+                                    'label' 	=> __( 'Show Left Sidebar', HATCH_THEME_SLUG ),
+                                    'default' 	=> FALSE,
+                                ), // post-sidebar
+			 					'archive-right-sidebar' => array(
+                                    'type'		=> 'checkbox',
+                                    'label' 	=> __( 'Show Right Sidebar', HATCH_THEME_SLUG ),
+                                    'default' 	=> TRUE,
+                                ), // post-sidebar
+                                'break-' . rand() => array(
+                                    'type'     => 'seperator'
+                                ),
+                                'label-sidebar-single' => array(
+                                    'type'  => 'heading',
+                                    'label'    => __( 'Single Post Sidebar(s)', HATCH_THEME_SLUG ),
+                                    'description' => __( 'This option affects your single post pages.', HATCH_THEME_SLUG ),
+                                ),
+                                'single-left-sidebar' => array(
+                                    'type'      => 'checkbox',
+                                    'label'     => __( 'Show Left Sidebar', HATCH_THEME_SLUG ),
+                                    'default'   => FALSE,
+                                ), // post-sidebar
+                                'single-right-sidebar' => array(
+                                    'type'      => 'checkbox',
+                                    'label'     => __( 'Show Right Sidebar', HATCH_THEME_SLUG ),
+                                    'default'   => TRUE,
+                                ), // post-sidebar
+							);
+
 
 		// Footer -> Layout -> Layout
 		$controls['footer-layout'] = array(

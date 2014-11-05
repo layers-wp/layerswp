@@ -10,7 +10,7 @@
 
 get_header(); ?>
 
-<section id="post-<?php the_ID(); ?>" <?php post_class( 'container content-main clearfix' ); ?>>
+<section id="post-<?php the_ID(); ?>" <?php post_class( 'content-main clearfix' ); ?>>
     <div class="row">
 
         <?php /**
@@ -18,7 +18,7 @@ get_header(); ?>
         */
         hatch_maybe_get_sidebar( 'left-sidebar', 'column pull-left sidebar span-4' ); ?>
 
-        <article <?php hatch_center_column_class( $post->ID ); ?>>
+        <article <?php hatch_center_column_class(); ?>>
             <?php if( have_posts() ) : ?>
                 <?php while( have_posts() ) : the_post(); ?>
                     <?php get_template_part( 'partials/content', 'single' ); ?>

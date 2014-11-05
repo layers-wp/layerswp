@@ -174,6 +174,8 @@ if( !class_exists( 'Hatch_Module_Widget' ) ) {
 			<script>
 				jQuery(function($){
 					hatch_isotope_settings[ '<?php echo $widget_id; ?>' ] = [{
+							itemSelector: '.hatch-masonry-column',
+							layoutMode: 'masonry',
 							masonry: {
 								gutter: <?php echo ( isset( $widget['design'][ 'gutter' ] ) ? 20 : 0 ); ?>
 							}

@@ -314,7 +314,7 @@ h1, h2, h3, h4, h5, h6{color: #000; font-weight: 200;}
     .section-title .heading a:hover{color: #323232;}
     .section-title .excerpt{max-width: 745px; font-size: 2.0rem; color: #8F8F8F;}
     .section-title .heading + p{margin-top: 5px;}
-    .section-title .excerpt + .button{margin-top: 15px;}
+    .section-title .button{margin-top: 15px;}
 
     .meta-info{font-size: 1.2rem; color: #8F8F8F}
     .meta-info + .heading{margin-top: 15px;}

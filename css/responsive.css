@@ -304,10 +304,12 @@ html{}
     .swiper-slide .copy-container{
     	float: none !important;
     	width: auto !important;
+    	text-align: center !important;
     }
     .swiper-slide .image-container{
     	float: none !important;
     	width: auto !important;
+    	text-align: center !important;
     }
 
     /*---------------------------*/

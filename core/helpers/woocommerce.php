@@ -164,6 +164,14 @@ if (!function_exists('hatch_woocommerce_add_sidebars')) {
 if (!function_exists('hatch_woocommerce_center_column_class')) {
     function hatch_woocommerce_center_column_class( $classes ){
 
+        if( !function_exists( 'is_shop' ) ) {
+            return $classes;
+        } else {
+            if( !is_shop() && !is_post_type_archive( 'product' ) ) {
+                return $classes;
+            }
+        }
+
         $left_sidebar_active = ( hatch_can_show_sidebar( 'left-woocommerce-sidebar' ) ? is_active_sidebar( HATCH_THEME_SLUG . '-left-woocommerce-sidebar' ) : FALSE );
         $right_sidebar_active = ( hatch_can_show_sidebar( 'right-woocommerce-sidebar' ) ? is_active_sidebar( HATCH_THEME_SLUG . '-right-woocommerce-sidebar' ) : FALSE );
 

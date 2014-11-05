@@ -12,7 +12,7 @@ if( !class_exists( 'Hatch_Module_Widget' ) ) {
 		/**
 		*  Widget variables
 		*/
-		private $widget_title = 'Module';
+		private $widget_title = 'Content';
 		private $widget_id = 'module';
 		private $post_type = '';
 		private $taxonomy = '';

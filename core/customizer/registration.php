@@ -69,8 +69,6 @@ class Hatch_Customizer_Regsitrar {
 		// If there are no panels, return
 		if( empty( $panels ) ) return;
 
-		$panel_priority = 150;
-
 		foreach( $panels as $panel_key => $panel_data ) {
 
 			// If panels are supported, add this as a panel
@@ -107,10 +105,14 @@ class Hatch_Customizer_Regsitrar {
 				$section_data[ 'panel' ] = $this->prefix . $panel_key;
 			}
 
+			$section_data[ 'priority' ] = $section_priority;
+
 			$this->customizer->add_section(
 				$this->prefix . $panel_key . '-' . $section_key ,
 				$section_data
 			);
+
+			$section_priority++;
 
 			// Register Sections for this Panel
 			$this->register_controls ( $panel_key . '-' . $section_key , $this->config->controls() );

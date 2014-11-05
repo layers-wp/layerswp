@@ -264,7 +264,7 @@ if( !class_exists( 'Hatch_Module_Widget' ) ) {
 			<div class="hatch-container-large" id="hatch-banner-widget-<?php echo $this->number; ?>">
 
 				<?php $this->form_elements()->header( array(
-					'title' =>'Columns',
+					'title' =>'Content',
 					'icon_class' =>'text'
 				) ); ?>
 

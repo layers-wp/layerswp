@@ -45,7 +45,7 @@ class Hatch_Customizer {
 		// If we are in a builder page, update the Widgets title
 		if(
 			isset( $_GET[ 'hatch-builder' ] )
-			|| ( is_front_page() && 0 != get_option( 'page_on_front' )  && HATCH_BUILDER_TEMPLATE == get_post_meta ( get_option( 'page_on_front' ) , '_wp_page_template' , true ) )
+			|| ( 0 != get_option( 'page_on_front' )  && HATCH_BUILDER_TEMPLATE == get_post_meta ( get_option( 'page_on_front' ) , '_wp_page_template' , true ) )
 		) {
 			$wp_customize->add_panel(
 				'widgets', array(

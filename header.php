@@ -16,12 +16,6 @@
 			<?php do_action( 'hatch_before_header_inner' ); ?>
 			<div class="container content-vertical clearfix">
 
-				<a href="" class="responsive-nav" id="dashboard-menu-toggle-button">
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-				</a>
-
 				<?php if( 'header-logo-center' == hatch_get_theme_mod( 'header-layout-layout' ) ) { ?>
 					<?php get_template_part( 'partials/header' , 'centered' ); ?>
 				<?php } else { ?>

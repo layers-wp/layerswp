@@ -66,9 +66,6 @@ if( !class_exists( 'Hatch_Sidebar_Widget' ) ) {
             // $instance Defaults
             $instance_defaults = $this->defaults;
 
-            // If we have information in this widget, then ignore the defaults
-            if( !empty( $instance ) ) $instance_defaults = array();
-
             // Active Sidebars
             $sidebars = get_option( 'sidebars_widgets');
 
@@ -85,16 +82,14 @@ if( !class_exists( 'Hatch_Sidebar_Widget' ) ) {
                         <?php $col = 1; ?>
                         <?php foreach ( $widget['sidebars'] as $key => $sidebar) {
 
+                            $sidebar = wp_parse_args( $sidebar, $this->sidebar_defaults );
+
                             // Set the background styling
                             if( !empty( $sidebar['design'][ 'background' ] ) ) $this->widget_styles( $widget_id . '-' . $key , 'background', $sidebar['design'][ 'background' ] );
 
                             $span_class = 'span-' . $sidebar[ 'width' ]; ?>
 
                             <div id="<?php echo $widget_id; ?>-<?php echo $key; ?>" class="column<?php if( !isset( $widget['design'][ 'gutter' ] ) ) echo '-flush'; ?> <?php echo $span_class; ?> <?php if( '' != $this->check_and_return( $sidebar, 'design' , 'background', 'image' ) || '' != $this->check_and_return( $sidebar, 'design' , 'background', 'color' ) ) echo 'content'; ?> hatch-masonry-column">
-                                <?php if( !isset( $sidebars[ $widget_id . '-' . $key ] ) ) { ?>
-                                    <h4><?php _e( 'Save Your Page', HATCH_THEME_SLUG ); ?></h4>
-                                    <p><?php _e( 'To activate this sidebar; add a sidebar title, click Save &amp; Publish, then refresh the customizer page.', HATCH_THEME_SLUG ); ?></p>
-                                <?php  } ?>
                                 <?php dynamic_sidebar( $widget_id . '-' . $key ); ?>
                             </div>
                             <?php $col++; ?>

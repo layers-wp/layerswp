@@ -337,8 +337,6 @@ if( !class_exists( 'Hatch_Module_Widget' ) ) {
 			$instance = wp_parse_args( $instance, $instance_defaults );
 			extract( $instance, EXTR_SKIP );
 
-
-
 			// Turn the widget details into an object, it makes the code cleaner
 			$widget_details = (object) $widget_details;
 

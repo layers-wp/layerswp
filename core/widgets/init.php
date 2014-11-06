@@ -118,6 +118,9 @@ class Hatch_Widgets {
 		// Get registered sidebars
 		$sidebars = get_option( 'sidebars_widgets');
 
+		// Make sure side bars & widgets option is not empty
+		if( empty( $sidebars ) ) return;
+
 		// Get the Dynamic Sidebar Widgets in use
 		$dynamic_widget_areas = get_option( 'widget_' . $dynamic_widget_id );
 

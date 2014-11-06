@@ -142,6 +142,15 @@ class Hatch_Customizer_Config {
 
 		// Header -> Layout -> Scripts
 		$controls['header-scripts'] = array(
+                                'google-id' => array(
+                                    'type'     => 'text',
+                                    'label'    => __( 'Google Analytics ID', HATCH_THEME_SLUG ),
+                                    'description' => __( 'Enter in your Google Analytics ID to enable your Google Analytics. eg. "UA-xxxxxx-xx', HATCH_THEME_SLUG ),
+                                    'default' => '',
+                                ), // scripts
+                                'break-' . rand() => array(
+                                    'type'     => 'seperator'
+                                ),
 			 					'scripts' => array(
                                     'type'     => 'textarea',
                                     'label'    => __( 'Scripts', HATCH_THEME_SLUG ),

@@ -552,3 +552,49 @@ if( !function_exists( 'hatch_maybe_get_sidebar' ) ) {
         <?php }
     }
 } // hatch_get_header_class
+
+
+/**
+ * Include additional scripts in the side header
+ *
+ * @return  html    $additional_header_scripts                Scripts to be included in the header
+ */
+if( !function_exists( 'hatch_add_additional_header_scripts' ) ) {
+    function hatch_add_additional_header_scripts() {
+
+        $additional_header_scripts = hatch_get_theme_mod( 'header-scripts-scripts' );
+
+        if( '' != $additional_header_scripts ) {
+            echo $additional_header_scripts;
+        }
+    }
+    add_action ( 'wp_head', 'hatch_add_additional_header_scripts' );
+} // hatch_add_additional_header_scripts
+
+
+
+/**
+ * Include Google Analytics
+ *
+ * @return  html    $scripts Prints Google Analytics
+ */
+if( !function_exists( 'hatch_add_google_analytics' ) ) {
+    function hatch_add_google_analytics() {
+
+        $analytics_id = hatch_get_theme_mod( 'header-scripts-google-id' );
+
+        if( '' != $analytics_id ) { ?>
+            <script>
+              (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+              (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+              m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+              })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+              ga('create', '<?php echo $analytics_id; ?>', 'auto');
+              ga('send', 'pageview');
+
+            </script>
+        <?php }
+    }
+    add_action ( 'wp_head', 'hatch_add_google_analytics' );
+} // hatch_add_google_analytics

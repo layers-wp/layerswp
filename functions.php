@@ -142,9 +142,37 @@ if( ! function_exists( 'hatch_setup' ) ) {
 		 */
 		add_theme_support( 'jetpack-portfolio' );
 
+
+		/**
+		* Welcome Redirect
+		*/
+		if( isset($_GET["activated"]) && $pagenow = "themes.php") {
+			update_option( 'hatch_welcome' , 1);
+			$find_builder_page = new WP_Query( array( 'post_type' => 'page' , 'meta_key' => '_wp_page_template', 'meta_value' => HATCH_BUILDER_TEMPLATE ) );
+			if( false == $find_builder_page->have_posts() ){
+				$page['post_type']    = 'page';
+				$page['post_status']  = 'publish';
+				$page['post_title']   = 'Builder Page';
+				$pageid = wp_insert_post ($page);
+				if ($pageid != 0) {
+					update_post_meta( $pageid , '_wp_page_template', HATCH_BUILDER_TEMPLATE );
+				}
+			}
+			wp_redirect(admin_url('admin.php?page=' . HATCH_THEME_SLUG . '-welcome'));
+		}
+
+	} // function hatch_setup
+	add_action( 'after_setup_theme' , 'hatch_setup', 10 );
+} // if !function hatch_setup
+
+/**
+*  Enqueue front end styles and scripts
+*/
+if( ! function_exists( 'hatch_register_standard_sidebars' ) ) {
+	function hatch_register_standard_sidebars(){
 		/**
 		 * Register Standard Sidebars
-		  */
+		 */
 		register_sidebar( array(
 			'id'		=> HATCH_THEME_SLUG . '-left-sidebar',
 			'name'		=> __( 'Left Sidebar' , HATCH_THEME_SLUG ),
@@ -178,30 +206,9 @@ if( ! function_exists( 'hatch_setup' ) ) {
 				'after_title'	=> '</h5>',
 			) );
 		} // for footers
-
-		/**
-		* Welcome Redirect
-		*/
-		if( isset($_GET["activated"]) && $pagenow = "themes.php") {
-			update_option( 'hatch_welcome' , 1);
-			$find_builder_page = new WP_Query( array( 'post_type' => 'page' , 'meta_key' => '_wp_page_template', 'meta_value' => HATCH_BUILDER_TEMPLATE ) );
-			if( false == $find_builder_page->have_posts() ){
-				$page['post_type']    = 'page';
-				$page['post_status']  = 'publish';
-				$page['post_title']   = 'Builder Page';
-				$pageid = wp_insert_post ($page);
-				if ($pageid != 0) {
-					update_post_meta( $pageid , '_wp_page_template', HATCH_BUILDER_TEMPLATE );
-				}
-			}
-			wp_redirect(admin_url('admin.php?page=' . HATCH_THEME_SLUG . '-welcome'));
-		}
-
 	}
-	add_action( 'after_setup_theme' , 'hatch_setup', 10 );
+	add_action( 'widgets_init' , 'hatch_register_standard_sidebars' , 50 );
 }
-
-
 /**
 *  Enqueue front end styles and scripts
 */

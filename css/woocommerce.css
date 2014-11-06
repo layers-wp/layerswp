@@ -94,9 +94,9 @@ del .amount{color: #999; font-weight: 400;}
     /*-----------------------*/
     /*- PRODUCT DESCRIPTION -*/
     .entry-title{font-size: 4.4rem;}/*-- section-title.large --*/
-    div[itemprop="offers"]{margin: 20px 0; font-size: 2.4rem;}
+    div[itemprop="offers"]{margin: 0px 0 20px; font-size: 2.4rem;}
     div[itemprop="description"]{margin-bottom: 20px; font-size: 2.0rem; color: #8F8F8F;}/*-- section-title --*/
-    div[itemprop="description"] p{margin-bottom: 26px;}
+    div[itemprop="description"] p{margin-bottom: 16px;}
 
         /*-------------------*/
         /*- PRODUCT CART ----*/

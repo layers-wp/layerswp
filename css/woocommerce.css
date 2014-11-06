@@ -232,7 +232,7 @@ table .actions{text-align: right;}
     .woocommerce-billing-fields h3{margin-bottom: 15px; font-size: 2.4rem;}
 
     .woocommerce-shipping-fields h3{margin-bottom: 15px;}
-    .woocommerce-shipping-fields h3 label{display: inline-block; vertical-align: middle; font-size: 2.4rem; font-weight: normal;}
+    .woocommerce-shipping-fields h3 label{display: inline-block; vertical-align: middle; font-size: 2.4rem; font-weight: 200;}
     .woocommerce-shipping-fields h3 input{display: inline;}
 
     .woocommerce .required{color: #c00; border: none;}

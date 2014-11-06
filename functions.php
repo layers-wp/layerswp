@@ -42,7 +42,6 @@ add_action( 'template_redirect', 'hatch_set_content_width' );
 /*
  * Third Party Scripts
  */
-locate_template( '/core/third_party/site-logo/site-logo.php' , true );
 locate_template( '/core/third_party/hex-to-rgb.php' , true );
 
 /*
@@ -199,7 +198,7 @@ if( ! function_exists( 'hatch_setup' ) ) {
 		}
 
 	}
-	add_action( 'init' , 'hatch_setup', 10 );
+	add_action( 'after_setup_theme' , 'hatch_setup', 10 );
 }
 
 

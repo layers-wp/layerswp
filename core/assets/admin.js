@@ -196,7 +196,7 @@ jQuery(function($) {
 
 		// Switch the view
 		$elements.find( '.hatch-content' ).eq( $index ).addClass('section-active');
-		$elements.find( '.hatch-content' ).eq( $index ).Ohsiblings().removeClass('section-active');
+		$elements.find( '.hatch-content' ).eq( $index ).siblings().removeClass('section-active');
 	});
 
 	/**
@@ -267,18 +267,18 @@ jQuery(function($) {
 
 
 	/**
-	* 6 - Design Controller Toggles
+	* 6 - Design Controller toggles
 	*/
 	$( document ).on( 'click' , '.widget .hatch-visuals-wrapper li.hatch-visuals-item a.hatch-icon-wrapper' , function(e){
 		e.preventDefault();
 		// "Hi Mom"
 		$that = $(this);
 
+		// Close siblings
+		$( '.hatch-visuals-item.hatch-active' ).not( $that.parent() ).removeClass( 'hatch-active' );
+
 		// Toggle active state
 		$that.parent().toggleClass( 'hatch-active' );
-
-		// Close siblings
-		$that.parent().siblings( '.hatch-visuals-item' ).removeClass( 'hatch-active' );
 	});
 
 	$( document ).on( 'click' , '.widget .hatch-visuals-wrapper li.hatch-visuals-item label.hatch-icon-wrapper' , function(e){

@@ -155,7 +155,7 @@ if (!function_exists('hatch_woocommerce_add_sidebars')) {
             'after_title'   => '</h4>',
         ) );
     }
-    add_action( 'init' , 'hatch_woocommerce_add_sidebars', 10 );
+    add_action( 'widgets_init' , 'hatch_woocommerce_add_sidebars', 45 );
 }
 
 /**

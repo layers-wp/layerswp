@@ -44,6 +44,7 @@ class Hatch_Widgets {
 		locate_template( $module_dir . 'module.php' , true );
 		locate_template( $module_dir . 'portfolio.php' , true );
 		locate_template( $module_dir . 'post.php' , true );
+		locate_template( $module_dir . 'sidebar.php' , true );
 
 		// When switching to a child theme, preserve page builder pages
 		add_action('switch_theme', array( $this , 'preserve_widgets' ) );
@@ -112,7 +113,7 @@ class Hatch_Widgets {
 	public function register_dynamic_sidebars(){
 
 		// Set the widget ID to search for
-		$dynamic_widget_id = 'hatch-widget-widget-columns';
+		$dynamic_widget_id = 'hatch-widget-sidebar';
 
 		// Get registered sidebars
 		$sidebars = get_option( 'sidebars_widgets');
@@ -128,19 +129,20 @@ class Hatch_Widgets {
 
 			// Check if this widget is inside an inactive sidebar (in which case skip)
 			if( !in_array( $dynamic_widget_id  . '-' . $widget_key , $sidebars[ 'wp_inactive_widgets'] ) ) {
-				if( isset( $widget_area['modules'] ) ){
-					foreach ( $widget_area['modules'] as $module_key => $module ){
-						$sidebar_key = $dynamic_widget_id  .'-' . $widget_key . '-' . $module_key;
+				if( isset( $widget_area['sidebars'] ) ){
+					foreach ( $widget_area['sidebars'] as $sidebar_key => $sidebar ){
+						$sidebar_id = $dynamic_widget_id  .'-' . $widget_key . '-' . $sidebar_key;
 
 						register_sidebar( array(
-							'id'		=> $sidebar_key,
-							'name'		=> $module[ 'title' ],
+							'id'		=> $sidebar_id,
+							'name'		=> $sidebar[ 'title' ],
 							'description'	=> __( '' , HATCH_THEME_SLUG ),
 							'before_widget'	=> '<aside id="%1$s" class="widget %2$s">',
 							'after_widget'	=> '</aside>',
 							'before_title'	=> '<h4 class="widget-title">',
 							'after_title'	=> '</h4>',
 						) );
+
 					} // foreach $widget_area['modules']
 				} // if isset $widget_area['modules']
 			} // if !in_array( $dynamic_widget_id )
@@ -166,6 +168,15 @@ class Hatch_Widgets {
 		wp_register_script(
 			HATCH_THEME_SLUG . '-admin-widgets-modules' ,
 			get_template_directory_uri() . '/core/widgets/js/module.js' ,
+			array(),
+			HATCH_VERSION,
+			true
+		);
+
+		// Dynamic Sidebar Widget
+		wp_register_script(
+			HATCH_THEME_SLUG . '-admin-widgets-sidebar' ,
+			get_template_directory_uri() . '/core/widgets/js/sidebar.js' ,
 			array(),
 			HATCH_VERSION,
 			true
@@ -205,6 +216,7 @@ class Hatch_Widgets {
 			get_template_directory_uri() . '/core/widgets/js/widget-accordians.js' ,
 			array(
 				HATCH_THEME_SLUG . '-admin-widgets-banners',
+				HATCH_THEME_SLUG . '-admin-widgets-sidebar',
 				HATCH_THEME_SLUG . '-admin-widgets-modules',
 				HATCH_THEME_SLUG . '-admin-widgets-maps',
 				'backbone',

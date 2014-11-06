@@ -30,6 +30,8 @@ if( !class_exists( 'Hatch_Widget_Ajax' ) ) {
 			add_action( 'wp_ajax_hatch_banner_widget_actions', array( $this, 'banner_widget_actions' ) );
 
 			add_action( 'wp_ajax_hatch_module_widget_actions', array( $this, 'module_widget_actions' ) );
+
+			add_action( 'wp_ajax_hatch_sidebar_widget_actions', array( $this, 'sidebar_widget_actions' ) );
 		}
 
 		function banner_widget_actions(){
@@ -48,6 +50,16 @@ if( !class_exists( 'Hatch_Widget_Ajax' ) ) {
 			$widget = new Hatch_Module_Widget();
 			if( 'add' == $_POST[ 'widget_action'] ) {
 				$widget->module_item( array( 'id_base' => $_POST[ 'id_base' ] , 'number' => $_POST[ 'number' ] ) );
+			}
+			die();
+		}
+
+		function sidebar_widget_actions(){
+			if( !wp_verify_nonce( $_REQUEST['nonce'], 'hatch-widget-actions' ) ) die( 'You threw a Nonce exception' ); // Nonce
+
+			$widget = new Hatch_Sidebar_Widget();
+			if( 'add' == $_POST[ 'widget_action'] ) {
+				$widget->sidebar_item( array( 'id_base' => $_POST[ 'id_base' ] , 'number' => $_POST[ 'number' ] ) );
 			}
 			die();
 		}

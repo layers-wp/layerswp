@@ -462,6 +462,15 @@ class Hatch_Form_Elements {
 				<input type="text" <?php echo implode ( ' ' , $input_props ); ?> value="<?php echo $input->value; ?>" class="hatch-color-selector" />
 			<?php break;
 			/**
+			* Button Selector
+			*/
+			case 'button' : ?>
+
+				<button  class="hatch-button btn-medium" <?php echo implode ( ' ' , $input_props ); ?> data-button_text="<?php echo esc_attr( $input->label ); ?>">
+					<?php echo esc_attr( $input->label ); ?>
+				</button>
+			<?php break;
+			/**
 			* Default to hidden field
 			*/
 			default : ?>

@@ -506,6 +506,7 @@ if( !function_exists( 'hatch_can_show_sidebar' ) ) {
 
          if( is_page() ) {
 
+            // Check the pages use page templates to decide which sidebars are allowed
             $can_show_sidebar =
                 (
                     is_page_template( 'template-' . $sidebar . '.php' ) ||
@@ -514,10 +515,12 @@ if( !function_exists( 'hatch_can_show_sidebar' ) ) {
 
         } elseif ( is_single() ) {
 
+            // Check the single page option
            $can_show_sidebar = hatch_get_theme_mod( 'content-layout-single-' . $sidebar );
 
         } else {
 
+            // Check the arhive page option
            $can_show_sidebar = hatch_get_theme_mod( 'content-layout-archive-' . $sidebar );
 
         }

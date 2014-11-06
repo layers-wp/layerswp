@@ -174,14 +174,45 @@ if( ! function_exists( 'hatch_register_standard_sidebars' ) ) {
 		 * Register Standard Sidebars
 		 */
 		register_sidebar( array(
+			'id'		=> HATCH_THEME_SLUG . '-top-offsite-sidebar',
+			'name'		=> __( 'Top Tray' , HATCH_THEME_SLUG ),
+			'description'	=> __( '' , HATCH_THEME_SLUG ),
+			'before_widget'	=> '<aside id="%1$s" class="content widget %2$s">',
+			'after_widget'	=> '</aside>',
+			'before_title'	=> '<h5 class="section-nav-title">',
+			'after_title'	=> '</h5>',
+		) );
+
+		register_sidebar( array(
+			'id'		=> HATCH_THEME_SLUG . '-left-offsite-sidebar',
+			'name'		=> __( 'Left Tray' , HATCH_THEME_SLUG ),
+			'description'	=> __( '' , HATCH_THEME_SLUG ),
+			'before_widget'	=> '<aside id="%1$s" class="content widget %2$s">',
+			'after_widget'	=> '</aside>',
+			'before_title'	=> '<h5 class="section-nav-title">',
+			'after_title'	=> '</h5>',
+		) );
+
+		register_sidebar( array(
+			'id'		=> HATCH_THEME_SLUG . '-right-offsite-sidebar',
+			'name'		=> __( 'Right Tray' , HATCH_THEME_SLUG ),
+			'description'	=> __( '' , HATCH_THEME_SLUG ),
+			'before_widget'	=> '<aside id="%1$s" class="content widget %2$s">',
+			'after_widget'	=> '</aside>',
+			'before_title'	=> '<h5 class="section-nav-title">',
+			'after_title'	=> '</h5>',
+		) );
+
+		register_sidebar( array(
 			'id'		=> HATCH_THEME_SLUG . '-left-sidebar',
 			'name'		=> __( 'Left Sidebar' , HATCH_THEME_SLUG ),
 			'description'	=> __( '' , HATCH_THEME_SLUG ),
 			'before_widget'	=> '<aside id="%1$s" class="content well push-bottom widget %2$s">',
 			'after_widget'	=> '</aside>',
 			'before_title'	=> '<h5 class="section-nav-title">',
-			'after_title'	=> '</h4>',
+			'after_title'	=> '</h5>',
 		) );
+
 		register_sidebar( array(
 			'id'		=> HATCH_THEME_SLUG . '-right-sidebar',
 			'name'		=> __( 'Right Sidebar' , HATCH_THEME_SLUG ),
@@ -189,7 +220,7 @@ if( ! function_exists( 'hatch_register_standard_sidebars' ) ) {
 			'before_widget'	=> '<aside id="%1$s" class="content well push-bottom widget %2$s">',
 			'after_widget'	=> '</aside>',
 			'before_title'	=> '<h5 class="section-nav-title">',
-			'after_title'	=> '</h4>',
+			'after_title'	=> '</h5>',
 		) );
 
 		/**

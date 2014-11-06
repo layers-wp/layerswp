@@ -213,6 +213,12 @@ html{}
 .title{
 	padding: 40px 20px;
 }
+	
+	/*---------------------------*/
+    /*- SECTION TITLE -----------*/
+	.section-title{
+		margin-bottom: 20px;
+	}
 
 /*-------------------------------*/
 /*- THUMBNAILS ------------------*/

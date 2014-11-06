@@ -19,7 +19,17 @@ del .amount{color: #999; font-weight: 400;}
 
 /*---------------------------*/
 /*- ON SALE SETUP -----------*/
-.onsale{padding: 2px 10px; background: #454545; border-radius: 0 0 4px 4px; position: absolute; top: 0px; left: 20px; color: #fff; font-size: 1.2rem; font-weight: 600; text-transform: uppercase;}
+.onsale{
+    padding: 2px 10px;
+    background: #454545;
+    border-radius: 0 0 4px 4px;
+    position: absolute;
+    top: 0px;
+    left: 20px;
+    color: #fff;
+    font-size: 1.2rem;
+    font-weight: 600;
+}
 
 /*---------------------------*/
 /*- REMOVE ------------------*/
@@ -50,6 +60,7 @@ del .amount{color: #999; font-weight: 400;}
 
 /*---------------------------*/
 /*- PRODUCTS SETUP ----------*/
+.products{overflow: hidden;}
 .products li{padding: 20px; background: #f5f5f5; border-radius: 4px; overflow: hidden;}
 .products li a:first-child{display: block;}
 .products .img-wrap{margin: -20px -20px 20px;}
@@ -58,6 +69,13 @@ del .amount{color: #999; font-weight: 400;}
 .products .price{display: inline-block; margin: 0 0 20px;}
 .products .button.add_to_cart_button{}
 .products .added_to_cart{padding: 4px 10px; text-transform: uppercase; font-size: 1.0rem; font-weight: 600;}
+
+/*---------------------------*/
+/*- RELATED PRODUCTS --------*/
+.related h2{margin-bottom: 15px; font-size: 2.4rem;}
+.related.products li.product{float: left; width: 32%; margin-right: 2%; position: relative;}
+.related.products li.product:nth-child(3n+3){margin-right: 0;}
+
 
 /*---------------------------*/
 /*- PRODUCT SINGLE ----------*/
@@ -107,10 +125,6 @@ del .amount{color: #999; font-weight: 400;}
     .woocommerce-tabs .tabs a:hover{color: #454545; background: #F3F3F3;}
     .woocommerce-tabs .tabs .active a{background: #F3F3F3; color: #454545;}
 
-    .related.products li.product{float: left; width: 32%; margin-right: 2%; position: relative;}
-    .related.products li.product:nth-child(3n+3){margin-right: 0;}
-
-    .related h2{margin-bottom: 15px; font-size: 2.4rem;}
 
 /*---------------------------*/
 /*- ENTRY CONTENT -----------*/
@@ -204,20 +218,26 @@ table .actions{text-align: right;}
     .create-account p:first-child{margin-bottom: 26px; max-width: 740px; font-size: 1.6rem;}
     .create-account .form-row{margin-bottom: 0;}
 
+    /*-----------------------*/
+    /*- BILLING FORM --------*/
+    .woocommerce-billing-fields h3{margin-bottom: 15px; font-size: 2.4rem;}
+
+    .woocommerce-shipping-fields h3{margin-bottom: 15px;}
+    .woocommerce-shipping-fields h3 label{display: inline-block; vertical-align: middle; font-size: 2.4rem; font-weight: normal;}
+    .woocommerce-shipping-fields h3 input{display: inline;}
+
+    .woocommerce .required{color: #c00; border: none;}
+
+/*---------------------------*/
+/*- WOO-COLUMNS -------------*/
 .col2-set{overflow: hidden; margin-bottom: 40px;}
 .col-1{float: left; width: 49%; margin-right: 2%;}
 .col-2{float: left; width: 49%;}
 
-.woocommerce-billing-fields h3{margin-bottom: 15px; font-size: 2.4rem;}
-
-.woocommerce-shipping-fields h3{margin-bottom: 15px;}
-.woocommerce-shipping-fields h3 label{display: inline-block; vertical-align: middle; font-size: 2.4rem; font-weight: normal;}
-.woocommerce-shipping-fields h3 input{display: inline;}
-
-.woocommerce .required{color: #c00; border: none;}
 
 /*---------------------------*/
 /*- ORDER REVIEW ------------*/
+#order_review{overflow: hidden;}
 #order_review_heading{margin-bottom: 15px; font-size: 2.4rem;}
 #order_review .shop_table{float: left; width: 49%; margin-right: 2%}
 
@@ -267,13 +287,20 @@ table .actions{text-align: right;}
 
 
 
-
-
 /*-------------------------------*/
 /*- RESPONSIVE ------------------*/
 /*-------------------------------*/
 
 @media only screen and (max-width: 480px), screen and (max-device-width: 480px), screen and (max-width: 600px) {
+
+    /*---------------------------*/
+    /*- PRODUCT LISTS -----------*/
+    .related.products li.product{
+        clear: both;
+        width: auto;
+        max-width: 100%;
+        margin: 0 0 20px;
+    }
 
     /*---------------------------*/
     /*- SHOPPING CART -----------*/
@@ -335,4 +362,31 @@ table .actions{text-align: right;}
         width: 100%;
     }
 
+    /*---------------------------*/
+    /*- WOO-COLUMNS -------------*/
+    .col2-set{
+        margin-bottom: 20px;
+    }
+    .col-1,
+    .col-2{
+        float: none;
+        width: auto;
+        margin: 0;
+    }
+
+
+    /*---------------------------*/
+    /*- ORDER REVIEW ------------*/
+    #order_review .shop_table{
+        float: none;
+        width: auto;
+        margin: 0 0 20px;
+    }
+    #order_review #payment{
+        float: none;
+        width: auto;
+    }
+    
 }
+
+

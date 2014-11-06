@@ -240,3 +240,13 @@ if (!function_exists('hatch_woocommerce_register_scripts')) {
     }
     add_action( 'init' , 'hatch_woocommerce_register_scripts' );
 }
+/**
+* Register WooCommerce Widgets
+*/
+if (!function_exists('hatch_woocommerce_register_widgets')) {
+    function hatch_woocommerce_register_widgets(){
+       locate_template( 'core/widgets/modules/product.php' , true );
+    };
+}
+
+add_action( 'widgets_init' , 'hatch_woocommerce_register_widgets' , 30 );

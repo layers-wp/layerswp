@@ -300,9 +300,9 @@ jQuery(function($) {
 		// "Hi Mom"
 		$that = $(this);
 
-		if( 'hatch-icon-wrapper' !== e.target.className && 'hatch-icon-wrapper' !== e.target.parentElement.className ){
+		/*if( 'hatch-icon-wrapper' !== e.target.className && 'hatch-icon-wrapper' !== e.target.parentElement.className ){
 			$( '.hatch-visuals-item.hatch-active' ).removeClass( 'hatch-active' );
-		}
+		}*/
 	});
 
 	$( document ).on( 'click' , '[id^="input_hatch"] .hatch-visuals-item' , function(e){

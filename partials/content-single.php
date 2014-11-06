@@ -18,22 +18,23 @@ global $post, $post_meta_to_display; ?>
 <?php if( has_post_thumbnail() ) { ?>
     <div class="thumbnail push-bottom"><?php echo the_post_thumbnail( 'large' ); ?></div>
 <?php } // if has_post_thumbnail() ?>
+<?php if ( '' != get_the_content() ) { ?>
+    <?php if( 'template-blank.php' != get_page_template_slug() ) { ?>
+        <div class="story">
+    <?php } ?>
 
-<?php if( 'template-blank.php' != get_page_template_slug() ) { ?>
-    <div class="story">
-<?php } ?>
+        <?php the_content(); ?>
+        <?php wp_link_pages( array(
+            'link_before'   => '<span>',
+            'link_after'    => '</span>',
+            'before'        => '<p class="inner-post-pagination">' . __('<span>Pages:</span>', 'ocmx'),
+            'after'     => '</p>'
+        )); ?>
 
-    <?php the_content(); ?>
-    <?php wp_link_pages( array(
-        'link_before'   => '<span>',
-        'link_after'    => '</span>',
-        'before'        => '<p class="inner-post-pagination">' . __('<span>Pages:</span>', 'ocmx'),
-        'after'     => '</p>'
-    )); ?>
-
-<?php if( 'template-blank.php' != get_page_template_slug() ) { ?>
-    </div>
-<?php } ?>
+    <?php if( 'template-blank.php' != get_page_template_slug() ) { ?>
+        </div>
+    <?php } ?>
+<?php } // '' != get_the_content() ?>
 
 <?php /**
  * Only show post meta for posts

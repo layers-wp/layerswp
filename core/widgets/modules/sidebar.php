@@ -41,18 +41,13 @@ if( !class_exists( 'Hatch_Sidebar_Widget' ) ) {
                         'position' => 'center',
                         'repeat' => 'no-repeat'
                     ),
-                ),
-                'sidebar_ids' => rand( 1 , 1000 ).','.rand( 1 , 1000 ).','.rand( 1 , 1000 )
+                )
             );
 
             $this->sidebar_defaults = array (
                 'width' => '6'
             );
 
-            // Setup the defaults for each sidebar object
-            foreach( explode( ',', $this->defaults[ 'sidebar_ids' ] ) as $sidebar_id ) {
-                    $this->defaults[ 'sidebars' ][ $sidebar_id ] = $this->sidebar_defaults;
-            }
         }
 
         /**
@@ -196,6 +191,7 @@ if( !class_exists( 'Hatch_Sidebar_Widget' ) ) {
                 ) ); ?>
 
                 <section class="hatch-accordion-section hatch-content">
+
                     <?php echo $this->form_elements()->input(
                         array(
                             'type' => 'hidden',
@@ -206,7 +202,7 @@ if( !class_exists( 'Hatch_Sidebar_Widget' ) ) {
                     ); ?>
 
                     <?php // If we have some sidebars, let's break out their IDs into an array
-                    if( isset( $sidebar_ids ) && '' != $sidebar_ids ) $sidebars = explode( ',' , $sidebar_ids ); ?>
+                    if( isset( $sidebar_ids ) && !empty( $sidebar_ids ) ) $sidebars = explode( ',' , $sidebar_ids ); ?>
 
                     <ul id="sidebar_list_<?php echo $this->number; ?>" class="hatch-accordions hatch-accordions-sortable hatch-sortable" data-id_base="<?php echo $this->id_base; ?>" data-number="<?php echo $this->number; ?>">
                         <?php if( isset( $sidebars ) && is_array( $sidebars ) ) { ?>
@@ -218,8 +214,6 @@ if( !class_exists( 'Hatch_Sidebar_Widget' ) ) {
                                         $sidebar ,
                                         ( isset( $instance[ 'sidebars' ][ $sidebar ] ) ) ? $instance[ 'sidebars' ][ $sidebar ] : NULL );
                             } ?>
-                        <?php } else { ?>
-                            <?php $this->sidebar_item( array( 'id_base' => $this->id_base , 'number' => $this->number ) ); ?>
                         <?php }?>
                         <li class="hatch-button btn-primary hatch-add-widget-sidebar" data-number="<?php echo $this->number; ?>"><?php _e( '+ Add New Column' , HATCH_THEME_SLUG ) ; ?></li>
                     </ul>
@@ -228,7 +222,7 @@ if( !class_exists( 'Hatch_Sidebar_Widget' ) ) {
 
         <?php } // Form
 
-        function sidebar_item( $widget_details = array() , $column_guid = NULL , $instance = NULL ){
+        function sidebar_item( $widget_details = array() , $sidebar_guid = NULL , $instance = NULL ){
 
             // Extract Instance if it's there so that we can use the values in our inputs
 
@@ -239,6 +233,8 @@ if( !class_exists( 'Hatch_Sidebar_Widget' ) ) {
             $instance = wp_parse_args( $instance, $instance_defaults );
             extract( $instance, EXTR_SKIP );
 
+            // If there is no GUID create one. There should always be one but this is a fallback
+            if( ! isset( $sidebar_guid ) ) $sidebar_guid = rand( 1 , 1000 );
 
 
             // Turn the widget details into an object, it makes the code cleaner
@@ -251,7 +247,7 @@ if( !class_exists( 'Hatch_Sidebar_Widget' ) ) {
                 $this->sidebar_item_count++;
             } ?>
 
-                <li class="hatch-accordion-item" data-guid="<?php echo $column_guid; ?>">
+                <li class="hatch-accordion-item" data-guid="<?php echo $sidebar_guid; ?>">
                     <a class="hatch-accordion-title">
                         <span>
                             <?php _e( 'Column' , HATCH_THEME_SLUG ); ?><span class="hatch-detail"><?php echo ( isset( $title ) ? ': ' . $title : NULL ); ?></span>
@@ -261,8 +257,8 @@ if( !class_exists( 'Hatch_Sidebar_Widget' ) ) {
                         <?php $this->design_bar()->bar(
                             'top', // CSS Class Name
                             array(
-                                'name' => 'widget-' . $widget_details->id_base . '[' . $widget_details->number . '][sidebars][' . $column_guid . '][design]',
-                                'id' => 'widget-' . $widget_details->id_base . '-' . $widget_details->number . '-' . $column_guid . '-design',
+                                'name' => 'widget-' . $widget_details->id_base . '[' . $widget_details->number . '][sidebars][' . $sidebar_guid . '][design]',
+                                'id' => 'widget-' . $widget_details->id_base . '-' . $widget_details->number . '-' . $sidebar_guid . '-design',
                                 'number' => $widget_details->number,
                                 'show_trash' => true
                             ), // Widget Object
@@ -279,8 +275,8 @@ if( !class_exists( 'Hatch_Sidebar_Widget' ) ) {
                                         'layout' => array(
                                             'type' => 'select',
                                             'label' => __( '', HATCH_THEME_SLUG ),
-                                            'name' => 'widget-' . $widget_details->id_base . '[' . $widget_details->number . '][sidebars][' . $column_guid . '][width]' ,
-                                            'id' => 'widget-' . $widget_details->id_base . '-' . $widget_details->number . '-' . $column_guid . '-width' ,
+                                            'name' => 'widget-' . $widget_details->id_base . '[' . $widget_details->number . '][sidebars][' . $sidebar_guid . '][width]' ,
+                                            'id' => 'widget-' . $widget_details->id_base . '-' . $widget_details->number . '-' . $sidebar_guid . '-width' ,
                                             'value' => ( isset( $width ) ) ? $width : NULL,
                                             'options' => array(
                                                 '2' => __( '1/6' , HATCH_THEME_SLUG ),
@@ -301,14 +297,19 @@ if( !class_exists( 'Hatch_Sidebar_Widget' ) ) {
                                 <?php echo $this->form_elements()->input(
                                     array(
                                         'type' => 'text',
-                                        'name' => 'widget-' . $widget_details->id_base . '[' . $widget_details->number . '][sidebars][' . $column_guid . '][title]' ,
-                                        'id' => 'widget-' . $widget_details->id_base . '-' . $widget_details->number . '-' . $column_guid . '-title' ,
+                                        'name' => 'widget-' . $widget_details->id_base . '[' . $widget_details->number . '][sidebars][' . $sidebar_guid . '][title]' ,
+                                        'id' => 'widget-' . $widget_details->id_base . '-' . $widget_details->number . '-' . $sidebar_guid . '-title' ,
                                         'placeholder' => __( 'Sidebar Title', HATCH_THEME_SLUG ),
-                                        'value' => ( isset( $title ) ) ? $title : NULL ,
+                                        'value' => ( isset( $title ) ) ? $title : __( 'My Sidebar' , HATCH_THEME_SLUG ) ,
                                         'class' => 'hatch-text'
                                     )
                                 ); ?>
                             </p>
+                            <?php if( isset(  $_POST[ 'widget_action'] ) && 'add' ==  $_POST[ 'widget_action']) { ?>
+                                <p class="hatch-form-item">
+                                    <em><?php _e( 'To activate this sidebar, click Save &amp; Publish and refresh your customizer.', HATCH_THEME_SLUG ); ?></em>
+                                </p>
+                            <?php } ?>
                         </div>
                     </section>
                 </li>

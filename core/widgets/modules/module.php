@@ -56,7 +56,7 @@ if( !class_exists( 'Hatch_Module_Widget' ) ) {
 			$this->module_defaults = array (
 				'title' => 'Your service title',
 				'excerpt' => 'Give us a brief description of the service that you are promoting. Try keep it short so that it is easy for people to scan your page.',
-				'width' => '6',
+				'width' => '4',
 				'design' => array(
 					'imagealign' => 'image-left',
 					'background' => NULL,
@@ -336,6 +336,11 @@ if( !class_exists( 'Hatch_Module_Widget' ) ) {
 			// Parse $instance
 			$instance = wp_parse_args( $instance, $instance_defaults );
 			extract( $instance, EXTR_SKIP );
+
+			// If there is no GUID create one. There should always be one but this is a fallback
+			if( ! isset( $column_guid ) ) $column_guid = rand( 1 , 1000 );
+
+
 
 			// Turn the widget details into an object, it makes the code cleaner
 			$widget_details = (object) $widget_details;

@@ -86,7 +86,6 @@ jQuery(document).ready(function($){
 
 			},
 			function(data){
-
 				// Append sidebar HTML
 				$( data ).insertBefore( $sidebarListId + ' .hatch-add-widget-sidebar' );
 

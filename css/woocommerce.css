@@ -96,6 +96,7 @@ del .amount{color: #999; font-weight: 400;}
     .entry-title{font-size: 4.4rem;}/*-- section-title.large --*/
     div[itemprop="offers"]{margin: 20px 0; font-size: 2.4rem;}
     div[itemprop="description"]{margin-bottom: 20px; font-size: 2.0rem; color: #8F8F8F;}/*-- section-title --*/
+    div[itemprop="description"] p{margin-bottom: 26px;}
 
         /*-------------------*/
         /*- PRODUCT CART ----*/
@@ -155,6 +156,8 @@ del .amount{color: #999; font-weight: 400;}
 .entry-content h5{font-size: 1.4rem; margin-bottom: 16px; color: #323232;}
 
 .entry-content blockquote{padding-left: 26px; margin-bottom: 20px; font-weight: 600; font-size: 2.0rem;}
+
+
 
 
 /*---------------------------*/

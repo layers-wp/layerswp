@@ -22,7 +22,7 @@ get_header(); ?>
         <?php /**
         * Maybe show the left sidebar
         */
-        hatch_maybe_get_sidebar( 'right-sidebar', 'column pull-right sidebar span-4 no-gutter' ); ?>
+        hatch_maybe_get_sidebar( 'right-sidebar', 'column pull-right sidebar span-3 no-gutter' ); ?>
     </div>
 </section>
 

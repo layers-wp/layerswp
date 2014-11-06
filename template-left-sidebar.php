@@ -16,7 +16,7 @@ get_header(); ?>
         <?php /**
         * Maybe show the left sidebar
         */
-        hatch_maybe_get_sidebar( 'left-sidebar', 'column pull-left sidebar span-4' ); ?>
+        hatch_maybe_get_sidebar( 'left-sidebar', 'column pull-left sidebar span-3' ); ?>
 
         <article <?php hatch_center_column_class(); ?>>
             <?php if( have_posts() ) : ?>

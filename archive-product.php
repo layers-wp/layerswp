@@ -35,6 +35,7 @@ get_header(); ?>
                 <?php hatch_pagination(); ?>
 
                 <?php woocommerce_product_loop_end(); ?>
+                
             </section>
         <?php endif; ?>
 

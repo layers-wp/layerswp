@@ -551,7 +551,7 @@ h1, h2, h3, h4, h5, h6{color: #000; font-weight: 200;}
     /*---------------------------*/
     /*- AVATARS -----------------*/
     .avatar{display: block; position: relative; }
-    .avatar .avatar-image{display: block; float: left; margin-right: 10px; max-width: 64px; border: 3px solid #454545; border-radius: 100%; position: relative; z-index: 1;}
+    .avatar .avatar-image{display: block; float: left; margin-right: 10px; max-width: 64px; border-radius: 100%; position: relative; z-index: 1;}
     .avatar .avatar-image img{display: block; margin: auto; border-radius: 100%;}
     .avatar .avatar-body{overflow: hidden; padding: 5px 0;}
     .avatar .avatar-body .avatar-name{display: block; font-weight: 600;}

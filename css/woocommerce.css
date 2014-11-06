@@ -64,6 +64,7 @@ del .amount{color: #999; font-weight: 400;}
 .products li{padding: 20px; background: #f5f5f5; border-radius: 4px; overflow: hidden;}
 .products li a:first-child{display: block;}
 .products .img-wrap{margin: -20px -20px 20px;}
+.products .img-wrap img{display: block;}
 .products h3{margin: 0px 0px 10px; font-size: 2.0rem;}
 .products li .star-rating{position: absolute; top: 8px; right: 10px;}
 .products .price{display: inline-block; margin: 0 0 20px;}
@@ -97,6 +98,11 @@ del .amount{color: #999; font-weight: 400;}
     div[itemprop="offers"]{margin: 0px 0 20px; font-size: 2.4rem;}
     div[itemprop="description"]{margin-bottom: 20px; font-size: 2.0rem; color: #8F8F8F;}/*-- section-title --*/
     div[itemprop="description"] p{margin-bottom: 16px;}
+
+        /*-------------------*/
+        /*- STOCK -----------*/
+        .stock{font-size: 1.2rem; text-transform: uppercase; margin-bottom: 20px;}
+        .stock.in-stock{color: #93B25E;}
 
         /*-------------------*/
         /*- PRODUCT CART ----*/

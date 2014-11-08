@@ -245,7 +245,7 @@ if( !function_exists( 'hatch_pagination' ) ) {
         global $wp_query, $paged;
 
         // Get the current page
-        if( empty($paged ) ) $paged = 1;
+        if( empty($paged ) ) $paged = ( get_query_var('page') ? get_query_var('page') : 1 );
 
         // Set a large number for the 'base' argument
         $big = 99999;
@@ -265,7 +265,7 @@ if( !function_exists( 'hatch_pagination' ) ) {
                 'prev_text' => '&larr;',
                 'next_text' => '&rarr;',
                 'type' => 'list',
-                'current' => max( 1, get_query_var('paged') ),
+                'current' => $paged,
                 'total' => $use_query->max_num_pages
             ) ); ?>
         </<?php echo $wrapper; ?>>

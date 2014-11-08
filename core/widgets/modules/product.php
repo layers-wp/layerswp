@@ -130,6 +130,7 @@ if( !class_exists( 'Hatch_WooCommerce_Product_Widget' ) ) {
 
 			// Begin query arguments
 			$query_args = array();
+			$query_args[ 'paged' ] = (get_query_var('page')) ? get_query_var('page') : 1;
 			$query_args[ 'post_type' ] = $this->post_type;
 			$query_args[ 'posts_per_page' ] = $widget['posts_per_page'];
 			if( isset( $widget['order'] ) ) {
@@ -233,6 +234,7 @@ if( !class_exists( 'Hatch_WooCommerce_Product_Widget' ) ) {
 							<?php }; // if list-list == liststyle ?>
 						<?php }; // while have_posts ?>
 					<?php }; // if have_posts ?>
+					<?php if( isset( $widget['show_pagination'] ) ) hatch_pagination( array( 'query' => $portfolio_query ), 'div', 'pagination row span-12 text-center' ); ?>
 				</div>
 			</section>
 
@@ -357,7 +359,14 @@ if( !class_exists( 'Hatch_WooCommerce_Product_Widget' ) ) {
 									'id' => $this->get_field_id( 'show_call_to_action' ) ,
 									'value' => ( isset( $show_call_to_action ) ) ? $show_call_to_action : NULL,
 									'label' => __( 'Show Purchase Buttons' , HATCH_THEME_SLUG )
-								)
+								),
+								'show_pagination' => array(
+									'type' => 'checkbox',
+									'name' => $this->get_field_name( 'show_pagination' ) ,
+									'id' => $this->get_field_id( 'show_pagination' ) ,
+									'value' => ( isset( $show_pagination ) ) ? $show_pagination : NULL,
+									'label' => __( 'Show Pagination' , HATCH_THEME_SLUG )
+								),
 							)
 					)
 				)

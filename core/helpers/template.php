@@ -574,6 +574,22 @@ if( !function_exists( 'hatch_add_additional_header_scripts' ) ) {
     add_action ( 'wp_head', 'hatch_add_additional_header_scripts' );
 } // hatch_add_additional_header_scripts
 
+/**
+ * Include additional scripts in the side footer
+ *
+ * @return  html    $additional_header_scripts Scripts to be included in the header
+ */
+if( !function_exists( 'hatch_add_additional_footer_scripts' ) ) {
+    function hatch_add_additional_footer_scripts() {
+
+        $additional_footer_scripts = hatch_get_theme_mod( 'footer-scripts-scripts' );
+
+        if( '' != $additional_footer_scripts ) {
+            echo $additional_footer_scripts;
+        }
+    }
+    add_action ( 'wp_foot', 'hatch_add_additional_footer_scripts' );
+} // hatch_add_additional_header_scripts
 
 
 /**

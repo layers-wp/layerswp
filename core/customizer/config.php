@@ -91,12 +91,12 @@ class Hatch_Customizer_Config {
 								'layout' => array(
 									'title' =>__( 'Layout' , HATCH_THEME_SLUG ),
 								),
-								'scripts' => array(
-									'title' =>__( 'Additional Scripts' , HATCH_THEME_SLUG ),
-								),
 								'text' => array(
 									'title' =>__( 'Text' , HATCH_THEME_SLUG ),
 								),
+                                'scripts' => array(
+                                    'title' =>__( 'Additional Scripts' , HATCH_THEME_SLUG ),
+                                ),
 							);
 
 
@@ -232,6 +232,19 @@ class Hatch_Customizer_Config {
 					'default' => ' Made at the tip of Africa. &copy;'
 				), // copyright
 			); // footer-text
+
+        // Footer -> Layout -> Scripts
+        $controls['footer-scripts'] = array(
+                    'scripts' => array(
+                        'type'     => 'textarea',
+                        'label'    => __( 'Scripts', HATCH_THEME_SLUG ),
+                        'description' => __( 'Enter in any custom tracking script to include in your site\'s header.', HATCH_THEME_SLUG ),
+                        'default' => '',
+                    ), // scripts
+                    'break-' . rand() => array(
+                        'type'     => 'seperator'
+                    ),
+                ); // footer-scripts
 
 		return apply_filters( 'hatch_customizer_controls', $controls );
 	}

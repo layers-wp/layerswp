@@ -202,7 +202,7 @@ h1, h2, h3, h4, h5, h6{color: #000; font-weight: 200;}
 
     /*---------------------------*/
     /*- WRAPPERS ----------------*/
-    #wrapper-site, .wrapper-site{background: #fff; position: relative; transform: translateX(0px); transition: transform 0.3s ease-in-out 0s; z-index: 2;}
+    #wrapper-site, .wrapper-site{width: 100%; background: #fff; position: relative; transform: translateX(0px); transition: transform 0.3s ease-in-out 0s, width 0.3s ease-in-out 0s; z-index: 2;}
     .wrapper-content{position: relative;}
 
     .single-element-page #wrapper{background: none;}
@@ -287,7 +287,7 @@ h1, h2, h3, h4, h5, h6{color: #000; font-weight: 200;}
 
     /*---------------------------*/
     /*- PAGE TITLES -------------*/
-    .title-container{}
+    .title-container{background: #F3F3F3;}
     .title-container .heading{font-size: 4.4rem; line-height: 1.2; color: #323232;}
     .title-container .sub-heading{margin-top: 10px; font-size: 2.0rem; color: #454545; text-transform: uppercase;}
     .title-container .sub-heading + .btn-group{margin-top: 30px;}
@@ -296,7 +296,7 @@ h1, h2, h3, h4, h5, h6{color: #000; font-weight: 200;}
     .title-container .excerpt + .btn-collection{margin-top: 30px;}
     .title .text-center .excerpt{margin-left: auto; margin-right: auto;}
 
-    .title{padding: 60px 20px; max-width: 1040px; margin: auto;}
+    .title-container .title{padding: 60px 20px; max-width: 1040px; margin: auto;}
     .title.small{padding: 10px;}
     .title.large{padding: 30px;}
     .title.extra-large{padding: 40px;}

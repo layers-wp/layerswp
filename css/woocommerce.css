@@ -82,7 +82,7 @@ del .amount{color: #999; font-weight: 400;}
 .products li a:first-child{display: block;}
 .products .img-wrap{margin: -20px -20px 20px;}
 .products .img-wrap img{display: block;}
-.products h3{margin: 0px 0px 10px; font-size: 2.0rem;}
+.products h3{margin: 0px 0px 10px; font-size: 2.0rem; font-weight: 400;}
 .products li .star-rating{position: absolute; top: 8px; right: 10px;}
 .products .price{display: inline-block; margin: 0 0 20px;}
 .products .button.add_to_cart_button{}

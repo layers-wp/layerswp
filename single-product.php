@@ -24,7 +24,7 @@ get_header(); ?>
                     <?php do_action( 'woocommerce_before_single_product', $post, $_product ); ?>
 
                     <!-- Show the Images -->
-                    <div class="column span-6 offset-1 product-images">
+                    <div class="column span-6 product-images">
                         <?php do_action( 'woocommerce_before_single_product_summary', $post, $_product ); ?>
                     </div>
 

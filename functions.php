@@ -174,7 +174,7 @@ if( ! function_exists( 'hatch_register_standard_sidebars' ) ) {
 		 * Register Standard Sidebars
 		 */
 		register_sidebar( array(
-			'id'		=> HATCH_THEME_SLUG . '-right-offsite-sidebar',
+			'id'		=> HATCH_THEME_SLUG . '-off-canvas-sidebar',
 			'name'		=> __( 'Offsite Tray' , HATCH_THEME_SLUG ),
 			'description'	=> __( '' , HATCH_THEME_SLUG ),
 			'before_widget'	=> '<aside id="%1$s" class="content widget %2$s">',

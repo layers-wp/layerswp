@@ -13,17 +13,18 @@ Developer URI: http://oboxthemes.com
 /*---------------------------*/
 /*- HEADER CART -------------*/
 .header-cart{
-    float: right;
     display: inline-block;
+    float: right;
+    margin: 0 10px;
     position: relative;
     line-height: 60px;
+}
+.header-cart .icon-cart{
+    font-weight: 600;
 }
 .header-cart .cart-total{
     line-height: normal;
     border-radius: 100px;
-}
-.header-cart .icon-cart{
-    font-weight: 600;
 }
 
 
@@ -300,6 +301,25 @@ table .actions{text-align: right;}
 .woocommerce-message a{margin-right: 10px; vertical-align: baseline;}
 
 .woocommerce-info{padding: 10px; background: #F5F5F5; overflow: hidden; margin-bottom: 20px; border-radius: 6px;}
+
+
+/*-------------------------------*/
+/*- CART WIDGET -----------------*/
+/*-------------------------------*/
+.cart_list li{
+    padding: 10px 0;
+    border-bottom: 1px solid #eee;
+}
+section[class*=' off-canvas-'] .cart_list li{
+    border-bottom-color: #777;
+}
+.cart_list .quantity{
+    font-size: 1.2rem;
+}
+.widget_shopping_cart .total{
+    margin: 10px 0;
+}
+
 
 /*-------------------------------*/
 /*- WOOCOMMERCE - SUPER SINGLE --*/

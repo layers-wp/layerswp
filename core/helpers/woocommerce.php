@@ -259,8 +259,10 @@ if (!function_exists('hatch_woocommerce_cart_button')) {
         global $woocommerce;
         if( !$woocommerce ) return; ?>
         <div class="header-cart" data-toggle="#off-canvas-right" data-toggle-class="open">
-            <a href="<?php echo $woocommerce->cart->get_cart_url(); ?>" class="icon-cart"><?php _e( 'Cart' , HATCH_THEME_SLUG ); ?></a>
-            <span class="cart-total label"><?php echo $woocommerce->cart->get_cart_subtotal(); ?></span>
+            <a href="<?php echo $woocommerce->cart->get_cart_url(); ?>" class="icon-cart">
+                <?php _e( 'Cart' , HATCH_THEME_SLUG ); ?>
+                <span class="cart-total label"><?php echo $woocommerce->cart->get_cart_subtotal(); ?></span>
+            </a>
         </div>
     <?php };
 }

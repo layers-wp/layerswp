@@ -3,7 +3,7 @@
     /*---------------------------*/
     /*- INVERT ------------------*/
     .invert{border: none; color: #fff;}
-    .invert h5{color: #323232;}
+    .invert h5{color: #fff;}
     .invert code{background: rgba(255, 255, 255, 0.2); color: #fff; padding: 2px 4px;}
     .invert label, .invert legend{color: #fff;}
     .invert small{color: #ccc;}

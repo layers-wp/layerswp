@@ -10,10 +10,7 @@ get_header(); ?>
 
 <?php get_template_part( 'partials/header' , 'page-title' ); ?>
 
-<div class="<?php if( 'layout-fullwidth' != hatch_get_theme_mod( 'content-layout-layout' ) ) echo 'container'; ?> sky basement clearfix main-content content">
-        <div class="row push-bottom woocommerce-result-count-container">
-            <?php  do_action('woocommerce_before_shop_loop'); ?>
-        </div>
+<section class="<?php if( 'layout-fullwidth' != hatch_get_theme_mod( 'content-layout-layout' ) ) echo 'container'; ?> clearfix main-content content">
 
         <?php /**
         * Maybe show the left sidebar
@@ -22,6 +19,10 @@ get_header(); ?>
 
         <?php if ( have_posts()) : ?>
             <section <?php hatch_center_column_class(); ?>>
+        
+                <div class="row push-bottom woocommerce-result-count-container">
+                    <?php  do_action('woocommerce_before_shop_loop'); ?>
+                </div>
 
                 <?php // Sub category listing
                 woocommerce_product_subcategories(); ?>
@@ -43,5 +44,5 @@ get_header(); ?>
         * Maybe show the right sidebar
         */
         hatch_maybe_get_sidebar( 'right-woocommerce-sidebar', 'column pull-right sidebar span-3 no-gutter' ); ?>
-</div>
+</section>
 <?php get_footer(); ?>

@@ -271,12 +271,12 @@ h1, h2, h3, h4, h5, h6{color: #000; font-weight: 200;}
     /*- LOGO --------------------*/
     .logo{float: left; padding: 0;}
 
-    .site-logo-anchor, .mark{display: inline-block; vertical-align: middle; margin: auto; font-size: 0;}
-    .site-logo-anchor img, .mark img{display: inline-block; margin: auto; width: auto;}
-    .site-logo-anchor.small img, .site-logo-anchor img.small{max-height: 60px;}
+    .site-logo-link, .mark{display: inline-block; vertical-align: middle; margin: auto; font-size: 0;}
+    .site-logo-link img, .mark img{display: inline-block; margin: auto; width: auto;}
+    .site-logo-link.small img, .site-logo-link img.small{max-height: 60px;}
 
     .site-description{display: inline-block; vertical-align: middle;}
-    .site-logo-anchor + .site-description{margin-left: 10px;}
+    .site-logo-link + .site-description{margin-left: 10px;}
     .sitename{font-size: 2rem; font-weight: 600;}
     .tagline{color: #8F8F8F; font-weight: 600;}
 

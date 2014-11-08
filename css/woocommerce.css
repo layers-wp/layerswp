@@ -11,6 +11,23 @@ Developer URI: http://oboxthemes.com
 
 
 /*---------------------------*/
+/*- HEADER CART -------------*/
+.header-cart{
+    float: right;
+    display: inline-block;
+    position: relative;
+    line-height: 60px;
+}
+.header-cart .cart-total{
+    line-height: normal;
+    border-radius: 100px;
+}
+.header-cart .icon-cart{
+    font-weight: 600;
+}
+
+
+/*---------------------------*/
 /*- PRICE & AMOUNT SETUP ----*/
 .price{display: inline-block;}
 .amount{color: #93B25E; font-weight: 600;}

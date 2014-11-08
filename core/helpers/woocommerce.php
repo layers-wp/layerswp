@@ -259,8 +259,8 @@ if (!function_exists('hatch_woocommerce_cart_button')) {
         global $woocommerce;
         if( !$woocommerce ) return; ?>
         <div class="header-cart" data-toggle="#off-canvas-right" data-toggle-class="open">
-            <span class="cart-total">(<?php echo $woocommerce->cart->get_cart_subtotal(); ?>)</span>
             <a class="icon-cart"><?php _e( 'Cart' , HATCH_THEME_SLUG ); ?></a>
+            <span class="cart-total label"><?php echo $woocommerce->cart->get_cart_subtotal(); ?></span>
         </div>
     <?php };
 }

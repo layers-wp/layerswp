@@ -8,10 +8,7 @@
 	<?php wp_head(); ?>
 </head>
 <body <?php body_class(); ?>>
-	<?php get_sidebar( 'left-offsite'); ?>
 	<?php get_sidebar( 'right-offsite'); ?>
-	<?php get_sidebar( 'top-offsite'); ?>
-
 	<?php do_action( 'hatch_before_site_wrapper' ); ?>
 	<section class="wrapper-site">
 		<?php do_action( 'hatch_before_header' ); ?>

@@ -16,7 +16,6 @@
 		<header <?php hatch_header_class(); ?>>
 			<?php do_action( 'hatch_before_header_inner' ); ?>
 			<div class="container content-vertical clearfix">
-
 				<?php if( 'header-logo-center' == hatch_get_theme_mod( 'header-layout-layout' ) ) { ?>
 					<?php get_template_part( 'partials/header' , 'centered' ); ?>
 				<?php } else { ?>

@@ -57,6 +57,7 @@ jQuery(function($) {
     * 4 - Offsite sidebar Toggles
     */
     $(document).on( 'click' , '[data-toggle^="#"]'  , function(e){
+        e.preventDefault();
 
         // "Hi Mom"
         $that = $(this);

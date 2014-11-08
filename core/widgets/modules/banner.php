@@ -183,9 +183,10 @@ if( !class_exists( 'Hatch_Slider_Widget' ) ) {
 							<?php if( isset( $widget['autoplay_banners'] ) && isset( $widget['slide_time'] ) && is_numeric( $widget['slide_time'] ) ) {?>, autoplay: <?php echo ($widget['slide_time']*1000); ?><?php }?>
 						});
 
-						// Allow keyboard control
-						swiper.enableKeyboardControl();
-
+						<?php if( 1 < count( $widget[ 'banners' ] ) ) { ?>
+							// Allow keyboard control
+							swiper.enableKeyboardControl();
+						<?php } // if > 1 slide ?>
 						$('#<?php echo $widget_id; ?>').find('.arrows a').on( 'click' , function(e){
 							e.preventDefault();
 

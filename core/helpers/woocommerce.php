@@ -259,10 +259,10 @@ if (!function_exists('hatch_woocommerce_cart_button')) {
         global $woocommerce;
         if( !$woocommerce ) return; ?>
         <div class="header-cart" data-toggle="#off-canvas-right" data-toggle-class="open">
-            <a class="icon-cart"><?php _e( 'Cart' , HATCH_THEME_SLUG ); ?></a>
+            <a href="<?php echo $woocommerce->cart->get_cart_url(); ?>" class="icon-cart"><?php _e( 'Cart' , HATCH_THEME_SLUG ); ?></a>
             <span class="cart-total label"><?php echo $woocommerce->cart->get_cart_subtotal(); ?></span>
         </div>
     <?php };
 }
 
-add_action( 'hatch_after_header_nav' , 'hatch_woocommerce_cart_button' , 30 );
+add_action( 'hatch_before_header_nav' , 'hatch_woocommerce_cart_button' , 30 );

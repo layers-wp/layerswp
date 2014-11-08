@@ -323,6 +323,8 @@ if( !function_exists( 'hatch_get_page_title' ) ) {
             } else {
                 $title_array['title' ] = __( 'Shop' , HATCH_THEME_SLUG );
             }
+        } elseif( is_single() ) {
+            $title_array['title' ] = get_the_title();
         } else {
             $title_array['title' ] = __( 'Archives', HATCH_THEME_SLUG );
         }

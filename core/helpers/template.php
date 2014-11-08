@@ -588,7 +588,7 @@ if( !function_exists( 'hatch_add_additional_footer_scripts' ) ) {
             echo $additional_footer_scripts;
         }
     }
-    add_action ( 'wp_foot', 'hatch_add_additional_footer_scripts' );
+    add_action ( 'wp_footer', 'hatch_add_additional_footer_scripts' );
 } // hatch_add_additional_header_scripts
 
 

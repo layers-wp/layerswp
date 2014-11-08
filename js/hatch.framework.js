@@ -65,7 +65,7 @@ jQuery(function($) {
         $target = $that.data( 'toggle' );
 
         // Toggle .open class
-        $( $target ).toggleClass( 'open' );
+        $( $target ).toggleClass( $that.data( 'toggle-class' ) );
 
     });
 

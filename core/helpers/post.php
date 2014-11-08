@@ -196,7 +196,7 @@ if( !function_exists( 'hatch_post_class' ) ) {
             $classes[] = 'container';
         }
 
-        if( is_post_type_archive( 'product' ) ) {
+        if( is_post_type_archive( 'product' ) ||  is_tax( 'product_cat' ) ) {
             $classes[] = 'column span-4';
         }
 

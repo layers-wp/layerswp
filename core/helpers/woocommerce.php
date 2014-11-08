@@ -167,7 +167,7 @@ if (!function_exists('hatch_woocommerce_center_column_class')) {
         if( !function_exists( 'is_shop' ) ) {
             return $classes;
         } else {
-            if( !is_shop() && !is_post_type_archive( 'product' ) ) {
+            if( !is_shop() && !is_post_type_archive( 'product' ) && !is_singular( 'product' ) && !is_tax( 'product_cat' ) ) {
                 return $classes;
             }
         }
@@ -177,9 +177,9 @@ if (!function_exists('hatch_woocommerce_center_column_class')) {
 
         // Unset default classes
         foreach( $classes as $key => $this_class ){
-            if( 'span-4' == $this_class ){
+            if( 'span-6' == $this_class ){
                 unset( $classes[ $key ] );
-            } else if( 'span-8' == $this_class ){
+            } else if( 'span-9' == $this_class ){
                 unset( $classes[ $key ] );
             } else if( 'span-12' == $this_class ){
                 unset( $classes[ $key ] );
@@ -188,11 +188,11 @@ if (!function_exists('hatch_woocommerce_center_column_class')) {
 
         // Set post classes
         if( $left_sidebar_active && $right_sidebar_active ){
-            $classes[] = 'span-4';
+            $classes[] = 'span-6';
         } else if( $left_sidebar_active ){
-            $classes[] = 'span-8';
+            $classes[] = 'span-9';
         } else if( $right_sidebar_active ){
-            $classes[] = 'span-8';
+            $classes[] = 'span-9';
         } else {
             $classes[] = 'span-12';
         }
@@ -247,6 +247,22 @@ if (!function_exists('hatch_woocommerce_register_widgets')) {
     function hatch_woocommerce_register_widgets(){
        locate_template( 'core/widgets/modules/product.php' , true );
     };
+    add_action( 'widgets_init' , 'hatch_woocommerce_register_widgets' , 30 );
 }
 
-add_action( 'widgets_init' , 'hatch_woocommerce_register_widgets' , 30 );
+
+/**
+* Register WooCommerce Widgets
+*/
+if (!function_exists('hatch_woocommerce_cart_button')) {
+    function hatch_woocommerce_cart_button(){
+        global $woocommerce;
+        if( !$woocommerce ) return; ?>
+        <div class="header-cart" data-toggle="#off-canvas-top" data-toggle-class="open">
+            <span class="cart-total">(<?php echo $woocommerce->cart->get_cart_subtotal(); ?>)</span>
+            <a class="icon-cart"><?php _e( 'Cart' , HATCH_THEME_SLUG ); ?></a>
+        </div>
+    <?php };
+}
+
+add_action( 'hatch_after_header_nav' , 'hatch_woocommerce_cart_button' , 30 );

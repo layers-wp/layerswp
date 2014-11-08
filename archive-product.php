@@ -18,7 +18,7 @@ get_header(); ?>
         <?php /**
         * Maybe show the left sidebar
         */
-        hatch_maybe_get_sidebar( 'left-woocommerce-sidebar', 'column pull-left sidebar span-4' ); ?>
+        hatch_maybe_get_sidebar( 'left-woocommerce-sidebar', 'column pull-left sidebar span-3' ); ?>
 
         <?php if ( have_posts()) : ?>
             <section <?php hatch_center_column_class(); ?>>
@@ -35,13 +35,13 @@ get_header(); ?>
                 <?php hatch_pagination(); ?>
 
                 <?php woocommerce_product_loop_end(); ?>
-                
+
             </section>
         <?php endif; ?>
 
         <?php /**
         * Maybe show the right sidebar
         */
-        hatch_maybe_get_sidebar( 'right-woocommerce-sidebar', 'column pull-left sidebar span-4 no-gutter' ); ?>
+        hatch_maybe_get_sidebar( 'right-woocommerce-sidebar', 'column pull-right sidebar span-3 no-gutter' ); ?>
 </div>
 <?php get_footer(); ?>

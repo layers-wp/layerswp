@@ -420,11 +420,11 @@ if( !function_exists( 'hatch_get_center_column_class' ) ) {
 
         // Set classes according to the sidebars
         if( $left_sidebar_active && $right_sidebar_active ){
-            $classes[] = 'span-4';
+            $classes[] = 'span-6';
         } else if( $left_sidebar_active ){
-            $classes[] = 'span-8';
+            $classes[] = 'span-9';
         } else if( $right_sidebar_active ){
-            $classes[] = 'span-8';
+            $classes[] = 'span-9';
         } else {
             $classes[] = 'span-12';
         }

@@ -15,7 +15,7 @@ get_header(); ?>
 			<?php /**
 			* Maybe show the left sidebar
 			*/
-			hatch_maybe_get_sidebar( 'left-sidebar', 'column pull-left sidebar span-4' ); ?>
+			hatch_maybe_get_sidebar( 'left-sidebar', 'column pull-left sidebar span-3' ); ?>
 
 			<?php while( have_posts() ) : the_post(); ?>
 				<article <?php hatch_center_column_class(); ?>>
@@ -26,7 +26,7 @@ get_header(); ?>
 			<?php /**
 			* Maybe show the right sidebar
 			*/
-			hatch_maybe_get_sidebar( 'right-sidebar', 'column pull-right sidebar span-4 no-gutter' ); ?>
+			hatch_maybe_get_sidebar( 'right-sidebar', 'column pull-right sidebar span-3 no-gutter' ); ?>
 		</div>
 	<?php endif; // if has_post() ?>
 </section>

@@ -316,6 +316,9 @@ section[class*=' off-canvas-'] .cart_list li{
 .widget_shopping_cart .total{
     margin: 10px 0;
 }
+.widget_shopping_cart .total .amount{
+    float: right;
+}
 
 
 /*-------------------------------*/

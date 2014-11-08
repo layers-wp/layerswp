@@ -390,7 +390,8 @@ h1, h2, h3, h4, h5, h6{color: #000; font-weight: 200;}
 
     /*---------------------------*/
     /*- HORIZONTAL NAV ----------*/
-	.nav-horizontal li{float: left; margin: 0 10px}
+	.nav-horizontal > ul{float: left;}
+    .nav-horizontal li{float: left; margin: 0 10px}
     .nav-horizontal li a{display: block; font-weight: 600; color: #323232; text-align: center;}
     .nav-horizontal li a:hover{color: #8F8F8F;}
 

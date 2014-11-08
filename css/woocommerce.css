@@ -17,7 +17,6 @@ Developer URI: http://oboxthemes.com
     float: right;
     margin: 0 10px;
     position: relative;
-    line-height: 60px;
 }
 .header-cart .icon-cart{
     font-weight: 600;
@@ -338,6 +337,12 @@ section[class*=' off-canvas-'] .cart_list li{
 /*-------------------------------*/
 
 @media only screen and (max-width: 480px), screen and (max-device-width: 480px), screen and (max-width: 600px) {
+
+    /*---------------------------*/
+    /*- HEADER CART -------------*/
+    .header-cart{
+        display: none;
+    }
 
     /*---------------------------*/
     /*- PRODUCT LISTS -----------*/

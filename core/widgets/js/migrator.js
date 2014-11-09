@@ -6,6 +6,8 @@ jQuery(document).ready(function($){
         // "Hi Mom!"
         $that = $(this);
 
+        $that.parent().append("Be patient while we import the widget data and images.");
+
         $.post(
             hatch_widget_params.ajaxurl,
             {

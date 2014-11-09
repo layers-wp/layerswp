@@ -24,15 +24,46 @@ class Hatch_Widget_Migrator {
     */
 
     public function __construct() {
+
+        // Add meta box, this sorta kicks off the export logic too
+        if( function_exists( 'add_meta_box' ) ) {
+            add_meta_box(
+                        HATCH_THEME_SLUG . '-widget-export',
+                        __( 'Builder Settings' , HATCH_THEME_SLUG ), // Title
+                        array( $this , 'display_export_box' ) , // Interface
+                        'page' , // Post Type
+                        'normal', // Position
+                        'low' // Priority
+                    );
+        }
+
     }
+
+    /**
+    *  Simple output of a JSON'd string of the widget data
+    */
+    function display_export_box( $post ){ ?>
+        <textarea id="<?php echo HATCH_THEME_SLUG . '-import-wiget-data'; ?>" style="width: 100%;" rows="15"><?php echo esc_attr( json_encode( $this->export_data() ) ); ?></textarea>
+        <p>
+            <em><?php _e( 'Copy and paste widget data from another site or page into this box to import data.' , HATCH_THEME_SLUG ); ?></em>
+        </p>
+        <a href="#import" data-post-id="<?php echo $post->ID; ?>" id="<?php echo HATCH_THEME_SLUG . '-import-wiget-page'; ?>" class="hatch-button btn-primary"><?php _e( 'Import Data' , HATCH_THEME_SLUG ); ?></a>
+    <?php }
+
+    /**
+    *  Get all available widgets
+    */
+
     function available_widgets() {
 
         global $wp_registered_widget_controls;
 
         $widget_controls = $wp_registered_widget_controls;
 
+        // Kick off a blank readable array
         $available_widgets = array();
 
+        // Loop through widget controls and add the wiget ID and Name
         foreach ( $widget_controls as $widget ) {
 
             if ( ! empty( $widget['id_base'] ) && ! isset( $available_widgets[$widget['id_base']] ) ) { // no dupes
@@ -48,10 +79,212 @@ class Hatch_Widget_Migrator {
     }
 
     /**
-    *  Export
+    *  Widget Instances and their data
     */
 
-    public function export() {
+    function widget_instances(){
+
+        // Get all available widgets site supports
+        $available_widgets = $this->available_widgets();
+        foreach ( $available_widgets as $widget_data ) {
+
+            // Get all instances for this ID base
+            $instances = get_option( 'widget_' . $widget_data['id_base'] );
+
+            // Have instances
+            if ( ! empty( $instances ) ) {
+
+                // Loop instances
+                foreach ( $instances as $instance_id => $instance_data ) {
+
+                    // Key is ID (not _multiwidget)
+                    if ( is_numeric( $instance_id ) ) {
+                        $unique_instance_id = $widget_data['id_base'] . '-' . $instance_id;
+                        $widget_instances[$unique_instance_id] = $instance_data;
+                    }
+
+                }
+
+            }
+        }
+
+        return $widget_instances;
+    }
+
+    /**
+    *  Populate Sidebars/Widgets array
+    */
+
+    public function page_sidebars_widgets() {
+        global $post;
+
+
+        // Get all widget instances for each widget
+        $widget_instances = $this->widget_instances();
+
+        // Gather sidebars with their widget instances
+        $sidebars_widgets = get_option( 'sidebars_widgets' ); // get sidebars and their unique widgets IDs
+        $sidebars_widget_instances = array();
+
+        // Get page sidebar ID
+        $page_sidebar_id = 'obox-hatch-builder-' . $post->ID;
+
+        if( !isset( $sidebars_widgets[ $page_sidebar_id ] ) ) return;
+
+        foreach ( $sidebars_widgets as $sidebar_id => $widget_ids ) {
+
+            // Skip inactive widgets
+            if ( 'wp_inactive_widgets' == $sidebar_id ) {
+                continue;
+            }
+
+            // Skip if no data or not an array (array_version)
+            if ( ! is_array( $widget_ids ) || empty( $widget_ids ) ) {
+                continue;
+            }
+
+            // Loop widget IDs for this sidebar
+            foreach ( $widget_ids as $widget_id ) {
+
+                // Is there an instance for this widget ID?
+                if ( isset( $widget_instances[$widget_id] ) ) {
+
+                    // Add to array
+                    $sidebars_widget_instances[$sidebar_id][$widget_id] = $widget_instances[$widget_id];
+
+                }
+
+            }
+
+        }
+
+        return $sidebars_widget_instances[ $page_sidebar_id ];
+    }
+
+    function export_data(){
+
+        // Get sidebar and widget data for this page
+        $sidebars_widgets = $this->page_sidebars_widgets();
+
+        if( empty( $sidebars_widgets ) ) return;
+
+        // Loop through options and look for images @TODO: Add categories to this, could be useful
+        foreach( $sidebars_widgets as $option => $data ){
+
+            $sidebars_widgets[ $option ] = $this->validate_data( $data );
+        }
+
+        // Return modified sidebar widgets
+        return $sidebars_widgets;
+    }
+
+
+    /**
+    * Get image urls from their attachment ID
+    */
+
+    function get_image_url( $data ){
+
+        $get_image = wp_get_attachment_image_src( $data, 'full' );
+        if( $get_image ) {
+            return $get_image[0];
+        } else {
+            return NULL;
+        }
+    }
+
+    /**
+    *  Validate Input (Look for images)
+    */
+
+    public function validate_data( $data ) {
+
+        $validated_data = array();
+
+        foreach( $data as $option => $option_data ){
+
+            if( is_array( $option_data ) ) {
+
+                $validated_data[ $option ] = $this->validate_data( $option_data );
+
+            } elseif( 'image' == $option || 'featuredimage' == $option ) {
+                $get_image_url = $this->get_image_url( $option_data );
+
+                if( NULL != $get_image_url ) {
+                    $validated_data[ $option ] = $get_image_url;
+                } else {
+                    $validated_data[ $option ] = $option_data;
+                }
+
+            } else {
+                $validated_data[ $option ] = $option_data;
+            }
+        }
+
+        return $validated_data;
+
+    }
+
+    /**
+    *  Get attachment ID from URL, used when importing images
+    */
+
+    function get_attachment_id_from_url($img_tag) {
+        global $wpdb;
+
+        if( is_object( $img_tag ) ) return;
+
+        preg_match("/src='([^']+)/i", $img_tag , $img_url_almost );
+
+        if( empty( $img_url_almost ) ) return NULL;
+
+        $url = str_ireplace( "src='", "",  $img_url_almost[0]);
+
+        $query = "SELECT ID FROM {$wpdb->posts} WHERE guid='$url'";
+
+        return $wpdb->get_var($query);
+    }
+
+    /**
+    *  Import Images
+    */
+
+    public function check_for_images( $data ) {
+
+        $validated_data = array();
+
+        if( !is_array( $data ) ) return $data;
+
+        foreach( $data as $option => $option_data ){
+
+            if( is_array( $option_data ) ) {
+
+                $validated_data[ $option ] = $this->check_for_images( $option_data );
+
+            } elseif( 'image' == $option || 'featuredimage' == $option ) {
+
+                /* DEBUG
+                echo $option_data; */
+
+                $import_image = media_sideload_image( $option_data , 0 );
+
+                if( NULL != $import_image ) {
+
+                    $get_image_id = $this->get_attachment_id_from_url( $import_image );
+
+                    if( NULL != $get_image_id ) {
+                        $validated_data[ $option ] = $get_image_id;
+                    } else {
+                        $validated_data[ $option ] = $option_data;
+                    }
+                }
+            } else {
+                $validated_data[ $option ] = $option_data;
+            }
+        }
+
+        return $validated_data;
+
     }
 
     /**
@@ -59,12 +292,180 @@ class Hatch_Widget_Migrator {
     */
 
     public function import() {
-    }
 
-    /**
-    *  Validate Input (Look for images)
-    */
+        $data = $_POST[ 'widget_data' ];
 
-    public function validate_input() {
+        global $wp_registered_sidebars;
+
+        // Get all available widgets site supports
+        $available_widgets = $this->available_widgets();
+
+        // Get all existing widget instances
+        $widget_instances = array();
+        foreach ( $available_widgets as $widget_data ) {
+            $widget_instances[$widget_data['id_base']] = get_option( 'widget_' . $widget_data['id_base'] );
+        }
+
+        // Begin results
+        $results = array();
+
+        $sidebar_id = 'obox-hatch-builder-' . $_POST[ 'post_id' ];
+
+
+        // Check if sidebar is available on this site
+        // Otherwise add widgets to inactive, and say so
+        if ( isset( $wp_registered_sidebars[$sidebar_id] ) ) {
+            $sidebar_available = true;
+            $use_sidebar_id = $sidebar_id;
+            $sidebar_message_type = 'success';
+            $sidebar_message = '';
+        } else {
+            $sidebar_available = false;
+            $use_sidebar_id = 'wp_inactive_widgets'; // add to inactive if sidebar does not exist in theme
+            $sidebar_message_type = 'error';
+            $sidebar_message = __( 'Sidebar does not exist in theme (using Inactive)', 'widget-importer-exporter' );
+        }
+
+        // Result for sidebar
+        $results[$sidebar_id]['name'] = ! empty( $wp_registered_sidebars[$sidebar_id]['name'] ) ? $wp_registered_sidebars[$sidebar_id]['name'] : $sidebar_id; // sidebar name if theme supports it; otherwise ID
+        $results[$sidebar_id]['message_type'] = $sidebar_message_type;
+        $results[$sidebar_id]['message'] = $sidebar_message;
+        $results[$sidebar_id]['widgets'] = array();
+
+        // Loop widgets
+        foreach ( $data as $widget_instance_id => $widget ) {
+
+            foreach ( $widget as $option => $data ){
+                $widget[ $option ] = $this->check_for_images( $data );
+            }
+
+            /* DEBUG
+            print_r( $widget );
+            print_r( '--------------' );
+            */
+
+            $fail = false;
+
+            // Get id_base (remove -# from end) and instance ID number
+            $id_base = preg_replace( '/-[0-9]+$/', '', $widget_instance_id );
+            $instance_id_number = str_replace( $id_base . '-', '', $widget_instance_id );
+
+            // Does site support this widget?
+            if ( ! $fail && ! isset( $available_widgets[$id_base] ) ) {
+                $fail = true;
+                $widget_message_type = 'error';
+                $widget_message = __( 'Site does not support widget', 'widget-importer-exporter' ); // explain why widget not imported
+            }
+
+            // Does widget with identical settings already exist in same sidebar?
+            if ( ! $fail && isset( $widget_instances[$id_base] ) ) {
+
+                // Get existing widgets in this sidebar
+                $sidebars_widgets = get_option( 'sidebars_widgets' );
+                $sidebar_widgets = isset( $sidebars_widgets[$use_sidebar_id] ) ? $sidebars_widgets[$use_sidebar_id] : array(); // check Inactive if that's where will go
+
+                // Loop widgets with ID base
+                $single_widget_instances = ! empty( $widget_instances[$id_base] ) ? $widget_instances[$id_base] : array();
+                foreach ( $single_widget_instances as $check_id => $check_widget ) {
+
+                    // Is widget in same sidebar and has identical settings?
+                    if ( in_array( "$id_base-$check_id", $sidebar_widgets ) && (array) $widget == $check_widget ) {
+
+                        $fail = true;
+                        $widget_message_type = 'warning';
+                        $widget_message = __( 'Widget already exists', 'widget-importer-exporter' ); // explain why widget not imported
+
+                        break;
+
+                    }
+
+                }
+
+            }
+
+            // No failure
+            if ( ! $fail ) {
+
+                // Add widget instance
+                $single_widget_instances = get_option( 'widget_' . $id_base ); // all instances for that widget ID base, get fresh every time
+                $single_widget_instances = ! empty( $single_widget_instances ) ? $single_widget_instances : array( '_multiwidget' => 1 ); // start fresh if have to
+                $single_widget_instances[] = (array) $widget; // add it
+
+                    // Get the key it was given
+                    end( $single_widget_instances );
+                    $new_instance_id_number = key( $single_widget_instances );
+
+                    // If key is 0, make it 1
+                    // When 0, an issue can occur where adding a widget causes data from other widget to load, and the widget doesn't stick (reload wipes it)
+                    if ( '0' === strval( $new_instance_id_number ) ) {
+                        $new_instance_id_number = 1;
+                        $single_widget_instances[$new_instance_id_number] = $single_widget_instances[0];
+                        unset( $single_widget_instances[0] );
+                    }
+
+                    // Move _multiwidget to end of array for uniformity
+                    if ( isset( $single_widget_instances['_multiwidget'] ) ) {
+                        $multiwidget = $single_widget_instances['_multiwidget'];
+                        unset( $single_widget_instances['_multiwidget'] );
+                        $single_widget_instances['_multiwidget'] = $multiwidget;
+                    }
+
+                    // Update option with new widget
+                    update_option( 'widget_' . $id_base, $single_widget_instances );
+
+                // Assign widget instance to sidebar
+                $sidebars_widgets = get_option( 'sidebars_widgets' ); // which sidebars have which widgets, get fresh every time
+                $new_instance_id = $id_base . '-' . $new_instance_id_number; // use ID number from new widget instance
+                $sidebars_widgets[$use_sidebar_id][] = $new_instance_id; // add new instance to sidebar
+                update_option( 'sidebars_widgets', $sidebars_widgets ); // save the amended data
+
+                // Success message
+                if ( $sidebar_available ) {
+                    $widget_message_type = 'success';
+                    $widget_message = __( 'Imported', 'widget-importer-exporter' );
+                } else {
+                    $widget_message_type = 'warning';
+                    $widget_message = __( 'Imported to Inactive', 'widget-importer-exporter' );
+                }
+
+            }
+            // Result for widget instance
+            $results[$sidebar_id]['widgets'][$widget_instance_id]['name'] = isset( $available_widgets[$id_base]['name'] ) ? $available_widgets[$id_base]['name'] : $id_base; // widget name or ID if name not available (not supported by site)
+            $results[$sidebar_id]['widgets'][$widget_instance_id]['title'] = isset( $widget->title ) ? $widget->title : __( 'No Title', 'widget-importer-exporter' ); // show "No Title" if widget instance is untitled
+            $results[$sidebar_id]['widgets'][$widget_instance_id]['message_type'] = $widget_message_type;
+            $results[$sidebar_id]['widgets'][$widget_instance_id]['message'] = $widget_message;
+
+        }
+
+        die( print_r( json_encode( $results[$sidebar_id] , true ) ) );
+
     }
 }
+
+if( !function_exists( 'hatch_builder_export_init' ) ) {
+    function hatch_builder_export_init(){
+        global $pagenow, $post;
+
+        // Make sure we're on the post edit screen
+        if( 'post.php' != $pagenow ) return;
+
+        // Make sure we're editing a post
+        if( 'page' != get_post_type( $post->ID ) || 'builder.php' != basename( get_page_template() ) ) return;
+
+        $hatch_migrator = new Hatch_Widget_Migrator();
+        $hatch_migrator->init();
+
+    }
+}
+
+add_action( 'admin_head' , 'hatch_builder_export_init', 10 );
+
+if( !function_exists( 'hatch_builder_export_ajax_init' ) ) {
+    function hatch_builder_export_ajax_init(){
+        $hatch_migrator = new Hatch_Widget_Migrator();
+        add_action( 'wp_ajax_hatch_import_widgets', array( $hatch_migrator, 'import' ) );
+
+    }
+}
+
+add_action( 'init' , 'hatch_builder_export_ajax_init' );

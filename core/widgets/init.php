@@ -185,6 +185,15 @@ class Hatch_Widgets {
 			true
 		);
 
+		// Migrator
+		wp_register_script(
+			HATCH_THEME_SLUG . '-admin-widgets-migrator' ,
+			get_template_directory_uri() . '/core/widgets/js/migrator.js' ,
+			array(),
+			HATCH_VERSION,
+			true
+		);
+
 		// Tiny MCE Initiator
 		wp_register_script(
 			HATCH_THEME_SLUG . '-admin-widgets-tinymce' ,
@@ -222,6 +231,7 @@ class Hatch_Widgets {
 				HATCH_THEME_SLUG . '-admin-widgets-sidebar',
 				HATCH_THEME_SLUG . '-admin-widgets-modules',
 				HATCH_THEME_SLUG . '-admin-widgets-maps',
+				HATCH_THEME_SLUG . '-admin-widgets-migrator',
 				'backbone',
 				'jquery',
 				'wp-color-picker'

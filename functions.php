@@ -83,6 +83,9 @@ if( is_admin() ){
 
 	// Include pointers class
 	locate_template( '/core/helpers/pointers.php' , true );
+
+	// Include widget export/import class
+	locate_template( '/core/widgets/migrator.php' , true );
 }
 
 if( ! function_exists( 'hatch_setup' ) ) {

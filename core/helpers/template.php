@@ -287,16 +287,11 @@ if( !function_exists( 'hatch_get_page_title' ) ) {
         // Setup return
         $title_array = array();
 
-        if(!is_page() && get_query_var('term' ) != '' ) {
-            $term = get_term_by( 'slug', get_query_var('term' ), get_query_var( 'taxonomy' ) );
-            $title_array['title'] = $term->name;
-            if ( !empty( $term->description) ) $title_array['excerpt'] = $term->description;
-        } elseif(!empty($parentpage) && !is_search()) {
+        if(!empty($parentpage) && !is_search()) {
             $parentpage = get_template_link(get_post_type().".php");
             $title_array['title'] = $parentpage->post_title;
-            if($parentpage->post_excerpt != '') $title_array['excerpt'] = $parentpage->post_excerpt;
-        } elseif( ( get_post_type() == "post" && is_category() ) ) {
-            $title_array['title' ] = wp_title( '', false);
+            if($parentpage->post_excerpt != ''){ $title_array['excerpt'] = $parentpage->post_excerpt; }
+
         } elseif( is_page() ) {
             while ( have_posts() ) { the_post();
                 $title_array['title'] = get_the_title();
@@ -307,9 +302,14 @@ if( !function_exists( 'hatch_get_page_title' ) ) {
             $title_array['excerpt'] = the_search_query();
         } elseif( is_tag() ) {
             $title_array['title'] = single_tag_title();
-        } elseif( is_category() ) {
-            $title_array['title'] = single_category_title();
-            $title_array['excerpt'] = category_description();
+        } elseif(!is_page() && is_category() ) {
+			$category = get_the_category();
+            $title_array['title'] = $category[0]->name;
+            $title_array['excerpt'] = $category[0]->description;
+		} elseif (!is_page() && get_query_var('term' ) != '' ) {
+			$term = get_term_by( 'slug', get_query_var('term' ), get_query_var( 'taxonomy' ) ); 
+			$title_array['title'] = $term->name;
+			$title_array['excerpt'] = $term->description;
         } elseif ( is_day() ) {
             $title_array['title' ] = sprintf( __( 'Daily Archives: %s', HATCH_THEME_SLUG ), get_the_date() );
         } elseif ( is_month() ) {

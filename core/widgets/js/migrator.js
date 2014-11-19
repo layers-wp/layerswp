@@ -17,7 +17,8 @@ jQuery(document).ready(function($){
                 nonce: hatch_widget_params.nonce
             },
             function(data){
-              alert( "Imported! Hopefully :/" );
+                console.log( "Result: " );
+                console.log( data );
             }
         );
     });

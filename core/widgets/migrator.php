@@ -323,7 +323,7 @@ class Hatch_Widget_Migrator {
             $sidebar_available = false;
             $use_sidebar_id = 'wp_inactive_widgets'; // add to inactive if sidebar does not exist in theme
             $sidebar_message_type = 'error';
-            $sidebar_message = __( 'Sidebar does not exist in theme (using Inactive)', 'widget-importer-exporter' );
+            $sidebar_message = __( 'Sidebar does not exist in theme (using Inactive)', HATCH_THEME_SLUG );
         }
 
         // Result for sidebar
@@ -335,27 +335,16 @@ class Hatch_Widget_Migrator {
         // Loop widgets
         foreach ( $data as $widget_instance_id => $widget ) {
 
+            // Check for and import images
             foreach ( $widget as $option => $data ){
                 $widget[ $option ] = $this->check_for_images( $data );
             }
-
-            /* DEBUG
-            print_r( $widget );
-            print_r( '--------------' );
-            */
 
             $fail = false;
 
             // Get id_base (remove -# from end) and instance ID number
             $id_base = preg_replace( '/-[0-9]+$/', '', $widget_instance_id );
             $instance_id_number = str_replace( $id_base . '-', '', $widget_instance_id );
-
-            // Does site support this widget?
-            if ( ! $fail && ! isset( $available_widgets[$id_base] ) ) {
-                $fail = true;
-                $widget_message_type = 'error';
-                $widget_message = __( 'Site does not support widget', 'widget-importer-exporter' ); // explain why widget not imported
-            }
 
             // Does widget with identical settings already exist in same sidebar?
             if ( ! $fail && isset( $widget_instances[$id_base] ) ) {
@@ -373,7 +362,7 @@ class Hatch_Widget_Migrator {
 
                         $fail = true;
                         $widget_message_type = 'warning';
-                        $widget_message = __( 'Widget already exists', 'widget-importer-exporter' ); // explain why widget not imported
+                        $widget_message = __( 'Widget already exists', HATCH_THEME_SLUG ); // explain why widget not imported
 
                         break;
 
@@ -422,16 +411,16 @@ class Hatch_Widget_Migrator {
                 // Success message
                 if ( $sidebar_available ) {
                     $widget_message_type = 'success';
-                    $widget_message = __( 'Imported', 'widget-importer-exporter' );
+                    $widget_message = __( 'Imported', HATCH_THEME_SLUG );
                 } else {
                     $widget_message_type = 'warning';
-                    $widget_message = __( 'Imported to Inactive', 'widget-importer-exporter' );
+                    $widget_message = __( 'Imported to Inactive', HATCH_THEME_SLUG );
                 }
 
             }
             // Result for widget instance
             $results[$sidebar_id]['widgets'][$widget_instance_id]['name'] = isset( $available_widgets[$id_base]['name'] ) ? $available_widgets[$id_base]['name'] : $id_base; // widget name or ID if name not available (not supported by site)
-            $results[$sidebar_id]['widgets'][$widget_instance_id]['title'] = isset( $widget->title ) ? $widget->title : __( 'No Title', 'widget-importer-exporter' ); // show "No Title" if widget instance is untitled
+            $results[$sidebar_id]['widgets'][$widget_instance_id]['title'] = isset( $widget->title ) ? $widget->title : __( 'No Title', HATCH_THEME_SLUG ); // show "No Title" if widget instance is untitled
             $results[$sidebar_id]['widgets'][$widget_instance_id]['message_type'] = $widget_message_type;
             $results[$sidebar_id]['widgets'][$widget_instance_id]['message'] = $widget_message;
 

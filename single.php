@@ -9,13 +9,13 @@
 get_header(); ?>
 
 <section id="post-<?php the_ID(); ?>" <?php post_class( 'content-main clearfix' ); ?>>
-	<?php if( have_posts() ) : ?>
-		<div class="row">
+	<div class="row">
+		<?php /**
+		* Maybe show the left sidebar
+		*/
+		hatch_maybe_get_sidebar( 'left-sidebar', 'column pull-left sidebar span-3' ); ?>
 
-			<?php /**
-			* Maybe show the left sidebar
-			*/
-			hatch_maybe_get_sidebar( 'left-sidebar', 'column pull-left sidebar span-3' ); ?>
+		<?php if( have_posts() ) : ?>
 
 			<?php while( have_posts() ) : the_post(); ?>
 				<article <?php hatch_center_column_class(); ?>>
@@ -23,12 +23,13 @@ get_header(); ?>
 				</article>
 			<?php endwhile; // while has_post(); ?>
 
-			<?php /**
-			* Maybe show the right sidebar
-			*/
-			hatch_maybe_get_sidebar( 'right-sidebar', 'column pull-right sidebar span-3 no-gutter' ); ?>
-		</div>
-	<?php endif; // if has_post() ?>
+		<?php endif; // if has_post() ?>
+
+		<?php /**
+		* Maybe show the right sidebar
+		*/
+		hatch_maybe_get_sidebar( 'right-sidebar', 'column pull-right sidebar span-3 no-gutter' ); ?>
+	</div>
 </section>
 
 <?php get_footer(); ?>

@@ -18,11 +18,13 @@ get_header(); ?>
         hatch_maybe_get_sidebar( 'left-sidebar', 'column pull-left sidebar span-2' ); ?>
 
         <?php if( have_posts() ) : ?>
+
             <?php while( have_posts() ) : the_post(); ?>
                 <article <?php hatch_center_column_class(); ?>>
                     <?php get_template_part( 'partials/content', 'single' ); ?>
                 </article>
             <?php endwhile; // while has_post(); ?>
+
         <?php endif; // if has_post() ?>
 
         <?php /**

@@ -10,6 +10,7 @@
 class Hatch_Custom_Meta {
 
 	private static $instance;
+
 	var $custom_meta;
 
 	/**

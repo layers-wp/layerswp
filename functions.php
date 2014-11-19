@@ -60,9 +60,9 @@ locate_template( '/core/customizer/init.php' , true );
 locate_template( '/core/meta/init.php' , true );
 
 /*
- * Load Options Panel
+ * Load Widgets
  */
-locate_template( '/core/options-panel/init.php' , true );
+locate_template( '/core/widgets/init.php' , true );
 
 /*
  * Load Front-end helpers
@@ -70,6 +70,7 @@ locate_template( '/core/options-panel/init.php' , true );
 locate_template( '/core/helpers/post.php' , true );
 locate_template( '/core/helpers/template.php' , true );
 locate_template( '/core/helpers/woocommerce.php' , true );
+locate_template( '/core/helpers/extensions.php' , true );
 
 /*
  * Load Admin-specific files
@@ -86,6 +87,10 @@ if( is_admin() ){
 
 	// Include widget export/import class
 	locate_template( '/core/widgets/migrator.php' , true );
+
+	//Load Options Panel
+	locate_template( '/core/options-panel/init.php' , true );
+
 }
 
 if( ! function_exists( 'hatch_setup' ) ) {
@@ -96,6 +101,11 @@ if( ! function_exists( 'hatch_setup' ) ) {
 		 * Add support for widgets inside the customizer
 		 */
 		add_theme_support('widget-customizer');
+
+		/**
+		 * Add support for WooCommerce
+		 */
+		add_theme_support( 'woocommerce' );
 
 		/**
 		 * Add support for featured images

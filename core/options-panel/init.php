@@ -79,7 +79,7 @@ function hatch_options_panel_menu(){
 	add_menu_page(
 			HATCH_THEME_TITLE,
 			HATCH_THEME_TITLE,
-			'edit_theme_options',
+			'manage_options',
 			HATCH_THEME_SLUG . '-welcome',
 			'hatch_options_panel_ui',
 			'dashicons-smiley',
@@ -92,7 +92,7 @@ function hatch_options_panel_menu(){
 			HATCH_THEME_SLUG . '-welcome',
 			__( 'Backup' , HATCH_THEME_SLUG ),
 			__( 'Backup' , HATCH_THEME_SLUG ),
-			'edit_theme_options',
+			'manage_options',
 			HATCH_THEME_SLUG . '-backup',
 			'hatch_options_panel_ui'
 	);

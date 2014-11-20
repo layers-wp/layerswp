@@ -146,7 +146,7 @@ class Hatch_Customizer_Regsitrar {
 				array(
 					'default'    => ( isset( $control_data['default'] ) ? $control_data['default'] : NULL ) ,
 					'type'       => 'theme_mod',
-					'capability' => 'edit_theme_options'
+					'capability' => 'manage_options'
 				)
 			);
 

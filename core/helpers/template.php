@@ -307,7 +307,7 @@ if( !function_exists( 'hatch_get_page_title' ) ) {
             $title_array['title'] = $category[0]->name;
             $title_array['excerpt'] = $category[0]->description;
 		} elseif (!is_page() && get_query_var('term' ) != '' ) {
-			$term = get_term_by( 'slug', get_query_var('term' ), get_query_var( 'taxonomy' ) ); 
+			$term = get_term_by( 'slug', get_query_var('term' ), get_query_var( 'taxonomy' ) );
 			$title_array['title'] = $term->name;
 			$title_array['excerpt'] = $term->description;
         } elseif ( is_day() ) {
@@ -570,7 +570,7 @@ if( !function_exists( 'hatch_add_additional_header_scripts' ) ) {
         $additional_header_scripts = hatch_get_theme_mod( 'header-scripts-scripts' );
 
         if( '' != $additional_header_scripts ) {
-            echo $additional_header_scripts;
+            echo stripslashes( $additional_header_scripts );
         }
     }
     add_action ( 'wp_head', 'hatch_add_additional_header_scripts' );
@@ -587,7 +587,7 @@ if( !function_exists( 'hatch_add_additional_footer_scripts' ) ) {
         $additional_footer_scripts = hatch_get_theme_mod( 'footer-scripts-scripts' );
 
         if( '' != $additional_footer_scripts ) {
-            echo $additional_footer_scripts;
+            echo stripslashes( $additional_footer_scripts );
         }
     }
     add_action ( 'wp_footer', 'hatch_add_additional_footer_scripts' );

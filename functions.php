@@ -3,6 +3,11 @@
  * @package Hatch
  */
 
+
+/**
+* Add define Hatch constants to be used around Hatch themes, plugins etc.
+*/
+
 /**
  * The current version of the theme. Use a random number for SCRIPT_DEBUG mode
  */
@@ -11,6 +16,7 @@ if ( defined( 'SCRIPT_DEBUG' ) && TRUE == SCRIPT_DEBUG ) {
 } else {
 	define( 'HATCH_VERSION', '1.0' );
 }
+
 define( 'HATCH_TEMPLATE_URI' , get_template_directory_uri() );
 define( 'HATCH_TEMPLATE_DIR' , get_template_directory() );
 define( 'HATCH_THEME_TITLE' , 'Hatch' );
@@ -69,7 +75,6 @@ locate_template( '/core/widgets/init.php' , true );
  */
 locate_template( '/core/helpers/post.php' , true );
 locate_template( '/core/helpers/template.php' , true );
-locate_template( '/core/helpers/woocommerce.php' , true );
 locate_template( '/core/helpers/extensions.php' , true );
 
 /*

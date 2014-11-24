@@ -97,6 +97,8 @@ class Hatch_Design_Controller {
 
 	function custom_component( $widget = NULL, $values = NULL, $key = NULL, $args = array() ){
 
+		if( empty( $args ) ) return;
+
 		// If there is no widget information provided, can the operation
 		if( NULL == $widget ) return; ?>
 

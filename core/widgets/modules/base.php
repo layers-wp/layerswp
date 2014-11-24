@@ -13,20 +13,22 @@ if( !class_exists( 'Hatch_Widget' ) ) {
 		/**
 		* Background Style Generator
 		*
-		* @param  	varchar		$widget_id 	Widget ID
-		* @param  	array 		$values 	Background information
+		* @param  	varchar		$type 	Type of style to generate, background, color, text-shadow, border
+		* @param  	array 		$args
+		*
+		* @return  	varchar 	$widget_css CSS to append to the inline widget styles that have been generated
 		*/
 
-		function widget_styles( $widget_id = NULL , $type = 'background' , $args = array() ){
+		function widget_styles( $widget_id = NULL, $type = 'background' , $args = array() ){
 
-			// if there is no widget ID, then get outta here
+			// If we have no target we cannot aim for anything
 			if( NULL == $widget_id ) return;
 
 			// Get the generated CSS
 			global $widget_css;
 
 			$css = '';
-			$input = $widget_id;
+
 
 			if( empty( $args ) || ( !is_array( $args ) && '' == $args ) ) return;
 
@@ -34,28 +36,31 @@ if( !class_exists( 'Hatch_Widget' ) ) {
 
 				case 'background' :
 
-					if( isset( $args['color'] ) && '' != $args['color'] ){
-						$css .= 'background-color: ' . $args['color'] . '; ';
+					// Set the background array
+					$bg_args = $args['background'];
+
+					if( isset( $bg_args['color'] ) && '' != $bg_args['color'] ){
+						$css .= 'background-color: ' . $bg_args['color'] . '; ';
 					}
 
-					if( isset( $args['repeat'] ) && '' != $args['repeat'] ){
-						$css .= 'background-repeat: ' . $args['repeat'] . ';';
+					if( isset( $bg_args['repeat'] ) && '' != $bg_args['repeat'] ){
+						$css .= 'background-repeat: ' . $bg_args['repeat'] . ';';
 					}
 
-					if( isset( $args['position'] ) && '' != $args['position'] ){
-						$css .= 'background-position: ' . $args['position'] . ';';
+					if( isset( $bg_args['position'] ) && '' != $bg_args['position'] ){
+						$css .= 'background-position: ' . $bg_args['position'] . ';';
 					}
 
-					if( isset( $args['stretch'] ) && '' != $args['stretch'] ){
+					if( isset( $bg_args['stretch'] ) && '' != $bg_args['stretch'] ){
 						$css .= 'background-size: cover;';
 					}
 
-					if( isset( $args['fixed'] ) && '' != $args['fixed'] ){
+					if( isset( $bg_args['fixed'] ) && '' != $bg_args['fixed'] ){
 						$css .= 'background-attachment: fixed;';
 					}
 
-					if( isset( $args['image'] ) && '' != $args['image'] ){
-						$image = wp_get_attachment_image_src( $args['image'] , 'full' );
+					if( isset( $bg_args['image'] ) && '' != $bg_args['image'] ){
+						$image = wp_get_attachment_image_src( $bg_args['image'] , 'full' );
 						$css.= 'background-image: url(\'' . $image[0] .'\');';
 					}
 				break;
@@ -160,6 +165,62 @@ if( !class_exists( 'Hatch_Widget' ) ) {
 			// Return design bar
 			return $form_elements;
 
+		}
+
+		/**
+		* Widget sub-module input name generation, for example see Slider and Content Widgets
+		*
+		* @param  	object 		$widget_details 	Widget object to use
+		* @param  	varchar 	$level1 	Level 1 name
+		* @param  	varchar 	$level2 	Level 2 name
+	 	* @param 	string 		$field_name Field name
+	 	* @return 	string 		Name attribute for $field_name
+		*/
+		function get_custom_field_name( $widget_details = NULL, $level1 = '' , $level2 = '', $field_name = '' ) {
+
+			// If there is no widget object then ignore
+			if( NULL == $widget_details ) return;
+
+			$final_field_name = 'widget-' . $widget_details->id_base . '[' . $widget_details->number . ']';
+
+			// Add first level of input string
+			if( '' != $level1 ) $final_field_name .= '[' . $level1 . ']';
+
+			// Add second level of input string
+			if( '' != $level2 ) $final_field_name .= '[' . $level2 . ']';
+
+			// Add field name
+			if( '' != $field_name ) $final_field_name .= '[' . $field_name . ']';
+
+			return $final_field_name;
+		}
+
+		/**
+		* Widget sub-module input id generation, for example see Slider and Content Widgets
+		*
+		* @param  	object 		$widget_details 	Widget object to use
+		* @param  	varchar 	$level1 	Level 1 name
+		* @param  	varchar 	$level2 	Level 2 name
+	 	* @param 	string 		$field_name Field name
+	 	* @return 	string 		Name attribute for $field_name
+		*/
+		function get_custom_field_id( $widget_details = NULL, $level1 = '' , $level2 = '', $field_id = '' ) {
+
+			// If there is no widget object then ignore
+			if( NULL == $widget_details ) return;
+
+			$final_field_id = 'widget-' . $widget_details->id_base . '-' . $widget_details->number;
+
+			// Add first level of input string
+			if( '' != $level1 ) $final_field_id .= '-' . $level1;
+
+			// Add second level of input string
+			if( '' != $level2 ) $final_field_id .= '-' . $level2;
+
+			// Add field name
+			if( '' != $field_id ) $final_field_id .= '-' . $field_id;
+
+			return $final_field_id;
 		}
 
 	}

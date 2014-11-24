@@ -116,7 +116,7 @@ if( !class_exists( 'Hatch_Slider_Widget' ) ) {
 						<?php foreach ( $widget[ 'banners' ] as $key => $banner) {
 
 							// Set the background styling
-							if( !empty( $banner['design'][ 'background' ] ) ) $this->widget_styles( $widget_id . '-' . $key , 'background', $banner['design'][ 'background' ] );
+							if( !empty( $banner['design'][ 'background' ] ) ) $this->widget_styles( $widget_id . '-' . $key , 'background', array( 'background' => $banner['design'][ 'background' ] ) );
 							if( !empty( $banner['design']['fonts'][ 'color' ] ) ) $this->widget_styles( $widget_id . '-' . $key , 'color', array( 'selectors' => array( 'h3.heading', 'h3.heading a', 'div.excerpt' ) , 'color' => $banner['design']['fonts'][ 'color' ] ) );
 							if( !empty( $banner['design']['fonts'][ 'shadow' ] ) ) $this->widget_styles( $widget_id . '-' . $key , 'text-shadow', array( 'selectors' => array( 'h3.heading', 'h3.heading a',  'div.excerpt' )  , 'text-shadow' => $banner['design']['fonts'][ 'shadow' ] ) );
 
@@ -398,8 +398,8 @@ if( !class_exists( 'Hatch_Slider_Widget' ) ) {
 						<?php $this->design_bar()->bar(
 							'top', // CSS Class Name
 							array(
-								'name' => 'widget-' . $widget_details->id_base . '[' . $widget_details->number . '][banners][' . $slide_guid . '][design]',
-								'id' => 'widget-' . $widget_details->id_base . '-' . $widget_details->number . '-' . $slide_guid . '-design',
+								'name' => $this->get_custom_field_name( $widget_details, 'banners',  $slide_guid, 'design' ),
+								'id' => $this->get_custom_field_id( $widget_details, 'banners',  $slide_guid, 'design' ),
 								'number' => $widget_details->number,
 								'show_trash' => true
 							), // Widget Object
@@ -417,9 +417,9 @@ if( !class_exists( 'Hatch_Slider_Widget' ) ) {
 								<?php echo $this->form_elements()->input(
 									array(
 										'type' => 'text',
-										'name' => 'widget-' . $widget_details->id_base . '[' . $widget_details->number . '][banners][' . $slide_guid . '][title]' ,
+										'name' => $this->get_custom_field_name( $widget_details, 'banners',  $slide_guid, 'title' ),
+										'id' => $this->get_custom_field_id( $widget_details, 'banners',  $slide_guid, 'title' ),
 										'placeholder' => __( 'Enter a Title' , HATCH_THEME_SLUG ),
-										'id' => 'widget-' . $widget_details->id_base . '-' . $widget_details->number . '-' . $slide_guid . '-title' ,
 										'placeholder' => __( 'Enter title here', HATCH_THEME_SLUG ),
 										'value' => ( isset( $title ) ) ? $title : NULL ,
 										'class' => 'hatch-text'
@@ -430,8 +430,8 @@ if( !class_exists( 'Hatch_Slider_Widget' ) ) {
 								<?php echo $this->form_elements()->input(
 									array(
 										'type' => 'textarea',
-										'name' => 'widget-' . $widget_details->id_base . '[' . $widget_details->number . '][banners][' . $slide_guid . '][excerpt]' ,
-										'id' => 'widget-' . $widget_details->id_base . '-' . $widget_details->number . '-' . $slide_guid . '-excerpt' ,
+										'name' => $this->get_custom_field_name( $widget_details, 'banners',  $slide_guid, 'excerpt' ),
+										'id' => $this->get_custom_field_id( $widget_details, 'banners',  $slide_guid, 'excerpt' ),
 										'placeholder' => __( 'Short Excerpt', HATCH_THEME_SLUG ),
 										'value' => ( isset( $excerpt ) ) ? $excerpt : NULL ,
 										'class' => 'hatch-textarea',
@@ -444,8 +444,8 @@ if( !class_exists( 'Hatch_Slider_Widget' ) ) {
 								<?php echo $this->form_elements()->input(
 									array(
 										'type' => 'text',
-										'name' => 'widget-' . $widget_details->id_base . '[' . $widget_details->number . '][banners][' . $slide_guid . '][link]' ,
-										'id' => 'widget-' . $widget_details->id_base . '-' . $widget_details->number . '-' . $slide_guid . '-link' ,
+										'name' => $this->get_custom_field_name( $widget_details, 'banners',  $slide_guid, 'link' ),
+										'id' => $this->get_custom_field_id( $widget_details, 'banners',  $slide_guid, 'link' ),
 										'placeholder' => __( 'http://', HATCH_THEME_SLUG ),
 										'value' => ( isset( $link ) ) ? $link : NULL ,
 									)
@@ -456,8 +456,8 @@ if( !class_exists( 'Hatch_Slider_Widget' ) ) {
 								<?php echo $this->form_elements()->input(
 									array(
 										'type' => 'text',
-										'name' => 'widget-' . $widget_details->id_base . '[' . $widget_details->number . '][banners][' . $slide_guid . '][link_text]' ,
-										'id' => 'widget-' . $widget_details->id_base . '-' . $widget_details->number . '-' . $slide_guid . '-link_text' ,
+										'name' => $this->get_custom_field_name( $widget_details, 'banners',  $slide_guid, 'link_text' ),
+										'id' => $this->get_custom_field_id( $widget_details, 'banners',  $slide_guid, 'link_text' ),
 										'placeholder' => __( 'e.g. "Read More"' , HATCH_THEME_SLUG ),
 										'value' => ( isset( $link_text ) ) ? $link_text : NULL ,
 									)

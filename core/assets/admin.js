@@ -20,6 +20,8 @@
  * 8 - Widget Focussing
  * 9 - Init 'Medium' editors
  * 10 - Trigger input changes
+ * 11 - Add Last Class to Design Bar Elements
+ * 12 - Show/Hide linked elements
 */
 
 jQuery(function($) {
@@ -411,14 +413,16 @@ jQuery(function($) {
 	*/
 
 	$.fn.hatch_trigger_change = function() {
-
 		// Trigger 'change' and 'blur' to reset the customizer
 		$changed = $(this).trigger("change").trigger("blur");
 		$( document ).trigger( 'widget-synced', $(this).closest( '.control-section' ).find( '.widget:first' ) );
+
+		// Reset 'show if' selectors;
+		hatch_apply_show_if_selectors();
 	};
 
 	/**
-	* 11 - Trigger input changes
+	* 11 - Add Last Class to Elements
 	*/
 
 	$('.hatch-visuals-wrapper').each(function(){
@@ -431,6 +435,42 @@ jQuery(function($) {
 			}
 	});
 
+	/**
+	* 12 - Show/Hide linked elements
+	*/
+
+	// Instantiate the show/hide lookup
+	hatch_apply_show_if_selectors();
+
+	function hatch_apply_show_if_selectors(){
+		$('[data-show-if-selector]').each(function(){
+			// "Hi Mom!"
+			$that = $(this);
+			var $selector = $that.data( 'show-if-selector' );
+
+			$( document ).on( 'change' , $selector , function(e){
+
+				$('[data-show-if-selector="' + $selector + '"]').each(function(){
+					$input = $(this);
+
+					var $value = $input.data( 'show-if-value' );
+
+					console.log(
+							"Input: " + $( $selector ).val() +
+							"Selector: " + $selector +
+							"Show If: " + $value +
+							"Found? " + $value.indexOf( $( $selector ).val() )
+						);
+
+					if( $value.indexOf( $( $selector ).val() ) > -1 ){
+						$input.removeClass( 'hatch-hide' );
+					} else {
+						$input.addClass( 'hatch-hide' );
+					}
+				})
+			});
+		});
+	}
 
 });
 

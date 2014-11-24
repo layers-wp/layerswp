@@ -30,10 +30,10 @@ if ( !function_exists('hatch_load_templates') ) {
         $template_locations = hatch_get_template_locations();
 
         // Get the base name of the file to look for
-        $template = basename( $template );
+        $template_slug = basename( $template );
 
         // Check if a custom template exists in the theme folder, if not, load the plugin template file
-        if ( $theme_file = locate_template(  $template ) ) {
+        if ( $theme_file = locate_template(  $template_slug ) ) {
             $file = $theme_file;
         } elseif( !empty( $template_locations ) ) {
 
@@ -41,11 +41,13 @@ if ( !function_exists('hatch_load_templates') ) {
             foreach( $template_locations as $location ){
 
                 // Piece together the ful url
-                $file =  $location . '/' . $template;
+                $file =  $location . '/' . $template_slug;
 
                 // If this template file exists, we're game
                 if( file_exists( $file ) ) return $file;
             }
+        } else {
+            $file = $template;
         }
 
         return apply_filters( 'hatch_template_' . $template, $file );

@@ -93,8 +93,8 @@ if( !class_exists( 'Hatch_Module_Widget' ) ) {
 			$widget = wp_parse_args( $instance, $instance_defaults );
 
 			// Set the background styling
-			if( !empty( $widget['design'][ 'background' ] ) ) $this->widget_styles( $widget_id , 'background', $widget['design'][ 'background' ] );
-			if( !empty( $widget['design']['fonts'][ 'color' ] ) ) $this->widget_styles( $widget_id , 'color', array( 'selectors' => array( '.section-title h3.heading' , '.section-title p.excerpt' ) , 'color' => $widget['design']['fonts'][ 'color' ] ) ); ?>
+			if( !empty( $widget['design'][ 'background' ] ) ) $this->widget_styles( $widget_id, 'background', array( 'background' => $widget['design'][ 'background' ] ) );
+			if( !empty( $widget['design']['fonts'][ 'color' ] ) ) $this->widget_styles( $widget_id, 'color', array( 'selectors' => array( '.section-title h3.heading' , '.section-title p.excerpt' ) , 'color' => $widget['design']['fonts'][ 'color' ] ) ); ?>
 
 			<section class="widget row content-vertical-massive" id="<?php echo $widget_id; ?>">
 				<?php if( $this->check_and_return( $widget , 'title' ) || $this->check_and_return( $widget , 'excerpt' ) ) { ?>
@@ -115,7 +115,7 @@ if( !class_exists( 'Hatch_Module_Widget' ) ) {
 						<?php foreach ( $widget['modules'] as $key => $module) {
 
 							// Set the background styling
-							if( !empty( $module['design'][ 'background' ] ) ) $this->widget_styles( $widget_id . '-' . $key , 'background', $module['design'][ 'background' ] );
+							if( !empty( $module['design'][ 'background' ] ) ) $this->widget_styles( $widget_id . '-' . $key , 'background', array( 'background' => $module['design'][ 'background' ] ) );
 							if( !empty( $module['design']['fonts'][ 'color' ] ) ) $this->widget_styles( $widget_id . '-' . $key , 'color', array( 'selectors' => array( 'h5.heading a' , 'div.excerpt' , 'div.excerpt p' ) , 'color' => $module['design']['fonts'][ 'color' ] ) );
 							if( !empty( $module['design']['fonts'][ 'shadow' ] ) ) $this->widget_styles( $widget_id . '-' . $key , 'text-shadow', array( 'selectors' => array( 'h5.heading a' , 'div.excerpt' , 'div.excerpt p' )  , 'text-shadow' => $module['design']['fonts'][ 'shadow' ] ) );
 
@@ -362,8 +362,8 @@ if( !class_exists( 'Hatch_Module_Widget' ) ) {
 						<?php $this->design_bar()->bar(
 							'top', // CSS Class Name
 							array(
-								'name' => 'widget-' . $widget_details->id_base . '[' . $widget_details->number . '][modules][' . $column_guid . '][design]',
-								'id' => 'widget-' . $widget_details->id_base . '-' . $widget_details->number . '-' . $column_guid . '-design',
+								'name' => $this->get_custom_field_name( $widget_details, 'modules',  $column_guid, 'design' ),
+								'id' => $this->get_custom_field_id( $widget_details, 'modules',  $column_guid, 'design' ),
 								'number' => $widget_details->number,
 								'show_trash' => true
 							), // Widget Object
@@ -405,8 +405,8 @@ if( !class_exists( 'Hatch_Module_Widget' ) ) {
 								<?php echo $this->form_elements()->input(
 									array(
 										'type' => 'text',
-										'name' => 'widget-' . $widget_details->id_base . '[' . $widget_details->number . '][modules][' . $column_guid . '][title]' ,
-										'id' => 'widget-' . $widget_details->id_base . '-' . $widget_details->number . '-' . $column_guid . '-title' ,
+										'name' => $this->get_custom_field_name( $widget_details, 'modules',  $column_guid, 'title' ),
+										'id' => $this->get_custom_field_id( $widget_details, 'modules',  $column_guid, 'title' ),
 										'placeholder' => __( 'Enter title here', HATCH_THEME_SLUG ),
 										'value' => ( isset( $title ) ) ? $title : NULL ,
 										'class' => 'hatch-text'
@@ -417,8 +417,8 @@ if( !class_exists( 'Hatch_Module_Widget' ) ) {
 								<?php echo $this->form_elements()->input(
 									array(
 										'type' => 'text',
-										'name' => 'widget-' . $widget_details->id_base . '[' . $widget_details->number . '][modules][' . $column_guid . '][link]' ,
-										'id' => 'widget-' . $widget_details->id_base . '-' . $widget_details->number . '-' . $column_guid . '-link' ,
+										'name' => $this->get_custom_field_name( $widget_details, 'modules',  $column_guid, 'link' ),
+										'id' => $this->get_custom_field_id( $widget_details, 'modules',  $column_guid, 'link' ),
 										'placeholder' => __( 'Link', HATCH_THEME_SLUG ),
 										'value' => ( isset( $link ) ) ? $link : NULL ,
 										'class' => 'hatch-text',
@@ -428,8 +428,8 @@ if( !class_exists( 'Hatch_Module_Widget' ) ) {
 							<?php echo $this->form_elements()->input(
 								array(
 									'type' => 'textarea',
-									'name' => 'widget-' . $widget_details->id_base . '[' . $widget_details->number . '][modules][' . $column_guid . '][excerpt]' ,
-									'id' => 'widget-' . $widget_details->id_base . '-' . $widget_details->number . '-' . $column_guid . '-excerpt' ,
+									'name' => $this->get_custom_field_name( $widget_details, 'modules',  $column_guid, 'excerpt' ),
+									'id' => $this->get_custom_field_id( $widget_details, 'modules',  $column_guid, 'excerpt' ),
 									'placeholder' => __( 'Short Excerpt', HATCH_THEME_SLUG ),
 									'value' => ( isset( $excerpt ) ) ? $excerpt : NULL ,
 									'class' => 'hatch-form-item hatch-textarea',

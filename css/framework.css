@@ -563,36 +563,42 @@ h1, h2, h3, h4, h5, h6{color: #000; font-weight: 200;}
 
     /*---------------------------*/
     /*- MARKETING BLOCK ---------*/
-    .marketing{overflow: hidden; margin-bottom: 20px; display: block;}
+    .media{overflow: hidden; margin-bottom: 20px; display: block;}
 
-    .marketing-icon{float: left; margin-right: 15px;}
-    .marketing-icon img{display: block; margin: auto;}
-    .marketing-icon.small{max-width: 64px;}
+    .media-image{text-align: center; margin-right: auto; margin-left: auto;}
+    .media-image img{display: block; margin: auto;}
+    .media-image.small img{max-width: 64px;}
 
-    .marketing .marketing-body{display: block; overflow: hidden;}
+    .media .media-body{display: block; overflow: hidden;}
 
-    .marketing .heading{font-size: 2.0rem; font-weight: 600;}
-    .marketing .heading span{display: block; text-transform: uppercase; color: #8F8F8F; font-size: 1.2rem; font-weight: 600;}
-    .marketing .heading + .excerpt{font-size: 1.6rem; margin-top: 8px;}
+    .media.image-top .media-body{float: none; width: 100%; margin-top: 20px;}
+    .media.image-bottom .media-body + .media-image{margin-top: 20px;}
 
-    .marketing p{margin-top: 8px;}
-    .marketing ul{margin-top: 8px;}
+    .media.image-left .media-image{float: left; max-width: 50%; margin-right: 15px;}
+    .media.image-right .media-image{float: right; max-width: 50%; margin-right: 0; margin-left: 15px;}
 
-    .marketing .btn-group{margin-top: 15px;}
-    .marketing .button{margin-top: 15px;}
-    .marketing .btn-group .button{margin-top: 0px;}
+    .media .heading{font-size: 2.0rem;}
+    .media .heading + .excerpt{font-size: 1.6rem; margin-top: 8px;}
 
-    .marketing.image-top .marketing-icon{float: none; width: 100%; text-align: center; margin-right: auto; margin-left: auto;}
-    .marketing.image-top .marketing-body{float: none; width: 100%; padding: 20px 0 0;}
+    .media p{margin-top: 8px;}
+    .media ul{margin-top: 8px;}
+        
+        .media.large .heading{font-size: 2.8rem;}
+        .media.large .excerpt{max-width: 830px; font-size: 2rem;}
 
-    .marketing.image-left .marketing-icon{max-width: 50%;}
+        .media.tiny .heading{}
+        .media.tiny .excerpt{}
 
-    .marketing.image-right .marketing-icon{float: right; max-width: 50%; margin-right: 0; margin-left: 15px;}
+    .text-center .media-body .excerpt{margin-left: auto; margin-right: auto;}
 
-    .marketing.small .marketing-icon{margin-right: 10px;}
-    .marketing.small .heading{font-size: 1.6rem; font-weight: 600; color: #323232;}
-    .marketing.small .excerpt{font-size: 1.4rem;}
-    .marketing.small .heading + .excerpt{margin-top: 5px;}
+    .media .btn-group{margin-top: 15px;}
+    .media .button{margin-top: 15px;}
+    .media .btn-group .button{margin-top: 0px;}
+
+    .media.small .media-image{margin-right: 10px;}
+    .media.small .heading{font-size: 1.6rem; font-weight: 600; color: #323232;}
+    .media.small .excerpt{font-size: 1.4rem;}
+    .media.small .heading + .excerpt{margin-top: 5px;}
 
     /*---------------------------*/
     /*- THUMBNAIL BLOCK ---------*/
@@ -1038,7 +1044,7 @@ table.table-comfortable td{padding: 14px 10px;}
     .highlight h3{font-size: 3.4rem; color: #fff;}
     .highlight p{color: #fff;}
     .highlight .meta{color: rgba(255, 255, 255, 0.7);}
-    
+
 	.darken{background: #555;}
 
 /*-------------------------------*/

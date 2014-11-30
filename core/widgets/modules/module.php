@@ -144,16 +144,16 @@ if( !class_exists( 'Hatch_Module_Widget' ) ) {
 							} ?>
 
 							<div id="<?php echo $widget_id; ?>-<?php echo $key; ?>" class="column<?php if( !isset( $widget['design'][ 'gutter' ] ) ) echo '-flush'; ?> <?php echo $span_class; ?> <?php if( '' != $this->check_and_return( $module, 'design' , 'background', 'image' ) || '' != $this->check_and_return( $module, 'design' , 'background', 'color' ) ) echo 'content'; ?> hatch-masonry-column">
-								<div class="marketing
+								<div class="media
 									<?php echo $this->check_and_return( $module, 'design', 'imagealign' ); ?>
 									<?php echo $this->check_and_return( $module, 'design', 'fonts' , 'size' ); ?>
 									<?php if( !$this->check_and_return( $widget, 'design', 'gutter' ) ) echo 'no-push-bottom'; ?>
 								">
 									<?php if( $this->check_and_return( $module , 'design' , 'featuredimage' ) ) { ?>
-										<div class="marketing-icon"><a href="<?php echo esc_url( $module['link'] ); ?>"><?php echo wp_get_attachment_image( $module['design'][ 'featuredimage' ] , $imageratios ); ?></a></div>
+										<div class="media-image"><a href="<?php echo esc_url( $module['link'] ); ?>"><?php echo wp_get_attachment_image( $module['design'][ 'featuredimage' ] , $imageratios ); ?></a></div>
 									<?php } ?>
 									<?php if( '' != $module['title'] || '' != $module['excerpt'] ) { ?>
-										<div class="marketing-body <?php echo ( isset( $module['design']['fonts'][ 'align' ] ) ) ? $module['design']['fonts'][ 'align' ] : ''; ?>">
+										<div class="media-body <?php echo ( isset( $module['design']['fonts'][ 'align' ] ) ) ? $module['design']['fonts'][ 'align' ] : ''; ?>">
 											<?php if( isset( $module['title'] ) && '' != $module['title'] ) { ?>
 												<h5 class="heading"><a href="<?php echo esc_url( $module['link'] ); ?>"><?php echo $module['title']; ?></a></h5>
 											<?php } ?>

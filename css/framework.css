@@ -272,8 +272,7 @@ h1, h2, h3, h4, h5, h6{color: #000; font-weight: 200;}
     .logo{float: left; padding: 0;}
 
     .site-logo-link, .mark{display: inline-block; vertical-align: middle; margin: auto; font-size: 0;}
-    .site-logo-link img, .mark img{display: inline-block; margin: auto; width: auto;}
-    .site-logo-link.small img, .site-logo-link img.small{max-height: 60px;}
+    .site-logo-link img, .mark img{display: inline-block; max-height: 60px; margin: auto; width: auto;}
 
     .site-description{display: inline-block; vertical-align: middle;}
     .site-logo-link + .site-description{margin-left: 10px;}

@@ -147,8 +147,7 @@ section[class*=' off-canvas-']{
 
     /*---------------------------*/
     /*- SLIDER COPY -------------*/
-    .swiper-slide .section-title{margin-bottom: 20px;}
-    .swiper-slide.text-center .excerpt{margin-left: auto; margin-right: auto;}
+    .swiper-slide.text-center .excerpt{margin-top: 15px; margin-left: auto; margin-right: auto;}
 
 
     /*---------------------------*/

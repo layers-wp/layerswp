@@ -111,7 +111,8 @@ if( !class_exists( 'Hatch_Module_Widget' ) ) {
 				<?php } ?>
 				<?php if( !empty( $widget['modules'] ) ) { ?>
 					<div class="row <?php if('layout-boxed' == $this->check_and_return( $widget , 'design' , 'layout' ) ) echo 'container'; ?> <?php echo $this->check_and_return( $widget , 'design', 'liststyle' ); ?>">
-						<?php $col = 1; ?>
+						<?php // Set total width so that we can apply .last to the final container
+						$total_width = 0; ?>
 						<?php foreach ( $widget['modules'] as $key => $module) {
 
 							// Set the background styling
@@ -120,6 +121,16 @@ if( !class_exists( 'Hatch_Module_Widget' ) ) {
 							if( !empty( $module['design']['fonts'][ 'shadow' ] ) ) $this->widget_styles( $widget_id . '-' . $key , 'text-shadow', array( 'selectors' => array( 'h5.heading a' , 'div.excerpt' , 'div.excerpt p' )  , 'text-shadow' => $module['design']['fonts'][ 'shadow' ] ) );
 
 							$span_class = 'span-' . $module[ 'width' ];
+
+							// Add .last to the final column
+							$total_width += $module[ 'width' ];
+
+							if( 12 == $total_width ) {
+								$span_class .= ' last';
+								$total_width = 0;
+							} elseif( $total_width > 12 ) {
+								$total_width = 0;
+							}
 
 							// Set Image Sizes
 							if( isset( $module['design'][ 'imageratios' ] ) ){
@@ -143,7 +154,11 @@ if( !class_exists( 'Hatch_Module_Widget' ) ) {
 								}
 							} ?>
 
-							<div id="<?php echo $widget_id; ?>-<?php echo $key; ?>" class="column<?php if( !isset( $widget['design'][ 'gutter' ] ) ) echo '-flush'; ?> <?php echo $span_class; ?> <?php if( '' != $this->check_and_return( $module, 'design' , 'background', 'image' ) || '' != $this->check_and_return( $module, 'design' , 'background', 'color' ) ) echo 'content'; ?> hatch-masonry-column">
+							<div id="<?php echo $widget_id; ?>-<?php echo $key; ?>" class="
+								column<?php if( !isset( $widget['design'][ 'gutter' ] ) ) echo '-flush'; ?>
+								<?php echo $span_class; ?>
+								<?php if( '' != $this->check_and_return( $module, 'design' , 'background', 'image' ) || '' != $this->check_and_return( $module, 'design' , 'background', 'color' ) ) echo 'content'; ?>
+								hatch-masonry-column">
 								<div class="media
 									<?php echo $this->check_and_return( $module, 'design', 'imagealign' ); ?>
 									<?php echo $this->check_and_return( $module, 'design', 'fonts' , 'size' ); ?>
@@ -164,7 +179,6 @@ if( !class_exists( 'Hatch_Module_Widget' ) ) {
 									<?php } ?>
 								</div>
 							</div>
-							<?php $col++; ?>
 						<?php } ?>
 					</div>
 				<?php } ?>
@@ -387,12 +401,15 @@ if( !class_exists( 'Hatch_Module_Widget' ) ) {
 											'id' => 'widget-' . $widget_details->id_base . '-' . $widget_details->number . '-' . $column_guid . '-width' ,
 											'value' => ( isset( $width ) ) ? $width : NULL,
 											'options' => array(
-												'2' => __( '1/6' , HATCH_THEME_SLUG ),
-												'4' => __( '2/6' , HATCH_THEME_SLUG ),
-												'6' => __( '3/6' , HATCH_THEME_SLUG ),
-												'8' => __( '4/6' , HATCH_THEME_SLUG ),
-												'10' => __( '5/6' , HATCH_THEME_SLUG ),
-												'12' => __( '6/6' , HATCH_THEME_SLUG )
+												'1' => __( '1/12' , HATCH_THEME_SLUG ),
+												'2' => __( '2/12' , HATCH_THEME_SLUG ),
+												'3' => __( '3/12' , HATCH_THEME_SLUG ),
+												'4' => __( '4/12' , HATCH_THEME_SLUG ),
+												'5' => __( '5/12' , HATCH_THEME_SLUG ),
+												'6' => __( '6/12' , HATCH_THEME_SLUG ),
+												'8' => __( '8/12' , HATCH_THEME_SLUG ),
+												'10' => __( '10/12' , HATCH_THEME_SLUG ),
+												'12' => __( '12/12' , HATCH_THEME_SLUG )
 											)
 										)
 									)

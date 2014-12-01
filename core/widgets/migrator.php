@@ -222,7 +222,6 @@ class Hatch_Widget_Migrator {
         }
 
         return $validated_data;
-
     }
 
     /**

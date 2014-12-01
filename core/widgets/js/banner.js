@@ -36,9 +36,9 @@ jQuery(document).ready(function($){
 		$that = $(this);
 
 		// Confirmation message @TODO: Make JS confirmation module
-		$remove_slide = confirm( "Are you sure you want to remove this slide?" );
-		if( false == $remove_slide ) return;
+		var $remove_slide = confirm( "Are you sure you want to remove this slide?" );
 
+		if( false == $remove_slide ) return;
 
 		// Banner UL
 		$bannerList = $( '#banner_list_' + $that.data( 'number' ) );

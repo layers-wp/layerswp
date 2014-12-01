@@ -415,7 +415,6 @@ jQuery(function($) {
 	$.fn.hatch_trigger_change = function() {
 		// Trigger 'change' and 'blur' to reset the customizer
 		$changed = $(this).trigger("change").trigger("blur");
-		$( document ).trigger( 'widget-synced', $(this).closest( '.control-section' ).find( '.widget:first' ) );
 
 		// Reset 'show if' selectors;
 		hatch_apply_show_if_selectors();
@@ -429,7 +428,7 @@ jQuery(function($) {
 			// "Hi Mom!"
 			$that = $(this);
 
-			if( $that.find( 'li' ).length > 2 ){
+			if( $that.find( 'li' ).length > 3 ){
 				$that.find( 'li' ).eq(-1).addClass( 'hatch-last' );
 				$that.find( 'li' ).eq(-2).addClass( 'hatch-last' );
 			}

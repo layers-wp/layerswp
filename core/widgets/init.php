@@ -203,8 +203,7 @@ class Hatch_Widgets {
 				'word-count',
 				'quicktags',
 				'wplink',
-				'wp-fullscreen',
-				'media-upload'
+				'wp-fullscreen'
 			),
 			HATCH_VERSION,
 			true
@@ -234,7 +233,8 @@ class Hatch_Widgets {
 				HATCH_THEME_SLUG . '-admin-widgets-migrator',
 				'backbone',
 				'jquery',
-				'wp-color-picker'
+				'wp-color-picker',
+				'media-upload'
 			),
 			HATCH_VERSION,
 			true

@@ -35,9 +35,9 @@ jQuery(document).ready(function($){
 		$that = $(this);
 
 		// Confirmation message @TODO: Make JS confirmation module
-		$remove_slide = confirm( "Are you sure you want to remove this column?" );
-		if( false == $remove_slide ) return;
+		var $remove_column = confirm( "Are you sure you want to remove this column?" );
 
+		if( false == $remove_column ) return;
 
 		// Module UL
 		$moduleList = $( '#module_list_' + $that.data( 'number' ) );

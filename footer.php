@@ -5,7 +5,7 @@
 		<?php do_action( 'hatch_before_footer' ); ?>
 		<footer id="footer" class="footer-site well">
 			<?php do_action( 'hatch_before_footer_inner' ); ?>
-			<div class="container content-main clearfix">
+			<div class="<?php if( 'layout-fullwidth' != hatch_get_theme_mod( 'footer-layout-width' ) ) echo 'container'; ?>  content-main clearfix">
 
 				<div class="row">
 					<?php do_action( 'hatch_before_footer_sidebar' ); ?>

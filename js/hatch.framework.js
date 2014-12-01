@@ -1,7 +1,7 @@
 /**
-* Admin JS file
-*
-* This file contains global admin functions
+ * Hatch JS file
+ *
+ * This file contains all theme JS functions, from height matching to button toggling
  *
  * @package Hatch
  * @since Hatch 1.0

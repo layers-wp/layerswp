@@ -54,7 +54,7 @@ class Hatch_Customizer_Config {
 
 	public function default_sections(){
 		$default_sections[ 'title_tagline' ] = array(
-													'panel' => 'general'
+													'panel' => 'header'
 												);
 		$default_sections[ 'static_front_page' ] = array(
 													'panel' => 'general'
@@ -64,10 +64,11 @@ class Hatch_Customizer_Config {
 												);
 		return apply_filters( 'hatch_customizer_default_sections', $default_sections );
 	}
+
 	/**
 	* Hatch Customiser Sections
 	*
-	* @return   array 			Sections to be registered in the customizer
+	* @return array Sections to be registered in the customizer
 	*/
 
 	public function sections(){
@@ -110,6 +111,17 @@ class Hatch_Customizer_Config {
 
 		// Header -> Layout -> Layout
 		$controls['header-layout'] = array(
+                                'width' => array(
+                                    'type'     => 'select-icons',
+                                    'default' => 'layout-boxed',
+                                    'choices' => array(
+                                        'layout-boxed' => __( 'Boxed' , HATCH_THEME_SLUG ),
+                                        'layout-fullwidth' => __( 'Full Width' , HATCH_THEME_SLUG )
+                                    )
+                                ), // layout,
+                                'break-' . rand() => array(
+                                        'type'     => 'seperator'
+                                    ),
 								'layout' => array(
                                     'type'     => 'select-icons',
 									'default' => 'header-logo-left',
@@ -121,7 +133,7 @@ class Hatch_Customizer_Config {
                                         'header-logo-center' => __( 'Logo Center' , HATCH_THEME_SLUG )
 									)
 								), // layout,
-                                'break-0' => array(
+                                'break-' . rand() => array(
                                     	'type'     => 'seperator'
                                     ),
                                 'display-top-header' => array(
@@ -129,7 +141,7 @@ class Hatch_Customizer_Config {
                                     'label'    => __( 'Display Top Header', HATCH_THEME_SLUG ),
                                     'default' => true,
                                 ), // top header display
-                                'break-1' => array(
+                                'break-' . rand(0, 10) => array(
                                     	'type'     => 'seperator'
                                     ),
                                 'fixed' => array(
@@ -211,6 +223,17 @@ class Hatch_Customizer_Config {
 
 		// Footer -> Layout -> Layout
 		$controls['footer-layout'] = array(
+                                'width' => array(
+                                    'type'     => 'select-icons',
+                                    'default' => 'layout-boxed',
+                                    'choices' => array(
+                                        'layout-boxed' => __( 'Boxed' , HATCH_THEME_SLUG ),
+                                        'layout-fullwidth' => __( 'Full Width' , HATCH_THEME_SLUG )
+                                    )
+                                ), // layout,
+                                'break-' . rand() => array(
+                                        'type'     => 'seperator'
+                                    ),
 								'widget-area-count' => array(
 									'type'     => 'select',
 									'label'    => __( 'Widget Areas', HATCH_THEME_SLUG ),

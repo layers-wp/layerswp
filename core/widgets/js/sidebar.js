@@ -32,7 +32,7 @@ jQuery(document).ready(function($){
 		e.preventDefault();
 
 		// "Hi Mom"
-		$that = $(this);
+		var $that = $(this);
 
 		// Confirmation message @TODO: Make JS confirmation sidebar
 		var $remove_column = confirm( "Are you sure you want to remove this column?" );

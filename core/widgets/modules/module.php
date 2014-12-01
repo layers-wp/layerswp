@@ -114,12 +114,15 @@ if( !class_exists( 'Hatch_Module_Widget' ) ) {
 						<?php // Set total width so that we can apply .last to the final container
 						$total_width = 0; ?>
 						<?php foreach ( $widget['modules'] as $key => $module) {
+							// Set column link
+							$link = ( $this->check_and_return( $module , 'link' ) ) ? $this->check_and_return( $module , 'link' ) : '#' . $widget_id . '-' . $key;
 
 							// Set the background styling
 							if( !empty( $module['design'][ 'background' ] ) ) $this->widget_styles( $widget_id . '-' . $key , 'background', array( 'background' => $module['design'][ 'background' ] ) );
 							if( !empty( $module['design']['fonts'][ 'color' ] ) ) $this->widget_styles( $widget_id . '-' . $key , 'color', array( 'selectors' => array( 'h5.heading a' , 'div.excerpt' , 'div.excerpt p' ) , 'color' => $module['design']['fonts'][ 'color' ] ) );
 							if( !empty( $module['design']['fonts'][ 'shadow' ] ) ) $this->widget_styles( $widget_id . '-' . $key , 'text-shadow', array( 'selectors' => array( 'h5.heading a' , 'div.excerpt' , 'div.excerpt p' )  , 'text-shadow' => $module['design']['fonts'][ 'shadow' ] ) );
 
+							// Add the correct span class
 							$span_class = 'span-' . $module[ 'width' ];
 
 							// Add .last to the final column
@@ -159,21 +162,25 @@ if( !class_exists( 'Hatch_Module_Widget' ) ) {
 								<?php echo $span_class; ?>
 								<?php if( '' != $this->check_and_return( $module, 'design' , 'background', 'image' ) || '' != $this->check_and_return( $module, 'design' , 'background', 'color' ) ) echo 'content'; ?>
 								hatch-masonry-column">
+								<a name="<?php echo $widget_id . '-' . $key; ?>"></a>
 								<div class="media
 									<?php echo $this->check_and_return( $module, 'design', 'imagealign' ); ?>
 									<?php echo $this->check_and_return( $module, 'design', 'fonts' , 'size' ); ?>
 									<?php if( !$this->check_and_return( $widget, 'design', 'gutter' ) ) echo 'no-push-bottom'; ?>
 								">
 									<?php if( $this->check_and_return( $module , 'design' , 'featuredimage' ) ) { ?>
-										<div class="media-image"><a href="<?php echo esc_url( $module['link'] ); ?>"><?php echo wp_get_attachment_image( $module['design'][ 'featuredimage' ] , $imageratios ); ?></a></div>
+										<div class="media-image"><a href="<?php echo $link; ?>"><?php echo wp_get_attachment_image( $module['design'][ 'featuredimage' ] , $imageratios ); ?></a></div>
 									<?php } ?>
 									<?php if( '' != $module['title'] || '' != $module['excerpt'] ) { ?>
 										<div class="media-body <?php echo ( isset( $module['design']['fonts'][ 'align' ] ) ) ? $module['design']['fonts'][ 'align' ] : ''; ?>">
 											<?php if( isset( $module['title'] ) && '' != $module['title'] ) { ?>
-												<h5 class="heading"><a href="<?php echo esc_url( $module['link'] ); ?>"><?php echo $module['title']; ?></a></h5>
+												<h5 class="heading"><a href="<?php echo $link; ?>"><?php echo $module['title']; ?></a></h5>
 											<?php } ?>
 											<?php if( isset( $module['excerpt'] ) && '' != $module['excerpt'] ) { ?>
 												<div class="excerpt"><?php echo apply_filters( 'the_content', $module['excerpt'] ); ?></div>
+											<?php } ?>
+											<?php if( isset( $module['link'] ) && $this->check_and_return( $module , 'link_text' ) ) { ?>
+												<a href="<?php echo $module['link']; ?>" class="button btn-<?php echo $this->check_and_return( $module , 'design' , 'fonts' , 'size' ); ?>"><?php echo $module['link_text']; ?></a>
 											<?php } ?>
 										</div>
 									<?php } ?>
@@ -275,7 +282,7 @@ if( !class_exists( 'Hatch_Module_Widget' ) ) {
 					)
 				)
 			); ?>
-			<div class="hatch-container-large" id="hatch-banner-widget-<?php echo $this->number; ?>">
+			<div class="hatch-container-large" id="hatch-module-widget-<?php echo $this->number; ?>">
 
 				<?php $this->form_elements()->header( array(
 					'title' =>'Content',
@@ -419,6 +426,7 @@ if( !class_exists( 'Hatch_Module_Widget' ) ) {
 
 						<div class="hatch-row">
 							<p class="hatch-form-item">
+								<label for="<?php echo $this->get_custom_field_id( $widget_details, 'modules',  $column_guid, 'title' ); ?>"><?php _e( 'Title' , HATCH_THEME_SLUG ); ?></label>
 								<?php echo $this->form_elements()->input(
 									array(
 										'type' => 'text',
@@ -431,6 +439,21 @@ if( !class_exists( 'Hatch_Module_Widget' ) ) {
 								); ?>
 							</p>
 							<p class="hatch-form-item">
+								<label for="<?php echo $this->get_custom_field_id( $widget_details, 'modules',  $column_guid, 'excerpt' ); ?>"><?php _e( 'Excerpt' , HATCH_THEME_SLUG ); ?></label>
+								<?php echo $this->form_elements()->input(
+									array(
+										'type' => 'textarea',
+										'name' => $this->get_custom_field_name( $widget_details, 'modules',  $column_guid, 'excerpt' ),
+										'id' => $this->get_custom_field_id( $widget_details, 'modules',  $column_guid, 'excerpt' ),
+										'placeholder' => __( 'Short Excerpt', HATCH_THEME_SLUG ),
+										'value' => ( isset( $excerpt ) ) ? $excerpt : NULL ,
+										'class' => 'hatch-form-item hatch-textarea',
+										'rows' => 6
+									)
+								); ?>
+							</p>
+							<p class="hatch-form-item">
+								<label for="<?php echo $this->get_custom_field_id( $widget_details, 'modules',  $column_guid, 'link_text' ); ?>"><?php _e( 'Link' , HATCH_THEME_SLUG ); ?></label>
 								<?php echo $this->form_elements()->input(
 									array(
 										'type' => 'text',
@@ -442,17 +465,18 @@ if( !class_exists( 'Hatch_Module_Widget' ) ) {
 									)
 								); ?>
 							</p>
-							<?php echo $this->form_elements()->input(
-								array(
-									'type' => 'textarea',
-									'name' => $this->get_custom_field_name( $widget_details, 'modules',  $column_guid, 'excerpt' ),
-									'id' => $this->get_custom_field_id( $widget_details, 'modules',  $column_guid, 'excerpt' ),
-									'placeholder' => __( 'Short Excerpt', HATCH_THEME_SLUG ),
-									'value' => ( isset( $excerpt ) ) ? $excerpt : NULL ,
-									'class' => 'hatch-form-item hatch-textarea',
-									'rows' => 6
-								)
-							); ?>
+							<p class="hatch-form-item">
+								<label for="<?php echo $this->get_custom_field_id( $widget_details, 'modules',  $column_guid, 'link_text' ); ?>"><?php _e( 'Button Text' , HATCH_THEME_SLUG ); ?></label>
+								<?php echo $this->form_elements()->input(
+									array(
+										'type' => 'text',
+										'name' => $this->get_custom_field_name( $widget_details, 'modules',  $column_guid, 'link_text' ),
+										'id' => $this->get_custom_field_id( $widget_details, 'modules',  $column_guid, 'link_text' ),
+										'placeholder' => __( 'e.g. "Read More"' , HATCH_THEME_SLUG ),
+										'value' => ( isset( $link_text ) ) ? $link_text : NULL ,
+									)
+								); ?>
+							</p>
 						</div>
 					</section>
 				</li>

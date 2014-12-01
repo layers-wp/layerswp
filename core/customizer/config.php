@@ -175,6 +175,7 @@ class Hatch_Customizer_Config {
 		$controls['content-layout'] = array(
                                 'layout' => array(
                                     'label' => __( 'Content Width' , HATCH_THEME_SLUG ),
+                                    'description' => __( 'This option affects list and single content pages.', HATCH_THEME_SLUG ),
                                     'type'     => 'select-icons',
                                     'default' => 'layout-boxed',
                                     'choices' => array(

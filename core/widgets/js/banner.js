@@ -33,12 +33,12 @@ jQuery(document).ready(function($){
 		e.preventDefault();
 
 		// "Hi Mom"
-		$that = $(this);
+		var $that = $(this);
 
 		// Confirmation message @TODO: Make JS confirmation module
 		var $remove_slide = confirm( "Are you sure you want to remove this slide?" );
 
-		if( false == $remove_slide ) return;
+		if( false === $remove_slide ) return;
 
 		// Banner UL
 		$bannerList = $( '#banner_list_' + $that.data( 'number' ) );

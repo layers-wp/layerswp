@@ -414,6 +414,7 @@ if( !class_exists( 'Hatch_Slider_Widget' ) ) {
 
 						<div class="hatch-row">
 							<p class="hatch-form-item">
+								<label for="<?php echo $this->get_custom_field_id( $widget_details, 'banners',  $column_guid, 'title' ); ?>"><?php _e( 'Title' , HATCH_THEME_SLUG ); ?></label>
 								<?php echo $this->form_elements()->input(
 									array(
 										'type' => 'text',
@@ -427,6 +428,7 @@ if( !class_exists( 'Hatch_Slider_Widget' ) ) {
 								); ?>
 							</p>
 							<p class="hatch-form-item">
+								<label for="<?php echo $this->get_custom_field_id( $widget_details, 'banners',  $column_guid, 'excerpt' ); ?>"><?php _e( 'Excerpt' , HATCH_THEME_SLUG ); ?></label>
 								<?php echo $this->form_elements()->input(
 									array(
 										'type' => 'textarea',
@@ -440,7 +442,7 @@ if( !class_exists( 'Hatch_Slider_Widget' ) ) {
 								); ?>
 							</p>
 							<p class="hatch-form-item">
-								<label for="<?php echo $this->get_field_id( 'link' ); ?>"><?php _e( 'Button Link' , HATCH_THEME_SLUG ); ?></label>
+								<label for="<?php echo $this->get_field_id( 'link' ); ?>"><?php _e( 'Link' , HATCH_THEME_SLUG ); ?></label>
 								<?php echo $this->form_elements()->input(
 									array(
 										'type' => 'text',

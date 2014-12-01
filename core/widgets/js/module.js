@@ -32,12 +32,12 @@ jQuery(document).ready(function($){
 		e.preventDefault();
 
 		// "Hi Mom"
-		$that = $(this);
+		var $that = $(this);
 
 		// Confirmation message @TODO: Make JS confirmation module
 		var $remove_column = confirm( "Are you sure you want to remove this column?" );
 
-		if( false == $remove_column ) return;
+		if( false === $remove_column ) return;
 
 		// Module UL
 		$moduleList = $( '#module_list_' + $that.data( 'number' ) );
@@ -46,7 +46,7 @@ jQuery(document).ready(function($){
 		$moduleInput = $( '#module_ids_input_' + $moduleList.data( 'number' ) );
 
 		// Remove this module
-		$that.closest( '.hatch-accordion-item' ).remove();
+		$that.closest( '.hatch-accordion-item' ).slideUp();
 
 		// Curate module IDs
 		$module_guids = [];

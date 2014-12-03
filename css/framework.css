@@ -379,12 +379,7 @@ h1, h2, h3, h4, h5, h6{color: #000; font-weight: 200;}
     /*---------------------------*/
     /*- RESPONSIVE BUTTON -------*/
     .responsive-nav{float: right; display: none; width: 24px; padding: 8px 0; margin: 0;}
-
-        .icon-bar{display: block; height: 4px; margin: 2px 0px; background: #454545; border-radius: 100px;}
-        .icon-bar-group{display: block; float: left;}
-
-        .stick .icon-bar{background: #fff;}
-        .dashboard-content .icon-bar{background: #fff;}
+    .responsive-nav .hatch-menu{color: #454545; font-size: 32px;}
 
 
     /*---------------------------*/

@@ -102,8 +102,8 @@ if( !class_exists( 'Hatch_Slider_Widget' ) ) {
 				<?php if( !empty( $widget[ 'banners' ] ) ) { ?>
 					<?php if( 1 < count( $widget[ 'banners' ] ) && isset( $widget['show_slider_arrows'] ) ) { ?>
 						 <div class="arrows">
-							<a href="" class="arrow-left animate"></a>
-							<a href="" class="arrow-right animate"></a>
+							<a href="" class="hatch-left-arrow animate"></a>
+							<a href="" class="hatch-right-arrow animate"></a>
 						</div>
 					<?php } ?>
 					<div class="pages animate">

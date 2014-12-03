@@ -4,9 +4,7 @@
     <?php do_action( 'hatch_before_header_nav' ); ?>
     <?php wp_nav_menu( array( 'theme_location' => HATCH_THEME_SLUG . '-primary' ,'container' => FALSE, 'fallback_cb' => false )); ?>
     <a href="" class="responsive-nav"  data-toggle="#off-canvas-right" data-toggle-class="open">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
+        <span class="hatch-menu"></span>
     </a>
     <?php do_action( 'hatch_after_header_nav' ); ?>
 </nav>

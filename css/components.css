@@ -29,6 +29,18 @@ section[class*=' off-canvas-']{
     transform: scale(1);
     overflow-y: scroll;
 }
+section[class*=' off-canvas-'] .close-canvas{
+    color: #999;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+}
+.close-canvas:hover{
+    color: #fff;
+}
+
+
 .off-canvas-right.open + .wrapper-site{
     transform: translateX(-240px);
 }
@@ -165,12 +177,12 @@ section[class*=' off-canvas-']{
         /*-----------------------*/
         /*- ARROWS --------------*/
         .swiper-container .arrows{position: absolute; top: 50%; width: 100%; z-index: 2000; margin-top: -50px;}
-        .swiper-container .arrows a{position: absolute; opacity: 0; display: block; width: 50px; height: 100px; background-repeat: no-repeat; background-position: center; background-size: 16px 30px; overflow: hidden;}
-        .swiper-container .arrows .arrow-left{left: 0px; background-image: url(../images/slider-arrow-left.png);}
-        .swiper-container .arrows .arrow-right{right: 0px; background-image: url(../images/slider-arrow-right.png);}
+        .swiper-container .arrows a{position: absolute; opacity: 0; display: block; overflow: hidden; color: #fff; font-size: 48px;}
+        .swiper-container .arrows .hatch-left-arrow{left: 0;}
+        .swiper-container .arrows .hatch-right-arrow{right: 0;}
 
-        .swiper-container:hover .arrows .arrow-left{left: 10px; opacity: 1;}
-        .swiper-container:hover .arrows .arrow-right{right: 10px; opacity: 1;}
+        .swiper-container:hover .arrows .hatch-left-arrow{left: 10px; opacity: 1;}
+        .swiper-container:hover .arrows .hatch-right-arrow{right: 10px; opacity: 1;}
 
 
 /*-------------------------------*/

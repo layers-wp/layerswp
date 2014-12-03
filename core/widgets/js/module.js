@@ -45,8 +45,8 @@ jQuery(document).ready(function($){
 		// Modules <input>
 		$moduleInput = $( '#module_ids_input_' + $moduleList.data( 'number' ) );
 
-		// Remove this module
-		$that.closest( '.hatch-accordion-item' ).slideUp();
+		// Remove this banner
+		$that.closest( '.hatch-accordion-item' ).remove();
 
 		// Curate module IDs
 		$module_guids = [];

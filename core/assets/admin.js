@@ -415,6 +415,7 @@ jQuery(function($) {
 	$.fn.hatch_trigger_change = function() {
 		// Trigger 'change' and 'blur' to reset the customizer
 		$changed = $(this).trigger("change").trigger("blur");
+		$( document ).trigger( 'widget-synced', $(this).closest( '.control-section' ).find( '.widget:first' ) );
 
 		// Reset 'show if' selectors;
 		hatch_apply_show_if_selectors();

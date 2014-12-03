@@ -325,6 +325,12 @@ if( ! function_exists( 'hatch_scripts' ) ) {
 			array(),
 			HATCH_VERSION
 		); // Responsive
+		wp_enqueue_style(
+			HATCH_THEME_SLUG . '-icon-font',
+			get_template_directory_uri() . '/css/obox-icons.css',
+			array(),
+			HATCH_VERSION
+		); // Icon Font
 
 	}
 }

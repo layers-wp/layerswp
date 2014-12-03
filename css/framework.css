@@ -378,8 +378,8 @@ h1, h2, h3, h4, h5, h6{color: #000; font-weight: 200;}
 
     /*---------------------------*/
     /*- RESPONSIVE BUTTON -------*/
-    .responsive-nav{float: right; display: none; width: 24px; padding: 8px 0; margin: 0;}
-    .responsive-nav .hatch-menu{color: #454545; font-size: 32px;}
+    .responsive-nav{float: right; display: none; padding: 8px 0; margin: 0;}
+    .responsive-nav .h-menu{color: #454545; font-size: 32px;}
 
 
     /*---------------------------*/

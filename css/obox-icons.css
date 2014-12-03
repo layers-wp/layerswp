@@ -1,15 +1,15 @@
 @font-face {
 	font-family: 'obox-icons';
-	src:url('icon-fonts/obox-icons.eot?k67qh7');
-	src:url('icon-fonts/obox-icons.eot?#iefixk67qh7') format('embedded-opentype'),
-		url('icon-fonts/obox-icons.woff?k67qh7') format('woff'),
-		url('icon-fonts/obox-icons.ttf?k67qh7') format('truetype'),
-		url('icon-fonts/obox-icons.svg?k67qh7#obox-icons') format('svg');
+	src:url('icon-fonts/obox-icons.eot?t1120n');
+	src:url('icon-fonts/obox-icons.eot?#iefixt1120n') format('embedded-opentype'),
+		url('icon-fonts/obox-icons.woff?t1120n') format('woff'),
+		url('icon-fonts/obox-icons.ttf?t1120n') format('truetype'),
+		url('icon-fonts/obox-icons.svg?t1120n#obox-icons') format('svg');
 	font-weight: normal;
 	font-style: normal;
 }
 
-[class^="hatch-"], [class*=" hatch-"] {
+[class^="h-"], [class*=" h-"] {
 	font-family: 'obox-icons';
 	speak: none;
 	font-style: normal;
@@ -23,15 +23,21 @@
 	-moz-osx-font-smoothing: grayscale;
 }
 
-.hatch-right-arrow:before {
-	content: "\e600";
-}
-.hatch-menu:before {
+.h-menu:before {
 	content: "\e601";
 }
-.hatch-left-arrow:before {
+.h-top-arrow:before {
+	content: "\e604";
+}
+.h-bottom-arrow:before {
+	content: "\e605";
+}
+.h-right-arrow:before {
+	content: "\e600";
+}
+.h-left-arrow:before {
 	content: "\e602";
 }
-.hatch-close:before {
+.h-close:before {
 	content: "\e603";
 }

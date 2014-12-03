@@ -102,8 +102,8 @@ if( !class_exists( 'Hatch_Slider_Widget' ) ) {
 				<?php if( !empty( $widget[ 'banners' ] ) ) { ?>
 					<?php if( 1 < count( $widget[ 'banners' ] ) && isset( $widget['show_slider_arrows'] ) ) { ?>
 						 <div class="arrows">
-							<a href="" class="hatch-left-arrow animate"></a>
-							<a href="" class="hatch-right-arrow animate"></a>
+							<a href="" class="h-left-arrow animate"></a>
+							<a href="" class="h-right-arrow animate"></a>
 						</div>
 					<?php } ?>
 					<div class="pages animate">
@@ -195,9 +195,9 @@ if( !class_exists( 'Hatch_Slider_Widget' ) ) {
 
 							if( $that.hasClass( 'swiper-pagination-switch' ) ){ // Anchors
 								swiper.swipeTo( $that.index() );
-							} else if( $that.hasClass( 'hatch-left-arrow' ) ){ // Previous
+							} else if( $that.hasClass( 'h-left-arrow' ) ){ // Previous
 								swiper.swipePrev();
-							} else if( $that.hasClass( 'hatch-right-arrow' ) ){ // Next
+							} else if( $that.hasClass( 'h-right-arrow' ) ){ // Next
 								swiper.swipeNext();
 							}
 

@@ -10,7 +10,7 @@
 <div class="column span-4 no-gutter t-right">
     <?php wp_nav_menu( array( 'theme_location' => HATCH_THEME_SLUG . '-primary-right' ,'container' => 'nav', 'container_class' => 'nav nav-horizontal pull-right', 'fallback_cb' => create_function('', 'echo "&nbsp";') ) ); ?>
     <a href="" class="responsive-nav"  data-toggle="#off-canvas-right" data-toggle-class="open">
-        <span class="hatch-menu"></span>
+        <span class="h-menu"></span>
     </a>
 </div>
 <?php do_action( 'hatch_after_header_nav' ); ?>

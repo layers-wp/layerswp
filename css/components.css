@@ -178,11 +178,11 @@ section[class*=' off-canvas-'] .close-canvas{
         /*- ARROWS --------------*/
         .swiper-container .arrows{position: absolute; top: 50%; width: 100%; z-index: 2000; margin-top: -50px;}
         .swiper-container .arrows a{position: absolute; opacity: 0; display: block; overflow: hidden; color: #fff; font-size: 48px;}
-        .swiper-container .arrows .hatch-left-arrow{left: 0;}
-        .swiper-container .arrows .hatch-right-arrow{right: 0;}
+        .swiper-container .arrows .h-left-arrow{left: 0;}
+        .swiper-container .arrows .h-right-arrow{right: 0;}
 
-        .swiper-container:hover .arrows .hatch-left-arrow{left: 10px; opacity: 1;}
-        .swiper-container:hover .arrows .hatch-right-arrow{right: 10px; opacity: 1;}
+        .swiper-container:hover .arrows .h-left-arrow{left: 10px; opacity: 1;}
+        .swiper-container:hover .arrows .h-right-arrow{right: 10px; opacity: 1;}
 
 
 /*-------------------------------*/
@@ -253,11 +253,20 @@ p[class*='comment-form'] .required{color: #900;}
 
 #footer .widget li{padding-bottom: 8px; margin-bottom: 8px; border-bottom: 1px solid #ddd;}
 
+    /*---------------------------*/
+    /*- WIDGET NAV MENU ---------*/
+    .widget.widget_nav_menu{max-width: none; padding: 20px 0; margin: 0;}
+    .menu-main-menu-container{max-width: 1040px; margin: auto; overflow: hidden; text-align: center;}
+    .menu-main-menu-container li{display: inline; margin: 0 10px}
+    .menu-main-menu-container li a{display: inline-block; font-weight: 600; color: #323232; text-align: center;}
+    .menu-main-menu-container li a:hover{color: #8F8F8F;}
+
 
 /*-------------------------------*/
 /*- MAP - ADD ON ----------------*/
 /*-------------------------------*/
 .row.has-map{padding-top: 0;}
 .hatch-map img{width: auto; max-width: none;}
+
 
 

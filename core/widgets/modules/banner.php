@@ -195,9 +195,9 @@ if( !class_exists( 'Hatch_Slider_Widget' ) ) {
 
 							if( $that.hasClass( 'swiper-pagination-switch' ) ){ // Anchors
 								swiper.swipeTo( $that.index() );
-							} else if( $that.hasClass( 'arrow-left' ) ){ // Previous
+							} else if( $that.hasClass( 'hatch-left-arrow' ) ){ // Previous
 								swiper.swipePrev();
-							} else if( $that.hasClass( 'arrow-right' ) ){ // Next
+							} else if( $that.hasClass( 'hatch-right-arrow' ) ){ // Next
 								swiper.swipeNext();
 							}
 

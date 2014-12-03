@@ -10,6 +10,9 @@ section[class*=' off-canvas-']{
     transform: scale(0.8);
     transition: all 0.3s ease-in-out 0s;
 }
+.admin-bar section[class*=' off-canvas-']{
+    padding-top: 50px;
+}
 .off-canvas-right{
     width: 240px;
     height: 100%;
@@ -29,12 +32,16 @@ section[class*=' off-canvas-']{
     transform: scale(1);
     overflow-y: scroll;
 }
+
 section[class*=' off-canvas-'] .close-canvas{
     color: #999;
     position: absolute;
     top: 10px;
     right: 10px;
     cursor: pointer;
+}
+.admin-bar section[class*=' off-canvas-'] .close-canvas{
+    top: 65px;
 }
 .close-canvas:hover{
     color: #fff;

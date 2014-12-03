@@ -34,6 +34,21 @@ html{}
 	width: 100%;
 }
 
+.column-flush.span-1,
+.column-flush.span-2,
+.column-flush.span-3,
+.column-flush.span-4,
+.column-flush.span-5,
+.column-flush.span-6,
+.column-flush.span-7,
+.column-flush.span-8,
+.column-flush.span-9,
+.column-flush.span-10,
+.column-flush.span-11,
+.column-flush.span-12{
+	width: 100%;
+}
+
 /*-------------------------------*/
 /*- CONTAINERS ------------------*/
 /*-------------------------------*/
@@ -164,9 +179,6 @@ html{}
 		padding: 5px;
 		margin: 0;
 	}
-	.nav-tabs li a{
-		border-radius: 4px;
-	}
 
 	/*---------------------------*/
     /*- PILL NAV ----------------*/
@@ -178,9 +190,6 @@ html{}
 		padding: 0 10px 10px 0;
 		margin: 0;
 		text-align: center;
-	}
-	.nav-pills li a{
-		border-radius: 4px;
 	}
 	
 	/*---------------------------*/
@@ -202,9 +211,6 @@ html{}
 	}
 	.nav-vertical .sub-menu li{
 		border: none;
-	}
-	.nav-vertical .sub-menu li a{
-		border-radius: 0 !important;
 	}
 
 /*-------------------------------*/

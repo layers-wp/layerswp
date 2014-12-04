@@ -247,7 +247,7 @@ p[class*='comment-form'] .required{color: #900;}
 .logged-in-as{font-size: 1.6rem; color: #8F8F8F; margin-bottom: 20px;}
 .form-allowed-tags{font-size: 1.4rem; margin-bottom: 15px;}
 .form-allowed-tags code{padding: 0; background: none;}
-.form-submit input[type=submit]{display: inline-block; padding: 4px 14px; background: #454545; border: none; border-radius: 4px; text-align: center; font-weight: 600; color: #fff; vertical-align: middle; cursor: pointer; transition: all 0.2s ease-in-out;}
+.form-submit input[type=submit]{display: inline-block; padding: 4px 14px; background: #454545; border: none; text-align: center; font-weight: 600; color: #fff; vertical-align: middle; cursor: pointer; transition: all 0.2s ease-in-out;}
 .form-submit input[type=submit]:hover{background: #323232; color: #fff;}
 
 

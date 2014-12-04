@@ -126,6 +126,8 @@ class Hatch_Widgets {
 		// If there are no sidebars to register, return;
 		if( empty( $dynamic_widget_areas ) ) return;
 
+		$dynamic_sidebars = array();
+
 		// Loop over the Dynamic Sidebar Widgets
 		foreach ( $dynamic_widget_areas as $widget_key => $widget_area ){
 
@@ -155,6 +157,8 @@ class Hatch_Widgets {
 	public function register_dynamic_sidebars(){
 
 		$dynamic_sidebars = $this->get_dynamic_sidebars();
+
+		if( empty( $dynamic_sidebars ) ) return;
 
 		foreach( $dynamic_sidebars as $dynamic_sidebar ){
 			register_sidebar( array(

@@ -205,7 +205,8 @@ jQuery(function($) {
 	* 3 - Color Selectors
 	*/
 	hatch_set_color_selectors();
-	$(document).on ( 'widget-added' , function(){
+	$(document).on ( 'widget-added' , function( event, widget_focus ){
+
 		$(this).find('.hatch-color-selector').each(function(){
 			var $picker = $(this);
 			$picker.closest('.wp-picker-container').replaceWith( $picker );
@@ -329,20 +330,32 @@ jQuery(function($) {
 	$( document ).on( 'click focus' , '.control-panel-content .widget-rendered' , function(e){
 		// "Hi Mom"
 		$that = $(this);
-
 		if( !$that.hasClass( 'expanded' ) ){
 
 			// Get the id of this widget
 			$widget_id = $that.find( '.widget-id' ).val();
 
-			// Scroll to this widget
-			$iframe = $( '#customize-preview iframe' ).contents();
-			$iframe.find('html, body').animate({
-				scrollTop: $iframe.find( '#' + $widget_id ).offset().top
-		    }, 850);
-
+			// Focus on the active widget
+			hatch_widget_focus( $widget_id )
 		}
 	});
+
+	$( document ).on( 'widget-updated' , function( updatedWidgetId ){
+		setTimeout(
+			hatch_widget_focus( updatedWidgetId ),
+			1000
+		)
+	});
+
+	function hatch_widget_focus( $widget_id ){
+
+		// Scroll to this widget
+		$iframe = $( '#customize-preview iframe' ).contents();
+
+		$iframe.find('html, body').animate({
+			scrollTop: $iframe.find( '#' + $widget_id ).offset().top
+	    }, 850);
+	}
 
 	/**
 	* 9 - Init 'Medium' editors

@@ -408,15 +408,15 @@ if( !class_exists( 'Hatch_Module_Widget' ) ) {
 											'id' => 'widget-' . $widget_details->id_base . '-' . $widget_details->number . '-' . $column_guid . '-width' ,
 											'value' => ( isset( $width ) ) ? $width : NULL,
 											'options' => array(
-												'1' => __( '1/12' , HATCH_THEME_SLUG ),
-												'2' => __( '2/12' , HATCH_THEME_SLUG ),
-												'3' => __( '3/12' , HATCH_THEME_SLUG ),
-												'4' => __( '4/12' , HATCH_THEME_SLUG ),
-												'5' => __( '5/12' , HATCH_THEME_SLUG ),
-												'6' => __( '6/12' , HATCH_THEME_SLUG ),
-												'8' => __( '8/12' , HATCH_THEME_SLUG ),
-												'10' => __( '10/12' , HATCH_THEME_SLUG ),
-												'12' => __( '12/12' , HATCH_THEME_SLUG )
+												'1' => __( '1 of 12 columns' , HATCH_THEME_SLUG ),
+												'2' => __( '2 of 12 columns' , HATCH_THEME_SLUG ),
+												'3' => __( '3 of 12 columns' , HATCH_THEME_SLUG ),
+												'4' => __( '4 of 12 columns' , HATCH_THEME_SLUG ),
+												'5' => __( '5 of 12 columns' , HATCH_THEME_SLUG ),
+												'6' => __( '6 of 12 columns' , HATCH_THEME_SLUG ),
+												'8' => __( '8 of 12 columns' , HATCH_THEME_SLUG ),
+												'10' => __( '10 of 12 columns' , HATCH_THEME_SLUG ),
+												'12' => __( '12 of 12 columns' , HATCH_THEME_SLUG )
 											)
 										)
 									)

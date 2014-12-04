@@ -1,32 +1,55 @@
+/**
+* Slider Widget JS file
+*
+* This file contains functions relating to the Slider Widget
+ *
+ * @package Hatch
+ * @since Hatch 1.0
+ * Contents
+ * 1 - Sortable items
+ * 2 - Slide Removal & Additions
+ * 3 - Slide Title Update
+*/
+
 jQuery(document).ready(function($){
 
 	/**
-	* Sortable items
+	* 1 - Sortable items
 	*/
+	hatch_set_slide_sorable();
 
-	$( 'ul[id^="banner_list_"]' ).sortable({
-		placeholder: "hatch-sortable-drop",
-		handle: ".hatch-accordion-title",
-		stop: function(e , li){
-			// Banner UL, looking up from our current target
-			$bannerList = li.item.closest( 'ul' );
-
-			// Banners <input>
-			$bannerInput = $( '#banner_ids_input_' + $bannerList.data( 'number' ) );
-
-			// Apply new banner order
-			$banner_guids = [];
-			$bannerList.find( 'li.hatch-accordion-item' ).each(function(){
-				$banner_guids.push( $(this).data( 'guid' ) );
-			});
-
-			// Trigger change for ajax save
-			$bannerInput.val( $banner_guids.join() ).hatch_trigger_change();
-		}
+	$(document).on ( 'widget-added' , function(){
+		hatch_set_slide_sorable();
 	});
 
+	function hatch_set_slide_sorable(){
+
+		var $banner_lists = $( 'ul[id^="banner_list_"]' );
+
+		$banner_lists.sortable({
+			placeholder: "hatch-sortable-drop",
+			handle: ".hatch-accordion-title",
+			stop: function(e , li){
+				// Banner UL, looking up from our current target
+				$bannerList = li.item.closest( 'ul' );
+
+				// Banners <input>
+				$bannerInput = $( '#banner_ids_input_' + $bannerList.data( 'number' ) );
+
+				// Apply new banner order
+				$banner_guids = [];
+				$bannerList.find( 'li.hatch-accordion-item' ).each(function(){
+					$banner_guids.push( $(this).data( 'guid' ) );
+				});
+
+				// Trigger change for ajax save
+				$bannerInput.val( $banner_guids.join() ).hatch_trigger_change();
+			}
+		});
+	};
+
 	/**
-	* Banner Removal & Additions
+	* 2 - Banner Removal & Additions
 	*/
 
 	$(document).on( 'click' , 'ul[id^="banner_list_"] .icon-trash' , function(e){
@@ -58,7 +81,6 @@ jQuery(document).ready(function($){
 
 		// Trigger change for ajax save
 		$bannerInput.val( $banner_guids.join() ).hatch_trigger_change();
-
 	});
 
 	$(document).on( 'click' , '.hatch-add-widget-banner' , function(e){
@@ -108,7 +130,7 @@ jQuery(document).ready(function($){
 	});
 
 	/**
-	* Banner Title Update
+	* 3 - Banner Title Update
 	*/
 
 	$(document).on( 'keyup' , 'ul[id^="banner_list_"] input[id*="-title"]' , function(e){

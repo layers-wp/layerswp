@@ -105,12 +105,11 @@ class Hatch_Widgets {
 		}
 	}
 
-
 	/**
-	 * Create Dynamic Widget Areas
+	 * Get Dynamic Widget Areas
 	 */
 
-	public function register_dynamic_sidebars(){
+	public function get_dynamic_sidebars(){
 
 		// Set the widget ID to search for
 		$dynamic_widget_id = 'hatch-widget-sidebar';
@@ -136,20 +135,39 @@ class Hatch_Widgets {
 					foreach ( $widget_area['sidebars'] as $sidebar_key => $sidebar ){
 						$sidebar_id = $dynamic_widget_id  .'-' . $widget_key . '-' . $sidebar_key;
 
-						register_sidebar( array(
-							'id'		=> $sidebar_id,
-							'name'		=> $sidebar[ 'title' ],
+						$dynamic_sidebars[] =  array(
+								'id' => $sidebar_id,
+								'title' => $sidebar[ 'title' ]
+							);
+
+					} // foreach $widget_area['modules']
+				} // if isset $widget_area['modules']
+			} // if !in_array( $dynamic_widget_id )
+		} // foreach $dynamic_widget_areas
+
+		return $dynamic_sidebars;
+	}
+
+	/**
+	 * Create Dynamic Widget Areas
+	 */
+
+	public function register_dynamic_sidebars(){
+
+		$dynamic_sidebars = $this->get_dynamic_sidebars();
+
+		foreach( $dynamic_sidebars as $dynamic_sidebar ){
+			register_sidebar( array(
+							'id'		=> $dynamic_sidebar[ 'id' ],
+							'name'		=> $dynamic_sidebar[ 'title' ],
 							'description'	=> __( '' , HATCH_THEME_SLUG ),
 							'before_widget'	=> '<aside id="%1$s" class="widget %2$s">',
 							'after_widget'	=> '</aside>',
 							'before_title'	=> '<h4 class="widget-title">',
 							'after_title'	=> '</h4>',
 						) );
+		}
 
-					} // foreach $widget_area['modules']
-				} // if isset $widget_area['modules']
-			} // if !in_array( $dynamic_widget_id )
-		} // foreach $dynamic_widget_areas
 	}
 
 	/**
@@ -260,7 +278,8 @@ class Hatch_Widgets {
 */
 
 function hatch_widgets_init(){
-	$hatch_widget = new Hatch_Widgets();
-	$hatch_widget->init();
+	global $hatch_widgets;
+	$hatch_widgets = new Hatch_Widgets();
+	$hatch_widgets->init();
 }
 add_action( 'widgets_init' , 'hatch_widgets_init' , 20 );

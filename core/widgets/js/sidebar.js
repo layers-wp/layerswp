@@ -1,31 +1,55 @@
+/**
+ * Dynamic Sidebar Widget JS file
+ *
+ * This file contains functions relating to the Dynamic Sidebar Widget
+ *
+ * @package Hatch
+ * @since Hatch 1.0
+ * Contents
+ * 1 - Sortable items
+ * 2 - Sidebar Removal & Additions
+ * 3 - Sidebar Title Update
+*/
+
 jQuery(document).ready(function($){
+
 	/**
-	* Sortable items
+	* 1 - Sortable items
 	*/
+	hatch_set_column_sorable();
 
-	$( 'ul[id^="sidebar_list_"]' ).sortable({
-		placeholder: "hatch-sortable-drop",
-		handle: ".hatch-accordion-title",
-		stop: function(e , li){
-			// Module UL, looking up from our current target
-			$sidebarList = li.item.closest( 'ul' );
-
-			// Modules <input>
-			$sidebarInput = $( '#sidebar_ids_input_' + $sidebarList.data( 'number' ) );
-
-			// Apply new sidebar order
-			$sidebar_guids = [];
-			$sidebarList.find( 'li.hatch-accordion-item' ).each(function(){
-				$sidebar_guids.push( $(this).data( 'guid' ) );
-			});
-
-			// Trigger change for ajax save
-			$sidebarInput.val( $sidebar_guids.join() ).hatch_trigger_change();
-		}
+	$(document).on ( 'widget-added' , function(){
+		hatch_set_column_sorable();
 	});
 
+	function hatch_set_column_sorable(){
+
+		var $sidebar_lists = $( 'ul[id^="sidebar_list_"]' );
+
+		$sidebar_lists.sortable({
+			placeholder: "hatch-sortable-drop",
+			handle: ".hatch-accordion-title",
+			stop: function(e , li){
+				// Module UL, looking up from our current target
+				$sidebarList = li.item.closest( 'ul' );
+
+				// Modules <input>
+				$sidebarInput = $( '#sidebar_ids_input_' + $sidebarList.data( 'number' ) );
+
+				// Apply new sidebar order
+				$sidebar_guids = [];
+				$sidebarList.find( 'li.hatch-accordion-item' ).each(function(){
+					$sidebar_guids.push( $(this).data( 'guid' ) );
+				});
+
+				// Trigger change for ajax save
+				$sidebarInput.val( $sidebar_guids.join() ).hatch_trigger_change();
+			}
+		});
+	}
+
 	/**
-	* Module Removal & Additions
+	* 2 - Sidebar Removal & Additions
 	*/
 
 	$(document).on( 'click' , 'ul[id^="sidebar_list_"] .icon-trash' , function(e){
@@ -106,7 +130,7 @@ jQuery(document).ready(function($){
 	});
 
 	/**
-	* Module Title Update
+	* 3 - Sidebar Title Update
 	*/
 
 	$(document).on( 'keyup' , 'ul[id^="sidebar_list_"] input[id*="-title"]' , function(e){

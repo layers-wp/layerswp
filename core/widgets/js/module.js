@@ -1,31 +1,55 @@
+/**
+* Content Widget JS file
+*
+* This file contains functions relating to the Content Widget
+ *
+ * @package Hatch
+ * @since Hatch 1.0
+ * Contents
+ * 1 - Sortable items
+ * 2 - Column Removal & Additions
+ * 3 - Column Title Update
+*/
+
 jQuery(document).ready(function($){
+
 	/**
-	* Sortable items
+	* 1 - Sortable items
 	*/
+	hatch_set_column_sorable();
 
-	$( 'ul[id^="module_list_"]' ).sortable({
-		placeholder: "hatch-sortable-drop",
-		handle: ".hatch-accordion-title",
-		stop: function(e , li){
-			// Module UL, looking up from our current target
-			$moduleList = li.item.closest( 'ul' );
-
-			// Modules <input>
-			$moduleInput = $( '#module_ids_input_' + $moduleList.data( 'number' ) );
-
-			// Apply new module order
-			$module_guids = [];
-			$moduleList.find( 'li.hatch-accordion-item' ).each(function(){
-				$module_guids.push( $(this).data( 'guid' ) );
-			});
-
-			// Trigger change for ajax save
-			$moduleInput.val( $module_guids.join() ).hatch_trigger_change();
-		}
+	$(document).on ( 'widget-added' , function(){
+		hatch_set_column_sorable();
 	});
 
+	function hatch_set_column_sorable(){
+
+		var $module_lists = $( 'ul[id^="module_list_"]' );
+
+		$module_lists.sortable({
+			placeholder: "hatch-sortable-drop",
+			handle: ".hatch-accordion-title",
+			stop: function(e , li){
+				// Module UL, looking up from our current target
+				$moduleList = li.item.closest( 'ul' );
+
+				// Modules <input>
+				$moduleInput = $( '#module_ids_input_' + $moduleList.data( 'number' ) );
+
+				// Apply new module order
+				$module_guids = [];
+				$moduleList.find( 'li.hatch-accordion-item' ).each(function(){
+					$module_guids.push( $(this).data( 'guid' ) );
+				});
+
+				// Trigger change for ajax save
+				$moduleInput.val( $module_guids.join() ).hatch_trigger_change();
+			}
+		});
+	}
+
 	/**
-	* Module Removal & Additions
+	* 2 - Column Removal & Additions
 	*/
 
 	$(document).on( 'click' , 'ul[id^="module_list_"] .icon-trash' , function(e){
@@ -58,6 +82,8 @@ jQuery(document).ready(function($){
 		// Trigger change for ajax save
 		$moduleInput.val( $module_guids.join() ).hatch_trigger_change();
 
+		// Reset Sortable Items
+		hatch_set_column_sorable();
 	});
 
 	$(document).on( 'click' , '.hatch-add-widget-module' , function(e){
@@ -103,10 +129,11 @@ jQuery(document).ready(function($){
 				jQuery('.hatch-color-selector').wpColorPicker();
 			}
 		) // $.post
+
 	});
 
 	/**
-	* Module Title Update
+	* 3 - Module Title Update
 	*/
 
 	$(document).on( 'keyup' , 'ul[id^="module_list_"] input[id*="-title"]' , function(e){

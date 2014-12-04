@@ -205,10 +205,7 @@ jQuery(function($) {
 	* 3 - Color Selectors
 	*/
 	hatch_set_color_selectors();
-	$(document).on ( 'mouseup' , '#available-widgets .widget-tpl' , function(){
-
-		$(this).find('input').hatch_trigger_change();
-
+	$(document).on ( 'widget-added' , function(){
 		$(this).find('.hatch-color-selector').each(function(){
 			var $picker = $(this);
 			$picker.closest('.wp-picker-container').replaceWith( $picker );
@@ -223,10 +220,14 @@ jQuery(function($) {
 
 		jQuery('.hatch-color-selector').wpColorPicker({
 			change: function(event, ui){
-				$(event.target).val( ui.color.toString() ).hatch_trigger_change();
+				if( 'undefined' !== typeof event ){
+					$(event.target).val( ui.color.toString() ).hatch_trigger_change();
+				}
 			},
 			clear: function() {
-				$(event.target).hatch_trigger_change();
+				if( 'undefined' !== typeof event ){
+					$(event.target).hatch_trigger_change();
+				}
 			},
 		});
 	}
@@ -416,6 +417,7 @@ jQuery(function($) {
 		// Trigger 'change' and 'blur' to reset the customizer
 		$changed = $(this).trigger("change").trigger("blur");
 		$( document ).trigger( 'widget-synced', $(this).closest( '.control-section' ).find( '.widget:first' ) );
+		$( document ).trigger( 'widget-updated', $(this).closest( '.control-section' ).find( '.widget:first' ) );
 
 		// Reset 'show if' selectors;
 		hatch_apply_show_if_selectors();

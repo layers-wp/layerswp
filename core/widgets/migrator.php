@@ -51,6 +51,24 @@ class Hatch_Widget_Migrator {
     <?php }
 
     /**
+    *  Hatch Preset Widget Page Layouts
+    */
+    function get_preset_layouts(){
+        $hatch_preset_layouts = array();
+
+        $hatch_preset_layouts = array(
+            'portfolio' => array(
+                    'title' => '',
+                    'screenshot' => get_template_directory_uri() . '/core/assets/presets/portfolio.png',
+                    'json' => ''
+                ),
+        );
+
+        return apply_filter( 'hatch_preset_layouts' , $hatch_preset_layouts );
+    }
+
+
+    /**
     *  Get all available widgets
     */
 
@@ -510,7 +528,6 @@ class Hatch_Widget_Migrator {
         }
 
         die( print_r( json_encode( $results , true ) ) );
-
     }
 }
 
@@ -536,7 +553,6 @@ if( !function_exists( 'hatch_builder_export_ajax_init' ) ) {
     function hatch_builder_export_ajax_init(){
         $hatch_migrator = new Hatch_Widget_Migrator();
         add_action( 'wp_ajax_hatch_import_widgets', array( $hatch_migrator, 'import' ) );
-
     }
 }
 

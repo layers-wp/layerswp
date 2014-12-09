@@ -296,8 +296,8 @@ jQuery(function($) {
 		$that.siblings( '.hatch-icon-wrapper' ).removeClass( 'hatch-active' );
 
 		// Trigger change
-		$that.find('input ').hatch_trigger_change();
-		$that.siblings('input ').hatch_trigger_change();
+		$that.find( 'input' ).hatch_trigger_change();
+		$that.siblings( 'input' ).hatch_trigger_change();
 	});
 
 
@@ -429,8 +429,9 @@ jQuery(function($) {
 	$.fn.hatch_trigger_change = function() {
 		// Trigger 'change' and 'blur' to reset the customizer
 		$changed = $(this).trigger("change").trigger("blur");
-		$( document ).trigger( 'widget-synced', $(this).closest( '.control-section' ).find( '.widget:first' ) );
-		$( document ).trigger( 'widget-updated', $(this).closest( '.control-section' ).find( '.widget:first' ) );
+		var $widget_synced = $( document ).trigger( 'widget-synced', $(this).closest( '.control-section' ).find( '.widget:first' ) );
+
+		console.log( $widget_synced );
 
 		// Reset 'show if' selectors;
 		hatch_apply_show_if_selectors();

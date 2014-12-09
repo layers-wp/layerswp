@@ -629,7 +629,7 @@ h1, h2, h3, h4, h5, h6{color: #000; font-weight: 200;}
 
             /*-------------------*/
             /*- OVERLAY HOVER ---*/
-            .with-overlay:hover .thumbnail-media img{-webkit-filter: blur(2px); filter: blur(2px); transform: scale(1.08);}
+            .with-overlay:hover .thumbnail-media img{transform: scale(1.08);}
             .with-overlay:hover .thumbnail-body{visibility: visible; opacity: 1;}
             .with-overlay:hover .heading{transform: translate3d(0, 0, 0); opacity: 1;}
             .with-overlay:hover .button{transform: translate3d(0, 0, 0); opacity: 1;}

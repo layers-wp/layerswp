@@ -619,3 +619,31 @@ if( !function_exists( 'hatch_add_google_analytics' ) ) {
     }
     add_action ( 'wp_head', 'hatch_add_google_analytics' );
 } // hatch_add_google_analytics
+
+/**
+ * Get all builder pages and store in global variable.
+ *
+ * @return  object    $hatch_builder_pages wp_query list of builder pages.
+*/
+
+if( !function_exists( 'hatch_get_builder_pages' ) ) {
+    function hatch_get_builder_pages(){
+        
+        global $hatch_builder_pages;
+        
+        // Check if list of pages has already been cached
+        if( !isset($hatch_builder_pages) ){
+            
+            // Fetch Builder Pages
+            $hatch_builder_pages = get_pages(array(
+                'post_status' => 'publish,draft,private',
+                'post_type' => 'page',
+                'meta_key' => '_wp_page_template',
+                'meta_value' => HATCH_BUILDER_TEMPLATE
+            ));
+            
+        }
+        
+        return $hatch_builder_pages;
+    }
+}

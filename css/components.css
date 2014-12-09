@@ -177,9 +177,9 @@ section[class*=' off-canvas-'] .close-canvas{
         .swiper-container .pages{position: absolute; bottom: 0px; opacity: 0; z-index: 2000; width: 100%; text-align: center;}
         .swiper-container:hover .pages{bottom: 16px; opacity: 1;}
 
-        .swiper-container .swiper-pagination-switch{display: inline-block; width: 16px; height: 16px; margin: 0 8px; padding: 0; opacity: 0.7; background: transparent; border: 4px solid #fff; border-radius: 100px; overflow: hidden; text-indent: -999px;}
-        .swiper-container .swiper-pagination-switch:hover{opacity: 1; background: #fff;}
-        .swiper-container .swiper-pagination-switch.swiper-visible-switch.swiper-active-switch{opacity: 1; background: #fff;}
+        .swiper-container .swiper-pagination-switch{display: inline-block; width: 8px; height: 8px; margin: 8px; background: #fff; border: 2px solid transparent; border-radius: 100px; overflow: hidden; text-indent: -999px; cursor: pointer; transform: scale(1); transition: all 0.2s ease-in-out;}
+        .swiper-container .swiper-pagination-switch:hover{background: transparent; border: 2px solid #fff; transform: scale(1.5);}
+        .swiper-container .swiper-pagination-switch.swiper-visible-switch.swiper-active-switch{background: transparent; border: 2px solid #fff; transform: scale(1.5);}
 
         /*-----------------------*/
         /*- ARROWS --------------*/

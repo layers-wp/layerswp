@@ -60,6 +60,9 @@ class Hatch_Customizer {
 		add_action( 'admin_enqueue_scripts', array( $this, 'admin_enqueue_scripts' ) , 50 );
 		add_action( 'admin_enqueue_scripts', array( $this, 'admin_print_styles' ) , 50 );
 		add_action( 'customize_controls_print_styles' , array( $this, 'admin_print_styles' ) );
+		
+		// Render dropdown of other builder pages
+		//add_action( 'customize_controls_print_footer_scripts', array($this, 'render_builder_page_dropdown') );
 
 	}
 
@@ -106,6 +109,34 @@ class Hatch_Customizer {
 		);
 		wp_enqueue_style( HATCH_THEME_SLUG . '-admin-customizer' );
 	}
+	
+	/**
+	*  Render the dropdown of builder pages in Customizer interface.
+	*/
+	
+	public function render_builder_page_dropdown(){
+		
+		//Get builder pages
+		$hatch_pages = hatch_get_builder_pages();
+		
+		// Loop the Builder Pages and create their sidebars
+		if( $hatch_pages ){
+			?>
+			<div class="hatch-customizer-pages-dropdown">
+				<select>
+					<?php
+					foreach($hatch_pages as $page) {
+						?>
+						<option value="<?php echo $page->ID ?>"><?php echo $page->post_title ?></option>
+						<?php
+					}
+					?>
+				</select>
+			</div>
+			<?php
+		}
+	}
+	
 }
 
 /**

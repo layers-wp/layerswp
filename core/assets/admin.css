@@ -914,7 +914,8 @@ input[type=text].hatch-color-selector.wp-color-picker{
     text-indent: 0;
 }
 .hatch-section-title{
-    margin-bottom: 20px;
+    margin-bottom: 12px;
+    margin-top: 20px;
 }
 .hatch-section-title .hatch-heading{
     margin: 0;

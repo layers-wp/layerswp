@@ -37,13 +37,16 @@ class Hatch_Widget_Migrator {
                     );
         }
 
+        // Add current builder pages as presets
+        add_filter( 'hatch_preset_layouts' , array( $this , 'add_builder_preset_layouts') );
+
     }
 
     /**
     *  Simple output of a JSON'd string of the widget data
     */
     function display_export_box( $post ){ ?>
-        <textarea id="<?php echo HATCH_THEME_SLUG . '-import-wiget-data'; ?>" style="width: 100%;" rows="15"><?php echo esc_attr( json_encode( $this->export_data() ) ); ?></textarea>
+        <textarea id="<?php echo HATCH_THEME_SLUG . '-import-wiget-data'; ?>" style="width: 100%;" rows="15"><?php echo esc_attr( json_encode( $this->export_data( $post ) ) ); ?></textarea>
         <p>
             <em><?php _e( 'Copy and paste widget data from another site or page into this box to import data.' , HATCH_THEME_SLUG ); ?></em>
         </p>
@@ -58,13 +61,76 @@ class Hatch_Widget_Migrator {
 
         $hatch_preset_layouts = array(
             'portfolio' => array(
-                    'title' => '',
+                    'title' => __( 'Portfolio Page', HATCH_THEME_SLUG ),
+                    'description' => __( 'Portfolio page, we recommend importing the <a href="http://codex.oboxsites.com"> portfolio content</a> first.', HATCH_THEME_SLUG ),
                     'screenshot' => get_template_directory_uri() . '/core/assets/presets/portfolio.png',
+                    'screenshot_type' => 'png',
+                    'json' => '{"obox-hatch-builder-155":{"hatch-widget-banner-29":{"slide_time":"","banner_height":"550","banner_ids":"607,570","banners":{"607":{"design":{"background":{"image":"http:\/\/obox.beta\/wp-content\/uploads\/2014\/09\/ringly-1700x610.jpg","color":"#000","repeat":"no-repeat","position":"center"},"featuredimage":"","imagealign":"image-left","fonts":{"align":"text-left","size":"large","color":"#fff"}},"title":"Smart jewelry and accessories.","excerpt":"From inception to first collection, we led Ringly\u2019s creative direction, establishing a proprietary vision, identity, and strategy.","link":"","link_text":""},"570":{"design":{"background":{"image":"http:\/\/obox.beta\/wp-content\/uploads\/2014\/09\/cavalier-1700x610.jpg","color":"#000","repeat":"no-repeat","position":"center"},"featuredimage":"","imagealign":"image-left","fonts":{"align":"text-left","size":"large","color":"#fff"}},"title":"Welcome Bros","excerpt":"Short Excerpt","link":"","link_text":"See More"}}},"hatch-widget-module-40":{"design":{"layout":"layout-boxed","fonts":{"align":"text-center","size":"medium","color":"#ffffff"},"columns":"3","background":{"image":"","color":"#000000","repeat":"no-repeat","position":"center"}},"title":"Our Services","excerpt":"Our services run deep and are backed by over ten years of experience.","module_ids":"967,334,308","modules":{"967":{"design":{"background":{"image":"","color":"","repeat":"no-repeat","position":"center"},"featuredimage":"http:\/\/obox.beta\/wp-content\/uploads\/2014\/10\/landing-hero-1600.jpg","imageratios":"image-square","imagealign":"image-top","fonts":{"align":"text-center","size":"medium","color":"#ffffff"}},"title":"Your service title","link":"","excerpt":"Give us a brief description of the service that you are promoting. Try keep it short so that it is easy for people to scan your page."},"334":{"design":{"background":{"image":"","color":"","repeat":"no-repeat","position":"center"},"featuredimage":"http:\/\/obox.beta\/wp-content\/uploads\/2014\/10\/player-thumbnail-1600.jpg","imageratios":"image-square","imagealign":"image-top","fonts":{"align":"text-center","size":"medium","color":"#ffffff"}},"title":"Your service title","link":"","excerpt":"Give us a brief description of the service that you are promoting. Try keep it short so that it is easy for people to scan your page."},"308":{"design":{"background":{"image":"","color":"","repeat":"no-repeat","position":"center"},"featuredimage":"http:\/\/obox.beta\/wp-content\/uploads\/2014\/10\/N9-thumbnail-1600.jpg","imageratios":"image-square","imagealign":"image-top","fonts":{"align":"text-center","size":"medium","color":"#ffffff"}},"title":"Your service title","link":"","excerpt":"Give us a brief description of the service that you are promoting. Try keep it short so that it is easy for people to scan your page."}}},"hatch-widget-banner-33":{"slide_time":"","banner_height":"550","banner_ids":"483","banners":{"483":{"design":{"background":{"image":"","color":"#fcfcfc","repeat":"no-repeat","position":"center"},"featuredimage":"http:\/\/obox.beta\/wp-content\/uploads\/2014\/10\/Screen-Shot-2014-10-23-at-3.16.38-PM.png","imageratios":"image-no-crop","imagealign":"image-right","fonts":{"align":"text-left","size":"small","color":"#000000"}},"title":"digital product design brand identity design creative\/art direction brand and digital strategy web\/mobile development","excerpt":"We work collaboratively to create best-in-class solutions that fulfill our clients\' needs and incorporate our simple yet ambitious design philosophies. We believe simple is better.","link":"","link_text":"Learn more about us "}}},"hatch-widget-post-11":[]}}'
+                ),
+            'business' => array(
+                    'title' => __( 'Business', HATCH_THEME_SLUG ),
+                    'description' => __( 'Business page template including a contact page.', HATCH_THEME_SLUG ),
+                    'screenshot' => get_template_directory_uri() . '/core/assets/presets/portfolio.png',
+                    'screenshot_type' => 'png',
+                    'json' => '{"obox-hatch-builder-155":{"hatch-widget-banner-29":{"slide_time":"","banner_height":"550","banner_ids":"607,570","banners":{"607":{"design":{"background":{"image":"http:\/\/obox.beta\/wp-content\/uploads\/2014\/09\/ringly-1700x610.jpg","color":"#000","repeat":"no-repeat","position":"center"},"featuredimage":"","imagealign":"image-left","fonts":{"align":"text-left","size":"large","color":"#fff"}},"title":"Smart jewelry and accessories.","excerpt":"From inception to first collection, we led Ringly\u2019s creative direction, establishing a proprietary vision, identity, and strategy.","link":"","link_text":""},"570":{"design":{"background":{"image":"http:\/\/obox.beta\/wp-content\/uploads\/2014\/09\/cavalier-1700x610.jpg","color":"#000","repeat":"no-repeat","position":"center"},"featuredimage":"","imagealign":"image-left","fonts":{"align":"text-left","size":"large","color":"#fff"}},"title":"Welcome Bros","excerpt":"Short Excerpt","link":"","link_text":"See More"}}},"hatch-widget-module-40":{"design":{"layout":"layout-boxed","fonts":{"align":"text-center","size":"medium","color":"#ffffff"},"columns":"3","background":{"image":"","color":"#000000","repeat":"no-repeat","position":"center"}},"title":"Our Services","excerpt":"Our services run deep and are backed by over ten years of experience.","module_ids":"967,334,308","modules":{"967":{"design":{"background":{"image":"","color":"","repeat":"no-repeat","position":"center"},"featuredimage":"http:\/\/obox.beta\/wp-content\/uploads\/2014\/10\/landing-hero-1600.jpg","imageratios":"image-square","imagealign":"image-top","fonts":{"align":"text-center","size":"medium","color":"#ffffff"}},"title":"Your service title","link":"","excerpt":"Give us a brief description of the service that you are promoting. Try keep it short so that it is easy for people to scan your page."},"334":{"design":{"background":{"image":"","color":"","repeat":"no-repeat","position":"center"},"featuredimage":"http:\/\/obox.beta\/wp-content\/uploads\/2014\/10\/player-thumbnail-1600.jpg","imageratios":"image-square","imagealign":"image-top","fonts":{"align":"text-center","size":"medium","color":"#ffffff"}},"title":"Your service title","link":"","excerpt":"Give us a brief description of the service that you are promoting. Try keep it short so that it is easy for people to scan your page."},"308":{"design":{"background":{"image":"","color":"","repeat":"no-repeat","position":"center"},"featuredimage":"http:\/\/obox.beta\/wp-content\/uploads\/2014\/10\/N9-thumbnail-1600.jpg","imageratios":"image-square","imagealign":"image-top","fonts":{"align":"text-center","size":"medium","color":"#ffffff"}},"title":"Your service title","link":"","excerpt":"Give us a brief description of the service that you are promoting. Try keep it short so that it is easy for people to scan your page."}}},"hatch-widget-banner-33":{"slide_time":"","banner_height":"550","banner_ids":"483","banners":{"483":{"design":{"background":{"image":"","color":"#fcfcfc","repeat":"no-repeat","position":"center"},"featuredimage":"http:\/\/obox.beta\/wp-content\/uploads\/2014\/10\/Screen-Shot-2014-10-23-at-3.16.38-PM.png","imageratios":"image-no-crop","imagealign":"image-right","fonts":{"align":"text-left","size":"small","color":"#000000"}},"title":"digital product design brand identity design creative\/art direction brand and digital strategy web\/mobile development","excerpt":"We work collaboratively to create best-in-class solutions that fulfill our clients\' needs and incorporate our simple yet ambitious design philosophies. We believe simple is better.","link":"","link_text":"Learn more about us "}}},"hatch-widget-post-11":[]}}'
+                ),
+            'blog' => array(
+                    'title' => __( 'Blog', HATCH_THEME_SLUG ),
+                    'screenshot' => get_template_directory_uri() . '/core/assets/presets/portfolio.png',
+                    'screenshot_type' => 'png',
                     'json' => '{"obox-hatch-builder-155":{"hatch-widget-banner-29":{"slide_time":"","banner_height":"550","banner_ids":"607,570","banners":{"607":{"design":{"background":{"image":"http:\/\/obox.beta\/wp-content\/uploads\/2014\/09\/ringly-1700x610.jpg","color":"#000","repeat":"no-repeat","position":"center"},"featuredimage":"","imagealign":"image-left","fonts":{"align":"text-left","size":"large","color":"#fff"}},"title":"Smart jewelry and accessories.","excerpt":"From inception to first collection, we led Ringly\u2019s creative direction, establishing a proprietary vision, identity, and strategy.","link":"","link_text":""},"570":{"design":{"background":{"image":"http:\/\/obox.beta\/wp-content\/uploads\/2014\/09\/cavalier-1700x610.jpg","color":"#000","repeat":"no-repeat","position":"center"},"featuredimage":"","imagealign":"image-left","fonts":{"align":"text-left","size":"large","color":"#fff"}},"title":"Welcome Bros","excerpt":"Short Excerpt","link":"","link_text":"See More"}}},"hatch-widget-module-40":{"design":{"layout":"layout-boxed","fonts":{"align":"text-center","size":"medium","color":"#ffffff"},"columns":"3","background":{"image":"","color":"#000000","repeat":"no-repeat","position":"center"}},"title":"Our Services","excerpt":"Our services run deep and are backed by over ten years of experience.","module_ids":"967,334,308","modules":{"967":{"design":{"background":{"image":"","color":"","repeat":"no-repeat","position":"center"},"featuredimage":"http:\/\/obox.beta\/wp-content\/uploads\/2014\/10\/landing-hero-1600.jpg","imageratios":"image-square","imagealign":"image-top","fonts":{"align":"text-center","size":"medium","color":"#ffffff"}},"title":"Your service title","link":"","excerpt":"Give us a brief description of the service that you are promoting. Try keep it short so that it is easy for people to scan your page."},"334":{"design":{"background":{"image":"","color":"","repeat":"no-repeat","position":"center"},"featuredimage":"http:\/\/obox.beta\/wp-content\/uploads\/2014\/10\/player-thumbnail-1600.jpg","imageratios":"image-square","imagealign":"image-top","fonts":{"align":"text-center","size":"medium","color":"#ffffff"}},"title":"Your service title","link":"","excerpt":"Give us a brief description of the service that you are promoting. Try keep it short so that it is easy for people to scan your page."},"308":{"design":{"background":{"image":"","color":"","repeat":"no-repeat","position":"center"},"featuredimage":"http:\/\/obox.beta\/wp-content\/uploads\/2014\/10\/N9-thumbnail-1600.jpg","imageratios":"image-square","imagealign":"image-top","fonts":{"align":"text-center","size":"medium","color":"#ffffff"}},"title":"Your service title","link":"","excerpt":"Give us a brief description of the service that you are promoting. Try keep it short so that it is easy for people to scan your page."}}},"hatch-widget-banner-33":{"slide_time":"","banner_height":"550","banner_ids":"483","banners":{"483":{"design":{"background":{"image":"","color":"#fcfcfc","repeat":"no-repeat","position":"center"},"featuredimage":"http:\/\/obox.beta\/wp-content\/uploads\/2014\/10\/Screen-Shot-2014-10-23-at-3.16.38-PM.png","imageratios":"image-no-crop","imagealign":"image-right","fonts":{"align":"text-left","size":"small","color":"#000000"}},"title":"digital product design brand identity design creative\/art direction brand and digital strategy web\/mobile development","excerpt":"We work collaboratively to create best-in-class solutions that fulfill our clients\' needs and incorporate our simple yet ambitious design philosophies. We believe simple is better.","link":"","link_text":"Learn more about us "}}},"hatch-widget-post-11":[]}}'
                 ),
         );
 
-        return apply_filter( 'hatch_preset_layouts' , $hatch_preset_layouts );
+        return apply_filters( 'hatch_preset_layouts' , $hatch_preset_layouts );
+    }
+
+    /**
+    *  Add our builder pages as presets
+    */
+    function add_builder_preset_layouts( $presets ){
+
+        $builder_pages = hatch_get_builder_pages();
+
+        $page_presets = array();
+
+        foreach ( $builder_pages as $page ) {
+            $page_presets[ $page->post_name ] = array(
+                'title' => $page->post_title,
+                'screenshot' => get_permalink( $page->ID ),
+                'screenshot_type' => 'dynamic',
+                'json' =>  json_encode( $this->export_data( $page ) )
+            );
+        }
+
+        return array_merge( $presets, $page_presets );
+    }
+
+    /**
+    * Hatch Page Layout Screenshot Generator
+    *
+    * Generates an image tag for the screenshot for use in the preset layout selector
+    *
+    * @param varchar URL to use for the screenshot
+    * @param varchar png (for static images) | dynamic (for existing pages)
+    * @return varchar <img> tag
+    */
+    function generate_preset_layout_screenshot( $url = NULL, $type = 'screenshot' ){
+
+        // If there is no URL to parse, return nothing
+        if( NULL == $url ) return;
+
+        // Dynamic types generate a screenshot from the WordPress mshots service
+        if( 'dynamic' == $type ) {
+            $image_url =  'http://s.wordpress.com/mshots/v1/' . urlencode( $url ) . '?w=' . 300;
+        } else {
+            $image_url = $url;
+        }
+
+        $img = '<img src="' . esc_url( $image_url ) . '" width="300" />';
+
+        return $img;
+
     }
 
 
@@ -132,17 +198,18 @@ class Hatch_Widget_Migrator {
     /**
     *  Get valid sidebars for a specific page
     *
+    * @param object Post Object of page to generate export data for
     * @return array An array of sidebar ids that are valid for this page
     */
 
-    public function get_valid_sidebars() {
-        global $post, $hatch_widgets;
+    public function get_valid_sidebars( $post_object ) {
+        global $hatch_widgets;
 
         // Get all widget instances for each widget
         $widget_instances = $this->get_widget_instances();
 
         // Get page sidebar ID
-        $page_sidebar_id = 'obox-hatch-builder-' . $post->ID;
+        $page_sidebar_id = 'obox-hatch-builder-' . $post_object->ID;
 
         // Get sidebars and their unique widgets IDs
         $sidebars_widgets = get_option( 'sidebars_widgets' );
@@ -199,14 +266,19 @@ class Hatch_Widget_Migrator {
     * @return array Array including page sidebar & widget settings
     */
 
-    public function page_sidebars_widgets() {
-        global $post;
+    public function page_sidebars_widgets( $post_object = NULL ) {
+
+        if( NULL == $post_object ){
+            global $post;
+        } else {
+            $post = $post_object;
+        }
 
         // Get all widget instances for each widget
         $widget_instances = $this->get_widget_instances();
 
         // Get valid sidebars to query
-        $valid_sidebars = $this->get_valid_sidebars();
+        $valid_sidebars = $this->get_valid_sidebars( $post );
 
         // Gather sidebars with their widget instances
         $sidebars_widgets = get_option( 'sidebars_widgets' ); // get sidebars and their unique widgets IDs
@@ -251,10 +323,14 @@ class Hatch_Widget_Migrator {
     * @return array Array of sidebar settings including image options translated via $this->validate_data()
     */
 
-    function export_data(){
+    function export_data( $post = NULL ){
+
+        if( NULL == $post ) {
+            global $post;
+        }
 
         // Get sidebar and widget data for this page
-        $sidebars_widgets = $this->page_sidebars_widgets();
+        $sidebars_widgets = $this->page_sidebars_widgets( $post );
 
         if( empty( $sidebars_widgets ) ) return;
 

@@ -1,6 +1,14 @@
-<?php $user = wp_get_current_user(); ?>
-<?php $find_builder_page = new WP_Query( array( 'post_type' => 'page' , 'meta_key' => '_wp_page_template', 'meta_value' => HATCH_BUILDER_TEMPLATE ) ); ?>
-<?php while( $find_builder_page->have_posts() ) {
+<?php // Fetch current user information
+$user = wp_get_current_user(); ?>
+
+<?php // Instantiate the widget migrator
+$hatch_migrator = new Hatch_Widget_Migrator(); ?>
+
+<?php // Get builder pages
+$find_builder_page = new WP_Query( array( 'post_type' => 'page' , 'meta_key' => '_wp_page_template', 'meta_value' => HATCH_BUILDER_TEMPLATE ) ); ?>
+
+<?php // Loop through builder pages (if they're there) and give us the ID of the builder page if it exists
+while( $find_builder_page->have_posts() ) {
 	$find_builder_page->the_post();
 	$page_id = get_the_ID();
 	break;
@@ -25,6 +33,25 @@
 				We are calling this release 'Beta Zero,' as it's just grown up to be out of private Alpha.
 				However, it's not yet fully functional. We have high ambitions and much to add, but for now we have set some limits:
 			</p>
+		</div>
+		<div class="hatch-row">
+			<div class="hatch-section-title hatch-tiny">
+				<h5 class="hatch-heading">Select a page layout to begin with</h5>
+			</div>
+			<div class="hatch-row">
+				<?php foreach( $hatch_migrator->get_preset_layouts() as $template_key => $template ) { ?>
+					<div class="hatch-column hatch-span-4">
+						<label for="preset-layout-<?php echo $template_key; ?>">
+							<?php echo $hatch_migrator->generate_preset_layout_screenshot( $template[ 'screenshot' ], $template[ 'screenshot_type' ] ); ?>
+							<input id="preset-layout-<?php echo $template_key; ?>" type="hidden" value="<?php echo esc_attr( $template[ 'json' ] ); ?>" />
+							<h4 class="hatch-heading"><?php echo $template[ 'title' ]; ?></h4>
+							<?php if( isset( $template[ 'description' ] ) ) { ?>
+								<p> <?php echo $template[ 'description' ]; ?></p>
+							<?php } ?>
+						</label>
+					</div>
+				<?php } // Get Preset Layouts ?>
+			</div>
 		</div>
 		<div class="hatch-row">
 			<div class="hatch-column hatch-span-6">

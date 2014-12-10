@@ -914,8 +914,7 @@ input[type=text].hatch-color-selector.wp-color-picker{
     text-indent: 0;
 }
 .hatch-section-title{
-    margin-bottom: 12px;
-    margin-top: 20px;
+    margin-bottom: 20px;
 }
 .hatch-section-title .hatch-heading{
     margin: 0;
@@ -1182,33 +1181,32 @@ input[type=text].hatch-color-selector.wp-color-picker{
 }
 
 /*---------------------------*/
-/*- MARKETING BLOCK ---------*/
-.hatch-marketing{
-    overflow: hidden;
-    margin-bottom: 20px;
-    display: block;
-}
-.hatch-marketing .hatch-marketing-icon{
-    float: none;
-    width: 100%;
-    text-align: center;
-    margin-right: auto;
-    margin-left: auto;
-}
-.hatch-marketing .hatch-marketing-body {
-    display: block;
-    float: none;
-    width: 100%;
-    text-align: center;
-    overflow: hidden;
-}
-.hatch-marketing .hatch-marketing-body .hatch-heading{
-    margin: 10px 0 0;
-    text-transform: uppercase;
-}
-.hatch-marketing .hatch-marketing-body .hatch-excerpt{
-    margin: 10px 0 0;
-}
+/*- MEDIA -------------------*/
+.hatch-media{overflow: hidden; margin-bottom: 20px; display: block;}
+
+.hatch-media-image{text-align: center; margin-right: auto; margin-left: auto;}
+.hatch-media-image img{display: block; margin: auto; max-width: 100%; height: auto;}
+.hatch-media-image.hatch-small img{max-width: 64px;}
+
+.hatch-media .hatch-media-body{display: block; overflow: hidden;}
+.hatch-media .hatch-media-image + .hatch-media-body{margin-top: 20px;}
+
+.hatch-media.hatch-image-left .hatch-media-image{float: left; max-width: 50%; margin-right: 15px;}
+.hatch-media.hatch-image-right .hatch-media-image{float: right; max-width: 50%; margin-right: 0; margin-left: 15px;}
+
+.hatch-media .hatch-heading{font-size: 16px; margin: 0;}
+.hatch-media .hatch-media-image + .hatch-heading{margin-top: 20px;}
+
+.hatch-media .hatch-excerpt{margin: 8px 0 0; font-weight: 400;}
+.hatch-media p{margin-top: 8px;}
+.hatch-media ul{margin-top: 8px;}
+
+.hatch-t-center .hatch-media-body .hatch-excerpt{margin-left: auto; margin-right: auto;}
+
+.hatch-media .hatch-btn-group{margin-top: 15px;}
+.hatch-media .hatch-button{margin-top: 15px;}
+.hatch-media .hatch-btn-group .hatch-button{margin-top: 0px;}
+
 
 /*---------------------------*/
 /*- TOOLTIPS ----------------*/

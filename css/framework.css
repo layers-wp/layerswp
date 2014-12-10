@@ -527,14 +527,6 @@ h1, h2, h3, h4, h5, h6{color: #000; font-weight: 200;}
     #back-to-top{position: fixed; bottom: 30px; right: 30px; z-index: 10;}
     #back-to-top a{display: block; width: 32px; height: 32px; background: url(/images/arrow-up-small.png) no-repeat; background-size: 32px 32px; text-indent: -999px; overflow: hidden;}
 
-    /*---------------------------*/
-    /*- MEDIA BLOCK -------------*/
-    .media{display: block; overflow: hidden;}
-    .media .media-object{float: left; margin-right: 15px;}
-    .media .media-object img{display: block;}
-    .media .media-body{overflow: hidden;}
-
-    .media h4{font-size: 1.6rem; font-weight: 600; color: #323232;}
 
     /*---------------------------*/
     /*- AVATARS -----------------*/

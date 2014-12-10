@@ -44,9 +44,7 @@ jQuery(document).ready(function($){
             hatch_widget_params.ajaxurl,
             $page_data,
             function(data){
-                console.log( data );
                 $results = $.parseJSON( data );
-                console.log( $results );
                 window.location.assign( $results.customizer_location );
             }
         );

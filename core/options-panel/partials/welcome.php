@@ -32,6 +32,9 @@ $find_builder_page = hatch_get_builder_pages(); ?>
 			<div class="hatch-section-title hatch-tiny">
 				<h5 class="hatch-heading">Select a page layout to begin with</h5>
 			</div>
+			<!-- ---------------------------------- -->
+			<!-- Preset Layout Selectors Start here -->
+			<!-- ---------------------------------- -->
 			<div class="hatch-row">
 				<?php foreach( $hatch_migrator->get_preset_layouts() as $template_key => $template ) { ?>
 					<div class="hatch-column hatch-span-4 <?php echo ( isset( $template[ 'container_css' ] ) ?  $template[ 'container_css' ] : '' ); ?>">
@@ -47,6 +50,9 @@ $find_builder_page = hatch_get_builder_pages(); ?>
 					</div>
 				<?php } // Get Preset Layouts ?>
 			</div>
+			<!-- ---------------- -->
+			<!-- / Preset Layouts -->
+			<!-- ---------------- -->
 		</div>
 		<div class="hatch-row">
 			<div class="hatch-column hatch-span-6">

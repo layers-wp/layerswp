@@ -5,14 +5,8 @@ $user = wp_get_current_user(); ?>
 $hatch_migrator = new Hatch_Widget_Migrator(); ?>
 
 <?php // Get builder pages
-$find_builder_page = new WP_Query( array( 'post_type' => 'page' , 'meta_key' => '_wp_page_template', 'meta_value' => HATCH_BUILDER_TEMPLATE ) ); ?>
+$find_builder_page = hatch_get_builder_pages(); ?>
 
-<?php // Loop through builder pages (if they're there) and give us the ID of the builder page if it exists
-while( $find_builder_page->have_posts() ) {
-	$find_builder_page->the_post();
-	$page_id = get_the_ID();
-	break;
-} ?>
 <section class="hatch-container hatch-content-large">
 
 	<div class="hatch-section-title hatch-large invert hatch-content-massive" style="background: url(<?php echo get_template_directory_uri(); ?>/images/beta-zero.jpg) top repeat;">
@@ -40,14 +34,15 @@ while( $find_builder_page->have_posts() ) {
 			</div>
 			<div class="hatch-row">
 				<?php foreach( $hatch_migrator->get_preset_layouts() as $template_key => $template ) { ?>
-					<div class="hatch-column hatch-span-4">
-						<label for="preset-layout-<?php echo $template_key; ?>">
+					<div class="hatch-column hatch-span-4 <?php echo ( isset( $template[ 'container_css' ] ) ?  $template[ 'container_css' ] : '' ); ?>">
+						<label for="hatch-preset-layout-<?php echo $template_key; ?>" id="hatch-generate-preset-layout-<?php echo $template_key; ?>">
 							<?php echo $hatch_migrator->generate_preset_layout_screenshot( $template[ 'screenshot' ], $template[ 'screenshot_type' ] ); ?>
-							<input id="preset-layout-<?php echo $template_key; ?>" type="hidden" value="<?php echo esc_attr( $template[ 'json' ] ); ?>" />
 							<h4 class="hatch-heading"><?php echo $template[ 'title' ]; ?></h4>
 							<?php if( isset( $template[ 'description' ] ) ) { ?>
 								<p> <?php echo $template[ 'description' ]; ?></p>
 							<?php } ?>
+							<input id="hatch-preset-layout-<?php echo $template_key; ?>-title" type="hidden" value="<?php echo $template[ 'title' ]; ?>" />
+							<input id="hatch-preset-layout-<?php echo $template_key; ?>-widget_data" type="hidden" value="<?php echo esc_attr( $template[ 'json' ] ); ?>" />
 						</label>
 					</div>
 				<?php } // Get Preset Layouts ?>

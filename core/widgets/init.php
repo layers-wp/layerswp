@@ -75,16 +75,24 @@ class Hatch_Widgets {
 
 		// Loop the Builder Pages and create their sidebars
 		foreach($pages as $page){
-			register_sidebar( array(
-				'id'		=> 'obox-hatch-builder-' . $page->ID,
-				'name'		=> $page->post_title . __( ' Body' , HATCH_THEME_SLUG ),
-				'description'	=> __( '' , HATCH_THEME_SLUG ),
-				'before_widget'	=> '<aside id="%1$s" class="widget container push-bottom-medium %2$s">',
-				'after_widget'	=> '</aside>',
-				'before_title'	=> '<div class="section-title clearfix"><h4 class="heading">',
-				'after_title'	=> '</h4></div>',
-			) );
+			$this->register_builder_sidebar( $page->ID, $page->post_title );
 		}
+	}
+
+	/**
+	*  Register Builder Sidebar Function
+	*/
+
+	public function register_builder_sidebar( $post_id = 0, $post_title = '' ) {
+		register_sidebar( array(
+			'id'		=> 'obox-hatch-builder-' . $post_id,
+			'name'		=> $post_title . __( ' Body' , HATCH_THEME_SLUG ),
+			'description'	=> __( '' , HATCH_THEME_SLUG ),
+			'before_widget'	=> '<aside id="%1$s" class="widget container push-bottom-medium %2$s">',
+			'after_widget'	=> '</aside>',
+			'before_title'	=> '<div class="section-title clearfix"><h4 class="heading">',
+			'after_title'	=> '</h4></div>',
+		) );
 	}
 
 	/**
@@ -263,7 +271,14 @@ class Hatch_Widgets {
 		);
 
 		// Localize Scripts
-		wp_localize_script( HATCH_THEME_SLUG . '-admin-widgets' , "hatch_widget_params", array( 'ajaxurl' => admin_url( "admin-ajax.php" ) , 'nonce' => wp_create_nonce( 'hatch-widget-actions' ) ) );
+		wp_localize_script(
+				HATCH_THEME_SLUG . '-admin-widgets' ,
+				"hatch_widget_params",
+				array(
+						'ajaxurl' => admin_url( "admin-ajax.php" ) ,
+						'nonce' => wp_create_nonce( 'hatch-widget-actions' )
+					)
+			);
 	}
 
 	/**

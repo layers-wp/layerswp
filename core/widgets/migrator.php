@@ -65,20 +65,20 @@ class Hatch_Widget_Migrator {
                     'description' => __( 'Portfolio page, we recommend importing the <a href="http://codex.oboxsites.com"> portfolio content</a> first.', HATCH_THEME_SLUG ),
                     'screenshot' => get_template_directory_uri() . '/core/assets/presets/portfolio.png',
                     'screenshot_type' => 'png',
-                    'json' => '{"obox-hatch-builder-155":{"hatch-widget-banner-29":{"slide_time":"","banner_height":"550","banner_ids":"607,570","banners":{"607":{"design":{"background":{"image":"http:\/\/obox.beta\/wp-content\/uploads\/2014\/09\/ringly-1700x610.jpg","color":"#000","repeat":"no-repeat","position":"center"},"featuredimage":"","imagealign":"image-left","fonts":{"align":"text-left","size":"large","color":"#fff"}},"title":"Smart jewelry and accessories.","excerpt":"From inception to first collection, we led Ringly\u2019s creative direction, establishing a proprietary vision, identity, and strategy.","link":"","link_text":""},"570":{"design":{"background":{"image":"http:\/\/obox.beta\/wp-content\/uploads\/2014\/09\/cavalier-1700x610.jpg","color":"#000","repeat":"no-repeat","position":"center"},"featuredimage":"","imagealign":"image-left","fonts":{"align":"text-left","size":"large","color":"#fff"}},"title":"Welcome Bros","excerpt":"Short Excerpt","link":"","link_text":"See More"}}},"hatch-widget-module-40":{"design":{"layout":"layout-boxed","fonts":{"align":"text-center","size":"medium","color":"#ffffff"},"columns":"3","background":{"image":"","color":"#000000","repeat":"no-repeat","position":"center"}},"title":"Our Services","excerpt":"Our services run deep and are backed by over ten years of experience.","module_ids":"967,334,308","modules":{"967":{"design":{"background":{"image":"","color":"","repeat":"no-repeat","position":"center"},"featuredimage":"http:\/\/obox.beta\/wp-content\/uploads\/2014\/10\/landing-hero-1600.jpg","imageratios":"image-square","imagealign":"image-top","fonts":{"align":"text-center","size":"medium","color":"#ffffff"}},"title":"Your service title","link":"","excerpt":"Give us a brief description of the service that you are promoting. Try keep it short so that it is easy for people to scan your page."},"334":{"design":{"background":{"image":"","color":"","repeat":"no-repeat","position":"center"},"featuredimage":"http:\/\/obox.beta\/wp-content\/uploads\/2014\/10\/player-thumbnail-1600.jpg","imageratios":"image-square","imagealign":"image-top","fonts":{"align":"text-center","size":"medium","color":"#ffffff"}},"title":"Your service title","link":"","excerpt":"Give us a brief description of the service that you are promoting. Try keep it short so that it is easy for people to scan your page."},"308":{"design":{"background":{"image":"","color":"","repeat":"no-repeat","position":"center"},"featuredimage":"http:\/\/obox.beta\/wp-content\/uploads\/2014\/10\/N9-thumbnail-1600.jpg","imageratios":"image-square","imagealign":"image-top","fonts":{"align":"text-center","size":"medium","color":"#ffffff"}},"title":"Your service title","link":"","excerpt":"Give us a brief description of the service that you are promoting. Try keep it short so that it is easy for people to scan your page."}}},"hatch-widget-banner-33":{"slide_time":"","banner_height":"550","banner_ids":"483","banners":{"483":{"design":{"background":{"image":"","color":"#fcfcfc","repeat":"no-repeat","position":"center"},"featuredimage":"http:\/\/obox.beta\/wp-content\/uploads\/2014\/10\/Screen-Shot-2014-10-23-at-3.16.38-PM.png","imageratios":"image-no-crop","imagealign":"image-right","fonts":{"align":"text-left","size":"small","color":"#000000"}},"title":"digital product design brand identity design creative\/art direction brand and digital strategy web\/mobile development","excerpt":"We work collaboratively to create best-in-class solutions that fulfill our clients\' needs and incorporate our simple yet ambitious design philosophies. We believe simple is better.","link":"","link_text":"Learn more about us "}}},"hatch-widget-post-11":[]}}'
+                    'json' => esc_attr( '{"obox-hatch-builder-155":{"hatch-widget-banner-29":{"slide_time":"","banner_height":"550","banner_ids":"607,570","banners":{"607":{"design":{"background":{"image":"http:\/\/obox.beta\/wp-content\/uploads\/2014\/09\/ringly-1700x610.jpg","color":"#000","repeat":"no-repeat","position":"center"},"featuredimage":"","imagealign":"image-left","fonts":{"align":"text-left","size":"large","color":"#fff"}},"title":"Smart jewelry and accessories.","excerpt":"From inception to first collection, we led Ringly\u2019s creative direction, establishing a proprietary vision, identity, and strategy.","link":"","link_text":""},"570":{"design":{"background":{"image":"http:\/\/obox.beta\/wp-content\/uploads\/2014\/09\/cavalier-1700x610.jpg","color":"#000","repeat":"no-repeat","position":"center"},"featuredimage":"","imagealign":"image-left","fonts":{"align":"text-left","size":"large","color":"#fff"}},"title":"Welcome Bros","excerpt":"Short Excerpt","link":"","link_text":"See More"}}},"hatch-widget-module-40":{"design":{"layout":"layout-boxed","fonts":{"align":"text-center","size":"medium","color":"#ffffff"},"columns":"3","background":{"image":"","color":"#000000","repeat":"no-repeat","position":"center"}},"title":"Our Services","excerpt":"Our services run deep and are backed by over ten years of experience.","module_ids":"967,334,308","modules":{"967":{"design":{"background":{"image":"","color":"","repeat":"no-repeat","position":"center"},"featuredimage":"http:\/\/obox.beta\/wp-content\/uploads\/2014\/10\/landing-hero-1600.jpg","imageratios":"image-square","imagealign":"image-top","fonts":{"align":"text-center","size":"medium","color":"#ffffff"}},"title":"Your service title","link":"","excerpt":"Give us a brief description of the service that you are promoting. Try keep it short so that it is easy for people to scan your page."},"334":{"design":{"background":{"image":"","color":"","repeat":"no-repeat","position":"center"},"featuredimage":"http:\/\/obox.beta\/wp-content\/uploads\/2014\/10\/player-thumbnail-1600.jpg","imageratios":"image-square","imagealign":"image-top","fonts":{"align":"text-center","size":"medium","color":"#ffffff"}},"title":"Your service title","link":"","excerpt":"Give us a brief description of the service that you are promoting. Try keep it short so that it is easy for people to scan your page."},"308":{"design":{"background":{"image":"","color":"","repeat":"no-repeat","position":"center"},"featuredimage":"http:\/\/obox.beta\/wp-content\/uploads\/2014\/10\/N9-thumbnail-1600.jpg","imageratios":"image-square","imagealign":"image-top","fonts":{"align":"text-center","size":"medium","color":"#ffffff"}},"title":"Your service title","link":"","excerpt":"Give us a brief description of the service that you are promoting. Try keep it short so that it is easy for people to scan your page."}}},"hatch-widget-banner-33":{"slide_time":"","banner_height":"550","banner_ids":"483","banners":{"483":{"design":{"background":{"image":"","color":"#fcfcfc","repeat":"no-repeat","position":"center"},"featuredimage":"http:\/\/obox.beta\/wp-content\/uploads\/2014\/10\/Screen-Shot-2014-10-23-at-3.16.38-PM.png","imageratios":"image-no-crop","imagealign":"image-right","fonts":{"align":"text-left","size":"small","color":"#000000"}},"title":"digital product design brand identity design creative\/art direction brand and digital strategy web\/mobile development","excerpt":"We work collaboratively to create best-in-class solutions that fulfill our clients\' needs and incorporate our simple yet ambitious design philosophies. We believe simple is better.","link":"","link_text":"Learn more about us "}}},"hatch-widget-post-11":[]}}' )
                 ),
             'business' => array(
                     'title' => __( 'Business', HATCH_THEME_SLUG ),
                     'description' => __( 'Business page template including a contact page.', HATCH_THEME_SLUG ),
                     'screenshot' => get_template_directory_uri() . '/core/assets/presets/portfolio.png',
                     'screenshot_type' => 'png',
-                    'json' => '{"obox-hatch-builder-155":{"hatch-widget-banner-29":{"slide_time":"","banner_height":"550","banner_ids":"607,570","banners":{"607":{"design":{"background":{"image":"http:\/\/obox.beta\/wp-content\/uploads\/2014\/09\/ringly-1700x610.jpg","color":"#000","repeat":"no-repeat","position":"center"},"featuredimage":"","imagealign":"image-left","fonts":{"align":"text-left","size":"large","color":"#fff"}},"title":"Smart jewelry and accessories.","excerpt":"From inception to first collection, we led Ringly\u2019s creative direction, establishing a proprietary vision, identity, and strategy.","link":"","link_text":""},"570":{"design":{"background":{"image":"http:\/\/obox.beta\/wp-content\/uploads\/2014\/09\/cavalier-1700x610.jpg","color":"#000","repeat":"no-repeat","position":"center"},"featuredimage":"","imagealign":"image-left","fonts":{"align":"text-left","size":"large","color":"#fff"}},"title":"Welcome Bros","excerpt":"Short Excerpt","link":"","link_text":"See More"}}},"hatch-widget-module-40":{"design":{"layout":"layout-boxed","fonts":{"align":"text-center","size":"medium","color":"#ffffff"},"columns":"3","background":{"image":"","color":"#000000","repeat":"no-repeat","position":"center"}},"title":"Our Services","excerpt":"Our services run deep and are backed by over ten years of experience.","module_ids":"967,334,308","modules":{"967":{"design":{"background":{"image":"","color":"","repeat":"no-repeat","position":"center"},"featuredimage":"http:\/\/obox.beta\/wp-content\/uploads\/2014\/10\/landing-hero-1600.jpg","imageratios":"image-square","imagealign":"image-top","fonts":{"align":"text-center","size":"medium","color":"#ffffff"}},"title":"Your service title","link":"","excerpt":"Give us a brief description of the service that you are promoting. Try keep it short so that it is easy for people to scan your page."},"334":{"design":{"background":{"image":"","color":"","repeat":"no-repeat","position":"center"},"featuredimage":"http:\/\/obox.beta\/wp-content\/uploads\/2014\/10\/player-thumbnail-1600.jpg","imageratios":"image-square","imagealign":"image-top","fonts":{"align":"text-center","size":"medium","color":"#ffffff"}},"title":"Your service title","link":"","excerpt":"Give us a brief description of the service that you are promoting. Try keep it short so that it is easy for people to scan your page."},"308":{"design":{"background":{"image":"","color":"","repeat":"no-repeat","position":"center"},"featuredimage":"http:\/\/obox.beta\/wp-content\/uploads\/2014\/10\/N9-thumbnail-1600.jpg","imageratios":"image-square","imagealign":"image-top","fonts":{"align":"text-center","size":"medium","color":"#ffffff"}},"title":"Your service title","link":"","excerpt":"Give us a brief description of the service that you are promoting. Try keep it short so that it is easy for people to scan your page."}}},"hatch-widget-banner-33":{"slide_time":"","banner_height":"550","banner_ids":"483","banners":{"483":{"design":{"background":{"image":"","color":"#fcfcfc","repeat":"no-repeat","position":"center"},"featuredimage":"http:\/\/obox.beta\/wp-content\/uploads\/2014\/10\/Screen-Shot-2014-10-23-at-3.16.38-PM.png","imageratios":"image-no-crop","imagealign":"image-right","fonts":{"align":"text-left","size":"small","color":"#000000"}},"title":"digital product design brand identity design creative\/art direction brand and digital strategy web\/mobile development","excerpt":"We work collaboratively to create best-in-class solutions that fulfill our clients\' needs and incorporate our simple yet ambitious design philosophies. We believe simple is better.","link":"","link_text":"Learn more about us "}}},"hatch-widget-post-11":[]}}'
+                    'json' => esc_attr( '{"obox-hatch-builder-155":{"hatch-widget-banner-29":{"slide_time":"","banner_height":"550","banner_ids":"607,570","banners":{"607":{"design":{"background":{"image":"http:\/\/obox.beta\/wp-content\/uploads\/2014\/09\/ringly-1700x610.jpg","color":"#000","repeat":"no-repeat","position":"center"},"featuredimage":"","imagealign":"image-left","fonts":{"align":"text-left","size":"large","color":"#fff"}},"title":"Smart jewelry and accessories.","excerpt":"From inception to first collection, we led Ringly\u2019s creative direction, establishing a proprietary vision, identity, and strategy.","link":"","link_text":""},"570":{"design":{"background":{"image":"http:\/\/obox.beta\/wp-content\/uploads\/2014\/09\/cavalier-1700x610.jpg","color":"#000","repeat":"no-repeat","position":"center"},"featuredimage":"","imagealign":"image-left","fonts":{"align":"text-left","size":"large","color":"#fff"}},"title":"Welcome Bros","excerpt":"Short Excerpt","link":"","link_text":"See More"}}},"hatch-widget-module-40":{"design":{"layout":"layout-boxed","fonts":{"align":"text-center","size":"medium","color":"#ffffff"},"columns":"3","background":{"image":"","color":"#000000","repeat":"no-repeat","position":"center"}},"title":"Our Services","excerpt":"Our services run deep and are backed by over ten years of experience.","module_ids":"967,334,308","modules":{"967":{"design":{"background":{"image":"","color":"","repeat":"no-repeat","position":"center"},"featuredimage":"http:\/\/obox.beta\/wp-content\/uploads\/2014\/10\/landing-hero-1600.jpg","imageratios":"image-square","imagealign":"image-top","fonts":{"align":"text-center","size":"medium","color":"#ffffff"}},"title":"Your service title","link":"","excerpt":"Give us a brief description of the service that you are promoting. Try keep it short so that it is easy for people to scan your page."},"334":{"design":{"background":{"image":"","color":"","repeat":"no-repeat","position":"center"},"featuredimage":"http:\/\/obox.beta\/wp-content\/uploads\/2014\/10\/player-thumbnail-1600.jpg","imageratios":"image-square","imagealign":"image-top","fonts":{"align":"text-center","size":"medium","color":"#ffffff"}},"title":"Your service title","link":"","excerpt":"Give us a brief description of the service that you are promoting. Try keep it short so that it is easy for people to scan your page."},"308":{"design":{"background":{"image":"","color":"","repeat":"no-repeat","position":"center"},"featuredimage":"http:\/\/obox.beta\/wp-content\/uploads\/2014\/10\/N9-thumbnail-1600.jpg","imageratios":"image-square","imagealign":"image-top","fonts":{"align":"text-center","size":"medium","color":"#ffffff"}},"title":"Your service title","link":"","excerpt":"Give us a brief description of the service that you are promoting. Try keep it short so that it is easy for people to scan your page."}}},"hatch-widget-banner-33":{"slide_time":"","banner_height":"550","banner_ids":"483","banners":{"483":{"design":{"background":{"image":"","color":"#fcfcfc","repeat":"no-repeat","position":"center"},"featuredimage":"http:\/\/obox.beta\/wp-content\/uploads\/2014\/10\/Screen-Shot-2014-10-23-at-3.16.38-PM.png","imageratios":"image-no-crop","imagealign":"image-right","fonts":{"align":"text-left","size":"small","color":"#000000"}},"title":"digital product design brand identity design creative\/art direction brand and digital strategy web\/mobile development","excerpt":"We work collaboratively to create best-in-class solutions that fulfill our clients\' needs and incorporate our simple yet ambitious design philosophies. We believe simple is better.","link":"","link_text":"Learn more about us "}}},"hatch-widget-post-11":[]}}' )
                 ),
             'blog' => array(
                     'title' => __( 'Blog', HATCH_THEME_SLUG ),
                     'screenshot' => get_template_directory_uri() . '/core/assets/presets/portfolio.png',
                     'screenshot_type' => 'png',
-                    'json' => '{"obox-hatch-builder-155":{"hatch-widget-banner-29":{"slide_time":"","banner_height":"550","banner_ids":"607,570","banners":{"607":{"design":{"background":{"image":"http:\/\/obox.beta\/wp-content\/uploads\/2014\/09\/ringly-1700x610.jpg","color":"#000","repeat":"no-repeat","position":"center"},"featuredimage":"","imagealign":"image-left","fonts":{"align":"text-left","size":"large","color":"#fff"}},"title":"Smart jewelry and accessories.","excerpt":"From inception to first collection, we led Ringly\u2019s creative direction, establishing a proprietary vision, identity, and strategy.","link":"","link_text":""},"570":{"design":{"background":{"image":"http:\/\/obox.beta\/wp-content\/uploads\/2014\/09\/cavalier-1700x610.jpg","color":"#000","repeat":"no-repeat","position":"center"},"featuredimage":"","imagealign":"image-left","fonts":{"align":"text-left","size":"large","color":"#fff"}},"title":"Welcome Bros","excerpt":"Short Excerpt","link":"","link_text":"See More"}}},"hatch-widget-module-40":{"design":{"layout":"layout-boxed","fonts":{"align":"text-center","size":"medium","color":"#ffffff"},"columns":"3","background":{"image":"","color":"#000000","repeat":"no-repeat","position":"center"}},"title":"Our Services","excerpt":"Our services run deep and are backed by over ten years of experience.","module_ids":"967,334,308","modules":{"967":{"design":{"background":{"image":"","color":"","repeat":"no-repeat","position":"center"},"featuredimage":"http:\/\/obox.beta\/wp-content\/uploads\/2014\/10\/landing-hero-1600.jpg","imageratios":"image-square","imagealign":"image-top","fonts":{"align":"text-center","size":"medium","color":"#ffffff"}},"title":"Your service title","link":"","excerpt":"Give us a brief description of the service that you are promoting. Try keep it short so that it is easy for people to scan your page."},"334":{"design":{"background":{"image":"","color":"","repeat":"no-repeat","position":"center"},"featuredimage":"http:\/\/obox.beta\/wp-content\/uploads\/2014\/10\/player-thumbnail-1600.jpg","imageratios":"image-square","imagealign":"image-top","fonts":{"align":"text-center","size":"medium","color":"#ffffff"}},"title":"Your service title","link":"","excerpt":"Give us a brief description of the service that you are promoting. Try keep it short so that it is easy for people to scan your page."},"308":{"design":{"background":{"image":"","color":"","repeat":"no-repeat","position":"center"},"featuredimage":"http:\/\/obox.beta\/wp-content\/uploads\/2014\/10\/N9-thumbnail-1600.jpg","imageratios":"image-square","imagealign":"image-top","fonts":{"align":"text-center","size":"medium","color":"#ffffff"}},"title":"Your service title","link":"","excerpt":"Give us a brief description of the service that you are promoting. Try keep it short so that it is easy for people to scan your page."}}},"hatch-widget-banner-33":{"slide_time":"","banner_height":"550","banner_ids":"483","banners":{"483":{"design":{"background":{"image":"","color":"#fcfcfc","repeat":"no-repeat","position":"center"},"featuredimage":"http:\/\/obox.beta\/wp-content\/uploads\/2014\/10\/Screen-Shot-2014-10-23-at-3.16.38-PM.png","imageratios":"image-no-crop","imagealign":"image-right","fonts":{"align":"text-left","size":"small","color":"#000000"}},"title":"digital product design brand identity design creative\/art direction brand and digital strategy web\/mobile development","excerpt":"We work collaboratively to create best-in-class solutions that fulfill our clients\' needs and incorporate our simple yet ambitious design philosophies. We believe simple is better.","link":"","link_text":"Learn more about us "}}},"hatch-widget-post-11":[]}}'
+                    'json' => esc_attr( '{"obox-hatch-builder-155":{"hatch-widget-banner-29":{"slide_time":"","banner_height":"550","banner_ids":"607,570","banners":{"607":{"design":{"background":{"image":"http:\/\/obox.beta\/wp-content\/uploads\/2014\/09\/ringly-1700x610.jpg","color":"#000","repeat":"no-repeat","position":"center"},"featuredimage":"","imagealign":"image-left","fonts":{"align":"text-left","size":"large","color":"#fff"}},"title":"Smart jewelry and accessories.","excerpt":"From inception to first collection, we led Ringly\u2019s creative direction, establishing a proprietary vision, identity, and strategy.","link":"","link_text":""},"570":{"design":{"background":{"image":"http:\/\/obox.beta\/wp-content\/uploads\/2014\/09\/cavalier-1700x610.jpg","color":"#000","repeat":"no-repeat","position":"center"},"featuredimage":"","imagealign":"image-left","fonts":{"align":"text-left","size":"large","color":"#fff"}},"title":"Welcome Bros","excerpt":"Short Excerpt","link":"","link_text":"See More"}}},"hatch-widget-module-40":{"design":{"layout":"layout-boxed","fonts":{"align":"text-center","size":"medium","color":"#ffffff"},"columns":"3","background":{"image":"","color":"#000000","repeat":"no-repeat","position":"center"}},"title":"Our Services","excerpt":"Our services run deep and are backed by over ten years of experience.","module_ids":"967,334,308","modules":{"967":{"design":{"background":{"image":"","color":"","repeat":"no-repeat","position":"center"},"featuredimage":"http:\/\/obox.beta\/wp-content\/uploads\/2014\/10\/landing-hero-1600.jpg","imageratios":"image-square","imagealign":"image-top","fonts":{"align":"text-center","size":"medium","color":"#ffffff"}},"title":"Your service title","link":"","excerpt":"Give us a brief description of the service that you are promoting. Try keep it short so that it is easy for people to scan your page."},"334":{"design":{"background":{"image":"","color":"","repeat":"no-repeat","position":"center"},"featuredimage":"http:\/\/obox.beta\/wp-content\/uploads\/2014\/10\/player-thumbnail-1600.jpg","imageratios":"image-square","imagealign":"image-top","fonts":{"align":"text-center","size":"medium","color":"#ffffff"}},"title":"Your service title","link":"","excerpt":"Give us a brief description of the service that you are promoting. Try keep it short so that it is easy for people to scan your page."},"308":{"design":{"background":{"image":"","color":"","repeat":"no-repeat","position":"center"},"featuredimage":"http:\/\/obox.beta\/wp-content\/uploads\/2014\/10\/N9-thumbnail-1600.jpg","imageratios":"image-square","imagealign":"image-top","fonts":{"align":"text-center","size":"medium","color":"#ffffff"}},"title":"Your service title","link":"","excerpt":"Give us a brief description of the service that you are promoting. Try keep it short so that it is easy for people to scan your page."}}},"hatch-widget-banner-33":{"slide_time":"","banner_height":"550","banner_ids":"483","banners":{"483":{"design":{"background":{"image":"","color":"#fcfcfc","repeat":"no-repeat","position":"center"},"featuredimage":"http:\/\/obox.beta\/wp-content\/uploads\/2014\/10\/Screen-Shot-2014-10-23-at-3.16.38-PM.png","imageratios":"image-no-crop","imagealign":"image-right","fonts":{"align":"text-left","size":"small","color":"#000000"}},"title":"digital product design brand identity design creative\/art direction brand and digital strategy web\/mobile development","excerpt":"We work collaboratively to create best-in-class solutions that fulfill our clients\' needs and incorporate our simple yet ambitious design philosophies. We believe simple is better.","link":"","link_text":"Learn more about us "}}},"hatch-widget-post-11":[]}}' )
                 ),
         );
 
@@ -87,19 +87,25 @@ class Hatch_Widget_Migrator {
 
     /**
     *  Add our builder pages as presets
+    *
+    * @param array array of preset layouts that have been set
     */
     function add_builder_preset_layouts( $presets ){
 
+        // Get array of builder pages that exist
         $builder_pages = hatch_get_builder_pages();
 
+        // Start preset page bucket
         $page_presets = array();
 
+        // Loop through the pages and add them to the preset list
         foreach ( $builder_pages as $page ) {
-            $page_presets[ $page->post_name ] = array(
-                'title' => $page->post_title,
+            $page_presets[ $page->ID ] = array(
+                'title' => esc_attr( $page->post_title ),
                 'screenshot' => get_permalink( $page->ID ),
                 'screenshot_type' => 'dynamic',
-                'json' =>  json_encode( $this->export_data( $page ) )
+                'json' =>  esc_attr( json_encode( $this->export_data( $page ) ) ),
+                'container_css' => 'hatch-hide hatch-existing-page-preset'
             );
         }
 
@@ -280,6 +286,8 @@ class Hatch_Widget_Migrator {
         // Get valid sidebars to query
         $valid_sidebars = $this->get_valid_sidebars( $post );
 
+        if ( NULL == $valid_sidebars ) return;
+
         // Gather sidebars with their widget instances
         $sidebars_widgets = get_option( 'sidebars_widgets' ); // get sidebars and their unique widgets IDs
         $sidebars_widget_instances = array();
@@ -453,12 +461,69 @@ class Hatch_Widget_Migrator {
     }
 
     /**
+    * Ajax Import Instantiator
+    *
+    * This function takes on the widget_data post object and runs the import() function
+    */
+
+    public function do_ajax_import(){
+
+        // Set the page ID
+        $import_data[ 'post_id' ] = $_POST[ 'post_id' ];
+
+        // Set the Widget Data for import
+        $import_data[ 'widget_data' ] = $_POST[ 'widget_data' ];
+
+        // Run the import
+        die( $this->import( $import_data ) );
+    }
+
+    /**
+    * Ajax Create a Builder Page from a preset page
+    *
+    * This function takes on the Preset Page Data and runs the import() function
+    */
+
+    public function create_builder_page_from_preset(){
+        global $hatch_widgets;
+
+        // Generate builder page and return page ID
+        $import_data[ 'post_id' ] = hatch_create_builder_page( $_POST[ 'post_title' ] );
+        $new_page = get_page( $import_data[ 'post_id' ] );
+
+        // Register Builder Sidebar
+        $hatch_widgets->register_builder_sidebar( $import_data[ 'post_id' ] );
+
+        // Add Widget Data to the import array
+        $import_data[ 'widget_data' ] = $_POST[ 'widget_data' ];
+
+        // Run data import
+        $import_progress = $this->import( $import_data );
+
+        $check_builder_pages = hatch_get_builder_pages();
+
+        if( count( $check_builder_pages ) == 1 ){
+            update_option( 'page_on_front', $import_data[ 'post_id' ] );
+            update_option( 'show_on_front', 'page' );
+        }
+
+        $results = array(
+                'post_id' => $import_data[ 'post_id' ],
+                'post_title' => $new_page->post_title,
+                'importer' => $import_progress,
+                'customizer_location' => admin_url() . 'customize.php?url=' . esc_url( get_the_permalink( $import_data[ 'post_id' ] ) )
+            );
+
+        die( json_encode( $results ) );
+    }
+
+    /**
     *  Import
     */
 
-    public function import() {
+    public function import( $import_data = NULL ) {
 
-        $data = $_POST[ 'widget_data' ];
+        if( NULL == $import_data ) return;
 
         global $wp_registered_sidebars;
 
@@ -474,10 +539,10 @@ class Hatch_Widget_Migrator {
         // Begin results
         $results = array();
 
-        foreach( $data as $sidebar_id => $sidebar_data ) {
+        foreach( $import_data[ 'widget_data' ] as $sidebar_id => $sidebar_data ) {
 
             // If this is a builder page, set the ID to the current page we are importing INTO
-            if( FALSE !== strpos( $sidebar_id , 'obox-hatch-builder-' ) ) $sidebar_id = 'obox-hatch-builder-' . $_POST[ 'post_id' ];
+            if( FALSE !== strpos( $sidebar_id , 'obox-hatch-builder-' ) ) $sidebar_id = 'obox-hatch-builder-' . $import_data[ 'post_id' ];
 
             // Check if sidebar is available on this site
             // Otherwise add widgets to inactive, and say so
@@ -603,7 +668,7 @@ class Hatch_Widget_Migrator {
             }
         }
 
-        die( print_r( json_encode( $results , true ) ) );
+        return $results;
     }
 }
 
@@ -628,7 +693,8 @@ add_action( 'admin_head' , 'hatch_builder_export_init', 10 );
 if( !function_exists( 'hatch_builder_export_ajax_init' ) ) {
     function hatch_builder_export_ajax_init(){
         $hatch_migrator = new Hatch_Widget_Migrator();
-        add_action( 'wp_ajax_hatch_import_widgets', array( $hatch_migrator, 'import' ) );
+        add_action( 'wp_ajax_hatch_import_widgets', array( $hatch_migrator, 'do_ajax_import' ) );
+        add_action( 'wp_ajax_hatch_create_builder_page_from_preset', array( $hatch_migrator, 'create_builder_page_from_preset' ) );
     }
 }
 

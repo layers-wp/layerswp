@@ -54,7 +54,7 @@ jQuery(document).ready(function($){
             }
         }, 200 );
 
-        /*var $page_data = {
+        var $page_data = {
                 action: 'hatch_create_builder_page_from_preset',
                 post_title: NULL,
                 widget_data: $.parseJSON( $widget_data ),
@@ -69,6 +69,6 @@ jQuery(document).ready(function($){
                 $results = $.parseJSON( data );
                 window.location.assign( $results.customizer_location );
             }
-        );*/
+        );
     });
 });

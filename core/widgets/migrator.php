@@ -128,12 +128,12 @@ class Hatch_Widget_Migrator {
 
         // Dynamic types generate a screenshot from the WordPress mshots service
         if( 'dynamic' == $type ) {
-            $image_url =  'http://s.wordpress.com/mshots/v1/' . urlencode( $url ) . '?w=' . 300;
+            $image_url =  'http://s.wordpress.com/mshots/v1/' . urlencode( $url ) . '?w=' . 320 . '&h=' . 480;
         } else {
             $image_url = $url;
         }
 
-        $img = '<img src="' . esc_url( $image_url ) . '" width="300" />';
+        $img = '<img src="' . esc_url( $image_url ) . '" width="320" />';
 
         return $img;
 

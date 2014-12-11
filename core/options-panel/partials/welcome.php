@@ -10,10 +10,10 @@ $find_builder_page = hatch_get_builder_pages(); ?>
 <section class="hatch-modal hatch-hide">
 	<div class="hatch-section-title hatch-large hatch-text-center hatch-content-massive hatch-push-top-massive hatch-push-bottom-massive">
 		<div class="hatch-container">
-			<h2 class="hatch-heading" id="hatch-options-header">Adding Your Page</h2>
-
-			<div class="hatch-media-image hatch-push-top">
+			<div class="hatch-media-image">
 			</div>
+
+			<h2 class="hatch-heading hatch-push-top" id="hatch-options-header">Adding Your Page</h2>
 
 			<div class="hatch-load-bar hatch-push-bottom middled hatch-push-top">
 				<span class="hatch-progress zero">0%</span>

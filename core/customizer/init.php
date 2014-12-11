@@ -51,7 +51,7 @@ class Hatch_Customizer {
 				'widgets', array(
 					'priority' => 10,
 					'title' => __('Hatch: Page Builder', HATCH_THEME_SLUG ),
-					'description' => __('Use this area to add widgets to your page, use the (Hatch) widgets for the Body section.', HATCH_THEME_SLUG )
+					'description' => $this->render_builder_page_dropdown() . __('Use this area to add widgets to your page, use the (Hatch) widgets for the Body section.', HATCH_THEME_SLUG ),
 				)
 			);
 		}
@@ -60,9 +60,6 @@ class Hatch_Customizer {
 		add_action( 'admin_enqueue_scripts', array( $this, 'admin_enqueue_scripts' ) , 50 );
 		add_action( 'admin_enqueue_scripts', array( $this, 'admin_print_styles' ) , 50 );
 		add_action( 'customize_controls_print_styles' , array( $this, 'admin_print_styles' ) );
-		
-		// Render dropdown of other builder pages
-		//add_action( 'customize_controls_print_footer_scripts', array($this, 'render_builder_page_dropdown') );
 
 	}
 
@@ -116,24 +113,30 @@ class Hatch_Customizer {
 	
 	public function render_builder_page_dropdown(){
 		
-		//Get builder pages
+		//Get builder pages.
 		$hatch_pages = hatch_get_builder_pages();
 		
-		// Loop the Builder Pages and create their sidebars
+		// Create builder pages dropdown.
 		if( $hatch_pages ){
+			ob_start();
+			$current_page_url = explode('&', explode('customize.php?url=', $_SERVER['REQUEST_URI'] )[1] )[0];
 			?>
 			<div class="hatch-customizer-pages-dropdown">
 				<select>
+					<option value="init"><?php _e('Builder Pages:', HATCH_THEME_SLUG) ?></option>
 					<?php
 					foreach($hatch_pages as $page) {
+						$edit_page_url = get_permalink( $page->ID );
 						?>
-						<option value="<?php echo $page->ID ?>"><?php echo $page->post_title ?></option>
+						<option value="<?php echo esc_attr($edit_page_url) ?>" <?php echo ( $edit_page_url == $current_page_url ) ? 'selected="selected"' : '' ; ?> ><?php echo $page->post_title ?></option>
 						<?php
 					}
 					?>
 				</select>
 			</div>
 			<?php
+			$drop_down = ob_get_clean();
+			return $drop_down;
 		}
 	}
 	

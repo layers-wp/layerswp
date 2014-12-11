@@ -1,5 +1,5 @@
 <?php $user = wp_get_current_user(); ?>
-<?php $builder_pages = new WP_Query( array( 'post_type' => 'page' , 'posts_per_page' => -1 , 'meta_key' => '_wp_page_template', 'meta_value' => HATCH_BUILDER_TEMPLATE ) ); ?>
+<?php $builder_pages = hatch_get_builder_pages(); ?>
 
 <section class="hatch-container hatch-content-large">
 
@@ -24,9 +24,8 @@
 					<h5 class="hatch-heading"><?php _e( 'Backed Up Pages:' , HATCH_THEME_SLUG ); ?></h5>
 				</div>
 				<ul class="hatch-feature-list">
-					<?php while( $builder_pages->have_posts() ){
-						$builder_pages->the_post(); ?>
-						<li data-page_id="<?php echo get_the_ID(); ?>" class="<?php echo ( in_array( get_the_ID() , array() ) ? 'tick' : 'cross' ); ?>">
+					<?php foreach( $builder_pages as $post ){ ?>
+						<li data-page_id="<?php echo $post->ID; ?>" class="<?php echo ( in_array( $post->ID , array() ) ? 'tick' : 'cross' ); ?>">
 							<?php echo the_title(); ?>
 						</li>
 					<?php } // foreach builder_page ?>

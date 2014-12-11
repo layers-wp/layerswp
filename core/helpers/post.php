@@ -183,9 +183,6 @@ if( !function_exists( 'hatch_backup_builder_pages' ) ) {
     add_action( 'wp_ajax_hatch_backup_builder_pages', 'hatch_backup_builder_pages' );
 } // hatch_builder_page_backup
 
-
-
-
 /**
 *  Adjust the site title for static front pages
 */
@@ -203,4 +200,24 @@ if( !function_exists( 'hatch_post_class' ) ) {
         return $classes;
     }
     add_filter( 'post_class' , 'hatch_post_class' );
+}
+
+/**
+ *  The following function creates a builder page
+ *
+ * @param varchar Page Title (optional)
+ * @return array Page ID
+ */
+if( !function_exists( 'hatch_create_builder_page' ) ) {
+    function hatch_create_builder_page( $page_title = 'Builder Page' ) {
+        $page['post_type']    = 'page';
+        $page['post_status']  = 'publish';
+        $page['post_title']   = $page_title;
+        $pageid = wp_insert_post ($page);
+        if ($pageid != 0) {
+            update_post_meta( $pageid , '_wp_page_template', HATCH_BUILDER_TEMPLATE );
+        }
+
+        return $pageid;
+    }
 }

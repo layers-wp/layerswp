@@ -33,9 +33,30 @@ jQuery(document).ready(function($){
         $title = $('#' + $id + '-title' ).val();
         $widget_data = $('#' + $id + '-widget_data' ).val();
 
-        var $page_data = {
+        $( '.hatch-modal' ).find( '.hatch-media-image' ).html( $that.find('img') );
+
+        $( '.hatch-modal' ).hide().removeClass( 'hatch-hide' ).fadeIn( 350 );
+        $( '#adminmenu' ).fadeOut();
+
+
+        $( '.hatch-progress' ).removeClass( 'zero complete' ).css('width' , 0);
+        var $load_bar_percent = 0;
+
+        $( '.hatch-progress' ).animate( {width: "100%"}, 4000 ).text( Math.round($load_bar_percent)+'%');
+
+        $load_interval = setInterval( function(){
+            if( $load_bar_percent < 100 ) {
+                $load_bar_percent = +$load_bar_percent+5;
+                $( '.hatch-progress' ).text( Math.round($load_bar_percent)+'%');
+            } else {
+                $( '.hatch-progress' ).text( 'Redirecting to the builder');
+                clearInterval( $load_interval );
+            }
+        }, 200 );
+
+        /*var $page_data = {
                 action: 'hatch_create_builder_page_from_preset',
-                post_title: $title,
+                post_title: NULL,
                 widget_data: $.parseJSON( $widget_data ),
                 nonce: hatch_widget_params.nonce
             };
@@ -44,9 +65,10 @@ jQuery(document).ready(function($){
             hatch_widget_params.ajaxurl,
             $page_data,
             function(data){
+                $( '.hatch-progress' ).text( 'Redirecting to the builder');
                 $results = $.parseJSON( data );
                 window.location.assign( $results.customizer_location );
             }
-        );
+        );*/
     });
 });

@@ -7,6 +7,24 @@ $hatch_migrator = new Hatch_Widget_Migrator(); ?>
 <?php // Get builder pages
 $find_builder_page = hatch_get_builder_pages(); ?>
 
+<section class="hatch-modal hatch-hide">
+	<div class="hatch-section-title hatch-large hatch-text-center hatch-content-massive hatch-push-top-massive hatch-push-bottom-massive">
+		<div class="hatch-container">
+			<h2 class="hatch-heading" id="hatch-options-header">Adding Your Page</h2>
+
+			<div class="hatch-media-image hatch-push-top">
+			</div>
+
+			<div class="hatch-load-bar hatch-push-bottom middled hatch-push-top">
+				<span class="hatch-progress zero">0%</span>
+			</div>
+
+			<p class="hatch-excerpt hatch-push-top">
+				we are busy adding your builder page, it won't take long. Once we're done you'll be re-directed to the visual customizer.
+			</p>
+		</div>
+	</div>
+</section>
 <section class="hatch-welcome">
 
 	<div class="hatch-page-title hatch-section-title hatch-large hatch-content-massive invert hatch-no-push-bottom">
@@ -108,7 +126,7 @@ $find_builder_page = hatch_get_builder_pages(); ?>
 				<div class="hatch-section-title">
 					<h3 class="hatch-heading">Get started by choosing a page template</h3>
 					<p class="hatch-excerpt">
-						Knowing where to begin with a site builder is never easy. 
+						Knowing where to begin with a site builder is never easy.
 						Choosing a preset template below will pre-populate your page with some Hatch widgets to help get started.
 					</p>
 				</div>
@@ -116,9 +134,9 @@ $find_builder_page = hatch_get_builder_pages(); ?>
 				<div class="hatch-row">
 					<?php foreach( $hatch_migrator->get_preset_layouts() as $template_key => $template ) { ?>
 						<div class="hatch-column hatch-span-4 hatch-media <?php echo ( isset( $template[ 'container_css' ] ) ?  $template[ 'container_css' ] : '' ); ?>">
-							
+
 							<label for="hatch-preset-layout-<?php echo $template_key; ?>" id="hatch-generate-preset-layout-<?php echo $template_key; ?>">
-								
+
 								<div class="hatch-media-image">
 									<?php echo $hatch_migrator->generate_preset_layout_screenshot( $template[ 'screenshot' ], $template[ 'screenshot_type' ] ); ?>
 								</div>
@@ -135,7 +153,7 @@ $find_builder_page = hatch_get_builder_pages(); ?>
 
 								<input id="hatch-preset-layout-<?php echo $template_key; ?>-title" type="hidden" value="<?php echo $template[ 'title' ]; ?>" />
 								<input id="hatch-preset-layout-<?php echo $template_key; ?>-widget_data" type="hidden" value="<?php echo esc_attr( $template[ 'json' ] ); ?>" />
-							
+
 							</label>
 
 						</div>

@@ -487,8 +487,16 @@ class Hatch_Widget_Migrator {
     public function create_builder_page_from_preset(){
         global $hatch_widgets;
 
+        $check_builder_pages = hatch_get_builder_pages();
+
+        if( 0 == count( $check_builder_pages ) ){
+            $post_title = _e( 'Home Page' );
+        } else {
+            $post_title = $_POST[ 'post_title' ];
+        }
+
         // Generate builder page and return page ID
-        $import_data[ 'post_id' ] = hatch_create_builder_page( $_POST[ 'post_title' ] );
+        $import_data[ 'post_id' ] = hatch_create_builder_page(  );
         $new_page = get_page( $import_data[ 'post_id' ] );
 
         // Register Builder Sidebar
@@ -500,9 +508,7 @@ class Hatch_Widget_Migrator {
         // Run data import
         $import_progress = $this->import( $import_data );
 
-        $check_builder_pages = hatch_get_builder_pages();
-
-        if( count( $check_builder_pages ) == 1 ){
+        if( count( $check_builder_pages ) == 0 ){
             update_option( 'page_on_front', $import_data[ 'post_id' ] );
             update_option( 'show_on_front', 'page' );
         }

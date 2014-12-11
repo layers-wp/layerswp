@@ -128,12 +128,6 @@ $find_builder_page = hatch_get_builder_pages(); ?>
 									<?php echo $template[ 'title' ]; ?>
 								</h4>
 
-								<?php if( isset( $template[ 'description' ] ) ) { ?>
-									<p class="hatch-excerpt">
-										<?php echo $template[ 'description' ]; ?>
-									</p>
-								<?php } ?>
-
 								<input id="hatch-preset-layout-<?php echo $template_key; ?>-title" type="hidden" value="<?php echo $template[ 'title' ]; ?>" />
 								<input id="hatch-preset-layout-<?php echo $template_key; ?>-widget_data" type="hidden" value="<?php echo esc_attr( $template[ 'json' ] ); ?>" />
 

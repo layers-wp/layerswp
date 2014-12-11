@@ -214,7 +214,7 @@ if( !function_exists( 'hatch_create_builder_page' ) ) {
         $page['post_status']  = 'publish';
         $page['post_title']   = $page_title;
         $pageid = wp_insert_post ($page);
-        if ($pageid != 0) {
+        if ( 0 != $pageid ) {
             update_post_meta( $pageid , '_wp_page_template', HATCH_BUILDER_TEMPLATE );
         }
 
@@ -240,7 +240,7 @@ if( ! function_exists( 'hatch_get_builder_pages' ) ) {
             'meta_value' => HATCH_BUILDER_TEMPLATE,
             'posts_per_page' => -1
         ));
-        
+
         return $hatch_builder_pages;
     }
 }
@@ -254,17 +254,20 @@ if( ! function_exists( 'hatch_get_builder_pages' ) ) {
 if( ! function_exists( 'hatch_is_builder_page' ) ) {
     function hatch_is_builder_page( $post_id = false ){
         global $post;
-        
+
+        // Be sure to set a post id for use
         if ( !$post_id && isset( $post ) && isset( $post->ID ) ) {
             $post_id = $post->ID;
         }
-        
+
+        // If there is a post_id, check for the builder page
         if ( isset( $post_id ) ) {
-            if( get_post_meta( $post_id, '_wp_page_template', true ) == HATCH_BUILDER_TEMPLATE ) {
+            if( HATCH_BUILDER_TEMPLATE == get_post_meta( $post_id, '_wp_page_template', true ) ) {
                 return true;
             }
         }
-        
+
+        // Fallback
         return false;
     }
 }
@@ -277,12 +280,11 @@ if( ! function_exists( 'hatch_is_builder_page' ) ) {
  */
 
 if ( ! function_exists( 'hatch_filter_admin_pages' ) ) {
-    add_filter( 'pre_get_posts', 'hatch_filter_admin_pages' );
-    
+
     function hatch_filter_admin_pages() {
         global $typenow;
-        
-        if ( 'page' == $typenow && isset($_GET['filter']) && $_GET['filter'] == 'hatch' ) {
+
+        if ( 'page' == $typenow && isset( $_GET['filter'] ) && 'hatch' == $_GET['filter'] ) {
             set_query_var(
                 'meta_query',
                 array(
@@ -295,19 +297,21 @@ if ( ! function_exists( 'hatch_filter_admin_pages' ) ) {
             );
         }
     }
+
+    add_filter( 'pre_get_posts', 'hatch_filter_admin_pages' );
 }
 
 /**
  * Add builder edit button to the admin bar
  *
- * @return
+ * @return null Nothing is returned, the Edit button is added the admin toolbar
 */
 
 if( ! function_exists( 'hatch_add_builder_edit_button' ) ) {
-    add_action( 'admin_bar_menu', 'hatch_add_builder_edit_button', 90 );
-    
+
     function hatch_add_builder_edit_button(){
         global $wp_admin_bar, $post;
+
         if( is_page() && hatch_is_builder_page() ){
             $current_url = ( is_ssl() ? 'https://' : 'http://' ) . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
             $args = array(
@@ -319,13 +323,12 @@ if( ! function_exists( 'hatch_add_builder_edit_button' ) ) {
             $wp_admin_bar->add_node( $args );
         }
     }
+
+    add_action( 'admin_bar_menu', 'hatch_add_builder_edit_button', 90 );
 }
 
 // Output custom css to add Icon to admin bar edit button.
 if( ! function_exists( 'hatch_add_builder_edit_button_css' ) ) {
-    add_action('admin_head', 'hatch_add_builder_edit_button_css');
-    add_action('wp_head', 'hatch_add_builder_edit_button_css');
-    
     function hatch_add_builder_edit_button_css() {
         echo '<style>
         #wp-admin-bar-my_page .ab-icon:before{
@@ -334,4 +337,6 @@ if( ! function_exists( 'hatch_add_builder_edit_button_css' ) ) {
         }
         </style>';
     }
+    add_action('admin_head', 'hatch_add_builder_edit_button_css');
+    add_action('wp_head', 'hatch_add_builder_edit_button_css');
 }

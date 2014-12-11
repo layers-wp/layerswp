@@ -49,7 +49,7 @@ jQuery(document).ready(function($){
                 $load_bar_percent = +$load_bar_percent+5;
                 $( '.hatch-progress' ).text( Math.round($load_bar_percent)+'%');
             } else {
-                $( '.hatch-progress' ).text( 'Redirecting to the builder');
+                $( '.hatch-progress' ).text( 'Redirecting to Visual Customizer');
                 clearInterval( $load_interval );
             }
         }, 400 );

@@ -128,12 +128,6 @@ $find_builder_page = hatch_get_builder_pages(); ?>
 									<?php echo $template[ 'title' ]; ?>
 								</h4>
 
-								<?php if( isset( $template[ 'description' ] ) ) { ?>
-									<p class="hatch-excerpt">
-										<?php echo $template[ 'description' ]; ?>
-									</p>
-								<?php } ?>
-
 								<input id="hatch-preset-layout-<?php echo $template_key; ?>-title" type="hidden" value="<?php echo $template[ 'title' ]; ?>" />
 								<input id="hatch-preset-layout-<?php echo $template_key; ?>-widget_data" type="hidden" value="<?php echo esc_attr( $template[ 'json' ] ); ?>" />
 
@@ -157,24 +151,20 @@ $find_builder_page = hatch_get_builder_pages(); ?>
 </section>
 
 <section class="hatch-modal hatch-hide">
-	<div class="hatch-section-title hatch-large hatch-content-massive hatch-push-top-massive hatch-push-bottom-massive">
-		<div class="hatch-container hatch-column hatch-span-8 middled ">
-			<div class="hatch-column hatch-span-4">
-				<div class="hatch-media-image">
-				</div>
+	<div class="hatch-vertical-center">
+		<div class="hatch-section-title hatch-text-center hatch-container">
+
+			<h2 class="hatch-heading" id="hatch-options-header">
+				Creating Your Page
+			</h2>
+			<p class="hatch-excerpt hatch-push-bottom">
+				We're busy importing dummy content, placing some widgets and adding some content, promise it won't take long. Once we're done, you'll be redirected to
+				the Visual Customizer so that you can start building your page.
+			</p>
+			<div class="hatch-load-bar">
+				<span class="hatch-progress zero">0%</span>
 			</div>
-			<div class="hatch-column hatch-span-6  hatch-last">
-				<h2 class="hatch-heading hatch-push-top" id="hatch-options-header">Adding Your Page</h2>
 
-				<p class="hatch-excerpt hatch-push-top">
-					We are busy adding your builder page, it won't take long. Once we're done you'll be re-directed to the visual customizer.
-				</p>
-
-				<div class="hatch-load-bar hatch-push-bottom hatch-push-top">
-					<span class="hatch-progress zero">0%</span>
-				</div>
-
-			</div>
 		</div>
 	</div>
 </section>

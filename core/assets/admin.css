@@ -203,7 +203,6 @@ div[id*='hatch-widget'] .spinner{
 .hatch-well{
     background: #fff;
 }
-
 .hatch-modal{
    position: fixed;
     width: 100%;
@@ -214,6 +213,14 @@ div[id*='hatch-widget'] .spinner{
     background: white;
     height: 100%;
 }
+.hatch-vertical-center{
+    position: absolute;
+    width: 100%;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+
 
 /*---------------------------*/
 /*- ICONS -------------------*/
@@ -1232,7 +1239,7 @@ input[type=text].hatch-color-selector.wp-color-picker{
 /*- MEDIA -------------------*/
 .hatch-media{overflow: hidden; margin-bottom: 20px; display: block;}
 
-.hatch-media-image{text-align: center; margin-right: auto; margin-left: auto;}
+.hatch-media-image{text-align: center; margin-right: auto; margin-left: auto; max-height: 450px; overflow: hidden; border: 1px solid #ddd;}
 .hatch-media-image img{display: block; margin: auto; max-width: 100%; height: auto;}
 .hatch-media-image.hatch-small img{max-width: 64px;}
 
@@ -1651,10 +1658,10 @@ input[type=radio]:checked + .hatch-settings-icon span{
     /*-----------------------*/
     /*- BACKUP PAGE ---------*/
     .hatch-load-bar{
-        border: 1px solid #ccc;
-        border-radius: 3px;
+        border: 1px solid #0D5F83;
         padding: 0px;
         width: 50%;
+        margin: auto; 
     }
     .hatch-load-bar .hatch-progress{
         background-color: #2EA2CC;
@@ -1689,7 +1696,8 @@ input[type=radio]:checked + .hatch-settings-icon span{
     margin: 0 0 60px;
     border-bottom: 2px solid #ddd;
 }
-
 ul#adminmenu a.wp-has-current-submenu:after, ul#adminmenu > li.current > a.current:after{
     border-right-color: #009DF3;
 }
+
+

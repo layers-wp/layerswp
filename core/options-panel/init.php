@@ -104,17 +104,21 @@ function hatch_options_panel_menu(){
 	$submenu[HATCH_THEME_SLUG . '-welcome'][0][0] = 'Welcome';
 	
 	// Hatch Pages
-	
-	// Move backup to the next menu position, to make room
-	// @TODO: Revisit this as there could be a cleaner method
-	$submenu[HATCH_THEME_SLUG . '-welcome'][2] = $submenu[HATCH_THEME_SLUG . '-welcome'][1];
-	
-	// Add submenu item.
-	$submenu[HATCH_THEME_SLUG . '-welcome'][1] = array(
-		__( 'Hatch Pages', HATCH_THEME_SLUG ),
-		'manage_options',
-		admin_url( "edit.php?post_type=page&filter=hatch" )
-	);
+	// Only show if there are actually Hatch pages.
+	if( hatch_get_builder_pages() ){
+		
+		// Move backup to the next menu position, to make room
+		// @TODO: Revisit this as there could be a cleaner method
+		$submenu[HATCH_THEME_SLUG . '-welcome'][2] = $submenu[HATCH_THEME_SLUG . '-welcome'][1];
+		
+		// Add submenu item.
+		$submenu[HATCH_THEME_SLUG . '-welcome'][1] = array(
+			__( 'Hatch Pages', HATCH_THEME_SLUG ),
+			'manage_options',
+			admin_url( "edit.php?post_type=page&filter=hatch" )
+		);
+		
+	}
 	
 }
 
@@ -127,32 +131,4 @@ add_action( 'admin_menu' , 'hatch_options_panel_menu' , 50 );
 function hatch_options_panel_ui(){
 	$hatch_options_panel = new Hatch_Options_Panel();
 	$hatch_options_panel->init();
-}
-
-/**
- * Filter Hatch Pages in wp-admin Pages
- *
- * @TODO: think about moving this function to it own helpers/admin.php,
- * especially if more work is to be done on admin list.
- */
-
-if ( ! function_exists( 'hatch_filter_admin_pages' ) ) {
-	add_filter( 'pre_get_posts', 'hatch_filter_admin_pages' );
-	
-	function hatch_filter_admin_pages() {
-		global $typenow;
-		
-		if ( 'page' == $typenow && isset($_GET['filter']) && $_GET['filter'] == 'hatch' ) {
-			set_query_var(
-				'meta_query',
-				array(
-					'relation' => 'AND',
-					array(
-						'key' => '_wp_page_template',
-						'value' => HATCH_BUILDER_TEMPLATE,
-					)
-				)
-			);
-		}
-	}
 }

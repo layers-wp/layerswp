@@ -58,7 +58,7 @@ if( !class_exists( 'Hatch_Module_Widget' ) ) {
 				'excerpt' => 'Give us a brief description of the service that you are promoting. Try keep it short so that it is easy for people to scan your page.',
 				'width' => '4',
 				'design' => array(
-					'imagealign' => 'image-left',
+					'imagealign' => 'image-top',
 					'background' => NULL,
 					'fonts' => array(
 						'align' => 'text-left',

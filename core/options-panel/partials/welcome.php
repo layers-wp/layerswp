@@ -7,24 +7,6 @@ $hatch_migrator = new Hatch_Widget_Migrator(); ?>
 <?php // Get builder pages
 $find_builder_page = hatch_get_builder_pages(); ?>
 
-<section class="hatch-modal hatch-hide">
-	<div class="hatch-section-title hatch-large hatch-text-center hatch-content-massive hatch-push-top-massive hatch-push-bottom-massive">
-		<div class="hatch-container">
-			<div class="hatch-media-image">
-			</div>
-
-			<h2 class="hatch-heading hatch-push-top" id="hatch-options-header">Adding Your Page</h2>
-
-			<div class="hatch-load-bar hatch-push-bottom middled hatch-push-top">
-				<span class="hatch-progress zero">0%</span>
-			</div>
-
-			<p class="hatch-excerpt hatch-push-top">
-				we are busy adding your builder page, it won't take long. Once we're done you'll be re-directed to the visual customizer.
-			</p>
-		</div>
-	</div>
-</section>
 <section class="hatch-welcome">
 
 	<div class="hatch-page-title hatch-section-title hatch-large hatch-content-massive invert hatch-no-push-bottom">
@@ -57,7 +39,7 @@ $find_builder_page = hatch_get_builder_pages(); ?>
 								Hatch requires you run the latest version of WordPress, please make sure you're up to date!
 							</p>
 							<div class="hatch-btn-group">
-								<a class="hatch-button btn-primary" href="">Update WordPress</a>
+								<a class="hatch-button btn-primary" href="<?php echo admin_url( '/update-core.php' ); ?>" target="_blank">Update WordPress</a>
 							</div>
 						</div>
 					</div>
@@ -71,7 +53,7 @@ $find_builder_page = hatch_get_builder_pages(); ?>
 								Jetpack is required for logo and portfolio functionality to work in this version of Hatch.
 							</p>
 							<div class="hatch-btn-group">
-								<a class="hatch-button btn-primary" href="">Install Jetpack</a>
+								<a class="hatch-button btn-primary" href="<?php echo admin_url( '/plugin-install.php?tab=search&s=Jetpack'); ?>" target="_blank">Install Jetpack</a>
 							</div>
 						</div>
 					</div>
@@ -85,7 +67,7 @@ $find_builder_page = hatch_get_builder_pages(); ?>
 								If you'd like to test out eCommerce then you'll need to install the Hatch WooCommerce Extension.
 							</p>
 							<div class="hatch-btn-group">
-								<a class="hatch-button btn-primary" href="">Install WooCommerce for Hatch</a>
+								<a class="hatch-button btn-primary" href="<?php echo 'http://cdn.oboxsites.com/hatch/hatch-woocommerce.zip?ver=' . rand(0 , 100); ?>" target="_blank">Install WooCommerce for Hatch</a>
 							</div>
 						</div>
 					</div>
@@ -117,6 +99,7 @@ $find_builder_page = hatch_get_builder_pages(); ?>
 							<li class="cross">Switch fonts</li>
 							<li class="cross">Edit colors</li>
 							<li class="cross">Edit the blog layout</li>
+							<li class="cross">Automatically update Hatch</li>
 						</ul>
 					</div>
 				</div>
@@ -171,6 +154,29 @@ $find_builder_page = hatch_get_builder_pages(); ?>
 	</footer>
 
 
+</section>
+
+<section class="hatch-modal hatch-hide">
+	<div class="hatch-section-title hatch-large hatch-content-massive hatch-push-top-massive hatch-push-bottom-massive">
+		<div class="hatch-container hatch-column hatch-span-8 middled ">
+			<div class="hatch-column hatch-span-4">
+				<div class="hatch-media-image">
+				</div>
+			</div>
+			<div class="hatch-column hatch-span-6  hatch-last">
+				<h2 class="hatch-heading hatch-push-top" id="hatch-options-header">Adding Your Page</h2>
+
+				<p class="hatch-excerpt hatch-push-top">
+					We are busy adding your builder page, it won't take long. Once we're done you'll be re-directed to the visual customizer.
+				</p>
+
+				<div class="hatch-load-bar hatch-push-bottom hatch-push-top">
+					<span class="hatch-progress zero">0%</span>
+				</div>
+
+			</div>
+		</div>
+	</div>
 </section>
 
 <?php $this->footer(); ?>

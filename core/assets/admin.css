@@ -383,6 +383,7 @@ div[id*='hatch-widget'] .spinner{
     /*- COLUMN TWEAKERS -----*/
     .no-gutter{margin-right: 0;}
     .middled, .row .column.middled{float: none; margin: auto;}
+    .hatch-last{ margin-right: 0; }
 
     .hatch-drag{
         display: block;

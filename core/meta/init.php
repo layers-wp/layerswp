@@ -47,7 +47,7 @@ class Hatch_Custom_Meta {
 		// Page Builder Button
 		add_action( 'edit_form_after_title', array( $this , 'page_builder_button' ) );
 		add_action( 'wp_ajax_update_page_builder_meta' , array( $this , 'update_page_builder_meta' ) );
-		add_filter( 'hatch_pointer_settings' , array( $this , 'page_builder_button_pointer' ) );
+		// add_filter( 'hatch_pointer_settings' , array( $this , 'page_builder_button_pointer' ) );
 		add_action( 'page_row_actions' , array( $this , 'inline_page_builder_button' ), 10, 2 );
 
 		// Custom Fields

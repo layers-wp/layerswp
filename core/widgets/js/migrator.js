@@ -42,7 +42,7 @@ jQuery(document).ready(function($){
         $( '.hatch-progress' ).removeClass( 'zero complete' ).css('width' , 0);
         var $load_bar_percent = 0;
 
-        $( '.hatch-progress' ).animate( {width: "100%"}, 4000 ).text( Math.round($load_bar_percent)+'%');
+        $( '.hatch-progress' ).animate( {width: "100%"}, 8000 ).text( Math.round($load_bar_percent)+'%');
 
         $load_interval = setInterval( function(){
             if( $load_bar_percent < 100 ) {
@@ -52,16 +52,16 @@ jQuery(document).ready(function($){
                 $( '.hatch-progress' ).text( 'Redirecting to the builder');
                 clearInterval( $load_interval );
             }
-        }, 200 );
+        }, 400 );
 
         var $page_data = {
                 action: 'hatch_create_builder_page_from_preset',
-                post_title: NULL,
+                post_title: $title,
                 widget_data: $.parseJSON( $widget_data ),
                 nonce: hatch_widget_params.nonce
             };
 
-        jQuery.post(
+        /*jQuery.post(
             hatch_widget_params.ajaxurl,
             $page_data,
             function(data){
@@ -69,6 +69,6 @@ jQuery(document).ready(function($){
                 $results = $.parseJSON( data );
                 window.location.assign( $results.customizer_location );
             }
-        );
+        );*/
     });
 });

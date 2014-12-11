@@ -14,7 +14,7 @@
 if ( defined( 'SCRIPT_DEBUG' ) && TRUE == SCRIPT_DEBUG ) {
 	define( 'HATCH_VERSION', rand( 0 , 100 ) );
 } else {
-	define( 'HATCH_VERSION', '1.0' );
+	define( 'HATCH_VERSION', 'beta-1.1' );
 }
 
 define( 'HATCH_TEMPLATE_URI' , get_template_directory_uri() );

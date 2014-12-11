@@ -49,7 +49,7 @@ jQuery(document).ready(function($){
                 $load_bar_percent = +$load_bar_percent+5;
                 $( '.hatch-progress' ).text( Math.round($load_bar_percent)+'%');
             } else {
-                $( '.hatch-progress' ).text( 'Redirecting to Visual Customizer');
+                $( '.hatch-progress' ).text( 'Almost done!');
                 clearInterval( $load_interval );
             }
         }, 400 );
@@ -61,14 +61,20 @@ jQuery(document).ready(function($){
                 nonce: hatch_widget_params.nonce
             };
 
-        /*jQuery.post(
+        jQuery.post(
             hatch_widget_params.ajaxurl,
             $page_data,
             function(data){
-                $( '.hatch-progress' ).text( 'Redirecting to the builder');
+
+                clearInterval( $load_interval );
+                $( '.hatch-progress' ).stop().css('width', '100%');
+                $( '.hatch-progress' ).text( 'Redirecting to Visual Customizer');
+
                 $results = $.parseJSON( data );
-                window.location.assign( $results.customizer_location );
+                setTimeout( function(){
+                    window.location.assign( $results.customizer_location );
+                }, 500 );
             }
-        );*/
+        );
     });
 });

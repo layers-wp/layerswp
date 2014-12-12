@@ -58,7 +58,7 @@ if( !class_exists( 'Hatch_Module_Widget' ) ) {
 				'excerpt' => 'Give us a brief description of the service that you are promoting. Try keep it short so that it is easy for people to scan your page.',
 				'width' => '4',
 				'design' => array(
-					'imagealign' => 'image-left',
+					'imagealign' => 'image-top',
 					'background' => NULL,
 					'fonts' => array(
 						'align' => 'text-left',
@@ -122,6 +122,7 @@ if( !class_exists( 'Hatch_Module_Widget' ) ) {
 							if( !empty( $module['design']['fonts'][ 'color' ] ) ) $this->widget_styles( $widget_id . '-' . $key , 'color', array( 'selectors' => array( 'h5.heading a' , 'div.excerpt' , 'div.excerpt p' ) , 'color' => $module['design']['fonts'][ 'color' ] ) );
 							if( !empty( $module['design']['fonts'][ 'shadow' ] ) ) $this->widget_styles( $widget_id . '-' . $key , 'text-shadow', array( 'selectors' => array( 'h5.heading a' , 'div.excerpt' , 'div.excerpt p' )  , 'text-shadow' => $module['design']['fonts'][ 'shadow' ] ) );
 
+							if( !isset( $module[ 'width' ] ) ) $module[ 'width' ] = $this->module_defaults[ 'width' ];
 							// Add the correct span class
 							$span_class = 'span-' . $module[ 'width' ];
 

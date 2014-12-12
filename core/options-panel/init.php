@@ -74,7 +74,9 @@ class Hatch_Options_Panel {
  */
 
 function hatch_options_panel_menu(){
-
+	
+	global $submenu, $menu;
+	
 	// Welcome Page
 	add_menu_page(
 			HATCH_THEME_TITLE,
@@ -96,6 +98,28 @@ function hatch_options_panel_menu(){
 			HATCH_THEME_SLUG . '-backup',
 			'hatch_options_panel_ui'
 	);
+	
+	// This modifies the Hatch submenu item - must be done here as $submenu
+	// is only created if $submenu items are added using add_submenu_page
+	$submenu[HATCH_THEME_SLUG . '-welcome'][0][0] = 'Welcome';
+	
+	// Hatch Pages
+	// Only show if there are actually Hatch pages.
+	if( hatch_get_builder_pages() ){
+		
+		// Move backup to the next menu position, to make room
+		// @TODO: Revisit this as there could be a cleaner method
+		$submenu[HATCH_THEME_SLUG . '-welcome'][2] = $submenu[HATCH_THEME_SLUG . '-welcome'][1];
+		
+		// Add submenu item.
+		$submenu[HATCH_THEME_SLUG . '-welcome'][1] = array(
+			__( 'Hatch Pages', HATCH_THEME_SLUG ),
+			'manage_options',
+			admin_url( "edit.php?post_type=page&filter=hatch" )
+		);
+		
+	}
+	
 }
 
 add_action( 'admin_menu' , 'hatch_options_panel_menu' , 50 );

@@ -14,7 +14,7 @@
 if ( defined( 'SCRIPT_DEBUG' ) && TRUE == SCRIPT_DEBUG ) {
 	define( 'HATCH_VERSION', rand( 0 , 100 ) );
 } else {
-	define( 'HATCH_VERSION', '1.0' );
+	define( 'HATCH_VERSION', 'beta-1.1' );
 }
 
 define( 'HATCH_TEMPLATE_URI' , get_template_directory_uri() );
@@ -166,16 +166,7 @@ if( ! function_exists( 'hatch_setup' ) ) {
 		*/
 		if( isset($_GET["activated"]) && $pagenow = "themes.php") {
 			update_option( 'hatch_welcome' , 1);
-			$find_builder_page = new WP_Query( array( 'post_type' => 'page' , 'meta_key' => '_wp_page_template', 'meta_value' => HATCH_BUILDER_TEMPLATE ) );
-			if( false == $find_builder_page->have_posts() ){
-				$page['post_type']    = 'page';
-				$page['post_status']  = 'publish';
-				$page['post_title']   = 'Builder Page';
-				$pageid = wp_insert_post ($page);
-				if ($pageid != 0) {
-					update_post_meta( $pageid , '_wp_page_template', HATCH_BUILDER_TEMPLATE );
-				}
-			}
+
 			wp_redirect(admin_url('admin.php?page=' . HATCH_THEME_SLUG . '-welcome'));
 		}
 

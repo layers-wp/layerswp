@@ -51,7 +51,7 @@ class Hatch_Customizer {
 				'widgets', array(
 					'priority' => 10,
 					'title' => __('Hatch: Page Builder', HATCH_THEME_SLUG ),
-					'description' => __('Use this area to add widgets to your page, use the (Hatch) widgets for the Body section.', HATCH_THEME_SLUG )
+					'description' => $this->render_builder_page_dropdown() . __('Use this area to add widgets to your page, use the (Hatch) widgets for the Body section.', HATCH_THEME_SLUG ),
 				)
 			);
 		}
@@ -106,6 +106,57 @@ class Hatch_Customizer {
 		);
 		wp_enqueue_style( HATCH_THEME_SLUG . '-admin-customizer' );
 	}
+
+	/**
+	*  Render the dropdown of builder pages in Customizer interface.
+	*/
+
+	public function render_builder_page_dropdown(){
+		global $wp_customize;
+
+		if(!$wp_customize) return;
+
+		//Get builder pages.
+		$hatch_pages = hatch_get_builder_pages();
+
+		// Create builder pages dropdown.
+		if( $hatch_pages ){
+			ob_start();
+
+			// Get the base of the customizer URL
+			$customizer_url = explode( 'customize.php?', $_SERVER['REQUEST_URI'] );
+
+			// Check if there is a query string
+			if( !isset( $customizer_url[1] ) ) return;
+
+			// Parse the URL
+			parse_str( $customizer_url[1], $customizer_url_portions );
+
+			// Get the page url
+			if( !isset( $customizer_url_portions[ 'url' ] ) ) return;
+
+			// Set the current page url
+			$current_page_url = $customizer_url_portions[ 'url' ]; ?>
+			<div class="hatch-customizer-pages-dropdown">
+				<select>
+					<option value="init"><?php _e( 'Builder Pages:', HATCH_THEME_SLUG ) ?></option>
+					<?php foreach( $hatch_pages as $page ) { ?>
+						<?php // Page URL
+						$edit_page_url = get_permalink( $page->ID ); ?>
+
+						<option value="<?php echo esc_attr( $edit_page_url ); ?>" <?php echo ( $edit_page_url == $current_page_url ) ? 'selected="selected"' : '' ; ?> ><?php echo $page->post_title ?></option>
+					<?php } ?>
+				</select>
+			</div>
+			<?php
+			// Get the Drop Down HTML
+			$drop_down = ob_get_clean();
+
+			// Return the Drop Down
+			return $drop_down;
+		}
+	}
+
 }
 
 /**

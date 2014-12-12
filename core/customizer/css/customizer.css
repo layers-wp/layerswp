@@ -1,1 +1,4 @@
-/* Customizer Specifif CSS */
+/* Customizer Specific CSS */
+.hatch-customizer-pages-dropdown { border-bottom: 1px solid rgb(241, 241, 241); padding: 8px 0 18px; margin: 0 0 12px 0; }
+.hatch-customizer-pages-dropdown label {  }
+.hatch-customizer-pages-dropdown select { width: 100%; /* margin: 12px 0 3px; */}

@@ -1,96 +1,172 @@
-<?php $user = wp_get_current_user(); ?>
-<?php $find_builder_page = new WP_Query( array( 'post_type' => 'page' , 'meta_key' => '_wp_page_template', 'meta_value' => HATCH_BUILDER_TEMPLATE ) ); ?>
-<?php while( $find_builder_page->have_posts() ) {
-	$find_builder_page->the_post();
-	$page_id = get_the_ID();
-	break;
-} ?>
-<section class="hatch-container hatch-content-large">
+<?php // Fetch current user information
+$user = wp_get_current_user(); ?>
 
-	<div class="hatch-section-title hatch-large invert hatch-content-massive" style="background: url(<?php echo get_template_directory_uri(); ?>/images/beta-zero.jpg) top repeat;">
+<?php // Instantiate the widget migrator
+$hatch_migrator = new Hatch_Widget_Migrator(); ?>
+
+<?php // Get builder pages
+$find_builder_page = hatch_get_builder_pages(); ?>
+
+<section class="hatch-welcome">
+
+	<div class="hatch-page-title hatch-section-title hatch-large hatch-content-massive invert hatch-no-push-bottom">
 		<div class="hatch-container">
-			<h2 class="hatch-heading" id="hatch-options-header">Welcome <?php echo ( ( '' == $user->user_firstname ) ? $user->display_name : $user->user_firstname ); ?>, thank you for beta testing Hatch!</h2>
+			<h2 class="hatch-heading" id="hatch-options-header">Thank you for installing Hatch!</h2>
 			<p class="hatch-excerpt">
-				Hatch is a powerful site builder that gives you the tools to create not only the site you want but the site you need.
-				The aim of Hatch is to turn the task of making a website into a joyful and easy experience.
+				Hatch is a site builder with a lightweight design interface built into the WordPress Visual Customizer.
 			</p>
-			<a href="#start" class="hatch-button btn-massive btn-primary">Get Started</a>
 		</div>
 	</div>
 
-	<div class="hatch-row hatch-well hatch-content-large hatch-push-bottom">
-		<div class="hatch-section-title">
-			<h4 class="hatch-heading">What you can and can't do</h4>
-			<p class="hatch-excerpt">
-				We are calling this release 'Beta Zero,' as it's just grown up to be out of private Alpha.
-				However, it's not yet fully functional. We have high ambitions and much to add, but for now we have set some limits:
-			</p>
-		</div>
-		<div class="hatch-row">
-			<div class="hatch-column hatch-span-6">
-				<div class="hatch-section-title hatch-tiny">
-					<h5 class="hatch-heading">What you can do:</h5>
+	<div class="hatch-row hatch-well hatch-content-massive">
+		<div class="hatch-container">
+
+			<div class="hatch-row hatch-divide">
+				<div class="hatch-section-title">
+					<h4 class="hatch-heading">What you need</h4>
+					<p class="hatch-excerpt">
+						In order to get going you'll need to make sure you have the following:
+					</p>
 				</div>
-				<ul class="hatch-feature-list">
-					<li class="tick">Create a page builder template</li>
-					<li class="tick">Mess around with the design bar</li>
-					<li class="tick">Configure: Slider widget</li>
-					<li class="tick">Configure: Modules widget</li>
-					<li class="tick">Configure: Posts widget</li>
-					<li class="tick">Configure: Portfolio widget</li>
-					<li class="tick">Configure: Contact widget</li>
-				</ul>
-			</div>
-			<div class="hatch-column hatch-span-6">
-				<div class="hatch-section-title hatch-tiny">
-					<h5 class="hatch-heading">What you can't do:</h5>
+				<div class="hatch-row">
+					<div class="hatch-column hatch-span-4 hatch-media hatch-t-center">
+						<div class="hatch-media-image">
+							<img src="<?php echo get_template_directory_uri() . '/core/assets/images/wordpress-4.png'; ?>" />
+						</div>
+						<div class="hatch-media-body">
+							<h4 class="hatch-heading">WordPress 4.0</h4>
+							<p class="hatch-excerpt">
+								Hatch requires you run the latest version of WordPress, please make sure you're up to date!
+							</p>
+							<div class="hatch-btn-group">
+								<a class="hatch-button btn-primary" href="<?php echo admin_url( '/update-core.php' ); ?>" target="_blank">Update WordPress</a>
+							</div>
+						</div>
+					</div>
+					<div class="hatch-column hatch-span-4 hatch-media hatch-t-center">
+						<div class="hatch-media-image">
+							<img src="<?php echo get_template_directory_uri() . '/core/assets/images/jetpack.png'; ?>" />
+						</div>
+						<div class="hatch-media-body">
+							<h4 class="hatch-heading">Jetpack for WordPress</h4>
+							<p class="hatch-excerpt">
+								Jetpack is required for logo and portfolio functionality to work in this version of Hatch.
+							</p>
+							<div class="hatch-btn-group">
+								<a class="hatch-button btn-primary" href="<?php echo admin_url( '/plugin-install.php?tab=search&s=Jetpack'); ?>" target="_blank">Install Jetpack</a>
+							</div>
+						</div>
+					</div>
+					<div class="hatch-column hatch-span-4 hatch-media hatch-t-center">
+						<div class="hatch-media-image">
+							<img src="<?php echo get_template_directory_uri() . '/core/assets/images/hatch-woo.png'; ?>" />
+						</div>
+						<div class="hatch-media-body">
+							<h4 class="hatch-heading">Hatch WooCommerce Extension</h4>
+							<p class="hatch-excerpt">
+								If you'd like to test out eCommerce then you'll need to install the Hatch WooCommerce Extension.
+							</p>
+							<div class="hatch-btn-group">
+								<a class="hatch-button btn-primary" href="<?php echo 'http://cdn.oboxsites.com/hatch/hatch-woocommerce.zip?ver=' . rand(0 , 100); ?>" target="_blank">Install WooCommerce for Hatch</a>
+							</div>
+						</div>
+					</div>
 				</div>
-				<ul class="hatch-feature-list">
-					<li class="cross">Change headers</li>
-					<li class="cross">Change footers</li>
-					<li class="cross">Switch fonts</li>
-					<li class="cross">Edit colors</li>
-					<li class="cross">Edit the blog layout</li>
-					<li class="cross">Use WooCommerce</li>
-				</ul>
 			</div>
+			<div class="hatch-row hatch-divide">
+				<div class="hatch-section-title">
+					<h4 class="hatch-heading">What you can and can't do</h4>
+					<p class="hatch-excerpt">
+						Here's a breakdown of what works and what may cause you issues during testing:
+					</p>
+				</div>
+				<div class="hatch-row">
+					<div class="hatch-column hatch-span-6 hatch-no-push-bottom">
+						<ul class="hatch-feature-list">
+							<li class="tick">Create a page builder template</li>
+							<li class="tick">Mess around with the design bar</li>
+							<li class="tick">Choose between 4 different Header layouts</li>
+							<li class="tick">Configure: Slider widget</li>
+							<li class="tick">Configure: Content widget</li>
+							<li class="tick">Configure: Posts widget</li>
+							<li class="tick">Configure: Portfolio widget</li>
+							<li class="tick">Configure: Contact widget</li>
+						</ul>
+					</div>
+					<div class="hatch-column hatch-span-6 hatch-no-push-bottom">
+						<ul class="hatch-feature-list">
+							<li class="cross">Change footer layouts</li>
+							<li class="cross">Switch fonts</li>
+							<li class="cross">Edit colors</li>
+							<li class="cross">Edit the blog layout</li>
+							<li class="cross">Automatically update Hatch</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+
+			<div class="hatch-row hatch-divide">
+				<div class="hatch-section-title">
+					<h3 class="hatch-heading">Get started by choosing a page template</h3>
+					<p class="hatch-excerpt">
+						Knowing where to begin with a site builder is never easy.
+						Choosing a preset template below will pre-populate your page with some Hatch widgets to help get started.
+					</p>
+				</div>
+
+				<div class="hatch-row">
+					<?php foreach( $hatch_migrator->get_preset_layouts() as $template_key => $template ) { ?>
+						<div class="hatch-column hatch-span-4 hatch-media <?php echo ( isset( $template[ 'container_css' ] ) ?  $template[ 'container_css' ] : '' ); ?>">
+
+							<label for="hatch-preset-layout-<?php echo $template_key; ?>" id="hatch-generate-preset-layout-<?php echo $template_key; ?>">
+
+								<div class="hatch-media-image">
+									<?php echo $hatch_migrator->generate_preset_layout_screenshot( $template[ 'screenshot' ], $template[ 'screenshot_type' ] ); ?>
+								</div>
+
+								<h4 class="hatch-heading">
+									<?php echo $template[ 'title' ]; ?>
+								</h4>
+
+								<input id="hatch-preset-layout-<?php echo $template_key; ?>-title" type="hidden" value="<?php echo $template[ 'title' ]; ?>" />
+								<input id="hatch-preset-layout-<?php echo $template_key; ?>-widget_data" type="hidden" value="<?php echo esc_attr( $template[ 'json' ] ); ?>" />
+
+							</label>
+
+						</div>
+					<?php } // Get Preset Layouts ?>
+				</div>
+			</div>
+
 		</div>
-	</div>
-	<a  name="start"></a>
-	<div class="hatch-row hatch-well hatch-content-large hatch-push-bottom">
-		<div class="hatch-section-title">
-			<h3 class="hatch-heading">Getting Started</h3>
-			<p class="hatch-excerpt">
-				Our intention of Beta Zero is to gather feedback around the page building interface.
-				In order to get started please follow the steps below:
-			</p>
-		</div>
-		<p>To get you started we have added some demo content to this theme so that you don't start from a blank page. If you would like a fresh start, click here.</p>
-		<?php  if( $find_builder_page->post_count > 0 ) { ?>
-			<ol>
-				<li>Click the "Page Builder" accordion</li>
-				<li>Start adding widgets labelled (Hatch) to the Page Builder Body section</li>
-			</ol>
-			<a href="<?php echo admin_url( 'customize.php?url=' .esc_url( get_permalink( $page_id ) ).'&hatch-builder=1'  ); ?>" class="hatch-button btn-massive btn-primary">Build Your Page</a>
-		<?php } else { ?>
-			<ol>
-				<li>Create a new Page</li>
-				<li>Choose "Page Builder" under the Template drop down</li>
-				<li>Click Publish</li>
-				<li>Click "Build your Page"</li>
-				<li>Click the "Page Builder" accordion</li>
-			</ol>
-			<a href="<?php echo admin_url( 'post-new.php?post_type=page' ); ?>" class="hatch-button btn-primary">Create a Page</a>
-		<?php } // if builder page exists ?>
 	</div>
 
-	<footer class="hatch-row">
+	<footer class="hatch-row hatch-content">
 		<p>
 			Hatch is a product of <a href="http://oboxthemes.com/">Obox Themes</a>. For questions and feedback please <a href="mailto:david@obox.co.za">email David directly</a>.
 		</p>
 	</footer>
 
 
+</section>
+
+<section class="hatch-modal hatch-hide">
+	<div class="hatch-vertical-center">
+		<div class="hatch-section-title hatch-text-center hatch-container">
+
+			<h2 class="hatch-heading" id="hatch-options-header">
+				Creating Your Page
+			</h2>
+			<p class="hatch-excerpt hatch-push-bottom">
+				We're busy importing dummy content, placing some widgets and adding some content, promise it won't take long. Once we're done, you'll be redirected to
+				the Visual Customizer so that you can start building your page.
+			</p>
+			<div class="hatch-load-bar">
+				<span class="hatch-progress zero">0%</span>
+			</div>
+
+		</div>
+	</div>
 </section>
 
 <?php $this->footer(); ?>

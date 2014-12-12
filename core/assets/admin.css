@@ -203,6 +203,24 @@ div[id*='hatch-widget'] .spinner{
 .hatch-well{
     background: #fff;
 }
+.hatch-modal{
+   position: fixed;
+    width: 100%;
+    display: block;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    background: white;
+    height: 100%;
+}
+.hatch-vertical-center{
+    position: absolute;
+    width: 100%;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+
 
 /*---------------------------*/
 /*- ICONS -------------------*/
@@ -372,6 +390,7 @@ div[id*='hatch-widget'] .spinner{
     /*- COLUMN TWEAKERS -----*/
     .no-gutter{margin-right: 0;}
     .middled, .row .column.middled{float: none; margin: auto;}
+    .hatch-last{ margin-right: 0; }
 
     .hatch-drag{
         display: block;
@@ -398,9 +417,39 @@ div[id*='hatch-widget'] .spinner{
 .hatch-no-push-bottom{
     margin-bottom: 0 !important;
 }
+
+.hatch-push-top{
+    margin-top: 20px !important;
+}
+.hatch-push-top-small{
+    margin-top: 10px !important;
+}
+.hatch-push-top-medium{
+    margin-top: 30px !important;
+}
+.hatch-push-top-large{
+    margin-top: 40px !important;
+}
+.hatch-push-top-massive{
+    margin-top: 60px !important;
+}
+
 .hatch-push-bottom{
     margin-bottom: 20px !important;
 }
+.hatch-push-bottom-small{
+    margin-bottom: 10px !important;
+}
+.hatch-push-bottom-medium{
+    margin-bottom: 30px !important;
+}
+.hatch-push-bottom-large{
+    margin-bottom: 40px !important;
+}
+.hatch-push-bottom-massive{
+    margin-bottom: 60px !important;
+}
+
 .hatch-t-left{
     text-align: left;
 }
@@ -873,12 +922,12 @@ input[type=text].hatch-color-selector.wp-color-picker{
     .hatch-pop-menu-setting .hatch-form-item:nth-child(9){transition-delay: 0.41s;}
     .hatch-pop-menu-setting .hatch-form-item:nth-child(10){transition-delay: 0.43s;}
     .hatch-pop-menu-setting .hatch-form-item:nth-child(11){transition-delay: 0.45s;}
-    
+
     .hatch-active .hatch-pop-menu-setting .hatch-form-item{
         opacity: 1;
         transform: translate3d(0, 0, 0);
     }
-    
+
     .hatch-pop-menu-setting .hatch-icon-wrapper{
         transform: translate3d(-10px, 0, 0);
         opacity: 0;
@@ -891,7 +940,7 @@ input[type=text].hatch-color-selector.wp-color-picker{
     .hatch-pop-menu-setting .hatch-icon-wrapper:nth-child(6){transition-delay: 0.35s;}
     .hatch-pop-menu-setting .hatch-icon-wrapper:nth-child(7){transition-delay: 0.37s;}
     .hatch-pop-menu-setting .hatch-icon-wrapper:nth-child(8){transition-delay: 0.39s;}
-    
+
     .hatch-active .hatch-pop-menu-setting .hatch-icon-wrapper{
         opacity: 1;
         transform: translate3d(0, 0, 0);
@@ -914,7 +963,7 @@ input[type=text].hatch-color-selector.wp-color-picker{
     text-indent: 0;
 }
 .hatch-section-title{
-    margin-bottom: 20px;
+    margin-bottom: 40px;
 }
 .hatch-section-title .hatch-heading{
     margin: 0;
@@ -930,6 +979,7 @@ input[type=text].hatch-color-selector.wp-color-picker{
     font-size: 20px;
     line-height: 30px;
     color: #777;
+    font-weight: 300;
 }
 .hatch-section-title .hatch-excerpt + .hatch-button{
     margin-top: 20px;
@@ -950,8 +1000,13 @@ input[type=text].hatch-color-selector.wp-color-picker{
         .hatch-section-title.hatch-tiny .hatch-heading{font-size: 16px; line-height: 26px; font-weight:  700;}
         .hatch-section-title.hatch-tiny .hatch-excerpt{margin-top: 0px !important; font-size: 14px; line-height: 24px;}
 
-        .invert.hatch-section-title .hatch-heading{color: #fff; text-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3);}
-        .invert.hatch-section-title .hatch-excerpt{color: rgba(255, 255, 255, 0.95); text-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3);}
+            /*---------------------------*/
+            /*- SECTION ALIGNMENTS ------*/
+            .hatch-section-title.hatch-text-center{text-align: center;}
+            .hatch-section-title.hatch-text-center .hatch-excerpt{margin-left: auto; margin-right: auto;}
+
+        .invert.hatch-section-title .hatch-heading{color: #fff;}
+        .invert.hatch-section-title .hatch-excerpt{color: rgba(255, 255, 255, 0.95);}
 
 
 
@@ -1181,33 +1236,32 @@ input[type=text].hatch-color-selector.wp-color-picker{
 }
 
 /*---------------------------*/
-/*- MARKETING BLOCK ---------*/
-.hatch-marketing{
-    overflow: hidden;
-    margin-bottom: 20px;
-    display: block;
-}
-.hatch-marketing .hatch-marketing-icon{
-    float: none;
-    width: 100%;
-    text-align: center;
-    margin-right: auto;
-    margin-left: auto;
-}
-.hatch-marketing .hatch-marketing-body {
-    display: block;
-    float: none;
-    width: 100%;
-    text-align: center;
-    overflow: hidden;
-}
-.hatch-marketing .hatch-marketing-body .hatch-heading{
-    margin: 10px 0 0;
-    text-transform: uppercase;
-}
-.hatch-marketing .hatch-marketing-body .hatch-excerpt{
-    margin: 10px 0 0;
-}
+/*- MEDIA -------------------*/
+.hatch-media{overflow: hidden; margin-bottom: 20px; display: block;}
+
+.hatch-media-image{text-align: center; margin-right: auto; margin-left: auto; max-height: 450px; overflow: hidden; border: 1px solid #ddd;}
+.hatch-media-image img{display: block; margin: auto; max-width: 100%; height: auto;}
+.hatch-media-image.hatch-small img{max-width: 64px;}
+
+.hatch-media .hatch-media-body{display: block; overflow: hidden;}
+.hatch-media .hatch-media-image + .hatch-media-body{margin-top: 20px;}
+
+.hatch-media.hatch-image-left .hatch-media-image{float: left; max-width: 50%; margin-right: 15px;}
+.hatch-media.hatch-image-right .hatch-media-image{float: right; max-width: 50%; margin-right: 0; margin-left: 15px;}
+
+.hatch-media .hatch-heading{font-size: 16px; margin: 0;}
+.hatch-media .hatch-media-image + .hatch-heading{margin-top: 20px;}
+
+.hatch-media .hatch-excerpt{margin: 8px 0 0; font-weight: 400;}
+.hatch-media p{margin-top: 8px;}
+.hatch-media ul{margin-top: 8px;}
+
+.hatch-t-center .hatch-media-body .hatch-excerpt{margin-left: auto; margin-right: auto;}
+
+.hatch-media .hatch-btn-group{margin-top: 15px;}
+.hatch-media .hatch-button{margin-top: 15px;}
+.hatch-media .hatch-btn-group .hatch-button{margin-top: 0px;}
+
 
 /*---------------------------*/
 /*- TOOLTIPS ----------------*/
@@ -1588,7 +1642,7 @@ input[type=radio]:checked + .hatch-settings-icon span{
     /*-----------------------*/
     /*- FEATURE LIST --------*/
     .hatch-feature-list{
-        margin-bottom: 26px;
+        margin: 0;
     }
     .hatch-feature-list li{
         padding-left: 26px;
@@ -1602,13 +1656,12 @@ input[type=radio]:checked + .hatch-settings-icon span{
     }
 
     /*-----------------------*/
-    /*- BACKUP PAGE --------*/
-
+    /*- BACKUP PAGE ---------*/
     .hatch-load-bar{
-        border: 1px solid #ccc;
-        border-radius: 3px;
+        border: 1px solid #0D5F83;
         padding: 0px;
         width: 50%;
+        margin: auto; 
     }
     .hatch-load-bar .hatch-progress{
         background-color: #2EA2CC;
@@ -1628,4 +1681,23 @@ input[type=radio]:checked + .hatch-settings-icon span{
     .hatch-progress.complete{
         background-color: #A3C567;
     }
+
+
+/*---------------------------*/
+/*- WELCOME PAGE ------------*/
+.hatch-welcome{
+    margin-left: -20px;
+}
+.hatch-page-title{
+    background: #009DF3;
+}
+.hatch-divide{
+    padding: 0 0 60px;
+    margin: 0 0 60px;
+    border-bottom: 2px solid #ddd;
+}
+ul#adminmenu a.wp-has-current-submenu:after, ul#adminmenu > li.current > a.current:after{
+    border-right-color: #009DF3;
+}
+
 

@@ -183,9 +183,6 @@ if( !function_exists( 'hatch_backup_builder_pages' ) ) {
     add_action( 'wp_ajax_hatch_backup_builder_pages', 'hatch_backup_builder_pages' );
 } // hatch_builder_page_backup
 
-
-
-
 /**
 *  Adjust the site title for static front pages
 */
@@ -203,4 +200,143 @@ if( !function_exists( 'hatch_post_class' ) ) {
         return $classes;
     }
     add_filter( 'post_class' , 'hatch_post_class' );
+}
+
+/**
+ *  The following function creates a builder page
+ *
+ * @param varchar Page Title (optional)
+ * @return array Page ID
+ */
+if( !function_exists( 'hatch_create_builder_page' ) ) {
+    function hatch_create_builder_page( $page_title = 'Builder Page' ) {
+        $page['post_type']    = 'page';
+        $page['post_status']  = 'publish';
+        $page['post_title']   = $page_title;
+        $pageid = wp_insert_post ($page);
+        if ( 0 != $pageid ) {
+            update_post_meta( $pageid , '_wp_page_template', HATCH_BUILDER_TEMPLATE );
+        }
+
+        return $pageid;
+    }
+}
+
+/**
+ * Get all builder pages and store in global variable
+ *
+ * @return  object    $hatch_builder_pages wp_query list of builder pages.
+*/
+
+if( ! function_exists( 'hatch_get_builder_pages' ) ) {
+    function hatch_get_builder_pages () {
+        global $hatch_builder_pages;
+
+        // Fetch Builder Pages
+        $hatch_builder_pages = get_pages(array(
+            'post_status' => 'publish,draft,private',
+            'post_type' => 'page',
+            'meta_key' => '_wp_page_template',
+            'meta_value' => HATCH_BUILDER_TEMPLATE,
+            'posts_per_page' => -1
+        ));
+
+        return $hatch_builder_pages;
+    }
+}
+
+/**
+ * Conditional check if is Hatch page
+ *
+ * @param   int   $post_id   (Optional) ID of post to check. Uses global $post ID if none provided.
+ */
+
+if( ! function_exists( 'hatch_is_builder_page' ) ) {
+    function hatch_is_builder_page( $post_id = false ){
+        global $post;
+
+        // Be sure to set a post id for use
+        if ( !$post_id && isset( $post ) && isset( $post->ID ) ) {
+            $post_id = $post->ID;
+        }
+
+        // If there is a post_id, check for the builder page
+        if ( isset( $post_id ) ) {
+            if( HATCH_BUILDER_TEMPLATE == get_post_meta( $post_id, '_wp_page_template', true ) ) {
+                return true;
+            }
+        }
+
+        // Fallback
+        return false;
+    }
+}
+
+/**
+ * Filter Hatch Pages in wp-admin Pages
+ *
+ * @TODO: think about moving this function to it own helpers/admin.php,
+ * especially if more work is to be done on admin list.
+ */
+
+if ( ! function_exists( 'hatch_filter_admin_pages' ) ) {
+
+    function hatch_filter_admin_pages() {
+        global $typenow;
+
+        if ( 'page' == $typenow && isset( $_GET['filter'] ) && 'hatch' == $_GET['filter'] ) {
+            set_query_var(
+                'meta_query',
+                array(
+                    'relation' => 'AND',
+                    array(
+                        'key' => '_wp_page_template',
+                        'value' => HATCH_BUILDER_TEMPLATE,
+                    )
+                )
+            );
+        }
+    }
+
+    add_filter( 'pre_get_posts', 'hatch_filter_admin_pages' );
+}
+
+/**
+ * Add builder edit button to the admin bar
+ *
+ * @return null Nothing is returned, the Edit button is added the admin toolbar
+*/
+
+if( ! function_exists( 'hatch_add_builder_edit_button' ) ) {
+
+    function hatch_add_builder_edit_button(){
+        global $wp_admin_bar, $post;
+
+        if( is_page() && hatch_is_builder_page() ){
+            $current_url = ( is_ssl() ? 'https://' : 'http://' ) . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+            $args = array(
+                'id'    => 'my_page',
+                'title' => '<span class="ab-icon"></span><span class="ab-label">' . __( 'Build Page' , HATCH_THEME_SLUG ) . '</span>',
+                'href'  => add_query_arg( 'url', urlencode( $current_url ), wp_customize_url() ),
+                'meta'  => array( 'class' => 'my-toolbar-page' )
+            );
+            $wp_admin_bar->add_node( $args );
+        }
+    }
+
+    add_action( 'admin_bar_menu', 'hatch_add_builder_edit_button', 90 );
+}
+
+// Output custom css to add Icon to admin bar edit button.
+if( ! function_exists( 'hatch_add_builder_edit_button_css' ) ) {
+    function hatch_add_builder_edit_button_css() {
+        echo '<style>
+        #wp-admin-bar-my_page .ab-icon:before{
+            font-family: "dashicons" !important;
+            content: "\f328" !important;
+        }
+        </style>';
+    }
+    add_action('admin_head', 'hatch_add_builder_edit_button_css');
+    add_action('wp_head', 'hatch_add_builder_edit_button_css');
 }

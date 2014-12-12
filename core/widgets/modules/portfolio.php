@@ -130,8 +130,10 @@ if( !class_exists( 'Hatch_Portfolio_Widget' ) ) {
 			$query_args[ 'posts_per_page' ] = $widget['posts_per_page'];
 			if( isset( $widget['order'] ) ) {
 				$decode_order = json_decode( $widget['order'] );
-				foreach( $decode_order as $key => $value ){
-					$query_args[ $key ] = $value;
+				if( is_array( $decode_order ) ) {
+					foreach( $decode_order as $key => $value ){
+						$query_args[ $key ] = $value;
+					}
 				}
 			}
 

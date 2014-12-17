@@ -1658,20 +1658,21 @@ input[type=radio]:checked + .hatch-settings-icon span{
     /*-----------------------*/
     /*- BACKUP PAGE ---------*/
     .hatch-load-bar{
-        border: 1px solid #0D5F83;
-        padding: 0px;
         width: 50%;
-        margin: auto; 
+        padding: 6px;
+        margin: auto;
+        background: #f0f0f0;
+        border-radius: 100px;
     }
     .hatch-load-bar .hatch-progress{
+        width: 100%;
+        padding: 5px 0px;
         background-color: #2EA2CC;
+        border-radius: 100px;
         color: #fff;
         display: block;
         font-weight: bold;
-        padding: 5px 0px;
         text-align: center;
-        width: 100%;
-
     }
     .hatch-progress.zero{
         background-color: #fff;

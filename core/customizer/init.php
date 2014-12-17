@@ -60,7 +60,9 @@ class Hatch_Customizer {
 		add_action( 'admin_enqueue_scripts', array( $this, 'admin_enqueue_scripts' ) , 50 );
 		add_action( 'admin_enqueue_scripts', array( $this, 'admin_print_styles' ) , 50 );
 		add_action( 'customize_controls_print_styles' , array( $this, 'admin_print_styles' ) );
-
+		
+		// Render header actions button(s)
+		add_action( 'customize_controls_print_footer_scripts' , array( $this, 'render_actions_buttons' ) );
 	}
 
 	/**
@@ -155,6 +157,13 @@ class Hatch_Customizer {
 			// Return the Drop Down
 			return $drop_down;
 		}
+	}
+	
+	function render_actions_buttons () {
+		$hatch_url = admin_url( 'admin.php?page=' . HATCH_THEME_SLUG . '-welcome' );
+		?>
+		<a class="customize-controls-hatch-dashboard dashicons dashicons-smiley" title="<?php esc_attr( _e( 'Hatch Dashboard', HATCH_THEME_SLUG ) ); ?>" href="<?php echo $hatch_url ?>"></a>
+		<?php
 	}
 
 }

@@ -63,6 +63,10 @@ jQuery(document).ready(function($) {
 	}
 	api.previewer.bind('url', hatch_handle_customizer_talkback);
 	
+	// Move the Hatch Dashboard button to it's correct placing - no hook available
+	$('#customize-header-actions').append( $('.customize-controls-hatch-dashboard') );
+	$('.customize-controls-hatch-dashboard').css({'display':'block', 'visibility':'visible'});
+	
 	/**
 	 * 3 - Better history states in customizer
 	 *

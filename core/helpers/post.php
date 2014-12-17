@@ -301,6 +301,29 @@ if ( ! function_exists( 'hatch_filter_admin_pages' ) ) {
     add_filter( 'pre_get_posts', 'hatch_filter_admin_pages' );
 }
 
+
+/**
+ * Change views links on wp-list-table - all, published, draft, etc - to maintain hatch page filtering
+ * TODO: some kind of feeback so user knows he is in the Hatch filter - maybe h2 to "Hatch Pages"
+ */
+
+if ( ! function_exists( 'hatch_filter_admin_pages_views' ) ) {
+
+    function hatch_filter_admin_pages_views( $views ) {
+        foreach ($views as $view_key => $view_value ) {
+            $query_arg = '&filter=hatch';
+            $view_value = preg_replace('/href=\'(http:\/\/[^\/"]+\/?)?([^"]*)\'/', "href='\\2$query_arg'", $view_value);
+            $views[$view_key] = $view_value;
+        }
+        return $views;
+    }
+
+    add_filter( "views_edit-page", 'hatch_filter_admin_pages_views' );
+}
+
+
+
+
 /**
  * Add builder edit button to the admin bar
  *

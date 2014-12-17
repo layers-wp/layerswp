@@ -104,7 +104,7 @@ class Hatch_Custom_Meta {
 
 		$is_builder_used = ( 'builder.php' == basename( get_page_template() ) ) ? true : false;
 
-		printf( '<div id="hatch_toggle_builder" class="hatch-section-title hatch-medium invert hatch-content-massive %3$s" style="background: url( %7$s/images/beta-zero.jpg) top repeat;">
+		printf( '<div id="hatch_toggle_builder" class="hatch-section-title hatch-medium invert hatch-content-massive %3$s" style="background: url( %7$s/images/beta-zero.jpg) top repeat #106F9F;">
 					<div class="hatch-heading">
 						%1$s
 					</div>

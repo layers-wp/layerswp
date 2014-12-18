@@ -101,12 +101,22 @@ jQuery(document).ready(function($){
 		// Modules <input>
 		$moduleInput = $( '#module_ids_input_' + $moduleList.data( 'number' ) );
 
+		// Serialize input data
+		$serialized_inputs = [];
+		$.each(
+			$moduleList.find( 'li.hatch-accordion-item' ).last().find( 'textarea, input, select' ),
+			function( i, input ){
+				$serialized_inputs.push( $(input).serialize() );
+		});
+
 		$.post(
 			hatch_widget_params.ajaxurl,
 			{
 				action: 'hatch_module_widget_actions',
 				widget_action: 'add',
 				id_base: $moduleList.data( 'id_base' ),
+				instance: $serialized_inputs.join( '&' ),
+				last_guid: $moduleList.find( 'li.hatch-accordion-item' ).last().data( 'guid' ),
 				number: $moduleList.data( 'number' ),
 				nonce: hatch_widget_params.nonce
 

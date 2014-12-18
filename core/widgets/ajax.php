@@ -39,7 +39,19 @@ if( !class_exists( 'Hatch_Widget_Ajax' ) ) {
 
 			$widget = new Hatch_Slider_Widget();
 			if( 'add' == $_POST[ 'widget_action'] ) {
-				$widget->banner_item( array( 'id_base' => $_POST[ 'id_base' ] , 'number' => $_POST[ 'number' ] ) );
+
+				// Get the previous element's column data
+				parse_str(
+					urldecode( $_POST[ 'instance' ] ),
+					$data
+				);
+
+				// Get the previous element's column data
+				$instance = $data[ 'widget-' . $_POST[ 'id_base' ] ][ $_POST[ 'number' ] ][ 'banners' ][ $_POST[ 'last_guid' ] ];
+
+
+				// Get the previous element's column data
+				$widget->banner_item( array( 'id_base' => $_POST[ 'id_base' ] , 'number' => $_POST[ 'number' ] ), NULL, $instance );
 			}
 			die();
 		}
@@ -49,7 +61,17 @@ if( !class_exists( 'Hatch_Widget_Ajax' ) ) {
 
 			$widget = new Hatch_Module_Widget();
 			if( 'add' == $_POST[ 'widget_action'] ) {
-				$widget->module_item( array( 'id_base' => $_POST[ 'id_base' ] , 'number' => $_POST[ 'number' ] ) );
+
+				// Get the previous element's column data
+				parse_str(
+					urldecode( $_POST[ 'instance' ] ),
+					$data
+				);
+
+				// Get the previous element's column data
+				$instance = $data[ 'widget-' . $_POST[ 'id_base' ] ][ $_POST[ 'number' ] ][ 'modules' ][ $_POST[ 'last_guid' ] ];
+
+				$widget->module_item( array( 'id_base' => $_POST[ 'id_base' ] , 'number' => $_POST[ 'number' ] ), NULL, $instance );
 			}
 			die();
 		}

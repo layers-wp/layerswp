@@ -69,9 +69,14 @@ if( !class_exists( 'Hatch_Sidebar_Widget' ) ) {
 
             // Set the background styling
             if( !empty( $widget['design'][ 'background' ] ) ) $this->widget_styles( $widget_id, 'background', array( 'background' => $widget['design'][ 'background' ] ) );
-            if( !empty( $widget['design']['fonts'][ 'color' ] ) ) $this->widget_styles( $widget_id, 'color', array( 'selectors' => array( '.section-title h3.heading' , '.section-title p.excerpt' ) , 'color' => $widget['design']['fonts'][ 'color' ] ) ); ?>
+            if( !empty( $widget['design']['fonts'][ 'color' ] ) ) $this->widget_styles( $widget_id, 'color', array( 'selectors' => array( '.section-title h3.heading' , '.section-title p.excerpt' ) , 'color' => $widget['design']['fonts'][ 'color' ] ) );
+            
+            // Output custom css if there is any
+            if( !empty( $widget['design']['advanced'][ 'customcss' ] ) ){
+                wp_add_inline_style( HATCH_THEME_SLUG . '-custom-widget-styles', $widget['design']['advanced'][ 'customcss' ] );
+            } ?>
 
-            <section class="widget row content-vertical-massive" id="<?php echo $widget_id; ?>">
+            <section class="widget row content-vertical-massive <?php echo $this->check_and_return( $widget , 'design', 'advanced', 'customclass' ) ?>" id="<?php echo $widget_id; ?>">
                 <?php if( !empty( $widget['sidebars'] ) ) { ?>
                     <div class="row <?php if('layout-boxed' == $this->check_and_return( $widget , 'design' , 'layout' ) ) echo 'container'; ?> <?php echo $this->check_and_return( $widget , 'design', 'liststyle' ); ?>">
                         <?php $col = 1; ?>
@@ -154,7 +159,8 @@ if( !class_exists( 'Hatch_Sidebar_Widget' ) ) {
                 array(
                     'layout',
                     'custom',
-                    'background'
+                    'background',
+                    'advanced'
                 ), // Standard Components
                 array(
                     'liststyle' => array(

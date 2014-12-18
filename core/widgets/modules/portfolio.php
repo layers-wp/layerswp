@@ -122,6 +122,11 @@ if( !class_exists( 'Hatch_Portfolio_Widget' ) ) {
 			} else {
 				$imageratios = 'large';
 			}
+			
+			// Output custom css if there is any
+			if( !empty( $widget['design']['advanced'][ 'customcss' ] ) ){
+				wp_add_inline_style( HATCH_THEME_SLUG . '-custom-widget-styles', $widget['design']['advanced'][ 'customcss' ] );
+			}
 
 			// Begin query arguments
 			$query_args = array();
@@ -153,7 +158,7 @@ if( !class_exists( 'Hatch_Portfolio_Widget' ) ) {
 			// Do the WP_Query
 			$portfolio_query = new WP_Query( $query_args ); ?>
 
-			<section class="widget row content-vertical-massive" id="<?php echo $widget_id; ?>">
+			<section class="widget row content-vertical-massive <?php echo $this->check_and_return( $widget , 'design', 'advanced', 'customclass' ) ?>" id="<?php echo $widget_id; ?>">
 				<?php if( $this->check_and_return( $widget , 'title' ) || $this->check_and_return( $widget , 'excerpt' ) ) { ?>
 					<div class="container clearfix">
 						<div class="section-title <?php echo $this->check_and_return( $widget , 'design', 'fonts', 'size' ); ?> <?php echo $this->check_and_return( $widget , 'design', 'fonts', 'align' ); ?> clearfix">
@@ -300,7 +305,8 @@ if( !class_exists( 'Hatch_Portfolio_Widget' ) ) {
 					'columns',
 					'liststyle',
 					'imageratios',
-					'background'
+					'background',
+					'advanced'
 				), // Standard Components
 				array(
 					'display' => array(

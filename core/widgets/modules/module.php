@@ -94,9 +94,14 @@ if( !class_exists( 'Hatch_Module_Widget' ) ) {
 
 			// Set the background styling
 			if( !empty( $widget['design'][ 'background' ] ) ) $this->widget_styles( $widget_id, 'background', array( 'background' => $widget['design'][ 'background' ] ) );
-			if( !empty( $widget['design']['fonts'][ 'color' ] ) ) $this->widget_styles( $widget_id, 'color', array( 'selectors' => array( '.section-title h3.heading' , '.section-title p.excerpt' ) , 'color' => $widget['design']['fonts'][ 'color' ] ) ); ?>
-
-			<section class="widget row content-vertical-massive" id="<?php echo $widget_id; ?>">
+			if( !empty( $widget['design']['fonts'][ 'color' ] ) ) $this->widget_styles( $widget_id, 'color', array( 'selectors' => array( '.section-title h3.heading' , '.section-title p.excerpt' ) , 'color' => $widget['design']['fonts'][ 'color' ] ) );
+			
+			// Output custom css if there is any
+			if( !empty( $widget['design']['advanced'][ 'customcss' ] ) ){
+				wp_add_inline_style( HATCH_THEME_SLUG . '-custom-widget-styles', $widget['design']['advanced'][ 'customcss' ] );
+			} ?>
+			
+			<section class="widget row content-vertical-massive <?php echo $this->check_and_return( $widget , 'design', 'advanced', 'customclass' ) ?>" id="<?php echo $widget_id; ?>">
 				<?php if( $this->check_and_return( $widget , 'title' ) || $this->check_and_return( $widget , 'excerpt' ) ) { ?>
 					<div class="container">
 						<div class="section-title <?php echo $this->check_and_return( $widget , 'design', 'fonts', 'size' ); ?> <?php echo $this->check_and_return( $widget , 'design', 'fonts', 'align' ); ?> clearfix">
@@ -254,7 +259,8 @@ if( !class_exists( 'Hatch_Module_Widget' ) ) {
 					'layout',
 					'custom',
 					'fonts',
-					'background'
+					'background',
+					'advanced'
 				), // Standard Components
 				array(
 					'liststyle' => array(

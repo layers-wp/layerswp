@@ -635,5 +635,58 @@ class Hatch_Design_Controller {
 			</div>
 		</li>
 	<?php }
+	
+	/**
+	* Advanced - Static Option
+	*
+	* @param  	array     	$widget 	Widget Element
+	* @param  	array     	$values 	Accepts the value for this element
+	* @param  	array     	$args 		Additional arguments to pass to this function
+	*/
+
+	function advanced( $widget = NULL, $values = NULL, $args = NULL ){
+
+		// If there is no widget information provided, can the operation
+		if( NULL == $widget ) return; ?>
+
+		<li class="hatch-visuals-item">
+			<a href="" class="hatch-icon-wrapper">
+				<span class="icon-settings"></span>
+				<span class="hatch-icon-description">
+					<?php _e( 'Advanced' , HATCH_THEME_SLUG ); ?>
+				</span>
+			</a>
+			<div class="hatch-pop-menu-wrapper hatch-animate hatch-content-small">
+				<div class="hatch-pop-menu-setting">
+					<section>
+						<div class="hatch-text-wrapper hatch-form-item">
+							<label><?php _e( 'Custom Class' , HATCH_THEME_SLUG ); ?></label>
+							<?php echo $this->input(
+								array(
+									'type' => 'text',
+									'name' => $widget['name'] . '[advanced][customclass]' ,
+									'id' =>  $widget['id'] . '-advanced-customclass' ,
+									'value' => ( isset( $values['advanced']['customclass'] ) ) ? $values['advanced']['customclass'] : NULL,
+									'placeholder' => 'example-class'
+								)
+							); ?>
+						</div>
+						<div class="hatch-textarea-wrapper hatch-form-item">
+							<label><?php _e( 'Custom CSS' , HATCH_THEME_SLUG ); ?></label>
+							<?php echo $this->input(
+								array(
+									'type' => 'textarea',
+									'name' => $widget['name'] . '[advanced][customcss]' ,
+									'id' =>  $widget['id'] . '-advanced-customcss' ,
+									'value' => ( isset( $values['advanced']['customcss'] ) ) ? $values['advanced']['customcss'] : NULL,
+									'placeholder' => ".classname {\n\tbackground: #333;\n}"
+								)
+							); ?>
+						</div>
+					</section>
+				</div>
+			</div>
+		</li>
+	<?php  }
 
 } //class Hatch_Design_Controller

@@ -91,11 +91,16 @@ if( !class_exists( 'Hatch_Contact_Widget' ) ) {
 			// Set the background styling
 			if( !empty( $widget['design'][ 'background' ] ) ) $this->widget_styles( $widget_id, 'background', array( 'background' => $widget['design'][ 'background' ] ) );
 			if( !empty( $widget['design']['fonts'][ 'color' ] ) ) $this->widget_styles( $widget_id, 'color', array( 'selectors' => array( '.section-title h3.heading' , '.section-title p.excerpt' , '.section-title small' ) , 'color' => $widget['design']['fonts'][ 'color' ] ) );
-
+			
+			// Output custom css if there is any
+			if( !empty( $widget['design']['advanced'][ 'customcss' ] ) ){
+				wp_add_inline_style( HATCH_THEME_SLUG . '-custom-widget-styles', $widget['design']['advanced'][ 'customcss' ] );
+			}
+			
 			// Set the map width
 			$mapwidth = 'span-12'; ?>
 
-			<section class="widget content-vertical-massive row" id="<?php echo $widget_id; ?>">
+			<section class="widget content-vertical-massive row <?php echo $this->check_and_return( $widget , 'design', 'advanced', 'customclass' ) ?>" id="<?php echo $widget_id; ?>">
 
 				<?php if( $this->check_and_return( $widget , 'title' ) || $this->check_and_return( $widget , 'excerpt' ) ) { ?>
 					<div class="container clearfix">
@@ -182,7 +187,8 @@ if( !class_exists( 'Hatch_Contact_Widget' ) ) {
 					'layout',
 					'fonts',
 					'custom',
-					'background'
+					'background',
+					'advanced'
 				), // Standard Components
 				array(
 					'display' => array(

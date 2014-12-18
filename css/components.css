@@ -262,6 +262,7 @@ p[class*='comment-form'] .required{color: #900;}
 .sidebar .widget li ul{margin: 6px 0 0 10px;}
 
 #footer .widget li{padding-bottom: 8px; margin-bottom: 8px; border-bottom: 1px solid #ddd;}
+#footer .widget li:last-child{border-bottom: none;}
 
     /*---------------------------*/
     /*- WIDGET NAV MENU ---------*/

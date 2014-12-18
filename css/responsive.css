@@ -281,6 +281,9 @@ html{}
 .header-secondary{
 	display: none;
 }
+.header-site .container{
+	padding: 10px 20px;
+}
 .header-center .logo{
 	float: left;
 	text-align: left;

@@ -34,6 +34,8 @@ jQuery(function($) {
     $(window).on('load', function() {
         if( $( 'header' ).hasClass( 'header-fixed' ) ){
             //Add padding to the content container equal to the header height
+            if( $( 'body' ).hasClass( 'home' ) ) return;
+
             $selector = '#wrapper-content';
 
             $( $selector ).css( 'paddingTop' , $('.header-site').height() );

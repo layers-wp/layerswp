@@ -25,3 +25,4 @@
 			<?php do_action( 'hatch_after_header_inner' ); ?>
 		</header>
 		<?php do_action( 'hatch_after_header' ); ?>
+		<section id="wrapper-content" class="wrapper-content">

@@ -1,7 +1,8 @@
-		<div id="back-to-top">
-			<a href="#top"><?php _e( 'Back to top' , HATCH_THEME_SLUG ); ?></a>
-		</div> <!-- back-to-top -->
 
+			<div id="back-to-top">
+				<a href="#top"><?php _e( 'Back to top' , HATCH_THEME_SLUG ); ?></a>
+			</div> <!-- back-to-top -->
+		</section>
 		<?php do_action( 'hatch_before_footer' ); ?>
 		<footer id="footer" class="footer-site well">
 			<?php do_action( 'hatch_before_footer_inner' ); ?>

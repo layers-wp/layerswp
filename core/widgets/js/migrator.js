@@ -65,8 +65,9 @@ jQuery(document).ready(function($){
             hatch_widget_params.ajaxurl,
             $page_data,
             function(data){
-
+                console.log( data );
                 clearInterval( $load_interval );
+
                 $( '.hatch-progress' ).stop().css('width', '100%');
                 $( '.hatch-progress' ).text( 'Redirecting to Visual Customizer');
 

@@ -98,12 +98,22 @@ jQuery(document).ready(function($){
 		// Banners <input>
 		$bannerInput = $( '#banner_ids_input_' + $bannerList.data( 'number' ) );
 
+		// Serialize input data
+		$serialized_inputs = [];
+		$.each(
+			$bannerList.find( 'li.hatch-accordion-item' ).first().find( 'textarea, input, select' ),
+			function( i, input ){
+				$serialized_inputs.push( $(input).serialize() );
+		});
+
 		$.post(
 			hatch_widget_params.ajaxurl,
 			{
 				action: 'hatch_banner_widget_actions',
 				widget_action: 'add',
 				id_base: $bannerList.data( 'id_base' ),
+				instance: $serialized_inputs.join( '&' ),
+				last_guid: $bannerList.find( 'li.hatch-accordion-item' ).first().data( 'guid' ),
 				number: $bannerList.data( 'number' ),
 				nonce: hatch_widget_params.nonce
 

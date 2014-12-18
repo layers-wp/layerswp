@@ -336,13 +336,13 @@ if( !class_exists( 'Hatch_Module_Widget' ) ) {
 
 					<ul id="module_list_<?php echo $this->number; ?>" class="hatch-accordions hatch-accordions-sortable hatch-sortable" data-id_base="<?php echo $this->id_base; ?>" data-number="<?php echo $this->number; ?>">
 						<?php if( isset( $modules ) && is_array( $modules ) ) { ?>
-							<?php foreach( $modules as $module ) {
+							<?php foreach( $modules as $moduleguid ) {
 								$this->module_item( array(
 											'id_base' => $this->id_base ,
 											'number' => $this->number
 										) ,
-										$module ,
-										( isset( $instance[ 'modules' ][ $module ] ) ) ? $instance[ 'modules' ][ $module ] : NULL );
+										$moduleguid ,
+										( isset( $instance[ 'modules' ][ $moduleguid ] ) ) ? $instance[ 'modules' ][ $moduleguid ] : NULL );
 							} ?>
 						<?php } else { ?>
 							<?php $this->module_item( array( 'id_base' => $this->id_base , 'number' => $this->number ) ); ?>

@@ -391,7 +391,7 @@ class Hatch_Widget_Migrator {
                 }
 
             } else {
-                $validated_data[ $option ] = $option_data;
+                $validated_data[ $option ] = stripslashes( $option_data );
             }
         }
 
@@ -439,6 +439,7 @@ class Hatch_Widget_Migrator {
                 /* DEBUG
                 echo $option_data; */
 
+                // @TODO: Try improve the image loading
                 $import_image = media_sideload_image( $option_data , 0 );
 
                 if( NULL != $import_image ) {
@@ -448,11 +449,11 @@ class Hatch_Widget_Migrator {
                     if( NULL != $get_image_id ) {
                         $validated_data[ $option ] = $get_image_id;
                     } else {
-                        $validated_data[ $option ] = $option_data;
+                        $validated_data[ $option ] = stripslashes( $option_data );
                     }
                 }
             } else {
-                $validated_data[ $option ] = $option_data;
+                $validated_data[ $option ] = stripslashes( $option_data );
             }
         }
 
@@ -516,6 +517,7 @@ class Hatch_Widget_Migrator {
         $results = array(
                 'post_id' => $import_data[ 'post_id' ],
                 'post_title' => $new_page->post_title,
+                'data_report' => $import_progress,
                 'customizer_location' => admin_url() . 'customize.php?url=' . esc_url( get_the_permalink( $import_data[ 'post_id' ] ) )
             );
 

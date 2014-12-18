@@ -15,7 +15,7 @@
 		<?php get_template_part( 'partials/header' , 'secondary' ); ?>
 		<header <?php hatch_header_class(); ?>>
 			<?php do_action( 'hatch_before_header_inner' ); ?>
-			<div class="<?php if( 'layout-fullwidth' != hatch_get_theme_mod( 'header-layout-width' ) ) echo 'container'; ?> content-vertical clearfix">
+			<div class="<?php if( 'layout-fullwidth' != hatch_get_theme_mod( 'header-layout-width' ) ) echo 'container'; ?> clearfix">
 				<?php if( 'header-logo-center' == hatch_get_theme_mod( 'header-layout-layout' ) ) { ?>
 					<?php get_template_part( 'partials/header' , 'centered' ); ?>
 				<?php } else { ?>
@@ -25,3 +25,4 @@
 			<?php do_action( 'hatch_after_header_inner' ); ?>
 		</header>
 		<?php do_action( 'hatch_after_header' ); ?>
+		<section id="wrapper-content" class="wrapper-content">

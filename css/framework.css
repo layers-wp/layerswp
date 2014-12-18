@@ -238,7 +238,7 @@ h1, h2, h3, h4, h5, h6{color: #000; font-weight: 200;}
         .content-vertical{padding-top: 20px; padding-bottom: 20px;}
         .content-vertical-large{padding-top: 30px; padding-bottom: 30px;}
     	.content-vertical-extra-large{padding-top: 40px; padding-bottom: 40px;}
-    	.content-vertical-massive{padding-top: 60px; padding-bottom: 60px;}
+    	.content-vertical-massive{padding-top: 60px; padding-bottom: 20px;}
 
     .sky{padding-top: 100px;}
     .basement{padding-bottom: 60px;} /*-- content already adds 40px to the base --*/
@@ -378,8 +378,8 @@ h1, h2, h3, h4, h5, h6{color: #000; font-weight: 200;}
 
     /*---------------------------*/
     /*- RESPONSIVE BUTTON -------*/
-    .responsive-nav{float: right; display: none; padding: 8px 0; margin: 0;}
-    .responsive-nav .h-menu{color: #454545; font-size: 32px;}
+    .responsive-nav{float: right; display: none; padding: 0; margin: 0;}
+    .responsive-nav .h-menu{color: #454545; font-size: 16px;}
 
 
     /*---------------------------*/
@@ -679,11 +679,13 @@ h1, h2, h3, h4, h5, h6{color: #000; font-weight: 200;}
 
     /*---------------------------*/
     /*- FOOTER COPY -------------*/
-    .copyright{margin-top: 20px; padding-top: 20px; border-top: 2px solid rgba(0, 0, 0, 0.1); font-size: 1.2rem; color: #999;}
+    .copyright{font-size: 1.2rem; color: #999;}
     .copyright .column{margin-bottom: 0;}
     .copyright .nav-horizontal li{margin: 0 0 0 20px;}
     .copyright .nav-horizontal a{padding: 0; color: #454545; text-transform: uppercase; font-weight: 600; font-size: 1.0rem; letter-spacing: 1px;}
     .copyright .nav-horizontal a:hover{background: none; color: #323232;}
+
+    .row + .copyright{padding-top: 20px; margin-top: 20px; border-top: 2px solid #ddd;}
 
 /*-------------------------------*/
 /*- FORMS -----------------------*/

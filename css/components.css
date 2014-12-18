@@ -114,8 +114,11 @@ section[class*=' off-canvas-'] .close-canvas{
 
     /*---------------------------*/
     /*- POSITION OVERLAY --------*/
-    .header-fixed{background: none; position: absolute; top: 0px; left: 0; width: 100%; z-index: 100;}
+    .header-fixed{background: rgba(0, 0, 0, 0.1); position: absolute; top: 0px; left: 0; width: 100%; z-index: 100;}
+    .header-fixed .nav-horizontal li a{color: #fff;}
+    .header-fixed .nav-horizontal li a:hover{color: #000;}
 
+    
     /*---------------------------*/
     /*- NAVIGATION POSITION -----*/
     .nav-clear .logo{float: none;}

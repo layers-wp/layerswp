@@ -240,6 +240,7 @@ class Hatch_Customizer_Config {
 									'label'    => __( 'Widget Areas', HATCH_THEME_SLUG ),
 									'default' => 4,
 									'choices' => array(
+                                        '0' => __( 'None' , HATCH_THEME_SLUG ),
 										'1' => __( '1' , HATCH_THEME_SLUG ),
 										'2' => __( '2' , HATCH_THEME_SLUG ),
 										'3' => __( '3' , HATCH_THEME_SLUG ),

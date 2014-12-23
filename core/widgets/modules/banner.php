@@ -89,16 +89,21 @@ if( !class_exists( 'Hatch_Slider_Widget' ) ) {
 			if( !empty( $instance ) ) $instance_defaults = array();
 
 			// Parse $instance
-			$widget = wp_parse_args( $instance, $instance_defaults ); ?>
-
-			<?php // Setup the layout class for boxed/full width/full screen
+			$widget = wp_parse_args( $instance, $instance_defaults );
+			
+			// Setup the layout class for boxed/full width/full screen
 			if( 'layout-boxed' == $this->check_and_return( $widget , 'design' , 'layout' ) ) {
 				$layout_class = 'container';
 			} elseif('layout-full-screen' == $this->check_and_return( $widget , 'design' , 'layout' ) ) {
 				$layout_class = 'full-screen';
-			}?>
+			}
+			
+			// Output custom css if there is any
+			if( !empty( $widget['design']['advanced'][ 'customcss' ] ) ){
+				wp_add_inline_style( HATCH_THEME_SLUG . '-custom-widget-styles', $widget['design']['advanced'][ 'customcss' ] );
+			} ?>
 
-			<section class="widget row banner swiper-container <?php if( isset( $layout_class ) ) echo $layout_class; ?>" id="<?php echo $widget_id; ?>" <?php if( $this->check_and_return( $widget , 'banner_height' ) ) echo 'style="height: ' . $widget['banner_height'] . 'px;"' ?>>
+			<section class="widget row banner swiper-container <?php if( isset( $layout_class ) ) echo $layout_class; ?> <?php echo $this->check_and_return( $widget , 'design', 'advanced', 'customclass' ) ?>" id="<?php echo $widget_id; ?>" <?php if( $this->check_and_return( $widget , 'banner_height' ) ) echo 'style="height: ' . $widget['banner_height'] . 'px;"' ?>>
 				<?php if( !empty( $widget[ 'banners' ] ) ) { ?>
 					<?php if( 1 < count( $widget[ 'banners' ] ) && isset( $widget['show_slider_arrows'] ) ) { ?>
 						 <div class="arrows">
@@ -252,6 +257,7 @@ if( !class_exists( 'Hatch_Slider_Widget' ) ) {
 				$instance, // Widget Values
 				array(
 					'custom',
+					'advanced'
 				), // Standard Components
 				array(
 					'layout' => array(

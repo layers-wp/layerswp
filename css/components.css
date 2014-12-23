@@ -80,6 +80,7 @@ section[class*=' off-canvas-'] .close-canvas{
 /*-------------------------------*/
 
     .header-site{background: #f3f3f3;}
+    .header-site .container{padding: 20px;}
 
     /*---------------------------*/
     /*- ALIGNMENT LEFT ----------*/
@@ -115,9 +116,9 @@ section[class*=' off-canvas-'] .close-canvas{
     /*---------------------------*/
     /*- POSITION OVERLAY --------*/
     .header-fixed{background: rgba(0, 0, 0, 0.1); position: absolute; top: 0px; left: 0; width: 100%; z-index: 100;}
-    .header-fixed .nav-horizontal li a{color: #fff;}
-    .header-fixed .nav-horizontal li a:hover{color: #000;}
-
+    .header-fixed .nav-horizontal > ul > li > a{color: #fff;}
+    .header-fixed .nav-horizontal > ul > li > a:hover{color: #000;}
+    .header-fixed .responsive-nav .h-menu{color: #fff;}
     
     /*---------------------------*/
     /*- NAVIGATION POSITION -----*/

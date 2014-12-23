@@ -238,7 +238,7 @@ h1, h2, h3, h4, h5, h6{color: #000; font-weight: 200;}
         .content-vertical{padding-top: 20px; padding-bottom: 20px;}
         .content-vertical-large{padding-top: 30px; padding-bottom: 30px;}
     	.content-vertical-extra-large{padding-top: 40px; padding-bottom: 40px;}
-    	.content-vertical-massive{padding-top: 60px; padding-bottom: 60px;}
+    	.content-vertical-massive{padding-top: 60px; padding-bottom: 20px;}
 
     .sky{padding-top: 100px;}
     .basement{padding-bottom: 60px;} /*-- content already adds 40px to the base --*/
@@ -378,8 +378,8 @@ h1, h2, h3, h4, h5, h6{color: #000; font-weight: 200;}
 
     /*---------------------------*/
     /*- RESPONSIVE BUTTON -------*/
-    .responsive-nav{float: right; display: none; padding: 8px 0; margin: 0;}
-    .responsive-nav .h-menu{color: #454545; font-size: 32px;}
+    .responsive-nav{float: right; display: none; padding: 0; margin: 0;}
+    .responsive-nav .h-menu{color: #454545; font-size: 16px;}
 
 
     /*---------------------------*/

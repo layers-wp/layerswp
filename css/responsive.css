@@ -28,6 +28,7 @@ html{}
 	margin: 0 0 20px;
 }
 
+.column[class*='span-'],
 .column[class*=' span-'],
 .column-flush[class^="span-"],
 .column-flush[class*=" span-"]{
@@ -280,6 +281,9 @@ html{}
 /*-------------------------------*/
 .header-secondary{
 	display: none;
+}
+.header-site .container{
+	padding: 10px 20px;
 }
 .header-center .logo{
 	float: left;

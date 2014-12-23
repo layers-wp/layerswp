@@ -67,7 +67,7 @@ if( !class_exists( 'Hatch_Widget' ) ) {
 		}
 
 		/**
-		* Design Bar Class Instantiation, we'd rather have it done here than in each widget
+		* Form Elements Class Instantiation, we'd rather have it done here than in each widget
 		*
 		* @return  	html 		Design bar HTML
 		*/

@@ -686,27 +686,38 @@ if( !function_exists( 'hatch_inline_styles' ) ) {
 
 			break;
 
+			case 'css' :
+
+				$css .= $args['css'];
+
+			break;
+
 		}
 
 		$inline_css = '';
+
+		// If there is a container ID specified, append it to the beginning of the declaration
+		if( NULL != $container_id ) {
+			$inline_css = ' #' . $container_id . ' ' . $inline_css;
+		}
+
 		if( isset( $args['selectors'] ) ) {
-			foreach ( $args['selectors'] as $selector ) {
-				$inline_css .= $selector . '{' . $css . '} ';
+
+			if ( is_string( $args['selectors'] ) && '' != $args['selectors'] ) {
+				$inline_css .= $args['selectors'];
+			} else if( !empty( $args['selectors'] ) ){
+				$inline_css .= implode( ', ' .$inline_css . ' ',  $args['selectors'] );
 			}
-		} else if ( isset( $args['selectors'] ) && is_string( $args['selectors'] ) && '' != $args['selectors'] ) {
-			$inline_css .= $args['selectors'] . ' {' . $css . '} ';
+		}
+
+		if( '' == $inline_css) {
+			$inline_css .= $css;
 		} else {
 			$inline_css .= '{' . $css . '} ';
 		}
 
-		// If there is a container ID specified, append it to the beginning of the declaration
-		if( NULL != $container_id ) {
-			$inline_css .= '  #' . $container_id . ' ' . $inline_css;
-
-		}
-
-		wp_enqueue_style( HATCH_THEME_SLUG . '-custom-widget-styles', get_template_directory_uri() . '/css/inline.css' );
-		wp_add_inline_style( HATCH_THEME_SLUG . '-custom-widget-styles', $inline_css );
+		wp_enqueue_style( HATCH_THEME_SLUG . '-inline-styles', get_template_directory_uri() . '/css/inline.css' );
+		wp_add_inline_style( HATCH_THEME_SLUG . '-inline-styles', $inline_css );
 
 		return $inline_css;
 	}

@@ -3,7 +3,8 @@
  * @package Hatch
  */
 
-
+$current = get_site_transient( 'update_themes' );
+// '<!-- <pre>' . print_r( $current, true ) . '</pre> -->';
 /**
 * Add define Hatch constants to be used around Hatch themes, plugins etc.
 */

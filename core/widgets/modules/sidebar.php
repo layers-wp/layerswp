@@ -68,8 +68,8 @@ if( !class_exists( 'Hatch_Sidebar_Widget' ) ) {
             $widget = wp_parse_args( $instance, $instance_defaults );
 
             // Set the background styling
-            if( !empty( $widget['design'][ 'background' ] ) ) $this->widget_styles( $widget_id, 'background', array( 'background' => $widget['design'][ 'background' ] ) );
-            if( !empty( $widget['design']['fonts'][ 'color' ] ) ) $this->widget_styles( $widget_id, 'color', array( 'selectors' => array( '.section-title h3.heading' , '.section-title p.excerpt' ) , 'color' => $widget['design']['fonts'][ 'color' ] ) ); ?>
+            if( !empty( $widget['design'][ 'background' ] ) ) hatch_inline_styles( $widget_id, 'background', array( 'background' => $widget['design'][ 'background' ] ) );
+            if( !empty( $widget['design']['fonts'][ 'color' ] ) ) hatch_inline_styles( $widget_id, 'color', array( 'selectors' => array( '.section-title h3.heading' , '.section-title p.excerpt' ) , 'color' => $widget['design']['fonts'][ 'color' ] ) ); ?>
 
             <section class="widget row content-vertical-massive" id="<?php echo $widget_id; ?>">
                 <?php if( !empty( $widget['sidebars'] ) ) { ?>
@@ -80,7 +80,7 @@ if( !class_exists( 'Hatch_Sidebar_Widget' ) ) {
                             $sidebar = wp_parse_args( $sidebar, $this->sidebar_defaults );
 
                             // Set the background styling
-                            if( !empty( $sidebar['design'][ 'background' ] ) ) $this->widget_styles( $widget_id . '-' . $key , 'background', array( 'background' => $sidebar['design'][ 'background' ] ) );
+                            if( !empty( $sidebar['design'][ 'background' ] ) ) hatch_inline_styles( $widget_id . '-' . $key , 'background', array( 'background' => $sidebar['design'][ 'background' ] ) );
 
                             $span_class = 'span-' . $sidebar[ 'width' ]; ?>
 

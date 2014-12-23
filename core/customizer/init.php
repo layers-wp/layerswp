@@ -70,6 +70,9 @@ class Hatch_Customizer {
 	*/
 
 	public function admin_enqueue_scripts(){
+		
+		// Media Uploader required scripts
+		wp_enqueue_media();
 
 		// Customizer general
 		wp_enqueue_script(

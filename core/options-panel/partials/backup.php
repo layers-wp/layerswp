@@ -1,6 +1,5 @@
 <?php $user = wp_get_current_user(); ?>
 <?php $builder_pages = hatch_get_builder_pages(); ?>
-
 <section class="hatch-container hatch-content-large">
 
 	<div class="hatch-row hatch-well hatch-content-large hatch-push-bottom">
@@ -26,7 +25,7 @@
 				<ul class="hatch-feature-list">
 					<?php foreach( $builder_pages as $post ){ ?>
 						<li data-page_id="<?php echo $post->ID; ?>" class="<?php echo ( in_array( $post->ID , array() ) ? 'tick' : 'cross' ); ?>">
-							<?php echo the_title(); ?>
+							<?php echo $post->post_title; ?>
 						</li>
 					<?php } // foreach builder_page ?>
 				</ul>

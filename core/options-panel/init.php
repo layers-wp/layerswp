@@ -53,6 +53,7 @@ class Hatch_Options_Panel {
 	* Body
 	*/
 	public function body( $partial = NULL ){
+
 		if( NULL == $partial ) return;
 
 		// Include Partials, we're using require so that inside the partial we can use $this to access the header and footer
@@ -74,9 +75,9 @@ class Hatch_Options_Panel {
  */
 
 function hatch_options_panel_menu(){
-	
+
 	global $submenu, $menu;
-	
+
 	// Welcome Page
 	add_menu_page(
 		HATCH_THEME_TITLE,
@@ -87,7 +88,7 @@ function hatch_options_panel_menu(){
 		'dashicons-smiley',
 		3
 	);
-	
+
 	// Hatch Pages
 	if( hatch_get_builder_pages() ){
 		// Only show if there are actually Hatch pages.
@@ -109,7 +110,7 @@ function hatch_options_panel_menu(){
 		HATCH_THEME_SLUG . '-backup',
 		'hatch_options_panel_ui'
 	);
-	
+
 	// This modifies the Hatch submenu item - must be done here as $submenu
 	// is only created if $submenu items are added using add_submenu_page
 	$submenu[HATCH_THEME_SLUG . '-welcome'][0][0] = 'Welcome';

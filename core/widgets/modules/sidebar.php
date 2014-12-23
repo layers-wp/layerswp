@@ -68,14 +68,13 @@ if( !class_exists( 'Hatch_Sidebar_Widget' ) ) {
             $widget = wp_parse_args( $instance, $instance_defaults );
 
             // Set the background styling
-            if( !empty( $widget['design'][ 'background' ] ) ) $this->widget_styles( $widget_id, 'background', array( 'background' => $widget['design'][ 'background' ] ) );
-            if( !empty( $widget['design']['fonts'][ 'color' ] ) ) $this->widget_styles( $widget_id, 'color', array( 'selectors' => array( '.section-title h3.heading' , '.section-title p.excerpt' ) , 'color' => $widget['design']['fonts'][ 'color' ] ) );
-            
+            if( !empty( $widget['design'][ 'background' ] ) ) hatch_inline_styles( $widget_id, 'background', array( 'background' => $widget['design'][ 'background' ] ) );
+            if( !empty( $widget['design']['fonts'][ 'color' ] ) ) hatch_inline_styles( $widget_id, 'color', array( 'selectors' => array( '.section-title h3.heading' , '.section-title p.excerpt' ) , 'color' => $widget['design']['fonts'][ 'color' ] ) );
+
             // Output custom css if there is any
             if( !empty( $widget['design']['advanced'][ 'customcss' ] ) ){
                 wp_add_inline_style( HATCH_THEME_SLUG . '-custom-widget-styles', $widget['design']['advanced'][ 'customcss' ] );
             } ?>
-
             <section class="widget row content-vertical-massive <?php echo $this->check_and_return( $widget , 'design', 'advanced', 'customclass' ) ?>" id="<?php echo $widget_id; ?>">
                 <?php if( !empty( $widget['sidebars'] ) ) { ?>
                     <div class="row <?php if('layout-boxed' == $this->check_and_return( $widget , 'design' , 'layout' ) ) echo 'container'; ?> <?php echo $this->check_and_return( $widget , 'design', 'liststyle' ); ?>">
@@ -85,7 +84,7 @@ if( !class_exists( 'Hatch_Sidebar_Widget' ) ) {
                             $sidebar = wp_parse_args( $sidebar, $this->sidebar_defaults );
 
                             // Set the background styling
-                            if( !empty( $sidebar['design'][ 'background' ] ) ) $this->widget_styles( $widget_id . '-' . $key , 'background', array( 'background' => $sidebar['design'][ 'background' ] ) );
+                            if( !empty( $sidebar['design'][ 'background' ] ) ) hatch_inline_styles( $widget_id . '-' . $key , 'background', array( 'background' => $sidebar['design'][ 'background' ] ) );
 
                             $span_class = 'span-' . $sidebar[ 'width' ]; ?>
 

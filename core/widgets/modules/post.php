@@ -109,14 +109,19 @@ if( !class_exists( 'Hatch_Post_Widget' ) ) {
 			}
 
 			// Set the background & font styling
-			if( !empty( $widget['design'][ 'background' ] ) ) $this->widget_styles( $widget_id, 'background', array( 'background' => $widget['design'][ 'background' ] ) );
-			if( !empty( $widget['design']['fonts'][ 'color' ] ) ) $this->widget_styles( $widget_id, 'color', array( 'selectors' => array( '.section-title h3.heading' , '.section-title p.excerpt' ) , 'color' => $widget['design']['fonts'][ 'color' ] ) );
+			if( !empty( $widget['design'][ 'background' ] ) ) hatch_inline_styles( $widget_id, 'background', array( 'background' => $widget['design'][ 'background' ] ) );
+			if( !empty( $widget['design']['fonts'][ 'color' ] ) ) hatch_inline_styles( $widget_id, 'color', array( 'selectors' => array( '.section-title h3.heading' , '.section-title p.excerpt' ) , 'color' => $widget['design']['fonts'][ 'color' ] ) );
 
 			// Set Image Sizes
 			if( isset( $widget['design'][ 'imageratios' ] ) ){
 
 				// Translate Image Ratio
 				$image_ratio = hatch_translate_image_ratios( $widget['design'][ 'imageratios' ] );
+				
+				// If round then set image to square, and set border radius css further down.
+				if( 'round' == $image_ratio ){
+					$image_ratio = 'square';
+				}
 
 				if( 'layout-boxed' == $this->check_and_return( $widget , 'design', 'layout' ) && $col_count > 2 ){
 					$imageratios = $image_ratio . '-medium';
@@ -196,7 +201,7 @@ if( !class_exists( 'Hatch_Post_Widget' ) ) {
 							<?php } else { ?>
 								<article class="column<?php if( !isset( $widget['design'][ 'gutter' ] ) ) echo '-flush'; ?> <?php echo $span_class; ?> hatch-masonry-column thumbnail <?php if( 'overlay' == $this->check_and_return( $widget , 'text_style' ) ) echo 'with-overlay'; ?>" data-cols="<?php echo $col_count; ?>">
 									<?php if( has_post_thumbnail() ) { ?>
-										<div class="thumbnail-media">
+										<div class="thumbnail-media <?php if ( 'round' == hatch_translate_image_ratios( $module['design'][ 'imageratios' ] ) ) { ?>image-rounded<?php } ?>">
 											<a href="<?php the_permalink(); ?>">
 												<?php the_post_thumbnail( $imageratios );  ?>
 											</a>

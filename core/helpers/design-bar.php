@@ -396,7 +396,8 @@ class Hatch_Design_Controller {
 											'image-portrait' => __( 'Portrait' , HATCH_THEME_SLUG ),
 											'image-landscape' => __( 'Landscape' , HATCH_THEME_SLUG ),
 											'image-square' => __( 'Square' , HATCH_THEME_SLUG ),
-											'image-no-crop' => __( 'None' , HATCH_THEME_SLUG )
+											'image-no-crop' => __( 'None' , HATCH_THEME_SLUG ),
+											'image-round' => __( 'Round' , HATCH_THEME_SLUG ),
 										)
 									)
 								); ?>

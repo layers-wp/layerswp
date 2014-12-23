@@ -3,7 +3,8 @@
  * @package Hatch
  */
 
-
+$current = get_site_transient( 'update_themes' );
+// '<!-- <pre>' . print_r( $current, true ) . '</pre> -->';
 /**
 * Add define Hatch constants to be used around Hatch themes, plugins etc.
 */
@@ -124,8 +125,8 @@ if( ! function_exists( 'hatch_setup' ) ) {
 
 		// Set Medium Image Sizes
 		add_image_size( 'square-medium', 480, 480, true );
-		add_image_size( 'portrait-medium', 360, 480, true );
-		add_image_size( 'landscape-medium', 480, 360, true );
+		add_image_size( 'portrait-medium', 340, 480, true );
+		add_image_size( 'landscape-medium', 480, 340, true );
 
 		/**
 		 * Add theme support

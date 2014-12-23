@@ -127,21 +127,24 @@ class Hatch_Customizer {
 		// Create builder pages dropdown.
 		if( $hatch_pages ){
 			ob_start();
-
+			
 			// Get the base of the customizer URL
 			$customizer_url = explode( 'customize.php?', $_SERVER['REQUEST_URI'] );
-
+			
+			$current_page_url = "";
+			
 			// Check if there is a query string
-			if( !isset( $customizer_url[1] ) ) return;
-
-			// Parse the URL
-			parse_str( $customizer_url[1], $customizer_url_portions );
-
-			// Get the page url
-			if( !isset( $customizer_url_portions[ 'url' ] ) ) return;
-
-			// Set the current page url
-			$current_page_url = $customizer_url_portions[ 'url' ]; ?>
+			if ( isset( $customizer_url[1] ) ) {
+				
+				// Parse the URL
+				parse_str( $customizer_url[1], $customizer_url_portions );
+				
+				// Check if there is query string 'url'
+				if( isset( $customizer_url_portions[ 'url' ] ) ) {
+					$current_page_url = $customizer_url_portions[ 'url' ];
+				}
+				
+			} ?>
 			<div class="hatch-customizer-pages-dropdown">
 				<select>
 					<option value="init"><?php _e( 'Builder Pages:', HATCH_THEME_SLUG ) ?></option>

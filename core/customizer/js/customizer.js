@@ -30,15 +30,16 @@ jQuery(document).ready(function($) {
 	 */
 	
 	var api = wp.customize,
-		hatch_builder_pages_drop_down = '.hatch-customizer-pages-dropdown select';
+		hatch_builder_pages_drop_down = '.hatch-customizer-pages-dropdown select',
+		hatch_previous_page_url;
 		
 	// Change the customizer url when the dropdown is changed.
 	$(document).on('change', hatch_builder_pages_drop_down, function(){
 		var new_preview_url = $(this).val();
 		if ( new_preview_url != api.previewer.previewUrl() ){
 			api.previewer.previewUrl( $(this).val() );
-			hatch_update_customizer_interface();
 			hatch_add_history_state();
+			hatch_update_customizer_interface();
 		}
 	});
 	
@@ -58,8 +59,8 @@ jQuery(document).ready(function($) {
 	
 	// Listen for event when customizer url chnages
 	function hatch_handle_customizer_talkback() {
-		hatch_update_customizer_interface();
 		hatch_add_history_state();
+		hatch_update_customizer_interface();
 	}
 	api.previewer.bind('url', hatch_handle_customizer_talkback);
 	
@@ -79,18 +80,31 @@ jQuery(document).ready(function($) {
 		// Update the browser URl so page can be refreshed
 		if (window.history.pushState) {
 			// Newer Browsers only (IE10+, Firefox3+, etc)
-			var url = window.location.href.split('?')[0] + "?url=" + hatch_get_parameter_by_name('url', window.location) + "&hatch-builder=1";
+			var url = window.location.href.split('?')[0] + "?url=" + api.previewer.previewUrl() + "&hatch-builder=1";
 			window.history.pushState({}, "", url);
 		}
 	}
 	
 	// Listen for changes in history state - eg push of the next/prev botton
 	window.addEventListener('popstate', function(e){
-		api.previewer.previewUrl( hatch_get_parameter_by_name('url', window.location) );
+		api.previewer.previewUrl( hatch_get_customizer_url() );
 		hatch_update_customizer_interface();
 	}, false);
 	
-	// Helper to get get query stings by param name - like query strings.
+	// Helper to get current url
+	// provide default_url fix for when no querystring 'url' exists,
+	// which happens when coming from Appearance > Customizer
+	var default_url = api.previewer.previewUrl();
+	function hatch_get_customizer_url() {
+		if( hatch_get_parameter_by_name('url', window.location) ){
+			return hatch_get_parameter_by_name('url', window.location);
+		}
+		else {
+			return default_url;
+		}
+	}
+	
+	// Helper to get query stings by param name - like query strings.
 	function hatch_get_parameter_by_name(name, url) {
 		name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
 		var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),

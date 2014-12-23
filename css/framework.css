@@ -262,9 +262,8 @@ h1, h2, h3, h4, h5, h6{color: #000; font-weight: 200;}
 
     /*---------------------------*/
     /*- SITE WIDE HEADER --------*/
-    header{/*width: 100%; position: fixed; top: 0; left: 0; z-index: 20;*/}
-    header .container{max-width: 1040px;}
-    header .column{margin-bottom: 0;}
+    .header-site .container{max-width: 1040px;}
+    .header-site .column{margin-bottom: 0;}
 
 
     /*---------------------------*/
@@ -547,6 +546,7 @@ h1, h2, h3, h4, h5, h6{color: #000; font-weight: 200;}
     .media-image{text-align: center; margin-right: auto; margin-left: auto;}
     .media-image img{display: block; margin: auto;}
     .media-image.small img{max-width: 64px;}
+    .media-image.image-rounded img{border-radius: 100%;}
 
     .media .media-body{display: block; overflow: hidden;}
 
@@ -561,20 +561,16 @@ h1, h2, h3, h4, h5, h6{color: #000; font-weight: 200;}
 
     .media p{margin-top: 8px;}
     .media ul{margin-top: 8px;}
-        
-        .media.large .heading{font-size: 2.8rem;}
-        .media.large .excerpt{max-width: 830px; font-size: 2rem;}
-
-        .media.tiny .heading{}
-        .media.tiny .excerpt{}
 
     .text-center .media-body .excerpt{margin-left: auto; margin-right: auto;}
 
     .media .btn-group{margin-top: 15px;}
     .media .button{margin-top: 15px;}
     .media .btn-group .button{margin-top: 0px;}
+        
+    .media.large .heading{font-size: 2.8rem;}
+    .media.large .excerpt{max-width: 830px; font-size: 2rem;}
 
-    .media.small .media-image{margin-right: 10px;}
     .media.small .heading{font-size: 1.6rem; font-weight: 600; color: #323232;}
     .media.small .excerpt{font-size: 1.4rem;}
     .media.small .heading + .excerpt{margin-top: 5px;}

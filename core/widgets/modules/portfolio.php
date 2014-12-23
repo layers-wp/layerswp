@@ -111,6 +111,11 @@ if( !class_exists( 'Hatch_Portfolio_Widget' ) ) {
 
 				// Translate Image Ratio
 				$image_ratio = hatch_translate_image_ratios( $widget['design'][ 'imageratios' ] );
+				
+				// If round then set image to square, and set border radius css further down.
+				if( 'round' == $image_ratio ){
+					$image_ratio = 'square';
+				}
 
 				if( 'layout-boxed' == $this->check_and_return( $widget , 'design', 'layout' ) && $col_count > 2 ){
 					$imageratios = $image_ratio . '-medium';
@@ -199,7 +204,7 @@ if( !class_exists( 'Hatch_Portfolio_Widget' ) ) {
 								} ?>
 								<article class="column<?php if( !isset( $widget['design'][ 'gutter' ] ) ) echo '-flush'; ?> <?php echo $span_class; ?> hatch-masonry-column thumbnail <?php if( 'overlay' == $this->check_and_return( $widget , 'text_style' ) ) echo 'with-overlay'; ?> <?php echo implode( $term_list, " " ); ?>"  data-cols="<?php echo $col_count; ?>">
 									<?php if( has_post_thumbnail() ) { ?>
-										<div class="thumbnail-media">
+										<div class="thumbnail-media <?php if ( 'round' == hatch_translate_image_ratios( $module['design'][ 'imageratios' ] ) ) { ?>image-rounded<?php } ?>">
 											<a href="<?php the_permalink(); ?>">
 												<?php the_post_thumbnail( $imageratios );  ?>
 											</a>

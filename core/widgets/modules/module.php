@@ -143,9 +143,14 @@ if( !class_exists( 'Hatch_Module_Widget' ) ) {
 
 							// Set Image Sizes
 							if( isset( $module['design'][ 'imageratios' ] ) ){
-
+								
 								// Translate Image Ratio
 								$image_ratio = hatch_translate_image_ratios( $module['design'][ 'imageratios' ] );
+								
+								// If round then set image to square, and set border radius css further down.
+								if( 'round' == $image_ratio ){
+									$image_ratio = 'square';
+								}
 
 								if( !isset( $module[ 'width' ] ) ) $module[ 'width' ] = 6;
 
@@ -175,7 +180,7 @@ if( !class_exists( 'Hatch_Module_Widget' ) ) {
 									<?php if( !$this->check_and_return( $widget, 'design', 'gutter' ) ) echo 'no-push-bottom'; ?>
 								">
 									<?php if( $this->check_and_return( $module , 'design' , 'featuredimage' ) ) { ?>
-										<div class="media-image"><a href="<?php echo $link; ?>"><?php echo wp_get_attachment_image( $module['design'][ 'featuredimage' ] , $imageratios ); ?></a></div>
+										<div class="media-image <?php if ( 'round' == hatch_translate_image_ratios( $module['design'][ 'imageratios' ] ) ) { ?>image-rounded<?php } ?>"><a href="<?php echo $link; ?>"><?php echo wp_get_attachment_image( $module['design'][ 'featuredimage' ] , $imageratios ); ?></a></div>
 									<?php } ?>
 									<?php if( '' != $module['title'] || '' != $module['excerpt'] ) { ?>
 										<div class="media-body <?php echo ( isset( $module['design']['fonts'][ 'align' ] ) ) ? $module['design']['fonts'][ 'align' ] : ''; ?>">

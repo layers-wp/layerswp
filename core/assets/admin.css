@@ -257,7 +257,7 @@ div[id*='hatch-widget'] .spinner{
     float: left;
     width: 16px;
     margin: 0 1px !important;
-    padding: 3px 10px !important;
+    padding: 3px 9px !important;
 }
 .hatch-icon-group .hatch-icon-wrapper [class^="icon-"], .hatch-icon-group .hatch-icon-wrapper [class*=" icon-"]{
     font-size: 16px;

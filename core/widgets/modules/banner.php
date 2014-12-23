@@ -129,6 +129,12 @@ if( !class_exists( 'Hatch_Slider_Widget' ) ) {
 							if( isset( $banner['design'][ 'imageratios' ] ) ){
 									// Translate Image Ratio
 									$image_ratio = hatch_translate_image_ratios( $banner['design'][ 'imageratios' ] );
+									
+									// If round then set image to square, and set border radius css further down.
+									if( 'round' == $image_ratio ){
+										$image_ratio = 'square';
+									}
+									
 									$imageratios = $image_ratio . '-medium';
 							} else {
 								$imageratios = 'large';
@@ -162,7 +168,7 @@ if( !class_exists( 'Hatch_Slider_Widget' ) ) {
 											</div>
 										<?php } // if title || excerpt ?>
 										<?php if( $this->check_and_return( $banner , 'design' , 'featuredimage' ) ) { ?>
-											<div class="image-container">
+											<div class="image-container <?php if ( 'round' == hatch_translate_image_ratios( $module['design'][ 'imageratios' ] ) ) { ?>image-rounded<?php } ?>">
 												<?php echo wp_get_attachment_image( $banner['design'][ 'featuredimage' ] , $imageratios ); ?>
 											</div>
 										<?php } // if $banner image ?>

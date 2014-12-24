@@ -32,6 +32,27 @@ jQuery(document).ready(function($) {
 	var api = wp.customize,
 		hatch_builder_pages_drop_down = '.hatch-customizer-pages-dropdown select',
 		hatch_previous_page_url;
+	
+	// Helper to get current url
+	// provide default_url fix for when no querystring 'url' exists,
+	// which happens when coming from Appearance > Customizer
+	var default_url = api.previewer.previewUrl();
+	function hatch_get_customizer_url() {
+		if( hatch_get_parameter_by_name('url', window.location) ){
+			return hatch_get_parameter_by_name('url', window.location);
+		}
+		else {
+			return default_url;
+		}
+	}
+	
+	// Helper to get query stings by param name - like query strings.
+	function hatch_get_parameter_by_name(name, url) {
+		name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+		var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+			results = regex.exec(url);
+		return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+	}
 		
 	// Change the customizer url when the dropdown is changed.
 	$(document).on('change', hatch_builder_pages_drop_down, function(){
@@ -53,9 +74,14 @@ jQuery(document).ready(function($) {
 			$(hatch_builder_pages_drop_down).val( 'init' );
 		}
 		
-		//Change the X close button
+		// Change the 'X' close button
 		$('.customize-controls-close').attr('href', api.previewer.previewUrl() );
+		
+		// Change the 'Preview Page' button
+		$('.customize-controls-hatch-button-preview').attr('href', hatch_get_customizer_url() );
+		
 	}
+	hatch_update_customizer_interface();
 	
 	// Listen for event when customizer url chnages
 	function hatch_handle_customizer_talkback() {
@@ -65,8 +91,8 @@ jQuery(document).ready(function($) {
 	api.previewer.bind('url', hatch_handle_customizer_talkback);
 	
 	// Move the Hatch Dashboard button to it's correct placing - no hook available
-	$('#customize-header-actions').append( $('.customize-controls-hatch-dashboard') );
-	$('.customize-controls-hatch-dashboard').css({'display':'block', 'visibility':'visible'});
+	//$('#customize-header-actions').append( $('.customize-controls-hatch-button-dashboard, .customize-controls-hatch-button-preview') );
+	//$('.customize-controls-hatch-button-dashboard, .customize-controls-hatch-button-preview').css({ 'display':'block', 'visibility':'visible' });
 	
 	/**
 	 * 3 - Better history states in customizer
@@ -91,25 +117,6 @@ jQuery(document).ready(function($) {
 		hatch_update_customizer_interface();
 	}, false);
 	
-	// Helper to get current url
-	// provide default_url fix for when no querystring 'url' exists,
-	// which happens when coming from Appearance > Customizer
-	var default_url = api.previewer.previewUrl();
-	function hatch_get_customizer_url() {
-		if( hatch_get_parameter_by_name('url', window.location) ){
-			return hatch_get_parameter_by_name('url', window.location);
-		}
-		else {
-			return default_url;
-		}
-	}
 	
-	// Helper to get query stings by param name - like query strings.
-	function hatch_get_parameter_by_name(name, url) {
-		name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
-		var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
-			results = regex.exec(url);
-		return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
-	}
 	
 });

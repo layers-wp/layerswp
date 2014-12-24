@@ -168,7 +168,8 @@ class Hatch_Customizer {
 	function render_actions_buttons () {
 		$hatch_url = admin_url( 'admin.php?page=' . HATCH_THEME_SLUG . '-welcome' );
 		?>
-		<a class="customize-controls-hatch-dashboard dashicons dashicons-smiley" title="<?php esc_attr( _e( 'Hatch Dashboard', HATCH_THEME_SLUG ) ); ?>" href="<?php echo $hatch_url ?>"></a>
+		<a class="customize-controls-hatch-button customize-controls-hatch-button-dashboard dashicons dashicons-smiley" title="<?php esc_attr( _e( 'Hatch Dashboard', HATCH_THEME_SLUG ) ); ?>" href="<?php echo $hatch_url ?>"></a>
+		<a class="customize-controls-hatch-button customize-controls-hatch-button-preview icon-display" title="<?php esc_attr( _e( 'Preview this page', HATCH_THEME_SLUG ) ); ?>" href="#" target="_blank"></a>
 		<?php
 	}
 

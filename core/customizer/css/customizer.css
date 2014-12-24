@@ -3,5 +3,7 @@
 .hatch-customizer-pages-dropdown label {  }
 .hatch-customizer-pages-dropdown select { width: 100%; /* margin: 12px 0 3px; */}
 
-a.customize-controls-hatch-dashboard { position: absolute; z-index: 10000; /* background: #EEE; */ width: 45px; height: 45px; left: 48px; border-right: 1px solid #DDD; text-align: center; line-height: 45px; box-shadow: none; padding: 0 1px; display: none; -webkit-transition: color .1s ease-in-out, background .1s ease-in-out;  transition: color .1s ease-in-out, background .1s ease-in-out; color: #444;}
-a.customize-controls-hatch-dashboard:hover { background: #DDD; border-color: #CCC;  color: #000;  outline: none;  -webkit-box-shadow: none;  box-shadow: none; }
+a.customize-controls-hatch-button { position: fixed; z-index: 10000; /* background: #EEE; */ width: 45px; height: 45px; left: 48px; border-right: 1px solid #DDD; text-align: center; line-height: 45px; box-shadow: none; padding: 0 1px; display: block; -webkit-transition: color .1s ease-in-out, background .1s ease-in-out;  transition: color .1s ease-in-out, background .1s ease-in-out; color: #444; top: 0; text-decoration: none;}
+a.customize-controls-hatch-button:hover { background: #DDD; border-color: #CCC;  color: #000;  outline: none;  -webkit-box-shadow: none;  box-shadow: none; }
+a.customize-controls-hatch-button-dashboard {  }
+a.customize-controls-hatch-button-preview { left: 96px; font-size: 21px;}

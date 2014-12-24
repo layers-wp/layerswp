@@ -1,17 +1,17 @@
 <?php  /**
- * Select Image
+ * Color Control
  *
- * This file is used to register and display the custom Hatch Select Image
+ * This file is used to register and display the custom Hatch Color Control
  *
  * @package Hatch
  * @since Hatch 1.0
  */
 
-if( !class_exists( 'Hatch_Customize_Select_Image_Control' ) ) {
+if( !class_exists( 'Hatch_Customize_Color_Control' ) ) {
 
-	class Hatch_Customize_Select_Image_Control extends WP_Customize_Control {
+	class Hatch_Customize_Color_Control extends WP_Customize_Control {
 
-		public $type = 'select-image';
+		public $type = 'color';
 
 		public $description = '';
 
@@ -23,10 +23,7 @@ if( !class_exists( 'Hatch_Customize_Select_Image_Control' ) ) {
 			
 			$link = explode( '="', $this->get_link() );
 			$link_attr = ltrim( $link[0], 'data-' );
-			$link_val = rtrim( $link[1], '"' );
-			
-			$values = false;
-			?>
+			$link_val = rtrim( $link[1], '"' ); ?>
 
 			<span class="customize-control-title">
 
@@ -44,11 +41,10 @@ if( !class_exists( 'Hatch_Customize_Select_Image_Control' ) ) {
 					<?php
 					echo $form_elements->input(
 						array(
-							'type' => 'image',
-							'label' => __( 'Choose Background' , HATCH_THEME_SLUG ),
+							'type' => 'color',
 							'name' => '',
 							'id' =>  $this->id,
-							'value' => ( isset( $values['background']['image'] ) ) ? $values['background']['image'] : $this->value(),
+							'value' => $this->value(),
 							'data' => array(
 								$link_attr => $link_val
 							)
@@ -62,4 +58,4 @@ if( !class_exists( 'Hatch_Customize_Select_Image_Control' ) ) {
 			<?php
 		}
 	}
-} // !class_exists( 'Hatch_Customize_Select_Image_Control' )
+} // !class_exists( 'Hatch_Customize_Color_Control' )

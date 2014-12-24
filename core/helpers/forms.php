@@ -248,7 +248,8 @@ class Hatch_Form_Elements {
 							'type' => 'hidden',
 							'name' => $input->name,
 							'id' => $input->id,
-							'value' => ( isset( $input->value ) ) ? $input->value : NULL
+							'value' => ( isset( $input->value ) ) ? $input->value : NULL,
+							'data' => ( NULL != $input->data ) ? $input->data : NULL,
 						)
 					); ?>
 				</section>

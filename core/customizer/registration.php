@@ -140,16 +140,6 @@ class Hatch_Customizer_Regsitrar {
 
 			$setting_key = $this->prefix . $panel_section_key . '-' . $control_key;
 
-			// Add settings
-			$this->customizer->add_setting(
-				$setting_key,
-				array(
-					'default'    => ( isset( $control_data['default'] ) ? $control_data['default'] : NULL ) ,
-					'type'       => 'theme_mod',
-					'capability' => 'manage_options'
-				)
-			);
-
 			// Assign control to the relevant section
 			$control_data[ 'section' ] = $this->prefix . $panel_section_key;
 
@@ -157,7 +147,18 @@ class Hatch_Customizer_Regsitrar {
 			$control_data[ 'priority' ] = $control_priority;
 
 			if ( 'select-images' == $control_data['type'] ) {
-
+				
+				// Add Setting
+				$this->customizer->add_setting(
+					$setting_key,
+					array(
+						'default'    => ( isset( $control_data['default'] ) ? $control_data['default'] : NULL ) ,
+						'type'       => 'theme_mod',
+						'capability' => 'manage_options'
+					)
+				);
+				
+				// Add Control
 				$this->customizer->add_control(
 					new Hatch_Customize_Select_Image_Control(
 						$this->customizer,
@@ -166,7 +167,18 @@ class Hatch_Customizer_Regsitrar {
 					)
 				);
 			} else if( 'select-icons' == $control_data['type'] ) {
-
+				
+				// Add Setting
+				$this->customizer->add_setting(
+					$setting_key,
+					array(
+						'default'    => ( isset( $control_data['default'] ) ? $control_data['default'] : NULL ) ,
+						'type'       => 'theme_mod',
+						'capability' => 'manage_options'
+					)
+				);
+				
+				// Add Control
 				$this->customizer->add_control(
 					new Hatch_Customize_Select_Icon_Control(
 						$this->customizer,
@@ -175,7 +187,18 @@ class Hatch_Customizer_Regsitrar {
 					)
 				);
 			} else if( 'seperator' == $control_data['type'] ) {
-
+				
+				// Add Setting
+				$this->customizer->add_setting(
+					$setting_key,
+					array(
+						'default'    => ( isset( $control_data['default'] ) ? $control_data['default'] : NULL ) ,
+						'type'       => 'theme_mod',
+						'capability' => 'manage_options'
+					)
+				);
+				
+				// Add Control
 				$this->customizer->add_control(
 					new Hatch_Customize_Seperator_Control(
 						$this->customizer,
@@ -184,7 +207,18 @@ class Hatch_Customizer_Regsitrar {
 					)
 				);
 			} else if( 'heading' == $control_data['type'] ) {
-
+				
+				// Add Setting
+				$this->customizer->add_setting(
+					$setting_key,
+					array(
+						'default'    => ( isset( $control_data['default'] ) ? $control_data['default'] : NULL ) ,
+						'type'       => 'theme_mod',
+						'capability' => 'manage_options'
+					)
+				);
+				
+				// Add Control
 				$this->customizer->add_control(
 					new Hatch_Customize_Heading_Control(
 						$this->customizer,
@@ -192,12 +226,83 @@ class Hatch_Customizer_Regsitrar {
 						$control_data
 					)
 				);
+			} else if( 'background' == $control_data['type'] ) {
+				
+				// Footer Background
+				
+				// Modify Control data - so we can add uniqie subtitle, label, default
+				$control_data = wp_parse_args(
+					array(
+						'label' => __( 'Footer Background', HATCH_THEME_SLUG ),
+						'subtitle' => __( 'Background Image', HATCH_THEME_SLUG ),
+					),
+					$control_data
+				);
+				
+				// Add Setting
+				$this->customizer->add_setting(
+					$setting_key . '_background_image',
+					array(
+						'default'    => ( isset( $control_data['default'] ) ? $control_data['default'] : NULL ) ,
+						'type'       => 'theme_mod',
+						'capability' => 'manage_options'
+					)
+				);
+				
+				// Add Control
+				$this->customizer->add_control(
+					new Hatch_Customize_Select_Image_Control(
+						$this->customizer,
+						$setting_key . '_background_image',
+						$control_data
+					)
+				);
+				
+				// Footer Color
+				
+				$control_data = wp_parse_args(
+					array(
+						'label' => '',
+						'subtitle' => __( 'Background Color', HATCH_THEME_SLUG ),
+					),
+					$control_data
+				);
+				
+				$this->customizer->add_setting(
+					$setting_key . '_background_color',
+					array(
+						'default'    => ( isset( $control_data['default'] ) ? $control_data['default'] : NULL ) ,
+						'type'       => 'theme_mod',
+						'capability' => 'manage_options'
+					)
+				);
+				
+				$this->customizer->add_control(
+					new Hatch_Customize_Color_Control(
+						$this->customizer,
+						$setting_key . '_background_color',
+						$control_data
+					)
+				);
+				
 			} else {
-
+				
+				// Add Setting
+				$this->customizer->add_setting(
+					$setting_key,
+					array(
+						'default'    => ( isset( $control_data['default'] ) ? $control_data['default'] : NULL ) ,
+						'type'       => 'theme_mod',
+						'capability' => 'manage_options'
+					)
+				);
+				
+				// Add Control
 				$this->customizer->add_control(
 					$setting_key,
 					$control_data
 				);
+				
 			}
 
 			$control_priority++;

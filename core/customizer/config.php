@@ -246,7 +246,15 @@ class Hatch_Customizer_Config {
 										'3' => __( '3' , HATCH_THEME_SLUG ),
 										'4' => __( '4' , HATCH_THEME_SLUG ),
 									)
-								), // layout
+								),
+								'break-' . rand() => array(
+                                        'type'     => 'seperator'
+                                    ),
+								'background' => array(
+                                    'type'     => 'background',
+                                    'label'    => __( 'Background', HATCH_THEME_SLUG ),
+                                    'default' => '',
+                                ),
 							); // footer-layout
 
 		// Footer -> Layout -> Text

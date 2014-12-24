@@ -1693,6 +1693,22 @@ input[type=radio]:checked + .hatch-settings-icon span{
 .hatch-welcome{
     margin-left: -20px;
 }
+.update-nag{
+    display: block;
+    position: relative;
+    z-index: 2;
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.update-nag + .hatch-welcome{
+    margin-top: -68px;
+    position: relative;
+    z-index: 1;
+}
+.update-nag + .hatch-welcome .hatch-page-title{
+    padding-top: 128px;
+}
 .hatch-page-title{
     background: #009DF3;
 }

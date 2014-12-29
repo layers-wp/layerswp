@@ -417,8 +417,8 @@ if( !function_exists( 'hatch_get_center_column_class' ) ) {
 		// This div will always have the .column class
 		$classes[] = 'column';
 
-		$left_sidebar_active = ( hatch_can_show_sidebar( 'left-sidebar' ) ? is_active_sidebar( HATCH_THEME_SLUG . '-left-sidebar' ) : FALSE );
-		$right_sidebar_active = ( hatch_can_show_sidebar( 'right-sidebar' ) ? is_active_sidebar( HATCH_THEME_SLUG . '-right-sidebar' ) : FALSE );
+		$left_sidebar_active = hatch_can_show_sidebar( 'left-sidebar' );
+		$right_sidebar_active = hatch_can_show_sidebar( 'right-sidebar' );
 
 		// Set classes according to the sidebars
 		if( $left_sidebar_active && $right_sidebar_active ){

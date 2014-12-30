@@ -65,7 +65,10 @@ class Hatch_Options_Panel {
 	* Footer
 	*/
 	public function footer( $args = array() ){ ?>
-		<footer>
+		<footer class="hatch-row hatch-content">
+			<p>
+				<?php _e( 'Hatch is a product of <a href="http://oboxthemes.com/">Obox Themes</a>. For questions and feedback please <a href="mailto:david@obox.co.za">email David directly', HATCH_THEME_SLUG ); ?></a>.
+			</p>
 		</footer>
 	<?php }
 }
@@ -87,6 +90,16 @@ function hatch_options_panel_menu(){
 		'hatch_options_panel_ui',
 		'dashicons-smiley',
 		3
+	);
+
+	// Add Preset Pages
+	add_submenu_page(
+		HATCH_THEME_SLUG . '-welcome',
+		__( 'Add New Hatch Page' , HATCH_THEME_SLUG ),
+		__( 'Add New Hatch Page' , HATCH_THEME_SLUG ),
+		'manage_options',
+		HATCH_THEME_SLUG . '-preset-layouts',
+		'hatch_options_panel_ui'
 	);
 
 	// Hatch Pages

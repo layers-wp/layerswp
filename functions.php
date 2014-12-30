@@ -78,6 +78,7 @@ locate_template( '/core/helpers/post.php' , true );
 locate_template( '/core/helpers/template.php' , true );
 locate_template( '/core/helpers/extensions.php' , true );
 
+
 /*
  * Load Admin-specific files
  */
@@ -90,6 +91,9 @@ if( is_admin() ){
 
 	// Include pointers class
 	locate_template( '/core/helpers/pointers.php' , true );
+
+	// Include API class
+	locate_template( '/core/helpers/api.php' , true );
 
 	// Include widget export/import class
 	locate_template( '/core/widgets/migrator.php' , true );

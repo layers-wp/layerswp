@@ -546,6 +546,8 @@ class Hatch_Widget_Migrator {
         // Begin results
         $results = array();
 
+        if( empty( $import_data[ 'widget_data' ] ) ) return;
+
         foreach( $import_data[ 'widget_data' ] as $sidebar_id => $sidebar_data ) {
 
             // If this is a builder page, set the ID to the current page we are importing INTO

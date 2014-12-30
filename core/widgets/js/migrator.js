@@ -23,13 +23,15 @@ jQuery(document).ready(function($){
         );
 
     });
-    $(document).on( 'click', 'label[id^="hatch-generate-preset-layout-"]', function(e){
+
+    $(document).on( 'click', '[id^="hatch-generate-preset-layout-"]', function(e){
         e.preventDefault();
 
         // "Hi Mom!"
         $that = $(this);
 
-        $id = $that.attr( 'for' );
+        $id = $that.data( 'key' );
+
         $title = $('#' + $id + '-title' ).val();
         $widget_data = $('#' + $id + '-widget_data' ).val();
 

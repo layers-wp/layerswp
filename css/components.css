@@ -89,9 +89,6 @@ section[class*=' off-canvas-'] .close-canvas{
     .header-site{
         background: #f3f3f3;
     }
-    .header-site .container{
-        padding: 20px;
-    }
 
     /*---------------------------*/
     /*- ALIGNMENT LEFT ----------*/

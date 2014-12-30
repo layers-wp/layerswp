@@ -322,6 +322,18 @@ if( ! function_exists( 'hatch_scripts' ) ) {
 			HATCH_VERSION
 		); // Responsive
 		wp_enqueue_style(
+			HATCH_THEME_SLUG . '-colors',
+			get_template_directory_uri() . '/css/colors.css',
+			array(),
+			HATCH_VERSION
+		); // Colors
+		wp_enqueue_style(
+			HATCH_THEME_SLUG . '-typography',
+			get_template_directory_uri() . '/css/typography.css',
+			array(),
+			HATCH_VERSION
+		); // Typography
+		wp_enqueue_style(
 			HATCH_THEME_SLUG . '-icon-font',
 			get_template_directory_uri() . '/css/obox-icons.css',
 			array(),

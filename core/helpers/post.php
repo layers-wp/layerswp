@@ -3,8 +3,8 @@
  *
  * This file is used to display post elements, from meta to media, to galleries, to in-post pagination, all post-related functions sit in this file.
  *
- * @package Hatch
- * @since Hatch 1.0
+ * @package Layers
+ * @since Layers 1.0
  */
 
 
@@ -18,8 +18,8 @@
 * @echo     string                          Post Meta HTML
 */
 
-if( !function_exists( 'hatch_post_meta' ) ) {
-    function hatch_post_meta( $post_id = NULL , $display = NULL, $wrapper = 'footer', $wrapper_class = 'meta-info' ) {
+if( !function_exists( 'layers_post_meta' ) ) {
+    function layers_post_meta( $post_id = NULL , $display = NULL, $wrapper = 'footer', $wrapper_class = 'meta-info' ) {
         // If there is no post ID specified, use the current post, does not affect post author, yet.
         if( NULL == $post_id ) {
             global $post;
@@ -32,10 +32,10 @@ if( !function_exists( 'hatch_post_meta' ) ) {
         foreach ( $display as $meta ) {
             switch ( $meta ) {
                 case 'date' :
-                    $meta_to_display[] = __( 'on ', HATCH_THEME_SLUG ) . get_the_time(  get_option( 'date_format' ) , $post_id );
+                    $meta_to_display[] = __( 'on ', LAYERS_THEME_SLUG ) . get_the_time(  get_option( 'date_format' ) , $post_id );
                     break;
                 case 'author' :
-                    $meta_to_display[] = __( 'by ', HATCH_THEME_SLUG ) . hatch_get_the_author( $post_id );
+                    $meta_to_display[] = __( 'by ', LAYERS_THEME_SLUG ) . layers_get_the_author( $post_id );
                     break;
                 case 'categories' :
                     $categories = '';
@@ -53,9 +53,9 @@ if( !function_exists( 'hatch_post_meta' ) ) {
                     if( !$the_categories ) continue;
 
                     foreach ( $the_categories as $category ){
-                        $categories .= ' <a href="'.get_category_link( $category->term_id ).'" title="' . esc_attr( sprintf( __( "View all posts in %s", HATCH_THEME_SLUG ), $category->name ) ) . '">'.$category->name.'</a>';
+                        $categories .= ' <a href="'.get_category_link( $category->term_id ).'" title="' . esc_attr( sprintf( __( "View all posts in %s", LAYERS_THEME_SLUG ), $category->name ) ) . '">'.$category->name.'</a>';
                     }
-                    $meta_to_display[] = __( 'in ', HATCH_THEME_SLUG ) . $categories;
+                    $meta_to_display[] = __( 'in ', LAYERS_THEME_SLUG ) . $categories;
                     break;
                 case 'tags' :
                     $tags = '';
@@ -72,9 +72,9 @@ if( !function_exists( 'hatch_post_meta' ) ) {
                     if( !$the_tags ) continue;
 
                     foreach ( $the_tags as $tag ){
-                        $tags[] = ' <a href="'.get_category_link( $tag->term_id ).'" title="' . esc_attr( sprintf( __( "View all posts tagged %s", HATCH_THEME_SLUG ), $tag->name ) ) . '">'.$tag->name.'</a>';
+                        $tags[] = ' <a href="'.get_category_link( $tag->term_id ).'" title="' . esc_attr( sprintf( __( "View all posts tagged %s", LAYERS_THEME_SLUG ), $tag->name ) ) . '">'.$tag->name.'</a>';
                     }
-                    $meta_to_display[] = __( 'tagged ', HATCH_THEME_SLUG ) . implode( __( ', ', HATCH_THEME_SLUG ), $tags );
+                    $meta_to_display[] = __( 'tagged ', LAYERS_THEME_SLUG ) . implode( __( ', ', LAYERS_THEME_SLUG ), $tags );
                     break;
                 break;
             } // switch meta
@@ -83,25 +83,25 @@ if( !function_exists( 'hatch_post_meta' ) ) {
         if( !empty( $meta_to_display ) ) {
             echo '<' . $wrapper . ( ( '' != $wrapper_class ) ? ' class="' . $wrapper_class .'"' : NULL ) . '>';
                 echo '<p>';
-                    echo __( 'Written ' , HATCH_THEME_SLUG ) . implode( ' ' , $meta_to_display );
+                    echo __( 'Written ' , LAYERS_THEME_SLUG ) . implode( ' ' , $meta_to_display );
                 echo '</p>';
             echo '</' . $wrapper . '>';
         }
     }
-} // hatch_post_meta
+} // layers_post_meta
 
 /**
  * Prints HTML with meta information for the current post-date/time and author.
  */
-if ( ! function_exists( 'hatch_get_the_author' ) ) {
-    function hatch_get_the_author() {
-        return sprintf( __( '<a href="%1$s" title="%2$s" rel="author">%3$s</a>', HATCH_THEME_SLUG ),
+if ( ! function_exists( 'layers_get_the_author' ) ) {
+    function layers_get_the_author() {
+        return sprintf( __( '<a href="%1$s" title="%2$s" rel="author">%3$s</a>', LAYERS_THEME_SLUG ),
             esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ),
             esc_attr( sprintf( __( 'View all posts by %s', 'the-writer' ), get_the_author() ) ),
             esc_attr( get_the_author() )
         );
     }
-} // hatch_get_the_author
+} // layers_get_the_author
 
 
 /**
@@ -112,27 +112,27 @@ if ( ! function_exists( 'hatch_get_the_author' ) ) {
  * @param    int             $depth          Current depth of comment, for example 2 for a reply
  * @echo     string                          Comment HTML
  */
-if( !function_exists( 'hatch_comment' ) ) {
-    function hatch_comment($comment, $args, $depth) {
+if( !function_exists( 'layers_comment' ) ) {
+    function layers_comment($comment, $args, $depth) {
         $GLOBALS['comment'] = $comment;?>
         <?php if( 1 < $depth && isset( $GLOBALS['lastdepth'] ) && $depth != $GLOBALS['lastdepth'] ) { ?>
             <div class="row comments-nested push-top">
         <?php } ?>
         <div <?php comment_class( 'content push-bottom well' ); ?> id="comment-<?php comment_ID(); ?>">
             <div class="avatar push-bottom clearfix">
-                <?php edit_comment_link(__('(Edit)', HATCH_THEME_SLUG),'<small class="pull-right">','</small>') ?>
+                <?php edit_comment_link(__('(Edit)', LAYERS_THEME_SLUG),'<small class="pull-right">','</small>') ?>
                 <a class="avatar-image" href="">
                     <?php echo get_avatar($comment, $size = '70'); ?>
                 </a>
                 <div class="avatar-body">
                     <h5 class="avatar-name"><?php echo get_comment_author_link(); ?></h5>
-                    <small><?php printf(__('%1$s at %2$s', HATCH_THEME_SLUG), get_comment_date(),  get_comment_time()) ?></small>
+                    <small><?php printf(__('%1$s at %2$s', LAYERS_THEME_SLUG), get_comment_date(),  get_comment_time()) ?></small>
                 </div>
             </div>
 
             <div class="copy small">
                 <?php if ($comment->comment_approved == '0') : ?>
-                    <em><?php _e('Your comment is awaiting moderation.', HATCH_THEME_SLUG) ?></em>
+                    <em><?php _e('Your comment is awaiting moderation.', LAYERS_THEME_SLUG) ?></em>
                     <br />
                 <?php endif; ?>
                 <?php comment_text() ?>
@@ -144,16 +144,16 @@ if( !function_exists( 'hatch_comment' ) ) {
 
         <?php $GLOBALS['lastdepth'] = $depth; ?>
 <?php }
-} // hatch_comment
+} // layers_comment
 
 /**
  * Backs up builder pages as HTML
  */
-if( !function_exists( 'hatch_backup_builder_pages' ) ) {
+if( !function_exists( 'layers_backup_builder_pages' ) ) {
 
-    function hatch_backup_builder_pages(){
+    function layers_backup_builder_pages(){
 
-        if( !isset( $_POST[ 'pageid' ] ) ) wp_die( __( 'You shall not pass' , HATCH_THEME_SLUG ) );
+        if( !isset( $_POST[ 'pageid' ] ) ) wp_die( __( 'You shall not pass' , LAYERS_THEME_SLUG ) );
 
         // Get the post data
         $page_id = $_POST[ 'pageid' ];
@@ -161,7 +161,7 @@ if( !function_exists( 'hatch_backup_builder_pages' ) ) {
 
         // Start the output buffer
         ob_start();
-        dynamic_sidebar( 'obox-hatch-builder-' . $page->ID );
+        dynamic_sidebar( 'obox-layers-builder-' . $page->ID );
 
         $page_content = ob_get_clean();
         $page_content = preg_replace('#<script(.*?)>(.*?)</script>#is', '', $page_content);
@@ -180,16 +180,16 @@ if( !function_exists( 'hatch_backup_builder_pages' ) ) {
         ob_flush();
     }
 
-    add_action( 'wp_ajax_hatch_backup_builder_pages', 'hatch_backup_builder_pages' );
-} // hatch_builder_page_backup
+    add_action( 'wp_ajax_layers_backup_builder_pages', 'layers_backup_builder_pages' );
+} // layers_builder_page_backup
 
 /**
 *  Adjust the site title for static front pages
 */
-if( !function_exists( 'hatch_post_class' ) ) {
-    function hatch_post_class( $classes ) {
+if( !function_exists( 'layers_post_class' ) ) {
+    function layers_post_class( $classes ) {
 
-        if( 'layout-fullwidth' != hatch_get_theme_mod( 'content-layout-layout' ) && 'product' != get_post_type() ){
+        if( 'layout-fullwidth' != layers_get_theme_mod( 'content-layout-layout' ) && 'product' != get_post_type() ){
             $classes[] = 'container';
         }
 
@@ -199,7 +199,7 @@ if( !function_exists( 'hatch_post_class' ) ) {
 
         return $classes;
     }
-    add_filter( 'post_class' , 'hatch_post_class' );
+    add_filter( 'post_class' , 'layers_post_class' );
 }
 
 /**
@@ -208,14 +208,14 @@ if( !function_exists( 'hatch_post_class' ) ) {
  * @param varchar Page Title (optional)
  * @return array Page ID
  */
-if( !function_exists( 'hatch_create_builder_page' ) ) {
-    function hatch_create_builder_page( $page_title = 'Builder Page' ) {
+if( !function_exists( 'layers_create_builder_page' ) ) {
+    function layers_create_builder_page( $page_title = 'Builder Page' ) {
         $page['post_type']    = 'page';
         $page['post_status']  = 'publish';
         $page['post_title']   = $page_title;
         $pageid = wp_insert_post ($page);
         if ( 0 != $pageid ) {
-            update_post_meta( $pageid , '_wp_page_template', HATCH_BUILDER_TEMPLATE );
+            update_post_meta( $pageid , '_wp_page_template', LAYERS_BUILDER_TEMPLATE );
         }
 
         return $pageid;
@@ -225,34 +225,34 @@ if( !function_exists( 'hatch_create_builder_page' ) ) {
 /**
  * Get all builder pages and store in global variable
  *
- * @return  object    $hatch_builder_pages wp_query list of builder pages.
+ * @return  object    $layers_builder_pages wp_query list of builder pages.
 */
 
-if( ! function_exists( 'hatch_get_builder_pages' ) ) {
-    function hatch_get_builder_pages () {
-        global $hatch_builder_pages;
+if( ! function_exists( 'layers_get_builder_pages' ) ) {
+    function layers_get_builder_pages () {
+        global $layers_builder_pages;
 
         // Fetch Builder Pages
-        $hatch_builder_pages = get_pages(array(
+        $layers_builder_pages = get_pages(array(
             'post_status' => 'publish,draft,private',
             'post_type' => 'page',
             'meta_key' => '_wp_page_template',
-            'meta_value' => HATCH_BUILDER_TEMPLATE,
+            'meta_value' => LAYERS_BUILDER_TEMPLATE,
             'posts_per_page' => -1
         ));
 
-        return $hatch_builder_pages;
+        return $layers_builder_pages;
     }
 }
 
 /**
- * Conditional check if is Hatch page
+ * Conditional check if is Layers page
  *
  * @param   int   $post_id   (Optional) ID of post to check. Uses global $post ID if none provided.
  */
 
-if( ! function_exists( 'hatch_is_builder_page' ) ) {
-    function hatch_is_builder_page( $post_id = false ){
+if( ! function_exists( 'layers_is_builder_page' ) ) {
+    function layers_is_builder_page( $post_id = false ){
         global $post;
 
         // Be sure to set a post id for use
@@ -262,7 +262,7 @@ if( ! function_exists( 'hatch_is_builder_page' ) ) {
 
         // If there is a post_id, check for the builder page
         if ( isset( $post_id ) ) {
-            if( HATCH_BUILDER_TEMPLATE == get_post_meta( $post_id, '_wp_page_template', true ) ) {
+            if( LAYERS_BUILDER_TEMPLATE == get_post_meta( $post_id, '_wp_page_template', true ) ) {
                 return true;
             }
         }
@@ -273,52 +273,52 @@ if( ! function_exists( 'hatch_is_builder_page' ) ) {
 }
 
 /**
- * Filter Hatch Pages in wp-admin Pages
+ * Filter Layers Pages in wp-admin Pages
  *
  * @TODO: think about moving this function to it own helpers/admin.php,
  * especially if more work is to be done on admin list.
  */
 
-if ( ! function_exists( 'hatch_filter_admin_pages' ) ) {
+if ( ! function_exists( 'layers_filter_admin_pages' ) ) {
 
-    function hatch_filter_admin_pages() {
+    function layers_filter_admin_pages() {
         global $typenow;
 
-        if ( 'page' == $typenow && isset( $_GET['filter'] ) && 'hatch' == $_GET['filter'] ) {
+        if ( 'page' == $typenow && isset( $_GET['filter'] ) && 'layers' == $_GET['filter'] ) {
             set_query_var(
                 'meta_query',
                 array(
                     'relation' => 'AND',
                     array(
                         'key' => '_wp_page_template',
-                        'value' => HATCH_BUILDER_TEMPLATE,
+                        'value' => LAYERS_BUILDER_TEMPLATE,
                     )
                 )
             );
         }
     }
 
-    add_filter( 'pre_get_posts', 'hatch_filter_admin_pages' );
+    add_filter( 'pre_get_posts', 'layers_filter_admin_pages' );
 }
 
 
 /**
- * Change views links on wp-list-table - all, published, draft, etc - to maintain hatch page filtering
- * TODO: some kind of feeback so user knows he is in the Hatch filter - maybe h2 to "Hatch Pages"
+ * Change views links on wp-list-table - all, published, draft, etc - to maintain layers page filtering
+ * TODO: some kind of feeback so user knows he is in the Layers filter - maybe h2 to "Layers Pages"
  */
 
-if ( ! function_exists( 'hatch_filter_admin_pages_views' ) ) {
+if ( ! function_exists( 'layers_filter_admin_pages_views' ) ) {
 
-    function hatch_filter_admin_pages_views( $views ) {
+    function layers_filter_admin_pages_views( $views ) {
         foreach ($views as $view_key => $view_value ) {
-            $query_arg = '&filter=hatch';
+            $query_arg = '&filter=layers';
             $view_value = preg_replace('/href=\'(http:\/\/[^\/"]+\/?)?([^"]*)\'/', "href='\\2$query_arg'", $view_value);
             $views[$view_key] = $view_value;
         }
         return $views;
     }
 
-    add_filter( "views_edit-page", 'hatch_filter_admin_pages_views' );
+    add_filter( "views_edit-page", 'layers_filter_admin_pages_views' );
 }
 
 
@@ -330,16 +330,16 @@ if ( ! function_exists( 'hatch_filter_admin_pages_views' ) ) {
  * @return null Nothing is returned, the Edit button is added the admin toolbar
 */
 
-if( ! function_exists( 'hatch_add_builder_edit_button' ) ) {
+if( ! function_exists( 'layers_add_builder_edit_button' ) ) {
 
-    function hatch_add_builder_edit_button(){
+    function layers_add_builder_edit_button(){
         global $wp_admin_bar, $post;
 
-        if( is_page() && hatch_is_builder_page() ){
+        if( is_page() && layers_is_builder_page() ){
             $current_url = ( is_ssl() ? 'https://' : 'http://' ) . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
             $args = array(
                 'id'    => 'my_page',
-                'title' => '<span class="ab-icon"></span><span class="ab-label">' . __( 'Build Page' , HATCH_THEME_SLUG ) . '</span>',
+                'title' => '<span class="ab-icon"></span><span class="ab-label">' . __( 'Build Page' , LAYERS_THEME_SLUG ) . '</span>',
                 'href'  => add_query_arg( 'url', urlencode( $current_url ), wp_customize_url() ),
                 'meta'  => array( 'class' => 'my-toolbar-page' )
             );
@@ -347,12 +347,12 @@ if( ! function_exists( 'hatch_add_builder_edit_button' ) ) {
         }
     }
 
-    add_action( 'admin_bar_menu', 'hatch_add_builder_edit_button', 90 );
+    add_action( 'admin_bar_menu', 'layers_add_builder_edit_button', 90 );
 }
 
 // Output custom css to add Icon to admin bar edit button.
-if( ! function_exists( 'hatch_add_builder_edit_button_css' ) ) {
-    function hatch_add_builder_edit_button_css() {
+if( ! function_exists( 'layers_add_builder_edit_button_css' ) ) {
+    function layers_add_builder_edit_button_css() {
         echo '<style>
         #wp-admin-bar-my_page .ab-icon:before{
             font-family: "dashicons" !important;
@@ -360,6 +360,6 @@ if( ! function_exists( 'hatch_add_builder_edit_button_css' ) ) {
         }
         </style>';
     }
-    add_action('admin_head', 'hatch_add_builder_edit_button_css');
-    add_action('wp_head', 'hatch_add_builder_edit_button_css');
+    add_action('admin_head', 'layers_add_builder_edit_button_css');
+    add_action('wp_head', 'layers_add_builder_edit_button_css');
 }

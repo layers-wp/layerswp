@@ -1,11 +1,11 @@
 jQuery(document).ready(function($){
 
     // Loop over the pointer object
-    $.each( hatch_pointers , function( pointer_index , hatch_pointer ){
+    $.each( layers_pointers , function( pointer_index , layers_pointer ){
 
         // Select the element and apply the pointer() function
-        $( hatch_pointer.selector ).pointer({
-            content: '<h3>' + hatch_pointer.title + '</h3>' + '<p>' + hatch_pointer.content + '</p>',
+        $( layers_pointer.selector ).pointer({
+            content: '<h3>' + layers_pointer.title + '</h3>' + '<p>' + layers_pointer.content + '</p>',
             open: function( target , pointer_object ){
                 /**
                 * We have to hack the z-index to make sure the pointer displays in the customizer

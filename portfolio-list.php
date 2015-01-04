@@ -2,8 +2,8 @@
 /**
  * This partial is used to display portfolio list content
  *
- * @package Hatch
- * @since Hatch 1.0
+ * @package Layers
+ * @since Layers 1.0
  */
 
 global $post; ?>
@@ -25,7 +25,7 @@ global $post; ?>
                     <?php the_excerpt(); ?>
                 </div>
             <?php } ?>
-            <a href="<?php the_permalink(); ?>" class="button"><?php _e( 'View Project' , HATCH_THEME_SLUG ); ?></a>
+            <a href="<?php the_permalink(); ?>" class="button"><?php _e( 'View Project' , LAYERS_THEME_SLUG ); ?></a>
         </div>
     </div>
 </article>

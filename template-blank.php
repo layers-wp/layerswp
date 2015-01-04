@@ -4,8 +4,8 @@
  *
  * The template for displaying a full width, unstyled page
  *
- * @package Hatch
- * @since Hatch 1.0
+ * @package Layers
+ * @since Layers 1.0
  */
 
 get_header(); ?>

@@ -1,15 +1,15 @@
 <?php  /**
  * Radio Control
  *
- * This file is used to register and display the custom Hatch Radio Checkbox
+ * This file is used to register and display the custom Layers Radio Checkbox
  *
- * @package Hatch
- * @since Hatch 1.0
+ * @package Layers
+ * @since Layers 1.0
  */
 
-if( !class_exists( 'Hatch_Customize_Heading_Control' ) ) {
+if( !class_exists( 'Layers_Customize_Heading_Control' ) ) {
 
-	class Hatch_Customize_Heading_Control extends WP_Customize_Control {
+	class Layers_Customize_Heading_Control extends WP_Customize_Control {
 
 		public $type = 'heading';
 
@@ -32,4 +32,4 @@ if( !class_exists( 'Hatch_Customize_Heading_Control' ) ) {
 
 		<?php }
 	}
-} // !class_exists( 'Hatch_Customize_Radio_Control' )
+} // !class_exists( 'Layers_Customize_Radio_Control' )

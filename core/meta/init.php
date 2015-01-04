@@ -1,13 +1,13 @@
 <?php /**
  * Post & Page Meta Initiation File
  *
- * This file is the source of the Custom Meta in the Hatch theme
+ * This file is the source of the Custom Meta in the Layers theme
  *
- * @package Hatch
- * @since Hatch 1.0
+ * @package Layers
+ * @since Layers 1.0
  */
 
-class Hatch_Custom_Meta {
+class Layers_Custom_Meta {
 
 	private static $instance;
 
@@ -35,7 +35,7 @@ class Hatch_Custom_Meta {
 
 
 		// Instantiate meta config class
-		$meta_config = new Hatch_Meta_Config();
+		$meta_config = new Layers_Meta_Config();
 
 		// Get post meta
 		$this->custom_meta = $meta_config->meta_data();
@@ -47,7 +47,7 @@ class Hatch_Custom_Meta {
 		// Page Builder Button
 		add_action( 'edit_form_after_title', array( $this , 'page_builder_button' ) );
 		add_action( 'wp_ajax_update_page_builder_meta' , array( $this , 'update_page_builder_meta' ) );
-		// add_filter( 'hatch_pointer_settings' , array( $this , 'page_builder_button_pointer' ) );
+		// add_filter( 'layers_pointer_settings' , array( $this , 'page_builder_button_pointer' ) );
 		add_action( 'page_row_actions' , array( $this , 'inline_page_builder_button' ), 10, 2 );
 
 		// Custom Fields
@@ -64,19 +64,19 @@ class Hatch_Custom_Meta {
 
 		// Customizer general
 		wp_enqueue_script(
-			HATCH_THEME_SLUG . '-admin-meta' ,
+			LAYERS_THEME_SLUG . '-admin-meta' ,
 			get_template_directory_uri() . '/core/meta/js/meta.js' ,
 			array(
 				'backbone',
 				'jquery',
 				'wp-color-picker'
 			),
-			HATCH_VERSION,
+			LAYERS_VERSION,
 			true
 		);
 
 		// Localize Scripts
-		wp_localize_script( HATCH_THEME_SLUG . '-admin-meta' , "hatch_meta_params", array( 'ajaxurl' => admin_url( "admin-ajax.php" ) , 'nonce' => wp_create_nonce( 'hatch-customizer-actions' ) ) );
+		wp_localize_script( LAYERS_THEME_SLUG . '-admin-meta' , "layers_meta_params", array( 'ajaxurl' => admin_url( "admin-ajax.php" ) , 'nonce' => wp_create_nonce( 'layers-customizer-actions' ) ) );
 	}
 
 	/**
@@ -85,7 +85,7 @@ class Hatch_Custom_Meta {
 
 	public function admin_print_styles(){
 		global $pagenow, $post;
-		if ( 'post.php' === $pagenow && ( HATCH_BUILDER_TEMPLATE == basename( get_page_template() ) ) ) : ?>
+		if ( 'post.php' === $pagenow && ( LAYERS_BUILDER_TEMPLATE == basename( get_page_template() ) ) ) : ?>
 			<style> #postdivrich { display: none; }</style>
 		<?php endif;
 	}
@@ -104,21 +104,21 @@ class Hatch_Custom_Meta {
 
 		$is_builder_used = ( 'builder.php' == basename( get_page_template() ) ) ? true : false;
 
-		printf( '<div id="hatch_toggle_builder" class="hatch-section-title hatch-medium invert hatch-content-massive %3$s" style="background: url( %7$s/images/beta-zero.jpg) top repeat #106F9F;">
-					<div class="hatch-heading">
+		printf( '<div id="layers_toggle_builder" class="layers-section-title layers-medium invert layers-content-massive %3$s" style="background: url( %7$s/images/beta-zero.jpg) top repeat #106F9F;">
+					<div class="layers-heading">
 						%1$s
 					</div>
-					<p class="hatch-excerpt">
+					<p class="layers-excerpt">
 						%5$s
 					</p>
-					<a href="%2$s" class="hatch-button btn-massive btn-secondary" id="%4$s">%6$s</a>
+					<a href="%2$s" class="layers-button btn-massive btn-secondary" id="%4$s">%6$s</a>
 				</div>',
 			'Your page is ready for building', // %1
-			admin_url() . 'customize.php?url=' . esc_url( get_the_permalink() ) . '&hatch-builder=1', // %2
-			( true == $is_builder_used ? '' : 'hatch-hide' ), // %3
+			admin_url() . 'customize.php?url=' . esc_url( get_the_permalink() ) . '&layers-builder=1', // %2
+			( true == $is_builder_used ? '' : 'layers-hide' ), // %3
 			( isset( $post->ID ) ? 'builder-button-' . $post->ID : 'builder-button-' . rand(0,1) ), // %4,
-			__( 'You are one step away from building your page. Head over to the Visual Customizer where you can drag and drop widgets, edit content and tweak the design. Click the button below and see your page come to life.', HATCH_THEME_SLUG ), // %5
-			__( 'Build Your Page', HATCH_THEME_SLUG ), // %6
+			__( 'You are one step away from building your page. Head over to the Visual Customizer where you can drag and drop widgets, edit content and tweak the design. Click the button below and see your page come to life.', LAYERS_THEME_SLUG ), // %5
+			__( 'Build Your Page', LAYERS_THEME_SLUG ), // %6
 			get_template_directory_uri() // %7,
 		);
 	}
@@ -137,7 +137,7 @@ class Hatch_Custom_Meta {
 
 		// Add our button
 		if ( $can_edit_post && 'builder.php' == get_page_template_slug( $post->ID ) ) {
-			$actions['builder'] = '<a href="' . admin_url() . 'customize.php?url=' . esc_url( get_the_permalink() ) . '&hatch-builder=1" title="' . esc_attr( __( 'Build Page' ) ) . '">' . __( 'Build Page' ) . '</a>';
+			$actions['builder'] = '<a href="' . admin_url() . 'customize.php?url=' . esc_url( get_the_permalink() ) . '&layers-builder=1" title="' . esc_attr( __( 'Build Page' ) ) . '">' . __( 'Build Page' ) . '</a>';
 		}
 
 		return $actions;
@@ -156,14 +156,14 @@ class Hatch_Custom_Meta {
 		if ( !in_array( $post->post_type, array( 'page' ) ) || 'publish' != get_post_status() ) return;
 
 		// Add the pointer to the pointer config
-		$pointers[ HATCH_THEME_SLUG . '-builder-button-pointer-' . $post->ID ] = array(
+		$pointers[ LAYERS_THEME_SLUG . '-builder-button-pointer-' . $post->ID ] = array(
 					'selector' 	=> '#builder-button-' . $post->ID,
 					'position'	=>  array(
 									'edge' => 'right', // bottom / top/ right / left
 									'align' => 'left' // left / center / right
 								),
-					'title'		=> __( 'Build Your Page' , HATCH_THEME_SLUG ),
-					'content'	=> __( 'Use the' . HATCH_THEME_TITLE . ' page builder to build a beautiful, dynamic page.' , HATCH_THEME_SLUG ),
+					'title'		=> __( 'Build Your Page' , LAYERS_THEME_SLUG ),
+					'content'	=> __( 'Use the' . LAYERS_THEME_TITLE . ' page builder to build a beautiful, dynamic page.' , LAYERS_THEME_SLUG ),
 				);
 
 		return $pointers;
@@ -240,7 +240,7 @@ class Hatch_Custom_Meta {
 				// Add Meta Box
 				/*
 					add_meta_box(
-						HATCH_THEME_SLUG . '-' . $meta_index, // Slug
+						LAYERS_THEME_SLUG . '-' . $meta_index, // Slug
 						$custom_meta[ 'title' ], // Title
 						array( $this , 'display_post_meta' ) , // Interface
 						$post_type , // Post Type
@@ -263,7 +263,7 @@ class Hatch_Custom_Meta {
 		$post_type = get_post_type( $post->ID );
 
 		// Post Meta Value
-		$post_meta = get_post_meta( $post->ID, HATCH_THEME_SLUG . '-' . $post_type , true );
+		$post_meta = get_post_meta( $post->ID, LAYERS_THEME_SLUG . '-' . $post_type , true );
 
 		// Debug
 		// echo '<pre>' . print_r( $post_meta , true ) . '</pre>';
@@ -275,13 +275,13 @@ class Hatch_Custom_Meta {
 		if( !isset( $this->custom_meta[ $meta_index ] ) ) return;
 
 		// Instantiate form elements
-		$form_elements = new Hatch_Form_Elements();
+		$form_elements = new Layers_Form_Elements();
 
 		// If there is Post Meta, loop over the tabs.
 		if( isset( $this->custom_meta[ $meta_index ] ) ){ ?>
 			<!-- Tabs -->
-			<div class="hatch-nav hatch-nav-tabs">
-				<ul class="hatch-tabs">
+			<div class="layers-nav layers-nav-tabs">
+				<ul class="layers-tabs">
 					<?php foreach( $this->custom_meta[ $meta_index ]['custom-meta'] as $key => $meta_option ){ ?>
 						<li <?php if( !isset( $inactive ) ) echo 'class="active"'; ?>><a href="#"><?php echo $meta_option[ 'title' ]; ?></a></li>
 						<?php $inactive=1; ?>
@@ -289,25 +289,25 @@ class Hatch_Custom_Meta {
 				</ul>
 			</div>
 			<!-- Tab Content -->
-			<div class="hatch-tab-content">
+			<div class="layers-tab-content">
 				<?php foreach( $this->custom_meta[ $meta_index ]['custom-meta'] as $key => $meta_option ){ ?>
-					<section class="hatch-accordion-section hatch-content hatch-tab-content <?php if( isset( $hide_tab ) ) echo 'hatch-hide'; ?> customize-control"> <?php // @TODO: Remove .customizer-control class ?>
-						<div class="hatch-row clearfix">
+					<section class="layers-accordion-section layers-content layers-tab-content <?php if( isset( $hide_tab ) ) echo 'layers-hide'; ?> customize-control"> <?php // @TODO: Remove .customizer-control class ?>
+						<div class="layers-row clearfix">
 							<?php if( isset( $meta_option[ 'elements' ] ) ) { ?>
 								<fieldset>
 									<?php foreach( $meta_option[ 'elements' ] as $input_key => $input ) { ?>
-										<p class="hatch-form-item">
+										<p class="layers-form-item">
 											<label><?php echo $input[ 'label' ]; ?></label>
 											<?php  echo $form_elements->input(
 												array(
 													'type' => $input[ 'type' ],
-													'name' => HATCH_THEME_SLUG . '-' . $post_type . '[' . $input_key . ']',
+													'name' => LAYERS_THEME_SLUG . '-' . $post_type . '[' . $input_key . ']',
 													'id' => $input_key ,
 													'default' => ( isset( $input[ 'default' ] ) ) ? $input[ 'default' ] : NULL ,
 													'placeholder' => ( isset( $input[ 'placeholder' ] ) ) ? $input[ 'placeholder' ] : NULL ,
 													'value' => ( isset( $post_meta[ $input_key ] ) ) ? $post_meta[ $input_key ] : ( ( isset( $input[ 'default' ] ) ) ? $input[ 'default' ] : NULL ), // Check for a value, then check for a default, then finally settle on NULL
 													'options' =>  ( isset( $input[ 'options' ] ) ) ? $input[ 'options' ] : NULL,
-													'class' => 'hatch-' . $input[ 'type' ]
+													'class' => 'layers-' . $input[ 'type' ]
 
 												)
 											); ?>
@@ -320,7 +320,7 @@ class Hatch_Custom_Meta {
 					<?php $hide_tab = 1; ?>
 				<?php } // foreach $this->custom_meta[ $post_type ]['custom-meta'] ?>
 			</div>
-			<?php wp_nonce_field( HATCH_THEME_SLUG . '-post-meta' , '_wp_nonce_' . HATCH_THEME_SLUG ); ?>
+			<?php wp_nonce_field( LAYERS_THEME_SLUG . '-post-meta' , '_wp_nonce_' . LAYERS_THEME_SLUG ); ?>
 		<?php } // if $this->custom_meta[ $post_type ] ?>
 	<?php }
 
@@ -335,7 +335,7 @@ class Hatch_Custom_Meta {
 		$post_type = get_post_type( $post_id );
 
 		// Verify our nonce
-		$nonce_key = '_wp_nonce_' . HATCH_THEME_SLUG;
+		$nonce_key = '_wp_nonce_' . LAYERS_THEME_SLUG;
 
 		// If there is no nonce to use, can this function
 		if( !isset( $_REQUEST[ $nonce_key ] ) ) return;
@@ -343,12 +343,12 @@ class Hatch_Custom_Meta {
 		$nonce = $_REQUEST[ $nonce_key ];
 
 		// Form key
-		$form_key = HATCH_THEME_SLUG . '-' . $post_type;
+		$form_key = LAYERS_THEME_SLUG . '-' . $post_type;
 
 		// Do some nonce
-		if ( wp_verify_nonce( $nonce, HATCH_THEME_SLUG . '-post-meta' ) ) {
+		if ( wp_verify_nonce( $nonce, LAYERS_THEME_SLUG . '-post-meta' ) ) {
 			if( isset( $_REQUEST[ $form_key ] ) ) {
-				update_post_meta( $post_id, HATCH_THEME_SLUG . '-' . $post_type , $_REQUEST[ $form_key ] );
+				update_post_meta( $post_id, LAYERS_THEME_SLUG . '-' . $post_type , $_REQUEST[ $form_key ] );
 			} // if isset( $this->custom_meta[ $post_type ] )
 		} // if nonce
 	}
@@ -358,8 +358,8 @@ class Hatch_Custom_Meta {
 *  Kicking this off with the 'custom_meta_init' hook
 */
 
-function hatch_custom_meta_init(){
-	$hatch_widget = new Hatch_Custom_Meta();
-	$hatch_widget->init();
+function layers_custom_meta_init(){
+	$layers_widget = new Layers_Custom_Meta();
+	$layers_widget->init();
 }
-add_action( 'init' , 'hatch_custom_meta_init' , 10 );
+add_action( 'init' , 'layers_custom_meta_init' , 10 );

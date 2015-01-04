@@ -4,8 +4,8 @@
  *
  * The template for displaying portfolio posts
  *
- * @package Hatch
- * @since Hatch 1.0
+ * @package Layers
+ * @since Layers 1.0
  */
 
 // Do the WP_Query
@@ -31,7 +31,7 @@ get_header(); ?>
             <?php }; // while have_posts ?>
         </div>
         <div class="row">
-            <?php hatch_pagination( array( 'query' => $portfolio_query ) ); ?>
+            <?php layers_pagination( array( 'query' => $portfolio_query ) ); ?>
         </div>
     <?php }; // if have_posts ?>
 </section>

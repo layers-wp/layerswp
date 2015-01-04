@@ -3,8 +3,8 @@
  *
  * This file is used to add functionality related to extensions, for example adding templates, registering extensions, etc.
  *
- * @package Hatch
- * @since Hatch 1.0
+ * @package Layers
+ * @since Layers 1.0
  */
 
 /**
@@ -14,20 +14,20 @@
 *
 * @param    varchar         $        Type of html wrapper
 */
-if ( !function_exists('hatch_add_template_locations') ) {
-    function hatch_get_template_locations(){
+if ( !function_exists('layers_add_template_locations') ) {
+    function layers_get_template_locations(){
 
         $template_locations = array();
 
-        return apply_filters( 'hatch_template_locations' , $template_locations );
+        return apply_filters( 'layers_template_locations' , $template_locations );
     }
-} // hatch_add_template_locations
+} // layers_add_template_locations
 
-if ( !function_exists('hatch_load_templates') ) {
-    function hatch_load_template( $template ){
+if ( !function_exists('layers_load_templates') ) {
+    function layers_load_template( $template ){
 
         // Get registered template locations
-        $template_locations = hatch_get_template_locations();
+        $template_locations = layers_get_template_locations();
 
         // Get the base name of the file to look for
         $template_slug = basename( $template );
@@ -50,12 +50,12 @@ if ( !function_exists('hatch_load_templates') ) {
             $file = $template;
         }
 
-        return apply_filters( 'hatch_template_' . $template, $file );
+        return apply_filters( 'layers_template_' . $template, $file );
 
     }
 
-    add_filter( 'template_include', 'hatch_load_template', 99 );
-} // hatch_add_template_locations
+    add_filter( 'template_include', 'layers_load_template', 99 );
+} // layers_add_template_locations
 
 
 

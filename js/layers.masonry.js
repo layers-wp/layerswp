@@ -1,15 +1,15 @@
 /**
- * Hatch Masonry JS file
+ * Layers Masonry JS file
  *
  * All Masonry / Filtering / Isotope related functions are to be kept in this file
  */
 
-var hatch_isotope_settings = {};
+var layers_isotope_settings = {};
 
 (function ( $ ) {
 
     // These are the defaults.
-    $.fn.hatch_isotope = function( options ) {
+    $.fn.layers_isotope = function( options ) {
 
         var settings = $.extend({
             // These are the defaults.
@@ -25,7 +25,7 @@ var hatch_isotope_settings = {};
 jQuery(function($){
 
 
-    $('.hatch-isotope-filter li').on( 'click' , function(e){
+    $('.layers-isotope-filter li').on( 'click' , function(e){
         e.preventDefault();
 
         // "Hi Mom"
@@ -35,7 +35,7 @@ jQuery(function($){
         $filter = $that.data( 'filter' );
 
         // Set Isotope Container
-        $isotope_container_id = $that.closest( '.hatch-isotope-filter' ).data( 'isotope-container' );
+        $isotope_container_id = $that.closest( '.layers-isotope-filter' ).data( 'isotope-container' );
 
         // Target the isotope container
         $isotope_container = $( '#' + $isotope_container_id );
@@ -52,7 +52,7 @@ jQuery(function($){
             $final_filter = '*';
             $that.removeClass( 'active' ).siblings().removeClass('active');
             if( true == $isotope_disabled ){
-                $isotope_container.find( '.hatch-masonry-column' ).show();
+                $isotope_container.find( '.layers-masonry-column' ).show();
             }
         } else {
             $final_filter = '.' + $filter;
@@ -63,9 +63,9 @@ jQuery(function($){
             }
 
             if( '*' == $final_filter ) {
-                $isotope_container.find( '.hatch-masonry-column' ).show();
+                $isotope_container.find( '.layers-masonry-column' ).show();
             } else if( true == $isotope_disabled  ){
-                $isotope_container.find( '.hatch-masonry-column' ).hide();
+                $isotope_container.find( '.layers-masonry-column' ).hide();
                 if( $that.hasClass( 'active' ) ){
                     $isotope_container.find( $final_filter ).show();
                 }
@@ -73,12 +73,12 @@ jQuery(function($){
         }
 
         // Fetch the isotope options (setup in the relevant widget or plugin php file)
-        var isotope_settings = hatch_isotope_settings[ $isotope_container_id ][0];
+        var isotope_settings = layers_isotope_settings[ $isotope_container_id ][0];
 
         // Add Filter
         isotope_settings.filter = $final_filter;
 
         // Initiate Isotope
-        $isotope_container.find('.list-masonry').hatch_isotope( isotope_settings );
+        $isotope_container.find('.list-masonry').layers_isotope( isotope_settings );
     });
 });

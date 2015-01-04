@@ -1,6 +1,6 @@
-<?php do_action( 'hatch_before_logo' ); ?>
+<?php do_action( 'layers_before_logo' ); ?>
 <div class="logo">
-    <?php do_action( 'hatch_before_logo_inner' ); ?>
+    <?php do_action( 'layers_before_logo_inner' ); ?>
 
     <?php /**
      * Display Site Logo
@@ -14,6 +14,6 @@
         </div>
     <?php } ?>
 
-    <?php do_action( 'hatch_after_logo_inner' ); ?>
+    <?php do_action( 'layers_after_logo_inner' ); ?>
 </div>
-<?php do_action( 'hatch_after_logo' ); ?>
+<?php do_action( 'layers_after_logo' ); ?>

@@ -3,11 +3,11 @@
  *
  * This file outputs the WP Pointer help popups around the site
  *
- * @package Hatch
- * @since Hatch 1.0
+ * @package Layers
+ * @since Layers 1.0
  */
 
-class Hatch_Pointers {
+class Layers_Pointers {
 
 	private static $instance;
 
@@ -45,12 +45,12 @@ class Hatch_Pointers {
 									'edge' => 'left', // bottom / top/ right / left
 									'align' => 'right' // left / center / right
 								),
-					'title'		=> __( 'Build Your Page' , HATCH_THEME_SLUG ),
-					'content'	=> __( 'Use the (' . HATCH_THEME_TITLE . ') widgets  to build a beautiful, dynamic page.' , HATCH_THEME_SLUG ),
+					'title'		=> __( 'Build Your Page' , LAYERS_THEME_SLUG ),
+					'content'	=> __( 'Use the (' . LAYERS_THEME_TITLE . ') widgets  to build a beautiful, dynamic page.' , LAYERS_THEME_SLUG ),
 				),
 		);
 
-		return apply_filters( 'hatch_pointer_settings', $pointers );
+		return apply_filters( 'layers_pointer_settings', $pointers );
 	}
 
 	/**
@@ -64,12 +64,12 @@ class Hatch_Pointers {
 
 		// Register and enqueue the pointer script
 		wp_register_script(
-			HATCH_THEME_SLUG . '-admin-pointers' ,
-			get_template_directory_uri() . '/core/helpers/js/hatch-pointers.js' ,
+			LAYERS_THEME_SLUG . '-admin-pointers' ,
+			get_template_directory_uri() . '/core/helpers/js/layers-pointers.js' ,
 			array(
 				'wp-pointer'
 			),
-			HATCH_VERSION,
+			LAYERS_VERSION,
 			true
 		);
 
@@ -92,8 +92,8 @@ class Hatch_Pointers {
 			}
 		};
 
-		wp_enqueue_script( HATCH_THEME_SLUG . '-admin-pointers' );
-		wp_localize_script( HATCH_THEME_SLUG . '-admin-pointers' , "hatch_pointers", $use_pointers );
+		wp_enqueue_script( LAYERS_THEME_SLUG . '-admin-pointers' );
+		wp_localize_script( LAYERS_THEME_SLUG . '-admin-pointers' , "layers_pointers", $use_pointers );
 
 	}
 }
@@ -103,10 +103,10 @@ class Hatch_Pointers {
 *  Kicking this off with the 'ad' hook
 */
 
-function hatch_pointers_init(){
-	$hatch_pointers = new Hatch_Pointers();
-	$hatch_pointers->init();
+function layers_pointers_init(){
+	$layers_pointers = new Layers_Pointers();
+	$layers_pointers->init();
 }
 
 
-add_action( 'admin_init' , 'hatch_pointers_init' , 50 );
+add_action( 'admin_init' , 'layers_pointers_init' , 50 );

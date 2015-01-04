@@ -2,8 +2,8 @@
 /**
  * This partial is used for displaying single post (or page) content
  *
- * @package Hatch
- * @since Hatch 1.0
+ * @package Layers
+ * @since Layers 1.0
  */
 
 global $post, $post_meta_to_display, $page_title_shown; ?>
@@ -40,7 +40,7 @@ global $post, $post_meta_to_display, $page_title_shown; ?>
  * Only show post meta for posts
  */
 if( 'post' == get_post_type() ) { ?>
-    <?php hatch_post_meta( $post->ID ); ?>
+    <?php layers_post_meta( $post->ID ); ?>
 <?php } // if post ?>
 
 <?php comments_template(); ?>

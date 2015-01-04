@@ -1,16 +1,16 @@
 @font-face {
-	font-family: 'hatch-interface';
-	src:url('fonts/hatch-interface.eot?msz670');
-	src:url('fonts/hatch-interface.eot?#iefixmsz670') format('embedded-opentype'),
-		url('fonts/hatch-interface.woff?msz670') format('woff'),
-		url('fonts/hatch-interface.ttf?msz670') format('truetype'),
-		url('fonts/hatch-interface.svg?msz670#hatch-interface') format('svg');
+	font-family: 'layers-interface';
+	src:url('fonts/layers-interface.eot?msz670');
+	src:url('fonts/layers-interface.eot?#iefixmsz670') format('embedded-opentype'),
+		url('fonts/layers-interface.woff?msz670') format('woff'),
+		url('fonts/layers-interface.ttf?msz670') format('truetype'),
+		url('fonts/layers-interface.svg?msz670#layers-interface') format('svg');
 	font-weight: normal;
 	font-style: normal;
 }
 
 [class^="icon-"], [class*=" icon-"] {
-	font-family: 'hatch-interface';
+	font-family: 'layers-interface';
 	speak: none;
 	font-style: normal;
 	font-weight: normal;

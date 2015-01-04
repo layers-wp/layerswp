@@ -2,117 +2,117 @@
 $user = wp_get_current_user(); ?>
 
 <?php // Instantiate the widget migrator
-$hatch_migrator = new Hatch_Widget_Migrator(); ?>
+$layers_migrator = new Layers_Widget_Migrator(); ?>
 
 <?php // Get builder pages
-$find_builder_page = hatch_get_builder_pages(); ?>
+$find_builder_page = layers_get_builder_pages(); ?>
 
-<section class="hatch-welcome">
+<section class="layers-welcome">
 
-	<div class="hatch-page-title hatch-section-title hatch-large hatch-content-massive invert hatch-no-push-bottom">
-		<div class="hatch-container">
-			<h2 class="hatch-heading" id="hatch-options-header">Thank you for installing Hatch!</h2>
-			<p class="hatch-excerpt">
-				<?php _e( 'Hatch is a site builder with a lightweight design interface built into the WordPress Visual Customizer.', HATCH_THEME_SLUG ); ?>
+	<div class="layers-page-title layers-section-title layers-large layers-content-massive invert layers-no-push-bottom">
+		<div class="layers-container">
+			<h2 class="layers-heading" id="layers-options-header">Thank you for installing Layers!</h2>
+			<p class="layers-excerpt">
+				<?php _e( 'Layers is a site builder with a lightweight design interface built into the WordPress Visual Customizer.', LAYERS_THEME_SLUG ); ?>
 			</p>
 		</div>
 	</div>
 
-	<div class="hatch-row hatch-well hatch-content-massive">
-		<div class="hatch-container">
+	<div class="layers-row layers-well layers-content-massive">
+		<div class="layers-container">
 
-			<div class="hatch-row hatch-divide">
-				<div class="hatch-section-title">
-					<h4 class="hatch-heading"><?php _e( 'What you need', HATCH_THEME_SLUG ); ?></h4>
-					<p class="hatch-excerpt">
-						<?php _e( 'In order to get going you\'ll need to make sure you have the following:', HATCH_THEME_SLUG ); ?>
+			<div class="layers-row layers-divide">
+				<div class="layers-section-title">
+					<h4 class="layers-heading"><?php _e( 'What you need', LAYERS_THEME_SLUG ); ?></h4>
+					<p class="layers-excerpt">
+						<?php _e( 'In order to get going you\'ll need to make sure you have the following:', LAYERS_THEME_SLUG ); ?>
 					</p>
 				</div>
-				<div class="hatch-row">
-					<div class="hatch-column hatch-span-4 hatch-media hatch-t-center">
-						<div class="hatch-media-image">
+				<div class="layers-row">
+					<div class="layers-column layers-span-4 layers-media layers-t-center">
+						<div class="layers-media-image">
 							<img src="<?php echo get_template_directory_uri() . '/core/assets/images/wordpress-4.png'; ?>" />
 						</div>
-						<div class="hatch-media-body">
-							<h4 class="hatch-heading"><?php _e( 'WordPress 4.0', HATCH_THEME_SLUG ); ?></h4>
-							<p class="hatch-excerpt">
-								<?php _e( 'Hatch requires you run the latest version of WordPress, please make sure you\'re up to date!', HATCH_THEME_SLUG ); ?>
+						<div class="layers-media-body">
+							<h4 class="layers-heading"><?php _e( 'WordPress 4.0', LAYERS_THEME_SLUG ); ?></h4>
+							<p class="layers-excerpt">
+								<?php _e( 'Layers requires you run the latest version of WordPress, please make sure you\'re up to date!', LAYERS_THEME_SLUG ); ?>
 							</p>
-							<div class="hatch-btn-group">
-								<a class="hatch-button btn-primary" href="<?php echo admin_url( '/update-core.php' ); ?>" target="_blank"><?php _e( 'Update WordPress', HATCH_THEME_SLUG ); ?></a>
+							<div class="layers-btn-group">
+								<a class="layers-button btn-primary" href="<?php echo admin_url( '/update-core.php' ); ?>" target="_blank"><?php _e( 'Update WordPress', LAYERS_THEME_SLUG ); ?></a>
 							</div>
 						</div>
 					</div>
-					<div class="hatch-column hatch-span-4 hatch-media hatch-t-center">
-						<div class="hatch-media-image">
+					<div class="layers-column layers-span-4 layers-media layers-t-center">
+						<div class="layers-media-image">
 							<img src="<?php echo get_template_directory_uri() . '/core/assets/images/jetpack.png'; ?>" />
 						</div>
-						<div class="hatch-media-body">
-							<h4 class="hatch-heading"><?php _e( 'Jetpack for WordPress', HATCH_THEME_SLUG ); ?></h4>
-							<p class="hatch-excerpt">
-								<?php _e( 'Jetpack is required for logo and portfolio functionality to work in this version of Hatch.', HATCH_THEME_SLUG ); ?>
+						<div class="layers-media-body">
+							<h4 class="layers-heading"><?php _e( 'Jetpack for WordPress', LAYERS_THEME_SLUG ); ?></h4>
+							<p class="layers-excerpt">
+								<?php _e( 'Jetpack is required for logo and portfolio functionality to work in this version of Layers.', LAYERS_THEME_SLUG ); ?>
 							</p>
-							<div class="hatch-btn-group">
-								<a class="hatch-button btn-primary" href="<?php echo admin_url( '/plugin-install.php?tab=search&s=Jetpack'); ?>" target="_blank"><?php _e( 'Install Jetpack', HATCH_THEME_SLUG ); ?></a>
+							<div class="layers-btn-group">
+								<a class="layers-button btn-primary" href="<?php echo admin_url( '/plugin-install.php?tab=search&s=Jetpack'); ?>" target="_blank"><?php _e( 'Install Jetpack', LAYERS_THEME_SLUG ); ?></a>
 							</div>
 						</div>
 					</div>
-					<div class="hatch-column hatch-span-4 hatch-media hatch-t-center">
-						<div class="hatch-media-image">
-							<img src="<?php echo get_template_directory_uri() . '/core/assets/images/hatch-woo.png'; ?>" />
+					<div class="layers-column layers-span-4 layers-media layers-t-center">
+						<div class="layers-media-image">
+							<img src="<?php echo get_template_directory_uri() . '/core/assets/images/layers-woo.png'; ?>" />
 						</div>
-						<div class="hatch-media-body">
-							<h4 class="hatch-heading"><?php _e( 'Hatch WooCommerce Extension', HATCH_THEME_SLUG ); ?></h4>
-							<p class="hatch-excerpt">
-								<?php _e( 'If you\'d like to test out eCommerce then you\'ll need to install the Hatch WooCommerce Extension.', HATCH_THEME_SLUG ); ?>
+						<div class="layers-media-body">
+							<h4 class="layers-heading"><?php _e( 'Layers WooCommerce Extension', LAYERS_THEME_SLUG ); ?></h4>
+							<p class="layers-excerpt">
+								<?php _e( 'If you\'d like to test out eCommerce then you\'ll need to install the Layers WooCommerce Extension.', LAYERS_THEME_SLUG ); ?>
 							</p>
-							<div class="hatch-btn-group">
-								<a class="hatch-button btn-primary" href="<?php echo 'http://cdn.oboxsites.com/hatch/hatch-woocommerce.zip?ver=' . rand(0 , 100); ?>" target="_blank"><?php _e( 'Install WooCommerce for Hatch', HATCH_THEME_SLUG ); ?></a>
+							<div class="layers-btn-group">
+								<a class="layers-button btn-primary" href="<?php echo 'http://cdn.oboxsites.com/layers/layers-woocommerce.zip?ver=' . rand(0 , 100); ?>" target="_blank"><?php _e( 'Install WooCommerce for Layers', LAYERS_THEME_SLUG ); ?></a>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-			<div class="hatch-row hatch-divide">
-				<div class="hatch-section-title">
-					<h4 class="hatch-heading">What you can and can't do</h4>
-					<p class="hatch-excerpt">
-						<?php _e( 'Here\'s a breakdown of what works and what may cause you issues during testing:', HATCH_THEME_SLUG ); ?>
+			<div class="layers-row layers-divide">
+				<div class="layers-section-title">
+					<h4 class="layers-heading">What you can and can't do</h4>
+					<p class="layers-excerpt">
+						<?php _e( 'Here\'s a breakdown of what works and what may cause you issues during testing:', LAYERS_THEME_SLUG ); ?>
 					</p>
 				</div>
-				<div class="hatch-row">
-					<div class="hatch-column hatch-span-6 hatch-no-push-bottom">
-						<ul class="hatch-feature-list">
-							<li class="tick"><?php _e( 'Create a page builder template', HATCH_THEME_SLUG ); ?></li>
-							<li class="tick"><?php _e( 'Mess around with the design bar', HATCH_THEME_SLUG ); ?></li>
-							<li class="tick"><?php _e( 'Choose between 4 different Header layouts', HATCH_THEME_SLUG ); ?></li>
-							<li class="tick"><?php _e( 'Configure: Slider widget', HATCH_THEME_SLUG ); ?></li>
-							<li class="tick"><?php _e( 'Configure: Content widget', HATCH_THEME_SLUG ); ?></li>
-							<li class="tick"><?php _e( 'Configure: Posts widget', HATCH_THEME_SLUG ); ?></li>
-							<li class="tick"><?php _e( 'Configure: Portfolio widget', HATCH_THEME_SLUG ); ?></li>
-							<li class="tick"><?php _e( 'Configure: Contact widget', HATCH_THEME_SLUG ); ?></li>
+				<div class="layers-row">
+					<div class="layers-column layers-span-6 layers-no-push-bottom">
+						<ul class="layers-feature-list">
+							<li class="tick"><?php _e( 'Create a page builder template', LAYERS_THEME_SLUG ); ?></li>
+							<li class="tick"><?php _e( 'Mess around with the design bar', LAYERS_THEME_SLUG ); ?></li>
+							<li class="tick"><?php _e( 'Choose between 4 different Header layouts', LAYERS_THEME_SLUG ); ?></li>
+							<li class="tick"><?php _e( 'Configure: Slider widget', LAYERS_THEME_SLUG ); ?></li>
+							<li class="tick"><?php _e( 'Configure: Content widget', LAYERS_THEME_SLUG ); ?></li>
+							<li class="tick"><?php _e( 'Configure: Posts widget', LAYERS_THEME_SLUG ); ?></li>
+							<li class="tick"><?php _e( 'Configure: Portfolio widget', LAYERS_THEME_SLUG ); ?></li>
+							<li class="tick"><?php _e( 'Configure: Contact widget', LAYERS_THEME_SLUG ); ?></li>
 						</ul>
 					</div>
-					<div class="hatch-column hatch-span-6 hatch-no-push-bottom">
-						<ul class="hatch-feature-list">
-							<li class="cross"><?php _e( 'Change footer layouts', HATCH_THEME_SLUG ); ?></li>
-							<li class="cross"><?php _e( 'Switch fonts', HATCH_THEME_SLUG ); ?></li>
-							<li class="cross"><?php _e( 'Edit colors', HATCH_THEME_SLUG ); ?></li>
-							<li class="cross"><?php _e( 'Edit the blog layout', HATCH_THEME_SLUG ); ?></li>
-							<li class="cross"><?php _e( 'Automatically update Hatch', HATCH_THEME_SLUG ); ?></li>
+					<div class="layers-column layers-span-6 layers-no-push-bottom">
+						<ul class="layers-feature-list">
+							<li class="cross"><?php _e( 'Change footer layouts', LAYERS_THEME_SLUG ); ?></li>
+							<li class="cross"><?php _e( 'Switch fonts', LAYERS_THEME_SLUG ); ?></li>
+							<li class="cross"><?php _e( 'Edit colors', LAYERS_THEME_SLUG ); ?></li>
+							<li class="cross"><?php _e( 'Edit the blog layout', LAYERS_THEME_SLUG ); ?></li>
+							<li class="cross"><?php _e( 'Automatically update Layers', LAYERS_THEME_SLUG ); ?></li>
 						</ul>
 					</div>
 				</div>
 			</div>
 
-			<div class="hatch-row hatch-divide">
-				<div class="hatch-section-title">
-					<h3 class="hatch-heading"><?php _e( 'Get started by choosing a page template', HATCH_THEME_SLUG ); ?></h3>
-					<p class="hatch-excerpt">
+			<div class="layers-row layers-divide">
+				<div class="layers-section-title">
+					<h3 class="layers-heading"><?php _e( 'Get started by choosing a page template', LAYERS_THEME_SLUG ); ?></h3>
+					<p class="layers-excerpt">
 						<?php _e( 'Knowing where to begin with a site builder is never easy.
-						Choosing a preset template below will pre-populate your page with some Hatch widgets to help get started.', HATCH_THEME_SLUG ); ?>
+						Choosing a preset template below will pre-populate your page with some Layers widgets to help get started.', LAYERS_THEME_SLUG ); ?>
 					</p>
-					<a href="<?php echo admin_url( 'admin.php?page=hatch-preset-layouts' ); ?>" class="hatch-button btn-primary btn-large"><?php _e( 'Choose a Layout', HATCH_THEME_SLUG ); ?></a>
+					<a href="<?php echo admin_url( 'admin.php?page=layers-preset-layouts' ); ?>" class="layers-button btn-primary btn-large"><?php _e( 'Choose a Layout', LAYERS_THEME_SLUG ); ?></a>
 				</div>
 			</div>
 

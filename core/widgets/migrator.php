@@ -1,13 +1,13 @@
 <?php /**
  * Widget Exporter
  *
- * This file contains the widget Export/Import functionality in Hatch
+ * This file contains the widget Export/Import functionality in Layers
  *
- * @package Hatch
- * @since Hatch 1.0
+ * @package Layers
+ * @since Layers 1.0
  */
 
-class Hatch_Widget_Migrator {
+class Layers_Widget_Migrator {
 
     private static $instance;
 
@@ -28,8 +28,8 @@ class Hatch_Widget_Migrator {
         // Add meta box, this sorta kicks off the export logic too
         if( function_exists( 'add_meta_box' ) ) {
             add_meta_box(
-                        HATCH_THEME_SLUG . '-widget-export',
-                        __( 'Builder Settings' , HATCH_THEME_SLUG ), // Title
+                        LAYERS_THEME_SLUG . '-widget-export',
+                        __( 'Builder Settings' , LAYERS_THEME_SLUG ), // Title
                         array( $this , 'display_export_box' ) , // Interface
                         'page' , // Post Type
                         'normal', // Position
@@ -38,7 +38,7 @@ class Hatch_Widget_Migrator {
         }
 
         // Add current builder pages as presets
-        add_filter( 'hatch_preset_layouts' , array( $this , 'add_builder_preset_layouts') );
+        add_filter( 'layers_preset_layouts' , array( $this , 'add_builder_preset_layouts') );
 
     }
 
@@ -46,43 +46,43 @@ class Hatch_Widget_Migrator {
     *  Simple output of a JSON'd string of the widget data
     */
     function display_export_box( $post ){ ?>
-        <textarea id="<?php echo HATCH_THEME_SLUG . '-import-wiget-data'; ?>" style="width: 100%;" rows="15"><?php echo esc_attr( json_encode( $this->export_data( $post ) ) ); ?></textarea>
+        <textarea id="<?php echo LAYERS_THEME_SLUG . '-import-wiget-data'; ?>" style="width: 100%;" rows="15"><?php echo esc_attr( json_encode( $this->export_data( $post ) ) ); ?></textarea>
         <p>
-            <em><?php _e( 'Copy and paste widget data from another site or page into this box to import data.' , HATCH_THEME_SLUG ); ?></em>
+            <em><?php _e( 'Copy and paste widget data from another site or page into this box to import data.' , LAYERS_THEME_SLUG ); ?></em>
         </p>
-        <a href="#import" data-post-id="<?php echo $post->ID; ?>" id="<?php echo HATCH_THEME_SLUG . '-import-wiget-page'; ?>" class="hatch-button btn-primary"><?php _e( 'Import Data' , HATCH_THEME_SLUG ); ?></a>
+        <a href="#import" data-post-id="<?php echo $post->ID; ?>" id="<?php echo LAYERS_THEME_SLUG . '-import-wiget-page'; ?>" class="layers-button btn-primary"><?php _e( 'Import Data' , LAYERS_THEME_SLUG ); ?></a>
     <?php }
 
     /**
-    *  Hatch Preset Widget Page Layouts
+    *  Layers Preset Widget Page Layouts
     */
     function get_preset_layouts(){
-        $hatch_preset_layouts = array();
+        $layers_preset_layouts = array();
 
-        $hatch_preset_layouts = array(
+        $layers_preset_layouts = array(
             'portfolio' => array(
-                    'title' => __( 'Portfolio Page', HATCH_THEME_SLUG ),
-                    'description' => __( 'Portfolio page, we recommend importing the <a href="http://cdn.oboxsites.com/hatch/hatch-beta-content.xml?ver="' . rand( 0, 100 ) . '>Hatch demo content</a> first.', HATCH_THEME_SLUG ),
+                    'title' => __( 'Portfolio Page', LAYERS_THEME_SLUG ),
+                    'description' => __( 'Portfolio page, we recommend importing the <a href="http://cdn.oboxsites.com/layers/layers-beta-content.xml?ver="' . rand( 0, 100 ) . '>Layers demo content</a> first.', LAYERS_THEME_SLUG ),
                     'screenshot' => get_template_directory_uri() . '/core/assets/images/preset-layouts/portfolio.jpg',
                     'screenshot_type' => 'png',
-                    'json' => esc_attr( '{"obox-hatch-builder-85":{"hatch-widget-banner-13":{"slide_time":"","banner_height":"350","banner_ids":"276","banners":{"276":{"design":{"background":{"image":"http:\/\/live-hatch.pantheon.io\/wp-content\/uploads\/2014\/12\/portfolio-bg.jpg","color":"#ffffff","repeat":"repeat","position":"center"},"featuredimage":"","imagealign":"image-top","fonts":{"align":"text-center","size":"large","color":"#ffffff"}},"title":"Welcome to our Portfolio","excerpt":"Check out our latest work","link":"","link_text":""}}},"hatch-widget-portfolio-5":{"design":{"layout":"layout-boxed","fonts":{"align":"text-left","size":"medium","color":""},"columns":"3","gutter":"on","liststyle":"list-masonry","imageratios":"image-no-crop","background":{"image":"","color":"","repeat":"no-repeat","position":"center"}},"text_style":"overlay","show_titles":"on","show_excerpts":"on","excerpt_length":"200","show_call_to_action":"on","call_to_action":"View Project","title":"","excerpt":"","category":"0","posts_per_page":"12","order":"{\"orderby\":\"date\",\"order\":\"desc\"}"}}}' )
+                    'json' => esc_attr( '{"obox-layers-builder-85":{"layers-widget-banner-13":{"slide_time":"","banner_height":"350","banner_ids":"276","banners":{"276":{"design":{"background":{"image":"http:\/\/live-layers.pantheon.io\/wp-content\/uploads\/2014\/12\/portfolio-bg.jpg","color":"#ffffff","repeat":"repeat","position":"center"},"featuredimage":"","imagealign":"image-top","fonts":{"align":"text-center","size":"large","color":"#ffffff"}},"title":"Welcome to our Portfolio","excerpt":"Check out our latest work","link":"","link_text":""}}},"layers-widget-portfolio-5":{"design":{"layout":"layout-boxed","fonts":{"align":"text-left","size":"medium","color":""},"columns":"3","gutter":"on","liststyle":"list-masonry","imageratios":"image-no-crop","background":{"image":"","color":"","repeat":"no-repeat","position":"center"}},"text_style":"overlay","show_titles":"on","show_excerpts":"on","excerpt_length":"200","show_call_to_action":"on","call_to_action":"View Project","title":"","excerpt":"","category":"0","posts_per_page":"12","order":"{\"orderby\":\"date\",\"order\":\"desc\"}"}}}' )
                 ),
             'blog' => array(
-                    'title' => __( 'Blog Page', HATCH_THEME_SLUG ),
-                    'description' => __( 'Masonry style blog list page with an intro slider, we recommend importing the <a href="http://cdn.oboxsites.com/hatch/hatch-beta-content.xml?ver="' . rand( 0, 100 ) . '">Hatch demo content</a> first.', HATCH_THEME_SLUG ),
+                    'title' => __( 'Blog Page', LAYERS_THEME_SLUG ),
+                    'description' => __( 'Masonry style blog list page with an intro slider, we recommend importing the <a href="http://cdn.oboxsites.com/layers/layers-beta-content.xml?ver="' . rand( 0, 100 ) . '">Layers demo content</a> first.', LAYERS_THEME_SLUG ),
                     'screenshot' => get_template_directory_uri() . '/core/assets/images/preset-layouts/blog.jpg',
                     'screenshot_type' => 'png',
-                    'json' => esc_attr( '{"obox-hatch-builder-95":{"hatch-widget-banner-9":{"slide_time":"","banner_height":"350","banner_ids":"280","banners":{"280":{"design":{"background":{"image":"http:\/\/live-hatch.pantheon.io\/wp-content\/uploads\/2014\/12\/desk.jpg","color":"#000","repeat":"no-repeat","position":"center","stretch":"on","darken":"on"},"featuredimage":"","imagealign":"image-top","fonts":{"align":"text-center","size":"large","color":"#fff"}},"title":"Our Blog","excerpt":"Find out the latest news about our products and company","link":"","link_text":""}}},"hatch-widget-post-5":{"design":{"layout":"layout-boxed","fonts":{"align":"text-left","size":"medium","color":""},"columns":"3","gutter":"on","liststyle":"list-masonry","imageratios":"image-square","background":{"image":"","color":"","repeat":"no-repeat","position":"center"}},"text_style":"regular","show_titles":"on","show_excerpts":"on","excerpt_length":"120","show_call_to_action":"on","call_to_action":"Read More","title":"","excerpt":"","category":"0","posts_per_page":"7","order":"{\"orderby\":\"date\",\"order\":\"desc\"}"}}}' )
+                    'json' => esc_attr( '{"obox-layers-builder-95":{"layers-widget-banner-9":{"slide_time":"","banner_height":"350","banner_ids":"280","banners":{"280":{"design":{"background":{"image":"http:\/\/live-layers.pantheon.io\/wp-content\/uploads\/2014\/12\/desk.jpg","color":"#000","repeat":"no-repeat","position":"center","stretch":"on","darken":"on"},"featuredimage":"","imagealign":"image-top","fonts":{"align":"text-center","size":"large","color":"#fff"}},"title":"Our Blog","excerpt":"Find out the latest news about our products and company","link":"","link_text":""}}},"layers-widget-post-5":{"design":{"layout":"layout-boxed","fonts":{"align":"text-left","size":"medium","color":""},"columns":"3","gutter":"on","liststyle":"list-masonry","imageratios":"image-square","background":{"image":"","color":"","repeat":"no-repeat","position":"center"}},"text_style":"regular","show_titles":"on","show_excerpts":"on","excerpt_length":"120","show_call_to_action":"on","call_to_action":"Read More","title":"","excerpt":"","category":"0","posts_per_page":"7","order":"{\"orderby\":\"date\",\"order\":\"desc\"}"}}}' )
                 ),
             'business' => array(
-                    'title' => __( 'Business Page', HATCH_THEME_SLUG ),
+                    'title' => __( 'Business Page', LAYERS_THEME_SLUG ),
                     'screenshot' => get_template_directory_uri() . '/core/assets/images/preset-layouts/home.jpg',
                     'screenshot_type' => 'png',
-                    'json' => esc_attr( '{"obox-hatch-builder-29":{"hatch-widget-banner-5":{"show_slider_arrows":"on","show_slider_dots":"on","slide_time":"","banner_height":"550","banner_ids":"813,172,568","banners":{"813":{"design":{"background":{"image":"http:\/\/live-hatch.pantheon.io\/wp-content\/uploads\/2014\/12\/forest-landscape-2.jpg","color":"#000","repeat":"no-repeat","position":"center","stretch":"on","darken":"on"},"featuredimage":"","imagealign":"image-top","fonts":{"align":"text-center","size":"large","color":"#fff"}},"title":"Slider Number 1","excerpt":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse vitae massa velit, eu laoreet massa. Sed ac orci libero, eu dignissim enim. Aenean urna sem, cursus ut.","link":"#","link_text":"See More"},"172":{"design":{"background":{"image":"http:\/\/live-hatch.pantheon.io\/wp-content\/uploads\/2014\/12\/iceland-landscape.jpg","color":"#000","repeat":"no-repeat","position":"center","stretch":"on","darken":"on"},"featuredimage":"","imagealign":"image-top","fonts":{"align":"text-center","size":"large","color":"#fff"}},"title":"Slider Number 2","excerpt":"Vestibulum arcu risus, porta eget auctor id, rhoncus et massa. Aliquam erat volutpat.","link":"#","link_text":"See More"},"568":{"design":{"background":{"image":"http:\/\/live-hatch.pantheon.io\/wp-content\/uploads\/2014\/12\/lake.jpg","color":"#000","repeat":"no-repeat","position":"center"},"featuredimage":"","imagealign":"image-top","fonts":{"align":"text-center","size":"large","color":"#fff"}},"title":"Slider Number 3","excerpt":"Mauris sit amet semper massa. Aliquam vitae nunc vestibulum mauris tempor suscipit id sed lacus. Vestibulum arcu risus, porta eget auctor id, rhoncus et massa.","link":"#","link_text":"See More"}}},"hatch-widget-module-5":{"design":{"layout":"layout-boxed","gutter":"on","fonts":{"align":"text-left","size":"medium","color":""},"background":{"image":"","color":"","repeat":"no-repeat","position":"center"}},"title":"Features","excerpt":"This \"content\" widget allows you to place any amount of text and images into a multi-column layout.","module_ids":"947,423,63","modules":{"947":{"design":{"background":{"image":"","color":"","repeat":"no-repeat","position":"center"},"featuredimage":"http:\/\/live-hatch.pantheon.io\/wp-content\/uploads\/2014\/12\/city_sunlight1.jpg","imageratios":"image-landscape","imagealign":"image-top","fonts":{"align":"text-left","size":"medium","color":""}},"width":"4","title":"Content Item 1","excerpt":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse vitae massa velit, eu laoreet massa. Sed ac orci libero.","link":"","link_text":""},"423":{"design":{"background":{"image":"","color":"","repeat":"no-repeat","position":"center"},"featuredimage":"http:\/\/live-hatch.pantheon.io\/wp-content\/uploads\/2014\/12\/sunset.jpg","imageratios":"image-landscape","imagealign":"image-top","fonts":{"align":"text-left","size":"medium","color":""}},"width":"4","title":"Content Item 2","excerpt":"Mauris sit amet semper massa. Aliquam vitae nunc vestibulum mauris tempor suscipit id sed lacus. Vestibulum arcu risus.","link":"","link_text":""},"63":{"design":{"background":{"image":"","color":"","repeat":"no-repeat","position":"center"},"featuredimage":"http:\/\/live-hatch.pantheon.io\/wp-content\/uploads\/2014\/12\/meeting.jpg","imageratios":"image-landscape","imagealign":"image-top","fonts":{"align":"text-left","size":"medium","color":""}},"width":"4","title":"Content Item 3","excerpt":"Sed ac orci libero, eu dignissim enim. Aenean urna sem, cursus ut elementum sed, pellentesque ac massa.","link":"","link_text":""}}},"hatch-widget-banner-7":{"slide_time":"","banner_height":"350","banner_ids":"813,194","banners":{"813":{"design":{"background":{"image":"http:\/\/live-hatch.pantheon.io\/wp-content\/uploads\/2014\/12\/2-matthew-wiebe.jpg","color":"#000","repeat":"no-repeat","position":"center","stretch":"on","darken":"on"},"featuredimage":"","imagealign":"image-top","fonts":{"align":"text-center","size":"medium","color":"#fff"}},"title":"Hatch is the best WordPress Site Builder I\'ve used since I began using the CMS.","excerpt":"~ Mrs WordPress","link":"","link_text":""},"194":{"design":{"background":{"image":"http:\/\/live-hatch.pantheon.io\/wp-content\/uploads\/2014\/12\/japan.jpg","color":"#000","repeat":"no-repeat","position":"center","stretch":"on","darken":"on"},"featuredimage":"","imagealign":"image-top","fonts":{"align":"text-center","size":"medium","color":"#fff"}},"title":"I cannot wait to start using this on all of my projects in 2015!","excerpt":"~ Mr Developer","link":"","link_text":""}}},"hatch-widget-module-6":{"design":{"layout":"layout-boxed","gutter":"on","fonts":{"align":"text-left","size":"medium","color":""},"background":{"image":"","color":"","repeat":"no-repeat","position":"center"}},"title":"What we offer","excerpt":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse vitae massa velit, eu laoreet massa. Sed ac orci libero, eu dignissim enim. Aenean urna sem, cursus.","module_ids":"947,423,63,967","modules":{"947":{"design":{"background":{"image":"","color":"","repeat":"no-repeat","position":"center"},"featuredimage":"http:\/\/live-hatch.pantheon.io\/wp-content\/uploads\/2014\/12\/3-Todd-Quackenbush.jpg","imageratios":"image-landscape","imagealign":"image-top","fonts":{"align":"text-left","size":"medium","color":""}},"width":"3","title":"Your service title","excerpt":"Give us a brief description of the service that you are promoting.","link":"","link_text":""},"423":{"design":{"background":{"image":"","color":"","repeat":"no-repeat","position":"center"},"featuredimage":"http:\/\/live-hatch.pantheon.io\/wp-content\/uploads\/2014\/12\/5-Todd-Quackenbush.jpg","imageratios":"image-landscape","imagealign":"image-top","fonts":{"align":"text-left","size":"medium","color":""}},"width":"3","title":"Your service title","excerpt":"Give us a brief description of the service that you are promoting.","link":"","link_text":""},"63":{"design":{"background":{"image":"","color":"","repeat":"no-repeat","position":"center"},"featuredimage":"http:\/\/live-hatch.pantheon.io\/wp-content\/uploads\/2014\/12\/6-Monstruo-Estudio.jpg","imageratios":"image-landscape","imagealign":"image-top","fonts":{"align":"text-left","size":"medium","color":""}},"width":"3","title":"Your service title","excerpt":"Give us a brief description of the service that you are promoting.","link":"","link_text":""},"967":{"design":{"background":{"image":"","color":"","repeat":"no-repeat","position":"center"},"featuredimage":"http:\/\/live-hatch.pantheon.io\/wp-content\/uploads\/2014\/12\/bridge.jpg","imageratios":"image-landscape","imagealign":"image-top","fonts":{"align":"text-left","size":"medium","color":""}},"width":"3","title":"Your service title","excerpt":"Give us a brief description of the service that you are promoting.","link":"","link_text":""}}}}}' )
+                    'json' => esc_attr( '{"obox-layers-builder-29":{"layers-widget-banner-5":{"show_slider_arrows":"on","show_slider_dots":"on","slide_time":"","banner_height":"550","banner_ids":"813,172,568","banners":{"813":{"design":{"background":{"image":"http:\/\/live-layers.pantheon.io\/wp-content\/uploads\/2014\/12\/forest-landscape-2.jpg","color":"#000","repeat":"no-repeat","position":"center","stretch":"on","darken":"on"},"featuredimage":"","imagealign":"image-top","fonts":{"align":"text-center","size":"large","color":"#fff"}},"title":"Slider Number 1","excerpt":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse vitae massa velit, eu laoreet massa. Sed ac orci libero, eu dignissim enim. Aenean urna sem, cursus ut.","link":"#","link_text":"See More"},"172":{"design":{"background":{"image":"http:\/\/live-layers.pantheon.io\/wp-content\/uploads\/2014\/12\/iceland-landscape.jpg","color":"#000","repeat":"no-repeat","position":"center","stretch":"on","darken":"on"},"featuredimage":"","imagealign":"image-top","fonts":{"align":"text-center","size":"large","color":"#fff"}},"title":"Slider Number 2","excerpt":"Vestibulum arcu risus, porta eget auctor id, rhoncus et massa. Aliquam erat volutpat.","link":"#","link_text":"See More"},"568":{"design":{"background":{"image":"http:\/\/live-layers.pantheon.io\/wp-content\/uploads\/2014\/12\/lake.jpg","color":"#000","repeat":"no-repeat","position":"center"},"featuredimage":"","imagealign":"image-top","fonts":{"align":"text-center","size":"large","color":"#fff"}},"title":"Slider Number 3","excerpt":"Mauris sit amet semper massa. Aliquam vitae nunc vestibulum mauris tempor suscipit id sed lacus. Vestibulum arcu risus, porta eget auctor id, rhoncus et massa.","link":"#","link_text":"See More"}}},"layers-widget-module-5":{"design":{"layout":"layout-boxed","gutter":"on","fonts":{"align":"text-left","size":"medium","color":""},"background":{"image":"","color":"","repeat":"no-repeat","position":"center"}},"title":"Features","excerpt":"This \"content\" widget allows you to place any amount of text and images into a multi-column layout.","module_ids":"947,423,63","modules":{"947":{"design":{"background":{"image":"","color":"","repeat":"no-repeat","position":"center"},"featuredimage":"http:\/\/live-layers.pantheon.io\/wp-content\/uploads\/2014\/12\/city_sunlight1.jpg","imageratios":"image-landscape","imagealign":"image-top","fonts":{"align":"text-left","size":"medium","color":""}},"width":"4","title":"Content Item 1","excerpt":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse vitae massa velit, eu laoreet massa. Sed ac orci libero.","link":"","link_text":""},"423":{"design":{"background":{"image":"","color":"","repeat":"no-repeat","position":"center"},"featuredimage":"http:\/\/live-layers.pantheon.io\/wp-content\/uploads\/2014\/12\/sunset.jpg","imageratios":"image-landscape","imagealign":"image-top","fonts":{"align":"text-left","size":"medium","color":""}},"width":"4","title":"Content Item 2","excerpt":"Mauris sit amet semper massa. Aliquam vitae nunc vestibulum mauris tempor suscipit id sed lacus. Vestibulum arcu risus.","link":"","link_text":""},"63":{"design":{"background":{"image":"","color":"","repeat":"no-repeat","position":"center"},"featuredimage":"http:\/\/live-layers.pantheon.io\/wp-content\/uploads\/2014\/12\/meeting.jpg","imageratios":"image-landscape","imagealign":"image-top","fonts":{"align":"text-left","size":"medium","color":""}},"width":"4","title":"Content Item 3","excerpt":"Sed ac orci libero, eu dignissim enim. Aenean urna sem, cursus ut elementum sed, pellentesque ac massa.","link":"","link_text":""}}},"layers-widget-banner-7":{"slide_time":"","banner_height":"350","banner_ids":"813,194","banners":{"813":{"design":{"background":{"image":"http:\/\/live-layers.pantheon.io\/wp-content\/uploads\/2014\/12\/2-matthew-wiebe.jpg","color":"#000","repeat":"no-repeat","position":"center","stretch":"on","darken":"on"},"featuredimage":"","imagealign":"image-top","fonts":{"align":"text-center","size":"medium","color":"#fff"}},"title":"Layers is the best WordPress Site Builder I\'ve used since I began using the CMS.","excerpt":"~ Mrs WordPress","link":"","link_text":""},"194":{"design":{"background":{"image":"http:\/\/live-layers.pantheon.io\/wp-content\/uploads\/2014\/12\/japan.jpg","color":"#000","repeat":"no-repeat","position":"center","stretch":"on","darken":"on"},"featuredimage":"","imagealign":"image-top","fonts":{"align":"text-center","size":"medium","color":"#fff"}},"title":"I cannot wait to start using this on all of my projects in 2015!","excerpt":"~ Mr Developer","link":"","link_text":""}}},"layers-widget-module-6":{"design":{"layout":"layout-boxed","gutter":"on","fonts":{"align":"text-left","size":"medium","color":""},"background":{"image":"","color":"","repeat":"no-repeat","position":"center"}},"title":"What we offer","excerpt":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse vitae massa velit, eu laoreet massa. Sed ac orci libero, eu dignissim enim. Aenean urna sem, cursus.","module_ids":"947,423,63,967","modules":{"947":{"design":{"background":{"image":"","color":"","repeat":"no-repeat","position":"center"},"featuredimage":"http:\/\/live-layers.pantheon.io\/wp-content\/uploads\/2014\/12\/3-Todd-Quackenbush.jpg","imageratios":"image-landscape","imagealign":"image-top","fonts":{"align":"text-left","size":"medium","color":""}},"width":"3","title":"Your service title","excerpt":"Give us a brief description of the service that you are promoting.","link":"","link_text":""},"423":{"design":{"background":{"image":"","color":"","repeat":"no-repeat","position":"center"},"featuredimage":"http:\/\/live-layers.pantheon.io\/wp-content\/uploads\/2014\/12\/5-Todd-Quackenbush.jpg","imageratios":"image-landscape","imagealign":"image-top","fonts":{"align":"text-left","size":"medium","color":""}},"width":"3","title":"Your service title","excerpt":"Give us a brief description of the service that you are promoting.","link":"","link_text":""},"63":{"design":{"background":{"image":"","color":"","repeat":"no-repeat","position":"center"},"featuredimage":"http:\/\/live-layers.pantheon.io\/wp-content\/uploads\/2014\/12\/6-Monstruo-Estudio.jpg","imageratios":"image-landscape","imagealign":"image-top","fonts":{"align":"text-left","size":"medium","color":""}},"width":"3","title":"Your service title","excerpt":"Give us a brief description of the service that you are promoting.","link":"","link_text":""},"967":{"design":{"background":{"image":"","color":"","repeat":"no-repeat","position":"center"},"featuredimage":"http:\/\/live-layers.pantheon.io\/wp-content\/uploads\/2014\/12\/bridge.jpg","imageratios":"image-landscape","imagealign":"image-top","fonts":{"align":"text-left","size":"medium","color":""}},"width":"3","title":"Your service title","excerpt":"Give us a brief description of the service that you are promoting.","link":"","link_text":""}}}}}' )
                 ),
         );
 
-        return apply_filters( 'hatch_preset_layouts' , $hatch_preset_layouts );
+        return apply_filters( 'layers_preset_layouts' , $layers_preset_layouts );
     }
 
     /**
@@ -93,7 +93,7 @@ class Hatch_Widget_Migrator {
     function add_builder_preset_layouts( $presets ){
 
         // Get array of builder pages that exist
-        $builder_pages = hatch_get_builder_pages();
+        $builder_pages = layers_get_builder_pages();
 
         // Start preset page bucket
         $page_presets = array();
@@ -105,7 +105,7 @@ class Hatch_Widget_Migrator {
                 'screenshot' => get_permalink( $page->ID ),
                 'screenshot_type' => 'dynamic',
                 'json' =>  esc_attr( json_encode( $this->export_data( $page ) ) ),
-                'container_css' => 'hatch-hide hatch-existing-page-preset'
+                'container_css' => 'layers-hide layers-existing-page-preset'
             );
         }
 
@@ -113,7 +113,7 @@ class Hatch_Widget_Migrator {
     }
 
     /**
-    * Hatch Page Layout Screenshot Generator
+    * Layers Page Layout Screenshot Generator
     *
     * Generates an image tag for the screenshot for use in the preset layout selector
     *
@@ -209,13 +209,13 @@ class Hatch_Widget_Migrator {
     */
 
     public function get_valid_sidebars( $post_object ) {
-        global $hatch_widgets;
+        global $layers_widgets;
 
         // Get all widget instances for each widget
         $widget_instances = $this->get_widget_instances();
 
         // Get page sidebar ID
-        $page_sidebar_id = 'obox-hatch-builder-' . $post_object->ID;
+        $page_sidebar_id = 'obox-layers-builder-' . $post_object->ID;
 
         // Get sidebars and their unique widgets IDs
         $sidebars_widgets = get_option( 'sidebars_widgets' );
@@ -227,7 +227,7 @@ class Hatch_Widget_Migrator {
         $valid_sidebars[] = $page_sidebar_id;
 
         // Get all dynamic sidebars
-        $dynamic_sidebars = $hatch_widgets->get_dynamic_sidebars();
+        $dynamic_sidebars = $layers_widgets->get_dynamic_sidebars();
 
         // Double check that the page we are looking for has a sidebar registered
         if( !isset( $sidebars_widgets[ $page_sidebar_id ] ) ) return;
@@ -251,7 +251,7 @@ class Hatch_Widget_Migrator {
 
             // Loop widget IDs for this sidebar to find the Dynamic Sidebar Widget and its sidebar IDs
             foreach ( $widget_ids as $widget_id ) {
-                if( FALSE !== strpos( $widget_id, 'hatch-widget-sidebar' ) ) {
+                if( FALSE !== strpos( $widget_id, 'layers-widget-sidebar' ) ) {
 
                     if( !empty( $widget_instances[ $widget_id ][ 'sidebars' ] ) ) {
                         foreach( $widget_instances[ $widget_id ][ 'sidebars' ] as $key => $options ) {
@@ -486,9 +486,9 @@ class Hatch_Widget_Migrator {
     */
 
     public function create_builder_page_from_preset(){
-        global $hatch_widgets;
+        global $layers_widgets;
 
-        $check_builder_pages = hatch_get_builder_pages();
+        $check_builder_pages = layers_get_builder_pages();
 
         if( 0 == count( $check_builder_pages ) ){
             $post_title = __( 'Home Page' );
@@ -497,11 +497,11 @@ class Hatch_Widget_Migrator {
         }
 
         // Generate builder page and return page ID
-        $import_data[ 'post_id' ] = hatch_create_builder_page( $post_title );
+        $import_data[ 'post_id' ] = layers_create_builder_page( $post_title );
         $new_page = get_page( $import_data[ 'post_id' ] );
 
         // Register Builder Sidebar
-        $hatch_widgets->register_builder_sidebar( $import_data[ 'post_id' ] );
+        $layers_widgets->register_builder_sidebar( $import_data[ 'post_id' ] );
 
         // Add Widget Data to the import array
         $import_data[ 'widget_data' ] = $_POST[ 'widget_data' ];
@@ -551,7 +551,7 @@ class Hatch_Widget_Migrator {
         foreach( $import_data[ 'widget_data' ] as $sidebar_id => $sidebar_data ) {
 
             // If this is a builder page, set the ID to the current page we are importing INTO
-            if( FALSE !== strpos( $sidebar_id , 'obox-hatch-builder-' ) ) $sidebar_id = 'obox-hatch-builder-' . $import_data[ 'post_id' ];
+            if( FALSE !== strpos( $sidebar_id , 'obox-layers-builder-' ) ) $sidebar_id = 'obox-layers-builder-' . $import_data[ 'post_id' ];
 
             // Check if sidebar is available on this site
             // Otherwise add widgets to inactive, and say so
@@ -569,7 +569,7 @@ class Hatch_Widget_Migrator {
                 $sidebar_available = false;
                 $use_sidebar_id = 'wp_inactive_widgets'; // add to inactive if sidebar does not exist in theme
                 $sidebar_message_type = 'error';
-                $sidebar_message = __( 'Sidebar does not exist in theme (using Inactive)', HATCH_THEME_SLUG );
+                $sidebar_message = __( 'Sidebar does not exist in theme (using Inactive)', LAYERS_THEME_SLUG );
             }
 
             // Result for sidebar
@@ -612,7 +612,7 @@ class Hatch_Widget_Migrator {
 
                             $fail = true;
                             $widget_message_type = 'warning';
-                            $widget_message = __( 'Widget already exists', HATCH_THEME_SLUG ); // explain why widget not imported
+                            $widget_message = __( 'Widget already exists', LAYERS_THEME_SLUG ); // explain why widget not imported
 
                             break;
 
@@ -661,16 +661,16 @@ class Hatch_Widget_Migrator {
                     // Success message
                     if ( $sidebar_available ) {
                         $widget_message_type = 'success';
-                        $widget_message = __( 'Imported', HATCH_THEME_SLUG );
+                        $widget_message = __( 'Imported', LAYERS_THEME_SLUG );
                     } else {
                         $widget_message_type = 'warning';
-                        $widget_message = __( 'Imported to Inactive', HATCH_THEME_SLUG );
+                        $widget_message = __( 'Imported to Inactive', LAYERS_THEME_SLUG );
                     }
 
                 }
                 // Result for widget instance
                 $results[$sidebar_id]['widgets'][$widget_instance_id]['name'] = isset( $available_widgets[$id_base]['name'] ) ? $available_widgets[$id_base]['name'] : $id_base; // widget name or ID if name not available (not supported by site)
-                $results[$sidebar_id]['widgets'][$widget_instance_id]['title'] = isset( $widget->title ) ? $widget->title : __( 'No Title', HATCH_THEME_SLUG ); // show "No Title" if widget instance is untitled
+                $results[$sidebar_id]['widgets'][$widget_instance_id]['title'] = isset( $widget->title ) ? $widget->title : __( 'No Title', LAYERS_THEME_SLUG ); // show "No Title" if widget instance is untitled
                 $results[$sidebar_id]['widgets'][$widget_instance_id]['message_type'] = $widget_message_type;
                 $results[$sidebar_id]['widgets'][$widget_instance_id]['message'] = $widget_message;
 
@@ -681,8 +681,8 @@ class Hatch_Widget_Migrator {
     }
 }
 
-if( !function_exists( 'hatch_builder_export_init' ) ) {
-    function hatch_builder_export_init(){
+if( !function_exists( 'layers_builder_export_init' ) ) {
+    function layers_builder_export_init(){
         global $pagenow, $post;
 
         // Make sure we're on the post edit screen
@@ -691,20 +691,20 @@ if( !function_exists( 'hatch_builder_export_init' ) ) {
         // Make sure we're editing a post
         if( 'page' != get_post_type( $post->ID ) || 'builder.php' != basename( get_page_template() ) ) return;
 
-        $hatch_migrator = new Hatch_Widget_Migrator();
-        $hatch_migrator->init();
+        $layers_migrator = new Layers_Widget_Migrator();
+        $layers_migrator->init();
 
     }
 }
 
-add_action( 'admin_head' , 'hatch_builder_export_init', 10 );
+add_action( 'admin_head' , 'layers_builder_export_init', 10 );
 
-if( !function_exists( 'hatch_builder_export_ajax_init' ) ) {
-    function hatch_builder_export_ajax_init(){
-        $hatch_migrator = new Hatch_Widget_Migrator();
-        add_action( 'wp_ajax_hatch_import_widgets', array( $hatch_migrator, 'do_ajax_import' ) );
-        add_action( 'wp_ajax_hatch_create_builder_page_from_preset', array( $hatch_migrator, 'create_builder_page_from_preset' ) );
+if( !function_exists( 'layers_builder_export_ajax_init' ) ) {
+    function layers_builder_export_ajax_init(){
+        $layers_migrator = new Layers_Widget_Migrator();
+        add_action( 'wp_ajax_layers_import_widgets', array( $layers_migrator, 'do_ajax_import' ) );
+        add_action( 'wp_ajax_layers_create_builder_page_from_preset', array( $layers_migrator, 'create_builder_page_from_preset' ) );
     }
 }
 
-add_action( 'init' , 'hatch_builder_export_ajax_init' );
+add_action( 'init' , 'layers_builder_export_ajax_init' );

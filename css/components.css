@@ -119,7 +119,7 @@ section[class*=' off-canvas-'] .close-canvas{
     .header-fixed .nav-horizontal > ul > li > a{color: #fff;}
     .header-fixed .nav-horizontal > ul > li > a:hover{color: #000;}
     .header-fixed .responsive-nav .h-menu{color: #fff;}
-    
+
     /*---------------------------*/
     /*- NAVIGATION POSITION -----*/
     .nav-clear .logo{float: none;}
@@ -142,9 +142,9 @@ section[class*=' off-canvas-'] .close-canvas{
     /*---------------------------*/
     /*- SLIDER CONTENT ----------*/
     .swiper-container.container{padding: 0; max-width: 1000px;}
-    
+
     .swiper-slide .container{position: relative; top: 50%;}
-    
+
     .swiper-slide .copy-container{max-width: 1040px; margin: auto; padding: 0; position: relative; top: 50%; transform: translateY(-50%);}
     .swiper-slide .image-container{position: relative; top: 50%; transform: translateY(-50%); text-align: center;}
 
@@ -278,7 +278,7 @@ p[class*='comment-form'] .required{color: #900;}
 /*- MAP - ADD ON ----------------*/
 /*-------------------------------*/
 .row.has-map{padding-top: 0;}
-.hatch-map img{width: auto; max-width: none;}
+.layers-map img{width: auto; max-width: none;}
 
 
 

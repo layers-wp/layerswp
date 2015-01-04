@@ -1,14 +1,14 @@
 <?php  /**
- * Hatch Widget Class
+ * Layers Widget Class
  *
- * This file is used to register the base hatch widget Class
+ * This file is used to register the base layers widget Class
  *
- * @package Hatch
- * @since Hatch 1.0
+ * @package Layers
+ * @since Layers 1.0
  */
 
-if( !class_exists( 'Hatch_Widget' ) ) {
-	class Hatch_Widget extends WP_Widget {
+if( !class_exists( 'Layers_Widget' ) ) {
+	class Layers_Widget extends WP_Widget {
 
 		/**
 		* Check option with isset() and echo it out if it exists, if it does not exist, return false
@@ -59,7 +59,7 @@ if( !class_exists( 'Hatch_Widget' ) ) {
 		public function design_bar() {
 
 			// Instantiate design bar
-			$design_bar = new Hatch_Design_Controller();
+			$design_bar = new Layers_Design_Controller();
 
 			// Return design bar
 			return $design_bar;
@@ -74,7 +74,7 @@ if( !class_exists( 'Hatch_Widget' ) ) {
 		public function form_elements() {
 
 			// Instantiate Widget Inputs
-			$form_elements = new Hatch_Form_Elements();
+			$form_elements = new Layers_Form_Elements();
 
 			// Return design bar
 			return $form_elements;

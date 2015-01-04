@@ -1,19 +1,19 @@
 
 			<div id="back-to-top">
-				<a href="#top"><?php _e( 'Back to top' , HATCH_THEME_SLUG ); ?></a>
+				<a href="#top"><?php _e( 'Back to top' , LAYERS_THEME_SLUG ); ?></a>
 			</div> <!-- back-to-top -->
 		</section>
-		<?php do_action( 'hatch_before_footer' ); ?>
+		<?php do_action( 'layers_before_footer' ); ?>
 		<footer id="footer" class="footer-site well">
-			<?php do_action( 'hatch_before_footer_inner' ); ?>
-			<div class="<?php if( 'layout-fullwidth' != hatch_get_theme_mod( 'footer-layout-width' ) ) echo 'container'; ?>  content-vertical-large clearfix">
+			<?php do_action( 'layers_before_footer_inner' ); ?>
+			<div class="<?php if( 'layout-fullwidth' != layers_get_theme_mod( 'footer-layout-width' ) ) echo 'container'; ?>  content-vertical-large clearfix">
 
 				<?php // Do logic related to the footer widget area count
-				$footer_sidebar_count = hatch_get_theme_mod( 'footer-layout-widget-area-count' ); ?>
+				$footer_sidebar_count = layers_get_theme_mod( 'footer-layout-widget-area-count' ); ?>
 
 				<?php if( 0 != $footer_sidebar_count ) { ?>
 					<div class="row">
-						<?php do_action( 'hatch_before_footer_sidebar' ); ?>
+						<?php do_action( 'layers_before_footer_sidebar' ); ?>
 						<?php // Default Sidebar count to 4
 						if( '' == $footer_sidebar_count ) $footer_sidebar_count = 4;
 
@@ -21,30 +21,30 @@
 						$footer_sidebar_class = floor( 12/$footer_sidebar_count ); ?>
 						<?php for( $footer = 1; $footer <= $footer_sidebar_count; $footer++ ) { ?>
 							<div class="column span-<?php echo $footer_sidebar_class; ?> <?php if( $footer == $footer_sidebar_count ) echo 'last'; ?>">
-								<?php dynamic_sidebar( HATCH_THEME_SLUG . '-footer-' . $footer ); ?>
+								<?php dynamic_sidebar( LAYERS_THEME_SLUG . '-footer-' . $footer ); ?>
 							</div>
 						<?php } ?>
-						<?php do_action( 'hatch_after_footer_sidebar' ); ?>
+						<?php do_action( 'layers_after_footer_sidebar' ); ?>
 					</div>
 				<?php } // if 0 != sidebars ?>
 
-				<?php do_action( 'hatch_before_footer_copyright' ); ?>
+				<?php do_action( 'layers_before_footer_copyright' ); ?>
 				<div class="row copyright">
 					<div class="column span-6">
-						<p class="site-text"><?php echo get_theme_mod( 'hatch-footer-text-copyright' ); ?></p>
+						<p class="site-text"><?php echo get_theme_mod( 'layers-footer-text-copyright' ); ?></p>
 					</div>
 					<div class="column span-6 clearfix t-right">
-						<?php wp_nav_menu( array( 'theme_location' => HATCH_THEME_SLUG . '-footer' , 'container' => 'nav', 'container_class' => 'nav nav-horizontal pull-right', 'fallback_cb' => false )); ?>
+						<?php wp_nav_menu( array( 'theme_location' => LAYERS_THEME_SLUG . '-footer' , 'container' => 'nav', 'container_class' => 'nav nav-horizontal pull-right', 'fallback_cb' => false )); ?>
 					</div>
 				</div>
-				<?php do_action( 'hatch_after_footer_copyright' ); ?>
+				<?php do_action( 'layers_after_footer_copyright' ); ?>
 			</div>
-			<?php do_action( 'hatch_after_footer_inner' ); ?>
+			<?php do_action( 'layers_after_footer_inner' ); ?>
 		</footer><!-- END / FOOTER -->
-		<?php do_action( 'hatch_after_footer' ); ?>
+		<?php do_action( 'layers_after_footer' ); ?>
 
 	</section><!-- END / MAIN SITE #wrapper -->
-	<?php do_action( 'hatch_after_site_wrapper' ); ?>
+	<?php do_action( 'layers_after_site_wrapper' ); ?>
 	<?php wp_footer(); ?>
 </body>
 </html>

@@ -2,8 +2,8 @@
 /**
  * This template is used for displaying posts in post lists
  *
- * @package Hatch
- * @since Hatch 1.0
+ * @package Layers
+ * @since Layers 1.0
  */
 
 global $post, $post_meta_to_display; ?>
@@ -23,6 +23,6 @@ global $post, $post_meta_to_display; ?>
             <?php the_excerpt(); ?>
         </div>
     <?php } ?>
-    <?php hatch_post_meta( $post->ID, NULL, 'footer', 'meta-info push-bottom' ); ?>
-    <p><a href="<?php the_permalink(); ?>" class="button"><?php _e( 'Read More' , HATCH_THEME_SLUG ); ?></a></p>
+    <?php layers_post_meta( $post->ID, NULL, 'footer', 'meta-info push-bottom' ); ?>
+    <p><a href="<?php the_permalink(); ?>" class="button"><?php _e( 'Read More' , LAYERS_THEME_SLUG ); ?></a></p>
 </article>

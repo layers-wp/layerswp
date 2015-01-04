@@ -3,8 +3,8 @@
  *
  * This file is used to display general template elements, such as breadcrumbs, site-wide pagination,  etc.
  *
- * @package Hatch
- * @since Hatch 1.0
+ * @package Layers
+ * @since Layers 1.0
  */
 
 /**
@@ -15,13 +15,13 @@
 * @echo     string                          Post Meta HTML
 */
 
-if( !function_exists( 'hatch_bread_crumbs' ) ) {
-	function hatch_bread_crumbs( $wrapper = 'nav', $wrapper_class = 'bread-crumbs', $seperator = '/' ) {
+if( !function_exists( 'layers_bread_crumbs' ) ) {
+	function layers_bread_crumbs( $wrapper = 'nav', $wrapper_class = 'bread-crumbs', $seperator = '/' ) {
 		global $post; ?>
 		<<?php echo $wrapper; ?> class="<?php echo $wrapper_class; ?>">
 			<ul>
 				<?php /* Home */ ?>
-				<li><a href="<?php echo home_url(); ?>"><?php _e('Home',HATCH_THEME_SLUG); ?></a></li>
+				<li><a href="<?php echo home_url(); ?>"><?php _e('Home',LAYERS_THEME_SLUG); ?></a></li>
 
 				<?php
 
@@ -32,14 +32,14 @@ if( !function_exists( 'hatch_bread_crumbs' ) ) {
 				*/
 				if( is_search() ) { ?>
 					<li><?php echo $seperator; ?></li>
-					<li><?php _e('Search',HATCH_THEME_SLUG); ?></li>
+					<li><?php _e('Search',LAYERS_THEME_SLUG); ?></li>
 				<?php } elseif( function_exists('is_shop') && ( is_post_type_archive( 'product' ) || ( get_post_type() == "product") ) ) { ?>
 					<li><?php echo $seperator; ?></li>
 					<?php if( function_exists( 'woocommerce_get_page_id' )  && '' != woocommerce_get_page_id('shop') ) { ?>
 						<?php $shop_page = get_post( woocommerce_get_page_id('shop') ); ?>
 						<li><a href="<?php echo get_permalink( $shop_page->ID ); ?>"><?php echo $shop_page->post_title; ?></a></li>
 					<?php } else { ?>
-						<li><a href=""><?php _e( 'Shop' , HATCH_THEME_SLUG ); ?></li>
+						<li><a href=""><?php _e( 'Shop' , LAYERS_THEME_SLUG ); ?></li>
 					<?php }
 				} elseif( is_post_type_archive() || is_singular() || is_tax() ) {
 
@@ -228,7 +228,7 @@ if( !function_exists( 'hatch_bread_crumbs' ) ) {
 			</ul>
 		</<?php echo $wrapper; ?>>
 	<?php }
-} // hatch_post_meta
+} // layers_post_meta
 
 /**
 * Print pagination
@@ -238,8 +238,8 @@ if( !function_exists( 'hatch_bread_crumbs' ) ) {
 * @param    varchar         $wrapper_class  Class of HTML wrapper
 * @echo     string                          Post Meta HTML
 */
-if( !function_exists( 'hatch_pagination' ) ) {
-	function hatch_pagination( $args = NULL , $wrapper = 'div', $wrapper_class = 'pagination' ) {
+if( !function_exists( 'layers_pagination' ) ) {
+	function layers_pagination( $args = NULL , $wrapper = 'div', $wrapper_class = 'pagination' ) {
 
 		// Set up some globals
 		global $wp_query, $paged;
@@ -270,7 +270,7 @@ if( !function_exists( 'hatch_pagination' ) ) {
 			) ); ?>
 		</<?php echo $wrapper; ?>>
 	<?php }
-} // hatch_pagination
+} // layers_pagination
 
 /**
 * Get Page Title
@@ -280,8 +280,8 @@ if( !function_exists( 'hatch_pagination' ) ) {
 * @param    array           $args           Arguments for this function, including 'query', 'range'
 * @echo     array           $title_array    Section Title & Excerpt
 */
-if( !function_exists( 'hatch_get_page_title' ) ) {
-	function hatch_get_page_title() {
+if( !function_exists( 'layers_get_page_title' ) ) {
+	function layers_get_page_title() {
 		global $post;
 
 		// Setup return
@@ -298,7 +298,7 @@ if( !function_exists( 'hatch_get_page_title' ) ) {
 				if( $post->post_excerpt != "") $title_array['excerpt'] = strip_tags( get_the_excerpt() );
 			};
 		} elseif( is_search() ) {
-			$title_array['title'] = __( 'Search' , HATCH_THEME_SLUG );
+			$title_array['title'] = __( 'Search' , LAYERS_THEME_SLUG );
 			$title_array['excerpt'] = the_search_query();
 		} elseif( is_tag() ) {
 			$title_array['title'] = single_tag_title();
@@ -311,27 +311,27 @@ if( !function_exists( 'hatch_get_page_title' ) ) {
 			$title_array['title'] = $term->name;
 			$title_array['excerpt'] = $term->description;
 		} elseif ( is_day() ) {
-			$title_array['title' ] = sprintf( __( 'Daily Archives: %s', HATCH_THEME_SLUG ), get_the_date() );
+			$title_array['title' ] = sprintf( __( 'Daily Archives: %s', LAYERS_THEME_SLUG ), get_the_date() );
 		} elseif ( is_month() ) {
-			$title_array['title' ] = sprintf( __( 'Monthly Archives: %s', HATCH_THEME_SLUG ), get_the_date( _x( 'F Y', 'monthly archives date format', HATCH_THEME_SLUG ) ) );
+			$title_array['title' ] = sprintf( __( 'Monthly Archives: %s', LAYERS_THEME_SLUG ), get_the_date( _x( 'F Y', 'monthly archives date format', LAYERS_THEME_SLUG ) ) );
 		} elseif ( is_year() ) {
-			$title_array['title' ] = sprintf( __( 'Yearly Archives: %s', HATCH_THEME_SLUG ), get_the_date( _x( 'Y', 'yearly archives date format', HATCH_THEME_SLUG ) ) );
+			$title_array['title' ] = sprintf( __( 'Yearly Archives: %s', LAYERS_THEME_SLUG ), get_the_date( _x( 'Y', 'yearly archives date format', LAYERS_THEME_SLUG ) ) );
 		} elseif( function_exists('is_shop') && ( is_post_type_archive( 'product' ) || ( get_post_type() == "product") ) ) {
 			if( function_exists( 'woocommerce_get_page_id' )  && '' != woocommerce_get_page_id('shop') ) {
 				$shop_page = get_post( woocommerce_get_page_id('shop') );
 				$title_array['title' ] = $shop_page->post_title;
 			} else {
-				$title_array['title' ] = __( 'Shop' , HATCH_THEME_SLUG );
+				$title_array['title' ] = __( 'Shop' , LAYERS_THEME_SLUG );
 			}
 		} elseif( is_single() ) {
 			$title_array['title' ] = get_the_title();
 		} else {
-			$title_array['title' ] = __( 'Archives', HATCH_THEME_SLUG );
+			$title_array['title' ] = __( 'Archives', LAYERS_THEME_SLUG );
 		}
 
-		return apply_filters( 'hatch_get_page_title' , $title_array );
+		return apply_filters( 'layers_get_page_title' , $title_array );
 	}
-} // hatch_get_page_title
+} // layers_get_page_title
 
 /**
  * Retrieve the classes for the header element as an array.
@@ -339,11 +339,11 @@ if( !function_exists( 'hatch_get_page_title' ) ) {
  * @param string|array $class One or more classes to add to the class list.
  * @return array Array of classes.
  */
-if( !function_exists( 'hatch_get_header_class' ) ) {
-	function hatch_get_header_class( $class = '' ){
+if( !function_exists( 'layers_get_header_class' ) ) {
+	function layers_get_header_class( $class = '' ){
 
-		$header_align_option = hatch_get_theme_mod( 'header-layout-layout' );
-		$header_fixed_option = hatch_get_theme_mod( 'header-layout-fixed' );
+		$header_align_option = layers_get_theme_mod( 'header-layout-layout' );
+		$header_fixed_option = layers_get_theme_mod( 'header-layout-fixed' );
 
 		$classes = array();
 
@@ -383,12 +383,12 @@ if( !function_exists( 'hatch_get_header_class' ) ) {
 
 		$classes = array_map( 'esc_attr', $classes );
 
-		$classes = apply_filters( 'hatch_header_class', $classes, $class );
+		$classes = apply_filters( 'layers_header_class', $classes, $class );
 
 		return array_unique( $classes );
 
 	}
-} // hatch_get_header_class
+} // layers_get_header_class
 
 /**
  * Display the classes for the header element.
@@ -396,12 +396,12 @@ if( !function_exists( 'hatch_get_header_class' ) ) {
  * @param string|array $class One or more classes to add to the class list.
  */
 
-if( !function_exists( 'hatch_header_class' ) ) {
-	function hatch_header_class( $class = '' ) {
+if( !function_exists( 'layers_header_class' ) ) {
+	function layers_header_class( $class = '' ) {
 		// Separates classes with a single space, collates classes for body element
-		echo 'class="' . join( ' ', hatch_get_header_class( $class ) ) . '"';
+		echo 'class="' . join( ' ', layers_get_header_class( $class ) ) . '"';
 	}
-} // hatch_header_class
+} // layers_header_class
 
 /**
  * Retrieve the classes for the center column on archive and single pages
@@ -409,16 +409,16 @@ if( !function_exists( 'hatch_header_class' ) ) {
  * @param varchar $postid Post ID to check the page template on
  * @return array Array of classes.
  */
-if( !function_exists( 'hatch_get_center_column_class' ) ) {
-	function hatch_get_center_column_class( $class = '' ){
+if( !function_exists( 'layers_get_center_column_class' ) ) {
+	function layers_get_center_column_class( $class = '' ){
 
 		$classes = array();
 
 		// This div will always have the .column class
 		$classes[] = 'column';
 
-		$left_sidebar_active = hatch_can_show_sidebar( 'left-sidebar' );
-		$right_sidebar_active = hatch_can_show_sidebar( 'right-sidebar' );
+		$left_sidebar_active = layers_can_show_sidebar( 'left-sidebar' );
+		$right_sidebar_active = layers_can_show_sidebar( 'right-sidebar' );
 
 		// Set classes according to the sidebars
 		if( $left_sidebar_active && $right_sidebar_active ){
@@ -443,12 +443,12 @@ if( !function_exists( 'hatch_get_center_column_class' ) ) {
 
 		$classes = array_map( 'esc_attr', $classes );
 
-		$classes = apply_filters( 'hatch_center_column_class', $classes, $class );
+		$classes = apply_filters( 'layers_center_column_class', $classes, $class );
 
 		return array_unique( $classes );
 
 	}
-} // hatch_center_column_class
+} // layers_center_column_class
 
 /**
  * Display the classes for the header element.
@@ -456,12 +456,12 @@ if( !function_exists( 'hatch_get_center_column_class' ) ) {
  * @param string|array $class One or more classes to add to the class list.
  */
 
-if( !function_exists( 'hatch_center_column_class' ) ) {
-	function hatch_center_column_class( $class = '' ) {
+if( !function_exists( 'layers_center_column_class' ) ) {
+	function layers_center_column_class( $class = '' ) {
 		// Separates classes with a single space, collates classes for body element
-		echo 'class="' . join( ' ', hatch_get_center_column_class( $class ) ) . '"';
+		echo 'class="' . join( ' ', layers_get_center_column_class( $class ) ) . '"';
 	}
-} // hatch_header_class
+} // layers_header_class
 
 /**
  * Retrieve theme modification value for the current theme.
@@ -469,14 +469,14 @@ if( !function_exists( 'hatch_center_column_class' ) ) {
  * @param string $name Theme modification name.
  * @return string
  */
-if( !function_exists( 'hatch_get_theme_mod' ) ) {
-	function hatch_get_theme_mod( $name = '' ) {
-		// Add the theme prefix to our hatch option
-		$name = HATCH_THEME_SLUG . '-' . $name;
+if( !function_exists( 'layers_get_theme_mod' ) ) {
+	function layers_get_theme_mod( $name = '' ) {
+		// Add the theme prefix to our layers option
+		$name = LAYERS_THEME_SLUG . '-' . $name;
 
 		return get_theme_mod( $name );
 	}
-} // hatch_get_header_class
+} // layers_get_header_class
 
 /**
  * Translates an image ratio select-icon input into a nice clean image ratio we can use
@@ -484,8 +484,8 @@ if( !function_exists( 'hatch_get_theme_mod' ) ) {
  * @param string $value Value of the input
  * @return string Image size
  */
-if( !function_exists( 'hatch_translate_image_ratios' ) ) {
-	function hatch_translate_image_ratios( $value = '' ) {
+if( !function_exists( 'layers_translate_image_ratios' ) ) {
+	function layers_translate_image_ratios( $value = '' ) {
 
 		if( 'image-no-crop' == $value ) {
 			$image_ratio = '';
@@ -495,16 +495,16 @@ if( !function_exists( 'hatch_translate_image_ratios' ) ) {
 
 		return $image_ratio;
 	}
-} // hatch_get_header_class
+} // layers_get_header_class
 
 /**
  * Check customizer and page template settings before allowing a sidebar to display
  *
  * @param   int     $sidebar                Sidebar slug to check
  */
-if( !function_exists( 'hatch_can_show_sidebar' ) ) {
+if( !function_exists( 'layers_can_show_sidebar' ) ) {
 
-	function hatch_can_show_sidebar( $sidebar = 'left-sidebar' ){
+	function layers_can_show_sidebar( $sidebar = 'left-sidebar' ){
 
 		 if( is_page() ) {
 
@@ -518,16 +518,16 @@ if( !function_exists( 'hatch_can_show_sidebar' ) ) {
 		} elseif ( is_single() ) {
 
 			// Check the single page option
-		   $can_show_sidebar = hatch_get_theme_mod( 'content-layout-single-' . $sidebar );
+		   $can_show_sidebar = layers_get_theme_mod( 'content-layout-single-' . $sidebar );
 
 		} else {
 
 			// Check the arhive page option
-		   $can_show_sidebar = hatch_get_theme_mod( 'content-layout-archive-' . $sidebar );
+		   $can_show_sidebar = layers_get_theme_mod( 'content-layout-archive-' . $sidebar );
 
 		}
 
-		return $classes = apply_filters( 'hatch_can_show_sidebar', $can_show_sidebar, $sidebar );
+		return $classes = apply_filters( 'layers_can_show_sidebar', $can_show_sidebar, $sidebar );
 	}
 
 }
@@ -539,24 +539,24 @@ if( !function_exists( 'hatch_can_show_sidebar' ) ) {
  * @param   varchar $container_class       Sidebar container class
  * @return  html    $sidebar                Sidebar template
  */
-if( !function_exists( 'hatch_maybe_get_sidebar' ) ) {
-	function hatch_maybe_get_sidebar( $sidebar = 'left', $container_class = 'column', $return = FALSE ) {
+if( !function_exists( 'layers_maybe_get_sidebar' ) ) {
+	function layers_maybe_get_sidebar( $sidebar = 'left', $container_class = 'column', $return = FALSE ) {
 
 		global $post;
 
-		$show_sidebar = hatch_can_show_sidebar( $sidebar );
+		$show_sidebar = layers_can_show_sidebar( $sidebar );
 
 		if( TRUE == $show_sidebar ) { ?>
-			<?php if( is_active_sidebar( HATCH_THEME_SLUG . '-' . $sidebar ) ) { ?>
+			<?php if( is_active_sidebar( LAYERS_THEME_SLUG . '-' . $sidebar ) ) { ?>
 				<div class="<?php echo $container_class; ?>">
 			<?php } ?>
-				<?php dynamic_sidebar( HATCH_THEME_SLUG . '-' . $sidebar ); ?>
-			<?php if( is_active_sidebar( HATCH_THEME_SLUG . '-' . $sidebar ) ) { ?>
+				<?php dynamic_sidebar( LAYERS_THEME_SLUG . '-' . $sidebar ); ?>
+			<?php if( is_active_sidebar( LAYERS_THEME_SLUG . '-' . $sidebar ) ) { ?>
 				</div>
 			<?php } ?>
 		<?php }
 	}
-} // hatch_get_header_class
+} // layers_get_header_class
 
 
 /**
@@ -564,34 +564,34 @@ if( !function_exists( 'hatch_maybe_get_sidebar' ) ) {
  *
  * @return  html    $additional_header_scripts                Scripts to be included in the header
  */
-if( !function_exists( 'hatch_add_additional_header_scripts' ) ) {
-	function hatch_add_additional_header_scripts() {
+if( !function_exists( 'layers_add_additional_header_scripts' ) ) {
+	function layers_add_additional_header_scripts() {
 
-		$additional_header_scripts = hatch_get_theme_mod( 'header-scripts-scripts' );
+		$additional_header_scripts = layers_get_theme_mod( 'header-scripts-scripts' );
 
 		if( '' != $additional_header_scripts ) {
 			echo stripslashes( $additional_header_scripts );
 		}
 	}
-	add_action ( 'wp_head', 'hatch_add_additional_header_scripts' );
-} // hatch_add_additional_header_scripts
+	add_action ( 'wp_head', 'layers_add_additional_header_scripts' );
+} // layers_add_additional_header_scripts
 
 /**
  * Include additional scripts in the side footer
  *
  * @return  html    $additional_header_scripts Scripts to be included in the header
  */
-if( !function_exists( 'hatch_add_additional_footer_scripts' ) ) {
-	function hatch_add_additional_footer_scripts() {
+if( !function_exists( 'layers_add_additional_footer_scripts' ) ) {
+	function layers_add_additional_footer_scripts() {
 
-		$additional_footer_scripts = hatch_get_theme_mod( 'footer-scripts-scripts' );
+		$additional_footer_scripts = layers_get_theme_mod( 'footer-scripts-scripts' );
 
 		if( '' != $additional_footer_scripts ) {
 			echo stripslashes( $additional_footer_scripts );
 		}
 	}
-	add_action ( 'wp_footer', 'hatch_add_additional_footer_scripts' );
-} // hatch_add_additional_header_scripts
+	add_action ( 'wp_footer', 'layers_add_additional_footer_scripts' );
+} // layers_add_additional_header_scripts
 
 
 /**
@@ -599,10 +599,10 @@ if( !function_exists( 'hatch_add_additional_footer_scripts' ) ) {
  *
  * @return  html    $scripts Prints Google Analytics
  */
-if( !function_exists( 'hatch_add_google_analytics' ) ) {
-	function hatch_add_google_analytics() {
+if( !function_exists( 'layers_add_google_analytics' ) ) {
+	function layers_add_google_analytics() {
 
-		$analytics_id = hatch_get_theme_mod( 'header-scripts-google-id' );
+		$analytics_id = layers_get_theme_mod( 'header-scripts-google-id' );
 
 		if( '' != $analytics_id ) { ?>
 			<script>
@@ -617,8 +617,8 @@ if( !function_exists( 'hatch_add_google_analytics' ) ) {
 			</script>
 		<?php }
 	}
-	add_action ( 'wp_head', 'hatch_add_google_analytics' );
-} // hatch_add_google_analytics
+	add_action ( 'wp_head', 'layers_add_google_analytics' );
+} // layers_add_google_analytics
 
 /**
 * Background Style Generator
@@ -628,8 +628,8 @@ if( !function_exists( 'hatch_add_google_analytics' ) ) {
 *
 * @return   varchar     $inline_css CSS to append to the inline widget styles that have been generated
 */
-if( !function_exists( 'hatch_inline_styles' ) ) {
-	function hatch_inline_styles( $container_id = NULL, $type = 'background' , $args = array() ){
+if( !function_exists( 'layers_inline_styles' ) ) {
+	function layers_inline_styles( $container_id = NULL, $type = 'background' , $args = array() ){
 
 		// Get the generated CSS
 		global $inline_css;
@@ -716,8 +716,8 @@ if( !function_exists( 'hatch_inline_styles' ) ) {
 			$inline_css .= '{' . $css . '} ';
 		}
 
-		wp_enqueue_style( HATCH_THEME_SLUG . '-inline-styles', get_template_directory_uri() . '/css/inline.css' );
-		wp_add_inline_style( HATCH_THEME_SLUG . '-inline-styles', $inline_css );
+		wp_enqueue_style( LAYERS_THEME_SLUG . '-inline-styles', get_template_directory_uri() . '/css/inline.css' );
+		wp_add_inline_style( LAYERS_THEME_SLUG . '-inline-styles', $inline_css );
 
 		return $inline_css;
 	}

@@ -1,13 +1,13 @@
 <?php  /**
  * Contact Details &amp; Maps Widget
  *
- * This file is used to register and display the Hatch - Portfolios widget.
+ * This file is used to register and display the Layers - Portfolios widget.
  *
- * @package Hatch
- * @since Hatch 1.0
+ * @package Layers
+ * @since Layers 1.0
  */
-if( !class_exists( 'Hatch_Contact_Widget' ) ) {
-	class Hatch_Contact_Widget extends Hatch_Widget {
+if( !class_exists( 'Layers_Contact_Widget' ) ) {
+	class Layers_Contact_Widget extends Layers_Widget {
 
 		/**
 		* Widget variables
@@ -31,15 +31,15 @@ if( !class_exists( 'Hatch_Contact_Widget' ) ) {
 		/**
 		*  Widget construction
 		*/
-	 	function Hatch_Contact_Widget(){
+	 	function Layers_Contact_Widget(){
 	 		/* Widget settings. */
-			$widget_ops = array( 'classname' => 'obox-hatch-' . $this->widget_id .'-widget', 'description' => 'This widget is used to display your ' . $this->widget_title . '.' );
+			$widget_ops = array( 'classname' => 'obox-layers-' . $this->widget_id .'-widget', 'description' => 'This widget is used to display your ' . $this->widget_title . '.' );
 
 			/* Widget control settings. */
-			$control_ops = array( 'width' => HATCH_WIDGET_WIDTH_SMALL, 'height' => NULL, 'id_base' => HATCH_THEME_SLUG . '-widget-' . $this->widget_id );
+			$control_ops = array( 'width' => LAYERS_WIDGET_WIDTH_SMALL, 'height' => NULL, 'id_base' => LAYERS_THEME_SLUG . '-widget-' . $this->widget_id );
 
 			/* Create the widget. */
-			$this->WP_Widget( HATCH_THEME_SLUG . '-widget-' . $this->widget_id , '(' . HATCH_THEME_TITLE . ') ' . $this->widget_title . ' Widget', $widget_ops, $control_ops );
+			$this->WP_Widget( LAYERS_THEME_SLUG . '-widget-' . $this->widget_id , '(' . LAYERS_THEME_TITLE . ') ' . $this->widget_title . ' Widget', $widget_ops, $control_ops );
 
 			/* Setup Widget Defaults */
 			$this->defaults = array (
@@ -89,12 +89,12 @@ if( !class_exists( 'Hatch_Contact_Widget' ) ) {
 				$hasmap = true;
 			}
 			// Set the background styling
-			if( !empty( $widget['design'][ 'background' ] ) ) hatch_inline_styles( $widget_id, 'background', array( 'background' => $widget['design'][ 'background' ] ) );
-			if( !empty( $widget['design']['fonts'][ 'color' ] ) ) hatch_inline_styles( $widget_id, 'color', array( 'selectors' => array( '.section-title h3.heading' , '.section-title p.excerpt' , '.section-title small' ) , 'color' => $widget['design']['fonts'][ 'color' ] ) );
+			if( !empty( $widget['design'][ 'background' ] ) ) layers_inline_styles( $widget_id, 'background', array( 'background' => $widget['design'][ 'background' ] ) );
+			if( !empty( $widget['design']['fonts'][ 'color' ] ) ) layers_inline_styles( $widget_id, 'color', array( 'selectors' => array( '.section-title h3.heading' , '.section-title p.excerpt' , '.section-title small' ) , 'color' => $widget['design']['fonts'][ 'color' ] ) );
 
 			// Output custom css if there is any
 			if( !empty( $widget['design']['advanced'][ 'customcss' ] ) ){
-				wp_add_inline_style( HATCH_THEME_SLUG . '-custom-widget-styles', $widget['design']['advanced'][ 'customcss' ] );
+				wp_add_inline_style( LAYERS_THEME_SLUG . '-custom-widget-styles', $widget['design']['advanced'][ 'customcss' ] );
 			}
 			// Set the map width
 			$mapwidth = 'span-12'; ?>
@@ -131,15 +131,15 @@ if( !class_exists( 'Hatch_Contact_Widget' ) ) {
 					<?php } // if show_contact_form || address_shown ?>
 					<div class="column <?php echo $mapwidth; ?>">
 						<?php if( isset( $hasmap ) ) { ?>
-							<div class="hatch-map" style="height: <?php echo $widget['map_height']; ?>px;" <?php if( '' != $widget['google_maps_location'] ) { ?>data-location="<?php echo $widget['google_maps_location']; ?>"<?php } ?> <?php if( '' != $widget['google_maps_long_lat'] ) { ?>data-longlat="<?php echo $widget['google_maps_long_lat']; ?>"<?php } ?>></div>
+							<div class="layers-map" style="height: <?php echo $widget['map_height']; ?>px;" <?php if( '' != $widget['google_maps_location'] ) { ?>data-location="<?php echo $widget['google_maps_location']; ?>"<?php } ?> <?php if( '' != $widget['google_maps_long_lat'] ) { ?>data-longlat="<?php echo $widget['google_maps_long_lat']; ?>"<?php } ?>></div>
 						<?php } ?>
 					</div>
 				</div>
 			</section>
 
 	 		<?php // Enqueue the map js
-	 			wp_enqueue_script( HATCH_THEME_SLUG . " -map-api","http://maps.googleapis.com/maps/api/js?sensor=false");
-	 			wp_enqueue_script( HATCH_THEME_SLUG . "-map-trigger", get_template_directory_uri()."/core/widgets/js/maps.js", array( "jquery" ) );
+	 			wp_enqueue_script( LAYERS_THEME_SLUG . " -map-api","http://maps.googleapis.com/maps/api/js?sensor=false");
+	 			wp_enqueue_script( LAYERS_THEME_SLUG . "-map-trigger", get_template_directory_uri()."/core/widgets/js/maps.js", array( "jquery" ) );
 	 		?>
 	 	<?php }
 
@@ -201,125 +201,125 @@ if( !class_exists( 'Hatch_Contact_Widget' ) ) {
 									'min' => 150,
 									'max' => 1600,
 									'value' => ( isset( $map_height ) ) ? $map_height : NULL,
-									'label' => __( 'Map Height', HATCH_THEME_SLUG )
+									'label' => __( 'Map Height', LAYERS_THEME_SLUG )
 								),
 								'show_google_map' => array(
 										'type' => 'checkbox',
 										'name' => $this->get_field_name( 'show_google_map' ) ,
 										'id' => $this->get_field_id( 'show_google_map' ) ,
 										'value' => ( isset( $show_google_map ) ) ? $show_google_map : NULL,
-										'label' => __( 'Show Google Map', HATCH_THEME_SLUG )
+										'label' => __( 'Show Google Map', LAYERS_THEME_SLUG )
 									),
 								'show_address' => array(
 										'type' => 'checkbox',
 										'name' => $this->get_field_name( 'show_address' ) ,
 										'id' => $this->get_field_id( 'show_address' ) ,
 										'value' => ( isset( $show_address ) ) ? $show_address : NULL,
-										'label' => __( 'Show Address', HATCH_THEME_SLUG )
+										'label' => __( 'Show Address', LAYERS_THEME_SLUG )
 									),
 								'show_contact_form' => array(
 										'type' => 'checkbox',
 										'name' => $this->get_field_name( 'show_contact_form' ) ,
 										'id' => $this->get_field_id( 'show_contact_form' ) ,
 										'value' => ( isset( $show_contact_form ) ) ? $show_contact_form : NULL,
-										'label' => __( 'Show Contact Form', HATCH_THEME_SLUG )
+										'label' => __( 'Show Contact Form', LAYERS_THEME_SLUG )
 									)
 							)
 						)
 					)
 				);?>
-			<div class="hatch-container-large">
+			<div class="layers-container-large">
 
 				<?php $this->form_elements()->header( array(
-					'title' => __( 'Contact', HATCH_THEME_SLUG ),
+					'title' => __( 'Contact', LAYERS_THEME_SLUG ),
 					'icon_class' =>'location'
 				) ); ?>
 
-				<section class="hatch-accordion-section hatch-content">
-					<div class="hatch-row hatch-push-bottom clearfix">
-						<p class="hatch-form-item">
+				<section class="layers-accordion-section layers-content">
+					<div class="layers-row layers-push-bottom clearfix">
+						<p class="layers-form-item">
 							<?php echo $this->form_elements()->input(
 								array(
 									'type' => 'text',
 									'name' => $this->get_field_name( 'title' ) ,
 									'id' => $this->get_field_id( 'title' ) ,
-									'placeholder' => __( 'Enter title here', HATCH_THEME_SLUG ),
+									'placeholder' => __( 'Enter title here', LAYERS_THEME_SLUG ),
 									'value' => ( isset( $title ) ) ? $title : NULL ,
-									'class' => 'hatch-text hatch-large'
+									'class' => 'layers-text layers-large'
 								)
 							); ?>
 						</p>
-						<p class="hatch-form-item">
+						<p class="layers-form-item">
 							<?php echo $this->form_elements()->input(
 								array(
 									'type' => 'textarea',
 									'name' => $this->get_field_name( 'excerpt' ) ,
 									'id' => $this->get_field_id( 'excerpt' ) ,
-									'placeholder' =>  __( 'Short Excerpt', HATCH_THEME_SLUG ),
+									'placeholder' =>  __( 'Short Excerpt', LAYERS_THEME_SLUG ),
 									'value' => ( isset( $excerpt ) ) ? $excerpt : NULL ,
-									'class' => 'hatch-textarea hatch-large'
+									'class' => 'layers-textarea layers-large'
 								)
 							); ?>
 						</p>
-						<p class="hatch-form-item">
+						<p class="layers-form-item">
 							<?php echo $this->form_elements()->input(
 								array(
 									'type' => 'textarea',
 									'name' => $this->get_field_name( 'contact_form' ) ,
 									'id' => $this->get_field_id( 'contact_form' ) ,
-									'placeholder' =>  __( 'Contact Form Embed Code', HATCH_THEME_SLUG ),
+									'placeholder' =>  __( 'Contact Form Embed Code', LAYERS_THEME_SLUG ),
 									'value' => ( isset( $contact_form ) ) ? $contact_form : NULL ,
-									'class' => 'hatch-textarea hatch-large'
+									'class' => 'layers-textarea layers-large'
 								)
 							); ?>
 						</p>
 					</div>
 
-					<div class="hatch-row clearfix">
-						<div class="hatch-column hatch-span-12">
-							<div class="hatch-panel">
+					<div class="layers-row clearfix">
+						<div class="layers-column layers-span-12">
+							<div class="layers-panel">
 								<?php $this->form_elements()->section_panel_title(
 									array(
 										'type' => 'panel',
-										'title' => __( 'Address' , HATCH_THEME_SLUG ),
-										'tooltip' => __(  'Place your help text here please.', HATCH_THEME_SLUG )
+										'title' => __( 'Address' , LAYERS_THEME_SLUG ),
+										'tooltip' => __(  'Place your help text here please.', LAYERS_THEME_SLUG )
 									)
 								); ?>
-								<div class="hatch-content">
-									<p class="hatch-form-item">
-										<label for="<?php echo $this->get_field_id( 'google_maps_location' ); ?>"><?php _e( 'Google Maps Location' , HATCH_THEME_SLUG ); ?></label>
+								<div class="layers-content">
+									<p class="layers-form-item">
+										<label for="<?php echo $this->get_field_id( 'google_maps_location' ); ?>"><?php _e( 'Google Maps Location' , LAYERS_THEME_SLUG ); ?></label>
 										<?php echo $this->form_elements()->input(
 											array(
 												'type' => 'text',
 												'name' => $this->get_field_name( 'google_maps_location' ) ,
 												'id' => $this->get_field_id( 'google_maps_location' ) ,
-												'placeholder' => __( 'e.g. 300 Prestwich Str, Cape Town, South Africa', HATCH_THEME_SLUG ),
+												'placeholder' => __( 'e.g. 300 Prestwich Str, Cape Town, South Africa', LAYERS_THEME_SLUG ),
 												'value' => ( isset( $google_maps_location ) ) ? $google_maps_location : NULL
 											)
 										); ?>
 									</p>
-									<p class="hatch-form-item">
-										<label for="<?php echo $this->get_field_id( 'google_maps_long_lat' ); ?>"><?php _e( 'Google Maps Latitude & Longitude (Optional)' , HATCH_THEME_SLUG ); ?></label>
+									<p class="layers-form-item">
+										<label for="<?php echo $this->get_field_id( 'google_maps_long_lat' ); ?>"><?php _e( 'Google Maps Latitude & Longitude (Optional)' , LAYERS_THEME_SLUG ); ?></label>
 										<?php echo $this->form_elements()->input(
 											array(
 												'type' => 'text',
 												'name' => $this->get_field_name( 'google_maps_long_lat' ) ,
 												'id' => $this->get_field_id( 'google_maps_long_lat' ) ,
-												'placeholder' => __( 'e.g. 33.9253 S, 18.4239 E', HATCH_THEME_SLUG ),
+												'placeholder' => __( 'e.g. 33.9253 S, 18.4239 E', LAYERS_THEME_SLUG ),
 												'value' => ( isset( $google_maps_long_lat ) ) ? $google_maps_long_lat : NULL
 											)
 										); ?>
 									</p>
-									<p class="hatch-form-item">
-										<label for="<?php echo $this->get_field_id( 'address_shown' ); ?>"><?php _e( 'Address Shown' , HATCH_THEME_SLUG ); ?></label>
+									<p class="layers-form-item">
+										<label for="<?php echo $this->get_field_id( 'address_shown' ); ?>"><?php _e( 'Address Shown' , LAYERS_THEME_SLUG ); ?></label>
 										<?php echo $this->form_elements()->input(
 											array(
 												'type' => 'textarea',
 												'name' => $this->get_field_name( 'address_shown' ) ,
 												'id' => $this->get_field_id( 'address_shown' ) ,
-												'placeholder' => __( 'e.g. Prestwich Str, Cape Town', HATCH_THEME_SLUG ),
+												'placeholder' => __( 'e.g. Prestwich Str, Cape Town', LAYERS_THEME_SLUG ),
 												'value' => ( isset( $address_shown ) ) ? $address_shown : NULL,
-												'class' => 'hatch-textarea'
+												'class' => 'layers-textarea'
 											)
 										); ?>
 									</p>
@@ -337,5 +337,5 @@ if( !class_exists( 'Hatch_Contact_Widget' ) ) {
 	} // Class
 
 	// Add our function to the widgets_init hook.
-	 register_widget("Hatch_Contact_Widget");
+	 register_widget("Layers_Contact_Widget");
 }

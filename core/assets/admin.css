@@ -41,28 +41,27 @@ div#widgets-right div[id*='obox-layers-builder']{
 /*----------------------------------*/
 /*- WORDPRESS RESETS / OVERRIDES ---*/
 
-
-
-
     /*---------------------------*/
-    /*- WIDGET COLOR STYLING --
-    div[id*='layers-widget'].widget-tpl .widget .widget-description{color: #777 !important;}
-    div[id*='layers-widget'].widget-tpl .widget .widget-title:before{color: #222 !important;}
-    div[id*='layers-widget'].widget-tpl .widget .widget-title h4{color: #222 !important;}
+    /*- WIDGET COLOR STYLING ----*/
 
-    div[id*='layers-widget'] .widget-top{
-        background: #0289C0;
-        border-color: #0D5F83;
-    }
-    div[id*='layers-widget'] .widget-top:hover{
-        border-color: #094D6A !important;
-    }
-    div[id*='layers-widget'] .widget-top .widget-title h4{
+    /*- Layers Badge -*/
+    .customize-control-widget_form.wide-widget-control div[id*='layers-widget'] .widget-top h4:before{
+        content: "Layers";
+        background-color: #0BA6E0;
+        padding: 0 5px;
+        margin-right: 5px;
+        border-radius: 100px;
+        font-size: 9px;
+        font-weight: 700;
+        text-transform: uppercase;
         color: #fff;
     }
-    div[id*='layers-widget'] .widget-top .widget-title .in-widget-title{
-        color: rgba(255, 255, 255, 0.8);
-    }--*/
+    .customize-control-widget_form.wide-widget-control.expanded div[id*='layers-widget'] .widget-top h4:before{
+        background-color: #0D5F83;
+        color: #fff;
+    }
+
+    /*- Layers Widget Active -*/
     .customize-control-widget_form.wide-widget-control.expanded:not(.collapsing) div[id*='layers-widget'] .widget-top{
         background: #0BA6E0;
         border-color: #0D5F83;
@@ -73,6 +72,11 @@ div#widgets-right div[id*='obox-layers-builder']{
     }
     .customize-control-widget_form.wide-widget-control.expanded:not(.collapsing) div[id*='layers-widget'] .widget-top .widget-title .in-widget-title{
         color: rgba(255, 255, 255, 0.8);
+    }
+
+    /*- Expanded Arrow Tip -*/
+    .customize-control-widget_form.wide-widget-control.expanded a.widget-action:after{
+        color: #fff;
     }
 
     /*---------------------------*/

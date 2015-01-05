@@ -2,8 +2,8 @@
 /**
  * Generic theme sidebar
  *
- * @package Hatch
- * @since Hatch 1.0
+ * @package Layers
+ * @since Layers 1.0
  */
 
-dynamic_sidebar( HATCH_THEME_SLUG . '-sidebar' );
+dynamic_sidebar( LAYERS_THEME_SLUG . '-sidebar' );

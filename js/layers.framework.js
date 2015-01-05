@@ -1,10 +1,10 @@
 /**
- * Hatch JS file
+ * Layers JS file
  *
  * This file contains all theme JS functions, from height matching to button toggling
  *
- * @package Hatch
- * @since Hatch 1.0
+ * @package Layers
+ * @since Layers 1.0
  * Contents
  * 1 - Screen height matching
  * 2 - Container padding for header fixed
@@ -18,12 +18,12 @@ jQuery(function($) {
     */
 
     $(window).resize(function(){
-        hatch_match_to_screen_height();
+        layers_match_to_screen_height();
     });
 
-    hatch_match_to_screen_height();
+    layers_match_to_screen_height();
 
-    function hatch_match_to_screen_height(){
+    function layers_match_to_screen_height(){
         $( '.full-screen' ).css( 'height' , $(window).height() );
         $( '.full-screen' ).find( '.swiper-slide .overlay' ).css( 'height' , $(window).height() );
     }
@@ -34,12 +34,9 @@ jQuery(function($) {
     $(window).on('load', function() {
         if( $( 'header' ).hasClass( 'header-fixed' ) ){
             //Add padding to the content container equal to the header height
+            if( $( 'body' ).hasClass( 'home' ) ) return;
 
-            if( 0 !== $( '.title-container').length ){
-                $selector = '.title-container';
-            } else {
-                $selector = '.container.content-main';
-            }
+            $selector = '#wrapper-content';
 
             $( $selector ).css( 'paddingTop' , $('.header-site').height() );
         }

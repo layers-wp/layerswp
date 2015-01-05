@@ -3,8 +3,8 @@
  *
  * This file contains functions relating to the Dynamic Sidebar Widget
  *
- * @package Hatch
- * @since Hatch 1.0
+ * @package Layers
+ * @since Layers 1.0
  * Contents
  * 1 - Sortable items
  * 2 - Sidebar Removal & Additions
@@ -16,19 +16,19 @@ jQuery(document).ready(function($){
 	/**
 	* 1 - Sortable items
 	*/
-	hatch_set_column_sorable();
+	layers_set_column_sorable();
 
 	$(document).on ( 'widget-added' , function(){
-		hatch_set_column_sorable();
+		layers_set_column_sorable();
 	});
 
-	function hatch_set_column_sorable(){
+	function layers_set_column_sorable(){
 
 		var $sidebar_lists = $( 'ul[id^="sidebar_list_"]' );
 
 		$sidebar_lists.sortable({
-			placeholder: "hatch-sortable-drop",
-			handle: ".hatch-accordion-title",
+			placeholder: "layers-sortable-drop",
+			handle: ".layers-accordion-title",
 			stop: function(e , li){
 				// Module UL, looking up from our current target
 				$sidebarList = li.item.closest( 'ul' );
@@ -38,12 +38,12 @@ jQuery(document).ready(function($){
 
 				// Apply new sidebar order
 				$sidebar_guids = [];
-				$sidebarList.find( 'li.hatch-accordion-item' ).each(function(){
+				$sidebarList.find( 'li.layers-accordion-item' ).each(function(){
 					$sidebar_guids.push( $(this).data( 'guid' ) );
 				});
 
 				// Trigger change for ajax save
-				$sidebarInput.val( $sidebar_guids.join() ).hatch_trigger_change();
+				$sidebarInput.val( $sidebar_guids.join() ).layers_trigger_change();
 			}
 		});
 	}
@@ -71,21 +71,21 @@ jQuery(document).ready(function($){
 		$sidebarInput = $( '#sidebar_ids_input_' + $sidebarList.data( 'number' ) );
 
 		// Remove this sidebar
-		$that.closest( '.hatch-accordion-item' ).remove();
+		$that.closest( '.layers-accordion-item' ).remove();
 
 		// Curate sidebar IDs
 		$sidebar_guids = [];
 
-		$sidebarList.find( 'li.hatch-accordion-item' ).each(function(){
+		$sidebarList.find( 'li.layers-accordion-item' ).each(function(){
 			$sidebar_guids.push( $(this).data( 'guid' ) );
 		});
 
 		// Trigger change for ajax save
-		$sidebarInput.val( $sidebar_guids.join() ).hatch_trigger_change();
+		$sidebarInput.val( $sidebar_guids.join() ).layers_trigger_change();
 
 	});
 
-	$(document).on( 'click' , '.hatch-add-widget-sidebar' , function(e){
+	$(document).on( 'click' , '.layers-add-widget-sidebar' , function(e){
 		e.preventDefault();
 
 		// "Hi Mom"
@@ -101,30 +101,30 @@ jQuery(document).ready(function($){
 		$sidebarInput = $( '#sidebar_ids_input_' + $sidebarList.data( 'number' ) );
 
 		$.post(
-			hatch_widget_params.ajaxurl,
+			layers_widget_params.ajaxurl,
 			{
-				action: 'hatch_sidebar_widget_actions',
+				action: 'layers_sidebar_widget_actions',
 				widget_action: 'add',
 				id_base: $sidebarList.data( 'id_base' ),
 				number: $sidebarList.data( 'number' ),
-				nonce: hatch_widget_params.nonce
+				nonce: layers_widget_params.nonce
 
 			},
 			function(data){
 				// Append sidebar HTML
-				$( data ).insertBefore( $sidebarListId + ' .hatch-add-widget-sidebar' );
+				$( data ).insertBefore( $sidebarListId + ' .layers-add-widget-sidebar' );
 
 				// Append sidebar IDs to the sidebars input
 				$sidebar_guids = [];
-				$sidebarList.find( 'li.hatch-accordion-item' ).each(function(){
+				$sidebarList.find( 'li.layers-accordion-item' ).each(function(){
 					$sidebar_guids.push( $(this).data( 'guid' ) );
 				});
 
 				// Trigger change for ajax save
-				$sidebarInput.val( $sidebar_guids.join() ).hatch_trigger_change();
+				$sidebarInput.val( $sidebar_guids.join() ).layers_trigger_change();
 
 				// Trigger color selectors
-				jQuery('.hatch-color-selector').wpColorPicker();
+				jQuery('.layers-color-selector').wpColorPicker();
 			}
 		) // $.post
 	});
@@ -142,7 +142,7 @@ jQuery(document).ready(function($){
 		$string = ': ' + $that.val();
 
 		// Update the accordian title
-		$that.closest( '.hatch-accordion-item' ).find( 'span.hatch-detail' ).text( $string );
+		$that.closest( '.layers-accordion-item' ).find( 'span.layers-detail' ).text( $string );
 
 	});
 

@@ -1,13 +1,13 @@
 <?php  /**
  * Modules Widget
  *
- * This file is used to register and display the Hatch - Module widget.
+ * This file is used to register and display the Layers - Module widget.
  *
- * @package Hatch
- * @since Hatch 1.0
+ * @package Layers
+ * @since Layers 1.0
  */
-if( !class_exists( 'Hatch_Module_Widget' ) ) {
-	class Hatch_Module_Widget extends Hatch_Widget {
+if( !class_exists( 'Layers_Module_Widget' ) ) {
+	class Layers_Module_Widget extends Layers_Widget {
 
 		/**
 		*  Widget variables
@@ -21,15 +21,15 @@ if( !class_exists( 'Hatch_Module_Widget' ) ) {
 		/**
 		*  Widget construction
 		*/
-		function Hatch_Module_Widget(){
+		function Layers_Module_Widget(){
 			/* Widget settings. */
-			$widget_ops = array( 'classname' => 'obox-hatch-' . $this->widget_id .'-widget', 'description' => 'This widget is used to display your ' . $this->widget_title . '.' );
+			$widget_ops = array( 'classname' => 'obox-layers-' . $this->widget_id .'-widget', 'description' => 'This widget is used to display your ' . $this->widget_title . '.' );
 
 			/* Widget control settings. */
-			$control_ops = array( 'width' => HATCH_WIDGET_WIDTH_LARGE, 'height' => NULL, 'id_base' => HATCH_THEME_SLUG . '-widget-' . $this->widget_id );
+			$control_ops = array( 'width' => LAYERS_WIDGET_WIDTH_LARGE, 'height' => NULL, 'id_base' => LAYERS_THEME_SLUG . '-widget-' . $this->widget_id );
 
 			/* Create the widget. */
-			$this->WP_Widget( HATCH_THEME_SLUG . '-widget-' . $this->widget_id , '(' . HATCH_THEME_TITLE . ') ' . $this->widget_title . ' Widget', $widget_ops, $control_ops );
+			$this->WP_Widget( LAYERS_THEME_SLUG . '-widget-' . $this->widget_id , '(' . LAYERS_THEME_TITLE . ') ' . $this->widget_title . ' Widget', $widget_ops, $control_ops );
 
 			/* Setup Widget Defaults */
 			$this->defaults = array (
@@ -93,10 +93,13 @@ if( !class_exists( 'Hatch_Module_Widget' ) ) {
 			$widget = wp_parse_args( $instance, $instance_defaults );
 
 			// Set the background styling
-			if( !empty( $widget['design'][ 'background' ] ) ) $this->widget_styles( $widget_id, 'background', array( 'background' => $widget['design'][ 'background' ] ) );
-			if( !empty( $widget['design']['fonts'][ 'color' ] ) ) $this->widget_styles( $widget_id, 'color', array( 'selectors' => array( '.section-title h3.heading' , '.section-title p.excerpt' ) , 'color' => $widget['design']['fonts'][ 'color' ] ) ); ?>
+			if( !empty( $widget['design'][ 'background' ] ) ) layers_inline_styles( $widget_id, 'background', array( 'background' => $widget['design'][ 'background' ] ) );
+			if( !empty( $widget['design']['fonts'][ 'color' ] ) ) layers_inline_styles( $widget_id, 'color', array( 'selectors' => array( '.section-title h3.heading' , '.section-title p.excerpt' ) , 'color' => $widget['design']['fonts'][ 'color' ] ) );
 
-			<section class="widget row content-vertical-massive" id="<?php echo $widget_id; ?>">
+			// Output custom css if there is any
+			if( !empty( $widget['design']['advanced'][ 'customcss' ] ) ) layers_inline_styles( $widget_id, 'css', array( 'css' => $widget['design']['advanced'][ 'customcss' ]  ) );?>
+
+			<section class="widget row content-vertical-massive <?php echo $this->check_and_return( $widget , 'design', 'advanced', 'customclass' ) ?>" id="<?php echo $widget_id; ?>">
 				<?php if( $this->check_and_return( $widget , 'title' ) || $this->check_and_return( $widget , 'excerpt' ) ) { ?>
 					<div class="container">
 						<div class="section-title <?php echo $this->check_and_return( $widget , 'design', 'fonts', 'size' ); ?> <?php echo $this->check_and_return( $widget , 'design', 'fonts', 'align' ); ?> clearfix">
@@ -118,9 +121,9 @@ if( !class_exists( 'Hatch_Module_Widget' ) ) {
 							$link = ( $this->check_and_return( $module , 'link' ) ) ? $this->check_and_return( $module , 'link' ) : '#' . $widget_id . '-' . $key;
 
 							// Set the background styling
-							if( !empty( $module['design'][ 'background' ] ) ) $this->widget_styles( $widget_id . '-' . $key , 'background', array( 'background' => $module['design'][ 'background' ] ) );
-							if( !empty( $module['design']['fonts'][ 'color' ] ) ) $this->widget_styles( $widget_id . '-' . $key , 'color', array( 'selectors' => array( 'h5.heading a' , 'div.excerpt' , 'div.excerpt p' ) , 'color' => $module['design']['fonts'][ 'color' ] ) );
-							if( !empty( $module['design']['fonts'][ 'shadow' ] ) ) $this->widget_styles( $widget_id . '-' . $key , 'text-shadow', array( 'selectors' => array( 'h5.heading a' , 'div.excerpt' , 'div.excerpt p' )  , 'text-shadow' => $module['design']['fonts'][ 'shadow' ] ) );
+							if( !empty( $module['design'][ 'background' ] ) ) layers_inline_styles( $widget_id . '-' . $key , 'background', array( 'background' => $module['design'][ 'background' ] ) );
+							if( !empty( $module['design']['fonts'][ 'color' ] ) ) layers_inline_styles( $widget_id . '-' . $key , 'color', array( 'selectors' => array( 'h5.heading a' , 'div.excerpt' , 'div.excerpt p' ) , 'color' => $module['design']['fonts'][ 'color' ] ) );
+							if( !empty( $module['design']['fonts'][ 'shadow' ] ) ) layers_inline_styles( $widget_id . '-' . $key , 'text-shadow', array( 'selectors' => array( 'h5.heading a' , 'div.excerpt' , 'div.excerpt p' )  , 'text-shadow' => $module['design']['fonts'][ 'shadow' ] ) );
 
 							if( !isset( $module[ 'width' ] ) ) $module[ 'width' ] = $this->module_defaults[ 'width' ];
 							// Add the correct span class
@@ -140,7 +143,12 @@ if( !class_exists( 'Hatch_Module_Widget' ) ) {
 							if( isset( $module['design'][ 'imageratios' ] ) ){
 
 								// Translate Image Ratio
-								$image_ratio = hatch_translate_image_ratios( $module['design'][ 'imageratios' ] );
+								$image_ratio = layers_translate_image_ratios( $module['design'][ 'imageratios' ] );
+
+								// If round then set image to square, and set border radius css further down.
+								if( 'round' == $image_ratio ){
+									$image_ratio = 'square';
+								}
 
 								if( !isset( $module[ 'width' ] ) ) $module[ 'width' ] = 6;
 
@@ -162,7 +170,7 @@ if( !class_exists( 'Hatch_Module_Widget' ) ) {
 								column<?php if( !isset( $widget['design'][ 'gutter' ] ) ) echo '-flush'; ?>
 								<?php echo $span_class; ?>
 								<?php if( '' != $this->check_and_return( $module, 'design' , 'background', 'image' ) || '' != $this->check_and_return( $module, 'design' , 'background', 'color' ) ) echo 'content'; ?>
-								hatch-masonry-column">
+								layers-masonry-column">
 								<a name="<?php echo $widget_id . '-' . $key; ?>"></a>
 								<div class="media
 									<?php echo $this->check_and_return( $module, 'design', 'imagealign' ); ?>
@@ -170,7 +178,7 @@ if( !class_exists( 'Hatch_Module_Widget' ) ) {
 									<?php if( !$this->check_and_return( $widget, 'design', 'gutter' ) ) echo 'no-push-bottom'; ?>
 								">
 									<?php if( $this->check_and_return( $module , 'design' , 'featuredimage' ) ) { ?>
-										<div class="media-image"><a href="<?php echo $link; ?>"><?php echo wp_get_attachment_image( $module['design'][ 'featuredimage' ] , $imageratios ); ?></a></div>
+										<div class="media-image <?php if ( 'round' == layers_translate_image_ratios( $module['design'][ 'imageratios' ] ) ) { ?>image-rounded<?php } ?>"><a href="<?php echo $link; ?>"><?php echo wp_get_attachment_image( $module['design'][ 'featuredimage' ] , $imageratios ); ?></a></div>
 									<?php } ?>
 									<?php if( '' != $module['title'] || '' != $module['excerpt'] ) { ?>
 										<div class="media-body <?php echo ( isset( $module['design']['fonts'][ 'align' ] ) ) ? $module['design']['fonts'][ 'align' ] : ''; ?>">
@@ -195,15 +203,15 @@ if( !class_exists( 'Hatch_Module_Widget' ) ) {
 
 			<script>
 				jQuery(function($){
-					hatch_isotope_settings[ '<?php echo $widget_id; ?>' ] = [{
-							itemSelector: '.hatch-masonry-column',
+					layers_isotope_settings[ '<?php echo $widget_id; ?>' ] = [{
+							itemSelector: '.layers-masonry-column',
 							layoutMode: 'masonry',
 							masonry: {
 								gutter: <?php echo ( isset( $widget['design'][ 'gutter' ] ) ? 20 : 0 ); ?>
 							}
 						}];
 
-					$('#<?php echo $widget_id; ?>').find('.list-masonry').hatch_isotope( hatch_isotope_settings[ '<?php echo $widget_id; ?>' ][0] );
+					$('#<?php echo $widget_id; ?>').find('.list-masonry').layers_isotope( layers_isotope_settings[ '<?php echo $widget_id; ?>' ][0] );
 				});
 			</script>
 		<?php }
@@ -254,13 +262,14 @@ if( !class_exists( 'Hatch_Module_Widget' ) ) {
 					'layout',
 					'custom',
 					'fonts',
-					'background'
+					'background',
+					'advanced'
 				), // Standard Components
 				array(
 					'liststyle' => array(
 						'icon-css' => 'icon-list-masonry',
 						'label' => 'List Style',
-						'wrapper-css' => 'hatch-small to hatch-pop-menu-wrapper hatch-animate',
+						'wrapper-css' => 'layers-small to layers-pop-menu-wrapper layers-animate',
 						'elements' => array(
 							'liststyle' => array(
 								'type' => 'select-icons',
@@ -268,13 +277,13 @@ if( !class_exists( 'Hatch_Module_Widget' ) ) {
 								'id' =>  $this->get_field_name( 'design-liststyle' ),
 								'value' => ( isset( $design[ 'liststyle' ] ) ) ? $design[ 'liststyle' ] : NULL,
 								'options' => array(
-									'list-grid' => __( 'Grid' , HATCH_THEME_SLUG ),
-									'list-masonry' => __( 'Masonry' , HATCH_THEME_SLUG )
+									'list-grid' => __( 'Grid' , LAYERS_THEME_SLUG ),
+									'list-masonry' => __( 'Masonry' , LAYERS_THEME_SLUG )
 								)
 							),
 							'gutter' => array(
 								'type' => 'checkbox',
-								'label' => __( 'Gutter' , HATCH_THEME_SLUG ),
+								'label' => __( 'Gutter' , LAYERS_THEME_SLUG ),
 								'name' => $this->get_field_name( 'design' ) . '[gutter]' ,
 								'id' =>  $this->get_field_name( 'design-gutter' ),
 								'value' => ( isset( $design['gutter'] ) ) ? $design['gutter'] : NULL
@@ -283,35 +292,35 @@ if( !class_exists( 'Hatch_Module_Widget' ) ) {
 					)
 				)
 			); ?>
-			<div class="hatch-container-large" id="hatch-module-widget-<?php echo $this->number; ?>">
+			<div class="layers-container-large" id="layers-module-widget-<?php echo $this->number; ?>">
 
 				<?php $this->form_elements()->header( array(
 					'title' =>'Content',
 					'icon_class' =>'text'
 				) ); ?>
 
-				<section class="hatch-accordion-section hatch-content">
-					<p class="hatch-form-item">
+				<section class="layers-accordion-section layers-content">
+					<p class="layers-form-item">
 						<?php echo $this->form_elements()->input(
 							array(
 								'type' => 'text',
 								'name' => $this->get_field_name( 'title' ) ,
 								'id' => $this->get_field_id( 'title' ) ,
-								'placeholder' => __( 'Enter title here', HATCH_THEME_SLUG ),
+								'placeholder' => __( 'Enter title here', LAYERS_THEME_SLUG ),
 								'value' => ( isset( $title ) ) ? $title : NULL ,
-								'class' => 'hatch-text hatch-large'
+								'class' => 'layers-text layers-large'
 							)
 						); ?>
 					</p>
-					<p class="hatch-form-item">
+					<p class="layers-form-item">
 						<?php echo $this->form_elements()->input(
 							array(
 								'type' => 'textarea',
 								'name' => $this->get_field_name( 'excerpt' ) ,
 								'id' => $this->get_field_id( 'excerpt' ) ,
-								'placeholder' =>  __( 'Short Excerpt', HATCH_THEME_SLUG ),
+								'placeholder' =>  __( 'Short Excerpt', LAYERS_THEME_SLUG ),
 								'value' => ( isset( $excerpt ) ) ? $excerpt : NULL ,
-								'class' => 'hatch-textarea hatch-large'
+								'class' => 'layers-textarea layers-large'
 							)
 						); ?>
 					</p>
@@ -328,20 +337,20 @@ if( !class_exists( 'Hatch_Module_Widget' ) ) {
 					<?php // If we have some modules, let's break out their IDs into an array
 					if( isset( $module_ids ) && '' != $module_ids ) $modules = explode( ',' , $module_ids ); ?>
 
-					<ul id="module_list_<?php echo $this->number; ?>" class="hatch-accordions hatch-accordions-sortable hatch-sortable" data-id_base="<?php echo $this->id_base; ?>" data-number="<?php echo $this->number; ?>">
+					<ul id="module_list_<?php echo $this->number; ?>" class="layers-accordions layers-accordions-sortable layers-sortable" data-id_base="<?php echo $this->id_base; ?>" data-number="<?php echo $this->number; ?>">
 						<?php if( isset( $modules ) && is_array( $modules ) ) { ?>
-							<?php foreach( $modules as $module ) {
+							<?php foreach( $modules as $moduleguid ) {
 								$this->module_item( array(
 											'id_base' => $this->id_base ,
 											'number' => $this->number
 										) ,
-										$module ,
-										( isset( $instance[ 'modules' ][ $module ] ) ) ? $instance[ 'modules' ][ $module ] : NULL );
+										$moduleguid ,
+										( isset( $instance[ 'modules' ][ $moduleguid ] ) ) ? $instance[ 'modules' ][ $moduleguid ] : NULL );
 							} ?>
 						<?php } else { ?>
 							<?php $this->module_item( array( 'id_base' => $this->id_base , 'number' => $this->number ) ); ?>
 						<?php }?>
-						<li class="hatch-button btn-primary hatch-add-widget-module" data-number="<?php echo $this->number; ?>"><?php _e( '+ Add New Column' , HATCH_THEME_SLUG ) ; ?></li>
+						<li class="layers-button btn-primary layers-add-widget-module" data-number="<?php echo $this->number; ?>"><?php _e( '+ Add New Column' , LAYERS_THEME_SLUG ) ; ?></li>
 					</ul>
 				</section>
 			</div>
@@ -374,13 +383,13 @@ if( !class_exists( 'Hatch_Module_Widget' ) ) {
 				$this->module_item_count++;
 			} ?>
 
-				<li class="hatch-accordion-item" data-guid="<?php echo $column_guid; ?>">
-					<a class="hatch-accordion-title">
+				<li class="layers-accordion-item" data-guid="<?php echo $column_guid; ?>">
+					<a class="layers-accordion-title">
 						<span>
-							<?php _e( 'Column' , HATCH_THEME_SLUG ); ?><span class="hatch-detail"><?php echo ( isset( $title ) ? ': ' . $title : NULL ); ?></span>
+							<?php _e( 'Column' , LAYERS_THEME_SLUG ); ?><span class="layers-detail"><?php echo ( isset( $title ) ? ': ' . $title : NULL ); ?></span>
 						</span>
 					</a>
-					<section class="hatch-accordion-section hatch-content">
+					<section class="layers-accordion-section layers-content">
 						<?php $this->design_bar()->bar(
 							'top', // CSS Class Name
 							array(
@@ -404,20 +413,20 @@ if( !class_exists( 'Hatch_Module_Widget' ) ) {
 									'elements' => array(
 										'layout' => array(
 											'type' => 'select',
-											'label' => __( '', HATCH_THEME_SLUG ),
+											'label' => __( '', LAYERS_THEME_SLUG ),
 											'name' => 'widget-' . $widget_details->id_base . '[' . $widget_details->number . '][modules][' . $column_guid . '][width]' ,
 											'id' => 'widget-' . $widget_details->id_base . '-' . $widget_details->number . '-' . $column_guid . '-width' ,
 											'value' => ( isset( $width ) ) ? $width : NULL,
 											'options' => array(
-												'1' => __( '1 of 12 columns' , HATCH_THEME_SLUG ),
-												'2' => __( '2 of 12 columns' , HATCH_THEME_SLUG ),
-												'3' => __( '3 of 12 columns' , HATCH_THEME_SLUG ),
-												'4' => __( '4 of 12 columns' , HATCH_THEME_SLUG ),
-												'5' => __( '5 of 12 columns' , HATCH_THEME_SLUG ),
-												'6' => __( '6 of 12 columns' , HATCH_THEME_SLUG ),
-												'8' => __( '8 of 12 columns' , HATCH_THEME_SLUG ),
-												'10' => __( '10 of 12 columns' , HATCH_THEME_SLUG ),
-												'12' => __( '12 of 12 columns' , HATCH_THEME_SLUG )
+												'1' => __( '1 of 12 columns' , LAYERS_THEME_SLUG ),
+												'2' => __( '2 of 12 columns' , LAYERS_THEME_SLUG ),
+												'3' => __( '3 of 12 columns' , LAYERS_THEME_SLUG ),
+												'4' => __( '4 of 12 columns' , LAYERS_THEME_SLUG ),
+												'5' => __( '5 of 12 columns' , LAYERS_THEME_SLUG ),
+												'6' => __( '6 of 12 columns' , LAYERS_THEME_SLUG ),
+												'8' => __( '8 of 12 columns' , LAYERS_THEME_SLUG ),
+												'10' => __( '10 of 12 columns' , LAYERS_THEME_SLUG ),
+												'12' => __( '12 of 12 columns' , LAYERS_THEME_SLUG )
 											)
 										)
 									)
@@ -425,55 +434,55 @@ if( !class_exists( 'Hatch_Module_Widget' ) ) {
 							)
 						); ?>
 
-						<div class="hatch-row">
-							<p class="hatch-form-item">
-								<label for="<?php echo $this->get_custom_field_id( $widget_details, 'modules',  $column_guid, 'title' ); ?>"><?php _e( 'Title' , HATCH_THEME_SLUG ); ?></label>
+						<div class="layers-row">
+							<p class="layers-form-item">
+								<label for="<?php echo $this->get_custom_field_id( $widget_details, 'modules',  $column_guid, 'title' ); ?>"><?php _e( 'Title' , LAYERS_THEME_SLUG ); ?></label>
 								<?php echo $this->form_elements()->input(
 									array(
 										'type' => 'text',
 										'name' => $this->get_custom_field_name( $widget_details, 'modules',  $column_guid, 'title' ),
 										'id' => $this->get_custom_field_id( $widget_details, 'modules',  $column_guid, 'title' ),
-										'placeholder' => __( 'Enter title here', HATCH_THEME_SLUG ),
+										'placeholder' => __( 'Enter title here', LAYERS_THEME_SLUG ),
 										'value' => ( isset( $title ) ) ? $title : NULL ,
-										'class' => 'hatch-text'
+										'class' => 'layers-text'
 									)
 								); ?>
 							</p>
-							<p class="hatch-form-item">
-								<label for="<?php echo $this->get_custom_field_id( $widget_details, 'modules',  $column_guid, 'excerpt' ); ?>"><?php _e( 'Excerpt' , HATCH_THEME_SLUG ); ?></label>
+							<p class="layers-form-item">
+								<label for="<?php echo $this->get_custom_field_id( $widget_details, 'modules',  $column_guid, 'excerpt' ); ?>"><?php _e( 'Excerpt' , LAYERS_THEME_SLUG ); ?></label>
 								<?php echo $this->form_elements()->input(
 									array(
 										'type' => 'textarea',
 										'name' => $this->get_custom_field_name( $widget_details, 'modules',  $column_guid, 'excerpt' ),
 										'id' => $this->get_custom_field_id( $widget_details, 'modules',  $column_guid, 'excerpt' ),
-										'placeholder' => __( 'Short Excerpt', HATCH_THEME_SLUG ),
+										'placeholder' => __( 'Short Excerpt', LAYERS_THEME_SLUG ),
 										'value' => ( isset( $excerpt ) ) ? $excerpt : NULL ,
-										'class' => 'hatch-form-item hatch-textarea',
+										'class' => 'layers-form-item layers-textarea',
 										'rows' => 6
 									)
 								); ?>
 							</p>
-							<p class="hatch-form-item">
-								<label for="<?php echo $this->get_custom_field_id( $widget_details, 'modules',  $column_guid, 'link_text' ); ?>"><?php _e( 'Link' , HATCH_THEME_SLUG ); ?></label>
+							<p class="layers-form-item">
+								<label for="<?php echo $this->get_custom_field_id( $widget_details, 'modules',  $column_guid, 'link_text' ); ?>"><?php _e( 'Link' , LAYERS_THEME_SLUG ); ?></label>
 								<?php echo $this->form_elements()->input(
 									array(
 										'type' => 'text',
 										'name' => $this->get_custom_field_name( $widget_details, 'modules',  $column_guid, 'link' ),
 										'id' => $this->get_custom_field_id( $widget_details, 'modules',  $column_guid, 'link' ),
-										'placeholder' => __( 'Link', HATCH_THEME_SLUG ),
+										'placeholder' => __( 'Link', LAYERS_THEME_SLUG ),
 										'value' => ( isset( $link ) ) ? $link : NULL ,
-										'class' => 'hatch-text',
+										'class' => 'layers-text',
 									)
 								); ?>
 							</p>
-							<p class="hatch-form-item">
-								<label for="<?php echo $this->get_custom_field_id( $widget_details, 'modules',  $column_guid, 'link_text' ); ?>"><?php _e( 'Button Text' , HATCH_THEME_SLUG ); ?></label>
+							<p class="layers-form-item">
+								<label for="<?php echo $this->get_custom_field_id( $widget_details, 'modules',  $column_guid, 'link_text' ); ?>"><?php _e( 'Button Text' , LAYERS_THEME_SLUG ); ?></label>
 								<?php echo $this->form_elements()->input(
 									array(
 										'type' => 'text',
 										'name' => $this->get_custom_field_name( $widget_details, 'modules',  $column_guid, 'link_text' ),
 										'id' => $this->get_custom_field_id( $widget_details, 'modules',  $column_guid, 'link_text' ),
-										'placeholder' => __( 'e.g. "Read More"' , HATCH_THEME_SLUG ),
+										'placeholder' => __( 'e.g. "Read More"' , LAYERS_THEME_SLUG ),
 										'value' => ( isset( $link_text ) ) ? $link_text : NULL ,
 									)
 								); ?>
@@ -486,5 +495,5 @@ if( !class_exists( 'Hatch_Module_Widget' ) ) {
 	} // Class
 
 	// Add our function to the widgets_init hook.
-	 register_widget("Hatch_Module_Widget");
+	 register_widget("Layers_Module_Widget");
 }

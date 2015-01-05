@@ -1,27 +1,28 @@
 <?php
 /**
- * @package Hatch
+ * @package Layers
  */
 
-
+$current = get_site_transient( 'update_themes' );
+// '<!-- <pre>' . print_r( $current, true ) . '</pre> -->';
 /**
-* Add define Hatch constants to be used around Hatch themes, plugins etc.
+* Add define Layers constants to be used around Layers themes, plugins etc.
 */
 
 /**
  * The current version of the theme. Use a random number for SCRIPT_DEBUG mode
  */
 if ( defined( 'SCRIPT_DEBUG' ) && TRUE == SCRIPT_DEBUG ) {
-	define( 'HATCH_VERSION', rand( 0 , 100 ) );
+	define( 'LAYERS_VERSION', rand( 0 , 100 ) );
 } else {
-	define( 'HATCH_VERSION', 'beta-1.1' );
+	define( 'LAYERS_VERSION', 'beta-1.1' );
 }
 
-define( 'HATCH_TEMPLATE_URI' , get_template_directory_uri() );
-define( 'HATCH_TEMPLATE_DIR' , get_template_directory() );
-define( 'HATCH_THEME_TITLE' , 'Hatch' );
-define( 'HATCH_THEME_SLUG' , 'hatch' );
-define( 'HATCH_BUILDER_TEMPLATE' , 'builder.php' );
+define( 'LAYERS_TEMPLATE_URI' , get_template_directory_uri() );
+define( 'LAYERS_TEMPLATE_DIR' , get_template_directory() );
+define( 'LAYERS_THEME_TITLE' , 'Layers' );
+define( 'LAYERS_THEME_SLUG' , 'layers' );
+define( 'LAYERS_BUILDER_TEMPLATE' , 'builder.php' );
 define( 'OBOX_URL' , 'http://oboxthemes.com');
 
 /**
@@ -34,7 +35,7 @@ if ( ! isset( $content_width ) )
 /**
  * Adjust the content width when the full width page template is being used
  */
-function hatch_set_content_width() {
+function layers_set_content_width() {
 	global $content_width;
 
 	if ( is_page_template( 'full-width.php' ) ) {
@@ -43,7 +44,7 @@ function hatch_set_content_width() {
 		$content_width = 660;
 	}
 }
-add_action( 'template_redirect', 'hatch_set_content_width' );
+add_action( 'template_redirect', 'layers_set_content_width' );
 
 /*
  * Third Party Scripts
@@ -77,6 +78,7 @@ locate_template( '/core/helpers/post.php' , true );
 locate_template( '/core/helpers/template.php' , true );
 locate_template( '/core/helpers/extensions.php' , true );
 
+
 /*
  * Load Admin-specific files
  */
@@ -90,6 +92,9 @@ if( is_admin() ){
 	// Include pointers class
 	locate_template( '/core/helpers/pointers.php' , true );
 
+	// Include API class
+	locate_template( '/core/helpers/api.php' , true );
+
 	// Include widget export/import class
 	locate_template( '/core/widgets/migrator.php' , true );
 
@@ -98,8 +103,8 @@ if( is_admin() ){
 
 }
 
-if( ! function_exists( 'hatch_setup' ) ) {
-	function hatch_setup(){
+if( ! function_exists( 'layers_setup' ) ) {
+	function layers_setup(){
 		global $pagenow;
 
 		/**
@@ -124,8 +129,8 @@ if( ! function_exists( 'hatch_setup' ) ) {
 
 		// Set Medium Image Sizes
 		add_image_size( 'square-medium', 480, 480, true );
-		add_image_size( 'portrait-medium', 360, 480, true );
-		add_image_size( 'landscape-medium', 480, 360, true );
+		add_image_size( 'portrait-medium', 340, 480, true );
+		add_image_size( 'landscape-medium', 480, 340, true );
 
 		/**
 		 * Add theme support
@@ -147,11 +152,11 @@ if( ! function_exists( 'hatch_setup' ) ) {
 		 * Register nav menus
 		 */
 		register_nav_menus( array(
-			HATCH_THEME_SLUG . '-secondary-left' => __( 'Top Left Menu', HATCH_THEME_SLUG ),
-			HATCH_THEME_SLUG . '-secondary-right' => __( 'Top Right Menu', HATCH_THEME_SLUG ),
-			HATCH_THEME_SLUG . '-primary' => __( 'Header Menu', HATCH_THEME_SLUG ),
-			HATCH_THEME_SLUG . '-primary-right' => __( 'Right Header Menu', HATCH_THEME_SLUG ),
-			HATCH_THEME_SLUG . '-footer' => __( 'Footer Menu', HATCH_THEME_SLUG ),
+			LAYERS_THEME_SLUG . '-secondary-left' => __( 'Top Left Menu', LAYERS_THEME_SLUG ),
+			LAYERS_THEME_SLUG . '-secondary-right' => __( 'Top Right Menu', LAYERS_THEME_SLUG ),
+			LAYERS_THEME_SLUG . '-primary' => __( 'Header Menu', LAYERS_THEME_SLUG ),
+			LAYERS_THEME_SLUG . '-primary-right' => __( 'Right Header Menu', LAYERS_THEME_SLUG ),
+			LAYERS_THEME_SLUG . '-footer' => __( 'Footer Menu', LAYERS_THEME_SLUG ),
 
 		) );
 
@@ -165,27 +170,27 @@ if( ! function_exists( 'hatch_setup' ) ) {
 		* Welcome Redirect
 		*/
 		if( isset($_GET["activated"]) && $pagenow = "themes.php") {
-			update_option( 'hatch_welcome' , 1);
+			update_option( 'layers_welcome' , 1);
 
-			wp_redirect(admin_url('admin.php?page=' . HATCH_THEME_SLUG . '-welcome'));
+			wp_redirect(admin_url('admin.php?page=' . LAYERS_THEME_SLUG . '-welcome'));
 		}
 
-	} // function hatch_setup
-	add_action( 'after_setup_theme' , 'hatch_setup', 10 );
-} // if !function hatch_setup
+	} // function layers_setup
+	add_action( 'after_setup_theme' , 'layers_setup', 10 );
+} // if !function layers_setup
 
 /**
 *  Enqueue front end styles and scripts
 */
-if( ! function_exists( 'hatch_register_standard_sidebars' ) ) {
-	function hatch_register_standard_sidebars(){
+if( ! function_exists( 'layers_register_standard_sidebars' ) ) {
+	function layers_register_standard_sidebars(){
 		/**
 		 * Register Standard Sidebars
 		 */
 		register_sidebar( array(
-			'id'		=> HATCH_THEME_SLUG . '-off-canvas-sidebar',
-			'name'		=> __( 'Pop Out Sidebar' , HATCH_THEME_SLUG ),
-			'description'	=> __( '' , HATCH_THEME_SLUG ),
+			'id'		=> LAYERS_THEME_SLUG . '-off-canvas-sidebar',
+			'name'		=> __( 'Pop Out Sidebar' , LAYERS_THEME_SLUG ),
+			'description'	=> __( '' , LAYERS_THEME_SLUG ),
 			'before_widget'	=> '<aside id="%1$s" class="content widget %2$s">',
 			'after_widget'	=> '</aside>',
 			'before_title'	=> '<h5 class="section-nav-title">',
@@ -193,9 +198,9 @@ if( ! function_exists( 'hatch_register_standard_sidebars' ) ) {
 		) );
 
 		register_sidebar( array(
-			'id'		=> HATCH_THEME_SLUG . '-left-sidebar',
-			'name'		=> __( 'Left Sidebar' , HATCH_THEME_SLUG ),
-			'description'	=> __( '' , HATCH_THEME_SLUG ),
+			'id'		=> LAYERS_THEME_SLUG . '-left-sidebar',
+			'name'		=> __( 'Left Sidebar' , LAYERS_THEME_SLUG ),
+			'description'	=> __( '' , LAYERS_THEME_SLUG ),
 			'before_widget'	=> '<aside id="%1$s" class="content well push-bottom widget %2$s">',
 			'after_widget'	=> '</aside>',
 			'before_title'	=> '<h5 class="section-nav-title">',
@@ -203,9 +208,9 @@ if( ! function_exists( 'hatch_register_standard_sidebars' ) ) {
 		) );
 
 		register_sidebar( array(
-			'id'		=> HATCH_THEME_SLUG . '-right-sidebar',
-			'name'		=> __( 'Right Sidebar' , HATCH_THEME_SLUG ),
-			'description'	=> __( '' , HATCH_THEME_SLUG ),
+			'id'		=> LAYERS_THEME_SLUG . '-right-sidebar',
+			'name'		=> __( 'Right Sidebar' , LAYERS_THEME_SLUG ),
+			'description'	=> __( '' , LAYERS_THEME_SLUG ),
 			'before_widget'	=> '<aside id="%1$s" class="content well push-bottom widget %2$s">',
 			'after_widget'	=> '</aside>',
 			'before_title'	=> '<h5 class="section-nav-title">',
@@ -217,9 +222,9 @@ if( ! function_exists( 'hatch_register_standard_sidebars' ) ) {
 		 */
 		for( $footer = 1; $footer < 5; $footer++ ) {
 			register_sidebar( array(
-				'id'		=> HATCH_THEME_SLUG . '-footer-' . $footer,
-				'name'		=> __( 'Footer ' . $footer , HATCH_THEME_SLUG ),
-				'description'	=> __( '' , HATCH_THEME_SLUG ),
+				'id'		=> LAYERS_THEME_SLUG . '-footer-' . $footer,
+				'name'		=> __( 'Footer ' . $footer , LAYERS_THEME_SLUG ),
+				'description'	=> __( '' , LAYERS_THEME_SLUG ),
 				'before_widget'	=> '<section id="%1$s" class="widget %2$s">',
 				'after_widget'	=> '</section>',
 				'before_title'	=> '<h5 class="section-nav-title">',
@@ -227,20 +232,20 @@ if( ! function_exists( 'hatch_register_standard_sidebars' ) ) {
 			) );
 		} // for footers
 	}
-	add_action( 'widgets_init' , 'hatch_register_standard_sidebars' , 50 );
+	add_action( 'widgets_init' , 'layers_register_standard_sidebars' , 50 );
 }
 /**
 *  Enqueue front end styles and scripts
 */
-if( ! function_exists( 'hatch_scripts' ) ) {
-	function hatch_scripts(){
+if( ! function_exists( 'layers_scripts' ) ) {
+	function layers_scripts(){
 
 		/**
 		* Front end Scripts
 		*/
 
 		wp_enqueue_script(
-			HATCH_THEME_SLUG . '-slider-js' ,
+			LAYERS_THEME_SLUG . '-slider-js' ,
 			get_template_directory_uri() . '/core/widgets/js/swiper.js',
 			array(
 				'jquery',
@@ -249,7 +254,7 @@ if( ! function_exists( 'hatch_scripts' ) ) {
 		); // Slider
 
 		wp_enqueue_script(
-			HATCH_THEME_SLUG . '-isotope-js' ,
+			LAYERS_THEME_SLUG . '-isotope-js' ,
 			get_template_directory_uri() . '/js/isotope.js',
 			array(
 				'jquery',
@@ -257,21 +262,21 @@ if( ! function_exists( 'hatch_scripts' ) ) {
 		); // Isotope
 
 		wp_enqueue_script(
-			HATCH_THEME_SLUG . '-hatch-masonry-js' ,
-			get_template_directory_uri() . '/js/hatch.masonry.js',
+			LAYERS_THEME_SLUG . '-layers-masonry-js' ,
+			get_template_directory_uri() . '/js/layers.masonry.js',
 			array(
 				'jquery'
 			)
-		); // Hatch Masonry Function
+		); // Layers Masonry Function
 
 
 		wp_enqueue_script(
-			HATCH_THEME_SLUG . '-framework-js' ,
-			get_template_directory_uri() . '/js/hatch.framework.js',
+			LAYERS_THEME_SLUG . '-framework-js' ,
+			get_template_directory_uri() . '/js/layers.framework.js',
 			array(
 				'jquery',
 			),
-			HATCH_VERSION,
+			LAYERS_VERSION,
 			true
 		); // Framework
 
@@ -284,86 +289,86 @@ if( ! function_exists( 'hatch_scripts' ) ) {
 		* Front end Styles
 		*/
 		wp_register_style(
-			HATCH_THEME_SLUG . '-slider',
+			LAYERS_THEME_SLUG . '-slider',
 			get_template_directory_uri() . '/core/widgets/css/swiper.css',
 			array(),
-			HATCH_VERSION
+			LAYERS_VERSION
 		); // Slider
 
 		wp_register_style(
-			HATCH_THEME_SLUG . '-components',
+			LAYERS_THEME_SLUG . '-components',
 			get_template_directory_uri() . '/css/components.css',
 			array(),
-			HATCH_VERSION
+			LAYERS_VERSION
 		); // Compontents
 
 		$protocol = is_ssl() ? 'https' : 'http';
-		wp_enqueue_style( HATCH_THEME_SLUG . '-roboto-font', $protocol . '://fonts.googleapis.com/css?family=Roboto:400,400italic,500,700,700italic,900' );
-		wp_enqueue_style( HATCH_THEME_SLUG . '-open-sans-font', $protocol . '://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' );
+		wp_enqueue_style( LAYERS_THEME_SLUG . '-roboto-font', $protocol . '://fonts.googleapis.com/css?family=Roboto:400,400italic,500,700,700italic,900' );
+		wp_enqueue_style( LAYERS_THEME_SLUG . '-open-sans-font', $protocol . '://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' );
 
 		wp_enqueue_style(
-			HATCH_THEME_SLUG . '-style' ,
+			LAYERS_THEME_SLUG . '-style' ,
 			get_stylesheet_uri() ,
 			array(
-				HATCH_THEME_SLUG . '-components',
-				HATCH_THEME_SLUG . '-slider',
+				LAYERS_THEME_SLUG . '-components',
+				LAYERS_THEME_SLUG . '-slider',
 			) ,
-			HATCH_VERSION
+			LAYERS_VERSION
 		);
 		wp_enqueue_style(
-			HATCH_THEME_SLUG . '-responsive',
+			LAYERS_THEME_SLUG . '-responsive',
 			get_template_directory_uri() . '/css/responsive.css',
 			array(),
-			HATCH_VERSION
+			LAYERS_VERSION
 		); // Responsive
 		wp_enqueue_style(
-			HATCH_THEME_SLUG . '-icon-font',
+			LAYERS_THEME_SLUG . '-icon-font',
 			get_template_directory_uri() . '/css/obox-icons.css',
 			array(),
-			HATCH_VERSION
+			LAYERS_VERSION
 		); // Icon Font
 
 	}
 }
-add_action( 'wp_enqueue_scripts' , 'hatch_scripts' );
+add_action( 'wp_enqueue_scripts' , 'layers_scripts' );
 
 
 /**
 *  Enqueue admin end styles and scripts
 */
-if( ! function_exists( 'hatch_admin_scripts' ) ) {
-	function hatch_admin_scripts(){
+if( ! function_exists( 'layers_admin_scripts' ) ) {
+	function layers_admin_scripts(){
 		wp_enqueue_style(
-			HATCH_THEME_SLUG . '-admin',
+			LAYERS_THEME_SLUG . '-admin',
 			get_template_directory_uri() . '/core/assets/admin.css',
 			array(),
-			HATCH_VERSION
+			LAYERS_VERSION
 		); // Admin CSS
 
 		wp_enqueue_style(
-			HATCH_THEME_SLUG . '-admin-editor',
+			LAYERS_THEME_SLUG . '-admin-editor',
 			get_template_directory_uri() . '/core/assets/editor.min.css',
 			array(),
-			HATCH_VERSION
+			LAYERS_VERSION
 		); // Admin CSS
 
 		wp_enqueue_script(
-			HATCH_THEME_SLUG . '-admin-editor' ,
+			LAYERS_THEME_SLUG . '-admin-editor' ,
 			get_template_directory_uri() . '/core/assets/editor.min.js' ,
 			array( 'jquery' ),
-			HATCH_VERSION,
+			LAYERS_VERSION,
 			true
 		);
 
 		wp_enqueue_script(
-			HATCH_THEME_SLUG . '-admin' ,
+			LAYERS_THEME_SLUG . '-admin' ,
 			get_template_directory_uri() . '/core/assets/admin.js',
 			array(
 				'jquery',
 				'jquery-ui-sortable',
 				'wp-color-picker'
 			),
-			HATCH_VERSION,
+			LAYERS_VERSION,
 			true
 		); // Admin JS
 
@@ -371,25 +376,25 @@ if( ! function_exists( 'hatch_admin_scripts' ) ) {
 	}
 }
 
-add_action( 'customize_controls_print_footer_scripts' , 'hatch_admin_scripts' );
-add_action( 'admin_enqueue_scripts' , 'hatch_admin_scripts' );
+add_action( 'customize_controls_print_footer_scripts' , 'layers_admin_scripts' );
+add_action( 'admin_enqueue_scripts' , 'layers_admin_scripts' );
 
 /**
 *  Make sure that all excerpts have class="excerpt"
 */
-if( !function_exists( 'hatch_excerpt_class' ) ) {
-	function hatch_excerpt_class( $excerpt ) {
+if( !function_exists( 'layers_excerpt_class' ) ) {
+	function layers_excerpt_class( $excerpt ) {
 	    return str_replace('<p', '<p class="excerpt"', $excerpt);
 	}
-	add_filter( "the_excerpt", "hatch_excerpt_class" );
-	add_filter( "get_the_excerpt", "hatch_excerpt_class" );
-} // hatch_excerpt_class
+	add_filter( "the_excerpt", "layers_excerpt_class" );
+	add_filter( "get_the_excerpt", "layers_excerpt_class" );
+} // layers_excerpt_class
 
 /**
 *  Adjust the site title for static front pages
 */
-if( !function_exists( 'hatch_site_title' ) ) {
-	function hatch_site_title( $title ) {
+if( !function_exists( 'layers_site_title' ) ) {
+	function layers_site_title( $title ) {
 		global $paged, $page;
 
 		if( !isset( $sep ) ) $sep = '|';
@@ -412,5 +417,5 @@ if( !function_exists( 'hatch_site_title' ) ) {
 
 		return $title;
 	}
-	add_filter( "wp_title", "hatch_site_title" );
-} // hatch_site_title
+	add_filter( "wp_title", "layers_site_title" );
+} // layers_site_title

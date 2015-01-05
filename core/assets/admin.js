@@ -3,8 +3,8 @@
 *
 * This file contains global admin functions
  *
- * @package Hatch
- * @since Hatch 1.0
+ * @package Layers
+ * @since Layers 1.0
  * Contents
  * 1 - Media Uploaders
  * 1.a - Image Remove Button
@@ -32,31 +32,31 @@ jQuery(function($) {
 
 	// 1.a - Image Remove Button
 	var file_frame;
-	$(document).on( 'click' , '.hatch-image-container .hatch-image-remove' , function(e){
+	$(document).on( 'click' , '.layers-image-container .layers-image-remove' , function(e){
 		e.preventDefault();
 
 		// "Hi Mom"
 		$that = $(this);
 
  		// Get the container
- 		$container = $that.closest( '.hatch-image-container' );
+ 		$container = $that.closest( '.layers-image-container' );
 
 		$that.siblings('img').remove();
-		$container.removeClass( 'hatch-has-image' );
-		$container.find('input').val('').hatch_trigger_change();
+		$container.removeClass( 'layers-has-image' );
+		$container.find('input').val('').layers_trigger_change();
 		$that.fadeOut();
 		return false;
 	});
 
 	// 1.b - Image Upload Button
-	$(document).on( 'click' , '.hatch-image-upload-button' , function(e){
+	$(document).on( 'click' , '.layers-image-upload-button' , function(e){
 		e.preventDefault();
 
 		// "Hi Mom"
  		$that = $(this);
 
  		// Get the container
- 		$container = $that.closest( '.hatch-image-container' );
+ 		$container = $that.closest( '.layers-image-container' );
 
 		// If the media frame already exists, reopen it.
 		if ( file_frame ) {
@@ -81,7 +81,7 @@ jQuery(function($) {
 			$container.find('img').remove();
 
 			// Fade in Remove button
-			$container.find('.hatch-image-remove').fadeIn();
+			$container.find('.layers-image-remove').fadeIn();
 
 			// Set attachment to the larege/medium size if they're defined
 			if( undefined !== attachment.sizes.large ) {
@@ -100,13 +100,13 @@ jQuery(function($) {
 				width: $attachment.width
 			});
 
-			$container.children('.hatch-image-display').eq(0).append( $image );
+			$container.children('.layers-image-display').eq(0).append( $image );
 
 			// Add 'Has Image' Class
-			$container.addClass( 'hatch-has-image' );
+			$container.addClass( 'layers-has-image' );
 
 			// Trigger change event
-			$container.find('input').val( attachment.id ).hatch_trigger_change();
+			$container.find('input').val( attachment.id ).layers_trigger_change();
 
 			return;
 		});
@@ -117,21 +117,21 @@ jQuery(function($) {
 
 
 	// 1.c - General File Remove Button
-	$(document).on( 'click' , '.hatch-file-remove' , function(e){
+	$(document).on( 'click' , '.layers-file-remove' , function(e){
 		e.preventDefault();
 
 		// "Hi Mom"
 		$that = $(this);
 
 		$that.siblings('span').text('');
-		$that.siblings('input').val('').hatch_trigger_change();
+		$that.siblings('input').val('').layers_trigger_change();
 
 		$that.fadeOut();
 		return false;
 	});
 
 	// 1.d - General File Upload Button
-	$(document).on( 'click' , '.hatch-regular-uploader' , function(e){
+	$(document).on( 'click' , '.layers-regular-uploader' , function(e){
 		e.preventDefault();
 
 		// "Hi Mom"
@@ -163,7 +163,7 @@ jQuery(function($) {
 			$that.siblings('span').text( attachment.filename );
 
 			// Trigger change event
-			$that.siblings('input').val( attachment.id ).hatch_trigger_change();
+			$that.siblings('input').val( attachment.id ).layers_trigger_change();
 
 			return;
 		});
@@ -176,7 +176,7 @@ jQuery(function($) {
 	/**
 	* 2 -Background Selectors
 	*/
-	$(document).on( 'click', '.hatch-background-selector li' , function(e){
+	$(document).on( 'click', '.layers-background-selector li' , function(e){
 		e.preventDefault();
 
 		// "Hi Mom"
@@ -187,47 +187,47 @@ jQuery(function($) {
 		$index = $that.index();
 
 		// Our main containing div, we could use .parent() but what if we change the depth of this li?
-		$elements = $( $id + '-controller' ).find( '.hatch-controller-elements' );
+		$elements = $( $id + '-controller' ).find( '.layers-controller-elements' );
 
 		// Change the input value
-		$( $id + '-type' ).val( $type ).hatch_trigger_change();
+		$( $id + '-type' ).val( $type ).layers_trigger_change();
 
 		// Switch the selectors
 		$that.addClass( 'active' );
 		$that.siblings().removeClass( 'active' );
 
 		// Switch the view
-		$elements.find( '.hatch-content' ).eq( $index ).addClass('section-active');
-		$elements.find( '.hatch-content' ).eq( $index ).siblings().removeClass('section-active');
+		$elements.find( '.layers-content' ).eq( $index ).addClass('section-active');
+		$elements.find( '.layers-content' ).eq( $index ).siblings().removeClass('section-active');
 	});
 
 	/**
 	* 3 - Color Selectors
 	*/
-	hatch_set_color_selectors();
+	layers_set_color_selectors();
 	$(document).on ( 'widget-added' , function( event, widget_focus ){
 
-		$(this).find('.hatch-color-selector').each(function(){
+		$(this).find('.layers-color-selector').each(function(){
 			var $picker = $(this);
 			$picker.closest('.wp-picker-container').replaceWith( $picker );
 			setTimeout( function() {
-				hatch_set_color_selectors();
+				layers_set_color_selectors();
 			} , 250 );
 		});
 
 	} );
 
-	function hatch_set_color_selectors(){
+	function layers_set_color_selectors(){
 
-		jQuery('.hatch-color-selector').wpColorPicker({
+		jQuery('.layers-color-selector').wpColorPicker({
 			change: function(event, ui){
 				if( 'undefined' !== typeof event ){
-					$(event.target).val( ui.color.toString() ).hatch_trigger_change();
+					$(event.target).val( ui.color.toString() ).layers_trigger_change();
 				}
 			},
 			clear: function() {
 				if( 'undefined' !== typeof event ){
-					$(event.target).hatch_trigger_change();
+					$(event.target).layers_trigger_change();
 				}
 			},
 		});
@@ -236,13 +236,13 @@ jQuery(function($) {
 	/**
 	* 4 - Sortable Columns
 	*/
-	hatch_set_sortable_cols();
+	layers_set_sortable_cols();
 
-	function hatch_set_sortable_cols(){
+	function layers_set_sortable_cols(){
 		if( $.sortable == undefined ) return;
 
-		$( '.hatch-sortable' ).sortable({
-			placeholder: "hatch-sortable-drop"
+		$( '.layers-sortable' ).sortable({
+			placeholder: "layers-sortable-drop"
 		});
 	}
 
@@ -250,7 +250,7 @@ jQuery(function($) {
 	/**
 	* 5 - Tabs
 	*/
-	$( document ).on( 'click' , '.hatch-tabs li' , function(e){
+	$( document ).on( 'click' , '.layers-tabs li' , function(e){
 		e.preventDefault();
 		// "Hi Mom"
 		$that = $(this);
@@ -262,54 +262,54 @@ jQuery(function($) {
 		$that.addClass( 'active' ).siblings().removeClass( 'active' );
 
 		// Get the nearest tab containers
-		$tab_nav = $that.closest( '.hatch-nav-tabs' );
-		$tab_container = $tab_nav.siblings('.hatch-tab-content');
+		$tab_nav = $that.closest( '.layers-nav-tabs' );
+		$tab_container = $tab_nav.siblings('.layers-tab-content');
 
 		// Show/Hide tabs
-		$tab_container.find( 'section.hatch-tab-content' ).eq( $i ).slideDown().siblings( 'section.hatch-tab-content' ).slideUp();
+		$tab_container.find( 'section.layers-tab-content' ).eq( $i ).slideDown().siblings( 'section.layers-tab-content' ).slideUp();
 	});
 
 
 	/**
 	* 6 - Design Controller toggles
 	*/
-	$( document ).on( 'click' , '.widget .hatch-visuals-wrapper li.hatch-visuals-item a.hatch-icon-wrapper' , function(e){
+	$( document ).on( 'click' , '.widget .layers-visuals-wrapper li.layers-visuals-item a.layers-icon-wrapper' , function(e){
 		e.preventDefault();
 		// "Hi Mom"
 		$that = $(this);
 
 		// Close siblings
-		$( '.hatch-visuals-item.hatch-active' ).not( $that.parent() ).removeClass( 'hatch-active' );
+		$( '.layers-visuals-item.layers-active' ).not( $that.parent() ).removeClass( 'layers-active' );
 
 		// Toggle active state
-		$that.parent().toggleClass( 'hatch-active' );
+		$that.parent().toggleClass( 'layers-active' );
 	});
 
-	$( document ).on( 'click' , '.widget .hatch-visuals-wrapper li.hatch-visuals-item label.hatch-icon-wrapper' , function(e){
+	$( document ).on( 'click' , '.widget .layers-visuals-wrapper li.layers-visuals-item label.layers-icon-wrapper' , function(e){
 		// "Hi Mom"
 		$that = $(this);
 
 		// Toggle active state
-		$that.addClass( 'hatch-active' );
+		$that.addClass( 'layers-active' );
 
 		// Close siblings
-		$that.siblings( '.hatch-icon-wrapper' ).removeClass( 'hatch-active' );
+		$that.siblings( '.layers-icon-wrapper' ).removeClass( 'layers-active' );
 
 		// Trigger change
-		$that.find( 'input' ).hatch_trigger_change();
-		$that.siblings( 'input' ).hatch_trigger_change();
+		$that.find( 'input' ).layers_trigger_change();
+		$that.siblings( 'input' ).layers_trigger_change();
 	});
 
 
-	$( document ).on( 'click' , '[id^="input_hatch"] .hatch-visuals-item' , function(e){
+	$( document ).on( 'click' , '[id^="input_layers"] .layers-visuals-item' , function(e){
 		// "Hi Mom"
 		$that = $(this);
 
 		// Toggle active state
-		$that.addClass( 'hatch-active' );
+		$that.addClass( 'layers-active' );
 
 		// Close siblings
-		$that.siblings( '.hatch-visuals-item' ).removeClass( 'hatch-active' );
+		$that.siblings( '.layers-visuals-item' ).removeClass( 'layers-active' );
 
 	});
 
@@ -317,11 +317,11 @@ jQuery(function($) {
 	* 7 - Design Controller Height Matcher
 	*/
 	$(window).bind( 'resize load', function(){
-		hatch_set_visual_wrapper_height();
+		layers_set_visual_wrapper_height();
 	} );
-	function hatch_set_visual_wrapper_height(){
+	function layers_set_visual_wrapper_height(){
 		// Set the visual wrapper to the same height as the window
-		// $( '.hatch-visuals-wrapper' ).css( 'height' , $(window).height() );
+		// $( '.layers-visuals-wrapper' ).css( 'height' , $(window).height() );
 	}
 
 	/**
@@ -336,18 +336,18 @@ jQuery(function($) {
 			$widget_id = $that.find( '.widget-id' ).val();
 
 			// Focus on the active widget
-			hatch_widget_focus( $widget_id )
+			layers_widget_focus( $widget_id )
 		}
 	});
 
 	$( document ).on( 'widget-updated' , function( updatedWidgetId ){
 		setTimeout(
-			hatch_widget_focus( updatedWidgetId ),
+			layers_widget_focus( updatedWidgetId ),
 			1000
 		)
 	});
 
-	function hatch_widget_focus( $widget_id ){
+	function layers_widget_focus( $widget_id ){
 
 		// Scroll to this widget
 		$iframe = $( '#customize-preview iframe' ).contents();
@@ -381,11 +381,11 @@ jQuery(function($) {
 			var textarea = $( '#' + id );
 
 			textarea.val( $that.html() );
-			textarea.hatch_trigger_change();
+			textarea.layers_trigger_change();
 		});
 	});
 
-	$( document ).on( 'keyup mouseup' , '.hatch-tiny-mce-textarea' , function(e){
+	$( document ).on( 'keyup mouseup' , '.layers-tiny-mce-textarea' , function(e){
 
 		// "Hi Mom!"
 		$that = $(this);
@@ -394,7 +394,7 @@ jQuery(function($) {
 		$that.siblings( '.editible' ).html( $that.val() );
 	});
 
-	$( document ).on( 'click' , '.hatch-tiny-mce-switch' , function(e){
+	$( document ).on( 'click' , '.layers-tiny-mce-switch' , function(e){
 		e.preventDefault();
 
 		// "Hi Mom!"
@@ -417,8 +417,8 @@ jQuery(function($) {
 			$that.text( $that.data( 'html_label' ) );
 		}
 
-		$that.siblings( 'textarea' ).toggleClass( 'hatch-hide' );
-		$that.siblings( '.editible' ).toggleClass( 'hatch-hide' );
+		$that.siblings( 'textarea' ).toggleClass( 'layers-hide' );
+		$that.siblings( '.editible' ).toggleClass( 'layers-hide' );
 
 	});
 
@@ -426,7 +426,7 @@ jQuery(function($) {
 	* 10 - Trigger input changes
 	*/
 
-	$.fn.hatch_trigger_change = function() {
+	$.fn.layers_trigger_change = function() {
 		// Trigger 'change' and 'blur' to reset the customizer
 		$changed = $(this).trigger("change").trigger("blur");
 		var $widget_synced = $( document ).trigger( 'widget-synced', $(this).closest( '.control-section' ).find( '.widget:first' ) );
@@ -434,20 +434,20 @@ jQuery(function($) {
 		console.log( $widget_synced );
 
 		// Reset 'show if' selectors;
-		hatch_apply_show_if_selectors();
+		layers_apply_show_if_selectors();
 	};
 
 	/**
 	* 11 - Add Last Class to Elements
 	*/
 
-	$('.hatch-visuals-wrapper').each(function(){
+	$('.layers-visuals-wrapper').each(function(){
 			// "Hi Mom!"
 			$that = $(this);
 
 			if( $that.find( 'li' ).length > 3 ){
-				$that.find( 'li' ).eq(-1).addClass( 'hatch-last' );
-				$that.find( 'li' ).eq(-2).addClass( 'hatch-last' );
+				$that.find( 'li' ).eq(-1).addClass( 'layers-last' );
+				$that.find( 'li' ).eq(-2).addClass( 'layers-last' );
 			}
 	});
 
@@ -456,9 +456,9 @@ jQuery(function($) {
 	*/
 
 	// Instantiate the show/hide lookup
-	hatch_apply_show_if_selectors();
+	layers_apply_show_if_selectors();
 
-	function hatch_apply_show_if_selectors(){
+	function layers_apply_show_if_selectors(){
 		$('[data-show-if-selector]').each(function(){
 			// "Hi Mom!"
 			$that = $(this);
@@ -479,9 +479,9 @@ jQuery(function($) {
 						);
 
 					if( $value.indexOf( $( $selector ).val() ) > -1 ){
-						$input.removeClass( 'hatch-hide' );
+						$input.removeClass( 'layers-hide' );
 					} else {
-						$input.addClass( 'hatch-hide' );
+						$input.addClass( 'layers-hide' );
 					}
 				})
 			});

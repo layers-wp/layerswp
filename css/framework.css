@@ -238,7 +238,7 @@ h1, h2, h3, h4, h5, h6{color: #000; font-weight: 200;}
         .content-vertical{padding-top: 20px; padding-bottom: 20px;}
         .content-vertical-large{padding-top: 30px; padding-bottom: 30px;}
     	.content-vertical-extra-large{padding-top: 40px; padding-bottom: 40px;}
-    	.content-vertical-massive{padding-top: 60px; padding-bottom: 60px;}
+    	.content-vertical-massive{padding-top: 60px; padding-bottom: 20px;}
 
     .sky{padding-top: 100px;}
     .basement{padding-bottom: 60px;} /*-- content already adds 40px to the base --*/
@@ -262,9 +262,8 @@ h1, h2, h3, h4, h5, h6{color: #000; font-weight: 200;}
 
     /*---------------------------*/
     /*- SITE WIDE HEADER --------*/
-    header{/*width: 100%; position: fixed; top: 0; left: 0; z-index: 20;*/}
-    header .container{max-width: 1040px;}
-    header .column{margin-bottom: 0;}
+    .header-site .container{max-width: 1040px;}
+    .header-site .column{margin-bottom: 0;}
 
 
     /*---------------------------*/
@@ -272,7 +271,7 @@ h1, h2, h3, h4, h5, h6{color: #000; font-weight: 200;}
     .logo{float: left; padding: 0;}
 
     .site-logo-link, .mark{display: inline-block; vertical-align: middle; margin: auto; font-size: 0;}
-    .site-logo-link img, .mark img{display: inline-block; max-height: 60px; margin: auto; width: auto;}
+    .site-logo-link img, .mark img{display: inline-block; max-height: 40px; margin: auto; width: auto;}
 
     .site-description{display: inline-block; vertical-align: middle;}
     .site-logo-link + .site-description{margin-left: 10px;}
@@ -369,7 +368,7 @@ h1, h2, h3, h4, h5, h6{color: #000; font-weight: 200;}
 /*- NAVIGATION ------------------*/
 /*-------------------------------*/
 
-    header nav{margin: 10px 0; line-height: 40px;}
+    header nav{margin: 0; line-height: 40px;}
 
     .nav{vertical-align: middle; display: inline-block;}
     .nav li{position: relative;}
@@ -378,8 +377,8 @@ h1, h2, h3, h4, h5, h6{color: #000; font-weight: 200;}
 
     /*---------------------------*/
     /*- RESPONSIVE BUTTON -------*/
-    .responsive-nav{float: right; display: none; padding: 8px 0; margin: 0;}
-    .responsive-nav .h-menu{color: #454545; font-size: 32px;}
+    .responsive-nav{float: right; display: none; padding: 0; margin: 0;}
+    .responsive-nav .h-menu{color: #454545; font-size: 16px;}
 
 
     /*---------------------------*/
@@ -547,6 +546,7 @@ h1, h2, h3, h4, h5, h6{color: #000; font-weight: 200;}
     .media-image{text-align: center; margin-right: auto; margin-left: auto;}
     .media-image img{display: block; margin: auto;}
     .media-image.small img{max-width: 64px;}
+    .media-image.image-rounded img{border-radius: 100%;}
 
     .media .media-body{display: block; overflow: hidden;}
 
@@ -561,20 +561,16 @@ h1, h2, h3, h4, h5, h6{color: #000; font-weight: 200;}
 
     .media p{margin-top: 8px;}
     .media ul{margin-top: 8px;}
-        
-        .media.large .heading{font-size: 2.8rem;}
-        .media.large .excerpt{max-width: 830px; font-size: 2rem;}
-
-        .media.tiny .heading{}
-        .media.tiny .excerpt{}
 
     .text-center .media-body .excerpt{margin-left: auto; margin-right: auto;}
 
     .media .btn-group{margin-top: 15px;}
     .media .button{margin-top: 15px;}
     .media .btn-group .button{margin-top: 0px;}
+        
+    .media.large .heading{font-size: 2.8rem;}
+    .media.large .excerpt{max-width: 830px; font-size: 2rem;}
 
-    .media.small .media-image{margin-right: 10px;}
     .media.small .heading{font-size: 1.6rem; font-weight: 600; color: #323232;}
     .media.small .excerpt{font-size: 1.4rem;}
     .media.small .heading + .excerpt{margin-top: 5px;}
@@ -679,11 +675,13 @@ h1, h2, h3, h4, h5, h6{color: #000; font-weight: 200;}
 
     /*---------------------------*/
     /*- FOOTER COPY -------------*/
-    .copyright{margin-top: 20px; padding-top: 20px; border-top: 2px solid rgba(0, 0, 0, 0.1); font-size: 1.2rem; color: #999;}
+    .copyright{font-size: 1.2rem; color: #999;}
     .copyright .column{margin-bottom: 0;}
     .copyright .nav-horizontal li{margin: 0 0 0 20px;}
     .copyright .nav-horizontal a{padding: 0; color: #454545; text-transform: uppercase; font-weight: 600; font-size: 1.0rem; letter-spacing: 1px;}
     .copyright .nav-horizontal a:hover{background: none; color: #323232;}
+
+    .row + .copyright{padding-top: 20px; margin-top: 20px; border-top: 2px solid #ddd;}
 
 /*-------------------------------*/
 /*- FORMS -----------------------*/

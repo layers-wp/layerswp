@@ -1,13 +1,13 @@
 <?php /**
  * Customizer Initiation File
  *
- * This file is the source of the Customizer functionality in Hatch.
+ * This file is the source of the Customizer functionality in Layers.
  *
- * @package Hatch
- * @since Hatch 1.0
+ * @package Layers
+ * @since Layers 1.0
  */
 
-class Hatch_Customizer {
+class Layers_Customizer {
 
 	private static $instance;
 
@@ -35,6 +35,8 @@ class Hatch_Customizer {
 		locate_template( $controls_dir . 'select-icons.php' , true );
 		locate_template( $controls_dir . 'select-images.php' , true );
 		locate_template( $controls_dir . 'seperator.php' , true );
+		locate_template( $controls_dir . 'color.php' , true );
+
 
 		// Include Config file(s)
 		locate_template( $customizer_dir . 'config.php' , true );
@@ -44,14 +46,14 @@ class Hatch_Customizer {
 
 		// If we are in a builder page, update the Widgets title
 		if(
-			isset( $_GET[ 'hatch-builder' ] )
-			|| ( 0 != get_option( 'page_on_front' )  && HATCH_BUILDER_TEMPLATE == get_post_meta ( get_option( 'page_on_front' ) , '_wp_page_template' , true ) )
+			isset( $_GET[ 'layers-builder' ] )
+			|| ( 0 != get_option( 'page_on_front' )  && LAYERS_BUILDER_TEMPLATE == get_post_meta ( get_option( 'page_on_front' ) , '_wp_page_template' , true ) )
 		) {
 			$wp_customize->add_panel(
 				'widgets', array(
 					'priority' => 10,
-					'title' => __('Hatch: Page Builder', HATCH_THEME_SLUG ),
-					'description' => $this->render_builder_page_dropdown() . __('Use this area to add widgets to your page, use the (Hatch) widgets for the Body section.', HATCH_THEME_SLUG ),
+					'title' => __('Layers: Page Builder', LAYERS_THEME_SLUG ),
+					'description' => $this->render_builder_page_dropdown() . __('Use this area to add widgets to your page, use the (Layers) widgets for the Body section.', LAYERS_THEME_SLUG ),
 				)
 			);
 		}
@@ -61,6 +63,8 @@ class Hatch_Customizer {
 		add_action( 'admin_enqueue_scripts', array( $this, 'admin_print_styles' ) , 50 );
 		add_action( 'customize_controls_print_styles' , array( $this, 'admin_print_styles' ) );
 
+		// Render header actions button(s)
+		add_action( 'customize_controls_print_footer_scripts' , array( $this, 'render_actions_buttons' ) );
 	}
 
 	/**
@@ -69,24 +73,27 @@ class Hatch_Customizer {
 
 	public function admin_enqueue_scripts(){
 
+		// Media Uploader required scripts
+		wp_enqueue_media();
+
 		// Customizer general
 		wp_enqueue_script(
-			HATCH_THEME_SLUG . '-admin-customizer' ,
+			LAYERS_THEME_SLUG . '-admin-customizer' ,
 			get_template_directory_uri() . '/core/customizer/js/customizer.js' ,
 			array(
 				'backbone',
 				'jquery',
 				'wp-color-picker'
 			),
-			HATCH_VERSION,
+			LAYERS_VERSION,
 			true
 		);
 
 		// Localize Scripts
-		wp_localize_script( HATCH_THEME_SLUG . '-admin-customizer' , "hatch_customizer_params", array(
+		wp_localize_script( LAYERS_THEME_SLUG . '-admin-customizer' , "layers_customizer_params", array(
 									'ajaxurl' => admin_url( "admin-ajax.php" ) ,
-									'nonce' => wp_create_nonce( 'hatch-customizer-actions' ),
-									'builder_page' => ( isset( $_GET[ 'hatch-builder' ] ) ? TRUE : FALSE )
+									'nonce' => wp_create_nonce( 'layers-customizer-actions' ),
+									'builder_page' => ( isset( $_GET[ 'layers-builder' ] ) ? TRUE : FALSE )
 								)
 							);
 	}
@@ -99,12 +106,12 @@ class Hatch_Customizer {
 
 		// Widget styles
 		wp_register_style(
-			HATCH_THEME_SLUG . '-admin-customizer',
+			LAYERS_THEME_SLUG . '-admin-customizer',
 			get_template_directory_uri() . '/core/customizer/css/customizer.css',
 			array(),
-			HATCH_VERSION
+			LAYERS_VERSION
 		);
-		wp_enqueue_style( HATCH_THEME_SLUG . '-admin-customizer' );
+		wp_enqueue_style( LAYERS_THEME_SLUG . '-admin-customizer' );
 	}
 
 	/**
@@ -117,30 +124,33 @@ class Hatch_Customizer {
 		if(!$wp_customize) return;
 
 		//Get builder pages.
-		$hatch_pages = hatch_get_builder_pages();
+		$layers_pages = layers_get_builder_pages();
 
 		// Create builder pages dropdown.
-		if( $hatch_pages ){
+		if( $layers_pages ){
 			ob_start();
 
 			// Get the base of the customizer URL
 			$customizer_url = explode( 'customize.php?', $_SERVER['REQUEST_URI'] );
 
+			$current_page_url = "";
+
 			// Check if there is a query string
-			if( !isset( $customizer_url[1] ) ) return;
+			if ( isset( $customizer_url[1] ) ) {
 
-			// Parse the URL
-			parse_str( $customizer_url[1], $customizer_url_portions );
+				// Parse the URL
+				parse_str( $customizer_url[1], $customizer_url_portions );
 
-			// Get the page url
-			if( !isset( $customizer_url_portions[ 'url' ] ) ) return;
+				// Check if there is query string 'url'
+				if( isset( $customizer_url_portions[ 'url' ] ) ) {
+					$current_page_url = $customizer_url_portions[ 'url' ];
+				}
 
-			// Set the current page url
-			$current_page_url = $customizer_url_portions[ 'url' ]; ?>
-			<div class="hatch-customizer-pages-dropdown">
+			} ?>
+			<div class="layers-customizer-pages-dropdown">
 				<select>
-					<option value="init"><?php _e( 'Builder Pages:', HATCH_THEME_SLUG ) ?></option>
-					<?php foreach( $hatch_pages as $page ) { ?>
+					<option value="init"><?php _e( 'Builder Pages:', LAYERS_THEME_SLUG ) ?></option>
+					<?php foreach( $layers_pages as $page ) { ?>
 						<?php // Page URL
 						$edit_page_url = get_permalink( $page->ID ); ?>
 
@@ -157,14 +167,22 @@ class Hatch_Customizer {
 		}
 	}
 
+	function render_actions_buttons () {
+		$layers_url = admin_url( 'admin.php?page=' . LAYERS_THEME_SLUG . '-welcome' );
+		?>
+		<a class="customize-controls-layers-button customize-controls-layers-button-dashboard dashicons dashicons-smiley" title="<?php esc_attr( _e( 'Layers Dashboard', LAYERS_THEME_SLUG ) ); ?>" href="<?php echo $layers_url ?>"></a>
+		<a class="customize-controls-layers-button customize-controls-layers-button-preview icon-display" title="<?php esc_attr( _e( 'Preview this page', LAYERS_THEME_SLUG ) ); ?>" href="#" target="_blank"></a>
+		<?php
+	}
+
 }
 
 /**
 *  Kicking this off with the 'widgets_init' hook
 */
 
-function hatch_customizer_init(){
-	$hatch_widget = new Hatch_Customizer();
-	$hatch_widget->init();
+function layers_customizer_init(){
+	$layers_widget = new Layers_Customizer();
+	$layers_widget->init();
 }
-add_action( 'customize_register' , 'hatch_customizer_init' , 50 );
+add_action( 'customize_register' , 'layers_customizer_init' , 50 );

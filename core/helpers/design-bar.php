@@ -1,13 +1,13 @@
 <?php /**
  * Widget Design Controller Class
  *
- * This file is the source of the Widget Design Pop out  in Hatch.
+ * This file is the source of the Widget Design Pop out  in Layers.
  *
- * @package Hatch
- * @since Hatch 1.0
+ * @package Layers
+ * @since Layers 1.0
  */
 
-class Hatch_Design_Controller {
+class Layers_Design_Controller {
 
 	/**
 	* Generate Design Options
@@ -33,13 +33,13 @@ class Hatch_Design_Controller {
 			$values = NULL;
 		} ?>
 
-		<div class="hatch-visuals <?php if( 'side' == $type ) { echo 'hatch-pull-right'; } else { echo 'hatch-visuals-horizontal'; } ?> ">
+		<div class="layers-visuals <?php if( 'side' == $type ) { echo 'layers-pull-right'; } else { echo 'layers-visuals-horizontal'; } ?> ">
 			<?php if( 'side' == $type ) { ?>
 			<?php } // if side == type ?>
-			<h6 class="hatch-visuals-title">
-				<span class="icon-settings hatch-small"></span>
+			<h6 class="layers-visuals-title">
+				<span class="icon-settings layers-small"></span>
 			</h6>
-			<ul class="hatch-visuals-wrapper hatch-clearfix">
+			<ul class="layers-visuals-wrapper layers-clearfix">
 				<?php if( NULL !== $components ) {
 					foreach( $components as $component ) {
 						if( 'custom' == $component && !empty( $custom_components ) ) {
@@ -60,8 +60,8 @@ class Hatch_Design_Controller {
 					}
 				} // if $components is not NULL ?>
 				<?php if( isset( $widget['show_trash'] ) ) { ?>
-					<li class="hatch-visuals-item hatch-pull-right">
-						<a href="" class="hatch-icon-wrapper hatch-icon-error">
+					<li class="layers-visuals-item layers-pull-right">
+						<a href="" class="layers-icon-wrapper layers-icon-error">
 							<span class="icon-trash" data-number="<?php echo $widget['number']; ?>"></span>
 						</a>
 					</li>
@@ -80,7 +80,7 @@ class Hatch_Design_Controller {
 	public function input( $args = array() ) {
 
 		// Initiate Widget Inputs
-		$form_elements = new Hatch_Form_Elements();
+		$form_elements = new Layers_Form_Elements();
 
 		// Return form element
 		return $form_elements->input( $args );
@@ -102,10 +102,10 @@ class Hatch_Design_Controller {
 		// If there is no widget information provided, can the operation
 		if( NULL == $widget ) return; ?>
 
-		<li class="hatch-visuals-item">
-			<a href="" class="hatch-icon-wrapper">
+		<li class="layers-visuals-item">
+			<a href="" class="layers-icon-wrapper">
 				<span class="<?php echo $args[ 'icon-css' ]; ?>"></span>
-				<span class="hatch-icon-description">
+				<span class="layers-icon-description">
 					<?php echo $args[ 'label' ]; ?>
 				</span>
 			</a>
@@ -113,12 +113,12 @@ class Hatch_Design_Controller {
 				<?php if( isset( $args[ 'wrapper-css' ] ) ) {
 					$wrapper_class = $args[ 'wrapper-css' ];
 				} else {
-					$wrapper_class = 'hatch-pop-menu-wrapper hatch-content-small';
+					$wrapper_class = 'layers-pop-menu-wrapper layers-content-small';
 				} ?>
 				<div class="<?php echo $wrapper_class; ?>">
-					<div class="hatch-pop-menu-setting">
+					<div class="layers-pop-menu-setting">
 						<?php foreach( $args['elements'] as $key => $form_args ) { ?>
-							<div class="hatch-<?php echo $form_args[ 'type' ]; ?>-wrapper hatch-form-item">
+							<div class="layers-<?php echo $form_args[ 'type' ]; ?>-wrapper layers-form-item">
 								<?php if( 'checkbox' != $form_args[ 'type' ] && isset( $form_args[ 'label' ] ) ) { ?>
 									<label><?php echo $form_args[ 'label' ]; ?></label>
 								<?php } ?>
@@ -144,15 +144,15 @@ class Hatch_Design_Controller {
 		// If there is no widget information provided, can the operation
 		if( NULL == $widget ) return; ?>
 
-		<li class="hatch-visuals-item">
-			<a href="" class="hatch-icon-wrapper">
+		<li class="layers-visuals-item">
+			<a href="" class="layers-icon-wrapper">
 				<span class="icon-layout-fullwidth"></span>
-				<span class="hatch-icon-description">
-					<?php _e( 'Layout' , HATCH_THEME_SLUG ); ?>
+				<span class="layers-icon-description">
+					<?php _e( 'Layout' , LAYERS_THEME_SLUG ); ?>
 				</span>
 			</a>
-			<div class="hatch-pop-menu-wrapper hatch-animate hatch-small">
-				<div class="hatch-pop-menu-setting">
+			<div class="layers-pop-menu-wrapper layers-animate layers-small">
+				<div class="layers-pop-menu-setting">
 					<?php echo $this->input(
 						array(
 							'type' => 'select-icons',
@@ -160,8 +160,8 @@ class Hatch_Design_Controller {
 							'id' =>  $widget['id'] . '-layout' ,
 							'value' => ( isset( $values['layout'] ) ) ? $values['layout'] : NULL,
 							'options' => array(
-								'layout-boxed' => __( 'Boxed' , HATCH_THEME_SLUG ),
-								'layout-fullwidth' => __( 'Full Width' , HATCH_THEME_SLUG )
+								'layout-boxed' => __( 'Boxed' , LAYERS_THEME_SLUG ),
+								'layout-fullwidth' => __( 'Full Width' , LAYERS_THEME_SLUG )
 							)
 						)
 					); ?>
@@ -183,17 +183,17 @@ class Hatch_Design_Controller {
 		// If there is no widget information provided, can the operation
 		if( NULL == $widget ) return; ?>
 
-		<li class="hatch-visuals-item">
+		<li class="layers-visuals-item">
 
-			<a href="" class="hatch-icon-wrapper">
+			<a href="" class="layers-icon-wrapper">
 				<span class="icon-list-masonry"></span>
-				<span class="hatch-icon-description">
-					<?php _e( 'List Style' , HATCH_THEME_SLUG ); ?>
+				<span class="layers-icon-description">
+					<?php _e( 'List Style' , LAYERS_THEME_SLUG ); ?>
 				</span>
 			</a>
 
-			<div class="hatch-pop-menu-wrapper hatch-animate hatch-small">
-				<div class="hatch-pop-menu-setting">
+			<div class="layers-pop-menu-wrapper layers-animate layers-small">
+				<div class="layers-pop-menu-setting">
 					<?php echo $this->input(
 						array(
 							'type' => 'select-icons',
@@ -201,9 +201,9 @@ class Hatch_Design_Controller {
 							'id' =>  $widget['id'] . '-liststyle' ,
 							'value' => ( isset( $values[ 'liststyle' ] ) ) ? $values[ 'liststyle' ] : NULL,
 							'options' => array(
-								'list-grid' => __( 'Grid' , HATCH_THEME_SLUG ),
-								'list-list' => __( 'List' , HATCH_THEME_SLUG ),
-								'list-masonry' => __( 'Masonry' , HATCH_THEME_SLUG )
+								'list-grid' => __( 'Grid' , LAYERS_THEME_SLUG ),
+								'list-list' => __( 'List' , LAYERS_THEME_SLUG ),
+								'list-masonry' => __( 'Masonry' , LAYERS_THEME_SLUG )
 							)
 						)
 					); ?>
@@ -225,18 +225,18 @@ class Hatch_Design_Controller {
 		// If there is no widget information provided, can the operation
 		if( NULL == $widget ) return; ?>
 
-		<li class="hatch-visuals-item">
-			<a href="" class="hatch-icon-wrapper">
+		<li class="layers-visuals-item">
+			<a href="" class="layers-icon-wrapper">
 				<span class="icon-columns"></span>
-				<span class="hatch-icon-description">
-					<?php _e( 'Columns' , HATCH_THEME_SLUG ); ?>
+				<span class="layers-icon-description">
+					<?php _e( 'Columns' , LAYERS_THEME_SLUG ); ?>
 				</span>
 			</a>
 
-			<div class="hatch-pop-menu-wrapper hatch-animate hatch-content-small">
-				<div class="hatch-pop-menu-setting">
-					<div class="hatch-form-item">
-						<label for="<?php echo  $widget['name'] . '-columns'; ?>"><?php _e( 'Columns' , HATCH_THEME_SLUG ); ?></label>
+			<div class="layers-pop-menu-wrapper layers-animate layers-content-small">
+				<div class="layers-pop-menu-setting">
+					<div class="layers-form-item">
+						<label for="<?php echo  $widget['name'] . '-columns'; ?>"><?php _e( 'Columns' , LAYERS_THEME_SLUG ); ?></label>
 						<?php echo $this->input(
 							array(
 								'type' => 'select',
@@ -244,20 +244,20 @@ class Hatch_Design_Controller {
 								'id' =>  $widget['id'] . '-columns' ,
 								'value' => ( isset( $values['columns'] ) ) ? $values['columns'] : NULL,
 								'options' => array(
-									'1' => __( '1 Column' , HATCH_THEME_SLUG ),
-									'2' => __( '2 Columns' , HATCH_THEME_SLUG ),
-									'3' => __( '3 Columns' , HATCH_THEME_SLUG ),
-									'4' => __( '4 Columns' , HATCH_THEME_SLUG ),
-									'6' => __( '6 Columns' , HATCH_THEME_SLUG )
+									'1' => __( '1 Column' , LAYERS_THEME_SLUG ),
+									'2' => __( '2 Columns' , LAYERS_THEME_SLUG ),
+									'3' => __( '3 Columns' , LAYERS_THEME_SLUG ),
+									'4' => __( '4 Columns' , LAYERS_THEME_SLUG ),
+									'6' => __( '6 Columns' , LAYERS_THEME_SLUG )
 								)
 							)
 						); ?>
 					</div>
-					<div class="hatch-checkbox-wrapper hatch-form-item">
+					<div class="layers-checkbox-wrapper layers-form-item">
 						<?php echo $this->input(
 							array(
 								'type' => 'checkbox',
-								'label' => __( 'Gutter' , HATCH_THEME_SLUG ),
+								'label' => __( 'Gutter' , LAYERS_THEME_SLUG ),
 								'name' => $widget['name'] . '[gutter]' ,
 								'id' =>  $widget['id'] . '-gutter' ,
 								'value' => ( isset( $values['gutter'] ) ) ? $values['gutter'] : NULL
@@ -282,15 +282,15 @@ class Hatch_Design_Controller {
 		// If there is no widget information provided, can the operation
 		if( NULL == $widget ) return; ?>
 
-		<li class="hatch-visuals-item">
-			<a href="" class="hatch-icon-wrapper">
+		<li class="layers-visuals-item">
+			<a href="" class="layers-icon-wrapper">
 				<span class="icon-text-center"></span>
-				<span class="hatch-icon-description">
-					<?php _e( 'Text Align' , HATCH_THEME_SLUG ); ?>
+				<span class="layers-icon-description">
+					<?php _e( 'Text Align' , LAYERS_THEME_SLUG ); ?>
 				</span>
 			</a>
-			<div class="hatch-pop-menu-wrapper hatch-animate hatch-small">
-				<div class="hatch-pop-menu-setting">
+			<div class="layers-pop-menu-wrapper layers-animate layers-small">
+				<div class="layers-pop-menu-setting">
 					<?php echo $this->input(
 						array(
 							'type' => 'select-icons',
@@ -298,10 +298,10 @@ class Hatch_Design_Controller {
 							'id' =>  $widget['id'] . '-textalign' ,
 							'value' => ( isset( $values['textalign'] ) ) ? $values['textalign'] : NULL,
 							'options' => array(
-								'text-left' => __( 'Left' , HATCH_THEME_SLUG ),
-								'text-center' => __( 'Center' , HATCH_THEME_SLUG ),
-								'text-right' => __( 'Right' , HATCH_THEME_SLUG ),
-								'text-justify' => __( 'Justify' , HATCH_THEME_SLUG )
+								'text-left' => __( 'Left' , LAYERS_THEME_SLUG ),
+								'text-center' => __( 'Center' , LAYERS_THEME_SLUG ),
+								'text-right' => __( 'Right' , LAYERS_THEME_SLUG ),
+								'text-justify' => __( 'Justify' , LAYERS_THEME_SLUG )
 							)
 						)
 					); ?>
@@ -323,15 +323,15 @@ class Hatch_Design_Controller {
 		// If there is no widget information provided, can the operation
 		if( NULL == $widget ) return; ?>
 
-		<li class="hatch-visuals-item hatch-last">
-			<a href="" class="hatch-icon-wrapper">
+		<li class="layers-visuals-item layers-last">
+			<a href="" class="layers-icon-wrapper">
 				<span class="icon-image-left"></span>
-				<span class="hatch-icon-description">
-					<?php _e( 'Image Align' , HATCH_THEME_SLUG ); ?>
+				<span class="layers-icon-description">
+					<?php _e( 'Image Align' , LAYERS_THEME_SLUG ); ?>
 				</span>
 			</a>
-			<div class="hatch-pop-menu-wrapper hatch-animate hatch-small">
-				<div class="hatch-pop-menu-setting">
+			<div class="layers-pop-menu-wrapper layers-animate layers-small">
+				<div class="layers-pop-menu-setting">
 					<?php echo $this->input(
 						array(
 							'type' => 'select-icons',
@@ -339,9 +339,9 @@ class Hatch_Design_Controller {
 							'id' =>  $widget['id'] . '-imagealign' ,
 							'value' => ( isset( $values['imagealign'] ) ) ? $values['imagealign'] : NULL,
 							'options' => array(
-								'image-left' => __( 'Left' , HATCH_THEME_SLUG ),
-								'image-right' => __( 'Right' , HATCH_THEME_SLUG ),
-								'image-top' => __( 'Top' , HATCH_THEME_SLUG )
+								'image-left' => __( 'Left' , LAYERS_THEME_SLUG ),
+								'image-right' => __( 'Right' , LAYERS_THEME_SLUG ),
+								'image-top' => __( 'Top' , LAYERS_THEME_SLUG )
 							)
 						)
 					); ?>
@@ -362,18 +362,18 @@ class Hatch_Design_Controller {
 		// If there is no widget information provided, can the operation
 		if( NULL == $widget ) return; ?>
 
-		<li class="hatch-visuals-item">
-			<a href="" class="hatch-icon-wrapper">
+		<li class="layers-visuals-item">
+			<a href="" class="layers-icon-wrapper">
 				<span class="icon-featured-image"></span>
-				<span class="hatch-icon-description">
-					<?php _e( 'Featured Image' , HATCH_THEME_SLUG ); ?>
+				<span class="layers-icon-description">
+					<?php _e( 'Featured Image' , LAYERS_THEME_SLUG ); ?>
 				</span>
 			</a>
-			<div class="hatch-pop-menu-wrapper hatch-animate hatch-content-small">
-				<div class="hatch-pop-menu-setting">
+			<div class="layers-pop-menu-wrapper layers-animate layers-content-small">
+				<div class="layers-pop-menu-setting">
 					<section>
-						<div class="hatch-form-item">
-							<label><?php _e( 'Featured Image' , HATCH_THEME_SLUG ); ?></label>
+						<div class="layers-form-item">
+							<label><?php _e( 'Featured Image' , LAYERS_THEME_SLUG ); ?></label>
 							<?php echo $this->input(
 								array(
 									'type' => 'image',
@@ -383,9 +383,9 @@ class Hatch_Design_Controller {
 								)
 							); ?>
 						</div>
-						<div class="hatch-form-item">
-							<label><?php _e( 'Image Ratio' , HATCH_THEME_SLUG ); ?></label>
-							<div class="hatch-icon-group">
+						<div class="layers-form-item">
+							<label><?php _e( 'Image Ratio' , LAYERS_THEME_SLUG ); ?></label>
+							<div class="layers-icon-group">
 								<?php echo $this->input(
 									array(
 										'type' => 'select-icons',
@@ -393,10 +393,11 @@ class Hatch_Design_Controller {
 										'id' =>  $widget['id'] . '-imageratios' ,
 										'value' => ( isset( $values['imageratios'] ) ) ? $values['imageratios'] : NULL,
 										'options' => array(
-											'image-portrait' => __( 'Portrait' , HATCH_THEME_SLUG ),
-											'image-landscape' => __( 'Landscape' , HATCH_THEME_SLUG ),
-											'image-square' => __( 'Square' , HATCH_THEME_SLUG ),
-											'image-no-crop' => __( 'None' , HATCH_THEME_SLUG )
+											'image-portrait' => __( 'Portrait' , LAYERS_THEME_SLUG ),
+											'image-landscape' => __( 'Landscape' , LAYERS_THEME_SLUG ),
+											'image-square' => __( 'Square' , LAYERS_THEME_SLUG ),
+											'image-no-crop' => __( 'None' , LAYERS_THEME_SLUG ),
+											'image-round' => __( 'Round' , LAYERS_THEME_SLUG ),
 										)
 									)
 								); ?>
@@ -420,16 +421,16 @@ class Hatch_Design_Controller {
 		// If there is no widget information provided, can the operation
 		if( NULL == $widget ) return; ?>
 
-		<li class="hatch-visuals-item">
-			<a href="" class="hatch-icon-wrapper">
+		<li class="layers-visuals-item">
+			<a href="" class="layers-icon-wrapper">
 				<span class="icon-image-size"></span>
-				<span class="hatch-icon-description">
-					<?php _e( 'Image Ratio' , HATCH_THEME_SLUG ); ?>
+				<span class="layers-icon-description">
+					<?php _e( 'Image Ratio' , LAYERS_THEME_SLUG ); ?>
 				</span>
 			</a>
-			<div class="hatch-pop-menu-wrapper hatch-animate hatch-small">
-				<div class="hatch-pop-menu-setting">
-					<div class="hatch-select-wrapper hatch-form-item">
+			<div class="layers-pop-menu-wrapper layers-animate layers-small">
+				<div class="layers-pop-menu-setting">
+					<div class="layers-select-wrapper layers-form-item">
 						<?php echo $this->input(
 							array(
 								'type' => 'select-icons',
@@ -437,10 +438,10 @@ class Hatch_Design_Controller {
 								'id' =>  $widget['id'] . '-imageratios' ,
 								'value' => ( isset( $values['imageratios'] ) ) ? $values['imageratios'] : NULL,
 								'options' => array(
-									'image-portrait' => __( 'Portrait' , HATCH_THEME_SLUG ),
-									'image-landscape' => __( 'Landscape' , HATCH_THEME_SLUG ),
-									'image-square' => __( 'Square' , HATCH_THEME_SLUG ),
-									'image-no-crop' => __( 'None' , HATCH_THEME_SLUG )
+									'image-portrait' => __( 'Portrait' , LAYERS_THEME_SLUG ),
+									'image-landscape' => __( 'Landscape' , LAYERS_THEME_SLUG ),
+									'image-square' => __( 'Square' , LAYERS_THEME_SLUG ),
+									'image-no-crop' => __( 'None' , LAYERS_THEME_SLUG )
 								)
 							)
 						); ?>
@@ -463,19 +464,19 @@ class Hatch_Design_Controller {
 		// If there is no widget information provided, can the operation
 		if( NULL == $widget ) return; ?>
 
-		<li class="hatch-visuals-item">
-			<a href="" class="hatch-icon-wrapper">
+		<li class="layers-visuals-item">
+			<a href="" class="layers-icon-wrapper">
 				<span class="icon-font-size"></span>
-				<span class="hatch-icon-description">
-					<?php _e( 'Text' , HATCH_THEME_SLUG ); ?>
+				<span class="layers-icon-description">
+					<?php _e( 'Text' , LAYERS_THEME_SLUG ); ?>
 				</span>
 			</a>
-			<div class="hatch-pop-menu-wrapper hatch-animate hatch-content-small">
-				<div class="hatch-pop-menu-setting">
+			<div class="layers-pop-menu-wrapper layers-animate layers-content-small">
+				<div class="layers-pop-menu-setting">
 					<section>
-						<div class="hatch-form-item">
-							<label><?php _e( 'Text Align' , HATCH_THEME_SLUG ); ?></label>
-							<div class="hatch-icon-group">
+						<div class="layers-form-item">
+							<label><?php _e( 'Text Align' , LAYERS_THEME_SLUG ); ?></label>
+							<div class="layers-icon-group">
 								<?php echo $this->input(
 									array(
 										'type' => 'select-icons',
@@ -483,17 +484,17 @@ class Hatch_Design_Controller {
 										'id' =>  $widget['id'] . '-fonts-align' ,
 										'value' => ( isset( $values['fonts']['align'] ) ) ? $values['fonts']['align'] : NULL,
 										'options' => array(
-											'text-left' => __( 'Left' , HATCH_THEME_SLUG ),
-											'text-center' => __( 'Center' , HATCH_THEME_SLUG ),
-											'text-right' => __( 'Right' , HATCH_THEME_SLUG ),
-											'text-justify' => __( 'Justify' , HATCH_THEME_SLUG )
+											'text-left' => __( 'Left' , LAYERS_THEME_SLUG ),
+											'text-center' => __( 'Center' , LAYERS_THEME_SLUG ),
+											'text-right' => __( 'Right' , LAYERS_THEME_SLUG ),
+											'text-justify' => __( 'Justify' , LAYERS_THEME_SLUG )
 										)
 									)
 								); ?>
 							</div>
 						</div>
-						<div class="hatch-form-item">
-							<label><?php _e( 'Text Size' , HATCH_THEME_SLUG ); ?></label>
+						<div class="layers-form-item">
+							<label><?php _e( 'Text Size' , LAYERS_THEME_SLUG ); ?></label>
 							<?php echo $this->input(
 								array(
 									'type' => 'select',
@@ -501,15 +502,15 @@ class Hatch_Design_Controller {
 									'id' =>  $widget['id'] . '-fonts-size' ,
 									'value' => ( isset( $values['fonts']['size'] ) ) ? $values['fonts']['size'] : NULL,
 									'options' => array(
-											'small' => __( 'Small' , HATCH_THEME_SLUG ),
-											'medium' => __( 'Medium' , HATCH_THEME_SLUG ),
-											'large' => __( 'Large' , HATCH_THEME_SLUG )
+											'small' => __( 'Small' , LAYERS_THEME_SLUG ),
+											'medium' => __( 'Medium' , LAYERS_THEME_SLUG ),
+											'large' => __( 'Large' , LAYERS_THEME_SLUG )
 									)
 								)
 							); ?>
 						</div>
-						<div class="hatch-form-item">
-							<label><?php _e( 'Text Color' , HATCH_THEME_SLUG ); ?></label>
+						<div class="layers-form-item">
+							<label><?php _e( 'Text Color' , LAYERS_THEME_SLUG ); ?></label>
 							<?php echo $this->input(
 								array(
 									'type' => 'color',
@@ -540,30 +541,30 @@ class Hatch_Design_Controller {
 		// If there is no widget information provided, can the operation
 		if( NULL == $widget ) return; ?>
 
-		<li class="hatch-visuals-item">
-			<a href="" class="hatch-icon-wrapper">
+		<li class="layers-visuals-item">
+			<a href="" class="layers-icon-wrapper">
 				<span class="icon-photo"></span>
-				<span class="hatch-icon-description">
-					<?php _e( 'Background' , HATCH_THEME_SLUG ); ?>
+				<span class="layers-icon-description">
+					<?php _e( 'Background' , LAYERS_THEME_SLUG ); ?>
 				</span>
 			</a>
-			<div class="hatch-pop-menu-wrapper hatch-animate hatch-content-small">
-				<div class="hatch-pop-menu-setting">
+			<div class="layers-pop-menu-wrapper layers-animate layers-content-small">
+				<div class="layers-pop-menu-setting">
 					<section>
-						<div class="hatch-form-item">
-							<label><?php _e( 'Background Image' , HATCH_THEME_SLUG ); ?></label>
+						<div class="layers-form-item">
+							<label><?php _e( 'Background Image' , LAYERS_THEME_SLUG ); ?></label>
 							<?php echo $this->input(
 								array(
 									'type' => 'image',
-									'label' => __( 'Choose Background' , HATCH_THEME_SLUG ),
+									'label' => __( 'Choose Background' , LAYERS_THEME_SLUG ),
 									'name' => $widget['name'] . '[background][image]' ,
 									'id' =>  $widget['id'] . '-background-image' ,
 									'value' => ( isset( $values['background']['image'] ) ) ? $values['background']['image'] : NULL
 								)
 							); ?>
 						</div>
-						<div class="hatch-form-item">
-							<label><?php _e( 'Background Color' , HATCH_THEME_SLUG ); ?></label>
+						<div class="layers-form-item">
+							<label><?php _e( 'Background Color' , LAYERS_THEME_SLUG ); ?></label>
 							<?php echo $this->input(
 								array(
 									'type' => 'color',
@@ -573,8 +574,8 @@ class Hatch_Design_Controller {
 								)
 							); ?>
 						</div>
-						<div class="hatch-select-wrapper hatch-form-item">
-							<label><?php _e( 'Repeat' , HATCH_THEME_SLUG ); ?></label>
+						<div class="layers-select-wrapper layers-form-item">
+							<label><?php _e( 'Repeat' , LAYERS_THEME_SLUG ); ?></label>
 							<?php echo $this->input(
 								array(
 									'type' => 'select',
@@ -582,16 +583,16 @@ class Hatch_Design_Controller {
 									'id' =>  $widget['id'] . '-background-repeat' ,
 									'value' => ( isset( $values['background']['repeat'] ) ) ? $values['background']['repeat'] : NULL,
 									'options' => array(
-											'no-repeat' => __( 'No Repeat' , HATCH_THEME_SLUG ),
-											'repeat' => __( 'Repeat' , HATCH_THEME_SLUG ),
-											'repeat-x' => __( 'Repeat Horizontal' , HATCH_THEME_SLUG ),
-											'repeat-y' => __( 'Repeat Vertical' , HATCH_THEME_SLUG )
+											'no-repeat' => __( 'No Repeat' , LAYERS_THEME_SLUG ),
+											'repeat' => __( 'Repeat' , LAYERS_THEME_SLUG ),
+											'repeat-x' => __( 'Repeat Horizontal' , LAYERS_THEME_SLUG ),
+											'repeat-y' => __( 'Repeat Vertical' , LAYERS_THEME_SLUG )
 										)
 								)
 							); ?>
 						</div>
-						<div class="hatch-select-wrapper hatch-form-item">
-							<label><?php _e( 'Position' , HATCH_THEME_SLUG ); ?></label>
+						<div class="layers-select-wrapper layers-form-item">
+							<label><?php _e( 'Position' , LAYERS_THEME_SLUG ); ?></label>
 							<?php echo $this->input(
 								array(
 									'type' => 'select',
@@ -599,31 +600,31 @@ class Hatch_Design_Controller {
 									'id' =>  $widget['id'] . '-background-position' ,
 									'value' => ( isset( $values['background']['position'] ) ) ? $values['background']['position'] : NULL,
 									'options' => array(
-											'center' => __( 'Center' , HATCH_THEME_SLUG ),
-											'top' => __( 'Top' , HATCH_THEME_SLUG ),
-											'bottom' => __( 'Bottom' , HATCH_THEME_SLUG ),
-											'left' => __( 'Left' , HATCH_THEME_SLUG ),
-											'right' => __( 'Right' , HATCH_THEME_SLUG )
+											'center' => __( 'Center' , LAYERS_THEME_SLUG ),
+											'top' => __( 'Top' , LAYERS_THEME_SLUG ),
+											'bottom' => __( 'Bottom' , LAYERS_THEME_SLUG ),
+											'left' => __( 'Left' , LAYERS_THEME_SLUG ),
+											'right' => __( 'Right' , LAYERS_THEME_SLUG )
 										)
 								)
 							); ?>
 						</div>
-						<div class="hatch-checkbox-wrapper hatch-form-item">
+						<div class="layers-checkbox-wrapper layers-form-item">
 							<?php echo $this->input(
 								array(
 									'type' => 'checkbox',
-									'label' => __( 'Stretch' , HATCH_THEME_SLUG ),
+									'label' => __( 'Stretch' , LAYERS_THEME_SLUG ),
 									'name' => $widget['name'] . '[background][stretch]' ,
 									'id' =>  $widget['id'] . '-background-stretch' ,
 									'value' => ( isset( $values['background']['stretch'] ) ) ? $values['background']['stretch'] : NULL
 								)
 							); ?>
 						</div>
-						<div class="hatch-checkbox-wrapper hatch-form-item">
+						<div class="layers-checkbox-wrapper layers-form-item">
 							<?php echo $this->input(
 								array(
 									'type' => 'checkbox',
-									'label' => __( 'Darken' , HATCH_THEME_SLUG ),
+									'label' => __( 'Darken' , LAYERS_THEME_SLUG ),
 									'name' => $widget['name'] . '[background][darken]' ,
 									'id' =>  $widget['id'] . '-background-darken' ,
 									'value' => ( isset( $values['background']['darken'] ) ) ? $values['background']['darken'] : NULL
@@ -636,4 +637,57 @@ class Hatch_Design_Controller {
 		</li>
 	<?php }
 
-} //class Hatch_Design_Controller
+	/**
+	* Advanced - Static Option
+	*
+	* @param  	array     	$widget 	Widget Element
+	* @param  	array     	$values 	Accepts the value for this element
+	* @param  	array     	$args 		Additional arguments to pass to this function
+	*/
+
+	function advanced( $widget = NULL, $values = NULL, $args = NULL ){
+
+		// If there is no widget information provided, can the operation
+		if( NULL == $widget ) return; ?>
+
+		<li class="layers-visuals-item">
+			<a href="" class="layers-icon-wrapper">
+				<span class="icon-settings"></span>
+				<span class="layers-icon-description">
+					<?php _e( 'Advanced' , LAYERS_THEME_SLUG ); ?>
+				</span>
+			</a>
+			<div class="layers-pop-menu-wrapper layers-animate layers-content-small">
+				<div class="layers-pop-menu-setting">
+					<section>
+						<div class="layers-text-wrapper layers-form-item">
+							<label><?php _e( 'Custom Class' , LAYERS_THEME_SLUG ); ?></label>
+							<?php echo $this->input(
+								array(
+									'type' => 'text',
+									'name' => $widget['name'] . '[advanced][customclass]' ,
+									'id' =>  $widget['id'] . '-advanced-customclass' ,
+									'value' => ( isset( $values['advanced']['customclass'] ) ) ? $values['advanced']['customclass'] : NULL,
+									'placeholder' => 'example-class'
+								)
+							); ?>
+						</div>
+						<div class="layers-textarea-wrapper layers-form-item">
+							<label><?php _e( 'Custom CSS' , LAYERS_THEME_SLUG ); ?></label>
+							<?php echo $this->input(
+								array(
+									'type' => 'textarea',
+									'name' => $widget['name'] . '[advanced][customcss]' ,
+									'id' =>  $widget['id'] . '-advanced-customcss' ,
+									'value' => ( isset( $values['advanced']['customcss'] ) ) ? $values['advanced']['customcss'] : NULL,
+									'placeholder' => ".classname {\n\tbackground: #333;\n}"
+								)
+							); ?>
+						</div>
+					</section>
+				</div>
+			</div>
+		</li>
+	<?php  }
+
+} //class Layers_Design_Controller

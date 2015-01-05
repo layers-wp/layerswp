@@ -1,15 +1,15 @@
 <?php  /**
  * Radio Control
  *
- * This file is used to register and display the custom Hatch Radio Checkbox
+ * This file is used to register and display the custom Layers Radio Checkbox
  *
- * @package Hatch
- * @since Hatch 1.0
+ * @package Layers
+ * @since Layers 1.0
  */
 
-if( !class_exists( 'Hatch_Customize_Select_Icon_Control' ) ) {
+if( !class_exists( 'Layers_Customize_Select_Icon_Control' ) ) {
 
-	class Hatch_Customize_Select_Icon_Control extends WP_Customize_Control {
+	class Layers_Customize_Select_Icon_Control extends WP_Customize_Control {
 
 		public $type = 'select-icons';
 
@@ -34,17 +34,17 @@ if( !class_exists( 'Hatch_Customize_Select_Icon_Control' ) ) {
 			<div id="input_<?php echo $this->id; ?>">
 
 				<?php if ( '' != $this->subtitle ) : ?>
-					<div class="hatch-form-row"><?php echo $this->subtitle; ?></div>
+					<div class="layers-form-row"><?php echo $this->subtitle; ?></div>
 				<?php endif; ?>
-				<ul class="hatch-visuals-wrapper hatch-visuals-inline hatch-clearfix">
+				<ul class="layers-visuals-wrapper layers-visuals-inline layers-clearfix">
 					<?php foreach ( $this->choices as $value => $label ) : ?>
-							<li class="hatch-visuals-item <?php if( $value == $this->value() ) echo 'hatch-active'; ?>">
-								<label class="hatch-icon-wrapper hatch-select-images">
+							<li class="layers-visuals-item <?php if( $value == $this->value() ) echo 'layers-active'; ?>">
+								<label class="layers-icon-wrapper layers-select-images">
 									<span class="icon-<?php echo $value; ?>"></span>
-									<span class="hatch-icon-description">
+									<span class="layers-icon-description">
 										<?php echo $label; ?>
 									</span>
-									<input class="hatch-hide" type="radio" value="<?php echo esc_attr( $value ); ?>" name="<?php echo esc_attr( $name ); ?>" <?php $this->link(); checked( $this->value(), $value ); ?> />
+									<input class="layers-hide" type="radio" value="<?php echo esc_attr( $value ); ?>" name="<?php echo esc_attr( $name ); ?>" <?php $this->link(); checked( $this->value(), $value ); ?> />
 								</label>
 							</li>
 					<?php endforeach; ?>
@@ -53,4 +53,4 @@ if( !class_exists( 'Hatch_Customize_Select_Icon_Control' ) ) {
 
 		<?php }
 	}
-} // !class_exists( 'Hatch_Customize_Radio_Control' )
+} // !class_exists( 'Layers_Customize_Radio_Control' )

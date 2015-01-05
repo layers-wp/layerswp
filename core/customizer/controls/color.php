@@ -1,17 +1,17 @@
 <?php  /**
- * Select Image
+ * Color Control
  *
- * This file is used to register and display the custom Layers Select Image
+ * This file is used to register and display the custom Layers Color Control
  *
  * @package Layers
  * @since Layers 1.0
  */
 
-if( !class_exists( 'Layers_Customize_Select_Image_Control' ) ) {
+if( !class_exists( 'Layers_Customize_Color_Control' ) ) {
 
-	class Layers_Customize_Select_Image_Control extends WP_Customize_Control {
+	class Layers_Customize_Color_Control extends WP_Customize_Control {
 
-		public $type = 'select-image';
+		public $type = 'color';
 
 		public $description = '';
 
@@ -23,9 +23,7 @@ if( !class_exists( 'Layers_Customize_Select_Image_Control' ) ) {
 
 			$link = explode( '="', $this->get_link() );
 			$link_attr = ltrim( $link[0], 'data-' );
-			$link_val = rtrim( $link[1], '"' );
-
-			$values = false; ?>
+			$link_val = rtrim( $link[1], '"' ); ?>
 
 			<span class="customize-control-title">
 
@@ -39,22 +37,25 @@ if( !class_exists( 'Layers_Customize_Select_Image_Control' ) ) {
 					<label class="layers-form-row"><?php echo $this->subtitle; ?></label>
 				<?php endif; ?>
 				<div class="layers-visuals-wrapper layers-visuals-inline layers-clearfix">
-					<?php echo $form_elements->input(
+
+					<?php
+					echo $form_elements->input(
 						array(
-							'type' => 'image',
-							'label' => __( 'Choose Background' , LAYERS_THEME_SLUG ),
+							'type' => 'color',
 							'name' => '',
 							'id' =>  $this->id,
-							'value' => ( isset( $values['background']['image'] ) ) ? $values['background']['image'] : $this->value(),
+							'value' => $this->value(),
 							'data' => array(
 								$link_attr => $link_val
 							)
 						)
-					); ?>
+					);
+					?>
+
 				</div>
 
 			</div>
 			<?php
 		}
 	}
-} // !class_exists( 'Layers_Customize_Select_Image_Control' )
+} // !class_exists( 'Layers_Customize_Color_Control' )

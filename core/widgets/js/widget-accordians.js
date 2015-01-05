@@ -1,7 +1,7 @@
 /*
-* Hatch Widget Specific Functions
+* Layers Widget Specific Functions
 *
-* This file controls the accordian action on the Hatch custom widgets
+* This file controls the accordian action on the Layers custom widgets
 *
  * Contents
  * 1 - Accordians
@@ -18,51 +18,51 @@
 
 	// 1.a - Accordian Click
 
-	$( document ).on( 'click' , '.hatch-accordion-title' , function(e){
+	$( document ).on( 'click' , '.layers-accordion-title' , function(e){
 		e.preventDefault();
 
 		// Toggle this accordian
-		$me = $(this).closest( 'li.hatch-accordion-item' );
+		$me = $(this).closest( 'li.layers-accordion-item' );
 		$me.toggleClass( 'open' );
-		$me.find( '.hatch-accordion-section' ).first().slideToggle();
+		$me.find( '.layers-accordion-section' ).first().slideToggle();
 
 		// Close non-active accordians
 		$siblings = $me.siblings();
 		$siblings.removeClass( 'open' );
-		$siblings.find( '.hatch-accordion-section' ).slideUp();
+		$siblings.find( '.layers-accordion-section' ).slideUp();
 
 	});
 
 	// 1.b - Accodian Init
 
-	function hatch_init_accordians(){
+	function layers_init_accordians(){
 
-		$( '.hatch-accordions' ).each( function(){
+		$( '.layers-accordions' ).each( function(){
 			var $that = $(this);
 
-			$that.find( 'li.hatch-accordion-item' ).first().addClass( 'open' );
+			$that.find( 'li.layers-accordion-item' ).first().addClass( 'open' );
 
-			$that.find( 'li.hatch-accordion-item' ).each( function() {
+			$that.find( 'li.layers-accordion-item' ).each( function() {
 				$li = $(this);
 
 				if( $li.hasClass( 'open' ) ){
-					$li.find( '.hatch-accordion-section' ).first().slideDown();
+					$li.find( '.layers-accordion-section' ).first().slideDown();
 				} else {
-					$li.find( '.hatch-accordion-section' ).slideUp();
+					$li.find( '.layers-accordion-section' ).slideUp();
 				}
 			});
 		});
 	} // @TODO: Make sure that when adding a new widget, that the right accordians are open & closed
-	hatch_init_accordians();
+	layers_init_accordians();
 
 	// 1.c - Accodian Widget Click
 
-	$( document ).on( 'click' , '#available-widgets div[id^="widget-tpl-hatch-"]' , function(){ hatch_init_accordians() });
+	$( document ).on( 'click' , '#available-widgets div[id^="widget-tpl-layers-"]' , function(){ layers_init_accordians() });
 
 	/**
 	* 2 - Widget Peep Function
 	*/
-	$( document ).on( 'click' , '#hatch-widget-peep' , function(e){
+	$( document ).on( 'click' , '#layers-widget-peep' , function(e){
 		e.preventDefault();
 
 		// "Hi Mom"
@@ -71,7 +71,7 @@
 		var $widget_content = $that.closest( '.widget-content' );
 		var $widget_inside = $that.closest( '.widget-inside' );
 
-		var $control_wrapper = $widget_content.find( '.hatch-visuals-wrapper' );
+		var $control_wrapper = $widget_content.find( '.layers-visuals-wrapper' );
 		var $control_wrapper_width = $control_wrapper.outerWidth();
 
 

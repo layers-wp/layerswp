@@ -2,8 +2,8 @@
 /**
  * The template for displaying portfolio archives
  *
- * @package Hatch
- * @since Hatch 1.0
+ * @package Layers
+ * @since Layers 1.0
  */
 
 // Do the WP_Query
@@ -26,7 +26,7 @@ get_header(); ?>
             <?php }; // while have_posts ?>
         </div>
         <div class="row">
-            <?php hatch_pagination( array() ); ?>
+            <?php layers_pagination( array() ); ?>
         </div>
     <?php }; // if have_posts ?>
 </section>

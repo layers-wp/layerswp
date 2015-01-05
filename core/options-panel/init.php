@@ -1,13 +1,13 @@
 <?php /**
- * Hatch Options Panel
+ * Layers Options Panel
  *
  * This file outputs the WP Pointer help popups around the site
  *
- * @package Hatch
- * @since Hatch 1.0
+ * @package Layers
+ * @since Layers 1.0
  */
 
-class Hatch_Options_Panel {
+class Layers_Options_Panel {
 
 	private static $instance;
 
@@ -26,10 +26,10 @@ class Hatch_Options_Panel {
 	public function __construct() {
 
 		// Setup some folder variables
-		$this->options_panel_dir = HATCH_TEMPLATE_DIR . '/core/options-panel/';
+		$this->options_panel_dir = LAYERS_TEMPLATE_DIR . '/core/options-panel/';
 
 		// Setup the partial var
-		$page =  str_replace( HATCH_THEME_SLUG . '-' , '', $_REQUEST[ 'page' ] );
+		$page =  str_replace( LAYERS_THEME_SLUG . '-' , '', $_REQUEST[ 'page' ] );
 
 		// Load template
 		$this->body( $page );
@@ -53,6 +53,7 @@ class Hatch_Options_Panel {
 	* Body
 	*/
 	public function body( $partial = NULL ){
+
 		if( NULL == $partial ) return;
 
 		// Include Partials, we're using require so that inside the partial we can use $this to access the header and footer
@@ -64,7 +65,10 @@ class Hatch_Options_Panel {
 	* Footer
 	*/
 	public function footer( $args = array() ){ ?>
-		<footer>
+		<footer class="layers-row layers-content">
+			<p>
+				<?php _e( 'Layers is a product of <a href="http://oboxthemes.com/">Obox Themes</a>. For questions and feedback please <a href="mailto:david@obox.co.za">email David directly', LAYERS_THEME_SLUG ); ?></a>.
+			</p>
 		</footer>
 	<?php }
 }
@@ -73,62 +77,65 @@ class Hatch_Options_Panel {
  * Add admin menu
  */
 
-function hatch_options_panel_menu(){
-	
+function layers_options_panel_menu(){
+
 	global $submenu, $menu;
-	
+
 	// Welcome Page
 	add_menu_page(
-			HATCH_THEME_TITLE,
-			HATCH_THEME_TITLE,
-			'manage_options',
-			HATCH_THEME_SLUG . '-welcome',
-			'hatch_options_panel_ui',
-			'dashicons-smiley',
-			3
+		LAYERS_THEME_TITLE,
+		LAYERS_THEME_TITLE,
+		'manage_options',
+		LAYERS_THEME_SLUG . '-welcome',
+		'layers_options_panel_ui',
+		'dashicons-smiley',
+		3
 	);
 
-	// Welcome Page
-	//add_submenu_page( $parent_slug, $page_title, $menu_title, $capability, $menu_slug, $function );
+	// Add Preset Pages
 	add_submenu_page(
-			HATCH_THEME_SLUG . '-welcome',
-			__( 'Backup' , HATCH_THEME_SLUG ),
-			__( 'Backup' , HATCH_THEME_SLUG ),
-			'manage_options',
-			HATCH_THEME_SLUG . '-backup',
-			'hatch_options_panel_ui'
+		LAYERS_THEME_SLUG . '-welcome',
+		__( 'Add New Layers Page' , LAYERS_THEME_SLUG ),
+		__( 'Add New Layers Page' , LAYERS_THEME_SLUG ),
+		'manage_options',
+		LAYERS_THEME_SLUG . '-preset-layouts',
+		'layers_options_panel_ui'
 	);
-	
-	// This modifies the Hatch submenu item - must be done here as $submenu
-	// is only created if $submenu items are added using add_submenu_page
-	$submenu[HATCH_THEME_SLUG . '-welcome'][0][0] = 'Welcome';
-	
-	// Hatch Pages
-	// Only show if there are actually Hatch pages.
-	if( hatch_get_builder_pages() ){
-		
-		// Move backup to the next menu position, to make room
-		// @TODO: Revisit this as there could be a cleaner method
-		$submenu[HATCH_THEME_SLUG . '-welcome'][2] = $submenu[HATCH_THEME_SLUG . '-welcome'][1];
-		
-		// Add submenu item.
-		$submenu[HATCH_THEME_SLUG . '-welcome'][1] = array(
-			__( 'Hatch Pages', HATCH_THEME_SLUG ),
+
+	// Layers Pages
+	if( layers_get_builder_pages() ){
+		// Only show if there are actually Layers pages.
+		add_submenu_page(
+			LAYERS_THEME_SLUG . '-welcome',
+			__( 'Layers Pages', LAYERS_THEME_SLUG ),
+			__( 'Layers Pages', LAYERS_THEME_SLUG ),
 			'manage_options',
-			admin_url( "edit.php?post_type=page&filter=hatch" )
+			"edit.php?post_type=page&filter=layers"
 		);
-		
 	}
-	
+
+	// Backup Page
+	add_submenu_page(
+		LAYERS_THEME_SLUG . '-welcome',
+		__( 'Backup' , LAYERS_THEME_SLUG ),
+		__( 'Backup' , LAYERS_THEME_SLUG ),
+		'manage_options',
+		LAYERS_THEME_SLUG . '-backup',
+		'layers_options_panel_ui'
+	);
+
+	// This modifies the Layers submenu item - must be done here as $submenu
+	// is only created if $submenu items are added using add_submenu_page
+	$submenu[LAYERS_THEME_SLUG . '-welcome'][0][0] = 'Welcome';
 }
 
-add_action( 'admin_menu' , 'hatch_options_panel_menu' , 50 );
+add_action( 'admin_menu' , 'layers_options_panel_menu' , 50 );
 
 /**
 *  Kicking this off with the 'ad' hook
 */
 
-function hatch_options_panel_ui(){
-	$hatch_options_panel = new Hatch_Options_Panel();
-	$hatch_options_panel->init();
+function layers_options_panel_ui(){
+	$layers_options_panel = new Layers_Options_Panel();
+	$layers_options_panel->init();
 }

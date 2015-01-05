@@ -1,13 +1,13 @@
 <?php  /**
  * Sliders Widget
  *
- * This file is used to register and display the Hatch - Slider widget.
+ * This file is used to register and display the Layers - Slider widget.
  *
- * @package Hatch
- * @since Hatch 1.0
+ * @package Layers
+ * @since Layers 1.0
  */
-if( !class_exists( 'Hatch_Slider_Widget' ) ) {
-	class Hatch_Slider_Widget extends Hatch_Widget {
+if( !class_exists( 'Layers_Slider_Widget' ) ) {
+	class Layers_Slider_Widget extends Layers_Widget {
 
 		/**
 		*  Widget variables
@@ -25,15 +25,15 @@ if( !class_exists( 'Hatch_Slider_Widget' ) ) {
 		/**
 		*  Widget construction
 		*/
-	 	function Hatch_Slider_Widget(){
+	 	function Layers_Slider_Widget(){
 	 		/* Widget settings. */
-			$widget_ops = array( 'classname' => 'obox-hatch-' . $this->widget_id .'-widget', 'description' => 'This widget is used to display your ' . $this->widget_title . '.' );
+			$widget_ops = array( 'classname' => 'obox-layers-' . $this->widget_id .'-widget', 'description' => 'This widget is used to display your ' . $this->widget_title . '.' );
 
 			/* Widget control settings. */
-			$control_ops = array( 'width' => HATCH_WIDGET_WIDTH_LARGE, 'height' => NULL, 'id_base' => HATCH_THEME_SLUG . '-widget-' . $this->widget_id );
+			$control_ops = array( 'width' => LAYERS_WIDGET_WIDTH_LARGE, 'height' => NULL, 'id_base' => LAYERS_THEME_SLUG . '-widget-' . $this->widget_id );
 
 			/* Create the widget. */
-			$this->WP_Widget( HATCH_THEME_SLUG . '-widget-' . $this->widget_id , '(' . HATCH_THEME_TITLE . ') ' . $this->widget_title . ' Widget', $widget_ops, $control_ops );
+			$this->WP_Widget( LAYERS_THEME_SLUG . '-widget-' . $this->widget_id , '(' . LAYERS_THEME_TITLE . ') ' . $this->widget_title . ' Widget', $widget_ops, $control_ops );
 
 			/* Setup Widget Defaults */
 			$this->defaults = array (
@@ -89,16 +89,21 @@ if( !class_exists( 'Hatch_Slider_Widget' ) ) {
 			if( !empty( $instance ) ) $instance_defaults = array();
 
 			// Parse $instance
-			$widget = wp_parse_args( $instance, $instance_defaults ); ?>
+			$widget = wp_parse_args( $instance, $instance_defaults );
 
-			<?php // Setup the layout class for boxed/full width/full screen
+			// Setup the layout class for boxed/full width/full screen
 			if( 'layout-boxed' == $this->check_and_return( $widget , 'design' , 'layout' ) ) {
 				$layout_class = 'container';
 			} elseif('layout-full-screen' == $this->check_and_return( $widget , 'design' , 'layout' ) ) {
 				$layout_class = 'full-screen';
-			}?>
+			}
 
-			<section class="widget row banner swiper-container <?php if( isset( $layout_class ) ) echo $layout_class; ?>" id="<?php echo $widget_id; ?>" <?php if( $this->check_and_return( $widget , 'banner_height' ) ) echo 'style="height: ' . $widget['banner_height'] . 'px;"' ?>>
+			// Output custom css if there is any
+			if( !empty( $widget['design']['advanced'][ 'customcss' ] ) ){
+				wp_add_inline_style( LAYERS_THEME_SLUG . '-custom-widget-styles', $widget['design']['advanced'][ 'customcss' ] );
+			} ?>
+
+			<section class="widget row banner swiper-container <?php if( isset( $layout_class ) ) echo $layout_class; ?> <?php echo $this->check_and_return( $widget , 'design', 'advanced', 'customclass' ) ?>" id="<?php echo $widget_id; ?>" <?php if( $this->check_and_return( $widget , 'banner_height' ) ) echo 'style="height: ' . $widget['banner_height'] . 'px;"' ?>>
 				<?php if( !empty( $widget[ 'banners' ] ) ) { ?>
 					<?php if( 1 < count( $widget[ 'banners' ] ) && isset( $widget['show_slider_arrows'] ) ) { ?>
 						 <div class="arrows">
@@ -116,14 +121,20 @@ if( !class_exists( 'Hatch_Slider_Widget' ) ) {
 						<?php foreach ( $widget[ 'banners' ] as $key => $banner) {
 
 							// Set the background styling
-							if( !empty( $banner['design'][ 'background' ] ) ) $this->widget_styles( $widget_id . '-' . $key , 'background', array( 'background' => $banner['design'][ 'background' ] ) );
-							if( !empty( $banner['design']['fonts'][ 'color' ] ) ) $this->widget_styles( $widget_id . '-' . $key , 'color', array( 'selectors' => array( 'h3.heading', 'h3.heading a', 'div.excerpt' ) , 'color' => $banner['design']['fonts'][ 'color' ] ) );
-							if( !empty( $banner['design']['fonts'][ 'shadow' ] ) ) $this->widget_styles( $widget_id . '-' . $key , 'text-shadow', array( 'selectors' => array( 'h3.heading', 'h3.heading a',  'div.excerpt' )  , 'text-shadow' => $banner['design']['fonts'][ 'shadow' ] ) );
+							if( !empty( $banner['design'][ 'background' ] ) ) layers_inline_styles( $widget_id . '-' . $key , 'background', array( 'background' => $banner['design'][ 'background' ] ) );
+							if( !empty( $banner['design']['fonts'][ 'color' ] ) ) layers_inline_styles( $widget_id . '-' . $key , 'color', array( 'selectors' => array( 'h3.heading', 'h3.heading a', 'div.excerpt' ) , 'color' => $banner['design']['fonts'][ 'color' ] ) );
+							if( !empty( $banner['design']['fonts'][ 'shadow' ] ) ) layers_inline_styles( $widget_id . '-' . $key , 'text-shadow', array( 'selectors' => array( 'h3.heading', 'h3.heading a',  'div.excerpt' )  , 'text-shadow' => $banner['design']['fonts'][ 'shadow' ] ) );
 
 							// Set Image Sizes
 							if( isset( $banner['design'][ 'imageratios' ] ) ){
 									// Translate Image Ratio
-									$image_ratio = hatch_translate_image_ratios( $banner['design'][ 'imageratios' ] );
+									$image_ratio = layers_translate_image_ratios( $banner['design'][ 'imageratios' ] );
+
+									// If round then set image to square, and set border radius css further down.
+									if( 'round' == $image_ratio ){
+										$image_ratio = 'square';
+									}
+
 									$imageratios = $image_ratio . '-medium';
 							} else {
 								$imageratios = 'large';
@@ -157,7 +168,7 @@ if( !class_exists( 'Hatch_Slider_Widget' ) ) {
 											</div>
 										<?php } // if title || excerpt ?>
 										<?php if( $this->check_and_return( $banner , 'design' , 'featuredimage' ) ) { ?>
-											<div class="image-container">
+											<div class="image-container <?php if ( 'round' == layers_translate_image_ratios( $module['design'][ 'imageratios' ] ) ) { ?>image-rounded<?php } ?>">
 												<?php echo wp_get_attachment_image( $banner['design'][ 'featuredimage' ] , $imageratios ); ?>
 											</div>
 										<?php } // if $banner image ?>
@@ -252,23 +263,24 @@ if( !class_exists( 'Hatch_Slider_Widget' ) ) {
 				$instance, // Widget Values
 				array(
 					'custom',
+					'advanced'
 				), // Standard Components
 				array(
 					'layout' => array(
 						'icon-css' => 'icon-layout-fullwidth',
 						'label' => 'Layout',
-						'wrapper-css' => 'hatch-pop-menu-wrapper hatch-small',
+						'wrapper-css' => 'layers-pop-menu-wrapper layers-small',
 						'elements' => array(
 							'layout' => array(
 								'type' => 'select-icons',
-								'label' => __( '', HATCH_THEME_SLUG ),
+								'label' => __( '', LAYERS_THEME_SLUG ),
 								'name' => $this->get_field_name( 'design' ) . '[layout]' ,
 								'id' => $this->get_field_id( 'design-layout' ) ,
 								'value' => ( isset( $design['layout'] ) ) ? $design['layout'] : NULL,
 								'options' => array(
-									'layout-boxed' => __( 'Boxed' , HATCH_THEME_SLUG ),
-									'layout-fullwidth' => __( 'Full Width' , HATCH_THEME_SLUG ),
-									'layout-full-screen' => __( 'Full Screen' , HATCH_THEME_SLUG )
+									'layout-boxed' => __( 'Boxed' , LAYERS_THEME_SLUG ),
+									'layout-fullwidth' => __( 'Full Width' , LAYERS_THEME_SLUG ),
+									'layout-full-screen' => __( 'Full Screen' , LAYERS_THEME_SLUG )
 								)
 							)
 						)
@@ -282,21 +294,21 @@ if( !class_exists( 'Hatch_Slider_Widget' ) ) {
 									'name' => $this->get_field_name( 'show_slider_arrows' ) ,
 									'id' => $this->get_field_id( 'show_slider_arrows' ) ,
 									'value' => ( isset( $show_slider_arrows ) ) ? $show_slider_arrows : NULL,
-									'label' => __( 'Show Slider Arrows', HATCH_THEME_SLUG )
+									'label' => __( 'Show Slider Arrows', LAYERS_THEME_SLUG )
 								),
 								'show_slider_dots' => array(
 									'type' => 'checkbox',
 									'name' => $this->get_field_name( 'show_slider_dots' ) ,
 									'id' => $this->get_field_id( 'show_slider_dots' ) ,
 									'value' => ( isset( $show_slider_dots ) ) ? $show_slider_dots : NULL,
-									'label' => __( 'Show Slider Dots', HATCH_THEME_SLUG )
+									'label' => __( 'Show Slider Dots', LAYERS_THEME_SLUG )
 								),
 								'autoplay_banners' => array(
 									'type' => 'checkbox',
 									'name' => $this->get_field_name( 'autoplay_banners' ) ,
 									'id' => $this->get_field_id( 'autoplay_banners' ) ,
 									'value' => ( isset( $autoplay_banners ) ) ? $autoplay_banners : NULL,
-									'label' => __( 'Autoplay Slides', HATCH_THEME_SLUG )
+									'label' => __( 'Autoplay Slides', LAYERS_THEME_SLUG )
 								),
 								'slide_time' => array(
 									'type' => 'number',
@@ -304,29 +316,29 @@ if( !class_exists( 'Hatch_Slider_Widget' ) ) {
 									'id' => $this->get_field_id( 'slide_time' ) ,
 									'min' => 1,
 									'max' => 10,
-									'placeholder' => __( 'Leave blank for no slide', HATCH_THEME_SLUG ),
+									'placeholder' => __( 'Leave blank for no slide', LAYERS_THEME_SLUG ),
 									'value' => ( isset( $slide_time ) ) ? $slide_time : NULL,
-									'label' => __( 'Slide Interval', HATCH_THEME_SLUG )
+									'label' => __( 'Slide Interval', LAYERS_THEME_SLUG )
 								),
 								'banner_height' => array(
 									'type' => 'number',
 									'name' => $this->get_field_name( 'banner_height' ) ,
 									'id' => $this->get_field_id( 'banner_height' ) ,
 									'value' => ( isset( $banner_height ) ) ? $banner_height : NULL,
-									'label' => __( 'Slider Height', HATCH_THEME_SLUG )
+									'label' => __( 'Slider Height', LAYERS_THEME_SLUG )
 								)
 							)
 					)
 				)
 			); ?>
-			<div class="hatch-container-large" id="hatch-banner-widget-<?php echo $this->number; ?>">
+			<div class="layers-container-large" id="layers-banner-widget-<?php echo $this->number; ?>">
 
 				<?php $this->form_elements()->header( array(
 					'title' =>'Sliders',
 					'icon_class' =>'slider'
 				) ); ?>
 
-				<section class="hatch-accordion-section hatch-content">
+				<section class="layers-accordion-section layers-content">
 						<?php echo $this->form_elements()->input(
 							array(
 								'type' => 'hidden',
@@ -339,7 +351,7 @@ if( !class_exists( 'Hatch_Slider_Widget' ) ) {
 						<?php // If we have some banners, let's break out their IDs into an array
 						if( isset( $banner_ids ) && '' != $banner_ids ) $banners = explode( ',' , $banner_ids ); ?>
 
-						<ul id="banner_list_<?php echo $this->number; ?>" class="hatch-accordions hatch-accordions-sortable hatch-sortable" data-id_base="<?php echo $this->id_base; ?>" data-number="<?php echo $this->number; ?>">
+						<ul id="banner_list_<?php echo $this->number; ?>" class="layers-accordions layers-accordions-sortable layers-sortable" data-id_base="<?php echo $this->id_base; ?>" data-number="<?php echo $this->number; ?>">
 							<?php if( isset( $banners ) && is_array( $banners ) ) { ?>
 								<?php foreach( $banners as $banner ) {
 									$this->banner_item( array(
@@ -352,7 +364,7 @@ if( !class_exists( 'Hatch_Slider_Widget' ) ) {
 							<?php } else { ?>
 								<?php $this->banner_item( array( 'id_base' => $this->id_base , 'number' => $this->number ) ); ?>
 							<?php }?>
-							<li class="hatch-button btn-primary hatch-add-widget-banner" data-number="<?php echo $this->number; ?>"><?php _e( '+ Add New Slider' , HATCH_THEME_SLUG ) ; ?></li>
+							<li class="layers-button btn-primary layers-add-widget-banner" data-number="<?php echo $this->number; ?>"><?php _e( '+ Add New Slider' , LAYERS_THEME_SLUG ) ; ?></li>
 						</ul>
 
 				</section>
@@ -388,13 +400,13 @@ if( !class_exists( 'Hatch_Slider_Widget' ) ) {
 				$this->banner_item_count++;
 			}?>
 
-				<li class="hatch-accordion-item <?php echo $this->banner_item_count; ?>" data-guid="<?php echo $slide_guid; ?>">
-					<a class="hatch-accordion-title">
+				<li class="layers-accordion-item <?php echo $this->banner_item_count; ?>" data-guid="<?php echo $slide_guid; ?>">
+					<a class="layers-accordion-title">
 						<span>
-							<?php _e( 'Slider' , HATCH_THEME_SLUG ); ?><span class="hatch-detail"><?php echo ( isset( $title ) ? ': ' . $title : NULL ); ?></span>
+							<?php _e( 'Slider' , LAYERS_THEME_SLUG ); ?><span class="layers-detail"><?php echo ( isset( $title ) ? ': ' . $title : NULL ); ?></span>
 						</span>
 					</a>
-					<section class="hatch-accordion-section hatch-content">
+					<section class="layers-accordion-section layers-content">
 						<?php $this->design_bar()->bar(
 							'top', // CSS Class Name
 							array(
@@ -412,55 +424,55 @@ if( !class_exists( 'Hatch_Slider_Widget' ) ) {
 							) // Standard Components
 						); ?>
 
-						<div class="hatch-row">
-							<p class="hatch-form-item">
-								<label for="<?php echo $this->get_custom_field_id( $widget_details, 'banners',  $column_guid, 'title' ); ?>"><?php _e( 'Title' , HATCH_THEME_SLUG ); ?></label>
+						<div class="layers-row">
+							<p class="layers-form-item">
+								<label for="<?php echo $this->get_custom_field_id( $widget_details, 'banners',  $column_guid, 'title' ); ?>"><?php _e( 'Title' , LAYERS_THEME_SLUG ); ?></label>
 								<?php echo $this->form_elements()->input(
 									array(
 										'type' => 'text',
 										'name' => $this->get_custom_field_name( $widget_details, 'banners',  $slide_guid, 'title' ),
 										'id' => $this->get_custom_field_id( $widget_details, 'banners',  $slide_guid, 'title' ),
-										'placeholder' => __( 'Enter a Title' , HATCH_THEME_SLUG ),
-										'placeholder' => __( 'Enter title here', HATCH_THEME_SLUG ),
+										'placeholder' => __( 'Enter a Title' , LAYERS_THEME_SLUG ),
+										'placeholder' => __( 'Enter title here', LAYERS_THEME_SLUG ),
 										'value' => ( isset( $title ) ) ? $title : NULL ,
-										'class' => 'hatch-text'
+										'class' => 'layers-text'
 									)
 								); ?>
 							</p>
-							<p class="hatch-form-item">
-								<label for="<?php echo $this->get_custom_field_id( $widget_details, 'banners',  $column_guid, 'excerpt' ); ?>"><?php _e( 'Excerpt' , HATCH_THEME_SLUG ); ?></label>
+							<p class="layers-form-item">
+								<label for="<?php echo $this->get_custom_field_id( $widget_details, 'banners',  $column_guid, 'excerpt' ); ?>"><?php _e( 'Excerpt' , LAYERS_THEME_SLUG ); ?></label>
 								<?php echo $this->form_elements()->input(
 									array(
 										'type' => 'textarea',
 										'name' => $this->get_custom_field_name( $widget_details, 'banners',  $slide_guid, 'excerpt' ),
 										'id' => $this->get_custom_field_id( $widget_details, 'banners',  $slide_guid, 'excerpt' ),
-										'placeholder' => __( 'Short Excerpt', HATCH_THEME_SLUG ),
+										'placeholder' => __( 'Short Excerpt', LAYERS_THEME_SLUG ),
 										'value' => ( isset( $excerpt ) ) ? $excerpt : NULL ,
-										'class' => 'hatch-textarea',
+										'class' => 'layers-textarea',
 										'rows' => 6
 									)
 								); ?>
 							</p>
-							<p class="hatch-form-item">
-								<label for="<?php echo $this->get_field_id( 'link' ); ?>"><?php _e( 'Link' , HATCH_THEME_SLUG ); ?></label>
+							<p class="layers-form-item">
+								<label for="<?php echo $this->get_field_id( 'link' ); ?>"><?php _e( 'Link' , LAYERS_THEME_SLUG ); ?></label>
 								<?php echo $this->form_elements()->input(
 									array(
 										'type' => 'text',
 										'name' => $this->get_custom_field_name( $widget_details, 'banners',  $slide_guid, 'link' ),
 										'id' => $this->get_custom_field_id( $widget_details, 'banners',  $slide_guid, 'link' ),
-										'placeholder' => __( 'http://', HATCH_THEME_SLUG ),
+										'placeholder' => __( 'http://', LAYERS_THEME_SLUG ),
 										'value' => ( isset( $link ) ) ? $link : NULL ,
 									)
 								); ?>
 							</p>
-							<p class="hatch-form-item">
-								<label for="<?php echo $this->get_field_id( 'link' ); ?>"><?php _e( 'Button Text' , HATCH_THEME_SLUG ); ?></label>
+							<p class="layers-form-item">
+								<label for="<?php echo $this->get_field_id( 'link' ); ?>"><?php _e( 'Button Text' , LAYERS_THEME_SLUG ); ?></label>
 								<?php echo $this->form_elements()->input(
 									array(
 										'type' => 'text',
 										'name' => $this->get_custom_field_name( $widget_details, 'banners',  $slide_guid, 'link_text' ),
 										'id' => $this->get_custom_field_id( $widget_details, 'banners',  $slide_guid, 'link_text' ),
-										'placeholder' => __( 'e.g. "Read More"' , HATCH_THEME_SLUG ),
+										'placeholder' => __( 'e.g. "Read More"' , LAYERS_THEME_SLUG ),
 										'value' => ( isset( $link_text ) ) ? $link_text : NULL ,
 									)
 								); ?>
@@ -473,5 +485,5 @@ if( !class_exists( 'Hatch_Slider_Widget' ) ) {
 	} // Class
 
 	// Add our function to the widgets_init hook.
-	 register_widget("Hatch_Slider_Widget");
+	 register_widget("Layers_Slider_Widget");
 }

@@ -1,13 +1,13 @@
 <?php /**
  * Form Element Class File
  *
- * This file outputs common HTML elements for form items used in the admin area of Hatch, it's useful not to have to re-write ever part of HTML that we use inside the widgets
+ * This file outputs common HTML elements for form items used in the admin area of Layers, it's useful not to have to re-write ever part of HTML that we use inside the widgets
  *
- * @package Hatch
- * @since Hatch 1.0
+ * @package Layers
+ * @since Layers 1.0
  */
 
-class Hatch_Form_Elements {
+class Layers_Form_Elements {
 
 	/**
 	* Load control title HTML
@@ -19,14 +19,14 @@ class Hatch_Form_Elements {
 	public function header( $args = array() ){
 
 		$defaults = array(
-				'title' => __( 'Widget' , HATCH_THEME_SLUG ),
+				'title' => __( 'Widget' , LAYERS_THEME_SLUG ),
 				'icon_class' => ''
 			);
 
 		$header = (object) wp_parse_args( $args, $defaults ); ?>
 
-		<div class="hatch-controls-title">
-			<h2 class="hatch-heading hatch-icon hatch-icon-<?php $header->icon_class; ?>">
+		<div class="layers-controls-title">
+			<h2 class="layers-heading layers-icon layers-icon-<?php $header->icon_class; ?>">
 				<!-- <i class="icon-<?php echo $header->icon_class; ?>-small"></i> -->
 				<?php echo $header->title; ?>
 			</h2>
@@ -45,7 +45,7 @@ class Hatch_Form_Elements {
 
 		$accordian_title = (object) wp_parse_args( $args, array() ); ?>
 
-		<a class="hatch-accordion-title">
+		<a class="layers-accordion-title">
 			<span><?php echo $accordian_title->title; ?></span>
 		</a>
 	<?php }
@@ -64,7 +64,7 @@ class Hatch_Form_Elements {
 			);
 
 		$panel_title = (object) wp_parse_args( $args, $defaults ); ?>
-		<div class="hatch-<?php echo $panel_title->type; ?>-title">
+		<div class="layers-<?php echo $panel_title->type; ?>-title">
 			<h4 class="heading"><?php echo $panel_title->title; ?></h4>
 		</div>
 	<?php }
@@ -97,13 +97,13 @@ class Hatch_Form_Elements {
 	*/
 
 	public function get_sort_options( $options = array() ){
-		$options[ json_encode( array( 'orderby' => 'date', 'order' => 'desc' ) ) ] = __( 'Newest First' , HATCH_THEME_SLUG );
-		$options[ json_encode( array( 'orderby' => 'date', 'order' => 'asc' ) ) ] = __( 'Oldest First' , HATCH_THEME_SLUG );
-		$options[ json_encode( array( 'orderby' => 'rand', 'order' => 'desc' ) ) ] = __( 'Random' , HATCH_THEME_SLUG );
-		$options[ json_encode( array( 'orderby' => 'title', 'order' => 'asc' ) ) ] = __( 'Titles A-Z' , HATCH_THEME_SLUG );
-		$options[ json_encode( array( 'orderby' => 'title', 'order' => 'desc' ) ) ] = __( 'Titles Z-A' , HATCH_THEME_SLUG );
-		$options[ json_encode( array( 'orderby' => 'comment_count', 'order' => 'desc' ) ) ] = __( 'Most Comments' , HATCH_THEME_SLUG );
-		$options[ json_encode( array( 'orderby' => 'menu_order', 'order' => 'desc' ) ) ] = __( 'Custom Order' , HATCH_THEME_SLUG );
+		$options[ json_encode( array( 'orderby' => 'date', 'order' => 'desc' ) ) ] = __( 'Newest First' , LAYERS_THEME_SLUG );
+		$options[ json_encode( array( 'orderby' => 'date', 'order' => 'asc' ) ) ] = __( 'Oldest First' , LAYERS_THEME_SLUG );
+		$options[ json_encode( array( 'orderby' => 'rand', 'order' => 'desc' ) ) ] = __( 'Random' , LAYERS_THEME_SLUG );
+		$options[ json_encode( array( 'orderby' => 'title', 'order' => 'asc' ) ) ] = __( 'Titles A-Z' , LAYERS_THEME_SLUG );
+		$options[ json_encode( array( 'orderby' => 'title', 'order' => 'desc' ) ) ] = __( 'Titles Z-A' , LAYERS_THEME_SLUG );
+		$options[ json_encode( array( 'orderby' => 'comment_count', 'order' => 'desc' ) ) ] = __( 'Most Comments' , LAYERS_THEME_SLUG );
+		$options[ json_encode( array( 'orderby' => 'menu_order', 'order' => 'desc' ) ) ] = __( 'Custom Order' , LAYERS_THEME_SLUG );
 		return $options;
 	}
 
@@ -196,13 +196,13 @@ class Hatch_Form_Elements {
 			*/
 			case 'select-icons' : ?>
 				<?php foreach( $input->options as $value => $label ) { ?>
-					<label href="" class="hatch-icon-wrapper <?php if( $value == $input->value ) echo 'hatch-active'; ?>" for="<?php echo $input->id .'-' . $value; ?>">
+					<label href="" class="layers-icon-wrapper <?php if( $value == $input->value ) echo 'layers-active'; ?>" for="<?php echo $input->id .'-' . $value; ?>">
 						<span class="icon-<?php echo $value; ?>"></span>
-						<span class="hatch-icon-description">
+						<span class="layers-icon-description">
 							<?php echo $label; ?>
 						</span>
 					</label>
-					<input type="radio" <?php echo implode ( ' ' , $input_props ); ?> id="<?php echo $input->id .'-' . $value; ?>" value="<?php echo $value; ?>" <?php checked( $input->value , $value , true ); ?> class="hatch-hide" />
+					<input type="radio" <?php echo implode ( ' ' , $input_props ); ?> id="<?php echo $input->id .'-' . $value; ?>" value="<?php echo $value; ?>" <?php checked( $input->value , $value , true ); ?> class="layers-hide" />
 				<?php } // foreach options ?>
 			<?php break;
 			/**
@@ -215,32 +215,32 @@ class Hatch_Form_Elements {
 			* Tiny MCE
 			*/
 			case 'tinymce' : ?>
-				<div class="hatch-form-item" id="hatch-tinymce-<?php echo $input->id; ?>">
-					<a href="" class="hatch-t-right hatch-tiny-mce-switch" data-mode="visual"
-					data-visual_label="<?php _e( 'Visual Mode' , HATCH_THEME_SLUG ); ?>"
-					data-html_label="<?php _e( 'HTML Mode' , HATCH_THEME_SLUG ); ?>">
-						<?php _e( 'HTML Mode' , HATCH_THEME_SLUG ); ?>
+				<div class="layers-form-item" id="layers-tinymce-<?php echo $input->id; ?>">
+					<a href="" class="layers-t-right layers-tiny-mce-switch" data-mode="visual"
+					data-visual_label="<?php _e( 'Visual Mode' , LAYERS_THEME_SLUG ); ?>"
+					data-html_label="<?php _e( 'HTML Mode' , LAYERS_THEME_SLUG ); ?>">
+						<?php _e( 'HTML Mode' , LAYERS_THEME_SLUG ); ?>
 					</a>
 					<div class="editible editible-<?php echo $input->id; ?>" data-id="<?php echo $input->id; ?>"><?php echo esc_html( $input->value ); ?></div>
-					<textarea class="hatch-hide hatch-textarea hatch-tiny-mce-textarea" <?php echo implode ( ' ' , $input_props ); ?> <?php if( isset( $input->rows ) ) echo 'rows="' . $input->rows . '"'; ?>><?php echo $input->value; ?></textarea>
+					<textarea class="layers-hide layers-textarea layers-tiny-mce-textarea" <?php echo implode ( ' ' , $input_props ); ?> <?php if( isset( $input->rows ) ) echo 'rows="' . $input->rows . '"'; ?>><?php echo $input->value; ?></textarea>
 				</div>
 			<?php break;
 			/**
 			* Image Uploader
 			*/
 			case 'image' : ?>
-				<section class="hatch-image-container <?php if( isset( $input->value ) && NULL != $input->value ) echo 'has-image'; ?>">
-					<div class="hatch-image-display hatch-image-upload-button">
+				<section class="layers-image-container <?php if( isset( $input->value ) && NULL != $input->value ) echo 'has-image'; ?>">
+					<div class="layers-image-display layers-image-upload-button">
 						<!-- Image -->
 						<?php if( isset( $input->value ) ) echo wp_get_attachment_image( $input->value , 'large' ); ?>
 						<!-- Remove button -->
-						<a class="hatch-image-remove" href=""><?php _e( 'Remove' , HATCH_THEME_SLUG ); ?></a>
+						<a class="layers-image-remove" href=""><?php _e( 'Remove' , LAYERS_THEME_SLUG ); ?></a>
 					</div>
 
-					<a href="#" class="hatch-image-upload-button  hatch-button btn-full <?php if( isset( $input->value ) && '' != $input->value ) echo 'hatch-has-image'; ?>"
-						data-title="<?php _e( 'Select an Image' , HATCH_THEME_SLUG ); ?>"
-						data-button_text="<?php _e( 'Use Image' , HATCH_THEME_SLUG ); ?>">
-						<?php echo ( isset( $input->label ) ? $input->label : __( 'Choose Image' , HATCH_THEME_SLUG ) ); ?>
+					<a href="#" class="layers-image-upload-button  layers-button btn-full <?php if( isset( $input->value ) && '' != $input->value ) echo 'layers-has-image'; ?>"
+						data-title="<?php _e( 'Select an Image' , LAYERS_THEME_SLUG ); ?>"
+						data-button_text="<?php _e( 'Use Image' , LAYERS_THEME_SLUG ); ?>">
+						<?php echo ( isset( $input->label ) ? $input->label : __( 'Choose Image' , LAYERS_THEME_SLUG ) ); ?>
 					</a>
 
 					<?php echo $this->input(
@@ -248,7 +248,8 @@ class Hatch_Form_Elements {
 							'type' => 'hidden',
 							'name' => $input->name,
 							'id' => $input->id,
-							'value' => ( isset( $input->value ) ) ? $input->value : NULL
+							'value' => ( isset( $input->value ) ) ? $input->value : NULL,
+							'data' => ( NULL != $input->data ) ? $input->data : NULL,
 						)
 					); ?>
 				</section>
@@ -261,11 +262,11 @@ class Hatch_Form_Elements {
 					<!-- Image -->
 					<?php if( isset( $input->value ) ) echo wp_basename( wp_get_attachment_url( $input->value ) , true ); ?>
 				</span>
-				<button  class="hatch-regular-uploader hatch-button btn-medium" data-title="<?php _e( 'Select a File' , HATCH_THEME_SLUG ); ?>" data-button_text="<?php _e( 'Use File' , HATCH_THEME_SLUG ); ?>">
-					<?php _e( 'Choose a File' , HATCH_THEME_SLUG  ); ?>
+				<button  class="layers-regular-uploader layers-button btn-medium" data-title="<?php _e( 'Select a File' , LAYERS_THEME_SLUG ); ?>" data-button_text="<?php _e( 'Use File' , LAYERS_THEME_SLUG ); ?>">
+					<?php _e( 'Choose a File' , LAYERS_THEME_SLUG  ); ?>
 				</button>
-				<small class="<?php if( !isset( $input->value ) ) echo 'hide'; ?> hatch-file-remove">
-					<?php _e( 'Remove' , HATCH_THEME_SLUG ); ?>
+				<small class="<?php if( !isset( $input->value ) ) echo 'hide'; ?> layers-file-remove">
+					<?php _e( 'Remove' , LAYERS_THEME_SLUG ); ?>
 				</small>
 				<input type="hidden" <?php echo implode ( ' ' , $input_props ); ?> value="<?php echo $input->value; ?>" />
 			<?php break;
@@ -277,8 +278,8 @@ class Hatch_Form_Elements {
 				// Default to image if we haven't already done so
 				if( !isset( $input->value->type ) ) $input_type = 'image'; else $input_type = $input->value->type; ?>
 
-				<div class="hatch-media-controller" id="<?php echo $input->id; ?>-controller">
-					<ul class="hatch-section-links hatch-background-selector">
+				<div class="layers-media-controller" id="<?php echo $input->id; ?>-controller">
+					<ul class="layers-section-links layers-background-selector">
 						<li <?php if( 'video' != $input_type ) echo 'class="active"'; ?> data-id="#<?php echo $input->id; ?>" data-type="image">
 							<a href="" class="icon-photo"></a>
 						</li>
@@ -297,18 +298,18 @@ class Hatch_Form_Elements {
 						)
 					); ?>
 
-					<div class="hatch-controller-elements">
+					<div class="layers-controller-elements">
 
 						<!-- Image uploader -->
-						<div class="hatch-content <?php if( 'image' == $input_type ) echo 'section-active'; ?>">
-							<div class="hatch-form-item">
-								<div class="hatch-image-uploader hatch-animate hatch-push-bottom">
+						<div class="layers-content <?php if( 'image' == $input_type ) echo 'section-active'; ?>">
+							<div class="layers-form-item">
+								<div class="layers-image-uploader layers-animate layers-push-bottom">
 									<!-- Remove button -->
-									<a class="hatch-image-remove <?php if( !isset( $input->value->image ) ) echo 'hatch-hide'; ?>" href=""><?php _e( 'Remove' , HATCH_THEME_SLUG ); ?></a>
+									<a class="layers-image-remove <?php if( !isset( $input->value->image ) ) echo 'layers-hide'; ?>" href=""><?php _e( 'Remove' , LAYERS_THEME_SLUG ); ?></a>
 
 									<!-- Instructions -->
-									<p <?php if( isset( $input->value->image ) ) echo 'class="hatch-hide"'; ?>>
-										<?php printf( __( 'Drop a file here or %s' , HATCH_THEME_SLUG ) , '<a href="#">select a file.</a>' ); ?>
+									<p <?php if( isset( $input->value->image ) ) echo 'class="layers-hide"'; ?>>
+										<?php printf( __( 'Drop a file here or %s' , LAYERS_THEME_SLUG ) , '<a href="#">select a file.</a>' ); ?>
 									</p>
 
 									<!-- Input -->
@@ -325,10 +326,10 @@ class Hatch_Form_Elements {
 									<?php if( isset( $input->value->image ) ) echo wp_get_attachment_image( $input->value->image , 'large' ); ?>
 								</div>
 							</div>
-							<div class="hatch-row">
+							<div class="layers-row">
 
-								<p class="hatch-form-item">
-									<label><?php _e( 'Background Color' , HATCH_THEME_SLUG ); ?></label>
+								<p class="layers-form-item">
+									<label><?php _e( 'Background Color' , LAYERS_THEME_SLUG ); ?></label>
 									<?php echo $this->input(
 										array(
 											'type' => 'color',
@@ -339,37 +340,37 @@ class Hatch_Form_Elements {
 									); ?>
 								</p>
 
-								<ul class="hatch-checkbox-list">
-									<li class="hatch-checkbox">
+								<ul class="layers-checkbox-list">
+									<li class="layers-checkbox">
 										<?php echo $this->input(
 											array(
 												'type' => 'checkbox',
 												'name' => $input->name . '[darken]' ,
 												'id' => $input->id . '-darken',
 												'value' => ( isset( $input->value->darken ) ) ? $input->value->darken : NULL,
-												'label' => __( 'Darken to improve readability', HATCH_THEME_SLUG )
+												'label' => __( 'Darken to improve readability', LAYERS_THEME_SLUG )
 											)
 										); ?>
 									</li>
-									<li class="hatch-checkbox">
+									<li class="layers-checkbox">
 										<?php echo $this->input(
 											array(
 												'type' => 'checkbox',
 												'name' => $input->name . '[tile_background]' ,
 												'id' => $input->id . '-tile_background',
 												'value' => ( isset( $input->value->tile_background ) ) ? $input->value->tile_background : NULL,
-												'label' => __( 'Tile Background', HATCH_THEME_SLUG )
+												'label' => __( 'Tile Background', LAYERS_THEME_SLUG )
 											)
 										); ?>
 									</li>
-									<li class="hatch-checkbox">
+									<li class="layers-checkbox">
 										<?php echo $this->input(
 											array(
 												'type' => 'checkbox',
 												'name' => $input->name . '[fixed_background]' ,
 												'id' => $input->id . '-fixed_background',
 												'value' => ( isset( $input->value->fixed_background ) ) ? $input->value->fixed_background : NULL,
-												'label' => __( 'Fixed Background', HATCH_THEME_SLUG )
+												'label' => __( 'Fixed Background', LAYERS_THEME_SLUG )
 											)
 										); ?>
 									</li>
@@ -378,9 +379,9 @@ class Hatch_Form_Elements {
 						</div>
 
 						<!-- Video uploader -->
-						<div class="hatch-content <?php if( 'video' == $input->value->type ) echo 'section-active'; ?>">
-							<p class="hatch-form-item">
-								<label><?php _e( 'Enter your .mp4 link' , HATCH_THEME_SLUG ); ?></label>
+						<div class="layers-content <?php if( 'video' == $input->value->type ) echo 'section-active'; ?>">
+							<p class="layers-form-item">
+								<label><?php _e( 'Enter your .mp4 link' , LAYERS_THEME_SLUG ); ?></label>
 								<?php echo $this->input(
 									array(
 										'type' => 'upload',
@@ -390,8 +391,8 @@ class Hatch_Form_Elements {
 									)
 								); ?>
 							</p>
-							<p class="hatch-form-item">
-								<label><?php _e( 'Enter your .ogv link' , HATCH_THEME_SLUG ); ?></label>
+							<p class="layers-form-item">
+								<label><?php _e( 'Enter your .ogv link' , LAYERS_THEME_SLUG ); ?></label>
 								<?php echo $this->input(
 									array(
 										'type' => 'upload',
@@ -401,9 +402,9 @@ class Hatch_Form_Elements {
 									)
 								); ?>
 							</p>
-							<div class="hatch-row">
-								<p class="hatch-form-item hatch-no-push-bottom">
-									<label><?php _e( 'Background Color' , HATCH_THEME_SLUG ); ?></label>
+							<div class="layers-row">
+								<p class="layers-form-item layers-no-push-bottom">
+									<label><?php _e( 'Background Color' , LAYERS_THEME_SLUG ); ?></label>
 									<?php echo $this->input(
 										array(
 											'type' => 'color',
@@ -414,37 +415,37 @@ class Hatch_Form_Elements {
 									); ?>
 								</p>
 
-								<ul class="hatch-checkbox-list">
-									<li class="hatch-checkbox">
+								<ul class="layers-checkbox-list">
+									<li class="layers-checkbox">
 										<?php echo $this->input(
 											array(
 												'type' => 'checkbox',
 												'name' => $input->name . '[video_darken]' ,
 												'id' => $input->id . '-video_darken',
 												'value' => ( isset( $input->value->video_darken ) ) ? $input->value->video_darken : NULL,
-												'label' => __( 'Darken to improve readability', HATCH_THEME_SLUG )
+												'label' => __( 'Darken to improve readability', LAYERS_THEME_SLUG )
 											)
 										); ?>
 									</li>
-									<li class="hatch-checkbox">
+									<li class="layers-checkbox">
 										<?php echo $this->input(
 											array(
 												'type' => 'checkbox',
 												'name' => $input->name . '[video_tile_background]' ,
 												'id' => $input->id . '-video_tile_background',
 												'value' => ( isset( $input->value->video_tile_background ) ) ? $input->value->video_tile_background : NULL,
-												'label' => __( 'Tile Background', HATCH_THEME_SLUG )
+												'label' => __( 'Tile Background', LAYERS_THEME_SLUG )
 											)
 										); ?>
 									</li>
-									<li class="hatch-checkbox">
+									<li class="layers-checkbox">
 										<?php echo $this->input(
 											array(
 												'type' => 'checkbox',
 												'name' => $input->name . '[video_fixed_background]' ,
 												'id' => $input->id . '-video_fixed_background',
 												'value' => ( isset( $input->value->video_fixed_background ) ) ? $input->value->video_fixed_background : NULL,
-												'label' => __( 'Fixed Background', HATCH_THEME_SLUG )
+												'label' => __( 'Fixed Background', LAYERS_THEME_SLUG )
 											)
 										); ?>
 									</li>
@@ -459,14 +460,14 @@ class Hatch_Form_Elements {
 			* Color Selector
 			*/
 			case 'color' : ?>
-				<input type="text" <?php echo implode ( ' ' , $input_props ); ?> value="<?php echo $input->value; ?>" class="hatch-color-selector" />
+				<input type="text" <?php echo implode ( ' ' , $input_props ); ?> value="<?php echo $input->value; ?>" class="layers-color-selector" />
 			<?php break;
 			/**
 			* Button Selector
 			*/
 			case 'button' : ?>
 
-				<button  class="hatch-button btn-medium" <?php echo implode ( ' ' , $input_props ); ?> data-button_text="<?php echo esc_attr( $input->label ); ?>">
+				<button  class="layers-button btn-medium" <?php echo implode ( ' ' , $input_props ); ?> data-button_text="<?php echo esc_attr( $input->label ); ?>">
 					<?php echo esc_attr( $input->label ); ?>
 				</button>
 			<?php break;

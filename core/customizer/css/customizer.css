@@ -1,9 +1,43 @@
 /* Customizer Specific CSS */
-.layers-customizer-pages-dropdown { border-bottom: 1px solid rgb(241, 241, 241); padding: 8px 0 18px; margin: 0 0 12px 0; }
-.layers-customizer-pages-dropdown label {  }
-.layers-customizer-pages-dropdown select { width: 100%; /* margin: 12px 0 3px; */}
+.layers-customizer-pages-dropdown{
+    border-bottom: 1px solid rgb(241, 241, 241);
+    padding: 8px 0 18px;
+    margin: 0 0 12px 0;
+}
+.layers-customizer-pages-dropdown label{}
+.layers-customizer-pages-dropdown select{
+    width: 100%;
+}
 
-a.customize-controls-layers-button { position: fixed; z-index: 10000; /* background: #EEE; */ width: 45px; height: 45px; left: 48px; border-right: 1px solid #DDD; text-align: center; line-height: 45px; box-shadow: none; padding: 0 1px; display: block; -webkit-transition: color .1s ease-in-out, background .1s ease-in-out;  transition: color .1s ease-in-out, background .1s ease-in-out; color: #444; top: 0; text-decoration: none;}
-a.customize-controls-layers-button:hover { background: #DDD; border-color: #CCC;  color: #000;  outline: none;  -webkit-box-shadow: none;  box-shadow: none; }
-a.customize-controls-layers-button-dashboard {  }
-a.customize-controls-layers-button-preview { left: 96px; font-size: 21px;}
+a.customize-controls-layers-button{
+    display: block;
+    width: 45px;
+    height: 45px;
+    padding: 0 1px;
+    position: fixed;
+    top: 0;
+    left: 48px;
+    z-index: 10000;
+    border-right: 1px solid #ddd;
+    font-size: 16px;
+    color: #444;
+    text-align: center;
+    text-decoration: none;
+    line-height: 45px;
+    box-shadow: none;
+    -webkit-transition: color .1s ease-in-out, background .1s ease-in-out;
+    transition: color .1s ease-in-out, background .1s ease-in-out;
+}
+a.customize-controls-layers-button:hover{
+    background: #ddd;
+    border-color: #ccc;
+    color: #000;
+    outline: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+a.customize-controls-layers-button-dashboard{}
+a.customize-controls-layers-button-preview{
+    left: 96px;
+    font-size: 21px;
+}

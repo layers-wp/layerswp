@@ -170,7 +170,7 @@ class Layers_Customizer {
 	function render_actions_buttons () {
 		$layers_url = admin_url( 'admin.php?page=' . LAYERS_THEME_SLUG . '-welcome' );
 		?>
-		<a class="customize-controls-layers-button customize-controls-layers-button-dashboard dashicons dashicons-smiley" title="<?php esc_attr( _e( 'Layers Dashboard', LAYERS_THEME_SLUG ) ); ?>" href="<?php echo $layers_url ?>"></a>
+		<a class="customize-controls-layers-button customize-controls-layers-button-dashboard dashicons icon-layers-logo" title="<?php esc_attr( _e( 'Layers Dashboard', LAYERS_THEME_SLUG ) ); ?>" href="<?php echo $layers_url ?>"></a>
 		<a class="customize-controls-layers-button customize-controls-layers-button-preview icon-display" title="<?php esc_attr( _e( 'Preview this page', LAYERS_THEME_SLUG ) ); ?>" href="#" target="_blank"></a>
 		<?php
 	}

@@ -14,7 +14,7 @@ a.customize-controls-layers-button{
     width: 45px;
     height: 45px;
     padding: 0 1px;
-    position: fixed;
+    position: absolute;
     top: 0;
     left: 48px;
     z-index: 10000;

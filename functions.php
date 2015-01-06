@@ -323,7 +323,7 @@ if( ! function_exists( 'layers_scripts' ) ) {
 		); // Responsive
 		wp_enqueue_style(
 			LAYERS_THEME_SLUG . '-icon-font',
-			get_template_directory_uri() . '/css/obox-icons.css',
+			get_template_directory_uri() . '/css/layers-icons.css',
 			array(),
 			LAYERS_VERSION
 		); // Icon Font

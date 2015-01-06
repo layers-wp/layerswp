@@ -48,9 +48,9 @@ div#widgets-right div[id*='obox-layers-builder']{
     .customize-control-widget_form.wide-widget-control div[id*='layers-widget'] .widget-top h4:before{
         content: "Layers";
         background-color: #0BA6E0;
-        padding: 0 5px;
-        margin-right: 5px;
-        border-radius: 100px;
+        padding: 1px 6px 1px 4px;
+        margin: -1px 5px 0 -15px;
+        border-radius: 0 100px 100px 0;
         font-size: 9px;
         font-weight: 700;
         text-transform: uppercase;
@@ -134,6 +134,77 @@ div#widgets-right div[id*='obox-layers-builder']{
     .collapsed .customize-control-widget_form.wide-widget-control div[id*='layers-widget'] .widget-inside .form{
         opacity: 0;
         transition-delay: none;
+    }
+
+    /*---------------------------*/
+    /*- PRESET / THEME LISTS ----*/
+    .layers-browser{
+        overflow: hidden;
+    }
+    .layers-products{
+        clear: both;
+        padding: 0 0 100px;
+    }
+    .layers-product{
+        box-sizing: border-box;
+        cursor: pointer;
+        float: left;
+        margin: 0 4% 4% 0;
+        position: relative;
+        width: 30.6%;
+        border: 1px solid #dedede;
+    }
+    .layers-product:nth-child(3n+3){
+        margin-right: 0;
+    }
+    .layers-product-screenshot{
+        height: 250px;
+        overflow: hidden;
+    }
+    .layers-product-screenshot img{
+        width: 100%;
+    }
+    .layers-product-name{
+        font-size: 15px;
+        font-weight: 600;
+        height: 18px;
+        margin: 0px;
+        padding: 15px;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        background: rgba(255, 255, 255, 0.65);
+        border-top: 1px solid #dedede;
+        color: #000;
+    }
+    .layers-product-actions{
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        padding: 9px 10px 0px;
+        height: 38px;
+    }
+
+    .blank-product{
+        border: 4px dashed #ccc;
+        background: #fff;
+    }
+    .blank-product .layers-product-screenshot{
+        height: 245px;
+    }
+    .blank-product .layers-product-name{
+        background: none;
+        text-align: center;
+        border-top: none;
+    }
+    .blank-product:hover{
+        background-color: #009DF3;
+        border-color: transparent;
+        transition: all 0.2s ease-in-out;
+    }
+    .blank-product:hover .layers-product-name{
+        color: #fff;
+        transition: all 0.2s ease-in-out;
     }
 
 /*---------------------------*/
@@ -1061,11 +1132,11 @@ input[type=text].layers-color-selector.wp-color-picker{
     .btn-secondary{
         background-color: #A3C567;
         border-color: #668056;
-        color: #37451D;
+        color: #fff;
     }
     .btn-secondary:hover{
         background-color: #93B25E;
-        color: #37451D;
+        color: #fff;
     }
 
     /*-----------------------*/

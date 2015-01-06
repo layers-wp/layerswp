@@ -311,12 +311,6 @@ html{}
 
     /*---------------------------*/
     /*- SWIPE ITEM --------------*/
-	.swiper-slide{
-	}
-	.swiper-slide .darken{
-	}
-    .swiper-slide .container{
-    }
     .swiper-slide .copy-container{
     	float: none !important;
     	width: auto !important;

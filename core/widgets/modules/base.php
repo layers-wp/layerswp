@@ -51,6 +51,24 @@ if( !class_exists( 'Layers_Widget' ) ) {
 
 		}
 
+		function get_widget_layout_class( $widget = NULL ){
+
+			if( NULL == $widget ) return;
+
+			// Setup the layout class for boxed/full width/full screen
+			if( 'layout-boxed' == $this->check_and_return( $widget , 'design' , 'layout' ) ) {
+				$layout_class = 'container';
+			} elseif('layout-full-screen' == $this->check_and_return( $widget , 'design' , 'layout' ) ) {
+				$layout_class = 'full-screen';
+			} elseif( 'layout-full-width' == $this->check_and_return( $widget , 'design' , 'layout' ) ) {
+				$layout_class = 'full-width';
+			} else {
+				$layout_class = '';
+			}
+
+			return $layout_class;
+		}
+
 		/**
 		* Design Bar Class Instantiation, we'd rather have it done here than in each widget
 		*

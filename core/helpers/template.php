@@ -479,25 +479,6 @@ if( !function_exists( 'layers_get_theme_mod' ) ) {
 } // layers_get_header_class
 
 /**
- * Translates an image ratio select-icon input into a nice clean image ratio we can use
- *
- * @param string $value Value of the input
- * @return string Image size
- */
-if( !function_exists( 'layers_translate_image_ratios' ) ) {
-	function layers_translate_image_ratios( $value = '' ) {
-
-		if( 'image-no-crop' == $value ) {
-			$image_ratio = '';
-		} else {
-			$image_ratio = str_replace( 'image-' , '', $value );
-		}
-
-		return $image_ratio;
-	}
-} // layers_get_header_class
-
-/**
  * Check customizer and page template settings before allowing a sidebar to display
  *
  * @param   int     $sidebar                Sidebar slug to check
@@ -621,7 +602,7 @@ if( !function_exists( 'layers_add_google_analytics' ) ) {
 } // layers_add_google_analytics
 
 /**
-* Background Style Generator
+* Style Generator
 *
 * @param    varchar     $type   Type of style to generate, background, color, text-shadow, border
 * @param    array       $args
@@ -721,4 +702,118 @@ if( !function_exists( 'layers_inline_styles' ) ) {
 
 		return $inline_css;
 	}
+} // layers_inline_styles
+
+/**
+* Feature Image / Video Generator
+*
+* @param int $attachmentid ID for attachment
+* @param int $size Media size to use
+* @param int $video oEmbed code
+*
+* @return   varchar     $media_output Feature Image or Video
+*/
+if( !function_exists( 'layers_get_feature_media' ) ) {
+	function layers_get_feature_media( $attachmentid = NULL, $size = 'medium' , $video = NULL ){
+
+		// Return dimensions
+		$image_dimensions = layers_get_image_sizes( $size );
+
+		// Check for an image
+		if( NULL != $attachmentid && '' != $attachmentid ){
+			$image = wp_get_attachment_image( $attachmentid , $size);
+		}
+
+		// Check for a video
+		if( NULL != $video && '' != $video ){
+			$embed_code = '[embed width="'.$image_dimensions['width'].'" height="'.$image_dimensions['height'].'"]'.$video.'[/embed]';
+			$wp_embed = new WP_Embed();
+			$video = $wp_embed->run_shortcode( $embed_code );
+		}
+
+		// Set which element to return
+		if( isset( $video ) ) {
+			$media = $video;
+		} else if( isset( $image ) ) {
+			$media = $image;
+		} else {
+			return NULL;
+		}
+
+		$media_output = do_action( 'layers_before_feature_media' ) . $media . do_action( 'layers_after_feature_media' );
+
+		return $media_output;
+	}
 }
+
+
+/**
+* Get Available Image Sizes for specific Image Type
+*
+* @param    varchar     $size 	Image size slug
+*
+* @return   array     $sizes 	Array of image dimensions
+*/
+if( !function_exists( 'layers_get_image_sizes' ) ) {
+	function layers_get_image_sizes( $size = 'medium' ) {
+
+		global $_wp_additional_image_sizes;
+
+        $sizes = array();
+        $get_intermediate_image_sizes = get_intermediate_image_sizes();
+
+        // Create the full array with sizes and crop info
+        foreach( $get_intermediate_image_sizes as $_size ) {
+
+            if ( in_array( $_size, array( 'thumbnail', 'medium', 'large' ) ) ) {
+
+                    $sizes[ $_size ]['width'] = get_option( $_size . '_size_w' );
+                    $sizes[ $_size ]['height'] = get_option( $_size . '_size_h' );
+                    $sizes[ $_size ]['crop'] = (bool) get_option( $_size . '_crop' );
+
+            } elseif ( isset( $_wp_additional_image_sizes[ $_size ] ) ) {
+
+                    $sizes[ $_size ] = array(
+                            'width' => $_wp_additional_image_sizes[ $_size ]['width'],
+                            'height' => $_wp_additional_image_sizes[ $_size ]['height'],
+                            'crop' =>  $_wp_additional_image_sizes[ $_size ]['crop']
+                    );
+            }
+        }
+
+        // Get only 1 size if found
+        if ( $size ) {
+
+            if( isset( $sizes[ $size ] ) ) {
+				return $sizes[ $size ];
+            } else {
+				return $sizes[ 'large' ];
+            }
+
+        }
+
+        return $sizes;
+	}
+} // if layers_get_image_sizes
+
+/**
+ * Translates an image ratio input into a nice clean image ratio we can use
+ *
+ * @param string $value Value of the input
+ * @return string Image size
+ *
+ */
+if( !function_exists( 'layers_translate_image_ratios' ) ) {
+	function layers_translate_image_ratios( $value = '' ) {
+
+		if( 'image-round' == $value ){
+			$image_ratio = 'square';
+		} else if( 'image-no-crop' == $value ) {
+			$image_ratio = '';
+		} else {
+			$image_ratio = str_replace( 'image-' , '', $value );
+		}
+
+		return $image_ratio;
+	}
+} // layers_get_header_class

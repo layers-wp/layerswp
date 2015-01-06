@@ -24,26 +24,26 @@ jQuery(document).ready(function($){
 
 	function layers_set_column_sorable(){
 
-		var $module_lists = $( 'ul[id^="module_list_"]' );
+		var $column_lists = $( 'ul[id^="column_list_"]' );
 
-		$module_lists.sortable({
+		$column_lists.sortable({
 			placeholder: "layers-sortable-drop",
 			handle: ".layers-accordion-title",
 			stop: function(e , li){
 				// Module UL, looking up from our current target
-				$moduleList = li.item.closest( 'ul' );
+				$columnList = li.item.closest( 'ul' );
 
 				// Modules <input>
-				$moduleInput = $( '#module_ids_input_' + $moduleList.data( 'number' ) );
+				$columnInput = $( '#column_ids_input_' + $columnList.data( 'number' ) );
 
-				// Apply new module order
-				$module_guids = [];
-				$moduleList.find( 'li.layers-accordion-item' ).each(function(){
-					$module_guids.push( $(this).data( 'guid' ) );
+				// Apply new column order
+				$column_guids = [];
+				$columnList.find( 'li.layers-accordion-item' ).each(function(){
+					$column_guids.push( $(this).data( 'guid' ) );
 				});
 
 				// Trigger change for ajax save
-				$moduleInput.val( $module_guids.join() ).layers_trigger_change();
+				$columnInput.val( $column_guids.join() ).layers_trigger_change();
 			}
 		});
 	}
@@ -52,59 +52,59 @@ jQuery(document).ready(function($){
 	* 2 - Column Removal & Additions
 	*/
 
-	$(document).on( 'click' , 'ul[id^="module_list_"] .icon-trash' , function(e){
+	$(document).on( 'click' , 'ul[id^="column_list_"] .icon-trash' , function(e){
 		e.preventDefault();
 
 		// "Hi Mom"
 		var $that = $(this);
 
-		// Confirmation message @TODO: Make JS confirmation module
+		// Confirmation message @TODO: Make JS confirmation column
 		var $remove_column = confirm( "Are you sure you want to remove this column?" );
 
 		if( false === $remove_column ) return;
 
 		// Module UL
-		$moduleList = $( '#module_list_' + $that.data( 'number' ) );
+		$columnList = $( '#column_list_' + $that.data( 'number' ) );
 
 		// Modules <input>
-		$moduleInput = $( '#module_ids_input_' + $moduleList.data( 'number' ) );
+		$columnInput = $( '#column_ids_input_' + $columnList.data( 'number' ) );
 
 		// Remove this banner
 		$that.closest( '.layers-accordion-item' ).remove();
 
-		// Curate module IDs
-		$module_guids = [];
+		// Curate column IDs
+		$column_guids = [];
 
-		$moduleList.find( 'li.layers-accordion-item' ).each(function(){
-			$module_guids.push( $(this).data( 'guid' ) );
+		$columnList.find( 'li.layers-accordion-item' ).each(function(){
+			$column_guids.push( $(this).data( 'guid' ) );
 		});
 
 		// Trigger change for ajax save
-		$moduleInput.val( $module_guids.join() ).layers_trigger_change();
+		$columnInput.val( $column_guids.join() ).layers_trigger_change();
 
 		// Reset Sortable Items
 		layers_set_column_sorable();
 	});
 
-	$(document).on( 'click' , '.layers-add-widget-module' , function(e){
+	$(document).on( 'click' , '.layers-add-widget-column' , function(e){
 		e.preventDefault();
 
 		// "Hi Mom"
 		$that = $(this);
 
 		// Create the list selector
-		$moduleListId = '#module_list_' + $that.data( 'number' );
+		$columnListId = '#column_list_' + $that.data( 'number' );
 
 		// Module UL
-		$moduleList = $( $moduleListId );
+		$columnList = $( $columnListId );
 
 		// Modules <input>
-		$moduleInput = $( '#module_ids_input_' + $moduleList.data( 'number' ) );
+		$columnInput = $( '#column_ids_input_' + $columnList.data( 'number' ) );
 
 		// Serialize input data
 		$serialized_inputs = [];
 		$.each(
-			$moduleList.find( 'li.layers-accordion-item' ).last().find( 'textarea, input, select' ),
+			$columnList.find( 'li.layers-accordion-item' ).last().find( 'textarea, input, select' ),
 			function( i, input ){
 				$serialized_inputs.push( $(input).serialize() );
 		});
@@ -112,28 +112,28 @@ jQuery(document).ready(function($){
 		$.post(
 			layers_widget_params.ajaxurl,
 			{
-				action: 'layers_module_widget_actions',
+				action: 'layers_content_widget_actions',
 				widget_action: 'add',
-				id_base: $moduleList.data( 'id_base' ),
+				id_base: $columnList.data( 'id_base' ),
 				instance: $serialized_inputs.join( '&' ),
-				last_guid: $moduleList.find( 'li.layers-accordion-item' ).last().data( 'guid' ),
-				number: $moduleList.data( 'number' ),
+				last_guid: $columnList.find( 'li.layers-accordion-item' ).last().data( 'guid' ),
+				number: $columnList.data( 'number' ),
 				nonce: layers_widget_params.nonce
 
 			},
 			function(data){
+console.log( data );
+				// Append column HTML
+				$( data ).insertBefore( $columnListId + ' .layers-add-widget-column' );
 
-				// Append module HTML
-				$( data ).insertBefore( $moduleListId + ' .layers-add-widget-module' );
-
-				// Append module IDs to the modules input
-				$module_guids = [];
-				$moduleList.find( 'li.layers-accordion-item' ).each(function(){
-					$module_guids.push( $(this).data( 'guid' ) );
+				// Append column IDs to the columns input
+				$column_guids = [];
+				$columnList.find( 'li.layers-accordion-item' ).each(function(){
+					$column_guids.push( $(this).data( 'guid' ) );
 				});
 
 				// Trigger change for ajax save
-				$moduleInput.val( $module_guids.join() ).layers_trigger_change();
+				$columnInput.val( $column_guids.join() ).layers_trigger_change();
 
 				// Trigger color selectors
 				jQuery('.layers-color-selector').wpColorPicker();
@@ -146,7 +146,7 @@ jQuery(document).ready(function($){
 	* 3 - Module Title Update
 	*/
 
-	$(document).on( 'keyup' , 'ul[id^="module_list_"] input[id*="-title"]' , function(e){
+	$(document).on( 'keyup' , 'ul[id^="column_list_"] input[id*="-title"]' , function(e){
 
 		// "Hi Mom"
 		$that = $(this);

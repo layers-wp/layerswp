@@ -373,13 +373,24 @@ class Layers_Design_Controller {
 				<div class="layers-pop-menu-setting">
 					<section>
 						<div class="layers-form-item">
-							<label><?php _e( 'Featured Image' , LAYERS_THEME_SLUG ); ?></label>
+							<label><?php _e( 'Featured Image &amp; Video' , LAYERS_THEME_SLUG ); ?></label>
 							<?php echo $this->input(
 								array(
 									'type' => 'image',
 									'name' => $widget['name'] . '[featuredimage]' ,
 									'id' =>  $widget['id'] . '-featuredimage' ,
 									'value' => ( isset( $values['featuredimage'] ) ) ? $values['featuredimage'] : NULL
+								)
+							); ?>
+						</div>
+						<div class="layers-form-item">
+							<label><?php _e( 'Video Embed Code' , LAYERS_THEME_SLUG ); ?></label>
+							<?php echo $this->input(
+								array(
+									'type' => 'text',
+									'name' => $widget['name'] . '[featuredvideo]' ,
+									'id' =>  $widget['id'] . '-featuredvideo' ,
+									'value' => ( isset( $values['featuredvideo'] ) ) ? $values['featuredvideo'] : NULL
 								)
 							); ?>
 						</div>

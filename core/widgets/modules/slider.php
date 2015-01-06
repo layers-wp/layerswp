@@ -125,17 +125,18 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 							if( !empty( $slide['design']['fonts'][ 'color' ] ) ) layers_inline_styles( $widget_id . '-' . $key , 'color', array( 'selectors' => array( 'h3.heading', 'h3.heading a', 'div.excerpt' ) , 'color' => $slide['design']['fonts'][ 'color' ] ) );
 							if( !empty( $slide['design']['fonts'][ 'shadow' ] ) ) layers_inline_styles( $widget_id . '-' . $key , 'text-shadow', array( 'selectors' => array( 'h3.heading', 'h3.heading a',  'div.excerpt' )  , 'text-shadow' => $slide['design']['fonts'][ 'shadow' ] ) );
 
+
+							// Set Featured Media
+							$featureimage = $this->check_and_return( $slide , 'design' , 'featuredimage' );
+							$featurevideo = $this->check_and_return( $slide , 'design' , 'featuredvideo' );
+
 							// Set Image Sizes
 							if( isset( $slide['design'][ 'imageratios' ] ) ){
-									// Translate Image Ratio
+
+									// Translate Image Ratio into something usable
 									$image_ratio = layers_translate_image_ratios( $slide['design'][ 'imageratios' ] );
-
-									// If round then set image to square, and set border radius css further down.
-									if( 'round' == $image_ratio ){
-										$image_ratio = 'square';
-									}
-
 									$imageratios = $image_ratio . '-medium';
+
 							} else {
 								$imageratios = 'large';
 							} ?>
@@ -167,11 +168,15 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 												</div>
 											</div>
 										<?php } // if title || excerpt ?>
-										<?php if( $this->check_and_return( $slide , 'design' , 'featuredimage' ) ) { ?>
-											<div class="image-container <?php if ( 'round' == layers_translate_image_ratios( $module['design'][ 'imageratios' ] ) ) { ?>image-rounded<?php } ?>">
-												<?php echo wp_get_attachment_image( $slide['design'][ 'featuredimage' ] , $imageratios ); ?>
+										<?php if( $featureimage || $featurevideo ) { ?>
+											<div class="image-container <?php echo ( 'image-round' ==  $slide['design'][ 'imageratios' ] ? 'image-rounded' : '' ); ?>">
+												<?php echo layers_get_feature_media(
+													$featureimage ,
+													$use_image_ratio ,
+													$featurevideo
+												); ?>
 											</div>
-										<?php } // if $slide image ?>
+										<?php } // if $slide image  ?>
 									</div> <!-- .container -->
 								</div> <!-- .overlay -->
 							</div>

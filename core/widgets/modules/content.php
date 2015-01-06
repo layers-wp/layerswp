@@ -139,30 +139,29 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 								$total_width = 0;
 							}
 
+							// Set Featured Media
+							$featureimage = $this->check_and_return( $column , 'design' , 'featuredimage' );
+							$featurevideo = $this->check_and_return( $column , 'design' , 'featuredvideo' );
+
 							// Set Image Sizes
 							if( isset( $column['design'][ 'imageratios' ] ) ){
 
-								// Translate Image Ratio
+								// Translate Image Ratio into something usable
 								$image_ratio = layers_translate_image_ratios( $column['design'][ 'imageratios' ] );
-
-								// If round then set image to square, and set border radius css further down.
-								if( 'round' == $image_ratio ){
-									$image_ratio = 'square';
-								}
 
 								if( !isset( $column[ 'width' ] ) ) $column[ 'width' ] = 6;
 
 								if( 6 > $column['width'] ){
-									$imageratios = $image_ratio . '-medium';
+									$use_image_ratio = $image_ratio . '-medium';
 								} else {
-									$imageratios = $image_ratio . '-large';
+									$use_image_ratio = $image_ratio . '-large';
 								}
 
 							} else {
 								if( 6 > $column['width'] ){
-									$imageratios = 'medium';
+									$use_image_ratio = 'medium';
 								} else {
-									$imageratios = 'full';
+									$use_image_ratio = 'full';
 								}
 							} ?>
 
@@ -177,9 +176,18 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 									<?php echo $this->check_and_return( $column, 'design', 'fonts' , 'size' ); ?>
 									<?php if( !$this->check_and_return( $widget, 'design', 'gutter' ) ) echo 'no-push-bottom'; ?>
 								">
-									<?php if( $this->check_and_return( $column , 'design' , 'featuredimage' ) ) { ?>
-										<div class="media-image <?php if ( 'round' == layers_translate_image_ratios( $column['design'][ 'imageratios' ] ) ) { ?>image-rounded<?php } ?>"><a href="<?php echo $link; ?>"><?php echo wp_get_attachment_image( $column['design'][ 'featuredimage' ] , $imageratios ); ?></a></div>
+									<?php if( $featureimage || $featurevideo ) { ?>
+										<div class="media-image <?php echo ( 'image-round' ==  $column['design'][ 'imageratios' ] ? 'image-rounded' : '' ); ?>">
+											<a href="<?php echo $link; ?>">
+												<?php echo layers_get_feature_media(
+													$featureimage ,
+													$use_image_ratio ,
+													$featurevideo
+												); ?>
+											</a>
+										</div>
 									<?php } ?>
+
 									<?php if( '' != $column['title'] || '' != $column['excerpt'] ) { ?>
 										<div class="media-body <?php echo ( isset( $column['design']['fonts'][ 'align' ] ) ) ? $column['design']['fonts'][ 'align' ] : ''; ?>">
 											<?php if( isset( $column['title'] ) && '' != $column['title'] ) { ?>

@@ -32,10 +32,10 @@ if( !function_exists( 'layers_post_meta' ) ) {
         foreach ( $display as $meta ) {
             switch ( $meta ) {
                 case 'date' :
-                    $meta_to_display[] = __( 'on ', LAYERS_THEME_SLUG ) . get_the_time(  get_option( 'date_format' ) , $post_id );
+                    $meta_to_display[] = '<span class="meta-item meta-date"><i class="l-clock-o"></i> ' . get_the_time(  get_option( 'date_format' ) , $post_id ) . '</span>';
                     break;
                 case 'author' :
-                    $meta_to_display[] = __( 'by ', LAYERS_THEME_SLUG ) . layers_get_the_author( $post_id );
+                    $meta_to_display[] = '<span class="meta-item meta-author"><i class="l-user"></i> ' . layers_get_the_author( $post_id ) . '</span>';
                     break;
                 case 'categories' :
                     $categories = '';
@@ -55,7 +55,7 @@ if( !function_exists( 'layers_post_meta' ) ) {
                     foreach ( $the_categories as $category ){
                         $categories .= ' <a href="'.get_category_link( $category->term_id ).'" title="' . esc_attr( sprintf( __( "View all posts in %s", LAYERS_THEME_SLUG ), $category->name ) ) . '">'.$category->name.'</a>';
                     }
-                    $meta_to_display[] = __( 'in ', LAYERS_THEME_SLUG ) . $categories;
+                    $meta_to_display[] = '<span class="meta-item meta-category"><i class="l-folder-open-o"></i> ' . $categories . '</span>';
                     break;
                 case 'tags' :
                     $tags = '';
@@ -74,7 +74,7 @@ if( !function_exists( 'layers_post_meta' ) ) {
                     foreach ( $the_tags as $tag ){
                         $tags[] = ' <a href="'.get_category_link( $tag->term_id ).'" title="' . esc_attr( sprintf( __( "View all posts tagged %s", LAYERS_THEME_SLUG ), $tag->name ) ) . '">'.$tag->name.'</a>';
                     }
-                    $meta_to_display[] = __( 'tagged ', LAYERS_THEME_SLUG ) . implode( __( ', ', LAYERS_THEME_SLUG ), $tags );
+                    $meta_to_display[] = '<span class="meta-item"><i class="l-tags"></i> ' . implode( __( ', ', LAYERS_THEME_SLUG ), $tags ) . '</span>';
                     break;
                 break;
             } // switch meta
@@ -83,7 +83,7 @@ if( !function_exists( 'layers_post_meta' ) ) {
         if( !empty( $meta_to_display ) ) {
             echo '<' . $wrapper . ( ( '' != $wrapper_class ) ? ' class="' . $wrapper_class .'"' : NULL ) . '>';
                 echo '<p>';
-                    echo __( 'Written ' , LAYERS_THEME_SLUG ) . implode( ' ' , $meta_to_display );
+                    echo implode( ' ' , $meta_to_display );
                 echo '</p>';
             echo '</' . $wrapper . '>';
         }

@@ -19,31 +19,36 @@ $find_builder_page = layers_get_builder_pages(); ?>
    </div>
 
    <div class="layers-row layers-well layers-content-massive">
-      <div class="theme-browser rendered">
-         <div class="themes">
+      <div class="layers-browser">
+         <div class="layers-products">
+            <div class="layers-product blank-product">
+               <input id="layers-preset-layout-blank-title" type="hidden" value="<?php _e( 'Blank' , LAYERS_THEME_SLUG ); ?>" />
+               <input id="layers-preset-layout-blank-widget_data" type="hidden" value="{}" />
+               <div class="layers-product-screenshot">
+                  <span id="layers-generate-preset-layout-blank" data-key="layers-preset-layout-blank"></span>
+               </div>
+               <h3 class="layers-product-name"><?php _e( 'Blank Canvas' , LAYERS_THEME_SLUG ); ?></h3>
+            </div>
             <?php foreach( $layers_migrator->get_preset_layouts() as $template_key => $template ) { ?>
-               <input id="layers-preset-layout-<?php echo $template_key; ?>-title" type="hidden" value="<?php echo $template[ 'title' ]; ?>" />
-               <input id="layers-preset-layout-<?php echo $template_key; ?>-widget_data" type="hidden" value="<?php echo esc_attr( $template[ 'json' ] ); ?>" />
+               <div class="layers-product active  <?php echo ( isset( $template[ 'container_css' ] ) ?  $template[ 'container_css' ] : '' ); ?>" tabindex="0">
 
-               <div class="theme active  <?php echo ( isset( $template[ 'container_css' ] ) ?  $template[ 'container_css' ] : '' ); ?>" tabindex="0">
-                  <div class="theme-screenshot">
+                  <input id="layers-preset-layout-<?php echo $template_key; ?>-title" type="hidden" value="<?php echo $template[ 'title' ]; ?>" />
+                  <input id="layers-preset-layout-<?php echo $template_key; ?>-widget_data" type="hidden" value="<?php echo esc_attr( $template[ 'json' ] ); ?>" />
+
+
+                  <div class="layers-product-screenshot">
                      <?php echo $layers_migrator->generate_preset_layout_screenshot( $template[ 'screenshot' ], $template[ 'screenshot_type' ] ); ?>
                   </div>
-                  <h3 class="theme-name" id="<?php echo $template_key; ?>"><?php echo $template[ 'title' ]; ?></h3>
-                  <div class="theme-actions">
-                     <a class="button button-primary customize load-customize" id="layers-generate-preset-layout-<?php echo $template_key; ?>"  data-key="layers-preset-layout-<?php echo $template_key; ?>"><?php _e( 'Import', LAYERS_THEME_SLUG ); ?></a>
+                  <h3 class="layers-product-name" id="<?php echo $template_key; ?>"><?php echo $template[ 'title' ]; ?></h3>
+                  <div class="layers-product-actions">
+                     <a class="layers-button btn-primary customize load-customize" id="layers-generate-preset-layout-<?php echo $template_key; ?>"  data-key="layers-preset-layout-<?php echo $template_key; ?>"><?php _e( 'Import', LAYERS_THEME_SLUG ); ?></a>
                   </div>
                </div>
             <?php } // Get Preset Layouts ?>
-            <div class="theme add-new-theme">
-               <input id="layers-preset-layout-blank-title" type="hidden" value="<?php _e( 'Blank' , LAYERS_THEME_SLUG ); ?>" />
-               <input id="layers-preset-layout-blank-widget_data" type="hidden" value="{}" />
-               <div class="theme-screenshot"><span id="layers-generate-preset-layout-blank" data-key="layers-preset-layout-blank"></span></div>
-               <h3 class="theme-name"><?php _e( 'Blank Canvas' , LAYERS_THEME_SLUG ); ?></h3>
          </div>
-         <br class="clear">
       </div>
    </div>
+
 </section>
 
 <section class="layers-modal layers-hide">

@@ -107,8 +107,8 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 				<?php if( !empty( $widget[ 'slides' ] ) ) { ?>
 					<?php if( 1 < count( $widget[ 'slides' ] ) && isset( $widget['show_slider_arrows'] ) ) { ?>
 						 <div class="arrows">
-							<a href="" class="h-left-arrow animate"></a>
-							<a href="" class="h-right-arrow animate"></a>
+							<a href="" class="l-left-arrow animate"></a>
+							<a href="" class="l-right-arrow animate"></a>
 						</div>
 					<?php } ?>
 					<div class="pages animate">
@@ -206,9 +206,9 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 
 							if( $that.hasClass( 'swiper-pagination-switch' ) ){ // Anchors
 								swiper.swipeTo( $that.index() );
-							} else if( $that.hasClass( 'h-left-arrow' ) ){ // Previous
+							} else if( $that.hasClass( 'l-left-arrow' ) ){ // Previous
 								swiper.swipePrev();
-							} else if( $that.hasClass( 'h-right-arrow' ) ){ // Next
+							} else if( $that.hasClass( 'l-right-arrow' ) ){ // Next
 								swiper.swipeNext();
 							}
 

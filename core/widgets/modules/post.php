@@ -42,7 +42,7 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 			$control_ops = array( 'width' => LAYERS_WIDGET_WIDTH_SMALL, 'height' => NULL, 'id_base' => LAYERS_THEME_SLUG . '-widget-' . $this->widget_id );
 
 			/* Create the widget. */
-			$this->WP_Widget( LAYERS_THEME_SLUG . '-widget-' . $this->widget_id , '(' . LAYERS_THEME_TITLE . ') ' . $this->widget_title . ' Widget', $widget_ops, $control_ops );
+			$this->WP_Widget( LAYERS_THEME_SLUG . '-widget-' . $this->widget_id , '* ' . $this->widget_title . ' Widget', $widget_ops, $control_ops );
 
 			/* Setup Widget Defaults */
 			$this->defaults = array (

@@ -39,12 +39,11 @@ class Layers_Widgets {
 
 		// Include necessary widgets
 		locate_template(  $module_dir . 'base.php' , true ); // Basis of all Layers Widgets
-		locate_template( $module_dir . 'banner.php' , true );
 		locate_template( $module_dir . 'contact.php' , true );
-		locate_template( $module_dir . 'module.php' , true );
+		locate_template( $module_dir . 'content.php' , true );
 		locate_template( $module_dir . 'portfolio.php' , true );
 		locate_template( $module_dir . 'post.php' , true );
-		locate_template( $module_dir . 'sidebar.php' , true );
+		locate_template( $module_dir . 'slider.php' , true );
 
 		// When switching to a child theme, preserve page builder pages
 		add_action('switch_theme', array( $this , 'preserve_widgets' ) );
@@ -190,8 +189,8 @@ class Layers_Widgets {
 
 		// Banner Widget
 		wp_register_script(
-			LAYERS_THEME_SLUG . '-admin-widgets-banners' ,
-			get_template_directory_uri() . '/core/widgets/js/banner.js' ,
+			LAYERS_THEME_SLUG . '-admin-slider-widget' ,
+			get_template_directory_uri() . '/core/widgets/js/slider.js' ,
 			array(),
 			LAYERS_VERSION,
 			true
@@ -199,17 +198,8 @@ class Layers_Widgets {
 
 		// Module Widget
 		wp_register_script(
-			LAYERS_THEME_SLUG . '-admin-widgets-modules' ,
-			get_template_directory_uri() . '/core/widgets/js/module.js' ,
-			array(),
-			LAYERS_VERSION,
-			true
-		);
-
-		// Dynamic Sidebar Widget
-		wp_register_script(
-			LAYERS_THEME_SLUG . '-admin-widgets-sidebar' ,
-			get_template_directory_uri() . '/core/widgets/js/sidebar.js' ,
+			LAYERS_THEME_SLUG . '-admin-content-widget' ,
+			get_template_directory_uri() . '/core/widgets/js/content.js' ,
 			array(),
 			LAYERS_VERSION,
 			true
@@ -217,7 +207,7 @@ class Layers_Widgets {
 
 		// Migrator
 		wp_register_script(
-			LAYERS_THEME_SLUG . '-admin-widgets-migrator' ,
+			LAYERS_THEME_SLUG . '-admin-migrator' ,
 			get_template_directory_uri() . '/core/widgets/js/migrator.js' ,
 			array(),
 			LAYERS_VERSION,
@@ -226,7 +216,7 @@ class Layers_Widgets {
 
 		// Tiny MCE Initiator
 		wp_register_script(
-			LAYERS_THEME_SLUG . '-admin-widgets-tinymce' ,
+			LAYERS_THEME_SLUG . '-admin-tinymce' ,
 			get_template_directory_uri() . '/core/widgets/js/tinymce.js' ,
 			array(
 				'editor',
@@ -243,7 +233,7 @@ class Layers_Widgets {
 		// Contact Widget
 		wp_enqueue_script( LAYERS_THEME_SLUG . " -map-api","http://maps.googleapis.com/maps/api/js?sensor=false");
 		wp_register_script(
-			LAYERS_THEME_SLUG . '-admin-widgets-maps' ,
+			LAYERS_THEME_SLUG . '-admin-maps-widget' ,
 			get_template_directory_uri() . '/core/widgets/js/maps.js' ,
 			array(),
 			LAYERS_VERSION,
@@ -256,11 +246,10 @@ class Layers_Widgets {
 			LAYERS_THEME_SLUG . '-admin-widgets' ,
 			get_template_directory_uri() . '/core/widgets/js/widget-accordians.js' ,
 			array(
-				LAYERS_THEME_SLUG . '-admin-widgets-banners',
-				LAYERS_THEME_SLUG . '-admin-widgets-sidebar',
-				LAYERS_THEME_SLUG . '-admin-widgets-modules',
-				LAYERS_THEME_SLUG . '-admin-widgets-maps',
-				LAYERS_THEME_SLUG . '-admin-widgets-migrator',
+				LAYERS_THEME_SLUG . '-admin-slider-widget',
+				LAYERS_THEME_SLUG . '-admin-content-widget',
+				LAYERS_THEME_SLUG . '-admin-maps-widget',
+				LAYERS_THEME_SLUG . '-admin-migrator',
 				'backbone',
 				'jquery',
 				'wp-color-picker',

@@ -1,19 +1,19 @@
 <?php  /**
- * Modules Widget
+ * Content Widget
  *
- * This file is used to register and display the Layers - Module widget.
+ * This file is used to register and display the Layers - Content widget.
  *
  * @package Layers
  * @since Layers 1.0
  */
-if( !class_exists( 'Layers_Module_Widget' ) ) {
-	class Layers_Module_Widget extends Layers_Widget {
+if( !class_exists( 'Layers_Content_Widget' ) ) {
+	class Layers_Content_Widget extends Layers_Widget {
 
 		/**
 		*  Widget variables
 		*/
 		private $widget_title = 'Content';
-		private $widget_id = 'module';
+		private $widget_id = 'column';
 		private $post_type = '';
 		private $taxonomy = '';
 		public $checkboxes = array();
@@ -21,7 +21,7 @@ if( !class_exists( 'Layers_Module_Widget' ) ) {
 		/**
 		*  Widget construction
 		*/
-		function Layers_Module_Widget(){
+		function Layers_Content_Widget(){
 			/* Widget settings. */
 			$widget_ops = array( 'classname' => 'obox-layers-' . $this->widget_id .'-widget', 'description' => 'This widget is used to display your ' . $this->widget_title . '.' );
 
@@ -29,7 +29,7 @@ if( !class_exists( 'Layers_Module_Widget' ) ) {
 			$control_ops = array( 'width' => LAYERS_WIDGET_WIDTH_LARGE, 'height' => NULL, 'id_base' => LAYERS_THEME_SLUG . '-widget-' . $this->widget_id );
 
 			/* Create the widget. */
-			$this->WP_Widget( LAYERS_THEME_SLUG . '-widget-' . $this->widget_id , '(' . LAYERS_THEME_TITLE . ') ' . $this->widget_title . ' Widget', $widget_ops, $control_ops );
+			$this->WP_Widget( LAYERS_THEME_SLUG . '-widget-' . $this->widget_id , '* ' . $this->widget_title . ' Widget', $widget_ops, $control_ops );
 
 			/* Setup Widget Defaults */
 			$this->defaults = array (
@@ -50,10 +50,10 @@ if( !class_exists( 'Layers_Module_Widget' ) ) {
 						'shadow' => NULL
 					)
 				),
-				'module_ids' => rand( 1 , 1000 ).','.rand( 1 , 1000 ).','.rand( 1 , 1000 )
+				'column_ids' => rand( 1 , 1000 ).','.rand( 1 , 1000 ).','.rand( 1 , 1000 )
 			);
 
-			$this->module_defaults = array (
+			$this->column_defaults = array (
 				'title' => 'Your service title',
 				'excerpt' => 'Give us a brief description of the service that you are promoting. Try keep it short so that it is easy for people to scan your page.',
 				'width' => '4',
@@ -69,9 +69,9 @@ if( !class_exists( 'Layers_Module_Widget' ) ) {
 				)
 			);
 
-			// Setup the defaults for each module object
-			foreach( explode( ',', $this->defaults[ 'module_ids' ] ) as $module_id ) {
-					$this->defaults[ 'modules' ][ $module_id ] = $this->module_defaults;
+			// Setup the defaults for each column object
+			foreach( explode( ',', $this->defaults[ 'column_ids' ] ) as $column_id ) {
+					$this->defaults[ 'columns' ][ $column_id ] = $this->column_defaults;
 			}
 		}
 
@@ -112,25 +112,25 @@ if( !class_exists( 'Layers_Module_Widget' ) ) {
 						</div>
 					</div>
 				<?php } ?>
-				<?php if( !empty( $widget['modules'] ) ) { ?>
+				<?php if( !empty( $widget['columns'] ) ) { ?>
 					<div class="row <?php if('layout-boxed' == $this->check_and_return( $widget , 'design' , 'layout' ) ) echo 'container'; ?> <?php echo $this->check_and_return( $widget , 'design', 'liststyle' ); ?>">
 						<?php // Set total width so that we can apply .last to the final container
 						$total_width = 0; ?>
-						<?php foreach ( $widget['modules'] as $key => $module) {
+						<?php foreach ( $widget['columns'] as $key => $column) {
 							// Set column link
-							$link = ( $this->check_and_return( $module , 'link' ) ) ? $this->check_and_return( $module , 'link' ) : '#' . $widget_id . '-' . $key;
+							$link = ( $this->check_and_return( $column , 'link' ) ) ? $this->check_and_return( $column , 'link' ) : '#' . $widget_id . '-' . $key;
 
 							// Set the background styling
-							if( !empty( $module['design'][ 'background' ] ) ) layers_inline_styles( $widget_id . '-' . $key , 'background', array( 'background' => $module['design'][ 'background' ] ) );
-							if( !empty( $module['design']['fonts'][ 'color' ] ) ) layers_inline_styles( $widget_id . '-' . $key , 'color', array( 'selectors' => array( 'h5.heading a' , 'div.excerpt' , 'div.excerpt p' ) , 'color' => $module['design']['fonts'][ 'color' ] ) );
-							if( !empty( $module['design']['fonts'][ 'shadow' ] ) ) layers_inline_styles( $widget_id . '-' . $key , 'text-shadow', array( 'selectors' => array( 'h5.heading a' , 'div.excerpt' , 'div.excerpt p' )  , 'text-shadow' => $module['design']['fonts'][ 'shadow' ] ) );
+							if( !empty( $column['design'][ 'background' ] ) ) layers_inline_styles( $widget_id . '-' . $key , 'background', array( 'background' => $column['design'][ 'background' ] ) );
+							if( !empty( $column['design']['fonts'][ 'color' ] ) ) layers_inline_styles( $widget_id . '-' . $key , 'color', array( 'selectors' => array( 'h5.heading a' , 'div.excerpt' , 'div.excerpt p' ) , 'color' => $column['design']['fonts'][ 'color' ] ) );
+							if( !empty( $column['design']['fonts'][ 'shadow' ] ) ) layers_inline_styles( $widget_id . '-' . $key , 'text-shadow', array( 'selectors' => array( 'h5.heading a' , 'div.excerpt' , 'div.excerpt p' )  , 'text-shadow' => $column['design']['fonts'][ 'shadow' ] ) );
 
-							if( !isset( $module[ 'width' ] ) ) $module[ 'width' ] = $this->module_defaults[ 'width' ];
+							if( !isset( $column[ 'width' ] ) ) $column[ 'width' ] = $this->column_defaults[ 'width' ];
 							// Add the correct span class
-							$span_class = 'span-' . $module[ 'width' ];
+							$span_class = 'span-' . $column[ 'width' ];
 
 							// Add .last to the final column
-							$total_width += $module[ 'width' ];
+							$total_width += $column[ 'width' ];
 
 							if( 12 == $total_width ) {
 								$span_class .= ' last';
@@ -140,26 +140,26 @@ if( !class_exists( 'Layers_Module_Widget' ) ) {
 							}
 
 							// Set Image Sizes
-							if( isset( $module['design'][ 'imageratios' ] ) ){
+							if( isset( $column['design'][ 'imageratios' ] ) ){
 
 								// Translate Image Ratio
-								$image_ratio = layers_translate_image_ratios( $module['design'][ 'imageratios' ] );
+								$image_ratio = layers_translate_image_ratios( $column['design'][ 'imageratios' ] );
 
 								// If round then set image to square, and set border radius css further down.
 								if( 'round' == $image_ratio ){
 									$image_ratio = 'square';
 								}
 
-								if( !isset( $module[ 'width' ] ) ) $module[ 'width' ] = 6;
+								if( !isset( $column[ 'width' ] ) ) $column[ 'width' ] = 6;
 
-								if( 6 > $module['width'] ){
+								if( 6 > $column['width'] ){
 									$imageratios = $image_ratio . '-medium';
 								} else {
 									$imageratios = $image_ratio . '-large';
 								}
 
 							} else {
-								if( 6 > $module['width'] ){
+								if( 6 > $column['width'] ){
 									$imageratios = 'medium';
 								} else {
 									$imageratios = 'full';
@@ -169,27 +169,27 @@ if( !class_exists( 'Layers_Module_Widget' ) ) {
 							<div id="<?php echo $widget_id; ?>-<?php echo $key; ?>" class="
 								column<?php if( !isset( $widget['design'][ 'gutter' ] ) ) echo '-flush'; ?>
 								<?php echo $span_class; ?>
-								<?php if( '' != $this->check_and_return( $module, 'design' , 'background', 'image' ) || '' != $this->check_and_return( $module, 'design' , 'background', 'color' ) ) echo 'content'; ?>
+								<?php if( '' != $this->check_and_return( $column, 'design' , 'background', 'image' ) || '' != $this->check_and_return( $column, 'design' , 'background', 'color' ) ) echo 'content'; ?>
 								layers-masonry-column">
 								<a name="<?php echo $widget_id . '-' . $key; ?>"></a>
 								<div class="media
-									<?php echo $this->check_and_return( $module, 'design', 'imagealign' ); ?>
-									<?php echo $this->check_and_return( $module, 'design', 'fonts' , 'size' ); ?>
+									<?php echo $this->check_and_return( $column, 'design', 'imagealign' ); ?>
+									<?php echo $this->check_and_return( $column, 'design', 'fonts' , 'size' ); ?>
 									<?php if( !$this->check_and_return( $widget, 'design', 'gutter' ) ) echo 'no-push-bottom'; ?>
 								">
-									<?php if( $this->check_and_return( $module , 'design' , 'featuredimage' ) ) { ?>
-										<div class="media-image <?php if ( 'round' == layers_translate_image_ratios( $module['design'][ 'imageratios' ] ) ) { ?>image-rounded<?php } ?>"><a href="<?php echo $link; ?>"><?php echo wp_get_attachment_image( $module['design'][ 'featuredimage' ] , $imageratios ); ?></a></div>
+									<?php if( $this->check_and_return( $column , 'design' , 'featuredimage' ) ) { ?>
+										<div class="media-image <?php if ( 'round' == layers_translate_image_ratios( $column['design'][ 'imageratios' ] ) ) { ?>image-rounded<?php } ?>"><a href="<?php echo $link; ?>"><?php echo wp_get_attachment_image( $column['design'][ 'featuredimage' ] , $imageratios ); ?></a></div>
 									<?php } ?>
-									<?php if( '' != $module['title'] || '' != $module['excerpt'] ) { ?>
-										<div class="media-body <?php echo ( isset( $module['design']['fonts'][ 'align' ] ) ) ? $module['design']['fonts'][ 'align' ] : ''; ?>">
-											<?php if( isset( $module['title'] ) && '' != $module['title'] ) { ?>
-												<h5 class="heading"><a href="<?php echo $link; ?>"><?php echo $module['title']; ?></a></h5>
+									<?php if( '' != $column['title'] || '' != $column['excerpt'] ) { ?>
+										<div class="media-body <?php echo ( isset( $column['design']['fonts'][ 'align' ] ) ) ? $column['design']['fonts'][ 'align' ] : ''; ?>">
+											<?php if( isset( $column['title'] ) && '' != $column['title'] ) { ?>
+												<h5 class="heading"><a href="<?php echo $link; ?>"><?php echo $column['title']; ?></a></h5>
 											<?php } ?>
-											<?php if( isset( $module['excerpt'] ) && '' != $module['excerpt'] ) { ?>
-												<div class="excerpt"><?php echo apply_filters( 'the_content', $module['excerpt'] ); ?></div>
+											<?php if( isset( $column['excerpt'] ) && '' != $column['excerpt'] ) { ?>
+												<div class="excerpt"><?php echo apply_filters( 'the_content', $column['excerpt'] ); ?></div>
 											<?php } ?>
-											<?php if( isset( $module['link'] ) && $this->check_and_return( $module , 'link_text' ) ) { ?>
-												<a href="<?php echo $module['link']; ?>" class="button btn-<?php echo $this->check_and_return( $module , 'design' , 'fonts' , 'size' ); ?>"><?php echo $module['link_text']; ?></a>
+											<?php if( isset( $column['link'] ) && $this->check_and_return( $column , 'link_text' ) ) { ?>
+												<a href="<?php echo $column['link']; ?>" class="button btn-<?php echo $this->check_and_return( $column , 'design' , 'fonts' , 'size' ); ?>"><?php echo $column['link_text']; ?></a>
 											<?php } ?>
 										</div>
 									<?php } ?>
@@ -292,7 +292,7 @@ if( !class_exists( 'Layers_Module_Widget' ) ) {
 					)
 				)
 			); ?>
-			<div class="layers-container-large" id="layers-module-widget-<?php echo $this->number; ?>">
+			<div class="layers-container-large" id="layers-column-widget-<?php echo $this->number; ?>">
 
 				<?php $this->form_elements()->header( array(
 					'title' =>'Content',
@@ -328,41 +328,41 @@ if( !class_exists( 'Layers_Module_Widget' ) ) {
 					<?php echo $this->form_elements()->input(
 						array(
 							'type' => 'hidden',
-							'name' => $this->get_field_name( 'module_ids' ) ,
-							'id' => 'module_ids_input_' . $this->number,
-							'value' => ( isset( $module_ids ) ) ? $module_ids : NULL
+							'name' => $this->get_field_name( 'column_ids' ) ,
+							'id' => 'column_ids_input_' . $this->number,
+							'value' => ( isset( $column_ids ) ) ? $column_ids : NULL
 						)
 					); ?>
 
-					<?php // If we have some modules, let's break out their IDs into an array
-					if( isset( $module_ids ) && '' != $module_ids ) $modules = explode( ',' , $module_ids ); ?>
+					<?php // If we have some columns, let's break out their IDs into an array
+					if( isset( $column_ids ) && '' != $column_ids ) $columns = explode( ',' , $column_ids ); ?>
 
-					<ul id="module_list_<?php echo $this->number; ?>" class="layers-accordions layers-accordions-sortable layers-sortable" data-id_base="<?php echo $this->id_base; ?>" data-number="<?php echo $this->number; ?>">
-						<?php if( isset( $modules ) && is_array( $modules ) ) { ?>
-							<?php foreach( $modules as $moduleguid ) {
-								$this->module_item( array(
+					<ul id="column_list_<?php echo $this->number; ?>" class="layers-accordions layers-accordions-sortable layers-sortable" data-id_base="<?php echo $this->id_base; ?>" data-number="<?php echo $this->number; ?>">
+						<?php if( isset( $columns ) && is_array( $columns ) ) { ?>
+							<?php foreach( $columns as $columnguid ) {
+								$this->column_item( array(
 											'id_base' => $this->id_base ,
 											'number' => $this->number
 										) ,
-										$moduleguid ,
-										( isset( $instance[ 'modules' ][ $moduleguid ] ) ) ? $instance[ 'modules' ][ $moduleguid ] : NULL );
+										$columnguid ,
+										( isset( $instance[ 'columns' ][ $columnguid ] ) ) ? $instance[ 'columns' ][ $columnguid ] : NULL );
 							} ?>
 						<?php } else { ?>
-							<?php $this->module_item( array( 'id_base' => $this->id_base , 'number' => $this->number ) ); ?>
+							<?php $this->column_item( array( 'id_base' => $this->id_base , 'number' => $this->number ) ); ?>
 						<?php }?>
-						<li class="layers-button btn-primary layers-add-widget-module" data-number="<?php echo $this->number; ?>"><?php _e( '+ Add New Column' , LAYERS_THEME_SLUG ) ; ?></li>
+						<li class="layers-button btn-primary layers-add-widget-column" data-number="<?php echo $this->number; ?>"><?php _e( '+ Add New Column' , LAYERS_THEME_SLUG ) ; ?></li>
 					</ul>
 				</section>
 			</div>
 
 		<?php } // Form
 
-		function module_item( $widget_details = array() , $column_guid = NULL , $instance = NULL ){
+		function column_item( $widget_details = array() , $column_guid = NULL , $instance = NULL ){
 
 			// Extract Instance if it's there so that we can use the values in our inputs
 
 			// $instance Defaults
-			$instance_defaults = $this->module_defaults;
+			$instance_defaults = $this->column_defaults;
 
 			// Parse $instance
 			$instance = wp_parse_args( $instance, $instance_defaults );
@@ -377,10 +377,10 @@ if( !class_exists( 'Layers_Module_Widget' ) ) {
 			$widget_details = (object) $widget_details;
 
 			// Set a count for each row
-			if( !isset( $this->module_item_count ) ) {
-				$this->module_item_count = 0;
+			if( !isset( $this->column_item_count ) ) {
+				$this->column_item_count = 0;
 			} else {
-				$this->module_item_count++;
+				$this->column_item_count++;
 			} ?>
 
 				<li class="layers-accordion-item" data-guid="<?php echo $column_guid; ?>">
@@ -393,8 +393,8 @@ if( !class_exists( 'Layers_Module_Widget' ) ) {
 						<?php $this->design_bar()->bar(
 							'top', // CSS Class Name
 							array(
-								'name' => $this->get_custom_field_name( $widget_details, 'modules',  $column_guid, 'design' ),
-								'id' => $this->get_custom_field_id( $widget_details, 'modules',  $column_guid, 'design' ),
+								'name' => $this->get_custom_field_name( $widget_details, 'columns',  $column_guid, 'design' ),
+								'id' => $this->get_custom_field_id( $widget_details, 'columns',  $column_guid, 'design' ),
 								'number' => $widget_details->number,
 								'show_trash' => true
 							), // Widget Object
@@ -414,7 +414,7 @@ if( !class_exists( 'Layers_Module_Widget' ) ) {
 										'layout' => array(
 											'type' => 'select',
 											'label' => __( '', LAYERS_THEME_SLUG ),
-											'name' => 'widget-' . $widget_details->id_base . '[' . $widget_details->number . '][modules][' . $column_guid . '][width]' ,
+											'name' => 'widget-' . $widget_details->id_base . '[' . $widget_details->number . '][columns][' . $column_guid . '][width]' ,
 											'id' => 'widget-' . $widget_details->id_base . '-' . $widget_details->number . '-' . $column_guid . '-width' ,
 											'value' => ( isset( $width ) ) ? $width : NULL,
 											'options' => array(
@@ -436,12 +436,12 @@ if( !class_exists( 'Layers_Module_Widget' ) ) {
 
 						<div class="layers-row">
 							<p class="layers-form-item">
-								<label for="<?php echo $this->get_custom_field_id( $widget_details, 'modules',  $column_guid, 'title' ); ?>"><?php _e( 'Title' , LAYERS_THEME_SLUG ); ?></label>
+								<label for="<?php echo $this->get_custom_field_id( $widget_details, 'columns',  $column_guid, 'title' ); ?>"><?php _e( 'Title' , LAYERS_THEME_SLUG ); ?></label>
 								<?php echo $this->form_elements()->input(
 									array(
 										'type' => 'text',
-										'name' => $this->get_custom_field_name( $widget_details, 'modules',  $column_guid, 'title' ),
-										'id' => $this->get_custom_field_id( $widget_details, 'modules',  $column_guid, 'title' ),
+										'name' => $this->get_custom_field_name( $widget_details, 'columns',  $column_guid, 'title' ),
+										'id' => $this->get_custom_field_id( $widget_details, 'columns',  $column_guid, 'title' ),
 										'placeholder' => __( 'Enter title here', LAYERS_THEME_SLUG ),
 										'value' => ( isset( $title ) ) ? $title : NULL ,
 										'class' => 'layers-text'
@@ -449,12 +449,12 @@ if( !class_exists( 'Layers_Module_Widget' ) ) {
 								); ?>
 							</p>
 							<p class="layers-form-item">
-								<label for="<?php echo $this->get_custom_field_id( $widget_details, 'modules',  $column_guid, 'excerpt' ); ?>"><?php _e( 'Excerpt' , LAYERS_THEME_SLUG ); ?></label>
+								<label for="<?php echo $this->get_custom_field_id( $widget_details, 'columns',  $column_guid, 'excerpt' ); ?>"><?php _e( 'Excerpt' , LAYERS_THEME_SLUG ); ?></label>
 								<?php echo $this->form_elements()->input(
 									array(
 										'type' => 'textarea',
-										'name' => $this->get_custom_field_name( $widget_details, 'modules',  $column_guid, 'excerpt' ),
-										'id' => $this->get_custom_field_id( $widget_details, 'modules',  $column_guid, 'excerpt' ),
+										'name' => $this->get_custom_field_name( $widget_details, 'columns',  $column_guid, 'excerpt' ),
+										'id' => $this->get_custom_field_id( $widget_details, 'columns',  $column_guid, 'excerpt' ),
 										'placeholder' => __( 'Short Excerpt', LAYERS_THEME_SLUG ),
 										'value' => ( isset( $excerpt ) ) ? $excerpt : NULL ,
 										'class' => 'layers-form-item layers-textarea',
@@ -463,12 +463,12 @@ if( !class_exists( 'Layers_Module_Widget' ) ) {
 								); ?>
 							</p>
 							<p class="layers-form-item">
-								<label for="<?php echo $this->get_custom_field_id( $widget_details, 'modules',  $column_guid, 'link_text' ); ?>"><?php _e( 'Link' , LAYERS_THEME_SLUG ); ?></label>
+								<label for="<?php echo $this->get_custom_field_id( $widget_details, 'columns',  $column_guid, 'link_text' ); ?>"><?php _e( 'Link' , LAYERS_THEME_SLUG ); ?></label>
 								<?php echo $this->form_elements()->input(
 									array(
 										'type' => 'text',
-										'name' => $this->get_custom_field_name( $widget_details, 'modules',  $column_guid, 'link' ),
-										'id' => $this->get_custom_field_id( $widget_details, 'modules',  $column_guid, 'link' ),
+										'name' => $this->get_custom_field_name( $widget_details, 'columns',  $column_guid, 'link' ),
+										'id' => $this->get_custom_field_id( $widget_details, 'columns',  $column_guid, 'link' ),
 										'placeholder' => __( 'Link', LAYERS_THEME_SLUG ),
 										'value' => ( isset( $link ) ) ? $link : NULL ,
 										'class' => 'layers-text',
@@ -476,12 +476,12 @@ if( !class_exists( 'Layers_Module_Widget' ) ) {
 								); ?>
 							</p>
 							<p class="layers-form-item">
-								<label for="<?php echo $this->get_custom_field_id( $widget_details, 'modules',  $column_guid, 'link_text' ); ?>"><?php _e( 'Button Text' , LAYERS_THEME_SLUG ); ?></label>
+								<label for="<?php echo $this->get_custom_field_id( $widget_details, 'columns',  $column_guid, 'link_text' ); ?>"><?php _e( 'Button Text' , LAYERS_THEME_SLUG ); ?></label>
 								<?php echo $this->form_elements()->input(
 									array(
 										'type' => 'text',
-										'name' => $this->get_custom_field_name( $widget_details, 'modules',  $column_guid, 'link_text' ),
-										'id' => $this->get_custom_field_id( $widget_details, 'modules',  $column_guid, 'link_text' ),
+										'name' => $this->get_custom_field_name( $widget_details, 'columns',  $column_guid, 'link_text' ),
+										'id' => $this->get_custom_field_id( $widget_details, 'columns',  $column_guid, 'link_text' ),
 										'placeholder' => __( 'e.g. "Read More"' , LAYERS_THEME_SLUG ),
 										'value' => ( isset( $link_text ) ) ? $link_text : NULL ,
 									)
@@ -495,5 +495,5 @@ if( !class_exists( 'Layers_Module_Widget' ) ) {
 	} // Class
 
 	// Add our function to the widgets_init hook.
-	 register_widget("Layers_Module_Widget");
+	 register_widget("Layers_Content_Widget");
 }

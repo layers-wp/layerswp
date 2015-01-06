@@ -12,14 +12,14 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 		/**
 		*  Widget variables
 		*/
-		private $widget_title = 'Sliders';
-		private $widget_id = 'banner';
+		private $widget_title = 'Slider';
+		private $widget_id = 'slide';
 		private $post_type = '';
 		private $taxonomy = '';
 		public $checkboxes = array(
 				'show_slider_arrows',
 				'show_slider_dots',
-				'autoplay_banners'
+				'autoplay_slides'
 			);
 
 		/**
@@ -33,20 +33,20 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 			$control_ops = array( 'width' => LAYERS_WIDGET_WIDTH_LARGE, 'height' => NULL, 'id_base' => LAYERS_THEME_SLUG . '-widget-' . $this->widget_id );
 
 			/* Create the widget. */
-			$this->WP_Widget( LAYERS_THEME_SLUG . '-widget-' . $this->widget_id , '(' . LAYERS_THEME_TITLE . ') ' . $this->widget_title . ' Widget', $widget_ops, $control_ops );
+			$this->WP_Widget( LAYERS_THEME_SLUG . '-widget-' . $this->widget_id , '* ' . $this->widget_title . ' Widget', $widget_ops, $control_ops );
 
 			/* Setup Widget Defaults */
 			$this->defaults = array (
 				'title' => NULL,
 				'excerpt' => NULL,
-				'banner_height' => '550',
-				'banner_ids' => rand( 1 , 1000 ),
+				'slide_height' => '550',
+				'slide_ids' => rand( 1 , 1000 ),
 				'show_slider_arrows' => true,
 				'show_slider_dots' => true,
 
 			);
 
-			$this->banner_defaults = array (
+			$this->slide_defaults = array (
 				'title' => 'Slider Title',
 				'excerpt' => 'Short Excerpt',
 				'link' => NULL,
@@ -69,8 +69,8 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 				)
 			);
 
-			// Setup the defaults for each banner
-			$this->defaults[ 'banners' ][ $this->defaults[ 'banner_ids' ] ] = $this->banner_defaults;
+			// Setup the defaults for each slide
+			$this->defaults[ 'slides' ][ $this->defaults[ 'slide_ids' ] ] = $this->slide_defaults;
 
 		}
 
@@ -103,32 +103,32 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 				wp_add_inline_style( LAYERS_THEME_SLUG . '-custom-widget-styles', $widget['design']['advanced'][ 'customcss' ] );
 			} ?>
 
-			<section class="widget row banner swiper-container <?php if( isset( $layout_class ) ) echo $layout_class; ?> <?php echo $this->check_and_return( $widget , 'design', 'advanced', 'customclass' ) ?>" id="<?php echo $widget_id; ?>" <?php if( $this->check_and_return( $widget , 'banner_height' ) ) echo 'style="height: ' . $widget['banner_height'] . 'px;"' ?>>
-				<?php if( !empty( $widget[ 'banners' ] ) ) { ?>
-					<?php if( 1 < count( $widget[ 'banners' ] ) && isset( $widget['show_slider_arrows'] ) ) { ?>
+			<section class="widget row slide swiper-container <?php if( isset( $layout_class ) ) echo $layout_class; ?> <?php echo $this->check_and_return( $widget , 'design', 'advanced', 'customclass' ) ?>" id="<?php echo $widget_id; ?>" <?php if( $this->check_and_return( $widget , 'slide_height' ) ) echo 'style="height: ' . $widget['slide_height'] . 'px;"' ?>>
+				<?php if( !empty( $widget[ 'slides' ] ) ) { ?>
+					<?php if( 1 < count( $widget[ 'slides' ] ) && isset( $widget['show_slider_arrows'] ) ) { ?>
 						 <div class="arrows">
 							<a href="" class="h-left-arrow animate"></a>
 							<a href="" class="h-right-arrow animate"></a>
 						</div>
 					<?php } ?>
 					<div class="pages animate">
-						<?php for( $i = 0; $i < count( $widget[ 'banners' ] ); $i++ ) { ?>
+						<?php for( $i = 0; $i < count( $widget[ 'slides' ] ); $i++ ) { ?>
 							<a href="" class="page animate <?php if( 0 == $i ) echo 'active'; ?>"></a>
 						<?php } ?>
 					</div>
 			 		<div class="swiper-wrapper">
 						<?php $col = 1; ?>
-						<?php foreach ( $widget[ 'banners' ] as $key => $banner) {
+						<?php foreach ( $widget[ 'slides' ] as $key => $slide) {
 
 							// Set the background styling
-							if( !empty( $banner['design'][ 'background' ] ) ) layers_inline_styles( $widget_id . '-' . $key , 'background', array( 'background' => $banner['design'][ 'background' ] ) );
-							if( !empty( $banner['design']['fonts'][ 'color' ] ) ) layers_inline_styles( $widget_id . '-' . $key , 'color', array( 'selectors' => array( 'h3.heading', 'h3.heading a', 'div.excerpt' ) , 'color' => $banner['design']['fonts'][ 'color' ] ) );
-							if( !empty( $banner['design']['fonts'][ 'shadow' ] ) ) layers_inline_styles( $widget_id . '-' . $key , 'text-shadow', array( 'selectors' => array( 'h3.heading', 'h3.heading a',  'div.excerpt' )  , 'text-shadow' => $banner['design']['fonts'][ 'shadow' ] ) );
+							if( !empty( $slide['design'][ 'background' ] ) ) layers_inline_styles( $widget_id . '-' . $key , 'background', array( 'background' => $slide['design'][ 'background' ] ) );
+							if( !empty( $slide['design']['fonts'][ 'color' ] ) ) layers_inline_styles( $widget_id . '-' . $key , 'color', array( 'selectors' => array( 'h3.heading', 'h3.heading a', 'div.excerpt' ) , 'color' => $slide['design']['fonts'][ 'color' ] ) );
+							if( !empty( $slide['design']['fonts'][ 'shadow' ] ) ) layers_inline_styles( $widget_id . '-' . $key , 'text-shadow', array( 'selectors' => array( 'h3.heading', 'h3.heading a',  'div.excerpt' )  , 'text-shadow' => $slide['design']['fonts'][ 'shadow' ] ) );
 
 							// Set Image Sizes
-							if( isset( $banner['design'][ 'imageratios' ] ) ){
+							if( isset( $slide['design'][ 'imageratios' ] ) ){
 									// Translate Image Ratio
-									$image_ratio = layers_translate_image_ratios( $banner['design'][ 'imageratios' ] );
+									$image_ratio = layers_translate_image_ratios( $slide['design'][ 'imageratios' ] );
 
 									// If round then set image to square, and set border radius css further down.
 									if( 'round' == $image_ratio ){
@@ -141,37 +141,37 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 							} ?>
 
 							<div id="<?php echo $widget_id; ?>-<?php echo $key; ?>" class="invert swiper-slide
-								<?php if( false != $this->check_and_return( $banner , 'image' ) || 'image-left' == $banner['design'][ 'imagealign' ] || 'image-right' == $banner['design'][ 'imagealign' ] ) echo 'has-image'; ?>
-								<?php if( isset( $banner['design'][ 'imagealign' ] ) && '' != $banner['design'][ 'imagealign' ] ) echo $banner['design'][ 'imagealign' ]; ?>
-								<?php if( isset( $banner['design']['fonts'][ 'align' ] ) && '' != $banner['design']['fonts'][ 'align' ] ) echo $banner['design']['fonts'][ 'align' ]; ?>
+								<?php if( false != $this->check_and_return( $slide , 'image' ) || 'image-left' == $slide['design'][ 'imagealign' ] || 'image-right' == $slide['design'][ 'imagealign' ] ) echo 'has-image'; ?>
+								<?php if( isset( $slide['design'][ 'imagealign' ] ) && '' != $slide['design'][ 'imagealign' ] ) echo $slide['design'][ 'imagealign' ]; ?>
+								<?php if( isset( $slide['design']['fonts'][ 'align' ] ) && '' != $slide['design']['fonts'][ 'align' ] ) echo $slide['design']['fonts'][ 'align' ]; ?>
 								"
 								style="float: left;">
-								<div class="overlay <?php if( isset( $banner['design'][ 'background' ][ 'darken' ] ) ) echo 'darken'; ?>"  <?php if( $this->check_and_return( $widget , 'banner_height' ) ) echo 'style="height: ' . $widget['banner_height'] . 'px;"' ?>>
+								<div class="overlay <?php if( isset( $slide['design'][ 'background' ][ 'darken' ] ) ) echo 'darken'; ?>"  <?php if( $this->check_and_return( $widget , 'slide_height' ) ) echo 'style="height: ' . $widget['slide_height'] . 'px;"' ?>>
 									<div class="container clearfix">
-										<?php if( '' != $banner['title'] || '' != $banner['excerpt'] || '' != $banner['link'] ) { ?>
+										<?php if( '' != $slide['title'] || '' != $slide['excerpt'] || '' != $slide['link'] ) { ?>
 											<div class="copy-container">
-												<div class="section-title <?php echo ( isset( $banner['design']['fonts'][ 'size' ] ) ? $banner['design']['fonts'][ 'size' ] : '' ); ?>">
-													<?php if( $this->check_and_return( $banner , 'title' ) ) { ?>
-														<?php if( $this->check_and_return( $banner , 'link' ) ) { ?>
-															<h3 class="heading"><a href="<?php echo $banner['link']; ?>"><?php echo $banner['title']; ?></a></h3>
+												<div class="section-title <?php echo ( isset( $slide['design']['fonts'][ 'size' ] ) ? $slide['design']['fonts'][ 'size' ] : '' ); ?>">
+													<?php if( $this->check_and_return( $slide , 'title' ) ) { ?>
+														<?php if( $this->check_and_return( $slide , 'link' ) ) { ?>
+															<h3 class="heading"><a href="<?php echo $slide['link']; ?>"><?php echo $slide['title']; ?></a></h3>
 														<?php } else { ?>
-															<h3 class="heading"><?php echo $banner['title']; ?></h3>
+															<h3 class="heading"><?php echo $slide['title']; ?></h3>
 														<?php } ?>
 													<?php } ?>
-													<?php if( $this->check_and_return( $banner , 'excerpt' ) ) { ?>
-														<div class="excerpt"><?php echo $banner['excerpt']; ?></div>
+													<?php if( $this->check_and_return( $slide , 'excerpt' ) ) { ?>
+														<div class="excerpt"><?php echo $slide['excerpt']; ?></div>
 													<?php } ?>
-													<?php if( isset( $banner['link'] ) && $this->check_and_return( $banner , 'link_text' ) ) { ?>
-														<a href="<?php echo $banner['link']; ?>" class="button btn-<?php echo $this->check_and_return( $banner , 'design' , 'fonts' , 'size' ); ?>"><?php echo $banner['link_text']; ?></a>
+													<?php if( isset( $slide['link'] ) && $this->check_and_return( $slide , 'link_text' ) ) { ?>
+														<a href="<?php echo $slide['link']; ?>" class="button btn-<?php echo $this->check_and_return( $slide , 'design' , 'fonts' , 'size' ); ?>"><?php echo $slide['link_text']; ?></a>
 													<?php } ?>
 												</div>
 											</div>
 										<?php } // if title || excerpt ?>
-										<?php if( $this->check_and_return( $banner , 'design' , 'featuredimage' ) ) { ?>
+										<?php if( $this->check_and_return( $slide , 'design' , 'featuredimage' ) ) { ?>
 											<div class="image-container <?php if ( 'round' == layers_translate_image_ratios( $module['design'][ 'imageratios' ] ) ) { ?>image-rounded<?php } ?>">
-												<?php echo wp_get_attachment_image( $banner['design'][ 'featuredimage' ] , $imageratios ); ?>
+												<?php echo wp_get_attachment_image( $slide['design'][ 'featuredimage' ] , $imageratios ); ?>
 											</div>
-										<?php } // if $banner image ?>
+										<?php } // if $slide image ?>
 									</div> <!-- .container -->
 								</div> <!-- .overlay -->
 							</div>
@@ -179,7 +179,7 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 			 		</div>
 				<?php } // if !empty( $widget->slides ) ?>
 		 	</section>
-		 	<?php if( !empty( $widget[ 'banners' ] ) ) { ?>
+		 	<?php if( !empty( $widget[ 'slides' ] ) ) { ?>
 			 	<script>
 					jQuery(function($){
 
@@ -191,10 +191,10 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 							paginationClickable: true,
 							watchActiveIndex: true,
 							loop: true
-							<?php if( isset( $widget['autoplay_banners'] ) && isset( $widget['slide_time'] ) && is_numeric( $widget['slide_time'] ) ) {?>, autoplay: <?php echo ($widget['slide_time']*1000); ?><?php }?>
+							<?php if( isset( $widget['autoplay_slides'] ) && isset( $widget['slide_time'] ) && is_numeric( $widget['slide_time'] ) ) {?>, autoplay: <?php echo ($widget['slide_time']*1000); ?><?php }?>
 						});
 
-						<?php if( 1 < count( $widget[ 'banners' ] ) ) { ?>
+						<?php if( 1 < count( $widget[ 'slides' ] ) ) { ?>
 							// Allow keyboard control
 							swiper.enableKeyboardControl();
 						<?php } // if > 1 slide ?>
@@ -303,11 +303,11 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 									'value' => ( isset( $show_slider_dots ) ) ? $show_slider_dots : NULL,
 									'label' => __( 'Show Slider Dots', LAYERS_THEME_SLUG )
 								),
-								'autoplay_banners' => array(
+								'autoplay_slides' => array(
 									'type' => 'checkbox',
-									'name' => $this->get_field_name( 'autoplay_banners' ) ,
-									'id' => $this->get_field_id( 'autoplay_banners' ) ,
-									'value' => ( isset( $autoplay_banners ) ) ? $autoplay_banners : NULL,
+									'name' => $this->get_field_name( 'autoplay_slides' ) ,
+									'id' => $this->get_field_id( 'autoplay_slides' ) ,
+									'value' => ( isset( $autoplay_slides ) ) ? $autoplay_slides : NULL,
 									'label' => __( 'Autoplay Slides', LAYERS_THEME_SLUG )
 								),
 								'slide_time' => array(
@@ -320,18 +320,18 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 									'value' => ( isset( $slide_time ) ) ? $slide_time : NULL,
 									'label' => __( 'Slide Interval', LAYERS_THEME_SLUG )
 								),
-								'banner_height' => array(
+								'slide_height' => array(
 									'type' => 'number',
-									'name' => $this->get_field_name( 'banner_height' ) ,
-									'id' => $this->get_field_id( 'banner_height' ) ,
-									'value' => ( isset( $banner_height ) ) ? $banner_height : NULL,
+									'name' => $this->get_field_name( 'slide_height' ) ,
+									'id' => $this->get_field_id( 'slide_height' ) ,
+									'value' => ( isset( $slide_height ) ) ? $slide_height : NULL,
 									'label' => __( 'Slider Height', LAYERS_THEME_SLUG )
 								)
 							)
 					)
 				)
 			); ?>
-			<div class="layers-container-large" id="layers-banner-widget-<?php echo $this->number; ?>">
+			<div class="layers-container-large" id="layers-slide-widget-<?php echo $this->number; ?>">
 
 				<?php $this->form_elements()->header( array(
 					'title' =>'Sliders',
@@ -342,29 +342,29 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 						<?php echo $this->form_elements()->input(
 							array(
 								'type' => 'hidden',
-								'name' => $this->get_field_name( 'banner_ids' ) ,
-								'id' => 'banner_ids_input_' . $this->number,
-								'value' => ( isset( $banner_ids ) ) ? $banner_ids : NULL
+								'name' => $this->get_field_name( 'slide_ids' ) ,
+								'id' => 'slide_ids_input_' . $this->number,
+								'value' => ( isset( $slide_ids ) ) ? $slide_ids : NULL
 							)
 						); ?>
 
-						<?php // If we have some banners, let's break out their IDs into an array
-						if( isset( $banner_ids ) && '' != $banner_ids ) $banners = explode( ',' , $banner_ids ); ?>
+						<?php // If we have some slides, let's break out their IDs into an array
+						if( isset( $slide_ids ) && '' != $slide_ids ) $slides = explode( ',' , $slide_ids ); ?>
 
-						<ul id="banner_list_<?php echo $this->number; ?>" class="layers-accordions layers-accordions-sortable layers-sortable" data-id_base="<?php echo $this->id_base; ?>" data-number="<?php echo $this->number; ?>">
-							<?php if( isset( $banners ) && is_array( $banners ) ) { ?>
-								<?php foreach( $banners as $banner ) {
-									$this->banner_item( array(
+						<ul id="slide_list_<?php echo $this->number; ?>" class="layers-accordions layers-accordions-sortable layers-sortable" data-id_base="<?php echo $this->id_base; ?>" data-number="<?php echo $this->number; ?>">
+							<?php if( isset( $slides ) && is_array( $slides ) ) { ?>
+								<?php foreach( $slides as $slide ) {
+									$this->slide_item( array(
 												'id_base' => $this->id_base ,
 												'number' => $this->number
 											) ,
-											$banner ,
-											( isset( $instance[ 'banners' ][ $banner ] ) ) ? $instance[ 'banners' ][ $banner ] : NULL );
+											$slide ,
+											( isset( $instance[ 'slides' ][ $slide ] ) ) ? $instance[ 'slides' ][ $slide ] : NULL );
 								} ?>
 							<?php } else { ?>
-								<?php $this->banner_item( array( 'id_base' => $this->id_base , 'number' => $this->number ) ); ?>
+								<?php $this->slide_item( array( 'id_base' => $this->id_base , 'number' => $this->number ) ); ?>
 							<?php }?>
-							<li class="layers-button btn-primary layers-add-widget-banner" data-number="<?php echo $this->number; ?>"><?php _e( '+ Add New Slider' , LAYERS_THEME_SLUG ) ; ?></li>
+							<li class="layers-button btn-primary layers-add-widget-slide" data-number="<?php echo $this->number; ?>"><?php _e( '+ Add New Slider' , LAYERS_THEME_SLUG ) ; ?></li>
 						</ul>
 
 				</section>
@@ -373,13 +373,13 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 
 		<?php } // Form
 
-		function banner_item( $widget_details = array() , $slide_guid = NULL , $instance = NULL ){
+		function slide_item( $widget_details = array() , $slide_guid = NULL , $instance = NULL ){
 
 			// Extract Instance if it's there so that we can use the values in our inputs
 
 
 			// $instance Defaults
-			$instance_defaults = $this->banner_defaults;
+			$instance_defaults = $this->slide_defaults;
 
 			// Parse $instance
 			$instance = wp_parse_args( $instance, $instance_defaults );
@@ -394,13 +394,13 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 			$widget_details = (object) $widget_details;
 
 			// Set a count for each row
-			if( !isset( $this->banner_item_count ) ) {
-				$this->banner_item_count = 0;
+			if( !isset( $this->slide_item_count ) ) {
+				$this->slide_item_count = 0;
 			} else {
-				$this->banner_item_count++;
+				$this->slide_item_count++;
 			}?>
 
-				<li class="layers-accordion-item <?php echo $this->banner_item_count; ?>" data-guid="<?php echo $slide_guid; ?>">
+				<li class="layers-accordion-item <?php echo $this->slide_item_count; ?>" data-guid="<?php echo $slide_guid; ?>">
 					<a class="layers-accordion-title">
 						<span>
 							<?php _e( 'Slider' , LAYERS_THEME_SLUG ); ?><span class="layers-detail"><?php echo ( isset( $title ) ? ': ' . $title : NULL ); ?></span>
@@ -410,8 +410,8 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 						<?php $this->design_bar()->bar(
 							'top', // CSS Class Name
 							array(
-								'name' => $this->get_custom_field_name( $widget_details, 'banners',  $slide_guid, 'design' ),
-								'id' => $this->get_custom_field_id( $widget_details, 'banners',  $slide_guid, 'design' ),
+								'name' => $this->get_custom_field_name( $widget_details, 'slides',  $slide_guid, 'design' ),
+								'id' => $this->get_custom_field_id( $widget_details, 'slides',  $slide_guid, 'design' ),
 								'number' => $widget_details->number,
 								'show_trash' => true
 							), // Widget Object
@@ -426,12 +426,12 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 
 						<div class="layers-row">
 							<p class="layers-form-item">
-								<label for="<?php echo $this->get_custom_field_id( $widget_details, 'banners',  $column_guid, 'title' ); ?>"><?php _e( 'Title' , LAYERS_THEME_SLUG ); ?></label>
+								<label for="<?php echo $this->get_custom_field_id( $widget_details, 'slides',  $column_guid, 'title' ); ?>"><?php _e( 'Title' , LAYERS_THEME_SLUG ); ?></label>
 								<?php echo $this->form_elements()->input(
 									array(
 										'type' => 'text',
-										'name' => $this->get_custom_field_name( $widget_details, 'banners',  $slide_guid, 'title' ),
-										'id' => $this->get_custom_field_id( $widget_details, 'banners',  $slide_guid, 'title' ),
+										'name' => $this->get_custom_field_name( $widget_details, 'slides',  $slide_guid, 'title' ),
+										'id' => $this->get_custom_field_id( $widget_details, 'slides',  $slide_guid, 'title' ),
 										'placeholder' => __( 'Enter a Title' , LAYERS_THEME_SLUG ),
 										'placeholder' => __( 'Enter title here', LAYERS_THEME_SLUG ),
 										'value' => ( isset( $title ) ) ? $title : NULL ,
@@ -440,12 +440,12 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 								); ?>
 							</p>
 							<p class="layers-form-item">
-								<label for="<?php echo $this->get_custom_field_id( $widget_details, 'banners',  $column_guid, 'excerpt' ); ?>"><?php _e( 'Excerpt' , LAYERS_THEME_SLUG ); ?></label>
+								<label for="<?php echo $this->get_custom_field_id( $widget_details, 'slides',  $column_guid, 'excerpt' ); ?>"><?php _e( 'Excerpt' , LAYERS_THEME_SLUG ); ?></label>
 								<?php echo $this->form_elements()->input(
 									array(
 										'type' => 'textarea',
-										'name' => $this->get_custom_field_name( $widget_details, 'banners',  $slide_guid, 'excerpt' ),
-										'id' => $this->get_custom_field_id( $widget_details, 'banners',  $slide_guid, 'excerpt' ),
+										'name' => $this->get_custom_field_name( $widget_details, 'slides',  $slide_guid, 'excerpt' ),
+										'id' => $this->get_custom_field_id( $widget_details, 'slides',  $slide_guid, 'excerpt' ),
 										'placeholder' => __( 'Short Excerpt', LAYERS_THEME_SLUG ),
 										'value' => ( isset( $excerpt ) ) ? $excerpt : NULL ,
 										'class' => 'layers-textarea',
@@ -458,8 +458,8 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 								<?php echo $this->form_elements()->input(
 									array(
 										'type' => 'text',
-										'name' => $this->get_custom_field_name( $widget_details, 'banners',  $slide_guid, 'link' ),
-										'id' => $this->get_custom_field_id( $widget_details, 'banners',  $slide_guid, 'link' ),
+										'name' => $this->get_custom_field_name( $widget_details, 'slides',  $slide_guid, 'link' ),
+										'id' => $this->get_custom_field_id( $widget_details, 'slides',  $slide_guid, 'link' ),
 										'placeholder' => __( 'http://', LAYERS_THEME_SLUG ),
 										'value' => ( isset( $link ) ) ? $link : NULL ,
 									)
@@ -470,8 +470,8 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 								<?php echo $this->form_elements()->input(
 									array(
 										'type' => 'text',
-										'name' => $this->get_custom_field_name( $widget_details, 'banners',  $slide_guid, 'link_text' ),
-										'id' => $this->get_custom_field_id( $widget_details, 'banners',  $slide_guid, 'link_text' ),
+										'name' => $this->get_custom_field_name( $widget_details, 'slides',  $slide_guid, 'link_text' ),
+										'id' => $this->get_custom_field_id( $widget_details, 'slides',  $slide_guid, 'link_text' ),
 										'placeholder' => __( 'e.g. "Read More"' , LAYERS_THEME_SLUG ),
 										'value' => ( isset( $link_text ) ) ? $link_text : NULL ,
 									)

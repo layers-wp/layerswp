@@ -91,8 +91,8 @@ jQuery(document).ready(function($) {
 	api.previewer.bind('url', layers_handle_customizer_talkback);
 
 	// Move the Layers Dashboard button to it's correct placing - no hook available
-	//$('#customize-header-actions').append( $('.customize-controls-layers-button-dashboard, .customize-controls-layers-button-preview') );
-	//$('.customize-controls-layers-button-dashboard, .customize-controls-layers-button-preview').css({ 'display':'block', 'visibility':'visible' });
+	$('#customize-header-actions').append( $('.customize-controls-layers-button-dashboard, .customize-controls-layers-button-preview') );
+	$('.customize-controls-layers-button-dashboard, .customize-controls-layers-button-preview').css({ 'display':'block', 'visibility':'visible' });
 
 	/**
 	 * 3 - Better history states in customizer

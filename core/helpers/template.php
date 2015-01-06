@@ -784,11 +784,11 @@ if( !function_exists( 'layers_get_image_sizes' ) ) {
         // Get only 1 size if found
         if ( $size ) {
 
-                if( isset( $sizes[ $size ] ) ) {
-                        return $sizes[ $size ];
-                } else {
-                        return $sizes[ 'large' ];
-                }
+            if( isset( $sizes[ $size ] ) ) {
+				return $sizes[ $size ];
+            } else {
+				return $sizes[ 'large' ];
+            }
 
         }
 

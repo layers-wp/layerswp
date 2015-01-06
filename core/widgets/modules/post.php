@@ -178,7 +178,7 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 			if( isset( $widget['show_categories'] ) ) $post_meta_to_display[] = 'categories';
 			if( isset( $widget['show_tags'] ) ) $post_meta_to_display[] = 'tags'; ?>
 
-			<section class="widget row content-vertical-massive <?php echo $this->check_and_return( $widget , 'design', 'advanced', 'customclass' ) ?>" id="<?php echo $widget_id; ?>">
+			<section class="widget row content-vertical-massive <?php echo $this->get_widget_layout_class( $widget ); ?> <?php echo $this->check_and_return( $widget , 'design', 'advanced', 'customclass' ) ?>" id="<?php echo $widget_id; ?>">
 				<?php if( $this->check_and_return( $widget , 'title' ) || $this->check_and_return( $widget , 'excerpt' ) ) { ?>
 					<div class="container clearfix">
 						<div class="section-title <?php echo $this->check_and_return( $widget , 'design', 'fonts', 'size' ); ?> <?php echo $this->check_and_return( $widget , 'design', 'fonts', 'align' ); ?> clearfix">
@@ -191,7 +191,7 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 						</div>
 					</div>
 				<?php } ?>
-				<div class="row <?php if( 'layout-boxed' == $this->check_and_return( $widget , 'design','layout' ) ) echo 'container'; ?> <?php echo $this->check_and_return( $widget , 'design', 'liststyle' ); ?>">
+				<div class="row <?php echo $this->check_and_return( $widget , 'design', 'liststyle' ); ?>">
 					<?php if( $post_query->have_posts() ) { ?>
 						<?php while( $post_query->have_posts() ) {
 							$post_query->the_post();

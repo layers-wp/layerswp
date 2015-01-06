@@ -99,7 +99,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 			// Output custom css if there is any
 			if( !empty( $widget['design']['advanced'][ 'customcss' ] ) ) layers_inline_styles( $widget_id, 'css', array( 'css' => $widget['design']['advanced'][ 'customcss' ]  ) );?>
 
-			<section class="widget row content-vertical-massive <?php echo $this->check_and_return( $widget , 'design', 'advanced', 'customclass' ) ?>" id="<?php echo $widget_id; ?>">
+			<section class="widget row content-vertical-massive <?php echo $this->get_widget_layout_class( $widget ); ?> <?php echo $this->check_and_return( $widget , 'design', 'advanced', 'customclass' ) ?>" id="<?php echo $widget_id; ?>">
 				<?php if( $this->check_and_return( $widget , 'title' ) || $this->check_and_return( $widget , 'excerpt' ) ) { ?>
 					<div class="container">
 						<div class="section-title <?php echo $this->check_and_return( $widget , 'design', 'fonts', 'size' ); ?> <?php echo $this->check_and_return( $widget , 'design', 'fonts', 'align' ); ?> clearfix">
@@ -113,7 +113,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 					</div>
 				<?php } ?>
 				<?php if( !empty( $widget['columns'] ) ) { ?>
-					<div class="row <?php if('layout-boxed' == $this->check_and_return( $widget , 'design' , 'layout' ) ) echo 'container'; ?> <?php echo $this->check_and_return( $widget , 'design', 'liststyle' ); ?>">
+					<div class="row <?php echo $this->get_widget_layout_class( $widget ); ?> <?php echo $this->check_and_return( $widget , 'design', 'liststyle' ); ?>">
 						<?php // Set total width so that we can apply .last to the final container
 						$total_width = 0; ?>
 						<?php foreach ( $widget['columns'] as $key => $column) {

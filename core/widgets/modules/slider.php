@@ -91,19 +91,12 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 			// Parse $instance
 			$widget = wp_parse_args( $instance, $instance_defaults );
 
-			// Setup the layout class for boxed/full width/full screen
-			if( 'layout-boxed' == $this->check_and_return( $widget , 'design' , 'layout' ) ) {
-				$layout_class = 'container';
-			} elseif('layout-full-screen' == $this->check_and_return( $widget , 'design' , 'layout' ) ) {
-				$layout_class = 'full-screen';
-			}
-
 			// Output custom css if there is any
 			if( !empty( $widget['design']['advanced'][ 'customcss' ] ) ){
 				wp_add_inline_style( LAYERS_THEME_SLUG . '-custom-widget-styles', $widget['design']['advanced'][ 'customcss' ] );
 			} ?>
 
-			<section class="widget row slide swiper-container <?php if( isset( $layout_class ) ) echo $layout_class; ?> <?php echo $this->check_and_return( $widget , 'design', 'advanced', 'customclass' ) ?>" id="<?php echo $widget_id; ?>" <?php if( $this->check_and_return( $widget , 'slide_height' ) ) echo 'style="height: ' . $widget['slide_height'] . 'px;"' ?>>
+			<section class="widget row slide swiper-container <?php echo $this->get_widget_layout_class( $widget ); ?><?php echo $this->check_and_return( $widget , 'design', 'advanced', 'customclass' ) ?>" id="<?php echo $widget_id; ?>" <?php if( $this->check_and_return( $widget , 'slide_height' ) ) echo 'style="height: ' . $widget['slide_height'] . 'px;"' ?>>
 				<?php if( !empty( $widget[ 'slides' ] ) ) { ?>
 					<?php if( 1 < count( $widget[ 'slides' ] ) && isset( $widget['show_slider_arrows'] ) ) { ?>
 						 <div class="arrows">
@@ -135,10 +128,10 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 
 									// Translate Image Ratio into something usable
 									$image_ratio = layers_translate_image_ratios( $slide['design'][ 'imageratios' ] );
-									$imageratios = $image_ratio . '-medium';
+									$use_image_ratio = $image_ratio . '-medium';
 
 							} else {
-								$imageratios = 'large';
+								$use_image_ratio = 'large';
 							} ?>
 
 							<div id="<?php echo $widget_id; ?>-<?php echo $key; ?>" class="invert swiper-slide
@@ -184,7 +177,7 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 			 		</div>
 				<?php } // if !empty( $widget->slides ) ?>
 		 	</section>
-		 	<?php if( !empty( $widget[ 'slides' ] ) ) { ?>
+		 	<?php if( !empty( $widget[ 'slides' ] ) && 1 < count( $widget[ 'slides' ] ) ) { ?>
 			 	<script>
 					jQuery(function($){
 

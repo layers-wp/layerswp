@@ -218,20 +218,32 @@ jQuery(function($) {
 	} );
 
 	function layers_set_color_selectors(){
-
+		
 		jQuery('.layers-color-selector').wpColorPicker({
 			change: function(event, ui){
 				if( 'undefined' !== typeof event ){
-					$(event.target).val( ui.color.toString() ).layers_trigger_change();
+					
+					//Update the color input
+					$(event.target).val( ui.color.toString() );
+					
+					// Debounce the color changes
+					layers_debounce_color_selector( event.target );
+					
 				}
 			},
 			clear: function() {
 				if( 'undefined' !== typeof event ){
-					$(event.target).layers_trigger_change();
+					
+					// Debounce the reset change
+					layers_debounce_color_selector( event.target );
 				}
 			},
 		});
 	}
+	
+	var layers_debounce_color_selector = _.debounce(function( element ){
+		$( element ).layers_trigger_change();
+	}, 200);
 
 	/**
 	* 4 - Sortable Columns
@@ -294,10 +306,6 @@ jQuery(function($) {
 
 		// Close siblings
 		$that.siblings( '.layers-icon-wrapper' ).removeClass( 'layers-active' );
-
-		// Trigger change
-		$that.find( 'input' ).layers_trigger_change();
-		$that.siblings( 'input' ).layers_trigger_change();
 	});
 
 
@@ -427,12 +435,13 @@ jQuery(function($) {
 	*/
 
 	$.fn.layers_trigger_change = function() {
+		
 		// Trigger 'change' and 'blur' to reset the customizer
 		$changed = $(this).trigger("change").trigger("blur");
-		var $widget_synced = $( document ).trigger( 'widget-synced', $(this).closest( '.control-section' ).find( '.widget:first' ) );
-
-		console.log( $widget_synced );
-
+		
+		//var $widget_synced = $( document ).trigger( 'widget-synced', $(this).closest( '.control-section' ).find( '.widget:first' ) );
+		//console.log( $widget_synced );
+		
 		// Reset 'show if' selectors;
 		layers_apply_show_if_selectors();
 	};

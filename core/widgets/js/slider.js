@@ -24,26 +24,26 @@ jQuery(document).ready(function($){
 
 	function layers_set_slide_sorable(){
 
-		var $banner_lists = $( 'ul[id^="banner_list_"]' );
+		var $slide_lists = $( 'ul[id^="slide_list_"]' );
 
-		$banner_lists.sortable({
+		$slide_lists.sortable({
 			placeholder: "layers-sortable-drop",
 			handle: ".layers-accordion-title",
 			stop: function(e , li){
 				// Banner UL, looking up from our current target
-				$bannerList = li.item.closest( 'ul' );
+				$slideList = li.item.closest( 'ul' );
 
 				// Banners <input>
-				$bannerInput = $( '#banner_ids_input_' + $bannerList.data( 'number' ) );
+				$slideInput = $( '#slide_ids_input_' + $slideList.data( 'number' ) );
 
-				// Apply new banner order
-				$banner_guids = [];
-				$bannerList.find( 'li.layers-accordion-item' ).each(function(){
-					$banner_guids.push( $(this).data( 'guid' ) );
+				// Apply new slide order
+				$slide_guids = [];
+				$slideList.find( 'li.layers-accordion-item' ).each(function(){
+					$slide_guids.push( $(this).data( 'guid' ) );
 				});
 
 				// Trigger change for ajax save
-				$bannerInput.val( $banner_guids.join() ).layers_trigger_change();
+				$slideInput.val( $slide_guids.join() ).layers_trigger_change();
 			}
 		});
 	};
@@ -52,7 +52,7 @@ jQuery(document).ready(function($){
 	* 2 - Banner Removal & Additions
 	*/
 
-	$(document).on( 'click' , 'ul[id^="banner_list_"] .icon-trash' , function(e){
+	$(document).on( 'click' , 'ul[id^="slide_list_"] .icon-trash' , function(e){
 		e.preventDefault();
 
 		// "Hi Mom"
@@ -64,44 +64,44 @@ jQuery(document).ready(function($){
 		if( false === $remove_slide ) return;
 
 		// Banner UL
-		$bannerList = $( '#banner_list_' + $that.data( 'number' ) );
+		$slideList = $( '#slide_list_' + $that.data( 'number' ) );
 
 		// Banners <input>
-		$bannerInput = $( '#banner_ids_input_' + $bannerList.data( 'number' ) );
+		$slideInput = $( '#slide_ids_input_' + $slideList.data( 'number' ) );
 
-		// Remove this banner
+		// Remove this slide
 		$that.closest( '.layers-accordion-item' ).remove();
 
-		// Curate banner IDs
-		$banner_guids = [];
+		// Curate slide IDs
+		$slide_guids = [];
 
-		$bannerList.find( 'li.layers-accordion-item' ).each(function(){
-			$banner_guids.push( $(this).data( 'guid' ) );
+		$slideList.find( 'li.layers-accordion-item' ).each(function(){
+			$slide_guids.push( $(this).data( 'guid' ) );
 		});
 
 		// Trigger change for ajax save
-		$bannerInput.val( $banner_guids.join() ).layers_trigger_change();
+		$slideInput.val( $slide_guids.join() ).layers_trigger_change();
 	});
 
-	$(document).on( 'click' , '.layers-add-widget-banner' , function(e){
+	$(document).on( 'click' , '.layers-add-widget-slide' , function(e){
 		e.preventDefault();
 
 		// "Hi Mom"
 		$that = $(this);
 
 		// Create the list selector
-		$bannerListId = '#banner_list_' + $that.data( 'number' );
+		$slideListId = '#slide_list_' + $that.data( 'number' );
 
 		// Banner UL
-		$bannerList = $( $bannerListId );
+		$slideList = $( $slideListId );
 
 		// Banners <input>
-		$bannerInput = $( '#banner_ids_input_' + $bannerList.data( 'number' ) );
+		$slideInput = $( '#slide_ids_input_' + $slideList.data( 'number' ) );
 
 		// Serialize input data
 		$serialized_inputs = [];
 		$.each(
-			$bannerList.find( 'li.layers-accordion-item' ).first().find( 'textarea, input, select' ),
+			$slideList.find( 'li.layers-accordion-item' ).first().find( 'textarea, input, select' ),
 			function( i, input ){
 				$serialized_inputs.push( $(input).serialize() );
 		});
@@ -109,29 +109,29 @@ jQuery(document).ready(function($){
 		$.post(
 			layers_widget_params.ajaxurl,
 			{
-				action: 'layers_banner_widget_actions',
+				action: 'layers_slider_widget_actions',
 				widget_action: 'add',
-				id_base: $bannerList.data( 'id_base' ),
+				id_base: $slideList.data( 'id_base' ),
 				instance: $serialized_inputs.join( '&' ),
-				last_guid: $bannerList.find( 'li.layers-accordion-item' ).first().data( 'guid' ),
-				number: $bannerList.data( 'number' ),
+				last_guid: $slideList.find( 'li.layers-accordion-item' ).first().data( 'guid' ),
+				number: $slideList.data( 'number' ),
 				nonce: layers_widget_params.nonce
 
 			},
 			function(data){
 
 				// Append module HTML
-				$bannerList.prepend( data );
-				//$( data ).insertBefore( $bannerListId + ' .layers-add-widget-banner' );
+				$slideList.prepend( data );
+				//$( data ).insertBefore( $slideListId + ' .layers-add-widget-slide' );
 
-				// Append banner IDs to the banners input
-				$banner_guids = [];
-				$bannerList.find( 'li.layers-accordion-item' ).each(function(){
-					$banner_guids.push( $(this).data( 'guid' ) );
+				// Append slide IDs to the slides input
+				$slide_guids = [];
+				$slideList.find( 'li.layers-accordion-item' ).each(function(){
+					$slide_guids.push( $(this).data( 'guid' ) );
 				});
 
 				// Trigger change for ajax save
-				$bannerInput.val( $banner_guids.join() ).layers_trigger_change();
+				$slideInput.val( $slide_guids.join() ).layers_trigger_change();
 
 				// Trigger color selectors
 				jQuery('.layers-color-selector').wpColorPicker();
@@ -143,7 +143,7 @@ jQuery(document).ready(function($){
 	* 3 - Banner Title Update
 	*/
 
-	$(document).on( 'keyup' , 'ul[id^="banner_list_"] input[id*="-title"]' , function(e){
+	$(document).on( 'keyup' , 'ul[id^="slide_list_"] input[id*="-title"]' , function(e){
 
 		// "Hi Mom"
 		$that = $(this);

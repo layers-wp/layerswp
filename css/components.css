@@ -2,13 +2,14 @@
 /*- OFF CANVAS ------------------*/
 /*-------------------------------*/
 section[class*=' off-canvas-']{
-    position: fixed;
+    position: absolute;
     top: 0;
     padding: 40px 0;
     z-index: 1;
     opacity: 0;
     transform: scale(0.8);
     transition: all 0.3s ease-in-out 0s;
+    overflow-y: scroll;
 }
 .admin-bar section[class*=' off-canvas-']{
     padding-top: 50px;
@@ -118,7 +119,7 @@ section[class*=' off-canvas-'] .close-canvas{
     .header-fixed{background: rgba(0, 0, 0, 0.1); position: absolute; top: 0px; left: 0; width: 100%; z-index: 100;}
     .header-fixed .nav-horizontal > ul > li > a{color: #fff;}
     .header-fixed .nav-horizontal > ul > li > a:hover{color: #000;}
-    .header-fixed .responsive-nav .h-menu{color: #fff;}
+    .header-fixed .responsive-nav .l-menu{color: #fff;}
 
     /*---------------------------*/
     /*- NAVIGATION POSITION -----*/
@@ -189,11 +190,11 @@ section[class*=' off-canvas-'] .close-canvas{
         /*- ARROWS --------------*/
         .swiper-container .arrows{position: absolute; top: 50%; width: 100%; z-index: 2000; margin-top: -50px;}
         .swiper-container .arrows a{position: absolute; opacity: 0; display: block; overflow: hidden; color: #fff; font-size: 48px;}
-        .swiper-container .arrows .h-left-arrow{left: 0;}
-        .swiper-container .arrows .h-right-arrow{right: 0;}
+        .swiper-container .arrows .l-left-arrow{left: 0;}
+        .swiper-container .arrows .l-right-arrow{right: 0;}
 
-        .swiper-container:hover .arrows .h-left-arrow{left: 10px; opacity: 1;}
-        .swiper-container:hover .arrows .h-right-arrow{right: 10px; opacity: 1;}
+        .swiper-container:hover .arrows .l-left-arrow{left: 10px; opacity: 1;}
+        .swiper-container:hover .arrows .l-right-arrow{right: 10px; opacity: 1;}
 
 
 /*-------------------------------*/

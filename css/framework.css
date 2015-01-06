@@ -378,7 +378,7 @@ h1, h2, h3, h4, h5, h6{color: #000; font-weight: 200;}
     /*---------------------------*/
     /*- RESPONSIVE BUTTON -------*/
     .responsive-nav{float: right; display: none; padding: 0; margin: 0;}
-    .responsive-nav .h-menu{color: #454545; font-size: 16px;}
+    .responsive-nav .l-menu{color: #454545; font-size: 16px;}
 
 
     /*---------------------------*/
@@ -624,11 +624,33 @@ h1, h2, h3, h4, h5, h6{color: #000; font-weight: 200;}
 
     /*---------------------------*/
     /*- META --------------------*/
-    .meta{font-size: 1.2rem; overflow: hidden; color: #8F8F8F; text-transform: uppercase;}
-    .meta-list{overflow: hidden;}
-    .meta-list li{padding: 5px 0px;}
-    div + .meta-list{margin-top: 10px;}
-
+    .meta{
+        overflow: hidden;
+        font-size: 1.2rem;
+        text-transform: uppercase;
+        color: #8F8F8F;
+    }
+    .meta-list{
+        overflow: hidden;
+    }
+    .meta-list li{
+        padding: 5px 0px;
+    }
+    div + .meta-list{
+        margin-top: 10px;
+    }
+    .meta-item{
+        display: block;
+        margin-top: 2px;
+    }
+    .meta-item:first-child{
+        margin-top: 0;
+    }
+    .meta-item i{
+        display: inline-block;
+        width: 16px;
+        color: #777;
+    }
 
     /*---------------------------*/
     /*- INSTRUCTIONS ------------*/

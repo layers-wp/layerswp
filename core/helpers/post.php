@@ -339,7 +339,7 @@ if( ! function_exists( 'layers_add_builder_edit_button' ) ) {
             $current_url = ( is_ssl() ? 'https://' : 'http://' ) . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
             $args = array(
                 'id'    => 'my_page',
-                'title' => '<span class="ab-icon"></span><span class="ab-label">' . __( 'Build Page' , LAYERS_THEME_SLUG ) . '</span>',
+                'title' => '<span class="ab-icon"></span><span class="ab-label">' . __( 'Edit Layout' , LAYERS_THEME_SLUG ) . '</span>',
                 'href'  => add_query_arg( 'url', urlencode( $current_url ), wp_customize_url() ),
                 'meta'  => array( 'class' => 'my-toolbar-page' )
             );
@@ -355,8 +355,9 @@ if( ! function_exists( 'layers_add_builder_edit_button_css' ) ) {
     function layers_add_builder_edit_button_css() {
         echo '<style>
         #wp-admin-bar-my_page .ab-icon:before{
-            font-family: "dashicons" !important;
-            content: "\f328" !important;
+            font-family: "layers-interface" !important;
+            content: "\e62f" !important;
+            font-size: 16px !important;
         }
         </style>';
     }

@@ -1662,26 +1662,31 @@ input[type=radio]:checked + .layers-settings-icon span{
 /*---------------------------*/
 /*- TABBED NAV --------------*/
 .layers-nav-tabs{
-    padding: 20px 0px 0;
     text-align: center;
 }
 .layers-nav-tabs ul{
-    overflow: hidden;
-    max-width: 1000px;
-    margin: auto;
+    margin: 0;
+    background: #F3F3F3;
+    margin-top: -6px;
+    margin-left: -12px;
+    width: 101.6%;
+    border-bottom: 1px solid #eee;
 }
 .layers-nav-tabs li{
     float: left;
-    margin-right: 10px;
+    margin: 0px;
 }
 .layers-nav-tabs a{
     display: block;
-    padding: 6px 15px;
+    padding: 10px 15px;
     background: #F3F3F3;
-    border-radius: 3px 3px 0 0;
     font-weight: 600;
     color: #8F8F8F;
     text-decoration: none;
+    border-right: #ccc solid 1px;
+    border-top: none;
+    border-bottom: none;
+    margin: 0px;
 }
 .layers-nav-tabs a:hover{
     color: #454545;
@@ -1689,7 +1694,6 @@ input[type=radio]:checked + .layers-settings-icon span{
 }
 .layers-nav-tabs .active a{
     background: #fff;
-    border: #ccc solid 1px;
     border-bottom: 0 none;
     color: #454545;
 }

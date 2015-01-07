@@ -276,7 +276,7 @@ class Layers_Custom_Meta {
 		if( isset( $this->custom_meta[ $meta_index ] ) ){ ?>
 			<!-- Tabs -->
 			<div class="layers-nav layers-nav-tabs">
-				<ul class="layers-tabs">
+				<ul class="layers-tabs clearfix">
 					<?php foreach( $this->custom_meta[ $meta_index ]['custom-meta'] as $key => $meta_option ){ ?>
 						<li <?php if( !isset( $inactive ) ) echo 'class="active"'; ?>><a href="#"><?php echo $meta_option[ 'title' ]; ?></a></li>
 						<?php $inactive=1; ?>

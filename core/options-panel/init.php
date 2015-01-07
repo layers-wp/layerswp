@@ -88,10 +88,10 @@ function layers_options_panel_menu(){
 		'manage_options',
 		LAYERS_THEME_SLUG . '-welcome',
 		'layers_options_panel_ui',
-		'dashicons-smiley',
+		'none',
 		3
 	);
-
+	
 	// Add Preset Pages
 	add_submenu_page(
 		LAYERS_THEME_SLUG . '-welcome',

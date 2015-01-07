@@ -18,19 +18,19 @@ class Layers_Meta_Config {
 			'position' => 'normal',
 			'custom-meta' => array(
 				'media' => array(
-						'title' => __( 'Rich Media' , LAYERS_THEME_SLUG ),
-						'elements' => array(
-							'video-path' => array(
-								'label' => __( 'Video URL' , LAYERS_THEME_SLUG ),
-								'description' => __( 'For use with <a href="' . esc_url( 'http://codex.wordpress.org/' ) . 'Embeds" target="_blank">oEmbed</a> supported media' , LAYERS_THEME_SLUG ),
-								'type' => 'text',
-							),
-							'video-embed' => array(
-								'label' => __( 'Video Embed Code' , LAYERS_THEME_SLUG ),
-								'type' => 'textarea',
-							),
-						)
-					),
+					'title' => __( 'Rich Media' , LAYERS_THEME_SLUG ),
+					'elements' => array(
+						'video-path' => array(
+							'label' => __( 'Video URL' , LAYERS_THEME_SLUG ),
+							'description' => __( 'For use with <a href="' . esc_url( 'http://codex.wordpress.org/' ) . 'Embeds" target="_blank">oEmbed</a> supported media' , LAYERS_THEME_SLUG ),
+							'type' => 'text',
+						),
+						'video-embed' => array(
+							'label' => __( 'Video Embed Code' , LAYERS_THEME_SLUG ),
+							'type' => 'textarea',
+						),
+					)
+				),
 				'layout' => array(
 					'title' => __( 'Layout &amp; Styling' , LAYERS_THEME_SLUG ),
 					'elements' => array(
@@ -38,16 +38,6 @@ class Layers_Meta_Config {
 							'label' => __( 'Header Styling' , LAYERS_THEME_SLUG ),
 							'type' => 'background',
 							'default' => NULL
-						),
-						'sidebar-postition' => array(
-							'label' => __( 'Sidebar Position' , LAYERS_THEME_SLUG ),
-							'type' => 'select',
-							'default' => get_theme_mod( 'obox-layers-sidebar-position' ),
-							'options' => array(
-								'none' => __( 'None' , LAYERS_THEME_SLUG ),
-								'left' => __( 'Left' , LAYERS_THEME_SLUG ),
-								'right' => __( 'Right' , LAYERS_THEME_SLUG )
-							),
 						)
 					)
 				)

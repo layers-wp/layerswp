@@ -1799,5 +1799,7 @@ ul#adminmenu a.wp-has-current-submenu:after, ul#adminmenu > li.current > a.curre
     content: "\e62f";
     font-family: "layers-interface";
     font-weight: normal;
-    font-size: 18px;
+    font-size: 16px;
+    position: relative;
+    top: 1px;
 }

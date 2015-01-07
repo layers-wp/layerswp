@@ -33,12 +33,12 @@ jQuery(function($) {
     */
     $(window).on('load', function() {
         if( $( 'header' ).hasClass( 'header-fixed' ) ){
-            //Add padding to the content container equal to the header height
-            if( $( 'body' ).hasClass( 'home' ) ) return;
+            $selector = $( '#wrapper-content' );
 
-            $selector = '#wrapper-content';
+            // Ignore the padding if the first widget is the slider
+            if( $selector.find( '.widget' ).first().hasClass( 'slide' ) ) return;
 
-            $( $selector ).css( 'paddingTop' , $('.header-site').height() );
+            $selector.css( 'paddingTop' , $('.header-site').height() );
         }
     });
 

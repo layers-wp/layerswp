@@ -10,7 +10,12 @@ global $post, $post_meta_to_display, $page_title_shown; ?>
 <?php if( !isset( $page_title_shown ) ) { ?>
     <header class="section-title large">
         <?php if( 'post' == get_post_type() ) { ?>
-            <h5 class="meta-info"><?php the_date(); ?></h5>
+            <h5 class="meta-info">
+                <span class="meta-item meta-date">
+                    <i class="l-clock-o"></i>
+                    <?php the_date(); ?>
+                </span>
+            </h5>
         <?php } // if post ?>
         <h1 class="heading"><?php the_title(); ?></h1>
     </header>

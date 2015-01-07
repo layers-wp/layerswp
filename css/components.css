@@ -155,6 +155,10 @@ section[class*=' off-canvas-'] .close-canvas{
     .swiper-slide.image-top.text-center .excerpt{max-width: 745px;}
 
     /*---------------------------*/
+    /*- SINGLE SLIDER -----------*/
+    .single-slide .swiper-slide{width: 100%;}
+
+    /*---------------------------*/
     /*- SLIDER IMAGES -----------*/
 
     .image-left .copy-container{float: right; width: 49%;}

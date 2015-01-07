@@ -189,7 +189,12 @@ h1, h2, h3, h4, h5, h6{color: #000; font-weight: 200;}
 
     .separate{padding-bottom: 20px; margin-bottom: 40px; border-bottom: 2px solid #ddd;}
 
-    .container.list-masonry{max-width: 1000px; padding: 0;}
+    .container.list-masonry{max-width: 1000px; padding: 0; position:relative;}
+    .container.list-masonry > *:not(.masonary-loading) {opacity: 0;}
+    .container.list-masonry.loaded > *:not(.masonary-loading) {opacity:1;}
+    
+    .container.list-masonry .masonary-loading {position: absolute; left: 50%; top: 50px;background: rgba(0, 0, 0, 0.7) url(images/spinner.gif) no-repeat center center;width: 48px;height: 48px;border-radius: 100%;margin: -25px 0 0 -25px;overflow: hidden;opacity: 0;}
+
     .list-masonry .column{margin: 0 0 20px;}
 
     .with-background{background-size: cover; background-position: center; background-repeat: no-repeat;}

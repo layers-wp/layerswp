@@ -177,7 +177,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 									<?php if( !$this->check_and_return( $widget, 'design', 'gutter' ) ) echo 'no-push-bottom'; ?>
 								">
 									<?php if( $featureimage || $featurevideo ) { ?>
-										<div class="media-image <?php echo ( 'image-round' ==  $column['design'][ 'imageratios' ] ? 'image-rounded' : '' ); ?>">
+										<div class="media-image <?php echo ( ( isset( $column['design'][ 'imageratios' ] ) && 'image-round' == $column['design'][ 'imageratios' ] ) ? 'image-rounded' : '' ); ?>">
 											<a href="<?php echo $link; ?>">
 												<?php echo layers_get_feature_media(
 													$featureimage ,

@@ -33,8 +33,8 @@ jQuery(function($) {
     */
     $(window).on('load', function() {
         if( $( 'header' ).hasClass( 'header-fixed' ) ){
-            //Add padding to the content container equal to the header height
-            if( $( 'body' ).hasClass( 'home' ) ) return;
+            // Ignore the padding if the first widget is the slider
+            if( $( 'body' ).find( '.widget' ).first().hasClass( 'slide' ) ) return;
 
             $selector = '#wrapper-content';
 

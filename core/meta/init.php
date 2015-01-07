@@ -238,17 +238,15 @@ class Layers_Custom_Meta {
 				}
 
 				// Add Meta Box
-				/*
-					add_meta_box(
-						LAYERS_THEME_SLUG . '-' . $meta_index, // Slug
-						$custom_meta[ 'title' ], // Title
-						array( $this , 'display_post_meta' ) , // Interface
-						$post_type , // Post Type
-						$custom_meta[ 'position' ], // Position
-						'high', // Priority
-						$callback_args // Callback args
-					);
-				*/
+				add_meta_box(
+					LAYERS_THEME_SLUG . '-' . $meta_index, // Slug
+					$custom_meta[ 'title' ], // Title
+					array( $this , 'display_post_meta' ) , // Interface
+					$post_type , // Post Type
+					$custom_meta[ 'position' ], // Position
+					'high', // Priority
+					$callback_args // Callback args
+				);
 			}
 		}
 	}
@@ -264,9 +262,6 @@ class Layers_Custom_Meta {
 
 		// Post Meta Value
 		$post_meta = get_post_meta( $post->ID, LAYERS_THEME_SLUG . '-' . $post_type , true );
-
-		// Debug
-		// echo '<pre>' . print_r( $post_meta , true ) . '</pre>';
 
 		// Set the meta index ie. the array we will loop over for our options
 		$meta_index =$callback_args[ 'args' ][ 'meta_index' ];

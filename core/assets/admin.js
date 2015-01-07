@@ -227,7 +227,7 @@ jQuery(function($) {
 					$(event.target).val( ui.color.toString() );
 					
 					// Debounce the color changes
-					layers_debounce_color_selector( event.target );
+					layers_debounce_input( event.target );
 					
 				}
 			},
@@ -235,13 +235,13 @@ jQuery(function($) {
 				if( 'undefined' !== typeof event ){
 					
 					// Debounce the reset change
-					layers_debounce_color_selector( event.target );
+					layers_debounce_input( event.target );
 				}
 			},
 		});
 	}
 	
-	var layers_debounce_color_selector = _.debounce(function( element ){
+	var layers_debounce_input = _.debounce(function( element ){
 		$( element ).layers_trigger_change();
 	}, 200);
 

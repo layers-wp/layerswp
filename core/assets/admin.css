@@ -43,6 +43,18 @@ div#widgets-right div[id*='obox-layers-builder']{
 
     /*---------------------------*/
     /*- WIDGET COLOR STYLING ----*/
+    #available-widgets div[id*='layers-widget'].widget .widget-top:before{
+        float: right;
+        content: "Layers";
+        background-color: #0BA6E0;
+        padding: 0px 6px;
+        margin: -20px -15px 16px 0;
+        border-radius: 0 0 0 5px;
+        font-size: 9px;
+        font-weight: 700;
+        text-transform: uppercase;
+        color: #fff;
+    }
 
     /*- Layers Badge -*/
     .customize-control-widget_form.wide-widget-control div[id*='layers-widget'] .widget-top h4:before{
@@ -1803,5 +1815,7 @@ ul#adminmenu a.wp-has-current-submenu:after, ul#adminmenu > li.current > a.curre
     content: "\e62f";
     font-family: "layers-interface";
     font-weight: normal;
-    font-size: 18px;
+    font-size: 16px;
+    position: relative;
+    top: 1px;
 }

@@ -229,18 +229,6 @@ class Layers_Widgets {
 			true
 		);
 
-
-		// Contact Widget
-		wp_enqueue_script( LAYERS_THEME_SLUG . " -map-api","http://maps.googleapis.com/maps/api/js?sensor=false");
-		wp_register_script(
-			LAYERS_THEME_SLUG . '-admin-maps-widget' ,
-			get_template_directory_uri() . '/core/widgets/js/maps.js' ,
-			array(),
-			LAYERS_VERSION,
-			true
-		);
-
-
 		// Widget accordians
 		wp_enqueue_script(
 			LAYERS_THEME_SLUG . '-admin-widgets' ,
@@ -248,7 +236,6 @@ class Layers_Widgets {
 			array(
 				LAYERS_THEME_SLUG . '-admin-slider-widget',
 				LAYERS_THEME_SLUG . '-admin-content-widget',
-				LAYERS_THEME_SLUG . '-admin-maps-widget',
 				LAYERS_THEME_SLUG . '-admin-migrator',
 				'backbone',
 				'jquery',

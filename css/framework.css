@@ -314,10 +314,6 @@ h1, h2, h3, h4, h5, h6{color: #000; font-weight: 200;}
     .section-title .heading + p{margin-top: 5px;}
     .section-title .button{margin-top: 15px;}
 
-    .meta-info{font-size: 1.2rem; color: #8F8F8F}
-    .meta-info + .heading{margin-top: 15px;}
-    .meta-info p{margin: 0;}
-
         /*-----------------------*/
         /*- SECTION SIZE --------*/
         .section-title.large .heading{font-size: 4.4rem; line-height: 1.2;}
@@ -623,7 +619,20 @@ h1, h2, h3, h4, h5, h6{color: #000; font-weight: 200;}
             .with-overlay:hover .button{transform: translate3d(0, 0, 0); opacity: 1;}
 
     /*---------------------------*/
-    /*- META --------------------*/
+    /*- META INFO ---------------*/
+    .meta-info{
+        font-size: 1.2rem;
+        color: #8F8F8F;
+    }
+    .meta-info + .heading{
+        margin-top: 15px;
+    }
+    .excerpt + .meta-info{
+        margin-top: 15px;
+    }
+    .meta-info p{
+        margin: 0;
+    }
     .meta{
         overflow: hidden;
         font-size: 1.2rem;
@@ -651,6 +660,13 @@ h1, h2, h3, h4, h5, h6{color: #000; font-weight: 200;}
         width: 16px;
         color: #777;
     }
+
+        /*-----------------------*/
+        /*- SINGLE PAGE META ----*/
+        .single .meta-item{
+            display: inline-block;
+            margin-right: 15px;
+        }
 
     /*---------------------------*/
     /*- INSTRUCTIONS ------------*/

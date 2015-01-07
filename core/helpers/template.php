@@ -344,6 +344,7 @@ if( !function_exists( 'layers_get_header_class' ) ) {
 
 		$header_align_option = layers_get_theme_mod( 'header-layout-layout' );
 		$header_fixed_option = layers_get_theme_mod( 'header-layout-fixed' );
+		$header_full_width_option = layers_get_theme_mod( 'header-layout-width' );
 
 		$classes = array();
 
@@ -354,6 +355,11 @@ if( !function_exists( 'layers_get_header_class' ) ) {
 		if( TRUE == $header_fixed_option ){
 			$classes[] = 'header-fixed';
 			$classes[] = 'invert';
+		}
+
+		// Add full-width class
+		if( 'layout-fullwidth' == $header_full_width_option ) {
+			$classes[] = 'content';
 		}
 
 		// Add alignment classes
@@ -372,7 +378,8 @@ if( !function_exists( 'layers_get_header_class' ) ) {
 		if ( ! empty( $class ) ) {
 			if ( !is_array( $class ) )
 				$class = preg_split( '#\s+#', $class );
-			$classes = array_merge( $classes, $class );
+
+			$classes[] = array_merge( $classes, $class );
 		} else {
 			// Ensure that we always coerce class to being an array.
 			$class = array();
@@ -381,11 +388,11 @@ if( !function_exists( 'layers_get_header_class' ) ) {
 		// Default to Header Left if there are no matches above
 		if( empty( $classes ) ) $classes[] = 'header-left';
 
-		$classes = array_map( 'esc_attr', $classes );
+		//$classes = array_map( 'esc_attr', $classes );
 
 		$classes = apply_filters( 'layers_header_class', $classes, $class );
 
-		return array_unique( $classes );
+		return $classes;
 
 	}
 } // layers_get_header_class

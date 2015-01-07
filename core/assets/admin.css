@@ -1118,7 +1118,7 @@ input[type=text].layers-color-selector.wp-color-picker{
     /*-----------------------*/
     /*- PRIMARY BUTTON ------*/
     .btn-primary{
-        background: none repeat scroll 0% 0% #2EA2CC;
+        background: #2EA2CC;
         border-color: #0074A2;
         color: #fff;
     }

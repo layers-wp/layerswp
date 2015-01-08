@@ -140,6 +140,9 @@ class Layers_Customizer_Regsitrar {
 
 			$setting_key = $this->prefix . $panel_section_key . '-' . $control_key;
 
+			// Register control default value
+			$this->register_control_defaults( $setting_key, ( isset( $control_data['default'] ) ? $control_data['default'] : NULL ) );
+
 			// Assign control to the relevant section
 			$control_data[ 'section' ] = $this->prefix . $panel_section_key;
 
@@ -284,7 +287,7 @@ class Layers_Customizer_Regsitrar {
 						$control_data
 					)
 				);
-				
+
 				// Repeat
 
 				$control_data = wp_parse_args(
@@ -311,7 +314,7 @@ class Layers_Customizer_Regsitrar {
 						$control_data
 					)
 				);
-				
+
 				// Position
 
 				$control_data = wp_parse_args(
@@ -362,6 +365,23 @@ class Layers_Customizer_Regsitrar {
 			$control_priority++;
 
 		} // foreach controls panel_section_key
+	}
+
+	/**
+	* Register Control Defaults
+	*/
+
+	public function register_control_defaults( $key = NULL , $value = NULL ){
+
+		global $layers_customizer_defaults;
+
+		if( !isset( $layers_customizer_defaults ) ) $layers_customizer_defaults = array();
+
+		if( NULL != $key ){
+			$layers_customizer_defaults[ $key ] = esc_attr( $value );
+		}
+
+		return apply_filters( 'layers_customizer_defaults', $layers_customizer_defaults );
 	}
 
 	/**

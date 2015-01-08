@@ -30,9 +30,11 @@
 
 				<?php do_action( 'layers_before_footer_copyright' ); ?>
 				<div class="row copyright">
-					<div class="column span-6">
-						<p class="site-text"><?php echo get_theme_mod( LAYERS_THEME_SLUG . '-footer-text-copyright' ); ?></p>
-					</div>
+					<?php if( '' != layers_get_theme_mod( 'footer-text-copyright' ) ) {  ?>
+						<div class="column span-6">
+							<p class="site-text"><?php echo layers_get_theme_mod( 'footer-text-copyright' ); ?></p>
+						</div>
+					<?php } ?>
 					<div class="column span-6 clearfix t-right">
 						<?php wp_nav_menu( array( 'theme_location' => LAYERS_THEME_SLUG . '-footer' , 'container' => 'nav', 'container_class' => 'nav nav-horizontal pull-right', 'fallback_cb' => false )); ?>
 					</div>

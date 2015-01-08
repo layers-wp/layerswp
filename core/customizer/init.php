@@ -30,42 +30,46 @@ class Layers_Customizer {
 		$customizer_dir = '/core/customizer/';
 		$controls_dir = '/core/customizer/controls/';
 
-		// Include control classes
-		locate_template( $controls_dir . 'heading.php' , true );
-		locate_template( $controls_dir . 'select.php' , true );
-		locate_template( $controls_dir . 'select-icons.php' , true );
-		locate_template( $controls_dir . 'select-images.php' , true );
-		locate_template( $controls_dir . 'seperator.php' , true );
-		locate_template( $controls_dir . 'color.php' , true );
-
-
 		// Include Config file(s)
 		locate_template( $customizer_dir . 'config.php' , true );
 
-		// Include The Panel and Section Registration Class
-		locate_template( $customizer_dir . 'registration.php' , true );
+		// Include The Default Settings Class
+		locate_template( $customizer_dir . 'defaults.php' , true );
 
-		// If we are in a builder page, update the Widgets title
-		if(
-			isset( $_GET[ 'layers-builder' ] )
-			|| ( 0 != get_option( 'page_on_front' )  && LAYERS_BUILDER_TEMPLATE == get_post_meta ( get_option( 'page_on_front' ) , '_wp_page_template' , true ) )
-		) {
-			$wp_customize->add_panel(
-				'widgets', array(
-					'priority' => 10,
-					'title' => __('Layers: Page Builder', LAYERS_THEME_SLUG ),
-					'description' => $this->render_builder_page_dropdown() . __('Use this area to add widgets to your page, use the (Layers) widgets for the Body section.', LAYERS_THEME_SLUG ),
-				)
-			);
+		if( isset( $wp_customize ) ) {
+			// Include The Panel and Section Registration Class
+			locate_template( $customizer_dir . 'registration.php' , true );
+
+			// Include control classes
+			locate_template( $controls_dir . 'heading.php' , true );
+			locate_template( $controls_dir . 'select.php' , true );
+			locate_template( $controls_dir . 'select-icons.php' , true );
+			locate_template( $controls_dir . 'select-images.php' , true );
+			locate_template( $controls_dir . 'seperator.php' , true );
+			locate_template( $controls_dir . 'color.php' , true );
+
+			// If we are in a builder page, update the Widgets title
+			if(
+				isset( $_GET[ 'layers-builder' ] )
+				|| ( 0 != get_option( 'page_on_front' )  && LAYERS_BUILDER_TEMPLATE == get_post_meta ( get_option( 'page_on_front' ) , '_wp_page_template' , true ) )
+			) {
+				$wp_customize->add_panel(
+					'widgets', array(
+						'priority' => 10,
+						'title' => __('Layers: Page Builder', LAYERS_THEME_SLUG ),
+						'description' => $this->render_builder_page_dropdown() . __('Use this area to add widgets to your page, use the (Layers) widgets for the Body section.', LAYERS_THEME_SLUG ),
+					)
+				);
+			}
+
+			// Enqueue Styles
+			add_action( 'admin_enqueue_scripts', array( $this, 'admin_enqueue_scripts' ) , 50 );
+			add_action( 'admin_enqueue_scripts', array( $this, 'admin_print_styles' ) , 50 );
+			add_action( 'customize_controls_print_styles' , array( $this, 'admin_print_styles' ) );
+
+			// Render header actions button(s)
+			add_action( 'customize_controls_print_footer_scripts' , array( $this, 'render_actions_buttons' ) );
 		}
-
-		// Enqueue Styles
-		add_action( 'admin_enqueue_scripts', array( $this, 'admin_enqueue_scripts' ) , 50 );
-		add_action( 'admin_enqueue_scripts', array( $this, 'admin_print_styles' ) , 50 );
-		add_action( 'customize_controls_print_styles' , array( $this, 'admin_print_styles' ) );
-
-		// Render header actions button(s)
-		add_action( 'customize_controls_print_footer_scripts' , array( $this, 'render_actions_buttons' ) );
 	}
 
 	/**
@@ -169,10 +173,9 @@ class Layers_Customizer {
 	}
 
 	function render_actions_buttons () {
-		$layers_url = admin_url( 'admin.php?page=' . LAYERS_THEME_SLUG . '-welcome' );
-		?>
-		<a class="customize-controls-layers-button customize-controls-layers-button-dashboard dashicons icon-layers-logo" title="<?php esc_attr( _e( 'Layers Dashboard', LAYERS_THEME_SLUG ) ); ?>" href="<?php echo $layers_url ?>"></a>
-		<a class="customize-controls-layers-button customize-controls-layers-button-preview icon-display" title="<?php esc_attr( _e( 'Preview this page', LAYERS_THEME_SLUG ) ); ?>" href="#" target="_blank"></a>
+		$layers_url = admin_url( 'admin.php?page=' . LAYERS_THEME_SLUG . '-welcome' ); ?>
+			<a class="customize-controls-layers-button customize-controls-layers-button-dashboard dashicons icon-layers-logo" title="<?php esc_attr( _e( 'Layers Dashboard', LAYERS_THEME_SLUG ) ); ?>" href="<?php echo $layers_url ?>"></a>
+			<a class="customize-controls-layers-button customize-controls-layers-button-preview icon-display" title="<?php esc_attr( _e( 'Preview this page', LAYERS_THEME_SLUG ) ); ?>" href="#" target="_blank"></a>
 		<?php
 	}
 
@@ -187,3 +190,4 @@ function layers_customizer_init(){
 	$layers_widget->init();
 }
 add_action( 'customize_register' , 'layers_customizer_init' , 50 );
+add_action( 'init' , 'layers_customizer_init');

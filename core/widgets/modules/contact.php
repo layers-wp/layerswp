@@ -91,15 +91,12 @@ if( !class_exists( 'Layers_Contact_Widget' ) ) {
 			// Set the background styling
 			if( !empty( $widget['design'][ 'background' ] ) ) layers_inline_styles( $widget_id, 'background', array( 'background' => $widget['design'][ 'background' ] ) );
 			if( !empty( $widget['design']['fonts'][ 'color' ] ) ) layers_inline_styles( $widget_id, 'color', array( 'selectors' => array( '.section-title h3.heading' , '.section-title p.excerpt' , '.section-title small' ) , 'color' => $widget['design']['fonts'][ 'color' ] ) );
+			if( !empty( $widget['design']['advanced'][ 'customcss' ] ) ) layers_inline_styles( NULL, 'css', array( 'css' => $widget['design']['advanced'][ 'customcss' ]  ) );
 
-			// Output custom css if there is any
-			if( !empty( $widget['design']['advanced'][ 'customcss' ] ) ){
-				wp_add_inline_style( LAYERS_THEME_SLUG . '-custom-widget-styles', $widget['design']['advanced'][ 'customcss' ] );
-			}
 			// Set the map width
 			$mapwidth = 'span-12'; ?>
 
-			<section class="widget content-vertical-massive row <?php echo $this->get_widget_layout_class( $widget ); ?> <?php echo $this->check_and_return( $widget , 'design', 'advanced', 'customclass' ) ?>" id="<?php echo $widget_id; ?>">
+			<section class="widget content-vertical-massive row <?php echo $this->check_and_return( $widget , 'design', 'advanced', 'customclass' ) ?>" id="<?php echo $widget_id; ?>">
 
 				<?php if( $this->check_and_return( $widget , 'title' ) || $this->check_and_return( $widget , 'excerpt' ) ) { ?>
 					<div class="container clearfix">
@@ -115,7 +112,7 @@ if( !class_exists( 'Layers_Contact_Widget' ) ) {
 				<?php } // if title || excerpt ?>
 
 
-				<div class="row">
+				<div class="row <?php echo $this->get_widget_layout_class( $widget ); ?>">
 					<?php if( ( '' != $widget['address_shown'] && isset( $widget['show_address'] ) ) || ( isset( $widget['show_contact_form'] ) && '' != $widget['contact_form'] ) ) {?>
 						<div class="column span-6 form">
 							<?php if( isset( $widget['show_address'] ) &&  '' != $widget['address_shown'] ) { ?>

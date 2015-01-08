@@ -111,6 +111,7 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 			// Set the background & font styling
 			if( !empty( $widget['design'][ 'background' ] ) ) layers_inline_styles( $widget_id, 'background', array( 'background' => $widget['design'][ 'background' ] ) );
 			if( !empty( $widget['design']['fonts'][ 'color' ] ) ) layers_inline_styles( $widget_id, 'color', array( 'selectors' => array( '.section-title h3.heading' , '.section-title p.excerpt' ) , 'color' => $widget['design']['fonts'][ 'color' ] ) );
+			if( !empty( $widget['design']['advanced'][ 'customcss' ] ) ) layers_inline_styles( NULL, 'css', array( 'css' => $widget['design']['advanced'][ 'customcss' ]  ) );
 
 			// Set Image Sizes
 			if( isset( $widget['design'][ 'imageratios' ] ) ){
@@ -132,11 +133,6 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 				}
 			} else {
 				$imageratios = 'large';
-			}
-
-			// Output custom css if there is any
-			if( !empty( $widget['design']['advanced'][ 'customcss' ] ) ){
-				wp_add_inline_style( LAYERS_THEME_SLUG . '-custom-widget-styles', $widget['design']['advanced'][ 'customcss' ] );
 			}
 
 			// Begin query arguments
@@ -178,7 +174,7 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 			if( isset( $widget['show_categories'] ) ) $post_meta_to_display[] = 'categories';
 			if( isset( $widget['show_tags'] ) ) $post_meta_to_display[] = 'tags'; ?>
 
-			<section class="widget row content-vertical-massive <?php echo $this->get_widget_layout_class( $widget ); ?> <?php echo $this->check_and_return( $widget , 'design', 'advanced', 'customclass' ) ?>" id="<?php echo $widget_id; ?>">
+			<section class="widget row content-vertical-massive <?php echo $this->check_and_return( $widget , 'design', 'advanced', 'customclass' ) ?>" id="<?php echo $widget_id; ?>">
 				<?php if( $this->check_and_return( $widget , 'title' ) || $this->check_and_return( $widget , 'excerpt' ) ) { ?>
 					<div class="container clearfix">
 						<div class="section-title <?php echo $this->check_and_return( $widget , 'design', 'fonts', 'size' ); ?> <?php echo $this->check_and_return( $widget , 'design', 'fonts', 'align' ); ?> clearfix">
@@ -191,7 +187,7 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 						</div>
 					</div>
 				<?php } ?>
-				<div class="row <?php echo $this->check_and_return( $widget , 'design', 'liststyle' ); ?>">
+				<div class="row <?php echo $this->get_widget_layout_class( $widget ); ?> <?php echo $this->check_and_return( $widget , 'design', 'liststyle' ); ?>">
 					<?php if( $post_query->have_posts() ) { ?>
 						<?php while( $post_query->have_posts() ) {
 							$post_query->the_post();

@@ -11,9 +11,11 @@ $find_builder_page = layers_get_builder_pages(); ?>
 
    <div class="layers-page-title layers-section-title layers-large layers-content-massive layers-no-push-bottom">
       <div class="layers-container">
-         <h2 class="layers-heading" id="layers-options-header"><?php _e( 'Select a Layout', LAYERS_THEME_SLUG ); ?></h2>
+         <h2 class="layers-heading" id="layers-options-header">
+            <?php _e( 'Select a Layout', LAYERS_THEME_SLUG ); ?>
+         </h2>
          <p class="layers-excerpt">
-            <?php _e( 'Layers is a site builder with a lightweight design interface built into the WordPress Visual Customizer.', LAYERS_THEME_SLUG ); ?>
+            <?php _e( 'Get started with a blank canvas or choose from a variety of preset layouts to help you fast track your website creation.', LAYERS_THEME_SLUG ); ?>
          </p>
       </div>
    </div>
@@ -41,7 +43,7 @@ $find_builder_page = layers_get_builder_pages(); ?>
                   </div>
                   <h3 class="layers-product-name" id="<?php echo $template_key; ?>"><?php echo $template[ 'title' ]; ?></h3>
                   <div class="layers-product-actions">
-                     <a class="layers-button btn-primary customize load-customize" id="layers-generate-preset-layout-<?php echo $template_key; ?>"  data-key="layers-preset-layout-<?php echo $template_key; ?>"><?php _e( 'Import', LAYERS_THEME_SLUG ); ?></a>
+                     <a class="layers-button btn-primary customize load-customize" id="layers-generate-preset-layout-<?php echo $template_key; ?>"  data-key="layers-preset-layout-<?php echo $template_key; ?>"><?php _e( 'Select Layout', LAYERS_THEME_SLUG ); ?></a>
                   </div>
                </div>
             <?php } // Get Preset Layouts ?>

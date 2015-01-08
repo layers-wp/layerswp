@@ -108,12 +108,12 @@ $find_builder_page = layers_get_builder_pages(); ?>
 
 			<div class="layers-row layers-divide">
 				<div class="layers-section-title">
-					<h3 class="layers-heading"><?php _e( 'Get started by choosing a page template', LAYERS_THEME_SLUG ); ?></h3>
+					<h3 class="layers-heading"><?php _e( 'Get started by choosing a page layout', LAYERS_THEME_SLUG ); ?></h3>
 					<p class="layers-excerpt">
 						<?php _e( 'Knowing where to begin with a site builder is never easy.
 						Choosing a preset template below will pre-populate your page with some Layers widgets to help get started.', LAYERS_THEME_SLUG ); ?>
 					</p>
-					<a href="<?php echo admin_url( 'admin.php?page=layers-preset-layouts' ); ?>" class="layers-button btn-primary btn-large"><?php _e( 'Choose a Layout', LAYERS_THEME_SLUG ); ?></a>
+					<a href="<?php echo admin_url( 'admin.php?page=layers-preset-layouts' ); ?>" class="layers-button btn-primary btn-large"><?php _e( 'Select a Layout &rarr;', LAYERS_THEME_SLUG ); ?></a>
 				</div>
 			</div>
 
@@ -121,3 +121,4 @@ $find_builder_page = layers_get_builder_pages(); ?>
 	</div>
 </section>
 <?php $this->footer(); ?>
+

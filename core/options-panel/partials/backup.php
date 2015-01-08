@@ -1,24 +1,28 @@
 <?php $user = wp_get_current_user(); ?>
 <?php $builder_pages = layers_get_builder_pages(); ?>
-<section class="layers-container layers-content-large">
+<section class="layers-welcome">
 
-	<div class="layers-row layers-well layers-content-large layers-push-bottom">
-		<div class="layers-section-title">
-			<h4 class="layers-heading"><?php _e(' Layers Page Backup' , LAYERS_THEME_SLUG ); ?></h4>
+	<div class="layers-page-title layers-section-title layers-large layers-content-massive layers-no-push-bottom">
+		<div class="layers-container">
+			<h2 class="layers-heading" id="layers-options-header">
+				<?php _e(' Layers Page Backup' , LAYERS_THEME_SLUG ); ?>
+			</h2>
 			<p class="layers-excerpt">
-				<?php _e( 'This page will convert your Layers Builder pages into regular WordPress pages, preserving the content you have worked so hard to curate.' , LAYERS_THEME_SLUG ); ?>
+				<?php _e( 'Convert your Layers pages into regular WordPress pages, preserving the content you have worked so hard to create.' , LAYERS_THEME_SLUG ); ?>
 			</p>
-				<a id="layers-backup-pages" class="layers-button btn-large btn-primary"><?php _e( 'Backup my Pages Now' , LAYERS_THEME_SLUG ); ?></a>
 		</div>
-		<div class="layers-row">
-			<div class="layers-column layers-span-12">
-				<div class="layers-section-title layers-tiny">
-					<h5 class="layers-heading"><?php _e( 'Progress:' , LAYERS_THEME_SLUG ); ?></h5>
-				</div>
+	</div>
+
+	<div class="layers-row layers-well layers-content-massive">
+		<div class="layers-container">
+
+			<div class="layers-row layers-divide layers-t-center">
 				<div class="layers-load-bar layers-push-bottom">
 					<span class="layers-progress zero">0%</span>
 				</div>
-
+				<a id="layers-backup-pages" class="layers-button btn-large btn-primary"><?php _e( 'Backup my Pages Now' , LAYERS_THEME_SLUG ); ?></a>
+			</div>
+			<div class="row">
 				<div class="layers-section-title layers-tiny">
 					<h5 class="layers-heading"><?php _e( 'Backed Up Pages:' , LAYERS_THEME_SLUG ); ?></h5>
 				</div>
@@ -32,14 +36,8 @@
 			</div>
 		</div>
 	</div>
-	<footer class="layers-row">
-		<p>
-			Layers is a product of <a href="http://oboxthemes.com/">Obox Themes</a>. For questions and feedback please <a href="mailto:david@obox.co.za">email David directly</a>.
-		</p>
-	</footer>
-
-
 </section>
+
 <script>
 	jQuery(function($){
 		var $total_pages = $( '.layers-feature-list li' ).length;

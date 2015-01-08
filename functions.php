@@ -49,7 +49,8 @@ add_action( 'template_redirect', 'layers_set_content_width' );
 /*
  * Third Party Scripts
  */
-locate_template( '/core/third_party/hex-to-rgb.php' , true );
+locate_template( '/core/third-party/hex-to-rgb.php' , true );
+locate_template( '/core/third-party/site-logo.php' , true );
 
 /*
  * Load Widgets
@@ -327,14 +328,14 @@ if( ! function_exists( 'layers_scripts' ) ) {
 			array(),
 			LAYERS_VERSION
 		); // Icon Font
-		
+
 		wp_enqueue_style(
 			LAYERS_THEME_SLUG . '-admin',
 			get_template_directory_uri() . '/core/assets/admin.css',
 			array('admin-bar'),
 			LAYERS_VERSION
 		); // Admin CSS - depending on admin-bar loaded
-		
+
 	}
 }
 add_action( 'wp_enqueue_scripts' , 'layers_scripts' );

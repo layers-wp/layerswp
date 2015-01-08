@@ -245,11 +245,13 @@ class Layers_Customizer_Config {
 								'break-' . rand() => array(
                                         'type'     => 'seperator'
                                     ),
+								/*
 								'background' => array(
                                     'type'     => 'background',
                                     'label'    => __( 'Background', LAYERS_THEME_SLUG ),
                                     'default' => '',
                                 ),
+                                */
 							); // footer-layout
 
 		// Footer -> Layout -> Text

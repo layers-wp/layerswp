@@ -9,7 +9,7 @@ $find_builder_page = layers_get_builder_pages(); ?>
 
 <section class="layers-welcome">
 
-   <div class="layers-page-title layers-section-title layers-large layers-content-massive invert layers-no-push-bottom">
+   <div class="layers-page-title layers-section-title layers-large layers-content-massive layers-no-push-bottom">
       <div class="layers-container">
          <h2 class="layers-heading" id="layers-options-header"><?php _e( 'Select a Layout', LAYERS_THEME_SLUG ); ?></h2>
          <p class="layers-excerpt">

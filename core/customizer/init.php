@@ -32,6 +32,7 @@ class Layers_Customizer {
 
 		// Include control classes
 		locate_template( $controls_dir . 'heading.php' , true );
+		locate_template( $controls_dir . 'select.php' , true );
 		locate_template( $controls_dir . 'select-icons.php' , true );
 		locate_template( $controls_dir . 'select-images.php' , true );
 		locate_template( $controls_dir . 'seperator.php' , true );

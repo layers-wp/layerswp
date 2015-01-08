@@ -133,6 +133,8 @@ class Layers_Form_Elements {
 		// If the value of this element is in fact a collection of inputs, turn it into an object, it's nicer to work with
 		if( NULL != $input->value && is_array( $input->value ) ) $input->value = (object) esc_attr( $input->value );
 
+		if( !is_object( $input->value ) ) $input->value = stripslashes( $input->value );
+
 		// Create the input attributes
 		$input_props = array();
 		$input_props['id'] = ( NULL != $input->id && 'select-icons' != $input->type ) ? 'id="' .  $input->id . '"' : NULL ;

@@ -7,11 +7,11 @@
  * @since Layers 1.0
  */
 
-if( !class_exists( 'Layers_Customize_Select_Image_Control' ) ) {
+if( !class_exists( 'Layers_Customize_Select_Control' ) ) {
 
-	class Layers_Customize_Select_Image_Control extends WP_Customize_Control {
+	class Layers_Customize_Select_Control extends WP_Customize_Control {
 
-		public $type = 'select-images';
+		public $type = 'select';
 
 		public $description = '';
 
@@ -41,11 +41,17 @@ if( !class_exists( 'Layers_Customize_Select_Image_Control' ) ) {
 				<div class="layers-visuals-wrapper layers-visuals-inline layers-clearfix">
 					<?php echo $form_elements->input(
 						array(
-							'type' => 'image',
-							'label' => __( 'Choose Background' , LAYERS_THEME_SLUG ),
-							'name' => '',
+							'type' => 'select',
+							'label' => __( 'Repeat' , LAYERS_THEME_SLUG ),
+							'name' => '' ,
 							'id' =>  $this->id,
-							'value' => ( isset( $values['background']['image'] ) ) ? $values['background']['image'] : $this->value(),
+							'value' => ( isset( $values['background']['repeat'] ) ) ? $values['background']['repeat'] : $this->value(),
+							'options' => array(
+									'no-repeat' => __( 'No Repeat' , LAYERS_THEME_SLUG ),
+									'repeat' => __( 'Repeat' , LAYERS_THEME_SLUG ),
+									'repeat-x' => __( 'Repeat Horizontal' , LAYERS_THEME_SLUG ),
+									'repeat-y' => __( 'Repeat Vertical' , LAYERS_THEME_SLUG )
+								),
 							'data' => array(
 								$link_attr => $link_val
 							)
@@ -57,4 +63,4 @@ if( !class_exists( 'Layers_Customize_Select_Image_Control' ) ) {
 			<?php
 		}
 	}
-} // !class_exists( 'Layers_Customize_Select_Image_Control' )
+} // !class_exists( 'Layers_Customize_Select_Control' )

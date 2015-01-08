@@ -284,6 +284,60 @@ class Layers_Customizer_Regsitrar {
 						$control_data
 					)
 				);
+				
+				// Repeat
+
+				$control_data = wp_parse_args(
+					array(
+						'label' => '',
+						'subtitle' => __( 'Repeat', LAYERS_THEME_SLUG ),
+					),
+					$control_data
+				);
+
+				$this->customizer->add_setting(
+					$setting_key . '_background_repeat',
+					array(
+						'default'    => ( isset( $control_data['default'] ) ? $control_data['default'] : NULL ) ,
+						'type'       => 'theme_mod',
+						'capability' => 'manage_options'
+					)
+				);
+
+				$this->customizer->add_control(
+					new Layers_Customize_Select_Control(
+						$this->customizer,
+						$setting_key . '_background_repeat',
+						$control_data
+					)
+				);
+				
+				// Position
+
+				$control_data = wp_parse_args(
+					array(
+						'label' => '',
+						'subtitle' => __( 'Position', LAYERS_THEME_SLUG ),
+					),
+					$control_data
+				);
+
+				$this->customizer->add_setting(
+					$setting_key . '_background_position',
+					array(
+						'default'    => ( isset( $control_data['default'] ) ? $control_data['default'] : NULL ) ,
+						'type'       => 'theme_mod',
+						'capability' => 'manage_options'
+					)
+				);
+
+				$this->customizer->add_control(
+					new Layers_Customize_Select_Control(
+						$this->customizer,
+						$setting_key . '_background_position',
+						$control_data
+					)
+				);
 
 			} else {
 

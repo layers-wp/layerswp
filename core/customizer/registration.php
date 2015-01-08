@@ -231,10 +231,11 @@ class Layers_Customizer_Regsitrar {
 				// Footer Background
 
 				// Modify Control data - so we can add uniqie subtitle, label, default
-				$control_data = wp_parse_args(
+				$duplicate_control_data = wp_parse_args(
 					array(
 						'label' => __( 'Footer Background', LAYERS_THEME_SLUG ),
 						'subtitle' => __( 'Background Image', LAYERS_THEME_SLUG ),
+						'type' => ' ', //wierd bug in WP4.1 that requires a type to be in the array, or will revert to default control
 					),
 					$control_data
 				);
@@ -254,16 +255,17 @@ class Layers_Customizer_Regsitrar {
 					new Layers_Customize_Select_Image_Control(
 						$this->customizer,
 						$setting_key . '_background_image',
-						$control_data
+						$duplicate_control_data
 					)
 				);
 
 				// Color
 
-				$control_data = wp_parse_args(
+				$duplicate_control_data = wp_parse_args(
 					array(
 						'label' => '',
 						'subtitle' => __( 'Background Color', LAYERS_THEME_SLUG ),
+						'type' => ' ',
 					),
 					$control_data
 				);
@@ -281,16 +283,18 @@ class Layers_Customizer_Regsitrar {
 					new Layers_Customize_Color_Control(
 						$this->customizer,
 						$setting_key . '_background_color',
-						$control_data
+						$duplicate_control_data
 					)
 				);
 				
 				// Repeat
 
-				$control_data = wp_parse_args(
+				$duplicate_control_data = wp_parse_args(
 					array(
 						'label' => '',
 						'subtitle' => __( 'Repeat', LAYERS_THEME_SLUG ),
+						'type' => ' ',
+						'choices' => isset( $control_data['choices']['background-repeat'] ) ? $control_data['choices']['background-repeat'] : array(),
 					),
 					$control_data
 				);
@@ -308,16 +312,18 @@ class Layers_Customizer_Regsitrar {
 					new Layers_Customize_Select_Control(
 						$this->customizer,
 						$setting_key . '_background_repeat',
-						$control_data
+						$duplicate_control_data
 					)
 				);
 				
 				// Position
 
-				$control_data = wp_parse_args(
+				$duplicate_control_data = wp_parse_args(
 					array(
 						'label' => '',
 						'subtitle' => __( 'Position', LAYERS_THEME_SLUG ),
+						'type' => ' ',
+						'choices' => isset( $control_data['choices']['background-position'] ) ? $control_data['choices']['background-position'] : array(),
 					),
 					$control_data
 				);
@@ -335,7 +341,7 @@ class Layers_Customizer_Regsitrar {
 					new Layers_Customize_Select_Control(
 						$this->customizer,
 						$setting_key . '_background_position',
-						$control_data
+						$duplicate_control_data
 					)
 				);
 

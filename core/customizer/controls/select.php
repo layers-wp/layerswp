@@ -18,6 +18,10 @@ if( !class_exists( 'Layers_Customize_Select_Control' ) ) {
 		public $subtitle = '';
 
 		public function render_content() {
+			
+			if ( empty( $this->choices ) ) {
+				return;
+			}
 
 			$form_elements = new Layers_Form_Elements();
 
@@ -46,12 +50,7 @@ if( !class_exists( 'Layers_Customize_Select_Control' ) ) {
 							'name' => '' ,
 							'id' =>  $this->id,
 							'value' => ( isset( $values['background']['repeat'] ) ) ? $values['background']['repeat'] : $this->value(),
-							'options' => array(
-									'no-repeat' => __( 'No Repeat' , LAYERS_THEME_SLUG ),
-									'repeat' => __( 'Repeat' , LAYERS_THEME_SLUG ),
-									'repeat-x' => __( 'Repeat Horizontal' , LAYERS_THEME_SLUG ),
-									'repeat-y' => __( 'Repeat Vertical' , LAYERS_THEME_SLUG )
-								),
+							'options' => $this->choices,
 							'data' => array(
 								$link_attr => $link_val
 							)

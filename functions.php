@@ -15,7 +15,7 @@ $current = get_site_transient( 'update_themes' );
 if ( defined( 'SCRIPT_DEBUG' ) && TRUE == SCRIPT_DEBUG ) {
 	define( 'LAYERS_VERSION', rand( 0 , 100 ) );
 } else {
-	define( 'LAYERS_VERSION', 'beta-1.1' );
+	define( 'LAYERS_VERSION', 'beta-0.1' );
 }
 
 define( 'LAYERS_TEMPLATE_URI' , get_template_directory_uri() );

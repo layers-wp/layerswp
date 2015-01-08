@@ -442,7 +442,7 @@ class Layers_Widget_Migrator {
                 // @TODO: Try improve the image loading
                 $import_image = media_sideload_image( $option_data , 0 );
 
-                if( NULL != $import_image ) {
+                if( NULL != $import_image && !is_wp_error( $import_image ) ) {
 
                     $get_image_id = $this->get_attachment_id_from_url( $import_image );
 

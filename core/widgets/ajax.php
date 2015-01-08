@@ -40,7 +40,7 @@ if( !class_exists( 'Layers_Widget_Ajax' ) ) {
 
 				// Get the previous element's column data
 				parse_str(
-					urldecode( $_POST[ 'instance' ] ),
+					urldecode( stripslashes( $_POST[ 'instance' ] ) ),
 					$data
 				);
 
@@ -62,7 +62,7 @@ if( !class_exists( 'Layers_Widget_Ajax' ) ) {
 
 				// Get the previous element's column data
 				parse_str(
-					urldecode( $_POST[ 'instance' ] ),
+					urldecode( stripslashes( $_POST[ 'instance' ] ) ),
 					$data
 				);
 

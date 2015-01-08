@@ -612,6 +612,15 @@ pre{
         color: #777;
     }
 
+    /*---------------------------*/
+    /*- OFF CANVAS --------------*/
+    section[class*=' off-canvas-'] .section-nav-title{
+        color: #888;
+    }
+    section[class*=' off-canvas-'] li a{
+        color: rgba(255, 255, 255, 0.8);
+    }
+
 /*-------------------------------*/
 /*- COPY STYLING ----------------*/
 /*-------------------------------*/

@@ -47,10 +47,10 @@ div#widgets-right div[id*='obox-layers-builder']{
     /*- Layers Badge -*/
     .customize-control-widget_form.wide-widget-control div[id*='layers-widget'] .widget-top h4:before{
         content: "\e62f";
-        font-family: 'layers-interface';
-        margin: 0 5px 0 0;
+        margin: 0 10px 0 0;
         font-size: 12px;
-        color: #AAA;
+        color: #0BA6E0;
+        font-family: 'layers-interface';
     }
     .customize-control-widget_form.wide-widget-control.expanded div[id*='layers-widget'] .widget-top h4:before{
         color: #fff;
@@ -77,11 +77,11 @@ div#widgets-right div[id*='obox-layers-builder']{
     /*- Layers Badge in Widget Selection Tray -*/
     #available-widgets div[id*='layers-widget'].widget .widget-top:before{
         float: right;
-        content: "\e62f";
-        font-family: 'layers-interface';
         margin: -12px -8px 0 0;
+        content: "\e62f";
         font-size: 12px;
-        color: #AAA;
+        color: #0BA6E0;
+        font-family: 'layers-interface';
     }
 
     /*---------------------------*/

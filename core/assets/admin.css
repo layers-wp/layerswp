@@ -46,18 +46,14 @@ div#widgets-right div[id*='obox-layers-builder']{
 
     /*- Layers Badge -*/
     .customize-control-widget_form.wide-widget-control div[id*='layers-widget'] .widget-top h4:before{
-        content: "Layers";
-        background-color: #0BA6E0;
-        padding: 1px 6px 1px 4px;
-        margin: -1px 5px 0 -15px;
-        border-radius: 0 100px 100px 0;
-        font-size: 9px;
-        font-weight: 700;
-        text-transform: uppercase;
-        color: #fff;
+        content: "\e62f";
+        font-family: 'layers-interface';
+        margin: 0 5px 0 0;
+        border-radius: 100px;
+        font-size: 12px;
+        color: #0BA6E0;
     }
     .customize-control-widget_form.wide-widget-control.expanded div[id*='layers-widget'] .widget-top h4:before{
-        background-color: #0D5F83;
         color: #fff;
     }
 
@@ -82,15 +78,12 @@ div#widgets-right div[id*='obox-layers-builder']{
     /*- Layers Badge in Widget Selection Tray -*/
     #available-widgets div[id*='layers-widget'].widget .widget-top:before{
         float: right;
-        content: "Layers";
-        background-color: #0BA6E0;
-        padding: 0px 6px;
-        margin: -20px -15px 16px 0;
-        border-radius: 0 0 0 5px;
-        font-size: 9px;
-        font-weight: 700;
-        text-transform: uppercase;
-        color: #fff;
+        content: "\e62f";
+        font-family: 'layers-interface';
+        margin: -12px -8px 0 0;
+        border-radius: 100px;
+        font-size: 12px;
+        color: #0BA6E0;
     }
 
     /*---------------------------*/
@@ -172,7 +165,7 @@ div#widgets-right div[id*='obox-layers-builder']{
         margin-right: 0;
     }
     .layers-product-screenshot{
-        height: 250px;
+        height: 350px;
         overflow: hidden;
     }
     .layers-product-screenshot img{
@@ -204,7 +197,7 @@ div#widgets-right div[id*='obox-layers-builder']{
         background: #fff;
     }
     .blank-product .layers-product-screenshot{
-        height: 245px;
+        height: 345px;
     }
     .blank-product .layers-product-name{
         background: none;
@@ -1794,7 +1787,7 @@ input[type=radio]:checked + .layers-settings-icon span{
 
 
 /*---------------------------*/
-/*- WELCOME PAGE ------------*/
+/*- LAYERS PAGES ------------*/
 .layers-welcome{
     margin-left: -20px;
 }
@@ -1815,7 +1808,27 @@ input[type=radio]:checked + .layers-settings-icon span{
     padding-top: 128px;
 }
 .layers-page-title{
+    background: #F1F1F1;
+}
+.layers-page-title.highlight{
     background: #009DF3;
+}
+.layers-page-title + .layers-row{
+    border-top: 1px solid #ddd;
+}
+.layers-page-title.highlight + .layers-row{
+    border-top: 1px solid #0D5F83;
+}
+.layers-footer{
+    clear: both;
+    padding: 10px 0;
+    margin: 0 0 0 -20px;
+    background: #fff;
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    text-align: center;
+    color: #888;
+    font-style: italic;
 }
 .layers-divide{
     padding: 0 0 60px;

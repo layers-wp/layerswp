@@ -43,18 +43,6 @@ div#widgets-right div[id*='obox-layers-builder']{
 
     /*---------------------------*/
     /*- WIDGET COLOR STYLING ----*/
-    #available-widgets div[id*='layers-widget'].widget .widget-top:before{
-        float: right;
-        content: "Layers";
-        background-color: #0BA6E0;
-        padding: 0px 6px;
-        margin: -20px -15px 16px 0;
-        border-radius: 0 0 0 5px;
-        font-size: 9px;
-        font-weight: 700;
-        text-transform: uppercase;
-        color: #fff;
-    }
 
     /*- Layers Badge -*/
     .customize-control-widget_form.wide-widget-control div[id*='layers-widget'] .widget-top h4:before{
@@ -88,6 +76,20 @@ div#widgets-right div[id*='obox-layers-builder']{
 
     /*- Expanded Arrow Tip -*/
     .customize-control-widget_form.wide-widget-control.expanded a.widget-action:after{
+        color: #fff;
+    }
+
+    /*- Layers Badge in Widget Selection Tray -*/
+    #available-widgets div[id*='layers-widget'].widget .widget-top:before{
+        float: right;
+        content: "Layers";
+        background-color: #0BA6E0;
+        padding: 0px 6px;
+        margin: -20px -15px 16px 0;
+        border-radius: 0 0 0 5px;
+        font-size: 9px;
+        font-weight: 700;
+        text-transform: uppercase;
         color: #fff;
     }
 
@@ -1040,6 +1042,16 @@ input[type=text].layers-color-selector.wp-color-picker{
 
 /*---------------------------*/
 /*- TITLES ------------------*/
+.layers-logo{
+    display: block;
+    width: 132px;
+    height: 30px;
+    margin-bottom: 40px;
+    background: url(images/layers-logo.png) no-repeat;
+    background-size: 132px 30px;
+    overflow: hidden;
+    text-indent: -999px;
+}
 .layers-controls-title{
     padding: 8px 20px;
     background: #0074A2;

@@ -11,6 +11,7 @@ $find_builder_page = layers_get_builder_pages(); ?>
 
 	<div class="layers-page-title layers-section-title layers-large layers-content-massive invert layers-no-push-bottom">
 		<div class="layers-container">
+			<a href="http://oboxthemes.com/layers" class="layers-logo">Layers</a>
 			<h2 class="layers-heading" id="layers-options-header">Thank you for installing Layers!</h2>
 			<p class="layers-excerpt">
 				<?php _e( 'Layers is a site builder with a lightweight design interface built into the WordPress Visual Customizer.', LAYERS_THEME_SLUG ); ?>

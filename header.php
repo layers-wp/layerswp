@@ -11,8 +11,11 @@
 	<?php get_sidebar( 'off-canvas'); ?>
 	<?php do_action( 'layers_before_site_wrapper' ); ?>
 	<section class="wrapper-site">
+
 		<?php do_action( 'layers_before_header' ); ?>
+		
 		<?php get_template_part( 'partials/header' , 'secondary' ); ?>
+		
 		<header <?php layers_header_class(); ?>>
 			<?php do_action( 'layers_before_header_inner' ); ?>
 			<div class="<?php if( 'layout-fullwidth' != layers_get_theme_mod( 'header-layout-width' ) ) echo 'container'; ?> clearfix">
@@ -24,5 +27,7 @@
 			</div>
 			<?php do_action( 'layers_after_header_inner' ); ?>
 		</header>
+		
 		<?php do_action( 'layers_after_header' ); ?>
+		
 		<section id="wrapper-content" class="wrapper-content">

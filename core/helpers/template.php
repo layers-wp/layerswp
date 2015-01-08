@@ -478,10 +478,16 @@ if( !function_exists( 'layers_center_column_class' ) ) {
  */
 if( !function_exists( 'layers_get_theme_mod' ) ) {
 	function layers_get_theme_mod( $name = '' ) {
+
+		global $layers_customizer_defaults;
+
 		// Add the theme prefix to our layers option
 		$name = LAYERS_THEME_SLUG . '-' . $name;
 
-		return get_theme_mod( $name );
+		// Set theme option default
+		$default = ( isset( $layers_customizer_defaults[ $name ] ) ? $layers_customizer_defaults[ $name ] : FALSE );
+
+		return get_theme_mod( $name, $default );
 	}
 } // layers_get_header_class
 

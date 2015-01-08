@@ -1714,7 +1714,9 @@ input[type=radio]:checked + .layers-settings-icon span{
     border-bottom: 0 none;
     color: #454545;
 }
-
+.layers-nav-tabs a:focus, .layers-nav-tabs a:active{
+    box-shadow: none;
+}
 /*---------------------------*/
 /*- INTERFACE COPY ----------*/
 .wp-picker-container .iris-picker{

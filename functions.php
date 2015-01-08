@@ -289,39 +289,49 @@ if( ! function_exists( 'layers_scripts' ) ) {
 		/**
 		* Front end Styles
 		*/
-		wp_register_style(
-			LAYERS_THEME_SLUG . '-slider',
-			get_template_directory_uri() . '/core/widgets/css/swiper.css',
+
+		wp_enqueue_style(
+			LAYERS_THEME_SLUG . '-style' ,
+			get_stylesheet_uri() ,
+			array() ,
+			LAYERS_VERSION
+		);
+
+		wp_enqueue_style(
+			LAYERS_THEME_SLUG . '-colors',
+			get_template_directory_uri() . '/css/colors.css',
 			array(),
 			LAYERS_VERSION
-		); // Slider
+		); // Colors
 
-		wp_register_style(
+		wp_enqueue_style(
+			LAYERS_THEME_SLUG . '-typography',
+			get_template_directory_uri() . '/css/typography.css',
+			array(),
+			LAYERS_VERSION
+		); // Typography
+
+		wp_enqueue_style(
 			LAYERS_THEME_SLUG . '-components',
 			get_template_directory_uri() . '/css/components.css',
 			array(),
 			LAYERS_VERSION
 		); // Compontents
 
-		$protocol = is_ssl() ? 'https' : 'http';
-		wp_enqueue_style( LAYERS_THEME_SLUG . '-roboto-font', $protocol . '://fonts.googleapis.com/css?family=Roboto:400,400italic,500,700,700italic,900' );
-		wp_enqueue_style( LAYERS_THEME_SLUG . '-open-sans-font', $protocol . '://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' );
-
 		wp_enqueue_style(
-			LAYERS_THEME_SLUG . '-style' ,
-			get_stylesheet_uri() ,
-			array(
-				LAYERS_THEME_SLUG . '-components',
-				LAYERS_THEME_SLUG . '-slider',
-			) ,
+			LAYERS_THEME_SLUG . '-slider',
+			get_template_directory_uri() . '/core/widgets/css/swiper.css',
+			array(),
 			LAYERS_VERSION
-		);
+		); // Slider
+
 		wp_enqueue_style(
 			LAYERS_THEME_SLUG . '-responsive',
 			get_template_directory_uri() . '/css/responsive.css',
 			array(),
 			LAYERS_VERSION
 		); // Responsive
+
 		wp_enqueue_style(
 			LAYERS_THEME_SLUG . '-icon-fonts',
 			get_template_directory_uri() . '/css/layers-icons.css',

@@ -136,11 +136,6 @@ class Layers_Customizer_Config {
                                 'break-' . rand() => array(
                                     	'type'     => 'seperator'
                                     ),
-                                'display-top-header' => array(
-                                    'type'     => 'checkbox',
-                                    'label'    => __( 'Display Top Header', LAYERS_THEME_SLUG ),
-                                    'default' => true,
-                                ), // top header display
                                 'break-' . rand(0, 10) => array(
                                     	'type'     => 'seperator'
                                     ),

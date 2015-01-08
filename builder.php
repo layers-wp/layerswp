@@ -11,10 +11,11 @@
 get_header();
 global $post;
 
-$mods = get_theme_mods();
-$options = get_option( 'layers' );
+do_action('before_layers_builder_widgets');
 
 // Dynamic Sidebar for this page
 dynamic_sidebar( 'obox-layers-builder-' . $post->ID );
+
+do_action('after_layers_builder_widgets');
 
 get_footer();

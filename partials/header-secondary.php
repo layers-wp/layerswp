@@ -1,4 +1,3 @@
-<?php if ( !layers_get_theme_mod( 'header-layout-display-top-header' ) ) return;  ?>
 <?php if ( has_nav_menu( LAYERS_THEME_SLUG . '-secondary-left' ) || has_nav_menu( LAYERS_THEME_SLUG . '-secondary-right' ) ) { ?>
     <div class="header-secondary content-small darken invert">
         <?php do_action( 'layers_before_header_secondary_inner' ); ?>

@@ -21,9 +21,9 @@ $find_builder_page = layers_get_builder_pages(); ?>
    <div class="layers-row layers-well layers-content-massive">
       <div class="layers-browser">
          <div class="layers-products">
-            <div class="layers-product blank-product">
+            <div class="layers-product blank-product" id="layers-generate-preset-layout-blank"  data-key="layers-preset-layout-blank">
                <input id="layers-preset-layout-blank-title" type="hidden" value="<?php _e( 'Blank' , LAYERS_THEME_SLUG ); ?>" />
-               <input id="layers-preset-layout-blank-widget_data" type="hidden" value="{}" />
+               <input id="layers-preset-layout-blank-widget_data" type="hidden" value="<?php json_encode( array() ); ?>" />
                <div class="layers-product-screenshot">
                   <span id="layers-generate-preset-layout-blank" data-key="layers-preset-layout-blank"></span>
                </div>

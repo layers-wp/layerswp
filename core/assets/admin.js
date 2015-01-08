@@ -218,29 +218,29 @@ jQuery(function($) {
 	} );
 
 	function layers_set_color_selectors(){
-
+		
 		jQuery('.layers-color-selector').wpColorPicker({
 			change: function(event, ui){
 				if( 'undefined' !== typeof event ){
-
+					
 					//Update the color input
 					$(event.target).val( ui.color.toString() );
-
+					
 					// Debounce the color changes
 					layers_debounce_input( event.target );
-
+					
 				}
 			},
 			clear: function() {
 				if( 'undefined' !== typeof event ){
-
+					
 					// Debounce the reset change
 					layers_debounce_input( event.target );
 				}
 			},
 		});
 	}
-
+	
 	var layers_debounce_input = _.debounce(function( element ){
 		$( element ).layers_trigger_change();
 	}, 200);
@@ -278,7 +278,7 @@ jQuery(function($) {
 		$tab_container = $tab_nav.siblings('.layers-tab-content');
 
 		// Show/Hide tabs
-		$tab_container.find( 'section.layers-tab-content' ).eq( $i ).removeClass( 'layers-hide' ).siblings( 'section.layers-tab-content' ).addClass( 'layers-hide' );
+		$tab_container.find( 'section.layers-tab-content' ).eq( $i ).slideDown().siblings( 'section.layers-tab-content' ).slideUp();
 	});
 
 
@@ -435,13 +435,13 @@ jQuery(function($) {
 	*/
 
 	$.fn.layers_trigger_change = function() {
-
+		
 		// Trigger 'change' and 'blur' to reset the customizer
 		$changed = $(this).trigger("change").trigger("blur");
-
+		
 		//var $widget_synced = $( document ).trigger( 'widget-synced', $(this).closest( '.control-section' ).find( '.widget:first' ) );
 		//console.log( $widget_synced );
-
+		
 		// Reset 'show if' selectors;
 		layers_apply_show_if_selectors();
 	};

@@ -33,10 +33,10 @@ class Layers_API {
         // Save API key
         add_action( 'init' , array( $this, 'save_api_key' ) );
 
-
         // Theme and Plugin Update Checkers
         add_filter( 'pre_set_site_transient_update_themes', array( $this, 'transient_theme_updates' ) );
         add_filter( 'pre_set_site_transient_update_plugins', array( $this, 'transient_plugin_updates' ) );
+
     }
 
     /**
@@ -242,7 +242,5 @@ if( !function_exists( 'layers_api_init' ) ) {
 
     } // layers_updater_init
 
-    /* Pending Re-addition
-    * add_action( "after_setup_theme", "layers_api_init", 100 );
-    */
+    add_action( "after_setup_theme", "layers_api_init", 100 );
 }

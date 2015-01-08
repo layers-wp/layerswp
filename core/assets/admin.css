@@ -49,9 +49,8 @@ div#widgets-right div[id*='obox-layers-builder']{
         content: "\e62f";
         font-family: 'layers-interface';
         margin: 0 5px 0 0;
-        border-radius: 100px;
         font-size: 12px;
-        color: #0BA6E0;
+        color: #AAA;
     }
     .customize-control-widget_form.wide-widget-control.expanded div[id*='layers-widget'] .widget-top h4:before{
         color: #fff;
@@ -81,9 +80,8 @@ div#widgets-right div[id*='obox-layers-builder']{
         content: "\e62f";
         font-family: 'layers-interface';
         margin: -12px -8px 0 0;
-        border-radius: 100px;
         font-size: 12px;
-        color: #0BA6E0;
+        color: #AAA;
     }
 
     /*---------------------------*/
@@ -165,7 +163,7 @@ div#widgets-right div[id*='obox-layers-builder']{
         margin-right: 0;
     }
     .layers-product-screenshot{
-        height: 350px;
+        height: 250px;
         overflow: hidden;
     }
     .layers-product-screenshot img{
@@ -197,7 +195,7 @@ div#widgets-right div[id*='obox-layers-builder']{
         background: #fff;
     }
     .blank-product .layers-product-screenshot{
-        height: 345px;
+        height: 245px;
     }
     .blank-product .layers-product-name{
         background: none;
@@ -1714,9 +1712,7 @@ input[type=radio]:checked + .layers-settings-icon span{
     border-bottom: 0 none;
     color: #454545;
 }
-.layers-nav-tabs a:focus, .layers-nav-tabs a:active{
-    box-shadow: none;
-}
+
 /*---------------------------*/
 /*- INTERFACE COPY ----------*/
 .wp-picker-container .iris-picker{
@@ -1787,7 +1783,7 @@ input[type=radio]:checked + .layers-settings-icon span{
 
 
 /*---------------------------*/
-/*- LAYERS PAGES ------------*/
+/*- WELCOME PAGE ------------*/
 .layers-welcome{
     margin-left: -20px;
 }
@@ -1808,27 +1804,7 @@ input[type=radio]:checked + .layers-settings-icon span{
     padding-top: 128px;
 }
 .layers-page-title{
-    background: #F1F1F1;
-}
-.layers-page-title.highlight{
     background: #009DF3;
-}
-.layers-page-title + .layers-row{
-    border-top: 1px solid #ddd;
-}
-.layers-page-title.highlight + .layers-row{
-    border-top: 1px solid #0D5F83;
-}
-.layers-footer{
-    clear: both;
-    padding: 10px 0;
-    margin: 0 0 0 -20px;
-    background: #fff;
-    border-top: 1px solid #ddd;
-    border-bottom: 1px solid #ddd;
-    text-align: center;
-    color: #888;
-    font-style: italic;
 }
 .layers-divide{
     padding: 0 0 60px;

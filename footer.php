@@ -6,7 +6,7 @@
 		<?php do_action( 'layers_before_footer' ); ?>
 		<footer id="footer" class="footer-site well">
 			<?php do_action( 'layers_before_footer_inner' ); ?>
-			<div class="<?php if( 'layout-fullwidth' != layers_get_theme_mod( 'footer-layout-width' ) ) echo 'container'; ?>  content-vertical-large content clearfix">
+			<div class="<?php if( 'layout-fullwidth' != layers_get_theme_mod( 'footer-layout-width' ) ) echo 'container'; ?>  content-vertical-large clearfix">
 
 				<?php // Do logic related to the footer widget area count
 				$footer_sidebar_count = layers_get_theme_mod( 'footer-layout-widget-area-count' ); ?>
@@ -30,11 +30,9 @@
 
 				<?php do_action( 'layers_before_footer_copyright' ); ?>
 				<div class="row copyright">
-					<?php if( '' != layers_get_theme_mod( 'footer-text-copyright' ) ) {  ?>
-						<div class="column span-6">
-							<p class="site-text"><?php echo layers_get_theme_mod( 'footer-text-copyright' ); ?></p>
-						</div>
-					<?php } ?>
+					<div class="column span-6">
+						<p class="site-text"><?php echo get_theme_mod( LAYERS_THEME_SLUG . '-footer-text-copyright' ); ?></p>
+					</div>
 					<div class="column span-6 clearfix t-right">
 						<?php wp_nav_menu( array( 'theme_location' => LAYERS_THEME_SLUG . '-footer' , 'container' => 'nav', 'container_class' => 'nav nav-horizontal pull-right', 'fallback_cb' => false )); ?>
 					</div>

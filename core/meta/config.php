@@ -30,12 +30,49 @@ class Layers_Meta_Config {
 							'type' => 'textarea',
 						),
 					)
+				),
+				'layout' => array(
+					'title' => __( 'Layout &amp; Styling' , LAYERS_THEME_SLUG ),
+					'elements' => array(
+						'header-styling' => array(
+							'label' => __( 'Header Styling' , LAYERS_THEME_SLUG ),
+							'type' => 'background',
+							'default' => NULL
+						)
+					)
 				)
 			)
 		);
 
 		// Page Meta we just emulate the post meta
 		$custom_meta['page'] = $custom_meta['post'];
+
+		$custom_meta[ 'portfolio.php' ] = array(
+			'title' => LAYERS_THEME_TITLE . __( ': Portfolio Options' , LAYERS_THEME_SLUG ),
+			'description' => __( '' , LAYERS_THEME_SLUG ), // @TODO
+			'position' => 'normal',
+			'custom-meta' => array(
+				'media' => array(
+						'title' => __( 'Layout' , LAYERS_THEME_SLUG ),
+						'elements' => array(
+							'columns' => array(
+								'label' => __( 'Columns' , LAYERS_THEME_SLUG ),
+								'type' => 'select-icons',
+								'default' => 'columns-3',
+								'options' => array(
+									'columns-1' => __( '1 Column' , LAYERS_THEME_SLUG ),
+									'columns-2' => __( '2 Column' , LAYERS_THEME_SLUG ),
+									'columns-3' => __( '3 Column' , LAYERS_THEME_SLUG ),
+									'columns-4' => __( '4 Column' , LAYERS_THEME_SLUG ),
+									// 'columns-5' => __( '5 Column' , LAYERS_THEME_SLUG ), @TODO: Figure Out a 5col method
+									'columns-6' => __( '6 Column' , LAYERS_THEME_SLUG )
+								)
+							)
+						)
+
+				)
+			)
+		);
 
 		return apply_filters( 'layers_custom_meta', $custom_meta );
 	}

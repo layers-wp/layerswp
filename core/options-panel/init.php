@@ -65,7 +65,7 @@ class Layers_Options_Panel {
 	* Footer
 	*/
 	public function footer( $args = array() ){ ?>
-		<footer class="layers-footer">
+		<footer class="layers-row layers-content">
 			<p>
 				<?php _e( 'Layers is a product of <a href="http://oboxthemes.com/">Obox Themes</a>. For questions and feedback please <a href="mailto:david@obox.co.za">email David directly', LAYERS_THEME_SLUG ); ?></a>.
 			</p>

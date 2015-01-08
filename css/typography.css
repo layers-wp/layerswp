@@ -270,7 +270,7 @@ small{
 
     /*---------------------------*/
     /*- RESPONSIVE BUTTON -------*/
-    .responsive-nav .h-menu{font-size: 16px;}
+    .responsive-nav .l-menu{font-size: 16px;}
 
     /*---------------------------*/
     /*- HORIZONTAL NAV ----------*/
@@ -354,12 +354,13 @@ small{
 
     /*---------------------------*/
     /*- THUMBNAIL BLOCK ---------*/
-   
 	.thumbnail-body .heading{
 		font-size: 2rem;
 		font-weight: 400;
 	}
-	.thumbnail-body .heading.small{font-size: 1.2rem;}
+	.thumbnail-body .heading.small{
+        font-size: 1.2rem;
+    }
 
     /*---------------------------*/
     /*- META --------------------*/

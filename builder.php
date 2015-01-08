@@ -11,9 +11,6 @@
 get_header();
 global $post;
 
-$mods = get_theme_mods();
-$options = get_option( 'layers' );
-
 do_action('before_layers_builder_widgets');
 
 // Dynamic Sidebar for this page

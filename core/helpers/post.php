@@ -53,9 +53,9 @@ if( !function_exists( 'layers_post_meta' ) ) {
                     if( !$the_categories ) continue;
 
                     foreach ( $the_categories as $category ){
-                        $categories .= ' <a href="'.get_category_link( $category->term_id ).'" title="' . esc_attr( sprintf( __( "View all posts in %s", LAYERS_THEME_SLUG ), $category->name ) ) . '">'.$category->name.'</a>';
+                        $categories[] = ' <a href="'.get_category_link( $category->term_id ).'" title="' . esc_attr( sprintf( __( "View all posts in %s", LAYERS_THEME_SLUG ), $category->name ) ) . '">'.$category->name.'</a>';
                     }
-                    $meta_to_display[] = '<span class="meta-item meta-category"><i class="l-folder-open-o"></i> ' . $categories . '</span>';
+                    $meta_to_display[] = '<span class="meta-item meta-category"><i class="l-folder-open-o"></i> ' . implode( __( ', ', LAYERS_THEME_SLUG ), $categories ) . '</span>';
                     break;
                 case 'tags' :
                     $tags = '';

@@ -20,9 +20,14 @@ jQuery(document).ready(function($) {
 	 */
 
 	if( true == layers_customizer_params.builder_page ){
-			$( '#accordion-panel-widgets .accordion-section-title' ).trigger( 'click' );
-			//$( 'li[id*="accordion-section-sidebar-widgets-obox-layers-builder"] .accordion-section-title' ).trigger( 'click' );
-            $( '#accordion-panel-widgets .control-section .accordion-section-title' ).eq(0).trigger( 'click' );
+		// Jump into the Widget editor block on Hatch Page - DISABLED
+		//$( 'li[id*="accordion-section-sidebar-widgets-obox-layers-builder"] .accordion-section-title' ).trigger( 'click' );
+		
+		//$( '#accordion-panel-widgets .accordion-section-title' ).trigger( 'click' );
+        //$( '#accordion-panel-widgets .control-section .accordion-section-title' ).eq(0).trigger( 'click' );
+        
+        //$('#accordion-panel-widgets').children('.accordion-section-title').click();
+		//$('#accordion-panel-widgets').children('.control-section').children('.accordion-section-title').eq(0).click();
 	}
 
 	/**

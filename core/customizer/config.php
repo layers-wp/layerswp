@@ -228,8 +228,8 @@ class Layers_Customizer_Config {
                                     )
                                 ), // layout,
                                 'break-' . rand() => array(
-                                        'type'     => 'seperator'
-                                    ),
+                                    'type'     => 'seperator'
+                                ),
 								'widget-area-count' => array(
 									'type'     => 'select',
 									'label'    => __( 'Widget Areas', LAYERS_THEME_SLUG ),
@@ -243,13 +243,30 @@ class Layers_Customizer_Config {
 									)
 								),
 								'break-' . rand() => array(
-                                        'type'     => 'seperator'
-                                    ),
-								'background' => array(
-                                    'type'     => 'background',
-                                    'label'    => __( 'Background', LAYERS_THEME_SLUG ),
-                                    'default' => '',
+                                    'type'     => 'seperator'
                                 ),
+                                /*
+								'background' => array(
+	                                'type'     => 'background',
+	                                'label'    => __( 'RRR', LAYERS_THEME_SLUG ),
+	                                'default' => '',
+	                                'choices' => array(
+                                        'background-position' => array(
+											'center' => __( 'Center' , LAYERS_THEME_SLUG ),
+											'top' => __( 'Top' , LAYERS_THEME_SLUG ),
+											'bottom' => __( 'Bottom' , LAYERS_THEME_SLUG ),
+											'left' => __( 'Left' , LAYERS_THEME_SLUG ),
+											'right' => __( 'Right' , LAYERS_THEME_SLUG ),
+										),
+                                        'background-repeat' => array(
+											'no-repeat' => __( 'No Repeat' , LAYERS_THEME_SLUG ),
+											'repeat' => __( 'Repeat' , LAYERS_THEME_SLUG ),
+											'repeat-x' => __( 'Repeat Horizontal' , LAYERS_THEME_SLUG ),
+											'repeat-y' => __( 'Repeat Vertical' , LAYERS_THEME_SLUG ),
+                                        ),
+                                    )
+                            	),
+                            	*/
 							); // footer-layout
 
 		// Footer -> Layout -> Text

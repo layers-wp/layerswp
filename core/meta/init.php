@@ -351,10 +351,9 @@ class Layers_Custom_Meta {
 
 /**
 *  Kicking this off with the 'custom_meta_init' hook
-*/
 
 function layers_custom_meta_init(){
 	$layers_widget = new Layers_Custom_Meta();
 	$layers_widget->init();
 }
-add_action( 'init' , 'layers_custom_meta_init' , 10 );
+add_action( 'init' , 'layers_custom_meta_init' , 10 ); */

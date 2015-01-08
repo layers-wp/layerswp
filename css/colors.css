@@ -572,7 +572,10 @@ pre{
 
     /*---------------------------*/
     /*- BACK TO TOP -------------*/
-    #back-to-top a{background-color: #323232;}
+    #back-to-top a{
+        background: url(images/arrow-up-small.png) no-repeat;
+        background-size: 32px 32px;
+    }
 
 
     /*---------------------------*/
@@ -607,6 +610,15 @@ pre{
     }
     .meta-item i{
         color: #777;
+    }
+
+    /*---------------------------*/
+    /*- OFF CANVAS --------------*/
+    section[class*=' off-canvas-'] .section-nav-title{
+        color: #888;
+    }
+    section[class*=' off-canvas-'] li a{
+        color: rgba(255, 255, 255, 0.8);
     }
 
 /*-------------------------------*/

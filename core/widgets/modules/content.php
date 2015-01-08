@@ -29,7 +29,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 			$control_ops = array( 'width' => LAYERS_WIDGET_WIDTH_LARGE, 'height' => NULL, 'id_base' => LAYERS_THEME_SLUG . '-widget-' . $this->widget_id );
 
 			/* Create the widget. */
-			$this->WP_Widget( LAYERS_THEME_SLUG . '-widget-' . $this->widget_id , $this->widget_title . ' Widget', $widget_ops, $control_ops );
+			$this->WP_Widget( LAYERS_THEME_SLUG . '-widget-' . $this->widget_id , $this->widget_title, $widget_ops, $control_ops );
 
 			/* Setup Widget Defaults */
 			$this->defaults = array (
@@ -98,7 +98,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 			if( !empty( $widget['design']['advanced'][ 'customcss' ] ) ) layers_inline_styles( NULL, 'css', array( 'css' => $widget['design']['advanced'][ 'customcss' ]  ) ); ?>
 
 			<section class="widget row content-vertical-massive <?php echo $this->check_and_return( $widget , 'design', 'advanced', 'customclass' ) ?>" id="<?php echo $widget_id; ?>">
-				<?php if( $this->check_and_return( $widget , 'title' ) || $this->check_and_return( $widget , 'excerpt' ) ) { ?>
+				<?php if( '' != $this->check_and_return( $widget , 'title' ) ||'' != $this->check_and_return( $widget , 'excerpt' ) ) { ?>
 					<div class="container">
 						<div class="section-title <?php echo $this->check_and_return( $widget , 'design', 'fonts', 'size' ); ?> <?php echo $this->check_and_return( $widget , 'design', 'fonts', 'align' ); ?> clearfix">
 							<?php if( '' != $widget['title'] ) { ?>
@@ -377,8 +377,6 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 			// If there is no GUID create one. There should always be one but this is a fallback
 			if( ! isset( $column_guid ) ) $column_guid = rand( 1 , 1000 );
 
-
-
 			// Turn the widget details into an object, it makes the code cleaner
 			$widget_details = (object) $widget_details;
 
@@ -392,7 +390,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 				<li class="layers-accordion-item" data-guid="<?php echo $column_guid; ?>">
 					<a class="layers-accordion-title">
 						<span>
-							<?php _e( 'Column' , LAYERS_THEME_SLUG ); ?><span class="layers-detail"><?php echo ( isset( $title ) ? ': ' . $title : NULL ); ?></span>
+							<?php _e( 'Column' , LAYERS_THEME_SLUG ); ?><span class="layers-detail"><?php echo ( isset( $title ) ? ': ' . stripslashes( $title ) : NULL ); ?></span>
 						</span>
 					</a>
 					<section class="layers-accordion-section layers-content">

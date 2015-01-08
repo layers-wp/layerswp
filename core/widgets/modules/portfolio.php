@@ -39,7 +39,7 @@ if( !class_exists( 'Layers_Portfolio_Widget' ) ) {
 			$control_ops = array( 'width' => LAYERS_WIDGET_WIDTH_SMALL, 'height' => NULL, 'id_base' => LAYERS_THEME_SLUG . '-widget-' . $this->widget_id );
 
 			/* Create the widget. */
-			$this->WP_Widget( LAYERS_THEME_SLUG . '-widget-' . $this->widget_id , $this->widget_title . ' Widget', $widget_ops, $control_ops );
+			$this->WP_Widget( LAYERS_THEME_SLUG . '-widget-' . $this->widget_id , $this->widget_title, $widget_ops, $control_ops );
 
 			/* Setup Widget Defaults */
 			$this->defaults = array (
@@ -160,7 +160,7 @@ if( !class_exists( 'Layers_Portfolio_Widget' ) ) {
 			$portfolio_query = new WP_Query( $query_args ); ?>
 
 			<section class="widget row content-vertical-massive <?php echo $this->check_and_return( $widget , 'design', 'advanced', 'customclass' ) ?>" id="<?php echo $widget_id; ?>">
-				<?php if( $this->check_and_return( $widget , 'title' ) || $this->check_and_return( $widget , 'excerpt' ) ) { ?>
+				<?php if( '' != $this->check_and_return( $widget , 'title' ) ||'' != $this->check_and_return( $widget , 'excerpt' ) ) { ?>
 					<div class="container clearfix">
 						<div class="section-title <?php echo $this->check_and_return( $widget , 'design', 'fonts', 'size' ); ?> <?php echo $this->check_and_return( $widget , 'design', 'fonts', 'align' ); ?> clearfix">
 							<?php if( '' != $widget['title'] ) { ?>
@@ -172,7 +172,7 @@ if( !class_exists( 'Layers_Portfolio_Widget' ) ) {
 						</div>
 					</div>
 				<?php } ?>
-				<?php if( isset( $widget['show_category_filter'] ) && isset( $terms ) &&  !is_wp_error( $terms ) ) { ?>
+				<?php if( isset( $widget['show_category_filter'] ) && isset( $terms ) && !is_wp_error( $terms ) ) { ?>
 					<div class="container <?php echo $this->check_and_return( $widget , 'design', 'fonts', 'align' ); ?> clearfix">
 						<ul class="nav nav-pills push-bottom-large layers-isotope-filter" data-isotope-container="<?php echo $widget_id; ?>">
 								<li data-filter=""><a href="#"><?php _e( 'All' , LAYERS_THEME_SLUG ); ?></a></li>

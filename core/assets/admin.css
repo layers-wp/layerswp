@@ -165,7 +165,7 @@ div#widgets-right div[id*='obox-layers-builder']{
         margin-right: 0;
     }
     .layers-product-screenshot{
-        height: 250px;
+        height: 350px;
         overflow: hidden;
     }
     .layers-product-screenshot img{
@@ -197,7 +197,7 @@ div#widgets-right div[id*='obox-layers-builder']{
         background: #fff;
     }
     .blank-product .layers-product-screenshot{
-        height: 245px;
+        height: 345px;
     }
     .blank-product .layers-product-name{
         background: none;
@@ -1806,7 +1806,16 @@ input[type=radio]:checked + .layers-settings-icon span{
     padding-top: 128px;
 }
 .layers-page-title{
+    background: #F1F1F1;
+}
+.layers-page-title.highlight{
     background: #009DF3;
+}
+.layers-page-title + .layers-row{
+    border-top: 1px solid #ddd;
+}
+.layers-page-title.highlight + .layers-row{
+    border-top: 1px solid #0D5F83;
 }
 .layers-divide{
     padding: 0 0 60px;

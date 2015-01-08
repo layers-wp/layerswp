@@ -1,10 +1,10 @@
 @font-face {
 	font-family: 'layers-icons';
-	src:url('icon-fonts/layers-icons.eot?-aw2j1a');
-	src:url('icon-fonts/layers-icons.eot?#iefix-aw2j1a') format('embedded-opentype'),
-		url('icon-fonts/layers-icons.woff?-aw2j1a') format('woff'),
-		url('icon-fonts/layers-icons.ttf?-aw2j1a') format('truetype'),
-		url('icon-fonts/layers-icons.svg?-aw2j1a#layers-icons') format('svg');
+	src:url('icon-fonts/layers-icons.eot?9fkl4z');
+	src:url('icon-fonts/layers-icons.eot?#iefix9fkl4z') format('embedded-opentype'),
+		url('icon-fonts/layers-icons.woff?9fkl4z') format('woff'),
+		url('icon-fonts/layers-icons.ttf?9fkl4z') format('truetype'),
+		url('icon-fonts/layers-icons.svg?9fkl4z#layers-icons') format('svg');
 	font-weight: normal;
 	font-style: normal;
 }
@@ -23,43 +23,27 @@
 	-moz-osx-font-smoothing: grayscale;
 }
 
+.l-shopping-cart:before {
+	content: "\f07a";
+}
+
 .l-user:before {
-	content: "\f007";
-}
-
-.l-clock-o:before {
-	content: "\f017";
-}
-
-.l-tags:before {
-	content: "\f02c";
-}
-
-.l-comment-o:before {
-	content: "\f0e5";
-}
-
-.l-folder-open-o:before {
-	content: "\f115";
-}
-
-.l-user2:before {
 	content: "\f008";
 }
 
-.l-clock-o2:before {
+.l-clock-o:before {
 	content: "\f018";
 }
 
-.l-tags2:before {
+.l-tags:before {
 	content: "\f02d";
 }
 
-.l-comment-o2:before {
+.l-comment-o:before {
 	content: "\f0e6";
 }
 
-.l-folder-open-o2:before {
+.l-folder-open-o:before {
 	content: "\f116";
 }
 

@@ -98,7 +98,7 @@ if( !class_exists( 'Layers_Contact_Widget' ) ) {
 			// Set the map width
 			$mapwidth = 'span-12'; ?>
 
-			<section class="widget content-vertical-massive row <?php echo $this->get_widget_layout_class( $widget ); ?> <?php echo $this->check_and_return( $widget , 'design', 'advanced', 'customclass' ) ?>" id="<?php echo $widget_id; ?>">
+			<section class="widget content-vertical-massive row <?php echo $this->check_and_return( $widget , 'design', 'advanced', 'customclass' ) ?>" id="<?php echo $widget_id; ?>">
 
 				<?php if( $this->check_and_return( $widget , 'title' ) || $this->check_and_return( $widget , 'excerpt' ) ) { ?>
 					<div class="container clearfix">
@@ -114,7 +114,7 @@ if( !class_exists( 'Layers_Contact_Widget' ) ) {
 				<?php } // if title || excerpt ?>
 
 
-				<div class="row">
+				<div class="row <?php echo $this->get_widget_layout_class( $widget ); ?>">
 					<?php if( ( '' != $widget['address_shown'] && isset( $widget['show_address'] ) ) || ( isset( $widget['show_contact_form'] ) && '' != $widget['contact_form'] ) ) {?>
 						<div class="column span-6 form">
 							<?php if( isset( $widget['show_address'] ) &&  '' != $widget['address_shown'] ) { ?>

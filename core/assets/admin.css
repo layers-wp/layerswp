@@ -45,19 +45,21 @@ div#widgets-right div[id*='obox-layers-builder']{
     /*- WIDGET COLOR STYLING ----*/
 
     /*- Layers Badge -*/
-    .customize-control-widget_form.wide-widget-control div[id*='layers-widget'] .widget-top h4:before{
-        content: "Layers";
-        background-color: #0BA6E0;
-        padding: 1px 6px 1px 4px;
-        margin: -1px 5px 0 -15px;
-        border-radius: 0 100px 100px 0;
-        font-size: 9px;
+    .customize-control-widget_form.wide-widget-control div[id*="layers-widget"] .widget-top h4:before{
+        content: "\e62f";
+        padding: 0;
+        margin: 0 7px 0 0;
+        border-radius: 100%;
+        font-family: "layers-interface";
+        font-size: 11px;
         font-weight: 700;
         text-transform: uppercase;
-        color: #fff;
+        color: #929292;
+        display: inline-block;
+        text-align: center;
     }
     .customize-control-widget_form.wide-widget-control.expanded div[id*='layers-widget'] .widget-top h4:before{
-        background-color: #0D5F83;
+        /* background-color: #0D5F83; */
         color: #fff;
     }
 
@@ -82,15 +84,14 @@ div#widgets-right div[id*='obox-layers-builder']{
     /*- Layers Badge in Widget Selection Tray -*/
     #available-widgets div[id*='layers-widget'].widget .widget-top:before{
         float: right;
-        content: "Layers";
-        background-color: #0BA6E0;
-        padding: 0px 6px;
-        margin: -20px -15px 16px 0;
-        border-radius: 0 0 0 5px;
-        font-size: 9px;
+        content: "\e62f";
+        padding: 0;
+        margin: -11px -5px 0 0;
+        font-family: "layers-interface";
+        font-size: 11px;
         font-weight: 700;
         text-transform: uppercase;
-        color: #fff;
+        color: #929292;
     }
 
     /*---------------------------*/

@@ -572,7 +572,10 @@ pre{
 
     /*---------------------------*/
     /*- BACK TO TOP -------------*/
-    #back-to-top a{background-color: #323232;}
+    #back-to-top a{
+        background: url(images/arrow-up-small.png) no-repeat;
+        background-size: 32px 32px;
+    }
 
 
     /*---------------------------*/

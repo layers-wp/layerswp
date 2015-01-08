@@ -1787,7 +1787,7 @@ input[type=radio]:checked + .layers-settings-icon span{
 
 
 /*---------------------------*/
-/*- WELCOME PAGE ------------*/
+/*- LAYERS PAGES ------------*/
 .layers-welcome{
     margin-left: -20px;
 }
@@ -1818,6 +1818,17 @@ input[type=radio]:checked + .layers-settings-icon span{
 }
 .layers-page-title.highlight + .layers-row{
     border-top: 1px solid #0D5F83;
+}
+.layers-footer{
+    clear: both;
+    padding: 10px 0;
+    margin: 0 0 0 -20px;
+    background: #fff;
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    text-align: center;
+    color: #888;
+    font-style: italic;
 }
 .layers-divide{
     padding: 0 0 60px;

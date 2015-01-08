@@ -97,7 +97,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 			if( !empty( $widget['design']['fonts'][ 'color' ] ) ) layers_inline_styles( $widget_id, 'color', array( 'selectors' => array( '.section-title h3.heading' , '.section-title p.excerpt' ) , 'color' => $widget['design']['fonts'][ 'color' ] ) );
 
 			// Output custom css if there is any
-			if( !empty( $widget['design']['advanced'][ 'customcss' ] ) ) layers_inline_styles( $widget_id, 'css', array( 'css' => $widget['design']['advanced'][ 'customcss' ]  ) );?>
+			if( !empty( $widget['design']['advanced'][ 'customcss' ] ) ) layers_inline_styles( NULL, 'css', array( 'css' => $widget['design']['advanced'][ 'customcss' ]  ) ); ?>
 
 			<section class="widget row content-vertical-massive <?php echo $this->get_widget_layout_class( $widget ); ?> <?php echo $this->check_and_return( $widget , 'design', 'advanced', 'customclass' ) ?>" id="<?php echo $widget_id; ?>">
 				<?php if( $this->check_and_return( $widget , 'title' ) || $this->check_and_return( $widget , 'excerpt' ) ) { ?>

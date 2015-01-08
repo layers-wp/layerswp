@@ -30,16 +30,6 @@ class Layers_Meta_Config {
 							'type' => 'textarea',
 						),
 					)
-				),
-				'layout' => array(
-					'title' => __( 'Layout &amp; Styling' , LAYERS_THEME_SLUG ),
-					'elements' => array(
-						'header-styling' => array(
-							'label' => __( 'Header Styling' , LAYERS_THEME_SLUG ),
-							'type' => 'background',
-							'default' => NULL
-						)
-					)
 				)
 			)
 		);

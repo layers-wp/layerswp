@@ -290,7 +290,12 @@ if( ! function_exists( 'layers_scripts' ) ) {
 		* Front end Styles
 		*/
 
-
+		wp_enqueue_style(
+			LAYERS_THEME_SLUG . '-style' ,
+			get_stylesheet_uri() ,
+			array() ,
+			LAYERS_VERSION
+		);
 
 		wp_enqueue_style(
 			LAYERS_THEME_SLUG . '-colors',
@@ -341,12 +346,6 @@ if( ! function_exists( 'layers_scripts' ) ) {
 			LAYERS_VERSION
 		); // Admin CSS - depending on admin-bar loaded
 		
-		wp_enqueue_style(
-			LAYERS_THEME_SLUG . '-style' ,
-			get_stylesheet_uri() ,
-			array() ,
-			LAYERS_VERSION
-		);
 	}
 }
 add_action( 'wp_enqueue_scripts' , 'layers_scripts' );

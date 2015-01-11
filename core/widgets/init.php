@@ -205,15 +205,6 @@ class Layers_Widgets {
 			true
 		);
 
-		// Migrator
-		wp_register_script(
-			LAYERS_THEME_SLUG . '-admin-migrator' ,
-			get_template_directory_uri() . '/core/widgets/js/migrator.js' ,
-			array(),
-			LAYERS_VERSION,
-			true
-		);
-
 		// Tiny MCE Initiator
 		wp_register_script(
 			LAYERS_THEME_SLUG . '-admin-tinymce' ,
@@ -236,7 +227,6 @@ class Layers_Widgets {
 			array(
 				LAYERS_THEME_SLUG . '-admin-slider-widget',
 				LAYERS_THEME_SLUG . '-admin-content-widget',
-				LAYERS_THEME_SLUG . '-admin-migrator',
 				'backbone',
 				'jquery',
 				'wp-color-picker',

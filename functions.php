@@ -97,7 +97,7 @@ if( is_admin() ){
 	locate_template( '/core/helpers/api.php' , true );
 
 	// Include widget export/import class
-	locate_template( '/core/widgets/migrator.php' , true );
+	locate_template( '/core/helpers/migrator.php' , true );
 
 	//Load Options Panel
 	locate_template( '/core/options-panel/init.php' , true );
@@ -361,6 +361,15 @@ if( ! function_exists( 'layers_admin_scripts' ) ) {
 			LAYERS_VERSION,
 			true
 		);
+
+        // Migrator
+        wp_enqueue_script(
+            LAYERS_THEME_SLUG . '-admin-migrator' ,
+            get_template_directory_uri() . '/core/assets/migrator.js' ,
+            array(),
+            LAYERS_VERSION,
+            true
+        );
 
 		wp_enqueue_script(
 			LAYERS_THEME_SLUG . '-admin' ,

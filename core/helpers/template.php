@@ -710,7 +710,7 @@ if( !function_exists( 'layers_inline_styles' ) ) {
 			$inline_css .= '{' . $css . '} ';
 		}
 
-		wp_enqueue_style( LAYERS_THEME_SLUG . '-inline-styles', get_template_directory_uri() . '/css/inline.css' );
+		wp_enqueue_style( LAYERS_THEME_SLUG . '-inline-styles', get_template_directory_uri() . '/assets/css/inline.css' );
 		wp_add_inline_style( LAYERS_THEME_SLUG . '-inline-styles', $inline_css );
 
 		return $inline_css;

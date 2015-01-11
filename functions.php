@@ -246,17 +246,8 @@ if( ! function_exists( 'layers_scripts' ) ) {
 		*/
 
 		wp_enqueue_script(
-			LAYERS_THEME_SLUG . '-slider-js' ,
-			get_template_directory_uri() . '/core/widgets/js/swiper.js',
-			array(
-				'jquery',
-				'masonry'
-			)
-		); // Slider
-
-		wp_enqueue_script(
 			LAYERS_THEME_SLUG . '-isotope-js' ,
-			get_template_directory_uri() . '/js/isotope.js',
+			get_template_directory_uri() . '/assets/js/isotope.js',
 			array(
 				'jquery',
 			)
@@ -264,7 +255,7 @@ if( ! function_exists( 'layers_scripts' ) ) {
 
 		wp_enqueue_script(
 			LAYERS_THEME_SLUG . '-layers-masonry-js' ,
-			get_template_directory_uri() . '/js/layers.masonry.js',
+			get_template_directory_uri() . '/assets/js/layers.masonry.js',
 			array(
 				'jquery'
 			)
@@ -273,7 +264,7 @@ if( ! function_exists( 'layers_scripts' ) ) {
 
 		wp_enqueue_script(
 			LAYERS_THEME_SLUG . '-framework-js' ,
-			get_template_directory_uri() . '/js/layers.framework.js',
+			get_template_directory_uri() . '/assets/js/layers.framework.js',
 			array(
 				'jquery',
 			),
@@ -299,42 +290,35 @@ if( ! function_exists( 'layers_scripts' ) ) {
 
 		wp_enqueue_style(
 			LAYERS_THEME_SLUG . '-colors',
-			get_template_directory_uri() . '/css/colors.css',
+			get_template_directory_uri() . '/assets/css/colors.css',
 			array(),
 			LAYERS_VERSION
 		); // Colors
 
 		wp_enqueue_style(
 			LAYERS_THEME_SLUG . '-typography',
-			get_template_directory_uri() . '/css/typography.css',
+			get_template_directory_uri() . '/assets/css/typography.css',
 			array(),
 			LAYERS_VERSION
 		); // Typography
 
 		wp_enqueue_style(
 			LAYERS_THEME_SLUG . '-components',
-			get_template_directory_uri() . '/css/components.css',
+			get_template_directory_uri() . '/assets/css/components.css',
 			array(),
 			LAYERS_VERSION
 		); // Compontents
 
 		wp_enqueue_style(
-			LAYERS_THEME_SLUG . '-slider',
-			get_template_directory_uri() . '/core/widgets/css/swiper.css',
-			array(),
-			LAYERS_VERSION
-		); // Slider
-
-		wp_enqueue_style(
 			LAYERS_THEME_SLUG . '-responsive',
-			get_template_directory_uri() . '/css/responsive.css',
+			get_template_directory_uri() . '/assets/css/responsive.css',
 			array(),
 			LAYERS_VERSION
 		); // Responsive
 
 		wp_enqueue_style(
 			LAYERS_THEME_SLUG . '-icon-fonts',
-			get_template_directory_uri() . '/css/layers-icons.css',
+			get_template_directory_uri() . '/assets/css/layers-icons.css',
 			array(),
 			LAYERS_VERSION
 		); // Icon Font
@@ -345,7 +329,7 @@ if( ! function_exists( 'layers_scripts' ) ) {
 			array('admin-bar'),
 			LAYERS_VERSION
 		); // Admin CSS - depending on admin-bar loaded
-		
+
 	}
 }
 add_action( 'wp_enqueue_scripts' , 'layers_scripts' );

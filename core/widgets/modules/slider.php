@@ -212,8 +212,23 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 
 					})
 			 	</script>
-			<?php } // if !empty( $widget->slides ) ?>
-	 	<?php }
+			<?php } // if !empty( $widget->slides )
+
+			// Slider JS enqueue
+			wp_enqueue_script(
+				LAYERS_THEME_SLUG . '-slider-js' ,
+				get_template_directory_uri() . '/core/widgets/js/swiper.js',
+				array( 'jquery' )
+			); // Slider
+
+			// Slider CSS enqueue
+			wp_enqueue_style(
+				LAYERS_THEME_SLUG . '-slider',
+				get_template_directory_uri() . '/core/widgets/css/swiper.css',
+				array(),
+				LAYERS_VERSION
+			); // Slider
+		}
 
 		/**
 		*  Widget update

@@ -199,7 +199,7 @@ section[class*=' off-canvas-'] .close-canvas{
     .header-fixed .nav-horizontal > ul > li > a{color: #fff;}
     .header-fixed .nav-horizontal > ul > li > a:hover{color: #000;}
     .header-fixed .responsive-nav .l-menu{color: #fff;}
-    
+
     /*---------------------------*/
     /*- NAVIGATION POSITION -----*/
     .nav-clear .logo{float: none;}
@@ -671,7 +671,7 @@ p[class*='comment-form'] .required{
 
     /*---------------------------*/
     /*- WIDGET NAV MENU ---------*/
-    .widget.widget_nav_menu{ 
+    .widget.widget_nav_menu{
         max-width: none;
         padding: 20px 0;
         margin: 0;
@@ -703,7 +703,7 @@ p[class*='comment-form'] .required{
 .row.has-map{
     padding-top: 0;
 }
-.hatch-map img{
+.layers-map img{
     width: auto;
     max-width: none;
 }

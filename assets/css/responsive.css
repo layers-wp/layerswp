@@ -1,0 +1,384 @@
+/*--------------*/
+/* iPad PORTRAIT */
+@media only screen and (max-width: 768px) and (min-width: 481px) {
+
+}
+
+/*--------------*/
+/* iPad PORTRAIT */
+@media only screen and (max-width: 768px){
+
+}
+
+/*-----------------------------------------------*/
+/* layouts smaller than 600px, iPhone and mobiles */
+@media only screen and (max-width: 480px), screen and (max-device-width: 480px), screen and (max-width: 600px) {
+
+/*-------------------------------*/
+/*- PAGE SETUP ------------------*/
+/*-------------------------------*/
+html{}
+
+/*-------------------------------*/
+/*- COLUMNS ---------------------*/
+/*-------------------------------*/
+.column,
+.column-flush{
+	float: none;
+	margin: 0 0 20px;
+}
+
+.column[class*='span-'],
+.column[class*=' span-'],
+.column-flush[class^="span-"],
+.column-flush[class*=" span-"]{
+	width: 100%;
+}
+
+.column-flush.span-1,
+.column-flush.span-2,
+.column-flush.span-3,
+.column-flush.span-4,
+.column-flush.span-5,
+.column-flush.span-6,
+.column-flush.span-7,
+.column-flush.span-8,
+.column-flush.span-9,
+.column-flush.span-10,
+.column-flush.span-11,
+.column-flush.span-12{
+	width: 100%;
+}
+
+/*-------------------------------*/
+/*- CONTAINERS ------------------*/
+/*-------------------------------*/
+
+	/*---------------------------*/
+	/*- CONTENT -----------------*/
+	.content,
+	.content-main,
+	.content-large{
+		padding: 20px;
+	}
+	.content-small{
+		padding: 10px;
+	}
+	.content-extra-large{
+		padding: 30px 20px;
+	}
+	.content-massive{
+		padding: 40px 20px;
+	}
+
+	/*---------------------------*/
+	/*- VERTICAL PADDING --------*/
+	.content-vertical{
+		padding-top: 20px;
+		padding-bottom: 20px;
+	}
+	.content-vertical-large{
+		padding-top: 20px;
+		padding-bottom: 20px;
+	}
+	.content-vertical-extra-large{
+		padding-top: 30px;
+		padding-bottom: 30px;
+	}
+	.content-vertical-massive{
+		padding-top: 40px;
+		padding-bottom: 40px;
+	}
+	.sky{
+		padding-top: 40px;
+	}
+	.basement{
+		padding-bottom: 20px;
+	}
+
+	/*---------------------------*/
+	/*- VERTICAL SPACING --------*/
+	.extra-push{
+		margin-bottom: 40px;
+	}
+	.extra-push-left{
+		margin-bottom: 10px;
+	}
+	.push-top-small{
+		margin-top: 10px;
+	}
+	.push-top-medium{
+		margin-top: 20px;
+	}
+	.push-top-large{
+		margin-top: 30px;
+	}
+	.push-bottom-small{
+		margin-bottom: 10px;
+	}
+	.push-bottom-medium{
+		margin-bottom: 20px;
+	}
+	.push-bottom-large{
+		margin-bottom: 30px;
+	}
+
+/*-------------------------------*/
+/*- FORMS -----------------------*/
+/*-------------------------------*/
+
+	/*---------------------------*/
+	/*- GENERAL -----------------*/
+	textarea, input, select, button{
+		font-size: 1.3rem;
+	}
+	input[type=email],
+	input[type=text],
+	input[type=password],
+	input[type=number]{
+		height: 32px;
+		font-size: 1.3rem;
+	}
+
+	/*---------------------------*/
+	/*- FORM ROWS ---------------*/
+	.form-row{
+		margin-bottom: 15px;
+	}
+
+    /*---------------------------*/
+    /*- PREPENDS + APPENDS ------*/
+    .input-prepend,
+    .input-append{
+    	line-height: 28px;
+    }
+    .input-prepend .add-on,
+    .input-append .add-on{
+    	font-size: 1.3rem;
+    }
+
+/*-------------------------------*/
+/*- NAVIGATION ------------------*/
+/*-------------------------------*/
+
+    /*---------------------------*/
+    /*- HORIZONTAL NAV ----------*/
+	.nav-horizontal ul{
+		display: none;
+	}
+	.nav-horizontal .responsive-nav{
+		display: block;
+	}
+
+	/*---------------------------*/
+    /*- TABBED NAV --------------*/
+	.nav-tabs{
+		padding: 5px;
+	}
+	.nav-tabs li{
+		width: 50%;
+		padding: 5px;
+		margin: 0;
+	}
+
+	/*---------------------------*/
+    /*- PILL NAV ----------------*/
+	.nav-pills{
+		display: block;
+	}
+	.nav-pills li{
+		width: 50%;
+		padding: 0 10px 10px 0;
+		margin: 0;
+		text-align: center;
+	}
+	
+	/*---------------------------*/
+    /*- VERTICAL NAV SUB MENUS --*/
+	.nav-vertical .sub-menu{
+		position: static;
+		visibility: visible;
+		opacity: 1;
+		left: auto;
+		right: auto;
+		top: auto;
+		box-shadow: none;
+
+		border: none;
+		font-size: 1.2rem;
+	}
+	.nav-vertical .sub-menu .sub-menu{
+		margin-left: 10px;
+	}
+	.nav-vertical .sub-menu li{
+		border: none;
+	}
+
+/*-------------------------------*/
+/*- TITLES ----------------------*/
+/*-------------------------------*/
+.title{
+	padding: 40px 20px;
+}
+	
+	/*---------------------------*/
+    /*- SECTION TITLE -----------*/
+	.section-title{
+		margin-bottom: 20px;
+	}
+
+/*-------------------------------*/
+/*- THUMBNAILS ------------------*/
+/*-------------------------------*/
+	
+	/*---------------------------*/
+    /*- OVERLAYS ----------------*/
+	.with-overlay{
+		text-shadow: none;
+	}
+	.with-overlay .thumbnail-body{
+		position: static;
+		top: auto;
+		left: auto;
+		width: auto;
+		height: auto;
+		visibility: visible;
+		opacity: 1;
+		background: #f5f5f5;
+		text-align: inherit;
+	}
+	.with-overlay .overlay{
+		display: block;
+		position: static;
+		transform: none;
+	}
+	.with-overlay .heading{
+		color: inherit;
+		opacity: 1;
+		transform: none;
+		transition: none;
+	}
+	.with-overlay .heading a{
+		color: inherit;
+	}
+	.with-overlay .button{
+		background: #454545;
+		border: none;
+		position: static;
+		opacity: 1;
+		transform: none;
+		transition: inherit;
+	}
+	.with-overlay .excerpt{
+		display: block;
+	}
+	.with-overlay .meta-info{
+		display: block;
+	}
+
+/*-------------------------------*/
+/*- HEADERS ---------------------*/
+/*-------------------------------*/
+.header-secondary{
+	display: none;
+}
+.header-site .container{
+	padding: 10px 20px;
+}
+.header-center .logo{
+	float: left;
+	text-align: left;
+}
+.header-center .site-logo-anchor{
+	overflow: hidden;
+}
+.header-center .site-description{
+	display: inline-block;
+	vertical-align: middle;
+}
+.header-center .site-logo-anchor + .site-description{
+	margin: 0 0 0 10px;
+}
+.header-center nav{
+	clear: none;
+	float: right;
+	margin: 10px 0;
+}
+
+/*-------------------------------*/
+/*- SLIDER ----------------------*/
+/*-------------------------------*/
+
+    /*---------------------------*/
+    /*- SWIPE ITEM --------------*/
+    .swiper-slide .copy-container{
+    	float: none !important;
+    	width: auto !important;
+    	text-align: center !important;
+    }
+    .swiper-slide .image-container{
+    	float: none !important;
+    	width: auto !important;
+    	text-align: center !important;
+    }
+
+    /*---------------------------*/
+    /*- PAGINATION --------------*/
+    .swiper-container .pages{
+    	bottom: 16px;
+    	opacity: 1;
+    }
+
+    /*---------------------------*/
+	/*- ARROWS ------------------*/
+	.swiper-container .arrows{
+		display: none;
+	}
+
+/*-------------------------------*/
+/*- CONTENT ---------------------*/
+/*-------------------------------*/
+
+    /*---------------------------*/
+	/*- META INFO ---------------*/
+	.single .meta-item{
+		display: block;
+	}
+
+
+/*-------------------------------*/
+/*- FOOTERS ---------------------*/
+/*-------------------------------*/
+
+	/*---------------------------*/
+	/*- COLUMNS -----------------*/
+	.footer-site .column{
+		margin-bottom: 40px;
+	}
+
+    /*---------------------------*/
+	/*- COPYRIGHT ---------------*/
+	.copyright .column{
+		margin-bottom: 10px;
+	}
+	.copyright .column:last-child{
+		margin-bottom: 0;
+	}
+	.copyright .logo{
+		display: none;
+	}
+	.copyright .t-right{
+		text-align: left;
+	}
+	.copyright .pull-right{
+		float: none;
+	}
+	.copyright .nav-horizontal{
+		margin-top: 10px;
+	}
+	.copyright .nav-horizontal li{
+		margin: 0 10px 0 0;
+	}
+
+
+}

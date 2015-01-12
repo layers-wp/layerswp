@@ -9,20 +9,32 @@
 </head>
 <body <?php body_class(); ?>>
 	<?php get_sidebar( 'off-canvas'); ?>
-	<?php do_action( 'hatch_before_site_wrapper' ); ?>
+	<?php do_action( 'layers_before_site_wrapper' ); ?>
 	<section class="wrapper-site">
-		<?php do_action( 'hatch_before_header' ); ?>
+
+		<?php do_action( 'layers_before_header' ); ?>
+		
 		<?php get_template_part( 'partials/header' , 'secondary' ); ?>
+<<<<<<< HEAD
 		<header <?php hatch_header_class(); ?>>
 			<?php do_action( 'hatch_before_header_inner' ); ?>
 			<div class="<?php if( 'layout-fullwidth' != hatch_get_theme_mod( 'header-layout-width' ) ) echo 'container'; ?> wrapper-header clearfix">
 				<?php if( 'header-logo-center' == hatch_get_theme_mod( 'header-layout-layout' ) ) { ?>
+=======
+		
+		<header <?php layers_header_class(); ?>>
+			<?php do_action( 'layers_before_header_inner' ); ?>
+			<div class="<?php if( 'layout-fullwidth' != layers_get_theme_mod( 'header-layout-width' ) ) echo 'container'; ?> clearfix">
+				<?php if( 'header-logo-center' == layers_get_theme_mod( 'header-layout-layout' ) ) { ?>
+>>>>>>> c2983a518fb9ef4eb8d1a1d2ebcbd79f2d1374c5
 					<?php get_template_part( 'partials/header' , 'centered' ); ?>
 				<?php } else { ?>
 					<?php get_template_part( 'partials/header' , 'standard' ); ?>
 				<?php } // if centered header ?>
 			</div>
-			<?php do_action( 'hatch_after_header_inner' ); ?>
+			<?php do_action( 'layers_after_header_inner' ); ?>
 		</header>
-		<?php do_action( 'hatch_after_header' ); ?>
+		
+		<?php do_action( 'layers_after_header' ); ?>
+		
 		<section id="wrapper-content" class="wrapper-content">

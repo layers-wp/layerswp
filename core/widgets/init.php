@@ -1,13 +1,13 @@
 <?php /**
  * Widget Initiation File
  *
- * This file is the source of the Widget functionality in Hatch.
+ * This file is the source of the Widget functionality in Layers.
  *
- * @package Hatch
- * @since Hatch 1.0
+ * @package Layers
+ * @since Layers 1.0
  */
 
-class Hatch_Widgets {
+class Layers_Widgets {
 
 	private static $instance;
 
@@ -30,21 +30,20 @@ class Hatch_Widgets {
 		$module_dir = '/core/widgets/modules/';
 
 		// Setup some defined variables to use in each widget
-		define( 'HATCH_WIDGET_WIDTH_TINY' , 500 );
-		define( 'HATCH_WIDGET_WIDTH_SMALL' , 660 );
-		define( 'HATCH_WIDGET_WIDTH_LARGE' , 980 );
+		define( 'LAYERS_WIDGET_WIDTH_TINY' , 500 );
+		define( 'LAYERS_WIDGET_WIDTH_SMALL' , 660 );
+		define( 'LAYERS_WIDGET_WIDTH_LARGE' , 980 );
 
 		// Include ajax functions
 		locate_template( $widget_dir . 'ajax.php' , true );
 
 		// Include necessary widgets
-		locate_template(  $module_dir . 'base.php' , true ); // Basis of all Hatch Widgets
-		locate_template( $module_dir . 'banner.php' , true );
+		locate_template(  $module_dir . 'base.php' , true ); // Basis of all Layers Widgets
 		locate_template( $module_dir . 'contact.php' , true );
-		locate_template( $module_dir . 'module.php' , true );
+		locate_template( $module_dir . 'content.php' , true );
 		locate_template( $module_dir . 'portfolio.php' , true );
 		locate_template( $module_dir . 'post.php' , true );
-		locate_template( $module_dir . 'sidebar.php' , true );
+		locate_template( $module_dir . 'slider.php' , true );
 
 		// When switching to a child theme, preserve page builder pages
 		add_action('switch_theme', array( $this , 'preserve_widgets' ) );
@@ -85,9 +84,9 @@ class Hatch_Widgets {
 
 	public function register_builder_sidebar( $post_id = 0, $post_title = '' ) {
 		register_sidebar( array(
-			'id'		=> 'obox-hatch-builder-' . $post_id,
-			'name'		=> $post_title . __( ' Body' , HATCH_THEME_SLUG ),
-			'description'	=> __( '' , HATCH_THEME_SLUG ),
+			'id'		=> 'obox-layers-builder-' . $post_id,
+			'name'		=> $post_title . __( ' Body' , LAYERS_THEME_SLUG ),
+			'description'	=> __( '' , LAYERS_THEME_SLUG ),
 			'before_widget'	=> '<aside id="%1$s" class="widget container push-bottom-medium %2$s">',
 			'after_widget'	=> '</aside>',
 			'before_title'	=> '<div class="section-title clearfix"><h4 class="heading">',
@@ -96,13 +95,13 @@ class Hatch_Widgets {
 	}
 
 	/**
-	 * Port Widgets between Hatch Parent theme and Child themes
+	 * Port Widgets between Layers Parent theme and Child themes
 	 */
 	public function preserve_widgets( $theme ){
 		global $sidebars_widgets;
 
-		// If we are using a Hatch theme, then let's make sure widgets are kept between our theme switch
-		if( HATCH_THEME_SLUG == basename( get_template_directory() ) ){
+		// If we are using a Layers theme, then let's make sure widgets are kept between our theme switch
+		if( LAYERS_THEME_SLUG == basename( get_template_directory() ) ){
 
 			// Fetch the old theme and its theme mods
 			$old_theme = get_option( 'theme_switched' );
@@ -120,7 +119,7 @@ class Hatch_Widgets {
 	public function get_dynamic_sidebars(){
 
 		// Set the widget ID to search for
-		$dynamic_widget_id = 'hatch-widget-sidebar';
+		$dynamic_widget_id = 'layers-widget-sidebar';
 
 		// Get registered sidebars
 		$sidebars = get_option( 'sidebars_widgets');
@@ -172,7 +171,7 @@ class Hatch_Widgets {
 			register_sidebar( array(
 							'id'		=> $dynamic_sidebar[ 'id' ],
 							'name'		=> $dynamic_sidebar[ 'title' ],
-							'description'	=> __( '' , HATCH_THEME_SLUG ),
+							'description'	=> __( '' , LAYERS_THEME_SLUG ),
 							'before_widget'	=> '<aside id="%1$s" class="widget %2$s">',
 							'after_widget'	=> '</aside>',
 							'before_title'	=> '<h4 class="widget-title">',
@@ -190,43 +189,25 @@ class Hatch_Widgets {
 
 		// Banner Widget
 		wp_register_script(
-			HATCH_THEME_SLUG . '-admin-widgets-banners' ,
-			get_template_directory_uri() . '/core/widgets/js/banner.js' ,
+			LAYERS_THEME_SLUG . '-admin-slider-widget' ,
+			get_template_directory_uri() . '/core/widgets/js/slider.js' ,
 			array(),
-			HATCH_VERSION,
+			LAYERS_VERSION,
 			true
 		);
 
 		// Module Widget
 		wp_register_script(
-			HATCH_THEME_SLUG . '-admin-widgets-modules' ,
-			get_template_directory_uri() . '/core/widgets/js/module.js' ,
+			LAYERS_THEME_SLUG . '-admin-content-widget' ,
+			get_template_directory_uri() . '/core/widgets/js/content.js' ,
 			array(),
-			HATCH_VERSION,
-			true
-		);
-
-		// Dynamic Sidebar Widget
-		wp_register_script(
-			HATCH_THEME_SLUG . '-admin-widgets-sidebar' ,
-			get_template_directory_uri() . '/core/widgets/js/sidebar.js' ,
-			array(),
-			HATCH_VERSION,
-			true
-		);
-
-		// Migrator
-		wp_register_script(
-			HATCH_THEME_SLUG . '-admin-widgets-migrator' ,
-			get_template_directory_uri() . '/core/widgets/js/migrator.js' ,
-			array(),
-			HATCH_VERSION,
+			LAYERS_VERSION,
 			true
 		);
 
 		// Tiny MCE Initiator
 		wp_register_script(
-			HATCH_THEME_SLUG . '-admin-widgets-tinymce' ,
+			LAYERS_THEME_SLUG . '-admin-tinymce' ,
 			get_template_directory_uri() . '/core/widgets/js/tinymce.js' ,
 			array(
 				'editor',
@@ -235,48 +216,33 @@ class Hatch_Widgets {
 				'wplink',
 				'wp-fullscreen'
 			),
-			HATCH_VERSION,
+			LAYERS_VERSION,
 			true
 		);
-
-
-		// Contact Widget
-		wp_enqueue_script( HATCH_THEME_SLUG . " -map-api","http://maps.googleapis.com/maps/api/js?sensor=false");
-		wp_register_script(
-			HATCH_THEME_SLUG . '-admin-widgets-maps' ,
-			get_template_directory_uri() . '/core/widgets/js/maps.js' ,
-			array(),
-			HATCH_VERSION,
-			true
-		);
-
 
 		// Widget accordians
 		wp_enqueue_script(
-			HATCH_THEME_SLUG . '-admin-widgets' ,
+			LAYERS_THEME_SLUG . '-admin-widgets' ,
 			get_template_directory_uri() . '/core/widgets/js/widget-accordians.js' ,
 			array(
-				HATCH_THEME_SLUG . '-admin-widgets-banners',
-				HATCH_THEME_SLUG . '-admin-widgets-sidebar',
-				HATCH_THEME_SLUG . '-admin-widgets-modules',
-				HATCH_THEME_SLUG . '-admin-widgets-maps',
-				HATCH_THEME_SLUG . '-admin-widgets-migrator',
+				LAYERS_THEME_SLUG . '-admin-slider-widget',
+				LAYERS_THEME_SLUG . '-admin-content-widget',
 				'backbone',
 				'jquery',
 				'wp-color-picker',
 				'media-upload'
 			),
-			HATCH_VERSION,
+			LAYERS_VERSION,
 			true
 		);
 
 		// Localize Scripts
 		wp_localize_script(
-				HATCH_THEME_SLUG . '-admin-widgets' ,
-				"hatch_widget_params",
+				LAYERS_THEME_SLUG . '-admin-widgets' ,
+				"layers_widget_params",
 				array(
 						'ajaxurl' => admin_url( "admin-ajax.php" ) ,
-						'nonce' => wp_create_nonce( 'hatch-widget-actions' )
+						'nonce' => wp_create_nonce( 'layers-widget-actions' )
 					)
 			);
 	}
@@ -296,9 +262,9 @@ class Hatch_Widgets {
 *  Kicking this off with the 'widgets_init' hook
 */
 
-function hatch_widgets_init(){
-	global $hatch_widgets;
-	$hatch_widgets = new Hatch_Widgets();
-	$hatch_widgets->init();
+function layers_widgets_init(){
+	global $layers_widgets;
+	$layers_widgets = new Layers_Widgets();
+	$layers_widgets->init();
 }
-add_action( 'widgets_init' , 'hatch_widgets_init' , 20 );
+add_action( 'widgets_init' , 'layers_widgets_init' , 20 );

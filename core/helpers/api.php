@@ -1,15 +1,15 @@
 <?php  /**
- * Hatch API Class
+ * Layers API Class
  *
- * This file is used to run Hatch / Obox API Calls
+ * This file is used to run Layers / Obox API Calls
  *
- * @package Hatch
- * @since Hatch 1.0
+ * @package Layers
+ * @since Layers 1.0
  */
-class Hatch_API {
+class Layers_API {
 
 
-    const HATCH_UPDATER_REMOTE_URL = 'vagrant.localhost/api/v1';
+    const LAYERS_UPDATER_REMOTE_URL = 'vagrant.localhost/api/v1';
 
     private static $instance;
 
@@ -47,12 +47,12 @@ class Hatch_API {
 
         // Backup Page
         add_submenu_page(
-            HATCH_THEME_SLUG . '-welcome',
-            __( 'Update' , HATCH_THEME_SLUG ),
-            __( 'Update' , HATCH_THEME_SLUG ),
+            LAYERS_THEME_SLUG . '-welcome',
+            __( 'Update' , LAYERS_THEME_SLUG ),
+            __( 'Update' , LAYERS_THEME_SLUG ),
             'manage_options',
-            HATCH_THEME_SLUG . '-register',
-            'hatch_options_panel_ui'
+            LAYERS_THEME_SLUG . '-register',
+            'layers_options_panel_ui'
         );
     }
 
@@ -63,7 +63,7 @@ class Hatch_API {
     private function _do_api_call( $endpoint = 'verify', $apikey = NULL, $return_array = true ) {
 
         $updates = wp_remote_get(
-            'http://' . self::HATCH_UPDATER_REMOTE_URL . '/' . $endpoint . '?apikey=' . $apikey, //',
+            'http://' . self::LAYERS_UPDATER_REMOTE_URL . '/' . $endpoint . '?apikey=' . $apikey, //',
             array(
                 'timeout' => 60,
                 'httpversion' => '1.1'
@@ -83,13 +83,13 @@ class Hatch_API {
 
     private function _get_api_key(){
 
-        global $hatch_api_key;
+        global $layers_api_key;
 
-        if( !isset( $hatch_api_key ) ){
-            $hatch_api_key = get_option( 'hatch_api_key' );
+        if( !isset( $layers_api_key ) ){
+            $layers_api_key = get_option( 'layers_api_key' );
         }
 
-        return $hatch_api_key;
+        return $layers_api_key;
     }
 
     /**
@@ -117,23 +117,23 @@ class Hatch_API {
     */
     public function save_api_key(){
 
-        if( isset( $_REQUEST[ '_wpnonce_hatch_api_key' ] ) ){
+        if( isset( $_REQUEST[ '_wpnonce_layers_api_key' ] ) ){
 
             // Get the posted API key
-            $apikey = $_POST[ 'hatch_obox_api_key' ];
+            $apikey = $_POST[ 'layers_obox_api_key' ];
 
             // Get data
             $apicheck = $this->_do_api_call( 'verify', $apikey, true );
 
             if( false == $apicheck[ 'success' ] ){
-                global $hatch_regsiter_message;
-                $hatch_regsiter_message = $apicheck[ 'message' ];
+                global $layers_regsiter_message;
+                $layers_regsiter_message = $apicheck[ 'message' ];
                 return;
             }
 
-            if( ! wp_verify_nonce( $_REQUEST[ '_wpnonce_hatch_api_key' ], 'hatch_save_api_key' ) ) return;
+            if( ! wp_verify_nonce( $_REQUEST[ '_wpnonce_layers_api_key' ], 'layers_save_api_key' ) ) return;
 
-            update_option( 'hatch_api_key' , $apikey );
+            update_option( 'layers_api_key' , $apikey );
         }
     }
 
@@ -231,16 +231,16 @@ class Hatch_API {
 }
 
 
-if( !function_exists( 'hatch_api_init' ) ) {
+if( !function_exists( 'layers_api_init' ) ) {
     // Instantiate Plugin
-    function hatch_api_init() {
+    function layers_api_init() {
 
-        global $hatch_updater;
+        global $layers_updater;
 
-        $hatch_updater = new Hatch_API();
-        $hatch_updater->init();
+        $layers_updater = new Layers_API();
+        $layers_updater->init();
 
-    } // hatch_updater_init
+    } // layers_updater_init
 
-    add_action( "after_setup_theme", "hatch_api_init", 100 );
+    add_action( "after_setup_theme", "layers_api_init", 100 );
 }

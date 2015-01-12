@@ -1,15 +1,15 @@
 <?php  /**
  * Color Control
  *
- * This file is used to register and display the custom Hatch Color Control
+ * This file is used to register and display the custom Layers Color Control
  *
- * @package Hatch
- * @since Hatch 1.0
+ * @package Layers
+ * @since Layers 1.0
  */
 
-if( !class_exists( 'Hatch_Customize_Color_Control' ) ) {
+if( !class_exists( 'Layers_Customize_Color_Control' ) ) {
 
-	class Hatch_Customize_Color_Control extends WP_Customize_Control {
+	class Layers_Customize_Color_Control extends WP_Customize_Control {
 
 		public $type = 'color';
 
@@ -18,9 +18,9 @@ if( !class_exists( 'Hatch_Customize_Color_Control' ) ) {
 		public $subtitle = '';
 
 		public function render_content() {
-			
-			$form_elements = new Hatch_Form_Elements();
-			
+
+			$form_elements = new Layers_Form_Elements();
+
 			$link = explode( '="', $this->get_link() );
 			$link_attr = ltrim( $link[0], 'data-' );
 			$link_val = rtrim( $link[1], '"' ); ?>
@@ -31,13 +31,13 @@ if( !class_exists( 'Hatch_Customize_Color_Control' ) ) {
 
 			</span>
 
-			<div id="input_<?php echo $this->id; ?>" class="hatch-form-item">
+			<div id="input_<?php echo $this->id; ?>" class="layers-form-item">
 
 				<?php if ( '' != $this->subtitle ) : ?>
-					<label class="hatch-form-row"><?php echo $this->subtitle; ?></label>
+					<label class="layers-form-row"><?php echo $this->subtitle; ?></label>
 				<?php endif; ?>
-				<div class="hatch-visuals-wrapper hatch-visuals-inline hatch-clearfix">
-				
+				<div class="layers-visuals-wrapper layers-visuals-inline layers-clearfix">
+
 					<?php
 					echo $form_elements->input(
 						array(
@@ -51,11 +51,11 @@ if( !class_exists( 'Hatch_Customize_Color_Control' ) ) {
 						)
 					);
 					?>
-				
+
 				</div>
-			
+
 			</div>
 			<?php
 		}
 	}
-} // !class_exists( 'Hatch_Customize_Color_Control' )
+} // !class_exists( 'Layers_Customize_Color_Control' )

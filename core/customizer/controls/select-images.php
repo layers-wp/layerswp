@@ -1,32 +1,31 @@
 <?php  /**
  * Select Image
  *
- * This file is used to register and display the custom Hatch Select Image
+ * This file is used to register and display the custom Layers Select Image
  *
- * @package Hatch
- * @since Hatch 1.0
+ * @package Layers
+ * @since Layers 1.0
  */
 
-if( !class_exists( 'Hatch_Customize_Select_Image_Control' ) ) {
+if( !class_exists( 'Layers_Customize_Select_Image_Control' ) ) {
 
-	class Hatch_Customize_Select_Image_Control extends WP_Customize_Control {
+	class Layers_Customize_Select_Image_Control extends WP_Customize_Control {
 
-		public $type = 'select-image';
+		public $type = 'select-images';
 
 		public $description = '';
 
 		public $subtitle = '';
 
 		public function render_content() {
-			
-			$form_elements = new Hatch_Form_Elements();
-			
+
+			$form_elements = new Layers_Form_Elements();
+
 			$link = explode( '="', $this->get_link() );
 			$link_attr = ltrim( $link[0], 'data-' );
 			$link_val = rtrim( $link[1], '"' );
-			
-			$values = false;
-			?>
+
+			$values = false; ?>
 
 			<span class="customize-control-title">
 
@@ -34,18 +33,16 @@ if( !class_exists( 'Hatch_Customize_Select_Image_Control' ) ) {
 
 			</span>
 
-			<div id="input_<?php echo $this->id; ?>" class="hatch-form-item">
+			<div id="input_<?php echo $this->id; ?>" class="layers-form-item">
 
 				<?php if ( '' != $this->subtitle ) : ?>
-					<label class="hatch-form-row"><?php echo $this->subtitle; ?></label>
+					<label class="layers-form-row"><?php echo $this->subtitle; ?></label>
 				<?php endif; ?>
-				<div class="hatch-visuals-wrapper hatch-visuals-inline hatch-clearfix">
-				
-					<?php
-					echo $form_elements->input(
+				<div class="layers-visuals-wrapper layers-visuals-inline layers-clearfix">
+					<?php echo $form_elements->input(
 						array(
 							'type' => 'image',
-							'label' => __( 'Choose Background' , HATCH_THEME_SLUG ),
+							'label' => __( 'Choose Background' , LAYERS_THEME_SLUG ),
 							'name' => '',
 							'id' =>  $this->id,
 							'value' => ( isset( $values['background']['image'] ) ) ? $values['background']['image'] : $this->value(),
@@ -53,13 +50,11 @@ if( !class_exists( 'Hatch_Customize_Select_Image_Control' ) ) {
 								$link_attr => $link_val
 							)
 						)
-					);
-					?>
-				
+					); ?>
 				</div>
-			
+
 			</div>
 			<?php
 		}
 	}
-} // !class_exists( 'Hatch_Customize_Select_Image_Control' )
+} // !class_exists( 'Layers_Customize_Select_Image_Control' )

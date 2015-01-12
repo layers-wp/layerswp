@@ -4,21 +4,21 @@ var map;
 jQuery(document).ready(function($){
 	geocoder = new google.maps.Geocoder();
 
-	$(document).on( 'click' , '.hatch-check-address' , function(e){
+	$(document).on( 'click' , '.layers-check-address' , function(e){
 		e.preventDefault();
-		$map = $(this).closest( '.hatch-map' );
-		$address = $(this).closest( '.hatch-content' ).find('input[id$="google_maps_location"]').val();
-		$longlat = $(this).closest( '.hatch-content' ).find('input[id$="google_maps_long_lat"]').val();
+		$map = $(this).closest( '.layers-map' );
+		$address = $(this).closest( '.layers-content' ).find('input[id$="google_maps_location"]').val();
+		$longlat = $(this).closest( '.layers-content' ).find('input[id$="google_maps_long_lat"]').val();
 		$map.data( 'location' , $address.toString() );
 		$map.data( 'longlat' , $longlat.toString() );
 		console.log( $map.data( 'location' ) );
-		hatch_check_address($);
+		layers_check_address($);
 	});
-	hatch_check_address($);
+	layers_check_address($);
 })
 
-function hatch_check_address($){
-	jQuery('.hatch-map').each(function(){
+function layers_check_address($){
+	jQuery('.layers-map').each(function(){
 		//"Hi Mom"
 		$that = $(this);
 

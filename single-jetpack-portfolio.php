@@ -2,8 +2,8 @@
 /**
  * The template for displaying a single portfolio post
  *
- * @package Hatch
- * @since Hatch 1.0
+ * @package Layers
+ * @since Layers 1.0
  */
 
 get_header(); ?>
@@ -13,7 +13,7 @@ get_header(); ?>
 		<?php while( have_posts() ) : the_post(); ?>
 			<div class="row">
 				<div class="column span-4">
-					<?php hatch_bread_crumbs(); ?>
+					<?php layers_bread_crumbs(); ?>
 
 					<header class="section-title large">
 						<h1 class="heading"><?php the_title(); ?></h1>
@@ -25,7 +25,7 @@ get_header(); ?>
 						<?php the_content() ;?>
 					</div>
 
-					<?php hatch_post_meta( $post->ID ); ?>
+					<?php layers_post_meta( $post->ID ); ?>
 				</div>
 				<div class="column span-7 pull-right sidebar">
 					<?php if( has_post_thumbnail() ) { ?>

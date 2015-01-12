@@ -2,15 +2,20 @@
 /**
  * This partial is used for displaying single post (or page) content
  *
- * @package Hatch
- * @since Hatch 1.0
+ * @package Layers
+ * @since Layers 1.0
  */
 
 global $post, $post_meta_to_display, $page_title_shown; ?>
 <?php if( !isset( $page_title_shown ) ) { ?>
     <header class="section-title large">
         <?php if( 'post' == get_post_type() ) { ?>
-            <h5 class="meta-info"><?php the_date(); ?></h5>
+            <h5 class="meta-info">
+                <span class="meta-item meta-date">
+                    <i class="l-clock-o"></i>
+                    <?php the_date(); ?>
+                </span>
+            </h5>
         <?php } // if post ?>
         <h1 class="heading"><?php the_title(); ?></h1>
     </header>
@@ -40,7 +45,7 @@ global $post, $post_meta_to_display, $page_title_shown; ?>
  * Only show post meta for posts
  */
 if( 'post' == get_post_type() ) { ?>
-    <?php hatch_post_meta( $post->ID ); ?>
+    <?php layers_post_meta( $post->ID ); ?>
 <?php } // if post ?>
 
 <?php comments_template(); ?>

@@ -3,11 +3,11 @@
  *
  * This file is used to register panels, sections and controls
  *
- * @package Hatch
- * @since Hatch 1.0
+ * @package Layers
+ * @since Layers 1.0
  */
 
-class Hatch_Customizer_Regsitrar {
+class Layers_Customizer_Regsitrar {
 
 	private static $instance;
 
@@ -36,15 +36,15 @@ class Hatch_Customizer_Regsitrar {
 		$this->customizer = $wp_customize;
 
 		//
-		$this->prefix  = HATCH_THEME_SLUG . '-';
+		$this->prefix  = LAYERS_THEME_SLUG . '-';
 
 		// Grab the customizer config
-		$this->config = new Hatch_Customizer_Config();
+		$this->config = new Layers_Customizer_Config();
 
 		// Start registration with the panels
 		$this->register_panels( $this->config->panels() );
 
-		// Move default sections into Hatch Panels
+		// Move default sections into Layers Panels
 		$this->move_default_sections( $this->config->default_sections() );
 	}
 
@@ -140,6 +140,9 @@ class Hatch_Customizer_Regsitrar {
 
 			$setting_key = $this->prefix . $panel_section_key . '-' . $control_key;
 
+			// Register control default value
+			$this->register_control_defaults( $setting_key, ( isset( $control_data['default'] ) ? $control_data['default'] : NULL ) );
+
 			// Assign control to the relevant section
 			$control_data[ 'section' ] = $this->prefix . $panel_section_key;
 
@@ -147,7 +150,7 @@ class Hatch_Customizer_Regsitrar {
 			$control_data[ 'priority' ] = $control_priority;
 
 			if ( 'select-images' == $control_data['type'] ) {
-				
+
 				// Add Setting
 				$this->customizer->add_setting(
 					$setting_key,
@@ -157,17 +160,17 @@ class Hatch_Customizer_Regsitrar {
 						'capability' => 'manage_options'
 					)
 				);
-				
+
 				// Add Control
 				$this->customizer->add_control(
-					new Hatch_Customize_Select_Image_Control(
+					new Layers_Customize_Select_Image_Control(
 						$this->customizer,
 						$setting_key ,
 						$control_data
 					)
 				);
 			} else if( 'select-icons' == $control_data['type'] ) {
-				
+
 				// Add Setting
 				$this->customizer->add_setting(
 					$setting_key,
@@ -177,17 +180,17 @@ class Hatch_Customizer_Regsitrar {
 						'capability' => 'manage_options'
 					)
 				);
-				
+
 				// Add Control
 				$this->customizer->add_control(
-					new Hatch_Customize_Select_Icon_Control(
+					new Layers_Customize_Select_Icon_Control(
 						$this->customizer,
 						$setting_key ,
 						$control_data
 					)
 				);
 			} else if( 'seperator' == $control_data['type'] ) {
-				
+
 				// Add Setting
 				$this->customizer->add_setting(
 					$setting_key,
@@ -197,17 +200,17 @@ class Hatch_Customizer_Regsitrar {
 						'capability' => 'manage_options'
 					)
 				);
-				
+
 				// Add Control
 				$this->customizer->add_control(
-					new Hatch_Customize_Seperator_Control(
+					new Layers_Customize_Seperator_Control(
 						$this->customizer,
 						$setting_key ,
 						$control_data
 					)
 				);
 			} else if( 'heading' == $control_data['type'] ) {
-				
+
 				// Add Setting
 				$this->customizer->add_setting(
 					$setting_key,
@@ -217,28 +220,29 @@ class Hatch_Customizer_Regsitrar {
 						'capability' => 'manage_options'
 					)
 				);
-				
+
 				// Add Control
 				$this->customizer->add_control(
-					new Hatch_Customize_Heading_Control(
+					new Layers_Customize_Heading_Control(
 						$this->customizer,
 						$setting_key ,
 						$control_data
 					)
 				);
 			} else if( 'background' == $control_data['type'] ) {
-				
+
 				// Footer Background
-				
+
 				// Modify Control data - so we can add uniqie subtitle, label, default
-				$control_data = wp_parse_args(
+				$duplicate_control_data = wp_parse_args(
 					array(
-						'label' => __( 'Footer Background', HATCH_THEME_SLUG ),
-						'subtitle' => __( 'Background Image', HATCH_THEME_SLUG ),
+						'label' => __( 'Footer Background', LAYERS_THEME_SLUG ),
+						'subtitle' => __( 'Background Image', LAYERS_THEME_SLUG ),
+						'type' => ' ', //wierd bug in WP4.1 that requires a type to be in the array, or will revert to default control
 					),
 					$control_data
 				);
-				
+
 				// Add Setting
 				$this->customizer->add_setting(
 					$setting_key . '_background_image',
@@ -248,26 +252,27 @@ class Hatch_Customizer_Regsitrar {
 						'capability' => 'manage_options'
 					)
 				);
-				
+
 				// Add Control
 				$this->customizer->add_control(
-					new Hatch_Customize_Select_Image_Control(
+					new Layers_Customize_Select_Image_Control(
 						$this->customizer,
 						$setting_key . '_background_image',
-						$control_data
+						$duplicate_control_data
 					)
 				);
-				
-				// Footer Color
-				
-				$control_data = wp_parse_args(
+
+				// Color
+
+				$duplicate_control_data = wp_parse_args(
 					array(
 						'label' => '',
-						'subtitle' => __( 'Background Color', HATCH_THEME_SLUG ),
+						'subtitle' => __( 'Background Color', LAYERS_THEME_SLUG ),
+						'type' => ' ',
 					),
 					$control_data
 				);
-				
+
 				$this->customizer->add_setting(
 					$setting_key . '_background_color',
 					array(
@@ -276,17 +281,75 @@ class Hatch_Customizer_Regsitrar {
 						'capability' => 'manage_options'
 					)
 				);
-				
+
 				$this->customizer->add_control(
-					new Hatch_Customize_Color_Control(
+					new Layers_Customize_Color_Control(
 						$this->customizer,
 						$setting_key . '_background_color',
-						$control_data
+						$duplicate_control_data
 					)
 				);
-				
+
+				// Repeat
+
+				$duplicate_control_data = wp_parse_args(
+					array(
+						'label' => '',
+						'subtitle' => __( 'Repeat', LAYERS_THEME_SLUG ),
+						'type' => ' ',
+						'choices' => isset( $control_data['choices']['background-repeat'] ) ? $control_data['choices']['background-repeat'] : array(),
+					),
+					$control_data
+				);
+
+				$this->customizer->add_setting(
+					$setting_key . '_background_repeat',
+					array(
+						'default'    => ( isset( $control_data['default'] ) ? $control_data['default'] : NULL ) ,
+						'type'       => 'theme_mod',
+						'capability' => 'manage_options'
+					)
+				);
+
+				$this->customizer->add_control(
+					new Layers_Customize_Select_Control(
+						$this->customizer,
+						$setting_key . '_background_repeat',
+						$duplicate_control_data
+					)
+				);
+
+				// Position
+
+				$duplicate_control_data = wp_parse_args(
+					array(
+						'label' => '',
+						'subtitle' => __( 'Position', LAYERS_THEME_SLUG ),
+						'type' => ' ',
+						'choices' => isset( $control_data['choices']['background-position'] ) ? $control_data['choices']['background-position'] : array(),
+					),
+					$control_data
+				);
+
+				$this->customizer->add_setting(
+					$setting_key . '_background_position',
+					array(
+						'default'    => ( isset( $control_data['default'] ) ? $control_data['default'] : NULL ) ,
+						'type'       => 'theme_mod',
+						'capability' => 'manage_options'
+					)
+				);
+
+				$this->customizer->add_control(
+					new Layers_Customize_Select_Control(
+						$this->customizer,
+						$setting_key . '_background_position',
+						$duplicate_control_data
+					)
+				);
+
 			} else {
-				
+
 				// Add Setting
 				$this->customizer->add_setting(
 					$setting_key,
@@ -296,18 +359,35 @@ class Hatch_Customizer_Regsitrar {
 						'capability' => 'manage_options'
 					)
 				);
-				
+
 				// Add Control
 				$this->customizer->add_control(
 					$setting_key,
 					$control_data
 				);
-				
+
 			}
 
 			$control_priority++;
 
 		} // foreach controls panel_section_key
+	}
+
+	/**
+	* Register Control Defaults
+	*/
+
+	public function register_control_defaults( $key = NULL , $value = NULL ){
+
+		global $layers_customizer_defaults;
+
+		if( !isset( $layers_customizer_defaults ) ) $layers_customizer_defaults = array();
+
+		if( NULL != $key ){
+			$layers_customizer_defaults[ $key ] = esc_attr( $value );
+		}
+
+		return apply_filters( 'layers_customizer_defaults', $layers_customizer_defaults );
 	}
 
 	/**
@@ -326,13 +406,13 @@ class Hatch_Customizer_Regsitrar {
 		}
 	}
 
-} // class Hatch_Customizer_Regsitrar
+} // class Layers_Customizer_Regsitrar
 
-function hatch_register_customizer(){
+function layers_register_customizer(){
 
-	$hatch_customizer_reg = new Hatch_Customizer_Regsitrar();
-	$hatch_customizer_reg->init();
+	$layers_customizer_reg = new Layers_Customizer_Regsitrar();
+	$layers_customizer_reg->init();
 
 }
 
-add_action( 'customize_register', 'hatch_register_customizer', 99 );
+add_action( 'customize_register', 'layers_register_customizer', 99 );

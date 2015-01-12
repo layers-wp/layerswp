@@ -1,13 +1,13 @@
 <?php  /**
  * Portfolio Widget
  *
- * This file is used to register and display the Hatch - Portfolio widget.
+ * This file is used to register and display the Layers - Portfolio widget.
  *
- * @package Hatch
- * @since Hatch 1.0
+ * @package Layers
+ * @since Layers 1.0
  */
-if( !class_exists( 'Hatch_Portfolio_Widget' ) ) {
-	class Hatch_Portfolio_Widget extends Hatch_Widget {
+if( !class_exists( 'Layers_Portfolio_Widget' ) ) {
+	class Layers_Portfolio_Widget extends Layers_Widget {
 
 		/**
 		* Widget variables
@@ -31,15 +31,15 @@ if( !class_exists( 'Hatch_Portfolio_Widget' ) ) {
 		/**
 		*  Widget construction
 		*/
-		function Hatch_Portfolio_Widget(){
+		function Layers_Portfolio_Widget(){
 			/* Widget settings. */
-			$widget_ops = array( 'classname' => 'obox-hatch-' . $this->widget_id .'-widget', 'description' => 'This widget is used to display your ' . $this->widget_title . '.' );
+			$widget_ops = array( 'classname' => 'obox-layers-' . $this->widget_id .'-widget', 'description' => 'This widget is used to display your ' . $this->widget_title . '.' );
 
 			/* Widget control settings. */
-			$control_ops = array( 'width' => HATCH_WIDGET_WIDTH_SMALL, 'height' => NULL, 'id_base' => HATCH_THEME_SLUG . '-widget-' . $this->widget_id );
+			$control_ops = array( 'width' => LAYERS_WIDGET_WIDTH_SMALL, 'height' => NULL, 'id_base' => LAYERS_THEME_SLUG . '-widget-' . $this->widget_id );
 
 			/* Create the widget. */
-			$this->WP_Widget( HATCH_THEME_SLUG . '-widget-' . $this->widget_id , '(' . HATCH_THEME_TITLE . ') ' . $this->widget_title . ' Widget', $widget_ops, $control_ops );
+			$this->WP_Widget( LAYERS_THEME_SLUG . '-widget-' . $this->widget_id , $this->widget_title, $widget_ops, $control_ops );
 
 			/* Setup Widget Defaults */
 			$this->defaults = array (
@@ -52,7 +52,7 @@ if( !class_exists( 'Hatch_Portfolio_Widget' ) ) {
 				'show_category_filter' => 'on',
 				'excerpt_length' => 200,
 				'show_call_to_action' => 'on',
-				'call_to_action' => __( 'View Project' , HATCH_THEME_SLUG ),
+				'call_to_action' => __( 'View Project' , LAYERS_THEME_SLUG ),
                 'posts_per_page' => 6,
                 'order' => NULL,
 				'design' => array(
@@ -103,15 +103,16 @@ if( !class_exists( 'Hatch_Portfolio_Widget' ) ) {
 			}
 
 			// Set the background & font styling
-			if( !empty( $widget['design'][ 'background' ] ) ) hatch_inline_styles( $widget_id, 'background', array( 'background' => $widget['design'][ 'background' ] ) );
-			if( !empty( $widget['design']['fonts'][ 'color' ] ) ) hatch_inline_styles( $widget_id, 'color', array( 'selectors' => array( '.section-title h3.heading' , '.section-title p.excerpt' ) , 'color' => $widget['design']['fonts'][ 'color' ] ) );
+			if( !empty( $widget['design'][ 'background' ] ) ) layers_inline_styles( $widget_id, 'background', array( 'background' => $widget['design'][ 'background' ] ) );
+			if( !empty( $widget['design']['fonts'][ 'color' ] ) ) layers_inline_styles( $widget_id, 'color', array( 'selectors' => array( '.section-title h3.heading' , '.section-title p.excerpt' ) , 'color' => $widget['design']['fonts'][ 'color' ] ) );
+			if( !empty( $widget['design']['advanced'][ 'customcss' ] ) ) layers_inline_styles( NULL, 'css', array( 'css' => $widget['design']['advanced'][ 'customcss' ]  ) );
 
 			// Set Image Sizes
 			if( isset( $widget['design'][ 'imageratios' ] ) ){
 
 				// Translate Image Ratio
-				$image_ratio = hatch_translate_image_ratios( $widget['design'][ 'imageratios' ] );
-				
+				$image_ratio = layers_translate_image_ratios( $widget['design'][ 'imageratios' ] );
+
 				// If round then set image to square, and set border radius css further down.
 				if( 'round' == $image_ratio ){
 					$image_ratio = 'square';
@@ -126,11 +127,6 @@ if( !class_exists( 'Hatch_Portfolio_Widget' ) ) {
 				}
 			} else {
 				$imageratios = 'large';
-			}
-			
-			// Output custom css if there is any
-			if( !empty( $widget['design']['advanced'][ 'customcss' ] ) ){
-				wp_add_inline_style( HATCH_THEME_SLUG . '-custom-widget-styles', $widget['design']['advanced'][ 'customcss' ] );
 			}
 
 			// Begin query arguments
@@ -164,7 +160,7 @@ if( !class_exists( 'Hatch_Portfolio_Widget' ) ) {
 			$portfolio_query = new WP_Query( $query_args ); ?>
 
 			<section class="widget row content-vertical-massive <?php echo $this->check_and_return( $widget , 'design', 'advanced', 'customclass' ) ?>" id="<?php echo $widget_id; ?>">
-				<?php if( $this->check_and_return( $widget , 'title' ) || $this->check_and_return( $widget , 'excerpt' ) ) { ?>
+				<?php if( '' != $this->check_and_return( $widget , 'title' ) ||'' != $this->check_and_return( $widget , 'excerpt' ) ) { ?>
 					<div class="container clearfix">
 						<div class="section-title <?php echo $this->check_and_return( $widget , 'design', 'fonts', 'size' ); ?> <?php echo $this->check_and_return( $widget , 'design', 'fonts', 'align' ); ?> clearfix">
 							<?php if( '' != $widget['title'] ) { ?>
@@ -176,10 +172,10 @@ if( !class_exists( 'Hatch_Portfolio_Widget' ) ) {
 						</div>
 					</div>
 				<?php } ?>
-				<?php if( isset( $widget['show_category_filter'] ) && isset( $terms ) &&  !is_wp_error( $terms ) ) { ?>
+				<?php if( isset( $widget['show_category_filter'] ) && isset( $terms ) && !is_wp_error( $terms ) ) { ?>
 					<div class="container <?php echo $this->check_and_return( $widget , 'design', 'fonts', 'align' ); ?> clearfix">
-						<ul class="nav nav-pills push-bottom-large hatch-isotope-filter" data-isotope-container="<?php echo $widget_id; ?>">
-								<li data-filter=""><a href="#"><?php _e( 'All' , HATCH_THEME_SLUG ); ?></a></li>
+						<ul class="nav nav-pills push-bottom-large layers-isotope-filter" data-isotope-container="<?php echo $widget_id; ?>">
+								<li data-filter=""><a href="#"><?php _e( 'All' , LAYERS_THEME_SLUG ); ?></a></li>
 							<?php foreach( $terms as $term ) { ?>
 								<li data-filter="<?php echo $term->slug; ?>"><a href="#"><?php echo $term->name; ?></a></li>
 							<?php } // foreach $terms ?>
@@ -187,7 +183,7 @@ if( !class_exists( 'Hatch_Portfolio_Widget' ) ) {
 					</div>
 				<?php } ?>
 
-				<div class="row <?php if('layout-boxed' == $this->check_and_return( $widget , 'design' , 'layout' ) ) echo 'container'; ?> <?php echo $this->check_and_return( $widget , 'design', 'liststyle' ); ?>">
+				<div class="row <?php echo $this->get_widget_layout_class( $widget ); ?> <?php echo $this->check_and_return( $widget , 'design', 'liststyle' ); ?>">
 					<?php if( $portfolio_query->have_posts() ) { ?>
 						<?php while( $portfolio_query->have_posts() ) {
 							$portfolio_query->the_post();
@@ -202,9 +198,9 @@ if( !class_exists( 'Hatch_Portfolio_Widget' ) ) {
 										$term_list[] = $term->slug;
 									}
 								} ?>
-								<article class="column<?php if( !isset( $widget['design'][ 'gutter' ] ) ) echo '-flush'; ?> <?php echo $span_class; ?> hatch-masonry-column thumbnail <?php if( 'overlay' == $this->check_and_return( $widget , 'text_style' ) ) echo 'with-overlay'; ?> <?php echo implode( $term_list, " " ); ?>"  data-cols="<?php echo $col_count; ?>">
+								<article class="column<?php if( !isset( $widget['design'][ 'gutter' ] ) ) echo '-flush'; ?> <?php echo $span_class; ?> layers-masonry-column thumbnail <?php if( 'overlay' == $this->check_and_return( $widget , 'text_style' ) ) echo 'with-overlay'; ?> <?php echo implode( $term_list, " " ); ?>"  data-cols="<?php echo $col_count; ?>">
 									<?php if( has_post_thumbnail() ) { ?>
-										<div class="thumbnail-media <?php if ( 'round' == hatch_translate_image_ratios( $module['design'][ 'imageratios' ] ) ) { ?>image-rounded<?php } ?>">
+										<div class="thumbnail-media <?php if ( 'round' == layers_translate_image_ratios( $module['design'][ 'imageratios' ] ) ) { ?>image-rounded<?php } ?>">
 											<a href="<?php the_permalink(); ?>">
 												<?php the_post_thumbnail( $imageratios );  ?>
 											</a>
@@ -239,20 +235,20 @@ if( !class_exists( 'Hatch_Portfolio_Widget' ) ) {
 							<?php }; // if list-list == liststyle ?>
 						<?php }; // while have_posts ?>
 					<?php }; // if have_posts ?>
-					<?php if( isset( $widget['show_pagination'] ) ) hatch_pagination( array( 'query' => $portfolio_query ), 'div', 'pagination row span-12 text-center' ); ?>
+					<?php if( isset( $widget['show_pagination'] ) ) layers_pagination( array( 'query' => $portfolio_query ), 'div', 'pagination row span-12 text-center' ); ?>
 				</div>
 			</section>
 
 			<script>
 				jQuery(function($){
-					hatch_isotope_settings[ '<?php echo $widget_id; ?>' ] = [{
-							itemSelector: '.hatch-masonry-column',
+					layers_isotope_settings[ '<?php echo $widget_id; ?>' ] = [{
+							itemSelector: '.layers-masonry-column',
 							masonry: {
 								gutter: <?php echo ( isset( $widget['design'][ 'gutter' ] ) ? 20 : 0 ); ?>
 							}
 						}];
 
-					$('#<?php echo $widget_id; ?>').find('.list-masonry').hatch_isotope( hatch_isotope_settings[ '<?php echo $widget_id; ?>' ][0] );
+					$('#<?php echo $widget_id; ?>').find('.list-masonry').layers_isotope( layers_isotope_settings[ '<?php echo $widget_id; ?>' ][0] );
 				});
 			</script>
 
@@ -323,10 +319,10 @@ if( !class_exists( 'Hatch_Portfolio_Widget' ) ) {
 									'name' => $this->get_field_name( 'text_style' ) ,
 									'id' => $this->get_field_id( 'text_style' ) ,
 									'value' => ( isset( $text_style ) ) ? $text_style : NULL,
-									'label' => __( 'Title &amp; Excerpt Position' , HATCH_THEME_SLUG ),
+									'label' => __( 'Title &amp; Excerpt Position' , LAYERS_THEME_SLUG ),
 									'options' => array(
-											'regular' => __( 'Regular' , HATCH_THEME_SLUG ),
-											'overlay' => __( 'Overlay' , HATCH_THEME_SLUG )
+											'regular' => __( 'Regular' , LAYERS_THEME_SLUG ),
+											'overlay' => __( 'Overlay' , LAYERS_THEME_SLUG )
 									)
 								),
 								'show_category_filter' => array(
@@ -334,21 +330,21 @@ if( !class_exists( 'Hatch_Portfolio_Widget' ) ) {
 									'name' => $this->get_field_name( 'show_category_filter' ) ,
 									'id' => $this->get_field_id( 'show_category_filter' ) ,
 									'value' => ( isset( $show_category_filter ) ) ? $show_category_filter : NULL,
-									'label' => __( 'Show Project Filter' , HATCH_THEME_SLUG )
+									'label' => __( 'Show Project Filter' , LAYERS_THEME_SLUG )
 								),
 								'show_titles' => array(
 									'type' => 'checkbox',
 									'name' => $this->get_field_name( 'show_titles' ) ,
 									'id' => $this->get_field_id( 'show_titles' ) ,
 									'value' => ( isset( $show_titles ) ) ? $show_titles : NULL,
-									'label' => __( 'Show  Project Titles' , HATCH_THEME_SLUG )
+									'label' => __( 'Show  Project Titles' , LAYERS_THEME_SLUG )
 								),
 								'show_excerpts' => array(
 									'type' => 'checkbox',
 									'name' => $this->get_field_name( 'show_excerpts' ) ,
 									'id' => $this->get_field_id( 'show_excerpts' ) ,
 									'value' => ( isset( $show_excerpts ) ) ? $show_excerpts : NULL,
-									'label' => __( 'Show Project Excerpts' , HATCH_THEME_SLUG )
+									'label' => __( 'Show Project Excerpts' , LAYERS_THEME_SLUG )
 								),
                                 'excerpt_length' => array(
                                     'type' => 'number',
@@ -357,28 +353,28 @@ if( !class_exists( 'Hatch_Portfolio_Widget' ) ) {
                                     'min' => 0,
                                     'max' => 10000,
                                     'value' => ( isset( $excerpt_length ) ) ? $excerpt_length : NULL,
-                                    'label' => __( 'Excerpts Length' , HATCH_THEME_SLUG )
+                                    'label' => __( 'Excerpts Length' , LAYERS_THEME_SLUG )
                                 ),
 								'show_call_to_action' => array(
 									'type' => 'checkbox',
 									'name' => $this->get_field_name( 'show_call_to_action' ) ,
 									'id' => $this->get_field_id( 'show_call_to_action' ) ,
 									'value' => ( isset( $show_call_to_action ) ) ? $show_call_to_action : NULL,
-									'label' => __( 'Show "Read More" Buttons' , HATCH_THEME_SLUG )
+									'label' => __( 'Show "Read More" Buttons' , LAYERS_THEME_SLUG )
 								),
                                 'call_to_action' => array(
                                     'type' => 'text',
                                     'name' => $this->get_field_name( 'call_to_action' ) ,
                                     'id' => $this->get_field_id( 'call_to_action' ) ,
                                     'value' => ( isset( $call_to_action ) ) ? $call_to_action : NULL,
-                                    'label' => __( '"Read More" Text' , HATCH_THEME_SLUG )
+                                    'label' => __( '"Read More" Text' , LAYERS_THEME_SLUG )
                                 ),
 								'show_pagination' => array(
 									'type' => 'checkbox',
 									'name' => $this->get_field_name( 'show_pagination' ) ,
 									'id' => $this->get_field_id( 'show_pagination' ) ,
 									'value' => ( isset( $show_pagination ) ) ? $show_pagination : NULL,
-									'label' => __( 'Show Pagination' , HATCH_THEME_SLUG )
+									'label' => __( 'Show Pagination' , LAYERS_THEME_SLUG )
 								),
 							)
 					)
@@ -386,46 +382,46 @@ if( !class_exists( 'Hatch_Portfolio_Widget' ) ) {
 			); ?>
 			<!-- Form HTML Here -->
 
-			<div class="hatch-container-large">
+			<div class="layers-container-large">
 
 				<?php $this->form_elements()->header( array(
-					'title' =>  __( 'Portfolio' , HATCH_THEME_SLUG ),
+					'title' =>  __( 'Portfolio' , LAYERS_THEME_SLUG ),
 					'icon_class' =>'portfolio'
 				) ); ?>
 
-				<section class="hatch-accordion-section hatch-content">
+				<section class="layers-accordion-section layers-content">
 
-					<div class="hatch-row hatch-push-bottom">
-						<p class="hatch-form-item">
+					<div class="layers-row layers-push-bottom">
+						<p class="layers-form-item">
 							<?php echo $this->form_elements()->input(
 								array(
 									'type' => 'text',
 									'name' => $this->get_field_name( 'title' ) ,
 									'id' => $this->get_field_id( 'title' ) ,
-									'placeholder' => __( 'Enter title here', HATCH_THEME_SLUG ),
+									'placeholder' => __( 'Enter title here', LAYERS_THEME_SLUG ),
 									'value' => ( isset( $title ) ) ? $title : NULL ,
-									'class' => 'hatch-text hatch-large'
+									'class' => 'layers-text layers-large'
 								)
 							); ?>
 						</p>
 
-						<p class="hatch-form-item">
+						<p class="layers-form-item">
 							<?php echo $this->form_elements()->input(
 								array(
 									'type' => 'textarea',
 									'name' => $this->get_field_name( 'excerpt' ) ,
 									'id' => $this->get_field_id( 'excerpt' ) ,
-									'placeholder' => __( 'Short Excerpt', HATCH_THEME_SLUG ),
+									'placeholder' => __( 'Short Excerpt', LAYERS_THEME_SLUG ),
 									'value' => ( isset( $excerpt ) ) ? $excerpt : NULL ,
-									'class' => 'hatch-textarea hatch-large'
+									'class' => 'layers-textarea layers-large'
 								)
 							); ?>
 						</p>
 						<?php // Grab the terms as an array and loop 'em to generate the $options for the input
 						$terms = get_terms( $this->taxonomy );
 						if( !is_wp_error( $terms ) ) { ?>
-							<p class="hatch-form-item">
-								<label for="<?php echo $this->get_field_id( 'category' ); ?>"><?php echo __( 'Category to Display' , HATCH_THEME_SLUG ); ?></label>
+							<p class="layers-form-item">
+								<label for="<?php echo $this->get_field_id( 'category' ); ?>"><?php echo __( 'Category to Display' , LAYERS_THEME_SLUG ); ?></label>
 								<?php $category_options[ 0 ] ="All";
 								foreach ( $terms as $t ) $category_options[ $t->term_id ] = $t->name;
 								echo $this->form_elements()->input(
@@ -433,16 +429,16 @@ if( !class_exists( 'Hatch_Portfolio_Widget' ) ) {
 										'type' => 'select',
 										'name' => $this->get_field_name( 'category' ) ,
 										'id' => $this->get_field_id( 'category' ) ,
-										'placeholder' => __( 'Select a Category' , HATCH_THEME_SLUG ),
+										'placeholder' => __( 'Select a Category' , LAYERS_THEME_SLUG ),
 										'value' => ( isset( $category ) ) ? $category : NULL ,
 										'options' => $category_options
 									)
 								); ?>
 							</p>
 						<?php } // if !is_wp_error ?>
-						<p class="hatch-form-item">
-							<label for="<?php echo $this->get_field_id( 'posts_per_page' ); ?>"><?php echo __( 'Number of items to show' , HATCH_THEME_SLUG ); ?></label>
-							<?php $select_options[ '-1' ] = __( 'Show All' , HATCH_THEME_SLUG );
+						<p class="layers-form-item">
+							<label for="<?php echo $this->get_field_id( 'posts_per_page' ); ?>"><?php echo __( 'Number of items to show' , LAYERS_THEME_SLUG ); ?></label>
+							<?php $select_options[ '-1' ] = __( 'Show All' , LAYERS_THEME_SLUG );
 							$select_options = $this->form_elements()->get_incremental_options( $select_options , 1 , 20 , 1);
 							echo $this->form_elements()->input(
 								array(
@@ -456,8 +452,8 @@ if( !class_exists( 'Hatch_Portfolio_Widget' ) ) {
 							); ?>
 						</p>
 
-						<p class="hatch-form-item">
-							<label for="<?php echo $this->get_field_id( 'order' ); ?>"><?php echo __( 'Sort by' , HATCH_THEME_SLUG ); ?></label>
+						<p class="layers-form-item">
+							<label for="<?php echo $this->get_field_id( 'order' ); ?>"><?php echo __( 'Sort by' , LAYERS_THEME_SLUG ); ?></label>
 							<?php echo $this->form_elements()->input(
 								array(
 									'type' => 'select',
@@ -476,5 +472,5 @@ if( !class_exists( 'Hatch_Portfolio_Widget' ) ) {
 	} // Class
 
 	// Add our function to the widgets_init hook.
-	 register_widget("Hatch_Portfolio_Widget");
+	 register_widget("Layers_Portfolio_Widget");
 }

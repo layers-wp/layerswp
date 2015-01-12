@@ -230,6 +230,8 @@ class Layers_API {
     } // transient_theme_updates
 }
 
+/**
+* Temporary Exclusion of the update code
 
 if( !function_exists( 'layers_api_init' ) ) {
     // Instantiate Plugin
@@ -244,3 +246,4 @@ if( !function_exists( 'layers_api_init' ) ) {
 
     add_action( "after_setup_theme", "layers_api_init", 100 );
 }
+*/

@@ -3,8 +3,6 @@
  * @package Layers
  */
 
-$current = get_site_transient( 'update_themes' );
-// '<!-- <pre>' . print_r( $current, true ) . '</pre> -->';
 /**
 * Add define Layers constants to be used around Layers themes, plugins etc.
 */

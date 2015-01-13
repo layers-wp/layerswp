@@ -181,13 +181,9 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 								">
 									<?php if( NULL != $media ) { ?>
 										<div class="media-image <?php echo ( ( isset( $column['design'][ 'imageratios' ] ) && 'image-round' == $column['design'][ 'imageratios' ] ) ? 'image-rounded' : '' ); ?>">
-											<?php if( NULL != $link ) { ?>
-												<a href="<?php echo $link; ?>">
-													<?php echo $media; ?>
-												</a>
-											<?php } else { ?>
+											<?php if( NULL != $link ) { ?><a href="<?php echo $link; ?>"><?php  } ?>
 												<?php echo $media; ?>
-											<?php  } ?>
+											<?php if( NULL != $link ) { ?></a><?php  } ?>
 										</div>
 									<?php } ?>
 

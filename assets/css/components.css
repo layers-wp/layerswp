@@ -544,9 +544,6 @@ section[class*=' off-canvas-'] .close-canvas{
     .meta-info + .heading{
         margin-top: 15px;
     }
-    .excerpt + .meta-info{
-        margin-top: 15px;
-    }
     .meta-info p{
         margin: 0;
     }
@@ -575,17 +572,12 @@ section[class*=' off-canvas-'] .close-canvas{
         display: inline-block;
         width: 16px;
     }
-    .meta-info + .heading{
-        margin-top: 15px;
-    }
+    .meta-info + .heading,
     .excerpt + .meta-info{
         margin-top: 15px;
     }
     .meta-info p{
         margin: 0;
-    }
-    .excerpt + .meta-info{
-        margin-top: 15px;
     }
 
         /*-----------------------*/

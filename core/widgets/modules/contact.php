@@ -258,70 +258,83 @@ if( !class_exists( 'Layers_Contact_Widget' ) ) {
 								)
 							); ?>
 						</p>
-						<p class="layers-form-item">
-							<?php echo $this->form_elements()->input(
-								array(
-									'type' => 'textarea',
-									'name' => $this->get_field_name( 'contact_form' ) ,
-									'id' => $this->get_field_id( 'contact_form' ) ,
-									'placeholder' =>  __( 'Contact Form Embed Code', LAYERS_THEME_SLUG ),
-									'value' => ( isset( $contact_form ) ) ? $contact_form : NULL ,
-									'class' => 'layers-textarea layers-large'
-								)
-							); ?>
-						</p>
 					</div>
 
 					<div class="layers-row clearfix">
-						<div class="layers-column layers-span-12">
-							<div class="layers-panel">
-								<?php $this->form_elements()->section_panel_title(
+						<div class="layers-panel">
+							<?php $this->form_elements()->section_panel_title(
+								array(
+									'type' => 'panel',
+									'title' => __( 'Address' , LAYERS_THEME_SLUG ),
+									'tooltip' => __(  'Place your help text here please.', LAYERS_THEME_SLUG )
+								)
+							); ?>
+							<div class="layers-content">
+								<p class="layers-form-item">
+									<label for="<?php echo $this->get_field_id( 'google_maps_location' ); ?>"><?php _e( 'Google Maps Location' , LAYERS_THEME_SLUG ); ?></label>
+									<?php echo $this->form_elements()->input(
+										array(
+											'type' => 'text',
+											'name' => $this->get_field_name( 'google_maps_location' ) ,
+											'id' => $this->get_field_id( 'google_maps_location' ) ,
+											'placeholder' => __( 'e.g. 300 Prestwich Str, Cape Town, South Africa', LAYERS_THEME_SLUG ),
+											'value' => ( isset( $google_maps_location ) ) ? $google_maps_location : NULL
+										)
+									); ?>
+								</p>
+								<p class="layers-form-item">
+									<label for="<?php echo $this->get_field_id( 'google_maps_long_lat' ); ?>"><?php _e( 'Google Maps Latitude & Longitude (Optional)' , LAYERS_THEME_SLUG ); ?></label>
+									<?php echo $this->form_elements()->input(
+										array(
+											'type' => 'text',
+											'name' => $this->get_field_name( 'google_maps_long_lat' ) ,
+											'id' => $this->get_field_id( 'google_maps_long_lat' ) ,
+											'placeholder' => __( 'e.g. 33.9253 S, 18.4239 E', LAYERS_THEME_SLUG ),
+											'value' => ( isset( $google_maps_long_lat ) ) ? $google_maps_long_lat : NULL
+										)
+									); ?>
+								</p>
+								<p class="layers-form-item">
+									<label for="<?php echo $this->get_field_id( 'address_shown' ); ?>"><?php _e( 'Address Shown' , LAYERS_THEME_SLUG ); ?></label>
+									<?php echo $this->form_elements()->input(
+										array(
+											'type' => 'textarea',
+											'name' => $this->get_field_name( 'address_shown' ) ,
+											'id' => $this->get_field_id( 'address_shown' ) ,
+											'placeholder' => __( 'e.g. Prestwich Str, Cape Town', LAYERS_THEME_SLUG ),
+											'value' => ( isset( $address_shown ) ) ? $address_shown : NULL,
+											'class' => 'layers-textarea'
+										)
+									); ?>
+								</p>
+							</div>
+						</div>
+					</div>
+					<div class="layers-row clearfix">
+						<div class="layers-panel">
+							<?php $this->form_elements()->section_panel_title(
+								array(
+									'type' => 'panel',
+									'title' => __( 'Contact Form' , LAYERS_THEME_SLUG ),
+									'tooltip' => __(  'Place your help text here please.', LAYERS_THEME_SLUG )
+								)
+							); ?>
+							<div class="layers-content">
+							<p class="layers-form-item">
+								<?php echo $this->form_elements()->input(
 									array(
-										'type' => 'panel',
-										'title' => __( 'Address' , LAYERS_THEME_SLUG ),
-										'tooltip' => __(  'Place your help text here please.', LAYERS_THEME_SLUG )
+										'type' => 'textarea',
+										'name' => $this->get_field_name( 'contact_form' ) ,
+										'id' => $this->get_field_id( 'contact_form' ) ,
+										'placeholder' =>  __( 'Contact form embed code', LAYERS_THEME_SLUG ),
+										'value' => ( isset( $contact_form ) ) ? $contact_form : NULL ,
+										'class' => 'layers-textarea'
 									)
 								); ?>
-								<div class="layers-content">
-									<p class="layers-form-item">
-										<label for="<?php echo $this->get_field_id( 'google_maps_location' ); ?>"><?php _e( 'Google Maps Location' , LAYERS_THEME_SLUG ); ?></label>
-										<?php echo $this->form_elements()->input(
-											array(
-												'type' => 'text',
-												'name' => $this->get_field_name( 'google_maps_location' ) ,
-												'id' => $this->get_field_id( 'google_maps_location' ) ,
-												'placeholder' => __( 'e.g. 300 Prestwich Str, Cape Town, South Africa', LAYERS_THEME_SLUG ),
-												'value' => ( isset( $google_maps_location ) ) ? $google_maps_location : NULL
-											)
-										); ?>
-									</p>
-									<p class="layers-form-item">
-										<label for="<?php echo $this->get_field_id( 'google_maps_long_lat' ); ?>"><?php _e( 'Google Maps Latitude & Longitude (Optional)' , LAYERS_THEME_SLUG ); ?></label>
-										<?php echo $this->form_elements()->input(
-											array(
-												'type' => 'text',
-												'name' => $this->get_field_name( 'google_maps_long_lat' ) ,
-												'id' => $this->get_field_id( 'google_maps_long_lat' ) ,
-												'placeholder' => __( 'e.g. 33.9253 S, 18.4239 E', LAYERS_THEME_SLUG ),
-												'value' => ( isset( $google_maps_long_lat ) ) ? $google_maps_long_lat : NULL
-											)
-										); ?>
-									</p>
-									<p class="layers-form-item">
-										<label for="<?php echo $this->get_field_id( 'address_shown' ); ?>"><?php _e( 'Address Shown' , LAYERS_THEME_SLUG ); ?></label>
-										<?php echo $this->form_elements()->input(
-											array(
-												'type' => 'textarea',
-												'name' => $this->get_field_name( 'address_shown' ) ,
-												'id' => $this->get_field_id( 'address_shown' ) ,
-												'placeholder' => __( 'e.g. Prestwich Str, Cape Town', LAYERS_THEME_SLUG ),
-												'value' => ( isset( $address_shown ) ) ? $address_shown : NULL,
-												'class' => 'layers-textarea'
-											)
-										); ?>
-									</p>
-								</div>
-							</div>
+								<small class="layers-small-note">
+									Need to create a contact form? Try <a href="https://www.e-junkie.com/ecom/gb.php?cl=54585&c=ib&aff=221037" target="ejejcsingle">Gravity Forms</a>
+								</small>
+							</p>
 						</div>
 					</div>
 

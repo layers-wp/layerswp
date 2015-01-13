@@ -116,7 +116,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 						$total_width = 0; ?>
 						<?php foreach ( $widget['columns'] as $key => $column) {
 							// Set column link
-							$link = ( $this->check_and_return( $column , 'link' ) ) ? $this->check_and_return( $column , 'link' ) : '#' . $widget_id . '-' . $key;
+							$link = $this->check_and_return( $column , 'link' );
 
 							// Set the background styling
 							if( !empty( $column['design'][ 'background' ] ) ) layers_inline_styles( $widget_id . '-' . $key , 'background', array( 'background' => $column['design'][ 'background' ] ) );
@@ -161,35 +161,44 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 								} else {
 									$use_image_ratio = 'full';
 								}
-							} ?>
+							}
+
+							$media = layers_get_feature_media(
+								$featureimage ,
+								$use_image_ratio ,
+								$featurevideo
+							); ?>
 
 							<div id="<?php echo $widget_id; ?>-<?php echo $key; ?>" class="
 								column<?php if( !isset( $widget['design'][ 'gutter' ] ) ) echo '-flush'; ?>
 								<?php echo $span_class; ?>
 								<?php if( '' != $this->check_and_return( $column, 'design' , 'background', 'image' ) || '' != $this->check_and_return( $column, 'design' , 'background', 'color' ) ) echo 'content'; ?>
 								layers-masonry-column">
-								<a name="<?php echo $widget_id . '-' . $key; ?>"></a>
 								<div class="media
 									<?php echo $this->check_and_return( $column, 'design', 'imagealign' ); ?>
 									<?php echo $this->check_and_return( $column, 'design', 'fonts' , 'size' ); ?>
 									<?php if( !$this->check_and_return( $widget, 'design', 'gutter' ) ) echo 'no-push-bottom'; ?>
 								">
-									<?php if( $featureimage || $featurevideo ) { ?>
+									<?php if( NULL != $media ) { ?>
 										<div class="media-image <?php echo ( ( isset( $column['design'][ 'imageratios' ] ) && 'image-round' == $column['design'][ 'imageratios' ] ) ? 'image-rounded' : '' ); ?>">
-											<a href="<?php echo $link; ?>">
-												<?php echo layers_get_feature_media(
-													$featureimage ,
-													$use_image_ratio ,
-													$featurevideo
-												); ?>
-											</a>
+											<?php if( NULL != $link ) { ?>
+												<a href="<?php echo $link; ?>">
+													<?php echo $media; ?>
+												</a>
+											<?php } else { ?>
+												<?php echo $media; ?>
+											<?php  } ?>
 										</div>
 									<?php } ?>
 
 									<?php if( '' != $column['title'] || '' != $column['excerpt'] ) { ?>
 										<div class="media-body <?php echo ( isset( $column['design']['fonts'][ 'align' ] ) ) ? $column['design']['fonts'][ 'align' ] : ''; ?>">
 											<?php if( isset( $column['title'] ) && '' != $column['title'] ) { ?>
-												<h5 class="heading"><a href="<?php echo $link; ?>"><?php echo $column['title']; ?></a></h5>
+												<h5 class="heading">
+													<?php if( NULL != $link ) { ?><a href="<?php echo $link; ?>"><?php } ?>
+														<?php echo $column['title']; ?>
+													<?php if( NULL != $link ) { ?></a><?php } ?>
+												</h5>
 											<?php } ?>
 											<?php if( isset( $column['excerpt'] ) && '' != $column['excerpt'] ) { ?>
 												<div class="excerpt"><?php echo apply_filters( 'the_content', $column['excerpt'] ); ?></div>

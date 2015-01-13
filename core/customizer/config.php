@@ -28,7 +28,7 @@ class Layers_Customizer_Config {
 								),
 			'header'		=> array(
 									'title' => __( 'Header', LAYERS_THEME_SLUG ),
-									'description' => __( 'Control your header\'s layout, colors, font-type and intro messages.' , LAYERS_THEME_SLUG ), // @TODO Put a helper here
+									'description' => __( 'Control your header\'s logo, layout, colors and font.' , LAYERS_THEME_SLUG ), // @TODO Put a helper here
 									'priority' => 40
 								),
 			'content'		=> array(
@@ -113,17 +113,16 @@ class Layers_Customizer_Config {
 		$controls['header-layout'] = array(
                                 'width' => array(
                                     'type'     => 'select-icons',
+                                    'label'    => __( 'Header Width', LAYERS_THEME_SLUG ),
                                     'default' => 'layout-boxed',
                                     'choices' => array(
                                         'layout-boxed' => __( 'Boxed' , LAYERS_THEME_SLUG ),
                                         'layout-fullwidth' => __( 'Full Width' , LAYERS_THEME_SLUG )
                                     )
                                 ), // layout,
-                                'break-' . rand() => array(
-                                        'type'     => 'seperator'
-                                    ),
 								'layout' => array(
                                     'type'     => 'select-icons',
+                                    'label'    => __( 'Logo & Menu Position', LAYERS_THEME_SLUG ),
 									'default' => 'header-logo-left',
 									'choices' => array(
                                         'header-logo-left' => __( 'Logo Left' , LAYERS_THEME_SLUG ),
@@ -133,12 +132,6 @@ class Layers_Customizer_Config {
                                         'header-logo-center' => __( 'Logo Center' , LAYERS_THEME_SLUG )
 									)
 								), // layout,
-                                'break-' . rand() => array(
-                                    	'type'     => 'seperator'
-                                    ),
-                                'break-' . rand(0, 10) => array(
-                                    	'type'     => 'seperator'
-                                    ),
                                 'fixed' => array(
                                     'type'     => 'checkbox',
                                     'label'    => __( 'Fixed Header', LAYERS_THEME_SLUG ),
@@ -152,7 +145,7 @@ class Layers_Customizer_Config {
                                 'google-id' => array(
                                     'type'     => 'text',
                                     'label'    => __( 'Google Analytics ID', LAYERS_THEME_SLUG ),
-                                    'description' => __( 'Enter in your Google Analytics ID to enable your Google Analytics. eg. "UA-xxxxxx-xx', LAYERS_THEME_SLUG ),
+                                    'description' => __( 'Enter in your Google Analytics ID to enable website traffic reporting. eg. "UA-xxxxxx-xx', LAYERS_THEME_SLUG ),
                                     'default' => '',
                                 ), // scripts
                                 'break-' . rand() => array(
@@ -160,8 +153,8 @@ class Layers_Customizer_Config {
                                 ),
 			 					'scripts' => array(
                                     'type'     => 'textarea',
-                                    'label'    => __( 'Scripts', LAYERS_THEME_SLUG ),
-                                    'description' => __( 'Enter in any custom tracking script to include in your site\'s header.', LAYERS_THEME_SLUG ),
+                                    'label'    => __( 'Custom Scripts', LAYERS_THEME_SLUG ),
+                                    'description' => __( 'Enter in any custom script (such as TypeKit etc) to include in your site\'s header.', LAYERS_THEME_SLUG ),
                                     'default' => '',
                                 ) // scripts
 							);
@@ -184,16 +177,16 @@ class Layers_Customizer_Config {
                                 'label-sidebar-archive' => array(
 									'type'  => 'heading',
 									'label'    => __( 'Post List Sidebar(s)', LAYERS_THEME_SLUG ),
-                                	'description' => __( 'This option affects your index page, category & tag pages as well as search pages.', LAYERS_THEME_SLUG ),
+                                	'description' => __( 'This option affects your category, tag, author and search pages.', LAYERS_THEME_SLUG ),
                                 ),
 			 					'archive-left-sidebar' => array(
                                     'type'		=> 'checkbox',
-                                    'label' 	=> __( 'Show Left Sidebar', LAYERS_THEME_SLUG ),
+                                    'label' 	=> __( 'Display Left Sidebar', LAYERS_THEME_SLUG ),
                                     'default' 	=> FALSE,
                                 ), // post-sidebar
 			 					'archive-right-sidebar' => array(
                                     'type'		=> 'checkbox',
-                                    'label' 	=> __( 'Show Right Sidebar', LAYERS_THEME_SLUG ),
+                                    'label' 	=> __( 'Display Right Sidebar', LAYERS_THEME_SLUG ),
                                     'default' 	=> TRUE,
                                 ), // post-sidebar
                                 'break-' . rand() => array(
@@ -206,12 +199,12 @@ class Layers_Customizer_Config {
                                 ),
                                 'single-left-sidebar' => array(
                                     'type'      => 'checkbox',
-                                    'label'     => __( 'Show Left Sidebar', LAYERS_THEME_SLUG ),
+                                    'label'     => __( 'Display Left Sidebar', LAYERS_THEME_SLUG ),
                                     'default'   => FALSE,
                                 ), // post-sidebar
                                 'single-right-sidebar' => array(
                                     'type'      => 'checkbox',
-                                    'label'     => __( 'Show Right Sidebar', LAYERS_THEME_SLUG ),
+                                    'label'     => __( 'Display Right Sidebar', LAYERS_THEME_SLUG ),
                                     'default'   => TRUE,
                                 ), // post-sidebar
 							);
@@ -282,8 +275,8 @@ class Layers_Customizer_Config {
         $controls['footer-scripts'] = array(
                     'scripts' => array(
                         'type'     => 'textarea',
-                        'label'    => __( 'Scripts', LAYERS_THEME_SLUG ),
-                        'description' => __( 'Enter in any custom tracking script to include in your site\'s header.', LAYERS_THEME_SLUG ),
+                        'label'    => __( 'Custom Scripts', LAYERS_THEME_SLUG ),
+                        'description' => __( 'Enter in any custom script to include in your site\'s footer.', LAYERS_THEME_SLUG ),
                         'default' => '',
                     ), // scripts
                     'break-' . rand() => array(

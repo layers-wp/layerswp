@@ -44,7 +44,7 @@ if( !class_exists( 'Layers_Contact_Widget' ) ) {
 			/* Setup Widget Defaults */
 			$this->defaults = array (
 				'title' => 'Find Us',
-				'excerpt' => 'We are based in one of the most beautiful places on earth. Come visit us for a coffee!',
+				'excerpt' => 'We are based in one of the most beautiful places on earth. Come visit us!',
 				'contact_form' => NULL,
 				'address_shown' => NULL,
 				'show_google_map' => 'on',

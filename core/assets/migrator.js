@@ -71,7 +71,7 @@ jQuery(document).ready(function($){
                 clearInterval( $load_interval );
 
                 $( '.layers-progress' ).stop().css('width', '100%');
-                $( '.layers-progress' ).text( 'Redirecting to Visual Customizer');
+                $( '.layers-progress' ).text( 'Redirecting to the Visual Customizer');
 
                 $results = $.parseJSON( data );
                 setTimeout( function(){

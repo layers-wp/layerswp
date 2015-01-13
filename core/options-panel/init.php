@@ -91,7 +91,7 @@ function layers_options_panel_menu(){
 		'none',
 		3
 	);
-	
+
 	// Add Preset Pages
 	add_submenu_page(
 		LAYERS_THEME_SLUG . '-welcome',
@@ -101,7 +101,7 @@ function layers_options_panel_menu(){
 		LAYERS_THEME_SLUG . '-preset-layouts',
 		'layers_options_panel_ui'
 	);
-	
+
 	// Layers Pages
 	if( layers_get_builder_pages() ){
 		// Only show if there are actually Layers pages.
@@ -113,7 +113,7 @@ function layers_options_panel_menu(){
 			'edit.php?post_type=page&filter=layers'
 		);
 	}
-	
+
 	// Customize
 	add_submenu_page(
 		LAYERS_THEME_SLUG . '-welcome',
@@ -122,7 +122,7 @@ function layers_options_panel_menu(){
 		'manage_options',
 		'customize.php'
 	);
-	
+
 	// Backup Page
 	add_submenu_page(
 		LAYERS_THEME_SLUG . '-welcome',

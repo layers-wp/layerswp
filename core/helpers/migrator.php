@@ -423,6 +423,24 @@ class Layers_Widget_Migrator {
     }
 
     /**
+    *  Check if this image exists in our media library
+    */
+
+    public function check_for_image_in_media( $image_url = NULL ){
+        global $wpdb;
+
+        if( NULL == $image_url ) return;
+
+        $image_pieces = explode( '/', $image_url );
+
+        $i = end( array_keys($image_pieces) );
+
+        $query = "SELECT ID FROM {$wpdb->posts} WHERE guid LIKE '%$image_pieces[$i]%'";
+
+        return $wpdb->get_var($query);
+    }
+
+    /**
     *  Import Images
     */
 
@@ -440,22 +458,26 @@ class Layers_Widget_Migrator {
 
             } elseif( 'image' == $option || 'featuredimage' == $option ) {
 
-                /* DEBUG
-                echo $option_data; */
+                // Check to see if this image exists in our media library already
+                $check_for_image = $this->check_for_image_in_media( $option_data );
 
-                // @TODO: Try improve the image loading
-                $import_image = media_sideload_image( $option_data , 0 );
+                if( NULL != $check_for_image ) {
+                    $get_image_id = $check_for_image;
+                } else {
+                    // @TODO: Try improve the image loading
+                    $import_image = media_sideload_image( $option_data , 0 );
 
-                if( NULL != $import_image && !is_wp_error( $import_image ) ) {
-
-                    $get_image_id = $this->get_attachment_id_from_url( $import_image );
-
-                    if( NULL != $get_image_id ) {
-                        $validated_data[ $option ] = $get_image_id;
-                    } else {
-                        $validated_data[ $option ] = stripslashes( $option_data );
+                    if( NULL != $import_image && !is_wp_error( $import_image ) ) {
+                        $get_image_id = $this->get_attachment_id_from_url( $import_image );
                     }
                 }
+
+                if( isset( $get_image_id ) ) {
+                    $validated_data[ $option ] = $get_image_id;
+                } else {
+                    $validated_data[ $option ] = stripslashes( $option_data );
+                }
+
             } else {
                 $validated_data[ $option ] = stripslashes( $option_data );
             }

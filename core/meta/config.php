@@ -20,15 +20,11 @@ class Layers_Meta_Config {
 				'media' => array(
 					'title' => __( 'Rich Media' , LAYERS_THEME_SLUG ),
 					'elements' => array(
-						'video-path' => array(
+						'video-url' => array(
 							'label' => __( 'Video URL' , LAYERS_THEME_SLUG ),
 							'description' => __( 'For use with <a href="' . esc_url( 'http://codex.wordpress.org/' ) . 'Embeds" target="_blank">oEmbed</a> supported media' , LAYERS_THEME_SLUG ),
 							'type' => 'text',
-						),
-						'video-embed' => array(
-							'label' => __( 'Video Embed Code' , LAYERS_THEME_SLUG ),
-							'type' => 'textarea',
-						),
+						)
 					)
 				)
 			)

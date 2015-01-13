@@ -8,13 +8,9 @@
 
 global $post; ?>
 <article class="column span-4 thumbnail with-overlay">
-    <?php if( has_post_thumbnail() ) { ?>
-        <div class="thumbnail-media">
-            <a href="<?php the_permalink(); ?>">
-                <?php the_post_thumbnail( 'landscape-medium' );  ?>
-            </a>
-        </div>
-    <?php } // if post thumbnail ?>
+    <?php // Layers Featured Media
+    echo layers_post_featured_media( array( 'postid' => $post->ID, 'wrap_class' => 'thumbnail push-bottom', 'size' => 'full' ) ); ?>
+
     <div class="thumbnail-body">
         <div class="overlay">
             <header class="article-title">

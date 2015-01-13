@@ -27,7 +27,7 @@ get_header(); ?>
             <?php while( $portfolio_query->have_posts() ) {
                 $portfolio_query->the_post();
                 global $post; ?>
-                <?php get_template_part( 'portfolio-list' ); ?>
+                <?php get_template_part( 'partials/portfolio-list' ); ?>
             <?php }; // while have_posts ?>
         </div>
         <div class="row">

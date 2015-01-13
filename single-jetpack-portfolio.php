@@ -28,11 +28,8 @@ get_header(); ?>
 					<?php layers_post_meta( $post->ID ); ?>
 				</div>
 				<div class="column span-7 pull-right sidebar">
-					<?php if( has_post_thumbnail() ) { ?>
-						<div class="thumbnail push-bottom">
-							<?php echo the_post_thumbnail( 'full' ); ?>
-						</div>
-					<?php } // if has_post_thumbnail() ?>
+					<?php // Layers Featured Media
+					echo layers_post_featured_media( array( 'postid' => $post->ID, 'wrap_class' => 'thumbnail push-bottom', 'size' => 'full' ) ); ?>
 					<?php $attachments = get_posts( array(
 						'post_type' => 'attachment',
 						'posts_per_page' => -1,

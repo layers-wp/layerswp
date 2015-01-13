@@ -364,3 +364,50 @@ if( ! function_exists( 'layers_add_builder_edit_button_css' ) ) {
     add_action('admin_head', 'layers_add_builder_edit_button_css');
     add_action('wp_head', 'layers_add_builder_edit_button_css');
 }
+
+/**
+* Post Featured Media
+*
+* @param int $attachmentid ID for attachment
+* @param int $size Media size to use
+* @param int $video oEmbed code
+*
+* @return   varchar     $media_output Feature Image or Video
+*/
+
+if( !function_exists( 'layers_post_featured_media' ) ) {
+    function layers_post_featured_media( $args = array() ){
+        global $post;
+        $defaults = array (
+            'postid' => $post->ID,
+            'wrap' => 'div',
+            'wrap_class' => 'thumbnail',
+            'size' => 'medium'
+        );
+
+        $args = wp_parse_args( $args, $defaults );
+        extract( $args, EXTR_SKIP );
+
+        $post_meta = get_post_meta( $postid, 'layers', true );
+
+        $featured_media = layers_get_feature_media( get_post_thumbnail_id( $postid ), $size, ( isset( $post_meta[ 'video-url' ] ) ? $post_meta[ 'video-url' ] : NULL ) );
+
+        if( NULL == $featured_media ) return;
+
+        $output = '';
+
+        if( NULL != $featured_media ){
+            $output .= $featured_media;
+        }
+
+        if( !isset( $post_meta[ 'video-url' ] ) && !is_single() ){
+            $output = '<a href="' .get_permalink( $postid ) . '">' . $output . '</a>';
+        }
+
+        if( '' != $wrap ) {
+            $output = '<'.$wrap. ( '' != $wrap_class ? ' class="' . $wrap_class . '"' : '' ) . '>' . $output . '</' . $wrap . '>';
+        }
+
+        return $output;
+    }
+} // layers_post_featured_media

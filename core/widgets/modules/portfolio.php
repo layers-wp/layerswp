@@ -113,20 +113,15 @@ if( !class_exists( 'Layers_Portfolio_Widget' ) ) {
 				// Translate Image Ratio
 				$image_ratio = layers_translate_image_ratios( $widget['design'][ 'imageratios' ] );
 
-				// If round then set image to square, and set border radius css further down.
-				if( 'round' == $image_ratio ){
-					$image_ratio = 'square';
-				}
-
 				if( 'layout-boxed' == $this->check_and_return( $widget , 'design', 'layout' ) && $col_count > 2 ){
-					$imageratios = $image_ratio . '-medium';
+					$use_image_ratio = $image_ratio . '-medium';
 				} elseif( 'layout-boxed' != $this->check_and_return( $widget , 'design', 'layout' ) && $col_count > 3 ){
-					$imageratios = $image_ratio . '-large';
+					$use_image_ratio = $image_ratio . '-large';
 				} else {
-					$imageratios = $image_ratio . '-large';
+					$use_image_ratio = $image_ratio . '-large';
 				}
 			} else {
-				$imageratios = 'large';
+				$use_image_ratio = 'large';
 			}
 
 			// Begin query arguments
@@ -199,13 +194,14 @@ if( !class_exists( 'Layers_Portfolio_Widget' ) ) {
 									}
 								} ?>
 								<article class="column<?php if( !isset( $widget['design'][ 'gutter' ] ) ) echo '-flush'; ?> <?php echo $span_class; ?> layers-masonry-column thumbnail <?php if( 'overlay' == $this->check_and_return( $widget , 'text_style' ) ) echo 'with-overlay'; ?> <?php echo implode( $term_list, " " ); ?>"  data-cols="<?php echo $col_count; ?>">
-									<?php if( has_post_thumbnail() ) { ?>
-										<div class="thumbnail-media <?php if ( 'round' == layers_translate_image_ratios( $module['design'][ 'imageratios' ] ) ) { ?>image-rounded<?php } ?>">
-											<a href="<?php the_permalink(); ?>">
-												<?php the_post_thumbnail( $imageratios );  ?>
-											</a>
-										</div>
-									<?php } // if post thumbnail ?>
+									<?php // Layers Featured Media
+									echo layers_post_featured_media(
+										array(
+											'postid' => $post->ID,
+											'wrap_class' => 'thumbnail-media' .  ( ( isset( $column['design'][ 'imageratios' ] ) && 'image-round' == $column['design'][ 'imageratios' ] ) ? ' image-rounded' : '' ),
+											'size' => $use_image_ratio
+										)
+									); ?>
 									<?php if( isset( $widget['show_titles'] ) || isset( $widget['show_excerpts'] ) ) { ?>
 										<div class="thumbnail-body">
 											<div class="overlay">

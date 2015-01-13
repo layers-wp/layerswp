@@ -261,10 +261,10 @@ class Layers_Custom_Meta {
 		$post_type = get_post_type( $post->ID );
 
 		// Post Meta Value
-		$post_meta = get_post_meta( $post->ID, LAYERS_THEME_SLUG . '-' . $post_type , true );
+		$post_meta = get_post_meta( $post->ID, LAYERS_THEME_SLUG, true );
 
 		// Set the meta index ie. the array we will loop over for our options
-		$meta_index =$callback_args[ 'args' ][ 'meta_index' ];
+		$meta_index = $callback_args[ 'args' ][ 'meta_index' ];
 
 		// If there is no post meta to show, return
 		if( !isset( $this->custom_meta[ $meta_index ] ) ) return;
@@ -296,7 +296,7 @@ class Layers_Custom_Meta {
 											<?php  echo $form_elements->input(
 												array(
 													'type' => $input[ 'type' ],
-													'name' => LAYERS_THEME_SLUG . '-' . $post_type . '[' . $input_key . ']',
+													'name' => LAYERS_THEME_SLUG . '[' . $input_key . ']',
 													'id' => $input_key ,
 													'default' => ( isset( $input[ 'default' ] ) ) ? $input[ 'default' ] : NULL ,
 													'placeholder' => ( isset( $input[ 'placeholder' ] ) ) ? $input[ 'placeholder' ] : NULL ,
@@ -338,22 +338,22 @@ class Layers_Custom_Meta {
 		$nonce = $_REQUEST[ $nonce_key ];
 
 		// Form key
-		$form_key = LAYERS_THEME_SLUG . '-' . $post_type;
+		$form_key = LAYERS_THEME_SLUG;
 
 		// Do some nonce
 		if ( wp_verify_nonce( $nonce, LAYERS_THEME_SLUG . '-post-meta' ) ) {
 			if( isset( $_REQUEST[ $form_key ] ) ) {
-				update_post_meta( $post_id, LAYERS_THEME_SLUG . '-' . $post_type , $_REQUEST[ $form_key ] );
+				update_post_meta( $post_id, LAYERS_THEME_SLUG, $_REQUEST[ $form_key ] );
 			} // if isset( $this->custom_meta[ $post_type ] )
 		} // if nonce
 	}
 }
 
 /**
-*  Kicking this off with the 'custom_meta_init' hook
-
+ * Kicking this off with the 'custom_meta_init' hook
+ */
 function layers_custom_meta_init(){
 	$layers_widget = new Layers_Custom_Meta();
 	$layers_widget->init();
 }
-add_action( 'init' , 'layers_custom_meta_init' , 10 ); */
+add_action( 'init' , 'layers_custom_meta_init' , 10 );

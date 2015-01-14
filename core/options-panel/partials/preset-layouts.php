@@ -83,12 +83,12 @@ $find_builder_page = layers_get_builder_pages(); ?>
             the Visual Customizer so that you can start building your page.' , LAYERS_THEME_SLUG ); ?>
          </p>
 
-         <div class="layers-load-bar">
+         <div class="layers-load-bar layers-hide">
             <span class="layers-progress zero">0%</span>
          </div>
 
-         <p id="layers-preset-layout-next-button" class="layers-excerpt layers-push-bottom layers-hide">
-            <a href="" class="layers-button btn-primary btn-large" data-post_id="" data-location=""><?php _e( 'Next Step' , LAYERS_THEME_SLUG ); ?></a>
+         <p id="layers-preset-layout-next-button" class="layers-excerpt layers-push-bottom">
+            <a href="" class="layers-button btn-primary btn-large" data-post_id="" data-location=""><?php _e( 'Proceed' , LAYERS_THEME_SLUG ); ?></a>
          </p>
 
       </div>

@@ -53,11 +53,14 @@
 			});
 		});
 	} // @TODO: Make sure that when adding a new widget, that the right accordians are open & closed
-	layers_init_accordians();
+
+	$( document ).ready( layers_init_accordians() );
 
 	// 1.c - Accodian Widget Click
 
-	$( document ).on( 'click' , '#available-widgets div[id^="widget-tpl-layers-"]' , function(){ layers_init_accordians() });
+	$( document ).on( 'click' , '#available-widgets div[id^="widget-tpl-layers-"]' , function(){
+		layers_init_accordians();
+	});
 
 	/**
 	* 2 - Widget Peep Function

@@ -207,7 +207,7 @@ section[class*=' off-canvas-'] .close-canvas{
         .nav-clear .site-logo-link + .sitename{margin-top: 10px;}
         .nav-clear .site-logo-link + .tagline{margin-top: 10px;}
 
-    .nav-clear nav{float: none; clear: both; margin: 10px 0 0;}
+    .nav-clear nav{display: block; float: none; clear: both; margin: 10px 0 0;}
 
     /*---------------------------*/
     /*- SECONDARY HEADER --------*/

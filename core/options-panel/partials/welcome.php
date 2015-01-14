@@ -41,7 +41,7 @@ $find_builder_page = layers_get_builder_pages(); ?>
 							</p>
 							<div class="layers-btn-group">
 								<?php if( 4.0 <= get_bloginfo('version') ) { ?>
-									<span class="tick"><?php _e( 'You\'re up to date.' , LAYERS_THEME_SLUG ); ?></span>
+									<span class="layers-success"><?php _e( 'You\'re up to date' , LAYERS_THEME_SLUG ); ?></span>
 								<?php } else { ?>
 									<a class="layers-button btn-primary" href="<?php echo admin_url( '/update-core.php' ); ?>" target="_blank"><?php _e( 'Update WordPress', LAYERS_THEME_SLUG ); ?></a>
 								<?php } ?>
@@ -59,7 +59,7 @@ $find_builder_page = layers_get_builder_pages(); ?>
 							</p>
 							<div class="layers-btn-group">
 								<?php if( defined( 'JETPACK__VERSION' ) ) { ?>
-									<span class="tick"><?php _e( 'Jetpack is installed.', LAYERS_THEME_SLUG ); ?></span>
+									<span class="layers-success"><?php _e( 'Jetpack is installed', LAYERS_THEME_SLUG ); ?></span>
 								<?php } else { ?>
 									<a class="layers-button btn-primary" href="<?php echo admin_url( '/plugin-install.php?tab=search&s=Jetpack'); ?>" target="_blank"><?php _e( 'Install Jetpack', LAYERS_THEME_SLUG ); ?></a>
 								<?php } ?>
@@ -77,7 +77,7 @@ $find_builder_page = layers_get_builder_pages(); ?>
 							</p>
 							<div class="layers-btn-group">
 								<?php if( class_exists( 'Layers_WooCommerce' ) ) { ?>
-									<span class="tick"><?php _e( 'Instaled.', LAYERS_THEME_SLUG ); ?></span>
+									<span class="layers-success"><?php _e( 'WooCommerce Extension Installed', LAYERS_THEME_SLUG ); ?></span>
 								<?php } else { ?>
 									<a class="layers-button btn-primary" href="<?php echo 'http://cdn.oboxsites.com/layers/layers-woocommerce.zip?ver=' . rand(0 , 100); ?>" target="_blank"><?php _e( 'Install WooCommerce for Layers', LAYERS_THEME_SLUG ); ?></a>
 								<?php } ?>

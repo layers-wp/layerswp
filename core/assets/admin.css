@@ -1215,7 +1215,9 @@ input[type=text].layers-color-selector.wp-color-picker{
     padding: 0;
     margin: 0;
 }
-.layers-accordion-item{margin-bottom: 0;}
+.layers-accordion-item{
+    margin-bottom: 0;
+}
 .layers-accordion-title{
     display: block;
     margin: 0;
@@ -1327,7 +1329,6 @@ input[type=text].layers-color-selector.wp-color-picker{
 
 /*---------------------------*/
 /*- PANEL -------------------*/
-.layers-panel{}
 .layers-panel-title{
     display: block;
     margin: 0;
@@ -1352,7 +1353,7 @@ input[type=text].layers-color-selector.wp-color-picker{
 /*- MEDIA -------------------*/
 .layers-media{overflow: hidden; margin-bottom: 20px; display: block;}
 
-.layers-media-image{text-align: center; margin-right: auto; margin-left: auto; max-height: 450px; overflow: hidden; border: 1px solid #ddd;}
+.layers-media-image{text-align: center; margin-right: auto; margin-left: auto; max-height: 450px; overflow: hidden;}
 .layers-media-image img{display: block; margin: auto; max-width: 100%; height: auto;}
 .layers-media-image.layers-small img{max-width: 64px;}
 
@@ -1423,11 +1424,26 @@ input[type=text].layers-color-selector.wp-color-picker{
     opacity: 0;
     transition: all 0.2s ease-in-out;}
 
-.tooltip:hover:after{opacity: 1; visibility: visible; top: 25px;}
-.tooltip:hover:before{opacity: 1; visibility: visible; top: 19px;}
+.tooltip:hover:after{
+    opacity: 1;
+    visibility: visible;
+    top: 25px;
+}
+.tooltip:hover:before{
+    opacity: 1;
+    visibility: visible;
+    top: 19px;
+}
 
-.layers-accordion-title .tooltip{
-    margin-right: 35px;
+
+/*---------------------------*/
+/*- ICON STYLING ------------*/
+.layers-success{
+    display: inline-block;
+    font-weight: bold;
+    border: 2px solid #A3C567;
+    padding: 5px 15px;
+    background: #fff;
 }
 
 

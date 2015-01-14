@@ -433,6 +433,11 @@ div[id*='layers-widget'] .spinner{
     .layers-row .layers-column.layers-span-6:nth-child(2n+2){margin-right: 0;}
     .layers-row .layers-column.layers-span-6:nth-child(2n+3){clear: left;}
 
+    .layers-middled{
+        margin-left: auto;
+        margin-right: auto;
+    }
+
     /*-----------------------*/
     /*- BROAD BASED COLUMNS -*/
     div[class*='layers-columns-'] div[class*='layers-span'], div[class*='layers-columns-'] .layers-sortable-drop{
@@ -556,6 +561,10 @@ div[id*='layers-widget'] .spinner{
 .layers-form-item.layers-column{
     clear: none;
     margin: 0 2% 0 0;
+}
+.layers-form-item.layers-middled{
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .layers-form-item label{
@@ -1186,6 +1195,14 @@ input[type=text].layers-color-selector.wp-color-picker{
     }
 
     /*-----------------------*/
+    /*- BUTTON DISABLED ------*/
+    .layers-button:disabled{
+        background: #eee;
+        border-color: transparent;
+        color: #999;
+    }
+
+    /*-----------------------*/
     /*- BUTTON SIZES --------*/
     .layers-button.btn-small{
         height: 24px;
@@ -1792,7 +1809,7 @@ input[type=radio]:checked + .layers-settings-icon span{
     /*-----------------------*/
     /*- BACKUP PAGE ---------*/
     .layers-load-bar{
-        width: 50%;
+        max-width: 550px;
         padding: 6px;
         margin: auto;
         background: #f0f0f0;

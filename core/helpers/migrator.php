@@ -432,10 +432,10 @@ class Layers_Widget_Migrator {
         if( NULL == $image_url ) return;
 
         $image_pieces = explode( '/', $image_url );
-
-        $i = end( array_keys($image_pieces) );
-
-        $query = "SELECT ID FROM {$wpdb->posts} WHERE guid LIKE '%$image_pieces[$i]%'";
+        
+        $i = $image_pieces[count($image_pieces)-1];
+        
+        $query = "SELECT ID FROM {$wpdb->posts} WHERE guid LIKE '%$i%'";
 
         return $wpdb->get_var($query);
     }

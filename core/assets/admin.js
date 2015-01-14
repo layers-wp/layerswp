@@ -205,22 +205,11 @@ jQuery(function($) {
 	/**
 	* 3 - Color Selectors
 	*/
-	layers_set_color_selectors();
-	$(document).on ( 'widget-added' , function( event, widget_focus ){
+	
+	layers_set_color_selectors( document );
 
-		$(this).find('.layers-color-selector').each(function(){
-			var $picker = $(this);
-			$picker.closest('.wp-picker-container').replaceWith( $picker );
-			setTimeout( function() {
-				layers_set_color_selectors();
-			} , 250 );
-		});
-
-	} );
-
-	function layers_set_color_selectors(){
-		
-		jQuery('.layers-color-selector').wpColorPicker({
+	function layers_set_color_selectors( element ){
+		$(element).find('.layers-color-selector').wpColorPicker({
 			change: function(event, ui){
 				if( 'undefined' !== typeof event ){
 					
@@ -242,6 +231,21 @@ jQuery(function($) {
 			},
 		});
 	}
+	
+	// Initialise color selectors on widget add.
+	
+	$(document).on ( 'widget-added' , function( event, widget_focus ){
+		$( widget_focus ).find('.layers-color-selector').each(function(){
+			var $picker = $(this);
+			$picker.closest('.wp-picker-container').replaceWith( $picker );
+		});
+		
+		setTimeout( function() {
+			layers_set_color_selectors( widget_focus );
+		} , 250 );
+	} );
+	
+	// Debounce function for color changing.
 	
 	var layers_debounce_input = _.debounce(function( element ){
 		$( element ).layers_trigger_change();

@@ -11,7 +11,7 @@ if( !class_exists( 'Layers_Customize_Select_Icon_Control' ) ) {
 
 	class Layers_Customize_Select_Icon_Control extends WP_Customize_Control {
 
-		public $type = 'select-icons';
+		public $type = 'layers-select-icons';
 
 		public $description = '';
 
@@ -24,33 +24,34 @@ if( !class_exists( 'Layers_Customize_Select_Icon_Control' ) ) {
 			}
 
 			$name = '_customize-radio-' . $this->id; ?>
+			
+			<div id="input_<?php echo $this->id; ?>" class="layers-control-item">
+				
+				<span class="customize-control-title">
+					<?php echo esc_html( $this->label ); ?>
+				</span>
 
-			<span class="customize-control-title">
-
-				<?php echo esc_html( $this->label ); ?>
-
-			</span>
-
-			<div id="input_<?php echo $this->id; ?>">
-
-				<?php if ( '' != $this->subtitle ) : ?>
-					<div class="layers-form-row"><?php echo $this->subtitle; ?></div>
-				<?php endif; ?>
-				<ul class="layers-visuals-wrapper layers-visuals-inline layers-clearfix">
-					<?php foreach ( $this->choices as $value => $label ) : ?>
-							<li class="layers-visuals-item <?php if( $value == $this->value() ) echo 'layers-active'; ?>">
-								<label class="layers-icon-wrapper layers-select-images">
-									<span class="icon-<?php echo $value; ?>"></span>
-									<span class="layers-icon-description">
-										<?php echo $label; ?>
-									</span>
-									<input class="layers-hide" type="radio" value="<?php echo esc_attr( $value ); ?>" name="<?php echo esc_attr( $name ); ?>" <?php $this->link(); checked( $this->value(), $value ); ?> />
-								</label>
-							</li>
-					<?php endforeach; ?>
-				</ul>
+				<div class="layers-form-item">
+					<?php if ( '' != $this->subtitle ) : ?>
+						<div class="layers-form-row"><?php echo $this->subtitle; ?></div>
+					<?php endif; ?>
+					<ul class="layers-visuals-wrapper layers-visuals-inline layers-clearfix">
+						<?php foreach ( $this->choices as $value => $label ) : ?>
+								<li class="layers-visuals-item <?php if( $value == $this->value() ) echo 'layers-active'; ?>">
+									<label class="layers-icon-wrapper layers-select-images">
+										<span class="icon-<?php echo $value; ?>"></span>
+										<span class="layers-icon-description">
+											<?php echo $label; ?>
+										</span>
+										<input class="layers-hide" type="radio" value="<?php echo esc_attr( $value ); ?>" name="<?php echo esc_attr( $name ); ?>" <?php $this->link(); checked( $this->value(), $value ); ?> />
+									</label>
+								</li>
+						<?php endforeach; ?>
+					</ul>
+				</div>
+			
 			</div>
-
-		<?php }
+			<?php
+		}
 	}
 } // !class_exists( 'Layers_Customize_Radio_Control' )

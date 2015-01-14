@@ -149,7 +149,7 @@ class Layers_Customizer_Regsitrar {
 			// Set control priority to obey order of setup
 			$control_data[ 'priority' ] = $control_priority;
 
-			if ( 'select-images' == $control_data['type'] ) {
+			if ( 'layers-select-images' == $control_data['type'] ) {
 
 				// Add Setting
 				$this->customizer->add_setting(
@@ -169,7 +169,7 @@ class Layers_Customizer_Regsitrar {
 						$control_data
 					)
 				);
-			} else if( 'select-icons' == $control_data['type'] ) {
+			} else if( 'layers-select-icons' == $control_data['type'] ) {
 
 				// Add Setting
 				$this->customizer->add_setting(
@@ -189,7 +189,7 @@ class Layers_Customizer_Regsitrar {
 						$control_data
 					)
 				);
-			} else if( 'seperator' == $control_data['type'] ) {
+			} else if( 'layers-seperator' == $control_data['type'] ) {
 
 				// Add Setting
 				$this->customizer->add_setting(
@@ -209,7 +209,7 @@ class Layers_Customizer_Regsitrar {
 						$control_data
 					)
 				);
-			} else if( 'heading' == $control_data['type'] ) {
+			} else if( 'layers-heading' == $control_data['type'] ) {
 
 				// Add Setting
 				$this->customizer->add_setting(
@@ -229,23 +229,73 @@ class Layers_Customizer_Regsitrar {
 						$control_data
 					)
 				);
-			} else if( 'background' == $control_data['type'] ) {
+			} else if( 'layers-color' == $control_data['type'] ) {
 
-				// Footer Background
+				// Add Setting
+				$this->customizer->add_setting(
+					$setting_key,
+					array(
+						'default'    => ( isset( $control_data['default'] ) ? $control_data['default'] : NULL ) ,
+						'type'       => 'theme_mod',
+						'capability' => 'manage_options'
+					)
+				);
+
+				// Add Control
+				$this->customizer->add_control(
+					new Layers_Customize_Color_Control(
+						$this->customizer,
+						$setting_key,
+						$control_data
+					)
+				);
+			} else if( 'layers-background' == $control_data['type'] ) {
+				
+				// Footer Background Heading
+				
+				$duplicate_control_data = wp_parse_args(
+					array(
+						'label' => __( 'Background', LAYERS_THEME_SLUG ),
+						'subtitle' => __( 'Background Image', LAYERS_THEME_SLUG ),
+						'type' => 'layers-heading', //wierd bug in WP4.1 that requires a type to be in the array, or will revert to default control,
+					),
+					$control_data
+				);
+				
+				// Add Setting
+				$this->customizer->add_setting(
+					$setting_key . '-background-heading',
+					array(
+						'default'    => ( isset( $control_data['default'] ) ? $control_data['default'] : NULL ) ,
+						'type'       => 'theme_mod',
+						'capability' => 'manage_options'
+					)
+				);
+
+				// Add Control
+				$this->customizer->add_control(
+					new Layers_Customize_Heading_Control(
+						$this->customizer,
+						$setting_key . '-background-heading',
+						$duplicate_control_data
+					)
+				);
+
+				// Footer Background Image
 
 				// Modify Control data - so we can add uniqie subtitle, label, default
 				$duplicate_control_data = wp_parse_args(
 					array(
-						'label' => __( 'Footer Background', LAYERS_THEME_SLUG ),
+						'label' => '',
 						'subtitle' => __( 'Background Image', LAYERS_THEME_SLUG ),
-						'type' => ' ', //wierd bug in WP4.1 that requires a type to be in the array, or will revert to default control
+						'type' => 'layers-select-images', //wierd bug in WP4.1 that requires a type to be in the array, or will revert to default control
 					),
 					$control_data
 				);
 
 				// Add Setting
 				$this->customizer->add_setting(
-					$setting_key . '_background_image',
+					$setting_key . '-background-image',
 					array(
 						'default'    => ( isset( $control_data['default'] ) ? $control_data['default'] : NULL ) ,
 						'type'       => 'theme_mod',
@@ -257,24 +307,24 @@ class Layers_Customizer_Regsitrar {
 				$this->customizer->add_control(
 					new Layers_Customize_Select_Image_Control(
 						$this->customizer,
-						$setting_key . '_background_image',
+						$setting_key . '-background-image',
 						$duplicate_control_data
 					)
 				);
 
-				// Color
+				// Footer Background Color
 
 				$duplicate_control_data = wp_parse_args(
 					array(
 						'label' => '',
 						'subtitle' => __( 'Background Color', LAYERS_THEME_SLUG ),
-						'type' => ' ',
+						'type' => 'layers-color',
 					),
 					$control_data
 				);
 
 				$this->customizer->add_setting(
-					$setting_key . '_background_color',
+					$setting_key . '-background-color',
 					array(
 						'default'    => ( isset( $control_data['default'] ) ? $control_data['default'] : NULL ) ,
 						'type'       => 'theme_mod',
@@ -285,25 +335,25 @@ class Layers_Customizer_Regsitrar {
 				$this->customizer->add_control(
 					new Layers_Customize_Color_Control(
 						$this->customizer,
-						$setting_key . '_background_color',
+						$setting_key . '-background-color',
 						$duplicate_control_data
 					)
 				);
 
-				// Repeat
+				// Footer Background Repeat
 
 				$duplicate_control_data = wp_parse_args(
 					array(
 						'label' => '',
 						'subtitle' => __( 'Repeat', LAYERS_THEME_SLUG ),
-						'type' => ' ',
+						'type' => 'layers-select',
 						'choices' => isset( $control_data['choices']['background-repeat'] ) ? $control_data['choices']['background-repeat'] : array(),
 					),
 					$control_data
 				);
 
 				$this->customizer->add_setting(
-					$setting_key . '_background_repeat',
+					$setting_key . '-background-repeat',
 					array(
 						'default'    => ( isset( $control_data['default'] ) ? $control_data['default'] : NULL ) ,
 						'type'       => 'theme_mod',
@@ -314,25 +364,25 @@ class Layers_Customizer_Regsitrar {
 				$this->customizer->add_control(
 					new Layers_Customize_Select_Control(
 						$this->customizer,
-						$setting_key . '_background_repeat',
+						$setting_key . '-background-repeat',
 						$duplicate_control_data
 					)
 				);
 
-				// Position
+				// Footer Background Position
 
 				$duplicate_control_data = wp_parse_args(
 					array(
 						'label' => '',
 						'subtitle' => __( 'Position', LAYERS_THEME_SLUG ),
-						'type' => ' ',
+						'type' => 'layers-select',
 						'choices' => isset( $control_data['choices']['background-position'] ) ? $control_data['choices']['background-position'] : array(),
 					),
 					$control_data
 				);
 
 				$this->customizer->add_setting(
-					$setting_key . '_background_position',
+					$setting_key . '-background-position',
 					array(
 						'default'    => ( isset( $control_data['default'] ) ? $control_data['default'] : NULL ) ,
 						'type'       => 'theme_mod',
@@ -343,11 +393,39 @@ class Layers_Customizer_Regsitrar {
 				$this->customizer->add_control(
 					new Layers_Customize_Select_Control(
 						$this->customizer,
-						$setting_key . '_background_position',
+						$setting_key . '-background-position',
 						$duplicate_control_data
 					)
 				);
+				
+				// Footer Background Stretch
 
+				$duplicate_control_data = wp_parse_args(
+					array(
+						'label' => __( 'Stretch', LAYERS_THEME_SLUG ),
+						'subtitle' => '',
+						'type' => 'layers-checkbox',
+					),
+					$control_data
+				);
+
+				$this->customizer->add_setting(
+					$setting_key . '-background-stretch',
+					array(
+						'default'    => ( isset( $control_data['default'] ) ? $control_data['default'] : NULL ) ,
+						'type'       => 'theme_mod',
+						'capability' => 'manage_options'
+					)
+				);
+
+				$this->customizer->add_control(
+					new Layers_Customize_Checkbox_Control(
+						$this->customizer,
+						$setting_key . '-background-stretch',
+						$duplicate_control_data
+					)
+				);
+				
 			} else {
 
 				// Add Setting

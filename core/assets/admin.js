@@ -43,6 +43,7 @@ jQuery(function($) {
 
 		$that.siblings('img').remove();
 		$container.removeClass( 'layers-has-image' );
+		
 		$container.find('input').val('').layers_trigger_change();
 		$that.fadeOut();
 		return false;
@@ -235,7 +236,8 @@ jQuery(function($) {
 				if( 'undefined' !== typeof event ){
 					
 					// Debounce the reset change
-					layers_debounce_input( event.target );
+					layers_debounce_input( jQuery(event.target).parent('.wp-picker-input-wrap').find('.wp-color-picker') );
+					
 				}
 			},
 		});

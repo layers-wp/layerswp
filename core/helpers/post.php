@@ -209,11 +209,18 @@ if( !function_exists( 'layers_post_class' ) ) {
  * @return array Page ID
  */
 if( !function_exists( 'layers_create_builder_page' ) ) {
-    function layers_create_builder_page( $page_title = 'Builder Page' ) {
-        $page['post_type']    = 'page';
-        $page['post_status']  = 'publish';
-        $page['post_title']   = $page_title;
-        $pageid = wp_insert_post ($page);
+    function layers_create_builder_page( $page_title = 'Builder Page', $page_id = NULL ) {
+
+        $page['post_type'] = 'page';
+        $page['post_status'] = 'publish';
+        $page['post_title'] = $page_title;
+
+        if( NULL != $page_id ) {
+            $page['ID'] = $page_id;
+            $pageid = wp_update_post ($page);
+        } else {
+            $pageid = wp_insert_post ($page);
+        }
         if ( 0 != $pageid ) {
             update_post_meta( $pageid , '_wp_page_template', LAYERS_BUILDER_TEMPLATE );
         }

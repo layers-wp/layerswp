@@ -39,14 +39,14 @@ jQuery(document).ready(function($){
         $( '.layers-progress' ).removeClass( 'zero complete' ).css('width' , 0);
         var $load_bar_percent = 0;
 
-        $( '.layers-progress' ).animate( {width: "100%"}, 4000 ).text( Math.round($load_bar_percent)+'%');
+        $( '.layers-progress' ).animate( {width: "100%"}, 4000 );
 
         $load_interval = setInterval( function(){
             if( $load_bar_percent < 100 ) {
                 $load_bar_percent = +$load_bar_percent+5;
-                $( '.layers-progress' ).text( Math.round($load_bar_percent)+'%');
+                $( '.layers-progress' );
             } else {
-                $( '.layers-progress' ).text( 'Almost done!');
+                $( '.layers-progress' );
                 clearInterval( $load_interval );
             }
         }, 200 );
@@ -66,8 +66,7 @@ jQuery(document).ready(function($){
 
                 clearInterval( $load_interval );
 
-                $( '.layers-progress' ).stop().text( '100%' ).animate({width: "100%"} , 1000 , function(e){
-                    $( '.layers-progress' ).text( 'Redirecting to the Visual Customizer');
+                $( '.layers-progress' ).stop().animate({width: "100%"} , 1000 , function(e){
                     window.location.assign( $results.customizer_location );
                 });
             }

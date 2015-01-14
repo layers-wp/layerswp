@@ -1195,11 +1195,17 @@ input[type=text].layers-color-selector.wp-color-picker{
     }
 
     /*-----------------------*/
-    /*- BUTTON DISABLED ------*/
-    .layers-button:disabled{
-        background: #eee;
+    /*- LINK BUTTON --------*/
+    .btn-link{
+        background-color: transparent;
         border-color: transparent;
-        color: #999;
+        color: #2EA2CC;
+        text-decoration: underline;
+        box-shadow: none;
+    }
+    .btn-link:hover{
+        background-color: transparent;
+        color: #1E8CBE;
     }
 
     /*-----------------------*/
@@ -1809,9 +1815,8 @@ input[type=radio]:checked + .layers-settings-icon span{
     /*-----------------------*/
     /*- BACKUP PAGE ---------*/
     .layers-load-bar{
-        max-width: 550px;
-        padding: 6px;
-        margin: auto;
+        max-width: 484px;
+        padding: 3px;
         background: #f0f0f0;
         border-radius: 100px;
     }

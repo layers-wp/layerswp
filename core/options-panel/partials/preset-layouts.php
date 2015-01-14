@@ -60,16 +60,11 @@ $find_builder_page = layers_get_builder_pages(); ?>
    <div class="layers-vertical-center">
       <div class="layers-section-title layers-container">
 
-         <h2 class="layers-heading" id="layers-options-header">
-            <?php _e( 'Your page is being created!', LAYERS_THEME_SLUG ); ?>
+         <h2 class="layers-heading layers-push-bottom" id="layers-options-header">
+            <?php _e( 'Add a page title', LAYERS_THEME_SLUG ); ?>
          </h2>
 
-         <p class="layers-excerpt layers-push-bottom">
-            <?php _e( 'We\'re busy importing dummy content and positioning the widgets. While we do that, give your page a name using the text field below:' , LAYERS_THEME_SLUG ); ?>
-         </p>
-
          <p class="layers-form-item layers-span-6">
-            <label>Page Title</label>
             <?php
                echo $form_elements->input( array(
                   'type' => 'text',
@@ -82,8 +77,13 @@ $find_builder_page = layers_get_builder_pages(); ?>
             ?>
          </p>
 
-         <p id="layers-preset-layout-next-button" class="layers-excerpt layers-push-bottom">
-            <a href="" class="layers-button btn-large" disabled="disabled" data-post_id="" data-location=""><?php _e( 'Next Step' , LAYERS_THEME_SLUG ); ?></a>
+         <p id="layers-preset-layout-next-button">
+            <a href="" class="layers-button btn-primary btn-large" data-post_id="" data-location="">
+               <?php _e( 'Proceed to Customizer' , LAYERS_THEME_SLUG ); ?>
+            </a>
+            <a href="" class="layers-button btn-link">
+               Cancel and choose another template
+            </a>
 
             <div class="layers-load-bar layers-hide">
                <span class="layers-progress zero">0%</span>

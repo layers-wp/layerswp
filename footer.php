@@ -8,16 +8,16 @@
 		// Apply customizer footer background settings.
 		layers_inline_styles( 'footer', 'background', array(
 			'background' => array(
-				'color' => layers_get_theme_mod( 'footer-layout-background_background_color' ),
-				'repeat' => layers_get_theme_mod( 'footer-layout-background_background_repeat' ),
-				'position' => layers_get_theme_mod( 'footer-layout-background_background_position' ),
-				'stretch' => layers_get_theme_mod( 'footer-layout-background_background_stretch' ),
-				'fixed' => false,
-				'image' => layers_get_theme_mod( 'footer-layout-background_background_image' ),
+				'color' => layers_get_theme_mod( 'footer-customization-background-background-color' ),
+				'repeat' => layers_get_theme_mod( 'footer-customization-background-background-repeat' ),
+				'position' => layers_get_theme_mod( 'footer-customization-background-background-position' ),
+				'stretch' => layers_get_theme_mod( 'footer-customization-background-background-stretch' ),
+				'image' => layers_get_theme_mod( 'footer-customization-background-background-image' ),
+				'fixed' => false, // hardcode (not an option)
 			),
 		) );
-		layers_inline_styles( 'footer', 'color', array( 'color' => layers_get_theme_mod( 'footer-layout-font-color-main' ) ) );
-		layers_inline_styles( 'footer a', 'color', array( 'color' => layers_get_theme_mod( 'footer-layout-font-color-link' ) ) );
+		layers_inline_styles( 'footer', 'color', array( 'color' => layers_get_theme_mod( 'footer-customization-font-color-main' ) ) );
+		layers_inline_styles( 'footer a', 'color', array( 'color' => layers_get_theme_mod( 'footer-customization-font-color-link' ) ) );
 		?>
 		<footer id="footer" class="footer-site well">
 			<?php do_action( 'layers_before_footer_inner' ); ?>

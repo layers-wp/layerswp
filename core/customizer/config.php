@@ -92,6 +92,9 @@ class Layers_Customizer_Config {
 								'layout' => array(
 									'title' =>__( 'Layout' , LAYERS_THEME_SLUG ),
 								),
+								'customization' => array(
+									'title' =>__( 'Customization' , LAYERS_THEME_SLUG ),
+								),
 								'text' => array(
 									'title' =>__( 'Text' , LAYERS_THEME_SLUG ),
 								),
@@ -235,9 +238,10 @@ class Layers_Customizer_Config {
 										'4' => __( '4' , LAYERS_THEME_SLUG ),
 									)
 								),
-								'break-2' => array(
-									'type'     => 'layers-seperator'
-								),
+							); // footer-layout
+		
+		// Footer -> Layout -> Customization
+		$controls['footer-customization'] = array(
 								'font-color-heading' => array(
 									'type'  => 'layers-heading',
 									'label'    => __( 'Text', LAYERS_THEME_SLUG ),
@@ -273,7 +277,7 @@ class Layers_Customizer_Config {
 										),
 									)
 								),
-							); // footer-layout
+							); // footer-customization
 
 		// Footer -> Layout -> Text
 		$controls['footer-text'] = array(

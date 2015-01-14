@@ -264,7 +264,7 @@ class Layers_Customizer_Regsitrar {
 				
 				// Add Setting
 				$this->customizer->add_setting(
-					$setting_key . '_background_heading',
+					$setting_key . '-background-heading',
 					array(
 						'default'    => ( isset( $control_data['default'] ) ? $control_data['default'] : NULL ) ,
 						'type'       => 'theme_mod',
@@ -276,7 +276,7 @@ class Layers_Customizer_Regsitrar {
 				$this->customizer->add_control(
 					new Layers_Customize_Heading_Control(
 						$this->customizer,
-						$setting_key . '_background_heading',
+						$setting_key . '-background-heading',
 						$duplicate_control_data
 					)
 				);
@@ -295,7 +295,7 @@ class Layers_Customizer_Regsitrar {
 
 				// Add Setting
 				$this->customizer->add_setting(
-					$setting_key . '_background_image',
+					$setting_key . '-background-image',
 					array(
 						'default'    => ( isset( $control_data['default'] ) ? $control_data['default'] : NULL ) ,
 						'type'       => 'theme_mod',
@@ -307,7 +307,7 @@ class Layers_Customizer_Regsitrar {
 				$this->customizer->add_control(
 					new Layers_Customize_Select_Image_Control(
 						$this->customizer,
-						$setting_key . '_background_image',
+						$setting_key . '-background-image',
 						$duplicate_control_data
 					)
 				);
@@ -324,7 +324,7 @@ class Layers_Customizer_Regsitrar {
 				);
 
 				$this->customizer->add_setting(
-					$setting_key . '_background_color',
+					$setting_key . '-background-color',
 					array(
 						'default'    => ( isset( $control_data['default'] ) ? $control_data['default'] : NULL ) ,
 						'type'       => 'theme_mod',
@@ -335,7 +335,7 @@ class Layers_Customizer_Regsitrar {
 				$this->customizer->add_control(
 					new Layers_Customize_Color_Control(
 						$this->customizer,
-						$setting_key . '_background_color',
+						$setting_key . '-background-color',
 						$duplicate_control_data
 					)
 				);
@@ -353,7 +353,7 @@ class Layers_Customizer_Regsitrar {
 				);
 
 				$this->customizer->add_setting(
-					$setting_key . '_background_repeat',
+					$setting_key . '-background-repeat',
 					array(
 						'default'    => ( isset( $control_data['default'] ) ? $control_data['default'] : NULL ) ,
 						'type'       => 'theme_mod',
@@ -364,7 +364,7 @@ class Layers_Customizer_Regsitrar {
 				$this->customizer->add_control(
 					new Layers_Customize_Select_Control(
 						$this->customizer,
-						$setting_key . '_background_repeat',
+						$setting_key . '-background-repeat',
 						$duplicate_control_data
 					)
 				);
@@ -382,7 +382,7 @@ class Layers_Customizer_Regsitrar {
 				);
 
 				$this->customizer->add_setting(
-					$setting_key . '_background_position',
+					$setting_key . '-background-position',
 					array(
 						'default'    => ( isset( $control_data['default'] ) ? $control_data['default'] : NULL ) ,
 						'type'       => 'theme_mod',
@@ -393,7 +393,7 @@ class Layers_Customizer_Regsitrar {
 				$this->customizer->add_control(
 					new Layers_Customize_Select_Control(
 						$this->customizer,
-						$setting_key . '_background_position',
+						$setting_key . '-background-position',
 						$duplicate_control_data
 					)
 				);
@@ -410,7 +410,7 @@ class Layers_Customizer_Regsitrar {
 				);
 
 				$this->customizer->add_setting(
-					$setting_key . '_background_stretch',
+					$setting_key . '-background-stretch',
 					array(
 						'default'    => ( isset( $control_data['default'] ) ? $control_data['default'] : NULL ) ,
 						'type'       => 'theme_mod',
@@ -421,7 +421,7 @@ class Layers_Customizer_Regsitrar {
 				$this->customizer->add_control(
 					new Layers_Customize_Checkbox_Control(
 						$this->customizer,
-						$setting_key . '_background_stretch',
+						$setting_key . '-background-stretch',
 						$duplicate_control_data
 					)
 				);

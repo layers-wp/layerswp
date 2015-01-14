@@ -292,9 +292,6 @@ class Layers_Customizer_Config {
 						'description' => __( 'Enter in any custom script to include in your site\'s footer.', LAYERS_THEME_SLUG ),
 						'default' => '',
 					), // scripts
-					'break-1' => array(
-						'type'     => 'layers-seperator'
-					),
 				); // footer-scripts
 
 		return apply_filters( 'layers_customizer_controls', $controls );

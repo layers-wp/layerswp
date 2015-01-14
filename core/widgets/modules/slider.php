@@ -41,8 +41,8 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 				'excerpt' => NULL,
 				'slide_height' => '550',
 				'slide_ids' => rand( 1 , 1000 ),
-				'show_slider_arrows' => true,
-				'show_slider_dots' => true,
+				'show_slider_arrows' => 'on',
+				'show_slider_dots' => 'on',
 
 			);
 
@@ -263,6 +263,7 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 			// Parse $instance
 			$instance = wp_parse_args( $instance, $instance_defaults );
 			extract( $instance, EXTR_SKIP ); ?>
+
 			<!-- Form HTML Here -->
 			<?php $this->design_bar()->bar(
 				'side', // CSS Class Name

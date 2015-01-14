@@ -78,15 +78,15 @@ $find_builder_page = layers_get_builder_pages(); ?>
          </p>
 
          <p id="layers-preset-layout-next-button">
-            <a href="" class="layers-button btn-primary btn-large" data-post_id="" data-location="">
+            <a id="layers-preset-proceed" href="" class="layers-button btn-primary btn-large" data-post_id="" data-location="">
                <?php _e( 'Proceed to Customizer' , LAYERS_THEME_SLUG ); ?>
             </a>
-            <a href="" class="layers-button btn-link">
-               Cancel and choose another template
+            <a id="layers-preset-cancel" href="" class="layers-button btn-link">
+               <?php _e( 'Cancel' , LAYERS_THEME_SLUG ); ?>
             </a>
 
             <div class="layers-load-bar layers-hide">
-               <span class="layers-progress zero">0%</span>
+               <span class="layers-progress zero"></span>
             </div>
 
 

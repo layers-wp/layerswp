@@ -532,10 +532,10 @@ class Layers_Widget_Migrator {
 
         $check_builder_pages = layers_get_builder_pages();
 
-        if( 0 == count( $check_builder_pages ) ){
-            $post_title = __( 'Home Page' );
-        } else {
+        if( isset( $_POST[ 'post_title' ] )  ){
             $post_title = $_POST[ 'post_title' ];
+        } else {
+            $post_title = __( 'Home Page', LAYERS_THEME_SLUG );
         }
 
         // Generate builder page and return page ID

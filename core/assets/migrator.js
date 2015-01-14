@@ -27,7 +27,17 @@ jQuery(document).ready(function($){
 
     });
 
-    $(document).on( 'click', '#layers-preset-layout-next-button a', function(e){
+    $(document).on( 'click', '#layers-preset-layout-next-button a#layers-preset-cancel', function(e){
+        e.preventDefault();
+
+        // "Hi Mom!"
+        $that = $(this);
+
+        $( '.layers-modal' ).fadeOut();
+        $( '#adminmenu' ).fadeIn();
+    });
+
+    $(document).on( 'click', '#layers-preset-layout-next-button a#layers-preset-proceed', function(e){
         e.preventDefault();
 
         // "Hi Mom!"
@@ -41,16 +51,6 @@ jQuery(document).ready(function($){
 
         $( '.layers-progress' ).animate( {width: "100%"}, 4000 );
 
-        $load_interval = setInterval( function(){
-            if( $load_bar_percent < 100 ) {
-                $load_bar_percent = +$load_bar_percent+5;
-                $( '.layers-progress' );
-            } else {
-                $( '.layers-progress' );
-                clearInterval( $load_interval );
-            }
-        }, 200 );
-
         var $page_data = {
                 action: 'layers_create_builder_page_from_preset',
                 post_title: $( '#layers_preset_page_title' ).val(),
@@ -63,8 +63,6 @@ jQuery(document).ready(function($){
             $page_data,
             function(data){
                 $results = $.parseJSON( data );
-
-                clearInterval( $load_interval );
 
                 $( '.layers-progress' ).stop().animate({width: "100%"} , 1000 , function(e){
                     window.location.assign( $results.customizer_location );

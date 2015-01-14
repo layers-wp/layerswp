@@ -1038,6 +1038,19 @@ input[type=text].layers-color-selector.wp-color-picker{
 
 
 /*---------------------------*/
+/*- CUSTOMIZER CONTROLS -----*/
+
+.customize-control {
+    
+}
+.customize-control-layers-heading {
+    margin: 0;
+}
+.customize-control-layers-checkbox {
+    margin-top: 10px;
+}
+
+/*---------------------------*/
 /*- TITLES ------------------*/
 .layers-logo{
     display: block;
@@ -1580,6 +1593,7 @@ input[type=radio]:checked + .layers-settings-icon span{
 }
 .layers-image-display img{
     display: block;
+    height: auto;
     margin: 0 auto 10px;
     border-radius: 3px;
 }

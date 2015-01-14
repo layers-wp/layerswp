@@ -11,7 +11,7 @@ if( !class_exists( 'Layers_Customize_Seperator_Control' ) ) {
 
 	class Layers_Customize_Seperator_Control extends WP_Customize_Control {
 
-		public $type = 'seperator';
+		public $type = 'layers-seperator';
 
 		public function render_content() { ?>
 			<hr />

@@ -11,7 +11,7 @@ if( !class_exists( 'Layers_Customize_Heading_Control' ) ) {
 
 	class Layers_Customize_Heading_Control extends WP_Customize_Control {
 
-		public $type = 'heading';
+		public $type = 'layers-heading';
 
 		public $label = '';
 
@@ -19,17 +19,21 @@ if( !class_exists( 'Layers_Customize_Heading_Control' ) ) {
 
 
 		public function render_content() {
+			?>
+			<div class="layers-control-item">
+				
+				<?php
+				if( '' != $this->label ) { ?>
+					<span class="customize-control-title">
+						<?php echo esc_html( $this->label ); ?>
+					</span>
+				<?php } ?>
 
-			if( '' != $this->label ) { ?>
-				<span class="customize-control-title">
-					<?php echo esc_html( $this->label ); ?>
-				</span>
-			<?php } ?>
-
-			<?php if ( '' != $this->description ) : ?>
-				<div class="description customize-control-description"><?php echo $this->description; ?></div>
-			<?php endif; ?>
-
+				<?php if ( '' != $this->description ) : ?>
+					<div class="description customize-control-description"><?php echo $this->description; ?></div>
+				<?php endif; ?>
+				
+			</div>
 		<?php }
 	}
 } // !class_exists( 'Layers_Customize_Radio_Control' )

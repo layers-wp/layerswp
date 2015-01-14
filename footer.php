@@ -4,6 +4,21 @@
 			</div> <!-- back-to-top -->
 		</section>
 		<?php do_action( 'layers_before_footer' ); ?>
+		<?php
+		// Apply customizer footer background settings.
+		layers_inline_styles( 'footer', 'background', array(
+			'background' => array(
+				'color' => layers_get_theme_mod( 'footer-layout-background_background_color' ),
+				'repeat' => layers_get_theme_mod( 'footer-layout-background_background_repeat' ),
+				'position' => layers_get_theme_mod( 'footer-layout-background_background_position' ),
+				'stretch' => layers_get_theme_mod( 'footer-layout-background_background_stretch' ),
+				'fixed' => false,
+				'image' => layers_get_theme_mod( 'footer-layout-background_background_image' ),
+			),
+		) );
+		layers_inline_styles( 'footer', 'color', array( 'color' => layers_get_theme_mod( 'footer-layout-font-color-main' ) ) );
+		layers_inline_styles( 'footer a', 'color', array( 'color' => layers_get_theme_mod( 'footer-layout-font-color-link' ) ) );
+		?>
 		<footer id="footer" class="footer-site well">
 			<?php do_action( 'layers_before_footer_inner' ); ?>
 			<div class="<?php if( 'layout-fullwidth' != layers_get_theme_mod( 'footer-layout-width' ) ) echo 'container'; ?>  content-vertical-large clearfix">

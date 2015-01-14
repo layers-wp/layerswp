@@ -47,6 +47,7 @@ class Layers_Customizer {
 			locate_template( $controls_dir . 'select-images.php' , true );
 			locate_template( $controls_dir . 'seperator.php' , true );
 			locate_template( $controls_dir . 'color.php' , true );
+			locate_template( $controls_dir . 'checkbox.php' , true );
 
 			// If we are in a builder page, update the Widgets title
 			if(

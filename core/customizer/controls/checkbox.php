@@ -11,7 +11,7 @@ if( !class_exists( 'Layers_Customize_Checkbox_Control' ) ) {
 
 	class Layers_Customize_Checkbox_Control extends WP_Customize_Control {
 
-		public $type = 'checkbox';
+		public $type = 'layers-checkbox';
 
 		public $description = '';
 

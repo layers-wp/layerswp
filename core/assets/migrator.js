@@ -24,6 +24,27 @@ jQuery(document).ready(function($){
 
     });
 
+    $(document).on( 'click', '#layers-preset-layout-next-button a', function(e){
+        e.preventDefault();
+
+        // "Hi Mom!"
+        $that = $(this);
+
+        var $page_data = {
+                action: 'layers_update_builder_page',
+                post_id: $that.data( 'post_id' ),
+                post_title: $( '#layers_preset_page_title' ).val(),
+            };
+
+        jQuery.post(
+            layers_widget_params.ajaxurl,
+            $page_data,
+            function(data){
+                window.location.assign( $that.data( 'location' ) );
+            }
+        );
+    });
+
     $(document).on( 'click', '[id^="layers-generate-preset-layout-"]', function(e){
         e.preventDefault();
 
@@ -56,6 +77,8 @@ jQuery(document).ready(function($){
             }
         }, 400 );
 
+        $( '#layers_preset_page_title' ).val( $title );
+
         var $page_data = {
                 action: 'layers_create_builder_page_from_preset',
                 post_title: $title,
@@ -67,16 +90,18 @@ jQuery(document).ready(function($){
             layers_widget_params.ajaxurl,
             $page_data,
             function(data){
-                console.log( data );
                 clearInterval( $load_interval );
 
                 $( '.layers-progress' ).stop().css('width', '100%');
-                $( '.layers-progress' ).text( 'Redirecting to the Visual Customizer');
+                $( '.layers-load-bar' ).hide();
+
+                $( '#layers-preset-layout-next-button' ).hide().removeClass( 'layers-hide' ).fadeIn( 750 );
+
 
                 $results = $.parseJSON( data );
-                setTimeout( function(){
-                    window.location.assign( $results.customizer_location );
-                }, 500 );
+                $next_btn = $( '#layers-preset-layout-next-button' ).find('a');
+                $next_btn.attr( 'data-post_id', $results.post_id );
+                $next_btn.attr( 'data-location', $results.customizer_location );
             }
         );
     });

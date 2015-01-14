@@ -1,6 +1,9 @@
 <?php // Fetch current user information
 $user = wp_get_current_user(); ?>
 
+<?php // Instantiate Inputs
+$form_elements = new Layers_Form_Elements(); ?>
+
 <?php // Instantiate the widget migrator
 $layers_migrator = new Layers_Widget_Migrator(); ?>
 
@@ -58,15 +61,35 @@ $find_builder_page = layers_get_builder_pages(); ?>
       <div class="layers-section-title layers-text-center layers-container">
 
          <h2 class="layers-heading" id="layers-options-header">
-            <?php _e( 'Creating Your Page', LAYERS_THEME_SLUG ); ?>
+            <?php _e( 'Enter Your Page Title', LAYERS_THEME_SLUG ); ?>
          </h2>
+
+         <p class="layers-form-item layers-span-6 layers-clearfix">
+            <?php
+               echo $form_elements->input( array(
+                  'type' => 'text',
+                  'name' => 'layers_preset_page_title',
+                  'id' => 'layers_preset_page_title',
+                  'placeholder' => __( 'Enter title here', LAYERS_THEME_SLUG ),
+                  'value' => NULL,
+                  'class' => 'layers-text layers-large'
+               ) );
+            ?>
+         </p>
+
+
          <p class="layers-excerpt layers-push-bottom">
-            <?php _e( 'We\'re busy importing dummy content, placing some widgets and adding some content, promise it won\'t take long. Once we\'re done, you\'ll be redirected to
+            <?php _e( 'We\'re busy importing dummy content and placing some widgets, promise it won\'t take long. Once we\'re done, you\'ll be redirected to
             the Visual Customizer so that you can start building your page.' , LAYERS_THEME_SLUG ); ?>
          </p>
+
          <div class="layers-load-bar">
             <span class="layers-progress zero">0%</span>
          </div>
+
+         <p id="layers-preset-layout-next-button" class="layers-excerpt layers-push-bottom layers-hide">
+            <a href="" class="layers-button btn-primary btn-large" data-post_id="" data-location=""><?php _e( 'Next Step' , LAYERS_THEME_SLUG ); ?></a>
+         </p>
 
       </div>
    </div>

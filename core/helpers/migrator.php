@@ -506,6 +506,22 @@ class Layers_Widget_Migrator {
     }
 
     /**
+    * Ajax Update Builder Page details
+    *
+    * This function will update the builder page with a new page title and more (once we add more)
+    */
+
+    public function update_builder_page(){
+
+        // We need a page title and post ID for this to work
+        if( !isset( $_POST[ 'post_title' ] ) || !isset( $_POST[ 'post_id' ]  ) ) return;
+
+        $pageid = layers_create_builder_page( esc_attr( $_POST[ 'post_title' ] ), esc_attr( $_POST[ 'post_id' ] ) );
+
+        die( $pageid );
+    }
+
+    /**
     * Ajax Create a Builder Page from a preset page
     *
     * This function takes on the Preset Page Data and runs the import() function
@@ -730,6 +746,7 @@ if( !function_exists( 'layers_builder_export_ajax_init' ) ) {
         $layers_migrator = new Layers_Widget_Migrator();
         add_action( 'wp_ajax_layers_import_widgets', array( $layers_migrator, 'do_ajax_import' ) );
         add_action( 'wp_ajax_layers_create_builder_page_from_preset', array( $layers_migrator, 'create_builder_page_from_preset' ) );
+        add_action( 'wp_ajax_layers_update_builder_page', array( $layers_migrator, 'update_builder_page' ) );
     }
 }
 

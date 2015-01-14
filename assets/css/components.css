@@ -748,4 +748,24 @@ p[class*='comment-form'] .required{
 }
 
 
+/*-------------------------------*/
+/*- POPULAR WP PLUGINS ----------*/
+/*-------------------------------*/
+
+    /*---------------------------*/
+    /*- CONTACT FORM 7 ----------*/
+    .wpcf7-form p{
+        margin-bottom: 15px;
+        vertical-align: top;
+        font-weight: bold;
+    }
+    .wpcf7-form br{
+        display: none;
+    }
+    .wpcf7-form-control-wrap{
+        display: block;
+        margin-top: 4px;
+        font-weight: normal;
+    }
+
 

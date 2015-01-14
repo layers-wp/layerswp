@@ -398,12 +398,18 @@ object{
     /*- FORM BUTTONS ------------*/
     input[type=button],
     input[type=submit],
-    button{
+    button{ 
+        display: inline-block;
         width: auto;
+        padding: 5px 15px;
         border: none;
         cursor: pointer;
         -webkit-appearance: none;
         -moz-appearance: none;
+        text-align: center;
+        vertical-align: middle;
+        cursor: pointer;
+        transition: all 0.2s ease-in-out;
     }
     input[type=button]:hover,
     input[type=submit]:hover,
@@ -441,8 +447,12 @@ object{
         display: block;
         margin-bottom: 4px;
     }
-    fieldset{margin-bottom: 10px;}
-    legend{margin: 0 0 10px;}
+    fieldset{
+        margin-bottom: 10px;
+    }
+    legend{
+        margin: 0 0 10px;
+    }
 
     /*---------------------------*/
     /*- NOTES -------------------*/

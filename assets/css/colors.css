@@ -65,7 +65,9 @@ pre{
     input[type=button],
     input[type=submit],
     button{
+        background-color: #454545;
         border: none;
+        color: #fff;
 	}
     input[type=button]:disabled,
     input[type=submit]:disabled,

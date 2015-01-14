@@ -49,7 +49,7 @@ jQuery(document).ready(function($){
         $( '.layers-progress' ).removeClass( 'zero complete' ).css('width' , 0);
         var $load_bar_percent = 0;
 
-        $( '.layers-progress' ).animate( {width: "100%"}, 4000 );
+        $( '.layers-progress' ).animate( {width: "100%"}, 4500 );
 
         var $page_data = {
                 action: 'layers_create_builder_page_from_preset',
@@ -64,7 +64,7 @@ jQuery(document).ready(function($){
             function(data){
                 $results = $.parseJSON( data );
 
-                $( '.layers-progress' ).stop().animate({width: "100%"} , 1000 , function(e){
+                $( '.layers-progress' ).stop().animate({width: "100%"} , 500 , function(e){
                     window.location.assign( $results.customizer_location );
                 });
             }

@@ -54,7 +54,9 @@
 		});
 	} // @TODO: Make sure that when adding a new widget, that the right accordians are open & closed
 
-	$( document ).ready( layers_init_accordians() );
+	$(document).on ( 'widget-added' , function(){
+		layers_init_accordians();
+	});
 
 	// 1.c - Accodian Widget Click
 

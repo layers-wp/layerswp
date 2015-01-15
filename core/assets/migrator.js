@@ -8,7 +8,7 @@ jQuery(document).ready(function($){
         // "Hi Mom!"
         $that = $(this);
 
-        $that.parent().append("Be patient while we import the widget data and images.");
+        $that.parent().append( migratori8n.loading_message );
 
         var $page_data = {
                 action: 'layers_import_widgets',
@@ -20,9 +20,7 @@ jQuery(document).ready(function($){
          jQuery.post(
             layers_widget_params.ajaxurl,
             $page_data,
-            function(data){
-                console.log( data );
-            }
+            function(data){}
         );
 
     });

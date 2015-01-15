@@ -368,6 +368,9 @@ if( ! function_exists( 'layers_admin_scripts' ) ) {
             LAYERS_VERSION,
             true
         );
+        wp_localize_script( LAYERS_THEME_SLUG . '-admin-migrator', 'migratori8n', array(
+        	'loading_message' => __( 'Be patient while we import the widget data and images.' , LAYERS_THEME_SLUG )
+		) );
 
 		wp_enqueue_script(
 			LAYERS_THEME_SLUG . '-admin' ,

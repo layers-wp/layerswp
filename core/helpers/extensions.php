@@ -32,6 +32,9 @@ if ( !function_exists('layers_load_templates') ) {
         // Get the base name of the file to look for
         $template_slug = basename( $template );
 
+        // Set the default file
+        $file = $template;
+
         // Check if a custom template exists in the theme folder, if not, load the plugin template file
         if ( $theme_file = locate_template(  $template_slug ) ) {
             $file = $theme_file;
@@ -41,13 +44,14 @@ if ( !function_exists('layers_load_templates') ) {
             foreach( $template_locations as $location ){
 
                 // Piece together the ful url
-                $file =  $location . '/' . $template_slug;
+                $extension_file =  $location . '/' . $template_slug;
 
                 // If this template file exists, we're game
-                if( file_exists( $file ) ) return $file;
+                if( file_exists( $extension_file ) ) {
+                    $file = $extension_file;
+                    break;
+                }
             }
-        } else {
-            $file = $template;
         }
 
         return apply_filters( 'layers_template_' . $template, $file );

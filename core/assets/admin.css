@@ -154,12 +154,12 @@ div#widgets-right div[id*='obox-layers-builder']{
         box-sizing: border-box;
         cursor: pointer;
         float: left;
-        margin: 0 4% 4% 0;
+        margin: 0 2% 2% 0;
         position: relative;
-        width: 30.6%;
+        width: 23%;
         border: 1px solid #dedede;
     }
-    .layers-product:nth-child(3n+3){
+    .layers-product:nth-child(4n+4){
         margin-right: 0;
     }
     .layers-product-screenshot{
@@ -1871,7 +1871,7 @@ input[type=radio]:checked + .layers-settings-icon span{
     border-top: 1px solid #ddd;
 }
 .layers-page-title.highlight + .layers-row{
-    border-top: 1px solid #0D5F83;
+    border-top: none;
 }
 .layers-footer{
     clear: both;

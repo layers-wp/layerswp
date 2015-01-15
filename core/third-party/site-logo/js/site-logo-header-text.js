@@ -8,16 +8,10 @@
 
 	api( 'site_logo_header_text', function( value ) {
 		value.bind( function( to ) {
-			if ( 1 === parseInt( to, 10 ) ) {
-				$( $classes ).css({
-					'position': 'static',
-					'clip': 'auto'
-				});
+			if ( true === to ) {
+				$( $classes ).show();
 			} else {
-				$( $classes ).css({
-					'position': 'absolute',
-					'clip': 'rect(1px 1px 1px 1px)'
-				});
+				$( $classes ).hide();
 			}
 		});
 	});

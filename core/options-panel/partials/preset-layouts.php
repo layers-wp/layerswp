@@ -46,7 +46,7 @@ $find_builder_page = layers_get_builder_pages(); ?>
                   </div>
                   <h3 class="layers-product-name" id="<?php echo $template_key; ?>"><?php echo $template[ 'title' ]; ?></h3>
                   <div class="layers-product-actions">
-                     <a class="layers-button btn-primary customize load-customize" id="layers-generate-preset-layout-<?php echo $template_key; ?>"  data-key="layers-preset-layout-<?php echo $template_key; ?>"><?php _e( 'Select Layout', LAYERS_THEME_SLUG ); ?></a>
+                     <a class="layers-button btn-primary customize load-customize" id="layers-generate-preset-layout-<?php echo $template_key; ?>"  data-key="layers-preset-layout-<?php echo $template_key; ?>"><?php _e( 'Select', LAYERS_THEME_SLUG ); ?></a>
                   </div>
                </div>
             <?php } // Get Preset Layouts ?>
@@ -56,15 +56,15 @@ $find_builder_page = layers_get_builder_pages(); ?>
 
 </section>
 
-<section class="layers-modal layers-hide">
-   <div class="layers-vertical-center">
-      <div class="layers-section-title layers-container">
+<section class="layers-modal-container layers-hide">
+   <div class="layers-vertical-center layers-modal">
+      <div class="layers-section-title layers-no-push-bottom">
 
          <h2 class="layers-heading layers-push-bottom" id="layers-options-header">
             <?php _e( 'Add a page title', LAYERS_THEME_SLUG ); ?>
          </h2>
 
-         <p class="layers-form-item layers-span-6">
+         <p class="layers-form-item layers-span-12">
             <?php
                echo $form_elements->input( array(
                   'type' => 'text',

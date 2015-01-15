@@ -283,21 +283,28 @@ div[id*='layers-widget'] .spinner{
 .layers-well{
     background: #fff;
 }
-.layers-modal{
+.layers-modal-container{
    position: fixed;
     width: 100%;
     display: block;
     top: 0;
     left: 0;
     z-index: 10;
-    background: white;
+    background: rgba(0, 0, 0, 0.8);
     height: 100%;
+}
+.layers-modal{
+    padding: 50px;
+    background: #fff;
+    max-width: 660px;
+
 }
 .layers-vertical-center{
     position: absolute;
     width: 100%;
     top: 50%;
-    transform: translateY(-50%);
+    left: 50%;
+    transform: translate(-50% ,-50%);
 }
 
 

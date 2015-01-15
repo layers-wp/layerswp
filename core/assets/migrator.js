@@ -33,7 +33,7 @@ jQuery(document).ready(function($){
         // "Hi Mom!"
         $that = $(this);
 
-        $( '.layers-modal' ).fadeOut();
+        $( '.layers-modal-container' ).fadeOut();
         $( '#adminmenu' ).fadeIn();
     });
 
@@ -83,8 +83,8 @@ jQuery(document).ready(function($){
         $widget_data = $('#' + $id + '-widget_data' ).val();
 
         // Show the Modal
-        $( '.layers-modal' ).find( '.layers-media-image' ).html( $that.find('img') );
-        $( '.layers-modal' ).hide().removeClass( 'layers-hide' ).fadeIn( 350 );
+        $( '.layers-modal-container' ).find( '.layers-media-image' ).html( $that.find('img') );
+        $( '.layers-modal-container' ).hide().removeClass( 'layers-hide' ).fadeIn( 350 );
         $( '#adminmenu' ).fadeOut();
 
         $( '#layers_preset_page_title' ).val( $title );

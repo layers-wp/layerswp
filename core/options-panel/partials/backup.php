@@ -51,8 +51,6 @@
 					pageid: $pageid,
 				},
 				function(data){
-
-					console.log( data );
 					// Check off this page
 					$page_li.removeClass( 'cross' ).addClass( 'tick' );
 

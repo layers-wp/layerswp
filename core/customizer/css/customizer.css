@@ -10,7 +10,7 @@
 }
 
 a.customize-controls-layers-button{
-    display: block;
+    display: none;
     width: 45px;
     height: 45px;
     padding: 0 1px;

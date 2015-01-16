@@ -1,5 +1,5 @@
 /*
-This is a reference file of combined color selectors 
+This is a reference file of combined color selectors
 for the release version of the theme, used to build
 the customizer schemes.
 
@@ -296,7 +296,7 @@ pre{
         	background-color: #E2574C;
         	color: #fff;
         }
-        
+
         /*-----------------------*/
         /*- BLANK LABEL ---------*/
         .label.label-blank{
@@ -369,6 +369,10 @@ pre{
 /*-------------------------------*/
 /*- HEADER ----------------------*/
 /*-------------------------------*/
+
+    .header-secondary{
+        background: #333;
+    }
 
     .tagline{color: #8f8f8f;}
 
@@ -539,7 +543,7 @@ pre{
     	background-color: rgba(255, 255, 255, 0.95);
     	box-shadow: 0px 3px 0px rgba(0, 0, 0, 0.1);
     }
-    
+
     /*---------------------------*/
     /*- BREAD CRUMBS ------------*/
     .bread-crumbs{color: #777;}

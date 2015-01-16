@@ -281,7 +281,7 @@ if( ! function_exists( 'layers_scripts' ) ) {
 
 		wp_enqueue_style(
 			LAYERS_THEME_SLUG . '-style' ,
-			get_stylesheet_uri() ,
+			get_template_directory_uri() . '/style.css',
 			array() ,
 			LAYERS_VERSION
 		);

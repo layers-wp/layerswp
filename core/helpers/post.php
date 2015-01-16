@@ -115,7 +115,7 @@ if ( ! function_exists( 'layers_get_the_author' ) ) {
 if( !function_exists( 'layers_comment' ) ) {
     function layers_comment($comment, $args, $depth) {
         $GLOBALS['comment'] = $comment;?>
-        <?php if( 1 < $depth && isset( $GLOBALS['lastdepth'] ) && $depth != $GLOBALS['lastdepth'] ) { ?>
+        <?php if( 2  < $depth && isset( $GLOBALS['lastdepth'] ) && $depth != $GLOBALS['lastdepth'] ) { ?>
             <div class="row comments-nested push-top">
         <?php } ?>
         <div <?php comment_class( 'content push-bottom well' ); ?> id="comment-<?php comment_ID(); ?>">
@@ -138,7 +138,7 @@ if( !function_exists( 'layers_comment' ) ) {
                 <?php comment_text() ?>
                 <?php comment_reply_link(array_merge( $args, array('depth' => $depth, 'max_depth' => $args['max_depth']))) ?>
             </div>
-        <?php if( 1 < $depth && isset( $GLOBALS['lastdepth'] ) && $depth == $GLOBALS['lastdepth'] ) { ?>
+        <?php if( 2 < $depth && isset( $GLOBALS['lastdepth'] ) && $depth == $GLOBALS['lastdepth'] ) { ?>
             </div>
         <?php } ?>
 

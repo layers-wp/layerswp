@@ -33,32 +33,42 @@ section[class*=' off-canvas-']{
     overflow-y: scroll;
 }
 
-section[class*=' off-canvas-'] .close-canvas{
-    color: #999;
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    cursor: pointer;
-}
-.admin-bar section[class*=' off-canvas-'] .close-canvas{
-    top: 65px;
-}
-.close-canvas:hover{
-    color: #fff;
-}
+    /*---------------------------*/
+    /*- WRAPPER POSITIONING -----*/
+    .off-canvas-right.open + .wrapper-site{
+        transform: translateX(-240px);
+    }
+    .off-canvas-left.open + .wrapper-site{
+        transform: translateX(240px);
+    }
+    .off-canvas-top.open + .wrapper-site{
+        transform: translateY(200px);
+    }
 
-.off-canvas-right.open + .wrapper-site{
-    transform: translateX(-240px);
-}
-.off-canvas-left.open + .wrapper-site{
-    transform: translateX(240px);
-}
-.off-canvas-top.open + .wrapper-site{
-    transform: translateY(200px);
-}
+    /*---------------------------*/
+    /*- CLOSE CANVAS ------------*/
+    .close-canvas{
+        padding: 10px;
+        background: #555;
+        color: #999;
+        position: absolute;
+        top: 0;
+        right: 0;
+        cursor: pointer;
+        z-index: 100;
+    }
+    .admin-bar section[class*=' off-canvas-'] .close-canvas{
+        top: 65px;
+    }
+    .close-canvas:hover{
+        color: #fff;
+    }
 
     /*---------------------------*/
     /*- OFF CANVAS WIDGETS ------*/
+    section[class*=' off-canvas-'] li{
+        padding: 5px 0;
+    }
     section[class*=' off-canvas-'] .widget.widget_nav_menu{
         padding: 20px;
     }
@@ -81,6 +91,9 @@ section[class*=' off-canvas-'] .close-canvas{
         background: #555;
         color: #ccc;
         font-size: 1.2rem;
+    }
+    section[class*=' off-canvas-'] .nav-vertical li{
+        padding: 0;
     }
 
 

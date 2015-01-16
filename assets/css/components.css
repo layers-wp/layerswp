@@ -679,11 +679,11 @@ p[class*='comment-form'] .required{
     /*- WIDGET NAV MENU ---------*/
     .widget.widget_nav_menu{
         max-width: none;
-        padding: 20px 0;
         margin: 0;
     }
     .menu-main-menu-container{
         max-width: 1040px;
+        padding: 20px 0;
         margin: auto;
         overflow: hidden;
         text-align: center;
@@ -702,6 +702,51 @@ p[class*='comment-form'] .required{
         color: #8F8F8F;
     }
 
+        /*-----------------------*/
+        /*- WIDGET NAV MENU -----*/
+        aside.widget.widget_nav_menu{
+            margin-bottom: 20px;
+        }
+        aside .menu-main-menu-container{
+            padding: 0;
+        }
+        aside .menu-main-menu-container li{
+            display: block;
+        }
+        aside .menu-main-menu-container li a{
+            display: block;
+            font-weight: normal;
+            text-align: left;
+        }
+
+    /*---------------------------*/
+    /*- SEARCH WIDGET -----------*/
+    .screen-reader-text{
+        display: none;
+    }
+    aside #searchsubmit{
+        display: block;
+        width: 100%;
+    }
+    aside .searchform #s{
+        border: none;
+    }
+
+    /*---------------------------*/
+    /*- CALENDAR WIDGET ---------*/
+    #wp-calendar{
+        font-size: 1.2rem;
+    }
+    #wp-calendar caption{
+        font-size: 1rem;
+        font-weight: 700;
+        text-align: left;
+        text-transform: uppercase;
+    }
+    #wp-calendar th,
+    #wp-calendar td{
+        padding: 5px;
+    }
 
 /*-------------------------------*/
 /*- MAP - ADD ON ----------------*/

@@ -114,7 +114,7 @@ class Layers_Custom_Meta {
 						</p>
 					</div>
 					<div class="layers-button-well clearfix">
-						<a href="%2$s" class="layers-button btn-large btn-primary" id="%4$s">%6$s</a>
+						<a href="%2$s" class="layers-button btn-massive btn-primary btn-full" id="%4$s">%6$s</a>
 					</div>
 				</div>',
 			'Your page is ready for building', // %1

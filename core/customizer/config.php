@@ -123,6 +123,9 @@ class Layers_Customizer_Config {
 										'layout-fullwidth' => __( 'Full Width' , LAYERS_THEME_SLUG )
 									)
 								), // layout,
+								'break-0' => array(
+									'type'     => 'layers-seperator'
+								),
 								'layout' => array(
 									'type'     => 'layers-select-icons',
 									'label'    => __( 'Logo & Menu Position', LAYERS_THEME_SLUG ),
@@ -135,6 +138,9 @@ class Layers_Customizer_Config {
 										'header-logo-center' => __( 'Logo Center' , LAYERS_THEME_SLUG )
 									)
 								), // layout,
+								'break-1' => array(
+									'type'     => 'layers-seperator'
+								),
 								'fixed' => array(
 									'type'     => 'checkbox',
 									'label'    => __( 'Fixed Header', LAYERS_THEME_SLUG ),
@@ -239,7 +245,7 @@ class Layers_Customizer_Config {
 									)
 								),
 							); // footer-layout
-		
+
 		// Footer -> Layout -> Customization
 		$controls['footer-customization'] = array(
 								'font-color-heading' => array(

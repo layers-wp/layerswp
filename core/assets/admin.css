@@ -1226,7 +1226,7 @@ input[type=text].layers-color-selector.wp-color-picker{
         height: 38px;
         font-weight: 600;
         font-size: 16px;
-        line-height: 32px;
+        line-height: 34px;
     }
     .layers-button.btn-massive{
         height: 44px;
@@ -1238,6 +1238,14 @@ input[type=text].layers-color-selector.wp-color-picker{
         display: block;
     }
 
+    /*-----------------------*/
+    /*- BUTTON WELL ---------*/
+    .layers-button-well{
+        padding: 10px;
+        clear: both;
+        border-top: 1px solid #DDD;
+        background: #F5F5F5;
+    }
 
 /*---------------------------*/
 /*- ACCORDIONS --------------*/
@@ -1749,7 +1757,7 @@ input[type=radio]:checked + .layers-settings-icon span{
     margin: 0;
     background: #F3F3F3;
     margin-top: -6px;
-    margin-left: -12px;
+    margin: -6px -12px 0;
     width: 101.6%;
     border-bottom: 1px solid #eee;
 }
@@ -1764,7 +1772,7 @@ input[type=radio]:checked + .layers-settings-icon span{
     font-weight: 600;
     color: #8F8F8F;
     text-decoration: none;
-    border-right: #ccc solid 1px;
+    border-right: 1px solid #eee;
     border-top: none;
     border-bottom: none;
     margin: 0px;

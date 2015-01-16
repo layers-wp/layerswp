@@ -552,6 +552,7 @@ section[class*=' off-canvas-']{
     /*---------------------------*/
     /*- META INFO ---------------*/
     .meta-info{
+        clear: both;
         font-size: 1.2rem;
     }
     .meta-info + .heading{

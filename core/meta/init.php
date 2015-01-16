@@ -104,20 +104,24 @@ class Layers_Custom_Meta {
 
 		$is_builder_used = ( 'builder.php' == basename( get_page_template() ) ) ? true : false;
 
-		printf( '<div id="layers_toggle_builder" class="layers-section-title layers-medium invert layers-content-massive %3$s" style="background: url( %7$s/images/beta-zero.jpg) top repeat #106F9F;">
-					<div class="layers-heading">
-						%1$s
+		printf( '<div id="layers_toggle_builder" class="postbox layers-push-top %3$s">
+					<div class="layers-section-title layers-no-push-bottom layers-content-large">
+						<div class="layers-heading">
+							%1$s
+						</div>
+						<p class="layers-excerpt">
+							%5$s
+						</p>
 					</div>
-					<p class="layers-excerpt">
-						%5$s
-					</p>
-					<a href="%2$s" class="layers-button btn-massive btn-secondary" id="%4$s">%6$s</a>
+					<div class="layers-button-well clearfix">
+						<a href="%2$s" class="layers-button btn-large btn-primary" id="%4$s">%6$s</a>
+					</div>
 				</div>',
 			'Your page is ready for building', // %1
 			admin_url() . 'customize.php?url=' . esc_url( get_the_permalink() ) . '&layers-builder=1', // %2
 			( true == $is_builder_used ? '' : 'layers-hide' ), // %3
 			( isset( $post->ID ) ? 'builder-button-' . $post->ID : 'builder-button-' . rand(0,1) ), // %4,
-			__( 'You are one step away from building your page. Head over to the Visual Customizer where you can drag and drop widgets, edit content and tweak the design. Click the button below and see your page come to life.', LAYERS_THEME_SLUG ), // %5
+			__( 'Head over to the Visual Customizer where you can drag and drop widgets, edit content and tweak the design. Click the button below and see your page come to life.', LAYERS_THEME_SLUG ), // %5
 			__( 'Build Your Page', LAYERS_THEME_SLUG ), // %6
 			get_template_directory_uri() // %7,
 		);

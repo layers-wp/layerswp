@@ -734,21 +734,21 @@ if( !function_exists( 'layers_get_feature_media' ) ) {
 
 		// Check for an image
 		if( NULL != $attachmentid && '' != $attachmentid ){
-			$image = wp_get_attachment_image( $attachmentid , $size);
+			$use_image = wp_get_attachment_image( $attachmentid , $size);
 		}
 
 		// Check for a video
 		if( NULL != $video && '' != $video ){
 			$embed_code = '[embed width="'.$image_dimensions['width'].'" height="'.$image_dimensions['height'].'"]'.$video.'[/embed]';
 			$wp_embed = new WP_Embed();
-			$video = $wp_embed->run_shortcode( $embed_code );
+			$use_video = $wp_embed->run_shortcode( $embed_code );
 		}
 
 		// Set which element to return
-		if( isset( $video ) ) {
-			$media = $video;
-		} else if( isset( $image ) ) {
-			$media = $image;
+		if( isset( $use_video ) ) {
+			$media = $use_video;
+		} else if( isset( $use_image ) ) {
+			$media = $use_image;
 		} else {
 			return NULL;
 		}

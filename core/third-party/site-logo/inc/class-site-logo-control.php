@@ -16,12 +16,12 @@ class Site_Logo_Image_Control extends WP_Customize_Control {
 	public function __construct( $wp_customize, $control_id, $args = array() ) {
 		// declare these first so they can be overridden
 		$this->l10n = array(
-			'upload' =>      __( 'Add logo', 'jetpack' ),
-			'set' =>         __( 'Set as logo', 'jetpack' ),
-			'choose' =>      __( 'Choose logo', 'jetpack' ),
-			'change' =>      __( 'Change logo', 'jetpack' ),
-			'remove' =>      __( 'Remove logo', 'jetpack' ),
-			'placeholder' => __( 'No logo set', 'jetpack' ),
+			'upload' =>      __( 'Add logo', LAYERS_THEME_SLUG ),
+			'set' =>         __( 'Set as logo', LAYERS_THEME_SLUG ),
+			'choose' =>      __( 'Choose logo', LAYERS_THEME_SLUG ),
+			'change' =>      __( 'Change logo', LAYERS_THEME_SLUG ),
+			'remove' =>      __( 'Remove logo', LAYERS_THEME_SLUG ),
+			'placeholder' => __( 'No logo set', LAYERS_THEME_SLUG ),
 		);
 
 		$this->directory_uri = LAYERS_TEMPLATE_URI . '/core/third-party/site-logo/';

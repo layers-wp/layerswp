@@ -59,7 +59,7 @@ $find_builder_page = layers_get_builder_pages(); ?>
 							</p>
 							<div class="layers-btn-group">
 								<?php if( defined( 'JETPACK__VERSION' ) ) { ?>
-									<span class="layers-success"><?php _e( 'Jetpack is installed', LAYERS_THEME_SLUG ); ?></span>
+									<span class="layers-success"><?php _e( 'Jetpack is Installed', LAYERS_THEME_SLUG ); ?></span>
 								<?php } else { ?>
 									<a class="layers-button btn-primary" href="<?php echo admin_url( '/plugin-install.php?tab=search&s=Jetpack'); ?>" target="_blank"><?php _e( 'Install Jetpack', LAYERS_THEME_SLUG ); ?></a>
 								<?php } ?>

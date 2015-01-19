@@ -1,4 +1,4 @@
- <section class="push-top-large">
+ <section id="comments" class="push-top-large">
     <?php if ( have_comments() ) { ?>
         <div class="section-title small">
             <h3 class="heading comment-title">

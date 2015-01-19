@@ -85,7 +85,7 @@ function layers_options_panel_menu(){
 	add_menu_page(
 		LAYERS_THEME_TITLE,
 		LAYERS_THEME_TITLE,
-		'manage_options',
+		'edit_theme_options',
 		LAYERS_THEME_SLUG . '-welcome',
 		'layers_options_panel_ui',
 		'none',
@@ -97,7 +97,7 @@ function layers_options_panel_menu(){
 		LAYERS_THEME_SLUG . '-welcome',
 		__( 'Add New Page' , LAYERS_THEME_SLUG ),
 		__( 'Add New Page' , LAYERS_THEME_SLUG ),
-		'manage_options',
+		'edit_theme_options',
 		LAYERS_THEME_SLUG . '-preset-layouts',
 		'layers_options_panel_ui'
 	);
@@ -109,7 +109,7 @@ function layers_options_panel_menu(){
 			LAYERS_THEME_SLUG . '-welcome',
 			__( 'Layers Pages', LAYERS_THEME_SLUG ),
 			__( 'Layers Pages', LAYERS_THEME_SLUG ),
-			'manage_options',
+			'edit_theme_options',
 			'edit.php?post_type=page&filter=layers'
 		);
 	}
@@ -119,7 +119,7 @@ function layers_options_panel_menu(){
 		LAYERS_THEME_SLUG . '-welcome',
 		__( 'Customize', LAYERS_THEME_SLUG ),
 		__( 'Customize', LAYERS_THEME_SLUG ),
-		'manage_options',
+		'edit_theme_options',
 		'customize.php'
 	);
 
@@ -128,7 +128,7 @@ function layers_options_panel_menu(){
 		LAYERS_THEME_SLUG . '-welcome',
 		__( 'Backup' , LAYERS_THEME_SLUG ),
 		__( 'Backup' , LAYERS_THEME_SLUG ),
-		'manage_options',
+		'edit_theme_options',
 		LAYERS_THEME_SLUG . '-backup',
 		'layers_options_panel_ui'
 	);

@@ -175,7 +175,7 @@ class Layers_Form_Elements {
 			case 'radio' : ?>
 				<?php foreach( $input->options as $value => $label ) { ?>
 					<input type="radio" <?php echo implode ( ' ' , $input_props ); ?> />
-					<label><?php echo $label; ?></label>
+					<label><?php echo esc_html( $label ); ?></label>
 				<?php } // foreach options ?>
 			<?php break;
 			/**
@@ -187,7 +187,7 @@ class Layers_Form_Elements {
 						<option value=''><?php echo $input->placeholder; ?></option>
 					<?php } // if NULL != placeholder ?>
 					<?php foreach( $input->options as $value => $label ) { ?>
-						<option value='<?php echo $value; ?>' <?php selected( $input->value , $value, true ); ?>>
+						<option value='<?php echo esc_attr( $value ); ?>' <?php selected( $input->value , $value, true ); ?>>
 							<?php echo $label; ?>
 						</option>
 					<?php } // foreach options ?>
@@ -198,20 +198,20 @@ class Layers_Form_Elements {
 			*/
 			case 'select-icons' : ?>
 				<?php foreach( $input->options as $value => $label ) { ?>
-					<label href="" class="layers-icon-wrapper <?php if( $value == $input->value ) echo 'layers-active'; ?>" for="<?php echo $input->id .'-' . $value; ?>">
-						<span class="icon-<?php echo $value; ?>"></span>
+					<label href="" class="layers-icon-wrapper <?php if( $value == $input->value ) echo 'layers-active'; ?>" for="<?php echo $input->id .'-' . esc_attr( $value ); ?>">
+						<span class="icon-<?php echo esc_attr( $value ); ?>"></span>
 						<span class="layers-icon-description">
 							<?php echo $label; ?>
 						</span>
 					</label>
-					<input type="radio" <?php echo implode ( ' ' , $input_props ); ?> id="<?php echo $input->id .'-' . $value; ?>" value="<?php echo $value; ?>" <?php checked( $input->value , $value , true ); ?> class="layers-hide" />
+					<input type="radio" <?php echo implode ( ' ' , $input_props ); ?> id="<?php echo $input->id .'-' . esc_attr( $value ); ?>" value="<?php echo esc_attr( $value ); ?>" <?php checked( $input->value , $value , true ); ?> class="layers-hide" />
 				<?php } // foreach options ?>
 			<?php break;
 			/**
 			* Text areas
 			*/
 			case 'textarea' : ?>
-				<textarea <?php echo implode ( ' ' , $input_props ); ?> <?php if( isset( $input->rows ) ) echo 'rows="' . $input->rows . '"'; ?>><?php echo $input->value; ?></textarea>
+				<textarea <?php echo implode ( ' ' , $input_props ); ?> <?php if( isset( $input->rows ) ) echo 'rows="' . $input->rows . '"'; ?>><?php echo esc_textarea( $input->value ); ?></textarea>
 			<?php break;
 			/**
 			* Tiny MCE

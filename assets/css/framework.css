@@ -53,6 +53,10 @@ input, select{vertical-align:middle;}
 .title:after{clear: both;}
 .title{*zoom: 1;}
 
+.story:before, .story:after{content: " "; display: table;}
+.story:after{clear: both;}
+.story{*zoom: 1;}
+
 nav:before, nav:after{content: " "; display: table;}
 nav:after{clear: both;}
 nav{*zoom: 1;}

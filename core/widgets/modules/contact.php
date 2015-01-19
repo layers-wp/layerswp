@@ -72,6 +72,7 @@ if( !class_exists( 'Layers_Contact_Widget' ) ) {
 		*  Widget front end display
 		*/
 	 	function widget( $args, $instance ) {
+	 		 global $wp_customize;
 
 			// Turn $args array into variables.
 			extract( $args );
@@ -127,18 +128,25 @@ if( !class_exists( 'Layers_Contact_Widget' ) ) {
 						<?php $mapwidth = 'span-6'; ?>
 					<?php } // if show_contact_form || address_shown ?>
 					<div class="column <?php echo $mapwidth; ?>">
-						<?php if( isset( $hasmap ) ) { ?>
+						<?php if ( isset( $wp_customize ) ) { ?>
+							<?php if( '' != $widget['google_maps_location'] ) {
+								$map_center = $widget['google_maps_location'];
+							} else if( '' != $widget['google_maps_long_lat'] ) {
+								$map_center =  $widget['google_maps_long_lat'];
+							} ?>
+							<img src="https://maps.googleapis.com/maps/api/staticmap?center=<?php echo esc_attr( $map_center ); ?>&zoom=11&size=1960x<?php echo $widget['map_height']; ?>&scale=2&markers=color:red|<?php echo esc_attr( $map_center ); ?>" />
+						<?php } else if( isset( $hasmap ) ) { ?>
 							<div class="layers-map" style="height: <?php echo $widget['map_height']; ?>px;" <?php if( '' != $widget['google_maps_location'] ) { ?>data-location="<?php echo $widget['google_maps_location']; ?>"<?php } ?> <?php if( '' != $widget['google_maps_long_lat'] ) { ?>data-longlat="<?php echo $widget['google_maps_long_lat']; ?>"<?php } ?>></div>
 						<?php } ?>
 					</div>
 				</div>
 			</section>
 
-	 		<?php // Enqueue the map js
-	 			wp_enqueue_script( LAYERS_THEME_SLUG . " -map-api","http://maps.googleapis.com/maps/api/js?sensor=false");
-	 			wp_enqueue_script( LAYERS_THEME_SLUG . "-map-trigger", get_template_directory_uri()."/core/widgets/js/maps.js", array( "jquery" ) );
-	 		?>
-	 	<?php }
+			<?php if ( !isset( $wp_customize ) ) {
+				wp_enqueue_script( LAYERS_THEME_SLUG . " -map-api","http://maps.googleapis.com/maps/api/js?sensor=false");
+				wp_enqueue_script( LAYERS_THEME_SLUG . "-map-trigger", get_template_directory_uri()."/core/widgets/js/maps.js", array( "jquery" ) );
+			}  // Enqueue the map js ?>
+		<?php }
 
 		/**
 		*  Widget update

@@ -59,7 +59,8 @@ jQuery(document).ready(function($){
 		var $that = $(this);
 
 		// Confirmation message @TODO: Make JS confirmation column
-		var $remove_column = confirm( "Are you sure you want to remove this column?" );
+
+		var $remove_column = confirm( contentwidgeti8n.confirm_message );
 
 		if( false === $remove_column ) return;
 
@@ -122,7 +123,7 @@ jQuery(document).ready(function($){
 
 			},
 			function(data){
-console.log( data );
+
 				// Append column HTML
 				$( data ).insertBefore( $columnListId + ' .layers-add-widget-column' );
 

@@ -123,17 +123,23 @@ class Layers_Customizer_Config {
 										'layout-fullwidth' => __( 'Full Width' , LAYERS_THEME_SLUG )
 									)
 								),
+								'break-0' => array(
+									'type'     => 'layers-seperator'
+								),
 								'layout' => array(
 									'type'     => 'layers-select-icons',
 									'label'    => __( 'Logo & Menu Position', LAYERS_THEME_SLUG ),
-									'default'  => 'header-logo-left',
-									'choices'  => array(
+									'default' => 'header-logo-left',
+									'choices' => array(
 										'header-logo-left' => __( 'Logo Left' , LAYERS_THEME_SLUG ),
 										'header-logo-right' => __( 'Logo Right' , LAYERS_THEME_SLUG ),
 										'header-logo-center-top' => __( 'Logo Center Top' , LAYERS_THEME_SLUG ),
 										'header-logo-top' => __( 'Logo Top' , LAYERS_THEME_SLUG ),
 										'header-logo-center' => __( 'Logo Center' , LAYERS_THEME_SLUG )
 									)
+								),
+								'break-1' => array(
+									'type'     => 'layers-seperator'
 								),
 								'fixed' => array(
 									'type'     => 'layers-checkbox',
@@ -250,13 +256,6 @@ class Layers_Customizer_Config {
 		
 		// Footer -> Layout -> Customization
 		$controls['footer-customization'] = array(
-								'customize-footer-checkbox' => array(
-									'type' => 'layers-checkbox',
-									'label' => __( 'Customize Footer', LAYERS_THEME_SLUG ),
-								),
-								'break-1' => array(
-									'type'     => 'layers-seperator',
-								),
 								'font-color-heading' => array(
 									'type'  => 'layers-heading',
 									'label'    => __( 'Text', LAYERS_THEME_SLUG ),
@@ -268,9 +267,6 @@ class Layers_Customizer_Config {
 								'font-color-link' => array(
 									'type' => 'layers-color',
 									'subtitle' => __( 'Link Color', LAYERS_THEME_SLUG ),
-								),
-								'break-2' => array(
-									'type'     => 'layers-seperator',
 								),
 								'background' => array(
 									'type'     => 'layers-background',

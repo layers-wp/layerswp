@@ -727,28 +727,35 @@ if( !function_exists( 'layers_inline_styles' ) ) {
 * @return   varchar     $media_output Feature Image or Video
 */
 if( !function_exists( 'layers_get_feature_media' ) ) {
-	function layers_get_feature_media( $attachmentid = NULL, $size = 'medium' , $video = NULL ){
+	function layers_get_feature_media( $attachmentid = NULL, $size = 'medium' , $video = NULL, $postid = NULL ){
 
 		// Return dimensions
 		$image_dimensions = layers_get_image_sizes( $size );
 
 		// Check for an image
 		if( NULL != $attachmentid && '' != $attachmentid ){
-			$image = wp_get_attachment_image( $attachmentid , $size);
+			$use_image = wp_get_attachment_image( $attachmentid , $size);
 		}
 
 		// Check for a video
 		if( NULL != $video && '' != $video ){
 			$embed_code = '[embed width="'.$image_dimensions['width'].'" height="'.$image_dimensions['height'].'"]'.$video.'[/embed]';
 			$wp_embed = new WP_Embed();
-			$video = $wp_embed->run_shortcode( $embed_code );
+			$use_video = $wp_embed->run_shortcode( $embed_code );
 		}
 
 		// Set which element to return
-		if( isset( $video ) ) {
-			$media = $video;
-		} else if( isset( $image ) ) {
-			$media = $image;
+		if( NULL != $postid &&
+				(
+					( is_single() && isset( $use_video ) ) ||
+					( !is_single() && isset( $use_video ) && !isset( $use_image) )
+				)
+		) {
+			$media = $use_video;
+		} else if( NULL == $postid && isset( $use_video ) ) {
+			$media = $use_video;
+		} else if( isset( $use_image ) ) {
+			$media = $use_image;
 		} else {
 			return NULL;
 		}

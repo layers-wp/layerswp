@@ -74,7 +74,7 @@ if( !function_exists( 'layers_post_meta' ) ) {
                     foreach ( $the_tags as $tag ){
                         $tags[] = ' <a href="'.get_category_link( $tag->term_id ).'" title="' . esc_attr( sprintf( __( "View all posts tagged %s", LAYERS_THEME_SLUG ), $tag->name ) ) . '">'.$tag->name.'</a>';
                     }
-                    $meta_to_display[] = '<span class="meta-item"><i class="l-tags"></i> ' . implode( __( ', ', LAYERS_THEME_SLUG ), $tags ) . '</span>';
+                    $meta_to_display[] = '<span class="meta-item meta-tags"><i class="l-tags"></i> ' . implode( __( ', ', LAYERS_THEME_SLUG ), $tags ) . '</span>';
                     break;
                 break;
             } // switch meta
@@ -115,7 +115,7 @@ if ( ! function_exists( 'layers_get_the_author' ) ) {
 if( !function_exists( 'layers_comment' ) ) {
     function layers_comment($comment, $args, $depth) {
         $GLOBALS['comment'] = $comment;?>
-        <?php if( 1 < $depth && isset( $GLOBALS['lastdepth'] ) && $depth != $GLOBALS['lastdepth'] ) { ?>
+        <?php if( 2  < $depth && isset( $GLOBALS['lastdepth'] ) && $depth != $GLOBALS['lastdepth'] ) { ?>
             <div class="row comments-nested push-top">
         <?php } ?>
         <div <?php comment_class( 'content push-bottom well' ); ?> id="comment-<?php comment_ID(); ?>">
@@ -138,7 +138,7 @@ if( !function_exists( 'layers_comment' ) ) {
                 <?php comment_text() ?>
                 <?php comment_reply_link(array_merge( $args, array('depth' => $depth, 'max_depth' => $args['max_depth']))) ?>
             </div>
-        <?php if( 1 < $depth && isset( $GLOBALS['lastdepth'] ) && $depth == $GLOBALS['lastdepth'] ) { ?>
+        <?php if( 2 < $depth && isset( $GLOBALS['lastdepth'] ) && $depth == $GLOBALS['lastdepth'] ) { ?>
             </div>
         <?php } ?>
 
@@ -397,7 +397,7 @@ if( !function_exists( 'layers_post_featured_media' ) ) {
 
         $post_meta = get_post_meta( $postid, 'layers', true );
 
-        $featured_media = layers_get_feature_media( get_post_thumbnail_id( $postid ), $size, ( isset( $post_meta[ 'video-url' ] ) ? $post_meta[ 'video-url' ] : NULL ) );
+        $featured_media = layers_get_feature_media( get_post_thumbnail_id( $postid ), $size, ( isset( $post_meta[ 'video-url' ] ) ? $post_meta[ 'video-url' ] : NULL ), $postid );
 
         if( NULL == $featured_media ) return;
 

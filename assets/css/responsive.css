@@ -192,10 +192,14 @@ html{}
 		margin: 0;
 		text-align: center;
 	}
-	
+
 	/*---------------------------*/
     /*- VERTICAL NAV SUB MENUS --*/
+    .nav-vertical{
+    	display: block;
+    }
 	.nav-vertical .sub-menu{
+		width: auto;
 		position: static;
 		visibility: visible;
 		opacity: 1;
@@ -203,7 +207,6 @@ html{}
 		right: auto;
 		top: auto;
 		box-shadow: none;
-
 		border: none;
 		font-size: 1.2rem;
 	}
@@ -212,6 +215,7 @@ html{}
 	}
 	.nav-vertical .sub-menu li{
 		border: none;
+		width: auto;
 	}
 
 /*-------------------------------*/
@@ -220,7 +224,7 @@ html{}
 .title{
 	padding: 40px 20px;
 }
-	
+
 	/*---------------------------*/
     /*- SECTION TITLE -----------*/
 	.section-title{
@@ -230,7 +234,7 @@ html{}
 /*-------------------------------*/
 /*- THUMBNAILS ------------------*/
 /*-------------------------------*/
-	
+
 	/*---------------------------*/
     /*- OVERLAYS ----------------*/
 	.with-overlay{

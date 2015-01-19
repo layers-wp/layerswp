@@ -33,32 +33,42 @@ section[class*=' off-canvas-']{
     overflow-y: scroll;
 }
 
-section[class*=' off-canvas-'] .close-canvas{
-    color: #999;
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    cursor: pointer;
-}
-.admin-bar section[class*=' off-canvas-'] .close-canvas{
-    top: 65px;
-}
-.close-canvas:hover{
-    color: #fff;
-}
+    /*---------------------------*/
+    /*- WRAPPER POSITIONING -----*/
+    .off-canvas-right.open + .wrapper-site{
+        transform: translateX(-240px);
+    }
+    .off-canvas-left.open + .wrapper-site{
+        transform: translateX(240px);
+    }
+    .off-canvas-top.open + .wrapper-site{
+        transform: translateY(200px);
+    }
 
-.off-canvas-right.open + .wrapper-site{
-    transform: translateX(-240px);
-}
-.off-canvas-left.open + .wrapper-site{
-    transform: translateX(240px);
-}
-.off-canvas-top.open + .wrapper-site{
-    transform: translateY(200px);
-}
+    /*---------------------------*/
+    /*- CLOSE CANVAS ------------*/
+    .close-canvas{
+        padding: 10px;
+        background: #555;
+        color: #999;
+        position: absolute;
+        top: 0;
+        right: 0;
+        cursor: pointer;
+        z-index: 100;
+    }
+    .admin-bar section[class*=' off-canvas-'] .close-canvas{
+        top: 65px;
+    }
+    .close-canvas:hover{
+        color: #fff;
+    }
 
     /*---------------------------*/
     /*- OFF CANVAS WIDGETS ------*/
+    section[class*=' off-canvas-'] li{
+        padding: 5px 0;
+    }
     section[class*=' off-canvas-'] .widget.widget_nav_menu{
         padding: 20px;
     }
@@ -81,6 +91,9 @@ section[class*=' off-canvas-'] .close-canvas{
         background: #555;
         color: #ccc;
         font-size: 1.2rem;
+    }
+    section[class*=' off-canvas-'] .nav-vertical li{
+        padding: 0;
     }
 
 
@@ -539,6 +552,7 @@ section[class*=' off-canvas-'] .close-canvas{
     /*---------------------------*/
     /*- META INFO ---------------*/
     .meta-info{
+        clear: both;
         font-size: 1.2rem;
     }
     .meta-info + .heading{
@@ -665,11 +679,11 @@ p[class*='comment-form'] .required{
     /*- WIDGET NAV MENU ---------*/
     .widget.widget_nav_menu{
         max-width: none;
-        padding: 20px 0;
         margin: 0;
     }
     .menu-main-menu-container{
         max-width: 1040px;
+        padding: 20px 0;
         margin: auto;
         overflow: hidden;
         text-align: center;
@@ -688,6 +702,51 @@ p[class*='comment-form'] .required{
         color: #8F8F8F;
     }
 
+        /*-----------------------*/
+        /*- WIDGET NAV MENU -----*/
+        aside.widget.widget_nav_menu{
+            margin-bottom: 20px;
+        }
+        aside .menu-main-menu-container{
+            padding: 0;
+        }
+        aside .menu-main-menu-container li{
+            display: block;
+        }
+        aside .menu-main-menu-container li a{
+            display: block;
+            font-weight: normal;
+            text-align: left;
+        }
+
+    /*---------------------------*/
+    /*- SEARCH WIDGET -----------*/
+    .screen-reader-text{
+        display: none;
+    }
+    aside #searchsubmit{
+        display: block;
+        width: 100%;
+    }
+    aside .searchform #s{
+        border: none;
+    }
+
+    /*---------------------------*/
+    /*- CALENDAR WIDGET ---------*/
+    #wp-calendar{
+        font-size: 1.2rem;
+    }
+    #wp-calendar caption{
+        font-size: 1rem;
+        font-weight: 700;
+        text-align: left;
+        text-transform: uppercase;
+    }
+    #wp-calendar th,
+    #wp-calendar td{
+        padding: 5px;
+    }
 
 /*-------------------------------*/
 /*- MAP - ADD ON ----------------*/

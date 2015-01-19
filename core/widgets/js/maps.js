@@ -11,7 +11,6 @@ jQuery(document).ready(function($){
 		$longlat = $(this).closest( '.layers-content' ).find('input[id$="google_maps_long_lat"]').val();
 		$map.data( 'location' , $address.toString() );
 		$map.data( 'longlat' , $longlat.toString() );
-		console.log( $map.data( 'location' ) );
 		layers_check_address($);
 	});
 	layers_check_address($);

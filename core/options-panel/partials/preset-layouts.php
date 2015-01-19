@@ -26,6 +26,14 @@ $find_builder_page = layers_get_builder_pages(); ?>
    <div class="layers-row layers-well layers-content-massive">
       <div class="layers-browser">
          <div class="layers-products">
+            <div class="layers-product blank-product" id="layers-generate-preset-layout-blank" data-key="layers-preset-layout-blank">
+               <input id="layers-preset-layout-blank-title" type="hidden" value="<?php _e( 'Blank' , LAYERS_THEME_SLUG ); ?>" />
+               <input id="layers-preset-layout-blank-widget_data" type="hidden" value="<?php json_encode( array() ); ?>" />
+               <div class="layers-product-screenshot">
+                  <span></span>
+               </div>
+               <h3 class="layers-product-name"><?php _e( 'Blank Canvas' , LAYERS_THEME_SLUG ); ?></h3>
+            </div>
             <?php foreach( $layers_migrator->get_preset_layouts() as $template_key => $template ) { ?>
                <div class="layers-product active  <?php echo ( isset( $template[ 'container_css' ] ) ?  $template[ 'container_css' ] : '' ); ?>" tabindex="0">
 
@@ -38,33 +46,25 @@ $find_builder_page = layers_get_builder_pages(); ?>
                   </div>
                   <h3 class="layers-product-name" id="<?php echo $template_key; ?>"><?php echo $template[ 'title' ]; ?></h3>
                   <div class="layers-product-actions">
-                     <a class="layers-button btn-primary customize load-customize" id="layers-generate-preset-layout-<?php echo $template_key; ?>"  data-key="layers-preset-layout-<?php echo $template_key; ?>"><?php _e( 'Select Layout', LAYERS_THEME_SLUG ); ?></a>
+                     <a class="layers-button btn-primary customize load-customize" id="layers-generate-preset-layout-<?php echo $template_key; ?>"  data-key="layers-preset-layout-<?php echo $template_key; ?>"><?php _e( 'Select', LAYERS_THEME_SLUG ); ?></a>
                   </div>
                </div>
             <?php } // Get Preset Layouts ?>
-            <div class="layers-product blank-product" id="layers-generate-preset-layout-blank" data-key="layers-preset-layout-blank">
-               <input id="layers-preset-layout-blank-title" type="hidden" value="<?php _e( 'Blank' , LAYERS_THEME_SLUG ); ?>" />
-               <input id="layers-preset-layout-blank-widget_data" type="hidden" value="<?php json_encode( array() ); ?>" />
-               <div class="layers-product-screenshot">
-                  <span></span>
-               </div>
-               <h3 class="layers-product-name"><?php _e( 'Blank Canvas' , LAYERS_THEME_SLUG ); ?></h3>
-            </div>
          </div>
       </div>
    </div>
 
 </section>
 
-<section class="layers-modal layers-hide">
-   <div class="layers-vertical-center">
-      <div class="layers-section-title layers-container">
+<section class="layers-modal-container layers-hide">
+   <div class="layers-vertical-center layers-modal">
+      <div class="layers-section-title layers-no-push-bottom">
 
          <h2 class="layers-heading layers-push-bottom" id="layers-options-header">
             <?php _e( 'Add a page title', LAYERS_THEME_SLUG ); ?>
          </h2>
 
-         <p class="layers-form-item layers-span-6">
+         <p class="layers-form-item layers-span-12">
             <?php
                echo $form_elements->input( array(
                   'type' => 'text',

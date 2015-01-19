@@ -8,7 +8,7 @@ jQuery(document).ready(function($){
         // "Hi Mom!"
         $that = $(this);
 
-        $that.parent().append("Be patient while we import the widget data and images.");
+        $that.parent().append( migratori8n.loading_message );
 
         var $page_data = {
                 action: 'layers_import_widgets',
@@ -20,9 +20,7 @@ jQuery(document).ready(function($){
          jQuery.post(
             layers_widget_params.ajaxurl,
             $page_data,
-            function(data){
-                console.log( data );
-            }
+            function(data){}
         );
 
     });
@@ -33,7 +31,7 @@ jQuery(document).ready(function($){
         // "Hi Mom!"
         $that = $(this);
 
-        $( '.layers-modal' ).fadeOut();
+        $( '.layers-modal-container' ).fadeOut();
         $( '#adminmenu' ).fadeIn();
     });
 
@@ -83,8 +81,8 @@ jQuery(document).ready(function($){
         $widget_data = $('#' + $id + '-widget_data' ).val();
 
         // Show the Modal
-        $( '.layers-modal' ).find( '.layers-media-image' ).html( $that.find('img') );
-        $( '.layers-modal' ).hide().removeClass( 'layers-hide' ).fadeIn( 350 );
+        $( '.layers-modal-container' ).find( '.layers-media-image' ).html( $that.find('img') );
+        $( '.layers-modal-container' ).hide().removeClass( 'layers-hide' ).fadeIn( 350 );
         $( '#adminmenu' ).fadeOut();
 
         $( '#layers_preset_page_title' ).val( $title );

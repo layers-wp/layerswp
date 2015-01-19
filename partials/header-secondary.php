@@ -1,5 +1,5 @@
 <?php if ( has_nav_menu( LAYERS_THEME_SLUG . '-secondary-left' ) || has_nav_menu( LAYERS_THEME_SLUG . '-secondary-right' ) ) { ?>
-    <div class="header-secondary content-small darken invert">
+    <div class="header-secondary content-small invert">
         <?php do_action( 'layers_before_header_secondary_inner' ); ?>
             <div class="container clearfix">
                 <?php do_action( 'layers_before_header_secondary_left_nav' ); ?>

@@ -231,7 +231,7 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 							<?php }; // if list-list == liststyle ?>
 						<?php }; // while have_posts ?>
 					<?php }; // if have_posts ?>
-					<?php if( isset( $widget['show_pagination'] ) ) layers_pagination( array( 'query' => $portfolio_query ), 'div', 'pagination row span-12 text-center' ); ?>
+					<?php if( isset( $widget['show_pagination'] ) ) layers_pagination( array( 'query' => $post_query ), 'div', 'pagination row span-12 text-center' ); ?>
 				</div>
 			</section>
 

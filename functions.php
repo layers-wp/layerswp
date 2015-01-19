@@ -107,6 +107,10 @@ if( ! function_exists( 'layers_setup' ) ) {
 		global $pagenow;
 
 		/**
+		 * Add support for HTML5
+		 */
+		add_theme_support('html5');
+		/**
 		 * Add support for widgets inside the customizer
 		 */
 		add_theme_support('widget-customizer');
@@ -281,7 +285,7 @@ if( ! function_exists( 'layers_scripts' ) ) {
 
 		wp_enqueue_style(
 			LAYERS_THEME_SLUG . '-style' ,
-			get_stylesheet_uri() ,
+			get_template_directory_uri() . '/style.css',
 			array() ,
 			LAYERS_VERSION
 		);
@@ -368,6 +372,9 @@ if( ! function_exists( 'layers_admin_scripts' ) ) {
             LAYERS_VERSION,
             true
         );
+        wp_localize_script( LAYERS_THEME_SLUG . '-admin-migrator', 'migratori8n', array(
+        	'loading_message' => __( 'Be patient while we import the widget data and images.' , LAYERS_THEME_SLUG )
+		) );
 
 		wp_enqueue_script(
 			LAYERS_THEME_SLUG . '-admin' ,

@@ -122,25 +122,33 @@ class Layers_Customizer_Config {
 										'layout-boxed' => __( 'Boxed' , LAYERS_THEME_SLUG ),
 										'layout-fullwidth' => __( 'Full Width' , LAYERS_THEME_SLUG )
 									)
-								), // layout,
+								),
 								'layout' => array(
 									'type'     => 'layers-select-icons',
 									'label'    => __( 'Logo & Menu Position', LAYERS_THEME_SLUG ),
-									'default' => 'header-logo-left',
-									'choices' => array(
+									'default'  => 'header-logo-left',
+									'choices'  => array(
 										'header-logo-left' => __( 'Logo Left' , LAYERS_THEME_SLUG ),
 										'header-logo-right' => __( 'Logo Right' , LAYERS_THEME_SLUG ),
 										'header-logo-center-top' => __( 'Logo Center Top' , LAYERS_THEME_SLUG ),
 										'header-logo-top' => __( 'Logo Top' , LAYERS_THEME_SLUG ),
 										'header-logo-center' => __( 'Logo Center' , LAYERS_THEME_SLUG )
 									)
-								), // layout,
+								),
 								'fixed' => array(
-									'type'     => 'checkbox',
+									'type'     => 'layers-checkbox',
 									'label'    => __( 'Fixed Header', LAYERS_THEME_SLUG ),
 									'description' => __( 'Ticking this option will force your header to the to stick to the top of the page screen when scrolling.', LAYERS_THEME_SLUG ),
 									'default' => false,
-								) // fixed
+								),
+								'background-color' => array(
+									'type'		=> 'layers-color',
+									'label'		=> __( 'Background Color', LAYERS_THEME_SLUG ),
+									'linked'	=> array(
+										'show-if-selector' => "#layers-header-layout-fixed",
+										'show-if-value' => "true",
+									),
+								),
 							); // header-layout
 
 		// Header -> Layout -> Scripts
@@ -242,6 +250,13 @@ class Layers_Customizer_Config {
 		
 		// Footer -> Layout -> Customization
 		$controls['footer-customization'] = array(
+								'customize-footer-checkbox' => array(
+									'type' => 'layers-checkbox',
+									'label' => __( 'Customize Footer', LAYERS_THEME_SLUG ),
+								),
+								'break-1' => array(
+									'type'     => 'layers-seperator',
+								),
 								'font-color-heading' => array(
 									'type'  => 'layers-heading',
 									'label'    => __( 'Text', LAYERS_THEME_SLUG ),
@@ -254,8 +269,8 @@ class Layers_Customizer_Config {
 									'type' => 'layers-color',
 									'subtitle' => __( 'Link Color', LAYERS_THEME_SLUG ),
 								),
-								'break-3' => array(
-									'type'     => 'layers-seperator'
+								'break-2' => array(
+									'type'     => 'layers-seperator',
 								),
 								'background' => array(
 									'type'     => 'layers-background',
@@ -275,7 +290,7 @@ class Layers_Customizer_Config {
 											'repeat-x' => __( 'Repeat Horizontal' , LAYERS_THEME_SLUG ),
 											'repeat-y' => __( 'Repeat Vertical' , LAYERS_THEME_SLUG ),
 										),
-									)
+									),
 								),
 							); // footer-customization
 

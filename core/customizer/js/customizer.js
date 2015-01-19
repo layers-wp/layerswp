@@ -94,6 +94,7 @@ jQuery(document).ready(function($) {
 	
 	// Jump to control - during testing only (must comment for launch).
 	//$('#accordion-section-layers-footer-customization').children('.accordion-section-title').click();
+	//$('#accordion-section-layers-header-layout').children('.accordion-section-title').click();
 
 	/**
 	 * 3 - Better history states in customizer

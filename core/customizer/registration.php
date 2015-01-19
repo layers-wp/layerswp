@@ -249,6 +249,46 @@ class Layers_Customizer_Regsitrar {
 						$control_data
 					)
 				);
+			} else if( 'layers-checkbox' == $control_data['type'] ) {
+
+				// Add Setting
+				$this->customizer->add_setting(
+					$setting_key,
+					array(
+						'default'    => ( isset( $control_data['default'] ) ? $control_data['default'] : NULL ) ,
+						'type'       => 'theme_mod',
+						'capability' => 'manage_options'
+					)
+				);
+
+				// Add Control
+				$this->customizer->add_control(
+					new Layers_Customize_Checkbox_Control(
+						$this->customizer,
+						$setting_key,
+						$control_data
+					)
+				);
+			} else if( 'layers-select' == $control_data['type'] ) {
+
+				// Add Setting
+				$this->customizer->add_setting(
+					$setting_key,
+					array(
+						'default'    => ( isset( $control_data['default'] ) ? $control_data['default'] : NULL ) ,
+						'type'       => 'theme_mod',
+						'capability' => 'manage_options'
+					)
+				);
+
+				// Add Control
+				$this->customizer->add_control(
+					new Layers_Customize_Select_Control(
+						$this->customizer,
+						$setting_key,
+						$control_data
+					)
+				);
 			} else if( 'layers-background' == $control_data['type'] ) {
 				
 				// Footer Background Heading

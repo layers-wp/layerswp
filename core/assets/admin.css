@@ -1048,14 +1048,13 @@ input[type=text].layers-color-selector.wp-color-picker{
 
 /*---------------------------*/
 /*- CUSTOMIZER CONTROLS -----*/
-
-.customize-control {
-    
+.customize-control .layers-customize-control .layers-form-item{
+    margin: 0 0 3px;
 }
-.customize-control-layers-heading {
-    margin: 0;
+.customize-control-layers-heading .layers-customize-control{
+    margin: 0 0 -8px;
 }
-.customize-control-layers-checkbox {
+.customize-control-layers-checkbox .layers-customize-control{
     margin-top: 10px;
 }
 

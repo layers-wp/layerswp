@@ -14,13 +14,24 @@ if( !class_exists( 'Layers_Customize_Heading_Control' ) ) {
 		public $type = 'layers-heading';
 
 		public $label = '';
+		
+		public $subtitle = '';
 
 		public $description = '';
-
+		
+		public $linked = '';
 
 		public function render_content() {
+			
+			// Relational: Convert the linked array to 'data-' attributes that the js expects.
+			if ( isset( $this->linked ) && isset( $this->linked['show-if-selector'] ) && isset( $this->linked['show-if-value'] ) ) {
+				$linked = 'data-show-if-selector="' . esc_attr( $this->linked['show-if-selector'] ) . '" data-show-if-value="' . esc_attr( $this->linked['show-if-value'] ) . '" ';
+			}
+			else{
+				$linked = '';
+			}
 			?>
-			<div class="layers-control-item">
+			<div id="layers-customize-control-<?php echo esc_attr( $this->id ); ?>" class="layers-customize-control layers-customize-control-<?php echo esc_attr( str_replace( 'layers-', '', $this->type ) ); ?>" <?php echo $linked; ?> >
 				
 				<?php
 				if( '' != $this->label ) { ?>
@@ -30,7 +41,9 @@ if( !class_exists( 'Layers_Customize_Heading_Control' ) ) {
 				<?php } ?>
 
 				<?php if ( '' != $this->description ) : ?>
-					<div class="description customize-control-description"><?php echo $this->description; ?></div>
+					<div class="description customize-control-description">
+						<?php echo esc_html( $this->description ); ?>
+					</div>
 				<?php endif; ?>
 				
 			</div>

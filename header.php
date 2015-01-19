@@ -15,7 +15,16 @@
 		<?php do_action( 'layers_before_header' ); ?>
 
 		<?php get_template_part( 'partials/header' , 'secondary' ); ?>
-		<header <?php layers_header_class(); ?>>
+		
+		<?php
+		// Apply customizer header settings.
+		if( layers_get_theme_mod( 'header-layout-background-color' ) ){
+			layers_inline_styles( 'nothing', 'color', array( 'color' => '#333' ) ); // Temp Fix
+			wp_add_inline_style( LAYERS_THEME_SLUG . '-inline-styles', '.header-fixed { background-color: rgba(' . implode( ', ' , hex2rgb( layers_get_theme_mod( 'header-layout-background-color' ) ) ) . ', 0.3); }' );
+		}
+		?>
+		
+		<header <?php layers_header_class(); ?> >
 			<?php do_action( 'layers_before_header_inner' ); ?>
 			<div class="<?php if( 'layout-fullwidth' != layers_get_theme_mod( 'header-layout-width' ) ) echo 'container'; ?> clearfix">
 				<?php if( 'header-logo-center' == layers_get_theme_mod( 'header-layout-layout' ) ) { ?>

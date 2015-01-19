@@ -25,6 +25,7 @@
  * 12 - Add Last Class to Design Bar Elements
  * 13 - Show/Hide linked elements
  * 14 - Run Initialisations
+ * 15 - Layers Custom Easing
 */
 
 jQuery(function($) {
@@ -468,7 +469,7 @@ jQuery(function($) {
 		//console.log( $widget_synced );
 		
 		// Reset 'show if' selectors;
-		layers_apply_show_if_selectors();
+		layers_init_show_if();
 	};
 
 	/**
@@ -492,37 +493,82 @@ jQuery(function($) {
 	*/
 
 	// Instantiate the show/hide lookup
-	layers_enqueue_init( function(){ layers_apply_show_if_selectors(); } );
-
-	function layers_apply_show_if_selectors(){
+	layers_enqueue_init( function(){ layers_init_show_if(); } );
+	
+	function layers_init_show_if(){
 		$('[data-show-if-selector]').each(function(){
-			// "Hi Mom!"
-			$that = $(this);
-			var $selector = $that.data( 'show-if-selector' );
-
-			$( document ).on( 'change' , $selector , function(e){
-
-				$('[data-show-if-selector="' + $selector + '"]').each(function(){
-					$input = $(this);
-
-					var $value = $input.data( 'show-if-value' );
-
-					console.log(
-							"Input: " + $( $selector ).val() +
-							"Selector: " + $selector +
-							"Show If: " + $value +
-							"Found? " + $value.indexOf( $( $selector ).val() )
-						);
-
-					if( $value.indexOf( $( $selector ).val() ) > -1 ){
-						$input.removeClass( 'layers-hide' );
-					} else {
-						$input.addClass( 'layers-hide' );
-					}
-				})
+			
+			var $target_element = $(this);
+			
+			var $source_element_selector = $target_element.attr( 'data-show-if-selector' );
+			
+			layers_apply_show_if( $source_element_selector );
+			
+			$( document ).on( 'change', $source_element_selector, function(e){
+				
+				layers_apply_show_if( $source_element_selector );
+				
 			});
+			
 		});
 	}
+	
+	function layers_apply_show_if( $source_element_selector_new ){
+		
+		$( '[data-show-if-selector="' + $source_element_selector_new + '"]' ).each(function(){
+			
+			var $target_element = $(this);
+			
+			var $target_element_value = $target_element.data( 'show-if-value' ).toString();
+			
+			var $source_element = $( $target_element.data( 'show-if-selector' ).toString() );
+			
+			if ( $source_element.attr('type') == 'checkbox' ) {
+				//console.log( $source_element.attr('id') );
+				$source_element_value = ( $source_element.is(':checked') ) ? 'true' : 'false' ;
+			}
+			else {
+				$source_element_value = $source_element.val();
+			}
+			
+			
+			// Set the reveal animation type.
+			var animation_type = 'none';
+			if ( $target_element.hasClass('layers-customize-control') ){
+				animation_type = 'slideDown';
+			}
+			
+			// If is a Customize Control then hide the whole control.
+			if ( $target_element.hasClass('layers-customize-control') ){
+				$target_element = $target_element.parent('.customize-control');
+			}
+
+			if( $target_element_value.indexOf( $source_element_value ) > -1 ){
+				
+				if( animation_type == 'slideDown' ){
+					$target_element.removeClass( 'layers-hide' );
+					$target_element.slideDown( { duration: 550, easing: 'layersEaseInOut' } );
+				}
+				else{
+					$target_element.removeClass( 'layers-hide' );
+				}
+				
+			} else {
+				
+				if( animation_type == 'slideDown' ){
+					$target_element.slideUp( { duration: 550, easing: 'layersEaseInOut', complete: function(){
+						$target_element.addClass( 'layers-hide' );
+					} } );
+				}
+				else{
+					$target_element.addClass( 'layers-hide' );
+				}
+				
+			}
+		});
+		
+	}
+	
 	
 	/**
 	* 14 - Run Initialisations
@@ -546,6 +592,17 @@ jQuery(function($) {
 			
 		}, 10 );
 	}
+	
+	/**
+	* 15 - Layers Custom Easing
+	*
+	* Extend jQuery easing with custom Layers easing function for UI animations - eg slideUp, SlideDown
+	*/
+	
+	jQuery.extend( jQuery.easing, { layersEaseInOut: function (x, t, b, c, d) {
+		if ((t/=d/2) < 1) return c/2*t*t + b;
+		return -c/2 * ((--t)*(t-2) - 1) + b;
+	} });
 	
 });
 

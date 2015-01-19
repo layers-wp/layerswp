@@ -13,9 +13,13 @@ if( !class_exists( 'Layers_Customize_Select_Image_Control' ) ) {
 
 		public $type = 'layers-select-images';
 
-		public $description = '';
-
+		public $label = '';
+		
 		public $subtitle = '';
+
+		public $description = '';
+		
+		public $linked = '';
 
 		public function render_content() {
 
@@ -25,9 +29,17 @@ if( !class_exists( 'Layers_Customize_Select_Image_Control' ) ) {
 			$link_attr = ltrim( $link[0], 'data-' );
 			$link_val = rtrim( $link[1], '"' );
 
-			$values = false; ?>
+			$values = false;
 			
-			<div id="input_<?php echo $this->id; ?>" class="layers-control-item">
+			// Relational: Convert the linked array to 'data-' attributes that the js expects.
+			if ( isset( $this->linked ) && is_array( $this->linked ) && isset( $this->linked['show-if-selector'] ) && isset( $this->linked['show-if-value'] ) ) {
+				$linked = 'data-show-if-selector="' . esc_attr( $this->linked['show-if-selector'] ) . '" data-show-if-value="' . esc_attr( $this->linked['show-if-value'] ) . '" ';
+			}
+			else{
+				$linked = '';
+			}
+			?>
+			<div id="layers-customize-control-<?php echo esc_attr( $this->id ); ?>" class="layers-customize-control layers-customize-control-<?php echo esc_attr( str_replace( 'layers-', '', $this->type ) ); ?>" <?php echo $linked; ?> >
 
 				<span class="customize-control-title">
 					<?php echo esc_html( $this->label ); ?>
@@ -51,6 +63,12 @@ if( !class_exists( 'Layers_Customize_Select_Image_Control' ) ) {
 						)
 					); ?>
 				</div>
+				
+				<?php if ( '' != $this->description ) : ?>
+					<div class="description customize-control-description">
+						<?php echo esc_html( $this->description ); ?>
+					</div>
+				<?php endif; ?>
 			
 			</div>
 			<?php

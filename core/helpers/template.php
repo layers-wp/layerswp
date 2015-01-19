@@ -727,7 +727,7 @@ if( !function_exists( 'layers_inline_styles' ) ) {
 * @return   varchar     $media_output Feature Image or Video
 */
 if( !function_exists( 'layers_get_feature_media' ) ) {
-	function layers_get_feature_media( $attachmentid = NULL, $size = 'medium' , $video = NULL ){
+	function layers_get_feature_media( $attachmentid = NULL, $size = 'medium' , $video = NULL, $postid = NULL ){
 
 		// Return dimensions
 		$image_dimensions = layers_get_image_sizes( $size );
@@ -745,7 +745,14 @@ if( !function_exists( 'layers_get_feature_media' ) ) {
 		}
 
 		// Set which element to return
-		if( isset( $use_video ) ) {
+		if( NULL != $postid &&
+				(
+					( is_single() && isset( $use_video ) ) ||
+					( !is_single() && isset( $use_video ) && !isset( $use_image) )
+				)
+		) {
+			$media = $use_video;
+		} else if( NULL == $postid && isset( $use_video ) ) {
 			$media = $use_video;
 		} else if( isset( $use_image ) ) {
 			$media = $use_image;

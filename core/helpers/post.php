@@ -397,7 +397,7 @@ if( !function_exists( 'layers_post_featured_media' ) ) {
 
         $post_meta = get_post_meta( $postid, 'layers', true );
 
-        $featured_media = layers_get_feature_media( get_post_thumbnail_id( $postid ), $size, ( isset( $post_meta[ 'video-url' ] ) ? $post_meta[ 'video-url' ] : NULL ) );
+        $featured_media = layers_get_feature_media( get_post_thumbnail_id( $postid ), $size, ( isset( $post_meta[ 'video-url' ] ) ? $post_meta[ 'video-url' ] : NULL ), $postid );
 
         if( NULL == $featured_media ) return;
 

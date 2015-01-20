@@ -203,7 +203,7 @@ section[class*=' off-canvas-']{
     /*- POSITION OVERLAY --------*/
     .header-fixed{
         background: rgba(0, 0, 0, 0.1);
-        position: absolute;
+        position: fixed;
         top: 0;
         left: 0;
         width: 100%;
@@ -226,6 +226,7 @@ section[class*=' off-canvas-']{
     /*- SECONDARY HEADER --------*/
     .header-secondary nav{margin: 0; font-size: 1.2rem;}
     .header-secondary .sub-menu{display: none;}
+
 
 /*-------------------------------*/
 /*- SLIDER ----------------------*/

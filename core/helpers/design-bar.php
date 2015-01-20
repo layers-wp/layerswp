@@ -178,7 +178,7 @@ class Layers_Design_Controller {
 
     public function render_input( $form_args = array() ) { ?>
 		<div class="layers-<?php echo $form_args[ 'type' ]; ?>-wrapper layers-form-item">
-	        <?php if( 'checkbox' != $form_args[ 'type' ] && isset( $form_args[ 'label' ] ) ) { ?>
+	        <?php if( 'checkbox' != $form_args[ 'type' ] && isset( $form_args[ 'label' ] ) && '' != $form_args[ 'label' ] ) { ?>
 	            <label><?php echo $form_args[ 'label' ]; ?></label>
 	        <?php } ?>
 

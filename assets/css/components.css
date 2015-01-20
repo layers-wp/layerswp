@@ -725,11 +725,14 @@ p[class*='comment-form'] .required{
     .screen-reader-text{
         display: none;
     }
-    aside .searchsubmit{
+    .search-form label{
+        margin-bottom: 0;
+    }
+    aside .search-submit{
         display: block;
         width: 100%;
     }
-    aside .searchform #s{
+    aside .search-field{
         border: none;
     }
 

@@ -265,7 +265,7 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 			extract( $instance, EXTR_SKIP ); ?>
 
 			<!-- Form HTML Here -->
-			<?php $this->design_bar()->bar(
+			<?php $this->design_bar(
 				'side', // CSS Class Name
 				array(
 					'name' => $this->get_field_name( 'design' ),
@@ -280,7 +280,7 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 					'layout' => array(
 						'icon-css' => 'icon-layout-fullwidth',
 						'label' => 'Layout',
-						'wrapper-css' => 'layers-pop-menu-wrapper layers-small',
+						'wrapper-class' => 'layers-pop-menu-wrapper layers-small',
 						'elements' => array(
 							'layout' => array(
 								'type' => 'select-icons',
@@ -418,7 +418,7 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 						</span>
 					</a>
 					<section class="layers-accordion-section layers-content">
-						<?php $this->design_bar()->bar(
+						<?php $this->design_bar(
 							'top', // CSS Class Name
 							array(
 								'name' => $this->get_custom_field_name( $widget_details, 'slides',  $slide_guid, 'design' ),

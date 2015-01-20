@@ -242,7 +242,7 @@ class Layers_Form_Elements {
 					<a href="#" class="layers-image-upload-button  layers-button btn-full <?php if( isset( $input->value ) && '' != $input->value ) echo 'layers-has-image'; ?>"
 						data-title="<?php _e( 'Select an Image' , LAYERS_THEME_SLUG ); ?>"
 						data-button_text="<?php _e( 'Use Image' , LAYERS_THEME_SLUG ); ?>">
-						<?php echo ( isset( $input->label ) ? $input->label : __( 'Choose Image' , LAYERS_THEME_SLUG ) ); ?>
+						<?php echo ( isset( $input->button_label ) ? $input->button_label : __( 'Choose Image' , LAYERS_THEME_SLUG ) ); ?>
 					</a>
 
 					<?php echo $this->input(

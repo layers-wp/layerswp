@@ -288,7 +288,7 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 			extract( $instance, EXTR_SKIP ); ?>
 
 			<!-- Form HTML Here -->
-			<?php $this->design_bar()->bar(
+			<?php $this->design_bar(
 				'side', // CSS Class Name
 				array(
 					'name' => $this->get_field_name( 'design' ),

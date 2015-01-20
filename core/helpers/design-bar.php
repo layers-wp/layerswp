@@ -66,8 +66,7 @@ class Layers_Design_Controller {
                 $this->render_controls(); ?>
 
                 <?php // Show trash icon (for use when in an accordian)
-                $this->render_trash_control(); ?>.
-
+                $this->render_trash_control(); ?>
             </ul>
         </div>
     <?php }
@@ -198,8 +197,6 @@ class Layers_Design_Controller {
     /**
     * Layout Options
     *
-    * @param    array       $this->widget     Widget Element
-    * @param    array       $values     Accepts the value for this element
     * @param    array       $args       Additional arguments to pass to this function
     */
 
@@ -240,8 +237,6 @@ class Layers_Design_Controller {
     /**
     * List Style - Static Option
     *
-    * @param    array       $this->widget     Widget Element
-    * @param    array       $values     Accepts the value for this element
     * @param    array       $args       Additional arguments to pass to this function
     */
 
@@ -283,8 +278,6 @@ class Layers_Design_Controller {
     /**
     * Columns - Static Option
     *
-    * @param    array       $this->widget     Widget Element
-    * @param    array       $values     Accepts the value for this element
     * @param    array       $args       Additional arguments to pass to this function
     */
 
@@ -329,8 +322,6 @@ class Layers_Design_Controller {
     /**
     * Text Align - Static Option
     *
-    * @param    array       $this->widget     Widget Element
-    * @param    array       $values     Accepts the value for this element
     * @param    array       $args       Additional arguments to pass to this function
     */
 
@@ -373,8 +364,6 @@ class Layers_Design_Controller {
     /**
     * Image Align - Static Option
     *
-    * @param    array       $this->widget     Widget Element
-    * @param    array       $values     Accepts the value for this element
     * @param    array       $args       Additional arguments to pass to this function
     */
 
@@ -416,8 +405,7 @@ class Layers_Design_Controller {
     /**
     * Featured Image - Static Option
     *
-    * @param    array       $this->widget     Widget Element
-    * @param    array       $values     Accepts the value for this element
+    * @param    array       $args       Additional arguments to pass to this function
     */
 
     function featuredimage( $args = NULL ){
@@ -476,8 +464,7 @@ class Layers_Design_Controller {
     /**
     * Image Size - Static Option
     *
-    * @param    array       $this->widget     Widget Element
-    * @param    array       $values     Accepts the value for this element
+    * @param    array       $args       Additional arguments to pass to this function
     */
 
     function imageratios( $args = NULL ){
@@ -519,8 +506,6 @@ class Layers_Design_Controller {
     /**
     * Fonts - Static Option
     *
-    * @param    array       $this->widget     Widget Element
-    * @param    array       $values     Accepts the value for this element
     * @param    array       $args       Additional arguments to pass to this function
     */
 
@@ -584,8 +569,6 @@ class Layers_Design_Controller {
     /**
     * Background - Static Option
     *
-    * @param    array       $this->widget     Widget Element
-    * @param    array       $values     Accepts the value for this element
     * @param    array       $args       Additional arguments to pass to this function
     */
 
@@ -669,8 +652,6 @@ class Layers_Design_Controller {
     /**
     * Advanced - Static Option
     *
-    * @param    array       $this->widget     Widget Element
-    * @param    array       $values     Accepts the value for this element
     * @param    array       $args       Additional arguments to pass to this function
     */
 
@@ -712,9 +693,7 @@ class Layers_Design_Controller {
     /**
     * Custom Compontent
     *
-    * @param    array       $this->widget     Widget Element
-    * @param    array       $values     Accepts the value for this element,
-    * @param    varchar         $key        Simply the key and classname for the icon,
+	* @param    varchar     $key        Simply the key and classname for the icon,
     * @param    array       $args       Component arguments, including the form items
     */
 

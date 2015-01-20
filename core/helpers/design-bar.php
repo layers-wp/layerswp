@@ -296,7 +296,7 @@ class Layers_Design_Controller {
         $args[ 'label' ] = __( 'Columns' , LAYERS_THEME_SLUG );
 
         // Add a Wrapper Class
-        $args[ 'wrapper-class' ] = 'layers-pop-menu-wrapper layers-animate layers-small';
+        $args[ 'wrapper-class' ] = 'layers-pop-menu-wrapper layers-animate layers-content-small';
 
         // Add elements
         $args[ 'elements' ] = array(

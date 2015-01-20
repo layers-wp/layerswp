@@ -263,7 +263,7 @@ class Layers_Design_Controller {
                                 'type' => 'select-icons',
                                 'name' => $this->widget['name'] . '[liststyle]' ,
                                 'id' =>  $this->widget['id'] . '-liststyle' ,
-                                'value' => ( isset( $this->values[ 'liststyle' ] ) ) ? $values[ 'liststyle' ] : NULL,
+                                'value' => ( isset( $this->values[ 'liststyle' ] ) ) ? $this->values[ 'liststyle' ] : NULL,
                                 'options' => array(
                                     'list-grid' => __( 'Grid' , LAYERS_THEME_SLUG ),
                                     'list-list' => __( 'List' , LAYERS_THEME_SLUG ),

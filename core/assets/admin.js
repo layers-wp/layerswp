@@ -328,7 +328,10 @@ jQuery(function($) {
  		// Get the input value
 		$value = $('#' + $that.attr( 'for' ) ).val();
 
- 		if( 0 == $that.closest( '.layers-form-item' ).siblings( '.layers-form-item' ).length ){
+		// Capture the closest fellow form items
+		$form_items = $that.closest( '.layers-form-item' ).siblings( '.layers-form-item' ).length
+
+ 		if( 0 == $form_items ){
 			$that.closest( '.layers-pop-menu-wrapper' ).siblings( '.layers-icon-wrapper' ).find( 'span[class^="icon-"]' ).attr( 'class', 'icon-' + $value );
 		}
 		// Toggle active state

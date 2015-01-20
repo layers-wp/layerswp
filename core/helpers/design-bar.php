@@ -306,6 +306,13 @@ class Layers_Design_Controller {
                                 'name' => $this->widget['name'] . '[columns]' ,
                                 'id' =>  $this->widget['id'] . '-columns' ,
                                 'value' => ( isset( $this->values['columns'] ) ) ? $this->values['columns'] : NULL,
+                                'options' => array(
+                                    '1' => __( '1 Column' , LAYERS_THEME_SLUG ),
+                                    '2' => __( '2 Columns' , LAYERS_THEME_SLUG ),
+                                    '3' => __( '3 Columns' , LAYERS_THEME_SLUG ),
+                                    '4' => __( '4 Columns' , LAYERS_THEME_SLUG ),
+                                    '6' => __( '6 Columns' , LAYERS_THEME_SLUG )
+                                )
                             ),
                             'gutter' => array(
                                 'type' => 'checkbox',

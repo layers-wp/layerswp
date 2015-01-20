@@ -107,7 +107,7 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 				$col_count = str_ireplace('columns-', '', $widget['design'][ 'columns']  );
 				$span_class = 'span-' . ( 12/ $col_count );
 			} else {
-				$col_count = 3
+				$col_count = 3;
 				$span_class = 'span-4';
 			}
 

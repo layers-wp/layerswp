@@ -384,5 +384,11 @@ html{}
 		margin: 0 10px 0 0;
 	}
 
+    /*---------------------------*/
+	/*- BACK TO TOP -------------*/
+	#back-to-top{
+		display: none;
+	}
+
 
 }

@@ -267,11 +267,15 @@ object{
     .wrapper-site{
         width: 100%;
         position: relative;
-        transition: transform 0.3s ease-in-out 0s, width 0.3s ease-in-out 0s;
+        left: 0;
+        top: 0;
+        transition: left 0.3s ease-in-out 0s, top 0.3s ease-in-out 0s, width 0.3s ease-in-out 0s;
         z-index: 2;
     }
 
-    .wrapper-content{position: relative;}
+    .wrapper-content{
+        position: relative;
+    }
 
     /*---------------------------*/
     /*- CONTAINER ---------------*/

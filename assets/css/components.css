@@ -725,7 +725,7 @@ p[class*='comment-form'] .required{
     .screen-reader-text{
         display: none;
     }
-    aside #searchsubmit{
+    aside .searchsubmit{
         display: block;
         width: 100%;
     }

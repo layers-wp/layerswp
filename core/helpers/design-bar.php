@@ -94,7 +94,7 @@ class Layers_Design_Controller {
                     foreach( $c as $key => $args ) {
                         ob_start();
 
-                        $this->$component( $args );
+                        $this->$c( $args );
 
                         $this->controls[] = trim( ob_get_contents() );
                         ob_end_clean();

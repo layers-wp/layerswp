@@ -90,10 +90,28 @@ section[class*=' off-canvas-']{
         color: #ccc;
         font-size: 1.2rem;
     }
-    section[class*=' off-canvas-'] .nav-vertical li{
-        padding: 0;
-    }
 
+        /*-----------------------*/
+        /*- OFF CANVAS MENU -----*/
+        section[class*=' off-canvas-'] .nav-vertical{
+            display: block;
+        }
+        section[class*=' off-canvas-'] .nav-vertical li{
+            padding: 0;
+        }
+        section[class*=' off-canvas-'] .nav-vertical .sub-menu{
+            display: block;
+            width: auto;
+            visibility: visible;
+            opacity: 1;
+            position: static;
+            border: none;
+            font-size: 1.2rem;
+            box-shadow: none;
+        }
+        section[class*=' off-canvas-'] .nav-vertical .sub-menu li{
+            border: none;
+        }
 
 
 /*-------------------------------*/
@@ -678,7 +696,7 @@ p[class*='comment-form'] .required{
         max-width: none;
         margin: 0;
     }
-    .menu-main-menu-container{
+    .wrapper-site .menu-main-menu-container{
         max-width: 1040px;
         padding: 20px 0;
         margin: auto;

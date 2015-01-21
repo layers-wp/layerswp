@@ -500,7 +500,12 @@ if( !function_exists( 'layers_can_show_sidebar' ) ) {
 
 	function layers_can_show_sidebar( $sidebar = 'left-sidebar' ){
 
-		 if( is_page() ) {
+		if ( is_page_template( 'template-blog.php' ) ) {
+
+			// Check the arhive page option
+		   $can_show_sidebar = layers_get_theme_mod( 'content-layout-archive-' . $sidebar );
+
+		} else if( is_page() ) {
 
 			// Check the pages use page templates to decide which sidebars are allowed
 			$can_show_sidebar =

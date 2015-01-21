@@ -9,696 +9,709 @@
 
 class Layers_Design_Controller {
 
-	/**
-	* Generate Design Options
-	*
-	* @param  	varchar     $type 		Sidebar type, side/top
-	* @param  	array     	$widget 	Widget object (for name, id, etc)
-	* @param  	array     	$instance 	Widget $instance
-	* @param  	array     	$components Array of standard components to support
-	* @param  	array     	$custom_components Array of custom components and elements
-	*/
+    /**
+    * Generate Design Options
+    *
+    * @param    varchar     $type       Sidebar type, side/top
+    * @param    array       $this->widget     Widget object (for name, id, etc)
+    * @param    array       $instance   Widget $instance
+    * @param    array       $components Array of standard components to support
+    * @param    array       $custom_components Array of custom components and elements
+    */
 
-	function bar( $type = 'side' , $widget = NULL, $instance = array(), $components = array( 'columns' , 'background' , 'imagealign' ) , $custom_components = array() ) {
+    public function __construct( $type = 'side' , $widget = NULL, $instance = array(), $components = array( 'columns' , 'background' , 'imagealign' ) , $custom_components = array() ) {
 
-		// If there is no widget information provided, can the operation
-		if( NULL == $widget ) { return; } else { $widget = $widget; }
+        // Initiate Widget Inputs
+        $this->form_elements = new Layers_Form_Elements();
 
-		// Set widget values as an object ( we like working with objects)
-		if( empty( $instance ) ) {
-			$values = array( 'design' => NULL );
-		} elseif( isset( $instance[ 'design' ] ) ) {
-			$values = $instance[ 'design' ];
-		} else {
-			$values = NULL;
-		} ?>
+        // If there is no widget information provided, can the operation
+        if( NULL == $widget ) return;
+        $this->widget = $widget;
 
-		<div class="layers-visuals <?php if( 'side' == $type ) { echo 'layers-pull-right'; } else { echo 'layers-visuals-horizontal'; } ?> ">
-			<?php if( 'side' == $type ) { ?>
-			<?php } // if side == type ?>
-			<h6 class="layers-visuals-title">
-				<span class="icon-settings layers-small"></span>
-			</h6>
-			<ul class="layers-visuals-wrapper layers-clearfix">
-				<?php if( NULL !== $components ) {
-					foreach( $components as $component ) {
-						if( 'custom' == $component && !empty( $custom_components ) ) {
-							foreach ( $custom_components as $key => $custom_component_args ) {
-								$this->custom_component(
-									$widget, // Send through the widget name & id
-									$values, // Send through the widget values
-									$key, // Give the component a key (will be used as class name too)
-									$custom_component_args // Send through the inputs that will be used
-								);
-							}
-						} elseif ( 'custom' != $component ) {
-							$this->$component(
-								$widget, // Send through the widget name & id
-								$values // Send through the widget values
-							);
-						}
-					}
-				} // if $components is not NULL ?>
-				<?php if( isset( $widget['show_trash'] ) ) { ?>
-					<li class="layers-visuals-item layers-pull-right">
-						<a href="" class="layers-icon-wrapper layers-icon-error">
-							<span class="icon-trash" data-number="<?php echo $widget['number']; ?>"></span>
-						</a>
-					</li>
-				<?php } // if side != $type ?>
-			</ul>
-		</div>
-	<?php }
+        // Set type side | top
+        $this->type = $type;
 
-	/**
-	* Load input HTML
-	*
-	* @param  	array     	$array() 	Existing option array if exists (optional)
-	* @return 	array 		$array 		Array of options, all standard DOM input options
-	*/
+        // Set widget values as an object ( we like working with objects )
+        if( empty( $instance ) ) {
+            $this->values = array( 'design' => NULL );
+        } elseif( isset( $instance[ 'design' ] ) ) {
+            $this->values = $instance[ 'design' ];
+        } else {
+            $this->values = NULL;
+        }
 
-	public function input( $args = array() ) {
+        // Setup the components for use
+        $this->components = $components;
+        $this->custom_components = $custom_components;
 
-		// Initiate Widget Inputs
-		$form_elements = new Layers_Form_Elements();
+        // Setup the controls
+        $this->setup_controls();
 
-		// Return form element
-		return $form_elements->input( $args );
-	}
+        // Fire off the design bar
+        $this->render_design_bar();
 
-	/**
-	* Custom Compontent
-	*
-	* @param  	array     	$widget 	Widget Element
-	* @param  	array     	$values 	Accepts the value for this element,
-	* @param  	varchar     	$key 		Simply the key and classname for the icon,
-	* @param  	array     	$args 		Component arguments, including the form items
-	*/
+    }
 
-	function custom_component( $widget = NULL, $values = NULL, $key = NULL, $args = array() ){
+    function render_design_bar() {
 
-		if( empty( $args ) ) return;
+        $container_class = ( 'side' == $this->type ? 'layers-pull-right' : 'layers-visuals-horizontal' ); ?>
 
-		// If there is no widget information provided, can the operation
-		if( NULL == $widget ) return; ?>
+        <div class="layers-visuals <?php echo $container_class; ?>">
+            <h6 class="layers-visuals-title">
+                <span class="icon-settings layers-small"></span>
+            </h6>
+            <ul class="layers-visuals-wrapper layers-clearfix">
 
-		<li class="layers-visuals-item">
-			<a href="" class="layers-icon-wrapper">
-				<span class="<?php echo $args[ 'icon-css' ]; ?>"></span>
-				<span class="layers-icon-description">
-					<?php echo $args[ 'label' ]; ?>
-				</span>
-			</a>
-			<?php if( isset( $args['elements'] ) ) { ?>
-				<?php if( isset( $args[ 'wrapper-css' ] ) ) {
-					$wrapper_class = $args[ 'wrapper-css' ];
-				} else {
-					$wrapper_class = 'layers-pop-menu-wrapper layers-content-small';
-				} ?>
-				<div class="<?php echo $wrapper_class; ?>">
-					<div class="layers-pop-menu-setting">
-						<?php foreach( $args['elements'] as $key => $form_args ) { ?>
-							<div class="layers-<?php echo $form_args[ 'type' ]; ?>-wrapper layers-form-item">
-								<?php if( 'checkbox' != $form_args[ 'type' ] && isset( $form_args[ 'label' ] ) ) { ?>
-									<label><?php echo $form_args[ 'label' ]; ?></label>
-								<?php } ?>
-								<?php echo $this->input( $form_args ); ?>
-							</div>
-						<?php } ?>
-					</div>
-				</div>
-			<?php } // if we have elements ?>
-		</li>
-	<?php }
+                <?php // Render Design Controls
+                $this->render_controls(); ?>
 
-	/**
-	* Layout Options
-	*
-	* @param  	array     	$widget 	Widget Element
-	* @param  	array     	$values 	Accepts the value for this element
-	* @param  	array     	$args 		Additional arguments to pass to this function
-	*/
+                <?php // Show trash icon (for use when in an accordian)
+                $this->render_trash_control(); ?>
+            </ul>
+        </div>
+    <?php }
 
-	function layout( $widget = NULL, $values = NULL, $args = NULL ){
+    private function setup_controls() {
 
-		// If there is no widget information provided, can the operation
-		if( NULL == $widget ) return; ?>
+        $this->controls = array();
 
-		<li class="layers-visuals-item">
-			<a href="" class="layers-icon-wrapper">
-				<span class="icon-layout-fullwidth"></span>
-				<span class="layers-icon-description">
-					<?php _e( 'Layout' , LAYERS_THEME_SLUG ); ?>
-				</span>
-			</a>
-			<div class="layers-pop-menu-wrapper layers-animate layers-small">
-				<div class="layers-pop-menu-setting">
-					<?php echo $this->input(
-						array(
-							'type' => 'select-icons',
-							'name' => $widget['name'] . '[layout]' ,
-							'id' =>  $widget['id'] . '-layout' ,
-							'value' => ( isset( $values['layout'] ) ) ? $values['layout'] : NULL,
-							'options' => array(
-								'layout-boxed' => __( 'Boxed' , LAYERS_THEME_SLUG ),
-								'layout-fullwidth' => __( 'Full Width' , LAYERS_THEME_SLUG )
-							)
-						)
-					); ?>
-				</div>
-			</div>
-		</li>
-	<?php }
+        if( NULL !== $this->components ) {
+            foreach( $this->components as $c ) {
+                if( 'custom' == $c && !empty( $this->custom_components ) ) {
+                    foreach ( $this->custom_components as $key => $custom_component_args ) {
+                        ob_start();
 
-	/**
-	* List Style - Static Option
-	*
-	* @param  	array     	$widget 	Widget Element
-	* @param  	array     	$values 	Accepts the value for this element
-	* @param  	array     	$args 		Additional arguments to pass to this function
-	*/
+                        $this->custom_component(
+                            $key, // Give the component a key (will be used as class name too)
+                            $custom_component_args // Send through the inputs that will be used
+                        );
 
-	function liststyle( $widget = NULL, $values = NULL, $args = NULL ){
+                        $this->controls[] = trim( ob_get_contents() );
+                        ob_end_clean();
 
-		// If there is no widget information provided, can the operation
-		if( NULL == $widget ) return; ?>
+                    }
+                } elseif ( is_array( $c ) ) {
+                    foreach( $c as $key => $args ) {
+                        ob_start();
 
-		<li class="layers-visuals-item">
+                        $this->$component( $args );
 
-			<a href="" class="layers-icon-wrapper">
-				<span class="icon-list-masonry"></span>
-				<span class="layers-icon-description">
-					<?php _e( 'List Style' , LAYERS_THEME_SLUG ); ?>
-				</span>
-			</a>
+                        $this->controls[] = trim( ob_get_contents() );
+                        ob_end_clean();
+                    }
+                } elseif ( 'custom' != $c ) {
+                    ob_start();
 
-			<div class="layers-pop-menu-wrapper layers-animate layers-small">
-				<div class="layers-pop-menu-setting">
-					<?php echo $this->input(
-						array(
-							'type' => 'select-icons',
-							'name' => $widget['name'] . '[liststyle]' ,
-							'id' =>  $widget['id'] . '-liststyle' ,
-							'value' => ( isset( $values[ 'liststyle' ] ) ) ? $values[ 'liststyle' ] : NULL,
-							'options' => array(
-								'list-grid' => __( 'Grid' , LAYERS_THEME_SLUG ),
-								'list-list' => __( 'List' , LAYERS_THEME_SLUG ),
-								'list-masonry' => __( 'Masonry' , LAYERS_THEME_SLUG )
-							)
-						)
-					); ?>
-				</div>
-			</div>
-		</li>
-	<?php }
+                    $this->$c();
 
-	/**
-	* Columns - Static Option
-	*
-	* @param  	array     	$widget 	Widget Element
-	* @param  	array     	$values 	Accepts the value for this element
-	* @param  	array     	$args 		Additional arguments to pass to this function
-	*/
+                    $this->controls[] = trim( ob_get_contents() );
+                    ob_end_clean();
+                }
+            }
+        } // if $components is not NULL
 
-	function columns( $widget = NULL, $values = NULL, $args = NULL ){
+    }
 
-		// If there is no widget information provided, can the operation
-		if( NULL == $widget ) return; ?>
+    private function render_controls(){
 
-		<li class="layers-visuals-item">
-			<a href="" class="layers-icon-wrapper">
-				<span class="icon-columns"></span>
-				<span class="layers-icon-description">
-					<?php _e( 'Columns' , LAYERS_THEME_SLUG ); ?>
-				</span>
-			</a>
+        // If there are no controls to render, do nothing
+        if( empty( $this->controls ) ) return;
 
-			<div class="layers-pop-menu-wrapper layers-animate layers-content-small">
-				<div class="layers-pop-menu-setting">
-					<div class="layers-form-item">
-						<label for="<?php echo  $widget['name'] . '-columns'; ?>"><?php _e( 'Columns' , LAYERS_THEME_SLUG ); ?></label>
-						<?php echo $this->input(
-							array(
-								'type' => 'select',
-								'name' => $widget['name'] . '[columns]' ,
-								'id' =>  $widget['id'] . '-columns' ,
-								'value' => ( isset( $values['columns'] ) ) ? $values['columns'] : NULL,
-								'options' => array(
-									'1' => __( '1 Column' , LAYERS_THEME_SLUG ),
-									'2' => __( '2 Columns' , LAYERS_THEME_SLUG ),
-									'3' => __( '3 Columns' , LAYERS_THEME_SLUG ),
-									'4' => __( '4 Columns' , LAYERS_THEME_SLUG ),
-									'6' => __( '6 Columns' , LAYERS_THEME_SLUG )
-								)
-							)
-						); ?>
-					</div>
-					<div class="layers-checkbox-wrapper layers-form-item">
-						<?php echo $this->input(
-							array(
-								'type' => 'checkbox',
-								'label' => __( 'Gutter' , LAYERS_THEME_SLUG ),
-								'name' => $widget['name'] . '[gutter]' ,
-								'id' =>  $widget['id'] . '-gutter' ,
-								'value' => ( isset( $values['gutter'] ) ) ? $values['gutter'] : NULL
-							)
-						); ?>
-					</div>
-				</div>
-			</div>
-		</li>
-	<?php }
+        echo implode( '', $this->controls );
+    }
 
-	/**
-	* Text Align - Static Option
-	*
-	* @param  	array     	$widget 	Widget Element
-	* @param  	array     	$values 	Accepts the value for this element
-	* @param  	array     	$args 		Additional arguments to pass to this function
-	*/
+    /**
+    * Custom Compontent
+    *
+    * @param    varchar     $key        Simply the key and classname for the icon,
+    * @param    array       $args       Component arguments, including the form items
+    */
 
-	function textalign( $widget = NULL, $values = NULL, $args = NULL ){
+    function render_control( $key = NULL, $args = array() ){
 
-		// If there is no widget information provided, can the operation
-		if( NULL == $widget ) return; ?>
+        if( empty( $args ) ) return;
 
-		<li class="layers-visuals-item">
-			<a href="" class="layers-icon-wrapper">
-				<span class="icon-text-center"></span>
-				<span class="layers-icon-description">
-					<?php _e( 'Text Align' , LAYERS_THEME_SLUG ); ?>
-				</span>
-			</a>
-			<div class="layers-pop-menu-wrapper layers-animate layers-small">
-				<div class="layers-pop-menu-setting">
-					<?php echo $this->input(
-						array(
-							'type' => 'select-icons',
-							'name' => $widget['name'] . '[textalign]' ,
-							'id' =>  $widget['id'] . '-textalign' ,
-							'value' => ( isset( $values['textalign'] ) ) ? $values['textalign'] : NULL,
-							'options' => array(
-								'text-left' => __( 'Left' , LAYERS_THEME_SLUG ),
-								'text-center' => __( 'Center' , LAYERS_THEME_SLUG ),
-								'text-right' => __( 'Right' , LAYERS_THEME_SLUG ),
-								'text-justify' => __( 'Justify' , LAYERS_THEME_SLUG )
-							)
-						)
-					); ?>
-				</div>
-			</div>
-		</li>
-	<?php  }
+        // Setup variables from $args
+        $icon_css = $args[ 'icon-css' ];
+        $label = $args[ 'label' ];
+        $menu_wrapper_class = ( isset( $args[ 'wrapper-class' ] ) ? $args[ 'wrapper-class' ] : 'layers-pop-menu-wrapper layers-content-small' );
 
-	/**
-	* Image Align - Static Option
-	*
-	* @param  	array     	$widget 	Widget Element
-	* @param  	array     	$values 	Accepts the value for this element
-	* @param  	array     	$args 		Additional arguments to pass to this function
-	*/
+        // Return filtered element array
+        $elements = apply_filters( 'layers_design_bar_' . $key . '_elements', $args[ 'elements' ] ); ?>
 
-	function imagealign( $widget = NULL, $values = NULL, $args = NULL ){
+        <li class="layers-visuals-item">
+            <a href="" class="layers-icon-wrapper">
+                <span class="<?php echo $icon_css; ?>"></span>
+                <span class="layers-icon-description">
+                    <?php echo $label; ?>
+                </span>
+            </a>
+            <?php if( isset( $args['elements'] ) ) { ?>
+                <div class="<?php echo $menu_wrapper_class; ?>">
+                    <div class="layers-pop-menu-setting">
+                        <?php foreach( $args['elements'] as $key => $form_args ) { ?>
+                           <?php echo $this->render_input( $form_args ); ?>
+                        <?php } ?>
+                    </div>
+                </div>
+            <?php } // if we have elements ?>
+        </li>
+    <?php }
 
-		// If there is no widget information provided, can the operation
-		if( NULL == $widget ) return; ?>
-
-		<li class="layers-visuals-item layers-last">
-			<a href="" class="layers-icon-wrapper">
-				<span class="icon-image-left"></span>
-				<span class="layers-icon-description">
-					<?php _e( 'Image Align' , LAYERS_THEME_SLUG ); ?>
-				</span>
-			</a>
-			<div class="layers-pop-menu-wrapper layers-animate layers-small">
-				<div class="layers-pop-menu-setting">
-					<?php echo $this->input(
-						array(
-							'type' => 'select-icons',
-							'name' => $widget['name'] . '[imagealign]' ,
-							'id' =>  $widget['id'] . '-imagealign' ,
-							'value' => ( isset( $values['imagealign'] ) ) ? $values['imagealign'] : NULL,
-							'options' => array(
-								'image-left' => __( 'Left' , LAYERS_THEME_SLUG ),
-								'image-right' => __( 'Right' , LAYERS_THEME_SLUG ),
-								'image-top' => __( 'Top' , LAYERS_THEME_SLUG )
-							)
-						)
-					); ?>
-				</div>
-			</div>
-		</li>
-	<?php }
-
-	/**
-	* Featured Image - Static Option
-	*
-	* @param  	array     	$widget 	Widget Element
-	* @param  	array     	$values 	Accepts the value for this element
-	*/
-
-	function featuredimage( $widget = NULL, $values = NULL, $args = NULL ){
-
-		// If there is no widget information provided, can the operation
-		if( NULL == $widget ) return; ?>
-
-		<li class="layers-visuals-item">
-			<a href="" class="layers-icon-wrapper">
-				<span class="icon-featured-image"></span>
-				<span class="layers-icon-description">
-					<?php _e( 'Featured Image' , LAYERS_THEME_SLUG ); ?>
-				</span>
-			</a>
-			<div class="layers-pop-menu-wrapper layers-animate layers-content-small">
-				<div class="layers-pop-menu-setting">
-					<section>
-						<div class="layers-form-item">
-							<label><?php _e( 'Featured Image &amp; Video' , LAYERS_THEME_SLUG ); ?></label>
-							<?php echo $this->input(
-								array(
-									'type' => 'image',
-									'name' => $widget['name'] . '[featuredimage]' ,
-									'id' =>  $widget['id'] . '-featuredimage' ,
-									'value' => ( isset( $values['featuredimage'] ) ) ? $values['featuredimage'] : NULL
-								)
-							); ?>
-						</div>
-						<div class="layers-form-item">
-							<label><?php _e( 'Video Embed Code' , LAYERS_THEME_SLUG ); ?></label>
-							<?php echo $this->input(
-								array(
-									'type' => 'text',
-									'name' => $widget['name'] . '[featuredvideo]' ,
-									'id' =>  $widget['id'] . '-featuredvideo' ,
-									'value' => ( isset( $values['featuredvideo'] ) ) ? $values['featuredvideo'] : NULL
-								)
-							); ?>
-						</div>
-						<div class="layers-form-item">
-							<label><?php _e( 'Image Ratio' , LAYERS_THEME_SLUG ); ?></label>
-							<div class="layers-icon-group">
-								<?php echo $this->input(
-									array(
-										'type' => 'select-icons',
-										'name' => $widget['name'] . '[imageratios]' ,
-										'id' =>  $widget['id'] . '-imageratios' ,
-										'value' => ( isset( $values['imageratios'] ) ) ? $values['imageratios'] : NULL,
-										'options' => array(
-											'image-portrait' => __( 'Portrait' , LAYERS_THEME_SLUG ),
-											'image-landscape' => __( 'Landscape' , LAYERS_THEME_SLUG ),
-											'image-square' => __( 'Square' , LAYERS_THEME_SLUG ),
-											'image-no-crop' => __( 'None' , LAYERS_THEME_SLUG ),
-											'image-round' => __( 'Round' , LAYERS_THEME_SLUG ),
-										)
-									)
-								); ?>
-							</div>
-						</div>
-					</section>
-				</div>
-			</div>
-		</li>
-	<?php }
-
-	/**
-	* Image Size - Static Option
-	*
-	* @param  	array     	$widget 	Widget Element
-	* @param  	array     	$values 	Accepts the value for this element
-	*/
-
-	function imageratios( $widget = NULL, $values = NULL, $args = NULL ){
-
-		// If there is no widget information provided, can the operation
-		if( NULL == $widget ) return; ?>
-
-		<li class="layers-visuals-item">
-			<a href="" class="layers-icon-wrapper">
-				<span class="icon-image-size"></span>
-				<span class="layers-icon-description">
-					<?php _e( 'Image Ratio' , LAYERS_THEME_SLUG ); ?>
-				</span>
-			</a>
-			<div class="layers-pop-menu-wrapper layers-animate layers-small">
-				<div class="layers-pop-menu-setting">
-					<div class="layers-select-wrapper layers-form-item">
-						<?php echo $this->input(
-							array(
-								'type' => 'select-icons',
-								'name' => $widget['name'] . '[imageratios]' ,
-								'id' =>  $widget['id'] . '-imageratios' ,
-								'value' => ( isset( $values['imageratios'] ) ) ? $values['imageratios'] : NULL,
-								'options' => array(
-									'image-portrait' => __( 'Portrait' , LAYERS_THEME_SLUG ),
-									'image-landscape' => __( 'Landscape' , LAYERS_THEME_SLUG ),
-									'image-square' => __( 'Square' , LAYERS_THEME_SLUG ),
-									'image-no-crop' => __( 'None' , LAYERS_THEME_SLUG )
-								)
-							)
-						); ?>
-					</div>
-				</div>
-			</div>
-		</li>
-	<?php }
-
-	/**
-	* Fonts - Static Option
-	*
-	* @param  	array     	$widget 	Widget Element
-	* @param  	array     	$values 	Accepts the value for this element
-	* @param  	array     	$args 		Additional arguments to pass to this function
-	*/
-
-	function fonts( $widget = NULL, $values = NULL, $args = NULL ){
-
-		// If there is no widget information provided, can the operation
-		if( NULL == $widget ) return; ?>
-
-		<li class="layers-visuals-item">
-			<a href="" class="layers-icon-wrapper">
-				<span class="icon-font-size"></span>
-				<span class="layers-icon-description">
-					<?php _e( 'Text' , LAYERS_THEME_SLUG ); ?>
-				</span>
-			</a>
-			<div class="layers-pop-menu-wrapper layers-animate layers-content-small">
-				<div class="layers-pop-menu-setting">
-					<section>
-						<div class="layers-form-item">
-							<label><?php _e( 'Text Align' , LAYERS_THEME_SLUG ); ?></label>
-							<div class="layers-icon-group">
-								<?php echo $this->input(
-									array(
-										'type' => 'select-icons',
-										'name' => $widget['name'] . '[fonts][align]' ,
-										'id' =>  $widget['id'] . '-fonts-align' ,
-										'value' => ( isset( $values['fonts']['align'] ) ) ? $values['fonts']['align'] : NULL,
-										'options' => array(
-											'text-left' => __( 'Left' , LAYERS_THEME_SLUG ),
-											'text-center' => __( 'Center' , LAYERS_THEME_SLUG ),
-											'text-right' => __( 'Right' , LAYERS_THEME_SLUG ),
-											'text-justify' => __( 'Justify' , LAYERS_THEME_SLUG )
-										)
-									)
-								); ?>
-							</div>
-						</div>
-						<div class="layers-form-item">
-							<label><?php _e( 'Text Size' , LAYERS_THEME_SLUG ); ?></label>
-							<?php echo $this->input(
-								array(
-									'type' => 'select',
-									'name' => $widget['name'] . '[fonts][size]' ,
-									'id' =>  $widget['id'] . '-fonts-size' ,
-									'value' => ( isset( $values['fonts']['size'] ) ) ? $values['fonts']['size'] : NULL,
-									'options' => array(
-											'small' => __( 'Small' , LAYERS_THEME_SLUG ),
-											'medium' => __( 'Medium' , LAYERS_THEME_SLUG ),
-											'large' => __( 'Large' , LAYERS_THEME_SLUG )
-									)
-								)
-							); ?>
-						</div>
-						<div class="layers-form-item">
-							<label><?php _e( 'Text Color' , LAYERS_THEME_SLUG ); ?></label>
-							<?php echo $this->input(
-								array(
-									'type' => 'color',
-									'name' => $widget['name'] . '[fonts][color]' ,
-									'id' =>  $widget['id'] . '-fonts-color' ,
-									'value' => ( isset( $values['fonts']['color'] ) ) ? $values['fonts']['color'] : NULL
-								)
-							); ?>
-						</div>
-					</section>
-				</div>
-			</div>
-		</li>
+    private function render_trash_control(){
+        if( isset( $this->widget['show_trash'] ) ) { ?>
+        <li class="layers-visuals-item layers-pull-right">
+            <a href="" class="layers-icon-wrapper layers-icon-error">
+                <span class="icon-trash" data-number="<?php echo $this->widget['number']; ?>"></span>
+            </a>
+        </li>
+    <?php }
+    }
 
 
-	<?php }
+    /**
+    * Load input HTML
+    *
+    * @param    array       $array()    Existing option array if exists (optional)
+    * @return   array       $array      Array of options, all standard DOM input options
+    */
 
-	/**
-	* Background - Static Option
-	*
-	* @param  	array     	$widget 	Widget Element
-	* @param  	array     	$values 	Accepts the value for this element
-	* @param  	array     	$args 		Additional arguments to pass to this function
-	*/
+    public function render_input( $form_args = array() ) { ?>
+		<div class="layers-<?php echo $form_args[ 'type' ]; ?>-wrapper layers-form-item">
+	        <?php if( 'checkbox' != $form_args[ 'type' ] && isset( $form_args[ 'label' ] ) && '' != $form_args[ 'label' ] ) { ?>
+	            <label><?php echo $form_args[ 'label' ]; ?></label>
+	        <?php } ?>
 
-	function background( $widget = NULL, $values = NULL, $args = NULL ){
+			<?php if( isset( $form_args[ 'wrapper' ] ) ) { ?>
+				<<?php echo $form_args[ 'wrapper' ]; ?> <?php if( $form_args[ 'wrapper-class' ] ) echo 'class="' . $form_args[ 'wrapper-class' ] . '"'; ?>>
+			<?php } ?>
 
-		// If there is no widget information provided, can the operation
-		if( NULL == $widget ) return; ?>
+	        <?php echo $this->form_elements->input( $form_args ); ?>
 
-		<li class="layers-visuals-item">
-			<a href="" class="layers-icon-wrapper">
-				<span class="icon-photo"></span>
-				<span class="layers-icon-description">
-					<?php _e( 'Background' , LAYERS_THEME_SLUG ); ?>
-				</span>
-			</a>
-			<div class="layers-pop-menu-wrapper layers-animate layers-content-small">
-				<div class="layers-pop-menu-setting">
-					<section>
-						<div class="layers-form-item">
-							<label><?php _e( 'Background Image' , LAYERS_THEME_SLUG ); ?></label>
-							<?php echo $this->input(
-								array(
-									'type' => 'image',
-									'label' => __( 'Choose Background' , LAYERS_THEME_SLUG ),
-									'name' => $widget['name'] . '[background][image]' ,
-									'id' =>  $widget['id'] . '-background-image' ,
-									'value' => ( isset( $values['background']['image'] ) ) ? $values['background']['image'] : NULL
-								)
-							); ?>
-						</div>
-						<div class="layers-form-item">
-							<label><?php _e( 'Background Color' , LAYERS_THEME_SLUG ); ?></label>
-							<?php echo $this->input(
-								array(
-									'type' => 'color',
-									'name' => $widget['name'] . '[background][color]' ,
-									'id' =>  $widget['id'] . '-background-color' ,
-									'value' => ( isset( $values['background']['color'] ) ) ? $values['background']['color'] : NULL
-								)
-							); ?>
-						</div>
-						<div class="layers-select-wrapper layers-form-item">
-							<label><?php _e( 'Repeat' , LAYERS_THEME_SLUG ); ?></label>
-							<?php echo $this->input(
-								array(
-									'type' => 'select',
-									'name' => $widget['name'] . '[background][repeat]' ,
-									'id' =>  $widget['id'] . '-background-repeat' ,
-									'value' => ( isset( $values['background']['repeat'] ) ) ? $values['background']['repeat'] : NULL,
-									'options' => array(
-											'no-repeat' => __( 'No Repeat' , LAYERS_THEME_SLUG ),
-											'repeat' => __( 'Repeat' , LAYERS_THEME_SLUG ),
-											'repeat-x' => __( 'Repeat Horizontal' , LAYERS_THEME_SLUG ),
-											'repeat-y' => __( 'Repeat Vertical' , LAYERS_THEME_SLUG )
-										)
-								)
-							); ?>
-						</div>
-						<div class="layers-select-wrapper layers-form-item">
-							<label><?php _e( 'Position' , LAYERS_THEME_SLUG ); ?></label>
-							<?php echo $this->input(
-								array(
-									'type' => 'select',
-									'name' => $widget['name'] . '[background][position]' ,
-									'id' =>  $widget['id'] . '-background-position' ,
-									'value' => ( isset( $values['background']['position'] ) ) ? $values['background']['position'] : NULL,
-									'options' => array(
-											'center' => __( 'Center' , LAYERS_THEME_SLUG ),
-											'top' => __( 'Top' , LAYERS_THEME_SLUG ),
-											'bottom' => __( 'Bottom' , LAYERS_THEME_SLUG ),
-											'left' => __( 'Left' , LAYERS_THEME_SLUG ),
-											'right' => __( 'Right' , LAYERS_THEME_SLUG )
-										)
-								)
-							); ?>
-						</div>
-						<div class="layers-checkbox-wrapper layers-form-item">
-							<?php echo $this->input(
-								array(
-									'type' => 'checkbox',
-									'label' => __( 'Stretch' , LAYERS_THEME_SLUG ),
-									'name' => $widget['name'] . '[background][stretch]' ,
-									'id' =>  $widget['id'] . '-background-stretch' ,
-									'value' => ( isset( $values['background']['stretch'] ) ) ? $values['background']['stretch'] : NULL
-								)
-							); ?>
-						</div>
-						<div class="layers-checkbox-wrapper layers-form-item">
-							<?php echo $this->input(
-								array(
-									'type' => 'checkbox',
-									'label' => __( 'Darken' , LAYERS_THEME_SLUG ),
-									'name' => $widget['name'] . '[background][darken]' ,
-									'id' =>  $widget['id'] . '-background-darken' ,
-									'value' => ( isset( $values['background']['darken'] ) ) ? $values['background']['darken'] : NULL
-								)
-							); ?>
-						</div>
-					</section>
-				</div>
-			</div>
-		</li>
-	<?php }
+			<?php if( isset( $form_args[ 'wrapper' ] ) ) { ?>
+				</<?php echo $form_args[ 'wrapper' ]; ?>>
+			<?php } ?>
+	    </div>
+    <?php }
 
-	/**
-	* Advanced - Static Option
-	*
-	* @param  	array     	$widget 	Widget Element
-	* @param  	array     	$values 	Accepts the value for this element
-	* @param  	array     	$args 		Additional arguments to pass to this function
-	*/
+    /**
+    * Layout Options
+    *
+    * @param    array       $args       Additional arguments to pass to this function
+    */
 
-	function advanced( $widget = NULL, $values = NULL, $args = NULL ){
+    function layout( $args = NULL ){
 
-		// If there is no widget information provided, can the operation
-		if( NULL == $widget ) return; ?>
+        // If there is no widget information provided, can the operation
+        if( NULL == $this->widget ) return;
 
-		<li class="layers-visuals-item">
-			<a href="" class="layers-icon-wrapper">
-				<span class="icon-settings"></span>
-				<span class="layers-icon-description">
-					<?php _e( 'Advanced' , LAYERS_THEME_SLUG ); ?>
-				</span>
-			</a>
-			<div class="layers-pop-menu-wrapper layers-animate layers-content-small">
-				<div class="layers-pop-menu-setting">
-					<section>
-						<div class="layers-text-wrapper layers-form-item">
-							<label><?php _e( 'Custom Class' , LAYERS_THEME_SLUG ); ?></label>
-							<?php echo $this->input(
-								array(
-									'type' => 'text',
-									'name' => $widget['name'] . '[advanced][customclass]' ,
-									'id' =>  $widget['id'] . '-advanced-customclass' ,
-									'value' => ( isset( $values['advanced']['customclass'] ) ) ? $values['advanced']['customclass'] : NULL,
-									'placeholder' => 'example-class'
-								)
-							); ?>
-						</div>
-						<div class="layers-textarea-wrapper layers-form-item">
-							<label><?php _e( 'Custom CSS' , LAYERS_THEME_SLUG ); ?></label>
-							<?php echo $this->input(
-								array(
-									'type' => 'textarea',
-									'name' => $widget['name'] . '[advanced][customcss]' ,
-									'id' =>  $widget['id'] . '-advanced-customcss' ,
-									'value' => ( isset( $values['advanced']['customcss'] ) ) ? $values['advanced']['customcss'] : NULL,
-									'placeholder' => ".classname {\n\tbackground: #333;\n}"
-								)
-							); ?>
-						</div>
-					</section>
-				</div>
-			</div>
-		</li>
-	<?php  }
+        // Set a key for this input
+        $key = 'layout';
 
+        // Setup icon CSS
+        $args[ 'icon-css' ] = ( isset( $this->values['layout'] ) && NULL != $this->values ? 'icon-' . $this->values['layout'] : 'icon-layout-fullwidth' ) ;
+
+        // Add a Label
+        $args[ 'label' ] = __( 'Layout' , LAYERS_THEME_SLUG );
+
+        // Add a Wrapper Class
+        $args[ 'wrapper-class' ] = 'layers-pop-menu-wrapper layers-animate layers-small';
+
+        // Add elements
+        $args[ 'elements' ] = array(
+                            'layout' => array(
+                                'type' => 'select-icons',
+                                'name' => $this->widget['name'] . '[layout]' ,
+                                'id' =>  $this->widget['id'] . '-layout' ,
+                                'value' => ( isset( $this->values['layout'] ) ) ? $this->values['layout'] : NULL,
+                                'options' => array(
+                                    'layout-boxed' => __( 'Boxed' , LAYERS_THEME_SLUG ),
+                                    'layout-fullwidth' => __( 'Full Width' , LAYERS_THEME_SLUG )
+                                )
+                            )
+                        );
+
+        $this->render_control( $key , $args );
+    }
+
+    /**
+    * List Style - Static Option
+    *
+    * @param    array       $args       Additional arguments to pass to this function
+    */
+
+    function liststyle( $args = NULL ){
+
+        // If there is no widget information provided, can the operation
+        if( NULL == $this->widget ) return;
+
+        // Set a key for this input
+        $key = 'liststyle';
+
+        // Setup icon CSS
+        $args[ 'icon-css' ] = ( isset( $this->values['liststyle'] ) && NULL != $this->values ? 'icon-' . $this->values['liststyle'] : 'icon-list-masonry' );
+
+        // Add a Label
+        $args[ 'label' ] = __( 'List Style' , LAYERS_THEME_SLUG );
+
+        // Add a Wrapper Class
+        $args[ 'wrapper-class' ] = 'layers-pop-menu-wrapper layers-animate layers-small';
+
+        // Add elements
+        $args[ 'elements' ] = array(
+                            'liststyle' => array(
+                                'type' => 'select-icons',
+                                'name' => $this->widget['name'] . '[liststyle]' ,
+                                'id' =>  $this->widget['id'] . '-liststyle' ,
+                                'value' => ( isset( $this->values[ 'liststyle' ] ) ) ? $this->values[ 'liststyle' ] : NULL,
+                                'options' => array(
+                                    'list-grid' => __( 'Grid' , LAYERS_THEME_SLUG ),
+                                    'list-list' => __( 'List' , LAYERS_THEME_SLUG ),
+                                    'list-masonry' => __( 'Masonry' , LAYERS_THEME_SLUG )
+                                )
+                            )
+                        );
+
+        $this->render_control( $key , $args );
+    }
+
+    /**
+    * Columns - Static Option
+    *
+    * @param    array       $args       Additional arguments to pass to this function
+    */
+
+    function columns( $args = NULL ){
+
+        // If there is no widget information provided, can the operation
+        if( NULL == $this->widget ) return;
+
+        // Set a key for this input
+        $key = 'columns';
+
+        // Setup icon CSS
+        $args[ 'icon-css' ] = ( isset( $this->values['columns'] ) && NULL != $this->values ? 'icon-' . $this->values['columns'] : 'icon-columns' );
+
+        // Add a Label
+        $args[ 'label' ] = __( 'Columns' , LAYERS_THEME_SLUG );
+
+        // Add a Wrapper Class
+        $args[ 'wrapper-class' ] = 'layers-pop-menu-wrapper layers-animate layers-content-small';
+
+        // Add elements
+        $args[ 'elements' ] = array(
+                            'columns' => array(
+                                'type' => 'select',
+                                'label' => __( 'Columns' , LAYERS_THEME_SLUG ),
+                                'name' => $this->widget['name'] . '[columns]' ,
+                                'id' =>  $this->widget['id'] . '-columns' ,
+                                'value' => ( isset( $this->values['columns'] ) ) ? $this->values['columns'] : NULL,
+                                'options' => array(
+                                    '1' => __( '1 Column' , LAYERS_THEME_SLUG ),
+                                    '2' => __( '2 Columns' , LAYERS_THEME_SLUG ),
+                                    '3' => __( '3 Columns' , LAYERS_THEME_SLUG ),
+                                    '4' => __( '4 Columns' , LAYERS_THEME_SLUG ),
+                                    '6' => __( '6 Columns' , LAYERS_THEME_SLUG )
+                                )
+                            ),
+                            'gutter' => array(
+                                'type' => 'checkbox',
+                                'label' => __( 'Gutter' , LAYERS_THEME_SLUG ),
+                                'name' => $this->widget['name'] . '[gutter]' ,
+                                'id' =>  $this->widget['id'] . '-gutter' ,
+                                'value' => ( isset( $this->values['gutter'] ) ) ? $this->values['gutter'] : NULL
+                            )
+                        );
+
+        $this->render_control( $key , $args );
+    }
+
+    /**
+    * Text Align - Static Option
+    *
+    * @param    array       $args       Additional arguments to pass to this function
+    */
+
+    function textalign( $args = NULL ){
+
+        // If there is no widget information provided, can the operation
+        if( NULL == $this->widget ) return;
+
+        // Set a key for this input
+        $key = 'textalign';
+
+        // Setup icon CSS
+        $args[ 'icon-css' ] = ( isset( $this->values['textalign'] ) && NULL != $this->values ? 'icon-' . $this->values['textalign'] : 'icon-text-center' );
+
+        // Add a Label
+        $args[ 'label' ] = __( 'Text Align' , LAYERS_THEME_SLUG );
+
+        // Add a Wrapper Class
+        $args[ 'wrapper-class' ] = 'layers-pop-menu-wrapper layers-animate layers-content-small';
+
+        // Add elements
+        $args[ 'elements' ] = array(
+                            'textalign' => array(
+                                'type' => 'select-icons',
+                                'name' => $this->widget['name'] . '[textalign]' ,
+                                'id' =>  $this->widget['id'] . '-textalign' ,
+                                'value' => ( isset( $this->values['textalign'] ) ) ? $this->values['textalign'] : NULL,
+                                'options' => array(
+                                    'text-left' => __( 'Left' , LAYERS_THEME_SLUG ),
+                                    'text-center' => __( 'Center' , LAYERS_THEME_SLUG ),
+                                    'text-right' => __( 'Right' , LAYERS_THEME_SLUG ),
+                                    'text-justify' => __( 'Justify' , LAYERS_THEME_SLUG )
+                                )
+                            )
+                        );
+
+        $this->render_control( $key , $args );
+    }
+
+    /**
+    * Image Align - Static Option
+    *
+    * @param    array       $args       Additional arguments to pass to this function
+    */
+
+    function imagealign( $args = NULL ){
+
+        // If there is no widget information provided, can the operation
+        if( NULL == $this->widget ) return;
+
+        // Set a key for this input
+        $key = 'imagealign';
+
+        // Setup icon CSS
+        $args[ 'icon-css' ] = ( isset( $this->values['imagealign'] ) && NULL != $this->values ? 'icon-' . $this->values['imagealign'] : 'icon-image-left' );
+
+        // Add a Label
+        $args[ 'label' ] = __( 'Image Align' , LAYERS_THEME_SLUG );
+
+        // Add a Wrapper Class
+        $args[ 'wrapper-class' ] = 'layers-pop-menu-wrapper layers-animate layers-small';
+
+        // Add elements
+        $args[ 'elements' ] = array(
+                            'imagealign' => array(
+                                'type' => 'select-icons',
+                                'name' => $this->widget['name'] . '[imagealign]' ,
+                                'id' =>  $this->widget['id'] . '-imagealign' ,
+                                'value' => ( isset( $this->values['imagealign'] ) ) ? $this->values['imagealign'] : NULL,
+                                'options' => array(
+                                    'image-left' => __( 'Left' , LAYERS_THEME_SLUG ),
+                                    'image-right' => __( 'Right' , LAYERS_THEME_SLUG ),
+                                    'image-top' => __( 'Top' , LAYERS_THEME_SLUG )
+                                )
+                            ),
+                        );
+
+        $this->render_control( $key , $args );
+    }
+
+    /**
+    * Featured Image - Static Option
+    *
+    * @param    array       $args       Additional arguments to pass to this function
+    */
+
+    function featuredimage( $args = NULL ){
+
+        // If there is no widget information provided, can the operation
+        if( NULL == $this->widget ) return;
+
+        // Set a key for this input
+        $key = 'featuredimage';
+
+        // Setup icon CSS
+        $args[ 'icon-css' ] = 'icon-featured-image';
+
+        // Add a Label
+        $args[ 'label' ] = __( 'Featured Image' , LAYERS_THEME_SLUG );
+
+        // Add a Wrapper Class
+        $args[ 'wrapper-class' ] = 'layers-pop-menu-wrapper layers-animate layers-content-small';
+
+        // Add elements
+        $args[ 'elements' ] = array(
+                            'featuredimage' => array(
+                                'type' => 'image',
+                                'label' => __( 'Featured Image' , LAYERS_THEME_SLUG ),
+                                'name' => $this->widget['name'] . '[featuredimage]' ,
+                                'id' =>  $this->widget['id'] . '-featuredimage' ,
+                                'value' => ( isset( $this->values['featuredimage'] ) ) ? $this->values['featuredimage'] : NULL
+                            ),
+                            'featuredvideo' => array(
+                                'type' => 'text',
+                                'label' => __( 'Video Embed Code' , LAYERS_THEME_SLUG ),
+                                'name' => $this->widget['name'] . '[featuredvideo]' ,
+                                'id' =>  $this->widget['id'] . '-featuredvideo' ,
+                                'value' => ( isset( $this->values['featuredvideo'] ) ) ? $this->values['featuredvideo'] : NULL
+                            ),
+                            'imageratios' => array(
+                                'type' => 'select-icons',
+                                'name' => $this->widget['name'] . '[imageratios]' ,
+                                'id' =>  $this->widget['id'] . '-imageratios' ,
+                                'value' => ( isset( $this->values['imageratios'] ) ) ? $this->values['imageratios'] : NULL,
+                                'options' => array(
+                                    'image-portrait' => __( 'Portrait' , LAYERS_THEME_SLUG ),
+                                    'image-landscape' => __( 'Landscape' , LAYERS_THEME_SLUG ),
+                                    'image-square' => __( 'Square' , LAYERS_THEME_SLUG ),
+                                    'image-no-crop' => __( 'None' , LAYERS_THEME_SLUG ),
+                                    'image-round' => __( 'Round' , LAYERS_THEME_SLUG ),
+                                ),
+                                'wrapper' => 'div',
+                                'wrapper-class' => 'layers-icon-group'
+                            ),
+                        );
+
+        $this->render_control( $key , $args );
+    }
+
+    /**
+    * Image Size - Static Option
+    *
+    * @param    array       $args       Additional arguments to pass to this function
+    */
+
+    function imageratios( $args = NULL ){
+
+        // If there is no widget information provided, can the operation
+        if( NULL == $this->widget ) return;
+
+        // Set a key for this input
+        $key = 'imageratios';
+
+        // Setup icon CSS
+        $args[ 'icon-css' ] = ( isset( $this->values['imageratios'] ) && NULL != $this->values ? 'icon-' . $this->values['imageratios'] : 'icon-image-size' );
+
+        // Add a Label
+        $args[ 'label' ] = __( 'Image Ratio' , LAYERS_THEME_SLUG );
+
+        // Add a Wrapper Class
+        $args[ 'wrapper-class' ] = 'layers-pop-menu-wrapper layers-animate layers-small';
+
+        // Add elements
+        $args[ 'elements' ] = array(
+                            'imageratio' => array(
+                                'type' => 'select-icons',
+                                'name' => $this->widget['name'] . '[imageratios]' ,
+                                'id' =>  $this->widget['id'] . '-imageratios' ,
+                                'value' => ( isset( $this->values['imageratios'] ) ) ? $this->values['imageratios'] : NULL,
+                                'options' => array(
+                                    'image-portrait' => __( 'Portrait' , LAYERS_THEME_SLUG ),
+                                    'image-landscape' => __( 'Landscape' , LAYERS_THEME_SLUG ),
+                                    'image-square' => __( 'Square' , LAYERS_THEME_SLUG ),
+                                    'image-no-crop' => __( 'None' , LAYERS_THEME_SLUG )
+                                )
+                            ),
+                        );
+
+        $this->render_control( $key , $args );
+    }
+
+    /**
+    * Fonts - Static Option
+    *
+    * @param    array       $args       Additional arguments to pass to this function
+    */
+
+    function fonts( $args = NULL ){
+
+        // If there is no widget information provided, can the operation
+        if( NULL == $this->widget ) return;
+
+        // Set a key for this input
+        $key = 'fonts';
+
+        // Setup icon CSS
+        $args[ 'icon-css' ] = 'icon-font-size';
+
+        // Add a Label
+        $args[ 'label' ] = __( 'Text' , LAYERS_THEME_SLUG );
+
+        // Add a Wrapper Class
+        $args[ 'wrapper-class' ] = 'layers-pop-menu-wrapper layers-animate layers-content-small';
+
+        // Add elements
+        $args[ 'elements' ] = array(
+                            'fonts-align' => array(
+                                'type' => 'select-icons',
+                                'label' => __( 'Text Align' , LAYERS_THEME_SLUG ),
+                                'name' => $this->widget['name'] . '[fonts][align]',
+                                'id' =>  $this->widget['id'] . '-fonts-align',
+                                'value' => ( isset( $this->values['fonts']['align'] ) ) ? $this->values['fonts']['align'] : NULL,
+                                'options' => array(
+                                    'text-left' => __( 'Left' , LAYERS_THEME_SLUG ),
+                                    'text-center' => __( 'Center' , LAYERS_THEME_SLUG ),
+                                    'text-right' => __( 'Right' , LAYERS_THEME_SLUG ),
+                                    'text-justify' => __( 'Justify' , LAYERS_THEME_SLUG )
+                                ),
+                                'wrapper' => 'div',
+                                'wrapper-class' => 'layers-icon-group'
+                            ),
+                           'fonts-size' => array(
+                                'type' => 'select',
+                                'label' => __( 'Text Size' , LAYERS_THEME_SLUG ),
+                                'name' => $this->widget['name'] . '[fonts][size]' ,
+                                'id' =>  $this->widget['id'] . '-fonts-size' ,
+                                'value' => ( isset( $this->values['fonts']['size'] ) ) ? $this->values['fonts']['size'] : NULL,
+                                'options' => array(
+                                        'small' => __( 'Small' , LAYERS_THEME_SLUG ),
+                                        'medium' => __( 'Medium' , LAYERS_THEME_SLUG ),
+                                        'large' => __( 'Large' , LAYERS_THEME_SLUG )
+                                )
+                            ),
+                            'fonts-color' => array(
+                                'type' => 'color',
+                                'name' => $this->widget['name'] . '[fonts][color]' ,
+                                'id' =>  $this->widget['id'] . '-fonts-color' ,
+                                'value' => ( isset( $this->values['fonts']['color'] ) ) ? $this->values['fonts']['color'] : NULL
+                            )
+                        );
+
+        $this->render_control( $key , $args );
+    }
+
+    /**
+    * Background - Static Option
+    *
+    * @param    array       $args       Additional arguments to pass to this function
+    */
+
+    function background( $args = NULL ){
+
+        // If there is no widget information provided, can the operation
+        if( NULL == $this->widget ) return;
+
+        // Set a key for this input
+        $key = 'background';
+
+        // Setup icon CSS
+        $args[ 'icon-css' ] = 'icon-photo';
+
+        // Add a Label
+        $args[ 'label' ] = __( 'Background' , LAYERS_THEME_SLUG );
+
+        // Add elements
+        $args[ 'elements' ] = array(
+                            'background-image' => array(
+                                'type' => 'image',
+                                'label' => __( 'Image' , LAYERS_THEME_SLUG ),
+                                'button_label' => __( 'Choose Image' , LAYERS_THEME_SLUG ),
+                                'name' => $this->widget['name'] . '[background][image]' ,
+                                'id' =>  $this->widget['id'] . '-background-image' ,
+                                'value' => ( isset( $this->values['background']['image'] ) ) ? $this->values['background']['image'] : NULL
+                            ),
+                            'background-color' => array(
+                                'type' => 'color',
+                                'label' => __( 'Color' , LAYERS_THEME_SLUG ),
+                                'name' => $this->widget['name'] . '[background][color]' ,
+                                'id' =>  $this->widget['id'] . '-background-color' ,
+                                'value' => ( isset( $this->values['background']['color'] ) ) ? $this->values['background']['color'] : NULL
+                            ),
+                            'background-repeat' => array(
+                                'type' => 'select',
+                                'label' => __( 'Repeat' , LAYERS_THEME_SLUG ),
+                                'name' => $this->widget['name'] . '[background][repeat]' ,
+                                'id' =>  $this->widget['id'] . '-background-repeat' ,
+                                'value' => ( isset( $this->values['background']['repeat'] ) ) ? $this->values['background']['repeat'] : NULL,
+                                'options' => array(
+                                        'no-repeat' => __( 'No Repeat' , LAYERS_THEME_SLUG ),
+                                        'repeat' => __( 'Repeat' , LAYERS_THEME_SLUG ),
+                                        'repeat-x' => __( 'Repeat Horizontal' , LAYERS_THEME_SLUG ),
+                                        'repeat-y' => __( 'Repeat Vertical' , LAYERS_THEME_SLUG )
+                                    )
+                            ),
+                            'background-position' => array(
+                                'type' => 'select',
+                                'label' => __( 'Position' , LAYERS_THEME_SLUG ),
+                                'name' => $this->widget['name'] . '[background][position]' ,
+                                'id' =>  $this->widget['id'] . '-background-position' ,
+                                'value' => ( isset( $this->values['background']['position'] ) ) ? $this->values['background']['position'] : NULL,
+                                'options' => array(
+                                        'center' => __( 'Center' , LAYERS_THEME_SLUG ),
+                                        'top' => __( 'Top' , LAYERS_THEME_SLUG ),
+                                        'bottom' => __( 'Bottom' , LAYERS_THEME_SLUG ),
+                                        'left' => __( 'Left' , LAYERS_THEME_SLUG ),
+                                        'right' => __( 'Right' , LAYERS_THEME_SLUG )
+                                    )
+                            ),
+                            'background-stretch' => array(
+                                'type' => 'checkbox',
+                                'label' => __( 'Stretch' , LAYERS_THEME_SLUG ),
+                                'name' => $this->widget['name'] . '[background][stretch]' ,
+                                'id' =>  $this->widget['id'] . '-background-stretch' ,
+                                'value' => ( isset( $this->values['background']['stretch'] ) ) ? $this->values['background']['stretch'] : NULL
+                            ),
+                            'background-darken' => array(
+                                'type' => 'checkbox',
+                                'label' => __( 'Darken' , LAYERS_THEME_SLUG ),
+                                'name' => $this->widget['name'] . '[background][darken]' ,
+                                'id' =>  $this->widget['id'] . '-background-darken' ,
+                                'value' => ( isset( $this->values['background']['darken'] ) ) ? $this->values['background']['darken'] : NULL
+                            )
+                        );
+
+        $this->render_control( $key , $args );
+    }
+
+    /**
+    * Advanced - Static Option
+    *
+    * @param    array       $args       Additional arguments to pass to this function
+    */
+
+    function advanced( $args = NULL ){
+
+        // If there is no widget information provided, can the operation
+        if( NULL == $this->widget ) return;
+
+        // Set a key for this input
+        $key = 'advanced';
+
+        // Setup icon CSS
+        $args[ 'icon-css' ] = 'icon-settings';
+
+        // Add a Label
+        $args[ 'label' ] = __( 'Advanced' , LAYERS_THEME_SLUG );
+
+        // Add elements
+        $args[ 'elements' ] = array(
+                            'customclass' => array(
+                                'type' => 'text',
+                                'name' => $this->widget['name'] . '[advanced][customclass]' ,
+                                'id' =>  $this->widget['id'] . '-advanced-customclass' ,
+                                'value' => ( isset( $this->values['advanced']['customclass'] ) ) ? $this->values['advanced']['customclass'] : NULL,
+                                'placeholder' => 'example-class'
+                            ),
+                            'customcss' => array(
+                                'type' => 'textarea',
+                                'name' => $this->widget['name'] . '[advanced][customcss]' ,
+                                'id' =>  $this->widget['id'] . '-advanced-customcss' ,
+                                'value' => ( isset( $this->values['advanced']['customcss'] ) ) ? $this->values['advanced']['customcss'] : NULL,
+                                'placeholder' => ".classname {\n\tbackground: #333;\n}"
+                            )
+                        );
+
+        $this->render_control( $key , $args );
+    }
+
+    /**
+    * Custom Compontent
+    *
+	* @param    varchar     $key        Simply the key and classname for the icon,
+    * @param    array       $args       Component arguments, including the form items
+    */
+
+    function custom_component( $key = NULL, $args = array() ){
+
+        if( empty( $args ) ) return;
+
+        // If there is no widget information provided, can the operation
+        if( NULL == $this->widget ) return;
+
+        // Render Control
+        $this->render_control( $key , $args );
+    }
 } //class Layers_Design_Controller

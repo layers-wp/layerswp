@@ -180,7 +180,7 @@ if( !class_exists( 'Layers_Contact_Widget' ) ) {
 			$instance = wp_parse_args( $instance, $instance_defaults );
 			extract( $instance, EXTR_SKIP ); ?>
 			<!-- Form HTML Here -->
-			<?php $this->design_bar()->bar(
+			<?php $this->design_bar(
 				'side', // CSS Class Name
 				array(
 					'name' => $this->get_field_name( 'design' ),

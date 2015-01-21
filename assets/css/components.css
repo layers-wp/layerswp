@@ -9,8 +9,6 @@ section[class*=' off-canvas-']{
     transform: scale(0.8);
     transition: all 0.3s ease-in-out 0s;
     font-size: 1.4rem;
-}
-.admin-bar section[class*=' off-canvas-']{
     padding-top: 50px;
 }
 .off-canvas-right{
@@ -36,13 +34,13 @@ section[class*=' off-canvas-']{
     /*---------------------------*/
     /*- WRAPPER POSITIONING -----*/
     .off-canvas-right.open + .wrapper-site{
-        transform: translateX(-240px);
+        left: -240px;
     }
     .off-canvas-left.open + .wrapper-site{
-        transform: translateX(240px);
+        left: 240px;
     }
     .off-canvas-top.open + .wrapper-site{
-        transform: translateY(200px);
+        top: 200px;
     }
 
     /*---------------------------*/
@@ -58,7 +56,7 @@ section[class*=' off-canvas-']{
         z-index: 100;
     }
     .admin-bar section[class*=' off-canvas-'] .close-canvas{
-        top: 65px;
+        top: 62px;
     }
     .close-canvas:hover{
         color: #fff;
@@ -203,7 +201,7 @@ section[class*=' off-canvas-']{
     /*- POSITION OVERLAY --------*/
     .header-fixed{
         background: rgba(0, 0, 0, 0.1);
-        position: absolute;
+        position: fixed;
         top: 0;
         left: 0;
         width: 100%;
@@ -226,6 +224,7 @@ section[class*=' off-canvas-']{
     /*- SECONDARY HEADER --------*/
     .header-secondary nav{margin: 0; font-size: 1.2rem;}
     .header-secondary .sub-menu{display: none;}
+
 
 /*-------------------------------*/
 /*- SLIDER ----------------------*/
@@ -724,11 +723,14 @@ p[class*='comment-form'] .required{
     .screen-reader-text{
         display: none;
     }
-    aside #searchsubmit{
+    .search-form label{
+        margin-bottom: 0;
+    }
+    aside .search-submit{
         display: block;
         width: 100%;
     }
-    aside .searchform #s{
+    aside .search-field{
         border: none;
     }
 

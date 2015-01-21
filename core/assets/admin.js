@@ -29,20 +29,20 @@
 */
 
 jQuery(function($) {
-	
+
 	/**
 	* 1 - Enqueue Initialisation Helper
 	*
 	* Used to stagger the initialisation of elements to avoid Firefox non-responsive script warning.
 	* Function adds individual function to an array that is initialised step by step at the end of the file.
 	*/
-	
+
 	var $layers_init_array = [];
-	
+
 	function layers_enqueue_init( $init_function ) {
 		$layers_init_array.push( $init_function );
 	}
-	
+
 	/**
 	* 2 - Media Uploaders
 	*/
@@ -60,7 +60,7 @@ jQuery(function($) {
 
 		$that.siblings('img').remove();
 		$container.removeClass( 'layers-has-image' );
-		
+
 		$container.find('input').val('').layers_trigger_change();
 		$that.fadeOut();
 		return false;
@@ -222,48 +222,48 @@ jQuery(function($) {
 	/**
 	* 4 - Color Selectors
 	*/
-	
+
 	layers_enqueue_init( function(){ layers_set_color_selectors( document ) } );
-	
+
 	function layers_set_color_selectors( element ){
-		
+
 		$(element).find('.layers-color-selector').wpColorPicker({
 			change: function(event, ui){
 				if( 'undefined' !== typeof event ){
-					
+
 					//Update the color input
 					$(event.target).val( ui.color.toString() );
-					
+
 					// Debounce the color changes
 					layers_debounce_input( event.target );
 				}
 			},
 			clear: function() {
 				if( 'undefined' !== typeof event ){
-					
+
 					// Debounce the reset change
 					layers_debounce_input( jQuery(event.target).parent('.wp-picker-input-wrap').find('.wp-color-picker') );
 				}
 			},
 		});
-		
+
 	}
-	
+
 	// Initialise color selectors on widget add.
-	
+
 	$(document).on ( 'widget-added' , function( event, widget_focus ){
 		$( widget_focus ).find('.layers-color-selector').each(function(){
 			var $picker = $(this);
 			$picker.closest('.wp-picker-container').replaceWith( $picker );
 		});
-		
+
 		setTimeout( function() {
 			layers_set_color_selectors( widget_focus );
 		} , 250 );
 	} );
-	
+
 	// Debounce function for color changing.
-	
+
 	var layers_debounce_input = _.debounce(function( element ){
 		$( element ).layers_trigger_change();
 	}, 200);
@@ -271,7 +271,7 @@ jQuery(function($) {
 	/**
 	* 5 - Sortable Columns
 	*/
-	
+
 	layers_enqueue_init( function(){ layers_set_sortable_cols(); } );
 
 	function layers_set_sortable_cols(){
@@ -325,6 +325,15 @@ jQuery(function($) {
 		// "Hi Mom"
 		$that = $(this);
 
+ 		// Get the input value
+		$value = $('#' + $that.attr( 'for' ) ).val();
+
+		// Capture the closest fellow form items
+		$form_items = $that.closest( '.layers-form-item' ).siblings( '.layers-form-item' ).length
+
+ 		if( 0 == $form_items ){
+			$that.closest( '.layers-pop-menu-wrapper' ).siblings( '.layers-icon-wrapper' ).find( 'span[class^="icon-"]' ).attr( 'class', 'icon-' + $value );
+		}
 		// Toggle active state
 		$that.addClass( 'layers-active' );
 
@@ -392,7 +401,7 @@ jQuery(function($) {
 	/**
 	* 10 - Init 'Medium' editors
 	*/
-	
+
 	layers_enqueue_init( function(){
 		$( '.editible' ).each( function(){
 			// "Hi Mom"
@@ -461,13 +470,13 @@ jQuery(function($) {
 	*/
 
 	$.fn.layers_trigger_change = function() {
-		
+
 		// Trigger 'change' and 'blur' to reset the customizer
 		$changed = $(this).trigger("change").trigger("blur");
-		
+
 		//var $widget_synced = $( document ).trigger( 'widget-synced', $(this).closest( '.control-section' ).find( '.widget:first' ) );
 		//console.log( $widget_synced );
-		
+
 		// Reset 'show if' selectors;
 		layers_init_show_if();
 	};
@@ -475,7 +484,7 @@ jQuery(function($) {
 	/**
 	* 12 - Add Last Class to Elements
 	*/
-	
+
 	layers_enqueue_init( function(){
 		$('.layers-visuals-wrapper').each(function(){
 				// "Hi Mom!"
@@ -494,35 +503,35 @@ jQuery(function($) {
 
 	// Instantiate the show/hide lookup
 	layers_enqueue_init( function(){ layers_init_show_if(); } );
-	
+
 	function layers_init_show_if(){
 		$('[data-show-if-selector]').each(function(){
-			
+
 			var $target_element = $(this);
-			
+
 			var $source_element_selector = $target_element.attr( 'data-show-if-selector' );
-			
+
 			layers_apply_show_if( $source_element_selector );
-			
+
 			$( document ).on( 'change', $source_element_selector, function(e){
-				
+
 				layers_apply_show_if( $source_element_selector );
-				
+
 			});
-			
+
 		});
 	}
-	
+
 	function layers_apply_show_if( $source_element_selector_new ){
-		
+
 		$( '[data-show-if-selector="' + $source_element_selector_new + '"]' ).each(function(){
-			
+
 			var $target_element = $(this);
-			
+
 			var $target_element_value = $target_element.data( 'show-if-value' ).toString();
-			
+
 			var $source_element = $( $target_element.data( 'show-if-selector' ).toString() );
-			
+
 			if ( $source_element.attr('type') == 'checkbox' ) {
 				//console.log( $source_element.attr('id') );
 				$source_element_value = ( $source_element.is(':checked') ) ? 'true' : 'false' ;
@@ -530,21 +539,21 @@ jQuery(function($) {
 			else {
 				$source_element_value = $source_element.val();
 			}
-			
-			
+
+
 			// Set the reveal animation type.
 			var animation_type = 'none';
 			if ( $target_element.hasClass('layers-customize-control') ){
 				animation_type = 'slideDown';
 			}
-			
+
 			// If is a Customize Control then hide the whole control.
 			if ( $target_element.hasClass('layers-customize-control') ){
 				$target_element = $target_element.parent('.customize-control');
 			}
 
 			if( $target_element_value.indexOf( $source_element_value ) > -1 ){
-				
+
 				if( animation_type == 'slideDown' ){
 					$target_element.removeClass( 'layers-hide' );
 					$target_element.slideDown( { duration: 550, easing: 'layersEaseInOut' } );
@@ -552,9 +561,9 @@ jQuery(function($) {
 				else{
 					$target_element.removeClass( 'layers-hide' );
 				}
-				
+
 			} else {
-				
+
 				if( animation_type == 'slideDown' ){
 					$target_element.slideUp( { duration: 550, easing: 'layersEaseInOut', complete: function(){
 						$target_element.addClass( 'layers-hide' );
@@ -563,46 +572,46 @@ jQuery(function($) {
 				else{
 					$target_element.addClass( 'layers-hide' );
 				}
-				
+
 			}
 		});
-		
+
 	}
-	
-	
+
+
 	/**
 	* 14 - Run Initialisations
 	*/
-	
+
 	$layers_init_position = 0;
-	
+
 	layers_sequence_loader();
-	
+
 	function layers_sequence_loader(){
 		setTimeout( function(){
-			
+
 			// Run current init function.
 			$layers_init_array[ $layers_init_position ]();
-			
+
 			// Step to next point in init array
 			$layers_init_position++;
-			
+
 			// If there are more elements in init array then continue to loop.
 			if ( $layers_init_position < $layers_init_array.length ) layers_sequence_loader();
-			
+
 		}, 10 );
 	}
-	
+
 	/**
 	* 15 - Layers Custom Easing
 	*
 	* Extend jQuery easing with custom Layers easing function for UI animations - eg slideUp, SlideDown
 	*/
-	
+
 	jQuery.extend( jQuery.easing, { layersEaseInOut: function (x, t, b, c, d) {
 		if ((t/=d/2) < 1) return c/2*t*t + b;
 		return -c/2 * ((--t)*(t-2) - 1) + b;
 	} });
-	
+
 });
 

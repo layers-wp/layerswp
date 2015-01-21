@@ -262,7 +262,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 			extract( $instance, EXTR_SKIP ); ?>
 
 			<!-- Form HTML Here -->
-			<?php $this->design_bar()->bar(
+			<?php $this->design_bar(
 				'side', // CSS Class Name
 				array(
 					'name' => $this->get_field_name( 'design' ),
@@ -280,7 +280,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 					'liststyle' => array(
 						'icon-css' => 'icon-list-masonry',
 						'label' => 'List Style',
-						'wrapper-css' => 'layers-small to layers-pop-menu-wrapper layers-animate',
+						'wrapper-class' => 'layers-small to layers-pop-menu-wrapper layers-animate',
 						'elements' => array(
 							'liststyle' => array(
 								'type' => 'select-icons',
@@ -399,7 +399,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 						</span>
 					</a>
 					<section class="layers-accordion-section layers-content">
-						<?php $this->design_bar()->bar(
+						<?php $this->design_bar(
 							'top', // CSS Class Name
 							array(
 								'name' => $this->get_custom_field_name( $widget_details, 'columns',  $column_guid, 'design' ),

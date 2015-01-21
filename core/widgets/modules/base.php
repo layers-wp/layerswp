@@ -74,10 +74,10 @@ if( !class_exists( 'Layers_Widget' ) ) {
 		*
 		* @return  	html 		Design bar HTML
 		*/
-		public function design_bar() {
+		public function design_bar(  $type = 'side' , $widget = NULL, $instance = array(), $components = array( 'columns' , 'background' , 'imagealign' ) , $custom_components = array()  ) {
 
 			// Instantiate design bar
-			$design_bar = new Layers_Design_Controller();
+			$design_bar = new Layers_Design_Controller( $type, $widget, $instance, $components, $custom_components );
 
 			// Return design bar
 			return $design_bar;

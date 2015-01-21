@@ -1127,8 +1127,8 @@ input[type=text].layers-color-selector.wp-color-picker{
         .layers-section-title.layers-small .layers-excerpt{font-size: 16px; line-height: 26px;}
 
         .layers-section-title.layers-tiny{margin-bottom: 15px;}
-        .layers-section-title.layers-tiny .layers-heading{font-size: 16px; line-height: 26px; font-weight:  700;}
-        .layers-section-title.layers-tiny .layers-excerpt{margin-top: 0px !important; font-size: 14px; line-height: 24px;}
+        .layers-section-title.layers-tiny .layers-heading{font-size: 16px; line-height: 26px; font-weight: 700;}
+        .layers-section-title.layers-tiny .layers-excerpt{margin-top: 0px !important; font-size: 14px; line-height: 24px; font-weight: normal;}
 
             /*---------------------------*/
             /*- SECTION ALIGNMENTS ------*/
@@ -1245,6 +1245,26 @@ input[type=text].layers-color-selector.wp-color-picker{
         border-top: 1px solid #DDD;
         background: #F5F5F5;
     }
+
+/*---------------------------*/
+/*- LABELS ------------------*/
+.layers-label{
+    padding: 0 5px;
+    margin-left: 5px;
+    background: #ddd;
+    border-radius: 3px;
+    font-size: 10px;
+    text-transform: uppercase;
+    color: #777;
+}
+
+    /*-----------------------*/
+    /*- SECONDARY LABEL -----*/
+    .label-secondary{
+        background: #22E946;
+        color: #fff;
+    }
+
 
 /*---------------------------*/
 /*- ACCORDIONS --------------*/

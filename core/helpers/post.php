@@ -407,7 +407,7 @@ if( !function_exists( 'layers_post_featured_media' ) ) {
             $output .= $featured_media;
         }
 
-        if( !isset( $post_meta[ 'video-url' ] ) && !is_single() ){
+        if( !isset( $post_meta[ 'video-url' ] ) && ( !is_single() && !is_page_template( 'template-blog.php' ) ) ){
             $output = '<a href="' .get_permalink( $postid ) . '">' . $output . '</a>';
         }
 

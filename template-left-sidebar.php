@@ -12,11 +12,7 @@ get_header(); ?>
 
 <section id="post-<?php the_ID(); ?>" <?php post_class( 'content-main clearfix' ); ?>>
     <div class="row">
-
-        <?php /**
-        * Maybe show the left sidebar
-        */
-        layers_maybe_get_sidebar( 'left-sidebar', 'column pull-left sidebar span-3' ); ?>
+        <?php get_sidebar( 'left' ); ?>
 
         <article <?php layers_center_column_class(); ?>>
             <?php if( have_posts() ) : ?>

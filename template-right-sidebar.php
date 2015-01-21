@@ -19,10 +19,8 @@ get_header(); ?>
                 <?php endwhile; // while has_post(); ?>
             <?php endif; // if has_post() ?>
         </article>
-        <?php /**
-        * Maybe show the left sidebar
-        */
-        layers_maybe_get_sidebar( 'right-sidebar', 'column pull-right sidebar span-3 no-gutter' ); ?>
+
+        <?php get_sidebar( 'right' ); ?>
     </div>
 </section>
 

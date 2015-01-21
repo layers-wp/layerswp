@@ -753,7 +753,7 @@ if( !function_exists( 'layers_get_feature_media' ) ) {
 		if( NULL != $postid &&
 				(
 					( is_single() && isset( $use_video ) ) ||
-					( !is_single() && isset( $use_video ) && !isset( $use_image) )
+					( ( !is_single() && !is_page_template( 'template-blog.php' ) ) && isset( $use_video ) && !isset( $use_image) )
 				)
 		) {
 			$media = $use_video;

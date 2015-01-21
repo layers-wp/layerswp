@@ -12,10 +12,8 @@ get_header(); ?>
 
 <section id="post-<?php the_ID(); ?>" <?php post_class( 'content-main clearfix' ); ?>>
     <div class="row">
-        <?php /**
-        * Maybe show the left sidebar
-        */
-        layers_maybe_get_sidebar( 'left-sidebar', 'column pull-left sidebar span-2' ); ?>
+
+        <?php get_sidebar( 'left' ); ?>
 
         <?php if( have_posts() ) : ?>
 
@@ -27,10 +25,7 @@ get_header(); ?>
 
         <?php endif; // if has_post() ?>
 
-        <?php /**
-        * Maybe show the right sidebar
-        */
-        layers_maybe_get_sidebar( 'right-sidebar', 'column pull-right sidebar span-2' ); ?>
+        <?php get_sidebar( 'right' ); ?>
     </div>
 </section>
 

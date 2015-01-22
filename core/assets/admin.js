@@ -342,7 +342,7 @@ jQuery(function($) {
 	});
 
 
-	$( document ).on( 'click' , '[id^="input_layers"] .layers-visuals-item' , function(e){
+	$( document ).on( 'click' , '[id^="layers-customize"] .layers-visuals-item' , function(e){
 		// "Hi Mom"
 		$that = $(this);
 

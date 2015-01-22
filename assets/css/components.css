@@ -245,8 +245,11 @@ section[class*=' off-canvas-']{
         opacity: 1;
         transition: margin .15s ease-in-out, opacity .15s ease-in-out;
     }
-    .admin-bar .header-sticky.is_stuck.is_stuck_show{
+    .admin-bar .header-sticky.is_stuck{
         margin-top: 30px;
+    }
+    .admin-bar .header-sticky.is_stuck.is_stuck_show{
+        margin-top: 0;
     }
 
     /*---------------------------*/
@@ -353,7 +356,9 @@ section[class*=' off-canvas-']{
         top: auto;
         transform: none;
     }
-    .image-top .copy-container + .image-container{margin-top: 40px;}
+    .image-top .copy-container + .image-container{
+        margin-top: 40px;
+    }
 
     /*---------------------------*/
     /*- SLIDER COPY -------------*/

@@ -132,7 +132,7 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 							} ?>
 
 							<div id="<?php echo $widget_id; ?>-<?php echo $key; ?>" class="invert swiper-slide
-								<?php if( false != $this->check_and_return( $slide , 'image' ) || 'image-left' == $slide['design'][ 'imagealign' ] || 'image-right' == $slide['design'][ 'imagealign' ] ) echo 'has-image'; ?>
+								<?php if( false != $this->check_and_return( $slide , 'image' ) || 'image-left' == $slide['design'][ 'imagealign' ] || 'image-top' == $slide['design'][ 'imagealign' ] ) echo 'has-image'; ?>
 								<?php if( isset( $slide['design'][ 'imagealign' ] ) && '' != $slide['design'][ 'imagealign' ] ) echo $slide['design'][ 'imagealign' ]; ?>
 								<?php if( isset( $slide['design']['fonts'][ 'align' ] ) && '' != $slide['design']['fonts'][ 'align' ] ) echo $slide['design']['fonts'][ 'align' ]; ?>
 								"

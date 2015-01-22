@@ -308,6 +308,9 @@ html{}
 	float: right;
 	margin: 10px 0;
 }
+.admin-bar .header-sticky.is_stuck.is_stuck_show{
+	margin-top: 0;
+}
 
 /*-------------------------------*/
 /*- SLIDER ----------------------*/

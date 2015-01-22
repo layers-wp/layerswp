@@ -249,7 +249,7 @@ section[class*=' off-canvas-']{
         margin-top: 30px;
     }
     .admin-bar .header-sticky.is_stuck.is_stuck_show{
-        margin-top: 0;
+        margin-top: 30px;
     }
 
     /*---------------------------*/

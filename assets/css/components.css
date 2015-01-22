@@ -96,9 +96,9 @@ section[class*=' off-canvas-']{
         section[class*=' off-canvas-'] .nav-vertical{
             display: block;
         }
-    section[class*=' off-canvas-'] .nav-vertical li{
-        padding: 0;
-    }
+        section[class*=' off-canvas-'] .nav-vertical li{
+            padding: 0;
+        }
         section[class*=' off-canvas-'] .nav-vertical .sub-menu{
             display: block;
             width: auto;
@@ -218,13 +218,18 @@ section[class*=' off-canvas-']{
     /*---------------------------*/
     /*- POSITION OVERLAY --------*/
     .header-sticky{
-        /* background: rgba(0, 0, 0, 0.1); */
         width: 100%;
         z-index: 100;
     }
-    .header-site.invert .nav-horizontal > ul > li > a{ color: #fff; }
-    .header-site.invert .nav-horizontal > ul > li > a:hover{ color: #000; }
-    .header-site.invert .responsive-nav .l-menu{ color: #fff; }
+    .header-site.invert .nav-horizontal > ul > li > a{
+        color: #fff;
+    }
+    .header-site.invert .nav-horizontal > ul > li > a:hover{
+        color: #000;
+    }
+    .header-site.invert .responsive-nav .l-menu{
+        color: #fff;
+    }
     .header-overlay{
         position: absolute;
         width: 100%;
@@ -238,22 +243,39 @@ section[class*=' off-canvas-']{
     .header-sticky.is_stuck.is_stuck_show{
         margin-top: 0;
         opacity: 1;
-        transition: margin .6s ease-in-out, opacity .6s ease-in-out;
+        transition: margin .15s ease-in-out, opacity .15s ease-in-out;
+    }
+    .admin-bar .header-sticky.is_stuck.is_stuck_show{
+        margin-top: 30px;
     }
 
     /*---------------------------*/
     /*- NAVIGATION POSITION -----*/
-    .nav-clear .logo{float: none;}
-
-        .nav-clear .site-logo-link + .sitename{margin-top: 10px;}
-        .nav-clear .site-logo-link + .tagline{margin-top: 10px;}
-
-    .nav-clear nav{display: block; float: none; clear: both; margin: 10px 0 0;}
+    .nav-clear .logo{
+        float: none;
+    }
+    .nav-clear .site-logo-link + .sitename{
+        margin-top: 10px;
+    }
+    .nav-clear .site-logo-link + .tagline{
+        margin-top: 10px;
+    }
+    .nav-clear nav{
+        display: block;
+        float: none;
+        clear: both;
+        margin: 10px 0 0;
+    }
 
     /*---------------------------*/
     /*- SECONDARY HEADER --------*/
-    .header-secondary nav{margin: 0; font-size: 1.2rem;}
-    .header-secondary .sub-menu{display: none;}
+    .header-secondary nav{
+        margin: 0;
+        font-size: 1.2rem;
+    }
+    .header-secondary .sub-menu{
+        display: none;
+    }
 
 
 /*-------------------------------*/
@@ -400,9 +422,12 @@ section[class*=' off-canvas-']{
             color: #fff;
             font-size: 48px;
         }
-        .swiper-container .arrows .l-left-arrow{left: 0;}
-        .swiper-container .arrows .l-right-arrow{right: 0;}
-
+        .swiper-container .arrows .l-left-arrow{
+            left: 0;
+        }
+        .swiper-container .arrows .l-right-arrow{
+            right: 0;
+        }
         .swiper-container:hover .arrows .l-left-arrow{
             left: 10px;
             opacity: 1;

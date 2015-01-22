@@ -464,30 +464,32 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 									)
 								); ?>
 							</p>
-							<p class="layers-form-item">
-								<label for="<?php echo $this->get_field_id( 'link' ); ?>"><?php _e( 'Link' , LAYERS_THEME_SLUG ); ?></label>
-								<?php echo $this->form_elements()->input(
-									array(
-										'type' => 'text',
-										'name' => $this->get_custom_field_name( $widget_details, 'slides',  $slide_guid, 'link' ),
-										'id' => $this->get_custom_field_id( $widget_details, 'slides',  $slide_guid, 'link' ),
-										'placeholder' => __( 'http://', LAYERS_THEME_SLUG ),
-										'value' => ( isset( $link ) ) ? $link : NULL ,
-									)
-								); ?>
-							</p>
-							<p class="layers-form-item">
-								<label for="<?php echo $this->get_field_id( 'link' ); ?>"><?php _e( 'Button Text' , LAYERS_THEME_SLUG ); ?></label>
-								<?php echo $this->form_elements()->input(
-									array(
-										'type' => 'text',
-										'name' => $this->get_custom_field_name( $widget_details, 'slides',  $slide_guid, 'link_text' ),
-										'id' => $this->get_custom_field_id( $widget_details, 'slides',  $slide_guid, 'link_text' ),
-										'placeholder' => __( 'e.g. "Read More"' , LAYERS_THEME_SLUG ),
-										'value' => ( isset( $link_text ) ) ? $link_text : NULL ,
-									)
-								); ?>
-							</p>
+							<div class="layers-row">
+								<p class="layers-form-item layers-column layers-span-6">
+									<label for="<?php echo $this->get_field_id( 'link' ); ?>"><?php _e( 'Button Link' , LAYERS_THEME_SLUG ); ?></label>
+									<?php echo $this->form_elements()->input(
+										array(
+											'type' => 'text',
+											'name' => $this->get_custom_field_name( $widget_details, 'slides',  $slide_guid, 'link' ),
+											'id' => $this->get_custom_field_id( $widget_details, 'slides',  $slide_guid, 'link' ),
+											'placeholder' => __( 'http://', LAYERS_THEME_SLUG ),
+											'value' => ( isset( $link ) ) ? $link : NULL ,
+										)
+									); ?>
+								</p>
+								<p class="layers-form-item layers-column layers-span-6">
+									<label for="<?php echo $this->get_field_id( 'link' ); ?>"><?php _e( 'Button Text' , LAYERS_THEME_SLUG ); ?></label>
+									<?php echo $this->form_elements()->input(
+										array(
+											'type' => 'text',
+											'name' => $this->get_custom_field_name( $widget_details, 'slides',  $slide_guid, 'link_text' ),
+											'id' => $this->get_custom_field_id( $widget_details, 'slides',  $slide_guid, 'link_text' ),
+											'placeholder' => __( 'e.g. "Read More"' , LAYERS_THEME_SLUG ),
+											'value' => ( isset( $link_text ) ) ? $link_text : NULL ,
+										)
+									); ?>
+								</p>
+							</div>
 						</div>
 					</section>
 				</li>

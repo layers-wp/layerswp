@@ -47,7 +47,6 @@ add_action( 'template_redirect', 'layers_set_content_width' );
 /*
  * Third Party Scripts
  */
-locate_template( '/core/third-party/hex-to-rgb.php' , true );
 locate_template( '/core/third-party/site-logo.php' , true );
 
 /*
@@ -246,7 +245,23 @@ if( ! function_exists( 'layers_scripts' ) ) {
 		/**
 		* Front end Scripts
 		*/
-
+		
+		wp_enqueue_script(
+			LAYERS_THEME_SLUG . '-sticky-kit-js' ,
+			get_template_directory_uri() . '/assets/js/sticky-kit.js',
+			array(
+				'jquery',
+			)
+		); // Sticky-Kit
+		
+		wp_enqueue_script(
+			LAYERS_THEME_SLUG . '-waypoints-js' ,
+			get_template_directory_uri() . '/assets/js/waypoint.js',
+			array(
+				'jquery',
+			)
+		); // Waypoints
+		
 		wp_enqueue_script(
 			LAYERS_THEME_SLUG . '-isotope-js' ,
 			get_template_directory_uri() . '/assets/js/isotope.js',

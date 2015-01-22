@@ -20,7 +20,8 @@
 		// Apply customizer header settings.
 		if( layers_get_theme_mod( 'header-layout-background-color' ) ){
 			layers_inline_styles( 'nothing', 'color', array( 'color' => '#333' ) ); // Temp Fix
-			wp_add_inline_style( LAYERS_THEME_SLUG . '-inline-styles', '.header-fixed { background-color: rgba(' . implode( ', ' , hex2rgb( layers_get_theme_mod( 'header-layout-background-color' ) ) ) . ', 0.3); }' );
+			$bg_opacity = ( layers_get_theme_mod( 'header-layout-overlay') ) ? .5 : 1 ;
+			wp_add_inline_style( LAYERS_THEME_SLUG . '-inline-styles', '.header-site { background-color: rgba(' . implode( ', ' , hex2rgb( layers_get_theme_mod( 'header-layout-background-color' ) ) ) . ', ' . $bg_opacity . '); }' );
 		}
 		?>
 		

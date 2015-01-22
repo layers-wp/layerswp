@@ -141,19 +141,25 @@ class Layers_Customizer_Config {
 								'break-1' => array(
 									'type'     => 'layers-seperator'
 								),
-								'fixed' => array(
+								'header-position-heading' => array(
+									'type'  => 'layers-heading',
+									'label'    => __( 'Header Position', LAYERS_THEME_SLUG ),
+								),
+								'sticky' => array(
+									'type'		=> 'layers-checkbox',
+									'label'		=> __( 'Sticky', LAYERS_THEME_SLUG ),
+									'class'		=> 'layers-pull-top layers-pull-bottom',
+								),
+								'overlay' => array(
 									'type'     => 'layers-checkbox',
-									'label'    => __( 'Fixed Header', LAYERS_THEME_SLUG ),
-									'description' => __( 'Ticking this option will force your header to the to stick to the top of the page screen when scrolling.', LAYERS_THEME_SLUG ),
-									'default' => false,
+									'label'    => __( 'Overlay', LAYERS_THEME_SLUG ),
+								),
+								'break-2' => array(
+									'type'     => 'layers-seperator',
 								),
 								'background-color' => array(
 									'type'		=> 'layers-color',
 									'label'		=> __( 'Background Color', LAYERS_THEME_SLUG ),
-									'linked'	=> array(
-										'show-if-selector' => "#layers-header-layout-fixed",
-										'show-if-value' => "true",
-									),
 								),
 							); // header-layout
 

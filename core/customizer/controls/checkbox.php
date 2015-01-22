@@ -20,6 +20,8 @@ if( !class_exists( 'Layers_Customize_Checkbox_Control' ) ) {
 		public $description = '';
 		
 		public $linked = '';
+		
+		public $class = '';
 
 		public function render_content() {
 
@@ -39,7 +41,7 @@ if( !class_exists( 'Layers_Customize_Checkbox_Control' ) ) {
 				$linked = '';
 			}
 			?>
-			<div id="layers-customize-control-<?php echo esc_attr( $this->id ); ?>" class="layers-customize-control layers-customize-control-<?php echo esc_attr( str_replace( 'layers-', '', $this->type ) ); ?>" <?php echo $linked; ?> >
+			<div id="layers-customize-control-<?php echo esc_attr( $this->id ); ?>" class="layers-customize-control layers-customize-control-<?php echo esc_attr( str_replace( 'layers-', '', $this->type ) ); ?> <?php echo esc_attr( $this->class ); ?>" <?php echo $linked; ?> >
 
 				<div class="layers-form-item">
 					<div class="layers-checkbox-wrapper layers-form-item">

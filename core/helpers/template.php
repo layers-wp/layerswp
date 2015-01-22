@@ -343,17 +343,27 @@ if( !function_exists( 'layers_get_header_class' ) ) {
 	function layers_get_header_class( $class = '' ){
 
 		$header_align_option = layers_get_theme_mod( 'header-layout-layout' );
-		$header_fixed_option = layers_get_theme_mod( 'header-layout-fixed' );
+		$header_sticky_option = layers_get_theme_mod( 'header-layout-sticky' );
+		$header_overlay_option = layers_get_theme_mod( 'header-layout-overlay');
 		$header_full_width_option = layers_get_theme_mod( 'header-layout-width' );
-
+		
 		$classes = array();
 
 		// Add the general site header class
 		$classes[] = 'header-site';
 
-		// Handle fixed / not fixed
-		if( TRUE == $header_fixed_option ){
-			$classes[] = 'header-fixed';
+		// Handle sticky / not sticky
+		if( TRUE == $header_sticky_option ){
+			$classes[] = 'header-sticky';
+		}
+		
+		// Handle overlay / not overlay
+		if( TRUE == $header_overlay_option ){
+			$classes[] = 'header-overlay';
+		}
+		
+		// Handle invert if background-color light / dark
+		if ( '#FFFFFF' == layers_light_or_dark( layers_get_theme_mod( 'header-layout-background-color' ), '#000000' /*dark*/, '#FFFFFF' /*dark*/ ) ) {
 			$classes[] = 'invert';
 		}
 
@@ -837,3 +847,53 @@ if( !function_exists( 'layers_translate_image_ratios' ) ) {
 		return $image_ratio;
 	}
 } // layers_get_header_class
+
+/**
+ * Convert hex value to rgb array.
+ *
+ * @param	string	$hex
+ * @return	array	implode(",", $rgb); returns the rgb values separated by commas
+ */
+
+if(!function_exists('hex2rgb') ) {
+	function hex2rgb($hex) {
+	   $hex = str_replace("#", "", $hex);
+
+	   if(strlen($hex) == 3) {
+			$r = hexdec(substr($hex,0,1).substr($hex,0,1));
+			$g = hexdec(substr($hex,1,1).substr($hex,1,1));
+			$b = hexdec(substr($hex,2,1).substr($hex,2,1));
+	   } else {
+			$r = hexdec(substr($hex,0,2));
+			$g = hexdec(substr($hex,2,2));
+			$b = hexdec(substr($hex,4,2));
+	   }
+	   $rgb = array($r, $g, $b);
+	   
+	   return $rgb; // returns an array with the rgb values
+	}
+}
+
+/**
+ * Detect if we should use a light or dark colour on a background colour
+ *
+ * @param mixed $color
+ * @param string $dark (default: '#000000')
+ * @param string $light (default: '#FFFFFF')
+ * @return string
+ */
+
+if ( ! function_exists( 'layers_light_or_dark' ) ) {
+	function layers_light_or_dark( $color, $dark = '#000000', $light = '#FFFFFF' ) {
+		
+		$hex = str_replace( '#', '', $color );
+
+		$c_r = hexdec( substr( $hex, 0, 2 ) );
+		$c_g = hexdec( substr( $hex, 2, 2 ) );
+		$c_b = hexdec( substr( $hex, 4, 2 ) );
+
+		$brightness = ( ( $c_r * 299 ) + ( $c_g * 587 ) + ( $c_b * 114 ) ) / 1000;
+
+		return $brightness > 155 ? $dark : $light;
+	}
+}

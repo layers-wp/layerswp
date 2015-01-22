@@ -10,6 +10,7 @@
  * 2 - Container padding for header fixed
  * 3 - Widget closing when clicking on the canvas
  * 4 - Offsite sidebar Toggles
+ * 5 - Sticky Header
 */
 jQuery(function($) {
 
@@ -32,13 +33,22 @@ jQuery(function($) {
     * 2 - Container padding for header fixed
     */
     $(window).on('load', function() {
-        if( $( 'header' ).hasClass( 'header-fixed' ) ){
+    	
+    	$header = $( '.header-site' );
+    	
+        if( $header.hasClass( 'header-overlay' ) ){
+        	
             $selector = $( '#wrapper-content' );
-
+            
             // Ignore the padding if the first widget is the slider
-            if( $selector.find( '.widget' ).first().hasClass( 'slide' ) ) return;
-
-            $selector.css( 'paddingTop' , $('.header-site').height() );
+            if( $selector.find( '.widget' ).first().hasClass( 'slide' ) ) {
+            	$header.addClass('header-slide-first');
+        	}
+        	else{
+        		$selector.css( 'paddingTop' , $( $header ).height() );
+        		$header.addClass('header-slide-not-first');
+        	}
+        	
         }
     });
 
@@ -66,6 +76,51 @@ jQuery(function($) {
         $( $target ).toggleClass( $that.data( 'toggle-class' ) );
 
     });
+    
+    /**
+    * 5 - Sticky Header
+    */
+    
+    // Set site header element
+    $header_sticky = $("header.header-sticky");
+	
+	// Handle scroll passsing the go-sticky position.
+	$("body").waypoint({
+		offset 	: -270,
+		handler	: function(direction) {
+			if ( 'down' == direction ) {
+				
+				// Sticky the header
+				$header_sticky.stick_in_parent({
+					parent: 'body'
+				});
+				
+				// Clear previous timeout to avoid duplicates.
+				clearTimeout( $header_sticky.data( 'timeout' ) );
+				
+				// Show header miliseconds later so we can css animate in.
+				$header_sticky.data( 'timeout', setTimeout( function() {
+					$header_sticky.addClass('is_stuck_show');
+				}, '10' ) );
+			}
+		}
+	});
+	
+	// Handle scroll ariving at page top.
+	$("body").waypoint({
+		offset 	: -1,
+		handler	: function(direction) {
+			if ( 'up' == direction ) {
+				
+				// Clear previous timeout to avoid late events.
+				clearTimeout( $header_sticky.data( 'timeout' ) );
+				
+				// Detach the header
+				$header_sticky.removeClass('is_stuck_show');
+				$header_sticky.trigger("sticky_kit:detach");
+			}
+		}
+	});
 
 }(jQuery));
 

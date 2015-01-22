@@ -127,7 +127,7 @@ section[class*=' off-canvas-']{
 /*-------------------------------*/
 
     .header-site{
-        background: #f3f3f3;
+        /* background: #f3f3f3; */
     }
     .header-site .container{
         padding: 20px;
@@ -201,17 +201,29 @@ section[class*=' off-canvas-']{
 
     /*---------------------------*/
     /*- POSITION OVERLAY --------*/
-    .header-fixed{
-        background: rgba(0, 0, 0, 0.1);
-        position: absolute;
-        top: 0;
-        left: 0;
+    .header-sticky{
+        /* background: rgba(0, 0, 0, 0.1); */
         width: 100%;
         z-index: 100;
     }
-    .header-fixed .nav-horizontal > ul > li > a{color: #fff;}
-    .header-fixed .nav-horizontal > ul > li > a:hover{color: #000;}
-    .header-fixed .responsive-nav .l-menu{color: #fff;}
+    .header-site.invert .nav-horizontal > ul > li > a{ color: #fff; }
+    .header-site.invert .nav-horizontal > ul > li > a:hover{ color: #000; }
+    .header-site.invert .responsive-nav .l-menu{ color: #fff; }
+    .header-overlay{
+        position: absolute;
+        width: 100%;
+        z-index: 100;
+        transition: background .3s ease-in-out;
+    }
+    .header-sticky.is_stuck{
+        margin-top: -30px;
+        opacity: 0;
+    }
+    .header-sticky.is_stuck.is_stuck_show{
+        margin-top: 0;
+        opacity: 1;
+        transition: margin .6s ease-in-out, opacity .6s ease-in-out;
+    }
 
     /*---------------------------*/
     /*- NAVIGATION POSITION -----*/

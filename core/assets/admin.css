@@ -1060,11 +1060,17 @@ input[type=text].layers-color-selector.wp-color-picker{
 .customize-control .layers-customize-control .layers-form-item{
     margin: 0 0 3px;
 }
-.customize-control-layers-heading .layers-customize-control{
+.customize-control .layers-customize-control.layers-customize-control-heading{
     margin: 0 0 -8px;
 }
-.customize-control-layers-checkbox .layers-customize-control{
+.customize-control .layers-customize-control.layers-customize-control-checkbox{
     margin-top: 10px;
+}
+.customize-control .layers-customize-control.layers-pull-top{
+    margin-top: 6px;
+}
+.customize-control .layers-customize-control.layers-pull-bottom{
+    margin-bottom: -9px;
 }
 
 /*---------------------------*/

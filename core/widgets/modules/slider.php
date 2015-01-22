@@ -159,7 +159,7 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 											</div>
 										<?php } // if title || excerpt ?>
 										<?php if( $featureimage || $featurevideo ) { ?>
-											<div class="image-container <?php echo ( 'image-round' ==  $slide['design'][ 'imageratios' ] ? 'image-rounded' : '' ); ?>">
+											<div class="image-container <?php echo ( 'image-round' ==  $this->check_and_return( $slide, 'design',  'imageratios' ) ? 'image-rounded' : '' ); ?>">
 												<?php echo layers_get_feature_media(
 													$featureimage ,
 													$use_image_ratio ,

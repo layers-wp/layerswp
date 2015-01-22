@@ -510,7 +510,12 @@ if( !function_exists( 'layers_can_show_sidebar' ) ) {
 
 	function layers_can_show_sidebar( $sidebar = 'left-sidebar' ){
 
-		 if( is_page() ) {
+		if ( is_page_template( 'template-blog.php' ) ) {
+
+			// Check the arhive page option
+		   $can_show_sidebar = layers_get_theme_mod( 'content-layout-archive-' . $sidebar );
+
+		} else if( is_page() ) {
 
 			// Check the pages use page templates to decide which sidebars are allowed
 			$can_show_sidebar =
@@ -758,7 +763,7 @@ if( !function_exists( 'layers_get_feature_media' ) ) {
 		if( NULL != $postid &&
 				(
 					( is_single() && isset( $use_video ) ) ||
-					( !is_single() && isset( $use_video ) && !isset( $use_image) )
+					( ( !is_single() && !is_page_template( 'template-blog.php' ) ) && isset( $use_video ) && !isset( $use_image) )
 				)
 		) {
 			$media = $use_video;

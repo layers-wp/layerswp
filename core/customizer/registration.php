@@ -290,9 +290,9 @@ class Layers_Customizer_Regsitrar {
 					)
 				);
 			} else if( 'layers-background' == $control_data['type'] ) {
-				
+
 				// Footer Background Heading
-				
+
 				$duplicate_control_data = wp_parse_args(
 					array(
 						'label' => __( 'Background', LAYERS_THEME_SLUG ),
@@ -301,7 +301,7 @@ class Layers_Customizer_Regsitrar {
 					),
 					$control_data
 				);
-				
+
 				// Add Setting
 				$this->customizer->add_setting(
 					$setting_key . '-background-heading',
@@ -437,7 +437,7 @@ class Layers_Customizer_Regsitrar {
 						$duplicate_control_data
 					)
 				);
-				
+
 				// Footer Background Stretch
 
 				$duplicate_control_data = wp_parse_args(
@@ -465,7 +465,7 @@ class Layers_Customizer_Regsitrar {
 						$duplicate_control_data
 					)
 				);
-				
+
 			} else {
 
 				// Add Setting

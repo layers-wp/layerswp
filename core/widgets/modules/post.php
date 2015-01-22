@@ -103,9 +103,12 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 			if( 'list-list' == $widget['design'][ 'liststyle' ] ) {
                 $col_count = 1;
 				$span_class = 'span-12';
-			} else {
+			} else if( isset( $widget['design'][ 'columns']  ) ) {
 				$col_count = str_ireplace('columns-', '', $widget['design'][ 'columns']  );
 				$span_class = 'span-' . ( 12/ $col_count );
+			} else {
+				$col_count = 3;
+				$span_class = 'span-4';
 			}
 
 			// Set the background & font styling
@@ -288,7 +291,7 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 			extract( $instance, EXTR_SKIP ); ?>
 
 			<!-- Form HTML Here -->
-			<?php $this->design_bar()->bar(
+			<?php $this->design_bar(
 				'side', // CSS Class Name
 				array(
 					'name' => $this->get_field_name( 'design' ),

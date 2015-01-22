@@ -116,7 +116,40 @@ class Layers_Custom_Meta {
 					<div class="layers-button-well clearfix">
 						<a href="%2$s" class="layers-button btn-massive btn-primary btn-full" id="%4$s">%6$s</a>
 					</div>
-				</div>',
+				</div>
+			<!-- HERE -->
+
+			<div class="layers-row">
+
+				<div class="layers-column layers-span-4 postbox layers-content">
+					<div class="layers-section-title layers-tiny">
+						<h4 class="layers-heading">Export Page Settings</h4>
+						<p class="layers-excerpt">Copy and paste your settings into a new page for easy replication of layouts and copy.</p>
+					</div>
+					<a href="" class="layers-button btn-primary">Export</a>
+				</div>
+
+				<div class="layers-column layers-span-4 postbox layers-content">
+					<div class="layers-section-title layers-tiny">
+						<h4 class="layers-heading">Duplicate Page</h4>
+						<p class="layers-excerpt">Easily duplicate your layout, settings, copy and images in order to get started quickly with a new page.</p>
+					</div>
+					<a href="" class="layers-button btn-primary">Duplicate</a>
+				</div>
+
+				<div class="layers-column layers-span-4 postbox layers-content">
+					<div class="layers-section-title layers-tiny">
+						<h4 class="layers-heading">Backup with oCloud <span class="layers-label label-secondary">Pro</span></h4>
+						<p class="layers-excerpt">Never lose your page by upgrading to oCloud which automatically saves of all your settings and content to the cloud.</p>
+					</div>
+					<a href="" class="layers-button">Upgrade to oCloud</a>
+				</div>
+
+			</div>
+
+			<!-- END -->
+
+				',
 			'Your page is ready for building', // %1
 			admin_url() . 'customize.php?url=' . esc_url( get_the_permalink() ) . '&layers-builder=1', // %2
 			( true == $is_builder_used ? '' : 'layers-hide' ), // %3

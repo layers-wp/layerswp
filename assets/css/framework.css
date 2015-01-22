@@ -64,9 +64,15 @@ nav{*zoom: 1;}
 /*-------------------------------*/
 /*- DEFAULTS --------------------*/
 /*-------------------------------*/
-*{-webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box;}
+*{
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
 html{}
-body{overflow-x: hidden;/* padding: 40px 0 0; */}
+body{
+    overflow-x: hidden;
+}
 
 code{
     display: inline;
@@ -261,12 +267,15 @@ object{
     .wrapper-site{
         width: 100%;
         position: relative;
-        /* transform: translateX(0px); */
-        transition: transform 0.3s ease-in-out 0s, width 0.3s ease-in-out 0s;
+        left: 0;
+        top: 0;
+        transition: left 0.3s ease-in-out 0s, top 0.3s ease-in-out 0s, width 0.3s ease-in-out 0s;
         z-index: 2;
     }
 
-    .wrapper-content{position: relative;}
+    .wrapper-content{
+        position: relative;
+    }
 
     /*---------------------------*/
     /*- CONTAINER ---------------*/
@@ -374,6 +383,8 @@ object{
     }
     input[type=email],
     input[type=text],
+    input[type=url],
+    input[type=search],
     input[type=password],
     input[type=number]{
         max-width: 500px;

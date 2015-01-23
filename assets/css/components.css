@@ -143,7 +143,10 @@ section[class*=' off-canvas-']{
 /*-------------------------------*/
 
     .header-site{
-        /* background: #f3f3f3; */
+        background: #f3f3f3;
+    }
+    .header-site.header-sticky{
+        background: rgba(243, 243, 243, 0.5);
     }
     .header-site .container{
         padding: 20px;

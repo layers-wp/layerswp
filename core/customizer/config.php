@@ -149,10 +149,12 @@ class Layers_Customizer_Config {
 									'type'		=> 'layers-checkbox',
 									'label'		=> __( 'Sticky', LAYERS_THEME_SLUG ),
 									'class'		=> 'layers-pull-top layers-pull-bottom',
+									'default'	=> FALSE,
 								),
 								'overlay' => array(
 									'type'     => 'layers-checkbox',
 									'label'    => __( 'Overlay', LAYERS_THEME_SLUG ),
+									'default'	=> FALSE,
 								),
 								'break-2' => array(
 									'type'     => 'layers-seperator',
@@ -160,6 +162,7 @@ class Layers_Customizer_Config {
 								'background-color' => array(
 									'type'		=> 'layers-color',
 									'label'		=> __( 'Background Color', LAYERS_THEME_SLUG ),
+									'default'	=> '#F3F3F3',
 								),
 							); // header-layout
 

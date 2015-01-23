@@ -342,8 +342,6 @@ if( !function_exists( 'layers_get_page_title' ) ) {
 if( !function_exists( 'layers_get_header_class' ) ) {
 	function layers_get_header_class( $class = '' ){
 		
-		global $layers_customizer_defaults;
-
 		$header_align_option = layers_get_theme_mod( 'header-layout-layout' );
 		$header_sticky_option = layers_get_theme_mod( 'header-layout-sticky' );
 		$header_overlay_option = layers_get_theme_mod( 'header-layout-overlay');
@@ -363,11 +361,6 @@ if( !function_exists( 'layers_get_header_class' ) ) {
 		// Handle overlay / not overlay
 		if( TRUE == $header_overlay_option ){
 			$classes[] = 'header-overlay';
-		}
-		
-		//$header_background_color_option = $layers_customizer_defaults[ 'header-layout-background-color' ];
-		if ( '' == $header_background_color_option && isset( $layers_customizer_defaults[ 'layers-header-layout-background-color' ] ) ){
-			$header_background_color_option = $layers_customizer_defaults[ 'layers-header-layout-background-color' ];
 		}
 		
 		// Handle invert if background-color light / dark

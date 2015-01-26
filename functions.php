@@ -167,16 +167,6 @@ if( ! function_exists( 'layers_setup' ) ) {
 		 */
 		add_theme_support( 'jetpack-portfolio' );
 
-
-		/**
-		* Welcome Redirect
-		*/
-		if( isset($_GET["activated"]) && $pagenow = "themes.php") {
-			update_option( 'layers_welcome' , 1);
-
-			wp_redirect(admin_url('admin.php?page=' . LAYERS_THEME_SLUG . '-welcome'));
-		}
-
 	} // function layers_setup
 	add_action( 'after_setup_theme' , 'layers_setup', 10 );
 } // if !function layers_setup
@@ -245,7 +235,7 @@ if( ! function_exists( 'layers_scripts' ) ) {
 		/**
 		* Front end Scripts
 		*/
-		
+
 		wp_enqueue_script(
 			LAYERS_THEME_SLUG . '-sticky-kit-js' ,
 			get_template_directory_uri() . '/assets/js/sticky-kit.js',
@@ -253,7 +243,7 @@ if( ! function_exists( 'layers_scripts' ) ) {
 				'jquery',
 			)
 		); // Sticky-Kit
-		
+
 		wp_enqueue_script(
 			LAYERS_THEME_SLUG . '-waypoints-js' ,
 			get_template_directory_uri() . '/assets/js/waypoint.js',
@@ -261,7 +251,7 @@ if( ! function_exists( 'layers_scripts' ) ) {
 				'jquery',
 			)
 		); // Waypoints
-		
+
 		wp_enqueue_script(
 			LAYERS_THEME_SLUG . '-isotope-js' ,
 			get_template_directory_uri() . '/assets/js/isotope.js',

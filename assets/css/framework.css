@@ -1413,3 +1413,37 @@ object{
     .text-justify{text-align: justify;}
 
 
+/*-------------------------------*/
+/*- WORDPRESS STANDARDS ---------*/
+/*-------------------------------*/
+
+    .wp-caption{
+        max-width: 100%;
+        padding: 10px;
+    }
+    .wp-caption-text{
+        padding: 10px 5px 5px;
+        margin: 0;
+    }
+    .gallery-caption{
+        display: block;
+        width: 100%;
+        padding: 5px 5px 10px;
+        margin: 0;
+        opacity: 0;
+        position: absolute;
+        bottom: -5px;
+        left: 0;
+    }
+    .alignleft{
+        float: left;
+    }
+    .alignright{
+        float: right;
+    }
+    .aligncenter{
+        text-align: center;
+    }
+    .bypostauthor{}
+
+

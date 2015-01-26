@@ -540,6 +540,16 @@ section[class*=' off-canvas-']{
         font-weight: 700;
     }
 
+/*-------------------------------*/
+/*- WORDPRESS STANDARDS ---------*/
+/*-------------------------------*/
+
+    .wp-caption-text{
+        font-size: 1.4rem;
+    }
+    .gallery-caption{
+        font-size: 1.2rem;
+    }
 
 /*-------------------------------*/
 /*- POPULAR WP PLUGINS ----------*/

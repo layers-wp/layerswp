@@ -408,58 +408,94 @@ pre{
 
     /*---------------------------*/
     /*- PAGE TITLES -------------*/
-    .title-container{background-color: #f3f3f3;}
-    .title-container .heading{color: #323232;}
-    .title-container .excerpt{color: #8f8f8f;}
+    .title-container{
+        background-color: #f3f3f3;
+    }
+    .title-container .heading{
+        color: #323232;
+    }
+    .title-container .excerpt{
+        color: #8f8f8f;
+    }
 
     /*---------------------------*/
     /*- SECTION TITLES ----------*/
-    .section-title .heading{color: #323232;}
-    .section-title .heading a{color: #454545;}
-    .section-title .heading a:hover{color: #323232;}
-    .section-title .excerpt{color: #8f8f8f;}
+    .section-title .heading{
+        color: #323232;
+    }
+    .section-title .heading a{
+        color: #454545;
+    }
+    .section-title .heading a:hover{
+        color: #323232;
+    }
+    .section-title .excerpt{
+        color: #8f8f8f;
+    }
 
     /*---------------------------*/
     /*- SECTION NAV -------------*/
-    .section-nav-title{color: #8f8f8f;}
+    .section-nav-title{
+        color: #8f8f8f;
+    }
 
     /*---------------------------*/
     /*- SECTION META ------------*/
-    .meta-info{color: #8f8f8f;}
+    .meta-info{
+        color: #8f8f8f;
+    }
 
 
 /*-------------------------------*/
 /*- FOOTER ----------------------*/
 /*-------------------------------*/
 
-	.footer .section-nav-title{color: #323232;}
+	.footer .section-nav-title{
+        color: #323232;
+    }
 
     /*---------------------------*/
     /*- FOOTER COPY -------------*/
-    .copyright{color: #999;}
-    .copyright .nav-horizontal a{color: #454545;}
+    .copyright{
+        color: #999;
+    }
+    .copyright .nav-horizontal a{
+        color: #454545;
+    }
     .copyright .nav-horizontal a:hover{
     	background: none;
     	color: #323232;
     }
-    .row + .copyright{border-top: 2px solid #ddd;}
+    .row + .copyright{
+        border-top: 2px solid #ddd;
+    }
 
 
 /*-------------------------------*/
 /*- NAVIGATION ------------------*/
 /*-------------------------------*/
 
-	.nav a{color: #323232;}
-    .nav a:hover{color: #8f8f8f;}
+	.nav a{
+        color: #323232;
+    }
+    .nav a:hover{
+        color: #8f8f8f;
+    }
 
     /*---------------------------*/
     /*- RESPONSIVE BUTTON -------*/
-    .responsive-nav .h-menu{color: #454545;}
+    .responsive-nav .h-menu{
+        color: #454545;
+    }
 
     /*---------------------------*/
     /*- HORIZONTAL NAV ----------*/
-    .nav-horizontal li a{color: #323232;}
-    .nav-horizontal li a:hover{color: #8f8f8f;}
+    .nav-horizontal li a{
+        color: #323232;
+    }
+    .nav-horizontal li a:hover{
+        color: #8f8f8f;
+    }
 
     /*---------------------------*/
     /*- VERTICAL NAV ------------*/
@@ -648,11 +684,19 @@ pre{
 
         /*-----------------------*/
         /*- OVERLAY -------------*/
-        .with-overlay{text-shadow: 0px 1px 2px rgba(0, 0, 0, 0.6);}
-        .with-overlay .thumbnail-body{background: rgba(0, 0, 0, 0.65);}
+        .with-overlay{
+            text-shadow: 0px 1px 2px rgba(0, 0, 0, 0.6);
+        }
+        .with-overlay .thumbnail-body{
+            background: rgba(0, 0, 0, 0.65);
+        }
 
-        .with-overlay .heading{color: #fff;}
-        .with-overlay .heading a{color: #fff;}
+        .with-overlay .heading{
+            color: #fff;
+        }
+        .with-overlay .heading a{
+            color: #fff;
+        }
 
         .with-overlay .button{
         	background: none;
@@ -903,5 +947,20 @@ pre{
     .tooltip:before{
         border: solid;
         border-color: rgba(0, 0, 0, 0.85) transparent;
+    }
+
+/*-------------------------------*/
+/*- WORDPRESS STANDARDS ---------*/
+/*-------------------------------*/
+
+    .wp-caption-text{
+        color: #777;
+    }
+    .gallery-caption{
+        background: rgba(255, 255, 255, 0.95);
+        color: #777;
+    }
+    .bypostauthor{
+        color: #777;
     }
 

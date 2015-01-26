@@ -10,24 +10,31 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 	class Layers_Slider_Widget extends Layers_Widget {
 
 		/**
-		*  Widget variables
-		*/
-		private $widget_title = 'Slider';
-		private $widget_id = 'slide';
-		private $post_type = '';
-		private $taxonomy = '';
-		public $checkboxes = array(
-				'show_slider_arrows',
-				'show_slider_dots',
-				'autoplay_slides'
-			);
-
-		/**
 		*  Widget construction
 		*/
 	 	function Layers_Slider_Widget(){
+
+			/**
+			* Widget variables
+			*
+			* @param  	varchar    		$$this->widget_id    	Widget title
+			* @param  	varchar    		$widget_id    		Widget slug for use as an ID/classname
+			* @param  	varchar    		$post_type    		(optional) Post type for use in widget options
+			* @param  	varchar    		$taxonomy    		(optional) Taxonomy slug for use as an ID/classname
+			* @param  	array 			$checkboxes    	(optional) Array of checkbox names to be saved in this widget. Don't forget these please!
+			*/
+			$this->widget_title = __( 'Slider', LAYERS_THEME_SLUG );
+			$this->widget_id = 'slide';
+			$this->post_type = '';
+			$this->taxonomy = '';
+			$this->checkboxes = array(
+					'show_slider_arrows',
+					'show_slider_dots',
+					'autoplay_slides'
+				);
+
 	 		/* Widget settings. */
-			$widget_ops = array( 'classname' => 'obox-layers-' . $this->widget_id .'-widget', 'description' => 'This widget is used to display your ' . $this->widget_title . '.' );
+			$widget_ops = array( 'classname' => 'obox-layers-' . $this->widget_id .'-widget', 'description' => 'This widget is used to display your ' . $this->widget_id . '.' );
 
 			/* Widget control settings. */
 			$control_ops = array( 'width' => LAYERS_WIDGET_WIDTH_LARGE, 'height' => NULL, 'id_base' => LAYERS_THEME_SLUG . '-widget-' . $this->widget_id );

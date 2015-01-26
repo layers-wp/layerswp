@@ -4,7 +4,6 @@
 	<meta charset="<?php bloginfo( 'charset' ); ?>">
 	<meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
 	<title><?php wp_title( '|', true, 'right' ); ?></title>
-	<link rel="icon" href="images/temp-ts-fav.png" type="image/png" />
 	<?php wp_head(); ?>
 </head>
 <body <?php body_class(); ?>>
@@ -15,7 +14,7 @@
 		<?php do_action( 'layers_before_header' ); ?>
 
 		<?php get_template_part( 'partials/header' , 'secondary' ); ?>
-		
+
 		<?php
 		// Apply customizer header settings.
 		if( layers_get_theme_mod( 'header-layout-background-color' ) ){
@@ -24,7 +23,7 @@
 			wp_add_inline_style( LAYERS_THEME_SLUG . '-inline-styles', '.header-site, .header-site.header-sticky { background-color: rgba(' . implode( ', ' , hex2rgb( layers_get_theme_mod( 'header-layout-background-color' ) ) ) . ', ' . $bg_opacity . '); }' );
 		}
 		?>
-		
+
 		<header <?php layers_header_class(); ?> >
 			<?php do_action( 'layers_before_header_inner' ); ?>
 			<div class="<?php if( 'layout-fullwidth' != layers_get_theme_mod( 'header-layout-width' ) ) echo 'container'; ?> clearfix">

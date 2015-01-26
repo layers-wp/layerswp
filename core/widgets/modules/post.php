@@ -10,31 +10,33 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 	class Layers_Post_Widget extends Layers_Widget {
 
 		/**
-		* Widget variables
-		*
-		* @param  	varchar    		$widget_title    	Widget title
-		* @param  	varchar    		$widget_id    		Widget slug for use as an ID/classname
-		* @param  	varchar    		$post_type    		(optional) Post type for use in widget options
-		* @param  	varchar    		$taxonomy    		(optional) Taxonomy slug for use as an ID/classname
-		* @param  	array 			$checkboxes    	(optional) Array of checkbox names to be saved in this widget. Don't forget these please!
-		*/
-		private $widget_title = 'Posts';
-		private $widget_id = 'post';
-		private $post_type = 'post';
-		private $taxonomy = 'category';
-		public $checkboxes = array(
-				'show_titles',
-				'show_excerpts',
-				'show_dates',
-				'show_author',
-				'show_tags',
-				'show_categories',
-				'show_call_to_action'
-			); // @TODO: Try make this more dynamic, or leave a different note reminding users to change this if they add/remove checkboxes
-		/**
 		*  Widget construction
 		*/
 		function Layers_Post_Widget(){
+
+			/**
+			* Widget variables
+			*
+			* @param  	varchar    		$widget_title    	Widget title
+			* @param  	varchar    		$widget_id    		Widget slug for use as an ID/classname
+			* @param  	varchar    		$post_type    		(optional) Post type for use in widget options
+			* @param  	varchar    		$taxonomy    		(optional) Taxonomy slug for use as an ID/classname
+			* @param  	array 			$checkboxes    	(optional) Array of checkbox names to be saved in this widget. Don't forget these please!
+			*/
+			$this->widget_title = __( 'Posts', LAYERS_THEME_SLUG );
+			$this->widget_id = 'post';
+			$this->post_type = 'post';
+			$this->taxonomy = 'category';
+			$this->checkboxes = array(
+					'show_titles',
+					'show_excerpts',
+					'show_dates',
+					'show_author',
+					'show_tags',
+					'show_categories',
+					'show_call_to_action'
+				); // @TODO: Try make this more dynamic, or leave a different note reminding users to change this if they add/remove checkboxes
+
 			/* Widget settings. */
 			$widget_ops = array( 'classname' => 'obox-layers-' . $this->widget_id .'-widget', 'description' => 'This widget is used to display your ' . $this->widget_title . '.' );
 

@@ -10,18 +10,25 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 	class Layers_Content_Widget extends Layers_Widget {
 
 		/**
-		*  Widget variables
-		*/
-		private $widget_title = 'Content';
-		private $widget_id = 'column';
-		private $post_type = '';
-		private $taxonomy = '';
-		public $checkboxes = array();
-
-		/**
 		*  Widget construction
 		*/
 		function Layers_Content_Widget(){
+
+			/**
+			* Widget variables
+			*
+		 	* @param  	varchar    		$widget_title    	Widget title
+		 	* @param  	varchar    		$widget_id    		Widget slug for use as an ID/classname
+		 	* @param  	varchar    		$post_type    		(optional) Post type for use in widget options
+		 	* @param  	varchar    		$taxonomy    		(optional) Taxonomy slug for use as an ID/classname
+		 	* @param  	array 			$checkboxes    	(optional) Array of checkbox names to be saved in this widget. Don't forget these please!
+		 	*/
+			$this->widget_title = __( 'Content', LAYERS_THEME_SLUG );
+			$this->widget_id = 'column';
+			$this->post_type = '';
+			$this->taxonomy = '';
+			$this->checkboxes = array();
+
 			/* Widget settings. */
 			$widget_ops = array( 'classname' => 'obox-layers-' . $this->widget_id .'-widget', 'description' => 'This widget is used to display your ' . $this->widget_title . '.' );
 
@@ -348,18 +355,18 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 					<?php // If we have some columns, let's break out their IDs into an array
 					if( isset( $column_ids ) && '' != $column_ids ) $columns = explode( ',' , $column_ids ); ?>
 
-					<ul id="column_list_<?php echo $this->number; ?>" class="layers-accordions layers-accordions-sortable layers-sortable" data-id_base="<?php echo $this->id_base; ?>" data-number="<?php echo $this->number; ?>">
+					<ul id="column_list_<?php echo $this->number; ?>" class="layers-accordions layers-accordions-sortable layers-sortable" data-id_base="<?php echo $this->widget_id_base; ?>" data-number="<?php echo $this->number; ?>">
 						<?php if( isset( $columns ) && is_array( $columns ) ) { ?>
 							<?php foreach( $columns as $columnguid ) {
 								$this->column_item( array(
-											'id_base' => $this->id_base ,
+											'id_base' => $this->widget_id_base ,
 											'number' => $this->number
 										) ,
 										$columnguid ,
 										( isset( $instance[ 'columns' ][ $columnguid ] ) ) ? $instance[ 'columns' ][ $columnguid ] : NULL );
 							} ?>
 						<?php } else { ?>
-							<?php $this->column_item( array( 'id_base' => $this->id_base , 'number' => $this->number ) ); ?>
+							<?php $this->column_item( array( 'id_base' => $this->widget_id_base , 'number' => $this->number ) ); ?>
 						<?php }?>
 						<li class="layers-button btn-primary layers-add-widget-column" data-number="<?php echo $this->number; ?>"><?php _e( '+ Add New Column' , LAYERS_THEME_SLUG ) ; ?></li>
 					</ul>

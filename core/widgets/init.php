@@ -86,7 +86,6 @@ class Layers_Widgets {
 		register_sidebar( array(
 			'id'		=> 'obox-layers-builder-' . $post_id,
 			'name'		=> $post_title . __( ' Body' , LAYERS_THEME_SLUG ),
-			'description'	=> __( '' , LAYERS_THEME_SLUG ),
 			'before_widget'	=> '<aside id="%1$s" class="widget container push-bottom-medium %2$s">',
 			'after_widget'	=> '</aside>',
 			'before_title'	=> '<div class="section-title clearfix"><h4 class="heading">',
@@ -171,7 +170,7 @@ class Layers_Widgets {
 			register_sidebar( array(
 							'id'		=> $dynamic_sidebar[ 'id' ],
 							'name'		=> $dynamic_sidebar[ 'title' ],
-							'description'	=> __( '' , LAYERS_THEME_SLUG ),
+							'description'	=> __( 'Layers Builder section.' , LAYERS_THEME_SLUG ),
 							'before_widget'	=> '<aside id="%1$s" class="widget %2$s">',
 							'after_widget'	=> '</aside>',
 							'before_title'	=> '<h4 class="widget-title">',

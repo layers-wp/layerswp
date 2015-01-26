@@ -167,16 +167,6 @@ if( ! function_exists( 'layers_setup' ) ) {
 		 */
 		add_theme_support( 'jetpack-portfolio' );
 
-
-		/**
-		* Welcome Redirect
-		*/
-		if( isset($_GET["activated"]) && $pagenow = "themes.php") {
-			update_option( 'layers_welcome' , 1);
-
-			wp_redirect(admin_url('admin.php?page=' . LAYERS_THEME_SLUG . '-welcome'));
-		}
-
 	} // function layers_setup
 	add_action( 'after_setup_theme' , 'layers_setup', 10 );
 } // if !function layers_setup
@@ -202,7 +192,6 @@ if( ! function_exists( 'layers_register_standard_sidebars' ) ) {
 		register_sidebar( array(
 			'id'		=> LAYERS_THEME_SLUG . '-left-sidebar',
 			'name'		=> __( 'Left Sidebar' , LAYERS_THEME_SLUG ),
-			'description'	=> __( '' , LAYERS_THEME_SLUG ),
 			'before_widget'	=> '<aside id="%1$s" class="content well push-bottom widget %2$s">',
 			'after_widget'	=> '</aside>',
 			'before_title'	=> '<h5 class="section-nav-title">',
@@ -212,7 +201,6 @@ if( ! function_exists( 'layers_register_standard_sidebars' ) ) {
 		register_sidebar( array(
 			'id'		=> LAYERS_THEME_SLUG . '-right-sidebar',
 			'name'		=> __( 'Right Sidebar' , LAYERS_THEME_SLUG ),
-			'description'	=> __( '' , LAYERS_THEME_SLUG ),
 			'before_widget'	=> '<aside id="%1$s" class="content well push-bottom widget %2$s">',
 			'after_widget'	=> '</aside>',
 			'before_title'	=> '<h5 class="section-nav-title">',
@@ -226,7 +214,6 @@ if( ! function_exists( 'layers_register_standard_sidebars' ) ) {
 			register_sidebar( array(
 				'id'		=> LAYERS_THEME_SLUG . '-footer-' . $footer,
 				'name'		=> __( 'Footer ' . $footer , LAYERS_THEME_SLUG ),
-				'description'	=> __( '' , LAYERS_THEME_SLUG ),
 				'before_widget'	=> '<section id="%1$s" class="widget %2$s">',
 				'after_widget'	=> '</section>',
 				'before_title'	=> '<h5 class="section-nav-title">',
@@ -245,7 +232,7 @@ if( ! function_exists( 'layers_scripts' ) ) {
 		/**
 		* Front end Scripts
 		*/
-		
+
 		wp_enqueue_script(
 			LAYERS_THEME_SLUG . '-sticky-kit-js' ,
 			get_template_directory_uri() . '/assets/js/sticky-kit.js',
@@ -253,7 +240,7 @@ if( ! function_exists( 'layers_scripts' ) ) {
 				'jquery',
 			)
 		); // Sticky-Kit
-		
+
 		wp_enqueue_script(
 			LAYERS_THEME_SLUG . '-waypoints-js' ,
 			get_template_directory_uri() . '/assets/js/waypoint.js',
@@ -261,7 +248,7 @@ if( ! function_exists( 'layers_scripts' ) ) {
 				'jquery',
 			)
 		); // Waypoints
-		
+
 		wp_enqueue_script(
 			LAYERS_THEME_SLUG . '-isotope-js' ,
 			get_template_directory_uri() . '/assets/js/isotope.js',
@@ -444,7 +431,7 @@ if( !function_exists( 'layers_site_title' ) ) {
 
 		// Add a page number if necessary.
 		if ( $paged >= 2 || $page >= 2 )
-			$title = "$title $sep " . sprintf( __( 'Page %s', 'twentytwelve' ), max( $paged, $page ) );
+			$title = "$title $sep " . sprintf( __( 'Page %s', LAYERS_THEME_SLUG ), max( $paged, $page ) );
 
 		return $title;
 	}

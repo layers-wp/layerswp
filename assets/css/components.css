@@ -179,7 +179,6 @@ section[class*=' off-canvas-']{
         clear: both;
         text-align: center;
         margin-top: 20px;
-        line-height: unset;
     }
 
     /*---------------------------*/

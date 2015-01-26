@@ -743,7 +743,9 @@ object{
         padding-bottom: 0;
     }
 
-    table.table-comfortable td{padding: 14px 10px;}
+    table.table-comfortable td{
+        padding: 14px 10px;
+    }
 
 
 /*-------------------------------*/
@@ -929,7 +931,7 @@ object{
 	.nav-centered li{
         float: none;
         display: inline-block;
-        margin: 0 inherit;
+        margin: 0;
     }
 
     /*---------------------------*/

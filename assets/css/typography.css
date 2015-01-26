@@ -400,3 +400,157 @@ small{
     	font-size: 2.0rem;
     	font-weight: 600;
     }
+
+
+/*-------------------------------*/
+/*- OFF CANVAS ------------------*/
+/*-------------------------------*/
+section[class*=' off-canvas-']{
+    font-size: 1.4rem;
+}
+
+    /*---------------------------*/
+    /*- OFF CANVAS WIDGETS ------*/
+    section[class*=' off-canvas-'] .nav-vertical .sub-menu,
+    section[class*=' off-canvas-'] .searchform input[type="submit"]{
+        font-size: 1.2rem;
+    }
+
+
+/*-------------------------------*/
+/*- HEADERS ---------------------*/
+/*-------------------------------*/
+
+    /*---------------------------*/
+    /*- ALIGNMENT CENTER --------*/
+    .header-center nav{
+        line-height: unset;
+    }
+
+    /*---------------------------*/
+    /*- SECONDARY HEADER --------*/
+    .header-secondary nav{
+        font-size: 1.2rem;
+    }
+
+/*-------------------------------*/
+/*- SLIDER ----------------------*/
+/*-------------------------------*/
+
+    .swiper-container .arrows a{
+        font-size: 48px;
+    }
+
+/*-------------------------------*/
+/*- AVATAR ----------------------*/
+/*-------------------------------*/
+
+    .avatar .avatar-body .avatar-name{
+        font-weight: 600;
+    }
+
+/*-------------------------------*/
+/*- STORY -----------------------*/
+/*-------------------------------*/
+
+    .story{
+        font-size: 1.8rem;
+    }
+    .story h1{
+        font-size: 3.2rem;
+        font-weight: 600;
+    }
+    .story h2{
+        font-size: 2.2rem;
+        font-weight: 400;
+    }
+    .story h3{
+        font-size: 2.0rem;
+        font-weight: 400;
+    }
+    .story h4{
+        font-size: 1.8rem;
+        font-weight: 400;
+    }
+    .story h5{
+        font-size: 1.4rem;
+        font-weight: 400;
+    }
+    .story table{
+        font-size: 1.4rem;
+    }
+
+        /*-----------------------*/
+        /*- WP CAPTIONS ---------*/
+        .wp-caption p.wp-caption-text{
+            font-size: 1.4rem;
+        }
+
+/*-------------------------------*/
+/*- META ------------------------*/
+/*-------------------------------*/
+
+    /*---------------------------*/
+    /*- META INFO ---------------*/
+    .meta-info{
+        font-size: 1.2rem;
+    }
+    .meta{
+        font-size: 1.2rem;
+        text-transform: uppercase;
+    }
+
+/*-------------------------------*/
+/*- COMMENTS FORM ---------------*/
+/*-------------------------------*/
+    
+    .comment-notes{
+        font-size: 1.2rem;
+    }
+    .comment-reply-title{
+        font-size: 2.8rem;
+    }
+    .form-allowed-tags{
+        font-size: 1.4rem;
+    }
+    .form-submit input[type=submit]{
+        font-weight: 600;
+    }
+
+/*-------------------------------*/
+/*- WORDPRESS WIDGETS -----------*/
+/*-------------------------------*/
+
+    /*---------------------------*/
+    /*- WIDGET NAV MENU ---------*/
+    .menu-main-menu-container li a{
+        font-weight: 600;
+    }
+    .sidebar .menu-main-menu-container li a{
+        font-weight: normal;
+    }
+
+    /*---------------------------*/
+    /*- CALENDAR WIDGET ---------*/
+    #wp-calendar{
+        font-size: 1.2rem;
+    }
+    #wp-calendar caption{
+        font-size: 1rem;
+        font-weight: 700;
+    }
+
+
+/*-------------------------------*/
+/*- POPULAR WP PLUGINS ----------*/
+/*-------------------------------*/
+
+    /*---------------------------*/
+    /*- CONTACT FORM 7 ----------*/
+    .wpcf7-form p{
+        font-weight: bold;
+    }
+    .wpcf7-form-control-wrap{
+        font-weight: normal;
+    }
+

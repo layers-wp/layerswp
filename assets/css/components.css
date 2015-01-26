@@ -2,14 +2,13 @@
 /*- OFF CANVAS ------------------*/
 /*-------------------------------*/
 section[class*=' off-canvas-']{
+    padding-top: 52px;
     position: fixed;
     top: 0;
     z-index: 1;
     opacity: 0;
     transform: scale(0.8);
     transition: all 0.3s ease-in-out 0s;
-    font-size: 1.4rem;
-    padding-top: 52px;
 }
 .off-canvas-right{
     width: 240px;
@@ -47,8 +46,6 @@ section[class*=' off-canvas-']{
     /*- CLOSE CANVAS ------------*/
     .close-canvas{
         padding: 10px;
-        background: #555;
-        color: #999;
         position: absolute;
         top: 0;
         right: 0;
@@ -57,9 +54,6 @@ section[class*=' off-canvas-']{
     }
     .admin-bar section[class*=' off-canvas-'] .close-canvas{
         top: 32px;
-    }
-    .close-canvas:hover{
-        color: #fff;
     }
 
     /*---------------------------*/
@@ -78,17 +72,10 @@ section[class*=' off-canvas-']{
     section[class*=' off-canvas-'] .searchform label{
         display: none;
     }
-    section[class*=' off-canvas-'] .searchform input[type="text"]{
-        background: none repeat scroll 0% 0% rgb(51, 51, 51);
-        border: 2px solid rgb(85, 85, 85);
-    }
     section[class*=' off-canvas-'] .searchform input[type="submit"]{
         display: block;
         width: 100%;
         height: 32px;
-        background: #555;
-        color: #ccc;
-        font-size: 1.2rem;
     }
 
         /*-----------------------*/
@@ -105,49 +92,39 @@ section[class*=' off-canvas-']{
             visibility: visible;
             opacity: 1;
             position: static;
-            border: none;
-            font-size: 1.2rem;
             box-shadow: none;
-        }
-        section[class*=' off-canvas-'] .nav-vertical .sub-menu li{
-            border: none;
         }
 
 
 /*-------------------------------*/
 /*- ADVANCED LAYOUTS ------------*/
 /*-------------------------------*/
-.advanced-layout{
-    display: flex;
-    flex-direction: row;
-}
-.advanced-layout-left header{
-    order: 1;
-    width: 20%;
-}
-.advanced-layout-left .wrapper-content{
-    order: 2;
-    width: 80%;
-}
-.advanced-layout-right header{
-    order: 2;
-    width: 20%;
-}
-.advanced-layout-right .wrapper-content{
-    order: 1;
-}
+    
+    .advanced-layout{
+        display: flex;
+        flex-direction: row;
+    }
+    .advanced-layout-left header{
+        order: 1;
+        width: 20%;
+    }
+    .advanced-layout-left .wrapper-content{
+        order: 2;
+        width: 80%;
+    }
+    .advanced-layout-right header{
+        order: 2;
+        width: 20%;
+    }
+    .advanced-layout-right .wrapper-content{
+        order: 1;
+    }
 
 
 /*-------------------------------*/
 /*- HEADERS ---------------------*/
 /*-------------------------------*/
 
-    .header-site{
-        background: #f3f3f3;
-    }
-    .header-site.header-sticky{
-        background: rgba(243, 243, 243, 0.5);
-    }
     .header-site .container{
         padding: 20px;
     }
@@ -224,15 +201,6 @@ section[class*=' off-canvas-']{
         width: 100%;
         z-index: 100;
     }
-    .header-site.invert .nav-horizontal > ul > li > a{
-        color: #fff;
-    }
-    .header-site.invert .nav-horizontal > ul > li > a:hover{
-        color: #000;
-    }
-    .header-site.invert .responsive-nav .l-menu{
-        color: #fff;
-    }
     .header-overlay{
         position: absolute;
         width: 100%;
@@ -277,7 +245,6 @@ section[class*=' off-canvas-']{
     /*- SECONDARY HEADER --------*/
     .header-secondary nav{
         margin: 0;
-        font-size: 1.2rem;
     }
     .header-secondary .sub-menu{
         display: none;
@@ -313,9 +280,6 @@ section[class*=' off-canvas-']{
         text-align: center;
         -webkit-transform: translateY(-50%);
         transform: translateY(-50%);
-    }
-    .swiper-slide .overlay.darken{
-        background-color: rgba(0, 0, 0, 0.2);
     }
     .single-slide .swiper-slide{
         width: 100%;
@@ -393,8 +357,6 @@ section[class*=' off-canvas-']{
             width: 8px;
             height: 8px;
             margin: 8px;
-            background: #fff;
-            border: 2px solid transparent;
             border-radius: 100px;
             overflow: hidden;
             text-indent: -999px;
@@ -403,13 +365,9 @@ section[class*=' off-canvas-']{
             transition: all 0.2s ease-in-out;
         }
         .swiper-container .swiper-pagination-switch:hover{
-            background: transparent;
-            border: 2px solid #fff;
             transform: scale(1.5);
         }
         .swiper-container .swiper-pagination-switch.swiper-visible-switch.swiper-active-switch{
-            background: transparent;
-            border: 2px solid #fff;
             transform: scale(1.5);
         }
 
@@ -427,8 +385,6 @@ section[class*=' off-canvas-']{
             opacity: 0;
             display: block;
             overflow: hidden;
-            color: #fff;
-            font-size: 48px;
         }
         .swiper-container .arrows .l-left-arrow{
             left: 0;
@@ -448,50 +404,47 @@ section[class*=' off-canvas-']{
 /*-------------------------------*/
 /*- AVATAR ----------------------*/
 /*-------------------------------*/
-.avatar{
-    display: block;
-    position: relative;
-}
-.avatar .avatar-image{
-    display: block;
-    float: left;
-    margin-right: 10px;
-    max-width: 64px;
-    border-radius: 100%;
-    position: relative;
-    z-index: 1;
-}
-.avatar .avatar-image img{
-    display: block;
-    margin: auto;
-    border-radius: 100%;
-}
-.avatar .avatar-body{
-    overflow: hidden;
-    padding: 5px 0;
-}
-.avatar .avatar-body .avatar-name{
-    display: block;
-    font-weight: 600;
-}
-.avatar.middled{
-    margin-left: auto;
-    margin-right: auto;
-    text-align: center;
-}
-.avatar.middled .avatar-image{
-    float: none;
-    margin: auto;
-}
+
+    .avatar{
+        display: block;
+        position: relative;
+    }
+    .avatar .avatar-image{
+        display: block;
+        float: left;
+        margin-right: 10px;
+        max-width: 64px;
+        border-radius: 100%;
+        position: relative;
+        z-index: 1;
+    }
+    .avatar .avatar-image img{
+        display: block;
+        margin: auto;
+        border-radius: 100%;
+    }
+    .avatar .avatar-body{
+        overflow: hidden;
+        padding: 5px 0;
+    }
+    .avatar .avatar-body .avatar-name{
+        display: block;
+    }
+    .avatar.middled{
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+    }
+    .avatar.middled .avatar-image{
+        float: none;
+        margin: auto;
+    }
 
 
 /*-------------------------------*/
 /*- STORY -----------------------*/
 /*-------------------------------*/
 
-    .story{
-        font-size: 1.8rem;
-    }
     .story p{
         margin-bottom: 26px;
     }
@@ -517,63 +470,32 @@ section[class*=' off-canvas-']{
     .story ol ul{
         margin-bottom: 0;
     }
-    .story a{
-        border-bottom: 1px solid #ddd;
-    }
-    .story a:hover{
-        border-color: #999;
-    }
     .story .feature-list{
         list-style: none;
         margin-left: 15px;
     }
-    .story dl{margin: 0 0 26px;}
-    .story dd{margin-left: 36px;}
-
-    .story code, .story pre{}
+    .story dl{
+        margin: 0 0 26px;
+    }
+    .story dd{
+        margin-left: 36px;
+    }
+    
     .story img{
         display: block;
         max-width: 98%;
         height: auto;
     }
-    .story h1{
-        margin-bottom: 26px;
-        font-size: 3.2rem;
-        font-weight: 600;
-        color: #323232;
-    }
-    .story h2{
-        margin-bottom: 26px;
-        font-size: 2.2rem;
-        font-weight: 400;
-        color: #323232;
-    }
-    .story h3{
-        margin-bottom: 26px;
-        font-size: 2.0rem;
-        font-weight: 400;
-        color: #323232;
-    }
-    .story h4{
-        margin-bottom: 26px;
-        font-size: 1.8rem;
-        font-weight: 400;
-        color: #323232;
-    }
+    .story h1,
+    .story h2,
+    .story h3,
+    .story h4,
     .story h5{
         margin-bottom: 26px;
-        font-size: 1.4rem;
-        font-weight: 400;
-        color: #323232;
-    }
-    .story table{
-        font-size: 1.4rem;
     }
     .story blockquote{
         padding: 20px;
         margin-bottom: 26px;
-        background: #f0f0f0;
-        color: #999;
     }
     .story blockquote p:last-child{
         margin-bottom: 0;
@@ -584,7 +506,6 @@ section[class*=' off-canvas-']{
         .wp-caption{
             max-width: 100%;
             padding: 10px;
-            background: #f0f0f0;
         }
         .wp-caption.alignright,
         .story img.alignright{
@@ -600,8 +521,6 @@ section[class*=' off-canvas-']{
         .wp-caption p.wp-caption-text{
             padding: 10px 5px 5px;
             margin: 0;
-            color: #777;
-            font-size: 1.4rem;
         }
         .wp-caption.alignnone{
             margin: 5px 20px 20px 0;
@@ -615,7 +534,6 @@ section[class*=' off-canvas-']{
     /*- META INFO ---------------*/
     .meta-info{
         clear: both;
-        font-size: 1.2rem;
     }
     .meta-info + .heading{
         margin-top: 15px;
@@ -625,7 +543,6 @@ section[class*=' off-canvas-']{
     }
     .meta{
         overflow: hidden;
-        font-size: 1.2rem;
         text-transform: uppercase;
     }
     .meta-list{
@@ -668,72 +585,48 @@ section[class*=' off-canvas-']{
 /*-------------------------------*/
 .comment-notes{
     margin-bottom: 20px;
-    font-size: 1.2rem;
-    color: #999;
 }
 p[class*='comment-form'] input{
     margin-bottom: 15px;
 }
-p[class*='comment-form'] .required{
-    color: #900;
-}
-.comment-reply-title{
-    font-size: 2.8rem;
-    color: #323232;
-}
 .logged-in-as{
     margin-bottom: 20px;
-    color: #8F8F8F;
 }
 .form-allowed-tags{
     margin-bottom: 15px;
-    font-size: 1.4rem;
 }
 .form-allowed-tags code{
     padding: 0;
-    background: none;
 }
 .form-submit input[type=submit]{
     display: inline-block;
     padding: 4px 14px;
-    background: #454545;
-    border: none;
     text-align: center;
-    font-weight: 600;
-    color: #fff;
     vertical-align: middle;
     cursor: pointer;
     transition: all 0.2s ease-in-out;
-}
-.form-submit input[type=submit]:hover{
-    background: #323232;
-    color: #fff;
 }
 
 
 /*-------------------------------*/
 /*- WORDPRESS WIDGETS -----------*/
 /*-------------------------------*/
-.sidebar .widget li{
-    padding: 0 0 6px;
-    margin: 0 0 6px;
-    border-bottom: 1px solid #ddd;
-}
-.sidebar .widget li:last-child{
-    border-bottom: none;
-    padding-bottom: 0;
-    margin-bottom: 0;
-}
-.sidebar .widget li ul{
-    margin: 6px 0 0 10px;
-}
 
-#footer .widget li{
-    margin-bottom: 8px;
-}
-#footer .widget li:last-child{
-    border-bottom: none;
-}
+    .sidebar .widget li{
+        padding: 0 0 6px;
+        margin: 0 0 6px;
+    }
+    .sidebar .widget li:last-child{
+        padding-bottom: 0;
+        margin-bottom: 0;
+    }
+    .sidebar .widget li ul{
+        margin: 6px 0 0 10px;
+    }
+
+    #footer .widget li{
+        margin-bottom: 8px;
+    }
 
     /*---------------------------*/
     /*- WIDGET NAV MENU ---------*/
@@ -754,13 +647,9 @@ p[class*='comment-form'] .required{
     }
     .menu-main-menu-container li a{
         display: inline-block;
-        font-weight: 600;
-        color: #323232;
         text-align: center;
     }
-    .menu-main-menu-container li a:hover{
-        color: #8F8F8F;
-    }
+
 
         /*-----------------------*/
         /*- WIDGET NAV MENU -----*/
@@ -775,7 +664,6 @@ p[class*='comment-form'] .required{
         }
         .sidebar .menu-main-menu-container li a{
             display: block;
-            font-weight: normal;
             text-align: left;
         }
 
@@ -797,12 +685,7 @@ p[class*='comment-form'] .required{
 
     /*---------------------------*/
     /*- CALENDAR WIDGET ---------*/
-    #wp-calendar{
-        font-size: 1.2rem;
-    }
     #wp-calendar caption{
-        font-size: 1rem;
-        font-weight: 700;
         text-align: left;
         text-transform: uppercase;
     }
@@ -814,60 +697,58 @@ p[class*='comment-form'] .required{
 /*-------------------------------*/
 /*- MAP - ADD ON ----------------*/
 /*-------------------------------*/
-.row.has-map{
-    padding-top: 0;
-}
-.layers-map img{
-    width: auto;
-    max-width: none;
-}
+
+    .row.has-map{
+        padding-top: 0;
+    }
+    .layers-map img{
+        width: auto;
+        max-width: none;
+    }
 
 
 /*-------------------------------*/
 /*- TOOLTIPS --------------------*/
 /*-------------------------------*/
-.tooltip{
-    cursor: help;
-    position: relative;
-}
-.tooltip:after{
-    width: 220px;
-    padding: 15px;
-    background: rgba(0, 0, 0, 0.85);
-    border-radius: 4px;
-    position: absolute;
-    left: -15px;
-    bottom: 40px;
-    z-index: 98;
-    color: #f0f0f0;
-    content: attr(title);
-    visibility: hidden;
-    opacity: 0;
-    transition: all 0.2s ease-in-out;
-}
-.tooltip:before{
-    border: solid;
-    border-color: rgba(0, 0, 0, 0.85) transparent;
-    border-width: 6px 6px 0 6px;
-    content: "";
-    position: absolute;
-    left: 15px;
-    bottom: 34px;
-    z-index: 99;
-    visibility: hidden;
-    opacity: 0;
-    transition: all 0.2s ease-in-out;
-}
-.tooltip:hover:after{
-    opacity: 1;
-    visibility: visible;
-    bottom: 35px;
-}
-.tooltip:hover:before{
-    opacity: 1;
-    visibility: visible;
-    bottom: 29px;
-}
+    
+    .tooltip{
+        cursor: help;
+        position: relative;
+    }
+    .tooltip:after{
+        width: 220px;
+        padding: 15px;
+        border-radius: 4px;
+        position: absolute;
+        left: -15px;
+        bottom: 40px;
+        z-index: 98;
+        content: attr(title);
+        visibility: hidden;
+        opacity: 0;
+        transition: all 0.2s ease-in-out;
+    }
+    .tooltip:before{
+        border: solid;
+        content: "";
+        position: absolute;
+        left: 15px;
+        bottom: 34px;
+        z-index: 99;
+        visibility: hidden;
+        opacity: 0;
+        transition: all 0.2s ease-in-out;
+    }
+    .tooltip:hover:after{
+        opacity: 1;
+        visibility: visible;
+        bottom: 35px;
+    }
+    .tooltip:hover:before{
+        opacity: 1;
+        visibility: visible;
+        bottom: 29px;
+    }
 
 
 /*-------------------------------*/
@@ -879,7 +760,6 @@ p[class*='comment-form'] .required{
     .wpcf7-form p{
         margin-bottom: 15px;
         vertical-align: top;
-        font-weight: bold;
     }
     .wpcf7-form br{
         display: none;
@@ -887,7 +767,6 @@ p[class*='comment-form'] .required{
     .wpcf7-form-control-wrap{
         display: block;
         margin-top: 4px;
-        font-weight: normal;
     }
 
 

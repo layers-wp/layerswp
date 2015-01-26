@@ -192,7 +192,6 @@ if( ! function_exists( 'layers_register_standard_sidebars' ) ) {
 		register_sidebar( array(
 			'id'		=> LAYERS_THEME_SLUG . '-left-sidebar',
 			'name'		=> __( 'Left Sidebar' , LAYERS_THEME_SLUG ),
-			'description'	=> __( '' , LAYERS_THEME_SLUG ),
 			'before_widget'	=> '<aside id="%1$s" class="content well push-bottom widget %2$s">',
 			'after_widget'	=> '</aside>',
 			'before_title'	=> '<h5 class="section-nav-title">',
@@ -202,7 +201,6 @@ if( ! function_exists( 'layers_register_standard_sidebars' ) ) {
 		register_sidebar( array(
 			'id'		=> LAYERS_THEME_SLUG . '-right-sidebar',
 			'name'		=> __( 'Right Sidebar' , LAYERS_THEME_SLUG ),
-			'description'	=> __( '' , LAYERS_THEME_SLUG ),
 			'before_widget'	=> '<aside id="%1$s" class="content well push-bottom widget %2$s">',
 			'after_widget'	=> '</aside>',
 			'before_title'	=> '<h5 class="section-nav-title">',
@@ -216,7 +214,6 @@ if( ! function_exists( 'layers_register_standard_sidebars' ) ) {
 			register_sidebar( array(
 				'id'		=> LAYERS_THEME_SLUG . '-footer-' . $footer,
 				'name'		=> __( 'Footer ' . $footer , LAYERS_THEME_SLUG ),
-				'description'	=> __( '' , LAYERS_THEME_SLUG ),
 				'before_widget'	=> '<section id="%1$s" class="widget %2$s">',
 				'after_widget'	=> '</section>',
 				'before_title'	=> '<h5 class="section-nav-title">',
@@ -434,7 +431,7 @@ if( !function_exists( 'layers_site_title' ) ) {
 
 		// Add a page number if necessary.
 		if ( $paged >= 2 || $page >= 2 )
-			$title = "$title $sep " . sprintf( __( 'Page %s', 'twentytwelve' ), max( $paged, $page ) );
+			$title = "$title $sep " . sprintf( __( 'Page %s', LAYERS_THEME_SLUG ), max( $paged, $page ) );
 
 		return $title;
 	}

@@ -174,7 +174,7 @@ class Layers_Custom_Meta {
 
 		// Add our button
 		if ( $can_edit_post && 'builder.php' == get_page_template_slug( $post->ID ) ) {
-			$actions['builder'] = '<a href="' . admin_url() . 'customize.php?url=' . esc_url( get_the_permalink() ) . '&layers-builder=1" title="' . esc_attr( __( 'Build Page' ) ) . '">' . __( 'Build Page' ) . '</a>';
+			$actions['builder'] = '<a href="' . admin_url() . 'customize.php?url=' . esc_url( get_the_permalink() ) . '&layers-builder=1" title="' . esc_attr( __( 'Build Page', LAYERS_THEME_SLUG ) ) . '">' . __( 'Build Page' ) . '</a>';
 		}
 
 		return $actions;

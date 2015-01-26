@@ -116,3 +116,11 @@
     .invert .sub-menu li a{
         background: none;
     }
+    .header-site.invert .sub-menu li a{
+        background: #fff;
+        color: #000;
+    }
+    .header-site.invert .sub-menu li a:hover{
+        background-color: #323232;
+        color: #fff;
+    }

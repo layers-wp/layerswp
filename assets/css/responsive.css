@@ -394,4 +394,27 @@ html{}
 	}
 
 
+/*-------------------------------*/
+/*- COMPONENTS ------------------*/
+/*-------------------------------*/
+
+    /*---------------------------*/
+    /*- OFF CANVAS --------------*/
+	section[class*=' off-canvas-']{
+    	padding-top: 46px;
+	}
+
+
+    /*---------------------------*/
+    /*- CLOSE CANVAS ------------*/
+    .admin-bar section[class*=' off-canvas-'] .close-canvas{
+        top: 46px;
+    }
+
+    /*---------------------------*/
+	/*- OFF CANVAS MENU ---------*/
+	section[class*=' off-canvas-'] .nav-mobile{
+		display: block;
+	}
+
 }

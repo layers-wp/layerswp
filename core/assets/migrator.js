@@ -1,3 +1,11 @@
+/**
+ * Layers theme migrator script
+ *
+ * Author: Obox Themes
+ * Author URI: http://www.oboxthemes.com/
+ * License: GNU General Public License v2 or later
+ * License URI: http://www.gnu.org/licenses/gpl-2.0.html
+ */
 jQuery(document).ready(function($){
 
      var $title, $widget_data;

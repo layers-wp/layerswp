@@ -1,3 +1,11 @@
+/**
+This is the main Layers structure stylesheet
+
+Author: Obox Themes
+Author URI: http://www.oboxthemes.com/
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+*/
 /*-------------------------------*/
 /*- RESET -----------------------*/
 /*- http://richclarkdesign.com --*/
@@ -413,7 +421,7 @@ object{
     /*- FORM BUTTONS ------------*/
     input[type=button],
     input[type=submit],
-    button{ 
+    button{
         display: inline-block;
         width: auto;
         padding: 5px 15px;
@@ -510,7 +518,7 @@ object{
     /*---------------------------*/
     /*- FORM ROWS SMALL ---------*/
     form.small .form-row{margin-bottom: 5px;}
-    
+
     form.small input[type=email],
     form.small input[type=text],
     form.small input[type=password]{
@@ -719,7 +727,7 @@ object{
 /*-------------------------------*/
 /*- TABLES ----------------------*/
 /*-------------------------------*/
-    
+
     table{
         width: 100%;
         margin-bottom: 20px;
@@ -867,7 +875,7 @@ object{
 /*-------------------------------*/
 /*- FOOTER ----------------------*/
 /*-------------------------------*/
-    
+
     .footer{clear: both;}
     .footer .container{max-width: 1040px;}
     .footer .section-nav-title{margin-bottom: 15px;}
@@ -1085,7 +1093,7 @@ object{
     .nav-absolute li{
         display: inline;
     }
-    
+
     /*---------------------------*/
     /*- STICKY NAV --------------*/
     .sticky-nav{

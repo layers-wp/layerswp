@@ -9,11 +9,7 @@
 get_header(); ?>
 
 <section <?php post_class( 'content-main archive clearfix' ); ?>>
-
-    <?php /**
-    * Maybe show the left sidebar
-    */
-    layers_maybe_get_sidebar( 'left-sidebar', 'column pull-left sidebar' ); ?>
+    <?php get_sidebar( 'left' ); ?>
 
     <?php if( have_posts() ) : ?>
         <div <?php layers_center_column_class(); ?>>
@@ -24,9 +20,6 @@ get_header(); ?>
         </div>
     <?php endif; // if has_post() ?>
 
-    <?php /**
-    * Maybe show the right sidebar
-    */
-    layers_maybe_get_sidebar( 'right-sidebar', 'column pull-right sidebar' ); ?>
+    <?php get_sidebar( 'right' ); ?>
 </section>
 <?php get_footer(); ?>

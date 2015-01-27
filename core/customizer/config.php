@@ -76,7 +76,10 @@ class Layers_Customizer_Config {
 		$sections[ 'header' ] = array(
 								'layout' => array(
 									'title' =>__( 'Layout' , LAYERS_THEME_SLUG ),
-								)
+								),
+								'scripts' => array(
+									'title' =>__( 'Additional Scripts' , LAYERS_THEME_SLUG ),
+								),
 							);
 
 		$sections[ 'content' ] = array(
@@ -94,7 +97,10 @@ class Layers_Customizer_Config {
 								),
 								'text' => array(
 									'title' =>__( 'Text' , LAYERS_THEME_SLUG ),
-								)
+								),
+                                'scripts' => array(
+                                    'title' =>__( 'Additional Scripts' , LAYERS_THEME_SLUG ),
+                                ),
 							);
 
 
@@ -159,6 +165,25 @@ class Layers_Customizer_Config {
 									'default'	=> '#F3F3F3',
 								),
 							); // header-layout
+
+		// Header -> Layout -> Scripts
+		$controls['header-scripts'] = array(
+								'google-id' => array(
+									'type'     => 'text',
+									'label'    => __( 'Google Analytics ID', LAYERS_THEME_SLUG ),
+									'description' => __( 'Enter in your Google Analytics ID to enable website traffic reporting. eg. "UA-xxxxxx-xx', LAYERS_THEME_SLUG ),
+									'default' => '',
+								), // scripts
+								'break-1' => array(
+									'type'     => 'layers-seperator'
+								),
+								'scripts' => array(
+									'type'     => 'textarea',
+									'label'    => __( 'Custom Scripts', LAYERS_THEME_SLUG ),
+									'description' => __( 'Enter in any custom script (such as TypeKit etc) to include in your site\'s header.', LAYERS_THEME_SLUG ),
+									'default' => '',
+								) // scripts
+							);
 
 		// Header -> Layout -> Scripts
 		$controls['content-layout'] = array(
@@ -282,6 +307,16 @@ class Layers_Customizer_Config {
 					'default' => ' Made at the tip of Africa. &copy;'
 				), // copyright
 			); // footer-text
+
+		// Footer -> Layout -> Scripts
+		$controls['footer-scripts'] = array(
+					'scripts' => array(
+						'type'     => 'textarea',
+						'label'    => __( 'Custom Scripts', LAYERS_THEME_SLUG ),
+						'description' => __( 'Enter in any custom script to include in your site\'s footer.', LAYERS_THEME_SLUG ),
+						'default' => '',
+					), // scripts
+				); // footer-scripts
 
 		return apply_filters( 'layers_customizer_controls', $controls );
 	}

@@ -1,16 +1,21 @@
 /**
  * Layers Masonry JS file
  *
- * All Masonry / Filtering related functions are to be kept in this file.
+ * All Masonry / Filtering related functions are to be kept in this file
+ *
+ * Author: Obox Themes
+ * Author URI: http://www.oboxthemes.com/
+ * License: GNU General Public License v2 or later
+ * License URI: http://www.gnu.org/licenses/gpl-2.0.html
  */
 
 var layers_masonry_settings = {};
 
 (function ( $ ) {
-    
+
     // These are the defaults.
     $.fn.layers_masonry = function( options ) {
-		
+
 		// "Hi Mom"
         $that = $(this);
         
@@ -19,7 +24,7 @@ var layers_masonry_settings = {};
             // These are the defaults.
             gutter: 20
         }, options );
-        
+
         /*
         * Deal with Masonary blocks loading broken - stacked on top from eachother.
         */
@@ -36,9 +41,9 @@ var layers_masonry_settings = {};
                     $that.find('.masonry-loading').stop(true).animate({ 'opacity': 1 });
                 }
                 
-            }, 300 )
-        );
-        
+                    }, 300 )
+                );
+                
         // Start a imagesLoaded check when all the contained images have loaded.
         $that.imagesLoaded( function() {
             
@@ -47,11 +52,11 @@ var layers_masonry_settings = {};
             // Remove loader when loaded.
             $that.find('.masonry-loading').stop(true).animate({ 'opacity': 0 },function(){
                 $that.remove( '.masonry-loading' );
-            });
-           
+                });
+                
             // Add class when loaded.
             $that.addClass('loaded');
-            
+                
             // Init Masonry.
             $that.masonry( settings );
         });

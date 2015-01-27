@@ -1,3 +1,11 @@
+/*
+This is a stylesheet containing styling for specific theme components
+
+Author: Obox Themes
+Author URI: http://www.oboxthemes.com/
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+*/
 /*-------------------------------*/
 /*- OFF CANVAS ------------------*/
 /*-------------------------------*/
@@ -99,7 +107,7 @@ section[class*=' off-canvas-']{
 /*-------------------------------*/
 /*- ADVANCED LAYOUTS ------------*/
 /*-------------------------------*/
-    
+
     .advanced-layout{
         display: flex;
         flex-direction: row;
@@ -479,7 +487,7 @@ section[class*=' off-canvas-']{
     .story dd{
         margin-left: 36px;
     }
-    
+
     .story img{
         display: block;
         max-width: 98%;
@@ -709,7 +717,7 @@ p[class*='comment-form'] input{
 /*-------------------------------*/
 /*- TOOLTIPS --------------------*/
 /*-------------------------------*/
-    
+
     .tooltip{
         cursor: help;
         position: relative;

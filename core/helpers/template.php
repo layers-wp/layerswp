@@ -442,9 +442,9 @@ if( !function_exists( 'layers_get_center_column_class' ) ) {
 		if( $left_sidebar_active && $right_sidebar_active ){
 			$classes[] = 'span-6';
 		} else if( $left_sidebar_active ){
-			$classes[] = 'span-9';
+			$classes[] = 'span-8';
 		} else if( $right_sidebar_active ){
-			$classes[] = 'span-9';
+			$classes[] = 'span-8';
 		} else {
 			$classes[] = 'span-12';
 		}

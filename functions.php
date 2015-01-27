@@ -170,7 +170,7 @@ if( ! function_exists( 'layers_setup' ) ) {
 		/**
 		* Welcome Redirect
 		*/
-		if( isset($_GET["activated"]) && $pagenow = "themes.php") {
+		if( isset($_GET["activated"]) && "themes.php" == $pagenow) {
 			update_option( 'layers_welcome' , 1);
 
 			wp_redirect(admin_url('admin.php?page=' . LAYERS_THEME_SLUG . '-welcome'));

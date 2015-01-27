@@ -221,7 +221,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 
 			<script>
 				jQuery(function($){
-					layers_isotope_settings[ '<?php echo $widget_id; ?>' ] = [{
+					layers_masonry_settings[ '<?php echo $widget_id; ?>' ] = [{
 							itemSelector: '.layers-masonry-column',
 							layoutMode: 'masonry',
 							masonry: {
@@ -229,7 +229,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 							}
 						}];
 
-					$('#<?php echo $widget_id; ?>').find('.list-masonry').layers_isotope( layers_isotope_settings[ '<?php echo $widget_id; ?>' ][0] );
+					$('#<?php echo $widget_id; ?>').find('.list-masonry').layers_masonry( layers_masonry_settings[ '<?php echo $widget_id; ?>' ][0] );
 				});
 			</script>
 		<?php }

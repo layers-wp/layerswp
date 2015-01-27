@@ -248,14 +248,8 @@ if( ! function_exists( 'layers_scripts' ) ) {
 				'jquery',
 			)
 		); // Waypoints
-
-		wp_enqueue_script(
-			LAYERS_THEME_SLUG . '-isotope-js' ,
-			get_template_directory_uri() . '/assets/js/isotope.js',
-			array(
-				'jquery',
-			)
-		); // Isotope
+		
+		wp_enqueue_script( 'jquery-masonry' ); // Wordpress Masonry
 
 		wp_enqueue_script(
 			LAYERS_THEME_SLUG . '-layers-masonry-js' ,
@@ -264,7 +258,14 @@ if( ! function_exists( 'layers_scripts' ) ) {
 				'jquery'
 			)
 		); // Layers Masonry Function
-
+		
+		wp_enqueue_script(
+			LAYERS_THEME_SLUG . '-imagesloaded-js' ,
+			get_template_directory_uri() . '/assets/js/imagesloaded.js',
+			array(
+				'jquery',
+			)
+		); // Waypoints
 
 		wp_enqueue_script(
 			LAYERS_THEME_SLUG . '-framework-js' ,

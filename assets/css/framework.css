@@ -234,13 +234,13 @@ object{
         padding: 0;
         position:relative;
     }
-    .container.list-masonry > *:not(.masonary-loading){
+    .container.list-masonry > *:not(.masonry-loading){
         opacity: 0;
     }
-    .container.list-masonry.loaded > *:not(.masonary-loading){
+    .container.list-masonry.loaded > *:not(.masonry-loading){
         opacity: 1;
     }
-    .container.list-masonry .masonary-loading{
+    .container.list-masonry .masonry-loading{
         width: 48px;
         height: 48px;
         margin: -25px 0 0 -25px;

@@ -1,3 +1,12 @@
+/*
+This file includes Layers responsiveness
+
+Author: Obox Themes
+Author URI: http://www.oboxthemes.com/
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+*/
+
 /*--------------*/
 /* iPad PORTRAIT */
 @media only screen and (max-width: 768px) and (min-width: 481px) {

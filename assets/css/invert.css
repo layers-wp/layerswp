@@ -1,4 +1,11 @@
+/*
+This is a stylesheet containing styling for element inversion
 
+Author: Obox Themes
+Author URI: http://www.oboxthemes.com/
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+*/
 
     /*---------------------------*/
     /*- INVERT ------------------*/
@@ -30,7 +37,7 @@
     .invert .heading{
         color: #fff;
     }
-    
+
     .invert input,
     .invert textarea,
     .invert select{
@@ -55,7 +62,7 @@
         border-color: #fff;
         box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.4);
     }
-    
+
 
         /*-----------------------*/
         /*- LOGO INVERT ---------*/
@@ -68,7 +75,7 @@
         }
 
         /*-----------------------*/
-        /*- PAGE TITLES INVERT --*/        
+        /*- PAGE TITLES INVERT --*/
         .invert .heading{
             color: #fff;
         }

@@ -293,6 +293,20 @@ if( ! function_exists( 'layers_scripts' ) ) {
 		);
 
 		wp_enqueue_style(
+			LAYERS_THEME_SLUG . '-framework' ,
+			get_template_directory_uri() . '/assets/css/framework.css',
+			array() ,
+			LAYERS_VERSION
+		);
+
+		wp_enqueue_style(
+			LAYERS_THEME_SLUG . '-invert' ,
+			get_template_directory_uri() . '/assets/css/invert.css',
+			array() ,
+			LAYERS_VERSION
+		);
+
+		wp_enqueue_style(
 			LAYERS_THEME_SLUG . '-colors',
 			get_template_directory_uri() . '/assets/css/colors.css',
 			array(),

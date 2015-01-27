@@ -2,6 +2,11 @@
  * Layers Masonry JS file
  *
  * All Masonry / Filtering / Isotope related functions are to be kept in this file
+ *
+ * Author: Obox Themes
+ * Author URI: http://www.oboxthemes.com/
+ * License: GNU General Public License v2 or later
+ * License URI: http://www.gnu.org/licenses/gpl-2.0.html
  */
 
 var layers_isotope_settings = {};
@@ -18,43 +23,43 @@ var layers_isotope_settings = {};
         }, options );
 
         //this.isotope( options );
-        
+
         // Function to deal with Masonary blocks loading broken - stacked on top from eachother
-        
+
         // Helper function that gets passed circulary to setTimeout until successfull
         function layers_check_masonry_loaded( masonry_element ){
-            
+
             // Set control check boolean
             loaded = true;
-            
+
             // Find all the images in the Masonry
             var images_to_check = masonry_element.find('img');
-            
+
             // Testing
             //console.log('--------- CHECK ---------');
-            
+
             // Check each image to see if its meta-data is on the page (if it is reserving vertical height)
             images_to_check.each(function(){
                 if( ! $(this).height() > 0 ){
                     loaded = false;
-                    
+
                     // Testing
                     //console.log( ':( failed-check: ' + images_to_check.index( this ) );
                 }
             });
-            
+
             // Testing
             //loaded = false;
-            
+
             if( ! loaded ) {
-                
+
                 // Add a loading gif to the masonry while hiding all
                 // the elements until they are cheked again and all ready.
                 if( ! masonry_element.find( '.masonry-loading' ).length ){
                     masonry_element.append('<div class="masonry-loading">&nbsp;</div>' );
                     masonry_element.find('.masonry-loading').stop(true).animate({ 'opacity': 1 });
                 }
-                
+
                 // Restart the setTimeout, asigned to the current element incase of multiple masonrys on the page.
                 $(this).data(
                     'masonry_timeout',
@@ -64,23 +69,23 @@ var layers_isotope_settings = {};
                 );
             }
             else{
-                
+
                 // Remove loader
                 masonry_element.find('.masonry-loading').stop(true).animate({ 'opacity': 0 },function(){
                     masonry_element.remove( '.masonry-loading' );
                 });
-                
+
                 // Render the Masonary now that it's ready.
                 masonry_element.
                 addClass('loaded').
                 isotope( options );
-                
+
                 // Testing
                 //console.log( ':) all good' );
             }
         }
         layers_check_masonry_loaded( $( this ) );
-        
+
     };
 }( jQuery ));
 

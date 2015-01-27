@@ -1,10 +1,15 @@
 /**
-* Page Content Switcher
-*
-* This file contains global widget functions
+ * Post Meta JS
+ *
+ * This file contains all post-meta functionality
  *
  * @package Layers
  * @since Layers 1.0
+ *
+ * Author: Obox Themes
+ * Author URI: http://www.oboxthemes.com/
+ * License: GNU General Public License v2 or later
+ * License URI: http://www.gnu.org/licenses/gpl-2.0.html
 */
 
 jQuery(document).ready(function($) {

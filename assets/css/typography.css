@@ -1,5 +1,10 @@
-/*
-	Layers typography framework
+/**
+Layers typography framework
+
+Author: Obox Themes
+Author URI: http://www.oboxthemes.com/
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
 */
 
 /*-------------------------------*/
@@ -53,7 +58,7 @@ small{
     	font-family: "Helvetica Neue", Helvetica, sans-serif;
         font-size: 1.5rem;
     }
-    
+
     input[type=email],
     input[type=text],
     input[type=password],
@@ -164,7 +169,7 @@ small{
 /*-------------------------------*/
 /*- TABLES ----------------------*/
 /*-------------------------------*/
-	
+
 	table th{
 		font-size: 1.2rem;
 		font-weight: 600;
@@ -284,7 +289,7 @@ small{
     /*---------------------------*/
     /*- VERTICAL NAV ------------*/
     .nav-vertical a{font-weight: 600;}
-    
+
     /*---------------------------*/
     /*- INLINE NAV --------------*/
     .nav-inline{font-size: 1.2rem;}
@@ -350,7 +355,7 @@ small{
     	font-weight: 600;
     }
     .media.small .excerpt{font-size: 1.3rem;}
-    
+
 
     /*---------------------------*/
     /*- THUMBNAIL BLOCK ---------*/
@@ -503,7 +508,7 @@ section[class*=' off-canvas-']{
 /*-------------------------------*/
 /*- COMMENTS FORM ---------------*/
 /*-------------------------------*/
-    
+
     .comment-notes{
         font-size: 1.2rem;
     }

@@ -27,6 +27,7 @@ if( !class_exists( 'Layers_Portfolio_Widget' ) ) {
 			$this->post_type = 'jetpack-portfolio';
 			$this->taxonomy = 'jetpack-portfolio-type';
 			$this->checkboxes = array(
+					'show_media',
 					'show_titles',
 					'show_excerpts',
 					'show_category_filter',
@@ -49,6 +50,7 @@ if( !class_exists( 'Layers_Portfolio_Widget' ) ) {
 				'excerpt' => 'Browse through our finest work, created by a team of incredibly talented people.',
 				'text_style' => 'regular',
 				'category' => 0,
+				'show_media' => 'on',
 				'show_titles' => 'on',
 				'show_excerpts' => 'on',
 				'show_category_filter' => 'on',
@@ -197,13 +199,15 @@ if( !class_exists( 'Layers_Portfolio_Widget' ) ) {
 								} ?>
 								<article class="column<?php if( !isset( $widget['design'][ 'gutter' ] ) ) echo '-flush'; ?> <?php echo $span_class; ?> layers-masonry-column thumbnail <?php if( 'overlay' == $this->check_and_return( $widget , 'text_style' ) ) echo 'with-overlay'; ?> <?php echo implode( $term_list, " " ); ?>"  data-cols="<?php echo $col_count; ?>">
 									<?php // Layers Featured Media
-									echo layers_post_featured_media(
-										array(
-											'postid' => $post->ID,
-											'wrap_class' => 'thumbnail-media' .  ( ( isset( $column['design'][ 'imageratios' ] ) && 'image-round' == $column['design'][ 'imageratios' ] ) ? ' image-rounded' : '' ),
-											'size' => $use_image_ratio
-										)
-									); ?>
+									if( isset( $widget['show_media'] ) ) {
+										echo layers_post_featured_media(
+											array(
+												'postid' => $post->ID,
+												'wrap_class' => 'thumbnail-media' .  ( ( isset( $column['design'][ 'imageratios' ] ) && 'image-round' == $column['design'][ 'imageratios' ] ) ? ' image-rounded' : '' ),
+												'size' => $use_image_ratio
+											)
+										);
+									} // if Show Media ?>
 									<?php if( isset( $widget['show_titles'] ) || isset( $widget['show_excerpts'] ) ) { ?>
 										<div class="thumbnail-body">
 											<div class="overlay">
@@ -329,6 +333,13 @@ if( !class_exists( 'Layers_Portfolio_Widget' ) ) {
 									'id' => $this->get_field_id( 'show_category_filter' ) ,
 									'value' => ( isset( $show_category_filter ) ) ? $show_category_filter : NULL,
 									'label' => __( 'Show Project Filter' , LAYERS_THEME_SLUG )
+								),
+								'show_media' => array(
+									'type' => 'checkbox',
+									'name' => $this->get_field_name( 'show_media' ) ,
+									'id' => $this->get_field_id( 'show_media' ) ,
+									'value' => ( isset( $show_media ) ) ? $show_media : NULL,
+									'label' => __( 'Show Featured Images' , LAYERS_THEME_SLUG )
 								),
 								'show_titles' => array(
 									'type' => 'checkbox',

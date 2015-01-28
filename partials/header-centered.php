@@ -1,6 +1,6 @@
 <?php do_action( 'layers_before_header_nav' ); ?>
 <div class="column span-4">
-    <?php wp_nav_menu( array( 'theme_location' => LAYERS_THEME_SLUG . '-primary' ,'container' => 'nav', 'container_class' => 'nav nav-horizontal', 'fallback_cb' => create_function('', 'echo "&nbsp";') ) ); ?>
+    <?php wp_nav_menu( array( 'theme_location' => LAYERS_THEME_SLUG . '-primary' ,'container' => 'nav', 'container_class' => 'nav nav-horizontal', 'fallback_cb' => 'layers_menu_fallback' ) ); ?>
 </div>
 
 <div class="column span-4">

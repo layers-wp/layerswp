@@ -883,4 +883,16 @@ if ( ! function_exists( 'layers_light_or_dark' ) ) {
 
 		return $brightness > 155 ? $dark : $light;
 	}
-}
+} // layers_light_or_dark
+
+/**
+ * Standard menu fallback
+ */
+
+if ( ! function_exists( 'layers_menu_fallback' ) ) {
+	function layers_menu_fallback() {
+		echo '<ul id="nav" class="clearfix">';
+			wp_list_pages('title_li=&');
+		echo '</ul>';
+	}
+} // layers_light_or_dark

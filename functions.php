@@ -109,10 +109,6 @@ if( ! function_exists( 'layers_setup' ) ) {
 		 * Add support for HTML5
 		 */
 		add_theme_support('html5');
-		/**
-		 * Add support for widgets inside the customizer
-		 */
-		add_theme_support('widget-customizer');
 
 		/**
 		 * Add support for WooCommerce

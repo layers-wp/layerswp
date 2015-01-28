@@ -9,6 +9,11 @@
  * 1 - Sortable items
  * 2 - Slide Removal & Additions
  * 3 - Slide Title Update
+ *
+ * Author: Obox Themes
+ * Author URI: http://www.oboxthemes.com/
+ * License: GNU General Public License v2 or later
+ * License URI: http://www.gnu.org/licenses/gpl-2.0.html
 */
 
 jQuery(document).ready(function($){

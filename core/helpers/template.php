@@ -287,8 +287,47 @@ if( !function_exists( 'layers_get_page_title' ) ) {
 		// Setup return
 		$title_array = array();
 
-		$title_array['title'] = get_the_archive_title();
-		$title_array['excerpt'] = get_the_archive_description();
+		if(!empty($parentpage) && !is_search()) {
+			$parentpage = get_template_link(get_post_type().".php");
+			$title_array['title'] = $parentpage->post_title;
+			if($parentpage->post_excerpt != ''){ $title_array['excerpt'] = $parentpage->post_excerpt; }
+
+		} elseif( is_page() ) {
+			while ( have_posts() ) { the_post();
+				$title_array['title'] = get_the_title();
+				if( $post->post_excerpt != "") $title_array['excerpt'] = strip_tags( get_the_excerpt() );
+			};
+		} elseif( is_search() ) {
+			$title_array['title'] = __( 'Search' , LAYERS_THEME_SLUG );
+			$title_array['excerpt'] = the_search_query();
+		} elseif( is_tag() ) {
+			$title_array['title'] = single_tag_title();
+		} elseif(!is_page() && is_category() ) {
+			$category = get_the_category();
+			$title_array['title'] = $category[0]->name;
+			$title_array['excerpt'] = $category[0]->description;
+		} elseif (!is_page() && get_query_var('term' ) != '' ) {
+			$term = get_term_by( 'slug', get_query_var('term' ), get_query_var( 'taxonomy' ) );
+			$title_array['title'] = $term->name;
+			$title_array['excerpt'] = $term->description;
+		} elseif ( is_day() ) {
+			$title_array['title' ] = sprintf( __( 'Daily Archives: %s', LAYERS_THEME_SLUG ), get_the_date() );
+		} elseif ( is_month() ) {
+			$title_array['title' ] = sprintf( __( 'Monthly Archives: %s', LAYERS_THEME_SLUG ), get_the_date( _x( 'F Y', 'monthly archives date format', LAYERS_THEME_SLUG ) ) );
+		} elseif ( is_year() ) {
+			$title_array['title' ] = sprintf( __( 'Yearly Archives: %s', LAYERS_THEME_SLUG ), get_the_date( _x( 'Y', 'yearly archives date format', LAYERS_THEME_SLUG ) ) );
+		} elseif( function_exists('is_shop') && ( is_post_type_archive( 'product' ) || ( get_post_type() == "product") ) ) {
+			if( function_exists( 'woocommerce_get_page_id' )  && '' != woocommerce_get_page_id('shop') ) {
+				$shop_page = get_post( woocommerce_get_page_id('shop') );
+				$title_array['title' ] = $shop_page->post_title;
+			} else {
+				$title_array['title' ] = __( 'Shop' , LAYERS_THEME_SLUG );
+			}
+		} elseif( is_single() ) {
+			$title_array['title' ] = get_the_title();
+		} else {
+			$title_array['title' ] = __( 'Archives', LAYERS_THEME_SLUG );
+		}
 
 		return apply_filters( 'layers_get_page_title' , $title_array );
 	}

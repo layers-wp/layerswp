@@ -496,7 +496,7 @@ if( !function_exists( 'layers_get_theme_mod' ) ) {
 		$name = LAYERS_THEME_SLUG . '-' . $name;
 
 		// Set theme option default
-		$default = ( isset( $layers_customizer_defaults[ $name ] ) ? $layers_customizer_defaults[ $name ] : FALSE );
+		$default = ( isset( $layers_customizer_defaults[ $name ][ 'value' ] ) ? $layers_customizer_defaults[ $name ][ 'value' ] : FALSE );
 
 		return get_theme_mod( $name, $default );
 	}

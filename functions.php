@@ -295,13 +295,6 @@ if( ! function_exists( 'layers_scripts' ) ) {
 		*/
 
 		wp_enqueue_style(
-			LAYERS_THEME_SLUG . '-style' ,
-			get_template_directory_uri() . '/style.css',
-			array() ,
-			LAYERS_VERSION
-		);
-
-		wp_enqueue_style(
 			LAYERS_THEME_SLUG . '-framework' ,
 			get_template_directory_uri() . '/assets/css/framework.css',
 			array() ,
@@ -356,6 +349,13 @@ if( ! function_exists( 'layers_scripts' ) ) {
 			array('admin-bar'),
 			LAYERS_VERSION
 		); // Admin CSS - depending on admin-bar loaded
+
+		wp_enqueue_style(
+			LAYERS_THEME_SLUG . '-style' ,
+			get_stylesheet_uri(),
+			array() ,
+			LAYERS_VERSION
+		);
 
 	}
 }

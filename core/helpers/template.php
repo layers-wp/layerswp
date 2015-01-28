@@ -497,7 +497,7 @@ if( !function_exists( 'layers_get_theme_mod' ) ) {
 
 		// Set theme option default
 		$default = ( isset( $layers_customizer_defaults[ $name ][ 'value' ] ) ? $layers_customizer_defaults[ $name ][ 'value' ] : FALSE );
-echo "$name, $default";
+
 		return get_theme_mod( $name, $default );
 	}
 } // layers_get_header_class

@@ -9,7 +9,7 @@
 global $post; ?>
 <article class="column span-4 thumbnail with-overlay">
     <?php // Layers Featured Media
-    echo layers_post_featured_media( array( 'postid' => $post->ID, 'wrap_class' => 'thumbnail push-bottom', 'size' => 'full' ) ); ?>
+    echo layers_post_featured_media( array( 'postid' => get_the_ID(), 'wrap_class' => 'thumbnail push-bottom', 'size' => 'full' ) ); ?>
 
     <div class="thumbnail-body">
         <div class="overlay">

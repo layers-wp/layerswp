@@ -156,7 +156,7 @@ if( !function_exists( 'layers_bread_crumbs' ) ) {
 
 					if( isset( $taxonomy ) && !is_wp_error( $taxonomy ) ) {
 						// Get the terms
-						$terms = get_the_terms( $post->ID, $taxonomy );
+						$terms = get_the_terms( get_the_ID(), $taxonomy );
 
 						// If this term is legal, proceed
 						if( is_array( $terms ) ) {
@@ -666,7 +666,7 @@ if( !function_exists( 'layers_inline_styles' ) ) {
 		wp_enqueue_style( LAYERS_THEME_SLUG . '-inline-styles', get_template_directory_uri() . '/assets/css/inline.css' );
 		wp_add_inline_style( LAYERS_THEME_SLUG . '-inline-styles', $layers_inline_css );
 
-		return apply_filter( 'layers_inline_css', $layers_inline_css );
+		return apply_filters( 'layers_inline_css', $layers_inline_css );
 	}
 } // layers_inline_styles
 

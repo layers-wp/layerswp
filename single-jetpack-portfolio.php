@@ -25,15 +25,15 @@ get_header(); ?>
 						<?php the_content() ;?>
 					</div>
 
-					<?php layers_post_meta( $post->ID ); ?>
+					<?php layers_post_meta( get_the_ID() ); ?>
 				</div>
 				<div class="column span-7 pull-right sidebar">
 					<?php // Layers Featured Media
-					echo layers_post_featured_media( array( 'postid' => $post->ID, 'wrap_class' => 'thumbnail push-bottom', 'size' => 'full' ) ); ?>
+					echo layers_post_featured_media( array( 'postid' => get_the_ID(), 'wrap_class' => 'thumbnail push-bottom', 'size' => 'full' ) ); ?>
 					<?php $attachments = get_posts( array(
 						'post_type' => 'attachment',
 						'posts_per_page' => -1,
-						'post_parent' => $post->ID,
+						'post_parent' => get_the_ID(),
 						'exclude'     => get_post_thumbnail_id()
 						) ); ?>
 

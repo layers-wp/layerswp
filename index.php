@@ -20,7 +20,7 @@ get_header(); ?>
             <?php while( have_posts() ) : the_post(); ?>
                 <?php get_template_part( 'partials/content' , 'list' ); ?>
             <?php endwhile; // while has_post(); ?>
-            <?php layers_pagination(); ?>
+            <?php the_posts_pagination(); ?>
         </div>
     <?php endif; // if has_post() ?>
 
@@ -29,4 +29,4 @@ get_header(); ?>
     */
     layers_maybe_get_sidebar( 'right-sidebar', 'column pull-right sidebar' ); ?>
 </section>
-<?php get_footer(); ?>
+<?php get_footer();

@@ -1,4 +1,4 @@
-<?php global $page_title_shown; $page_title_shown = 1; ?>
+<?php global $layers_page_title_shown; $layers_page_title_shown = 1; ?>
 <?php $details = layers_get_page_title(); ?>
 <div class="title-container">
     <div class="title">

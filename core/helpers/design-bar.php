@@ -290,7 +290,7 @@ class Layers_Design_Controller {
         $key = 'columns';
 
         // Setup icon CSS
-        $args[ 'icon-css' ] = ( isset( $this->values['columns'] ) && NULL != $this->values ? 'icon-' . $this->values['columns'] : 'icon-columns' );
+        $args[ 'icon-css' ] = 'icon-columns';
 
         // Add a Label
         $args[ 'label' ] = __( 'Columns' , LAYERS_THEME_SLUG );

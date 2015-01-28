@@ -38,7 +38,7 @@ class Layers_Customizer_Defaults {
                 $setting_key = $this->prefix . $section_key . '-' . $control_key;
 
                 // Register default
-                $this->register_control_defaults( $setting_key, ( isset( $control_data['default'] ) ? $control_data['default'] : NULL ) );
+                $this->register_control_defaults( $setting_key, $control_data[ 'type' ], ( isset( $control_data['default'] ) ? $control_data['default'] : NULL ) );
             }
         }
 
@@ -48,14 +48,17 @@ class Layers_Customizer_Defaults {
     * Register Control Defaults
     */
 
-    public function register_control_defaults( $key = NULL , $value = NULL ){
+    public function register_control_defaults( $key = NULL , $type = NULL, $value = NULL ){
 
         global $layers_customizer_defaults;
 
         if( !isset( $layers_customizer_defaults ) ) $layers_customizer_defaults = array();
 
         if( NULL != $key ){
-            $layers_customizer_defaults[ $key ] = esc_attr( $value );
+            $layers_customizer_defaults[ $key ] = array(
+                    'value' => esc_attr( $value ),
+                    'type' =>$type
+                );
         }
 
         return apply_filters( 'layers_customizer_defaults', $layers_customizer_defaults );

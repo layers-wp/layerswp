@@ -31,23 +31,23 @@ class Layers_Customizer {
 		$controls_dir = '/core/customizer/controls/';
 
 		// Include Config file(s)
-		locate_template( $customizer_dir . 'config.php' , true );
+		require_once get_template_directory() . $customizer_dir . 'config.php';
 
 		// Include The Default Settings Class
-		locate_template( $customizer_dir . 'defaults.php' , true );
+		require_once get_template_directory() . $customizer_dir . 'defaults.php';
 
 		if( isset( $wp_customize ) ) {
 			// Include The Panel and Section Registration Class
-			locate_template( $customizer_dir . 'registration.php' , true );
+			require_once get_template_directory() . $customizer_dir . 'registration.php';
 
 			// Include control classes
-			locate_template( $controls_dir . 'heading.php' , true );
-			locate_template( $controls_dir . 'select.php' , true );
-			locate_template( $controls_dir . 'select-icons.php' , true );
-			locate_template( $controls_dir . 'select-images.php' , true );
-			locate_template( $controls_dir . 'seperator.php' , true );
-			locate_template( $controls_dir . 'color.php' , true );
-			locate_template( $controls_dir . 'checkbox.php' , true );
+			require_once get_template_directory() . $controls_dir . 'heading.php';
+			require_once get_template_directory() . $controls_dir . 'select.php';
+			require_once get_template_directory() . $controls_dir . 'select-icons.php';
+			require_once get_template_directory() . $controls_dir . 'select-images.php';
+			require_once get_template_directory() . $controls_dir . 'seperator.php';
+			require_once get_template_directory() . $controls_dir . 'color.php';
+			require_once get_template_directory() . $controls_dir . 'checkbox.php';
 
 			// If we are in a builder page, update the Widgets title
 			if(

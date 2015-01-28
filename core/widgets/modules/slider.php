@@ -150,11 +150,7 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 											<div class="copy-container">
 												<div class="section-title <?php echo ( isset( $slide['design']['fonts'][ 'size' ] ) ? $slide['design']['fonts'][ 'size' ] : '' ); ?>">
 													<?php if( $this->check_and_return( $slide , 'title' ) ) { ?>
-														<?php if( $this->check_and_return( $slide , 'link' ) ) { ?>
-															<h3 class="heading"><a href="<?php echo $slide['link']; ?>"><?php echo $slide['title']; ?></a></h3>
-														<?php } else { ?>
-															<h3 class="heading"><?php echo $slide['title']; ?></h3>
-														<?php } ?>
+														<h3 class="heading"><?php echo $slide['title']; ?></h3>
 													<?php } ?>
 													<?php if( $this->check_and_return( $slide , 'excerpt' ) ) { ?>
 														<div class="excerpt"><?php echo $slide['excerpt']; ?></div>

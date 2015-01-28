@@ -31,13 +31,15 @@ jQuery(document).ready(function($) {
 		// "Hi Mom"
 		$that = jQuery(this);
 
+		$non_layers_boxes = '#postdivrich, #postbox-container-2, #postimagediv';
+
 		// If we use the builder, show the "build" button
 		if('builder.php' == $that.val() ){
 			$( '#layers_toggle_builder' ).removeClass( 'layers-hide' );
-			$( '#postdivrich' ).hide();
+			$( $non_layers_boxes ).hide();
 		} else {
 			$( '#layers_toggle_builder' ).addClass( 'layers-hide' );
-			$( '#postdivrich' ).show();
+			$( $non_layers_boxes ).show();
 		}
 
 		 jQuery.ajax({

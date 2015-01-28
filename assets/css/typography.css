@@ -35,11 +35,11 @@ h6{
 pre,
 code{
 	font-size: 85%;
-	font-weight: 600;
+	font-weight: 700;
 	font-family: "Courier New", Courier, monospace;
 }
 strong{
-	font-weight: 600;
+	font-weight: 700;
 }
 small{
 	font-size: 1.2rem;
@@ -73,7 +73,7 @@ small{
     input[type=submit],
     button{
         font-size: 1.5rem;
-        font-weight: 600;
+        font-weight: 700;
         font-style: normal;
     }
     input[type=submit] + span{
@@ -92,7 +92,7 @@ small{
     /*- LABELLING AND GROUPING --*/
     label{
         font-size: 1.5rem;
-        font-weight: 600;
+        font-weight: 700;
     }
     legend{
         font-size: 1.9rem;
@@ -162,7 +162,7 @@ small{
     /*- LABEL -------------------*/
     .label{
     	font-size: 1.2rem;
-    	font-weight: 600;
+    	font-weight: 700;
     	font-style: normal;
     }
 
@@ -172,13 +172,13 @@ small{
 
 	table th{
 		font-size: 1.2rem;
-		font-weight: 600;
+		font-weight: 700;
 		text-transform: uppercase;
 	}
 
 	.section-table-title td{
 	    font-size: 1.1rem;
-	    font-weight: 600;
+	    font-weight: 700;
 	    text-transform: uppercase;
 	}
 
@@ -191,14 +191,14 @@ small{
     /*- LOGO --------------------*/
     .sitename{
     	font-size: 1.8rem;
-    	font-weight: 600;
+    	font-weight: 700;
     }
     .site-logo-link + .site-description .sitename{
     	font-size: 1.6rem;
     }
     .tagline{
     	font-size: 1.2rem;
-    	font-weight: 600;
+    	font-weight: 700;
     }
 
 
@@ -240,7 +240,7 @@ small{
     /*- SECTION NAV -------------*/
     .section-nav-title{
     	font-size: 1.2rem;
-    	font-weight: 600;
+    	font-weight: 700;
     	text-transform: uppercase;
     }
 
@@ -261,7 +261,7 @@ small{
     }
     .copyright .nav-horizontal a{
     	font-size: 1.0rem;
-    	font-weight: 600;
+    	font-weight: 700;
     	letter-spacing: 1px;
     	text-transform: uppercase;
     }
@@ -280,7 +280,7 @@ small{
     /*---------------------------*/
     /*- HORIZONTAL NAV ----------*/
     .nav-horizontal li a{
-    	font-weight: 600;
+    	font-weight: 700;
     }
     .nav-horizontal .special{
     	font-size: 1.2rem;
@@ -288,7 +288,7 @@ small{
 
     /*---------------------------*/
     /*- VERTICAL NAV ------------*/
-    .nav-vertical a{font-weight: 600;}
+    .nav-vertical a{font-weight: 700;}
 
     /*---------------------------*/
     /*- INLINE NAV --------------*/
@@ -301,18 +301,18 @@ small{
 
     /*---------------------------*/
     /*- TABBED NAV --------------*/
-    .nav-tabs a{font-weight: 600;}
+    .nav-tabs a{font-weight: 700;}
 
     /*---------------------------*/
     /*- PILL NAV ----------------*/
-    .nav-pills a{font-weight: 600;}
-    .nav-pills span{font-weight: 600;}
+    .nav-pills a{font-weight: 700;}
+    .nav-pills span{font-weight: 700;}
 
     /*---------------------------*/
     /*- SORTABLE NAV ------------*/
     .nav-sort a{
     	font-size: 1.2rem;
-    	font-weight: 600;
+    	font-weight: 700;
     }
 
     #footer .sub-menu{display: none;}
@@ -335,7 +335,7 @@ small{
     /*- PAGINATION --------------*/
     .pagination li{
     	font-size: 1.3rem;
-    	font-weight: 600;
+    	font-weight: 700;
     }
 
 /*-------------------------------*/
@@ -352,7 +352,7 @@ small{
 
     .media.small .heading{
     	font-size: 1.5rem;
-    	font-weight: 600;
+    	font-weight: 700;
     }
     .media.small .excerpt{font-size: 1.3rem;}
 
@@ -383,19 +383,19 @@ small{
 
     .copy h1{
     	font-size: 3.2rem;
-    	font-weight: 600;
+    	font-weight: 700;
     }
     .copy h2{
     	font-size: 2.2rem;
-    	font-weight: 600;
+    	font-weight: 700;
     }
     .copy h3{
     	font-size: 1.8rem;
-    	font-weight: 600;
+    	font-weight: 700;
     }
     .copy h4{
     	font-size: 1.5rem;
-    	font-weight: 600;
+    	font-weight: 700;
     }
     .copy h5{
     	font-size: 1.3rem;
@@ -403,7 +403,7 @@ small{
 
     .copy blockquote{
     	font-size: 2.0rem;
-    	font-weight: 600;
+    	font-weight: 700;
     }
 
 
@@ -451,7 +451,7 @@ section[class*=' off-canvas-']{
 /*-------------------------------*/
 
     .avatar .avatar-body .avatar-name{
-        font-weight: 600;
+        font-weight: 700;
     }
 
 /*-------------------------------*/
@@ -463,7 +463,7 @@ section[class*=' off-canvas-']{
     }
     .story h1{
         font-size: 3.2rem;
-        font-weight: 600;
+        font-weight: 700;
     }
     .story h2{
         font-size: 2.2rem;
@@ -519,7 +519,7 @@ section[class*=' off-canvas-']{
         font-size: 1.4rem;
     }
     .form-submit input[type=submit]{
-        font-weight: 600;
+        font-weight: 700;
     }
 
 /*-------------------------------*/
@@ -529,7 +529,7 @@ section[class*=' off-canvas-']{
     /*---------------------------*/
     /*- WIDGET NAV MENU ---------*/
     .menu-main-menu-container li a{
-        font-weight: 600;
+        font-weight: 700;
     }
     .sidebar .menu-main-menu-container li a{
         font-weight: normal;

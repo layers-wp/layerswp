@@ -748,7 +748,7 @@ if( !function_exists( 'layers_translate_image_ratios' ) ) {
 			$image_ratio = str_replace( 'image-' , '', $value );
 		}
 
-		return $image_ratio;
+		return 'layers-' . $image_ratio;
 	}
 } // layers_get_header_class
 

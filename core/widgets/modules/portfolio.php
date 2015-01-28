@@ -171,7 +171,7 @@ if( !class_exists( 'Layers_Portfolio_Widget' ) ) {
 				<?php } ?>
 				<?php if( isset( $widget['show_category_filter'] ) && isset( $terms ) && !is_wp_error( $terms ) ) { ?>
 					<div class="container <?php echo $this->check_and_return( $widget , 'design', 'fonts', 'align' ); ?> clearfix">
-						<ul class="nav nav-pills push-bottom-large layers-isotope-filter" data-isotope-container="<?php echo $widget_id; ?>">
+						<ul class="nav nav-pills push-bottom-large layers-masonry-filter" data-masonry-container="<?php echo $widget_id; ?>">
 								<li data-filter=""><a href="#"><?php _e( 'All' , LAYERS_THEME_SLUG ); ?></a></li>
 							<?php foreach( $terms as $term ) { ?>
 								<li data-filter="<?php echo $term->slug; ?>"><a href="#"><?php echo $term->name; ?></a></li>

@@ -233,20 +233,20 @@ if( !class_exists( 'Layers_Portfolio_Widget' ) ) {
 							<?php }; // if list-list == liststyle ?>
 						<?php }; // while have_posts ?>
 					<?php }; // if have_posts ?>
-					<?php if( isset( $widget['show_pagination'] ) ) the_posts_pagination(); ?>
+					<?php if( isset( $widget['show_pagination'] ) ) layers_pagination( array( 'query' => $portfolio_query ), 'div', 'pagination row span-12 text-center' ); ?>
 				</div>
 			</section>
 
 			<script>
 				jQuery(function($){
-					layers_isotope_settings[ '<?php echo $widget_id; ?>' ] = [{
+					layers_masonry_settings[ '<?php echo $widget_id; ?>' ] = [{
 							itemSelector: '.layers-masonry-column',
 							masonry: {
 								gutter: <?php echo ( isset( $widget['design'][ 'gutter' ] ) ? 20 : 0 ); ?>
 							}
 						}];
 
-					$('#<?php echo $widget_id; ?>').find('.list-masonry').layers_isotope( layers_isotope_settings[ '<?php echo $widget_id; ?>' ][0] );
+					$('#<?php echo $widget_id; ?>').find('.list-masonry').layers_masonry( layers_masonry_settings[ '<?php echo $widget_id; ?>' ][0] );
 				});
 			</script>
 

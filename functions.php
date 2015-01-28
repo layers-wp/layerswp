@@ -11,7 +11,7 @@
  * The current version of the theme. Use a random number for SCRIPT_DEBUG mode
  */
 if ( defined( 'SCRIPT_DEBUG' ) && TRUE == SCRIPT_DEBUG ) {
-	define( 'LAYERS_VERSION', rand( 0 , 100 ) );
+	define( 'LAYERS_VERSION', rand( 0 , 10000 ) );
 } else {
 	define( 'LAYERS_VERSION', 'beta-0.1' );
 }
@@ -47,34 +47,34 @@ add_action( 'template_redirect', 'layers_set_content_width' );
 /*
  * Third Party Scripts
  */
-locate_template( '/core/third-party/site-logo.php' , true );
+require_once get_template_directory() . '/core/third-party/site-logo.php';
 
 /*
  * Load Widgets
  */
-locate_template( '/core/widgets/init.php' , true );
+require_once get_template_directory() . '/core/widgets/init.php';
 
 /*
  * Load Customizer Support
  */
-locate_template( '/core/customizer/init.php' , true );
+require_once get_template_directory() . '/core/customizer/init.php';
 
 /*
  * Load Custom Post Meta
  */
-locate_template( '/core/meta/init.php' , true );
+require_once get_template_directory() . '/core/meta/init.php';
 
 /*
  * Load Widgets
  */
-locate_template( '/core/widgets/init.php' , true );
+require_once get_template_directory() . '/core/widgets/init.php';
 
 /*
  * Load Front-end helpers
  */
-locate_template( '/core/helpers/post.php' , true );
-locate_template( '/core/helpers/template.php' , true );
-locate_template( '/core/helpers/extensions.php' , true );
+require_once get_template_directory() . '/core/helpers/post.php';
+require_once get_template_directory() . '/core/helpers/template.php';
+require_once get_template_directory() . '/core/helpers/extensions.php';
 
 
 /*
@@ -82,22 +82,22 @@ locate_template( '/core/helpers/extensions.php' , true );
  */
 if( is_admin() ){
 	// Include form item class
-	locate_template( '/core/helpers/forms.php' , true );
+	require_once get_template_directory() . '/core/helpers/forms.php';
 
 	// Include design bar class
-	locate_template( '/core/helpers/design-bar.php' , true );
+	require_once get_template_directory() . '/core/helpers/design-bar.php';
 
 	// Include pointers class
-	locate_template( '/core/helpers/pointers.php' , true );
+	require_once get_template_directory() . '/core/helpers/pointers.php';
 
 	// Include API class
-	locate_template( '/core/helpers/api.php' , true );
+	require_once get_template_directory() . '/core/helpers/api.php';
 
 	// Include widget export/import class
-	locate_template( '/core/helpers/migrator.php' , true );
+	require_once get_template_directory() . '/core/helpers/migrator.php';
 
 	//Load Options Panel
-	locate_template( '/core/options-panel/init.php' , true );
+	require_once get_template_directory() . '/core/options-panel/init.php';
 
 }
 
@@ -109,6 +109,7 @@ if( ! function_exists( 'layers_setup' ) ) {
 		 * Add support for HTML5
 		 */
 		add_theme_support('html5');
+
 		/**
 		 * Add support for widgets inside the customizer
 		 */
@@ -125,14 +126,14 @@ if( ! function_exists( 'layers_setup' ) ) {
 		add_theme_support( 'post-thumbnails' );
 
 		// Set Large Image Sizes
-		add_image_size( 'square-large', 960, 960, true );
-		add_image_size( 'portrait-large', 720, 960, true );
-		add_image_size( 'landscape-large', 960, 720, true );
+		add_image_size( 'layers-square-large', 960, 960, true );
+		add_image_size( 'layers-portrait-large', 720, 960, true );
+		add_image_size( 'layers-landscape-large', 960, 720, true );
 
 		// Set Medium Image Sizes
-		add_image_size( 'square-medium', 480, 480, true );
-		add_image_size( 'portrait-medium', 340, 480, true );
-		add_image_size( 'landscape-medium', 480, 340, true );
+		add_image_size( 'layers-square-medium', 480, 480, true );
+		add_image_size( 'layers-portrait-medium', 340, 480, true );
+		add_image_size( 'layers-landscape-medium', 480, 340, true );
 
 		/**
 		 * Add theme support
@@ -167,14 +168,6 @@ if( ! function_exists( 'layers_setup' ) ) {
 		 */
 		add_theme_support( 'jetpack-portfolio' );
 
-		/**
-		* Welcome Redirect
-		*/
-		if( isset($_GET["activated"]) && "themes.php" == $pagenow) {
-			update_option( 'layers_welcome' , 1);
-
-			wp_redirect(admin_url('admin.php?page=' . LAYERS_THEME_SLUG . '-welcome'));
-		}
 	} // function layers_setup
 	add_action( 'after_setup_theme' , 'layers_setup', 10 );
 } // if !function layers_setup
@@ -231,6 +224,7 @@ if( ! function_exists( 'layers_register_standard_sidebars' ) ) {
 	}
 	add_action( 'widgets_init' , 'layers_register_standard_sidebars' , 50 );
 }
+
 /**
 *  Enqueue front end styles and scripts
 */
@@ -256,7 +250,7 @@ if( ! function_exists( 'layers_scripts' ) ) {
 				'jquery',
 			)
 		); // Waypoints
-		
+
 		wp_enqueue_script( 'jquery-masonry' ); // Wordpress Masonry
 
 		wp_enqueue_script(
@@ -266,7 +260,7 @@ if( ! function_exists( 'layers_scripts' ) ) {
 				'jquery'
 			)
 		); // Layers Masonry Function
-		
+
 		wp_enqueue_script(
 			LAYERS_THEME_SLUG . '-imagesloaded-js' ,
 			get_template_directory_uri() . '/assets/js/imagesloaded.js',
@@ -360,7 +354,6 @@ if( ! function_exists( 'layers_scripts' ) ) {
 	}
 }
 add_action( 'wp_enqueue_scripts' , 'layers_scripts' );
-
 
 /**
 *  Enqueue admin end styles and scripts

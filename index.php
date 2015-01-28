@@ -16,10 +16,10 @@ get_header(); ?>
             <?php while( have_posts() ) : the_post(); ?>
                 <?php get_template_part( 'partials/content' , 'list' ); ?>
             <?php endwhile; // while has_post(); ?>
-            <?php layers_pagination(); ?>
+            <?php the_posts_pagination(); ?>
         </div>
     <?php endif; // if has_post() ?>
 
     <?php get_sidebar( 'right' ); ?>
 </section>
-<?php get_footer(); ?>
+<?php get_footer();

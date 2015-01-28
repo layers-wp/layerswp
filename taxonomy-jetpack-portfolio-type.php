@@ -17,11 +17,10 @@ get_header(); ?>
 
 
 <section <?php post_class( 'push-top-large clearfix' ); ?>>
-    <?php if( $wp_query->have_posts() ) { ?>
+    <?php if( have_posts() ) { ?>
         <div class="row">
-            <?php while( $wp_query->have_posts() ) {
-                $wp_query->the_post();
-                global $post;  ?>
+            <?php while( have_posts() ) {
+                 the_post(); ?>
                 <?php get_template_part( 'partials/portfolio-list' ); ?>
             <?php }; // while have_posts ?>
         </div>

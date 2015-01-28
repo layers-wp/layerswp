@@ -574,13 +574,13 @@ if( !function_exists( 'layers_maybe_get_sidebar' ) ) {
 * @param    varchar     $type   Type of style to generate, background, color, text-shadow, border
 * @param    array       $args
 *
-* @return   varchar     $inline_css CSS to append to the inline widget styles that have been generated
+* @return   varchar     $layers_inline_css CSS to append to the inline widget styles that have been generated
 */
 if( !function_exists( 'layers_inline_styles' ) ) {
 	function layers_inline_styles( $container_id = NULL, $type = 'background' , $args = array() ){
 
 		// Get the generated CSS
-		global $inline_css;
+		global $layers_inline_css;
 
 		$css = '';
 
@@ -641,32 +641,32 @@ if( !function_exists( 'layers_inline_styles' ) ) {
 
 		}
 
-		$inline_css = '';
+		$layers_inline_css = '';
 
 		// If there is a container ID specified, append it to the beginning of the declaration
 		if( NULL != $container_id ) {
-			$inline_css = ' #' . $container_id . ' ' . $inline_css;
+			$layers_inline_css = ' #' . $container_id . ' ' . $layers_inline_css;
 		}
 
 		if( isset( $args['selectors'] ) ) {
 
 			if ( is_string( $args['selectors'] ) && '' != $args['selectors'] ) {
-				$inline_css .= $args['selectors'];
+				$layers_inline_css .= $args['selectors'];
 			} else if( !empty( $args['selectors'] ) ){
-				$inline_css .= implode( ', ' .$inline_css . ' ',  $args['selectors'] );
+				$layers_inline_css .= implode( ', ' .$layers_inline_css . ' ',  $args['selectors'] );
 			}
 		}
 
-		if( '' == $inline_css) {
-			$inline_css .= $css;
+		if( '' == $layers_inline_css) {
+			$layers_inline_css .= $css;
 		} else {
-			$inline_css .= '{' . $css . '} ';
+			$layers_inline_css .= '{' . $css . '} ';
 		}
 
 		wp_enqueue_style( LAYERS_THEME_SLUG . '-inline-styles', get_template_directory_uri() . '/assets/css/inline.css' );
-		wp_add_inline_style( LAYERS_THEME_SLUG . '-inline-styles', $inline_css );
+		wp_add_inline_style( LAYERS_THEME_SLUG . '-inline-styles', $layers_inline_css );
 
-		return $inline_css;
+		return apply_filter( 'layers_inline_css', $layers_inline_css );
 	}
 } // layers_inline_styles
 

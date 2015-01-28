@@ -167,12 +167,12 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 
 
 			// Set the meta to display
-			global $post_meta_to_display;
-			$post_meta_to_display = array();
-			if( isset( $widget['show_dates'] ) ) $post_meta_to_display[] = 'date';
-			if( isset( $widget['show_author'] ) ) $post_meta_to_display[] = 'author';
-			if( isset( $widget['show_categories'] ) ) $post_meta_to_display[] = 'categories';
-			if( isset( $widget['show_tags'] ) ) $post_meta_to_display[] = 'tags'; ?>
+			global $layers_post_meta_to_display;
+			$layers_post_meta_to_display = array();
+			if( isset( $widget['show_dates'] ) ) $layers_post_meta_to_display[] = 'date';
+			if( isset( $widget['show_author'] ) ) $layers_post_meta_to_display[] = 'author';
+			if( isset( $widget['show_categories'] ) ) $layers_post_meta_to_display[] = 'categories';
+			if( isset( $widget['show_tags'] ) ) $layers_post_meta_to_display[] = 'tags'; ?>
 
 			<section class="widget row content-vertical-massive <?php echo $this->check_and_return( $widget , 'design', 'advanced', 'customclass' ) ?>" id="<?php echo $widget_id; ?>">
 				<?php if( '' != $this->check_and_return( $widget , 'title' ) ||'' != $this->check_and_return( $widget , 'excerpt' ) ) { ?>

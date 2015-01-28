@@ -6,7 +6,7 @@
  * @since Layers 1.0
  */
 
-global $post, $post_meta_to_display, $page_title_shown; ?>
+global $post, $layers_post_meta_to_display, $page_title_shown; ?>
 <?php if( !isset( $page_title_shown ) ) { ?>
     <header class="section-title large">
         <?php if( 'post' == get_post_type() ) { ?>

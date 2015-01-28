@@ -1,3 +1,11 @@
+/**
+This is the main Layers structure stylesheet
+
+Author: Obox Themes
+Author URI: http://www.oboxthemes.com/
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+*/
 /*-------------------------------*/
 /*- RESET -----------------------*/
 /*- http://richclarkdesign.com --*/
@@ -234,13 +242,13 @@ object{
         padding: 0;
         position:relative;
     }
-    .container.list-masonry > *:not(.masonary-loading){
+    .container.list-masonry > *:not(.masonry-loading){
         opacity: 0;
     }
-    .container.list-masonry.loaded > *:not(.masonary-loading){
+    .container.list-masonry.loaded > *:not(.masonry-loading){
         opacity: 1;
     }
-    .container.list-masonry .masonary-loading{
+    .container.list-masonry .masonry-loading{
         width: 48px;
         height: 48px;
         margin: -25px 0 0 -25px;
@@ -413,7 +421,7 @@ object{
     /*- FORM BUTTONS ------------*/
     input[type=button],
     input[type=submit],
-    button{ 
+    button{
         display: inline-block;
         width: auto;
         padding: 5px 15px;
@@ -510,7 +518,7 @@ object{
     /*---------------------------*/
     /*- FORM ROWS SMALL ---------*/
     form.small .form-row{margin-bottom: 5px;}
-    
+
     form.small input[type=email],
     form.small input[type=text],
     form.small input[type=password]{
@@ -719,7 +727,7 @@ object{
 /*-------------------------------*/
 /*- TABLES ----------------------*/
 /*-------------------------------*/
-    
+
     table{
         width: 100%;
         margin-bottom: 20px;
@@ -798,9 +806,9 @@ object{
     }
     .site-logo-link + .site-description{margin-left: 10px;}
 
-	.mark + .sitename{margin-top: 10px;}
+    .mark + .sitename{margin-top: 10px;}
 
-	.column .logo{float: none;}
+    .column .logo{float: none;}
 
 /*-------------------------------*/
 /*- TITLES ----------------------*/
@@ -867,7 +875,7 @@ object{
 /*-------------------------------*/
 /*- FOOTER ----------------------*/
 /*-------------------------------*/
-    
+
     .footer{clear: both;}
     .footer .container{max-width: 1040px;}
     .footer .section-nav-title{margin-bottom: 15px;}
@@ -913,7 +921,7 @@ object{
 
     /*---------------------------*/
     /*- HORIZONTAL NAV ----------*/
-	.nav-horizontal > ul{float: left;}
+    .nav-horizontal > ul{float: left;}
     .nav-horizontal li{
         float: left;
         margin: 0 10px;
@@ -924,11 +932,11 @@ object{
 
     /*---------------------------*/
     /*- HORIZONTAL NAV CENTERED -*/
-	.nav-centered{
+    .nav-centered{
         text-align: center;
         width: 100%;
     }
-	.nav-centered li{
+    .nav-centered li{
         float: none;
         display: inline-block;
         margin: 0;
@@ -1085,7 +1093,7 @@ object{
     .nav-absolute li{
         display: inline;
     }
-    
+
     /*---------------------------*/
     /*- STICKY NAV --------------*/
     .sticky-nav{
@@ -1368,7 +1376,7 @@ object{
         list-style: decimal;
         margin: 0 0 26px;
     }
-	.copy ol li{
+    .copy ol li{
         list-style: decimal;
         margin: 0 0 6px 20px;
     }
@@ -1402,7 +1410,7 @@ object{
         margin-bottom: 20px;
     }
 
-	.copy a.button{border-bottom: none;}
+    .copy a.button{border-bottom: none;}
 
 
 /*-------------------------------*/

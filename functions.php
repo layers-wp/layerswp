@@ -111,6 +111,11 @@ if( ! function_exists( 'layers_setup' ) ) {
 		add_theme_support('html5');
 
 		/**
+		 * Add support for widgets inside the customizer
+		 */
+		add_theme_support('widget-customizer');
+
+		/**
 		 * Add support for WooCommerce
 		 */
 		add_theme_support( 'woocommerce' );
@@ -121,14 +126,14 @@ if( ! function_exists( 'layers_setup' ) ) {
 		add_theme_support( 'post-thumbnails' );
 
 		// Set Large Image Sizes
-		add_image_size( 'square-large', 960, 960, true );
-		add_image_size( 'portrait-large', 720, 960, true );
-		add_image_size( 'landscape-large', 960, 720, true );
+		add_image_size( 'layers-square-large', 960, 960, true );
+		add_image_size( 'layers-portrait-large', 720, 960, true );
+		add_image_size( 'layers-landscape-large', 960, 720, true );
 
 		// Set Medium Image Sizes
-		add_image_size( 'square-medium', 480, 480, true );
-		add_image_size( 'portrait-medium', 340, 480, true );
-		add_image_size( 'landscape-medium', 480, 340, true );
+		add_image_size( 'layers-square-medium', 480, 480, true );
+		add_image_size( 'layers-portrait-medium', 340, 480, true );
+		add_image_size( 'layers-landscape-medium', 480, 340, true );
 
 		/**
 		 * Add theme support

@@ -47,34 +47,34 @@ add_action( 'template_redirect', 'layers_set_content_width' );
 /*
  * Third Party Scripts
  */
-locate_template( '/core/third-party/site-logo.php' , true );
+require_once get_template_directory() . '/core/third-party/site-logo.php';
 
 /*
  * Load Widgets
  */
-locate_template( '/core/widgets/init.php' , true );
+require_once get_template_directory() . '/core/widgets/init.php';
 
 /*
  * Load Customizer Support
  */
-locate_template( '/core/customizer/init.php' , true );
+require_once get_template_directory() . '/core/customizer/init.php';
 
 /*
  * Load Custom Post Meta
  */
-locate_template( '/core/meta/init.php' , true );
+require_once get_template_directory() . '/core/meta/init.php';
 
 /*
  * Load Widgets
  */
-locate_template( '/core/widgets/init.php' , true );
+require_once get_template_directory() . '/core/widgets/init.php';
 
 /*
  * Load Front-end helpers
  */
-locate_template( '/core/helpers/post.php' , true );
-locate_template( '/core/helpers/template.php' , true );
-locate_template( '/core/helpers/extensions.php' , true );
+require_once get_template_directory() . '/core/helpers/post.php';
+require_once get_template_directory() . '/core/helpers/template.php';
+require_once get_template_directory() . '/core/helpers/extensions.php';
 
 
 /*
@@ -82,22 +82,22 @@ locate_template( '/core/helpers/extensions.php' , true );
  */
 if( is_admin() ){
 	// Include form item class
-	locate_template( '/core/helpers/forms.php' , true );
+	require_once get_template_directory() . '/core/helpers/forms.php';
 
 	// Include design bar class
-	locate_template( '/core/helpers/design-bar.php' , true );
+	require_once get_template_directory() . '/core/helpers/design-bar.php';
 
 	// Include pointers class
-	locate_template( '/core/helpers/pointers.php' , true );
+	require_once get_template_directory() . '/core/helpers/pointers.php';
 
 	// Include API class
-	locate_template( '/core/helpers/api.php' , true );
+	require_once get_template_directory() . '/core/helpers/api.php';
 
 	// Include widget export/import class
-	locate_template( '/core/helpers/migrator.php' , true );
+	require_once get_template_directory() . '/core/helpers/migrator.php';
 
 	//Load Options Panel
-	locate_template( '/core/options-panel/init.php' , true );
+	require_once get_template_directory() . '/core/options-panel/init.php';
 
 }
 

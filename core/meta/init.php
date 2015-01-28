@@ -31,7 +31,7 @@ class Layers_Custom_Meta {
 		$meta_dir = '/core/meta/';
 
 		// Include Config file(s)
-		locate_template( $meta_dir . 'config.php' , true );
+		require_once get_template_directory() . $meta_dir . 'config.php';
 
 
 		// Instantiate meta config class

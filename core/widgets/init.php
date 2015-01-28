@@ -35,15 +35,15 @@ class Layers_Widgets {
 		define( 'LAYERS_WIDGET_WIDTH_LARGE' , 980 );
 
 		// Include ajax functions
-		locate_template( $widget_dir . 'ajax.php' , true );
+		require_once get_template_directory() . $widget_dir . 'ajax.php';
 
 		// Include necessary widgets
-		locate_template(  $module_dir . 'base.php' , true ); // Basis of all Layers Widgets
-		locate_template( $module_dir . 'contact.php' , true );
-		locate_template( $module_dir . 'content.php' , true );
-		locate_template( $module_dir . 'portfolio.php' , true );
-		locate_template( $module_dir . 'post.php' , true );
-		locate_template( $module_dir . 'slider.php' , true );
+		require_once get_template_directory() . $module_dir . 'base.php'; // Basis of all Layers Widgets
+		require_once get_template_directory() . $module_dir . 'contact.php';
+		require_once get_template_directory() . $module_dir . 'content.php';
+		require_once get_template_directory() . $module_dir . 'portfolio.php';
+		require_once get_template_directory() . $module_dir . 'post.php';
+		require_once get_template_directory() . $module_dir . 'slider.php';
 
 		// When switching to a child theme, preserve page builder pages
 		add_action('switch_theme', array( $this , 'preserve_widgets' ) );

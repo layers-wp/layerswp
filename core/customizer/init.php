@@ -31,23 +31,23 @@ class Layers_Customizer {
 		$controls_dir = '/core/customizer/controls/';
 
 		// Include Config file(s)
-		locate_template( $customizer_dir . 'config.php' , true );
+		require_once get_template_directory() . $customizer_dir . 'config.php';
 
 		// Include The Default Settings Class
-		locate_template( $customizer_dir . 'defaults.php' , true );
+		require_once get_template_directory() . $customizer_dir . 'defaults.php';
 
 		if( isset( $wp_customize ) ) {
 			// Include The Panel and Section Registration Class
-			locate_template( $customizer_dir . 'registration.php' , true );
+			require_once get_template_directory() . $customizer_dir . 'registration.php';
 
 			// Include control classes
-			locate_template( $controls_dir . 'heading.php' , true );
-			locate_template( $controls_dir . 'select.php' , true );
-			locate_template( $controls_dir . 'select-icons.php' , true );
-			locate_template( $controls_dir . 'select-images.php' , true );
-			locate_template( $controls_dir . 'seperator.php' , true );
-			locate_template( $controls_dir . 'color.php' , true );
-			locate_template( $controls_dir . 'checkbox.php' , true );
+			require_once get_template_directory() . $controls_dir . 'heading.php';
+			require_once get_template_directory() . $controls_dir . 'select.php';
+			require_once get_template_directory() . $controls_dir . 'select-icons.php';
+			require_once get_template_directory() . $controls_dir . 'select-images.php';
+			require_once get_template_directory() . $controls_dir . 'seperator.php';
+			require_once get_template_directory() . $controls_dir . 'color.php';
+			require_once get_template_directory() . $controls_dir . 'checkbox.php';
 
 			// If we are in a builder page, update the Widgets title
 			if(
@@ -134,33 +134,14 @@ class Layers_Customizer {
 
 		// Create builder pages dropdown.
 		if( $layers_pages ){
-			ob_start();
-
-			// Get the base of the customizer URL
-			$customizer_url = explode( 'customize.php?', $_SERVER['REQUEST_URI'] );
-
-			$current_page_url = "";
-
-			// Check if there is a query string
-			if ( isset( $customizer_url[1] ) ) {
-
-				// Parse the URL
-				parse_str( $customizer_url[1], $customizer_url_portions );
-
-				// Check if there is query string 'url'
-				if( isset( $customizer_url_portions[ 'url' ] ) ) {
-					$current_page_url = $customizer_url_portions[ 'url' ];
-				}
-
-			} ?>
+			ob_start(); ?>
 			<div class="layers-customizer-pages-dropdown">
 				<select>
 					<option value="init"><?php _e( 'Builder Pages:', LAYERS_THEME_SLUG ) ?></option>
 					<?php foreach( $layers_pages as $page ) { ?>
 						<?php // Page URL
 						$edit_page_url = get_permalink( $page->ID ); ?>
-
-						<option value="<?php echo esc_attr( $edit_page_url ); ?>" <?php echo ( $edit_page_url == $current_page_url ) ? 'selected="selected"' : '' ; ?> ><?php echo $page->post_title ?></option>
+						<option value="<?php echo esc_attr( $edit_page_url ); ?>"><?php echo $page->post_title ?></option>
 					<?php } ?>
 				</select>
 			</div>

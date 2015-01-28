@@ -136,14 +136,30 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 
 							} else {
 								$use_image_ratio = 'large';
+							}
+							
+							// Set Slide CSS Classes
+							$slide_class = array();
+							$slide_class[] = 'invert swiper-slide';
+							if( false != $this->check_and_return( $slide , 'image' ) || 'image-left' == $slide['design'][ 'imagealign' ] || 'image-top' == $slide['design'][ 'imagealign' ] ) {
+								$slide_class[] = 'has-image';
+							}
+							if( isset( $slide['design'][ 'imagealign' ] ) && '' != $slide['design'][ 'imagealign' ] ) {
+								$slide_class[] = $slide['design'][ 'imagealign' ];
+							}
+							if( isset( $slide['design']['fonts'][ 'align' ] ) && '' != $slide['design']['fonts'][ 'align' ] ) {
+								$slide_class[] = $slide['design']['fonts'][ 'align' ];
+							}
+							$slide_class = implode( ' ', $slide_class );
+														
+							// Set link entire slide or not
+							$slide_wrapper_tag = 'div';
+							$slide_wrapper_href = '';
+							if( $this->check_and_return( $slide, 'link' ) && ! $this->check_and_return( $slide , 'link_text' ) ) {
+								$slide_wrapper_tag = 'a';
+								$slide_wrapper_href = 'href="' . esc_url( $slide['link'] ) . '"';
 							} ?>
-
-							<div id="<?php echo $widget_id; ?>-<?php echo $key; ?>" class="invert swiper-slide
-								<?php if( false != $this->check_and_return( $slide , 'image' ) || 'image-left' == $slide['design'][ 'imagealign' ] || 'image-top' == $slide['design'][ 'imagealign' ] ) echo 'has-image'; ?>
-								<?php if( isset( $slide['design'][ 'imagealign' ] ) && '' != $slide['design'][ 'imagealign' ] ) echo $slide['design'][ 'imagealign' ]; ?>
-								<?php if( isset( $slide['design']['fonts'][ 'align' ] ) && '' != $slide['design']['fonts'][ 'align' ] ) echo $slide['design']['fonts'][ 'align' ]; ?>
-								"
-								style="float: left;">
+							<<?php echo $slide_wrapper_tag; ?> <?php echo $slide_wrapper_href; ?> id="<?php echo $widget_id; ?>-<?php echo $key; ?>" class="<?php echo $slide_class; ?>" style="float: left;">
 								<div class="overlay <?php if( isset( $slide['design'][ 'background' ][ 'darken' ] ) ) echo 'darken'; ?>"  <?php if( $this->check_and_return( $widget , 'slide_height' ) ) echo 'style="height: ' . $widget['slide_height'] . 'px;"' ?>>
 									<div class="container clearfix">
 										<?php if( '' != $slide['title'] || '' != $slide['excerpt'] || '' != $slide['link'] ) { ?>
@@ -155,7 +171,7 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 													<?php if( $this->check_and_return( $slide , 'excerpt' ) ) { ?>
 														<div class="excerpt"><?php echo $slide['excerpt']; ?></div>
 													<?php } ?>
-													<?php if( isset( $slide['link'] ) && $this->check_and_return( $slide , 'link_text' ) ) { ?>
+													<?php if( 'div' == $slide_wrapper_tag && $this->check_and_return( $slide, 'link' ) && $this->check_and_return( $slide , 'link_text' ) ) { ?>
 														<a href="<?php echo $slide['link']; ?>" class="button btn-<?php echo $this->check_and_return( $slide , 'design' , 'fonts' , 'size' ); ?>"><?php echo $slide['link_text']; ?></a>
 													<?php } ?>
 												</div>
@@ -172,7 +188,7 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 										<?php } // if $slide image  ?>
 									</div> <!-- .container -->
 								</div> <!-- .overlay -->
-							</div>
+							</<?php echo $slide_wrapper_tag; ?>>
 						<?php } // foreach slides ?>
 			 		</div>
 				<?php } // if !empty( $widget->slides ) ?>

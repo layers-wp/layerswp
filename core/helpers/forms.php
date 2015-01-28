@@ -19,7 +19,7 @@ class Layers_Form_Elements {
 	public function header( $args = array() ){
 
 		$defaults = array(
-				'title' => __( 'Widget' , LAYERS_THEME_SLUG ),
+				'title' => __( 'Widget' , 'layers' ),
 				'icon_class' => ''
 			);
 
@@ -97,13 +97,13 @@ class Layers_Form_Elements {
 	*/
 
 	public function get_sort_options( $options = array() ){
-		$options[ json_encode( array( 'orderby' => 'date', 'order' => 'desc' ) ) ] = __( 'Newest First' , LAYERS_THEME_SLUG );
-		$options[ json_encode( array( 'orderby' => 'date', 'order' => 'asc' ) ) ] = __( 'Oldest First' , LAYERS_THEME_SLUG );
-		$options[ json_encode( array( 'orderby' => 'rand', 'order' => 'desc' ) ) ] = __( 'Random' , LAYERS_THEME_SLUG );
-		$options[ json_encode( array( 'orderby' => 'title', 'order' => 'asc' ) ) ] = __( 'Titles A-Z' , LAYERS_THEME_SLUG );
-		$options[ json_encode( array( 'orderby' => 'title', 'order' => 'desc' ) ) ] = __( 'Titles Z-A' , LAYERS_THEME_SLUG );
-		$options[ json_encode( array( 'orderby' => 'comment_count', 'order' => 'desc' ) ) ] = __( 'Most Comments' , LAYERS_THEME_SLUG );
-		$options[ json_encode( array( 'orderby' => 'menu_order', 'order' => 'desc' ) ) ] = __( 'Custom Order' , LAYERS_THEME_SLUG );
+		$options[ json_encode( array( 'orderby' => 'date', 'order' => 'desc' ) ) ] = __( 'Newest First' , 'layers' );
+		$options[ json_encode( array( 'orderby' => 'date', 'order' => 'asc' ) ) ] = __( 'Oldest First' , 'layers' );
+		$options[ json_encode( array( 'orderby' => 'rand', 'order' => 'desc' ) ) ] = __( 'Random' , 'layers' );
+		$options[ json_encode( array( 'orderby' => 'title', 'order' => 'asc' ) ) ] = __( 'Titles A-Z' , 'layers' );
+		$options[ json_encode( array( 'orderby' => 'title', 'order' => 'desc' ) ) ] = __( 'Titles Z-A' , 'layers' );
+		$options[ json_encode( array( 'orderby' => 'comment_count', 'order' => 'desc' ) ) ] = __( 'Most Comments' , 'layers' );
+		$options[ json_encode( array( 'orderby' => 'menu_order', 'order' => 'desc' ) ) ] = __( 'Custom Order' , 'layers' );
 		return $options;
 	}
 
@@ -219,9 +219,9 @@ class Layers_Form_Elements {
 			case 'tinymce' : ?>
 				<div class="layers-form-item" id="layers-tinymce-<?php echo $input->id; ?>">
 					<a href="" class="layers-t-right layers-tiny-mce-switch" data-mode="visual"
-					data-visual_label="<?php _e( 'Visual Mode' , LAYERS_THEME_SLUG ); ?>"
-					data-html_label="<?php _e( 'HTML Mode' , LAYERS_THEME_SLUG ); ?>">
-						<?php _e( 'HTML Mode' , LAYERS_THEME_SLUG ); ?>
+					data-visual_label="<?php _e( 'Visual Mode' , 'layers' ); ?>"
+					data-html_label="<?php _e( 'HTML Mode' , 'layers' ); ?>">
+						<?php _e( 'HTML Mode' , 'layers' ); ?>
 					</a>
 					<div class="editible editible-<?php echo $input->id; ?>" data-id="<?php echo $input->id; ?>"><?php echo esc_html( $input->value ); ?></div>
 					<textarea class="layers-hide layers-textarea layers-tiny-mce-textarea" <?php echo implode ( ' ' , $input_props ); ?> <?php if( isset( $input->rows ) ) echo 'rows="' . $input->rows . '"'; ?>><?php echo $input->value; ?></textarea>
@@ -236,13 +236,13 @@ class Layers_Form_Elements {
 						<!-- Image -->
 						<?php if( isset( $input->value ) ) echo wp_get_attachment_image( $input->value , 'thumbnail' ); ?>
 						<!-- Remove button -->
-						<a class="layers-image-remove" href=""><?php _e( 'Remove' , LAYERS_THEME_SLUG ); ?></a>
+						<a class="layers-image-remove" href=""><?php _e( 'Remove' , 'layers' ); ?></a>
 					</div>
 
 					<a href="#" class="layers-image-upload-button  layers-button btn-full <?php if( isset( $input->value ) && '' != $input->value ) echo 'layers-has-image'; ?>"
-						data-title="<?php _e( 'Select an Image' , LAYERS_THEME_SLUG ); ?>"
-						data-button_text="<?php _e( 'Use Image' , LAYERS_THEME_SLUG ); ?>">
-						<?php echo ( isset( $input->button_label ) ? $input->button_label : __( 'Choose Image' , LAYERS_THEME_SLUG ) ); ?>
+						data-title="<?php _e( 'Select an Image' , 'layers' ); ?>"
+						data-button_text="<?php _e( 'Use Image' , 'layers' ); ?>">
+						<?php echo ( isset( $input->button_label ) ? $input->button_label : __( 'Choose Image' , 'layers' ) ); ?>
 					</a>
 
 					<?php echo $this->input(
@@ -264,11 +264,11 @@ class Layers_Form_Elements {
 					<!-- Image -->
 					<?php if( isset( $input->value ) ) echo wp_basename( wp_get_attachment_url( $input->value ) , true ); ?>
 				</span>
-				<button  class="layers-regular-uploader layers-button btn-medium" data-title="<?php _e( 'Select a File' , LAYERS_THEME_SLUG ); ?>" data-button_text="<?php _e( 'Use File' , LAYERS_THEME_SLUG ); ?>">
-					<?php _e( 'Choose a File' , LAYERS_THEME_SLUG  ); ?>
+				<button  class="layers-regular-uploader layers-button btn-medium" data-title="<?php _e( 'Select a File' , 'layers' ); ?>" data-button_text="<?php _e( 'Use File' , 'layers' ); ?>">
+					<?php _e( 'Choose a File' , 'layers'  ); ?>
 				</button>
 				<small class="<?php if( !isset( $input->value ) ) echo 'hide'; ?> layers-file-remove">
-					<?php _e( 'Remove' , LAYERS_THEME_SLUG ); ?>
+					<?php _e( 'Remove' , 'layers' ); ?>
 				</small>
 				<input type="hidden" <?php echo implode ( ' ' , $input_props ); ?> value="<?php echo $input->value; ?>" />
 			<?php break;
@@ -307,11 +307,11 @@ class Layers_Form_Elements {
 							<div class="layers-form-item">
 								<div class="layers-image-uploader layers-animate layers-push-bottom">
 									<!-- Remove button -->
-									<a class="layers-image-remove <?php if( !isset( $input->value->image ) ) echo 'layers-hide'; ?>" href=""><?php _e( 'Remove' , LAYERS_THEME_SLUG ); ?></a>
+									<a class="layers-image-remove <?php if( !isset( $input->value->image ) ) echo 'layers-hide'; ?>" href=""><?php _e( 'Remove' , 'layers' ); ?></a>
 
 									<!-- Instructions -->
 									<p <?php if( isset( $input->value->image ) ) echo 'class="layers-hide"'; ?>>
-										<?php printf( __( 'Drop a file here or %s' , LAYERS_THEME_SLUG ) , '<a href="#">select a file.</a>' ); ?>
+										<?php printf( __( 'Drop a file here or %s' , 'layers' ) , '<a href="#">select a file.</a>' ); ?>
 									</p>
 
 									<!-- Input -->
@@ -331,7 +331,7 @@ class Layers_Form_Elements {
 							<div class="layers-row">
 
 								<p class="layers-form-item">
-									<label><?php _e( 'Background Color' , LAYERS_THEME_SLUG ); ?></label>
+									<label><?php _e( 'Background Color' , 'layers' ); ?></label>
 									<?php echo $this->input(
 										array(
 											'type' => 'color',
@@ -350,7 +350,7 @@ class Layers_Form_Elements {
 												'name' => $input->name . '[darken]' ,
 												'id' => $input->id . '-darken',
 												'value' => ( isset( $input->value->darken ) ) ? $input->value->darken : NULL,
-												'label' => __( 'Darken to improve readability', LAYERS_THEME_SLUG )
+												'label' => __( 'Darken to improve readability', 'layers' )
 											)
 										); ?>
 									</li>
@@ -361,7 +361,7 @@ class Layers_Form_Elements {
 												'name' => $input->name . '[tile_background]' ,
 												'id' => $input->id . '-tile_background',
 												'value' => ( isset( $input->value->tile_background ) ) ? $input->value->tile_background : NULL,
-												'label' => __( 'Tile Background', LAYERS_THEME_SLUG )
+												'label' => __( 'Tile Background', 'layers' )
 											)
 										); ?>
 									</li>
@@ -372,7 +372,7 @@ class Layers_Form_Elements {
 												'name' => $input->name . '[fixed_background]' ,
 												'id' => $input->id . '-fixed_background',
 												'value' => ( isset( $input->value->fixed_background ) ) ? $input->value->fixed_background : NULL,
-												'label' => __( 'Fixed Background', LAYERS_THEME_SLUG )
+												'label' => __( 'Fixed Background', 'layers' )
 											)
 										); ?>
 									</li>
@@ -383,7 +383,7 @@ class Layers_Form_Elements {
 						<!-- Video uploader -->
 						<div class="layers-content <?php if( 'video' == $input->value->type ) echo 'section-active'; ?>">
 							<p class="layers-form-item">
-								<label><?php _e( 'Enter your .mp4 link' , LAYERS_THEME_SLUG ); ?></label>
+								<label><?php _e( 'Enter your .mp4 link' , 'layers' ); ?></label>
 								<?php echo $this->input(
 									array(
 										'type' => 'upload',
@@ -394,7 +394,7 @@ class Layers_Form_Elements {
 								); ?>
 							</p>
 							<p class="layers-form-item">
-								<label><?php _e( 'Enter your .ogv link' , LAYERS_THEME_SLUG ); ?></label>
+								<label><?php _e( 'Enter your .ogv link' , 'layers' ); ?></label>
 								<?php echo $this->input(
 									array(
 										'type' => 'upload',
@@ -406,7 +406,7 @@ class Layers_Form_Elements {
 							</p>
 							<div class="layers-row">
 								<p class="layers-form-item layers-no-push-bottom">
-									<label><?php _e( 'Background Color' , LAYERS_THEME_SLUG ); ?></label>
+									<label><?php _e( 'Background Color' , 'layers' ); ?></label>
 									<?php echo $this->input(
 										array(
 											'type' => 'color',
@@ -425,7 +425,7 @@ class Layers_Form_Elements {
 												'name' => $input->name . '[video_darken]' ,
 												'id' => $input->id . '-video_darken',
 												'value' => ( isset( $input->value->video_darken ) ) ? $input->value->video_darken : NULL,
-												'label' => __( 'Darken to improve readability', LAYERS_THEME_SLUG )
+												'label' => __( 'Darken to improve readability', 'layers' )
 											)
 										); ?>
 									</li>
@@ -436,7 +436,7 @@ class Layers_Form_Elements {
 												'name' => $input->name . '[video_tile_background]' ,
 												'id' => $input->id . '-video_tile_background',
 												'value' => ( isset( $input->value->video_tile_background ) ) ? $input->value->video_tile_background : NULL,
-												'label' => __( 'Tile Background', LAYERS_THEME_SLUG )
+												'label' => __( 'Tile Background', 'layers' )
 											)
 										); ?>
 									</li>
@@ -447,7 +447,7 @@ class Layers_Form_Elements {
 												'name' => $input->name . '[video_fixed_background]' ,
 												'id' => $input->id . '-video_fixed_background',
 												'value' => ( isset( $input->value->video_fixed_background ) ) ? $input->value->video_fixed_background : NULL,
-												'label' => __( 'Fixed Background', LAYERS_THEME_SLUG )
+												'label' => __( 'Fixed Background', 'layers' )
 											)
 										); ?>
 									</li>

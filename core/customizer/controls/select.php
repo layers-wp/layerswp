@@ -14,15 +14,15 @@ if( !class_exists( 'Layers_Customize_Select_Control' ) ) {
 		public $type = 'layers-select';
 
 		public $label = '';
-		
+
 		public $subtitle = '';
 
 		public $description = '';
-		
+
 		public $linked = '';
 
 		public function render_content() {
-			
+
 			if ( empty( $this->choices ) ) {
 				return;
 			}
@@ -34,7 +34,7 @@ if( !class_exists( 'Layers_Customize_Select_Control' ) ) {
 			$link_val = rtrim( $link[1], '"' );
 
 			$values = false;
-			
+
 			// Relational: Convert the linked array to 'data-' attributes that the js expects.
 			if ( isset( $this->linked ) && is_array( $this->linked ) && isset( $this->linked['show-if-selector'] ) && isset( $this->linked['show-if-value'] ) ) {
 				$linked = 'data-show-if-selector="' . esc_attr( $this->linked['show-if-selector'] ) . '" data-show-if-value="' . esc_attr( $this->linked['show-if-value'] ) . '" ';
@@ -53,12 +53,12 @@ if( !class_exists( 'Layers_Customize_Select_Control' ) ) {
 					<?php if ( '' != $this->subtitle ) : ?>
 						<label class="layers-form-row"><?php echo $this->subtitle; ?></label>
 					<?php endif; ?>
-					
+
 					<div class="layers-select-wrapper layers-form-item">
 						<?php echo $form_elements->input(
 							array(
 								'type' => 'select',
-								'label' => __( 'Repeat' , LAYERS_THEME_SLUG ),
+								'label' => __( 'Repeat' , 'layers' ),
 								'name' => '' ,
 								'id' =>  $this->id,
 								'options' => $this->choices,
@@ -69,13 +69,13 @@ if( !class_exists( 'Layers_Customize_Select_Control' ) ) {
 						); ?>
 					</div>
 				</div>
-				
+
 				<?php if ( '' != $this->description ) : ?>
 					<div class="description customize-control-description">
 						<?php echo esc_html( $this->description ); ?>
 					</div>
 				<?php endif; ?>
-			
+
 			</div>
 			<?php
 		}

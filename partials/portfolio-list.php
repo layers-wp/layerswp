@@ -21,7 +21,7 @@ global $post; ?>
                     <?php the_excerpt(); ?>
                 </div>
             <?php } ?>
-            <a href="<?php the_permalink(); ?>" class="button"><?php _e( 'View Project' , LAYERS_THEME_SLUG ); ?></a>
+            <a href="<?php the_permalink(); ?>" class="button"><?php _e( 'View Project' , 'layers' ); ?></a>
         </div>
     </div>
 </article>

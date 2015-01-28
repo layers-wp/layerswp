@@ -22,7 +22,7 @@ if( !class_exists( 'Layers_Portfolio_Widget' ) ) {
 			* @param  	varchar    		$taxonomy    		(optional) Taxonomy slug for use as an ID/classname
 			* @param  	array 			$checkboxes    	(optional) Array of checkbox names to be saved in this widget. Don't forget these please!
 			*/
-			$this->widget_title = __( 'Portfolio', LAYERS_THEME_SLUG );
+			$this->widget_title = __( 'Portfolio', 'layers' );
 			$this->widget_id = 'portfolio';
 			$this->post_type = 'jetpack-portfolio';
 			$this->taxonomy = 'jetpack-portfolio-type';
@@ -54,7 +54,7 @@ if( !class_exists( 'Layers_Portfolio_Widget' ) ) {
 				'show_category_filter' => 'on',
 				'excerpt_length' => 200,
 				'show_call_to_action' => 'on',
-				'call_to_action' => __( 'View Project' , LAYERS_THEME_SLUG ),
+				'call_to_action' => __( 'View Project' , 'layers' ),
                 'posts_per_page' => 6,
                 'order' => NULL,
 				'design' => array(
@@ -172,7 +172,7 @@ if( !class_exists( 'Layers_Portfolio_Widget' ) ) {
 				<?php if( isset( $widget['show_category_filter'] ) && isset( $terms ) && !is_wp_error( $terms ) ) { ?>
 					<div class="container <?php echo $this->check_and_return( $widget , 'design', 'fonts', 'align' ); ?> clearfix">
 						<ul class="nav nav-pills push-bottom-large layers-masonry-filter" data-masonry-container="<?php echo $widget_id; ?>">
-								<li data-filter=""><a href="#"><?php _e( 'All' , LAYERS_THEME_SLUG ); ?></a></li>
+								<li data-filter=""><a href="#"><?php _e( 'All' , 'layers' ); ?></a></li>
 							<?php foreach( $terms as $term ) { ?>
 								<li data-filter="<?php echo $term->slug; ?>"><a href="#"><?php echo $term->name; ?></a></li>
 							<?php } // foreach $terms ?>
@@ -317,10 +317,10 @@ if( !class_exists( 'Layers_Portfolio_Widget' ) ) {
 									'name' => $this->get_field_name( 'text_style' ) ,
 									'id' => $this->get_field_id( 'text_style' ) ,
 									'value' => ( isset( $text_style ) ) ? $text_style : NULL,
-									'label' => __( 'Title &amp; Excerpt Position' , LAYERS_THEME_SLUG ),
+									'label' => __( 'Title &amp; Excerpt Position' , 'layers' ),
 									'options' => array(
-											'regular' => __( 'Regular' , LAYERS_THEME_SLUG ),
-											'overlay' => __( 'Overlay' , LAYERS_THEME_SLUG )
+											'regular' => __( 'Regular' , 'layers' ),
+											'overlay' => __( 'Overlay' , 'layers' )
 									)
 								),
 								'show_category_filter' => array(
@@ -328,21 +328,21 @@ if( !class_exists( 'Layers_Portfolio_Widget' ) ) {
 									'name' => $this->get_field_name( 'show_category_filter' ) ,
 									'id' => $this->get_field_id( 'show_category_filter' ) ,
 									'value' => ( isset( $show_category_filter ) ) ? $show_category_filter : NULL,
-									'label' => __( 'Show Project Filter' , LAYERS_THEME_SLUG )
+									'label' => __( 'Show Project Filter' , 'layers' )
 								),
 								'show_titles' => array(
 									'type' => 'checkbox',
 									'name' => $this->get_field_name( 'show_titles' ) ,
 									'id' => $this->get_field_id( 'show_titles' ) ,
 									'value' => ( isset( $show_titles ) ) ? $show_titles : NULL,
-									'label' => __( 'Show  Project Titles' , LAYERS_THEME_SLUG )
+									'label' => __( 'Show  Project Titles' , 'layers' )
 								),
 								'show_excerpts' => array(
 									'type' => 'checkbox',
 									'name' => $this->get_field_name( 'show_excerpts' ) ,
 									'id' => $this->get_field_id( 'show_excerpts' ) ,
 									'value' => ( isset( $show_excerpts ) ) ? $show_excerpts : NULL,
-									'label' => __( 'Show Project Excerpts' , LAYERS_THEME_SLUG )
+									'label' => __( 'Show Project Excerpts' , 'layers' )
 								),
                                 'excerpt_length' => array(
                                     'type' => 'number',
@@ -351,28 +351,28 @@ if( !class_exists( 'Layers_Portfolio_Widget' ) ) {
                                     'min' => 0,
                                     'max' => 10000,
                                     'value' => ( isset( $excerpt_length ) ) ? $excerpt_length : NULL,
-                                    'label' => __( 'Excerpts Length' , LAYERS_THEME_SLUG )
+                                    'label' => __( 'Excerpts Length' , 'layers' )
                                 ),
 								'show_call_to_action' => array(
 									'type' => 'checkbox',
 									'name' => $this->get_field_name( 'show_call_to_action' ) ,
 									'id' => $this->get_field_id( 'show_call_to_action' ) ,
 									'value' => ( isset( $show_call_to_action ) ) ? $show_call_to_action : NULL,
-									'label' => __( 'Show "Read More" Buttons' , LAYERS_THEME_SLUG )
+									'label' => __( 'Show "Read More" Buttons' , 'layers' )
 								),
                                 'call_to_action' => array(
                                     'type' => 'text',
                                     'name' => $this->get_field_name( 'call_to_action' ) ,
                                     'id' => $this->get_field_id( 'call_to_action' ) ,
                                     'value' => ( isset( $call_to_action ) ) ? $call_to_action : NULL,
-                                    'label' => __( '"Read More" Text' , LAYERS_THEME_SLUG )
+                                    'label' => __( '"Read More" Text' , 'layers' )
                                 ),
 								'show_pagination' => array(
 									'type' => 'checkbox',
 									'name' => $this->get_field_name( 'show_pagination' ) ,
 									'id' => $this->get_field_id( 'show_pagination' ) ,
 									'value' => ( isset( $show_pagination ) ) ? $show_pagination : NULL,
-									'label' => __( 'Show Pagination' , LAYERS_THEME_SLUG )
+									'label' => __( 'Show Pagination' , 'layers' )
 								),
 							)
 					)
@@ -383,7 +383,7 @@ if( !class_exists( 'Layers_Portfolio_Widget' ) ) {
 			<div class="layers-container-large">
 
 				<?php $this->form_elements()->header( array(
-					'title' =>  __( 'Portfolio' , LAYERS_THEME_SLUG ),
+					'title' =>  __( 'Portfolio' , 'layers' ),
 					'icon_class' =>'portfolio'
 				) ); ?>
 
@@ -396,7 +396,7 @@ if( !class_exists( 'Layers_Portfolio_Widget' ) ) {
 									'type' => 'text',
 									'name' => $this->get_field_name( 'title' ) ,
 									'id' => $this->get_field_id( 'title' ) ,
-									'placeholder' => __( 'Enter title here', LAYERS_THEME_SLUG ),
+									'placeholder' => __( 'Enter title here', 'layers' ),
 									'value' => ( isset( $title ) ) ? $title : NULL ,
 									'class' => 'layers-text layers-large'
 								)
@@ -409,7 +409,7 @@ if( !class_exists( 'Layers_Portfolio_Widget' ) ) {
 									'type' => 'textarea',
 									'name' => $this->get_field_name( 'excerpt' ) ,
 									'id' => $this->get_field_id( 'excerpt' ) ,
-									'placeholder' => __( 'Short Excerpt', LAYERS_THEME_SLUG ),
+									'placeholder' => __( 'Short Excerpt', 'layers' ),
 									'value' => ( isset( $excerpt ) ) ? $excerpt : NULL ,
 									'class' => 'layers-textarea layers-large'
 								)
@@ -419,7 +419,7 @@ if( !class_exists( 'Layers_Portfolio_Widget' ) ) {
 						$terms = get_terms( $this->taxonomy );
 						if( !is_wp_error( $terms ) ) { ?>
 							<p class="layers-form-item">
-								<label for="<?php echo $this->get_field_id( 'category' ); ?>"><?php echo __( 'Category to Display' , LAYERS_THEME_SLUG ); ?></label>
+								<label for="<?php echo $this->get_field_id( 'category' ); ?>"><?php echo __( 'Category to Display' , 'layers' ); ?></label>
 								<?php $category_options[ 0 ] ="All";
 								foreach ( $terms as $t ) $category_options[ $t->term_id ] = $t->name;
 								echo $this->form_elements()->input(
@@ -427,7 +427,7 @@ if( !class_exists( 'Layers_Portfolio_Widget' ) ) {
 										'type' => 'select',
 										'name' => $this->get_field_name( 'category' ) ,
 										'id' => $this->get_field_id( 'category' ) ,
-										'placeholder' => __( 'Select a Category' , LAYERS_THEME_SLUG ),
+										'placeholder' => __( 'Select a Category' , 'layers' ),
 										'value' => ( isset( $category ) ) ? $category : NULL ,
 										'options' => $category_options
 									)
@@ -435,8 +435,8 @@ if( !class_exists( 'Layers_Portfolio_Widget' ) ) {
 							</p>
 						<?php } // if !is_wp_error ?>
 						<p class="layers-form-item">
-							<label for="<?php echo $this->get_field_id( 'posts_per_page' ); ?>"><?php echo __( 'Number of items to show' , LAYERS_THEME_SLUG ); ?></label>
-							<?php $select_options[ '-1' ] = __( 'Show All' , LAYERS_THEME_SLUG );
+							<label for="<?php echo $this->get_field_id( 'posts_per_page' ); ?>"><?php echo __( 'Number of items to show' , 'layers' ); ?></label>
+							<?php $select_options[ '-1' ] = __( 'Show All' , 'layers' );
 							$select_options = $this->form_elements()->get_incremental_options( $select_options , 1 , 20 , 1);
 							echo $this->form_elements()->input(
 								array(
@@ -451,7 +451,7 @@ if( !class_exists( 'Layers_Portfolio_Widget' ) ) {
 						</p>
 
 						<p class="layers-form-item">
-							<label for="<?php echo $this->get_field_id( 'order' ); ?>"><?php echo __( 'Sort by' , LAYERS_THEME_SLUG ); ?></label>
+							<label for="<?php echo $this->get_field_id( 'order' ); ?>"><?php echo __( 'Sort by' , 'layers' ); ?></label>
 							<?php echo $this->form_elements()->input(
 								array(
 									'type' => 'select',

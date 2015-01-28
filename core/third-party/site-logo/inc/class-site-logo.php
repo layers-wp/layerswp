@@ -78,7 +78,7 @@ class Site_Logo {
 		require( dirname( __FILE__ ) . '/class-site-logo-control.php' );
 
 		//Update the Customizer section title for discoverability.
-		$wp_customize->get_section('title_tagline')->title = __( 'Site Title, Tagline, and Logo', LAYERS_THEME_SLUG );
+		$wp_customize->get_section('title_tagline')->title = __( 'Site Title, Tagline, and Logo', 'layers' );
 
 		// Add a setting to hide header text if the theme isn't supporting the feature itself
 		if ( ! current_theme_supports( 'custom-header' ) ) {
@@ -89,7 +89,7 @@ class Site_Logo {
 			) );
 
 			$wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'site_logo_header_text', array(
-			    'label'    => __( 'Display Header Text', LAYERS_THEME_SLUG ),
+			    'label'    => __( 'Display Header Text', 'layers' ),
 			    'section'  => 'title_tagline',
 			    'settings' => 'site_logo_header_text',
 			    'type'     => 'checkbox',
@@ -111,7 +111,7 @@ class Site_Logo {
 
 		// Add our image uploader.
 		$wp_customize->add_control( new Site_Logo_Image_Control( $wp_customize, 'site_logo', array(
-		    'label'    => __( 'Logo', LAYERS_THEME_SLUG ),
+		    'label'    => __( 'Logo', 'layers' ),
 		    'section'  => 'title_tagline',
 		    'settings' => 'site_logo',
 		) ) );
@@ -251,7 +251,7 @@ class Site_Logo {
 
 			// If our attachment ID and the site logo ID match, this image is the site logo.
 			if ( $post->ID == $this->logo['id'] ) {
-				$media_states[] = __( 'Site Logo', LAYERS_THEME_SLUG );
+				$media_states[] = __( 'Site Logo', 'layers' );
 			}
 		}
 

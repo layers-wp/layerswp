@@ -29,7 +29,7 @@ class Layers_Widget_Migrator {
         if( function_exists( 'add_meta_box' ) ) {
             add_meta_box(
                         LAYERS_THEME_SLUG . '-widget-export',
-                        __( 'Builder Settings' , LAYERS_THEME_SLUG ), // Title
+                        __( 'Builder Settings' , 'layers' ), // Title
                         array( $this , 'display_export_box' ) , // Interface
                         'page' , // Post Type
                         'normal', // Position
@@ -48,9 +48,9 @@ class Layers_Widget_Migrator {
     function display_export_box( $post ){ ?>
         <textarea id="<?php echo LAYERS_THEME_SLUG . '-import-wiget-data'; ?>" style="width: 100%;" rows="15"><?php echo esc_attr( json_encode( $this->export_data( $post ) ) ); ?></textarea>
         <p>
-            <em><?php _e( 'Copy and paste widget data from another site or page into this box to import data.' , LAYERS_THEME_SLUG ); ?></em>
+            <em><?php _e( 'Copy and paste widget data from another site or page into this box to import data.' , 'layers' ); ?></em>
         </p>
-        <a href="#import" data-post-id="<?php echo $post->ID; ?>" id="<?php echo LAYERS_THEME_SLUG . '-import-wiget-page'; ?>" class="layers-button btn-primary"><?php _e( 'Import Data' , LAYERS_THEME_SLUG ); ?></a>
+        <a href="#import" data-post-id="<?php echo $post->ID; ?>" id="<?php echo LAYERS_THEME_SLUG . '-import-wiget-page'; ?>" class="layers-button btn-primary"><?php _e( 'Import Data' , 'layers' ); ?></a>
     <?php }
 
     function get_translated_dir_uri(){
@@ -65,21 +65,21 @@ class Layers_Widget_Migrator {
 
         $layers_preset_layouts = array(
             'blog' => array(
-                    'title' => __( 'Blog Page', LAYERS_THEME_SLUG ),
-                    'description' => __( 'Masonry style blog list page with an intro slider, we recommend importing the <a href="http://cdn.oboxsites.com/layers/layers-beta-content.xml?ver="' . rand( 0, 100 ) . '">Layers demo content</a> first.', LAYERS_THEME_SLUG ),
+                    'title' => __( 'Blog Page', 'layers' ),
+                    'description' => __( 'Masonry style blog list page with an intro slider, we recommend importing the <a href="http://cdn.oboxsites.com/layers/layers-beta-content.xml?ver="' . rand( 0, 100 ) . '">Layers demo content</a> first.', 'layers' ),
                     'screenshot' => 'http://cdn.oboxsites.com/layers/preset-layouts/blog.png',
                     'screenshot_type' => 'png',
                     'json' => esc_attr( '{"obox-layers-builder-33":{"layers-widget-slide-12":{"slide_time":"","slide_height":"350","design":{"advanced":{"customclass":"","customcss":""}},"slide_ids":"777","slides":{"777":{"design":{"background":{"image":"' . $this->get_translated_dir_uri() . '\/assets\/images\/preset-layouts\/tile.png","color":"#000","repeat":"repeat","position":"center"},"featuredimage":"","featuredvideo":"","imagealign":"image-top","fonts":{"align":"text-center","size":"large","color":"#fff"}},"title":"Our Blog","excerpt":"Find out the latest news and ramblings in our industry","link":"","link_text":""}}},"layers-widget-post-3":{"design":{"layout":"layout-boxed","fonts":{"align":"text-left","size":"medium","color":""},"columns":"3","gutter":"on","liststyle":"list-grid","imageratios":"image-square","background":{"image":"","color":"","repeat":"no-repeat","position":"center"},"advanced":{"customclass":"","customcss":""}},"text_style":"regular","show_titles":"on","show_excerpts":"on","excerpt_length":"100","show_dates":"on","show_categories":"on","show_call_to_action":"on","call_to_action":"Read More","title":"","excerpt":"","category":"0","posts_per_page":"6","order":"{\"orderby\":\"date\",\"order\":\"desc\"}"}}}' )
                 ),
             'portfolio' => array(
-                    'title' => __( 'Portfolio Page', LAYERS_THEME_SLUG ),
-                    'description' => __( 'Portfolio page, we recommend importing the <a href="http://cdn.oboxsites.com/layers/layers-beta-content.xml?ver="' . rand( 0, 100 ) . '>Layers demo content</a> first.', LAYERS_THEME_SLUG ),
+                    'title' => __( 'Portfolio Page', 'layers' ),
+                    'description' => __( 'Portfolio page, we recommend importing the <a href="http://cdn.oboxsites.com/layers/layers-beta-content.xml?ver="' . rand( 0, 100 ) . '>Layers demo content</a> first.', 'layers' ),
                     'screenshot' => 'http://cdn.oboxsites.com/layers/preset-layouts/portfolio.png',
                     'screenshot_type' => 'png',
                     'json' => esc_attr( '{"obox-layers-builder-35":{"layers-widget-slide-10":{"slide_time":"","slide_height":"350","design":{"advanced":{"customclass":"","customcss":""}},"slide_ids":"632","slides":{"632":{"design":{"background":{"image":"' . $this->get_translated_dir_uri() . '\/assets\/images\/preset-layouts\/tile.png","color":"#000","repeat":"repeat","position":"center"},"featuredimage":"","featuredvideo":"","imagealign":"image-top","fonts":{"align":"text-center","size":"large","color":"#fff"}},"title":"Welcome to our Portfolio","excerpt":"Check our latest work","link":"","link_text":""}}},"layers-widget-portfolio-3":{"design":{"layout":"layout-boxed","fonts":{"align":"text-left","size":"medium","color":""},"columns":"3","gutter":"on","liststyle":"list-masonry","imageratios":"image-square","background":{"image":"","color":"","repeat":"no-repeat","position":"center"},"advanced":{"customclass":"","customcss":""}},"text_style":"overlay","show_titles":"on","show_excerpts":"on","excerpt_length":"200","show_call_to_action":"on","call_to_action":"View Project","title":"","excerpt":" ","category":"0","posts_per_page":"6","order":"{\"orderby\":\"date\",\"order\":\"desc\"}"}}}' )
                 ),
             'business' => array(
-                    'title' => __( 'Business Page', LAYERS_THEME_SLUG ),
+                    'title' => __( 'Business Page', 'layers' ),
                     'screenshot' => 'http://cdn.oboxsites.com/layers/preset-layouts/business.png',
                     'screenshot_type' => 'png',
                     'json' => esc_attr( '{"obox-layers-builder-24":{"layers-widget-slide-7":{"show_slider_arrows":"on","show_slider_dots":"on","slide_time":"","slide_height":"550","design":{"advanced":{"customclass":"","customcss":""}},"slide_ids":"249,11","slides":{"249":{"design":{"background":{"image":"' . $this->get_translated_dir_uri() . '\/assets\/images\/preset-layouts\/tile.png","color":"#000","repeat":"repeat","position":"center"},"featuredimage":"","featuredvideo":"","imagealign":"image-top","fonts":{"align":"text-center","size":"large","color":"#fff"}},"title":"Slider Title","excerpt":"Vestibulum arcu risus, porta eget auctor id, rhoncus et massa. Aliquam erat volutpat.","link":"","link_text":""},"11":{"design":{"background":{"image":"' . $this->get_translated_dir_uri() . '\/assets\/images\/preset-layouts\/tile.png","color":"#000","repeat":"repeat","position":"center"},"featuredimage":"","featuredvideo":"","imagealign":"image-top","fonts":{"align":"text-center","size":"large","color":"#fff"}},"title":"Slider Title","excerpt":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse vitae massa velit, eu laoreet massa.","link":"","link_text":""}}},"layers-widget-column-7":{"design":{"layout":"layout-boxed","gutter":"on","fonts":{"align":"text-left","size":"medium","color":""},"background":{"image":"","color":"","repeat":"no-repeat","position":"center"},"advanced":{"customclass":"","customcss":""}},"title":"Features","excerpt":"This content widget allows you to place any amount of text and images into a multi-column layout.","column_ids":"355,246,622","columns":{"355":{"design":{"background":{"image":"","color":"","repeat":"no-repeat","position":"center"},"featuredimage":"' . $this->get_translated_dir_uri() . '\/assets\/images\/preset-layouts\/demo-image.png","featuredvideo":"","imageratios":"image-landscape","imagealign":"image-top","fonts":{"align":"text-left","size":"medium","color":""}},"width":"4","title":"Content Item 1","excerpt":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse vitae massa velit, eu laoreet massa. Sed ac orci libero.","link":"","link_text":""},"246":{"design":{"background":{"image":"","color":"","repeat":"no-repeat","position":"center"},"featuredimage":"' . $this->get_translated_dir_uri() . '\/assets\/images\/preset-layouts\/demo-image.png","featuredvideo":"","imageratios":"image-landscape","imagealign":"image-top","fonts":{"align":"text-left","size":"medium","color":""}},"width":"4","title":"Content Item 2","excerpt":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse vitae massa velit, eu laoreet massa. Sed ac orci libero.","link":"","link_text":""},"622":{"design":{"background":{"image":"","color":"","repeat":"no-repeat","position":"center"},"featuredimage":"' . $this->get_translated_dir_uri() . '\/assets\/images\/preset-layouts\/demo-image.png","featuredvideo":"","imageratios":"image-landscape","imagealign":"image-top","fonts":{"align":"text-left","size":"medium","color":""}},"width":"4","title":"Content Item 3","excerpt":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse vitae massa velit, eu laoreet massa. Sed ac orci libero.","link":"","link_text":""}}},"layers-widget-slide-8":{"slide_time":"","slide_height":"350","design":{"advanced":{"customclass":"","customcss":""}},"slide_ids":"11,731","slides":{"11":{"design":{"background":{"image":"' . $this->get_translated_dir_uri() . '\/assets\/images\/preset-layouts\/tile.png","color":"#000","repeat":"repeat","position":"center"},"featuredimage":"","featuredvideo":"","imagealign":"image-top","fonts":{"align":"text-center","size":"medium","color":"#fff"}},"title":"Layers is the best site builder I\'ve ever used!","excerpt":"Mrs WordPress","link":"","link_text":""},"731":{"design":{"background":{"image":"' . $this->get_translated_dir_uri() . '\/assets\/images\/preset-layouts\/tile-green.png","color":"#000","repeat":"repeat","position":"center"},"featuredimage":"","featuredvideo":"","imagealign":"image-top","fonts":{"align":"text-center","size":"medium","color":"#fff"}},"title":"I love how it\'s built into the WordPress Customizer","excerpt":"Uncle WordPress","link":"","link_text":""}}},"layers-widget-column-8":{"design":{"layout":"layout-boxed","gutter":"on","fonts":{"align":"text-left","size":"medium","color":""},"background":{"image":"","color":"","repeat":"no-repeat","position":"center"},"advanced":{"customclass":"","customcss":".small .media-image.image-rounded img{max-width: 32px;}"}},"title":"What we offer","excerpt":"Our services run deep and are backed by over ten years of experience.","column_ids":"355,246,622","columns":{"355":{"design":{"background":{"image":"","color":"","repeat":"no-repeat","position":"center"},"featuredimage":"' . $this->get_translated_dir_uri() . '\/assets\/images\/preset-layouts\/demo-image.png","featuredvideo":"","imageratios":"image-landscape","imagealign":"image-top","fonts":{"align":"text-left","size":"small","color":""}},"width":"4","title":"Your service title","excerpt":"Give us a brief description of the service that you are promoting.","link":"","link_text":""},"246":{"design":{"background":{"image":"","color":"","repeat":"no-repeat","position":"center"},"featuredimage":"' . $this->get_translated_dir_uri() . '\/assets\/images\/preset-layouts\/demo-image.png","featuredvideo":"","imageratios":"image-landscape","imagealign":"image-top","fonts":{"align":"text-left","size":"small","color":""}},"width":"4","title":"Your service title","excerpt":"Give us a brief description of the service that you are promoting.","link":"","link_text":""},"622":{"design":{"background":{"image":"","color":"","repeat":"no-repeat","position":"center"},"featuredimage":"' . $this->get_translated_dir_uri() . '\/assets\/images\/preset-layouts\/demo-image.png","featuredvideo":"","imageratios":"image-landscape","imagealign":"image-top","fonts":{"align":"text-left","size":"small","color":""}},"width":"4","title":"Your service title","excerpt":"Give us a brief description of the service that you are promoting.","link":"","link_text":""}}}}}' )
@@ -432,9 +432,9 @@ class Layers_Widget_Migrator {
         if( NULL == $image_url ) return;
 
         $image_pieces = explode( '/', $image_url );
-        
+
         $i = $image_pieces[count($image_pieces)-1];
-        
+
         $query = "SELECT ID FROM {$wpdb->posts} WHERE guid LIKE '%$i%'";
 
         return $wpdb->get_var($query);
@@ -535,7 +535,7 @@ class Layers_Widget_Migrator {
         if( isset( $_POST[ 'post_title' ] )  ){
             $post_title = $_POST[ 'post_title' ];
         } else {
-            $post_title = __( 'Home Page', LAYERS_THEME_SLUG );
+            $post_title = __( 'Home Page', 'layers' );
         }
 
         // Generate builder page and return page ID
@@ -611,7 +611,7 @@ class Layers_Widget_Migrator {
                 $sidebar_available = false;
                 $use_sidebar_id = 'wp_inactive_widgets'; // add to inactive if sidebar does not exist in theme
                 $sidebar_message_type = 'error';
-                $sidebar_message = __( 'Sidebar does not exist in theme (using Inactive)', LAYERS_THEME_SLUG );
+                $sidebar_message = __( 'Sidebar does not exist in theme (using Inactive)', 'layers' );
             }
 
             // Result for sidebar
@@ -654,7 +654,7 @@ class Layers_Widget_Migrator {
 
                             $fail = true;
                             $widget_message_type = 'warning';
-                            $widget_message = __( 'Widget already exists', LAYERS_THEME_SLUG ); // explain why widget not imported
+                            $widget_message = __( 'Widget already exists', 'layers' ); // explain why widget not imported
 
                             break;
 
@@ -703,16 +703,16 @@ class Layers_Widget_Migrator {
                     // Success message
                     if ( $sidebar_available ) {
                         $widget_message_type = 'success';
-                        $widget_message = __( 'Imported', LAYERS_THEME_SLUG );
+                        $widget_message = __( 'Imported', 'layers' );
                     } else {
                         $widget_message_type = 'warning';
-                        $widget_message = __( 'Imported to Inactive', LAYERS_THEME_SLUG );
+                        $widget_message = __( 'Imported to Inactive', 'layers' );
                     }
 
                 }
                 // Result for widget instance
                 $results[$sidebar_id]['widgets'][$widget_instance_id]['name'] = isset( $available_widgets[$id_base]['name'] ) ? $available_widgets[$id_base]['name'] : $id_base; // widget name or ID if name not available (not supported by site)
-                $results[$sidebar_id]['widgets'][$widget_instance_id]['title'] = isset( $widget->title ) ? $widget->title : __( 'No Title', LAYERS_THEME_SLUG ); // show "No Title" if widget instance is untitled
+                $results[$sidebar_id]['widgets'][$widget_instance_id]['title'] = isset( $widget->title ) ? $widget->title : __( 'No Title', 'layers' ); // show "No Title" if widget instance is untitled
                 $results[$sidebar_id]['widgets'][$widget_instance_id]['message_type'] = $widget_message_type;
                 $results[$sidebar_id]['widgets'][$widget_instance_id]['message'] = $widget_message;
 

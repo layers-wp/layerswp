@@ -57,8 +57,8 @@ class Layers_Customizer {
 				$wp_customize->add_panel(
 					'widgets', array(
 						'priority' => 10,
-						'title' => __('Layers: Page Builder', LAYERS_THEME_SLUG ),
-						'description' => $this->render_builder_page_dropdown() . __('Use this area to add widgets to your page, use the (Layers) widgets for the Body section.', LAYERS_THEME_SLUG ),
+						'title' => __('Layers: Page Builder', 'layers' ),
+						'description' => $this->render_builder_page_dropdown() . __('Use this area to add widgets to your page, use the (Layers) widgets for the Body section.', 'layers' ),
 					)
 				);
 			}
@@ -137,7 +137,7 @@ class Layers_Customizer {
 			ob_start(); ?>
 			<div class="layers-customizer-pages-dropdown">
 				<select>
-					<option value="init"><?php _e( 'Builder Pages:', LAYERS_THEME_SLUG ) ?></option>
+					<option value="init"><?php _e( 'Builder Pages:', 'layers' ) ?></option>
 					<?php foreach( $layers_pages as $page ) { ?>
 						<?php // Page URL
 						$edit_page_url = get_permalink( $page->ID ); ?>
@@ -156,8 +156,8 @@ class Layers_Customizer {
 
 	function render_actions_buttons () {
 		$layers_url = admin_url( 'admin.php?page=' . LAYERS_THEME_SLUG . '-welcome' ); ?>
-			<a class="customize-controls-layers-button customize-controls-layers-button-dashboard dashicons icon-layers-logo" title="<?php esc_attr( _e( 'Layers Dashboard', LAYERS_THEME_SLUG ) ); ?>" href="<?php echo $layers_url ?>"></a>
-			<a class="customize-controls-layers-button customize-controls-layers-button-preview icon-display" title="<?php esc_attr( _e( 'Preview this page', LAYERS_THEME_SLUG ) ); ?>" href="#" target="_blank"></a>
+			<a class="customize-controls-layers-button customize-controls-layers-button-dashboard dashicons icon-layers-logo" title="<?php esc_attr( _e( 'Layers Dashboard', 'layers' ) ); ?>" href="<?php echo $layers_url ?>"></a>
+			<a class="customize-controls-layers-button customize-controls-layers-button-preview icon-display" title="<?php esc_attr( _e( 'Preview this page', 'layers' ) ); ?>" href="#" target="_blank"></a>
 		<?php
 	}
 

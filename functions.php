@@ -155,11 +155,11 @@ if( ! function_exists( 'layers_setup' ) ) {
 		 * Register nav menus
 		 */
 		register_nav_menus( array(
-			LAYERS_THEME_SLUG . '-secondary-left' => __( 'Top Left Menu', LAYERS_THEME_SLUG ),
-			LAYERS_THEME_SLUG . '-secondary-right' => __( 'Top Right Menu', LAYERS_THEME_SLUG ),
-			LAYERS_THEME_SLUG . '-primary' => __( 'Header Menu', LAYERS_THEME_SLUG ),
-			LAYERS_THEME_SLUG . '-primary-right' => __( 'Right Header Menu', LAYERS_THEME_SLUG ),
-			LAYERS_THEME_SLUG . '-footer' => __( 'Footer Menu', LAYERS_THEME_SLUG ),
+			LAYERS_THEME_SLUG . '-secondary-left' => __( 'Top Left Menu', 'layers' ),
+			LAYERS_THEME_SLUG . '-secondary-right' => __( 'Top Right Menu', 'layers' ),
+			LAYERS_THEME_SLUG . '-primary' => __( 'Header Menu', 'layers' ),
+			LAYERS_THEME_SLUG . '-primary-right' => __( 'Right Header Menu', 'layers' ),
+			LAYERS_THEME_SLUG . '-footer' => __( 'Footer Menu', 'layers' ),
 
 		) );
 
@@ -182,8 +182,8 @@ if( ! function_exists( 'layers_register_standard_sidebars' ) ) {
 		 */
 		register_sidebar( array(
 			'id'		=> LAYERS_THEME_SLUG . '-off-canvas-sidebar',
-			'name'		=> __( 'Pop Out Sidebar' , LAYERS_THEME_SLUG ),
-			'description'	=> __( '' , LAYERS_THEME_SLUG ),
+			'name'		=> __( 'Pop Out Sidebar' , 'layers' ),
+			'description'	=> __( '' , 'layers' ),
 			'before_widget'	=> '<aside id="%1$s" class="content widget %2$s">',
 			'after_widget'	=> '</aside>',
 			'before_title'	=> '<h5 class="section-nav-title">',
@@ -192,7 +192,7 @@ if( ! function_exists( 'layers_register_standard_sidebars' ) ) {
 
 		register_sidebar( array(
 			'id'		=> LAYERS_THEME_SLUG . '-left-sidebar',
-			'name'		=> __( 'Left Sidebar' , LAYERS_THEME_SLUG ),
+			'name'		=> __( 'Left Sidebar' , 'layers' ),
 			'before_widget'	=> '<aside id="%1$s" class="content well push-bottom widget %2$s">',
 			'after_widget'	=> '</aside>',
 			'before_title'	=> '<h5 class="section-nav-title">',
@@ -201,7 +201,7 @@ if( ! function_exists( 'layers_register_standard_sidebars' ) ) {
 
 		register_sidebar( array(
 			'id'		=> LAYERS_THEME_SLUG . '-right-sidebar',
-			'name'		=> __( 'Right Sidebar' , LAYERS_THEME_SLUG ),
+			'name'		=> __( 'Right Sidebar' , 'layers' ),
 			'before_widget'	=> '<aside id="%1$s" class="content well push-bottom widget %2$s">',
 			'after_widget'	=> '</aside>',
 			'before_title'	=> '<h5 class="section-nav-title">',
@@ -391,7 +391,7 @@ if( ! function_exists( 'layers_admin_scripts' ) ) {
             true
         );
         wp_localize_script( LAYERS_THEME_SLUG . '-admin-migrator', 'migratori8n', array(
-        	'loading_message' => __( 'Be patient while we import the widget data and images.' , LAYERS_THEME_SLUG )
+        	'loading_message' => __( 'Be patient while we import the widget data and images.' , 'layers' )
 		) );
 
 		wp_enqueue_script(
@@ -447,7 +447,7 @@ if( !function_exists( 'layers_site_title' ) ) {
 
 		// Add a page number if necessary.
 		if ( $paged >= 2 || $page >= 2 )
-			$title = "$title $sep " . sprintf( __( 'Page %s', LAYERS_THEME_SLUG ), max( $paged, $page ) );
+			$title = "$title $sep " . sprintf( __( 'Page %s', 'layers' ), max( $paged, $page ) );
 
 		return $title;
 	}

@@ -14,11 +14,11 @@ if( !class_exists( 'Layers_Customize_Select_Image_Control' ) ) {
 		public $type = 'layers-select-images';
 
 		public $label = '';
-		
+
 		public $subtitle = '';
 
 		public $description = '';
-		
+
 		public $linked = '';
 
 		public function render_content() {
@@ -30,7 +30,7 @@ if( !class_exists( 'Layers_Customize_Select_Image_Control' ) ) {
 			$link_val = rtrim( $link[1], '"' );
 
 			$values = false;
-			
+
 			// Relational: Convert the linked array to 'data-' attributes that the js expects.
 			if ( isset( $this->linked ) && is_array( $this->linked ) && isset( $this->linked['show-if-selector'] ) && isset( $this->linked['show-if-value'] ) ) {
 				$linked = 'data-show-if-selector="' . esc_attr( $this->linked['show-if-selector'] ) . '" data-show-if-value="' . esc_attr( $this->linked['show-if-value'] ) . '" ';
@@ -49,11 +49,11 @@ if( !class_exists( 'Layers_Customize_Select_Image_Control' ) ) {
 					<?php if ( '' != $this->subtitle ) : ?>
 						<label class="layers-form-row"><?php echo $this->subtitle; ?></label>
 					<?php endif; ?>
-					
+
 					<?php echo $form_elements->input(
 						array(
 							'type' => 'image',
-							'label' => __( 'Choose Background' , LAYERS_THEME_SLUG ),
+							'label' => __( 'Choose Background' , 'layers' ),
 							'name' => '',
 							'id' =>  $this->id,
 							'value' => ( isset( $values['background']['image'] ) ) ? $values['background']['image'] : $this->value(),
@@ -63,13 +63,13 @@ if( !class_exists( 'Layers_Customize_Select_Image_Control' ) ) {
 						)
 					); ?>
 				</div>
-				
+
 				<?php if ( '' != $this->description ) : ?>
 					<div class="description customize-control-description">
 						<?php echo esc_html( $this->description ); ?>
 					</div>
 				<?php endif; ?>
-			
+
 			</div>
 			<?php
 		}

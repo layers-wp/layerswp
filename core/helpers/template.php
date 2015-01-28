@@ -39,7 +39,7 @@ if( !function_exists( 'layers_bread_crumbs' ) ) {
 						<?php $shop_page = get_post( woocommerce_get_page_id('shop') ); ?>
 						<li><a href="<?php echo get_permalink( $shop_page->ID ); ?>"><?php echo $shop_page->post_title; ?></a></li>
 					<?php } else { ?>
-						<li><a href="#"><?php _e( 'Shop' , LAYERS_THEME_SLUG ); ?></li>
+						<li><a href="#"><?php _e( 'Shop' , 'layers' ); ?></li>
 					<?php }
 				} elseif( is_post_type_archive() || is_singular() || is_tax() ) {
 

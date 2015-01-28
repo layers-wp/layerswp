@@ -5,10 +5,10 @@
 	<div class="layers-page-title layers-section-title layers-large layers-content-massive layers-no-push-bottom">
 		<div class="layers-container">
 			<h2 class="layers-heading" id="layers-options-header">
-				<?php _e(' Layers Page Backup' , LAYERS_THEME_SLUG ); ?>
+				<?php _e(' Layers Page Backup' , 'layers' ); ?>
 			</h2>
 			<p class="layers-excerpt">
-				<?php _e( 'Convert your Layers pages into regular WordPress pages, preserving the content you have worked so hard to create.' , LAYERS_THEME_SLUG ); ?>
+				<?php _e( 'Convert your Layers pages into regular WordPress pages, preserving the content you have worked so hard to create.' , 'layers' ); ?>
 			</p>
 		</div>
 	</div>
@@ -20,11 +20,11 @@
 				<div class="layers-load-bar layers-push-bottom">
 					<span class="layers-progress zero">0%</span>
 				</div>
-				<a id="layers-backup-pages" class="layers-button btn-large btn-primary"><?php _e( 'Backup my Pages Now' , LAYERS_THEME_SLUG ); ?></a>
+				<a id="layers-backup-pages" class="layers-button btn-large btn-primary"><?php _e( 'Backup my Pages Now' , 'layers' ); ?></a>
 			</div>
 			<div class="row">
 				<div class="layers-section-title layers-tiny">
-					<h5 class="layers-heading"><?php _e( 'Backed Up Pages:' , LAYERS_THEME_SLUG ); ?></h5>
+					<h5 class="layers-heading"><?php _e( 'Backed Up Pages:' , 'layers' ); ?></h5>
 				</div>
 				<ul class="layers-feature-list">
 					<?php foreach( $builder_pages as $post ){ ?>

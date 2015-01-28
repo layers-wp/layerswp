@@ -85,7 +85,7 @@ class Layers_Widgets {
 	public function register_builder_sidebar( $post_id = 0, $post_title = '' ) {
 		register_sidebar( array(
 			'id'		=> 'obox-layers-builder-' . $post_id,
-			'name'		=> $post_title . __( ' Body' , LAYERS_THEME_SLUG ),
+			'name'		=> $post_title . __( ' Body' , 'layers' ),
 			'before_widget'	=> '<aside id="%1$s" class="widget container push-bottom-medium %2$s">',
 			'after_widget'	=> '</aside>',
 			'before_title'	=> '<div class="section-title clearfix"><h4 class="heading">',
@@ -170,7 +170,7 @@ class Layers_Widgets {
 			register_sidebar( array(
 							'id'		=> $dynamic_sidebar[ 'id' ],
 							'name'		=> $dynamic_sidebar[ 'title' ],
-							'description'	=> __( 'Layers Builder section.' , LAYERS_THEME_SLUG ),
+							'description'	=> __( 'Layers Builder section.' , 'layers' ),
 							'before_widget'	=> '<aside id="%1$s" class="widget %2$s">',
 							'after_widget'	=> '</aside>',
 							'before_title'	=> '<h4 class="widget-title">',
@@ -195,7 +195,7 @@ class Layers_Widgets {
 			true
 		);
 		wp_localize_script( LAYERS_THEME_SLUG . '-admin-slider-widget' , 'sliderwidgeti8n', array(
-        	'confirm_message' => __( 'Are you sure you want to remove this slide?' , LAYERS_THEME_SLUG )
+        	'confirm_message' => __( 'Are you sure you want to remove this slide?' , 'layers' )
 		) );
 
 		// Content Widget
@@ -207,7 +207,7 @@ class Layers_Widgets {
 			true
 		);
 		wp_localize_script( LAYERS_THEME_SLUG . '-admin-content-widget' , 'contentwidgeti8n', array(
-        	'confirm_message' => __( 'Are you sure you want to remove this column?' , LAYERS_THEME_SLUG )
+        	'confirm_message' => __( 'Are you sure you want to remove this column?' , 'layers' )
 		) );
 
 		// Tiny MCE Initiator

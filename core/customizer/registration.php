@@ -295,8 +295,8 @@ class Layers_Customizer_Regsitrar {
 
 				$duplicate_control_data = wp_parse_args(
 					array(
-						'label' => __( 'Background', LAYERS_THEME_SLUG ),
-						'subtitle' => __( 'Background Image', LAYERS_THEME_SLUG ),
+						'label' => __( 'Background', 'layers' ),
+						'subtitle' => __( 'Background Image', 'layers' ),
 						'type' => 'layers-heading', //wierd bug in WP4.1 that requires a type to be in the array, or will revert to default control,
 					),
 					$control_data
@@ -327,7 +327,7 @@ class Layers_Customizer_Regsitrar {
 				$duplicate_control_data = wp_parse_args(
 					array(
 						'label' => '',
-						'subtitle' => __( 'Background Image', LAYERS_THEME_SLUG ),
+						'subtitle' => __( 'Background Image', 'layers' ),
 						'type' => 'layers-select-images', //wierd bug in WP4.1 that requires a type to be in the array, or will revert to default control
 					),
 					$control_data
@@ -357,7 +357,7 @@ class Layers_Customizer_Regsitrar {
 				$duplicate_control_data = wp_parse_args(
 					array(
 						'label' => '',
-						'subtitle' => __( 'Background Color', LAYERS_THEME_SLUG ),
+						'subtitle' => __( 'Background Color', 'layers' ),
 						'type' => 'layers-color',
 					),
 					$control_data
@@ -385,7 +385,7 @@ class Layers_Customizer_Regsitrar {
 				$duplicate_control_data = wp_parse_args(
 					array(
 						'label' => '',
-						'subtitle' => __( 'Repeat', LAYERS_THEME_SLUG ),
+						'subtitle' => __( 'Repeat', 'layers' ),
 						'type' => 'layers-select',
 						'choices' => isset( $control_data['choices']['background-repeat'] ) ? $control_data['choices']['background-repeat'] : array(),
 					),
@@ -414,7 +414,7 @@ class Layers_Customizer_Regsitrar {
 				$duplicate_control_data = wp_parse_args(
 					array(
 						'label' => '',
-						'subtitle' => __( 'Position', LAYERS_THEME_SLUG ),
+						'subtitle' => __( 'Position', 'layers' ),
 						'type' => 'layers-select',
 						'choices' => isset( $control_data['choices']['background-position'] ) ? $control_data['choices']['background-position'] : array(),
 					),
@@ -442,7 +442,7 @@ class Layers_Customizer_Regsitrar {
 
 				$duplicate_control_data = wp_parse_args(
 					array(
-						'label' => __( 'Stretch', LAYERS_THEME_SLUG ),
+						'label' => __( 'Stretch', 'layers' ),
 						'subtitle' => '',
 						'type' => 'layers-checkbox',
 					),

@@ -1,6 +1,6 @@
 
 			<div id="back-to-top">
-				<a href="#top"><?php _e( 'Back to top' , LAYERS_THEME_SLUG ); ?></a>
+				<a href="#top"><?php _e( 'Back to top' , 'layers' ); ?></a>
 			</div> <!-- back-to-top -->
 		</section>
 		<?php do_action( 'layers_before_footer' ); ?>

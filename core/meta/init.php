@@ -154,8 +154,8 @@ class Layers_Custom_Meta {
 			admin_url() . 'customize.php?url=' . esc_url( get_the_permalink() ) . '&layers-builder=1', // %2
 			( true == $is_builder_used ? '' : 'layers-hide' ), // %3
 			( isset( $post->ID ) ? 'builder-button-' . $post->ID : 'builder-button-' . rand(0,1) ), // %4,
-			__( 'Head over to the Visual Customizer where you can drag and drop widgets, edit content and tweak the design. Click the button below and see your page come to life.', LAYERS_THEME_SLUG ), // %5
-			__( 'Build Your Page', LAYERS_THEME_SLUG ), // %6
+			__( 'Head over to the Visual Customizer where you can drag and drop widgets, edit content and tweak the design. Click the button below and see your page come to life.', 'layers' ), // %5
+			__( 'Build Your Page', 'layers' ), // %6
 			get_template_directory_uri() // %7,
 		);
 	}
@@ -174,7 +174,7 @@ class Layers_Custom_Meta {
 
 		// Add our button
 		if ( $can_edit_post && 'builder.php' == get_page_template_slug( $post->ID ) ) {
-			$actions['builder'] = '<a href="' . admin_url() . 'customize.php?url=' . esc_url( get_the_permalink() ) . '&layers-builder=1" title="' . esc_attr( __( 'Build Page', LAYERS_THEME_SLUG ) ) . '">' . __( 'Build Page' ) . '</a>';
+			$actions['builder'] = '<a href="' . admin_url() . 'customize.php?url=' . esc_url( get_the_permalink() ) . '&layers-builder=1" title="' . esc_attr( __( 'Build Page', 'layers' ) ) . '">' . __( 'Build Page' ) . '</a>';
 		}
 
 		return $actions;
@@ -199,8 +199,8 @@ class Layers_Custom_Meta {
 									'edge' => 'right', // bottom / top/ right / left
 									'align' => 'left' // left / center / right
 								),
-					'title'		=> __( 'Build Your Page' , LAYERS_THEME_SLUG ),
-					'content'	=> __( 'Use the' . LAYERS_THEME_TITLE . ' page builder to build a beautiful, dynamic page.' , LAYERS_THEME_SLUG ),
+					'title'		=> __( 'Build Your Page' , 'layers' ),
+					'content'	=> __( 'Use the' . LAYERS_THEME_TITLE . ' page builder to build a beautiful, dynamic page.' , 'layers' ),
 				);
 
 		return $pointers;

@@ -19,5 +19,5 @@ global $post, $layers_post_meta_to_display; ?>
         </div>
     <?php } ?>
     <?php layers_post_meta( get_the_ID(), NULL, 'footer', 'meta-info push-bottom' ); ?>
-    <p><a href="<?php the_permalink(); ?>" class="button"><?php _e( 'Read More' , LAYERS_THEME_SLUG ); ?></a></p>
+    <p><a href="<?php the_permalink(); ?>" class="button"><?php _e( 'Read More' , 'layers' ); ?></a></p>
 </article>

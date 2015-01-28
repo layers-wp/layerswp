@@ -67,7 +67,7 @@ class Layers_Options_Panel {
 	public function footer( $args = array() ){ ?>
 		<footer class="layers-footer">
 			<p>
-				<?php _e( 'Layers is a product of <a href="http://oboxthemes.com/">Obox Themes</a>. For questions and feedback please <a href="mailto:david@obox.co.za">email David directly', LAYERS_THEME_SLUG ); ?></a>.
+				<?php _e( 'Layers is a product of <a href="http://oboxthemes.com/">Obox Themes</a>. For questions and feedback please <a href="mailto:david@obox.co.za">email David directly', 'layers' ); ?></a>.
 			</p>
 		</footer>
 	<?php }
@@ -83,8 +83,8 @@ function layers_options_panel_menu(){
 
 	// Welcome Page
 	add_theme_page(
-		__( 'Layers - Home' , LAYERS_THEME_SLUG ),
-		__( 'Layers - Home' , LAYERS_THEME_SLUG ),
+		__( 'Layers - Home' , 'layers' ),
+		__( 'Layers - Home' , 'layers' ),
 		'edit_theme_options',
 		LAYERS_THEME_SLUG . '-welcome',
 		'layers_options_panel_ui'
@@ -92,8 +92,8 @@ function layers_options_panel_menu(){
 
 	// Add Preset Pages
 	add_theme_page(
-		__( 'Layers - Add Page' , LAYERS_THEME_SLUG ),
-		__( 'Layers - Add Page' , LAYERS_THEME_SLUG ),
+		__( 'Layers - Add Page' , 'layers' ),
+		__( 'Layers - Add Page' , 'layers' ),
 		'edit_theme_options',
 		LAYERS_THEME_SLUG . '-preset-layouts',
 		'layers_options_panel_ui'
@@ -103,8 +103,8 @@ function layers_options_panel_menu(){
 	if( layers_get_builder_pages() ){
 		// Only show if there are actually Layers pages.
 		add_theme_page(
-			__( 'Layers - All Pages', LAYERS_THEME_SLUG ),
-			__( 'Layers - All Pages', LAYERS_THEME_SLUG ),
+			__( 'Layers - All Pages', 'layers' ),
+			__( 'Layers - All Pages', 'layers' ),
 			'edit_theme_options',
 			'edit.php?post_type=page&filter=layers'
 		);
@@ -112,8 +112,8 @@ function layers_options_panel_menu(){
 
 	// Backup Page
 	add_theme_page(
-		__( 'Layers - Backup' , LAYERS_THEME_SLUG ),
-		__( 'Layers - Backup' , LAYERS_THEME_SLUG ),
+		__( 'Layers - Backup' , 'layers' ),
+		__( 'Layers - Backup' , 'layers' ),
 		'edit_theme_options',
 		LAYERS_THEME_SLUG . '-backup',
 		'layers_options_panel_ui'

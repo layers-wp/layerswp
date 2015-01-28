@@ -109,10 +109,6 @@ if( ! function_exists( 'layers_setup' ) ) {
 		 * Add support for HTML5
 		 */
 		add_theme_support('html5');
-		/**
-		 * Add support for widgets inside the customizer
-		 */
-		add_theme_support('widget-customizer');
 
 		/**
 		 * Add support for WooCommerce
@@ -256,7 +252,7 @@ if( ! function_exists( 'layers_scripts' ) ) {
 				'jquery',
 			)
 		); // Waypoints
-		
+
 		wp_enqueue_script( 'jquery-masonry' ); // Wordpress Masonry
 
 		wp_enqueue_script(
@@ -266,7 +262,7 @@ if( ! function_exists( 'layers_scripts' ) ) {
 				'jquery'
 			)
 		); // Layers Masonry Function
-		
+
 		wp_enqueue_script(
 			LAYERS_THEME_SLUG . '-imagesloaded-js' ,
 			get_template_directory_uri() . '/assets/js/imagesloaded.js',

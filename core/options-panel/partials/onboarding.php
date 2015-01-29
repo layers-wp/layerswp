@@ -12,9 +12,7 @@ $layers_migrator = new Layers_Widget_Migrator(); ?>
     <div class="layers-onboard-wrapper">
 
         <div class="layers-onboard-controllers">
-
-            <a class="layers-button btn-cancel layers-pull-left" href="">Cancel</a>
-            <div class="onboard-nav-dots">
+            <div class="onboard-nav-dots layers-pull-left">
                 <a class="layers-dot dot-active" href=""></a>
                 <a class="layers-dot" href=""></a>
                 <a class="layers-dot" href=""></a>

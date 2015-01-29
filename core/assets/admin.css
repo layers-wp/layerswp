@@ -1978,7 +1978,7 @@ ul#adminmenu a.wp-has-current-submenu:after, ul#adminmenu > li.current > a.curre
     .layers-onboard-wrapper{
         max-width: 740px;
         margin: auto;
-        padding: 100px 0 0;
+        padding: 40px 0 0;
         overflow: hidden;
     }
 
@@ -2009,6 +2009,7 @@ ul#adminmenu a.wp-has-current-submenu:after, ul#adminmenu > li.current > a.curre
             border-radius: 100px;
             transform: scale(1);
             transition: all 0.2s ease-in-out;
+            outline: none;
         }
         .onboard-nav-dots .layers-dot:hover{
             transform: scale(1.5);
@@ -2023,19 +2024,27 @@ ul#adminmenu a.wp-has-current-submenu:after, ul#adminmenu > li.current > a.curre
         .layers-onboard-slider{
             overflow: hidden;
             margin-bottom: 20px;
-            width: 4450px;
+            width: 740px;
+            height: 750px;
+            position: relative;
         }
         .layers-onboard-slide{
-            float: left;
+            position: absolute;
             width: 740px;
+            transform: scale(1);
+            transform: translateX(0px);
+            transition:  all 0.2 ease-in-out;
         }
         .layers-onboard-slide.layers-onboard-slide-current{
-            display: block;
+            visibility: visible;
             opacity: 1;
+            z-index: 10;
         }
         .layers-onboard-slide.layers-onboard-slide-inactive{
-            display: none;
-            opacity: 1;
+            visibility: none;
+            opacity: 0;
+            transform: translateX(20px);
+            transform: scale(0.95);
         }
         .layers-onboard-slide .layers-column{
             margin: 0;
@@ -2062,6 +2071,25 @@ ul#adminmenu a.wp-has-current-submenu:after, ul#adminmenu > li.current > a.curre
             padding: 0 0 8px;
             margin: 0 0 8px;
             border-bottom: 1px solid #ddd;
+            opacity: 0;
+            transform: translateX(10px);
+            transition: opacity 0.2s ease-in-out, transform 0.2s ease-in-out;
         }
+
+            .layers-help-list li:nth-child(1){transition-delay: 0.3s;}
+            .layers-help-list li:nth-child(2){transition-delay: 0.35s;}
+            .layers-help-list li:nth-child(3){transition-delay: 0.4s;}
+            .layers-help-list li:nth-child(4){transition-delay: 0.45s;}
+            .layers-help-list li:nth-child(5){transition-delay: 0.5s;}
+
+        .layers-onboard-slide.layers-onboard-slide-current .layers-help-list li{
+            opacity: 1;
+            transform: translateX(0px);
+        }
+        .layers-onboard-slide-inactive .layers-help-list li{
+            opacity: 0;
+            transform: translateX(10px);
+        }
+
 
 

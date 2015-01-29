@@ -1,12 +1,12 @@
 /**
-* Admin JS file
-*
-* This file contains global admin functions
+ * Admin JS file
+ *
+ * This file contains global admin functions
  *
  * @package Layers
  * @since Layers 1.0
+ *
  * Contents
- * Enqueue Initialisation Helper
  * 1 - Enqueue Initialisation Helper
  * 2 - Media Uploaders
  * 2.a - Image Remove Button

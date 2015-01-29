@@ -1232,6 +1232,20 @@ input[type=text].layers-color-selector.wp-color-picker{
     }
 
     /*-----------------------*/
+    /*- CANCEL BUTTON -------*/
+    .btn-cancel{
+        background-color: transparent;
+        border-color: transparent;
+        color: #A00;
+        text-decoration: underline;
+        box-shadow: none;
+    }
+    .btn-cancel:hover{
+        background-color: transparent;
+        color: #f00;
+    }
+
+    /*-----------------------*/
     /*- BUTTON SIZES --------*/
     .layers-button.btn-small{
         height: 24px;
@@ -1255,11 +1269,19 @@ input[type=text].layers-color-selector.wp-color-picker{
     /*-----------------------*/
     /*- BUTTON WELL ---------*/
     .layers-button-well{
+        overflow: hidden;
         padding: 10px;
         clear: both;
         border-top: 1px solid #DDD;
         background: #F5F5F5;
     }
+
+    /*-----------------------*/
+    /*- BUTTON COLLECTION ---*/
+    .layers-button-collection{
+        overflow: hidden;
+    }
+
 
 /*---------------------------*/
 /*- LABELS ------------------*/
@@ -1891,7 +1913,7 @@ input[type=radio]:checked + .layers-settings-icon span{
 
 /*---------------------------*/
 /*- LAYERS PAGES ------------*/
-.layers-welcome{
+.layers-area-wrapper{
     margin-left: -20px;
 }
 .update-nag{
@@ -1902,12 +1924,12 @@ input[type=radio]:checked + .layers-settings-icon span{
     margin-left: auto;
     margin-right: auto;
 }
-.update-nag + .layers-welcome{
+.update-nag + .layers-area-wrapper{
     margin-top: -68px;
     position: relative;
     z-index: 1;
 }
-.update-nag + .layers-welcome .layers-page-title{
+.update-nag + .layers-area-wrapper .layers-page-title{
     padding-top: 128px;
 }
 .layers-page-title{
@@ -1950,3 +1972,124 @@ ul#adminmenu a.wp-has-current-submenu:after, ul#adminmenu > li.current > a.curre
     position: relative;
     top: 1px;
 }
+
+    /*---------------------------*/
+    /*- LAYERS ONBOARDING -------*/
+    .layers-onboard-wrapper{
+        max-width: 740px;
+        margin: auto;
+        padding: 40px 0 0;
+        overflow: hidden;
+    }
+
+        /*-----------------------*/
+        /*- ONBOARD CONTROLLERS -*/
+        .layers-onboard-controllers{
+            overflow: hidden;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .layers-onboard-controllers .layers-button.previous-step{
+            float: left;
+        }
+        .layers-onboard-controllers .layers-button.next-step{
+            float: right;
+        }
+        .onboard-nav-dots{
+            display: inline-block;
+            line-height: 28px;
+            text-align: center;
+        }
+        .onboard-nav-dots .layers-dot{
+            display: inline-block;
+            background: #ccc;
+            width: 8px;
+            height: 8px;
+            margin: 0 8px;
+            border-radius: 100px;
+            transform: scale(1);
+            transition: all 0.2s ease-in-out;
+            outline: none;
+        }
+        .onboard-nav-dots .layers-dot:hover{
+            transform: scale(1.5);
+        }
+        .onboard-nav-dots .layers-dot.dot-active{
+            background: #2EA2CC;
+            transform: scale(1.5);
+        }
+
+        /*-----------------------*/
+        /*- ONBOARD SLIDES ------*/
+        .layers-onboard-slider{
+            overflow: hidden;
+            margin-bottom: 20px;
+            width: 740px;
+            height: 750px;
+            position: relative;
+        }
+        .layers-onboard-slide{
+            position: absolute;
+            width: 740px;
+            transform: scale(1);
+            transform: translateX(0px);
+            transition:  all 0.2 ease-in-out;
+        }
+        .layers-onboard-slide.layers-onboard-slide-current{
+            visibility: visible;
+            opacity: 1;
+            z-index: 10;
+        }
+        .layers-onboard-slide.layers-onboard-slide-inactive{
+            visibility: none;
+            opacity: 0;
+            transform: translateX(20px);
+            transform: scale(0.95);
+        }
+        .layers-onboard-slide .layers-column{
+            margin: 0;
+        }
+        .layers-logo-wrapper{
+            border: 1px solid #eee;
+            text-align: center;
+        }
+        .layers-logo-upload{
+            padding: 20px;
+        }
+        .layers-logo-upload img{
+            display: inline-block;
+        }
+
+        /*-----------------------*/
+        /*- HELP LIST -----------*/
+        .layers-help-list{
+            margin: 0;
+            padding: 0;
+            color: #797979;
+        }
+        .layers-help-list li{
+            padding: 0 0 8px;
+            margin: 0 0 8px;
+            border-bottom: 1px solid #ddd;
+            opacity: 0;
+            transform: translateX(10px);
+            transition: opacity 0.2s ease-in-out, transform 0.2s ease-in-out;
+        }
+
+            .layers-help-list li:nth-child(1){transition-delay: 0.3s;}
+            .layers-help-list li:nth-child(2){transition-delay: 0.35s;}
+            .layers-help-list li:nth-child(3){transition-delay: 0.4s;}
+            .layers-help-list li:nth-child(4){transition-delay: 0.45s;}
+            .layers-help-list li:nth-child(5){transition-delay: 0.5s;}
+
+        .layers-onboard-slide.layers-onboard-slide-current .layers-help-list li{
+            opacity: 1;
+            transform: translateX(0px);
+        }
+        .layers-onboard-slide-inactive .layers-help-list li{
+            opacity: 0;
+            transform: translateX(10px);
+        }
+
+
+

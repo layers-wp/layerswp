@@ -1,6 +1,6 @@
 <?php $user = wp_get_current_user(); ?>
 <?php $builder_pages = layers_get_builder_pages(); ?>
-<section class="layers-welcome">
+<section class="layers-area-wrapper">
 
 	<div class="layers-page-title layers-section-title layers-large layers-content-massive layers-no-push-bottom">
 		<div class="layers-container">

@@ -11,7 +11,7 @@
  * The current version of the theme. Use a random number for SCRIPT_DEBUG mode
  */
 if ( defined( 'SCRIPT_DEBUG' ) && TRUE == SCRIPT_DEBUG ) {
-	define( 'LAYERS_VERSION', rand( 0 , 10000 ) );
+	define( 'LAYERS_VERSION', time() );
 } else {
 	define( 'LAYERS_VERSION', 'beta-0.1' );
 }

@@ -27,7 +27,7 @@ $layers_migrator = new Layers_Widget_Migrator(); ?>
         <div class="layers-onboard-slider">
 
             <!-- Give your site a Name -->
-            <div class="layers-onboard-slide layers-animate layers-slide-current">
+            <div class="layers-onboard-slide layers-animate layers-onboard-slide-current">
                 <div class="layers-column layers-span-12 postbox">
                     <div class="layers-content-large">
                         <!-- Your content goes here -->

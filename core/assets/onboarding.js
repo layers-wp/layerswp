@@ -28,7 +28,7 @@ jQuery(function($) {
 
         $i = $that.index();
 
-        $( '.layers-onboard-slide' ).eq( $i ).addClass( 'layers-slide-current' ).removeClass( 'layers-onboard-slide-inactive' ).siblings().removeClass( 'layers-slide-current' ).addClass( 'layers-onboard-slide-inactive' );
+        $( '.layers-onboard-slide' ).eq( $i ).addClass( 'layers-onboard-slide-current' ).removeClass( 'layers-onboard-slide-inactive' ).siblings().removeClass( 'layers-onboard-slide-current' ).addClass( 'layers-onboard-slide-inactive' );
 
     });
 });

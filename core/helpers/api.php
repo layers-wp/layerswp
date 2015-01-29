@@ -8,9 +8,6 @@
  */
 class Layers_API {
 
-
-    const LAYERS_API_REMOTE_URL = 'vagrant.localhost/api/v1';
-
     private static $instance;
 
     /**
@@ -27,33 +24,49 @@ class Layers_API {
 
     public function __construct() {
 
-        // Add the administrator menu
-        add_action( 'admin_menu' , array( $this, 'add_menu' ) , 70 );
+        // $this->get_theme_info();
 
-        // Save API key
-        add_action( 'init' , array( $this, 'save_api_key' ) );
+        // Remove theme's reliance on the WordPress updater
+        add_filter( 'pre_set_site_transient_update_themes', array( $this, 'remove_org_reliance' ) );
     }
 
-    /**
-    *  Obox API Call
-    */
+    public function get_theme_info(){
 
-    private function _do_api_call( $endpoint = 'verify', $apikey = NULL, $return_array = true ) {
+        $this->theme = wp_get_theme( LAYERS_THEME_SLUG );
 
-        $api_param = ( NULL != '?apikey=' . $apikey ? $apikey : '' );
+        // Put together some variables to sort out
+        $gitslug = $this->theme->get( 'GitHub Theme URI' );
+        $owner_repo = $gitslug;
+        $owner_repo = trim( $owner_repo, '/' );
+        $owner_repo = explode( '/', $owner_repo );
 
-        $api_call = wp_remote_get(
-            'http://' . self::LAYERS_API_REMOTE_URL . '/' . $endpoint . $api_param,
-            array(
-                    'timeout' => 60,
-                    'httpversion' => '1.1'
-                )
-        );
+        $theme[ 'git_slug' ] = $gitslug;
+        $theme[ 'owner' ] = $owner_repo[0];
+        if( isset( $owner_repo[1] ) ) $theme[ 'repo' ] = $owner_repo[1];
+        $theme[ 'name' ] = $this->theme->get( 'Name' );
+        $theme[ 'local_version' ] = strtolower( $this->theme->get( 'Version' ) );
 
-        if( is_wp_error( $api_call ) ) return NULL;
+        return $theme;
 
-        $body_as_array = json_decode( $api_call['body'], $return_array );
-
-        return $body_as_array;
     }
+
+    public function remove_org_reliance( $theme_data ) {
+
+        $theme_info = $this->get_theme_info();
+
+        unset( $theme_data->response[ 'layers' ] );
+        unset( $theme_data->checked[ 'layers' ] );
+
+        return $theme_data;
+    } // remove_org_reliance
+}
+
+if( !function_exists( 'layers_api_init' ) ) {
+    // Instantiate API Calls
+    function layers_api_init() {
+        $layer_updater = new Layers_API();
+        $layer_updater->init();
+    } // layer_updater_init
+
+    add_action( "after_setup_theme", "layers_api_init", 100 );
 }

@@ -28,6 +28,7 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 			$this->post_type = 'post';
 			$this->taxonomy = 'category';
 			$this->checkboxes = array(
+					'show_media',
 					'show_titles',
 					'show_excerpts',
 					'show_dates',
@@ -52,6 +53,7 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 				'excerpt' => 'Stay up to date with all our latest news and launches. Only the best quality makes it onto our blog!',
 				'text_style' => 'regular',
 				'category' => 0,
+				'show_media' => 'on',
 				'show_titles' => 'on',
 				'show_excerpts' => 'on',
 				'show_dates' => 'on',
@@ -197,13 +199,15 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 							<?php } else { ?>
 								<article class="column<?php if( !isset( $widget['design'][ 'gutter' ] ) ) echo '-flush'; ?> <?php echo $span_class; ?> layers-masonry-column thumbnail <?php if( 'overlay' == $this->check_and_return( $widget , 'text_style' ) ) echo 'with-overlay'; ?>" data-cols="<?php echo $col_count; ?>">
 									<?php // Layers Featured Media
-									echo layers_post_featured_media(
-										array(
-											'postid' => $post->ID,
-											'wrap_class' => 'thumbnail-media' .  ( ( isset( $column['design'][ 'imageratios' ] ) && 'image-round' == $column['design'][ 'imageratios' ] ) ? ' image-rounded' : '' ),
-											'size' => $use_image_ratio
-										)
-									); ?>
+									if( isset( $widget['show_media'] ) ) {
+										echo layers_post_featured_media(
+											array(
+												'postid' => $post->ID,
+												'wrap_class' => 'thumbnail-media' .  ( ( isset( $column['design'][ 'imageratios' ] ) && 'image-round' == $column['design'][ 'imageratios' ] ) ? ' image-rounded' : '' ),
+												'size' => $use_image_ratio
+											)
+										);
+									} // if Show Media ?>
 									<?php if( isset( $widget['show_titles'] ) || isset( $widget['show_excerpts'] ) ) { ?>
 										<div class="thumbnail-body">
 											<div class="overlay">
@@ -326,6 +330,13 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 											'regular' => __( 'Regular' , LAYERS_THEME_SLUG ),
 											'overlay' => __( 'Overlay' , LAYERS_THEME_SLUG )
 									)
+								),
+								'show_media' => array(
+									'type' => 'checkbox',
+									'name' => $this->get_field_name( 'show_media' ) ,
+									'id' => $this->get_field_id( 'show_media' ) ,
+									'value' => ( isset( $show_media ) ) ? $show_media : NULL,
+									'label' => __( 'Show Featured Images' , LAYERS_THEME_SLUG )
 								),
 								'show_titles' => array(
 									'type' => 'checkbox',

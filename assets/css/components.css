@@ -217,11 +217,11 @@ section[class*=' off-canvas-']{
     .header-sticky.is_stuck{
         margin-top: -30px;
         opacity: 0;
+        transition: margin-top .15s ease-in-out, opacity .15s ease-in-out;
     }
     .header-sticky.is_stuck.is_stuck_show{
         margin-top: 0;
         opacity: 1;
-        transition: margin .15s ease-in-out, opacity .15s ease-in-out;
     }
     .admin-bar .header-sticky.is_stuck{
         margin-top: 30px;

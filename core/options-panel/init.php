@@ -92,6 +92,16 @@ function layers_options_panel_menu(){
 		3
 	);
 
+	// Onboarding
+	add_submenu_page(
+		LAYERS_THEME_SLUG . '-welcome',
+		__( 'Onboarding' , LAYERS_THEME_SLUG ),
+		__( 'Onboarding' , LAYERS_THEME_SLUG ),
+		'edit_theme_options',
+		LAYERS_THEME_SLUG . '-onboarding',
+		'layers_options_panel_ui'
+	);
+
 	// Add Preset Pages
 	add_submenu_page(
 		LAYERS_THEME_SLUG . '-welcome',

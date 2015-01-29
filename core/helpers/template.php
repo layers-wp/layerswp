@@ -569,6 +569,50 @@ if( !function_exists( 'layers_maybe_get_sidebar' ) ) {
 } // layers_get_header_class
 
 /**
+ * Include additional scripts in the side footer
+ *
+ * @return  html    $additional_header_scripts Scripts to be included in the header
+ */
+if( !function_exists( 'layers_add_additional_footer_scripts' ) ) {
+	function layers_add_additional_footer_scripts() {
+
+		$additional_footer_scripts = layers_get_theme_mod( 'footer-scripts-scripts' );
+
+		if( '' != $additional_footer_scripts ) {
+			echo stripslashes( $additional_footer_scripts );
+		}
+	}
+	add_action ( 'wp_footer', 'layers_add_additional_footer_scripts' );
+} // layers_add_additional_header_scripts
+
+
+/**
+ * Include Google Analytics
+ *
+ * @return  html    $scripts Prints Google Analytics
+ */
+if( !function_exists( 'layers_add_google_analytics' ) ) {
+	function layers_add_google_analytics() {
+
+		$analytics_id = layers_get_theme_mod( 'header-scripts-google-id' );
+
+		if( '' != $analytics_id ) { ?>
+			<script>
+			  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+			  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+			  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+			  ga('create', '<?php echo $analytics_id; ?>', 'auto');
+			  ga('send', 'pageview');
+
+			</script>
+		<?php }
+	}
+	add_action ( 'wp_head', 'layers_add_google_analytics' );
+} // layers_add_google_analytics
+
+/**
 * Style Generator
 *
 * @param    varchar     $type   Type of style to generate, background, color, text-shadow, border
@@ -839,4 +883,16 @@ if ( ! function_exists( 'layers_light_or_dark' ) ) {
 
 		return $brightness > 155 ? $dark : $light;
 	}
-}
+} // layers_light_or_dark
+
+/**
+ * Standard menu fallback
+ */
+
+if ( ! function_exists( 'layers_menu_fallback' ) ) {
+	function layers_menu_fallback() {
+		echo '<ul id="nav" class="clearfix">';
+			wp_list_pages('title_li=&');
+		echo '</ul>';
+	}
+} // layers_light_or_dark

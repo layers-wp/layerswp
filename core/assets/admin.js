@@ -480,8 +480,7 @@ jQuery(function($) {
 		$changed = $(this).trigger("change").trigger("blur");
 
 		//var $widget_synced = $( document ).trigger( 'widget-synced', $(this).closest( '.control-section' ).find( '.widget:first' ) );
-		//console.log( $widget_synced );
-
+		
 		// Reset 'show if' selectors;
 		layers_init_show_if();
 	};
@@ -538,7 +537,6 @@ jQuery(function($) {
 			var $source_element = $( $target_element.data( 'show-if-selector' ).toString() );
 
 			if ( $source_element.attr('type') == 'checkbox' ) {
-				//console.log( $source_element.attr('id') );
 				$source_element_value = ( $source_element.is(':checked') ) ? 'true' : 'false' ;
 			}
 			else {

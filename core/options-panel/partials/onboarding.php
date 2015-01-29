@@ -15,8 +15,8 @@ $layers_migrator = new Layers_Widget_Migrator(); ?>
 
             <a class="layers-button btn-cancel layers-pull-left" href="">Cancel</a>
             <div class="onboard-nav-dots">
-                <a class="layers-dot" href=""></a>
                 <a class="layers-dot dot-active" href=""></a>
+                <a class="layers-dot" href=""></a>
                 <a class="layers-dot" href=""></a>
                 <a class="layers-dot" href=""></a>
             </div>
@@ -27,7 +27,7 @@ $layers_migrator = new Layers_Widget_Migrator(); ?>
         <div class="layers-onboard-slider">
 
             <!-- Give your site a Name -->
-            <div class="layers-onboard-slide">
+            <div class="layers-onboard-slide layers-animate layers-slide-current">
                 <div class="layers-column layers-span-12 postbox">
                     <div class="layers-content-large">
                         <!-- Your content goes here -->
@@ -36,7 +36,7 @@ $layers_migrator = new Layers_Widget_Migrator(); ?>
                                 Welcome to Layers!
                             </h3>
                             <p class="layers-excerpt">
-                            
+
                                 Layers is a revolutionary WordPress theme that enables you to build any website you want.
                                 This is a step by step setup process to help you get going with
                                 minimum fuss. Enjoy the ride!
@@ -45,20 +45,13 @@ $layers_migrator = new Layers_Widget_Migrator(); ?>
                         </div>
                     </div>
                     <div class="layers-button-well">
-                        <div class="onboard-nav-dots">
-                            <a class="layers-dot dot-active" href=""></a>
-                            <a class="layers-dot" href=""></a>
-                            <a class="layers-dot" href=""></a>
-                            <a class="layers-dot" href=""></a>
-                            <a class="layers-dot" href=""></a>
-                        </div>
                         <a class="layers-button btn-primary layers-pull-right" href="">Let's get Started &rarr;</a>
                     </div>
                 </div>
             </div>
 
             <!-- Give your site a Name -->
-            <div class="layers-onboard-slide">
+            <div class="layers-onboard-slide layers-animate layers-onboard-slide-inactive">
                 <div class="layers-column layers-span-8 postbox">
                     <div class="layers-content-large">
                         <!-- Your content goes here -->
@@ -76,13 +69,6 @@ $layers_migrator = new Layers_Widget_Migrator(); ?>
                         </p>
                     </div>
                     <div class="layers-button-well">
-                        <div class="onboard-nav-dots">
-                            <a class="layers-dot" href=""></a>
-                            <a class="layers-dot dot-active" href=""></a>
-                            <a class="layers-dot" href=""></a>
-                            <a class="layers-dot" href=""></a>
-                            <a class="layers-dot" href=""></a>
-                        </div>
                         <a class="layers-button btn-primary layers-pull-right" href="">Next Step &rarr;</a>
                     </div>
                 </div>
@@ -100,7 +86,7 @@ $layers_migrator = new Layers_Widget_Migrator(); ?>
             </div>
 
             <!-- Give your site a Tagline -->
-            <div class="layers-onboard-slide">
+            <div class="layers-onboard-slide layers-animate layers-onboard-slide-inactive">
                 <div class="layers-column layers-span-8 postbox">
                     <div class="layers-content-large">
                         <!-- Your content goes here -->
@@ -119,13 +105,6 @@ $layers_migrator = new Layers_Widget_Migrator(); ?>
                         </p>
                     </div>
                     <div class="layers-button-well">
-                        <div class="onboard-nav-dots">
-                            <a class="layers-dot" href=""></a>
-                            <a class="layers-dot" href=""></a>
-                            <a class="layers-dot dot-active" href=""></a>
-                            <a class="layers-dot" href=""></a>
-                            <a class="layers-dot" href=""></a>
-                        </div>
                         <a class="layers-button btn-primary layers-pull-right" href="">Next Step &rarr;</a>
                     </div>
                 </div>
@@ -143,7 +122,7 @@ $layers_migrator = new Layers_Widget_Migrator(); ?>
             </div>
 
             <!-- Upload a Logo -->
-            <div class="layers-onboard-slide">
+            <div class="layers-onboard-slide layers-animate layers-onboard-slide-inactive">
                 <div class="layers-column layers-span-8 postbox">
                     <div class="layers-content-large">
                         <!-- Your content goes here -->
@@ -169,13 +148,6 @@ $layers_migrator = new Layers_Widget_Migrator(); ?>
                         </div>
                     </div>
                     <div class="layers-button-well">
-                        <div class="onboard-nav-dots">
-                            <a class="layers-dot" href=""></a>
-                            <a class="layers-dot" href=""></a>
-                            <a class="layers-dot" href=""></a>
-                            <a class="layers-dot dot-active" href=""></a>
-                            <a class="layers-dot" href=""></a>
-                        </div>
                         <a class="layers-button btn-primary layers-pull-right" href="">Next Step &rarr;</a>
                     </div>
                 </div>

@@ -2029,6 +2029,14 @@ ul#adminmenu a.wp-has-current-submenu:after, ul#adminmenu > li.current > a.curre
             float: left;
             width: 740px;
         }
+        .layers-onboard-slide.layers-onboard-slide-current{
+            display: block;
+            opacity: 1;
+        }
+        .layers-onboard-slide.layers-onboard-slide-inactive{
+            display: none;
+            opacity: 1;
+        }
         .layers-onboard-slide .layers-column{
             margin: 0;
         }

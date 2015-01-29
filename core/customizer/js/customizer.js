@@ -97,10 +97,6 @@ jQuery(document).ready(function($) {
 	$('#customize-header-actions').append( $('.customize-controls-layers-button-dashboard, .customize-controls-layers-button-preview') );
 	$('.customize-controls-layers-button-dashboard, .customize-controls-layers-button-preview').css({ 'display':'block', 'visibility':'visible' });
 
-	// Jump to control - during testing only (must comment for launch).
-	//$('#accordion-section-layers-footer-customization').children('.accordion-section-title').click();
-	//$('#accordion-section-layers-header-layout').children('.accordion-section-title').click();
-
 	/**
 	 * 3 - Better history states in customizer
 	 *

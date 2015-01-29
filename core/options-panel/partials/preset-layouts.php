@@ -10,7 +10,7 @@ $layers_migrator = new Layers_Widget_Migrator(); ?>
 <?php // Get builder pages
 $find_builder_page = layers_get_builder_pages(); ?>
 
-<section class="layers-welcome">
+<section class="layers-area-wrapper">
 
    <div class="layers-page-title layers-section-title layers-large layers-content-massive layers-no-push-bottom">
       <div class="layers-container">

@@ -41,6 +41,7 @@ class Layers_Customizer {
 			require_once get_template_directory() . $customizer_dir . 'registration.php';
 
 			// Include control classes
+			require_once get_template_directory() . $controls_dir . 'base.php';
 			require_once get_template_directory() . $controls_dir . 'heading.php';
 			require_once get_template_directory() . $controls_dir . 'select.php';
 			require_once get_template_directory() . $controls_dir . 'select-icons.php';

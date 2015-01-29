@@ -272,30 +272,59 @@ class Layers_Customizer_Config {
 								'font-color-main' => array(
 									'type'  => 'layers-color',
 									'subtitle' => __( 'Text Color', LAYERS_THEME_SLUG ),
+									'default' => '#000000',
+									
 								),
 								'font-color-link' => array(
 									'type' => 'layers-color',
 									'subtitle' => __( 'Link Color', LAYERS_THEME_SLUG ),
+									'default' => '#35A6E8',
 								),
-								'background' => array(
-									'type'     => 'layers-background',
-									'label'    => __( 'RRR', LAYERS_THEME_SLUG ),
-									'default' => '',
+								'break-1' => array(
+									'type'     => 'layers-seperator'
+								),
+								'background-heading' => array(
+									'type'  => 'layers-heading',
+									'label'    => __( 'Background', LAYERS_THEME_SLUG ),
+								),
+								'background-image' => array(
+									'label' => '',
+									'subtitle' => __( 'Background Image', LAYERS_THEME_SLUG ),
+									'type' => 'layers-select-images', //wierd bug in WP4.1 that requires a type to be in the array, or will revert to default control
+								),
+								'background-color' => array(
+									'label' => '',
+									'subtitle' => __( 'Background Color', LAYERS_THEME_SLUG ),
+									'type' => 'layers-color',
+									'default' => '#F3F3F3',
+								),
+								'background-repeat' => array(
+									'label' => '',
+									'subtitle' => __( 'Background Repeat', LAYERS_THEME_SLUG ),
+									'type' => 'layers-select',
 									'choices' => array(
-										'background-position' => array(
-											'center' => __( 'Center' , LAYERS_THEME_SLUG ),
-											'top' => __( 'Top' , LAYERS_THEME_SLUG ),
-											'bottom' => __( 'Bottom' , LAYERS_THEME_SLUG ),
-											'left' => __( 'Left' , LAYERS_THEME_SLUG ),
-											'right' => __( 'Right' , LAYERS_THEME_SLUG ),
-										),
-										'background-repeat' => array(
-											'no-repeat' => __( 'No Repeat' , LAYERS_THEME_SLUG ),
-											'repeat' => __( 'Repeat' , LAYERS_THEME_SLUG ),
-											'repeat-x' => __( 'Repeat Horizontal' , LAYERS_THEME_SLUG ),
-											'repeat-y' => __( 'Repeat Vertical' , LAYERS_THEME_SLUG ),
-										),
+										'no-repeat' => __( 'No Repeat' , LAYERS_THEME_SLUG ),
+										'repeat' => __( 'Repeat' , LAYERS_THEME_SLUG ),
+										'repeat-x' => __( 'Repeat Horizontal' , LAYERS_THEME_SLUG ),
+										'repeat-y' => __( 'Repeat Vertical' , LAYERS_THEME_SLUG ),
 									),
+								),
+								'background-position' => array(
+									'label' => '',
+									'subtitle' => __( 'Background Position', LAYERS_THEME_SLUG ),
+									'type' => 'layers-select',
+									'choices' => array(
+										'center' => __( 'Center' , LAYERS_THEME_SLUG ),
+										'top' => __( 'Top' , LAYERS_THEME_SLUG ),
+										'bottom' => __( 'Bottom' , LAYERS_THEME_SLUG ),
+										'left' => __( 'Left' , LAYERS_THEME_SLUG ),
+										'right' => __( 'Right' , LAYERS_THEME_SLUG ),
+									),
+								),
+								'background-stretch' => array(
+									'label' => __( 'Background Stretch', LAYERS_THEME_SLUG ),
+									'subtitle' => '',
+									'type' => 'layers-checkbox',
 								),
 							); // footer-customization
 

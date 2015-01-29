@@ -494,11 +494,20 @@ if( !function_exists( 'layers_get_theme_mod' ) ) {
 
 		// Add the theme prefix to our layers option
 		$name = LAYERS_THEME_SLUG . '-' . $name;
-
+		
 		// Set theme option default
 		$default = ( isset( $layers_customizer_defaults[ $name ][ 'value' ] ) ? $layers_customizer_defaults[ $name ][ 'value' ] : FALSE );
-
-		return get_theme_mod( $name, $default );
+		
+		// Get theme option
+		$theme_mod = get_theme_mod( $name, $default );
+		
+		// If color control always return a value
+		if ( 'layers-color' == $layers_customizer_defaults[ $name ][ 'type' ] && '' == $theme_mod && $default ){
+			$theme_mod = $default;
+		}
+		
+		// Return theme option
+		return $theme_mod;
 	}
 } // layers_get_header_class
 

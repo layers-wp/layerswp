@@ -8,11 +8,11 @@
 		// Apply customizer footer background settings.
 		layers_inline_styles( 'footer', 'background', array(
 			'background' => array(
-				'color' => layers_get_theme_mod( 'footer-customization-background-background-color' ),
-				'repeat' => layers_get_theme_mod( 'footer-customization-background-background-repeat' ),
-				'position' => layers_get_theme_mod( 'footer-customization-background-background-position' ),
-				'stretch' => layers_get_theme_mod( 'footer-customization-background-background-stretch' ),
-				'image' => layers_get_theme_mod( 'footer-customization-background-background-image' ),
+				'color' => layers_get_theme_mod( 'footer-customization-background-color' ),
+				'repeat' => layers_get_theme_mod( 'footer-customization-background-repeat' ),
+				'position' => layers_get_theme_mod( 'footer-customization-background-position' ),
+				'stretch' => layers_get_theme_mod( 'footer-customization-background-stretch' ),
+				'image' => layers_get_theme_mod( 'footer-customization-background-image' ),
 				'fixed' => false, // hardcode (not an option)
 			),
 		) );

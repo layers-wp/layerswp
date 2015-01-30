@@ -1107,8 +1107,9 @@ input[type=text].layers-color-selector.wp-color-picker{
     font-size: 20px;
     text-indent: 0;
 }
+
 .layers-section-title{
-    margin-bottom: 40px;
+    margin-bottom: 30px;
 }
 .layers-section-title .layers-heading{
     margin: 0;
@@ -1116,6 +1117,7 @@ input[type=text].layers-color-selector.wp-color-picker{
     font-size: 28px;
     line-height: 38px;
     color: #222;
+    font-weight: 400;
 }
 .layers-section-title .layers-excerpt{
     max-width: 830px;
@@ -1124,34 +1126,34 @@ input[type=text].layers-color-selector.wp-color-picker{
     font-size: 20px;
     line-height: 30px;
     color: #777;
-    font-weight: 300;
 }
 .layers-section-title .layers-excerpt + .layers-button{
     margin-top: 20px;
 }
 
 
-        /*-----------------------*/
-        /*- SECTION SIZE --------*/
-        .layers-section-title.layers-large{margin-bottom: 15px;}
-        .layers-section-title.layers-large .layers-heading{font-size: 44px; line-height: 54px;}
-        .layers-section-title.layers-large .layers-excerpt{max-width: 830px; font-size: 26px; line-height: 36px;}
 
-        .layers-section-title.layers-small{margin-bottom: 15px;}
-        .layers-section-title.layers-small .layers-heading{font-size: 24px; line-height: 34px;}
-        .layers-section-title.layers-small .layers-excerpt{font-size: 16px; line-height: 26px;}
+    /*-----------------------*/
+    /*- SECTION SIZE --------*/
+    .layers-section-title.layers-large{margin-bottom: 15px;}
+    .layers-section-title.layers-large .layers-heading{font-size: 44px; line-height: 54px;}
+    .layers-section-title.layers-large .layers-excerpt{max-width: 830px; font-size: 26px; line-height: 36px; font-weight: 300;}
 
-        .layers-section-title.layers-tiny{margin-bottom: 15px;}
-        .layers-section-title.layers-tiny .layers-heading{font-size: 16px; line-height: 26px; font-weight: 700;}
-        .layers-section-title.layers-tiny .layers-excerpt{margin-top: 0px !important; font-size: 14px; line-height: 24px; font-weight: normal;}
+    .layers-section-title.layers-small{margin-bottom: 15px;}
+    .layers-section-title.layers-small .layers-heading{font-size: 24px; line-height: 34px;}
+    .layers-section-title.layers-small .layers-excerpt{font-size: 16px; line-height: 26px;}
 
-            /*---------------------------*/
-            /*- SECTION ALIGNMENTS ------*/
-            .layers-section-title.layers-text-center{text-align: center;}
-            .layers-section-title.layers-text-center .layers-excerpt{margin-left: auto; margin-right: auto;}
+    .layers-section-title.layers-tiny{margin-bottom: 15px;}
+    .layers-section-title.layers-tiny .layers-heading{font-size: 16px; line-height: 26px; font-weight: 700;}
+    .layers-section-title.layers-tiny .layers-excerpt{margin-top: 0px !important; font-size: 14px; line-height: 24px; font-weight: normal;}
 
-        .invert.layers-section-title .layers-heading{color: #fff;}
-        .invert.layers-section-title .layers-excerpt{color: rgba(255, 255, 255, 0.95);}
+        /*-------------------*/        
+        /*- ALIGNMENTS ------*/
+        .layers-section-title.layers-text-center{text-align: center;}
+        .layers-section-title.layers-text-center .layers-excerpt{margin-left: auto; margin-right: auto;}
+
+    .invert.layers-section-title .layers-heading{color: #fff;}
+    .invert.layers-section-title .layers-excerpt{color: rgba(255, 255, 255, 0.95);}
 
 
 
@@ -1179,6 +1181,9 @@ input[type=text].layers-color-selector.wp-color-picker{
 .layers-button:hover{
     background-color: #f2f2f2;
     color: #555;
+}
+.layers-button:focus{
+    box-shadow: none;
 }
 
     /*-----------------------*/
@@ -1986,8 +1991,8 @@ ul#adminmenu a.wp-has-current-submenu:after, ul#adminmenu > li.current > a.curre
         /*- ONBOARD CONTROLLERS -*/
         .layers-onboard-controllers{
             overflow: hidden;
+            margin-bottom: 10px;
             text-align: center;
-            margin-bottom: 20px;
         }
         .layers-onboard-controllers .layers-button.previous-step{
             float: left;
@@ -2005,7 +2010,7 @@ ul#adminmenu a.wp-has-current-submenu:after, ul#adminmenu > li.current > a.curre
             background: #ccc;
             width: 8px;
             height: 8px;
-            margin: 0 8px;
+            margin: 0 6px;
             border-radius: 100px;
             transform: scale(1);
             transition: all 0.2s ease-in-out;
@@ -2017,6 +2022,9 @@ ul#adminmenu a.wp-has-current-submenu:after, ul#adminmenu > li.current > a.curre
         .onboard-nav-dots .layers-dot.dot-active{
             background: #2EA2CC;
             transform: scale(1.5);
+        }
+        .onboard-nav-dots .layers-dot:focus{
+            box-shadow: none;
         }
 
         /*-----------------------*/

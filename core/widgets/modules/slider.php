@@ -118,9 +118,9 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 						<?php foreach ( $widget[ 'slides' ] as $key => $slide) {
 
 							// Set the background styling
-							if( !empty( $slide['design'][ 'background' ] ) ) layers_inline_styles( $widget_id . '-' . $key , 'background', array( 'background' => $slide['design'][ 'background' ] ) );
-							if( !empty( $slide['design']['fonts'][ 'color' ] ) ) layers_inline_styles( $widget_id . '-' . $key , 'color', array( 'selectors' => array( 'h3.heading', 'h3.heading a', 'div.excerpt' ) , 'color' => $slide['design']['fonts'][ 'color' ] ) );
-							if( !empty( $slide['design']['fonts'][ 'shadow' ] ) ) layers_inline_styles( $widget_id . '-' . $key , 'text-shadow', array( 'selectors' => array( 'h3.heading', 'h3.heading a',  'div.excerpt' )  , 'text-shadow' => $slide['design']['fonts'][ 'shadow' ] ) );
+							if( !empty( $slide['design'][ 'background' ] ) ) layers_inline_styles( '#' . $widget_id . '-' . $key , 'background', array( 'background' => $slide['design'][ 'background' ] ) );
+							if( !empty( $slide['design']['fonts'][ 'color' ] ) ) layers_inline_styles( '#' . $widget_id . '-' . $key , 'color', array( 'selectors' => array( 'h3.heading', 'h3.heading a', 'div.excerpt' ) , 'color' => $slide['design']['fonts'][ 'color' ] ) );
+							if( !empty( $slide['design']['fonts'][ 'shadow' ] ) ) layers_inline_styles( '#' . $widget_id . '-' . $key , 'text-shadow', array( 'selectors' => array( 'h3.heading', 'h3.heading a',  'div.excerpt' )  , 'text-shadow' => $slide['design']['fonts'][ 'shadow' ] ) );
 
 
 							// Set Featured Media
@@ -137,7 +137,7 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 							} else {
 								$use_image_ratio = 'large';
 							}
-							
+
 							// Set Slide CSS Classes
 							$slide_class = array();
 							$slide_class[] = 'invert swiper-slide';
@@ -151,7 +151,7 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 								$slide_class[] = $slide['design']['fonts'][ 'align' ];
 							}
 							$slide_class = implode( ' ', $slide_class );
-														
+
 							// Set link entire slide or not
 							$slide_wrapper_tag = 'div';
 							$slide_wrapper_href = '';

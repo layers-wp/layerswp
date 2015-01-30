@@ -315,7 +315,6 @@ if( ! function_exists( 'layers_scripts' ) ) {
 			array(),
 			LAYERS_VERSION
 		); // Typography
-
 		wp_enqueue_style(
 			LAYERS_THEME_SLUG . '-components',
 			get_template_directory_uri() . '/assets/css/components.css',

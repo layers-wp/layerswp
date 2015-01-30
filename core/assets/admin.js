@@ -480,7 +480,7 @@ jQuery(function($) {
 		$changed = $(this).trigger("change").trigger("blur");
 
 		//var $widget_synced = $( document ).trigger( 'widget-synced', $(this).closest( '.control-section' ).find( '.widget:first' ) );
-		
+
 		// Reset 'show if' selectors;
 		layers_init_show_if();
 	};

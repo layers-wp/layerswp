@@ -12,13 +12,13 @@ $layers_migrator = new Layers_Widget_Migrator(); ?>
     <div class="layers-onboard-wrapper">
 
         <div class="layers-onboard-controllers">
-            <div class="onboard-nav-dots layers-pull-left">
+            <div class="onboard-nav-dots layers-pull-left" id="layers-onboard-anchors">
                 <a class="layers-dot dot-active" href=""></a>
                 <a class="layers-dot" href=""></a>
                 <a class="layers-dot" href=""></a>
                 <a class="layers-dot" href=""></a>
             </div>
-            <a class="layers-button btn-link layers-pull-right" href="">Skip</a>
+            <a class="layers-button btn-link layers-pull-right" href="" id="layers-onboard-skip">Skip</a>
 
         </div>
 
@@ -43,7 +43,7 @@ $layers_migrator = new Layers_Widget_Migrator(); ?>
                         </div>
                     </div>
                     <div class="layers-button-well">
-                        <a class="layers-button btn-primary layers-pull-right" href="">Let's get Started &rarr;</a>
+                        <a class="layers-button btn-primary layers-pull-right onbard-next-step" href="">Let's get Started &rarr;</a>
                     </div>
                 </div>
             </div>
@@ -63,11 +63,20 @@ $layers_migrator = new Layers_Widget_Migrator(); ?>
                         </div>
                         <p class="layers-form-item">
                             <label>Site Name</label>
-                            <input type="text" class="layers-text" placeholder="Betties Bakery" />
+                            <?php
+                               echo $form_elements->input( array(
+                                    'type' => 'text',
+                                    'name' => 'site-title',
+                                    'id' => 'site-title',
+                                    'placeholder' => get_bloginfo( 'name' ),
+                                    'value' => get_bloginfo( 'name' ),
+                                    'class' => 'layers-text'
+                               ) );
+                            ?>
                         </p>
                     </div>
                     <div class="layers-button-well">
-                        <a class="layers-button btn-primary layers-pull-right" href="">Next Step &rarr;</a>
+                        <a class="layers-button btn-primary layers-pull-right onbard-next-step" href="">Next Step &rarr;</a>
                     </div>
                 </div>
                 <div class="layers-column layers-span-4 no-gutter">
@@ -99,11 +108,20 @@ $layers_migrator = new Layers_Widget_Migrator(); ?>
                         </div>
                         <p class="layers-form-item">
                             <label>Site Tagline</label>
-                            <input type="text" class="layers-text" placeholder="Makers of delicious cup cakes" />
+                            <?php
+                               echo $form_elements->input( array(
+                                    'type' => 'text',
+                                    'name' => 'site-tagline',
+                                    'id' => 'site-tagline',
+                                    'placeholder' => get_bloginfo( 'description' ),
+                                    'value' => get_bloginfo( 'description' ),
+                                    'class' => 'layers-text'
+                               ) );
+                            ?>
                         </p>
                     </div>
                     <div class="layers-button-well">
-                        <a class="layers-button btn-primary layers-pull-right" href="">Next Step &rarr;</a>
+                        <a class="layers-button btn-primary layers-pull-right onbard-next-step" href="">Next Step &rarr;</a>
                     </div>
                 </div>
                 <div class="layers-column layers-span-4 no-gutter">
@@ -135,18 +153,20 @@ $layers_migrator = new Layers_Widget_Migrator(); ?>
                         </div>
                         <div class="layers-logo-wrapper">
                             <div class="layers-logo-upload">
-                                <span style="display: none;">No logo set</span>
-                                <img src="http://obox.beta/wp-content/uploads/2015/01/logo-copy.png" class="site-logo-thumbnail">
-                            </div>
-                            <div class="layers-button-well">
-                                <button type="button" class="layers-button btn-cancel layers-span-6">Remove logo</button>
-                                <button type="button" class="layers-button layers-span-6 no-gutter">Change logo</button>
-                                <button style="display: none;" type="button" class="button new">Add logo</button>
+                                <?php
+                                   echo $form_elements->input( array(
+                                        'label' => __( 'Choose Logo' , LAYERS_THEME_SLUG ),
+                                        'type' => 'image',
+                                        'name' => 'site-logo',
+                                        'id' => 'site-logo',
+                                        'value' => get_bloginfo( 'description' )
+                                   ) );
+                                ?>
                             </div>
                         </div>
                     </div>
                     <div class="layers-button-well">
-                        <a class="layers-button btn-primary layers-pull-right" href="">Next Step &rarr;</a>
+                        <a class="layers-button btn-primary layers-pull-right onbard-next-step" href="">Next Step &rarr;</a>
                     </div>
                 </div>
                 <div class="layers-column layers-span-4 no-gutter">

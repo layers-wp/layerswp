@@ -18,7 +18,7 @@
 
 jQuery(function($) {
 
-    $(document).on( 'click' , '.layers-onboard-slide .layers-button-well a.btn-primary' , function(e){
+    $(document).on( 'click' , '.onbard-next-step' , function(e){
         e.preventDefault();
 
         // "Hi Mom"
@@ -29,7 +29,7 @@ jQuery(function($) {
 
     });
 
-    $(document).on( 'click' , '.layers-onboard-controllers a.btn-link.layers-button' , function(e){
+    $(document).on( 'click' , '#layers-onboard-skip' , function(e){
         e.preventDefault();
 
         // "Hi Mom"
@@ -39,7 +39,7 @@ jQuery(function($) {
         layers_next_onboarding_slide();
     });
 
-    $(document).on( 'click' , '.onboard-nav-dots a' , function(e){
+    $(document).on( 'click' , '#layers-onboard-anchors a' , function(e){
         e.preventDefault();
 
         // "Hi Mom"
@@ -51,7 +51,7 @@ jQuery(function($) {
     });
 
     function layers_next_onboarding_slide(){
-        $current = $( '.onboard-nav-dots a.dot-active').index();
+        $current = $( '#layers-onboard-anchors a.dot-active').index();
         $next = (+$current+1);
         $max = $( '.onboard-nav-dots a' ).length;
 
@@ -62,7 +62,7 @@ jQuery(function($) {
 
     function layers_change_onboarding_slide( $i ){
         // Update anchor classes
-        $( '.onboard-nav-dots a').eq( $i ).addClass( 'dot-active' ).siblings().removeClass( 'dot-active' );
+        $( '#layers-onboard-anchors a').eq( $i ).addClass( 'dot-active' ).siblings().removeClass( 'dot-active' );
 
         // Update slider classes
         $( '.layers-onboard-slide' ).eq( $i ).addClass( 'layers-onboard-slide-current' ).removeClass( 'layers-onboard-slide-inactive' ).siblings().removeClass( 'layers-onboard-slide-current' ).addClass( 'layers-onboard-slide-inactive' );

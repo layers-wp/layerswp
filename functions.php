@@ -396,7 +396,9 @@ if( ! function_exists( 'layers_admin_scripts' ) ) {
 		wp_enqueue_script(
 			LAYERS_THEME_SLUG . '-admin-onboarding' ,
 			get_template_directory_uri() . '/core/assets/onboarding.js',
-			array( 'jquery' ),
+			array(
+					'jquery'
+				),
 			LAYERS_VERSION,
 			true
 		); // Onboarding JS
@@ -407,11 +409,13 @@ if( ! function_exists( 'layers_admin_scripts' ) ) {
 			array(
 				'jquery',
 				'jquery-ui-sortable',
-				'wp-color-picker'
+				'wp-color-picker',
 			),
 			LAYERS_VERSION,
 			true
 		); // Admin JS
+
+		wp_enqueue_media();
 
 	}
 }

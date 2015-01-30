@@ -152,7 +152,7 @@ $layers_migrator = new Layers_Widget_Migrator(); ?>
                             </p>
                         </div>
                         <div class="layers-logo-wrapper">
-                            <div class="layers-logo-upload">
+                            <div class="layers-logo-upload-controller">
                                 <?php
                                    echo $form_elements->input( array(
                                         'label' => __( 'Choose Logo' , LAYERS_THEME_SLUG ),

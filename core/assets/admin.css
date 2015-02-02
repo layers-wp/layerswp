@@ -801,6 +801,9 @@ input[type=text].layers-color-selector.wp-color-picker{
     outline: 0;
     transition: all 0.2s ease-in-out;
 }
+.layers-visuals-item .layers-icon-wrapper:focus{
+    box-shadow: none;
+}
 .layers-visuals-item .layers-icon-wrapper:hover{
     box-shadow: 0px 1px 0px rgba(255, 255, 255, 0.4) inset, 0px 1px 0px rgba(0, 0, 0, 0.08);
     background: #2EA2CC;

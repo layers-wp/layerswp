@@ -104,8 +104,8 @@ class Layers_Custom_Meta {
 
 		$is_builder_used = ( 'builder.php' == basename( get_page_template() ) ) ? true : false;
 
-		printf( '<div id="layers_toggle_builder">
-					<div  class="postbox layers-push-top %3$s">
+		printf( '<div id="layers_toggle_builder" class=" %3$s">
+					<div  class="postbox layers-push-top">
 						<div class="layers-section-title layers-no-push-bottom layers-content-large">
 							<div class="layers-heading">
 								%1$s

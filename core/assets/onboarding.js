@@ -18,14 +18,59 @@
 
 jQuery(function($) {
 
+    function layers_onboarding_load_anchors(){
+
+        $anchor_count = $( '.layers-onboard-slide' ).length;
+        $anchor_template = '<a class="%class% %active-class%" href=""></a>'
+
+        for( $i = 0; $i < $anchor_count; $i++ ){
+            $a = $anchor_template.toString().replace( '%class%' , 'layers-dot' );
+            $a = $a.toString().replace( '%active-class%' ,( 0 == $i ? 'dot-active' : '') );
+
+            $( '.onboard-nav-dots' ).append( $a );
+
+        };
+    }
+
+    layers_onboarding_load_anchors();
+
     $(document).on( 'click' , '.onbard-next-step' , function(e){
         e.preventDefault();
 
         // "Hi Mom"
         $that = $(this);
 
-        // Go to the next slide
-        layers_next_onboarding_slide();
+        $form = $that.closest( '.layers-onboard-slide' );
+
+        $action = $form.find( 'input[name="action"]' ).val();
+
+        if( undefined !== $action ) {
+
+            $data = $form.find( 'input, textarea, select' ).serialize();
+
+            $.post(
+                layers_onboarding_params.ajaxurl,
+                {
+                    action: $action,
+                    data: $data,
+                    nonce: layers_onboarding_params.nonce
+
+                },
+                function(data){
+
+                    layers_next_onboarding_slide();
+                    //$results = $.parseJSON( data );
+
+                    if( true == $results.success ) {
+                        // Go to the next slide
+                        layers_next_onboarding_slide();
+                    }
+                }
+            ) // $.post
+        } else {
+            // Go to the next slide
+            layers_next_onboarding_slide();
+        }
 
     });
 

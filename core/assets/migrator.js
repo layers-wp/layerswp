@@ -77,7 +77,7 @@ jQuery(document).ready(function($){
         );
     });
 
-    $(document).on( 'click', '[id^="layers-generate-preset-layout-"]', function(e){
+    $(document).on( 'click', '.layers_page_layers-add-new-page [id^="layers-generate-preset-layout-"]', function(e){
         e.preventDefault();
 
         // "Hi Mom!"

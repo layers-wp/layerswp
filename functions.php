@@ -296,6 +296,13 @@ if( ! function_exists( 'layers_scripts' ) ) {
 		);
 
 		wp_enqueue_style(
+			LAYERS_THEME_SLUG . '-typography',
+			get_template_directory_uri() . '/assets/css/typography.css',
+			array(),
+			LAYERS_VERSION
+		); // Typography
+
+		wp_enqueue_style(
 			LAYERS_THEME_SLUG . '-invert' ,
 			get_template_directory_uri() . '/assets/css/invert.css',
 			array() ,
@@ -309,12 +316,6 @@ if( ! function_exists( 'layers_scripts' ) ) {
 			LAYERS_VERSION
 		); // Colors
 
-		wp_enqueue_style(
-			LAYERS_THEME_SLUG . '-typography',
-			get_template_directory_uri() . '/assets/css/typography.css',
-			array(),
-			LAYERS_VERSION
-		); // Typography
 		wp_enqueue_style(
 			LAYERS_THEME_SLUG . '-components',
 			get_template_directory_uri() . '/assets/css/components.css',
@@ -392,16 +393,6 @@ if( ! function_exists( 'layers_admin_scripts' ) ) {
         wp_localize_script( LAYERS_THEME_SLUG . '-admin-migrator', 'migratori8n', array(
         	'loading_message' => __( 'Be patient while we import the widget data and images.' , LAYERS_THEME_SLUG )
 		) );
-
-		wp_enqueue_script(
-			LAYERS_THEME_SLUG . '-admin-onboarding' ,
-			get_template_directory_uri() . '/core/assets/onboarding.js',
-			array(
-					'jquery'
-				),
-			LAYERS_VERSION,
-			true
-		); // Onboarding JS
 
 		wp_enqueue_script(
 			LAYERS_THEME_SLUG . '-admin' ,

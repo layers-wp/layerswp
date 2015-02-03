@@ -107,10 +107,10 @@ jQuery(function($) {
 			$container.find('.layers-image-remove').fadeIn();
 
 			// Set attachment to the larege/medium size if they're defined
-			if( undefined !== attachment.sizes.large ) {
-				$attachment = attachment.sizes.large;
-			} else if ( undefined !== attachment.sizes.medium )  {
+			if ( undefined !== attachment.sizes.medium )  {
 				$attachment = attachment.sizes.medium;
+			} else if( undefined !== attachment.sizes.large ) {
+				$attachment = attachment.sizes.large;
 			} else {
 				$attachment = attachment;
 			}

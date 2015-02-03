@@ -1150,7 +1150,7 @@ input[type=text].layers-color-selector.wp-color-picker{
     .layers-section-title.layers-tiny .layers-heading{font-size: 16px; line-height: 26px; font-weight: 700;}
     .layers-section-title.layers-tiny .layers-excerpt{margin-top: 0px !important; font-size: 14px; line-height: 24px; font-weight: normal;}
 
-        /*-------------------*/        
+        /*-------------------*/
         /*- ALIGNMENTS ------*/
         .layers-section-title.layers-text-center{text-align: center;}
         .layers-section-title.layers-text-center .layers-excerpt{margin-left: auto; margin-right: auto;}
@@ -2102,5 +2102,11 @@ ul#adminmenu a.wp-has-current-submenu:after, ul#adminmenu > li.current > a.curre
             transform: translateX(10px);
         }
 
-
-
+        /*------------------------------------------*/
+        /*- PRESET LAYOUTS IN ONBOARDING -----------*/
+        .layers-onboard-slide .layers-product:focus{
+            border: 3px solid;
+        }
+        .layers-onboard-slide .layers-product-actions{
+            display: none;
+        }

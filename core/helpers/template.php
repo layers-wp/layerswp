@@ -532,7 +532,7 @@ if( !function_exists( 'layers_get_theme_mod' ) ) {
 		$theme_mod = get_theme_mod( $name, $default );
 
 		// If color control always return a value
-		if ( 'layers-color' == $layers_customizer_defaults[ $name ][ 'type' ] && '' == $theme_mod && $default ){
+		if ( isset( $layers_customizer_defaults[ $name ][ 'type' ] ) && 'layers-color' == $layers_customizer_defaults[ $name ][ 'type' ] && '' == $theme_mod && $default ){
 			$theme_mod = false;
 		}
 

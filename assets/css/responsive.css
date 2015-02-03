@@ -361,6 +361,18 @@ html{}
 		display: block;
 	}
 
+/*-------------------------------*/
+/*- COMPONENTS ------------------*/
+/*-------------------------------*/
+
+    /*---------------------------*/
+    /*- MARKETING BLOCK ---------*/
+	.media.image-right .media-image,
+	.media.image-left .media-image{
+        float: none;
+        max-width: none;
+        margin: 0 0 20px;
+    }
 
 /*-------------------------------*/
 /*- FOOTERS ---------------------*/

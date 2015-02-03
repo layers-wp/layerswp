@@ -296,6 +296,13 @@ if( ! function_exists( 'layers_scripts' ) ) {
 		);
 
 		wp_enqueue_style(
+			LAYERS_THEME_SLUG . '-typography',
+			get_template_directory_uri() . '/assets/css/typography.css',
+			array(),
+			LAYERS_VERSION
+		); // Typography
+
+		wp_enqueue_style(
 			LAYERS_THEME_SLUG . '-invert' ,
 			get_template_directory_uri() . '/assets/css/invert.css',
 			array() ,
@@ -308,13 +315,6 @@ if( ! function_exists( 'layers_scripts' ) ) {
 			array(),
 			LAYERS_VERSION
 		); // Colors
-
-		wp_enqueue_style(
-			LAYERS_THEME_SLUG . '-typography',
-			get_template_directory_uri() . '/assets/css/typography.css',
-			array(),
-			LAYERS_VERSION
-		); // Typography
 
 		wp_enqueue_style(
 			LAYERS_THEME_SLUG . '-components',
@@ -395,24 +395,18 @@ if( ! function_exists( 'layers_admin_scripts' ) ) {
 		) );
 
 		wp_enqueue_script(
-			LAYERS_THEME_SLUG . '-admin-onboarding' ,
-			get_template_directory_uri() . '/core/assets/onboarding.js',
-			array( 'jquery' ),
-			LAYERS_VERSION,
-			true
-		); // Onboarding JS
-
-		wp_enqueue_script(
 			LAYERS_THEME_SLUG . '-admin' ,
 			get_template_directory_uri() . '/core/assets/admin.js',
 			array(
 				'jquery',
 				'jquery-ui-sortable',
-				'wp-color-picker'
+				'wp-color-picker',
 			),
 			LAYERS_VERSION,
 			true
 		); // Admin JS
+
+		wp_enqueue_media();
 
 	}
 }

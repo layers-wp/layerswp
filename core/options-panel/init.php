@@ -28,6 +28,9 @@ class Layers_Options_Panel {
 		// Setup some folder variables
 		$this->options_panel_dir = LAYERS_TEMPLATE_DIR . '/core/options-panel/';
 
+		// Enqueue Styles
+		$this->admin_enqueue_scripts();
+
 		// Setup the partial var
 		$page =  str_replace( LAYERS_THEME_SLUG . '-' , '', $_REQUEST[ 'page' ] );
 
@@ -56,9 +59,14 @@ class Layers_Options_Panel {
 
 		if( NULL == $partial ) return;
 
+		$this->load_partial( $partial );
+
+	}
+
+	private function load_partial( $partial = NULL ) {
+
 		// Include Partials, we're using require so that inside the partial we can use $this to access the header and footer
 		require $this->options_panel_dir . 'partials/' . $partial . '.php';
-
 	}
 
 	/**
@@ -71,6 +79,33 @@ class Layers_Options_Panel {
 			</p>
 		</footer>
 	<?php }
+
+	/**
+	*  Enqueue Widget Scripts
+	*/
+
+	public function admin_enqueue_scripts(){
+
+		wp_enqueue_script(
+			LAYERS_THEME_SLUG . '-admin-onboarding' ,
+			get_template_directory_uri() . '/core/assets/onboarding.js',
+			array(
+					'jquery'
+				),
+			LAYERS_VERSION,
+			true
+		); // Onboarding JS
+
+		// Localize Scripts
+		wp_localize_script(
+			LAYERS_THEME_SLUG . '-admin-onboarding' ,
+			"layers_onboarding_params",
+			array(
+				'ajaxurl' => admin_url( "admin-ajax.php" ) ,
+				'nonce' => wp_create_nonce( 'layers-onboarding-actions' )
+			)
+		);
+	}
 }
 
 /**
@@ -108,7 +143,7 @@ function layers_options_panel_menu(){
 		__( 'Add New Page' , LAYERS_THEME_SLUG ),
 		__( 'Add New Page' , LAYERS_THEME_SLUG ),
 		'edit_theme_options',
-		LAYERS_THEME_SLUG . '-preset-layouts',
+		LAYERS_THEME_SLUG . '-add-new-page',
 		'layers_options_panel_ui'
 	);
 
@@ -158,3 +193,13 @@ function layers_options_panel_ui(){
 	$layers_options_panel = new Layers_Options_Panel();
 	$layers_options_panel->init();
 }
+
+function layers_load_options_panel_ajax(){
+	// Include ajax functions
+	require_once LAYERS_TEMPLATE_DIR . '/core/options-panel/ajax.php';
+
+    $onboarding_ajax = new Layers_Onboarding_Ajax();
+    $onboarding_ajax->init();
+}
+
+add_action( 'init' , 'layers_load_options_panel_ajax' );

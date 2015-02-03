@@ -12,13 +12,9 @@ $layers_migrator = new Layers_Widget_Migrator(); ?>
     <div class="layers-onboard-wrapper">
 
         <div class="layers-onboard-controllers">
-            <div class="onboard-nav-dots layers-pull-left">
-                <a class="layers-dot dot-active" href=""></a>
-                <a class="layers-dot" href=""></a>
-                <a class="layers-dot" href=""></a>
-                <a class="layers-dot" href=""></a>
+            <div class="onboard-nav-dots layers-pull-left" id="layers-onboard-anchors">
             </div>
-            <a class="layers-button btn-link layers-pull-right" href="">Skip</a>
+            <a class="layers-button btn-link layers-pull-right" href="" id="layers-onboard-skip">Skip</a>
 
         </div>
 
@@ -31,19 +27,19 @@ $layers_migrator = new Layers_Widget_Migrator(); ?>
                         <!-- Your content goes here -->
                         <div class="layers-section-title layers-no-push-bottom">
                             <h3 class="layers-heading">
-                                Welcome to Layers!
+                                <?php _e( 'Welcome to Layers!' , LAYERS_THEME_SLUG ); ?>
                             </h3>
                             <p class="layers-excerpt">
 
-                                Layers is a revolutionary WordPress theme that enables you to build any website you want.
+                                <?php _e( 'Layers is a revolutionary WordPress theme that enables you to build any website you want.
                                 This is a step by step setup process to help you get going with
-                                minimum fuss. Enjoy the ride!
+                                minimum fuss. Enjoy the ride!' , LAYERS_THEME_SLUG ); ?>
 
                             </p>
                         </div>
                     </div>
                     <div class="layers-button-well">
-                        <a class="layers-button btn-primary layers-pull-right" href="">Let's get Started &rarr;</a>
+                        <a class="layers-button btn-primary layers-pull-right onbard-next-step" href=""><?php _e( 'Let\'s get Started &rarr;' , LAYERS_THEME_SLUG ); ?></a>
                     </div>
                 </div>
             </div>
@@ -55,19 +51,36 @@ $layers_migrator = new Layers_Widget_Migrator(); ?>
                         <!-- Your content goes here -->
                         <div class="layers-section-title">
                             <h3 class="layers-heading">
-                                What is the name of your website?
+                                <?php _e( 'What is the name of your website?' , LAYERS_THEME_SLUG ); ?>
                             </h3>
                             <p class="layers-excerpt">
-                                Probably the easiest part of creating any website is giving it a name. No code skills required here!
+                                <?php _e( 'Probably the easiest part of creating any website is giving it a name. No code skills required here!' , LAYERS_THEME_SLUG ); ?>
                             </p>
                         </div>
                         <p class="layers-form-item">
-                            <label>Site Name</label>
-                            <input type="text" class="layers-text" placeholder="Betties Bakery" />
+                            <label><?php _e( 'Site Name' , LAYERS_THEME_SLUG ); ?></label>
+                            <?php
+                               echo $form_elements->input( array(
+                                    'type' => 'text',
+                                    'name' => 'blogname',
+                                    'id' => 'blogname',
+                                    'placeholder' => get_bloginfo( 'name' ),
+                                    'value' => get_bloginfo( 'name' ),
+                                    'class' => 'layers-text'
+                               ) );
+                            ?>
                         </p>
+                        <?php echo $form_elements->input( array(
+                            'type' => 'hidden',
+                            'name' => 'action',
+                            'id' => 'action',
+                            'value' => 'layers_onboarding_update_options'
+                        ) ); ?>
                     </div>
                     <div class="layers-button-well">
-                        <a class="layers-button btn-primary layers-pull-right" href="">Next Step &rarr;</a>
+                        <a class="layers-button btn-primary layers-pull-right onbard-next-step" href="">
+                            <?php _e( 'Next Step &rarr;' , LAYERS_THEME_SLUG ); ?>
+                        </a>
                     </div>
                 </div>
                 <div class="layers-column layers-span-4 no-gutter">
@@ -75,9 +88,11 @@ $layers_migrator = new Layers_Widget_Migrator(); ?>
                         <!-- Your helpful tips go here -->
                         <ul class="layers-help-list">
                             <li>
-                                For tips on how best to name your website, we suggest visiting <a href="http://help.layerswp.com/" rel="nofollow">this post.</a>
+                                <?php _e( 'For tips on how best to name your website, we suggest visiting <a href="http://help.layerswp.com/" rel="nofollow">this post.</a>' , LAYERS_THEME_SLUG ); ?>
                             </li>
-                            <li class="pro-tip">For the Pros: Layers will automatically assign this site name to Settings &rarr; General.</li>
+                            <li class="pro-tip">
+                                <?php _e( 'For the Pros: Layers will automatically assign this site name to Settings &rarr; General.' , LAYERS_THEME_SLUG ); ?>
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -90,30 +105,45 @@ $layers_migrator = new Layers_Widget_Migrator(); ?>
                         <!-- Your content goes here -->
                         <div class="layers-section-title">
                             <h3 class="layers-heading">
-                                How would you best describe your site?
+                                <?php _e( 'How would you best describe your site?' , LAYERS_THEME_SLUG ); ?>
                             </h3>
                             <p class="layers-excerpt">
-                                A tagline describes who and what you are in just a few simple words.
-                                For example Layers is a 'WordPress Site Builder' - simple, easy, quick to read. Now you try:
+                                <?php _e( 'A tagline describes who and what you are in just a few simple words.
+                                For example Layers is a "WordPress Site Builder" - simple, easy, quick to read. Now you try:' , LAYERS_THEME_SLUG ); ?>
                             </p>
                         </div>
                         <p class="layers-form-item">
-                            <label>Site Tagline</label>
-                            <input type="text" class="layers-text" placeholder="Makers of delicious cup cakes" />
+                            <label><?php _e( 'Site Tagline' , LAYERS_THEME_SLUG ); ?></label>
+                            <?php
+                               echo $form_elements->input( array(
+                                    'type' => 'text',
+                                    'name' => 'blogdescription',
+                                    'id' => 'blogdescription',
+                                    'placeholder' => get_bloginfo( 'description' ),
+                                    'value' => get_bloginfo( 'description' ),
+                                    'class' => 'layers-text'
+                               ) );
+                            ?>
                         </p>
+                        <?php echo $form_elements->input( array(
+                            'type' => 'hidden',
+                            'name' => 'action',
+                            'id' => 'action',
+                            'value' => 'layers_onboarding_update_options'
+                        ) ); ?>
                     </div>
                     <div class="layers-button-well">
-                        <a class="layers-button btn-primary layers-pull-right" href="">Next Step &rarr;</a>
+                        <a class="layers-button btn-primary layers-pull-right onbard-next-step" href=""><?php _e( 'Next Step &rarr;' , LAYERS_THEME_SLUG ); ?></a>
                     </div>
                 </div>
                 <div class="layers-column layers-span-4 no-gutter">
                     <div class="layers-content">
                         <!-- Your helpful tips go here -->
                         <ul class="layers-help-list">
-                            <li>Keep it simple</li>
-                            <li>Avoid buzz words</li>
-                            <li>Make sure it describes what you offer</li>
-                            <li class="pro-tip">For the Pros: Layers will automatically assign the tagline to Settings &rarr; General.</li>
+                            <li><?php _e( 'Keep it simple' , LAYERS_THEME_SLUG ); ?></li>
+                            <li><?php _e( 'Avoid buzz words' , LAYERS_THEME_SLUG ); ?></li>
+                            <li><?php _e( 'Make sure it describes what you offer' , LAYERS_THEME_SLUG ); ?></li>
+                            <li class="pro-tip"><?php _e( 'For the Pros: Layers will automatically assign the tagline to Settings &rarr; General.' , LAYERS_THEME_SLUG ); ?></li>
                         </ul>
                     </div>
                 </div>
@@ -126,37 +156,75 @@ $layers_migrator = new Layers_Widget_Migrator(); ?>
                         <!-- Your content goes here -->
                         <div class="layers-section-title">
                             <h3 class="layers-heading">
-                                Great! Now let's add a logo
+                                <?php _e( 'Great! Now let\'s add a logo' , LAYERS_THEME_SLUG ); ?>
                             </h3>
                             <p class="layers-excerpt">
-                                 A website logo is a useful contributor to the general look and feel of your site.
-                                 Luckily with Layers, you can add one easily.
+                                 <?php _e( 'A website logo is a useful contributor to the general look and feel of your site.
+                                 Luckily with Layers, you can add one easily.' , LAYERS_THEME_SLUG ); ?>
                             </p>
                         </div>
+                        <?php $site_logo = get_option( 'site_logo' ); ?>
                         <div class="layers-logo-wrapper">
-                            <div class="layers-logo-upload">
-                                <span style="display: none;">No logo set</span>
-                                <img src="http://obox.beta/wp-content/uploads/2015/01/logo-copy.png" class="site-logo-thumbnail">
-                            </div>
-                            <div class="layers-button-well">
-                                <button type="button" class="layers-button btn-cancel layers-span-6">Remove logo</button>
-                                <button type="button" class="layers-button layers-span-6 no-gutter">Change logo</button>
-                                <button style="display: none;" type="button" class="button new">Add logo</button>
+                            <div class="layers-logo-upload-controller">
+                                <?php
+                                   echo $form_elements->input( array(
+                                        'label' => __( 'Choose Logo' , LAYERS_THEME_SLUG ),
+                                        'type' => 'image',
+                                        'name' => 'site_logo',
+                                        'id' => 'site_logo',
+                                        'value' => ( '' != $site_logo ? $site_logo[ 'id' ] : 0 )
+                                   ) );
+                                ?>
                             </div>
                         </div>
+                        <?php echo $form_elements->input( array(
+                            'type' => 'hidden',
+                            'name' => 'action',
+                            'id' => 'action',
+                            'value' => 'layers_onboarding_update_options'
+                        ) ); ?>
                     </div>
                     <div class="layers-button-well">
-                        <a class="layers-button btn-primary layers-pull-right" href="">Next Step &rarr;</a>
+                        <a class="layers-button btn-primary layers-pull-right onbard-next-step" href=""><?php _e( 'Next Step &rarr;' , LAYERS_THEME_SLUG ); ?></a>
                     </div>
                 </div>
                 <div class="layers-column layers-span-4 no-gutter">
                     <div class="layers-content">
                         <!-- Your helpful tips go here -->
                         <ul class="layers-help-list">
-                            <li>Any size is fine, Layers will resize it automatically to fit your site</li>
-                            <li>PNGs with a transparent background work best but GIFs or JPGs are fine too</li>
-                            <li>Try keep your logo file size below 500kb</li>
+                            <li><?php _e( 'Any size is fine, Layers will resize it automatically to fit your site' , LAYERS_THEME_SLUG ); ?></li>
+                            <li><?php _e( 'PNGs with a transparent background work best but GIFs or JPGs are fine too' , LAYERS_THEME_SLUG ); ?></li>
+                            <li><?php _e( 'Try keep your logo file size below 500kb' , LAYERS_THEME_SLUG ); ?></li>
                         </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Select a Layout -->
+            <div class="layers-onboard-slide layers-animate layers-onboard-slide-inactive">
+                <div class="layers-column layers-span-12 postbox">
+                    <div class="layers-content-large">
+                        <!-- Your content goes here -->
+                        <div class="layers-section-title">
+                            <h3 class="layers-heading">
+                                <?php _e( 'Last Step, Select a Layout' , LAYERS_THEME_SLUG ); ?>
+                            </h3>
+                            <p class="layers-excerpt">
+                                 <?php _e( '' , LAYERS_THEME_SLUG ); ?>
+                            </p>
+                        </div>
+
+                        <?php $this->load_partial( 'preset-layouts' ); ?>
+
+                        <?php echo $form_elements->input( array(
+                            'type' => 'hidden',
+                            'name' => 'action',
+                            'id' => 'action',
+                            'value' => 'layers_select_preset'
+                        ) ); ?>
+                    </div>
+                    <div class="layers-button-well">
+                        <a class="layers-button btn-primary layers-pull-right onbard-next-step" href=""><?php _e( 'Proceed to Customizer' , LAYERS_THEME_SLUG ); ?></a>
                     </div>
                 </div>
             </div>

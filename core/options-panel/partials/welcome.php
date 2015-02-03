@@ -125,7 +125,7 @@ $find_builder_page = layers_get_builder_pages(); ?>
 						<?php _e( 'Knowing where to begin with a site builder is never easy.
 						Choosing a preset template below will pre-populate your page with some Layers widgets to help get started.', LAYERS_THEME_SLUG ); ?>
 					</p>
-					<a href="<?php echo admin_url( 'admin.php?page=layers-preset-layouts' ); ?>" class="layers-button btn-primary btn-large"><?php _e( 'Select a Layout &rarr;', LAYERS_THEME_SLUG ); ?></a>
+					<a href="<?php echo admin_url( 'admin.php?page=layers-add-new-page' ); ?>" class="layers-button btn-primary btn-large"><?php _e( 'Select a Layout &rarr;', LAYERS_THEME_SLUG ); ?></a>
 				</div>
 			</div>
 

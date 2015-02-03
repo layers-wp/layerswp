@@ -34,9 +34,6 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
     .invert a:hover{
         color: #fff;
     }
-    .invert .heading{
-        color: #fff;
-    }
 
     .invert input,
     .invert textarea,
@@ -85,7 +82,7 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
         }
         .invert .excerpt{
             color: #fff;
-            opacity: 0.8;
+            opacity: 0.9;
         }
 
         /*-----------------------*/

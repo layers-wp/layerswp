@@ -26,7 +26,6 @@ if( !class_exists( 'Layers_Widget_Ajax' ) ) {
 		*/
 
 		public function __construct() {
-
 			add_action( 'wp_ajax_layers_slider_widget_actions', array( $this, 'slider_widget_actions' ) );
 
 			add_action( 'wp_ajax_layers_content_widget_actions', array( $this, 'content_widget_actions' ) );

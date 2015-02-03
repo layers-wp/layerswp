@@ -413,16 +413,15 @@ if( !function_exists( 'layers_get_header_class' ) ) {
  */
 if( !function_exists( 'layers_apply_customizer_styles' ) ) {
 	function layers_apply_customizer_styles() {
-		
+
 		// Header
 		if( layers_get_theme_mod( 'header-layout-background-color' ) ){
-			layers_inline_styles( 'nothing', 'color', array( 'color' => '#333' ) ); // Temp Fix - make sure inline-styles.css is preregistered
 			$bg_opacity = ( layers_get_theme_mod( 'header-layout-overlay') ) ? .5 : 1 ;
-			wp_add_inline_style( LAYERS_THEME_SLUG . '-inline-styles', '.header-site, .header-site.header-sticky { background-color: rgba(' . implode( ', ' , hex2rgb( layers_get_theme_mod( 'header-layout-background-color' ) ) ) . ', ' . $bg_opacity . '); }' );
+			layers_inline_styles( '.header-site, .header-site.header-sticky', 'css', array( 'css' => 'background-color: rgba(' . implode( ', ' , hex2rgb( layers_get_theme_mod( 'header-layout-background-color' ) ) ) . ', ' . $bg_opacity . ');' ) );
 		}
-		
+
 		// Footer
-		layers_inline_styles( 'footer', 'background', array(
+		layers_inline_styles( 'footer, footer.well', 'background', array(
 			'background' => array(
 				'color' => layers_get_theme_mod( 'footer-customization-background-color' ),
 				'repeat' => layers_get_theme_mod( 'footer-customization-background-repeat' ),
@@ -432,11 +431,11 @@ if( !function_exists( 'layers_apply_customizer_styles' ) ) {
 				'fixed' => false, // hardcode (not an option)
 			),
 		) );
-		layers_inline_styles( 'footer', 'color', array( 'color' => layers_get_theme_mod( 'footer-customization-font-color-main' ) ) );
-		layers_inline_styles( 'footer a', 'color', array( 'color' => layers_get_theme_mod( 'footer-customization-font-color-link' ) ) );
-		
+		layers_inline_styles( 'footer, footer.well', 'color', array( 'color' => layers_get_theme_mod( 'footer-customization-font-color-main' ) ) );
+		layers_inline_styles( 'footer a, footer.well a', 'color', array( 'color' => layers_get_theme_mod( 'footer-customization-font-color-link' ) ) );
+
 	}
-	add_action( 'wp_enqueue_scripts', 'layers_apply_customizer_styles', 100 );
+	add_action( 'wp_enqueue_scripts', 'layers_apply_customizer_styles' );
 } // layers_apply_customizer_styles
 
 /**
@@ -525,18 +524,18 @@ if( !function_exists( 'layers_get_theme_mod' ) ) {
 
 		// Add the theme prefix to our layers option
 		$name = LAYERS_THEME_SLUG . '-' . $name;
-		
+
 		// Set theme option default
 		$default = ( isset( $layers_customizer_defaults[ $name ][ 'value' ] ) ? $layers_customizer_defaults[ $name ][ 'value' ] : FALSE );
-		
+
 		// Get theme option
 		$theme_mod = get_theme_mod( $name, $default );
-		
+
 		// If color control always return a value
-		if ( 'layers-color' == $layers_customizer_defaults[ $name ][ 'type' ] && '' == $theme_mod && $default ){
-			$theme_mod = $default;
+		if ( isset( $layers_customizer_defaults[ $name ][ 'type' ] ) && 'layers-color' == $layers_customizer_defaults[ $name ][ 'type' ] && '' == $theme_mod && $default ){
+			$theme_mod = false;
 		}
-		
+
 		// Return theme option
 		return $theme_mod;
 	}
@@ -723,36 +722,56 @@ if( !function_exists( 'layers_inline_styles' ) ) {
 
 			break;
 
+			default :
+				$css .= $args['css'];
+			break;
+
 		}
 
-		$layers_inline_css = '';
+		$inline_css = '';
 
 		// If there is a container ID specified, append it to the beginning of the declaration
 		if( NULL != $container_id ) {
-			$layers_inline_css = ' #' . $container_id . ' ' . $layers_inline_css;
+			$inline_css = ' ' . $container_id . ' ' . $inline_css;
 		}
 
 		if( isset( $args['selectors'] ) ) {
 
 			if ( is_string( $args['selectors'] ) && '' != $args['selectors'] ) {
-				$layers_inline_css .= $args['selectors'];
+				$inline_css .= $args['selectors'];
 			} else if( !empty( $args['selectors'] ) ){
-				$layers_inline_css .= implode( ', ' .$layers_inline_css . ' ',  $args['selectors'] );
+				$inline_css .= implode( ', ' .$inline_css . ' ',  $args['selectors'] );
 			}
 		}
 
-		if( '' == $layers_inline_css) {
-			$layers_inline_css .= $css;
+		if( '' == $inline_css) {
+			$inline_css .= $css;
 		} else {
-			$layers_inline_css .= '{' . $css . '} ';
+			$inline_css .= '{' . $css . '} ';
 		}
 
-		wp_enqueue_style( LAYERS_THEME_SLUG . '-inline-styles', get_template_directory_uri() . '/assets/css/inline.css' );
-		wp_add_inline_style( LAYERS_THEME_SLUG . '-inline-styles', $layers_inline_css );
+		$layers_inline_css .= $inline_css;
 
 		return apply_filters( 'layers_inline_css', $layers_inline_css );
 	}
 } // layers_inline_styles
+
+if( !function_exists( 'layers_apply_inline_styles' ) ) {
+	function layers_apply_inline_styles(){
+		global $layers_inline_css;
+
+		wp_enqueue_style(
+				LAYERS_THEME_SLUG . '-inline-styles',
+				get_template_directory_uri() . '/assets/css/inline.css'
+			);
+
+		wp_add_inline_style(
+				LAYERS_THEME_SLUG . '-inline-styles',
+				$layers_inline_css
+			);
+	}
+	add_action( 'get_footer' , 'layers_apply_inline_styles', 100 );
+} // layers_apply_inline_styles
 
 /**
 * Feature Image / Video Generator

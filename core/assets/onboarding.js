@@ -44,7 +44,30 @@ jQuery(function($) {
 
         $action = $form.find( 'input[name="action"]' ).val();
 
-        if( undefined !== $action ) {
+        if( 'layers_select_preset' == $action ) {
+
+            $id = $( 'input[name="layes-preset-layout"]:checked' ).val();
+            $title = $('#layers-preset-layout-' + $id + '-title' ).val();
+            $widget_data = $('#layers-preset-layout-' + $id + '-widget_data' ).val();
+
+            var $page_data = {
+                action: 'layers_create_builder_page_from_preset',
+                widget_data: $.parseJSON( $widget_data ),
+                nonce: layers_widget_params.nonce
+            };
+
+            jQuery.post(
+                layers_onboarding_params.ajaxurl,
+                $page_data,
+                function(data){
+
+                    $results = $.parseJSON( data );
+
+                    window.location.assign( $results.customizer_location );
+                }
+            );
+
+        } else if( undefined !== $action ) {
 
             $data = $form.find( 'input, textarea, select' ).serialize();
 
@@ -58,8 +81,7 @@ jQuery(function($) {
                 },
                 function(data){
 
-                    layers_next_onboarding_slide();
-                    //$results = $.parseJSON( data );
+                    $results = $.parseJSON( data );
 
                     if( true == $results.success ) {
                         // Go to the next slide

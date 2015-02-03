@@ -220,7 +220,7 @@ $layers_migrator = new Layers_Widget_Migrator(); ?>
                             'type' => 'hidden',
                             'name' => 'action',
                             'id' => 'action',
-                            'value' => 'layers_onboarding_choose_preset'
+                            'value' => 'layers_select_preset'
                         ) ); ?>
                     </div>
                     <div class="layers-button-well">

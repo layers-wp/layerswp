@@ -41,6 +41,9 @@ if( !class_exists( 'Layers_Onboarding_Ajax' ) ) {
                 $data
             );
 
+            $migrator = new Layers_Widget_Migrator();
+            $migrator->create_builder_page_from_preset();
+
             echo '<pre>' . print_r( $data, true ) . '</pre>';
             die();
         }

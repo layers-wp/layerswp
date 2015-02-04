@@ -407,7 +407,6 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 
 			// Extract Instance if it's there so that we can use the values in our inputs
 
-
 			// $instance Defaults
 			$instance_defaults = $this->slide_defaults;
 
@@ -456,7 +455,7 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 
 						<div class="layers-row">
 							<p class="layers-form-item">
-								<label for="<?php echo $this->get_custom_field_id( $widget_details, 'slides',  $column_guid, 'title' ); ?>"><?php _e( 'Title' , LAYERS_THEME_SLUG ); ?></label>
+								<label for="<?php echo $this->get_custom_field_id( $widget_details, 'slides',  $slide_guid, 'title' ); ?>"><?php _e( 'Title' , LAYERS_THEME_SLUG ); ?></label>
 								<?php echo $this->form_elements()->input(
 									array(
 										'type' => 'text',
@@ -470,7 +469,7 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 								); ?>
 							</p>
 							<p class="layers-form-item">
-								<label for="<?php echo $this->get_custom_field_id( $widget_details, 'slides',  $column_guid, 'excerpt' ); ?>"><?php _e( 'Excerpt' , LAYERS_THEME_SLUG ); ?></label>
+								<label for="<?php echo $this->get_custom_field_id( $widget_details, 'slides',  $slide_guid, 'excerpt' ); ?>"><?php _e( 'Excerpt' , LAYERS_THEME_SLUG ); ?></label>
 								<?php echo $this->form_elements()->input(
 									array(
 										'type' => 'textarea',

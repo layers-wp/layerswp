@@ -145,22 +145,6 @@ class Layers_Form_Elements {
 
 		// Switch our input type
 		switch( $input->type ) {
-			/**
-			* Test
-			*/
-			case 'test' : ?>
-				
-				<!-- Standard Test Field -->
-				<?php // s( $input->value); ?>
-				
-				<input type="text" <?php echo implode ( ' ' , $input_props ); ?> value="<?php echo $input->value; ?>" />
-				
-				<?php s( $input->value ); ?>
-				
-			<?php break;
-			/**
-			* Text Inputs
-			*/
 			case 'text' : ?>
 				<input type="text" <?php echo implode ( ' ' , $input_props ); ?> value="<?php echo $input->value; ?>" />
 			<?php break;
@@ -485,6 +469,31 @@ class Layers_Form_Elements {
 				<button  class="layers-button btn-medium" <?php echo implode ( ' ' , $input_props ); ?> data-button_text="<?php echo esc_attr( $input->label ); ?>">
 					<?php echo esc_attr( $input->label ); ?>
 				</button>
+			<?php break;
+			/**
+			* Top / Right / Bottom / Left Fields
+			*/
+			case 'trbl-fields' : ?>
+				<?php $fields = array(
+					'top' => __( 'T' , LAYERS_THEME_SLUG ),
+					'right' => __( 'R' , LAYERS_THEME_SLUG ),
+					'bottom' => __( 'B' , LAYERS_THEME_SLUG ),
+					'left' => __( 'L' , LAYERS_THEME_SLUG ),
+				); ?>
+				<?php foreach ( $fields as $key => $label ) { ?>
+				<label>
+					<?php echo $label; ?>
+					<?php echo $this->input(
+						array(
+							'type' => 'text',
+							'name' => $input->name . '[' . $key . ']',
+							'id' => $input->id . '-' . $key,
+							'value' => ( isset( $input->value->$key ) ) ? $input->value->$key : NULL,
+							'class' => 'layers-input-tiny'
+						)
+					); ?>
+				</label>
+				<?php } // foreach fields ?>
 			<?php break;
 			/**
 			* Default to hidden field

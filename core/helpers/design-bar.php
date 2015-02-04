@@ -61,10 +61,8 @@ class Layers_Design_Controller {
                 <span class="icon-settings layers-small"></span>
             </h6>
             <ul class="layers-visuals-wrapper layers-clearfix">
-
                 <?php // Render Design Controls
                 $this->render_controls(); ?>
-
                 <?php // Show trash icon (for use when in an accordian)
                 $this->render_trash_control(); ?>
             </ul>
@@ -675,16 +673,14 @@ class Layers_Design_Controller {
 
         // Add a Label
         $args[ 'label' ] = __( 'Advanced' , LAYERS_THEME_SLUG );
-        
+
         $spacing_options = array(
             '' => 'Standard',
             'small' => 'Small',
             'medium' => 'Medium',
             'large' => 'Large',
         );
-        
-        s( $this->values );
-        
+
         // Add elements
         $args[ 'elements' ] = array(
                             'customclass' => array(
@@ -695,22 +691,6 @@ class Layers_Design_Controller {
                                 'value' => ( isset( $this->values['advanced']['customclass'] ) ) ? $this->values['advanced']['customclass'] : NULL,
                                 'placeholder' => 'example-class'
                             ),
-                            'testy1' => array(
-                                'type' => 'test',
-                                'label' => __( 'Me 1' , LAYERS_THEME_SLUG ),
-                                'name' => $this->widget['name'] . '[advanced][margin][me]' ,
-                                'id' =>  $this->widget['id'] . '-advanced-testy' ,
-                                'value' => ( isset( $this->values['advanced']['testy']['me'] ) ) ? $this->values['advanced']['testy']['me'] : NULL,
-                                'placeholder' => 'testy'
-                            ),
-                            'testy2' => array(
-                                'type' => 'test',
-                                'label' => __( 'You 2' , LAYERS_THEME_SLUG ),
-                                'name' => $this->widget['name'] . '[advanced][testy][you]' ,
-                                'id' =>  $this->widget['id'] . '-advanced-testy' ,
-                                'value' => ( isset( $this->values['advanced']['testy']['you'] ) ) ? $this->values['advanced']['testy']['you '] : NULL,
-                                'placeholder' => 'testy'
-                            ),
                             'customcss' => array(
                                 'type' => 'textarea',
                                 'label' => __( 'Custom CSS' , LAYERS_THEME_SLUG ),
@@ -719,72 +699,13 @@ class Layers_Design_Controller {
                                 'value' => ( isset( $this->values['advanced']['customcss'] ) ) ? $this->values['advanced']['customcss'] : NULL,
                                 'placeholder' => ".classname {\n\tbackground: #333;\n}"
                             ),
-                            
-                            'margin-top' => array(
-                                'type' => 'select',
-                                'label' =>  __( 'Margin Top' , LAYERS_THEME_SLUG ),
-                                'name' => $this->widget['name'] . '[advanced][margin-top]' ,
-                                'id' =>  $this->widget['id'] . '-advanced-margin-top' ,
-                                'value' => ( isset( $this->values['advanced']['margin-top'] ) ) ? $this->values['advanced']['margin-top'] : NULL,
-                                'options' => $spacing_options,
-                            ),
-                            'margin-right' => array(
-                                'type' => 'select',
-                                'label' =>  __( 'Margin Right' , LAYERS_THEME_SLUG ),
-                                'name' => $this->widget['name'] . '[advanced][margin-right]' ,
-                                'id' =>  $this->widget['id'] . '-advanced-margin-right' ,
-                                'value' => ( isset( $this->values['advanced']['margin-right'] ) ) ? $this->values['advanced']['margin-right'] : NULL,
-                                'options' => $spacing_options,
-                            ),
-                            'margin-bottom' => array(
-                                'type' => 'select',
-                                'label' =>  __( 'Margin Bottom' , LAYERS_THEME_SLUG ),
-                                'name' => $this->widget['name'] . '[advanced][margin-bottom]' ,
-                                'id' =>  $this->widget['id'] . '-advanced-margin-bottom' ,
-                                'value' => ( isset( $this->values['advanced']['margin-bottom'] ) ) ? $this->values['advanced']['margin-bottom'] : NULL,
-                                'options' => $spacing_options,
-                            ),
-                            'margin-left' => array(
-                                'type' => 'select',
-                                'label' =>  __( 'Margin Left' , LAYERS_THEME_SLUG ),
-                                'name' => $this->widget['name'] . '[advanced][margin-left]' ,
-                                'id' =>  $this->widget['id'] . '-advanced-margin-left' ,
-                                'value' => ( isset( $this->values['advanced']['margin-left'] ) ) ? $this->values['advanced']['margin-left'] : NULL,
-                                'options' => $spacing_options,
-                            ),
-                            
-                            'padding-top' => array(
-                                'type' => 'select',
-                                'label' =>  __( 'Padding Top' , LAYERS_THEME_SLUG ),
-                                'name' => $this->widget['name'] . '[advanced][padding-top]' ,
-                                'id' =>  $this->widget['id'] . '-advanced-padding-top' ,
-                                'value' => ( isset( $this->values['advanced']['padding-top'] ) ) ? $this->values['advanced']['padding-top'] : NULL,
-                                'options' => $spacing_options,
-                            ),
-                            'padding-right' => array(
-                                'type' => 'select',
-                                'label' =>  __( 'Padding Right' , LAYERS_THEME_SLUG ),
-                                'name' => $this->widget['name'] . '[advanced][padding-right]' ,
-                                'id' =>  $this->widget['id'] . '-advanced-padding-right' ,
-                                'value' => ( isset( $this->values['advanced']['padding-right'] ) ) ? $this->values['advanced']['padding-right'] : NULL,
-                                'options' => $spacing_options,
-                            ),
-                            'padding-bottom' => array(
-                                'type' => 'select',
-                                'label' =>  __( 'Padding Bottom' , LAYERS_THEME_SLUG ),
-                                'name' => $this->widget['name'] . '[advanced][padding-bottom]' ,
-                                'id' =>  $this->widget['id'] . '-advanced-padding-bottom' ,
-                                'value' => ( isset( $this->values['advanced']['padding-bottom'] ) ) ? $this->values['advanced']['padding-bottom'] : NULL,
-                                'options' => $spacing_options,
-                            ),
-                            'padding-left' => array(
-                                'type' => 'select',
-                                'label' =>  __( 'Padding Left' , LAYERS_THEME_SLUG ),
-                                'name' => $this->widget['name'] . '[advanced][padding-left]' ,
-                                'id' =>  $this->widget['id'] . '-advanced-padding-left' ,
-                                'value' => ( isset( $this->values['advanced']['padding-left'] ) ) ? $this->values['advanced']['padding-left'] : NULL,
-                                'options' => $spacing_options,
-                            ),
+                            'margin' => array(
+                                'type' => 'trbl-fields',
+                                'label' => __( 'Margin' , LAYERS_THEME_SLUG ),
+                                'name' => $this->widget['name'] . '[advanced][margin]' ,
+                                'id' =>  $this->widget['id'] . '-advanced-margin' ,
+                                'value' => ( isset( $this->values['advanced']['margin'] ) ) ? $this->values['advanced']['margin'] : NULL
+                            )
                         );
 
         $this->render_control( $key , $args );

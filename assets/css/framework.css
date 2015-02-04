@@ -1215,13 +1215,11 @@ object{
     }
 
     /*---------------------------*/
-    /*- MARKETING BLOCK ---------*/
+    /*- MEDIA BLOCK -------------*/
     .media{
         overflow: hidden;
-        margin-bottom: 20px;
         display: block;
     }
-
     .media-image{
         text-align: center;
         margin-right: auto;

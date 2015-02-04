@@ -78,6 +78,7 @@ $layers_migrator = new Layers_Widget_Migrator(); ?>
                         ) ); ?>
                     </div>
                     <div class="layers-button-well">
+                        <span class="layers-save-progress layers-hide layers-button btn-link" data-busy-message="<?php _e( 'Saving your Site Name' , LAYERS_THEME_SLUG ); ?>"></span>
                         <a class="layers-button btn-primary layers-pull-right onbard-next-step" href="">
                             <?php _e( 'Next Step &rarr;' , LAYERS_THEME_SLUG ); ?>
                         </a>
@@ -133,6 +134,7 @@ $layers_migrator = new Layers_Widget_Migrator(); ?>
                         ) ); ?>
                     </div>
                     <div class="layers-button-well">
+                        <span class="layers-save-progress layers-hide layers-button btn-link" data-busy-message="<?php _e( 'Saving your Tagline' , LAYERS_THEME_SLUG ); ?>"></span>
                         <a class="layers-button btn-primary layers-pull-right onbard-next-step" href=""><?php _e( 'Next Step &rarr;' , LAYERS_THEME_SLUG ); ?></a>
                     </div>
                 </div>
@@ -185,6 +187,7 @@ $layers_migrator = new Layers_Widget_Migrator(); ?>
                         ) ); ?>
                     </div>
                     <div class="layers-button-well">
+                        <span class="layers-save-progress layers-hide layers-button btn-link" data-busy-message="<?php _e( 'Updating your Logo' , LAYERS_THEME_SLUG ); ?>"></span>
                         <a class="layers-button btn-primary layers-pull-right onbard-next-step" href=""><?php _e( 'Next Step &rarr;' , LAYERS_THEME_SLUG ); ?></a>
                     </div>
                 </div>
@@ -224,6 +227,7 @@ $layers_migrator = new Layers_Widget_Migrator(); ?>
                         ) ); ?>
                     </div>
                     <div class="layers-button-well">
+                        <span class="layers-save-progress layers-hide layers-button btn-link" data-busy-message="<?php _e( 'Creating your Page' , LAYERS_THEME_SLUG ); ?>"></span>
                         <a class="layers-button btn-primary layers-pull-right onbard-next-step" href=""><?php _e( 'Proceed to Customizer' , LAYERS_THEME_SLUG ); ?></a>
                     </div>
                 </div>

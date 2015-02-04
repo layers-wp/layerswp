@@ -28,9 +28,6 @@ class Layers_Options_Panel {
 		// Setup some folder variables
 		$this->options_panel_dir = LAYERS_TEMPLATE_DIR . '/core/options-panel/';
 
-		// Enqueue Styles
-		$this->admin_enqueue_scripts();
-
 		// Setup the partial var
 		$page =  str_replace( LAYERS_THEME_SLUG . '-' , '', $_REQUEST[ 'page' ] );
 
@@ -79,33 +76,6 @@ class Layers_Options_Panel {
 			</p>
 		</footer>
 	<?php }
-
-	/**
-	*  Enqueue Widget Scripts
-	*/
-
-	public function admin_enqueue_scripts(){
-
-		wp_enqueue_script(
-			LAYERS_THEME_SLUG . '-admin-onboarding' ,
-			get_template_directory_uri() . '/core/assets/onboarding.js',
-			array(
-					'jquery'
-				),
-			LAYERS_VERSION,
-			true
-		); // Onboarding JS
-
-		// Localize Scripts
-		wp_localize_script(
-			LAYERS_THEME_SLUG . '-admin-onboarding' ,
-			"layers_onboarding_params",
-			array(
-				'ajaxurl' => admin_url( "admin-ajax.php" ) ,
-				'nonce' => wp_create_nonce( 'layers-onboarding-actions' )
-			)
-		);
-	}
 }
 
 /**

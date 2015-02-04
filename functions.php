@@ -372,7 +372,7 @@ if( ! function_exists( 'layers_admin_scripts' ) ) {
 			get_template_directory_uri() . '/core/assets/editor.min.css',
 			array(),
 			LAYERS_VERSION
-		); // Admin CSS
+		); // Inline Editor
 
 		wp_enqueue_script(
 			LAYERS_THEME_SLUG . '-admin-editor' ,
@@ -380,19 +380,51 @@ if( ! function_exists( 'layers_admin_scripts' ) ) {
 			array( 'jquery' ),
 			LAYERS_VERSION,
 			true
-		);
+		); // Inline Editor
 
-        // Migrator
-        wp_enqueue_script(
-            LAYERS_THEME_SLUG . '-admin-migrator' ,
-            get_template_directory_uri() . '/core/assets/migrator.js' ,
-            array(),
-            LAYERS_VERSION,
-            true
-        );
-        wp_localize_script( LAYERS_THEME_SLUG . '-admin-migrator', 'migratori8n', array(
-        	'loading_message' => __( 'Be patient while we import the widget data and images.' , LAYERS_THEME_SLUG )
-		) );
+		wp_enqueue_script(
+			LAYERS_THEME_SLUG . '-admin-migrator' ,
+			get_template_directory_uri() . '/core/assets/migrator.js' ,
+			array(),
+			LAYERS_VERSION,
+			true
+		);
+		wp_localize_script(
+			LAYERS_THEME_SLUG . '-admin-migrator',
+			'migratori8n',
+			array(
+				'loading_message' => __( 'Be patient while we import the widget data and images.' , LAYERS_THEME_SLUG )
+			)
+		);// Migrator
+
+        // Onboarding Process
+		wp_enqueue_script(
+			LAYERS_THEME_SLUG . '-admin-onboarding' ,
+			get_template_directory_uri() . '/core/assets/onboarding.js',
+			array(
+					'jquery'
+				),
+			LAYERS_VERSION,
+			true
+		); // Onboarding JS
+
+		wp_localize_script(
+			LAYERS_THEME_SLUG . '-admin-onboarding' ,
+			"layers_onboarding_params",
+			array(
+				'ajaxurl' => admin_url( "admin-ajax.php" ) ,
+				'nonce' => wp_create_nonce( 'layers-onboarding-actions' )
+			)
+		); // Onboarding ajax parameters
+
+        wp_localize_script(
+			LAYERS_THEME_SLUG . '-admin-onboarding' ,
+			'onboardingi8n',
+			array(
+				'step_saving_message' => __( 'Saving...' , LAYERS_THEME_SLUG ),
+				'step_done_message' => __( 'Done!' , LAYERS_THEME_SLUG )
+			)
+		); // Onboarding localization
 
 		wp_enqueue_script(
 			LAYERS_THEME_SLUG . '-admin' ,

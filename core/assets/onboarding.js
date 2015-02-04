@@ -42,6 +42,10 @@ jQuery(function($) {
 
         $form = $that.closest( '.layers-onboard-slide' );
 
+        $progress_indicator = $form.find( '.layers-save-progress' );
+        $progress_indicator_message = $progress_indicator.data( 'busy-message' )
+        $progress_indicator.text( $progress_indicator_message ).hide().removeClass( 'layers-hide' ).fadeIn(150);
+
         $action = $form.find( 'input[name="action"]' ).val();
 
         if( 'layers_select_preset' == $action ) {
@@ -63,7 +67,9 @@ jQuery(function($) {
 
                     $results = $.parseJSON( data );
 
-                    window.location.assign( $results.customizer_location );
+                    $form.find( '.layers-save-progress' ).text( onboardingi8n.step_done_message ).fadeOut(300);
+
+                    setTimeout( function(){ window.location.assign( $results.customizer_location ); }, 350 );
                 }
             );
 
@@ -82,10 +88,10 @@ jQuery(function($) {
                 function(data){
 
                     $results = $.parseJSON( data );
-
                     if( true == $results.success ) {
-                        // Go to the next slide
-                        layers_next_onboarding_slide();
+                        $form.find( '.layers-save-progress' ).text( onboardingi8n.step_done_message ).fadeOut(300);
+
+                        setTimeout( function(){ layers_next_onboarding_slide() }, 350 );
                     }
                 }
             ) // $.post

@@ -104,6 +104,16 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 			if( !empty( $widget['design']['fonts'][ 'color' ] ) ) layers_inline_styles( '#' . $widget_id, 'color', array( 'selectors' => array( '.section-title h3.heading' , '.section-title p.excerpt' ) , 'color' => $widget['design']['fonts'][ 'color' ] ) );
 			if( !empty( $widget['design']['advanced'][ 'customcss' ] ) ) layers_inline_styles( NULL, 'css', array( 'css' => $widget['design']['advanced'][ 'customcss' ]  ) ); ?>
 			
+			
+			<div style="text-align:right;">
+				<div>
+					<?php s( $this->check_and_return( $widget , 'design' , 'advanced', 'testone' ) ) ; ?>
+				</div>
+				<div>
+					<?php s( $this->check_and_return( $widget , 'design' , 'advanced', 'testtwo' ) ) ; ?>
+				</div>
+			</div>
+			
 			<section class="widget row content-vertical-massive <?php echo $this->check_and_return( $widget , 'design', 'advanced', 'customclass' ) ?> <?php echo $this->get_widget_spacing_class( $widget ); ?>" id="<?php echo $widget_id; ?>">
 				<?php if( '' != $this->check_and_return( $widget , 'title' ) ||'' != $this->check_and_return( $widget , 'excerpt' ) ) { ?>
 					<div class="container">

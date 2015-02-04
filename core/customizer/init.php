@@ -49,6 +49,7 @@ class Layers_Customizer {
 			require_once get_template_directory() . $controls_dir . 'seperator.php';
 			require_once get_template_directory() . $controls_dir . 'color.php';
 			require_once get_template_directory() . $controls_dir . 'checkbox.php';
+			require_once get_template_directory() . $controls_dir . 'css.php';
 
 			// If we are in a builder page, update the Widgets title
 			if(

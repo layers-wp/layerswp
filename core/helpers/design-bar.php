@@ -683,6 +683,8 @@ class Layers_Design_Controller {
             'large' => 'Large',
         );
         
+        s( $this->values );
+        
         // Add elements
         $args[ 'elements' ] = array(
                             'customclass' => array(
@@ -692,6 +694,22 @@ class Layers_Design_Controller {
                                 'id' =>  $this->widget['id'] . '-advanced-customclass' ,
                                 'value' => ( isset( $this->values['advanced']['customclass'] ) ) ? $this->values['advanced']['customclass'] : NULL,
                                 'placeholder' => 'example-class'
+                            ),
+                            'testy1' => array(
+                                'type' => 'test',
+                                'label' => __( 'Me 1' , LAYERS_THEME_SLUG ),
+                                'name' => $this->widget['name'] . '[advanced][margin][me]' ,
+                                'id' =>  $this->widget['id'] . '-advanced-testy' ,
+                                'value' => ( isset( $this->values['advanced']['testy']['me'] ) ) ? $this->values['advanced']['testy']['me'] : NULL,
+                                'placeholder' => 'testy'
+                            ),
+                            'testy2' => array(
+                                'type' => 'test',
+                                'label' => __( 'You 2' , LAYERS_THEME_SLUG ),
+                                'name' => $this->widget['name'] . '[advanced][testy][you]' ,
+                                'id' =>  $this->widget['id'] . '-advanced-testy' ,
+                                'value' => ( isset( $this->values['advanced']['testy']['you'] ) ) ? $this->values['advanced']['testy']['you '] : NULL,
+                                'placeholder' => 'testy'
                             ),
                             'customcss' => array(
                                 'type' => 'textarea',

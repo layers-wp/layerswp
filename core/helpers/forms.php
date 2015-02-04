@@ -131,7 +131,7 @@ class Layers_Form_Elements {
 		$input = (object) wp_parse_args( $args, $defaults );
 
 		// If the value of this element is in fact a collection of inputs, turn it into an object, it's nicer to work with
-		if( NULL != $input->value && is_array( $input->value ) ) $input->value = (object) esc_attr( $input->value );
+		if( NULL != $input->value && is_array( $input->value ) ) $input->value = (object) $input->value;
 
 		if( !is_object( $input->value ) ) $input->value = stripslashes( $input->value );
 
@@ -145,6 +145,19 @@ class Layers_Form_Elements {
 
 		// Switch our input type
 		switch( $input->type ) {
+			/**
+			* Test
+			*/
+			case 'test' : ?>
+				
+				<!-- Standard Test Field -->
+				<?php // s( $input->value); ?>
+				
+				<input type="text" <?php echo implode ( ' ' , $input_props ); ?> value="<?php echo $input->value; ?>" />
+				
+				<?php s( $input->value ); ?>
+				
+			<?php break;
 			/**
 			* Text Inputs
 			*/

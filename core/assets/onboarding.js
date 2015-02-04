@@ -89,9 +89,12 @@ jQuery(function($) {
 
                     $results = $.parseJSON( data );
                     if( true == $results.success ) {
-                        $form.find( '.layers-save-progress' ).text( onboardingi8n.step_done_message ).fadeOut(300);
+                        $form.find( '.layers-save-progress' ).text( onboardingi8n.step_done_message );
 
-                        setTimeout( function(){ layers_next_onboarding_slide() }, 350 );
+                        setTimeout( function(){
+                            $form.find( '.layers-save-progress' ).hide();
+                            layers_next_onboarding_slide()
+                        }, 350 );
                     }
                 }
             ) // $.post

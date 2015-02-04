@@ -3,9 +3,9 @@
 				<a href="#top"><?php _e( 'Back to top' , LAYERS_THEME_SLUG ); ?></a>
 			</div> <!-- back-to-top -->
 		</section>
-		
+
 		<?php do_action( 'layers_before_footer' ); ?>
-		
+
 		<footer id="footer" class="footer-site well">
 			<?php do_action( 'layers_before_footer_inner' ); ?>
 			<div class="<?php if( 'layout-fullwidth' != layers_get_theme_mod( 'footer-layout-width' ) ) echo 'container'; ?>  content-vertical-large clearfix">
@@ -13,8 +13,8 @@
 				$footer_sidebar_count = layers_get_theme_mod( 'footer-layout-widget-area-count' ); ?>
 
 				<?php if( 0 != $footer_sidebar_count ) { ?>
+					<?php do_action( 'layers_before_footer_sidebar' ); ?>
 					<div class="row">
-						<?php do_action( 'layers_before_footer_sidebar' ); ?>
 						<?php // Default Sidebar count to 4
 						if( '' == $footer_sidebar_count ) $footer_sidebar_count = 4;
 
@@ -25,8 +25,8 @@
 								<?php dynamic_sidebar( LAYERS_THEME_SLUG . '-footer-' . $footer ); ?>
 							</div>
 						<?php } ?>
-						<?php do_action( 'layers_after_footer_sidebar' ); ?>
 					</div>
+					<?php do_action( 'layers_after_footer_sidebar' ); ?>
 				<?php } // if 0 != sidebars ?>
 
 				<?php do_action( 'layers_before_footer_copyright' ); ?>

@@ -100,7 +100,7 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 
 			if( !empty( $widget['design']['advanced'][ 'customcss' ] ) ) layers_inline_styles( NULL, 'css', array( 'css' => $widget['design']['advanced'][ 'customcss' ]  ) ); ?>
 
-			<section class="widget row slide <?php echo (  1 == count( $widget[ 'slides' ] )  ? 'single-slide' : '' ); ?> swiper-container <?php echo $this->get_widget_layout_class( $widget ); ?><?php echo $this->check_and_return( $widget , 'design', 'advanced', 'customclass' ) ?> <?php echo $this->get_widget_spacing_class( $widget ); ?>" id="<?php echo $widget_id; ?>" <?php if( $this->check_and_return( $widget , 'slide_height' ) ) echo 'style="height: ' . $widget['slide_height'] . 'px;"' ?>>
+			<section class="widget row slide <?php echo (  1 == count( $widget[ 'slides' ] )  ? 'single-slide' : '' ); ?> swiper-container <?php echo $this->get_widget_layout_class( $widget ); ?> <?php echo $this->check_and_return( $widget , 'design', 'advanced', 'customclass' ) ?> <?php echo $this->get_widget_spacing_class( $widget ); ?>" id="<?php echo $widget_id; ?>" <?php if( $this->check_and_return( $widget , 'slide_height' ) ) echo 'style="height: ' . $widget['slide_height'] . 'px;"' ?>>
 				<?php if( !empty( $widget[ 'slides' ] ) ) { ?>
 					<?php if( 1 < count( $widget[ 'slides' ] ) && isset( $widget['show_slider_arrows'] ) ) { ?>
 						 <div class="arrows">
@@ -394,7 +394,7 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 							<?php } else { ?>
 								<?php $this->slide_item( array( 'id_base' => $this->id_base , 'number' => $this->number ) ); ?>
 							<?php }?>
-							<li class="layers-button btn-primary layers-add-widget-slide" data-number="<?php echo $this->number; ?>"><?php _e( '+ Add New Slider' , LAYERS_THEME_SLUG ) ; ?></li>
+							<li class="layers-button btn-primary layers-add-widget-slide" data-number="<?php echo $this->number; ?>"><?php _e( '+ Add New Slide' , LAYERS_THEME_SLUG ) ; ?></li>
 						</ul>
 
 				</section>
@@ -433,7 +433,7 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 				<li class="layers-accordion-item <?php echo $this->slide_item_count; ?>" data-guid="<?php echo $slide_guid; ?>">
 					<a class="layers-accordion-title">
 						<span>
-							<?php _e( 'Slider' , LAYERS_THEME_SLUG ); ?><span class="layers-detail"><?php echo ( isset( $title ) ? ': ' . stripslashes( $title ) : NULL ); ?></span>
+							<?php _e( 'Slide' , LAYERS_THEME_SLUG ); ?><span class="layers-detail"><?php echo ( isset( $title ) ? ': ' . stripslashes( $title ) : NULL ); ?></span>
 						</span>
 					</a>
 					<section class="layers-accordion-section layers-content">

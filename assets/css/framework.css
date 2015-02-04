@@ -77,9 +77,13 @@ nav{*zoom: 1;}
     -moz-box-sizing: border-box;
     box-sizing: border-box;
 }
-html{}
+html{
+    font-size: 62.5%;
+}
 body{
     overflow-x: hidden;
+    font-size: 1.5rem;
+    line-height: 1.5;
 }
 
 code{

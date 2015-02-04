@@ -207,6 +207,7 @@ section[class*=' off-canvas-']{
     .header-sticky{
         width: 100%;
         z-index: 100;
+        transition: margin-top .15s ease-in-out, opacity .15s ease-in-out;
     }
     .header-overlay{
         position: absolute;
@@ -217,7 +218,6 @@ section[class*=' off-canvas-']{
     .header-sticky.is_stuck{
         margin-top: -30px;
         opacity: 0;
-        transition: margin-top .15s ease-in-out, opacity .15s ease-in-out;
     }
     .header-sticky.is_stuck.is_stuck_show{
         margin-top: 0;
@@ -280,6 +280,9 @@ section[class*=' off-canvas-']{
         top: 50%;
         -webkit-transform: translateY(-50%);
         transform: translateY(-50%);
+    }
+    .swiper-slide .copy-container .section-title{
+        margin-bottom: 0;
     }
     .swiper-slide .image-container{
         position: relative;

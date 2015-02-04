@@ -11,15 +11,12 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 /*- DEFAULTS --------------------*/
 /*-------------------------------*/
 html{
-	font-size: 62.5%;
 	-webkit-text-size-adjust: none;
 	-webkit-font-smoothing: antialiased;
 	-moz-font-smoothing: antialiased;
 	text-rendering: optimizeLegibility;
 }
 body{
-	font-size: 1.5rem;
-	line-height: 1.5;
 	font-family: "Helvetica Neue", Helvetica, sans-serif;
 }
 

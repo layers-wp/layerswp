@@ -98,7 +98,7 @@ if( !class_exists( 'Layers_Contact_Widget' ) ) {
 			// Set the map width
 			$mapwidth = 'span-12'; ?>
 
-			<section class="widget content-vertical-massive row <?php echo $this->check_and_return( $widget , 'design', 'advanced', 'customclass' ) ?>" id="<?php echo $widget_id; ?>">
+			<section class="widget content-vertical-massive row <?php echo $this->check_and_return( $widget , 'design', 'advanced', 'customclass' ) ?> <?php echo $this->get_widget_spacing_class( $widget ); ?>" id="<?php echo $widget_id; ?>">
 
 				<?php if( '' != $this->check_and_return( $widget , 'title' ) ||'' != $this->check_and_return( $widget , 'excerpt' ) ) { ?>
 					<div class="container clearfix">

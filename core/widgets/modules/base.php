@@ -68,6 +68,28 @@ if( !class_exists( 'Layers_Widget' ) ) {
 
 			return $layout_class;
 		}
+		
+		function get_widget_spacing_class( $widget = NULL ){
+
+			if( NULL == $widget ) return;
+
+			// Setup the class for all the kinds of margin and padding
+			$classes = array();
+			
+			if( $this->check_and_return( $widget , 'design' , 'advanced', 'margin-top' ) ) $classes[] = 'margin-top-' . $this->check_and_return( $widget , 'design' , 'advanced', 'margin-top' );
+			if( $this->check_and_return( $widget , 'design' , 'advanced', 'margin-right' ) ) $classes[] = 'margin-right-' . $this->check_and_return( $widget , 'design' , 'advanced', 'margin-right' );
+			if( $this->check_and_return( $widget , 'design' , 'advanced', 'margin-bottom' ) ) $classes[] = 'margin-bottom-' . $this->check_and_return( $widget , 'design' , 'advanced', 'margin-bottom' );
+			if( $this->check_and_return( $widget , 'design' , 'advanced', 'margin-left' ) ) $classes[] = 'margin-left-' . $this->check_and_return( $widget , 'design' , 'advanced', 'margin-left' );
+			
+			if( $this->check_and_return( $widget , 'design' , 'advanced', 'padding-top' ) ) $classes[] = 'padding-top-' . $this->check_and_return( $widget , 'design' , 'advanced', 'padding-top' );
+			if( $this->check_and_return( $widget , 'design' , 'advanced', 'padding-right' ) ) $classes[] = 'padding-right-' . $this->check_and_return( $widget , 'design' , 'advanced', 'padding-right' );
+			if( $this->check_and_return( $widget , 'design' , 'advanced', 'padding-bottom' ) ) $classes[] = 'padding-bottom-' . $this->check_and_return( $widget , 'design' , 'advanced', 'padding-bottom' );
+			if( $this->check_and_return( $widget , 'design' , 'advanced', 'padding-left' ) ) $classes[] = 'padding-left-' . $this->check_and_return( $widget , 'design' , 'advanced', 'padding-left' );
+			
+			$classes = implode( ' ', $classes );
+			
+			return $classes;
+		}
 
 		/**
 		* Design Bar Class Instantiation, we'd rather have it done here than in each widget

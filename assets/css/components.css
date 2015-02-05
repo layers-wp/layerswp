@@ -390,7 +390,7 @@ section[class*=' off-canvas-']{
             top: 50%;
             width: 100%;
             z-index: 2000;
-            margin-top: -50px;
+            margin-top: -25px;
         }
         .swiper-container .arrows a{
             position: absolute;

@@ -438,7 +438,8 @@ section[class*=' off-canvas-']{
 /*-------------------------------*/
 
     .swiper-container .arrows a{
-        font-size: 48px;
+        font-size: 32px;
+        line-height: 50px;
     }
 
 /*-------------------------------*/

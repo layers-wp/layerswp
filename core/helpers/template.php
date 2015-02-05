@@ -807,6 +807,19 @@ if( !function_exists( 'layers_apply_inline_styles' ) ) {
 } // layers_apply_inline_styles
 
 /**
+ * Custom CSS
+ */
+if( !function_exists( 'layers_apply_custom_css' ) ) {
+	function layers_apply_custom_css() {
+		if ( layers_get_theme_mod( 'custom-css' ) ) {
+			$custom_css = layers_get_theme_mod( 'custom-css');
+			wp_add_inline_style( 'layers-style', $custom_css );
+		}
+	}
+	add_action( 'wp_enqueue_scripts', 'layers_apply_custom_css', 100 );
+} // layers_apply_custom_css
+
+/**
 * Feature Image / Video Generator
 *
 * @param int $attachmentid ID for attachment

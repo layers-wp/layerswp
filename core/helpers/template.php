@@ -431,8 +431,8 @@ if( !function_exists( 'layers_apply_customizer_styles' ) ) {
 				'fixed' => false, // hardcode (not an option)
 			),
 		) );
-		layers_inline_styles( 'footer, footer.well', 'color', array( 'color' => layers_get_theme_mod( 'footer-body-color' ) ) );
-		layers_inline_styles( 'footer a, footer.well a', 'color', array( 'color' => layers_get_theme_mod( 'footer-link-color' ) ) );
+		layers_inline_styles( '#footer, #footer.well', 'color', array( 'color' => layers_get_theme_mod( 'footer-body-color' ) ) );
+		layers_inline_styles( '#footer a, #footer.well a', 'color', array( 'color' => layers_get_theme_mod( 'footer-link-color' ) ) );
 	}
 
 	add_action( 'wp_enqueue_scripts', 'layers_apply_customizer_styles' );

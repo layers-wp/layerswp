@@ -215,24 +215,6 @@ class Layers_Customizer_Config {
 								'break-1' => array(
 									'type'     => 'layers-seperator'
 								),
-								'archive-sidebar-heading' => array(
-									'type'  => 'layers-heading',
-									'label'    => __( 'Post List Sidebar(s)', LAYERS_THEME_SLUG ),
-									'description' => __( 'This option affects your category, tag, author and search pages.', LAYERS_THEME_SLUG ),
-								),
-								'archive-left-sidebar' => array(
-									'type'		=> 'checkbox',
-									'label' 	=> __( 'Display Left Sidebar', LAYERS_THEME_SLUG ),
-									'default' 	=> FALSE,
-								), // post-sidebar
-								'archive-right-sidebar' => array(
-									'type'		=> 'checkbox',
-									'label' 	=> __( 'Display Right Sidebar', LAYERS_THEME_SLUG ),
-									'default' 	=> TRUE,
-								), // post-sidebar
-								'break-2' => array(
-									'type'     => 'layers-seperator'
-								),
 								'single-sidebar-heading' => array(
 									'type'  => 'layers-heading',
 									'label'    => __( 'Single Post Sidebar(s)', LAYERS_THEME_SLUG ),
@@ -247,6 +229,24 @@ class Layers_Customizer_Config {
 									'type'      => 'checkbox',
 									'label'     => __( 'Display Right Sidebar', LAYERS_THEME_SLUG ),
 									'default'   => TRUE,
+								), // post-sidebar
+								'break-2' => array(
+									'type'     => 'layers-seperator'
+								),
+								'archive-sidebar-heading' => array(
+									'type'  => 'layers-heading',
+									'label'    => __( 'Post List Sidebar(s)', LAYERS_THEME_SLUG ),
+									'description' => __( 'This option affects your category, tag, author and search pages.', LAYERS_THEME_SLUG ),
+								),
+								'archive-left-sidebar' => array(
+									'type'		=> 'checkbox',
+									'label' 	=> __( 'Display Left Sidebar', LAYERS_THEME_SLUG ),
+									'default' 	=> FALSE,
+								), // post-sidebar
+								'archive-right-sidebar' => array(
+									'type'		=> 'checkbox',
+									'label' 	=> __( 'Display Right Sidebar', LAYERS_THEME_SLUG ),
+									'default' 	=> TRUE,
 								), // post-sidebar
 							);
 

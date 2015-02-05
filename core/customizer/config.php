@@ -73,6 +73,12 @@ class Layers_Customizer_Config {
 
 	public function sections(){
 
+		$sections[ 'general' ] = array(
+								'css' => array(
+									'title' =>__( 'CSS' , LAYERS_THEME_SLUG ),
+								),
+							);
+
 		$sections[ 'header' ] = array(
 								'layout' => array(
 									'title' =>__( 'Layout' , LAYERS_THEME_SLUG ),
@@ -113,8 +119,17 @@ class Layers_Customizer_Config {
 		$customizer_dir = '/core/customizer/';
 
 		// Header -> Layout -> Layout
+		$controls['general-css'] = array(
+								'custom-css' => array(
+									'type'     => 'layers-css',
+									'label'    => __( 'Custom CSS', LAYERS_THEME_SLUG ),
+									'placeholder'	=> 'ribidy'
+								),
+							); // css
+
+		// Header -> Layout -> Layout
 		$controls['header-layout'] = array(
-								'width' => array(
+								'header-width' => array(
 									'type'     => 'layers-select-icons',
 									'label'    => __( 'Header Width', LAYERS_THEME_SLUG ),
 									'default' => 'layout-boxed',
@@ -126,7 +141,7 @@ class Layers_Customizer_Config {
 								'break-0' => array(
 									'type'     => 'layers-seperator'
 								),
-								'layout' => array(
+								'header-menu-layout' => array(
 									'type'     => 'layers-select-icons',
 									'label'    => __( 'Logo & Menu Position', LAYERS_THEME_SLUG ),
 									'default' => 'header-logo-left',
@@ -145,13 +160,13 @@ class Layers_Customizer_Config {
 									'type'  => 'layers-heading',
 									'label'    => __( 'Header Position', LAYERS_THEME_SLUG ),
 								),
-								'sticky' => array(
+								'header-sticky' => array(
 									'type'		=> 'layers-checkbox',
 									'label'		=> __( 'Sticky', LAYERS_THEME_SLUG ),
 									'class'		=> 'layers-pull-top layers-pull-bottom',
 									'default'	=> FALSE,
 								),
-								'overlay' => array(
+								'header-overlay' => array(
 									'type'     => 'layers-checkbox',
 									'label'    => __( 'Overlay', LAYERS_THEME_SLUG ),
 									'default'	=> FALSE,
@@ -159,7 +174,7 @@ class Layers_Customizer_Config {
 								'break-2' => array(
 									'type'     => 'layers-seperator',
 								),
-								'background-color' => array(
+								'header-background-color' => array(
 									'type'		=> 'layers-color',
 									'label'		=> __( 'Background Color', LAYERS_THEME_SLUG ),
 									'default'	=> '#F3F3F3',
@@ -168,7 +183,7 @@ class Layers_Customizer_Config {
 
 		// Header -> Layout -> Scripts
 		$controls['header-scripts'] = array(
-								'google-id' => array(
+								'header-google-id' => array(
 									'type'     => 'text',
 									'label'    => __( 'Google Analytics ID', LAYERS_THEME_SLUG ),
 									'description' => __( 'Enter in your Google Analytics ID to enable website traffic reporting. eg. "UA-xxxxxx-xx', LAYERS_THEME_SLUG ),
@@ -177,7 +192,7 @@ class Layers_Customizer_Config {
 								'break-1' => array(
 									'type'     => 'layers-seperator'
 								),
-								'scripts' => array(
+								'header-scripts' => array(
 									'type'     => 'textarea',
 									'label'    => __( 'Custom Scripts', LAYERS_THEME_SLUG ),
 									'description' => __( 'Enter in any custom script (such as TypeKit etc) to include in your site\'s header.', LAYERS_THEME_SLUG ),
@@ -187,7 +202,7 @@ class Layers_Customizer_Config {
 
 		// Header -> Layout -> Scripts
 		$controls['content-layout'] = array(
-								'layout' => array(
+								'content-width' => array(
 									'label' => __( 'Content Width' , LAYERS_THEME_SLUG ),
 									'description' => __( 'This option affects list and single content pages.', LAYERS_THEME_SLUG ),
 									'type'     => 'layers-select-icons',
@@ -200,7 +215,7 @@ class Layers_Customizer_Config {
 								'break-1' => array(
 									'type'     => 'layers-seperator'
 								),
-								'label-sidebar-archive' => array(
+								'archive-sidebar-heading' => array(
 									'type'  => 'layers-heading',
 									'label'    => __( 'Post List Sidebar(s)', LAYERS_THEME_SLUG ),
 									'description' => __( 'This option affects your category, tag, author and search pages.', LAYERS_THEME_SLUG ),
@@ -218,7 +233,7 @@ class Layers_Customizer_Config {
 								'break-2' => array(
 									'type'     => 'layers-seperator'
 								),
-								'label-sidebar-single' => array(
+								'single-sidebar-heading' => array(
 									'type'  => 'layers-heading',
 									'label'    => __( 'Single Post Sidebar(s)', LAYERS_THEME_SLUG ),
 									'description' => __( 'This option affects your single post pages.', LAYERS_THEME_SLUG ),
@@ -238,7 +253,7 @@ class Layers_Customizer_Config {
 
 		// Footer -> Layout -> Layout
 		$controls['footer-layout'] = array(
-								'width' => array(
+								'footer-width' => array(
 									'type'     => 'layers-select-icons',
 									'default' => 'layout-boxed',
 									'choices' => array(
@@ -249,7 +264,7 @@ class Layers_Customizer_Config {
 								'break-1' => array(
 									'type'     => 'layers-seperator'
 								),
-								'widget-area-count' => array(
+								'footer-sidebar-count' => array(
 									'type'     => 'select',
 									'label'    => __( 'Widget Areas', LAYERS_THEME_SLUG ),
 									'default' => 4,
@@ -265,17 +280,16 @@ class Layers_Customizer_Config {
 
 		// Footer -> Layout -> Customization
 		$controls['footer-customization'] = array(
-								'font-color-heading' => array(
+								'footer-font-heading' => array(
 									'type'  => 'layers-heading',
 									'label'    => __( 'Text', LAYERS_THEME_SLUG ),
 								),
-								'font-color-main' => array(
+								'font-body-color' => array(
 									'type'  => 'layers-color',
 									'subtitle' => __( 'Text Color', LAYERS_THEME_SLUG ),
 									'default' => '#000000',
-									
 								),
-								'font-color-link' => array(
+								'font-link-color' => array(
 									'type' => 'layers-color',
 									'subtitle' => __( 'Link Color', LAYERS_THEME_SLUG ),
 									'default' => '#35A6E8',
@@ -283,22 +297,22 @@ class Layers_Customizer_Config {
 								'break-1' => array(
 									'type'     => 'layers-seperator'
 								),
-								'background-heading' => array(
+								'footer-background-heading' => array(
 									'type'  => 'layers-heading',
 									'label'    => __( 'Background', LAYERS_THEME_SLUG ),
 								),
-								'background-image' => array(
+								'footer-background-image' => array(
 									'label' => '',
 									'subtitle' => __( 'Background Image', LAYERS_THEME_SLUG ),
 									'type' => 'layers-select-images', //wierd bug in WP4.1 that requires a type to be in the array, or will revert to default control
 								),
-								'background-color' => array(
+								'footer-background-color' => array(
 									'label' => '',
 									'subtitle' => __( 'Background Color', LAYERS_THEME_SLUG ),
 									'type' => 'layers-color',
 									'default' => '#F3F3F3',
 								),
-								'background-repeat' => array(
+								'footer-background-repeat' => array(
 									'label' => '',
 									'subtitle' => __( 'Background Repeat', LAYERS_THEME_SLUG ),
 									'type' => 'layers-select',
@@ -309,7 +323,7 @@ class Layers_Customizer_Config {
 										'repeat-y' => __( 'Repeat Vertical' , LAYERS_THEME_SLUG ),
 									),
 								),
-								'background-position' => array(
+								'footer-background-position' => array(
 									'label' => '',
 									'subtitle' => __( 'Background Position', LAYERS_THEME_SLUG ),
 									'type' => 'layers-select',
@@ -321,7 +335,7 @@ class Layers_Customizer_Config {
 										'right' => __( 'Right' , LAYERS_THEME_SLUG ),
 									),
 								),
-								'background-stretch' => array(
+								'footer-background-stretch' => array(
 									'label' => __( 'Background Stretch', LAYERS_THEME_SLUG ),
 									'subtitle' => '',
 									'type' => 'layers-checkbox',
@@ -330,7 +344,7 @@ class Layers_Customizer_Config {
 
 		// Footer -> Layout -> Text
 		$controls['footer-text'] = array(
-				'copyright' => array(
+				'footer-copyright-text' => array(
 					'type'     => 'text',
 					'label'    => __( 'Copyright Text', LAYERS_THEME_SLUG ),
 					'default' => ' Made at the tip of Africa. &copy;'
@@ -339,7 +353,7 @@ class Layers_Customizer_Config {
 
 		// Footer -> Layout -> Scripts
 		$controls['footer-scripts'] = array(
-					'scripts' => array(
+					'footer-custom-scripts' => array(
 						'type'     => 'textarea',
 						'label'    => __( 'Custom Scripts', LAYERS_THEME_SLUG ),
 						'description' => __( 'Enter in any custom script to include in your site\'s footer.', LAYERS_THEME_SLUG ),

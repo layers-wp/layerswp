@@ -189,7 +189,7 @@ if( !function_exists( 'layers_backup_builder_pages' ) ) {
 if( !function_exists( 'layers_post_class' ) ) {
     function layers_post_class( $classes ) {
 
-        if( 'layout-fullwidth' != layers_get_theme_mod( 'content-layout-layout' ) && 'product' != get_post_type() ){
+        if( 'layout-fullwidth' != layers_get_theme_mod( 'content-width' ) && 'product' != get_post_type() ){
             $classes[] = 'container';
         }
 

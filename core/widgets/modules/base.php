@@ -69,6 +69,12 @@ if( !class_exists( 'Layers_Widget' ) ) {
 			return $layout_class;
 		}
 		
+		/**
+		* Get widget spacing as class names
+		*
+		* @return  	string 		Class names
+		*/
+	
 		function get_widget_spacing_class( $widget = NULL ){
 
 			if( NULL == $widget ) return;
@@ -89,6 +95,42 @@ if( !class_exists( 'Layers_Widget' ) ) {
 			$classes = implode( ' ', $classes );
 			
 			return $classes;
+		}
+		
+		/**
+		* Apply the advanced styles of the widget instance
+		*/
+	
+		function apply_widget_advanced_styling( $widget_id, $widget = NULL ){
+
+			if( NULL == $widget ) return;
+			
+			$types = array(
+				'margin',
+				'padding',
+			);
+			
+			$fields = array(
+				'top',
+				'right',
+				'bottom',
+				'left',
+			);
+			
+			foreach ( $types as $type ) {
+				
+				$values = $this->check_and_return( $widget , 'design' , 'advanced', $type );
+				
+				if( NULL != $values && is_array( $values ) ) {
+					foreach ( $fields as $field ) {
+						if( isset( $values[ $field ] ) && '' != $values[ $field ] ) {
+							$values[ $field ] .= 'px';
+						}
+					}
+					layers_inline_styles( '#' . $widget_id, $type, array( $type => $values ) );
+				}
+			}
+			
 		}
 
 		/**

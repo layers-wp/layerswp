@@ -131,7 +131,7 @@ class Layers_Form_Elements {
 		$input = (object) wp_parse_args( $args, $defaults );
 
 		// If the value of this element is in fact a collection of inputs, turn it into an object, it's nicer to work with
-		if( NULL != $input->value && is_array( $input->value ) ) $input->value = (object) esc_attr( $input->value );
+		if( NULL != $input->value && is_array( $input->value ) ) $input->value = (object) $input->value;
 
 		if( !is_object( $input->value ) ) $input->value = stripslashes( $input->value );
 
@@ -145,9 +145,6 @@ class Layers_Form_Elements {
 
 		// Switch our input type
 		switch( $input->type ) {
-			/**
-			* Text Inputs
-			*/
 			case 'text' : ?>
 				<input type="text" <?php echo implode ( ' ' , $input_props ); ?> value="<?php echo $input->value; ?>" />
 			<?php break;
@@ -472,6 +469,36 @@ class Layers_Form_Elements {
 				<button  class="layers-button btn-medium" <?php echo implode ( ' ' , $input_props ); ?> data-button_text="<?php echo esc_attr( $input->label ); ?>">
 					<?php echo esc_attr( $input->label ); ?>
 				</button>
+			<?php break;
+			/**
+			* Top / Right / Bottom / Left Fields
+			*/
+			case 'trbl-fields' : ?>
+				
+				<?php $fields = array(
+					'top' => __( 'Top' , LAYERS_THEME_SLUG ),
+					'right' => __( 'Right' , LAYERS_THEME_SLUG ),
+					'bottom' => __( 'Bottom' , LAYERS_THEME_SLUG ),
+					'left' => __( 'Left' , LAYERS_THEME_SLUG ),
+				); ?>
+				
+				<div class="layers-row">
+					<?php foreach ( $fields as $key => $label ) { ?>
+						<div class="layers-column-flush layers-span-3">
+							<?php echo $this->input(
+								array(
+									'type' => 'text',
+									'name' => $input->name . '[' . $key . ']',
+									'id' => $input->id . '-' . $key,
+									'value' => ( isset( $input->value->$key ) ) ? $input->value->$key : NULL,
+									'class' => 'layers-input-tiny',
+								)
+							); ?>
+							<label for="<?php echo $input->id . '-' . $key; ?>"><?php echo $label; ?></label>
+						</div>
+					<?php } // foreach fields ?>
+				</div>
+				
 			<?php break;
 			/**
 			* Default to hidden field

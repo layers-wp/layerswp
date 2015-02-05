@@ -138,7 +138,7 @@ class Layers_Customizer_Regsitrar {
 
 		foreach( $controls[ $panel_section_key ] as $control_key => $control_data ){
 
-			$setting_key = $this->prefix . $panel_section_key . '-' . $control_key;
+			$setting_key = $this->prefix . $control_key;
 
 			// Register control default value
 			$this->register_control_defaults( $setting_key, ( isset( $control_data['default'] ) ? $control_data['default'] : NULL ) );
@@ -284,6 +284,26 @@ class Layers_Customizer_Regsitrar {
 				// Add Control
 				$this->customizer->add_control(
 					new Layers_Customize_Select_Control(
+						$this->customizer,
+						$setting_key,
+						$control_data
+					)
+				);
+			} else if( 'layers-css' == $control_data['type'] ) {
+
+				// Add Setting
+				$this->customizer->add_setting(
+					$setting_key,
+					array(
+						'default'    => ( isset( $control_data['default'] ) ? $control_data['default'] : NULL ) ,
+						'type'       => 'theme_mod',
+						'capability' => 'manage_options'
+					)
+				);
+
+				// Add Control
+				$this->customizer->add_control(
+					new Layers_Customize_CSS_Control(
 						$this->customizer,
 						$setting_key,
 						$control_data

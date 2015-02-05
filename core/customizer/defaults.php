@@ -35,7 +35,7 @@ class Layers_Customizer_Defaults {
             foreach( $controls as $control_key => $control_data ){
 
                 // Set key to use for the default
-                $setting_key = $this->prefix . $section_key . '-' . $control_key;
+                $setting_key = $this->prefix . $control_key;
 
                 // Register default
                 $this->register_control_defaults( $setting_key, $control_data[ 'type' ], ( isset( $control_data['default'] ) ? $control_data['default'] : NULL ) );

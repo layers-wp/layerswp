@@ -120,6 +120,15 @@ jQuery(document).ready(function($) {
 		layers_update_customizer_interface();
 	}, false);
 
+	$(document).on( 'change', '.layers-customize-control-font select' , function(){
 
+
+        // "Hi Mom"
+        $that = $(this);
+
+		$description = $that.closest( '.layers-customize-control-font' ).find( '.customize-control-description' );
+
+		$description.find( 'a' ).attr( 'href' , $description.data( 'base-url' ) + $that.val() );
+	});
 
 });

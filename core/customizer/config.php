@@ -133,16 +133,22 @@ class Layers_Customizer_Config {
 									'selectors' => 'h1,h2,h3,h4,h5,h6, .heading',
 									'choices' => layers_get_google_font_options()
 								),
+								'fonts-break-0' => array(
+									'type'     => 'layers-seperator'
+								),
 								'body-fonts' => array(
 									'type' => 'layers-font',
 									'label'    => __( 'Body', LAYERS_THEME_SLUG ),
 									'selectors' => 'body',
 									'choices' => layers_get_google_font_options()
 								),
+								'fonts-break-1' => array(
+									'type'     => 'layers-seperator'
+								),
 								'form-fonts' => array(
 									'type' => 'layers-font',
-									'label'    => __( 'Forms', LAYERS_THEME_SLUG ),
-									'selectors' => 'textarea, input, select, button',
+									'label'    => __( 'Buttons', LAYERS_THEME_SLUG ),
+									'selectors' => 'button, .button, input[type=submit]',
 									'choices' => layers_get_google_font_options()
 								),
 							);

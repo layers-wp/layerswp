@@ -160,10 +160,10 @@ div#widgets-right div[id*='obox-layers-builder']{
         float: left;
         margin: 0 2% 2% 0;
         position: relative;
-        width: 23%;
+        width: 31%;
         border: 1px solid #dedede;
     }
-    .layers-product:nth-child(4n+4){
+    .layers-product:nth-child(3n+3){
         margin-right: 0;
     }
     .layers-product-screenshot{
@@ -287,7 +287,6 @@ div[id*='layers-widget'] .spinner{
 .layers-content img{
     max-width: 100%;
     height: auto;
-    border-radius: 3px;
 }
 .layers-well{
     background: #fff;
@@ -2194,8 +2193,26 @@ ul#adminmenu a.wp-has-current-submenu:after, ul#adminmenu > li.current > a.curre
 
         /*------------------------------------------*/
         /*- PRESET LAYOUTS IN ONBOARDING -----------*/
+        .layers-template-selector{
+            max-height: 490px;
+            overflow-y: scroll;
+        }
+        .layers-template-selector .layers-product{
+            width: 48%;
+            margin: 0 4% 4% 0;
+        }
+        .layers-template-selector .layers-product:nth-child(2n+2){
+            margin-right: 0;
+        }
+        .layers-template-selector .layers-product:nth-child(3n+3){
+            margin-right: 4%;
+        }
         .layers-onboard-slide .layers-product:focus{
-            border: 3px solid;
+            border-color: #2EA2CC;
+        }
+        .layers-onboard-slide .layers-product:focus .layers-product-name{
+            background: #2EA2CC;
+            color: #fff;
         }
         .layers-onboard-slide .layers-product-actions{
             display: none;

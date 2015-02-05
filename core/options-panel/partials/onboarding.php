@@ -236,7 +236,7 @@ $layers_migrator = new Layers_Widget_Migrator(); ?>
                 </div>
                 <div class="layers-column layers-span-6 layers-no-gutter layers-demo-video">
                     <video width="490" height="490" controls>
-                        <source src="http://obox.beta/wp-content/uploads/2015/02/adding-a-widget.mp4" type="video/mp4">
+                        <source src="https://cdn.oboxthemes.com/layers/videos/adding-a-widget.mp4" type="video/mp4">
                         Your browser does not support the video tag.
                     </video> 
 
@@ -273,7 +273,7 @@ $layers_migrator = new Layers_Widget_Migrator(); ?>
                 </div>
                 <div class="layers-column layers-span-6 layers-no-gutter layers-demo-video">
                     <video width="490" height="490" controls>
-                        <source src="http://obox.beta/wp-content/uploads/2015/02/design-bar.mp4" type="video/mp4">
+                        <source src="https://cdn.oboxthemes.com/layers/videos/design-bar.mp4" type="video/mp4">
                         Your browser does not support the video tag.
                     </video> 
 
@@ -310,7 +310,7 @@ $layers_migrator = new Layers_Widget_Migrator(); ?>
                 </div>
                 <div class="layers-column layers-span-6 layers-no-gutter layers-demo-video">
                     <video width="490" height="490" controls>
-                        <source src="http://obox.beta/wp-content/uploads/2015/02/font-size.mp4" type="video/mp4">
+                        <source src="https://cdn.oboxthemes.com/layers/videos/font-size.mp4" type="video/mp4">
                         Your browser does not support the video tag.
                     </video> 
 
@@ -319,17 +319,29 @@ $layers_migrator = new Layers_Widget_Migrator(); ?>
 
             <!-- Select a Layout -->
             <div class="layers-onboard-slide layers-animate layers-onboard-slide-inactive">
-                <div class="layers-column layers-span-12 postbox">
+                <div class="layers-column layers-span-4 postbox">
                     <div class="layers-content-large">
                         <!-- Your content goes here -->
-                        <div class="layers-section-title">
+                        <div class="layers-section-title layers-small">
                             <h3 class="layers-heading">
-                                <?php _e( 'Last Step, Select a Layout' , LAYERS_THEME_SLUG ); ?>
+                                <?php _e( 'Last Step, choosing a page layout' , LAYERS_THEME_SLUG ); ?>
                             </h3>
                             <p class="layers-excerpt">
-                                 <?php _e( '' , LAYERS_THEME_SLUG ); ?>
+                                 <?php _e( '
+                                    This is the final step in creating your first Layers page!
+                                    Simply select a preset layout from the list and we will automatically
+
+                                 ' , LAYERS_THEME_SLUG ); ?>
                             </p>
                         </div>
+                    </div>
+                    <div class="layers-button-well">
+                        <span class="layers-save-progress layers-hide layers-button btn-link" data-busy-message="<?php _e( 'Creating your Page' , LAYERS_THEME_SLUG ); ?>"></span>
+                        <a class="layers-button btn-primary layers-pull-right onbard-next-step" href=""><?php _e( 'Proceed to Customizer' , LAYERS_THEME_SLUG ); ?></a>
+                    </div>
+                </div>
+                <div class="layers-column layers-span-8 layers-no-gutter layers-template-selector postbox">
+                    <div class="layers-content">
 
                         <?php $this->load_partial( 'preset-layouts' ); ?>
 
@@ -339,10 +351,6 @@ $layers_migrator = new Layers_Widget_Migrator(); ?>
                             'id' => 'action',
                             'value' => 'layers_select_preset'
                         ) ); ?>
-                    </div>
-                    <div class="layers-button-well">
-                        <span class="layers-save-progress layers-hide layers-button btn-link" data-busy-message="<?php _e( 'Creating your Page' , LAYERS_THEME_SLUG ); ?>"></span>
-                        <a class="layers-button btn-primary layers-pull-right onbard-next-step" href=""><?php _e( 'Proceed to Customizer' , LAYERS_THEME_SLUG ); ?></a>
                     </div>
                 </div>
             </div>

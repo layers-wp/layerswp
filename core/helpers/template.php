@@ -421,7 +421,7 @@ if( !function_exists( 'layers_apply_customizer_styles' ) ) {
 		}
 
 		// Footer
-		layers_inline_styles( 'footer, footer.well', 'background', array(
+		layers_inline_styles( '#footer, #footer.well', 'background', array(
 			'background' => array(
 				'color' => layers_get_theme_mod( 'footer-background-color' ),
 				'repeat' => layers_get_theme_mod( 'footer-background-repeat' ),

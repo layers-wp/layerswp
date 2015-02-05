@@ -1,77 +1,88 @@
 <?php /**
  * Google Fonts list
  *
- * This file is used to define the different panels, sections and controls for Layers
+ * This file is used to define and register Google (and in future all external) font libraries and options
  *
  * @package Layers
  * @since Layers 1.0
  */
-if( !function_exists( 'layers_generate_custom_fonts' ) ) {
-	function layers_generate_custom_fonts(){
+
+
+/**
+ * Generate the Custom Font list from the customizer settings and add the inline styles
+ *
+ */
+if( !function_exists( 'layers_generate_customizer_fonts' ) ) {
+	function layers_generate_customizer_fonts(){
+		global $layers_custom_fonts;
 
 		// Apply Font Styles
 		$customizer_options = new Layers_Customizer_Config();
 		foreach( $customizer_options->controls() as $controls ) {
-
 			foreach( $controls as $control_key => $control_data ){
 
-				if( 'layers-font' == $control_data[ 'type' ] ) {
+				if( 'layers-font' == $control_data[ 'type' ] && layers_get_theme_mod( $control_key ) ) {
 
-					if( layers_get_theme_mod( $control_key ) ) {
+					// Add fonts to a bucket for registration
+					$layers_custom_fonts[] = layers_get_theme_mod( $control_key );
 
-						// Add fonts to a bucket for registration
-						$fonts[] = layers_get_theme_mod( $control_key );
-
-						layers_inline_styles(
-								$control_data[ 'selectors' ],
-								'font-family',
-								array(
-									'font-family' => layers_get_theme_mod( $control_key )
-								)
-							);
-
-
-					}
-
+					layers_inline_styles(
+						$control_data[ 'selectors' ],
+						'font-family',
+						array(
+							'font-family' => layers_get_theme_mod( $control_key )
+						)
+					);
 				}
 			}
-		}
-
-		if( !isset( $fonts ) ) return;
-
-		// De-dupe the fonts
-		$fonts = array_unique( $fonts );
-		$all_fonts = layers_get_google_fonts();
-
-		if( isset( $fonts ) && !empty( $fonts ) ) {
-			// Validate each font and convert to URL format
-			foreach ( $fonts as $font ) {
-				$font = trim( $font );
-
-				// Verify that the font exists
-				if ( array_key_exists( $font, $all_fonts ) ) {
-					// Build the family name and variant string (e.g., "Open+Sans:regular,italic,700")
-					$family[] = urlencode( $font . ':' . join( ',', layers_google_font_variants( $font, $all_fonts[ $font ]['variants'] ) ) );
-				}
-			}
-
-			// Convert from array to string
-			if ( empty( $family ) ) {
-				return '';
-			} else {
-				$request = '//fonts.googleapis.com/css?family=' . implode( '|', $family );
-			}
-
-			wp_enqueue_style(
-				LAYERS_THEME_SLUG . '-google-fonts',
-				$request,
-				array(),
-				LAYERS_VERSION
-			);
 		}
 	}
-	add_action( 'wp_enqueue_scripts', 'layers_generate_custom_fonts' );
+	add_action( 'wp' , 'layers_generate_customizer_fonts' );
 }
+
+/**
+ * Generate custom font CSS and enqueue it
+ *
+ */
+if( !function_exists( 'layers_enqueue_custom_fonts' ) ) {
+	function layers_enqueue_custom_fonts(){
+		global $layers_custom_fonts;
+
+		if( !isset( $layers_custom_fonts ) || ( isset( $layers_custom_fonts ) && empty( $layers_custom_fonts ) ) ) return;
+
+		// De-dupe the fonts
+		$layers_custom_fonts = array_unique( $layers_custom_fonts );
+		$all_fonts = layers_get_google_fonts();
+
+		// Validate each font and convert to URL format
+		foreach ( $layers_custom_fonts as $font ) {
+			$font = trim( $font );
+
+			// Verify that the font exists
+			if ( array_key_exists( $font, $all_fonts ) ) {
+				// Build the family name and variant string (e.g., "Open+Sans:regular,italic,700")
+				$family[] = urlencode( $font . ':' . join( ',', layers_get_google_font_variants( $font, $all_fonts[ $font ]['variants'] ) ) );
+			}
+		}
+
+		// Convert from array to string
+		if ( empty( $family ) ) {
+			return '';
+		} else {
+			$request = '//fonts.googleapis.com/css?family=' . implode( '|', $family );
+		}
+
+		wp_enqueue_style(
+			LAYERS_THEME_SLUG . '-google-fonts',
+			$request,
+			array(),
+			LAYERS_VERSION
+		);
+	}
+
+	add_action( 'wp_enqueue_scripts', 'layers_enqueue_custom_fonts' );
+}
+
 /**
  * Return an array of all available Google Fonts.
  *
@@ -92,14 +103,20 @@ if ( ! function_exists( 'layers_get_google_font_options' ) ) {
 	}
 }
 
-if ( ! function_exists( 'layers_google_font_variants' ) ) {
-	function layers_google_font_variants( $font, $variants = array() ) {
+/**
+ * Return an array of all available Google Fonts.
+ *
+ * @return array List of Google Fonts variants
+ */
+
+if ( ! function_exists( 'layers_get_google_font_variants' ) ) {
+	function layers_get_google_font_variants( $font, $variants = array() ) {
 		$chosen_variants = array();
 		if ( empty( $variants ) ) {
-			$fonts = ttfmake_get_google_fonts();
+			$layers_custom_fonts = ttfmake_get_google_fonts();
 
-			if ( array_key_exists( $font, $fonts ) ) {
-				$variants = $fonts[ $font ]['variants'];
+			if ( array_key_exists( $font, $layers_custom_fonts ) ) {
+				$variants = $layers_custom_fonts[ $font ]['variants'];
 			}
 		}
 

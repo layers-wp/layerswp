@@ -304,12 +304,12 @@ class Layers_Customizer_Config {
 									'type'  => 'layers-heading',
 									'label'    => __( 'Text', LAYERS_THEME_SLUG ),
 								),
-								'font-body-color' => array(
+								'footer-body-color' => array(
 									'type'  => 'layers-color',
 									'subtitle' => __( 'Text Color', LAYERS_THEME_SLUG ),
 									'default' => '#000000',
 								),
-								'font-link-color' => array(
+								'footer-link-color' => array(
 									'type' => 'layers-color',
 									'subtitle' => __( 'Link Color', LAYERS_THEME_SLUG ),
 									'default' => '#35A6E8',

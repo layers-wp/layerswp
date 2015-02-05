@@ -417,9 +417,7 @@ if( !function_exists( 'layers_apply_customizer_styles' ) ) {
 		// Header
 		if( layers_get_theme_mod( 'header-background-color' ) ){
 			$bg_opacity = ( layers_get_theme_mod( 'header-overlay') ) ? .5 : 1 ;
-			layers_inline_styles( '.header-site, .header-site.header-sticky', 'css', array(
-				'css' => 'background-color: rgba(' . implode( ', ' , hex2rgb( layers_get_theme_mod( 'header-background-color' ) ) ) . ', ' . $bg_opacity . ');'
-			) );
+			layers_inline_styles( '.header-site, .header-site.header-sticky', 'css', array( 'css' => 'background-color: rgba(' . implode( ', ' , hex2rgb( layers_get_theme_mod( 'header-background-color' ) ) ) . ', ' . $bg_opacity . ');' ) );
 		}
 
 		// Footer
@@ -433,12 +431,8 @@ if( !function_exists( 'layers_apply_customizer_styles' ) ) {
 				'fixed' => false, // hardcode (not an option)
 			),
 		) );
-		layers_inline_styles( 'footer, footer.well', 'color', array(
-			'color' => layers_get_theme_mod( 'font-body-color' )
-		) );
-		layers_inline_styles( 'footer a, footer.well a', 'color', array(
-			'color' => layers_get_theme_mod( 'font-link-color' )
-		) );
+		layers_inline_styles( 'footer, footer.well', 'color', array( 'color' => layers_get_theme_mod( 'footer-body-color' ) ) );
+		layers_inline_styles( 'footer a, footer.well a', 'color', array( 'color' => layers_get_theme_mod( 'footer-link-color' ) ) );
 
 		// Fonts
 		$customizer_options = new Layers_Customizer_Config();
@@ -729,29 +723,29 @@ if( !function_exists( 'layers_inline_styles' ) ) {
 					$css.= 'background-image: url(\'' . $image[0] .'\');';
 				}
 			break;
-			
+
 			case 'margin' :
 			case 'padding' :
-			
-				// Set the Margin or Padding
+
+				// Set the Margin or Padding array
 				$trbl_args = $args[ $type ];
 
 				if( isset( $trbl_args['top'] ) && '' != $trbl_args['top'] ){
 					$css .= $type . '-top: ' . $trbl_args['top'] . '; ';
 				}
-				
+
 				if( isset( $trbl_args['right'] ) && '' != $trbl_args['right'] ){
 					$css .= $type . '-right: ' . $trbl_args['right'] . '; ';
 				}
-				
+
 				if( isset( $trbl_args['bottom'] ) && '' != $trbl_args['bottom'] ){
 					$css .= $type . '-bottom: ' . $trbl_args['bottom'] . '; ';
 				}
-				
+
 				if( isset( $trbl_args['left'] ) && '' != $trbl_args['left'] ){
 					$css .= $type . '-left: ' . $trbl_args['left'] . '; ';
 				}
-				
+
 			break;
 
 			case 'color' :
@@ -786,9 +780,6 @@ if( !function_exists( 'layers_inline_styles' ) ) {
 			break;
 
 		}
-
-		// Exit if no CSS was generated
-		if ( '' == $css ) return ;
 
 		$inline_css = '';
 
@@ -834,19 +825,6 @@ if( !function_exists( 'layers_apply_inline_styles' ) ) {
 	}
 	add_action( 'get_footer' , 'layers_apply_inline_styles', 100 );
 } // layers_apply_inline_styles
-
-/**
- * Custom CSS
- */
-if( !function_exists( 'layers_apply_custom_css' ) ) {
-	function layers_apply_custom_css() {
-		if ( layers_get_theme_mod( 'custom-css' ) ) {
-			$custom_css = layers_get_theme_mod( 'custom-css');
-			wp_add_inline_style( 'layers-style', $custom_css );
-		}
-	}
-	add_action( 'wp_enqueue_scripts', 'layers_apply_custom_css', 100 );
-} // layers_apply_custom_css
 
 /**
 * Feature Image / Video Generator

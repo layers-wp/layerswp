@@ -414,6 +414,11 @@ if( !function_exists( 'layers_get_header_class' ) ) {
 if( !function_exists( 'layers_apply_customizer_styles' ) ) {
 	function layers_apply_customizer_styles() {
 
+		// Custom CSS
+		if( layers_get_theme_mod( 'custom-css' ) ){
+			layers_inline_styles( NULL, 'css', array( 'css' => layers_get_theme_mod( 'custom-css' ) ) );
+		}
+
 		// Header
 		if( layers_get_theme_mod( 'header-background-color' ) ){
 			$bg_opacity = ( layers_get_theme_mod( 'header-overlay') ) ? .5 : 1 ;

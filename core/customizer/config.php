@@ -22,10 +22,6 @@ class Layers_Customizer_Config {
 							'title' => __( 'General', LAYERS_THEME_SLUG ),
 							'priority' => 30
 						),
-			'color-scheme' => array(
-							'title' => __( 'Color Scheme', LAYERS_THEME_SLUG ),
-							'priority' => 35
-						),
 			'header' => array(
 							'title' => __( 'Header', LAYERS_THEME_SLUG ),
 							'description' => __( 'Control your header\'s logo, layout, colors and font.' , LAYERS_THEME_SLUG ), // @TODO Put a helper here
@@ -76,6 +72,9 @@ class Layers_Customizer_Config {
 		$sections[ 'general' ] = array(
 								'css' => array(
 									'title' =>__( 'CSS' , LAYERS_THEME_SLUG ),
+								),
+								'fonts' => array(
+									'title' =>__( 'Fonts' , LAYERS_THEME_SLUG ),
 								),
 							);
 
@@ -128,6 +127,28 @@ class Layers_Customizer_Config {
 							); // css
 
 		// Header -> Layout -> Layout
+		$controls['general-fonts'] = array(
+								'heading-fonts' => array(
+									'type' => 'layers-font',
+									'label'    => __( 'Headings', LAYERS_THEME_SLUG ),
+									'selectors' => 'h1,h2,h3,h4,h5,h6',
+									'choices' => layers_get_google_font_options()
+								),
+								'body-fonts' => array(
+									'type' => 'layers-font',
+									'label'    => __( 'Body', LAYERS_THEME_SLUG ),
+									'selectors' => 'body',
+									'choices' => layers_get_google_font_options()
+								),
+								'form-fonts' => array(
+									'type' => 'layers-font',
+									'label'    => __( 'Forms', LAYERS_THEME_SLUG ),
+									'selectors' => 'textarea, input, select, button',
+									'choices' => layers_get_google_font_options()
+								),
+							);
+
+		// Header -> Layout -> Layout
 		$controls['header-layout'] = array(
 								'header-width' => array(
 									'type'     => 'layers-select-icons',
@@ -138,7 +159,7 @@ class Layers_Customizer_Config {
 										'layout-fullwidth' => __( 'Full Width' , LAYERS_THEME_SLUG )
 									)
 								),
-								'break-0' => array(
+								'header-break-0' => array(
 									'type'     => 'layers-seperator'
 								),
 								'header-menu-layout' => array(
@@ -153,7 +174,7 @@ class Layers_Customizer_Config {
 										'header-logo-center' => __( 'Logo Center' , LAYERS_THEME_SLUG )
 									)
 								),
-								'break-1' => array(
+								'header-break-1' => array(
 									'type'     => 'layers-seperator'
 								),
 								'header-position-heading' => array(
@@ -171,7 +192,7 @@ class Layers_Customizer_Config {
 									'label'    => __( 'Overlay', LAYERS_THEME_SLUG ),
 									'default'	=> FALSE,
 								),
-								'break-2' => array(
+								'header-break-2' => array(
 									'type'     => 'layers-seperator',
 								),
 								'header-background-color' => array(

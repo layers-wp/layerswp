@@ -487,11 +487,11 @@ class Layers_Form_Elements {
 						<div class="layers-column-flush layers-span-3">
 							<?php echo $this->input(
 								array(
-									'type' => 'text',
+									'type' => 'number',
 									'name' => $input->name . '[' . $key . ']',
 									'id' => $input->id . '-' . $key,
 									'value' => ( isset( $input->value->$key ) ) ? $input->value->$key : NULL,
-									'class' => 'layers-input-tiny',
+									'class' => 'layers-hide-controls',
 								)
 							); ?>
 							<label for="<?php echo $input->id . '-' . $key; ?>"><?php echo $label; ?></label>

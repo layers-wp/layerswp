@@ -2115,20 +2115,17 @@ ul#adminmenu a.wp-has-current-submenu:after, ul#adminmenu > li.current > a.curre
         .onboard-nav-dots .layers-dot{
             display: inline-block;
             background: #ccc;
-            width: 8px;
+            width: 20px;
             height: 8px;
-            margin: 0 6px;
-            border-radius: 100px;
-            transform: scale(1);
+            margin: 0 1px 0 0;
             transition: all 0.2s ease-in-out;
             outline: none;
         }
         .onboard-nav-dots .layers-dot:hover{
-            transform: scale(1.5);
+            background: #555;
         }
         .onboard-nav-dots .layers-dot.dot-active{
-            background: #2EA2CC;
-            transform: scale(1.5);
+            background: #7DC800;
         }
         .onboard-nav-dots .layers-dot:focus{
             box-shadow: none;

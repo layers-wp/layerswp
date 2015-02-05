@@ -369,7 +369,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 						<?php } else { ?>
 							<?php $this->column_item( array( 'id_base' => $this->id_base , 'number' => $this->number ) ); ?>
 						<?php }?>
-						<li class="layers-button btn-primary layers-add-widget-column" data-number="<?php echo $this->number; ?>"><?php _e( '+ Add New Column' , LAYERS_THEME_SLUG ) ; ?></li>
+						<li class="layers-button layers-add-widget-column" data-number="<?php echo $this->number; ?>"><?php _e( '+ Add New Column' , LAYERS_THEME_SLUG ) ; ?></li>
 					</ul>
 				</section>
 			</div>

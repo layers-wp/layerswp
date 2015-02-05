@@ -668,7 +668,15 @@ input[type=text].layers-color-selector.wp-color-picker{
 .customize-control .layers-textarea:focus{
     border-color: #0289C0;
 }
-
+.layers-form-item input[type=text]:invalid,
+.layers-form-item input[type=email]:invalid,
+.layers-form-item input[type=number]:invalid,
+.layers-form-item input[type=password]:invalid,
+.layers-form-item input[type=link]:invalid,
+.customize-control .layers-textarea:invalid {
+    border-color: #FF9898;
+    background: rgba(255, 0, 0, 0.1);
+}
 .layers-form-item input[type=text].layers-large,
 .layers-form-item input[type=email].layers-large,
 .layers-form-item input[type=number].layers-large,

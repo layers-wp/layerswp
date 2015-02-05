@@ -32,8 +32,6 @@ class Layers_Customizer {
 
 		// Include Config file(s)
 		require_once get_template_directory() . $customizer_dir . 'config.php';
-		require_once get_template_directory() . $customizer_dir . 'google-fonts.php';
-
 		// Include The Default Settings Class
 		require_once get_template_directory() . $customizer_dir . 'defaults.php';
 

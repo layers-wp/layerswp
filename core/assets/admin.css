@@ -160,10 +160,10 @@ div#widgets-right div[id*='obox-layers-builder']{
         float: left;
         margin: 0 2% 2% 0;
         position: relative;
-        width: 23%;
+        width: 31%;
         border: 1px solid #dedede;
     }
-    .layers-product:nth-child(4n+4){
+    .layers-product:nth-child(3n+3){
         margin-right: 0;
     }
     .layers-product-screenshot{
@@ -287,7 +287,6 @@ div[id*='layers-widget'] .spinner{
 .layers-content img{
     max-width: 100%;
     height: auto;
-    border-radius: 3px;
 }
 .layers-well{
     background: #fff;
@@ -317,8 +316,6 @@ div[id*='layers-widget'] .spinner{
     -webkit-transform: translate(-50% ,-50%);
     transform: translate(-50% ,-50%);
 }
-
-
 
 /*---------------------------*/
 /*- ICONS -------------------*/
@@ -454,6 +451,9 @@ div[id*='layers-widget'] .spinner{
     .layers-middled{
         margin-left: auto;
         margin-right: auto;
+    }
+    .layers-no-gutter{
+        margin-right: 0;
     }
 
     /*-----------------------*/
@@ -609,6 +609,7 @@ div[id*='layers-widget'] .spinner{
 }
 
 .editible,
+.layers-form-item .layers-input,
 .layers-form-item input[type="text"],
 .layers-form-item input[type="email"],
 .layers-form-item input[type="number"],
@@ -667,7 +668,15 @@ input[type=text].layers-color-selector.wp-color-picker{
 .customize-control .layers-textarea:focus{
     border-color: #0289C0;
 }
-
+.layers-form-item input[type=text]:invalid,
+.layers-form-item input[type=email]:invalid,
+.layers-form-item input[type=number]:invalid,
+.layers-form-item input[type=password]:invalid,
+.layers-form-item input[type=link]:invalid,
+.customize-control .layers-textarea:invalid {
+    border-color: #FF9898;
+    background: rgba(255, 0, 0, 0.1);
+}
 .layers-form-item input[type=text].layers-large,
 .layers-form-item input[type=email].layers-large,
 .layers-form-item input[type=number].layers-large,
@@ -680,6 +689,20 @@ input[type=text].layers-color-selector.wp-color-picker{
     font-size: 16px;
     line-height: 28px;
     min-height: 84px;
+}
+
+/* Hide Number Input Controls */
+.layers-hide-controls[type=number],
+.layers-hide-controls::-webkit-inner-spin-button,
+.layers-hide-controls::-webkit-outer-spin-button {
+    -webkit-appearance: none; /*chrome*/
+    -moz-appearance: textfield; /*firefox*/
+}
+
+/*-----------------------*/
+/*- CUSTOM CSS EDITOR ---*/
+.layers-css-wrapper textarea {
+    height: 260px;
 }
 
     /*-----------------------*/
@@ -833,34 +856,45 @@ input[type=text].layers-color-selector.wp-color-picker{
     color: #fff;
 }
 .layers-trbl-fields-wrapper .layers-row {
-    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1) inset;
-    background: white;
-    border: 1px solid #DDD;
+    padding: 0;
     margin-bottom: 16px;
 }
 .layers-trbl-fields-wrapper .layers-span-3 {
+    width: 25%;
     position: relative;
     font-weight: normal;
-    width: 25%;
+}
+.layers-trbl-fields-wrapper .layers-span-3:after {
+    display:block;
+    width:1px;
+    height: 12px;
+    position:absolute;
+    top: 12px;
+    right:0;
+    content:'';
+    background: rgba(0, 0, 0, 0.08);
+}
+.layers-trbl-fields-wrapper .layers-span-3:last-child:after {
+    display:none;
 }
 .layers-trbl-fields-wrapper .layers-span-3 label {
     position: absolute;
     top: 100%;
+    width: 100%;
+    margin: 0;
     color: #AEAEAE;
     font-size: 10px;
-    width: 100%;
     text-align: center;
     line-height: 22px;
     font-weight: normal;
-    margin: 0;
 }
 .layers-trbl-fields-wrapper .layers-span-3 input {
     padding-left: 3px;
     padding-right: 3px;
     margin: -1px 0;
+    background: none;
     text-align: center;
     box-shadow: none;
-    background: none;
     border: 1px solid rgba(0, 0, 0, 0);
 }
 .layers-trbl-fields-wrapper .layers-span-3:last-child input { }
@@ -1163,25 +1197,70 @@ input[type=text].layers-color-selector.wp-color-picker{
     line-height: 30px;
     color: #777;
 }
+.layers-section-title .layers-excerpt p{
+    font-size: 20px;
+    line-height: 30px;
+}
 .layers-section-title .layers-excerpt + .layers-button{
     margin-top: 20px;
 }
 
-
-
     /*-----------------------*/
     /*- SECTION SIZE --------*/
-    .layers-section-title.layers-large{margin-bottom: 15px;}
-    .layers-section-title.layers-large .layers-heading{font-size: 44px; line-height: 54px;}
-    .layers-section-title.layers-large .layers-excerpt{max-width: 830px; font-size: 26px; line-height: 36px; font-weight: 300;}
+    .layers-section-title.layers-large{
+        margin-bottom: 15px;
+    }
+    .layers-section-title.layers-large .layers-heading{
+        font-size: 44px;
+        line-height: 54px;
+    }
+    .layers-section-title.layers-large .layers-excerpt{
+        max-width: 830px;
+        font-size: 26px;
+        line-height: 36px;
+        font-weight: 300;
+    }
+    .layers-section-title.layers-large .layers-excerpt p{
+        font-size: 26px;
+        line-height: 36px;
+        font-weight: 300;
+    }
 
-    .layers-section-title.layers-small{margin-bottom: 15px;}
-    .layers-section-title.layers-small .layers-heading{font-size: 24px; line-height: 34px;}
-    .layers-section-title.layers-small .layers-excerpt{font-size: 16px; line-height: 26px;}
+    .layers-section-title.layers-small{
+        margin-bottom: 15px;
+    }
+    .layers-section-title.layers-small .layers-heading{
+        font-size: 24px;
+        line-height: 34px;
+    }
+    .layers-section-title.layers-small .layers-excerpt{
+        font-size: 16px;
+        line-height: 26px;
+    }
+    .layers-section-title.layers-small .layers-excerpt p{
+        font-size: 16px;
+        line-height: 26px;
+    }
 
-    .layers-section-title.layers-tiny{margin-bottom: 15px;}
-    .layers-section-title.layers-tiny .layers-heading{font-size: 16px; line-height: 26px; font-weight: 700;}
-    .layers-section-title.layers-tiny .layers-excerpt{margin-top: 0px !important; font-size: 14px; line-height: 24px; font-weight: normal;}
+    .layers-section-title.layers-tiny{
+        margin-bottom: 15px;
+    }
+    .layers-section-title.layers-tiny .layers-heading{
+        font-size: 16px;
+        line-height: 26px;
+        font-weight: 700;
+    }
+    .layers-section-title.layers-tiny .layers-excerpt{
+        margin-top: 0px !important;
+        font-size: 14px;
+        line-height: 24px;
+        font-weight: normal;
+    }
+    .layers-section-title.layers-tiny .layers-excerpt p{
+        font-size: 14px;
+        line-height: 24px;
+        font-weight: normal;
+    }
 
         /*-------------------*/
         /*- ALIGNMENTS ------*/
@@ -1328,7 +1407,6 @@ input[type=text].layers-color-selector.wp-color-picker{
 /*- LABELS ------------------*/
 .layers-label{
     padding: 0 5px;
-    margin-left: 5px;
     background: #ddd;
     border-radius: 3px;
     font-size: 10px;
@@ -1339,7 +1417,7 @@ input[type=text].layers-color-selector.wp-color-picker{
     /*-----------------------*/
     /*- SECONDARY LABEL -----*/
     .label-secondary{
-        background: #22E946;
+        background: #009DF3;
         color: #fff;
     }
 
@@ -1389,13 +1467,12 @@ input[type=text].layers-color-selector.wp-color-picker{
     top: 0;
     right: 0;
     z-index: 1;
-    content: '\f140';
-    font: 400 20px/47px dashicons;
+    content: '\e00d';
+    font: 400 14px/47px layers-interface;
     color: #aaa;
 }
 .layers-accordion-item.open .layers-accordion-title:after{
     color: #555;
-    content: '\f142';
 }
 .layers-accordion-title:hover{
     background: #f0f0f0; color: #555;
@@ -2017,7 +2094,7 @@ ul#adminmenu a.wp-has-current-submenu:after, ul#adminmenu > li.current > a.curre
     /*---------------------------*/
     /*- LAYERS ONBOARDING -------*/
     .layers-onboard-wrapper{
-        max-width: 740px;
+        max-width: 1000px;
         margin: auto;
         padding: 40px 0 0;
         overflow: hidden;
@@ -2068,13 +2145,13 @@ ul#adminmenu a.wp-has-current-submenu:after, ul#adminmenu > li.current > a.curre
         .layers-onboard-slider{
             overflow: hidden;
             margin-bottom: 20px;
-            width: 740px;
+            width: 1000px;
             height: 750px;
             position: relative;
         }
         .layers-onboard-slide{
             position: absolute;
-            width: 740px;
+            width: 1000px;
             transform: scale(1);
             transform: translateX(0px);
             transition:  all 0.2 ease-in-out;
@@ -2091,9 +2168,12 @@ ul#adminmenu a.wp-has-current-submenu:after, ul#adminmenu > li.current > a.curre
             transform: scale(0.95);
         }
         .layers-onboard-slide .layers-column{
-            margin: 0;
+        }
+        .layers-onboard-slide .layers-content-large{
+            min-height: 360px;
         }
         .layers-logo-wrapper{
+            padding: 10px;
             border: 1px solid #eee;
             text-align: center;
         }
@@ -2102,6 +2182,15 @@ ul#adminmenu a.wp-has-current-submenu:after, ul#adminmenu > li.current > a.curre
         }
         .layers-logo-upload img{
             display: inline-block;
+        }
+        .layers-logo-wrapper .layers-image-container.layers-has-image .layers-image-display{
+            max-height: none;
+        }
+        .layers-demo-video{
+            max-height: 490px;
+            background: #fff;
+            overflow: hidden;
+            box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.04);
         }
 
         /*-----------------------*/
@@ -2137,8 +2226,26 @@ ul#adminmenu a.wp-has-current-submenu:after, ul#adminmenu > li.current > a.curre
 
         /*------------------------------------------*/
         /*- PRESET LAYOUTS IN ONBOARDING -----------*/
+        .layers-template-selector{
+            max-height: 490px;
+            overflow-y: scroll;
+        }
+        .layers-template-selector .layers-product{
+            width: 48%;
+            margin: 0 4% 4% 0;
+        }
+        .layers-template-selector .layers-product:nth-child(2n+2){
+            margin-right: 0;
+        }
+        .layers-template-selector .layers-product:nth-child(3n+3){
+            margin-right: 4%;
+        }
         .layers-onboard-slide .layers-product:focus{
-            border: 3px solid;
+            border-color: #2EA2CC;
+        }
+        .layers-onboard-slide .layers-product:focus .layers-product-name{
+            background: #2EA2CC;
+            color: #fff;
         }
         .layers-onboard-slide .layers-product-actions{
             display: none;

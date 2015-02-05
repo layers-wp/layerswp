@@ -231,7 +231,7 @@ class Layers_Form_Elements {
 				<section class="layers-image-container <?php if( isset( $input->value ) && NULL != $input->value ) echo 'layers-has-image'; ?>">
 					<div class="layers-image-display layers-image-upload-button">
 						<!-- Image -->
-						<?php if( isset( $input->value ) ) echo wp_get_attachment_image( $input->value , 'thumbnail' ); ?>
+						<?php if( isset( $input->value ) ) echo wp_get_attachment_image( $input->value , 'medium' ); ?>
 						<!-- Remove button -->
 						<a class="layers-image-remove" href=""><?php _e( 'Remove' , LAYERS_THEME_SLUG ); ?></a>
 					</div>
@@ -482,16 +482,16 @@ class Layers_Form_Elements {
 					'left' => __( 'Left' , LAYERS_THEME_SLUG ),
 				); ?>
 				
-				<div class="layers-row">
+				<div class="layers-row layers-input">
 					<?php foreach ( $fields as $key => $label ) { ?>
 						<div class="layers-column-flush layers-span-3">
 							<?php echo $this->input(
 								array(
-									'type' => 'text',
+									'type' => 'number',
 									'name' => $input->name . '[' . $key . ']',
 									'id' => $input->id . '-' . $key,
 									'value' => ( isset( $input->value->$key ) ) ? $input->value->$key : NULL,
-									'class' => 'layers-input-tiny',
+									'class' => 'layers-hide-controls',
 								)
 							); ?>
 							<label for="<?php echo $input->id . '-' . $key; ?>"><?php echo $label; ?></label>

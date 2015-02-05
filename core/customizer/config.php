@@ -121,8 +121,7 @@ class Layers_Customizer_Config {
 		$controls['general-css'] = array(
 								'custom-css' => array(
 									'type'     => 'layers-css',
-									'label'    => __( 'Custom CSS', LAYERS_THEME_SLUG ),
-									'placeholder'	=> 'ribidy'
+									'placeholder'	=> ".classname {\n\tbackground: #333;\n}"
 								),
 							); // css
 

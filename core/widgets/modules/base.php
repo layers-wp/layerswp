@@ -98,35 +98,36 @@ if( !class_exists( 'Layers_Widget' ) ) {
 		}
 		
 		/**
-		* Apply the advanced styles of the widget instance
+		* Apply advanced styles to widget instance
+		*
+		* @param   string   $widget_id   id css selector of widget
+		* @param   object   $widget      Widget object to use
 		*/
 	
 		function apply_widget_advanced_styling( $widget_id, $widget = NULL ){
-
+			
+			// We need a widget to get the settings from
 			if( NULL == $widget ) return;
 			
-			$types = array(
-				'margin',
-				'padding',
-			);
+			// Apply Margin & Padding
 			
-			$fields = array(
-				'top',
-				'right',
-				'bottom',
-				'left',
-			);
+			$types = array( 'margin', 'padding', );
+			$fields = array( 'top', 'right', 'bottom', 'left', );
 			
+			// Loop the Margin & Padding
 			foreach ( $types as $type ) {
 				
+				// Get the TopRightBottomLeft TRBL array of values
 				$values = $this->check_and_return( $widget , 'design' , 'advanced', $type );
 				
 				if( NULL != $values && is_array( $values ) ) {
 					foreach ( $fields as $field ) {
-						if( isset( $values[ $field ] ) && '' != $values[ $field ] ) {
+						if( isset( $values[ $field ] ) && '' != $values[ $field ] && is_numeric( $values[ $field ] ) ) {
+							// If value is set, and is number, then add 'px' to it
 							$values[ $field ] .= 'px';
 						}
 					}
+					// Apply the TRBL styles
 					layers_inline_styles( '#' . $widget_id, $type, array( $type => $values ) );
 				}
 			}

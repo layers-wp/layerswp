@@ -699,19 +699,19 @@ class Layers_Design_Controller {
                                 'value' => ( isset( $this->values['advanced']['customcss'] ) ) ? $this->values['advanced']['customcss'] : NULL,
                                 'placeholder' => ".classname {\n\tbackground: #333;\n}"
                             ),
-                            'margin' => array(
-                                'type' => 'trbl-fields',
-                                'label' => __( 'Margin (px)' , LAYERS_THEME_SLUG ),
-                                'name' => $this->widget['name'] . '[advanced][margin]' ,
-                                'id' =>  $this->widget['id'] . '-advanced-margin' ,
-                                'value' => ( isset( $this->values['advanced']['margin'] ) ) ? $this->values['advanced']['margin'] : NULL
-                            ),
                             'padding' => array(
                                 'type' => 'trbl-fields',
                                 'label' => __( 'Padding (px)' , LAYERS_THEME_SLUG ),
                                 'name' => $this->widget['name'] . '[advanced][padding]' ,
                                 'id' =>  $this->widget['id'] . '-advanced-padding' ,
                                 'value' => ( isset( $this->values['advanced']['padding'] ) ) ? $this->values['advanced']['padding'] : NULL
+                            ),
+                            'margin' => array(
+                                'type' => 'trbl-fields',
+                                'label' => __( 'Margin (px)' , LAYERS_THEME_SLUG ),
+                                'name' => $this->widget['name'] . '[advanced][margin]' ,
+                                'id' =>  $this->widget['id'] . '-advanced-margin' ,
+                                'value' => ( isset( $this->values['advanced']['margin'] ) ) ? $this->values['advanced']['margin'] : NULL
                             ),
                         );
 

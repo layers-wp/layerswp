@@ -482,7 +482,7 @@ class Layers_Form_Elements {
 					'left' => __( 'Left' , LAYERS_THEME_SLUG ),
 				); ?>
 				
-				<div class="layers-row">
+				<div class="layers-row layers-input">
 					<?php foreach ( $fields as $key => $label ) { ?>
 						<div class="layers-column-flush layers-span-3">
 							<?php echo $this->input(

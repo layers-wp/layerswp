@@ -683,6 +683,14 @@ input[type=text].layers-color-selector.wp-color-picker{
     min-height: 84px;
 }
 
+/* Hide Number Input Controls */
+.layers-hide-controls[type=number],
+.layers-hide-controls::-webkit-inner-spin-button,
+.layers-hide-controls::-webkit-outer-spin-button {
+    -webkit-appearance: none; /*chrome*/
+    -moz-appearance: textfield; /*firefox*/
+}
+
     /*-----------------------*/
     /*- CHECKBOX ------------*/
     .layers-checkbox-wrapper input[type=checkbox]{

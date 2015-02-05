@@ -99,6 +99,9 @@ if( !class_exists( 'Layers_Widget' ) ) {
 		
 		/**
 		* Apply advanced styles to widget instance
+		*
+		* @param   string   $widget_id   id css selector of widget
+		* @param   object   $widget      Widget object to use
 		*/
 	
 		function apply_widget_advanced_styling( $widget_id, $widget = NULL ){

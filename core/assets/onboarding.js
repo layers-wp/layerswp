@@ -142,5 +142,7 @@ jQuery(function($) {
 
         // Update slider classes
         $( '.layers-onboard-slide' ).eq( $i ).addClass( 'layers-onboard-slide-current' ).removeClass( 'layers-onboard-slide-inactive' ).siblings().removeClass( 'layers-onboard-slide-current' ).addClass( 'layers-onboard-slide-inactive' );
+
+        $( '.layers-onboard-slide' ).eq( $i ).find( 'input, select, textarea, .layers-image-upload-button' ).first().focus();
     }
 });

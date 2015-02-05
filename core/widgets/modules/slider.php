@@ -98,8 +98,6 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 			// Parse $instance
 			$widget = wp_parse_args( $instance, $instance_defaults );
 
-			if( !empty( $widget['design']['advanced'][ 'customcss' ] ) ) layers_inline_styles( NULL, 'css', array( 'css' => $widget['design']['advanced'][ 'customcss' ]  ) );
-			
 			// Apply the advanced widget styling
 			$this->apply_widget_advanced_styling( $widget_id, $widget ); ?>
 

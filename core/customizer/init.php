@@ -32,6 +32,7 @@ class Layers_Customizer {
 
 		// Include Config file(s)
 		require_once get_template_directory() . $customizer_dir . 'config.php';
+		require_once get_template_directory() . $customizer_dir . 'google-fonts.php';
 
 		// Include The Default Settings Class
 		require_once get_template_directory() . $customizer_dir . 'defaults.php';
@@ -59,7 +60,7 @@ class Layers_Customizer {
 				$wp_customize->add_panel(
 					'widgets', array(
 						'priority' => 10,
-						'title' => __('Layers: Page Builder', LAYERS_THEME_SLUG ),
+						'title' => __('Page Builder &amp; Widgets', LAYERS_THEME_SLUG ),
 						'description' => $this->render_builder_page_dropdown() . __('Use this area to add widgets to your page, use the (Layers) widgets for the Body section.', LAYERS_THEME_SLUG ),
 					)
 				);

@@ -699,6 +699,12 @@ input[type=text].layers-color-selector.wp-color-picker{
     -moz-appearance: textfield; /*firefox*/
 }
 
+/*-----------------------*/
+/*- CUSTOM CSS EDITOR ---*/
+.layers-css-wrapper textarea {
+    height: 260px;
+}
+
     /*-----------------------*/
     /*- CHECKBOX ------------*/
     .layers-checkbox-wrapper input[type=checkbox]{

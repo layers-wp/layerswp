@@ -1,17 +1,17 @@
 <?php  /**
- * Select Image
+ * Font Image
  *
- * This file is used to register and display the custom Layers Select Image
+ * This file is used to register and display the custom Layers Font Image
  *
  * @package Layers
  * @since Layers 1.0
  */
 
-if( !class_exists( 'Layers_Customize_Select_Control' ) ) {
+if( !class_exists( 'Layers_Customize_Font_Control' ) ) {
 
-	class Layers_Customize_Select_Control extends Layers_Customize_Control {
+	class Layers_Customize_Font_Control extends Layers_Customize_Control {
 
-		public $type = 'layers-select';
+		public $type = 'layers-font';
 
 		public function render_content() {
 
@@ -33,10 +33,10 @@ if( !class_exists( 'Layers_Customize_Select_Control' ) ) {
 						<label class="layers-form-row"><?php echo $this->subtitle; ?></label>
 					<?php endif; ?>
 
-					<div class="layers-select-wrapper layers-form-item">
+					<div class="layers-font-wrapper layers-form-item">
 						<?php echo $form_elements->input(
 							array(
-								'type' => 'select',
+								'type' => 'font',
 								'label' => ( isset( $this->label ) ? $this->label : '' ),
 								'name' => '' ,
 								'id' =>  $this->id,
@@ -57,4 +57,4 @@ if( !class_exists( 'Layers_Customize_Select_Control' ) ) {
 			<?php
 		}
 	}
-} // !class_exists( 'Layers_Customize_Select_Control' )
+} // !class_exists( 'Layers_Customize_Font_Control' )

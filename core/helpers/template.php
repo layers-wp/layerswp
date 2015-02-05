@@ -431,9 +431,31 @@ if( !function_exists( 'layers_apply_customizer_styles' ) ) {
 				'fixed' => false, // hardcode (not an option)
 			),
 		) );
-		layers_inline_styles( 'footer, footer.well', 'color', array( 'color' => layers_get_theme_mod( 'font-body-color' ) ) );
-		layers_inline_styles( 'footer a, footer.well a', 'color', array( 'color' => layers_get_theme_mod( 'font-link-color' ) ) );
+		layers_inline_styles( 'footer, footer.well', 'color', array( 'color' => layers_get_theme_mod( 'footer-body-color' ) ) );
+		layers_inline_styles( 'footer a, footer.well a', 'color', array( 'color' => layers_get_theme_mod( 'footer-link-color' ) ) );
 
+		// Fonts
+		$customizer_options = new Layers_Customizer_Config();
+		foreach( $customizer_options->controls() as $controls ) {
+
+			foreach( $controls as $control_key => $control_data ){
+
+				if( 'layers-font' == $control_data[ 'type' ] ) {
+
+					if( layers_get_theme_mod( $control_key ) ) {
+						layers_inline_styles(
+								$control_data[ 'selectors' ],
+								'font-family',
+								array(
+									'font-family' => layers_get_theme_mod( $control_key )
+								)
+							);
+					}
+
+				}
+			}
+
+		}
 	}
 	add_action( 'wp_enqueue_scripts', 'layers_apply_customizer_styles' );
 } // layers_apply_customizer_styles
@@ -701,35 +723,42 @@ if( !function_exists( 'layers_inline_styles' ) ) {
 					$css.= 'background-image: url(\'' . $image[0] .'\');';
 				}
 			break;
-			
+
 			case 'margin' :
 			case 'padding' :
-			
-				// Set the Margin or Padding
+
+				// Set the Margin or Padding array
 				$trbl_args = $args[ $type ];
 
 				if( isset( $trbl_args['top'] ) && '' != $trbl_args['top'] ){
 					$css .= $type . '-top: ' . $trbl_args['top'] . '; ';
 				}
-				
+
 				if( isset( $trbl_args['right'] ) && '' != $trbl_args['right'] ){
 					$css .= $type . '-right: ' . $trbl_args['right'] . '; ';
 				}
-				
+
 				if( isset( $trbl_args['bottom'] ) && '' != $trbl_args['bottom'] ){
 					$css .= $type . '-bottom: ' . $trbl_args['bottom'] . '; ';
 				}
-				
+
 				if( isset( $trbl_args['left'] ) && '' != $trbl_args['left'] ){
 					$css .= $type . '-left: ' . $trbl_args['left'] . '; ';
 				}
-				
+
 			break;
 
 			case 'color' :
 
 				if( '' == $args[ 'color' ] ) return ;
 				$css .= 'color: ' . $args[ 'color' ] . ';';
+
+			break;
+
+			case 'font-family' :
+
+				if( '' == $args[ 'font-family' ] ) return ;
+				$css .= 'font-family: ' . $args[ 'font-family' ] . ';';
 
 			break;
 
@@ -751,9 +780,6 @@ if( !function_exists( 'layers_inline_styles' ) ) {
 			break;
 
 		}
-
-		// Exit if no CSS was generated
-		if ( '' == $css ) return ;
 
 		$inline_css = '';
 

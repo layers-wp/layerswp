@@ -182,8 +182,8 @@ if( ! function_exists( 'layers_register_standard_sidebars' ) ) {
 		 */
 		register_sidebar( array(
 			'id'		=> LAYERS_THEME_SLUG . '-off-canvas-sidebar',
-			'name'		=> __( 'Pop Out Sidebar' , LAYERS_THEME_SLUG ),
-			'description'	=> __( '' , LAYERS_THEME_SLUG ),
+			'name'		=> __( 'Mobile Sidebar' , LAYERS_THEME_SLUG ),
+			'description'	=> __( 'This sidebar will only appear on mobile devices.' , LAYERS_THEME_SLUG ),
 			'before_widget'	=> '<aside id="%1$s" class="content widget %2$s">',
 			'after_widget'	=> '</aside>',
 			'before_title'	=> '<h5 class="section-nav-title">',

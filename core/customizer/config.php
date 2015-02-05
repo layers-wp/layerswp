@@ -18,29 +18,25 @@ class Layers_Customizer_Config {
 	public function panels(){
 
 		$panels = array(
-			'general'		=> array(
-									'title' => __( 'General', LAYERS_THEME_SLUG ),
-									'priority' => 30
-								),
-			'color-scheme'	=> array(
-									'title' => __( 'Color Scheme', LAYERS_THEME_SLUG ),
-									'priority' => 35
-								),
-			'header'		=> array(
-									'title' => __( 'Header', LAYERS_THEME_SLUG ),
-									'description' => __( 'Control your header\'s logo, layout, colors and font.' , LAYERS_THEME_SLUG ), // @TODO Put a helper here
-									'priority' => 40
-								),
-			'content'		=> array(
-									'title' => __( 'Content Area', LAYERS_THEME_SLUG ),
-									'description' => __( 'Control your content\'s default layout.' , LAYERS_THEME_SLUG ), // @TODO Put a helper here
-									'priority' => 45
-								),
-			'footer'		=> array(
-									'title' => __( 'Footer', LAYERS_THEME_SLUG ),
-									'description' => __( 'Control your footer\'s custom text, widget areas and layout.' , LAYERS_THEME_SLUG ), // @TODO Put a helper here
-									'priority' => 50
-								),
+			'general' => array(
+							'title' => __( 'General', LAYERS_THEME_SLUG ),
+							'priority' => 30
+						),
+			'header' => array(
+							'title' => __( 'Header', LAYERS_THEME_SLUG ),
+							'description' => __( 'Control your header\'s logo, layout, colors and font.' , LAYERS_THEME_SLUG ), // @TODO Put a helper here
+							'priority' => 40
+						),
+			'content' => array(
+							'title' => __( 'Content Area', LAYERS_THEME_SLUG ),
+							'description' => __( 'Control your content\'s default layout.' , LAYERS_THEME_SLUG ), // @TODO Put a helper here
+							'priority' => 45
+						),
+			'footer' => array(
+							'title' => __( 'Footer', LAYERS_THEME_SLUG ),
+							'description' => __( 'Control your footer\'s custom text, widget areas and layout.' , LAYERS_THEME_SLUG ), // @TODO Put a helper here
+							'priority' => 50
+						),
 		);
 
 		return apply_filters( 'layers_customizer_panels', $panels );
@@ -77,6 +73,9 @@ class Layers_Customizer_Config {
 								'css' => array(
 									'title' =>__( 'CSS' , LAYERS_THEME_SLUG ),
 								),
+								'fonts' => array(
+									'title' =>__( 'Fonts' , LAYERS_THEME_SLUG ),
+								),
 							);
 
 		$sections[ 'header' ] = array(
@@ -92,7 +91,7 @@ class Layers_Customizer_Config {
 								'layout' => array(
 									'title' =>__( 'Layout' , LAYERS_THEME_SLUG ),
 								)
-							);;
+							);
 
 		$sections[ 'footer' ] = array(
 								'layout' => array(
@@ -122,10 +121,31 @@ class Layers_Customizer_Config {
 		$controls['general-css'] = array(
 								'custom-css' => array(
 									'type'     => 'layers-css',
-									'label'    => __( 'Custom CSS', LAYERS_THEME_SLUG ),
-									'placeholder'	=> 'ribidy'
+									'placeholder'	=> ".classname {\n\tbackground: #333;\n}"
 								),
 							); // css
+
+		// Header -> Layout -> Layout
+		$controls['general-fonts'] = array(
+								'heading-fonts' => array(
+									'type' => 'layers-font',
+									'label'    => __( 'Headings', LAYERS_THEME_SLUG ),
+									'selectors' => 'h1,h2,h3,h4,h5,h6',
+									'choices' => layers_get_google_font_options()
+								),
+								'body-fonts' => array(
+									'type' => 'layers-font',
+									'label'    => __( 'Body', LAYERS_THEME_SLUG ),
+									'selectors' => 'body',
+									'choices' => layers_get_google_font_options()
+								),
+								'form-fonts' => array(
+									'type' => 'layers-font',
+									'label'    => __( 'Forms', LAYERS_THEME_SLUG ),
+									'selectors' => 'textarea, input, select, button',
+									'choices' => layers_get_google_font_options()
+								),
+							);
 
 		// Header -> Layout -> Layout
 		$controls['header-layout'] = array(
@@ -138,7 +158,7 @@ class Layers_Customizer_Config {
 										'layout-fullwidth' => __( 'Full Width' , LAYERS_THEME_SLUG )
 									)
 								),
-								'break-0' => array(
+								'header-break-0' => array(
 									'type'     => 'layers-seperator'
 								),
 								'header-menu-layout' => array(
@@ -153,7 +173,7 @@ class Layers_Customizer_Config {
 										'header-logo-center' => __( 'Logo Center' , LAYERS_THEME_SLUG )
 									)
 								),
-								'break-1' => array(
+								'header-break-1' => array(
 									'type'     => 'layers-seperator'
 								),
 								'header-position-heading' => array(
@@ -171,7 +191,7 @@ class Layers_Customizer_Config {
 									'label'    => __( 'Overlay', LAYERS_THEME_SLUG ),
 									'default'	=> FALSE,
 								),
-								'break-2' => array(
+								'header-break-2' => array(
 									'type'     => 'layers-seperator',
 								),
 								'header-background-color' => array(
@@ -215,24 +235,6 @@ class Layers_Customizer_Config {
 								'break-1' => array(
 									'type'     => 'layers-seperator'
 								),
-								'archive-sidebar-heading' => array(
-									'type'  => 'layers-heading',
-									'label'    => __( 'Post List Sidebar(s)', LAYERS_THEME_SLUG ),
-									'description' => __( 'This option affects your category, tag, author and search pages.', LAYERS_THEME_SLUG ),
-								),
-								'archive-left-sidebar' => array(
-									'type'		=> 'checkbox',
-									'label' 	=> __( 'Display Left Sidebar', LAYERS_THEME_SLUG ),
-									'default' 	=> FALSE,
-								), // post-sidebar
-								'archive-right-sidebar' => array(
-									'type'		=> 'checkbox',
-									'label' 	=> __( 'Display Right Sidebar', LAYERS_THEME_SLUG ),
-									'default' 	=> TRUE,
-								), // post-sidebar
-								'break-2' => array(
-									'type'     => 'layers-seperator'
-								),
 								'single-sidebar-heading' => array(
 									'type'  => 'layers-heading',
 									'label'    => __( 'Single Post Sidebar(s)', LAYERS_THEME_SLUG ),
@@ -247,6 +249,24 @@ class Layers_Customizer_Config {
 									'type'      => 'checkbox',
 									'label'     => __( 'Display Right Sidebar', LAYERS_THEME_SLUG ),
 									'default'   => TRUE,
+								), // post-sidebar
+								'break-2' => array(
+									'type'     => 'layers-seperator'
+								),
+								'archive-sidebar-heading' => array(
+									'type'  => 'layers-heading',
+									'label'    => __( 'Post List Sidebar(s)', LAYERS_THEME_SLUG ),
+									'description' => __( 'This option affects your category, tag, author and search pages.', LAYERS_THEME_SLUG ),
+								),
+								'archive-left-sidebar' => array(
+									'type'		=> 'checkbox',
+									'label' 	=> __( 'Display Left Sidebar', LAYERS_THEME_SLUG ),
+									'default' 	=> FALSE,
+								), // post-sidebar
+								'archive-right-sidebar' => array(
+									'type'		=> 'checkbox',
+									'label' 	=> __( 'Display Right Sidebar', LAYERS_THEME_SLUG ),
+									'default' 	=> TRUE,
 								), // post-sidebar
 							);
 
@@ -284,12 +304,12 @@ class Layers_Customizer_Config {
 									'type'  => 'layers-heading',
 									'label'    => __( 'Text', LAYERS_THEME_SLUG ),
 								),
-								'font-body-color' => array(
+								'footer-body-color' => array(
 									'type'  => 'layers-color',
 									'subtitle' => __( 'Text Color', LAYERS_THEME_SLUG ),
 									'default' => '#000000',
 								),
-								'font-link-color' => array(
+								'footer-link-color' => array(
 									'type' => 'layers-color',
 									'subtitle' => __( 'Link Color', LAYERS_THEME_SLUG ),
 									'default' => '#35A6E8',

@@ -327,10 +327,12 @@ section[class*=' off-canvas-']{
     }
     .has-image.image-top .copy-container{
         top: auto;
+        -webkit-transform: none;
         transform: none;
     }
     .has-image.image-top .image-container{
         top: auto;
+        -webkit-transform: none;
         transform: none;
     }
     .image-top .copy-container + .image-container{

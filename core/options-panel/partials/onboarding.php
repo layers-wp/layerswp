@@ -21,23 +21,37 @@ $layers_migrator = new Layers_Widget_Migrator(); ?>
 
             <!-- Welcome -->
             <div class="layers-onboard-slide layers-animate layers-onboard-slide-current">
-                <div class="layers-column layers-span-12 postbox">
+                <div class="layers-column layers-span-8 postbox">
                     <div class="layers-content-large">
                         <!-- Your content goes here -->
-                        <div class="layers-section-title layers-text-center layers-no-push-bottom">
+                        <div class="layers-section-title layers-no-push-bottom">
                             <h3 class="layers-heading">
-                                <?php _e( 'Welcome to Layers!' , LAYERS_THEME_SLUG ); ?>
+                                <?php _e( 'Thanks for choosing Layers!' , LAYERS_THEME_SLUG ); ?>
                             </h3>
-                            <p class="layers-excerpt">
+                            <div class="layers-excerpt">
+                                <p>
+                                    <?php _e( 'Layers is a revolutionary WordPress theme that enables you to build any website you want.' , LAYERS_THEME_SLUG ); ?>
+                                </p>
+                                <p>
+                                    <?php _e( 'The following step by step setup process is designed to help you learn the ropes and get started with minimum fuss. Enjoy the ride!' , LAYERS_THEME_SLUG ); ?>
+                                </p>
 
-                                <?php _e( 'Layers is a revolutionary WordPress theme that enables you to build any website you want.
-                                The following step by step setup process is designed to help you learn the ropes and get started with minimum fuss. Enjoy the ride!' , LAYERS_THEME_SLUG ); ?>
-
-                            </p>
+                            </div>
                         </div>
                     </div>
                     <div class="layers-button-well">
                         <a class="layers-button btn-primary layers-pull-right onbard-next-step" href=""><?php _e( 'Let\'s get Started &rarr;' , LAYERS_THEME_SLUG ); ?></a>
+                    </div>
+                </div>
+                <div class="layers-column layers-span-4 no-gutter">
+                    <div class="layers-content">
+                        <!-- Your helpful tips go here -->
+                        <ul class="layers-help-list">
+                            <li>
+                                <?php _e( 'If you\'re ever stuck or need help with your Layers site please visit our <a href="http://help.layerswp.com/" rel="nofollow">helpful documentation.</a>' , LAYERS_THEME_SLUG ); ?>
+                            </li>
+                            <li class="pro-tip"><?php _e( 'For the Pros: Layers will automatically assign the tagline to Settings &rarr; General.' , LAYERS_THEME_SLUG ); ?></li>
+                        </ul>
                     </div>
                 </div>
             </div>
@@ -87,10 +101,10 @@ $layers_migrator = new Layers_Widget_Migrator(); ?>
                         <!-- Your helpful tips go here -->
                         <ul class="layers-help-list">
                             <li>
-                                <?php _e( 'For tips on how best to name your website, we suggest reading <a href="http://help.layerswp.com/" rel="nofollow">this post.</a>' , LAYERS_THEME_SLUG ); ?>
+                                <?php _e( 'For tips on how best to name your website, we suggest reading <a href="http://help.layerswp.com/" rel="nofollow">this post</a>' , LAYERS_THEME_SLUG ); ?>
                             </li>
                             <li class="pro-tip">
-                                <?php _e( 'For the Pros: Layers will automatically assign this site name to Settings &rarr; General.' , LAYERS_THEME_SLUG ); ?>
+                                <?php _e( 'For the Pros: Layers will automatically assign this site name to Settings &rarr; General' , LAYERS_THEME_SLUG ); ?>
                             </li>
                         </ul>
                     </div>
@@ -143,7 +157,7 @@ $layers_migrator = new Layers_Widget_Migrator(); ?>
                             <li><?php _e( 'Keep it simple' , LAYERS_THEME_SLUG ); ?></li>
                             <li><?php _e( 'Avoid buzz words' , LAYERS_THEME_SLUG ); ?></li>
                             <li><?php _e( 'Make sure it describes what you offer' , LAYERS_THEME_SLUG ); ?></li>
-                            <li class="pro-tip"><?php _e( 'For the Pros: Layers will automatically assign the tagline to Settings &rarr; General.' , LAYERS_THEME_SLUG ); ?></li>
+                            <li class="pro-tip"><?php _e( 'For the Pros: Layers will automatically assign the tagline to Settings &rarr; General' , LAYERS_THEME_SLUG ); ?></li>
                         </ul>
                     </div>
                 </div>
@@ -193,7 +207,7 @@ $layers_migrator = new Layers_Widget_Migrator(); ?>
                     <div class="layers-content">
                         <!-- Your helpful tips go here -->
                         <ul class="layers-help-list">
-                            <li><?php _e( 'Any size is fine, Layers will resize it automatically to fit your site' , LAYERS_THEME_SLUG ); ?></li>
+                            <li><?php _e( 'Any dimension is fine, Layers will resize it automatically to fit your site' , LAYERS_THEME_SLUG ); ?></li>
                             <li><?php _e( 'PNGs with a transparent background work best but GIFs or JPGs are fine too' , LAYERS_THEME_SLUG ); ?></li>
                             <li><?php _e( 'Try keep your logo file size below 500kb' , LAYERS_THEME_SLUG ); ?></li>
                         </ul>
@@ -234,7 +248,7 @@ $layers_migrator = new Layers_Widget_Migrator(); ?>
                         <a class="layers-button btn-primary layers-pull-right onbard-next-step" href=""><?php _e( 'Got it, Next Step &rarr;' , LAYERS_THEME_SLUG ); ?></a>
                     </div>
                 </div>
-                <div class="layers-column layers-span-6 layers-no-gutter layers-demo-video">
+                <div class="layers-column layers-span-6 no-gutter layers-demo-video">
                     <video width="490" height="490" controls>
                         <source src="https://cdn.oboxthemes.com/layers/videos/adding-a-widget.mp4" type="video/mp4">
                         Your browser does not support the video tag.
@@ -271,7 +285,7 @@ $layers_migrator = new Layers_Widget_Migrator(); ?>
                         <a class="layers-button btn-primary layers-pull-right onbard-next-step" href=""><?php _e( 'Next Step &rarr;' , LAYERS_THEME_SLUG ); ?></a>
                     </div>
                 </div>
-                <div class="layers-column layers-span-6 layers-no-gutter layers-demo-video">
+                <div class="layers-column layers-span-6 no-gutter layers-demo-video">
                     <video width="490" height="490" controls>
                         <source src="https://cdn.oboxthemes.com/layers/videos/design-bar.mp4" type="video/mp4">
                         Your browser does not support the video tag.
@@ -308,7 +322,7 @@ $layers_migrator = new Layers_Widget_Migrator(); ?>
                         <a class="layers-button btn-primary layers-pull-right onbard-next-step" href=""><?php _e( 'Next Step &rarr;' , LAYERS_THEME_SLUG ); ?></a>
                     </div>
                 </div>
-                <div class="layers-column layers-span-6 layers-no-gutter layers-demo-video">
+                <div class="layers-column layers-span-6 no-gutter layers-demo-video">
                     <video width="490" height="490" controls>
                         <source src="https://cdn.oboxthemes.com/layers/videos/font-size.mp4" type="video/mp4">
                         Your browser does not support the video tag.
@@ -340,7 +354,7 @@ $layers_migrator = new Layers_Widget_Migrator(); ?>
                         <a class="layers-button btn-primary layers-pull-right onbard-next-step" href=""><?php _e( 'Proceed to Customizer' , LAYERS_THEME_SLUG ); ?></a>
                     </div>
                 </div>
-                <div class="layers-column layers-span-8 layers-no-gutter layers-template-selector postbox">
+                <div class="layers-column layers-span-8 no-gutter layers-template-selector postbox">
                     <div class="layers-content">
 
                         <?php $this->load_partial( 'preset-layouts' ); ?>

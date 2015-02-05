@@ -18,29 +18,29 @@ class Layers_Customizer_Config {
 	public function panels(){
 
 		$panels = array(
-			'general'		=> array(
-									'title' => __( 'General', LAYERS_THEME_SLUG ),
-									'priority' => 30
-								),
-			'color-scheme'	=> array(
-									'title' => __( 'Color Scheme', LAYERS_THEME_SLUG ),
-									'priority' => 35
-								),
-			'header'		=> array(
-									'title' => __( 'Header', LAYERS_THEME_SLUG ),
-									'description' => __( 'Control your header\'s logo, layout, colors and font.' , LAYERS_THEME_SLUG ), // @TODO Put a helper here
-									'priority' => 40
-								),
-			'content'		=> array(
-									'title' => __( 'Content Area', LAYERS_THEME_SLUG ),
-									'description' => __( 'Control your content\'s default layout.' , LAYERS_THEME_SLUG ), // @TODO Put a helper here
-									'priority' => 45
-								),
-			'footer'		=> array(
-									'title' => __( 'Footer', LAYERS_THEME_SLUG ),
-									'description' => __( 'Control your footer\'s custom text, widget areas and layout.' , LAYERS_THEME_SLUG ), // @TODO Put a helper here
-									'priority' => 50
-								),
+			'general' => array(
+							'title' => __( 'General', LAYERS_THEME_SLUG ),
+							'priority' => 30
+						),
+			'color-scheme' => array(
+							'title' => __( 'Color Scheme', LAYERS_THEME_SLUG ),
+							'priority' => 35
+						),
+			'header' => array(
+							'title' => __( 'Header', LAYERS_THEME_SLUG ),
+							'description' => __( 'Control your header\'s logo, layout, colors and font.' , LAYERS_THEME_SLUG ), // @TODO Put a helper here
+							'priority' => 40
+						),
+			'content' => array(
+							'title' => __( 'Content Area', LAYERS_THEME_SLUG ),
+							'description' => __( 'Control your content\'s default layout.' , LAYERS_THEME_SLUG ), // @TODO Put a helper here
+							'priority' => 45
+						),
+			'footer' => array(
+							'title' => __( 'Footer', LAYERS_THEME_SLUG ),
+							'description' => __( 'Control your footer\'s custom text, widget areas and layout.' , LAYERS_THEME_SLUG ), // @TODO Put a helper here
+							'priority' => 50
+						),
 		);
 
 		return apply_filters( 'layers_customizer_panels', $panels );
@@ -92,7 +92,7 @@ class Layers_Customizer_Config {
 								'layout' => array(
 									'title' =>__( 'Layout' , LAYERS_THEME_SLUG ),
 								)
-							);;
+							);
 
 		$sections[ 'footer' ] = array(
 								'layout' => array(

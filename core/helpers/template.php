@@ -414,6 +414,11 @@ if( !function_exists( 'layers_get_header_class' ) ) {
 if( !function_exists( 'layers_apply_customizer_styles' ) ) {
 	function layers_apply_customizer_styles() {
 
+		// Custom CSS
+		if( layers_get_theme_mod( 'custom-css' ) ){
+			layers_inline_styles( NULL, 'css', array( 'css' => layers_get_theme_mod( 'custom-css' ) ) );
+		}
+
 		// Header
 		if( layers_get_theme_mod( 'header-background-color' ) ){
 			$bg_opacity = ( layers_get_theme_mod( 'header-overlay') ) ? .5 : 1 ;
@@ -736,7 +741,7 @@ if( !function_exists( 'layers_inline_styles' ) ) {
 			case 'font-family' :
 
 				if( '' == $args[ 'font-family' ] ) return ;
-				$css .= 'font-family: ' . $args[ 'font-family' ] . ';';
+				$css .= 'font-family: ' . $args[ 'font-family' ] . ', "Helvetica Neue", Helvetica, sans-serif;';
 
 			break;
 

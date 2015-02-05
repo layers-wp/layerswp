@@ -17,8 +17,8 @@
 
 		<header <?php layers_header_class(); ?> >
 			<?php do_action( 'layers_before_header_inner' ); ?>
-			<div class="<?php if( 'layout-fullwidth' != layers_get_theme_mod( 'header-layout-width' ) ) echo 'container'; ?> clearfix">
-				<?php if( 'header-logo-center' == layers_get_theme_mod( 'header-layout-layout' ) ) { ?>
+			<div class="<?php if( 'layout-fullwidth' != layers_get_theme_mod( 'header-width' ) ) echo 'container'; ?> clearfix">
+				<?php if( 'header-logo-center' == layers_get_theme_mod( 'header-menu-layout' ) ) { ?>
 					<?php get_template_part( 'partials/header' , 'centered' ); ?>
 				<?php } else { ?>
 					<?php get_template_part( 'partials/header' , 'standard' ); ?>

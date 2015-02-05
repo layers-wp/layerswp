@@ -705,7 +705,7 @@ if( !function_exists( 'layers_inline_styles' ) ) {
 			case 'margin' :
 			case 'padding' :
 			
-				// Set the Margin or Padding array
+				// Set the Margin or Padding
 				$trbl_args = $args[ $type ];
 
 				if( isset( $trbl_args['top'] ) && '' != $trbl_args['top'] ){

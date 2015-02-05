@@ -581,7 +581,6 @@ jQuery(function($) {
 
 	}
 
-
 	/**
 	* 14 - Run Initialisations
 	*/

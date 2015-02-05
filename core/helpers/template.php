@@ -701,6 +701,30 @@ if( !function_exists( 'layers_inline_styles' ) ) {
 					$css.= 'background-image: url(\'' . $image[0] .'\');';
 				}
 			break;
+			
+			case 'margin' :
+			case 'padding' :
+			
+				// Set the Margin or Padding array
+				$trbl_args = $args[ $type ];
+
+				if( isset( $trbl_args['top'] ) && '' != $trbl_args['top'] ){
+					$css .= $type . '-top: ' . $trbl_args['top'] . '; ';
+				}
+				
+				if( isset( $trbl_args['right'] ) && '' != $trbl_args['right'] ){
+					$css .= $type . '-right: ' . $trbl_args['right'] . '; ';
+				}
+				
+				if( isset( $trbl_args['bottom'] ) && '' != $trbl_args['bottom'] ){
+					$css .= $type . '-bottom: ' . $trbl_args['bottom'] . '; ';
+				}
+				
+				if( isset( $trbl_args['left'] ) && '' != $trbl_args['left'] ){
+					$css .= $type . '-left: ' . $trbl_args['left'] . '; ';
+				}
+				
+			break;
 
 			case 'color' :
 

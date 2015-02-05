@@ -1,7 +1,7 @@
 <?php  /**
- * Color Control
+ * CSS Control
  *
- * This file is used to register and display the custom Layers Color Control
+ * This file is used to register and display the custom Layers CSS Control
  *
  * @package Layers
  * @since Layers 1.0
@@ -14,7 +14,7 @@ if( !class_exists( 'Layers_Customize_Color_Control' ) ) {
 		public $type = 'layers-color';
 		
 		public function render_content() {
-
+			
 			$form_elements = new Layers_Form_Elements(); ?>
 			
 			<div id="layers-customize-control-<?php echo esc_attr( $this->id ); ?>" class="layers-customize-control layers-customize-control-<?php echo esc_attr( str_replace( 'layers-', '', $this->type ) ); ?>" <?php echo $this->get_linked_data(); ?> >

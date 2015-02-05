@@ -72,6 +72,12 @@ class Layers_Customizer_Config {
 	*/
 
 	public function sections(){
+		
+		$sections[ 'general' ] = array(
+								'css' => array(
+									'title' =>__( 'CSS' , LAYERS_THEME_SLUG ),
+								),
+							);
 
 		$sections[ 'header' ] = array(
 								'layout' => array(
@@ -111,6 +117,15 @@ class Layers_Customizer_Config {
 
 		// Setup some folder variables
 		$customizer_dir = '/core/customizer/';
+		
+		// Header -> Layout -> Layout
+		$controls['general-css'] = array(
+								'custom-css' => array(
+									'type'     => 'layers-css',
+									'label'    => __( 'Custom CSS', LAYERS_THEME_SLUG ),
+									'placeholder'	=> 'ribidy'
+								),
+							); // css
 
 		// Header -> Layout -> Layout
 		$controls['header-layout'] = array(

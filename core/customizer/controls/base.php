@@ -23,6 +23,8 @@ if( !class_exists( 'Layers_Customize_Control' ) ) {
 		
 		public $class = '';
 		
+		public $placeholder = '';
+		
 		/**
 		* Render content must be overwrittedn by etending class as this renders the control.
 		*/

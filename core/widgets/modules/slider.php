@@ -98,7 +98,10 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 			// Parse $instance
 			$widget = wp_parse_args( $instance, $instance_defaults );
 
-			if( !empty( $widget['design']['advanced'][ 'customcss' ] ) ) layers_inline_styles( NULL, 'css', array( 'css' => $widget['design']['advanced'][ 'customcss' ]  ) ); ?>
+			if( !empty( $widget['design']['advanced'][ 'customcss' ] ) ) layers_inline_styles( NULL, 'css', array( 'css' => $widget['design']['advanced'][ 'customcss' ]  ) );
+			
+			// Apply the advanced widget styling
+			$this->apply_widget_advanced_styling( $widget_id, $widget ); ?>
 
 			<section class="widget row slide <?php echo (  1 == count( $widget[ 'slides' ] )  ? 'single-slide' : '' ); ?> swiper-container <?php echo $this->get_widget_layout_class( $widget ); ?> <?php echo $this->check_and_return( $widget , 'design', 'advanced', 'customclass' ) ?> <?php echo $this->get_widget_spacing_class( $widget ); ?>" id="<?php echo $widget_id; ?>" <?php if( $this->check_and_return( $widget , 'slide_height' ) ) echo 'style="height: ' . $widget['slide_height'] . 'px;"' ?>>
 				<?php if( !empty( $widget[ 'slides' ] ) ) { ?>
@@ -407,7 +410,6 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 
 			// Extract Instance if it's there so that we can use the values in our inputs
 
-
 			// $instance Defaults
 			$instance_defaults = $this->slide_defaults;
 
@@ -456,7 +458,7 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 
 						<div class="layers-row">
 							<p class="layers-form-item">
-								<label for="<?php echo $this->get_custom_field_id( $widget_details, 'slides',  $column_guid, 'title' ); ?>"><?php _e( 'Title' , LAYERS_THEME_SLUG ); ?></label>
+								<label for="<?php echo $this->get_custom_field_id( $widget_details, 'slides',  $slide_guid, 'title' ); ?>"><?php _e( 'Title' , LAYERS_THEME_SLUG ); ?></label>
 								<?php echo $this->form_elements()->input(
 									array(
 										'type' => 'text',
@@ -470,7 +472,7 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 								); ?>
 							</p>
 							<p class="layers-form-item">
-								<label for="<?php echo $this->get_custom_field_id( $widget_details, 'slides',  $column_guid, 'excerpt' ); ?>"><?php _e( 'Excerpt' , LAYERS_THEME_SLUG ); ?></label>
+								<label for="<?php echo $this->get_custom_field_id( $widget_details, 'slides',  $slide_guid, 'excerpt' ); ?>"><?php _e( 'Excerpt' , LAYERS_THEME_SLUG ); ?></label>
 								<?php echo $this->form_elements()->input(
 									array(
 										'type' => 'textarea',

@@ -289,6 +289,26 @@ class Layers_Customizer_Regsitrar {
 						$control_data
 					)
 				);
+			} else if( 'layers-css' == $control_data['type'] ) {
+
+				// Add Setting
+				$this->customizer->add_setting(
+					$setting_key,
+					array(
+						'default'    => ( isset( $control_data['default'] ) ? $control_data['default'] : NULL ) ,
+						'type'       => 'theme_mod',
+						'capability' => 'manage_options'
+					)
+				);
+
+				// Add Control
+				$this->customizer->add_control(
+					new Layers_Customize_CSS_Control(
+						$this->customizer,
+						$setting_key,
+						$control_data
+					)
+				);
 			} else if( 'layers-background' == $control_data['type'] ) {
 
 				// Footer Background Heading

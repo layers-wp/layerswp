@@ -36,7 +36,7 @@ if( !class_exists( 'Layers_Customize_Font_Control' ) ) {
 					<div class="layers-font-wrapper layers-form-item">
 						<?php echo $form_elements->input(
 							array(
-								'type' => 'font',
+								'type' => 'select',
 								'label' => ( isset( $this->label ) ? $this->label : '' ),
 								'name' => '' ,
 								'id' =>  $this->id,

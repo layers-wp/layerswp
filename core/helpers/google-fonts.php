@@ -6,6 +6,72 @@
  * @package Layers
  * @since Layers 1.0
  */
+if( !function_exists( 'layers_generate_custom_fonts' ) ) {
+	function layers_generate_custom_fonts(){
+
+		// Apply Font Styles
+		$customizer_options = new Layers_Customizer_Config();
+		foreach( $customizer_options->controls() as $controls ) {
+
+			foreach( $controls as $control_key => $control_data ){
+
+				if( 'layers-font' == $control_data[ 'type' ] ) {
+
+					if( layers_get_theme_mod( $control_key ) ) {
+
+						// Add fonts to a bucket for registration
+						$fonts[] = layers_get_theme_mod( $control_key );
+
+						layers_inline_styles(
+								$control_data[ 'selectors' ],
+								'font-family',
+								array(
+									'font-family' => layers_get_theme_mod( $control_key )
+								)
+							);
+
+
+					}
+
+				}
+			}
+		}
+
+		if( !isset( $fonts ) ) return;
+
+		// De-dupe the fonts
+		$fonts = array_unique( $fonts );
+		$all_fonts = layers_get_google_fonts();
+
+		if( isset( $fonts ) && !empty( $fonts ) ) {
+			// Validate each font and convert to URL format
+			foreach ( $fonts as $font ) {
+				$font = trim( $font );
+
+				// Verify that the font exists
+				if ( array_key_exists( $font, $all_fonts ) ) {
+					// Build the family name and variant string (e.g., "Open+Sans:regular,italic,700")
+					$family[] = urlencode( $font . ':' . join( ',', layers_google_font_variants( $font, $all_fonts[ $font ]['variants'] ) ) );
+				}
+			}
+
+			// Convert from array to string
+			if ( empty( $family ) ) {
+				return '';
+			} else {
+				$request = '//fonts.googleapis.com/css?family=' . implode( '|', $family );
+			}
+
+			wp_enqueue_style(
+				LAYERS_THEME_SLUG . '-google-fonts',
+				$request,
+				array(),
+				LAYERS_VERSION
+			);
+		}
+	}
+	add_action( 'wp_enqueue_scripts', 'layers_generate_custom_fonts' );
+}
 /**
  * Return an array of all available Google Fonts.
  *
@@ -16,11 +82,45 @@ if ( ! function_exists( 'layers_get_google_font_options' ) ) {
 
 		$font_options = array();
 
+		$font_options[ '' ] = '--- ' . __( 'Default' , LAYERS_THEME_SLUG ) . '---';
+
 		foreach( layers_get_google_fonts() as $font_key => $font_data ){
 			$font_options[ $font_key ] = ( isset( $font_data[ 'label' ] ) ? $font_data[ 'label' ] : $font_key );
 		}
 
 		return apply_filters( 'layers_get_google_font_options', $font_options );
+	}
+}
+
+if ( ! function_exists( 'layers_google_font_variants' ) ) {
+	function layers_google_font_variants( $font, $variants = array() ) {
+		$chosen_variants = array();
+		if ( empty( $variants ) ) {
+			$fonts = ttfmake_get_google_fonts();
+
+			if ( array_key_exists( $font, $fonts ) ) {
+				$variants = $fonts[ $font ]['variants'];
+			}
+		}
+
+		// If a "regular" variant is not found, get the first variant
+		if ( ! in_array( 'regular', $variants ) ) {
+			$chosen_variants[] = $variants[0];
+		} else {
+			$chosen_variants[] = 'regular';
+		}
+
+		// Only add "italic" if it exists
+		if ( in_array( 'italic', $variants ) ) {
+			$chosen_variants[] = 'italic';
+		}
+
+		// Only add "700" if it exists
+		if ( in_array( '700', $variants ) ) {
+			$chosen_variants[] = '700';
+		}
+
+		return apply_filters( 'layers_font_variants', array_unique( $chosen_variants ), $font, $variants );
 	}
 }
 /**

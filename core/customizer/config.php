@@ -130,7 +130,7 @@ class Layers_Customizer_Config {
 								'heading-fonts' => array(
 									'type' => 'layers-font',
 									'label'    => __( 'Headings', LAYERS_THEME_SLUG ),
-									'selectors' => 'h1,h2,h3,h4,h5,h6',
+									'selectors' => 'h1,h2,h3,h4,h5,h6, .heading',
 									'choices' => layers_get_google_font_options()
 								),
 								'body-fonts' => array(

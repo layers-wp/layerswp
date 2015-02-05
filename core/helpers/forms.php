@@ -474,26 +474,31 @@ class Layers_Form_Elements {
 			* Top / Right / Bottom / Left Fields
 			*/
 			case 'trbl-fields' : ?>
+				
 				<?php $fields = array(
-					'top' => __( 'T' , LAYERS_THEME_SLUG ),
-					'right' => __( 'R' , LAYERS_THEME_SLUG ),
-					'bottom' => __( 'B' , LAYERS_THEME_SLUG ),
-					'left' => __( 'L' , LAYERS_THEME_SLUG ),
+					'top' => __( 'Top' , LAYERS_THEME_SLUG ),
+					'right' => __( 'Right' , LAYERS_THEME_SLUG ),
+					'bottom' => __( 'Bottom' , LAYERS_THEME_SLUG ),
+					'left' => __( 'Left' , LAYERS_THEME_SLUG ),
 				); ?>
-				<?php foreach ( $fields as $key => $label ) { ?>
-				<label>
-					<?php echo $label; ?>
-					<?php echo $this->input(
-						array(
-							'type' => 'text',
-							'name' => $input->name . '[' . $key . ']',
-							'id' => $input->id . '-' . $key,
-							'value' => ( isset( $input->value->$key ) ) ? $input->value->$key : NULL,
-							'class' => 'layers-input-tiny'
-						)
-					); ?>
-				</label>
-				<?php } // foreach fields ?>
+				
+				<div class="layers-row">
+					<?php foreach ( $fields as $key => $label ) { ?>
+						<div class="layers-column-flush layers-span-3">
+							<?php echo $this->input(
+								array(
+									'type' => 'text',
+									'name' => $input->name . '[' . $key . ']',
+									'id' => $input->id . '-' . $key,
+									'value' => ( isset( $input->value->$key ) ) ? $input->value->$key : NULL,
+									'class' => 'layers-input-tiny',
+								)
+							); ?>
+							<label for="<?php echo $input->id . '-' . $key; ?>"><?php echo $label; ?></label>
+						</div>
+					<?php } // foreach fields ?>
+				</div>
+				
 			<?php break;
 			/**
 			* Default to hidden field

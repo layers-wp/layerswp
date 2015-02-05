@@ -701,11 +701,18 @@ class Layers_Design_Controller {
                             ),
                             'margin' => array(
                                 'type' => 'trbl-fields',
-                                'label' => __( 'Margin' , LAYERS_THEME_SLUG ),
+                                'label' => __( 'Margin (px)' , LAYERS_THEME_SLUG ),
                                 'name' => $this->widget['name'] . '[advanced][margin]' ,
                                 'id' =>  $this->widget['id'] . '-advanced-margin' ,
                                 'value' => ( isset( $this->values['advanced']['margin'] ) ) ? $this->values['advanced']['margin'] : NULL
-                            )
+                            ),
+                            'padding' => array(
+                                'type' => 'trbl-fields',
+                                'label' => __( 'Padding (px)' , LAYERS_THEME_SLUG ),
+                                'name' => $this->widget['name'] . '[advanced][padding]' ,
+                                'id' =>  $this->widget['id'] . '-advanced-padding' ,
+                                'value' => ( isset( $this->values['advanced']['padding'] ) ) ? $this->values['advanced']['padding'] : NULL
+                            ),
                         );
 
         $this->render_control( $key , $args );

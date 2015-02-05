@@ -98,7 +98,10 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 			// Parse $instance
 			$widget = wp_parse_args( $instance, $instance_defaults );
 
-			if( !empty( $widget['design']['advanced'][ 'customcss' ] ) ) layers_inline_styles( NULL, 'css', array( 'css' => $widget['design']['advanced'][ 'customcss' ]  ) ); ?>
+			if( !empty( $widget['design']['advanced'][ 'customcss' ] ) ) layers_inline_styles( NULL, 'css', array( 'css' => $widget['design']['advanced'][ 'customcss' ]  ) );
+			
+			// Apply the advanced widget styling
+			$this->apply_widget_advanced_styling( $widget_id, $widget ); ?>
 
 			<section class="widget row slide <?php echo (  1 == count( $widget[ 'slides' ] )  ? 'single-slide' : '' ); ?> swiper-container <?php echo $this->get_widget_layout_class( $widget ); ?><?php echo $this->check_and_return( $widget , 'design', 'advanced', 'customclass' ) ?> <?php echo $this->get_widget_spacing_class( $widget ); ?>" id="<?php echo $widget_id; ?>" <?php if( $this->check_and_return( $widget , 'slide_height' ) ) echo 'style="height: ' . $widget['slide_height'] . 'px;"' ?>>
 				<?php if( !empty( $widget[ 'slides' ] ) ) { ?>

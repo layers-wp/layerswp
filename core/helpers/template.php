@@ -617,10 +617,27 @@ if( !function_exists( 'layers_maybe_get_sidebar' ) ) {
  *
  * @return  html    $additional_header_scripts Scripts to be included in the header
  */
+if( !function_exists( 'layers_add_additional_header_scripts' ) ) {
+	function layers_add_additional_header_scripts() {
+
+		$add_additional_header_scripts = apply_filters( 'layers_header_scripts' , layers_get_theme_mod( 'header-scripts' ) );
+
+		if( '' != $add_additional_header_scripts ) {
+			echo stripslashes( $add_additional_header_scripts );
+		}
+	}
+	add_action ( 'wp_footer', 'layers_add_additional_footer_scripts' );
+} // layers_add_additional_header_scripts
+
+/**
+ * Include additional scripts in the side footer
+ *
+ * @return  html    $additional_header_scripts Scripts to be included in the header
+ */
 if( !function_exists( 'layers_add_additional_footer_scripts' ) ) {
 	function layers_add_additional_footer_scripts() {
 
-		$additional_footer_scripts = layers_get_theme_mod( 'footer-scripts' );
+		$additional_footer_scripts = apply_filters( 'layers_footer_scripts' , layers_get_theme_mod( 'footer-scripts' ) );
 
 		if( '' != $additional_footer_scripts ) {
 			echo stripslashes( $additional_footer_scripts );

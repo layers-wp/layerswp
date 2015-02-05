@@ -433,30 +433,8 @@ if( !function_exists( 'layers_apply_customizer_styles' ) ) {
 		) );
 		layers_inline_styles( 'footer, footer.well', 'color', array( 'color' => layers_get_theme_mod( 'footer-body-color' ) ) );
 		layers_inline_styles( 'footer a, footer.well a', 'color', array( 'color' => layers_get_theme_mod( 'footer-link-color' ) ) );
-
-		// Fonts
-		$customizer_options = new Layers_Customizer_Config();
-		foreach( $customizer_options->controls() as $controls ) {
-
-			foreach( $controls as $control_key => $control_data ){
-
-				if( 'layers-font' == $control_data[ 'type' ] ) {
-
-					if( layers_get_theme_mod( $control_key ) ) {
-						layers_inline_styles(
-								$control_data[ 'selectors' ],
-								'font-family',
-								array(
-									'font-family' => layers_get_theme_mod( $control_key )
-								)
-							);
-					}
-
-				}
-			}
-
-		}
 	}
+
 	add_action( 'wp_enqueue_scripts', 'layers_apply_customizer_styles' );
 } // layers_apply_customizer_styles
 

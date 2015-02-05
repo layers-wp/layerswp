@@ -250,7 +250,7 @@ $layers_migrator = new Layers_Widget_Migrator(); ?>
                 </div>
                 <div class="layers-column layers-span-6 no-gutter layers-demo-video">
                     <video width="490" height="490" controls>
-                        <source src="https://cdn.oboxthemes.com/layers/videos/adding-a-widget.mp4" type="video/mp4">
+                        <source src="http://demo.oboxsites.com/wp-content/uploads/2015/02/adding-a-widget.mp4" type="video/mp4">
                         Your browser does not support the video tag.
                     </video> 
 
@@ -287,7 +287,7 @@ $layers_migrator = new Layers_Widget_Migrator(); ?>
                 </div>
                 <div class="layers-column layers-span-6 no-gutter layers-demo-video">
                     <video width="490" height="490" controls>
-                        <source src="https://cdn.oboxthemes.com/layers/videos/design-bar.mp4" type="video/mp4">
+                        <source src="http://demo.oboxsites.com/wp-content/uploads/2015/02/design-bar.mp4" type="video/mp4">
                         Your browser does not support the video tag.
                     </video> 
 
@@ -324,7 +324,7 @@ $layers_migrator = new Layers_Widget_Migrator(); ?>
                 </div>
                 <div class="layers-column layers-span-6 no-gutter layers-demo-video">
                     <video width="490" height="490" controls>
-                        <source src="https://cdn.oboxthemes.com/layers/videos/font-size.mp4" type="video/mp4">
+                        <source src="http://demo.oboxsites.com/wp-content/uploads/2015/02/font-size.mp4" type="video/mp4">
                         Your browser does not support the video tag.
                     </video> 
 

@@ -736,7 +736,7 @@ if( !function_exists( 'layers_inline_styles' ) ) {
 			case 'font-family' :
 
 				if( '' == $args[ 'font-family' ] ) return ;
-				$css .= 'font-family: ' . $args[ 'font-family' ] . ';';
+				$css .= 'font-family: ' . $args[ 'font-family' ] . ', "Helvetica Neue", Helvetica, sans-serif;';
 
 			break;
 

@@ -127,19 +127,19 @@ class Layers_Customizer_Config {
 
 		// Header -> Layout -> Layout
 		$controls['general-fonts'] = array(
-								'heading-fonts' => array(
+								'body-fonts' => array(
 									'type' => 'layers-font',
-									'label'    => __( 'Headings', LAYERS_THEME_SLUG ),
-									'selectors' => 'h1,h2,h3,h4,h5,h6, .heading',
+									'label'    => __( 'Body', LAYERS_THEME_SLUG ),
+									'selectors' => 'body',
 									'choices' => layers_get_google_font_options()
 								),
 								'fonts-break-0' => array(
 									'type'     => 'layers-seperator'
 								),
-								'body-fonts' => array(
+								'heading-fonts' => array(
 									'type' => 'layers-font',
-									'label'    => __( 'Body', LAYERS_THEME_SLUG ),
-									'selectors' => 'body',
+									'label'    => __( 'Headings', LAYERS_THEME_SLUG ),
+									'selectors' => 'h1,h2,h3,h4,h5,h6, .heading',
 									'choices' => layers_get_google_font_options()
 								),
 								'fonts-break-1' => array(

@@ -609,6 +609,7 @@ div[id*='layers-widget'] .spinner{
 }
 
 .editible,
+.layers-form-item .layers-input,
 .layers-form-item input[type="text"],
 .layers-form-item input[type="email"],
 .layers-form-item input[type="number"],
@@ -667,7 +668,15 @@ input[type=text].layers-color-selector.wp-color-picker{
 .customize-control .layers-textarea:focus{
     border-color: #0289C0;
 }
-
+.layers-form-item input[type=text]:invalid,
+.layers-form-item input[type=email]:invalid,
+.layers-form-item input[type=number]:invalid,
+.layers-form-item input[type=password]:invalid,
+.layers-form-item input[type=link]:invalid,
+.customize-control .layers-textarea:invalid {
+    border-color: #FF9898;
+    background: rgba(255, 0, 0, 0.1);
+}
 .layers-form-item input[type=text].layers-large,
 .layers-form-item input[type=email].layers-large,
 .layers-form-item input[type=number].layers-large,
@@ -680,6 +689,14 @@ input[type=text].layers-color-selector.wp-color-picker{
     font-size: 16px;
     line-height: 28px;
     min-height: 84px;
+}
+
+/* Hide Number Input Controls */
+.layers-hide-controls[type=number],
+.layers-hide-controls::-webkit-inner-spin-button,
+.layers-hide-controls::-webkit-outer-spin-button {
+    -webkit-appearance: none; /*chrome*/
+    -moz-appearance: textfield; /*firefox*/
 }
 
     /*-----------------------*/
@@ -833,34 +850,45 @@ input[type=text].layers-color-selector.wp-color-picker{
     color: #fff;
 }
 .layers-trbl-fields-wrapper .layers-row {
-    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1) inset;
-    background: white;
-    border: 1px solid #DDD;
+    padding: 0;
     margin-bottom: 16px;
 }
 .layers-trbl-fields-wrapper .layers-span-3 {
+    width: 25%;
     position: relative;
     font-weight: normal;
-    width: 25%;
+}
+.layers-trbl-fields-wrapper .layers-span-3:after {
+    display:block;
+    width:1px;
+    height: 12px;
+    position:absolute;
+    top: 12px;
+    right:0;
+    content:'';
+    background: rgba(0, 0, 0, 0.08);
+}
+.layers-trbl-fields-wrapper .layers-span-3:last-child:after {
+    display:none;
 }
 .layers-trbl-fields-wrapper .layers-span-3 label {
     position: absolute;
     top: 100%;
+    width: 100%;
+    margin: 0;
     color: #AEAEAE;
     font-size: 10px;
-    width: 100%;
     text-align: center;
     line-height: 22px;
     font-weight: normal;
-    margin: 0;
 }
 .layers-trbl-fields-wrapper .layers-span-3 input {
     padding-left: 3px;
     padding-right: 3px;
     margin: -1px 0;
+    background: none;
     text-align: center;
     box-shadow: none;
-    background: none;
     border: 1px solid rgba(0, 0, 0, 0);
 }
 .layers-trbl-fields-wrapper .layers-span-3:last-child input { }

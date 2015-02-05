@@ -8,9 +8,9 @@
 
 		<footer id="footer" class="footer-site well">
 			<?php do_action( 'layers_before_footer_inner' ); ?>
-			<div class="<?php if( 'layout-fullwidth' != layers_get_theme_mod( 'footer-layout-width' ) ) echo 'container'; ?>  content-vertical-large clearfix">
+			<div class="<?php if( 'layout-fullwidth' != layers_get_theme_mod( 'footer-width' ) ) echo 'container'; ?>  content-vertical-large clearfix">
 				<?php // Do logic related to the footer widget area count
-				$footer_sidebar_count = layers_get_theme_mod( 'footer-layout-widget-area-count' ); ?>
+				$footer_sidebar_count = layers_get_theme_mod( 'footer-sidebar-count' ); ?>
 
 				<?php if( 0 != $footer_sidebar_count ) { ?>
 					<?php do_action( 'layers_before_footer_sidebar' ); ?>
@@ -31,9 +31,9 @@
 
 				<?php do_action( 'layers_before_footer_copyright' ); ?>
 				<div class="row copyright">
-					<?php if( '' != layers_get_theme_mod( 'footer-text-copyright' ) ) {  ?>
+					<?php if( '' != layers_get_theme_mod( 'footer-copyright-text' ) ) {  ?>
 						<div class="column span-6">
-							<p class="site-text"><?php echo layers_get_theme_mod( 'footer-text-copyright' ); ?></p>
+							<p class="site-text"><?php echo layers_get_theme_mod( 'footer-copyright-text' ); ?></p>
 						</div>
 					<?php } ?>
 					<div class="column span-6 clearfix t-right">

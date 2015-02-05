@@ -138,7 +138,7 @@ class Layers_Customizer_Regsitrar {
 
 		foreach( $controls[ $panel_section_key ] as $control_key => $control_data ){
 
-			$setting_key = $this->prefix . $panel_section_key . '-' . $control_key;
+			$setting_key = $this->prefix . $control_key;
 
 			// Register control default value
 			$this->register_control_defaults( $setting_key, ( isset( $control_data['default'] ) ? $control_data['default'] : NULL ) );

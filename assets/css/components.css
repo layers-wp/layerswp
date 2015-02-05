@@ -714,6 +714,7 @@ p[class*='comment-form'] input{
     .layers-map img{
         width: auto;
         max-width: none;
+        display: block;
     }
 
 

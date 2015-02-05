@@ -1,10 +1,10 @@
 @font-face {
 	font-family: 'layers-interface';
-	src:url('fonts/layers-interface.eot?-myi0v7');
-	src:url('fonts/layers-interface.eot?#iefix-myi0v7') format('embedded-opentype'),
-		url('fonts/layers-interface.woff?-myi0v7') format('woff'),
-		url('fonts/layers-interface.ttf?-myi0v7') format('truetype'),
-		url('fonts/layers-interface.svg?-myi0v7#layers-interface') format('svg');
+	src:url('fonts/layers-interface.eot?-5q4unt');
+	src:url('fonts/layers-interface.eot?#iefix-5q4unt') format('embedded-opentype'),
+		url('fonts/layers-interface.woff?-5q4unt') format('woff'),
+		url('fonts/layers-interface.ttf?-5q4unt') format('truetype'),
+		url('fonts/layers-interface.svg?-5q4unt#layers-interface') format('svg');
 	font-weight: normal;
 	font-style: normal;
 }
@@ -213,5 +213,9 @@
 
 .icon-arrow-right:before {
 	content: "\e626";
+}
+
+.icon-layers-edit:before {
+	content: "\e00d";
 }
 

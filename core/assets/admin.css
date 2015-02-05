@@ -1461,13 +1461,12 @@ input[type=text].layers-color-selector.wp-color-picker{
     top: 0;
     right: 0;
     z-index: 1;
-    content: '\f140';
-    font: 400 20px/47px dashicons;
+    content: '\e00d';
+    font: 400 14px/47px layers-interface;
     color: #aaa;
 }
 .layers-accordion-item.open .layers-accordion-title:after{
     color: #555;
-    content: '\f142';
 }
 .layers-accordion-title:hover{
     background: #f0f0f0; color: #555;

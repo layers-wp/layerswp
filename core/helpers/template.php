@@ -751,6 +751,9 @@ if( !function_exists( 'layers_inline_styles' ) ) {
 			break;
 
 		}
+		
+		// Exit if no CSS was generated
+		if ( '' == $css ) return ;
 
 		$inline_css = '';
 

@@ -131,7 +131,7 @@ if( !class_exists( 'Layers_Contact_Widget' ) ) {
 						</div>
 						<?php $mapwidth = 'span-6'; ?>
 					<?php } // if show_contact_form || address_shown ?>
-					<div class="column <?php echo $mapwidth; ?>">
+					<div class="column no-push-bottom <?php echo $mapwidth; ?>">
 						<?php if ( isset( $wp_customize ) ) { ?>
 							<?php if( '' != $widget['google_maps_location'] ) {
 								$map_center = $widget['google_maps_location'];

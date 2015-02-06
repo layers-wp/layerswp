@@ -235,8 +235,8 @@ div[id*='layers-widget'] .widget-control-actions{
 div[id*='layers-widget'] .widget-control-actions a{
     display: inline-block;
     padding: 0 8px;
-    margin: 0;
-    border-radius: 3px 0px 0px 3px;
+    margin: 0 0 0 5px;
+    border-radius: 3px;
     background-color: #2EA2CC;
     border: 1px solid #0D5F83;
     box-shadow: 0px 1px 0px rgba(255, 255, 255, 0.4) inset, 0px 1px 0px rgba(0, 0, 0, 0.08);
@@ -245,12 +245,15 @@ div[id*='layers-widget'] .widget-control-actions a{
     line-height: 22px;
     color: #fff;
 }
-div[id*='layers-widget'] .widget-control-actions a:last-child{
-    border-left: none;
-    border-radius: 0px 3px 3px 0px;
-}
 div[id*='layers-widget'] .widget-control-actions a:hover{
     background: #1E8CBE;
+}
+div[id*='layers-widget'] .widget-control-actions .widget-control-remove{
+    background-color: #FF5353;
+    border-color: #BC3F39;
+}
+div[id*='layers-widget'] .widget-control-actions .widget-control-remove:hover{
+    background-color: #F2413D;
 }
 
 div[id*='layers-widget'] .widget-control-actions .alignright{

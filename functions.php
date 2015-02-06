@@ -76,6 +76,7 @@ require_once get_template_directory() . '/core/helpers/post.php';
 require_once get_template_directory() . '/core/helpers/template.php';
 require_once get_template_directory() . '/core/helpers/extensions.php';
 require_once get_template_directory() . '/core/helpers/custom-fonts.php';
+require_once get_template_directory() . '/core/helpers/post-types.php';
 
 /*
  * Load Admin-specific files
@@ -162,11 +163,6 @@ if( ! function_exists( 'layers_setup' ) ) {
 			LAYERS_THEME_SLUG . '-footer' => __( 'Footer Menu', LAYERS_THEME_SLUG ),
 
 		) );
-
-		/**
-		 * Add support for Jetpack Portfolio
-		 */
-		add_theme_support( 'jetpack-portfolio' );
 
 		/**
 		* Welcome Redirect

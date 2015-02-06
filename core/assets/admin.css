@@ -14,7 +14,7 @@
 
 /*------------------------------------*/
 /*- HIDE LAYERS WIDGETS IN APPEARANCE -*/
-div#widgets-right .widgets-sortables{
+div#widgets-right .widgets-sortables{ 
     padding-bottom: 1px;
 }
 .widget-holder div[id*='layers-widget'],
@@ -2203,6 +2203,7 @@ ul#adminmenu a.wp-has-current-submenu:after, ul#adminmenu > li.current > a.curre
         }
         .layers-logo-wrapper{
             padding: 10px;
+            background: #f0f0f0;
             border: 1px solid #eee;
             text-align: center;
         }

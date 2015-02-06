@@ -56,6 +56,48 @@ $layers_migrator = new Layers_Widget_Migrator(); ?>
                 </div>
             </div>
 
+            <!-- Learn the Ropes: Widgets -->
+            <div class="layers-onboard-slide layers-animate layers-onboard-slide-inactive">
+                <div class="layers-column layers-span-6 postbox">
+                    <div class="layers-content-large">
+                        <!-- Your content goes here -->
+                        <div class="layers-section-title layers-small layers-no-push-bottom">
+                            <div class="layers-push-bottom-small">
+                                <small class="layers-label label-secondary">
+                                    <?php _e( 'Getting Started' , LAYERS_THEME_SLUG ); ?>
+                                </small>
+                            </div>
+                            <h3 class="layers-heading">
+                                <?php _e( 'Building pages' , LAYERS_THEME_SLUG ); ?>
+                            </h3>
+                            <div class="layers-excerpt">
+                                <p>
+                                    <?php _e( '
+                                        Layers works by placing widgets into a "Page Builder" widget area in the WordPress Visual Customizer.
+                                    ' , LAYERS_THEME_SLUG ); ?>
+                                </p>
+                                <p>
+                                    <?php _e( '
+                                        Each time you want to add a new Layers building block simply click "Add Widget" and select any item
+                                        from the list which has a blue icon.
+                                    ' , LAYERS_THEME_SLUG ); ?>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="layers-button-well">
+                        <a class="layers-button btn-primary layers-pull-right onbard-next-step" href=""><?php _e( 'Got it, Next Step &rarr;' , LAYERS_THEME_SLUG ); ?></a>
+                    </div>
+                </div>
+                <div class="layers-column layers-span-6 no-gutter layers-demo-video">
+                    <video width="490" height="490" controls>
+                        <source src="http://demo.oboxsites.com/wp-content/uploads/2015/02/adding-a-widget.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video> 
+
+                </div>
+            </div>
+
             <!-- Give your site a Name -->
             <div class="layers-onboard-slide layers-animate layers-onboard-slide-inactive">
                 <div class="layers-column layers-span-8 postbox">
@@ -111,6 +153,40 @@ $layers_migrator = new Layers_Widget_Migrator(); ?>
                 </div>
             </div>
 
+            <!-- Learn the Ropes: Design Bar -->
+            <div class="layers-onboard-slide layers-animate layers-onboard-slide-inactive">
+                <div class="layers-column layers-span-4 postbox">
+                    <div class="layers-content-large">
+                        <!-- Your content goes here -->
+                        <div class="layers-section-title layers-small layers-no-push-bottom">
+                            <div class="layers-push-bottom-small">
+                                <small class="layers-label label-secondary">
+                                    <?php _e( 'Getting Started' , LAYERS_THEME_SLUG ); ?>
+                                </small>
+                            </div>
+                            <h3 class="layers-heading">
+                                <?php _e( 'Editing widget content' , LAYERS_THEME_SLUG ); ?>
+                            </h3>
+                            <div class="layers-excerpt">
+                                <p>
+                                    <?php _e( 'The two most powerful widgets in Layers are the Slider and Content widgets which allow you to add content without leaving the Visual Customizer.' , LAYERS_THEME_SLUG ); ?>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="layers-button-well">
+                        <a class="layers-button btn-primary layers-pull-right onbard-next-step" href=""><?php _e( 'Next Step &rarr;' , LAYERS_THEME_SLUG ); ?></a>
+                    </div>
+                </div>
+                <div class="layers-column layers-span-8 no-gutter layers-demo-video">
+                    <video width="900" height="490" controls>
+                        <source src="http://obox.beta/wp-content/uploads/2015/02/widget-slider.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video> 
+
+                </div>
+            </div>
+
             <!-- Give your site a Tagline -->
             <div class="layers-onboard-slide layers-animate layers-onboard-slide-inactive">
                 <div class="layers-column layers-span-8 postbox">
@@ -163,6 +239,43 @@ $layers_migrator = new Layers_Widget_Migrator(); ?>
                 </div>
             </div>
 
+            <!-- Learn the Ropes: Editing Widgets -->
+            <div class="layers-onboard-slide layers-animate layers-onboard-slide-inactive">
+                <div class="layers-column layers-span-6 postbox">
+                    <div class="layers-content-large">
+                        <!-- Your content goes here -->
+                        <div class="layers-section-title layers-small layers-no-push-bottom">
+                            <div class="layers-push-bottom-small">
+                                <small class="layers-label label-secondary">
+                                    <?php _e( 'Getting Started' , LAYERS_THEME_SLUG ); ?>
+                                </small>
+                            </div>
+                            <h3 class="layers-heading">
+                                <?php _e( 'Customizing widgets' , LAYERS_THEME_SLUG ); ?>
+                            </h3>
+                            <div class="layers-excerpt">
+                                <p>
+                                    <?php _e( 'Unique to each Layers widget is the revolutionary "Design Bar" which allows you to set its design parameters without touching a line of code.' , LAYERS_THEME_SLUG ); ?>
+                                </p>
+                                <p>
+                                    <?php _e( 'Depending on the widget you\'ve added, you can change things like background images, font sizes, list styles and more.' , LAYERS_THEME_SLUG ); ?>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="layers-button-well">
+                        <a class="layers-button btn-primary layers-pull-right onbard-next-step" href=""><?php _e( 'Next Step &rarr;' , LAYERS_THEME_SLUG ); ?></a>
+                    </div>
+                </div>
+                <div class="layers-column layers-span-6 no-gutter layers-demo-video">
+                    <video width="490" height="490" controls>
+                        <source src="http://demo.oboxsites.com/wp-content/uploads/2015/02/design-bar.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video> 
+
+                </div>
+            </div>
+
             <!-- Upload a Logo -->
             <div class="layers-onboard-slide layers-animate layers-onboard-slide-inactive">
                 <div class="layers-column layers-span-8 postbox">
@@ -170,7 +283,7 @@ $layers_migrator = new Layers_Widget_Migrator(); ?>
                         <!-- Your content goes here -->
                         <div class="layers-section-title">
                             <h3 class="layers-heading">
-                                <?php _e( 'Great! Now let\'s add a logo' , LAYERS_THEME_SLUG ); ?>
+                                <?php _e( 'Would you like to add a logo?' , LAYERS_THEME_SLUG ); ?>
                             </h3>
                             <p class="layers-excerpt">
                                  <?php _e( 'A website logo is a useful contributor to the general look and feel of your site.
@@ -215,146 +328,11 @@ $layers_migrator = new Layers_Widget_Migrator(); ?>
                 </div>
             </div>
 
-            <!-- Learn the Ropes: Widgets -->
-            <div class="layers-onboard-slide layers-animate layers-onboard-slide-inactive">
-                <div class="layers-column layers-span-6 postbox">
-                    <div class="layers-content-large">
-                        <!-- Your content goes here -->
-                        <div class="layers-section-title layers-small layers-no-push-bottom">
-                            <div class="layers-push-bottom-small">
-                                <small class="layers-label label-secondary">
-                                    <?php _e( 'Quick tip' , LAYERS_THEME_SLUG ); ?>
-                                </small>
-                            </div>
-                            <h3 class="layers-heading">
-                                <?php _e( 'Adding widgets' , LAYERS_THEME_SLUG ); ?>
-                            </h3>
-                            <div class="layers-excerpt">
-                                <p>
-                                    <?php _e( '
-                                        Layers works by placing widgets into a "Page Builder" widget area in the WordPress Visual Customizer.
-                                    ' , LAYERS_THEME_SLUG ); ?>
-                                </p>
-                                <p>
-                                    <?php _e( '
-                                        Each time you want to add a new Layers building block simply click "Add Widget" and select any item
-                                        from the list which has a blue icon.
-                                    ' , LAYERS_THEME_SLUG ); ?>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="layers-button-well">
-                        <a class="layers-button btn-primary layers-pull-right onbard-next-step" href=""><?php _e( 'Got it, Next Step &rarr;' , LAYERS_THEME_SLUG ); ?></a>
-                    </div>
-                </div>
-                <div class="layers-column layers-span-6 no-gutter layers-demo-video">
-                    <video width="490" height="490" controls>
-                        <source src="http://demo.oboxsites.com/wp-content/uploads/2015/02/adding-a-widget.mp4" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video> 
-
-                </div>
-            </div>
-
-            <!-- Learn the Ropes: Design Bar -->
-            <div class="layers-onboard-slide layers-animate layers-onboard-slide-inactive">
-                <div class="layers-column layers-span-6 postbox">
-                    <div class="layers-content-large">
-                        <!-- Your content goes here -->
-                        <div class="layers-section-title layers-small layers-no-push-bottom">
-                            <div class="layers-push-bottom-small">
-                                <small class="layers-label label-secondary">
-                                    <?php _e( 'Quick tip' , LAYERS_THEME_SLUG ); ?>
-                                </small>
-                            </div>
-                            <h3 class="layers-heading">
-                                <?php _e( 'Design bar' , LAYERS_THEME_SLUG ); ?>
-                            </h3>
-                            <div class="layers-excerpt">
-                                <p>
-                                    <?php _e( 'Unique to each Layers widget is the revolutionary "Design Bar" which allows you to set its design parameters without touching a line of code.' , LAYERS_THEME_SLUG ); ?>
-                                </p>
-                                <p>
-                                    <?php _e( 'Depending on the widget you\'ve added, you can change things like background images, font sizes, list styles and more.' , LAYERS_THEME_SLUG ); ?>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="layers-button-well">
-                        <a class="layers-button btn-primary layers-pull-right onbard-next-step" href=""><?php _e( 'Next Step &rarr;' , LAYERS_THEME_SLUG ); ?></a>
-                    </div>
-                </div>
-                <div class="layers-column layers-span-6 no-gutter layers-demo-video">
-                    <video width="490" height="490" controls>
-                        <source src="http://demo.oboxsites.com/wp-content/uploads/2015/02/design-bar.mp4" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video> 
-
-                </div>
-            </div>
-
-            <!-- Learn the Ropes: Design Bar -->
-            <div class="layers-onboard-slide layers-animate layers-onboard-slide-inactive">
-                <div class="layers-column layers-span-6 postbox">
-                    <div class="layers-content-large">
-                        <!-- Your content goes here -->
-                        <div class="layers-section-title layers-small layers-no-push-bottom">
-                            <div class="layers-push-bottom-small">
-                                <small class="layers-label label-secondary">
-                                    <?php _e( 'Quick tip' , LAYERS_THEME_SLUG ); ?>
-                                </small>
-                            </div>
-                            <h3 class="layers-heading">
-                                <?php _e( 'Font settings' , LAYERS_THEME_SLUG ); ?>
-                            </h3>
-                            <div class="layers-excerpt">
-                                <p>
-                                    <?php _e( 'Layers does all the heavy lifting for you by providing settings that are easy to change and quick to understand.' , LAYERS_THEME_SLUG ); ?>
-                                </p>
-                                <p>
-                                    <?php _e( 'The incredibly flexible Content Widget allows you to switch up your font with various size, color and alignment options.' , LAYERS_THEME_SLUG ); ?>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="layers-button-well">
-                        <a class="layers-button btn-primary layers-pull-right onbard-next-step" href=""><?php _e( 'Next Step &rarr;' , LAYERS_THEME_SLUG ); ?></a>
-                    </div>
-                </div>
-                <div class="layers-column layers-span-6 no-gutter layers-demo-video">
-                    <video width="490" height="490" controls>
-                        <source src="http://demo.oboxsites.com/wp-content/uploads/2015/02/font-size.mp4" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video> 
-
-                </div>
-            </div>
+            
 
             <!-- Select a Layout -->
             <div class="layers-onboard-slide layers-animate layers-onboard-slide-inactive">
-                <div class="layers-column layers-span-4 postbox">
-                    <div class="layers-content-large">
-                        <!-- Your content goes here -->
-                        <div class="layers-section-title layers-small">
-                            <h3 class="layers-heading">
-                                <?php _e( 'Last Step, choosing a page layout' , LAYERS_THEME_SLUG ); ?>
-                            </h3>
-                            <p class="layers-excerpt">
-                                 <?php _e( '
-                                    This is the final step in creating your first Layers page!
-                                    Simply select a preset layout from the list and we will automatically
-
-                                 ' , LAYERS_THEME_SLUG ); ?>
-                            </p>
-                        </div>
-                    </div>
-                    <div class="layers-button-well">
-                        <span class="layers-save-progress layers-hide layers-button btn-link" data-busy-message="<?php _e( 'Creating your Page' , LAYERS_THEME_SLUG ); ?>"></span>
-                        <a class="layers-button btn-primary layers-pull-right onbard-next-step" href=""><?php _e( 'Proceed to Customizer' , LAYERS_THEME_SLUG ); ?></a>
-                    </div>
-                </div>
-                <div class="layers-column layers-span-8 no-gutter layers-template-selector postbox">
+                <div class="layers-column layers-span-8 layers-template-selector postbox">
                     <div class="layers-content">
 
                         <?php $this->load_partial( 'preset-layouts' ); ?>
@@ -365,6 +343,28 @@ $layers_migrator = new Layers_Widget_Migrator(); ?>
                             'id' => 'action',
                             'value' => 'layers_select_preset'
                         ) ); ?>
+                    </div>
+                </div>
+                <div class="layers-column layers-span-4 no-gutter postbox">
+                    <div class="layers-content-large">
+                        <!-- Your content goes here -->
+                        <div class="layers-section-title layers-small">
+                            <h3 class="layers-heading">
+                                <?php _e( 'Last Step, choose a page layout' , LAYERS_THEME_SLUG ); ?>
+                            </h3>
+                            <div class="layers-excerpt">
+                                <p>
+                                    <?php _e( '
+                                        This is the final step in creating your first Layers page!
+                                        Simply select a preset layout from the list and we will automatically create it for you.
+                                    ', LAYERS_THEME_SLUG ); ?>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="layers-button-well">
+                        <span class="layers-save-progress layers-hide layers-button btn-link" data-busy-message="<?php _e( 'Creating your Page' , LAYERS_THEME_SLUG ); ?>"></span>
+                        <a class="layers-button btn-primary layers-pull-right onbard-next-step" href=""><?php _e( 'Proceed to Customizer' , LAYERS_THEME_SLUG ); ?></a>
                     </div>
                 </div>
             </div>

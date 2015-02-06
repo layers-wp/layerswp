@@ -97,13 +97,13 @@ function layers_options_panel_menu(){
 		3
 	);
 
-	// Onboarding
+	// Get Started
 	add_submenu_page(
 		LAYERS_THEME_SLUG . '-welcome',
-		__( 'Onboarding' , LAYERS_THEME_SLUG ),
-		__( 'Onboarding' , LAYERS_THEME_SLUG ),
+		__( 'Get Started' , LAYERS_THEME_SLUG ),
+		__( 'Get Started' , LAYERS_THEME_SLUG ),
 		'edit_theme_options',
-		LAYERS_THEME_SLUG . '-onboarding',
+		LAYERS_THEME_SLUG . '-get-started',
 		'layers_options_panel_ui'
 	);
 

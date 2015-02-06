@@ -168,6 +168,16 @@ if( ! function_exists( 'layers_setup' ) ) {
 		 */
 		add_theme_support( 'jetpack-portfolio' );
 
+		/**
+		* Welcome Redirect
+		*/
+		if( isset($_GET["activated"]) && $pagenow = "themes.php" ) { //&& '' == get_option( 'layers_welcome' )
+
+			update_option( 'layers_welcome' , 1);
+
+			wp_redirect(admin_url('admin.php?page=' . LAYERS_THEME_SLUG . '-get-started'));
+		}
+
 	} // function layers_setup
 	add_action( 'after_setup_theme' , 'layers_setup', 10 );
 } // if !function layers_setup

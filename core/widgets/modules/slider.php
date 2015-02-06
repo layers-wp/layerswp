@@ -395,7 +395,7 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 							<?php } else { ?>
 								<?php $this->slide_item( array( 'id_base' => $this->id_base , 'number' => $this->number ) ); ?>
 							<?php }?>
-							<li class="layers-button layers-add-widget-slide" data-number="<?php echo $this->number; ?>"><?php _e( '+ Add New Slide' , LAYERS_THEME_SLUG ) ; ?></li>
+							<li class="layers-button btn-full layers-add-widget-slide" data-number="<?php echo $this->number; ?>"><?php _e( '+ Add New Slide' , LAYERS_THEME_SLUG ) ; ?></li>
 						</ul>
 
 				</section>

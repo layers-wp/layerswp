@@ -1479,16 +1479,6 @@ input[type=text].layers-color-selector.wp-color-picker{
     color: #555;
     cursor: pointer;
 
-    transform: scale(1);
-    transition: transform 0.2s cubic-bezier(0, 0.275, 0.125, 1) 0s;
-
-    -webkit-transform: scale(1);
-    -webkit-transition: -webkit-transform 0.2s cubic-bezier(0, 0.275, 0.125, 1) 0s;
-
-}
-.layers-accordion-title:active{
-    transform: scale(1.01);
-    -webkit-transform: scale(1.01);
 }
 .layers-accordion-item.open .layers-accordion-title{
     background: #f5f5f5;
@@ -1505,6 +1495,7 @@ input[type=text].layers-color-selector.wp-color-picker{
     content: '\e00d';
     font: 400 14px/47px layers-interface;
     color: #aaa;
+    cursor: pointer;
 }
 .layers-accordion-item.open .layers-accordion-title:after{
     color: #555;

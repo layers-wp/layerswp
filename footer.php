@@ -2,6 +2,11 @@
 			<div id="back-to-top">
 				<a href="#top"><?php _e( 'Back to top' , LAYERS_THEME_SLUG ); ?></a>
 			</div> <!-- back-to-top -->
+
+			<a class="with-layers" href="http://layerswp.com/">
+				<?php _e( 'Created using Layers' , LAYERS_THEME_SLUG ); ?>
+			</a>
+
 		</section>
 
 		<?php do_action( 'layers_before_footer' ); ?>

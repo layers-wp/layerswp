@@ -50,7 +50,6 @@ $layers_migrator = new Layers_Widget_Migrator(); ?>
                             <li>
                                 <?php _e( 'If you\'re ever stuck or need help with your Layers site please visit our <a href="http://help.layerswp.com/" rel="nofollow">helpful documentation.</a>' , LAYERS_THEME_SLUG ); ?>
                             </li>
-                            <li class="pro-tip"><?php _e( 'For the Pros: Layers will automatically assign the tagline to Settings &rarr; General.' , LAYERS_THEME_SLUG ); ?></li>
                         </ul>
                     </div>
                 </div>
@@ -251,7 +250,7 @@ $layers_migrator = new Layers_Widget_Migrator(); ?>
                 <div class="layers-column layers-span-6 no-gutter layers-demo-video">
                     <video width="490" height="490" controls>
                         <source src="http://cdn.oboxsites.com/layers/videos/adding-a-widget.mp4" type="video/mp4">
-                        Your browser does not support the video tag.
+                        <?php _e( 'Your browser does not support the video tag.' , LAYERS_THEME_SLUG ); ?>
                     </video>
 
                 </div>
@@ -288,7 +287,7 @@ $layers_migrator = new Layers_Widget_Migrator(); ?>
                 <div class="layers-column layers-span-6 no-gutter layers-demo-video">
                     <video width="490" height="490" controls>
                         <source src="http://cdn.oboxsites.com/layers/videos/design-bar.mp4" type="video/mp4">
-                        Your browser does not support the video tag.
+                        <?php _e( 'Your browser does not support the video tag.' , LAYERS_THEME_SLUG ); ?>
                     </video>
 
                 </div>
@@ -325,7 +324,7 @@ $layers_migrator = new Layers_Widget_Migrator(); ?>
                 <div class="layers-column layers-span-6 no-gutter layers-demo-video">
                     <video width="490" height="490" controls>
                         <source src="http://cdn.oboxsites.com/layers/videos/font-size.mp4" type="video/mp4">
-                        Your browser does not support the video tag.
+                        <?php _e( 'Your browser does not support the video tag.' , LAYERS_THEME_SLUG ); ?>
                     </video>
 
                 </div>

@@ -52,18 +52,13 @@ class Layers_Customizer {
 			require_once get_template_directory() . $controls_dir . 'css.php';
 
 			// If we are in a builder page, update the Widgets title
-			if(
-				isset( $_GET[ 'layers-builder' ] )
-				|| ( 0 != get_option( 'page_on_front' )  && LAYERS_BUILDER_TEMPLATE == get_post_meta ( get_option( 'page_on_front' ) , '_wp_page_template' , true ) )
-			) {
-				$wp_customize->add_panel(
-					'widgets', array(
-						'priority' => 10,
-						'title' => __('Page Builder &amp; Widgets', LAYERS_THEME_SLUG ),
-						'description' => $this->render_builder_page_dropdown() . __('Use this area to add widgets to your page, use the (Layers) widgets for the Body section.', LAYERS_THEME_SLUG ),
-					)
-				);
-			}
+			$wp_customize->add_panel(
+				'widgets', array(
+					'priority' => 10,
+					'title' => __('Page Builder &amp; Widgets', LAYERS_THEME_SLUG ),
+					'description' => $this->render_builder_page_dropdown() . __('Use this area to add widgets to your page, use the (Layers) widgets for the Body section.', LAYERS_THEME_SLUG ),
+				)
+			);
 
 			// Enqueue Styles
 			add_action( 'admin_enqueue_scripts', array( $this, 'admin_enqueue_scripts' ) , 50 );

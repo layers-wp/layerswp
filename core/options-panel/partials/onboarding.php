@@ -91,9 +91,9 @@ $layers_migrator = new Layers_Widget_Migrator(); ?>
                 </div>
                 <div class="layers-column layers-span-6 no-gutter layers-demo-video">
                     <video width="490" height="490" controls>
-                        <source src="cdn.oboxsites.com/layers/videos/adding-a-widget.mp4?v=<?php echo LAYERS_VERSION; ?>" type="video/mp4">
+                        <source src="http://cdn.oboxsites.com/layers/videos/adding-a-widget.mp4?v=<?php echo LAYERS_VERSION; ?>" type="video/mp4">
                         Your browser does not support the video tag.
-                    </video> 
+                    </video>
 
                 </div>
             </div>
@@ -182,7 +182,7 @@ $layers_migrator = new Layers_Widget_Migrator(); ?>
                     <video width="900" height="490" controls>
                         <source src="http://cdn.oboxsites.com/layers/videos/widget-slider.mp4?v=<?php echo LAYERS_VERSION; ?>" type="video/mp4">
                         Your browser does not support the video tag.
-                    </video> 
+                    </video>
 
                 </div>
             </div>
@@ -271,7 +271,7 @@ $layers_migrator = new Layers_Widget_Migrator(); ?>
                     <video width="490" height="490" controls>
                         <source src="http://cdn.oboxsites.com/layers/videos/design-bar.mp4?v=<?php echo LAYERS_VERSION; ?>" type="video/mp4">
                         Your browser does not support the video tag.
-                    </video> 
+                    </video>
 
                 </div>
             </div>
@@ -328,7 +328,7 @@ $layers_migrator = new Layers_Widget_Migrator(); ?>
                 </div>
             </div>
 
-            
+
 
             <!-- Select a Layout -->
             <div class="layers-onboard-slide layers-animate layers-onboard-slide-inactive">

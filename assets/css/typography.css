@@ -261,6 +261,15 @@ small{
     	font-weight: 700;
     }
 
+    /*---------------------------*/
+    /*- LAYERS BADGE ------------*/
+    .created-using-layers:after{
+        font-size: 0.9rem;
+        line-height: 1.1rem;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+    }
+
 /*-------------------------------*/
 /*- NAVIGATION ------------------*/
 /*-------------------------------*/

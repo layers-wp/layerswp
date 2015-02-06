@@ -7,20 +7,38 @@ License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 */
 
-/*--------------*/
-/* iPad PORTRAIT */
+/*-------------------------------*/
+/*- DESKTOP ---------------------*/
+/*-------------------------------*/
+@media only screen and (min-width: 1100px){
+
+    /*---------------------------*/
+    /*- LAYERS BADGE ------------*/
+	.created-using-layers{
+		display: block;
+	}
+}
+@media only screen and (min-width: 768px){
+
+}
+
+/*-------------------------------*/
+/*- iPAD ONLY -------------------*/
+/*-------------------------------*/
 @media only screen and (max-width: 768px) and (min-width: 481px) {
 
 }
 
-/*--------------*/
-/* iPad PORTRAIT */
+/*-------------------------------*/
+/*- IPAD PORTRAIT ---------------*/
+/*-------------------------------*/
 @media only screen and (max-width: 768px){
 
 }
 
-/*-----------------------------------------------*/
-/* layouts smaller than 600px, iPhone and mobiles */
+/*-------------------------------*/
+/*- PHONES ----------------------*/
+/*-------------------------------*/
 @media only screen and (max-width: 480px), screen and (max-device-width: 480px), screen and (max-width: 600px) {
 
 /*-------------------------------*/

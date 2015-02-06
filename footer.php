@@ -3,8 +3,8 @@
 				<a href="#top"><?php _e( 'Back to top' , LAYERS_THEME_SLUG ); ?></a>
 			</div> <!-- back-to-top -->
 
-			<a class="with-layers" href="http://layerswp.com/">
-				<?php _e( 'Created using Layers' , LAYERS_THEME_SLUG ); ?>
+			<a class="created-using-layers" tooltip="Created using Layers" href="http://layerswp.com/">
+				<span><?php _e( 'Created using Layers' , LAYERS_THEME_SLUG ); ?></span>
 			</a>
 
 		</section>

@@ -473,6 +473,25 @@ pre{
         border-top: 2px solid #ddd;
     }
 
+    /*---------------------------*/
+    /*- LAYERS BADGE ------------*/
+    .created-using-layers{
+        background: url(images/created-using-layers.png) top no-repeat;
+        background-size: 30px 56px;
+    }
+    .created-using-layers:after{
+        background: rgba(0, 157, 243, 0.85);
+        color: rgba(255, 255, 255, 0.8);
+    }
+    .created-using-layers:before{
+        border-style: solid;
+        border-color: transparent rgba(0, 157, 243, 0.85);
+        border-width: 5px 0px 5px 5px;
+    }
+    .created-using-layers:hover{
+        background-position: bottom;
+    }
+
 
 /*-------------------------------*/
 /*- NAVIGATION ------------------*/

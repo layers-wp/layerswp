@@ -36,8 +36,11 @@ if( !function_exists( 'layers_bread_crumbs' ) ) {
 				<?php } elseif( function_exists('is_shop') && ( is_post_type_archive( 'product' ) || ( get_post_type() == "product") ) ) { ?>
 					<li><?php echo $seperator; ?></li>
 					<?php if( function_exists( 'woocommerce_get_page_id' )  && '' != woocommerce_get_page_id('shop') ) { ?>
-						<?php $shop_page = get_post( woocommerce_get_page_id('shop') ); ?>
-						<li><a href="<?php echo get_permalink( $shop_page->ID ); ?>"><?php echo $shop_page->post_title; ?></a></li>
+						<?php $shop_page_id = woocommerce_get_page_id('shop'); ?>
+						<?php $shop_page = get_post( $shop_page_id ); ?>
+						<?php if( is_object ( $shop_page ) ) { ?>
+							<li><a href="<?php echo get_permalink( $shop_page->ID ); ?>"><?php echo $shop_page->post_title; ?></a></li>
+						<?php } ?>
 					<?php } else { ?>
 						<li><a href="#"><?php _e( 'Shop' , LAYERS_THEME_SLUG ); ?></li>
 					<?php }

@@ -100,7 +100,7 @@ if( !class_exists( 'Layers_Contact_Widget' ) ) {
 			// Set the map width
 			$mapwidth = 'span-12'; ?>
 
-			<section class="widget content-vertical-massive row <?php echo $this->check_and_return( $widget , 'design', 'advanced', 'customclass' ) ?> <?php echo $this->get_widget_spacing_class( $widget ); ?>" id="<?php echo $widget_id; ?>">
+			<section class="layers-contact-widget widget content-vertical-massive row <?php echo $this->check_and_return( $widget , 'design', 'advanced', 'customclass' ) ?> <?php echo $this->get_widget_spacing_class( $widget ); ?>" id="<?php echo $widget_id; ?>">
 
 				<?php if( '' != $this->check_and_return( $widget , 'title' ) ||'' != $this->check_and_return( $widget , 'excerpt' ) ) { ?>
 					<div class="container clearfix">
@@ -130,18 +130,20 @@ if( !class_exists( 'Layers_Contact_Widget' ) ) {
 						</div>
 						<?php $mapwidth = 'span-6'; ?>
 					<?php } // if show_contact_form || address_shown ?>
-					<div class="column no-push-bottom <?php echo $mapwidth; ?>">
-						<?php if ( isset( $wp_customize ) ) { ?>
-							<?php if( '' != $widget['google_maps_location'] ) {
-								$map_center = $widget['google_maps_location'];
-							} else if( '' != $widget['google_maps_long_lat'] ) {
-								$map_center =  $widget['google_maps_long_lat'];
-							} ?>
-							<img src="https://maps.googleapis.com/maps/api/staticmap?center=<?php echo esc_attr( $map_center ); ?>&zoom=11&size=1960x<?php echo $widget['map_height']; ?>&scale=2&markers=color:red|<?php echo esc_attr( $map_center ); ?>" />
-						<?php } else if( isset( $hasmap ) ) { ?>
-							<div class="layers-map" style="height: <?php echo $widget['map_height']; ?>px;" <?php if( '' != $widget['google_maps_location'] ) { ?>data-location="<?php echo $widget['google_maps_location']; ?>"<?php } ?> <?php if( '' != $widget['google_maps_long_lat'] ) { ?>data-longlat="<?php echo $widget['google_maps_long_lat']; ?>"<?php } ?>></div>
-						<?php } ?>
-					</div>
+					<?php if( isset( $hasmap ) ) { ?>
+						<div class="column no-push-bottom <?php echo $mapwidth; ?>">
+							<?php if ( isset( $wp_customize ) ) { ?>
+								<?php if( '' != $widget['google_maps_location'] ) {
+									$map_center = $widget['google_maps_location'];
+								} else if( '' != $widget['google_maps_long_lat'] ) {
+									$map_center =  $widget['google_maps_long_lat'];
+								} ?>
+								<img src="https://maps.googleapis.com/maps/api/staticmap?center=<?php echo esc_attr( $map_center ); ?>&zoom=11&size=1960x<?php echo $widget['map_height']; ?>&scale=2&markers=color:red|<?php echo esc_attr( $map_center ); ?>" />
+							<?php } else { ?>
+								<div class="layers-map" style="height: <?php echo $widget['map_height']; ?>px;" <?php if( '' != $widget['google_maps_location'] ) { ?>data-location="<?php echo $widget['google_maps_location']; ?>"<?php } ?> <?php if( '' != $widget['google_maps_long_lat'] ) { ?>data-longlat="<?php echo $widget['google_maps_long_lat']; ?>"<?php } ?>></div>
+							<?php } ?>
+						</div>
+					<?php } ?>
 				</div>
 			</section>
 

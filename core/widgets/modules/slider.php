@@ -347,9 +347,10 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 									'id' => $this->get_field_id( 'slide_time' ) ,
 									'min' => 1,
 									'max' => 10,
-									'placeholder' => __( 'Leave blank for no slide', LAYERS_THEME_SLUG ),
+									'placeholder' => __( 'Time in seconds, eg. 2', LAYERS_THEME_SLUG ),
 									'value' => ( isset( $slide_time ) ) ? $slide_time : NULL,
-									'label' => __( 'Slide Interval', LAYERS_THEME_SLUG )
+									'label' => __( 'Slide Interval', LAYERS_THEME_SLUG ),
+									'data' => array( 'show-if-selector' => '#' . $this->get_field_id( 'autoplay_slides' ), 'show-if-value' => 'true' )
 								),
 								'slide_height' => array(
 									'type' => 'number',

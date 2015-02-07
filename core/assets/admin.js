@@ -543,7 +543,6 @@ jQuery(function($) {
 				$source_element_value = $source_element.val();
 			}
 
-
 			// Set the reveal animation type.
 			var animation_type = 'none';
 			if ( $target_element.hasClass('layers-customize-control') ){
@@ -553,6 +552,8 @@ jQuery(function($) {
 			// If is a Customize Control then hide the whole control.
 			if ( $target_element.hasClass('layers-customize-control') ){
 				$target_element = $target_element.parent('.customize-control');
+			} else {
+				$target_element = $target_element.parent('.layers-form-item');
 			}
 
 			if( $target_element_value.indexOf( $source_element_value ) > -1 ){

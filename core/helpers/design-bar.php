@@ -595,7 +595,7 @@ class Layers_Design_Controller {
         $args[ 'elements' ] = array(
                             'background-image' => array(
                                 'type' => 'image',
-                                'label' => __( 'Image' , LAYERS_THEME_SLUG ),
+                                'label' => __( 'Background Image' , LAYERS_THEME_SLUG ),
                                 'button_label' => __( 'Choose Image' , LAYERS_THEME_SLUG ),
                                 'name' => $this->widget['name'] . '[background][image]' ,
                                 'id' =>  $this->widget['id'] . '-background-image' ,

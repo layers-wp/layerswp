@@ -69,7 +69,8 @@ class Layers_Widgets {
 		$pages = get_pages(array(
 			'post_status' => 'publish,draft,private',
 			'meta_key' => '_wp_page_template',
-			'meta_value' => 'builder.php'
+			'meta_value' => 'builder.php',
+			'parent' => -1
 		));
 
 		// Loop the Builder Pages and create their sidebars

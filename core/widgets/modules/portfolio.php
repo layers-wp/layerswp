@@ -24,8 +24,8 @@ if( !class_exists( 'Layers_Portfolio_Widget' ) ) {
 			*/
 			$this->widget_title = __( 'Portfolio', LAYERS_THEME_SLUG );
 			$this->widget_id = 'portfolio';
-			$this->post_type = 'jetpack-portfolio';
-			$this->taxonomy = 'jetpack-portfolio-type';
+			$this->post_type = 'portfolio';
+			$this->taxonomy = 'portfolio-category';
 			$this->checkboxes = array(
 					'show_media',
 					'show_titles',

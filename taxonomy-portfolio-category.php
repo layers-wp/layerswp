@@ -9,7 +9,7 @@
 // Do the WP_Query
 global $paged;
 
-$terms = get_terms( 'jetpack-portfolio-type' );
+$terms = get_terms( 'portfolio-category' );
 
 get_header(); ?>
 

@@ -82,7 +82,6 @@ class Layers_Post_Types {
 				'capability_type' => 'page',
 				'map_meta_cap'    => true,
 				'taxonomies'      => array( 'portfolio-category', 'portfolio-tag' ),
-				'has_archive'     => true,
 				'query_var'       => 'portfolio',
 			)
 		);

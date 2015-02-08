@@ -43,8 +43,8 @@ if( !function_exists( 'layers_post_meta' ) ) {
                     // Use different terms for different post types
                     if( 'post' == get_post_type( $post_id ) ){
                         $the_categories = get_the_category( $post_id );
-                    } elseif( 'jetpack-portfolio' == get_post_type( $post_id ) ) {
-                        $the_categories = get_the_terms( $post_id , 'jetpack-portfolio-type' );
+                    } elseif( 'portfolio' == get_post_type( $post_id ) ) {
+                        $the_categories = get_the_terms( $post_id , 'portfolio-category' );
                     } else {
                         $the_categories = FALSE;
                     }
@@ -62,8 +62,8 @@ if( !function_exists( 'layers_post_meta' ) ) {
 
                     if( 'post' == get_post_type( $post_id ) ){
                         $the_tags = get_the_tags( $post_id );
-                    } elseif( 'jetpack-portfolio' == get_post_type( $post_id ) ) {
-                        $the_tags = get_the_terms( $post_id , 'jetpack-portfolio-tag' );
+                    } elseif( 'portfolio' == get_post_type( $post_id ) ) {
+                        $the_tags = get_the_terms( $post_id , 'portfolio-tag' );
                     } else {
                         $the_tags = FALSE;
                     }

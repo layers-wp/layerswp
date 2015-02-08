@@ -11,11 +11,11 @@
 // Do the WP_Query
 global $paged;
 $query_args = array();
-$query_args[ 'post_type' ] = 'jetpack-portfolio';
+$query_args[ 'post_type' ] = 'portfolio';
 $query_args[ 'paged' ] = ( isset( $paged ) ) ? $paged : 0;
 $portfolio_query = new WP_Query( $query_args );
 
-$terms = get_terms( 'jetpack-portfolio-type' );
+$terms = get_terms( 'portfolio-category' );
 
 get_header(); ?>
 

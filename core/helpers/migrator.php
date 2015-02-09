@@ -423,9 +423,7 @@ class Layers_Widget_Migrator {
 
         $url = str_ireplace( "src='", "",  $img_url_almost[0]);
 
-        $query = "SELECT ID FROM {$wpdb->posts} WHERE guid='$url'";
-
-        return $wpdb->get_var($query);
+        return $wpdb->get_var( $wpdb->prepare( "SELECT ID FROM {$wpdb->posts} WHERE guid=%s", $url ) );
     }
 
     /**
@@ -441,9 +439,7 @@ class Layers_Widget_Migrator {
 
         $i = $image_pieces[count($image_pieces)-1];
 
-        $query = "SELECT ID FROM {$wpdb->posts} WHERE guid LIKE '%$i%'";
-
-        return $wpdb->get_var($query);
+        return $wpdb->get_var( $wpdb->prepare( "SELECT ID FROM {$wpdb->posts} WHERE guid LIKE %s", "%$i%" ) );
     }
 
     /**

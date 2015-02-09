@@ -68,6 +68,7 @@ jQuery(document).ready(function($){
             layers_widget_params.ajaxurl,
             $page_data,
             function(data){
+
                 $results = $.parseJSON( data );
 
                 $( '.layers-progress' ).stop().animate({width: "100%"} , 500 , function(e){

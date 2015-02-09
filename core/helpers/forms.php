@@ -28,7 +28,7 @@ class Layers_Form_Elements {
 		<div class="layers-controls-title">
 			<h2 class="layers-heading layers-icon layers-icon-<?php $header->icon_class; ?>">
 				<!-- <i class="icon-<?php echo $header->icon_class; ?>-small"></i> -->
-				<?php echo $header->title; ?>
+				<?php echo esc_html( $header->title ); ?>
 			</h2>
 		</div>
 
@@ -46,7 +46,7 @@ class Layers_Form_Elements {
 		$accordian_title = (object) wp_parse_args( $args, array() ); ?>
 
 		<a class="layers-accordion-title">
-			<span><?php echo $accordian_title->title; ?></span>
+			<span><?php echo esc_html( $accordian_title->title ); ?></span>
 		</a>
 	<?php }
 
@@ -64,8 +64,8 @@ class Layers_Form_Elements {
 			);
 
 		$panel_title = (object) wp_parse_args( $args, $defaults ); ?>
-		<div class="layers-<?php echo $panel_title->type; ?>-title">
-			<h4 class="heading"><?php echo $panel_title->title; ?></h4>
+		<div class="layers-<?php echo esc_attr( $panel_title->type ); ?>-title">
+			<h4 class="heading"><?php echo esc_html( $panel_title->title ); ?></h4>
 		</div>
 	<?php }
 
@@ -163,7 +163,7 @@ class Layers_Form_Elements {
 			case 'checkbox' : ?>
 				<input type="checkbox" <?php echo implode ( ' ' , $input_props ); ?> <?php checked( $input->value , 'on' ); ?>/>
 				<?php if( isset( $input->label ) ) { ?>
-					<label for="<?php echo $input->id; ?>"><?php echo $input->label; ?></label>
+					<label for="<?php echo esc_attr( $input->id ); ?>"><?php echo esc_html( $input->label ); ?></label>
 				<?php } // if isset label ?>
 			<?php break;
 			/**
@@ -181,11 +181,11 @@ class Layers_Form_Elements {
 			case 'select' : ?>
 				<select size="1" <?php echo implode ( ' ' , $input_props ); ?>>
 					<?php if( NULL != $input->placeholder ) { ?>
-						<option value=''><?php echo $input->placeholder; ?></option>
+						<option value=''><?php echo esc_html( $input->placeholder ); ?></option>
 					<?php } // if NULL != placeholder ?>
 					<?php foreach( $input->options as $value => $label ) { ?>
 						<option value='<?php echo esc_attr( $value ); ?>' <?php selected( $input->value , $value, true ); ?>>
-							<?php echo $label; ?>
+							<?php echo esc_html( $label ); ?>
 						</option>
 					<?php } // foreach options ?>
 				</select>
@@ -195,13 +195,13 @@ class Layers_Form_Elements {
 			*/
 			case 'select-icons' : ?>
 				<?php foreach( $input->options as $value => $label ) { ?>
-					<label href="" class="layers-icon-wrapper <?php if( $value == $input->value ) echo 'layers-active'; ?>" for="<?php echo $input->id .'-' . esc_attr( $value ); ?>">
+					<label href="" class="layers-icon-wrapper <?php if( $value == $input->value ) echo 'layers-active'; ?>" for="<?php echo esc_attr( $input->id ) .'-' . esc_attr( $value ); ?>">
 						<span class="icon-<?php echo esc_attr( $value ); ?>"></span>
 						<span class="layers-icon-description">
-							<?php echo $label; ?>
+							<?php echo esc_html( $label ); ?>
 						</span>
 					</label>
-					<input type="radio" <?php echo implode ( ' ' , $input_props ); ?> id="<?php echo $input->id .'-' . esc_attr( $value ); ?>" value="<?php echo esc_attr( $value ); ?>" <?php checked( $input->value , $value , true ); ?> class="layers-hide" />
+					<input type="radio" <?php echo implode ( ' ' , $input_props ); ?> id="<?php echo esc_attr( $input->id ) .'-' . esc_attr( $value ); ?>" value="<?php echo esc_attr( $value ); ?>" <?php checked( $input->value , $value , true ); ?> class="layers-hide" />
 				<?php } // foreach options ?>
 			<?php break;
 			/**
@@ -214,13 +214,13 @@ class Layers_Form_Elements {
 			* Tiny MCE
 			*/
 			case 'tinymce' : ?>
-				<div class="layers-form-item" id="layers-tinymce-<?php echo $input->id; ?>">
+				<div class="layers-form-item" id="layers-tinymce-<?php echo esc_attr( $input->id ); ?>">
 					<a href="" class="layers-t-right layers-tiny-mce-switch" data-mode="visual"
 					data-visual_label="<?php _e( 'Visual Mode' , LAYERS_THEME_SLUG ); ?>"
 					data-html_label="<?php _e( 'HTML Mode' , LAYERS_THEME_SLUG ); ?>">
 						<?php _e( 'HTML Mode' , LAYERS_THEME_SLUG ); ?>
 					</a>
-					<div class="editible editible-<?php echo $input->id; ?>" data-id="<?php echo $input->id; ?>"><?php echo esc_html( $input->value ); ?></div>
+					<div class="editible editible-<?php echo esc_attr( $input->id ); ?>" data-id="<?php echo esc_attr( $input->id ); ?>"><?php echo esc_html( $input->value ); ?></div>
 					<textarea class="layers-hide layers-textarea layers-tiny-mce-textarea" <?php echo implode ( ' ' , $input_props ); ?> <?php if( isset( $input->rows ) ) echo 'rows="' . $input->rows . '"'; ?>><?php echo $input->value; ?></textarea>
 				</div>
 			<?php break;
@@ -277,12 +277,12 @@ class Layers_Form_Elements {
 				// Default to image if we haven't already done so
 				if( !isset( $input->value->type ) ) $input_type = 'image'; else $input_type = $input->value->type; ?>
 
-				<div class="layers-media-controller" id="<?php echo $input->id; ?>-controller">
+				<div class="layers-media-controller" id="<?php echo esc_attr( $input->id ); ?>-controller">
 					<ul class="layers-section-links layers-background-selector">
-						<li <?php if( 'video' != $input_type ) echo 'class="active"'; ?> data-id="#<?php echo $input->id; ?>" data-type="image">
+						<li <?php if( 'video' != $input_type ) echo 'class="active"'; ?> data-id="#<?php echo esc_attr( $input->id ); ?>" data-type="image">
 							<a href="" class="icon-photo"></a>
 						</li>
-						<li <?php if( 'video' == $input_type ) echo 'class="active"'; ?> data-id="#<?php echo $input->id; ?>" data-type="video">
+						<li <?php if( 'video' == $input_type ) echo 'class="active"'; ?> data-id="#<?php echo esc_attr( $input->id ); ?>" data-type="video">
 							<a href="" class="icon-video"></a>
 						</li>
 					</ul>
@@ -474,14 +474,14 @@ class Layers_Form_Elements {
 			* Top / Right / Bottom / Left Fields
 			*/
 			case 'trbl-fields' : ?>
-				
+
 				<?php $fields = array(
 					'top' => __( 'Top' , LAYERS_THEME_SLUG ),
 					'right' => __( 'Right' , LAYERS_THEME_SLUG ),
 					'bottom' => __( 'Bottom' , LAYERS_THEME_SLUG ),
 					'left' => __( 'Left' , LAYERS_THEME_SLUG ),
 				); ?>
-				
+
 				<div class="layers-row layers-input">
 					<?php foreach ( $fields as $key => $label ) { ?>
 						<div class="layers-column-flush layers-span-3">
@@ -494,11 +494,11 @@ class Layers_Form_Elements {
 									'class' => 'layers-hide-controls',
 								)
 							); ?>
-							<label for="<?php echo $input->id . '-' . $key; ?>"><?php echo $label; ?></label>
+							<label for="<?php echo esc_attr( $input->id ) . '-' . $key; ?>"><?php echo esc_html( $label ); ?></label>
 						</div>
 					<?php } // foreach fields ?>
 				</div>
-				
+
 			<?php break;
 			/**
 			* Default to hidden field

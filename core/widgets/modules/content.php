@@ -111,7 +111,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 					<div class="container">
 						<div class="section-title <?php echo $this->check_and_return( $widget , 'design', 'fonts', 'size' ); ?> <?php echo $this->check_and_return( $widget , 'design', 'fonts', 'align' ); ?> clearfix">
 							<?php if( '' != $widget['title'] ) { ?>
-								<h3 class="heading"><?php echo $widget['title']; ?></h3>
+								<h3 class="heading"><?php echo esc_html( $widget['title'] ); ?></h3>
 							<?php } ?>
 							<?php if( '' != $widget['excerpt'] ) { ?>
 								<p class="excerpt"><?php echo $widget['excerpt']; ?></p>
@@ -355,7 +355,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 					<?php // If we have some columns, let's break out their IDs into an array
 					if( isset( $column_ids ) && '' != $column_ids ) $columns = explode( ',' , $column_ids ); ?>
 
-					<ul id="column_list_<?php echo $this->number; ?>" class="layers-accordions layers-accordions-sortable layers-sortable" data-id_base="<?php echo $this->id_base; ?>" data-number="<?php echo $this->number; ?>">
+					<ul id="column_list_<?php echo esc_attr( $this->number ); ?>" class="layers-accordions layers-accordions-sortable layers-sortable" data-id_base="<?php echo $this->id_base; ?>" data-number="<?php echo $this->number; ?>">
 						<?php if( isset( $columns ) && is_array( $columns ) ) { ?>
 							<?php foreach( $columns as $columnguid ) {
 								$this->column_item( array(
@@ -368,7 +368,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 						<?php } else { ?>
 							<?php $this->column_item( array( 'id_base' => $this->id_base , 'number' => $this->number ) ); ?>
 						<?php }?>
-						<li class="layers-button btn-full layers-add-widget-column" data-number="<?php echo $this->number; ?>"><?php _e( '+ Add New Column' , LAYERS_THEME_SLUG ) ; ?></li>
+						<li class="layers-button btn-full layers-add-widget-column" data-number="<?php echo esc_attr( $this->number ); ?>"><?php _e( '+ Add New Column' , LAYERS_THEME_SLUG ) ; ?></li>
 					</ul>
 				</section>
 			</div>
@@ -399,7 +399,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 				$this->column_item_count++;
 			} ?>
 
-				<li class="layers-accordion-item" data-guid="<?php echo $column_guid; ?>">
+				<li class="layers-accordion-item" data-guid="<?php echo esc_attr( $column_guid ); ?>">
 					<a class="layers-accordion-title">
 						<span>
 							<?php _e( 'Column' , LAYERS_THEME_SLUG ); ?><span class="layers-detail"><?php echo ( isset( $title ) ? ': ' . stripslashes( $title ) : NULL ); ?></span>

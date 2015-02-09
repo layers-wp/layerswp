@@ -183,7 +183,7 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 					<div class="container clearfix">
 						<div class="section-title <?php echo $this->check_and_return( $widget , 'design', 'fonts', 'size' ); ?> <?php echo $this->check_and_return( $widget , 'design', 'fonts', 'align' ); ?> clearfix">
 							<?php if( '' != $widget['title'] ) { ?>
-								<h3 class="heading"><?php echo $widget['title']; ?></h3>
+								<h3 class="heading"><?php echo esc_html( $widget['title'] ); ?></h3>
 							<?php } ?>
 							<?php if( '' != $widget['excerpt'] ) { ?>
 								<p class="excerpt"><?php echo $widget['excerpt']; ?></p>

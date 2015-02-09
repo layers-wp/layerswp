@@ -164,7 +164,7 @@ class Layers_Customizer_Config {
 										'layout-fullwidth' => __( 'Full Width' , LAYERS_THEME_SLUG )
 									)
 								),
-								'header-break-0' => array(
+								'header-layout-break-0' => array(
 									'type'     => 'layers-seperator'
 								),
 								'header-menu-layout' => array(
@@ -179,7 +179,7 @@ class Layers_Customizer_Config {
 										'header-logo-center' => __( 'Logo Center' , LAYERS_THEME_SLUG )
 									)
 								),
-								'header-break-1' => array(
+								'header-layout-break-1' => array(
 									'type'     => 'layers-seperator'
 								),
 								'header-position-heading' => array(
@@ -197,7 +197,7 @@ class Layers_Customizer_Config {
 									'label'    => __( 'Overlay', LAYERS_THEME_SLUG ),
 									'default'	=> FALSE,
 								),
-								'header-break-2' => array(
+								'header-layout-break-2' => array(
 									'type'     => 'layers-seperator',
 								),
 								'header-background-color' => array(
@@ -215,7 +215,7 @@ class Layers_Customizer_Config {
 									'description' => __( 'Enter in your Google Analytics ID to enable website traffic reporting. eg. "UA-xxxxxx-xx', LAYERS_THEME_SLUG ),
 									'default' => '',
 								), // scripts
-								'break-1' => array(
+								'header-scripts-break-1' => array(
 									'type'     => 'layers-seperator'
 								),
 								'header-scripts' => array(
@@ -238,7 +238,7 @@ class Layers_Customizer_Config {
 										'layout-fullwidth' => __( 'Full Width' , LAYERS_THEME_SLUG )
 									)
 								), // layout,
-								'break-1' => array(
+								'content-layout-break-1' => array(
 									'type'     => 'layers-seperator'
 								),
 								'single-sidebar-heading' => array(
@@ -256,7 +256,7 @@ class Layers_Customizer_Config {
 									'label'     => __( 'Display Right Sidebar', LAYERS_THEME_SLUG ),
 									'default'   => TRUE,
 								), // post-sidebar
-								'break-2' => array(
+								'content-layout-break-2' => array(
 									'type'     => 'layers-seperator'
 								),
 								'archive-sidebar-heading' => array(
@@ -287,7 +287,7 @@ class Layers_Customizer_Config {
 										'layout-fullwidth' => __( 'Full Width' , LAYERS_THEME_SLUG )
 									)
 								), // layout,
-								'break-1' => array(
+								'footer-layout-break-1' => array(
 									'type'     => 'layers-seperator'
 								),
 								'footer-sidebar-count' => array(
@@ -320,7 +320,7 @@ class Layers_Customizer_Config {
 									'subtitle' => __( 'Link Color', LAYERS_THEME_SLUG ),
 									'default' => '#35A6E8',
 								),
-								'break-1' => array(
+								'footer-customization-break-1' => array(
 									'type'     => 'layers-seperator'
 								),
 								'footer-background-heading' => array(

@@ -87,11 +87,11 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
         /*-----------------------*/
         /*- NAV INVERT ----------*/
-        .invert .nav > li a{
+        .invert .nav > li > a{
             color: #fff;
             opacity: 0.8;
         }
-        .invert .nav > li a:hover{
+        .invert .nav > li > a:hover{
             color: #fff;
             opacity: 1;
         }

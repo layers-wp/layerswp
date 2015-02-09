@@ -852,13 +852,13 @@ pre{
     /*---------------------------*/
     /*- POSITION OVERLAY --------*/
     .header-site.invert .nav-horizontal > ul > li > a{
-        color: #fff;
+        color: rgba(255, 255, 255, 1);
     }
     .header-site.invert .nav-horizontal > ul > li > a:hover{
-        color: #ccc;
+        color: rgba(255, 255, 255, 0.7);
     }
     .header-site.invert .responsive-nav .l-menu{
-        color: #fff;
+        color: rgba(255, 255, 255, 1);
     }
 
 

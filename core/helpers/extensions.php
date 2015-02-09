@@ -60,6 +60,3 @@ if ( !function_exists('layers_load_templates') ) {
 
     add_filter( 'template_include', 'layers_load_template', 99 );
 } // layers_add_template_locations
-
-
-

@@ -334,6 +334,21 @@ $layers_migrator = new Layers_Widget_Migrator(); ?>
             <div class="layers-onboard-slide layers-animate layers-onboard-slide-inactive">
                 <div class="layers-column layers-span-8 layers-template-selector postbox">
                     <div class="layers-content">
+                         <?php if( layers_get_builder_pages() ) { ?>
+                             <p class="layers-form-item">
+                                <label><?php _e( 'Page Title' , LAYERS_THEME_SLUG ); ?></label>
+                                <?php
+                                   echo $form_elements->input( array(
+                                        'type' => 'text',
+                                        'name' => 'preset_page_title',
+                                        'id' => 'preset_page_title',
+                                        'placeholder' => __( 'Home Page' , LAYERS_THEME_SLUG ),
+                                        'value' => __( 'Home Page' , LAYERS_THEME_SLUG ),
+                                        'class' => 'layers-text layers-large layers-push-bottom-medium'
+                                   ) );
+                                ?>
+                            </p>
+                        <?php } // if layers_get_builder_pages(); ?>
 
                         <?php $this->load_partial( 'preset-layouts' ); ?>
 

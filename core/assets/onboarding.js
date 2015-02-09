@@ -34,6 +34,10 @@ jQuery(function($) {
 
     layers_onboarding_load_anchors();
 
+    $(window).on( 'resize, load',function(){
+        $( '.layers-template-selector' ).css( 'max-height', $( '#wpbody-content' ).height() - 150 );
+    });
+
     $(document).on( 'click' , '.onbard-next-step' , function(e){
         e.preventDefault();
 
@@ -56,6 +60,7 @@ jQuery(function($) {
 
             var $page_data = {
                 action: 'layers_create_builder_page_from_preset',
+                post_title: ( undefined == $( '#preset_page_title' ) ? false : $( '#preset_page_title' ).val() ),
                 widget_data: $.parseJSON( $widget_data ),
                 nonce: layers_widget_params.nonce
             };

@@ -1372,7 +1372,7 @@ object{
             position: relative;
             opacity: 0;
             transform: translate3d(0, 20px, 0);
-            transition: 0.2s all ease-in-out 0.25s;
+            transition: 0.2s transform ease-in-out 0.25s;
         }
 
         .with-overlay .excerpt{display: none;}

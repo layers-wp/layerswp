@@ -916,23 +916,13 @@ object{
         border-radius: 4px;
         position: absolute;
         bottom: 6px;
+        left: -150px;
         z-index: 1;
         content: attr(tooltip);
-        padding: 5px;
-        left: -161px;
+        padding: 5px 6px;
         opacity: 0;
         visibility: hidden;
         transition: all 0.2s ease-in-out;
-    }
-    .created-using-layers:before{
-        content: "";
-        position: absolute;
-        z-index: 2;
-        bottom: 11px;
-        left: -5px;
-        opacity: 0;
-        visibility: hidden;
-        transition: all 0.2s ease-in-out 0s;
     }
     .created-using-layers:hover{
         background-position: bottom;
@@ -940,12 +930,7 @@ object{
     .created-using-layers:hover:after{
         opacity: 1;
         visibility: visible;
-        left: -166px;
-    }
-    .created-using-layers:hover:before{
-        opacity: 1;
-        visibility: visible;
-        left: -10px;
+        left: -158px;
     }
 
 /*-------------------------------*/

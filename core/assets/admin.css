@@ -2282,3 +2282,48 @@ ul#adminmenu a.wp-has-current-submenu:after, ul#adminmenu > li.current > a.curre
         .layers-onboard-slide .layers-product-actions{
             display: none;
         }
+        
+        /*------------------------------------------*/
+        /*- PRESET LAYOUTS CONTROLS -----------*/
+        .layers-button.layers-proceed-to-customizer{
+            position: relative;
+        }
+        .layers-button.layers-proceed-to-customizer:after{
+            display: block;
+            position: absolute;
+            border-radius: 4px;
+            position: absolute;
+            top: 50%;
+            right: 100%;
+            margin-top: -11px;
+            margin-right: 4px;
+            z-index: 100;
+            content: attr(tooltip);
+            padding: 5px 7px;
+            opacity: 0;
+            visibility: visible;
+            transition: all 0.2s ease-in-out;
+            overflow: visible;
+            background: rgba(0, 0, 0, 0.7);
+            line-height: 13px;
+        }
+        .layers-button.layers-proceed-to-customizer:before{
+            content: "";
+            display:block;
+            position:absolute;
+            top: 8px;
+            width: 0;
+            height: 0;
+            right: 100%;
+            margin-top: 0px;
+            margin-right: -2px;
+            opacity: 0;
+            transition: all 0.2s ease-in-out;
+            border-style: solid;
+            border-width: 5px 0 5px 6px;
+            border-color: rgba(0, 0, 0, 0) rgba(0, 0, 0, 0) rgba(0, 0, 0, 0) rgba(0, 0, 0, 0.7);
+        }
+        .layers-button.layers-proceed-to-customizer.disable:hover:after,
+        .layers-button.layers-proceed-to-customizer.disable:hover:before{
+            opacity:1;
+        }

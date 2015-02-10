@@ -379,7 +379,7 @@ $layers_migrator = new Layers_Widget_Migrator(); ?>
                     </div>
                     <div class="layers-button-well">
                         <span class="layers-save-progress layers-hide layers-button btn-link" data-busy-message="<?php _e( 'Creating your Page' , LAYERS_THEME_SLUG ); ?>"></span>
-                        <a class="layers-button btn-primary layers-pull-right onbard-next-step" href=""><?php _e( 'Proceed to Customizer' , LAYERS_THEME_SLUG ); ?></a>
+                        <a class="layers-button btn-primary layers-pull-right onbard-next-step layers-proceed-to-customizer disable layers-tooltip" tooltip="<?php _e( 'First choose a layout' , LAYERS_THEME_SLUG ); ?>" href=""><?php _e( 'Proceed to Customizer' , LAYERS_THEME_SLUG ); ?></a>
                     </div>
                 </div>
             </div>

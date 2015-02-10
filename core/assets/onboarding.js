@@ -55,6 +55,10 @@ jQuery(function($) {
         if( 'layers_select_preset' == $action ) {
 
             $id = $( 'input[name="layes-preset-layout"]:checked' ).val();
+            
+            // No template selected
+            if( ! $id ){ return false; }
+            
             $title = $('#layers-preset-layout-' + $id + '-title' ).val();
             $widget_data = $('#layers-preset-layout-' + $id + '-widget_data' ).val();
 
@@ -129,6 +133,19 @@ jQuery(function($) {
         $i = $that.index();
 
         layers_change_onboarding_slide( $i );
+    });
+    
+    $(document).on( 'click' , '.layers-product' , function(e){
+        // "Hi Mom"
+        $that = $(this);
+        
+        // Enable the button when preset seleted
+        if( $( 'input[name="layes-preset-layout"]:checked' ).length ){
+            $( '.layers-proceed-to-customizer' ).removeClass('disable');
+        }
+        else{
+            $( '.layers-proceed-to-customizer' ).addClass('disable');
+        }
     });
 
     function layers_next_onboarding_slide(){

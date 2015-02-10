@@ -27,18 +27,6 @@ class Layers_Widget_Migrator {
 
         if( isset( $_GET[ 'layers-export' ] ) ) $this->create_export_file();
 
-        // Add meta box, this sorta kicks off the export logic too
-        if( function_exists( 'add_meta_box' ) ) {
-            add_meta_box(
-                        LAYERS_THEME_SLUG . '-widget-export',
-                        __( 'Builder Settings' , LAYERS_THEME_SLUG ), // Title
-                        array( $this , 'display_export_box' ) , // Interface
-                        'page' , // Post Type
-                        'normal', // Position
-                        'low' // Priority
-                    );
-        }
-
         // Add current builder pages as presets
         add_filter( 'layers_preset_layouts' , array( $this , 'add_builder_preset_layouts') );
 
@@ -560,6 +548,42 @@ class Layers_Widget_Migrator {
     }
 
     /**
+    * Ajax Duplication
+    *
+    * This function takes a page, generates export cod and creates a duplicate
+    */
+
+    public function do_ajax_duplicate(){
+
+        // We need a page title and post ID for this to work
+        if( !isset( $_POST[ 'post_title' ] ) || !isset( $_POST[ 'post_id' ]  ) ) return;
+
+        $pageid = layers_create_builder_page( esc_attr( $_POST[ 'post_title' ] ) );
+
+        Layers_Widgets::register_builder_sidebar( $pageid );
+
+        // Set the page ID
+        $import_data[ 'post_id' ] = $pageid;
+
+        $post = get_post( $_POST[ 'post_id' ] );
+
+        // Set the Widget Data for import
+        $import_data[ 'widget_data' ] = $this->export_data( $post );
+
+        // Run data import
+        $import_progress = $this->import( $import_data );
+
+        $results = array(
+                'post_id' => $pageid,
+                'data_report' => $import_progress,
+                'page_location' => admin_url() . '/post.php?post=' . $pageid . '&action=edit&message=1'
+            );
+
+        die( json_encode( $results ) );
+
+    }
+
+    /**
     * Ajax Update Builder Page details
     *
     * This function will update the builder page with a new page title and more (once we add more)
@@ -798,9 +822,11 @@ add_action( 'admin_head' , 'layers_builder_export_init', 10 );
 if( !function_exists( 'layers_builder_export_ajax_init' ) ) {
     function layers_builder_export_ajax_init(){
         $layers_migrator = new Layers_Widget_Migrator();
+
         add_action( 'wp_ajax_layers_import_widgets', array( $layers_migrator, 'do_ajax_import' ) );
         add_action( 'wp_ajax_layers_create_builder_page_from_preset', array( $layers_migrator, 'create_builder_page_from_preset' ) );
         add_action( 'wp_ajax_layers_update_builder_page', array( $layers_migrator, 'update_builder_page' ) );
+        add_action( 'wp_ajax_layers_duplicate_builder_page', array( $layers_migrator, 'do_ajax_duplicate' ) );
     }
 }
 

@@ -134,7 +134,7 @@ class Layers_Custom_Meta {
 								<h4 class="layers-heading">Import Page</h4>
 								<p class="layers-excerpt"> Upload your page settings file (eg. <code>business-page.json</code>) by clicking the button below.</p>
 							</div>
-							<button class="layers-button" id="layers-page-widget-import-button" data-post-id="%8$s" data-title="Upload .json" data-button_text="Upload &amp; Import">Upload &amp; Import</button>
+							<button class="layers-button" id="layers-page-import-button" data-post-id="%8$s" data-title="Upload .json" data-button_text="Upload &amp; Import">Upload &amp; Import</button>
 						</div>
 
 						<div class="layers-column layers-span-4 postbox layers-content">
@@ -142,7 +142,7 @@ class Layers_Custom_Meta {
 								<h4 class="layers-heading">Duplicate Page</h4>
 								<p class="layers-excerpt">Easily duplicate your layout, settings, copy and images in order to get started quickly with a new page.</p>
 							</div>
-							<a href="" class="layers-button btn-primary">Duplicate</a>
+							<button href="" class="layers-button" id="layers-page-duplicate-button" data-post-id="%8$s">Duplicate</button>
 						</div>
 
 					</div>

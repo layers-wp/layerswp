@@ -103,7 +103,7 @@ jQuery(document).ready(function($){
     */
 
     var file_frame;
-    $(document).on( 'click', '#layers-page-widget-import-button' , function(e){
+    $(document).on( 'click', '#layers-page-import-button' , function(e){
         e.preventDefault();
 
         // "Hi Mom!"
@@ -125,11 +125,14 @@ jQuery(document).ready(function($){
 
         // When an image is selected, run a callback.
         file_frame.on( 'select', function() {
+
             // We set multiple to false so only get one image from the uploader
             attachment = file_frame.state().get('selection').first().toJSON();
 
+            // Read the file JSON
             $.getJSON( attachment.url, function( import_data ){
 
+                // Set the attributes to send to the importer
                 var $page_data = {
                         action: 'layers_import_widgets',
                         post_id: $that.data('post-id'),
@@ -141,6 +144,8 @@ jQuery(document).ready(function($){
                     layers_widget_params.ajaxurl,
                     $page_data,
                     function(data){
+
+                        // Upon completion update the import button
                         jQuery( '#layers-page-widget-import-button' ).fadeOut( 500, function() {jQuery(this).text( migratori8n.complete_message ).addClass( 'btn-link' ).fadeIn(); } );
                     }
                 );
@@ -154,6 +159,36 @@ jQuery(document).ready(function($){
         file_frame.open();
 
         return false;
+    });
+
+    /**
+    * 5 - Duplicate Page Button in Page Edit Screen
+    */
+
+    var file_frame;
+    $(document).on( 'click', '#layers-page-duplicate-button' , function(e){
+        e.preventDefault();
+
+        // "Hi Mom!"
+        $that = $(this);
+
+        // Set the attributes to send to the importer
+        var $page_data = {
+                action: 'layers_duplicate_builder_page',
+                post_id: $that.data('post-id'),
+                post_title: $('#title').val(),
+                nonce: layers_widget_params.nonce
+            };
+
+        $.post(
+            layers_widget_params.ajaxurl,
+            $page_data,
+            function(data){
+                console.log( data );
+            }
+        );
+
+
     });
 
 });

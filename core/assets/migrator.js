@@ -146,7 +146,7 @@ jQuery(document).ready(function($){
                     function(data){
 
                         // Upon completion update the import button
-                        jQuery( '#layers-page-widget-import-button' ).fadeOut( 500, function() {jQuery(this).text( migratori8n.complete_message ).addClass( 'btn-link' ).fadeIn(); } );
+                        jQuery( '#layers-page-import-button' ).fadeOut( 500, function() {jQuery(this).text( migratori8n.complete_message ).addClass( 'btn-link' ).fadeIn(); } );
                     }
                 );
 

@@ -560,6 +560,7 @@ class Layers_Widget_Migrator {
 
         $pageid = layers_create_builder_page( esc_attr( $_POST[ 'post_title' ] ) );
 
+        // Create the page sidebar on the fly
         Layers_Widgets::register_builder_sidebar( $pageid );
 
         // Set the page ID

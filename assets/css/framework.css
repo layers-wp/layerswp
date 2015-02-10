@@ -21,14 +21,14 @@ table, caption, tbody, tfoot, thead, tr, th, td,
 article, aside, canvas, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section, summary,
 time, mark, audio, video{margin:0; padding:0; border:0; outline:0; vertical-align:baseline; background:transparent; list-style: none;}
-body{}
+body {line-height: 1;}
 article,aside,details,figcaption,figure,
 footer,header,hgroup,menu,nav,section {display:block;}
 nav ul{list-style:none;}
 blockquote, q{quotes:none;}
 blockquote:before, blockquote:after,
 q:before, q:after{content:''; content:none;}
-a{margin:0; padding:0; font-size:100%; vertical-align:baseline; background:transparent; text-decoration: none;}
+a{margin:0; padding:0; vertical-align:baseline; background:transparent; text-decoration: none;}
 ins{text-decoration:none;}
 mark{font-style:italic; font-weight:bold;}
 del{text-decoration: line-through;}

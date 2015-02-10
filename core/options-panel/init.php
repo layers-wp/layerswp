@@ -44,8 +44,8 @@ class Layers_Options_Panel {
 		// Turn $args into an object because it's nicer to use as a template
 		$vars = (object) $args; ?>
 		<header>
-			<h1><?php echo $vars->title; ?></h1>
-			<p><?php echo $vars->intro; ?></p>
+			<h1><?php echo esc_html( $vars->title ); ?></h1>
+			<p><?php echo esc_html( $vars->intro ); ?></p>
 		</header>
 	<?php }
 

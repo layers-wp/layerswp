@@ -25,33 +25,65 @@ class Layers_Widget_Migrator {
 
     public function __construct() {
 
-        // Add meta box, this sorta kicks off the export logic too
-        if( function_exists( 'add_meta_box' ) ) {
-            add_meta_box(
-                        LAYERS_THEME_SLUG . '-widget-export',
-                        __( 'Builder Settings' , LAYERS_THEME_SLUG ), // Title
-                        array( $this , 'display_export_box' ) , // Interface
-                        'page' , // Post Type
-                        'normal', // Position
-                        'low' // Priority
-                    );
-        }
+        if( isset( $_GET[ 'layers-export' ] ) ) $this->create_export_file();
 
         // Add current builder pages as presets
         add_filter( 'layers_preset_layouts' , array( $this , 'add_builder_preset_layouts') );
 
+        // Add allowance for JSON to be added via the media uploader
+        add_filter('upload_mimes', array( $this, 'allow_json_uploads' ), 1, 1);
     }
 
     /**
     *  Simple output of a JSON'd string of the widget data
     */
-    function display_export_box( $post ){ ?>
-        <textarea id="<?php echo LAYERS_THEME_SLUG . '-import-wiget-data'; ?>" style="width: 100%;" rows="15"><?php echo esc_attr( json_encode( $this->export_data( $post ) ) ); ?></textarea>
-        <p>
-            <em><?php _e( 'Copy and paste widget data from another site or page into this box to import data.' , LAYERS_THEME_SLUG ); ?></em>
-        </p>
-        <a href="#import" data-post-id="<?php echo $post->ID; ?>" id="<?php echo LAYERS_THEME_SLUG . '-import-wiget-page'; ?>" class="layers-button btn-primary"><?php _e( 'Import Data' , LAYERS_THEME_SLUG ); ?></a>
-    <?php }
+
+    function create_export_file(){
+
+        // Make sur a post ID exists or return
+        if( !isset( $_GET[ 'post' ] ) ) return;
+
+        // Get the post ID
+        $post_id = $_GET[ 'post' ];
+
+        $post = get_post( $post_id );
+
+        $widget_data = json_encode( $this->export_data( $post ) );
+
+        $filesize = strlen( $widget_data );
+
+        // Headers to prompt "Save As"
+        header( 'Content-Type: application/json' );
+        header( 'Content-Disposition: attachment; filename=' . $post->post_name .'-' . date( 'Y-m-d' ) . '.json' );
+        header( 'Expires: 0' );
+        header( 'Cache-Control: must-revalidate' );
+        header( 'Pragma: public' );
+        header( 'Content-Length: ' . $filesize );
+
+        // Clear buffering just in case
+        @ob_end_clean();
+        flush();
+
+        // Output file contents
+        echo $widget_data;
+
+        // Stop execution
+        wp_redirect( admin_url( 'post.php?post=' . $post->ID . '&action=edit'  ) );
+
+    }
+
+    function allow_json_uploads( $mime_types ){
+        //Creating a new array will reset the allowed filetypes
+        $mime_types = array(
+            'json|JSON' => 'application/json'
+        );
+
+        return $mime_types;
+    }
+
+    /**
+    *  Make sure that the template directory is nice ans clean for JSON
+    */
 
     function get_translated_dir_uri(){
         return str_replace('/', '\/', get_template_directory_uri() );
@@ -423,9 +455,7 @@ class Layers_Widget_Migrator {
 
         $url = str_ireplace( "src='", "",  $img_url_almost[0]);
 
-        $query = "SELECT ID FROM {$wpdb->posts} WHERE guid='$url'";
-
-        return $wpdb->get_var($query);
+        return $wpdb->get_var( $wpdb->prepare( "SELECT ID FROM {$wpdb->posts} WHERE guid=%s", $url ) );
     }
 
     /**
@@ -441,9 +471,7 @@ class Layers_Widget_Migrator {
 
         $i = $image_pieces[count($image_pieces)-1];
 
-        $query = "SELECT ID FROM {$wpdb->posts} WHERE guid LIKE '%$i%'";
-
-        return $wpdb->get_var($query);
+        return $wpdb->get_var( $wpdb->prepare( "SELECT ID FROM {$wpdb->posts} WHERE guid LIKE %s", "%$i%" ) );
     }
 
     /**
@@ -507,8 +535,53 @@ class Layers_Widget_Migrator {
         // Set the Widget Data for import
         $import_data[ 'widget_data' ] = $_POST[ 'widget_data' ];
 
-        // Run the import
-        die( $this->import( $import_data ) );
+        // Run data import
+        $import_progress = $this->import( $import_data );
+
+        $results = array(
+                'post_id' => $import_data[ 'post_id' ],
+                'data_report' => $import_progress,
+                'customizer_location' => admin_url() . 'customize.php?url=' . esc_url( get_the_permalink( $import_data[ 'post_id' ] ) )
+            );
+
+        die( json_encode( $results ) );
+    }
+
+    /**
+    * Ajax Duplication
+    *
+    * This function takes a page, generates export cod and creates a duplicate
+    */
+
+    public function do_ajax_duplicate(){
+
+        // We need a page title and post ID for this to work
+        if( !isset( $_POST[ 'post_title' ] ) || !isset( $_POST[ 'post_id' ]  ) ) return;
+
+        $pageid = layers_create_builder_page( esc_attr( $_POST[ 'post_title' ] ) );
+
+        // Create the page sidebar on the fly
+        Layers_Widgets::register_builder_sidebar( $pageid );
+
+        // Set the page ID
+        $import_data[ 'post_id' ] = $pageid;
+
+        $post = get_post( $_POST[ 'post_id' ] );
+
+        // Set the Widget Data for import
+        $import_data[ 'widget_data' ] = $this->export_data( $post );
+
+        // Run data import
+        $import_progress = $this->import( $import_data );
+
+        $results = array(
+                'post_id' => $pageid,
+                'data_report' => $import_progress,
+                'page_location' => admin_url() . '/post.php?post=' . $pageid . '&action=edit&message=1'
+            );
+
+        die( json_encode( $results ) );
+
     }
 
     /**
@@ -750,9 +823,11 @@ add_action( 'admin_head' , 'layers_builder_export_init', 10 );
 if( !function_exists( 'layers_builder_export_ajax_init' ) ) {
     function layers_builder_export_ajax_init(){
         $layers_migrator = new Layers_Widget_Migrator();
+
         add_action( 'wp_ajax_layers_import_widgets', array( $layers_migrator, 'do_ajax_import' ) );
         add_action( 'wp_ajax_layers_create_builder_page_from_preset', array( $layers_migrator, 'create_builder_page_from_preset' ) );
         add_action( 'wp_ajax_layers_update_builder_page', array( $layers_migrator, 'update_builder_page' ) );
+        add_action( 'wp_ajax_layers_duplicate_builder_page', array( $layers_migrator, 'do_ajax_duplicate' ) );
     }
 }
 

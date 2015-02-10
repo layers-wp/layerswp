@@ -391,7 +391,9 @@ if( ! function_exists( 'layers_admin_scripts' ) ) {
 		wp_enqueue_script(
 			LAYERS_THEME_SLUG . '-admin-migrator' ,
 			get_template_directory_uri() . '/core/assets/migrator.js' ,
-			array(),
+			array(
+				'media-upload'
+			),
 			LAYERS_VERSION,
 			true
 		);
@@ -399,7 +401,8 @@ if( ! function_exists( 'layers_admin_scripts' ) ) {
 			LAYERS_THEME_SLUG . '-admin-migrator',
 			'migratori8n',
 			array(
-				'loading_message' => __( 'Be patient while we import the widget data and images.' , LAYERS_THEME_SLUG )
+				'loading_message' => __( 'Be patient while we import the widget data and images.' , LAYERS_THEME_SLUG ),
+				'complete_message' => __( 'Import Complete' , LAYERS_THEME_SLUG )
 			)
 		);// Migrator
 

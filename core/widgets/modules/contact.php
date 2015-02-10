@@ -106,7 +106,7 @@ if( !class_exists( 'Layers_Contact_Widget' ) ) {
 					<div class="container clearfix">
 						<div class="section-title <?php echo $this->check_and_return( $widget , 'design', 'fonts', 'size' ); ?> <?php echo $this->check_and_return( $widget , 'design', 'fonts', 'align' ); ?> clearfix">
 							<?php if( '' != $widget['title'] ) { ?>
-								<h3 class="heading"><?php echo $widget['title']; ?></h3>
+								<h3 class="heading"><?php echo esc_html( $widget['title'] ); ?></h3>
 							<?php } ?>
 							<?php if( '' != $widget['excerpt'] ) { ?>
 								<p class="excerpt"><?php echo $widget['excerpt']; ?></p>
@@ -131,7 +131,7 @@ if( !class_exists( 'Layers_Contact_Widget' ) ) {
 						<?php $mapwidth = 'span-6'; ?>
 					<?php } // if show_contact_form || address_shown ?>
 					<?php if( isset( $hasmap ) ) { ?>
-						<div class="column no-push-bottom <?php echo $mapwidth; ?>">
+						<div class="column no-push-bottom <?php echo esc_attr( $mapwidth ); ?>">
 							<?php if ( isset( $wp_customize ) ) { ?>
 								<?php if( '' != $widget['google_maps_location'] ) {
 									$map_center = $widget['google_maps_location'];
@@ -140,7 +140,7 @@ if( !class_exists( 'Layers_Contact_Widget' ) ) {
 								} ?>
 								<img src="https://maps.googleapis.com/maps/api/staticmap?center=<?php echo esc_attr( $map_center ); ?>&zoom=11&size=1960x<?php echo $widget['map_height']; ?>&scale=2&markers=color:red|<?php echo esc_attr( $map_center ); ?>" />
 							<?php } else { ?>
-								<div class="layers-map" style="height: <?php echo $widget['map_height']; ?>px;" <?php if( '' != $widget['google_maps_location'] ) { ?>data-location="<?php echo $widget['google_maps_location']; ?>"<?php } ?> <?php if( '' != $widget['google_maps_long_lat'] ) { ?>data-longlat="<?php echo $widget['google_maps_long_lat']; ?>"<?php } ?>></div>
+								<div class="layers-map" style="height: <?php echo esc_attr( $widget['map_height'] ); ?>px;" <?php if( '' != $widget['google_maps_location'] ) { ?>data-location="<?php echo $widget['google_maps_location']; ?>"<?php } ?> <?php if( '' != $widget['google_maps_long_lat'] ) { ?>data-longlat="<?php echo $widget['google_maps_long_lat']; ?>"<?php } ?>></div>
 							<?php } ?>
 						</div>
 					<?php } ?>

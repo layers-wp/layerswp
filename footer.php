@@ -26,7 +26,7 @@
 						// Get the sidebar class
 						$footer_sidebar_class = floor( 12/$footer_sidebar_count ); ?>
 						<?php for( $footer = 1; $footer <= $footer_sidebar_count; $footer++ ) { ?>
-							<div class="column span-<?php echo $footer_sidebar_class; ?> <?php if( $footer == $footer_sidebar_count ) echo 'last'; ?>">
+							<div class="column span-<?php echo esc_attr( $footer_sidebar_class ); ?> <?php if( $footer == $footer_sidebar_count ) echo 'last'; ?>">
 								<?php dynamic_sidebar( LAYERS_THEME_SLUG . '-footer-' . $footer ); ?>
 							</div>
 						<?php } ?>

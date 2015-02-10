@@ -363,7 +363,7 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 					)
 				)
 			); ?>
-			<div class="layers-container-large" id="layers-slide-widget-<?php echo $this->number; ?>">
+			<div class="layers-container-large" id="layers-slide-widget-<?php echo esc_attr( $this->number ); ?>">
 
 				<?php $this->form_elements()->header( array(
 					'title' =>'Sliders',
@@ -383,7 +383,7 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 						<?php // If we have some slides, let's break out their IDs into an array
 						if( isset( $slide_ids ) && '' != $slide_ids ) $slides = explode( ',' , $slide_ids ); ?>
 
-						<ul id="slide_list_<?php echo $this->number; ?>" class="layers-accordions layers-accordions-sortable layers-sortable" data-id_base="<?php echo $this->id_base; ?>" data-number="<?php echo $this->number; ?>">
+						<ul id="slide_list_<?php echo esc_attr( $this->number ); ?>" class="layers-accordions layers-accordions-sortable layers-sortable" data-id_base="<?php echo $this->id_base; ?>" data-number="<?php echo esc_attr( $this->number ); ?>">
 							<?php if( isset( $slides ) && is_array( $slides ) ) { ?>
 								<?php foreach( $slides as $slide ) {
 									$this->slide_item( array(
@@ -396,7 +396,7 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 							<?php } else { ?>
 								<?php $this->slide_item( array( 'id_base' => $this->id_base , 'number' => $this->number ) ); ?>
 							<?php }?>
-							<li class="layers-button btn-full layers-add-widget-slide" data-number="<?php echo $this->number; ?>"><?php _e( '+ Add New Slide' , LAYERS_THEME_SLUG ) ; ?></li>
+							<li class="layers-button btn-full layers-add-widget-slide" data-number="<?php echo esc_attr( $this->number ); ?>"><?php _e( '+ Add New Slide' , LAYERS_THEME_SLUG ) ; ?></li>
 						</ul>
 
 				</section>

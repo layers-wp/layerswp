@@ -18,7 +18,7 @@
 if( !function_exists( 'layers_bread_crumbs' ) ) {
 	function layers_bread_crumbs( $wrapper = 'nav', $wrapper_class = 'bread-crumbs', $seperator = '/' ) {
 		global $post; ?>
-		<<?php echo $wrapper; ?> class="<?php echo $wrapper_class; ?>">
+		<<?php echo $wrapper; ?> class="<?php echo esc_attr( $wrapper_class ); ?>">
 			<ul>
 				<?php /* Home */ ?>
 				<li><a href="<?php echo home_url(); ?>"><?php _e('Home',LAYERS_THEME_SLUG); ?></a></li>
@@ -31,10 +31,10 @@ if( !function_exists( 'layers_bread_crumbs' ) ) {
 					- Post type parent page
 				*/
 				if( is_search() ) { ?>
-					<li><?php echo $seperator; ?></li>
+					<li><?php echo esc_html( $seperator ); ?></li>
 					<li><?php _e('Search',LAYERS_THEME_SLUG); ?></li>
 				<?php } elseif( function_exists('is_shop') && ( is_post_type_archive( 'product' ) || ( get_post_type() == "product") ) ) { ?>
-					<li><?php echo $seperator; ?></li>
+					<li><?php echo esc_html( $seperator ); ?></li>
 					<?php if( function_exists( 'woocommerce_get_page_id' )  && '' != woocommerce_get_page_id('shop') ) { ?>
 						<?php $shop_page_id = woocommerce_get_page_id('shop'); ?>
 						<?php $shop_page = get_post( $shop_page_id ); ?>
@@ -57,7 +57,7 @@ if( !function_exists( 'layers_bread_crumbs' ) ) {
 
 						// Display page if it has been found
 						if( !empty( $parentpage ) ) { ?>
-							<li><?php echo $seperator; ?></li>
+							<li><?php echo esc_html( $seperator ); ?></li>
 							<li><a href="<?php echo get_permalink($parentpage->ID); ?>"><?php echo $parentpage->post_title; ?></a></li>
 						<?php }
 					};
@@ -89,7 +89,7 @@ if( !function_exists( 'layers_bread_crumbs' ) ) {
 						$parent_pages = array_reverse($parent_pages);
 						foreach ( $parent_pages as $page_id ) { ?>
 							<!-- Parent page title -->
-							<li><?php echo $seperator; ?></li>
+							<li><?php echo esc_html( $seperator ); ?></li>
 							<li><a href="<?php echo get_permalink( $page_id ); ?>"><?php echo get_the_title( $page_id ); ?></a></li>
 						<?php }
 					}
@@ -127,7 +127,7 @@ if( !function_exists( 'layers_bread_crumbs' ) ) {
 						foreach ( $parent_terms as $term_id ) {
 							$term = get_term_by( 'id' , $term_id , $taxonomy ); ?>
 
-							<li><?php echo $seperator; ?></li>
+							<li><?php echo esc_html( $seperator ); ?></li>
 							<li><a href="<?php echo get_term_link( $term_id , $taxonomy ); ?>"><?php echo $term->name; ?></a></li>
 
 						<?php }
@@ -140,7 +140,7 @@ if( !function_exists( 'layers_bread_crumbs' ) ) {
 
 					foreach ( $category_array as $category ) { ?>
 
-						<li><?php echo $seperator; ?></li>
+						<li><?php echo esc_html( $seperator ); ?></li>
 						<li><a href="<?php echo get_category_link( $category->term_id ); ?>"><?php echo get_cat_name( $category->term_id ); ?></a></li>
 
 					<?php }
@@ -167,7 +167,7 @@ if( !function_exists( 'layers_bread_crumbs' ) ) {
 							// Loop over the terms for this post
 							foreach ( $terms as $term ) { ?>
 
-								<li><?php echo $seperator; ?></li>
+								<li><?php echo esc_html( $seperator ); ?></li>
 								<li><a href="<?php echo get_term_link( $term->slug, $taxonomy ); ?>"><?php echo $term->name; ?></a></li>
 
 							<?php }
@@ -186,12 +186,12 @@ if( !function_exists( 'layers_bread_crumbs' ) ) {
 
 				if( is_singular() ) { ?>
 
-					<li><?php echo $seperator; ?></li>
+					<li><?php echo esc_html( $seperator ); ?></li>
 					<li><span class="current"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></span></li>
 
 				<?php } elseif ( is_search() ) { ?>
 
-					<li><?php echo $seperator; ?></li>
+					<li><?php echo esc_html( $seperator ); ?></li>
 					<li><span class="current">"<?php the_search_query(); ?>"</span></li>
 
 				<?php } elseif( is_tax() ) {
@@ -199,32 +199,32 @@ if( !function_exists( 'layers_bread_crumbs' ) ) {
 					// Get this term's details
 					$term = get_term_by( 'slug', get_query_var('term' ), get_query_var( 'taxonomy' ) ); ?>
 
-					<li><?php echo $seperator; ?></li>
+					<li><?php echo esc_html( $seperator ); ?></li>
 					<li><span class="current"><?php echo $term->name; ?></span></li>
 
 				<?php  } elseif( is_tag() ) { ?>
 
-					<li><?php echo $seperator; ?></li>
+					<li><?php echo esc_html( $seperator ); ?></li>
 					<li><span class="current"><?php echo single_tag_title(); ?></span></li>
 
 				<?php } elseif( is_category() ) { ?>
 
-					<li><?php echo $seperator; ?></li>
+					<li><?php echo esc_html( $seperator ); ?></li>
 					<li><span class="current"><?php echo single_cat_title(); ?></span></li>
 
 				<?php } elseif ( is_archive() && is_month() ) { ?>
 
-					<li><?php echo $seperator; ?></li>
+					<li><?php echo esc_html( $seperator ); ?></li>
 					<li><span class="current"><?php echo get_the_date( 'F Y' ); ?></span></li>
 
 				<?php } elseif ( is_archive() && is_year() ) { ?>
 
-					<li><?php echo $seperator; ?></li>
+					<li><?php echo esc_html( $seperator ); ?></li>
 					<li><span class="current"><?php echo get_the_date( 'Y' ); ?></span></li>
 
 				<?php } elseif ( is_archive() && is_author() ) { ?>
 
-					<li><?php echo $seperator; ?></li>
+					<li><?php echo esc_html( $seperator ); ?></li>
 					<li><span class="current"><?php echo get_the_author(); ?></span></li>
 
 				<?php } ?>
@@ -536,13 +536,17 @@ if( !function_exists( 'layers_get_theme_mod' ) ) {
 		// Set theme option default
 		$default = ( isset( $layers_customizer_defaults[ $name ][ 'value' ] ) ? $layers_customizer_defaults[ $name ][ 'value' ] : FALSE );
 
-		// Get theme option
-		$theme_mod = get_theme_mod( $name, $default );
 
 		// If color control always return a value
-		if ( isset( $layers_customizer_defaults[ $name ][ 'type' ] ) && 'layers-color' == $layers_customizer_defaults[ $name ][ 'type' ] && '' == $theme_mod && $default ){
-			$theme_mod = false;
+		if (
+				isset( $layers_customizer_defaults[ $name ][ 'type' ] ) &&
+				'layers-color' == $layers_customizer_defaults[ $name ][ 'type' ]
+			){
+			$default = '';
 		}
+
+		// Get theme option
+		$theme_mod = get_theme_mod( $name, $default );
 
 		// Return theme option
 		return $theme_mod;
@@ -605,7 +609,7 @@ if( !function_exists( 'layers_maybe_get_sidebar' ) ) {
 
 		if( TRUE == $show_sidebar ) { ?>
 			<?php if( is_active_sidebar( LAYERS_THEME_SLUG . '-' . $sidebar ) ) { ?>
-				<div class="<?php echo $container_class; ?>">
+				<div class="<?php echo esc_attr( $container_class ); ?>">
 			<?php } ?>
 				<?php dynamic_sidebar( LAYERS_THEME_SLUG . '-' . $sidebar ); ?>
 			<?php if( is_active_sidebar( LAYERS_THEME_SLUG . '-' . $sidebar ) ) { ?>
@@ -623,13 +627,13 @@ if( !function_exists( 'layers_maybe_get_sidebar' ) ) {
 if( !function_exists( 'layers_add_additional_header_scripts' ) ) {
 	function layers_add_additional_header_scripts() {
 
-		$add_additional_header_scripts = apply_filters( 'layers_header_scripts' , layers_get_theme_mod( 'header-scripts' ) );
+		$add_additional_header_scripts = apply_filters( 'layers_header_scripts' , layers_get_theme_mod( 'header-custom-scripts' ) );
 
 		if( '' != $add_additional_header_scripts ) {
 			echo stripslashes( $add_additional_header_scripts );
 		}
 	}
-	add_action ( 'wp_footer', 'layers_add_additional_footer_scripts' );
+	add_action ( 'wp_head', 'layers_add_additional_header_scripts' );
 } // layers_add_additional_header_scripts
 
 /**
@@ -640,7 +644,7 @@ if( !function_exists( 'layers_add_additional_header_scripts' ) ) {
 if( !function_exists( 'layers_add_additional_footer_scripts' ) ) {
 	function layers_add_additional_footer_scripts() {
 
-		$additional_footer_scripts = apply_filters( 'layers_footer_scripts' , layers_get_theme_mod( 'footer-scripts' ) );
+		$additional_footer_scripts = apply_filters( 'layers_footer_scripts' , layers_get_theme_mod( 'footer-custom-scripts' ) );
 
 		if( '' != $additional_footer_scripts ) {
 			echo stripslashes( $additional_footer_scripts );

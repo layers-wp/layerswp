@@ -56,7 +56,7 @@ class Layers_Design_Controller {
 
         $container_class = ( 'side' == $this->type ? 'layers-pull-right' : 'layers-visuals-horizontal' ); ?>
 
-        <div class="layers-visuals <?php echo $container_class; ?>">
+        <div class="layers-visuals <?php echo esc_attr( $container_class ); ?>">
             <h6 class="layers-visuals-title">
                 <span class="icon-settings layers-small"></span>
             </h6>
@@ -139,13 +139,13 @@ class Layers_Design_Controller {
 
         <li class="layers-visuals-item">
             <a href="" class="layers-icon-wrapper">
-                <span class="<?php echo $icon_css; ?>"></span>
+                <span class="<?php echo esc_attr( $icon_css ); ?>"></span>
                 <span class="layers-icon-description">
                     <?php echo $label; ?>
                 </span>
             </a>
             <?php if( isset( $args['elements'] ) ) { ?>
-                <div class="<?php echo $menu_wrapper_class; ?>">
+                <div class="<?php echo esc_attr( $menu_wrapper_class ); ?>">
                     <div class="layers-pop-menu-setting">
                         <?php foreach( $args['elements'] as $key => $form_args ) { ?>
                            <?php echo $this->render_input( $form_args ); ?>
@@ -175,9 +175,9 @@ class Layers_Design_Controller {
     */
 
     public function render_input( $form_args = array() ) { ?>
-		<div class="layers-<?php echo $form_args[ 'type' ]; ?>-wrapper layers-form-item">
+		<div class="layers-<?php echo esc_attr( $form_args[ 'type' ] ); ?>-wrapper layers-form-item">
 	        <?php if( 'checkbox' != $form_args[ 'type' ] && isset( $form_args[ 'label' ] ) && '' != $form_args[ 'label' ] ) { ?>
-	            <label><?php echo $form_args[ 'label' ]; ?></label>
+	            <label><?php echo esc_html( $form_args[ 'label' ] ); ?></label>
 	        <?php } ?>
 
 			<?php if( isset( $form_args[ 'wrapper' ] ) ) { ?>

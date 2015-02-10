@@ -26,21 +26,24 @@ $layers_migrator = new Layers_Widget_Migrator(); ?>
                         <!-- Your content goes here -->
                         <div class="layers-section-title layers-no-push-bottom">
                             <h3 class="layers-heading">
-                                <?php _e( 'Thanks for choosing Layers!' , LAYERS_THEME_SLUG ); ?>
+                                <?php _e( 'Welcome to Layers!' , LAYERS_THEME_SLUG ); ?>
                             </h3>
                             <div class="layers-excerpt">
                                 <p>
-                                    <?php _e( 'Layers is a revolutionary WordPress theme that enables you to build any website you want.' , LAYERS_THEME_SLUG ); ?>
+                                    <?php _e( 'Layers is a revolutionary WordPress theme that gives you the power to build any website you want.' , LAYERS_THEME_SLUG ); ?>
                                 </p>
                                 <p>
-                                    <?php _e( 'The following step by step setup process is designed to help you learn the ropes and get started with minimum fuss. Enjoy the ride!' , LAYERS_THEME_SLUG ); ?>
+                                    <?php _e( 'The following easy steps are designed to show you how Layers works and to get you creating amazing layouts quickly.' , LAYERS_THEME_SLUG ); ?>
+                                </p>
+                                <p>
+                                    <?php _e( 'Enjoy the ride!' , LAYERS_THEME_SLUG ); ?>
                                 </p>
 
                             </div>
                         </div>
                     </div>
                     <div class="layers-button-well">
-                        <a class="layers-button btn-primary layers-pull-right onbard-next-step" href=""><?php _e( 'Let\'s get Started &rarr;' , LAYERS_THEME_SLUG ); ?></a>
+                        <a class="layers-button btn-primary layers-pull-right onbard-next-step" href=""><?php _e( 'Let\'s get started &rarr;' , LAYERS_THEME_SLUG ); ?></a>
                     </div>
                 </div>
                 <div class="layers-column layers-span-4 no-gutter">
@@ -73,13 +76,12 @@ $layers_migrator = new Layers_Widget_Migrator(); ?>
                             <div class="layers-excerpt">
                                 <p>
                                     <?php _e( '
-                                        Layers works by placing widgets into a "Page Builder" widget area in the WordPress Visual Customizer.
+                                        Layers works by letting you build up your pages with blocks of content called &lsquo;Widgets&rsquo;.
                                     ' , LAYERS_THEME_SLUG ); ?>
                                 </p>
                                 <p>
                                     <?php _e( '
-                                        Each time you want to add a new Layers building block simply click "Add Widget" and select any item
-                                        from the list which has a blue icon.
+                                        Each time you want to add a new content block, simply click &lsquo;Add Widget&rsquo; and select one from the list which has the blue Layers icon.
                                     ' , LAYERS_THEME_SLUG ); ?>
                                 </p>
                             </div>
@@ -108,7 +110,7 @@ $layers_migrator = new Layers_Widget_Migrator(); ?>
                                 <?php _e( 'What is the name of your website?' , LAYERS_THEME_SLUG ); ?>
                             </h3>
                             <p class="layers-excerpt">
-                                <?php _e( 'Probably the easiest part of creating any website is giving it a name. No code skills required here!' , LAYERS_THEME_SLUG ); ?>
+                                <?php _e( 'Enter your website name below. We&apos;ll use this in your site title and your Google rankings.' , LAYERS_THEME_SLUG ); ?>
                             </p>
                         </div>
                         <p class="layers-form-item">
@@ -169,7 +171,11 @@ $layers_migrator = new Layers_Widget_Migrator(); ?>
                             </h3>
                             <div class="layers-excerpt">
                                 <p>
-                                    <?php _e( 'The two most powerful widgets in Layers are the Slider and Content widgets which allow you to add content without leaving the Visual Customizer.' , LAYERS_THEME_SLUG ); ?>
+                                    <?php _e( '
+                                        To edit a widget&apos;s content, just click on it in the widget area on the left hand side. The widget panel will slide
+                                        out allowing you to edit its content and customize its settings. You can also shift-click on the widget itself in
+                                        the preview area.
+                                    ' , LAYERS_THEME_SLUG ); ?>
                                 </p>
                             </div>
                         </div>
@@ -198,7 +204,7 @@ $layers_migrator = new Layers_Widget_Migrator(); ?>
                             </h3>
                             <p class="layers-excerpt">
                                 <?php _e( 'A tagline describes who and what you are in just a few simple words.
-                                For example Layers is a "WordPress Site Builder" - simple, easy, quick to read. Now you try:' , LAYERS_THEME_SLUG ); ?>
+                                For example Layers is a &lquo;WordPress Site Builder&rdquo; - simple, easy, quick to read. Now you try:' , LAYERS_THEME_SLUG ); ?>
                             </p>
                         </div>
                         <p class="layers-form-item">
@@ -255,7 +261,7 @@ $layers_migrator = new Layers_Widget_Migrator(); ?>
                             </h3>
                             <div class="layers-excerpt">
                                 <p>
-                                    <?php _e( 'Unique to each Layers widget is the revolutionary "Design Bar" which allows you to set its design parameters without touching a line of code.' , LAYERS_THEME_SLUG ); ?>
+                                    <?php _e( 'Unique to each Layers widget is the revolutionary &ldquo;Design Bar&rdquo; which allows you to set its design parameters without touching a line of code.' , LAYERS_THEME_SLUG ); ?>
                                 </p>
                                 <p>
                                     <?php _e( 'Depending on the widget you\'ve added, you can change things like background images, font sizes, list styles and more.' , LAYERS_THEME_SLUG ); ?>
@@ -283,11 +289,16 @@ $layers_migrator = new Layers_Widget_Migrator(); ?>
                         <!-- Your content goes here -->
                         <div class="layers-section-title">
                             <h3 class="layers-heading">
-                                <?php _e( 'Would you like to add a logo?' , LAYERS_THEME_SLUG ); ?>
+                                <?php _e( 'Would you like to add your logo?' , LAYERS_THEME_SLUG ); ?>
                             </h3>
                             <p class="layers-excerpt">
-                                 <?php _e( 'A website logo is a useful contributor to the general look and feel of your site.
-                                 Luckily with Layers, you can add one easily.' , LAYERS_THEME_SLUG ); ?>
+                                 <?php _e( '
+
+                                    Layers will add your logo and position it properly. If
+                                    you don&apos;t have one yet, no problem, you can add it
+                                    later, or skip this step if you&apos;d just prefer to use text.
+
+                                 ' , LAYERS_THEME_SLUG ); ?>
                             </p>
                         </div>
                         <?php $site_logo = get_option( 'site_logo' ); ?>
@@ -370,8 +381,8 @@ $layers_migrator = new Layers_Widget_Migrator(); ?>
                             <div class="layers-excerpt">
                                 <p>
                                     <?php _e( '
-                                        This is the final step in creating your first Layers page!
-                                        Simply select a preset layout from the list and we will automatically create it for you.
+                                        Now let&apos;s create your first Layers page! Simply select a preset layout from the list
+                                        and we will automatically create it for you. Here we go!
                                     ', LAYERS_THEME_SLUG ); ?>
                                 </p>
                             </div>

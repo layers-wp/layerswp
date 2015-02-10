@@ -215,10 +215,10 @@ class Layers_Customizer_Config {
 									'description' => __( 'Enter in your Google Analytics ID to enable website traffic reporting. eg. "UA-xxxxxx-xx', LAYERS_THEME_SLUG ),
 									'default' => '',
 								), // scripts
-								'header-scripts-break-1' => array(
+								'header-custom-scripts-break-1' => array(
 									'type'     => 'layers-seperator'
 								),
-								'header-scripts' => array(
+								'header-custom-scripts' => array(
 									'type'     => 'textarea',
 									'label'    => __( 'Custom Scripts', LAYERS_THEME_SLUG ),
 									'description' => __( 'Enter in any custom script (such as TypeKit etc) to include in your site\'s header.', LAYERS_THEME_SLUG ),

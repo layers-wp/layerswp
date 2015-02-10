@@ -221,7 +221,7 @@ class Layers_Customizer_Config {
 								'header-custom-scripts' => array(
 									'type'     => 'textarea',
 									'label'    => __( 'Custom Scripts', LAYERS_THEME_SLUG ),
-									'description' => __( 'Enter in any custom script (such as TypeKit etc) to include in your site\'s header. Include the <script></script> tags.', LAYERS_THEME_SLUG ),
+									'description' => __( 'Enter in any custom script (such as TypeKit etc) to include in your site\'s header. Include the &lt;script&gt;&lt;/script&gt; tags.', LAYERS_THEME_SLUG ),
 									'default' => '',
 								) // scripts
 							);
@@ -382,7 +382,7 @@ class Layers_Customizer_Config {
 					'footer-custom-scripts' => array(
 						'type'     => 'textarea',
 						'label'    => __( 'Custom Scripts', LAYERS_THEME_SLUG ),
-						'description' => __( 'Enter in any custom script to include in your site\'s footer. Include the <script></script> tags.', LAYERS_THEME_SLUG ),
+						'description' => __( 'Enter in any custom script to include in your site\'s footer. Include the &lt;script&gt;&lt;/script&gt; tags.', LAYERS_THEME_SLUG ),
 						'default' => '',
 					), // scripts
 				); // footer-scripts

@@ -124,9 +124,17 @@ class Layers_Custom_Meta {
 						<div class="layers-column layers-span-4 postbox layers-content">
 							<div class="layers-section-title layers-tiny">
 								<h4 class="layers-heading">Export Page Settings</h4>
-								<p class="layers-excerpt">Copy and paste your settings into a new page for easy replication of layouts and copy.</p>
+								<p class="layers-excerpt">Export your settings to a <code>.json</code> file which you can use to upload to another site.</p>
 							</div>
-							<a href="" class="layers-button btn-primary">Export</a>
+							<a href="?post=%8$s&amp;action=edit&amp;layers-export=1" class="layers-button">Export</a>
+						</div>
+
+						<div class="layers-column layers-span-4 postbox layers-content">
+							<div class="layers-section-title layers-tiny">
+								<h4 class="layers-heading">Import Page</h4>
+								<p class="layers-excerpt"> Upload your page settings file (eg. <code>business-page.json</code>) by clicking the button below.</p>
+							</div>
+							<button class="layers-button" id="layers-page-widget-import-button" data-post-id="%8$s" data-title="Upload .json" data-button_text="Upload &amp; Import">Upload &amp; Import</button>
 						</div>
 
 						<div class="layers-column layers-span-4 postbox layers-content">
@@ -137,14 +145,6 @@ class Layers_Custom_Meta {
 							<a href="" class="layers-button btn-primary">Duplicate</a>
 						</div>
 
-						<div class="layers-column layers-span-4 postbox layers-content">
-							<div class="layers-section-title layers-tiny">
-								<h4 class="layers-heading">Backup with oCloud <span class="layers-label label-secondary">Pro</span></h4>
-								<p class="layers-excerpt">Never lose your page by upgrading to oCloud which automatically saves of all your settings and content to the cloud.</p>
-							</div>
-							<a href="" class="layers-button">Upgrade to oCloud</a>
-						</div>
-
 					</div>
 				</div>',
 			'Your page is ready for building', // %1
@@ -153,7 +153,8 @@ class Layers_Custom_Meta {
 			( isset( $post->ID ) ? 'builder-button-' . $post->ID : 'builder-button-' . rand(0,1) ), // %4,
 			__( 'Head over to the Visual Customizer where you can drag and drop widgets, edit content and tweak the design. Click the button below and see your page come to life.', LAYERS_THEME_SLUG ), // %5
 			__( 'Build Your Page', LAYERS_THEME_SLUG ), // %6
-			get_template_directory_uri() // %7,
+			get_template_directory_uri(), // %7,
+			get_the_ID() // %8,
 		);
 	}
 

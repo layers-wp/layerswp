@@ -536,13 +536,17 @@ if( !function_exists( 'layers_get_theme_mod' ) ) {
 		// Set theme option default
 		$default = ( isset( $layers_customizer_defaults[ $name ][ 'value' ] ) ? $layers_customizer_defaults[ $name ][ 'value' ] : FALSE );
 
-		// Get theme option
-		$theme_mod = get_theme_mod( $name, $default );
 
 		// If color control always return a value
-		if ( isset( $layers_customizer_defaults[ $name ][ 'type' ] ) && 'layers-color' == $layers_customizer_defaults[ $name ][ 'type' ] && '' == $theme_mod ){
-			$theme_mod = false;
+		if (
+				isset( $layers_customizer_defaults[ $name ][ 'type' ] ) &&
+				'layers-color' == $layers_customizer_defaults[ $name ][ 'type' ]
+			){
+			$default = '';
 		}
+
+		// Get theme option
+		$theme_mod = get_theme_mod( $name, $default );
 
 		// Return theme option
 		return $theme_mod;

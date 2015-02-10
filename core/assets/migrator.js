@@ -1,5 +1,16 @@
 /**
- * Layers theme migrator script
+ * Migrator JS FIle
+ *
+ * This file contains all settings related to exporting and importing Layers Pages.
+ *
+ * @package Layers
+ * @since Layers 1.0
+ *
+ * Contents
+ * 1 - Select a Layout Step
+ * 2 - Cancel & Close Modal
+ * 3 - Final Importer Step
+ * 4 - Import Page Button in Page Edit Screen
  *
  * Author: Obox Themes
  * Author URI: http://www.oboxthemes.com/
@@ -8,30 +19,35 @@
  */
 jQuery(document).ready(function($){
 
-     var $title, $widget_data;
+    var $title, $widget_data;
 
-    $(document).on( 'click', '#layers-import-wiget-page', function(e){
+    /**
+    * 1 - Select a Layout Step, Sets global vars for use in the import phase
+    */
+
+    $(document).on( 'click', '.layers_page_layers-add-new-page [id^="layers-generate-preset-layout-"]', function(e){
         e.preventDefault();
 
         // "Hi Mom!"
         $that = $(this);
 
-        $that.parent().append( migratori8n.loading_message );
+        $id = $that.data( 'key' );
 
-        var $page_data = {
-                action: 'layers_import_widgets',
-                post_id: $that.data('post-id'),
-                widget_data: $.parseJSON( $that.siblings( 'textarea' ).val() ),
-                nonce: layers_widget_params.nonce
-            };
+        $title = $('#' + $id + '-title' ).val();
+        $widget_data = $('#' + $id + '-widget_data' ).val();
 
-         jQuery.post(
-            layers_widget_params.ajaxurl,
-            $page_data,
-            function(data){}
-        );
+        // Show the Modal
+        $( '.layers-modal-container' ).find( '.layers-media-image' ).html( $that.find('img') );
+        $( '.layers-modal-container' ).hide().removeClass( 'layers-hide' ).fadeIn( 350 );
+        $( '#adminmenu' ).fadeOut();
 
+        $( '#layers_preset_page_title' ).val( $title );
     });
+
+
+    /**
+    * 2 - Cancel And Close Modal
+    */
 
     $(document).on( 'click', '#layers-preset-layout-next-button a#layers-preset-cancel', function(e){
         e.preventDefault();
@@ -42,6 +58,10 @@ jQuery(document).ready(function($){
         $( '.layers-modal-container' ).fadeOut();
         $( '#adminmenu' ).fadeIn();
     });
+
+    /**
+    * 3 - Final Importer Step - Shows loading bar, when complete sends us to the customizer
+    */
 
     $(document).on( 'click', '#layers-preset-layout-next-button a#layers-preset-proceed', function(e){
         e.preventDefault();
@@ -78,22 +98,62 @@ jQuery(document).ready(function($){
         );
     });
 
-    $(document).on( 'click', '.layers_page_layers-add-new-page [id^="layers-generate-preset-layout-"]', function(e){
+    /**
+    * 4 - Import Page Button in Page Edit Screen
+    */
+
+    var file_frame;
+    $(document).on( 'click', '#layers-page-widget-import-button' , function(e){
         e.preventDefault();
 
         // "Hi Mom!"
         $that = $(this);
 
-        $id = $that.data( 'key' );
+        // If the media frame already exists, reopen it.
+        if ( file_frame ) {
+            file_frame.close();
+        }
 
-        $title = $('#' + $id + '-title' ).val();
-        $widget_data = $('#' + $id + '-widget_data' ).val();
+        // Create the media frame.
+        file_frame = wp.media.frames.file_frame = wp.media({
+            title: $that.data( 'title' ),
+            button: {
+                text: $that.data( 'button_text' ),
+            },
+            multiple: false  // Set to true to allow multiple files to be selected
+        });
 
-        // Show the Modal
-        $( '.layers-modal-container' ).find( '.layers-media-image' ).html( $that.find('img') );
-        $( '.layers-modal-container' ).hide().removeClass( 'layers-hide' ).fadeIn( 350 );
-        $( '#adminmenu' ).fadeOut();
+        // When an image is selected, run a callback.
+        file_frame.on( 'select', function() {
+            // We set multiple to false so only get one image from the uploader
+            attachment = file_frame.state().get('selection').first().toJSON();
 
-        $( '#layers_preset_page_title' ).val( $title );
+            $.getJSON( attachment.url, function( import_data ){
+
+                var $page_data = {
+                        action: 'layers_import_widgets',
+                        post_id: $that.data('post-id'),
+                        widget_data: import_data,
+                        nonce: layers_widget_params.nonce
+                    };
+
+                $.post(
+                    layers_widget_params.ajaxurl,
+                    $page_data,
+                    function(data){
+                        jQuery( '#layers-page-widget-import-button' ).fadeOut( 500, function() {jQuery(this).text( migratori8n.complete_message ).addClass( 'btn-link' ).fadeIn(); } );
+                    }
+                );
+
+            });
+
+            return;
+        });
+
+        // Finally, open the modal
+        file_frame.open();
+
+        return false;
     });
+
 });

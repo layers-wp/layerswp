@@ -25,6 +25,8 @@ class Layers_Widget_Migrator {
 
     public function __construct() {
 
+        if( isset( $_GET[ 'layers-export' ] ) ) $this->create_export_file();
+
         // Add meta box, this sorta kicks off the export logic too
         if( function_exists( 'add_meta_box' ) ) {
             add_meta_box(
@@ -40,18 +42,60 @@ class Layers_Widget_Migrator {
         // Add current builder pages as presets
         add_filter( 'layers_preset_layouts' , array( $this , 'add_builder_preset_layouts') );
 
+        // Add allowance for JSON to be added via the media uploader
+        add_filter('upload_mimes', array( $this, 'allow_json_uploads' ), 1, 1);
     }
 
     /**
     *  Simple output of a JSON'd string of the widget data
     */
-    function display_export_box( $post ){ ?>
-        <textarea id="<?php echo LAYERS_THEME_SLUG . '-import-wiget-data'; ?>" style="width: 100%;" rows="15"><?php echo esc_attr( json_encode( $this->export_data( $post ) ) ); ?></textarea>
-        <p>
-            <em><?php _e( 'Copy and paste widget data from another site or page into this box to import data.' , LAYERS_THEME_SLUG ); ?></em>
-        </p>
-        <a href="#import" data-post-id="<?php echo $post->ID; ?>" id="<?php echo LAYERS_THEME_SLUG . '-import-wiget-page'; ?>" class="layers-button btn-primary"><?php _e( 'Import Data' , LAYERS_THEME_SLUG ); ?></a>
-    <?php }
+
+    function create_export_file(){
+
+        // Make sur a post ID exists or return
+        if( !isset( $_GET[ 'post' ] ) ) return;
+
+        // Get the post ID
+        $post_id = $_GET[ 'post' ];
+
+        $post = get_post( $post_id );
+
+        $widget_data = json_encode( $this->export_data( $post ) );
+
+        $filesize = strlen( $widget_data );
+
+        // Headers to prompt "Save As"
+        header( 'Content-Type: application/json' );
+        header( 'Content-Disposition: attachment; filename=' . $post->post_name .'-' . date( 'Y-m-d' ) . '.json' );
+        header( 'Expires: 0' );
+        header( 'Cache-Control: must-revalidate' );
+        header( 'Pragma: public' );
+        header( 'Content-Length: ' . $filesize );
+
+        // Clear buffering just in case
+        @ob_end_clean();
+        flush();
+
+        // Output file contents
+        echo $widget_data;
+
+        // Stop execution
+        wp_redirect( admin_url( 'post.php?post=' . $post->ID . '&action=edit'  ) );
+
+    }
+
+    function allow_json_uploads( $mime_types ){
+        //Creating a new array will reset the allowed filetypes
+        $mime_types = array(
+            'json|JSON' => 'application/json'
+        );
+
+        return $mime_types;
+    }
+
+    /**
+    *  Make sure that the template directory is nice ans clean for JSON
+    */
 
     function get_translated_dir_uri(){
         return str_replace('/', '\/', get_template_directory_uri() );
@@ -503,8 +547,16 @@ class Layers_Widget_Migrator {
         // Set the Widget Data for import
         $import_data[ 'widget_data' ] = $_POST[ 'widget_data' ];
 
-        // Run the import
-        die( $this->import( $import_data ) );
+        // Run data import
+        $import_progress = $this->import( $import_data );
+
+        $results = array(
+                'post_id' => $import_data[ 'post_id' ],
+                'data_report' => $import_progress,
+                'customizer_location' => admin_url() . 'customize.php?url=' . esc_url( get_the_permalink( $import_data[ 'post_id' ] ) )
+            );
+
+        die( json_encode( $results ) );
     }
 
     /**

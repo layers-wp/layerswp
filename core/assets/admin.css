@@ -709,8 +709,12 @@ input[type=text].layers-color-selector.wp-color-picker{
 
 /*-----------------------*/
 /*- CUSTOM CSS EDITOR ---*/
+
 .layers-css-wrapper textarea {
     height: 260px;
+    font-size: 11px;
+    font-family: courier new, mono-space;
+    color: #000;
 }
 
     /*-----------------------*/

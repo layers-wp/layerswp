@@ -49,33 +49,50 @@ html{}
 /*-------------------------------*/
 /*- COLUMNS ---------------------*/
 /*-------------------------------*/
-.column,
-.column-flush{
-	float: none;
-	margin: 0 0 20px;
-}
 
-.column[class*='span-'],
-.column[class*=' span-'],
-.column-flush[class^="span-"],
-.column-flush[class*=" span-"]{
-	width: 100%;
-}
+	.column,
+	.column-flush{
+		float: none;
+		margin: 0 0 20px;
+	}
 
-.column-flush.span-1,
-.column-flush.span-2,
-.column-flush.span-3,
-.column-flush.span-4,
-.column-flush.span-5,
-.column-flush.span-6,
-.column-flush.span-7,
-.column-flush.span-8,
-.column-flush.span-9,
-.column-flush.span-10,
-.column-flush.span-11,
-.column-flush.span-12{
-	width: 100%;
-}
+	/*---------------------------*/
+	/*- FULL COLUMNS ------------*/
+	.column[class*='span-'],
+	.column[class*=' span-'],
+	.column-flush[class^="span-"],
+	.column-flush[class*=" span-"]{
+		width: 100%;
+	}
+
+	/*---------------------------*/
+	/*- FLUSH COLUMNS -----------*/
+	.column-flush.span-1,
+	.column-flush.span-2,
+	.column-flush.span-3,
+	.column-flush.span-4,
+	.column-flush.span-5,
+	.column-flush.span-6,
+	.column-flush.span-7,
+	.column-flush.span-8,
+	.column-flush.span-9,
+	.column-flush.span-10,
+	.column-flush.span-11,
+	.column-flush.span-12{
+		width: 100%;
+	}
+
+	/*---------------------------*/
+	/*- SIDE-BY-SIDE COLUMNS ----*/
+	.column.span-2,
+	.column-flush.span-2{
+		width: 49%;
+		margin-right: 2%;
+	}
+	.column.span-2:nth-child(2n+2)
+	.column-flush.span-2:nth-child(2n+2){
+		margin-right: 0;
+	}
 
 /*-------------------------------*/
 /*- CONTAINERS ------------------*/

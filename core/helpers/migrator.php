@@ -74,9 +74,7 @@ class Layers_Widget_Migrator {
 
     function allow_json_uploads( $mime_types ){
         //Creating a new array will reset the allowed filetypes
-        $mime_types = array(
-            'json|JSON' => 'application/json'
-        );
+        $mime_types[ 'json|JSON' ] = 'application/json';
 
         return $mime_types;
     }

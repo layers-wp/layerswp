@@ -2196,8 +2196,12 @@ ul#adminmenu a.wp-has-current-submenu:after, ul#adminmenu > li.current > a.curre
         }
         .layers-content .layers-list{}
         .layers-list li{
-            padding: 15px 20px;
+            padding: 15px 10px;
             margin: 0;
+            border-bottom: 1px solid #e5e5e5;
+        }
+        .layers-list li:last-child{
+            border-bottom: none;
         }
         .layers-list h3{
             margin: 0 0 10px;
@@ -2212,9 +2216,6 @@ ul#adminmenu a.wp-has-current-submenu:after, ul#adminmenu > li.current > a.curre
         .layers-page-list-title{
             font-weight: bold;
             text-decoration: none;
-        }
-        .layers-list li:nth-child(odd){
-            background: #f9f9f9;
         }
 
 

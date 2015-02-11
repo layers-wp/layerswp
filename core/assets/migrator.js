@@ -145,7 +145,9 @@ jQuery(document).ready(function($){
                     $page_data,
                     function(data){
                         // Upon completion update the import button
-                        jQuery( '#layers-page-import-button' ).fadeOut( 500, function() {jQuery(this).text( migratori8n.complete_message ).addClass( 'btn-link' ).fadeIn(); } );
+                        jQuery( '#layers-page-import-button' ).fadeOut( 500, function() {
+                            jQuery(this).text( migratori8n.complete_message ).addClass( 'btn-link' ).fadeIn();
+                        } ).closest( '.layers-column' ).addClass( 'layers-success' );
                     }
                 );
 
@@ -186,7 +188,7 @@ jQuery(document).ready(function($){
                 $results = $.parseJSON( data );
 
                 $a = $('<a />').attr('class' , 'layers-button btn-link' ).attr( 'href' , $results.page_location ).text( migratori8n.duplicate_complete_message );
-
+                jQuery( '#layers-page-duplicate-button' ).closest( '.layers-column' ).addClass( 'layers-success' );
                 jQuery( '#layers-page-duplicate-button' ).replaceWith( $a );
             }
         );

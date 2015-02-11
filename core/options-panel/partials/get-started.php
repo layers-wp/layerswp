@@ -376,12 +376,12 @@ $layers_migrator = new Layers_Widget_Migrator(); ?>
                         <!-- Your content goes here -->
                         <div class="layers-section-title layers-small">
                             <h3 class="layers-heading">
-                                <?php _e( 'Last Step, choose a page layout' , LAYERS_THEME_SLUG ); ?>
+                                <?php _e( 'Now let&apos;s create your first Layers page!' , LAYERS_THEME_SLUG ); ?>
                             </h3>
                             <div class="layers-excerpt">
                                 <p>
                                     <?php _e( '
-                                        Now let&apos;s create your first Layers page! Simply select a preset layout from the list
+                                        Simply select a preset layout from the list
                                         and we will automatically create it for you. Here we go!
                                     ', LAYERS_THEME_SLUG ); ?>
                                 </p>
@@ -390,7 +390,7 @@ $layers_migrator = new Layers_Widget_Migrator(); ?>
                     </div>
                     <div class="layers-button-well">
                         <span class="layers-save-progress layers-hide layers-button btn-link" data-busy-message="<?php _e( 'Creating your Page' , LAYERS_THEME_SLUG ); ?>"></span>
-                        <a class="layers-button btn-primary layers-pull-right onbard-next-step layers-proceed-to-customizer disable layers-tooltip" tooltip="<?php _e( 'First choose a layout' , LAYERS_THEME_SLUG ); ?>" href=""><?php _e( 'Proceed to Customizer' , LAYERS_THEME_SLUG ); ?></a>
+                        <a class="layers-button btn-primary layers-pull-right onbard-next-step layers-proceed-to-customizer disable layers-tooltip" tooltip="<?php _e( 'First choose a layout' , LAYERS_THEME_SLUG ); ?>" href=""><?php _e( 'Proceed to Layers' , LAYERS_THEME_SLUG ); ?></a>
                     </div>
                 </div>
             </div>

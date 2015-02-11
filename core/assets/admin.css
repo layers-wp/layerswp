@@ -295,6 +295,11 @@ div[id*='layers-widget'] .spinner{
 .layers-well{
     background: #fff;
 }
+.layers-panel{
+    background: #fff;
+    border: 1px solid #E5E5E5;
+    box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.04);
+}
 .layers-modal-container{
    position: fixed;
     width: 100%;
@@ -392,27 +397,45 @@ div[id*='layers-widget'] .spinner{
 
 /*---------------------------*/
 /*- THE GRID ----------------*/
-.layers-row:before, .layers-row:after{content: " "; display: table;}
-.layers-row:after{clear: both;}
-.layers-row{*zoom: 1;}
 
-.layers-clearfix:before, .layers-clearfix:after{content: " "; display: table;}
-.layers-clearfix:after{clear: both;}
-.layers-clearfix{*zoom: 1;}
+    .layers-row:before, .layers-row:after{
+        content: " ";
+        display: table;
+    }
+    .layers-row:after{
+        clear: both;
+    }
+    .layers-row{
+        *zoom: 1;
+    }
 
-.layers-column{
-    float: left;
-    margin: 0 2% 20px 0;
-    position: relative;
-    box-sizing: border-box;
-}
-.layers-column-flush{
-    float: left;
-    margin: 0;
-    position: relative;
-    box-sizing: border-box;
-}
-.layers-row .layers-column:last-child{margin-right: 0;}
+    .layers-clearfix:before,
+    .layers-clearfix:after{
+        content: " ";
+        display: table;
+    }
+    .layers-clearfix:after{
+        clear: both;
+    }
+    .layers-clearfix{
+        *zoom: 1;
+    }
+
+    .layers-column{
+        float: left;
+        margin: 0 2% 20px 0;
+        position: relative;
+        box-sizing: border-box;
+    }
+    .layers-column-flush{
+        float: left;
+        margin: 0;
+        position: relative;
+        box-sizing: border-box;
+    }
+    .layers-row .layers-column:last-child{
+        margin-right: 0;
+    }
 
     .layers-span-1{width: 6.5%;}
     .layers-span-2{width: 15%;}
@@ -462,7 +485,8 @@ div[id*='layers-widget'] .spinner{
 
     /*-----------------------*/
     /*- BROAD BASED COLUMNS -*/
-    div[class*='layers-columns-'] div[class*='layers-span'], div[class*='layers-columns-'] .layers-sortable-drop{
+    div[class*='layers-columns-'] div[class*='layers-span'],
+    div[class*='layers-columns-'] .layers-sortable-drop{
         float: left;
         padding: 10px;
         margin: 0;
@@ -1191,11 +1215,11 @@ input[type=text].layers-color-selector.wp-color-picker{
 /*- TITLES ------------------*/
 .layers-logo{
     display: block;
-    width: 132px;
-    height: 30px;
-    margin-bottom: 40px;
-    background: url(images/layers-logo.png) no-repeat;
-    background-size: 132px 30px;
+    float: right;
+    width: 88px;
+    height: 45px;
+    background: url(images/layers-logo-dark.png) no-repeat bottom;
+    background-size: 88px 20px;
     overflow: hidden;
     text-indent: -999px;
 }
@@ -1248,6 +1272,7 @@ input[type=text].layers-color-selector.wp-color-picker{
     .layers-section-title.layers-large .layers-heading{
         font-size: 44px;
         line-height: 54px;
+        font-weight: 300;
     }
     .layers-section-title.layers-large .layers-excerpt{
         max-width: 830px;
@@ -1566,28 +1591,6 @@ input[type=text].layers-color-selector.wp-color-picker{
 }
 
 /*---------------------------*/
-/*- PANEL -------------------*/
-.layers-panel-title{
-    display: block;
-    margin: 0;
-    padding: 4px 4px 4px 10px;
-    font-size: 14px;
-    line-height: 16px;
-    font-weight: 600;
-    background: #f5f5f5;
-    border-radius: 3px;
-    color: #555;
-}
-.layers-panel-title .heading{
-    padding: 0;
-    margin: 0;
-    line-height: 26px;
-}
-.layers-panel .layers-content{
-    padding: 10px;
-}
-
-/*---------------------------*/
 /*- MEDIA -------------------*/
 .layers-media{overflow: hidden; margin-bottom: 20px; display: block;}
 
@@ -1678,10 +1681,12 @@ input[type=text].layers-color-selector.wp-color-picker{
 /*- ICON STYLING ------------*/
 .layers-success{
     display: inline-block;
-    font-weight: bold;
-    border: 2px solid #A3C567;
-    padding: 5px 15px;
+    padding: 5px 10px;
     background: #fff;
+    border: 1px solid #A3C567;
+    border-radius: 3px;
+    font-weight: bold;
+    color: #A3C567;
 }
 
 
@@ -2079,8 +2084,9 @@ input[type=radio]:checked + .layers-settings-icon span{
 .layers-page-title{
     background: #F1F1F1;
 }
-.layers-page-title.highlight{
+.highlight{
     background: #009DF3;
+    border-color: #0073A6;
 }
 .layers-page-title + .layers-row{
     border-top: 1px solid #ddd;
@@ -2116,6 +2122,100 @@ ul#adminmenu a.wp-has-current-submenu:after, ul#adminmenu > li.current > a.curre
     position: relative;
     top: 1px;
 }
+
+
+
+    /*---------------------------*/
+    /*- HORIZONTAL NAVIGATION ---*/
+    .layers-nav-horizontal{
+        padding: 0 20px;
+        margin-top: 15px;
+        background: #fff;
+        border: 1px solid #ddd;
+        overflow: hidden;
+        box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.04);
+    }
+    .layers-nav-horizontal ul{
+        margin: 0;
+        padding: 0;
+    }
+    .layers-nav-horizontal li{
+        float: left;
+        margin: 0 10px;
+    }
+    .layers-nav-horizontal li a{
+        padding: 15px 0px;
+        display: block;
+        text-align: center;
+        color: #777;
+    }
+
+        /*-----------------------*/
+        /*- DASHBOARD NAV -------*/
+        .layers-dashboard-nav li:last-child{
+            border-right: none;
+        }
+        .layers-dashboard-nav a{
+            text-decoration: none;
+            border-bottom: 4px solid transparent;
+        }
+        .layers-dashboard-nav a:hover,
+        .layers-dashboard-nav .active a{
+            color: #333;
+            border-color: #0073A6;
+        }
+
+        /*-----------------------*/
+        /*- PANEL ---------------*/
+        .layers-panel-title{
+            display: block;
+            margin: 0;
+            padding: 10px;
+            background: #fff;
+            border-bottom: 1px solid #e5e5e5;
+            color: #555;
+        }
+        .layers-panel-title h3,
+        .layers-panel-title h4{
+            margin: 0;
+            font-size: 14px;
+            line-height: 16px;
+            font-weight: 600;
+        }
+        .layers-panel-title p{
+            margin: 5px 0 0;
+            color: #777;
+        }
+
+        /*-----------------------*/
+        /*- PAGE LIST -----------*/
+        .layers-list{
+            padding: 0;
+            margin: 0;
+        }
+        .layers-content .layers-list{}
+        .layers-list li{
+            padding: 15px 20px;
+            margin: 0;
+        }
+        .layers-list h3{
+            margin: 0 0 10px;
+        }
+        .layers-list h4{
+            margin: 0 0 10px;
+        }
+        .layers-list p{
+            margin: 0 0 10px;
+            color: #777;
+        }
+        .layers-page-list-title{
+            font-weight: bold;
+            text-decoration: none;
+        }
+        .layers-list li:nth-child(odd){
+            background: #f9f9f9;
+        }
+
 
     /*---------------------------*/
     /*- LAYERS ONBOARDING -------*/

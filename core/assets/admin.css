@@ -14,7 +14,7 @@
 
 /*------------------------------------*/
 /*- HIDE LAYERS WIDGETS IN APPEARANCE -*/
-div#widgets-right .widgets-sortables{ 
+div#widgets-right .widgets-sortables{
     padding-bottom: 1px;
 }
 .widget-holder div[id*='layers-widget'],
@@ -1677,11 +1677,8 @@ input[type=text].layers-color-selector.wp-color-picker{
 /*---------------------------*/
 /*- ICON STYLING ------------*/
 .layers-success{
-    display: inline-block;
-    font-weight: bold;
-    border: 2px solid #A3C567;
-    padding: 5px 15px;
-    background: #fff;
+    border: 1px solid #A3C567;
+    border-left-width: 4px;
 }
 
 
@@ -2278,7 +2275,7 @@ ul#adminmenu a.wp-has-current-submenu:after, ul#adminmenu > li.current > a.curre
         .layers-onboard-slide .layers-product-actions{
             display: none;
         }
-        
+
         /*------------------------------------------*/
         /*- PRESET LAYOUTS CONTROLS -----------*/
         .layers-button.layers-proceed-to-customizer{

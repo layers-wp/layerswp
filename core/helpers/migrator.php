@@ -31,7 +31,7 @@ class Layers_Widget_Migrator {
         add_filter( 'layers_preset_layouts' , array( $this , 'add_builder_preset_layouts') );
 
         // Add allowance for JSON to be added via the media uploader
-        add_filter('upload_mimes', array( $this, 'allow_json_uploads' ), 1, 1);
+        add_filter( 'upload_mimes', array( $this, 'allow_json_uploads' ), 1, 1);
     }
 
     /**
@@ -427,7 +427,7 @@ class Layers_Widget_Migrator {
                 if( NULL != $get_image_url ) {
                     $validated_data[ $option ] = $get_image_url;
                 } else {
-                    $validated_data[ $option ] = $option_data;
+                    $validated_data[ $option ] = stripslashes( $option_data );
                 }
 
             } else {
@@ -480,7 +480,7 @@ class Layers_Widget_Migrator {
 
         $validated_data = array();
 
-        if( !is_array( $data ) ) return $data;
+        if( !is_array( $data ) ) return stripslashes( $data );
 
         foreach( $data as $option => $option_data ){
 
@@ -511,7 +511,9 @@ class Layers_Widget_Migrator {
                 }
 
             } else {
+
                 $validated_data[ $option ] = stripslashes( $option_data );
+
             }
         }
 
@@ -556,7 +558,7 @@ class Layers_Widget_Migrator {
         // We need a page title and post ID for this to work
         if( !isset( $_POST[ 'post_title' ] ) || !isset( $_POST[ 'post_id' ]  ) ) return;
 
-        $pageid = layers_create_builder_page( esc_attr( $_POST[ 'post_title' ] ) );
+        $pageid = layers_create_builder_page( esc_attr( $_POST[ 'post_title' ] . ' ' . __( '(Copy)', LAYERS_THEME_SLUG ) ) );
 
         // Create the page sidebar on the fly
         Layers_Widgets::register_builder_sidebar( $pageid );
@@ -575,7 +577,7 @@ class Layers_Widget_Migrator {
         $results = array(
                 'post_id' => $pageid,
                 'data_report' => $import_progress,
-                'page_location' => admin_url() . '/post.php?post=' . $pageid . '&action=edit&message=1'
+                'page_location' => admin_url() . 'post.php?post=' . $pageid . '&action=edit&message=1'
             );
 
         die( json_encode( $results ) );
@@ -659,7 +661,7 @@ class Layers_Widget_Migrator {
         // Get all existing widget instances
         $widget_instances = array();
         foreach ( $available_widgets as $widget_data ) {
-            $widget_instances[$widget_data['id_base']] = get_option( 'widget_' . $widget_data['id_base'] );
+            $widget_instances[ $widget_data[ 'id_base' ] ] = get_option( 'widget_' . $widget_data['id_base'] );
         }
 
         // Begin results
@@ -675,11 +677,6 @@ class Layers_Widget_Migrator {
             // Check if sidebar is available on this site
             // Otherwise add widgets to inactive, and say so
             if ( isset( $wp_registered_sidebars[$sidebar_id] ) ) {
-                /*
-                * Debug
-                * echo print_r( $wp_registered_sidebars[$sidebar_id], true );
-                */
-
                 $sidebar_available = true;
                 $use_sidebar_id = $sidebar_id;
                 $sidebar_message_type = 'success';
@@ -701,7 +698,6 @@ class Layers_Widget_Migrator {
             foreach ( $sidebar_data as $widget_instance_id => $widget ) {
                 /*
                 * Debug
-                * echo print_r( $widget, true );
                 */
 
                 // Check for and import images

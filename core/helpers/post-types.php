@@ -68,6 +68,9 @@ class Layers_Post_Types {
 					'comments',
 					'publicize',
 					'wpcom-markdown',
+					'revisions',
+					'page-attributes',
+					'custom-fields',
 				),
 				'rewrite' => array(
 					'slug'       => 'portfolio',

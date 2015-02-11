@@ -402,7 +402,8 @@ if( ! function_exists( 'layers_admin_scripts' ) ) {
 			'migratori8n',
 			array(
 				'loading_message' => __( 'Be patient while we import the widget data and images.' , LAYERS_THEME_SLUG ),
-				'complete_message' => __( 'Import Complete' , LAYERS_THEME_SLUG )
+				'complete_message' => __( 'Import Complete' , LAYERS_THEME_SLUG ),
+				'duplicate_complete_message' => __( 'Edit Your New Page' , LAYERS_THEME_SLUG )
 			)
 		);// Migrator
 

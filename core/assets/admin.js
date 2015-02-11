@@ -320,7 +320,7 @@ jQuery(function($) {
 		$that = $(this);
 
 		// Close siblings
-		$( '.layers-visuals-item.layers-active' ).not( $that.parent() ).removeClass( 'layers-active' );
+		$(this).closest( '.layers-visuals-wrapper' ).find( '.layers-visuals-item.layers-active' ).not( $that.parent() ).removeClass( 'layers-active' );
 
 		// Toggle active state
 		$that.parent().toggleClass( 'layers-active' );

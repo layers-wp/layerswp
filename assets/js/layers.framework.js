@@ -38,21 +38,31 @@ jQuery(function($) {
     * 2 - Container padding for header fixed
     */
     $(window).on('load', function() {
-
-    	$header = $( '.header-site' );
-
+        
+        //Set the header.
+        $header = $( '.header-site' );
+        
         if( $header.hasClass( 'header-overlay' ) ){
+            
+            //Set the site wrapper.
+            $site_wrapper = $( '#wrapper-content' );
 
-            $selector = $( '#wrapper-content' );
-
-            // Ignore the padding if the first widget is the slider
-            if( $selector.find( '.widget' ).first().hasClass( 'slide' ) ) {
-            	$header.addClass('header-slide-first');
-        	}
-        	else{
-        		$selector.css( 'paddingTop' , $( $header ).height() );
-        		$header.addClass('header-slide-not-first');
-        	}
+            // Check if first widget is slider.
+            if( $site_wrapper.find( '.widget' ).first().hasClass( 'slide' ) ) {
+                
+                // Add body class if first widget is slider.
+                $('body').addClass('layers-slide-first');
+                
+                // Pad the slides to compensate for overlay header.
+                $('.swiper-slide .overlay').css( 'paddingTop' , $( $header ).height() );
+            }
+            else{
+                // Add body class if first widget is slider.
+                $('body').addClass('layers-slide-not-first');
+                
+                // Pad the site to compensate for overlay header.
+                $site_wrapper.css( 'paddingTop' , $( $header ).height() );
+            }
 
         }
     });

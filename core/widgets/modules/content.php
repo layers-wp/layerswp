@@ -200,9 +200,9 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 										<div class="media-body <?php echo ( isset( $column['design']['fonts'][ 'align' ] ) ) ? $column['design']['fonts'][ 'align' ] : ''; ?>">
 											<?php if( isset( $column['title'] ) && '' != $column['title'] ) { ?>
 												<h5 class="heading">
-													<?php if( NULL != $link ) { ?><a href="<?php echo $link; ?>"><?php } ?>
+													<?php if( NULL != $link && ! ( isset( $column['link'] ) && $this->check_and_return( $column , 'link_text' ) ) ) { ?><a href="<?php echo $link; ?>"><?php } ?>
 														<?php echo $column['title']; ?>
-													<?php if( NULL != $link ) { ?></a><?php } ?>
+													<?php if( NULL != $link && ! ( isset( $column['link'] ) && $this->check_and_return( $column , 'link_text' ) ) ) { ?></a><?php } ?>
 												</h5>
 											<?php } ?>
 											<?php if( isset( $column['excerpt'] ) && '' != $column['excerpt'] ) { ?>

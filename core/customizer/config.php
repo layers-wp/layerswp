@@ -70,6 +70,10 @@ class Layers_Customizer_Config {
 	public function sections(){
 
 		$sections[ 'general' ] = array(
+								'nav' => array( // This is used before any menus are registered. Then replaced by WP Naviagation
+									'title'       =>__( 'Navigation' , LAYERS_THEME_SLUG ),
+									'description' => __( 'First create a menu then come back here to place it.', LAYERS_THEME_SLUG ),
+								),
 								'css' => array(
 									'title' =>__( 'CSS' , LAYERS_THEME_SLUG ),
 								),
@@ -116,6 +120,21 @@ class Layers_Customizer_Config {
 
 		// Setup some folder variables
 		$customizer_dir = '/core/customizer/';
+		
+		
+		// Header -> Layout -> Layout  // This is used before any menus are registered. Then replaced by WP Naviagation
+		if ( ! wp_get_nav_menus() ) {
+			$controls['general-nav'] = array(
+									'general-nav-custom-css' => array(
+										'type'        => 'layers-button',
+										'text'        => __( 'Create Menu', LAYERS_THEME_SLUG ),
+										'href'        => admin_url( 'nav-menus.php' ),
+									),
+								); // header-layout
+			
+		}
+		
+		
 
 		// Header -> Layout -> Layout
 		$controls['general-css'] = array(

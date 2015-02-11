@@ -129,8 +129,8 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 
 							// Set the background styling
 							if( !empty( $column['design'][ 'background' ] ) ) layers_inline_styles( '#' . $widget_id . '-' . $key , 'background', array( 'background' => $column['design'][ 'background' ] ) );
-							if( !empty( $column['design']['fonts'][ 'color' ] ) ) layers_inline_styles( '#' . $widget_id . '-' . $key , 'color', array( 'selectors' => array( 'h5.heading a' , 'div.excerpt' , 'div.excerpt p' ) , 'color' => $column['design']['fonts'][ 'color' ] ) );
-							if( !empty( $column['design']['fonts'][ 'shadow' ] ) ) layers_inline_styles( '#' . $widget_id . '-' . $key , 'text-shadow', array( 'selectors' => array( 'h5.heading a' , 'div.excerpt' , 'div.excerpt p' )  , 'text-shadow' => $column['design']['fonts'][ 'shadow' ] ) );
+							if( !empty( $column['design']['fonts'][ 'color' ] ) ) layers_inline_styles( '#' . $widget_id . '-' . $key , 'color', array( 'selectors' => array( 'h5.heading a', 'h5.heading' , 'div.excerpt' , 'div.excerpt p' ) , 'color' => $column['design']['fonts'][ 'color' ] ) );
+							if( !empty( $column['design']['fonts'][ 'shadow' ] ) ) layers_inline_styles( '#' . $widget_id . '-' . $key , 'text-shadow', array( 'selectors' => array( 'h5.heading a', 'h5.heading' , 'div.excerpt' , 'div.excerpt p' )  , 'text-shadow' => $column['design']['fonts'][ 'shadow' ] ) );
 
 							if( !isset( $column[ 'width' ] ) ) $column[ 'width' ] = $this->column_defaults[ 'width' ];
 							// Add the correct span class

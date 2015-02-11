@@ -184,7 +184,12 @@ jQuery(document).ready(function($){
             layers_widget_params.ajaxurl,
             $page_data,
             function(data){
-                console.log( data );
+
+                $results = $.parseJSON( data );
+
+                $a = $('<a />').attr('class' , 'layers-button btn-link' ).attr( 'href' , $results.page_location ).text( migratori8n.duplicate_complete_message );
+
+                jQuery( '#layers-page-duplicate-button' ).replaceWith( $a );
             }
         );
 

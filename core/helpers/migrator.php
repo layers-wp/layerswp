@@ -556,7 +556,7 @@ class Layers_Widget_Migrator {
         // We need a page title and post ID for this to work
         if( !isset( $_POST[ 'post_title' ] ) || !isset( $_POST[ 'post_id' ]  ) ) return;
 
-        $pageid = layers_create_builder_page( esc_attr( $_POST[ 'post_title' ] ) );
+        $pageid = layers_create_builder_page( esc_attr( $_POST[ 'post_title' ] . ' ' . __( '(Copy)', LAYERS_THEME_SLUG ) ) );
 
         // Create the page sidebar on the fly
         Layers_Widgets::register_builder_sidebar( $pageid );
@@ -575,7 +575,7 @@ class Layers_Widget_Migrator {
         $results = array(
                 'post_id' => $pageid,
                 'data_report' => $import_progress,
-                'page_location' => admin_url() . '/post.php?post=' . $pageid . '&action=edit&message=1'
+                'page_location' => admin_url() . 'post.php?post=' . $pageid . '&action=edit&message=1'
             );
 
         die( json_encode( $results ) );

@@ -1677,8 +1677,7 @@ input[type=text].layers-color-selector.wp-color-picker{
 /*---------------------------*/
 /*- ICON STYLING ------------*/
 .layers-success{
-    border: 1px solid #A3C567;
-    border-left-width: 4px;
+    border-left:  4px solid #A3C567;
 }
 
 

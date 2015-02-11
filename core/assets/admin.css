@@ -2122,7 +2122,7 @@ ul#adminmenu a.wp-has-current-submenu:after, ul#adminmenu > li.current > a.curre
     .layers-onboard-wrapper{
         max-width: 1000px;
         margin: auto;
-        padding: 40px 0 0;
+        padding: 40px 35px 0;
         overflow: hidden;
     }
 

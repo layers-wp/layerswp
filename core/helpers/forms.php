@@ -464,11 +464,13 @@ class Layers_Form_Elements {
 			/**
 			* Button Selector
 			*/
-			case 'button' : ?>
-
-				<button  class="layers-button btn-medium" <?php echo implode ( ' ' , $input_props ); ?> data-button_text="<?php echo esc_attr( $input->label ); ?>">
+			case 'button' :
+				$tag = ( '' == $input->tag ) ? 'button' : $input->tag ;
+				$href = ( '' == $input->href ) ? '' : 'href="' . $input->href . '"' ;
+				?>
+				<<?php echo $tag; ?>  class="layers-button btn-medium" <?php echo $href ?> <?php echo implode ( ' ' , $input_props ); ?> data-button_text="<?php echo esc_attr( $input->label ); ?>">
 					<?php echo esc_attr( $input->label ); ?>
-				</button>
+				</<?php echo $tag; ?>>
 			<?php break;
 			/**
 			* Top / Right / Bottom / Left Fields

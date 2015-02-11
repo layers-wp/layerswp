@@ -15,6 +15,10 @@ if( !class_exists( 'Layers_Customize_Control' ) ) {
 
 		public $label = '';
 		
+		public $text = ''; // Used for form elements that have label and text, like Buttons.
+		
+		public $href = ''; // Buttons href.
+		
 		public $subtitle = '';
 
 		public $description = '';

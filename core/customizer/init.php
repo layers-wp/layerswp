@@ -50,6 +50,7 @@ class Layers_Customizer {
 			require_once get_template_directory() . $controls_dir . 'color.php';
 			require_once get_template_directory() . $controls_dir . 'checkbox.php';
 			require_once get_template_directory() . $controls_dir . 'css.php';
+			require_once get_template_directory() . $controls_dir . 'button.php';
 
 			// If we are in a builder page, update the Widgets title
 			$wp_customize->add_panel(

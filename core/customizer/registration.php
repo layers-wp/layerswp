@@ -309,6 +309,25 @@ class Layers_Customizer_Regsitrar {
 						$control_data
 					)
 				);
+			} else if ( 'layers-button' == $control_data['type'] ) {
+
+				// Add Setting
+				$this->customizer->add_setting(
+					$setting_key,
+					array(
+						'type'       => 'theme_mod',
+						'capability' => 'manage_options'
+					)
+				);
+				
+				// Add Control
+				$this->customizer->add_control(
+					new Layers_Customize_Button_Control(
+						$this->customizer,
+						$setting_key,
+						$control_data
+					)
+				);
 			} else if( 'layers-css' == $control_data['type'] ) {
 
 				// Add Setting

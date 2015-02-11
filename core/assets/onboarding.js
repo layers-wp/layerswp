@@ -135,7 +135,7 @@ jQuery(function($) {
         layers_change_onboarding_slide( $i );
     });
     
-    $(document).on( 'click' , '.layers-product' , function(e){
+    $( 'input[name="layes-preset-layout"]' ).on( 'change' , function(e){
         // "Hi Mom"
         $that = $(this);
         

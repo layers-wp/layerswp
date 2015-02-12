@@ -202,7 +202,7 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 							//Your options here:
 							mode:'horizontal',
 							<?php if( isset( $widget['show_slider_dots'] ) ) { ?>pagination: '.pages',<?php } ?>
-							// slidesPerView: 4,
+							/*slidesPerView: 4,*/
 							paginationClickable: true,
 							watchActiveIndex: true,
 							loop: true

@@ -1,9 +1,6 @@
 <?php // Fetch current user information
 $user = wp_get_current_user(); ?>
 
-<?php // Instantiate the widget migrator
-$layers_migrator = new Layers_Widget_Migrator(); ?>
-
 <?php // Get builder pages
 $find_builder_page = layers_get_builder_pages(); ?>
 
@@ -11,17 +8,18 @@ $find_builder_page = layers_get_builder_pages(); ?>
 
 	<div class="layers-page-title layers-section-title layers-large layers-content-large layers-no-push-bottom">
 		<div class="layers-container">
-			<a href="http://oboxthemes.com/layers" class="layers-logo">Layers</a>
-			<h2 class="layers-heading" id="layers-options-header">Dashboard</h2>
+			<a href="http://oboxthemes.com/layers" class="layers-logo"><?php _e( 'Layers', LAYERS_THEME_SLUG ); ?></a>
+			<h2 class="layers-heading" id="layers-options-header"><?php _e( 'Dashboard', LAYERS_THEME_SLUG ); ?></h2>
 
 			<nav class="layers-nav-horizontal layers-dashboard-nav">
 				<ul>
-					<li class="active"><a href="">General</a></li>
-					<li><a href="">Create New Page</a></li>
-					<li><a href="">Customize</a></li>
-					<li><a href="">Upgrade</a></li>
-					<li><a href="">Backup</a></li>
-					<li><a href="">Help</a></li>
+					<?php foreach( $this->get_menu_pages()  as $menu_key => $menu_details ) { ?>
+						<li <?php if( strpos( $menu_details[ 'link' ], 'layers-welcome' ) ) { ?>class="active"<?php } ?>>
+							<a href="<?php echo $menu_details[ 'link' ]; ?>">
+								<?php echo $menu_details[ 'label' ]; ?>
+							</a>
+						</li>
+					<?php }?>
 				</ul>
 			</nav>
 
@@ -53,18 +51,17 @@ $find_builder_page = layers_get_builder_pages(); ?>
 							<h4 class="layers-heading"><?php _e( 'Layers Pages', LAYERS_THEME_SLUG ); ?></h4>
 						</div>
 						<ul class="layers-list layers-page-list">
-							<li>
-								<a class="layers-page-list-title" href="">Home</a>
-							</li>
-							<li>
-								<a class="layers-page-list-title" href="">Portfolio</a>
-							</li>
-							<li>
-								<a class="layers-page-list-title" href="">Contact</a>
-							</li>
-							<li>
-								<a class="layers-page-list-title" href="">Blog List</a>
-							</li>
+							<?php foreach( layers_get_builder_pages() as $page ) { ?>
+								<li>
+									<a class="layers-page-list-title" href="<?php echo admin_url( 'post.php?post=' . $page->ID . '&action=edit' ); ?>"><?php echo $page->post_title; ?></a>
+									<!-- <pre><?php print_r( $page ) ; ?></pre> -->
+									<span class="layers-pull-right">
+										<a href=""><?php _e( 'Edit Layout' , LAYERS_THEME_SLUG ); ?></a> |
+										<a href="<?php echo admin_url( 'post.php?post=' . $page->ID . '&action=edit' ); ?>"><?php _e( 'Edit' , LAYERS_THEME_SLUG ); ?></a> |
+										<a href="<?php echo get_the_permalink( $page->ID ); ?>"><?php _e( 'View' , LAYERS_THEME_SLUG ); ?></a>
+									</span>
+								</li>
+							<?php }?>
 						</ul>
 						<div class="layers-button-well">
 							<a href="<?php echo admin_url( 'admin.php?page=add-new-page' ); ?>" class="layers-button btn-primary">

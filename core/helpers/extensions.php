@@ -8,11 +8,10 @@
  */
 
 /**
-* Extension template files
+* Get template file locations
 *
 * Provides a way for extention developers to add their own template files, for example for WooCommerce, adding single-product.php inside of an extension as opposed to a child theme
 *
-* @param    varchar         $        Type of html wrapper
 */
 if ( !function_exists('layers_add_template_locations') ) {
     function layers_get_template_locations(){
@@ -23,6 +22,14 @@ if ( !function_exists('layers_add_template_locations') ) {
     }
 } // layers_add_template_locations
 
+
+/**
+* Load Template Files
+*
+* This function filters load_template() and fetchs the relevant Layers template from which ever plugin has specified it
+*
+* @param    varchar         $        Type of html wrapper
+*/
 if ( !function_exists('layers_load_templates') ) {
     function layers_load_template( $template ){
 

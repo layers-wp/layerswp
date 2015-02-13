@@ -76,6 +76,29 @@ class Layers_Options_Panel {
 			</p>
 		</footer>
 	<?php }
+
+	/**
+	* Get Layers Regsitered Menus
+	*/
+
+	public function get_menu_pages(){
+		global $submenu;
+
+		if( isset( $submenu[ 'layers-dashboard' ] ) ) {
+			foreach ( $submenu[ 'layers-dashboard' ] as $menu_key => $menu_details ) {
+				$sub_menu[ 'label' ] = $menu_details[0];
+				$sub_menu[ 'cap' ] = $menu_details[1];
+				$sub_menu[ 'link' ] = ( strpos( $menu_details[2], '.php' ) ? admin_url( $menu_details[2] ) : admin_url( 'admin.php?page=' . $menu_details[2] ) );
+
+				$menu[] = $sub_menu;
+			}
+
+			return $menu;
+		}
+
+		return NULL;
+	}
+
 }
 
 /**
@@ -86,12 +109,12 @@ function layers_options_panel_menu(){
 
 	global $submenu, $menu;
 
-	// Welcome Page
+	// dashboard Page
 	add_menu_page(
 		LAYERS_THEME_TITLE,
 		LAYERS_THEME_TITLE,
 		'edit_theme_options',
-		LAYERS_THEME_SLUG . '-welcome',
+		LAYERS_THEME_SLUG . '-dashboard',
 		'layers_options_panel_ui',
 		'none',
 		3
@@ -99,7 +122,7 @@ function layers_options_panel_menu(){
 
 	// Get Started
 	add_submenu_page(
-		LAYERS_THEME_SLUG . '-welcome',
+		LAYERS_THEME_SLUG . '-dashboard',
 		__( 'Get Started' , LAYERS_THEME_SLUG ),
 		__( 'Get Started' , LAYERS_THEME_SLUG ),
 		'edit_theme_options',
@@ -109,7 +132,7 @@ function layers_options_panel_menu(){
 
 	// Add Preset Pages
 	add_submenu_page(
-		LAYERS_THEME_SLUG . '-welcome',
+		LAYERS_THEME_SLUG . '-dashboard',
 		__( 'Add New Page' , LAYERS_THEME_SLUG ),
 		__( 'Add New Page' , LAYERS_THEME_SLUG ),
 		'edit_theme_options',
@@ -121,7 +144,7 @@ function layers_options_panel_menu(){
 	if( layers_get_builder_pages() ){
 		// Only show if there are actually Layers pages.
 		add_submenu_page(
-			LAYERS_THEME_SLUG . '-welcome',
+			LAYERS_THEME_SLUG . '-dashboard',
 			__( 'Layers Pages', LAYERS_THEME_SLUG ),
 			__( 'Layers Pages', LAYERS_THEME_SLUG ),
 			'edit_theme_options',
@@ -131,7 +154,7 @@ function layers_options_panel_menu(){
 
 	// Customize
 	add_submenu_page(
-		LAYERS_THEME_SLUG . '-welcome',
+		LAYERS_THEME_SLUG . '-dashboard',
 		__( 'Customize', LAYERS_THEME_SLUG ),
 		__( 'Customize', LAYERS_THEME_SLUG ),
 		'edit_theme_options',
@@ -140,7 +163,7 @@ function layers_options_panel_menu(){
 
 	// Backup Page
 	add_submenu_page(
-		LAYERS_THEME_SLUG . '-welcome',
+		LAYERS_THEME_SLUG . '-dashboard',
 		__( 'Backup' , LAYERS_THEME_SLUG ),
 		__( 'Backup' , LAYERS_THEME_SLUG ),
 		'edit_theme_options',
@@ -150,7 +173,7 @@ function layers_options_panel_menu(){
 
 	// This modifies the Layers submenu item - must be done here as $submenu
 	// is only created if $submenu items are added using add_submenu_page
-	$submenu[LAYERS_THEME_SLUG . '-welcome'][0][0] = 'Welcome';
+	$submenu[LAYERS_THEME_SLUG . '-dashboard'][0][0] = __( 'Dashboard' , LAYERS_THEME_SLUG );
 }
 
 add_action( 'admin_menu' , 'layers_options_panel_menu' , 50 );

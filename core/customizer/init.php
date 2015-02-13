@@ -155,7 +155,7 @@ class Layers_Customizer {
 	function render_actions_buttons() { ?>
 			
 			<a class="customize-controls-layers-button customize-controls-layers-button-dashboard dashicons dashicons-plus layers-tooltip" href="<?php echo admin_url( 'admin.php?page=layers-add-new-page' ); ?>">
-				<span class="layers-tooltip-text"><?php _e( 'Add a Layers page', LAYERS_THEME_SLUG ) ?></span>
+				<span class="layers-tooltip-text layers-tooltip-text-large"><?php _e( 'Add new Layers page', LAYERS_THEME_SLUG ) ?></span>
 			</a>
 			<a class="customize-controls-layers-button customize-controls-layers-button-preview icon-display layers-tooltip" href="#" target="_blank">
 				<span class="layers-tooltip-text"><?php _e( 'Preview this page', LAYERS_THEME_SLUG ) ?></span>

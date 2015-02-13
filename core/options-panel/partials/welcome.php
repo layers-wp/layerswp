@@ -48,7 +48,7 @@ $find_builder_page = layers_get_builder_pages(); ?>
 						</a>
 					</div>
 
-					<div class="layers-panel layers-push-bottom">
+					<div class="layers-panel">
 						<div class="layers-panel-title">
 							<h4 class="layers-heading"><?php _e( 'Layers Pages', LAYERS_THEME_SLUG ); ?></h4>
 						</div>
@@ -147,7 +147,7 @@ $find_builder_page = layers_get_builder_pages(); ?>
 				</div>
 
 				<div class="layers-column layers-span-3">
-					<div class="layers-panel layers-push-bottom">
+					<div class="layers-panel">
 						<div class="layers-panel-title">
 							<h4 class="layers-heading"><?php _e( 'What you need', LAYERS_THEME_SLUG ); ?></h4>
 						</div>

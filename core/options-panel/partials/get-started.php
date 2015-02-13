@@ -30,10 +30,10 @@ $layers_migrator = new Layers_Widget_Migrator(); ?>
                             </h3>
                             <div class="layers-excerpt">
                                 <p>
-                                    <?php _e( 'Layers is a revolutionary WordPress theme that gives you the power to build any website you want.' , LAYERS_THEME_SLUG ); ?>
+                                    <?php _e( 'Layers is a revolutionary WordPress Site Builder that makes website building a dream come true!' , LAYERS_THEME_SLUG ); ?>
                                 </p>
                                 <p>
-                                    <?php _e( 'The following easy steps are designed to show you how Layers works and to get you creating amazing layouts quickly.' , LAYERS_THEME_SLUG ); ?>
+                                    <?php _e( 'The following short steps are designed to show you how Layers works and get you into creating an amazing layout quickly!' , LAYERS_THEME_SLUG ); ?>
                                 </p>
                                 <p>
                                     <?php _e( 'Enjoy the ride!' , LAYERS_THEME_SLUG ); ?>
@@ -110,7 +110,7 @@ $layers_migrator = new Layers_Widget_Migrator(); ?>
                                 <?php _e( 'What is the name of your website?' , LAYERS_THEME_SLUG ); ?>
                             </h3>
                             <p class="layers-excerpt">
-                                <?php _e( 'Enter your website name below. We&apos;ll use this in your site title and your Google rankings.' , LAYERS_THEME_SLUG ); ?>
+                                <?php _e( 'Enter your website name below. We&apos;ll use this in your site title and in search results.' , LAYERS_THEME_SLUG ); ?>
                             </p>
                         </div>
                         <p class="layers-form-item">
@@ -204,7 +204,7 @@ $layers_migrator = new Layers_Widget_Migrator(); ?>
                             </h3>
                             <p class="layers-excerpt">
                                 <?php _e( 'A tagline describes who and what you are in just a few simple words.
-                                For example Layers is a &lquo;WordPress Site Builder&rdquo; - simple, easy, quick to read. Now you try:' , LAYERS_THEME_SLUG ); ?>
+                                For example Layers is a &ldquo;WordPress Site Builder&rdquo; - simple, easy, quick to read. Now you try:' , LAYERS_THEME_SLUG ); ?>
                             </p>
                         </div>
                         <p class="layers-form-item">
@@ -331,7 +331,7 @@ $layers_migrator = new Layers_Widget_Migrator(); ?>
                     <div class="layers-content">
                         <!-- Your helpful tips go here -->
                         <ul class="layers-help-list">
-                            <li><?php _e( 'Any dimension is fine, Layers will resize it automatically to fit your site' , LAYERS_THEME_SLUG ); ?></li>
+                            <li><?php _e( 'For best results, use an image between 40px and 200px tall and not more than 1000px wide' , LAYERS_THEME_SLUG ); ?></li>
                             <li><?php _e( 'PNGs with a transparent background work best but GIFs or JPGs are fine too' , LAYERS_THEME_SLUG ); ?></li>
                             <li><?php _e( 'Try keep your logo file size below 500kb' , LAYERS_THEME_SLUG ); ?></li>
                         </ul>
@@ -381,8 +381,8 @@ $layers_migrator = new Layers_Widget_Migrator(); ?>
                             <div class="layers-excerpt">
                                 <p>
                                     <?php _e( '
-                                        Simply select a preset layout from the list
-                                        and we will automatically create it for you. Here we go!
+                                        Simply select a preset layout from the list and Layers will automatically create it for you.
+                                        You will be able to edit your layout on the next page. Here we go!
                                     ', LAYERS_THEME_SLUG ); ?>
                                 </p>
                             </div>
@@ -390,7 +390,7 @@ $layers_migrator = new Layers_Widget_Migrator(); ?>
                     </div>
                     <div class="layers-button-well">
                         <span class="layers-save-progress layers-hide layers-button btn-link" data-busy-message="<?php _e( 'Creating your Page' , LAYERS_THEME_SLUG ); ?>"></span>
-                        <a class="layers-button btn-primary layers-pull-right onbard-next-step layers-proceed-to-customizer disable layers-tooltip" tooltip="<?php _e( 'First choose a layout' , LAYERS_THEME_SLUG ); ?>" href=""><?php _e( 'Proceed to Layers' , LAYERS_THEME_SLUG ); ?></a>
+                        <a class="layers-button btn-primary layers-pull-right onbard-next-step layers-proceed-to-customizer disable layers-tooltip" tooltip="<?php _e( 'First choose a layout' , LAYERS_THEME_SLUG ); ?>" href=""><?php _e( 'Start Building' , LAYERS_THEME_SLUG ); ?></a>
                     </div>
                 </div>
             </div>

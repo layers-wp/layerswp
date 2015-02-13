@@ -76,6 +76,29 @@ class Layers_Options_Panel {
 			</p>
 		</footer>
 	<?php }
+
+	/**
+	* Get Layers Regsitered Menus
+	*/
+
+	public function get_menu_pages(){
+		global $submenu;
+
+		if( isset( $submenu[ 'layers-welcome' ] ) ) {
+			foreach ( $submenu[ 'layers-welcome' ] as $menu_key => $menu_details ) {
+				$sub_menu[ 'label' ] = $menu_details[0];
+				$sub_menu[ 'cap' ] = $menu_details[1];
+				$sub_menu[ 'link' ] = ( strpos( $menu_details[2], '.php' ) ? admin_url( $menu_details[2] ) : admin_url( 'admin.php?page=' . $menu_details[2] ) );
+
+				$menu[] = $sub_menu;
+			}
+
+			return $menu;
+		}
+
+		return NULL;
+	}
+
 }
 
 /**

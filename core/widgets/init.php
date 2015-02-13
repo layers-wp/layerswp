@@ -41,7 +41,6 @@ class Layers_Widgets {
 		require_once get_template_directory() . $module_dir . 'base.php'; // Basis of all Layers Widgets
 		require_once get_template_directory() . $module_dir . 'contact.php';
 		require_once get_template_directory() . $module_dir . 'content.php';
-		require_once get_template_directory() . $module_dir . 'portfolio.php';
 		require_once get_template_directory() . $module_dir . 'post.php';
 		require_once get_template_directory() . $module_dir . 'slider.php';
 

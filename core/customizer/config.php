@@ -37,6 +37,10 @@ class Layers_Customizer_Config {
 							'description' => __( 'Control your footer\'s custom text, widget areas and layout.' , LAYERS_THEME_SLUG ), // @TODO Put a helper here
 							'priority' => 50
 						),
+			'woocommerce' => array(
+							'title' => __( 'WooCommerce', LAYERS_THEME_SLUG ),
+							'priority' => 70
+						)
 		);
 
 		return apply_filters( 'layers_customizer_panels', $panels );
@@ -111,6 +115,12 @@ class Layers_Customizer_Config {
                                     'title' =>__( 'Additional Scripts' , LAYERS_THEME_SLUG ),
                                 ),
 							);
+
+        $sections[ 'woocommerce' ] = array(
+                                'layout' => array(
+                                    'title' =>__( 'Shop Layout' , LAYERS_THEME_SLUG ),
+                                )
+                            );
 
 
 		return apply_filters( 'layers_customizer_sections', $sections );
@@ -405,6 +415,44 @@ class Layers_Customizer_Config {
 						'default' => '',
 					), // scripts
 				); // footer-scripts
+
+
+
+        $controls[ 'woocommerce-layout' ] = array(
+                                'label-sidebar-single' => array(
+                                    'type'  => 'layers-heading',
+                                    'label'    => __( 'Single Product Sidebar(s)', LAYERS_THEME_SLUG ),
+                                    'description' => __( 'This option affects your single product pages.', LAYERS_THEME_SLUG ),
+                                ),
+                                'single-left-woocommerce-sidebar' => array(
+                                    'type'      => 'checkbox',
+                                    'label'     => __( 'Display Left Sidebar', LAYERS_THEME_SLUG ),
+                                    'default'   => FALSE,
+                                ), // post-sidebar
+                                'single-right-woocommerce-sidebar' => array(
+                                    'type'      => 'checkbox',
+                                    'label'     => __( 'Display Right Sidebar', LAYERS_THEME_SLUG ),
+                                    'default'   => TRUE,
+                                ), // post-sidebar
+                                'woocommerce-break-1' => array(
+                                    'type'     => 'layers-seperator'
+                                ),
+                                'label-sidebar-archive' => array(
+                                    'type'  => 'layers-heading',
+                                    'label'    => __( 'Product List Sidebar(s)', LAYERS_THEME_SLUG ),
+                                    'description' => __( 'This option affects your shop page, product category and product tag pages.', LAYERS_THEME_SLUG ),
+                                ),
+                                'archive-left-woocommerce-sidebar' => array(
+                                    'type'      => 'checkbox',
+                                    'label'     => __( 'Display Left Sidebar', LAYERS_THEME_SLUG ),
+                                    'default'   => FALSE,
+                                ), // post-sidebar
+                                'archive-right-woocommerce-sidebar' => array(
+                                    'type'      => 'checkbox',
+                                    'label'     => __( 'Display Right Sidebar', LAYERS_THEME_SLUG ),
+                                    'default'   => TRUE,
+                                ), // post-sidebar
+                            );
 
 		return apply_filters( 'layers_customizer_controls', $controls );
 	}

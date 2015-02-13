@@ -120,8 +120,8 @@ class Layers_Customizer_Config {
 
 		// Setup some folder variables
 		$customizer_dir = '/core/customizer/';
-		
-		
+
+
 		// Header -> Layout -> Layout  // This is used before any menus are registered. Then replaced by WP Naviagation
 		if ( ! wp_get_nav_menus() ) {
 			$controls['general-nav'] = array(
@@ -131,10 +131,10 @@ class Layers_Customizer_Config {
 										'href'        => admin_url( 'nav-menus.php' ),
 									),
 								); // header-layout
-			
+
 		}
-		
-		
+
+
 
 		// Header -> Layout -> Layout
 		$controls['general-css'] = array(

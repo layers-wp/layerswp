@@ -367,7 +367,12 @@ if( !function_exists( 'layers_get_header_class' ) ) {
 		}
 
 		// Handle invert if background-color light / dark
-		if ( '#FFFFFF' == layers_light_or_dark( $header_background_color_option, '#000000' /*dark*/, '#FFFFFF' /*dark*/ ) ) {
+		$light_or_dark = layers_light_or_dark( $header_background_color_option, '#000000' /*dark*/, '#FFFFFF' /*light*/ );
+
+		if (
+				'#FFFFFF' == $light_or_dark
+				&& '' != $header_background_color_option
+			) {
 			$classes[] = 'invert';
 		}
 
@@ -425,7 +430,7 @@ if( !function_exists( 'layers_apply_customizer_styles' ) ) {
 		// Header
 		if( layers_get_theme_mod( 'header-background-color' ) ){
 			$bg_opacity = ( layers_get_theme_mod( 'header-overlay') ) ? .5 : 1 ;
-			layers_inline_styles( '.header-site, .header-site.header-sticky', 'css', array( 'css' => 'background-color: rgba(' . implode( ', ' , hex2rgb( layers_get_theme_mod( 'header-background-color' ) ) ) . ', ' . $bg_opacity . ');' ) );
+			layers_inline_styles( '.header-site, .header-site.header-sticky', 'css', array( 'css' => 'background-color: rgba(' . implode( ', ' , layers_hex2rgb( layers_get_theme_mod( 'header-background-color' ) ) ) . ', ' . $bg_opacity . ');' ) );
 		}
 
 		// Footer
@@ -772,7 +777,7 @@ if( !function_exists( 'layers_inline_styles' ) ) {
 			case 'text-shadow' :
 
 				if( '' == $args[ 'text-shadow' ] ) return ;
-				$css .= 'text-shadow: 0px 0px 10px rgba(' . implode( ', ' , hex2rgb( $args[ 'text-shadow' ] ) ) . ', 0.75);';
+				$css .= 'text-shadow: 0px 0px 10px rgba(' . implode( ', ' , layers_hex2rgb( $args[ 'text-shadow' ] ) ) . ', 0.75);';
 
 			break;
 
@@ -961,8 +966,8 @@ if( !function_exists( 'layers_translate_image_ratios' ) ) {
  * @return	array	implode(",", $rgb); returns the rgb values separated by commas
  */
 
-if(!function_exists('hex2rgb') ) {
-	function hex2rgb($hex) {
+if(!function_exists('layers_hex2rgb') ) {
+	function layers_hex2rgb($hex) {
 	   $hex = str_replace("#", "", $hex);
 
 	   if(strlen($hex) == 3) {

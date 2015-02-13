@@ -30,6 +30,32 @@ class Layers_API {
         add_filter( 'pre_set_site_transient_update_themes', array( $this, 'remove_org_reliance' ) );
     }
 
+    /**
+    * Give us a list of available extensions
+    */
+    public function get_extension_list(){
+
+        $extension_list = array(
+                'layers-woocommerce' => array(
+                        'title' => __( 'WooCommerce for Layers', LAYERS_THEME_SLUG ),
+                        'description' => __( 'Adds an advanced product widget, product slider and multiple page layouts.', LAYERS_THEME_SLUG ),
+                        'available' => false,
+                        'date' => NULL,
+                        'price' => NULL,
+                    ),
+                'layers-showcase' => array(
+                        'title' => __( 'Showcase for Layers', LAYERS_THEME_SLUG ),
+                        'description' => __( 'List your portfolio items with relevant meta such as client, web url and project role.', LAYERS_THEME_SLUG ),
+                        'available' => false,
+                        'date' => NULL,
+                        'price' => NULL,
+                    ),
+
+            );
+
+        return apply_filters( 'layers_extension_list' , $extension_list );
+    }
+
     public function get_theme_info(){
 
         $this->theme = wp_get_theme( LAYERS_THEME_SLUG );
@@ -49,16 +75,6 @@ class Layers_API {
         return $theme;
 
     }
-
-    public function remove_org_reliance( $theme_data ) {
-
-        $theme_info = $this->get_theme_info();
-
-        unset( $theme_data->response[ 'layers' ] );
-        unset( $theme_data->checked[ 'layers' ] );
-
-        return $theme_data;
-    } // remove_org_reliance
 }
 
 if( !function_exists( 'layers_api_init' ) ) {

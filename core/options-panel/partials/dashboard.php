@@ -1,8 +1,7 @@
 <?php // Fetch current user information
 $user = wp_get_current_user(); ?>
-
-<?php // Get builder pages
-$find_builder_page = layers_get_builder_pages(); ?>
+<?php // Get the API up and running for the extension listing
+$api = new Layers_API(); ?>
 
 <section class="layers-area-wrapper">
 
@@ -54,9 +53,8 @@ $find_builder_page = layers_get_builder_pages(); ?>
 							<?php foreach( layers_get_builder_pages() as $page ) { ?>
 								<li>
 									<a class="layers-page-list-title" href="<?php echo admin_url( 'post.php?post=' . $page->ID . '&action=edit' ); ?>"><?php echo $page->post_title; ?></a>
-									<!-- <pre><?php print_r( $page ) ; ?></pre> -->
-									<span class="layers-pull-right">
-										<a href=""><?php _e( 'Edit Layout' , LAYERS_THEME_SLUG ); ?></a> |
+									<span class="layers-pull-right layers-hide">
+										<a href="<?php echo admin_url( 'customize.php?url=' . esc_url( get_the_permalink() ) . '&layers-builder=1' ); ?>"><?php _e( 'Edit Layout' , LAYERS_THEME_SLUG ); ?></a> |
 										<a href="<?php echo admin_url( 'post.php?post=' . $page->ID . '&action=edit' ); ?>"><?php _e( 'Edit' , LAYERS_THEME_SLUG ); ?></a> |
 										<a href="<?php echo get_the_permalink( $page->ID ); ?>"><?php _e( 'View' , LAYERS_THEME_SLUG ); ?></a>
 									</span>
@@ -64,7 +62,7 @@ $find_builder_page = layers_get_builder_pages(); ?>
 							<?php }?>
 						</ul>
 						<div class="layers-button-well">
-							<a href="<?php echo admin_url( 'admin.php?page=add-new-page' ); ?>" class="layers-button btn-primary">
+							<a href="<?php echo admin_url( 'admin.php?page=layers-add-new-page' ); ?>" class="layers-button btn-primary">
 								<?php _e( 'Add New Page', LAYERS_THEME_SLUG ); ?>
 							</a>
 						</div>
@@ -78,68 +76,47 @@ $find_builder_page = layers_get_builder_pages(); ?>
 						<div class="layers-panel-title">
 							<h4 class="layers-heading"><?php _e( 'Extensions', LAYERS_THEME_SLUG ); ?></h4>
 						</div>
-						<ul class="layers-list layers-extensions">
-							<li>
-								<h3 class="layers-heading">
-									<?php _e( 'Layers WooCommerce Extension', LAYERS_THEME_SLUG ); ?>
-								</h3>
-								<p>
-									<?php _e( 'If you\'d like to test out eCommerce then you\'ll need to install the Layers WooCommerce Extension.', LAYERS_THEME_SLUG ); ?>
-								</p>
-								<div class="layers-btn-group">
-									<?php if( class_exists( 'Layers_WooCommerce' ) ) { ?>
-										<span class="layers-success"><?php _e( 'Installed!', LAYERS_THEME_SLUG ); ?></span>
-									<?php } else { ?>
-										<a class="layers-button btn-primary" href="<?php echo 'http://cdn.oboxsites.com/layers/layers-woocommerce.zip?ver=' . rand(0 , 100); ?>" target="_blank">
-											<?php _e( 'Install WooCommerce for Layers', LAYERS_THEME_SLUG ); ?>
-										</a>
-									<?php } ?>
-								</div>
-							</li>
-							<li>
-								<h3 class="layers-heading">
-									<?php _e( 'Name', LAYERS_THEME_SLUG ); ?>
-								</h3>
-								<p>
-									<?php _e( '
-										Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse vitae massa velit, eu laoreet massa.
-										Sed ac orci libero, eu dignissim enim.
-									', LAYERS_THEME_SLUG ); ?>
-								</p>
-								<div class="layers-btn-group">
-									<a class="layers-button" href="" target="_blank">
-										<?php _e( 'Purchase', LAYERS_THEME_SLUG ); ?>
-									</a>
-									<a class="layers-button btn-link" href="" target="_blank">
-										<?php _e( 'More Details', LAYERS_THEME_SLUG ); ?>
-									</a>
-								</div>
-							</li>
-							<li>
-								<h3 class="layers-heading">
-									<?php _e( 'Name', LAYERS_THEME_SLUG ); ?>
-								</h3>
-								<p>
-									<?php _e( '
-										Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse vitae massa velit, eu laoreet massa.
-										Sed ac orci libero, eu dignissim enim.
-									', LAYERS_THEME_SLUG ); ?>
-								</p>
-								<div class="layers-btn-group">
-									<a class="layers-button" href="" target="_blank">
-										<?php _e( 'Purchase', LAYERS_THEME_SLUG ); ?>
-									</a>
-									<a class="layers-button btn-link" href="" target="_blank">
-										<?php _e( 'More Details', LAYERS_THEME_SLUG ); ?>
-									</a>
-								</div>
-							</li>
-						</ul>
-						<div class="layers-button-well">
-							<a class="layers-button btn-primary" href="" target="_blank">
-								<?php _e( 'View More Extensions', LAYERS_THEME_SLUG ); ?>
-							</a>
-						</div>
+							<ul class="layers-list layers-extensions">
+								<?php foreach( $api->get_extension_list() as $extension_key => $extension_details ) { ?>
+									<li>
+										<h3 class="layers-heading">
+											<?php echo $extension_details[ 'title' ]; ?>
+										</h3>
+										<?php if( isset( $extension_details[ 'description' ] ) ){ ?>
+											<p>
+												<?php echo $extension_details[ 'description' ]; ?>
+											</p>
+										<?php } ?>
+										<?php if( isset( $extension_details[ 'available' ] ) && false == $extension_details[ 'available' ] ) { ?>
+											<div class="layers-btn-group">
+												<p><?php _e( 'Coming soon' , LAYERS_THEME_SLUG ); ?></p>
+											</div>
+										<?php } else { ?>
+											<?php if( isset( $extension_details[ 'links' ] ) && ( isset( $extension_details[ 'links' ][ 'purchase' ] ) || isset( $extension_details[ 'links' ][ 'details' ] ) ) ){ ?>
+												<div class="layers-btn-group">
+													<div class="layers-btn-group">
+														<?php if( NULL != $extension_details[ 'links' ][ 'purchase' ] ) { ?>
+															<a class="layers-button" href="<?php echo $extension_details[ 'links' ][ 'purchase' ]; ?>" target="_blank">
+																<?php _e( 'Purchase' , LAYERS_THEME_SLUG ) ;?>
+															</a>
+														<?php } ?>
+														<?php if( NULL != $extension_details[ 'links' ][ 'details' ] ) { ?>
+															<a class="layers-button btn-link" href="<?php echo $extension_details[ 'links' ][ 'details' ]; ?>" target="_blank">
+																<?php _e( 'More Details' , LAYERS_THEME_SLUG ) ;?>
+															</a>
+														<?php } ?>
+													</div>
+												</div>
+											<?php } ?>
+										<?php } ?>
+									</li>
+								<?php } // foreach extensions ?>
+							</ul>
+							<div class="layers-button-well">
+								<a class="layers-button btn-primary" href="" target="_blank">
+									<?php _e( 'View More Extensions', LAYERS_THEME_SLUG ); ?>
+								</a>
+							</div>
 					</div>
 				</div>
 
@@ -169,11 +146,8 @@ $find_builder_page = layers_get_builder_pages(); ?>
 							<h4 class="layers-heading"><?php _e( 'Helpful Tips', LAYERS_THEME_SLUG ); ?></h4>
 						</div>
 						<div class="layers-content">
-		                    <video width="490" height="auto" controls>
-		                        <source src="http://cdn.oboxsites.com/layers/videos/adding-a-widget.mp4?v=<?php echo LAYERS_VERSION; ?>" type="video/mp4">
-		                        Your browser does not support the video tag.
-		                    </video>
-	                    </div>
+							<?php layers_show_html5_video( 'http://cdn.oboxsites.com/layers/videos/adding-a-widget.mp4', 490 ); ?>
+		                </div>
 					</div>
 				</div>
 

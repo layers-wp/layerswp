@@ -1015,3 +1015,18 @@ if ( ! function_exists( 'layers_menu_fallback' ) ) {
 		echo '</ul>';
 	}
 } // layers_light_or_dark
+
+
+/**
+ * Standard menu fallback
+ */
+
+if ( ! function_exists( 'layers_show_html5_video' ) ) {
+	function layers_show_html5_video( $src = NULL , $width = 490 ) {
+		if( NULL == $src ) return; ?>
+		<video width="<?php echo $width;?>" height="auto" controls>
+			<source src="<?php echo $src; ?>?v=<?php echo LAYERS_VERSION; ?>" type="video/<?php echo substr( $src, -3, 3); ?>">
+			<?php _e( 'Your browser does not support the video tag.' , LAYERS_THEME_SLUG ); ?>
+		</video>
+<?php }
+} // layers_show_html5_video

@@ -50,6 +50,7 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 				'slide_ids' => rand( 1 , 1000 ),
 				'show_slider_arrows' => 'on',
 				'show_slider_dots' => 'on',
+				'animation_type' => 'slide'
 
 			);
 
@@ -203,8 +204,9 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 						var <?php echo $swiper_js_obj; ?> = $('#<?php echo $widget_id; ?>').swiper({
 							//Your options here:
 							mode:'horizontal',
-							<?php if( isset( $widget['show_slider_dots'] ) ) { ?>pagination: '.<?php echo $this->get_field_id( 'pages' ); ?>',<?php } ?>
-							/*slidesPerView: 4,*/
+							<?php if( isset( $widget['show_slider_dots'] ) ) { ?>
+								pagination: '.<?php echo $this->get_field_id( 'pages' ); ?>',
+							<?php } ?>
 							paginationClickable: true,
 							watchActiveIndex: true,
 							loop: true

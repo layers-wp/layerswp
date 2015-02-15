@@ -157,8 +157,11 @@ jQuery(document).ready(function($){
 		// "Hi Mom"
 		$that = $(this);
 
+		// Set the string value
+		$val = $that.val().toString().substr( 0 , 51 );
+
 		// Set the Title
-		$string = ': ' + $that.val();
+		$string = ': ' + ( $val.length > 50 ? $val + '...' : $val );
 
 		// Update the accordian title
 		$that.closest( '.layers-accordion-item' ).find( 'span.layers-detail' ).text( $string );

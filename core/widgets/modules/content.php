@@ -402,7 +402,11 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 				<li class="layers-accordion-item" data-guid="<?php echo esc_attr( $column_guid ); ?>">
 					<a class="layers-accordion-title">
 						<span>
-							<?php _e( 'Column' , LAYERS_THEME_SLUG ); ?><span class="layers-detail"><?php echo ( isset( $title ) ? ': ' . stripslashes( $title ) : NULL ); ?></span>
+							<?php _e( 'Column' , LAYERS_THEME_SLUG ); ?>
+							<span class="layers-detail">
+								<?php echo ( isset( $title ) ? ': ' . substr( stripslashes( $title ), 0 , 50 ) : NULL ); ?>
+								<?php echo ( isset( $title ) && strlen( $title ) > 50 ? '...' : NULL ); ?>
+							</span>
 						</span>
 					</a>
 					<section class="layers-accordion-section layers-content">

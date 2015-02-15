@@ -181,7 +181,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 
 							// Set Column CSS Classes
 							$column_class = array();
-							$column_class[] = 'media layers-masonry-column';
+							$column_class[] = 'layers-masonry-column';
 							$column_class[] = $span_class;
 							if( !isset( $widget['design'][ 'gutter' ] ) ) {
 								$column_class[] = 'column-flush';

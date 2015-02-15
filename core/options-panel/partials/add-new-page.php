@@ -9,16 +9,7 @@ $find_builder_page = layers_get_builder_pages(); ?>
 
 <section class="layers-area-wrapper" id="layers-add-new-page">
 
-   <div class="layers-page-title layers-section-title layers-large layers-content-massive layers-no-push-bottom">
-      <div class="layers-container">
-         <h2 class="layers-heading" id="layers-options-header">
-            <?php _e( 'Select a Layout', LAYERS_THEME_SLUG ); ?>
-         </h2>
-         <p class="layers-excerpt">
-            <?php _e( 'Get started with a blank canvas or choose from a variety of preset layouts to help you fast track your website creation.', LAYERS_THEME_SLUG ); ?>
-         </p>
-      </div>
-   </div>
+   <?php $this->header( __( 'Select a Layout', LAYERS_THEME_SLUG ), __( 'Get started with a blank canvas or choose from a variety of preset layouts to help you fast track your website creation.' , LAYERS_THEME_SLUG ) ); ?>
 
    <div class="layers-row layers-well layers-content-massive">
       <?php $this->load_partial( 'preset-layouts' ); ?>

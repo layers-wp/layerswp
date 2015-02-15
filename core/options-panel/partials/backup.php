@@ -2,16 +2,7 @@
 <?php $builder_pages = layers_get_builder_pages(); ?>
 <section class="layers-area-wrapper">
 
-	<div class="layers-page-title layers-section-title layers-large layers-content-massive layers-no-push-bottom">
-		<div class="layers-container">
-			<h2 class="layers-heading" id="layers-options-header">
-				<?php _e(' Layers Page Backup' , LAYERS_THEME_SLUG ); ?>
-			</h2>
-			<p class="layers-excerpt">
-				<?php _e( 'Convert your Layers pages into regular WordPress pages, preserving the content you have worked so hard to create.' , LAYERS_THEME_SLUG ); ?>
-			</p>
-		</div>
-	</div>
+	<?php $this->header( __( 'Layers Page Backup', LAYERS_THEME_SLUG ), __( 'Convert your Layers pages into regular WordPress pages, preserving the content you have worked so hard to create.' , LAYERS_THEME_SLUG ) ); ?>
 
 	<div class="layers-row layers-well layers-content-massive">
 		<div class="layers-container">

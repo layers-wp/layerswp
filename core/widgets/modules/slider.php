@@ -109,7 +109,7 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 							<a href="" class="l-right-arrow animate"></a>
 						</div>
 					<?php } ?>
-					<div class="pages animate">
+					<div class="<?php echo $this->get_field_id( 'pages' ); ?> pages animate">
 						<?php for( $i = 0; $i < count( $widget[ 'slides' ] ); $i++ ) { ?>
 							<a href="" class="page animate <?php if( 0 == $i ) echo 'active'; ?>"></a>
 						<?php } ?>
@@ -170,7 +170,7 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 														<h3 class="heading"><?php echo $slide['title']; ?></h3>
 													<?php } ?>
 													<?php if( $this->check_and_return( $slide , 'excerpt' ) ) { ?>
-														<div class="excerpt"><?php echo $slide['excerpt']; ?></div>
+														<div class="excerpt"><?php echo apply_filters( 'the_content', $slide['excerpt'] ); ?></div>
 													<?php } ?>
 													<?php if( 'div' == $slide_wrapper_tag && $this->check_and_return( $slide, 'link' ) && $this->check_and_return( $slide , 'link_text' ) ) { ?>
 														<a href="<?php echo $slide['link']; ?>" class="button btn-<?php echo $this->check_and_return( $slide , 'design' , 'fonts' , 'size' ); ?>"><?php echo $slide['link_text']; ?></a>
@@ -194,14 +194,16 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 			 		</div>
 				<?php } // if !empty( $widget->slides ) ?>
 		 	</section>
-		 	<?php if( !empty( $widget[ 'slides' ] ) && 1 < count( $widget[ 'slides' ] ) ) { ?>
+		 	<?php if( !empty( $widget[ 'slides' ] ) && 1 < count( $widget[ 'slides' ] ) ) {
+
+		 		$swiper_js_obj = str_replace( '-' , '_' , $this->get_field_id( 'slider' ) ); ?>
 			 	<script>
 					jQuery(function($){
 
-						var swiper = $('#<?php echo $widget_id; ?>').swiper({
+						var <?php echo $swiper_js_obj; ?> = $('#<?php echo $widget_id; ?>').swiper({
 							//Your options here:
 							mode:'horizontal',
-							<?php if( isset( $widget['show_slider_dots'] ) ) { ?>pagination: '.pages',<?php } ?>
+							<?php if( isset( $widget['show_slider_dots'] ) ) { ?>pagination: '.<?php echo $this->get_field_id( 'pages' ); ?>',<?php } ?>
 							/*slidesPerView: 4,*/
 							paginationClickable: true,
 							watchActiveIndex: true,
@@ -211,8 +213,9 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 
 						<?php if( 1 < count( $widget[ 'slides' ] ) ) { ?>
 							// Allow keyboard control
-							swiper.enableKeyboardControl();
+							<?php echo $swiper_js_obj; ?>.enableKeyboardControl();
 						<?php } // if > 1 slide ?>
+
 						$('#<?php echo $widget_id; ?>').find('.arrows a').on( 'click' , function(e){
 							e.preventDefault();
 
@@ -220,15 +223,17 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 							$that = $(this);
 
 							if( $that.hasClass( 'swiper-pagination-switch' ) ){ // Anchors
-								swiper.swipeTo( $that.index() );
+								<?php echo $swiper_js_obj; ?>.swipeTo( $that.index() );
 							} else if( $that.hasClass( 'l-left-arrow' ) ){ // Previous
-								swiper.swipePrev();
+								<?php echo $swiper_js_obj; ?>.swipePrev();
 							} else if( $that.hasClass( 'l-right-arrow' ) ){ // Next
-								swiper.swipeNext();
+								<?php echo $swiper_js_obj; ?>.swipeNext();
 							}
 
 							return false;
 						});
+
+						<?php echo $swiper_js_obj; ?>.init();
 
 					})
 			 	</script>
@@ -434,7 +439,11 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 				<li class="layers-accordion-item <?php echo $this->slide_item_count; ?>" data-guid="<?php echo $slide_guid; ?>">
 					<a class="layers-accordion-title">
 						<span>
-							<?php _e( 'Slide' , LAYERS_THEME_SLUG ); ?><span class="layers-detail"><?php echo ( isset( $title ) ? ': ' . stripslashes( $title ) : NULL ); ?></span>
+							<?php _e( 'Slide' , LAYERS_THEME_SLUG ); ?>
+							<span class="layers-detail">
+								<?php echo ( isset( $title ) ? ': ' . substr( stripslashes( $title ), 0 , 50 ) : NULL ); ?>
+								<?php echo ( isset( $title ) && strlen( $title ) > 50 ? '...' : NULL ); ?>
+							</span>
 						</span>
 					</a>
 					<section class="layers-accordion-section layers-content">

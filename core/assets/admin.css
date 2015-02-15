@@ -2116,7 +2116,7 @@ input[type=radio]:checked + .layers-settings-icon span{
 ul#adminmenu a.wp-has-current-submenu:after, ul#adminmenu > li.current > a.current:after{
     border-right-color: #009DF3;
 }
-#toplevel_page_layers-welcome .wp-menu-image:before {
+#toplevel_page_layers-dashboard .wp-menu-image:before {
     content: "\e62f";
     font-family: "layers-interface";
     font-weight: normal;

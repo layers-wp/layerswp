@@ -7,9 +7,319 @@ License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 */
 
-/*-------------------------------*/
-/*- DESKTOP ---------------------*/
-/*-------------------------------*/
+/*--------------------------------------------------------------*/
+/*- SMALL SCREENS ----------------------------------------------*/
+/*--------------------------------------------------------------*/
+@media only screen and (max-width: 480px){
+
+	/*---------------------------*/
+	/*- SPAN - 1 ----------------*/
+	.column.span-1{
+		float: left;
+		width: 15%;
+		margin-right: 2%;
+	}
+	.column-flush.span-1{
+		float: left;
+		width: 16.6667%;;
+	}
+	.column.span-1:nth-child(6n+6),
+	.column-flush.span-1:nth-child(6n+6){
+		margin-right: 0;
+	}
+
+	/*---------------------------*/
+	/*- SPAN - 2 ----------------*/
+	.column.span-2{
+		float: left;
+		width: 48%;
+		margin-right: 4%;
+	}
+	.column-flush.span-2{
+		float: left;
+		width: 50%;
+		margin-right: 0%;	
+	}
+	.column.span-2:nth-child(2n),
+	.column-flush.span-2:nth-child(2n+2){
+		margin-right: 0;
+	}
+
+	/*---------------------------*/
+	/*- CLEARING SPANS ----------*/
+	.column.span-1:nth-child(6n+7),
+	.column.span-2:nth-child(2n+3){
+		background-color: #ff0;
+		clear: left;
+	}
+}
+
+@media only screen and (min-width: 481px){
+
+	/*---------------------------*/
+	/*- COLUMNS -----------------*/
+	.column,
+	.column-flush{
+		float: left;
+		margin-right: 2%;
+	}
+
+	/*---------------------------*/
+	/*- SPAN - 3 ----------------*/
+	.column.span-3:nth-child(4n+4),
+	.column-flush.span-4:nth-child(4n+4){
+		margin-right: 0;
+	}
+
+	/*---------------------------*/
+	/*- SPAN - 4 ----------------*/
+	.column.span-4{
+		float: left;
+		width: 32%;
+		margin-right: 2%;
+	}
+	.column-flush.span-4{
+		float: left;
+		width: 33.33333%;
+	}
+	.column.span-4:nth-child(3n+3),
+	.column-flush.span-4:nth-child(3n+3){
+		margin-right: 0;
+	}
+
+	/*---------------------------*/
+	/*- SPAN - 6 ----------------*/
+	.column.span-6{
+		width: 49%;
+		margin-right: 2%;
+	}
+	.column-flush.span-6{
+		width: 50%;
+	}
+	.column.span-6:nth-child(2n+2),
+	.column-flush.span-6:nth-child(2n+2){
+		margin-right: 0;
+	}
+
+}
+
+/*--------------------------------------------------------------*/
+/*-  AWKWARD SIZE BETWEEN PHONE LANDSCAPE AND TABS -------------*/
+/*--------------------------------------------------------------*/
+@media only screen and (min-width: 481px) and (max-width: 768px){
+
+	/*---------------------------*/
+	/*- SPAN - 2 ----------------*/
+	.column.span-2{
+		float: left;
+		width: 32%;
+		margin-right: 2%;
+	}
+	.column-flush.span-2{
+		float: left;
+		width: 33.33333%;
+	}
+	.column.span-2:nth-child(3n+3),
+	.column-flush.span-2:nth-child(3n+3){
+		margin-right: 0;
+	}
+
+	/*---------------------------*/
+	/*- SPAN - 3 ----------------*/
+	.column.span-3{
+		float: left;
+		width: 49%;
+		margin-right: 2%;
+	}
+	.column-flush.span-3{
+		float: left;
+		width: 50%;
+	}
+	.column.span-3:nth-child(2n+2),
+	.column-flush.span-3:nth-child(2n+2){
+		margin-right: 0;
+	}
+
+	/*---------------------------*/
+	/*- CLEARING SPANS ----------*/
+	.column.span-2:nth-child(3n+4),
+	.column.span-3:nth-child(2n+3){
+		background-color: #ff0;
+		clear: left;
+	}
+
+}
+
+/*--------------------------------------------------------------*/
+/*- BETWEEN TABLETS AND DESKTOP --------------------------------*/
+/*--------------------------------------------------------------*/
+@media only screen and (min-width: 601px) and (max-width: 860px){
+
+	/*---------------------------*/
+	/*- SPAN - 5 ----------------*/
+	.column.span-5{
+		width: 49%;
+		margin-right: 2%;
+	}
+	.column-flush.span-5{
+		width: 50%;
+	}
+	.column.span-5 + .span-5{
+		margin-right: 0;
+	}
+
+	/*---------------------------*/
+	/*- SPAN - 10 ---------------*/
+	.column.span-10,
+	.column-flush.span-10{
+		width: 100%;
+		margin-right: 0;
+	}
+
+	/*---------------------------*/
+	/*- COMBINATIONS ------------*/
+	.column.span-5 + .span-5 + .span-2{
+		width: 100%;
+	}
+
+	.column.span-7 + .span-5{
+		width: 40.5%;
+	}
+	.column-flush.span-7 + .span-5{
+		width: 41.66665%;
+	}
+
+	.column.span-9 + .span-3{
+		width: 23.5%;
+	}
+	.column-flush.span-9 + .span-3{
+		width: 25%;
+	}
+	
+	.column.span-10 + .span-2{
+		width: 49%;
+	}
+}
+
+/*--------------------------------------------------------------*/
+/*- EVERYTHING BIGGER THAN SMALL TABLETS -----------------------*/
+/*--------------------------------------------------------------*/
+@media only screen and (min-width: 769px) {
+
+	/*---------------------------*/
+    /*- COLUMN WIDTHS -----------*/
+    .span-1{width: 6.5%;}
+    .span-2{width: 15%;}
+    .span-3{width: 23.5%;}
+    .span-4{width: 33.33333%;}
+    .span-5{width: 40.5%;}
+    .span-7{width: 57.5%;}
+    .span-8{width: 66%;}
+    .span-9{width: 74.5%;}
+    .span-10{width: 83%;}
+    .span-11{width: 91.5%;}
+    .span-12{
+        clear: both;
+        float: none;
+	}
+
+    /*---------------------------*/
+    /*- FLUSH COLUMNS -----------*/
+    .column-flush.span-1{width: 8.333333%;}
+    .column-flush.span-2{width: 16.6667%;}
+    .column-flush.span-3{width: 25%;}
+    .column-flush.span-5{width: 41.66665%;}
+    .column-flush.span-7{width: 58.1%;}
+    .column-flush.span-8{width: 66.65%;}
+    .column-flush.span-9{width: 74.7%;}
+    .column-flush.span-10{width: 83%;}
+    .column-flush.span-11{width: 91.3%;}
+    .column-flush.span-12{width: 100%;}
+
+    /*---------------------------*/
+    /*- GUTTERS -----------------*/
+    .offset-1{margin-right: 8.5%;}
+    .offset-2{margin-right: 17%;}
+    .offset-3{margin-right: 25.5%;}
+    .offset-4{margin-right: 34%;}
+    .offset-5{margin-right: 42.5%;}
+    .offset-6{margin-right: 51%;}
+    .offset-7{margin-right: 59.5%;}
+    .offset-8{margin-right: 68%;}
+    .offset-9{margin-right: 76.5%;}
+    .offset-10{margin-right: 85%;}
+    .offset-11{margin-right: 93.5%;}
+
+    .offset-left-1{margin-left: 8.5%;}
+    .offset-left-2{margin-left: 17%;}
+    .offset-left-3{margin-left: 25.5%;}
+    .offset-left-4{margin-left: 34%;}
+    .offset-left-5{margin-left: 42.5%;}
+    .offset-left-6{margin-left: 51%;}
+    .offset-left-7{margin-left: 59.5%;}
+    .offset-left-8{margin-left: 68%;}
+    .offset-left-9{margin-left: 76.5%;}
+    .offset-left-10{margin-left: 85%;}
+    .offset-left-11{margin-left: 93.5%;}
+
+    .pull-left-1{margin-left: -8.5%;}
+    .pull-left-2{margin-left: -17%;}
+    .pull-left-3{margin-left: -25.5%;}
+    .pull-left-4{margin-left: -34%;}
+    .pull-left-5{margin-left: -42.5%;}
+    .pull-left-6{margin-left: -51%;}
+    .pull-left-7{margin-left: -59.5%;}
+    .pull-left-8{margin-left: -68%;}
+    .pull-left-9{margin-left: -76.5%;}
+    .pull-left-10{margin-left: -85%;}
+    .pull-left-11{margin-left: -93.5%;}
+
+    .pull-right-1{margin-right: -8.5%;}
+    .pull-right-2{margin-right: -17%;}
+    .pull-right-3{margin-right: -25.5%;}
+    .pull-right-4{margin-right: -34%;}
+    .pull-right-5{margin-right: -42.5%;}
+    .pull-right-6{margin-right: -51%;}
+    .pull-right-7{margin-right: -59.5%;}
+    .pull-right-8{margin-right: -68%;}
+    .pull-right-9{margin-right: -76.5%;}
+    .pull-right-10{margin-right: -85%;}
+    .pull-right-11{margin-right: -93.5%;}
+
+    /*---------------------------*/
+    /*- MARGIN RESET ------------*/
+    .row .span-1:nth-child(12n+12),
+    .row .span-2:nth-child(6n+6),
+    .row .span-4:nth-child(3n+3),
+    .row .span-6:nth-child(2n+2){
+    	margin-right: 0;
+    }
+
+    /*---------------------------*/
+    /*- CLEAR RESET -------------*/
+    .row .span-3:nth-child(3n+5),    
+    .row .span-2:nth-child(6n+7){
+		background-color: #ff0;
+		clear: left;
+	}
+
+	/*---------------------------*/
+	/*- CLEARING SPANS ----------*/
+	.column.span-4:nth-child(3n+4),
+	.column.span-6:nth-child(2n+3){
+		background-color: #ff0;
+		clear: left;
+	}
+
+	/*---------------------------*/
+	/*- EXCEPTIONS --------------*/
+	.column.span-9 + .column.span-3{
+		margin-right: 0;
+	}
+	
+
+}
+
 @media only screen and (min-width: 1100px){
 
     /*---------------------------*/
@@ -18,85 +328,11 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 		display: block;
 	}
 }
-@media only screen and (min-width: 768px){
 
-}
 
-/*-------------------------------*/
-/*- iPAD ONLY -------------------*/
-/*-------------------------------*/
-@media only screen and (max-width: 768px) and (min-width: 481px) {
-
-}
-
-/*-------------------------------*/
-/*- IPAD PORTRAIT ---------------*/
-/*-------------------------------*/
-@media only screen and (max-width: 768px){
-
-}
-
-/*-------------------------------*/
-/*- PHONES ----------------------*/
-/*-------------------------------*/
 @media only screen and (max-width: 480px), screen and (max-device-width: 480px), screen and (max-width: 600px) {
-
-/*-------------------------------*/
-/*- PAGE SETUP ------------------*/
-/*-------------------------------*/
-html{}
-
-/*-------------------------------*/
-/*- COLUMNS ---------------------*/
-/*-------------------------------*/
-
-	.column,
-	.column-flush{
-		float: none;
-		margin: 0 0 20px;
-	}
-
-	/*---------------------------*/
-	/*- FULL COLUMNS ------------*/
-	.column[class*='span-'],
-	.column[class*=' span-'],
-	.column-flush[class^="span-"],
-	.column-flush[class*=" span-"]{
-		width: 100%;
-	}
-
-	/*---------------------------*/
-	/*- FLUSH COLUMNS -----------*/
-	.column-flush.span-1,
-	.column-flush.span-2,
-	.column-flush.span-3,
-	.column-flush.span-4,
-	.column-flush.span-5,
-	.column-flush.span-6,
-	.column-flush.span-7,
-	.column-flush.span-8,
-	.column-flush.span-9,
-	.column-flush.span-10,
-	.column-flush.span-11,
-	.column-flush.span-12{
-		width: 100%;
-	}
-
-	/*---------------------------*/
-	/*- SIDE-BY-SIDE COLUMNS ----*/
-	.column.span-2,
-	.column-flush.span-2{
-		width: 49%;
-		margin-right: 2%;
-	}
-	.column.span-2:nth-child(2n+2)
-	.column-flush.span-2:nth-child(2n+2){
-		margin-right: 0;
-	}
-
 /*-------------------------------*/
 /*- CONTAINERS ------------------*/
-/*-------------------------------*/
 
 	/*---------------------------*/
 	/*- CONTENT -----------------*/
@@ -169,7 +405,6 @@ html{}
 
 /*-------------------------------*/
 /*- FORMS -----------------------*/
-/*-------------------------------*/
 
 	/*---------------------------*/
 	/*- GENERAL -----------------*/
@@ -203,7 +438,6 @@ html{}
 
 /*-------------------------------*/
 /*- NAVIGATION ------------------*/
-/*-------------------------------*/
 
     /*---------------------------*/
     /*- HORIZONTAL NAV ----------*/
@@ -264,7 +498,6 @@ html{}
 
 /*-------------------------------*/
 /*- TITLES ----------------------*/
-/*-------------------------------*/
 .title{
 	padding: 40px 20px;
 }
@@ -277,7 +510,6 @@ html{}
 
 /*-------------------------------*/
 /*- THUMBNAILS ------------------*/
-/*-------------------------------*/
 
 	/*---------------------------*/
     /*- OVERLAYS ----------------*/
@@ -326,39 +558,38 @@ html{}
 
 /*-------------------------------*/
 /*- HEADERS ---------------------*/
-/*-------------------------------*/
-.header-secondary{
-	display: none;
-}
-.header-site .container{
-	padding: 10px 20px;
-}
-.header-center .logo{
-	float: left;
-	text-align: left;
-}
-.header-center .site-logo-anchor{
-	overflow: hidden;
-}
-.header-center .site-description{
-	display: inline-block;
-	vertical-align: middle;
-}
-.header-center .site-logo-anchor + .site-description{
-	margin: 0 0 0 10px;
-}
-.header-center nav{
-	clear: none;
-	float: right;
-	margin: 10px 0;
-}
-.admin-bar .header-sticky.is_stuck.is_stuck_show{
-	margin-top: 0;
-}
+
+	.header-secondary{
+		display: none;
+	}
+	.header-site .container{
+		padding: 10px 20px;
+	}
+	.header-center .logo{
+		float: left;
+		text-align: left;
+	}
+	.header-center .site-logo-anchor{
+		overflow: hidden;
+	}
+	.header-center .site-description{
+		display: inline-block;
+		vertical-align: middle;
+	}
+	.header-center .site-logo-anchor + .site-description{
+		margin: 0 0 0 10px;
+	}
+	.header-center nav{
+		clear: none;
+		float: right;
+		margin: 10px 0;
+	}
+	.admin-bar .header-sticky.is_stuck.is_stuck_show{
+		margin-top: 0;
+	}
 
 /*-------------------------------*/
 /*- SLIDER ----------------------*/
-/*-------------------------------*/
 
     /*---------------------------*/
     /*- SWIPE ITEM --------------*/
@@ -388,7 +619,6 @@ html{}
 
 /*-------------------------------*/
 /*- CONTENT ---------------------*/
-/*-------------------------------*/
 
     /*---------------------------*/
 	/*- META INFO ---------------*/
@@ -398,7 +628,6 @@ html{}
 
 /*-------------------------------*/
 /*- COMPONENTS ------------------*/
-/*-------------------------------*/
 
     /*---------------------------*/
     /*- MARKETING BLOCK ---------*/
@@ -411,7 +640,6 @@ html{}
 
 /*-------------------------------*/
 /*- FOOTERS ---------------------*/
-/*-------------------------------*/
 
 	/*---------------------------*/
 	/*- COLUMNS -----------------*/
@@ -452,7 +680,6 @@ html{}
 
 /*-------------------------------*/
 /*- COMPONENTS ------------------*/
-/*-------------------------------*/
 
     /*---------------------------*/
     /*- OFF CANVAS --------------*/

@@ -117,117 +117,19 @@ object{
 
 /*-------------------------------*/
 /*- GRIDS -----------------------*/
-/*-------------------------------*/
+/*- column widths in responsive -*/
 
     /*---------------------------*/
     /*- ROWS AND COLUMNS --------*/
     .column{
-        float: left;
-        margin: 0 2% 20px 0;
+        margin: 0 0 20px 0;
         position: relative;
     }
     .column-flush{
-        float: left;
         margin: 0;
         position: relative;
     }
     .row .column:last-child{margin-right: 0;}
-
-    /*---------------------------*/
-    /*- COLUMN WIDTHS -----------*/
-    .span-1{width: 6.5%;}
-    .span-2{width: 15%;}
-    .span-3{width: 23.5%;}
-    .span-4{width: 32%;}
-    .span-5{width: 40.5%;}
-    .span-6{width: 49%;}
-    .span-7{width: 57.5%;}
-    .span-8{width: 66%;}
-    .span-9{width: 74.5%;}
-    .span-10{width: 83%;}
-    .span-11{width: 91.5%;}
-    .span-12{
-        clear: both;
-        float: none;
-        width: 100%;
-        margin-right: 0;
-    }
-
-    /*---------------------------*/
-    /*- FLUSH COLUMNS -----------*/
-    .column-flush.span-1{width: 8.333333%;}
-    .column-flush.span-2{width: 16.6667%;}
-    .column-flush.span-3{width: 25%;}
-    .column-flush.span-4{width: 33.33333%;}
-    .column-flush.span-5{width: 41.66665%;}
-    .column-flush.span-6{width: 50%;}
-    .column-flush.span-7{width: 58.1%;}
-    .column-flush.span-8{width: 66.65%;}
-    .column-flush.span-9{width: 74.7%;}
-    .column-flush.span-10{width: 83%;}
-    .column-flush.span-11{width: 91.3%;}
-    .column-flush.span-12{width: 100%;}
-
-    /*---------------------------*/
-    /*- GUTTERS -----------------*/
-    .offset-1{margin-right: 8.5%;}
-    .offset-2{margin-right: 17%;}
-    .offset-3{margin-right: 25.5%;}
-    .offset-4{margin-right: 34%;}
-    .offset-5{margin-right: 42.5%;}
-    .offset-6{margin-right: 51%;}
-    .offset-7{margin-right: 59.5%;}
-    .offset-8{margin-right: 68%;}
-    .offset-9{margin-right: 76.5%;}
-    .offset-10{margin-right: 85%;}
-    .offset-11{margin-right: 93.5%;}
-
-    .offset-left-1{margin-left: 8.5%;}
-    .offset-left-2{margin-left: 17%;}
-    .offset-left-3{margin-left: 25.5%;}
-    .offset-left-4{margin-left: 34%;}
-    .offset-left-5{margin-left: 42.5%;}
-    .offset-left-6{margin-left: 51%;}
-    .offset-left-7{margin-left: 59.5%;}
-    .offset-left-8{margin-left: 68%;}
-    .offset-left-9{margin-left: 76.5%;}
-    .offset-left-10{margin-left: 85%;}
-    .offset-left-11{margin-left: 93.5%;}
-
-    .pull-left-1{margin-left: -8.5%;}
-    .pull-left-2{margin-left: -17%;}
-    .pull-left-3{margin-left: -25.5%;}
-    .pull-left-4{margin-left: -34%;}
-    .pull-left-5{margin-left: -42.5%;}
-    .pull-left-6{margin-left: -51%;}
-    .pull-left-7{margin-left: -59.5%;}
-    .pull-left-8{margin-left: -68%;}
-    .pull-left-9{margin-left: -76.5%;}
-    .pull-left-10{margin-left: -85%;}
-    .pull-left-11{margin-left: -93.5%;}
-
-    .pull-right-1{margin-right: -8.5%;}
-    .pull-right-2{margin-right: -17%;}
-    .pull-right-3{margin-right: -25.5%;}
-    .pull-right-4{margin-right: -34%;}
-    .pull-right-5{margin-right: -42.5%;}
-    .pull-right-6{margin-right: -51%;}
-    .pull-right-7{margin-right: -59.5%;}
-    .pull-right-8{margin-right: -68%;}
-    .pull-right-9{margin-right: -76.5%;}
-    .pull-right-10{margin-right: -85%;}
-    .pull-right-11{margin-right: -93.5%;}
-
-    /*---------------------------*/
-    /*- RESETS ------------------*/
-    .row .column.span-1:nth-child(12n+12){margin-right: 0;}
-    .row .column.span-2:nth-child(6n+6){margin-right: 0;}
-    .row .column.span-3:nth-child(4n+4){margin-right: 0;}
-    .row .column.span-3:nth-child(4n+5){clear: left;}
-    .row .column.span-4:nth-child(3n+3){margin-right: 0;}
-    .row .column.span-4:nth-child(3n+4){clear: left;}
-    .row .column.span-6:nth-child(2n+2){margin-right: 0;}
-    .row .column.span-6:nth-child(2n+3){clear: left;}
 
     .no-gutter{margin-right: 0;}
 
@@ -1254,7 +1156,7 @@ object{
         float: none;
         width: 100%;
     }
-    .media.image-top.has-image .media-body{
+    .has-image .media.image-top .media-body{
         margin-top: 20px;
     }
     .media.image-bottom .media-body + .media-image{

@@ -191,7 +191,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 							if( '' != $this->check_and_return( $column, 'design' , 'background', 'image' ) || '' != $this->check_and_return( $column, 'design' , 'background', 'color' ) ) {
 								$column_class[] = 'content';
 							}
-							if( false != $this->check_and_return( $column , 'image' ) ) {
+							if( false != $media ) {
 								$column_class[] = 'has-image';
 							}
 							$column_class = implode( ' ', $column_class );

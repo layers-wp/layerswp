@@ -5,25 +5,7 @@ $api = new Layers_API(); ?>
 
 <section class="layers-area-wrapper">
 
-	<div class="layers-page-title layers-section-title layers-large layers-content-large layers-no-push-bottom">
-		<div class="layers-container">
-			<a href="http://oboxthemes.com/layers" class="layers-logo"><?php _e( 'Layers', LAYERS_THEME_SLUG ); ?></a>
-			<h2 class="layers-heading" id="layers-options-header"><?php _e( 'Dashboard', LAYERS_THEME_SLUG ); ?></h2>
-
-			<nav class="layers-nav-horizontal layers-dashboard-nav">
-				<ul>
-					<?php foreach( $this->get_menu_pages()  as $menu_key => $menu_details ) { ?>
-						<li <?php if( strpos( $menu_details[ 'link' ], 'layers-welcome' ) ) { ?>class="active"<?php } ?>>
-							<a href="<?php echo $menu_details[ 'link' ]; ?>">
-								<?php echo $menu_details[ 'label' ]; ?>
-							</a>
-						</li>
-					<?php }?>
-				</ul>
-			</nav>
-
-		</div>
-	</div>
+	<?php $this->header( __( 'Dashboard', LAYERS_THEME_SLUG ) ); ?>
 
 	<div class="layers-row layers-well layers-content-large">
 		<div class="layers-container-large">
@@ -157,4 +139,3 @@ $api = new Layers_API(); ?>
 	</div>
 </section>
 <?php $this->footer(); ?>
-

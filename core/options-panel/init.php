@@ -37,9 +37,40 @@ class Layers_Options_Panel {
 	}
 
 	/**
+	* Complex Header with Menu
+	*/
+	public function header( $title = NULL, $excerpt = NULL ){
+
+		if( isset( $_GET[ 'page' ] ) ) $current_page = $_GET[ 'page' ]; ?>
+		<header class="layers-page-title layers-section-title layers-large layers-content-large layers-no-push-bottom">
+			<div class="layers-container">
+				<a href="http://oboxthemes.com/layers" class="layers-logo"><?php _e( 'Layers', LAYERS_THEME_SLUG ); ?></a>
+				<?php if( isset( $title ) ) { ?>
+					<h2 class="layers-heading" id="layers-options-header"><?php echo esc_html( $title ); ?></h2>
+				<?php } ?>
+				<?php if( isset( $excerpt ) ) { ?>
+					<p class="layers-excerpt"><?php echo esc_html( $excerpt ); ?></p>
+				<?php } ?>
+				<nav class="layers-nav-horizontal layers-dashboard-nav">
+					<ul>
+						<?php foreach( $this->get_menu_pages()  as $menu_key => $menu_details ) { ?>
+							<li <?php if( isset( $current_page ) && strpos( $menu_details[ 'link' ],  $current_page ) ) { ?>class="active"<?php } ?>>
+								<a href="<?php echo $menu_details[ 'link' ]; ?>">
+									<?php echo $menu_details[ 'label' ]; ?>
+								</a>
+							</li>
+						<?php }?>
+					</ul>
+				</nav>
+
+			</div>
+		</header>
+	<?php }
+
+	/**
 	* Header
 	*/
-	public function header( $args = array() ){
+	public function simple_header( $args = array() ){
 
 		// Turn $args into an object because it's nicer to use as a template
 		$vars = (object) $args; ?>

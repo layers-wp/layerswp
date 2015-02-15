@@ -49,7 +49,6 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 	/*- CLEARING SPANS ----------*/
 	.column.span-1:nth-child(6n+7),
 	.column.span-2:nth-child(2n+3){
-		background-color: #ff0;
 		clear: left;
 	}
 }
@@ -58,10 +57,12 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 	/*---------------------------*/
 	/*- COLUMNS -----------------*/
-	.column,
-	.column-flush{
+	.column{
 		float: left;
 		margin-right: 2%;
+	}
+	.column-flush{
+		float: left;
 	}
 
 	/*---------------------------*/
@@ -144,7 +145,6 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 	/*- CLEARING SPANS ----------*/
 	.column.span-2:nth-child(3n+4),
 	.column.span-3:nth-child(2n+3){
-		background-color: #ff0;
 		clear: left;
 	}
 
@@ -296,18 +296,11 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
     }
 
     /*---------------------------*/
-    /*- CLEAR RESET -------------*/
-    .row .span-3:nth-child(3n+5),    
-    .row .span-2:nth-child(6n+7){
-		background-color: #ff0;
-		clear: left;
-	}
-
-	/*---------------------------*/
-	/*- CLEARING SPANS ----------*/
-	.column.span-4:nth-child(3n+4),
-	.column.span-6:nth-child(2n+3){
-		background-color: #ff0;
+    /*- CLEAR RESET -------------*/    
+    .row .span-2:nth-child(6n+7)
+    .row .span-3:nth-child(4n+5),
+	.row .span-4:nth-child(3n+4),
+	.row .span-6:nth-child(2n+3){
 		clear: left;
 	}
 
@@ -316,7 +309,7 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 	.column.span-9 + .column.span-3{
 		margin-right: 0;
 	}
-	
+
 
 }
 

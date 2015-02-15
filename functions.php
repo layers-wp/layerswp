@@ -150,15 +150,6 @@ if( ! function_exists( 'layers_setup' ) ) {
 			'size' => 'medium',
 		) );
 
-		/**
-		 * WooCommerce
-		 */
-		if ( defined( 'WOOCOMMERCE_VERSION' ) && version_compare( WOOCOMMERCE_VERSION, "2.1" ) >= 0 ) {
-		    add_filter( 'woocommerce_enqueue_styles', '__return_false' );
-		} else {
-		    define( 'WOOCOMMERCE_USE_CSS', false );
-		}
-
 		// Automatic Feed Links
 		add_theme_support( 'automatic-feed-links' );
 

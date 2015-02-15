@@ -24,10 +24,8 @@ class Layers_API {
 
     public function __construct() {
 
-        // $this->get_theme_info();
+        // Nothing to see here
 
-        // Remove theme's reliance on the WordPress updater
-        add_filter( 'pre_set_site_transient_update_themes', array( $this, 'remove_org_reliance' ) );
     }
 
     /**

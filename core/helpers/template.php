@@ -192,7 +192,7 @@ if( !function_exists( 'layers_bread_crumbs' ) ) {
 				<?php } elseif ( is_search() ) { ?>
 
 					<li><?php echo esc_html( $seperator ); ?></li>
-					<li><span class="current">"<?php the_search_query(); ?>"</span></li>
+					<li><span class="current">"<?php echo get_search_query(); ?>"</span></li>
 
 				<?php } elseif( is_tax() ) {
 
@@ -302,7 +302,7 @@ if( !function_exists( 'layers_get_page_title' ) ) {
 			};
 		} elseif( is_search() ) {
 			$title_array['title'] = __( 'Search' , LAYERS_THEME_SLUG );
-			$title_array['excerpt'] = the_search_query();
+			$title_array['excerpt'] = get_search_query();
 		} elseif( is_tag() ) {
 			$title_array['title'] = single_tag_title();
 		} elseif(!is_page() && is_category() ) {

@@ -109,7 +109,7 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 							<a href="" class="l-right-arrow animate"></a>
 						</div>
 					<?php } ?>
-					<div class="pages animate">
+					<div class="<?php echo $this->get_field_id( 'pages' ); ?> pages animate">
 						<?php for( $i = 0; $i < count( $widget[ 'slides' ] ); $i++ ) { ?>
 							<a href="" class="page animate <?php if( 0 == $i ) echo 'active'; ?>"></a>
 						<?php } ?>
@@ -194,14 +194,16 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 			 		</div>
 				<?php } // if !empty( $widget->slides ) ?>
 		 	</section>
-		 	<?php if( !empty( $widget[ 'slides' ] ) && 1 < count( $widget[ 'slides' ] ) ) { ?>
+		 	<?php if( !empty( $widget[ 'slides' ] ) && 1 < count( $widget[ 'slides' ] ) ) {
+
+		 		$swiper_js_obj = str_replace( '-' , '_' , $this->get_field_id( 'slider' ) ); ?>
 			 	<script>
 					jQuery(function($){
 
-						var swiper = $('#<?php echo $widget_id; ?>').swiper({
+						var <?php echo $swiper_js_obj; ?> = $('#<?php echo $widget_id; ?>').swiper({
 							//Your options here:
 							mode:'horizontal',
-							<?php if( isset( $widget['show_slider_dots'] ) ) { ?>pagination: '.pages',<?php } ?>
+							<?php if( isset( $widget['show_slider_dots'] ) ) { ?>pagination: '.<?php echo $this->get_field_id( 'pages' ); ?>',<?php } ?>
 							/*slidesPerView: 4,*/
 							paginationClickable: true,
 							watchActiveIndex: true,
@@ -211,8 +213,9 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 
 						<?php if( 1 < count( $widget[ 'slides' ] ) ) { ?>
 							// Allow keyboard control
-							swiper.enableKeyboardControl();
+							<?php echo $swiper_js_obj; ?>.enableKeyboardControl();
 						<?php } // if > 1 slide ?>
+
 						$('#<?php echo $widget_id; ?>').find('.arrows a').on( 'click' , function(e){
 							e.preventDefault();
 
@@ -220,15 +223,17 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 							$that = $(this);
 
 							if( $that.hasClass( 'swiper-pagination-switch' ) ){ // Anchors
-								swiper.swipeTo( $that.index() );
+								<?php echo $swiper_js_obj; ?>.swipeTo( $that.index() );
 							} else if( $that.hasClass( 'l-left-arrow' ) ){ // Previous
-								swiper.swipePrev();
+								<?php echo $swiper_js_obj; ?>.swipePrev();
 							} else if( $that.hasClass( 'l-right-arrow' ) ){ // Next
-								swiper.swipeNext();
+								<?php echo $swiper_js_obj; ?>.swipeNext();
 							}
 
 							return false;
 						});
+
+						<?php echo $swiper_js_obj; ?>.init();
 
 					})
 			 	</script>

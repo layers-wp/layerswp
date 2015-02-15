@@ -1253,6 +1253,8 @@ object{
     .media.image-top .media-body{
         float: none;
         width: 100%;
+    }
+    .media.image-top.has-image .media-body{
         margin-top: 20px;
     }
     .media.image-bottom .media-body + .media-image{

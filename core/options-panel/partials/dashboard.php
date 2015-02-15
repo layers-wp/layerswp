@@ -94,11 +94,6 @@ $api = new Layers_API(); ?>
 									</li>
 								<?php } // foreach extensions ?>
 							</ul>
-							<div class="layers-button-well">
-								<a class="layers-button btn-primary" href="" target="_blank">
-									<?php _e( 'View More Extensions', LAYERS_THEME_SLUG ); ?>
-								</a>
-							</div>
 					</div>
 				</div>
 

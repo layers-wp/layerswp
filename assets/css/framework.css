@@ -119,163 +119,6 @@ object{
 /*- GRIDS -----------------------*/
 /*- column widths in responsive -*/
 
-    /*---------------------------*/
-    /*- ROWS AND COLUMNS --------*/
-    .column{
-        margin: 0 0 20px 0;
-        position: relative;
-    }
-    .column-flush{
-        margin: 0;
-        position: relative;
-    }
-    .row .column:last-child{margin-right: 0;}
-
-    .no-gutter{margin-right: 0;}
-
-    /*---------------------------*/
-    /*- CENTERED COLUMN ---------*/
-    .middled,
-    .row .column.middled{
-        float: none;
-        margin: auto;
-    }
-
-    /*---------------------------*/
-    /*- MASONRY -----------------*/
-    .container.list-masonry{
-        max-width: 1000px;
-        padding: 0;
-        position:relative;
-    }
-    .container.list-masonry > *:not(.masonry-loading){
-        opacity: 0;
-    }
-    .container.list-masonry.loaded > *:not(.masonry-loading){
-        opacity: 1;
-    }
-    .container.list-masonry .masonry-loading{
-        width: 48px;
-        height: 48px;
-        margin: -25px 0 0 -25px;
-        position: absolute;
-        left: 50%;
-        top: 50px;
-        background: rgba(0, 0, 0, 0.7) url(images/spinner.gif) no-repeat center center;
-        border-radius: 100%;
-        overflow: hidden;
-        opacity: 0;
-    }
-    .list-masonry .column{
-        margin: 0 0 20px;
-    }
-
-
-/*-------------------------------*/
-/*- CONTENT CONTAINERS ----------*/
-/*-------------------------------*/
-
-    /*---------------------------*/
-    /*- WRAPPERS ----------------*/
-    #wrapper-site,
-    .wrapper-site{
-        width: 100%;
-        position: relative;
-        left: 0;
-        top: 0;
-        transition: left 0.3s ease-in-out 0s, top 0.3s ease-in-out 0s, width 0.3s ease-in-out 0s;
-        z-index: 2;
-    }
-
-    .wrapper-content{
-        position: relative;
-    }
-
-    /*---------------------------*/
-    /*- CONTAINER ---------------*/
-    .container{
-        max-width: 1040px;
-        margin: auto;
-        padding: 0 20px;
-    }
-
-    /*---------------------------*/
-    /*- BLOCK PADDING -----------*/
-    .content{padding: 20px;}
-    .content-main{padding: 60px 20px;}
-    .content-small{padding: 10px;}
-    .content-large{padding: 30px;}
-    .content-extra-large{padding: 40px;}
-    .content-massive{padding: 60px;}
-
-    /*---------------------------*/
-    /*- VERTICAL PADDING --------*/
-    .content-vertical{
-        padding-top: 20px;
-        padding-bottom: 20px;
-    }
-    .content-vertical-large{
-        padding-top: 30px;
-        padding-bottom: 30px;
-    }
-    .content-vertical-extra-large{
-        padding-top: 40px;
-        padding-bottom: 40px;
-    }
-    .content-vertical-massive{
-        padding-top: 60px;
-        padding-bottom: 40px;
-    }
-
-    .inset-top{padding-top: 20px;}
-    .inset-top-small{padding-top: 10px;}
-    .inset-top-medium{padding-top: 30px;}
-    .inset-top-large{padding-top: 60px;}
-
-    .inset-bottom{padding-bottom: 20px;}
-    .inset-bottom-small{padding-bottom: 10px;}
-    .inset-bottom-medium{padding-bottom: 30px;}
-    .inset-bottom-large{padding-bottom: 60px;}
-
-    /*---------------------------*/
-    /*- CLEAR PADDING -----------*/
-    .no-inset{padding: 0;}
-    .no-inset-top{padding-top: 0;}
-    .no-inset-bottom{padding-bottom: 0;}
-
-
-    /*---------------------------*/
-    /*- FLOATS AND CLEARS -------*/
-    .pull-left{float: left;}
-    .pull-right{float: right;}
-    .clearit{clear: both;}
-
-    .image-left{}
-    .image-right{}
-    .image-top{}
-
-/*-------------------------------*/
-/*- ALIGNMENT & SPACING ---------*/
-/*-------------------------------*/
-
-    /*---------------------------*/
-    /*- VERTICAL MARGIN ---------*/
-    .push-top{margin-top: 20px;}
-    .push-top-small{margin-top: 10px;}
-    .push-top-medium{margin-top: 30px;}
-    .push-top-large{margin-top: 60px;}
-
-    .push-bottom{margin-bottom: 20px;}
-    .push-bottom-small{margin-bottom: 10px;}
-    .push-bottom-medium{margin-bottom: 30px;}
-    .push-bottom-large{margin-bottom: 60px;}
-
-    /*---------------------------*/
-    /*- CLEAR MARGIN ------------*/
-    .no-push{margin: 0;}
-    .no-push-bottom{margin-bottom: 0;}
-    .no-push-right{margin-right: 0;}
-
 
 /*-------------------------------*/
 /*- FORMS -----------------------*/
@@ -683,7 +526,6 @@ object{
 
     /*---------------------------*/
     /*- SITE WIDE HEADER --------*/
-    .header-site .container{max-width: 1040px;}
     .header-site .column{margin-bottom: 0;}
 
 
@@ -716,67 +558,7 @@ object{
 
 	.column .logo{float: none;}
 
-/*-------------------------------*/
-/*- TITLES ----------------------*/
-/*-------------------------------*/
 
-    /*---------------------------*/
-    /*- PAGE TITLES -------------*/
-    .title-container .excerpt{max-width: 745px; margin-top: 15px;}
-    .title-container .excerpt + .button-group{margin-top: 30px;}
-    .title-container .excerpt + .btn-collection{margin-top: 30px;}
-    .title .text-center .excerpt{
-        margin-left: auto;
-        margin-right: auto;
-    }
-
-    .title-container .title{
-        padding: 60px 20px;
-        max-width: 1040px;
-        margin: auto;
-    }
-
-    /*---------------------------*/
-    /*- TITLE SIZEZ -------------*/
-    .title.small{padding: 10px;}
-    .title.large{padding: 30px;}
-    .title.extra-large{padding: 40px;}
-    .title.massive{padding: 60px;}
-
-    .title .column{margin-bottom: 0;}
-    .title img{display: block;}
-
-
-    /*---------------------------*/
-    /*- SECTION TITLES ----------*/
-    .section-title{margin-bottom: 40px;}
-    .section-title .excerpt{max-width: 745px;}
-    .section-title .heading + .excerpt{margin-top: 10px;}
-    .section-title .button{margin-top: 15px;}
-
-        /*-----------------------*/
-        /*- SECTION SIZE --------*/
-        .section-title.large .excerpt{max-width: 830px;}
-
-        .section-title.small{margin-bottom: 15px;}
-
-        .section-title.tiny{margin-bottom: 15px;}
-        .section-title.tiny .excerpt{margin-top: 0 !important;}
-
-    .section-title + .container{margin-top: 60px;}
-
-    .section-title.text-right .excerpt{float: right;}
-
-    /*---------------------------*/
-    /*- SECTION ALIGNMENTS ------*/
-    .section-title.text-center .excerpt{
-        margin-left: auto;
-        margin-right: auto;
-    }
-
-    /*---------------------------*/
-    /*- SECTION NAV -------------*/
-    .section-nav-title{margin: 0 0 10px 0;}
 
 /*-------------------------------*/
 /*- FOOTER ----------------------*/
@@ -839,26 +621,12 @@ object{
 /*- NAVIGATION ------------------*/
 /*-------------------------------*/
 
-    .header-site nav{
-        margin: 0;
-        line-height: 40px;
-    }
-
     .nav{
         vertical-align: middle;
         display: inline-block;
     }
     .nav li{position: relative;}
     .nav a{transition: all 0.2s ease-in-out;}
-
-    /*---------------------------*/
-    /*- RESPONSIVE BUTTON -------*/
-    .responsive-nav{
-        float: right;
-        display: none;
-        padding: 0;
-        margin: 0;
-    }
 
     /*---------------------------*/
     /*- HORIZONTAL NAV ----------*/
@@ -1237,68 +1005,6 @@ object{
 
     .thumbnail .button-group{margin: 20px 0 0;}
     .thumbnail .btn-collection{margin: 20px 0 0;}
-
-
-        /*-----------------------*/
-        /*- OVERLAY -------------*/
-        .with-overlay{overflow: hidden;}
-        .with-overlay .thumbnail-body{
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            visibility: hidden;
-            opacity: 0;
-            transition: 0.2s all ease-in-out;
-            text-align: center;
-        }
-        .with-overlay .overlay{
-            display: block;
-            position: relative;
-            top: 50%;
-            -webkit-transform: translateY(-50%);
-            -ms-transform: translateY(-50%);
-            transform: translateY(-50%);
-        }
-
-        .with-overlay .heading{
-            opacity: 0;
-            transform: translate3d(0, 10px, 0);
-            transition: 0.2s all ease-in-out 0.2s;
-        }
-        .with-overlay .heading a{
-            color: #fff;
-        }
-
-        .with-overlay .button{
-            margin-top: 15px;
-            position: relative;
-            opacity: 0;
-            transform: translate3d(0, 20px, 0);
-            transition: 0.2s transform ease-in-out 0.25s;
-        }
-
-        .with-overlay .excerpt{display: none;}
-        .with-overlay .meta-info{display: none;}
-
-            /*-------------------*/
-            /*- OVERLAY HOVER ---*/
-            .with-overlay:hover .thumbnail-media img{
-                transform: scale(1.08);
-            }
-            .with-overlay:hover .thumbnail-body{
-                visibility: visible;
-                opacity: 1;
-            }
-            .with-overlay:hover .heading{
-                transform: translate3d(0, 0, 0);
-                opacity: 1;
-            }
-            .with-overlay:hover .button{
-                transform: translate3d(0, 0, 0);
-                opacity: 1;
-            }
 
 
 /*-------------------------------*/

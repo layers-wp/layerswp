@@ -14,13 +14,13 @@ Developer URI: http://oboxthemes.com
 /*- HEADER CART -------------*/
 .header-cart{
     display: inline-block;
-    float: right;
     background: #555;
     padding-left: 10px;
     padding-right: 10px;
     position: relative;
     font-size: 1.4rem;
     border-radius: 3px;
+        line-height: 40px;
 }
 .header-cart .cart{
     margin: 0;
@@ -37,6 +37,19 @@ Developer URI: http://oboxthemes.com
 .header-cart .cart:hover,
 .header-fixed .header-cart:hover .amount{
     color: #fff;
+}
+
+.header-inline .inline-right-nav .header-cart{
+    float: none;
+}
+
+@media only screen and (min-width: 769px){
+
+    .header-center .header-cart,
+    .nav-clear .header-cart{
+        line-height: unset;
+    }
+
 }
 
 

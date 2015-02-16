@@ -76,6 +76,8 @@ if (!function_exists('layers_woocommerce_center_column_class')) {
                 unset( $classes[ $key ] );
             } else if( 'span-12' == $this_class ){
                 unset( $classes[ $key ] );
+            } else if( 'span-8' == $this_class ){
+                unset( $classes[ $key ] );
             }
         }
 

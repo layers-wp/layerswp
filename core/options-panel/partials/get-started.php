@@ -181,7 +181,7 @@ $layers_migrator = new Layers_Widget_Migrator(); ?>
                     </div>
                 </div>
                 <div class="layers-column layers-span-8 no-gutter layers-demo-video">
-                    <?php layers_show_html5_video( 'http://cdn.oboxsites.com/layers/videos/widget-slider.mp4', 490 ); ?>
+                    <?php layers_show_html5_video( 'http://cdn.oboxsites.com/layers/videos/widget-slider.mp4', 660 ); ?>
                 </div>
             </div>
 

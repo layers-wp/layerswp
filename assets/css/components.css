@@ -7,9 +7,6 @@ License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 */
 
-
-
-
 /*-------------------------------*/
 /*- ADVANCED LAYOUTS ------------*/
 /*-------------------------------*/
@@ -372,29 +369,30 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 /*-------------------------------*/
 /*- COMMENTS FORM ---------------*/
 /*-------------------------------*/
-.comment-notes{
-    margin-bottom: 20px;
-}
-p[class*='comment-form'] input{
-    margin-bottom: 15px;
-}
-.logged-in-as{
-    margin-bottom: 20px;
-}
-.form-allowed-tags{
-    margin-bottom: 15px;
-}
-.form-allowed-tags code{
-    padding: 0;
-}
-.form-submit input[type=submit]{
-    display: inline-block;
-    padding: 4px 14px;
-    text-align: center;
-    vertical-align: middle;
-    cursor: pointer;
-    transition: all 0.2s ease-in-out;
-}
+
+    .comment-notes{
+        margin-bottom: 20px;
+    }
+    p[class*='comment-form'] input{
+        margin-bottom: 15px;
+    }
+    .logged-in-as{
+        margin-bottom: 20px;
+    }
+    .form-allowed-tags{
+        margin-bottom: 15px;
+    }
+    .form-allowed-tags code{
+        padding: 0;
+    }
+    .form-submit input[type=submit]{
+        display: inline-block;
+        padding: 4px 14px;
+        text-align: center;
+        vertical-align: middle;
+        cursor: pointer;
+        transition: all 0.2s ease-in-out;
+    }
 
 
 /*-------------------------------*/
@@ -487,6 +485,9 @@ p[class*='comment-form'] input{
 /*- MAP - ADD ON ----------------*/
 /*-------------------------------*/
 
+    .layers-contact-widget img.google-map-img{
+        width: 100%;
+    }
     .row.has-map{
         padding-top: 0;
     }

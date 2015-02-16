@@ -58,42 +58,44 @@ $api = new Layers_API(); ?>
 						<div class="layers-panel-title">
 							<h4 class="layers-heading"><?php _e( 'Extensions', LAYERS_THEME_SLUG ); ?></h4>
 						</div>
-							<ul class="layers-list layers-extensions">
-								<?php foreach( $api->get_extension_list() as $extension_key => $extension_details ) { ?>
-									<li>
-										<h3 class="layers-heading">
-											<?php echo $extension_details[ 'title' ]; ?>
-										</h3>
-										<?php if( isset( $extension_details[ 'description' ] ) ){ ?>
-											<p>
-												<?php echo $extension_details[ 'description' ]; ?>
-											</p>
-										<?php } ?>
-										<?php if( isset( $extension_details[ 'available' ] ) && false == $extension_details[ 'available' ] ) { ?>
+
+						<ul class="layers-list layers-extensions">
+							<?php foreach( $api->get_extension_list() as $extension_key => $extension_details ) { ?>
+								<li>
+									<h3 class="layers-heading">
+										<?php echo $extension_details[ 'title' ]; ?>
+									</h3>
+									<?php if( isset( $extension_details[ 'description' ] ) ){ ?>
+										<p>
+											<?php echo $extension_details[ 'description' ]; ?>
+										</p>
+									<?php } ?>
+									<?php if( isset( $extension_details[ 'available' ] ) && false == $extension_details[ 'available' ] ) { ?>
+										<div class="layers-btn-group">
+											<p><?php _e( 'Coming soon' , LAYERS_THEME_SLUG ); ?></p>
+										</div>
+									<?php } else { ?>
+										<?php if( isset( $extension_details[ 'links' ] ) && ( isset( $extension_details[ 'links' ][ 'purchase' ] ) || isset( $extension_details[ 'links' ][ 'details' ] ) ) ){ ?>
 											<div class="layers-btn-group">
-												<p><?php _e( 'Coming soon' , LAYERS_THEME_SLUG ); ?></p>
-											</div>
-										<?php } else { ?>
-											<?php if( isset( $extension_details[ 'links' ] ) && ( isset( $extension_details[ 'links' ][ 'purchase' ] ) || isset( $extension_details[ 'links' ][ 'details' ] ) ) ){ ?>
 												<div class="layers-btn-group">
-													<div class="layers-btn-group">
-														<?php if( NULL != $extension_details[ 'links' ][ 'purchase' ] ) { ?>
-															<a class="layers-button" href="<?php echo $extension_details[ 'links' ][ 'purchase' ]; ?>" target="_blank">
-																<?php _e( 'Purchase' , LAYERS_THEME_SLUG ) ;?>
-															</a>
-														<?php } ?>
-														<?php if( NULL != $extension_details[ 'links' ][ 'details' ] ) { ?>
-															<a class="layers-button btn-link" href="<?php echo $extension_details[ 'links' ][ 'details' ]; ?>" target="_blank">
-																<?php _e( 'More Details' , LAYERS_THEME_SLUG ) ;?>
-															</a>
-														<?php } ?>
-													</div>
+													<?php if( NULL != $extension_details[ 'links' ][ 'purchase' ] ) { ?>
+														<a class="layers-button" href="<?php echo $extension_details[ 'links' ][ 'purchase' ]; ?>" target="_blank">
+															<?php _e( 'Purchase' , LAYERS_THEME_SLUG ) ;?>
+														</a>
+													<?php } ?>
+													<?php if( NULL != $extension_details[ 'links' ][ 'details' ] ) { ?>
+														<a class="layers-button btn-link" href="<?php echo $extension_details[ 'links' ][ 'details' ]; ?>" target="_blank">
+															<?php _e( 'More Details' , LAYERS_THEME_SLUG ) ;?>
+														</a>
+													<?php } ?>
 												</div>
-											<?php } ?>
+											</div>
 										<?php } ?>
-									</li>
-								<?php } // foreach extensions ?>
-							</ul>
+									<?php } ?>
+								</li>
+							<?php } // foreach extensions ?>
+						</ul>
+						
 					</div>
 				</div>
 

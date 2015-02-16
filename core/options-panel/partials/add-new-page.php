@@ -9,9 +9,9 @@ $find_builder_page = layers_get_builder_pages(); ?>
 
 <section class="layers-area-wrapper" id="layers-add-new-page">
 
-   <?php $this->header( __( 'Select a Layout', LAYERS_THEME_SLUG ), __( 'Get started with a blank canvas or choose from a variety of preset layouts to help you fast track your website creation.' , LAYERS_THEME_SLUG ) ); ?>
+   <?php $this->header( __( 'Add New Page', LAYERS_THEME_SLUG ) ); ?>
 
-   <div class="layers-row layers-well layers-content-massive">
+   <div class="layers-row layers-well layers-content-large">
       <?php $this->load_partial( 'preset-layouts' ); ?>
    </div>
 

@@ -6,6 +6,7 @@
  License: GNU General Public License v2 or later
  License URI: http://www.gnu.org/licenses/gpl-2.0.html
 */
+
 .layers-customizer-pages-dropdown{
     border-bottom: 1px solid rgb(241, 241, 241);
     padding: 8px 0 18px;
@@ -44,9 +45,8 @@ a.customize-controls-layers-button:hover{
     box-shadow: none;
 }
 a.customize-controls-layers-button-dashboard{
-    font-size: 17px;
-    line-height: 48px;
-    font-weight: 100;
+    font-size: 20px;
+    line-height: 50px;
 }
 a.customize-controls-layers-button-preview{
     left: 96px;

@@ -128,7 +128,7 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
     }
     .content-vertical-massive{
         padding-top: 6%;
-        padding-bottom: 6%;
+        padding-bottom: 4%;
     }
 
     .inset-top{
@@ -833,6 +833,10 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 	.column.span-9 + .column.span-3{
 		margin-right: 0;
 	}
+    .column.span-12,
+    .column-flush.span-12{
+        margin-right: 0;
+    }
 
 /*-------------------------------*/
 /*- HEADERS ---------------------*/
@@ -1043,7 +1047,7 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 /*- BIG BOY SCREENS --------------------------------------------*/
 /*--------------------------------------------------------------*/
 
-@media only screen and (min-width: 1441px){
+@media only screen and (min-width: 1442px){
 
 /*-------------------------------*/
 /*- GRIDS -----------------------*/

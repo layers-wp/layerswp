@@ -313,11 +313,11 @@ p.stars span a:focus{
         }
         .quantity{
             float: left;
-            margin-right: 20px;
+            margin-right: 10px;
         }
         .quantity input{
             float: left;
-            height: 33px;
+            height: 31px;
         }
         .quantity .qty{
             width: 60px;

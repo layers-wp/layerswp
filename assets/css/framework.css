@@ -173,7 +173,7 @@ object{
     button{
         display: inline-block;
         width: auto;
-        padding: 5px 15px;
+        padding: 5px 10px;
         border: none;
         cursor: pointer;
         -webkit-appearance: none;
@@ -899,6 +899,7 @@ object{
     .media{
         overflow: hidden;
         display: block;
+        transform-style: preserve-3d;
     }
     .media-image{
         text-align: center;
@@ -932,14 +933,14 @@ object{
     }
     .media.image-left .media-image{
         float: left;
-        max-width: 50%;
-        margin-right: 15px;
+        max-width: 49%;
+        margin-right: 2%;
     }
     .media.image-right .media-image{
         float: right;
-        max-width: 50%;
+        max-width: 49%;
         margin-right: 0;
-        margin-left: 15px;
+        margin-left: 2%;
     }
 
     .media .heading + .excerpt{margin-top: 8px;}

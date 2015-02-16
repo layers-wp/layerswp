@@ -43,6 +43,7 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
     .swiper-container.container{
         padding: 0;
         max-width: 1000px;
+        transform-style: preserve-3d;
     }
     .swiper-slide .container{
         position: relative;

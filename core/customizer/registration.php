@@ -100,7 +100,9 @@ class Layers_Customizer_Regsitrar {
 				$section_data[ 'panel' ] = $this->prefix . $section_data[ 'panel' ];
 			}
 
-			$section_data[ 'priority' ] = $section_priority;
+			if( !isset( $section_data[ 'priority' ] ) ) {
+				$section_data[ 'priority' ] = $section_priority;
+			}
 
 			$this->customizer->add_section(
 				$this->prefix . $section_key ,
@@ -568,13 +570,20 @@ class Layers_Customizer_Regsitrar {
 
 	public function move_default_sections( $sections = array() ){
 
-		foreach( $sections as $section_key => $setion_data ){
+		foreach( $sections as $section_key => $section_data ){
 
 			// Get the current section
 			$section = $this->customizer->get_section( $section_key );
 
-			// Move Site Title & Tagline section to General panel
-			$section->panel = $this->prefix . $setion_data[ 'panel' ];
+			// Move this section to a specific panel
+			if( isset( $section_data[ 'panel' ] ) ) {
+				$section->panel = $this->prefix . $section_data[ 'panel' ];
+			}
+
+			// Prioritize this section
+			if( isset( $section_data[ 'priority' ] ) ) {
+				$section->priority = $section_data[ 'priority' ];
+			}
 		}
 	}
 

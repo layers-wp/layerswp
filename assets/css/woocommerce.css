@@ -47,7 +47,7 @@ Developer URI: http://oboxthemes.com
 
     .header-center .header-cart,
     .nav-clear .header-cart{
-        line-height: unset;
+        line-height: 20px;
     }
 
 }

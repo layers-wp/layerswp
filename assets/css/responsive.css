@@ -873,7 +873,7 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
         float: none;
         margin-top: 20px;
         text-align: center;
-        line-height: unset;
+        line-height: 20px;
     }
 
     /*---------------------------*/
@@ -926,7 +926,7 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
         float: none;
         clear: both;
         margin: 20px 0 0;
-        line-height: unset;
+        line-height: 20px;
     }
 
 	/*---------------------------*/

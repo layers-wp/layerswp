@@ -803,21 +803,24 @@ p.stars span a:focus{
         display: block;
         font-weight: 700;
     }
-    .product_list_widget .remove{
-        float: left;
-        margin-right: 3px 10px 0 0;
-    }
-    .product_list_widget .remove + a{
-        overflow: hidden;
-        margin-bottom: 10px;
-    }
 
 /*-------------------------------*/
 /*- CART WIDGET -----------------*/
 /*-------------------------------*/
 
+    .widget .cart_list li,
     .cart_list li{
-        border-bottom: 1px solid #eee;
+        border-bottom: 1px solid #ddd;
+        padding-bottom: 10px;
+        margin-bottom: 10px;
+    }
+    .cart_list .remove{
+        float: left;
+        margin: 3px 10px 0 0;
+    }
+    .cart_list .remove + a{
+        overflow: hidden;
+        margin-bottom: 5px;
     }
     .cart_list .quantity{
         width: 100%;

@@ -236,19 +236,19 @@ if( ! function_exists( 'layers_register_standard_sidebars' ) ) {
             'id'        => LAYERS_THEME_SLUG . '-left-woocommerce-sidebar',
             'name'      => __( 'Left Shop Sidebar' , LAYERS_THEME_SLUG ),
             'description'   => __( '' , LAYERS_THEME_SLUG ),
-            'before_widget' => '<aside id="%1$s" class="content well push-bottom widget %2$s">',
+            'before_widget' => '<aside id="%1$s" class="content well push-bottom-large widget %2$s">',
             'after_widget'  => '</aside>',
             'before_title'  => '<h5 class="section-nav-title">',
-            'after_title'   => '</h4>',
+            'after_title'   => '</h5>',
         ) );
         register_sidebar( array(
             'id'        => LAYERS_THEME_SLUG . '-right-woocommerce-sidebar',
             'name'      => __( 'Right Shop Sidebar' , LAYERS_THEME_SLUG ),
             'description'   => __( '' , LAYERS_THEME_SLUG ),
-            'before_widget' => '<aside id="%1$s" class="content well push-bottom widget %2$s">',
+            'before_widget' => '<aside id="%1$s" class="content well push-bottom-large widget %2$s">',
             'after_widget'  => '</aside>',
             'before_title'  => '<h5 class="section-nav-title">',
-            'after_title'   => '</h4>',
+            'after_title'   => '</h5>',
         ) );
 	}
 	add_action( 'widgets_init' , 'layers_register_standard_sidebars' , 50 );

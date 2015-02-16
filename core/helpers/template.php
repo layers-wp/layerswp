@@ -1021,7 +1021,6 @@ if ( ! function_exists( 'layers_menu_fallback' ) ) {
 	}
 } // layers_light_or_dark
 
-
 /**
  * Standard menu fallback
  */
@@ -1035,3 +1034,23 @@ if ( ! function_exists( 'layers_show_html5_video' ) ) {
 		</video>
 <?php }
 } // layers_show_html5_video
+
+/**
+ * Return a list of stock standard WP post types
+ */
+
+if ( ! function_exists( 'layers_get_standard_wp_post_types' ) ) {
+	function layers_get_standard_wp_post_types(){
+		return array( 'post', 'page', 'attachment', 'revision', 'nav_menu_item' );
+	}
+} // layers_get_standard_wp_post_types
+
+/**
+ * Return a list of stock standard WP taxonomies
+ */
+
+if ( ! function_exists( 'layers_get_standard_wp_taxonomies' ) ) {
+	function layers_get_standard_wp_taxonomies(){
+		return array( 'category', 'nav_menu', 'category', 'link_category', 'post_format' );
+	}
+} // layers_get_standard_wp_taxonomies

@@ -18,8 +18,8 @@ class Layers_Customizer_Config {
 	public function panels(){
 
 		$panels = array(
-			'general' => array(
-							'title' => __( 'General', LAYERS_THEME_SLUG ),
+			'branding' => array(
+							'title' => __( 'Branding', LAYERS_THEME_SLUG ),
 							'priority' => 30
 						),
 			'header' => array(
@@ -54,14 +54,9 @@ class Layers_Customizer_Config {
 
 	public function default_sections(){
 		$default_sections[ 'title_tagline' ] = array(
-													'panel' => 'header'
+													'panel' => 'branding'
 												);
-		$default_sections[ 'static_front_page' ] = array(
-													'panel' => 'general'
-												);
-		$default_sections[ 'nav' ] = array(
-													'panel' => 'general'
-												);
+
 		return apply_filters( 'layers_customizer_default_sections', $default_sections );
 	}
 
@@ -73,54 +68,50 @@ class Layers_Customizer_Config {
 
 	public function sections(){
 
-		$sections[ 'general' ] = array(
-								'nav' => array( // This is used before any menus are registered. Then replaced by WP Naviagation
-									'title'       =>__( 'Navigation' , LAYERS_THEME_SLUG ),
-									'description' => __( 'First create a menu then come back here to place it.', LAYERS_THEME_SLUG ),
-								),
-								'css' => array(
-									'title' =>__( 'CSS' , LAYERS_THEME_SLUG ),
-								),
-								'fonts' => array(
-									'title' =>__( 'Fonts' , LAYERS_THEME_SLUG ),
-								),
-							);
-
-		$sections[ 'header' ] = array(
-								'layout' => array(
-									'title' =>__( 'Layout' , LAYERS_THEME_SLUG ),
-								),
-								'scripts' => array(
-									'title' =>__( 'Additional Scripts' , LAYERS_THEME_SLUG ),
-								),
-							);
-
-		$sections[ 'content' ] = array(
-								'layout' => array(
-									'title' =>__( 'Layout' , LAYERS_THEME_SLUG ),
-								)
-							);
-
-		$sections[ 'footer' ] = array(
-								'layout' => array(
-									'title' =>__( 'Layout' , LAYERS_THEME_SLUG ),
-								),
-								'customization' => array(
-									'title' =>__( 'Customization' , LAYERS_THEME_SLUG ),
-								),
-								'text' => array(
-									'title' =>__( 'Text' , LAYERS_THEME_SLUG ),
-								),
-                                'scripts' => array(
-                                    'title' =>__( 'Additional Scripts' , LAYERS_THEME_SLUG ),
-                                ),
-							);
-
-        $sections[ 'woocommerce' ] = array(
-                                'layout' => array(
-                                    'title' =>__( 'Shop Layout' , LAYERS_THEME_SLUG ),
-                                )
-                            );
+		$sections = array(
+						'nav' => array( // This is used before any menus are registered. Then replaced by WP Naviagation
+							'title'       =>__( 'Navigation' , LAYERS_THEME_SLUG ),
+							'description' => __( 'First create a menu then come back here to place it.', LAYERS_THEME_SLUG ),
+						),
+						'fonts' => array(
+							'title' =>__( 'Fonts' , LAYERS_THEME_SLUG ),
+						),
+						'css' => array(
+							'title' =>__( 'CSS' , LAYERS_THEME_SLUG ),
+						),
+						'header-layout' => array(
+							'title' =>__( 'Layout' , LAYERS_THEME_SLUG ),
+							'panel' => 'header'
+						),
+						'header-scripts' => array(
+							'title' =>__( 'Additional Scripts' , LAYERS_THEME_SLUG ),
+							'panel' => 'header'
+						),
+						'content-layout' => array(
+							'title' =>__( 'Layout' , LAYERS_THEME_SLUG ),
+							'panel' => 'content'
+						),
+						'footer-layout' => array(
+							'title' =>__( 'Layout' , LAYERS_THEME_SLUG ),
+							'panel' => 'footer'
+						),
+						'footer-customization' => array(
+							'title' =>__( 'Customization' , LAYERS_THEME_SLUG ),
+							'panel' => 'footer'
+						),
+						'footer-text' => array(
+							'title' =>__( 'Text' , LAYERS_THEME_SLUG ),
+							'panel' => 'footer'
+						),
+						'footer-scripts' => array(
+							'title' =>__( 'Additional Scripts' , LAYERS_THEME_SLUG ),
+							'panel' => 'footer'
+						),
+						'woocommerce-layout' => array(
+							'title' =>__( 'Shop Layout' , LAYERS_THEME_SLUG ),
+							'panel' => 'woocommerce'
+						)
+					);
 
 
 		return apply_filters( 'layers_customizer_sections', $sections );
@@ -134,7 +125,7 @@ class Layers_Customizer_Config {
 
 		// Header -> Layout -> Layout  // This is used before any menus are registered. Then replaced by WP Naviagation
 		if ( ! wp_get_nav_menus() ) {
-			$controls['general-nav'] = array(
+			$controls['nav'] = array(
 									'general-nav-custom-css' => array(
 										'type'        => 'layers-button',
 										'text'        => __( 'Create Menu', LAYERS_THEME_SLUG ),
@@ -144,10 +135,8 @@ class Layers_Customizer_Config {
 
 		}
 
-
-
 		// Header -> Layout -> Layout
-		$controls['general-css'] = array(
+		$controls['css'] = array(
 								'custom-css' => array(
 									'type'     => 'layers-css',
 									'placeholder'	=> ".classname {\n\tbackground: #333;\n}"
@@ -155,7 +144,7 @@ class Layers_Customizer_Config {
 							); // css
 
 		// Header -> Layout -> Layout
-		$controls['general-fonts'] = array(
+		$controls['fonts'] = array(
 								'body-fonts' => array(
 									'type' => 'layers-font',
 									'label'    => __( 'Body', LAYERS_THEME_SLUG ),
@@ -418,41 +407,41 @@ class Layers_Customizer_Config {
 
 
 
-        $controls[ 'woocommerce-layout' ] = array(
-                                'label-sidebar-single' => array(
-                                    'type'  => 'layers-heading',
-                                    'label'    => __( 'Single Product Sidebar(s)', LAYERS_THEME_SLUG ),
-                                    'description' => __( 'This option affects your single product pages.', LAYERS_THEME_SLUG ),
-                                ),
-                                'single-left-woocommerce-sidebar' => array(
-                                    'type'      => 'checkbox',
-                                    'label'     => __( 'Display Left Sidebar', LAYERS_THEME_SLUG ),
-                                    'default'   => FALSE,
-                                ), // post-sidebar
-                                'single-right-woocommerce-sidebar' => array(
-                                    'type'      => 'checkbox',
-                                    'label'     => __( 'Display Right Sidebar', LAYERS_THEME_SLUG ),
-                                    'default'   => TRUE,
-                                ), // post-sidebar
-                                'woocommerce-break-1' => array(
-                                    'type'     => 'layers-seperator'
-                                ),
-                                'label-sidebar-archive' => array(
-                                    'type'  => 'layers-heading',
-                                    'label'    => __( 'Product List Sidebar(s)', LAYERS_THEME_SLUG ),
-                                    'description' => __( 'This option affects your shop page, product category and product tag pages.', LAYERS_THEME_SLUG ),
-                                ),
-                                'archive-left-woocommerce-sidebar' => array(
-                                    'type'      => 'checkbox',
-                                    'label'     => __( 'Display Left Sidebar', LAYERS_THEME_SLUG ),
-                                    'default'   => FALSE,
-                                ), // post-sidebar
-                                'archive-right-woocommerce-sidebar' => array(
-                                    'type'      => 'checkbox',
-                                    'label'     => __( 'Display Right Sidebar', LAYERS_THEME_SLUG ),
-                                    'default'   => TRUE,
-                                ), // post-sidebar
-                            );
+		$controls[ 'woocommerce-layout' ] = array(
+								'label-sidebar-single' => array(
+									'type'  => 'layers-heading',
+									'label'    => __( 'Single Product Sidebar(s)', LAYERS_THEME_SLUG ),
+									'description' => __( 'This option affects your single product pages.', LAYERS_THEME_SLUG ),
+								),
+								'single-left-woocommerce-sidebar' => array(
+									'type'      => 'checkbox',
+									'label'     => __( 'Display Left Sidebar', LAYERS_THEME_SLUG ),
+									'default'   => FALSE,
+								), // post-sidebar
+								'single-right-woocommerce-sidebar' => array(
+									'type'      => 'checkbox',
+									'label'     => __( 'Display Right Sidebar', LAYERS_THEME_SLUG ),
+									'default'   => TRUE,
+								), // post-sidebar
+								'woocommerce-break-1' => array(
+									'type'     => 'layers-seperator'
+								),
+								'label-sidebar-archive' => array(
+									'type'  => 'layers-heading',
+									'label'    => __( 'Product List Sidebar(s)', LAYERS_THEME_SLUG ),
+									'description' => __( 'This option affects your shop page, product category and product tag pages.', LAYERS_THEME_SLUG ),
+								),
+								'archive-left-woocommerce-sidebar' => array(
+									'type'      => 'checkbox',
+									'label'     => __( 'Display Left Sidebar', LAYERS_THEME_SLUG ),
+									'default'   => FALSE,
+								), // post-sidebar
+								'archive-right-woocommerce-sidebar' => array(
+									'type'      => 'checkbox',
+									'label'     => __( 'Display Right Sidebar', LAYERS_THEME_SLUG ),
+									'default'   => TRUE,
+								), // post-sidebar
+							);
 
 		return apply_filters( 'layers_customizer_controls', $controls );
 	}

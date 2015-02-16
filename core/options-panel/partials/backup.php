@@ -46,7 +46,7 @@
 
 <script>
 	jQuery(function($){
-		var $total_pages = $( '.layers-feature-list li' ).length;
+		var $total_pages = $( '.layers-list li' ).length;
 		var $complete_pages = 1;
 
 		function layers_backup_builder_page( $pageid, $page_li ){
@@ -86,7 +86,7 @@
 			$( '.layers-progress' ).removeClass( 'zero complete' ).css('width' , 0);
 
 			// "Hi Mom"
-			var $that = $( '.layers-feature-list li' ).eq(0);
+			var $that = $( '.layers-list li' ).eq(0);
 			var $pageid = $that.data( 'page_id' );
 
 			layers_backup_builder_page( $pageid, $that );

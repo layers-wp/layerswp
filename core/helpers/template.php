@@ -35,7 +35,7 @@ if( !function_exists( 'layers_bread_crumbs' ) ) {
 					<li><?php _e('Search',LAYERS_THEME_SLUG); ?></li>
 				<?php } elseif( function_exists('is_shop') && ( is_post_type_archive( 'product' ) || ( get_post_type() == "product") ) ) { ?>
 					<li><?php echo esc_html( $seperator ); ?></li>
-					<?php if( function_exists( 'woocommerce_get_page_id' )  && '' != woocommerce_get_page_id('shop') ) { ?>
+					<?php if( function_exists( 'woocommerce_get_page_id' )  && '-1' != woocommerce_get_page_id('shop') ) { ?>
 						<?php $shop_page_id = woocommerce_get_page_id('shop'); ?>
 						<?php $shop_page = get_post( $shop_page_id ); ?>
 						<?php if( is_object ( $shop_page ) ) { ?>
@@ -320,9 +320,11 @@ if( !function_exists( 'layers_get_page_title' ) ) {
 		} elseif ( is_year() ) {
 			$title_array['title' ] = sprintf( __( 'Yearly Archives: %s', LAYERS_THEME_SLUG ), get_the_date( _x( 'Y', 'yearly archives date format', LAYERS_THEME_SLUG ) ) );
 		} elseif( function_exists('is_shop') && ( is_post_type_archive( 'product' ) || ( get_post_type() == "product") ) ) {
-			if( function_exists( 'woocommerce_get_page_id' )  && '' != woocommerce_get_page_id('shop') ) {
+			if( function_exists( 'woocommerce_get_page_id' )  && -1 != woocommerce_get_page_id('shop') ) {
 				$shop_page = get_post( woocommerce_get_page_id('shop') );
-				$title_array['title' ] = $shop_page->post_title;
+				if( is_object( $shop_page ) ) {
+					$title_array['title' ] = $shop_page->post_title;
+				}
 			} else {
 				$title_array['title' ] = __( 'Shop' , LAYERS_THEME_SLUG );
 			}

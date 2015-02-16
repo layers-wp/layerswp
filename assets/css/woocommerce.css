@@ -477,21 +477,6 @@ p.stars span a:focus{
     }
 
 /*---------------------------*/
-/*- PRODUCT LIST ------------*/
-
-    .product_list_widget li{
-        overflow: hidden;
-        position: relative;
-    }
-    .product_list_widget img{
-        float: right;
-        max-width: 40px;
-    }
-    .product_list_widget a{
-        display: block;
-    }
-
-/*---------------------------*/
 /*- SHOPPING CART -----------*/
     
     table.shop_table{
@@ -803,14 +788,39 @@ p.stars span a:focus{
     }
 
 /*-------------------------------*/
+/*- PRODUCT LIST WIDGET ---------*/
+/*-------------------------------*/
+
+    .product_list_widget li{
+        overflow: hidden;
+        position: relative;
+    }
+    .product_list_widget img{
+        float: right;
+        max-width: 40px;
+    }
+    .product_list_widget a{
+        display: block;
+        font-weight: 700;
+    }
+    .product_list_widget .remove{
+        float: left;
+        margin-right: 3px 10px 0 0;
+    }
+    .product_list_widget .remove + a{
+        overflow: hidden;
+        margin-bottom: 10px;
+    }
+
+/*-------------------------------*/
 /*- CART WIDGET -----------------*/
 /*-------------------------------*/
 
     .cart_list li{
-        padding: 10px 0;
         border-bottom: 1px solid #eee;
     }
     .cart_list .quantity{
+        width: 100%;
         font-size: 1.3rem;
     }
     .widget_shopping_cart .total{
@@ -826,16 +836,24 @@ p.stars span a:focus{
     /*-----------------------*/
     /*- OFF-CANVAS CART -----*/
     section[class*=' off-canvas-'] .widget_shopping_cart{
+        padding: 0;
         margin-left: 20px;
         margin-right: 20px;
         background: #333;
     }
     section[class*=' off-canvas-'] .cart_list li{
+        padding: 10px;
         border-bottom-color: #444;
+    }
+    section[class*=' off-canvas-'] .widget_shopping_cart .total{
+        margin: 10px;
+    }
+    section[class*=' off-canvas-'] .widget_shopping_cart .buttons{
+        padding: 10px 10px 5px;
     }
     section[class*=' off-canvas-'] .widget_shopping_cart .button{
         display: block;
-        margin-top: 5px;
+        margin-bottom: 5px;
         background: #555;
     }
     section[class*=' off-canvas-'] .widget_shopping_cart .button:hover{

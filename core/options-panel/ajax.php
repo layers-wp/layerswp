@@ -66,6 +66,8 @@ if( !class_exists( 'Layers_Onboarding_Ajax' ) ) {
 
                     case 'site_logo' :
 
+                        if( '' == $clean_option_value ) die( json_encode( array( 'success' => true, 'message' => __( 'No Logo uploaded' , LAYERS_THEME_SLUG ) ) ) );
+
                         $get_attachment = wp_get_attachment_image_src( $clean_option_value );
 
                         // Get an array of all registered image sizes.

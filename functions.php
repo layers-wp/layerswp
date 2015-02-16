@@ -200,7 +200,7 @@ if( ! function_exists( 'layers_register_standard_sidebars' ) ) {
 		register_sidebar( array(
 			'id'		=> LAYERS_THEME_SLUG . '-left-sidebar',
 			'name'		=> __( 'Left Sidebar' , LAYERS_THEME_SLUG ),
-			'before_widget'	=> '<aside id="%1$s" class="content well push-bottom widget %2$s">',
+			'before_widget'	=> '<aside id="%1$s" class="content well push-bottom-large widget %2$s">',
 			'after_widget'	=> '</aside>',
 			'before_title'	=> '<h5 class="section-nav-title">',
 			'after_title'	=> '</h5>',
@@ -209,7 +209,7 @@ if( ! function_exists( 'layers_register_standard_sidebars' ) ) {
 		register_sidebar( array(
 			'id'		=> LAYERS_THEME_SLUG . '-right-sidebar',
 			'name'		=> __( 'Right Sidebar' , LAYERS_THEME_SLUG ),
-			'before_widget'	=> '<aside id="%1$s" class="content well push-bottom widget %2$s">',
+			'before_widget'	=> '<aside id="%1$s" class="content well push-bottom-large widget %2$s">',
 			'after_widget'	=> '</aside>',
 			'before_title'	=> '<h5 class="section-nav-title">',
 			'after_title'	=> '</h5>',

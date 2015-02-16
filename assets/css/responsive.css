@@ -7,6 +7,482 @@ License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 */
 
+
+/*--------------------------------------------------------------*/
+/*- ALL SCREENS ------------------------------------------------*/
+/*--------------------------------------------------------------*/
+
+    /*---------------------------*/
+    /*- GRIDS -------------------*/
+    .column{
+        margin: 0 0 20px 0;
+        position: relative;
+    }
+    .column-flush{
+        margin: 0;
+        position: relative;
+    }
+    .row .column:last-child{
+    	margin-right: 0;
+    }
+
+    .middled,
+    .row .column.middled{
+        float: none;
+        margin: auto;
+    }
+    .no-gutter{
+    	margin-right: 0;
+    }
+
+    /*---------------------------*/
+    /*- MASONRY -----------------*/
+    .container.list-masonry{
+        max-width: 1000px;
+        padding: 0;
+        position:relative;
+    }
+    .container.list-masonry > *:not(.masonry-loading){
+        opacity: 0;
+    }
+    .container.list-masonry.loaded > *:not(.masonry-loading){
+        opacity: 1;
+    }
+    .container.list-masonry .masonry-loading{
+        width: 48px;
+        height: 48px;
+        margin: -25px 0 0 -25px;
+        position: absolute;
+        left: 50%;
+        top: 50px;
+        background: rgba(0, 0, 0, 0.7) url(images/spinner.gif) no-repeat center center;
+        border-radius: 100%;
+        overflow: hidden;
+        opacity: 0;
+    }
+    .container.list-masonry .column{
+        margin-right: 0;
+    }
+
+/*-------------------------------*/
+/*- CONTENT CONTAINERS ----------*/
+
+    /*---------------------------*/
+    /*- WRAPPERS ----------------*/
+    #wrapper-site,
+    .wrapper-site{
+        width: 100%;
+        position: relative;
+        left: 0;
+        top: 0;
+        transition: left 0.3s ease-in-out 0s, top 0.3s ease-in-out 0s, width 0.3s ease-in-out 0s;
+        z-index: 2;
+    }
+
+    .wrapper-content{
+        position: relative;
+    }
+
+    /*---------------------------*/
+    /*- CONTAINER ---------------*/
+    .container{
+        max-width: 1040px;
+        margin: auto;
+        padding: 0 20px;
+    }
+
+    /*---------------------------*/
+    /*- CONTENT PADDING ---------*/
+    .content{
+    	padding: 20px;
+    }
+    .content-main{
+    	padding: 6% 20px;
+    }
+    .content-small{
+    	padding: 10px;
+    }
+    .content-large{
+    	padding: 3%;
+    }
+    .content-extra-large{
+    	padding: 4%;
+    }
+    .content-massive{
+    	padding: 6%;
+    }
+
+    /*---------------------------*/
+    /*- VERTICAL PADDING --------*/
+    .content-vertical{
+        padding-top: 2%;
+        padding-bottom: 2%;
+    }
+    .content-vertical-large{
+        padding-top: 3%;
+        padding-bottom: 3%;
+    }
+    .content-vertical-extra-large{
+        padding-top: 4%;
+        padding-bottom: 4%;
+    }
+    .content-vertical-massive{
+        padding-top: 6%;
+        padding-bottom: 6%;
+    }
+
+    .inset-top{
+    	padding-top: 2%;
+    }
+    .inset-top-small{
+    	padding-top: 1%;
+    }
+    .inset-top-medium{
+    	padding-top: 3%;
+    }
+    .inset-top-large{
+    	padding-top: 6%;
+    }
+
+    .inset-bottom{
+    	padding-bottom: 2%;
+    }
+    .inset-bottom-small{
+    	padding-bottom: 1%;
+    }
+    .inset-bottom-medium{
+    	padding-bottom: 3%;
+    }
+    .inset-bottom-large{
+    	padding-bottom: 6%;
+    }
+
+    /*---------------------------*/
+    /*- CLEAR PADDING -----------*/
+    .no-inset{
+    	padding: 0;
+    }
+    .no-inset-top{
+    	padding-top: 0;
+    }
+    .no-inset-bottom{
+    	padding-bottom: 0;
+    }
+
+    /*---------------------------*/
+    /*- FLOATS AND CLEARS -------*/
+    .pull-left{
+    	float: left;
+    }
+    .pull-right{
+    	float: right;
+    }
+    .clearit{
+    	clear: both;
+    }
+
+    .image-left{}
+    .image-right{}
+    .image-top{}
+
+/*-------------------------------*/
+/*- ALIGNMENT & SPACING ---------*/
+
+    /*---------------------------*/
+    /*- VERTICAL MARGIN ---------*/
+    .push-top{
+    	margin-top: 2%;
+    }
+    .push-top-small{
+    	margin-top: 1%;
+    }
+    .push-top-medium{
+    	margin-top: 3%;
+    }
+    .push-top-large{
+    	margin-top: 6%;
+    }
+    .push-bottom{
+    	margin-bottom: 2%;
+    }
+    .push-bottom-small{
+    	margin-bottom: 1%;
+    }
+    .push-bottom-medium{
+    	margin-bottom: 3%;
+    }
+    .push-bottom-large{
+    	margin-bottom: 6%;
+    }
+
+    /*---------------------------*/
+    /*- CLEAR MARGIN ------------*/
+    .no-push{
+    	margin: 0;
+    }
+    .no-push-bottom{
+    	margin-bottom: 0;
+    }
+    .no-push-right{
+    	margin-right: 0;
+    }
+
+/*-------------------------------*/
+/*- HEADERS ---------------------*/
+
+    .header-site .container{
+        padding: 10px;
+    }
+
+    /*---------------------------*/
+    /*- NAV DISPLAY -------------*/
+	.nav-horizontal ul{
+		display: none;
+	}
+
+    /*---------------------------*/
+    /*- RESPONSIVE BUTTON -------*/
+    .responsive-nav{
+        float: right;
+        padding: 0;
+        margin: 0 0 0 20px;
+    }
+    .responsive-nav .l-menu{
+    	display: block;
+    }
+
+    /*---------------------------*/
+    /*- DEFAULT ALIGNMENT -------*/
+    .header-site nav{
+        float: right;
+        margin: 0;
+        line-height: 40px;
+    }
+    .header-left .logo{
+        float: left;
+        overflow: hidden;
+    }
+    .header-left .sitename{
+        margin: 0 10px 0 0;
+    }
+
+    /*---------------------------*/
+    /*- ALIGNMENT RIGHT ---------*/
+    .header-right .logo{
+        float: right;
+        overflow: hidden;
+    }
+    .header-right .sitename{
+        margin: 0 10px 0 0;
+    }
+    .header-right nav{
+        float: left;
+    }
+
+    /*---------------------------*/
+    /*- POSITION OVERLAY --------*/
+    .header-sticky{
+        width: 100%;
+        z-index: 100;
+        margin-top: 0;
+        transition: background .1s ease-in-out, margin-top .15s ease-in-out, opacity .15s ease-in-out;
+    }
+    .header-sticky.is_stuck{
+        opacity: 0;
+    }
+    .header-sticky.is_stuck.is_stuck_show{
+        opacity: 1;
+    }
+    .header-overlay{
+        position: absolute;
+        width: 100%;
+        z-index: 100;
+    }
+
+    /*---------------------------*/
+    /*- SECONDARY HEADER --------*/
+    .header-secondary nav{
+        margin: 0;
+    }
+    .header-secondary .sub-menu{
+        display: none;
+    }
+
+/*-------------------------------*/
+/*- TITLES ----------------------*/
+
+    /*---------------------------*/
+    /*- PAGE TITLES -------------*/
+    .title-container .excerpt{
+    	max-width: 745px;
+    	margin-top: 1.5%;
+    }
+    .title-container .excerpt + .button-group{
+    	margin-top: 3%;
+    }
+    .title-container .excerpt + .btn-collection{
+    	margin-top: 3%;
+    }
+    .title .text-center .excerpt{
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .title-container .title{
+        padding: 6% 20px;
+        max-width: 1040px;
+        margin: auto;
+    }
+
+    /*---------------------------*/
+    /*- TITLE SIZES -------------*/
+    .title.small{
+    	padding: 1%;
+    }
+    .title.large{
+    	padding: 3%;
+    }
+    .title.extra-large{
+    	padding: 4%;
+    }
+    .title.massive{
+    	padding: 6%;
+    }
+    .title .column{
+    	margin-bottom: 0;
+    }
+    .title img{
+    	display: block;
+    }
+
+    /*---------------------------*/
+    /*- SECTION TITLES ----------*/
+    .section-title{margin-bottom: 40px;}
+    .section-title .excerpt{max-width: 745px;}
+    .section-title .heading + .excerpt{margin-top: 10px;}
+    .section-title .button{margin-top: 15px;}
+
+        /*-----------------------*/
+        /*- SECTION SIZE --------*/
+        .section-title.large .excerpt{max-width: 830px;}
+
+        .section-title.small{margin-bottom: 15px;}
+
+        .section-title.tiny{margin-bottom: 15px;}
+        .section-title.tiny .excerpt{margin-top: 0 !important;}
+
+    .section-title + .container{margin-top: 60px;}
+
+    .section-title.text-right .excerpt{float: right;}
+
+    /*---------------------------*/
+    /*- SECTION ALIGNMENTS ------*/
+    .section-title.text-center .excerpt{
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    /*---------------------------*/
+    /*- SECTION NAV -------------*/
+    .section-nav-title{margin: 0 0 10px 0;}
+
+/*-------------------------------*/
+/*- OFF CANVAS ------------------*/
+
+	section[class*=' off-canvas-']{
+	    padding-top: 20px;
+	    position: fixed;
+	    top: 0;
+	    z-index: 1;
+	    opacity: 0;
+	    transform: scale(0.95);
+	    transition: all 0.3s ease-in-out 0s;
+	}
+	.off-canvas-right{
+	    width: 240px;
+	    height: 100%;
+	    right: 0;
+	}
+	.off-canvas-left{
+	    width: 240px;
+	    height: 100%;
+	}
+	.off-canvas-top{
+	    width: 100%;
+	    height: 200px;
+	}
+
+	.open[class*=' off-canvas-']{
+	    opacity: 1;
+	    transform: scale(1);
+	    overflow-y: scroll;
+	}
+
+    /*---------------------------*/
+    /*- WRAPPER POSITIONING -----*/
+    .off-canvas-right.open + .wrapper-site{
+        left: -240px;
+    }
+    .off-canvas-left.open + .wrapper-site{
+        left: 240px;
+    }
+    .off-canvas-top.open + .wrapper-site{
+        top: 200px;
+    }
+
+    /*---------------------------*/
+    /*- CLOSE CANVAS ------------*/
+    .close-canvas{
+        padding: 10px;
+        position: absolute;
+        top: 0;
+        right: 0;
+        cursor: pointer;
+        z-index: 100;
+    }
+    .admin-bar section[class*=' off-canvas-'] .close-canvas{
+        top: 32px;
+    }
+
+    /*---------------------------*/
+    /*- OFF CANVAS WIDGETS ------*/
+    section[class*=' off-canvas-'] li{
+        padding: 5px 0;
+    }
+    section[class*=' off-canvas-'] .widget.widget_nav_menu{
+        padding: 20px;
+    }
+    section[class*=' off-canvas-'] .widget.widget_nav_menu li{
+        display: block;
+        margin: 0;
+        text-align: left;
+    }
+    section[class*=' off-canvas-'] .searchform label{
+        display: none;
+    }
+    section[class*=' off-canvas-'] .searchform input[type="submit"]{
+        display: block;
+        width: 100%;
+        height: 32px;
+    }
+
+        /*-----------------------*/
+        /*- OFF CANVAS MENU -----*/
+        section[class*=' off-canvas-'] .nav-mobile{
+        	margin-top: -20px;
+        }
+        section[class*=' off-canvas-'] .nav-vertical li{
+            padding: 0;
+        }
+        section[class*=' off-canvas-'] .nav-vertical .sub-menu{
+            display: block;
+            width: auto;
+            visibility: visible;
+            opacity: 1;
+            position: static;
+            box-shadow: none;
+        }
+
+
 /*--------------------------------------------------------------*/
 /*- SMALL SCREENS ----------------------------------------------*/
 /*--------------------------------------------------------------*/
@@ -51,8 +527,20 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 	.column.span-2:nth-child(2n+3){
 		clear: left;
 	}
+
+	/*---------------------------*/
+	/*- MASONRY -----------------*/
+	.container.list-masonry{
+		padding: 0 20px;
+	}
+    .container.list-masonry .column{
+    	position: static !important;
+    }
 }
 
+/*--------------------------------------------------------------*/
+/*- EVERYTHING BIGGER THAN A PHONE -----------------------------*/
+/*--------------------------------------------------------------*/
 @media only screen and (min-width: 481px){
 
 	/*---------------------------*/
@@ -142,6 +630,25 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 	}
 
 	/*---------------------------*/
+	/*- LARGE COLUMNS -----------*/
+	.column.span-7,
+	.column.span-8,
+	.column.span-9,
+	.column.span-10,
+	.column.span-11,
+	.column.span-12{
+		float: none;
+	}
+	.column-flush.span-7,
+	.column-flush.span-8,
+	.column-flush.span-9,
+	.column-flush.span-10,
+	.column-flush.span-11,
+	.column-flush.span-12{
+		float: none;
+	}
+
+	/*---------------------------*/
 	/*- CLEARING SPANS ----------*/
 	.column.span-2:nth-child(3n+4),
 	.column.span-3:nth-child(2n+3){
@@ -151,8 +658,22 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 }
 
 /*--------------------------------------------------------------*/
-/*- BETWEEN TABLETS AND DESKTOP --------------------------------*/
+/*- EVERYTHING UP TO TABLET ------------------------------------*/
 /*--------------------------------------------------------------*/
+@media only screen and (max-width: 768px){
+
+	.header-inline .inline-right-nav{
+		float: right;
+		margin-right: 0;
+	}
+
+	.pull-left,
+	.pull-right{
+		float: none;
+	}
+}
+
+
 @media only screen and (min-width: 601px) and (max-width: 860px){
 
 	/*---------------------------*/
@@ -202,9 +723,12 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 }
 
 /*--------------------------------------------------------------*/
-/*- EVERYTHING BIGGER THAN SMALL TABLETS -----------------------*/
+/*- EVERYTHING BIGGER THAN TABLETS -----------------------------*/
 /*--------------------------------------------------------------*/
 @media only screen and (min-width: 769px) {
+
+/*-------------------------------*/
+/*- GRIDS -----------------------*/
 
 	/*---------------------------*/
     /*- COLUMN WIDTHS -----------*/
@@ -310,11 +834,204 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 		margin-right: 0;
 	}
 
+/*-------------------------------*/
+/*- HEADERS ---------------------*/
+
+    .header-site .container{
+        padding: 20px;
+    }
+
+    /*---------------------------*/
+    /*- NAV DISPLAY -------------*/
+	.nav-horizontal ul{
+		display: inline-block;
+	}
+	.responsive-nav{
+		display: none;
+	}
+
+	/*---------------------------*/
+    /*- ALIGNMENT CENTER --------*/
+    .header-center{
+        text-align: center;
+    }
+    .header-center .logo{
+        float: none;
+    }
+    .header-center .site-description{
+        display: block;
+        margin: 0;
+    }
+    .header-center .site-logo-link + .site-description{
+        margin: 10px 0 0;
+    }
+    .header-center .site-logo-link + .tagline{
+        margin-top: 10px;
+    }
+    .header-center nav{
+        clear: both;
+        float: none;
+        margin-top: 20px;
+        text-align: center;
+        line-height: unset;
+    }
+
+    /*---------------------------*/
+    /*- ALIGNMENT INLINE --------*/
+    .header-inline .logo{
+        text-align: center;
+    }
+    .header-inline .site-description{
+        display: block;
+        margin: 0;
+    }
+    .header-inline .site-logo-link + .site-description{
+        margin-top: 10px;
+    }
+    .header-inline .column{
+    	margin: 0;
+    }
+
+    .header-inline .inline-left-nav{
+    	float: left;
+    	width: 40.5%;
+    	text-align: right;
+    }
+    .header-inline .inline-right-nav{
+    	float: right;
+    	width: 40.5%;
+    	text-align: left;
+    }
+    .header-inline .inline-right-nav nav{
+    	float: none;
+    }
+    .header-inline .inline-site-logo{
+    	width: 15%;
+    	margin: 0 2%;
+    }
+
+	/*---------------------------*/
+    /*- NAV BOTTOM --------------*/
+    .nav-clear .logo{
+        float: none;
+    }
+    .nav-clear .site-logo-link + .sitename{
+        margin-top: 10px;
+    }
+    .nav-clear .site-logo-link + .tagline{
+        margin-top: 10px;
+    }
+    .nav-clear nav{
+        display: block;
+        float: none;
+        clear: both;
+        margin: 20px 0 0;
+        line-height: unset;
+    }
+
+	/*---------------------------*/
+    /*- STICKY HEADER VARIATIONS */
+
+		/*-----------------------*/
+		/*- HEADER CENTER -------*/
+		.header-sticky.is_stuck.header-center .logo{
+	    	display: none;
+	    }
+	    .header-sticky.is_stuck.header-center nav{
+	    	margin-top: 0;
+	    }
+
+		/*-----------------------*/
+		/*- NAV BOTTOM ----------*/
+	    .header-sticky.is_stuck.nav-clear .logo{
+	    	display: none;
+	    }
+	    .header-sticky.is_stuck.nav-clear nav{
+	    	margin-top: 0;
+	    }
+
+		/*-----------------------*/
+		/*- HEADER INLINE -------*/
+		.header-sticky.is_stuck.header-inline .site-description{
+			display: none;
+		}
+
+/*-------------------------------*/
+/*- THUMBNAILS ------------------*/
+
+	/*---------------------------*/
+	/*- OVERLAY -----------------*/
+    .with-overlay{overflow: hidden;}
+    .with-overlay .thumbnail-body{
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        visibility: hidden;
+        opacity: 0;
+        transition: 0.2s all ease-in-out;
+        text-align: center;
+    }
+    .with-overlay .overlay{
+        display: block;
+        position: relative;
+        top: 50%;
+        -webkit-transform: translateY(-50%);
+        -ms-transform: translateY(-50%);
+        transform: translateY(-50%);
+    }
+
+    .with-overlay .heading{
+        opacity: 0;
+        transform: translate3d(0, 10px, 0);
+        transition: 0.2s all ease-in-out 0.1s;
+    }
+    .with-overlay .heading a{
+        color: #fff;
+    }
+
+    .with-overlay .button{
+        margin-top: 15px;
+        position: relative;
+        opacity: 0;
+        transform: translate3d(0, 10px, 0);
+        transition: transform 0.2s ease-in-out 0.2s, opacity 0.2s ease-in-out 0.25s;
+    }
+
+    .with-overlay .excerpt{display: none;}
+    .with-overlay .meta-info{display: none;}
+
+        /*-----------------------*/
+        /*- OVERLAY HOVER -------*/
+        .with-overlay:hover .thumbnail-media img{
+            transform: scale(1.08);
+        }
+        .with-overlay:hover .thumbnail-body{
+            visibility: visible;
+            opacity: 1;
+        }
+        .with-overlay:hover .heading{
+            transform: translate3d(0, 0, 0);
+            opacity: 1;
+        }
+        .with-overlay:hover .button{
+            transform: translate3d(0, 0, 0);
+            opacity: 1;
+        }
+
+/*-------------------------------*/
+/*- OFF CANVAS MENU -------------*/
+
+    /*---------------------------*/
+    /*- OFF CANVAS MENU ---------*/
+    section[class*=' off-canvas-'] .nav-mobile{
+        display: none;
+    }
 
 }
 
 @media only screen and (min-width: 1100px){
-
     /*---------------------------*/
     /*- LAYERS BADGE ------------*/
 	.created-using-layers{
@@ -322,80 +1039,41 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 	}
 }
 
+/*--------------------------------------------------------------*/
+/*- BIG BOY SCREENS --------------------------------------------*/
+/*--------------------------------------------------------------*/
 
-@media only screen and (max-width: 480px), screen and (max-device-width: 480px), screen and (max-width: 600px) {
+@media only screen and (min-width: 1441px){
+
+/*-------------------------------*/
+/*- GRIDS -----------------------*/
+
+	.column{
+	    margin-bottom: 2%;
+	}
+
 /*-------------------------------*/
 /*- CONTAINERS ------------------*/
 
-	/*---------------------------*/
-	/*- CONTENT -----------------*/
-	.content,
-	.content-main,
-	.content-large{
-		padding: 20px;
-	}
-	.content-small{
-		padding: 10px;
-	}
-	.content-extra-large{
-		padding: 30px 20px;
-	}
-	.content-massive{
-		padding: 40px 20px;
+	.container{
+        max-width: 1320px;
+    }
+    .container.list-masonry{
+        max-width: 1280px;
+        padding: 0;
+        position:relative;
+    }
+
+/*-------------------------------*/
+/*- TITLES ----------------------*/
+
+	.title-container .title{
+        max-width: 1320px;
 	}
 
-	/*---------------------------*/
-	/*- VERTICAL PADDING --------*/
-	.content-vertical{
-		padding-top: 20px;
-		padding-bottom: 20px;
-	}
-	.content-vertical-large{
-		padding-top: 20px;
-		padding-bottom: 20px;
-	}
-	.content-vertical-extra-large{
-		padding-top: 30px;
-		padding-bottom: 30px;
-	}
-	.content-vertical-massive{
-		padding-top: 40px;
-		padding-bottom: 40px;
-	}
-	.sky{
-		padding-top: 40px;
-	}
-	.basement{
-		padding-bottom: 20px;
-	}
+}
 
-	/*---------------------------*/
-	/*- VERTICAL SPACING --------*/
-	.extra-push{
-		margin-bottom: 40px;
-	}
-	.extra-push-left{
-		margin-bottom: 10px;
-	}
-	.push-top-small{
-		margin-top: 10px;
-	}
-	.push-top-medium{
-		margin-top: 20px;
-	}
-	.push-top-large{
-		margin-top: 30px;
-	}
-	.push-bottom-small{
-		margin-bottom: 10px;
-	}
-	.push-bottom-medium{
-		margin-bottom: 20px;
-	}
-	.push-bottom-large{
-		margin-bottom: 30px;
-	}
-
+@media only screen and (max-width: 480px), screen and (max-device-width: 480px), screen and (max-width: 600px) {
 /*-------------------------------*/
 /*- FORMS -----------------------*/
 
@@ -490,98 +1168,6 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 	}
 
 /*-------------------------------*/
-/*- TITLES ----------------------*/
-.title{
-	padding: 40px 20px;
-}
-
-	/*---------------------------*/
-    /*- SECTION TITLE -----------*/
-	.section-title{
-		margin-bottom: 20px;
-	}
-
-/*-------------------------------*/
-/*- THUMBNAILS ------------------*/
-
-	/*---------------------------*/
-    /*- OVERLAYS ----------------*/
-	.with-overlay{
-		text-shadow: none;
-	}
-	.with-overlay .thumbnail-body{
-		position: static;
-		top: auto;
-		left: auto;
-		width: auto;
-		height: auto;
-		visibility: visible;
-		opacity: 1;
-		background: #f5f5f5;
-		text-align: inherit;
-	}
-	.with-overlay .overlay{
-		display: block;
-		position: static;
-		transform: none;
-	}
-	.with-overlay .heading{
-		color: inherit;
-		opacity: 1;
-		transform: none;
-		transition: none;
-	}
-	.with-overlay .heading a{
-		color: inherit;
-	}
-	.with-overlay .button{
-		background: #454545;
-		border: none;
-		position: static;
-		opacity: 1;
-		transform: none;
-		transition: inherit;
-	}
-	.with-overlay .excerpt{
-		display: block;
-	}
-	.with-overlay .meta-info{
-		display: block;
-	}
-
-/*-------------------------------*/
-/*- HEADERS ---------------------*/
-
-	.header-secondary{
-		display: none;
-	}
-	.header-site .container{
-		padding: 10px 20px;
-	}
-	.header-center .logo{
-		float: left;
-		text-align: left;
-	}
-	.header-center .site-logo-anchor{
-		overflow: hidden;
-	}
-	.header-center .site-description{
-		display: inline-block;
-		vertical-align: middle;
-	}
-	.header-center .site-logo-anchor + .site-description{
-		margin: 0 0 0 10px;
-	}
-	.header-center nav{
-		clear: none;
-		float: right;
-		margin: 10px 0;
-	}
-	.admin-bar .header-sticky.is_stuck.is_stuck_show{
-		margin-top: 0;
-	}
-
-/*-------------------------------*/
 /*- SLIDER ----------------------*/
 
     /*---------------------------*/
@@ -668,29 +1254,6 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 	/*- BACK TO TOP -------------*/
 	#back-to-top{
 		display: none;
-	}
-
-
-/*-------------------------------*/
-/*- COMPONENTS ------------------*/
-
-    /*---------------------------*/
-    /*- OFF CANVAS --------------*/
-	section[class*=' off-canvas-']{
-    	padding-top: 46px;
-	}
-
-
-    /*---------------------------*/
-    /*- CLOSE CANVAS ------------*/
-    .admin-bar section[class*=' off-canvas-'] .close-canvas{
-        top: 46px;
-    }
-
-    /*---------------------------*/
-	/*- OFF CANVAS MENU ---------*/
-	section[class*=' off-canvas-'] .nav-mobile{
-		display: block;
 	}
 
 }

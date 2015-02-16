@@ -905,6 +905,8 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
     	float: right;
     	width: 40.5%;
     	text-align: left;
+        position: relative;
+        z-index: 2;
     }
     .header-inline .inline-right-nav nav{
     	float: none;

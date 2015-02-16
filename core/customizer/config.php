@@ -20,7 +20,7 @@ class Layers_Customizer_Config {
 		$panels = array(
 			'branding' => array(
 							'title' => __( 'Branding', LAYERS_THEME_SLUG ),
-							'priority' => 30
+							'priority' => 20
 						),
 			'header' => array(
 							'title' => __( 'Header', LAYERS_THEME_SLUG ),
@@ -30,16 +30,16 @@ class Layers_Customizer_Config {
 			'content' => array(
 							'title' => __( 'Content Area', LAYERS_THEME_SLUG ),
 							'description' => __( 'Control your content\'s default layout.' , LAYERS_THEME_SLUG ), // @TODO Put a helper here
-							'priority' => 45
+							'priority' => 60
 						),
 			'footer' => array(
 							'title' => __( 'Footer', LAYERS_THEME_SLUG ),
 							'description' => __( 'Control your footer\'s custom text, widget areas and layout.' , LAYERS_THEME_SLUG ), // @TODO Put a helper here
-							'priority' => 50
+							'priority' => 80
 						),
 			'woocommerce' => array(
 							'title' => __( 'WooCommerce', LAYERS_THEME_SLUG ),
-							'priority' => 70
+							'priority' => 100
 						)
 		);
 
@@ -53,9 +53,13 @@ class Layers_Customizer_Config {
 	*/
 
 	public function default_sections(){
+
 		$default_sections[ 'title_tagline' ] = array(
+													'title' => __( 'Logo &amp; Title' , LAYERS_THEME_SLUG ),
 													'panel' => 'branding'
 												);
+
+		$default_sections[ 'nav' ] = array( 'priority' => 50 );
 
 		return apply_filters( 'layers_customizer_default_sections', $default_sections );
 	}
@@ -72,6 +76,7 @@ class Layers_Customizer_Config {
 						'nav' => array( // This is used before any menus are registered. Then replaced by WP Naviagation
 							'title'       =>__( 'Navigation' , LAYERS_THEME_SLUG ),
 							'description' => __( 'First create a menu then come back here to place it.', LAYERS_THEME_SLUG ),
+							'priority' => 50
 						),
 						'fonts' => array(
 							'title' =>__( 'Fonts' , LAYERS_THEME_SLUG ),
@@ -126,7 +131,7 @@ class Layers_Customizer_Config {
 		// Header -> Layout -> Layout  // This is used before any menus are registered. Then replaced by WP Naviagation
 		if ( ! wp_get_nav_menus() ) {
 			$controls['nav'] = array(
-									'general-nav-custom-css' => array(
+									'general-nav' => array(
 										'type'        => 'layers-button',
 										'text'        => __( 'Create Menu', LAYERS_THEME_SLUG ),
 										'href'        => admin_url( 'nav-menus.php' ),

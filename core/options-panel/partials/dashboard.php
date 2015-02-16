@@ -72,7 +72,7 @@ $api = new Layers_API(); ?>
 									<?php } ?>
 									<?php if( isset( $extension_details[ 'available' ] ) && false == $extension_details[ 'available' ] ) { ?>
 										<div class="layers-btn-group">
-											<p><?php _e( 'Coming soon' , LAYERS_THEME_SLUG ); ?></p>
+											<button class="layers-button btn-subtle" disabled="disabled"><?php _e( 'Coming soon' , LAYERS_THEME_SLUG ); ?></button>
 										</div>
 									<?php } else { ?>
 										<?php if( isset( $extension_details[ 'links' ] ) && ( isset( $extension_details[ 'links' ][ 'purchase' ] ) || isset( $extension_details[ 'links' ][ 'details' ] ) ) ){ ?>
@@ -95,7 +95,7 @@ $api = new Layers_API(); ?>
 								</li>
 							<?php } // foreach extensions ?>
 						</ul>
-						
+
 					</div>
 				</div>
 

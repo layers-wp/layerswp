@@ -20,7 +20,7 @@ Developer URI: http://oboxthemes.com
     position: relative;
     font-size: 1.4rem;
     border-radius: 3px;
-        line-height: 40px;
+    line-height: 40px;
 }
 .header-cart .cart{
     margin: 0;
@@ -279,7 +279,7 @@ p.stars span a:focus{
     /*-----------------------*/
     /*- PRODUCT DESCRIPTION -*/
     .entry-title{
-        font-size: 4.4rem; /*-- section-title.large --*/
+        font-size: 3.4rem; /*-- section-title.large --*/
     }
     div[itemprop="offers"]{
         margin: 0px 0 20px;
@@ -321,16 +321,7 @@ p.stars span a:focus{
         }
         .quantity .qty{
             width: 60px;
-            height: 33px;
-            text-align: center;
-            border-left: none;
-            border-right: none;
-        }
-        .minus, .plus{
-            width: 40px;
-            background: #454545;
-            color: #fff;
-            font-weight: 600;
+            height: 31px;
             text-align: center;
         }
         .single_add_to_cart_button{

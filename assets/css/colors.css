@@ -403,7 +403,9 @@ pre{
         background: #333;
     }
 
-    .tagline{color: #8f8f8f;}
+    .tagline{
+        color: #8f8f8f;
+    }
 
 /*-------------------------------*/
 /*- TITLES ----------------------*/
@@ -453,7 +455,10 @@ pre{
 /*- FOOTER ----------------------*/
 /*-------------------------------*/
 
-	.footer .section-nav-title{
+	.footer-site{
+        background-color: #f3f3f3;
+    }
+    .footer-site .section-nav-title{
         color: #323232;
     }
 

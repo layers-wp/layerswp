@@ -11,9 +11,9 @@
 
 		<?php do_action( 'layers_before_footer' ); ?>
 
-		<footer id="footer" class="footer-site well">
+		<footer id="footer" class="footer-site">
 			<?php do_action( 'layers_before_footer_inner' ); ?>
-			<div class="<?php if( 'layout-fullwidth' != layers_get_theme_mod( 'footer-width' ) ) echo 'container'; ?>  content-vertical-large clearfix">
+			<div class="<?php if( 'layout-fullwidth' != layers_get_theme_mod( 'footer-width' ) ) echo 'container'; ?>  clearfix">
 				<?php // Do logic related to the footer widget area count
 				$footer_sidebar_count = layers_get_theme_mod( 'footer-sidebar-count' ); ?>
 

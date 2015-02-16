@@ -150,10 +150,6 @@ object{
         -webkit-appearance: none;
         -moz-appearance: none;
     }
-    input[type=number]{
-        -webkit-appearance: none;
-        -moz-appearance: textfield;
-    }
     textarea{
         padding: 10px 8px;
         max-width: 660px;
@@ -557,65 +553,6 @@ object{
 	.mark + .sitename{margin-top: 10px;}
 
 	.column .logo{float: none;}
-
-
-
-/*-------------------------------*/
-/*- FOOTER ----------------------*/
-/*-------------------------------*/
-
-    .footer{clear: both;}
-    .footer .container{max-width: 1040px;}
-    .footer .section-nav-title{margin-bottom: 15px;}
-
-    .link-list li{margin: 0 0 6px;}
-
-    /*---------------------------*/
-    /*- FOOTER COPY -------------*/
-    .copyright .column{margin-bottom: 0;}
-    .copyright .nav-horizontal li{margin: 0 0 0 20px;}
-    .copyright .nav-horizontal a{padding: 0;}
-
-    .row + .copyright{
-        padding-top: 20px;
-        margin-top: 20px;
-    }
-
-    /*---------------------------*/
-    /*- LAYERS BADGE ------------*/
-    .created-using-layers{
-        display: none;
-        position: fixed;
-        bottom: 20px;
-        right: 20px;
-        width: 30px;
-        height: 27px;
-        z-index: 99;
-        transition: all 0.2s ease-in-out 0s;
-    }
-    .created-using-layers span{
-        display: none;
-    }
-    .created-using-layers:after{
-        border-radius: 4px;
-        position: absolute;
-        bottom: 6px;
-        left: -150px;
-        z-index: 1;
-        content: attr(tooltip);
-        padding: 5px 6px;
-        opacity: 0;
-        visibility: hidden;
-        transition: all 0.2s ease-in-out;
-    }
-    .created-using-layers:hover{
-        background-position: bottom;
-    }
-    .created-using-layers:hover:after{
-        opacity: 1;
-        visibility: visible;
-        left: -158px;
-    }
 
 /*-------------------------------*/
 /*- NAVIGATION ------------------*/

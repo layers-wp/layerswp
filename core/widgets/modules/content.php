@@ -176,18 +176,38 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 								$featureimage ,
 								$use_image_ratio ,
 								$featurevideo
-							); ?>
+							);
 
-							<div id="<?php echo $widget_id; ?>-<?php echo $key; ?>" class="
-								column<?php if( !isset( $widget['design'][ 'gutter' ] ) ) echo '-flush'; ?>
-								<?php echo $span_class; ?>
-								<?php if( '' != $this->check_and_return( $column, 'design' , 'background', 'image' ) || '' != $this->check_and_return( $column, 'design' , 'background', 'color' ) ) echo 'content'; ?>
-								layers-masonry-column">
-								<div class="media
-									<?php echo $this->check_and_return( $column, 'design', 'imagealign' ); ?>
-									<?php echo $this->check_and_return( $column, 'design', 'fonts' , 'size' ); ?>
-									<?php if( !$this->check_and_return( $widget, 'design', 'gutter' ) ) echo 'no-push-bottom'; ?>
-								">
+
+							// Set Column CSS Classes
+							$column_class = array();
+							$column_class[] = 'layers-masonry-column';
+							$column_class[] = $span_class;
+							if( !isset( $widget['design'][ 'gutter' ] ) ) {
+								$column_class[] = 'column-flush';
+							} else {
+								$column_class[] = 'column';
+							}
+							if( '' != $this->check_and_return( $column, 'design' , 'background', 'image' ) || '' != $this->check_and_return( $column, 'design' , 'background', 'color' ) ) {
+								$column_class[] = 'content';
+							}
+							if( false != $media ) {
+								$column_class[] = 'has-image';
+							}
+							$column_class = implode( ' ', $column_class );
+
+							// Set Column Inner CSS Classes
+							$column_inner_class = array();
+							$column_inner_class[] = 'media';
+							if( !$this->check_and_return( $widget, 'design', 'gutter' ) ) {
+								$column_inner_class[] = 'no-push-bottom';
+							}
+							$column_inner_class[] = $this->check_and_return( $column, 'design', 'imagealign' );
+							$column_inner_class[] = $this->check_and_return( $column, 'design', 'fonts' , 'size' );
+							$column_inner_class = implode( ' ', $column_inner_class ); ?>
+
+							<div id="<?php echo $widget_id; ?>-<?php echo $key; ?>" class="<?php echo $column_class; ?>">
+								<div class="<?php echo $column_inner_class; ?>">
 									<?php if( NULL != $media ) { ?>
 										<div class="media-image <?php echo ( ( isset( $column['design'][ 'imageratios' ] ) && 'image-round' == $column['design'][ 'imageratios' ] ) ? 'image-rounded' : '' ); ?>">
 											<?php if( NULL != $link ) { ?><a href="<?php echo $link; ?>"><?php  } ?>
@@ -402,7 +422,11 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 				<li class="layers-accordion-item" data-guid="<?php echo esc_attr( $column_guid ); ?>">
 					<a class="layers-accordion-title">
 						<span>
-							<?php _e( 'Column' , LAYERS_THEME_SLUG ); ?><span class="layers-detail"><?php echo ( isset( $title ) ? ': ' . stripslashes( $title ) : NULL ); ?></span>
+							<?php _e( 'Column' , LAYERS_THEME_SLUG ); ?>
+							<span class="layers-detail">
+								<?php echo ( isset( $title ) ? ': ' . substr( stripslashes( $title ), 0 , 50 ) : NULL ); ?>
+								<?php echo ( isset( $title ) && strlen( $title ) > 50 ? '...' : NULL ); ?>
+							</span>
 						</span>
 					</a>
 					<section class="layers-accordion-section layers-content">

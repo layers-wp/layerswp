@@ -41,8 +41,9 @@ class Layers_Customizer_Regsitrar {
 		// Grab the customizer config
 		$this->config = new Layers_Customizer_Config();
 
-		// Start registration with the panels
+		// Start registration with the panels & sections
 		$this->register_panels( $this->config->panels() );
+		$this->register_sections ( $this->config->sections() );
 
 		// Move default sections into Layers Panels
 		$this->move_default_sections( $this->config->default_sections() );
@@ -76,9 +77,6 @@ class Layers_Customizer_Regsitrar {
 				$this->customizer->add_panel( $this->prefix . $panel_key , $panel_data );
 			}
 
-			// Register Sections for this Panel
-			$this->register_sections ( $panel_key , $this->config->sections() );
-
 		} // foreach panel
 	}
 
@@ -88,34 +86,33 @@ class Layers_Customizer_Regsitrar {
 	* @panel_key  varchar 		Unique key for which panel this section belongs to
 	* @sections   array 		Array of sections config
 	*/
-	public function register_sections( $panel_key = '', $sections = array() ){
+	public function register_sections( $sections = array() ){
 
 		// If there are no sections, return
 		if( empty( $sections ) ) return;
 
-		// Make sure that there is actually section config for this panel
-		if( !isset( $sections[ $panel_key ] ) ) return;
-
 		$section_priority = 150;
 
-		foreach( $sections[ $panel_key ] as $section_key => $section_data ){
+		foreach( $sections as $section_key => $section_data ){
 
-			if( $this->customizer_supports_panels() ) {
+			if( $this->customizer_supports_panels() && isset( $section_data[ 'panel' ] ) ) {
 				// Set which panel to use
-				$section_data[ 'panel' ] = $this->prefix . $panel_key;
+				$section_data[ 'panel' ] = $this->prefix . $section_data[ 'panel' ];
 			}
 
-			$section_data[ 'priority' ] = $section_priority;
+			if( !isset( $section_data[ 'priority' ] ) ) {
+				$section_data[ 'priority' ] = $section_priority;
+			}
 
 			$this->customizer->add_section(
-				$this->prefix . $panel_key . '-' . $section_key ,
+				$this->prefix . $section_key ,
 				$section_data
 			);
 
 			$section_priority++;
 
 			// Register Sections for this Panel
-			$this->register_controls ( $panel_key . '-' . $section_key , $this->config->controls() );
+			$this->register_controls ( $section_key , $this->config->controls() );
 		}
 
 	}
@@ -319,7 +316,7 @@ class Layers_Customizer_Regsitrar {
 						'capability' => 'manage_options'
 					)
 				);
-				
+
 				// Add Control
 				$this->customizer->add_control(
 					new Layers_Customize_Button_Control(
@@ -573,13 +570,20 @@ class Layers_Customizer_Regsitrar {
 
 	public function move_default_sections( $sections = array() ){
 
-		foreach( $sections as $section_key => $setion_data ){
+		foreach( $sections as $section_key => $section_data ){
 
 			// Get the current section
 			$section = $this->customizer->get_section( $section_key );
 
-			// Move Site Title & Tagline section to General panel
-			$section->panel = $this->prefix . $setion_data[ 'panel' ];
+			// Move this section to a specific panel
+			if( isset( $section_data[ 'panel' ] ) ) {
+				$section->panel = $this->prefix . $section_data[ 'panel' ];
+			}
+
+			// Prioritize this section
+			if( isset( $section_data[ 'priority' ] ) ) {
+				$section->priority = $section_data[ 'priority' ];
+			}
 		}
 	}
 

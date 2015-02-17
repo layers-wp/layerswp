@@ -44,68 +44,14 @@ class Layers_Post_Types {
 
 	public function get_post_types(){
 
-		$this->post_types = array(
-			'portfolio' => array(
-				'description' => __( 'Portfolio Items', LAYERS_THEME_SLUG ),
-				'labels' => array(
-					'name'               => esc_html__( 'Projects', LAYERS_THEME_SLUG ),
-					'singular_name'      => esc_html__( 'Project', LAYERS_THEME_SLUG ),
-					'menu_name'          => esc_html__( 'Portfolio', LAYERS_THEME_SLUG ),
-					'all_items'          => esc_html__( 'All Projects', LAYERS_THEME_SLUG ),
-					'add_new'            => esc_html__( 'Add New', LAYERS_THEME_SLUG ),
-					'add_new_item'       => esc_html__( 'Add New Project', LAYERS_THEME_SLUG ),
-					'edit_item'          => esc_html__( 'Edit Project', LAYERS_THEME_SLUG ),
-					'new_item'           => esc_html__( 'New Project', LAYERS_THEME_SLUG ),
-					'view_item'          => esc_html__( 'View Project', LAYERS_THEME_SLUG ),
-					'search_items'       => esc_html__( 'Search Projects', LAYERS_THEME_SLUG ),
-					'not_found'          => esc_html__( 'No Projects found', LAYERS_THEME_SLUG ),
-					'not_found_in_trash' => esc_html__( 'No Projects found in Trash', LAYERS_THEME_SLUG ),
-				),
-				'supports' => array(
-					'title',
-					'editor',
-					'thumbnail',
-					'comments',
-					'publicize',
-					'wpcom-markdown',
-					'revisions',
-					'page-attributes',
-					'custom-fields',
-				),
-				'rewrite' => array(
-					'slug'       => 'portfolio',
-					'with_front' => false,
-					'feeds'      => true,
-					'pages'      => true,
-				),
-				'public'          => true,
-				'show_ui'         => true,
-				'menu_position'   => 20,                    // below Pages
-				'menu_icon'       => 'dashicons-portfolio', // 3.8+ dashicon option
-				'capability_type' => 'page',
-				'map_meta_cap'    => true,
-				'taxonomies'      => array( 'portfolio-category', 'portfolio-tag' ),
-				'query_var'       => 'portfolio',
-			)
-		);
+		$this->post_types = array();
 
 		return apply_filters( 'layers_post_types' , $this->post_types );
 	}
 
 	public function get_taxonomies(){
 
-		$this->taxonomies = array(
-				'portfolio' => array(
-					'portfolio-category' => array(
-						'name' => __( 'Project Categories', LAYERS_THEME_SLUG ),
-						'hierarchical' => true
-					),
-					'portfolio-tag' => array(
-						'name' => __( 'Project Tags', LAYERS_THEME_SLUG ),
-						'hierarchical' => false
-					)
-				)
-			);
+		$this->taxonomies = array();
 
 		return apply_filters( 'layers_taxonomies' , $this->taxonomies );
 

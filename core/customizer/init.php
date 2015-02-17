@@ -55,7 +55,7 @@ class Layers_Customizer {
 			// If we are in a builder page, update the Widgets title
 			$wp_customize->add_panel(
 				'widgets', array(
-					'priority' => 10,
+					'priority' => 0,
 					'title' => __('Edit Layout', LAYERS_THEME_SLUG ),
 					'description' => $this->render_builder_page_dropdown() . __('Use this area to add widgets to your page, use the (Layers) widgets for the Body section.', LAYERS_THEME_SLUG ),
 				)
@@ -153,21 +153,21 @@ class Layers_Customizer {
 	}
 
 	function render_actions_buttons() { ?>
-			
+
 			<a class="customize-controls-layers-button customize-controls-layers-button-dashboard dashicons dashicons-plus layers-tooltip" href="<?php echo admin_url( 'admin.php?page=layers-add-new-page' ); ?>">
 				<span class="layers-tooltip-text layers-tooltip-text-large"><?php _e( 'Add new Layers page', LAYERS_THEME_SLUG ) ?></span>
 			</a>
 			<a class="customize-controls-layers-button customize-controls-layers-button-preview icon-display layers-tooltip" href="#" target="_blank">
 				<span class="layers-tooltip-text"><?php _e( 'Preview this page', LAYERS_THEME_SLUG ) ?></span>
 			</a>
-			
+
 			<span class="layers-tooltip-text layers-tooltip-text-close layers-tooltip-text-tiny">
 				<?php _e( 'Close', LAYERS_THEME_SLUG ) ?>
 			</span>
 			<span class="layers-tooltip-text layers-tooltip-text-back">
 				<?php _e( 'Back to controls', LAYERS_THEME_SLUG ) ?>
 			</span>
-			
+
 		<?php
 	}
 
@@ -181,5 +181,5 @@ function layers_customizer_init(){
 	$layers_widget = new Layers_Customizer();
 	$layers_widget->init();
 }
-//add_action( 'customize_register' , 'layers_customizer_init' , 50 );
+add_action( 'customize_register' , 'layers_customizer_init' , 50 );
 add_action( 'init' , 'layers_customizer_init');

@@ -279,7 +279,10 @@ small{
 
     /*---------------------------*/
     /*- RESPONSIVE BUTTON -------*/
-    .responsive-nav .l-menu{font-size: 16px;}
+    .responsive-nav .l-menu{
+        font-size: 24px;
+        line-height: 40px;
+    }
 
     /*---------------------------*/
     /*- HORIZONTAL NAV ----------*/
@@ -431,12 +434,6 @@ section[class*=' off-canvas-']{
 /*-------------------------------*/
 
     /*---------------------------*/
-    /*- ALIGNMENT CENTER --------*/
-    .header-center nav{
-        line-height: unset;
-    }
-
-    /*---------------------------*/
     /*- SECONDARY HEADER --------*/
     .header-secondary nav{
         font-size: 1.2rem;
@@ -464,7 +461,7 @@ section[class*=' off-canvas-']{
 /*-------------------------------*/
 
     .story{
-        font-size: 1.8rem;
+        font-size: 1.6rem;
     }
     .story h1{
         font-size: 3.2rem;
@@ -472,19 +469,19 @@ section[class*=' off-canvas-']{
     }
     .story h2{
         font-size: 2.2rem;
-        font-weight: 400;
+        font-weight: 700;
     }
     .story h3{
         font-size: 2.0rem;
-        font-weight: 400;
+        font-weight: 700;
     }
     .story h4{
         font-size: 1.8rem;
-        font-weight: 400;
+        font-weight: 700;
     }
     .story h5{
         font-size: 1.4rem;
-        font-weight: 400;
+        font-weight: 700;
     }
     .story table{
         font-size: 1.4rem;

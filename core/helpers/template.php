@@ -35,7 +35,7 @@ if( !function_exists( 'layers_bread_crumbs' ) ) {
 					<li><?php _e('Search',LAYERS_THEME_SLUG); ?></li>
 				<?php } elseif( function_exists('is_shop') && ( is_post_type_archive( 'product' ) || ( get_post_type() == "product") ) ) { ?>
 					<li><?php echo esc_html( $seperator ); ?></li>
-					<?php if( function_exists( 'woocommerce_get_page_id' )  && '' != woocommerce_get_page_id('shop') ) { ?>
+					<?php if( function_exists( 'woocommerce_get_page_id' )  && '-1' != woocommerce_get_page_id('shop') ) { ?>
 						<?php $shop_page_id = woocommerce_get_page_id('shop'); ?>
 						<?php $shop_page = get_post( $shop_page_id ); ?>
 						<?php if( is_object ( $shop_page ) ) { ?>
@@ -192,7 +192,7 @@ if( !function_exists( 'layers_bread_crumbs' ) ) {
 				<?php } elseif ( is_search() ) { ?>
 
 					<li><?php echo esc_html( $seperator ); ?></li>
-					<li><span class="current">"<?php the_search_query(); ?>"</span></li>
+					<li><span class="current">"<?php echo get_search_query(); ?>"</span></li>
 
 				<?php } elseif( is_tax() ) {
 
@@ -302,7 +302,7 @@ if( !function_exists( 'layers_get_page_title' ) ) {
 			};
 		} elseif( is_search() ) {
 			$title_array['title'] = __( 'Search' , LAYERS_THEME_SLUG );
-			$title_array['excerpt'] = the_search_query();
+			$title_array['excerpt'] = get_search_query();
 		} elseif( is_tag() ) {
 			$title_array['title'] = single_tag_title();
 		} elseif(!is_page() && is_category() ) {
@@ -320,9 +320,11 @@ if( !function_exists( 'layers_get_page_title' ) ) {
 		} elseif ( is_year() ) {
 			$title_array['title' ] = sprintf( __( 'Yearly Archives: %s', LAYERS_THEME_SLUG ), get_the_date( _x( 'Y', 'yearly archives date format', LAYERS_THEME_SLUG ) ) );
 		} elseif( function_exists('is_shop') && ( is_post_type_archive( 'product' ) || ( get_post_type() == "product") ) ) {
-			if( function_exists( 'woocommerce_get_page_id' )  && '' != woocommerce_get_page_id('shop') ) {
+			if( function_exists( 'woocommerce_get_page_id' )  && -1 != woocommerce_get_page_id('shop') ) {
 				$shop_page = get_post( woocommerce_get_page_id('shop') );
-				$title_array['title' ] = $shop_page->post_title;
+				if( is_object( $shop_page ) ) {
+					$title_array['title' ] = $shop_page->post_title;
+				}
 			} else {
 				$title_array['title' ] = __( 'Shop' , LAYERS_THEME_SLUG );
 			}
@@ -391,7 +393,12 @@ if( !function_exists( 'layers_get_header_class' ) ) {
 		}
 
 		// Handle invert if background-color light / dark
-		if ( '#FFFFFF' == layers_light_or_dark( $header_background_color_option, '#000000' /*dark*/, '#FFFFFF' /*dark*/ ) ) {
+		$light_or_dark = layers_light_or_dark( $header_background_color_option, '#000000' /*dark*/, '#FFFFFF' /*light*/ );
+
+		if (
+				'#FFFFFF' == $light_or_dark
+				&& '' != $header_background_color_option
+			) {
 			$classes[] = 'invert';
 		}
 
@@ -449,7 +456,7 @@ if( !function_exists( 'layers_apply_customizer_styles' ) ) {
 		// Header
 		if( layers_get_theme_mod( 'header-background-color' ) ){
 			$bg_opacity = ( layers_get_theme_mod( 'header-overlay') ) ? .5 : 1 ;
-			layers_inline_styles( '.header-site, .header-site.header-sticky', 'css', array( 'css' => 'background-color: rgba(' . implode( ', ' , hex2rgb( layers_get_theme_mod( 'header-background-color' ) ) ) . ', ' . $bg_opacity . ');' ) );
+			layers_inline_styles( '.header-site, .header-site.header-sticky', 'css', array( 'css' => 'background-color: rgba(' . implode( ', ' , layers_hex2rgb( layers_get_theme_mod( 'header-background-color' ) ) ) . ', ' . $bg_opacity . ');' ) );
 		}
 
 		// Footer
@@ -796,7 +803,7 @@ if( !function_exists( 'layers_inline_styles' ) ) {
 			case 'text-shadow' :
 
 				if( '' == $args[ 'text-shadow' ] ) return ;
-				$css .= 'text-shadow: 0px 0px 10px rgba(' . implode( ', ' , hex2rgb( $args[ 'text-shadow' ] ) ) . ', 0.75);';
+				$css .= 'text-shadow: 0px 0px 10px rgba(' . implode( ', ' , layers_hex2rgb( $args[ 'text-shadow' ] ) ) . ', 0.75);';
 
 			break;
 
@@ -985,8 +992,8 @@ if( !function_exists( 'layers_translate_image_ratios' ) ) {
  * @return	array	implode(",", $rgb); returns the rgb values separated by commas
  */
 
-if(!function_exists('hex2rgb') ) {
-	function hex2rgb($hex) {
+if(!function_exists('layers_hex2rgb') ) {
+	function layers_hex2rgb($hex) {
 	   $hex = str_replace("#", "", $hex);
 
 	   if(strlen($hex) == 3) {
@@ -1039,3 +1046,37 @@ if ( ! function_exists( 'layers_menu_fallback' ) ) {
 		echo '</ul>';
 	}
 } // layers_light_or_dark
+
+/**
+ * Standard menu fallback
+ */
+
+if ( ! function_exists( 'layers_show_html5_video' ) ) {
+	function layers_show_html5_video( $src = NULL , $width = 490 ) {
+		if( NULL == $src ) return; ?>
+		<video width="<?php echo $width;?>" height="auto" controls>
+			<source src="<?php echo $src; ?>?v=<?php echo LAYERS_VERSION; ?>" type="video/<?php echo substr( $src, -3, 3); ?>">
+			<?php _e( 'Your browser does not support the video tag.' , LAYERS_THEME_SLUG ); ?>
+		</video>
+<?php }
+} // layers_show_html5_video
+
+/**
+ * Return a list of stock standard WP post types
+ */
+
+if ( ! function_exists( 'layers_get_standard_wp_post_types' ) ) {
+	function layers_get_standard_wp_post_types(){
+		return array( 'post', 'page', 'attachment', 'revision', 'nav_menu_item' );
+	}
+} // layers_get_standard_wp_post_types
+
+/**
+ * Return a list of stock standard WP taxonomies
+ */
+
+if ( ! function_exists( 'layers_get_standard_wp_taxonomies' ) ) {
+	function layers_get_standard_wp_taxonomies(){
+		return array( 'category', 'nav_menu', 'category', 'link_category', 'post_format' );
+	}
+} // layers_get_standard_wp_taxonomies

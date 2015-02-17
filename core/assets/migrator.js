@@ -132,6 +132,8 @@ jQuery(document).ready(function($){
             // Read the file JSON
             $.getJSON( attachment.url, function( import_data ){
 
+                jQuery( '#layers-page-import-button' ).text( migratori8n.importing_message ).addClass( 'btn-link' );
+
                 // Set the attributes to send to the importer
                 var $page_data = {
                         action: 'layers_import_widgets',
@@ -146,7 +148,7 @@ jQuery(document).ready(function($){
                     function(data){
                         // Upon completion update the import button
                         jQuery( '#layers-page-import-button' ).fadeOut( 500, function() {
-                            jQuery(this).text( migratori8n.complete_message ).addClass( 'btn-link' ).fadeIn();
+                            jQuery(this).text( migratori8n.complete_message ).fadeIn().attr('disabled','disabled');
                         } ).closest( '.layers-column' ).addClass( 'layers-success' );
                     }
                 );

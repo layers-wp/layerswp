@@ -42,9 +42,12 @@ if( !class_exists( 'Layers_Widget_Ajax' ) ) {
 					urldecode( stripslashes( $_POST[ 'instance' ] ) ),
 					$data
 				);
-
-				// Get the previous element's column data
-				$instance = $data[ 'widget-' . $_POST[ 'id_base' ] ][ $_POST[ 'number' ] ][ 'slides' ][ $_POST[ 'last_guid' ] ];
+								// Get the previous element's column data
+				if( isset( $_POST[ 'last_guid' ] ) ) {
+					$instance = $data[ 'widget-' . $_POST[ 'id_base' ] ][ $_POST[ 'number' ] ][ 'slides' ][ $_POST[ 'last_guid' ] ];
+				} else {
+					$instance = NULL;
+				}
 
 
 				// Get the previous element's column data
@@ -66,7 +69,11 @@ if( !class_exists( 'Layers_Widget_Ajax' ) ) {
 				);
 
 				// Get the previous element's column data
-				$instance = $data[ 'widget-' . $_POST[ 'id_base' ] ][ $_POST[ 'number' ] ][ 'columns' ][ $_POST[ 'last_guid' ] ];
+				if( isset( $_POST[ 'last_guid' ] ) ) {
+					$instance = $data[ 'widget-' . $_POST[ 'id_base' ] ][ $_POST[ 'number' ] ][ 'columns' ][ $_POST[ 'last_guid' ] ];
+				} else {
+					$instance = NULL;
+				}
 
 				$widget->column_item( array( 'id_base' => $_POST[ 'id_base' ] , 'number' => $_POST[ 'number' ] ), NULL, $instance );
 			}

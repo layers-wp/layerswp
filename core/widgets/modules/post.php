@@ -169,7 +169,6 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 			// Do the WP_Query
 			$post_query = new WP_Query( $query_args );
 
-
 			// Set the meta to display
 			global $layers_post_meta_to_display;
 			$layers_post_meta_to_display = array();
@@ -229,8 +228,8 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
                                                         echo '<p class="excerpt">' . get_the_excerpt() . '</p>';
                                                     }
                                                 }; ?>
-                                                <?php if( ! ( isset( $widget['text_style'] ) && 'overlay' == $widget['text_style'] ) ) { ?>
-    												<?php if( 'post' == get_post_type() && !empty( $post_meta_to_display ) ) layers_post_meta( $post->ID, $post_meta_to_display );?>
+                                                <?php if( 'overlay' != $this->check_and_return( $widget, 'text_style' ) ) { ?>
+    												<?php layers_post_meta( $post->ID, $layers_post_meta_to_display );?>
     											<?php } // Don't show meta if we have chosen overlay ?>
                                                 <?php if( isset( $widget['show_call_to_action'] ) && $this->check_and_return( $widget , 'call_to_action' ) ) { ?>
 													<a href="<?php the_permalink(); ?>" class="button"><?php echo $widget['call_to_action']; ?></a>

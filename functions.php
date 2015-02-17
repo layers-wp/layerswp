@@ -72,11 +72,12 @@ require_once get_template_directory() . '/core/widgets/init.php';
 /*
  * Load Front-end helpers
  */
-require_once get_template_directory() . '/core/helpers/post.php';
-require_once get_template_directory() . '/core/helpers/template.php';
-require_once get_template_directory() . '/core/helpers/extensions.php';
 require_once get_template_directory() . '/core/helpers/custom-fonts.php';
+require_once get_template_directory() . '/core/helpers/extensions.php';
+require_once get_template_directory() . '/core/helpers/post.php';
 require_once get_template_directory() . '/core/helpers/post-types.php';
+require_once get_template_directory() . '/core/helpers/template.php';
+require_once get_template_directory() . '/core/helpers/woocommerce.php';
 
 /*
  * Load Admin-specific files
@@ -199,7 +200,7 @@ if( ! function_exists( 'layers_register_standard_sidebars' ) ) {
 		register_sidebar( array(
 			'id'		=> LAYERS_THEME_SLUG . '-left-sidebar',
 			'name'		=> __( 'Left Sidebar' , LAYERS_THEME_SLUG ),
-			'before_widget'	=> '<aside id="%1$s" class="content well push-bottom widget %2$s">',
+			'before_widget'	=> '<aside id="%1$s" class="content well push-bottom-large widget %2$s">',
 			'after_widget'	=> '</aside>',
 			'before_title'	=> '<h5 class="section-nav-title">',
 			'after_title'	=> '</h5>',
@@ -208,7 +209,7 @@ if( ! function_exists( 'layers_register_standard_sidebars' ) ) {
 		register_sidebar( array(
 			'id'		=> LAYERS_THEME_SLUG . '-right-sidebar',
 			'name'		=> __( 'Right Sidebar' , LAYERS_THEME_SLUG ),
-			'before_widget'	=> '<aside id="%1$s" class="content well push-bottom widget %2$s">',
+			'before_widget'	=> '<aside id="%1$s" class="content well push-bottom-large widget %2$s">',
 			'after_widget'	=> '</aside>',
 			'before_title'	=> '<h5 class="section-nav-title">',
 			'after_title'	=> '</h5>',
@@ -227,6 +228,28 @@ if( ! function_exists( 'layers_register_standard_sidebars' ) ) {
 				'after_title'	=> '</h5>',
 			) );
 		} // for footers
+
+		/**
+		 * Register WooCommerce Sidebars
+		 */
+		register_sidebar( array(
+            'id'        => LAYERS_THEME_SLUG . '-left-woocommerce-sidebar',
+            'name'      => __( 'Left Shop Sidebar' , LAYERS_THEME_SLUG ),
+            'description'   => __( '' , LAYERS_THEME_SLUG ),
+            'before_widget' => '<aside id="%1$s" class="content well push-bottom-large widget %2$s">',
+            'after_widget'  => '</aside>',
+            'before_title'  => '<h5 class="section-nav-title">',
+            'after_title'   => '</h5>',
+        ) );
+        register_sidebar( array(
+            'id'        => LAYERS_THEME_SLUG . '-right-woocommerce-sidebar',
+            'name'      => __( 'Right Shop Sidebar' , LAYERS_THEME_SLUG ),
+            'description'   => __( '' , LAYERS_THEME_SLUG ),
+            'before_widget' => '<aside id="%1$s" class="content well push-bottom-large widget %2$s">',
+            'after_widget'  => '</aside>',
+            'before_title'  => '<h5 class="section-nav-title">',
+            'after_title'   => '</h5>',
+        ) );
 	}
 	add_action( 'widgets_init' , 'layers_register_standard_sidebars' , 50 );
 }
@@ -330,6 +353,13 @@ if( ! function_exists( 'layers_scripts' ) ) {
 		); // Compontents
 
 		wp_enqueue_style(
+			LAYERS_THEME_SLUG . '-woocommerce',
+			get_template_directory_uri() . '/assets/css/woocommerce.css',
+			array(),
+			LAYERS_VERSION
+		); // Woocommerce
+
+		wp_enqueue_style(
 			LAYERS_THEME_SLUG . '-responsive',
 			get_template_directory_uri() . '/assets/css/responsive.css',
 			array(),
@@ -403,6 +433,7 @@ if( ! function_exists( 'layers_admin_scripts' ) ) {
 			array(
 				'loading_message' => __( 'Be patient while we import the widget data and images.' , LAYERS_THEME_SLUG ),
 				'complete_message' => __( 'Import Complete' , LAYERS_THEME_SLUG ),
+				'importing_message' => __( 'Importing Your Content' , LAYERS_THEME_SLUG ),
 				'duplicate_complete_message' => __( 'Edit Your New Page' , LAYERS_THEME_SLUG )
 			)
 		);// Migrator

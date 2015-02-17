@@ -21,13 +21,20 @@ jQuery(function($) {
     function layers_onboarding_load_anchors(){
 
         $anchor_count = $( '.layers-onboard-slide' ).length;
-        $anchor_template = '<a class="%class% %active-class%" href=""></a>'
 
         for( $i = 0; $i < $anchor_count; $i++ ){
-            $a = $anchor_template.toString().replace( '%class%' , 'layers-dot' );
-            $a = $a.toString().replace( '%active-class%' ,( 0 == $i ? 'dot-active' : '') );
 
-            $( '.onboard-nav-dots' ).append( $a );
+            $title = $( '.layers-onboard-slide' ).eq( $i ).find( '.layers-section-title h3' ).text();
+
+            $anchor_template = $( '<a href="" />' );
+            $anchor_template.addClass( 'layers-dot layers-tooltip' );
+            if( 0 == $i ){
+                $anchor_template.addClass( 'dot-active' );
+            }
+
+            $anchor_template.attr( 'title' , $title.trim() );
+
+            $( '.onboard-nav-dots' ).append( $anchor_template );
 
         };
     }
@@ -55,10 +62,10 @@ jQuery(function($) {
         if( 'layers_select_preset' == $action ) {
 
             $id = $( 'input[name="layes-preset-layout"]:checked' ).val();
-            
+
             // No template selected
             if( ! $id ){ return false; }
-            
+
             $title = $('#layers-preset-layout-' + $id + '-title' ).val();
             $widget_data = $('#layers-preset-layout-' + $id + '-widget_data' ).val();
 
@@ -134,11 +141,11 @@ jQuery(function($) {
 
         layers_change_onboarding_slide( $i );
     });
-    
+
     $( 'input[name="layes-preset-layout"]' ).on( 'change' , function(e){
         // "Hi Mom"
         $that = $(this);
-        
+
         // Enable the button when preset seleted
         if( $( 'input[name="layes-preset-layout"]:checked' ).length ){
             $( '.layers-proceed-to-customizer' ).removeClass('disable');

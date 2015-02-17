@@ -365,7 +365,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 
 					<?php echo $this->form_elements()->input(
 						array(
-							'type' => 'text',
+							'type' => 'hidden',
 							'name' => $this->get_field_name( 'column_ids' ) ,
 							'id' => 'column_ids_input_' . $this->number,
 							'value' => ( isset( $column_ids ) ) ? $column_ids : NULL

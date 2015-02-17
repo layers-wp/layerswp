@@ -269,20 +269,6 @@ class Layers_Customizer_Config {
 								) // scripts
 							);
 
-		// Header -> Layout -> Scripts
-		$controls['content-layout'] = array(
-								'content-width' => array(
-									'label' => __( 'Content Width' , LAYERS_THEME_SLUG ),
-									'description' => __( 'This option affects list and single content pages.', LAYERS_THEME_SLUG ),
-									'type'     => 'layers-select-icons',
-									'default' => 'layout-fullwidth',
-									'choices' => array(
-										'layout-boxed' => __( 'Boxed' , LAYERS_THEME_SLUG ),
-										'layout-fullwidth' => __( 'Full Width' , LAYERS_THEME_SLUG )
-									)
-								)
-							);
-
 		$controls['content-sidebars'] = array(
 								'single-sidebar-heading' => array(
 									'type'  => 'layers-heading',

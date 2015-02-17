@@ -502,11 +502,6 @@ if( !function_exists( 'layers_get_site_wrapper_class' ) ) {
 		// Add the general site header class
 		$classes[] = 'wrapper-site';
 
-		if( 'layout-boxed' == layers_get_theme_mod( 'content-width' ) ){
-			$classes[] = 'container';
-			$classes[] = 'no-inset';
-		}
-
 		$classes = apply_filters( 'layer_site_wrapper_class', $classes, $class );
 
 		return $classes;

@@ -37,35 +37,44 @@ jQuery(function($) {
     /**
     * 2 - Container padding for header fixed
     */
-    $(window).on('load', function() {
+    $(window).on('load resize', function() {
+        layers_apply_overlay_header_styles();
+    });
+    function layers_apply_overlay_header_styles() {
         
-        //Set the header.
+        // Get header.
         $header = $( '.header-site' );
         
-        if( $header.hasClass( 'header-overlay' ) ){
+        // Get content wrapper.
+        $content_wrapper = $( '#wrapper-content' );
+        
+        if( $header.hasClass( 'header-overlay' ) ) {
             
-            //Set the site wrapper.
-            $site_wrapper = $( '#wrapper-content' );
+            // Get first element.
+            $first_element = $content_wrapper.children().eq(0);
 
-            // Check if first widget is slider.
-            if( $site_wrapper.find( '.widget' ).first().hasClass( 'slide' ) ) {
+            if( $first_element.hasClass( 'slide' ) ) {
                 
-                // Add body class if first widget is slider.
-                $('body').addClass('layers-slide-first');
+                // First element is Slider.
                 
-                // Pad the slides to compensate for overlay header.
-                $('.swiper-slide .overlay').css( 'paddingTop' , $( $header ).height() );
+                // Pad necessary element(s).
+                $first_element.find('.swiper-slide .overlay').css({ 'paddingTop': $( $header ).height() }, { easing: 'layersEaseInOut', duration: 400 });
+            }
+            else if( $first_element.hasClass('title-container') ) {
+                
+                // First element is Title (eg WooCommerce).
+                
+                // Pad necessary element(s).
+                $first_element.css({ 'paddingTop': $( $header ).height() }, { easing: 'layersEaseInOut', duration: 400 });
             }
             else{
-                // Add body class if first widget is slider.
-                $('body').addClass('layers-slide-not-first');
                 
                 // Pad the site to compensate for overlay header.
-                $site_wrapper.css( 'paddingTop' , $( $header ).height() );
+                $content_wrapper.css( 'paddingTop', $( $header ).height() );
             }
 
         }
-    });
+    }
 
     /**
     * 3 - Widget Closing when clicking on the canvas
@@ -138,4 +147,3 @@ jQuery(function($) {
 	});
 
 }(jQuery));
-

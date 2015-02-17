@@ -147,12 +147,12 @@ class Layers_Custom_Meta {
 
 					</div>
 				</div>',
-			'Your page is ready for building', // %1
+			'Your page is ready.', // %1
 			admin_url() . 'customize.php?url=' . esc_url( get_the_permalink() ) . '&layers-builder=1', // %2
 			( true == $is_builder_used ? '' : 'layers-hide' ), // %3
 			( isset( $post->ID ) ? 'builder-button-' . $post->ID : 'builder-button-' . rand(0,1) ), // %4,
-			__( 'Head over to the Visual Customizer where you can drag and drop widgets, edit content and tweak the design. Click the button below and see your page come to life.', LAYERS_THEME_SLUG ), // %5
-			__( 'Build Your Page', LAYERS_THEME_SLUG ), // %6
+			__( 'You can drag and drop widgets, edit content and tweak the design. Click the button below to see your page come to life.', LAYERS_THEME_SLUG ), // %5
+			__( 'Edit Your Page', LAYERS_THEME_SLUG ), // %6
 			get_template_directory_uri(), // %7,
 			get_the_ID(), // %8,
 			$post->post_name // %9,

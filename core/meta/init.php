@@ -148,7 +148,7 @@ class Layers_Custom_Meta {
 					</div>
 				</div>',
 			'Your page is ready.', // %1
-			admin_url() . 'customize.php?url=' . esc_url( get_the_permalink() ) . '&layers-builder=1', // %2
+			admin_url() . 'customize.php?url=' . esc_url( get_the_permalink() ), // %2
 			( true == $is_builder_used ? '' : 'layers-hide' ), // %3
 			( isset( $post->ID ) ? 'builder-button-' . $post->ID : 'builder-button-' . rand(0,1) ), // %4,
 			__( 'You can drag and drop widgets, edit content and tweak the design. Click the button below to see your page come to life.', LAYERS_THEME_SLUG ), // %5
@@ -173,7 +173,7 @@ class Layers_Custom_Meta {
 
 		// Add our button
 		if ( $can_edit_post && 'builder.php' == get_page_template_slug( $post->ID ) ) {
-			$actions['builder'] = '<a href="' . admin_url( 'customize.php?url=' . esc_url( get_the_permalink() ) . '&layers-builder=1' ) . '" title="' . esc_attr( __( 'Edit Layout', LAYERS_THEME_SLUG ) ) . '">' . __( 'Edit Layout' ) . '</a>';
+			$actions['builder'] = '<a href="' . admin_url( 'customize.php?url=' . esc_url( get_the_permalink() ) ) . '" title="' . esc_attr( __( 'Edit Layout', LAYERS_THEME_SLUG ) ) . '">' . __( 'Edit Layout' ) . '</a>';
 		}
 
 		return $actions;

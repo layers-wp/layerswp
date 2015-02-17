@@ -33,7 +33,7 @@ $layers_migrator = new Layers_Widget_Migrator(); ?>
                                     <?php _e( 'Layers is a revolutionary WordPress Site Builder that makes website building a dream come true!' , LAYERS_THEME_SLUG ); ?>
                                 </p>
                                 <p>
-                                    <?php _e( 'The following short steps are designed to show you how Layers works and get you into creating an amazing layout quickly!' , LAYERS_THEME_SLUG ); ?>
+                                    <?php _e( 'The following short steps are designed to show you how Layers works and get you to creating amazing layouts quickly!' , LAYERS_THEME_SLUG ); ?>
                                 </p>
                                 <p>
                                     <?php _e( 'Enjoy the ride!' , LAYERS_THEME_SLUG ); ?>
@@ -76,7 +76,7 @@ $layers_migrator = new Layers_Widget_Migrator(); ?>
                             <div class="layers-excerpt">
                                 <p>
                                     <?php _e( '
-                                        Layers works by letting you build up your pages with blocks of content called &lsquo;Widgets&rsquo;.
+                                        Layers splits your page into horizontal rows, and you build up your pages with blocks of content called &lsquo;Widgets&rsquo;, one per row.
                                     ' , LAYERS_THEME_SLUG ); ?>
                                 </p>
                                 <p>

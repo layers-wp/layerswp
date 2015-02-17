@@ -132,7 +132,7 @@ class Layers_Custom_Meta {
 						<div class="layers-column layers-span-4 postbox layers-content">
 							<div class="layers-section-title layers-tiny">
 								<h4 class="layers-heading">Import Layout</h4>
-								<p class="layers-excerpt"> Upload your layout file (eg. <code>%9$s.json</code>) by clicking the button below.</p>
+								<p class="layers-excerpt"> Upload a layout file (eg. <code>%9$s.json</code>) by clicking the button below.</p>
 							</div>
 							<button class="layers-button" id="layers-page-import-button" data-post-id="%8$s" data-title="Upload .json" data-button_text="Upload &amp; Import">Upload &amp; Import</button>
 						</div>
@@ -140,7 +140,7 @@ class Layers_Custom_Meta {
 						<div class="layers-column layers-span-4 postbox layers-content">
 							<div class="layers-section-title layers-tiny">
 								<h4 class="layers-heading">Duplicate Layout</h4>
-								<p class="layers-excerpt">Easily duplicate your layout, settings, copy and images in order to get started quickly with a new page.</p>
+								<p class="layers-excerpt">Easily duplicate your layout, settings, text and images in order to get started quickly with a new page.</p>
 							</div>
 							<button href="" class="layers-button" id="layers-page-duplicate-button" data-post-id="%8$s">Duplicate</button>
 						</div>

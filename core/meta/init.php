@@ -132,7 +132,7 @@ class Layers_Custom_Meta {
 						<div class="layers-column layers-span-4 postbox layers-content">
 							<div class="layers-section-title layers-tiny">
 								<h4 class="layers-heading">Import Layout</h4>
-								<p class="layers-excerpt"> Upload your layout file (eg. <code>%9$s.json</code>) by clicking the button below.</p>
+								<p class="layers-excerpt"> Upload a layout file (eg. <code>%9$s.json</code>) by clicking the button below.</p>
 							</div>
 							<button class="layers-button" id="layers-page-import-button" data-post-id="%8$s" data-title="Upload .json" data-button_text="Upload &amp; Import">Upload &amp; Import</button>
 						</div>
@@ -140,19 +140,19 @@ class Layers_Custom_Meta {
 						<div class="layers-column layers-span-4 postbox layers-content">
 							<div class="layers-section-title layers-tiny">
 								<h4 class="layers-heading">Duplicate Layout</h4>
-								<p class="layers-excerpt">Easily duplicate your layout, settings, copy and images in order to get started quickly with a new page.</p>
+								<p class="layers-excerpt">Easily duplicate your layout, settings, text and images in order to get started quickly with a new page.</p>
 							</div>
 							<button href="" class="layers-button" id="layers-page-duplicate-button" data-post-id="%8$s">Duplicate</button>
 						</div>
 
 					</div>
 				</div>',
-			'Your page is ready for building', // %1
-			admin_url() . 'customize.php?url=' . esc_url( get_the_permalink() ) . '&layers-builder=1', // %2
+			'Your page is ready.', // %1
+			admin_url() . 'customize.php?url=' . esc_url( get_the_permalink() ), // %2
 			( true == $is_builder_used ? '' : 'layers-hide' ), // %3
 			( isset( $post->ID ) ? 'builder-button-' . $post->ID : 'builder-button-' . rand(0,1) ), // %4,
-			__( 'Head over to the Visual Customizer where you can drag and drop widgets, edit content and tweak the design. Click the button below and see your page come to life.', LAYERS_THEME_SLUG ), // %5
-			__( 'Build Your Page', LAYERS_THEME_SLUG ), // %6
+			__( 'You can drag and drop widgets, edit content and tweak the design. Click the button below to see your page come to life.', LAYERS_THEME_SLUG ), // %5
+			__( 'Edit Your Page', LAYERS_THEME_SLUG ), // %6
 			get_template_directory_uri(), // %7,
 			get_the_ID(), // %8,
 			$post->post_name // %9,
@@ -173,7 +173,7 @@ class Layers_Custom_Meta {
 
 		// Add our button
 		if ( $can_edit_post && 'builder.php' == get_page_template_slug( $post->ID ) ) {
-			$actions['builder'] = '<a href="' . admin_url( 'customize.php?url=' . esc_url( get_the_permalink() ) . '&layers-builder=1' ) . '" title="' . esc_attr( __( 'Edit Layout', LAYERS_THEME_SLUG ) ) . '">' . __( 'Edit Layout' ) . '</a>';
+			$actions['builder'] = '<a href="' . admin_url( 'customize.php?url=' . esc_url( get_the_permalink() ) ) . '" title="' . esc_attr( __( 'Edit Layout', LAYERS_THEME_SLUG ) ) . '">' . __( 'Edit Layout' ) . '</a>';
 		}
 
 		return $actions;

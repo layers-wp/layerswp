@@ -339,6 +339,30 @@ if( !function_exists( 'layers_get_page_title' ) ) {
 } // layers_get_page_title
 
 /**
+ * Set body classes.
+ */
+if( !function_exists( 'layers_set_body_class' ) ) {
+	function layers_set_body_class( $classes ){
+		
+		$header_sticky_option	= layers_get_theme_mod( 'header-sticky' );
+		$header_overlay_option	= layers_get_theme_mod( 'header-overlay');
+		
+		// Handle sticky / not sticky
+		if( TRUE == $header_sticky_option ){
+			$classes[] = 'layers-header-sticky';
+		}
+
+		// Handle overlay / not overlay
+		if( TRUE == $header_overlay_option ){
+			$classes[] = 'layers-header-overlay';
+		}
+		
+		return apply_filters( 'layers_body_class', $classes );
+	}
+	add_action( 'body_class', 'layers_set_body_class' );
+} // layers_set_body_class
+
+/**
  * Retrieve the classes for the header element as an array.
  *
  * @param string|array $class One or more classes to add to the class list.

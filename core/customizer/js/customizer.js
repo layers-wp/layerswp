@@ -113,7 +113,7 @@ jQuery(document).ready(function($) {
 		// Update the browser URl so page can be refreshed
 		if (window.history.pushState) {
 			// Newer Browsers only (IE10+, Firefox3+, etc)
-			var url = window.location.href.split('?')[0] + "?url=" + wp.customize.previewer.previewUrl() + "&layers-builder=1";
+			var url = window.location.href.split('?')[0] + "?url=" + wp.customize.previewer.previewUrl();
 			window.history.pushState({}, "", url);
 		}
 	}

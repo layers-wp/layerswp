@@ -36,7 +36,7 @@ $api = new Layers_API(); ?>
 								<li>
 									<a class="layers-page-list-title" href="<?php echo admin_url( 'post.php?post=' . $page->ID . '&action=edit' ); ?>"><?php echo $page->post_title; ?></a>
 									<span class="layers-pull-right layers-hide">
-										<a href="<?php echo admin_url( 'customize.php?url=' . esc_url( get_the_permalink() ) . '&layers-builder=1' ); ?>"><?php _e( 'Edit Layout' , LAYERS_THEME_SLUG ); ?></a> |
+										<a href="<?php echo admin_url( 'customize.php?url=' . esc_url( get_the_permalink() ) ); ?>"><?php _e( 'Edit Layout' , LAYERS_THEME_SLUG ); ?></a> |
 										<a href="<?php echo admin_url( 'post.php?post=' . $page->ID . '&action=edit' ); ?>"><?php _e( 'Edit' , LAYERS_THEME_SLUG ); ?></a> |
 										<a href="<?php echo get_the_permalink( $page->ID ); ?>"><?php _e( 'View' , LAYERS_THEME_SLUG ); ?></a>
 									</span>

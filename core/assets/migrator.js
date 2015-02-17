@@ -25,19 +25,18 @@ jQuery(document).ready(function($){
     * 1 - Select a Layout Step, Sets global vars for use in the import phase
     */
 
-    $(document).on( 'click', '.layers_page_layers-add-new-page [id^="layers-generate-preset-layout-"]', function(e){
+    $(document).on( 'click', '.layers_page_layers-add-new-page .layers-product', function(e){
         e.preventDefault();
 
-        // "Hi Mom!"
-        $that = $(this);
+        $button = $(this).find('[id^="layers-generate-preset-layout-"]');
 
-        $id = $that.data( 'key' );
+        $id = $button.data( 'key' );
 
         $title = $('#' + $id + '-title' ).val();
         $widget_data = $('#' + $id + '-widget_data' ).val();
 
         // Show the Modal
-        $( '.layers-modal-container' ).find( '.layers-media-image' ).html( $that.find('img') );
+        $( '.layers-modal-container' ).find( '.layers-media-image' ).html( $button.find('img') );
         $( '.layers-modal-container' ).hide().removeClass( 'layers-hide' ).fadeIn( 350 );
         $( '#adminmenu' ).fadeOut();
 

@@ -91,6 +91,10 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
         padding: 0 20px;
     }
 
+    .wrapper-site.container{
+        max-width: 1140px;
+    }
+
     /*---------------------------*/
     /*- CONTENT PADDING ---------*/
     .content{
@@ -350,36 +354,6 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
     /*- LAYERS BADGE ------------*/
     .created-using-layers{
         display: none;
-        position: fixed;
-        bottom: 20px;
-        right: 20px;
-        width: 30px;
-        height: 27px;
-        z-index: 99;
-        transition: all 0.15s ease-in-out;
-    }
-    .created-using-layers span{
-        display: none;
-    }
-    .created-using-layers:after{
-        border-radius: 100px;
-        position: absolute;
-        bottom: 6px;
-        left: -160px;
-        z-index: 1;
-        content: attr(tooltip);
-        padding: 4px 6px;
-        opacity: 0;
-        visibility: hidden;
-        transition: all 0.1s ease-in-out 0.1s;
-    }
-    .created-using-layers:hover{
-        background-position: bottom;
-    }
-    .created-using-layers:hover:after{
-        opacity: 1;
-        visibility: visible;
-        left: -164px;
     }
 
 /*-------------------------------*/
@@ -757,6 +731,15 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 	.pull-right{
 		float: none;
 	}
+
+    /*---------------------------*/
+    /*- LAYERS BADGE ------------*/
+    .created-using-layers{
+        display: block;
+        margin: 20px 0 -20px;
+        padding: 5px 10px;
+    }
+
 }
 
 
@@ -1117,11 +1100,42 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 }
 
 @media only screen and (min-width: 1100px){
+
     /*---------------------------*/
     /*- LAYERS BADGE ------------*/
-	.created-using-layers{
-		display: block;
-	}
+    .created-using-layers{
+        display: block;
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        width: 30px;
+        height: 27px;
+        z-index: 99;
+        transition: all 0.15s ease-in-out;
+    }
+    .created-using-layers span{
+        display: none;
+    }
+    .created-using-layers:after{
+        border-radius: 100px;
+        position: absolute;
+        bottom: 6px;
+        left: -160px;
+        z-index: 1;
+        content: attr(tooltip);
+        padding: 4px 6px;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.1s ease-in-out 0.1s;
+    }
+    .created-using-layers:hover{
+        background-position: bottom;
+    }
+    .created-using-layers:hover:after{
+        opacity: 1;
+        visibility: visible;
+        left: -164px;
+    }
 }
 
 /*--------------------------------------------------------------*/

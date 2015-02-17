@@ -403,6 +403,10 @@ pre{
         background: #333;
     }
 
+    .header-site{
+        background: #f3f3f3;
+    }
+
     .tagline{
         color: #8f8f8f;
     }
@@ -477,21 +481,6 @@ pre{
     .row + .copyright{
         border-top: 2px solid #ddd;
     }
-
-    /*---------------------------*/
-    /*- LAYERS BADGE ------------*/
-    .created-using-layers{
-        background: url(images/created-using-layers.png) top no-repeat;
-        background-size: 30px 56px;
-    }
-    .created-using-layers:after{
-        background: rgba(0, 157, 243, 0.85);
-        color: rgba(255, 255, 255, 0.8);
-    }
-    .created-using-layers:hover{
-        background-position: bottom;
-    }
-
 
 /*-------------------------------*/
 /*- NAVIGATION ------------------*/
@@ -988,3 +977,36 @@ pre{
         color: #777;
     }
 
+
+@media only screen and (max-width: 768px){
+
+    /*---------------------------*/
+    /*- LAYERS BADGE ------------*/
+    .created-using-layers{
+        background: rgba(0, 157, 243, 1);
+        color: #fff;
+    }
+    .created-using-layers:hover{
+        color: #fff;
+        background: #3D454C;
+    }
+
+}
+
+@media only screen and (min-width: 1100px){
+
+    /*---------------------------*/
+    /*- LAYERS BADGE ------------*/
+    .created-using-layers{
+        background: url(images/created-using-layers.png) top no-repeat;
+        background-size: 30px 56px;
+    }
+    .created-using-layers:after{
+        background: rgba(0, 157, 243, 0.85);
+        color: rgba(255, 255, 255, 0.8);
+    }
+    .created-using-layers:hover{
+        background-position: bottom;
+    }
+
+}

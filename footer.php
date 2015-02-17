@@ -3,10 +3,6 @@
 				<a href="#top"><?php _e( 'Back to top' , LAYERS_THEME_SLUG ); ?></a>
 			</div> <!-- back-to-top -->
 
-			<a class="created-using-layers" tooltip="Created using Layers" href="http://layerswp.com/">
-				<span><?php _e( 'Created using Layers' , LAYERS_THEME_SLUG ); ?></span>
-			</a>
-
 		</section>
 
 		<?php do_action( 'layers_before_footer' ); ?>
@@ -48,6 +44,11 @@
 				<?php do_action( 'layers_after_footer_copyright' ); ?>
 			</div>
 			<?php do_action( 'layers_after_footer_inner' ); ?>
+
+			<a class="created-using-layers" tooltip="Created using Layers" href="http://layerswp.com/">
+				<span><?php _e( 'Created using Layers' , LAYERS_THEME_SLUG ); ?></span>
+			</a>
+			
 		</footer><!-- END / FOOTER -->
 		<?php do_action( 'layers_after_footer' ); ?>
 

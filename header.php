@@ -9,7 +9,7 @@
 <body <?php body_class(); ?>>
 	<?php get_sidebar( 'off-canvas'); ?>
 	<?php do_action( 'layers_before_site_wrapper' ); ?>
-	<section class="wrapper-site">
+	<section <?php layer_site_wrapper_class(); ?>>
 
 		<?php do_action( 'layers_before_header' ); ?>
 

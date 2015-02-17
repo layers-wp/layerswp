@@ -127,6 +127,11 @@ if( ! function_exists( 'layers_setup' ) ) {
 		 */
 		add_theme_support( 'post-thumbnails' );
 
+		/**
+		 * Add support for a custom site background
+		 */
+		add_theme_support( 'custom-background' );
+
 		// Set Large Image Sizes
 		add_image_size( 'layers-square-large', 960, 960, true );
 		add_image_size( 'layers-portrait-large', 720, 960, true );

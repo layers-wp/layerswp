@@ -581,6 +581,11 @@ class Layers_Customizer_Regsitrar {
 			}
 
 			// Prioritize this section
+			if( isset( $section_data[ 'title' ] ) ) {
+				$section->title = $section_data[ 'title' ];
+			}
+
+			// Prioritize this section
 			if( isset( $section_data[ 'priority' ] ) ) {
 				$section->priority = $section_data[ 'priority' ];
 			}

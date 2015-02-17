@@ -341,12 +341,12 @@ if( !function_exists( 'layers_get_page_title' ) ) {
 /**
  * Set body classes.
  */
-if( !function_exists( 'layers_set_body_class' ) ) {
-	function layers_set_body_class( $classes ){
-		
+if( !function_exists( 'layers_body_class' ) ) {
+	function layers_body_class( $classes ){
+
 		$header_sticky_option	= layers_get_theme_mod( 'header-sticky' );
 		$header_overlay_option	= layers_get_theme_mod( 'header-overlay');
-		
+
 		// Handle sticky / not sticky
 		if( TRUE == $header_sticky_option ){
 			$classes[] = 'layers-header-sticky';
@@ -356,11 +356,46 @@ if( !function_exists( 'layers_set_body_class' ) ) {
 		if( TRUE == $header_overlay_option ){
 			$classes[] = 'layers-header-overlay';
 		}
-		
+
 		return apply_filters( 'layers_body_class', $classes );
 	}
-	add_action( 'body_class', 'layers_set_body_class' );
-} // layers_set_body_class
+	add_action( 'body_class', 'layers_body_class' );
+} // layers_body_class
+
+/**
+ * Apply Customizer settings to site housing
+ */
+if( !function_exists( 'layers_apply_customizer_styles' ) ) {
+	function layers_apply_customizer_styles() {
+
+		// Custom CSS
+		if( layers_get_theme_mod( 'custom-css' ) ){
+			layers_inline_styles( NULL, 'css', array( 'css' => layers_get_theme_mod( 'custom-css' ) ) );
+		}
+
+		// Header
+		if( layers_get_theme_mod( 'header-background-color' ) ){
+			$bg_opacity = ( layers_get_theme_mod( 'header-overlay') ) ? .5 : 1 ;
+			layers_inline_styles( '.header-site, .header-site.header-sticky', 'css', array( 'css' => 'background-color: rgba(' . implode( ', ' , layers_hex2rgb( layers_get_theme_mod( 'header-background-color' ) ) ) . ', ' . $bg_opacity . ');' ) );
+		}
+
+		// Footer
+		layers_inline_styles( '#footer, #footer.well', 'background', array(
+			'background' => array(
+				'color' => layers_get_theme_mod( 'footer-background-color' ),
+				'repeat' => layers_get_theme_mod( 'footer-background-repeat' ),
+				'position' => layers_get_theme_mod( 'footer-background-position' ),
+				'stretch' => layers_get_theme_mod( 'footer-background-stretch' ),
+				'image' => layers_get_theme_mod( 'footer-background-image' ),
+				'fixed' => false, // hardcode (not an option)
+			),
+		) );
+		layers_inline_styles( '#footer h5, #footer p, #footer li, #footer .textwidget, #footer.well', 'color', array( 'color' => layers_get_theme_mod( 'footer-body-color' ) ) );
+		layers_inline_styles( '#footer a, #footer.well a', 'color', array( 'color' => layers_get_theme_mod( 'footer-link-color' ) ) );
+	}
+
+	add_action( 'wp_enqueue_scripts', 'layers_apply_customizer_styles' );
+} // layers_apply_customizer_styles
 
 /**
  * Retrieve the classes for the header element as an array.
@@ -433,49 +468,12 @@ if( !function_exists( 'layers_get_header_class' ) ) {
 		// Default to Header Left if there are no matches above
 		if( empty( $classes ) ) $classes[] = 'header-left';
 
-		//$classes = array_map( 'esc_attr', $classes );
-
 		$classes = apply_filters( 'layers_header_class', $classes, $class );
 
 		return $classes;
 
 	}
 } // layers_get_header_class
-
-/**
- * Apply Customizer settings to site housing
- */
-if( !function_exists( 'layers_apply_customizer_styles' ) ) {
-	function layers_apply_customizer_styles() {
-
-		// Custom CSS
-		if( layers_get_theme_mod( 'custom-css' ) ){
-			layers_inline_styles( NULL, 'css', array( 'css' => layers_get_theme_mod( 'custom-css' ) ) );
-		}
-
-		// Header
-		if( layers_get_theme_mod( 'header-background-color' ) ){
-			$bg_opacity = ( layers_get_theme_mod( 'header-overlay') ) ? .5 : 1 ;
-			layers_inline_styles( '.header-site, .header-site.header-sticky', 'css', array( 'css' => 'background-color: rgba(' . implode( ', ' , layers_hex2rgb( layers_get_theme_mod( 'header-background-color' ) ) ) . ', ' . $bg_opacity . ');' ) );
-		}
-
-		// Footer
-		layers_inline_styles( '#footer, #footer.well', 'background', array(
-			'background' => array(
-				'color' => layers_get_theme_mod( 'footer-background-color' ),
-				'repeat' => layers_get_theme_mod( 'footer-background-repeat' ),
-				'position' => layers_get_theme_mod( 'footer-background-position' ),
-				'stretch' => layers_get_theme_mod( 'footer-background-stretch' ),
-				'image' => layers_get_theme_mod( 'footer-background-image' ),
-				'fixed' => false, // hardcode (not an option)
-			),
-		) );
-		layers_inline_styles( '#footer, #footer.well', 'color', array( 'color' => layers_get_theme_mod( 'footer-body-color' ) ) );
-		layers_inline_styles( '#footer a, #footer.well a', 'color', array( 'color' => layers_get_theme_mod( 'footer-link-color' ) ) );
-	}
-
-	add_action( 'wp_enqueue_scripts', 'layers_apply_customizer_styles' );
-} // layers_apply_customizer_styles
 
 /**
  * Display the classes for the header element.
@@ -489,6 +487,45 @@ if( !function_exists( 'layers_header_class' ) ) {
 		echo 'class="' . join( ' ', layers_get_header_class( $class ) ) . '"';
 	}
 } // layers_header_class
+
+/**
+ * Retrieve the classes for the wrapper element as an array.
+ *
+ * @param string|array $class One or more classes to add to the class list.
+ * @return array Array of classes.
+ */
+if( !function_exists( 'layers_get_site_wrapper_class' ) ) {
+	function layers_get_site_wrapper_class( $class = '' ){
+
+		$classes = array();
+
+		// Add the general site header class
+		$classes[] = 'wrapper-site';
+
+		if( 'layout-fullwidth' != layers_get_theme_mod( 'content-width' ) ){
+			$classes[] = 'container';
+			$classes[] = 'no-inset';
+		}
+
+		$classes = apply_filters( 'layer_site_wrapper_class', $classes, $class );
+
+		return $classes;
+
+	}
+} // layers_get_site_wrapper_class
+
+/**
+ * Display the classes for the wrapper element.
+ *
+ * @param string|array $class One or more classes to add to the class list.
+ */
+
+if( !function_exists( 'layer_site_wrapper_class' ) ) {
+	function layer_site_wrapper_class( $class = '' ) {
+		// Separates classes with a single space, collates classes for body element
+		echo 'class="' . join( ' ', layers_get_site_wrapper_class( $class ) ) . '"';
+	}
+} // layer_site_wrapper_class
 
 /**
  * Retrieve the classes for the center column on archive and single pages
@@ -535,7 +572,7 @@ if( !function_exists( 'layers_get_center_column_class' ) ) {
 		return array_unique( $classes );
 
 	}
-} // layers_center_column_class
+} // layers_get_center_column_class
 
 /**
  * Display the classes for the header element.
@@ -548,7 +585,7 @@ if( !function_exists( 'layers_center_column_class' ) ) {
 		// Separates classes with a single space, collates classes for body element
 		echo 'class="' . join( ' ', layers_get_center_column_class( $class ) ) . '"';
 	}
-} // layers_header_class
+} // layers_center_column_class
 
 /**
  * Retrieve theme modification value for the current theme.

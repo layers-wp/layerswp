@@ -22,14 +22,14 @@ class Layers_Customizer_Config {
 							'title' => __( 'Branding', LAYERS_THEME_SLUG ),
 							'priority' => 20
 						),
+			'site-settings' => array(
+							'title' => __( 'Site Settings', LAYERS_THEME_SLUG ),
+							'description' => __( 'Control your content\'s default layout.' , LAYERS_THEME_SLUG ), // @TODO Put a helper here
+							'priority' => 40
+						),
 			'header' => array(
 							'title' => __( 'Header', LAYERS_THEME_SLUG ),
 							'description' => __( 'Control your header\'s logo, layout, colors and font.' , LAYERS_THEME_SLUG ), // @TODO Put a helper here
-							'priority' => 40
-						),
-			'content' => array(
-							'title' => __( 'Content Area', LAYERS_THEME_SLUG ),
-							'description' => __( 'Control your content\'s default layout.' , LAYERS_THEME_SLUG ), // @TODO Put a helper here
 							'priority' => 60
 						),
 			'footer' => array(
@@ -56,10 +56,23 @@ class Layers_Customizer_Config {
 
 		$default_sections[ 'title_tagline' ] = array(
 													'title' => __( 'Logo &amp; Title' , LAYERS_THEME_SLUG ),
-													'panel' => 'branding'
+													'panel' => 'site-settings'
 												);
 
-		$default_sections[ 'nav' ] = array( 'priority' => 50 );
+		$default_sections[ 'colors' ] = array(
+											'title' => __( 'Background Color' , LAYERS_THEME_SLUG ),
+											'panel' => 'site-settings',
+											'priority' => 55,
+										);
+		$default_sections[ 'background_image' ] = array(
+											'panel' => 'site-settings',
+											'priority' => 55,
+										);
+
+		$default_sections[ 'nav' ] = array(
+											'panel' => 'site-settings',
+											'priority' => 50,
+										);
 
 		return apply_filters( 'layers_customizer_default_sections', $default_sections );
 	}
@@ -76,10 +89,21 @@ class Layers_Customizer_Config {
 						'nav' => array( // This is used before any menus are registered. Then replaced by WP Naviagation
 							'title'       =>__( 'Navigation' , LAYERS_THEME_SLUG ),
 							'description' => __( 'First create a menu then come back here to place it.', LAYERS_THEME_SLUG ),
-							'priority' => 50
+							'priority' => 50,
+							'panel' => 'site-settings'
+						),
+						'content-layout' => array(
+							'title' =>__( 'Layout' , LAYERS_THEME_SLUG ),
+							'panel' => 'site-settings'
+						),
+						'content-sidebars' => array(
+							'title' =>__( 'Sidebars' , LAYERS_THEME_SLUG ),
+							'panel' => 'site-settings'
 						),
 						'fonts' => array(
 							'title' =>__( 'Fonts' , LAYERS_THEME_SLUG ),
+							'panel' => 'site-settings'
+
 						),
 						'css' => array(
 							'title' =>__( 'CSS' , LAYERS_THEME_SLUG ),
@@ -91,10 +115,6 @@ class Layers_Customizer_Config {
 						'header-scripts' => array(
 							'title' =>__( 'Additional Scripts' , LAYERS_THEME_SLUG ),
 							'panel' => 'header'
-						),
-						'content-layout' => array(
-							'title' =>__( 'Layout' , LAYERS_THEME_SLUG ),
-							'panel' => 'content'
 						),
 						'footer-layout' => array(
 							'title' =>__( 'Layout' , LAYERS_THEME_SLUG ),
@@ -112,8 +132,8 @@ class Layers_Customizer_Config {
 							'title' =>__( 'Additional Scripts' , LAYERS_THEME_SLUG ),
 							'panel' => 'footer'
 						),
-						'woocommerce-layout' => array(
-							'title' =>__( 'Shop Layout' , LAYERS_THEME_SLUG ),
+						'woocommerce-sidebars' => array(
+							'title' =>__( 'Sidebars' , LAYERS_THEME_SLUG ),
 							'panel' => 'woocommerce'
 						)
 					);
@@ -260,10 +280,10 @@ class Layers_Customizer_Config {
 										'layout-boxed' => __( 'Boxed' , LAYERS_THEME_SLUG ),
 										'layout-fullwidth' => __( 'Full Width' , LAYERS_THEME_SLUG )
 									)
-								), // layout,
-								'content-layout-break-1' => array(
-									'type'     => 'layers-seperator'
-								),
+								)
+							);
+
+		$controls['content-sidebars'] = array(
 								'single-sidebar-heading' => array(
 									'type'  => 'layers-heading',
 									'label'    => __( 'Single Post Sidebar(s)', LAYERS_THEME_SLUG ),
@@ -412,7 +432,7 @@ class Layers_Customizer_Config {
 
 
 
-		$controls[ 'woocommerce-layout' ] = array(
+		$controls[ 'woocommerce-sidebars' ] = array(
 								'label-sidebar-single' => array(
 									'type'  => 'layers-heading',
 									'label'    => __( 'Single Product Sidebar(s)', LAYERS_THEME_SLUG ),

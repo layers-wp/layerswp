@@ -424,7 +424,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 						<span>
 							<?php _e( 'Column' , LAYERS_THEME_SLUG ); ?>
 							<span class="layers-detail">
-								<?php echo ( isset( $title ) ? ': ' . substr( stripslashes( $title ), 0 , 50 ) : NULL ); ?>
+								<?php echo ( isset( $title ) ? ': ' . substr( stripslashes( strip_tags( $title ) ), 0 , 50 ) : NULL ); ?>
 								<?php echo ( isset( $title ) && strlen( $title ) > 50 ? '...' : NULL ); ?>
 							</span>
 						</span>

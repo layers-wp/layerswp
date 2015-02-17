@@ -431,8 +431,8 @@ class Layers_Customizer_Config {
 				); // footer-scripts
 
 
-
-		$controls[ 'woocommerce-sidebars' ] = array(
+		if( class_exists( 'WooCommerce' ) ) {
+			$controls[ 'woocommerce-sidebars' ] = array(
 								'label-sidebar-single' => array(
 									'type'  => 'layers-heading',
 									'label'    => __( 'Single Product Sidebar(s)', LAYERS_THEME_SLUG ),
@@ -467,6 +467,7 @@ class Layers_Customizer_Config {
 									'default'   => TRUE,
 								), // post-sidebar
 							);
+		} // if WooCommerce
 
 		return apply_filters( 'layers_customizer_controls', $controls );
 	}

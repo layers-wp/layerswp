@@ -339,6 +339,28 @@ if( !function_exists( 'layers_get_page_title' ) ) {
 } // layers_get_page_title
 
 /**
+ * Fix customizer FOUC during render.
+ */
+if( !function_exists( 'layers_fix_customizer_render' ) ) {
+	function layers_fix_customizer_render() {
+		global $wp_customize;
+		if ( isset( $wp_customize ) ) {
+			?>
+			<script>
+			jQuery(document).ready(function($){
+				$('body').css({ 'font-size': '1.5rem' });
+				setTimeout(function() {
+					$('body').css({ 'font-size': '1.5rem' });
+				},3000 );
+			});
+			</script>
+			<?php
+		}
+	}
+	add_action( 'wp_head', 'layers_fix_customizer_render', 900 );
+}
+
+/**
  * Set body classes.
  */
 if( !function_exists( 'layers_set_body_class' ) ) {

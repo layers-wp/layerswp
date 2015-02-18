@@ -441,7 +441,7 @@ class Layers_Design_Controller {
                             ),
                             'featuredvideo' => array(
                                 'type' => 'text',
-                                'label' => __( 'Video Embed Code' , LAYERS_THEME_SLUG ),
+                                'label' => __( 'Video URL (oEmbed)' , LAYERS_THEME_SLUG ),
                                 'name' => $this->widget['name'] . '[featuredvideo]' ,
                                 'id' =>  $this->widget['id'] . '-featuredvideo' ,
                                 'value' => ( isset( $this->values['featuredvideo'] ) ) ? $this->values['featuredvideo'] : NULL

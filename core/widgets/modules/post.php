@@ -64,7 +64,6 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 				'show_call_to_action' => 'on',
 				'call_to_action' => __( 'Read More' , LAYERS_THEME_SLUG ),
                 'posts_per_page' => 6,
-                'order' => NULL,
 				'design' => array(
 					'layout' => 'layout-boxed',
 					'imageratios' => 'image-square',
@@ -145,7 +144,9 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 			$query_args[ 'post_type' ] = $this->post_type;
 			$query_args[ 'posts_per_page' ] = $widget['posts_per_page'];
 			if( isset( $widget['order'] ) ) {
-				$decode_order = json_decode( $widget['order'] );
+
+				$decode_order = json_decode( $widget['order'], true );
+
 				if( is_array( $decode_order ) ) {
 					foreach( $decode_order as $key => $value ){
 						$query_args[ $key ] = $value;
@@ -194,8 +195,9 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 					<?php if( $post_query->have_posts() ) { ?>
 						<?php while( $post_query->have_posts() ) {
 							$post_query->the_post();
-							global $post; ?>
-							<?php if( 'list-list' == $widget['design'][ 'liststyle' ] ) { ?>
+							global $post;
+
+							if( 'list-list' == $widget['design'][ 'liststyle' ] ) { ?>
 								<?php get_template_part( 'partials/content' , 'list' ); ?>
 							<?php } else { ?>
 								<article class="column<?php if( !isset( $widget['design'][ 'gutter' ] ) ) echo '-flush'; ?> <?php echo $span_class; ?> layers-masonry-column thumbnail <?php if( 'overlay' == $this->check_and_return( $widget , 'text_style' ) ) echo 'with-overlay'; ?>" data-cols="<?php echo $col_count; ?>">

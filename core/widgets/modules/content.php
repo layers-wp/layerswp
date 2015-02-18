@@ -503,6 +503,19 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 							</p>
 							<div class="layers-row">
 								<p class="layers-form-item layers-column layers-span-6">
+									<label for="<?php echo $this->get_custom_field_id( $widget_details, 'columns',  $column_guid, 'link_text' ); ?>"><?php _e( 'Button Link' , LAYERS_THEME_SLUG ); ?></label>
+									<?php echo $this->form_elements()->input(
+										array(
+											'type' => 'text',
+											'name' => $this->get_custom_field_name( $widget_details, 'columns',  $column_guid, 'link' ),
+											'id' => $this->get_custom_field_id( $widget_details, 'columns',  $column_guid, 'link' ),
+											'placeholder' => __( 'http://', LAYERS_THEME_SLUG ),
+											'value' => ( isset( $link ) ) ? $link : NULL ,
+											'class' => 'layers-text',
+										)
+									); ?>
+								</p>
+								<p class="layers-form-item layers-column layers-span-6">
 									<label for="<?php echo $this->get_custom_field_id( $widget_details, 'columns',  $column_guid, 'link_text' ); ?>"><?php _e( 'Button Text' , LAYERS_THEME_SLUG ); ?></label>
 									<?php echo $this->form_elements()->input(
 										array(
@@ -511,19 +524,6 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 											'id' => $this->get_custom_field_id( $widget_details, 'columns',  $column_guid, 'link_text' ),
 											'placeholder' => __( 'e.g. "Read More"' , LAYERS_THEME_SLUG ),
 											'value' => ( isset( $link_text ) ) ? $link_text : NULL ,
-										)
-									); ?>
-								</p>
-								<p class="layers-form-item layers-column layers-span-6">
-									<label for="<?php echo $this->get_custom_field_id( $widget_details, 'columns',  $column_guid, 'link_text' ); ?>"><?php _e( 'Button Link' , LAYERS_THEME_SLUG ); ?></label>
-									<?php echo $this->form_elements()->input(
-										array(
-											'type' => 'text',
-											'name' => $this->get_custom_field_name( $widget_details, 'columns',  $column_guid, 'link' ),
-											'id' => $this->get_custom_field_id( $widget_details, 'columns',  $column_guid, 'link' ),
-											'placeholder' => __( 'e.g. http://oboxthemes.com/', LAYERS_THEME_SLUG ),
-											'value' => ( isset( $link ) ) ? $link : NULL ,
-											'class' => 'layers-text',
 										)
 									); ?>
 								</p>

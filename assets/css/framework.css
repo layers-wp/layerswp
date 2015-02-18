@@ -880,13 +880,25 @@ object{
         margin-left: 2%;
     }
 
-    .media .heading + .excerpt{margin-top: 8px;}
-    .media p{margin-top: 8px;}
-    .media ul{margin-top: 8px;}
+    .media .heading + .excerpt{
+        margin-top: 8px;
+    }
+    .media p{
+        margin-top: 8px;
+    }
+    .media ul{
+        margin-top: 8px;
+    }
 
-    .media .button-group{margin-top: 15px;}
-    .media .button{margin-top: 15px;}
-    .media .button-group .button{margin-top: 0;}
+    .media .button-group{
+        margin-top: 15px;
+    }
+    .media .button{
+        margin-top: 15px;
+    }
+    .media .button-group .button{
+        margin-top: 0;
+    }
 
     .media.large .excerpt{
         max-width: 830px;
@@ -908,8 +920,12 @@ object{
         overflow: hidden;
     }
 
-    .thumbnail-title{padding: 0 20px 20px;}
-    .thumbnail-title.small{padding: 0 10px 10px;}
+    .thumbnail-title{
+        padding: 0 20px 20px;
+    }
+    .thumbnail-title.small{
+        padding: 0 10px 10px;
+    }
 
     .thumbnail-media{
         display: block;
@@ -933,23 +949,36 @@ object{
         position: relative;
         z-index: 2;
     }
-
-    .thumbnail-body .heading{margin: 0;}
-    .thumbnail-body p{margin: 10px 0 0;}
-    .thumbnail-body p + .feature-list{margin: 20px 0 0;}
-    .thumbnail-body .button{margin-top: 20px;}
-
-    .thumbnail-body.body-small{padding: 0 10px 10px;}
-
-    .thumbnail .button-group{margin: 20px 0 0;}
-    .thumbnail .btn-collection{margin: 20px 0 0;}
+    .thumbnail-body .heading{
+        margin: 0;
+    }
+    .thumbnail-body p{
+        margin: 10px 0 0;
+    }
+    .thumbnail-body p + .feature-list{
+        margin: 20px 0 0;
+    }
+    .thumbnail-body .button{
+        margin-top: 20px;
+    }
+    .thumbnail-body.body-small{
+        padding: 0 10px 10px;
+    }
+    .thumbnail .button-group{
+        margin: 20px 0 0;
+    }
+    .thumbnail .btn-collection{
+        margin: 20px 0 0;
+    }
 
 
 /*-------------------------------*/
 /*- COPY STYLING ----------------*/
 /*-------------------------------*/
 
-    .copy p{margin-bottom: 16px;}
+    .copy p{
+        margin-bottom: 16px;
+    }
     .copy ul{
         list-style: disc;
         margin: 0 0 26px;

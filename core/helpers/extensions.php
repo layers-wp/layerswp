@@ -92,12 +92,12 @@ if ( !function_exists( 'layers_locate_plugin_templates' ) ) {
 			if ( !$template_name )
 				continue;
 
-			if ( file_exists(STYLESHEETPATH . '/' . $template_name)) {
-				$located = STYLESHEETPATH . '/' . $template_name;
+			if ( file_exists( get_stylesheet_directory() . '/' . $template_name)) {
+				$located = get_stylesheet_directory() . '/' . $template_name;
 				break;
 
-			} else if ( file_exists(TEMPLATEPATH . '/' . $template_name) ) {
-				$located = TEMPLATEPATH . '/' . $template_name;
+			} else if ( file_exists( get_template_directory() . '/' . $template_name) ) {
+				$located = get_template_directory() . '/' . $template_name;
 				break;
 
 			} elseif( !empty( $template_locations ) ) {

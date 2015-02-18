@@ -243,7 +243,7 @@ jQuery(function($) {
 					layers_debounce_input( event.target );
 				}
 			},
-			clear: function() {
+			clear: function(event) {
 				if( 'undefined' !== typeof event ){
 
 					// Debounce the reset change

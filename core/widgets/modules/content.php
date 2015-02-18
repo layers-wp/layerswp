@@ -463,6 +463,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 												'5' => __( '5 of 12 columns' , LAYERS_THEME_SLUG ),
 												'6' => __( '6 of 12 columns' , LAYERS_THEME_SLUG ),
 												'8' => __( '8 of 12 columns' , LAYERS_THEME_SLUG ),
+												'9' => __( '9 of 12 columns' , LAYERS_THEME_SLUG ),
 												'10' => __( '10 of 12 columns' , LAYERS_THEME_SLUG ),
 												'12' => __( '12 of 12 columns' , LAYERS_THEME_SLUG )
 											)

@@ -42,8 +42,9 @@ if( !class_exists( 'Layers_Widget_Ajax' ) ) {
 					urldecode( stripslashes( $_POST[ 'instance' ] ) ),
 					$data
 				);
-								// Get the previous element's column data
-				if( isset( $_POST[ 'last_guid' ] ) && is_numeric( $_POST[ 'last_guid' ] ) ) {
+
+				// Get the previous element's column data
+				if( isset( $_POST[ 'last_guid' ] ) ) {
 					$instance = $data[ 'widget-' . $_POST[ 'id_base' ] ][ $_POST[ 'number' ] ][ 'slides' ][ $_POST[ 'last_guid' ] ];
 				} else {
 					$instance = NULL;

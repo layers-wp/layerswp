@@ -106,7 +106,7 @@ jQuery(document).ready(function($){
 		// Serialize input data
 		$serialized_inputs = [];
 		$.each(
-			$slideList.find( 'li.layers-accordion-item' ).first().find( 'textarea, input, select' ),
+			$slideList.find( 'li.layers-accordion-item' ).last().find( 'textarea, input, select' ),
 			function( i, input ){
 				$serialized_inputs.push( $(input).serialize() );
 		});
@@ -128,8 +128,7 @@ jQuery(document).ready(function($){
 			function(data){
 
 				// Append module HTML
-				$slideList.prepend( data );
-				//$( data ).insertBefore( $slideListId + ' .layers-add-widget-slide' );
+				$slideList.append( data );
 
 				// Append slide IDs to the slides input
 				$slide_guids = [];

@@ -85,7 +85,7 @@ class Site_Logo {
 			$wp_customize->add_setting( 'site_logo_header_text', array(
 				'default'           => 1,
 				'sanitize_callback' => array( $this, 'sanitize_checkbox' ),
-				'transport'         => 'postMessage',
+				'transport'         => 'refresh',
 			) );
 
 			$wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'site_logo_header_text', array(
@@ -105,7 +105,7 @@ class Site_Logo {
 				'url'   => false,
 			),
 			'sanitize_callback' => array( $this, 'sanitize_logo_setting' ),
-			'transport'         => 'postMessage',
+			'transport'         => 'refresh',
 			'type'              => 'option',
 		) );
 

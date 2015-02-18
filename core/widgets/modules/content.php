@@ -158,14 +158,14 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 
 								if( !isset( $column[ 'width' ] ) ) $column[ 'width' ] = 6;
 
-								if( 6 > $column['width'] ){
+								if( 4 > $column['width'] ){
 									$use_image_ratio = $image_ratio . '-medium';
 								} else {
 									$use_image_ratio = $image_ratio . '-large';
 								}
 
 							} else {
-								if( 6 > $column['width'] ){
+								if( 4 > $column['width'] ){
 									$use_image_ratio = 'medium';
 								} else {
 									$use_image_ratio = 'full';
@@ -216,16 +216,16 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 										</div>
 									<?php } ?>
 
-									<?php if( '' != $column['title'] || '' != $column['excerpt'] ) { ?>
+									<?php if( $this->check_and_return( $column, 'title' ) || $this->check_and_return( $column, 'excerpt' ) ) { ?>
 										<div class="media-body <?php echo ( isset( $column['design']['fonts'][ 'align' ] ) ) ? $column['design']['fonts'][ 'align' ] : ''; ?>">
-											<?php if( isset( $column['title'] ) && '' != $column['title'] ) { ?>
+											<?php if( $this->check_and_return( $column, 'title') ) { ?>
 												<h5 class="heading">
 													<?php if( NULL != $link && ! ( isset( $column['link'] ) && $this->check_and_return( $column , 'link_text' ) ) ) { ?><a href="<?php echo $link; ?>"><?php } ?>
 														<?php echo $column['title']; ?>
 													<?php if( NULL != $link && ! ( isset( $column['link'] ) && $this->check_and_return( $column , 'link_text' ) ) ) { ?></a><?php } ?>
 												</h5>
 											<?php } ?>
-											<?php if( isset( $column['excerpt'] ) && '' != $column['excerpt'] ) { ?>
+											<?php if( $this->check_and_return( $column, 'excerpt' ) ) { ?>
 												<div class="excerpt"><?php echo apply_filters( 'the_content', $column['excerpt'] ); ?></div>
 											<?php } ?>
 											<?php if( isset( $column['link'] ) && $this->check_and_return( $column , 'link_text' ) ) { ?>

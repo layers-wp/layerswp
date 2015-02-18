@@ -118,7 +118,12 @@ if( !class_exists( 'Layers_Contact_Widget' ) ) {
 
 				<div class="row <?php echo $this->get_widget_layout_class( $widget ); ?>">
 					<?php if( ( '' != $widget['address_shown'] && isset( $widget['show_address'] ) ) || ( isset( $widget['show_contact_form'] ) && '' != $widget['contact_form'] ) ) {?>
-						<div class="column span-6 form">
+						<?php if( isset( $hasmap ) ) { ?>
+							<?php $form_class = 'span-6'; ?>
+						<?php } else { ?>
+							<?php $form_class = 'span-12'; ?>
+						<?php } ?>
+						<div class="column <?php echo $form_class; ?> form">
 							<?php if( isset( $widget['show_address'] ) &&  '' != $widget['address_shown'] ) { ?>
 								<address class="copy">
 									<p><?php echo $widget['address_shown']; ?></p>

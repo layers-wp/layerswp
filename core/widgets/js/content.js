@@ -132,7 +132,7 @@ jQuery(document).ready(function($){
 			function(data){
 
 				// Append column HTML
-				$( data ).insertBefore( $columnListId + ' .layers-add-widget-column' );
+				$columnList.append( data );
 
 				// Append column IDs to the columns input
 				$column_guids = [];

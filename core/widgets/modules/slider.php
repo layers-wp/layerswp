@@ -65,13 +65,12 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 					'background' => array(
 						'position' => 'center',
 						'repeat' => 'no-repeat',
-						'color' => '#000',
+						'color' => '#efefef',
 						'size' => 'cover'
 					),
 					'fonts' => array(
 						'align' => 'text-center',
 						'size' => 'large',
-						'color' => '#fff',
 						'shadow' => ''
 					)
 				)
@@ -86,7 +85,7 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 		*  Widget front end display
 		*/
 	 	function widget( $args, $instance ) {
-
+	 		global $wp_customize;
 			// Turn $args array into variables.
 			extract( $args );
 
@@ -196,7 +195,6 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 				<?php } // if !empty( $widget->slides ) ?>
 		 	</section>
 		 	<?php if( !empty( $widget[ 'slides' ] ) && 1 < count( $widget[ 'slides' ] ) ) {
-
 		 		$swiper_js_obj = str_replace( '-' , '_' , $this->get_field_id( 'slider' ) ); ?>
 			 	<script>
 					jQuery(function($){
@@ -211,6 +209,7 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 							watchActiveIndex: true,
 							loop: true
 							<?php if( isset( $widget['autoplay_slides'] ) && isset( $widget['slide_time'] ) && is_numeric( $widget['slide_time'] ) ) {?>, autoplay: <?php echo ($widget['slide_time']*1000); ?><?php }?>
+							<?php if( isset( $wp_customize ) && ( strlen( $widget[ 'slide_ids' ] ) > strlen( get_option( $this->get_field_id( 'slider' ) . '_slide_ids' ) ) ) ) { ?>,initialSlide: <?php echo count( explode( ',', $widget['slide_ids']) ) - 1; ?><?php } ?>
 						});
 
 						<?php if( 1 < count( $widget[ 'slides' ] ) ) { ?>
@@ -255,6 +254,8 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 				array(),
 				LAYERS_VERSION
 			); // Slider
+
+			update_option( $this->get_field_id( 'slider' ) . '_slide_ids' , $widget[ 'slide_ids' ] );
 		}
 
 		/**
@@ -270,6 +271,7 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 					}
 				} // foreach checkboxes
 			} // if checkboxes
+
 			return $new_instance;
 		}
 
@@ -401,9 +403,8 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 											( isset( $instance[ 'slides' ][ $slide ] ) ) ? $instance[ 'slides' ][ $slide ] : NULL );
 								} ?>
 							<?php } ?>
-							<li class="layers-button btn-full layers-add-widget-slide" data-number="<?php echo esc_attr( $this->number ); ?>"><?php _e( '+ Add New Slide' , LAYERS_THEME_SLUG ) ; ?></li>
 						</ul>
-
+						<button class="layers-button btn-full layers-add-widget-slide add-new-widget" data-number="<?php echo esc_attr( $this->number ); ?>"><?php _e( 'Add New Slide' , LAYERS_THEME_SLUG ) ; ?></button>
 				</section>
 
 			</div>

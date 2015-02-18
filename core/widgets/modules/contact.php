@@ -97,7 +97,13 @@ if( !class_exists( 'Layers_Contact_Widget' ) ) {
 			// Apply the advanced widget styling
 			$this->apply_widget_advanced_styling( $widget_id, $widget );
 
-			// Set the map width
+			// Set the map & form widths
+			if( isset( $hasmap ) ) {
+				$form_class = 'span-6';
+			} else {
+				$form_class = 'span-12';
+			}
+
 			$mapwidth = 'span-12'; ?>
 
 			<section class="layers-contact-widget widget content-vertical-massive row <?php echo $this->check_and_return( $widget , 'design', 'advanced', 'customclass' ) ?> <?php echo $this->get_widget_spacing_class( $widget ); ?>" id="<?php echo $widget_id; ?>">
@@ -117,19 +123,14 @@ if( !class_exists( 'Layers_Contact_Widget' ) ) {
 
 
 				<div class="row <?php echo $this->get_widget_layout_class( $widget ); ?>">
-					<?php if( ( '' != $widget['address_shown'] && isset( $widget['show_address'] ) ) || ( isset( $widget['show_contact_form'] ) && '' != $widget['contact_form'] ) ) {?>
-						<?php if( isset( $hasmap ) ) { ?>
-							<?php $form_class = 'span-6'; ?>
-						<?php } else { ?>
-							<?php $form_class = 'span-12'; ?>
-						<?php } ?>
-						<div class="column <?php echo $form_class; ?> form">
-							<?php if( isset( $widget['show_address'] ) &&  '' != $widget['address_shown'] ) { ?>
+					<?php if( ( '' != $widget['address_shown'] && isset( $widget['show_address'] ) ) || $this->check_and_return( $widget, 'show_contact_form' ) ) {?>
+						<div class="column <?php echo $form_class; ?> form content">
+							<?php if( $this->check_and_return( $widget, 'show_address' ) ) { ?>
 								<address class="copy">
 									<p><?php echo $widget['address_shown']; ?></p>
 								</address>
 							<?php } ?>
-							<?php if( isset( $widget['show_contact_form'] ) && '' != $widget['contact_form'] ) { ?>
+							<?php if( $this->check_and_return( $widget, 'contact_form' ) ) { ?>
 								<?php echo do_shortcode( $widget['contact_form'] ); ?>
 							<?php } ?>
 						</div>
@@ -138,9 +139,9 @@ if( !class_exists( 'Layers_Contact_Widget' ) ) {
 					<?php if( isset( $hasmap ) ) { ?>
 						<div class="column no-push-bottom <?php echo esc_attr( $mapwidth ); ?>">
 							<?php if ( isset( $wp_customize ) ) { ?>
-								<?php if( '' != $widget['google_maps_location'] ) {
+								<?php if( $this->check_and_return( $widget, 'google_maps_location' ) ) {
 									$map_center = $widget['google_maps_location'];
-								} else if( '' != $widget['google_maps_long_lat'] ) {
+								} else if( $this->check_and_return( $widget, 'google_maps_long_lat' ) ) {
 									$map_center =  $widget['google_maps_long_lat'];
 								} ?>
 								<div class="layers-map" style="height: <?php echo esc_attr( $widget['map_height'] ); ?>px; overflow: hidden;">

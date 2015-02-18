@@ -120,13 +120,20 @@ $api = new Layers_API(); ?>
 							</li>
 						</ul>
 					</div>
+					<?php $videos = array(
+						'adding-a-widget',
+						'widget-slider',
+						'design-bar'
+					);
+					$use_video = $videos[ array_rand($videos) ]; ?>
 					<div class="layers-panel">
 						<div class="layers-panel-title">
 							<h4 class="layers-heading"><?php _e( 'Helpful Tips', LAYERS_THEME_SLUG ); ?></h4>
 						</div>
 						<div class="layers-content">
-							<?php layers_show_html5_video( 'http://cdn.oboxsites.com/layers/videos/adding-a-widget.mp4', 490 ); ?>
-		                </div>
+							<?php layers_show_html5_video( 'http://cdn.oboxsites.com/layers/videos/' . $use_video . '.mp4', 490 ); ?>
+						</div>
+						<script> jQuery(function($){ $('.swiper-container').swiper(); }); </script>
 					</div>
 				</div>
 

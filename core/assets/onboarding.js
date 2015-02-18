@@ -112,6 +112,7 @@ jQuery(function($) {
                             layers_next_onboarding_slide()
                         }, 350 );
                     }
+
                 }
             ) // $.post
         } else {

@@ -385,8 +385,6 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 										$columnguid ,
 										( isset( $instance[ 'columns' ][ $columnguid ] ) ) ? $instance[ 'columns' ][ $columnguid ] : NULL );
 							} ?>
-						<?php } else { ?>
-							<?php $this->column_item( array( 'id_base' => $this->id_base , 'number' => $this->number ) ); ?>
 						<?php }?>
 						<li class="layers-button btn-full layers-add-widget-column" data-number="<?php echo esc_attr( $this->number ); ?>"><?php _e( '+ Add New Column' , LAYERS_THEME_SLUG ) ; ?></li>
 					</ul>
@@ -424,7 +422,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 						<span>
 							<?php _e( 'Column' , LAYERS_THEME_SLUG ); ?>
 							<span class="layers-detail">
-								<?php echo ( isset( $title ) ? ': ' . substr( stripslashes( $title ), 0 , 50 ) : NULL ); ?>
+								<?php echo ( isset( $title ) ? ': ' . substr( stripslashes( strip_tags($title ) ), 0 , 50 ) : NULL ); ?>
 								<?php echo ( isset( $title ) && strlen( $title ) > 50 ? '...' : NULL ); ?>
 							</span>
 						</span>

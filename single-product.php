@@ -9,7 +9,7 @@ get_header(); ?>
 
 <?php get_template_part( 'partials/header' , 'page-title' ); ?>
 
-<section id="post-<?php the_ID(); ?>" <?php post_class( 'content-main container product row' ); ?>>
+<section id="post-<?php the_ID(); ?>" <?php post_class( 'content-main product row' ); ?>>
 
     <?php /**
     * Maybe show the left sidebar

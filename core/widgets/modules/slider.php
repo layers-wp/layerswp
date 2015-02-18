@@ -400,9 +400,7 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 											$slide ,
 											( isset( $instance[ 'slides' ][ $slide ] ) ) ? $instance[ 'slides' ][ $slide ] : NULL );
 								} ?>
-							<?php } else { ?>
-								<?php $this->slide_item( array( 'id_base' => $this->id_base , 'number' => $this->number ) ); ?>
-							<?php }?>
+							<?php } ?>
 							<li class="layers-button btn-full layers-add-widget-slide" data-number="<?php echo esc_attr( $this->number ); ?>"><?php _e( '+ Add New Slide' , LAYERS_THEME_SLUG ) ; ?></li>
 						</ul>
 
@@ -443,7 +441,7 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 						<span>
 							<?php _e( 'Slide' , LAYERS_THEME_SLUG ); ?>
 							<span class="layers-detail">
-								<?php echo ( isset( $title ) ? ': ' . substr( stripslashes( $title ), 0 , 50 ) : NULL ); ?>
+								<?php echo ( isset( $title ) ? ': ' . substr( stripslashes( strip_tags( $title ) ), 0 , 50 ) : NULL ); ?>
 								<?php echo ( isset( $title ) && strlen( $title ) > 50 ? '...' : NULL ); ?>
 							</span>
 						</span>

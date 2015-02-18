@@ -625,7 +625,11 @@ class Layers_Widget_Migrator {
         $layers_widgets->register_builder_sidebar( $import_data[ 'post_id' ] );
 
         // Add Widget Data to the import array
-        $import_data[ 'widget_data' ] = $_POST[ 'widget_data' ];
+        if( isset( $_POST[ 'widget_data' ] ) ) {
+            $import_data[ 'widget_data' ] = $_POST[ 'widget_data' ];
+        } else {
+            $import_data[ 'widget_data' ] = NULL;
+        }
 
         // Run data import
         $import_progress = $this->import( $import_data );

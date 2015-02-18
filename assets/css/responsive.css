@@ -613,7 +613,8 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 		float: left;
 		width: 33.33333%;
 	}
-	.column.span-4:nth-child(3n+3),
+	.column.span-4:last-child,
+    .column.span-4:nth-child(3n+3),
 	.column-flush.span-4:nth-child(3n+3){
 		margin-right: 0;
 	}
@@ -1136,40 +1137,6 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
         visibility: visible;
         left: -164px;
     }
-}
-
-/*--------------------------------------------------------------*/
-/*- BIG BOY SCREENS --------------------------------------------*/
-/*--------------------------------------------------------------*/
-
-@media only screen and (min-width: 1442px){
-
-/*-------------------------------*/
-/*- GRIDS -----------------------*/
-
-	.column{
-	    margin-bottom: 2%;
-	}
-
-/*-------------------------------*/
-/*- CONTAINERS ------------------*/
-
-	.container{
-        max-width: 1320px;
-    }
-    .container.list-masonry{
-        max-width: 1280px;
-        padding: 0;
-        position:relative;
-    }
-
-/*-------------------------------*/
-/*- TITLES ----------------------*/
-
-	.title-container .title{
-        max-width: 1320px;
-	}
-
 }
 
 @media only screen and (max-width: 480px), screen and (max-device-width: 480px), screen and (max-width: 600px) {

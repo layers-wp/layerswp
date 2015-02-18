@@ -92,12 +92,18 @@ if( !class_exists( 'Layers_Contact_Widget' ) ) {
 			}
 			// Set the background styling
 			if( !empty( $widget['design'][ 'background' ] ) ) layers_inline_styles( '#' . $widget_id, 'background', array( 'background' => $widget['design'][ 'background' ] ) );
-			if( !empty( $widget['design']['fonts'][ 'color' ] ) ) layers_inline_styles( '#' . $widget_id, 'color', array( 'selectors' => array( '.section-title h3.heading' , '.section-title p.excerpt' , '.section-title small' ) , 'color' => $widget['design']['fonts'][ 'color' ] ) );
+			if( !empty( $widget['design']['fonts'][ 'color' ] ) ) layers_inline_styles( '#' . $widget_id, 'color', array( 'selectors' => array( '.section-title h3.heading' , '.section-title p.excerpt' , '.section-title small', 'form p' , 'form label' ) , 'color' => $widget['design']['fonts'][ 'color' ] ) );
 
 			// Apply the advanced widget styling
 			$this->apply_widget_advanced_styling( $widget_id, $widget );
 
-			// Set the map width
+			// Set the map & form widths
+			if( isset( $hasmap ) ) {
+				$form_class = 'span-6';
+			} else {
+				$form_class = 'span-12';
+			}
+
 			$mapwidth = 'span-12'; ?>
 
 			<section class="layers-contact-widget widget content-vertical-massive row <?php echo $this->check_and_return( $widget , 'design', 'advanced', 'customclass' ) ?> <?php echo $this->get_widget_spacing_class( $widget ); ?>" id="<?php echo $widget_id; ?>">
@@ -117,14 +123,14 @@ if( !class_exists( 'Layers_Contact_Widget' ) ) {
 
 
 				<div class="row <?php echo $this->get_widget_layout_class( $widget ); ?>">
-					<?php if( ( '' != $widget['address_shown'] && isset( $widget['show_address'] ) ) || ( isset( $widget['show_contact_form'] ) && '' != $widget['contact_form'] ) ) {?>
-						<div class="column span-6 form">
-							<?php if( isset( $widget['show_address'] ) &&  '' != $widget['address_shown'] ) { ?>
+					<?php if( ( '' != $widget['address_shown'] && isset( $widget['show_address'] ) ) || $this->check_and_return( $widget, 'show_contact_form' ) ) {?>
+						<div class="column <?php echo $form_class; ?> form content">
+							<?php if( $this->check_and_return( $widget, 'show_address' ) ) { ?>
 								<address class="copy">
 									<p><?php echo $widget['address_shown']; ?></p>
 								</address>
 							<?php } ?>
-							<?php if( isset( $widget['show_contact_form'] ) && '' != $widget['contact_form'] ) { ?>
+							<?php if( $this->check_and_return( $widget, 'contact_form' ) ) { ?>
 								<?php echo do_shortcode( $widget['contact_form'] ); ?>
 							<?php } ?>
 						</div>
@@ -133,12 +139,14 @@ if( !class_exists( 'Layers_Contact_Widget' ) ) {
 					<?php if( isset( $hasmap ) ) { ?>
 						<div class="column no-push-bottom <?php echo esc_attr( $mapwidth ); ?>">
 							<?php if ( isset( $wp_customize ) ) { ?>
-								<?php if( '' != $widget['google_maps_location'] ) {
+								<?php if( $this->check_and_return( $widget, 'google_maps_location' ) ) {
 									$map_center = $widget['google_maps_location'];
-								} else if( '' != $widget['google_maps_long_lat'] ) {
+								} else if( $this->check_and_return( $widget, 'google_maps_long_lat' ) ) {
 									$map_center =  $widget['google_maps_long_lat'];
 								} ?>
-								<img src="https://maps.googleapis.com/maps/api/staticmap?center=<?php echo esc_attr( $map_center ); ?>&zoom=11&size=1960x<?php echo $widget['map_height']; ?>&scale=2&markers=color:red|<?php echo esc_attr( $map_center ); ?>" class="google-map-img" />
+								<div class="layers-map" style="height: <?php echo esc_attr( $widget['map_height'] ); ?>px; overflow: hidden;">
+									<img src="https://maps.googleapis.com/maps/api/staticmap?center=<?php echo esc_attr( $map_center ); ?>&zoom=11&size=1960x<?php echo $widget['map_height']; ?>&scale=2&markers=color:red|<?php echo esc_attr( $map_center ); ?>" class="google-map-img" />
+								</div>
 							<?php } else { ?>
 								<div class="layers-map" style="height: <?php echo esc_attr( $widget['map_height'] ); ?>px;" <?php if( '' != $widget['google_maps_location'] ) { ?>data-location="<?php echo $widget['google_maps_location']; ?>"<?php } ?> <?php if( '' != $widget['google_maps_long_lat'] ) { ?>data-longlat="<?php echo $widget['google_maps_long_lat']; ?>"<?php } ?>></div>
 							<?php } ?>

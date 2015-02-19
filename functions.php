@@ -13,7 +13,7 @@
 if ( defined( 'SCRIPT_DEBUG' ) && TRUE == SCRIPT_DEBUG ) {
 	define( 'LAYERS_VERSION', time() );
 } else {
-	define( 'LAYERS_VERSION', 'beta-0.1' );
+	define( 'LAYERS_VERSION', '1.0.0' );
 }
 
 define( 'LAYERS_TEMPLATE_URI' , get_template_directory_uri() );

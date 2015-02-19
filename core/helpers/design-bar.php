@@ -674,13 +674,6 @@ class Layers_Design_Controller {
         // Add a Label
         $args[ 'label' ] = __( 'Advanced' , LAYERS_THEME_SLUG );
 
-        $spacing_options = array(
-            '' => 'Standard',
-            'small' => 'Small',
-            'medium' => 'Medium',
-            'large' => 'Large',
-        );
-
         // Add elements
         $args[ 'elements' ] = array(
                             'customclass' => array(

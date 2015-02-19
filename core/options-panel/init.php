@@ -45,6 +45,13 @@ class Layers_Options_Panel {
 		<header class="layers-page-title layers-section-title layers-large layers-content-large layers-no-push-bottom">
 			<div class="layers-container">
 				<a href="http://oboxthemes.com/layers" class="layers-logo"><?php _e( 'Layers' , 'layerswp' ); ?></a>
+				<?php if( class_exists( 'Layers_Updater' ) ) { ?>
+					<span class="layers-pull-right layers-content">
+						<a class="layers-button btn-link" href="http://www.layerswp.com/download/layers-updater/">
+							<?php _e( 'Get the Layers Updater' , 'layerswp' ); ?>
+						</a>
+					</span>
+				<?php } ?>
 				<?php if( isset( $title ) ) { ?>
 					<h2 class="layers-heading" id="layers-options-header"><?php echo esc_html( $title ); ?></h2>
 				<?php } ?>

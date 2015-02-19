@@ -4,7 +4,7 @@
  * This file is used to add functionality related to extensions, for example adding templates, registering extensions, etc.
  *
  * @package Layers
- * @since Layers 1.0
+ * @since Layers 1.0.0
  */
 
 /**

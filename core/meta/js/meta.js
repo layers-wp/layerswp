@@ -4,7 +4,7 @@
  * This file contains all post-meta functionality
  *
  * @package Layers
- * @since Layers 1.0
+ * @since Layers 1.0.0
  *
  * Author: Obox Themes
  * Author URI: http://www.oboxthemes.com/

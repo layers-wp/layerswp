@@ -4,7 +4,7 @@
  * This file contains all onboarding functions
  *
  * @package Layers
- * @since Layers 1.0
+ * @since Layers 1.0.0
  *
  * Contents
  *

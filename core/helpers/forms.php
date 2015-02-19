@@ -4,7 +4,7 @@
  * This file outputs common HTML elements for form items used in the admin area of Layers, it's useful not to have to re-write ever part of HTML that we use inside the widgets
  *
  * @package Layers
- * @since Layers 1.0
+ * @since Layers 1.0.0
  */
 
 class Layers_Form_Elements {

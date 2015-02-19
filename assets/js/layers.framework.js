@@ -4,7 +4,7 @@
  * This file contains all theme JS functions, from height matching to button toggling
  *
  * @package Layers
- * @since Layers 1.0
+ * @since Layers 1.0.0
  * Contents
  * 1 - Screen height matching
  * 2 - Container padding for header fixed
@@ -41,34 +41,34 @@ jQuery(function($) {
         layers_apply_overlay_header_styles();
     });
     function layers_apply_overlay_header_styles() {
-        
+
         // Get header.
         $header = $( '.header-site' );
-        
+
         // Get content wrapper.
         $content_wrapper = $( '#wrapper-content' );
-        
+
         if( $header.hasClass( 'header-overlay' ) ) {
-            
+
             // Get first element.
             $first_element = $content_wrapper.children().eq(0);
 
             if( $first_element.hasClass( 'slide' ) ) {
-                
+
                 // First element is Slider.
-                
+
                 // Pad necessary element(s).
                 $first_element.find('.swiper-slide .overlay').css({ 'paddingTop': $( $header ).height() }, { easing: 'layersEaseInOut', duration: 400 });
             }
             else if( $first_element.hasClass('title-container') ) {
-                
+
                 // First element is Title (eg WooCommerce).
-                
+
                 // Pad necessary element(s).
                 $first_element.css({ 'paddingTop': $( $header ).height() }, { easing: 'layersEaseInOut', duration: 400 });
             }
             else{
-                
+
                 // Pad the site to compensate for overlay header.
                 $content_wrapper.css( 'paddingTop', $( $header ).height() );
             }

@@ -4,7 +4,7 @@
  * This file is used to register panels, sections and controls
  *
  * @package Layers
- * @since Layers 1.0
+ * @since Layers 1.0.0
  */
 
 class Layers_Customizer_Regsitrar {

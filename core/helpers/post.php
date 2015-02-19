@@ -4,7 +4,7 @@
  * This file is used to display post elements, from meta to media, to galleries, to in-post pagination, all post-related functions sit in this file.
  *
  * @package Layers
- * @since Layers 1.0
+ * @since Layers 1.0.0
  */
 
 

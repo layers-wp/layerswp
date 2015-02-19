@@ -5,7 +5,7 @@
  * The template for displaying a full width, unstyled page
  *
  * @package Layers
- * @since Layers 1.0
+ * @since Layers 1.0.0
  */
 
 get_header(); ?>

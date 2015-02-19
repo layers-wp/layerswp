@@ -4,7 +4,7 @@
  * This file is used to define the different panels, sections and controls for Layers
  *
  * @package Layers
- * @since Layers 1.0
+ * @since Layers 1.0.0
  */
 
 class Layers_Customizer_Config {

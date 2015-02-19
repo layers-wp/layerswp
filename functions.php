@@ -89,9 +89,6 @@ if( is_admin() ){
 	// Include design bar class
 	require_once get_template_directory() . '/core/helpers/design-bar.php';
 
-	// Include pointers class
-	require_once get_template_directory() . '/core/helpers/pointers.php';
-
 	// Include API class
 	require_once get_template_directory() . '/core/helpers/api.php';
 
@@ -271,63 +268,40 @@ if( ! function_exists( 'layers_scripts' ) ) {
 		/**
 		* Front end Scripts
 		*/
+		if( !is_admin() ) {
+			wp_enqueue_script(
+				LAYERS_THEME_SLUG . '-plugins-js' ,
+				get_template_directory_uri() . '/assets/js/plugins.js',
+				array(
+					'jquery',
+				)
+			); // Sticky-Kit
 
-		wp_enqueue_script(
-			LAYERS_THEME_SLUG . '-sticky-kit-js' ,
-			get_template_directory_uri() . '/assets/js/sticky-kit.js',
-			array(
-				'jquery',
-			)
-		); // Sticky-Kit
+			wp_enqueue_script( 'jquery-masonry' ); // Wordpress Masonry
 
-		wp_enqueue_script(
-			LAYERS_THEME_SLUG . '-waypoints-js' ,
-			get_template_directory_uri() . '/assets/js/waypoint.js',
-			array(
-				'jquery',
-			)
-		); // Waypoints
+			wp_enqueue_script(
+				LAYERS_THEME_SLUG . '-layers-masonry-js' ,
+				get_template_directory_uri() . '/assets/js/layers.masonry.js',
+				array(
+					'jquery'
+				)
+			); // Layers Masonry Function
 
-		wp_enqueue_script( 'jquery-masonry' ); // Wordpress Masonry
-
-		wp_enqueue_script(
-			LAYERS_THEME_SLUG . '-layers-masonry-js' ,
-			get_template_directory_uri() . '/assets/js/layers.masonry.js',
-			array(
-				'jquery'
-			)
-		); // Layers Masonry Function
-
-		wp_enqueue_script(
-			LAYERS_THEME_SLUG . '-fit-vids-js' ,
-			get_template_directory_uri() . '/assets/js/jquery.fitvids.js',
-			array(
-				'jquery'
-			)
-		); // Fitvids
-
-		wp_enqueue_script(
-			LAYERS_THEME_SLUG . '-imagesloaded-js' ,
-			get_template_directory_uri() . '/assets/js/imagesloaded.js',
-			array(
-				'jquery',
-			)
-		); // Waypoints
-
-		wp_enqueue_script(
-			LAYERS_THEME_SLUG . '-framework-js' ,
-			get_template_directory_uri() . '/assets/js/layers.framework.js',
-			array(
-				'jquery',
-			),
-			LAYERS_VERSION,
-			true
-		); // Framework
+			wp_enqueue_script(
+				LAYERS_THEME_SLUG . '-framework-js' ,
+				get_template_directory_uri() . '/assets/js/layers.framework.js',
+				array(
+					'jquery',
+				),
+				LAYERS_VERSION,
+				true
+			); // Framework
 
 
-		if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
-			wp_enqueue_script( 'comment-reply' );
-		} // Comment reply script
+			if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
+				wp_enqueue_script( 'comment-reply' );
+			} // Comment reply script
+		}
 
 		/**
 		* Front end Styles
@@ -346,13 +320,6 @@ if( ! function_exists( 'layers_scripts' ) ) {
 			array(),
 			LAYERS_VERSION
 		); // Typography
-
-		wp_enqueue_style(
-			LAYERS_THEME_SLUG . '-invert' ,
-			get_template_directory_uri() . '/assets/css/invert.css',
-			array() ,
-			LAYERS_VERSION
-		);
 
 		wp_enqueue_style(
 			LAYERS_THEME_SLUG . '-colors',
@@ -388,13 +355,6 @@ if( ! function_exists( 'layers_scripts' ) ) {
 			array(),
 			LAYERS_VERSION
 		); // Icon Font
-
-		wp_enqueue_style(
-			LAYERS_THEME_SLUG . '-admin',
-			get_template_directory_uri() . '/core/assets/admin.css',
-			array('admin-bar'),
-			LAYERS_VERSION
-		); // Admin CSS - depending on admin-bar loaded
 
 		wp_enqueue_style(
 			LAYERS_THEME_SLUG . '-style' ,

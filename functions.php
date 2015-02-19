@@ -138,6 +138,12 @@ if( ! function_exists( 'layers_setup' ) ) {
 		add_image_size( 'layers-landscape-medium', 480, 340, true );
 
 		/**
+		 * Add text domain
+		 */
+
+		load_theme_textdomain('layerswp', get_template_directory() . '/languages');
+
+		/**
 		 * Add theme support
 		 */
 
@@ -291,7 +297,7 @@ if( ! function_exists( 'layers_scripts' ) ) {
 				'jquery'
 			)
 		); // Layers Masonry Function
-		
+
 		wp_enqueue_script(
 			LAYERS_THEME_SLUG . '-fit-vids-js' ,
 			get_template_directory_uri() . '/assets/js/jquery.fitvids.js',

@@ -123,14 +123,18 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 					<div class="row <?php echo $this->get_widget_layout_class( $widget ); ?> <?php echo $this->check_and_return( $widget , 'design', 'liststyle' ); ?>">
 						<?php // Set total width so that we can apply .last to the final container
 						$total_width = 0; ?>
-						<?php foreach ( $widget['columns'] as $key => $column) {
-							// Set column link
-							$link = $this->check_and_return( $column , 'link' );
+						<?php foreach ( explode( ',', $widget[ 'column_ids' ] ) as $column_key ) {
+
+							// Make sure we've got a column going on here
+							if( !isset( $widget[ 'columns' ][ $column_key ] ) ) continue;
+
+							// Setup the relevant slide
+							$column = $widget[ 'columns' ][ $column_key ];
 
 							// Set the background styling
-							if( !empty( $column['design'][ 'background' ] ) ) layers_inline_styles( '#' . $widget_id . '-' . $key , 'background', array( 'background' => $column['design'][ 'background' ] ) );
-							if( !empty( $column['design']['fonts'][ 'color' ] ) ) layers_inline_styles( '#' . $widget_id . '-' . $key , 'color', array( 'selectors' => array( 'h5.heading a', 'h5.heading' , 'div.excerpt' , 'div.excerpt p' ) , 'color' => $column['design']['fonts'][ 'color' ] ) );
-							if( !empty( $column['design']['fonts'][ 'shadow' ] ) ) layers_inline_styles( '#' . $widget_id . '-' . $key , 'text-shadow', array( 'selectors' => array( 'h5.heading a', 'h5.heading' , 'div.excerpt' , 'div.excerpt p' )  , 'text-shadow' => $column['design']['fonts'][ 'shadow' ] ) );
+							if( !empty( $column['design'][ 'background' ] ) ) layers_inline_styles( '#' . $widget_id . '-' . $column_key , 'background', array( 'background' => $column['design'][ 'background' ] ) );
+							if( !empty( $column['design']['fonts'][ 'color' ] ) ) layers_inline_styles( '#' . $widget_id . '-' . $column_key , 'color', array( 'selectors' => array( 'h5.heading a', 'h5.heading' , 'div.excerpt' , 'div.excerpt p' ) , 'color' => $column['design']['fonts'][ 'color' ] ) );
+							if( !empty( $column['design']['fonts'][ 'shadow' ] ) ) layers_inline_styles( '#' . $widget_id . '-' . $column_key , 'text-shadow', array( 'selectors' => array( 'h5.heading a', 'h5.heading' , 'div.excerpt' , 'div.excerpt p' )  , 'text-shadow' => $column['design']['fonts'][ 'shadow' ] ) );
 
 							if( !isset( $column[ 'width' ] ) ) $column[ 'width' ] = $this->column_defaults[ 'width' ];
 							// Add the correct span class
@@ -178,6 +182,8 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 								$featurevideo
 							);
 
+							// Set the column link
+							$link = $this->check_and_return( $column , 'link' );
 
 							// Set Column CSS Classes
 							$column_class = array();
@@ -206,7 +212,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 							$column_inner_class[] = $this->check_and_return( $column, 'design', 'fonts' , 'size' );
 							$column_inner_class = implode( ' ', $column_inner_class ); ?>
 
-							<div id="<?php echo $widget_id; ?>-<?php echo $key; ?>" class="<?php echo $column_class; ?>">
+							<div id="<?php echo $widget_id; ?>-<?php echo $column_key; ?>" class="<?php echo $column_class; ?>">
 								<div class="<?php echo $column_inner_class; ?>">
 									<?php if( NULL != $media ) { ?>
 										<div class="media-image <?php echo ( ( isset( $column['design'][ 'imageratios' ] ) && 'image-round' == $column['design'][ 'imageratios' ] ) ? 'image-rounded' : '' ); ?>">
@@ -220,7 +226,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 										<div class="media-body <?php echo ( isset( $column['design']['fonts'][ 'align' ] ) ) ? $column['design']['fonts'][ 'align' ] : ''; ?>">
 											<?php if( $this->check_and_return( $column, 'title') ) { ?>
 												<h5 class="heading">
-													<?php if( NULL != $link && ! ( isset( $column['link'] ) && $this->check_and_return( $column , 'link_text' ) ) ) { ?><a href="<?php echo $link; ?>"><?php } ?>
+													<?php if( NULL != $link && ! ( isset( $column['link'] ) && $this->check_and_return( $column , 'link_text' ) ) ) { ?><a href="<?php echo $column['link']; ?>"><?php } ?>
 														<?php echo $column['title']; ?>
 													<?php if( NULL != $link && ! ( isset( $column['link'] ) && $this->check_and_return( $column , 'link_text' ) ) ) { ?></a><?php } ?>
 												</h5>

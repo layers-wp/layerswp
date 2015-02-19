@@ -346,7 +346,7 @@ if( ! function_exists( 'layers_scripts' ) ) {
 			LAYERS_VERSION
 		);
 
-		if( !class_exists( 'WooCommerce' ) ) {
+		if( class_exists( 'WooCommerce' ) ) {
 			wp_enqueue_style(
 				LAYERS_THEME_SLUG . '-woocommerce',
 				get_template_directory_uri() . '/assets/css/woocommerce.css',

@@ -25,33 +25,63 @@ class Layers_Widget_Migrator {
 
     public function __construct() {
 
-        // Add meta box, this sorta kicks off the export logic too
-        if( function_exists( 'add_meta_box' ) ) {
-            add_meta_box(
-                        LAYERS_THEME_SLUG . '-widget-export',
-                        __( 'Builder Settings' , 'layers' ), // Title
-                        array( $this , 'display_export_box' ) , // Interface
-                        'page' , // Post Type
-                        'normal', // Position
-                        'low' // Priority
-                    );
-        }
+        if( isset( $_GET[ 'layers-export' ] ) ) $this->create_export_file();
 
         // Add current builder pages as presets
         add_filter( 'layers_preset_layouts' , array( $this , 'add_builder_preset_layouts') );
 
+        // Add allowance for JSON to be added via the media uploader
+        add_filter( 'upload_mimes', array( $this, 'allow_json_uploads' ), 1, 1);
     }
 
     /**
     *  Simple output of a JSON'd string of the widget data
     */
-    function display_export_box( $post ){ ?>
-        <textarea id="<?php echo LAYERS_THEME_SLUG . '-import-wiget-data'; ?>" style="width: 100%;" rows="15"><?php echo esc_attr( json_encode( $this->export_data( $post ) ) ); ?></textarea>
-        <p>
-            <em><?php _e( 'Copy and paste widget data from another site or page into this box to import data.' , 'layers' ); ?></em>
-        </p>
-        <a href="#import" data-post-id="<?php echo $post->ID; ?>" id="<?php echo LAYERS_THEME_SLUG . '-import-wiget-page'; ?>" class="layers-button btn-primary"><?php _e( 'Import Data' , 'layers' ); ?></a>
-    <?php }
+
+    function create_export_file(){
+
+        // Make sur a post ID exists or return
+        if( !isset( $_GET[ 'post' ] ) ) return;
+
+        // Get the post ID
+        $post_id = $_GET[ 'post' ];
+
+        $post = get_post( $post_id );
+
+        $widget_data = json_encode( $this->export_data( $post ) );
+
+        $filesize = strlen( $widget_data );
+
+        // Headers to prompt "Save As"
+        header( 'Content-Type: application/json' );
+        header( 'Content-Disposition: attachment; filename=' . $post->post_name .'-' . date( 'Y-m-d' ) . '.json' );
+        header( 'Expires: 0' );
+        header( 'Cache-Control: must-revalidate' );
+        header( 'Pragma: public' );
+        header( 'Content-Length: ' . $filesize );
+
+        // Clear buffering just in case
+        @ob_end_clean();
+        flush();
+
+        // Output file contents
+        echo $widget_data;
+
+        // Stop execution
+        wp_redirect( admin_url( 'post.php?post=' . $post->ID . '&action=edit'  ) );
+
+    }
+
+    function allow_json_uploads( $mime_types ){
+        //Creating a new array will reset the allowed filetypes
+        $mime_types[ 'json|JSON' ] = 'application/json';
+
+        return $mime_types;
+    }
+
+    /**
+    *  Make sure that the template directory is nice ans clean for JSON
+    */
 
     function get_translated_dir_uri(){
         return str_replace('/', '\/', get_template_directory_uri() );
@@ -64,25 +94,31 @@ class Layers_Widget_Migrator {
         $layers_preset_layouts = array();
 
         $layers_preset_layouts = array(
+            'business' => array(
+                    'title' => __( 'Business Page' , 'layerswp' ),
+                    'screenshot' => 'http://cdn.oboxsites.com/layers/preset-layouts/business.png',
+                    'screenshot_type' => 'png',
+                    'json' => esc_attr( '{"obox-layers-builder-24":{"layers-widget-slide-7":{"show_slider_arrows":"on","show_slider_dots":"on","slide_time":"","slide_height":"550","design":{"advanced":{"customclass":"","customcss":""}},"slide_ids":"249,11","slides":{"249":{"design":{"background":{"image":"' . $this->get_translated_dir_uri() . '\/assets\/images\/preset-layouts\/tile.png","color":"#000","repeat":"repeat","position":"center"},"featuredimage":"","featuredvideo":"","imagealign":"image-top","fonts":{"align":"text-center","size":"large","color":"#fff"}},"title":"Slider Title","excerpt":"Vestibulum arcu risus, porta eget auctor id, rhoncus et massa. Aliquam erat volutpat.","link":"","link_text":""},"11":{"design":{"background":{"image":"' . $this->get_translated_dir_uri() . '\/assets\/images\/preset-layouts\/tile.png","color":"#000","repeat":"repeat","position":"center"},"featuredimage":"","featuredvideo":"","imagealign":"image-top","fonts":{"align":"text-center","size":"large","color":"#fff"}},"title":"Slider Title","excerpt":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse vitae massa velit, eu laoreet massa.","link":"","link_text":""}}},"layers-widget-column-7":{"design":{"layout":"layout-boxed","gutter":"on","fonts":{"align":"text-left","size":"medium","color":""},"background":{"image":"","color":"","repeat":"no-repeat","position":"center"},"advanced":{"customclass":"","customcss":""}},"title":"Features","excerpt":"This content widget allows you to place any amount of text and images into a multi-column layout.","column_ids":"355,246,622","columns":{"355":{"design":{"background":{"image":"","color":"","repeat":"no-repeat","position":"center"},"featuredimage":"' . $this->get_translated_dir_uri() . '\/assets\/images\/preset-layouts\/demo-image.png","featuredvideo":"","imageratios":"image-landscape","imagealign":"image-top","fonts":{"align":"text-left","size":"medium","color":""}},"width":"4","title":"Content Item 1","excerpt":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse vitae massa velit, eu laoreet massa. Sed ac orci libero.","link":"","link_text":""},"246":{"design":{"background":{"image":"","color":"","repeat":"no-repeat","position":"center"},"featuredimage":"' . $this->get_translated_dir_uri() . '\/assets\/images\/preset-layouts\/demo-image.png","featuredvideo":"","imageratios":"image-landscape","imagealign":"image-top","fonts":{"align":"text-left","size":"medium","color":""}},"width":"4","title":"Content Item 2","excerpt":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse vitae massa velit, eu laoreet massa. Sed ac orci libero.","link":"","link_text":""},"622":{"design":{"background":{"image":"","color":"","repeat":"no-repeat","position":"center"},"featuredimage":"' . $this->get_translated_dir_uri() . '\/assets\/images\/preset-layouts\/demo-image.png","featuredvideo":"","imageratios":"image-landscape","imagealign":"image-top","fonts":{"align":"text-left","size":"medium","color":""}},"width":"4","title":"Content Item 3","excerpt":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse vitae massa velit, eu laoreet massa. Sed ac orci libero.","link":"","link_text":""}}},"layers-widget-slide-8":{"slide_time":"","slide_height":"350","design":{"advanced":{"customclass":"","customcss":""}},"slide_ids":"11,731","slides":{"11":{"design":{"background":{"image":"' . $this->get_translated_dir_uri() . '\/assets\/images\/preset-layouts\/tile.png","color":"#000","repeat":"repeat","position":"center"},"featuredimage":"","featuredvideo":"","imagealign":"image-top","fonts":{"align":"text-center","size":"medium","color":"#fff"}},"title":"Layers is the best site builder I\'ve ever used!","excerpt":"Mrs WordPress","link":"","link_text":""},"731":{"design":{"background":{"image":"' . $this->get_translated_dir_uri() . '\/assets\/images\/preset-layouts\/tile-green.png","color":"#000","repeat":"repeat","position":"center"},"featuredimage":"","featuredvideo":"","imagealign":"image-top","fonts":{"align":"text-center","size":"medium","color":"#fff"}},"title":"I love how it\'s built into the WordPress Customizer","excerpt":"Uncle WordPress","link":"","link_text":""}}},"layers-widget-column-8":{"design":{"layout":"layout-boxed","gutter":"on","fonts":{"align":"text-left","size":"medium","color":""},"background":{"image":"","color":"","repeat":"no-repeat","position":"center"},"advanced":{"customclass":"","customcss":".small .media-image.image-rounded img{max-width: 32px;}"}},"title":"What we offer","excerpt":"Our services run deep and are backed by over ten years of experience.","column_ids":"355,246,622","columns":{"355":{"design":{"background":{"image":"","color":"","repeat":"no-repeat","position":"center"},"featuredimage":"' . $this->get_translated_dir_uri() . '\/assets\/images\/preset-layouts\/demo-image.png","featuredvideo":"","imageratios":"image-landscape","imagealign":"image-top","fonts":{"align":"text-left","size":"small","color":""}},"width":"4","title":"Your service title","excerpt":"Give us a brief description of the service that you are promoting.","link":"","link_text":""},"246":{"design":{"background":{"image":"","color":"","repeat":"no-repeat","position":"center"},"featuredimage":"' . $this->get_translated_dir_uri() . '\/assets\/images\/preset-layouts\/demo-image.png","featuredvideo":"","imageratios":"image-landscape","imagealign":"image-top","fonts":{"align":"text-left","size":"small","color":""}},"width":"4","title":"Your service title","excerpt":"Give us a brief description of the service that you are promoting.","link":"","link_text":""},"622":{"design":{"background":{"image":"","color":"","repeat":"no-repeat","position":"center"},"featuredimage":"' . $this->get_translated_dir_uri() . '\/assets\/images\/preset-layouts\/demo-image.png","featuredvideo":"","imageratios":"image-landscape","imagealign":"image-top","fonts":{"align":"text-left","size":"small","color":""}},"width":"4","title":"Your service title","excerpt":"Give us a brief description of the service that you are promoting.","link":"","link_text":""}}}}}' )
+                ),
             'blog' => array(
-                    'title' => __( 'Blog Page', 'layers' ),
-                    'description' => __( 'Masonry style blog list page with an intro slider, we recommend importing the <a href="http://cdn.oboxsites.com/layers/layers-beta-content.xml?ver="' . rand( 0, 100 ) . '">Layers demo content</a> first.', 'layers' ),
+                    'title' => __( 'Blog Page' , 'layerswp' ),
+                    'description' => __( 'Masonry style blog list page with an intro slider, we recommend importing the <a href="http://cdn.oboxsites.com/layers/layers-beta-content.xml?ver="' . rand( 0, 100 ) . '">Layers demo content</a> first.' , 'layerswp' ),
                     'screenshot' => 'http://cdn.oboxsites.com/layers/preset-layouts/blog.png',
                     'screenshot_type' => 'png',
-                    'json' => esc_attr( '{"obox-layers-builder-33":{"layers-widget-slide-12":{"slide_time":"","slide_height":"350","design":{"advanced":{"customclass":"","customcss":""}},"slide_ids":"777","slides":{"777":{"design":{"background":{"image":"' . $this->get_translated_dir_uri() . '\/assets\/images\/preset-layouts\/tile.png","color":"#000","repeat":"repeat","position":"center"},"featuredimage":"","featuredvideo":"","imagealign":"image-top","fonts":{"align":"text-center","size":"large","color":"#fff"}},"title":"Our Blog","excerpt":"Find out the latest news and ramblings in our industry","link":"","link_text":""}}},"layers-widget-post-3":{"design":{"layout":"layout-boxed","fonts":{"align":"text-left","size":"medium","color":""},"columns":"3","gutter":"on","liststyle":"list-grid","imageratios":"image-square","background":{"image":"","color":"","repeat":"no-repeat","position":"center"},"advanced":{"customclass":"","customcss":""}},"text_style":"regular","show_titles":"on","show_excerpts":"on","excerpt_length":"100","show_dates":"on","show_categories":"on","show_call_to_action":"on","call_to_action":"Read More","title":"","excerpt":"","category":"0","posts_per_page":"6","order":"{\"orderby\":\"date\",\"order\":\"desc\"}"}}}' )
+                    'json' => esc_attr( '{"obox-layers-builder-33":{"layers-widget-slide-12":{"slide_time":"","slide_height":"350","design":{"advanced":{"customclass":"","customcss":""}},"slide_ids":"777","slides":{"777":{"design":{"background":{"image":"' . $this->get_translated_dir_uri() . '\/assets\/images\/preset-layouts\/tile.png","color":"#000","repeat":"repeat","position":"center"},"featuredimage":"","featuredvideo":"","imagealign":"image-top","fonts":{"align":"text-center","size":"large","color":"#fff"}},"title":"Our Blog","excerpt":"Find out the latest news and ramblings in our industry","link":"","link_text":""}}},"layers-widget-post-3":{"design":{"layout":"layout-boxed","fonts":{"align":"text-left","size":"medium","color":""},"columns":"3","gutter":"on","liststyle":"list-grid","imageratios":"image-square","background":{"image":"","color":"","repeat":"no-repeat","position":"center"},"advanced":{"customclass":"","customcss":""}},"text_style":"regular","show_titles":"on","show_excerpts":"on","excerpt_length":"100","show_dates":"on","show_categories":"on","show_call_to_action":"on","show_pagination":"on","call_to_action":"Read More","title":"","excerpt":"","category":"0","posts_per_page":"6","order":"{\"orderby\":\"date\",\"order\":\"desc\"}"}}}' )
                 ),
             'portfolio' => array(
-                    'title' => __( 'Portfolio Page', 'layers' ),
-                    'description' => __( 'Portfolio page, we recommend importing the <a href="http://cdn.oboxsites.com/layers/layers-beta-content.xml?ver="' . rand( 0, 100 ) . '>Layers demo content</a> first.', 'layers' ),
+                    'title' => __( 'Portfolio Page' , 'layerswp' ),
+                    'description' => __( 'Portfolio page, we recommend importing the <a href="http://cdn.oboxsites.com/layers/layers-beta-content.xml?ver="' . rand( 0, 100 ) . '>Layers demo content</a> first.' , 'layerswp' ),
                     'screenshot' => 'http://cdn.oboxsites.com/layers/preset-layouts/portfolio.png',
                     'screenshot_type' => 'png',
                     'json' => esc_attr( '{"obox-layers-builder-35":{"layers-widget-slide-10":{"slide_time":"","slide_height":"350","design":{"advanced":{"customclass":"","customcss":""}},"slide_ids":"632","slides":{"632":{"design":{"background":{"image":"' . $this->get_translated_dir_uri() . '\/assets\/images\/preset-layouts\/tile.png","color":"#000","repeat":"repeat","position":"center"},"featuredimage":"","featuredvideo":"","imagealign":"image-top","fonts":{"align":"text-center","size":"large","color":"#fff"}},"title":"Welcome to our Portfolio","excerpt":"Check our latest work","link":"","link_text":""}}},"layers-widget-portfolio-3":{"design":{"layout":"layout-boxed","fonts":{"align":"text-left","size":"medium","color":""},"columns":"3","gutter":"on","liststyle":"list-masonry","imageratios":"image-square","background":{"image":"","color":"","repeat":"no-repeat","position":"center"},"advanced":{"customclass":"","customcss":""}},"text_style":"overlay","show_titles":"on","show_excerpts":"on","excerpt_length":"200","show_call_to_action":"on","call_to_action":"View Project","title":"","excerpt":" ","category":"0","posts_per_page":"6","order":"{\"orderby\":\"date\",\"order\":\"desc\"}"}}}' )
                 ),
-            'business' => array(
-                    'title' => __( 'Business Page', 'layers' ),
-                    'screenshot' => 'http://cdn.oboxsites.com/layers/preset-layouts/business.png',
-                    'screenshot_type' => 'png',
-                    'json' => esc_attr( '{"obox-layers-builder-24":{"layers-widget-slide-7":{"show_slider_arrows":"on","show_slider_dots":"on","slide_time":"","slide_height":"550","design":{"advanced":{"customclass":"","customcss":""}},"slide_ids":"249,11","slides":{"249":{"design":{"background":{"image":"' . $this->get_translated_dir_uri() . '\/assets\/images\/preset-layouts\/tile.png","color":"#000","repeat":"repeat","position":"center"},"featuredimage":"","featuredvideo":"","imagealign":"image-top","fonts":{"align":"text-center","size":"large","color":"#fff"}},"title":"Slider Title","excerpt":"Vestibulum arcu risus, porta eget auctor id, rhoncus et massa. Aliquam erat volutpat.","link":"","link_text":""},"11":{"design":{"background":{"image":"' . $this->get_translated_dir_uri() . '\/assets\/images\/preset-layouts\/tile.png","color":"#000","repeat":"repeat","position":"center"},"featuredimage":"","featuredvideo":"","imagealign":"image-top","fonts":{"align":"text-center","size":"large","color":"#fff"}},"title":"Slider Title","excerpt":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse vitae massa velit, eu laoreet massa.","link":"","link_text":""}}},"layers-widget-column-7":{"design":{"layout":"layout-boxed","gutter":"on","fonts":{"align":"text-left","size":"medium","color":""},"background":{"image":"","color":"","repeat":"no-repeat","position":"center"},"advanced":{"customclass":"","customcss":""}},"title":"Features","excerpt":"This content widget allows you to place any amount of text and images into a multi-column layout.","column_ids":"355,246,622","columns":{"355":{"design":{"background":{"image":"","color":"","repeat":"no-repeat","position":"center"},"featuredimage":"' . $this->get_translated_dir_uri() . '\/assets\/images\/preset-layouts\/demo-image.png","featuredvideo":"","imageratios":"image-landscape","imagealign":"image-top","fonts":{"align":"text-left","size":"medium","color":""}},"width":"4","title":"Content Item 1","excerpt":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse vitae massa velit, eu laoreet massa. Sed ac orci libero.","link":"","link_text":""},"246":{"design":{"background":{"image":"","color":"","repeat":"no-repeat","position":"center"},"featuredimage":"' . $this->get_translated_dir_uri() . '\/assets\/images\/preset-layouts\/demo-image.png","featuredvideo":"","imageratios":"image-landscape","imagealign":"image-top","fonts":{"align":"text-left","size":"medium","color":""}},"width":"4","title":"Content Item 2","excerpt":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse vitae massa velit, eu laoreet massa. Sed ac orci libero.","link":"","link_text":""},"622":{"design":{"background":{"image":"","color":"","repeat":"no-repeat","position":"center"},"featuredimage":"' . $this->get_translated_dir_uri() . '\/assets\/images\/preset-layouts\/demo-image.png","featuredvideo":"","imageratios":"image-landscape","imagealign":"image-top","fonts":{"align":"text-left","size":"medium","color":""}},"width":"4","title":"Content Item 3","excerpt":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse vitae massa velit, eu laoreet massa. Sed ac orci libero.","link":"","link_text":""}}},"layers-widget-slide-8":{"slide_time":"","slide_height":"350","design":{"advanced":{"customclass":"","customcss":""}},"slide_ids":"11,731","slides":{"11":{"design":{"background":{"image":"' . $this->get_translated_dir_uri() . '\/assets\/images\/preset-layouts\/tile.png","color":"#000","repeat":"repeat","position":"center"},"featuredimage":"","featuredvideo":"","imagealign":"image-top","fonts":{"align":"text-center","size":"medium","color":"#fff"}},"title":"Layers is the best site builder I\'ve ever used!","excerpt":"Mrs WordPress","link":"","link_text":""},"731":{"design":{"background":{"image":"' . $this->get_translated_dir_uri() . '\/assets\/images\/preset-layouts\/tile-green.png","color":"#000","repeat":"repeat","position":"center"},"featuredimage":"","featuredvideo":"","imagealign":"image-top","fonts":{"align":"text-center","size":"medium","color":"#fff"}},"title":"I love how it\'s built into the WordPress Customizer","excerpt":"Uncle WordPress","link":"","link_text":""}}},"layers-widget-column-8":{"design":{"layout":"layout-boxed","gutter":"on","fonts":{"align":"text-left","size":"medium","color":""},"background":{"image":"","color":"","repeat":"no-repeat","position":"center"},"advanced":{"customclass":"","customcss":".small .media-image.image-rounded img{max-width: 32px;}"}},"title":"What we offer","excerpt":"Our services run deep and are backed by over ten years of experience.","column_ids":"355,246,622","columns":{"355":{"design":{"background":{"image":"","color":"","repeat":"no-repeat","position":"center"},"featuredimage":"' . $this->get_translated_dir_uri() . '\/assets\/images\/preset-layouts\/demo-image.png","featuredvideo":"","imageratios":"image-landscape","imagealign":"image-top","fonts":{"align":"text-left","size":"small","color":""}},"width":"4","title":"Your service title","excerpt":"Give us a brief description of the service that you are promoting.","link":"","link_text":""},"246":{"design":{"background":{"image":"","color":"","repeat":"no-repeat","position":"center"},"featuredimage":"' . $this->get_translated_dir_uri() . '\/assets\/images\/preset-layouts\/demo-image.png","featuredvideo":"","imageratios":"image-landscape","imagealign":"image-top","fonts":{"align":"text-left","size":"small","color":""}},"width":"4","title":"Your service title","excerpt":"Give us a brief description of the service that you are promoting.","link":"","link_text":""},"622":{"design":{"background":{"image":"","color":"","repeat":"no-repeat","position":"center"},"featuredimage":"' . $this->get_translated_dir_uri() . '\/assets\/images\/preset-layouts\/demo-image.png","featuredvideo":"","imageratios":"image-landscape","imagealign":"image-top","fonts":{"align":"text-left","size":"small","color":""}},"width":"4","title":"Your service title","excerpt":"Give us a brief description of the service that you are promoting.","link":"","link_text":""}}}}}' )
+            'blank' => array(
+                    'title' => __( 'Blank Page' , 'layerswp' ),
+                    'screenshot' => NULL,
+                    'json' => esc_attr( '{}' ),
+                    'container-css' => 'blank-product'
                 ),
         );
 
@@ -109,7 +145,7 @@ class Layers_Widget_Migrator {
                 'screenshot' => get_permalink( $page->ID ),
                 'screenshot_type' => 'dynamic',
                 'json' =>  esc_attr( json_encode( $this->export_data( $page ) ) ),
-                'container_css' => 'layers-hide layers-existing-page-preset'
+                'container-css' => 'layers-hide layers-existing-page-preset'
             );
         }
 
@@ -391,7 +427,7 @@ class Layers_Widget_Migrator {
                 if( NULL != $get_image_url ) {
                     $validated_data[ $option ] = $get_image_url;
                 } else {
-                    $validated_data[ $option ] = $option_data;
+                    $validated_data[ $option ] = stripslashes( $option_data );
                 }
 
             } else {
@@ -417,9 +453,7 @@ class Layers_Widget_Migrator {
 
         $url = str_ireplace( "src='", "",  $img_url_almost[0]);
 
-        $query = "SELECT ID FROM {$wpdb->posts} WHERE guid='$url'";
-
-        return $wpdb->get_var($query);
+        return $wpdb->get_var( $wpdb->prepare( "SELECT ID FROM {$wpdb->posts} WHERE guid=%s", $url ) );
     }
 
     /**
@@ -435,9 +469,7 @@ class Layers_Widget_Migrator {
 
         $i = $image_pieces[count($image_pieces)-1];
 
-        $query = "SELECT ID FROM {$wpdb->posts} WHERE guid LIKE '%$i%'";
-
-        return $wpdb->get_var($query);
+        return $wpdb->get_var( $wpdb->prepare( "SELECT ID FROM {$wpdb->posts} WHERE guid LIKE %s", "%$i%" ) );
     }
 
     /**
@@ -448,7 +480,7 @@ class Layers_Widget_Migrator {
 
         $validated_data = array();
 
-        if( !is_array( $data ) ) return $data;
+        if( !is_array( $data ) ) return stripslashes( $data );
 
         foreach( $data as $option => $option_data ){
 
@@ -479,7 +511,9 @@ class Layers_Widget_Migrator {
                 }
 
             } else {
+
                 $validated_data[ $option ] = stripslashes( $option_data );
+
             }
         }
 
@@ -501,8 +535,53 @@ class Layers_Widget_Migrator {
         // Set the Widget Data for import
         $import_data[ 'widget_data' ] = $_POST[ 'widget_data' ];
 
-        // Run the import
-        die( $this->import( $import_data ) );
+        // Run data import
+        $import_progress = $this->import( $import_data );
+
+        $results = array(
+                'post_id' => $import_data[ 'post_id' ],
+                'data_report' => $import_progress,
+                'customizer_location' => admin_url() . 'customize.php?url=' . esc_url( get_the_permalink( $import_data[ 'post_id' ] ) )
+            );
+
+        die( json_encode( $results ) );
+    }
+
+    /**
+    * Ajax Duplication
+    *
+    * This function takes a page, generates export cod and creates a duplicate
+    */
+
+    public function do_ajax_duplicate(){
+
+        // We need a page title and post ID for this to work
+        if( !isset( $_POST[ 'post_title' ] ) || !isset( $_POST[ 'post_id' ]  ) ) return;
+
+        $pageid = layers_create_builder_page( esc_attr( $_POST[ 'post_title' ] . ' ' . __( '(Copy)' , 'layerswp' ) ) );
+
+        // Create the page sidebar on the fly
+        Layers_Widgets::register_builder_sidebar( $pageid );
+
+        // Set the page ID
+        $import_data[ 'post_id' ] = $pageid;
+
+        $post = get_post( $_POST[ 'post_id' ] );
+
+        // Set the Widget Data for import
+        $import_data[ 'widget_data' ] = $this->export_data( $post );
+
+        // Run data import
+        $import_progress = $this->import( $import_data );
+
+        $results = array(
+                'post_id' => $pageid,
+                'data_report' => $import_progress,
+                'page_location' => admin_url() . 'post.php?post=' . $pageid . '&action=edit&message=1'
+            );
+
+        die( json_encode( $results ) );
+
     }
 
     /**
@@ -535,7 +614,7 @@ class Layers_Widget_Migrator {
         if( isset( $_POST[ 'post_title' ] )  ){
             $post_title = $_POST[ 'post_title' ];
         } else {
-            $post_title = __( 'Home Page', 'layers' );
+            $post_title = __( 'Home Page' , 'layerswp' );
         }
 
         // Generate builder page and return page ID
@@ -546,7 +625,11 @@ class Layers_Widget_Migrator {
         $layers_widgets->register_builder_sidebar( $import_data[ 'post_id' ] );
 
         // Add Widget Data to the import array
-        $import_data[ 'widget_data' ] = $_POST[ 'widget_data' ];
+        if( isset( $_POST[ 'widget_data' ] ) ) {
+            $import_data[ 'widget_data' ] = $_POST[ 'widget_data' ];
+        } else {
+            $import_data[ 'widget_data' ] = NULL;
+        }
 
         // Run data import
         $import_progress = $this->import( $import_data );
@@ -582,7 +665,7 @@ class Layers_Widget_Migrator {
         // Get all existing widget instances
         $widget_instances = array();
         foreach ( $available_widgets as $widget_data ) {
-            $widget_instances[$widget_data['id_base']] = get_option( 'widget_' . $widget_data['id_base'] );
+            $widget_instances[ $widget_data[ 'id_base' ] ] = get_option( 'widget_' . $widget_data['id_base'] );
         }
 
         // Begin results
@@ -598,11 +681,6 @@ class Layers_Widget_Migrator {
             // Check if sidebar is available on this site
             // Otherwise add widgets to inactive, and say so
             if ( isset( $wp_registered_sidebars[$sidebar_id] ) ) {
-                /*
-                * Debug
-                * echo print_r( $wp_registered_sidebars[$sidebar_id], true );
-                */
-
                 $sidebar_available = true;
                 $use_sidebar_id = $sidebar_id;
                 $sidebar_message_type = 'success';
@@ -611,7 +689,7 @@ class Layers_Widget_Migrator {
                 $sidebar_available = false;
                 $use_sidebar_id = 'wp_inactive_widgets'; // add to inactive if sidebar does not exist in theme
                 $sidebar_message_type = 'error';
-                $sidebar_message = __( 'Sidebar does not exist in theme (using Inactive)', 'layers' );
+                $sidebar_message = __( 'Sidebar does not exist in theme (using Inactive)' , 'layerswp' );
             }
 
             // Result for sidebar
@@ -624,7 +702,6 @@ class Layers_Widget_Migrator {
             foreach ( $sidebar_data as $widget_instance_id => $widget ) {
                 /*
                 * Debug
-                * echo print_r( $widget, true );
                 */
 
                 // Check for and import images
@@ -654,7 +731,7 @@ class Layers_Widget_Migrator {
 
                             $fail = true;
                             $widget_message_type = 'warning';
-                            $widget_message = __( 'Widget already exists', 'layers' ); // explain why widget not imported
+                            $widget_message = __( 'Widget already exists' , 'layerswp' ); // explain why widget not imported
 
                             break;
 
@@ -703,16 +780,16 @@ class Layers_Widget_Migrator {
                     // Success message
                     if ( $sidebar_available ) {
                         $widget_message_type = 'success';
-                        $widget_message = __( 'Imported', 'layers' );
+                        $widget_message = __( 'Imported' , 'layerswp' );
                     } else {
                         $widget_message_type = 'warning';
-                        $widget_message = __( 'Imported to Inactive', 'layers' );
+                        $widget_message = __( 'Imported to Inactive' , 'layerswp' );
                     }
 
                 }
                 // Result for widget instance
                 $results[$sidebar_id]['widgets'][$widget_instance_id]['name'] = isset( $available_widgets[$id_base]['name'] ) ? $available_widgets[$id_base]['name'] : $id_base; // widget name or ID if name not available (not supported by site)
-                $results[$sidebar_id]['widgets'][$widget_instance_id]['title'] = isset( $widget->title ) ? $widget->title : __( 'No Title', 'layers' ); // show "No Title" if widget instance is untitled
+                $results[$sidebar_id]['widgets'][$widget_instance_id]['title'] = isset( $widget->title ) ? $widget->title : __( 'No Title' , 'layerswp' ); // show "No Title" if widget instance is untitled
                 $results[$sidebar_id]['widgets'][$widget_instance_id]['message_type'] = $widget_message_type;
                 $results[$sidebar_id]['widgets'][$widget_instance_id]['message'] = $widget_message;
 
@@ -744,9 +821,11 @@ add_action( 'admin_head' , 'layers_builder_export_init', 10 );
 if( !function_exists( 'layers_builder_export_ajax_init' ) ) {
     function layers_builder_export_ajax_init(){
         $layers_migrator = new Layers_Widget_Migrator();
+
         add_action( 'wp_ajax_layers_import_widgets', array( $layers_migrator, 'do_ajax_import' ) );
         add_action( 'wp_ajax_layers_create_builder_page_from_preset', array( $layers_migrator, 'create_builder_page_from_preset' ) );
         add_action( 'wp_ajax_layers_update_builder_page', array( $layers_migrator, 'update_builder_page' ) );
+        add_action( 'wp_ajax_layers_duplicate_builder_page', array( $layers_migrator, 'do_ajax_duplicate' ) );
     }
 }
 

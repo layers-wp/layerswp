@@ -41,8 +41,9 @@ class Layers_Customizer_Regsitrar {
 		// Grab the customizer config
 		$this->config = new Layers_Customizer_Config();
 
-		// Start registration with the panels
+		// Start registration with the panels & sections
 		$this->register_panels( $this->config->panels() );
+		$this->register_sections ( $this->config->sections() );
 
 		// Move default sections into Layers Panels
 		$this->move_default_sections( $this->config->default_sections() );
@@ -76,9 +77,6 @@ class Layers_Customizer_Regsitrar {
 				$this->customizer->add_panel( $this->prefix . $panel_key , $panel_data );
 			}
 
-			// Register Sections for this Panel
-			$this->register_sections ( $panel_key , $this->config->sections() );
-
 		} // foreach panel
 	}
 
@@ -88,34 +86,33 @@ class Layers_Customizer_Regsitrar {
 	* @panel_key  varchar 		Unique key for which panel this section belongs to
 	* @sections   array 		Array of sections config
 	*/
-	public function register_sections( $panel_key = '', $sections = array() ){
+	public function register_sections( $sections = array() ){
 
 		// If there are no sections, return
 		if( empty( $sections ) ) return;
 
-		// Make sure that there is actually section config for this panel
-		if( !isset( $sections[ $panel_key ] ) ) return;
-
 		$section_priority = 150;
 
-		foreach( $sections[ $panel_key ] as $section_key => $section_data ){
+		foreach( $sections as $section_key => $section_data ){
 
-			if( $this->customizer_supports_panels() ) {
+			if( $this->customizer_supports_panels() && isset( $section_data[ 'panel' ] ) ) {
 				// Set which panel to use
-				$section_data[ 'panel' ] = $this->prefix . $panel_key;
+				$section_data[ 'panel' ] = $this->prefix . $section_data[ 'panel' ];
 			}
 
-			$section_data[ 'priority' ] = $section_priority;
+			if( !isset( $section_data[ 'priority' ] ) ) {
+				$section_data[ 'priority' ] = $section_priority;
+			}
 
 			$this->customizer->add_section(
-				$this->prefix . $panel_key . '-' . $section_key ,
+				$this->prefix . $section_key ,
 				$section_data
 			);
 
 			$section_priority++;
 
 			// Register Sections for this Panel
-			$this->register_controls ( $panel_key . '-' . $section_key , $this->config->controls() );
+			$this->register_controls ( $section_key , $this->config->controls() );
 		}
 
 	}
@@ -138,7 +135,7 @@ class Layers_Customizer_Regsitrar {
 
 		foreach( $controls[ $panel_section_key ] as $control_key => $control_data ){
 
-			$setting_key = $this->prefix . $panel_section_key . '-' . $control_key;
+			$setting_key = $this->prefix . $control_key;
 
 			// Register control default value
 			$this->register_control_defaults( $setting_key, ( isset( $control_data['default'] ) ? $control_data['default'] : NULL ) );
@@ -289,14 +286,73 @@ class Layers_Customizer_Regsitrar {
 						$control_data
 					)
 				);
+			} else if( 'layers-font' == $control_data['type'] ) {
+
+				// Add Setting
+				$this->customizer->add_setting(
+					$setting_key,
+					array(
+						'default'    => ( isset( $control_data['default'] ) ? $control_data['default'] : NULL ) ,
+						'type'       => 'theme_mod',
+						'capability' => 'manage_options'
+					)
+				);
+
+				// Add Control
+				$this->customizer->add_control(
+					new Layers_Customize_Font_Control(
+						$this->customizer,
+						$setting_key,
+						$control_data
+					)
+				);
+			} else if ( 'layers-button' == $control_data['type'] ) {
+
+				// Add Setting
+				$this->customizer->add_setting(
+					$setting_key,
+					array(
+						'type'       => 'theme_mod',
+						'capability' => 'manage_options'
+					)
+				);
+
+				// Add Control
+				$this->customizer->add_control(
+					new Layers_Customize_Button_Control(
+						$this->customizer,
+						$setting_key,
+						$control_data
+					)
+				);
+			} else if( 'layers-css' == $control_data['type'] ) {
+
+				// Add Setting
+				$this->customizer->add_setting(
+					$setting_key,
+					array(
+						'default'    => ( isset( $control_data['default'] ) ? $control_data['default'] : NULL ) ,
+						'type'       => 'theme_mod',
+						'capability' => 'manage_options'
+					)
+				);
+
+				// Add Control
+				$this->customizer->add_control(
+					new Layers_Customize_CSS_Control(
+						$this->customizer,
+						$setting_key,
+						$control_data
+					)
+				);
 			} else if( 'layers-background' == $control_data['type'] ) {
 
 				// Footer Background Heading
 
 				$duplicate_control_data = wp_parse_args(
 					array(
-						'label' => __( 'Background', 'layers' ),
-						'subtitle' => __( 'Background Image', 'layers' ),
+						'label' => __( 'Background' , 'layerswp' ),
+						'subtitle' => __( 'Background Image' , 'layerswp' ),
 						'type' => 'layers-heading', //wierd bug in WP4.1 that requires a type to be in the array, or will revert to default control,
 					),
 					$control_data
@@ -327,7 +383,7 @@ class Layers_Customizer_Regsitrar {
 				$duplicate_control_data = wp_parse_args(
 					array(
 						'label' => '',
-						'subtitle' => __( 'Background Image', 'layers' ),
+						'subtitle' => __( 'Background Image' , 'layerswp' ),
 						'type' => 'layers-select-images', //wierd bug in WP4.1 that requires a type to be in the array, or will revert to default control
 					),
 					$control_data
@@ -357,7 +413,7 @@ class Layers_Customizer_Regsitrar {
 				$duplicate_control_data = wp_parse_args(
 					array(
 						'label' => '',
-						'subtitle' => __( 'Background Color', 'layers' ),
+						'subtitle' => __( 'Background Color' , 'layerswp' ),
 						'type' => 'layers-color',
 					),
 					$control_data
@@ -385,7 +441,7 @@ class Layers_Customizer_Regsitrar {
 				$duplicate_control_data = wp_parse_args(
 					array(
 						'label' => '',
-						'subtitle' => __( 'Repeat', 'layers' ),
+						'subtitle' => __( 'Repeat' , 'layerswp' ),
 						'type' => 'layers-select',
 						'choices' => isset( $control_data['choices']['background-repeat'] ) ? $control_data['choices']['background-repeat'] : array(),
 					),
@@ -414,7 +470,7 @@ class Layers_Customizer_Regsitrar {
 				$duplicate_control_data = wp_parse_args(
 					array(
 						'label' => '',
-						'subtitle' => __( 'Position', 'layers' ),
+						'subtitle' => __( 'Position' , 'layerswp' ),
 						'type' => 'layers-select',
 						'choices' => isset( $control_data['choices']['background-position'] ) ? $control_data['choices']['background-position'] : array(),
 					),
@@ -442,7 +498,7 @@ class Layers_Customizer_Regsitrar {
 
 				$duplicate_control_data = wp_parse_args(
 					array(
-						'label' => __( 'Stretch', 'layers' ),
+						'label' => __( 'Stretch' , 'layerswp' ),
 						'subtitle' => '',
 						'type' => 'layers-checkbox',
 					),
@@ -514,13 +570,25 @@ class Layers_Customizer_Regsitrar {
 
 	public function move_default_sections( $sections = array() ){
 
-		foreach( $sections as $section_key => $setion_data ){
+		foreach( $sections as $section_key => $section_data ){
 
 			// Get the current section
 			$section = $this->customizer->get_section( $section_key );
 
-			// Move Site Title & Tagline section to General panel
-			$section->panel = $this->prefix . $setion_data[ 'panel' ];
+			// Move this section to a specific panel
+			if( isset( $section_data[ 'panel' ] ) ) {
+				$section->panel = $this->prefix . $section_data[ 'panel' ];
+			}
+
+			// Prioritize this section
+			if( isset( $section_data[ 'title' ] ) ) {
+				$section->title = $section_data[ 'title' ];
+			}
+
+			// Prioritize this section
+			if( isset( $section_data[ 'priority' ] ) ) {
+				$section->priority = $section_data[ 'priority' ];
+			}
 		}
 	}
 

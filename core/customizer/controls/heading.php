@@ -9,29 +9,14 @@
 
 if( !class_exists( 'Layers_Customize_Heading_Control' ) ) {
 
-	class Layers_Customize_Heading_Control extends WP_Customize_Control {
+	class Layers_Customize_Heading_Control extends Layers_Customize_Control {
 
 		public $type = 'layers-heading';
 
-		public $label = '';
-		
-		public $subtitle = '';
-
-		public $description = '';
-		
-		public $linked = '';
-
 		public function render_content() {
-			
-			// Relational: Convert the linked array to 'data-' attributes that the js expects.
-			if ( isset( $this->linked ) && isset( $this->linked['show-if-selector'] ) && isset( $this->linked['show-if-value'] ) ) {
-				$linked = 'data-show-if-selector="' . esc_attr( $this->linked['show-if-selector'] ) . '" data-show-if-value="' . esc_attr( $this->linked['show-if-value'] ) . '" ';
-			}
-			else{
-				$linked = '';
-			}
 			?>
-			<div id="layers-customize-control-<?php echo esc_attr( $this->id ); ?>" class="layers-customize-control layers-customize-control-<?php echo esc_attr( str_replace( 'layers-', '', $this->type ) ); ?>" <?php echo $linked; ?> >
+			
+			<div id="layers-customize-control-<?php echo esc_attr( $this->id ); ?>" class="layers-customize-control layers-customize-control-<?php echo esc_attr( str_replace( 'layers-', '', $this->type ) ); ?>" <?php echo $this->get_linked_data(); ?> >
 				
 				<?php
 				if( '' != $this->label ) { ?>

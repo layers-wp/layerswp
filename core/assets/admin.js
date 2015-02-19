@@ -1,12 +1,12 @@
 /**
-* Admin JS file
-*
-* This file contains global admin functions
+ * Admin JS file
+ *
+ * This file contains global admin functions
  *
  * @package Layers
  * @since Layers 1.0
+ *
  * Contents
- * Enqueue Initialisation Helper
  * 1 - Enqueue Initialisation Helper
  * 2 - Media Uploaders
  * 2.a - Image Remove Button
@@ -26,6 +26,11 @@
  * 13 - Show/Hide linked elements
  * 14 - Run Initialisations
  * 15 - Layers Custom Easing
+ *
+ * Author: Obox Themes
+ * Author URI: http://www.oboxthemes.com/
+ * License: GNU General Public License v2 or later
+ * License URI: http://www.gnu.org/licenses/gpl-2.0.html
 */
 
 jQuery(function($) {
@@ -102,10 +107,10 @@ jQuery(function($) {
 			$container.find('.layers-image-remove').fadeIn();
 
 			// Set attachment to the larege/medium size if they're defined
-			if( undefined !== attachment.sizes.large ) {
-				$attachment = attachment.sizes.large;
-			} else if ( undefined !== attachment.sizes.medium )  {
+			if ( undefined !== attachment.sizes.medium )  {
 				$attachment = attachment.sizes.medium;
+			} else if( undefined !== attachment.sizes.large ) {
+				$attachment = attachment.sizes.large;
 			} else {
 				$attachment = attachment;
 			}
@@ -238,7 +243,7 @@ jQuery(function($) {
 					layers_debounce_input( event.target );
 				}
 			},
-			clear: function() {
+			clear: function(event) {
 				if( 'undefined' !== typeof event ){
 
 					// Debounce the reset change
@@ -315,7 +320,7 @@ jQuery(function($) {
 		$that = $(this);
 
 		// Close siblings
-		$( '.layers-visuals-item.layers-active' ).not( $that.parent() ).removeClass( 'layers-active' );
+		$(this).closest( '.layers-visuals-wrapper' ).find( '.layers-visuals-item.layers-active' ).not( $that.parent() ).removeClass( 'layers-active' );
 
 		// Toggle active state
 		$that.parent().toggleClass( 'layers-active' );
@@ -475,7 +480,6 @@ jQuery(function($) {
 		$changed = $(this).trigger("change").trigger("blur");
 
 		//var $widget_synced = $( document ).trigger( 'widget-synced', $(this).closest( '.control-section' ).find( '.widget:first' ) );
-		//console.log( $widget_synced );
 
 		// Reset 'show if' selectors;
 		layers_init_show_if();
@@ -533,13 +537,11 @@ jQuery(function($) {
 			var $source_element = $( $target_element.data( 'show-if-selector' ).toString() );
 
 			if ( $source_element.attr('type') == 'checkbox' ) {
-				//console.log( $source_element.attr('id') );
 				$source_element_value = ( $source_element.is(':checked') ) ? 'true' : 'false' ;
 			}
 			else {
 				$source_element_value = $source_element.val();
 			}
-
 
 			// Set the reveal animation type.
 			var animation_type = 'none';
@@ -550,6 +552,8 @@ jQuery(function($) {
 			// If is a Customize Control then hide the whole control.
 			if ( $target_element.hasClass('layers-customize-control') ){
 				$target_element = $target_element.parent('.customize-control');
+			} else {
+				$target_element = $target_element.parent('.layers-form-item');
 			}
 
 			if( $target_element_value.indexOf( $source_element_value ) > -1 ){
@@ -577,7 +581,6 @@ jQuery(function($) {
 		});
 
 	}
-
 
 	/**
 	* 14 - Run Initialisations

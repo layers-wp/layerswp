@@ -61,14 +61,16 @@ if( !function_exists( 'jetpack_has_site_logo' ) ) {
  */
 if( !function_exists( 'jetpack_the_site_logo' ) ) {
 	function jetpack_the_site_logo() {
-		$logo = site_logo()->logo;
+		// $logo = site_logo()->logo;
+		$logo = get_option( 'site_logo' );
 		$size = site_logo()->theme_size();
 
 		// Bail if no logo is set. Leave a placeholder if we're in the Customizer, though (needed for the live preview).
 		if ( ! jetpack_has_site_logo() ) {
 			if ( jetpack_is_customize_preview() ) {
-				printf( '<a href="%1$s" class="site-logo-link" style="display:none;"><img class="site-logo" data-size="%2$s" /></a>',
+				printf( '<a href="%1$s" class="site-logo-link"><img class="site-logo" src="%2$s" data-size="%3$s" /></a>',
 					esc_url( home_url( '/' ) ),
+					esc_url( $logo['url'] ),
 					esc_attr( $size )
 				);
 			}

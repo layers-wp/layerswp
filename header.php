@@ -9,25 +9,16 @@
 <body <?php body_class(); ?>>
 	<?php get_sidebar( 'off-canvas'); ?>
 	<?php do_action( 'layers_before_site_wrapper' ); ?>
-	<section class="wrapper-site">
+	<section <?php layer_site_wrapper_class(); ?>>
 
 		<?php do_action( 'layers_before_header' ); ?>
 
 		<?php get_template_part( 'partials/header' , 'secondary' ); ?>
 
-		<?php
-		// Apply customizer header settings.
-		if( layers_get_theme_mod( 'header-layout-background-color' ) ){
-			layers_inline_styles( 'nothing', 'color', array( 'color' => '#333' ) ); // Temp Fix
-			$bg_opacity = ( layers_get_theme_mod( 'header-layout-overlay') ) ? .5 : 1 ;
-			wp_add_inline_style( LAYERS_THEME_SLUG . '-inline-styles', '.header-site, .header-site.header-sticky { background-color: rgba(' . implode( ', ' , hex2rgb( layers_get_theme_mod( 'header-layout-background-color' ) ) ) . ', ' . $bg_opacity . '); }' );
-		}
-		?>
-
 		<header <?php layers_header_class(); ?> >
 			<?php do_action( 'layers_before_header_inner' ); ?>
-			<div class="<?php if( 'layout-fullwidth' != layers_get_theme_mod( 'header-layout-width' ) ) echo 'container'; ?> clearfix">
-				<?php if( 'header-logo-center' == layers_get_theme_mod( 'header-layout-layout' ) ) { ?>
+			<div class="<?php if( 'layout-fullwidth' != layers_get_theme_mod( 'header-width' ) ) echo 'container'; ?> clearfix">
+				<?php if( 'header-logo-center' == layers_get_theme_mod( 'header-menu-layout' ) ) { ?>
 					<?php get_template_part( 'partials/header' , 'centered' ); ?>
 				<?php } else { ?>
 					<?php get_template_part( 'partials/header' , 'standard' ); ?>

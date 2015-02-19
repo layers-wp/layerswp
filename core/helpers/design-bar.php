@@ -56,15 +56,13 @@ class Layers_Design_Controller {
 
         $container_class = ( 'side' == $this->type ? 'layers-pull-right' : 'layers-visuals-horizontal' ); ?>
 
-        <div class="layers-visuals <?php echo $container_class; ?>">
+        <div class="layers-visuals <?php echo esc_attr( $container_class ); ?>">
             <h6 class="layers-visuals-title">
                 <span class="icon-settings layers-small"></span>
             </h6>
             <ul class="layers-visuals-wrapper layers-clearfix">
-
                 <?php // Render Design Controls
                 $this->render_controls(); ?>
-
                 <?php // Show trash icon (for use when in an accordian)
                 $this->render_trash_control(); ?>
             </ul>
@@ -141,13 +139,13 @@ class Layers_Design_Controller {
 
         <li class="layers-visuals-item">
             <a href="" class="layers-icon-wrapper">
-                <span class="<?php echo $icon_css; ?>"></span>
+                <span class="<?php echo esc_attr( $icon_css ); ?>"></span>
                 <span class="layers-icon-description">
                     <?php echo $label; ?>
                 </span>
             </a>
             <?php if( isset( $args['elements'] ) ) { ?>
-                <div class="<?php echo $menu_wrapper_class; ?>">
+                <div class="<?php echo esc_attr( $menu_wrapper_class ); ?>">
                     <div class="layers-pop-menu-setting">
                         <?php foreach( $args['elements'] as $key => $form_args ) { ?>
                            <?php echo $this->render_input( $form_args ); ?>
@@ -177,9 +175,9 @@ class Layers_Design_Controller {
     */
 
     public function render_input( $form_args = array() ) { ?>
-		<div class="layers-<?php echo $form_args[ 'type' ]; ?>-wrapper layers-form-item">
+		<div class="layers-<?php echo esc_attr( $form_args[ 'type' ] ); ?>-wrapper layers-form-item">
 	        <?php if( 'checkbox' != $form_args[ 'type' ] && isset( $form_args[ 'label' ] ) && '' != $form_args[ 'label' ] ) { ?>
-	            <label><?php echo $form_args[ 'label' ]; ?></label>
+	            <label><?php echo esc_html( $form_args[ 'label' ] ); ?></label>
 	        <?php } ?>
 
 			<?php if( isset( $form_args[ 'wrapper' ] ) ) { ?>
@@ -212,7 +210,7 @@ class Layers_Design_Controller {
         $args[ 'icon-css' ] = ( isset( $this->values['layout'] ) && NULL != $this->values ? 'icon-' . $this->values['layout'] : 'icon-layout-fullwidth' ) ;
 
         // Add a Label
-        $args[ 'label' ] = __( 'Layout' , 'layers' );
+        $args[ 'label' ] = __( 'Layout' , 'layerswp' );
 
         // Add a Wrapper Class
         $args[ 'wrapper-class' ] = 'layers-pop-menu-wrapper layers-animate layers-small';
@@ -225,8 +223,8 @@ class Layers_Design_Controller {
                                 'id' =>  $this->widget['id'] . '-layout' ,
                                 'value' => ( isset( $this->values['layout'] ) ) ? $this->values['layout'] : NULL,
                                 'options' => array(
-                                    'layout-boxed' => __( 'Boxed' , 'layers' ),
-                                    'layout-fullwidth' => __( 'Full Width' , 'layers' )
+                                    'layout-boxed' => __( 'Boxed' , 'layerswp' ),
+                                    'layout-fullwidth' => __( 'Full Width' , 'layerswp' )
                                 )
                             )
                         );
@@ -252,7 +250,7 @@ class Layers_Design_Controller {
         $args[ 'icon-css' ] = ( isset( $this->values['liststyle'] ) && NULL != $this->values ? 'icon-' . $this->values['liststyle'] : 'icon-list-masonry' );
 
         // Add a Label
-        $args[ 'label' ] = __( 'List Style' , 'layers' );
+        $args[ 'label' ] = __( 'List Style' , 'layerswp' );
 
         // Add a Wrapper Class
         $args[ 'wrapper-class' ] = 'layers-pop-menu-wrapper layers-animate layers-small';
@@ -265,9 +263,9 @@ class Layers_Design_Controller {
                                 'id' =>  $this->widget['id'] . '-liststyle' ,
                                 'value' => ( isset( $this->values[ 'liststyle' ] ) ) ? $this->values[ 'liststyle' ] : NULL,
                                 'options' => array(
-                                    'list-grid' => __( 'Grid' , 'layers' ),
-                                    'list-list' => __( 'List' , 'layers' ),
-                                    'list-masonry' => __( 'Masonry' , 'layers' )
+                                    'list-grid' => __( 'Grid' , 'layerswp' ),
+                                    'list-list' => __( 'List' , 'layerswp' ),
+                                    'list-masonry' => __( 'Masonry' , 'layerswp' )
                                 )
                             )
                         );
@@ -290,10 +288,10 @@ class Layers_Design_Controller {
         $key = 'columns';
 
         // Setup icon CSS
-        $args[ 'icon-css' ] = ( isset( $this->values['columns'] ) && NULL != $this->values ? 'icon-' . $this->values['columns'] : 'icon-columns' );
+        $args[ 'icon-css' ] = 'icon-columns';
 
         // Add a Label
-        $args[ 'label' ] = __( 'Columns' , 'layers' );
+        $args[ 'label' ] = __( 'Columns' , 'layerswp' );
 
         // Add a Wrapper Class
         $args[ 'wrapper-class' ] = 'layers-pop-menu-wrapper layers-animate layers-content-small';
@@ -302,21 +300,21 @@ class Layers_Design_Controller {
         $args[ 'elements' ] = array(
                             'columns' => array(
                                 'type' => 'select',
-                                'label' => __( 'Columns' , 'layers' ),
+                                'label' => __( 'Columns' , 'layerswp' ),
                                 'name' => $this->widget['name'] . '[columns]' ,
                                 'id' =>  $this->widget['id'] . '-columns' ,
                                 'value' => ( isset( $this->values['columns'] ) ) ? $this->values['columns'] : NULL,
                                 'options' => array(
-                                    '1' => __( '1 Column' , 'layers' ),
-                                    '2' => __( '2 Columns' , 'layers' ),
-                                    '3' => __( '3 Columns' , 'layers' ),
-                                    '4' => __( '4 Columns' , 'layers' ),
-                                    '6' => __( '6 Columns' , 'layers' )
+                                    '1' => __( '1 Column' , 'layerswp' ),
+                                    '2' => __( '2 Columns' , 'layerswp' ),
+                                    '3' => __( '3 Columns' , 'layerswp' ),
+                                    '4' => __( '4 Columns' , 'layerswp' ),
+                                    '6' => __( '6 Columns' , 'layerswp' )
                                 )
                             ),
                             'gutter' => array(
                                 'type' => 'checkbox',
-                                'label' => __( 'Gutter' , 'layers' ),
+                                'label' => __( 'Gutter' , 'layerswp' ),
                                 'name' => $this->widget['name'] . '[gutter]' ,
                                 'id' =>  $this->widget['id'] . '-gutter' ,
                                 'value' => ( isset( $this->values['gutter'] ) ) ? $this->values['gutter'] : NULL
@@ -344,7 +342,7 @@ class Layers_Design_Controller {
         $args[ 'icon-css' ] = ( isset( $this->values['textalign'] ) && NULL != $this->values ? 'icon-' . $this->values['textalign'] : 'icon-text-center' );
 
         // Add a Label
-        $args[ 'label' ] = __( 'Text Align' , 'layers' );
+        $args[ 'label' ] = __( 'Text Align' , 'layerswp' );
 
         // Add a Wrapper Class
         $args[ 'wrapper-class' ] = 'layers-pop-menu-wrapper layers-animate layers-content-small';
@@ -357,10 +355,10 @@ class Layers_Design_Controller {
                                 'id' =>  $this->widget['id'] . '-textalign' ,
                                 'value' => ( isset( $this->values['textalign'] ) ) ? $this->values['textalign'] : NULL,
                                 'options' => array(
-                                    'text-left' => __( 'Left' , 'layers' ),
-                                    'text-center' => __( 'Center' , 'layers' ),
-                                    'text-right' => __( 'Right' , 'layers' ),
-                                    'text-justify' => __( 'Justify' , 'layers' )
+                                    'text-left' => __( 'Left' , 'layerswp' ),
+                                    'text-center' => __( 'Center' , 'layerswp' ),
+                                    'text-right' => __( 'Right' , 'layerswp' ),
+                                    'text-justify' => __( 'Justify' , 'layerswp' )
                                 )
                             )
                         );
@@ -386,7 +384,7 @@ class Layers_Design_Controller {
         $args[ 'icon-css' ] = ( isset( $this->values['imagealign'] ) && NULL != $this->values ? 'icon-' . $this->values['imagealign'] : 'icon-image-left' );
 
         // Add a Label
-        $args[ 'label' ] = __( 'Image Align' , 'layers' );
+        $args[ 'label' ] = __( 'Image Align' , 'layerswp' );
 
         // Add a Wrapper Class
         $args[ 'wrapper-class' ] = 'layers-pop-menu-wrapper layers-animate layers-small';
@@ -399,9 +397,9 @@ class Layers_Design_Controller {
                                 'id' =>  $this->widget['id'] . '-imagealign' ,
                                 'value' => ( isset( $this->values['imagealign'] ) ) ? $this->values['imagealign'] : NULL,
                                 'options' => array(
-                                    'image-left' => __( 'Left' , 'layers' ),
-                                    'image-right' => __( 'Right' , 'layers' ),
-                                    'image-top' => __( 'Top' , 'layers' )
+                                    'image-left' => __( 'Left' , 'layerswp' ),
+                                    'image-right' => __( 'Right' , 'layerswp' ),
+                                    'image-top' => __( 'Top' , 'layerswp' )
                                 )
                             ),
                         );
@@ -427,7 +425,7 @@ class Layers_Design_Controller {
         $args[ 'icon-css' ] = 'icon-featured-image';
 
         // Add a Label
-        $args[ 'label' ] = __( 'Featured Image' , 'layers' );
+        $args[ 'label' ] = __( 'Featured Image' , 'layerswp' );
 
         // Add a Wrapper Class
         $args[ 'wrapper-class' ] = 'layers-pop-menu-wrapper layers-animate layers-content-small';
@@ -436,14 +434,14 @@ class Layers_Design_Controller {
         $args[ 'elements' ] = array(
                             'featuredimage' => array(
                                 'type' => 'image',
-                                'label' => __( 'Featured Image' , 'layers' ),
+                                'label' => __( 'Featured Image' , 'layerswp' ),
                                 'name' => $this->widget['name'] . '[featuredimage]' ,
                                 'id' =>  $this->widget['id'] . '-featuredimage' ,
                                 'value' => ( isset( $this->values['featuredimage'] ) ) ? $this->values['featuredimage'] : NULL
                             ),
                             'featuredvideo' => array(
                                 'type' => 'text',
-                                'label' => __( 'Video Embed Code' , 'layers' ),
+                                'label' => __( 'Video URL (oEmbed)' , 'layerswp' ),
                                 'name' => $this->widget['name'] . '[featuredvideo]' ,
                                 'id' =>  $this->widget['id'] . '-featuredvideo' ,
                                 'value' => ( isset( $this->values['featuredvideo'] ) ) ? $this->values['featuredvideo'] : NULL
@@ -454,11 +452,11 @@ class Layers_Design_Controller {
                                 'id' =>  $this->widget['id'] . '-imageratios' ,
                                 'value' => ( isset( $this->values['imageratios'] ) ) ? $this->values['imageratios'] : NULL,
                                 'options' => array(
-                                    'image-portrait' => __( 'Portrait' , 'layers' ),
-                                    'image-landscape' => __( 'Landscape' , 'layers' ),
-                                    'image-square' => __( 'Square' , 'layers' ),
-                                    'image-no-crop' => __( 'None' , 'layers' ),
-                                    'image-round' => __( 'Round' , 'layers' ),
+                                    'image-portrait' => __( 'Portrait' , 'layerswp' ),
+                                    'image-landscape' => __( 'Landscape' , 'layerswp' ),
+                                    'image-square' => __( 'Square' , 'layerswp' ),
+                                    'image-no-crop' => __( 'None' , 'layerswp' ),
+                                    'image-round' => __( 'Round' , 'layerswp' ),
                                 ),
                                 'wrapper' => 'div',
                                 'wrapper-class' => 'layers-icon-group'
@@ -486,7 +484,7 @@ class Layers_Design_Controller {
         $args[ 'icon-css' ] = ( isset( $this->values['imageratios'] ) && NULL != $this->values ? 'icon-' . $this->values['imageratios'] : 'icon-image-size' );
 
         // Add a Label
-        $args[ 'label' ] = __( 'Image Ratio' , 'layers' );
+        $args[ 'label' ] = __( 'Image Ratio' , 'layerswp' );
 
         // Add a Wrapper Class
         $args[ 'wrapper-class' ] = 'layers-pop-menu-wrapper layers-animate layers-small';
@@ -499,10 +497,10 @@ class Layers_Design_Controller {
                                 'id' =>  $this->widget['id'] . '-imageratios' ,
                                 'value' => ( isset( $this->values['imageratios'] ) ) ? $this->values['imageratios'] : NULL,
                                 'options' => array(
-                                    'image-portrait' => __( 'Portrait' , 'layers' ),
-                                    'image-landscape' => __( 'Landscape' , 'layers' ),
-                                    'image-square' => __( 'Square' , 'layers' ),
-                                    'image-no-crop' => __( 'None' , 'layers' )
+                                    'image-portrait' => __( 'Portrait' , 'layerswp' ),
+                                    'image-landscape' => __( 'Landscape' , 'layerswp' ),
+                                    'image-square' => __( 'Square' , 'layerswp' ),
+                                    'image-no-crop' => __( 'None' , 'layerswp' )
                                 )
                             ),
                         );
@@ -528,7 +526,7 @@ class Layers_Design_Controller {
         $args[ 'icon-css' ] = 'icon-font-size';
 
         // Add a Label
-        $args[ 'label' ] = __( 'Text' , 'layers' );
+        $args[ 'label' ] = __( 'Text' , 'layerswp' );
 
         // Add a Wrapper Class
         $args[ 'wrapper-class' ] = 'layers-pop-menu-wrapper layers-animate layers-content-small';
@@ -537,29 +535,29 @@ class Layers_Design_Controller {
         $args[ 'elements' ] = array(
                             'fonts-align' => array(
                                 'type' => 'select-icons',
-                                'label' => __( 'Text Align' , 'layers' ),
+                                'label' => __( 'Text Align' , 'layerswp' ),
                                 'name' => $this->widget['name'] . '[fonts][align]',
                                 'id' =>  $this->widget['id'] . '-fonts-align',
                                 'value' => ( isset( $this->values['fonts']['align'] ) ) ? $this->values['fonts']['align'] : NULL,
                                 'options' => array(
-                                    'text-left' => __( 'Left' , 'layers' ),
-                                    'text-center' => __( 'Center' , 'layers' ),
-                                    'text-right' => __( 'Right' , 'layers' ),
-                                    'text-justify' => __( 'Justify' , 'layers' )
+                                    'text-left' => __( 'Left' , 'layerswp' ),
+                                    'text-center' => __( 'Center' , 'layerswp' ),
+                                    'text-right' => __( 'Right' , 'layerswp' ),
+                                    'text-justify' => __( 'Justify' , 'layerswp' )
                                 ),
                                 'wrapper' => 'div',
                                 'wrapper-class' => 'layers-icon-group'
                             ),
                            'fonts-size' => array(
                                 'type' => 'select',
-                                'label' => __( 'Text Size' , 'layers' ),
+                                'label' => __( 'Text Size' , 'layerswp' ),
                                 'name' => $this->widget['name'] . '[fonts][size]' ,
                                 'id' =>  $this->widget['id'] . '-fonts-size' ,
                                 'value' => ( isset( $this->values['fonts']['size'] ) ) ? $this->values['fonts']['size'] : NULL,
                                 'options' => array(
-                                        'small' => __( 'Small' , 'layers' ),
-                                        'medium' => __( 'Medium' , 'layers' ),
-                                        'large' => __( 'Large' , 'layers' )
+                                        'small' => __( 'Small' , 'layerswp' ),
+                                        'medium' => __( 'Medium' , 'layerswp' ),
+                                        'large' => __( 'Large' , 'layerswp' )
                                 )
                             ),
                             'fonts-color' => array(
@@ -591,62 +589,62 @@ class Layers_Design_Controller {
         $args[ 'icon-css' ] = 'icon-photo';
 
         // Add a Label
-        $args[ 'label' ] = __( 'Background' , 'layers' );
+        $args[ 'label' ] = __( 'Background' , 'layerswp' );
 
         // Add elements
         $args[ 'elements' ] = array(
                             'background-image' => array(
                                 'type' => 'image',
-                                'label' => __( 'Image' , 'layers' ),
-                                'button_label' => __( 'Choose Image' , 'layers' ),
+                                'label' => __( 'Background Image' , 'layerswp' ),
+                                'button_label' => __( 'Choose Image' , 'layerswp' ),
                                 'name' => $this->widget['name'] . '[background][image]' ,
                                 'id' =>  $this->widget['id'] . '-background-image' ,
                                 'value' => ( isset( $this->values['background']['image'] ) ) ? $this->values['background']['image'] : NULL
                             ),
                             'background-color' => array(
                                 'type' => 'color',
-                                'label' => __( 'Color' , 'layers' ),
+                                'label' => __( 'Color' , 'layerswp' ),
                                 'name' => $this->widget['name'] . '[background][color]' ,
                                 'id' =>  $this->widget['id'] . '-background-color' ,
                                 'value' => ( isset( $this->values['background']['color'] ) ) ? $this->values['background']['color'] : NULL
                             ),
                             'background-repeat' => array(
                                 'type' => 'select',
-                                'label' => __( 'Repeat' , 'layers' ),
+                                'label' => __( 'Repeat' , 'layerswp' ),
                                 'name' => $this->widget['name'] . '[background][repeat]' ,
                                 'id' =>  $this->widget['id'] . '-background-repeat' ,
                                 'value' => ( isset( $this->values['background']['repeat'] ) ) ? $this->values['background']['repeat'] : NULL,
                                 'options' => array(
-                                        'no-repeat' => __( 'No Repeat' , 'layers' ),
-                                        'repeat' => __( 'Repeat' , 'layers' ),
-                                        'repeat-x' => __( 'Repeat Horizontal' , 'layers' ),
-                                        'repeat-y' => __( 'Repeat Vertical' , 'layers' )
+                                        'no-repeat' => __( 'No Repeat' , 'layerswp' ),
+                                        'repeat' => __( 'Repeat' , 'layerswp' ),
+                                        'repeat-x' => __( 'Repeat Horizontal' , 'layerswp' ),
+                                        'repeat-y' => __( 'Repeat Vertical' , 'layerswp' )
                                     )
                             ),
                             'background-position' => array(
                                 'type' => 'select',
-                                'label' => __( 'Position' , 'layers' ),
+                                'label' => __( 'Position' , 'layerswp' ),
                                 'name' => $this->widget['name'] . '[background][position]' ,
                                 'id' =>  $this->widget['id'] . '-background-position' ,
                                 'value' => ( isset( $this->values['background']['position'] ) ) ? $this->values['background']['position'] : NULL,
                                 'options' => array(
-                                        'center' => __( 'Center' , 'layers' ),
-                                        'top' => __( 'Top' , 'layers' ),
-                                        'bottom' => __( 'Bottom' , 'layers' ),
-                                        'left' => __( 'Left' , 'layers' ),
-                                        'right' => __( 'Right' , 'layers' )
+                                        'center' => __( 'Center' , 'layerswp' ),
+                                        'top' => __( 'Top' , 'layerswp' ),
+                                        'bottom' => __( 'Bottom' , 'layerswp' ),
+                                        'left' => __( 'Left' , 'layerswp' ),
+                                        'right' => __( 'Right' , 'layerswp' )
                                     )
                             ),
                             'background-stretch' => array(
                                 'type' => 'checkbox',
-                                'label' => __( 'Stretch' , 'layers' ),
+                                'label' => __( 'Stretch' , 'layerswp' ),
                                 'name' => $this->widget['name'] . '[background][stretch]' ,
                                 'id' =>  $this->widget['id'] . '-background-stretch' ,
                                 'value' => ( isset( $this->values['background']['stretch'] ) ) ? $this->values['background']['stretch'] : NULL
                             ),
                             'background-darken' => array(
                                 'type' => 'checkbox',
-                                'label' => __( 'Darken' , 'layers' ),
+                                'label' => __( 'Darken' , 'layerswp' ),
                                 'name' => $this->widget['name'] . '[background][darken]' ,
                                 'id' =>  $this->widget['id'] . '-background-darken' ,
                                 'value' => ( isset( $this->values['background']['darken'] ) ) ? $this->values['background']['darken'] : NULL
@@ -674,12 +672,20 @@ class Layers_Design_Controller {
         $args[ 'icon-css' ] = 'icon-settings';
 
         // Add a Label
-        $args[ 'label' ] = __( 'Advanced' , 'layers' );
+        $args[ 'label' ] = __( 'Advanced' , 'layerswp' );
+
+        $spacing_options = array(
+            '' => 'Standard',
+            'small' => 'Small',
+            'medium' => 'Medium',
+            'large' => 'Large',
+        );
 
         // Add elements
         $args[ 'elements' ] = array(
                             'customclass' => array(
                                 'type' => 'text',
+                                'label' => __( 'Custom Class(es)' , 'layerswp' ),
                                 'name' => $this->widget['name'] . '[advanced][customclass]' ,
                                 'id' =>  $this->widget['id'] . '-advanced-customclass' ,
                                 'value' => ( isset( $this->values['advanced']['customclass'] ) ) ? $this->values['advanced']['customclass'] : NULL,
@@ -687,11 +693,26 @@ class Layers_Design_Controller {
                             ),
                             'customcss' => array(
                                 'type' => 'textarea',
+                                'label' => __( 'Custom CSS' , 'layerswp' ),
                                 'name' => $this->widget['name'] . '[advanced][customcss]' ,
                                 'id' =>  $this->widget['id'] . '-advanced-customcss' ,
                                 'value' => ( isset( $this->values['advanced']['customcss'] ) ) ? $this->values['advanced']['customcss'] : NULL,
                                 'placeholder' => ".classname {\n\tbackground: #333;\n}"
-                            )
+                            ),
+                            'padding' => array(
+                                'type' => 'trbl-fields',
+                                'label' => __( 'Padding (px)' , 'layerswp' ),
+                                'name' => $this->widget['name'] . '[advanced][padding]' ,
+                                'id' =>  $this->widget['id'] . '-advanced-padding' ,
+                                'value' => ( isset( $this->values['advanced']['padding'] ) ) ? $this->values['advanced']['padding'] : NULL
+                            ),
+                            'margin' => array(
+                                'type' => 'trbl-fields',
+                                'label' => __( 'Margin (px)' , 'layerswp' ),
+                                'name' => $this->widget['name'] . '[advanced][margin]' ,
+                                'id' =>  $this->widget['id'] . '-advanced-margin' ,
+                                'value' => ( isset( $this->values['advanced']['margin'] ) ) ? $this->values['advanced']['margin'] : NULL
+                            ),
                         );
 
         $this->render_control( $key , $args );

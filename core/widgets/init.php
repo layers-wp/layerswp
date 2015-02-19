@@ -41,7 +41,6 @@ class Layers_Widgets {
 		require_once get_template_directory() . $module_dir . 'base.php'; // Basis of all Layers Widgets
 		require_once get_template_directory() . $module_dir . 'contact.php';
 		require_once get_template_directory() . $module_dir . 'content.php';
-		require_once get_template_directory() . $module_dir . 'portfolio.php';
 		require_once get_template_directory() . $module_dir . 'post.php';
 		require_once get_template_directory() . $module_dir . 'slider.php';
 
@@ -69,7 +68,8 @@ class Layers_Widgets {
 		$pages = get_pages(array(
 			'post_status' => 'publish,draft,private',
 			'meta_key' => '_wp_page_template',
-			'meta_value' => 'builder.php'
+			'meta_value' => 'builder.php',
+			'parent' => -1
 		));
 
 		// Loop the Builder Pages and create their sidebars
@@ -85,7 +85,7 @@ class Layers_Widgets {
 	public function register_builder_sidebar( $post_id = 0, $post_title = '' ) {
 		register_sidebar( array(
 			'id'		=> 'obox-layers-builder-' . $post_id,
-			'name'		=> $post_title . __( ' Body' , 'layers' ),
+			'name'		=> $post_title . __( ' Body' , 'layerswp' ),
 			'before_widget'	=> '<aside id="%1$s" class="widget container push-bottom-medium %2$s">',
 			'after_widget'	=> '</aside>',
 			'before_title'	=> '<div class="section-title clearfix"><h4 class="heading">',
@@ -100,7 +100,7 @@ class Layers_Widgets {
 		global $sidebars_widgets;
 
 		// If we are using a Layers theme, then let's make sure widgets are kept between our theme switch
-		if( LAYERS_THEME_SLUG == basename( get_template_directory() ) ){
+		if( LAYERS_THEME_SLUG == basename( get_template_directory() ) || 'layerswp' == basename( get_template_directory() ) ){
 
 			// Fetch the old theme and its theme mods
 			$old_theme = get_option( 'theme_switched' );
@@ -170,7 +170,7 @@ class Layers_Widgets {
 			register_sidebar( array(
 							'id'		=> $dynamic_sidebar[ 'id' ],
 							'name'		=> $dynamic_sidebar[ 'title' ],
-							'description'	=> __( 'Layers Builder section.' , 'layers' ),
+							'description'	=> __( 'Layers Builder section.' , 'layerswp' ),
 							'before_widget'	=> '<aside id="%1$s" class="widget %2$s">',
 							'after_widget'	=> '</aside>',
 							'before_title'	=> '<h4 class="widget-title">',
@@ -195,7 +195,7 @@ class Layers_Widgets {
 			true
 		);
 		wp_localize_script( LAYERS_THEME_SLUG . '-admin-slider-widget' , 'sliderwidgeti8n', array(
-        	'confirm_message' => __( 'Are you sure you want to remove this slide?' , 'layers' )
+        	'confirm_message' => __( 'Are you sure you want to remove this slide?' , 'layerswp' )
 		) );
 
 		// Content Widget
@@ -207,7 +207,7 @@ class Layers_Widgets {
 			true
 		);
 		wp_localize_script( LAYERS_THEME_SLUG . '-admin-content-widget' , 'contentwidgeti8n', array(
-        	'confirm_message' => __( 'Are you sure you want to remove this column?' , 'layers' )
+        	'confirm_message' => __( 'Are you sure you want to remove this column?' , 'layerswp' )
 		) );
 
 		// Tiny MCE Initiator

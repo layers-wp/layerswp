@@ -106,28 +106,29 @@ jQuery(document).ready(function($){
 		// Serialize input data
 		$serialized_inputs = [];
 		$.each(
-			$slideList.find( 'li.layers-accordion-item' ).first().find( 'textarea, input, select' ),
+			$slideList.find( 'li.layers-accordion-item' ).last().find( 'textarea, input, select' ),
 			function( i, input ){
 				$serialized_inputs.push( $(input).serialize() );
 		});
 
-		$.post(
-			layers_widget_params.ajaxurl,
-			{
+		$post_data ={
 				action: 'layers_slider_widget_actions',
 				widget_action: 'add',
 				id_base: $slideList.data( 'id_base' ),
 				instance: $serialized_inputs.join( '&' ),
-				last_guid: $slideList.find( 'li.layers-accordion-item' ).first().data( 'guid' ),
+				last_guid: ( 0 !== $slideList.find( 'li.layers-accordion-item' ).length ) ? $slideList.find( 'li.layers-accordion-item' ).last().data( 'guid' ) : false,
 				number: $slideList.data( 'number' ),
 				nonce: layers_widget_params.nonce
 
-			},
+			};
+
+		$.post(
+			layers_widget_params.ajaxurl,
+			$post_data,
 			function(data){
 
 				// Append module HTML
-				$slideList.prepend( data );
-				//$( data ).insertBefore( $slideListId + ' .layers-add-widget-slide' );
+				$slideList.append( data );
 
 				// Append slide IDs to the slides input
 				$slide_guids = [];
@@ -153,8 +154,11 @@ jQuery(document).ready(function($){
 		// "Hi Mom"
 		$that = $(this);
 
+		// Set the string value
+		$val = $that.val().toString().substr( 0 , 51 );
+
 		// Set the Title
-		$string = ': ' + $that.val();
+		$string = ': ' + ( $val.length > 50 ? $val + '...' : $val );
 
 		// Update the accordian title
 		$that.closest( '.layers-accordion-item' ).find( 'span.layers-detail' ).text( $string );

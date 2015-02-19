@@ -26,7 +26,6 @@ if( !class_exists( 'Layers_Widget_Ajax' ) ) {
 		*/
 
 		public function __construct() {
-
 			add_action( 'wp_ajax_layers_slider_widget_actions', array( $this, 'slider_widget_actions' ) );
 
 			add_action( 'wp_ajax_layers_content_widget_actions', array( $this, 'content_widget_actions' ) );
@@ -45,7 +44,11 @@ if( !class_exists( 'Layers_Widget_Ajax' ) ) {
 				);
 
 				// Get the previous element's column data
-				$instance = $data[ 'widget-' . $_POST[ 'id_base' ] ][ $_POST[ 'number' ] ][ 'slides' ][ $_POST[ 'last_guid' ] ];
+				if( isset( $_POST[ 'last_guid' ] ) ) {
+					$instance = $data[ 'widget-' . $_POST[ 'id_base' ] ][ $_POST[ 'number' ] ][ 'slides' ][ $_POST[ 'last_guid' ] ];
+				} else {
+					$instance = NULL;
+				}
 
 
 				// Get the previous element's column data
@@ -67,7 +70,11 @@ if( !class_exists( 'Layers_Widget_Ajax' ) ) {
 				);
 
 				// Get the previous element's column data
-				$instance = $data[ 'widget-' . $_POST[ 'id_base' ] ][ $_POST[ 'number' ] ][ 'columns' ][ $_POST[ 'last_guid' ] ];
+				if( isset( $_POST[ 'last_guid' ] ) && is_numeric( $_POST[ 'last_guid' ] ) ) {
+					$instance = $data[ 'widget-' . $_POST[ 'id_base' ] ][ $_POST[ 'number' ] ][ 'columns' ][ $_POST[ 'last_guid' ] ];
+				} else {
+					$instance = NULL;
+				}
 
 				$widget->column_item( array( 'id_base' => $_POST[ 'id_base' ] , 'number' => $_POST[ 'number' ] ), NULL, $instance );
 			}

@@ -8,9 +8,6 @@
  */
 class Layers_API {
 
-
-    const LAYERS_API_REMOTE_URL = 'vagrant.localhost/api/v1';
-
     private static $instance;
 
     /**
@@ -27,33 +24,43 @@ class Layers_API {
 
     public function __construct() {
 
-        // Add the administrator menu
-        add_action( 'admin_menu' , array( $this, 'add_menu' ) , 70 );
+        // Nothing to see here
 
-        // Save API key
-        add_action( 'init' , array( $this, 'save_api_key' ) );
     }
 
     /**
-    *  Obox API Call
+    * Give us a list of available extensions
     */
+    public function get_extension_list(){
 
-    private function _do_api_call( $endpoint = 'verify', $apikey = NULL, $return_array = true ) {
+        $extension_list = array(
+                'layers-woocommerce' => array(
+                        'title' => __( 'WooCommerce for Layers' , 'layerswp' ),
+                        'description' => __( 'Adds an advanced product widget, product slider and multiple page layouts.' , 'layerswp' ),
+                        'available' => false,
+                        'date' => NULL,
+                        'price' => NULL,
+                    ),
+                'layers-showcase' => array(
+                        'title' => __( 'Showcase for Layers' , 'layerswp' ),
+                        'description' => __( 'List your portfolio items with relevant meta such as client, web url and project role.' , 'layerswp' ),
+                        'available' => false,
+                        'date' => NULL,
+                        'price' => NULL,
+                    ),
 
-        $api_param = ( NULL != '?apikey=' . $apikey ? $apikey : '' );
+            );
 
-        $api_call = wp_remote_get(
-            'http://' . self::LAYERS_API_REMOTE_URL . '/' . $endpoint . $api_param,
-            array(
-                    'timeout' => 60,
-                    'httpversion' => '1.1'
-                )
-        );
-
-        if( is_wp_error( $api_call ) ) return NULL;
-
-        $body_as_array = json_decode( $api_call['body'], $return_array );
-
-        return $body_as_array;
+        return apply_filters( 'layers_extension_list' , $extension_list );
     }
+}
+
+if( !function_exists( 'layers_api_init' ) ) {
+    // Instantiate API Calls
+    function layers_api_init() {
+        $layer_updater = new Layers_API();
+        $layer_updater->init();
+    } // layer_updater_init
+
+    add_action( "after_setup_theme", "layers_api_init", 100 );
 }

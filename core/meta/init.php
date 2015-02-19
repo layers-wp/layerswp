@@ -86,7 +86,7 @@ class Layers_Custom_Meta {
 	public function admin_print_styles(){
 		global $pagenow, $post;
 		if ( 'post.php' === $pagenow && ( LAYERS_BUILDER_TEMPLATE == basename( get_page_template() ) ) ) : ?>
-			<style> #postdivrich { display: none; }</style>
+			<style> #postdivrich, #postbox-container-2, #postimagediv { display: none; }</style>
 		<?php endif;
 	}
 
@@ -104,59 +104,58 @@ class Layers_Custom_Meta {
 
 		$is_builder_used = ( 'builder.php' == basename( get_page_template() ) ) ? true : false;
 
-		printf( '<div id="layers_toggle_builder" class="postbox layers-push-top %3$s">
-					<div class="layers-section-title layers-no-push-bottom layers-content-large">
-						<div class="layers-heading">
-							%1$s
+		printf( '<div id="layers_toggle_builder" class=" %3$s">
+					<div  class="postbox layers-push-top">
+						<div class="layers-section-title layers-no-push-bottom layers-content-large">
+							<div class="layers-heading">
+								%1$s
+							</div>
+							<p class="layers-excerpt">
+								%5$s
+							</p>
 						</div>
-						<p class="layers-excerpt">
-							%5$s
-						</p>
+						<div class="layers-button-well clearfix">
+							<a href="%2$s" class="layers-button btn-massive btn-primary btn-full" id="%4$s">%6$s</a>
+						</div>
 					</div>
-					<div class="layers-button-well clearfix">
-						<a href="%2$s" class="layers-button btn-massive btn-primary btn-full" id="%4$s">%6$s</a>
+
+					<div class="layers-row">
+
+						<div class="layers-column layers-span-4 postbox layers-content">
+							<div class="layers-section-title layers-tiny">
+								<h4 class="layers-heading">Export Layout</h4>
+								<p class="layers-excerpt">Export your layout to a <code>.json</code> file which you can use to upload to another site.</p>
+							</div>
+							<a href="?post=%8$s&amp;action=edit&amp;layers-export=1" class="layers-button">Export</a>
+						</div>
+
+						<div class="layers-column layers-span-4 postbox layers-content">
+							<div class="layers-section-title layers-tiny">
+								<h4 class="layers-heading">Import Layout</h4>
+								<p class="layers-excerpt"> Upload a layout file (eg. <code>%9$s.json</code>) by clicking the button below.</p>
+							</div>
+							<button class="layers-button" id="layers-page-import-button" data-post-id="%8$s" data-title="Upload .json" data-button_text="Upload &amp; Import">Upload &amp; Import</button>
+						</div>
+
+						<div class="layers-column layers-span-4 postbox layers-content">
+							<div class="layers-section-title layers-tiny">
+								<h4 class="layers-heading">Duplicate Layout</h4>
+								<p class="layers-excerpt">Easily duplicate your layout, settings, text and images in order to get started quickly with a new page.</p>
+							</div>
+							<button href="" class="layers-button" id="layers-page-duplicate-button" data-post-id="%8$s">Duplicate</button>
+						</div>
+
 					</div>
-				</div>
-			<!-- HERE -->
-
-			<div class="layers-row">
-
-				<div class="layers-column layers-span-4 postbox layers-content">
-					<div class="layers-section-title layers-tiny">
-						<h4 class="layers-heading">Export Page Settings</h4>
-						<p class="layers-excerpt">Copy and paste your settings into a new page for easy replication of layouts and copy.</p>
-					</div>
-					<a href="" class="layers-button btn-primary">Export</a>
-				</div>
-
-				<div class="layers-column layers-span-4 postbox layers-content">
-					<div class="layers-section-title layers-tiny">
-						<h4 class="layers-heading">Duplicate Page</h4>
-						<p class="layers-excerpt">Easily duplicate your layout, settings, copy and images in order to get started quickly with a new page.</p>
-					</div>
-					<a href="" class="layers-button btn-primary">Duplicate</a>
-				</div>
-
-				<div class="layers-column layers-span-4 postbox layers-content">
-					<div class="layers-section-title layers-tiny">
-						<h4 class="layers-heading">Backup with oCloud <span class="layers-label label-secondary">Pro</span></h4>
-						<p class="layers-excerpt">Never lose your page by upgrading to oCloud which automatically saves of all your settings and content to the cloud.</p>
-					</div>
-					<a href="" class="layers-button">Upgrade to oCloud</a>
-				</div>
-
-			</div>
-
-			<!-- END -->
-
-				',
-			'Your page is ready for building', // %1
-			admin_url() . 'customize.php?url=' . esc_url( get_the_permalink() ) . '&layers-builder=1', // %2
+				</div>',
+			'Your page is ready.', // %1
+			admin_url() . 'customize.php?url=' . esc_url( get_the_permalink() ), // %2
 			( true == $is_builder_used ? '' : 'layers-hide' ), // %3
 			( isset( $post->ID ) ? 'builder-button-' . $post->ID : 'builder-button-' . rand(0,1) ), // %4,
-			__( 'Head over to the Visual Customizer where you can drag and drop widgets, edit content and tweak the design. Click the button below and see your page come to life.', 'layers' ), // %5
-			__( 'Build Your Page', 'layers' ), // %6
-			get_template_directory_uri() // %7,
+			__( 'You can drag and drop widgets, edit content and tweak the design. Click the button below to see your page come to life.' , 'layerswp' ), // %5
+			__( 'Edit Your Page' , 'layerswp' ), // %6
+			get_template_directory_uri(), // %7,
+			get_the_ID(), // %8,
+			$post->post_name // %9,
 		);
 	}
 
@@ -174,7 +173,7 @@ class Layers_Custom_Meta {
 
 		// Add our button
 		if ( $can_edit_post && 'builder.php' == get_page_template_slug( $post->ID ) ) {
-			$actions['builder'] = '<a href="' . admin_url() . 'customize.php?url=' . esc_url( get_the_permalink() ) . '&layers-builder=1" title="' . esc_attr( __( 'Build Page', 'layers' ) ) . '">' . __( 'Build Page' ) . '</a>';
+			$actions['builder'] = '<a href="' . admin_url( 'customize.php?url=' . esc_url( get_the_permalink() ) ) . '" title="' . esc_attr( __( 'Edit Layout' , 'layerswp' ) ) . '">' . __( 'Edit Layout' ) . '</a>';
 		}
 
 		return $actions;
@@ -199,8 +198,8 @@ class Layers_Custom_Meta {
 									'edge' => 'right', // bottom / top/ right / left
 									'align' => 'left' // left / center / right
 								),
-					'title'		=> __( 'Build Your Page' , 'layers' ),
-					'content'	=> __( 'Use the' . LAYERS_THEME_TITLE . ' page builder to build a beautiful, dynamic page.' , 'layers' ),
+					'title'		=> __( 'Build Your Page' , 'layerswp' ),
+					'content'	=> __( 'Use the' . LAYERS_THEME_TITLE . ' page builder to build a beautiful, dynamic page.' , 'layerswp' ),
 				);
 
 		return $pointers;

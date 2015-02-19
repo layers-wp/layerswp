@@ -1,38 +1,44 @@
 <?php $user = wp_get_current_user(); ?>
 <?php $builder_pages = layers_get_builder_pages(); ?>
-<section class="layers-welcome">
+<section class="layers-area-wrapper">
 
-	<div class="layers-page-title layers-section-title layers-large layers-content-massive layers-no-push-bottom">
-		<div class="layers-container">
-			<h2 class="layers-heading" id="layers-options-header">
-				<?php _e(' Layers Page Backup' , 'layers' ); ?>
-			</h2>
-			<p class="layers-excerpt">
-				<?php _e( 'Convert your Layers pages into regular WordPress pages, preserving the content you have worked so hard to create.' , 'layers' ); ?>
-			</p>
-		</div>
-	</div>
+	<?php $this->header( __( 'Backup' , 'layerswp' ) ); ?>
 
-	<div class="layers-row layers-well layers-content-massive">
-		<div class="layers-container">
+	<div class="layers-row layers-well layers-content-large">
+		<div class="layers-container-large">
+			<div class="layers-row">
 
-			<div class="layers-row layers-divide layers-t-center">
-				<div class="layers-load-bar layers-push-bottom">
-					<span class="layers-progress zero">0%</span>
+				<div class="layers-column layers-panel layers-span-8">
+					<div class="layers-content layers-push-bottom">
+						<div class="layers-section-title layers-small">
+							<h3 class="layers-heading"><?php _e( 'Backup your pages' , 'layerswp' ); ?></h3>
+							<p class="layers-excerpt">
+								<?php _e( 'Convert your Layers pages into regular WordPress pages, preserving the content you have worked so hard to create.' , 'layerswp' ); ?>
+							</p>
+						</div>
+						<div class="layers-load-bar">
+							<span class="layers-progress zero">0%</span>
+						</div>
+					</div>
+					<div class="layers-button-well">
+						<a id="layers-backup-pages" class="layers-button btn-large btn-primary"><?php _e( 'Backup my Pages Now' , 'layerswp' ); ?></a>
+					</div>
 				</div>
-				<a id="layers-backup-pages" class="layers-button btn-large btn-primary"><?php _e( 'Backup my Pages Now' , 'layers' ); ?></a>
-			</div>
-			<div class="row">
-				<div class="layers-section-title layers-tiny">
-					<h5 class="layers-heading"><?php _e( 'Backed Up Pages:' , 'layers' ); ?></h5>
+				<div class="layers-column layers-span-4">
+					<div class="layers-panel layers-push-bottom">
+						<div class="layers-panel-title">
+							<h4 class="layers-heading"><?php _e( 'Backed Up Pages:' , 'layerswp' ); ?></h4>
+						</div>
+						<ul class="layers-list">
+							<?php foreach( $builder_pages as $post ){ ?>
+								<li data-page_id="<?php echo $post->ID; ?>" class="<?php echo ( in_array( $post->ID , array() ) ? 'tick' : 'cross' ); ?>">
+									<?php echo $post->post_title; ?>
+								</li>
+							<?php } // foreach builder_page ?>
+						</ul>
+					</div>
 				</div>
-				<ul class="layers-feature-list">
-					<?php foreach( $builder_pages as $post ){ ?>
-						<li data-page_id="<?php echo $post->ID; ?>" class="<?php echo ( in_array( $post->ID , array() ) ? 'tick' : 'cross' ); ?>">
-							<?php echo $post->post_title; ?>
-						</li>
-					<?php } // foreach builder_page ?>
-				</ul>
+
 			</div>
 		</div>
 	</div>
@@ -40,7 +46,7 @@
 
 <script>
 	jQuery(function($){
-		var $total_pages = $( '.layers-feature-list li' ).length;
+		var $total_pages = $( '.layers-list li' ).length;
 		var $complete_pages = 1;
 
 		function layers_backup_builder_page( $pageid, $page_li ){
@@ -80,7 +86,7 @@
 			$( '.layers-progress' ).removeClass( 'zero complete' ).css('width' , 0);
 
 			// "Hi Mom"
-			var $that = $( '.layers-feature-list li' ).eq(0);
+			var $that = $( '.layers-list li' ).eq(0);
 			var $pageid = $that.data( 'page_id' );
 
 			layers_backup_builder_page( $pageid, $that );

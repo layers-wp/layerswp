@@ -45,8 +45,8 @@ class Layers_Pointers {
 									'edge' => 'left', // bottom / top/ right / left
 									'align' => 'right' // left / center / right
 								),
-					'title'		=> __( 'Build Your Page' , 'layers' ),
-					'content'	=> __( 'Use the (' . LAYERS_THEME_TITLE . ') widgets  to build a beautiful, dynamic page.' , 'layers' ),
+					'title'		=> __( 'Build Your Page' , 'layerswp' ),
+					'content'	=> __( 'Use the (' . LAYERS_THEME_TITLE . ') widgets  to build a beautiful, dynamic page.' , 'layerswp' ),
 				),
 		);
 

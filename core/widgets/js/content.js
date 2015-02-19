@@ -115,22 +115,24 @@ jQuery(document).ready(function($){
 				$serialized_inputs.push( $(input).serialize() );
 		});
 
-		$.post(
-			layers_widget_params.ajaxurl,
-			{
+		$post_data = {
 				action: 'layers_content_widget_actions',
 				widget_action: 'add',
 				id_base: $columnList.data( 'id_base' ),
 				instance: $serialized_inputs.join( '&' ),
-				last_guid: $columnList.find( 'li.layers-accordion-item' ).last().data( 'guid' ),
+				last_guid: ( 0 !== $columnList.find( 'li.layers-accordion-item' ).length ) ? $columnList.find( 'li.layers-accordion-item' ).last().data( 'guid' ) : false,
 				number: $columnList.data( 'number' ),
 				nonce: layers_widget_params.nonce
 
-			},
+			};
+
+		$.post(
+			layers_widget_params.ajaxurl,
+			$post_data,
 			function(data){
 
 				// Append column HTML
-				$( data ).insertBefore( $columnListId + ' .layers-add-widget-column' );
+				$columnList.append( data );
 
 				// Append column IDs to the columns input
 				$column_guids = [];
@@ -157,8 +159,11 @@ jQuery(document).ready(function($){
 		// "Hi Mom"
 		$that = $(this);
 
+		// Set the string value
+		$val = $that.val().toString().substr( 0 , 51 );
+
 		// Set the Title
-		$string = ': ' + $that.val();
+		$string = ': ' + ( $val.length > 50 ? $val + '...' : $val );
 
 		// Update the accordian title
 		$that.closest( '.layers-accordion-item' ).find( 'span.layers-detail' ).text( $string );

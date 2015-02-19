@@ -93,14 +93,14 @@ jQuery(document).ready(function($) {
 	}
 	wp.customize.previewer.bind('url', layers_handle_customizer_talkback);
 
-	// Move the Layers Dashboard button to it's correct placing - no hook available
+	// Move the Layers custom buttons to correct place - no hook available.
 	$('#customize-header-actions').append( $('.customize-controls-layers-button-dashboard, .customize-controls-layers-button-preview') );
 	$('.customize-controls-layers-button-dashboard, .customize-controls-layers-button-preview').css({ 'display':'block', 'visibility':'visible' });
-
-	// Jump to control - during testing only (must comment for launch).
-	//$('#accordion-section-layers-footer-customization').children('.accordion-section-title').click();
-	//$('#accordion-section-layers-header-layout').children('.accordion-section-title').click();
-
+	
+	// Move the Layers tooltips to correct place.
+	$('.customize-controls-close').addClass('layers-tooltip layers-tooltip-left').prepend( $('.layers-tooltip-text-close') );
+	$('.control-panel-back').addClass('layers-tooltip layers-tooltip-left').prepend( $('.layers-tooltip-text-back') );
+	
 	/**
 	 * 3 - Better history states in customizer
 	 *
@@ -113,7 +113,7 @@ jQuery(document).ready(function($) {
 		// Update the browser URl so page can be refreshed
 		if (window.history.pushState) {
 			// Newer Browsers only (IE10+, Firefox3+, etc)
-			var url = window.location.href.split('?')[0] + "?url=" + wp.customize.previewer.previewUrl() + "&layers-builder=1";
+			var url = window.location.href.split('?')[0] + "?url=" + wp.customize.previewer.previewUrl();
 			window.history.pushState({}, "", url);
 		}
 	}
@@ -124,6 +124,15 @@ jQuery(document).ready(function($) {
 		layers_update_customizer_interface();
 	}, false);
 
+	$(document).on( 'change', '.layers-customize-control-font select' , function(){
 
+
+        // "Hi Mom"
+        $that = $(this);
+
+		$description = $that.closest( '.layers-customize-control-font' ).find( '.customize-control-description' );
+
+		$description.find( 'a' ).attr( 'href' , $description.data( 'base-url' ) + $that.val() );
+	});
 
 });

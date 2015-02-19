@@ -16,8 +16,8 @@
 
         <?php if ( get_comment_pages_count() > 1 && get_option( 'page_comments' ) ) { // are there comments to navigate through ?>
             <nav id="comment-nav-below" class="pagination" role="navigation">
-                <div class="previous"><?php previous_comments_link( __( '&larr;' , 'layers' ) ); ?></div>
-                <div class="next"><?php next_comments_link( __( '&rarr;' , 'layers' ) ); ?></div>
+                <div class="previous"><?php previous_comments_link( __( '&larr;' , 'layerswp' ) ); ?></div>
+                <div class="next"><?php next_comments_link( __( '&rarr;' , 'layerswp' ) ); ?></div>
             </nav>
         <?php }; // check for comment navigation ?>
 
@@ -26,7 +26,7 @@
      * But we only want the note on posts and pages that had comments in the first place.
      */
     if ( !is_page() && ! comments_open() && get_comments_number() ) : ?>
-        <p class="nocomments"><?php _e( 'Comments are closed.' , 'layers' ); ?></p>
+        <p class="nocomments"><?php _e( 'Comments are closed.' , 'layerswp' ); ?></p>
     <?php endif; ?>
 
     <?php comment_form();  ?>

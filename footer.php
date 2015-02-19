@@ -1,52 +1,40 @@
 
 			<div id="back-to-top">
-				<a href="#top"><?php _e( 'Back to top' , 'layers' ); ?></a>
+				<a href="#top"><?php _e( 'Back to top' , 'layerswp' ); ?></a>
 			</div> <!-- back-to-top -->
+
 		</section>
+
 		<?php do_action( 'layers_before_footer' ); ?>
-		<?php
-		// Apply customizer footer background settings.
-		layers_inline_styles( 'footer', 'background', array(
-			'background' => array(
-				'color' => layers_get_theme_mod( 'footer-customization-background-background-color' ),
-				'repeat' => layers_get_theme_mod( 'footer-customization-background-background-repeat' ),
-				'position' => layers_get_theme_mod( 'footer-customization-background-background-position' ),
-				'stretch' => layers_get_theme_mod( 'footer-customization-background-background-stretch' ),
-				'image' => layers_get_theme_mod( 'footer-customization-background-background-image' ),
-				'fixed' => false, // hardcode (not an option)
-			),
-		) );
-		layers_inline_styles( 'footer', 'color', array( 'color' => layers_get_theme_mod( 'footer-customization-font-color-main' ) ) );
-		layers_inline_styles( 'footer a', 'color', array( 'color' => layers_get_theme_mod( 'footer-customization-font-color-link' ) ) );
-		?>
-		<footer id="footer" class="footer-site well">
+
+		<footer id="footer" class="footer-site">
 			<?php do_action( 'layers_before_footer_inner' ); ?>
-			<div class="<?php if( 'layout-fullwidth' != layers_get_theme_mod( 'footer-layout-width' ) ) echo 'container'; ?>  content-vertical-large clearfix">
+			<div class="<?php if( 'layout-fullwidth' != layers_get_theme_mod( 'footer-width' ) ) echo 'container'; ?>  clearfix">
 				<?php // Do logic related to the footer widget area count
-				$footer_sidebar_count = layers_get_theme_mod( 'footer-layout-widget-area-count' ); ?>
+				$footer_sidebar_count = layers_get_theme_mod( 'footer-sidebar-count' ); ?>
 
 				<?php if( 0 != $footer_sidebar_count ) { ?>
+					<?php do_action( 'layers_before_footer_sidebar' ); ?>
 					<div class="row">
-						<?php do_action( 'layers_before_footer_sidebar' ); ?>
 						<?php // Default Sidebar count to 4
 						if( '' == $footer_sidebar_count ) $footer_sidebar_count = 4;
 
 						// Get the sidebar class
 						$footer_sidebar_class = floor( 12/$footer_sidebar_count ); ?>
 						<?php for( $footer = 1; $footer <= $footer_sidebar_count; $footer++ ) { ?>
-							<div class="column span-<?php echo $footer_sidebar_class; ?> <?php if( $footer == $footer_sidebar_count ) echo 'last'; ?>">
+							<div class="column span-<?php echo esc_attr( $footer_sidebar_class ); ?> <?php if( $footer == $footer_sidebar_count ) echo 'last'; ?>">
 								<?php dynamic_sidebar( LAYERS_THEME_SLUG . '-footer-' . $footer ); ?>
 							</div>
 						<?php } ?>
-						<?php do_action( 'layers_after_footer_sidebar' ); ?>
 					</div>
+					<?php do_action( 'layers_after_footer_sidebar' ); ?>
 				<?php } // if 0 != sidebars ?>
 
 				<?php do_action( 'layers_before_footer_copyright' ); ?>
 				<div class="row copyright">
-					<?php if( '' != layers_get_theme_mod( 'footer-text-copyright' ) ) {  ?>
+					<?php if( '' != layers_get_theme_mod( 'footer-copyright-text' ) ) {  ?>
 						<div class="column span-6">
-							<p class="site-text"><?php echo layers_get_theme_mod( 'footer-text-copyright' ); ?></p>
+							<p class="site-text"><?php echo layers_get_theme_mod( 'footer-copyright-text' ); ?></p>
 						</div>
 					<?php } ?>
 					<div class="column span-6 clearfix t-right">
@@ -56,6 +44,11 @@
 				<?php do_action( 'layers_after_footer_copyright' ); ?>
 			</div>
 			<?php do_action( 'layers_after_footer_inner' ); ?>
+
+			<a class="created-using-layers" tooltip="Created using Layers" href="http://layerswp.com/">
+				<span><?php _e( 'Created using Layers' , 'layerswp' ); ?></span>
+			</a>
+
 		</footer><!-- END / FOOTER -->
 		<?php do_action( 'layers_after_footer' ); ?>
 

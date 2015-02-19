@@ -51,6 +51,11 @@ if( !class_exists( 'Layers_Widget' ) ) {
 
 		}
 
+		/**
+		* This function determines whether or not a widget is boxed or full width
+		*
+		* @return  	varchar 	widget layout class
+		*/
 		function get_widget_layout_class( $widget = NULL ){
 
 			if( NULL == $widget ) return;
@@ -67,6 +72,74 @@ if( !class_exists( 'Layers_Widget' ) ) {
 			}
 
 			return $layout_class;
+		}
+
+		/**
+		* Get widget spacing as class names
+		*
+		* @return  	string 		Class names
+		*/
+
+		function get_widget_spacing_class( $widget = NULL ){
+
+			if( NULL == $widget ) return;
+
+			// Setup the class for all the kinds of margin and padding
+			$classes = array();
+
+			if( $this->check_and_return( $widget , 'design' , 'advanced', 'margin-top' ) ) $classes[] = 'margin-top-' . $this->check_and_return( $widget , 'design' , 'advanced', 'margin-top' );
+			if( $this->check_and_return( $widget , 'design' , 'advanced', 'margin-right' ) ) $classes[] = 'margin-right-' . $this->check_and_return( $widget , 'design' , 'advanced', 'margin-right' );
+			if( $this->check_and_return( $widget , 'design' , 'advanced', 'margin-bottom' ) ) $classes[] = 'margin-bottom-' . $this->check_and_return( $widget , 'design' , 'advanced', 'margin-bottom' );
+			if( $this->check_and_return( $widget , 'design' , 'advanced', 'margin-left' ) ) $classes[] = 'margin-left-' . $this->check_and_return( $widget , 'design' , 'advanced', 'margin-left' );
+
+			if( $this->check_and_return( $widget , 'design' , 'advanced', 'padding-top' ) ) $classes[] = 'padding-top-' . $this->check_and_return( $widget , 'design' , 'advanced', 'padding-top' );
+			if( $this->check_and_return( $widget , 'design' , 'advanced', 'padding-right' ) ) $classes[] = 'padding-right-' . $this->check_and_return( $widget , 'design' , 'advanced', 'padding-right' );
+			if( $this->check_and_return( $widget , 'design' , 'advanced', 'padding-bottom' ) ) $classes[] = 'padding-bottom-' . $this->check_and_return( $widget , 'design' , 'advanced', 'padding-bottom' );
+			if( $this->check_and_return( $widget , 'design' , 'advanced', 'padding-left' ) ) $classes[] = 'padding-left-' . $this->check_and_return( $widget , 'design' , 'advanced', 'padding-left' );
+
+			$classes = implode( ' ', $classes );
+
+			return $classes;
+		}
+
+		/**
+		* Apply advanced styles to widget instance
+		*
+		* @param   string   $widget_id   id css selector of widget
+		* @param   object   $widget      Widget object to use
+		*/
+
+		function apply_widget_advanced_styling( $widget_id, $widget = NULL ){
+
+			// We need a widget to get the settings from
+			if( NULL == $widget ) return;
+
+			// Apply Margin & Padding
+
+			$types = array( 'margin', 'padding', );
+			$fields = array( 'top', 'right', 'bottom', 'left', );
+
+			// Loop the Margin & Padding
+			foreach ( $types as $type ) {
+
+				// Get the TopRightBottomLeft TRBL array of values
+				$values = $this->check_and_return( $widget , 'design' , 'advanced', $type );
+
+				if( NULL != $values && is_array( $values ) ) {
+					foreach ( $fields as $field ) {
+						if( isset( $values[ $field ] ) && '' != $values[ $field ] && is_numeric( $values[ $field ] ) ) {
+							// If value is set, and is number, then add 'px' to it
+							$values[ $field ] .= 'px';
+						}
+					}
+					// Apply the TRBL styles
+					layers_inline_styles( '#' . $widget_id, $type, array( $type => $values ) );
+				}
+			}
+
+			// Custom CSS
+			if( $this->check_and_return( $widget, 'design', 'advanced', 'customcss' ) ) layers_inline_styles( NULL, 'css', array( 'css' => $this->check_and_return( $widget, 'design', 'advanced', 'customcss' )  ) );
+
 		}
 
 		/**

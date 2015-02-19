@@ -19,7 +19,7 @@ class Layers_Form_Elements {
 	public function header( $args = array() ){
 
 		$defaults = array(
-				'title' => __( 'Widget' , 'layers' ),
+				'title' => __( 'Widget' , 'layerswp' ),
 				'icon_class' => ''
 			);
 
@@ -28,7 +28,7 @@ class Layers_Form_Elements {
 		<div class="layers-controls-title">
 			<h2 class="layers-heading layers-icon layers-icon-<?php $header->icon_class; ?>">
 				<!-- <i class="icon-<?php echo $header->icon_class; ?>-small"></i> -->
-				<?php echo $header->title; ?>
+				<?php echo esc_html( $header->title ); ?>
 			</h2>
 		</div>
 
@@ -46,7 +46,7 @@ class Layers_Form_Elements {
 		$accordian_title = (object) wp_parse_args( $args, array() ); ?>
 
 		<a class="layers-accordion-title">
-			<span><?php echo $accordian_title->title; ?></span>
+			<span><?php echo esc_html( $accordian_title->title ); ?></span>
 		</a>
 	<?php }
 
@@ -64,8 +64,8 @@ class Layers_Form_Elements {
 			);
 
 		$panel_title = (object) wp_parse_args( $args, $defaults ); ?>
-		<div class="layers-<?php echo $panel_title->type; ?>-title">
-			<h4 class="heading"><?php echo $panel_title->title; ?></h4>
+		<div class="layers-<?php echo esc_attr( $panel_title->type ); ?>-title">
+			<h4 class="heading"><?php echo esc_html( $panel_title->title ); ?></h4>
 		</div>
 	<?php }
 
@@ -97,13 +97,13 @@ class Layers_Form_Elements {
 	*/
 
 	public function get_sort_options( $options = array() ){
-		$options[ json_encode( array( 'orderby' => 'date', 'order' => 'desc' ) ) ] = __( 'Newest First' , 'layers' );
-		$options[ json_encode( array( 'orderby' => 'date', 'order' => 'asc' ) ) ] = __( 'Oldest First' , 'layers' );
-		$options[ json_encode( array( 'orderby' => 'rand', 'order' => 'desc' ) ) ] = __( 'Random' , 'layers' );
-		$options[ json_encode( array( 'orderby' => 'title', 'order' => 'asc' ) ) ] = __( 'Titles A-Z' , 'layers' );
-		$options[ json_encode( array( 'orderby' => 'title', 'order' => 'desc' ) ) ] = __( 'Titles Z-A' , 'layers' );
-		$options[ json_encode( array( 'orderby' => 'comment_count', 'order' => 'desc' ) ) ] = __( 'Most Comments' , 'layers' );
-		$options[ json_encode( array( 'orderby' => 'menu_order', 'order' => 'desc' ) ) ] = __( 'Custom Order' , 'layers' );
+		$options[ json_encode( array( 'orderby' => 'date', 'order' => 'desc' ) ) ] = __( 'Newest First' , 'layerswp' );
+		$options[ json_encode( array( 'orderby' => 'date', 'order' => 'asc' ) ) ] = __( 'Oldest First' , 'layerswp' );
+		$options[ json_encode( array( 'orderby' => 'rand', 'order' => 'desc' ) ) ] = __( 'Random' , 'layerswp' );
+		$options[ json_encode( array( 'orderby' => 'title', 'order' => 'asc' ) ) ] = __( 'Titles A-Z' , 'layerswp' );
+		$options[ json_encode( array( 'orderby' => 'title', 'order' => 'desc' ) ) ] = __( 'Titles Z-A' , 'layerswp' );
+		$options[ json_encode( array( 'orderby' => 'comment_count', 'order' => 'desc' ) ) ] = __( 'Most Comments' , 'layerswp' );
+		$options[ json_encode( array( 'orderby' => 'menu_order', 'order' => 'desc' ) ) ] = __( 'Custom Order' , 'layerswp' );
 		return $options;
 	}
 
@@ -131,7 +131,7 @@ class Layers_Form_Elements {
 		$input = (object) wp_parse_args( $args, $defaults );
 
 		// If the value of this element is in fact a collection of inputs, turn it into an object, it's nicer to work with
-		if( NULL != $input->value && is_array( $input->value ) ) $input->value = (object) esc_attr( $input->value );
+		if( NULL != $input->value && is_array( $input->value ) ) $input->value = (object) $input->value;
 
 		if( !is_object( $input->value ) ) $input->value = stripslashes( $input->value );
 
@@ -145,9 +145,6 @@ class Layers_Form_Elements {
 
 		// Switch our input type
 		switch( $input->type ) {
-			/**
-			* Text Inputs
-			*/
 			case 'text' : ?>
 				<input type="text" <?php echo implode ( ' ' , $input_props ); ?> value="<?php echo $input->value; ?>" />
 			<?php break;
@@ -166,7 +163,7 @@ class Layers_Form_Elements {
 			case 'checkbox' : ?>
 				<input type="checkbox" <?php echo implode ( ' ' , $input_props ); ?> <?php checked( $input->value , 'on' ); ?>/>
 				<?php if( isset( $input->label ) ) { ?>
-					<label for="<?php echo $input->id; ?>"><?php echo $input->label; ?></label>
+					<label for="<?php echo esc_attr( $input->id ); ?>"><?php echo esc_html( $input->label ); ?></label>
 				<?php } // if isset label ?>
 			<?php break;
 			/**
@@ -184,11 +181,11 @@ class Layers_Form_Elements {
 			case 'select' : ?>
 				<select size="1" <?php echo implode ( ' ' , $input_props ); ?>>
 					<?php if( NULL != $input->placeholder ) { ?>
-						<option value=''><?php echo $input->placeholder; ?></option>
+						<option value=''><?php echo esc_html( $input->placeholder ); ?></option>
 					<?php } // if NULL != placeholder ?>
 					<?php foreach( $input->options as $value => $label ) { ?>
 						<option value='<?php echo esc_attr( $value ); ?>' <?php selected( $input->value , $value, true ); ?>>
-							<?php echo $label; ?>
+							<?php echo esc_html( $label ); ?>
 						</option>
 					<?php } // foreach options ?>
 				</select>
@@ -198,13 +195,13 @@ class Layers_Form_Elements {
 			*/
 			case 'select-icons' : ?>
 				<?php foreach( $input->options as $value => $label ) { ?>
-					<label href="" class="layers-icon-wrapper <?php if( $value == $input->value ) echo 'layers-active'; ?>" for="<?php echo $input->id .'-' . esc_attr( $value ); ?>">
+					<label href="" class="layers-icon-wrapper <?php if( $value == $input->value ) echo 'layers-active'; ?>" for="<?php echo esc_attr( $input->id ) .'-' . esc_attr( $value ); ?>">
 						<span class="icon-<?php echo esc_attr( $value ); ?>"></span>
 						<span class="layers-icon-description">
-							<?php echo $label; ?>
+							<?php echo esc_html( $label ); ?>
 						</span>
 					</label>
-					<input type="radio" <?php echo implode ( ' ' , $input_props ); ?> id="<?php echo $input->id .'-' . esc_attr( $value ); ?>" value="<?php echo esc_attr( $value ); ?>" <?php checked( $input->value , $value , true ); ?> class="layers-hide" />
+					<input type="radio" <?php echo implode ( ' ' , $input_props ); ?> id="<?php echo esc_attr( $input->id ) .'-' . esc_attr( $value ); ?>" value="<?php echo esc_attr( $value ); ?>" <?php checked( $input->value , $value , true ); ?> class="layers-hide" />
 				<?php } // foreach options ?>
 			<?php break;
 			/**
@@ -217,13 +214,13 @@ class Layers_Form_Elements {
 			* Tiny MCE
 			*/
 			case 'tinymce' : ?>
-				<div class="layers-form-item" id="layers-tinymce-<?php echo $input->id; ?>">
+				<div class="layers-form-item" id="layers-tinymce-<?php echo esc_attr( $input->id ); ?>">
 					<a href="" class="layers-t-right layers-tiny-mce-switch" data-mode="visual"
-					data-visual_label="<?php _e( 'Visual Mode' , 'layers' ); ?>"
-					data-html_label="<?php _e( 'HTML Mode' , 'layers' ); ?>">
-						<?php _e( 'HTML Mode' , 'layers' ); ?>
+					data-visual_label="<?php _e( 'Visual Mode' , 'layerswp' ); ?>"
+					data-html_label="<?php _e( 'HTML Mode' , 'layerswp' ); ?>">
+						<?php _e( 'HTML Mode' , 'layerswp' ); ?>
 					</a>
-					<div class="editible editible-<?php echo $input->id; ?>" data-id="<?php echo $input->id; ?>"><?php echo esc_html( $input->value ); ?></div>
+					<div class="editible editible-<?php echo esc_attr( $input->id ); ?>" data-id="<?php echo esc_attr( $input->id ); ?>"><?php echo esc_html( $input->value ); ?></div>
 					<textarea class="layers-hide layers-textarea layers-tiny-mce-textarea" <?php echo implode ( ' ' , $input_props ); ?> <?php if( isset( $input->rows ) ) echo 'rows="' . $input->rows . '"'; ?>><?php echo $input->value; ?></textarea>
 				</div>
 			<?php break;
@@ -234,15 +231,15 @@ class Layers_Form_Elements {
 				<section class="layers-image-container <?php if( isset( $input->value ) && NULL != $input->value ) echo 'layers-has-image'; ?>">
 					<div class="layers-image-display layers-image-upload-button">
 						<!-- Image -->
-						<?php if( isset( $input->value ) ) echo wp_get_attachment_image( $input->value , 'thumbnail' ); ?>
+						<?php if( isset( $input->value ) ) echo wp_get_attachment_image( $input->value , 'medium' ); ?>
 						<!-- Remove button -->
-						<a class="layers-image-remove" href=""><?php _e( 'Remove' , 'layers' ); ?></a>
+						<a class="layers-image-remove" href=""><?php _e( 'Remove' , 'layerswp' ); ?></a>
 					</div>
 
 					<a href="#" class="layers-image-upload-button  layers-button btn-full <?php if( isset( $input->value ) && '' != $input->value ) echo 'layers-has-image'; ?>"
-						data-title="<?php _e( 'Select an Image' , 'layers' ); ?>"
-						data-button_text="<?php _e( 'Use Image' , 'layers' ); ?>">
-						<?php echo ( isset( $input->button_label ) ? $input->button_label : __( 'Choose Image' , 'layers' ) ); ?>
+						data-title="<?php _e( 'Select an Image' , 'layerswp' ); ?>"
+						data-button_text="<?php _e( 'Use Image' , 'layerswp' ); ?>">
+						<?php echo ( isset( $input->button_label ) ? $input->button_label : __( 'Choose Image' , 'layerswp' ) ); ?>
 					</a>
 
 					<?php echo $this->input(
@@ -264,11 +261,11 @@ class Layers_Form_Elements {
 					<!-- Image -->
 					<?php if( isset( $input->value ) ) echo wp_basename( wp_get_attachment_url( $input->value ) , true ); ?>
 				</span>
-				<button  class="layers-regular-uploader layers-button btn-medium" data-title="<?php _e( 'Select a File' , 'layers' ); ?>" data-button_text="<?php _e( 'Use File' , 'layers' ); ?>">
-					<?php _e( 'Choose a File' , 'layers'  ); ?>
+				<button  class="layers-regular-uploader layers-button btn-medium" data-title="<?php _e( 'Select a File' , 'layerswp' ); ?>" data-button_text="<?php _e( 'Use File' , 'layerswp' ); ?>">
+					<?php _e( 'Choose a File' , LAYERS_THEME_SLUG  ); ?>
 				</button>
 				<small class="<?php if( !isset( $input->value ) ) echo 'hide'; ?> layers-file-remove">
-					<?php _e( 'Remove' , 'layers' ); ?>
+					<?php _e( 'Remove' , 'layerswp' ); ?>
 				</small>
 				<input type="hidden" <?php echo implode ( ' ' , $input_props ); ?> value="<?php echo $input->value; ?>" />
 			<?php break;
@@ -280,12 +277,12 @@ class Layers_Form_Elements {
 				// Default to image if we haven't already done so
 				if( !isset( $input->value->type ) ) $input_type = 'image'; else $input_type = $input->value->type; ?>
 
-				<div class="layers-media-controller" id="<?php echo $input->id; ?>-controller">
+				<div class="layers-media-controller" id="<?php echo esc_attr( $input->id ); ?>-controller">
 					<ul class="layers-section-links layers-background-selector">
-						<li <?php if( 'video' != $input_type ) echo 'class="active"'; ?> data-id="#<?php echo $input->id; ?>" data-type="image">
+						<li <?php if( 'video' != $input_type ) echo 'class="active"'; ?> data-id="#<?php echo esc_attr( $input->id ); ?>" data-type="image">
 							<a href="" class="icon-photo"></a>
 						</li>
-						<li <?php if( 'video' == $input_type ) echo 'class="active"'; ?> data-id="#<?php echo $input->id; ?>" data-type="video">
+						<li <?php if( 'video' == $input_type ) echo 'class="active"'; ?> data-id="#<?php echo esc_attr( $input->id ); ?>" data-type="video">
 							<a href="" class="icon-video"></a>
 						</li>
 					</ul>
@@ -307,11 +304,11 @@ class Layers_Form_Elements {
 							<div class="layers-form-item">
 								<div class="layers-image-uploader layers-animate layers-push-bottom">
 									<!-- Remove button -->
-									<a class="layers-image-remove <?php if( !isset( $input->value->image ) ) echo 'layers-hide'; ?>" href=""><?php _e( 'Remove' , 'layers' ); ?></a>
+									<a class="layers-image-remove <?php if( !isset( $input->value->image ) ) echo 'layers-hide'; ?>" href=""><?php _e( 'Remove' , 'layerswp' ); ?></a>
 
 									<!-- Instructions -->
 									<p <?php if( isset( $input->value->image ) ) echo 'class="layers-hide"'; ?>>
-										<?php printf( __( 'Drop a file here or %s' , 'layers' ) , '<a href="#">select a file.</a>' ); ?>
+										<?php printf( __( 'Drop a file here or %s' , 'layerswp' ) , '<a href="#">select a file.</a>' ); ?>
 									</p>
 
 									<!-- Input -->
@@ -331,7 +328,7 @@ class Layers_Form_Elements {
 							<div class="layers-row">
 
 								<p class="layers-form-item">
-									<label><?php _e( 'Background Color' , 'layers' ); ?></label>
+									<label><?php _e( 'Background Color' , 'layerswp' ); ?></label>
 									<?php echo $this->input(
 										array(
 											'type' => 'color',
@@ -350,7 +347,7 @@ class Layers_Form_Elements {
 												'name' => $input->name . '[darken]' ,
 												'id' => $input->id . '-darken',
 												'value' => ( isset( $input->value->darken ) ) ? $input->value->darken : NULL,
-												'label' => __( 'Darken to improve readability', 'layers' )
+												'label' => __( 'Darken to improve readability' , 'layerswp' )
 											)
 										); ?>
 									</li>
@@ -361,7 +358,7 @@ class Layers_Form_Elements {
 												'name' => $input->name . '[tile_background]' ,
 												'id' => $input->id . '-tile_background',
 												'value' => ( isset( $input->value->tile_background ) ) ? $input->value->tile_background : NULL,
-												'label' => __( 'Tile Background', 'layers' )
+												'label' => __( 'Tile Background' , 'layerswp' )
 											)
 										); ?>
 									</li>
@@ -372,7 +369,7 @@ class Layers_Form_Elements {
 												'name' => $input->name . '[fixed_background]' ,
 												'id' => $input->id . '-fixed_background',
 												'value' => ( isset( $input->value->fixed_background ) ) ? $input->value->fixed_background : NULL,
-												'label' => __( 'Fixed Background', 'layers' )
+												'label' => __( 'Fixed Background' , 'layerswp' )
 											)
 										); ?>
 									</li>
@@ -383,7 +380,7 @@ class Layers_Form_Elements {
 						<!-- Video uploader -->
 						<div class="layers-content <?php if( 'video' == $input->value->type ) echo 'section-active'; ?>">
 							<p class="layers-form-item">
-								<label><?php _e( 'Enter your .mp4 link' , 'layers' ); ?></label>
+								<label><?php _e( 'Enter your .mp4 link' , 'layerswp' ); ?></label>
 								<?php echo $this->input(
 									array(
 										'type' => 'upload',
@@ -394,7 +391,7 @@ class Layers_Form_Elements {
 								); ?>
 							</p>
 							<p class="layers-form-item">
-								<label><?php _e( 'Enter your .ogv link' , 'layers' ); ?></label>
+								<label><?php _e( 'Enter your .ogv link' , 'layerswp' ); ?></label>
 								<?php echo $this->input(
 									array(
 										'type' => 'upload',
@@ -406,7 +403,7 @@ class Layers_Form_Elements {
 							</p>
 							<div class="layers-row">
 								<p class="layers-form-item layers-no-push-bottom">
-									<label><?php _e( 'Background Color' , 'layers' ); ?></label>
+									<label><?php _e( 'Background Color' , 'layerswp' ); ?></label>
 									<?php echo $this->input(
 										array(
 											'type' => 'color',
@@ -425,7 +422,7 @@ class Layers_Form_Elements {
 												'name' => $input->name . '[video_darken]' ,
 												'id' => $input->id . '-video_darken',
 												'value' => ( isset( $input->value->video_darken ) ) ? $input->value->video_darken : NULL,
-												'label' => __( 'Darken to improve readability', 'layers' )
+												'label' => __( 'Darken to improve readability' , 'layerswp' )
 											)
 										); ?>
 									</li>
@@ -436,7 +433,7 @@ class Layers_Form_Elements {
 												'name' => $input->name . '[video_tile_background]' ,
 												'id' => $input->id . '-video_tile_background',
 												'value' => ( isset( $input->value->video_tile_background ) ) ? $input->value->video_tile_background : NULL,
-												'label' => __( 'Tile Background', 'layers' )
+												'label' => __( 'Tile Background' , 'layerswp' )
 											)
 										); ?>
 									</li>
@@ -447,7 +444,7 @@ class Layers_Form_Elements {
 												'name' => $input->name . '[video_fixed_background]' ,
 												'id' => $input->id . '-video_fixed_background',
 												'value' => ( isset( $input->value->video_fixed_background ) ) ? $input->value->video_fixed_background : NULL,
-												'label' => __( 'Fixed Background', 'layers' )
+												'label' => __( 'Fixed Background' , 'layerswp' )
 											)
 										); ?>
 									</li>
@@ -467,11 +464,43 @@ class Layers_Form_Elements {
 			/**
 			* Button Selector
 			*/
-			case 'button' : ?>
-
-				<button  class="layers-button btn-medium" <?php echo implode ( ' ' , $input_props ); ?> data-button_text="<?php echo esc_attr( $input->label ); ?>">
+			case 'button' :
+				$tag = ( '' == $input->tag ) ? 'button' : $input->tag ;
+				$href = ( '' == $input->href ) ? '' : 'href="' . $input->href . '"' ;
+				?>
+				<<?php echo $tag; ?>  class="layers-button btn-medium" <?php echo $href ?> <?php echo implode ( ' ' , $input_props ); ?> data-button_text="<?php echo esc_attr( $input->label ); ?>">
 					<?php echo esc_attr( $input->label ); ?>
-				</button>
+				</<?php echo $tag; ?>>
+			<?php break;
+			/**
+			* Top / Right / Bottom / Left Fields
+			*/
+			case 'trbl-fields' : ?>
+
+				<?php $fields = array(
+					'top' => __( 'Top' , 'layerswp' ),
+					'right' => __( 'Right' , 'layerswp' ),
+					'bottom' => __( 'Bottom' , 'layerswp' ),
+					'left' => __( 'Left' , 'layerswp' ),
+				); ?>
+
+				<div class="layers-row layers-input">
+					<?php foreach ( $fields as $key => $label ) { ?>
+						<div class="layers-column-flush layers-span-3">
+							<?php echo $this->input(
+								array(
+									'type' => 'number',
+									'name' => $input->name . '[' . $key . ']',
+									'id' => $input->id . '-' . $key,
+									'value' => ( isset( $input->value->$key ) ) ? $input->value->$key : NULL,
+									'class' => 'layers-hide-controls',
+								)
+							); ?>
+							<label for="<?php echo esc_attr( $input->id ) . '-' . $key; ?>"><?php echo esc_html( $label ); ?></label>
+						</div>
+					<?php } // foreach fields ?>
+				</div>
+
 			<?php break;
 			/**
 			* Default to hidden field

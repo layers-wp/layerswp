@@ -83,6 +83,21 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 		}
 
 		/**
+		* Enqueue Scripts
+		*/
+		function enqueue_scripts(){
+			wp_enqueue_script( 'jquery-masonry' ); // Wordpress Masonry
+
+			wp_enqueue_script(
+				LAYERS_THEME_SLUG . '-layers-masonry-js' ,
+				get_template_directory_uri() . '/assets/js/layers.masonry.js',
+				array(
+					'jquery'
+				)
+			); // Layers Masonry Function
+		}
+
+		/**
 		*  Widget front end display
 		*/
 		function widget( $args, $instance ) {
@@ -98,6 +113,9 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 
 			// Parse $instance
 			$widget = wp_parse_args( $instance, $instance_defaults );
+
+			// Enqueue Scipts when needed
+			$this->enqueue_scripts();
 
 			// Set the background styling
 			if( !empty( $widget['design'][ 'background' ] ) ) layers_inline_styles( '#' . $widget_id, 'background', array( 'background' => $widget['design'][ 'background' ] ) );

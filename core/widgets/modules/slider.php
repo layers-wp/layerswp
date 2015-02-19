@@ -82,6 +82,27 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 		}
 
 		/**
+		* Enqueue Scripts
+		*/
+		function enqueue_scripts(){
+
+			// Slider JS enqueue
+			wp_enqueue_script(
+				LAYERS_THEME_SLUG . '-slider-js' ,
+				get_template_directory_uri() . '/core/widgets/js/swiper.js',
+				array( 'jquery' )
+			); // Slider
+
+			// Slider CSS enqueue
+			wp_enqueue_style(
+				LAYERS_THEME_SLUG . '-slider',
+				get_template_directory_uri() . '/core/widgets/css/swiper.css',
+				array(),
+				LAYERS_VERSION
+			); // Slider
+		}
+
+		/**
 		*  Widget front end display
 		*/
 	 	function widget( $args, $instance ) {
@@ -97,6 +118,9 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 
 			// Parse $instance
 			$widget = wp_parse_args( $instance, $instance_defaults );
+
+			// Enqueue Scipts when needed
+			$this->enqueue_scripts();
 
 			// Apply the advanced widget styling
 			$this->apply_widget_advanced_styling( $widget_id, $widget ); ?>
@@ -239,21 +263,6 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 					})
 			 	</script>
 			<?php } // if !empty( $widget->slides )
-
-			// Slider JS enqueue
-			wp_enqueue_script(
-				LAYERS_THEME_SLUG . '-slider-js' ,
-				get_template_directory_uri() . '/core/widgets/js/swiper.js',
-				array( 'jquery' )
-			); // Slider
-
-			// Slider CSS enqueue
-			wp_enqueue_style(
-				LAYERS_THEME_SLUG . '-slider',
-				get_template_directory_uri() . '/core/widgets/css/swiper.css',
-				array(),
-				LAYERS_VERSION
-			); // Slider
 
 			update_option( $this->get_field_id( 'slider' ) . '_slide_ids' , $widget[ 'slide_ids' ] );
 		}

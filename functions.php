@@ -277,16 +277,6 @@ if( ! function_exists( 'layers_scripts' ) ) {
 				)
 			); // Sticky-Kit
 
-			wp_enqueue_script( 'jquery-masonry' ); // Wordpress Masonry
-
-			wp_enqueue_script(
-				LAYERS_THEME_SLUG . '-layers-masonry-js' ,
-				get_template_directory_uri() . '/assets/js/layers.masonry.js',
-				array(
-					'jquery'
-				)
-			); // Layers Masonry Function
-
 			wp_enqueue_script(
 				LAYERS_THEME_SLUG . '-framework-js' ,
 				get_template_directory_uri() . '/assets/js/layers.framework.js',
@@ -336,13 +326,6 @@ if( ! function_exists( 'layers_scripts' ) ) {
 		); // Compontents
 
 		wp_enqueue_style(
-			LAYERS_THEME_SLUG . '-woocommerce',
-			get_template_directory_uri() . '/assets/css/woocommerce.css',
-			array(),
-			LAYERS_VERSION
-		); // Woocommerce
-
-		wp_enqueue_style(
 			LAYERS_THEME_SLUG . '-responsive',
 			get_template_directory_uri() . '/assets/css/responsive.css',
 			array(),
@@ -362,6 +345,24 @@ if( ! function_exists( 'layers_scripts' ) ) {
 			array() ,
 			LAYERS_VERSION
 		);
+
+		if( !class_exists( 'WooCommerce' ) ) {
+			wp_enqueue_style(
+				LAYERS_THEME_SLUG . '-woocommerce',
+				get_template_directory_uri() . '/assets/css/woocommerce.css',
+				array(),
+				LAYERS_VERSION
+			); // Woocommerce
+		}
+
+		if( is_user_logged_in() ) {
+			wp_enqueue_style(
+				LAYERS_THEME_SLUG . '-admin',
+				get_template_directory_uri() . '/core/assets/admin.css',
+				array(),
+				LAYERS_VERSION
+			); // Admin CSS
+		}
 
 	}
 }

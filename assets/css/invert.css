@@ -1,0 +1,131 @@
+/*-
+
+Description: This is a stylesheet containing styling for element inversion
+
+Author: Obox Themes
+Author URI: http://www.oboxthemes.com/
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+*/
+
+    /*---------------------------*/
+    /*- INVERT ------------------*/
+    .invert{
+        border: none;
+        color: #fff;
+    }
+    .invert h5{
+        color: #fff;
+    }
+    .invert code{
+        background: rgba(255, 255, 255, 0.2);
+        color: #fff;
+        padding: 2px 4px;
+    }
+    .invert label,
+    .invert legend{
+        color: #fff;
+    }
+    .invert small{
+        color: #ccc;
+    }
+    .invert a{
+        color: #fff;
+    }
+    .invert a:hover{
+        color: #fff;
+    }
+
+    .invert input,
+    .invert textarea,
+    .invert select{
+        border-color: transparent;
+    }
+    .invert .input-prepend .add-on,
+    .invert .input-append .add-on{
+        border-color: transparent;
+        background: #323232;
+        color: #fff;
+    }
+
+    .invert .section-title .heading,
+    .invert.section-title .heading{
+        color: #fff;
+    }
+    .invert .section-title .excerpt,
+    .invert.section-title .excerpt{
+        color: rgba(255, 255, 255, 0.8);
+    }
+    .invert .avatar-image{
+        border-color: #fff;
+        box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.4);
+    }
+
+
+        /*-----------------------*/
+        /*- LOGO INVERT ---------*/
+        .invert .sitename{
+            color: #fff;
+        }
+        .invert .tagline{
+            color: #fff;
+            opacity: 0.9;
+        }
+
+        /*-----------------------*/
+        /*- PAGE TITLES INVERT --*/
+        .invert .heading{
+            color: #fff;
+        }
+        .invert .sub-header{
+            color: #fff;
+            opacity: 0.9;
+        }
+        .invert .excerpt{
+            color: #fff;
+            opacity: 0.9;
+        }
+
+        /*-----------------------*/
+        /*- NAV INVERT ----------*/
+        .invert .nav > li > a{
+            color: #fff;
+            opacity: 0.8;
+        }
+        .invert .nav > li > a:hover{
+            color: #fff;
+            opacity: 1;
+        }
+
+
+    /*---------------------------*/
+    /*- INVERT BLOCK ------------*/
+    .invert-block{
+        background: #323232;
+        overflow: hidden;
+        color: #ccc;
+    }
+    .thumbnail .invert-block{
+        margin: 20px -20px -20px;
+    }
+
+    /*---------------------------*/
+    /*- INVERTED MENUS ----------*/
+    .invert .nav-vertical li a:hover{
+        background: none;
+        color: #fff;
+    }
+    .invert .sub-menu{
+        background: none;
+    }
+    .invert .sub-menu li a{
+        background: none;
+    }
+    .header-site.invert .sub-menu li a{
+        background: #fff;
+        color: #000;
+    }
+    .header-site.invert .sub-menu li a:hover{
+        background-color: #323232;
+        color: #fff;
+    }

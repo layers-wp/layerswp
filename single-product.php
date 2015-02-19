@@ -1,0 +1,51 @@
+<?php
+/**
+ * The template for displaying a single product
+ *
+ * @package Layers
+ * @since Layers 1.0.0
+ */
+get_header(); ?>
+
+<?php get_template_part( 'partials/header' , 'page-title' ); ?>
+
+<section id="post-<?php the_ID(); ?>" <?php post_class( 'content-main product row' ); ?>>
+
+    <?php /**
+    * Maybe show the left sidebar
+    */
+    layers_maybe_get_sidebar( 'left-woocommerce-sidebar', 'column pull-left sidebar span-3' ); ?>
+
+    <?php if( have_posts() ) : ?>
+        <?php while( have_posts() ) : the_post(); ?>
+            <?php global $product; $_product = $product; ?>
+            <div <?php layers_center_column_class(); ?>>
+                <div class="product-top clearfix">
+                    <?php do_action( 'woocommerce_before_single_product', $post, $_product ); ?>
+
+                    <div class="row">
+                        <!-- Show the Images -->
+                        <div class="column span-6 product-images">
+                            <?php do_action( 'woocommerce_before_single_product_summary', $post, $_product ); ?>
+                        </div>
+
+                        <!-- Show the Product Summary -->
+                        <div class="column span-6 purchase-options-container">
+                            <?php do_action( 'woocommerce_single_product_summary', $post, $_product ); ?>
+                        </div>
+                    </div>
+                </div>
+
+                <?php do_action( 'woocommerce_after_single_product_summary', $post, isset($_product) ); ?>
+            </div>
+        <?php endwhile; // while has_post(); ?>
+    <?php endif; // if has_post() ?>
+
+    <?php /**
+    * Maybe show the right sidebar
+    */
+    layers_maybe_get_sidebar( 'right-woocommerce-sidebar', 'column pull-right sidebar span-3 no-gutter' ); ?>
+
+</section>
+
+<?php get_footer(); ?>

@@ -1,0 +1,116 @@
+/**
+ Customizer Specific CSS
+
+ Author: Obox Themes
+ Author URI: http://www.oboxthemes.com/
+ License: GNU General Public License v2 or later
+ License URI: http://www.gnu.org/licenses/gpl-2.0.html
+*/
+
+.layers-customizer-pages-dropdown{
+    border-bottom: 1px solid rgb(241, 241, 241);
+    padding: 8px 0 18px;
+    margin: 0 0 12px 0;
+}
+.layers-customizer-pages-dropdown label{}
+.layers-customizer-pages-dropdown select{
+    width: 100%;
+}
+
+a.customize-controls-layers-button{
+    display: none;
+    width: 45px;
+    height: 45px;
+    padding: 0 1px;
+    position: absolute;
+    top: 0;
+    left: 48px;
+    z-index: 10000;
+    border-right: 1px solid #ddd;
+    font-size: 16px;
+    color: #444;
+    text-align: center;
+    text-decoration: none;
+    line-height: 45px;
+    box-shadow: none;
+    -webkit-transition: color .1s ease-in-out, background .1s ease-in-out;
+    transition: color .1s ease-in-out, background .1s ease-in-out;
+}
+a.customize-controls-layers-button:hover{
+    background: #ddd;
+    border-color: #ccc;
+    color: #000;
+    outline: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+a.customize-controls-layers-button-dashboard{
+    font-size: 20px;
+    line-height: 50px;
+}
+a.customize-controls-layers-button-preview{
+    left: 96px;
+    font-size: 21px;
+}
+
+/*-------------------*/
+/*- TOOL TIP --------*/
+.layers-tooltip .layers-tooltip-text{
+    position: absolute;
+    top: 50px;
+    left: 50%;
+    width: 120px;
+    height: 24px;
+    box-sizing: border-box;
+    margin-left: -60px;
+    padding: 3px;
+    background: rgba(0, 0, 0, 0.7);
+    border-radius: 3px;
+    color: #FFF !important;
+    font-size: 11px !important;
+    font-weight: normal !important;
+    font-family: "Open Sans";
+    text-align: center;
+    line-height: 18px;
+    overflow: visible;
+    opacity: 0;
+    visibility: hidden;
+    transform: translate3d(0, -5px, 0);
+    transition: all 0.05s ease-in-out;
+}
+.layers-tooltip-text {
+    visibility: hidden;
+}
+.layers-tooltip:hover .layers-tooltip-text{
+    opacity: 1;
+    visibility: visible;
+    transform: translate3d(0, 0, 0);
+    transition: all 0.2s ease-in-out 0.25s;
+    z-index: 100;
+}
+.layers-tooltip .layers-tooltip-text.layers-tooltip-text-tiny{
+    width: 70px;
+}
+.layers-tooltip .layers-tooltip-text.layers-tooltip-text-large{
+    width: 136px;
+    margin-left: -68px;
+}
+
+.layers-tooltip .layers-tooltip-text:before{
+    border: solid;
+    border-color: rgba(0, 0, 0, 0.7) rgba(0, 0, 0, 0);
+    border-width: 0 6px 6px 6px;
+    content: "";
+    position: absolute;
+    left: 50%;
+    margin-left: -6px;
+    top: -6px;
+    z-index: 99;
+    transition: all 0.05s ease-in-out;
+}
+.layers-tooltip.layers-tooltip-left .layers-tooltip-text{
+    margin-left: -20px;
+}
+.layers-tooltip.layers-tooltip-left .layers-tooltip-text:before{
+    left: 20px;
+}

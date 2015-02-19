@@ -289,6 +289,14 @@ if( ! function_exists( 'layers_scripts' ) ) {
 				'jquery'
 			)
 		); // Layers Masonry Function
+		
+		wp_enqueue_script(
+			LAYERS_THEME_SLUG . '-fit-vids-js' ,
+			get_template_directory_uri() . '/assets/js/jquery.fitvids.js',
+			array(
+				'jquery'
+			)
+		); // Fitvids
 
 		wp_enqueue_script(
 			LAYERS_THEME_SLUG . '-imagesloaded-js' ,

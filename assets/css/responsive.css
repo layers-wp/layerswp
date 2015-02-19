@@ -467,6 +467,7 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
     .header-inline .inline-site-logo{
     	width: 15%;
     	margin: 0 2%;
+        z-index: 1;
     }
 
 	/*---------------------------*/

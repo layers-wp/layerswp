@@ -119,9 +119,9 @@ We welcome any contributions to the core, or theme and extension submissions!
 *For development questions or inquiries related to commercial sale of child themes or extensions, email layers@obox.co.za
 
 
-== Changelog ==
+## Changelog ==
 
-= 1.0.1 ( 19 February 2015 ) =
+* 1.0.1 ( 19 February 2015 ) *
 
 * Removed un-needed scripts from loading on the front-end
 * Removed un-used images from the /assets/css/images folder

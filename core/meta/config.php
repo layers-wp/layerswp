@@ -4,7 +4,7 @@
  * This file is used to define the post meta panels used the layers theme for all post types
  *
  * @package Layers
- * @since Layers 1.0
+ * @since Layers 1.0.0
  */
 
 class Layers_Meta_Config {

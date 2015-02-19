@@ -4,7 +4,7 @@
  * This file is used to setup the defaults used in the Layers customizer
  *
  * @package Layers
- * @since Layers 1.0
+ * @since Layers 1.0.0
  */
 
 class Layers_Customizer_Defaults {

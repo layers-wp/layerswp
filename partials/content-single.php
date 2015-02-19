@@ -3,7 +3,7 @@
  * This partial is used for displaying single post (or page) content
  *
  * @package Layers
- * @since Layers 1.0
+ * @since Layers 1.0.0
  */
 
 global $post, $layers_post_meta_to_display, $layers_page_title_shown; ?>

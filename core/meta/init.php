@@ -4,7 +4,7 @@
  * This file is the source of the Custom Meta in the Layers theme
  *
  * @package Layers
- * @since Layers 1.0
+ * @since Layers 1.0.0
  */
 
 class Layers_Custom_Meta {

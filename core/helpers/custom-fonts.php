@@ -4,7 +4,7 @@
  * This file is used to define and register Google (and in future all external) font libraries and options
  *
  * @package Layers
- * @since Layers 1.0
+ * @since Layers 1.0.0
  */
 
 

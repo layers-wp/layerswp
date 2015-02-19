@@ -4,7 +4,7 @@
  * This file is the source of the Widget Design Pop out  in Layers.
  *
  * @package Layers
- * @since Layers 1.0
+ * @since Layers 1.0.0
  */
 
 class Layers_Design_Controller {

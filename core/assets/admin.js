@@ -4,7 +4,7 @@
  * This file contains global admin functions
  *
  * @package Layers
- * @since Layers 1.0
+ * @since Layers 1.0.0
  *
  * Contents
  * 1 - Enqueue Initialisation Helper

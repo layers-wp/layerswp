@@ -4,7 +4,7 @@
  * This file is used to run Layers / Obox API Calls
  *
  * @package Layers
- * @since Layers 1.0
+ * @since Layers 1.0.0
  */
 class Layers_API {
 

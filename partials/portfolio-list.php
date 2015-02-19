@@ -3,7 +3,7 @@
  * This partial is used to display portfolio list content
  *
  * @package Layers
- * @since Layers 1.0
+ * @since Layers 1.0.0
  */
 
 global $post; ?>

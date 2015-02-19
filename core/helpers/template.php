@@ -4,7 +4,7 @@
  * This file is used to display general template elements, such as breadcrumbs, site-wide pagination,  etc.
  *
  * @package Layers
- * @since Layers 1.0
+ * @since Layers 1.0.0
  */
 
 /**

@@ -128,9 +128,9 @@ if( ! function_exists( 'layers_setup' ) ) {
 		add_theme_support( 'post-thumbnails' );
 
 		// Set Large Image Sizes
-		add_image_size( 'layers-square-large', 960, 960, true );
-		add_image_size( 'layers-portrait-large', 720, 960, true );
-		add_image_size( 'layers-landscape-large', 960, 720, true );
+		add_image_size( 'layers-square-large', 1000, 1000, true );
+		add_image_size( 'layers-portrait-large', 720, 1000, true );
+		add_image_size( 'layers-landscape-large', 1000, 720, true );
 
 		// Set Medium Image Sizes
 		add_image_size( 'layers-square-medium', 480, 480, true );

@@ -4,7 +4,7 @@
  * This file is used to modify any WooCommerce HTML and or CSS classes.
  *
  * @package Layers
- * @since Layers 1.0
+ * @since Layers 1.0.0
  */
 
 

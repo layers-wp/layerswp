@@ -4,7 +4,7 @@
 * This file contains functions relating to the Content Widget
  *
  * @package Layers
- * @since Layers 1.0
+ * @since Layers 1.0.0
  * Contents
  * 1 - Sortable items
  * 2 - Column Removal & Additions

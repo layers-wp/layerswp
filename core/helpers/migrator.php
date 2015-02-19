@@ -4,7 +4,7 @@
  * This file contains the widget Export/Import functionality in Layers
  *
  * @package Layers
- * @since Layers 1.0
+ * @since Layers 1.0.0
  */
 
 class Layers_Widget_Migrator {

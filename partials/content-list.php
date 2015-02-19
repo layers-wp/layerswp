@@ -3,7 +3,7 @@
  * This template is used for displaying posts in post lists
  *
  * @package Layers
- * @since Layers 1.0
+ * @since Layers 1.0.0
  */
 
 global $post, $layers_post_meta_to_display; ?>

@@ -4,7 +4,7 @@
  * This file is used for all in-theme post types that need to be registered
  *
  * @package Layers
- * @since Layers 1.0
+ * @since Layers 1.0.0
  */
 class Layers_Post_Types {
 

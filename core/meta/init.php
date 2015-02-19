@@ -4,7 +4,7 @@
  * This file is the source of the Custom Meta in the Layers theme
  *
  * @package Layers
- * @since Layers 1.0
+ * @since Layers 1.0.0
  */
 
 class Layers_Custom_Meta {
@@ -151,8 +151,8 @@ class Layers_Custom_Meta {
 			admin_url() . 'customize.php?url=' . esc_url( get_the_permalink() ), // %2
 			( true == $is_builder_used ? '' : 'layers-hide' ), // %3
 			( isset( $post->ID ) ? 'builder-button-' . $post->ID : 'builder-button-' . rand(0,1) ), // %4,
-			__( 'You can drag and drop widgets, edit content and tweak the design. Click the button below to see your page come to life.', LAYERS_THEME_SLUG ), // %5
-			__( 'Edit Your Page', LAYERS_THEME_SLUG ), // %6
+			__( 'You can drag and drop widgets, edit content and tweak the design. Click the button below to see your page come to life.' , 'layerswp' ), // %5
+			__( 'Edit Your Page' , 'layerswp' ), // %6
 			get_template_directory_uri(), // %7,
 			get_the_ID(), // %8,
 			$post->post_name // %9,
@@ -173,7 +173,7 @@ class Layers_Custom_Meta {
 
 		// Add our button
 		if ( $can_edit_post && 'builder.php' == get_page_template_slug( $post->ID ) ) {
-			$actions['builder'] = '<a href="' . admin_url( 'customize.php?url=' . esc_url( get_the_permalink() ) ) . '" title="' . esc_attr( __( 'Edit Layout', LAYERS_THEME_SLUG ) ) . '">' . __( 'Edit Layout' ) . '</a>';
+			$actions['builder'] = '<a href="' . admin_url( 'customize.php?url=' . esc_url( get_the_permalink() ) ) . '" title="' . esc_attr( __( 'Edit Layout' , 'layerswp' ) ) . '">' . __( 'Edit Layout' ) . '</a>';
 		}
 
 		return $actions;
@@ -198,8 +198,8 @@ class Layers_Custom_Meta {
 									'edge' => 'right', // bottom / top/ right / left
 									'align' => 'left' // left / center / right
 								),
-					'title'		=> __( 'Build Your Page' , LAYERS_THEME_SLUG ),
-					'content'	=> __( 'Use the' . LAYERS_THEME_TITLE . ' page builder to build a beautiful, dynamic page.' , LAYERS_THEME_SLUG ),
+					'title'		=> __( 'Build Your Page' , 'layerswp' ),
+					'content'	=> __( 'Use the' . LAYERS_THEME_TITLE . ' page builder to build a beautiful, dynamic page.' , 'layerswp' ),
 				);
 
 		return $pointers;

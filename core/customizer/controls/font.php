@@ -4,7 +4,7 @@
  * This file is used to register and display the custom Layers Font Image
  *
  * @package Layers
- * @since Layers 1.0
+ * @since Layers 1.0.0
  */
 
 if( !class_exists( 'Layers_Customize_Font_Control' ) ) {
@@ -48,7 +48,7 @@ if( !class_exists( 'Layers_Customize_Font_Control' ) ) {
 				</div>
 
 				<div class="description customize-control-description" data-base-url="https://www.google.com/fonts/specimen/">
-					<em><?php echo sprintf( __( 'Click <a href="%1s" target="_blank">here</a> to see this font on Google Fonts.</em>' , LAYERS_THEME_SLUG ), 'https://www.google.com/fonts/specimen/' . $this->value() ); ?></div>
+					<em><?php echo sprintf( __( 'Click <a href="%1s" target="_blank">here</a> to see this font on Google Fonts.</em>' , 'layerswp' ), 'https://www.google.com/fonts/specimen/' . $this->value() ); ?></div>
 				</div>
 			</div>
 			<?php

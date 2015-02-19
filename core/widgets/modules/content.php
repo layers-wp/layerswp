@@ -4,7 +4,7 @@
  * This file is used to register and display the Layers - Content widget.
  *
  * @package Layers
- * @since Layers 1.0
+ * @since Layers 1.0.0
  */
 if( !class_exists( 'Layers_Content_Widget' ) ) {
 	class Layers_Content_Widget extends Layers_Widget {
@@ -23,7 +23,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 		 	* @param  	varchar    		$taxonomy    		(optional) Taxonomy slug for use as an ID/classname
 		 	* @param  	array 			$checkboxes    	(optional) Array of checkbox names to be saved in this widget. Don't forget these please!
 		 	*/
-			$this->widget_title = __( 'Content', LAYERS_THEME_SLUG );
+			$this->widget_title = __( 'Content' , 'layerswp' );
 			$this->widget_id = 'column';
 			$this->post_type = '';
 			$this->taxonomy = '';
@@ -123,14 +123,18 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 					<div class="row <?php echo $this->get_widget_layout_class( $widget ); ?> <?php echo $this->check_and_return( $widget , 'design', 'liststyle' ); ?>">
 						<?php // Set total width so that we can apply .last to the final container
 						$total_width = 0; ?>
-						<?php foreach ( $widget['columns'] as $key => $column) {
-							// Set column link
-							$link = $this->check_and_return( $column , 'link' );
+						<?php foreach ( explode( ',', $widget[ 'column_ids' ] ) as $column_key ) {
+
+							// Make sure we've got a column going on here
+							if( !isset( $widget[ 'columns' ][ $column_key ] ) ) continue;
+
+							// Setup the relevant slide
+							$column = $widget[ 'columns' ][ $column_key ];
 
 							// Set the background styling
-							if( !empty( $column['design'][ 'background' ] ) ) layers_inline_styles( '#' . $widget_id . '-' . $key , 'background', array( 'background' => $column['design'][ 'background' ] ) );
-							if( !empty( $column['design']['fonts'][ 'color' ] ) ) layers_inline_styles( '#' . $widget_id . '-' . $key , 'color', array( 'selectors' => array( 'h5.heading a', 'h5.heading' , 'div.excerpt' , 'div.excerpt p' ) , 'color' => $column['design']['fonts'][ 'color' ] ) );
-							if( !empty( $column['design']['fonts'][ 'shadow' ] ) ) layers_inline_styles( '#' . $widget_id . '-' . $key , 'text-shadow', array( 'selectors' => array( 'h5.heading a', 'h5.heading' , 'div.excerpt' , 'div.excerpt p' )  , 'text-shadow' => $column['design']['fonts'][ 'shadow' ] ) );
+							if( !empty( $column['design'][ 'background' ] ) ) layers_inline_styles( '#' . $widget_id . '-' . $column_key , 'background', array( 'background' => $column['design'][ 'background' ] ) );
+							if( !empty( $column['design']['fonts'][ 'color' ] ) ) layers_inline_styles( '#' . $widget_id . '-' . $column_key , 'color', array( 'selectors' => array( 'h5.heading a', 'h5.heading' , 'div.excerpt' , 'div.excerpt p' ) , 'color' => $column['design']['fonts'][ 'color' ] ) );
+							if( !empty( $column['design']['fonts'][ 'shadow' ] ) ) layers_inline_styles( '#' . $widget_id . '-' . $column_key , 'text-shadow', array( 'selectors' => array( 'h5.heading a', 'h5.heading' , 'div.excerpt' , 'div.excerpt p' )  , 'text-shadow' => $column['design']['fonts'][ 'shadow' ] ) );
 
 							if( !isset( $column[ 'width' ] ) ) $column[ 'width' ] = $this->column_defaults[ 'width' ];
 							// Add the correct span class
@@ -178,6 +182,8 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 								$featurevideo
 							);
 
+							// Set the column link
+							$link = $this->check_and_return( $column , 'link' );
 
 							// Set Column CSS Classes
 							$column_class = array();
@@ -206,7 +212,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 							$column_inner_class[] = $this->check_and_return( $column, 'design', 'fonts' , 'size' );
 							$column_inner_class = implode( ' ', $column_inner_class ); ?>
 
-							<div id="<?php echo $widget_id; ?>-<?php echo $key; ?>" class="<?php echo $column_class; ?>">
+							<div id="<?php echo $widget_id; ?>-<?php echo $column_key; ?>" class="<?php echo $column_class; ?>">
 								<div class="<?php echo $column_inner_class; ?>">
 									<?php if( NULL != $media ) { ?>
 										<div class="media-image <?php echo ( ( isset( $column['design'][ 'imageratios' ] ) && 'image-round' == $column['design'][ 'imageratios' ] ) ? 'image-rounded' : '' ); ?>">
@@ -220,7 +226,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 										<div class="media-body <?php echo ( isset( $column['design']['fonts'][ 'align' ] ) ) ? $column['design']['fonts'][ 'align' ] : ''; ?>">
 											<?php if( $this->check_and_return( $column, 'title') ) { ?>
 												<h5 class="heading">
-													<?php if( NULL != $link && ! ( isset( $column['link'] ) && $this->check_and_return( $column , 'link_text' ) ) ) { ?><a href="<?php echo $link; ?>"><?php } ?>
+													<?php if( NULL != $link && ! ( isset( $column['link'] ) && $this->check_and_return( $column , 'link_text' ) ) ) { ?><a href="<?php echo $column['link']; ?>"><?php } ?>
 														<?php echo $column['title']; ?>
 													<?php if( NULL != $link && ! ( isset( $column['link'] ) && $this->check_and_return( $column , 'link_text' ) ) ) { ?></a><?php } ?>
 												</h5>
@@ -316,13 +322,13 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 								'id' =>  $this->get_field_name( 'design-liststyle' ),
 								'value' => ( isset( $design[ 'liststyle' ] ) ) ? $design[ 'liststyle' ] : NULL,
 								'options' => array(
-									'list-grid' => __( 'Grid' , LAYERS_THEME_SLUG ),
-									'list-masonry' => __( 'Masonry' , LAYERS_THEME_SLUG )
+									'list-grid' => __( 'Grid' , 'layerswp' ),
+									'list-masonry' => __( 'Masonry' , 'layerswp' )
 								)
 							),
 							'gutter' => array(
 								'type' => 'checkbox',
-								'label' => __( 'Gutter' , LAYERS_THEME_SLUG ),
+								'label' => __( 'Gutter' , 'layerswp' ),
 								'name' => $this->get_field_name( 'design' ) . '[gutter]' ,
 								'id' =>  $this->get_field_name( 'design-gutter' ),
 								'value' => ( isset( $design['gutter'] ) ) ? $design['gutter'] : NULL
@@ -344,7 +350,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 								'type' => 'text',
 								'name' => $this->get_field_name( 'title' ) ,
 								'id' => $this->get_field_id( 'title' ) ,
-								'placeholder' => __( 'Enter title here', LAYERS_THEME_SLUG ),
+								'placeholder' => __( 'Enter title here' , 'layerswp' ),
 								'value' => ( isset( $title ) ) ? $title : NULL ,
 								'class' => 'layers-text layers-large'
 							)
@@ -356,7 +362,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 								'type' => 'textarea',
 								'name' => $this->get_field_name( 'excerpt' ) ,
 								'id' => $this->get_field_id( 'excerpt' ) ,
-								'placeholder' =>  __( 'Short Excerpt', LAYERS_THEME_SLUG ),
+								'placeholder' =>  __( 'Short Excerpt' , 'layerswp' ),
 								'value' => ( isset( $excerpt ) ) ? $excerpt : NULL ,
 								'class' => 'layers-textarea layers-large'
 							)
@@ -387,7 +393,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 							} ?>
 						<?php }?>
 					</ul>
-					<button class="layers-button btn-full layers-add-widget-column add-new-widget" data-number="<?php echo esc_attr( $this->number ); ?>"><?php _e( 'Add New Column' , LAYERS_THEME_SLUG ) ; ?></button>
+					<button class="layers-button btn-full layers-add-widget-column add-new-widget" data-number="<?php echo esc_attr( $this->number ); ?>"><?php _e( 'Add New Column' , 'layerswp' ) ; ?></button>
 				</section>
 			</div>
 
@@ -420,7 +426,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 				<li class="layers-accordion-item" data-guid="<?php echo esc_attr( $column_guid ); ?>">
 					<a class="layers-accordion-title">
 						<span>
-							<?php _e( 'Column' , LAYERS_THEME_SLUG ); ?>
+							<?php _e( 'Column' , 'layerswp' ); ?>
 							<span class="layers-detail">
 								<?php echo ( isset( $title ) ? ': ' . substr( stripslashes( strip_tags($title ) ), 0 , 50 ) : NULL ); ?>
 								<?php echo ( isset( $title ) && strlen( $title ) > 50 ? '...' : NULL ); ?>
@@ -451,21 +457,21 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 									'elements' => array(
 										'layout' => array(
 											'type' => 'select',
-											'label' => __( '', LAYERS_THEME_SLUG ),
+											'label' => __( '' , 'layerswp' ),
 											'name' => 'widget-' . $widget_details->id_base . '[' . $widget_details->number . '][columns][' . $column_guid . '][width]' ,
 											'id' => 'widget-' . $widget_details->id_base . '-' . $widget_details->number . '-' . $column_guid . '-width' ,
 											'value' => ( isset( $width ) ) ? $width : NULL,
 											'options' => array(
-												'1' => __( '1 of 12 columns' , LAYERS_THEME_SLUG ),
-												'2' => __( '2 of 12 columns' , LAYERS_THEME_SLUG ),
-												'3' => __( '3 of 12 columns' , LAYERS_THEME_SLUG ),
-												'4' => __( '4 of 12 columns' , LAYERS_THEME_SLUG ),
-												'5' => __( '5 of 12 columns' , LAYERS_THEME_SLUG ),
-												'6' => __( '6 of 12 columns' , LAYERS_THEME_SLUG ),
-												'8' => __( '8 of 12 columns' , LAYERS_THEME_SLUG ),
-												'9' => __( '9 of 12 columns' , LAYERS_THEME_SLUG ),
-												'10' => __( '10 of 12 columns' , LAYERS_THEME_SLUG ),
-												'12' => __( '12 of 12 columns' , LAYERS_THEME_SLUG )
+												'1' => __( '1 of 12 columns' , 'layerswp' ),
+												'2' => __( '2 of 12 columns' , 'layerswp' ),
+												'3' => __( '3 of 12 columns' , 'layerswp' ),
+												'4' => __( '4 of 12 columns' , 'layerswp' ),
+												'5' => __( '5 of 12 columns' , 'layerswp' ),
+												'6' => __( '6 of 12 columns' , 'layerswp' ),
+												'8' => __( '8 of 12 columns' , 'layerswp' ),
+												'9' => __( '9 of 12 columns' , 'layerswp' ),
+												'10' => __( '10 of 12 columns' , 'layerswp' ),
+												'12' => __( '12 of 12 columns' , 'layerswp' )
 											)
 										)
 									)
@@ -475,26 +481,26 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 
 						<div class="layers-row">
 							<p class="layers-form-item">
-								<label for="<?php echo $this->get_custom_field_id( $widget_details, 'columns',  $column_guid, 'title' ); ?>"><?php _e( 'Title' , LAYERS_THEME_SLUG ); ?></label>
+								<label for="<?php echo $this->get_custom_field_id( $widget_details, 'columns',  $column_guid, 'title' ); ?>"><?php _e( 'Title' , 'layerswp' ); ?></label>
 								<?php echo $this->form_elements()->input(
 									array(
 										'type' => 'text',
 										'name' => $this->get_custom_field_name( $widget_details, 'columns',  $column_guid, 'title' ),
 										'id' => $this->get_custom_field_id( $widget_details, 'columns',  $column_guid, 'title' ),
-										'placeholder' => __( 'Enter title here', LAYERS_THEME_SLUG ),
+										'placeholder' => __( 'Enter title here' , 'layerswp' ),
 										'value' => ( isset( $title ) ) ? $title : NULL ,
 										'class' => 'layers-text'
 									)
 								); ?>
 							</p>
 							<p class="layers-form-item">
-								<label for="<?php echo $this->get_custom_field_id( $widget_details, 'columns',  $column_guid, 'excerpt' ); ?>"><?php _e( 'Excerpt' , LAYERS_THEME_SLUG ); ?></label>
+								<label for="<?php echo $this->get_custom_field_id( $widget_details, 'columns',  $column_guid, 'excerpt' ); ?>"><?php _e( 'Excerpt' , 'layerswp' ); ?></label>
 								<?php echo $this->form_elements()->input(
 									array(
 										'type' => 'textarea',
 										'name' => $this->get_custom_field_name( $widget_details, 'columns',  $column_guid, 'excerpt' ),
 										'id' => $this->get_custom_field_id( $widget_details, 'columns',  $column_guid, 'excerpt' ),
-										'placeholder' => __( 'Short Excerpt', LAYERS_THEME_SLUG ),
+										'placeholder' => __( 'Short Excerpt' , 'layerswp' ),
 										'value' => ( isset( $excerpt ) ) ? $excerpt : NULL ,
 										'class' => 'layers-form-item layers-textarea',
 										'rows' => 6
@@ -503,26 +509,26 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 							</p>
 							<div class="layers-row">
 								<p class="layers-form-item layers-column layers-span-6">
-									<label for="<?php echo $this->get_custom_field_id( $widget_details, 'columns',  $column_guid, 'link_text' ); ?>"><?php _e( 'Button Link' , LAYERS_THEME_SLUG ); ?></label>
+									<label for="<?php echo $this->get_custom_field_id( $widget_details, 'columns',  $column_guid, 'link_text' ); ?>"><?php _e( 'Button Link' , 'layerswp' ); ?></label>
 									<?php echo $this->form_elements()->input(
 										array(
 											'type' => 'text',
 											'name' => $this->get_custom_field_name( $widget_details, 'columns',  $column_guid, 'link' ),
 											'id' => $this->get_custom_field_id( $widget_details, 'columns',  $column_guid, 'link' ),
-											'placeholder' => __( 'http://', LAYERS_THEME_SLUG ),
+											'placeholder' => __( 'http://' , 'layerswp' ),
 											'value' => ( isset( $link ) ) ? $link : NULL ,
 											'class' => 'layers-text',
 										)
 									); ?>
 								</p>
 								<p class="layers-form-item layers-column layers-span-6">
-									<label for="<?php echo $this->get_custom_field_id( $widget_details, 'columns',  $column_guid, 'link_text' ); ?>"><?php _e( 'Button Text' , LAYERS_THEME_SLUG ); ?></label>
+									<label for="<?php echo $this->get_custom_field_id( $widget_details, 'columns',  $column_guid, 'link_text' ); ?>"><?php _e( 'Button Text' , 'layerswp' ); ?></label>
 									<?php echo $this->form_elements()->input(
 										array(
 											'type' => 'text',
 											'name' => $this->get_custom_field_name( $widget_details, 'columns',  $column_guid, 'link_text' ),
 											'id' => $this->get_custom_field_id( $widget_details, 'columns',  $column_guid, 'link_text' ),
-											'placeholder' => __( 'e.g. "Read More"' , LAYERS_THEME_SLUG ),
+											'placeholder' => __( 'e.g. "Read More"' , 'layerswp' ),
 											'value' => ( isset( $link_text ) ) ? $link_text : NULL ,
 										)
 									); ?>

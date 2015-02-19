@@ -4,7 +4,7 @@
 * This file contains global widget functions
  *
  * @package Layers
- * @since Layers 1.0
+ * @since Layers 1.0.0
  * Contents
  * 1 - Page Builder Macro
  * 2 - Customizer UI enhancements
@@ -96,11 +96,11 @@ jQuery(document).ready(function($) {
 	// Move the Layers custom buttons to correct place - no hook available.
 	$('#customize-header-actions').append( $('.customize-controls-layers-button-dashboard, .customize-controls-layers-button-preview') );
 	$('.customize-controls-layers-button-dashboard, .customize-controls-layers-button-preview').css({ 'display':'block', 'visibility':'visible' });
-	
+
 	// Move the Layers tooltips to correct place.
 	$('.customize-controls-close').addClass('layers-tooltip layers-tooltip-left').prepend( $('.layers-tooltip-text-close') );
 	$('.control-panel-back').addClass('layers-tooltip layers-tooltip-left').prepend( $('.layers-tooltip-text-back') );
-	
+
 	/**
 	 * 3 - Better history states in customizer
 	 *

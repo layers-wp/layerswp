@@ -4,7 +4,7 @@
  * This file contains all onboarding functions
  *
  * @package Layers
- * @since Layers 1.0
+ * @since Layers 1.0.0
  *
  * Contents
  *
@@ -159,14 +159,22 @@ jQuery(function($) {
     function layers_next_onboarding_slide(){
         $current = $( '#layers-onboard-anchors a.dot-active').index();
         $next = (+$current+1);
-        $max = $( '.onboard-nav-dots a' ).length;
-
-        if( $next == $max ) return;
 
         layers_change_onboarding_slide( $next );
     }
 
     function layers_change_onboarding_slide( $i ){
+
+        $max = $( '.onboard-nav-dots a' ).length-1;
+
+        if( $i == $max ) {
+            $('#layers-onboard-skip').fadeOut();
+        } else {
+            $('#layers-onboard-skip').fadeIn();
+        }
+
+        if( $i > $max ) return;
+
         // Update anchor classes
         $( '#layers-onboard-anchors a').eq( $i ).addClass( 'dot-active' ).siblings().removeClass( 'dot-active' );
 

@@ -1,6 +1,6 @@
 
 			<div id="back-to-top">
-				<a href="#top"><?php _e( 'Back to top' , LAYERS_THEME_SLUG ); ?></a>
+				<a href="#top"><?php _e( 'Back to top' , 'layerswp' ); ?></a>
 			</div> <!-- back-to-top -->
 
 		</section>
@@ -46,9 +46,9 @@
 			<?php do_action( 'layers_after_footer_inner' ); ?>
 
 			<a class="created-using-layers" tooltip="Created using Layers" href="http://layerswp.com/">
-				<span><?php _e( 'Created using Layers' , LAYERS_THEME_SLUG ); ?></span>
+				<span><?php _e( 'Created using Layers' , 'layerswp' ); ?></span>
 			</a>
-			
+
 		</footer><!-- END / FOOTER -->
 		<?php do_action( 'layers_after_footer' ); ?>
 

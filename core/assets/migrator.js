@@ -4,7 +4,7 @@
  * This file contains all settings related to exporting and importing Layers Pages.
  *
  * @package Layers
- * @since Layers 1.0
+ * @since Layers 1.0.0
  *
  * Contents
  * 1 - Select a Layout Step
@@ -127,6 +127,8 @@ jQuery(document).ready(function($){
 
             // We set multiple to false so only get one image from the uploader
             attachment = file_frame.state().get('selection').first().toJSON();
+
+console.log( attachment );
 
             // Read the file JSON
             $.getJSON( attachment.url, function( import_data ){

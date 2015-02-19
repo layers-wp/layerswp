@@ -4,7 +4,7 @@
  * This file is used to display post elements, from meta to media, to galleries, to in-post pagination, all post-related functions sit in this file.
  *
  * @package Layers
- * @since Layers 1.0
+ * @since Layers 1.0.0
  */
 
 
@@ -55,7 +55,7 @@ if( !function_exists( 'layers_post_meta' ) ) {
                     foreach ( $the_categories as $category ){
                         $categories[] = ' <a href="'.get_category_link( $category->term_id ).'" title="' . esc_attr( sprintf( __( "View all posts in %s", LAYERS_THEME_SLUG ), $category->name ) ) . '">'.$category->name.'</a>';
                     }
-                    $meta_to_display[] = '<span class="meta-item meta-category"><i class="l-folder-open-o"></i> ' . implode( __( ', ', LAYERS_THEME_SLUG ), $categories ) . '</span>';
+                    $meta_to_display[] = '<span class="meta-item meta-category"><i class="l-folder-open-o"></i> ' . implode( __( ', ' , 'layerswp' ), $categories ) . '</span>';
                     break;
                 case 'tags' :
                     $tags = '';
@@ -74,7 +74,7 @@ if( !function_exists( 'layers_post_meta' ) ) {
                     foreach ( $the_tags as $tag ){
                         $tags[] = ' <a href="'.get_category_link( $tag->term_id ).'" title="' . esc_attr( sprintf( __( "View all posts tagged %s", LAYERS_THEME_SLUG ), $tag->name ) ) . '">'.$tag->name.'</a>';
                     }
-                    $meta_to_display[] = '<span class="meta-item meta-tags"><i class="l-tags"></i> ' . implode( __( ', ', LAYERS_THEME_SLUG ), $tags ) . '</span>';
+                    $meta_to_display[] = '<span class="meta-item meta-tags"><i class="l-tags"></i> ' . implode( __( ', ' , 'layerswp' ), $tags ) . '</span>';
                     break;
                 break;
             } // switch meta
@@ -95,7 +95,7 @@ if( !function_exists( 'layers_post_meta' ) ) {
  */
 if ( ! function_exists( 'layers_get_the_author' ) ) {
     function layers_get_the_author() {
-        return sprintf( __( '<a href="%1$s" title="%2$s" rel="author">%3$s</a>', LAYERS_THEME_SLUG ),
+        return sprintf( __( '<a href="%1$s" title="%2$s" rel="author">%3$s</a>' , 'layerswp' ),
             esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ),
             esc_attr( sprintf( __( 'View all posts by %s', 'the-writer' ), get_the_author() ) ),
             esc_attr( get_the_author() )
@@ -120,19 +120,19 @@ if( !function_exists( 'layers_comment' ) ) {
         <?php } ?>
         <div <?php comment_class( 'content push-bottom well' ); ?> id="comment-<?php comment_ID(); ?>">
             <div class="avatar push-bottom clearfix">
-                <?php edit_comment_link(__('(Edit)', LAYERS_THEME_SLUG),'<small class="pull-right">','</small>') ?>
+                <?php edit_comment_link(__('(Edit)' , 'layerswp' ),'<small class="pull-right">','</small>') ?>
                 <a class="avatar-image" href="">
                     <?php echo get_avatar($comment, $size = '70'); ?>
                 </a>
                 <div class="avatar-body">
                     <h5 class="avatar-name"><?php echo get_comment_author_link(); ?></h5>
-                    <small><?php printf(__('%1$s at %2$s', LAYERS_THEME_SLUG), get_comment_date(),  get_comment_time()) ?></small>
+                    <small><?php printf(__('%1$s at %2$s' , 'layerswp' ), get_comment_date(),  get_comment_time()) ?></small>
                 </div>
             </div>
 
             <div class="copy small">
                 <?php if ($comment->comment_approved == '0') : ?>
-                    <em><?php _e('Your comment is awaiting moderation.', LAYERS_THEME_SLUG) ?></em>
+                    <em><?php _e('Your comment is awaiting moderation.' , 'layerswp' ) ?></em>
                     <br />
                 <?php endif; ?>
                 <?php comment_text() ?>
@@ -153,7 +153,7 @@ if( !function_exists( 'layers_backup_builder_pages' ) ) {
 
     function layers_backup_builder_pages(){
 
-        if( !isset( $_POST[ 'pageid' ] ) ) wp_die( __( 'You shall not pass' , LAYERS_THEME_SLUG ) );
+        if( !isset( $_POST[ 'pageid' ] ) ) wp_die( __( 'You shall not pass' , 'layerswp' ) );
 
         // Get the post data
         $page_id = $_POST[ 'pageid' ];
@@ -344,7 +344,7 @@ if( ! function_exists( 'layers_add_builder_edit_button' ) ) {
             $current_url = ( is_ssl() ? 'https://' : 'http://' ) . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
             $args = array(
                 'id'    => 'my_page',
-                'title' => '<span class="ab-icon"></span><span class="ab-label">' . __( 'Edit Layout' , LAYERS_THEME_SLUG ) . '</span>',
+                'title' => '<span class="ab-icon"></span><span class="ab-label">' . __( 'Edit Layout' , 'layerswp' ) . '</span>',
                 'href'  => add_query_arg( 'url', urlencode( $current_url ), wp_customize_url() ),
                 'meta'  => array( 'class' => 'my-toolbar-page' )
             );

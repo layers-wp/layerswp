@@ -4,7 +4,7 @@
  * This file is the source of the Customizer functionality in Layers.
  *
  * @package Layers
- * @since Layers 1.0
+ * @since Layers 1.0.0
  */
 
 class Layers_Customizer {
@@ -56,8 +56,8 @@ class Layers_Customizer {
 			$wp_customize->add_panel(
 				'widgets', array(
 					'priority' => 0,
-					'title' => __('Edit Layout', LAYERS_THEME_SLUG ),
-					'description' => $this->render_builder_page_dropdown() . __('Use this area to add widgets to your page, use the (Layers) widgets for the Body section.', LAYERS_THEME_SLUG ),
+					'title' => __('Edit Layout' , 'layerswp' ),
+					'description' => $this->render_builder_page_dropdown() . __('Use this area to add widgets to your page, use the (Layers) widgets for the Body section.' , 'layerswp' ),
 				)
 			);
 
@@ -135,7 +135,7 @@ class Layers_Customizer {
 			ob_start(); ?>
 			<div class="layers-customizer-pages-dropdown">
 				<select>
-					<option value="init"><?php _e( 'Builder Pages:', LAYERS_THEME_SLUG ) ?></option>
+					<option value="init"><?php _e( 'Builder Pages:' , 'layerswp' ) ?></option>
 					<?php foreach( $layers_pages as $page ) { ?>
 						<?php // Page URL
 						$edit_page_url = get_permalink( $page->ID ); ?>
@@ -155,17 +155,17 @@ class Layers_Customizer {
 	function render_actions_buttons() { ?>
 
 			<a class="customize-controls-layers-button customize-controls-layers-button-dashboard dashicons dashicons-plus layers-tooltip" href="<?php echo admin_url( 'admin.php?page=layers-add-new-page' ); ?>">
-				<span class="layers-tooltip-text layers-tooltip-text-large"><?php _e( 'Add new Layers page', LAYERS_THEME_SLUG ) ?></span>
+				<span class="layers-tooltip-text layers-tooltip-text-large"><?php _e( 'Add new Layers page' , 'layerswp' ) ?></span>
 			</a>
 			<a class="customize-controls-layers-button customize-controls-layers-button-preview icon-display layers-tooltip" href="#" target="_blank">
-				<span class="layers-tooltip-text"><?php _e( 'Preview this page', LAYERS_THEME_SLUG ) ?></span>
+				<span class="layers-tooltip-text"><?php _e( 'Preview this page' , 'layerswp' ) ?></span>
 			</a>
 
 			<span class="layers-tooltip-text layers-tooltip-text-close layers-tooltip-text-tiny">
-				<?php _e( 'Close', LAYERS_THEME_SLUG ) ?>
+				<?php _e( 'Close' , 'layerswp' ) ?>
 			</span>
 			<span class="layers-tooltip-text layers-tooltip-text-back">
-				<?php _e( 'Back to controls', LAYERS_THEME_SLUG ) ?>
+				<?php _e( 'Back to controls' , 'layerswp' ) ?>
 			</span>
 
 		<?php

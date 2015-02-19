@@ -4,7 +4,7 @@
  * This file is used to fetch, using Ajax, and display different parts of the layers widgets
  *
  * @package Layers
- * @since Layers 1.0
+ * @since Layers 1.0.0
  */
 
 if( !class_exists( 'Layers_Widget_Ajax' ) ) {

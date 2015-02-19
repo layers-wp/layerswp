@@ -3,7 +3,7 @@
  * This partial is used to display portfolio list content
  *
  * @package Layers
- * @since Layers 1.0
+ * @since Layers 1.0.0
  */
 
 global $post; ?>
@@ -21,7 +21,7 @@ global $post; ?>
                     <?php the_excerpt(); ?>
                 </div>
             <?php } ?>
-            <a href="<?php the_permalink(); ?>" class="button"><?php _e( 'View Project' , LAYERS_THEME_SLUG ); ?></a>
+            <a href="<?php the_permalink(); ?>" class="button"><?php _e( 'View Project' , 'layerswp' ); ?></a>
         </div>
     </div>
 </article>

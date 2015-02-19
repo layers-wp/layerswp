@@ -5,7 +5,7 @@
  * This file is used to register and display the custom Layers Color Control
  *
  * @package Layers
- * @since Layers 1.0
+ * @since Layers 1.0.0
  */
 
 if( !class_exists( 'Layers_Customize_Color_Control' ) ) {

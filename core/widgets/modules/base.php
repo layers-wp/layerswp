@@ -4,7 +4,7 @@
  * This file is used to register the base layers widget Class
  *
  * @package Layers
- * @since Layers 1.0
+ * @since Layers 1.0.0
  */
 
 if( !class_exists( 'Layers_Widget' ) ) {

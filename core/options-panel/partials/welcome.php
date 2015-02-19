@@ -38,19 +38,19 @@ $find_builder_page = layers_get_builder_pages(); ?>
 
 					<div class="layers-panel layers-content layers-push-bottom">
 						<div class="layers-section-title layers-small">
-							<h3 class="layers-heading"><?php _e( 'Start Using Layers', LAYERS_THEME_SLUG ); ?></h3>
+							<h3 class="layers-heading"><?php _e( 'Start Using Layers' , 'layerswp' ); ?></h3>
 							<p class="layers-excerpt">
-								<?php _e( 'Follow the easy steps to creating amazing layouts quickly and easily. ', LAYERS_THEME_SLUG ); ?>
+								<?php _e( 'Follow the easy steps to creating amazing layouts quickly and easily. ' , 'layerswp' ); ?>
 							</p>
 						</div>
 						<a href="<?php echo admin_url( 'admin.php?page=layers-get-started' ); ?>" class="layers-button btn-large btn-primary">
-							<?php _e( 'Get Started &rarr;', LAYERS_THEME_SLUG ); ?>
+							<?php _e( 'Get Started &rarr;' , 'layerswp' ); ?>
 						</a>
 					</div>
 
 					<div class="layers-panel">
 						<div class="layers-panel-title">
-							<h4 class="layers-heading"><?php _e( 'Layers Pages', LAYERS_THEME_SLUG ); ?></h4>
+							<h4 class="layers-heading"><?php _e( 'Layers Pages' , 'layerswp' ); ?></h4>
 						</div>
 						<ul class="layers-list layers-page-list">
 							<li>
@@ -68,7 +68,7 @@ $find_builder_page = layers_get_builder_pages(); ?>
 						</ul>
 						<div class="layers-button-well">
 							<a href="<?php echo admin_url( 'admin.php?page=add-new-page' ); ?>" class="layers-button btn-primary">
-								<?php _e( 'Add New Page', LAYERS_THEME_SLUG ); ?>
+								<?php _e( 'Add New Page' , 'layerswp' ); ?>
 							</a>
 						</div>
 					</div>
@@ -79,68 +79,68 @@ $find_builder_page = layers_get_builder_pages(); ?>
 
 					<div class="layers-panel">
 						<div class="layers-panel-title">
-							<h4 class="layers-heading"><?php _e( 'Extensions', LAYERS_THEME_SLUG ); ?></h4>
+							<h4 class="layers-heading"><?php _e( 'Extensions' , 'layerswp' ); ?></h4>
 						</div>
 						<ul class="layers-list layers-extensions">
 							<li>
 								<h3 class="layers-heading">
-									<?php _e( 'Layers WooCommerce Extension', LAYERS_THEME_SLUG ); ?>
+									<?php _e( 'Layers WooCommerce Extension' , 'layerswp' ); ?>
 								</h3>
 								<p>
-									<?php _e( 'If you\'d like to test out eCommerce then you\'ll need to install the Layers WooCommerce Extension.', LAYERS_THEME_SLUG ); ?>
+									<?php _e( 'If you\'d like to test out eCommerce then you\'ll need to install the Layers WooCommerce Extension.' , 'layerswp' ); ?>
 								</p>
 								<div class="layers-btn-group">
 									<?php if( class_exists( 'Layers_WooCommerce' ) ) { ?>
-										<span class="layers-success"><?php _e( 'Installed!', LAYERS_THEME_SLUG ); ?></span>
+										<span class="layers-success"><?php _e( 'Installed!' , 'layerswp' ); ?></span>
 									<?php } else { ?>
 										<a class="layers-button btn-primary" href="<?php echo 'http://cdn.oboxsites.com/layers/layers-woocommerce.zip?ver=' . rand(0 , 100); ?>" target="_blank">
-											<?php _e( 'Install WooCommerce for Layers', LAYERS_THEME_SLUG ); ?>
+											<?php _e( 'Install WooCommerce for Layers' , 'layerswp' ); ?>
 										</a>
 									<?php } ?>
 								</div>
 							</li>
 							<li>
 								<h3 class="layers-heading">
-									<?php _e( 'Name', LAYERS_THEME_SLUG ); ?>
+									<?php _e( 'Name' , 'layerswp' ); ?>
 								</h3>
 								<p>
 									<?php _e( '
 										Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse vitae massa velit, eu laoreet massa.
 										Sed ac orci libero, eu dignissim enim.
-									', LAYERS_THEME_SLUG ); ?>
+									' , 'layerswp' ); ?>
 								</p>
 								<div class="layers-btn-group">
 									<a class="layers-button" href="" target="_blank">
-										<?php _e( 'Purchase', LAYERS_THEME_SLUG ); ?>
+										<?php _e( 'Purchase' , 'layerswp' ); ?>
 									</a>
 									<a class="layers-button btn-link" href="" target="_blank">
-										<?php _e( 'More Details', LAYERS_THEME_SLUG ); ?>
+										<?php _e( 'More Details' , 'layerswp' ); ?>
 									</a>
 								</div>
 							</li>
 							<li>
 								<h3 class="layers-heading">
-									<?php _e( 'Name', LAYERS_THEME_SLUG ); ?>
+									<?php _e( 'Name' , 'layerswp' ); ?>
 								</h3>
 								<p>
 									<?php _e( '
 										Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse vitae massa velit, eu laoreet massa.
 										Sed ac orci libero, eu dignissim enim.
-									', LAYERS_THEME_SLUG ); ?>
+									' , 'layerswp' ); ?>
 								</p>
 								<div class="layers-btn-group">
 									<a class="layers-button" href="" target="_blank">
-										<?php _e( 'Purchase', LAYERS_THEME_SLUG ); ?>
+										<?php _e( 'Purchase' , 'layerswp' ); ?>
 									</a>
 									<a class="layers-button btn-link" href="" target="_blank">
-										<?php _e( 'More Details', LAYERS_THEME_SLUG ); ?>
+										<?php _e( 'More Details' , 'layerswp' ); ?>
 									</a>
 								</div>
 							</li>
 						</ul>
 						<div class="layers-button-well">
 							<a class="layers-button btn-primary" href="" target="_blank">
-								<?php _e( 'View More Extensions', LAYERS_THEME_SLUG ); ?>
+								<?php _e( 'View More Extensions' , 'layerswp' ); ?>
 							</a>
 						</div>
 					</div>
@@ -149,19 +149,19 @@ $find_builder_page = layers_get_builder_pages(); ?>
 				<div class="layers-column layers-span-3">
 					<div class="layers-panel">
 						<div class="layers-panel-title">
-							<h4 class="layers-heading"><?php _e( 'What you need', LAYERS_THEME_SLUG ); ?></h4>
+							<h4 class="layers-heading"><?php _e( 'What you need' , 'layerswp' ); ?></h4>
 						</div>
 						<ul class="layers-list layers-extensions">
 							<li>
-								<h4 class="layers-heading"><?php _e( 'WordPress 4.0', LAYERS_THEME_SLUG ); ?></h4>
+								<h4 class="layers-heading"><?php _e( 'WordPress 4.0' , 'layerswp' ); ?></h4>
 								<p>
-									<?php _e( 'Layers requires you run the latest version of WordPress, please make sure you\'re up to date!', LAYERS_THEME_SLUG ); ?>
+									<?php _e( 'Layers requires you run the latest version of WordPress, please make sure you\'re up to date!' , 'layerswp' ); ?>
 								</p>
 								<div class="layers-btn-group">
 									<?php if( 4.0 <= get_bloginfo('version') ) { ?>
-										<span class="layers-success"><?php _e( 'You\'re up to date' , LAYERS_THEME_SLUG ); ?></span>
+										<span class="layers-success"><?php _e( 'You\'re up to date' , 'layerswp' ); ?></span>
 									<?php } else { ?>
-										<a class="layers-button btn-primary" href="<?php echo admin_url( '/update-core.php' ); ?>" target="_blank"><?php _e( 'Update WordPress', LAYERS_THEME_SLUG ); ?></a>
+										<a class="layers-button btn-primary" href="<?php echo admin_url( '/update-core.php' ); ?>" target="_blank"><?php _e( 'Update WordPress' , 'layerswp' ); ?></a>
 									<?php } ?>
 								</div>
 							</li>
@@ -169,7 +169,7 @@ $find_builder_page = layers_get_builder_pages(); ?>
 					</div>
 					<div class="layers-panel">
 						<div class="layers-panel-title">
-							<h4 class="layers-heading"><?php _e( 'Helpful Tips', LAYERS_THEME_SLUG ); ?></h4>
+							<h4 class="layers-heading"><?php _e( 'Helpful Tips' , 'layerswp' ); ?></h4>
 						</div>
 						<div class="layers-content">
 		                    <video width="490" height="auto" controls>

@@ -4,7 +4,7 @@
  * This file is used to run Layers / Obox API Calls
  *
  * @package Layers
- * @since Layers 1.0
+ * @since Layers 1.0.0
  */
 class Layers_API {
 
@@ -35,15 +35,15 @@ class Layers_API {
 
         $extension_list = array(
                 'layers-woocommerce' => array(
-                        'title' => __( 'WooCommerce for Layers', LAYERS_THEME_SLUG ),
-                        'description' => __( 'Adds an advanced product widget, product slider and multiple page layouts.', LAYERS_THEME_SLUG ),
+                        'title' => __( 'WooCommerce for Layers' , 'layerswp' ),
+                        'description' => __( 'Adds an advanced product widget, product slider and multiple page layouts.' , 'layerswp' ),
                         'available' => false,
                         'date' => NULL,
                         'price' => NULL,
                     ),
                 'layers-showcase' => array(
-                        'title' => __( 'Showcase for Layers', LAYERS_THEME_SLUG ),
-                        'description' => __( 'List your portfolio items with relevant meta such as client, web url and project role.', LAYERS_THEME_SLUG ),
+                        'title' => __( 'Showcase for Layers' , 'layerswp' ),
+                        'description' => __( 'List your portfolio items with relevant meta such as client, web url and project role.' , 'layerswp' ),
                         'available' => false,
                         'date' => NULL,
                         'price' => NULL,
@@ -52,26 +52,6 @@ class Layers_API {
             );
 
         return apply_filters( 'layers_extension_list' , $extension_list );
-    }
-
-    public function get_theme_info(){
-
-        $this->theme = wp_get_theme( LAYERS_THEME_SLUG );
-
-        // Put together some variables to sort out
-        $gitslug = $this->theme->get( 'GitHub Theme URI' );
-        $owner_repo = $gitslug;
-        $owner_repo = trim( $owner_repo, '/' );
-        $owner_repo = explode( '/', $owner_repo );
-
-        $theme[ 'git_slug' ] = $gitslug;
-        $theme[ 'owner' ] = $owner_repo[0];
-        if( isset( $owner_repo[1] ) ) $theme[ 'repo' ] = $owner_repo[1];
-        $theme[ 'name' ] = $this->theme->get( 'Name' );
-        $theme[ 'local_version' ] = strtolower( $this->theme->get( 'Version' ) );
-
-        return $theme;
-
     }
 }
 

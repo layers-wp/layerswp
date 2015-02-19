@@ -4,7 +4,7 @@
  * This file is used to define and register Google (and in future all external) font libraries and options
  *
  * @package Layers
- * @since Layers 1.0
+ * @since Layers 1.0.0
  */
 
 
@@ -93,7 +93,7 @@ if ( ! function_exists( 'layers_get_google_font_options' ) ) {
 
 		$font_options = array();
 
-		$font_options[ '' ] = '--- ' . __( 'Default' , LAYERS_THEME_SLUG ) . '---';
+		$font_options[ '' ] = '--- ' . __( 'Default' , 'layerswp' ) . '---';
 
 		foreach( layers_get_google_fonts() as $font_key => $font_data ){
 			$font_options[ $font_key ] = ( isset( $font_data[ 'label' ] ) ? $font_data[ 'label' ] : $font_key );

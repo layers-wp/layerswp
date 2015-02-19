@@ -4,7 +4,7 @@
  * This file is used to register and display the custom Layers Radio Checkbox
  *
  * @package Layers
- * @since Layers 1.0
+ * @since Layers 1.0.0
  */
 
 if( !class_exists( 'Layers_Customize_Select_Icon_Control' ) ) {
@@ -14,14 +14,14 @@ if( !class_exists( 'Layers_Customize_Select_Icon_Control' ) ) {
 		public $type = 'layers-select-icons';
 
 		public function render_content() {
-			
+
 			// Exit if there are no choises
 			if ( empty( $this->choices ) ) return;
 
 			$name = '_customize-radio-' . $this->id; ?>
-			
+
 			<div id="layers-customize-control-<?php echo esc_attr( $this->id ); ?>" class="layers-customize-control layers-customize-control-<?php echo esc_attr( str_replace( 'layers-', '', $this->type ) ); ?>" <?php echo $this->get_linked_data(); ?> >
-				
+
 				<span class="customize-control-title">
 					<?php echo esc_html( $this->label ); ?>
 				</span>
@@ -44,13 +44,13 @@ if( !class_exists( 'Layers_Customize_Select_Icon_Control' ) ) {
 						<?php endforeach; ?>
 					</ul>
 				</div>
-				
+
 				<?php if ( '' != $this->description ) : ?>
 					<div class="description customize-control-description">
 						<?php echo esc_html( $this->description ); ?>
 					</div>
 				<?php endif; ?>
-			
+
 			</div>
 			<?php
 		}

@@ -358,7 +358,7 @@ if( ! function_exists( 'layers_scripts' ) ) {
 		if( is_user_logged_in() ) {
 			wp_enqueue_style(
 				LAYERS_THEME_SLUG . '-admin',
-				get_template_directory_uri() . '/core/assets/admin.css',
+				get_template_directory_uri() . '/core/assets/icons.css',
 				array(),
 				LAYERS_VERSION
 			); // Admin CSS

@@ -11,6 +11,7 @@
  * 3 - Widget closing when clicking on the canvas
  * 4 - Offsite sidebar Toggles
  * 5 - Sticky Header
+ * 6 - FitVids
  *
  * Author: Obox Themes
  * Author URI: http://www.oboxthemes.com/
@@ -145,5 +146,13 @@ jQuery(function($) {
 			}
 		}
 	});
+
+	/**
+    * 6 - FitVids resposive video embeds.
+    *
+	* Target your .container, .wrapper, .post, etc.
+    */
+	
+	$(".media-image, .thumbnail-media, .widget.slide .image-container").fitVids();
 
 }(jQuery));

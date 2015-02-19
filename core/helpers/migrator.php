@@ -65,7 +65,8 @@ class Layers_Widget_Migrator {
 		flush();
 
 		// Output file contents
-		echo $widget_data;
+		die( $widget_data );
+
 
 		// Stop execution
 		wp_redirect( admin_url( 'post.php?post=' . $post->ID . '&action=edit'  ) );

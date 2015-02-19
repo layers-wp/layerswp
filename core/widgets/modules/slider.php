@@ -23,7 +23,7 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 			* @param  	varchar    		$taxonomy    		(optional) Taxonomy slug for use as an ID/classname
 			* @param  	array 			$checkboxes    	(optional) Array of checkbox names to be saved in this widget. Don't forget these please!
 			*/
-			$this->widget_title = __( 'Slider', LAYERS_THEME_SLUG );
+			$this->widget_title = __( 'Slider' , 'layerswp' );
 			$this->widget_id = 'slide';
 			$this->post_type = '';
 			$this->taxonomy = '';
@@ -313,14 +313,14 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 						'elements' => array(
 							'layout' => array(
 								'type' => 'select-icons',
-								'label' => __( '', LAYERS_THEME_SLUG ),
+								'label' => __( '' , 'layerswp' ),
 								'name' => $this->get_field_name( 'design' ) . '[layout]' ,
 								'id' => $this->get_field_id( 'design-layout' ) ,
 								'value' => ( isset( $design['layout'] ) ) ? $design['layout'] : NULL,
 								'options' => array(
-									'layout-boxed' => __( 'Boxed' , LAYERS_THEME_SLUG ),
-									'layout-fullwidth' => __( 'Full Width' , LAYERS_THEME_SLUG ),
-									'layout-full-screen' => __( 'Full Screen' , LAYERS_THEME_SLUG )
+									'layout-boxed' => __( 'Boxed' , 'layerswp' ),
+									'layout-fullwidth' => __( 'Full Width' , 'layerswp' ),
+									'layout-full-screen' => __( 'Full Screen' , 'layerswp' )
 								)
 							)
 						)
@@ -334,21 +334,21 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 									'name' => $this->get_field_name( 'show_slider_arrows' ) ,
 									'id' => $this->get_field_id( 'show_slider_arrows' ) ,
 									'value' => ( isset( $show_slider_arrows ) ) ? $show_slider_arrows : NULL,
-									'label' => __( 'Show Slider Arrows', LAYERS_THEME_SLUG )
+									'label' => __( 'Show Slider Arrows' , 'layerswp' )
 								),
 								'show_slider_dots' => array(
 									'type' => 'checkbox',
 									'name' => $this->get_field_name( 'show_slider_dots' ) ,
 									'id' => $this->get_field_id( 'show_slider_dots' ) ,
 									'value' => ( isset( $show_slider_dots ) ) ? $show_slider_dots : NULL,
-									'label' => __( 'Show Slider Dots', LAYERS_THEME_SLUG )
+									'label' => __( 'Show Slider Dots' , 'layerswp' )
 								),
 								'autoplay_slides' => array(
 									'type' => 'checkbox',
 									'name' => $this->get_field_name( 'autoplay_slides' ) ,
 									'id' => $this->get_field_id( 'autoplay_slides' ) ,
 									'value' => ( isset( $autoplay_slides ) ) ? $autoplay_slides : NULL,
-									'label' => __( 'Autoplay Slides', LAYERS_THEME_SLUG )
+									'label' => __( 'Autoplay Slides' , 'layerswp' )
 								),
 								'slide_time' => array(
 									'type' => 'number',
@@ -356,9 +356,9 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 									'id' => $this->get_field_id( 'slide_time' ) ,
 									'min' => 1,
 									'max' => 10,
-									'placeholder' => __( 'Time in seconds, eg. 2', LAYERS_THEME_SLUG ),
+									'placeholder' => __( 'Time in seconds, eg. 2' , 'layerswp' ),
 									'value' => ( isset( $slide_time ) ) ? $slide_time : NULL,
-									'label' => __( 'Slide Interval', LAYERS_THEME_SLUG ),
+									'label' => __( 'Slide Interval' , 'layerswp' ),
 									'data' => array( 'show-if-selector' => '#' . $this->get_field_id( 'autoplay_slides' ), 'show-if-value' => 'true' )
 								),
 								'slide_height' => array(
@@ -366,7 +366,7 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 									'name' => $this->get_field_name( 'slide_height' ) ,
 									'id' => $this->get_field_id( 'slide_height' ) ,
 									'value' => ( isset( $slide_height ) ) ? $slide_height : NULL,
-									'label' => __( 'Slider Height', LAYERS_THEME_SLUG )
+									'label' => __( 'Slider Height' , 'layerswp' )
 								)
 							)
 					)
@@ -404,7 +404,7 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 								} ?>
 							<?php } ?>
 						</ul>
-						<button class="layers-button btn-full layers-add-widget-slide add-new-widget" data-number="<?php echo esc_attr( $this->number ); ?>"><?php _e( 'Add New Slide' , LAYERS_THEME_SLUG ) ; ?></button>
+						<button class="layers-button btn-full layers-add-widget-slide add-new-widget" data-number="<?php echo esc_attr( $this->number ); ?>"><?php _e( 'Add New Slide' , 'layerswp' ) ; ?></button>
 				</section>
 
 			</div>
@@ -440,7 +440,7 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 				<li class="layers-accordion-item <?php echo $this->slide_item_count; ?>" data-guid="<?php echo $slide_guid; ?>">
 					<a class="layers-accordion-title">
 						<span>
-							<?php _e( 'Slide' , LAYERS_THEME_SLUG ); ?>
+							<?php _e( 'Slide' , 'layerswp' ); ?>
 							<span class="layers-detail">
 								<?php echo ( isset( $title ) ? ': ' . substr( stripslashes( strip_tags( $title ) ), 0 , 50 ) : NULL ); ?>
 								<?php echo ( isset( $title ) && strlen( $title ) > 50 ? '...' : NULL ); ?>
@@ -467,27 +467,27 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 
 						<div class="layers-row">
 							<p class="layers-form-item">
-								<label for="<?php echo $this->get_custom_field_id( $widget_details, 'slides',  $slide_guid, 'title' ); ?>"><?php _e( 'Title' , LAYERS_THEME_SLUG ); ?></label>
+								<label for="<?php echo $this->get_custom_field_id( $widget_details, 'slides',  $slide_guid, 'title' ); ?>"><?php _e( 'Title' , 'layerswp' ); ?></label>
 								<?php echo $this->form_elements()->input(
 									array(
 										'type' => 'text',
 										'name' => $this->get_custom_field_name( $widget_details, 'slides',  $slide_guid, 'title' ),
 										'id' => $this->get_custom_field_id( $widget_details, 'slides',  $slide_guid, 'title' ),
-										'placeholder' => __( 'Enter a Title' , LAYERS_THEME_SLUG ),
-										'placeholder' => __( 'Enter title here', LAYERS_THEME_SLUG ),
+										'placeholder' => __( 'Enter a Title' , 'layerswp' ),
+										'placeholder' => __( 'Enter title here' , 'layerswp' ),
 										'value' => ( isset( $title ) ) ? $title : NULL ,
 										'class' => 'layers-text'
 									)
 								); ?>
 							</p>
 							<p class="layers-form-item">
-								<label for="<?php echo $this->get_custom_field_id( $widget_details, 'slides',  $slide_guid, 'excerpt' ); ?>"><?php _e( 'Excerpt' , LAYERS_THEME_SLUG ); ?></label>
+								<label for="<?php echo $this->get_custom_field_id( $widget_details, 'slides',  $slide_guid, 'excerpt' ); ?>"><?php _e( 'Excerpt' , 'layerswp' ); ?></label>
 								<?php echo $this->form_elements()->input(
 									array(
 										'type' => 'textarea',
 										'name' => $this->get_custom_field_name( $widget_details, 'slides',  $slide_guid, 'excerpt' ),
 										'id' => $this->get_custom_field_id( $widget_details, 'slides',  $slide_guid, 'excerpt' ),
-										'placeholder' => __( 'Short Excerpt', LAYERS_THEME_SLUG ),
+										'placeholder' => __( 'Short Excerpt' , 'layerswp' ),
 										'value' => ( isset( $excerpt ) ) ? $excerpt : NULL ,
 										'class' => 'layers-textarea',
 										'rows' => 6
@@ -496,25 +496,25 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 							</p>
 							<div class="layers-row">
 								<p class="layers-form-item layers-column layers-span-6">
-									<label for="<?php echo $this->get_field_id( 'link' ); ?>"><?php _e( 'Button Link' , LAYERS_THEME_SLUG ); ?></label>
+									<label for="<?php echo $this->get_field_id( 'link' ); ?>"><?php _e( 'Button Link' , 'layerswp' ); ?></label>
 									<?php echo $this->form_elements()->input(
 										array(
 											'type' => 'text',
 											'name' => $this->get_custom_field_name( $widget_details, 'slides',  $slide_guid, 'link' ),
 											'id' => $this->get_custom_field_id( $widget_details, 'slides',  $slide_guid, 'link' ),
-											'placeholder' => __( 'http://', LAYERS_THEME_SLUG ),
+											'placeholder' => __( 'http://' , 'layerswp' ),
 											'value' => ( isset( $link ) ) ? $link : NULL ,
 										)
 									); ?>
 								</p>
 								<p class="layers-form-item layers-column layers-span-6">
-									<label for="<?php echo $this->get_field_id( 'link' ); ?>"><?php _e( 'Button Text' , LAYERS_THEME_SLUG ); ?></label>
+									<label for="<?php echo $this->get_field_id( 'link' ); ?>"><?php _e( 'Button Text' , 'layerswp' ); ?></label>
 									<?php echo $this->form_elements()->input(
 										array(
 											'type' => 'text',
 											'name' => $this->get_custom_field_name( $widget_details, 'slides',  $slide_guid, 'link_text' ),
 											'id' => $this->get_custom_field_id( $widget_details, 'slides',  $slide_guid, 'link_text' ),
-											'placeholder' => __( 'e.g. "Read More"' , LAYERS_THEME_SLUG ),
+											'placeholder' => __( 'e.g. "Read More"' , 'layerswp' ),
 											'value' => ( isset( $link_text ) ) ? $link_text : NULL ,
 										)
 									); ?>

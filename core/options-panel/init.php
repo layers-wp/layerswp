@@ -44,7 +44,7 @@ class Layers_Options_Panel {
 		if( isset( $_GET[ 'page' ] ) ) $current_page = $_GET[ 'page' ]; ?>
 		<header class="layers-page-title layers-section-title layers-large layers-content-large layers-no-push-bottom">
 			<div class="layers-container">
-				<a href="http://oboxthemes.com/layers" class="layers-logo"><?php _e( 'Layers', LAYERS_THEME_SLUG ); ?></a>
+				<a href="http://oboxthemes.com/layers" class="layers-logo"><?php _e( 'Layers' , 'layerswp' ); ?></a>
 				<?php if( isset( $title ) ) { ?>
 					<h2 class="layers-heading" id="layers-options-header"><?php echo esc_html( $title ); ?></h2>
 				<?php } ?>
@@ -103,7 +103,7 @@ class Layers_Options_Panel {
 	public function footer( $args = array() ){ ?>
 		<footer class="layers-footer">
 			<p>
-				<?php _e( 'Layers is a product of <a href="http://oboxthemes.com/">Obox Themes</a>. For questions and feedback please <a href="mailto:david@obox.co.za">email David directly', LAYERS_THEME_SLUG ); ?></a>.
+				<?php _e( 'Layers is a product of <a href="http://oboxthemes.com/">Obox Themes</a>. For questions and feedback please <a href="mailto:david@obox.co.za">email David directly' , 'layerswp' ); ?></a>.
 			</p>
 		</footer>
 	<?php }
@@ -154,8 +154,8 @@ function layers_options_panel_menu(){
 	// Get Started
 	add_submenu_page(
 		LAYERS_THEME_SLUG . '-dashboard',
-		__( 'Get Started' , LAYERS_THEME_SLUG ),
-		__( 'Get Started' , LAYERS_THEME_SLUG ),
+		__( 'Get Started' , 'layerswp' ),
+		__( 'Get Started' , 'layerswp' ),
 		'edit_theme_options',
 		LAYERS_THEME_SLUG . '-get-started',
 		'layers_options_panel_ui'
@@ -164,8 +164,8 @@ function layers_options_panel_menu(){
 	// Add Preset Pages
 	add_submenu_page(
 		LAYERS_THEME_SLUG . '-dashboard',
-		__( 'Add New Page' , LAYERS_THEME_SLUG ),
-		__( 'Add New Page' , LAYERS_THEME_SLUG ),
+		__( 'Add New Page' , 'layerswp' ),
+		__( 'Add New Page' , 'layerswp' ),
 		'edit_theme_options',
 		LAYERS_THEME_SLUG . '-add-new-page',
 		'layers_options_panel_ui'
@@ -176,8 +176,8 @@ function layers_options_panel_menu(){
 		// Only show if there are actually Layers pages.
 		add_submenu_page(
 			LAYERS_THEME_SLUG . '-dashboard',
-			__( 'Layers Pages', LAYERS_THEME_SLUG ),
-			__( 'Layers Pages', LAYERS_THEME_SLUG ),
+			__( 'Layers Pages' , 'layerswp' ),
+			__( 'Layers Pages' , 'layerswp' ),
 			'edit_theme_options',
 			'edit.php?post_type=page&filter=layers'
 		);
@@ -186,8 +186,8 @@ function layers_options_panel_menu(){
 	// Customize
 	add_submenu_page(
 		LAYERS_THEME_SLUG . '-dashboard',
-		__( 'Customize', LAYERS_THEME_SLUG ),
-		__( 'Customize', LAYERS_THEME_SLUG ),
+		__( 'Customize' , 'layerswp' ),
+		__( 'Customize' , 'layerswp' ),
 		'edit_theme_options',
 		'customize.php'
 	);
@@ -195,8 +195,8 @@ function layers_options_panel_menu(){
 	// Backup Page
 	add_submenu_page(
 		LAYERS_THEME_SLUG . '-dashboard',
-		__( 'Backup' , LAYERS_THEME_SLUG ),
-		__( 'Backup' , LAYERS_THEME_SLUG ),
+		__( 'Backup' , 'layerswp' ),
+		__( 'Backup' , 'layerswp' ),
 		'edit_theme_options',
 		LAYERS_THEME_SLUG . '-backup',
 		'layers_options_panel_ui'
@@ -204,7 +204,7 @@ function layers_options_panel_menu(){
 
 	// This modifies the Layers submenu item - must be done here as $submenu
 	// is only created if $submenu items are added using add_submenu_page
-	$submenu[LAYERS_THEME_SLUG . '-dashboard'][0][0] = __( 'Dashboard' , LAYERS_THEME_SLUG );
+	$submenu[LAYERS_THEME_SLUG . '-dashboard'][0][0] = __( 'Dashboard' , 'layerswp' );
 }
 
 add_action( 'admin_menu' , 'layers_options_panel_menu' , 50 );

@@ -26,24 +26,24 @@ $layers_migrator = new Layers_Widget_Migrator(); ?>
                         <!-- Your content goes here -->
                         <div class="layers-section-title layers-no-push-bottom">
                             <h3 class="layers-heading">
-                                <?php _e( 'Welcome to Layers!' , LAYERS_THEME_SLUG ); ?>
+                                <?php _e( 'Welcome to Layers!' , 'layerswp' ); ?>
                             </h3>
                             <div class="layers-excerpt">
                                 <p>
-                                    <?php _e( 'Layers is a revolutionary WordPress Site Builder that makes website building a dream come true!' , LAYERS_THEME_SLUG ); ?>
+                                    <?php _e( 'Layers is a revolutionary WordPress Site Builder that makes website building a dream come true!' , 'layerswp' ); ?>
                                 </p>
                                 <p>
-                                    <?php _e( 'The following short steps are designed to show you how Layers works and get you to creating amazing layouts quickly!' , LAYERS_THEME_SLUG ); ?>
+                                    <?php _e( 'The following short steps are designed to show you how Layers works and get you to creating amazing layouts quickly!' , 'layerswp' ); ?>
                                 </p>
                                 <p>
-                                    <?php _e( 'Enjoy the ride!' , LAYERS_THEME_SLUG ); ?>
+                                    <?php _e( 'Enjoy the ride!' , 'layerswp' ); ?>
                                 </p>
 
                             </div>
                         </div>
                     </div>
                     <div class="layers-button-well">
-                        <a class="layers-button btn-primary layers-pull-right onbard-next-step" href=""><?php _e( 'Let\'s get started &rarr;' , LAYERS_THEME_SLUG ); ?></a>
+                        <a class="layers-button btn-primary layers-pull-right onbard-next-step" href=""><?php _e( 'Let\'s get started &rarr;' , 'layerswp' ); ?></a>
                     </div>
                 </div>
                 <div class="layers-column layers-span-4 no-gutter">
@@ -51,9 +51,9 @@ $layers_migrator = new Layers_Widget_Migrator(); ?>
                         <!-- Your helpful tips go here -->
                         <ul class="layers-help-list">
                             <li>
-                                <?php _e( 'If you\'re ever stuck or need help with your Layers site please visit our <a href="http://help.layerswp.com/" rel="nofollow">helpful documentation.</a>' , LAYERS_THEME_SLUG ); ?>
+                                <?php _e( 'If you\'re ever stuck or need help with your Layers site please visit our <a href="http://help.layerswp.com/" rel="nofollow">helpful documentation.</a>' , 'layerswp' ); ?>
                             </li>
-                            <li class="pro-tip"><?php _e( 'For the Pros: Layers will automatically assign the tagline to Settings &rarr; General.' , LAYERS_THEME_SLUG ); ?></li>
+                            <li class="pro-tip"><?php _e( 'For the Pros: Layers will automatically assign the tagline to Settings &rarr; General.' , 'layerswp' ); ?></li>
                         </ul>
                     </div>
                 </div>
@@ -67,28 +67,28 @@ $layers_migrator = new Layers_Widget_Migrator(); ?>
                         <div class="layers-section-title layers-small layers-no-push-bottom">
                             <div class="layers-push-bottom-small">
                                 <small class="layers-label label-secondary">
-                                    <?php _e( 'Getting Started' , LAYERS_THEME_SLUG ); ?>
+                                    <?php _e( 'Getting Started' , 'layerswp' ); ?>
                                 </small>
                             </div>
                             <h3 class="layers-heading">
-                                <?php _e( 'Building pages' , LAYERS_THEME_SLUG ); ?>
+                                <?php _e( 'Building pages' , 'layerswp' ); ?>
                             </h3>
                             <div class="layers-excerpt">
                                 <p>
                                     <?php _e( '
                                         Layers splits your page into horizontal rows, and you build up your pages with blocks of content called &lsquo;Widgets&rsquo;, one per row.
-                                    ' , LAYERS_THEME_SLUG ); ?>
+                                    ' , 'layerswp' ); ?>
                                 </p>
                                 <p>
                                     <?php _e( '
                                         Each time you want to add a new content block, simply click &lsquo;Add Widget&rsquo; and select one from the list which has the blue Layers icon.
-                                    ' , LAYERS_THEME_SLUG ); ?>
+                                    ' , 'layerswp' ); ?>
                                 </p>
                             </div>
                         </div>
                     </div>
                     <div class="layers-button-well">
-                        <a class="layers-button btn-primary layers-pull-right onbard-next-step" href=""><?php _e( 'Got it, Next Step &rarr;' , LAYERS_THEME_SLUG ); ?></a>
+                        <a class="layers-button btn-primary layers-pull-right onbard-next-step" href=""><?php _e( 'Got it, Next Step &rarr;' , 'layerswp' ); ?></a>
                     </div>
                 </div>
                 <div class="layers-column layers-span-6 no-gutter layers-demo-video">
@@ -103,14 +103,14 @@ $layers_migrator = new Layers_Widget_Migrator(); ?>
                         <!-- Your content goes here -->
                         <div class="layers-section-title">
                             <h3 class="layers-heading">
-                                <?php _e( 'What is the name of your website?' , LAYERS_THEME_SLUG ); ?>
+                                <?php _e( 'What is the name of your website?' , 'layerswp' ); ?>
                             </h3>
                             <p class="layers-excerpt">
-                                <?php _e( 'Enter your website name below. We&apos;ll use this in your site title and in search results.' , LAYERS_THEME_SLUG ); ?>
+                                <?php _e( 'Enter your website name below. We&apos;ll use this in your site title and in search results.' , 'layerswp' ); ?>
                             </p>
                         </div>
                         <p class="layers-form-item">
-                            <label><?php _e( 'Site Name' , LAYERS_THEME_SLUG ); ?></label>
+                            <label><?php _e( 'Site Name' , 'layerswp' ); ?></label>
                             <?php
                                echo $form_elements->input( array(
                                     'type' => 'text',
@@ -130,9 +130,9 @@ $layers_migrator = new Layers_Widget_Migrator(); ?>
                         ) ); ?>
                     </div>
                     <div class="layers-button-well">
-                        <span class="layers-save-progress layers-hide layers-button btn-link" data-busy-message="<?php _e( 'Saving your Site Name' , LAYERS_THEME_SLUG ); ?>"></span>
+                        <span class="layers-save-progress layers-hide layers-button btn-link" data-busy-message="<?php _e( 'Saving your Site Name' , 'layerswp' ); ?>"></span>
                         <a class="layers-button btn-primary layers-pull-right onbard-next-step" href="">
-                            <?php _e( 'Next Step &rarr;' , LAYERS_THEME_SLUG ); ?>
+                            <?php _e( 'Next Step &rarr;' , 'layerswp' ); ?>
                         </a>
                     </div>
                 </div>
@@ -141,10 +141,10 @@ $layers_migrator = new Layers_Widget_Migrator(); ?>
                         <!-- Your helpful tips go here -->
                         <ul class="layers-help-list">
                             <li>
-                                <?php _e( 'For tips on how best to name your website, we suggest reading <a href="http://help.layerswp.com/" rel="nofollow">this post</a>' , LAYERS_THEME_SLUG ); ?>
+                                <?php _e( 'For tips on how best to name your website, we suggest reading <a href="http://help.layerswp.com/" rel="nofollow">this post</a>' , 'layerswp' ); ?>
                             </li>
                             <li class="pro-tip">
-                                <?php _e( 'For the Pros: Layers will automatically assign this site name to Settings &rarr; General' , LAYERS_THEME_SLUG ); ?>
+                                <?php _e( 'For the Pros: Layers will automatically assign this site name to Settings &rarr; General' , 'layerswp' ); ?>
                             </li>
                         </ul>
                     </div>
@@ -159,11 +159,11 @@ $layers_migrator = new Layers_Widget_Migrator(); ?>
                         <div class="layers-section-title layers-small layers-no-push-bottom">
                             <div class="layers-push-bottom-small">
                                 <small class="layers-label label-secondary">
-                                    <?php _e( 'Getting Started' , LAYERS_THEME_SLUG ); ?>
+                                    <?php _e( 'Getting Started' , 'layerswp' ); ?>
                                 </small>
                             </div>
                             <h3 class="layers-heading">
-                                <?php _e( 'Editing widget content' , LAYERS_THEME_SLUG ); ?>
+                                <?php _e( 'Editing widget content' , 'layerswp' ); ?>
                             </h3>
                             <div class="layers-excerpt">
                                 <p>
@@ -171,13 +171,13 @@ $layers_migrator = new Layers_Widget_Migrator(); ?>
                                         To edit a widget&apos;s content, just click on it in the widget area on the left hand side. The widget panel will slide
                                         out allowing you to edit its content and customize its settings. You can also shift-click on the widget itself in
                                         the preview area.
-                                    ' , LAYERS_THEME_SLUG ); ?>
+                                    ' , 'layerswp' ); ?>
                                 </p>
                             </div>
                         </div>
                     </div>
                     <div class="layers-button-well">
-                        <a class="layers-button btn-primary layers-pull-right onbard-next-step" href=""><?php _e( 'Next Step &rarr;' , LAYERS_THEME_SLUG ); ?></a>
+                        <a class="layers-button btn-primary layers-pull-right onbard-next-step" href=""><?php _e( 'Next Step &rarr;' , 'layerswp' ); ?></a>
                     </div>
                 </div>
                 <div class="layers-column layers-span-8 no-gutter layers-demo-video">
@@ -192,15 +192,15 @@ $layers_migrator = new Layers_Widget_Migrator(); ?>
                         <!-- Your content goes here -->
                         <div class="layers-section-title">
                             <h3 class="layers-heading">
-                                <?php _e( 'How would you best describe your site?' , LAYERS_THEME_SLUG ); ?>
+                                <?php _e( 'How would you best describe your site?' , 'layerswp' ); ?>
                             </h3>
                             <p class="layers-excerpt">
                                 <?php _e( 'A tagline describes who and what you are in just a few simple words.
-                                For example Layers is a &ldquo;WordPress Site Builder&rdquo; - simple, easy, quick to read. Now you try:' , LAYERS_THEME_SLUG ); ?>
+                                For example Layers is a &ldquo;WordPress Site Builder&rdquo; - simple, easy, quick to read. Now you try:' , 'layerswp' ); ?>
                             </p>
                         </div>
                         <p class="layers-form-item">
-                            <label><?php _e( 'Site Tagline' , LAYERS_THEME_SLUG ); ?></label>
+                            <label><?php _e( 'Site Tagline' , 'layerswp' ); ?></label>
                             <?php
                                echo $form_elements->input( array(
                                     'type' => 'text',
@@ -220,18 +220,18 @@ $layers_migrator = new Layers_Widget_Migrator(); ?>
                         ) ); ?>
                     </div>
                     <div class="layers-button-well">
-                        <span class="layers-save-progress layers-hide layers-button btn-link" data-busy-message="<?php _e( 'Saving your Tagline' , LAYERS_THEME_SLUG ); ?>"></span>
-                        <a class="layers-button btn-primary layers-pull-right onbard-next-step" href=""><?php _e( 'Next Step &rarr;' , LAYERS_THEME_SLUG ); ?></a>
+                        <span class="layers-save-progress layers-hide layers-button btn-link" data-busy-message="<?php _e( 'Saving your Tagline' , 'layerswp' ); ?>"></span>
+                        <a class="layers-button btn-primary layers-pull-right onbard-next-step" href=""><?php _e( 'Next Step &rarr;' , 'layerswp' ); ?></a>
                     </div>
                 </div>
                 <div class="layers-column layers-span-4 no-gutter">
                     <div class="layers-content">
                         <!-- Your helpful tips go here -->
                         <ul class="layers-help-list">
-                            <li><?php _e( 'Keep it simple' , LAYERS_THEME_SLUG ); ?></li>
-                            <li><?php _e( 'Avoid buzz words' , LAYERS_THEME_SLUG ); ?></li>
-                            <li><?php _e( 'Make sure it describes what you offer' , LAYERS_THEME_SLUG ); ?></li>
-                            <li class="pro-tip"><?php _e( 'For the Pros: Layers will automatically assign the tagline to Settings &rarr; General' , LAYERS_THEME_SLUG ); ?></li>
+                            <li><?php _e( 'Keep it simple' , 'layerswp' ); ?></li>
+                            <li><?php _e( 'Avoid buzz words' , 'layerswp' ); ?></li>
+                            <li><?php _e( 'Make sure it describes what you offer' , 'layerswp' ); ?></li>
+                            <li class="pro-tip"><?php _e( 'For the Pros: Layers will automatically assign the tagline to Settings &rarr; General' , 'layerswp' ); ?></li>
                         </ul>
                     </div>
                 </div>
@@ -245,24 +245,24 @@ $layers_migrator = new Layers_Widget_Migrator(); ?>
                         <div class="layers-section-title layers-small layers-no-push-bottom">
                             <div class="layers-push-bottom-small">
                                 <small class="layers-label label-secondary">
-                                    <?php _e( 'Getting Started' , LAYERS_THEME_SLUG ); ?>
+                                    <?php _e( 'Getting Started' , 'layerswp' ); ?>
                                 </small>
                             </div>
                             <h3 class="layers-heading">
-                                <?php _e( 'Customizing widgets' , LAYERS_THEME_SLUG ); ?>
+                                <?php _e( 'Customizing widgets' , 'layerswp' ); ?>
                             </h3>
                             <div class="layers-excerpt">
                                 <p>
-                                    <?php _e( 'Unique to each Layers widget is the revolutionary &ldquo;Design Bar&rdquo; which allows you to set its design parameters without touching a line of code.' , LAYERS_THEME_SLUG ); ?>
+                                    <?php _e( 'Unique to each Layers widget is the revolutionary &ldquo;Design Bar&rdquo; which allows you to set its design parameters without touching a line of code.' , 'layerswp' ); ?>
                                 </p>
                                 <p>
-                                    <?php _e( 'Depending on the widget you\'ve added, you can change things like background images, font sizes, list styles and more.' , LAYERS_THEME_SLUG ); ?>
+                                    <?php _e( 'Depending on the widget you\'ve added, you can change things like background images, font sizes, list styles and more.' , 'layerswp' ); ?>
                                 </p>
                             </div>
                         </div>
                     </div>
                     <div class="layers-button-well">
-                        <a class="layers-button btn-primary layers-pull-right onbard-next-step" href=""><?php _e( 'Next Step &rarr;' , LAYERS_THEME_SLUG ); ?></a>
+                        <a class="layers-button btn-primary layers-pull-right onbard-next-step" href=""><?php _e( 'Next Step &rarr;' , 'layerswp' ); ?></a>
                     </div>
                 </div>
                 <div class="layers-column layers-span-6 no-gutter layers-demo-video">
@@ -277,7 +277,7 @@ $layers_migrator = new Layers_Widget_Migrator(); ?>
                         <!-- Your content goes here -->
                         <div class="layers-section-title">
                             <h3 class="layers-heading">
-                                <?php _e( 'Would you like to add your logo?' , LAYERS_THEME_SLUG ); ?>
+                                <?php _e( 'Would you like to add your logo?' , 'layerswp' ); ?>
                             </h3>
                             <p class="layers-excerpt">
                                  <?php _e( '
@@ -286,7 +286,7 @@ $layers_migrator = new Layers_Widget_Migrator(); ?>
                                     you don&apos;t have one yet, no problem, you can add it
                                     later, or skip this step if you&apos;d just prefer to use text.
 
-                                 ' , LAYERS_THEME_SLUG ); ?>
+                                 ' , 'layerswp' ); ?>
                             </p>
                         </div>
                         <?php $site_logo = get_option( 'site_logo' ); ?>
@@ -294,7 +294,7 @@ $layers_migrator = new Layers_Widget_Migrator(); ?>
                             <div class="layers-logo-upload-controller">
                                 <?php
                                    echo $form_elements->input( array(
-                                        'label' => __( 'Choose Logo' , LAYERS_THEME_SLUG ),
+                                        'label' => __( 'Choose Logo' , 'layerswp' ),
                                         'type' => 'image',
                                         'name' => 'site_logo',
                                         'id' => 'site_logo',
@@ -311,17 +311,17 @@ $layers_migrator = new Layers_Widget_Migrator(); ?>
                         ) ); ?>
                     </div>
                     <div class="layers-button-well">
-                        <span class="layers-save-progress layers-hide layers-button btn-link" data-busy-message="<?php _e( 'Updating your Logo' , LAYERS_THEME_SLUG ); ?>"></span>
-                        <a class="layers-button btn-primary layers-pull-right onbard-next-step" href=""><?php _e( 'Next Step &rarr;' , LAYERS_THEME_SLUG ); ?></a>
+                        <span class="layers-save-progress layers-hide layers-button btn-link" data-busy-message="<?php _e( 'Updating your Logo' , 'layerswp' ); ?>"></span>
+                        <a class="layers-button btn-primary layers-pull-right onbard-next-step" href=""><?php _e( 'Next Step &rarr;' , 'layerswp' ); ?></a>
                     </div>
                 </div>
                 <div class="layers-column layers-span-4 no-gutter">
                     <div class="layers-content">
                         <!-- Your helpful tips go here -->
                         <ul class="layers-help-list">
-                            <li><?php _e( 'For best results, use an image between 40px and 200px tall and not more than 1000px wide' , LAYERS_THEME_SLUG ); ?></li>
-                            <li><?php _e( 'PNGs with a transparent background work best but GIFs or JPGs are fine too' , LAYERS_THEME_SLUG ); ?></li>
-                            <li><?php _e( 'Try keep your logo file size below 500kb' , LAYERS_THEME_SLUG ); ?></li>
+                            <li><?php _e( 'For best results, use an image between 40px and 200px tall and not more than 1000px wide' , 'layerswp' ); ?></li>
+                            <li><?php _e( 'PNGs with a transparent background work best but GIFs or JPGs are fine too' , 'layerswp' ); ?></li>
+                            <li><?php _e( 'Try keep your logo file size below 500kb' , 'layerswp' ); ?></li>
                         </ul>
                     </div>
                 </div>
@@ -335,14 +335,14 @@ $layers_migrator = new Layers_Widget_Migrator(); ?>
                     <div class="layers-content">
                          <?php if( layers_get_builder_pages() ) { ?>
                              <p class="layers-form-item">
-                                <label><?php _e( 'Page Title' , LAYERS_THEME_SLUG ); ?></label>
+                                <label><?php _e( 'Page Title' , 'layerswp' ); ?></label>
                                 <?php
                                    echo $form_elements->input( array(
                                         'type' => 'text',
                                         'name' => 'preset_page_title',
                                         'id' => 'preset_page_title',
-                                        'placeholder' => __( 'Home Page' , LAYERS_THEME_SLUG ),
-                                        'value' => __( 'Home Page' , LAYERS_THEME_SLUG ),
+                                        'placeholder' => __( 'Home Page' , 'layerswp' ),
+                                        'value' => __( 'Home Page' , 'layerswp' ),
                                         'class' => 'layers-text layers-large layers-push-bottom-medium'
                                    ) );
                                 ?>
@@ -364,21 +364,21 @@ $layers_migrator = new Layers_Widget_Migrator(); ?>
                         <!-- Your content goes here -->
                         <div class="layers-section-title layers-small">
                             <h3 class="layers-heading">
-                                <?php _e( 'Now let&apos;s create your first Layers page!' , LAYERS_THEME_SLUG ); ?>
+                                <?php _e( 'Now let&apos;s create your first Layers page!' , 'layerswp' ); ?>
                             </h3>
                             <div class="layers-excerpt">
                                 <p>
                                     <?php _e( '
                                         Simply select a preset layout from the list and Layers will automatically create it for you.
                                         You will be able to edit your layout on the next page. Here we go!
-                                    ', LAYERS_THEME_SLUG ); ?>
+                                    ' , 'layerswp' ); ?>
                                 </p>
                             </div>
                         </div>
                     </div>
                     <div class="layers-button-well">
-                        <span class="layers-save-progress layers-hide layers-button btn-link" data-busy-message="<?php _e( 'Creating your Page' , LAYERS_THEME_SLUG ); ?>"></span>
-                        <a class="layers-button btn-primary layers-pull-right onbard-next-step layers-proceed-to-customizer disable layers-tooltip" tooltip="<?php _e( 'First choose a layout' , LAYERS_THEME_SLUG ); ?>" href=""><?php _e( 'Start Building' , LAYERS_THEME_SLUG ); ?></a>
+                        <span class="layers-save-progress layers-hide layers-button btn-link" data-busy-message="<?php _e( 'Creating your Page' , 'layerswp' ); ?>"></span>
+                        <a class="layers-button btn-primary layers-pull-right onbard-next-step layers-proceed-to-customizer disable layers-tooltip" tooltip="<?php _e( 'First choose a layout' , 'layerswp' ); ?>" href=""><?php _e( 'Start Building' , 'layerswp' ); ?></a>
                     </div>
                 </div>
             </div>

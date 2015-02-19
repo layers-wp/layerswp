@@ -19,26 +19,26 @@ class Layers_Customizer_Config {
 
 		$panels = array(
 			'branding' => array(
-							'title' => __( 'Branding', LAYERS_THEME_SLUG ),
+							'title' => __( 'Branding' , 'layerswp' ),
 							'priority' => 20
 						),
 			'site-settings' => array(
-							'title' => __( 'Site Settings', LAYERS_THEME_SLUG ),
-							'description' => __( 'Control your content\'s default layout.' , LAYERS_THEME_SLUG ), // @TODO Put a helper here
+							'title' => __( 'Site Settings' , 'layerswp' ),
+							'description' => __( 'Control your content\'s default layout.' , 'layerswp' ), // @TODO Put a helper here
 							'priority' => 40
 						),
 			'header' => array(
-							'title' => __( 'Header', LAYERS_THEME_SLUG ),
-							'description' => __( 'Control your header\'s logo, layout, colors and font.' , LAYERS_THEME_SLUG ), // @TODO Put a helper here
+							'title' => __( 'Header' , 'layerswp' ),
+							'description' => __( 'Control your header\'s logo, layout, colors and font.' , 'layerswp' ), // @TODO Put a helper here
 							'priority' => 60
 						),
 			'footer' => array(
-							'title' => __( 'Footer', LAYERS_THEME_SLUG ),
-							'description' => __( 'Control your footer\'s custom text, widget areas and layout.' , LAYERS_THEME_SLUG ), // @TODO Put a helper here
+							'title' => __( 'Footer' , 'layerswp' ),
+							'description' => __( 'Control your footer\'s custom text, widget areas and layout.' , 'layerswp' ), // @TODO Put a helper here
 							'priority' => 80
 						),
 			'woocommerce' => array(
-							'title' => __( 'WooCommerce', LAYERS_THEME_SLUG ),
+							'title' => __( 'WooCommerce' , 'layerswp' ),
 							'priority' => 100
 						)
 		);
@@ -55,12 +55,12 @@ class Layers_Customizer_Config {
 	public function default_sections(){
 
 		$default_sections[ 'title_tagline' ] = array(
-													'title' => __( 'Logo &amp; Title' , LAYERS_THEME_SLUG ),
+													'title' => __( 'Logo &amp; Title' , 'layerswp' ),
 													'panel' => 'site-settings'
 												);
 
 		$default_sections[ 'colors' ] = array(
-											'title' => __( 'Background Color' , LAYERS_THEME_SLUG ),
+											'title' => __( 'Background Color' , 'layerswp' ),
 											'panel' => 'site-settings',
 											'priority' => 55,
 										);
@@ -87,53 +87,53 @@ class Layers_Customizer_Config {
 
 		$sections = array(
 						'nav' => array( // This is used before any menus are registered. Then replaced by WP Naviagation
-							'title'       =>__( 'Navigation' , LAYERS_THEME_SLUG ),
-							'description' => __( 'First create a menu then come back here to place it.', LAYERS_THEME_SLUG ),
+							'title'       =>__( 'Navigation' , 'layerswp' ),
+							'description' => __( 'First create a menu then come back here to place it.' , 'layerswp' ),
 							'priority' => 50,
 							'panel' => 'site-settings'
 						),
 						'content-layout' => array(
-							'title' =>__( 'Layout' , LAYERS_THEME_SLUG ),
+							'title' =>__( 'Layout' , 'layerswp' ),
 							'panel' => 'site-settings'
 						),
 						'content-sidebars' => array(
-							'title' =>__( 'Sidebars' , LAYERS_THEME_SLUG ),
+							'title' =>__( 'Sidebars' , 'layerswp' ),
 							'panel' => 'site-settings'
 						),
 						'fonts' => array(
-							'title' =>__( 'Fonts' , LAYERS_THEME_SLUG ),
+							'title' =>__( 'Fonts' , 'layerswp' ),
 							'panel' => 'site-settings'
 
 						),
 						'css' => array(
-							'title' =>__( 'CSS' , LAYERS_THEME_SLUG ),
+							'title' =>__( 'CSS' , 'layerswp' ),
 						),
 						'header-layout' => array(
-							'title' =>__( 'Layout' , LAYERS_THEME_SLUG ),
+							'title' =>__( 'Layout' , 'layerswp' ),
 							'panel' => 'header'
 						),
 						'header-scripts' => array(
-							'title' =>__( 'Additional Scripts' , LAYERS_THEME_SLUG ),
+							'title' =>__( 'Additional Scripts' , 'layerswp' ),
 							'panel' => 'header'
 						),
 						'footer-layout' => array(
-							'title' =>__( 'Layout' , LAYERS_THEME_SLUG ),
+							'title' =>__( 'Layout' , 'layerswp' ),
 							'panel' => 'footer'
 						),
 						'footer-customization' => array(
-							'title' =>__( 'Customization' , LAYERS_THEME_SLUG ),
+							'title' =>__( 'Customization' , 'layerswp' ),
 							'panel' => 'footer'
 						),
 						'footer-text' => array(
-							'title' =>__( 'Text' , LAYERS_THEME_SLUG ),
+							'title' =>__( 'Text' , 'layerswp' ),
 							'panel' => 'footer'
 						),
 						'footer-scripts' => array(
-							'title' =>__( 'Additional Scripts' , LAYERS_THEME_SLUG ),
+							'title' =>__( 'Additional Scripts' , 'layerswp' ),
 							'panel' => 'footer'
 						),
 						'woocommerce-sidebars' => array(
-							'title' =>__( 'Sidebars' , LAYERS_THEME_SLUG ),
+							'title' =>__( 'Sidebars' , 'layerswp' ),
 							'panel' => 'woocommerce'
 						)
 					);
@@ -153,7 +153,7 @@ class Layers_Customizer_Config {
 			$controls['nav'] = array(
 									'general-nav' => array(
 										'type'        => 'layers-button',
-										'text'        => __( 'Create Menu', LAYERS_THEME_SLUG ),
+										'text'        => __( 'Create Menu' , 'layerswp' ),
 										'href'        => admin_url( 'nav-menus.php' ),
 									),
 								); // header-layout
@@ -172,7 +172,7 @@ class Layers_Customizer_Config {
 		$controls['fonts'] = array(
 								'body-fonts' => array(
 									'type' => 'layers-font',
-									'label'    => __( 'Body', LAYERS_THEME_SLUG ),
+									'label'    => __( 'Body' , 'layerswp' ),
 									'selectors' => 'body',
 									'choices' => layers_get_google_font_options()
 								),
@@ -181,7 +181,7 @@ class Layers_Customizer_Config {
 								),
 								'heading-fonts' => array(
 									'type' => 'layers-font',
-									'label'    => __( 'Headings', LAYERS_THEME_SLUG ),
+									'label'    => __( 'Headings' , 'layerswp' ),
 									'selectors' => 'h1,h2,h3,h4,h5,h6, .heading',
 									'choices' => layers_get_google_font_options()
 								),
@@ -190,7 +190,7 @@ class Layers_Customizer_Config {
 								),
 								'form-fonts' => array(
 									'type' => 'layers-font',
-									'label'    => __( 'Buttons', LAYERS_THEME_SLUG ),
+									'label'    => __( 'Buttons' , 'layerswp' ),
 									'selectors' => 'button, .button, input[type=submit]',
 									'choices' => layers_get_google_font_options()
 								),
@@ -200,11 +200,11 @@ class Layers_Customizer_Config {
 		$controls['header-layout'] = array(
 								'header-width' => array(
 									'type'     => 'layers-select-icons',
-									'label'    => __( 'Header Width', LAYERS_THEME_SLUG ),
+									'label'    => __( 'Header Width' , 'layerswp' ),
 									'default' => 'layout-boxed',
 									'choices' => array(
-										'layout-boxed' => __( 'Boxed' , LAYERS_THEME_SLUG ),
-										'layout-fullwidth' => __( 'Full Width' , LAYERS_THEME_SLUG )
+										'layout-boxed' => __( 'Boxed' , 'layerswp' ),
+										'layout-fullwidth' => __( 'Full Width' , 'layerswp' )
 									)
 								),
 								'header-layout-break-0' => array(
@@ -212,14 +212,14 @@ class Layers_Customizer_Config {
 								),
 								'header-menu-layout' => array(
 									'type'     => 'layers-select-icons',
-									'label'    => __( 'Logo & Menu Position', LAYERS_THEME_SLUG ),
+									'label'    => __( 'Logo & Menu Position' , 'layerswp' ),
 									'default' => 'header-logo-left',
 									'choices' => array(
-										'header-logo-left' => __( 'Logo Left' , LAYERS_THEME_SLUG ),
-										'header-logo-right' => __( 'Logo Right' , LAYERS_THEME_SLUG ),
-										'header-logo-center-top' => __( 'Logo Center Top' , LAYERS_THEME_SLUG ),
-										'header-logo-top' => __( 'Logo Top' , LAYERS_THEME_SLUG ),
-										'header-logo-center' => __( 'Logo Center' , LAYERS_THEME_SLUG )
+										'header-logo-left' => __( 'Logo Left' , 'layerswp' ),
+										'header-logo-right' => __( 'Logo Right' , 'layerswp' ),
+										'header-logo-center-top' => __( 'Logo Center Top' , 'layerswp' ),
+										'header-logo-top' => __( 'Logo Top' , 'layerswp' ),
+										'header-logo-center' => __( 'Logo Center' , 'layerswp' )
 									)
 								),
 								'header-layout-break-1' => array(
@@ -227,17 +227,17 @@ class Layers_Customizer_Config {
 								),
 								'header-position-heading' => array(
 									'type'  => 'layers-heading',
-									'label'    => __( 'Header Position', LAYERS_THEME_SLUG ),
+									'label'    => __( 'Header Position' , 'layerswp' ),
 								),
 								'header-sticky' => array(
 									'type'		=> 'layers-checkbox',
-									'label'		=> __( 'Sticky', LAYERS_THEME_SLUG ),
+									'label'		=> __( 'Sticky' , 'layerswp' ),
 									'class'		=> 'layers-pull-top layers-pull-bottom',
 									'default'	=> FALSE,
 								),
 								'header-overlay' => array(
 									'type'     => 'layers-checkbox',
-									'label'    => __( 'Overlay', LAYERS_THEME_SLUG ),
+									'label'    => __( 'Overlay' , 'layerswp' ),
 									'default'	=> FALSE,
 								),
 								'header-layout-break-2' => array(
@@ -245,7 +245,7 @@ class Layers_Customizer_Config {
 								),
 								'header-background-color' => array(
 									'type'		=> 'layers-color',
-									'label'		=> __( 'Background Color', LAYERS_THEME_SLUG ),
+									'label'		=> __( 'Background Color' , 'layerswp' ),
 									'default'	=> '#F3F3F3',
 								),
 							); // header-layout
@@ -254,8 +254,8 @@ class Layers_Customizer_Config {
 		$controls['header-scripts'] = array(
 								'header-google-id' => array(
 									'type'     => 'text',
-									'label'    => __( 'Google Analytics ID', LAYERS_THEME_SLUG ),
-									'description' => __( 'Enter in your Google Analytics ID to enable website traffic reporting. eg. "UA-xxxxxx-xx', LAYERS_THEME_SLUG ),
+									'label'    => __( 'Google Analytics ID' , 'layerswp' ),
+									'description' => __( 'Enter in your Google Analytics ID to enable website traffic reporting. eg. "UA-xxxxxx-xx' , 'layerswp' ),
 									'default' => '',
 								), // scripts
 								'header-custom-scripts-break-1' => array(
@@ -263,8 +263,8 @@ class Layers_Customizer_Config {
 								),
 								'header-custom-scripts' => array(
 									'type'     => 'textarea',
-									'label'    => __( 'Custom Scripts', LAYERS_THEME_SLUG ),
-									'description' => __( 'Enter in any custom script (such as TypeKit etc) to include in your site\'s header. Include the &lt;script&gt;&lt;/script&gt; tags.', LAYERS_THEME_SLUG ),
+									'label'    => __( 'Custom Scripts' , 'layerswp' ),
+									'description' => __( 'Enter in any custom script (such as TypeKit etc) to include in your site\'s header. Include the &lt;script&gt;&lt;/script&gt; tags.' , 'layerswp' ),
 									'default' => '',
 								) // scripts
 							);
@@ -272,17 +272,17 @@ class Layers_Customizer_Config {
 		$controls['content-sidebars'] = array(
 								'single-sidebar-heading' => array(
 									'type'  => 'layers-heading',
-									'label'    => __( 'Single Post Sidebar(s)', LAYERS_THEME_SLUG ),
-									'description' => __( 'This option affects your single post pages.', LAYERS_THEME_SLUG ),
+									'label'    => __( 'Single Post Sidebar(s)' , 'layerswp' ),
+									'description' => __( 'This option affects your single post pages.' , 'layerswp' ),
 								),
 								'single-left-sidebar' => array(
 									'type'      => 'checkbox',
-									'label'     => __( 'Display Left Sidebar', LAYERS_THEME_SLUG ),
+									'label'     => __( 'Display Left Sidebar' , 'layerswp' ),
 									'default'   => FALSE,
 								), // post-sidebar
 								'single-right-sidebar' => array(
 									'type'      => 'checkbox',
-									'label'     => __( 'Display Right Sidebar', LAYERS_THEME_SLUG ),
+									'label'     => __( 'Display Right Sidebar' , 'layerswp' ),
 									'default'   => TRUE,
 								), // post-sidebar
 								'content-layout-break-2' => array(
@@ -290,17 +290,17 @@ class Layers_Customizer_Config {
 								),
 								'archive-sidebar-heading' => array(
 									'type'  => 'layers-heading',
-									'label'    => __( 'Post List Sidebar(s)', LAYERS_THEME_SLUG ),
-									'description' => __( 'This option affects your category, tag, author and search pages.', LAYERS_THEME_SLUG ),
+									'label'    => __( 'Post List Sidebar(s)' , 'layerswp' ),
+									'description' => __( 'This option affects your category, tag, author and search pages.' , 'layerswp' ),
 								),
 								'archive-left-sidebar' => array(
 									'type'		=> 'checkbox',
-									'label' 	=> __( 'Display Left Sidebar', LAYERS_THEME_SLUG ),
+									'label' 	=> __( 'Display Left Sidebar' , 'layerswp' ),
 									'default' 	=> FALSE,
 								), // post-sidebar
 								'archive-right-sidebar' => array(
 									'type'		=> 'checkbox',
-									'label' 	=> __( 'Display Right Sidebar', LAYERS_THEME_SLUG ),
+									'label' 	=> __( 'Display Right Sidebar' , 'layerswp' ),
 									'default' 	=> TRUE,
 								), // post-sidebar
 							);
@@ -312,8 +312,8 @@ class Layers_Customizer_Config {
 									'type'     => 'layers-select-icons',
 									'default' => 'layout-boxed',
 									'choices' => array(
-										'layout-boxed' => __( 'Boxed' , LAYERS_THEME_SLUG ),
-										'layout-fullwidth' => __( 'Full Width' , LAYERS_THEME_SLUG )
+										'layout-boxed' => __( 'Boxed' , 'layerswp' ),
+										'layout-fullwidth' => __( 'Full Width' , 'layerswp' )
 									)
 								), // layout,
 								'footer-layout-break-1' => array(
@@ -321,14 +321,14 @@ class Layers_Customizer_Config {
 								),
 								'footer-sidebar-count' => array(
 									'type'     => 'select',
-									'label'    => __( 'Widget Areas', LAYERS_THEME_SLUG ),
+									'label'    => __( 'Widget Areas' , 'layerswp' ),
 									'default' => 4,
 									'choices' => array(
-										'0' => __( 'None' , LAYERS_THEME_SLUG ),
-										'1' => __( '1' , LAYERS_THEME_SLUG ),
-										'2' => __( '2' , LAYERS_THEME_SLUG ),
-										'3' => __( '3' , LAYERS_THEME_SLUG ),
-										'4' => __( '4' , LAYERS_THEME_SLUG ),
+										'0' => __( 'None' , 'layerswp' ),
+										'1' => __( '1' , 'layerswp' ),
+										'2' => __( '2' , 'layerswp' ),
+										'3' => __( '3' , 'layerswp' ),
+										'4' => __( '4' , 'layerswp' ),
 									)
 								),
 							); // footer-layout
@@ -337,16 +337,16 @@ class Layers_Customizer_Config {
 		$controls['footer-customization'] = array(
 								'footer-font-heading' => array(
 									'type'  => 'layers-heading',
-									'label'    => __( 'Text', LAYERS_THEME_SLUG ),
+									'label'    => __( 'Text' , 'layerswp' ),
 								),
 								'footer-body-color' => array(
 									'type'  => 'layers-color',
-									'subtitle' => __( 'Text Color', LAYERS_THEME_SLUG ),
+									'subtitle' => __( 'Text Color' , 'layerswp' ),
 									'default' => '#000000',
 								),
 								'footer-link-color' => array(
 									'type' => 'layers-color',
-									'subtitle' => __( 'Link Color', LAYERS_THEME_SLUG ),
+									'subtitle' => __( 'Link Color' , 'layerswp' ),
 									'default' => '#35A6E8',
 								),
 								'footer-customization-break-1' => array(
@@ -354,44 +354,44 @@ class Layers_Customizer_Config {
 								),
 								'footer-background-heading' => array(
 									'type'  => 'layers-heading',
-									'label'    => __( 'Background', LAYERS_THEME_SLUG ),
+									'label'    => __( 'Background' , 'layerswp' ),
 								),
 								'footer-background-image' => array(
 									'label' => '',
-									'subtitle' => __( 'Background Image', LAYERS_THEME_SLUG ),
+									'subtitle' => __( 'Background Image' , 'layerswp' ),
 									'type' => 'layers-select-images', //wierd bug in WP4.1 that requires a type to be in the array, or will revert to default control
 								),
 								'footer-background-color' => array(
 									'label' => '',
-									'subtitle' => __( 'Background Color', LAYERS_THEME_SLUG ),
+									'subtitle' => __( 'Background Color' , 'layerswp' ),
 									'type' => 'layers-color',
 									'default' => '#F3F3F3',
 								),
 								'footer-background-repeat' => array(
 									'label' => '',
-									'subtitle' => __( 'Background Repeat', LAYERS_THEME_SLUG ),
+									'subtitle' => __( 'Background Repeat' , 'layerswp' ),
 									'type' => 'layers-select',
 									'choices' => array(
-										'no-repeat' => __( 'No Repeat' , LAYERS_THEME_SLUG ),
-										'repeat' => __( 'Repeat' , LAYERS_THEME_SLUG ),
-										'repeat-x' => __( 'Repeat Horizontal' , LAYERS_THEME_SLUG ),
-										'repeat-y' => __( 'Repeat Vertical' , LAYERS_THEME_SLUG ),
+										'no-repeat' => __( 'No Repeat' , 'layerswp' ),
+										'repeat' => __( 'Repeat' , 'layerswp' ),
+										'repeat-x' => __( 'Repeat Horizontal' , 'layerswp' ),
+										'repeat-y' => __( 'Repeat Vertical' , 'layerswp' ),
 									),
 								),
 								'footer-background-position' => array(
 									'label' => '',
-									'subtitle' => __( 'Background Position', LAYERS_THEME_SLUG ),
+									'subtitle' => __( 'Background Position' , 'layerswp' ),
 									'type' => 'layers-select',
 									'choices' => array(
-										'center' => __( 'Center' , LAYERS_THEME_SLUG ),
-										'top' => __( 'Top' , LAYERS_THEME_SLUG ),
-										'bottom' => __( 'Bottom' , LAYERS_THEME_SLUG ),
-										'left' => __( 'Left' , LAYERS_THEME_SLUG ),
-										'right' => __( 'Right' , LAYERS_THEME_SLUG ),
+										'center' => __( 'Center' , 'layerswp' ),
+										'top' => __( 'Top' , 'layerswp' ),
+										'bottom' => __( 'Bottom' , 'layerswp' ),
+										'left' => __( 'Left' , 'layerswp' ),
+										'right' => __( 'Right' , 'layerswp' ),
 									),
 								),
 								'footer-background-stretch' => array(
-									'label' => __( 'Background Stretch', LAYERS_THEME_SLUG ),
+									'label' => __( 'Background Stretch' , 'layerswp' ),
 									'subtitle' => '',
 									'type' => 'layers-checkbox',
 								),
@@ -401,7 +401,7 @@ class Layers_Customizer_Config {
 		$controls['footer-text'] = array(
 				'footer-copyright-text' => array(
 					'type'     => 'text',
-					'label'    => __( 'Copyright Text', LAYERS_THEME_SLUG ),
+					'label'    => __( 'Copyright Text' , 'layerswp' ),
 					'default' => ' Made at the tip of Africa. &copy;'
 				), // copyright
 			); // footer-text
@@ -410,8 +410,8 @@ class Layers_Customizer_Config {
 		$controls['footer-scripts'] = array(
 					'footer-custom-scripts' => array(
 						'type'     => 'textarea',
-						'label'    => __( 'Custom Scripts', LAYERS_THEME_SLUG ),
-						'description' => __( 'Enter in any custom script to include in your site\'s footer. Include the &lt;script&gt;&lt;/script&gt; tags.', LAYERS_THEME_SLUG ),
+						'label'    => __( 'Custom Scripts' , 'layerswp' ),
+						'description' => __( 'Enter in any custom script to include in your site\'s footer. Include the &lt;script&gt;&lt;/script&gt; tags.' , 'layerswp' ),
 						'default' => '',
 					), // scripts
 				); // footer-scripts
@@ -421,17 +421,17 @@ class Layers_Customizer_Config {
 			$controls[ 'woocommerce-sidebars' ] = array(
 								'label-sidebar-single' => array(
 									'type'  => 'layers-heading',
-									'label'    => __( 'Single Product Sidebar(s)', LAYERS_THEME_SLUG ),
-									'description' => __( 'This option affects your single product pages.', LAYERS_THEME_SLUG ),
+									'label'    => __( 'Single Product Sidebar(s)' , 'layerswp' ),
+									'description' => __( 'This option affects your single product pages.' , 'layerswp' ),
 								),
 								'single-left-woocommerce-sidebar' => array(
 									'type'      => 'checkbox',
-									'label'     => __( 'Display Left Sidebar', LAYERS_THEME_SLUG ),
+									'label'     => __( 'Display Left Sidebar' , 'layerswp' ),
 									'default'   => FALSE,
 								), // post-sidebar
 								'single-right-woocommerce-sidebar' => array(
 									'type'      => 'checkbox',
-									'label'     => __( 'Display Right Sidebar', LAYERS_THEME_SLUG ),
+									'label'     => __( 'Display Right Sidebar' , 'layerswp' ),
 									'default'   => TRUE,
 								), // post-sidebar
 								'woocommerce-break-1' => array(
@@ -439,17 +439,17 @@ class Layers_Customizer_Config {
 								),
 								'label-sidebar-archive' => array(
 									'type'  => 'layers-heading',
-									'label'    => __( 'Product List Sidebar(s)', LAYERS_THEME_SLUG ),
-									'description' => __( 'This option affects your shop page, product category and product tag pages.', LAYERS_THEME_SLUG ),
+									'label'    => __( 'Product List Sidebar(s)' , 'layerswp' ),
+									'description' => __( 'This option affects your shop page, product category and product tag pages.' , 'layerswp' ),
 								),
 								'archive-left-woocommerce-sidebar' => array(
 									'type'      => 'checkbox',
-									'label'     => __( 'Display Left Sidebar', LAYERS_THEME_SLUG ),
+									'label'     => __( 'Display Left Sidebar' , 'layerswp' ),
 									'default'   => FALSE,
 								), // post-sidebar
 								'archive-right-woocommerce-sidebar' => array(
 									'type'      => 'checkbox',
-									'label'     => __( 'Display Right Sidebar', LAYERS_THEME_SLUG ),
+									'label'     => __( 'Display Right Sidebar' , 'layerswp' ),
 									'default'   => TRUE,
 								), // post-sidebar
 							);

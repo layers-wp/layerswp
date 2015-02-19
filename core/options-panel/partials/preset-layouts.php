@@ -17,7 +17,7 @@
                   </div>
                <h3 class="layers-product-name" id="<?php echo esc_attr( $template_key ); ?>"><?php echo esc_html( $template[ 'title' ] ); ?></h3>
                <div class="layers-product-actions">
-                  <a class="layers-button btn-primary customize load-customize" id="layers-generate-preset-layout-<?php echo esc_attr( $template_key ); ?>"  data-key="layers-preset-layout-<?php echo esc_attr( $template_key ); ?>"><?php _e( 'Select', LAYERS_THEME_SLUG ); ?></a>
+                  <a class="layers-button btn-primary customize load-customize" id="layers-generate-preset-layout-<?php echo esc_attr( $template_key ); ?>"  data-key="layers-preset-layout-<?php echo esc_attr( $template_key ); ?>"><?php _e( 'Select' , 'layerswp' ); ?></a>
                </div>
             </label>
          </div>

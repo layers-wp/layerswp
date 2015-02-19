@@ -157,11 +157,11 @@ if( ! function_exists( 'layers_setup' ) ) {
 		 * Register nav menus
 		 */
 		register_nav_menus( array(
-			LAYERS_THEME_SLUG . '-secondary-left' => __( 'Top Left Menu', LAYERS_THEME_SLUG ),
-			LAYERS_THEME_SLUG . '-secondary-right' => __( 'Top Right Menu', LAYERS_THEME_SLUG ),
-			LAYERS_THEME_SLUG . '-primary' => __( 'Header Menu', LAYERS_THEME_SLUG ),
-			LAYERS_THEME_SLUG . '-primary-right' => __( 'Right Header Menu', LAYERS_THEME_SLUG ),
-			LAYERS_THEME_SLUG . '-footer' => __( 'Footer Menu', LAYERS_THEME_SLUG ),
+			LAYERS_THEME_SLUG . '-secondary-left' => __( 'Top Left Menu' , 'layerswp' ),
+			LAYERS_THEME_SLUG . '-secondary-right' => __( 'Top Right Menu' , 'layerswp' ),
+			LAYERS_THEME_SLUG . '-primary' => __( 'Header Menu' , 'layerswp' ),
+			LAYERS_THEME_SLUG . '-primary-right' => __( 'Right Header Menu' , 'layerswp' ),
+			LAYERS_THEME_SLUG . '-footer' => __( 'Footer Menu' , 'layerswp' ),
 
 		) );
 
@@ -189,8 +189,8 @@ if( ! function_exists( 'layers_register_standard_sidebars' ) ) {
 		 */
 		register_sidebar( array(
 			'id'		=> LAYERS_THEME_SLUG . '-off-canvas-sidebar',
-			'name'		=> __( 'Mobile Sidebar' , LAYERS_THEME_SLUG ),
-			'description'	=> __( 'This sidebar will only appear on mobile devices.' , LAYERS_THEME_SLUG ),
+			'name'		=> __( 'Mobile Sidebar' , 'layerswp' ),
+			'description'	=> __( 'This sidebar will only appear on mobile devices.' , 'layerswp' ),
 			'before_widget'	=> '<aside id="%1$s" class="content widget %2$s">',
 			'after_widget'	=> '</aside>',
 			'before_title'	=> '<h5 class="section-nav-title">',
@@ -199,7 +199,7 @@ if( ! function_exists( 'layers_register_standard_sidebars' ) ) {
 
 		register_sidebar( array(
 			'id'		=> LAYERS_THEME_SLUG . '-left-sidebar',
-			'name'		=> __( 'Left Sidebar' , LAYERS_THEME_SLUG ),
+			'name'		=> __( 'Left Sidebar' , 'layerswp' ),
 			'before_widget'	=> '<aside id="%1$s" class="content well push-bottom-large widget %2$s">',
 			'after_widget'	=> '</aside>',
 			'before_title'	=> '<h5 class="section-nav-title">',
@@ -208,7 +208,7 @@ if( ! function_exists( 'layers_register_standard_sidebars' ) ) {
 
 		register_sidebar( array(
 			'id'		=> LAYERS_THEME_SLUG . '-right-sidebar',
-			'name'		=> __( 'Right Sidebar' , LAYERS_THEME_SLUG ),
+			'name'		=> __( 'Right Sidebar' , 'layerswp' ),
 			'before_widget'	=> '<aside id="%1$s" class="content well push-bottom-large widget %2$s">',
 			'after_widget'	=> '</aside>',
 			'before_title'	=> '<h5 class="section-nav-title">',
@@ -232,24 +232,26 @@ if( ! function_exists( 'layers_register_standard_sidebars' ) ) {
 		/**
 		 * Register WooCommerce Sidebars
 		 */
-		register_sidebar( array(
-            'id'        => LAYERS_THEME_SLUG . '-left-woocommerce-sidebar',
-            'name'      => __( 'Left Shop Sidebar' , LAYERS_THEME_SLUG ),
-            'description'   => __( '' , LAYERS_THEME_SLUG ),
-            'before_widget' => '<aside id="%1$s" class="content well push-bottom-large widget %2$s">',
-            'after_widget'  => '</aside>',
-            'before_title'  => '<h5 class="section-nav-title">',
-            'after_title'   => '</h5>',
-        ) );
-        register_sidebar( array(
-            'id'        => LAYERS_THEME_SLUG . '-right-woocommerce-sidebar',
-            'name'      => __( 'Right Shop Sidebar' , LAYERS_THEME_SLUG ),
-            'description'   => __( '' , LAYERS_THEME_SLUG ),
-            'before_widget' => '<aside id="%1$s" class="content well push-bottom-large widget %2$s">',
-            'after_widget'  => '</aside>',
-            'before_title'  => '<h5 class="section-nav-title">',
-            'after_title'   => '</h5>',
-        ) );
+		if( class_exists( 'WooCommerce' ) ) {
+			register_sidebar( array(
+				'id'        => LAYERS_THEME_SLUG . '-left-woocommerce-sidebar',
+				'name'      => __( 'Left Shop Sidebar' , 'layerswp' ),
+				'description'   => __( '' , 'layerswp' ),
+				'before_widget' => '<aside id="%1$s" class="content well push-bottom-large widget %2$s">',
+				'after_widget'  => '</aside>',
+				'before_title'  => '<h5 class="section-nav-title">',
+				'after_title'   => '</h5>',
+			) );
+			register_sidebar( array(
+				'id'        => LAYERS_THEME_SLUG . '-right-woocommerce-sidebar',
+				'name'      => __( 'Right Shop Sidebar' , 'layerswp' ),
+				'description'   => __( '' , 'layerswp' ),
+				'before_widget' => '<aside id="%1$s" class="content well push-bottom-large widget %2$s">',
+				'after_widget'  => '</aside>',
+				'before_title'  => '<h5 class="section-nav-title">',
+				'after_title'   => '</h5>',
+			) );
+		}
 	}
 	add_action( 'widgets_init' , 'layers_register_standard_sidebars' , 50 );
 }
@@ -431,14 +433,14 @@ if( ! function_exists( 'layers_admin_scripts' ) ) {
 			LAYERS_THEME_SLUG . '-admin-migrator',
 			'migratori8n',
 			array(
-				'loading_message' => __( 'Be patient while we import the widget data and images.' , LAYERS_THEME_SLUG ),
-				'complete_message' => __( 'Import Complete' , LAYERS_THEME_SLUG ),
-				'importing_message' => __( 'Importing Your Content' , LAYERS_THEME_SLUG ),
-				'duplicate_complete_message' => __( 'Edit Your New Page' , LAYERS_THEME_SLUG )
+				'loading_message' => __( 'Be patient while we import the widget data and images.' , 'layerswp' ),
+				'complete_message' => __( 'Import Complete' , 'layerswp' ),
+				'importing_message' => __( 'Importing Your Content' , 'layerswp' ),
+				'duplicate_complete_message' => __( 'Edit Your New Page' , 'layerswp' )
 			)
 		);// Migrator
 
-        // Onboarding Process
+		// Onboarding Process
 		wp_enqueue_script(
 			LAYERS_THEME_SLUG . '-admin-onboarding' ,
 			get_template_directory_uri() . '/core/assets/onboarding.js',
@@ -458,12 +460,12 @@ if( ! function_exists( 'layers_admin_scripts' ) ) {
 			)
 		); // Onboarding ajax parameters
 
-        wp_localize_script(
+		wp_localize_script(
 			LAYERS_THEME_SLUG . '-admin-onboarding' ,
 			'onboardingi8n',
 			array(
-				'step_saving_message' => __( 'Saving...' , LAYERS_THEME_SLUG ),
-				'step_done_message' => __( 'Done!' , LAYERS_THEME_SLUG )
+				'step_saving_message' => __( 'Saving...' , 'layerswp' ),
+				'step_done_message' => __( 'Done!' , 'layerswp' )
 			)
 		); // Onboarding localization
 
@@ -492,7 +494,7 @@ add_action( 'admin_enqueue_scripts' , 'layers_admin_scripts' );
 */
 if( !function_exists( 'layers_excerpt_class' ) ) {
 	function layers_excerpt_class( $excerpt ) {
-	    return str_replace('<p', '<p class="excerpt"', $excerpt);
+		return str_replace('<p', '<p class="excerpt"', $excerpt);
 	}
 	add_filter( "the_excerpt", "layers_excerpt_class" );
 	add_filter( "get_the_excerpt", "layers_excerpt_class" );
@@ -521,7 +523,7 @@ if( !function_exists( 'layers_site_title' ) ) {
 
 		// Add a page number if necessary.
 		if ( $paged >= 2 || $page >= 2 )
-			$title = "$title $sep " . sprintf( __( 'Page %s', LAYERS_THEME_SLUG ), max( $paged, $page ) );
+			$title = "$title $sep " . sprintf( __( 'Page %s' , 'layerswp' ), max( $paged, $page ) );
 
 		return $title;
 	}

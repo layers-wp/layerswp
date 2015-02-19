@@ -9,7 +9,7 @@ $find_builder_page = layers_get_builder_pages(); ?>
 
 <section class="layers-area-wrapper" id="layers-add-new-page">
 
-   <?php $this->header( __( 'Add New Page', LAYERS_THEME_SLUG ) ); ?>
+   <?php $this->header( __( 'Add New Page' , 'layerswp' ) ); ?>
 
    <div class="layers-row layers-well layers-content-large">
       <?php $this->load_partial( 'preset-layouts' ); ?>
@@ -22,7 +22,7 @@ $find_builder_page = layers_get_builder_pages(); ?>
       <div class="layers-section-title layers-no-push-bottom">
 
          <h2 class="layers-heading layers-push-bottom" id="layers-options-header">
-            <?php _e( 'Add a page title', LAYERS_THEME_SLUG ); ?>
+            <?php _e( 'Add a page title' , 'layerswp' ); ?>
          </h2>
 
          <p class="layers-form-item layers-span-12">
@@ -31,7 +31,7 @@ $find_builder_page = layers_get_builder_pages(); ?>
                   'type' => 'text',
                   'name' => 'layers_preset_page_title',
                   'id' => 'layers_preset_page_title',
-                  'placeholder' => __( 'Enter title here', LAYERS_THEME_SLUG ),
+                  'placeholder' => __( 'Enter title here' , 'layerswp' ),
                   'value' => NULL,
                   'class' => 'layers-text layers-large'
                ) );
@@ -40,10 +40,10 @@ $find_builder_page = layers_get_builder_pages(); ?>
 
          <p id="layers-preset-layout-next-button">
             <a id="layers-preset-proceed" href="" class="layers-button btn-primary btn-large" data-post_id="" data-location="">
-               <?php _e( 'Proceed to Customizer' , LAYERS_THEME_SLUG ); ?>
+               <?php _e( 'Proceed to Customizer' , 'layerswp' ); ?>
             </a>
             <a id="layers-preset-cancel" href="" class="layers-button btn-link">
-               <?php _e( 'Cancel' , LAYERS_THEME_SLUG ); ?>
+               <?php _e( 'Cancel' , 'layerswp' ); ?>
             </a>
 
             <div class="layers-load-bar layers-hide">

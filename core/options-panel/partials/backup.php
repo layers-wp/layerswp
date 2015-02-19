@@ -2,7 +2,7 @@
 <?php $builder_pages = layers_get_builder_pages(); ?>
 <section class="layers-area-wrapper">
 
-	<?php $this->header( __( 'Backup', LAYERS_THEME_SLUG ) ); ?>
+	<?php $this->header( __( 'Backup' , 'layerswp' ) ); ?>
 
 	<div class="layers-row layers-well layers-content-large">
 		<div class="layers-container-large">
@@ -11,9 +11,9 @@
 				<div class="layers-column layers-panel layers-span-8">
 					<div class="layers-content layers-push-bottom">
 						<div class="layers-section-title layers-small">
-							<h3 class="layers-heading"><?php _e( 'Backup your pages', LAYERS_THEME_SLUG ); ?></h3>
+							<h3 class="layers-heading"><?php _e( 'Backup your pages' , 'layerswp' ); ?></h3>
 							<p class="layers-excerpt">
-								<?php _e( 'Convert your Layers pages into regular WordPress pages, preserving the content you have worked so hard to create.', LAYERS_THEME_SLUG ); ?>
+								<?php _e( 'Convert your Layers pages into regular WordPress pages, preserving the content you have worked so hard to create.' , 'layerswp' ); ?>
 							</p>
 						</div>
 						<div class="layers-load-bar">
@@ -21,13 +21,13 @@
 						</div>
 					</div>
 					<div class="layers-button-well">
-						<a id="layers-backup-pages" class="layers-button btn-large btn-primary"><?php _e( 'Backup my Pages Now' , LAYERS_THEME_SLUG ); ?></a>
+						<a id="layers-backup-pages" class="layers-button btn-large btn-primary"><?php _e( 'Backup my Pages Now' , 'layerswp' ); ?></a>
 					</div>
 				</div>
 				<div class="layers-column layers-span-4">
 					<div class="layers-panel layers-push-bottom">
 						<div class="layers-panel-title">
-							<h4 class="layers-heading"><?php _e( 'Backed Up Pages:' , LAYERS_THEME_SLUG ); ?></h4>
+							<h4 class="layers-heading"><?php _e( 'Backed Up Pages:' , 'layerswp' ); ?></h4>
 						</div>
 						<ul class="layers-list">
 							<?php foreach( $builder_pages as $post ){ ?>

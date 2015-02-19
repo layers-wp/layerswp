@@ -21,7 +21,7 @@ if( !function_exists( 'layers_bread_crumbs' ) ) {
 		<<?php echo $wrapper; ?> class="<?php echo esc_attr( $wrapper_class ); ?>">
 			<ul>
 				<?php /* Home */ ?>
-				<li><a href="<?php echo home_url(); ?>"><?php _e('Home',LAYERS_THEME_SLUG); ?></a></li>
+				<li><a href="<?php echo home_url(); ?>"><?php _e('Home' , 'layerswp' ); ?></a></li>
 
 				<?php
 
@@ -32,7 +32,7 @@ if( !function_exists( 'layers_bread_crumbs' ) ) {
 				*/
 				if( is_search() ) { ?>
 					<li><?php echo esc_html( $seperator ); ?></li>
-					<li><?php _e('Search',LAYERS_THEME_SLUG); ?></li>
+					<li><?php _e('Search' , 'layerswp' ); ?></li>
 				<?php } elseif( function_exists('is_shop') && ( is_post_type_archive( 'product' ) || ( get_post_type() == "product") ) ) { ?>
 					<li><?php echo esc_html( $seperator ); ?></li>
 					<?php if( function_exists( 'woocommerce_get_page_id' )  && '-1' != woocommerce_get_page_id('shop') ) { ?>
@@ -42,7 +42,7 @@ if( !function_exists( 'layers_bread_crumbs' ) ) {
 							<li><a href="<?php echo get_permalink( $shop_page->ID ); ?>"><?php echo $shop_page->post_title; ?></a></li>
 						<?php } ?>
 					<?php } else { ?>
-						<li><a href="#"><?php _e( 'Shop' , LAYERS_THEME_SLUG ); ?></li>
+						<li><a href="#"><?php _e( 'Shop' , 'layerswp' ); ?></li>
 					<?php }
 				} elseif( is_post_type_archive() || is_singular() || is_tax() ) {
 
@@ -301,7 +301,7 @@ if( !function_exists( 'layers_get_page_title' ) ) {
 				if( $post->post_excerpt != "") $title_array['excerpt'] = strip_tags( get_the_excerpt() );
 			};
 		} elseif( is_search() ) {
-			$title_array['title'] = __( 'Search' , LAYERS_THEME_SLUG );
+			$title_array['title'] = __( 'Search' , 'layerswp' );
 			$title_array['excerpt'] = get_search_query();
 		} elseif( is_tag() ) {
 			$title_array['title'] = single_tag_title();
@@ -314,11 +314,11 @@ if( !function_exists( 'layers_get_page_title' ) ) {
 			$title_array['title'] = $term->name;
 			$title_array['excerpt'] = $term->description;
 		} elseif ( is_day() ) {
-			$title_array['title' ] = sprintf( __( 'Daily Archives: %s', LAYERS_THEME_SLUG ), get_the_date() );
+			$title_array['title' ] = sprintf( __( 'Daily Archives: %s' , 'layerswp' ), get_the_date() );
 		} elseif ( is_month() ) {
-			$title_array['title' ] = sprintf( __( 'Monthly Archives: %s', LAYERS_THEME_SLUG ), get_the_date( _x( 'F Y', 'monthly archives date format', LAYERS_THEME_SLUG ) ) );
+			$title_array['title' ] = sprintf( __( 'Monthly Archives: %s' , 'layerswp' ), get_the_date( _x( 'F Y', 'monthly archives date format' , 'layerswp' ) ) );
 		} elseif ( is_year() ) {
-			$title_array['title' ] = sprintf( __( 'Yearly Archives: %s', LAYERS_THEME_SLUG ), get_the_date( _x( 'Y', 'yearly archives date format', LAYERS_THEME_SLUG ) ) );
+			$title_array['title' ] = sprintf( __( 'Yearly Archives: %s' , 'layerswp' ), get_the_date( _x( 'Y', 'yearly archives date format' , 'layerswp' ) ) );
 		} elseif( function_exists('is_shop') && ( is_post_type_archive( 'product' ) || ( get_post_type() == "product") ) ) {
 			if( function_exists( 'woocommerce_get_page_id' )  && -1 != woocommerce_get_page_id('shop') ) {
 				$shop_page = get_post( woocommerce_get_page_id('shop') );
@@ -326,12 +326,12 @@ if( !function_exists( 'layers_get_page_title' ) ) {
 					$title_array['title' ] = $shop_page->post_title;
 				}
 			} else {
-				$title_array['title' ] = __( 'Shop' , LAYERS_THEME_SLUG );
+				$title_array['title' ] = __( 'Shop' , 'layerswp' );
 			}
 		} elseif( is_single() ) {
 			$title_array['title' ] = get_the_title();
 		} else {
-			$title_array['title' ] = __( 'Archives', LAYERS_THEME_SLUG );
+			$title_array['title' ] = __( 'Archives' , 'layerswp' );
 		}
 
 		return apply_filters( 'layers_get_page_title' , $title_array );
@@ -1110,7 +1110,7 @@ if ( ! function_exists( 'layers_show_html5_video' ) ) {
 		if( NULL == $src ) return; ?>
 		<video width="<?php echo $width;?>" height="auto" controls>
 			<source src="<?php echo $src; ?>?v=<?php echo LAYERS_VERSION; ?>" type="video/<?php echo substr( $src, -3, 3); ?>">
-			<?php _e( 'Your browser does not support the video tag.' , LAYERS_THEME_SLUG ); ?>
+			<?php _e( 'Your browser does not support the video tag.' , 'layerswp' ); ?>
 		</video>
 <?php }
 } // layers_show_html5_video

@@ -65,7 +65,7 @@ if( !class_exists( 'Layers_Onboarding_Ajax' ) ) {
 
                     case 'site_logo' :
 
-                        if( '' == $clean_option_value || '0' == $clean_option_value ) die( json_encode( array( 'success' => true, 'message' => __( 'No Logo uploaded' , LAYERS_THEME_SLUG ) ) ) );
+                        if( '' == $clean_option_value || '0' == $clean_option_value ) die( json_encode( array( 'success' => true, 'message' => __( 'No Logo uploaded' , 'layerswp' ) ) ) );
 
                         $get_attachment = wp_get_attachment_image_src( $clean_option_value );
 
@@ -99,11 +99,11 @@ if( !class_exists( 'Layers_Onboarding_Ajax' ) ) {
 
                             update_option( $option_key, $site_logo_array );
 
-                            die( json_encode( array( 'success' => true, 'message' => __( 'Logo updated' , LAYERS_THEME_SLUG ) ) ) );
+                            die( json_encode( array( 'success' => true, 'message' => __( 'Logo updated' , 'layerswp' ) ) ) );
 
                         } else {
 
-                            die( json_encode( array( 'success' => false, 'message' => __( 'There was an error when updating your logo.' , LAYERS_THEME_SLUG ) ) ) );
+                            die( json_encode( array( 'success' => false, 'message' => __( 'There was an error when updating your logo.' , 'layerswp' ) ) ) );
 
                         }
 
@@ -111,7 +111,7 @@ if( !class_exists( 'Layers_Onboarding_Ajax' ) ) {
                     default :
                         update_option( $option_key, $clean_option_value );
 
-                        die( json_encode( array( 'success' => true, 'message' => __( 'Option updated' , LAYERS_THEME_SLUG ) ) ) );
+                        die( json_encode( array( 'success' => true, 'message' => __( 'Option updated' , 'layerswp' ) ) ) );
                     break;
 
                 }

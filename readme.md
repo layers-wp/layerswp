@@ -18,12 +18,12 @@ Custom page layouts are achieved using the WordPress Customizer in combination w
 
 Customization of these pages and the overall theme is completed in the WordPress Customizer to take advantage of the live view.
 
-For videos, troubleshooting and detailed usage documentation, view the Getting Started  Guide
+For videos, troubleshooting and detailed usage documentation, view the Getting Started Guide
 
 ###Links
 
-*[LayersWP](http://www.layerswp.com/download/layers/)
-*Clone here or [Download Master](https://github.com/Obox/layerswp/archive/master.zip)
+* [LayersWP](http://www.layerswp.com/download/layers/)
+* Clone here or [Download Master](https://github.com/Obox/layerswp/archive/master.zip)
 * *Send us a pull request!*
 
 ## Page Builder
@@ -42,8 +42,8 @@ Layers bundles 6 basic page templates to allow sidebar specificity per page, and
 
 Layers is built upon a lightweight HTML5 & CSS framework designed for speed, comprehension and efficient building of Child Themes and Extensions. It uses a 12ths grid and includes styling for buttons, forms, content typography, navigation and images.
 
-*Framework Guide with code examples: [Start Here](http://docs.layerswp.com/layers-framework-grids/)
-*[Framework Visual Reference](http://docs.layerswp.com/framework/)
+* Framework Guide with code examples: [Start Here](http://docs.layerswp.com/layers-framework-grids/)
+* [Framework Visual Reference](http://docs.layerswp.com/framework/)
 
 ## Technical Information
 
@@ -69,9 +69,9 @@ Additionally, Layers includes Isotope, which you can learn more about extending 
 
 Layers is coded in international English as the primary language and uses WordPress standard [gettext](http://codex.wordpress.org/I18n_for_WordPress_Developers) to enable quick and easy translation of text elements via plugins or .po file editors. Several professional translations are available from the Layers Extension library for use on your site or in a child theme project, or you may translate Layers yourself using any of the following solutions:
 
-*Codestyling Localization (free plugin)
-*WPML (premium plugin) + String Translation (WPML Extension for Theme localization)
-*POEdit (desktop tool for creating .po files manually)
+* Codestyling Localization (free plugin)
+* WPML (premium plugin) + String Translation (WPML Extension for Theme localization)
+* POEdit (desktop tool for creating .po files manually)
 
 ## License
 
@@ -83,40 +83,40 @@ Boiled down to smaller chunks, the license sets forth the following conditions:
 
 It allows you to:
 
-*Freely download and use Layers, in whole or in part, for personal, company-internal or commercial purposes
-*Build Child Themes or Extensions for use with or based on the Layers framework for personal use or a client project
-*Install Layers on as many websites as you wish
+* Freely download and use Layers, in whole or in part, for personal, company-internal or commercial purposes
+* Build Child Themes or Extensions for use with or based on the Layers framework for personal use or a client project
+* Install Layers on as many websites as you wish
 
 It forbids you to:
 
-*Redistribute Layers in whole or part without proper attribution
-*Publicly sell Child Themes or Extensions derived from or based on Layers outside of approved marketplaces
+* Redistribute Layers in whole or part without proper attribution
+* Publicly sell Child Themes or Extensions derived from or based on Layers outside of approved marketplaces
 
 It requires you to:
 
-*Include a copy of the license in any redistribution you may make that includes Layers
-*Provide clear attribution to the Layers Team for any distributions, Child Themes or Extensions that include Layers
+* Include a copy of the license in any redistribution you may make that includes Layers
+* Provide clear attribution to the Layers Team for any distributions, Child Themes or Extensions that include Layers
 
 It does not require you to:
 
-*Include the full source of Layers itself, or of any modifications you may have made to it, in any redistribution you may assemble that includes it
-*Submit changes that you make to Layers back to the Layers project (though you earn extra awesome points for doing so!)
+* Include the full source of Layers itself, or of any modifications you may have made to it, in any redistribution you may assemble that includes it
+* Submit changes that you make to Layers back to the Layers project (though you earn extra awesome points for doing so!)
 
 ## Theming & Extending
 
 Our Codex contains a growing reference for custom hooks found in Layers, along with core functions, definitions and child-theming resources.
 
-*[Child Theme Introduction](http://docs.layerswp.com/child-themes-introduction/)
-*[Theme Structure](http://docs.layerswp.com/theme-structure/)
-*[Code Reference](http://docs.layerswp.com/reference/)
+* [Child Theme Introduction](http://docs.layerswp.com/child-themes-introduction/)
+* [Theme Structure](http://docs.layerswp.com/theme-structure/)
+* [Code Reference](http://docs.layerswp.com/reference/)
 
 ## Contributing
 
 We welcome any contributions to the core, or theme and extension submissions!
 
-*For core contribution, [fork the project](https://github.com/Obox/layerswp/fork)
-*To report a bug, hit up our issues list.(https://github.com/Obox/layerswp/issues/new?title=Issue%3A%20&body=%23%23%20Description%20of%20issue%0A%0A%0A%23%23%20URL%20of%20page%20exhibiting%20the%20issue%0A%0A%0A%23%23%20Web%20Browser(s)%20that%20exhibit%20the%20issue%0A%0A%0A%23%23%20Error%20Message%20or%20Steps%20to%20Recreate%0A%0A)
-*For development questions or inquiries related to commercial sale of child themes or extensions, email layers@obox.co.za
+* For core contribution, [fork the project](https://github.com/Obox/layerswp/fork)
+* To report a bug, [hit up our issues list](https://github.com/Obox/layerswp/issues/new?title=Issue%3A%20&body=%23%23%20Description%20of%20issue%0A%0A%0A%23%23%20URL%20of%20page%20exhibiting%20the%20issue%0A%0A%0A%23%23%20Web%20Browser(s)%20that%20exhibit%20the%20issue%0A%0A%0A%23%23%20Error%20Message%20or%20Steps%20to%20Recreate%0A%0A).
+* For development questions or inquiries related to commercial sale of child themes or extensions, email layers@obox.co.za
 
 
 ## Changelog

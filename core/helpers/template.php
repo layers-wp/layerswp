@@ -42,7 +42,7 @@ if( !function_exists( 'layers_bread_crumbs' ) ) {
 							<li><a href="<?php echo get_permalink( $shop_page->ID ); ?>"><?php echo $shop_page->post_title; ?></a></li>
 						<?php } ?>
 					<?php } else { ?>
-						<li><a href="#"><?php _e( 'Shop' , 'layerswp' ); ?></li>
+						<li><a href="#"><?php _e( 'Shop' , 'layerswp' ); ?></a></li>
 					<?php }
 				} elseif( is_post_type_archive() || is_singular() || is_tax() ) {
 

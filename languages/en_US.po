@@ -1296,7 +1296,7 @@ msgstr ""
 
 #: core/options-panel/partials/get-started.php:54
 #@ layerswp
-msgid "If you're ever stuck or need help with your Layers site please visit our <a href=\"http://help.layerswp.com/\" rel=\"nofollow\">helpful documentation.</a>"
+msgid "If you're ever stuck or need help with your Layers site please visit our <a href=\"http://docs.layerswp.com/\" rel=\"nofollow\">helpful documentation.</a>"
 msgstr ""
 
 #: core/options-panel/partials/get-started.php:56
@@ -1368,7 +1368,7 @@ msgstr ""
 
 #: core/options-panel/partials/get-started.php:144
 #@ layerswp
-msgid "For tips on how best to name your website, we suggest reading <a href=\"http://help.layerswp.com/\" rel=\"nofollow\">this post</a>"
+msgid "For tips on how best to name your website, we suggest reading <a href=\"http://docs.layerswp.com/\" rel=\"nofollow\">this post</a>"
 msgstr ""
 
 #: core/options-panel/partials/get-started.php:147

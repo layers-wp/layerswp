@@ -75,7 +75,7 @@ class Site_Logo {
 	 */
 	public function customize_register( $wp_customize ) {
 		// Include our custom control.
-		require( dirname( __FILE__ ) . '/class-site-logo-control.php' );
+		require_once( dirname( __FILE__ ) . '/class-site-logo-control.php' );
 
 		//Update the Customizer section title for discoverability.
 		$wp_customize->get_section('title_tagline')->title = __( 'Site Title, Tagline, and Logo' , 'layerswp' );

@@ -51,7 +51,7 @@ $layers_migrator = new Layers_Widget_Migrator(); ?>
                         <!-- Your helpful tips go here -->
                         <ul class="layers-help-list">
                             <li>
-                                <?php _e( 'If you\'re ever stuck or need help with your Layers site please visit our <a href="http://help.layerswp.com/" rel="nofollow">helpful documentation.</a>' , 'layerswp' ); ?>
+                                <?php _e( sprintf( 'If you\'re ever stuck or need help with your Layers site please visit our <a href="%s" rel="nofollow">helpful documentation.</a>', 'http://docs.layerswp.com' ) , 'layerswp' ); ?>
                             </li>
                             <li class="pro-tip"><?php _e( 'For the Pros: Layers will automatically assign the tagline to Settings &rarr; General.' , 'layerswp' ); ?></li>
                         </ul>
@@ -141,7 +141,7 @@ $layers_migrator = new Layers_Widget_Migrator(); ?>
                         <!-- Your helpful tips go here -->
                         <ul class="layers-help-list">
                             <li>
-                                <?php _e( 'For tips on how best to name your website, we suggest reading <a href="http://help.layerswp.com/" rel="nofollow">this post</a>' , 'layerswp' ); ?>
+                                <?php _e( sprintf( 'For tips on how best to name your website, we suggest reading <a href="%s" rel="nofollow">this post</a>', 'http://docs.layerswp.com' ) , 'layerswp' ); ?>
                             </li>
                             <li class="pro-tip">
                                 <?php _e( 'For the Pros: Layers will automatically assign this site name to Settings &rarr; General' , 'layerswp' ); ?>

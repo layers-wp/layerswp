@@ -127,7 +127,7 @@ $api = new Layers_API(); ?>
 									<?php if( class_exists( 'Layers_Updater' ) ) { ?>
 										<span class="layers-success"><?php _e( 'Installed' , 'layerswp' ); ?></span>
 									<?php } else { ?>
-										<a class="layers-button btn-primary" href="http://www.layerswp.com/download/layers-updater/" target="_blank"><?php _e( 'Get Layers Updater' , 'layerswp' ); ?></a>
+										<?php _e( sprintf( '<a class="layers-button btn-link" href="%s">Get the Layers Updater</a>', 'http://www.layerswp.com/download/layers-updater/' ) , 'layerswp' ); ?>
 									<?php } ?>
 								</div>
 							</li>

@@ -173,7 +173,7 @@ div#widgets-right div[id*='obox-layers-builder']{
     }
     .layers-product-screenshot{
         height: 350px;
-        overflow-x: hidden;
+        overflow: hidden;
     }
     .layers-product-screenshot img{
         width: 100%;

@@ -108,6 +108,10 @@ if( ! function_exists( 'layers_setup' ) ) {
 		 * Add support for HTML5
 		 */
 		add_theme_support('html5');
+		/**
+		 * Add support for Title Tags
+		 */
+		add_theme_support('title-tag');
 
 		/**
 		 * Add support for widgets inside the customizer
@@ -224,7 +228,7 @@ if( ! function_exists( 'layers_register_standard_sidebars' ) ) {
 		for( $footer = 1; $footer < 5; $footer++ ) {
 			register_sidebar( array(
 				'id'		=> LAYERS_THEME_SLUG . '-footer-' . $footer,
-				'name'		=> __( 'Footer ' . $footer , LAYERS_THEME_SLUG ),
+				'name'		=> __( 'Footer ', 'layerswp' ) . $footer,
 				'before_widget'	=> '<section id="%1$s" class="widget %2$s">',
 				'after_widget'	=> '</section>',
 				'before_title'	=> '<h5 class="section-nav-title">',

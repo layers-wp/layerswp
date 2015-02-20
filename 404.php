@@ -8,7 +8,7 @@
 
 get_header(); ?>
 
-<section id="post-<?php the_ID(); ?>" <?php post_class( 'content-main clearfix' ); ?>>
+<section class="post content-main clearfix container">
     <div class="row">
 
         <?php get_sidebar( 'left' ); ?>

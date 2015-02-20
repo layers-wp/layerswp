@@ -44,12 +44,10 @@ class Layers_Options_Panel {
 		if( isset( $_GET[ 'page' ] ) ) $current_page = $_GET[ 'page' ]; ?>
 		<header class="layers-page-title layers-section-title layers-large layers-content-large layers-no-push-bottom">
 			<div class="layers-container">
-				<a href="http://oboxthemes.com/layers" class="layers-logo"><?php _e( 'Layers' , 'layerswp' ); ?></a>
+				<?php _e( sprintf( '<a href="%s" class="layers-logo">Layers</a>', 'http://layerswp.com' ), 'layerswp' ); ?>
 				<?php if( class_exists( 'Layers_Updater' ) ) { ?>
 					<span class="layers-pull-right layers-content">
-						<a class="layers-button btn-link" href="http://www.layerswp.com/download/layers-updater/">
-							<?php _e( 'Get the Layers Updater' , 'layerswp' ); ?>
-						</a>
+						<?php _e( sprintf( '<a class="layers-button btn-link" href="%s">Get the Layers Updater</a>', 'http://www.layerswp.com/download/layers-updater/' ) , 'layerswp' ); ?>
 					</span>
 				<?php } ?>
 				<?php if( isset( $title ) ) { ?>
@@ -110,7 +108,7 @@ class Layers_Options_Panel {
 	public function footer( $args = array() ){ ?>
 		<footer class="layers-footer">
 			<p>
-				<?php _e( 'Layers is a product of <a href="http://oboxthemes.com/">Obox Themes</a>. For questions and feedback please <a href="mailto:david@obox.co.za">email David directly' , 'layerswp' ); ?></a>.
+				<?php _e( sprintf( 'Layers is a product of <a href="%1$s">Obox Themes</a>. For questions and feedback please <a href="%2$s">Visit our Help site</a>', 'http://oboxthemes.com/', 'http://docs.layerswp.com') , 'layerswp' ); ?>
 			</p>
 		</footer>
 	<?php }

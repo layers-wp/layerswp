@@ -491,9 +491,6 @@ if( !function_exists( 'layers_site_title' ) ) {
 		if ( is_feed() )
 			return $title;
 
-		// Add the site name.
-		$title .= get_bloginfo( 'name' );
-
 		// Add the site description for the home/front page.
 		$site_description = get_bloginfo( 'description', 'display' );
 

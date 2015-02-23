@@ -34,7 +34,7 @@
 				<div class="row copyright">
 					<?php if( '' != layers_get_theme_mod( 'footer-copyright-text' ) ) {  ?>
 						<div class="column span-6">
-							<p class="site-text"><?php echo layers_get_theme_mod( 'footer-copyright-text' ); ?></p>
+							<p class="site-text"><?php echo esc_html( layers_get_theme_mod( 'footer-copyright-text' ) ); ?></p>
 						</div>
 					<?php } ?>
 					<div class="column span-6 clearfix t-right">
@@ -45,7 +45,7 @@
 			</div>
 			<?php do_action( 'layers_after_footer_inner' ); ?>
 
-			<?php _e( sprintf( '<a class="created-using-layers" tooltip="Created using Layers" href="%s"><span>Created using Layers</span></a>', 'http://www.layerswp.com' ) , 'layerswp' ); ?>
+			<?php _e( sprintf( '<a class="created-using-layers" target="_blank" tooltip="Created using Layers" href="%s"><span>Created using Layers</span></a>', 'http://www.layerswp.com' ) , 'layerswp' ); ?>
 
 		</footer><!-- END / FOOTER -->
 		<?php do_action( 'layers_after_footer' ); ?>

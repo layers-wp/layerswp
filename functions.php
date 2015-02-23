@@ -10,18 +10,12 @@
 /**
  * The current version of the theme. Use a random number for SCRIPT_DEBUG mode
  */
-if ( defined( 'SCRIPT_DEBUG' ) && TRUE == SCRIPT_DEBUG ) {
-	define( 'LAYERS_VERSION', time() );
-} else {
-	define( 'LAYERS_VERSION', '1.0.0' );
-}
-
+define( 'LAYERS_VERSION', '1.0.3' );
 define( 'LAYERS_TEMPLATE_URI' , get_template_directory_uri() );
 define( 'LAYERS_TEMPLATE_DIR' , get_template_directory() );
 define( 'LAYERS_THEME_TITLE' , 'Layers' );
 define( 'LAYERS_THEME_SLUG' , 'layers' );
 define( 'LAYERS_BUILDER_TEMPLATE' , 'builder.php' );
-define( 'OBOX_URL' , 'http://oboxthemes.com');
 
 /**
  * Set the content width based on the theme's design and stylesheet.
@@ -179,7 +173,7 @@ if( ! function_exists( 'layers_setup' ) ) {
 
 			update_option( 'layers_welcome' , 1);
 
-			wp_redirect(admin_url('admin.php?page=' . LAYERS_THEME_SLUG . '-get-started'));
+			wp_safe_redirect( admin_url('admin.php?page=' . LAYERS_THEME_SLUG . '-get-started'));
 		}
 
 	} // function layers_setup
@@ -359,7 +353,7 @@ if( ! function_exists( 'layers_scripts' ) ) {
 			); // Woocommerce
 		}
 
-		if( is_user_logged_in() ) {
+		if( is_admin_bar_showing() ) {
 			wp_enqueue_style(
 				LAYERS_THEME_SLUG . '-admin',
 				get_template_directory_uri() . '/core/assets/icons.css',
@@ -478,33 +472,3 @@ if( !function_exists( 'layers_excerpt_class' ) ) {
 	add_filter( "the_excerpt", "layers_excerpt_class" );
 	add_filter( "get_the_excerpt", "layers_excerpt_class" );
 } // layers_excerpt_class
-
-/**
-*  Adjust the site title for static front pages
-*/
-if( !function_exists( 'layers_site_title' ) ) {
-	function layers_site_title( $title ) {
-		global $paged, $page;
-
-		if( !isset( $sep ) ) $sep = '|';
-
-		if ( is_feed() )
-			return $title;
-
-		// Add the site name.
-		$title .= get_bloginfo( 'name' );
-
-		// Add the site description for the home/front page.
-		$site_description = get_bloginfo( 'description', 'display' );
-
-		if ( $site_description && ( is_home() || is_front_page() ) )
-			$title = "$title $sep $site_description";
-
-		// Add a page number if necessary.
-		if ( $paged >= 2 || $page >= 2 )
-			$title = "$title $sep " . sprintf( __( 'Page %s' , 'layerswp' ), max( $paged, $page ) );
-
-		return $title;
-	}
-	add_filter( "wp_title", "layers_site_title" );
-} // layers_site_title

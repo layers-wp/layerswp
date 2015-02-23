@@ -65,7 +65,7 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 					'background' => array(
 						'position' => 'center',
 						'repeat' => 'no-repeat',
-						'color' => '#efefef',
+						'color' => '#444',
 						'size' => 'cover'
 					),
 					'fonts' => array(
@@ -139,13 +139,18 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 						<?php } ?>
 					</div>
 			 		<div class="swiper-wrapper">
-						<?php $col = 1; ?>
-						<?php foreach ( $widget[ 'slides' ] as $key => $slide) {
+						<?php foreach ( explode( ',', $widget[ 'slide_ids' ] ) as $slide_key ) {
+
+							// Make sure we've got a column going on here
+							if( !isset( $widget[ 'slides' ][ $slide_key ] ) ) continue;
+
+							// Setup the relevant slide
+							$slide = $widget[ 'slides' ][ $slide_key ];
 
 							// Set the background styling
-							if( !empty( $slide['design'][ 'background' ] ) ) layers_inline_styles( '#' . $widget_id . '-' . $key , 'background', array( 'background' => $slide['design'][ 'background' ] ) );
-							if( !empty( $slide['design']['fonts'][ 'color' ] ) ) layers_inline_styles( '#' . $widget_id . '-' . $key , 'color', array( 'selectors' => array( 'h3.heading', 'h3.heading a', 'div.excerpt' ) , 'color' => $slide['design']['fonts'][ 'color' ] ) );
-							if( !empty( $slide['design']['fonts'][ 'shadow' ] ) ) layers_inline_styles( '#' . $widget_id . '-' . $key , 'text-shadow', array( 'selectors' => array( 'h3.heading', 'h3.heading a',  'div.excerpt' )  , 'text-shadow' => $slide['design']['fonts'][ 'shadow' ] ) );
+							if( !empty( $slide['design'][ 'background' ] ) ) layers_inline_styles( '#' . $widget_id . '-' . $slide_key , 'background', array( 'background' => $slide['design'][ 'background' ] ) );
+							if( !empty( $slide['design']['fonts'][ 'color' ] ) ) layers_inline_styles( '#' . $widget_id . '-' . $slide_key , 'color', array( 'selectors' => array( 'h3.heading', 'h3.heading a', 'div.excerpt' ) , 'color' => $slide['design']['fonts'][ 'color' ] ) );
+							if( !empty( $slide['design']['fonts'][ 'shadow' ] ) ) layers_inline_styles( '#' . $widget_id . '-' . $slide_key , 'text-shadow', array( 'selectors' => array( 'h3.heading', 'h3.heading a',  'div.excerpt' )  , 'text-shadow' => $slide['design']['fonts'][ 'shadow' ] ) );
 
 
 							// Set Featured Media
@@ -184,7 +189,7 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 								$slide_wrapper_tag = 'a';
 								$slide_wrapper_href = 'href="' . esc_url( $slide['link'] ) . '"';
 							} ?>
-							<<?php echo $slide_wrapper_tag; ?> <?php echo $slide_wrapper_href; ?> id="<?php echo $widget_id; ?>-<?php echo $key; ?>" class="<?php echo $slide_class; ?>" style="float: left;">
+							<<?php echo $slide_wrapper_tag; ?> <?php echo $slide_wrapper_href; ?> id="<?php echo $widget_id; ?>-<?php echo $slide_key; ?>" class="<?php echo $slide_class; ?>" style="float: left;">
 								<div class="overlay <?php if( isset( $slide['design'][ 'background' ][ 'darken' ] ) ) echo 'darken'; ?>"  <?php if( $this->check_and_return( $widget , 'slide_height' ) ) echo 'style="height: ' . $widget['slide_height'] . 'px;"' ?>>
 									<div class="container clearfix">
 										<?php if( '' != $slide['title'] || '' != $slide['excerpt'] || '' != $slide['link'] ) { ?>

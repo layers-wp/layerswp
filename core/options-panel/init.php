@@ -45,7 +45,7 @@ class Layers_Options_Panel {
 		<header class="layers-page-title layers-section-title layers-large layers-content-large layers-no-push-bottom">
 			<div class="layers-container">
 				<?php _e( sprintf( '<a href="%s" class="layers-logo">Layers</a>', 'http://layerswp.com' ), 'layerswp' ); ?>
-				<?php if( class_exists( 'Layers_Updater' ) ) { ?>
+				<?php if( !class_exists( 'Layers_Updater' ) ) { ?>
 					<span class="layers-pull-right layers-content">
 						<?php _e( sprintf( '<a class="layers-button btn-link" href="%s">Get the Layers Updater</a>', 'http://www.layerswp.com/download/layers-updater/' ) , 'layerswp' ); ?>
 					</span>

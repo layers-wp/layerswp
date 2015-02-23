@@ -75,9 +75,9 @@ Layers is coded in international English as the primary language and uses WordPr
 
 ## License
 
-Layers is released under the [GNU2.0 License](http://www.gnu.org/licenses/gpl-2.0.html).
+Layers is released under the [GPL 2.0 License.](https://wordpress.org/about/gpl/)
 
-The specific implementation and design are copyright 2014-2015 by Obox Themes.
+The specific implementation and design are copyright 2014 by Obox Themes.
 
 Boiled down to smaller chunks, the license sets forth the following conditions:
 
@@ -89,8 +89,7 @@ It allows you to:
 
 It forbids you to:
 
-*Redistribute Layers in whole or part without proper attribution
-*Publicly sell Child Themes or Extensions derived from or based on Layers outside of approved marketplaces
+*Redistribute Layers in whole or part without proper attribution.
 
 It requires you to:
 
@@ -99,8 +98,14 @@ It requires you to:
 
 It does not require you to:
 
-*Include the full source of Layers itself, or of any modifications you may have made to it, in any redistribution you may assemble that includes it
+*Include the full source of Layers itself, or of any modifications you may have made to it, in any redistribution you may assemble that includes it (such as a child theme or extension)
 *Submit changes that you make to Layers back to the Layers project (though you earn extra awesome points for doing so!)
+
+###Extra info regarding commercial sale of Child Themes or Extensions for Layers:
+
+You may sell any product created for Layers on your own site or a theme marketplace. You may link to our documentation to help support your customers, but take on all developmental responsibility and support for your product where it is specific to your code. For your own sanity, we recommend you direct your users to download Layers from our official links to ensure they receive the most recent versions, and read through our developer documentation and best practices.
+
+You may not create a hosted service that charges users for Layers, or include Layers in a hosted-for-a-fee without also providing a clear link to where the theme may be downloaded for free and self-hosted. (ie providing the source code to your users)
 
 ## Theming & Extending
 

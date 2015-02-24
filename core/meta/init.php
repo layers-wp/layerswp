@@ -76,7 +76,10 @@ class Layers_Custom_Meta {
 		);
 
 		// Localize Scripts
-		wp_localize_script( LAYERS_THEME_SLUG . '-admin-meta' , "layers_meta_params", array( 'ajaxurl' => admin_url( "admin-ajax.php" ) , 'nonce' => wp_create_nonce( 'layers-customizer-actions' ) ) );
+		wp_localize_script( LAYERS_THEME_SLUG . '-admin-meta' , "layers_meta_params", array(
+			'ajaxurl' => admin_url( "admin-ajax.php" ) ,
+			'nonce' => wp_create_nonce( 'layers-customizer-actions' )
+		) );
 	}
 
 	/**
@@ -210,7 +213,9 @@ class Layers_Custom_Meta {
 	*/
 
 	public function update_page_builder_meta(){
-
+		
+		if( !wp_verify_nonce( $_REQUEST['nonce'], 'layers-customizer-actions' ) ) die( 'You threw a Nonce exception' ); // Nonce
+		
 		// Get the Post ID
 		$post_id = $_POST['id'];
 

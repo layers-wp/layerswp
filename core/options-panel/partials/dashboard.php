@@ -126,8 +126,8 @@ $api = new Layers_API(); ?>
 								<div class="layers-btn-group">
 									<?php if( class_exists( 'Layers_Updater' ) ) { ?>
 										<span class="layers-success"><?php _e( 'Installed' , 'layerswp' ); ?></span>
-									<?php } else { ?>
-										<?php _e( sprintf( '<a class="layers-button btn-link" href="%s">Get the Layers Updater</a>', 'http://www.layerswp.com/download/layers-updater/' ) , 'layerswp' ); ?>
+									<?php } else { ?>										
+										<a class="layers-button btn-link" href="http://www.layerswp.com/download/layers-updater/"><?php _e('Get the Layers Updater', 'layerswp'); ?></a>
 									<?php } ?>
 								</div>
 							</li>

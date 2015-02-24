@@ -13,7 +13,7 @@ $layers_migrator = new Layers_Widget_Migrator(); ?>
 
         <div class="layers-onboard-controllers">
             <div class="onboard-nav-dots layers-pull-left" id="layers-onboard-anchors"></div>
-            <a class="layers-button btn-link layers-pull-right" href="" id="layers-onboard-skip">Skip</a>
+            <a class="layers-button btn-link layers-pull-right" href="" id="layers-onboard-skip"><?php _e( 'Skip', 'layerswp' ); ?></a>
 
         </div>
 
@@ -51,9 +51,11 @@ $layers_migrator = new Layers_Widget_Migrator(); ?>
                         <!-- Your helpful tips go here -->
                         <ul class="layers-help-list">
                             <li>
-                                <?php _e( sprintf( 'If you\'re ever stuck or need help with your Layers site please visit our <a href="%s" rel="nofollow">helpful documentation.</a>', 'http://docs.layerswp.com' ) , 'layerswp' ); ?>
+                                <?php _e('If you\'re ever stuck or need help with your Layers site please visit our', 'layerswp'); ?> <a href="http://docs.layerswp.com" rel="nofollow"><?php _e('helpful documentation' , 'layerswp'); ?></a>.
                             </li>
-                            <li class="pro-tip"><?php _e( 'For the Pros: Layers will automatically assign the tagline to Settings &rarr; General.' , 'layerswp' ); ?></li>
+                            <li class="pro-tip">
+                                <?php _e( 'For the Pros: Layers will automatically assign the titel and the tagline to Settings &rarr; General.' , 'layerswp' ); ?>
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -75,14 +77,10 @@ $layers_migrator = new Layers_Widget_Migrator(); ?>
                             </h3>
                             <div class="layers-excerpt">
                                 <p>
-                                    <?php _e( '
-                                        Layers splits your page into horizontal rows, and you build up your pages with blocks of content called &lsquo;Widgets&rsquo;, one per row.
-                                    ' , 'layerswp' ); ?>
+                                    <?php _e( 'Layers splits your page into horizontal rows, and you build up your pages with blocks of content called &lsquo;Widgets&rsquo;, one per row.' , 'layerswp' ); ?>
                                 </p>
                                 <p>
-                                    <?php _e( '
-                                        Each time you want to add a new content block, simply click &lsquo;Add Widget&rsquo; and select one from the list which has the blue Layers icon.
-                                    ' , 'layerswp' ); ?>
+                                    <?php _e( 'Each time you want to add a new content block, simply click &lsquo;Add Widget&rsquo; and select one from the list which has the blue Layers icon.' , 'layerswp' ); ?>
                                 </p>
                             </div>
                         </div>
@@ -141,7 +139,7 @@ $layers_migrator = new Layers_Widget_Migrator(); ?>
                         <!-- Your helpful tips go here -->
                         <ul class="layers-help-list">
                             <li>
-                                <?php _e( sprintf( 'For tips on how best to name your website, we suggest reading <a href="%s" rel="nofollow">this post</a>', 'http://docs.layerswp.com' ) , 'layerswp' ); ?>
+                                <?php _e( 'For tips on how best to name your website, we suggest reading', 'layerswp') ?> <a href="http://docs.layerswp.com" rel="nofollow"> <?php _e( 'this post', 'layerswp' ) ?></a>.
                             </li>
                             <li class="pro-tip">
                                 <?php _e( 'For the Pros: Layers will automatically assign this site name to Settings &rarr; General' , 'layerswp' ); ?>
@@ -167,11 +165,7 @@ $layers_migrator = new Layers_Widget_Migrator(); ?>
                             </h3>
                             <div class="layers-excerpt">
                                 <p>
-                                    <?php _e( '
-                                        To edit a widget&apos;s content, just click on it in the widget area on the left hand side. The widget panel will slide
-                                        out allowing you to edit its content and customize its settings. You can also shift-click on the widget itself in
-                                        the preview area.
-                                    ' , 'layerswp' ); ?>
+                                    <?php _e( 'To edit a widget&apos;s content, just click on it in the widget area on the left hand side. The widget panel will slide out allowing you to edit its content and customize its settings. You can also shift-click on the widget itself in the preview area.' , 'layerswp' ); ?>
                                 </p>
                             </div>
                         </div>
@@ -195,8 +189,7 @@ $layers_migrator = new Layers_Widget_Migrator(); ?>
                                 <?php _e( 'How would you best describe your site?' , 'layerswp' ); ?>
                             </h3>
                             <p class="layers-excerpt">
-                                <?php _e( 'A tagline describes who and what you are in just a few simple words.
-                                For example Layers is a &ldquo;WordPress Site Builder&rdquo; - simple, easy, quick to read. Now you try:' , 'layerswp' ); ?>
+                                <?php _e( 'A tagline describes who and what you are in just a few simple words. For example: <em>Layers is a &ldquo;WordPress Site Builder&rdquo; - simple, easy, quick to read</em>. Now it\'s your try:', 'layerswp' ); ?>
                             </p>
                         </div>
                         <p class="layers-form-item">
@@ -231,7 +224,7 @@ $layers_migrator = new Layers_Widget_Migrator(); ?>
                             <li><?php _e( 'Keep it simple' , 'layerswp' ); ?></li>
                             <li><?php _e( 'Avoid buzz words' , 'layerswp' ); ?></li>
                             <li><?php _e( 'Make sure it describes what you offer' , 'layerswp' ); ?></li>
-                            <li class="pro-tip"><?php _e( 'For the Pros: Layers will automatically assign the tagline to Settings &rarr; General' , 'layerswp' ); ?></li>
+                            <li class="pro-tip"><?php _e( 'For the Pros: Layers will automatically assign the tagline to Settings &rarr; General.' , 'layerswp' ); ?></li>
                         </ul>
                     </div>
                 </div>
@@ -280,13 +273,7 @@ $layers_migrator = new Layers_Widget_Migrator(); ?>
                                 <?php _e( 'Would you like to add your logo?' , 'layerswp' ); ?>
                             </h3>
                             <p class="layers-excerpt">
-                                 <?php _e( '
-
-                                    Layers will add your logo and position it properly. If
-                                    you don&apos;t have one yet, no problem, you can add it
-                                    later, or skip this step if you&apos;d just prefer to use text.
-
-                                 ' , 'layerswp' ); ?>
+                                <?php _e( 'Layers will add your logo and position it properly. If you don&apos;t have one yet, no problem, you can add it later, or skip this step if you&apos;d just prefer to use text.' , 'layerswp' ); ?>
                             </p>
                         </div>
                         <?php $site_logo = get_option( 'site_logo' ); ?>
@@ -368,10 +355,7 @@ $layers_migrator = new Layers_Widget_Migrator(); ?>
                             </h3>
                             <div class="layers-excerpt">
                                 <p>
-                                    <?php _e( '
-                                        Simply select a preset layout from the list and Layers will automatically create it for you.
-                                        You will be able to edit your layout on the next page. Here we go!
-                                    ' , 'layerswp' ); ?>
+                                    <?php _e( 'Simply select a preset layout from the list and Layers will automatically create it for you. You will be able to edit your layout on the next page. Here we go!' , 'layerswp' ); ?>
                                 </p>
                             </div>
                         </div>

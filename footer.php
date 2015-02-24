@@ -45,7 +45,7 @@
 			</div>
 			<?php do_action( 'layers_after_footer_inner' ); ?>
 
-			<?php _e( sprintf( '<a class="created-using-layers" target="_blank" tooltip="Created using Layers" href="%s"><span>Created using Layers</span></a>', 'http://www.layerswp.com' ) , 'layerswp' ); ?>
+			<?php printf( '<a class="created-using-layers" target="_blank" tooltip="%1$s" href="http://www.layerswp.com"><span>%1$s</span></a>', __('Created using Layers', 'layerswp' ) ) ; ?>
 
 		</footer><!-- END / FOOTER -->
 		<?php do_action( 'layers_after_footer' ); ?>

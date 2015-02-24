@@ -34,7 +34,7 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 				);
 
 	 		/* Widget settings. */
-			$widget_ops = array( 'classname' => 'obox-layers-' . $this->widget_id .'-widget', 'description' => 'This widget is used to display your ' . $this->widget_id . '.' );
+			$widget_ops = array( 'classname' => 'obox-layers-' . $this->widget_id .'-widget', 'description' => _x( 'This widget is used to display your ', 'Slider widget' , 'layerswp' ) . $this->widget_title . '.' );
 
 			/* Widget control settings. */
 			$control_ops = array( 'width' => LAYERS_WIDGET_WIDTH_LARGE, 'height' => NULL, 'id_base' => LAYERS_THEME_SLUG . '-widget-' . $this->widget_id );

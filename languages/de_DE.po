@@ -1,0 +1,2180 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Layers v1.0.3\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2015-02-24 11:31:42+0000\n"
+"Last-Translator: thomas <t.meyer@me.com>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: CSL v1.x\n"
+"X-Poedit-Language: German\n"
+"X-Poedit-Country: GERMANY\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-KeywordsList: __;_e;__ngettext:1,2;_n:1,2;__ngettext_noop:1,2;_n_noop:1,2;_c,_nc:4c,1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;_nx_noop:4c,1,2;\n"
+"X-Poedit-Basepath: ../\n"
+"X-Poedit-Bookmarks: \n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Textdomain-Support: yes"
+
+#: comments.php:6
+#, php-format
+#@ layerswp
+msgid "One Comment on &ldquo;%2$s&rdquo;"
+msgid_plural "%1$s Comments on &ldquo;%2$s&rdquo;"
+msgstr[0] "Ein Kommentar zu &ldquo;%2$s&rdquo;"
+msgstr[1] "%1$s Kommentare zu &ldquo;%2$s&rdquo;"
+
+#: comments.php:19
+#@ layerswp
+msgid "&larr;"
+msgstr "&larr;"
+
+#: comments.php:20
+#@ layerswp
+msgid "&rarr;"
+msgstr "&rarr;"
+
+#: comments.php:29
+#@ layerswp
+msgid "Comments are closed."
+msgstr "Kommentarfunktion ist deaktiviert."
+
+#: core/customizer/config.php:22
+#@ layerswp
+msgid "Branding"
+msgstr "Branding"
+
+#: core/customizer/config.php:26
+#@ layerswp
+msgid "Site Settings"
+msgstr "Seiten-Einstellungen"
+
+#: core/customizer/config.php:27
+#@ layerswp
+msgid "Control your content's default layout."
+msgstr "Definiert die Anzeige des Standardlayouts."
+
+#: core/customizer/config.php:31
+#@ layerswp
+msgid "Header"
+msgstr "Header"
+
+#: core/customizer/config.php:32
+#@ layerswp
+msgid "Control your header's logo, layout, colors and font."
+msgstr "Definiert die Anzeige im Header für das Logo, das Layout, die Farben und die Schriftart."
+
+#: core/customizer/config.php:36
+#@ layerswp
+msgid "Footer"
+msgstr "Footer"
+
+#: core/customizer/config.php:37
+#@ layerswp
+msgid "Control your footer's custom text, widget areas and layout."
+msgstr "Definiert die Anzeige im Footer für den Text, die Widgets und das Layout."
+
+#: core/customizer/config.php:41
+#@ layerswp
+msgid "WooCommerce"
+msgstr "WooCommerce"
+
+#: core/customizer/config.php:58
+#@ layerswp
+msgid "Logo &amp; Title"
+msgstr "Logo &amp; Titel"
+
+#: core/customizer/config.php:63
+#: core/customizer/config.php:248
+#: core/customizer/config.php:366
+#: core/customizer/registration.php:416
+#: core/helpers/forms.php:331
+#: core/helpers/forms.php:406
+#@ layerswp
+msgid "Background Color"
+msgstr "Hintergrund Farbe"
+
+#: core/customizer/config.php:90
+#@ layerswp
+msgid "Navigation"
+msgstr "Navigation"
+
+#: core/customizer/config.php:91
+#@ layerswp
+msgid "First create a menu then come back here to place it."
+msgstr "Erstelle zuerst ein Menü und komme dann wieder hierher zurück."
+
+#: core/customizer/config.php:96
+#: core/customizer/config.php:112
+#: core/customizer/config.php:120
+#: core/helpers/design-bar.php:213
+#@ layerswp
+msgid "Layout"
+msgstr "Layout"
+
+#: core/customizer/config.php:100
+#: core/customizer/config.php:136
+#@ layerswp
+msgid "Sidebars"
+msgstr "Seitenleisten"
+
+#: core/customizer/config.php:104
+#@ layerswp
+msgid "Fonts"
+msgstr "Schriftarten"
+
+#: core/customizer/config.php:109
+#@ layerswp
+msgid "CSS"
+msgstr "CSS"
+
+#: core/customizer/config.php:116
+#: core/customizer/config.php:132
+#@ layerswp
+msgid "Additional Scripts"
+msgstr "Zusätzliche Scripts"
+
+#: core/customizer/config.php:124
+#@ layerswp
+msgid "Customization"
+msgstr "Allgemein"
+
+#: core/customizer/config.php:128
+#: core/customizer/config.php:340
+#: core/helpers/design-bar.php:529
+#@ layerswp
+msgid "Text"
+msgstr "Text"
+
+#: core/customizer/config.php:156
+#@ layerswp
+msgid "Create Menu"
+msgstr "Menü erstellen"
+
+#: core/customizer/config.php:175
+#@ layerswp
+msgid "Body"
+msgstr "Inhaltsbereich"
+
+#: core/customizer/config.php:184
+#@ layerswp
+msgid "Headings"
+msgstr "Überschriften"
+
+#: core/customizer/config.php:193
+#@ layerswp
+msgid "Buttons"
+msgstr "Buttons"
+
+#: core/customizer/config.php:203
+#@ layerswp
+msgid "Header Width"
+msgstr "Header Breite"
+
+#: core/customizer/config.php:206
+#: core/customizer/config.php:315
+#: core/helpers/design-bar.php:226
+#: core/widgets/modules/slider.php:335
+#@ layerswp
+msgid "Boxed"
+msgstr "Inhaltsbreite"
+
+#: core/customizer/config.php:207
+#: core/customizer/config.php:316
+#: core/helpers/design-bar.php:227
+#: core/widgets/modules/slider.php:336
+#@ layerswp
+msgid "Full Width"
+msgstr "Volle Breite"
+
+#: core/customizer/config.php:215
+#@ layerswp
+msgid "Logo & Menu Position"
+msgstr "Logo & Menü Position"
+
+#: core/customizer/config.php:218
+#@ layerswp
+msgid "Logo Left"
+msgstr "Logo links"
+
+#: core/customizer/config.php:219
+#@ layerswp
+msgid "Logo Right"
+msgstr "Logo rechts"
+
+#: core/customizer/config.php:220
+#@ layerswp
+msgid "Logo Center Top"
+msgstr "Logo zentriert oberhalb"
+
+#: core/customizer/config.php:221
+#@ layerswp
+msgid "Logo Top"
+msgstr "Logo oberhalb"
+
+#: core/customizer/config.php:222
+#@ layerswp
+msgid "Logo Center"
+msgstr "Logo  zentriert"
+
+#: core/customizer/config.php:230
+#@ layerswp
+msgid "Header Position"
+msgstr "Header Position"
+
+#: core/customizer/config.php:234
+#@ layerswp
+msgid "Sticky"
+msgstr "Fixiert"
+
+#: core/customizer/config.php:240
+#@ layerswp
+msgid "Overlay"
+msgstr "Durchscheinend"
+
+#: core/customizer/config.php:257
+#@ layerswp
+msgid "Google Analytics ID"
+msgstr "Google Analytics ID"
+
+#: core/customizer/config.php:258
+#@ layerswp
+msgid "Enter in your Google Analytics ID to enable website traffic reporting. eg. \"UA-xxxxxx-xx"
+msgstr "Google Analytics ID für Besucher-Tracking eingeben - z.B. \"UA-xxxxxx-xx"
+
+#: core/customizer/config.php:266
+#: core/customizer/config.php:413
+#@ layerswp
+msgid "Custom Scripts"
+msgstr "Eigene Scripts"
+
+#: core/customizer/config.php:267
+#@ layerswp
+msgid "Enter in any custom script (such as TypeKit etc) to include in your site's header. Include the &lt;script&gt;&lt;/script&gt; tags."
+msgstr "Eigene Scripts zum Einbinden im Header-Bereich eingeben. Die &lt;script&gt;&lt;/script&gt; Tags bitte ebenfalls eingeben."
+
+#: core/customizer/config.php:275
+#@ layerswp
+msgid "Single Post Sidebar(s)"
+msgstr "Einzelseite Seitenleiste"
+
+#: core/customizer/config.php:276
+#@ layerswp
+msgid "This option affects your single post pages."
+msgstr "Diese Seitenleiste wird nur auf Einzelseiten angezeigt."
+
+#: core/customizer/config.php:280
+#: core/customizer/config.php:298
+#: core/customizer/config.php:429
+#: core/customizer/config.php:447
+#@ layerswp
+msgid "Display Left Sidebar"
+msgstr "Linke Seitenleiste anzeigen"
+
+#: core/customizer/config.php:285
+#: core/customizer/config.php:303
+#: core/customizer/config.php:434
+#: core/customizer/config.php:452
+#@ layerswp
+msgid "Display Right Sidebar"
+msgstr "Rechte Seitenleiste anzeigen"
+
+#: core/customizer/config.php:293
+#@ layerswp
+msgid "Post List Sidebar(s)"
+msgstr "Beiträge Seitenleiste"
+
+#: core/customizer/config.php:294
+#@ layerswp
+msgid "This option affects your category, tag, author and search pages."
+msgstr "Diese Seitenleiste wird nur auf Beitrags-Listenseiten (Kategorien, Schlagworte, Autoren und Suchergebnissen) angezeigt."
+
+#: core/customizer/config.php:324
+#@ layerswp
+msgid "Widget Areas"
+msgstr "Widget Bereiche"
+
+#: core/customizer/config.php:327
+#: core/helpers/design-bar.php:458
+#: core/helpers/design-bar.php:503
+#@ layerswp
+msgid "None"
+msgstr "Keine"
+
+#: core/customizer/config.php:328
+#@ layerswp
+msgid "1"
+msgstr "1"
+
+#: core/customizer/config.php:329
+#@ layerswp
+msgid "2"
+msgstr "2"
+
+#: core/customizer/config.php:330
+#@ layerswp
+msgid "3"
+msgstr "3"
+
+#: core/customizer/config.php:331
+#@ layerswp
+msgid "4"
+msgstr "4"
+
+#: core/customizer/config.php:344
+#@ layerswp
+msgid "Text Color"
+msgstr "Text Farbe"
+
+#: core/customizer/config.php:349
+#@ layerswp
+msgid "Link Color"
+msgstr "Link Farbe"
+
+#: core/customizer/config.php:357
+#: core/customizer/registration.php:354
+#: core/helpers/design-bar.php:592
+#@ layerswp
+msgid "Background"
+msgstr "Hintergund"
+
+#: core/customizer/config.php:361
+#: core/customizer/registration.php:355
+#: core/customizer/registration.php:386
+#: core/helpers/design-bar.php:598
+#@ layerswp
+msgid "Background Image"
+msgstr "Hintergrundbild"
+
+#: core/customizer/config.php:372
+#@ layerswp
+msgid "Background Repeat"
+msgstr "Hintergrund Wiederholung"
+
+#: core/customizer/config.php:375
+#: core/helpers/design-bar.php:618
+#@ layerswp
+msgid "No Repeat"
+msgstr "Keine Wiederholung"
+
+#: core/customizer/config.php:376
+#: core/customizer/registration.php:444
+#: core/helpers/design-bar.php:613
+#: core/helpers/design-bar.php:619
+#@ layerswp
+msgid "Repeat"
+msgstr "Wiederholung"
+
+#: core/customizer/config.php:377
+#: core/helpers/design-bar.php:620
+#@ layerswp
+msgid "Repeat Horizontal"
+msgstr "Horizontal wiederholen"
+
+#: core/customizer/config.php:378
+#: core/helpers/design-bar.php:621
+#@ layerswp
+msgid "Repeat Vertical"
+msgstr "Vertikal wiederholen"
+
+#: core/customizer/config.php:383
+#@ layerswp
+msgid "Background Position"
+msgstr "Hintergrund Position"
+
+#: core/customizer/config.php:386
+#: core/helpers/design-bar.php:359
+#: core/helpers/design-bar.php:544
+#: core/helpers/design-bar.php:631
+#@ layerswp
+msgid "Center"
+msgstr "Zentriert"
+
+#: core/customizer/config.php:387
+#: core/helpers/design-bar.php:402
+#: core/helpers/design-bar.php:632
+#: core/helpers/forms.php:481
+#@ layerswp
+msgid "Top"
+msgstr "Oben"
+
+#: core/customizer/config.php:388
+#: core/helpers/design-bar.php:633
+#: core/helpers/forms.php:483
+#@ layerswp
+msgid "Bottom"
+msgstr "Unten"
+
+#: core/customizer/config.php:389
+#: core/helpers/design-bar.php:358
+#: core/helpers/design-bar.php:400
+#: core/helpers/design-bar.php:543
+#: core/helpers/design-bar.php:634
+#: core/helpers/forms.php:484
+#@ layerswp
+msgid "Left"
+msgstr "Links"
+
+#: core/customizer/config.php:390
+#: core/helpers/design-bar.php:360
+#: core/helpers/design-bar.php:401
+#: core/helpers/design-bar.php:545
+#: core/helpers/design-bar.php:635
+#: core/helpers/forms.php:482
+#@ layerswp
+msgid "Right"
+msgstr "Rechts"
+
+#: core/customizer/config.php:394
+#@ layerswp
+msgid "Background Stretch"
+msgstr "Fläche ausfüllen"
+
+#: core/customizer/config.php:404
+#@ layerswp
+msgid "Copyright Text"
+msgstr "Copyright Text"
+
+#: core/customizer/config.php:414
+#@ layerswp
+msgid "Enter in any custom script to include in your site's footer. Include the &lt;script&gt;&lt;/script&gt; tags."
+msgstr "Eigene Scripts zum Einbinden im Footer-Bereich eingeben. Die &lt;script&gt;&lt;/script&gt; Tags bitte ebenfalls eingeben."
+
+#: core/customizer/config.php:424
+#@ layerswp
+msgid "Single Product Sidebar(s)"
+msgstr "Einzelprodukt Seitenleiste"
+
+#: core/customizer/config.php:425
+#@ layerswp
+msgid "This option affects your single product pages."
+msgstr "Diese Seitenleiste wird nur auf Einzelproduktseiten angezeigt."
+
+#: core/customizer/config.php:442
+#@ layerswp
+msgid "Product List Sidebar(s)"
+msgstr "Produktliste Seitenleiste"
+
+#: core/customizer/config.php:443
+#@ layerswp
+msgid "This option affects your shop page, product category and product tag pages."
+msgstr "Diese Seitenleiste wird nur auf der Shop-Seite, den Produkt-Kategorien und den Produkt-Schlagworten angezeigt."
+
+#: core/customizer/controls/font.php:51
+#, php-format
+#@ layerswp
+msgid "Click <a href=\"%1s\" target=\"_blank\">here</a> to see this font on Google Fonts.</em>"
+msgstr "Diese Schriftart bei Google Fonts <a href=\"%1s\" target=\"_blank\">anzeigen</a>.</em>"
+
+#: core/customizer/controls/select-images.php:36
+#@ layerswp
+msgid "Choose Background"
+msgstr "Hintergrund auswählen"
+
+#: core/customizer/init.php:59
+#: core/helpers/post.php:347
+#: core/meta/init.php:167
+#: core/options-panel/partials/dashboard.php:39
+#@ layerswp
+msgid "Edit Layout"
+msgstr "Layout anpassen"
+
+#: core/customizer/init.php:60
+#@ layerswp
+msgid "Use this area to add widgets to your page, use the (Layers) widgets for the Body section."
+msgstr "Nutze diesen Bereich zum Hinzufügen von Widgets zur Seite - nutze die die (Layers) Widgets für den Inhaltsbereich."
+
+#: core/customizer/init.php:138
+#@ layerswp
+msgid "Builder Pages:"
+msgstr "Layers Builder Seiten:"
+
+#: core/customizer/init.php:158
+#@ layerswp
+msgid "Add new Layers page"
+msgstr "Neue Layers-Seite erstellen"
+
+#: core/customizer/init.php:161
+#@ layerswp
+msgid "Preview this page"
+msgstr "Vorschau anzeigen"
+
+#: core/customizer/init.php:165
+#@ layerswp
+msgid "Close"
+msgstr "Schließen"
+
+#: core/customizer/init.php:168
+#@ layerswp
+msgid "Back to controls"
+msgstr "Zurück zu den Einstellungen"
+
+#: core/customizer/registration.php:473
+#: core/helpers/design-bar.php:626
+#@ layerswp
+msgid "Position"
+msgstr "Position"
+
+#: core/customizer/registration.php:501
+#: core/helpers/design-bar.php:640
+#@ layerswp
+msgid "Stretch"
+msgstr "Fläche ausfüllen"
+
+#: core/helpers/api.php:38
+#@ layerswp
+msgid "WooCommerce for Layers"
+msgstr "WooCommerce für Layers"
+
+#: core/helpers/api.php:39
+#@ layerswp
+msgid "Adds an advanced product widget, product slider and multiple page layouts."
+msgstr "Fügt ein erweitertes Produkt-Widget, Produkt-Slider und mehrere Seitenlayouts hinzu."
+
+#: core/helpers/api.php:45
+#@ layerswp
+msgid "Showcase for Layers"
+msgstr "Showcase für Layers"
+
+#: core/helpers/api.php:46
+#@ layerswp
+msgid "List your portfolio items with relevant meta such as client, web url and project role."
+msgstr "Listet Portfolio-Elemente mit den entsprechenden Daten wie Kunde, Webseite und Projekt auf."
+
+#: core/helpers/custom-fonts.php:96
+#@ layerswp
+msgid "Default"
+msgstr "Standard"
+
+#: core/helpers/design-bar.php:253
+#: core/widgets/modules/content.php:334
+#@ layerswp
+msgid "List Style"
+msgstr "Listenstil"
+
+#: core/helpers/design-bar.php:266
+#: core/widgets/modules/content.php:343
+#@ layerswp
+msgid "Grid"
+msgstr "Raster"
+
+#: core/helpers/design-bar.php:267
+#@ layerswp
+msgid "List"
+msgstr "Liste"
+
+#: core/helpers/design-bar.php:268
+#: core/widgets/modules/content.php:344
+#@ layerswp
+msgid "Masonry"
+msgstr "Masonry"
+
+#: core/helpers/design-bar.php:294
+#: core/helpers/design-bar.php:303
+#@ layerswp
+msgid "Columns"
+msgstr "Spalten"
+
+#: core/helpers/design-bar.php:308
+#@ layerswp
+msgid "1 Column"
+msgstr "1 Spalte"
+
+#: core/helpers/design-bar.php:309
+#@ layerswp
+msgid "2 Columns"
+msgstr "2 Spalten"
+
+#: core/helpers/design-bar.php:310
+#@ layerswp
+msgid "3 Columns"
+msgstr "3 Spalten"
+
+#: core/helpers/design-bar.php:311
+#@ layerswp
+msgid "4 Columns"
+msgstr "4 Spalten"
+
+#: core/helpers/design-bar.php:312
+#@ layerswp
+msgid "6 Columns"
+msgstr "6 Spalten"
+
+#: core/helpers/design-bar.php:317
+#: core/widgets/modules/content.php:349
+#@ layerswp
+msgid "Gutter"
+msgstr "Rand"
+
+#: core/helpers/design-bar.php:345
+#: core/helpers/design-bar.php:538
+#@ layerswp
+msgid "Text Align"
+msgstr "Ausrichtung"
+
+#: core/helpers/design-bar.php:361
+#: core/helpers/design-bar.php:546
+#@ layerswp
+msgid "Justify"
+msgstr "Blocksatz"
+
+#: core/helpers/design-bar.php:387
+#@ layerswp
+msgid "Image Align"
+msgstr "Bild Ausrichtung"
+
+#: core/helpers/design-bar.php:428
+#: core/helpers/design-bar.php:437
+#@ layerswp
+msgid "Featured Image"
+msgstr "Beitragsbild"
+
+#: core/helpers/design-bar.php:444
+#@ layerswp
+msgid "Video URL (oEmbed)"
+msgstr "Video URL (oEmbed)"
+
+#: core/helpers/design-bar.php:455
+#: core/helpers/design-bar.php:500
+#@ layerswp
+msgid "Portrait"
+msgstr "Hochformat"
+
+#: core/helpers/design-bar.php:456
+#: core/helpers/design-bar.php:501
+#@ layerswp
+msgid "Landscape"
+msgstr "Querformat"
+
+#: core/helpers/design-bar.php:457
+#: core/helpers/design-bar.php:502
+#@ layerswp
+msgid "Square"
+msgstr "Quadratisch"
+
+#: core/helpers/design-bar.php:459
+#@ layerswp
+msgid "Round"
+msgstr "Rund"
+
+#: core/helpers/design-bar.php:487
+#@ layerswp
+msgid "Image Ratio"
+msgstr "Ausrichtung"
+
+#: core/helpers/design-bar.php:553
+#@ layerswp
+msgid "Text Size"
+msgstr "Schriftgröße"
+
+#: core/helpers/design-bar.php:558
+#@ layerswp
+msgid "Small"
+msgstr "Klein"
+
+#: core/helpers/design-bar.php:559
+#@ layerswp
+msgid "Medium"
+msgstr "Mittel"
+
+#: core/helpers/design-bar.php:560
+#@ layerswp
+msgid "Large"
+msgstr "Groß"
+
+#: core/helpers/design-bar.php:599
+#: core/helpers/forms.php:242
+#@ layerswp
+msgid "Choose Image"
+msgstr "Bild wählen"
+
+#: core/helpers/design-bar.php:606
+#@ layerswp
+msgid "Color"
+msgstr "Farbe"
+
+#: core/helpers/design-bar.php:647
+#@ layerswp
+msgid "Darken"
+msgstr "Abdunkeln"
+
+#: core/helpers/design-bar.php:675
+#@ layerswp
+msgid "Advanced"
+msgstr "Erweitert"
+
+#: core/helpers/design-bar.php:681
+#@ layerswp
+msgid "Custom Class(es)"
+msgstr "Eigene Klasse(n)"
+
+#: core/helpers/design-bar.php:689
+#@ layerswp
+msgid "Custom CSS"
+msgstr "Eigenes CSS"
+
+#: core/helpers/design-bar.php:697
+#@ layerswp
+msgid "Padding (px)"
+msgstr "Padding (px)"
+
+#: core/helpers/design-bar.php:704
+#@ layerswp
+msgid "Margin (px)"
+msgstr "Margin (px)"
+
+#: core/helpers/forms.php:22
+#@ layerswp
+msgid "Widget"
+msgstr "Widget"
+
+#: core/helpers/forms.php:100
+#@ layerswp
+msgid "Newest First"
+msgstr "Neueste zuerst"
+
+#: core/helpers/forms.php:101
+#@ layerswp
+msgid "Oldest First"
+msgstr "Älteste zuerst"
+
+#: core/helpers/forms.php:102
+#@ layerswp
+msgid "Random"
+msgstr "Zufällig"
+
+#: core/helpers/forms.php:103
+#@ layerswp
+msgid "Titles A-Z"
+msgstr "Titel A-Z"
+
+#: core/helpers/forms.php:104
+#@ layerswp
+msgid "Titles Z-A"
+msgstr "Titel Z-A"
+
+#: core/helpers/forms.php:105
+#@ layerswp
+msgid "Most Comments"
+msgstr "Meiste Kommentare"
+
+#: core/helpers/forms.php:106
+#@ layerswp
+msgid "Custom Order"
+msgstr "Eigene Sortierung"
+
+#: core/helpers/forms.php:219
+#@ layerswp
+msgid "Visual Mode"
+msgstr "Visuell"
+
+#: core/helpers/forms.php:220
+#: core/helpers/forms.php:221
+#@ layerswp
+msgid "HTML Mode"
+msgstr "Text"
+
+#: core/helpers/forms.php:236
+#: core/helpers/forms.php:268
+#: core/helpers/forms.php:307
+#@ layerswp
+msgid "Remove"
+msgstr "Entfernen"
+
+#: core/helpers/forms.php:240
+#@ layerswp
+msgid "Select an Image"
+msgstr "Bild auswählen"
+
+#: core/helpers/forms.php:241
+#@ layerswp
+msgid "Use Image"
+msgstr "- Wähle -"
+
+#: core/helpers/forms.php:264
+#@ layerswp
+msgid "Select a File"
+msgstr "Datei auswählen"
+
+#: core/helpers/forms.php:264
+#@ layerswp
+msgid "Use File"
+msgstr "Datei wählen"
+
+#: core/helpers/forms.php:265
+#@ layerswp
+msgid "Choose a File"
+msgstr "Datei auswählen"
+
+#: core/helpers/forms.php:311
+#, php-format
+#@ layerswp
+msgid "Drop a file here or %s"
+msgstr "Drag-and-Drop die Dateien hierher für den Upload or %s"
+
+#: core/helpers/forms.php:350
+#: core/helpers/forms.php:425
+#@ layerswp
+msgid "Darken to improve readability"
+msgstr "Für bessere Lesbarkeit abdunkeln"
+
+#: core/helpers/forms.php:361
+#: core/helpers/forms.php:436
+#@ layerswp
+msgid "Tile Background"
+msgstr "Hintergrund kacheln"
+
+#: core/helpers/forms.php:372
+#: core/helpers/forms.php:447
+#@ layerswp
+msgid "Fixed Background"
+msgstr "Hintergrund fixieren"
+
+#: core/helpers/forms.php:383
+#@ layerswp
+msgid "Enter your .mp4 link"
+msgstr "Link für .mp4 eingeben"
+
+#: core/helpers/forms.php:394
+#@ layerswp
+msgid "Enter your .ogv link"
+msgstr "Link für .ogv eingeben"
+
+#: core/helpers/migrator.php:100
+#@ layerswp
+msgid "Application"
+msgstr "Produkt-Seite"
+
+#: core/helpers/migrator.php:106
+#@ layerswp
+msgid "Contact Page"
+msgstr "Kontakt Seite"
+
+#: core/helpers/migrator.php:112
+#@ layerswp
+msgid "Landing Page"
+msgstr "Landing Page"
+
+#: core/helpers/migrator.php:118
+#@ layerswp
+msgid "Lookbook Page"
+msgstr "Lookbook Page"
+
+#: core/helpers/migrator.php:124
+#@ layerswp
+msgid "One Pager"
+msgstr "One Pager"
+
+#: core/helpers/migrator.php:130
+#@ layerswp
+msgid "Portfolio Page"
+msgstr "Portfolio Seite"
+
+#: core/helpers/migrator.php:136
+#@ layerswp
+msgid "Video Page"
+msgstr "Video Seite"
+
+#: core/helpers/migrator.php:142
+#@ layerswp
+msgid "Blank Page"
+msgstr "Leere Seite"
+
+#: core/helpers/migrator.php:585
+#@ layerswp
+msgid "(Copy)"
+msgstr "(Kopieren)"
+
+#: core/helpers/migrator.php:641
+#: core/options-panel/partials/get-started.php:331
+#: core/options-panel/partials/get-started.php:332
+#@ layerswp
+msgid "Home Page"
+msgstr "Home Page"
+
+#: core/helpers/migrator.php:716
+#@ layerswp
+msgid "Sidebar does not exist in theme (using Inactive)"
+msgstr "Seitenleiste im Theme nicht definiert (Inaktive Seitenleiste verwendet)"
+
+#: core/helpers/migrator.php:758
+#@ layerswp
+msgid "Widget already exists"
+msgstr "Widget ist bereits vorhanden"
+
+#: core/helpers/migrator.php:807
+#@ layerswp
+msgid "Imported"
+msgstr "Importiert"
+
+#: core/helpers/migrator.php:810
+#@ layerswp
+msgid "Imported to Inactive"
+msgstr "In Inaktive importiert"
+
+#: core/helpers/migrator.php:816
+#@ layerswp
+msgid "No Title"
+msgstr "Kein Titel"
+
+#: core/helpers/post.php:56
+#, php-format
+#@ layerswp
+msgid "View all posts in %s"
+msgstr "Zeige alle Beiträge in der Kategorie %s"
+
+#: core/helpers/post.php:58
+#: core/helpers/post.php:77
+#@ layerswp
+msgid ", "
+msgstr ", "
+
+#: core/helpers/post.php:75
+#, php-format
+#@ layerswp
+msgid "View all posts tagged %s"
+msgstr "Zeige alle Beiträge mit dem Schlagwort %s"
+
+#: core/helpers/post.php:98
+#, php-format
+#@ layerswp
+msgid "<a href=\"%1$s\" title=\"%2$s\" rel=\"author\">%3$s</a>"
+msgstr "<a href=\"%1$s\" title=\"%2$s\" rel=\"author\">%3$s</a>"
+
+#: core/helpers/post.php:100
+#, php-format
+#@ layerswp
+msgid "View all posts by %s"
+msgstr "Zeige alle Beiträge von %s"
+
+#: core/helpers/post.php:123
+#@ layerswp
+msgid "(Edit)"
+msgstr "(Bearbeiten)"
+
+#: core/helpers/post.php:129
+#, php-format
+#@ layerswp
+msgid "%1$s at %2$s"
+msgstr "%1$s um %2$s"
+
+#: core/helpers/post.php:135
+#@ layerswp
+msgid "Your comment is awaiting moderation."
+msgstr "Kommentar wartet auf Freischaltung"
+
+#: core/helpers/post.php:156
+#@ layerswp
+msgid "You shall not pass"
+msgstr ""
+
+#: core/helpers/template.php:24
+#@ layerswp
+msgid "Home"
+msgstr "Home"
+
+#: core/helpers/template.php:35
+#: core/helpers/template.php:304
+#@ layerswp
+msgid "Search"
+msgstr "Suchen"
+
+#: core/helpers/template.php:45
+#: core/helpers/template.php:329
+#@ layerswp
+msgid "Shop"
+msgstr "Shop"
+
+#: core/helpers/template.php:317
+#, php-format
+#@ layerswp
+msgid "Daily Archives: %s"
+msgstr "Tägliches Archiv: %s"
+
+#: core/helpers/template.php:319
+#, php-format
+#@ layerswp
+msgid "Monthly Archives: %s"
+msgstr "Monatliches Archiv: %s"
+
+#: core/helpers/template.php:319
+#@ layerswp
+msgctxt "monthly archives date format"
+msgid "F Y"
+msgstr "F Y"
+
+#: core/helpers/template.php:321
+#, php-format
+#@ layerswp
+msgid "Yearly Archives: %s"
+msgstr "Jahresarchiv: %s"
+
+#: core/helpers/template.php:321
+#@ layerswp
+msgctxt "yearly archives date format"
+msgid "Y"
+msgstr "Y"
+
+#: core/helpers/template.php:334
+#@ layerswp
+msgid "Archives"
+msgstr "Archive"
+
+#: core/helpers/template.php:1113
+#@ layerswp
+msgid "Your browser does not support the video tag."
+msgstr "Dein Browser unterstützt den Video-Tag nicht."
+
+#: core/meta/config.php:16
+#@ layerswp
+msgid ": Options"
+msgstr ": Optionen"
+
+#: core/meta/config.php:21
+#@ layerswp
+msgid "Rich Media"
+msgstr "Video einfügen"
+
+#: core/meta/config.php:24
+#@ layerswp
+msgid "Video URL"
+msgstr "Video URL"
+
+#: core/meta/init.php:114
+#@ layerswp
+msgid "You can drag and drop widgets, edit content and tweak the design. Click the button below to see your page come to life."
+msgstr "Du kannst Widgets umsortieren, Inhalte bearbeiten und das Design optimieren. Klicke auf die Schaltfläche, um Deine Seite zu sehen und zu bearbeiten."
+
+#: core/meta/init.php:118
+#@ layerswp
+msgid "Edit Your Page"
+msgstr "Seite bearbeiten"
+
+#: core/meta/init.php:192
+#@ layerswp
+msgid "Build Your Page"
+msgstr "Seite erstellen"
+
+#: core/options-panel/ajax.php:68
+#@ layerswp
+msgid "No Logo uploaded"
+msgstr "Logo wurde nicht hochgeladen"
+
+#: core/options-panel/ajax.php:102
+#@ layerswp
+msgid "Logo updated"
+msgstr "Logo aktualisiert"
+
+#: core/options-panel/ajax.php:106
+#@ layerswp
+msgid "There was an error when updating your logo."
+msgstr "Beim Aktualisieren des Logos ist ein Fehler aufgetreten."
+
+#: core/options-panel/ajax.php:114
+#@ layerswp
+msgid "Option updated"
+msgstr "Einstellung aktualisiert"
+
+#: core/options-panel/init.php:162
+#: core/options-panel/init.php:163
+#@ layerswp
+msgid "Get Started"
+msgstr "Los geht's"
+
+#: core/options-panel/init.php:172
+#: core/options-panel/init.php:173
+#: core/options-panel/partials/add-new-page.php:12
+#: core/options-panel/partials/dashboard.php:48
+#@ layerswp
+msgid "Add New Page"
+msgstr "Neue Seite erstellen"
+
+#: core/options-panel/init.php:184
+#: core/options-panel/init.php:185
+#: core/options-panel/partials/dashboard.php:32
+#@ layerswp
+msgid "Layers Pages"
+msgstr "Layers Seiten"
+
+#: core/options-panel/init.php:194
+#: core/options-panel/init.php:195
+#@ layerswp
+msgid "Customize"
+msgstr "Anpassen"
+
+#: core/options-panel/init.php:203
+#: core/options-panel/init.php:204
+#: core/options-panel/partials/backup.php:5
+#@ layerswp
+msgid "Backup"
+msgstr "Backup"
+
+#: core/options-panel/init.php:212
+#: core/options-panel/partials/dashboard.php:8
+#@ layerswp
+msgid "Dashboard"
+msgstr "Dashboard"
+
+#: core/options-panel/partials/add-new-page.php:25
+#@ layerswp
+msgid "Add a page title"
+msgstr "Seitentitel eingeben"
+
+#: core/options-panel/partials/add-new-page.php:34
+#: core/widgets/modules/contact.php:264
+#: core/widgets/modules/content.php:371
+#: core/widgets/modules/content.php:508
+#: core/widgets/modules/post.php:456
+#: core/widgets/modules/slider.php:491
+#@ layerswp
+msgid "Enter title here"
+msgstr "Titel hier eingeben"
+
+#: core/options-panel/partials/add-new-page.php:43
+#@ layerswp
+msgid "Proceed to Customizer"
+msgstr "Erstellen &amp; Inhalte anpassen"
+
+#: core/options-panel/partials/add-new-page.php:46
+#@ layerswp
+msgid "Cancel"
+msgstr "Abbrechen"
+
+#: core/options-panel/partials/backup.php:14
+#@ layerswp
+msgid "Backup your pages"
+msgstr "Sicher Deine Seiten"
+
+#: core/options-panel/partials/backup.php:16
+#@ layerswp
+msgid "Convert your Layers pages into regular WordPress pages, preserving the content you have worked so hard to create."
+msgstr "Konvertiere Deine Layers Seiten in normale WordPress Seiten, um Deine Arbeit zu speichern und in anderen Themes verwenden zu können."
+
+#: core/options-panel/partials/backup.php:24
+#@ layerswp
+msgid "Backup my Pages Now"
+msgstr "Layers Seiten jetzt sichern"
+
+#: core/options-panel/partials/backup.php:30
+#@ layerswp
+msgid "Backed Up Pages:"
+msgstr "Gesicherte Seiten:"
+
+#: core/options-panel/partials/dashboard.php:20
+#@ layerswp
+msgid "Start Using Layers"
+msgstr "Einfacher Start mit Layers"
+
+#: core/options-panel/partials/dashboard.php:22
+#@ layerswp
+msgid "Follow the easy steps to creating amazing layouts quickly and easily. "
+msgstr "Mit wenigen Schritten schnell und einfach erstaunliche Layouts gestalten."
+
+#: core/options-panel/partials/dashboard.php:26
+#@ layerswp
+msgid "Get Started &rarr;"
+msgstr "Los geht's &rarr;"
+
+#: core/options-panel/partials/dashboard.php:40
+#@ layerswp
+msgid "Edit"
+msgstr "Bearbeiten"
+
+#: core/options-panel/partials/dashboard.php:41
+#@ layerswp
+msgid "View"
+msgstr "Anzeigen"
+
+#: core/options-panel/partials/dashboard.php:59
+#@ layerswp
+msgid "Extensions"
+msgstr "Erweiterungen"
+
+#: core/options-panel/partials/dashboard.php:75
+#@ layerswp
+msgid "Coming soon"
+msgstr "In Kürze"
+
+#: core/options-panel/partials/dashboard.php:83
+#@ layerswp
+msgid "Purchase"
+msgstr "Kaufen"
+
+#: core/options-panel/partials/dashboard.php:88
+#@ layerswp
+msgid "More Details"
+msgstr "Mehr Infos"
+
+#: core/options-panel/partials/dashboard.php:105
+#@ layerswp
+msgid "What you need"
+msgstr "Voraussetzungen"
+
+#: core/options-panel/partials/dashboard.php:109
+#@ layerswp
+msgid "WordPress 4.0"
+msgstr "WordPress 4.0"
+
+#: core/options-panel/partials/dashboard.php:111
+#@ layerswp
+msgid "Layers requires you run the latest version of WordPress, please make sure you're up to date!"
+msgstr "Layers erfordert die aktuellste WordPress Version, bitte aktualisieren!"
+
+#: core/options-panel/partials/dashboard.php:115
+#@ layerswp
+msgid "You're up to date"
+msgstr "Alles perfekt"
+
+#: core/options-panel/partials/dashboard.php:117
+#@ layerswp
+msgid "Update WordPress"
+msgstr "Wordpress aktualisieren"
+
+#: core/options-panel/partials/dashboard.php:122
+#@ layerswp
+msgid "The Layers Updater"
+msgstr "Layers Updater"
+
+#: core/options-panel/partials/dashboard.php:124
+#@ layerswp
+msgid "Make sure you're always running the latest version of Layers by installing the Layers Updater"
+msgstr "Stelle sicher, dass immer die aktuellste Layers-Version installiert ist und installiere den Layers Updater"
+
+#: core/options-panel/partials/dashboard.php:128
+#@ layerswp
+msgid "Installed"
+msgstr "Installiert"
+
+#: core/options-panel/partials/dashboard.php:144
+#@ layerswp
+msgid "Helpful Tips"
+msgstr "Hilfreiche Tipps"
+
+#: core/options-panel/partials/get-started.php:29
+#@ layerswp
+msgid "Welcome to Layers!"
+msgstr "Willkommen zu Layers!"
+
+#: core/options-panel/partials/get-started.php:33
+#@ layerswp
+msgid "Layers is a revolutionary WordPress Site Builder that makes website building a dream come true!"
+msgstr "Layers ist ein revolutionärer WordPress Seiten-Generator, der das Erstellen von Webseiten so einfach macht, wie nie zuvor!"
+
+#: core/options-panel/partials/get-started.php:36
+#@ layerswp
+msgid "The following short steps are designed to show you how Layers works and get you to creating amazing layouts quickly!"
+msgstr "Die folgenden Schritte sollen Dir zeigen wie Layers funktioniert und Dir dabei helfen schnell erstaunliche Layouts zu erstellen!"
+
+#: core/options-panel/partials/get-started.php:39
+#@ layerswp
+msgid "Enjoy the ride!"
+msgstr "Freu Dich drauf!"
+
+#: core/options-panel/partials/get-started.php:46
+#@ layerswp
+msgid "Let's get started &rarr;"
+msgstr "Los geht's &rarr;"
+
+#: core/options-panel/partials/get-started.php:227
+#@ layerswp
+msgid "For the Pros: Layers will automatically assign the tagline to Settings &rarr; General."
+msgstr "Für die Pros: Layers wird automatisch den Slogan bei den Einstellungen &rarr; Allgemein eintragen."
+
+#: core/options-panel/partials/get-started.php:72
+#: core/options-panel/partials/get-started.php:160
+#: core/options-panel/partials/get-started.php:241
+#@ layerswp
+msgid "Getting Started"
+msgstr "So geht's los"
+
+#: core/options-panel/partials/get-started.php:76
+#@ layerswp
+msgid "Building pages"
+msgstr "Seiten erstellen"
+
+#: core/options-panel/partials/get-started.php:89
+#@ layerswp
+msgid "Got it, Next Step &rarr;"
+msgstr "Verstanden, nächster Schritt &rarr;"
+
+#: core/options-panel/partials/get-started.php:104
+#@ layerswp
+msgid "What is the name of your website?"
+msgstr "Wie lautet der Name Deiner Webseite?"
+
+#: core/options-panel/partials/get-started.php:107
+#@ layerswp
+msgid "Enter your website name below. We&apos;ll use this in your site title and in search results."
+msgstr "Gib den Namen Deiner Webseite ein. Diesen wird für den Seitentitel und bei den Suchergebnissen genutzt."
+
+#: core/options-panel/partials/get-started.php:111
+#@ layerswp
+msgid "Site Name"
+msgstr "Seitentitel"
+
+#: core/options-panel/partials/get-started.php:131
+#@ layerswp
+msgid "Saving your Site Name"
+msgstr "Seitentitel wird aktualisiert"
+
+#: core/options-panel/partials/get-started.php:133
+#: core/options-panel/partials/get-started.php:174
+#: core/options-panel/partials/get-started.php:217
+#: core/options-panel/partials/get-started.php:258
+#: core/options-panel/partials/get-started.php:302
+#@ layerswp
+msgid "Next Step &rarr;"
+msgstr "Nächster Schritt &rarr;"
+
+#: core/options-panel/partials/get-started.php:145
+#@ layerswp
+msgid "For the Pros: Layers will automatically assign this site name to Settings &rarr; General"
+msgstr "Für die Pros: Layers wird automatisch diesen Titel bei den Einstellungen &rarr; Allgemein eintragen."
+
+#: core/options-panel/partials/get-started.php:164
+#@ layerswp
+msgid "Editing widget content"
+msgstr "Widget Inhalt bearbeiten"
+
+#: core/options-panel/partials/get-started.php:189
+#@ layerswp
+msgid "How would you best describe your site?"
+msgstr "Erkläre in ein paar Worten, worum es auf deiner Seite geht."
+
+#: core/options-panel/partials/get-started.php:196
+#@ layerswp
+msgid "Site Tagline"
+msgstr "Slogan"
+
+#: core/options-panel/partials/get-started.php:216
+#@ layerswp
+msgid "Saving your Tagline"
+msgstr "Slogan wird aktualisiert"
+
+#: core/options-panel/partials/get-started.php:224
+#@ layerswp
+msgid "Keep it simple"
+msgstr "Kurz und knapp"
+
+#: core/options-panel/partials/get-started.php:225
+#@ layerswp
+msgid "Avoid buzz words"
+msgstr "Vermeiden Schlagworte"
+
+#: core/options-panel/partials/get-started.php:226
+#@ layerswp
+msgid "Make sure it describes what you offer"
+msgstr "Der Slogan soll das beschreiben, was die Webseite zu bieten hat"
+
+#: core/options-panel/partials/get-started.php:245
+#@ layerswp
+msgid "Customizing widgets"
+msgstr "Widgets anpassen"
+
+#: core/options-panel/partials/get-started.php:249
+#@ layerswp
+msgid "Unique to each Layers widget is the revolutionary &ldquo;Design Bar&rdquo; which allows you to set its design parameters without touching a line of code."
+msgstr "Einzigartig für jedes Layers Widget ist die revolutionäre &ldquo;Design-Bar&rdquo; mit der Du ohne eine einzige Zeile Code schreiben zu müssen alle Design Parameter anpassen kannst."
+
+#: core/options-panel/partials/get-started.php:252
+#@ layerswp
+msgid "Depending on the widget you've added, you can change things like background images, font sizes, list styles and more."
+msgstr "In Abhängigkeit des Widgets, das Du hinzugefügt hast, kannst Du z.B. Hintergrundbilder, Schriftgrößen, Listenstile und mehr ändern."
+
+#: core/options-panel/partials/get-started.php:273
+#@ layerswp
+msgid "Would you like to add your logo?"
+msgstr "Möchtest Du ein Logo hinzufügen?"
+
+#: core/options-panel/partials/get-started.php:284
+#@ layerswp
+msgid "Choose Logo"
+msgstr "Logo auswählen"
+
+#: core/options-panel/partials/get-started.php:301
+#@ layerswp
+msgid "Updating your Logo"
+msgstr "Logo wird aktualisiert"
+
+#: core/options-panel/partials/get-started.php:309
+#@ layerswp
+msgid "For best results, use an image between 40px and 200px tall and not more than 1000px wide"
+msgstr "Für die optimale Darstellung, sollte das Logo zwischen 40px und 200px hoch und nicht breiter als 1000px sein."
+
+#: core/options-panel/partials/get-started.php:310
+#@ layerswp
+msgid "PNGs with a transparent background work best but GIFs or JPGs are fine too"
+msgstr "PNGs mit einem transparentem Hintergrund sind optimal - GIFs und JPGs funktionieren aber auch."
+
+#: core/options-panel/partials/get-started.php:311
+#@ layerswp
+msgid "Try keep your logo file size below 500kb"
+msgstr "Die Dateigröße Deines Logos sollte unter 500KB liegen."
+
+#: core/options-panel/partials/get-started.php:325
+#@ layerswp
+msgid "Page Title"
+msgstr "Seitentitel"
+
+#: core/options-panel/partials/get-started.php:354
+#@ layerswp
+msgid "Now let&apos;s create your first Layers page!"
+msgstr "O.k. - erstelle Deine erste Layers-Seite!"
+
+#: core/options-panel/partials/get-started.php:364
+#@ layerswp
+msgid "Creating your Page"
+msgstr "Seite wird erstellt"
+
+#: core/options-panel/partials/get-started.php:365
+#@ layerswp
+msgid "First choose a layout"
+msgstr "Wähle zuerst eine Vorlage"
+
+#: core/options-panel/partials/get-started.php:365
+#@ layerswp
+msgid "Start Building"
+msgstr "Seite erstellen"
+
+#: core/options-panel/partials/preset-layouts.php:20
+#@ layerswp
+msgid "Select"
+msgstr "Auswählen"
+
+#: core/third-party/site-logo/inc/class-site-logo-control.php:19
+#@ layerswp
+msgid "Add logo"
+msgstr "Logo hinzufügen"
+
+#: core/third-party/site-logo/inc/class-site-logo-control.php:20
+#@ layerswp
+msgid "Set as logo"
+msgstr "Als Logo verwenden"
+
+#: core/third-party/site-logo/inc/class-site-logo-control.php:21
+#@ layerswp
+msgid "Choose logo"
+msgstr "Logo auswählen"
+
+#: core/third-party/site-logo/inc/class-site-logo-control.php:22
+#@ layerswp
+msgid "Change logo"
+msgstr "Logo wechseln"
+
+#: core/third-party/site-logo/inc/class-site-logo-control.php:23
+#@ layerswp
+msgid "Remove logo"
+msgstr "Logo entfernen"
+
+#: core/third-party/site-logo/inc/class-site-logo-control.php:24
+#@ layerswp
+msgid "No logo set"
+msgstr "Kein Logo ausgewählt"
+
+#: core/third-party/site-logo/inc/class-site-logo.php:81
+#@ layerswp
+msgid "Site Title, Tagline, and Logo"
+msgstr "Seitentitel, Slogan und Logo"
+
+#: core/third-party/site-logo/inc/class-site-logo.php:92
+#@ layerswp
+msgid "Display Header Text"
+msgstr "Header Text anzeigen"
+
+#: core/third-party/site-logo/inc/class-site-logo.php:114
+#@ layerswp
+msgid "Logo"
+msgstr "Logo"
+
+#: core/third-party/site-logo/inc/class-site-logo.php:254
+#@ layerswp
+msgid "Site Logo"
+msgstr "Seitenlogo"
+
+#: core/widgets/init.php:88
+#@ layerswp
+msgid " Body"
+msgstr " Inhalt"
+
+#: core/widgets/init.php:173
+#@ layerswp
+msgid "Layers Builder section."
+msgstr "Layers Builder Abschnitt"
+
+#: core/widgets/init.php:198
+#@ layerswp
+msgid "Are you sure you want to remove this slide?"
+msgstr "Soll dieser Slide wirklich gelöscht werden?"
+
+#: core/widgets/init.php:210
+#@ layerswp
+msgid "Are you sure you want to remove this column?"
+msgstr "Soll diese Spalte wirklich gelöscht werden?"
+
+#: core/widgets/modules/contact.php:26
+#@ layerswp
+msgid "Contact Details &amp; Maps"
+msgstr "Kontakt Details &amp; Google Maps"
+
+#: core/widgets/modules/contact.php:222
+#@ layerswp
+msgid "Map Height"
+msgstr "Karte Höhe"
+
+#: core/widgets/modules/contact.php:229
+#@ layerswp
+msgid "Show Google Map"
+msgstr "Google Map anzeigen"
+
+#: core/widgets/modules/contact.php:236
+#@ layerswp
+msgid "Show Address"
+msgstr "Adresse anzeigen"
+
+#: core/widgets/modules/contact.php:243
+#@ layerswp
+msgid "Show Contact Form"
+msgstr "Kontaktformular anzeigen"
+
+#: core/widgets/modules/contact.php:252
+#@ layerswp
+msgid "Contact"
+msgstr "Kontakt"
+
+#: core/widgets/modules/contact.php:276
+#: core/widgets/modules/content.php:383
+#: core/widgets/modules/content.php:521
+#: core/widgets/modules/post.php:469
+#: core/widgets/modules/slider.php:504
+#@ layerswp
+msgid "Short Excerpt"
+msgstr "Text hier eingeben"
+
+#: core/widgets/modules/contact.php:289
+#@ layerswp
+msgid "Address"
+msgstr "Adresse"
+
+#: core/widgets/modules/contact.php:290
+#: core/widgets/modules/contact.php:340
+#@ layerswp
+msgid "Place your help text here please."
+msgstr "Hilfetext bitte hier eingeben"
+
+#: core/widgets/modules/contact.php:295
+#@ layerswp
+msgid "Google Maps Location"
+msgstr "Google Maps Adresse"
+
+#: core/widgets/modules/contact.php:301
+#@ layerswp
+msgid "e.g. 300 Prestwich Str, Cape Town, South Africa"
+msgstr "z.B. Kurfürstendamm 100, 10709 Berlin"
+
+#: core/widgets/modules/contact.php:307
+#@ layerswp
+msgid "Google Maps Latitude & Longitude (Optional)"
+msgstr "Google Maps Latitude & Longitude (Optional)"
+
+#: core/widgets/modules/contact.php:313
+#@ layerswp
+msgid "e.g. 33.9253 S, 18.4239 E"
+msgstr "e.g. 52.498520, 13.297290"
+
+#: core/widgets/modules/contact.php:319
+#@ layerswp
+msgid "Address Shown"
+msgstr "Angezeigte Adresse"
+
+#: core/widgets/modules/contact.php:325
+#@ layerswp
+msgid "e.g. Prestwich Str, Cape Town"
+msgstr "Kurfürstendamm 100, mitten in Berlin"
+
+#: core/widgets/modules/contact.php:339
+#@ layerswp
+msgid "Contact Form"
+msgstr "Kontaktformular"
+
+#: core/widgets/modules/contact.php:350
+#@ layerswp
+msgid "Contact form embed code"
+msgstr "Kontaktformular Shortcode"
+
+#: core/widgets/modules/content.php:26
+#: core/widgets/modules/content.php:360
+#@ layerswp
+msgid "Content"
+msgstr "Inhalt"
+
+#: core/widgets/modules/content.php:414
+#@ layerswp
+msgid "Add New Column"
+msgstr "Spalte hinzufügen"
+
+#: core/widgets/modules/content.php:447
+#@ layerswp
+msgid "Column"
+msgstr "Spalte"
+
+#: core/widgets/modules/content.php:483
+#@ layerswp
+msgid "1 of 12 columns"
+msgstr "1 von 12 Spalten"
+
+#: core/widgets/modules/content.php:484
+#@ layerswp
+msgid "2 of 12 columns"
+msgstr "2 von 12 Spalten"
+
+#: core/widgets/modules/content.php:485
+#@ layerswp
+msgid "3 of 12 columns"
+msgstr "3 von 12 Spalten"
+
+#: core/widgets/modules/content.php:486
+#@ layerswp
+msgid "4 of 12 columns"
+msgstr "4 von 12 Spalten"
+
+#: core/widgets/modules/content.php:487
+#@ layerswp
+msgid "5 of 12 columns"
+msgstr "5 von 12 Spalten"
+
+#: core/widgets/modules/content.php:488
+#@ layerswp
+msgid "6 of 12 columns"
+msgstr "6 von 12 Spalten"
+
+#: core/widgets/modules/content.php:489
+#@ layerswp
+msgid "8 of 12 columns"
+msgstr "8 von 12 Spalten"
+
+#: core/widgets/modules/content.php:490
+#@ layerswp
+msgid "9 of 12 columns"
+msgstr "9 von 12 Spalten"
+
+#: core/widgets/modules/content.php:491
+#@ layerswp
+msgid "10 of 12 columns"
+msgstr "10 von 12 Spalten"
+
+#: core/widgets/modules/content.php:492
+#@ layerswp
+msgid "12 of 12 columns"
+msgstr "12 von 12 Spalten"
+
+#: core/widgets/modules/content.php:502
+#: core/widgets/modules/slider.php:484
+#@ layerswp
+msgid "Title"
+msgstr "Titel"
+
+#: core/widgets/modules/content.php:515
+#: core/widgets/modules/slider.php:498
+#@ layerswp
+msgid "Excerpt"
+msgstr "Text"
+
+#: core/widgets/modules/content.php:530
+#: core/widgets/modules/slider.php:513
+#@ layerswp
+msgid "Button Link"
+msgstr "Button Link"
+
+#: core/widgets/modules/content.php:536
+#: core/widgets/modules/slider.php:519
+#@ layerswp
+msgid "http://"
+msgstr "http://"
+
+#: core/widgets/modules/content.php:543
+#: core/widgets/modules/slider.php:525
+#@ layerswp
+msgid "Button Text"
+msgstr "Button Text"
+
+#: core/widgets/modules/content.php:549
+#: core/widgets/modules/slider.php:531
+#@ layerswp
+msgid "e.g. \"Read More\""
+msgstr "z.B. \"Weiterlesen\""
+
+#: core/widgets/modules/post.php:26
+#@ layerswp
+msgid "Posts"
+msgstr "Beiträge"
+
+#: core/widgets/modules/post.php:65
+#: partials/content-list.php:22
+#@ layerswp
+msgid "Read More"
+msgstr "Weiterlesen"
+
+#: core/widgets/modules/post.php:349
+#@ layerswp
+msgid "Title &amp; Excerpt Position"
+msgstr "Titel &amp; Auszug Position"
+
+#: core/widgets/modules/post.php:351
+#@ layerswp
+msgid "Regular"
+msgstr "Standard"
+
+#: core/widgets/modules/post.php:360
+#@ layerswp
+msgid "Show Featured Images"
+msgstr "Beitragsbild anzeigen"
+
+#: core/widgets/modules/post.php:367
+#@ layerswp
+msgid "Show  Post Titles"
+msgstr "Beitragstitel anzeigen"
+
+#: core/widgets/modules/post.php:374
+#@ layerswp
+msgid "Show Post Excerpts"
+msgstr "Beitragsauszug anzeigen"
+
+#: core/widgets/modules/post.php:383
+#@ layerswp
+msgid "Excerpts Length"
+msgstr "Länge Beitragsauszug"
+
+#: core/widgets/modules/post.php:390
+#@ layerswp
+msgid "Show Post Dates"
+msgstr "Beitragsdatum anzeigen"
+
+#: core/widgets/modules/post.php:397
+#@ layerswp
+msgid "Show Post Author"
+msgstr "Autor anzeigen"
+
+#: core/widgets/modules/post.php:404
+#@ layerswp
+msgid "Show Tags"
+msgstr "Schlagworte anzeigen"
+
+#: core/widgets/modules/post.php:411
+#@ layerswp
+msgid "Show Categories"
+msgstr "Kategorien anzeigen"
+
+#: core/widgets/modules/post.php:418
+#@ layerswp
+msgid "Show \"Read More\" Buttons"
+msgstr "\"Weiterlesen\" Button anzeigen"
+
+#: core/widgets/modules/post.php:425
+#@ layerswp
+msgid "\"Read More\" Text"
+msgstr "\"Weiterlesen\" Text"
+
+#: core/widgets/modules/post.php:432
+#@ layerswp
+msgid "Show Pagination"
+msgstr "Seiten-Paginierung anzeigen"
+
+#: core/widgets/modules/post.php:443
+#@ layerswp
+msgid "Post"
+msgstr "Beitrag"
+
+#: core/widgets/modules/post.php:479
+#@ layerswp
+msgid "Category to Display"
+msgstr "Kategorien für Anzeige"
+
+#: core/widgets/modules/post.php:487
+#@ layerswp
+msgid "Select a Category"
+msgstr "Kategorie auswählen"
+
+#: core/widgets/modules/post.php:495
+#@ layerswp
+msgid "Number of items to show"
+msgstr "Anzahl angezeigter Beiträge"
+
+#: core/widgets/modules/post.php:496
+#@ layerswp
+msgid "Show All"
+msgstr "Alle anzeigen"
+
+#: core/widgets/modules/post.php:511
+#@ layerswp
+msgid "Sort by"
+msgstr "Sortieren nach"
+
+#: core/widgets/modules/slider.php:26
+#@ layerswp
+msgid "Slider"
+msgstr "Slider"
+
+#: core/widgets/modules/slider.php:337
+#@ layerswp
+msgid "Full Screen"
+msgstr "Vollbild"
+
+#: core/widgets/modules/slider.php:351
+#@ layerswp
+msgid "Show Slider Arrows"
+msgstr "Slider-Pfeile anzeigen"
+
+#: core/widgets/modules/slider.php:358
+#@ layerswp
+msgid "Show Slider Dots"
+msgstr "Slider-Punkte anzeigen"
+
+#: core/widgets/modules/slider.php:365
+#@ layerswp
+msgid "Autoplay Slides"
+msgstr "Automatisch blättern"
+
+#: core/widgets/modules/slider.php:373
+#@ layerswp
+msgid "Time in seconds, eg. 2"
+msgstr "Zeit in Sekunden, z.B. 2"
+
+#: core/widgets/modules/slider.php:375
+#@ layerswp
+msgid "Slide Interval"
+msgstr "Slider Interval"
+
+#: core/widgets/modules/slider.php:383
+#@ layerswp
+msgid "Slider Height"
+msgstr "Slider Höhe"
+
+#: core/widgets/modules/slider.php:421
+#@ layerswp
+msgid "Add New Slide"
+msgstr "Slide hinzufügen"
+
+#: core/widgets/modules/slider.php:457
+#@ layerswp
+msgid "Slide"
+msgstr "Slide"
+
+#: core/widgets/modules/slider.php:490
+#@ layerswp
+msgid "Enter a Title"
+msgstr "Title hier eingeben"
+
+#: footer.php:3
+#@ layerswp
+msgid "Back to top"
+msgstr "Nach oben"
+
+#: functions.php:161
+#@ layerswp
+msgid "Top Left Menu"
+msgstr "Linkes Top-Menü"
+
+#: functions.php:162
+#@ layerswp
+msgid "Top Right Menu"
+msgstr "Rechtes Top-Menü"
+
+#: functions.php:163
+#@ layerswp
+msgid "Header Menu"
+msgstr "Hauptmenü"
+
+#: functions.php:164
+#@ layerswp
+msgid "Right Header Menu"
+msgstr "rechtes Hauptmenü"
+
+#: functions.php:165
+#@ layerswp
+msgid "Footer Menu"
+msgstr "Footer Menü"
+
+#: functions.php:193
+#@ layerswp
+msgid "Mobile Sidebar"
+msgstr "Mobile Seitenleiste"
+
+#: functions.php:194
+#@ layerswp
+msgid "This sidebar will only appear on mobile devices."
+msgstr "Diese Seitenleiste wird nur auf mobilen Geräten angezeigt."
+
+#: functions.php:203
+#@ layerswp
+msgid "Left Sidebar"
+msgstr "Linke Seitenleiste"
+
+#: functions.php:212
+#@ layerswp
+msgid "Right Sidebar"
+msgstr "Rechte Seitenleiste"
+
+#: functions.php:225
+#@ layerswp
+msgid "Footer "
+msgstr "Footer "
+
+#: functions.php:239
+#@ layerswp
+msgid "Left Shop Sidebar"
+msgstr "Linke Shop Seitenleiste"
+
+#: functions.php:248
+#@ layerswp
+msgid "Right Shop Sidebar"
+msgstr "Rechte Shop Seitenleiste"
+
+#: functions.php:409
+#@ layerswp
+msgid "Be patient while we import the widget data and images."
+msgstr "Habe Geduld, während die Widget-Daten und Bilder importiert werden."
+
+#: functions.php:410
+#@ layerswp
+msgid "Import Complete"
+msgstr "Import vollständig"
+
+#: functions.php:411
+#@ layerswp
+msgid "Importing Your Content"
+msgstr "Inhalt importieren"
+
+#: functions.php:412
+#@ layerswp
+msgid "Edit Your New Page"
+msgstr "Neue Seite bearbeiten"
+
+#: functions.php:440
+#@ layerswp
+msgid "Saving..."
+msgstr "Speichere..."
+
+#: functions.php:441
+#@ layerswp
+msgid "Done!"
+msgstr "Eledigt!"
+
+#: partials/content-empty.php:9
+#@ layerswp
+msgid "No posts found"
+msgstr "Keine Beiträge gefunden"
+
+#: partials/content-empty.php:12
+#@ layerswp
+msgid "Use the search form below to find the page you're looking for:"
+msgstr "Die Suche verwenden, um den Inhalt zu finden:"
+
+#: partials/content-single.php:29
+#@ layerswp
+msgid "<span>Pages:</span>"
+msgstr "<span>Seiten:</span>"
+
+#: partials/portfolio-list.php:24
+#@ layerswp
+msgid "View Project"
+msgstr "Projekt anzeigen"
+
+#: core/widgets/modules/content.php:474
+#@ layerswp
+msgid "Column Width"
+msgstr "Spaltenbreite"
+
+#: core/widgets/modules/post.php:480
+#@ layerswp
+msgid "All"
+msgstr "Alle"
+
+#: core/widgets/modules/contact.php:37
+#@ layerswp
+msgctxt "Contact widget"
+msgid "This widget is used to display your "
+msgstr "Dieses Widget zeigt die "
+
+#: core/widgets/modules/content.php:33
+#@ layerswp
+msgctxt "Content widget"
+msgid "This widget is used to display your "
+msgstr "Dieses Widget zeigt den "
+
+#: core/widgets/modules/post.php:42
+#@ layerswp
+msgctxt "Post widget"
+msgid "This widget is used to display your "
+msgstr "Dieses Widget zeigt alle "
+
+#: core/widgets/modules/slider.php:37
+#@ layerswp
+msgctxt "Slider widget"
+msgid "This widget is used to display your "
+msgstr "Dieses Widget zeigt den "
+
+#: core/widgets/modules/post.php:352
+#@ layerswp
+msgid "Hover Effect"
+msgstr "Hover Effekt"
+
+#: core/widgets/modules/contact.php:213
+#: core/widgets/modules/post.php:342
+#@ layerswp
+msgid "Display"
+msgstr "Anzeige"
+
+#: core/options-panel/partials/dashboard.php:130
+#@ layerswp
+msgid "Get the Layers Updater"
+msgstr "Layers-Updater laden"
+
+#: core/options-panel/init.php:111
+#@ layerswp
+msgid "Layers is a product of"
+msgstr "Layers ist ein Produkt von"
+
+#: core/options-panel/init.php:111
+#@ layerswp
+msgid "For questions and feedback please"
+msgstr "Für Fragen oder Feedback besuche bitte"
+
+#: core/options-panel/init.php:111
+#@ layerswp
+msgid "visit our Help site"
+msgstr "unsere Hilfe-Seite"
+
+#: core/options-panel/partials/get-started.php:54
+#@ layerswp
+msgid "If you're ever stuck or need help with your Layers site please visit our"
+msgstr "Wenn Du einmal nicht weiterkommst oder Hilfe zu Layers benötigst, besuche unsere"
+
+#: core/options-panel/partials/get-started.php:54
+#@ layerswp
+msgid "helpful documentation"
+msgstr "hilfreiche Dokumentation"
+
+#: core/options-panel/partials/get-started.php:57
+#@ layerswp
+msgid "For the Pros: Layers will automatically assign the titel and the tagline to Settings &rarr; General."
+msgstr "Für die Pros: Layers wird automatisch den Titel und den Slogan bei den Einstellungen &rarr; Allgemein eintragen."
+
+#: core/options-panel/partials/get-started.php:80
+#@ layerswp
+msgid "Layers splits your page into horizontal rows, and you build up your pages with blocks of content called &lsquo;Widgets&rsquo;, one per row."
+msgstr "Layers teilt Deine Seite in horizontale Segmente auf und Du füllst Deine Seite mit Inhaltsblöcken sogenannten &lsquo;Widgets&rsquo; - jeweils ein Widget pro horizontalem Segment."
+
+#: core/options-panel/partials/get-started.php:83
+#@ layerswp
+msgid "Each time you want to add a new content block, simply click &lsquo;Add Widget&rsquo; and select one from the list which has the blue Layers icon."
+msgstr "Wenn Du einen neuen Inhaltsblock hinzufügen möchtest, füge einfach ein Widget mit dem blauen Layers-Symbol über den Button &lsquo;Add Widget&rsquo; ein."
+
+#: core/options-panel/partials/get-started.php:16
+#@ layerswp
+msgid "Skip"
+msgstr "Überspringen"
+
+#: core/options-panel/partials/get-started.php:142
+#@ layerswp
+msgid "For tips on how best to name your website, we suggest reading"
+msgstr "Tipps, wie Du am besten Deine Website benennst, findest Du"
+
+#: core/options-panel/partials/get-started.php:142
+#@ layerswp
+msgid "this post"
+msgstr "dieser Seite"
+
+#: core/options-panel/partials/get-started.php:168
+#@ layerswp
+msgid "To edit a widget&apos;s content, just click on it in the widget area on the left hand side. The widget panel will slide out allowing you to edit its content and customize its settings. You can also shift-click on the widget itself in the preview area."
+msgstr "Um den Inhalt eines Widgets zu bearbeiten, klicke einfach auf das entsprechende Widget im linken Bereich. Daraufhin klappt das Widget-Panel auf und Du kannst den Inhalt eingeben oder die Einstellungen anpassen. Du kannst dafür auch bei gedrückter Shift-Taste auf den Widget-Bereich in der Vorschau klicken."
+
+#: core/options-panel/partials/get-started.php:192
+#@ layerswp
+msgid "A tagline describes who and what you are in just a few simple words. For example: <em>Layers is a &ldquo;WordPress Site Builder&rdquo; - simple, easy, quick to read</em>. Now it's your try:"
+msgstr "Der Slogan soll etwas über Dich oder die Webseite aussagen. Z.B. <em>Layers ist ein &ldquo;WordPress Seiten-Generator&rdquo; - einfach und leicht zu bedienen</em>. Nun bist du dran:"
+
+#: core/options-panel/partials/get-started.php:276
+#@ layerswp
+msgid "Layers will add your logo and position it properly. If you don&apos;t have one yet, no problem, you can add it later, or skip this step if you&apos;d just prefer to use text."
+msgstr "Layers wird das Logo zu Deiner Seite hinzufügen und optimal platzieren. Solltest Du jetzt noch kein Logo haben - kein Problem, Du kannst es auch später noch hinzufügen. Du kannst diesen Schritt auch überspringen, falls Du nur Text anzeigen lassen möchtest."
+
+#: core/options-panel/partials/get-started.php:358
+#@ layerswp
+msgid "Simply select a preset layout from the list and Layers will automatically create it for you. You will be able to edit your layout on the next page. Here we go!"
+msgstr "Wähle einfach eine Vorlage aus der Liste aus und Layers erstellt die Seite automatisch für Dich. Im nächsten Schritt kannst du dann ganz einfach die Inhalte Deiner Seite erfassen. Los geht's!"
+
+#: core/meta/init.php:111
+#@ layerswp
+msgid "Your page is ready."
+msgstr "Deine Seite ist fertig."
+
+#: core/meta/init.php:126
+#@ layerswp
+msgid "Export Layout"
+msgstr "Layout exportieren"
+
+#: core/meta/init.php:127
+#@ layerswp
+msgid "Export your layout to a <code>.json</code> file which you can use to upload to another site."
+msgstr "Exportiere Dein Layout in eine <code>.json</code> Datei, die Du dann in einer anderen Seite importieren kannst."
+
+#: core/meta/init.php:129
+#@ layerswp
+msgid "Export"
+msgstr "Exportieren"
+
+#: core/meta/init.php:134
+#@ layerswp
+msgid "Import Layout"
+msgstr "Layout importieren"
+
+#: core/meta/init.php:135
+#@ layerswp
+msgid "Upload a layout file (eg. "
+msgstr "Lade eine Layout-Datei (z.B. "
+
+#: core/meta/init.php:135
+#@ layerswp
+msgid ".json"
+msgstr ".json"
+
+#: core/meta/init.php:135
+#@ layerswp
+msgid ") by clicking the button below."
+msgstr ") mit einem Klick auf den folgenden Button."
+
+#: core/meta/init.php:137
+#@ layerswp
+msgid "Upload &amp; Import"
+msgstr "Laden &amp; Importieren"
+
+#: core/meta/init.php:142
+#@ layerswp
+msgid "Duplicate Layout"
+msgstr "Layout duplizieren"
+
+#: core/meta/init.php:143
+#@ layerswp
+msgid "Easily duplicate your layout, settings, text and images in order to get started quickly with a new page."
+msgstr "Dupliziere Dein Layout inkl. Einstellungen, Texten, und Bildern, um einfach mit einer neuen Seite zu beginnen."
+
+#: core/meta/init.php:145
+#@ layerswp
+msgid "Duplicate"
+msgstr "Duplizieren"
+
+#: core/options-panel/partials/backup.php:68
+#@ layerswp
+msgid "Your pages have been successfully backed up!"
+msgstr "Deine Seiten wurden erfolgreich gesichert!"
+
+#: footer.php:48
+#@ layerswp
+msgid "Created using Layers"
+msgstr "Erstellt mit Layers"
+

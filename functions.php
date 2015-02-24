@@ -272,7 +272,8 @@ if( ! function_exists( 'layers_scripts' ) ) {
 				get_template_directory_uri() . '/assets/js/plugins.js',
 				array(
 					'jquery',
-				)
+				),
+				LAYERS_VERSION
 			); // Sticky-Kit
 
 			wp_enqueue_script(

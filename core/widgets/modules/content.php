@@ -93,7 +93,8 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 				get_template_directory_uri() . '/assets/js/layers.masonry.js',
 				array(
 					'jquery'
-				)
+				),
+				LAYERS_VERSION
 			); // Layers Masonry Function
 		}
 

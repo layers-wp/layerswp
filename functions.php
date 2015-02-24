@@ -266,31 +266,30 @@ if( ! function_exists( 'layers_scripts' ) ) {
 		/**
 		* Front end Scripts
 		*/
-		if( !is_admin() ) {
-			wp_enqueue_script(
-				LAYERS_THEME_SLUG . '-plugins-js' ,
-				get_template_directory_uri() . '/assets/js/plugins.js',
-				array(
-					'jquery',
-				),
-				LAYERS_VERSION
-			); // Sticky-Kit
+		
+		wp_enqueue_script(
+			LAYERS_THEME_SLUG . '-plugins-js' ,
+			get_template_directory_uri() . '/assets/js/plugins.js',
+			array(
+				'jquery',
+			),
+			LAYERS_VERSION
+		); // Sticky-Kit
 
-			wp_enqueue_script(
-				LAYERS_THEME_SLUG . '-framework-js' ,
-				get_template_directory_uri() . '/assets/js/layers.framework.js',
-				array(
-					'jquery',
-				),
-				LAYERS_VERSION,
-				true
-			); // Framework
+		wp_enqueue_script(
+			LAYERS_THEME_SLUG . '-framework-js' ,
+			get_template_directory_uri() . '/assets/js/layers.framework.js',
+			array(
+				'jquery',
+			),
+			LAYERS_VERSION,
+			true
+		); // Framework
 
 
-			if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
-				wp_enqueue_script( 'comment-reply' );
-			} // Comment reply script
-		}
+		if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
+			wp_enqueue_script( 'comment-reply' );
+		} // Comment reply script
 
 		/**
 		* Front end Styles

@@ -79,7 +79,7 @@ if( !function_exists( 'layers_bread_crumbs' ) ) {
 
 					// Loop through parent pages and grab their IDs
 					while( $parent_id ) {
-						$page = get_page($parent_id);
+						$page = get_post($parent_id);
 						$parent_pages[] = $page->ID;
 						$parent_id = $page->post_parent;
 					}

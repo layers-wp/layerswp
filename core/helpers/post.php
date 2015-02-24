@@ -156,7 +156,7 @@ if( !function_exists( 'layers_backup_builder_pages' ) ) {
 
         // Get the post data
         $page_id = $_POST[ 'pageid' ];
-        $page = get_page( $page_id );
+        $page = get_post( $page_id );
 
         // Start the output buffer
         ob_start();

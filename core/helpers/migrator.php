@@ -643,7 +643,7 @@ class Layers_Widget_Migrator {
 
 		// Generate builder page and return page ID
 		$import_data[ 'post_id' ] = layers_create_builder_page( $post_title );
-		$new_page = get_page( $import_data[ 'post_id' ] );
+		$new_page = get_post( $import_data[ 'post_id' ] );
 
 		// Register Builder Sidebar
 		$layers_widgets->register_builder_sidebar( $import_data[ 'post_id' ] );

@@ -6,6 +6,7 @@
 ?? Post-launch bug fixes before settling into a release schedule
 
 * **Tweak** - Move hooks and filters outside of their related function_exists closures
+* **Tweak** - Replaced deprecated get_page() with get_post()
 
 ## 1.0.3
 ### 23 February 2015

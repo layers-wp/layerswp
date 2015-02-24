@@ -35,8 +35,8 @@ class Layers_API {
 
         $extension_list = array(
                 'layers-woocommerce' => array(
-                        'title' => __( 'WooCommerce for Layers' , 'layerswp' ),
-                        'description' => __( 'Adds an advanced product widget, product slider and multiple page layouts.' , 'layerswp' ),
+                        'title' => __( 'WooCommerce Pro for Layers' , 'layerswp' ),
+                        'description' => __( 'This new extension will add new and useful WooCommerce functionality, including an advanced product Layers widget, new product slider and new product page layouts.' , 'layerswp' ),
                         'available' => false,
                         'date' => NULL,
                         'price' => NULL,

@@ -64,9 +64,8 @@ if ( !function_exists( 'layers_load_templates' ) ) {
 		return apply_filters( 'layers_template_' . $template, $file );
 
 	}
-
-	add_filter( 'template_include', 'layers_load_template', 99 );
 } // layers_add_template_locations
+add_filter( 'template_include', 'layers_load_template', 99 );
 
 
 /**
@@ -144,8 +143,8 @@ if ( !function_exists( 'layers_get_custom_single_template' ) ) {
 		// return apply_filters('single_template', $template);
 		return $template;
 	}
-	add_filter( 'single_template', 'layers_get_custom_single_template' );
 } // layers_get_custom_single_template
+add_filter( 'single_template', 'layers_get_custom_single_template' );
 
 /**
 * Get Custom Taxonomy Template
@@ -176,5 +175,5 @@ if ( !function_exists( 'layers_get_custom_taxonomy_template' ) ) {
 		// return apply_filters('taxonomy_template', $template);
 		return $template;
 	}
-	add_filter( 'taxonomy_template', 'layers_get_custom_taxonomy_template' );
 } // layers_get_custom_taxonomy_template
+add_filter( 'taxonomy_template', 'layers_get_custom_taxonomy_template' );

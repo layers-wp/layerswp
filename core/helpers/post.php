@@ -143,14 +143,13 @@ if( !function_exists( 'layers_comment' ) ) {
         <?php } ?>
 
         <?php $GLOBALS['lastdepth'] = $depth; ?>
-<?php }
+	<?php }
 } // layers_comment
 
 /**
  * Backs up builder pages as HTML
  */
 if( !function_exists( 'layers_backup_builder_pages' ) ) {
-
     function layers_backup_builder_pages(){
 
         if( !isset( $_POST[ 'pageid' ] ) ) wp_die( __( 'You shall not pass' , 'layerswp' ) );
@@ -179,9 +178,8 @@ if( !function_exists( 'layers_backup_builder_pages' ) ) {
         // Flush the output buffer
         ob_flush();
     }
-
-    add_action( 'wp_ajax_layers_backup_builder_pages', 'layers_backup_builder_pages' );
 } // layers_builder_page_backup
+add_action( 'wp_ajax_layers_backup_builder_pages', 'layers_backup_builder_pages' );
 
 /**
 *  Adjust the site title for static front pages
@@ -197,8 +195,8 @@ if( !function_exists( 'layers_post_class' ) ) {
 
         return $classes;
     }
-    add_filter( 'post_class' , 'layers_post_class' );
 }
+add_filter( 'post_class' , 'layers_post_class' );
 
 /**
  *  The following function creates a builder page
@@ -285,7 +283,6 @@ if( ! function_exists( 'layers_is_builder_page' ) ) {
  */
 
 if ( ! function_exists( 'layers_filter_admin_pages' ) ) {
-
     function layers_filter_admin_pages() {
         global $typenow;
 
@@ -302,10 +299,8 @@ if ( ! function_exists( 'layers_filter_admin_pages' ) ) {
             );
         }
     }
-
-    add_filter( 'pre_get_posts', 'layers_filter_admin_pages' );
 }
-
+add_filter( 'pre_get_posts', 'layers_filter_admin_pages' );
 
 /**
  * Change views links on wp-list-table - all, published, draft, etc - to maintain layers page filtering
@@ -313,7 +308,6 @@ if ( ! function_exists( 'layers_filter_admin_pages' ) ) {
  */
 
 if ( ! function_exists( 'layers_filter_admin_pages_views' ) ) {
-
     function layers_filter_admin_pages_views( $views ) {
         foreach ($views as $view_key => $view_value ) {
             $query_arg = '&filter=layers';
@@ -322,12 +316,8 @@ if ( ! function_exists( 'layers_filter_admin_pages_views' ) ) {
         }
         return $views;
     }
-
-    add_filter( "views_edit-page", 'layers_filter_admin_pages_views' );
 }
-
-
-
+add_filter( "views_edit-page", 'layers_filter_admin_pages_views' );
 
 /**
  * Add builder edit button to the admin bar
@@ -336,7 +326,6 @@ if ( ! function_exists( 'layers_filter_admin_pages_views' ) ) {
 */
 
 if( ! function_exists( 'layers_add_builder_edit_button' ) ) {
-
     function layers_add_builder_edit_button(){
         global $wp_admin_bar, $post;
 
@@ -351,9 +340,8 @@ if( ! function_exists( 'layers_add_builder_edit_button' ) ) {
             $wp_admin_bar->add_node( $args );
         }
     }
-
-    add_action( 'admin_bar_menu', 'layers_add_builder_edit_button', 90 );
 }
+add_action( 'admin_bar_menu', 'layers_add_builder_edit_button', 90 );
 
 // Output custom css to add Icon to admin bar edit button.
 if( ! function_exists( 'layers_add_builder_edit_button_css' ) ) {
@@ -366,9 +354,9 @@ if( ! function_exists( 'layers_add_builder_edit_button_css' ) ) {
         }
         </style>';
     }
-    add_action('admin_head', 'layers_add_builder_edit_button_css');
-    add_action('wp_head', 'layers_add_builder_edit_button_css');
 }
+add_action('admin_head', 'layers_add_builder_edit_button_css');
+add_action('wp_head', 'layers_add_builder_edit_button_css');
 
 /**
 * Post Featured Media

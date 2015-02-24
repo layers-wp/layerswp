@@ -9,5 +9,5 @@
     		require_once( dirname( __FILE__ ) . '/site-logo/inc/functions.php' );
     	}
     }
-    add_action( 'init', 'layers_site_logo_init', 100 );
 }
+add_action( 'init', 'layers_site_logo_init', 100 );

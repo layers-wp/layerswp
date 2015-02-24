@@ -66,5 +66,5 @@ if( !function_exists( 'layers_register_post_types' ) ) {
 		$layers_post_types = new Layers_Post_Types();
 		$layers_post_types->init();
 	}
-	add_action( 'init', 'layers_register_post_types' );
 }
+add_action( 'init', 'layers_register_post_types' );

@@ -839,7 +839,6 @@ if( !function_exists( 'layers_builder_export_init' ) ) {
 
 	}
 }
-
 add_action( 'admin_head' , 'layers_builder_export_init', 10 );
 
 if( !function_exists( 'layers_builder_export_ajax_init' ) ) {
@@ -852,5 +851,4 @@ if( !function_exists( 'layers_builder_export_ajax_init' ) ) {
 		add_action( 'wp_ajax_layers_duplicate_builder_page', array( $layers_migrator, 'do_ajax_duplicate' ) );
 	}
 }
-
 add_action( 'init' , 'layers_builder_export_ajax_init' );

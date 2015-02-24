@@ -177,8 +177,8 @@ if( ! function_exists( 'layers_setup' ) ) {
 		}
 
 	} // function layers_setup
-	add_action( 'after_setup_theme' , 'layers_setup', 10 );
 } // if !function layers_setup
+add_action( 'after_setup_theme' , 'layers_setup', 10 );
 
 /**
 *  Enqueue front end styles and scripts
@@ -254,8 +254,8 @@ if( ! function_exists( 'layers_register_standard_sidebars' ) ) {
 			) );
 		}
 	}
-	add_action( 'widgets_init' , 'layers_register_standard_sidebars' , 50 );
 }
+add_action( 'widgets_init' , 'layers_register_standard_sidebars' , 50 );
 
 /**
 *  Enqueue front end styles and scripts
@@ -469,6 +469,6 @@ if( !function_exists( 'layers_excerpt_class' ) ) {
 	function layers_excerpt_class( $excerpt ) {
 		return str_replace('<p', '<p class="excerpt"', $excerpt);
 	}
-	add_filter( "the_excerpt", "layers_excerpt_class" );
-	add_filter( "get_the_excerpt", "layers_excerpt_class" );
 } // layers_excerpt_class
+add_filter( "the_excerpt", "layers_excerpt_class" );
+add_filter( "get_the_excerpt", "layers_excerpt_class" );

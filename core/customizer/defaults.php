@@ -74,6 +74,6 @@ if( !function_exists( 'layers_set_customizer_defaults' ) ) {
         $layers_customizer_defaults = new Layers_Customizer_Defaults();
         $layers_customizer_defaults->init();
     }
-    add_action( 'customize_register' , 'layers_set_customizer_defaults' , 50 );
-    add_action( 'wp' , 'layers_set_customizer_defaults');
 } // if !layers_set_customizer_defaults
+add_action( 'customize_register' , 'layers_set_customizer_defaults' , 50 );
+add_action( 'wp' , 'layers_set_customizer_defaults');

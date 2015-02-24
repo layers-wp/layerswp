@@ -100,8 +100,8 @@ if (!function_exists('layers_woocommerce_center_column_class')) {
         return $classes;
 
     }
-    add_filter( 'layers_center_column_class' , 'layers_woocommerce_center_column_class', 50 );
 }
+add_filter( 'layers_center_column_class' , 'layers_woocommerce_center_column_class', 50 );
 
 /**
 * Filter Sidebar Display in accordance to WooCommerce Layout Settings
@@ -118,5 +118,5 @@ if (!function_exists('layers_woocommerce_can_show_sidebar')) {
         return $can_show_sidebar;
 
     }
-    add_filter( 'layers_can_show_sidebar' , 'layers_woocommerce_can_show_sidebar', 50, 2 );
 }
+add_filter( 'layers_can_show_sidebar' , 'layers_woocommerce_can_show_sidebar', 50, 2 );

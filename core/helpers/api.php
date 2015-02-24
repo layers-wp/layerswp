@@ -61,6 +61,5 @@ if( !function_exists( 'layers_api_init' ) ) {
         $layer_updater = new Layers_API();
         $layer_updater->init();
     } // layer_updater_init
-
-    add_action( "after_setup_theme", "layers_api_init", 100 );
 }
+add_action( "after_setup_theme", "layers_api_init", 100 );

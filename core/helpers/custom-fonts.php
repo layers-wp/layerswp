@@ -37,8 +37,8 @@ if( !function_exists( 'layers_generate_customizer_fonts' ) ) {
 			}
 		}
 	}
-	add_action( 'wp' , 'layers_generate_customizer_fonts' );
 }
+add_action( 'wp' , 'layers_generate_customizer_fonts' );
 
 /**
  * Generate custom font CSS and enqueue it
@@ -79,9 +79,8 @@ if( !function_exists( 'layers_enqueue_custom_fonts' ) ) {
 			LAYERS_VERSION
 		);
 	}
-
-	add_action( 'wp_enqueue_scripts', 'layers_enqueue_custom_fonts' );
 }
+add_action( 'wp_enqueue_scripts', 'layers_enqueue_custom_fonts' );
 
 /**
  * Return an array of all available Google Fonts.

@@ -108,7 +108,7 @@ class Layers_Options_Panel {
 	public function footer( $args = array() ){ ?>
 		<footer class="layers-footer">
 			<p>
-				<?php _e( sprintf( 'Layers is a product of <a href="%1$s">Obox Themes</a>. For questions and feedback please <a href="%2$s">Visit our Help site</a>', 'http://oboxthemes.com/', 'http://docs.layerswp.com') , 'layerswp' ); ?>
+				<?php _e('Layers is a product of', 'layerswp'); ?> <a href="http://oboxthemes.com/">Obox Themes</a>. <?php _e('For questions and feedback please', 'layerswp'); ?> <a href="http://docs.layerswp.com"><?php _e('visit our Help site', 'layerswp'); ?></a>.
 			</p>
 		</footer>
 	<?php }

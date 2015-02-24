@@ -34,7 +34,7 @@ if( !class_exists( 'Layers_Contact_Widget' ) ) {
 				);
 
 	 		/* Widget settings. */
-			$widget_ops = array( 'classname' => 'obox-layers-' . $this->widget_id .'-widget', 'description' => 'This widget is used to display your ' . $this->widget_title . '.' );
+			$widget_ops = array( 'classname' => 'obox-layers-' . $this->widget_id .'-widget', 'description' => _x( 'This widget is used to display your ', 'Contact widget' , 'layerswp' ) . $this->widget_title . '.' );
 
 			/* Widget control settings. */
 			$control_ops = array( 'width' => LAYERS_WIDGET_WIDTH_SMALL, 'height' => NULL, 'id_base' => LAYERS_THEME_SLUG . '-widget-' . $this->widget_id );
@@ -210,7 +210,7 @@ if( !class_exists( 'Layers_Contact_Widget' ) ) {
 				array(
 					'display' => array(
 						'icon-css' => 'icon-display',
-						'label' => 'Display',
+						'label' => __( 'Display' , 'layerswp' ),
 						'elements' => array(
 								'map_height' => array(
 									'type' => 'number',

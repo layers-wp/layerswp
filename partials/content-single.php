@@ -26,7 +26,7 @@ echo layers_post_featured_media( array( 'postid' => get_the_ID(), 'wrap_class' =
         <?php wp_link_pages( array(
             'link_before'   => '<span>',
             'link_after'    => '</span>',
-            'before'        => '<p class="inner-post-pagination">' . __('<span>Pages:</span>', 'ocmx'),
+            'before'        => '<p class="inner-post-pagination">' . __('<span>Pages:</span>', 'layerswp'),
             'after'     => '</p>'
         )); ?>
 

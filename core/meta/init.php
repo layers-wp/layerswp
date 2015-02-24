@@ -374,17 +374,17 @@ class Layers_Custom_Meta {
 		$nonce_key = '_wp_nonce_' . LAYERS_THEME_SLUG;
 
 		// If there is no nonce to use, can this function
-		if( !isset( $_REQUEST[ $nonce_key ] ) ) return;
+		if( !isset( $_POST[ $nonce_key ] ) ) return;
 
-		$nonce = $_REQUEST[ $nonce_key ];
+		$nonce = $_POST[ $nonce_key ];
 
 		// Form key
 		$form_key = LAYERS_THEME_SLUG;
 
 		// Do some nonce
 		if ( wp_verify_nonce( $nonce, LAYERS_THEME_SLUG . '-post-meta' ) ) {
-			if( isset( $_REQUEST[ $form_key ] ) ) {
-				update_post_meta( $post_id, LAYERS_THEME_SLUG, $_REQUEST[ $form_key ] );
+			if( isset( $_POST[ $form_key ] ) ) {
+				update_post_meta( $post_id, LAYERS_THEME_SLUG, $_POST[ $form_key ] );
 			} // if isset( $this->custom_meta[ $post_type ] )
 		} // if nonce
 	}

@@ -3,8 +3,10 @@
 ## 1.0.4
 ### ?? February 2015
 
-?? Post-launch bug fixes before settling into a release schedule
+Security and code quality updates
 
+* **Fix** - Added sanitization helpers which we hook into the customizer to clean up the Customizer data
+* **Tweak** - Added Typekit ID field to the Site Settings, this means that getting Typekit into Layers is now even easier
 * **Tweak** - Move hooks and filters outside of their related function_exists closures
 * **Tweak** - Replaced deprecated get_page() with get_post()
 * **Tweak** - Added version number to all css and js assets being enqueued

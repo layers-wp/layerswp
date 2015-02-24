@@ -712,7 +712,7 @@ if( !function_exists( 'layers_add_additional_header_scripts' ) ) {
 		$add_additional_header_scripts = apply_filters( 'layers_header_scripts' , layers_get_theme_mod( 'header-custom-scripts' ) );
 
 		if( '' != $add_additional_header_scripts ) {
-			echo stripslashes( $add_additional_header_scripts );
+			echo '<script>' . stripslashes( $add_additional_header_scripts ) . '</script>';
 		}
 	}
 } // layers_add_additional_header_scripts
@@ -729,7 +729,7 @@ if( !function_exists( 'layers_add_additional_footer_scripts' ) ) {
 		$additional_footer_scripts = apply_filters( 'layers_footer_scripts' , layers_get_theme_mod( 'footer-custom-scripts' ) );
 
 		if( '' != $additional_footer_scripts ) {
-			echo stripslashes( $additional_footer_scripts );
+			echo '<script>' . stripslashes( $additional_footer_scripts ) . '</script>';
 		}
 	}
 } // layers_add_additional_header_scripts

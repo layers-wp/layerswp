@@ -1,22 +1,19 @@
 <?php  /**
- * Select
+ * Text
  *
- * This file is used to register and display the custom Layers Select Box
+ * This file is used to register and display the custom Layers Text
  *
  * @package Layers
  * @since Layers 1.0.0
  */
 
-if( !class_exists( 'Layers_Customize_Select_Control' ) ) {
+if( !class_exists( 'Layers_Customize_Text_Control' ) ) {
 
-	class Layers_Customize_Select_Control extends Layers_Customize_Control {
+	class Layers_Customize_Text_Control extends Layers_Customize_Control {
 
-		public $type = 'layers-select';
+		public $type = 'layers-text';
 
 		public function render_content() {
-
-			// Exit if there are no choises
-			if ( empty( $this->choices ) ) return;
 
 			$form_elements = new Layers_Form_Elements();
 
@@ -29,18 +26,18 @@ if( !class_exists( 'Layers_Customize_Select_Control' ) ) {
 				</span>
 
 				<div class="layers-form-item">
+
 					<?php if ( '' != $this->subtitle ) : ?>
 						<label class="layers-form-row"><?php echo $this->subtitle; ?></label>
 					<?php endif; ?>
 
-					<div class="layers-select-wrapper layers-form-item">
+					<div class="layers-form-item">
 						<?php echo $form_elements->input(
 							array(
-								'type' => 'select',
+								'type' => 'text',
 								'label' => ( isset( $this->label ) ? $this->label : '' ),
 								'name' => '' ,
 								'id' =>  $this->id,
-								'options' => $this->choices,
 								'data' => $this->get_customize_data(),
 							)
 						); ?>
@@ -57,4 +54,4 @@ if( !class_exists( 'Layers_Customize_Select_Control' ) ) {
 			<?php
 		}
 	}
-} // !class_exists( 'Layers_Customize_Select_Control' )
+} // !class_exists( 'Layers_Customize_Text_Control' )

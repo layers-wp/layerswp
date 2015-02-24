@@ -219,7 +219,7 @@ class Layers_Custom_Meta {
 		// Get the Post ID
 		$post_id = $_POST['id'];
 
-		if( isset($_POST[ 'template' ] ) && 'builder.php' == $_POST[ 'template' ] ){
+		if( 'builder.php' == $_POST[ 'template' ] ){
 			update_post_meta( $post_id , '_wp_page_template', $_POST[ 'template' ] );
 		} else {
 			delete_post_meta( $post_id , '_wp_page_template' );

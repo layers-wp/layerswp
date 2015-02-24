@@ -8,7 +8,7 @@
 * **Tweak** - Move hooks and filters outside of their related function_exists closures
 * **Tweak** - Replaced deprecated get_page() with get_post()
 * **Tweak** - Added version number to all css and js assets being enqueued
-* **Tweak** - Added nonce check to update_page_builder_meta()
+* **Tweak** - Added nonce check and remove unnecessary conditional from to update_page_builder_meta()
 
 ## 1.0.3
 ### 23 February 2015

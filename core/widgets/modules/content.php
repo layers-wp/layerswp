@@ -30,7 +30,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 			$this->checkboxes = array();
 
 			/* Widget settings. */
-			$widget_ops = array( 'classname' => 'obox-layers-' . $this->widget_id .'-widget', 'description' => 'This widget is used to display your ' . $this->widget_title . '.' );
+			$widget_ops = array( 'classname' => 'obox-layers-' . $this->widget_id .'-widget', 'description' => __( 'This widget is used to display your ') . $this->widget_title . '.' );
 
 			/* Widget control settings. */
 			$control_ops = array( 'width' => LAYERS_WIDGET_WIDTH_LARGE, 'height' => NULL, 'id_base' => LAYERS_THEME_SLUG . '-widget-' . $this->widget_id );
@@ -332,7 +332,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 				array(
 					'liststyle' => array(
 						'icon-css' => 'icon-list-masonry',
-						'label' => 'List Style',
+						'label' => __( 'List Style', 'layerswp' ),
 						'wrapper-class' => 'layers-small to layers-pop-menu-wrapper layers-animate',
 						'elements' => array(
 							'liststyle' => array(

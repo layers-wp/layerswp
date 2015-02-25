@@ -65,7 +65,7 @@
 					var $load_bar_percent = 100*$load_bar_width;
 					$( '.layers-progress' ).animate({width: $load_bar_percent+"%"} ).text( Math.round($load_bar_percent)+'%');
 
-					if( 100 == $load_bar_percent ) $( '.layers-progress' ).delay(500).addClass( 'complete' ).text( 'Your pages have been successfully backed up!' );;
+					if( 100 == $load_bar_percent ) $( '.layers-progress' ).delay(500).addClass( 'complete' ).text( '<?php echo __('Your pages have been successfully backed up!', 'layerswp' ) ?>' );
 
 					// Set Complete count
 					$complete_pages++;

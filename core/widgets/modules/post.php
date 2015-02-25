@@ -39,7 +39,7 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 				); // @TODO: Try make this more dynamic, or leave a different note reminding users to change this if they add/remove checkboxes
 
 			/* Widget settings. */
-			$widget_ops = array( 'classname' => 'obox-layers-' . $this->widget_id .'-widget', 'description' => 'This widget is used to display your ' . $this->widget_title . '.' );
+			$widget_ops = array( 'classname' => 'obox-layers-' . $this->widget_id .'-widget', 'description' => __( 'This widget is used to display your ') . $this->widget_title . '.' );
 
 			/* Widget control settings. */
 			$control_ops = array( 'width' => LAYERS_WIDGET_WIDTH_SMALL, 'height' => NULL, 'id_base' => LAYERS_THEME_SLUG . '-widget-' . $this->widget_id );
@@ -340,7 +340,7 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 				array(
 					'display' => array(
 						'icon-css' => 'icon-display',
-						'label' => 'Display',
+						'label' => __( 'Display', 'layerswp' ),
 						'elements' => array(
 								'text_style' => array(
 									'type' => 'select',
@@ -478,7 +478,7 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 						if( !is_wp_error( $terms ) ) { ?>
 							<p class="layers-form-item">
 								<label for="<?php echo $this->get_field_id( 'category' ); ?>"><?php echo __( 'Category to Display' , 'layerswp' ); ?></label>
-								<?php $category_options[ 0 ] ="All";
+								<?php $category_options[ 0 ] = __( 'All' , 'layerswp' );
 								foreach ( $terms as $t ) $category_options[ $t->term_id ] = $t->name;
 								echo $this->form_elements()->input(
 									array(

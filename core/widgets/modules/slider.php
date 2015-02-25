@@ -34,7 +34,7 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 				);
 
 	 		/* Widget settings. */
-			$widget_ops = array( 'classname' => 'obox-layers-' . $this->widget_id .'-widget', 'description' => 'This widget is used to display your ' . $this->widget_id . '.' );
+			$widget_ops = array( 'classname' => 'obox-layers-' . $this->widget_id .'-widget', 'description' => __( 'This widget is used to display your ') . $this->widget_id . '.' );
 
 			/* Widget control settings. */
 			$control_ops = array( 'width' => LAYERS_WIDGET_WIDTH_LARGE, 'height' => NULL, 'id_base' => LAYERS_THEME_SLUG . '-widget-' . $this->widget_id );
@@ -323,7 +323,7 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 				array(
 					'layout' => array(
 						'icon-css' => 'icon-layout-fullwidth',
-						'label' => 'Layout',
+						'label' => _( 'Layout', 'layerswp' ),
 						'wrapper-class' => 'layers-pop-menu-wrapper layers-small',
 						'elements' => array(
 							'layout' => array(
@@ -342,7 +342,7 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 					),
 					'display' => array(
 						'icon-css' => 'icon-slider',
-						'label' => 'Slider',
+						'label' => __( 'Slider', 'layerswp' ),
 						'elements' => array(
 								'show_slider_arrows' => array(
 									'type' => 'checkbox',

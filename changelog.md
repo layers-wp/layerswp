@@ -5,6 +5,7 @@
 
 Security and code quality updates
 
+* **Fix** - Improved localization, (thanks @tmconnect)
 * **Fix** - Added sanitization helpers which we hook into the customizer to clean up the Customizer data
 * **Tweak** - Added Typekit ID field to the Site Settings, this means that getting Typekit into Layers is now even easier
 * **Tweak** - Move hooks and filters outside of their related function_exists closures

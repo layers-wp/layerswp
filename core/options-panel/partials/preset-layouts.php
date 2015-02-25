@@ -20,9 +20,13 @@
                   <a class="layers-button btn-primary customize load-customize" id="layers-generate-preset-layout-<?php echo esc_attr( $template_key ); ?>"  data-key="layers-preset-layout-<?php echo esc_attr( $template_key ); ?>"><?php _e( 'Select' , 'layerswp' ); ?></a>
                   <?php if ( !empty($template['custom']) ) : ?>
                      <a class="menu-icon dashicons dashicons-admin-generic" href="#"></a>
-                     <ul class="edit-preset-menu layers-hide">
-                        <li><a class="edit-image" href="#">Edit</a></li>
-                        <li><a class="edit-title" href="#">Delete</a></li>
+                     <ul class="edit-preset-menu layers-hide" style="background:#fff; z-index:99; display:block; position:absolute;">
+                        <?php
+                           $post_id = $template['post_id'];
+                           $edit_url = get_edit_post_link( $post_id );
+                        ?>
+                        <li><a class="edit-preset" href="<?php echo esc_url($edit_url); ?>">Edit</a></li>
+                        <li><a class="delete-preset" href="#" data-post-id="<?php echo esc_attr($post_id); ?>">Delete</a></li>
                      </ul>
                   <?php endif; ?>
                </div>

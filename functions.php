@@ -413,7 +413,8 @@ if( ! function_exists( 'layers_admin_scripts' ) ) {
 				'complete_message' => __( 'Import Complete' , 'layerswp' ),
 				'importing_message' => __( 'Importing Your Content' , 'layerswp' ),
 				'duplicate_complete_message' => __( 'Edit Your New Page' , 'layerswp' ),
-				'create_preset_complete_message' => __( 'Create a New Page', 'layerswp' )
+				'create_preset_complete_message' => __( 'Create a New Page', 'layerswp' ),
+				'confirm_delete_message' => __( 'Are you sure you want to delete this?', 'layerswp' )
 			)
 		);// Migrator
 

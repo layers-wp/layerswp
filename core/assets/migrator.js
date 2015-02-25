@@ -219,8 +219,6 @@ console.log( attachment );
             layers_widget_params.ajaxurl,
             $page_data,
             function(results){
-                console.log(results);
-
                 $a = $('<a />').attr('class' , 'layers-button btn-link' ).attr( 'href' , results.data.page_location ).text( migratori8n.create_preset_complete_message );
                 $that.closest( '.layers-column' ).addClass( 'layers-success' );
                 $that.replaceWith( $a );
@@ -236,6 +234,36 @@ console.log( attachment );
 
         var $menu = $(this).siblings('.edit-preset-menu');
         $menu.toggleClass('layers-hide');
+    });
+
+    $(document).on( 'click', '.layers_page_layers-add-new-page .layers-product .edit-preset', function(e){
+        e.stopPropagation();
+    });
+
+    $(document).on( 'click', '.layers_page_layers-add-new-page .layers-product .delete-preset', function(e){
+        e.stopPropagation();
+        e.preventDefault();
+
+        var conf = window.confirm(migratori8n.confirm_delete_message);
+
+        if ( conf ) {
+            // "Hi Mom!"
+            var $that = $(this),
+                // Set the attributes to send to the importer
+                $page_data = {
+                    action: 'layers_delete_preset',
+                    post_id: $that.data('post-id'),
+                    nonce: layers_widget_params.nonce
+                };
+
+            $.post(
+                layers_widget_params.ajaxurl,
+                $page_data,
+                function(results){
+                    $that.parents('.layers-product').fadeOut();
+                }
+            );
+        }
     });
 
 });

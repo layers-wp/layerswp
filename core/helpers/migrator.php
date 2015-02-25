@@ -163,7 +163,8 @@ class Layers_Widget_Migrator {
 					'title' => $post->post_title,
 					'screenshot' => NULL,
 					'json' => $post->post_content,
-					'custom' => true
+					'custom' => true,
+					'post_id' => $post->ID
 				);
 				$layers_preset_layouts = array_merge( $layers_preset_layouts, $_preset );
 			}
@@ -857,7 +858,7 @@ class Layers_Widget_Migrator {
 		$title = !empty($_POST['preset_title']) ? sanitize_text_field($_POST['preset_title']) : false;
 
 		if ( !$post_id )
-			return;
+			wp_send_json_error();
 
 		$post = get_post( $post_id );
 		$data = $this->export_data( $post );
@@ -872,6 +873,19 @@ class Layers_Widget_Migrator {
 		wp_send_json_success( array(
 			'page_location' => admin_url('admin.php?page=layers-add-new-page')
 		) );
+	}
+
+	public function do_ajax_delete_preset() {
+		check_ajax_referer( 'layers-widget-actions', 'nonce' );
+
+		$post_id = !empty($_POST['post_id']) ? intval($_POST['post_id']) : 0;
+
+		if ( !$post_id )
+			wp_send_json_error();
+
+		wp_delete_post( $post_id, true );
+
+		wp_send_json_success();
 	}
 }
 
@@ -902,6 +916,7 @@ if( !function_exists( 'layers_builder_export_ajax_init' ) ) {
 		add_action( 'wp_ajax_layers_update_builder_page', array( $layers_migrator, 'update_builder_page' ) );
 		add_action( 'wp_ajax_layers_duplicate_builder_page', array( $layers_migrator, 'do_ajax_duplicate' ) );
 		add_action( 'wp_ajax_layers_create_preset', array( $layers_migrator, 'do_ajax_create_preset' ) );
+		add_action( 'wp_ajax_layers_delete_preset', array( $layers_migrator, 'do_ajax_delete_preset' ) );
 	}
 }
 

@@ -32,7 +32,7 @@ if( !class_exists( 'Layers_Onboarding_Ajax' ) ) {
 
         public function update_options(){
 
-            if( !wp_verify_nonce( $_POST['layers_onboarding_update_nonce'], 'layers-onboarding-update-options' ) ) die( 'You threw a Nonce exception' ); // Nonce
+            if( !check_ajax_referer( 'layers-onboarding-update-options', 'layers_onboarding_update_nonce', false ) ) die( 'You threw a Nonce exception' ); // Nonce
 
             // Parse our input data
             parse_str(

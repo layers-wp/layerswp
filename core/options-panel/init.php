@@ -62,8 +62,8 @@ class Layers_Options_Panel {
 					<ul>
 						<?php foreach( $this->get_menu_pages()  as $menu_key => $menu_details ) { ?>
 							<li <?php if( isset( $current_page ) && strpos( $menu_details[ 'link' ],  $current_page ) ) { ?>class="active"<?php } ?>>
-								<a href="<?php echo $menu_details[ 'link' ]; ?>">
-									<?php echo $menu_details[ 'label' ]; ?>
+								<a href="<?php echo esc_url( $menu_details[ 'link' ] ); ?>">
+									<?php echo esc_html( $menu_details[ 'label' ] ); ?>
 								</a>
 							</li>
 						<?php }?>
@@ -77,13 +77,10 @@ class Layers_Options_Panel {
 	/**
 	* Header
 	*/
-	public function simple_header( $args = array() ){
-
-		// Turn $args into an object because it's nicer to use as a template
-		$vars = (object) $args; ?>
+	public function simple_header( $args = array() ){ ?>
 		<header>
-			<h1><?php echo esc_html( $vars->title ); ?></h1>
-			<p><?php echo esc_html( $vars->intro ); ?></p>
+			<h1><?php echo esc_html( $vars['title'] ); ?></h1>
+			<p><?php echo esc_html( $vars['intro'] ); ?></p>
 		</header>
 	<?php }
 
@@ -126,7 +123,7 @@ class Layers_Options_Panel {
 			foreach ( $submenu[ 'layers-dashboard' ] as $menu_key => $menu_details ) {
 				$sub_menu[ 'label' ] = $menu_details[0];
 				$sub_menu[ 'cap' ] = $menu_details[1];
-				$sub_menu[ 'link' ] = ( strpos( $menu_details[2], '.php' ) ? admin_url( $menu_details[2] ) : admin_url( 'admin.php?page=' . $menu_details[2] ) );
+				$sub_menu[ 'link' ] = ( strpos( $menu_details[2], '.php' ) ? admin_url( $menu_details[2] ) : menu_page_url( $menu_details[2], false ) );
 
 				$menu[] = $sub_menu;
 			}
@@ -145,7 +142,7 @@ class Layers_Options_Panel {
 
 function layers_options_panel_menu(){
 
-	global $submenu, $menu;
+	global $submenu;
 
 	// dashboard Page
 	add_menu_page(

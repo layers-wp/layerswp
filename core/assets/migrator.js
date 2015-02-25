@@ -204,23 +204,26 @@ console.log( attachment );
 
         // "Hi Mom!"
         var $that = $(this),
-
+            $preset_title = $('#preset-title'),
             // Set the attributes to send to the importer
             $page_data = {
                 action: 'layers_create_preset',
                 post_id: $that.data('post-id'),
+                preset_title: $preset_title.val(),
                 nonce: layers_widget_params.nonce
             };
+
+        $preset_title.parent().remove();
 
         $.post(
             layers_widget_params.ajaxurl,
             $page_data,
-            function(data){
-                $results = $.parseJSON( data );
+            function(results){
+                console.log(results);
 
-                $a = $('<a />').attr('class' , 'layers-button btn-link' ).attr( 'href' , $results.page_location ).text( migratori8n.duplicate_complete_message );
-                jQuery( '#layers-page-duplicate-button' ).closest( '.layers-column' ).addClass( 'layers-success' );
-                jQuery( '#layers-page-duplicate-button' ).replaceWith( $a );
+                $a = $('<a />').attr('class' , 'layers-button btn-link' ).attr( 'href' , results.data.page_location ).text( migratori8n.create_preset_complete_message );
+                $that.closest( '.layers-column' ).addClass( 'layers-success' );
+                $that.replaceWith( $a );
             }
         );
 

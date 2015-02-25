@@ -412,7 +412,8 @@ if( ! function_exists( 'layers_admin_scripts' ) ) {
 				'loading_message' => __( 'Be patient while we import the widget data and images.' , 'layerswp' ),
 				'complete_message' => __( 'Import Complete' , 'layerswp' ),
 				'importing_message' => __( 'Importing Your Content' , 'layerswp' ),
-				'duplicate_complete_message' => __( 'Edit Your New Page' , 'layerswp' )
+				'duplicate_complete_message' => __( 'Edit Your New Page' , 'layerswp' ),
+				'create_preset_complete_message' => __( 'Create a New Page', 'layerswp' )
 			)
 		);// Migrator
 

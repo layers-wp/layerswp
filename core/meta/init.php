@@ -148,8 +148,12 @@ class Layers_Custom_Meta {
 						<div class="layers-column layers-span-4 postbox layers-content">
 							<div class="layers-section-title layers-tiny">
 								<h4 class="layers-heading">Save as Preset</h4>
-								<p class="layer-excerpt">Turn current page into a reusable preset.</p>
+								<p class="layers-excerpt">Turn current page into a reusable preset.</p>
 							</div>
+							<p>
+								<label for="preset-title">Preset Title</label>
+								<input id="preset-title" name="preset_title" type="text" value="%10$s" />
+							</p>
 							<button href="" class="layers-button" id="layers-page-preset-button" data-post-id="%8$s">Create Preset</button>
 						</div>
 
@@ -163,7 +167,8 @@ class Layers_Custom_Meta {
 			__( 'Edit Your Page' , 'layerswp' ), // %6
 			get_template_directory_uri(), // %7,
 			get_the_ID(), // %8,
-			$post->post_name // %9,
+			esc_html( $post->post_name ), // %9,
+			esc_attr( $post->post_title )// %10
 		);
 	}
 

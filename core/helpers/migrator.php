@@ -853,6 +853,7 @@ class Layers_Widget_Migrator {
 		check_ajax_referer( 'layers-widget-actions', 'nonce' );
 
 		$post_id = !empty($_POST['post_id']) ? intval($_POST['post_id']) : 0;
+		$title = !empty($_POST['preset_title']) ? sanitize_text_field($_POST['preset_title']) : false;
 
 		if ( !$post_id )
 			return;
@@ -861,14 +862,15 @@ class Layers_Widget_Migrator {
 		$data = $this->export_data( $post );
 		$preset = get_default_post_to_edit( Layers_Preset_Post_Type::POST_TYPE, true );
 
-		$preset->post_title = $post->post_title;
+		$preset->post_title = $title ?: $post->post_title;
 		$preset->post_content = json_encode($data);
 		$preset->post_status = 'publish';
 
 		$new_id = wp_insert_post( $preset );
 
-		var_dump($new_id);
-		die;
+		wp_send_json_success( array(
+			'page_location' => admin_url('admin.php?page=layers-add-new-page')
+		) );
 	}
 }
 

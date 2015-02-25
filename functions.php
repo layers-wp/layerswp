@@ -86,6 +86,9 @@ if( is_admin() ){
 	// Include API class
 	require_once get_template_directory() . '/core/helpers/api.php';
 
+	// Include Layers Preset Post Type
+	require_once get_template_directory() . '/core/helpers/class-layers-preset-post-type.php';
+
 	// Include widget export/import class
 	require_once get_template_directory() . '/core/helpers/migrator.php';
 

@@ -145,6 +145,14 @@ class Layers_Custom_Meta {
 							<button href="" class="layers-button" id="layers-page-duplicate-button" data-post-id="%8$s">Duplicate</button>
 						</div>
 
+						<div class="layers-column layers-span-4 postbox layers-content">
+							<div class="layers-section-title layers-tiny">
+								<h4 class="layers-heading">Save as Preset</h4>
+								<p class="layer-excerpt">Turn current page into a reusable preset.</p>
+							</div>
+							<button href="" class="layers-button" id="layers-page-preset-button" data-post-id="%8$s">Create Preset</button>
+						</div>
+
 					</div>
 				</div>',
 			'Your page is ready.', // %1

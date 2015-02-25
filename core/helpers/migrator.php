@@ -146,6 +146,25 @@ class Layers_Widget_Migrator {
 				),
 		);
 
+		// new WP_Query for preset post types
+		$preset_posts = Layers_Preset_Post_Type::get_query();
+
+		if ( $preset_posts->have_posts() ) {
+			while ( $preset_posts->have_posts() ) {
+				$preset_posts->the_post();
+				global $post;
+				$_preset = array();
+				$_preset[ 'custom-' . $post->post_name ] = array(
+					'title' => $post->post_title,
+					'screenshot' => NULL,
+					'json' => $post->post_content
+				);
+				$layers_preset_layouts = array_merge( $layers_preset_layouts, $_preset );
+			}
+			wp_reset_postdata();
+
+		}
+
 		return apply_filters( 'layers_preset_layouts' , $layers_preset_layouts );
 	}
 
@@ -822,6 +841,28 @@ class Layers_Widget_Migrator {
 
 		return $results;
 	}
+
+	public function do_ajax_create_preset() {
+		check_ajax_referer( 'layers-widget-actions', 'nonce' );
+
+		$post_id = !empty($_POST['post_id']) ? intval($_POST['post_id']) : 0;
+
+		if ( !$post_id )
+			return;
+
+		$post = get_post( $post_id );
+		$data = $this->export_data( $post );
+		$preset = get_default_post_to_edit( Layers_Preset_Post_Type::POST_TYPE, true );
+
+		$preset->post_title = $post->post_title;
+		$preset->post_content = json_encode($data);
+		$preset->post_status = 'publish';
+
+		$new_id = wp_insert_post( $preset );
+
+		var_dump($new_id);
+		die;
+	}
 }
 
 if( !function_exists( 'layers_builder_export_init' ) ) {
@@ -850,6 +891,7 @@ if( !function_exists( 'layers_builder_export_ajax_init' ) ) {
 		add_action( 'wp_ajax_layers_create_builder_page_from_preset', array( $layers_migrator, 'create_builder_page_from_preset' ) );
 		add_action( 'wp_ajax_layers_update_builder_page', array( $layers_migrator, 'update_builder_page' ) );
 		add_action( 'wp_ajax_layers_duplicate_builder_page', array( $layers_migrator, 'do_ajax_duplicate' ) );
+		add_action( 'wp_ajax_layers_create_preset', array( $layers_migrator, 'do_ajax_create_preset' ) );
 	}
 }
 

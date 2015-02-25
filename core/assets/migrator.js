@@ -199,4 +199,32 @@ console.log( attachment );
 
     });
 
+    $(document).on( 'click', '#layers-page-preset-button' , function(e){
+        e.preventDefault();
+
+        // "Hi Mom!"
+        var $that = $(this),
+
+            // Set the attributes to send to the importer
+            $page_data = {
+                action: 'layers_create_preset',
+                post_id: $that.data('post-id'),
+                nonce: layers_widget_params.nonce
+            };
+
+        $.post(
+            layers_widget_params.ajaxurl,
+            $page_data,
+            function(data){
+                $results = $.parseJSON( data );
+
+                $a = $('<a />').attr('class' , 'layers-button btn-link' ).attr( 'href' , $results.page_location ).text( migratori8n.duplicate_complete_message );
+                jQuery( '#layers-page-duplicate-button' ).closest( '.layers-column' ).addClass( 'layers-success' );
+                jQuery( '#layers-page-duplicate-button' ).replaceWith( $a );
+            }
+        );
+
+
+    });
+
 });

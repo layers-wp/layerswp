@@ -86,7 +86,8 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 		* Enqueue Scripts
 		*/
 		function enqueue_scripts(){
-			wp_enqueue_script( 'jquery-masonry' ); // Wordpress Masonry
+			
+			wp_enqueue_script( 'masonry' ); // Wordpress Masonry
 
 			wp_enqueue_script(
 				LAYERS_THEME_SLUG . '-layers-masonry-js' ,

@@ -12,6 +12,7 @@ Security and code quality updates
 * **Tweak** - Replaced deprecated get_page() with get_post()
 * **Tweak** - Added version number to all css and js assets being enqueued
 * **Tweak** - Added nonce check and remove unnecessary conditional from to update_page_builder_meta()
+* **Tweak** - Changed jquery-masonry to masonry v3 not dependent on jquery
 
 ## 1.0.3
 ### 23 February 2015

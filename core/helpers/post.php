@@ -236,7 +236,7 @@ if( ! function_exists( 'layers_get_builder_pages' ) ) {
         global $layers_builder_pages;
 
         // Fetch Builder Pages
-        $layers_builder_pages = get_pages(array(
+        $layers_builder_pages = get_posts(array(
             'post_status' => 'publish,draft,private',
             'post_type' => 'page',
             'meta_key' => '_wp_page_template',

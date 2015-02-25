@@ -2200,6 +2200,11 @@ ul#adminmenu a.wp-has-current-submenu:after, ul#adminmenu > li.current > a.curre
             margin: 0;
             border-bottom: 1px solid #e5e5e5;
         }
+        .layers-list li.tick{
+            padding-left: 36px;
+            background: url(images/copy-tick.png) 10px 50% no-repeat;
+        }
+
         .layers-list li:last-child{
             border-bottom: none;
         }

@@ -32,7 +32,8 @@ if( !class_exists( 'Layers_Widget_Ajax' ) ) {
 		}
 
 		function slider_widget_actions(){
-			if( !wp_verify_nonce( $_POST['nonce'], 'layers-widget-actions' ) ) die( 'You threw a Nonce exception' ); // Nonce
+
+			if( !check_ajax_referer( 'layers-widget-actions', 'nonce', false ) ) die( 'You threw a Nonce exception' ); // Nonce
 
 			$widget = new Layers_Slider_Widget();
 			if( 'add' == $_POST[ 'widget_action'] ) {
@@ -58,7 +59,8 @@ if( !class_exists( 'Layers_Widget_Ajax' ) ) {
 		}
 
 		function content_widget_actions(){
-			if( !wp_verify_nonce( $_POST['nonce'], 'layers-widget-actions' ) ) die( 'You threw a Nonce exception' ); // Nonce
+
+			if( !check_ajax_referer( 'layers-widget-actions', 'nonce', false ) ) die( 'You threw a Nonce exception' ); // Nonce
 
 			$widget = new Layers_Content_Widget();
 			if( 'add' == $_POST[ 'widget_action'] ) {

@@ -44,7 +44,7 @@ jQuery(document).ready(function($) {
 
 		 jQuery.ajax({
 			type: 'POST',
-			url: layers_meta_params.ajaxurl,
+			url: ajaxurl,
 			data: 'action=update_page_builder_meta&template=' + $that.val() + '&id=' + $('#post_ID').val() + '&nonce=' + layers_meta_params.nonce
 		});
 	});

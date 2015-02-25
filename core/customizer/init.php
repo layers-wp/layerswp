@@ -43,8 +43,8 @@ class Layers_Customizer {
 			require_once get_template_directory() . $controls_dir . 'base.php';
 			require_once get_template_directory() . $controls_dir . 'button.php';
 			require_once get_template_directory() . $controls_dir . 'checkbox.php';
+			require_once get_template_directory() . $controls_dir . 'code.php';
 			require_once get_template_directory() . $controls_dir . 'color.php';
-			require_once get_template_directory() . $controls_dir . 'css.php';
 			require_once get_template_directory() . $controls_dir . 'font.php';
 			require_once get_template_directory() . $controls_dir . 'heading.php';
 			require_once get_template_directory() . $controls_dir . 'select.php';
@@ -98,11 +98,10 @@ class Layers_Customizer {
 
 		// Localize Scripts
 		wp_localize_script( LAYERS_THEME_SLUG . '-admin-customizer' , "layers_customizer_params", array(
-									'ajaxurl' => admin_url( "admin-ajax.php" ) ,
-									'nonce' => wp_create_nonce( 'layers-customizer-actions' ),
-									'builder_page' => ( isset( $_GET[ 'layers-builder' ] ) ? TRUE : FALSE )
-								)
-							);
+				'nonce' => wp_create_nonce( 'layers-customizer-actions' ),
+				'builder_page' => ( isset( $_GET[ 'layers-builder' ] ) ? TRUE : FALSE )
+			)
+		);
 	}
 	
 	/**

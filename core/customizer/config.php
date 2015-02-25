@@ -274,7 +274,7 @@ class Layers_Customizer_Config {
 									'label'    => __( 'Custom Scripts' , 'layerswp' ),
 									'description' => __( 'Enter in any custom script to include in your site\'s header. Be sure to use single quotes for strings.' , 'layerswp' ),
 									'default' => '',
-									'sanitize_callback' => 'esc_js',
+									'sanitize_callback' => 'layers_sanitize_js',
 								) // scripts
 							);
 

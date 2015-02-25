@@ -25,6 +25,8 @@ class Layers_Options_Panel {
 
 	public function __construct() {
 
+		global $pagenow;
+
 		// Setup some folder variables
 		$this->options_panel_dir = LAYERS_TEMPLATE_DIR . '/core/options-panel/';
 

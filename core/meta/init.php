@@ -51,7 +51,7 @@ class Layers_Custom_Meta {
 		add_action( 'page_row_actions' , array( $this , 'inline_page_builder_button' ), 10, 2 );
 
 		// Custom Fields
-		add_action( 'admin_menu', array( $this , 'register_post_meta' ) );
+		add_action( 'add_meta_boxes', array( $this , 'register_post_meta' ) );
 		add_action( 'save_post', array( $this , 'save_post_meta' ) );
 		add_action( 'publish_post', array( $this , 'save_post_meta' ) );
 	}
@@ -77,7 +77,6 @@ class Layers_Custom_Meta {
 
 		// Localize Scripts
 		wp_localize_script( LAYERS_THEME_SLUG . '-admin-meta' , "layers_meta_params", array(
-			'ajaxurl' => admin_url( "admin-ajax.php" ) ,
 			'nonce' => wp_create_nonce( 'layers-customizer-actions' )
 		) );
 	}

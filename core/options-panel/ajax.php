@@ -27,24 +27,7 @@ if( !class_exists( 'Layers_Onboarding_Ajax' ) ) {
 
         public function __construct() {
             add_action( 'wp_ajax_layers_onboarding_update_options', array( $this, 'update_options' ) );
-            add_action( 'wp_ajax_layers_onboarding_choose_preset', array( $this, 'choose_preset_layout' ) );
 
-        }
-
-        public function choose_preset_layout(){
-
-            if( !wp_verify_nonce( $_POST['layers_onboarding_preset_layout_nonce'], 'layers-onboarding-preset-layouts' ) ) die( 'You threw a Nonce exception' ); // Nonce
-
-            // Parse our input data
-            parse_str(
-                urldecode( stripslashes( $_POST[ 'data' ] ) ),
-                $data
-            );
-
-            $migrator = new Layers_Widget_Migrator();
-            $migrator->create_builder_page_from_preset();
-
-            die();
         }
 
         public function update_options(){

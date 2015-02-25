@@ -38,6 +38,7 @@ if( !class_exists( 'Layers_Customize_Text_Control' ) ) {
 								'label' => ( isset( $this->label ) ? $this->label : '' ),
 								'name' => '' ,
 								'id' =>  $this->id,
+   								'value' => stripslashes( $this->value() ),
 								'data' => $this->get_customize_data(),
 							)
 						); ?>

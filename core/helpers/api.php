@@ -15,9 +15,9 @@ class Layers_API {
     */
 
     public static function get_instance(){
-				if ( ! isset( self::$instance ) ) {
-					self::$instance = new Layers_API();
-				}
+        if ( ! isset( self::$instance ) ) {
+	          self::$instance = new Layers_API();
+        }
         return self::$instance;
     }
 

@@ -13,7 +13,10 @@ class Layers_Preset_Post_Type {
 			'labels' => array(
 				'name' => 'Presets'
 			),
-			'public' => true
+			'public' => false,
+			'show_ui' => true,
+			'show_in_menu' => false,
+			'supports' => array( 'title', 'thumbnail' )
 		) );
 	}
 

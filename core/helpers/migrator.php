@@ -157,11 +157,15 @@ class Layers_Widget_Migrator {
 
 			while ( $preset_posts->have_posts() ) {
 				$preset_posts->the_post();
+
 				global $post;
 				$_preset = array();
+				$thumb_url = get_post_thumbnail_id() ? wp_get_attachment_thumb_url(get_post_thumbnail_id()) : NULL;
+
 				$_preset[ 'custom-' . $post->post_name ] = array(
 					'title' => $post->post_title,
-					'screenshot' => NULL,
+					'screenshot' => $thumb_url,
+					'screenshot_type' => $thumb_url ? 'image' : NULL,
 					'json' => $post->post_content,
 					'custom' => true,
 					'post_id' => $post->ID

@@ -346,17 +346,22 @@ add_action( 'admin_bar_menu', 'layers_add_builder_edit_button', 90 );
 // Output custom css to add Icon to admin bar edit button.
 if( ! function_exists( 'layers_add_builder_edit_button_css' ) ) {
     function layers_add_builder_edit_button_css() {
-        echo '<style>
-        #wp-admin-bar-my_page .ab-icon:before{
-            font-family: "layers-interface" !important;
-            content: "\e62f" !important;
-            font-size: 16px !important;
-        }
-        </style>';
+        global $pagenow;
+        if ( 'post.php' === $pagenow || ! is_admin() ) :
+            ?>
+            <style>
+            #wp-admin-bar-my_page .ab-icon:before{
+                font-family: "layers-interface" !important;
+                content: "\e62f" !important;
+                font-size: 16px !important;
+            }
+            </style>
+            <?php
+        endif;
     }
 }
-add_action('admin_head', 'layers_add_builder_edit_button_css');
-add_action('wp_head', 'layers_add_builder_edit_button_css');
+add_action('wp_print_styles', 'layers_add_builder_edit_button_css');
+add_action('admin_print_styles-post.php', 'layers_add_builder_edit_button_css');
 
 /**
 * Post Featured Media

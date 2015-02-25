@@ -759,7 +759,7 @@ if( !function_exists( 'layers_add_google_analytics' ) ) {
 		<?php }
 	}
 } // layers_add_google_analytics
-add_action ( 'wp_head', 'layers_add_google_analytics' );
+add_action ( 'wp_print_scripts', 'layers_add_google_analytics' );
 
 /**
 * Style Generator

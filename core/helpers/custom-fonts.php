@@ -91,7 +91,7 @@ add_action( 'wp_enqueue_scripts', 'layers_enqueue_custom_fonts' );
 if( !function_exists( 'layers_print_typekit' ) ) {
 	function layers_print_typekit(){
 		if( '' == layers_get_theme_mod( 'typekit-id' ) ) return; ?>
-		<script type="text/javascript" src="//use.typekit.net/<?php echo esc_url( layers_get_theme_mod( 'typekit-id' ) ); ?>.js"></script>
+		<script type="text/javascript" src="//use.typekit.net/<?php echo esc_js( layers_get_theme_mod( 'typekit-id' ) ); ?>.js"></script>
 		<script type="text/javascript">try{Typekit.load();}catch(e){}</script>
 <?php }
 }

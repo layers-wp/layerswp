@@ -29,7 +29,7 @@ class Layers_Options_Panel {
 		$this->options_panel_dir = LAYERS_TEMPLATE_DIR . '/core/options-panel/';
 
 		// Setup the partial var
-		$page =  str_replace( LAYERS_THEME_SLUG . '-' , '', $_REQUEST[ 'page' ] );
+		$page =  str_replace( LAYERS_THEME_SLUG . '-' , '', $_GET[ 'page' ] );
 
 		// Load template
 		$this->body( $page );

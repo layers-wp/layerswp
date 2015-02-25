@@ -203,7 +203,7 @@ class Layers_Custom_Meta {
 
 	public function update_page_builder_meta(){
 
-		if( !wp_verify_nonce( $_REQUEST['nonce'], 'layers-customizer-actions' ) ) die( 'You threw a Nonce exception' ); // Nonce
+		if( !wp_verify_nonce( $_POST['nonce'], 'layers-customizer-actions' ) ) die( 'You threw a Nonce exception' ); // Nonce
 
 		// Get the Post ID
 		$post_id = $_POST['id'];
@@ -222,8 +222,8 @@ class Layers_Custom_Meta {
 
 	public function register_post_meta(){
 		// If we have not published the post, don't set a post ID
-		if( isset( $_REQUEST[ 'post' ] ) ) {
-			$post_id = $_REQUEST[ 'post' ];
+		if( isset( $_GET[ 'post' ] ) ) {
+			$post_id = $_GET[ 'post' ];
 		} else {
 			$post_id = NULL;
 		}

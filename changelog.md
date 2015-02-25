@@ -5,13 +5,16 @@
 
 Security and code quality updates
 
-* **Fix** - Improved localization, (thanks @tmconnect)
+* **Fix** - Improved nonce handling and removed any reference to $_REQUEST[] in the code
+* **Fix** - Updated Google maps API link for SSL compatability (thanks @oskapt)
+* **Fix** - Improved localization (thanks @tmconnect)
 * **Fix** - Added sanitization helpers which we hook into the customizer to clean up the Customizer data
 * **Tweak** - Added Typekit ID field to the Site Settings, this means that getting Typekit into Layers is now even easier
 * **Tweak** - Move hooks and filters outside of their related function_exists closures
 * **Tweak** - Replaced deprecated get_page() with get_post()
 * **Tweak** - Added version number to all css and js assets being enqueued
 * **Tweak** - Added nonce check and remove unnecessary conditional from to update_page_builder_meta()
+* **Tweak** - .media block (used extensively in the content widget html) has been tweaked to behave better on different screensizes and with different column widths
 * **Tweak** - Changed jquery-masonry to masonry v3 not dependent on jquery
 
 ## 1.0.3

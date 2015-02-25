@@ -729,9 +729,9 @@ input[type=text].layers-color-selector.wp-color-picker{
 }
 
 /*-----------------------*/
-/*- CUSTOM CODE EDITOR ---*/
+/*- CUSTOM CSS EDITOR ---*/
 
-.layers-code-wrapper textarea {
+.layers-css-wrapper textarea {
     height: 260px;
     font-size: 11px;
     font-family: courier new, mono-space;
@@ -2367,18 +2367,19 @@ ul#adminmenu a.wp-has-current-submenu:after, ul#adminmenu > li.current > a.curre
         .layers-template-selector .layers-product:nth-child(2n+2){
             margin-right: 0;
         }
-        .layers-template-selector .layers-product:nth-child(3n+3){
-            margin-right: 4%;
-        }
         .layers-onboard-slide .layers-product:focus{
-            border-color: #2EA2CC;
+            border-color: #009eec;
         }
         .layers-onboard-slide .layers-product:focus .layers-product-name{
-            background: #2EA2CC;
+            background-color: #009eec;
+            border-top-color: #009eec;
             color: #fff;
         }
         .layers-onboard-slide .layers-product-actions{
             display: none;
+        }
+        .layers-template-selector img{
+            display: block;
         }
 
         /*------------------------------------------*/

@@ -14,6 +14,8 @@ Security and code quality updates
 * **Tweak** - Replaced deprecated get_page() with get_post()
 * **Tweak** - Added version number to all css and js assets being enqueued
 * **Tweak** - Added nonce check and remove unnecessary conditional from to update_page_builder_meta()
+* **Tweak** - .media block (used extensively in the content widget html) has been tweaked to behave better on different screensizes and with different column widths
+
 
 ## 1.0.3
 ### 23 February 2015

@@ -1067,9 +1067,9 @@ object{
     }
     .site-logo-link + .site-description{margin-left: 10px;}
 
-	.mark + .sitename{margin-top: 10px;}
+    .mark + .sitename{margin-top: 10px;}
 
-	.column .logo{float: none;}
+    .column .logo{float: none;}
 
 /*-------------------------------*/
 /*- NAVIGATION ------------------*/
@@ -1084,7 +1084,7 @@ object{
 
     /*---------------------------*/
     /*- HORIZONTAL NAV ----------*/
-	.nav-horizontal > ul{float: left;}
+    .nav-horizontal > ul{float: left;}
     .nav-horizontal li{
         float: left;
         margin: 0 10px;
@@ -1095,11 +1095,11 @@ object{
 
     /*---------------------------*/
     /*- HORIZONTAL NAV CENTERED -*/
-	.nav-centered{
+    .nav-centered{
         text-align: center;
         width: 100%;
     }
-	.nav-centered li{
+    .nav-centered li{
         float: none;
         display: inline-block;
         margin: 0;
@@ -1465,7 +1465,7 @@ object{
         list-style: decimal;
         margin: 0 0 26px;
     }
-	.copy ol li{
+    .copy ol li{
         list-style: decimal;
         margin: 0 0 6px 20px;
     }
@@ -1499,7 +1499,7 @@ object{
         margin-bottom: 20px;
     }
 
-	.copy a.button{border-bottom: none;}
+    .copy a.button{border-bottom: none;}
 
 
 /*-------------------------------*/

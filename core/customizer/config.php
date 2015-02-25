@@ -272,7 +272,7 @@ class Layers_Customizer_Config {
 								'header-custom-scripts' => array(
 									'type'     => 'layers-code',
 									'label'    => __( 'Custom Scripts' , 'layerswp' ),
-									'description' => __( 'Enter in any custom script (such as TypeKit etc) to include in your site\'s header. Include the &lt;script&gt;&lt;/script&gt; tags.' , 'layerswp' ),
+									'description' => __( 'Enter in any custom script to include in your site\'s header. Be sure to use single quotes for strings.' , 'layerswp' ),
 									'default' => '',
 									'sanitize_callback' => 'esc_js',
 								) // scripts
@@ -421,7 +421,7 @@ class Layers_Customizer_Config {
 					'footer-custom-scripts' => array(
 						'type'     => 'layers-code',
 						'label'    => __( 'Custom Scripts' , 'layerswp' ),
-						'description' => __( 'Enter in any custom script to include in your site\'s footer. Include the &lt;script&gt;&lt;/script&gt; tags.' , 'layerswp' ),
+						'description' => __( 'Enter in any custom script to include in your site\'s footer. Be sure to use single quotes for strings.' , 'layerswp' ),
 						'default' => '',
 						'sanitize_callback' => 'esc_js',
 					), // scripts

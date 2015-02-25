@@ -162,7 +162,8 @@ class Layers_Widget_Migrator {
 				$_preset[ 'custom-' . $post->post_name ] = array(
 					'title' => $post->post_title,
 					'screenshot' => NULL,
-					'json' => $post->post_content
+					'json' => $post->post_content,
+					'custom' => true
 				);
 				$layers_preset_layouts = array_merge( $layers_preset_layouts, $_preset );
 			}

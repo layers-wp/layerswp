@@ -230,4 +230,12 @@ console.log( attachment );
 
     });
 
+    $(document).on( 'click', '.layers_page_layers-add-new-page .layers-product .menu-icon', function(e){
+        e.stopPropagation();
+        e.preventDefault();
+
+        var $menu = $(this).siblings('.edit-preset-menu');
+        $menu.toggleClass('layers-hide');
+    });
+
 });

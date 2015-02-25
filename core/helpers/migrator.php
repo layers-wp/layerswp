@@ -150,6 +150,11 @@ class Layers_Widget_Migrator {
 		$preset_posts = Layers_Preset_Post_Type::get_query();
 
 		if ( $preset_posts->have_posts() ) {
+
+			// Store blank preset and remove
+			$blank = $layers_preset_layouts['blank'];
+			unset($layers_preset_layouts['blank']);
+
 			while ( $preset_posts->have_posts() ) {
 				$preset_posts->the_post();
 				global $post;
@@ -163,6 +168,8 @@ class Layers_Widget_Migrator {
 			}
 			wp_reset_postdata();
 
+			// Add blank preset back to the end
+			$layers_preset_layouts['blank'] = $blank;
 		}
 
 		return apply_filters( 'layers_preset_layouts' , $layers_preset_layouts );

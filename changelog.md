@@ -17,6 +17,7 @@ Security and code quality updates
 * **Tweak** - Added nonce check and remove unnecessary conditional from to update_page_builder_meta()
 * **Tweak** - .media block (used extensively in the content widget html) has been tweaked to behave better on different screensizes and with different column widths
 * **Tweak** - Changed jquery-masonry to masonry v3 not dependent on jquery
+* **Tweak** - Updated hook used for meta box registration
 
 ## 1.0.3
 ### 23 February 2015

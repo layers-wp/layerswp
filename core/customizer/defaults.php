@@ -13,15 +13,15 @@ class Layers_Customizer_Defaults {
 		
 		/**
 		 *
-		 * @var string
+		 * @var string 
 		 */
-		public $prefix;
-		
-		/**
-		 *
-		 * @var Layers_Customizer_Config
-		 */
-		public $config;
+    public $prefix;
+
+   /**
+	  *
+	  * @var Layers_Customizer_Config
+	  */
+    public $config;
 		
 
     /**
@@ -29,9 +29,9 @@ class Layers_Customizer_Defaults {
     */
 
     public static function get_instance(){
-				if( ! isset( self::$instance ) ) {
-					self::$instance = new Layers_Customizer_Defaults();
-				}
+        if( ! isset( self::$instance ) ) {
+            self::$instance = new Layers_Customizer_Defaults();
+        }
         return self::$instance;
     }
 

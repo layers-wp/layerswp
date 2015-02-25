@@ -285,6 +285,10 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 					}
 				} // foreach checkboxes
 			} // if checkboxes
+			
+			if ( !isset( $new_instance['slides'] ) ) {
+				$new_instance['slides'] = array();
+			}
 
 			return $new_instance;
 		}

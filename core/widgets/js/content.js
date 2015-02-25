@@ -127,7 +127,7 @@ jQuery(document).ready(function($){
 			};
 
 		$.post(
-			layers_widget_params.ajaxurl,
+			ajaxurl,
 			$post_data,
 			function(data){
 

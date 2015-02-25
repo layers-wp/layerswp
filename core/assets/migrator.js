@@ -84,7 +84,7 @@ jQuery(document).ready(function($){
             };
 
         jQuery.post(
-            layers_widget_params.ajaxurl,
+            ajaxurl,
             $page_data,
             function(data){
 
@@ -128,8 +128,6 @@ jQuery(document).ready(function($){
             // We set multiple to false so only get one image from the uploader
             attachment = file_frame.state().get('selection').first().toJSON();
 
-console.log( attachment );
-
             // Read the file JSON
             $.getJSON( attachment.url, function( import_data ){
 
@@ -144,7 +142,7 @@ console.log( attachment );
                     };
 
                 $.post(
-                    layers_widget_params.ajaxurl,
+                    ajaxurl,
                     $page_data,
                     function(data){
                         // Upon completion update the import button
@@ -185,7 +183,7 @@ console.log( attachment );
             };
 
         $.post(
-            layers_widget_params.ajaxurl,
+            ajaxurl,
             $page_data,
             function(data){
                 $results = $.parseJSON( data );

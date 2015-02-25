@@ -429,7 +429,6 @@ if( ! function_exists( 'layers_admin_scripts' ) ) {
 			LAYERS_THEME_SLUG . '-admin-onboarding' ,
 			"layers_onboarding_params",
 			array(
-				'ajaxurl' => admin_url( "admin-ajax.php" ) ,
 				'preset_layout_nonce' => wp_create_nonce( 'layers-onboarding-preset-layouts' ),
 				'update_option_nonce' => wp_create_nonce( 'layers-onboarding-update-options' ),
 			)

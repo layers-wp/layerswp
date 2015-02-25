@@ -77,7 +77,7 @@ jQuery(function($) {
             };
 
             jQuery.post(
-                layers_onboarding_params.ajaxurl,
+                ajaxurl,
                 $page_data,
                 function(data){
 
@@ -94,7 +94,7 @@ jQuery(function($) {
             $data = $form.find( 'input, textarea, select' ).serialize();
 
             $.post(
-                layers_onboarding_params.ajaxurl,
+                ajaxurl,
                 {
                     action: $action,
                     data: $data,

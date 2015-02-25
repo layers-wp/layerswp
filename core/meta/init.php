@@ -77,7 +77,6 @@ class Layers_Custom_Meta {
 
 		// Localize Scripts
 		wp_localize_script( LAYERS_THEME_SLUG . '-admin-meta' , "layers_meta_params", array(
-			'ajaxurl' => admin_url( "admin-ajax.php" ) ,
 			'nonce' => wp_create_nonce( 'layers-customizer-actions' )
 		) );
 	}

@@ -323,7 +323,7 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 				array(
 					'layout' => array(
 						'icon-css' => 'icon-layout-fullwidth',
-						'label' => _( 'Layout', 'layerswp' ),
+						'label' => __( 'Layout', 'layerswp' ),
 						'wrapper-class' => 'layers-pop-menu-wrapper layers-small',
 						'elements' => array(
 							'layout' => array(

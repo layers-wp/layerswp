@@ -238,7 +238,6 @@ class Layers_Widgets {
 				LAYERS_THEME_SLUG . '-admin-widgets' ,
 				"layers_widget_params",
 				array(
-						'ajaxurl' => admin_url( "admin-ajax.php" ) ,
 						'nonce' => wp_create_nonce( 'layers-widget-actions' )
 					)
 			);

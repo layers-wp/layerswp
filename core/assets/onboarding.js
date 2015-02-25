@@ -83,7 +83,7 @@ jQuery(function($) {
 
                     $results = $.parseJSON( data );
 
-                    $form.find( '.layers-save-progress' ).text( onboardingi8n.step_done_message ).fadeOut(300);
+                    $form.find( '.layers-save-progress' ).text( onboardingi18n.step_done_message ).fadeOut(300);
 
                     setTimeout( function(){ window.location.assign( $results.customizer_location ); }, 350 );
                 }
@@ -105,7 +105,7 @@ jQuery(function($) {
 
                     $results = $.parseJSON( data );
                     if( true == $results.success ) {
-                        $form.find( '.layers-save-progress' ).text( onboardingi8n.step_done_message );
+                        $form.find( '.layers-save-progress' ).text( onboardingi18n.step_done_message );
 
                         setTimeout( function(){
                             $form.find( '.layers-save-progress' ).hide();

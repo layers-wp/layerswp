@@ -219,9 +219,13 @@ console.log( attachment );
             layers_widget_params.ajaxurl,
             $page_data,
             function(results){
-                $a = $('<a />').attr('class' , 'layers-button btn-link' ).attr( 'href' , results.data.page_location ).text( migratori8n.create_preset_complete_message );
-                $that.closest( '.layers-column' ).addClass( 'layers-success' );
-                $that.replaceWith( $a );
+                if ( results.success ) {
+                    $a = $('<a />').attr('class' , 'layers-button btn-link' ).attr( 'href' , results.data.page_location ).text( migratori8n.create_preset_complete_message );
+                    $that.closest( '.layers-column' ).addClass( 'layers-success' );
+                    $that.replaceWith( $a );
+                } else {
+                    $that.closest( '.layers-column' ).addClass( 'layers-ajax-error' );
+                }
             }
         );
 
@@ -260,7 +264,12 @@ console.log( attachment );
                 layers_widget_params.ajaxurl,
                 $page_data,
                 function(results){
-                    $that.parents('.layers-product').fadeOut();
+                    $parent = $that.parents('.layers-product');
+                    if ( results.success ) {
+                        $parent.fadeOut();
+                    } else {
+                        $parent.addClass('layers-ajax-error');
+                    }
                 }
             );
         }

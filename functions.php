@@ -414,7 +414,8 @@ if( ! function_exists( 'layers_admin_scripts' ) ) {
 				'importing_message' => __( 'Importing Your Content' , 'layerswp' ),
 				'duplicate_complete_message' => __( 'Edit Your New Page' , 'layerswp' ),
 				'create_preset_complete_message' => __( 'Create a New Page', 'layerswp' ),
-				'confirm_delete_message' => __( 'Are you sure you want to delete this?', 'layerswp' )
+				'confirm_delete_message' => __( 'Are you sure you want to delete this?', 'layerswp' ),
+				'ajax_error_message' => __( 'There was a problem processing your request.', 'layerswp' )
 			)
 		);// Migrator
 

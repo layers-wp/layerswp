@@ -870,9 +870,13 @@ class Layers_Widget_Migrator {
 
 		$new_id = wp_insert_post( $preset );
 
-		wp_send_json_success( array(
-			'page_location' => admin_url('admin.php?page=layers-add-new-page')
-		) );
+		if ( $new_id ) {
+			wp_send_json_success( array(
+				'page_location' => admin_url('admin.php?page=layers-add-new-page')
+			) );
+		}
+
+		wp_send_json_error();
 	}
 
 	public function do_ajax_delete_preset() {
@@ -883,9 +887,13 @@ class Layers_Widget_Migrator {
 		if ( !$post_id )
 			wp_send_json_error();
 
-		wp_delete_post( $post_id, true );
+		$delete = wp_delete_post( $post_id, true );
 
-		wp_send_json_success();
+		if ( $delete ) {
+			wp_send_json_success();
+		}
+
+		wp_send_json_error();
 	}
 }
 

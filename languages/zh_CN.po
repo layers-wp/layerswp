@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Layers v1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2015-02-25 21:12+0800\n"
+"PO-Revision-Date: 2015-02-25 21:53+0800\n"
 "Last-Translator: MapleObserver <mapleobserver@gmail.com>\n"
 "Language-Team: MapleObserver <mapleobserver@gmail.com>\n"
 "MIME-Version: 1.0\n"
@@ -369,27 +369,27 @@ msgstr "居中"
 #: core/customizer/config.php:387 core/helpers/design-bar.php:402
 #: core/helpers/design-bar.php:632 core/helpers/forms.php:481
 msgid "Top"
-msgstr "置顶"
+msgstr "顶部"
 
 # @ layerswp
 #: core/customizer/config.php:388 core/helpers/design-bar.php:633
 #: core/helpers/forms.php:483
 msgid "Bottom"
-msgstr "置底"
+msgstr "底部"
 
 # @ layerswp
 #: core/customizer/config.php:389 core/helpers/design-bar.php:358
 #: core/helpers/design-bar.php:400 core/helpers/design-bar.php:543
 #: core/helpers/design-bar.php:634 core/helpers/forms.php:484
 msgid "Left"
-msgstr "居左"
+msgstr "左边"
 
 # @ layerswp
 #: core/customizer/config.php:390 core/helpers/design-bar.php:360
 #: core/helpers/design-bar.php:401 core/helpers/design-bar.php:545
 #: core/helpers/design-bar.php:635 core/helpers/forms.php:482
 msgid "Right"
-msgstr "居右"
+msgstr "右边"
 
 # @ layerswp
 #: core/customizer/config.php:394
@@ -562,7 +562,7 @@ msgstr "6 列"
 # @ layerswp
 #: core/helpers/design-bar.php:317 core/widgets/modules/content.php:331
 msgid "Gutter"
-msgstr ""
+msgstr "间隔"
 
 # @ layerswp
 #: core/helpers/design-bar.php:345 core/helpers/design-bar.php:538
@@ -572,7 +572,7 @@ msgstr "文本对齐方式"
 # @ layerswp
 #: core/helpers/design-bar.php:361 core/helpers/design-bar.php:546
 msgid "Justify"
-msgstr ""
+msgstr "分散对齐"
 
 # @ layerswp
 #: core/helpers/design-bar.php:387
@@ -592,22 +592,22 @@ msgstr "视频链接 (OEMBED 格式)"
 # @ layerswp
 #: core/helpers/design-bar.php:455 core/helpers/design-bar.php:500
 msgid "Portrait"
-msgstr ""
+msgstr "纵向"
 
 # @ layerswp
 #: core/helpers/design-bar.php:456 core/helpers/design-bar.php:501
 msgid "Landscape"
-msgstr ""
+msgstr "横向"
 
 # @ layerswp
 #: core/helpers/design-bar.php:457 core/helpers/design-bar.php:502
 msgid "Square"
-msgstr ""
+msgstr "方形"
 
 # @ layerswp
 #: core/helpers/design-bar.php:459
 msgid "Round"
-msgstr ""
+msgstr "圆形"
 
 # @ layerswp
 #: core/helpers/design-bar.php:487
@@ -647,7 +647,7 @@ msgstr "颜色"
 # @ layerswp
 #: core/helpers/design-bar.php:647
 msgid "Darken"
-msgstr ""
+msgstr "变暗"
 
 # @ layerswp
 #: core/helpers/design-bar.php:675
@@ -759,12 +759,12 @@ msgstr "选择一个文件"
 #: core/helpers/forms.php:311
 #, php-format
 msgid "Drop a file here or %s"
-msgstr ""
+msgstr "拖放一个文件到这里或 %s"
 
 # @ layerswp
 #: core/helpers/forms.php:350 core/helpers/forms.php:425
 msgid "Darken to improve readability"
-msgstr ""
+msgstr "变暗可提高可读性"
 
 # @ layerswp
 #: core/helpers/forms.php:361 core/helpers/forms.php:436

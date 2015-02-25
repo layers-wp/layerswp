@@ -5,6 +5,7 @@
 
 Security and code quality updates
 
+* **Fix** - Removed double <title> tag
 * **Fix** - Improved nonce handling and removed any reference to $_REQUEST[] in the code
 * **Fix** - Updated Google maps API link for SSL compatability (thanks @oskapt)
 * **Fix** - Improved localization (thanks @tmconnect)

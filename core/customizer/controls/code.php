@@ -30,7 +30,6 @@ if( !class_exists( 'Layers_Customize_Code_Control' ) ) {
 					<?php if ( '' != $this->subtitle ) : ?>
 						<label class="layers-form-row"><?php echo $this->subtitle; ?></label>
 					<?php endif; ?>
-
 					<?php echo $form_elements->input(
 						array(
 							'type' => 'textarea',

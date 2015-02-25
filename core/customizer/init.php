@@ -43,8 +43,8 @@ class Layers_Customizer {
 			require_once get_template_directory() . $controls_dir . 'base.php';
 			require_once get_template_directory() . $controls_dir . 'button.php';
 			require_once get_template_directory() . $controls_dir . 'checkbox.php';
+			require_once get_template_directory() . $controls_dir . 'code.php';
 			require_once get_template_directory() . $controls_dir . 'color.php';
-			require_once get_template_directory() . $controls_dir . 'css.php';
 			require_once get_template_directory() . $controls_dir . 'font.php';
 			require_once get_template_directory() . $controls_dir . 'heading.php';
 			require_once get_template_directory() . $controls_dir . 'select.php';

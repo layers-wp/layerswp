@@ -403,6 +403,7 @@ if( ! function_exists( 'layers_admin_scripts' ) ) {
 			LAYERS_VERSION,
 			true
 		);
+
 		wp_localize_script(
 			LAYERS_THEME_SLUG . '-admin-migrator',
 			'migratori8n',
@@ -412,7 +413,16 @@ if( ! function_exists( 'layers_admin_scripts' ) ) {
 				'importing_message' => __( 'Importing Your Content' , 'layerswp' ),
 				'duplicate_complete_message' => __( 'Edit Your New Page' , 'layerswp' )
 			)
-		);// Migrator
+		);// Migrator// Localize Scripts
+		wp_localize_script(
+			LAYERS_THEME_SLUG . '-admin-migrator',
+			"layers_migrator_params",
+			array(
+					'duplicate_button_nonce' => wp_create_nonce( 'layers-migrator-duplicate' ),
+					'preset_layout_nonce' => wp_create_nonce( 'layers-migrator-preset-layouts' ),
+					'import_button_nonce' => wp_create_nonce( 'layers-migrator-import' )
+				)
+		);
 
 		// Onboarding Process
 		wp_enqueue_script(
@@ -429,7 +439,7 @@ if( ! function_exists( 'layers_admin_scripts' ) ) {
 			LAYERS_THEME_SLUG . '-admin-onboarding' ,
 			"layers_onboarding_params",
 			array(
-				'preset_layout_nonce' => wp_create_nonce( 'layers-onboarding-preset-layouts' ),
+				'preset_layout_nonce' => wp_create_nonce( 'layers-migrator-preset-layouts' ),
 				'update_option_nonce' => wp_create_nonce( 'layers-onboarding-update-options' ),
 			)
 		); // Onboarding ajax parameters

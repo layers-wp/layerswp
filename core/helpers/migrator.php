@@ -553,6 +553,8 @@ class Layers_Widget_Migrator {
 
 	public function do_ajax_import(){
 
+		if( !check_ajax_referer( 'layers-migrator-import', 'nonce', false ) ) die( 'You threw a Nonce exception' ); // Nonce
+
 		// Set the page ID
 		$import_data[ 'post_id' ] = $_POST[ 'post_id' ];
 
@@ -578,6 +580,8 @@ class Layers_Widget_Migrator {
 	*/
 
 	public function do_ajax_duplicate(){
+
+		if( !check_ajax_referer( 'layers-migrator-duplicate', 'nonce', false ) ) die( 'You threw a Nonce exception' ); // Nonce
 
 		// We need a page title and post ID for this to work
 		if( !isset( $_POST[ 'post_title' ] ) || !isset( $_POST[ 'post_id' ]  ) ) return;
@@ -632,6 +636,8 @@ class Layers_Widget_Migrator {
 
 	public function create_builder_page_from_preset(){
 		global $layers_widgets;
+
+		if( !check_ajax_referer( 'layers-migrator-preset-layouts', 'nonce', false ) ) die( 'You threw a Nonce exception' ); // Nonce
 
 		$check_builder_pages = layers_get_builder_pages();
 

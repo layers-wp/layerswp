@@ -1136,50 +1136,6 @@ object{
         padding: 6px 15px;
     }
 
-    /*---------------------------*/
-    /*- PILL NAV ----------------*/
-    .nav-pills{
-        display: inline-block;
-        margin: 0 10px 20px 0;
-        overflow: hidden;
-    }
-    .nav-pills li{
-        float: left;
-        margin: 0 10px 0 0;
-    }
-    .nav-pills a{
-        display: block;
-        padding: 4px 8px;
-    }
-    .nav-pills span{
-        display: block;
-        padding: 4px 8px;
-    }
-
-    /*---------------------------*/
-    /*- PILLS GROUP -------------*/
-    .nav-pills-group{
-        margin-bottom: 20px;
-        position: relative;
-        overflow: hidden;
-    }
-    .nav-pills-group .nav-pills{
-        margin-bottom: 0;
-    }
-
-    /*---------------------------*/
-    /*- SORTABLE NAV ------------*/
-    .nav-sort{margin-bottom: 20px;}
-    .nav-sort li{margin-bottom: 3px;}
-    .nav-sort a{
-        display: block;
-        padding: 2px 10px 2px 26px;
-        background: #eee url(images/sort-nav.png) 9px 9px no-repeat;
-    }
-    .nav-sort a:hover{background-position: 9px -49px;}
-    .nav-sort a.active{background-position: 9px -165px;}
-    .nav-sort a.active:hover{background-position: 9px -107px;}
-
     .nav-small a,
     .nav-small span{
         padding: 3px 8px;
@@ -1374,59 +1330,60 @@ object{
         display: block;
         overflow: hidden;
     }
-
-    .media.image-top .media-body{
-        float: none;
-        width: 100%;
+    .media .excerpt{
+        max-width: 745px;
     }
-    .has-image .media.image-top .media-body{
-        margin-top: 20px;
-    }
-    .media.image-bottom .media-body + .media-image{
-        margin-top: 20px;
-    }
-    .media.image-left .media-image{
-        float: left;
-        max-width: 49%;
-        margin-right: 2%;
-    }
-    .media.image-right .media-image{
-        float: right;
-        max-width: 49%;
-        margin-right: 0;
-        margin-left: 2%;
-    }
-
-    .media .heading + .excerpt{
-        margin-top: 8px;
-    }
-    .media p{
-        margin-top: 8px;
-    }
-    .media ul{
-        margin-top: 8px;
-    }
-
-    .media .button-group{
-        margin-top: 15px;
-    }
-    .media .button{
-        margin-top: 15px;
-    }
-    .media .button-group .button{
-        margin-top: 0;
-    }
-
-    .media.large .excerpt{
-        max-width: 830px;
-    }
-    .media.small .heading + .excerpt{
-        margin-top: 5px;
-    }
-    .text-center .media-body .excerpt{
+    .media .text-center .excerpt{
         margin-left: auto;
         margin-right: auto;
     }
+
+        /*-----------------------*/
+        /*- IMAGE TOP -----------*/
+        .media.image-top .media-body{
+            float: none;
+            width: 100%;
+        }
+        .has-image .media-body{
+            margin-top: 15px;
+        }
+
+        /*-----------------------*/
+        /*- MEDIA SMALL ---------*/
+        .media.small .heading + .excerpt{
+            margin-top: 5px;
+        }
+        .has-image .small .media-body{
+            margin-top: 10px;
+        }
+        .media.small p:not(:first-child),
+        .media.small .button{
+            margin-top: 1.3rem;
+        }
+
+        /*-----------------------*/
+        /*- MEDIA MEDIUM --------*/
+        .media.medium .heading + .excerpt{
+            margin-top: 10px;
+        }
+        .media.medium p:not(:first-child),
+        .media.medium .button{
+            margin-top: 1.5rem;
+        }
+
+        /*-----------------------*/
+        /*- MEDIA LARGE ---------*/
+        .media.large .heading + .excerpt{
+            margin-top: 10px;
+        }
+        .media.large .text-center .excerpt{
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .media.large p:not(:first-child),
+        .media.large .button{
+            margin-top: 2rem;
+        }
 
 
     /*---------------------------*/

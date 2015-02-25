@@ -138,7 +138,7 @@ jQuery(document).ready(function($){
 						action: 'layers_import_widgets',
 						post_id: $that.data('post-id'),
 						widget_data: import_data,
-						nonce: layers_migrator_params.import_button_nonce
+						nonce: layers_migrator_params.import_layout_nonce
 					};
 
 				$.post(
@@ -179,7 +179,7 @@ jQuery(document).ready(function($){
 				action: 'layers_duplicate_builder_page',
 				post_id: $that.data('post-id'),
 				post_title: $('#title').val(),
-				nonce: layers_migrator_params.duplicate_button_nonce
+				nonce: layers_migrator_params.duplicate_layout_nonce
 			};
 
 		$.post(

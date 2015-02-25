@@ -418,9 +418,9 @@ if( ! function_exists( 'layers_admin_scripts' ) ) {
 			LAYERS_THEME_SLUG . '-admin-migrator',
 			"layers_migrator_params",
 			array(
-					'duplicate_button_nonce' => wp_create_nonce( 'layers-migrator-duplicate' ),
+					'duplicate_layout_nonce' => wp_create_nonce( 'layers-migrator-duplicate' ),
+					'import_layout_nonce' => wp_create_nonce( 'layers-migrator-import' ),
 					'preset_layout_nonce' => wp_create_nonce( 'layers-migrator-preset-layouts' ),
-					'import_button_nonce' => wp_create_nonce( 'layers-migrator-import' )
 				)
 		);
 

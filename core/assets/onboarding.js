@@ -73,7 +73,7 @@ jQuery(function($) {
                 action: 'layers_create_builder_page_from_preset',
                 post_title: ( undefined == $( '#preset_page_title' ) ? false : $( '#preset_page_title' ).val() ),
                 widget_data: $.parseJSON( $widget_data ),
-                nonce: layers_widget_params.nonce
+                layers_onboarding_preset_layout_nonce: layers_onboarding_params.preset_layout_nonce
             };
 
             jQuery.post(
@@ -98,7 +98,7 @@ jQuery(function($) {
                 {
                     action: $action,
                     data: $data,
-                    nonce: layers_onboarding_params.nonce
+                    layers_onboarding_update_nonce: layers_onboarding_params.update_option_nonce
 
                 },
                 function(data){

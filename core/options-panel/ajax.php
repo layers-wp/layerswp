@@ -33,7 +33,7 @@ if( !class_exists( 'Layers_Onboarding_Ajax' ) ) {
 
         public function choose_preset_layout(){
 
-            if( !wp_verify_nonce( $_REQUEST['nonce'], 'layers-onboarding-actions' ) ) die( 'You threw a Nonce exception' ); // Nonce
+            if( !wp_verify_nonce( $_POST['layers_onboarding_preset_layout_nonce'], 'layers-onboarding-preset-layouts' ) ) die( 'You threw a Nonce exception' ); // Nonce
 
             // Parse our input data
             parse_str(
@@ -49,7 +49,7 @@ if( !class_exists( 'Layers_Onboarding_Ajax' ) ) {
 
         public function update_options(){
 
-            if( !wp_verify_nonce( $_REQUEST['nonce'], 'layers-onboarding-actions' ) ) die( 'You threw a Nonce exception' ); // Nonce
+            if( !wp_verify_nonce( $_POST['layers_onboarding_update_nonce'], 'layers-onboarding-update-options' ) ) die( 'You threw a Nonce exception' ); // Nonce
 
             // Parse our input data
             parse_str(

@@ -267,7 +267,7 @@ if( ! function_exists( 'layers_scripts' ) ) {
 		/**
 		* Front end Scripts
 		*/
-		
+
 		wp_enqueue_script(
 			LAYERS_THEME_SLUG . '-plugins-js' ,
 			get_template_directory_uri() . '/assets/js/plugins.js',
@@ -430,7 +430,8 @@ if( ! function_exists( 'layers_admin_scripts' ) ) {
 			"layers_onboarding_params",
 			array(
 				'ajaxurl' => admin_url( "admin-ajax.php" ) ,
-				'nonce' => wp_create_nonce( 'layers-onboarding-actions' )
+				'preset_layout_nonce' => wp_create_nonce( 'layers-onboarding-preset-layouts' ),
+				'update_option_nonce' => wp_create_nonce( 'layers-onboarding-update-options' ),
 			)
 		); // Onboarding ajax parameters
 

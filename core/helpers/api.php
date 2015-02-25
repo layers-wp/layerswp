@@ -14,7 +14,10 @@ class Layers_API {
     *  Initiator
     */
 
-    public static function init(){
+    public static function get_instance(){
+				if ( ! isset( self::$instance ) ) {
+					self::$instance = new Layers_API();
+				}
         return self::$instance;
     }
 
@@ -53,14 +56,4 @@ class Layers_API {
 
         return apply_filters( 'layers_extension_list' , $extension_list );
     }
-}
-
-if( !function_exists( 'layers_api_init' ) ) {
-    // Instantiate API Calls
-    function layers_api_init() {
-        $layer_updater = new Layers_API();
-        $layer_updater->init();
-    } // layer_updater_init
-
-    add_action( "after_setup_theme", "layers_api_init", 100 );
 }

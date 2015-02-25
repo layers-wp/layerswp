@@ -67,6 +67,7 @@ class Layers_Customizer {
 			add_action( 'admin_enqueue_scripts', array( $this, 'admin_enqueue_scripts' ) , 50 );
 			add_action( 'admin_enqueue_scripts', array( $this, 'admin_print_styles' ) , 50 );
 			add_action( 'customize_controls_print_styles' , array( $this, 'admin_print_styles' ) );
+			add_action( 'customize_preview_init', array( $this, 'customizer_preview_enqueue_scripts' ) , 50 );
 
 			// Render header actions button(s)
 			add_action( 'customize_controls_print_footer_scripts' , array( $this, 'render_actions_buttons' ) );
@@ -102,6 +103,23 @@ class Layers_Customizer {
 									'builder_page' => ( isset( $_GET[ 'layers-builder' ] ) ? TRUE : FALSE )
 								)
 							);
+	}
+	
+	/**
+	*  Enqueue Customizer Preview Scripts
+	*/
+
+	public function customizer_preview_enqueue_scripts(){
+
+		// Customizer Preview general
+		wp_enqueue_script(
+			LAYERS_THEME_SLUG . '-admin-customizer-preview',
+			get_template_directory_uri() . '/core/customizer/js/customizer-preview.js',
+			array(
+				'jquery',
+			),
+			LAYERS_VERSION
+		);
 	}
 
 	/**

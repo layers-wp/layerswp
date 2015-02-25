@@ -19,6 +19,10 @@ Security and code quality updates
 * **Tweak** - .media block (used extensively in the content widget html) has been tweaked to behave better on different screensizes and with different column widths
 * **Tweak** - Changed jquery-masonry to masonry v3 not dependent on jquery
 * **Tweak** - Updated hook used for meta box registration
+* **Tweak** - Changed in-line styles and scripts to always use admin_print_styles and admin_print_scripts hooks
+* **Enhancement** - Added customizer-preview.js for scripts executed in the customizer preview iframe only
+* **Tweak** - Moved fouc rendering issue fix from in-line to the customizer-preview.js
+
 
 ## 1.0.3
 ### 23 February 2015

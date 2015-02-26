@@ -12,8 +12,11 @@ get_header();
 
 do_action( 'before_layers_builder_widgets' );
 
-// Dynamic Sidebar for this page
-dynamic_sidebar( 'obox-layers-builder-' . get_the_ID() );
+if ( have_posts() ) {
+	the_post();
+	// Dynamic Sidebar for this page
+	dynamic_sidebar( 'obox-layers-builder-' . get_the_ID() );
+}
 
 do_action( 'after_layers_builder_widgets' );
 

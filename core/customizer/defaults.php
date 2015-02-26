@@ -10,12 +10,28 @@
 class Layers_Customizer_Defaults {
 
     private static $instance;
+		
+		/**
+		 *
+		 * @var string 
+		 */
+    public $prefix;
+
+   /**
+	  *
+	  * @var Layers_Customizer_Config
+	  */
+    public $config;
+		
 
     /**
-    *  Initiator
+    *  Retrieves static/global instance
     */
 
-    public static function init(){
+    public static function get_instance(){
+        if( ! isset( self::$instance ) ) {
+            self::$instance = new Layers_Customizer_Defaults();
+        }
         return self::$instance;
     }
 
@@ -24,10 +40,14 @@ class Layers_Customizer_Defaults {
     */
 
     public function __construct() {
-
         // Setup prefix to use
         $this->prefix  = LAYERS_THEME_SLUG . '-';
-
+    }
+		
+    /**
+     * Initializes the instance by registering the controls of it's config
+     */
+    public function init() {
         // Grab the customizer config
         $this->config = new Layers_Customizer_Config();
         foreach( $this->config->controls() as $section_key => $controls ) {
@@ -40,9 +60,8 @@ class Layers_Customizer_Defaults {
                 // Register default
                 $this->register_control_defaults( $setting_key, $control_data[ 'type' ], ( isset( $control_data['default'] ) ? $control_data['default'] : NULL ) );
             }
-        }
-
-    }
+        }			
+		}
 
     /**
     * Register Control Defaults

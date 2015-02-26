@@ -12,10 +12,13 @@ class Layers_Customizer {
 	private static $instance;
 
 	/**
-	*  Initiator
+	*  Retrieve static/global instance of the Layers Customizer
 	*/
 
-	public static function init(){
+	public static function get_instance(){
+		if ( ! isset( self::$instance ) ) {
+			self::$instance = new Layers_Customizer();
+		}
 		return self::$instance;
 	}
 
@@ -24,6 +27,13 @@ class Layers_Customizer {
 	*/
 
 	public function __construct() {
+	}
+	
+	/**
+	 * Initializes the instance
+	 * @global type $wp_customize
+	 */
+	public function init() {
 		global $wp_customize;
 
 		// Setup some folder variables

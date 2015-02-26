@@ -92,8 +92,7 @@ class Layers_Design_Controller {
 						$custom_component_args // Send through the inputs that will be used
 					);
 
-					$this->controls[] = trim( ob_get_contents() );
-					ob_end_clean();
+					$this->controls[] = trim( ob_get_clean() );
 
 				}
 
@@ -105,8 +104,7 @@ class Layers_Design_Controller {
 
 				$this->$method();
 
-				$this->controls[] = trim( ob_get_contents() );
-				ob_end_clean();
+				$this->controls[] = trim( ob_get_clean() );
 
 			}
 

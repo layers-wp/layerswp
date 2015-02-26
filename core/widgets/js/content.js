@@ -60,7 +60,6 @@ jQuery(document).ready(function($){
 	$(document).on( 'click' , 'ul[id^="column_list_"] .icon-trash' , function(e){
 		e.preventDefault();
 
-		// "Hi Mom"
 		var $that = $(this);
 
 		// Confirmation message @TODO: Make JS confirmation column
@@ -95,7 +94,6 @@ jQuery(document).ready(function($){
 	$(document).on( 'click' , '.layers-add-widget-column' , function(e){
 		e.preventDefault();
 
-		// "Hi Mom"
 		$that = $(this);
 
 		// Create the list selector
@@ -156,7 +154,6 @@ jQuery(document).ready(function($){
 
 	$(document).on( 'keyup' , 'ul[id^="column_list_"] input[id*="-title"]' , function(e){
 
-		// "Hi Mom"
 		$that = $(this);
 
 		// Set the string value

@@ -19,7 +19,14 @@
  */
 jQuery(document).ready(function($){
 
-    var $title, $widget_data;
+    var $title, $widget_data,
+
+    getParameterByName = function(name) {
+        name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+        var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+            results = regex.exec(location.search);
+        return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+    };
 
     /**
     * 1 - Select a Layout Step, Sets global vars for use in the import phase
@@ -51,7 +58,6 @@ jQuery(document).ready(function($){
     $(document).on( 'click', '#layers-preset-layout-next-button a#layers-preset-cancel', function(e){
         e.preventDefault();
 
-        // "Hi Mom!"
         $that = $(this);
 
         $( '.layers-modal-container' ).fadeOut();
@@ -65,7 +71,6 @@ jQuery(document).ready(function($){
     $(document).on( 'click', '#layers-preset-layout-next-button a#layers-preset-proceed', function(e){
         e.preventDefault();
 
-        // "Hi Mom!"
         $that = $(this);
 
         $( '.layers-load-bar' ).hide().removeClass( 'layers-hide' ).fadeIn( 750 );
@@ -105,7 +110,6 @@ jQuery(document).ready(function($){
     $(document).on( 'click', '#layers-page-import-button' , function(e){
         e.preventDefault();
 
-        // "Hi Mom!"
         $that = $(this);
 
         // If the media frame already exists, reopen it.
@@ -173,7 +177,6 @@ console.log( attachment );
     $(document).on( 'click', '#layers-page-duplicate-button' , function(e){
         e.preventDefault();
 
-        // "Hi Mom!"
         $that = $(this);
 
         // Set the attributes to send to the importer
@@ -198,5 +201,89 @@ console.log( attachment );
 
 
     });
+
+    $(document).on( 'click', '#layers-page-preset-button' , function(e){
+        e.preventDefault();
+
+        // "Hi Mom!"
+        var $that = $(this),
+            $preset_title = $('#preset-title'),
+            // Set the attributes to send to the importer
+            $page_data = {
+                action: 'layers_create_preset',
+                post_id: $that.data('post-id'),
+                preset_title: $preset_title.val(),
+                nonce: layers_widget_params.nonce
+            };
+
+        $preset_title.parent().remove();
+
+        $.post(
+            layers_widget_params.ajaxurl,
+            $page_data,
+            function(results){
+                if ( results.success ) {
+                    $a = $('<a />').attr('class' , 'layers-button btn-link' ).attr( 'href' , results.data.page_location ).text( migratori8n.create_preset_complete_message );
+                    $that.closest( '.layers-column' ).addClass( 'layers-success' );
+                    $that.replaceWith( $a );
+                } else {
+                    var $errorMessage = $('<div />').attr('class', 'error-message').text(migratori8n.ajax_error_message);
+                    $that.closest( '.layers-column' ).addClass( 'layers-ajax-error' ).prepend($errorMessage);
+                    $that.closest( '.layers-column' ).find('.layers-section-title, .layers-button').css('visibility','hidden');
+                }
+            }
+        );
+
+
+    });
+
+    $(document).on( 'click', '.layers_page_layers-add-new-page .layers-product .menu-icon', function(e){
+        var $menu = $(this).siblings('.edit-preset-menu');
+        $menu.toggleClass('layers-hide');
+        return false;
+    });
+
+    $(document).on( 'click', '.layers_page_layers-add-new-page .layers-product .edit-preset', function(e){
+        e.stopPropagation();
+    });
+
+    $(document).on( 'click', '.layers_page_layers-add-new-page .layers-product .delete-preset', function(e){
+        var conf = window.confirm(migratori8n.confirm_delete_message);
+
+        if ( conf ) {
+            // "Hi Mom!"
+            var $that = $(this),
+                // Set the attributes to send to the importer
+                $page_data = {
+                    action: 'layers_delete_preset',
+                    post_id: $that.parents('.layers-product').data('post-id'),
+                    nonce: layers_widget_params.nonce
+                };
+
+            $.post(
+                layers_widget_params.ajaxurl,
+                $page_data,
+                function(results){
+                    $parent = $that.parents('.layers-product');
+                    if ( results.success ) {
+                        $parent.fadeOut(500, function() { $(this).remove(); });
+                    } else {
+                        var $errorMessage = $('<div />').attr('class', 'error-message').text(migratori8n.ajax_error_message);
+                        $parent.addClass('layers-ajax-error');
+                        $parent.find('.edit-preset-menu').addClass('layers-hide');
+                        $parent.prepend( $errorMessage );
+                    }
+                }
+            );
+        }
+        return false;
+    });
+
+    var pageQueryVar = getParameterByName('page');
+    var presetQueryVar = getParameterByName('presetID');
+    if ( pageQueryVar === 'layers-add-new-page' && presetQueryVar !== null ) {
+        var $presetParent = $('.layers-product[data-post-id="' + presetQueryVar + '"]');
+        $presetParent.find('.layers-button.load-customize').click();
+    }
 
 });

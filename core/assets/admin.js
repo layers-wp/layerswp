@@ -57,7 +57,6 @@ jQuery(function($) {
 	$(document).on( 'click' , '.layers-image-container .layers-image-remove' , function(e){
 		e.preventDefault();
 
-		// "Hi Mom"
 		$that = $(this);
 
  		// Get the container
@@ -75,7 +74,6 @@ jQuery(function($) {
 	$(document).on( 'click' , '.layers-image-upload-button' , function(e){
 		e.preventDefault();
 
-		// "Hi Mom"
  		$that = $(this);
 
  		// Get the container
@@ -143,7 +141,6 @@ jQuery(function($) {
 	$(document).on( 'click' , '.layers-file-remove' , function(e){
 		e.preventDefault();
 
-		// "Hi Mom"
 		$that = $(this);
 
 		$that.siblings('span').text('');
@@ -157,7 +154,6 @@ jQuery(function($) {
 	$(document).on( 'click' , '.layers-regular-uploader' , function(e){
 		e.preventDefault();
 
-		// "Hi Mom"
  		$that = $(this);
 
 		// If the media frame already exists, reopen it.
@@ -202,7 +198,6 @@ jQuery(function($) {
 	$(document).on( 'click', '.layers-background-selector li' , function(e){
 		e.preventDefault();
 
-		// "Hi Mom"
 		$that = $(this);
 
 		$type = $that.data('type');
@@ -293,7 +288,6 @@ jQuery(function($) {
 	*/
 	$( document ).on( 'click' , '.layers-tabs li' , function(e){
 		e.preventDefault();
-		// "Hi Mom"
 		$that = $(this);
 
 		// Get the Tab Index
@@ -314,9 +308,15 @@ jQuery(function($) {
 	/**
 	* 7 - Design Controller toggles
 	*/
+  $( document ).on( 'click', '.widget-inside', function(e) {
+    var eventTarget = $(e.target);
+		// close any pop-ups that arent the target of the current click
+		$('.layers-visuals-item.layers-active' ).not( eventTarget.closest('.layers-visuals-item') ).removeClass( 'layers-active' );
+
+  });
+ 
 	$( document ).on( 'click' , '.widget .layers-visuals-wrapper li.layers-visuals-item a.layers-icon-wrapper' , function(e){
 		e.preventDefault();
-		// "Hi Mom"
 		$that = $(this);
 
 		// Close siblings
@@ -327,7 +327,6 @@ jQuery(function($) {
 	});
 
 	$( document ).on( 'click' , '.widget .layers-visuals-wrapper li.layers-visuals-item label.layers-icon-wrapper' , function(e){
-		// "Hi Mom"
 		$that = $(this);
 
  		// Get the input value
@@ -348,7 +347,6 @@ jQuery(function($) {
 
 
 	$( document ).on( 'click' , '[id^="layers-customize"] .layers-visuals-item' , function(e){
-		// "Hi Mom"
 		$that = $(this);
 
 		// Toggle active state
@@ -374,7 +372,6 @@ jQuery(function($) {
 	* 9 - Widget Focussing
 	*/
 	$( document ).on( 'click focus' , '.control-panel-content .widget-rendered' , function(e){
-		// "Hi Mom"
 		$that = $(this);
 		if( !$that.hasClass( 'expanded' ) ){
 
@@ -409,7 +406,6 @@ jQuery(function($) {
 
 	layers_enqueue_init( function(){
 		$( '.editible' ).each( function(){
-			// "Hi Mom"
 			var $that = $(this);
 
 			// Set the ID for this element

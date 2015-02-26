@@ -18,7 +18,6 @@ jQuery(document).ready(function($) {
 	$(document).on( 'click' , '#layers_toggle_builder a', function(e){
 		e.preventDefault();
 
-		// "Hi Mom"
 		$that = jQuery(this);
 
 		// Submit form
@@ -28,7 +27,6 @@ jQuery(document).ready(function($) {
 	});
 
 	$(document).on( 'change' , '#page_template', function(){
-		// "Hi Mom"
 		$that = jQuery(this);
 
 		$non_layers_boxes = '#postdivrich, #postbox-container-2, #postimagediv';

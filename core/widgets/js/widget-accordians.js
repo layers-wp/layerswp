@@ -74,7 +74,6 @@
 	$( document ).on( 'click' , '#layers-widget-peep' , function(e){
 		e.preventDefault();
 
-		// "Hi Mom"
 		var $that = $(this);
 
 		var $widget_content = $that.closest( '.widget-content' );

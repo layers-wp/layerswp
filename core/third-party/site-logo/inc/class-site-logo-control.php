@@ -1,10 +1,12 @@
 <?php
+
 /**
  * Custom logo uploader control for the Customizer.
  *
  * @package Jetpack
  */
 class Site_Logo_Image_Control extends WP_Customize_Control {
+
 	/**
 	 * Constructor for our custom control.
 	 *
@@ -16,12 +18,12 @@ class Site_Logo_Image_Control extends WP_Customize_Control {
 	public function __construct( $wp_customize, $control_id, $args = array() ) {
 		// declare these first so they can be overridden
 		$this->l10n = array(
-			'upload' =>      __( 'Add logo' , 'layerswp' ),
-			'set' =>         __( 'Set as logo' , 'layerswp' ),
-			'choose' =>      __( 'Choose logo' , 'layerswp' ),
-			'change' =>      __( 'Change logo' , 'layerswp' ),
-			'remove' =>      __( 'Remove logo' , 'layerswp' ),
-			'placeholder' => __( 'No logo set' , 'layerswp' ),
+			'upload' => __( 'Add logo', 'layerswp' ),
+			'set' => __( 'Set as logo', 'layerswp' ),
+			'choose' => __( 'Choose logo', 'layerswp' ),
+			'change' => __( 'Change logo', 'layerswp' ),
+			'remove' => __( 'Remove logo', 'layerswp' ),
+			'placeholder' => __( 'No logo set', 'layerswp' ),
 		);
 
 		$this->directory_uri = LAYERS_TEMPLATE_URI . '/core/third-party/site-logo/';
@@ -58,7 +60,7 @@ class Site_Logo_Image_Control extends WP_Customize_Control {
 
 		// Enqueue our control script and styles.
 		wp_enqueue_style( 'site-logo-control', $this->directory_uri . 'css/site-logo-control.css' );
-		wp_enqueue_script( 'site-logo-control',$this->directory_uri . 'js/site-logo-control.js', array( 'media-views', 'customize-controls', 'underscore' ), '', true );
+		wp_enqueue_script( 'site-logo-control', $this->directory_uri . 'js/site-logo-control.js', array( 'media-views', 'customize-controls', 'underscore' ), '', true );
 	}
 
 	/**
@@ -93,18 +95,18 @@ class Site_Logo_Image_Control extends WP_Customize_Control {
 
 		// Control title
 		printf(
-			'<span class="customize-control-title" data-l10n="%s" data-mime="%s">%s</span>',
-			esc_attr( $l10n ),
-			esc_attr( $this->mime_type ),
-			esc_html( $this->label )
+			'<span class="customize-control-title" data-l10n="%s" data-mime="%s">%s</span>', esc_attr( $l10n ), esc_attr( $this->mime_type ), esc_html( $this->label )
 		);
 
 		// Control description
-		if ( ! empty( $this->description ) ) : ?>
+		if ( !empty( $this->description ) ) :
+			?>
 			<span class="description customize-control-description"><?php echo $this->description; ?></span>
 		<?php endif; ?>
 
 		<div class="current"></div>
 		<div class="actions"></div>
-	<?php }
+		<?php
+	}
+
 }

@@ -32,13 +32,13 @@ get_header();
 
 			<ul class="products row">
 				<?php while ( have_posts() ) : the_post(); ?>
-		<?php woocommerce_get_template_part( 'content', 'product' ); ?>
-			<?php endwhile; ?>
+					<?php woocommerce_get_template_part( 'content', 'product' ); ?>
+				<?php endwhile; ?>
 			</ul>
 
 			<?php layers_pagination(); ?>
 
-		<?php woocommerce_product_loop_end(); ?>
+			<?php woocommerce_product_loop_end(); ?>
 
 		</section>
 	<?php endif; ?>

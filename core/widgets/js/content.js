@@ -65,7 +65,7 @@ jQuery(document).ready(function($){
 
 		// Confirmation message @TODO: Make JS confirmation column
 
-		var $remove_column = confirm( contentwidgeti8n.confirm_message );
+		var $remove_column = confirm( contentwidgeti18n.confirm_message );
 
 		if( false === $remove_column ) return;
 

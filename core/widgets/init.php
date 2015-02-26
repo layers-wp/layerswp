@@ -186,7 +186,7 @@ class Layers_Widgets {
 			LAYERS_VERSION,
 			true
 		);
-		wp_localize_script( LAYERS_THEME_SLUG . '-admin-slider-widget' , 'sliderwidgeti8n', array(
+		wp_localize_script( LAYERS_THEME_SLUG . '-admin-slider-widget' , 'sliderwidgeti18n', array(
 			'confirm_message' => __( 'Are you sure you want to remove this slide?' , 'layerswp' )
 		) );
 
@@ -198,7 +198,7 @@ class Layers_Widgets {
 			LAYERS_VERSION,
 			true
 		);
-		wp_localize_script( LAYERS_THEME_SLUG . '-admin-content-widget' , 'contentwidgeti8n', array(
+		wp_localize_script( LAYERS_THEME_SLUG . '-admin-content-widget' , 'contentwidgeti18n', array(
 			'confirm_message' => __( 'Are you sure you want to remove this column?' , 'layerswp' )
 		) );
 

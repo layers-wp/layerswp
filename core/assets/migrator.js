@@ -131,7 +131,7 @@ jQuery(document).ready(function($){
 			// Read the file JSON
 			$.getJSON( attachment.url, function( import_data ){
 
-				jQuery( '#layers-page-import-button' ).text( migratori8n.importing_message ).addClass( 'btn-link' );
+				jQuery( '#layers-page-import-button' ).text( migratori18n.importing_message ).addClass( 'btn-link' );
 
 				// Set the attributes to send to the importer
 				var $page_data = {
@@ -147,7 +147,7 @@ jQuery(document).ready(function($){
 					function(data){
 						// Upon completion update the import button
 						jQuery( '#layers-page-import-button' ).fadeOut( 500, function() {
-							jQuery(this).text( migratori8n.complete_message ).fadeIn().attr('disabled','disabled');
+							jQuery(this).text( migratori18n.complete_message ).fadeIn().attr('disabled','disabled');
 						} ).closest( '.layers-column' ).addClass( 'layers-success' );
 					}
 				);
@@ -188,7 +188,7 @@ jQuery(document).ready(function($){
 			function(data){
 				$results = $.parseJSON( data );
 
-				$a = $('<a />').attr('class' , 'layers-button btn-link' ).attr( 'href' , $results.page_location ).text( migratori8n.duplicate_complete_message );
+				$a = $('<a />').attr('class' , 'layers-button btn-link' ).attr( 'href' , $results.page_location ).text( migratori18n.duplicate_complete_message );
 				jQuery( '#layers-page-duplicate-button' ).closest( '.layers-column' ).addClass( 'layers-success' );
 				jQuery( '#layers-page-duplicate-button' ).replaceWith( $a );
 			}

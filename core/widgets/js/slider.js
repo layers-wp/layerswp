@@ -64,7 +64,7 @@ jQuery(document).ready(function($){
 		var $that = $(this);
 
 		// Confirmation message @TODO: Make JS confirmation module
-		var $remove_slide = confirm( sliderwidgeti8n.confirm_message );
+		var $remove_slide = confirm( sliderwidgeti18n.confirm_message );
 
 		if( false === $remove_slide ) return;
 

@@ -406,7 +406,7 @@ if( ! function_exists( 'layers_admin_scripts' ) ) {
 
 		wp_localize_script(
 			LAYERS_THEME_SLUG . '-admin-migrator',
-			'migratori8n',
+			'migratori18n',
 			array(
 				'loading_message' => __( 'Be patient while we import the widget data and images.' , 'layerswp' ),
 				'complete_message' => __( 'Import Complete' , 'layerswp' ),
@@ -446,7 +446,7 @@ if( ! function_exists( 'layers_admin_scripts' ) ) {
 
 		wp_localize_script(
 			LAYERS_THEME_SLUG . '-admin-onboarding' ,
-			'onboardingi8n',
+			'onboardingi18n',
 			array(
 				'step_saving_message' => __( 'Saving...' , 'layerswp' ),
 				'step_done_message' => __( 'Done!' , 'layerswp' )

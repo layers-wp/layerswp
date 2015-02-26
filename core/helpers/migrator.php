@@ -164,7 +164,7 @@ class Layers_Widget_Migrator {
 
 				global $post;
 				$_preset = array();
-				$thumb_url = get_post_thumbnail_id() ? wp_get_attachment_thumb_url(get_post_thumbnail_id()) : NULL;
+				$thumb_url = get_post_thumbnail_id() ? wp_get_attachment_url(get_post_thumbnail_id()) : NULL;
 
 				$_preset[ 'custom-' . $post->post_name ] = array(
 					'title' => $post->post_title,

@@ -91,7 +91,6 @@ jQuery(function($) {
     $(document).on( 'click' , '[data-toggle^="#"]'  , function(e){
         e.preventDefault();
 
-        // "Hi Mom"
         $that = $(this);
 
         // Setup target ID
@@ -152,7 +151,7 @@ jQuery(function($) {
     *
 	* Target your .container, .wrapper, .post, etc.
     */
-	
+
 	$(".media-image, .thumbnail-media, .widget.slide .image-container").fitVids();
 
 }(jQuery));

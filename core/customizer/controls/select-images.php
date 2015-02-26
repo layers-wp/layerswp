@@ -1,4 +1,5 @@
-<?php  /**
+<?php
+/**
  * Select Image
  *
  * This file is used to register and display the custom Layers Select Image
@@ -6,8 +7,7 @@
  * @package Layers
  * @since Layers 1.0.0
  */
-
-if( !class_exists( 'Layers_Customize_Select_Image_Control' ) ) {
+if ( !class_exists( 'Layers_Customize_Select_Image_Control' ) ) {
 
 	class Layers_Customize_Select_Image_Control extends Layers_Customize_Control {
 
@@ -17,12 +17,13 @@ if( !class_exists( 'Layers_Customize_Select_Image_Control' ) ) {
 
 			$form_elements = new Layers_Form_Elements();
 
-			$values = false; ?>
+			$values = false;
+			?>
 
 			<div id="layers-customize-control-<?php echo esc_attr( $this->id ); ?>" class="layers-customize-control layers-customize-control-<?php echo esc_attr( str_replace( 'layers-', '', $this->type ) ); ?>" <?php echo $this->get_linked_data(); ?> >
 
 				<span class="customize-control-title">
-					<?php echo esc_html( $this->label ); ?>
+			<?php echo esc_html( $this->label ); ?>
 				</span>
 
 				<div class="layers-form-item">
@@ -30,16 +31,18 @@ if( !class_exists( 'Layers_Customize_Select_Image_Control' ) ) {
 						<label class="layers-form-row"><?php echo $this->subtitle; ?></label>
 					<?php endif; ?>
 
-					<?php echo $form_elements->input(
+					<?php
+					echo $form_elements->input(
 						array(
 							'type' => 'image',
-							'label' => __( 'Choose Background' , 'layerswp' ),
+							'label' => __( 'Choose Background', 'layerswp' ),
 							'name' => '',
-							'id' =>  $this->id,
+							'id' => $this->id,
 							'value' => ( isset( $values['background']['image'] ) ) ? $values['background']['image'] : $this->value(),
 							'data' => $this->get_customize_data(),
 						)
-					); ?>
+					);
+					?>
 				</div>
 
 				<?php if ( '' != $this->description ) : ?>
@@ -51,5 +54,7 @@ if( !class_exists( 'Layers_Customize_Select_Image_Control' ) ) {
 			</div>
 			<?php
 		}
+
 	}
+
 } // !class_exists( 'Layers_Customize_Select_Image_Control' )

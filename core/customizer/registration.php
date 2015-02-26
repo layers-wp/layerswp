@@ -21,7 +21,10 @@ class Layers_Customizer_Regsitrar {
 	*  Initiator
 	*/
 
-	public static function init(){
+	public static function get_instance(){
+		if ( ! isset( self::$instance ) ) {
+			self::$instance = new Layers_Customizer_Regsitrar();
+		}
 		return self::$instance;
 	}
 
@@ -40,7 +43,12 @@ class Layers_Customizer_Regsitrar {
 
 		// Grab the customizer config
 		$this->config = new Layers_Customizer_Config();
+	}
 
+	/**
+	 * Register the panels and sections based on this instance's config
+	 */
+	public function init() {
 		// Start registration with the panels & sections
 		$this->register_panels( $this->config->panels() );
 		$this->register_sections ( $this->config->sections() );

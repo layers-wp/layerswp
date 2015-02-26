@@ -17,7 +17,10 @@ class Layers_Post_Types {
 	*  Initiator
 	*/
 
-	public static function init(){
+	public static function get_instance(){
+		if ( ! isset( self::$instance ) ) {
+			self::$instance = new Layers_Post_Types();
+		}
 		return self::$instance;
 	}
 
@@ -26,6 +29,9 @@ class Layers_Post_Types {
 	*/
 
 	public function __construct() {
+	}
+
+	public function init() {
 
 		foreach ( $this->get_post_types() as $post_type_key => $post_type_details ) {
 

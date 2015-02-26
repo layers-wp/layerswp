@@ -249,7 +249,7 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 							watchActiveIndex: true,
 							loop: true
 							<?php if( isset( $widget['autoplay_slides'] ) && isset( $widget['slide_time'] ) && is_numeric( $widget['slide_time'] ) ) {?>, autoplay: <?php echo ($widget['slide_time']*1000); ?><?php }?>
-							<?php if( isset( $wp_customize ) && ( strlen( $widget[ 'slide_ids' ] ) > strlen( get_option( $this->get_field_id( 'slider' ) . '_slide_ids' ) ) ) ) { ?>,initialSlide: <?php echo count( explode( ',', $widget['slide_ids']) ) - 1; ?><?php } ?>
+							<?php if( '' != get_option( $this->get_field_id( 'slider' ) . '_slide_ids' ) && isset( $wp_customize ) && ( strlen( $widget[ 'slide_ids' ] ) > strlen( get_option( $this->get_field_id( 'slider' ) . '_slide_ids' ) ) ) ) { ?>,initialSlide: <?php echo count( explode( ',', $widget['slide_ids']) ) - 1; ?><?php } ?>
 						});
 
 						<?php if( 1 < count( $widget[ 'slides' ] ) ) { ?>
@@ -296,6 +296,11 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 					}
 				} // foreach checkboxes
 			} // if checkboxes
+
+			// Don't break the slider when
+			if ( !isset( $new_instance['slides'] ) ) {
+				$new_instance['slides'] = array();
+			}
 
 			return $new_instance;
 		}

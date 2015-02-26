@@ -11,18 +11,23 @@ class Layers_Options_Panel {
 
 	private static $instance;
 
+	public $page;
+
+	public $options_panel_dir;
+
 	/**
 	*  Initiator
 	*/
-
-	public static function init(){
+	public static function get_instance(){
+		if ( ! isset( self::$instance ) ) {
+			self::$instance = new Layers_Onboarding_Ajax();
+		}
 		return self::$instance;
 	}
 
 	/**
 	*  Constructor
 	*/
-
 	public function __construct() {
 
 		global $pagenow;
@@ -31,10 +36,14 @@ class Layers_Options_Panel {
 		$this->options_panel_dir = LAYERS_TEMPLATE_DIR . '/core/options-panel/';
 
 		// Setup the partial var
-		$page =  str_replace( LAYERS_THEME_SLUG . '-' , '', $_GET[ 'page' ] );
+		$this->page =  str_replace( LAYERS_THEME_SLUG . '-' , '', $_GET[ 'page' ] );
+
+	}
+
+	public function init() {
 
 		// Load template
-		$this->body( $page );
+		$this->body( $this->page );
 
 	}
 

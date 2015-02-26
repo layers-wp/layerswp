@@ -242,7 +242,7 @@ class Layers_Design_Controller {
 			)
 		);
 
-		$this->render_control( $key, apply_filters( 'layerswp_layout_component_args', $args, $key, $this->widget, $this->values ) );
+		$this->render_control( $key, apply_filters( 'layerswp_layout_component_args', $args, $key, $this->type, $this->widget, $this->values ) );
 	}
 
 	/**
@@ -283,7 +283,7 @@ class Layers_Design_Controller {
 			)
 		);
 
-		$this->render_control( $key, apply_filters( 'layerswp_liststyle_component_args', $args, $key, $this->widget, $this->values ) );
+		$this->render_control( $key, apply_filters( 'layerswp_liststyle_component_args', $args, $key, $this->type, $this->widget, $this->values ) );
 	}
 
 	/**
@@ -334,7 +334,7 @@ class Layers_Design_Controller {
 			)
 		);
 
-		$this->render_control( $key, apply_filters( 'layerswp_columns_component_args', $args, $key, $this->widget, $this->values ) );
+		$this->render_control( $key, apply_filters( 'layerswp_columns_component_args', $args, $key, $this->type, $this->widget, $this->values ) );
 	}
 
 	/**
@@ -376,7 +376,7 @@ class Layers_Design_Controller {
 			)
 		);
 
-		$this->render_control( $key, apply_filters( 'layerswp_textalign_component_args', $args, $key, $this->widget, $this->values ) );
+		$this->render_control( $key, apply_filters( 'layerswp_textalign_component_args', $args, $key, $this->type, $this->widget, $this->values ) );
 	}
 
 	/**
@@ -417,7 +417,7 @@ class Layers_Design_Controller {
 			),
 		);
 
-		$this->render_control( $key, apply_filters( 'layerswp_imagealign_component_args', $args, $key, $this->widget, $this->values ) );
+		$this->render_control( $key, apply_filters( 'layerswp_imagealign_component_args', $args, $key, $this->type, $this->widget, $this->values ) );
 	}
 
 	/**
@@ -476,7 +476,7 @@ class Layers_Design_Controller {
 			),
 		);
 
-		$this->render_control( $key, apply_filters( 'layerswp_featuredimage_component_args', $args, $key, $this->widget, $this->values ) );
+		$this->render_control( $key, apply_filters( 'layerswp_featuredimage_component_args', $args, $key, $this->type, $this->widget, $this->values ) );
 	}
 
 	/**
@@ -518,7 +518,7 @@ class Layers_Design_Controller {
 			),
 		);
 
-		$this->render_control( $key, apply_filters( 'layerswp_imageratios_component_args', $args, $key, $this->widget, $this->values ) );
+		$this->render_control( $key, apply_filters( 'layerswp_imageratios_component_args', $args, $key, $this->type, $this->widget, $this->values ) );
 	}
 
 	/**
@@ -581,7 +581,7 @@ class Layers_Design_Controller {
 			)
 		);
 
-		$this->render_control( $key, apply_filters( 'layerswp_font_component_args', $args, $key, $this->widget, $this->values ) );
+		$this->render_control( $key, apply_filters( 'layerswp_font_component_args', $args, $key, $this->type, $this->widget, $this->values ) );
 	}
 
 	/**
@@ -664,7 +664,7 @@ class Layers_Design_Controller {
 			)
 		);
 
-		$this->render_control( $key, apply_filters( 'layerswp_background_component_args', $args, $key, $this->widget, $this->values ) );
+		$this->render_control( $key, apply_filters( 'layerswp_background_component_args', $args, $key, $this->type, $this->widget, $this->values ) );
 	}
 
 	/**
@@ -721,7 +721,7 @@ class Layers_Design_Controller {
 			),
 		);
 
-		$this->render_control( $key, apply_filters( 'layerswp_advanced_component_args', $args, $key, $this->widget, $this->values ) );
+		$this->render_control( $key, apply_filters( 'layerswp_advanced_component_args', $args, $key, $this->type, $this->widget, $this->values ) );
 	}
 
 	/**
@@ -740,7 +740,7 @@ class Layers_Design_Controller {
 			return;
 
 		// Render Control
-		$this->render_control( $key, apply_filters( 'layerswp_custom_component_args', $args, $key, $this->widget, $this->values ) );
+		$this->render_control( $key, apply_filters( 'layerswp_custom_component_args', $args, $key, $this->type, $this->widget, $this->values ) );
 	}
 
 }

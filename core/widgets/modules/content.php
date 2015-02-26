@@ -324,25 +324,16 @@ if ( !class_exists( 'Layers_Content_Widget' ) ) {
 			// Parse $instance
 			$instance = wp_parse_args( $instance, $instance_defaults );
 			extract( $instance, EXTR_SKIP );
-			?>
-
-			<!-- Form HTML Here -->
-			<?php
-			$this->design_bar(
-				'side', // CSS Class Name
-				array(
-				'name' => $this->get_field_name( 'design' ),
-				'id' => $this->get_field_id( 'design' ),
-				), // Widget Object
-				$instance, // Widget Values
-				array(
+			
+			$components = apply_filters( 'layerswp_content_widget_design_bar_components', array(
 				'layout',
 				'custom',
 				'fonts',
 				'background',
 				'advanced'
-				), // Standard Components
-				array(
+			) );
+
+			$custom_components = apply_filters( 'layerswp_content_widget_design_bar_custom_components', array(
 				'liststyle' => array(
 					'icon-css' => 'icon-list-masonry',
 					'label' => 'List Style',
@@ -350,24 +341,34 @@ if ( !class_exists( 'Layers_Content_Widget' ) ) {
 					'elements' => array(
 						'liststyle' => array(
 							'type' => 'select-icons',
-							'name' => $this->get_field_name( 'design' ) . '[liststyle]',
-							'id' => $this->get_field_name( 'design-liststyle' ),
-							'value' => ( isset( $design['liststyle'] ) ) ? $design['liststyle'] : NULL,
+							'name' => $this->get_field_name( 'design' ) . '[liststyle]' ,
+							'id' =>  $this->get_field_name( 'design-liststyle' ),
+							'value' => ( isset( $design[ 'liststyle' ] ) ) ? $design[ 'liststyle' ] : NULL,
 							'options' => array(
-								'list-grid' => __( 'Grid', 'layerswp' ),
-								'list-masonry' => __( 'Masonry', 'layerswp' )
+								'list-grid' => __( 'Grid' , 'layerswp' ),
+								'list-masonry' => __( 'Masonry' , 'layerswp' )
 							)
 						),
 						'gutter' => array(
 							'type' => 'checkbox',
-							'label' => __( 'Gutter', 'layerswp' ),
-							'name' => $this->get_field_name( 'design' ) . '[gutter]',
-							'id' => $this->get_field_name( 'design-gutter' ),
+							'label' => __( 'Gutter' , 'layerswp' ),
+							'name' => $this->get_field_name( 'design' ) . '[gutter]' ,
+							'id' =>  $this->get_field_name( 'design-gutter' ),
 							'value' => ( isset( $design['gutter'] ) ) ? $design['gutter'] : NULL
 						)
 					)
 				)
-				)
+			) );
+
+			$this->design_bar(
+				'side', // CSS Class Name
+				array(
+				'name' => $this->get_field_name( 'design' ),
+				'id' => $this->get_field_id( 'design' ),
+				), // Widget Object
+				$instance, // Widget Values
+				$components, // Standard Components
+				$custom_components
 			);
 			?>
 			<div class="layers-container-large" id="layers-column-widget-<?php echo $this->number; ?>">

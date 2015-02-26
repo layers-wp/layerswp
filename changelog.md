@@ -25,6 +25,7 @@ Security and code quality updates
 * **Tweak** - Changed in-line styles and scripts to always use admin_print_styles and admin_print_scripts hooks
 * **Enhancement** - Added customizer-preview.js for scripts executed in the customizer preview iframe only
 * **Tweak** - Moved fouc rendering issue fix from in-line to the customizer-preview.js
+* **Tweak** - Apply class to Slider for layout eg slider-layout-full-screen
 
 
 ## 1.0.3

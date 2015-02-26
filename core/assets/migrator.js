@@ -240,11 +240,9 @@ console.log( attachment );
     });
 
     $(document).on( 'click', '.layers_page_layers-add-new-page .layers-product .menu-icon', function(e){
-        e.stopPropagation();
-        e.preventDefault();
-
         var $menu = $(this).siblings('.edit-preset-menu');
         $menu.toggleClass('layers-hide');
+        return false;
     });
 
     $(document).on( 'click', '.layers_page_layers-add-new-page .layers-product .edit-preset', function(e){
@@ -252,9 +250,6 @@ console.log( attachment );
     });
 
     $(document).on( 'click', '.layers_page_layers-add-new-page .layers-product .delete-preset', function(e){
-        e.stopPropagation();
-        e.preventDefault();
-
         var conf = window.confirm(migratori8n.confirm_delete_message);
 
         if ( conf ) {
@@ -280,6 +275,7 @@ console.log( attachment );
                 }
             );
         }
+        return false;
     });
 
     var pageQueryVar = getParameterByName('page');

@@ -147,7 +147,7 @@ object{
         margin: auto;
     }
     .no-gutter{
-        margin-right: 0;
+        margin-right: 0 !important;
     }
 
     /*---------------------------*/

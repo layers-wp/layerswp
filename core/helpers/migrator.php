@@ -878,6 +878,7 @@ class Layers_Widget_Migrator {
 			wp_send_json_success();
 		}
 
+
 		wp_send_json_error();
 	}
 

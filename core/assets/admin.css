@@ -1716,6 +1716,7 @@ input[type=text].layers-color-selector.wp-color-picker{
     border-left:  4px solid #A3C567;
 }
 .layers-ajax-error {
+    position: relative;
     display: inline-block;
     padding: 5px 10px;
     background: rgba(170,0,0,0.05);
@@ -1724,6 +1725,20 @@ input[type=text].layers-color-selector.wp-color-picker{
     font-weight: bold;
     color: #a00;
     border-left:  4px solid #a00;   
+}
+.layers-product.layers-ajax-error {
+    padding: 0;
+}
+.layers-ajax-error .error-message {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 10px;
+    background: rgba(170,0,0,0.1);
+    color: #000;
+    line-height: 1.5;
 }
 
 

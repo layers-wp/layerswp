@@ -153,7 +153,7 @@ if ( !class_exists( 'Layers_Contact_Widget' ) ) {
 								}
 								?>
 								<div class="layers-map" style="height: <?php echo esc_attr( $widget['map_height'] ); ?>px; overflow: hidden;">
-									<img src="https://maps.googleapis.com/maps/api/staticmap?center=<?php echo esc_attr( $map_center ); ?>&zoom=11&size=1960x<?php echo $widget['map_height']; ?>&scale=2&markers=color:red|<?php echo esc_attr( $map_center ); ?>" class="google-map-img" />
+									<img src="//maps.googleapis.com/maps/api/staticmap?center=<?php echo esc_attr( $map_center ); ?>&zoom=11&size=1960x<?php echo $widget['map_height']; ?>&scale=2&markers=color:red|<?php echo esc_attr( $map_center ); ?>" class="google-map-img" />
 								</div>
 							<?php } else { ?>
 								<div class="layers-map" style="height: <?php echo esc_attr( $widget['map_height'] ); ?>px;" <?php if ( '' != $widget['google_maps_location'] ) { ?>data-location="<?php echo $widget['google_maps_location']; ?>"<?php } ?> <?php if ( '' != $widget['google_maps_long_lat'] ) { ?>data-longlat="<?php echo $widget['google_maps_long_lat']; ?>"<?php } ?>></div>
@@ -165,7 +165,7 @@ if ( !class_exists( 'Layers_Contact_Widget' ) ) {
 
 			<?php
 			if ( !isset( $wp_customize ) ) {
-				wp_enqueue_script( LAYERS_THEME_SLUG . " -map-api", "http://maps.googleapis.com/maps/api/js?sensor=false" );
+				wp_enqueue_script( LAYERS_THEME_SLUG . " -map-api", "//maps.googleapis.com/maps/api/js?sensor=false" );
 				wp_enqueue_script( LAYERS_THEME_SLUG . "-map-trigger", get_template_directory_uri() . "/core/widgets/js/maps.js", array( "jquery" ) );
 			} // Enqueue the map js 
 			?>

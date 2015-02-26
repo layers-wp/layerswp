@@ -13,7 +13,7 @@ if ( !class_exists( 'Layers_Widget' ) ) {
 	class Layers_Widget extends WP_Widget {
 
 		/**
-		 * Check option with isset() and echo it out if it exists, if it does not exist, return false
+		 * Check option with isset() and return it if it exists, else return false
 		 *
 		 * @param  	array		$widget 	Widget Object
 		 * @param  	varchar 	$option 	Widget option to check on

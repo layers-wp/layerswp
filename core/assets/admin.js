@@ -314,6 +314,13 @@ jQuery(function($) {
 	/**
 	* 7 - Design Controller toggles
 	*/
+  $( document ).on( 'click', '.widget-inside', function(e) {
+    var eventTarget = $(e.target);
+		// close any pop-ups that arent the target of the current click
+		$('.layers-visuals-item.layers-active' ).not( eventTarget.closest('.layers-visuals-item') ).removeClass( 'layers-active' );
+
+  });
+ 
 	$( document ).on( 'click' , '.widget .layers-visuals-wrapper li.layers-visuals-item a.layers-icon-wrapper' , function(e){
 		e.preventDefault();
 		// "Hi Mom"

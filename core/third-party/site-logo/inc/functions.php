@@ -1,10 +1,10 @@
 <?php
+
 /**
  * Functions and template tags for using site logos.
  *
  * @package Jetpack
  */
-
 /**
  * Retrieve the site logo URL or ID (URL by default). Pass in the string 'id' for ID.
  *
@@ -14,12 +14,13 @@
  * @return mixed The URL or ID of our site logo, false if not set
  * @since 1.0
  */
-if( !function_exists( 'jetpack_get_site_logo' ) ) {
+if ( !function_exists( 'jetpack_get_site_logo' ) ) {
+
 	function jetpack_get_site_logo( $show = 'url' ) {
 		$logo = site_logo()->logo;
 
 		// Return false if no logo is set
-		if ( ! isset( $logo['id'] ) || 0 == $logo['id'] ) {
+		if ( !isset( $logo['id'] ) || 0 == $logo['id'] ) {
 			return false;
 		}
 
@@ -30,6 +31,7 @@ if( !function_exists( 'jetpack_get_site_logo' ) ) {
 			return esc_url_raw( set_url_scheme( $logo['url'] ) );
 		}
 	}
+
 }
 
 /**
@@ -38,10 +40,12 @@ if( !function_exists( 'jetpack_get_site_logo' ) ) {
  * @uses get_option
  * @return boolean True if there is an active logo, false otherwise
  */
-if( !function_exists( 'jetpack_has_site_logo' ) ) {
+if ( !function_exists( 'jetpack_has_site_logo' ) ) {
+
 	function jetpack_has_site_logo() {
 		return site_logo()->has_site_logo();
 	}
+
 }
 
 /**
@@ -59,40 +63,34 @@ if( !function_exists( 'jetpack_has_site_logo' ) ) {
  * @uses apply_filters()
  * @since 1.0
  */
-if( !function_exists( 'jetpack_the_site_logo' ) ) {
+if ( !function_exists( 'jetpack_the_site_logo' ) ) {
+
 	function jetpack_the_site_logo() {
 		// $logo = site_logo()->logo;
 		$logo = get_option( 'site_logo' );
 		$size = site_logo()->theme_size();
 
 		// Bail if no logo is set. Leave a placeholder if we're in the Customizer, though (needed for the live preview).
-		if ( ! jetpack_has_site_logo() ) {
+		if ( !jetpack_has_site_logo() ) {
 			if ( jetpack_is_customize_preview() ) {
-				printf( '<a href="%1$s" class="site-logo-link"><img class="site-logo" src="%2$s" data-size="%3$s" /></a>',
-					esc_url( home_url( '/' ) ),
-					esc_url( $logo['url'] ),
-					esc_attr( $size )
+				printf( '<a href="%1$s" class="site-logo-link"><img class="site-logo" src="%2$s" data-size="%3$s" /></a>', esc_url( home_url( '/' ) ), esc_url( $logo['url'] ), esc_attr( $size )
 				);
 			}
 			return;
 		}
 
 		// We have a logo. Logo is go.
-		$html = sprintf( '<a href="%1$s" class="site-logo-link" rel="home">%2$s</a>',
-			esc_url( home_url( '/' ) ),
-			wp_get_attachment_image(
-				$logo['id'],
-				$size,
-				false,
-				array(
-					'class'     => "site-logo attachment-$size",
-					'data-size' => $size,
+		$html = sprintf( '<a href="%1$s" class="site-logo-link" rel="home">%2$s</a>', esc_url( home_url( '/' ) ), wp_get_attachment_image(
+				$logo['id'], $size, false, array(
+			'class' => "site-logo attachment-$size",
+			'data-size' => $size,
 				)
 			)
 		);
 
 		echo apply_filters( 'jetpack_the_site_logo', $html, $logo, $size );
 	}
+
 }
 
 /**
@@ -102,12 +100,14 @@ if( !function_exists( 'jetpack_the_site_logo' ) ) {
  * @global WP_Customize_Manager $wp_customize Customizer instance.
  * @return bool True if the site is being previewed in the Customizer, false otherwise.
  */
-if( !function_exists( 'jetpack_is_customize_preview' ) ) {
+if ( !function_exists( 'jetpack_is_customize_preview' ) ) {
+
 	function jetpack_is_customize_preview() {
 		global $wp_customize;
 
 		return is_a( $wp_customize, 'WP_Customize_Manager' ) && $wp_customize->is_preview();
 	}
+
 }
 
 /**
@@ -116,10 +116,12 @@ if( !function_exists( 'jetpack_is_customize_preview' ) ) {
  *
  * @return string Sanitized string of CSS classes.
  */
-if( !function_exists( 'jetpack_sanitize_header_text_classes' ) ) {
+if ( !function_exists( 'jetpack_sanitize_header_text_classes' ) ) {
+
 	function jetpack_sanitize_header_text_classes( $classes ) {
 		$classes = preg_replace( '/[^A-Za-z0-9\,\ ._-]/', '', $classes );
 
 		return $classes;
 	}
+
 }

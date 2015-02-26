@@ -8,7 +8,6 @@
  * @package Layers
  * @since Layers 1.0.0
  */
-
 class Layers_API {
 
 	private static $instance;

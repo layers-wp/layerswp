@@ -1689,6 +1689,16 @@ input[type=text].layers-color-selector.wp-color-picker{
     color: #A3C567;
     border-left:  4px solid #A3C567;
 }
+.layers-ajax-error {
+    display: inline-block;
+    padding: 5px 10px;
+    background: rgba(170,0,0,0.05);
+    border: 1px solid #a00;
+    border-radius: 3px;
+    font-weight: bold;
+    color: #a00;
+    border-left:  4px solid #a00;   
+}
 
 
 /*---------------------------*/

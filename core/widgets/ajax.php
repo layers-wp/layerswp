@@ -17,7 +17,10 @@ if( !class_exists( 'Layers_Widget_Ajax' ) ) {
 		*  Initiator
 		*/
 
-		public static function init(){
+		public static function get_instance(){
+			if ( ! isset( self::$instance ) ) {
+				self::$instance = new Layers_Custom_Meta();
+			}
 			return self::$instance;
 		}
 
@@ -26,11 +29,12 @@ if( !class_exists( 'Layers_Widget_Ajax' ) ) {
 		*/
 
 		public function __construct() {
-			add_action( 'wp_ajax_layers_slider_widget_actions', array( $this, 'slider_widget_actions' ) );
-
-			add_action( 'wp_ajax_layers_content_widget_actions', array( $this, 'content_widget_actions' ) );
 		}
 
+		public function init() {
+			add_action( 'wp_ajax_layers_slider_widget_actions', array( $this, 'slider_widget_actions' ) );
+			add_action( 'wp_ajax_layers_content_widget_actions', array( $this, 'content_widget_actions' ) );
+		}
 		function slider_widget_actions(){
 
 			if( !check_ajax_referer( 'layers-widget-actions', 'nonce', false ) ) die( 'You threw a Nonce exception' ); // Nonce

@@ -17,7 +17,10 @@ class Layers_Custom_Meta {
 	*  Initiator
 	*/
 
-	public static function init(){
+	public static function get_instance(){
+		if ( ! isset( self::$instance ) ) {
+			self::$instance = new Layers_Custom_Meta();
+		}
 		return self::$instance;
 	}
 
@@ -40,6 +43,10 @@ class Layers_Custom_Meta {
 		// Get post meta
 		$this->custom_meta = $meta_config->meta_data();
 
+	}
+
+	public function init() {
+
 		// Enqueue Styles
 		add_action( 'admin_enqueue_scripts', array( $this, 'admin_enqueue_scripts' ) , 50 );
 		add_action( 'admin_enqueue_scripts', array( $this, 'admin_print_styles' ) , 50 );
@@ -51,7 +58,7 @@ class Layers_Custom_Meta {
 		add_action( 'page_row_actions' , array( $this , 'inline_page_builder_button' ), 10, 2 );
 
 		// Custom Fields
-		add_action( 'add_meta_boxes', array( $this , 'register_post_meta' ) );
+		add_action( 'admin_menu', array( $this , 'register_post_meta' ) );
 		add_action( 'save_post', array( $this , 'save_post_meta' ) );
 		add_action( 'publish_post', array( $this , 'save_post_meta' ) );
 	}
@@ -76,9 +83,7 @@ class Layers_Custom_Meta {
 		);
 
 		// Localize Scripts
-		wp_localize_script( LAYERS_THEME_SLUG . '-admin-meta' , "layers_meta_params", array(
-			'nonce' => wp_create_nonce( 'layers-customizer-actions' )
-		) );
+		wp_localize_script( LAYERS_THEME_SLUG . '-admin-meta' , "layers_meta_params", array( 'ajaxurl' => admin_url( "admin-ajax.php" ) , 'nonce' => wp_create_nonce( 'layers-customizer-actions' ) ) );
 	}
 
 	/**
@@ -103,52 +108,63 @@ class Layers_Custom_Meta {
 		if ( !in_array( $post->post_type, array( 'page' ) ) ) return;
 
 		// Check if we're using the builder for this page
-		$is_builder_used = ( 'builder.php' == basename( get_page_template() ) ) ? true : false; ?>
 
-		<div id="layers_toggle_builder" class="<?php echo (true == $is_builder_used ? '' : 'layers-hide'); ?>">
-			<div  class="postbox layers-push-top">
-				<div class="layers-section-title layers-no-push-bottom layers-content-large">
-					<div class="layers-heading">
-						<?php _e( 'Your page is ready.', 'layerswp' ); ?>
+		$is_builder_used = ( 'builder.php' == basename( get_page_template() ) ) ? true : false;
+
+		printf( '<div id="layers_toggle_builder" class=" %3$s">
+					<div  class="postbox layers-push-top">
+						<div class="layers-section-title layers-no-push-bottom layers-content-large">
+							<div class="layers-heading">
+								%1$s
+							</div>
+							<p class="layers-excerpt">
+								%5$s
+							</p>
+						</div>
+						<div class="layers-button-well clearfix">
+							<a href="%2$s" class="layers-button btn-massive btn-primary btn-full" id="%4$s">%6$s</a>
+						</div>
 					</div>
-					<p class="layers-excerpt">
-						<?php _e( 'You can drag and drop widgets, edit content and tweak the design. Click the button below to see your page come to life.', 'layerswp' ) ?>
-					</p>
-				</div>
-				<div class="layers-button-well clearfix">
-					<a href="<?php echo admin_url() . 'customize.php?url=' . esc_url( get_the_permalink() ) ?>" class="layers-button btn-massive btn-primary btn-full" id="<?php echo ( isset( $post->ID ) ? 'builder-button-' . $post->ID : 'builder-button-' . rand(0,1) ) ?>"><?php _e( 'Edit Your Page', 'layerswp' ) ?></a>
-				</div>
-			</div>
 
-			<div class="layers-row">
+					<div class="layers-row">
 
-				<div class="layers-column layers-span-4 postbox layers-content">
-					<div class="layers-section-title layers-tiny">
-						<h4 class="layers-heading"><?php _e( 'Export Layout', 'layerswp' ) ?></h4>
-						<p class="layers-excerpt"><?php _e( 'Export your layout to a <code>.json</code> file which you can use to upload to another site.', 'layerswp' ) ?></p>
+						<div class="layers-column layers-span-4 postbox layers-content">
+							<div class="layers-section-title layers-tiny">
+								<h4 class="layers-heading">Export Layout</h4>
+								<p class="layers-excerpt">Export your layout to a <code>.json</code> file which you can use to upload to another site.</p>
+							</div>
+							<a href="?post=%8$s&amp;action=edit&amp;layers-export=1" class="layers-button">Export</a>
+						</div>
+
+						<div class="layers-column layers-span-4 postbox layers-content">
+							<div class="layers-section-title layers-tiny">
+								<h4 class="layers-heading">Import Layout</h4>
+								<p class="layers-excerpt"> Upload a layout file (eg. <code>%9$s.json</code>) by clicking the button below.</p>
+							</div>
+							<button class="layers-button" id="layers-page-import-button" data-post-id="%8$s" data-title="Upload .json" data-button_text="Upload &amp; Import">Upload &amp; Import</button>
+						</div>
+
+						<div class="layers-column layers-span-4 postbox layers-content">
+							<div class="layers-section-title layers-tiny">
+								<h4 class="layers-heading">Duplicate Layout</h4>
+								<p class="layers-excerpt">Easily duplicate your layout, settings, text and images in order to get started quickly with a new page.</p>
+							</div>
+							<button href="" class="layers-button" id="layers-page-duplicate-button" data-post-id="%8$s">Duplicate</button>
+						</div>
+
 					</div>
-					<a href="?post=<?php echo get_the_ID() ?>&amp;action=edit&amp;layers-export=1" class="layers-button"><?php _e( 'Export' , 'layerswp' ) ?></a>
-				</div>
-
-				<div class="layers-column layers-span-4 postbox layers-content">
-					<div class="layers-section-title layers-tiny">
-						<h4 class="layers-heading"><?php _e( 'Import Layout' , 'layerswp' ) ?></h4>
-						<p class="layers-excerpt"><?php _e( 'Upload a layout file (eg. ', 'layerswp' ) ?><code><?php echo $post->post_name ?><?php _e( '.json', 'layerswp' ) ?></code><?php _e( ') by clicking the button below.' , 'layerswp' ) ?></p>
-					</div>
-					<button class="layers-button" id="layers-page-import-button" data-post-id="<?php echo get_the_ID(); ?>" data-title="Upload .json" data-button_text="Upload &amp; Import"><?php _e( 'Upload &amp; Import', 'layerswp' ) ?></button>
-				</div>
-
-				<div class="layers-column layers-span-4 postbox layers-content">
-					<div class="layers-section-title layers-tiny">
-						<h4 class="layers-heading"><?php _e( 'Duplicate Layout' , 'layerswp' ) ?></h4>
-						<p class="layers-excerpt"><?php _e( 'Easily duplicate your layout, settings, text and images in order to get started quickly with a new page.' , 'layerswp' ) ?></p>
-					</div>
-					<button href="" class="layers-button" id="layers-page-duplicate-button" data-post-id="<?php echo get_the_ID(); ?>"><?php _e( 'Duplicate' , 'layerswp' ) ?></button>
-				</div>
-
-			</div>
-		</div>
-	<?php }
+				</div>',
+			'Your page is ready.', // %1
+			admin_url() . 'customize.php?url=' . esc_url( get_the_permalink() ), // %2
+			( true == $is_builder_used ? '' : 'layers-hide' ), // %3
+			( isset( $post->ID ) ? 'builder-button-' . $post->ID : 'builder-button-' . rand(0,1) ), // %4,
+			__( 'You can drag and drop widgets, edit content and tweak the design. Click the button below to see your page come to life.' , 'layerswp' ), // %5
+			__( 'Edit Your Page' , 'layerswp' ), // %6
+			get_template_directory_uri(), // %7,
+			get_the_ID(), // %8,
+			$post->post_name // %9,
+		);
+	}
 
 	/**
 	* Page Builder Inline Button
@@ -202,12 +218,10 @@ class Layers_Custom_Meta {
 
 	public function update_page_builder_meta(){
 
-		if( !wp_verify_nonce( $_POST['nonce'], 'layers-customizer-actions' ) ) die( 'You threw a Nonce exception' ); // Nonce
-
 		// Get the Post ID
 		$post_id = $_POST['id'];
 
-		if( 'builder.php' == $_POST[ 'template' ] ){
+		if( isset($_POST[ 'template' ] ) && 'builder.php' == $_POST[ 'template' ] ){
 			update_post_meta( $post_id , '_wp_page_template', $_POST[ 'template' ] );
 		} else {
 			delete_post_meta( $post_id , '_wp_page_template' );
@@ -221,8 +235,8 @@ class Layers_Custom_Meta {
 
 	public function register_post_meta(){
 		// If we have not published the post, don't set a post ID
-		if( isset( $_GET[ 'post' ] ) ) {
-			$post_id = $_GET[ 'post' ];
+		if( isset( $_REQUEST[ 'post' ] ) ) {
+			$post_id = $_REQUEST[ 'post' ];
 		} else {
 			$post_id = NULL;
 		}
@@ -362,17 +376,17 @@ class Layers_Custom_Meta {
 		$nonce_key = '_wp_nonce_' . LAYERS_THEME_SLUG;
 
 		// If there is no nonce to use, can this function
-		if( !isset( $_POST[ $nonce_key ] ) ) return;
+		if( !isset( $_REQUEST[ $nonce_key ] ) ) return;
 
-		$nonce = $_POST[ $nonce_key ];
+		$nonce = $_REQUEST[ $nonce_key ];
 
 		// Form key
 		$form_key = LAYERS_THEME_SLUG;
 
 		// Do some nonce
 		if ( wp_verify_nonce( $nonce, LAYERS_THEME_SLUG . '-post-meta' ) ) {
-			if( isset( $_POST[ $form_key ] ) ) {
-				update_post_meta( $post_id, LAYERS_THEME_SLUG, $_POST[ $form_key ] );
+			if( isset( $_REQUEST[ $form_key ] ) ) {
+				update_post_meta( $post_id, LAYERS_THEME_SLUG, $_REQUEST[ $form_key ] );
 			} // if isset( $this->custom_meta[ $post_type ] )
 		} // if nonce
 	}

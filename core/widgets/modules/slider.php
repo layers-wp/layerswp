@@ -129,7 +129,12 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 			// Slider Class
 			$slider_class = array();
 			if( isset( $widget['design']['layout'] ) && '' != $widget['design']['layout'] ) {
-				$slider_class[] = 'slider-' . $widget['design']['layout']; // eg 'slider-layout-full-screen'
+				// Slider layout eg 'slider-layout-full-screen'
+				$slider_class[] = 'slider-' . $widget['design']['layout'];
+			}
+			if( ! isset( $widget['design']['layout'] ) || ( isset( $widget['design']['layout'] ) && 'layout-full-screen' != $widget['design']['layout'] ) ) {
+				// If slider is not full screen
+				$slider_class[] = 'not-full-screen';
 			}
 			if( 1 == count( $widget[ 'slides' ] ) ) {
 				// If only one slide

@@ -968,6 +968,7 @@ input[type=text].layers-color-selector.wp-color-picker{
         background: #f5f5f5;
         border: 1px solid #ddd;
         border-radius: 3px;
+        max-height: 320px;
         overflow: hidden;
         overflow-y: scroll;
         visibility: hidden;

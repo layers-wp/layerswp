@@ -870,6 +870,9 @@ if ( !function_exists( 'layers_inline_styles' ) ) {
 					$image = wp_get_attachment_image_src( $bg_args['image'], 'full' );
 					$css.= 'background-image: url(\'' . $image[0] . '\');';
 				}
+				if ( isset( $bg_args['opacity'] ) && '' !== $bg_args['opacity'] ) {
+					$css .= 'opacity: ' . $bg_args['opacity'] . '; ';
+				}
 				break;
 
 			case 'margin' :

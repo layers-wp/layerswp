@@ -634,6 +634,13 @@ class Layers_Design_Controller {
 					'repeat-y' => __( 'Repeat Vertical', 'layerswp' )
 				)
 			),
+			'background-opacity' => array(
+				'type' => 'text',
+				'label' => __( 'Opacity', 'layerswp' ),
+				'name' => $this->widget['name'] . '[background][opacity]',
+				'id' => $this->widget['id'] . '-background-opacity',
+				'value' => ( isset( $this->values['background']['opacity'] ) ) ? $this->values['background']['opacity'] : NULL
+			),
 			'background-position' => array(
 				'type' => 'select',
 				'label' => __( 'Position', 'layerswp' ),

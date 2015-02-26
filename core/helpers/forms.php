@@ -578,7 +578,7 @@ class Layers_Form_Elements {
 				$input_props['max'] = ( isset( $input->max ) ) ? 'max="' . esc_attr( $input->max ) . '"' : NULL;
 				$input_props['step'] = ( isset( $input->step ) ) ? 'step="' . esc_attr( $input->step ) . '"' : NULL;
 				?>
-				<input type="number" <?php echo implode( ' ', $input_props ); ?> value="<?php echo esc_attr( $input->value ); ?>" />
+				<input type="range" <?php echo implode( ' ', $input_props ); ?> value="<?php echo esc_attr( $input->value ); ?>" />
 
 				<?php
 				break;

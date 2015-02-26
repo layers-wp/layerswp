@@ -26,7 +26,6 @@ jQuery(document).ready(function($){
 
 function layers_check_address($){
 	jQuery('.layers-map').each(function(){
-		//"Hi Mom"
 		$that = $(this);
 
 		$longlat = ( undefined !== $that.data( 'longlat' ) ) ? $that.data( 'longlat' ) : null;

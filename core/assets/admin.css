@@ -1553,8 +1553,6 @@ input[type=text].layers-color-selector.wp-color-picker{
 .layers-accordions-sortable .layers-accordion-item:hover{
     border-color: #ccc;
 }
-.layers-accordions-sortable .layers-accordion-item:active{
-}
 .layers-accordions-sortable .layers-accordion-title{
     padding: 10px;
     border-top: none;
@@ -2111,9 +2109,6 @@ input[type=radio]:checked + .layers-settings-icon span{
     padding: 0 0 60px;
     margin: 0 0 60px;
     border-bottom: 2px solid #ddd;
-}
-ul#adminmenu a.wp-has-current-submenu:after, ul#adminmenu > li.current > a.current:after{
-    border-right-color: #009DF3;
 }
 #toplevel_page_layers-dashboard .wp-menu-image:before {
     content: "\e62f";

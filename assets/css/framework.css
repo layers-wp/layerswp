@@ -147,7 +147,7 @@ object{
         margin: auto;
     }
     .no-gutter{
-        margin-right: 0;
+        margin-right: 0 !important;
     }
 
     /*---------------------------*/
@@ -1097,19 +1097,32 @@ object{
         vertical-align: middle;
         display: inline-block;
     }
-    .nav li{position: relative;}
-    .nav a{transition: all 0.2s ease-in-out;}
+    .nav li{
+        position: relative;
+    }
+    .nav a{
+        transition: color 0.2s ease-in-out, background 0.2s ease-in-out, border-color 0.2s ease-in-out;
+    }
 
     /*---------------------------*/
     /*- HORIZONTAL NAV ----------*/
-    .nav-horizontal > ul{float: left;}
+    .nav-horizontal > ul{
+        float: left;
+    }
     .nav-horizontal li{
         float: left;
         margin: 0 10px;
     }
-    .nav-horizontal li a{display: block; text-align: center;}
-    .nav-horizontal li a:hover{color: #8f8f8f;}
-    .nav-horizontal .special{padding: 2px 0;}
+    .nav-horizontal li a{
+        display: block;
+        text-align: center;
+    }
+    .nav-horizontal li a:hover{
+        color: #8f8f8f;
+    }
+    .nav-horizontal .special{
+        padding: 2px 0;
+    }
 
     /*---------------------------*/
     /*- HORIZONTAL NAV CENTERED -*/
@@ -1304,6 +1317,7 @@ object{
 /*-------------------------------*/
 /*- COMPONENTS ------------------*/
 /*-------------------------------*/
+
 
     /*---------------------------*/
     /*- BACK TO TOP -------------*/

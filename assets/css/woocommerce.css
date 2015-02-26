@@ -201,12 +201,13 @@ p.stars span a:focus{
 .products{
     overflow: hidden;
 }
-.products li{
+.products .product{
     padding: 20px;
+    margin-bottom: 20px;
     background: #f5f5f5;
     overflow: hidden;
 }
-.products li a:first-child{
+.products .product a:first-child{
     display: block;
 }
 .products .img-wrap{
@@ -220,7 +221,7 @@ p.stars span a:focus{
     font-size: 2.0rem;
     font-weight: 400;
 }
-.products li .star-rating{
+.products .product .star-rating{
     position: absolute;
     top: 8px;
     right: 10px;
@@ -242,13 +243,13 @@ p.stars span a:focus{
     margin-bottom: 15px;
     font-size: 2.4rem;
 }
-.related.products li.product{
+.related.products .product{
     float: left;
     width: 32%;
     margin-right: 2%;
     position: relative;
 }
-.related.products li.product:nth-child(3n+3){
+.related.products .product:nth-child(3n+3){
     margin-right: 0;
 }
 
@@ -481,7 +482,7 @@ p.stars span a:focus{
 
 /*---------------------------*/
 /*- SHOPPING CART -----------*/
-    
+
     table.shop_table{
         margin-bottom: 20px;
     }

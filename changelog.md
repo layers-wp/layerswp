@@ -5,6 +5,7 @@
 
 Security and code quality updates
 
+* *Fix** - Fix references from i8n to i18n
 * **Fix** - Added check_ajax_referer() for Ajax nonceing"
 * **Fix** - Removed double <title> tag
 * **Fix** - Improved nonce handling and removed any reference to $_REQUEST[] in the code

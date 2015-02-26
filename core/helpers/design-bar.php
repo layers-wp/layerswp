@@ -52,7 +52,7 @@ class Layers_Design_Controller {
 
     }
 
-    function render_design_bar() {
+    public function render_design_bar() {
 
         $container_class = ( 'side' == $this->type ? 'layers-pull-right' : 'layers-visuals-horizontal' ); ?>
 
@@ -92,7 +92,9 @@ class Layers_Design_Controller {
                     foreach( $c as $key => $args ) {
                         ob_start();
 
-                        $this->$c( $args );
+                        $method = $key . '_component';
+
+                        $this->$method( $args );
 
                         $this->controls[] = trim( ob_get_contents() );
                         ob_end_clean();
@@ -100,7 +102,9 @@ class Layers_Design_Controller {
                 } elseif ( 'custom' != $c ) {
                     ob_start();
 
-                    $this->$c();
+                    $method = $c . '_component';
+
+                    $this->$method();
 
                     $this->controls[] = trim( ob_get_contents() );
                     ob_end_clean();
@@ -125,7 +129,7 @@ class Layers_Design_Controller {
     * @param    array       $args       Component arguments, including the form items
     */
 
-    function render_control( $key = NULL, $args = array() ){
+    public function render_control( $key = NULL, $args = array() ){
 
         if( empty( $args ) ) return;
 
@@ -175,21 +179,21 @@ class Layers_Design_Controller {
     */
 
     public function render_input( $form_args = array() ) { ?>
-		<div class="layers-<?php echo esc_attr( $form_args[ 'type' ] ); ?>-wrapper layers-form-item">
-	        <?php if( 'checkbox' != $form_args[ 'type' ] && isset( $form_args[ 'label' ] ) && '' != $form_args[ 'label' ] ) { ?>
-	            <label><?php echo esc_html( $form_args[ 'label' ] ); ?></label>
-	        <?php } ?>
+        <div class="layers-<?php echo esc_attr( $form_args[ 'type' ] ); ?>-wrapper layers-form-item">
+            <?php if( 'checkbox' != $form_args[ 'type' ] && isset( $form_args[ 'label' ] ) && '' != $form_args[ 'label' ] ) { ?>
+                <label><?php echo esc_html( $form_args[ 'label' ] ); ?></label>
+            <?php } ?>
 
-			<?php if( isset( $form_args[ 'wrapper' ] ) ) { ?>
-				<<?php echo $form_args[ 'wrapper' ]; ?> <?php if( $form_args[ 'wrapper-class' ] ) echo 'class="' . $form_args[ 'wrapper-class' ] . '"'; ?>>
-			<?php } ?>
+            <?php if( isset( $form_args[ 'wrapper' ] ) ) { ?>
+                <<?php echo $form_args[ 'wrapper' ]; ?> <?php if( $form_args[ 'wrapper-class' ] ) echo 'class="' . $form_args[ 'wrapper-class' ] . '"'; ?>>
+            <?php } ?>
 
-	        <?php echo $this->form_elements->input( $form_args ); ?>
+            <?php echo $this->form_elements->input( $form_args ); ?>
 
-			<?php if( isset( $form_args[ 'wrapper' ] ) ) { ?>
-				</<?php echo $form_args[ 'wrapper' ]; ?>>
-			<?php } ?>
-	    </div>
+            <?php if( isset( $form_args[ 'wrapper' ] ) ) { ?>
+                </<?php echo $form_args[ 'wrapper' ]; ?>>
+            <?php } ?>
+        </div>
     <?php }
 
     /**
@@ -198,7 +202,7 @@ class Layers_Design_Controller {
     * @param    array       $args       Additional arguments to pass to this function
     */
 
-    function layout( $args = NULL ){
+    public function layout_component( $args = NULL ){
 
         // If there is no widget information provided, can the operation
         if( NULL == $this->widget ) return;
@@ -229,7 +233,7 @@ class Layers_Design_Controller {
                             )
                         );
 
-        $this->render_control( $key , $args );
+        $this->render_control( $key , apply_filters( 'layerswp_layout_component_args', $args, $key, $this->widget, $this->values ) );
     }
 
     /**
@@ -238,7 +242,7 @@ class Layers_Design_Controller {
     * @param    array       $args       Additional arguments to pass to this function
     */
 
-    function liststyle( $args = NULL ){
+    public function liststyle_component( $args = NULL ){
 
         // If there is no widget information provided, can the operation
         if( NULL == $this->widget ) return;
@@ -270,7 +274,7 @@ class Layers_Design_Controller {
                             )
                         );
 
-        $this->render_control( $key , $args );
+        $this->render_control( $key , apply_filters( 'layerswp_liststyle_component_args', $args, $key, $this->widget, $this->values ) );
     }
 
     /**
@@ -279,7 +283,7 @@ class Layers_Design_Controller {
     * @param    array       $args       Additional arguments to pass to this function
     */
 
-    function columns( $args = NULL ){
+    public function columns_component( $args = NULL ){
 
         // If there is no widget information provided, can the operation
         if( NULL == $this->widget ) return;
@@ -321,7 +325,7 @@ class Layers_Design_Controller {
                             )
                         );
 
-        $this->render_control( $key , $args );
+        $this->render_control( $key , apply_filters( 'layerswp_columns_component_args', $args, $key, $this->widget, $this->values ) );
     }
 
     /**
@@ -330,7 +334,7 @@ class Layers_Design_Controller {
     * @param    array       $args       Additional arguments to pass to this function
     */
 
-    function textalign( $args = NULL ){
+    public function textalign_component( $args = NULL ){
 
         // If there is no widget information provided, can the operation
         if( NULL == $this->widget ) return;
@@ -363,7 +367,7 @@ class Layers_Design_Controller {
                             )
                         );
 
-        $this->render_control( $key , $args );
+        $this->render_control( $key , apply_filters( 'layerswp_textalign_component_args', $args, $key, $this->widget, $this->values ) );
     }
 
     /**
@@ -372,7 +376,7 @@ class Layers_Design_Controller {
     * @param    array       $args       Additional arguments to pass to this function
     */
 
-    function imagealign( $args = NULL ){
+    public function imagealign_component( $args = NULL ){
 
         // If there is no widget information provided, can the operation
         if( NULL == $this->widget ) return;
@@ -404,7 +408,7 @@ class Layers_Design_Controller {
                             ),
                         );
 
-        $this->render_control( $key , $args );
+        $this->render_control( $key , apply_filters( 'layerswp_imagealign_component_args', $args, $key, $this->widget, $this->values ) );
     }
 
     /**
@@ -413,7 +417,7 @@ class Layers_Design_Controller {
     * @param    array       $args       Additional arguments to pass to this function
     */
 
-    function featuredimage( $args = NULL ){
+    public function featuredimage_component( $args = NULL ){
 
         // If there is no widget information provided, can the operation
         if( NULL == $this->widget ) return;
@@ -463,7 +467,7 @@ class Layers_Design_Controller {
                             ),
                         );
 
-        $this->render_control( $key , $args );
+        $this->render_control( $key , apply_filters( 'layerswp_featuredimage_component_args', $args, $key, $this->widget, $this->values ) );
     }
 
     /**
@@ -472,7 +476,7 @@ class Layers_Design_Controller {
     * @param    array       $args       Additional arguments to pass to this function
     */
 
-    function imageratios( $args = NULL ){
+    public function imageratios_component( $args = NULL ){
 
         // If there is no widget information provided, can the operation
         if( NULL == $this->widget ) return;
@@ -505,7 +509,7 @@ class Layers_Design_Controller {
                             ),
                         );
 
-        $this->render_control( $key , $args );
+        $this->render_control( $key , apply_filters( 'layerswp_imageratios_component_args', $args, $key, $this->widget, $this->values ) );
     }
 
     /**
@@ -514,7 +518,7 @@ class Layers_Design_Controller {
     * @param    array       $args       Additional arguments to pass to this function
     */
 
-    function fonts( $args = NULL ){
+    public function fonts_component( $args = NULL ){
 
         // If there is no widget information provided, can the operation
         if( NULL == $this->widget ) return;
@@ -568,7 +572,7 @@ class Layers_Design_Controller {
                             )
                         );
 
-        $this->render_control( $key , $args );
+        $this->render_control( $key , apply_filters( 'layerswp_font_component_args', $args, $key, $this->widget, $this->values ) );
     }
 
     /**
@@ -577,7 +581,7 @@ class Layers_Design_Controller {
     * @param    array       $args       Additional arguments to pass to this function
     */
 
-    function background( $args = NULL ){
+    public function background_component( $args = NULL ){
 
         // If there is no widget information provided, can the operation
         if( NULL == $this->widget ) return;
@@ -651,7 +655,7 @@ class Layers_Design_Controller {
                             )
                         );
 
-        $this->render_control( $key , $args );
+        $this->render_control( $key , apply_filters( 'layerswp_background_component_args', $args, $key, $this->widget, $this->values ) );
     }
 
     /**
@@ -660,7 +664,7 @@ class Layers_Design_Controller {
     * @param    array       $args       Additional arguments to pass to this function
     */
 
-    function advanced( $args = NULL ){
+    public function advanced_component( $args = NULL ){
 
         // If there is no widget information provided, can the operation
         if( NULL == $this->widget ) return;
@@ -708,17 +712,17 @@ class Layers_Design_Controller {
                             ),
                         );
 
-        $this->render_control( $key , $args );
+        $this->render_control( $key , apply_filters( 'layerswp_advanced_component_args', $args, $key, $this->widget, $this->values ) );
     }
 
     /**
     * Custom Compontent
     *
-	* @param    varchar     $key        Simply the key and classname for the icon,
+    * @param    varchar     $key        Simply the key and classname for the icon,
     * @param    array       $args       Component arguments, including the form items
     */
 
-    function custom_component( $key = NULL, $args = array() ){
+    public function custom_component( $key = NULL, $args = array() ){
 
         if( empty( $args ) ) return;
 
@@ -726,6 +730,6 @@ class Layers_Design_Controller {
         if( NULL == $this->widget ) return;
 
         // Render Control
-        $this->render_control( $key , $args );
+        $this->render_control( $key , apply_filters( 'layerswp_custom_component_args', $args, $key, $this->widget, $this->values ) );
     }
 } //class Layers_Design_Controller

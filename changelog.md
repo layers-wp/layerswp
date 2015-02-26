@@ -5,8 +5,10 @@
 
 Security and code quality updates
 
-* *Fix** - Fix references from i8n to i18n
-* **Fix** - Added check_ajax_referer() for Ajax nonceing"
+* **Enhancement** - Added filters to design bar components (thanks @prettyboymp)
+* **Enhancement** - Clicking out of the design bar closes a control (thanks @prettyboymp @jeffstieler)
+* **Fix** - Fix references from i8n to i18n
+* **Fix** - Added check_ajax_referer() for Ajax nonceing
 * **Fix** - Removed double <title> tag
 * **Fix** - Improved nonce handling and removed any reference to $_REQUEST[] in the code
 * **Fix** - Updated Google maps API link for SSL compatability (thanks @oskapt)

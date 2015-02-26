@@ -18,7 +18,7 @@ get_header();
 	 */
 	layers_maybe_get_sidebar( 'left-woocommerce-sidebar', 'column pull-left sidebar span-3' );
 	?>
-<?php if ( have_posts() ) : ?>
+	<?php if ( have_posts() ) : ?>
 		<section <?php layers_center_column_class(); ?>>
 
 			<div class="row push-bottom woocommerce-result-count-container">

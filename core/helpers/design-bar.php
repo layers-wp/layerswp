@@ -79,7 +79,7 @@ class Layers_Design_Controller {
 
 		$this->controls = array();
 
-		if ( NULL !== $this->components ) {
+		if ( ! is_null( $this->components ) ) {
 			foreach ( $this->components as $c ) {
 				if ( 'custom' == $c && !empty( $this->custom_components ) ) {
 					foreach ( $this->custom_components as $key => $custom_component_args ) {

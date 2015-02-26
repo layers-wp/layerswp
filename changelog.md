@@ -9,6 +9,7 @@ Security and code quality updates
 * **Enhancement** - Added filters to design bar components (thanks @prettyboymp)
 * **Enhancement** - Clicking out of the design bar closes a control (thanks @prettyboymp @jeffstieler)
 * **Enhancement** - Added customizer-preview.js for scripts executed in the customizer preview iframe only
+* **Fix** - Deleting all slides then adding your first slide again threw an error (thanks @prettyboymp)
 * **Fix** - Fix references from i8n to i18n
 * **Fix** - Added check_ajax_referer() for Ajax nonceing
 * **Fix** - Removed double <title /> tag

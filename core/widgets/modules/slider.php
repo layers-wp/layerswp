@@ -287,6 +287,11 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 				} // foreach checkboxes
 			} // if checkboxes
 
+			// Don't break the slider when
+			if ( !isset( $new_instance['slides'] ) ) {
+				$new_instance['slides'] = array();
+			}
+
 			return $new_instance;
 		}
 

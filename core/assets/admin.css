@@ -152,9 +152,7 @@ div#widgets-right div[id*='obox-layers-builder']{
 
     /*---------------------------*/
     /*- PRESET / THEME LISTS ----*/
-    .layers-browser{
-        overflow: hidden;
-    }
+
     .layers-products{
         clear: both;
         padding: 0 0 100px;
@@ -1676,6 +1674,30 @@ input[type=text].layers-color-selector.wp-color-picker{
     top: 19px;
 }
 
+/*---------------------------*/
+/*- PRESET CUSTOMIZE MENU----*/
+.layers-product-actions .menu-icon {
+    vertical-align: middle;
+    margin-left: 10px;
+}
+.edit-preset-menu {
+    box-sizing: border-box;
+    background-color: #fff;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    width: calc(100% + 1px);
+    border: 1px solid #dedede;
+    border-top: 0px none;
+    padding: 5px 10px;
+}
+.edit-preset-menu ul {
+    margin: 0;
+}
+.edit-preset-menu a {
+    text-decoration: none;
+}
 
 /*---------------------------*/
 /*- ICON STYLING ------------*/

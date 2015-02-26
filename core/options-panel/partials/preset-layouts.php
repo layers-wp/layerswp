@@ -23,11 +23,14 @@
 						<a class="layers-button btn-primary customize load-customize" id="layers-generate-preset-layout-<?php echo esc_attr( $template_key ); ?>"  data-key="layers-preset-layout-<?php echo esc_attr( $template_key ); ?>"><?php _e( 'Select', 'layerswp' ); ?></a>
 						<?php if ( !empty($template['custom']) ) : ?>
 							<a class="menu-icon dashicons dashicons-admin-generic" href="#"></a>
-							<ul class="edit-preset-menu layers-hide" style="background:#fff; z-index:99; display:block; position:absolute;">
-								<?php $edit_url = get_edit_post_link( $post_id ); ?>
-								<li><a class="edit-preset" href="<?php echo esc_url($edit_url); ?>">Edit</a></li>
-								<li><a class="delete-preset" href="#">Delete</a></li>
-							</ul>
+							<div class="edit-preset-menu layers-hide" style="background:#fff; z-index:99; display:block; position:absolute;">
+								<ul>
+									<?php $edit_url = get_edit_post_link( $post_id ); ?>
+									<li><a class="edit-preset" href="<?php echo esc_url($edit_url); ?>">Edit</a></li>
+									<li><a class="delete-preset" href="#">Delete</a></li>
+								</ul>								
+							</div>
+
 						<?php endif; ?>
 					</div>
 				</label>

@@ -126,17 +126,35 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
     }
 
     /*---------------------------*/
-    /*- PAGINATION --------------*/
+    /*- SLIDER NAVIGATION -------*/
     .swiper-container .pages{
         bottom: 16px;
         opacity: 1;
     }
-
-    /*---------------------------*/
-    /*- ARROWS ------------------*/
     .swiper-container .arrows{
         display: none;
     }
+
+    /*---------------------------*/
+    /*- SINGLE SLIDES -----------*/
+    .single-slide{
+        height: auto !important;
+    }
+    .single-slide .overlay{
+        height: auto !important;
+        padding-top: 40px;
+        padding-bottom: 40px;
+    }
+    .single-slide .swiper-slide .container,
+    .single-slide .swiper-slide .copy-container,
+    .single-slide .swiper-slide .image-container{
+        top: auto;
+        transform: translateY(0);
+    }
+    .single-slide .swiper-slide .copy-container + .image-container{
+        margin-top: 40px;
+    }
+
 
 /*-------------------------------*/
 /*- CONTENT ---------------------*/

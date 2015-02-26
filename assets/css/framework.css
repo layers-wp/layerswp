@@ -10,7 +10,9 @@ Author: Obox Themes
 Author URI: http://www.oboxthemes.com/
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
-*/
+
+-*/
+
 /*-------------------------------*/
 /*- RESET -----------------------*/
 /*- http://richclarkdesign.com --*/
@@ -918,9 +920,15 @@ object{
 
     /*---------------------------*/
     /*- BUTTON SIZES ------------*/
-    .button.btn-small{padding: 2px 10px;}
-    .button.btn-large{padding: 10px 25px;}
-    .button.btn-massive{padding: 15px 30px;}
+    .button.btn-small{
+        padding: 2px 10px;
+    }
+    .button.btn-large{
+        padding: 10px 25px;
+    }
+    .button.btn-massive{
+        padding: 15px 30px;
+    }
     .button.btn-full{
         display: block;
         width: 100%;
@@ -945,8 +953,12 @@ object{
 
     /*---------------------------*/
     /*- BUTTON COLLECTION -------*/
-    .button-collection{overflow: hidden;}
-    .title-container .button-group{margin-bottom: 0;}
+    .button-collection{
+        overflow: hidden;
+    }
+    .title-container .button-group{
+        margin-bottom: 0;
+    }
 
 
 /*-------------------------------*/
@@ -1028,9 +1040,15 @@ object{
         overflow: hidden;
         margin-bottom: 20px;
     }
-    .panel li{padding: 10px;}
-    .panel .panel-title{padding: 8px 10px;}
-    .panel li .heading{margin-bottom: 5px;}
+    .panel li{
+        padding: 10px;
+    }
+    .panel .panel-title{
+        padding: 8px 10px;
+    }
+    .panel li .heading{
+        margin-bottom: 5px;
+    }
 
 
 /*-------------------------------*/

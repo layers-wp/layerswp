@@ -360,9 +360,6 @@ class Layers_Customizer_Regsitrar {
 			case 'layers-color' :
 				$callback = 'sanitize_hex_color';
 				break;
-			case 'layers-code' :
-				$callback = 'esc_js';
-				break;
 			case 'layers-checkbox' :
 				$callback = 'layers_sanitize_checkbox';
 				break;

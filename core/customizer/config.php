@@ -273,8 +273,7 @@ class Layers_Customizer_Config {
 									'type'     => 'layers-code',
 									'label'    => __( 'Custom Scripts' , 'layerswp' ),
 									'description' => __( 'Enter in any custom script to include in your site\'s header. Be sure to use double quotes for strings.' , 'layerswp' ),
-									'default' => '',
-									'sanitize_callback' => 'esc_js',
+									'default' => ''
 								) // scripts
 							);
 
@@ -422,8 +421,7 @@ class Layers_Customizer_Config {
 						'type'     => 'layers-code',
 						'label'    => __( 'Custom Scripts' , 'layerswp' ),
 						'description' => __( 'Enter in any custom script to include in your site\'s footer. Be sure to use double quotes for strings.' , 'layerswp' ),
-						'default' => '',
-						'sanitize_callback' => 'esc_js',
+						'default' => ''
 					), // scripts
 				); // footer-scripts
 

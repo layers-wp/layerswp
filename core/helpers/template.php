@@ -690,7 +690,7 @@ if( !function_exists( 'layers_add_additional_header_scripts' ) ) {
 		$add_additional_header_scripts = apply_filters( 'layers_header_scripts' , layers_get_theme_mod( 'header-custom-scripts' ) );
 
 		if( '' != $add_additional_header_scripts ) {
-			echo '<script>' . stripslashes( htmlspecialchars_decode( $add_additional_header_scripts ) ) . '</script>';
+			echo '<script>' . trim( htmlspecialchars_decode(  $add_additional_header_scripts ) ) . '</script>';
 		}
 	}
 } // layers_add_additional_header_scripts

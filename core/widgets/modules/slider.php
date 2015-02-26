@@ -249,7 +249,6 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 						$('#<?php echo $widget_id; ?>').find('.arrows a').on( 'click' , function(e){
 							e.preventDefault();
 
-							// "Hi Mom"
 							$that = $(this);
 
 							if( $that.hasClass( 'swiper-pagination-switch' ) ){ // Anchors

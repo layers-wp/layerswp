@@ -48,7 +48,6 @@ jQuery(function($) {
     $(document).on( 'click' , '.onbard-next-step' , function(e){
         e.preventDefault();
 
-        // "Hi Mom"
         $that = $(this);
 
         $form = $that.closest( '.layers-onboard-slide' );
@@ -125,7 +124,6 @@ jQuery(function($) {
     $(document).on( 'click' , '#layers-onboard-skip' , function(e){
         e.preventDefault();
 
-        // "Hi Mom"
         $that = $(this);
 
         // Go to the next slide
@@ -135,7 +133,6 @@ jQuery(function($) {
     $(document).on( 'click' , '#layers-onboard-anchors a' , function(e){
         e.preventDefault();
 
-        // "Hi Mom"
         $that = $(this);
 
         $i = $that.index();
@@ -144,7 +141,6 @@ jQuery(function($) {
     });
 
     $( 'input[name="layes-preset-layout"]' ).on( 'change' , function(e){
-        // "Hi Mom"
         $that = $(this);
 
         // Enable the button when preset seleted

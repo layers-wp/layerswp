@@ -1,4 +1,6 @@
-<?php  /**
+<?php
+
+/**
  * Widget Ajax
  *
  * This file is used to fetch, using Ajax, and display different parts of the layers widgets
@@ -6,116 +8,113 @@
  * @package Layers
  * @since Layers 1.0.0
  */
+if ( !class_exists( 'Layers_Onboarding_Ajax' ) ) {
 
-if( !class_exists( 'Layers_Onboarding_Ajax' ) ) {
+	class Layers_Onboarding_Ajax {
 
-    class Layers_Onboarding_Ajax {
+		private static $instance;
 
-        private static $instance;
+		/**
+		 *  Initiator
+		 */
+		public static function init() {
+			return self::$instance;
+		}
 
-        /**
-        *  Initiator
-        */
+		/**
+		 *  Constructor
+		 */
+		public function __construct() {
+			add_action( 'wp_ajax_layers_onboarding_update_options', array( $this, 'update_options' ) );
+			add_action( 'wp_ajax_layers_onboarding_choose_preset', array( $this, 'choose_preset_layout' ) );
+		}
 
-        public static function init(){
-            return self::$instance;
-        }
+		public function choose_preset_layout() {
 
-        /**
-        *  Constructor
-        */
+			if ( !wp_verify_nonce( $_REQUEST['nonce'], 'layers-onboarding-actions' ) )
+				die( 'You threw a Nonce exception' ); // Nonce
 
-        public function __construct() {
-            add_action( 'wp_ajax_layers_onboarding_update_options', array( $this, 'update_options' ) );
-            add_action( 'wp_ajax_layers_onboarding_choose_preset', array( $this, 'choose_preset_layout' ) );
+			//Parse our input data
+			parse_str(
+				urldecode( stripslashes( $_POST['data'] ) ), $data
+			);
 
-        }
+			$migrator = new Layers_Widget_Migrator();
+			$migrator->create_builder_page_from_preset();
 
-        public function choose_preset_layout(){
+			die();
+		}
 
-            if( !wp_verify_nonce( $_REQUEST['nonce'], 'layers-onboarding-actions' ) ) die( 'You threw a Nonce exception' ); // Nonce
+		public function update_options() {
 
-            // Parse our input data
-            parse_str(
-                urldecode( stripslashes( $_POST[ 'data' ] ) ),
-                $data
-            );
+			if ( !wp_verify_nonce( $_REQUEST['nonce'], 'layers-onboarding-actions' ) )
+				die( 'You threw a Nonce exception' ); // Nonce
 
-            $migrator = new Layers_Widget_Migrator();
-            $migrator->create_builder_page_from_preset();
+				
+			//Parse our input data
+			parse_str(
+				urldecode( stripslashes( $_POST['data'] ) ), $data
+			);
 
-            die();
-        }
+			foreach ( $data as $option_key => $option_value ) {
 
-        public function update_options(){
+				$clean_option_value = esc_attr( stripslashes( $option_value ) );
 
-            if( !wp_verify_nonce( $_REQUEST['nonce'], 'layers-onboarding-actions' ) ) die( 'You threw a Nonce exception' ); // Nonce
+				switch ( $option_key ) {
 
-            // Parse our input data
-            parse_str(
-                urldecode( stripslashes( $_POST[ 'data' ] ) ),
-                $data
-            );
+					case 'site_logo' :
 
-            foreach ( $data as $option_key => $option_value ) {
+						if ( '' == $clean_option_value || '0' == $clean_option_value )
+							die( json_encode( array( 'success' => true, 'message' => __( 'No Logo uploaded', 'layerswp' ) ) ) );
 
-                $clean_option_value = esc_attr( stripslashes( $option_value ) );
+						$get_attachment = wp_get_attachment_image_src( $clean_option_value );
 
-                switch ( $option_key ) {
+						// Get an array of all registered image sizes.
+						$intermediate = get_intermediate_image_sizes();
+						$sizes = array();
 
-                    case 'site_logo' :
+						// Have we got anything fun to work with?
+						if ( is_array( $intermediate ) && !empty( $intermediate ) ) {
+							foreach ( $intermediate as $key => $size ) {
+								// If the size isn't already in the $sizes array, add it.
+								if ( !array_key_exists( $size, $sizes ) ) {
+									$image_info = wp_get_attachment_image_src( $get_attachment[0], $size );
 
-                        if( '' == $clean_option_value || '0' == $clean_option_value ) die( json_encode( array( 'success' => true, 'message' => __( 'No Logo uploaded' , 'layerswp' ) ) ) );
+									$size_info['url'] = $image_info[0];
+									$size_info['width'] = $image_info[1];
+									$size_info['height'] = $image_info[2];
 
-                        $get_attachment = wp_get_attachment_image_src( $clean_option_value );
+									$sizes[$size] = $size_info;
+								}
+							}
+						}
 
-                        // Get an array of all registered image sizes.
-                        $intermediate = get_intermediate_image_sizes();
-                        $sizes = array();
+						if ( !is_wp_error( $get_attachment ) && FALSE != $get_attachment ) {
 
-                        // Have we got anything fun to work with?
-                        if ( is_array( $intermediate ) && ! empty( $intermediate ) ) {
-                            foreach ( $intermediate as $key => $size ) {
-                                // If the size isn't already in the $sizes array, add it.
-                                if ( ! array_key_exists( $size, $sizes ) ) {
-                                    $image_info = wp_get_attachment_image_src( $get_attachment[0], $size );
+							$site_logo_array = array(
+								'id' => $clean_option_value,
+								'sizes' => $sizes,
+								'url' => $get_attachment[0]
+							);
 
-                                    $size_info[ 'url' ] = $image_info[0];
-                                    $size_info[ 'width' ] = $image_info[1];
-                                    $size_info[ 'height' ] = $image_info[2];
+							update_option( $option_key, $site_logo_array );
 
-                                    $sizes[ $size ] =  $size_info;
-                                }
-                            }
-                        }
+							die( json_encode( array( 'success' => true, 'message' => __( 'Logo updated', 'layerswp' ) ) ) );
+						} else {
 
-                        if( !is_wp_error( $get_attachment ) && FALSE != $get_attachment ) {
+							die( json_encode( array( 'success' => false, 'message' => __( 'There was an error when updating your logo.', 'layerswp' ) ) ) );
+						}
 
-                            $site_logo_array = array(
-                                    'id' => $clean_option_value,
-                                    'sizes' => $sizes,
-                                    'url' => $get_attachment[0]
-                                );
+						break;
+					default :
+						update_option( $option_key, $clean_option_value );
 
-                            update_option( $option_key, $site_logo_array );
+						die( json_encode( array( 'success' => true, 'message' => __( 'Option updated', 'layerswp' ) ) ) );
+						break;
+				}
+			}
+		}
 
-                            die( json_encode( array( 'success' => true, 'message' => __( 'Logo updated' , 'layerswp' ) ) ) );
+	}
 
-                        } else {
-
-                            die( json_encode( array( 'success' => false, 'message' => __( 'There was an error when updating your logo.' , 'layerswp' ) ) ) );
-
-                        }
-
-                        break;
-                    default :
-                        update_option( $option_key, $clean_option_value );
-
-                        die( json_encode( array( 'success' => true, 'message' => __( 'Option updated' , 'layerswp' ) ) ) );
-                    break;
-
-                }
-            }
-        }
-    }
 } // if class_exists

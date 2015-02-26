@@ -1,10 +1,12 @@
 <?php
+
 /**
  * Our Site Logo class for managing a theme-agnostic logo through the Customizer.
  *
  * @package Jetpack
  */
 class Site_Logo {
+
 	/**
 	 * Stores our single instance.
 	 */
@@ -22,7 +24,7 @@ class Site_Logo {
 	 * @return object Site_Logo
 	 */
 	public static function instance() {
-		if ( ! isset( self::$instance ) ) {
+		if ( !isset( self::$instance ) ) {
 			self::$instance = new Site_Logo;
 			self::$instance->register_hooks();
 		}
@@ -78,42 +80,42 @@ class Site_Logo {
 		require_once( dirname( __FILE__ ) . '/class-site-logo-control.php' );
 
 		//Update the Customizer section title for discoverability.
-		$wp_customize->get_section('title_tagline')->title = __( 'Site Title, Tagline, and Logo' , 'layerswp' );
+		$wp_customize->get_section( 'title_tagline' )->title = __( 'Site Title, Tagline, and Logo', 'layerswp' );
 
 		// Add a setting to hide header text if the theme isn't supporting the feature itself
-		if ( ! current_theme_supports( 'custom-header' ) ) {
+		if ( !current_theme_supports( 'custom-header' ) ) {
 			$wp_customize->add_setting( 'site_logo_header_text', array(
-				'default'           => 1,
+				'default' => 1,
 				'sanitize_callback' => array( $this, 'sanitize_checkbox' ),
-				'transport'         => 'refresh',
+				'transport' => 'refresh',
 			) );
 
 			$wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'site_logo_header_text', array(
-			    'label'    => __( 'Display Header Text' , 'layerswp' ),
-			    'section'  => 'title_tagline',
-			    'settings' => 'site_logo_header_text',
-			    'type'     => 'checkbox',
+				'label' => __( 'Display Header Text', 'layerswp' ),
+				'section' => 'title_tagline',
+				'settings' => 'site_logo_header_text',
+				'type' => 'checkbox',
 			) ) );
 		}
 
 		// Add the setting for our logo value.
 		$wp_customize->add_setting( 'site_logo', array(
-			'capability'        => 'manage_options',
-			'default'           => array(
-				'id'    => 0,
+			'capability' => 'manage_options',
+			'default' => array(
+				'id' => 0,
 				'sizes' => array(),
-				'url'   => false,
+				'url' => false,
 			),
 			'sanitize_callback' => array( $this, 'sanitize_logo_setting' ),
-			'transport'         => 'refresh',
-			'type'              => 'option',
+			'transport' => 'refresh',
+			'type' => 'option',
 		) );
 
 		// Add our image uploader.
 		$wp_customize->add_control( new Site_Logo_Image_Control( $wp_customize, 'site_logo', array(
-		    'label'    => __( 'Logo' , 'layerswp' ),
-		    'section'  => 'title_tagline',
-		    'settings' => 'site_logo',
+			'label' => __( 'Logo', 'layerswp' ),
+			'section' => 'title_tagline',
+			'settings' => 'site_logo',
 		) ) );
 	}
 
@@ -127,10 +129,10 @@ class Site_Logo {
 	 * @uses wp_localize_script()
 	 */
 	public function preview_enqueue() {
-		wp_enqueue_script( 'site-logo-preview', $this->directory_uri . 'js/site-logo.js' , array( 'media-views' ), '', true );
+		wp_enqueue_script( 'site-logo-preview', $this->directory_uri . 'js/site-logo.js', array( 'media-views' ), '', true );
 
 		// Don't bother passing in header text classes if the theme supports custom headers.
-		if ( ! current_theme_supports( 'custom-header' ) ) {
+		if ( !current_theme_supports( 'custom-header' ) ) {
 			$classes = jetpack_sanitize_header_text_classes( $this->header_text_classes() );
 			wp_enqueue_script( 'site-logo-header-text', $this->directory_uri . 'js/site-logo-header-text.js', array( 'media-views' ), '', true );
 			wp_localize_script( 'site-logo-header-text', 'site_logo_header_classes', $classes );
@@ -146,9 +148,9 @@ class Site_Logo {
 	public function header_text_classes() {
 		$args = get_theme_support( 'site-logo' );
 
-		if ( isset( $args[0][ 'header-text' ] ) ) {
+		if ( isset( $args[0]['header-text'] ) ) {
 			// Use any classes defined in add_theme_support().
-			$classes = $args[0][ 'header-text' ];
+			$classes = $args[0]['header-text'];
 		} else {
 			// Otherwise, use these defaults, which will work with any Underscores-based theme.
 			$classes = array(
@@ -159,9 +161,9 @@ class Site_Logo {
 
 		// If we've got an array, reduce them to a string for output
 		if ( is_array( $classes ) ) {
-			$classes = (string) '.' . implode( ', .', $classes );
+			$classes = ( string ) '.' . implode( ', .', $classes );
 		} else {
-			$classes = (string) '.' . $classes;
+			$classes = ( string ) '.' . $classes;
 		}
 
 		return $classes;
@@ -182,15 +184,15 @@ class Site_Logo {
 		}
 
 		// Is Display Header Text unchecked? If so, we need to hide our header text.
-		if ( ! get_theme_mod( 'site_logo_header_text', 1 ) ) {
+		if ( !get_theme_mod( 'site_logo_header_text', 1 ) ) {
 			$classes = $this->header_text_classes();
 			?>
 			<!-- Site Logo: hide header text -->
 			<style type="text/css">
-			<?php echo jetpack_sanitize_header_text_classes( $classes ); ?> {
-				position: absolute;
-				clip: rect(1px, 1px, 1px, 1px);
-			}
+				<?php echo jetpack_sanitize_header_text_classes( $classes ); ?> {
+					position: absolute;
+					clip: rect(1px, 1px, 1px, 1px);
+				}
 			</style>
 			<?php
 		}
@@ -227,11 +229,11 @@ class Site_Logo {
 		$intermediate = get_intermediate_image_sizes();
 
 		// Have we got anything fun to work with?
-		if ( is_array( $intermediate ) && ! empty( $intermediate ) ) {
+		if ( is_array( $intermediate ) && !empty( $intermediate ) ) {
 			foreach ( $intermediate as $key => $size ) {
 				// If the size isn't already in the $sizes array, add it.
-				if ( ! array_key_exists( $size, $sizes ) ) {
-					$sizes[ $size ] = $size;
+				if ( !array_key_exists( $size, $sizes ) ) {
+					$sizes[$size] = $size;
 				}
 			}
 		}
@@ -251,7 +253,7 @@ class Site_Logo {
 
 			// If our attachment ID and the site logo ID match, this image is the site logo.
 			if ( $post->ID == $this->logo['id'] ) {
-				$media_states[] = __( 'Site Logo' , 'layerswp' );
+				$media_states[] = __( 'Site Logo', 'layerswp' );
 			}
 		}
 
@@ -287,7 +289,7 @@ class Site_Logo {
 	 */
 	public function remove_site_logo() {
 		update_option( 'site_logo', array(
-			'id' => (int) 0,
+			'id' => ( int ) 0,
 			'sizes' => array(),
 			'url' => '',
 		) );
@@ -325,20 +327,21 @@ class Site_Logo {
 	 * @return mixed 1 if checked, empty string if not checked.
 	 */
 	public function sanitize_logo_setting( $input ) {
-		$input['id']  = absint( $input['id'] );
+		$input['id'] = absint( $input['id'] );
 		$input['url'] = esc_url_raw( $input['url'] );
 
 		// If the new setting doesn't point to a valid attachment, just reset the whole thing.
 		if ( false == wp_get_attachment_image_src( $input['id'] ) ) {
 			$input = array(
-				'id'    => (int) 0,
+				'id' => ( int ) 0,
 				'sizes' => array(),
-				'url'   => '',
+				'url' => '',
 			);
 		}
 
 		return $input;
 	}
+
 }
 
 /**

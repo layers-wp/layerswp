@@ -51,7 +51,6 @@ jQuery(document).ready(function($){
     $(document).on( 'click', '#layers-preset-layout-next-button a#layers-preset-cancel', function(e){
         e.preventDefault();
 
-        // "Hi Mom!"
         $that = $(this);
 
         $( '.layers-modal-container' ).fadeOut();
@@ -65,7 +64,6 @@ jQuery(document).ready(function($){
     $(document).on( 'click', '#layers-preset-layout-next-button a#layers-preset-proceed', function(e){
         e.preventDefault();
 
-        // "Hi Mom!"
         $that = $(this);
 
         $( '.layers-load-bar' ).hide().removeClass( 'layers-hide' ).fadeIn( 750 );
@@ -105,7 +103,6 @@ jQuery(document).ready(function($){
     $(document).on( 'click', '#layers-page-import-button' , function(e){
         e.preventDefault();
 
-        // "Hi Mom!"
         $that = $(this);
 
         // If the media frame already exists, reopen it.
@@ -173,7 +170,6 @@ console.log( attachment );
     $(document).on( 'click', '#layers-page-duplicate-button' , function(e){
         e.preventDefault();
 
-        // "Hi Mom!"
         $that = $(this);
 
         // Set the attributes to send to the importer

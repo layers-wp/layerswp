@@ -126,8 +126,6 @@ jQuery(document).ready(function($) {
 
 	$(document).on( 'change', '.layers-customize-control-font select' , function(){
 
-
-        // "Hi Mom"
         $that = $(this);
 
 		$description = $that.closest( '.layers-customize-control-font' ).find( '.customize-control-description' );

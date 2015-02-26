@@ -124,9 +124,24 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 			$this->enqueue_scripts();
 
 			// Apply the advanced widget styling
-			$this->apply_widget_advanced_styling( $widget_id, $widget ); ?>
-
-			<section class="widget row slide <?php echo (  1 == count( $widget[ 'slides' ] )  ? 'single-slide' : '' ); ?> swiper-container <?php echo $this->get_widget_layout_class( $widget ); ?> <?php echo $this->check_and_return( $widget , 'design', 'advanced', 'customclass' ) ?> <?php echo $this->get_widget_spacing_class( $widget ); ?>" id="<?php echo $widget_id; ?>" <?php if( $this->check_and_return( $widget , 'slide_height' ) ) echo 'style="height: ' . $widget['slide_height'] . 'px;"' ?>>
+			$this->apply_widget_advanced_styling( $widget_id, $widget );
+			
+			// Slider Class
+			$slider_class = array();
+			if( isset( $widget['design']['layout'] ) && '' != $widget['design']['layout'] ) {
+				// Slider layout eg 'slider-layout-full-screen'
+				$slider_class[] = 'slider-' . $widget['design']['layout'];
+			}
+			if( ! isset( $widget['design']['layout'] ) || ( isset( $widget['design']['layout'] ) && 'layout-full-screen' != $widget['design']['layout'] ) ) {
+				// If slider is not full screen
+				$slider_class[] = 'not-full-screen';
+			}
+			if( 1 == count( $widget[ 'slides' ] ) ) {
+				// If only one slide
+				$slider_class[] = 'single-slide';
+			}
+			$slider_class = implode( ' ', $slider_class ); ?>
+			<section class="widget row slide swiper-container <?php echo $slider_class; ?> <?php echo $this->get_widget_layout_class( $widget ); ?> <?php echo $this->check_and_return( $widget , 'design', 'advanced', 'customclass' ) ?> <?php echo $this->get_widget_spacing_class( $widget ); ?>" id="<?php echo $widget_id; ?>" <?php if( $this->check_and_return( $widget , 'slide_height' ) ) echo 'style="height: ' . $widget['slide_height'] . 'px;"' ?>>
 				<?php if( !empty( $widget[ 'slides' ] ) ) { ?>
 					<?php if( 1 < count( $widget[ 'slides' ] ) && isset( $widget['show_slider_arrows'] ) ) { ?>
 						 <div class="arrows">

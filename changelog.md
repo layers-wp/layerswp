@@ -27,6 +27,7 @@ Security and code quality updates
 * **Tweak** - Updated hook used for meta box registration
 * **Tweak** - Changed in-line styles and scripts to always use admin_print_styles and admin_print_scripts hooks
 * **Tweak** - Moved fouc rendering issue fix from in-line to the customizer-preview.js
+* **Tweak** - Apply class to Slider for layout eg slider-layout-full-screen and a unique not-full-screen
 
 
 ## 1.0.3

@@ -121,7 +121,7 @@ class Layers_Custom_Meta {
 
 					<div class="layers-row">
 
-						<div class="layers-column layers-span-4 postbox layers-content">
+						<div class="layers-column layers-span-6 postbox layers-content">
 							<div class="layers-section-title layers-tiny">
 								<h4 class="layers-heading">Export Layout</h4>
 								<p class="layers-excerpt">Export your layout to a <code>.json</code> file which you can use to upload to another site.</p>
@@ -129,15 +129,17 @@ class Layers_Custom_Meta {
 							<a href="?post=%8$s&amp;action=edit&amp;layers-export=1" class="layers-button">Export</a>
 						</div>
 
-						<div class="layers-column layers-span-4 postbox layers-content">
+						<div class="layers-column layers-span-6 postbox layers-content">
 							<div class="layers-section-title layers-tiny">
 								<h4 class="layers-heading">Import Layout</h4>
 								<p class="layers-excerpt"> Upload a layout file (eg. <code>%9$s.json</code>) by clicking the button below.</p>
 							</div>
 							<button class="layers-button" id="layers-page-import-button" data-post-id="%8$s" data-title="Upload .json" data-button_text="Upload &amp; Import">Upload &amp; Import</button>
 						</div>
+					</div>
+					<div class="layers-row">
 
-						<div class="layers-column layers-span-4 postbox layers-content">
+						<div class="layers-column layers-span-6 postbox layers-content">
 							<div class="layers-section-title layers-tiny">
 								<h4 class="layers-heading">Duplicate Layout</h4>
 								<p class="layers-excerpt">Easily duplicate your layout, settings, text and images in order to get started quickly with a new page.</p>
@@ -145,7 +147,7 @@ class Layers_Custom_Meta {
 							<button href="" class="layers-button" id="layers-page-duplicate-button" data-post-id="%8$s">Duplicate</button>
 						</div>
 
-						<div class="layers-column layers-span-4 postbox layers-content">
+						<div class="layers-column layers-span-6 postbox layers-content">
 							<div class="layers-section-title layers-tiny">
 								<h4 class="layers-heading">Save as Preset</h4>
 								<p class="layers-excerpt">Turn current page into a reusable preset.</p>

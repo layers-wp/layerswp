@@ -482,6 +482,10 @@ div[id*='layers-widget'] .spinner{
         margin-right: 0;
     }
 
+    .layers-column.postbox {
+        min-width: 0;
+    }
+
     /*-----------------------*/
     /*- BROAD BASED COLUMNS -*/
     div[class*='layers-columns-'] div[class*='layers-span'],

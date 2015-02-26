@@ -80,8 +80,11 @@ class Layers_Design_Controller {
 		$this->controls = array();
 
 		foreach ( (array) $this->components as $c ) {
+
 			if ( 'custom' == $c && !empty( $this->custom_components ) ) {
+
 				foreach ( $this->custom_components as $key => $custom_component_args ) {
+
 					ob_start();
 
 					$this->custom_component(
@@ -91,8 +94,11 @@ class Layers_Design_Controller {
 
 					$this->controls[] = trim( ob_get_contents() );
 					ob_end_clean();
+
 				}
+
 			} else if ( 'custom' != $c ) {
+
 				ob_start();
 
 				$method = $c . '_component';
@@ -101,7 +107,9 @@ class Layers_Design_Controller {
 
 				$this->controls[] = trim( ob_get_contents() );
 				ob_end_clean();
+
 			}
+
 		}
 
 	}

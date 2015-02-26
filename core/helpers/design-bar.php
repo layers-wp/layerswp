@@ -79,43 +79,31 @@ class Layers_Design_Controller {
 
 		$this->controls = array();
 
-		if ( ! is_null( $this->components ) ) {
-			foreach ( $this->components as $c ) {
-				if ( 'custom' == $c && !empty( $this->custom_components ) ) {
-					foreach ( $this->custom_components as $key => $custom_component_args ) {
-						ob_start();
-
-						$this->custom_component(
-							$key, // Give the component a key (will be used as class name too)
-							$custom_component_args // Send through the inputs that will be used
-						);
-
-						$this->controls[] = trim( ob_get_contents() );
-						ob_end_clean();
-					}
-				} elseif ( is_array( $c ) ) {
-					foreach ( $c as $key => $args ) {
-						ob_start();
-
-						$method = $c . '_component';
-
-						$this->$method( $args );
-
-						$this->controls[] = trim( ob_get_contents() );
-						ob_end_clean();
-					}
-				} elseif ( 'custom' != $c ) {
+		foreach ( (array) $this->components as $c ) {
+			if ( 'custom' == $c && !empty( $this->custom_components ) ) {
+				foreach ( $this->custom_components as $key => $custom_component_args ) {
 					ob_start();
 
-					$method = $c . '_component';
-
-					$this->$method();
+					$this->custom_component(
+						$key, // Give the component a key (will be used as class name too)
+						$custom_component_args // Send through the inputs that will be used
+					);
 
 					$this->controls[] = trim( ob_get_contents() );
 					ob_end_clean();
 				}
+			} else if ( 'custom' != $c ) {
+				ob_start();
+
+				$method = $c . '_component';
+
+				$this->$method();
+
+				$this->controls[] = trim( ob_get_contents() );
+				ob_end_clean();
 			}
-		} // if $components is not NULL
+		}
+
 	}
 
 	private function render_controls() {

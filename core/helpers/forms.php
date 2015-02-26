@@ -507,10 +507,10 @@ class Layers_Form_Elements {
 			*/
 			case 'range':
 
-				$input_props['min'] = ( isset( $input->min ) ) ? 'min="' .  $input->min . '"' : NULL ;
-				$input_props['max'] = ( isset( $input->max ) ) ? 'max="' .  $input->max . '"' : NULL ;
-				$input_props['step'] = ( isset( $input->step ) ) ? 'step="' .  $input->step . '"' : NULL ; ?>
-				<input type="number" <?php echo implode ( ' ' , $input_props ); ?> value="<?php echo $input->value; ?>" />
+				$input_props['min'] = ( isset( $input->min ) ) ? 'min="' .  esc_attr( $input->min ) . '"' : NULL ;
+				$input_props['max'] = ( isset( $input->max ) ) ? 'max="' .  esc_attr( $input->max ) . '"' : NULL ;
+				$input_props['step'] = ( isset( $input->step ) ) ? 'step="' . esc_attr( $input->step ) . '"' : NULL ; ?>
+				<input type="number" <?php echo implode ( ' ' , $input_props ); ?> value="<?php echo esc_attr(  $input->value ); ?>" />
 
 			<?php break;
 			/**

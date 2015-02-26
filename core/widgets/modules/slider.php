@@ -246,11 +246,10 @@ if ( !class_exists( 'Layers_Slider_Widget' ) ) {
 				<?php if ( 1 < count( $widget['slides'] ) ) { ?>
 						// Allow keyboard control
 					<?php echo $swiper_js_obj; ?>.enableKeyboardControl();
-				<?php } // if > 1 slide    ?>
+				<?php } // if > 1 slide       ?>
 
 					$('#<?php echo $widget_id; ?>').find('.arrows a').on('click', function(e){
 					e.preventDefault();
-							// "Hi Mom"
 							$that = $(this);
 							if ($that.hasClass('swiper-pagination-switch')){ // Anchors
 				<?php echo $swiper_js_obj; ?>.swipeTo($that.index());

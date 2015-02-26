@@ -86,8 +86,6 @@
 
       // Adjust progress bar
       $('.layers-progress').removeClass('zero complete').css('width', 0);
-
-      // "Hi Mom"
       var $that = $('.layers-list li').eq(0);
       var $pageid = $that.data('page_id');
 

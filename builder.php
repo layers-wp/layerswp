@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Template Name: Page Builder
  *
@@ -7,15 +8,13 @@
  * @package Layers
  * @since Layers 1.0.0
  */
-
 get_header();
-global $post;
 
-do_action('before_layers_builder_widgets');
+do_action( 'before_layers_builder_widgets' );
 
 // Dynamic Sidebar for this page
-dynamic_sidebar( 'obox-layers-builder-' . $post->ID );
+dynamic_sidebar( 'obox-layers-builder-' . get_the_ID() );
 
-do_action('after_layers_builder_widgets');
+do_action( 'after_layers_builder_widgets' );
 
 get_footer();

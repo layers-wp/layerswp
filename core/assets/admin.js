@@ -314,7 +314,7 @@ jQuery(function($) {
 	/**
 	* 7 - Design Controller toggles
 	*/
-  $( document ).on( 'click', '.layers-container-large', function(e) {
+  $( document ).on( 'click', '.widget-inside', function(e) {
     var eventTarget = $(e.target);
 		// close any pop-ups that arent the target of the current click
 		$('.layers-visuals-item.layers-active' ).not( eventTarget.closest('.layers-visuals-item') ).removeClass( 'layers-active' );

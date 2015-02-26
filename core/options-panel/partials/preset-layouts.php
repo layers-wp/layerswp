@@ -4,8 +4,11 @@
       <?php // Instantiate the widget migrator
       $layers_migrator = new Layers_Widget_Migrator(); ?>
 
-      <?php foreach( $layers_migrator->get_preset_layouts() as $template_key => $template ) : ?>
-         <div class="layers-product active  <?php echo ( isset( $template[ 'container-css' ] ) ?  esc_attr( $template[ 'container-css' ] ) : '' ); ?>" tabindex="0">
+      <?php
+      foreach( $layers_migrator->get_preset_layouts() as $template_key => $template ) :
+         $post_id = !empty($template['post_id']) ? intval($template['post_id']) : 0; ?>
+
+         <div <?php if ( $post_id ) printf('data-post-id="%d"', $post_id); ?> class="layers-product active  <?php echo ( isset( $template[ 'container-css' ] ) ?  esc_attr( $template[ 'container-css' ] ) : '' ); ?>" tabindex="0">
             <input name="layes-preset-layout" id="layers-preset-layout-<?php echo $template_key; ?>-radio" class="layers-hide" type="radio" value="<?php echo $template_key; ?>" />
             <label for="layers-preset-layout-<?php echo esc_attr( $template_key ); ?>-radio">
                <input id="layers-preset-layout-<?php echo esc_attr( $template_key ); ?>-title" type="hidden" value="<?php echo $template[ 'title' ]; ?>" />

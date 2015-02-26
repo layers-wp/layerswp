@@ -19,7 +19,14 @@
  */
 jQuery(document).ready(function($){
 
-    var $title, $widget_data;
+    var $title, $widget_data,
+
+    getParameterByName = function(name) {
+        name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+        var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+            results = regex.exec(location.search);
+        return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+    };
 
     /**
     * 1 - Select a Layout Step, Sets global vars for use in the import phase
@@ -274,5 +281,12 @@ console.log( attachment );
             );
         }
     });
+
+    var pageQueryVar = getParameterByName('page');
+    var presetQueryVar = getParameterByName('presetID');
+    if ( pageQueryVar === 'layers-add-new-page' && presetQueryVar !== null ) {
+        var $presetParent = $('.layers-product[data-post-id="' + presetQueryVar + '"]');
+        $presetParent.find('.layers-button.load-customize').click();
+    }
 
 });

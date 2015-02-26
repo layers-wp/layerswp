@@ -875,8 +875,13 @@ class Layers_Widget_Migrator {
 		$new_id = wp_insert_post( $preset );
 
 		if ( $new_id ) {
+			$page_location = add_query_arg( array(
+				'page' => 'layers-add-new-page',
+				'presetID' => $new_id
+			), admin_url('admin.php') );
+
 			wp_send_json_success( array(
-				'page_location' => admin_url('admin.php?page=layers-add-new-page')
+				'page_location' => $page_location
 			) );
 		}
 

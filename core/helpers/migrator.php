@@ -10,20 +10,22 @@
 class Layers_Widget_Migrator {
 
 	private static $instance;
-
 	/**
 	*  Initiator
 	*/
-
-	public static function init(){
+	public static function get_instance(){
+		if ( ! isset( self::$instance ) ) {
+			self::$instance = new Layers_Widget_Migrator();
+		}
 		return self::$instance;
 	}
-
 	/**
 	*  Constructor
 	*/
-
 	public function __construct() {
+	}
+
+	public function init() {
 
 		if( isset( $_GET[ 'layers-export' ] ) ) $this->create_export_file();
 

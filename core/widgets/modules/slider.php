@@ -124,9 +124,19 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 			$this->enqueue_scripts();
 
 			// Apply the advanced widget styling
-			$this->apply_widget_advanced_styling( $widget_id, $widget ); ?>
-
-			<section class="widget row slide <?php echo (  1 == count( $widget[ 'slides' ] )  ? 'single-slide' : '' ); ?> swiper-container <?php echo $this->get_widget_layout_class( $widget ); ?> <?php echo $this->check_and_return( $widget , 'design', 'advanced', 'customclass' ) ?> <?php echo $this->get_widget_spacing_class( $widget ); ?>" id="<?php echo $widget_id; ?>" <?php if( $this->check_and_return( $widget , 'slide_height' ) ) echo 'style="height: ' . $widget['slide_height'] . 'px;"' ?>>
+			$this->apply_widget_advanced_styling( $widget_id, $widget );
+			
+			// Slider Class
+			$slider_class = array();
+			if( isset( $widget['design']['layout'] ) && '' != $widget['design']['layout'] ) {
+				$slider_class[] = 'slider-' . $widget['design']['layout']; // eg 'slider-layout-full-screen'
+			}
+			if( 1 == count( $widget[ 'slides' ] ) ) {
+				// If only one slide
+				$slider_class[] = 'single-slide';
+			}
+			$slider_class = implode( ' ', $slider_class ); ?>
+			<section class="widget row slide swiper-container <?php echo $slider_class; ?> <?php echo $this->get_widget_layout_class( $widget ); ?> <?php echo $this->check_and_return( $widget , 'design', 'advanced', 'customclass' ) ?> <?php echo $this->get_widget_spacing_class( $widget ); ?>" id="<?php echo $widget_id; ?>" <?php if( $this->check_and_return( $widget , 'slide_height' ) ) echo 'style="height: ' . $widget['slide_height'] . 'px;"' ?>>
 				<?php if( !empty( $widget[ 'slides' ] ) ) { ?>
 					<?php if( 1 < count( $widget[ 'slides' ] ) && isset( $widget['show_slider_arrows'] ) ) { ?>
 						 <div class="arrows">
@@ -239,7 +249,7 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 							watchActiveIndex: true,
 							loop: true
 							<?php if( isset( $widget['autoplay_slides'] ) && isset( $widget['slide_time'] ) && is_numeric( $widget['slide_time'] ) ) {?>, autoplay: <?php echo ($widget['slide_time']*1000); ?><?php }?>
-							<?php if( isset( $wp_customize ) && ( strlen( $widget[ 'slide_ids' ] ) > strlen( get_option( $this->get_field_id( 'slider' ) . '_slide_ids' ) ) ) ) { ?>,initialSlide: <?php echo count( explode( ',', $widget['slide_ids']) ) - 1; ?><?php } ?>
+							<?php if( '' != get_option( $this->get_field_id( 'slider' ) . '_slide_ids' ) && isset( $wp_customize ) && ( strlen( $widget[ 'slide_ids' ] ) > strlen( get_option( $this->get_field_id( 'slider' ) . '_slide_ids' ) ) ) ) { ?>,initialSlide: <?php echo count( explode( ',', $widget['slide_ids']) ) - 1; ?><?php } ?>
 						});
 
 						<?php if( 1 < count( $widget[ 'slides' ] ) ) { ?>
@@ -286,6 +296,11 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 					}
 				} // foreach checkboxes
 			} // if checkboxes
+
+			// Don't break the slider when
+			if ( !isset( $new_instance['slides'] ) ) {
+				$new_instance['slides'] = array();
+			}
 
 			return $new_instance;
 		}

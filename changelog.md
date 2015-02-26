@@ -5,11 +5,14 @@
 
 Security and code quality updates
 
+* **Enhancement** - Improved class initiators (thanks @prettyboymp)
 * **Enhancement** - Added filters to design bar components (thanks @prettyboymp)
 * **Enhancement** - Clicking out of the design bar closes a control (thanks @prettyboymp @jeffstieler)
+* **Enhancement** - Added customizer-preview.js for scripts executed in the customizer preview iframe only
+* **Fix** - Deleting all slides then adding your first slide again threw an error (thanks @prettyboymp)
 * **Fix** - Fix references from i8n to i18n
 * **Fix** - Added check_ajax_referer() for Ajax nonceing
-* **Fix** - Removed double <title> tag
+* **Fix** - Removed double <title /> tag
 * **Fix** - Improved nonce handling and removed any reference to $_REQUEST[] in the code
 * **Fix** - Updated Google maps API link for SSL compatability (thanks @oskapt)
 * **Fix** - Improved localization (thanks @tmconnect)
@@ -23,9 +26,13 @@ Security and code quality updates
 * **Tweak** - Changed jquery-masonry to masonry v3 not dependent on jquery
 * **Tweak** - Updated hook used for meta box registration
 * **Tweak** - Changed in-line styles and scripts to always use admin_print_styles and admin_print_scripts hooks
-* **Enhancement** - Added customizer-preview.js for scripts executed in the customizer preview iframe only
 * **Tweak** - Moved fouc rendering issue fix from in-line to the customizer-preview.js
+<<<<<<< HEAD
 * **Tweak** - Slider behaves better in responsive mode - no longer image/copy overlap
+=======
+* **Tweak** - Apply class to Slider for layout eg slider-layout-full-screen
+
+>>>>>>> 298e78476410ec5e5da30758adcebe1aad615794
 
 ## 1.0.3
 ### 23 February 2015

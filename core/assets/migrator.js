@@ -264,7 +264,7 @@ console.log( attachment );
                 function(results){
                     $parent = $that.parents('.layers-product');
                     if ( results.success ) {
-                        $parent.fadeOut();
+                        $parent.fadeOut(500, function() { $(this).remove(); });
                     } else {
                         $parent.addClass('layers-ajax-error');
                     }

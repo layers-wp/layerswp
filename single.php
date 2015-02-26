@@ -5,17 +5,17 @@
  * @package Layers
  * @since Layers 1.0.0
  */
-
-get_header(); ?>
+get_header();
+?>
 
 <section id="post-<?php the_ID(); ?>" <?php post_class( 'content-main clearfix' ); ?>>
 	<div class="row">
 
 		<?php get_sidebar( 'left' ); ?>
 
-		<?php if( have_posts() ) : ?>
+		<?php if ( have_posts() ) : ?>
 
-			<?php while( have_posts() ) : the_post(); ?>
+			<?php while ( have_posts() ) : the_post(); ?>
 				<article <?php layers_center_column_class(); ?>>
 					<?php get_template_part( 'partials/content', 'single' ); ?>
 				</article>

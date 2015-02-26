@@ -24,12 +24,9 @@
                   <?php if ( !empty($template['custom']) ) : ?>
                      <a class="menu-icon dashicons dashicons-admin-generic" href="#"></a>
                      <ul class="edit-preset-menu layers-hide" style="background:#fff; z-index:99; display:block; position:absolute;">
-                        <?php
-                           $post_id = $template['post_id'];
-                           $edit_url = get_edit_post_link( $post_id );
-                        ?>
+                        <?php $edit_url = get_edit_post_link( $post_id ); ?>
                         <li><a class="edit-preset" href="<?php echo esc_url($edit_url); ?>">Edit</a></li>
-                        <li><a class="delete-preset" href="#" data-post-id="<?php echo esc_attr($post_id); ?>">Delete</a></li>
+                        <li><a class="delete-preset" href="#">Delete</a></li>
                      </ul>
                   <?php endif; ?>
                </div>

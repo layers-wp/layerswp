@@ -263,7 +263,7 @@ console.log( attachment );
                 // Set the attributes to send to the importer
                 $page_data = {
                     action: 'layers_delete_preset',
-                    post_id: $that.data('post-id'),
+                    post_id: $that.parents('.layers-product').data('post-id'),
                     nonce: layers_widget_params.nonce
                 };
 

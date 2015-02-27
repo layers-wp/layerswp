@@ -5,6 +5,8 @@
 
 Security and code quality updates
 
+* **Enhancement** - Added 'range' type to the form options
+* **Enhancement** - Added filtering to the design bar setup per widget (thanks @kevinlangleyjr)
 * **Enhancement** - Improved class initiators (thanks @prettyboymp)
 * **Enhancement** - Added filters to design bar components (thanks @prettyboymp)
 * **Enhancement** - Clicking out of the design bar closes a control (thanks @prettyboymp @jeffstieler)

@@ -191,23 +191,17 @@ if( !class_exists( 'Layers_Contact_Widget' ) ) {
 
 			// Parse $instance
 			$instance = wp_parse_args( $instance, $instance_defaults );
-			extract( $instance, EXTR_SKIP ); ?>
-			<!-- Form HTML Here -->
-			<?php $this->design_bar(
-				'side', // CSS Class Name
-				array(
-					'name' => $this->get_field_name( 'design' ),
-					'id' => $this->get_field_id( 'design' ),
-				), // Widget Object
-				$instance, // Widget Values
-				array(
+			extract( $instance, EXTR_SKIP );
+
+			$design_bar_components = apply_filters( 'layers_' . $this->widget_id . '_widget_design_bar_components' , array(
 					'layout',
 					'fonts',
 					'custom',
 					'background',
 					'advanced'
-				), // Standard Components
-				array(
+				) );
+
+			$design_bar_custom_components = apply_filters( 'layers_' . $this->widget_id . '_widget_design_bar_custom_components' , array(
 					'display' => array(
 						'icon-css' => 'icon-display',
 						'label' => __( 'Display', 'layerswp' ),
@@ -245,7 +239,19 @@ if( !class_exists( 'Layers_Contact_Widget' ) ) {
 							)
 						)
 					)
-				);?>
+				);
+
+			$this->design_bar(
+				'side', // CSS Class Name
+				array(
+					'name' => $this->get_field_name( 'design' ),
+					'id' => $this->get_field_id( 'design' ),
+				), // Widget Object
+				$instance, // Widget Values
+				$design_bar_components, // Standard Components
+				$design_bar_custom_components // Add-on Components
+			); ?>
+
 			<div class="layers-container-large">
 
 				<?php $this->form_elements()->header( array(
@@ -361,8 +367,6 @@ if( !class_exists( 'Layers_Contact_Widget' ) ) {
 
 				</section>
 			</div>
-
-
 
 		<?php } // Form
 	} // Class

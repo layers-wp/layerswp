@@ -125,7 +125,7 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 
 			// Apply the advanced widget styling
 			$this->apply_widget_advanced_styling( $widget_id, $widget );
-			
+
 			// Slider Class
 			$slider_class = array();
 			if( isset( $widget['design']['layout'] ) && '' != $widget['design']['layout'] ) {
@@ -326,21 +326,14 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 
 			// Parse $instance
 			$instance = wp_parse_args( $instance, $instance_defaults );
-			extract( $instance, EXTR_SKIP ); ?>
+			extract( $instance, EXTR_SKIP );
 
-			<!-- Form HTML Here -->
-			<?php $this->design_bar(
-				'side', // CSS Class Name
-				array(
-					'name' => $this->get_field_name( 'design' ),
-					'id' => $this->get_field_id( 'design' ),
-				), // Widget Object
-				$instance, // Widget Values
-				array(
+			$design_bar_components = apply_filters( 'layers_' . $this->widget_id . '_widget_design_bar_components' , array(
 					'custom',
 					'advanced'
-				), // Standard Components
-				array(
+				) );
+
+			$design_bar_custom_components = apply_filters( 'layers_' . $this->widget_id . '_widget_design_bar_custom_components' , array(
 					'layout' => array(
 						'icon-css' => 'icon-layout-fullwidth',
 						'label' => __( 'Layout', 'layerswp' ),
@@ -405,7 +398,17 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 								)
 							)
 					)
-				)
+				) );
+
+			$this->design_bar(
+				'side', // CSS Class Name
+				array(
+					'name' => $this->get_field_name( 'design' ),
+					'id' => $this->get_field_id( 'design' ),
+				), // Widget Object
+				$instance, // Widget Values
+				$design_bar_components, // Standard Components
+				$design_bar_custom_components // Add-on Components
 			); ?>
 			<div class="layers-container-large" id="layers-slide-widget-<?php echo esc_attr( $this->number ); ?>">
 

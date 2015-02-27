@@ -79,7 +79,7 @@ if( !function_exists( 'layers_bread_crumbs' ) ) {
 
 					// Loop through parent pages and grab their IDs
 					while( $parent_id ) {
-						$page = get_page($parent_id);
+						$page = get_post($parent_id);
 						$parent_pages[] = $page->ID;
 						$parent_id = $page->post_parent;
 					}
@@ -339,28 +339,6 @@ if( !function_exists( 'layers_get_page_title' ) ) {
 } // layers_get_page_title
 
 /**
- * Fix customizer FOUC during render.
- */
-if( !function_exists( 'layers_fix_customizer_render' ) ) {
-	function layers_fix_customizer_render() {
-		global $wp_customize;
-		if ( isset( $wp_customize ) ) {
-			?>
-			<script>
-			jQuery(document).ready(function($){
-				$('body').css({ 'font-size': '1.5rem' });
-				setTimeout(function() {
-					$('body').css({ 'font-size': '1.5rem' });
-				},3000 );
-			});
-			</script>
-			<?php
-		}
-	}
-	add_action( 'wp_head', 'layers_fix_customizer_render', 900 );
-}
-
-/**
  * Set body classes.
  */
 if( !function_exists( 'layers_body_class' ) ) {
@@ -381,8 +359,8 @@ if( !function_exists( 'layers_body_class' ) ) {
 
 		return apply_filters( 'layers_body_class', $classes );
 	}
-	add_action( 'body_class', 'layers_body_class' );
 } // layers_body_class
+add_action( 'body_class', 'layers_body_class' );
 
 /**
  * Apply Customizer settings to site housing
@@ -415,9 +393,8 @@ if( !function_exists( 'layers_apply_customizer_styles' ) ) {
 		layers_inline_styles( '#footer h5, #footer p, #footer li, #footer .textwidget, #footer.well', 'color', array( 'color' => layers_get_theme_mod( 'footer-body-color' ) ) );
 		layers_inline_styles( '#footer a, #footer.well a', 'color', array( 'color' => layers_get_theme_mod( 'footer-link-color' ) ) );
 	}
-
-	add_action( 'wp_enqueue_scripts', 'layers_apply_customizer_styles' );
 } // layers_apply_customizer_styles
+add_action( 'wp_enqueue_scripts', 'layers_apply_customizer_styles' );
 
 /**
  * Retrieve the classes for the header element as an array.
@@ -644,7 +621,6 @@ if( !function_exists( 'layers_get_theme_mod' ) ) {
  * @param   int     $sidebar                Sidebar slug to check
  */
 if( !function_exists( 'layers_can_show_sidebar' ) ) {
-
 	function layers_can_show_sidebar( $sidebar = 'left-sidebar' ){
 
 		if ( is_page_template( 'template-blog.php' ) ) {
@@ -675,7 +651,6 @@ if( !function_exists( 'layers_can_show_sidebar' ) ) {
 
 		return $classes = apply_filters( 'layers_can_show_sidebar', $can_show_sidebar, $sidebar );
 	}
-
 }
 
 /**
@@ -715,11 +690,11 @@ if( !function_exists( 'layers_add_additional_header_scripts' ) ) {
 		$add_additional_header_scripts = apply_filters( 'layers_header_scripts' , layers_get_theme_mod( 'header-custom-scripts' ) );
 
 		if( '' != $add_additional_header_scripts ) {
-			echo stripslashes( $add_additional_header_scripts );
+			echo '<script>' . trim( htmlspecialchars_decode(  $add_additional_header_scripts ) ) . '</script>';
 		}
 	}
-	add_action ( 'wp_head', 'layers_add_additional_header_scripts' );
 } // layers_add_additional_header_scripts
+add_action ( 'wp_head', 'layers_add_additional_header_scripts' );
 
 /**
  * Include additional scripts in the side footer
@@ -732,12 +707,11 @@ if( !function_exists( 'layers_add_additional_footer_scripts' ) ) {
 		$additional_footer_scripts = apply_filters( 'layers_footer_scripts' , layers_get_theme_mod( 'footer-custom-scripts' ) );
 
 		if( '' != $additional_footer_scripts ) {
-			echo stripslashes( $additional_footer_scripts );
+			echo '<script>' . stripslashes( htmlspecialchars_decode( $additional_footer_scripts ) ) . '</script>';
 		}
 	}
-	add_action ( 'wp_footer', 'layers_add_additional_footer_scripts' );
 } // layers_add_additional_header_scripts
-
+add_action ( 'wp_footer', 'layers_add_additional_footer_scripts' );
 
 /**
  * Include Google Analytics
@@ -762,8 +736,8 @@ if( !function_exists( 'layers_add_google_analytics' ) ) {
 			</script>
 		<?php }
 	}
-	add_action ( 'wp_head', 'layers_add_google_analytics' );
 } // layers_add_google_analytics
+add_action ( 'wp_print_scripts', 'layers_add_google_analytics' );
 
 /**
 * Style Generator
@@ -915,8 +889,8 @@ if( !function_exists( 'layers_apply_inline_styles' ) ) {
 				$layers_inline_css
 			);
 	}
-	add_action( 'get_footer' , 'layers_apply_inline_styles', 100 );
 } // layers_apply_inline_styles
+add_action( 'get_footer' , 'layers_apply_inline_styles', 100 );
 
 /**
 * Feature Image / Video Generator
@@ -966,7 +940,6 @@ if( !function_exists( 'layers_get_feature_media' ) ) {
 		return $media_output;
 	}
 }
-
 
 /**
 * Get Available Image Sizes for specific Image Type

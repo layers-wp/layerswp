@@ -10,20 +10,22 @@
 class Layers_Widget_Migrator {
 
 	private static $instance;
-
 	/**
 	*  Initiator
 	*/
-
-	public static function init(){
+	public static function get_instance(){
+		if ( ! isset( self::$instance ) ) {
+			self::$instance = new Layers_Widget_Migrator();
+		}
 		return self::$instance;
 	}
-
 	/**
 	*  Constructor
 	*/
-
 	public function __construct() {
+	}
+
+	public function init() {
 
 		if( isset( $_GET[ 'layers-export' ] ) ) $this->create_export_file();
 
@@ -553,6 +555,8 @@ class Layers_Widget_Migrator {
 
 	public function do_ajax_import(){
 
+		if( !check_ajax_referer( 'layers-migrator-import', 'nonce', false ) ) die( 'You threw a Nonce exception' ); // Nonce
+
 		// Set the page ID
 		$import_data[ 'post_id' ] = $_POST[ 'post_id' ];
 
@@ -578,6 +582,8 @@ class Layers_Widget_Migrator {
 	*/
 
 	public function do_ajax_duplicate(){
+
+		if( !check_ajax_referer( 'layers-migrator-duplicate', 'nonce', false ) ) die( 'You threw a Nonce exception' ); // Nonce
 
 		// We need a page title and post ID for this to work
 		if( !isset( $_POST[ 'post_title' ] ) || !isset( $_POST[ 'post_id' ]  ) ) return;
@@ -633,6 +639,8 @@ class Layers_Widget_Migrator {
 	public function create_builder_page_from_preset(){
 		global $layers_widgets;
 
+		if( !check_ajax_referer( 'layers-migrator-preset-layouts', 'nonce', false ) ) die( 'You threw a Nonce exception' ); // Nonce
+
 		$check_builder_pages = layers_get_builder_pages();
 
 		if( isset( $_POST[ 'post_title' ] )  ){
@@ -643,7 +651,7 @@ class Layers_Widget_Migrator {
 
 		// Generate builder page and return page ID
 		$import_data[ 'post_id' ] = layers_create_builder_page( $post_title );
-		$new_page = get_page( $import_data[ 'post_id' ] );
+		$new_page = get_post( $import_data[ 'post_id' ] );
 
 		// Register Builder Sidebar
 		$layers_widgets->register_builder_sidebar( $import_data[ 'post_id' ] );
@@ -839,7 +847,6 @@ if( !function_exists( 'layers_builder_export_init' ) ) {
 
 	}
 }
-
 add_action( 'admin_head' , 'layers_builder_export_init', 10 );
 
 if( !function_exists( 'layers_builder_export_ajax_init' ) ) {
@@ -852,5 +859,4 @@ if( !function_exists( 'layers_builder_export_ajax_init' ) ) {
 		add_action( 'wp_ajax_layers_duplicate_builder_page', array( $layers_migrator, 'do_ajax_duplicate' ) );
 	}
 }
-
 add_action( 'init' , 'layers_builder_export_ajax_init' );

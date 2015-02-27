@@ -64,16 +64,8 @@ class Layers_Widgets {
 	public function register_sidebars(){
 		global $wp_customize , $temp_sidebars;
 
-		// Fetch Builder Pages
-		$pages = get_pages(array(
-			'post_status' => 'publish,draft,private',
-			'meta_key' => '_wp_page_template',
-			'meta_value' => 'builder.php',
-			'parent' => -1
-		));
-
 		// Loop the Builder Pages and create their sidebars
-		foreach($pages as $page){
+		foreach( layers_get_builder_pages() as $page){
 			$this->register_builder_sidebar( $page->ID, $page->post_title );
 		}
 	}
@@ -194,8 +186,8 @@ class Layers_Widgets {
 			LAYERS_VERSION,
 			true
 		);
-		wp_localize_script( LAYERS_THEME_SLUG . '-admin-slider-widget' , 'sliderwidgeti8n', array(
-        	'confirm_message' => __( 'Are you sure you want to remove this slide?' , 'layerswp' )
+		wp_localize_script( LAYERS_THEME_SLUG . '-admin-slider-widget' , 'sliderwidgeti18n', array(
+			'confirm_message' => __( 'Are you sure you want to remove this slide?' , 'layerswp' )
 		) );
 
 		// Content Widget
@@ -206,8 +198,8 @@ class Layers_Widgets {
 			LAYERS_VERSION,
 			true
 		);
-		wp_localize_script( LAYERS_THEME_SLUG . '-admin-content-widget' , 'contentwidgeti8n', array(
-        	'confirm_message' => __( 'Are you sure you want to remove this column?' , 'layerswp' )
+		wp_localize_script( LAYERS_THEME_SLUG . '-admin-content-widget' , 'contentwidgeti18n', array(
+			'confirm_message' => __( 'Are you sure you want to remove this column?' , 'layerswp' )
 		) );
 
 		// Tiny MCE Initiator
@@ -246,7 +238,6 @@ class Layers_Widgets {
 				LAYERS_THEME_SLUG . '-admin-widgets' ,
 				"layers_widget_params",
 				array(
-						'ajaxurl' => admin_url( "admin-ajax.php" ) ,
 						'nonce' => wp_create_nonce( 'layers-widget-actions' )
 					)
 			);

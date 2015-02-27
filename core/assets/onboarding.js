@@ -73,17 +73,17 @@ jQuery(function($) {
                 action: 'layers_create_builder_page_from_preset',
                 post_title: ( undefined == $( '#preset_page_title' ) ? false : $( '#preset_page_title' ).val() ),
                 widget_data: $.parseJSON( $widget_data ),
-                nonce: layers_widget_params.nonce
+                nonce: layers_onboarding_params.preset_layout_nonce
             };
 
             jQuery.post(
-                layers_onboarding_params.ajaxurl,
+                ajaxurl,
                 $page_data,
                 function(data){
 
                     $results = $.parseJSON( data );
 
-                    $form.find( '.layers-save-progress' ).text( onboardingi8n.step_done_message ).fadeOut(300);
+                    $form.find( '.layers-save-progress' ).text( onboardingi18n.step_done_message ).fadeOut(300);
 
                     setTimeout( function(){ window.location.assign( $results.customizer_location ); }, 350 );
                 }
@@ -94,18 +94,18 @@ jQuery(function($) {
             $data = $form.find( 'input, textarea, select' ).serialize();
 
             $.post(
-                layers_onboarding_params.ajaxurl,
+                ajaxurl,
                 {
                     action: $action,
                     data: $data,
-                    nonce: layers_onboarding_params.nonce
+                    layers_onboarding_update_nonce: layers_onboarding_params.update_option_nonce
 
                 },
                 function(data){
 
                     $results = $.parseJSON( data );
                     if( true == $results.success ) {
-                        $form.find( '.layers-save-progress' ).text( onboardingi8n.step_done_message );
+                        $form.find( '.layers-save-progress' ).text( onboardingi18n.step_done_message );
 
                         setTimeout( function(){
                             $form.find( '.layers-save-progress' ).hide();

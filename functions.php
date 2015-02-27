@@ -70,6 +70,7 @@ require_once get_template_directory() . '/core/helpers/custom-fonts.php';
 require_once get_template_directory() . '/core/helpers/extensions.php';
 require_once get_template_directory() . '/core/helpers/post.php';
 require_once get_template_directory() . '/core/helpers/post-types.php';
+require_once get_template_directory() . '/core/helpers/sanitization.php';
 require_once get_template_directory() . '/core/helpers/template.php';
 require_once get_template_directory() . '/core/helpers/woocommerce.php';
 
@@ -177,8 +178,8 @@ if( ! function_exists( 'layers_setup' ) ) {
 		}
 
 	} // function layers_setup
-	add_action( 'after_setup_theme' , 'layers_setup', 10 );
 } // if !function layers_setup
+add_action( 'after_setup_theme' , 'layers_setup', 10 );
 
 /**
 *  Enqueue front end styles and scripts
@@ -254,8 +255,8 @@ if( ! function_exists( 'layers_register_standard_sidebars' ) ) {
 			) );
 		}
 	}
-	add_action( 'widgets_init' , 'layers_register_standard_sidebars' , 50 );
 }
+add_action( 'widgets_init' , 'layers_register_standard_sidebars' , 50 );
 
 /**
 *  Enqueue front end styles and scripts
@@ -266,30 +267,30 @@ if( ! function_exists( 'layers_scripts' ) ) {
 		/**
 		* Front end Scripts
 		*/
-		if( !is_admin() ) {
-			wp_enqueue_script(
-				LAYERS_THEME_SLUG . '-plugins-js' ,
-				get_template_directory_uri() . '/assets/js/plugins.js',
-				array(
-					'jquery',
-				)
-			); // Sticky-Kit
 
-			wp_enqueue_script(
-				LAYERS_THEME_SLUG . '-framework-js' ,
-				get_template_directory_uri() . '/assets/js/layers.framework.js',
-				array(
-					'jquery',
-				),
-				LAYERS_VERSION,
-				true
-			); // Framework
+		wp_enqueue_script(
+			LAYERS_THEME_SLUG . '-plugins-js' ,
+			get_template_directory_uri() . '/assets/js/plugins.js',
+			array(
+				'jquery',
+			),
+			LAYERS_VERSION
+		); // Sticky-Kit
+
+		wp_enqueue_script(
+			LAYERS_THEME_SLUG . '-framework-js' ,
+			get_template_directory_uri() . '/assets/js/layers.framework.js',
+			array(
+				'jquery',
+			),
+			LAYERS_VERSION,
+			true
+		); // Framework
 
 
-			if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
-				wp_enqueue_script( 'comment-reply' );
-			} // Comment reply script
-		}
+		if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
+			wp_enqueue_script( 'comment-reply' );
+		} // Comment reply script
 
 		/**
 		* Front end Styles
@@ -402,16 +403,26 @@ if( ! function_exists( 'layers_admin_scripts' ) ) {
 			LAYERS_VERSION,
 			true
 		);
+
 		wp_localize_script(
 			LAYERS_THEME_SLUG . '-admin-migrator',
-			'migratori8n',
+			'migratori18n',
 			array(
 				'loading_message' => __( 'Be patient while we import the widget data and images.' , 'layerswp' ),
 				'complete_message' => __( 'Import Complete' , 'layerswp' ),
 				'importing_message' => __( 'Importing Your Content' , 'layerswp' ),
 				'duplicate_complete_message' => __( 'Edit Your New Page' , 'layerswp' )
 			)
-		);// Migrator
+		);// Migrator// Localize Scripts
+		wp_localize_script(
+			LAYERS_THEME_SLUG . '-admin-migrator',
+			"layers_migrator_params",
+			array(
+					'duplicate_layout_nonce' => wp_create_nonce( 'layers-migrator-duplicate' ),
+					'import_layout_nonce' => wp_create_nonce( 'layers-migrator-import' ),
+					'preset_layout_nonce' => wp_create_nonce( 'layers-migrator-preset-layouts' ),
+				)
+		);
 
 		// Onboarding Process
 		wp_enqueue_script(
@@ -428,14 +439,14 @@ if( ! function_exists( 'layers_admin_scripts' ) ) {
 			LAYERS_THEME_SLUG . '-admin-onboarding' ,
 			"layers_onboarding_params",
 			array(
-				'ajaxurl' => admin_url( "admin-ajax.php" ) ,
-				'nonce' => wp_create_nonce( 'layers-onboarding-actions' )
+				'preset_layout_nonce' => wp_create_nonce( 'layers-migrator-preset-layouts' ),
+				'update_option_nonce' => wp_create_nonce( 'layers-onboarding-update-options' ),
 			)
 		); // Onboarding ajax parameters
 
 		wp_localize_script(
 			LAYERS_THEME_SLUG . '-admin-onboarding' ,
-			'onboardingi8n',
+			'onboardingi18n',
 			array(
 				'step_saving_message' => __( 'Saving...' , 'layerswp' ),
 				'step_done_message' => __( 'Done!' , 'layerswp' )
@@ -454,6 +465,15 @@ if( ! function_exists( 'layers_admin_scripts' ) ) {
 			true
 		); // Admin JS
 
+		wp_localize_script(
+			LAYERS_THEME_SLUG . '-admin' ,
+			"layers_admin_params",
+			array(
+				'backup_pages_nonce' => wp_create_nonce( 'layers-backup-pages' ),
+				'backup_pages_success_message' => __('Your pages have been successfully backed up!', 'layerswp' )
+			)
+		); // Onboarding ajax parameters
+
 		wp_enqueue_media();
 
 	}
@@ -469,6 +489,6 @@ if( !function_exists( 'layers_excerpt_class' ) ) {
 	function layers_excerpt_class( $excerpt ) {
 		return str_replace('<p', '<p class="excerpt"', $excerpt);
 	}
-	add_filter( "the_excerpt", "layers_excerpt_class" );
-	add_filter( "get_the_excerpt", "layers_excerpt_class" );
 } // layers_excerpt_class
+add_filter( "the_excerpt", "layers_excerpt_class" );
+add_filter( "get_the_excerpt", "layers_excerpt_class" );

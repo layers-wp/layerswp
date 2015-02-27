@@ -965,10 +965,10 @@ input[type=text].layers-color-selector.wp-color-picker{
         top: 5px;
         right: 100px;
         width: 220px;
-        max-height: 320px;
         background: #f5f5f5;
         border: 1px solid #ddd;
         border-radius: 3px;
+        max-height: 320px;
         overflow: hidden;
         overflow-y: scroll;
         visibility: hidden;
@@ -1553,8 +1553,6 @@ input[type=text].layers-color-selector.wp-color-picker{
 .layers-accordions-sortable .layers-accordion-item:hover{
     border-color: #ccc;
 }
-.layers-accordions-sortable .layers-accordion-item:active{
-}
 .layers-accordions-sortable .layers-accordion-title{
     padding: 10px;
     border-top: none;
@@ -2112,9 +2110,6 @@ input[type=radio]:checked + .layers-settings-icon span{
     margin: 0 0 60px;
     border-bottom: 2px solid #ddd;
 }
-ul#adminmenu a.wp-has-current-submenu:after, ul#adminmenu > li.current > a.current:after{
-    border-right-color: #009DF3;
-}
 #toplevel_page_layers-dashboard .wp-menu-image:before {
     content: "\e62f";
     font-family: "layers-interface";
@@ -2200,6 +2195,11 @@ ul#adminmenu a.wp-has-current-submenu:after, ul#adminmenu > li.current > a.curre
             margin: 0;
             border-bottom: 1px solid #e5e5e5;
         }
+        .layers-list li.tick{
+            padding-left: 36px;
+            background: url(images/copy-tick.png) 10px 50% no-repeat;
+        }
+
         .layers-list li:last-child{
             border-bottom: none;
         }
@@ -2367,18 +2367,19 @@ ul#adminmenu a.wp-has-current-submenu:after, ul#adminmenu > li.current > a.curre
         .layers-template-selector .layers-product:nth-child(2n+2){
             margin-right: 0;
         }
-        .layers-template-selector .layers-product:nth-child(3n+3){
-            margin-right: 4%;
-        }
         .layers-onboard-slide .layers-product:focus{
-            border-color: #2EA2CC;
+            border-color: #009eec;
         }
         .layers-onboard-slide .layers-product:focus .layers-product-name{
-            background: #2EA2CC;
+            background-color: #009eec;
+            border-top-color: #009eec;
             color: #fff;
         }
         .layers-onboard-slide .layers-product-actions{
             display: none;
+        }
+        .layers-template-selector img{
+            display: block;
         }
 
         /*------------------------------------------*/

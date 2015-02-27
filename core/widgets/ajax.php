@@ -17,7 +17,10 @@ if( !class_exists( 'Layers_Widget_Ajax' ) ) {
 		*  Initiator
 		*/
 
-		public static function init(){
+		public static function get_instance(){
+			if ( ! isset( self::$instance ) ) {
+				self::$instance = new Layers_Custom_Meta();
+			}
 			return self::$instance;
 		}
 
@@ -26,13 +29,15 @@ if( !class_exists( 'Layers_Widget_Ajax' ) ) {
 		*/
 
 		public function __construct() {
-			add_action( 'wp_ajax_layers_slider_widget_actions', array( $this, 'slider_widget_actions' ) );
-
-			add_action( 'wp_ajax_layers_content_widget_actions', array( $this, 'content_widget_actions' ) );
 		}
 
+		public function init() {
+			add_action( 'wp_ajax_layers_slider_widget_actions', array( $this, 'slider_widget_actions' ) );
+			add_action( 'wp_ajax_layers_content_widget_actions', array( $this, 'content_widget_actions' ) );
+		}
 		function slider_widget_actions(){
-			if( !wp_verify_nonce( $_REQUEST['nonce'], 'layers-widget-actions' ) ) die( 'You threw a Nonce exception' ); // Nonce
+
+			if( !check_ajax_referer( 'layers-widget-actions', 'nonce', false ) ) die( 'You threw a Nonce exception' ); // Nonce
 
 			$widget = new Layers_Slider_Widget();
 			if( 'add' == $_POST[ 'widget_action'] ) {
@@ -44,7 +49,7 @@ if( !class_exists( 'Layers_Widget_Ajax' ) ) {
 				);
 
 				// Get the previous element's column data
-				if( isset( $_POST[ 'last_guid' ] ) ) {
+				if( isset( $data[ 'widget-' . $_POST[ 'id_base' ] ] ) && isset( $_POST[ 'last_guid' ] ) && is_numeric( $_POST[ 'last_guid' ] ) ) {
 					$instance = $data[ 'widget-' . $_POST[ 'id_base' ] ][ $_POST[ 'number' ] ][ 'slides' ][ $_POST[ 'last_guid' ] ];
 				} else {
 					$instance = NULL;
@@ -58,7 +63,8 @@ if( !class_exists( 'Layers_Widget_Ajax' ) ) {
 		}
 
 		function content_widget_actions(){
-			if( !wp_verify_nonce( $_REQUEST['nonce'], 'layers-widget-actions' ) ) die( 'You threw a Nonce exception' ); // Nonce
+
+			if( !check_ajax_referer( 'layers-widget-actions', 'nonce', false ) ) die( 'You threw a Nonce exception' ); // Nonce
 
 			$widget = new Layers_Content_Widget();
 			if( 'add' == $_POST[ 'widget_action'] ) {
@@ -70,7 +76,7 @@ if( !class_exists( 'Layers_Widget_Ajax' ) ) {
 				);
 
 				// Get the previous element's column data
-				if( isset( $_POST[ 'last_guid' ] ) && is_numeric( $_POST[ 'last_guid' ] ) ) {
+				if( isset( $data[ 'widget-' . $_POST[ 'id_base' ] ] ) && isset( $_POST[ 'last_guid' ] ) && is_numeric( $_POST[ 'last_guid' ] ) ) {
 					$instance = $data[ 'widget-' . $_POST[ 'id_base' ] ][ $_POST[ 'number' ] ][ 'columns' ][ $_POST[ 'last_guid' ] ];
 				} else {
 					$instance = NULL;

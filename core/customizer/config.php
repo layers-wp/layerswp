@@ -153,7 +153,7 @@ class Layers_Customizer_Config {
 			$controls['nav'] = array(
 									'general-nav' => array(
 										'type'        => 'layers-button',
-										'text'        => __( 'Create Menu' , 'layerswp' ),
+										'layers-text'        => __( 'Create Menu' , 'layerswp' ),
 										'href'        => admin_url( 'nav-menus.php' ),
 									),
 								); // header-layout
@@ -163,20 +163,28 @@ class Layers_Customizer_Config {
 		// Header -> Layout -> Layout
 		$controls['css'] = array(
 								'custom-css' => array(
-									'type'     => 'layers-css',
+									'type'     => 'layers-code',
 									'placeholder'	=> ".classname {\n\tbackground: #333;\n}"
 								),
 							); // css
 
 		// Header -> Layout -> Layout
 		$controls['fonts'] = array(
+								'typekit-id' => array(
+									'type' => 'layers-text',
+									'label'    => __( 'Typekit ID' , 'layerswp' ),
+									'description' => sprintf( __( 'For more information on obtaining your Typekit ID, see <a href="%s" target="_blank">follow this link</a>.', 'layerswp' ), 'http://help.typekit.com/customer/portal/articles/6780' ),
+								),
+								'fonts-break-1' => array(
+									'type'     => 'layers-seperator'
+								),
 								'body-fonts' => array(
 									'type' => 'layers-font',
 									'label'    => __( 'Body' , 'layerswp' ),
 									'selectors' => 'body',
 									'choices' => layers_get_google_font_options()
 								),
-								'fonts-break-0' => array(
+								'fonts-break-1' => array(
 									'type'     => 'layers-seperator'
 								),
 								'heading-fonts' => array(
@@ -185,7 +193,7 @@ class Layers_Customizer_Config {
 									'selectors' => 'h1,h2,h3,h4,h5,h6, .heading',
 									'choices' => layers_get_google_font_options()
 								),
-								'fonts-break-1' => array(
+								'fonts-break-2' => array(
 									'type'     => 'layers-seperator'
 								),
 								'form-fonts' => array(
@@ -253,7 +261,7 @@ class Layers_Customizer_Config {
 		// Header -> Layout -> Scripts
 		$controls['header-scripts'] = array(
 								'header-google-id' => array(
-									'type'     => 'text',
+									'type'     => 'layers-text',
 									'label'    => __( 'Google Analytics ID' , 'layerswp' ),
 									'description' => __( 'Enter in your Google Analytics ID to enable website traffic reporting. eg. "UA-xxxxxx-xx' , 'layerswp' ),
 									'default' => '',
@@ -262,10 +270,10 @@ class Layers_Customizer_Config {
 									'type'     => 'layers-seperator'
 								),
 								'header-custom-scripts' => array(
-									'type'     => 'textarea',
+									'type'     => 'layers-code',
 									'label'    => __( 'Custom Scripts' , 'layerswp' ),
-									'description' => __( 'Enter in any custom script (such as TypeKit etc) to include in your site\'s header. Include the &lt;script&gt;&lt;/script&gt; tags.' , 'layerswp' ),
-									'default' => '',
+									'description' => __( 'Enter in any custom script to include in your site\'s header. Be sure to use double quotes for strings.' , 'layerswp' ),
+									'default' => ''
 								) // scripts
 							);
 
@@ -276,12 +284,12 @@ class Layers_Customizer_Config {
 									'description' => __( 'This option affects your single post pages.' , 'layerswp' ),
 								),
 								'single-left-sidebar' => array(
-									'type'      => 'checkbox',
+									'type'      => 'layers-checkbox',
 									'label'     => __( 'Display Left Sidebar' , 'layerswp' ),
 									'default'   => FALSE,
 								), // post-sidebar
 								'single-right-sidebar' => array(
-									'type'      => 'checkbox',
+									'type'      => 'layers-checkbox',
 									'label'     => __( 'Display Right Sidebar' , 'layerswp' ),
 									'default'   => TRUE,
 								), // post-sidebar
@@ -294,12 +302,12 @@ class Layers_Customizer_Config {
 									'description' => __( 'This option affects your category, tag, author and search pages.' , 'layerswp' ),
 								),
 								'archive-left-sidebar' => array(
-									'type'		=> 'checkbox',
+									'type'		=> 'layers-checkbox',
 									'label' 	=> __( 'Display Left Sidebar' , 'layerswp' ),
 									'default' 	=> FALSE,
 								), // post-sidebar
 								'archive-right-sidebar' => array(
-									'type'		=> 'checkbox',
+									'type'		=> 'layers-checkbox',
 									'label' 	=> __( 'Display Right Sidebar' , 'layerswp' ),
 									'default' 	=> TRUE,
 								), // post-sidebar
@@ -320,9 +328,10 @@ class Layers_Customizer_Config {
 									'type'     => 'layers-seperator'
 								),
 								'footer-sidebar-count' => array(
-									'type'     => 'select',
+									'type'     => 'layers-select',
 									'label'    => __( 'Widget Areas' , 'layerswp' ),
 									'default' => 4,
+									'sanitize_callback' => 'layers_sanitize_number',
 									'choices' => array(
 										'0' => __( 'None' , 'layerswp' ),
 										'1' => __( '1' , 'layerswp' ),
@@ -400,19 +409,19 @@ class Layers_Customizer_Config {
 		// Footer -> Layout -> Text
 		$controls['footer-text'] = array(
 				'footer-copyright-text' => array(
-					'type'     => 'text',
+					'type'     => 'layers-text',
 					'label'    => __( 'Copyright Text' , 'layerswp' ),
-					'default' => ' Made at the tip of Africa. &copy;'
+					'default' => ' Made at the tip of Africa. &copy;',
 				), // copyright
 			); // footer-text
 
 		// Footer -> Layout -> Scripts
 		$controls['footer-scripts'] = array(
 					'footer-custom-scripts' => array(
-						'type'     => 'textarea',
+						'type'     => 'layers-code',
 						'label'    => __( 'Custom Scripts' , 'layerswp' ),
-						'description' => __( 'Enter in any custom script to include in your site\'s footer. Include the &lt;script&gt;&lt;/script&gt; tags.' , 'layerswp' ),
-						'default' => '',
+						'description' => __( 'Enter in any custom script to include in your site\'s footer. Be sure to use double quotes for strings.' , 'layerswp' ),
+						'default' => ''
 					), // scripts
 				); // footer-scripts
 
@@ -425,12 +434,12 @@ class Layers_Customizer_Config {
 									'description' => __( 'This option affects your single product pages.' , 'layerswp' ),
 								),
 								'single-left-woocommerce-sidebar' => array(
-									'type'      => 'checkbox',
+									'type'      => 'layers-checkbox',
 									'label'     => __( 'Display Left Sidebar' , 'layerswp' ),
 									'default'   => FALSE,
 								), // post-sidebar
 								'single-right-woocommerce-sidebar' => array(
-									'type'      => 'checkbox',
+									'type'      => 'layers-checkbox',
 									'label'     => __( 'Display Right Sidebar' , 'layerswp' ),
 									'default'   => TRUE,
 								), // post-sidebar
@@ -443,12 +452,12 @@ class Layers_Customizer_Config {
 									'description' => __( 'This option affects your shop page, product category and product tag pages.' , 'layerswp' ),
 								),
 								'archive-left-woocommerce-sidebar' => array(
-									'type'      => 'checkbox',
+									'type'      => 'layers-checkbox',
 									'label'     => __( 'Display Left Sidebar' , 'layerswp' ),
 									'default'   => FALSE,
 								), // post-sidebar
 								'archive-right-woocommerce-sidebar' => array(
-									'type'      => 'checkbox',
+									'type'      => 'layers-checkbox',
 									'label'     => __( 'Display Right Sidebar' , 'layerswp' ),
 									'default'   => TRUE,
 								), // post-sidebar

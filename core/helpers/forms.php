@@ -158,6 +158,15 @@ class Layers_Form_Elements {
 				<input type="number" <?php echo implode ( ' ' , $input_props ); ?> value="<?php echo $input->value; ?>" />
 			<?php break;
 			/**
+			* Range Inputs
+			*/
+			case 'range' :
+				$input_props['min'] = ( isset( $input->min ) ) ? 'min="' .  $input->min . '"' : NULL ;
+				$input_props['max'] = ( isset( $input->max ) ) ? 'max="' .  $input->max . '"' : NULL ;
+				$input_props['step'] = ( isset( $input->step ) ) ? 'step="' .  $input->step . '"' : NULL ; ?>
+				<input type="range" <?php echo implode ( ' ' , $input_props ); ?> value="<?php echo $input->value; ?>" />
+			<?php break;
+			/**
 			* Checkboxes - here we look for on/NULL, that's how WP widgets save them
 			*/
 			case 'checkbox' : ?>

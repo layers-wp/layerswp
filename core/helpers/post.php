@@ -169,7 +169,7 @@ if( !function_exists( 'layers_backup_builder_pages' ) ) {
         $page_content = strip_tags( $page_content , '<p><b><i><strong><em><quote><a><h1><h2><h3><h4><h5><img><script>' );
         $page_content = $page_content;
 
-        $page_meta_key = 'layers_page_content_' . date( 'Ymd' );
+        $page_meta_key = 'layers_page_content_' . date( 'YmdHi' );
 
         update_post_meta( $page_id , $page_meta_key, $page_content );
 

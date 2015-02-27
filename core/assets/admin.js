@@ -26,6 +26,7 @@
  * 13 - Show/Hide linked elements
  * 14 - Run Initialisations
  * 15 - Layers Custom Easing
+ * 16 - Layers Pages Backups
  *
  * Author: Obox Themes
  * Author URI: http://www.oboxthemes.com/
@@ -621,6 +622,60 @@ jQuery(function($) {
 		if ((t/=d/2) < 1) return c/2*t*t + b;
 		return -c/2 * ((--t)*(t-2) - 1) + b;
 	} });
+
+	/**
+	* 16 - Layers Backup Pages
+	*
+	* Backup Layers pages so that users can transfer themes
+	*/
+
+	function layers_backup_builder_page( $pageid, $page_li ){
+
+		var $total_pages = $( '.layers-list li' ).length;
+		var $complete_pages = 1;
+
+		$.post(
+			ajaxurl,
+			{
+				action: 'layers_backup_builder_pages',
+				pageid: $pageid,
+				layers_backup_pages_nonce: layers_admin_params.backup_pages_nonce
+			},
+			function(data){
+				// Check off this page
+				$page_li.removeClass( 'cross' ).addClass( 'tick' );
+
+				// Load Bar %
+				var $load_bar_width = $complete_pages/$total_pages;
+				var $load_bar_percent = 100*$load_bar_width;
+				$( '.layers-progress' ).animate({width: $load_bar_percent+"%"} ).text( Math.round($load_bar_percent)+'%');
+
+				if( 100 == $load_bar_percent ) $( '.layers-progress' ).delay(500).addClass( 'complete' ).text( layers_admin_params.backup_pages_success_message );
+
+				// Set Complete count
+				$complete_pages++;
+
+				if( $complete_pages <= $total_pages ){
+					var $next_page_li = $page_li.next();
+					var $pageid = $next_page_li.data( 'page_id' );
+
+					layers_backup_builder_page( $pageid, $next_page_li );
+				}
+			}
+		) // $.post
+	}
+
+	$(document).on( 'click', '#layers-backup-pages', function(){
+
+		// Adjust progress bar
+		$( '.layers-progress' ).removeClass( 'zero complete' ).css('width' , 0);
+
+		// "Hi Mom"
+		var $that = $( '.layers-list li' ).eq(0);
+		var $pageid = $that.data( 'page_id' );
+
+		layers_backup_builder_page( $pageid, $that );
+	});
 
 });
 

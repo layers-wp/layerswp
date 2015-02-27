@@ -465,6 +465,15 @@ if( ! function_exists( 'layers_admin_scripts' ) ) {
 			true
 		); // Admin JS
 
+		wp_localize_script(
+			LAYERS_THEME_SLUG . '-admin' ,
+			"layers_admin_params",
+			array(
+				'backup_pages_nonce' => wp_create_nonce( 'layers-backup-pages' ),
+				'backup_pages_success_message' => __('Your pages have been successfully backed up!', 'layerswp' )
+			)
+		); // Onboarding ajax parameters
+
 		wp_enqueue_media();
 
 	}

@@ -152,6 +152,8 @@ if( !function_exists( 'layers_comment' ) ) {
 if( !function_exists( 'layers_backup_builder_pages' ) ) {
     function layers_backup_builder_pages(){
 
+        if( !check_ajax_referer( 'layers-backup-pages', 'layers_backup_pages_nonce', false ) ) die( 'You threw a Nonce exception' ); // Nonce
+
         if( !isset( $_POST[ 'pageid' ] ) ) wp_die( __( 'You shall not pass' , 'layerswp' ) );
 
         // Get the post data
@@ -162,18 +164,14 @@ if( !function_exists( 'layers_backup_builder_pages' ) ) {
         ob_start();
         dynamic_sidebar( 'obox-layers-builder-' . $page->ID );
 
-        $page_content = ob_get_clean();
+        $page_content = trim( ob_get_clean() );
         $page_content = preg_replace('#<script(.*?)>(.*?)</script>#is', '', $page_content);
         $page_content = strip_tags( $page_content , '<p><b><i><strong><em><quote><a><h1><h2><h3><h4><h5><img><script>' );
+        $page_content = $page_content;
 
-        // New page arguments
-        $updated_page = array(
-            'ID'           => $page_id,
-            'post_content' => $page_content
-        );
+        $page_meta_key = 'layers_page_content_' . date( 'Ymd' );
 
-        // Update the page into the database
-        wp_update_post( $updated_page );
+        update_post_meta( $page_id , $page_meta_key, $page_content );
 
         // Flush the output buffer
         ob_flush();

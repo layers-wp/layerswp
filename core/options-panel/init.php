@@ -208,8 +208,8 @@ function layers_options_panel_menu(){
 	// Backup Page
 	add_submenu_page(
 		LAYERS_THEME_SLUG . '-dashboard',
-		__( 'Backup' , 'layerswp' ),
-		__( 'Backup' , 'layerswp' ),
+		__( 'Transfer' , 'layerswp' ),
+		__( 'Transfer' , 'layerswp' ),
 		'edit_theme_options',
 		LAYERS_THEME_SLUG . '-backup',
 		'layers_options_panel_ui'

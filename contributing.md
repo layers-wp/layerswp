@@ -1,7 +1,7 @@
 ##CONTRIBUTING
 
 We welcome any contributions to the core to enhance code or fix bugs! Please send us a pull request against the Develop Branch
-We will not merge any front-end (template, CSS, JS or HTML) changes that are not explicitly bug fixes. If you would like to propose a front-end change, please open an issue to discuss it. 
+We will not merge any front-end (template, CSS, JS or HTML) changes that are not explicitly bug fixes. If you would like to propose a front-end change, please open an issue to discuss it.
 
 When making a Pull Request please:
 * Separate your commits by task. This makes it easier for us to evaluate the change.

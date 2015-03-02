@@ -2,7 +2,7 @@
 <?php $builder_pages = layers_get_builder_pages(); ?>
 <section class="layers-area-wrapper">
 
-	<?php $this->header( __( 'Transfer' , 'layerswp' ) ); ?>
+	<?php $this->header( __( 'Backup' , 'layerswp' ) ); ?>
 
 	<div class="layers-row layers-well layers-content-large">
 		<div class="layers-container-large">
@@ -11,7 +11,7 @@
 				<div class="layers-column layers-panel layers-span-8">
 					<div class="layers-content layers-push-bottom">
 						<div class="layers-section-title layers-small">
-							<h3 class="layers-heading"><?php _e( 'Transfer your pages' , 'layerswp' ); ?></h3>
+							<h3 class="layers-heading"><?php _e( 'Backup your pages' , 'layerswp' ); ?></h3>
 							<p class="layers-excerpt">
 								<?php _e( 'Convert your Layers pages into regular WordPress pages, preserving the content you have worked so hard to create.' , 'layerswp' ); ?>
 							</p>

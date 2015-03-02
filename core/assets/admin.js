@@ -628,11 +628,11 @@ jQuery(function($) {
 	*
 	* Backup Layers pages so that users can transfer themes
 	*/
+	var $complete_pages = 1;
 
 	function layers_backup_builder_page( $pageid, $page_li ){
 
 		var $total_pages = $( '.layers-list li' ).length;
-		var $complete_pages = 1;
 
 		$.post(
 			ajaxurl,

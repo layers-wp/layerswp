@@ -19,7 +19,7 @@ Security and code quality updates
 * **Fix** - Updated Google maps API link for SSL compatability (thanks @oskapt)
 * **Fix** - Improved localization (thanks @tmconnect)
 * **Fix** - Added sanitization helpers which we hook into the customizer to clean up the Customizer data
-* **Tweak** - Added Typekit ID field to the Site Settings, this means that getting Typekit into Layers is now even easier
+* **Tweak** - Added Typekit ID field to the Site Settings, this means that getting Typekit into Layers is now even easier and safer
 * **Tweak** - Move hooks and filters outside of their related function_exists closures
 * **Tweak** - Replaced deprecated get_page() with get_post()
 * **Tweak** - Added version number to all css and js assets being enqueued
@@ -31,6 +31,7 @@ Security and code quality updates
 * **Tweak** - Moved fouc rendering issue fix from in-line to the customizer-preview.js
 * **Tweak** - Slider behaves better in responsive mode - no longer image/copy overlap
 * **Tweak** - Apply class to Slider for layout eg slider-layout-full-screen and a unique not-full-screen
+* **Tweak** - Merged color.css typography.css and framework.css so that fewer style sheets are loaded, therefore improved load times
 
 ## 1.0.3
 ### 23 February 2015

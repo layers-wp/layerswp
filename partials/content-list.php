@@ -7,7 +7,7 @@
  */
 
 global $post, $layers_post_meta_to_display; ?>
-<article class="push-bottom-large">
+<article id="post-<?php the_ID(); ?>" class="push-bottom-large">
     <header class="section-title large">
         <h1 class="heading"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h1>
     </header>

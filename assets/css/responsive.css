@@ -267,6 +267,12 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
     }
 
     /*---------------------------*/
+    /*- HEADERS -----------------*/
+    .header-secondary{
+        display: block;
+    }
+
+    /*---------------------------*/
     /*- MEDIA BLOCK -------------*/
 
         /*-----------------------*/
@@ -440,10 +446,17 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
         display: block;
         margin: 20px 0 -20px;
         padding: 5px 10px;
+        background: rgba(0, 157, 243, 1);
+        color: #fff;
+        font-size: 0.9rem;
+        letter-spacing: 2px;
+        text-align: center;
+        text-transform: uppercase;
     }
-
-    /*-------------------------------*/
-    /*- FORMS -----------------------*/
+    .created-using-layers:hover{
+        color: #fff;
+        background: #3D454C;
+    }
 
     /*---------------------------*/
     /*- FORM ROWS ---------------*/
@@ -668,7 +681,6 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
     .header-inline .column{
         margin: 0;
     }
-
     .header-inline .inline-left-nav{
         float: left;
         width: 40.5%;
@@ -745,9 +757,13 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 /*-------------------------------*/
 /*- THUMBNAILS ------------------*/
 
+
     /*---------------------------*/
     /*- OVERLAY -----------------*/
-    .with-overlay{overflow: hidden;}
+    .with-overlay{
+        overflow: hidden;
+        text-shadow: 0px 1px 2px rgba(0, 0, 0, 0.6);
+    }
     .with-overlay .thumbnail-body{
         position: absolute;
         top: 0;
@@ -767,9 +783,12 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
         -ms-transform: translateY(-50%);
         transform: translateY(-50%);
     }
-
+    .with-overlay .thumbnail-body{
+        background: rgba(0, 0, 0, 0.65);
+    }
     .with-overlay .heading{
         opacity: 0;
+        color: #fff;
         transform: translate3d(0, 10px, 0);
         transition: 0.2s all ease-in-out 0.1s;
     }
@@ -781,6 +800,9 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
         margin-top: 15px;
         position: relative;
         opacity: 0;
+        background: none;
+        border: 2px solid #fff;
+        position: relative;
         transform: translate3d(0, 10px, 0);
         transition: transform 0.2s ease-in-out 0.2s, opacity 0.2s ease-in-out 0.25s;
     }
@@ -829,22 +851,30 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
         width: 30px;
         height: 27px;
         z-index: 99;
+        background: url(images/created-using-layers.png) top no-repeat;
+        background-size: 30px 56px;
         transition: all 0.15s ease-in-out;
     }
     .created-using-layers span{
         display: none;
     }
     .created-using-layers:after{
-        border-radius: 100px;
+        padding: 4px 6px;
         position: absolute;
         bottom: 6px;
-        left: -160px;
+        left: -136px;
         z-index: 1;
         content: attr(tooltip);
-        padding: 4px 6px;
+        background: rgba(0, 157, 243, 0.85);
+        color: rgba(255, 255, 255, 0.8);
+        border-radius: 100px;
         opacity: 0;
         visibility: hidden;
         transition: all 0.1s ease-in-out 0.1s;
+        font-size: 0.9rem;
+        line-height: 1.1rem;
+        text-transform: uppercase;
+        letter-spacing: 2px;
     }
     .created-using-layers:hover{
         background-position: bottom;
@@ -852,7 +882,7 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
     .created-using-layers:hover:after{
         opacity: 1;
         visibility: visible;
-        left: -164px;
+        left: -140px;
     }
 }
 

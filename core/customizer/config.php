@@ -153,7 +153,7 @@ class Layers_Customizer_Config {
 			$controls['nav'] = array(
 									'general-nav' => array(
 										'type'        => 'layers-button',
-										'layers-text'        => __( 'Create Menu' , 'layerswp' ),
+										'text'        => __( 'Create Menu' , 'layerswp' ),
 										'href'        => admin_url( 'nav-menus.php' ),
 									),
 								); // header-layout

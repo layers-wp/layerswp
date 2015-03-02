@@ -21,7 +21,10 @@ class Layers_Customizer_Regsitrar {
 	*  Initiator
 	*/
 
-	public static function init(){
+	public static function get_instance(){
+		if ( ! isset( self::$instance ) ) {
+			self::$instance = new Layers_Customizer_Regsitrar();
+		}
 		return self::$instance;
 	}
 
@@ -40,7 +43,12 @@ class Layers_Customizer_Regsitrar {
 
 		// Grab the customizer config
 		$this->config = new Layers_Customizer_Config();
+	}
 
+	/**
+	 * Register the panels and sections based on this instance's config
+	 */
+	public function init() {
 		// Start registration with the panels & sections
 		$this->register_panels( $this->config->panels() );
 		$this->register_sections ( $this->config->sections() );
@@ -146,18 +154,19 @@ class Layers_Customizer_Regsitrar {
 			// Set control priority to obey order of setup
 			$control_data[ 'priority' ] = $control_priority;
 
+			// Add Setting
+			$this->customizer->add_setting(
+				$setting_key,
+				array(
+					'default'    => ( isset( $control_data['default'] ) ? $control_data['default'] : NULL ) ,
+					'type'       => 'theme_mod',
+					'capability' => 'manage_options',
+					'sanitize_callback' => $this->add_sanitize_callback( $control_data )
+				)
+			);
+
+
 			if ( 'layers-select-images' == $control_data['type'] ) {
-
-				// Add Setting
-				$this->customizer->add_setting(
-					$setting_key,
-					array(
-						'default'    => ( isset( $control_data['default'] ) ? $control_data['default'] : NULL ) ,
-						'type'       => 'theme_mod',
-						'capability' => 'manage_options'
-					)
-				);
-
 				// Add Control
 				$this->customizer->add_control(
 					new Layers_Customize_Select_Image_Control(
@@ -167,16 +176,6 @@ class Layers_Customizer_Regsitrar {
 					)
 				);
 			} else if( 'layers-select-icons' == $control_data['type'] ) {
-
-				// Add Setting
-				$this->customizer->add_setting(
-					$setting_key,
-					array(
-						'default'    => ( isset( $control_data['default'] ) ? $control_data['default'] : NULL ) ,
-						'type'       => 'theme_mod',
-						'capability' => 'manage_options'
-					)
-				);
 
 				// Add Control
 				$this->customizer->add_control(
@@ -188,16 +187,6 @@ class Layers_Customizer_Regsitrar {
 				);
 			} else if( 'layers-seperator' == $control_data['type'] ) {
 
-				// Add Setting
-				$this->customizer->add_setting(
-					$setting_key,
-					array(
-						'default'    => ( isset( $control_data['default'] ) ? $control_data['default'] : NULL ) ,
-						'type'       => 'theme_mod',
-						'capability' => 'manage_options'
-					)
-				);
-
 				// Add Control
 				$this->customizer->add_control(
 					new Layers_Customize_Seperator_Control(
@@ -207,16 +196,6 @@ class Layers_Customizer_Regsitrar {
 					)
 				);
 			} else if( 'layers-heading' == $control_data['type'] ) {
-
-				// Add Setting
-				$this->customizer->add_setting(
-					$setting_key,
-					array(
-						'default'    => ( isset( $control_data['default'] ) ? $control_data['default'] : NULL ) ,
-						'type'       => 'theme_mod',
-						'capability' => 'manage_options'
-					)
-				);
 
 				// Add Control
 				$this->customizer->add_control(
@@ -228,16 +207,6 @@ class Layers_Customizer_Regsitrar {
 				);
 			} else if( 'layers-color' == $control_data['type'] ) {
 
-				// Add Setting
-				$this->customizer->add_setting(
-					$setting_key,
-					array(
-						'default'    => ( isset( $control_data['default'] ) ? $control_data['default'] : NULL ) ,
-						'type'       => 'theme_mod',
-						'capability' => 'manage_options'
-					)
-				);
-
 				// Add Control
 				$this->customizer->add_control(
 					new Layers_Customize_Color_Control(
@@ -247,16 +216,6 @@ class Layers_Customizer_Regsitrar {
 					)
 				);
 			} else if( 'layers-checkbox' == $control_data['type'] ) {
-
-				// Add Setting
-				$this->customizer->add_setting(
-					$setting_key,
-					array(
-						'default'    => ( isset( $control_data['default'] ) ? $control_data['default'] : NULL ) ,
-						'type'       => 'theme_mod',
-						'capability' => 'manage_options'
-					)
-				);
 
 				// Add Control
 				$this->customizer->add_control(
@@ -268,16 +227,6 @@ class Layers_Customizer_Regsitrar {
 				);
 			} else if( 'layers-select' == $control_data['type'] ) {
 
-				// Add Setting
-				$this->customizer->add_setting(
-					$setting_key,
-					array(
-						'default'    => ( isset( $control_data['default'] ) ? $control_data['default'] : NULL ) ,
-						'type'       => 'theme_mod',
-						'capability' => 'manage_options'
-					)
-				);
-
 				// Add Control
 				$this->customizer->add_control(
 					new Layers_Customize_Select_Control(
@@ -286,17 +235,18 @@ class Layers_Customizer_Regsitrar {
 						$control_data
 					)
 				);
-			} else if( 'layers-font' == $control_data['type'] ) {
+			} else if( 'layers-textarea' == $control_data['type'] ) {
 
-				// Add Setting
-				$this->customizer->add_setting(
-					$setting_key,
-					array(
-						'default'    => ( isset( $control_data['default'] ) ? $control_data['default'] : NULL ) ,
-						'type'       => 'theme_mod',
-						'capability' => 'manage_options'
+				// Add Control
+				$this->customizer->add_control(
+					new Layers_Customize_Textarea_Control(
+						$this->customizer,
+						$setting_key,
+						$control_data
 					)
 				);
+
+			} else if( 'layers-font' == $control_data['type'] ) {
 
 				// Add Control
 				$this->customizer->add_control(
@@ -308,15 +258,6 @@ class Layers_Customizer_Regsitrar {
 				);
 			} else if ( 'layers-button' == $control_data['type'] ) {
 
-				// Add Setting
-				$this->customizer->add_setting(
-					$setting_key,
-					array(
-						'type'       => 'theme_mod',
-						'capability' => 'manage_options'
-					)
-				);
-
 				// Add Control
 				$this->customizer->add_control(
 					new Layers_Customize_Button_Control(
@@ -325,214 +266,28 @@ class Layers_Customizer_Regsitrar {
 						$control_data
 					)
 				);
-			} else if( 'layers-css' == $control_data['type'] ) {
-
-				// Add Setting
-				$this->customizer->add_setting(
-					$setting_key,
-					array(
-						'default'    => ( isset( $control_data['default'] ) ? $control_data['default'] : NULL ) ,
-						'type'       => 'theme_mod',
-						'capability' => 'manage_options'
-					)
-				);
+			} else if( 'layers-code' == $control_data['type'] ) {
 
 				// Add Control
 				$this->customizer->add_control(
-					new Layers_Customize_CSS_Control(
+					new Layers_Customize_Code_Control(
 						$this->customizer,
 						$setting_key,
 						$control_data
 					)
 				);
-			} else if( 'layers-background' == $control_data['type'] ) {
-
-				// Footer Background Heading
-
-				$duplicate_control_data = wp_parse_args(
-					array(
-						'label' => __( 'Background' , 'layerswp' ),
-						'subtitle' => __( 'Background Image' , 'layerswp' ),
-						'type' => 'layers-heading', //wierd bug in WP4.1 that requires a type to be in the array, or will revert to default control,
-					),
-					$control_data
-				);
-
-				// Add Setting
-				$this->customizer->add_setting(
-					$setting_key . '-background-heading',
-					array(
-						'default'    => ( isset( $control_data['default'] ) ? $control_data['default'] : NULL ) ,
-						'type'       => 'theme_mod',
-						'capability' => 'manage_options'
-					)
-				);
+			} else if( 'layers-text' == $control_data['type'] ) {
 
 				// Add Control
 				$this->customizer->add_control(
-					new Layers_Customize_Heading_Control(
+					new Layers_Customize_Text_Control(
 						$this->customizer,
-						$setting_key . '-background-heading',
-						$duplicate_control_data
-					)
-				);
-
-				// Footer Background Image
-
-				// Modify Control data - so we can add uniqie subtitle, label, default
-				$duplicate_control_data = wp_parse_args(
-					array(
-						'label' => '',
-						'subtitle' => __( 'Background Image' , 'layerswp' ),
-						'type' => 'layers-select-images', //wierd bug in WP4.1 that requires a type to be in the array, or will revert to default control
-					),
-					$control_data
-				);
-
-				// Add Setting
-				$this->customizer->add_setting(
-					$setting_key . '-background-image',
-					array(
-						'default'    => ( isset( $control_data['default'] ) ? $control_data['default'] : NULL ) ,
-						'type'       => 'theme_mod',
-						'capability' => 'manage_options'
-					)
-				);
-
-				// Add Control
-				$this->customizer->add_control(
-					new Layers_Customize_Select_Image_Control(
-						$this->customizer,
-						$setting_key . '-background-image',
-						$duplicate_control_data
-					)
-				);
-
-				// Footer Background Color
-
-				$duplicate_control_data = wp_parse_args(
-					array(
-						'label' => '',
-						'subtitle' => __( 'Background Color' , 'layerswp' ),
-						'type' => 'layers-color',
-					),
-					$control_data
-				);
-
-				$this->customizer->add_setting(
-					$setting_key . '-background-color',
-					array(
-						'default'    => ( isset( $control_data['default'] ) ? $control_data['default'] : NULL ) ,
-						'type'       => 'theme_mod',
-						'capability' => 'manage_options'
-					)
-				);
-
-				$this->customizer->add_control(
-					new Layers_Customize_Color_Control(
-						$this->customizer,
-						$setting_key . '-background-color',
-						$duplicate_control_data
-					)
-				);
-
-				// Footer Background Repeat
-
-				$duplicate_control_data = wp_parse_args(
-					array(
-						'label' => '',
-						'subtitle' => __( 'Repeat' , 'layerswp' ),
-						'type' => 'layers-select',
-						'choices' => isset( $control_data['choices']['background-repeat'] ) ? $control_data['choices']['background-repeat'] : array(),
-					),
-					$control_data
-				);
-
-				$this->customizer->add_setting(
-					$setting_key . '-background-repeat',
-					array(
-						'default'    => ( isset( $control_data['default'] ) ? $control_data['default'] : NULL ) ,
-						'type'       => 'theme_mod',
-						'capability' => 'manage_options'
-					)
-				);
-
-				$this->customizer->add_control(
-					new Layers_Customize_Select_Control(
-						$this->customizer,
-						$setting_key . '-background-repeat',
-						$duplicate_control_data
-					)
-				);
-
-				// Footer Background Position
-
-				$duplicate_control_data = wp_parse_args(
-					array(
-						'label' => '',
-						'subtitle' => __( 'Position' , 'layerswp' ),
-						'type' => 'layers-select',
-						'choices' => isset( $control_data['choices']['background-position'] ) ? $control_data['choices']['background-position'] : array(),
-					),
-					$control_data
-				);
-
-				$this->customizer->add_setting(
-					$setting_key . '-background-position',
-					array(
-						'default'    => ( isset( $control_data['default'] ) ? $control_data['default'] : NULL ) ,
-						'type'       => 'theme_mod',
-						'capability' => 'manage_options'
-					)
-				);
-
-				$this->customizer->add_control(
-					new Layers_Customize_Select_Control(
-						$this->customizer,
-						$setting_key . '-background-position',
-						$duplicate_control_data
-					)
-				);
-
-				// Footer Background Stretch
-
-				$duplicate_control_data = wp_parse_args(
-					array(
-						'label' => __( 'Stretch' , 'layerswp' ),
-						'subtitle' => '',
-						'type' => 'layers-checkbox',
-					),
-					$control_data
-				);
-
-				$this->customizer->add_setting(
-					$setting_key . '-background-stretch',
-					array(
-						'default'    => ( isset( $control_data['default'] ) ? $control_data['default'] : NULL ) ,
-						'type'       => 'theme_mod',
-						'capability' => 'manage_options'
-					)
-				);
-
-				$this->customizer->add_control(
-					new Layers_Customize_Checkbox_Control(
-						$this->customizer,
-						$setting_key . '-background-stretch',
-						$duplicate_control_data
+						$setting_key,
+						$control_data
 					)
 				);
 
 			} else {
-
-				// Add Setting
-				$this->customizer->add_setting(
-					$setting_key,
-					array(
-						'default'    => ( isset( $control_data['default'] ) ? $control_data['default'] : NULL ) ,
-						'type'       => 'theme_mod',
-						'capability' => 'manage_options'
-					)
-				);
 
 				// Add Control
 				$this->customizer->add_control(
@@ -590,6 +345,32 @@ class Layers_Customizer_Regsitrar {
 				$section->priority = $section_data[ 'priority' ];
 			}
 		}
+	}
+
+	/**
+	* Add Sanitization according to the control type (or use the explicit callback that has been set)
+	*/
+
+	function add_sanitize_callback( $control_data = FALSE ){
+
+		// If there's an override, use the override rather than the automatic sanitization
+		if( isset( $control_data[ 'sanitize_callback' ] ) ) return $control_data[ 'sanitize_callback' ];
+
+		switch( $control_data[ 'type' ] ) {
+			case 'layers-color' :
+				$callback = 'sanitize_hex_color';
+				break;
+			case 'layers-checkbox' :
+				$callback = 'layers_sanitize_checkbox';
+				break;
+			case 'layers-textarea' :
+				$callback = 'esc_textarea';
+				break;
+			default :
+				$callback = 'sanitize_text_field';
+		}
+
+		return $callback;
 	}
 
 } // class Layers_Customizer_Regsitrar

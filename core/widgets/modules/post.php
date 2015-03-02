@@ -39,7 +39,7 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 				); // @TODO: Try make this more dynamic, or leave a different note reminding users to change this if they add/remove checkboxes
 
 			/* Widget settings. */
-			$widget_ops = array( 'classname' => 'obox-layers-' . $this->widget_id .'-widget', 'description' => 'This widget is used to display your ' . $this->widget_title . '.' );
+			$widget_ops = array( 'classname' => 'obox-layers-' . $this->widget_id .'-widget', 'description' => __( 'This widget is used to display your ') . $this->widget_title . '.' );
 
 			/* Widget control settings. */
 			$control_ops = array( 'width' => LAYERS_WIDGET_WIDTH_SMALL, 'height' => NULL, 'id_base' => LAYERS_THEME_SLUG . '-widget-' . $this->widget_id );
@@ -86,21 +86,6 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 		}
 
 		/**
-		* Enqueue Scripts
-		*/
-		function enqueue_scripts(){
-			wp_enqueue_script( 'jquery-masonry' ); // Wordpress Masonry
-
-			wp_enqueue_script(
-				LAYERS_THEME_SLUG . '-layers-masonry-js' ,
-				get_template_directory_uri() . '/assets/js/layers.masonry.js',
-				array(
-					'jquery'
-				)
-			); // Layers Masonry Function
-		}
-
-		/**
 		*  Widget front end display
 		*/
 		function widget( $args, $instance ) {
@@ -117,8 +102,8 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 			// Parse $instance
 			$widget = wp_parse_args( $instance, $instance_defaults );
 
-			// Enqueue Scipts when needed
-			$this->enqueue_scripts();
+			// Enqueue Masonry if need be
+			if( 'list-masonry' == $this->check_and_return( $widget , 'design', 'liststyle' ) ) $this->enqueue_masonry();
 
 			// Set the span class for each column
 			if( 'list-list' == $widget['design'][ 'liststyle' ] ) {
@@ -266,18 +251,20 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 				</div>
 			</section>
 
-			<script>
-				jQuery(function($){
-					layers_masonry_settings[ '<?php echo $widget_id; ?>' ] = [{
-							itemSelector: '.layers-masonry-column',
-							masonry: {
-								gutter: <?php echo ( isset( $widget['design'][ 'gutter' ] ) ? 20 : 0 ); ?>
-							}
-						}];
+			<?php if( 'list-masonry' == $this->check_and_return( $widget , 'design', 'liststyle' ) ) { ?>
+				<script>
+					jQuery(function($){
+						layers_masonry_settings[ '<?php echo $widget_id; ?>' ] = [{
+								itemSelector: '.layers-masonry-column',
+								masonry: {
+									gutter: <?php echo ( isset( $widget['design'][ 'gutter' ] ) ? 20 : 0 ); ?>
+								}
+							}];
 
-					$('#<?php echo $widget_id; ?>').find('.list-masonry').layers_masonry( layers_masonry_settings[ '<?php echo $widget_id; ?>' ][0] );
-				});
-			</script>
+						$('#<?php echo $widget_id; ?>').find('.list-masonry').layers_masonry( layers_masonry_settings[ '<?php echo $widget_id; ?>' ][0] );
+					});
+				</script>
+			<?php } // masonry trigger ?>
 
 			<?php // Reset WP_Query
 				wp_reset_postdata();
@@ -316,17 +303,9 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 			// Parse $instance
 			$instance = wp_parse_args( $instance, $instance_defaults );
 
-			extract( $instance, EXTR_SKIP ); ?>
+			extract( $instance, EXTR_SKIP );
 
-			<!-- Form HTML Here -->
-			<?php $this->design_bar(
-				'side', // CSS Class Name
-				array(
-					'name' => $this->get_field_name( 'design' ),
-					'id' => $this->get_field_id( 'design' ),
-				), // Widget Object
-				$instance, // Widget Values
-				array(
+			$design_bar_components = apply_filters( 'layers_' . $this->widget_id . '_widget_design_bar_components' , array(
 					'layout',
 					'fonts',
 					'custom',
@@ -335,11 +314,12 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 					'imageratios',
 					'background',
 					'advanced'
-				), // Standard Components
-				array(
+				) );
+
+			$design_bar_custom_components = apply_filters( 'layers_' . $this->widget_id . '_widget_design_bar_custom_components' , array(
 					'display' => array(
 						'icon-css' => 'icon-display',
-						'label' => 'Display',
+						'label' => __( 'Display', 'layerswp' ),
 						'elements' => array(
 								'text_style' => array(
 									'type' => 'select',
@@ -432,11 +412,19 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 									'label' => __( 'Show Pagination' , 'layerswp' )
 								),
 							)
-					)
-				)
-			); ?>
-			<!-- Form HTML Here -->
+						)
+				) );
 
+			$this->design_bar(
+				'side', // CSS Class Name
+				array(
+					'name' => $this->get_field_name( 'design' ),
+					'id' => $this->get_field_id( 'design' ),
+				), // Widget Object
+				$instance, // Widget Values
+				$design_bar_components, // Standard Components
+				$design_bar_custom_components // Add-on Components
+			); ?>
 			<div class="layers-container-large">
 
 				<?php $this->form_elements()->header( array(
@@ -477,7 +465,7 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 						if( !is_wp_error( $terms ) ) { ?>
 							<p class="layers-form-item">
 								<label for="<?php echo $this->get_field_id( 'category' ); ?>"><?php echo __( 'Category to Display' , 'layerswp' ); ?></label>
-								<?php $category_options[ 0 ] ="All";
+								<?php $category_options[ 0 ] = __( 'All' , 'layerswp' );
 								foreach ( $terms as $t ) $category_options[ $t->term_id ] = $t->name;
 								echo $this->form_elements()->input(
 									array(

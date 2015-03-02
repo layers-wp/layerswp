@@ -12,10 +12,13 @@ class Layers_Customizer {
 	private static $instance;
 
 	/**
-	*  Initiator
+	*  Retrieve static/global instance of the Layers Customizer
 	*/
 
-	public static function init(){
+	public static function get_instance(){
+		if ( ! isset( self::$instance ) ) {
+			self::$instance = new Layers_Customizer();
+		}
 		return self::$instance;
 	}
 
@@ -24,6 +27,13 @@ class Layers_Customizer {
 	*/
 
 	public function __construct() {
+	}
+
+	/**
+	 * Initializes the instance
+	 * @global type $wp_customize
+	 */
+	public function init() {
 		global $wp_customize;
 
 		// Setup some folder variables
@@ -41,16 +51,18 @@ class Layers_Customizer {
 
 			// Include control classes
 			require_once get_template_directory() . $controls_dir . 'base.php';
+			require_once get_template_directory() . $controls_dir . 'button.php';
+			require_once get_template_directory() . $controls_dir . 'checkbox.php';
+			require_once get_template_directory() . $controls_dir . 'code.php';
+			require_once get_template_directory() . $controls_dir . 'color.php';
+			require_once get_template_directory() . $controls_dir . 'font.php';
 			require_once get_template_directory() . $controls_dir . 'heading.php';
 			require_once get_template_directory() . $controls_dir . 'select.php';
 			require_once get_template_directory() . $controls_dir . 'select-icons.php';
 			require_once get_template_directory() . $controls_dir . 'select-images.php';
 			require_once get_template_directory() . $controls_dir . 'seperator.php';
-			require_once get_template_directory() . $controls_dir . 'font.php';
-			require_once get_template_directory() . $controls_dir . 'color.php';
-			require_once get_template_directory() . $controls_dir . 'checkbox.php';
-			require_once get_template_directory() . $controls_dir . 'css.php';
-			require_once get_template_directory() . $controls_dir . 'button.php';
+			require_once get_template_directory() . $controls_dir . 'text.php';
+			require_once get_template_directory() . $controls_dir . 'textarea.php';
 
 			// If we are in a builder page, update the Widgets title
 			$wp_customize->add_panel(
@@ -65,6 +77,7 @@ class Layers_Customizer {
 			add_action( 'admin_enqueue_scripts', array( $this, 'admin_enqueue_scripts' ) , 50 );
 			add_action( 'admin_enqueue_scripts', array( $this, 'admin_print_styles' ) , 50 );
 			add_action( 'customize_controls_print_styles' , array( $this, 'admin_print_styles' ) );
+			add_action( 'customize_preview_init', array( $this, 'customizer_preview_enqueue_scripts' ) , 50 );
 
 			// Render header actions button(s)
 			add_action( 'customize_controls_print_footer_scripts' , array( $this, 'render_actions_buttons' ) );
@@ -95,11 +108,27 @@ class Layers_Customizer {
 
 		// Localize Scripts
 		wp_localize_script( LAYERS_THEME_SLUG . '-admin-customizer' , "layers_customizer_params", array(
-									'ajaxurl' => admin_url( "admin-ajax.php" ) ,
-									'nonce' => wp_create_nonce( 'layers-customizer-actions' ),
-									'builder_page' => ( isset( $_GET[ 'layers-builder' ] ) ? TRUE : FALSE )
-								)
-							);
+				'nonce' => wp_create_nonce( 'layers-customizer-actions' ),
+				'builder_page' => ( isset( $_GET[ 'layers-builder' ] ) ? TRUE : FALSE )
+			)
+		);
+	}
+
+	/**
+	*  Enqueue Customizer Preview Scripts
+	*/
+
+	public function customizer_preview_enqueue_scripts(){
+
+		// Customizer Preview general
+		wp_enqueue_script(
+			LAYERS_THEME_SLUG . '-admin-customizer-preview',
+			get_template_directory_uri() . '/core/customizer/js/customizer-preview.js',
+			array(
+				'jquery',
+			),
+			LAYERS_VERSION
+		);
 	}
 
 	/**

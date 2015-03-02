@@ -30,7 +30,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 			$this->checkboxes = array();
 
 			/* Widget settings. */
-			$widget_ops = array( 'classname' => 'obox-layers-' . $this->widget_id .'-widget', 'description' => 'This widget is used to display your ' . $this->widget_title . '.' );
+			$widget_ops = array( 'classname' => 'obox-layers-' . $this->widget_id .'-widget', 'description' => __( 'This widget is used to display your ') . $this->widget_title . '.' );
 
 			/* Widget control settings. */
 			$control_ops = array( 'width' => LAYERS_WIDGET_WIDTH_LARGE, 'height' => NULL, 'id_base' => LAYERS_THEME_SLUG . '-widget-' . $this->widget_id );
@@ -44,6 +44,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 				'excerpt' => 'Our services run deep and are backed by over ten years of experience.',
 				'design' => array(
 					'layout' => 'layout-boxed',
+					'liststyle' => 'list-grid',
 					'columns' => '3',
 					'gutter' => 'on',
 					'background' => array(
@@ -83,21 +84,6 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 		}
 
 		/**
-		* Enqueue Scripts
-		*/
-		function enqueue_scripts(){
-			wp_enqueue_script( 'jquery-masonry' ); // Wordpress Masonry
-
-			wp_enqueue_script(
-				LAYERS_THEME_SLUG . '-layers-masonry-js' ,
-				get_template_directory_uri() . '/assets/js/layers.masonry.js',
-				array(
-					'jquery'
-				)
-			); // Layers Masonry Function
-		}
-
-		/**
 		*  Widget front end display
 		*/
 		function widget( $args, $instance ) {
@@ -114,12 +100,13 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 			// Parse $instance
 			$widget = wp_parse_args( $instance, $instance_defaults );
 
-			// Enqueue Scipts when needed
-			$this->enqueue_scripts();
+			// Enqueue Masonry if need be
+			if( 'list-masonry' == $this->check_and_return( $widget , 'design', 'liststyle' ) ) $this->enqueue_masonry();
 
 			// Set the background styling
 			if( !empty( $widget['design'][ 'background' ] ) ) layers_inline_styles( '#' . $widget_id, 'background', array( 'background' => $widget['design'][ 'background' ] ) );
 			if( !empty( $widget['design']['fonts'][ 'color' ] ) ) layers_inline_styles( '#' . $widget_id, 'color', array( 'selectors' => array( '.section-title h3.heading' , '.section-title p.excerpt' ) , 'color' => $widget['design']['fonts'][ 'color' ] ) );
+
 
 			// Apply the advanced widget styling
 			$this->apply_widget_advanced_styling( $widget_id, $widget ); ?>
@@ -264,20 +251,21 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 				<?php } ?>
 
 			</section>
+			<?php if( 'list-masonry' == $this->check_and_return( $widget , 'design', 'liststyle' ) ) { ?>
+				<script>
+					jQuery(function($){
+						layers_masonry_settings[ '<?php echo $widget_id; ?>' ] = [{
+								itemSelector: '.layers-masonry-column',
+								layoutMode: 'masonry',
+								masonry: {
+									gutter: <?php echo ( isset( $widget['design'][ 'gutter' ] ) ? 20 : 0 ); ?>
+								}
+							}];
 
-			<script>
-				jQuery(function($){
-					layers_masonry_settings[ '<?php echo $widget_id; ?>' ] = [{
-							itemSelector: '.layers-masonry-column',
-							layoutMode: 'masonry',
-							masonry: {
-								gutter: <?php echo ( isset( $widget['design'][ 'gutter' ] ) ? 20 : 0 ); ?>
-							}
-						}];
-
-					$('#<?php echo $widget_id; ?>').find('.list-masonry').layers_masonry( layers_masonry_settings[ '<?php echo $widget_id; ?>' ][0] );
-				});
-			</script>
+						$('#<?php echo $widget_id; ?>').find('.list-masonry').layers_masonry( layers_masonry_settings[ '<?php echo $widget_id; ?>' ][0] );
+					});
+				</script>
+			<?php } // masonry trigger ?>
 		<?php }
 
 		/**
@@ -311,27 +299,20 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 
 			// Parse $instance
 			$instance = wp_parse_args( $instance, $instance_defaults );
-			extract( $instance, EXTR_SKIP ); ?>
+			extract( $instance, EXTR_SKIP );
 
-			<!-- Form HTML Here -->
-			<?php $this->design_bar(
-				'side', // CSS Class Name
-				array(
-					'name' => $this->get_field_name( 'design' ),
-					'id' => $this->get_field_id( 'design' ),
-				), // Widget Object
-				$instance, // Widget Values
-				array(
+			$design_bar_components = apply_filters( 'layers_' . $this->widget_id . '_widget_design_bar_components' , array(
 					'layout',
 					'custom',
 					'fonts',
 					'background',
 					'advanced'
-				), // Standard Components
-				array(
+				) );
+
+			$design_bar_custom_components = apply_filters( 'layers_' . $this->widget_id . '_widget_design_bar_custom_components' , array(
 					'liststyle' => array(
 						'icon-css' => 'icon-list-masonry',
-						'label' => 'List Style',
+						'label' => __( 'List Style', 'layerswp' ),
 						'wrapper-class' => 'layers-small to layers-pop-menu-wrapper layers-animate',
 						'elements' => array(
 							'liststyle' => array(
@@ -353,7 +334,17 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 							)
 						)
 					)
-				)
+				) );
+
+			$this->design_bar(
+				'side', // CSS Class Name
+				array(
+					'name' => $this->get_field_name( 'design' ),
+					'id' => $this->get_field_id( 'design' ),
+				), // Widget Object
+				$instance, // Widget Values
+				$design_bar_components, // Standard Components
+				$design_bar_custom_components // Add-on Components
 			); ?>
 			<div class="layers-container-large" id="layers-column-widget-<?php echo $this->number; ?>">
 				<?php $this->form_elements()->header( array(

@@ -10,20 +10,22 @@
 class Layers_Widget_Migrator {
 
 	private static $instance;
-
 	/**
 	*  Initiator
 	*/
-
-	public static function init(){
+	public static function get_instance(){
+		if ( ! isset( self::$instance ) ) {
+			self::$instance = new Layers_Widget_Migrator();
+		}
 		return self::$instance;
 	}
-
 	/**
 	*  Constructor
 	*/
-
 	public function __construct() {
+	}
+
+	public function init() {
 
 		if( isset( $_GET[ 'layers-export' ] ) ) $this->create_export_file();
 
@@ -100,7 +102,7 @@ class Layers_Widget_Migrator {
 					'title' => __( 'Application' , 'layerswp' ),
 					'screenshot' => 'http://layerswp.s3.amazonaws.com/preset-layouts/application.png',
 					'screenshot_type' => 'png',
-					'json' => esc_attr( '{"obox-layers-builder-555":{"layers-widget-slide-152":{"show_slider_arrows":"on","show_slider_dots":"on","slide_time":"","slide_height":"550","design":{"advanced":{"customclass":"","customcss":"","padding":{"top":"","right":"","bottom":"","left":""},"margin":{"top":"","right":"","bottom":"","left":""}}},"slide_ids":"575","slides":{"575":{"design":{"background":{"image":"' . $this->get_translated_dir_uri() . '\/assets\/images\/preset-layouts\/tile.png","color":"#efefef","repeat":"repeat","position":"center"},"featuredimage":"","featuredvideo":"","imagealign":"image-top","fonts":{"align":"text-center","size":"large","color":""}},"title":"Incredible Application","excerpt":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse vitae massa velit, eu laoreet massa.","link":"#","link_text":"Purchase Now"}}},"layers-widget-column-125":{"design":{"layout":"layout-boxed","gutter":"on","fonts":{"align":"text-center","size":"medium","color":""},"background":{"image":"","color":"","repeat":"no-repeat","position":"center"},"advanced":{"customclass":"","customcss":"","padding":{"top":"","right":"","bottom":"","left":""},"margin":{"top":"","right":"","bottom":"","left":""}}},"title":"Unbelievable Features","excerpt":"Our services run deep and are backed by over ten years of experience.","column_ids":"347,191","columns":{"347":{"design":{"background":{"image":"","color":"","repeat":"no-repeat","position":"center"},"featuredimage":"' . $this->get_translated_dir_uri() . '\/assets\/images\/preset-layouts\/demo-image.png","featuredvideo":"","imageratios":"image-no-crop","imagealign":"image-top","fonts":{"align":"text-center","size":"medium","color":""}},"width":"6","title":"Your feature title","excerpt":"Give us a brief description of the feature that you are promoting. Try keep it short so that it is easy for people to scan your page.","link":"","link_text":""},"191":{"design":{"background":{"image":"","color":"","repeat":"no-repeat","position":"center"},"featuredimage":"' . $this->get_translated_dir_uri() . '\/assets\/images\/preset-layouts\/demo-image.png","featuredvideo":"","imagealign":"image-top","fonts":{"align":"text-center","size":"medium","color":""}},"width":"6","title":"Your feature title","excerpt":"Give us a brief description of the feature that you are promoting. Try keep it short so that it is easy for people to scan your page.","link":"","link_text":""}}},"layers-widget-slide-154":{"show_slider_arrows":"on","show_slider_dots":"on","slide_time":"","slide_height":"350","design":{"advanced":{"customclass":"","customcss":"","padding":{"top":"","right":"","bottom":"","left":""},"margin":{"top":"","right":"","bottom":"","left":""}}},"slide_ids":"701","slides":{"701":{"design":{"background":{"image":"' . $this->get_translated_dir_uri() . '\/assets\/images\/preset-layouts\/tile.png","color":"#efefef","repeat":"repeat","position":"center"},"featuredimage":"","featuredvideo":"","imagealign":"image-top","fonts":{"align":"text-center","size":"medium","color":""}},"title":"Purchase for $0.99","excerpt":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse vitae massa velit, eu laoreet massa.","link":"#","link_text":"Purhcase Now"}}}}}' )
+					'json' => esc_attr( '{"obox-layers-builder-555":{"layers-widget-slide-152":{"show_slider_arrows":"on","show_slider_dots":"on","slide_time":"","slide_height":"550","design":{"advanced":{"customclass":"","customcss":"","padding":{"top":"","right":"","bottom":"","left":""},"margin":{"top":"","right":"","bottom":"","left":""}}},"slide_ids":"575","slides":{"575":{"design":{"background":{"image":"' . $this->get_translated_dir_uri() . '\/assets\/images\/preset-layouts\/tile.png","color":"#efefef","repeat":"repeat","position":"center"},"featuredimage":"","featuredvideo":"","imagealign":"image-top","fonts":{"align":"text-center","size":"large","color":""}},"title":"Incredible Application","excerpt":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse vitae massa velit, eu laoreet massa.","link":"#","link_text":"Purchase Now"}}},"layers-widget-column-125":{"design":{"layout":"layout-boxed","gutter":"on","fonts":{"align":"text-center","size":"medium","color":""},"background":{"image":"","color":"","repeat":"no-repeat","position":"center"},"advanced":{"customclass":"","customcss":"","padding":{"top":"","right":"","bottom":"","left":""},"margin":{"top":"","right":"","bottom":"","left":""}}},"title":"Unbelievable Features","excerpt":"Our services run deep and are backed by over ten years of experience.","column_ids":"347,191","columns":{"347":{"design":{"background":{"image":"","color":"","repeat":"no-repeat","position":"center"},"featuredimage":"' . $this->get_translated_dir_uri() . '\/assets\/images\/preset-layouts\/demo-image.png","featuredvideo":"","imageratios":"image-no-crop","imagealign":"image-top","fonts":{"align":"text-center","size":"medium","color":""}},"width":"6","title":"Your feature title","excerpt":"Give us a brief description of the feature that you are promoting. Try keep it short so that it is easy for people to scan your page.","link":"","link_text":""},"191":{"design":{"background":{"image":"","color":"","repeat":"no-repeat","position":"center"},"featuredimage":"' . $this->get_translated_dir_uri() . '\/assets\/images\/preset-layouts\/demo-image.png","featuredvideo":"","imagealign":"image-top","fonts":{"align":"text-center","size":"medium","color":""}},"width":"6","title":"Your feature title","excerpt":"Give us a brief description of the feature that you are promoting. Try keep it short so that it is easy for people to scan your page.","link":"","link_text":""}}},"layers-widget-slide-154":{"show_slider_arrows":"on","show_slider_dots":"on","slide_time":"","slide_height":"350","design":{"advanced":{"customclass":"","customcss":"","padding":{"top":"","right":"","bottom":"","left":""},"margin":{"top":"","right":"","bottom":"","left":""}}},"slide_ids":"701","slides":{"701":{"design":{"background":{"image":"' . $this->get_translated_dir_uri() . '\/assets\/images\/preset-layouts\/tile.png","color":"#efefef","repeat":"repeat","position":"center"},"featuredimage":"","featuredvideo":"","imagealign":"image-top","fonts":{"align":"text-center","size":"medium","color":""}},"title":"Purchase for $0.99","excerpt":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse vitae massa velit, eu laoreet massa.","link":"#","link_text":"Purchase Now"}}}}}' )
 				),
 			'contact-page' => array(
 					'title' => __( 'Contact Page' , 'layerswp' ),
@@ -553,6 +555,8 @@ class Layers_Widget_Migrator {
 
 	public function do_ajax_import(){
 
+		if( !check_ajax_referer( 'layers-migrator-import', 'nonce', false ) ) die( 'You threw a Nonce exception' ); // Nonce
+
 		// Set the page ID
 		$import_data[ 'post_id' ] = $_POST[ 'post_id' ];
 
@@ -578,6 +582,8 @@ class Layers_Widget_Migrator {
 	*/
 
 	public function do_ajax_duplicate(){
+
+		if( !check_ajax_referer( 'layers-migrator-duplicate', 'nonce', false ) ) die( 'You threw a Nonce exception' ); // Nonce
 
 		// We need a page title and post ID for this to work
 		if( !isset( $_POST[ 'post_title' ] ) || !isset( $_POST[ 'post_id' ]  ) ) return;
@@ -633,6 +639,8 @@ class Layers_Widget_Migrator {
 	public function create_builder_page_from_preset(){
 		global $layers_widgets;
 
+		if( !check_ajax_referer( 'layers-migrator-preset-layouts', 'nonce', false ) ) die( 'You threw a Nonce exception' ); // Nonce
+
 		$check_builder_pages = layers_get_builder_pages();
 
 		if( isset( $_POST[ 'post_title' ] )  ){
@@ -643,7 +651,7 @@ class Layers_Widget_Migrator {
 
 		// Generate builder page and return page ID
 		$import_data[ 'post_id' ] = layers_create_builder_page( $post_title );
-		$new_page = get_page( $import_data[ 'post_id' ] );
+		$new_page = get_post( $import_data[ 'post_id' ] );
 
 		// Register Builder Sidebar
 		$layers_widgets->register_builder_sidebar( $import_data[ 'post_id' ] );
@@ -839,7 +847,6 @@ if( !function_exists( 'layers_builder_export_init' ) ) {
 
 	}
 }
-
 add_action( 'admin_head' , 'layers_builder_export_init', 10 );
 
 if( !function_exists( 'layers_builder_export_ajax_init' ) ) {
@@ -852,5 +859,4 @@ if( !function_exists( 'layers_builder_export_ajax_init' ) ) {
 		add_action( 'wp_ajax_layers_duplicate_builder_page', array( $layers_migrator, 'do_ajax_duplicate' ) );
 	}
 }
-
 add_action( 'init' , 'layers_builder_export_ajax_init' );

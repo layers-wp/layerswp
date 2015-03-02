@@ -34,7 +34,7 @@ if( !class_exists( 'Layers_Contact_Widget' ) ) {
 				);
 
 	 		/* Widget settings. */
-			$widget_ops = array( 'classname' => 'obox-layers-' . $this->widget_id .'-widget', 'description' => 'This widget is used to display your ' . $this->widget_title . '.' );
+			$widget_ops = array( 'classname' => 'obox-layers-' . $this->widget_id .'-widget', 'description' => __( 'This widget is used to display your ') . $this->widget_title . '.' );
 
 			/* Widget control settings. */
 			$control_ops = array( 'width' => LAYERS_WIDGET_WIDTH_SMALL, 'height' => NULL, 'id_base' => LAYERS_THEME_SLUG . '-widget-' . $this->widget_id );
@@ -156,8 +156,8 @@ if( !class_exists( 'Layers_Contact_Widget' ) ) {
 			</section>
 
 			<?php if ( !isset( $wp_customize ) ) {
-				wp_enqueue_script( LAYERS_THEME_SLUG . " -map-api","http://maps.googleapis.com/maps/api/js?sensor=false");
-				wp_enqueue_script( LAYERS_THEME_SLUG . "-map-trigger", get_template_directory_uri()."/core/widgets/js/maps.js", array( "jquery" ) );
+				wp_enqueue_script( LAYERS_THEME_SLUG . " -map-api","//maps.googleapis.com/maps/api/js?sensor=false");
+				wp_enqueue_script( LAYERS_THEME_SLUG . "-map-trigger", get_template_directory_uri()."/core/widgets/js/maps.js", array( "jquery" ), LAYERS_VERSION );
 			}  // Enqueue the map js ?>
 		<?php }
 
@@ -191,26 +191,20 @@ if( !class_exists( 'Layers_Contact_Widget' ) ) {
 
 			// Parse $instance
 			$instance = wp_parse_args( $instance, $instance_defaults );
-			extract( $instance, EXTR_SKIP ); ?>
-			<!-- Form HTML Here -->
-			<?php $this->design_bar(
-				'side', // CSS Class Name
-				array(
-					'name' => $this->get_field_name( 'design' ),
-					'id' => $this->get_field_id( 'design' ),
-				), // Widget Object
-				$instance, // Widget Values
-				array(
+			extract( $instance, EXTR_SKIP );
+
+			$design_bar_components = apply_filters( 'layers_' . $this->widget_id . '_widget_design_bar_components' , array(
 					'layout',
 					'fonts',
 					'custom',
 					'background',
 					'advanced'
-				), // Standard Components
-				array(
+				) );
+
+			$design_bar_custom_components = apply_filters( 'layers_' . $this->widget_id . '_widget_design_bar_custom_components' , array(
 					'display' => array(
 						'icon-css' => 'icon-display',
-						'label' => 'Display',
+						'label' => __( 'Display', 'layerswp' ),
 						'elements' => array(
 								'map_height' => array(
 									'type' => 'number',
@@ -245,7 +239,19 @@ if( !class_exists( 'Layers_Contact_Widget' ) ) {
 							)
 						)
 					)
-				);?>
+				);
+
+			$this->design_bar(
+				'side', // CSS Class Name
+				array(
+					'name' => $this->get_field_name( 'design' ),
+					'id' => $this->get_field_id( 'design' ),
+				), // Widget Object
+				$instance, // Widget Values
+				$design_bar_components, // Standard Components
+				$design_bar_custom_components // Add-on Components
+			); ?>
+
 			<div class="layers-container-large">
 
 				<?php $this->form_elements()->header( array(
@@ -361,8 +367,6 @@ if( !class_exists( 'Layers_Contact_Widget' ) ) {
 
 				</section>
 			</div>
-
-
 
 		<?php } // Form
 	} // Class

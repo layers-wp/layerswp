@@ -1,5 +1,38 @@
 # Layers Changelog
 
+## 1.0.4
+### 02 March 2015
+
+Security and code quality updates
+
+* **Enhancement** - Added 'range' type to the form options
+* **Enhancement** - Added filtering to the design bar setup per widget (thanks @kevinlangleyjr)
+* **Enhancement** - Improved class initiators (thanks @prettyboymp)
+* **Enhancement** - Added filters to design bar components (thanks @prettyboymp)
+* **Enhancement** - Clicking out of the design bar closes a control (thanks @prettyboymp @jeffstieler)
+* **Enhancement** - Added customizer-preview.js for scripts executed in the customizer preview iframe only
+* **Fix** - Deleting all slides then adding your first slide again threw an error (thanks @prettyboymp)
+* **Fix** - Fix references from i8n to i18n
+* **Fix** - Added check_ajax_referer() for Ajax nonceing
+* **Fix** - Removed double <title /> tag
+* **Fix** - Improved nonce handling and removed any reference to $_REQUEST[] in the code
+* **Fix** - Updated Google maps API link for SSL compatability (thanks @oskapt)
+* **Fix** - Improved localization (thanks @tmconnect)
+* **Fix** - Added sanitization helpers which we hook into the customizer to clean up the Customizer data
+* **Tweak** - Added Typekit ID field to the Site Settings, this means that getting Typekit into Layers is now even easier and safer
+* **Tweak** - Move hooks and filters outside of their related function_exists closures
+* **Tweak** - Replaced deprecated get_page() with get_post()
+* **Tweak** - Added version number to all css and js assets being enqueued
+* **Tweak** - Added nonce check and remove unnecessary conditional from to update_page_builder_meta()
+* **Tweak** - .media block (used extensively in the content widget html) has been tweaked to behave better on different screensizes and with different column widths
+* **Tweak** - Changed jquery-masonry to masonry v3 not dependent on jquery
+* **Tweak** - Updated hook used for meta box registration
+* **Tweak** - Changed in-line styles and scripts to always use admin_print_styles and admin_print_scripts hooks
+* **Tweak** - Moved fouc rendering issue fix from in-line to the customizer-preview.js
+* **Tweak** - Slider behaves better in responsive mode - no longer image/copy overlap
+* **Tweak** - Apply class to Slider for layout eg slider-layout-full-screen and a unique not-full-screen
+* **Tweak** - Merged color.css typography.css and framework.css so that fewer style sheets are loaded, therefore improved load times
+
 ## 1.0.3
 ### 23 February 2015
 

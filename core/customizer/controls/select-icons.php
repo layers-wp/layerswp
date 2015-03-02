@@ -47,7 +47,7 @@ if( !class_exists( 'Layers_Customize_Select_Icon_Control' ) ) {
 
 				<?php if ( '' != $this->description ) : ?>
 					<div class="description customize-control-description">
-						<?php echo esc_html( $this->description ); ?>
+						<?php echo $this->description; ?>
 					</div>
 				<?php endif; ?>
 

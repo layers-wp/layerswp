@@ -17,7 +17,10 @@ class Layers_Custom_Meta {
 	*  Initiator
 	*/
 
-	public static function init(){
+	public static function get_instance(){
+		if ( ! isset( self::$instance ) ) {
+			self::$instance = new Layers_Custom_Meta();
+		}
 		return self::$instance;
 	}
 
@@ -39,6 +42,10 @@ class Layers_Custom_Meta {
 
 		// Get post meta
 		$this->custom_meta = $meta_config->meta_data();
+
+	}
+
+	public function init() {
 
 		// Enqueue Styles
 		add_action( 'admin_enqueue_scripts', array( $this, 'admin_enqueue_scripts' ) , 50 );
@@ -86,7 +93,7 @@ class Layers_Custom_Meta {
 	public function admin_print_styles(){
 		global $pagenow, $post;
 		if ( 'post.php' === $pagenow && ( LAYERS_BUILDER_TEMPLATE == basename( get_page_template() ) ) ) : ?>
-			<style> #postdivrich, #postbox-container-2, #postimagediv { display: none; }</style>
+			<style> #postdivrich { display: none; }</style>
 		<?php endif;
 	}
 

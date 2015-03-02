@@ -93,7 +93,7 @@ class Layers_Custom_Meta {
 	public function admin_print_styles(){
 		global $pagenow, $post;
 		if ( 'post.php' === $pagenow && ( LAYERS_BUILDER_TEMPLATE == basename( get_page_template() ) ) ) : ?>
-			<style> #postdivrich, #postbox-container-2, #postimagediv { display: none; }</style>
+			<style> #postdivrich { display: none; }</style>
 		<?php endif;
 	}
 

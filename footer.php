@@ -45,7 +45,7 @@
 			</div>
 			<?php do_action( 'layers_after_footer_inner' ); ?>
 
-			<?php if( false == layers_get_theme_mod( 'hide-layers-badge' ) ) { ?>
+			<?php if( false != layers_get_theme_mod( 'show-layers-badge' ) ) { ?>
 				<?php _e( sprintf( '<a class="created-using-layers" target="_blank" tooltip="Built with Layers" href="%s"><span>Built with Layers</span></a>', 'http://www.layerswp.com' ) , 'layerswp' ); ?>
 			<?php } ?>
 		</footer><!-- END / FOOTER -->

@@ -343,11 +343,11 @@ class Layers_Customizer_Config {
 								'footer-layout-break-2' => array(
 									'type'     => 'layers-seperator'
 								),
-								'hide-layers-badge' => array(
-									'label' => __( 'Hide Layers badge' , 'layerswp' ),
-									'subtitle' => __( 'If you loved us though, you\'d leave this on', 'layerswp' ),
+								'show-layers-badge' => array(
+									'label' => __( 'Support Layers' , 'layerswp' ),
+									'description' => __( 'Support Layers by displaying the Layers badge on your site.', 'layerswp' ),
 									'type' => 'layers-checkbox',
-									'default' => false
+									'default' => true
 								),
 							); // footer-layout
 

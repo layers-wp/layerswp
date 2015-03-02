@@ -304,20 +304,6 @@ if( ! function_exists( 'layers_scripts' ) ) {
 		);
 
 		wp_enqueue_style(
-			LAYERS_THEME_SLUG . '-typography',
-			get_template_directory_uri() . '/assets/css/typography.css',
-			array(),
-			LAYERS_VERSION
-		); // Typography
-
-		wp_enqueue_style(
-			LAYERS_THEME_SLUG . '-colors',
-			get_template_directory_uri() . '/assets/css/colors.css',
-			array(),
-			LAYERS_VERSION
-		); // Colors
-
-		wp_enqueue_style(
 			LAYERS_THEME_SLUG . '-components',
 			get_template_directory_uri() . '/assets/css/components.css',
 			array(),

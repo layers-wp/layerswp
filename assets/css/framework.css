@@ -87,23 +87,63 @@ nav{*zoom: 1;}
 html{
     font-size: 62.5%;
     overflow-x: hidden;
+    -webkit-text-size-adjust: none;
+    -webkit-font-smoothing: antialiased;
+    -moz-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
 }
 body{
     overflow-x: hidden;
     font-size: 1.5rem;
     line-height: 1.5;
+    background-color: #454545;
+    color: #777;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6{
+    color: #000;
+    font-weight: 400;
 }
 
 code{
     display: inline;
     padding: 4px 6px;
+    background-color: #eee;
+    color: #8f8f8f;
+    font-size: 85%;
+    font-weight: 700;
+    font-family: "Courier New", Courier, monospace;
 }
 
 pre{
     padding: 20px 20px 0;
     margin-bottom: 20px;
+    background-color: #f5f5f5;
+    border: 1px solid #ddd;
+    color: #323232;
+    font-size: 85%;
+    font-weight: 700;
+    font-family: "Courier New", Courier, monospace;
 }
-
+strong{
+    font-weight: 700;
+}
+small{
+    color: #8f8f8f;
+    font-size: 1.2rem;
+}
+a{
+    color: #454545;
+}
+a:hover{
+    color: #7D8FA2;
+}
 img{
     max-width: 100%;
     height: auto;
@@ -120,7 +160,10 @@ object{
 .cursor-grabable{cursor: -webkit-grab; cursor: -moz-grab;}
 .hide{display: none;}
 .animate{transition: all 0.2s ease-in-out;}
-.post-date{display: block; font-size: 1.2rem;}
+.post-date{
+    display: block;
+    font-size: 1.2rem;
+}
 
 
 /*--------------------------------------------------------------*/
@@ -349,8 +392,17 @@ object{
 /*-------------------------------*/
 /*- HEADERS ---------------------*/
 
+    .header-site{
+        background: #f3f3f3;
+    }
+
     .header-site .container{
         padding: 10px;
+    }
+
+    .header-inline .inline-right-nav{
+        position: relative;
+        z-index: 2;
     }
 
     /*---------------------------*/
@@ -368,6 +420,9 @@ object{
     }
     .responsive-nav .l-menu{
         display: block;
+        font-size: 24px;
+        line-height: 40px;
+        color: #454545;
     }
 
     /*---------------------------*/
@@ -412,6 +467,9 @@ object{
     .header-sticky.is_stuck.is_stuck_show{
         opacity: 1;
     }
+    .header-site.header-sticky{
+        background: rgba(243, 243, 243, 0.5);
+    }
     .header-overlay{
         position: absolute;
         width: 100%;
@@ -420,8 +478,13 @@ object{
 
     /*---------------------------*/
     /*- SECONDARY HEADER --------*/
+    .header-secondary{
+        display: none;
+        background: #333;
+    }
     .header-secondary nav{
         margin: 0;
+        font-size: 1.2rem;
     }
     .header-secondary .sub-menu{
         display: none;
@@ -434,6 +497,7 @@ object{
         clear: both;
         padding-top: 20px;
         padding-bottom: 20px;
+        background-color: #f3f3f3;
     }
     .footer-site .row{
         padding-top: 40px;
@@ -442,12 +506,17 @@ object{
 
     .footer-site .section-nav-title{
         margin-bottom: 15px;
+        color: #323232;
     }
 
     .link-list li{margin: 0 0 6px;}
 
     /*---------------------------*/
     /*- FOOTER COPY -------------*/
+    .copyright{
+        color: #999;
+        font-size: 1.2rem;
+    }
     .row.copyright{
         padding-top: 0;
         padding-bottom: 0;
@@ -460,9 +529,17 @@ object{
     }
     .copyright .nav-horizontal a{
         padding: 0;
+        color: #454545;
+        font-size: 1.2rem;
+        font-weight: 700;
+    }
+    .copyright .nav-horizontal a:hover{
+        background: none;
+        color: #323232;
     }
     .row + .copyright{
         padding-top: 20px;
+        border-top: 2px solid #ddd;
     }
 
     /*---------------------------*/
@@ -476,9 +553,21 @@ object{
 
     /*---------------------------*/
     /*- PAGE TITLES -------------*/
+    .title-container{
+        background-color: #f3f3f3;
+    }
     .title-container .excerpt{
         max-width: 745px;
         margin-top: 1.5%;
+    }
+    .title-container .heading{
+        color: #323232;
+        font-size: 4.5rem;
+        line-height: 5rem;
+    }
+    .title-container .excerpt{
+        color: #8f8f8f;
+        font-size: 2.5rem;
     }
     .title-container .excerpt + .button-group{
         margin-top: 3%;
@@ -513,23 +602,86 @@ object{
 
     /*---------------------------*/
     /*- SECTION TITLES ----------*/
-    .section-title{margin-bottom: 40px;}
-    .section-title .excerpt{max-width: 745px;}
-    .section-title .heading + .excerpt{margin-top: 10px;}
-    .section-title .button{margin-top: 15px;}
+    .section-title{
+        margin-bottom: 40px;
+    }
+    .section-title .excerpt{
+        max-width: 745px;
+    }
+    .section-title .heading + .excerpt{
+        margin-top: 10px;
+    }
+    .section-title .button{
+        margin-top: 15px;
+    }
 
         /*-----------------------*/
         /*- SECTION SIZE --------*/
-        .section-title.large .excerpt{max-width: 830px;}
+        .section-title.large .excerpt{
+            max-width: 830px;
+        }
+        .section-title.small{
+            margin-bottom: 15px;
+        }
+        .section-title.tiny{
+            margin-bottom: 15px;
+        }
+        .section-title.tiny .excerpt{
+            margin-top: 0 !important;
+        }
 
-        .section-title.small{margin-bottom: 15px;}
+        /*-----------------------*/
+        /*- SECTION LARGE -------*/
+        .section-title.large .heading{
+            font-size: 4rem;
+            line-height: 1.25;
+        }
+        .section-title.large .excerpt{
+            font-size: 2.5rem;
+        }
 
-        .section-title.tiny{margin-bottom: 15px;}
-        .section-title.tiny .excerpt{margin-top: 0 !important;}
+        /*-----------------------*/
+        /*- SECTION SMALL -------*/
+        .section-title.small .heading{
+            font-size: 2.5rem;
+        }
+        .section-title.small .excerpt{
+            font-size: 1.5rem;
+        }
 
-    .section-title + .container{margin-top: 60px;}
+        /*-----------------------*/
+        /*- SECTION REGULAR -----*/
+        .section-title .heading{
+            color: #323232;
+            font-size: 3rem;
+        }
+        .section-title .heading a{
+            color: #454545;
+        }
+        .section-title .heading a:hover{
+            color: #323232;
+        }
+        .section-title .excerpt{
+            color: #8f8f8f;
+            font-size: 2rem;
+        }
 
-    .section-title.text-right .excerpt{float: right;}
+        /*-----------------------*/
+        /*- SECTION TINY --------*/
+        .section-title.tiny .heading{
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+        .section-title.tiny .excerpt{
+            font-size: 1.3rem;
+        }
+
+    .section-title + .container{
+        margin-top: 60px;
+    }
+    .section-title.text-right .excerpt{
+        float: right;
+    }
 
     /*---------------------------*/
     /*- SECTION ALIGNMENTS ------*/
@@ -540,10 +692,26 @@ object{
 
     /*---------------------------*/
     /*- SECTION NAV -------------*/
-    .section-nav-title{margin: 0 0 10px 0;}
+    .section-nav-title{
+        margin: 0 0 10px 0;
+        color: #8f8f8f;
+        font-size: 1.2rem;
+        font-weight: 700;
+        text-transform: uppercase;
+    }
 
 /*-------------------------------*/
 /*- OFF CANVAS ------------------*/
+
+    /*---------------------------*/
+    /*- CLOSE CANVAS ------------*/
+    .close-canvas{
+        background: #555;
+        color: #999;
+    }
+    .close-canvas:hover{
+        color: #fff;
+    }
 
     section[class*=' off-canvas-']{
         padding-top: 20px;
@@ -553,6 +721,7 @@ object{
         opacity: 0;
         transform: scale(0.95);
         transition: all 0.3s ease-in-out 0s;
+        font-size: 1.4rem;
     }
     .off-canvas-right{
         width: 240px;
@@ -605,6 +774,12 @@ object{
     section[class*=' off-canvas-'] li{
         padding: 5px 0;
     }
+    section[class*=' off-canvas-'] li a{
+        color: rgba(255, 255, 255, 0.8);
+    }
+    section[class*=' off-canvas-'] .section-nav-title{
+        color: #888;
+    }
     section[class*=' off-canvas-'] .widget.widget_nav_menu{
         padding: 20px;
     }
@@ -616,10 +791,17 @@ object{
     section[class*=' off-canvas-'] .searchform label{
         display: none;
     }
+    section[class*=' off-canvas-'] .searchform input[type="text"]{
+        background: none repeat scroll 0% 0% rgb(51, 51, 51);
+        border: 2px solid rgb(85, 85, 85);
+    }
     section[class*=' off-canvas-'] .searchform input[type="submit"]{
         display: block;
         width: 100%;
         height: 32px;
+        background: #555;
+        color: #ccc;
+        font-size: 1.2rem;
     }
 
         /*-----------------------*/
@@ -636,7 +818,12 @@ object{
             visibility: visible;
             opacity: 1;
             position: static;
+            border: none;
             box-shadow: none;
+            font-size: 1.2rem;
+        }
+        section[class*=' off-canvas-'] .nav-vertical .sub-menu li{
+            border: none;
         }
 
 /*-------------------------------*/
@@ -650,10 +837,16 @@ object{
     select,
     button{
         width: 100%;
+        background-color: #fff;
+        border: 2px solid #eee;
+        color: #8f8f8f;
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        font-size: 1.5rem;
     }
     textarea:focus,
     input:focus,
     select:focus{
+        border-color: #ccc;
         -webkit-appearance: none;
         outline: 0;
     }
@@ -668,6 +861,7 @@ object{
         height: 36px;
         -webkit-appearance: none;
         -moz-appearance: none;
+        font-size: 1.5rem;
     }
     textarea{
         padding: 10px 8px;
@@ -689,32 +883,47 @@ object{
         display: inline-block;
         width: auto;
         padding: 5px 10px;
+        vertical-align: middle;
+        background-color: #454545;
         border: none;
+        text-align: center;
+        color: #fff;
+        font-size: 1.5rem;
+        font-weight: 700;
+        font-style: normal;
         cursor: pointer;
         -webkit-appearance: none;
         -moz-appearance: none;
-        text-align: center;
-        vertical-align: middle;
-        cursor: pointer;
         transition: all 0.2s ease-in-out;
     }
     input[type=button]:hover,
     input[type=submit]:hover,
     button:hover{
         cursor: pointer;
+        background-color: #ccc;
+        color: #999;
+    }
+    input[type=button]:disabled,
+    input[type=submit]:disabled{
+        background-color: #ccc;
+        color: #999;
     }
     input[type=submit] + span{
         float: left;
+        margin: 2px 0 0 10px;
+        font-size: 1.1rem;
         font-style: italic;
-        margin: 2px 0 0 10px;}
+    }
 
     /*---------------------------*/
     /*- CHECKBOXES AND RADIOS ---*/
     input[type=checkbox]{
+        border: none;
         -webkit-appearance: checkbox;
         -moz-appearance: checkbox;
     }
     input[type=radio]{
+        border: none;
         -webkit-appearance: radio;
         -moz-appearance: radio;
     }
@@ -725,6 +934,9 @@ object{
     input[type=file]{
         max-width: 500px;
         padding: 4px;
+        background-color: #eee;
+        border: none;
+        font-size: 1.5rem;
     }
 
     /*---------------------------*/
@@ -733,12 +945,15 @@ object{
         clear: both;
         display: block;
         margin-bottom: 4px;
+        font-size: 1.5rem;
+        font-weight: 700;
     }
     fieldset{
         margin-bottom: 10px;
     }
     legend{
         margin: 0 0 10px;
+        font-size: 1.9rem;
     }
 
     /*---------------------------*/
@@ -764,10 +979,14 @@ object{
 
     /*---------------------------*/
     /*- FORM ROWS LARGE ---------*/
+    form.large label{
+        font-size: 1.5rem;
+    }
     form.large input[type=email],
     form.large input[type=text],
     form.large input[type=password]{
         height: 47px;
+        font-size: 2.0rem;
     }
     form.large .input-append .add-on,
     form.large .input-prepend .add-on{
@@ -787,6 +1006,7 @@ object{
     form.small input[type=text],
     form.small input[type=password]{
         height: 32px;
+        font-size: 1.3rem;
     }
     form.small .input-append .add-on,
     form.small .input-prepend .add-on{
@@ -807,6 +1027,8 @@ object{
         padding: 0;
         margin: 0 5px 0 5px;
         vertical-align: middle;
+        font-size: 1.2rem;
+        font-weight: 400;
     }
     .checkbox{
         clear: both;
@@ -825,6 +1047,7 @@ object{
     }
     .checkbox .btn-large + label{
         padding-top: 10px;
+        font-size: 1.3rem;
     }
 
         /*---------------------------*/
@@ -832,6 +1055,7 @@ object{
         .checkbox-list .checkbox{margin-bottom: 5px;}
         .checkbox-list .checkbox label{
             margin-left: 0;
+            font-size: 1.3rem;
         }
 
     /*---------------------------*/
@@ -854,6 +1078,8 @@ object{
         float: none;
         padding: 8px 0;
         margin-bottom: 0;
+        font-size: 1.2rem;
+        font-weight: 400;
     }
 
     /*---------------------------*/
@@ -869,6 +1095,10 @@ object{
     .input-prepend .add-on{
         display: inline-block;
         padding: 0 12px;
+        background-color: #eee;
+        border: 2px solid #eee;
+        border-right-width: 0px;
+        font-size: 1.5rem;
     }
     .input-prepend input{
         display: inline-block;
@@ -878,12 +1108,17 @@ object{
     .input-append .add-on{
         display: inline-block;
         padding: 0 12px;
+        background-color: #eee;
+        border: 2px solid #eee;
+        border-left-width: 0px;
+        font-size: 1.5rem;
     }
     .input-append input[type=text],
     .input-append input[type=password],
     .input-append input[type=email]{
         display: inline-block;
         vertical-align: top;
+        border-right: none;
     }
     .input-append input[type=submit],
     .input-append input[type=button],
@@ -892,6 +1127,15 @@ object{
         height: 36px;
         margin: 0;
         vertical-align: top;
+        border-left: none;
+    }
+    .input-prepend.input-append input{
+        border-right-width: 0;
+        border-right-width: 0;
+    }
+    .input-prepend.input-append .add-on:first-child{
+        border-left-width: 2px;
+        border-right-width: 0;
     }
 
 
@@ -904,11 +1148,41 @@ object{
     .button{
         display: inline-block;
         padding: 5px 15px;
+        background-color: #454545;
+        border: none;
+        color: #fff;
         text-align: center;
         vertical-align: middle;
         cursor: pointer;
         transition: all 0.2s ease-in-out;
+        font-weight: 700;
     }
+    .button:hover{
+        background-color: #323232;
+        color: #fff;
+    }
+
+    /*---------------------------*/
+    /*- BUTTON SIZES ------------*/
+    .button.btn-small{
+        padding: 2px 10px;
+        font-size: 1.2rem;
+    }
+    .button.btn-large{
+        padding: 10px 25px;
+        font-size: 1.8rem;
+    }
+    .button.btn-massive{
+        padding: 15px 30px;
+        font-size: 2.0rem;
+    }
+    .button.btn-full{
+        display: block;
+        width: 100%;
+    }
+
+    /*---------------------------*/
+    /*- BUTTON COLORS -----------*/
 
         /*-----------------------*/
         /*- FORM BUTTON ---------*/
@@ -918,21 +1192,61 @@ object{
             padding-bottom: 0;
         }
 
-    /*---------------------------*/
-    /*- BUTTON SIZES ------------*/
-    .button.btn-small{
-        padding: 2px 10px;
-    }
-    .button.btn-large{
-        padding: 10px 25px;
-    }
-    .button.btn-massive{
-        padding: 15px 30px;
-    }
-    .button.btn-full{
-        display: block;
-        width: 100%;
-    }
+        /*-----------------------*/
+        /*- PRIMARY BUTTON ------*/
+        .btn-primary{
+            background-color: #fc0;
+            color: #5E2500;
+        }
+        .btn-primary:hover{
+            background-color: #f93;
+            color: #5E2500;
+        }
+
+        /*-----------------------*/
+        /*- SECONDARY BUTTON ----*/
+        .btn-secondary{
+            background-color: #A3C567;
+            color: #37451D;
+        }
+        .btn-secondary:hover{
+            background-color: #93B25E;
+            color: #37451D;
+        }
+
+        /*-----------------------*/
+        /*- SUBTLE BUTTON -------*/
+        .btn-subtle{
+            background-color: #eee;
+            color: #454545;
+        }
+        .btn-subtle:hover{
+            background-color: #eee;
+            color: #323232;
+        }
+
+        /*-----------------------*/
+        /*- LINK BUTTON ---------*/
+        .btn-link{
+            background: none;
+            text-decoration: underline;
+            color: #454545;
+        }
+        .btn-link:hover{
+            background: none;
+            color: #323232;
+        }
+
+        /*-----------------------*/
+        /*- LINK BUTTON ---------*/
+        .button.btn-invert{
+            background-color: #fff;
+            color: #454545;
+        }
+        .button.btn-invert:hover{
+            background-color: #454545;
+            color: #fff;
+        }
 
     /*---------------------------*/
     /*- BUTTON GROUP ------------*/
@@ -969,24 +1283,107 @@ object{
     /*- BADGE -------------------*/
     .badge{
         padding: 1px 8px;
+        background-color: #000;
+        color: #fff;
     }
     .button .badge{
         margin: 0 2px 0 -10px;
     }
 
+        /*-----------------------*/
+        /*- BADGE COLORS --------*/
+
+            /*-------------------*/
+            /*- PRIMARY BADGE ---*/
+            .badge.badge-primary{
+                background-color: #5E2500;
+                color: #fff;
+            }
+
+            /*-------------------*/
+            /*- SECONDARY BADGE -*/
+            .badge.badge-secondary{
+                background-color: #37451D;
+                color: #fff;
+            }
+
+            /*------------------*/
+            /*- SUBTLE BADGE ---*/
+            .badge.badge-subtle{
+                background-color: #8f8f8f;
+                color: #fff;
+            }
+
+            /*------------------*/
+            /*- BLANK BADGE ----*/
+            .badge.badge-blank{
+                background-color: #ddd;
+                color: #323232;
+            }
+
     /*---------------------------*/
     /*- LABEL -------------------*/
     .label{
         padding: 1px 6px;
+        background-color: #454545;
+        color: #fff;
         white-space: nowrap;
+        font-size: 1.2rem;
+        font-weight: 700;
+        font-style: normal;
     }
 
         /*-----------------------*/
-        /*- LABEL SIMPLE --------*/
-        .label.label-nofrill{
-            display: block;
-            padding: 0;
-        }
+        /*- LABEL COLORS --------*/
+
+            /*-------------------*/
+            /*- PRIMARY LABEL ---*/
+            .label.label-primary{
+                background-color: #5E2500;
+                color: #fff;
+            }
+
+            /*-------------------*/
+            /*- SECONDARY LABEL -*/
+            .label.label-secondary{
+                background-color: #A3C567;
+                color: #fff;
+            }
+
+            /*-------------------*/
+            /*- SUBTLE LABEL ----*/
+            .label.label-subtle{
+                background-color: #c0c0c0;
+                color: #fff;
+            }
+
+            /*-------------------*/
+            /*- ERROR LABEL -----*/
+            .label.label-error{
+                background-color: #E2574C;
+                color: #fff;
+            }
+
+            /*-------------------*/
+            /*- BLANK LABEL -----*/
+            .label.label-blank{
+                background-color: #ddd;
+                color: #323232;
+            }
+
+            /*-------------------*/
+            /*- LABEL SIMPLE ----*/
+            .label.label-nofrill{
+                background: none;
+                color: #999;
+            }
+
+            /*-------------------*/
+            /*- LABEL SIMPLE ----*/
+            .label.label-nofrill{
+                display: block;
+                padding: 0;
+            }
 
     /*---------------------------*/
     /*- LABEL GROUP -------------*/
@@ -1007,14 +1404,26 @@ object{
         margin-bottom: 20px;
         vertical-align: top;
         overflow: hidden;
+        border: 2px solid #eee;
     }
     table th{
         padding: 10px;
         text-align: left;
         vertical-align: middle;
+        background-color: #fff;
+        border-bottom: 2px solid #eee;
+        color: #454545;
+        font-size: 1.2rem;
+        font-weight: 700;
+        text-transform: uppercase;
     }
     table td{
-        padding: 10px;vertical-align: top;
+        padding: 10px;
+        vertical-align: top;
+        border-bottom: 2px solid #eee;
+    }
+    table tr:last-child td{
+        border-bottom: none;
     }
     table .button-group{
         margin-bottom: 0;
@@ -1023,6 +1432,11 @@ object{
     .section-table-title td{
         padding-top: 2px;
         padding-bottom: 0;
+        background-color: #f3f3f3;
+        color: #8f8f8f;
+        font-size: 1.1rem;
+        font-weight: 700;
+        text-transform: uppercase;
     }
 
     table.table-comfortable td{
@@ -1035,19 +1449,53 @@ object{
 /*-------------------------------*/
 
     /*---------------------------*/
+    /*- WRAPPERS ----------------*/
+    #wrapper-site,
+    .wrapper-site{
+        background-color: #fff;
+    }
+
+    /*---------------------------*/
+    /*- WELLS -------------------*/
+    .well{
+        background-color: #f3f3f3;
+    }
+    .well .well{
+        background-color: #eee;
+    }
+    .well-block{
+        background-color: #fff;
+        border: 3px solid #eee;
+    }
+
+    /*---------------------------*/
     /*- PANEL -------------------*/
     .panel{
         overflow: hidden;
         margin-bottom: 20px;
     }
+    .panel ul{
+        border: 2px solid #ddd;
+    }
     .panel li{
         padding: 10px;
+        background-color: #fff;
+        border-top: 2px solid #ddd;
+    }
+    .panel li:first-child{
+        border-top: none;
     }
     .panel .panel-title{
         padding: 8px 10px;
+        background-color: #454545;
+        color: #fff;
+    }
+    .panel .panel-title + ul{
+        border-top: none;
     }
     .panel li .heading{
         margin-bottom: 5px;
+        color: #999;
     }
 
 
@@ -1057,13 +1505,27 @@ object{
 
     /*---------------------------*/
     /*- SITE WIDE HEADER --------*/
-    .header-site .column{margin-bottom: 0;}
-
+    .header-site .column{
+        margin-bottom: 0;
+    }
 
     /*---------------------------*/
     /*- LOGO --------------------*/
-    .logo{float: left; padding: 0;}
-
+    .logo{
+        float: left;
+        padding: 0;
+    }
+    .sitename{
+        font-size: 1.8rem;
+        font-weight: 700;
+    }
+    .site-logo-link + .site-description .sitename{
+        font-size: 1.6rem;
+    }
+    .tagline{
+        font-size: 1.2rem;
+        font-weight: 700;
+    }
     .site-logo-link,
     .mark{
         display: inline-block;
@@ -1078,16 +1540,19 @@ object{
         margin: auto;
         width: auto;
     }
-
     .site-description{
         display: inline-block;
         vertical-align: middle;
     }
-    .site-logo-link + .site-description{margin-left: 10px;}
-
-    .mark + .sitename{margin-top: 10px;}
-
-    .column .logo{float: none;}
+    .site-logo-link + .site-description{
+        margin-left: 10px;
+    }
+    .mark + .sitename{
+        margin-top: 10px;
+    }
+    .column .logo{
+        float: none;
+    }
 
 /*-------------------------------*/
 /*- NAVIGATION ------------------*/
@@ -1100,8 +1565,22 @@ object{
     .nav li{
         position: relative;
     }
+    .nav-small a,
+    .nav-small span{
+        font-size: 1.2rem;
+    }
     .nav a{
+        color: #323232;
         transition: color 0.2s ease-in-out, background 0.2s ease-in-out, border-color 0.2s ease-in-out;
+    }
+    .nav a:hover{
+        color: #8f8f8f;
+    }
+    .nav.large{
+        font-size: 2.0rem;
+    }
+    .nav.medium{
+        font-size: 1.5rem;
     }
 
     /*---------------------------*/
@@ -1115,13 +1594,16 @@ object{
     }
     .nav-horizontal li a{
         display: block;
+        color: #323232;
         text-align: center;
+        font-weight: 700;
     }
     .nav-horizontal li a:hover{
         color: #8f8f8f;
     }
     .nav-horizontal .special{
         padding: 2px 0;
+        font-size: 1.2rem;
     }
 
     /*---------------------------*/
@@ -1141,18 +1623,34 @@ object{
     .nav-vertical{clear: both;}
     .nav-vertical a{
         display: block;
-        padding: 5px 0;}
+        padding: 5px 0;
+        font-weight: 700;
+    }
+    .nav-vertical a:hover{
+        background-color: #eee;
+        color: #323232;
+    }
 
     /*---------------------------*/
     /*- INLINE NAV --------------*/
     .nav-inline li{
         display: inline;
         margin: 0 15px;
+        font-size: 1.2rem;
+    }
+    .nav-inline a{
+        color: rgba(255, 255, 255, 0.65);
+    }
+    .nav-inline a:hover{
+        color: #fff;
     }
 
     /*---------------------------*/
     /*- TABBED NAV --------------*/
-    .nav-tabs{padding: 20px 20px 0;}
+    .nav-tabs{
+        padding: 20px 20px 0;
+        background-color: #eee;
+    }
     .nav-tabs ul{
         overflow: hidden;
         max-width: 1000px;
@@ -1165,21 +1663,55 @@ object{
     .nav-tabs a{
         display: block;
         padding: 6px 15px;
+        background-color: #f3f3f3;
+        color: #8f8f8f;
+        font-weight: 700;
     }
-
+    .nav-tabs a:hover{
+        color: #454545;
+        background-color: #f3f3f3;
+    }
+    .nav-tabs .active a{
+        background-color: #fff;
+        color: #454545;
+    }
     .nav-small a,
     .nav-small span{
         padding: 3px 8px;
     }
 
     /*---------------------------*/
+    /*- PILL NAV ----------------*/
+    .nav-pills a{
+        border: 2px solid #ddd;
+        color: #8f8f8f;
+        font-weight: 700;
+    }
+    .nav-pills a:hover{
+        background-color: #8f8f8f;
+        border-color: #454545;
+        color: #fff;
+    }
+    .nav-pills .active a{
+        background-color: #8f8f8f;
+        border-color: #454545;
+        color: #fff;
+    }
+    .nav-pills span{
+        color: #323232;
+        font-weight: 700;
+    }
+
+    /*---------------------------*/
     /*- SUB NAV -----------------*/
     .sub-menu{
+        background-color: #fff;
         visibility: hidden;
         opacity: 0;
         position: absolute;
         top: 30px;
         left: 0;
+        border: 2px solid #ddd;
         z-index: 5;
         transition: all 0.4s ease-in-out;
         line-height: normal;
@@ -1189,14 +1721,24 @@ object{
         display: block;
         width: 150px;
         margin: 0;
+        border: none;
+        border-bottom: 1px dotted #ddd;
+    }
+    .sub-menu li:last-child{
+        border-bottom: none;
     }
     .sub-menu li a{
         display: block;
         padding: 8px 10px;
+        background: none;
+        color: #454545;
         text-transform: none;
         text-align: left;
     }
-
+    .sub-menu li a:hover{
+        background-color: #333;
+        color: #fff;
+    }
     .nav li:hover > .sub-menu{
         visibility: visible;
         opacity: 1;
@@ -1220,6 +1762,7 @@ object{
         left: 150px;
         right: auto;
         top: -3px;
+        box-shadow: 3px 3px 0px rgba(0, 0, 0, 0.05);
     }
     .nav-vertical li:hover > .sub-menu{
         top: -3px; left: 140px;
@@ -1236,12 +1779,20 @@ object{
     /*---------------------------*/
     /*- ABOLUTE NAV -------------*/
     .nav-absolute{
+        position: absolute;
         width: 100%;
         padding: 5px 10px;
-        position: absolute;
+        color: #999;
+        font-size: 1.2rem;
     }
     .nav-absolute li{
         display: inline;
+    }
+    .nav-absolute a{
+        color: #ccc;
+    }
+    .nav-absolute a:hover{
+        color: #fff;
     }
 
     /*---------------------------*/
@@ -1256,6 +1807,8 @@ object{
         opacity: 0;
         visibility: hidden;
         transition: all 0.2s ease-in-out;
+        background-color: rgba(255, 255, 255, 0.95);
+        box-shadow: 0px 3px 0px rgba(0, 0, 0, 0.1);
     }
     .sticky-nav.sticky-nav-on{
         opacity: 1;
@@ -1264,9 +1817,11 @@ object{
     }
     .sticky-nav h4{
         padding: 2px 0;
+        font-size: 2.0rem;
     }
     .sticky-nav h4 small{
         margin-left: 10px;
+        text-transform: uppercase;
     }
 
     /*---------------------------*/
@@ -1275,18 +1830,23 @@ object{
         display: inline-block;
         margin: 0 0 15px;
         overflow: hidden;
+        color: #777;
+        font-size: 1.2rem;
     }
     .bread-crumbs li{
         float: left;
         margin-right: 10px;
     }
+    .bread-crumbs a{
+        color: #454545;
+    }
     .bread-crumbs a:hover{
+        color: #454545;
         text-decoration: underline;
     }
     .title-small .bread-crumbs{
         margin: -30px 0 25px;
     }
-
 
     /*---------------------------*/
     /*- PAGINATION --------------*/
@@ -1298,7 +1858,10 @@ object{
     }
     .pagination li{
         float: left;
+        border-right: 1px solid #eee;
         overflow: hidden;
+        font-size: 1.3rem;
+        font-weight: 700;
     }
     .pagination li:last-child{
         border-right: none;
@@ -1308,16 +1871,29 @@ object{
         display: inline-block;
         min-width: 38px;
         padding: 4px 10px;
+        background-color: #f5f5f5;
+        color: #454545;
         text-align: center;
+    }
+    .pagination a:hover{
+        background-color: #454545;
+        color: #fff;
+    }
+    .pagination .current{
+        border-color: #323232;
+    }
+    .pagination .current{
+        background-color: #454545;
+        color: #fff;
     }
     .pagination li.next{
         margin-right: 10px;
+        border: none;
     }
 
 /*-------------------------------*/
 /*- COMPONENTS ------------------*/
 /*-------------------------------*/
-
 
     /*---------------------------*/
     /*- BACK TO TOP -------------*/
@@ -1332,6 +1908,8 @@ object{
         display: block;
         width: 32px;
         height: 32px;
+        background: url(images/arrow-up-small.png) no-repeat;
+        background-size: 32px 32px;
         text-indent: -999px;
         overflow: hidden;
     }
@@ -1392,11 +1970,24 @@ object{
         .media.small .button{
             margin-top: 1.3rem;
         }
+        .media.small .heading{
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+        .media.small .excerpt{
+            font-size: 1.3rem;
+        }
 
         /*-----------------------*/
         /*- MEDIA MEDIUM --------*/
         .media.medium .heading + .excerpt{
             margin-top: 10px;
+        }
+        .media .heading{
+            font-size: 2.0rem;
+        }
+        .media .heading + .excerpt{
+            font-size: 1.5rem;
         }
         .media.medium p:not(:first-child),
         .media.medium .button{
@@ -1416,6 +2007,12 @@ object{
         .media.large .button{
             margin-top: 2rem;
         }
+        .media.large .heading{
+            font-size: 2.8rem;
+        }
+        .media.large .excerpt{
+            font-size: 2rem;
+        }
 
 
     /*---------------------------*/
@@ -1425,14 +2022,12 @@ object{
         position: relative;
         overflow: hidden;
     }
-
     .thumbnail-title{
         padding: 0 20px 20px;
     }
     .thumbnail-title.small{
         padding: 0 10px 10px;
     }
-
     .thumbnail-media{
         display: block;
         overflow: hidden;
@@ -1448,15 +2043,24 @@ object{
     .thumbnail-media:hover img{
         transform: scale(1.08);
     }
-
     .thumbnail-body{
         padding: 20px;
         overflow: hidden;
         position: relative;
         z-index: 2;
+        background-color: #f5f5f5;
     }
     .thumbnail-body .heading{
         margin: 0;
+        color: #000;
+        font-size: 2rem;
+        font-weight: 400;
+    }
+    .thumbnail-body .heading.small{
+        font-size: 1.2rem;
+    }
+    .thumbnail-body .excerpt{
+        color: #777;
     }
     .thumbnail-body p{
         margin: 10px 0 0;
@@ -1482,8 +2086,20 @@ object{
 /*- COPY STYLING ----------------*/
 /*-------------------------------*/
 
+    .copy{
+        font-size: 1.5rem;
+    }
+    .copy.small{
+        font-size: 1.3rem;
+    }
     .copy p{
         margin-bottom: 16px;
+    }
+    .copy a{
+        border-bottom: 1px solid #ddd;
+    }
+    .copy a:hover{
+        border-color: #999;
     }
     .copy ul{
         list-style: disc;
@@ -1520,28 +2136,69 @@ object{
         max-width: 98%;
         height: auto;
     }
-    .copy h1,
-    .copy h2,
-    .copy h3,
-    .copy h4,
-    .copy h5{margin-bottom: 26px;}
-
+    .copy h1{
+        margin-bottom: 26px;
+        color: #323232;
+        font-size: 3.2rem;
+        font-weight: 700;
+    }
+    .copy h2{
+        margin-bottom: 26px;
+        color: #323232;
+        font-size: 2.2rem;
+        font-weight: 700;
+    }
+    .copy h3{
+        margin-bottom: 26px;
+        color: #323232;
+        font-size: 1.8rem;
+        font-weight: 700;
+    }
+    .copy h4{
+        margin-bottom: 26px;
+        color: #323232;
+        font-size: 1.5rem;
+        font-weight: 700;
+    }
+    .copy h5{
+        margin-bottom: 26px;
+        color: #323232;
+        font-size: 1.3rem;
+    }
     .copy blockquote{
         padding-left: 26px;
         margin-bottom: 20px;
+        font-size: 2.0rem;
+        font-weight: 700;
+    }
+    .copy a.button{
+        border-bottom: none;
     }
 
-    .copy a.button{border-bottom: none;}
+/*-------------------------------*/
+/*- COLOR RESETS ----------------*/
+/*-------------------------------*/
 
+    .no-fill{
+        background: none !important;
+    }
 
 /*-------------------------------*/
 /*- TEXT ALIGNMENT --------------*/
 /*-------------------------------*/
 
-    .text-left{text-align: left;}
-    .text-right{text-align: right;}
-    .text-center{text-align: center;}
-    .text-justify{text-align: justify;}
+    .text-left{
+        text-align: left;
+    }
+    .text-right{
+        text-align: right;
+    }
+    .text-center{
+        text-align: center;
+    }
+    .text-justify{
+        text-align: justify;
+    }
 
 
 /*-------------------------------*/
@@ -1551,20 +2208,26 @@ object{
     .wp-caption{
         max-width: 100%;
         padding: 10px;
+        background: #f0f0f0;
     }
     .wp-caption-text{
         padding: 10px 5px 5px;
         margin: 0;
+        color: #777;
+        font-size: 1.4rem;
     }
     .gallery-caption{
         display: block;
-        width: 100%;
-        padding: 5px 5px 10px;
-        margin: 0;
-        opacity: 0;
         position: absolute;
         bottom: -5px;
         left: 0;
+        width: 100%;
+        padding: 5px 5px 10px;
+        margin: 0;
+        background: rgba(255, 255, 255, 0.95);
+        color: #777;
+        font-size: 1.2rem;
+        opacity: 0;
     }
     .alignleft{
         float: left;
@@ -1575,6 +2238,176 @@ object{
     .aligncenter{
         text-align: center;
     }
-    .bypostauthor{}
+    .bypostauthor{
+        color: #777;
+    }
+    .wp-caption p.wp-caption-text{
+        font-size: 1.4rem;
+    }
+
+/*-------------------------------*/
+/*- INVERT ----------------------*/
+/*-------------------------------*/
+
+    .invert{
+        border: none;
+        color: #fff;
+    }
+    .invert h5{
+        color: #fff;
+    }
+    .invert code{
+        background: rgba(255, 255, 255, 0.2);
+        color: #fff;
+        padding: 2px 4px;
+    }
+    .invert label,
+    .invert legend{
+        color: #fff;
+    }
+    .invert small{
+        color: #ccc;
+    }
+    .invert a{
+        color: #fff;
+    }
+    .invert a:hover{
+        color: #fff;
+    }
+
+    .invert input,
+    .invert textarea,
+    .invert select{
+        border-color: transparent;
+    }
+    .invert .input-prepend .add-on,
+    .invert .input-append .add-on{
+        border-color: transparent;
+        background: #323232;
+        color: #fff;
+    }
+
+    .invert .section-title .heading,
+    .invert.section-title .heading{
+        color: #fff;
+    }
+    .invert .section-title .excerpt,
+    .invert.section-title .excerpt{
+        color: rgba(255, 255, 255, 0.8);
+    }
+    .invert .avatar-image{
+        border-color: #fff;
+        box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.4);
+    }
 
 
+        /*-----------------------*/
+        /*- LOGO INVERT ---------*/
+        .invert .sitename{
+            color: #fff;
+        }
+        .invert .tagline{
+            color: #fff;
+            opacity: 0.9;
+        }
+
+        /*-----------------------*/
+        /*- PAGE TITLES INVERT --*/
+        .invert .heading{
+            color: #fff;
+        }
+        .invert .sub-header{
+            color: #fff;
+            opacity: 0.9;
+        }
+        .invert .excerpt{
+            color: #fff;
+            opacity: 0.9;
+        }
+
+        /*-----------------------*/
+        /*- NAV INVERT ----------*/
+        .invert .nav > li > a{
+            color: #fff;
+            opacity: 0.8;
+        }
+        .invert .nav > li > a:hover{
+            color: #fff;
+            opacity: 1;
+        }
+
+    /*---------------------------*/
+    /*- HEADER INVERT -----------*/
+    .header-site.invert .nav-horizontal > ul > li > a{
+        color: rgba(255, 255, 255, 1);
+    }
+    .header-site.invert .nav-horizontal > ul > li > a:hover{
+        color: rgba(255, 255, 255, 0.7);
+    }
+    .header-site.invert .responsive-nav .l-menu{
+        color: rgba(255, 255, 255, 1);
+    }
+
+    /*---------------------------*/
+    /*- INVERT BLOCK ------------*/
+    .invert-block{
+        background: #323232;
+        overflow: hidden;
+        color: #ccc;
+    }
+    .thumbnail .invert-block{
+        margin: 20px -20px -20px;
+    }
+
+    /*---------------------------*/
+    /*- INVERTED MENUS ----------*/
+    .invert .nav-vertical li a:hover{
+        background: none;
+        color: #fff;
+    }
+    .invert .sub-menu{
+        background: none;
+    }
+    .invert .sub-menu li a{
+        background: none;
+    }
+    .header-site.invert .sub-menu li a{
+        background: #fff;
+        color: #000;
+    }
+    .header-site.invert .sub-menu li a:hover{
+        background-color: #323232;
+        color: #fff;
+    }
+
+    /*---------------------------*/
+    /*- INVERTED BUTTONS --------*/
+
+        /*-----------------------*/
+        /*- INVERT LINK BUTTON --*/
+        .invert-block .btn-link{
+            color: #ccc;
+        }
+        .invert-block .btn-link:hover{
+            color: #fff;
+        }
+
+        /*-----------------------*/
+        /*- INVERT PRIMARY BUTTON -*/
+        .invert .btn-primary{
+            color: #5E2500;
+        }
+        .invert .btn-primary:hover{
+            color: #5E2500;
+        }
+
+        /*-----------------------*/
+        /*- INVERT SUBTLE BUTTON -*/
+        .invert-block .btn-subtle{
+            background-color: #454545;
+            color: #fff;
+        }
+        .invert-block .btn-subtle:hover{
+            background-color: #009EEC;
+            color: #fff;
+        }

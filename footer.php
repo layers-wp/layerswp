@@ -45,8 +45,9 @@
 			</div>
 			<?php do_action( 'layers_after_footer_inner' ); ?>
 
-			<?php _e( sprintf( '<a class="created-using-layers" target="_blank" tooltip="Created using Layers" href="%s"><span>Created using Layers</span></a>', 'http://www.layerswp.com' ) , 'layerswp' ); ?>
-
+			<?php if( false == layers_get_theme_mod( 'hide-layers-badge' ) ) { ?>
+				<?php 	_e( sprintf( '<a class="created-using-layers" target="_blank" tooltip="Created using Layers" href="%s"><span>Created using Layers</span></a>', 'http://www.layerswp.com' ) , 'layerswp' ); ?>
+			<?php } ?>
 		</footer><!-- END / FOOTER -->
 		<?php do_action( 'layers_after_footer' ); ?>
 

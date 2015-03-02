@@ -339,6 +339,15 @@ class Layers_Customizer_Config {
 										'3' => __( '3' , 'layerswp' ),
 										'4' => __( '4' , 'layerswp' ),
 									)
+								), // layout,
+								'footer-layout-break-2' => array(
+									'type'     => 'layers-seperator'
+								),
+								'hide-layers-badge' => array(
+									'label' => __( 'Hide Layers badge' , 'layerswp' ),
+									'subtitle' => __( 'If you loved us though, you\'d leave this on', 'layerswp' ),
+									'type' => 'layers-checkbox',
+									'default' => false
 								),
 							); // footer-layout
 

@@ -1,7 +1,7 @@
 # Layers Changelog
 
 ## 1.0.4
-### ?? February 2015
+### 02 March 2015
 
 Security and code quality updates
 

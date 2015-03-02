@@ -31,7 +31,7 @@ jQuery(document).ready(function($) {
 		// "Hi Mom"
 		$that = jQuery(this);
 
-		$non_layers_boxes = '#postdivrich, #postbox-container-2, #postimagediv';
+		$non_layers_boxes = '#postdivrich';
 
 		// If we use the builder, show the "build" button
 		if('builder.php' == $that.val() ){

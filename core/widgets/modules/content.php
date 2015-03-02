@@ -83,23 +83,6 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 		}
 
 		/**
-		* Enqueue Scripts
-		*/
-		function enqueue_scripts(){
-
-			wp_enqueue_script( 'masonry' ); // Wordpress Masonry
-
-			wp_enqueue_script(
-				LAYERS_THEME_SLUG . '-layers-masonry-js' ,
-				get_template_directory_uri() . '/assets/js/layers.masonry.js',
-				array(
-					'jquery'
-				),
-				LAYERS_VERSION
-			); // Layers Masonry Function
-		}
-
-		/**
 		*  Widget front end display
 		*/
 		function widget( $args, $instance ) {
@@ -116,12 +99,13 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 			// Parse $instance
 			$widget = wp_parse_args( $instance, $instance_defaults );
 
-			// Enqueue Scipts when needed
-			$this->enqueue_scripts();
+			// Enqueue Masonry if need be
+			if( 'list-masonry' == $this->check_and_return( $widget , 'design', 'liststyle' ) ) $this->enqueue_masonry();
 
 			// Set the background styling
 			if( !empty( $widget['design'][ 'background' ] ) ) layers_inline_styles( '#' . $widget_id, 'background', array( 'background' => $widget['design'][ 'background' ] ) );
 			if( !empty( $widget['design']['fonts'][ 'color' ] ) ) layers_inline_styles( '#' . $widget_id, 'color', array( 'selectors' => array( '.section-title h3.heading' , '.section-title p.excerpt' ) , 'color' => $widget['design']['fonts'][ 'color' ] ) );
+
 
 			// Apply the advanced widget styling
 			$this->apply_widget_advanced_styling( $widget_id, $widget ); ?>
@@ -266,20 +250,21 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 				<?php } ?>
 
 			</section>
+			<?php if( 'list-masonry' == $this->check_and_return( $widget , 'design', 'liststyle' ) ) { ?>
+				<script>
+					jQuery(function($){
+						layers_masonry_settings[ '<?php echo $widget_id; ?>' ] = [{
+								itemSelector: '.layers-masonry-column',
+								layoutMode: 'masonry',
+								masonry: {
+									gutter: <?php echo ( isset( $widget['design'][ 'gutter' ] ) ? 20 : 0 ); ?>
+								}
+							}];
 
-			<script>
-				jQuery(function($){
-					layers_masonry_settings[ '<?php echo $widget_id; ?>' ] = [{
-							itemSelector: '.layers-masonry-column',
-							layoutMode: 'masonry',
-							masonry: {
-								gutter: <?php echo ( isset( $widget['design'][ 'gutter' ] ) ? 20 : 0 ); ?>
-							}
-						}];
-
-					$('#<?php echo $widget_id; ?>').find('.list-masonry').layers_masonry( layers_masonry_settings[ '<?php echo $widget_id; ?>' ][0] );
-				});
-			</script>
+						$('#<?php echo $widget_id; ?>').find('.list-masonry').layers_masonry( layers_masonry_settings[ '<?php echo $widget_id; ?>' ][0] );
+					});
+				</script>
+			<?php } // masonry trigger ?>
 		<?php }
 
 		/**

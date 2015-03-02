@@ -44,6 +44,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 				'excerpt' => 'Our services run deep and are backed by over ten years of experience.',
 				'design' => array(
 					'layout' => 'layout-boxed',
+					'liststyle' => 'list-grid',
 					'columns' => '3',
 					'gutter' => 'on',
 					'background' => array(

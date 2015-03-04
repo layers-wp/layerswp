@@ -1,5 +1,12 @@
 # Layers Changelog
 
+## 1.0.5
+### ??
+
+??
+
+* **Tweak** - Text change 'Editing widget content' slide
+
 ## 1.0.4
 ### 02 March 2015
 

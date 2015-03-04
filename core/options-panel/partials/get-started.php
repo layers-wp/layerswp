@@ -161,8 +161,8 @@ $layers_migrator = new Layers_Widget_Migrator(); ?>
 								<?php _e( 'Editing widget content' , 'layerswp' ); ?>
 							</h3>
 							<div class="layers-excerpt">
-								<p>
-									<?php _e( 'out allowing you to edit its content and customize its settings. You can also shift-click on the widget itself in the preview area. ' , 'layerswp' ); ?></div>
+								<p><?php _e( "To edit a widget's content, just click on it in the widget area on the left hand side. The widget panel will slide out allowing you to edit its content and customize its settings. You can also shift-click on the widget itself in the preview area." , 'layerswp' ); ?></p>
+							</div>
 						</div>
 					</div>
 					<div class="layers-button-well">

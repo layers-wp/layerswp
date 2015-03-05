@@ -181,22 +181,34 @@ class Layers_Customizer {
 		}
 	}
 
-	function render_actions_buttons() { ?>
-
-			<a class="customize-controls-layers-button customize-controls-layers-button-dashboard dashicons dashicons-plus layers-tooltip" href="<?php echo admin_url( 'admin.php?page=layers-add-new-page' ); ?>">
-				<span class="layers-tooltip-text layers-tooltip-text-large"><?php _e( 'Add new Layers page' , 'layerswp' ) ?></span>
-			</a>
-			<a class="customize-controls-layers-button customize-controls-layers-button-preview icon-display layers-tooltip" href="#" target="_blank">
-				<span class="layers-tooltip-text"><?php _e( 'Preview this page' , 'layerswp' ) ?></span>
-			</a>
-
-			<span class="layers-tooltip-text layers-tooltip-text-close layers-tooltip-text-tiny">
-				<?php _e( 'Close' , 'layerswp' ) ?>
-			</span>
-			<span class="layers-tooltip-text layers-tooltip-text-back">
-				<?php _e( 'Back to controls' , 'layerswp' ) ?>
-			</span>
-
+	function render_actions_buttons() {
+		?>
+		<div id="customize-controls-layers-actions">
+			
+			<ul class="layers-customizer-nav">
+				<li>
+					<a class="customize-controls-layers-button customize-controls-layers-button-dashboard" title="<?php esc_html( _e( 'Layers Dashboard' , 'layerswp' ) ) ?>" href="<?php echo admin_url( 'admin.php?page=layers-add-new-page' ); ?>"></a>
+					<ul>
+						<li>
+							<a class="customize-controls-layers-button" href="<?php echo admin_url( 'admin.php?page=layers-dashboard' ); ?>">
+								<i class="customize-controls-layers-button-dashboard"></i><?php _e( 'Layers Dashboard' , 'layerswp' ) ?>
+							</a>
+						</li>
+						<li>
+							<a class="customize-controls-layers-button" href="<?php echo admin_url( 'admin.php?page=layers-add-new-page' ); ?>">
+								<i class="dashicons dashicons-plus"></i><?php _e( 'Add new Layers page' , 'layerswp' ) ?>
+							</a>
+						</li>
+						<li>
+							<a class="customize-controls-layers-button customize-controls-layers-button-preview" href="#" target="_blank">
+								<i class="icon-display"></i><?php _e( 'Preview this page' , 'layerswp' ) ?>
+							</a>
+						</li>
+					</ul>
+				</li>
+			</ul>
+			
+		</div>
 		<?php
 	}
 

@@ -12,7 +12,6 @@ License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 */
 
-
 /*---------------------------*/
 /*- HEADER CART -------------*/
 .header-cart{
@@ -45,16 +44,6 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 .header-inline .inline-right-nav .header-cart{
     float: none;
 }
-
-@media only screen and (min-width: 769px){
-
-    .header-center .header-cart,
-    .nav-clear .header-cart{
-        line-height: 20px;
-    }
-
-}
-
 
 /*---------------------------*/
 /*- PRICE & AMOUNT SETUP ----*/
@@ -97,7 +86,7 @@ del .amount{
     display: block;
     width: 16px;
     height: 16px;
-    background: #E1574C url(../images/remove.png) center no-repeat;
+    background: #E1574C url(../images/woocommerce/remove.png) center no-repeat;
     background-size: 8px;
     border-radius: 100%;
     text-indent: -999px;
@@ -285,6 +274,20 @@ p.stars span a:focus{
     .entry-title{
         font-size: 3.4rem; /*-- section-title.large --*/
     }
+    .woocommerce-product-rating{
+        margin-bottom: 10px;
+    }
+    .woocommerce-product-rating .star-rating{
+        display: inline-block;
+        vertical-align: middle;
+    }
+    .woocommerce-review-link{
+        display: inline-block;
+        vertical-align: bottom;
+        text-transform: uppercase;
+        font-size: 1rem;
+        font-weight: 700;
+    }
     div[itemprop="offers"]{
         margin: 0px 0 20px;
         font-size: 2.4rem;
@@ -401,19 +404,26 @@ p.stars span a:focus{
     }
     .entry-content ul{
         list-style: disc;
-        margin: 0 0 26px;
+        margin: 0 0 16px;
+        border: none;
     }
     .entry-content ul li{
         list-style: disc;
-        margin: 0 0 6px 30px;
+        padding: 0;
+        margin: 0 0 6px 26px;
+        background: none;
+        border: none;
     }
     .entry-content ol{
         list-style: decimal;
-        margin: 0 0 26px;
+        margin: 0 0 16px;
     }
     .entry-content ol li{
         list-style: decimal;
-        margin: 0 0 6px 20px;
+        padding: 0;
+        margin: 0 0 6px 26px;
+        background: none;
+        border: none;
     }
     .entry-content ul ul,
     .entry-content ul ol,
@@ -433,16 +443,14 @@ p.stars span a:focus{
     .entry-content dd{
         margin-left: 36px;
     }
-    .entry-content code,
-    .entry-content pre{}
+
     .entry-content img{
         display: block;
-        max-width: 98%;
         height: auto;
     }
     .entry-content h1{
         font-size: 3.2rem;
-        margin-bottom: 26px;
+        margin-bottom: 16px;
         color: #323232;
     }
     .entry-content h2{
@@ -470,6 +478,54 @@ p.stars span a:focus{
         margin-bottom: 20px;
         font-weight: 600;
         font-size: 2.0rem;
+    }
+
+/*---------------------------*/
+/*- COMMENT LIST ------------*/
+
+    #reviews .commentlist{
+        list-style: none;
+    }
+    #reviews .comment{
+        margin: 0;
+        padding: 20px;
+        list-style: none;
+        background: #fff;
+        border-bottom: 1px solid #eee;
+    }
+    #reviews .comment:last-child{
+        border-bottom: none;
+    }
+    #reviews .avatar{
+        display: none;
+    }
+    #reviews .comment-text{
+        overflow: hidden;
+    }
+    #reviews .star-rating{
+        margin-bottom: 10px;
+    }
+    #reviews .meta{
+        margin-bottom: 10px;
+        font-size: 1.5rem;
+        text-transform: none;
+    }
+    #reviews strong[itemprop="author"]{
+        color: #333;
+    }
+    #reviews time[itemprop="datePublished"]{
+        color: #777;
+        text-transform: uppercase;
+        font-size: 1rem;
+        font-weight: 700;
+    }
+    #reviews div[itemprop="description"]{
+        max-width: 660px;
+        margin-bottom: 0;
+        font-size: 1.5rem;
+    }
+    #reviews div[itemprop="description"] p:last-child{
+        margin-bottom: 0;
     }
 
 
@@ -534,10 +590,6 @@ p.stars span a:focus{
     .cart-collaterals{
         float: none;
         width: auto;
-    }
-    .cart_totals{
-        float: right;
-        width: 49%;
     }
     .cart_totals th,
     .cart_totals td{
@@ -605,6 +657,36 @@ p.stars span a:focus{
     }
 
     /*-----------------------*/
+    /*- STYLED DROP DOWN ----*/
+    .select2-container{
+        max-width: 500px;
+    }
+    .select2-container .select2-choice{
+        border: 2px solid #eee;
+        border-radius: 0;
+        line-height: 32px;
+    }
+    .select2-dropdown-open.select2-drop-above .select2-choice,
+    .select2-dropdown-open.select2-drop-above .select2-choices,
+    .select2-drop.select2-drop-active,
+    .select2-drop.select2-drop-above.select2-drop-active{
+        border-radius: 0;
+        border-width: 2px;
+        border-color: #eee;
+    }
+    .select2-drop.select2-drop-above{
+        border-radius: 0;
+    }
+    .select2-search{
+        padding: 4px;
+    }
+    .select2-search input{
+        border-radius: 0;
+        border-width: 2px;
+        border-color: #eee;
+    }
+
+    /*-----------------------*/
     /*- CREATE ACCOUNT ------*/
     .create-account{
         max-width: 490px;
@@ -660,9 +742,6 @@ p.stars span a:focus{
 
     .col2-set{
         overflow: hidden;
-        float: left;
-        width: 57.5%;
-        margin-right: 2%;
         margin-bottom: 40px;
     }
 
@@ -673,8 +752,6 @@ p.stars span a:focus{
         display: none;
     }
     #order_review{
-        float: left;
-        width: 40.5%;
         overflow: hidden;
     }
     #order_review_heading{
@@ -828,6 +905,7 @@ p.stars span a:focus{
     }
     .cart_list .quantity{
         width: 100%;
+        color: #999;
         font-size: 1.3rem;
     }
     .widget_shopping_cart .total{
@@ -847,6 +925,10 @@ p.stars span a:focus{
         margin-left: 20px;
         margin-right: 20px;
         background: #333;
+    }
+    section[class*=' off-canvas-'] .widget_shopping_cart .section-nav-title{
+        padding: 10px;
+        margin-bottom: 0;
     }
     section[class*=' off-canvas-'] .cart_list li{
         padding: 10px;
@@ -868,37 +950,6 @@ p.stars span a:focus{
     }
 
 
-/*-------------------------------*/
-/*- WOOCOMMERCE - SUPER SINGLE --*/
-/*-------------------------------*/
-
-    .special.product-images{
-        padding: 500px 0 0;
-        overflow: hidden;
-    }
-    .special.product-images .woocommerce-main-image{
-        position: absolute;
-        width: 100%;
-        bottom: 0;
-    }
-    .special.product-images .thumbnails{
-        overflow: hidden;
-        margin-left: 510px;
-        margin-bottom: 20px;
-        position: relative;
-        z-index: 2;
-    }
-    .special.product-images .thumbnails a{
-        display: block;
-        float: left;
-        max-width: 120px;
-        margin-right: 20px;
-    }
-    .special.product-images .thumbnails img{
-        display: block;
-        border: 4px solid #fff;
-    }
-
 .woocommerce-checkout .form-row .chosen-container{
     max-width: 500px;
 }
@@ -908,7 +959,7 @@ p.stars span a:focus{
 /*- RESPONSIVE ------------------*/
 /*-------------------------------*/
 
-@media only screen and (max-width: 480px), screen and (max-device-width: 480px), screen and (max-width: 600px) {
+@media only screen and (max-width: 480px){
 
     /*---------------------------*/
     /*- HEADER CART -------------*/
@@ -975,25 +1026,45 @@ p.stars span a:focus{
     .col2-set{
         margin-bottom: 20px;
     }
-    .col-1,
-    .col-2{
-        float: none;
-        width: auto;
-        margin: 0;
+
+}
+
+@media only screen and (min-width: 481px){
+
+    /*---------------------------*/
+    /*- WOO-COLUMNS -------------*/
+    .col2-set{
+        overflow: hidden;
+        float: left;
+        width: 57.5%;
+        margin-right: 2%;
+        margin-bottom: 40px;
     }
 
     /*---------------------------*/
     /*- ORDER REVIEW ------------*/
-    #order_review .shop_table{
-        float: none;
-        width: auto;
-        margin: 0 0 20px;
-    }
-    #order_review #payment{
-        float: none;
-        width: auto;
+    #order_review{
+        float: left;
+        width: 40.5%;
     }
 
 }
 
+@media only screen and (min-width: 769px) {
 
+    #reviews .avatar{
+        display: block;
+        float: left;
+        margin-right: 15px;
+    }
+    #reviews .star-rating{
+        float: right;
+        margin: 0;
+    }
+
+    .cart_totals{
+        float: right;
+        width: 49%;
+    }
+
+}

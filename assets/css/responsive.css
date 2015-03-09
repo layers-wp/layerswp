@@ -373,6 +373,53 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
         margin-right: 0;
     }
 
+        /*-----------------------*/
+        /*- MULTI-SIDEBAR -------*/
+        /* This CSS caters for 3 column sidebar layouts */
+        .sidebar.span-3{
+            width: 31.3%;
+        }
+        .sidebar.span-3 + .span-6{
+            width: 66.7%;
+        }
+        .sidebar.span-3 + .span-6 + .span-3{
+            width: 100%;
+        }
+        .sidebar.span-3 + .span-6 + .span-3 .widget{
+            float: left;
+            width: 31.3%;
+            margin-right: 2%;
+            margin-bottom: 2%;
+        }
+        .sidebar.span-3 + .span-6 + .span-3 .widget:nth-child(3n+3){
+            margin-right: 0;
+        }
+        .sidebar.span-3 + .span-6 + .span-3 .widget:nth-child(3n+4){
+            clear: left;
+        }
+
+        /*-----------------------*/
+        /*- DBL-SIDEBAR ---------*/
+        /* This CSS caters for 2 column sidebar layouts */
+        .sidebar.span-4{
+            width: 100%;
+            clear: left;
+            float: none;
+        }
+        .sidebar.span-4 .widget{
+            float: left;
+            width: 31.3%;
+            margin-right: 2%;
+            margin-bottom: 2%;
+        }
+        .sidebar.span-4 .widget:nth-child(3n+3){
+            margin-right: 0;
+        }
+        .sidebar.span-4 .widget:nth-child(3n+4){
+            clear: left;
+        }
+
+
     /*---------------------------*/
     /*- LARGE COLUMNS -----------*/
     .column.span-7,
@@ -399,24 +446,6 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
         clear: left;
     }
 
-    /*---------------------------*/
-    /*- SIDEBAR -----------------*/
-    .column.sidebar{
-        float: none;
-        clear: both;
-        width: 100%;
-    }
-    .column.sidebar .widget{
-        float: left;
-        width: 49%;
-        margin-right: 2%;
-    }
-    .column.sidebar .widget:nth-child(2n+2){
-        margin-right: 0;
-    }
-    .column.sidebar .widget:nth-child(2n+3){
-        clear: left;
-    }
 }
 
 /*--------------------------------------------------------------*/
@@ -616,6 +645,9 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
     /*---------------------------*/
     /*- EXCEPTIONS --------------*/
+    .column.span-3 + .column.span-6 + .column.span-3{
+        margin-left: 2%;
+    }
     .column.span-9 + .column.span-3{
         margin-right: 0;
     }

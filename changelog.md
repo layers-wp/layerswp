@@ -5,6 +5,7 @@
 
 ??
 
+* **Fix** - Removed dots from payment methods in woo checkout page
 * **Tweak** - Text change 'Editing widget content' slide
 * **Tweak** - Removed unused WooCommerce CSS and placed them in new pro woo extension
 

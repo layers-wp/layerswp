@@ -765,6 +765,7 @@ p.stars span a:focus{
         background: #f5f5f5;
     }
     #order_review .payment_methods li{
+        list-style: none;
         padding: 10px;
         border-bottom: 1px solid #eee;
     }

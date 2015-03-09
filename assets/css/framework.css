@@ -175,6 +175,7 @@ object{
     .column{
         margin-bottom: 20px;
         position: relative;
+        max-width: 100%;
     }
     .column-flush{
         margin: 0;
@@ -778,6 +779,9 @@ object{
 
     /*---------------------------*/
     /*- OFF CANVAS WIDGETS ------*/
+    section[class*=' off-canvas-'] .sub-menu li{
+        width: auto;
+    }
     section[class*=' off-canvas-'] li{
         padding: 5px 0;
     }
@@ -2307,7 +2311,6 @@ object{
         box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.4);
     }
 
-
         /*-----------------------*/
         /*- LOGO INVERT ---------*/
         .invert .sitename{
@@ -2384,6 +2387,9 @@ object{
     }
     .header-site.invert .sub-menu li a:hover{
         background-color: #323232;
+        color: #fff;
+    }
+    .invert .responsive-nav .l-menu{
         color: #fff;
     }
 

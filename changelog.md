@@ -4,7 +4,8 @@
 ### ??
 
 ??
-
+* **Fix** - Spacing issue when right sidebar is on in WooCommerce pages
+* **Fix** - .sub-menu width in off-canvas menu has been fixed to avoid text-wrapping
 * **Fix** - Removed dots from payment methods in woo checkout page
 * **Tweak** - Text change 'Editing widget content' slide
 * **Tweak** - Removed unused WooCommerce CSS and placed them in new pro woo extension

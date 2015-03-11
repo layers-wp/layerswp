@@ -2063,4 +2063,8 @@ msgstr "<span>页面：</span>"
 # @ layerswp
 #: partials/portfolio-list.php:24
 msgid "View Project"
+<<<<<<< HEAD
 msgstr "浏览项目"
+=======
+msgstr "浏览项目"
+>>>>>>> mapleobserver-master

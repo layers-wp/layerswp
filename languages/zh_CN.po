@@ -1,0 +1,2066 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Layers v1.0.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2015-02-25 21:53+0800\n"
+"Last-Translator: MapleObserver <mapleobserver@gmail.com>\n"
+"Language-Team: MapleObserver <mapleobserver@gmail.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Poedit 1.7.4\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;__ngettext:1,2;_n:1,2;__ngettext_noop:1,2;_n_noop:1,2;_c,_nc:4c,1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;_nx_noop:4c,1,2\n"
+"X-Poedit-Basepath: ../\n"
+"X-Textdomain-Support: yes\n"
+"Language: zh_CN\n"
+"X-Generator: Poedit 1.7.4\n"
+"X-Poedit-SearchPath-0: .\n"
+
+# @ layerswp
+#: comments.php:6
+#, php-format
+msgid "One Comment on &ldquo;%2$s&rdquo;"
+msgid_plural "%1$s Comments on &ldquo;%2$s&rdquo;"
+msgstr[0] "《%2$s》有 1 个评论"
+msgstr[1] "《%2$s》有 %1$s 个评论"
+
+# @ layerswp
+#: comments.php:19
+msgid "&larr;"
+msgstr "&larr;"
+
+# @ layerswp
+#: comments.php:20
+msgid "&rarr;"
+msgstr "&rarr;"
+
+# @ layerswp
+#: comments.php:29
+msgid "Comments are closed."
+msgstr "评论已关闭"
+
+# @ layerswp
+#: core/customizer/config.php:22
+msgid "Branding"
+msgstr "标志"
+
+# @ layerswp
+#: core/customizer/config.php:26
+msgid "Site Settings"
+msgstr "网站设置"
+
+# @ layerswp
+#: core/customizer/config.php:27
+msgid "Control your content's default layout."
+msgstr "控制网站内容的默认布局。"
+
+# @ layerswp
+#: core/customizer/config.php:31
+msgid "Header"
+msgstr "顶部"
+
+# @ layerswp
+#: core/customizer/config.php:32
+msgid "Control your header's logo, layout, colors and font."
+msgstr "控制网站顶部显示的 LOGO、布局、颜色和字体。"
+
+# @ layerswp
+#: core/customizer/config.php:36
+msgid "Footer"
+msgstr "底部"
+
+# @ layerswp
+#: core/customizer/config.php:37
+msgid "Control your footer's custom text, widget areas and layout."
+msgstr "控制网站底部显示的自定义文本、小工具区域和布局。"
+
+# @ layerswp
+#: core/customizer/config.php:41
+msgid "WooCommerce"
+msgstr "WooCommerce"
+
+# @ layerswp
+#: core/customizer/config.php:58
+msgid "Logo &amp; Title"
+msgstr "LOGO 和标题"
+
+# @ layerswp
+#: core/customizer/config.php:63 core/customizer/config.php:248
+#: core/customizer/config.php:366 core/customizer/registration.php:416
+#: core/helpers/forms.php:331 core/helpers/forms.php:406
+msgid "Background Color"
+msgstr "背景颜色"
+
+# @ layerswp
+#: core/customizer/config.php:90
+msgid "Navigation"
+msgstr "导航菜单"
+
+# @ layerswp
+#: core/customizer/config.php:91
+msgid "First create a menu then come back here to place it."
+msgstr "请先创建一个菜单，然后返回本页面调整该菜单位置。"
+
+# @ layerswp
+#: core/customizer/config.php:96 core/customizer/config.php:112
+#: core/customizer/config.php:120 core/helpers/design-bar.php:213
+msgid "Layout"
+msgstr "布局"
+
+# @ layerswp
+#: core/customizer/config.php:100 core/customizer/config.php:136
+msgid "Sidebars"
+msgstr "侧边栏"
+
+# @ layerswp
+#: core/customizer/config.php:104
+msgid "Fonts"
+msgstr "字体"
+
+# @ layerswp
+#: core/customizer/config.php:109
+msgid "CSS"
+msgstr "CSS 样式"
+
+# @ layerswp
+#: core/customizer/config.php:116 core/customizer/config.php:132
+msgid "Additional Scripts"
+msgstr "额外的脚本代码"
+
+# @ layerswp
+#: core/customizer/config.php:124
+msgid "Customization"
+msgstr "自定义"
+
+# @ layerswp
+#: core/customizer/config.php:128 core/customizer/config.php:340
+#: core/helpers/design-bar.php:529
+msgid "Text"
+msgstr "文本"
+
+# @ layerswp
+#: core/customizer/config.php:156
+msgid "Create Menu"
+msgstr "创建菜单"
+
+# @ layerswp
+#: core/customizer/config.php:175
+msgid "Body"
+msgstr "网站整体"
+
+# @ layerswp
+#: core/customizer/config.php:184
+msgid "Headings"
+msgstr "顶部"
+
+# @ layerswp
+#: core/customizer/config.php:193
+msgid "Buttons"
+msgstr "按钮"
+
+# @ layerswp
+#: core/customizer/config.php:203
+msgid "Header Width"
+msgstr "顶部宽度"
+
+# @ layerswp
+#: core/customizer/config.php:206 core/customizer/config.php:315
+#: core/helpers/design-bar.php:226 core/widgets/modules/slider.php:321
+msgid "Boxed"
+msgstr "边框式"
+
+# @ layerswp
+#: core/customizer/config.php:207 core/customizer/config.php:316
+#: core/helpers/design-bar.php:227 core/widgets/modules/slider.php:322
+msgid "Full Width"
+msgstr "全宽式"
+
+# @ layerswp
+#: core/customizer/config.php:215
+msgid "Logo & Menu Position"
+msgstr "LOGO 和菜单位置"
+
+# @ layerswp
+#: core/customizer/config.php:218
+msgid "Logo Left"
+msgstr "LOGO 居左"
+
+# @ layerswp
+#: core/customizer/config.php:219
+msgid "Logo Right"
+msgstr "LOGO 居右"
+
+# @ layerswp
+#: core/customizer/config.php:220
+msgid "Logo Center Top"
+msgstr "LOGO居中置顶"
+
+# @ layerswp
+#: core/customizer/config.php:221
+msgid "Logo Top"
+msgstr "LOGO 居左置顶"
+
+# @ layerswp
+#: core/customizer/config.php:222
+msgid "Logo Center"
+msgstr "LOGO 居中"
+
+# @ layerswp
+#: core/customizer/config.php:230
+msgid "Header Position"
+msgstr "顶部相对位置"
+
+# @ layerswp
+#: core/customizer/config.php:234
+msgid "Sticky"
+msgstr "Sticky：置顶不动"
+
+# @ layerswp
+#: core/customizer/config.php:240 core/widgets/modules/post.php:334
+msgid "Overlay"
+msgstr "Overlay：浮于顶层"
+
+# @ layerswp
+#: core/customizer/config.php:257
+msgid "Google Analytics ID"
+msgstr "Google 统计 ID"
+
+# @ layerswp
+#: core/customizer/config.php:258
+msgid "Enter in your Google Analytics ID to enable website traffic reporting. eg. \"UA-xxxxxx-xx"
+msgstr "输入您的 Google 统计 ID 用于统计网站访问信息，例如 \"UA-xxxxxx-xx\""
+
+# @ layerswp
+#: core/customizer/config.php:266 core/customizer/config.php:413
+msgid "Custom Scripts"
+msgstr "自定义脚本"
+
+# @ layerswp
+#: core/customizer/config.php:267
+msgid "Enter in any custom script (such as TypeKit etc) to include in your site's header. Include the &lt;script&gt;&lt;/script&gt; tags."
+msgstr "输入任意自定义脚本代码 (例如 TypeKit 等)，脚本将被包含在您网站的 header 代码中。填写内容需包括 &lt;script&gt;&lt;/script&gt; 标签"
+
+# @ layerswp
+#: core/customizer/config.php:275
+msgid "Single Post Sidebar(s)"
+msgstr "详细文章页面侧边栏"
+
+# @ layerswp
+#: core/customizer/config.php:276
+msgid "This option affects your single post pages."
+msgstr "该选项作用于您的详细文章页面。"
+
+# @ layerswp
+#: core/customizer/config.php:280 core/customizer/config.php:298
+#: core/customizer/config.php:429 core/customizer/config.php:447
+msgid "Display Left Sidebar"
+msgstr "显示左侧边栏"
+
+# @ layerswp
+#: core/customizer/config.php:285 core/customizer/config.php:303
+#: core/customizer/config.php:434 core/customizer/config.php:452
+msgid "Display Right Sidebar"
+msgstr "显示右侧边栏"
+
+# @ layerswp
+#: core/customizer/config.php:293
+msgid "Post List Sidebar(s)"
+msgstr "文章列表页面侧边栏"
+
+# @ layerswp
+#: core/customizer/config.php:294
+msgid "This option affects your category, tag, author and search pages."
+msgstr "该选项作用于您的分类、标签、作者和搜索结果页面。"
+
+# @ layerswp
+#: core/customizer/config.php:324
+msgid "Widget Areas"
+msgstr "小工具区域"
+
+# @ layerswp
+#: core/customizer/config.php:327 core/helpers/design-bar.php:458
+#: core/helpers/design-bar.php:503
+msgid "None"
+msgstr "无"
+
+# @ layerswp
+#: core/customizer/config.php:328
+msgid "1"
+msgstr "1"
+
+# @ layerswp
+#: core/customizer/config.php:329
+msgid "2"
+msgstr "2"
+
+# @ layerswp
+#: core/customizer/config.php:330
+msgid "3"
+msgstr "3"
+
+# @ layerswp
+#: core/customizer/config.php:331
+msgid "4"
+msgstr "4"
+
+# @ layerswp
+#: core/customizer/config.php:344
+msgid "Text Color"
+msgstr "文本颜色"
+
+# @ layerswp
+#: core/customizer/config.php:349
+msgid "Link Color"
+msgstr "链接颜色"
+
+# @ layerswp
+#: core/customizer/config.php:357 core/customizer/registration.php:354
+#: core/helpers/design-bar.php:592
+msgid "Background"
+msgstr "背景"
+
+# @ layerswp
+#: core/customizer/config.php:361 core/customizer/registration.php:355
+#: core/customizer/registration.php:386 core/helpers/design-bar.php:598
+msgid "Background Image"
+msgstr "背景图片"
+
+# @ layerswp
+#: core/customizer/config.php:372
+msgid "Background Repeat"
+msgstr "背景内容重复属性"
+
+# @ layerswp
+#: core/customizer/config.php:375 core/helpers/design-bar.php:618
+msgid "No Repeat"
+msgstr "不重复"
+
+# @ layerswp
+#: core/customizer/config.php:376 core/customizer/registration.php:444
+#: core/helpers/design-bar.php:613 core/helpers/design-bar.php:619
+msgid "Repeat"
+msgstr "重复"
+
+# @ layerswp
+#: core/customizer/config.php:377 core/helpers/design-bar.php:620
+msgid "Repeat Horizontal"
+msgstr "仅水平重复"
+
+# @ layerswp
+#: core/customizer/config.php:378 core/helpers/design-bar.php:621
+msgid "Repeat Vertical"
+msgstr "仅垂直重复"
+
+# @ layerswp
+#: core/customizer/config.php:383
+msgid "Background Position"
+msgstr "背景内容位置"
+
+# @ layerswp
+#: core/customizer/config.php:386 core/helpers/design-bar.php:359
+#: core/helpers/design-bar.php:544 core/helpers/design-bar.php:631
+msgid "Center"
+msgstr "居中"
+
+# @ layerswp
+#: core/customizer/config.php:387 core/helpers/design-bar.php:402
+#: core/helpers/design-bar.php:632 core/helpers/forms.php:481
+msgid "Top"
+msgstr "顶部"
+
+# @ layerswp
+#: core/customizer/config.php:388 core/helpers/design-bar.php:633
+#: core/helpers/forms.php:483
+msgid "Bottom"
+msgstr "底部"
+
+# @ layerswp
+#: core/customizer/config.php:389 core/helpers/design-bar.php:358
+#: core/helpers/design-bar.php:400 core/helpers/design-bar.php:543
+#: core/helpers/design-bar.php:634 core/helpers/forms.php:484
+msgid "Left"
+msgstr "左边"
+
+# @ layerswp
+#: core/customizer/config.php:390 core/helpers/design-bar.php:360
+#: core/helpers/design-bar.php:401 core/helpers/design-bar.php:545
+#: core/helpers/design-bar.php:635 core/helpers/forms.php:482
+msgid "Right"
+msgstr "右边"
+
+# @ layerswp
+#: core/customizer/config.php:394
+msgid "Background Stretch"
+msgstr "背景自适应缩放"
+
+# @ layerswp
+#: core/customizer/config.php:404
+msgid "Copyright Text"
+msgstr "版权信息"
+
+# @ layerswp
+#: core/customizer/config.php:414
+msgid "Enter in any custom script to include in your site's footer. Include the &lt;script&gt;&lt;/script&gt; tags."
+msgstr "输入任意自定义脚本代码 (例如 TypeKit 等)，脚本将被包含在您网站的 footer 代码中。填写内容需包括 &lt;script&gt;&lt;/script&gt; 标签"
+
+# @ layerswp
+#: core/customizer/config.php:424
+msgid "Single Product Sidebar(s)"
+msgstr "详细产品页面侧边栏"
+
+# @ layerswp
+#: core/customizer/config.php:425
+msgid "This option affects your single product pages."
+msgstr "该选项作用于您的详细产品页面。"
+
+# @ layerswp
+#: core/customizer/config.php:442
+msgid "Product List Sidebar(s)"
+msgstr "产品列表页面侧边栏"
+
+# @ layerswp
+#: core/customizer/config.php:443
+msgid "This option affects your shop page, product category and product tag pages."
+msgstr "该选项作用于您的商店、产品分类和产品标签页面"
+
+# @ layerswp
+#: core/customizer/controls/font.php:51
+#, php-format
+msgid "Click <a href=\"%1s\" target=\"_blank\">here</a> to see this font on Google Fonts.</em>"
+msgstr "点击 <a href=\"%1s\" target=\"_blank\">这里</a> 查看该字体（ 引用自 Google 字体库）</em>"
+
+# @ layerswp
+#: core/customizer/controls/select-images.php:36
+msgid "Choose Background"
+msgstr "选择背景"
+
+# @ layerswp
+# @ default
+#: core/customizer/init.php:59 core/helpers/post.php:347
+#: core/meta/init.php:176 core/options-panel/partials/dashboard.php:39
+msgid "Edit Layout"
+msgstr "编辑布局"
+
+# @ layerswp
+#: core/customizer/init.php:60
+msgid "Use this area to add widgets to your page, use the (Layers) widgets for the Body section."
+msgstr "在您的页面中使用该区域添加小工具"
+
+# @ layerswp
+#: core/customizer/init.php:138
+msgid "Builder Pages:"
+msgstr "设计页面："
+
+# @ layerswp
+#: core/customizer/init.php:158
+msgid "Add new Layers page"
+msgstr "添加新的 Layers 页面"
+
+# @ layerswp
+#: core/customizer/init.php:161
+msgid "Preview this page"
+msgstr "预览该页面"
+
+# @ layerswp
+#: core/customizer/init.php:165
+msgid "Close"
+msgstr "关闭"
+
+# @ layerswp
+#: core/customizer/init.php:168
+msgid "Back to controls"
+msgstr "返回控制页面"
+
+# @ layerswp
+#: core/customizer/registration.php:473 core/helpers/design-bar.php:626
+msgid "Position"
+msgstr "位置"
+
+# @ layerswp
+#: core/customizer/registration.php:501 core/helpers/design-bar.php:640
+msgid "Stretch"
+msgstr "缩放"
+
+# @ layerswp
+#: core/helpers/api.php:38
+msgid "WooCommerce for Layers"
+msgstr "WooCommerce for Layers"
+
+# @ layerswp
+#: core/helpers/api.php:39
+msgid "Adds an advanced product widget, product slider and multiple page layouts."
+msgstr "添加一个高级的产品小工具、产品幻灯和多样化页面排版。"
+
+# @ layerswp
+#: core/helpers/api.php:45
+msgid "Showcase for Layers"
+msgstr "Showcase for Layers"
+
+# @ layerswp
+#: core/helpers/api.php:46
+msgid "List your portfolio items with relevant meta such as client, web url and project role."
+msgstr "列出您的项目信息，例如客户端、网址和产品用途。"
+
+# @ layerswp
+#: core/helpers/custom-fonts.php:96
+msgid "Default"
+msgstr "默认"
+
+# @ layerswp
+#: core/helpers/design-bar.php:253
+msgid "List Style"
+msgstr "列表样式"
+
+# @ layerswp
+#: core/helpers/design-bar.php:266 core/widgets/modules/content.php:325
+msgid "Grid"
+msgstr "格子"
+
+# @ layerswp
+#: core/helpers/design-bar.php:267
+msgid "List"
+msgstr "列表"
+
+# @ layerswp
+#: core/helpers/design-bar.php:268 core/widgets/modules/content.php:326
+msgid "Masonry"
+msgstr "瀑布流"
+
+# @ layerswp
+#: core/helpers/design-bar.php:294 core/helpers/design-bar.php:303
+msgid "Columns"
+msgstr "列"
+
+# @ layerswp
+#: core/helpers/design-bar.php:308
+msgid "1 Column"
+msgstr "1 列"
+
+# @ layerswp
+#: core/helpers/design-bar.php:309
+msgid "2 Columns"
+msgstr "2 列"
+
+# @ layerswp
+#: core/helpers/design-bar.php:310
+msgid "3 Columns"
+msgstr "3 列"
+
+# @ layerswp
+#: core/helpers/design-bar.php:311
+msgid "4 Columns"
+msgstr "4 列"
+
+# @ layerswp
+#: core/helpers/design-bar.php:312
+msgid "6 Columns"
+msgstr "6 列"
+
+# @ layerswp
+#: core/helpers/design-bar.php:317 core/widgets/modules/content.php:331
+msgid "Gutter"
+msgstr "间隔"
+
+# @ layerswp
+#: core/helpers/design-bar.php:345 core/helpers/design-bar.php:538
+msgid "Text Align"
+msgstr "文本对齐方式"
+
+# @ layerswp
+#: core/helpers/design-bar.php:361 core/helpers/design-bar.php:546
+msgid "Justify"
+msgstr "分散对齐"
+
+# @ layerswp
+#: core/helpers/design-bar.php:387
+msgid "Image Align"
+msgstr "图片对齐方式"
+
+# @ layerswp
+#: core/helpers/design-bar.php:428 core/helpers/design-bar.php:437
+msgid "Featured Image"
+msgstr "特色图片"
+
+# @ layerswp
+#: core/helpers/design-bar.php:444
+msgid "Video URL (oEmbed)"
+msgstr "视频链接 (OEMBED 格式)"
+
+# @ layerswp
+#: core/helpers/design-bar.php:455 core/helpers/design-bar.php:500
+msgid "Portrait"
+msgstr "纵向"
+
+# @ layerswp
+#: core/helpers/design-bar.php:456 core/helpers/design-bar.php:501
+msgid "Landscape"
+msgstr "横向"
+
+# @ layerswp
+#: core/helpers/design-bar.php:457 core/helpers/design-bar.php:502
+msgid "Square"
+msgstr "方形"
+
+# @ layerswp
+#: core/helpers/design-bar.php:459
+msgid "Round"
+msgstr "圆形"
+
+# @ layerswp
+#: core/helpers/design-bar.php:487
+msgid "Image Ratio"
+msgstr "图片比例"
+
+# @ layerswp
+#: core/helpers/design-bar.php:553
+msgid "Text Size"
+msgstr "文本大小"
+
+# @ layerswp
+#: core/helpers/design-bar.php:558
+msgid "Small"
+msgstr "小尺寸"
+
+# @ layerswp
+#: core/helpers/design-bar.php:559
+msgid "Medium"
+msgstr "中等尺寸"
+
+# @ layerswp
+#: core/helpers/design-bar.php:560
+msgid "Large"
+msgstr "大尺寸"
+
+# @ layerswp
+#: core/helpers/design-bar.php:599 core/helpers/forms.php:242
+msgid "Choose Image"
+msgstr "选择图片"
+
+# @ layerswp
+#: core/helpers/design-bar.php:606
+msgid "Color"
+msgstr "颜色"
+
+# @ layerswp
+#: core/helpers/design-bar.php:647
+msgid "Darken"
+msgstr "变暗"
+
+# @ layerswp
+#: core/helpers/design-bar.php:675
+msgid "Advanced"
+msgstr "高级"
+
+# @ layerswp
+#: core/helpers/design-bar.php:681
+msgid "Custom Class(es)"
+msgstr "自定义CSS Class"
+
+# @ layerswp
+#: core/helpers/design-bar.php:689
+msgid "Custom CSS"
+msgstr "自定义 CSS 样式"
+
+# @ layerswp
+#: core/helpers/design-bar.php:697
+msgid "Padding (px)"
+msgstr "内边距 (px)"
+
+# @ layerswp
+#: core/helpers/design-bar.php:704
+msgid "Margin (px)"
+msgstr "外边距 (px)"
+
+# @ layerswp
+#: core/helpers/forms.php:22
+msgid "Widget"
+msgstr "小工具"
+
+# @ layerswp
+#: core/helpers/forms.php:100
+msgid "Newest First"
+msgstr "优先显示最新内容"
+
+# @ layerswp
+#: core/helpers/forms.php:101
+msgid "Oldest First"
+msgstr "优先显示最旧内容"
+
+# @ layerswp
+#: core/helpers/forms.php:102
+msgid "Random"
+msgstr "随机"
+
+# @ layerswp
+#: core/helpers/forms.php:103
+msgid "Titles A-Z"
+msgstr "按照标题 A-Z 排序"
+
+# @ layerswp
+#: core/helpers/forms.php:104
+msgid "Titles Z-A"
+msgstr "按照标题 Z-A 排序"
+
+# @ layerswp
+#: core/helpers/forms.php:105
+msgid "Most Comments"
+msgstr "最多评论"
+
+# @ layerswp
+#: core/helpers/forms.php:106
+msgid "Custom Order"
+msgstr "自定义排序"
+
+# @ layerswp
+#: core/helpers/forms.php:219
+msgid "Visual Mode"
+msgstr "预览模式"
+
+# @ layerswp
+#: core/helpers/forms.php:220 core/helpers/forms.php:221
+msgid "HTML Mode"
+msgstr "HTML 代码模式"
+
+# @ layerswp
+#: core/helpers/forms.php:236 core/helpers/forms.php:268
+#: core/helpers/forms.php:307
+msgid "Remove"
+msgstr "移除"
+
+# @ layerswp
+#: core/helpers/forms.php:240
+msgid "Select an Image"
+msgstr "选择一张图片"
+
+# @ layerswp
+#: core/helpers/forms.php:241
+msgid "Use Image"
+msgstr "使用图片"
+
+# @ layerswp
+#: core/helpers/forms.php:264
+msgid "Select a File"
+msgstr "选择一个文件"
+
+# @ layerswp
+#: core/helpers/forms.php:264
+msgid "Use File"
+msgstr "使用文件"
+
+# @ layerswp
+#: core/helpers/forms.php:265
+msgid "Choose a File"
+msgstr "选择一个文件"
+
+# @ layerswp
+#: core/helpers/forms.php:311
+#, php-format
+msgid "Drop a file here or %s"
+msgstr "拖放一个文件到这里或 %s"
+
+# @ layerswp
+#: core/helpers/forms.php:350 core/helpers/forms.php:425
+msgid "Darken to improve readability"
+msgstr "变暗可提高可读性"
+
+# @ layerswp
+#: core/helpers/forms.php:361 core/helpers/forms.php:436
+msgid "Tile Background"
+msgstr "标题背景"
+
+# @ layerswp
+#: core/helpers/forms.php:372 core/helpers/forms.php:447
+msgid "Fixed Background"
+msgstr "固定背景"
+
+# @ layerswp
+#: core/helpers/forms.php:383
+msgid "Enter your .mp4 link"
+msgstr "输入 MP4 文件链接"
+
+# @ layerswp
+#: core/helpers/forms.php:394
+msgid "Enter your .ogv link"
+msgstr "输入 OGV 文件链接"
+
+# @ layerswp
+#: core/helpers/migrator.php:100
+msgid "Application"
+msgstr "应用"
+
+# @ layerswp
+#: core/helpers/migrator.php:106
+msgid "Contact Page"
+msgstr "联系页面"
+
+# @ layerswp
+#: core/helpers/migrator.php:112
+msgid "Landing Page"
+msgstr "登录页面"
+
+# @ layerswp
+#: core/helpers/migrator.php:118
+msgid "Lookbook Page"
+msgstr ""
+
+# @ layerswp
+#: core/helpers/migrator.php:124
+msgid "One Pager"
+msgstr "单页"
+
+# @ layerswp
+#: core/helpers/migrator.php:130
+msgid "Portfolio Page"
+msgstr "项目展示页"
+
+# @ layerswp
+#: core/helpers/migrator.php:136
+msgid "Video Page"
+msgstr "视频页面"
+
+# @ layerswp
+#: core/helpers/migrator.php:142
+msgid "Blank Page"
+msgstr "空白页面"
+
+# @ layerswp
+#: core/helpers/migrator.php:585
+msgid "(Copy)"
+msgstr "(复制)"
+
+# @ layerswp
+#: core/helpers/migrator.php:641
+#: core/options-panel/partials/get-started.php:344
+#: core/options-panel/partials/get-started.php:345
+msgid "Home Page"
+msgstr "首页"
+
+# @ layerswp
+#: core/helpers/migrator.php:716
+msgid "Sidebar does not exist in theme (using Inactive)"
+msgstr "主题中不存在侧边栏（或无效）"
+
+# @ layerswp
+#: core/helpers/migrator.php:758
+msgid "Widget already exists"
+msgstr "小工具已存在"
+
+# @ layerswp
+#: core/helpers/migrator.php:807
+msgid "Imported"
+msgstr "导入"
+
+# @ layerswp
+#: core/helpers/migrator.php:810
+msgid "Imported to Inactive"
+msgstr "导入后不激活"
+
+# @ layerswp
+#: core/helpers/migrator.php:816
+msgid "No Title"
+msgstr "无标题"
+
+# @ layerswp
+#: core/helpers/pointers.php:48 core/meta/init.php:201
+msgid "Build Your Page"
+msgstr "设计您的页面"
+
+# @ layerswp
+#: core/helpers/post.php:56
+#, php-format
+msgid "View all posts in %s"
+msgstr "查看 %s 的所有文章"
+
+# @ layerswp
+#: core/helpers/post.php:58 core/helpers/post.php:77
+msgid ", "
+msgstr ", "
+
+# @ layerswp
+#: core/helpers/post.php:75
+#, php-format
+msgid "View all posts tagged %s"
+msgstr "查看带有标签 %s 的所有文章"
+
+# @ layerswp
+#: core/helpers/post.php:98
+#, php-format
+msgid "<a href=\"%1$s\" title=\"%2$s\" rel=\"author\">%3$s</a>"
+msgstr "<a href=\"%1$s\" title=\"%2$s\" rel=\"author\">%3$s</a>"
+
+# @ the-writer
+#: core/helpers/post.php:100
+#, php-format
+msgid "View all posts by %s"
+msgstr "查看来自 %s 的所有文章"
+
+# @ layerswp
+#: core/helpers/post.php:123
+msgid "(Edit)"
+msgstr "(编辑)"
+
+# @ layerswp
+#: core/helpers/post.php:129
+#, php-format
+msgid "%1$s at %2$s"
+msgstr "%1$s %2$s"
+
+# @ layerswp
+#: core/helpers/post.php:135
+msgid "Your comment is awaiting moderation."
+msgstr "您的评论正在审核"
+
+# @ layerswp
+#: core/helpers/post.php:156
+msgid "You shall not pass"
+msgstr ""
+
+# @ layerswp
+#: core/helpers/template.php:24
+msgid "Home"
+msgstr "首页"
+
+# @ layerswp
+# @ gigawatt
+#: core/helpers/template.php:35 core/helpers/template.php:304
+#: partials/content-empty.php:15
+msgid "Search"
+msgstr "搜索"
+
+# @ layerswp
+#: core/helpers/template.php:45 core/helpers/template.php:329
+msgid "Shop"
+msgstr "商店"
+
+# @ layerswp
+#: core/helpers/template.php:317
+#, php-format
+msgid "Daily Archives: %s"
+msgstr "按日归档：%s"
+
+# @ layerswp
+#: core/helpers/template.php:319
+#, php-format
+msgid "Monthly Archives: %s"
+msgstr "按月归档：%s"
+
+# @ layerswp
+#: core/helpers/template.php:319
+msgctxt "monthly archives date format"
+msgid "F Y"
+msgstr "F Y"
+
+# @ layerswp
+#: core/helpers/template.php:321
+#, php-format
+msgid "Yearly Archives: %s"
+msgstr "按年归档：%s"
+
+# @ layerswp
+#: core/helpers/template.php:321
+msgctxt "yearly archives date format"
+msgid "Y"
+msgstr "Y"
+
+# @ layerswp
+#: core/helpers/template.php:334
+msgid "Archives"
+msgstr "归档"
+
+# @ layerswp
+#: core/helpers/template.php:1113
+msgid "Your browser does not support the video tag."
+msgstr "您的浏览器不支持该视频标签。"
+
+# @ layerswp
+#: core/meta/config.php:16
+msgid ": Options"
+msgstr ": 选项"
+
+# @ layerswp
+#: core/meta/config.php:21
+msgid "Rich Media"
+msgstr "富媒体"
+
+# @ layerswp
+#: core/meta/config.php:24
+msgid "Video URL"
+msgstr "视频链接"
+
+# @ layerswp
+#: core/meta/init.php:154
+msgid "You can drag and drop widgets, edit content and tweak the design. Click the button below to see your page come to life."
+msgstr "您可以拖放小工具、编辑内容和调整设计。点击下面的按钮可以预览页面。"
+
+# @ layerswp
+#: core/meta/init.php:155
+msgid "Edit Your Page"
+msgstr "编辑您的页面"
+
+# @ layerswp
+#: core/options-panel/ajax.php:68
+msgid "No Logo uploaded"
+msgstr "LOGO 未上传"
+
+# @ layerswp
+#: core/options-panel/ajax.php:102
+msgid "Logo updated"
+msgstr "LOGO 已更新"
+
+# @ layerswp
+#: core/options-panel/ajax.php:106
+msgid "There was an error when updating your logo."
+msgstr "更新 LOGO 时出现错误。"
+
+# @ layerswp
+#: core/options-panel/ajax.php:114
+msgid "Option updated"
+msgstr "选项已更新"
+
+# @ layerswp
+#: core/options-panel/init.php:47
+msgid "Layers"
+msgstr "Layers"
+
+# @ layerswp
+#: core/options-panel/init.php:106
+msgid "Layers is a product of <a href=\"http://oboxthemes.com/\">Obox Themes</a>. For questions and feedback please <a href=\"mailto:david@obox.co.za\">email David directly"
+msgstr "Layers 由 <a href=\"http://oboxthemes.com/\">Obox Themes</a> 出品。如有任何问题或建议请直接联系 David：<a href=\"mailto:david@obox.co.za\">"
+
+# @ layerswp
+#: core/options-panel/init.php:157 core/options-panel/init.php:158
+msgid "Get Started"
+msgstr "开始使用"
+
+# @ layerswp
+#: core/options-panel/init.php:167 core/options-panel/init.php:168
+#: core/options-panel/partials/add-new-page.php:12
+#: core/options-panel/partials/dashboard.php:48
+#: core/options-panel/partials/welcome.php:71
+msgid "Add New Page"
+msgstr "添加新页面"
+
+# @ layerswp
+#: core/options-panel/init.php:179 core/options-panel/init.php:180
+#: core/options-panel/partials/dashboard.php:32
+#: core/options-panel/partials/welcome.php:53
+msgid "Layers Pages"
+msgstr "Layers 页面"
+
+# @ layerswp
+#: core/options-panel/init.php:189 core/options-panel/init.php:190
+msgid "Customize"
+msgstr "自定义"
+
+# @ layerswp
+#: core/options-panel/init.php:198 core/options-panel/init.php:199
+#: core/options-panel/partials/backup.php:5
+msgid "Backup"
+msgstr "备份"
+
+# @ layerswp
+#: core/options-panel/init.php:207 core/options-panel/partials/dashboard.php:8
+msgid "Dashboard"
+msgstr "仪表盘"
+
+# @ layerswp
+#: core/options-panel/partials/add-new-page.php:25
+msgid "Add a page title"
+msgstr "添加页面标题"
+
+# @ layerswp
+#: core/options-panel/partials/add-new-page.php:34
+#: core/widgets/modules/contact.php:264 core/widgets/modules/content.php:353
+#: core/widgets/modules/content.php:490 core/widgets/modules/post.php:438
+#: core/widgets/modules/slider.php:477
+msgid "Enter title here"
+msgstr "在这里填写标题"
+
+# @ layerswp
+#: core/options-panel/partials/add-new-page.php:43
+msgid "Proceed to Customizer"
+msgstr ""
+
+# @ layerswp
+#: core/options-panel/partials/add-new-page.php:46
+msgid "Cancel"
+msgstr "取消"
+
+# @ layerswp
+#: core/options-panel/partials/backup.php:14
+msgid "Backup your pages"
+msgstr "备份您的页面"
+
+# @ layerswp
+#: core/options-panel/partials/backup.php:16
+msgid "Convert your Layers pages into regular WordPress pages, preserving the content you have worked so hard to create."
+msgstr "将您的 Layers 页面转化为标准 WordPress 页面，保护您辛苦创建的页面。"
+
+# @ layerswp
+#: core/options-panel/partials/backup.php:24
+msgid "Backup my Pages Now"
+msgstr "立即备份我的页面"
+
+# @ layerswp
+#: core/options-panel/partials/backup.php:30
+msgid "Backed Up Pages:"
+msgstr "备份页面："
+
+# @ layerswp
+#: core/options-panel/partials/dashboard.php:20
+#: core/options-panel/partials/welcome.php:41
+msgid "Start Using Layers"
+msgstr "开始使用 Layers"
+
+# @ layerswp
+#: core/options-panel/partials/dashboard.php:22
+#: core/options-panel/partials/welcome.php:43
+msgid "Follow the easy steps to creating amazing layouts quickly and easily. "
+msgstr "按照简单步骤快速轻松地创建神奇的排版。"
+
+# @ layerswp
+#: core/options-panel/partials/dashboard.php:26
+#: core/options-panel/partials/welcome.php:47
+msgid "Get Started &rarr;"
+msgstr "开始使用 &rarr;"
+
+# @ layerswp
+#: core/options-panel/partials/dashboard.php:40
+msgid "Edit"
+msgstr "编辑"
+
+# @ layerswp
+#: core/options-panel/partials/dashboard.php:41
+msgid "View"
+msgstr "浏览"
+
+# @ layerswp
+#: core/options-panel/partials/dashboard.php:59
+#: core/options-panel/partials/welcome.php:82
+msgid "Extensions"
+msgstr "扩展"
+
+# @ layerswp
+#: core/options-panel/partials/dashboard.php:75
+msgid "Coming soon"
+msgstr "即将推出"
+
+# @ layerswp
+#: core/options-panel/partials/dashboard.php:83
+#: core/options-panel/partials/welcome.php:114
+#: core/options-panel/partials/welcome.php:133
+msgid "Purchase"
+msgstr "购买"
+
+# @ layerswp
+#: core/options-panel/partials/dashboard.php:88
+#: core/options-panel/partials/welcome.php:117
+#: core/options-panel/partials/welcome.php:136
+msgid "More Details"
+msgstr "更多详细资料"
+
+# @ layerswp
+#: core/options-panel/partials/dashboard.php:105
+#: core/options-panel/partials/welcome.php:152
+msgid "What you need"
+msgstr "您需要的"
+
+# @ layerswp
+#: core/options-panel/partials/dashboard.php:109
+#: core/options-panel/partials/welcome.php:156
+msgid "WordPress 4.0"
+msgstr "WordPress 4.0"
+
+# @ layerswp
+#: core/options-panel/partials/dashboard.php:111
+#: core/options-panel/partials/welcome.php:158
+msgid "Layers requires you run the latest version of WordPress, please make sure you're up to date!"
+msgstr "Layers 需要使用最新版本的 WordPress，请确保您已经升级。"
+
+# @ layerswp
+#: core/options-panel/partials/dashboard.php:115
+#: core/options-panel/partials/welcome.php:162
+msgid "You're up to date"
+msgstr "您的 WordPress 已升级到最新版本"
+
+# @ layerswp
+#: core/options-panel/partials/dashboard.php:117
+#: core/options-panel/partials/welcome.php:164
+msgid "Update WordPress"
+msgstr "升级 WordPress"
+
+# @ layerswp
+#: core/options-panel/partials/dashboard.php:131
+#: core/options-panel/partials/welcome.php:172
+msgid "Helpful Tips"
+msgstr "温馨提示"
+
+# @ layerswp
+#: core/options-panel/partials/get-started.php:29
+msgid "Welcome to Layers!"
+msgstr "欢迎使用 Layers！"
+
+# @ layerswp
+#: core/options-panel/partials/get-started.php:33
+msgid "Layers is a revolutionary WordPress Site Builder that makes website building a dream come true!"
+msgstr "Layers 是一款革命性的 WordPress 网站设计工具，她可以让您按自己的想法轻松设计网站！"
+
+# @ layerswp
+#: core/options-panel/partials/get-started.php:36
+msgid "The following short steps are designed to show you how Layers works and get you to creating amazing layouts quickly!"
+msgstr "以下几个简单步骤将向您展示 Layers 是如何帮您快速创建神奇的网站排版！"
+
+# @ layerswp
+#: core/options-panel/partials/get-started.php:39
+msgid "Enjoy the ride!"
+msgstr "祝您使用愉快！"
+
+# @ layerswp
+#: core/options-panel/partials/get-started.php:46
+msgid "Let's get started &rarr;"
+msgstr "让我们开始使用 &rarr;"
+
+# @ layerswp
+#: core/options-panel/partials/get-started.php:54
+msgid "If you're ever stuck or need help with your Layers site please visit our <a href=\"http://docs.layerswp.com\" rel=\"nofollow\">helpful documentation.</a>"
+msgstr "如果您在使用 Layers 时遇到困难或者需要帮助，请访问我们的 <a href=\"http://docs.layerswp.com\" rel=\"nofollow\">帮助文档</a>。"
+
+# @ layerswp
+#: core/options-panel/partials/get-started.php:56
+msgid "For the Pros: Layers will automatically assign the tagline to Settings &rarr; General."
+msgstr "专业版特性：Layers 将自动修改「设置 &rarr; 常规」中的副标题。"
+
+# @ layerswp
+#: core/options-panel/partials/get-started.php:70
+#: core/options-panel/partials/get-started.php:162
+#: core/options-panel/partials/get-started.php:248
+msgid "Getting Started"
+msgstr "入门指南"
+
+# @ layerswp
+#: core/options-panel/partials/get-started.php:74
+msgid "Building pages"
+msgstr "设计页面"
+
+# @ layerswp
+#: core/options-panel/partials/get-started.php:78
+msgid ""
+"\n"
+"                                        Layers splits your page into horizontal rows, and you build up your pages with blocks of content called &lsquo;Widgets&rsquo;, one per row.\n"
+"                                    "
+msgstr ""
+"\n"
+"                                        Layers 将您的页面进行水平分行，您在设计页面时可以通过在每一行中通过添加「小工具」作为内容模块。\n"
+"                                    "
+
+# @ layerswp
+#: core/options-panel/partials/get-started.php:83
+msgid ""
+"\n"
+"                                        Each time you want to add a new content block, simply click &lsquo;Add Widget&rsquo; and select one from the list which has the blue Layers icon.\n"
+"                                    "
+msgstr ""
+"\n"
+"                                        您每次想要添加新内容模块时，只需点击「添加小工具」，从列表中选择带有蓝色 Layers 图标的其中一个。\n"
+"                                    "
+
+# @ layerswp
+#: core/options-panel/partials/get-started.php:91
+msgid "Got it, Next Step &rarr;"
+msgstr "明白了，下一步 &rarr;"
+
+# @ layerswp
+#: core/options-panel/partials/get-started.php:106
+msgid "What is the name of your website?"
+msgstr "您的网站名称是什么？"
+
+# @ layerswp
+#: core/options-panel/partials/get-started.php:109
+msgid "Enter your website name below. We&apos;ll use this in your site title and in search results."
+msgstr "在下面输入您的网站名称，我们将在网站标题和搜索结果中使用到它。"
+
+# @ layerswp
+#: core/options-panel/partials/get-started.php:113
+msgid "Site Name"
+msgstr "网站名称"
+
+# @ layerswp
+#: core/options-panel/partials/get-started.php:133
+msgid "Saving your Site Name"
+msgstr "保存您的网站名称"
+
+# @ layerswp
+#: core/options-panel/partials/get-started.php:135
+#: core/options-panel/partials/get-started.php:180
+#: core/options-panel/partials/get-started.php:224
+#: core/options-panel/partials/get-started.php:265
+#: core/options-panel/partials/get-started.php:315
+msgid "Next Step &rarr;"
+msgstr "下一步 &rarr;"
+
+# @ layerswp
+#: core/options-panel/partials/get-started.php:144
+msgid "For tips on how best to name your website, we suggest reading <a href=\"http://docs.layerswp.com\" rel=\"nofollow\">this post</a>"
+msgstr "关于如何更好地给您的网站命名，我们建议您阅读 <a href=\"http://docs.layerswp.com\" rel=\"nofollow\">这篇文章</a>"
+
+# @ layerswp
+#: core/options-panel/partials/get-started.php:147
+msgid "For the Pros: Layers will automatically assign this site name to Settings &rarr; General"
+msgstr "专业版特性：Layers 将自动修改「设置 &rarr; 常规」中的网站标题"
+
+# @ layerswp
+#: core/options-panel/partials/get-started.php:166
+msgid "Editing widget content"
+msgstr "编辑小工具内容"
+
+# @ layerswp
+#: core/options-panel/partials/get-started.php:170
+msgid ""
+"\n"
+"                                        To edit a widget&apos;s content, just click on it in the widget area on the left hand side. The widget panel will slide\n"
+"                                        out allowing you to edit its content and customize its settings. You can also shift-click on the widget itself in\n"
+"                                        the preview area.\n"
+"                                    "
+msgstr ""
+"\n"
+"                                        要编辑一个小工具内容，只需在左侧小工具区点击它，该小工具面板就会弹出让您编辑内容和自定义设置。<br/>\n"
+"                                        您也可以在预览区中按住 Shift 键然后点击该小工具，编辑内容。\n"
+"                                    "
+
+# @ layerswp
+#: core/options-panel/partials/get-started.php:195
+msgid "How would you best describe your site?"
+msgstr "您要如何最好地描述您的网站？"
+
+# @ layerswp
+#: core/options-panel/partials/get-started.php:198
+msgid ""
+"A tagline describes who and what you are in just a few simple words.\n"
+"                                For example Layers is a &ldquo;WordPress Site Builder&rdquo; - simple, easy, quick to read. Now you try:"
+msgstr ""
+"您可以在副标题中简单描述您的网站。\n"
+"                                例如：「Layers 是一个 WordPress 网站设计工具」——简单，方便，方便阅读。现在您可以试试："
+
+# @ layerswp
+#: core/options-panel/partials/get-started.php:203
+msgid "Site Tagline"
+msgstr "网站副标题"
+
+# @ layerswp
+#: core/options-panel/partials/get-started.php:223
+msgid "Saving your Tagline"
+msgstr "保存您的网站副标题"
+
+# @ layerswp
+#: core/options-panel/partials/get-started.php:231
+msgid "Keep it simple"
+msgstr "保持简单"
+
+# @ layerswp
+#: core/options-panel/partials/get-started.php:232
+msgid "Avoid buzz words"
+msgstr "避开流行语"
+
+# @ layerswp
+#: core/options-panel/partials/get-started.php:233
+msgid "Make sure it describes what you offer"
+msgstr "请确保它能描述清楚您能提供什么"
+
+# @ layerswp
+#: core/options-panel/partials/get-started.php:234
+msgid "For the Pros: Layers will automatically assign the tagline to Settings &rarr; General"
+msgstr "专业版特性：Layers 将自动修改「设置 &rarr; 常规」中的网站标题"
+
+# @ layerswp
+#: core/options-panel/partials/get-started.php:252
+msgid "Customizing widgets"
+msgstr "自定义小工具"
+
+# @ layerswp
+#: core/options-panel/partials/get-started.php:256
+msgid "Unique to each Layers widget is the revolutionary &ldquo;Design Bar&rdquo; which allows you to set its design parameters without touching a line of code."
+msgstr ""
+
+# @ layerswp
+#: core/options-panel/partials/get-started.php:259
+msgid "Depending on the widget you've added, you can change things like background images, font sizes, list styles and more."
+msgstr "您可以对已添加的小工具进行修改，例如背景图片、字体大小、列表样式等。"
+
+# @ layerswp
+#: core/options-panel/partials/get-started.php:280
+msgid "Would you like to add your logo?"
+msgstr "您是否要添加 LOGO？"
+
+# @ layerswp
+#: core/options-panel/partials/get-started.php:283
+msgid ""
+"\n"
+"\n"
+"                                    Layers will add your logo and position it properly. If\n"
+"                                    you don&apos;t have one yet, no problem, you can add it\n"
+"                                    later, or skip this step if you&apos;d just prefer to use text.\n"
+"\n"
+"                                 "
+msgstr ""
+"\n"
+"\n"
+"                                    Layers 将添加您的 LOGO 并把它放置在适当的位置。\n"
+"                                    如果您暂时没有合适的 LOGO，可以稍后再添加。\n"
+"                                    您也可以先跳过这一步，使用文字代替 LOGO。\n"
+"\n"
+"                                 "
+
+# @ layerswp
+#: core/options-panel/partials/get-started.php:297
+msgid "Choose Logo"
+msgstr "选择 LOGO"
+
+# @ layerswp
+#: core/options-panel/partials/get-started.php:314
+msgid "Updating your Logo"
+msgstr "更新您的 LOGO"
+
+# @ layerswp
+#: core/options-panel/partials/get-started.php:322
+msgid "For best results, use an image between 40px and 200px tall and not more than 1000px wide"
+msgstr "为了达到最佳效果，建议使用高度在 40px - 200px 之间，宽度不超过 1000px 的图片。"
+
+# @ layerswp
+#: core/options-panel/partials/get-started.php:323
+msgid "PNGs with a transparent background work best but GIFs or JPGs are fine too"
+msgstr "PNG 格式具有最佳的透明背景效果，当然 GIF 和 JPG 格式也可以。"
+
+# @ layerswp
+#: core/options-panel/partials/get-started.php:324
+msgid "Try keep your logo file size below 500kb"
+msgstr "尽量保持您的 LOGO 文件大小不超过 500KB"
+
+# @ layerswp
+#: core/options-panel/partials/get-started.php:338
+msgid "Page Title"
+msgstr "页面标题"
+
+# @ layerswp
+#: core/options-panel/partials/get-started.php:367
+msgid "Now let&apos;s create your first Layers page!"
+msgstr "现在让我们创建您的第一个 Layers 页面！"
+
+# @ layerswp
+#: core/options-panel/partials/get-started.php:371
+msgid ""
+"\n"
+"                                        Simply select a preset layout from the list and Layers will automatically create it for you.\n"
+"                                        You will be able to edit your layout on the next page. Here we go!\n"
+"                                    "
+msgstr ""
+"\n"
+"                                        直接从列表中选择一个预设排版，Layers 将自动为您创建。\n"
+"                                        您将在下一页编辑您的页面排版，让我们开始吧！\n"
+"                                    "
+
+# @ layerswp
+#: core/options-panel/partials/get-started.php:380
+msgid "Creating your Page"
+msgstr "创建您的页面"
+
+# @ layerswp
+#: core/options-panel/partials/get-started.php:381
+msgid "First choose a layout"
+msgstr "首先选择一个布局"
+
+# @ layerswp
+#: core/options-panel/partials/get-started.php:381
+msgid "Start Building"
+msgstr "开始设计"
+
+# @ layerswp
+#: core/options-panel/partials/preset-layouts.php:20
+msgid "Select"
+msgstr "选择"
+
+# @ layerswp
+#: core/options-panel/partials/welcome.php:87
+msgid "Layers WooCommerce Extension"
+msgstr "Layers WooCommerce 扩展"
+
+# @ layerswp
+#: core/options-panel/partials/welcome.php:90
+msgid "If you'd like to test out eCommerce then you'll need to install the Layers WooCommerce Extension."
+msgstr "如果您想尝试电子商务，您需要安装 Layers WooCommerce 扩展"
+
+# @ layerswp
+#: core/options-panel/partials/welcome.php:94
+msgid "Installed!"
+msgstr "已安装！"
+
+# @ layerswp
+#: core/options-panel/partials/welcome.php:97
+msgid "Install WooCommerce for Layers"
+msgstr "安装 WooCommerce for Layers"
+
+# @ layerswp
+#: core/options-panel/partials/welcome.php:104
+#: core/options-panel/partials/welcome.php:123
+msgid "Name"
+msgstr "名字"
+
+# @ layerswp
+#: core/options-panel/partials/welcome.php:107
+#: core/options-panel/partials/welcome.php:126
+msgid ""
+"\n"
+"\t\t\t\t\t\t\t\t\t\tLorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse vitae massa velit, eu laoreet massa.\n"
+"\t\t\t\t\t\t\t\t\t\tSed ac orci libero, eu dignissim enim.\n"
+"\t\t\t\t\t\t\t\t\t"
+msgstr ""
+
+# @ layerswp
+#: core/options-panel/partials/welcome.php:143
+msgid "View More Extensions"
+msgstr "查看更多扩展"
+
+# @ layerswp
+#: core/third-party/site-logo/inc/class-site-logo-control.php:19
+msgid "Add logo"
+msgstr "添加 LOGO"
+
+# @ layerswp
+#: core/third-party/site-logo/inc/class-site-logo-control.php:20
+msgid "Set as logo"
+msgstr "设置为 LOGO"
+
+# @ layerswp
+#: core/third-party/site-logo/inc/class-site-logo-control.php:21
+msgid "Choose logo"
+msgstr "选择 LOGO"
+
+# @ layerswp
+#: core/third-party/site-logo/inc/class-site-logo-control.php:22
+msgid "Change logo"
+msgstr "修改 LOGO"
+
+# @ layerswp
+#: core/third-party/site-logo/inc/class-site-logo-control.php:23
+msgid "Remove logo"
+msgstr "移除 LOGO"
+
+# @ layerswp
+#: core/third-party/site-logo/inc/class-site-logo-control.php:24
+msgid "No logo set"
+msgstr "未设置 LOGO"
+
+# @ layerswp
+#: core/third-party/site-logo/inc/class-site-logo.php:81
+msgid "Site Title, Tagline, and Logo"
+msgstr "网站标题、副标题和 LOGO"
+
+# @ layerswp
+#: core/third-party/site-logo/inc/class-site-logo.php:92
+msgid "Display Header Text"
+msgstr "显示顶部文字"
+
+# @ layerswp
+#: core/third-party/site-logo/inc/class-site-logo.php:114
+msgid "Logo"
+msgstr "Logo"
+
+# @ layerswp
+#: core/third-party/site-logo/inc/class-site-logo.php:254
+msgid "Site Logo"
+msgstr "网站 LOGO"
+
+# @ layerswp
+#: core/widgets/init.php:88
+msgid " Body"
+msgstr " 网站整体"
+
+# @ layerswp
+#: core/widgets/init.php:173
+msgid "Layers Builder section."
+msgstr ""
+
+# @ layerswp
+#: core/widgets/init.php:198
+msgid "Are you sure you want to remove this slide?"
+msgstr "您确定要移除这个幻灯吗？"
+
+# @ layerswp
+#: core/widgets/init.php:210
+msgid "Are you sure you want to remove this column?"
+msgstr "您确定要移除这个列吗？"
+
+# @ layerswp
+#: core/widgets/modules/contact.php:26
+msgid "Contact Details &amp; Maps"
+msgstr "联系方式 &amp; 地图"
+
+# @ layerswp
+#: core/widgets/modules/contact.php:222
+msgid "Map Height"
+msgstr "地图高度"
+
+# @ layerswp
+#: core/widgets/modules/contact.php:229
+msgid "Show Google Map"
+msgstr "显示 Google 地图"
+
+# @ layerswp
+#: core/widgets/modules/contact.php:236
+msgid "Show Address"
+msgstr "显示地址"
+
+# @ layerswp
+#: core/widgets/modules/contact.php:243
+msgid "Show Contact Form"
+msgstr "显示联系表单"
+
+# @ layerswp
+#: core/widgets/modules/contact.php:252
+msgid "Contact"
+msgstr "联系方式"
+
+# @ layerswp
+#: core/widgets/modules/contact.php:276 core/widgets/modules/content.php:365
+#: core/widgets/modules/content.php:503 core/widgets/modules/post.php:451
+#: core/widgets/modules/slider.php:490
+msgid "Short Excerpt"
+msgstr "简单摘要"
+
+# @ layerswp
+#: core/widgets/modules/contact.php:289
+msgid "Address"
+msgstr "地址"
+
+# @ layerswp
+#: core/widgets/modules/contact.php:290 core/widgets/modules/contact.php:340
+msgid "Place your help text here please."
+msgstr "请在这里输入您的提示信息。"
+
+# @ layerswp
+#: core/widgets/modules/contact.php:295
+msgid "Google Maps Location"
+msgstr "谷歌地图定位"
+
+# @ layerswp
+#: core/widgets/modules/contact.php:301
+msgid "e.g. 300 Prestwich Str, Cape Town, South Africa"
+msgstr "例如 300 Prestwich Str, Cape Town, South Africa"
+
+# @ layerswp
+#: core/widgets/modules/contact.php:307
+msgid "Google Maps Latitude & Longitude (Optional)"
+msgstr "谷歌地图纬度 & 经度（可选）"
+
+# @ layerswp
+#: core/widgets/modules/contact.php:313
+msgid "e.g. 33.9253 S, 18.4239 E"
+msgstr "例如 33.9253 S, 18.4239 E"
+
+# @ layerswp
+#: core/widgets/modules/contact.php:319
+msgid "Address Shown"
+msgstr "显示地址"
+
+# @ layerswp
+#: core/widgets/modules/contact.php:325
+msgid "e.g. Prestwich Str, Cape Town"
+msgstr "例如 Prestwich Str, Cape Town"
+
+# @ layerswp
+#: core/widgets/modules/contact.php:339
+msgid "Contact Form"
+msgstr "联系表单"
+
+# @ layerswp
+#: core/widgets/modules/contact.php:350
+msgid "Contact form embed code"
+msgstr "联系表单 EMBED 代码"
+
+# @ layerswp
+#: core/widgets/modules/content.php:26
+msgid "Content"
+msgstr "内容"
+
+# @ layerswp
+#: core/widgets/modules/content.php:396
+msgid "Add New Column"
+msgstr "添加新列"
+
+# @ layerswp
+#: core/widgets/modules/content.php:429
+msgid "Column"
+msgstr "列"
+
+# @ layerswp
+#: core/widgets/modules/content.php:465
+msgid "1 of 12 columns"
+msgstr "1列 - 1/12"
+
+# @ layerswp
+#: core/widgets/modules/content.php:466
+msgid "2 of 12 columns"
+msgstr "2列 - 1/6"
+
+# @ layerswp
+#: core/widgets/modules/content.php:467
+msgid "3 of 12 columns"
+msgstr "3 列 - 1/4"
+
+# @ layerswp
+#: core/widgets/modules/content.php:468
+msgid "4 of 12 columns"
+msgstr "4 列 - 1/3"
+
+# @ layerswp
+#: core/widgets/modules/content.php:469
+msgid "5 of 12 columns"
+msgstr "5 列 - 5/12"
+
+# @ layerswp
+#: core/widgets/modules/content.php:470
+msgid "6 of 12 columns"
+msgstr "6 列 - 1/2"
+
+# @ layerswp
+#: core/widgets/modules/content.php:471
+msgid "8 of 12 columns"
+msgstr "8 12 列"
+
+# @ layerswp
+#: core/widgets/modules/content.php:472
+msgid "9 of 12 columns"
+msgstr "9 列 - 3/4"
+
+# @ layerswp
+#: core/widgets/modules/content.php:473
+msgid "10 of 12 columns"
+msgstr "10 列 - 5/6"
+
+# @ layerswp
+#: core/widgets/modules/content.php:474
+msgid "12 of 12 columns"
+msgstr "12 列 - 1/1"
+
+# @ layerswp
+#: core/widgets/modules/content.php:484 core/widgets/modules/slider.php:470
+msgid "Title"
+msgstr "标题"
+
+# @ layerswp
+#: core/widgets/modules/content.php:497 core/widgets/modules/slider.php:484
+msgid "Excerpt"
+msgstr "摘要"
+
+# @ layerswp
+#: core/widgets/modules/content.php:512 core/widgets/modules/slider.php:499
+msgid "Button Link"
+msgstr "按钮链接"
+
+# @ layerswp
+#: core/widgets/modules/content.php:518 core/widgets/modules/slider.php:505
+msgid "http://"
+msgstr "http://"
+
+# @ layerswp
+#: core/widgets/modules/content.php:525 core/widgets/modules/slider.php:511
+msgid "Button Text"
+msgstr "按钮文字"
+
+# @ layerswp
+#: core/widgets/modules/content.php:531 core/widgets/modules/slider.php:517
+msgid "e.g. \"Read More\""
+msgstr "e.g. \"阅读更多\""
+
+# @ layerswp
+#: core/widgets/modules/post.php:26
+msgid "Posts"
+msgstr "文章"
+
+# @ layerswp
+#: core/widgets/modules/post.php:65 partials/content-list.php:22
+msgid "Read More"
+msgstr "阅读更多"
+
+# @ layerswp
+#: core/widgets/modules/post.php:331
+msgid "Title &amp; Excerpt Position"
+msgstr "标题 &amp; 摘要位置"
+
+# @ layerswp
+#: core/widgets/modules/post.php:333
+msgid "Regular"
+msgstr "正常尺寸"
+
+# @ layerswp
+#: core/widgets/modules/post.php:342
+msgid "Show Featured Images"
+msgstr "显示特色图像"
+
+# @ layerswp
+#: core/widgets/modules/post.php:349
+msgid "Show  Post Titles"
+msgstr "显示文章标题"
+
+# @ layerswp
+#: core/widgets/modules/post.php:356
+msgid "Show Post Excerpts"
+msgstr "显示文章摘要"
+
+# @ layerswp
+#: core/widgets/modules/post.php:365
+msgid "Excerpts Length"
+msgstr "摘要长度"
+
+# @ layerswp
+#: core/widgets/modules/post.php:372
+msgid "Show Post Dates"
+msgstr "显示文章日期"
+
+# @ layerswp
+#: core/widgets/modules/post.php:379
+msgid "Show Post Author"
+msgstr "显示文章作者"
+
+# @ layerswp
+#: core/widgets/modules/post.php:386
+msgid "Show Tags"
+msgstr "显示标签"
+
+# @ layerswp
+#: core/widgets/modules/post.php:393
+msgid "Show Categories"
+msgstr "显示分类"
+
+# @ layerswp
+#: core/widgets/modules/post.php:400
+msgid "Show \"Read More\" Buttons"
+msgstr "显示 \"阅读更多\" 按钮"
+
+# @ layerswp
+#: core/widgets/modules/post.php:407
+msgid "\"Read More\" Text"
+msgstr "\"阅读更多\" 文本"
+
+# @ layerswp
+#: core/widgets/modules/post.php:414
+msgid "Show Pagination"
+msgstr "显示分页"
+
+# @ layerswp
+#: core/widgets/modules/post.php:425
+msgid "Post"
+msgstr "文章"
+
+# @ layerswp
+#: core/widgets/modules/post.php:461
+msgid "Category to Display"
+msgstr "显示分类"
+
+# @ layerswp
+#: core/widgets/modules/post.php:469
+msgid "Select a Category"
+msgstr "选择一个分类"
+
+# @ layerswp
+#: core/widgets/modules/post.php:477
+msgid "Number of items to show"
+msgstr "显示的文章数量"
+
+# @ layerswp
+#: core/widgets/modules/post.php:478
+msgid "Show All"
+msgstr "显示所有"
+
+# @ layerswp
+#: core/widgets/modules/post.php:493
+msgid "Sort by"
+msgstr "排序方式"
+
+# @ layerswp
+#: core/widgets/modules/slider.php:26
+msgid "Slider"
+msgstr "幻灯"
+
+# @ layerswp
+#: core/widgets/modules/slider.php:323
+msgid "Full Screen"
+msgstr "全屏"
+
+# @ layerswp
+#: core/widgets/modules/slider.php:337
+msgid "Show Slider Arrows"
+msgstr "显示幻灯箭头导航"
+
+# @ layerswp
+#: core/widgets/modules/slider.php:344
+msgid "Show Slider Dots"
+msgstr "显示幻灯圆点导航"
+
+# @ layerswp
+#: core/widgets/modules/slider.php:351
+msgid "Autoplay Slides"
+msgstr "自动播放幻灯"
+
+# @ layerswp
+#: core/widgets/modules/slider.php:359
+msgid "Time in seconds, eg. 2"
+msgstr "时间（单位：秒），例如 2"
+
+# @ layerswp
+#: core/widgets/modules/slider.php:361
+msgid "Slide Interval"
+msgstr "幻灯间距"
+
+# @ layerswp
+#: core/widgets/modules/slider.php:369
+msgid "Slider Height"
+msgstr "幻灯高度"
+
+# @ layerswp
+#: core/widgets/modules/slider.php:407
+msgid "Add New Slide"
+msgstr "添加新幻灯"
+
+# @ layerswp
+#: core/widgets/modules/slider.php:443
+msgid "Slide"
+msgstr "幻灯"
+
+# @ layerswp
+#: core/widgets/modules/slider.php:476
+msgid "Enter a Title"
+msgstr "输入一个标题"
+
+# @ layerswp
+#: footer.php:3
+msgid "Back to top"
+msgstr "返回顶部"
+
+# @ layerswp
+#: footer.php:49
+msgid "Created using Layers"
+msgstr "使用 Layers 创建"
+
+# @ layerswp
+#: functions.php:165
+msgid "Top Left Menu"
+msgstr "置顶居左菜单"
+
+# @ layerswp
+#: functions.php:166
+msgid "Top Right Menu"
+msgstr "置顶居右菜单"
+
+# @ layerswp
+#: functions.php:167
+msgid "Header Menu"
+msgstr "顶部菜单"
+
+# @ layerswp
+#: functions.php:168
+msgid "Right Header Menu"
+msgstr "居右顶部菜单"
+
+# @ layerswp
+#: functions.php:169
+msgid "Footer Menu"
+msgstr "底部菜单"
+
+# @ layerswp
+#: functions.php:197
+msgid "Mobile Sidebar"
+msgstr "移动侧边栏"
+
+# @ layerswp
+#: functions.php:198
+msgid "This sidebar will only appear on mobile devices."
+msgstr "该侧边栏只在移动设备中显示。"
+
+# @ layerswp
+#: functions.php:207
+msgid "Left Sidebar"
+msgstr "左侧边栏"
+
+# @ layerswp
+#: functions.php:216
+msgid "Right Sidebar"
+msgstr "右侧边栏"
+
+# @ layerswp
+#: functions.php:229
+msgid "Footer "
+msgstr "底部"
+
+# @ layerswp
+#: functions.php:243
+msgid "Left Shop Sidebar"
+msgstr "左商店侧边栏"
+
+# @ layerswp
+#: functions.php:252
+msgid "Right Shop Sidebar"
+msgstr "右商店侧边栏"
+
+# @ layerswp
+#: functions.php:449
+msgid "Be patient while we import the widget data and images."
+msgstr "请在导入小工具数据和图片时耐心等待。"
+
+# @ layerswp
+#: functions.php:450
+msgid "Import Complete"
+msgstr "导入完成"
+
+# @ layerswp
+#: functions.php:451
+msgid "Importing Your Content"
+msgstr "正在导入您的内容"
+
+# @ layerswp
+#: functions.php:452
+msgid "Edit Your New Page"
+msgstr "编辑您的新页面"
+
+# @ layerswp
+#: functions.php:480
+msgid "Saving..."
+msgstr "保存..."
+
+# @ layerswp
+#: functions.php:481
+msgid "Done!"
+msgstr "完成！"
+
+# @ layerswp
+#: functions.php:539
+#, php-format
+msgid "Page %s"
+msgstr "第 %s 页"
+
+# @ layerswp
+#: partials/content-empty.php:9
+msgid "No posts found"
+msgstr "未找到文章"
+
+# @ layerswp
+#: partials/content-empty.php:12
+msgid "Use the search form below to find the page you're looking for:"
+msgstr "请使用下面的搜索框查找您需要的内容："
+
+# @ layerswp
+#: partials/content-empty.php:14
+msgid "Enter Text Here"
+msgstr "在此输入文字"
+
+# @ ocmx
+#: partials/content-single.php:29
+msgid "<span>Pages:</span>"
+msgstr "<span>页面：</span>"
+
+# @ layerswp
+#: partials/portfolio-list.php:24
+msgid "View Project"
+msgstr "浏览项目"

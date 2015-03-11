@@ -604,7 +604,7 @@ object{
     /*---------------------------*/
     /*- SECTION TITLES ----------*/
     .section-title{
-        margin-bottom: 40px;
+        margin-bottom: 30px;
     }
     .section-title .excerpt{
         max-width: 745px;

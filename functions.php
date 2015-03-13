@@ -324,13 +324,6 @@ if( ! function_exists( 'layers_scripts' ) ) {
 			LAYERS_VERSION
 		); // Icon Font
 
-		wp_enqueue_style(
-			LAYERS_THEME_SLUG . '-style' ,
-			get_stylesheet_uri(),
-			array() ,
-			LAYERS_VERSION
-		);
-
 		if( class_exists( 'WooCommerce' ) ) {
 			wp_enqueue_style(
 				LAYERS_THEME_SLUG . '-woocommerce',
@@ -339,6 +332,13 @@ if( ! function_exists( 'layers_scripts' ) ) {
 				LAYERS_VERSION
 			); // Woocommerce
 		}
+
+		wp_enqueue_style(
+			LAYERS_THEME_SLUG . '-style' ,
+			get_stylesheet_uri(),
+			array() ,
+			LAYERS_VERSION
+		);
 
 		if( is_admin_bar_showing() ) {
 			wp_enqueue_style(

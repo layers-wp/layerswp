@@ -5,11 +5,12 @@
 
 ??
 * **Enhancement** - Added Chinese, Turkish and German translation files
-* **Fix** - When adding a single top menu, the opposite side may use a fallback forcing users to create a blank menu for the opposite side 
+* **Fix** - When adding a single top menu, the opposite side may use a fallback forcing users to create a blank menu for the opposite side
 * **Fix** - Added license information to swiper.js
 * **Fix** - Spacing issue when right sidebar is on in WooCommerce pages
 * **Fix** - .sub-menu width in off-canvas menu has been fixed to avoid text-wrapping
 * **Fix** - Removed dots from payment methods in woo checkout page
+* **Fix** - Fixed grouped product styling in WooCommerce
 * **Tweak** - Text change 'Editing widget content' slide
 * **Tweak** - Removed unused WooCommerce CSS and placed them in new pro woo extension
 

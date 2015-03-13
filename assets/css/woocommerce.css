@@ -568,6 +568,17 @@ p.stars span a:focus{
         float: none;
         margin: 0;
     }
+    table td.label{
+        background: none;
+        vertical-align: middle;
+    }
+    table td.label label{
+        margin: 0;
+    }
+    table td.price{
+        display: table-cell;
+        vertical-align: middle;
+    }
 
     /*-----------------------*/
     /*- COUPON --------------*/

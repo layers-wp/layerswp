@@ -10,8 +10,8 @@
 /**
 * Print breadcrumbs
 *
-* @param    varchar         $wrapper        Type of html wrapper
-* @param    varchar         $wrapper_class  Class of HTML wrapper
+* @param    string         $wrapper        Type of html wrapper
+* @param    string         $wrapper_class  Class of HTML wrapper
 * @echo     string                          Post Meta HTML
 */
 
@@ -237,8 +237,8 @@ if( !function_exists( 'layers_bread_crumbs' ) ) {
 * Print pagination
 *
 * @param    array           $args           Arguments for this function, including 'query', 'range'
-* @param    varchar         $wrapper        Type of html wrapper
-* @param    varchar         $wrapper_class  Class of HTML wrapper
+* @param    string         $wrapper        Type of html wrapper
+* @param    string         $wrapper_class  Class of HTML wrapper
 * @echo     string                          Post Meta HTML
 */
 if( !function_exists( 'layers_pagination' ) ) {
@@ -524,7 +524,7 @@ if( !function_exists( 'layer_site_wrapper_class' ) ) {
 /**
  * Retrieve the classes for the center column on archive and single pages
  *
- * @param varchar $postid Post ID to check the page template on
+ * @param string $postid Post ID to check the page template on
  * @return array Array of classes.
  */
 if( !function_exists( 'layers_get_center_column_class' ) ) {
@@ -657,7 +657,7 @@ if( !function_exists( 'layers_can_show_sidebar' ) ) {
  * Check customizer and page template settings before displaying a sidebar
  *
  * @param   int     $sidebar                Sidebar slug to check
- * @param   varchar $container_class       Sidebar container class
+ * @param   string $container_class       Sidebar container class
  * @return  html    $sidebar                Sidebar template
  */
 if( !function_exists( 'layers_maybe_get_sidebar' ) ) {
@@ -742,10 +742,10 @@ add_action ( 'wp_print_scripts', 'layers_add_google_analytics' );
 /**
 * Style Generator
 *
-* @param    varchar     $type   Type of style to generate, background, color, text-shadow, border
+* @param    string     $type   Type of style to generate, background, color, text-shadow, border
 * @param    array       $args
 *
-* @return   varchar     $layers_inline_css CSS to append to the inline widget styles that have been generated
+* @return   string     $layers_inline_css CSS to append to the inline widget styles that have been generated
 */
 if( !function_exists( 'layers_inline_styles' ) ) {
 	function layers_inline_styles( $container_id = NULL, $type = 'background' , $args = array() ){
@@ -899,7 +899,7 @@ add_action( 'get_footer' , 'layers_apply_inline_styles', 100 );
 * @param int $size Media size to use
 * @param int $video oEmbed code
 *
-* @return   varchar     $media_output Feature Image or Video
+* @return   string     $media_output Feature Image or Video
 */
 if( !function_exists( 'layers_get_feature_media' ) ) {
 	function layers_get_feature_media( $attachmentid = NULL, $size = 'medium' , $video = NULL, $postid = NULL ){
@@ -944,7 +944,7 @@ if( !function_exists( 'layers_get_feature_media' ) ) {
 /**
 * Get Available Image Sizes for specific Image Type
 *
-* @param    varchar     $size 	Image size slug
+* @param    string     $size 	Image size slug
 *
 * @return   array     $sizes 	Array of image dimensions
 */

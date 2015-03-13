@@ -17,10 +17,10 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 			/**
 			* Widget variables
 			*
-			* @param  	varchar    		$$this->widget_id    	Widget title
-			* @param  	varchar    		$widget_id    		Widget slug for use as an ID/classname
-			* @param  	varchar    		$post_type    		(optional) Post type for use in widget options
-			* @param  	varchar    		$taxonomy    		(optional) Taxonomy slug for use as an ID/classname
+			* @param  	string    		$$this->widget_id    	Widget title
+			* @param  	string    		$widget_id    		Widget slug for use as an ID/classname
+			* @param  	string    		$post_type    		(optional) Post type for use in widget options
+			* @param  	string    		$taxonomy    		(optional) Taxonomy slug for use as an ID/classname
 			* @param  	array 			$checkboxes    	(optional) Array of checkbox names to be saved in this widget. Don't forget these please!
 			*/
 			$this->widget_title = __( 'Slider' , 'layerswp' );

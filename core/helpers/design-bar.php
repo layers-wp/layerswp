@@ -12,7 +12,7 @@ class Layers_Design_Controller {
     /**
     * Generate Design Options
     *
-    * @param    varchar     $type       Sidebar type, side/top
+    * @param    string     $type       Sidebar type, side/top
     * @param    array       $this->widget     Widget object (for name, id, etc)
     * @param    array       $instance   Widget $instance
     * @param    array       $components Array of standard components to support
@@ -121,7 +121,7 @@ class Layers_Design_Controller {
     /**
     * Custom Compontent
     *
-    * @param    varchar     $key        Simply the key and classname for the icon,
+    * @param    string     $key        Simply the key and classname for the icon,
     * @param    array       $args       Component arguments, including the form items
     */
 
@@ -715,7 +715,7 @@ class Layers_Design_Controller {
     /**
      * Custom Compontent
      *
-     * @param    varchar     $key        Simply the key and classname for the icon,
+     * @param    string     $key        Simply the key and classname for the icon,
      * @param    array       $args       Component arguments, including the form items
      */
     public function custom_component( $key = NULL, $args = array() ) {

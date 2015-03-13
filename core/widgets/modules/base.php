@@ -14,10 +14,10 @@ if( !class_exists( 'Layers_Widget' ) ) {
 		* Check option with isset() and echo it out if it exists, if it does not exist, return false
 		*
 		* @param  	array		$widget 	Widget Object
-		* @param  	varchar 	$option 	Widget option to check on
-		* @param  	varchar 	$array_level_1 	Array level one to check for (optional)
-		* @param  	varchar 	$array_level_2 	Array level two to check for (optional)
-		* @return  	varchar 	false if not set, otherwise returns value
+		* @param  	string 	$option 	Widget option to check on
+		* @param  	string 	$array_level_1 	Array level one to check for (optional)
+		* @param  	string 	$array_level_2 	Array level two to check for (optional)
+		* @return  	string 	false if not set, otherwise returns value
 		*/
 
 		function check_and_return( $widget = NULL , $option = NULL, $array_level_1 = NULL, $array_level_2 = NULL ){
@@ -54,7 +54,7 @@ if( !class_exists( 'Layers_Widget' ) ) {
 		/**
 		* This function determines whether or not a widget is boxed or full width
 		*
-		* @return  	varchar 	widget layout class
+		* @return  	string 	widget layout class
 		*/
 		function get_widget_layout_class( $widget = NULL ){
 
@@ -176,8 +176,8 @@ if( !class_exists( 'Layers_Widget' ) ) {
 		* Widget sub-module input name generation, for example see Slider and Content Widgets
 		*
 		* @param  	object 		$widget_details 	Widget object to use
-		* @param  	varchar 	$level1 	Level 1 name
-		* @param  	varchar 	$level2 	Level 2 name
+		* @param  	string 	$level1 	Level 1 name
+		* @param  	string 	$level2 	Level 2 name
 	 	* @param 	string 		$field_name Field name
 	 	* @return 	string 		Name attribute for $field_name
 		*/
@@ -204,8 +204,8 @@ if( !class_exists( 'Layers_Widget' ) ) {
 		* Widget sub-module input id generation, for example see Slider and Content Widgets
 		*
 		* @param  	object 		$widget_details 	Widget object to use
-		* @param  	varchar 	$level1 	Level 1 name
-		* @param  	varchar 	$level2 	Level 2 name
+		* @param  	string 	$level1 	Level 1 name
+		* @param  	string 	$level2 	Level 2 name
 	 	* @param 	string 		$field_name Field name
 	 	* @return 	string 		Name attribute for $field_name
 		*/

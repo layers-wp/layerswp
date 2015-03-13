@@ -18,7 +18,6 @@
 .layers-customizer-pages-dropdown select{
 	width: 100%;
 }
-
 #customize-controls-layers-actions{
 	display: none;
 	left: 48px;
@@ -29,28 +28,34 @@
 	*/ /* background: rgba(255, 0, 0, 0.11);
 	*/ font-family: 'Open Sans', sans-serif;
 }
-
 #customize-controls-layers-actions ul.layers-customizer-nav{
 	display:block;
 	vertical-align: bottom;
 	margin: 0;
 }
-
-#customize-controls-layers-actions ul.layers-customizer-nav > li:hover > a{
-background: #FFF;
-/* background:#222;
-*/ }
-
+#customize-controls-layers-actions ul.layers-customizer-nav > li:hover > a,
+#customize-controls-layers-actions ul.layers-customizer-nav > li:hover > span {
+	background: #FFF;
+}
 #customize-controls-layers-actions ul.layers-customizer-nav li{
 	display:block;
 	margin: 0;
 	vertical-align: bottom;
 }
-#customize-controls-layers-actions ul.layers-customizer-nav > li > a{
-	text-align: center;
+#customize-controls-layers-actions ul.layers-customizer-nav > li > a,
+#customize-controls-layers-actions ul.layers-customizer-nav > li > span {
 	width: 48px;
+	height: 45px;
+	border-right: 1px solid #ddd;
+	color: #555;
+	text-align: center;
+	line-height: 45px;
+	-webkit-transition: color .1s ease-in-out, background .1s ease-in-out;
+	transition: color .1s ease-in-out, background .1s ease-in-out;
+	/* float: left; */
 	position: relative;
-	z-index: 2;
+	display: block;
+	text-indent: initial;
 }
 #customize-controls-layers-actions ul.layers-customizer-nav li ul{
 	display:none;
@@ -59,10 +64,10 @@ background: #FFF;
 	left: -1px;
 	margin-top: 0px;
 	background: #FFFFFF;
-	box-shadow: 0 5px 0px rgba(0, 0, 0, 0.004), 0 2px 0px rgba(0, 0, 0, 0.03);
+	box-shadow: 0 3px 5px rgba(0, 0, 0, 0.02), 0 1px 0px rgba(0, 0, 0, 0.03);
 	border: 1px solid #E7E7E7;
-	border-top: 1px solid #E3E3E3;
-	/* background: #222; */
+	min-width: 299px;
+	margin-left: -48px;
 }
 #customize-controls-layers-actions ul.layers-customizer-nav li ul:after{
 	width: 0;
@@ -82,16 +87,17 @@ background: #FFF;
 #customize-controls-layers-actions ul.layers-customizer-nav li:hover ul{
 	display:block;
 }
-
 #customize-controls-layers-actions ul.layers-customizer-nav li ul a{
 	padding: 0 17px 0 14px;
 	border: 0;
 	box-shadow: 0 -1px 0 rgba(0, 0, 0, 0.04) inset;
 }
+#customize-controls-layers-actions ul.layers-customizer-nav li ul a:hover{
+	box-shadow: 0 -1px 0 rgba(0, 0, 0, 0.03), 0 -1px 0 rgba(0, 0, 0, 0.02) inset;
+}
 #customize-controls-layers-actions ul.layers-customizer-nav li ul li:last-child a{
 	box-shadow: none;
 }
-
 .customize-controls-layers-button-dashboard:after{
 	font-family: "layers-interface" !important;
 	content: "\e62f" !important;
@@ -99,25 +105,15 @@ background: #FFF;
 }
 a.customize-controls-layers-button{
 	width: auto;
-	height: 45px;
 	z-index: 10000;
-	border-right: 1px solid #ddd;
 	font-size: 14px;
 	color: #555;
-	text-align: center;
-	text-decoration: none;
 	line-height: 45px;
-	box-shadow: none;
-	-webkit-transition: color .1s ease-in-out, background .1s ease-in-out;
-	transition: color .1s ease-in-out, background .1s ease-in-out;
-	/* float: left;
-	*/ position: relative;
 	display: block;
 	text-indent: initial;
 	white-space: nowrap;
 	text-align: left;
-	/* color: rgb(203, 203, 203); */
-	font-weight: 600;
+ght: 600;
 }
 a.customize-controls-layers-button i{
 	line-height: inherit;
@@ -133,7 +129,6 @@ a.customize-controls-layers-button i{
 	font-style: normal;
 }
 a.customize-controls-layers-button:hover{
-	/* box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.05), inset 0 1px 0 rgba(0, 0, 0, 0.05) !important; */
 	background: #f5f5f5;
 	border-color: #ccc;
 	color: #000;

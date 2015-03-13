@@ -187,11 +187,11 @@ class Layers_Customizer {
 			
 			<ul class="layers-customizer-nav">
 				<li>
-					<a class="customize-controls-layers-button customize-controls-layers-button-dashboard" title="<?php esc_html( _e( 'Layers Dashboard' , 'layerswp' ) ) ?>" href="<?php echo admin_url( 'admin.php?page=layers-add-new-page' ); ?>"></a>
+					<span class="customize-controls-layers-button customize-controls-layers-button-dashboard" title="<?php esc_html( _e( 'Layers Dashboard' , 'layerswp' ) ) ?>" href="<?php echo admin_url( 'admin.php?page=layers-add-new-page' ); ?>"></span>
 					<ul>
 						<li>
-							<a class="customize-controls-layers-button" href="<?php echo admin_url( 'admin.php?page=layers-dashboard' ); ?>">
-								<i class="customize-controls-layers-button-dashboard"></i><?php _e( 'Layers Dashboard' , 'layerswp' ) ?>
+							<a class="customize-controls-layers-button customize-controls-layers-button-preview" href="#" target="_blank">
+								<i class="icon-display"></i><?php _e( 'Preview this page' , 'layerswp' ) ?>
 							</a>
 						</li>
 						<li>
@@ -200,8 +200,8 @@ class Layers_Customizer {
 							</a>
 						</li>
 						<li>
-							<a class="customize-controls-layers-button customize-controls-layers-button-preview" href="#" target="_blank">
-								<i class="icon-display"></i><?php _e( 'Preview this page' , 'layerswp' ) ?>
+							<a class="customize-controls-layers-button" href="<?php echo admin_url( 'admin.php?page=layers-dashboard' ); ?>">
+								<i class="customize-controls-layers-button-dashboard"></i><?php _e( 'Layers Dashboard' , 'layerswp' ) ?>
 							</a>
 						</li>
 					</ul>

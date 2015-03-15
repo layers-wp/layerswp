@@ -60,22 +60,22 @@ msgstr "控制网站内容的默认布局。"
 # @ layerswp
 #: core/customizer/config.php:31
 msgid "Header"
-msgstr "顶部"
+msgstr "页眉"
 
 # @ layerswp
 #: core/customizer/config.php:32
 msgid "Control your header's logo, layout, colors and font."
-msgstr "控制网站顶部显示的 LOGO、布局、颜色和字体。"
+msgstr "控制页眉的徽标、布局、颜色和字体。"
 
 # @ layerswp
 #: core/customizer/config.php:36
 msgid "Footer"
-msgstr "底部"
+msgstr "页脚"
 
 # @ layerswp
 #: core/customizer/config.php:37
 msgid "Control your footer's custom text, widget areas and layout."
-msgstr "控制网站底部显示的自定义文本、小工具区域和布局。"
+msgstr "控制页脚的自定义文本、小工具区域和布局。"
 
 # @ layerswp
 #: core/customizer/config.php:41
@@ -85,24 +85,24 @@ msgstr "WooCommerce"
 # @ layerswp
 #: core/customizer/config.php:58
 msgid "Logo &amp; Title"
-msgstr "LOGO 和标题"
+msgstr "徽标和标题"
 
 # @ layerswp
 #: core/customizer/config.php:63 core/customizer/config.php:248
 #: core/customizer/config.php:366 core/customizer/registration.php:416
 #: core/helpers/forms.php:331 core/helpers/forms.php:406
 msgid "Background Color"
-msgstr "背景颜色"
+msgstr "背景色"
 
 # @ layerswp
 #: core/customizer/config.php:90
 msgid "Navigation"
-msgstr "导航菜单"
+msgstr "导航栏"
 
 # @ layerswp
 #: core/customizer/config.php:91
 msgid "First create a menu then come back here to place it."
-msgstr "请先创建一个菜单，然后返回本页面调整该菜单位置。"
+msgstr "先创建一个菜单，然后返回此处并放置该菜单。"
 
 # @ layerswp
 #: core/customizer/config.php:96 core/customizer/config.php:112
@@ -123,17 +123,17 @@ msgstr "字体"
 # @ layerswp
 #: core/customizer/config.php:109
 msgid "CSS"
-msgstr "CSS 样式"
+msgstr "页面样式"
 
 # @ layerswp
 #: core/customizer/config.php:116 core/customizer/config.php:132
 msgid "Additional Scripts"
-msgstr "额外的脚本代码"
+msgstr "额外的脚本"
 
 # @ layerswp
 #: core/customizer/config.php:124
 msgid "Customization"
-msgstr "自定义"
+msgstr "定制"
 
 # @ layerswp
 #: core/customizer/config.php:128 core/customizer/config.php:340
@@ -149,12 +149,12 @@ msgstr "创建菜单"
 # @ layerswp
 #: core/customizer/config.php:175
 msgid "Body"
-msgstr "网站整体"
+msgstr "网页正文"
 
 # @ layerswp
 #: core/customizer/config.php:184
 msgid "Headings"
-msgstr "顶部"
+msgstr "标题"
 
 # @ layerswp
 #: core/customizer/config.php:193
@@ -164,74 +164,74 @@ msgstr "按钮"
 # @ layerswp
 #: core/customizer/config.php:203
 msgid "Header Width"
-msgstr "顶部宽度"
+msgstr "页眉宽度"
 
 # @ layerswp
 #: core/customizer/config.php:206 core/customizer/config.php:315
 #: core/helpers/design-bar.php:226 core/widgets/modules/slider.php:321
 msgid "Boxed"
-msgstr "边框式"
+msgstr "盒式"
 
 # @ layerswp
 #: core/customizer/config.php:207 core/customizer/config.php:316
 #: core/helpers/design-bar.php:227 core/widgets/modules/slider.php:322
 msgid "Full Width"
-msgstr "全宽式"
+msgstr "全宽"
 
 # @ layerswp
 #: core/customizer/config.php:215
 msgid "Logo & Menu Position"
-msgstr "LOGO 和菜单位置"
+msgstr "徽标和菜单位置"
 
 # @ layerswp
 #: core/customizer/config.php:218
 msgid "Logo Left"
-msgstr "LOGO 居左"
+msgstr "徽标居左"
 
 # @ layerswp
 #: core/customizer/config.php:219
 msgid "Logo Right"
-msgstr "LOGO 居右"
+msgstr "徽标居右"
 
 # @ layerswp
 #: core/customizer/config.php:220
 msgid "Logo Center Top"
-msgstr "LOGO居中置顶"
+msgstr "徽标居中顶对齐"
 
 # @ layerswp
 #: core/customizer/config.php:221
 msgid "Logo Top"
-msgstr "LOGO 居左置顶"
+msgstr "徽标顶对齐"
 
 # @ layerswp
 #: core/customizer/config.php:222
 msgid "Logo Center"
-msgstr "LOGO 居中"
+msgstr "徽标居中"
 
 # @ layerswp
 #: core/customizer/config.php:230
 msgid "Header Position"
-msgstr "顶部相对位置"
+msgstr "页眉位置"
 
 # @ layerswp
 #: core/customizer/config.php:234
 msgid "Sticky"
-msgstr "Sticky：置顶不动"
+msgstr "置顶"
 
 # @ layerswp
 #: core/customizer/config.php:240 core/widgets/modules/post.php:334
 msgid "Overlay"
-msgstr "Overlay：浮于顶层"
+msgstr "重迭"
 
 # @ layerswp
 #: core/customizer/config.php:257
 msgid "Google Analytics ID"
-msgstr "Google 统计 ID"
+msgstr "谷歌分析服务的 ID"
 
 # @ layerswp
 #: core/customizer/config.php:258
 msgid "Enter in your Google Analytics ID to enable website traffic reporting. eg. \"UA-xxxxxx-xx"
-msgstr "输入您的 Google 统计 ID 用于统计网站访问信息，例如 \"UA-xxxxxx-xx\""
+msgstr "输入谷歌分析服务的 ID 来启用网站流量报告。ID 格式如 \"UA-xxxxxx-xx\""
 
 # @ layerswp
 #: core/customizer/config.php:266 core/customizer/config.php:413
@@ -241,7 +241,7 @@ msgstr "自定义脚本"
 # @ layerswp
 #: core/customizer/config.php:267
 msgid "Enter in any custom script (such as TypeKit etc) to include in your site's header. Include the &lt;script&gt;&lt;/script&gt; tags."
-msgstr "输入任意自定义脚本代码 (例如 TypeKit 等)，脚本将被包含在您网站的 header 代码中。填写内容需包括 &lt;script&gt;&lt;/script&gt; 标签"
+msgstr "输入任何要包含在网站页眉中的自定义脚本(例如 TypeKit 等)。应包含 &lt;script&gt;&lt;/script&gt; 标签。"
 
 # @ layerswp
 #: core/customizer/config.php:275
@@ -251,7 +251,7 @@ msgstr "详细文章页面侧边栏"
 # @ layerswp
 #: core/customizer/config.php:276
 msgid "This option affects your single post pages."
-msgstr "该选项作用于您的详细文章页面。"
+msgstr "此选项作用于您的详细文章页面。"
 
 # @ layerswp
 #: core/customizer/config.php:280 core/customizer/config.php:298
@@ -273,7 +273,7 @@ msgstr "文章列表页面侧边栏"
 # @ layerswp
 #: core/customizer/config.php:294
 msgid "This option affects your category, tag, author and search pages."
-msgstr "该选项作用于您的分类、标签、作者和搜索结果页面。"
+msgstr "此选项作用于您的分类、标签、作者和搜索页面。"
 
 # @ layerswp
 #: core/customizer/config.php:324
@@ -331,7 +331,7 @@ msgstr "背景图片"
 # @ layerswp
 #: core/customizer/config.php:372
 msgid "Background Repeat"
-msgstr "背景内容重复属性"
+msgstr "背景重复"
 
 # @ layerswp
 #: core/customizer/config.php:375 core/helpers/design-bar.php:618
@@ -347,17 +347,17 @@ msgstr "重复"
 # @ layerswp
 #: core/customizer/config.php:377 core/helpers/design-bar.php:620
 msgid "Repeat Horizontal"
-msgstr "仅水平重复"
+msgstr "水平重复"
 
 # @ layerswp
 #: core/customizer/config.php:378 core/helpers/design-bar.php:621
 msgid "Repeat Vertical"
-msgstr "仅垂直重复"
+msgstr "垂直重复"
 
 # @ layerswp
 #: core/customizer/config.php:383
 msgid "Background Position"
-msgstr "背景内容位置"
+msgstr "背景位置"
 
 # @ layerswp
 #: core/customizer/config.php:386 core/helpers/design-bar.php:359
@@ -394,17 +394,17 @@ msgstr "右边"
 # @ layerswp
 #: core/customizer/config.php:394
 msgid "Background Stretch"
-msgstr "背景自适应缩放"
+msgstr "背景缩放"
 
 # @ layerswp
 #: core/customizer/config.php:404
 msgid "Copyright Text"
-msgstr "版权信息"
+msgstr "版权文本"
 
 # @ layerswp
 #: core/customizer/config.php:414
 msgid "Enter in any custom script to include in your site's footer. Include the &lt;script&gt;&lt;/script&gt; tags."
-msgstr "输入任意自定义脚本代码 (例如 TypeKit 等)，脚本将被包含在您网站的 footer 代码中。填写内容需包括 &lt;script&gt;&lt;/script&gt; 标签"
+msgstr "输入要包含在网站页脚中的任何自定义脚本。应包含 &lt;script&gt;&lt;/script&gt; 标签。"
 
 # @ layerswp
 #: core/customizer/config.php:424
@@ -424,13 +424,13 @@ msgstr "产品列表页面侧边栏"
 # @ layerswp
 #: core/customizer/config.php:443
 msgid "This option affects your shop page, product category and product tag pages."
-msgstr "该选项作用于您的商店、产品分类和产品标签页面"
+msgstr "该选项作用于您的商店、产品分类和产品标签页面。"
 
 # @ layerswp
 #: core/customizer/controls/font.php:51
 #, php-format
 msgid "Click <a href=\"%1s\" target=\"_blank\">here</a> to see this font on Google Fonts.</em>"
-msgstr "点击 <a href=\"%1s\" target=\"_blank\">这里</a> 查看该字体（ 引用自 Google 字体库）</em>"
+msgstr "点击<a href=\"%1s\" target=\"_blank\">这里</a>到谷歌字体上查看该字体。</em>"
 
 # @ layerswp
 #: core/customizer/controls/select-images.php:36
@@ -447,7 +447,7 @@ msgstr "编辑布局"
 # @ layerswp
 #: core/customizer/init.php:60
 msgid "Use this area to add widgets to your page, use the (Layers) widgets for the Body section."
-msgstr "在您的页面中使用该区域添加小工具"
+msgstr "使用本区域将小工具添加到您的页面。使用（Layers）小工具来调整网页正文部分。"
 
 # @ layerswp
 #: core/customizer/init.php:138
@@ -472,7 +472,7 @@ msgstr "关闭"
 # @ layerswp
 #: core/customizer/init.php:168
 msgid "Back to controls"
-msgstr "返回控制页面"
+msgstr "回到控制"
 
 # @ layerswp
 #: core/customizer/registration.php:473 core/helpers/design-bar.php:626
@@ -487,22 +487,22 @@ msgstr "缩放"
 # @ layerswp
 #: core/helpers/api.php:38
 msgid "WooCommerce for Layers"
-msgstr "WooCommerce for Layers"
+msgstr "Layers WooCommerce 插件"
 
 # @ layerswp
 #: core/helpers/api.php:39
 msgid "Adds an advanced product widget, product slider and multiple page layouts."
-msgstr "添加一个高级的产品小工具、产品幻灯和多样化页面排版。"
+msgstr "添加一个高级产品小窗口、产品幻灯和多页面布局。"
 
 # @ layerswp
 #: core/helpers/api.php:45
 msgid "Showcase for Layers"
-msgstr "Showcase for Layers"
+msgstr "Layers Showcase 插件"
 
 # @ layerswp
 #: core/helpers/api.php:46
 msgid "List your portfolio items with relevant meta such as client, web url and project role."
-msgstr "列出您的项目信息，例如客户端、网址和产品用途。"
+msgstr "列出您的项目信息，例如客户、网址和项目角色。"
 
 # @ layerswp
 #: core/helpers/custom-fonts.php:96
@@ -517,7 +517,7 @@ msgstr "列表样式"
 # @ layerswp
 #: core/helpers/design-bar.php:266 core/widgets/modules/content.php:325
 msgid "Grid"
-msgstr "格子"
+msgstr "网格"
 
 # @ layerswp
 #: core/helpers/design-bar.php:267
@@ -587,7 +587,7 @@ msgstr "特色图片"
 # @ layerswp
 #: core/helpers/design-bar.php:444
 msgid "Video URL (oEmbed)"
-msgstr "视频链接 (OEMBED 格式)"
+msgstr "视频网址 (oEmbed 标签)"
 
 # @ layerswp
 #: core/helpers/design-bar.php:455 core/helpers/design-bar.php:500
@@ -647,7 +647,7 @@ msgstr "颜色"
 # @ layerswp
 #: core/helpers/design-bar.php:647
 msgid "Darken"
-msgstr "变暗"
+msgstr "暗色调"
 
 # @ layerswp
 #: core/helpers/design-bar.php:675
@@ -657,7 +657,7 @@ msgstr "高级"
 # @ layerswp
 #: core/helpers/design-bar.php:681
 msgid "Custom Class(es)"
-msgstr "自定义CSS Class"
+msgstr "自定义类别"
 
 # @ layerswp
 #: core/helpers/design-bar.php:689
@@ -722,13 +722,13 @@ msgstr "预览模式"
 # @ layerswp
 #: core/helpers/forms.php:220 core/helpers/forms.php:221
 msgid "HTML Mode"
-msgstr "HTML 代码模式"
+msgstr "HTML 模式"
 
 # @ layerswp
 #: core/helpers/forms.php:236 core/helpers/forms.php:268
 #: core/helpers/forms.php:307
 msgid "Remove"
-msgstr "移除"
+msgstr "删除"
 
 # @ layerswp
 #: core/helpers/forms.php:240
@@ -764,12 +764,12 @@ msgstr "拖放一个文件到这里或 %s"
 # @ layerswp
 #: core/helpers/forms.php:350 core/helpers/forms.php:425
 msgid "Darken to improve readability"
-msgstr "变暗可提高可读性"
+msgstr "使用暗色调来提高阅读体验"
 
 # @ layerswp
 #: core/helpers/forms.php:361 core/helpers/forms.php:436
 msgid "Tile Background"
-msgstr "标题背景"
+msgstr "平铺背景"
 
 # @ layerswp
 #: core/helpers/forms.php:372 core/helpers/forms.php:447
@@ -779,17 +779,17 @@ msgstr "固定背景"
 # @ layerswp
 #: core/helpers/forms.php:383
 msgid "Enter your .mp4 link"
-msgstr "输入 MP4 文件链接"
+msgstr "输入 .mp4 后缀文件链接"
 
 # @ layerswp
 #: core/helpers/forms.php:394
 msgid "Enter your .ogv link"
-msgstr "输入 OGV 文件链接"
+msgstr "输入 .ogv 后缀文件链接"
 
 # @ layerswp
 #: core/helpers/migrator.php:100
 msgid "Application"
-msgstr "应用"
+msgstr "应用程序"
 
 # @ layerswp
 #: core/helpers/migrator.php:106
@@ -799,17 +799,17 @@ msgstr "联系页面"
 # @ layerswp
 #: core/helpers/migrator.php:112
 msgid "Landing Page"
-msgstr "登录页面"
+msgstr "登陆页"
 
 # @ layerswp
 #: core/helpers/migrator.php:118
 msgid "Lookbook Page"
-msgstr ""
+msgstr "Lookbook 页面"
 
 # @ layerswp
 #: core/helpers/migrator.php:124
 msgid "One Pager"
-msgstr "单页"
+msgstr "One Pager"
 
 # @ layerswp
 #: core/helpers/migrator.php:130
@@ -841,7 +841,7 @@ msgstr "首页"
 # @ layerswp
 #: core/helpers/migrator.php:716
 msgid "Sidebar does not exist in theme (using Inactive)"
-msgstr "主题中不存在侧边栏（或无效）"
+msgstr "主题中不存在侧边栏（使用 Inactive）"
 
 # @ layerswp
 #: core/helpers/migrator.php:758
@@ -851,12 +851,12 @@ msgstr "小工具已存在"
 # @ layerswp
 #: core/helpers/migrator.php:807
 msgid "Imported"
-msgstr "导入"
+msgstr "Imported（已导入）"
 
 # @ layerswp
 #: core/helpers/migrator.php:810
 msgid "Imported to Inactive"
-msgstr "导入后不激活"
+msgstr "从 Imported（已导入）到 Inactive（不激活）"
 
 # @ layerswp
 #: core/helpers/migrator.php:816
@@ -866,7 +866,7 @@ msgstr "无标题"
 # @ layerswp
 #: core/helpers/pointers.php:48 core/meta/init.php:201
 msgid "Build Your Page"
-msgstr "设计您的页面"
+msgstr "构建您的页面"
 
 # @ layerswp
 #: core/helpers/post.php:56
@@ -883,7 +883,7 @@ msgstr ", "
 #: core/helpers/post.php:75
 #, php-format
 msgid "View all posts tagged %s"
-msgstr "查看带有标签 %s 的所有文章"
+msgstr "查看标签为 %s 的所有文章"
 
 # @ layerswp
 #: core/helpers/post.php:98
@@ -911,12 +911,12 @@ msgstr "%1$s %2$s"
 # @ layerswp
 #: core/helpers/post.php:135
 msgid "Your comment is awaiting moderation."
-msgstr "您的评论正在审核"
+msgstr "您的评论正在等待审核。"
 
 # @ layerswp
 #: core/helpers/post.php:156
 msgid "You shall not pass"
-msgstr ""
+msgstr "您不会通过"
 
 # @ layerswp
 #: core/helpers/template.php:24
@@ -949,7 +949,7 @@ msgstr "按月归档：%s"
 
 # @ layerswp
 #: core/helpers/template.php:319
-msgctxt "monthly archives date format"
+msgctxt "按月归档日期格式"
 msgid "F Y"
 msgstr "F Y"
 
@@ -961,7 +961,7 @@ msgstr "按年归档：%s"
 
 # @ layerswp
 #: core/helpers/template.php:321
-msgctxt "yearly archives date format"
+msgctxt "按年归档日期格式"
 msgid "Y"
 msgstr "Y"
 
@@ -973,7 +973,7 @@ msgstr "归档"
 # @ layerswp
 #: core/helpers/template.php:1113
 msgid "Your browser does not support the video tag."
-msgstr "您的浏览器不支持该视频标签。"
+msgstr "您的浏览器不支持视频标签。"
 
 # @ layerswp
 #: core/meta/config.php:16
@@ -1003,17 +1003,17 @@ msgstr "编辑您的页面"
 # @ layerswp
 #: core/options-panel/ajax.php:68
 msgid "No Logo uploaded"
-msgstr "LOGO 未上传"
+msgstr "徽标未上传"
 
 # @ layerswp
 #: core/options-panel/ajax.php:102
 msgid "Logo updated"
-msgstr "LOGO 已更新"
+msgstr "徽标已更新"
 
 # @ layerswp
 #: core/options-panel/ajax.php:106
 msgid "There was an error when updating your logo."
-msgstr "更新 LOGO 时出现错误。"
+msgstr "更新徽标时发生错误。"
 
 # @ layerswp
 #: core/options-panel/ajax.php:114
@@ -1028,7 +1028,7 @@ msgstr "Layers"
 # @ layerswp
 #: core/options-panel/init.php:106
 msgid "Layers is a product of <a href=\"http://oboxthemes.com/\">Obox Themes</a>. For questions and feedback please <a href=\"mailto:david@obox.co.za\">email David directly"
-msgstr "Layers 由 <a href=\"http://oboxthemes.com/\">Obox Themes</a> 出品。如有任何问题或建议请直接联系 David：<a href=\"mailto:david@obox.co.za\">"
+msgstr "Layers 是 <a href=\"http://oboxthemes.com/\">Obox Themes</a> 的产品。如有任何问题或建议，请直接发邮件给 David：<a href=\"mailto:david@obox.co.za\">"
 
 # @ layerswp
 #: core/options-panel/init.php:157 core/options-panel/init.php:158
@@ -1082,7 +1082,7 @@ msgstr "在这里填写标题"
 # @ layerswp
 #: core/options-panel/partials/add-new-page.php:43
 msgid "Proceed to Customizer"
-msgstr ""
+msgstr "继续到 Customizer"
 
 # @ layerswp
 #: core/options-panel/partials/add-new-page.php:46
@@ -1097,7 +1097,7 @@ msgstr "备份您的页面"
 # @ layerswp
 #: core/options-panel/partials/backup.php:16
 msgid "Convert your Layers pages into regular WordPress pages, preserving the content you have worked so hard to create."
-msgstr "将您的 Layers 页面转化为标准 WordPress 页面，保护您辛苦创建的页面。"
+msgstr "将您的 Layers 页面转化为标准 WordPress 页面，保存好不容易创建的内容。"
 
 # @ layerswp
 #: core/options-panel/partials/backup.php:24

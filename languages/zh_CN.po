@@ -1119,7 +1119,7 @@ msgstr "开始使用 Layers"
 #: core/options-panel/partials/dashboard.php:22
 #: core/options-panel/partials/welcome.php:43
 msgid "Follow the easy steps to creating amazing layouts quickly and easily. "
-msgstr "按照简单步骤快速轻松地创建神奇的排版。"
+msgstr "按照简单步骤快速轻松地创建神奇的布局。"
 
 # @ layerswp
 #: core/options-panel/partials/dashboard.php:26
@@ -1135,7 +1135,7 @@ msgstr "编辑"
 # @ layerswp
 #: core/options-panel/partials/dashboard.php:41
 msgid "View"
-msgstr "浏览"
+msgstr "查看"
 
 # @ layerswp
 #: core/options-panel/partials/dashboard.php:59
@@ -1160,7 +1160,7 @@ msgstr "购买"
 #: core/options-panel/partials/welcome.php:117
 #: core/options-panel/partials/welcome.php:136
 msgid "More Details"
-msgstr "更多详细资料"
+msgstr "更多详细信息"
 
 # @ layerswp
 #: core/options-panel/partials/dashboard.php:105
@@ -1184,7 +1184,7 @@ msgstr "Layers 需要使用最新版本的 WordPress，请确保您已经升级�
 #: core/options-panel/partials/dashboard.php:115
 #: core/options-panel/partials/welcome.php:162
 msgid "You're up to date"
-msgstr "您的 WordPress 已升级到最新版本"
+msgstr "已经是最新版本"
 
 # @ layerswp
 #: core/options-panel/partials/dashboard.php:117
@@ -1206,12 +1206,12 @@ msgstr "欢迎使用 Layers！"
 # @ layerswp
 #: core/options-panel/partials/get-started.php:33
 msgid "Layers is a revolutionary WordPress Site Builder that makes website building a dream come true!"
-msgstr "Layers 是一款革命性的 WordPress 网站设计工具，她可以让您按自己的想法轻松设计网站！"
+msgstr "Layers 是一款革命性的 WordPress 网站设计工具，可以让您按自己的想法轻松设计网站！"
 
 # @ layerswp
 #: core/options-panel/partials/get-started.php:36
 msgid "The following short steps are designed to show you how Layers works and get you to creating amazing layouts quickly!"
-msgstr "以下几个简单步骤将向您展示 Layers 是如何帮您快速创建神奇的网站排版！"
+msgstr "以下几个简单步骤将向您展示 Layers 如何帮您快速地创建神奇的网站布局！"
 
 # @ layerswp
 #: core/options-panel/partials/get-started.php:39
@@ -1231,7 +1231,7 @@ msgstr "如果您在使用 Layers 时遇到困难或者需要帮助，请访问�
 # @ layerswp
 #: core/options-panel/partials/get-started.php:56
 msgid "For the Pros: Layers will automatically assign the tagline to Settings &rarr; General."
-msgstr "专业版特性：Layers 将自动修改「设置 &rarr; 常规」中的副标题。"
+msgstr "专业版特性：Layers 将自动把标签行指定给「设置 &rarr; 常规」。"
 
 # @ layerswp
 #: core/options-panel/partials/get-started.php:70
@@ -1253,7 +1253,7 @@ msgid ""
 "                                    "
 msgstr ""
 "\n"
-"                                        Layers 将您的页面进行水平分行，您在设计页面时可以通过在每一行中通过添加「小工具」作为内容模块。\n"
+"                                        Layers 将您的页面分成水平行，您使用称为「小工具」的内容模块（每行一个）来构建页面。\n"
 "                                    "
 
 # @ layerswp
@@ -1264,7 +1264,7 @@ msgid ""
 "                                    "
 msgstr ""
 "\n"
-"                                        您每次想要添加新内容模块时，只需点击「添加小工具」，从列表中选择带有蓝色 Layers 图标的其中一个。\n"
+"                                        您每次想要添加新内容模块时，只需点击「添加小工具」，然后从列表中选择带有蓝色 Layers 图标的其中一个。\n"
 "                                    "
 
 # @ layerswp
@@ -1280,7 +1280,7 @@ msgstr "您的网站名称是什么？"
 # @ layerswp
 #: core/options-panel/partials/get-started.php:109
 msgid "Enter your website name below. We&apos;ll use this in your site title and in search results."
-msgstr "在下面输入您的网站名称，我们将在网站标题和搜索结果中使用到它。"
+msgstr "在下面输入您的网站名称。我们将在您的网站标题和搜索结果中使用它。"
 
 # @ layerswp
 #: core/options-panel/partials/get-started.php:113
@@ -1309,7 +1309,7 @@ msgstr "关于如何更好地给您的网站命名，我们建议您阅读 <a hr
 # @ layerswp
 #: core/options-panel/partials/get-started.php:147
 msgid "For the Pros: Layers will automatically assign this site name to Settings &rarr; General"
-msgstr "专业版特性：Layers 将自动修改「设置 &rarr; 常规」中的网站标题"
+msgstr "专业版特性：Layers 将自动把此网站名称指定给「设置 &rarr; 常规」"
 
 # @ layerswp
 #: core/options-panel/partials/get-started.php:166
@@ -1326,8 +1326,8 @@ msgid ""
 "                                    "
 msgstr ""
 "\n"
-"                                        要编辑一个小工具内容，只需在左侧小工具区点击它，该小工具面板就会弹出让您编辑内容和自定义设置。<br/>\n"
-"                                        您也可以在预览区中按住 Shift 键然后点击该小工具，编辑内容。\n"
+"                                        要编辑小工具的内容，只需点击其中的左侧区域。此时会推出小工具面板让您编辑其内容和自定义其设置。\n"
+"                                        在预览区域中按住 Shift 键并点击小工具，可以完成相同的操作。\n"
 "                                    "
 
 # @ layerswp
@@ -1341,18 +1341,18 @@ msgid ""
 "A tagline describes who and what you are in just a few simple words.\n"
 "                                For example Layers is a &ldquo;WordPress Site Builder&rdquo; - simple, easy, quick to read. Now you try:"
 msgstr ""
-"您可以在副标题中简单描述您的网站。\n"
-"                                例如：「Layers 是一个 WordPress 网站设计工具」——简单，方便，方便阅读。现在您可以试试："
+"您可以在标签行中简单描述您的网站。\n"
+"                                例如：Layers 是一个 「WordPress 网站设计工具」 — 布局简洁，操作简单，方便阅读。现在您可以试试："
 
 # @ layerswp
 #: core/options-panel/partials/get-started.php:203
 msgid "Site Tagline"
-msgstr "网站副标题"
+msgstr "网站标签行"
 
 # @ layerswp
 #: core/options-panel/partials/get-started.php:223
 msgid "Saving your Tagline"
-msgstr "保存您的网站副标题"
+msgstr "保存您的网站标签行"
 
 # @ layerswp
 #: core/options-panel/partials/get-started.php:231
@@ -1362,7 +1362,7 @@ msgstr "保持简单"
 # @ layerswp
 #: core/options-panel/partials/get-started.php:232
 msgid "Avoid buzz words"
-msgstr "避开流行语"
+msgstr "避免废话"
 
 # @ layerswp
 #: core/options-panel/partials/get-started.php:233
@@ -1372,7 +1372,7 @@ msgstr "请确保它能描述清楚您能提供什么"
 # @ layerswp
 #: core/options-panel/partials/get-started.php:234
 msgid "For the Pros: Layers will automatically assign the tagline to Settings &rarr; General"
-msgstr "专业版特性：Layers 将自动修改「设置 &rarr; 常规」中的网站标题"
+msgstr "专业版特性：Layers 将自动把标签行指定给「设置 &rarr; 常规」"
 
 # @ layerswp
 #: core/options-panel/partials/get-started.php:252
@@ -1382,17 +1382,17 @@ msgstr "自定义小工具"
 # @ layerswp
 #: core/options-panel/partials/get-started.php:256
 msgid "Unique to each Layers widget is the revolutionary &ldquo;Design Bar&rdquo; which allows you to set its design parameters without touching a line of code."
-msgstr ""
+msgstr "Layers 小工具的独特之处在于革命性的&ldquo;设计栏&rdquo;。无需编写一行代码，您就可以用其设置小工具的设计参数。"
 
 # @ layerswp
 #: core/options-panel/partials/get-started.php:259
 msgid "Depending on the widget you've added, you can change things like background images, font sizes, list styles and more."
-msgstr "您可以对已添加的小工具进行修改，例如背景图片、字体大小、列表样式等。"
+msgstr "根据所添加的不同小工具，您可以更改不同的设计参数，例如背景图片、字体大小、列表样式等。"
 
 # @ layerswp
 #: core/options-panel/partials/get-started.php:280
 msgid "Would you like to add your logo?"
-msgstr "您是否要添加 LOGO？"
+msgstr "您是否要添加徽标？"
 
 # @ layerswp
 #: core/options-panel/partials/get-started.php:283
@@ -1407,21 +1407,21 @@ msgid ""
 msgstr ""
 "\n"
 "\n"
-"                                    Layers 将添加您的 LOGO 并把它放置在适当的位置。\n"
-"                                    如果您暂时没有合适的 LOGO，可以稍后再添加。\n"
-"                                    您也可以先跳过这一步，使用文字代替 LOGO。\n"
+"                                    Layers 将添加您的徽标并把它放置在适当的位置。\n"
+"                                    如果您暂时没有合适的徽标，可以稍后再添加。\n"
+"                                    您也可以先跳过这一步，使用文字代替徽标。\n"
 "\n"
 "                                 "
 
 # @ layerswp
 #: core/options-panel/partials/get-started.php:297
 msgid "Choose Logo"
-msgstr "选择 LOGO"
+msgstr "选择徽标"
 
 # @ layerswp
 #: core/options-panel/partials/get-started.php:314
 msgid "Updating your Logo"
-msgstr "更新您的 LOGO"
+msgstr "更新您的徽标"
 
 # @ layerswp
 #: core/options-panel/partials/get-started.php:322
@@ -1431,12 +1431,12 @@ msgstr "为了达到最佳效果，建议使用高度在 40px - 200px 之间，�
 # @ layerswp
 #: core/options-panel/partials/get-started.php:323
 msgid "PNGs with a transparent background work best but GIFs or JPGs are fine too"
-msgstr "PNG 格式具有最佳的透明背景效果，当然 GIF 和 JPG 格式也可以。"
+msgstr "透明背景的 PNG 格式图片最好，但是 GIF 或 JPG 格式也可以"
 
 # @ layerswp
 #: core/options-panel/partials/get-started.php:324
 msgid "Try keep your logo file size below 500kb"
-msgstr "尽量保持您的 LOGO 文件大小不超过 500KB"
+msgstr "尽量保持您的徽标文件大小不超过 500KB"
 
 # @ layerswp
 #: core/options-panel/partials/get-started.php:338
@@ -1457,8 +1457,8 @@ msgid ""
 "                                    "
 msgstr ""
 "\n"
-"                                        直接从列表中选择一个预设排版，Layers 将自动为您创建。\n"
-"                                        您将在下一页编辑您的页面排版，让我们开始吧！\n"
+"                                        只需从列表中选择一个预设的布局，Layers 将自动为您创建页面。\n"
+"                                        您将能够在下一页编辑您的页面布局。让我们开始吧！\n"
 "                                    "
 
 # @ layerswp
@@ -1474,7 +1474,7 @@ msgstr "首先选择一个布局"
 # @ layerswp
 #: core/options-panel/partials/get-started.php:381
 msgid "Start Building"
-msgstr "开始设计"
+msgstr "开始构建"
 
 # @ layerswp
 #: core/options-panel/partials/preset-layouts.php:20
@@ -1489,7 +1489,7 @@ msgstr "Layers WooCommerce 扩展"
 # @ layerswp
 #: core/options-panel/partials/welcome.php:90
 msgid "If you'd like to test out eCommerce then you'll need to install the Layers WooCommerce Extension."
-msgstr "如果您想尝试电子商务，您需要安装 Layers WooCommerce 扩展"
+msgstr "如果您想尝试电子商务，您需要安装 Layers WooCommerce 扩展。"
 
 # @ layerswp
 #: core/options-panel/partials/welcome.php:94
@@ -1525,72 +1525,72 @@ msgstr "查看更多扩展"
 # @ layerswp
 #: core/third-party/site-logo/inc/class-site-logo-control.php:19
 msgid "Add logo"
-msgstr "添加 LOGO"
+msgstr "添加徽标"
 
 # @ layerswp
 #: core/third-party/site-logo/inc/class-site-logo-control.php:20
 msgid "Set as logo"
-msgstr "设置为 LOGO"
+msgstr "设置为徽标"
 
 # @ layerswp
 #: core/third-party/site-logo/inc/class-site-logo-control.php:21
 msgid "Choose logo"
-msgstr "选择 LOGO"
+msgstr "选择徽标"
 
 # @ layerswp
 #: core/third-party/site-logo/inc/class-site-logo-control.php:22
 msgid "Change logo"
-msgstr "修改 LOGO"
+msgstr "修改徽标"
 
 # @ layerswp
 #: core/third-party/site-logo/inc/class-site-logo-control.php:23
 msgid "Remove logo"
-msgstr "移除 LOGO"
+msgstr "删除徽标"
 
 # @ layerswp
 #: core/third-party/site-logo/inc/class-site-logo-control.php:24
 msgid "No logo set"
-msgstr "未设置 LOGO"
+msgstr "未设置徽标"
 
 # @ layerswp
 #: core/third-party/site-logo/inc/class-site-logo.php:81
 msgid "Site Title, Tagline, and Logo"
-msgstr "网站标题、副标题和 LOGO"
+msgstr "网站标题、标签行和徽标"
 
 # @ layerswp
 #: core/third-party/site-logo/inc/class-site-logo.php:92
 msgid "Display Header Text"
-msgstr "显示顶部文字"
+msgstr "显示页眉文字"
 
 # @ layerswp
 #: core/third-party/site-logo/inc/class-site-logo.php:114
 msgid "Logo"
-msgstr "Logo"
+msgstr "徽标"
 
 # @ layerswp
 #: core/third-party/site-logo/inc/class-site-logo.php:254
 msgid "Site Logo"
-msgstr "网站 LOGO"
+msgstr "网站徽标"
 
 # @ layerswp
 #: core/widgets/init.php:88
 msgid " Body"
-msgstr " 网站整体"
+msgstr " 网站正文"
 
 # @ layerswp
 #: core/widgets/init.php:173
 msgid "Layers Builder section."
-msgstr ""
+msgstr "Layers 构建器区域。"
 
 # @ layerswp
 #: core/widgets/init.php:198
 msgid "Are you sure you want to remove this slide?"
-msgstr "您确定要移除这个幻灯吗？"
+msgstr "您确定要删除这个幻灯吗？"
 
 # @ layerswp
 #: core/widgets/init.php:210
 msgid "Are you sure you want to remove this column?"
-msgstr "您确定要移除这个列吗？"
+msgstr "您确定要删除这个列吗？"
 
 # @ layerswp
 #: core/widgets/modules/contact.php:26
@@ -1605,7 +1605,7 @@ msgstr "地图高度"
 # @ layerswp
 #: core/widgets/modules/contact.php:229
 msgid "Show Google Map"
-msgstr "显示 Google 地图"
+msgstr "显示谷歌地图"
 
 # @ layerswp
 #: core/widgets/modules/contact.php:236
@@ -1647,27 +1647,27 @@ msgstr "谷歌地图定位"
 # @ layerswp
 #: core/widgets/modules/contact.php:301
 msgid "e.g. 300 Prestwich Str, Cape Town, South Africa"
-msgstr "例如 300 Prestwich Str, Cape Town, South Africa"
+msgstr "例如，南非开普敦普雷斯特威奇街道 300 号"
 
 # @ layerswp
 #: core/widgets/modules/contact.php:307
 msgid "Google Maps Latitude & Longitude (Optional)"
-msgstr "谷歌地图纬度 & 经度（可选）"
+msgstr "谷歌地图中的经纬度（可选）"
 
 # @ layerswp
 #: core/widgets/modules/contact.php:313
 msgid "e.g. 33.9253 S, 18.4239 E"
-msgstr "例如 33.9253 S, 18.4239 E"
+msgstr "例如，东经 18.4239 度，南纬 33.9253 度
 
 # @ layerswp
 #: core/widgets/modules/contact.php:319
 msgid "Address Shown"
-msgstr "显示地址"
+msgstr "显示的地址"
 
 # @ layerswp
 #: core/widgets/modules/contact.php:325
 msgid "e.g. Prestwich Str, Cape Town"
-msgstr "例如 Prestwich Str, Cape Town"
+msgstr "例如，开普敦普雷斯特威奇街道"
 
 # @ layerswp
 #: core/widgets/modules/contact.php:339
@@ -1677,7 +1677,7 @@ msgstr "联系表单"
 # @ layerswp
 #: core/widgets/modules/contact.php:350
 msgid "Contact form embed code"
-msgstr "联系表单 EMBED 代码"
+msgstr "联系表单嵌入码"
 
 # @ layerswp
 #: core/widgets/modules/content.php:26
@@ -1697,52 +1697,52 @@ msgstr "列"
 # @ layerswp
 #: core/widgets/modules/content.php:465
 msgid "1 of 12 columns"
-msgstr "1列 - 1/12"
+msgstr "第 1 列 - 共 12 列"
 
 # @ layerswp
 #: core/widgets/modules/content.php:466
 msgid "2 of 12 columns"
-msgstr "2列 - 1/6"
+msgstr "第 2 列 - 共 12 列"
 
 # @ layerswp
 #: core/widgets/modules/content.php:467
 msgid "3 of 12 columns"
-msgstr "3 列 - 1/4"
+msgstr "第 3 列 - 共 12 列"
 
 # @ layerswp
 #: core/widgets/modules/content.php:468
 msgid "4 of 12 columns"
-msgstr "4 列 - 1/3"
+msgstr "第 4 列 - 共 12 列"
 
 # @ layerswp
 #: core/widgets/modules/content.php:469
 msgid "5 of 12 columns"
-msgstr "5 列 - 5/12"
+msgstr "第 5 列 - 共 12 列"
 
 # @ layerswp
 #: core/widgets/modules/content.php:470
 msgid "6 of 12 columns"
-msgstr "6 列 - 1/2"
+msgstr "第 6 列 - 共 12 列"
 
 # @ layerswp
 #: core/widgets/modules/content.php:471
 msgid "8 of 12 columns"
-msgstr "8 12 列"
+msgstr "第 8 列 - 共 12 列"
 
 # @ layerswp
 #: core/widgets/modules/content.php:472
 msgid "9 of 12 columns"
-msgstr "9 列 - 3/4"
+msgstr "第 9 列 - 共 12 列"
 
 # @ layerswp
 #: core/widgets/modules/content.php:473
 msgid "10 of 12 columns"
-msgstr "10 列 - 5/6"
+msgstr "第 10 列 - 共 12 列"
 
 # @ layerswp
 #: core/widgets/modules/content.php:474
 msgid "12 of 12 columns"
-msgstr "12 列 - 1/1"
+msgstr "第 12 列 - 共 12 列"
 
 # @ layerswp
 #: core/widgets/modules/content.php:484 core/widgets/modules/slider.php:470
@@ -1772,7 +1772,7 @@ msgstr "按钮文字"
 # @ layerswp
 #: core/widgets/modules/content.php:531 core/widgets/modules/slider.php:517
 msgid "e.g. \"Read More\""
-msgstr "e.g. \"阅读更多\""
+msgstr "例如，\"阅读更多内容\""
 
 # @ layerswp
 #: core/widgets/modules/post.php:26
@@ -1782,7 +1782,7 @@ msgstr "文章"
 # @ layerswp
 #: core/widgets/modules/post.php:65 partials/content-list.php:22
 msgid "Read More"
-msgstr "阅读更多"
+msgstr "阅读更多内容"
 
 # @ layerswp
 #: core/widgets/modules/post.php:331
@@ -1792,7 +1792,7 @@ msgstr "标题 &amp; 摘要位置"
 # @ layerswp
 #: core/widgets/modules/post.php:333
 msgid "Regular"
-msgstr "正常尺寸"
+msgstr "常规"
 
 # @ layerswp
 #: core/widgets/modules/post.php:342
@@ -1837,17 +1837,17 @@ msgstr "显示分类"
 # @ layerswp
 #: core/widgets/modules/post.php:400
 msgid "Show \"Read More\" Buttons"
-msgstr "显示 \"阅读更多\" 按钮"
+msgstr "显示 \"阅读更多内容\" 按钮"
 
 # @ layerswp
 #: core/widgets/modules/post.php:407
 msgid "\"Read More\" Text"
-msgstr "\"阅读更多\" 文本"
+msgstr "\"阅读更多内容\" 文本"
 
 # @ layerswp
 #: core/widgets/modules/post.php:414
 msgid "Show Pagination"
-msgstr "显示分页"
+msgstr "显示页码"
 
 # @ layerswp
 #: core/widgets/modules/post.php:425
@@ -1857,17 +1857,17 @@ msgstr "文章"
 # @ layerswp
 #: core/widgets/modules/post.php:461
 msgid "Category to Display"
-msgstr "显示分类"
+msgstr "要显示的类别"
 
 # @ layerswp
 #: core/widgets/modules/post.php:469
 msgid "Select a Category"
-msgstr "选择一个分类"
+msgstr "选择一个类别"
 
 # @ layerswp
 #: core/widgets/modules/post.php:477
 msgid "Number of items to show"
-msgstr "显示的文章数量"
+msgstr "要显示的文章数量"
 
 # @ layerswp
 #: core/widgets/modules/post.php:478
@@ -1912,7 +1912,7 @@ msgstr "时间（单位：秒），例如 2"
 # @ layerswp
 #: core/widgets/modules/slider.php:361
 msgid "Slide Interval"
-msgstr "幻灯间距"
+msgstr "幻灯时间间隔"
 
 # @ layerswp
 #: core/widgets/modules/slider.php:369
@@ -1947,32 +1947,32 @@ msgstr "使用 Layers 创建"
 # @ layerswp
 #: functions.php:165
 msgid "Top Left Menu"
-msgstr "置顶居左菜单"
+msgstr "左上角菜单"
 
 # @ layerswp
 #: functions.php:166
 msgid "Top Right Menu"
-msgstr "置顶居右菜单"
+msgstr "右上角菜单"
 
 # @ layerswp
 #: functions.php:167
 msgid "Header Menu"
-msgstr "顶部菜单"
+msgstr "页眉菜单"
 
 # @ layerswp
 #: functions.php:168
 msgid "Right Header Menu"
-msgstr "居右顶部菜单"
+msgstr "右页眉菜单"
 
 # @ layerswp
 #: functions.php:169
 msgid "Footer Menu"
-msgstr "底部菜单"
+msgstr "页脚菜单"
 
 # @ layerswp
 #: functions.php:197
 msgid "Mobile Sidebar"
-msgstr "移动侧边栏"
+msgstr "移动设备侧边栏"
 
 # @ layerswp
 #: functions.php:198
@@ -1992,17 +1992,17 @@ msgstr "右侧边栏"
 # @ layerswp
 #: functions.php:229
 msgid "Footer "
-msgstr "底部"
+msgstr "页脚"
 
 # @ layerswp
 #: functions.php:243
 msgid "Left Shop Sidebar"
-msgstr "左商店侧边栏"
+msgstr "左边商店侧边栏"
 
 # @ layerswp
 #: functions.php:252
 msgid "Right Shop Sidebar"
-msgstr "右商店侧边栏"
+msgstr "右边商店侧边栏"
 
 # @ layerswp
 #: functions.php:449
@@ -2048,7 +2048,7 @@ msgstr "未找到文章"
 # @ layerswp
 #: partials/content-empty.php:12
 msgid "Use the search form below to find the page you're looking for:"
-msgstr "请使用下面的搜索框查找您需要的内容："
+msgstr "请使用下面的搜索框查找您要找的页面："
 
 # @ layerswp
 #: partials/content-empty.php:14
@@ -2063,4 +2063,4 @@ msgstr "<span>页面：</span>"
 # @ layerswp
 #: partials/portfolio-list.php:24
 msgid "View Project"
-msgstr "浏览项目"
+msgstr "查看项目"

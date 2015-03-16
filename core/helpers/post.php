@@ -11,10 +11,10 @@
 /**
 * Print post meta HTML
 *
-* @param    varchar         $post_id        ID of the post to use
+* @param    string         $post_id        ID of the post to use
 * @param    array           $display        Configuration arguments. (date, author, categories, tags)
-* @param    varchar         $wrapper        Type of html wrapper
-* @param    varchar         $wrapper_class  Class of HTML wrapper
+* @param    string         $wrapper        Type of html wrapper
+* @param    string         $wrapper_class  Class of HTML wrapper
 * @echo     string                          Post Meta HTML
 */
 
@@ -199,7 +199,7 @@ add_filter( 'post_class' , 'layers_post_class' );
 /**
  *  The following function creates a builder page
  *
- * @param varchar Page Title (optional)
+ * @param string Page Title (optional)
  * @return array Page ID
  */
 if( !function_exists( 'layers_create_builder_page' ) ) {
@@ -368,7 +368,7 @@ add_action('admin_print_styles-post.php', 'layers_add_builder_edit_button_css');
 * @param int $size Media size to use
 * @param int $video oEmbed code
 *
-* @return   varchar     $media_output Feature Image or Video
+* @return   string     $media_output Feature Image or Video
 */
 
 if( !function_exists( 'layers_post_featured_media' ) ) {

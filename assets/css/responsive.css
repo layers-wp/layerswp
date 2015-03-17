@@ -449,6 +449,19 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 }
 
 /*--------------------------------------------------------------*/
+/*-  AWKWARD SIZE BETWEEN PHONE LANDSCAPE AND TABS -------------*/
+/*--------------------------------------------------------------*/
+@media only screen and (min-width: 601px) and (max-width: 782px){
+
+    /*-----------------------*/
+    /*- HEADER IN ADMIN MODE */
+    .admin-bar .header-sticky.is_stuck.is_stuck_show{
+        margin-top: 46px;
+    }
+
+}
+
+/*--------------------------------------------------------------*/
 /*- EVERYTHING UP TO TABLET ------------------------------------*/
 /*--------------------------------------------------------------*/
 @media only screen and (max-width: 768px){

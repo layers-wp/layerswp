@@ -4,6 +4,7 @@
 ### ??
 
 ??
+
 * **Enhancement** - Added new dropdown to customizer so that users can easily navigate back to dashboard, create new page and preview page
 * **Enhancement** - Added Chinese, Turkish and German translation files
 * **Fix** - When adding a single top menu, the opposite side may use a fallback forcing users to create a blank menu for the opposite side
@@ -12,6 +13,7 @@
 * **Fix** - .sub-menu width in off-canvas menu has been fixed to avoid text-wrapping
 * **Fix** - Removed dots from payment methods in woo checkout page
 * **Fix** - Fixed grouped product styling in WooCommerce
+* **Fix** - Fixed big gap appearing above a sticky header when you're logged in on a mobile phone
 * **Tweak** - Text change 'Editing widget content' slide
 * **Tweak** - Removed unused WooCommerce CSS and placed them in new pro woo extension
 * **Tweak** - Don't layers_inline_style the custom-css when in customizer preview

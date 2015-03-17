@@ -27,7 +27,7 @@ if( !function_exists( 'layers_post_meta' ) ) {
         }
 
         // If there are no items to display, return nothing
-        if( NULL == $display ) $display = array( 'date', 'author', 'categories', 'tags' );
+        if( !is_array( $display ) ) $display = array( 'date', 'author', 'categories', 'tags' );
 
         foreach ( $display as $meta ) {
             switch ( $meta ) {

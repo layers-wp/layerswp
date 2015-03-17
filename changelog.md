@@ -14,6 +14,7 @@
 * **Fix** - Fixed grouped product styling in WooCommerce
 * **Tweak** - Text change 'Editing widget content' slide
 * **Tweak** - Removed unused WooCommerce CSS and placed them in new pro woo extension
+* **Tweak** - Don't layers_inline_style the custom-css when in customizer preview
 
 ## 1.0.4
 ### 02 March 2015

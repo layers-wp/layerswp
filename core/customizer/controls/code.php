@@ -36,7 +36,8 @@ if( !class_exists( 'Layers_Customize_Code_Control' ) ) {
 							'label' => $this->label,
 							'name' => '',
 							'id' => $this->id,
-							'data' => $this->get_customize_data()
+							'data' => $this->get_customize_data(),
+                            'placeholder' => $this->placeholder,
 						)
 					); ?>
 				</div>

@@ -458,12 +458,6 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
         margin-right: 0;
     }
 
-    /*-----------------------*/
-    /*- HEADER IN ADMIN MODE */
-    .admin-bar .header-sticky.is_stuck.is_stuck_show{
-        margin-top: 46px;
-    }
-
     .pull-left,
     .pull-right{
         float: none;

@@ -91,7 +91,7 @@ class Layers_Customizer_Regsitrar {
 	/**
 	* Register Sections
 	*
-	* @panel_key  varchar 		Unique key for which panel this section belongs to
+	* @panel_key  string 		Unique key for which panel this section belongs to
 	* @sections   array 		Array of sections config
 	*/
 	public function register_sections( $sections = array() ){
@@ -128,7 +128,7 @@ class Layers_Customizer_Regsitrar {
 	/**
 	* Register Panels
 	*
-	* @panel_section_key  	varchar 		Unique key for which section this control belongs to
+	* @panel_section_key  	string 		Unique key for which section this control belongs to
 	* @controls   			array 			Array of controls config
 	*/
 	public function register_controls( $panel_section_key = '' , $controls = array() ){

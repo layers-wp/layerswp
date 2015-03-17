@@ -183,9 +183,9 @@ class Layers_Widget_Migrator {
 	*
 	* Generates an image tag for the screenshot for use in the preset layout selector
 	*
-	* @param varchar URL to use for the screenshot
-	* @param varchar png (for static images) | dynamic (for existing pages)
-	* @return varchar <img> tag
+	* @param string URL to use for the screenshot
+	* @param string png (for static images) | dynamic (for existing pages)
+	* @return string <img> tag
 	*/
 	function generate_preset_layout_screenshot( $url = NULL, $type = 'screenshot' ){
 

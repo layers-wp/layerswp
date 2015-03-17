@@ -367,10 +367,21 @@ add_action( 'body_class', 'layers_body_class' );
  */
 if( !function_exists( 'layers_apply_customizer_styles' ) ) {
 	function layers_apply_customizer_styles() {
+		
+		global $wp_customize;
 
 		// Custom CSS
 		if( layers_get_theme_mod( 'custom-css' ) ){
-			layers_inline_styles( NULL, 'css', array( 'css' => layers_get_theme_mod( 'custom-css' ) ) );
+			
+			if ( isset( $wp_customize ) ) {
+				?>
+				<style id="layers-custom-css">
+				<?php echo layers_get_theme_mod( 'custom-css' ); ?>
+				</style>
+				<?php
+			} else {
+				layers_inline_styles( NULL, 'css', array( 'css' => layers_get_theme_mod( 'custom-css' ) ) );
+			}
 		}
 
 		// Header

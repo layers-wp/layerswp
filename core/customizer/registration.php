@@ -366,6 +366,9 @@ class Layers_Customizer_Regsitrar {
 			case 'layers-textarea' :
 				$callback = 'esc_textarea';
 				break;
+			case 'layers-code' :
+				$callback = false;
+				break;
 			default :
 				$callback = 'sanitize_text_field';
 		}

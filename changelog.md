@@ -4,7 +4,7 @@
 ### ??
 
 ??
-
+* **Fix** - When unchecking all post meta display, all of the meta would actually show instead
 * **Enhancement** - Added new dropdown to customizer so that users can easily navigate back to dashboard, create new page and preview page
 * **Enhancement** - Added Chinese, Turkish and German translation files
 * **Fix** - When adding a single top menu, the opposite side may use a fallback forcing users to create a blank menu for the opposite side

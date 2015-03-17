@@ -512,7 +512,17 @@ class Layers_Form_Elements {
 
 			<?php break;
 			/**
-			* Default to hidden field
+			* Range Slider field
+			*/
+			case 'range':
+
+			$input_props['min'] = ( isset( $input->min ) ) ? 'min="' .  esc_attr( $input->min ) . '"' : NULL ;
+			$input_props['max'] = ( isset( $input->max ) ) ? 'max="' . esc_attr(  $input->max ) . '"' : NULL ;
+			$input_props['step'] = ( isset( $input->step ) ) ? 'step="' .  esc_attr( $input->step ) . '"' : NULL ; ?>
+			<input type="number" <?php echo implode ( ' ' , $input_props ); ?> value="<?php echo $input->value; ?>" />
+
+			<?php break;
+			/** Default to hidden field
 			*/
 			default : ?>
 				<input type="hidden" <?php echo implode ( ' ' , $input_props ); ?> value="<?php echo $input->value; ?>" />

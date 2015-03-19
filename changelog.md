@@ -22,8 +22,9 @@ Bug fixes and language additions
 * **Fix** - Selecting visual selectors or design bar sub menus inside widgets will deselect visual active states of the controls
 * **Tweak** - Text change 'Editing widget content' slide
 * **Tweak** - Removed unused WooCommerce CSS and placed them in new pro woo extension
-* **Tweak** - get_theme_mod( 'custom-css' ); no longer uses layers_inline_style, this is in preperation of PostMessage support
+* **Tweak** - get_theme_mod( 'custom-css' ); no longer uses layers_inline_style, this is in preparation of PostMessage support
 * **Tweak** - Clicking anywhere on the page will close any open design bar sub menus
+* **Tweak** - Stop persistent Layers page filtering in page list, so that choosing all would only show all Layers pages
 
 ## 1.0.4
 ### 02 March 2015

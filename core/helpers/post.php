@@ -307,15 +307,19 @@ add_filter( 'pre_get_posts', 'layers_filter_admin_pages' );
 
 if ( ! function_exists( 'layers_filter_admin_pages_views' ) ) {
     function layers_filter_admin_pages_views( $views ) {
-        foreach ($views as $view_key => $view_value ) {
-            $query_arg = '&filter=layers';
-            $view_value = preg_replace('/href=\'(http:\/\/[^\/"]+\/?)?([^"]*)\'/', "href='\\2$query_arg'", $view_value);
-            $views[$view_key] = $view_value;
+        global $typenow;
+        
+        if ( 'page' == $typenow && isset( $_GET['filter'] ) && 'layers' == $_GET['filter'] ) {
+            foreach ($views as $view_key => $view_value ) {
+                $query_arg = '&filter=layers';
+                $view_value = preg_replace('/href=\'(http:\/\/[^\/"]+\/?)?([^"]*)\'/', "href='\\2$query_arg'", $view_value);
+                $views[$view_key] = $view_value;
+            }
         }
         return $views;
     }
 }
-add_filter( "views_edit-page", 'layers_filter_admin_pages_views' );
+//add_filter( "views_edit-page", 'layers_filter_admin_pages_views' );
 
 /**
  * Add builder edit button to the admin bar

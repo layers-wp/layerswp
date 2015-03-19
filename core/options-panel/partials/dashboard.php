@@ -146,7 +146,6 @@ $api = new Layers_API(); ?>
 						<div class="layers-content">
 							<?php layers_show_html5_video( 'http://cdn.oboxsites.com/layers/videos/' . $use_video . '.mp4', 490 ); ?>
 						</div>
-						<script> jQuery(function($){ $('.swiper-container').swiper(); }); </script>
 					</div>
 				</div>
 

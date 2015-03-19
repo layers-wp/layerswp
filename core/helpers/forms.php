@@ -74,7 +74,6 @@ class Layers_Form_Elements {
 	*
 	* @param  	array     	$options() 	Existing option array if exists (optional)
 	* @param  	int 		$min 		Minimum number to start with
-	* @param  	int 		$min 		Minimum number to start with
 	* @param  	int 		$max 		End point, included in the options with <=
 	* @param  	int 		$increment 	How are we counting up?
 	* @return 	array 		$options() 	Array of options
@@ -141,6 +140,8 @@ class Layers_Form_Elements {
 		$input_props['name'] = ( NULL != $input->name ) ? 'name="' .  $input->name . '"' : NULL ;
 		$input_props['placeholder'] = ( NULL != $input->placeholder ) ? 'placeholder="' .  esc_attr( $input->placeholder ) . '"' : NULL ;
 		$input_props['class'] = ( NULL != $input->class ) ? 'class="' .  $input->class . '"' : NULL ;
+		$input_props['disabled'] = isset( $input->disabled ) ? 'disabled="disabled"' : NULL ;
+
 		if( NULL != $input->data ) { foreach( $input->data as $data_key => $data_value ){ $input_props[ 'data-' . $data_key ] = 'data-' . $data_key . '="' . esc_attr( $data_value ) . '"'; } }
 
 		// Switch our input type
@@ -508,6 +509,16 @@ class Layers_Form_Elements {
 							<label for="<?php echo esc_attr( $input->id ) . '-' . $key; ?>"><?php echo esc_html( $label ); ?></label>
 						</div>
 					<?php } // foreach fields ?>
+				</div>
+
+			<?php break;
+			/**
+			* Free form HTML
+			*/
+			case 'html' : ?>
+
+				<div class="layers-row">
+					<?php echo $input->html; ?>
 				</div>
 
 			<?php break;

@@ -347,24 +347,23 @@ if( !class_exists( 'Layers_Contact_Widget' ) ) {
 								)
 							); ?>
 							<div class="layers-content">
-							<p class="layers-form-item">
-								<?php echo $this->form_elements()->input(
-									array(
-										'type' => 'textarea',
-										'name' => $this->get_field_name( 'contact_form' ) ,
-										'id' => $this->get_field_id( 'contact_form' ) ,
-										'placeholder' =>  __( 'Contact form embed code' , 'layerswp' ),
-										'value' => ( isset( $contact_form ) ) ? $contact_form : NULL ,
-										'class' => 'layers-textarea'
-									)
-								); ?>
-								<small class="layers-small-note">
-									<?php _e( printf( 'Need to create a contact form? Try <a href="$1%s" target="ejejcsingle">Gravity Forms</a>', 'https://www.e-junkie.com/ecom/gb.php?cl=54585&c=ib&aff=221037' ) , 'layerswp' ); ?>
-								</small>
-							</p>
+								<p class="layers-form-item">
+									<?php echo $this->form_elements()->input(
+										array(
+											'type' => 'textarea',
+											'name' => $this->get_field_name( 'contact_form' ) ,
+											'id' => $this->get_field_id( 'contact_form' ) ,
+											'placeholder' =>  __( 'Contact form embed code' , 'layerswp' ),
+											'value' => ( isset( $contact_form ) ) ? $contact_form : NULL ,
+											'class' => 'layers-textarea'
+										)
+									); ?>
+									<small class="layers-small-note">
+										<?php _e( sprintf( 'Need to create a contact form? Try <a href="$1%s" target="ejejcsingle">Gravity Forms</a>', 'https://www.e-junkie.com/ecom/gb.php?cl=54585&c=ib&aff=221037' ) , 'layerswp' ); ?>
+									</small>
+								</p>
+							</div>
 						</div>
-					</div>
-
 				</section>
 			</div>
 

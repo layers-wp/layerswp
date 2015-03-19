@@ -1,12 +1,16 @@
 # Layers Changelog
 
 ## 1.0.5
-### ??
+### 19 March 2015
 
-??
+Bug fixes and language additions
+
 * **Fix** - When unchecking all post meta display, all of the meta would actually show instead
 * **Enhancement** - Added new dropdown to customizer so that users can easily navigate back to dashboard, create new page and preview page
-* **Enhancement** - Added Chinese, Turkish and German translation files
+* **Enhancement** - Added Chinese translation files
+* **Enhancement** - Added Turkish translation files
+* **Enhancement** - Added German translation files
+* **Enhancement** - Added Spanish translation files
 * **Fix** - When adding a single top menu, the opposite side may use a fallback forcing users to create a blank menu for the opposite side
 * **Fix** - Added license information to swiper.js
 * **Fix** - Spacing issue when right sidebar is on in WooCommerce pages
@@ -16,7 +20,7 @@
 * **Fix** - Fixed big gap appearing above a sticky header when you're logged in on a mobile phone
 * **Tweak** - Text change 'Editing widget content' slide
 * **Tweak** - Removed unused WooCommerce CSS and placed them in new pro woo extension
-* **Tweak** - Don't layers_inline_style the custom-css when in customizer preview
+* **Tweak** - get_theme_mod( 'custom-css' ); no longer uses layers_inline_style, this is in preperation of PostMessage support
 
 ## 1.0.4
 ### 02 March 2015

@@ -707,6 +707,12 @@ class Layers_Design_Controller {
                 'id' => $this->widget['id'] . '-advanced-margin',
                 'value' => ( isset( $this->values['advanced']['margin'] ) ) ? $this->values['advanced']['margin'] : NULL
             ),
+            'widget-id' => array(
+                'type' => 'text',
+                'label' => __( 'Widget Anchor ID', 'layerswp' ),
+                'disabled' => TRUE,
+                'value' => '#'  . str_ireplace( '-design' , '', $this->widget['id'] )
+            )
         );
 
         $this->render_control( $key, apply_filters( 'layerswp_advanced_component_args', $args, $key, $this->type, $this->widget, $this->values ) );

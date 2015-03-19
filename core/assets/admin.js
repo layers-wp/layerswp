@@ -315,22 +315,23 @@ jQuery(function($) {
 	/**
 	* 7 - Design Controller toggles
 	*/
-	$( document ).on( 'click', '.widget-inside', function(e) {
+	$( document ).on( 'click', function(e) {
 		var eventTarget = $(e.target);
 		// close any pop-ups that arent the target of the current click
-		$('.layers-visuals-item.layers-active' ).not( eventTarget.closest('.layers-visuals-item') ).removeClass( 'layers-active' );
+		$('.widget .layers-visuals-item.layers-active' ).not( eventTarget.closest('.layers-visuals-item') ).removeClass( 'layers-active' );
 	});
 
-	$( document ).on( 'click' , '.widget .layers-visuals-wrapper li.layers-visuals-item a.layers-icon-wrapper' , function(e){
+	$( document ).on( 'click' , '.widget ul.layers-visuals-wrapper > li.layers-visuals-item > a.layers-icon-wrapper' , function(e){
 		e.preventDefault();
+		
 		// "Hi Mom"
 		$that = $(this);
-
-		// Close siblings
-		$(this).closest( '.layers-visuals-wrapper' ).find( '.layers-visuals-item.layers-active' ).not( $that.parent() ).removeClass( 'layers-active' );
-
+		
+		// Close Siblings
+		$that.parent( 'li.layers-visuals-item' ).siblings().not( $that.parent() ).removeClass( 'layers-active' );
+		
 		// Toggle active state
-		$that.parent().toggleClass( 'layers-active' );
+		$that.parent( 'li.layers-visuals-item' ).toggleClass( 'layers-active' );
 	});
 
 	$( document ).on( 'click' , '.widget .layers-visuals-wrapper li.layers-visuals-item label.layers-icon-wrapper' , function(e){

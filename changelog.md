@@ -21,12 +21,12 @@ Bug fixes and language additions
 * **Fix** - Dots from payment methods in Woo checkout page have been removed
 * **Fix** - Grouped product styling in WooCommerce has been fixed
 * **Fix** - The large gap appearing above a sticky header when you're logged in on a mobile phone no longer appears
-* **Fix** - Selecting visual selectors or design bar sub menus inside widgets will deselect visual active states of the controls
+* **Fix** - Fixed when clicking any widget design bar sub menu would erroneously deselect active states of all the controls visual selectors
 * **Tweak** - Text change 'Editing widget content' slide
 * **Tweak** - Removed unused WooCommerce CSS and placed them in new pro woo extension
 * **Tweak** - get_theme_mod( 'custom-css' ); no longer uses layers_inline_style, this is in preparation of PostMessage support
 * **Tweak** - Clicking anywhere on the page will close any open design bar sub menus
-* **Tweak** - Stop persistent Layers page filtering in page list, so that choosing all would only show all Layers pages
+* **Tweak** - Stop persistent Layers page filtering in page list, choosing all would confusingly show only Layers pages
 
 ## 1.0.4
 ### 02 March 2015

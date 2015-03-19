@@ -1,5 +1,12 @@
 # Layers Changelog
 
+## 1.?.?
+### ?? ???? 2015
+
+??
+
+* **Tweak** - Moved 'layers-custom-styles' enqueue to it's own action in the footer to make sure it loads last
+
 ## 1.0.5
 ### 19 March 2015
 

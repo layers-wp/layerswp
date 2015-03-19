@@ -598,7 +598,7 @@ div[id*='layers-widget'] .spinner{
 /*---------------------------*/
 /*- FORM ELEMENTS -----------*/
 .layers-form-item{
-	clear: left;
+    clear: left;
     padding: 0;
     margin: 0 0 15px;
 }
@@ -645,7 +645,7 @@ div[id*='layers-widget'] .spinner{
 .layers-form-item input[type="password"],
 .layers-form-item input[type="link"],
 .layers-form-item textarea {
-	display: block;
+    display: block;
     width: 100%;
     padding: 8px;
     margin: 0;

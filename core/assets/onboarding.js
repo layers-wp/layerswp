@@ -51,15 +51,18 @@ jQuery(function($) {
         // "Hi Mom"
         $that = $(this);
 
-        $form = $that.closest( '.layers-onboard-slide' );
+        if( $that.hasClass( 'disable' ) ) return;
 
-        $progress_indicator = $form.find( '.layers-save-progress' );
-        $progress_indicator_message = $progress_indicator.data( 'busy-message' )
-        $progress_indicator.text( $progress_indicator_message ).hide().removeClass( 'layers-hide' ).fadeIn(150);
+        $form = $that.closest( '.layers-onboard-slide' );
 
         $action = $form.find( 'input[name="action"]' ).val();
 
         if( 'layers_select_preset' == $action ) {
+
+            $progress_indicator = $form.find( '.layers-save-progress' );
+            $progress_indicator_message = $progress_indicator.data( 'busy-message' );
+
+            $that.text( $progress_indicator_message ).attr( 'disabled' , 'disabled' ).addClass( 'disable' );
 
             $id = $( 'input[name="layes-preset-layout"]:checked' ).val();
 
@@ -83,13 +86,17 @@ jQuery(function($) {
 
                     $results = $.parseJSON( data );
 
-                    $form.find( '.layers-save-progress' ).text( onboardingi18n.step_done_message ).fadeOut(300);
+                    $that.text( onboardingi18n.step_done_message );
 
                     setTimeout( function(){ window.location.assign( $results.customizer_location ); }, 350 );
                 }
             );
 
         } else if( undefined !== $action ) {
+
+            $progress_indicator = $form.find( '.layers-save-progress' );
+            $progress_indicator_message = $progress_indicator.data( 'busy-message' );
+            $progress_indicator.text( $progress_indicator_message ).hide().removeClass( 'layers-hide' ).fadeIn(150);
 
             $data = $form.find( 'input, textarea, select' ).serialize();
 

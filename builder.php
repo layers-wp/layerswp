@@ -1,6 +1,6 @@
 <?php
 /**
- * Template Name: Page Builder
+ * Template Name: Layers Template
  *
  * This template is used for displaying the Layers page builder
  *

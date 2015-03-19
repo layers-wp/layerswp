@@ -5,20 +5,22 @@
 
 Bug fixes and language additions
 
-* **Enhancement** - Added the ability to bypass the built-in Customizer sanitization.
-* **Fix** - When unchecking all post meta display, all of the meta would actually show instead
+* **Tweak** - Changed the "Page Builder" page template to "Layers Template"
+* **Enhancement** - Added the ability to bypass the built-in Customizer sanitization
+* **Fix** - Unchecking all post meta display not longer causes all of the options to actually display
 * **Enhancement** - Added new dropdown to customizer so that users can easily navigate back to dashboard, create new page and preview page
+* **Enhancement** - Added the "range" option to the Form->input() function
 * **Enhancement** - Added Chinese translation files
 * **Enhancement** - Added Turkish translation files
 * **Enhancement** - Added German translation files
 * **Enhancement** - Added Spanish translation files
-* **Fix** - When adding a single top menu, the opposite side may use a fallback forcing users to create a blank menu for the opposite side
+* **Fix** - When adding a single top menu, the opposite menu no long defaults to show pages
 * **Fix** - Added license information to swiper.js
-* **Fix** - Spacing issue when right sidebar is on in WooCommerce pages
+* **Fix** - WooCommerce pages no longer have a spacing issue when right sidebar is turned on
 * **Fix** - .sub-menu width in off-canvas menu has been fixed to avoid text-wrapping
-* **Fix** - Removed dots from payment methods in woo checkout page
-* **Fix** - Fixed grouped product styling in WooCommerce
-* **Fix** - Fixed big gap appearing above a sticky header when you're logged in on a mobile phone
+* **Fix** - Dots from payment methods in Woo checkout page have been removed
+* **Fix** - Grouped product styling in WooCommerce has been fixed
+* **Fix** - The large gap appearing above a sticky header when you're logged in on a mobile phone no longer appears
 * **Fix** - Selecting visual selectors or design bar sub menus inside widgets will deselect visual active states of the controls
 * **Tweak** - Text change 'Editing widget content' slide
 * **Tweak** - Removed unused WooCommerce CSS and placed them in new pro woo extension

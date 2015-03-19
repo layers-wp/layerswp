@@ -598,7 +598,7 @@ div[id*='layers-widget'] .spinner{
 /*---------------------------*/
 /*- FORM ELEMENTS -----------*/
 .layers-form-item{
-	clear: left;
+    clear: left;
     padding: 0;
     margin: 0 0 15px;
 }
@@ -645,7 +645,7 @@ div[id*='layers-widget'] .spinner{
 .layers-form-item input[type="password"],
 .layers-form-item input[type="link"],
 .layers-form-item textarea {
-	display: block;
+    display: block;
     width: 100%;
     padding: 8px;
     margin: 0;
@@ -2064,22 +2064,6 @@ input[type=radio]:checked + .layers-settings-icon span{
 .layers-area-wrapper{
     margin-left: -20px;
 }
-.update-nag{
-    display: block;
-    position: relative;
-    z-index: 2;
-    max-width: 1000px;
-    margin-left: auto;
-    margin-right: auto;
-}
-.update-nag + .layers-area-wrapper{
-    margin-top: -68px;
-    position: relative;
-    z-index: 1;
-}
-.update-nag + .layers-area-wrapper .layers-page-title{
-    padding-top: 128px;
-}
 .layers-page-title{
     background: #F1F1F1;
 }
@@ -2321,6 +2305,7 @@ input[type=radio]:checked + .layers-settings-icon span{
         .layers-button.disable {
             background: #ADADAD;
             border-color: #9F9F9F;
+            color: #fff;
         }
 
         /*-----------------------*/

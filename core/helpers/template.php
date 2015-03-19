@@ -367,7 +367,7 @@ add_action( 'body_class', 'layers_body_class' );
  */
 if( !function_exists( 'layers_apply_customizer_styles' ) ) {
 	function layers_apply_customizer_styles() {
-
+		
 		// Custom CSS
 		wp_enqueue_style(
 			'layers-custom-styles',

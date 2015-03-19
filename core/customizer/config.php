@@ -164,7 +164,8 @@ class Layers_Customizer_Config {
 		$controls['css'] = array(
 								'custom-css' => array(
 									'type'     => 'layers-code',
-									'placeholder'	=> ".classname {\n\tbackground: #333;\n}"
+									'placeholder'	=> ".classname {\n\tbackground: #333;\n}",
+									'sanitize_callback' => FALSE
 								),
 							); // css
 

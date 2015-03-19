@@ -354,7 +354,13 @@ class Layers_Customizer_Regsitrar {
 	function add_sanitize_callback( $control_data = FALSE ){
 
 		// If there's an override, use the override rather than the automatic sanitization
-		if( isset( $control_data[ 'sanitize_callback' ] ) ) return $control_data[ 'sanitize_callback' ];
+		if( isset( $control_data[ 'sanitize_callback' ] ) ) {
+			if( FALSE == $control_data[ 'sanitize_callback' ] ) {
+				return FALSE;
+			} else {
+				return $control_data[ 'sanitize_callback' ];
+			}
+		}
 
 		switch( $control_data[ 'type' ] ) {
 			case 'layers-color' :

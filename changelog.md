@@ -5,6 +5,7 @@
 
 Bug fixes and language additions
 
+* **Enhancement** - Added the ability to bypass the built-in Customizer sanitization.
 * **Fix** - When unchecking all post meta display, all of the meta would actually show instead
 * **Enhancement** - Added new dropdown to customizer so that users can easily navigate back to dashboard, create new page and preview page
 * **Enhancement** - Added Chinese translation files

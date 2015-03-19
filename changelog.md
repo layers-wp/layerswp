@@ -14,9 +14,11 @@
 * **Fix** - Removed dots from payment methods in woo checkout page
 * **Fix** - Fixed grouped product styling in WooCommerce
 * **Fix** - Fixed big gap appearing above a sticky header when you're logged in on a mobile phone
+* **Fix** - Selecting visual selectors or design bar sub menus inside widgets will deselect visual active states of the controls
 * **Tweak** - Text change 'Editing widget content' slide
 * **Tweak** - Removed unused WooCommerce CSS and placed them in new pro woo extension
 * **Tweak** - Don't layers_inline_style the custom-css when in customizer preview
+* **Tweak** - Clicking anywhere on the page will close any open design bar sub menus
 
 ## 1.0.4
 ### 02 March 2015

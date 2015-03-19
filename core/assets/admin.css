@@ -2064,22 +2064,6 @@ input[type=radio]:checked + .layers-settings-icon span{
 .layers-area-wrapper{
     margin-left: -20px;
 }
-.update-nag{
-    display: block;
-    position: relative;
-    z-index: 2;
-    max-width: 1000px;
-    margin-left: auto;
-    margin-right: auto;
-}
-.update-nag + .layers-area-wrapper{
-    margin-top: -68px;
-    position: relative;
-    z-index: 1;
-}
-.update-nag + .layers-area-wrapper .layers-page-title{
-    padding-top: 128px;
-}
 .layers-page-title{
     background: #F1F1F1;
 }
@@ -2321,6 +2305,7 @@ input[type=radio]:checked + .layers-settings-icon span{
         .layers-button.disable {
             background: #ADADAD;
             border-color: #9F9F9F;
+            color: #fff;
         }
 
         /*-----------------------*/

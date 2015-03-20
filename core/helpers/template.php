@@ -868,8 +868,6 @@ if( !function_exists( 'layers_inline_styles' ) ) {
 		}
 
 		$layers_inline_css .= $inline_css;
-
-		return apply_filters( 'layers_inline_css', $layers_inline_css );
 	}
 } // layers_inline_styles
 
@@ -879,6 +877,8 @@ if( !function_exists( 'layers_inline_styles' ) ) {
 if( !function_exists( 'layers_apply_inline_styles' ) ) {
 	function layers_apply_inline_styles(){
 		global $layers_inline_css;
+		
+		$layers_inline_css = apply_filters( 'layers_inline_css', $layers_inline_css );
 
 		wp_enqueue_style(
 				LAYERS_THEME_SLUG . '-inline-styles',

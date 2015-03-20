@@ -841,6 +841,9 @@ if( !function_exists( 'layers_inline_styles' ) ) {
 			break;
 
 		}
+		
+		// Bail if no css is generated
+		if ( '' == trim( $css ) ) return false;
 
 		$inline_css = '';
 

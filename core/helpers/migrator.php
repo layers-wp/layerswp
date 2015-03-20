@@ -30,15 +30,6 @@ class Layers_Widget_Migrator {
 		// Add current builder pages as presets
 		add_filter( 'layers_preset_layouts' , array( $this , 'add_builder_preset_layouts') );
 
-		// Add allowance for JSON to be added via the media uploader
-		add_filter( 'upload_mimes', array( $this, 'allow_json_uploads' ), 1, 1);
-	}
-
-	function allow_json_uploads( $mime_types ){
-		//Creating a new array will reset the allowed filetypes
-		$mime_types[ 'json|JSON' ] = 'application/json';
-
-		return $mime_types;
 	}
 
 	/**

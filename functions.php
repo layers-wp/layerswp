@@ -478,3 +478,13 @@ if( !function_exists( 'layers_excerpt_class' ) ) {
 } // layers_excerpt_class
 add_filter( "the_excerpt", "layers_excerpt_class" );
 add_filter( "get_the_excerpt", "layers_excerpt_class" );
+
+/**
+ * JSON Support
+ */
+function add_json_support( $mime_types ){
+    $mime_types['json'] = 'application/json';
+    return $mime_types;
+}
+
+add_filter( 'upload_mimes', 'json_support', 1, 1 );

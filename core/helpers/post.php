@@ -308,7 +308,7 @@ add_filter( 'pre_get_posts', 'layers_filter_admin_pages' );
 if ( ! function_exists( 'layers_filter_admin_pages_views' ) ) {
     function layers_filter_admin_pages_views( $views ) {
         global $typenow;
-        
+
         if ( 'page' == $typenow && isset( $_GET['filter'] ) && 'layers' == $_GET['filter'] ) {
             foreach ($views as $view_key => $view_value ) {
                 $query_arg = '&filter=layers';
@@ -400,7 +400,7 @@ if( !function_exists( 'layers_post_featured_media' ) ) {
             $output .= $featured_media;
         }
 
-        if( !isset( $post_meta[ 'video-url' ] ) && ( !is_single() && !is_page_template( 'template-blog.php' ) ) ){
+        if( !isset( $hide_href ) && !isset( $post_meta[ 'video-url' ] ) && ( !is_single() && !is_page_template( 'template-blog.php' ) ) ){
             $output = '<a href="' .get_permalink( $postid ) . '">' . $output . '</a>';
         }
 

@@ -1488,7 +1488,7 @@ input[type=text].layers-color-selector.wp-color-picker{
         overflow: hidden;
         padding: 10px;
         clear: both;
-        border-top: 1px solid #DDD;
+        border-top: 1px solid #E5E5E5;
         background: #F5F5F5;
     }
 

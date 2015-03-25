@@ -53,6 +53,13 @@ $api = new Layers_API(); ?>
 
 				<div class="layers-column layers-span-4">
 
+					<div class="layers-status-notice uptodate">
+						<h5 class="layers-status-notice-heading">
+							<i class="icon-tick"></i>
+							<span><?php _e( 'Congrats your site is setup!' , 'layerswp' ); ?></span>
+						</h5>
+					</div>
+
 					<div class="layers-panel">
 						<div class="layers-panel-title">
 							<h4 class="layers-heading"><?php _e( 'Complete Your Site Setup' , 'layerswp' ); ?></h4>

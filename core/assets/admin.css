@@ -295,6 +295,11 @@ div[id*='layers-widget'] .spinner{
 .layers-well{
     background: #fff;
 }
+.layers-well-alt{
+    background: #f5f5f5;
+    border-top: 1px solid #e5e5e5;
+}
+
 .layers-panel{
     margin-bottom: 20px;
     background: #fff;
@@ -1237,6 +1242,13 @@ input[type=text].layers-color-selector.wp-color-picker{
     font-size: 20px;
     text-indent: 0;
 }
+.layers-heading{
+    margin-top: 0;
+    padding-top: 0;
+}
+.layers-excerpt{
+    color: #777;
+}
 
 .layers-section-title{
     margin-bottom: 30px;
@@ -1255,7 +1267,6 @@ input[type=text].layers-color-selector.wp-color-picker{
     padding: 0;
     font-size: 20px;
     line-height: 30px;
-    color: #777;
 }
 .layers-section-title .layers-excerpt p{
     font-size: 20px;
@@ -1312,7 +1323,7 @@ input[type=text].layers-color-selector.wp-color-picker{
         font-weight: 700;
     }
     .layers-section-title.layers-tiny .layers-excerpt{
-        margin-top: 0px !important;
+        margin-top: 5px !important;
         font-size: 14px;
         line-height: 24px;
         font-weight: normal;
@@ -1325,13 +1336,37 @@ input[type=text].layers-color-selector.wp-color-picker{
 
         /*-------------------*/
         /*- ALIGNMENTS ------*/
-        .layers-section-title.layers-text-center{text-align: center;}
-        .layers-section-title.layers-text-center .layers-excerpt{margin-left: auto; margin-right: auto;}
+        .layers-section-title.layers-text-center{
+            text-align: center;
+        }
+        .layers-section-title.layers-text-center .layers-excerpt{
+            margin-left: auto;
+            margin-right: auto;
+        }
 
-    .invert.layers-section-title .layers-heading{color: #fff;}
-    .invert.layers-section-title .layers-excerpt{color: rgba(255, 255, 255, 0.95);}
+    .invert.layers-section-title .layers-heading{
+        color: #fff;
+    }
+    .invert.layers-section-title .layers-excerpt{
+        color: rgba(255, 255, 255, 0.95);
+    }
 
+/*---------------------------*/
+/*- COPY --------------------*/
 
+    .layers-copy{
+        color: #656565;
+    }
+    .layers-copy p{
+        padding: 0;
+        margin: 0 0 16px;
+    }
+    .layers-panel .layers-copy{
+        padding: 20px;
+    }
+    .layers-panel .layers-section-title + .layers-copy{
+        padding-top: 0;
+    }
 
 /*---------------------------*/
 /*- BUTTONS -----------------*/
@@ -1677,18 +1712,69 @@ input[type=text].layers-color-selector.wp-color-picker{
 
 
 /*---------------------------*/
-/*- ICON STYLING ------------*/
-.layers-success{
-    display: inline-block;
-    padding: 5px 10px;
-    background: #fff;
-    border: 1px solid #A3C567;
-    border-radius: 3px;
-    font-weight: bold;
-    color: #A3C567;
-    border-left:  4px solid #A3C567;
-}
+/*- NOTICE STYLING ----------*/
 
+    .layers-success{
+        display: inline-block;
+        padding: 5px 10px;
+        background: #fff;
+        border: 1px solid #A3C567;
+        font-weight: bold;
+        color: #A3C567;
+        border-left:  4px solid #A3C567;
+    }
+
+    /*-----------------------*/
+    /*- STATUS NOTICE -------*/
+    .layers-status-notice{
+        display: block;
+        margin-bottom: 10px;
+        border: 1px solid;
+        color: #fff;
+        font-weight: bold;
+        overflow: hidden;
+        text-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+        line-height: 32px;
+    }
+    a.layers-status-notice:hover{
+        color: #fff;
+        text-decoration: none;
+    }
+    a.layers-status-notice:hover span{
+        text-decoration: underline;
+    }
+    .layers-status-notice [class^="icon-"],
+    .layers-status-notice [class*=" icon-"]{
+        float: left;
+        width: 32px;
+        border-right: 1px solid rgba(0, 0, 0, 0.2);
+        text-align: center;
+        font-size: 14px;
+        line-height: 32px;
+    }
+    .layers-status-notice-heading{
+        margin: 0;
+        padding: 0;
+        font-size: 12px;
+        font-weight: bold;
+        line-height: 12px;
+    }
+    .layers-status-notice-heading span{
+        float: left;
+        padding: 10px 0 10px 8px;
+        overflow: hidden;
+    }
+
+        /*-------------------*/
+        /*- STATUS COLORS ---*/
+        .uptodate{
+            background: #A3C567;
+            border-color: #93B25E;
+        }
+        .outdated{
+            background: #E1574C;
+            border-color: #B0453D;
+        }
 
 /*---------------------------*/
 /*- ICON STYLING ------------*/
@@ -2144,16 +2230,47 @@ input[type=radio]:checked + .layers-settings-icon span{
             color: #333;
             border-color: #0073A6;
         }
+        .layers-dashboard-nav .layers-get-updater{
+            padding: 4px 10px;
+            margin: 10px 0;
+            border: none;
+            background: #2EA2CC;
+            border: 1px solid #0074A2;
+            border-radius: 3px;
+            color: #fff;
+            box-shadow: 0px 1px 0px rgba(255, 255, 255, 0.4) inset, 0px 1px 0px rgba(0, 0, 0, 0.08);
+        }
+        .layers-dashboard-nav .layers-get-updater:hover{
+            background: none repeat scroll 0% 0% #1E8CBE;
+            color: #fff;
+        }
+
+        /*-----------------------*/
+        /*- DASHBOARD SEARCH ----*/
+        .layers-help-search{
+            float: right;
+            margin: 10px 0;
+        }
+        .layers-help-search input[type="search"]{
+            margin: 0px;
+            padding: 3px 5px;
+            max-width: 280px;
+            width: 100%;
+            font-size: 16px;
+            font-weight: 300;
+            line-height: 1.5;
+        }
 
         /*-----------------------*/
         /*- PANEL ---------------*/
         .layers-panel-title{
             display: block;
+            position: relative;
             margin: 0;
             padding: 10px;
             background: #fff;
             border-bottom: 1px solid #e5e5e5;
-            color: #555;
+            color: #222;
         }
         .layers-panel-title h3,
         .layers-panel-title h4{
@@ -2166,6 +2283,17 @@ input[type=radio]:checked + .layers-settings-icon span{
             margin: 5px 0 0;
             color: #777;
         }
+        .layers-panel-title a{
+            color: #222;
+            text-decoration: none;
+        }
+        .layers-panel-title a:hover{
+            color: #0074A2;
+        }
+        .layers-panel img{
+            display: block;
+            max-width: 100%;
+        }
 
         /*-----------------------*/
         /*- PAGE LIST -----------*/
@@ -2175,7 +2303,7 @@ input[type=radio]:checked + .layers-settings-icon span{
         }
         .layers-content .layers-list{}
         .layers-list li{
-            padding: 15px 10px;
+            padding: 10px;
             margin: 0;
             border-bottom: 1px solid #e5e5e5;
         }
@@ -2201,7 +2329,25 @@ input[type=radio]:checked + .layers-settings-icon span{
             font-weight: bold;
             text-decoration: none;
         }
-
+        .layers-page-edit-links{
+            opacity: 0;
+            visibility: hidden;
+            float: right;
+        }
+        .layers-list li:hover .layers-page-edit-links{
+            opacity: 1;
+            visibility: visible;
+        }
+        .layers-page-edit-links{
+            color: #ccc;
+        }
+        .layers-page-edit-links a{
+            color: #999;
+            text-decoration: none;
+        }
+        .layers-page-edit-links a:hover{
+            color: #2EA2CC;
+        }
 
     /*---------------------------*/
     /*- LAYERS ONBOARDING -------*/

@@ -1,0 +1,2070 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Layers v1.0.6\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2015-03-25 09:25:14+0000\n"
+"Last-Translator: calyx <sean@obox.co.za>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: CSL v1.x\n"
+"X-Poedit-Language: Japanese\n"
+"X-Poedit-Country: JAPAN\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-KeywordsList: __;_e;__ngettext:1,2;_n:1,2;__ngettext_noop:1,2;_n_noop:1,2;_c,_nc:4c,1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;_nx_noop:4c,1,2;\n"
+"X-Poedit-Basepath: ../\n"
+"X-Poedit-Bookmarks: \n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Textdomain-Support: yes"
+
+#: comments.php:6
+#, php-format
+#@ layerswp
+msgid "One Comment on &ldquo;%2$s&rdquo;"
+msgid_plural "%1$s Comments on &ldquo;%2$s&rdquo;"
+msgstr[0] ""
+
+#: comments.php:19
+#@ layerswp
+msgid "&larr;"
+msgstr "&larr;"
+
+#: comments.php:20
+#@ layerswp
+msgid "&rarr;"
+msgstr "&rarr;"
+
+#: comments.php:29
+#@ layerswp
+msgid "Comments are closed."
+msgstr "コメント欄を非常にする"
+
+#: core/customizer/config.php:22
+#@ layerswp
+msgid "Branding"
+msgstr "ブランディング"
+
+#: core/customizer/config.php:26
+#@ layerswp
+msgid "Site Settings"
+msgstr "サイト設定"
+
+#: core/customizer/config.php:27
+#@ layerswp
+msgid "Control your content's default layout."
+msgstr "コンテンツのデフォルトレイアウトを変更"
+
+#: core/customizer/config.php:31
+#@ layerswp
+msgid "Header"
+msgstr "ヘッダー"
+
+#: core/customizer/config.php:32
+#@ layerswp
+msgid "Control your header's logo, layout, colors and font."
+msgstr "ヘッダーのロゴ・レイアウト・カラー・フォントを変更"
+
+#: core/customizer/config.php:36
+#@ layerswp
+msgid "Footer"
+msgstr "フッター"
+
+#: core/customizer/config.php:37
+#@ layerswp
+msgid "Control your footer's custom text, widget areas and layout."
+msgstr "フッターのカスタムテキスト・ウィジェット・エリア・レイアウトを変更"
+
+#: core/customizer/config.php:41
+#@ layerswp
+msgid "WooCommerce"
+msgstr "WooCommerce"
+
+#: core/customizer/config.php:58
+#@ layerswp
+msgid "Logo &amp; Title"
+msgstr "ロゴ &amp; タイトル"
+
+#: core/customizer/config.php:63
+#: core/customizer/config.php:257
+#: core/customizer/config.php:385
+#: core/helpers/forms.php:341
+#: core/helpers/forms.php:416
+#@ layerswp
+msgid "Background Color"
+msgstr "背景色"
+
+#: core/customizer/config.php:90
+#@ layerswp
+msgid "Navigation"
+msgstr "ナビゲーション"
+
+#: core/customizer/config.php:91
+#@ layerswp
+msgid "First create a menu then come back here to place it."
+msgstr "メニューを作成後、こちらで再び再設定してください"
+
+#: core/customizer/config.php:96
+#: core/customizer/config.php:112
+#: core/customizer/config.php:120
+#: core/helpers/design-bar.php:214
+#: core/widgets/modules/slider.php:339
+#@ layerswp
+msgid "Layout"
+msgstr "レイアウト"
+
+#: core/customizer/config.php:100
+#: core/customizer/config.php:136
+#@ layerswp
+msgid "Sidebars"
+msgstr "サイドバー"
+
+#: core/customizer/config.php:104
+#@ layerswp
+msgid "Fonts"
+msgstr "フォント"
+
+#: core/customizer/config.php:109
+#@ layerswp
+msgid "CSS"
+msgstr "CSS"
+
+#: core/customizer/config.php:116
+#: core/customizer/config.php:132
+#@ layerswp
+msgid "Additional Scripts"
+msgstr "追加スクリプト"
+
+#: core/customizer/config.php:124
+#@ layerswp
+msgid "Customization"
+msgstr "カスタム"
+
+#: core/customizer/config.php:128
+#: core/customizer/config.php:359
+#: core/helpers/design-bar.php:530
+#@ layerswp
+msgid "Text"
+msgstr "文字"
+
+#: core/customizer/config.php:156
+#@ layerswp
+msgid "Create Menu"
+msgstr "メニューを作成"
+
+#: core/customizer/config.php:176
+#@ layerswp
+msgid "Typekit ID"
+msgstr "Typekit ID"
+
+#: core/customizer/config.php:177
+#, php-format
+#@ layerswp
+msgid "For more information on obtaining your Typekit ID, see <a href=\"%s\" target=\"_blank\">follow this link</a>."
+msgstr "Typekit IDを取得するには、こちらをご覧ください <a href=\"%s\" target=\"_blank\">follow this link</a>."
+
+#: core/customizer/config.php:184
+#@ layerswp
+msgid "Body"
+msgstr "本文"
+
+#: core/customizer/config.php:193
+#@ layerswp
+msgid "Headings"
+msgstr "見出し"
+
+#: core/customizer/config.php:202
+#@ layerswp
+msgid "Buttons"
+msgstr "ボタン"
+
+#: core/customizer/config.php:212
+#@ layerswp
+msgid "Header Width"
+msgstr "ヘッダー幅"
+
+#: core/customizer/config.php:215
+#: core/customizer/config.php:324
+#: core/helpers/design-bar.php:227
+#: core/widgets/modules/slider.php:349
+#@ layerswp
+msgid "Boxed"
+msgstr "背景あり"
+
+#: core/customizer/config.php:216
+#: core/customizer/config.php:325
+#: core/helpers/design-bar.php:228
+#: core/widgets/modules/slider.php:350
+#@ layerswp
+msgid "Full Width"
+msgstr "全画面表示"
+
+#: core/customizer/config.php:224
+#@ layerswp
+msgid "Logo & Menu Position"
+msgstr "ロゴ & メニュー位置"
+
+#: core/customizer/config.php:227
+#@ layerswp
+msgid "Logo Left"
+msgstr "ロゴ左"
+
+#: core/customizer/config.php:228
+#@ layerswp
+msgid "Logo Right"
+msgstr "ロゴ右"
+
+#: core/customizer/config.php:229
+#@ layerswp
+msgid "Logo Center Top"
+msgstr "ロゴ中央上"
+
+#: core/customizer/config.php:230
+#@ layerswp
+msgid "Logo Top"
+msgstr "ロゴ上"
+
+#: core/customizer/config.php:231
+#@ layerswp
+msgid "Logo Center"
+msgstr "ロゴ中央"
+
+#: core/customizer/config.php:239
+#@ layerswp
+msgid "Header Position"
+msgstr "ヘッダー位置"
+
+#: core/customizer/config.php:243
+#@ layerswp
+msgid "Sticky"
+msgstr "この投稿を先頭に固定表示"
+
+#: core/customizer/config.php:249
+#: core/widgets/modules/post.php:332
+#@ layerswp
+msgid "Overlay"
+msgstr "オーバーレイ"
+
+#: core/customizer/config.php:266
+#@ layerswp
+msgid "Google Analytics ID"
+msgstr "グーグルアナリティクスID"
+
+#: core/customizer/config.php:267
+#@ layerswp
+msgid "Enter in your Google Analytics ID to enable website traffic reporting. eg. \"UA-xxxxxx-xx"
+msgstr "グーグルアナリティクスIDを入力して、ウェブサイトのトラフィックレポートを表示する。例: \"UA-xxxxxx-xx"
+
+#: core/customizer/config.php:275
+#: core/customizer/config.php:432
+#@ layerswp
+msgid "Custom Scripts"
+msgstr "カスタムスクリプト"
+
+#: core/customizer/config.php:276
+#@ layerswp
+msgid "Enter in any custom script to include in your site's header. Be sure to use double quotes for strings."
+msgstr "ウェブサイトのヘッダーに組み込むカスタムスクリプトを入力して下さい。文字列にはダブルクオーテーションを使用してください。"
+
+#: core/customizer/config.php:284
+#@ layerswp
+msgid "Single Post Sidebar(s)"
+msgstr "個別投稿サイドバー"
+
+#: core/customizer/config.php:285
+#@ layerswp
+msgid "This option affects your single post pages."
+msgstr "本オプションは個別投稿ページに変更を加えます。"
+
+#: core/customizer/config.php:289
+#: core/customizer/config.php:307
+#: core/customizer/config.php:448
+#: core/customizer/config.php:466
+#@ layerswp
+msgid "Display Left Sidebar"
+msgstr "左サイドバーを表示"
+
+#: core/customizer/config.php:294
+#: core/customizer/config.php:312
+#: core/customizer/config.php:453
+#: core/customizer/config.php:471
+#@ layerswp
+msgid "Display Right Sidebar"
+msgstr "右サイドバーを表示"
+
+#: core/customizer/config.php:302
+#@ layerswp
+msgid "Post List Sidebar(s)"
+msgstr "投稿リストサイドバー"
+
+#: core/customizer/config.php:303
+#@ layerswp
+msgid "This option affects your category, tag, author and search pages."
+msgstr "本オプションはカテゴリー・タグ・執筆者・検索ページに変更を加えます。"
+
+#: core/customizer/config.php:333
+#@ layerswp
+msgid "Widget Areas"
+msgstr "ウィジェットエリア"
+
+#: core/customizer/config.php:337
+#: core/helpers/design-bar.php:459
+#: core/helpers/design-bar.php:504
+#@ layerswp
+msgid "None"
+msgstr "なし"
+
+#: core/customizer/config.php:338
+#@ layerswp
+msgid "1"
+msgstr "1"
+
+#: core/customizer/config.php:339
+#@ layerswp
+msgid "2"
+msgstr "2"
+
+#: core/customizer/config.php:340
+#@ layerswp
+msgid "3"
+msgstr "3"
+
+#: core/customizer/config.php:341
+#@ layerswp
+msgid "4"
+msgstr "4"
+
+#: core/customizer/config.php:348
+#@ layerswp
+msgid "Support Layers"
+msgstr "Layersをサポート"
+
+#: core/customizer/config.php:349
+#@ layerswp
+msgid "Support Layers by displaying the Layers badge on your site."
+msgstr "あなたのサイト上にレイヤーズバッジ表示してサポートする"
+
+#: core/customizer/config.php:363
+#@ layerswp
+msgid "Text Color"
+msgstr "文字色"
+
+#: core/customizer/config.php:368
+#@ layerswp
+msgid "Link Color"
+msgstr "リンク色"
+
+#: core/customizer/config.php:376
+#: core/helpers/design-bar.php:593
+#@ layerswp
+msgid "Background"
+msgstr "背景"
+
+#: core/customizer/config.php:380
+#: core/helpers/design-bar.php:599
+#@ layerswp
+msgid "Background Image"
+msgstr "背景画像"
+
+#: core/customizer/config.php:391
+#@ layerswp
+msgid "Background Repeat"
+msgstr "背景画像をリピートする"
+
+#: core/customizer/config.php:394
+#: core/helpers/design-bar.php:619
+#@ layerswp
+msgid "No Repeat"
+msgstr "リピートしない"
+
+#: core/customizer/config.php:395
+#: core/helpers/design-bar.php:614
+#: core/helpers/design-bar.php:620
+#@ layerswp
+msgid "Repeat"
+msgstr "リピート"
+
+#: core/customizer/config.php:396
+#: core/helpers/design-bar.php:621
+#@ layerswp
+msgid "Repeat Horizontal"
+msgstr "横リピート"
+
+#: core/customizer/config.php:397
+#: core/helpers/design-bar.php:622
+#@ layerswp
+msgid "Repeat Vertical"
+msgstr "縦リピート"
+
+#: core/customizer/config.php:402
+#@ layerswp
+msgid "Background Position"
+msgstr "背景位置"
+
+#: core/customizer/config.php:405
+#: core/helpers/design-bar.php:360
+#: core/helpers/design-bar.php:545
+#: core/helpers/design-bar.php:632
+#@ layerswp
+msgid "Center"
+msgstr "中央"
+
+#: core/customizer/config.php:406
+#: core/helpers/design-bar.php:403
+#: core/helpers/design-bar.php:633
+#: core/helpers/forms.php:491
+#@ layerswp
+msgid "Top"
+msgstr "上"
+
+#: core/customizer/config.php:407
+#: core/helpers/design-bar.php:634
+#: core/helpers/forms.php:493
+#@ layerswp
+msgid "Bottom"
+msgstr "下"
+
+#: core/customizer/config.php:408
+#: core/helpers/design-bar.php:359
+#: core/helpers/design-bar.php:401
+#: core/helpers/design-bar.php:544
+#: core/helpers/design-bar.php:635
+#: core/helpers/forms.php:494
+#@ layerswp
+msgid "Left"
+msgstr "左"
+
+#: core/customizer/config.php:409
+#: core/helpers/design-bar.php:361
+#: core/helpers/design-bar.php:402
+#: core/helpers/design-bar.php:546
+#: core/helpers/design-bar.php:636
+#: core/helpers/forms.php:492
+#@ layerswp
+msgid "Right"
+msgstr "右"
+
+#: core/customizer/config.php:413
+#@ layerswp
+msgid "Background Stretch"
+msgstr "背景を全画面に表示する"
+
+#: core/customizer/config.php:423
+#@ layerswp
+msgid "Copyright Text"
+msgstr "コピーライト表示"
+
+#: core/customizer/config.php:433
+#@ layerswp
+msgid "Enter in any custom script to include in your site's footer. Be sure to use double quotes for strings."
+msgstr "サイトのフッターに組み込むカスタムスクリプトを入力してください。文字列にはダブルクオーテーションを使用してください。"
+
+#: core/customizer/config.php:443
+#@ layerswp
+msgid "Single Product Sidebar(s)"
+msgstr "商品詳細サイドバー"
+
+#: core/customizer/config.php:444
+#@ layerswp
+msgid "This option affects your single product pages."
+msgstr "本オプションは商品詳細ページに変更を加えます。"
+
+#: core/customizer/config.php:461
+#@ layerswp
+msgid "Product List Sidebar(s)"
+msgstr "商品リストサイドバー"
+
+#: core/customizer/config.php:462
+#@ layerswp
+msgid "This option affects your shop page, product category and product tag pages."
+msgstr "本オプションはショップページ・商品カテゴリー・商品タグページに変更を加えます。"
+
+#: core/customizer/controls/font.php:51
+#, php-format
+#@ layerswp
+msgid "<em>Click <a href=\"%1s\" target=\"_blank\">here</a> to see this font on Google Fonts.</em>"
+msgstr "<em>グーグルフォントを表示するにはこちらをクリックしてください。 <a href=\"%1s\" target=\"_blank\">here</a></em>"
+
+#: core/customizer/controls/select-images.php:36
+#@ layerswp
+msgid "Choose Background"
+msgstr "背景を選択"
+
+#: core/customizer/init.php:71
+#: core/helpers/post.php:338
+#: core/meta/init.php:183
+#: core/options-panel/partials/dashboard.php:39
+#@ layerswp
+msgid "Edit Layout"
+msgstr "レイアウトを編集"
+
+#: core/customizer/init.php:72
+#@ layerswp
+msgid "Use this area to add widgets to your page, use the (Layers) widgets for the Body section."
+msgstr "ページ上のこの範囲にウィジェットを設置し、本文箇所には（Layers）ウィジェットを使用する。"
+
+#: core/customizer/init.php:167
+#@ layerswp
+msgid "Builder Pages:"
+msgstr "ビルダーページ"
+
+#: core/customizer/init.php:190
+#: core/customizer/init.php:204
+#@ layerswp
+msgid "Layers Dashboard"
+msgstr "Layersダッシュボード"
+
+#: core/customizer/init.php:194
+#@ layerswp
+msgid "Preview this page"
+msgstr "このページをプレビュー表示する"
+
+#: core/customizer/init.php:199
+#@ layerswp
+msgid "Add new Layers page"
+msgstr "新規Layersページを追加"
+
+#: core/helpers/api.php:41
+#@ layerswp
+msgid "WooCommerce for Layers"
+msgstr "LayersにWooCommerceを使用する"
+
+#: core/helpers/api.php:42
+#@ layerswp
+msgid "Adds an advanced product widget, product slider and multiple page layouts."
+msgstr "アドバンスド商品ウィジェット・商品スライダー・複数ページレイアウトをアドオンする"
+
+#: core/helpers/api.php:48
+#@ layerswp
+msgid "Showcase for Layers"
+msgstr "Layers固定ページ"
+
+#: core/helpers/api.php:49
+#@ layerswp
+msgid "List your portfolio items with relevant meta such as client, web url and project role."
+msgstr "ポートフォリオアイテムをメタ関連にリスト化する。例: クライアント・URL・プロジェクト役割"
+
+#: core/helpers/custom-fonts.php:111
+#@ layerswp
+msgid "Default"
+msgstr "デフォルト"
+
+#: core/helpers/design-bar.php:254
+#: core/widgets/modules/content.php:315
+#@ layerswp
+msgid "List Style"
+msgstr "リストスタイル"
+
+#: core/helpers/design-bar.php:267
+#: core/widgets/modules/content.php:324
+#@ layerswp
+msgid "Grid"
+msgstr "グリッド"
+
+#: core/helpers/design-bar.php:268
+#@ layerswp
+msgid "List"
+msgstr "リスト"
+
+#: core/helpers/design-bar.php:269
+#: core/widgets/modules/content.php:325
+#@ layerswp
+msgid "Masonry"
+msgstr "タイル状"
+
+#: core/helpers/design-bar.php:295
+#: core/helpers/design-bar.php:304
+#@ layerswp
+msgid "Columns"
+msgstr "縦列"
+
+#: core/helpers/design-bar.php:309
+#@ layerswp
+msgid "1 Column"
+msgstr "縦列 1"
+
+#: core/helpers/design-bar.php:310
+#@ layerswp
+msgid "2 Columns"
+msgstr "縦列 2"
+
+#: core/helpers/design-bar.php:311
+#@ layerswp
+msgid "3 Columns"
+msgstr "縦列 3"
+
+#: core/helpers/design-bar.php:312
+#@ layerswp
+msgid "4 Columns"
+msgstr "縦列 4"
+
+#: core/helpers/design-bar.php:313
+#@ layerswp
+msgid "6 Columns"
+msgstr "縦列 6"
+
+#: core/helpers/design-bar.php:318
+#: core/widgets/modules/content.php:330
+#@ layerswp
+msgid "Gutter"
+msgstr "とじしろ"
+
+#: core/helpers/design-bar.php:346
+#: core/helpers/design-bar.php:539
+#@ layerswp
+msgid "Text Align"
+msgstr "文字整列"
+
+#: core/helpers/design-bar.php:362
+#: core/helpers/design-bar.php:547
+#@ layerswp
+msgid "Justify"
+msgstr "端を揃える"
+
+#: core/helpers/design-bar.php:388
+#@ layerswp
+msgid "Image Align"
+msgstr "画像整列"
+
+#: core/helpers/design-bar.php:429
+#: core/helpers/design-bar.php:438
+#@ layerswp
+msgid "Featured Image"
+msgstr "アイキャッチ画像"
+
+#: core/helpers/design-bar.php:445
+#@ layerswp
+msgid "Video URL (oEmbed)"
+msgstr "映像URL (埋め込み)"
+
+#: core/helpers/design-bar.php:456
+#: core/helpers/design-bar.php:501
+#@ layerswp
+msgid "Portrait"
+msgstr "縦方向"
+
+#: core/helpers/design-bar.php:457
+#: core/helpers/design-bar.php:502
+#@ layerswp
+msgid "Landscape"
+msgstr "横方向"
+
+#: core/helpers/design-bar.php:458
+#: core/helpers/design-bar.php:503
+#@ layerswp
+msgid "Square"
+msgstr "スクエア"
+
+#: core/helpers/design-bar.php:460
+#@ layerswp
+msgid "Round"
+msgstr "ラウンド"
+
+#: core/helpers/design-bar.php:488
+#@ layerswp
+msgid "Image Ratio"
+msgstr "画像比率"
+
+#: core/helpers/design-bar.php:554
+#@ layerswp
+msgid "Text Size"
+msgstr "文字の大きさ"
+
+#: core/helpers/design-bar.php:559
+#@ layerswp
+msgid "Small"
+msgstr "スモール"
+
+#: core/helpers/design-bar.php:560
+#@ layerswp
+msgid "Medium"
+msgstr "ミディアム"
+
+#: core/helpers/design-bar.php:561
+#@ layerswp
+msgid "Large"
+msgstr "ラージ"
+
+#: core/helpers/design-bar.php:600
+#: core/helpers/forms.php:252
+#@ layerswp
+msgid "Choose Image"
+msgstr "画像を選択"
+
+#: core/helpers/design-bar.php:607
+#@ layerswp
+msgid "Color"
+msgstr "色"
+
+#: core/helpers/design-bar.php:627
+#@ layerswp
+msgid "Position"
+msgstr "位置"
+
+#: core/helpers/design-bar.php:641
+#@ layerswp
+msgid "Stretch"
+msgstr "引き伸ばす"
+
+#: core/helpers/design-bar.php:648
+#@ layerswp
+msgid "Darken"
+msgstr "暗くする"
+
+#: core/helpers/design-bar.php:676
+#@ layerswp
+msgid "Advanced"
+msgstr "詳細"
+
+#: core/helpers/design-bar.php:682
+#@ layerswp
+msgid "Custom Class(es)"
+msgstr "カスタムクラス"
+
+#: core/helpers/design-bar.php:690
+#@ layerswp
+msgid "Custom CSS"
+msgstr "カスタムCSS"
+
+#: core/helpers/design-bar.php:698
+#@ layerswp
+msgid "Padding (px)"
+msgstr "パディング(px)"
+
+#: core/helpers/design-bar.php:705
+#@ layerswp
+msgid "Margin (px)"
+msgstr "マージン(px)"
+
+#: core/helpers/design-bar.php:712
+#@ layerswp
+msgid "Widget Anchor ID"
+msgstr "ウィジェットアンカーID"
+
+#: core/helpers/forms.php:22
+#@ layerswp
+msgid "Widget"
+msgstr "ウィジェット"
+
+#: core/helpers/forms.php:99
+#@ layerswp
+msgid "Newest First"
+msgstr "新しい順"
+
+#: core/helpers/forms.php:100
+#@ layerswp
+msgid "Oldest First"
+msgstr "古い順"
+
+#: core/helpers/forms.php:101
+#@ layerswp
+msgid "Random"
+msgstr "ランダム"
+
+#: core/helpers/forms.php:102
+#@ layerswp
+msgid "Titles A-Z"
+msgstr "A-Z順"
+
+#: core/helpers/forms.php:103
+#@ layerswp
+msgid "Titles Z-A"
+msgstr "Z-A順"
+
+#: core/helpers/forms.php:104
+#@ layerswp
+msgid "Most Comments"
+msgstr "コメント数順"
+
+#: core/helpers/forms.php:105
+#@ layerswp
+msgid "Custom Order"
+msgstr "カスタム順"
+
+#: core/helpers/forms.php:229
+#@ layerswp
+msgid "Visual Mode"
+msgstr "ビジュアルモード"
+
+#: core/helpers/forms.php:230
+#: core/helpers/forms.php:231
+#@ layerswp
+msgid "HTML Mode"
+msgstr "HTMLモード"
+
+#: core/helpers/forms.php:246
+#: core/helpers/forms.php:278
+#: core/helpers/forms.php:317
+#@ layerswp
+msgid "Remove"
+msgstr "取り外す"
+
+#: core/helpers/forms.php:250
+#@ layerswp
+msgid "Select an Image"
+msgstr "画像を選択"
+
+#: core/helpers/forms.php:251
+#@ layerswp
+msgid "Use Image"
+msgstr "画像を使用"
+
+#: core/helpers/forms.php:274
+#@ layerswp
+msgid "Select a File"
+msgstr "ファイルを選択"
+
+#: core/helpers/forms.php:274
+#@ layerswp
+msgid "Use File"
+msgstr "ファイルを使用"
+
+#: core/helpers/forms.php:275
+#@ layerswp
+msgid "Choose a File"
+msgstr "ファイルを選択"
+
+#: core/helpers/forms.php:321
+#, php-format
+#@ layerswp
+msgid "Drop a file here or %s"
+msgstr "ファイルをこちらへドロップもしくは %s"
+
+#: core/helpers/forms.php:360
+#: core/helpers/forms.php:435
+#@ layerswp
+msgid "Darken to improve readability"
+msgstr "暗くして可読性を改善する"
+
+#: core/helpers/forms.php:371
+#: core/helpers/forms.php:446
+#@ layerswp
+msgid "Tile Background"
+msgstr "タイル状背景"
+
+#: core/helpers/forms.php:382
+#: core/helpers/forms.php:457
+#@ layerswp
+msgid "Fixed Background"
+msgstr "固定背景"
+
+#: core/helpers/forms.php:393
+#@ layerswp
+msgid "Enter your .mp4 link"
+msgstr ".mp4のリンク先を入力"
+
+#: core/helpers/forms.php:404
+#@ layerswp
+msgid "Enter your .ogv link"
+msgstr ".ogvのリンク先を入力"
+
+#: core/helpers/migrator.php:102
+#@ layerswp
+msgid "Application"
+msgstr "アプリケーション"
+
+#: core/helpers/migrator.php:108
+#@ layerswp
+msgid "Contact Page"
+msgstr "コンタクトページ"
+
+#: core/helpers/migrator.php:114
+#@ layerswp
+msgid "Landing Page"
+msgstr "ランディングページ"
+
+#: core/helpers/migrator.php:120
+#@ layerswp
+msgid "Lookbook Page"
+msgstr "ルックブックページ"
+
+#: core/helpers/migrator.php:126
+#@ layerswp
+msgid "One Pager"
+msgstr "1ページ型ページ"
+
+#: core/helpers/migrator.php:132
+#@ layerswp
+msgid "Portfolio Page"
+msgstr "ポートフォリオページ"
+
+#: core/helpers/migrator.php:138
+#@ layerswp
+msgid "Video Page"
+msgstr "ビデオページ"
+
+#: core/helpers/migrator.php:144
+#@ layerswp
+msgid "Blank Page"
+msgstr "ブランクページ"
+
+#: core/helpers/migrator.php:591
+#@ layerswp
+msgid "(Copy)"
+msgstr "(コピー)"
+
+#: core/helpers/migrator.php:649
+#: core/options-panel/partials/get-started.php:326
+#: core/options-panel/partials/get-started.php:327
+#@ layerswp
+msgid "Home Page"
+msgstr "ホーム"
+
+#: core/helpers/migrator.php:724
+#@ layerswp
+msgid "Sidebar does not exist in theme (using Inactive)"
+msgstr "本テーマにはサイドバーはありません（非有効な状態）"
+
+#: core/helpers/migrator.php:766
+#@ layerswp
+msgid "Widget already exists"
+msgstr "ウィジェットは既に存在します"
+
+#: core/helpers/migrator.php:815
+#@ layerswp
+msgid "Imported"
+msgstr "インポートされたデータ"
+
+#: core/helpers/migrator.php:818
+#@ layerswp
+msgid "Imported to Inactive"
+msgstr "インポートされたものを非表示にする"
+
+#: core/helpers/migrator.php:824
+#@ layerswp
+msgid "No Title"
+msgstr "タイトルなし"
+
+#: core/helpers/post.php:56
+#, php-format
+#@ layerswp
+msgid "View all posts in %s"
+msgstr "%sされた投稿を全て表示"
+
+#: core/helpers/post.php:58
+#: core/helpers/post.php:77
+#@ layerswp
+msgid ", "
+msgstr ", "
+
+#: core/helpers/post.php:75
+#, php-format
+#@ layerswp
+msgid "View all posts tagged %s"
+msgstr "%sとタグ付された投稿を全て表示"
+
+#: core/helpers/post.php:98
+#, php-format
+#@ layerswp
+msgid "<a href=\"%1$s\" title=\"%2$s\" rel=\"author\">%3$s</a>"
+msgstr "a href=\"%1$s\" タイトル=\"%2$s\" rel=\"執筆者\">%3$s</a>"
+
+#: core/helpers/post.php:100
+#, php-format
+#@ layerswp
+msgid "View all posts by %s"
+msgstr "%sによる投稿を全て表示"
+
+#: core/helpers/post.php:123
+#@ layerswp
+msgid "(Edit)"
+msgstr "(編集)"
+
+#: core/helpers/post.php:129
+#, php-format
+#@ layerswp
+msgid "%1$s at %2$s"
+msgstr "%2$sの%1$s"
+
+#: core/helpers/post.php:135
+#@ layerswp
+msgid "Your comment is awaiting moderation."
+msgstr "コメントが許可されるまでお待ちください"
+
+#: core/helpers/post.php:157
+#@ layerswp
+msgid "You shall not pass"
+msgstr "パスすることはできません"
+
+#: core/helpers/template.php:24
+#@ layerswp
+msgid "Home"
+msgstr "ホーム"
+
+#: core/helpers/template.php:35
+#: core/helpers/template.php:304
+#@ layerswp
+msgid "Search"
+msgstr "検索"
+
+#: core/helpers/template.php:45
+#: core/helpers/template.php:329
+#@ layerswp
+msgid "Shop"
+msgstr "ショップ"
+
+#: core/helpers/template.php:317
+#, php-format
+#@ layerswp
+msgid "Daily Archives: %s"
+msgstr "日別アーカイブ: %s"
+
+#: core/helpers/template.php:319
+#, php-format
+#@ layerswp
+msgid "Monthly Archives: %s"
+msgstr "月別アーカイブ: %s"
+
+#: core/helpers/template.php:319
+#@ layerswp
+msgctxt "monthly archives date format"
+msgid "F Y"
+msgstr "F Y"
+
+#: core/helpers/template.php:321
+#, php-format
+#@ layerswp
+msgid "Yearly Archives: %s"
+msgstr "年別アーカイブ: %s"
+
+#: core/helpers/template.php:321
+#@ layerswp
+msgctxt "yearly archives date format"
+msgid "Y"
+msgstr "Y"
+
+#: core/helpers/template.php:334
+#@ layerswp
+msgid "Archives"
+msgstr "アーカイブ"
+
+#: core/helpers/template.php:1106
+#@ layerswp
+msgid "Your browser does not support the video tag."
+msgstr "ご使用しているブラウザはビデオタグをサポートしていません。"
+
+#: core/meta/config.php:16
+#@ layerswp
+msgid ": Options"
+msgstr "オプション"
+
+#: core/meta/config.php:21
+#@ layerswp
+msgid "Rich Media"
+msgstr "リッチメディア"
+
+#: core/meta/config.php:24
+#@ layerswp
+msgid "Video URL"
+msgstr "ビデオURL"
+
+#: core/meta/init.php:161
+#@ layerswp
+msgid "You can drag and drop widgets, edit content and tweak the design. Click the button below to see your page come to life."
+msgstr "ウィジェットはドラッグ&ドロップで編集してデザインを変更できます。下記ボタンをクリックして、あなたのウェブサイトに命を吹き込もう。"
+
+#: core/meta/init.php:162
+#@ layerswp
+msgid "Edit Your Page"
+msgstr "ページを編集"
+
+#: core/meta/init.php:208
+#@ layerswp
+msgid "Build Your Page"
+msgstr "ページを作成"
+
+#: core/options-panel/ajax.php:56
+#@ layerswp
+msgid "No Logo uploaded"
+msgstr "ロゴがアップロードされていません"
+
+#: core/options-panel/ajax.php:90
+#@ layerswp
+msgid "Logo updated"
+msgstr "ロゴがアップロードされました"
+
+#: core/options-panel/ajax.php:94
+#@ layerswp
+msgid "There was an error when updating your logo."
+msgstr "ロゴのアップロード中にエラーが発生しました"
+
+#: core/options-panel/ajax.php:102
+#@ layerswp
+msgid "Option updated"
+msgstr "オプションがアップロードされました"
+
+#: core/options-panel/init.php:170
+#: core/options-panel/init.php:171
+#@ layerswp
+msgid "Get Started"
+msgstr "始めよう"
+
+#: core/options-panel/init.php:180
+#: core/options-panel/init.php:181
+#: core/options-panel/partials/add-new-page.php:12
+#: core/options-panel/partials/dashboard.php:48
+#@ layerswp
+msgid "Add New Page"
+msgstr "新規ページ作成"
+
+#: core/options-panel/init.php:192
+#: core/options-panel/init.php:193
+#: core/options-panel/partials/dashboard.php:32
+#@ layerswp
+msgid "Layers Pages"
+msgstr "Layersページ"
+
+#: core/options-panel/init.php:202
+#: core/options-panel/init.php:203
+#@ layerswp
+msgid "Customize"
+msgstr "カスタマイズ"
+
+#: core/options-panel/init.php:211
+#: core/options-panel/init.php:212
+#: core/options-panel/partials/backup.php:5
+#@ layerswp
+msgid "Backup"
+msgstr "バックアップ"
+
+#: core/options-panel/init.php:220
+#: core/options-panel/partials/dashboard.php:8
+#@ layerswp
+msgid "Dashboard"
+msgstr "ダッシュボード"
+
+#: core/options-panel/partials/add-new-page.php:25
+#@ layerswp
+msgid "Add a page title"
+msgstr "ページタイトルを追加する"
+
+#: core/options-panel/partials/add-new-page.php:34
+#: core/widgets/modules/contact.php:270
+#: core/widgets/modules/content.php:362
+#: core/widgets/modules/content.php:499
+#: core/widgets/modules/post.php:444
+#: core/widgets/modules/slider.php:515
+#@ layerswp
+msgid "Enter title here"
+msgstr "ここにタイトルを入力"
+
+#: core/options-panel/partials/add-new-page.php:43
+#@ layerswp
+msgid "Proceed to Customizer"
+msgstr "Customizerに進む"
+
+#: core/options-panel/partials/add-new-page.php:46
+#@ layerswp
+msgid "Cancel"
+msgstr "キャンセル"
+
+#: core/options-panel/partials/backup.php:14
+#@ layerswp
+msgid "Backup your pages"
+msgstr "ページをバックアップ"
+
+#: core/options-panel/partials/backup.php:16
+#@ layerswp
+msgid "Convert your Layers pages into regular WordPress pages, preserving the content you have worked so hard to create."
+msgstr "苦労して作成したページを保ちながら、Layersページを通常のワードプレスページに使用する。"
+
+#: core/options-panel/partials/backup.php:20
+#@ layerswp
+msgid "0%"
+msgstr "0%"
+
+#: core/options-panel/partials/backup.php:24
+#@ layerswp
+msgid "Backup my Pages Now"
+msgstr "すぐにページをバックアップする"
+
+#: core/options-panel/partials/backup.php:30
+#@ layerswp
+msgid "Backed Up Pages:"
+msgstr "バックアップしたページ"
+
+#: core/options-panel/partials/dashboard.php:20
+#@ layerswp
+msgid "Start Using Layers"
+msgstr "Layersを使用開始する"
+
+#: core/options-panel/partials/dashboard.php:22
+#@ layerswp
+msgid "Follow the easy steps to creating amazing layouts quickly and easily. "
+msgstr "簡単なステップにそって、かっこいいレイアウトを素早く簡単に作成する。"
+
+#: core/options-panel/partials/dashboard.php:26
+#@ layerswp
+msgid "Get Started &rarr;"
+msgstr "始めよう &rarr;"
+
+#: core/options-panel/partials/dashboard.php:40
+#@ layerswp
+msgid "Edit"
+msgstr "編集"
+
+#: core/options-panel/partials/dashboard.php:41
+#@ layerswp
+msgid "View"
+msgstr "確認する"
+
+#: core/options-panel/partials/dashboard.php:59
+#@ layerswp
+msgid "Extensions"
+msgstr "エクステンション"
+
+#: core/options-panel/partials/dashboard.php:75
+#@ layerswp
+msgid "Coming soon"
+msgstr "カミングスーン"
+
+#: core/options-panel/partials/dashboard.php:83
+#@ layerswp
+msgid "Purchase"
+msgstr "購入する"
+
+#: core/options-panel/partials/dashboard.php:88
+#@ layerswp
+msgid "More Details"
+msgstr "詳細"
+
+#: core/options-panel/partials/dashboard.php:105
+#@ layerswp
+msgid "What you need"
+msgstr "必要なもの"
+
+#: core/options-panel/partials/dashboard.php:109
+#@ layerswp
+msgid "WordPress 4.0"
+msgstr "WordPress 4.0"
+
+#: core/options-panel/partials/dashboard.php:111
+#@ layerswp
+msgid "Layers requires you run the latest version of WordPress, please make sure you're up to date!"
+msgstr "Layersを使用するには最新版のワードプレスが必要です。最新版であることをお忘れなく！"
+
+#: core/options-panel/partials/dashboard.php:115
+#@ layerswp
+msgid "You're up to date"
+msgstr "最新版を使用中です。"
+
+#: core/options-panel/partials/dashboard.php:117
+#@ layerswp
+msgid "Update WordPress"
+msgstr "ワードプレスをアップデートする"
+
+#: core/options-panel/partials/dashboard.php:122
+#@ layerswp
+msgid "The Layers Updater"
+msgstr "Layersアップデーター"
+
+#: core/options-panel/partials/dashboard.php:124
+#@ layerswp
+msgid "Make sure you're always running the latest version of Layers by installing the Layers Updater"
+msgstr "Layersアップデーターをインストールするには、最新版のLayersが必要です"
+
+#: core/options-panel/partials/dashboard.php:128
+#@ layerswp
+msgid "Installed"
+msgstr "インストールしました"
+
+#: core/options-panel/partials/dashboard.php:144
+#@ layerswp
+msgid "Helpful Tips"
+msgstr "使いこなすコツ"
+
+#: core/options-panel/partials/get-started.php:16
+#@ layerswp
+msgid "Skip"
+msgstr "スキップ"
+
+#: core/options-panel/partials/get-started.php:28
+#@ layerswp
+msgid "Welcome to Layers!"
+msgstr "Layersへようこそ！"
+
+#: core/options-panel/partials/get-started.php:32
+#@ layerswp
+msgid "Layers is a revolutionary WordPress Site Builder that makes website building a dream come true!"
+msgstr "Layersは革新的なワードプレスサイトビルダーです。ウェブサイト制作が叶います！"
+
+#: core/options-panel/partials/get-started.php:35
+#@ layerswp
+msgid "The following short steps are designed to show you how Layers works and get you to creating amazing layouts quickly!"
+msgstr "Layersの使い方はとっても簡単。ほんのちょっとのステップを行うだけで、素晴らしいレイアウトのウェブサイトが素早く作成できます！"
+
+#: core/options-panel/partials/get-started.php:38
+#@ layerswp
+msgid "Enjoy the ride!"
+msgstr "サイト制作を楽しんでく下さい！"
+
+#: core/options-panel/partials/get-started.php:45
+#@ layerswp
+msgid "Let's get started &rarr;"
+msgstr "はじめてみよう &rarr;"
+
+#: core/options-panel/partials/get-started.php:55
+#@ layerswp
+msgid "For the Pros: Layers will automatically assign the tagline to Settings &rarr; General."
+msgstr "プロの方: Layersは自動的にタグラインをSettings &rarr; Generalへ割り当てます"
+
+#: core/options-panel/partials/get-started.php:69
+#: core/options-panel/partials/get-started.php:157
+#: core/options-panel/partials/get-started.php:236
+#@ layerswp
+msgid "Getting Started"
+msgstr "はじめてみる"
+
+#: core/options-panel/partials/get-started.php:73
+#@ layerswp
+msgid "Building pages"
+msgstr "ページを作成"
+
+#: core/options-panel/partials/get-started.php:77
+#@ layerswp
+msgid "Layers splits your page into horizontal rows, and you build up your pages with blocks of content called &lsquo;Widgets&rsquo;, one per row."
+msgstr "Layersはページを横列に振り分けます。&lsquo;Widgets&rsquo;と呼ばれるブロックごとにページを横列一つづつ作成することができます。"
+
+#: core/options-panel/partials/get-started.php:80
+#@ layerswp
+msgid "Each time you want to add a new content block, simply click &lsquo;Add Widget&rsquo; and select one from the list which has the blue Layers icon."
+msgstr "新規ブロックを追加する際は、&lsquo;Add Widget&rsquo;をクリックして、青いLayersアイコンのものをリストから一つだけお選びください。"
+
+#: core/options-panel/partials/get-started.php:86
+#@ layerswp
+msgid "Got it, Next Step &rarr;"
+msgstr "わかりました。次のステップへ進む &rarr;"
+
+#: core/options-panel/partials/get-started.php:101
+#@ layerswp
+msgid "What is the name of your website?"
+msgstr "ウェブサイトに名前をつけてください"
+
+#: core/options-panel/partials/get-started.php:104
+#@ layerswp
+msgid "Enter your website name below. We&apos;ll use this in your site title and in search results."
+msgstr "下記にあなたのウェブサイトの名前を入力してください。We&apos;llを、あなたのサイトタイトルと検索結果に使って下さい。"
+
+#: core/options-panel/partials/get-started.php:108
+#@ layerswp
+msgid "Site Name"
+msgstr "ウェブサイトの名前"
+
+#: core/options-panel/partials/get-started.php:128
+#@ layerswp
+msgid "Saving your Site Name"
+msgstr "ウェブサイトの名前を保存する"
+
+#: core/options-panel/partials/get-started.php:130
+#: core/options-panel/partials/get-started.php:169
+#: core/options-panel/partials/get-started.php:212
+#: core/options-panel/partials/get-started.php:253
+#: core/options-panel/partials/get-started.php:297
+#@ layerswp
+msgid "Next Step &rarr;"
+msgstr "次のステップへ進む &rarr;"
+
+#: core/options-panel/partials/get-started.php:142
+#@ layerswp
+msgid "For the Pros: Layers will automatically assign this site name to Settings &rarr; General"
+msgstr "プロの方へ: プロの方: Layersは自動的にサイトの名前をSettings &rarr; Generalへ割り当てます"
+
+#: core/options-panel/partials/get-started.php:161
+#@ layerswp
+msgid "Editing widget content"
+msgstr "ウィジェット内容を編集する"
+
+#: core/options-panel/partials/get-started.php:164
+#@ layerswp
+msgid "To edit a widget's content, just click on it in the widget area on the left hand side. The widget panel will slide out allowing you to edit its content and customize its settings. You can also shift-click on the widget itself in the preview area."
+msgstr "ウィジェット内容を編集するには、ウィジェットエリアの左部分をクリックしてください。ウィジェットパネルが移動し、内容や設定を変更することができるようになります。また、プレビューエリアのウィジェットを直接シフト+クリックでも可能です。"
+
+#: core/options-panel/partials/get-started.php:184
+#@ layerswp
+msgid "How would you best describe your site?"
+msgstr "あなたのウェブサイトに説明文をつけてください"
+
+#: core/options-panel/partials/get-started.php:187
+#@ layerswp
+msgid "A tagline describes who and what you are in just a few simple words. For example Layers is a &ldquo;WordPress Site Builder&rdquo; - simple, easy, quick to read. Now you try:"
+msgstr "タグラインには、短い文章で簡単な説明を記載してください。例: Layersは、&ldquo;ワードプレスサイトビルダーです&rdquo;。簡単に、素早く、始めることができます。いますぐはじめよう:"
+
+#: core/options-panel/partials/get-started.php:191
+#@ layerswp
+msgid "Site Tagline"
+msgstr "サイトタグライン"
+
+#: core/options-panel/partials/get-started.php:211
+#@ layerswp
+msgid "Saving your Tagline"
+msgstr "タグラインを保存する"
+
+#: core/options-panel/partials/get-started.php:219
+#@ layerswp
+msgid "Keep it simple"
+msgstr "シンプルにしてください"
+
+#: core/options-panel/partials/get-started.php:220
+#@ layerswp
+msgid "Avoid buzz words"
+msgstr "バズワードは避けて下さい"
+
+#: core/options-panel/partials/get-started.php:221
+#@ layerswp
+msgid "Make sure it describes what you offer"
+msgstr "あなたのサイトの目的は何なのかはっきりと書いて下さい"
+
+#: core/options-panel/partials/get-started.php:222
+#@ layerswp
+msgid "For the Pros: Layers will automatically assign the tagline to Settings &rarr; General"
+msgstr "プロの方: Layersは自動的にタグラインをSettings &rarr; Generalへ割り当てます"
+
+#: core/options-panel/partials/get-started.php:240
+#@ layerswp
+msgid "Customizing widgets"
+msgstr "ウィジェットをカスタマイズする"
+
+#: core/options-panel/partials/get-started.php:244
+#@ layerswp
+msgid "Unique to each Layers widget is the revolutionary &ldquo;Design Bar&rdquo; which allows you to set its design parameters without touching a line of code."
+msgstr "Layersウィジェットは、革新的な&ldquo;デザインバー&rdquo;です。コードに一切触れることなくデザインのパラメーターを設定することが可能です。"
+
+#: core/options-panel/partials/get-started.php:247
+#@ layerswp
+msgid "Depending on the widget you've added, you can change things like background images, font sizes, list styles and more."
+msgstr "追加したウィジェットによっては、背景画像・フォントサイズ・リストスタイル等を変更することが可能です。"
+
+#: core/options-panel/partials/get-started.php:268
+#@ layerswp
+msgid "Would you like to add your logo?"
+msgstr "ご自身のロゴを追加しますか？"
+
+#: core/options-panel/partials/get-started.php:271
+#@ layerswp
+msgid "Layers will add your logo and position it properly. If you don&apos;t have one yet, no problem, you can add it later, or skip this step if you&apos;d just prefer to use text."
+msgstr "Layersはあなたが作成したロゴを正しく配置することができます。もしまだロゴを作成していない場合でもご安心ください。後ほど追加できますので、その場合は本ステップをスキップしてテキストを追加することもできます。"
+
+#: core/options-panel/partials/get-started.php:279
+#@ layerswp
+msgid "Choose Logo"
+msgstr "ロゴを選択する"
+
+#: core/options-panel/partials/get-started.php:296
+#@ layerswp
+msgid "Updating your Logo"
+msgstr "ロゴをアップデートする"
+
+#: core/options-panel/partials/get-started.php:304
+#@ layerswp
+msgid "For best results, use an image between 40px and 200px tall and not more than 1000px wide"
+msgstr "最適なサイズは、画像の高さが40pxから200pxまでで、幅は1000pxを超えないようにしてください。"
+
+#: core/options-panel/partials/get-started.php:305
+#@ layerswp
+msgid "PNGs with a transparent background work best but GIFs or JPGs are fine too"
+msgstr "最適な画像型式は、PNGの透過色背景ですが、GIFやJPGもご利用可能です。"
+
+#: core/options-panel/partials/get-started.php:306
+#@ layerswp
+msgid "Try keep your logo file size below 500kb"
+msgstr "ロゴのファイルサイズは500kb以下になるようにしてください。"
+
+#: core/options-panel/partials/get-started.php:320
+#@ layerswp
+msgid "Page Title"
+msgstr "ページタイトル"
+
+#: core/options-panel/partials/get-started.php:349
+#@ layerswp
+msgid "Now let&apos;s create your first Layers page!"
+msgstr "それでは、最初のLayersのページを作成してみましょう！"
+
+#: core/options-panel/partials/get-started.php:353
+#@ layerswp
+msgid "You will be able to edit your layout on the next page. Here we go! "
+msgstr "次のページでは、レイアウトを編集することができます！やってみましょう！"
+
+#: core/options-panel/partials/get-started.php:359
+#@ layerswp
+msgid "Creating your Page"
+msgstr "ページを作成する"
+
+#: core/options-panel/partials/get-started.php:360
+#@ layerswp
+msgid "First choose a layout"
+msgstr "最初にレイアウトを選択する"
+
+#: core/options-panel/partials/get-started.php:360
+#@ layerswp
+msgid "Start Building"
+msgstr "作ってみる"
+
+#: core/options-panel/partials/preset-layouts.php:20
+#@ layerswp
+msgid "Select"
+msgstr "選択する"
+
+#: core/third-party/site-logo/inc/class-site-logo-control.php:19
+#@ layerswp
+msgid "Add logo"
+msgstr "ロゴを追加する"
+
+#: core/third-party/site-logo/inc/class-site-logo-control.php:20
+#@ layerswp
+msgid "Set as logo"
+msgstr "ロゴとして設定する"
+
+#: core/third-party/site-logo/inc/class-site-logo-control.php:21
+#@ layerswp
+msgid "Choose logo"
+msgstr "ロゴを選択する"
+
+#: core/third-party/site-logo/inc/class-site-logo-control.php:22
+#@ layerswp
+msgid "Change logo"
+msgstr "ロゴを変更する"
+
+#: core/third-party/site-logo/inc/class-site-logo-control.php:23
+#@ layerswp
+msgid "Remove logo"
+msgstr "ロゴを外す"
+
+#: core/third-party/site-logo/inc/class-site-logo-control.php:24
+#@ layerswp
+msgid "No logo set"
+msgstr "ロゴが設定されていません"
+
+#: core/third-party/site-logo/inc/class-site-logo.php:81
+#@ layerswp
+msgid "Site Title, Tagline, and Logo"
+msgstr "サイトタイトル・タグライン・ロゴ"
+
+#: core/third-party/site-logo/inc/class-site-logo.php:92
+#@ layerswp
+msgid "Display Header Text"
+msgstr "ヘッダーテキストを表示"
+
+#: core/third-party/site-logo/inc/class-site-logo.php:114
+#@ layerswp
+msgid "Logo"
+msgstr "ロゴ"
+
+#: core/third-party/site-logo/inc/class-site-logo.php:254
+#@ layerswp
+msgid "Site Logo"
+msgstr "サイトロゴ"
+
+#: core/widgets/init.php:80
+#@ layerswp
+msgid " Body"
+msgstr "本文"
+
+#: core/widgets/init.php:165
+#@ layerswp
+msgid "Layers Builder section."
+msgstr "Layersビルダー箇所"
+
+#: core/widgets/init.php:190
+#@ layerswp
+msgid "Are you sure you want to remove this slide?"
+msgstr "このスライドを本当に外してもよろしいでしょうか？"
+
+#: core/widgets/init.php:202
+#@ layerswp
+msgid "Are you sure you want to remove this column?"
+msgstr "この列を本当に削除してもよろしいでしょうか？"
+
+#: core/widgets/modules/contact.php:26
+#@ layerswp
+msgid "Contact Details &amp; Maps"
+msgstr "コンタクト詳細&amp; 地図"
+
+#: core/widgets/modules/contact.php:37
+#: core/widgets/modules/content.php:33
+#: core/widgets/modules/post.php:42
+#: core/widgets/modules/slider.php:37
+#@ default
+msgid "This widget is used to display your "
+msgstr "このウィジェットはこちらを表示します"
+
+#: core/widgets/modules/contact.php:207
+#: core/widgets/modules/post.php:322
+#@ layerswp
+msgid "Display"
+msgstr "表示する"
+
+#: core/widgets/modules/contact.php:216
+#@ layerswp
+msgid "Map Height"
+msgstr "地図高さ"
+
+#: core/widgets/modules/contact.php:223
+#@ layerswp
+msgid "Show Google Map"
+msgstr "グーグルマップを表示する"
+
+#: core/widgets/modules/contact.php:230
+#@ layerswp
+msgid "Show Address"
+msgstr "住所を表示する"
+
+#: core/widgets/modules/contact.php:237
+#@ layerswp
+msgid "Show Contact Form"
+msgstr "コンタクトフォームを表示する"
+
+#: core/widgets/modules/contact.php:258
+#@ layerswp
+msgid "Contact"
+msgstr "コンタクト"
+
+#: core/widgets/modules/contact.php:282
+#: core/widgets/modules/content.php:374
+#: core/widgets/modules/content.php:512
+#: core/widgets/modules/post.php:457
+#: core/widgets/modules/slider.php:528
+#@ layerswp
+msgid "Short Excerpt"
+msgstr "短い抜粋"
+
+#: core/widgets/modules/contact.php:295
+#@ layerswp
+msgid "Address"
+msgstr "住所"
+
+#: core/widgets/modules/contact.php:296
+#: core/widgets/modules/contact.php:346
+#@ layerswp
+msgid "Place your help text here please."
+msgstr "ここへヘルプテキストを配置してください"
+
+#: core/widgets/modules/contact.php:301
+#@ layerswp
+msgid "Google Maps Location"
+msgstr "グーグルマップロケーション"
+
+#: core/widgets/modules/contact.php:307
+#@ layerswp
+msgid "e.g. 300 Prestwich Str, Cape Town, South Africa"
+msgstr "例: 300 プレストウィッチ通り ケープタウン 南アフリカ共和国"
+
+#: core/widgets/modules/contact.php:313
+#@ layerswp
+msgid "Google Maps Latitude & Longitude (Optional)"
+msgstr "グーグルマップ緯度&経度（任意）"
+
+#: core/widgets/modules/contact.php:319
+#@ layerswp
+msgid "e.g. 33.9253 S, 18.4239 E"
+msgstr "例: 33.9253 S, 18.4239 E"
+
+#: core/widgets/modules/contact.php:325
+#@ layerswp
+msgid "Address Shown"
+msgstr ""住所を表示
+
+#: core/widgets/modules/contact.php:331
+#@ layerswp
+msgid "e.g. Prestwich Str, Cape Town"
+msgstr "例: プレストウィッチ通り ケープタウン"
+
+#: core/widgets/modules/contact.php:345
+#@ layerswp
+msgid "Contact Form"
+msgstr "コンタクトフォーム"
+
+#: core/widgets/modules/contact.php:356
+#@ layerswp
+msgid "Contact form embed code"
+msgstr "コンタクトフォーム埋め込みコード"
+
+#: core/widgets/modules/content.php:26
+#@ layerswp
+msgid "Content"
+msgstr "内容"
+
+#: core/widgets/modules/content.php:405
+#@ layerswp
+msgid "Add New Column"
+msgstr "新規列を追加する"
+
+#: core/widgets/modules/content.php:438
+#@ layerswp
+msgid "Column"
+msgstr "列"
+
+#: core/widgets/modules/content.php:474
+#@ layerswp
+msgid "1 of 12 columns"
+msgstr "12あるうちの1列目"
+
+#: core/widgets/modules/content.php:475
+#@ layerswp
+msgid "2 of 12 columns"
+msgstr "12あるうちの2列目"
+
+#: core/widgets/modules/content.php:476
+#@ layerswp
+msgid "3 of 12 columns"
+msgstr "12あるうちの3列目"
+
+#: core/widgets/modules/content.php:477
+#@ layerswp
+msgid "4 of 12 columns"
+msgstr "12あるうちの4列目"
+
+#: core/widgets/modules/content.php:478
+#@ layerswp
+msgid "5 of 12 columns"
+msgstr "12あるうちの5列目"
+
+#: core/widgets/modules/content.php:479
+#@ layerswp
+msgid "6 of 12 columns"
+msgstr "12あるうちの6列目"
+
+#: core/widgets/modules/content.php:480
+#@ layerswp
+msgid "8 of 12 columns"
+msgstr "12あるうちの8列目"
+
+#: core/widgets/modules/content.php:481
+#@ layerswp
+msgid "9 of 12 columns"
+msgstr "12あるうちの9列目"
+
+#: core/widgets/modules/content.php:482
+#@ layerswp
+msgid "10 of 12 columns"
+msgstr "12あるうちの10列目"
+
+#: core/widgets/modules/content.php:483
+#@ layerswp
+msgid "12 of 12 columns"
+msgstr "12あるうちの12列目"
+
+#: core/widgets/modules/content.php:493
+#: core/widgets/modules/slider.php:508
+#@ layerswp
+msgid "Title"
+msgstr "タイトル"
+
+#: core/widgets/modules/content.php:506
+#: core/widgets/modules/slider.php:522
+#@ layerswp
+msgid "Excerpt"
+msgstr "抜粋"
+
+#: core/widgets/modules/content.php:521
+#: core/widgets/modules/slider.php:537
+#@ layerswp
+msgid "Button Link"
+msgstr "ボタンリンク"
+
+#: core/widgets/modules/content.php:527
+#: core/widgets/modules/slider.php:543
+#@ layerswp
+msgid "http://"
+msgstr "http://"
+
+#: core/widgets/modules/content.php:534
+#: core/widgets/modules/slider.php:549
+#@ layerswp
+msgid "Button Text"
+msgstr "ボタンテキスト"
+
+#: core/widgets/modules/content.php:540
+#: core/widgets/modules/slider.php:555
+#@ layerswp
+msgid "e.g. \"Read More\""
+msgstr "例: \"もっと読む\""
+
+#: core/widgets/modules/post.php:26
+#@ layerswp
+msgid "Posts"
+msgstr "投稿"
+
+#: core/widgets/modules/post.php:65
+#: partials/content-list.php:22
+#@ layerswp
+msgid "Read More"
+msgstr "もっと読む"
+
+#: core/widgets/modules/post.php:329
+#@ layerswp
+msgid "Title &amp; Excerpt Position"
+msgstr "タイトル&amp; 抜粋位置"
+
+#: core/widgets/modules/post.php:331
+#@ layerswp
+msgid "Regular"
+msgstr "レギュラー"
+
+#: core/widgets/modules/post.php:340
+#@ layerswp
+msgid "Show Featured Images"
+msgstr "アイキャッチ画像を表示"
+
+#: core/widgets/modules/post.php:347
+#@ layerswp
+msgid "Show  Post Titles"
+msgstr "投稿タイトルを表示"
+
+#: core/widgets/modules/post.php:354
+#@ layerswp
+msgid "Show Post Excerpts"
+msgstr "投稿抜粋を表示"
+
+#: core/widgets/modules/post.php:363
+#@ layerswp
+msgid "Excerpts Length"
+msgstr "抜粋の長さ"
+
+#: core/widgets/modules/post.php:370
+#@ layerswp
+msgid "Show Post Dates"
+msgstr "投稿日付を表示"
+
+#: core/widgets/modules/post.php:377
+#@ layerswp
+msgid "Show Post Author"
+msgstr "投稿者を表示"
+
+#: core/widgets/modules/post.php:384
+#@ layerswp
+msgid "Show Tags"
+msgstr "タグを表示"
+
+#: core/widgets/modules/post.php:391
+#@ layerswp
+msgid "Show Categories"
+msgstr "カテゴリーを表示"
+
+#: core/widgets/modules/post.php:398
+#@ layerswp
+msgid "Show \"Read More\" Buttons"
+msgstr "\"もっと読む\" ボタンを表示"
+
+#: core/widgets/modules/post.php:405
+#@ layerswp
+msgid "\"Read More\" Text"
+msgstr "\"もっと読む\" テキスト"
+
+#: core/widgets/modules/post.php:412
+#@ layerswp
+msgid "Show Pagination"
+msgstr "ページ数を表示"
+
+#: core/widgets/modules/post.php:431
+#@ layerswp
+msgid "Post"
+msgstr "投稿"
+
+#: core/widgets/modules/post.php:467
+#@ layerswp
+msgid "Category to Display"
+msgstr "表示するカテゴリー"
+
+#: core/widgets/modules/post.php:468
+#@ layerswp
+msgid "All"
+msgstr "すべて"
+
+#: core/widgets/modules/post.php:475
+#@ layerswp
+msgid "Select a Category"
+msgstr "カテゴリーを選択する"
+
+#: core/widgets/modules/post.php:483
+#@ layerswp
+msgid "Number of items to show"
+msgstr "表示するアイテムの数"
+
+#: core/widgets/modules/post.php:484
+#@ layerswp
+msgid "Show All"
+msgstr "すべて表示"
+
+#: core/widgets/modules/post.php:499
+#@ layerswp
+msgid "Sort by"
+msgstr "絞り込む"
+
+#: core/widgets/modules/slider.php:26
+#: core/widgets/modules/slider.php:358
+#@ layerswp
+msgid "Slider"
+msgstr "スライダー"
+
+#: core/widgets/modules/slider.php:351
+#@ layerswp
+msgid "Full Screen"
+msgstr "フルスクリーン"
+
+#: core/widgets/modules/slider.php:365
+#@ layerswp
+msgid "Show Slider Arrows"
+msgstr "スライダーアローを表示"
+
+#: core/widgets/modules/slider.php:372
+#@ layerswp
+msgid "Show Slider Dots"
+msgstr "スライダードットを表示"
+
+#: core/widgets/modules/slider.php:379
+#@ layerswp
+msgid "Autoplay Slides"
+msgstr "オートプレイスライド"
+
+#: core/widgets/modules/slider.php:387
+#@ layerswp
+msgid "Time in seconds, eg. 2"
+msgstr "秒時間表示 例: 2"
+
+#: core/widgets/modules/slider.php:389
+#@ layerswp
+msgid "Slide Interval"
+msgstr "スライド間隔"
+
+#: core/widgets/modules/slider.php:397
+#@ layerswp
+msgid "Slider Height"
+msgstr "スライダー高さ"
+
+#: core/widgets/modules/slider.php:445
+#@ layerswp
+msgid "Add New Slide"
+msgstr "新規スライドを追加"
+
+#: core/widgets/modules/slider.php:481
+#@ layerswp
+msgid "Slide"
+msgstr "スライド"
+
+#: core/widgets/modules/slider.php:514
+#@ layerswp
+msgid "Enter a Title"
+msgstr "タイトルを入力"
+
+#: footer.php:3
+#@ layerswp
+msgid "Back to top"
+msgstr "トップへ戻る"
+
+#: functions.php:162
+#@ layerswp
+msgid "Top Left Menu"
+msgstr "左上メニュー"
+
+#: functions.php:163
+#@ layerswp
+msgid "Top Right Menu"
+msgstr "右上メニュー"
+
+#: functions.php:164
+#@ layerswp
+msgid "Header Menu"
+msgstr "ヘッダーメニュー"
+
+#: functions.php:165
+#@ layerswp
+msgid "Right Header Menu"
+msgstr "ヘッダー右メニュー"
+
+#: functions.php:166
+#@ layerswp
+msgid "Footer Menu"
+msgstr "フッターメニュー"
+
+#: functions.php:194
+#@ layerswp
+msgid "Mobile Sidebar"
+msgstr "モバイルサイドバー"
+
+#: functions.php:195
+#@ layerswp
+msgid "This sidebar will only appear on mobile devices."
+msgstr "このサイドバーはモバイル端末のみで表示されます。"
+
+#: functions.php:204
+#@ layerswp
+msgid "Left Sidebar"
+msgstr "左サイドバー"
+
+#: functions.php:213
+#@ layerswp
+msgid "Right Sidebar"
+msgstr "右サイドバー"
+
+#: functions.php:226
+#@ layerswp
+msgid "Footer "
+msgstr "フッター"
+
+#: functions.php:240
+#@ layerswp
+msgid "Left Shop Sidebar"
+msgstr "左ショップサイドバー"
+
+#: functions.php:249
+#@ layerswp
+msgid "Right Shop Sidebar"
+msgstr "右ショップサイドバー"
+
+#: functions.php:397
+#@ layerswp
+msgid "Be patient while we import the widget data and images."
+msgstr "ウィジェットのデータと画像をインポートしていますので、少々お待ちください。"
+
+#: functions.php:398
+#@ layerswp
+msgid "Import Complete"
+msgstr "インポートが完了しました"
+
+#: functions.php:399
+#@ layerswp
+msgid "Importing Your Content"
+msgstr "内容をインポートしています"
+
+#: functions.php:400
+#@ layerswp
+msgid "Edit Your New Page"
+msgstr "新規ページを編集"
+
+#: functions.php:437
+#@ layerswp
+msgid "Saving..."
+msgstr "保存しています･･･"
+
+#: functions.php:438
+#@ layerswp
+msgid "Done!"
+msgstr "完了！"
+
+#: functions.php:459
+#@ layerswp
+msgid "Your pages have been successfully backed up!"
+msgstr "あなたのページのバックアップができました！"
+
+#: partials/content-empty.php:9
+#@ layerswp
+msgid "No posts found"
+msgstr "投稿が見つかりませんでした"
+
+#: partials/content-empty.php:12
+#@ layerswp
+msgid "Use the search form below to find the page you're looking for:"
+msgstr "下記検索フォームを使い、お探しのページを見つけて下さい:"
+
+#: partials/content-single.php:29
+#@ ocmx
+msgid "<span>Pages:</span>"
+msgstr "<span>ページ:</span>"
+
+#: partials/portfolio-list.php:24
+#@ layerswp
+msgid "View Project"
+msgstr "プロジェクトをみる"
+

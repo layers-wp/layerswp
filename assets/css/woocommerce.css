@@ -191,6 +191,7 @@ p.stars span a:focus{
     overflow: hidden;
 }
 .products .product{
+    position: relative;
     padding: 20px;
     margin-bottom: 20px;
     background: #f5f5f5;

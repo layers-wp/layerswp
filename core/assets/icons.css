@@ -1,10 +1,10 @@
 @font-face {
 	font-family: 'layers-interface';
-	src:url('fonts/layers-interface.eot?-htla17');
-	src:url('fonts/layers-interface.eot?#iefix-htla17') format('embedded-opentype'),
-		url('fonts/layers-interface.woff?-htla17') format('woff'),
-		url('fonts/layers-interface.ttf?-htla17') format('truetype'),
-		url('fonts/layers-interface.svg?-htla17#layers-interface') format('svg');
+	src:url('fonts/layers-interface.eot?pv4qb6');
+	src:url('fonts/layers-interface.eot?#iefixpv4qb6') format('embedded-opentype'),
+		url('fonts/layers-interface.woff?pv4qb6') format('woff'),
+		url('fonts/layers-interface.ttf?pv4qb6') format('truetype'),
+		url('fonts/layers-interface.svg?pv4qb6#layers-interface') format('svg');
 	font-weight: normal;
 	font-style: normal;
 }
@@ -23,8 +23,24 @@
 	-moz-osx-font-smoothing: grayscale;
 }
 
+.icon-desktop:before {
+	content: "\e632";
+}
+
+.icon-phone:before {
+	content: "\e633";
+}
+
+.icon-tablet:before {
+	content: "\e634";
+}
+
 .icon-help:before {
 	content: "\e631";
+}
+
+.icon-pencil:before {
+	content: "\e00d";
 }
 
 .icon-layers-logo:before {
@@ -221,9 +237,5 @@
 
 .icon-arrow-right:before {
 	content: "\e630";
-}
-
-.icon-pencil:before {
-	content: "\e00d";
 }
 

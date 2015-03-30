@@ -27,59 +27,9 @@ class Layers_Widget_Migrator {
 
 	public function init() {
 
-		if( isset( $_GET[ 'layers-export' ] ) ) $this->create_export_file();
-
 		// Add current builder pages as presets
 		add_filter( 'layers_preset_layouts' , array( $this , 'add_builder_preset_layouts') );
 
-		// Add allowance for JSON to be added via the media uploader
-		add_filter( 'upload_mimes', array( $this, 'allow_json_uploads' ), 1, 1);
-	}
-
-	/**
-	*  Simple output of a JSON'd string of the widget data
-	*/
-
-	function create_export_file(){
-
-		// Make sur a post ID exists or return
-		if( !isset( $_GET[ 'post' ] ) ) return;
-
-		// Get the post ID
-		$post_id = $_GET[ 'post' ];
-
-		$post = get_post( $post_id );
-
-		$widget_data = json_encode( $this->export_data( $post ) );
-
-		$filesize = strlen( $widget_data );
-
-		// Headers to prompt "Save As"
-		header( 'Content-Type: application/json' );
-		header( 'Content-Disposition: attachment; filename=' . $post->post_name .'-' . date( 'Y-m-d' ) . '.json' );
-		header( 'Expires: 0' );
-		header( 'Cache-Control: must-revalidate' );
-		header( 'Pragma: public' );
-		header( 'Content-Length: ' . $filesize );
-
-		// Clear buffering just in case
-		@ob_end_clean();
-		flush();
-
-		// Output file contents
-		die( $widget_data );
-
-
-		// Stop execution
-		wp_redirect( admin_url( 'post.php?post=' . $post->ID . '&action=edit'  ) );
-
-	}
-
-	function allow_json_uploads( $mime_types ){
-		//Creating a new array will reset the allowed filetypes
-		$mime_types[ 'json|JSON' ] = 'application/json';
-
-		return $mime_types;
 	}
 
 	/**
@@ -860,3 +810,47 @@ if( !function_exists( 'layers_builder_export_ajax_init' ) ) {
 	}
 }
 add_action( 'init' , 'layers_builder_export_ajax_init' );
+
+
+/**
+*  Simple output of a JSON'd string of the widget data
+*/
+
+function layers_create_export_file(){
+
+	$layers_migrator = new Layers_Widget_Migrator();
+
+	// Make sur a post ID exists or return
+	if( !isset( $_GET[ 'post' ] ) ) return;
+
+	// Get the post ID
+	$post_id = $_GET[ 'post' ];
+
+	$post = get_post( $post_id );
+
+	$widget_data = json_encode( $layers_migrator->export_data( $post ) );
+
+	$filesize = strlen( $widget_data );
+
+	// Headers to prompt "Save As"
+	header( 'Content-Type: application/json' );
+	header( 'Content-Disposition: attachment; filename=' . $post->post_name .'-' . date( 'Y-m-d' ) . '.json' );
+	header( 'Expires: 0' );
+	header( 'Cache-Control: must-revalidate' );
+	header( 'Pragma: public' );
+	header( 'Content-Length: ' . $filesize );
+
+	// Clear buffering just in case
+	@ob_end_clean();
+	flush();
+
+	// Output file contents
+	die( $widget_data );
+
+	// Stop execution
+	wp_redirect( admin_url( 'post.php?post=' . $post->ID . '&action=edit'  ) );
+
+}
+if( isset( $_GET[ 'layers-export' ] ) ) {
+	add_action( 'init' , 'layers_create_export_file' );
+}

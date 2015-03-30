@@ -109,62 +109,54 @@ class Layers_Custom_Meta {
 
 		// Check if we're using the builder for this page
 
-		$is_builder_used = ( 'builder.php' == basename( get_page_template() ) ) ? true : false;
+		$is_builder_used = ( 'builder.php' == basename( get_page_template() ) ) ? true : false; ?>
 
-		printf( '<div id="layers_toggle_builder" class=" %3$s">
-					<div  class="postbox layers-push-top">
-						<div class="layers-section-title layers-no-push-bottom layers-content-large">
-							<div class="layers-heading">
-								%1$s
-							</div>
-							<p class="layers-excerpt">
-								%5$s
-							</p>
+		<div id="layers_toggle_builder" class=" <?php echo ( true == $is_builder_used ? '' : 'layers-hide' ) ?>">
+				<div  class="postbox layers-push-top">
+					<div class="layers-section-title layers-no-push-bottom layers-content-large">
+						<div class="layers-heading">
+							<?php ( 'auto-draft' == $post->post_status ? _e( 'Your page is almost ready.' , 'layerswp' ) : _e( 'Your page is ready.' , 'layerswp' ) ); ?>
 						</div>
-						<div class="layers-button-well clearfix">
-							<a href="%2$s" class="layers-button btn-massive btn-primary btn-full" id="%4$s">%6$s</a>
+						<p class="layers-excerpt">
+							<?php ( 'auto-draft' == $post->post_status ? _e( 'Click the Start button below to set this page up for Layers.' , 'layerswp' ) : _e( 'You can drag and drop widgets, edit content and tweak the design. Click the button below to see your page come to life.' , 'layerswp' ) ); ?>
+						</p>
+					</div>
+					<div class="layers-button-well clearfix">
+						<a href="<?php echo admin_url() . 'customize.php?url=' . esc_url( get_the_permalink() ); ?>" class="layers-button btn-massive btn-primary btn-full <?php echo ( 'auto-draft' == $post->post_status ? 'disable' : '' ); ?>" id="<?php echo ( isset( $post->ID ) ? 'builder-button-' . $post->ID : 'builder-button-' . rand(0,1) ); ?>">
+							<?php ( 'auto-draft' == $post->post_status ? _e( 'Start' , 'layerswp' ) : _e( 'Edit Your Page' , 'layerswp' ) ); ?>
+						</a>
+					</div>
+				</div>
+
+				<div class="layers-row">
+
+					<div class="layers-column layers-span-4 postbox layers-content">
+						<div class="layers-section-title layers-tiny">
+							<h4 class="layers-heading">Export Layout</h4>
+							<p class="layers-excerpt">Export your layout to a <code>.json</code> file which you can use to upload to another site.</p>
 						</div>
+						<a href="?post=<?php echo get_the_ID(); ?>&amp;action=edit&amp;layers-export=1" class="layers-button">Export</a>
 					</div>
 
-					<div class="layers-row">
-
-						<div class="layers-column layers-span-4 postbox layers-content">
-							<div class="layers-section-title layers-tiny">
-								<h4 class="layers-heading">Export Layout</h4>
-								<p class="layers-excerpt">Export your layout to a <code>.json</code> file which you can use to upload to another site.</p>
-							</div>
-							<a href="?post=%8$s&amp;action=edit&amp;layers-export=1" class="layers-button">Export</a>
+					<div class="layers-column layers-span-4 postbox layers-content">
+						<div class="layers-section-title layers-tiny">
+							<h4 class="layers-heading">Import Layout</h4>
+							<p class="layers-excerpt"> Upload a layout file (eg. <code><?php echo $post->post_name; ?>.json</code>) by clicking the button below.</p>
 						</div>
-
-						<div class="layers-column layers-span-4 postbox layers-content">
-							<div class="layers-section-title layers-tiny">
-								<h4 class="layers-heading">Import Layout</h4>
-								<p class="layers-excerpt"> Upload a layout file (eg. <code>%9$s.json</code>) by clicking the button below.</p>
-							</div>
-							<button class="layers-button" id="layers-page-import-button" data-post-id="%8$s" data-title="Upload .json" data-button_text="Upload &amp; Import">Upload &amp; Import</button>
-						</div>
-
-						<div class="layers-column layers-span-4 postbox layers-content">
-							<div class="layers-section-title layers-tiny">
-								<h4 class="layers-heading">Duplicate Layout</h4>
-								<p class="layers-excerpt">Easily duplicate your layout, settings, text and images in order to get started quickly with a new page.</p>
-							</div>
-							<button href="" class="layers-button" id="layers-page-duplicate-button" data-post-id="%8$s">Duplicate</button>
-						</div>
-
+						<button class="layers-button" id="layers-page-import-button" data-post-id="<?php echo get_the_ID(); ?>" data-title="Upload .json" data-button_text="Upload &amp; Import">Upload &amp; Import</button>
 					</div>
-				</div>',
-			'Your page is ready.', // %1
-			admin_url() . 'customize.php?url=' . esc_url( get_the_permalink() ), // %2
-			( true == $is_builder_used ? '' : 'layers-hide' ), // %3
-			( isset( $post->ID ) ? 'builder-button-' . $post->ID : 'builder-button-' . rand(0,1) ), // %4,
-			__( 'You can drag and drop widgets, edit content and tweak the design. Click the button below to see your page come to life.' , 'layerswp' ), // %5
-			__( 'Edit Your Page' , 'layerswp' ), // %6
-			get_template_directory_uri(), // %7,
-			get_the_ID(), // %8,
-			$post->post_name // %9,
-		);
-	}
+
+					<div class="layers-column layers-span-4 postbox layers-content">
+						<div class="layers-section-title layers-tiny">
+							<h4 class="layers-heading">Duplicate Layout</h4>
+							<p class="layers-excerpt">Easily duplicate your layout, settings, text and images in order to get started quickly with a new page.</p>
+						</div>
+						<button href="" class="layers-button" id="layers-page-duplicate-button" data-post-id="<?php echo get_the_ID(); ?>">Duplicate</button>
+					</div>
+
+				</div>
+			</div>
+	<?php }
 
 	/**
 	* Page Builder Inline Button

@@ -79,8 +79,8 @@ class Layers_Customizer {
 			add_action( 'customize_controls_print_styles' , array( $this, 'admin_print_styles' ) );
 			add_action( 'customize_preview_init', array( $this, 'customizer_preview_enqueue_scripts' ) , 50 );
 
-			// Render header actions button(s)
-			add_action( 'customize_controls_print_footer_scripts' , array( $this, 'render_actions_buttons' ) );
+			// Render layers customizer menu
+			add_action( 'customize_controls_print_footer_scripts' , array( $this, 'render_customizer_menu' ) );
 		}
 	}
 
@@ -181,29 +181,54 @@ class Layers_Customizer {
 		}
 	}
 
-	function render_actions_buttons() {
+	function render_customizer_menu() {
 		?>
 		<div id="customize-controls-layers-actions">
 			
 			<ul class="layers-customizer-nav">
 				<li>
-					<span class="customize-controls-layers-button customize-controls-layers-button-dashboard" title="<?php esc_html( _e( 'Layers Dashboard' , 'layerswp' ) ) ?>" href="<?php echo admin_url( 'admin.php?page=layers-add-new-page' ); ?>"></span>
+					<span class="customize-controls-layers-button customize-controls-layers-button-dashboard-main" title="<?php esc_html( _e( 'Layers Dashboard' , 'layerswp' ) ) ?>" href="<?php echo admin_url( 'admin.php?page=layers-add-new-page' ); ?>"></span>
 					<ul>
-						<li>
-							<a class="customize-controls-layers-button customize-controls-layers-button-preview" href="#" target="_blank">
-								<i class="icon-display"></i><?php _e( 'Preview this page' , 'layerswp' ) ?>
-							</a>
-						</li>
-						<li>
-							<a class="customize-controls-layers-button" href="<?php echo admin_url( 'admin.php?page=layers-add-new-page' ); ?>">
-								<i class="dashicons dashicons-plus"></i><?php _e( 'Add new Layers page' , 'layerswp' ) ?>
-							</a>
-						</li>
-						<li>
-							<a class="customize-controls-layers-button" href="<?php echo admin_url( 'admin.php?page=layers-dashboard' ); ?>">
-								<i class="customize-controls-layers-button-dashboard"></i><?php _e( 'Layers Dashboard' , 'layerswp' ) ?>
-							</a>
-						</li>
+						<?php
+						// Construct the Layers Customizer Menu
+						$layers_customizer_menu = array(
+							'preview' => array(
+								'text'			=> __( 'Preview this page' , 'layerswp' ),
+								'link'			=> '#',
+								'icon_class'	=> 'icon-display',
+								'target'		=> '_blank',
+							),
+							'add_new_page' => array(
+								'text'			=> __( 'Add new Layers page' , 'layerswp' ),
+								'link'			=> admin_url( 'admin.php?page=layers-add-new-page' ),
+								'icon_class'	=> 'dashicons dashicons-plus',
+							),
+							'dashboard' => array(
+								'text'			=> __( 'Layers Dashboard' , 'layerswp' ),
+								'link'			=> admin_url( 'admin.php?page=layers-dashboard' ),
+								'icon_class'	=> 'layers-button-icon-dashboard',
+							),
+						);
+						
+						// Filter the Layers Customizer Menu
+						$layers_customizer_menu = apply_filters( 'layers_customizer_menu', $layers_customizer_menu );
+						
+						// Render the Layers Customizer Menu
+						foreach ( $layers_customizer_menu as $id => $args ) {
+							
+							$text = ( isset( $args['text'] ) && '' !== trim( $args['text'] ) ) ? esc_html( $args['text'] ) : '' ;
+							$icon_class = ( isset( $args['icon_class'] ) && '' !== trim( $args['icon_class'] ) ) ? esc_attr( $args['icon_class'] ) : '' ;
+							$href = ( isset( $args['link'] ) && '' !== trim( $args['link'] ) ) ? 'href="' . esc_url( $args['link'] ) . '"' : '' ;
+							$target = ( isset( $args['target'] ) && '' !== trim( $args['target'] ) ) ? 'target="' . esc_attr( $args['target'] ) . '"' : '' ;
+							?>
+							<li>
+								<a class="customize-controls-layers-button customize-controls-layers-button-<?php echo esc_attr( $id ); ?>" <?php echo $href; ?> <?php echo $target; ?> >
+									<i class="<?php echo $icon_class ?>"></i><?php echo $text ?>
+								</a>
+							</li>
+							<?php
+						}
+						?>
 					</ul>
 				</li>
 			</ul>

@@ -1,5 +1,12 @@
 # Layers Changelog
 
+## x.x.x
+### 00 Xxxxx 2015
+
+Xxxxxx
+
+* **Tweak** - Changed the way the Layers customizer menu is constructed in render_customizer_menu() to make it more extendable
+
 ## 1.0.6
 ### 20 March 2015
 

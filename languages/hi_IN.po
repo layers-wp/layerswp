@@ -1,0 +1,2071 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Layers v1.0.6\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2015-03-25 09:21:41+0000\n"
+"Last-Translator: Amar Singh\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: CSL v1.x\n"
+"X-Poedit-Language: Hindi\n"
+"X-Poedit-Country: India\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-KeywordsList: __;_e;__ngettext:1,2;_n:1,2;__ngettext_noop:1,2;_n_noop:1,2;_c,_nc:4c,1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;_nx_noop:4c,1,2;\n"
+"X-Poedit-Basepath: ../\n"
+"X-Poedit-Bookmarks: \n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Textdomain-Support: yes"
+
+#: comments.php:29
+#@ layerswp
+msgid "Comments are closed."
+msgstr "टिप्पणियाँ बंद हैं।"
+
+#: core/customizer/config.php:22
+#@ layerswp
+msgid "Branding"
+msgstr "ब्रांडिंग"
+
+#: core/customizer/config.php:26
+#@ layerswp
+msgid "Site Settings"
+msgstr "साइट सेटिंग्स"
+
+#: core/customizer/config.php:27
+#@ layerswp
+msgid "Control your content's default layout."
+msgstr "अपनी सामग्री के डिफ़ॉल्ट लेआउट को नियंत्रित करें।"
+
+#: core/customizer/config.php:31
+#@ layerswp
+msgid "Header"
+msgstr "हैडर"
+
+#: core/customizer/config.php:32
+#@ layerswp
+msgid "Control your header's logo, layout, colors and font."
+msgstr "अपने हैडर के लोगो, लेआउट, रंग और फ़ॉन्ट को नियंत्रित करें।"
+
+#: core/customizer/config.php:36
+#@ layerswp
+msgid "Footer"
+msgstr "फूटर"
+
+#: core/customizer/config.php:37
+#@ layerswp
+msgid "Control your footer's custom text, widget areas and layout."
+msgstr "अपने फूटर के कस्टम टेक्स्ट, विजेट एरिया और लेआउट को नियंत्रित करें।"
+
+#: core/customizer/config.php:41
+#@ layerswp
+msgid "WooCommerce"
+msgstr "वूकॉमर्स"
+
+#: core/customizer/config.php:58
+#@ layerswp
+msgid "Logo &amp; Title"
+msgstr "लोगो एवं शीर्षक"
+
+#: core/customizer/config.php:63
+#: core/customizer/config.php:257
+#: core/customizer/config.php:385
+#: core/helpers/forms.php:341
+#: core/helpers/forms.php:416
+#@ layerswp
+msgid "Background Color"
+msgstr "बैकग्राउंड कलर"
+
+#: core/customizer/config.php:90
+#@ layerswp
+msgid "Navigation"
+msgstr "नेविगेशन"
+
+#: core/customizer/config.php:91
+#@ layerswp
+msgid "First create a menu then come back here to place it."
+msgstr "पहले एक मेनू बनाएँ फिर इसे रखने के लिए यहाँ वापिस आयें।"
+
+#: core/customizer/config.php:96
+#: core/customizer/config.php:112
+#: core/customizer/config.php:120
+#: core/helpers/design-bar.php:214
+#: core/widgets/modules/slider.php:339
+#@ layerswp
+msgid "Layout"
+msgstr "लेआउट"
+
+#: core/customizer/config.php:100
+#: core/customizer/config.php:136
+#@ layerswp
+msgid "Sidebars"
+msgstr "साइडबार्स"
+
+#: core/customizer/config.php:104
+#@ layerswp
+msgid "Fonts"
+msgstr "फ़ॉन्ट्स"
+
+#: core/customizer/config.php:109
+#@ layerswp
+msgid "CSS"
+msgstr "सीएसएस"
+
+#: core/customizer/config.php:116
+#: core/customizer/config.php:132
+#@ layerswp
+msgid "Additional Scripts"
+msgstr "अतिरिक्त स्क्रिप्टें"
+
+#: core/customizer/config.php:124
+#@ layerswp
+msgid "Customization"
+msgstr "कस्टमाइजेशन"
+
+#: core/customizer/config.php:128
+#: core/customizer/config.php:359
+#: core/helpers/design-bar.php:530
+#@ layerswp
+msgid "Text"
+msgstr "टेक्स्ट"
+
+#: core/customizer/config.php:156
+#@ layerswp
+msgid "Create Menu"
+msgstr "मेनू बनाएँ"
+
+#: core/customizer/config.php:176
+#@ layerswp
+msgid "Typekit ID"
+msgstr "टाइपकिट आईडी"
+
+#: core/customizer/config.php:177
+#, php-format
+#@ layerswp
+msgid "For more information on obtaining your Typekit ID, see <a href=\"%s\" target=\"_blank\">follow this link</a>."
+msgstr "टाइपकिट आईडी प्राप्त करने पर अधिक जानकारी के लिए, देखें <a href=\"%s\" target=\"_blank\">इस लिंक को फॉलो करें</a>।"
+
+#: core/customizer/config.php:184
+#@ layerswp
+msgid "Body"
+msgstr "बॉडी"
+
+#: core/customizer/config.php:193
+#@ layerswp
+msgid "Headings"
+msgstr "हैडिंग्स"
+
+#: core/customizer/config.php:202
+#@ layerswp
+msgid "Buttons"
+msgstr "बटन्स"
+
+#: core/customizer/config.php:212
+#@ layerswp
+msgid "Header Width"
+msgstr "हैडर चौड़ाई"
+
+#: core/customizer/config.php:215
+#: core/customizer/config.php:324
+#: core/helpers/design-bar.php:227
+#: core/widgets/modules/slider.php:349
+#@ layerswp
+msgid "Boxed"
+msgstr "बॉक्स"
+
+#: core/customizer/config.php:216
+#: core/customizer/config.php:325
+#: core/helpers/design-bar.php:228
+#: core/widgets/modules/slider.php:350
+#@ layerswp
+msgid "Full Width"
+msgstr "पूरी चौड़ाई"
+
+#: core/customizer/config.php:224
+#@ layerswp
+msgid "Logo & Menu Position"
+msgstr "लोगो एवं मेनू पोजीशन"
+
+#: core/customizer/config.php:227
+#@ layerswp
+msgid "Logo Left"
+msgstr "लोगो बाएँ"
+
+#: core/customizer/config.php:228
+#@ layerswp
+msgid "Logo Right"
+msgstr "लोगो दाएँ"
+
+#: core/customizer/config.php:229
+#@ layerswp
+msgid "Logo Center Top"
+msgstr "लोगो मध्य शीर्ष"
+
+#: core/customizer/config.php:230
+#@ layerswp
+msgid "Logo Top"
+msgstr "लोगो शीर्ष"
+
+#: core/customizer/config.php:231
+#@ layerswp
+msgid "Logo Center"
+msgstr "लोगो मध्य"
+
+#: core/customizer/config.php:239
+#@ layerswp
+msgid "Header Position"
+msgstr "हैडर पोजीशन"
+
+#: core/customizer/config.php:243
+#@ layerswp
+msgid "Sticky"
+msgstr "स्टिकी"
+
+#: core/customizer/config.php:249
+#: core/widgets/modules/post.php:332
+#@ layerswp
+msgid "Overlay"
+msgstr "ओवरले"
+
+#: core/customizer/config.php:266
+#@ layerswp
+msgid "Google Analytics ID"
+msgstr "गूगल एनालिटिक्स आईडी"
+
+#: core/customizer/config.php:267
+#@ layerswp
+msgid "Enter in your Google Analytics ID to enable website traffic reporting. eg. \"UA-xxxxxx-xx"
+msgstr "वेबसाइट ट्रैफिक रिपोर्टिंग को सक्षम करने के लिए अपनी गूगल एनालिटिक्स आईडी को दर्ज करें। जैसे: \"UA-xxxxxx-xx\""
+
+#: core/customizer/config.php:275
+#: core/customizer/config.php:432
+#@ layerswp
+msgid "Custom Scripts"
+msgstr "कस्टम स्क्रिप्ट"
+
+#: core/customizer/config.php:276
+#@ layerswp
+msgid "Enter in any custom script to include in your site's header. Be sure to use double quotes for strings."
+msgstr "अपने साइट के हैडर में शामिल करने के लिए किसी भी कस्टम स्क्रिप्ट में डालें। स्ट्रिंग्स के लिए दोहरे उद्धरण चिह्नों का उपयोग सुनिश्चित करें।"
+
+#: core/customizer/config.php:284
+#@ layerswp
+msgid "Single Post Sidebar(s)"
+msgstr "एकल पोस्ट साइडबार ( स)"
+
+#: core/customizer/config.php:285
+#@ layerswp
+msgid "This option affects your single post pages."
+msgstr "यह विकल्प आपके एकल पोस्ट पेजों को प्रभावित करता है।"
+
+#: core/customizer/config.php:289
+#: core/customizer/config.php:307
+#: core/customizer/config.php:448
+#: core/customizer/config.php:466
+#@ layerswp
+msgid "Display Left Sidebar"
+msgstr "बायाँ साइडबार प्रदर्शित करें"
+
+#: core/customizer/config.php:294
+#: core/customizer/config.php:312
+#: core/customizer/config.php:453
+#: core/customizer/config.php:471
+#@ layerswp
+msgid "Display Right Sidebar"
+msgstr "दायाँ साइडबार प्रदर्शित करें"
+
+#: core/customizer/config.php:302
+#@ layerswp
+msgid "Post List Sidebar(s)"
+msgstr "पोस्ट लिस्ट साइडबार ( स)"
+
+#: core/customizer/config.php:303
+#@ layerswp
+msgid "This option affects your category, tag, author and search pages."
+msgstr "यह विकल्प आपकी केटेगरी, टैग, लेखक एवं सर्च पेजों को प्रभावित करता है।"
+
+#: core/customizer/config.php:333
+#@ layerswp
+msgid "Widget Areas"
+msgstr "विजेट एरिया"
+
+#: core/customizer/config.php:337
+#: core/helpers/design-bar.php:459
+#: core/helpers/design-bar.php:504
+#@ layerswp
+msgid "None"
+msgstr "कोई नहीं"
+
+#: core/customizer/config.php:338
+#@ layerswp
+msgid "1"
+msgstr "१"
+
+#: core/customizer/config.php:339
+#@ layerswp
+msgid "2"
+msgstr "२"
+
+#: core/customizer/config.php:340
+#@ layerswp
+msgid "3"
+msgstr "३"
+
+#: core/customizer/config.php:341
+#@ layerswp
+msgid "4"
+msgstr "४"
+
+#: core/customizer/config.php:348
+#@ layerswp
+msgid "Support Layers"
+msgstr "सपोर्ट लेयर्स"
+
+#: core/customizer/config.php:349
+#@ layerswp
+msgid "Support Layers by displaying the Layers badge on your site."
+msgstr "अपनी साइट पर लेयर्स बैज प्रदर्शित करते हुए लेयर्स को सपोर्ट करें।"
+
+#: core/customizer/config.php:363
+#@ layerswp
+msgid "Text Color"
+msgstr "टेक्स्ट कलर"
+
+#: core/customizer/config.php:368
+#@ layerswp
+msgid "Link Color"
+msgstr "लिंक कलर"
+
+#: core/customizer/config.php:376
+#: core/helpers/design-bar.php:593
+#@ layerswp
+msgid "Background"
+msgstr "बैकग्राउंड"
+
+#: core/customizer/config.php:380
+#: core/helpers/design-bar.php:599
+#@ layerswp
+msgid "Background Image"
+msgstr "बैकग्राउंड तस्वीर"
+
+#: core/customizer/config.php:391
+#@ layerswp
+msgid "Background Repeat"
+msgstr "बैकग्राउंड दुहराव"
+
+#: core/customizer/config.php:394
+#: core/helpers/design-bar.php:619
+#@ layerswp
+msgid "No Repeat"
+msgstr "कोई दुहराव नहीं"
+
+#: core/customizer/config.php:395
+#: core/helpers/design-bar.php:614
+#: core/helpers/design-bar.php:620
+#@ layerswp
+msgid "Repeat"
+msgstr "दुहराएँ"
+
+#: core/customizer/config.php:396
+#: core/helpers/design-bar.php:621
+#@ layerswp
+msgid "Repeat Horizontal"
+msgstr "हॉरिजॉन्टल दुहराएँ"
+
+#: core/customizer/config.php:397
+#: core/helpers/design-bar.php:622
+#@ layerswp
+msgid "Repeat Vertical"
+msgstr "वर्टीकल दुहराएँ"
+
+#: core/customizer/config.php:402
+#@ layerswp
+msgid "Background Position"
+msgstr "बैकग्राउंड पोजीशन"
+
+#: core/customizer/config.php:405
+#: core/helpers/design-bar.php:360
+#: core/helpers/design-bar.php:545
+#: core/helpers/design-bar.php:632
+#@ layerswp
+msgid "Center"
+msgstr "मध्य"
+
+#: core/customizer/config.php:406
+#: core/helpers/design-bar.php:403
+#: core/helpers/design-bar.php:633
+#: core/helpers/forms.php:491
+#@ layerswp
+msgid "Top"
+msgstr "शीर्ष"
+
+#: core/customizer/config.php:407
+#: core/helpers/design-bar.php:634
+#: core/helpers/forms.php:493
+#@ layerswp
+msgid "Bottom"
+msgstr "तल"
+
+#: core/customizer/config.php:408
+#: core/helpers/design-bar.php:359
+#: core/helpers/design-bar.php:401
+#: core/helpers/design-bar.php:544
+#: core/helpers/design-bar.php:635
+#: core/helpers/forms.php:494
+#@ layerswp
+msgid "Left"
+msgstr "बाएँ"
+
+#: core/customizer/config.php:409
+#: core/helpers/design-bar.php:361
+#: core/helpers/design-bar.php:402
+#: core/helpers/design-bar.php:546
+#: core/helpers/design-bar.php:636
+#: core/helpers/forms.php:492
+#@ layerswp
+msgid "Right"
+msgstr "दाएँ"
+
+#: core/customizer/config.php:413
+#@ layerswp
+msgid "Background Stretch"
+msgstr "बैकग्राउंड स्ट्रेच"
+
+#: core/customizer/config.php:423
+#@ layerswp
+msgid "Copyright Text"
+msgstr "कॉपीराइट टेक्स्ट"
+
+#: core/customizer/config.php:433
+#@ layerswp
+msgid "Enter in any custom script to include in your site's footer. Be sure to use double quotes for strings."
+msgstr "अपने साइट के फूटर में शामिल करने के लिए किसी भी कस्टम स्क्रिप्ट में डालें। स्ट्रिंग्स के लिए दोहरे उद्धरण चिह्नों का उपयोग सुनिश्चित करें।"
+
+#: core/customizer/config.php:443
+#@ layerswp
+msgid "Single Product Sidebar(s)"
+msgstr "एकल उत्पाद साइडबार (स)"
+
+#: core/customizer/config.php:444
+#@ layerswp
+msgid "This option affects your single product pages."
+msgstr "यह विकल्प आपके एकल उत्पाद पेजों को प्रभावित करता है।"
+
+#: core/customizer/config.php:461
+#@ layerswp
+msgid "Product List Sidebar(s)"
+msgstr "उत्पाद सूची साइडबार (स)"
+
+#: core/customizer/config.php:462
+#@ layerswp
+msgid "This option affects your shop page, product category and product tag pages."
+msgstr "यह विकल्प आपके शॉप पेज, उत्पाद श्रेणी एवं उत्पाद टैग पेजों को प्रभावित करता है।"
+
+#: core/customizer/controls/font.php:51
+#, php-format
+#@ layerswp
+msgid "<em>Click <a href=\"%1s\" target=\"_blank\">here</a> to see this font on Google Fonts.</em>"
+msgstr "<em>इस फॉन्ट को गूगल फॉन्ट में देखने के लिए <a href=\"%1s\" target=\"_blank\">यहाँ</a> क्लिक करें।</em>"
+
+#: core/customizer/controls/select-images.php:36
+#@ layerswp
+msgid "Choose Background"
+msgstr "बैकग्राउंड चुनें"
+
+#: core/customizer/init.php:71
+#: core/helpers/post.php:338
+#: core/meta/init.php:183
+#: core/options-panel/partials/dashboard.php:39
+#@ layerswp
+msgid "Edit Layout"
+msgstr "लेआउट संपादित करें"
+
+#: core/customizer/init.php:72
+#@ layerswp
+msgid "Use this area to add widgets to your page, use the (Layers) widgets for the Body section."
+msgstr "अपने पेज में विजेट जोड़ने के लिए इस क्षेत्र का उपयोग करें, बॉडी सेक्शन के लिए (लेयर्स) विजेट का उपयोग करें।"
+
+#: core/customizer/init.php:167
+#@ layerswp
+msgid "Builder Pages:"
+msgstr "बिल्डर पेज:"
+
+#: core/customizer/init.php:190
+#: core/customizer/init.php:204
+#@ layerswp
+msgid "Layers Dashboard"
+msgstr "लेयर्स डैशबोर्ड"
+
+#: core/customizer/init.php:194
+#@ layerswp
+msgid "Preview this page"
+msgstr "इस पेज का प्रीव्यू देखें"
+
+#: core/customizer/init.php:199
+#@ layerswp
+msgid "Add new Layers page"
+msgstr "नया लेयर्स पेज जोड़ें"
+
+#: core/helpers/api.php:41
+#@ layerswp
+msgid "WooCommerce for Layers"
+msgstr "लेयर्स के लिए वूकॉमर्स"
+
+#: core/helpers/api.php:42
+#@ layerswp
+msgid "Adds an advanced product widget, product slider and multiple page layouts."
+msgstr "एक उन्नत उत्पाद विजेट, उत्पाद स्लाइडर एवं मल्टीप्ल पेज लेआउट जोड़ता है।"
+
+#: core/helpers/api.php:48
+#@ layerswp
+msgid "Showcase for Layers"
+msgstr "लेयर्स के लिए शोकेस"
+
+#: core/helpers/api.php:49
+#@ layerswp
+msgid "List your portfolio items with relevant meta such as client, web url and project role."
+msgstr "उपयुक्त मेटा के साथ अपनी पोर्टफोलियो वस्तुओं को सूचीबद्ध करें जैसे ग्राहक, वेब यूआरएल एवं प्रोज़ेक्ट रोल आदि।"
+
+#: core/helpers/custom-fonts.php:111
+#@ layerswp
+msgid "Default"
+msgstr "डिफ़ॉल्ट"
+
+#: core/helpers/design-bar.php:254
+#: core/widgets/modules/content.php:315
+#@ layerswp
+msgid "List Style"
+msgstr "लिस्ट स्टाइल"
+
+#: core/helpers/design-bar.php:267
+#: core/widgets/modules/content.php:324
+#@ layerswp
+msgid "Grid"
+msgstr "ग्रिड"
+
+#: core/helpers/design-bar.php:268
+#@ layerswp
+msgid "List"
+msgstr "लिस्ट"
+
+#: core/helpers/design-bar.php:269
+#: core/widgets/modules/content.php:325
+#@ layerswp
+msgid "Masonry"
+msgstr "मेसनरी"
+
+#: core/helpers/design-bar.php:295
+#: core/helpers/design-bar.php:304
+#@ layerswp
+msgid "Columns"
+msgstr "कॉलम"
+
+#: core/helpers/design-bar.php:309
+#@ layerswp
+msgid "1 Column"
+msgstr "१ कॉलम"
+
+#: core/helpers/design-bar.php:310
+#@ layerswp
+msgid "2 Columns"
+msgstr "२ कॉलम"
+
+#: core/helpers/design-bar.php:311
+#@ layerswp
+msgid "3 Columns"
+msgstr "३ कॉलम"
+
+#: core/helpers/design-bar.php:312
+#@ layerswp
+msgid "4 Columns"
+msgstr "४ कॉलम"
+
+#: core/helpers/design-bar.php:313
+#@ layerswp
+msgid "6 Columns"
+msgstr "६ कॉलम"
+
+#: core/helpers/design-bar.php:318
+#: core/widgets/modules/content.php:330
+#@ layerswp
+msgid "Gutter"
+msgstr "गटर"
+
+#: core/helpers/design-bar.php:346
+#: core/helpers/design-bar.php:539
+#@ layerswp
+msgid "Text Align"
+msgstr "टेक्स्ट अलाइन"
+
+#: core/helpers/design-bar.php:362
+#: core/helpers/design-bar.php:547
+#@ layerswp
+msgid "Justify"
+msgstr "जस्टिफाई"
+
+#: core/helpers/design-bar.php:388
+#@ layerswp
+msgid "Image Align"
+msgstr "तस्वीर अलाइन"
+
+#: core/helpers/design-bar.php:429
+#: core/helpers/design-bar.php:438
+#@ layerswp
+msgid "Featured Image"
+msgstr "फीचर्ड तस्वीर"
+
+#: core/helpers/design-bar.php:445
+#@ layerswp
+msgid "Video URL (oEmbed)"
+msgstr "वीडियो यूआरएल (ओएम्बेड)"
+
+#: core/helpers/design-bar.php:456
+#: core/helpers/design-bar.php:501
+#@ layerswp
+msgid "Portrait"
+msgstr "पोर्ट्रेट"
+
+#: core/helpers/design-bar.php:457
+#: core/helpers/design-bar.php:502
+#@ layerswp
+msgid "Landscape"
+msgstr "लैंडस्केप"
+
+#: core/helpers/design-bar.php:458
+#: core/helpers/design-bar.php:503
+#@ layerswp
+msgid "Square"
+msgstr "स्क्वायर"
+
+#: core/helpers/design-bar.php:460
+#@ layerswp
+msgid "Round"
+msgstr "राउंड"
+
+#: core/helpers/design-bar.php:488
+#@ layerswp
+msgid "Image Ratio"
+msgstr "तस्वीर अनुपात"
+
+#: core/helpers/design-bar.php:554
+#@ layerswp
+msgid "Text Size"
+msgstr "टेक्स्ट साइज़"
+
+#: core/helpers/design-bar.php:559
+#@ layerswp
+msgid "Small"
+msgstr "छोटा"
+
+#: core/helpers/design-bar.php:560
+#@ layerswp
+msgid "Medium"
+msgstr "मध्यम"
+
+#: core/helpers/design-bar.php:561
+#@ layerswp
+msgid "Large"
+msgstr "बड़ा"
+
+#: core/helpers/design-bar.php:600
+#: core/helpers/forms.php:252
+#@ layerswp
+msgid "Choose Image"
+msgstr "तस्वीर चुनें"
+
+#: core/helpers/design-bar.php:607
+#@ layerswp
+msgid "Color"
+msgstr "कलर"
+
+#: core/helpers/design-bar.php:627
+#@ layerswp
+msgid "Position"
+msgstr "पोजीशन"
+
+#: core/helpers/design-bar.php:641
+#@ layerswp
+msgid "Stretch"
+msgstr "स्ट्रेच"
+
+#: core/helpers/design-bar.php:648
+#@ layerswp
+msgid "Darken"
+msgstr "गहरा"
+
+#: core/helpers/design-bar.php:676
+#@ layerswp
+msgid "Advanced"
+msgstr "एडवांस्ड"
+
+#: core/helpers/design-bar.php:682
+#@ layerswp
+msgid "Custom Class(es)"
+msgstr "कस्टम क्लास (सें)"
+
+#: core/helpers/design-bar.php:690
+#@ layerswp
+msgid "Custom CSS"
+msgstr "कस्टम सीएसएस"
+
+#: core/helpers/design-bar.php:698
+#@ layerswp
+msgid "Padding (px)"
+msgstr "पैडिंग (पिक्सेल)"
+
+#: core/helpers/design-bar.php:705
+#@ layerswp
+msgid "Margin (px)"
+msgstr "मार्जिन (पिक्सेल)"
+
+#: core/helpers/design-bar.php:712
+#@ layerswp
+msgid "Widget Anchor ID"
+msgstr "विजेट एंकर आईडी"
+
+#: core/helpers/forms.php:22
+#@ layerswp
+msgid "Widget"
+msgstr "विजेट"
+
+#: core/helpers/forms.php:99
+#@ layerswp
+msgid "Newest First"
+msgstr "नया पहले"
+
+#: core/helpers/forms.php:100
+#@ layerswp
+msgid "Oldest First"
+msgstr "पुराना पहले"
+
+#: core/helpers/forms.php:101
+#@ layerswp
+msgid "Random"
+msgstr "अनियमित"
+
+#: core/helpers/forms.php:102
+#@ layerswp
+msgid "Titles A-Z"
+msgstr "शीर्षक ए से जेड"
+
+#: core/helpers/forms.php:103
+#@ layerswp
+msgid "Titles Z-A"
+msgstr "शीर्षक जेड से ए"
+
+#: core/helpers/forms.php:104
+#@ layerswp
+msgid "Most Comments"
+msgstr "सबसे अधिक टिप्पणियाँ"
+
+#: core/helpers/forms.php:105
+#@ layerswp
+msgid "Custom Order"
+msgstr "कस्टम ऑर्डर"
+
+#: core/helpers/forms.php:229
+#@ layerswp
+msgid "Visual Mode"
+msgstr "विजुअल मोड"
+
+#: core/helpers/forms.php:230
+#: core/helpers/forms.php:231
+#@ layerswp
+msgid "HTML Mode"
+msgstr "एचटीएमएल मोड"
+
+#: core/helpers/forms.php:246
+#: core/helpers/forms.php:278
+#: core/helpers/forms.php:317
+#@ layerswp
+msgid "Remove"
+msgstr "हटाएँ"
+
+#: core/helpers/forms.php:250
+#@ layerswp
+msgid "Select an Image"
+msgstr "एक तस्वीर चुनें"
+
+#: core/helpers/forms.php:251
+#@ layerswp
+msgid "Use Image"
+msgstr "तस्वीर उपयोग करें"
+
+#: core/helpers/forms.php:274
+#@ layerswp
+msgid "Select a File"
+msgstr "एक फाइल का चयन करें"
+
+#: core/helpers/forms.php:274
+#@ layerswp
+msgid "Use File"
+msgstr "फाइल उपयोग करें"
+
+#: core/helpers/forms.php:275
+#@ layerswp
+msgid "Choose a File"
+msgstr "एक फाइल चुनें"
+
+#: core/helpers/forms.php:321
+#, php-format
+#@ layerswp
+msgid "Drop a file here or %s"
+msgstr "एक फाइल को यहाँ या %s में ड्रॉप करें"
+
+#: core/helpers/forms.php:360
+#: core/helpers/forms.php:435
+#@ layerswp
+msgid "Darken to improve readability"
+msgstr "पठनीयता को सुधारने के लिए अँधेरा करें"
+
+#: core/helpers/forms.php:371
+#: core/helpers/forms.php:446
+#@ layerswp
+msgid "Tile Background"
+msgstr "टाइल बैकग्राउंड"
+
+#: core/helpers/forms.php:382
+#: core/helpers/forms.php:457
+#@ layerswp
+msgid "Fixed Background"
+msgstr "फिक्स्ड बैकग्राउंड"
+
+#: core/helpers/forms.php:393
+#@ layerswp
+msgid "Enter your .mp4 link"
+msgstr "अपना .mp4 लिंक डालें"
+
+#: core/helpers/forms.php:404
+#@ layerswp
+msgid "Enter your .ogv link"
+msgstr "अपना .ogv लिंक डालें"
+
+#: core/helpers/migrator.php:102
+#@ layerswp
+msgid "Application"
+msgstr "एप्लीकेशन"
+
+#: core/helpers/migrator.php:108
+#@ layerswp
+msgid "Contact Page"
+msgstr "संपर्क पेज"
+
+#: core/helpers/migrator.php:114
+#@ layerswp
+msgid "Landing Page"
+msgstr "लैंडिंग पेज"
+
+#: core/helpers/migrator.php:120
+#@ layerswp
+msgid "Lookbook Page"
+msgstr "लुकबुक पेज"
+
+#: core/helpers/migrator.php:126
+#@ layerswp
+msgid "One Pager"
+msgstr "वन पेजर"
+
+#: core/helpers/migrator.php:132
+#@ layerswp
+msgid "Portfolio Page"
+msgstr "पोर्टफोलियो पेज"
+
+#: core/helpers/migrator.php:138
+#@ layerswp
+msgid "Video Page"
+msgstr "वीडियो पेज"
+
+#: core/helpers/migrator.php:144
+#@ layerswp
+msgid "Blank Page"
+msgstr "खाली पेज"
+
+#: core/helpers/migrator.php:591
+#@ layerswp
+msgid "(Copy)"
+msgstr "(कॉपी)"
+
+#: core/helpers/migrator.php:649
+#: core/options-panel/partials/get-started.php:326
+#: core/options-panel/partials/get-started.php:327
+#@ layerswp
+msgid "Home Page"
+msgstr "होम पेज"
+
+#: core/helpers/migrator.php:724
+#@ layerswp
+msgid "Sidebar does not exist in theme (using Inactive)"
+msgstr "थीम (उपयोग असक्रिय) में साइडबार मौजूद नहीं है"
+
+#: core/helpers/migrator.php:766
+#@ layerswp
+msgid "Widget already exists"
+msgstr "विजेट पहले से ही मौजूद है"
+
+#: core/helpers/migrator.php:815
+#@ layerswp
+msgid "Imported"
+msgstr "आयातित"
+
+#: core/helpers/migrator.php:818
+#@ layerswp
+msgid "Imported to Inactive"
+msgstr "असक्रिय पर आयातित"
+
+#: core/helpers/migrator.php:824
+#@ layerswp
+msgid "No Title"
+msgstr "कोई शीर्षक नहीं"
+
+#: core/helpers/post.php:56
+#, php-format
+#@ layerswp
+msgid "View all posts in %s"
+msgstr "%s में सभी पोस्टें देखें"
+
+#: core/helpers/post.php:58
+#: core/helpers/post.php:77
+#@ layerswp
+msgid ", "
+msgstr ", "
+
+#: core/helpers/post.php:75
+#, php-format
+#@ layerswp
+msgid "View all posts tagged %s"
+msgstr "%s टैग की गई सभी पोस्टें देखें"
+
+#: core/helpers/post.php:98
+#, php-format
+#@ layerswp
+msgid "<a href=\"%1$s\" title=\"%2$s\" rel=\"author\">%3$s</a>"
+msgstr "<a href=\"%1$s\" title=\"%2$s\" rel=\"रचयिता\">%3$s</a>"
+
+#: core/helpers/post.php:100
+#, php-format
+#@ layerswp
+msgid "View all posts by %s"
+msgstr "%s की गई सभी पोस्टें देखें"
+
+#: core/helpers/post.php:123
+#@ layerswp
+msgid "(Edit)"
+msgstr "(संपादित करें)"
+
+#: core/helpers/post.php:129
+#, php-format
+#@ layerswp
+msgid "%1$s at %2$s"
+msgstr "%2$s पर %1$s"
+
+#: core/helpers/post.php:135
+#@ layerswp
+msgid "Your comment is awaiting moderation."
+msgstr "आपकी टिप्पणी सुधार की प्रतीक्षा में है।"
+
+#: core/helpers/post.php:157
+#@ layerswp
+msgid "You shall not pass"
+msgstr "आप उतीर्ण नहीं होंगे"
+
+#: core/helpers/template.php:24
+#@ layerswp
+msgid "Home"
+msgstr "होम"
+
+#: core/helpers/template.php:35
+#: core/helpers/template.php:304
+#@ layerswp
+msgid "Search"
+msgstr "खोज"
+
+#: core/helpers/template.php:45
+#: core/helpers/template.php:329
+#@ layerswp
+msgid "Shop"
+msgstr "शॉप"
+
+#: core/helpers/template.php:317
+#, php-format
+#@ layerswp
+msgid "Daily Archives: %s"
+msgstr "दैनिक अभिलेख: %s"
+
+#: core/helpers/template.php:319
+#, php-format
+#@ layerswp
+msgid "Monthly Archives: %s"
+msgstr "मासिक अभिलेख: %s"
+
+#: core/helpers/template.php:319
+#@ layerswp
+msgctxt "monthly archives date format"
+msgid "F Y"
+msgstr "F Y"
+
+#: core/helpers/template.php:321
+#, php-format
+#@ layerswp
+msgid "Yearly Archives: %s"
+msgstr "वार्षिक अभिलेख: %s"
+
+#: core/helpers/template.php:321
+#@ layerswp
+msgctxt "yearly archives date format"
+msgid "Y"
+msgstr "Y"
+
+#: core/helpers/template.php:334
+#@ layerswp
+msgid "Archives"
+msgstr "अभिलेख"
+
+#: core/helpers/template.php:1106
+#@ layerswp
+msgid "Your browser does not support the video tag."
+msgstr "आपका ब्राउज़र वीडियो टैग सपोर्ट नहीं करता है।"
+
+#: core/meta/config.php:16
+#@ layerswp
+msgid ": Options"
+msgstr ": ऑप्शन्स"
+
+#: core/meta/config.php:21
+#@ layerswp
+msgid "Rich Media"
+msgstr "रिच मीडिया"
+
+#: core/meta/config.php:24
+#@ layerswp
+msgid "Video URL"
+msgstr "वीडियो यूआरएल"
+
+#: core/meta/init.php:161
+#@ layerswp
+msgid "You can drag and drop widgets, edit content and tweak the design. Click the button below to see your page come to life."
+msgstr "आप विजेट्स को ड्रैग एंड ड्रॉप, सामग्री को संपादित और डिजाइन को सुधार सकते हैं। अपने पेज को जीवंत होता हुआ देखने के लिए नीचे दिए गए बटन पर क्लिक करें।"
+
+#: core/meta/init.php:162
+#@ layerswp
+msgid "Edit Your Page"
+msgstr "अपने पेज को संपादित करें"
+
+#: core/meta/init.php:208
+#@ layerswp
+msgid "Build Your Page"
+msgstr "अपना पेज का निर्माण करें"
+
+#: core/options-panel/ajax.php:56
+#@ layerswp
+msgid "No Logo uploaded"
+msgstr "कोई लोगो अपलोड नहीं किया गया"
+
+#: core/options-panel/ajax.php:90
+#@ layerswp
+msgid "Logo updated"
+msgstr "लोगो अपडेट किया गया"
+
+#: core/options-panel/ajax.php:94
+#@ layerswp
+msgid "There was an error when updating your logo."
+msgstr "आपके लोगो को अपडेट करते समय एक त्रुटि थी।"
+
+#: core/options-panel/ajax.php:102
+#@ layerswp
+msgid "Option updated"
+msgstr "विकल्प अपडेट किया गया"
+
+#: core/options-panel/init.php:170
+#: core/options-panel/init.php:171
+#@ layerswp
+msgid "Get Started"
+msgstr "शुरू करें"
+
+#: core/options-panel/init.php:180
+#: core/options-panel/init.php:181
+#: core/options-panel/partials/add-new-page.php:12
+#: core/options-panel/partials/dashboard.php:48
+#@ layerswp
+msgid "Add New Page"
+msgstr "नया पेज जोड़ें"
+
+#: core/options-panel/init.php:192
+#: core/options-panel/init.php:193
+#: core/options-panel/partials/dashboard.php:32
+#@ layerswp
+msgid "Layers Pages"
+msgstr "लेयर्स पेज"
+
+#: core/options-panel/init.php:202
+#: core/options-panel/init.php:203
+#@ layerswp
+msgid "Customize"
+msgstr "कस्टमाइज करें"
+
+#: core/options-panel/init.php:211
+#: core/options-panel/init.php:212
+#: core/options-panel/partials/backup.php:5
+#@ layerswp
+msgid "Backup"
+msgstr "बैकअप"
+
+#: core/options-panel/init.php:220
+#: core/options-panel/partials/dashboard.php:8
+#@ layerswp
+msgid "Dashboard"
+msgstr "डैशबोर्ड"
+
+#: core/options-panel/partials/add-new-page.php:25
+#@ layerswp
+msgid "Add a page title"
+msgstr "एक पेज शीर्षक जोड़ें"
+
+#: core/options-panel/partials/add-new-page.php:34
+#: core/widgets/modules/contact.php:270
+#: core/widgets/modules/content.php:362
+#: core/widgets/modules/content.php:499
+#: core/widgets/modules/post.php:444
+#: core/widgets/modules/slider.php:515
+#@ layerswp
+msgid "Enter title here"
+msgstr "यहाँ शीर्षक डालें"
+
+#: core/options-panel/partials/add-new-page.php:43
+#@ layerswp
+msgid "Proceed to Customizer"
+msgstr "कस्टमाइजर के लिए बढ़ें"
+
+#: core/options-panel/partials/add-new-page.php:46
+#@ layerswp
+msgid "Cancel"
+msgstr "रद्द करें"
+
+#: core/options-panel/partials/backup.php:14
+#@ layerswp
+msgid "Backup your pages"
+msgstr "अपने पेजों का बैकअप लें"
+
+#: core/options-panel/partials/backup.php:16
+#@ layerswp
+msgid "Convert your Layers pages into regular WordPress pages, preserving the content you have worked so hard to create."
+msgstr "बहुत मेहनत से बनाई अपनी सामग्री को संरक्षित करते हुए, अपने लेयर्स पेजों को नियमित वर्डप्रेस पेजों में बदलें।"
+
+#: core/options-panel/partials/backup.php:20
+#@ layerswp
+msgid "0%"
+msgstr "०%"
+
+#: core/options-panel/partials/backup.php:24
+#@ layerswp
+msgid "Backup my Pages Now"
+msgstr "मेरे पेजों का अभी बैकअप लें"
+
+#: core/options-panel/partials/backup.php:30
+#@ layerswp
+msgid "Backed Up Pages:"
+msgstr "बैकअप किये गये पेज:"
+
+#: core/options-panel/partials/dashboard.php:20
+#@ layerswp
+msgid "Start Using Layers"
+msgstr "लेयर्स का उपयोग शुरू करें"
+
+#: core/options-panel/partials/dashboard.php:22
+#@ layerswp
+msgid "Follow the easy steps to creating amazing layouts quickly and easily. "
+msgstr "अद्भुत लेआउट जल्दी और आसानी से बनाने के लिए आसान चरणों का पालन करें।"
+
+#: core/options-panel/partials/dashboard.php:26
+#@ layerswp
+msgid "Get Started &rarr;"
+msgstr "शुरू करें &rarr;"
+
+#: core/options-panel/partials/dashboard.php:40
+#@ layerswp
+msgid "Edit"
+msgstr "संपादित करें"
+
+#: core/options-panel/partials/dashboard.php:41
+#@ layerswp
+msgid "View"
+msgstr "देखें"
+
+#: core/options-panel/partials/dashboard.php:59
+#@ layerswp
+msgid "Extensions"
+msgstr "एक्सटेंशन"
+
+#: core/options-panel/partials/dashboard.php:75
+#@ layerswp
+msgid "Coming soon"
+msgstr "जल्द आ रहा है"
+
+#: core/options-panel/partials/dashboard.php:83
+#@ layerswp
+msgid "Purchase"
+msgstr "खरीदें"
+
+#: core/options-panel/partials/dashboard.php:88
+#@ layerswp
+msgid "More Details"
+msgstr "अधिक विवरण"
+
+#: core/options-panel/partials/dashboard.php:105
+#@ layerswp
+msgid "What you need"
+msgstr "आपको क्या चाहिए"
+
+#: core/options-panel/partials/dashboard.php:109
+#@ layerswp
+msgid "WordPress 4.0"
+msgstr "वर्डप्रेस 4.0"
+
+#: core/options-panel/partials/dashboard.php:111
+#@ layerswp
+msgid "Layers requires you run the latest version of WordPress, please make sure you're up to date!"
+msgstr "लेयर्स के लिए वर्डप्रेस का नवीनतम संस्करण आवश्यक है, कृपया सुनिश्चित करें कि आप अद्यतन हैं!"
+
+#: core/options-panel/partials/dashboard.php:115
+#@ layerswp
+msgid "You're up to date"
+msgstr "आप अद्यतन हैं"
+
+#: core/options-panel/partials/dashboard.php:117
+#@ layerswp
+msgid "Update WordPress"
+msgstr "वर्डप्रेस अपडेट करें"
+
+#: core/options-panel/partials/dashboard.php:122
+#@ layerswp
+msgid "The Layers Updater"
+msgstr "लेयर्स अपडेटर"
+
+#: core/options-panel/partials/dashboard.php:124
+#@ layerswp
+msgid "Make sure you're always running the latest version of Layers by installing the Layers Updater"
+msgstr "लेयर्स अपडेटर इंस्टाल करते हुए सुनिश्चित करें कि आप हमेशा लेयर्स का नवीनतम संस्करण चला रहे हैं"
+
+#: core/options-panel/partials/dashboard.php:128
+#@ layerswp
+msgid "Installed"
+msgstr "इंस्टाल किया गया"
+
+#: core/options-panel/partials/dashboard.php:144
+#@ layerswp
+msgid "Helpful Tips"
+msgstr "उपयोगी सुझाव"
+
+#: core/options-panel/partials/get-started.php:16
+#@ layerswp
+msgid "Skip"
+msgstr "छोड़ें"
+
+#: core/options-panel/partials/get-started.php:28
+#@ layerswp
+msgid "Welcome to Layers!"
+msgstr "लेयर्स में स्वागत है!"
+
+#: core/options-panel/partials/get-started.php:32
+#@ layerswp
+msgid "Layers is a revolutionary WordPress Site Builder that makes website building a dream come true!"
+msgstr "लेयर्स एक क्रांतिकारी वर्डप्रेस साइट बिल्डर है जो वेबसाइट निर्माण के एक सपने को हकीकत बना देता है!"
+
+#: core/options-panel/partials/get-started.php:35
+#@ layerswp
+msgid "The following short steps are designed to show you how Layers works and get you to creating amazing layouts quickly!"
+msgstr "निम्नलिखित लघु चरणों को आपको दिखाने के लिए बनाया गया है कि लेयर्स कैसे काम करता है और आपको जल्दी से अद्भुत लेआउट बनाने का अवसर देता है!"
+
+#: core/options-panel/partials/get-started.php:38
+#@ layerswp
+msgid "Enjoy the ride!"
+msgstr "सवारी का मजा लें!"
+
+#: core/widgets/modules/slider.php:397
+#@ layerswp
+msgid "Slider Height"
+msgstr "स्लाइडर ऊंचाई"
+
+#: core/widgets/modules/slider.php:445
+#@ layerswp
+msgid "Add New Slide"
+msgstr "नयी स्लाइड जोड़ें"
+
+#: core/widgets/modules/slider.php:481
+#@ layerswp
+msgid "Slide"
+msgstr "स्लाइड"
+
+#: core/widgets/modules/slider.php:514
+#@ layerswp
+msgid "Enter a Title"
+msgstr "शीर्षक डालें"
+
+#: footer.php:3
+#@ layerswp
+msgid "Back to top"
+msgstr "शीर्ष पर वापिस"
+
+#: functions.php:162
+#@ layerswp
+msgid "Top Left Menu"
+msgstr "शीर्ष बायाँ मेनू"
+
+#: functions.php:163
+#@ layerswp
+msgid "Top Right Menu"
+msgstr "शीर्ष दायाँ मेनू"
+
+#: functions.php:164
+#@ layerswp
+msgid "Header Menu"
+msgstr "हैडर मेनू"
+
+#: functions.php:165
+#@ layerswp
+msgid "Right Header Menu"
+msgstr "दायाँ हैडर मेनू"
+
+#: functions.php:166
+#@ layerswp
+msgid "Footer Menu"
+msgstr "फूटर मेनू"
+
+#: functions.php:194
+#@ layerswp
+msgid "Mobile Sidebar"
+msgstr "मोबाइल साइडबार"
+
+#: functions.php:195
+#@ layerswp
+msgid "This sidebar will only appear on mobile devices."
+msgstr "यह साइडबार केवल मोबाइल उपकरणों पर ही प्रदर्शित होगी।"
+
+#: functions.php:204
+#@ layerswp
+msgid "Left Sidebar"
+msgstr "बायाँ साइडबार"
+
+#: functions.php:213
+#@ layerswp
+msgid "Right Sidebar"
+msgstr "दायाँ साइडबार"
+
+#: functions.php:226
+#@ layerswp
+msgid "Footer "
+msgstr "फूटर "
+
+#: functions.php:240
+#@ layerswp
+msgid "Left Shop Sidebar"
+msgstr "बायाँ शॉप साइडबार"
+
+#: functions.php:249
+#@ layerswp
+msgid "Right Shop Sidebar"
+msgstr "दायाँ शॉप साइडबार"
+
+#: functions.php:397
+#@ layerswp
+msgid "Be patient while we import the widget data and images."
+msgstr "कृपया धैर्य रखें, जब तक हम विजेट डेटा एवं तस्वीरें आयात कर रहे हैं।"
+
+#: functions.php:398
+#@ layerswp
+msgid "Import Complete"
+msgstr "आयात पूर्ण"
+
+#: functions.php:399
+#@ layerswp
+msgid "Importing Your Content"
+msgstr "आपकी सामग्री को आयात कर रहे हैं"
+
+#: functions.php:400
+#@ layerswp
+msgid "Edit Your New Page"
+msgstr "अपने नये पेज को संपादित करें"
+
+#: functions.php:437
+#@ layerswp
+msgid "Saving..."
+msgstr "सहेजा जा रहा है..."
+
+#: functions.php:438
+#@ layerswp
+msgid "Done!"
+msgstr "पूरा!"
+
+#: functions.php:459
+#@ layerswp
+msgid "Your pages have been successfully backed up!"
+msgstr "आपके पेजों का बैकअप सफलतापुर्वक ले लिया गया है!"
+
+#: partials/content-empty.php:9
+#@ layerswp
+msgid "No posts found"
+msgstr "कोई पोस्टें नहीं मिली"
+
+#: partials/content-empty.php:12
+#@ layerswp
+msgid "Use the search form below to find the page you're looking for:"
+msgstr "जिस पेज को आप देख रहे हैं उसे ढूंढने के लिए नीचे दिए गये खोज प्रपत्र का उपयोग करें:"
+
+#: partials/content-single.php:29
+#@ ocmx
+msgid "<span>Pages:</span>"
+msgstr "<span>पेज:</span>"
+
+#: partials/portfolio-list.php:24
+#@ layerswp
+msgid "View Project"
+msgstr "प्रोजेक्ट देखें"
+
+#: comments.php:6
+#, php-format
+#@ layerswp
+msgid "One Comment on &ldquo;%2$s&rdquo;"
+msgid_plural "%1$s Comments on &ldquo;%2$s&rdquo;"
+msgstr[0] "&ldquo;%2$s&rdquo; पर एक टिप्पणी"
+msgstr[1] "&ldquo;%2$s&rdquo; पर %1$s टिप्पणियाँ"
+
+#: comments.php:19
+#@ layerswp
+msgid "&larr;"
+msgstr "&larr;"
+
+#: comments.php:20
+#@ layerswp
+msgid "&rarr;"
+msgstr "&rarr;"
+
+#: core/options-panel/partials/get-started.php:45
+#@ layerswp
+msgid "Let's get started &rarr;"
+msgstr "चलो शुरू करें &rarr;"
+
+#: core/options-panel/partials/get-started.php:55
+#@ layerswp
+msgid "For the Pros: Layers will automatically assign the tagline to Settings &rarr; General."
+msgstr "पेशेवरों के लिए: लेयर्स टैगलाइन को स्वचालित रूप से सेटिंग्स &rarr; जनरल पर आवंटित कर देगा।"
+
+#: core/options-panel/partials/get-started.php:69
+#: core/options-panel/partials/get-started.php:157
+#: core/options-panel/partials/get-started.php:236
+#@ layerswp
+msgid "Getting Started"
+msgstr "शुरुआत करना"
+
+#: core/options-panel/partials/get-started.php:73
+#@ layerswp
+msgid "Building pages"
+msgstr "पेजों का निर्माण"
+
+#: core/options-panel/partials/get-started.php:77
+#@ layerswp
+msgid "Layers splits your page into horizontal rows, and you build up your pages with blocks of content called &lsquo;Widgets&rsquo;, one per row."
+msgstr "लेयर्स आपके पेज को क्षैतिज पंक्तियों में विभाजित कर देता है, और आप अपने पेजों को &lsquo;विजेट्स&rsquo; नामक सामग्री के ब्लॉक्स के साथ प्रति पंक्ति एक बनाते हैं।"
+
+#: core/options-panel/partials/get-started.php:80
+#@ layerswp
+msgid "Each time you want to add a new content block, simply click &lsquo;Add Widget&rsquo; and select one from the list which has the blue Layers icon."
+msgstr "हर बार जब आप एक नया सामग्री ब्लॉक जोड़ना चाहें, बस &lsquo;विजेट जोड़ें&rsquo;पर क्लिक करें और नीले लेयर्स आइकन वाली सूची में से एक चुनें।"
+
+#: core/options-panel/partials/get-started.php:86
+#@ layerswp
+msgid "Got it, Next Step &rarr;"
+msgstr "समझे, अगला चरण &rarr;"
+
+#: core/options-panel/partials/get-started.php:101
+#@ layerswp
+msgid "What is the name of your website?"
+msgstr "आपकी वेबसाइट का नाम क्या है?"
+
+#: core/options-panel/partials/get-started.php:104
+#@ layerswp
+msgid "Enter your website name below. We&apos;ll use this in your site title and in search results."
+msgstr "नीचे अपनी वेबसाइट का नाम डालें। हम आपके साइट शीर्षक और खोज परिणामों में इसका उपयोग करेंगे।"
+
+#: core/options-panel/partials/get-started.php:108
+#@ layerswp
+msgid "Site Name"
+msgstr "साइट नाम"
+
+#: core/options-panel/partials/get-started.php:128
+#@ layerswp
+msgid "Saving your Site Name"
+msgstr "आपकी साइट नाम को सहेज रहा है"
+
+#: core/options-panel/partials/get-started.php:130
+#: core/options-panel/partials/get-started.php:169
+#: core/options-panel/partials/get-started.php:212
+#: core/options-panel/partials/get-started.php:253
+#: core/options-panel/partials/get-started.php:297
+#@ layerswp
+msgid "Next Step &rarr;"
+msgstr "अगला चरण &rarr;"
+
+#: core/options-panel/partials/get-started.php:142
+#@ layerswp
+msgid "For the Pros: Layers will automatically assign this site name to Settings &rarr; General"
+msgstr "पेशेवरों के लिए: लेयर्स इस साइट नाम को स्वचालित रूप से सेटिंग्स &rarr; जनरल पर आवंटित कर देगा।"
+
+#: core/options-panel/partials/get-started.php:161
+#@ layerswp
+msgid "Editing widget content"
+msgstr "विजेट सामग्री का संपादन"
+
+#: core/options-panel/partials/get-started.php:164
+#@ layerswp
+msgid "To edit a widget's content, just click on it in the widget area on the left hand side. The widget panel will slide out allowing you to edit its content and customize its settings. You can also shift-click on the widget itself in the preview area."
+msgstr "एक विजेट की सामग्री को संपादित करने के लिए, बस बाएं हाथ की ओर विजेट क्षेत्र में उस पर क्लिक करें। विजेट पैनल आपको इसकी सामग्री को संपादित करने और इसकी सेटिंग्स को अनुकूलित करने की अनुमति देते हुए बाहर स्लाइड हो जाएगा। आप विजेट पर प्रीव्यू क्षेत्र में शिफ्ट-क्लिक भी कर सकते हैं।"
+
+#: core/options-panel/partials/get-started.php:184
+#@ layerswp
+msgid "How would you best describe your site?"
+msgstr "आप अपनी साइट का बेहतर वर्णन कैसे करेंगे?"
+
+#: core/options-panel/partials/get-started.php:187
+#@ layerswp
+msgid "A tagline describes who and what you are in just a few simple words. For example Layers is a &ldquo;WordPress Site Builder&rdquo; - simple, easy, quick to read. Now you try:"
+msgstr "एक टैगलाइन बस कुछ सरल शब्दों में वर्णन करती है कि आप कौन और क्या हैं। उदाहरण के लिए लेयर्स एक &ldquo;वर्डप्रेस साइट बिल्डर&rdquo;है - पढने में सरल, आसान, तेज। अब आप कोशिश करें:"
+
+#: core/options-panel/partials/get-started.php:191
+#@ layerswp
+msgid "Site Tagline"
+msgstr "साइट टैगलाइन"
+
+#: core/options-panel/partials/get-started.php:211
+#@ layerswp
+msgid "Saving your Tagline"
+msgstr "आपकी टैगलाइन को सहेज रहा है"
+
+#: core/options-panel/partials/get-started.php:219
+#@ layerswp
+msgid "Keep it simple"
+msgstr "इसे सरल रखें"
+
+#: core/options-panel/partials/get-started.php:220
+#@ layerswp
+msgid "Avoid buzz words"
+msgstr "अप्रिय शब्दों से बचें"
+
+#: core/options-panel/partials/get-started.php:221
+#@ layerswp
+msgid "Make sure it describes what you offer"
+msgstr "सुनिश्चित करें कि जो आप पेश कर रहे हैं यह उसका वर्णन करती है"
+
+#: core/options-panel/partials/get-started.php:222
+#@ layerswp
+msgid "For the Pros: Layers will automatically assign the tagline to Settings &rarr; General"
+msgstr "पेशेवरों के लिए: लेयर्स टैगलाइन को स्वचालित रूप से सेटिंग्स &rarr; जनरल पर आवंटित कर देगा"
+
+#: core/options-panel/partials/get-started.php:240
+#@ layerswp
+msgid "Customizing widgets"
+msgstr "विजेट्स का अनुकूलन"
+
+#: core/options-panel/partials/get-started.php:244
+#@ layerswp
+msgid "Unique to each Layers widget is the revolutionary &ldquo;Design Bar&rdquo; which allows you to set its design parameters without touching a line of code."
+msgstr "प्रत्येक लेयर्स के लिए अनोखा विजेट क्रांतिकारी &ldquo;डिजाइन बार&rdquo; है; जो आपको कोड की एक भी पंक्ति को छुए बिना अपने डिजाइन मानकों को सेट करने की अनुमति देती है।"
+
+#: core/options-panel/partials/get-started.php:247
+#@ layerswp
+msgid "Depending on the widget you've added, you can change things like background images, font sizes, list styles and more."
+msgstr "आपके द्वारा जोड़े गए विजेट पर निर्भर करते हुए, आप बैकग्राउंड तस्वीरें, फ़ॉन्ट आकार, सूची शैली जैसी और अधिक चीजों को बदल सकते हैं।"
+
+#: core/options-panel/partials/get-started.php:268
+#@ layerswp
+msgid "Would you like to add your logo?"
+msgstr "आप अपना लोगो जोड़ना चाहेंगे?"
+
+#: core/options-panel/partials/get-started.php:271
+#@ layerswp
+msgid "Layers will add your logo and position it properly. If you don&apos;t have one yet, no problem, you can add it later, or skip this step if you&apos;d just prefer to use text."
+msgstr "लेयर्स आपके लोगो को जोड़ते हुए इसे उपयुक्त तरीके से स्थापित कर देगा। अगर आपके पास अभी तक नहीं है; तो कोई समस्या नहीं, आप इसे बाद में जोड़ सकते हैं, या आप इस चरण को छोड़ सकते हैं अगर आप केवल टेक्स्ट का उपयोग करना पसंद करेंगे।"
+
+#: core/options-panel/partials/get-started.php:279
+#@ layerswp
+msgid "Choose Logo"
+msgstr "लोगो चुनें"
+
+#: core/options-panel/partials/get-started.php:296
+#@ layerswp
+msgid "Updating your Logo"
+msgstr "आपके लोगो को अपडेट कर रहा है"
+
+#: core/options-panel/partials/get-started.php:304
+#@ layerswp
+msgid "For best results, use an image between 40px and 200px tall and not more than 1000px wide"
+msgstr "बेहतरीन परिणामों के लिए, एक तस्वीर का उपयोग करें जो ४० पिक्सेल और २०० पिक्सेल के बीच ऊँची और १००० पिक्सेल से अधिक चौड़ी नहीं हो"
+
+#: core/options-panel/partials/get-started.php:305
+#@ layerswp
+msgid "PNGs with a transparent background work best but GIFs or JPGs are fine too"
+msgstr "पारदर्शी बैकग्राउंड के साथ PNG बेहतर काम करती हैं लेकिन GIF या JPG भी चल जाती हैं"
+
+#: core/options-panel/partials/get-started.php:306
+#@ layerswp
+msgid "Try keep your logo file size below 500kb"
+msgstr "अपनी लोगो फाइल का आकार ५००केबी से कम रखने का प्रयास करें"
+
+#: core/options-panel/partials/get-started.php:320
+#@ layerswp
+msgid "Page Title"
+msgstr "पेज शीर्षक"
+
+#: core/options-panel/partials/get-started.php:349
+#@ layerswp
+msgid "Now let&apos;s create your first Layers page!"
+msgstr "अब चलो आपका पहला लेयर्स पेज बनाते हैं!"
+
+#: core/options-panel/partials/get-started.php:353
+#@ layerswp
+msgid "You will be able to edit your layout on the next page. Here we go! "
+msgstr "आप अपने लेआउट को अगले पेज पर संपादित करने में सक्षम होंगे। तो हम चले!"
+
+#: core/options-panel/partials/get-started.php:359
+#@ layerswp
+msgid "Creating your Page"
+msgstr "आपके पेज को बनाना"
+
+#: core/options-panel/partials/get-started.php:360
+#@ layerswp
+msgid "First choose a layout"
+msgstr "पहले एक लेआउट चुनें"
+
+#: core/options-panel/partials/get-started.php:360
+#@ layerswp
+msgid "Start Building"
+msgstr "निर्माण शुरू करें"
+
+#: core/options-panel/partials/preset-layouts.php:20
+#@ layerswp
+msgid "Select"
+msgstr "चुनें"
+
+#: core/third-party/site-logo/inc/class-site-logo-control.php:19
+#@ layerswp
+msgid "Add logo"
+msgstr "लोगो जोड़ें"
+
+#: core/third-party/site-logo/inc/class-site-logo-control.php:20
+#@ layerswp
+msgid "Set as logo"
+msgstr "लोगो के तौर पर सेट करें"
+
+#: core/third-party/site-logo/inc/class-site-logo-control.php:21
+#@ layerswp
+msgid "Choose logo"
+msgstr "लोगो चुनें"
+
+#: core/third-party/site-logo/inc/class-site-logo-control.php:22
+#@ layerswp
+msgid "Change logo"
+msgstr "लोगो बदलें"
+
+#: core/third-party/site-logo/inc/class-site-logo-control.php:23
+#@ layerswp
+msgid "Remove logo"
+msgstr "लोगो हटाएँ"
+
+#: core/third-party/site-logo/inc/class-site-logo-control.php:24
+#@ layerswp
+msgid "No logo set"
+msgstr "कोई लोगो सेट नहीं"
+
+#: core/third-party/site-logo/inc/class-site-logo.php:81
+#@ layerswp
+msgid "Site Title, Tagline, and Logo"
+msgstr "साइट शीर्षक, टैगलाइन, एवं लोगो"
+
+#: core/third-party/site-logo/inc/class-site-logo.php:92
+#@ layerswp
+msgid "Display Header Text"
+msgstr "हैडर टेक्स्ट दिखाएँ"
+
+#: core/third-party/site-logo/inc/class-site-logo.php:114
+#@ layerswp
+msgid "Logo"
+msgstr "लोगो"
+
+#: core/third-party/site-logo/inc/class-site-logo.php:254
+#@ layerswp
+msgid "Site Logo"
+msgstr "साइट लोगो"
+
+#: core/widgets/init.php:80
+#@ layerswp
+msgid " Body"
+msgstr "बॉडी"
+
+#: core/widgets/init.php:165
+#@ layerswp
+msgid "Layers Builder section."
+msgstr "लेयर्स बिल्डर सेक्शन।"
+
+#: core/widgets/init.php:190
+#@ layerswp
+msgid "Are you sure you want to remove this slide?"
+msgstr "आप वास्तव में इस स्लाइड को हटाना चाहते हैं?"
+
+#: core/widgets/init.php:202
+#@ layerswp
+msgid "Are you sure you want to remove this column?"
+msgstr "आप वास्तव में इस कॉलम को हटाना चाहते हैं?"
+
+#: core/widgets/modules/contact.php:26
+#@ layerswp
+msgid "Contact Details &amp; Maps"
+msgstr "संपर्क विवरण एवं मैप्स"
+
+#: core/widgets/modules/contact.php:37
+#: core/widgets/modules/content.php:33
+#: core/widgets/modules/post.php:42
+#: core/widgets/modules/slider.php:37
+#@ default
+msgid "This widget is used to display your "
+msgstr "इस विजेट को दर्शाने के लिए उपयोग किया गया है आपके"
+
+#: core/widgets/modules/contact.php:207
+#: core/widgets/modules/post.php:322
+#@ layerswp
+msgid "Display"
+msgstr "डिस्प्ले"
+
+#: core/widgets/modules/contact.php:216
+#@ layerswp
+msgid "Map Height"
+msgstr "मैप ऊँचाई"
+
+#: core/widgets/modules/contact.php:223
+#@ layerswp
+msgid "Show Google Map"
+msgstr "गूगल मैप दिखाएँ"
+
+#: core/widgets/modules/contact.php:230
+#@ layerswp
+msgid "Show Address"
+msgstr "पता दिखाएँ"
+
+#: core/widgets/modules/contact.php:237
+#@ layerswp
+msgid "Show Contact Form"
+msgstr "संपर्क प्रपत्र दिखाएँ"
+
+#: core/widgets/modules/contact.php:258
+#@ layerswp
+msgid "Contact"
+msgstr "संपर्क"
+
+#: core/widgets/modules/contact.php:282
+#: core/widgets/modules/content.php:374
+#: core/widgets/modules/content.php:512
+#: core/widgets/modules/post.php:457
+#: core/widgets/modules/slider.php:528
+#@ layerswp
+msgid "Short Excerpt"
+msgstr "लघु अंश"
+
+#: core/widgets/modules/contact.php:295
+#@ layerswp
+msgid "Address"
+msgstr "पता"
+
+#: core/widgets/modules/contact.php:296
+#: core/widgets/modules/contact.php:346
+#@ layerswp
+msgid "Place your help text here please."
+msgstr "कृपया अपना सहायता टेक्स्ट यहाँ रखें।"
+
+#: core/widgets/modules/contact.php:301
+#@ layerswp
+msgid "Google Maps Location"
+msgstr "गूगल मैप्स लोकेशन"
+
+#: core/widgets/modules/contact.php:307
+#@ layerswp
+msgid "e.g. 300 Prestwich Str, Cape Town, South Africa"
+msgstr "जैसे ३०० प्रेस्टविच स्ट्रीट, केप टाउन, दक्षिण अफ्रीका"
+
+#: core/widgets/modules/contact.php:313
+#@ layerswp
+msgid "Google Maps Latitude & Longitude (Optional)"
+msgstr "गूगल मैप्स लैटिट्युड एवं लोंगिट्युड (वैकल्पिक)"
+
+#: core/widgets/modules/contact.php:319
+#@ layerswp
+msgid "e.g. 33.9253 S, 18.4239 E"
+msgstr "जैसे 33.9253 द, 18.4239 पु"
+
+#: core/widgets/modules/contact.php:325
+#@ layerswp
+msgid "Address Shown"
+msgstr "दर्शाया गया पता"
+
+#: core/widgets/modules/contact.php:331
+#@ layerswp
+msgid "e.g. Prestwich Str, Cape Town"
+msgstr "जैसे प्रेस्टविच स्ट्रीट, केप टाउन"
+
+#: core/widgets/modules/contact.php:345
+#@ layerswp
+msgid "Contact Form"
+msgstr "संपर्क प्रपत्र"
+
+#: core/widgets/modules/contact.php:356
+#@ layerswp
+msgid "Contact form embed code"
+msgstr "संपर्क प्रपत्र एम्बेड कोड"
+
+#: core/widgets/modules/content.php:26
+#@ layerswp
+msgid "Content"
+msgstr "सामग्री"
+
+#: core/widgets/modules/content.php:405
+#@ layerswp
+msgid "Add New Column"
+msgstr "नया कॉलम जोड़ें"
+
+#: core/widgets/modules/content.php:438
+#@ layerswp
+msgid "Column"
+msgstr "कॉलम"
+
+#: core/widgets/modules/content.php:474
+#@ layerswp
+msgid "1 of 12 columns"
+msgstr "१२ कॉलम का १"
+
+#: core/widgets/modules/content.php:475
+#@ layerswp
+msgid "2 of 12 columns"
+msgstr "१२ कॉलम का २"
+
+#: core/widgets/modules/content.php:476
+#@ layerswp
+msgid "3 of 12 columns"
+msgstr "१२ कॉलम का ३"
+
+#: core/widgets/modules/content.php:477
+#@ layerswp
+msgid "4 of 12 columns"
+msgstr "१२ कॉलम का ४"
+
+#: core/widgets/modules/content.php:478
+#@ layerswp
+msgid "5 of 12 columns"
+msgstr "१२ कॉलम का ५"
+
+#: core/widgets/modules/content.php:479
+#@ layerswp
+msgid "6 of 12 columns"
+msgstr "१२ कॉलम का ६"
+
+#: core/widgets/modules/content.php:480
+#@ layerswp
+msgid "8 of 12 columns"
+msgstr "१२ कॉलम का ८"
+
+#: core/widgets/modules/content.php:481
+#@ layerswp
+msgid "9 of 12 columns"
+msgstr "१२ कॉलम का ९"
+
+#: core/widgets/modules/content.php:482
+#@ layerswp
+msgid "10 of 12 columns"
+msgstr "१२ कॉलम का १०"
+
+#: core/widgets/modules/content.php:483
+#@ layerswp
+msgid "12 of 12 columns"
+msgstr "१२ कॉलम का १२"
+
+#: core/widgets/modules/content.php:493
+#: core/widgets/modules/slider.php:508
+#@ layerswp
+msgid "Title"
+msgstr "शीर्षक"
+
+#: core/widgets/modules/content.php:506
+#: core/widgets/modules/slider.php:522
+#@ layerswp
+msgid "Excerpt"
+msgstr "अंश"
+
+#: core/widgets/modules/content.php:521
+#: core/widgets/modules/slider.php:537
+#@ layerswp
+msgid "Button Link"
+msgstr "बटन लिंक"
+
+#: core/widgets/modules/content.php:527
+#: core/widgets/modules/slider.php:543
+#@ layerswp
+msgid "http://"
+msgstr "http://"
+
+#: core/widgets/modules/content.php:534
+#: core/widgets/modules/slider.php:549
+#@ layerswp
+msgid "Button Text"
+msgstr "बटन टेक्स्ट"
+
+#: core/widgets/modules/content.php:540
+#: core/widgets/modules/slider.php:555
+#@ layerswp
+msgid "e.g. \"Read More\""
+msgstr "जैसे \"और अधिक पढ़ें\""
+
+#: core/widgets/modules/post.php:26
+#@ layerswp
+msgid "Posts"
+msgstr "पोस्टें"
+
+#: core/widgets/modules/post.php:65
+#: partials/content-list.php:22
+#@ layerswp
+msgid "Read More"
+msgstr "और अधिक पढ़ें"
+
+#: core/widgets/modules/post.php:329
+#@ layerswp
+msgid "Title &amp; Excerpt Position"
+msgstr "शीर्षक एवं अंश की पोजीशन"
+
+#: core/widgets/modules/post.php:331
+#@ layerswp
+msgid "Regular"
+msgstr "नियमित"
+
+#: core/widgets/modules/post.php:340
+#@ layerswp
+msgid "Show Featured Images"
+msgstr "फीचर्ड तस्वीरें दिखाएँ"
+
+#: core/widgets/modules/post.php:347
+#@ layerswp
+msgid "Show  Post Titles"
+msgstr "पोस्ट शीर्षकों को दिखाएँ"
+
+#: core/widgets/modules/post.php:354
+#@ layerswp
+msgid "Show Post Excerpts"
+msgstr "पोस्ट अंशों को दिखाएँ"
+
+#: core/widgets/modules/post.php:363
+#@ layerswp
+msgid "Excerpts Length"
+msgstr "अंश की लम्बाई"
+
+#: core/widgets/modules/post.php:370
+#@ layerswp
+msgid "Show Post Dates"
+msgstr "पोस्ट की तिथियाँ दिखाएँ"
+
+#: core/widgets/modules/post.php:377
+#@ layerswp
+msgid "Show Post Author"
+msgstr "पोस्ट रचयिता दिखाएँ"
+
+#: core/widgets/modules/post.php:384
+#@ layerswp
+msgid "Show Tags"
+msgstr "टैग्स दिखाएँ"
+
+#: core/widgets/modules/post.php:391
+#@ layerswp
+msgid "Show Categories"
+msgstr "श्रेणियाँ दिखाएँ"
+
+#: core/widgets/modules/post.php:398
+#@ layerswp
+msgid "Show \"Read More\" Buttons"
+msgstr "\"और अधिक पढ़ें\" बटनों को दिखाएँ"
+
+#: core/widgets/modules/post.php:405
+#@ layerswp
+msgid "\"Read More\" Text"
+msgstr "\"और अधिक पढ़ें\" टेक्स्ट"
+
+#: core/widgets/modules/post.php:412
+#@ layerswp
+msgid "Show Pagination"
+msgstr "पृष्ठांकन दिखाएँ"
+
+#: core/widgets/modules/post.php:431
+#@ layerswp
+msgid "Post"
+msgstr "पोस्ट"
+
+#: core/widgets/modules/post.php:467
+#@ layerswp
+msgid "Category to Display"
+msgstr "प्रदर्शित करने के लिए श्रेणी"
+
+#: core/widgets/modules/post.php:468
+#@ layerswp
+msgid "All"
+msgstr "सभी"
+
+#: core/widgets/modules/post.php:475
+#@ layerswp
+msgid "Select a Category"
+msgstr "एक श्रेणी चुनें"
+
+#: core/widgets/modules/post.php:483
+#@ layerswp
+msgid "Number of items to show"
+msgstr "दिखाने के लिए वस्तुओं की संख्या"
+
+#: core/widgets/modules/post.php:484
+#@ layerswp
+msgid "Show All"
+msgstr "सभी दिखाएँ"
+
+#: core/widgets/modules/post.php:499
+#@ layerswp
+msgid "Sort by"
+msgstr "द्वारा क्रमबद्ध करें"
+
+#: core/widgets/modules/slider.php:26
+#: core/widgets/modules/slider.php:358
+#@ layerswp
+msgid "Slider"
+msgstr "स्लाइडर"
+
+#: core/widgets/modules/slider.php:351
+#@ layerswp
+msgid "Full Screen"
+msgstr "फुल स्क्रीन"
+
+#: core/widgets/modules/slider.php:365
+#@ layerswp
+msgid "Show Slider Arrows"
+msgstr "स्लाइडर एरो दिखाएँ"
+
+#: core/widgets/modules/slider.php:372
+#@ layerswp
+msgid "Show Slider Dots"
+msgstr "स्लाइडर बिन्दुओं को दिखाएँ"
+
+#: core/widgets/modules/slider.php:379
+#@ layerswp
+msgid "Autoplay Slides"
+msgstr "स्लाइडों को स्वतः चलाएँ"
+
+#: core/widgets/modules/slider.php:387
+#@ layerswp
+msgid "Time in seconds, eg. 2"
+msgstr "समय सेकंड में, जैसे २"
+
+#: core/widgets/modules/slider.php:389
+#@ layerswp
+msgid "Slide Interval"
+msgstr "स्लाइड अंतराल"
+

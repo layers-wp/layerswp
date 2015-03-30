@@ -198,7 +198,7 @@ class Layers_Customizer {
 								'icon_class'	=> 'icon-display',
 								'target'		=> '_blank',
 							),
-							'add_new_page' => array(
+							'add-new-page' => array(
 								'text'			=> __( 'Add new Layers page' , 'layerswp' ),
 								'link'			=> admin_url( 'admin.php?page=layers-add-new-page' ),
 								'icon_class'	=> 'dashicons dashicons-plus',

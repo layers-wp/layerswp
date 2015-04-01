@@ -318,6 +318,11 @@ p.stars span a:focus{
             float: none;
             clear: both;
         }
+        .cart:after{
+            content:'';
+            clear:both;
+            display: block;
+        }
         .cart .label{
             color: inherit;
         }
@@ -376,9 +381,8 @@ p.stars span a:focus{
         }
         .single_add_to_cart_button{
             float: left;
-        
             line-height: 1.5;
-}
+        }
 
         /*-------------------*/
         /*- PRODUCT META ----*/

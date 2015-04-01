@@ -394,7 +394,9 @@ object{
 /*- HEADERS ---------------------*/
 
     .header-site{
-        background: #f3f3f3;
+        background-color: #f3f3f3;
+        background-position: 50% 50%;
+        background-repeat: no-repeat;
     }
 
     .header-site .container{
@@ -469,7 +471,7 @@ object{
         opacity: 1;
     }
     .header-site.header-sticky{
-        background: rgba(243, 243, 243, 0.5);
+        background-color: rgba(243, 243, 243, 0.5);
     }
     .header-overlay{
         position: absolute;

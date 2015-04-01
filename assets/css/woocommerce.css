@@ -287,7 +287,7 @@ p.stars span a:focus{
         font-size: 1rem;
         font-weight: 700;
     }
-    .price{
+    .single-product .price{
         margin: 0px 0 10px;
         font-size: 2.4rem;
     }
@@ -315,7 +315,6 @@ p.stars span a:focus{
         /*- PRODUCT CART ----*/
         .cart{
             margin-bottom: 20px;
-            /* overflow: hidden; */
             float: none;
             clear: both;
         }
@@ -368,16 +367,18 @@ p.stars span a:focus{
         }
         .quantity input{
             float: left;
-            height: 31px;
+            height: 33px;
         }
         .quantity .qty{
             width: 60px;
-            height: 31px;
+            height: 33px;
             text-align: center;
         }
         .single_add_to_cart_button{
             float: left;
-        }
+        
+            line-height: 1.5;
+}
 
         /*-------------------*/
         /*- PRODUCT META ----*/
@@ -385,9 +386,8 @@ p.stars span a:focus{
             padding: 10px;
             margin-bottom: 20px;
             background: #f5f5f5;
-        
             clear: both;
-}
+        }
         .product_meta span{
             display: block;
             font-size: 1.2rem;

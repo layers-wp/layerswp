@@ -1,14 +1,17 @@
 # Layers Changelog
 
-## x.x.x
-### 00 Xxxxx 2015
+## 1.0.7
+### 02 April 2015
 
-Xxxxxx
+Layers page Import / Export fix
 
 * **Tweak** - Changed the way the Layers customizer menu is constructed in render_customizer_menu() to make it more extendable
 * **Fix** - When adding a new standard page and selecting the Layers Template without clicking save the customizer would throw a 404, now we force users to click save first
 * **Fix** - Page exports would occationally cause users to reach a 'Warning: headers already sent by' error, we've fixed this error by moving the export trigger
 * **Fix** - The page import button would fail with a JSON not allowed error, we have added json and JSON to allowed file types to counteract this problem
+* **Fix** - When switching to a Layers child theme, customizer settings are now kept alive and transfered to your child theme
+* **Enhancement** - Widget placeholder text is now translatable.
+* **Enhancement** - Added hooks to title container, posts and pages
 
 ## 1.0.6
 ### 20 March 2015

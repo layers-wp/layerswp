@@ -60,6 +60,10 @@ del .amount{
     color: #999;
     font-weight: 400;
 }
+.section-title .price{
+    margin-top: 10px;
+    display: block;
+}
 
 /*---------------------------*/
 /*- ON SALE SETUP -----------*/
@@ -72,7 +76,8 @@ del .amount{
     border-radius: 100px;
 }
 .product-images .onsale,
-.img-wrap .onsale{
+.img-wrap .onsale,
+.image-container .onsale {
     position: absolute;
     top: 10px;
     left: 10px;

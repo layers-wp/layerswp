@@ -94,8 +94,6 @@ jQuery(document).ready(function($) {
 	wp.customize.previewer.bind('url', layers_handle_customizer_talkback);
 
 	// Move the Layers custom buttons to correct place - no hook available.
-	//$('#customize-header-actions').append( $('.customize-controls-layers-button-dashboard, .customize-controls-layers-button-preview') );
-	//$('.customize-controls-layers-button-dashboard, .customize-controls-layers-button-preview').css({ 'display':'block', 'visibility':'visible' });
 	$('#customize-header-actions').append( $('#customize-controls-layers-actions') );
 	$('#customize-controls-layers-actions').css({ 'display':'block', 'visibility':'visible' });
 

@@ -1,0 +1,2075 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Layers v1.0.6\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2015-03-26 11:52:26+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 ? 4 : 5;\n"
+"X-Generator: CSL v1.x\n"
+"X-Poedit-Language: \n"
+"X-Poedit-Country: \n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-KeywordsList: __;_e;__ngettext:1,2;_n:1,2;__ngettext_noop:1,2;_n_noop:1,2;_c,_nc:4c,1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;_nx_noop:4c,1,2;\n"
+"X-Poedit-Basepath: \n"
+"X-Poedit-Bookmarks: \n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Textdomain-Support: yes"
+
+#: comments.php:29
+#@ layerswp
+msgid "Comments are closed."
+msgstr ".التعليقات مغلقة"
+
+#: core/customizer/config.php:22
+#@ layerswp
+msgid "Branding"
+msgstr "العلامات التجارية"
+
+#: core/customizer/config.php:26
+#@ layerswp
+msgid "Site Settings"
+msgstr "إعدادات الموقع"
+
+#: core/customizer/config.php:27
+#@ layerswp
+msgid "Control your content's default layout."
+msgstr ".التحكم في التخطيط الافتراضي للمحتوى الخاص بك"
+
+#: core/customizer/config.php:31
+#@ layerswp
+msgid "Header"
+msgstr "رأس الصفحة"
+
+#: core/customizer/config.php:32
+#@ layerswp
+msgid "Control your header's logo, layout, colors and font."
+msgstr ".التحكم برأس الشعار، التصميم، الألوان والخط للصفحة الخاص بك"
+
+#: core/customizer/config.php:36
+#@ layerswp
+msgid "Footer"
+msgstr "تذييل الصفحة"
+
+#: core/customizer/config.php:37
+#@ layerswp
+msgid "Control your footer's custom text, widget areas and layout."
+msgstr ".التحكم في تذييل النص المخصص، مناطق القطعة والتخطيط للصفحة الخاص بك"
+
+#: core/customizer/config.php:41
+#@ layerswp
+msgid "WooCommerce"
+msgstr "WooCommerce"
+
+#: core/customizer/config.php:58
+#@ layerswp
+msgid "Logo &amp; Title"
+msgstr "الشعار و العنوان"
+
+#: core/customizer/config.php:63
+#: core/customizer/config.php:257
+#: core/customizer/config.php:385
+#: core/helpers/forms.php:341
+#: core/helpers/forms.php:416
+#@ layerswp
+msgid "Background Color"
+msgstr "لون الخلفية"
+
+#: core/customizer/config.php:90
+#@ layerswp
+msgid "Navigation"
+msgstr "التصفح"
+
+#: core/customizer/config.php:91
+#@ layerswp
+msgid "First create a menu then come back here to place it."
+msgstr ".إنشاء القائمة أولا ثم العودة هنا لوضعه"
+
+#: core/customizer/config.php:96
+#: core/customizer/config.php:112
+#: core/customizer/config.php:120
+#: core/helpers/design-bar.php:214
+#: core/widgets/modules/slider.php:339
+#@ layerswp
+msgid "Layout"
+msgstr "التخطيط"
+
+#: core/customizer/config.php:100
+#: core/customizer/config.php:136
+#@ layerswp
+msgid "Sidebars"
+msgstr "الأشرطة الجانبية"
+
+#: core/customizer/config.php:104
+#@ layerswp
+msgid "Fonts"
+msgstr "الخطوط"
+
+#: core/customizer/config.php:109
+#@ layerswp
+msgid "CSS"
+msgstr "CSS"
+
+#: core/customizer/config.php:116
+#: core/customizer/config.php:132
+#@ layerswp
+msgid "Additional Scripts"
+msgstr "المخطوطات الإضافية"
+
+#: core/customizer/config.php:124
+#@ layerswp
+msgid "Customization"
+msgstr "التخصيص"
+
+#: core/customizer/config.php:128
+#: core/customizer/config.php:359
+#: core/helpers/design-bar.php:530
+#@ layerswp
+msgid "Text"
+msgstr "النص"
+
+#: core/customizer/config.php:156
+#@ layerswp
+msgid "Create Menu"
+msgstr "إنشاء القائمة"
+
+#: core/customizer/config.php:176
+#@ layerswp
+msgid "Typekit ID"
+msgstr "Typekit حساب"
+
+#: core/customizer/config.php:177
+#, php-format
+#@ layerswp
+msgid "For more information on obtaining your Typekit ID, see <a href=\"%s\" target=\"_blank\">follow this link</a>."
+msgstr "انظر <a href=\"%s\" target=\"_blank\">اتبع هذا الرابط</a> Typekit راجع للمزيد من المعلومات حول الحصول على"
+
+#: core/customizer/config.php:184
+#@ layerswp
+msgid "Body"
+msgstr "محتوى الصفحة"
+
+#: core/customizer/config.php:193
+#@ layerswp
+msgid "Headings"
+msgstr "العناوين"
+
+#: core/customizer/config.php:202
+#@ layerswp
+msgid "Buttons"
+msgstr "الأزرار"
+
+#: core/customizer/config.php:212
+#@ layerswp
+msgid "Header Width"
+msgstr "عرض رأس الصفحة"
+
+#: core/customizer/config.php:215
+#: core/customizer/config.php:324
+#: core/helpers/design-bar.php:227
+#: core/widgets/modules/slider.php:349
+#@ layerswp
+msgid "Boxed"
+msgstr "محاصر"
+
+#: core/customizer/config.php:216
+#: core/customizer/config.php:325
+#: core/helpers/design-bar.php:228
+#: core/widgets/modules/slider.php:350
+#@ layerswp
+msgid "Full Width"
+msgstr "عرض كامل"
+
+#: core/customizer/config.php:224
+#@ layerswp
+msgid "Logo & Menu Position"
+msgstr "موضع الشعار والقائمة"
+
+#: core/customizer/config.php:227
+#@ layerswp
+msgid "Logo Left"
+msgstr "شعار اليسار"
+
+#: core/customizer/config.php:228
+#@ layerswp
+msgid "Logo Right"
+msgstr "شعار اليمين"
+
+#: core/customizer/config.php:229
+#@ layerswp
+msgid "Logo Center Top"
+msgstr "شعار الوسط العلوي"
+
+#: core/customizer/config.php:230
+#@ layerswp
+msgid "Logo Top"
+msgstr "الشعار العلوي"
+
+#: core/customizer/config.php:231
+#@ layerswp
+msgid "Logo Center"
+msgstr "الشعار المركزي"
+
+#: core/customizer/config.php:239
+#@ layerswp
+msgid "Header Position"
+msgstr "موضع رأس الصفحة"
+
+#: core/customizer/config.php:243
+#@ layerswp
+msgid "Sticky"
+msgstr "لزج"
+
+#: core/customizer/config.php:249
+#: core/widgets/modules/post.php:332
+#@ layerswp
+msgid "Overlay"
+msgstr "طبقة فوقية"
+
+#: core/customizer/config.php:266
+#@ layerswp
+msgid "Google Analytics ID"
+msgstr "حساب جوجل انالايتكس"
+
+#: core/customizer/config.php:267
+#@ layerswp
+msgid "Enter in your Google Analytics ID to enable website traffic reporting. eg. \"UA-xxxxxx-xx"
+msgstr "\"UA-xxxxxx-xx قم بالدخول إلى حساب جوجل انالايتكس الخاص بك لتفعيل الموقع التقارير المرورية. مثلا"
+
+#: core/customizer/config.php:275
+#: core/customizer/config.php:432
+#@ layerswp
+msgid "Custom Scripts"
+msgstr "البرامج النصية المخصصة"
+
+#: core/customizer/config.php:276
+#@ layerswp
+msgid "Enter in any custom script to include in your site's header. Be sure to use double quotes for strings."
+msgstr ".قم بالدخول إلى البرنامج النصي المخصص لإدارجه في رأس صفحة موقعك. تأكد من استخدام علامات الاقتباس المزدوجة لسلسلة الأغراض"
+
+#: core/customizer/config.php:284
+#@ layerswp
+msgid "Single Post Sidebar(s)"
+msgstr "(المشاركة المنفردة للشريط الجانبي (للأشرطة الجانبية"
+
+#: core/customizer/config.php:285
+#@ layerswp
+msgid "This option affects your single post pages."
+msgstr ".يؤثر هذا الخيار على صفحات المشاركة المنفردة لديك"
+
+#: core/customizer/config.php:289
+#: core/customizer/config.php:307
+#: core/customizer/config.php:448
+#: core/customizer/config.php:466
+#@ layerswp
+msgid "Display Left Sidebar"
+msgstr "عرض الشريط الجانبي الأيسر"
+
+#: core/customizer/config.php:294
+#: core/customizer/config.php:312
+#: core/customizer/config.php:453
+#: core/customizer/config.php:471
+#@ layerswp
+msgid "Display Right Sidebar"
+msgstr "عرض الشريط الجانبي الأيمن"
+
+#: core/customizer/config.php:302
+#@ layerswp
+msgid "Post List Sidebar(s)"
+msgstr "(قائمة المشاركة للشريط الجانبي (للأشرطة الجانبية "
+
+#: core/customizer/config.php:303
+#@ layerswp
+msgid "This option affects your category, tag, author and search pages."
+msgstr ".يؤثر هذا الخيار على صفحات الفئة، العلامة، المؤلف والبحث"
+
+#: core/customizer/config.php:333
+#@ layerswp
+msgid "Widget Areas"
+msgstr "مناطق عنصر واجهة المستخدم"
+
+#: core/customizer/config.php:337
+#: core/helpers/design-bar.php:459
+#: core/helpers/design-bar.php:504
+#@ layerswp
+msgid "None"
+msgstr "لا شيء"
+
+#: core/customizer/config.php:338
+#@ layerswp
+msgid "1"
+msgstr "1"
+
+#: core/customizer/config.php:339
+#@ layerswp
+msgid "2"
+msgstr "2"
+
+#: core/customizer/config.php:340
+#@ layerswp
+msgid "3"
+msgstr "3"
+
+#: core/customizer/config.php:341
+#@ layerswp
+msgid "4"
+msgstr "4"
+
+#: core/customizer/config.php:348
+#@ layerswp
+msgid "Support Layers"
+msgstr "دعم الطبقات"
+
+#: core/customizer/config.php:349
+#@ layerswp
+msgid "Support Layers by displaying the Layers badge on your site."
+msgstr ".دعم الطبقات عن طريق عرض شارة الطبقات على موقع الويب الخاص بك"
+
+#: core/customizer/config.php:363
+#@ layerswp
+msgid "Text Color"
+msgstr "لون النص"
+
+#: core/customizer/config.php:368
+#@ layerswp
+msgid "Link Color"
+msgstr "لون الرابط"
+
+#: core/customizer/config.php:376
+#: core/helpers/design-bar.php:593
+#@ layerswp
+msgid "Background"
+msgstr "الخلفية"
+
+#: core/customizer/config.php:380
+#: core/helpers/design-bar.php:599
+#@ layerswp
+msgid "Background Image"
+msgstr "صورة الخلفية"
+
+#: core/customizer/config.php:391
+#@ layerswp
+msgid "Background Repeat"
+msgstr "تكرار الخلفية"
+
+#: core/customizer/config.php:394
+#: core/helpers/design-bar.php:619
+#@ layerswp
+msgid "No Repeat"
+msgstr "لايوجد تكرار"
+
+#: core/customizer/config.php:395
+#: core/helpers/design-bar.php:614
+#: core/helpers/design-bar.php:620
+#@ layerswp
+msgid "Repeat"
+msgstr "تكرار"
+
+#: core/customizer/config.php:396
+#: core/helpers/design-bar.php:621
+#@ layerswp
+msgid "Repeat Horizontal"
+msgstr "تكرار أفقي"
+
+#: core/customizer/config.php:397
+#: core/helpers/design-bar.php:622
+#@ layerswp
+msgid "Repeat Vertical"
+msgstr "تكرار عمودي"
+
+#: core/customizer/config.php:402
+#@ layerswp
+msgid "Background Position"
+msgstr "موضع الخلفية"
+
+#: core/customizer/config.php:405
+#: core/helpers/design-bar.php:360
+#: core/helpers/design-bar.php:545
+#: core/helpers/design-bar.php:632
+#@ layerswp
+msgid "Center"
+msgstr "الوسط"
+
+#: core/customizer/config.php:406
+#: core/helpers/design-bar.php:403
+#: core/helpers/design-bar.php:633
+#: core/helpers/forms.php:491
+#@ layerswp
+msgid "Top"
+msgstr "الأعلى"
+
+#: core/customizer/config.php:407
+#: core/helpers/design-bar.php:634
+#: core/helpers/forms.php:493
+#@ layerswp
+msgid "Bottom"
+msgstr "الأسفل"
+
+#: core/customizer/config.php:408
+#: core/helpers/design-bar.php:359
+#: core/helpers/design-bar.php:401
+#: core/helpers/design-bar.php:544
+#: core/helpers/design-bar.php:635
+#: core/helpers/forms.php:494
+#@ layerswp
+msgid "Left"
+msgstr "اليسار"
+
+#: core/customizer/config.php:409
+#: core/helpers/design-bar.php:361
+#: core/helpers/design-bar.php:402
+#: core/helpers/design-bar.php:546
+#: core/helpers/design-bar.php:636
+#: core/helpers/forms.php:492
+#@ layerswp
+msgid "Right"
+msgstr "اليمين"
+
+#: core/customizer/config.php:413
+#@ layerswp
+msgid "Background Stretch"
+msgstr "امتداد الخلفية"
+
+#: core/customizer/config.php:423
+#@ layerswp
+msgid "Copyright Text"
+msgstr "حقوق التأليف والنشر للنص"
+
+#: core/customizer/config.php:433
+#@ layerswp
+msgid "Enter in any custom script to include in your site's footer. Be sure to use double quotes for strings."
+msgstr ".قم بالدخول إلى البرنامج النصي المخصص لإدارجه في ذيل صفحة موقعك. تأكد من استخدام علامات الاقتباس المزدوجة لسلسلة الأغراض"
+
+#: core/customizer/config.php:443
+#@ layerswp
+msgid "Single Product Sidebar(s)"
+msgstr "(المنتج المنفرد للشريط الجانبي (للأشرطة الجانبية"
+
+#: core/customizer/config.php:444
+#@ layerswp
+msgid "This option affects your single product pages."
+msgstr ".يؤثر هذا الخيار على  صفحات المنتج المنفرد الخاص بك"
+
+#: core/customizer/config.php:461
+#@ layerswp
+msgid "Product List Sidebar(s)"
+msgstr "(قائمة منتجات الشريط الجانبي (الأشرطة الجانبية"
+
+#: core/customizer/config.php:462
+#@ layerswp
+msgid "This option affects your shop page, product category and product tag pages."
+msgstr ".يؤثر هذا الخيار على صفحة متجرك، وعلى صفحات فئة المنتج وعلامة المنتج الخاصة بك"
+
+#: core/customizer/controls/font.php:51
+#, php-format
+#@ layerswp
+msgid "<em>Click <a href=\"%1s\" target=\"_blank\">here</a> to see this font on Google Fonts.</em>"
+msgstr "<em>انقر <a href=\"%1s\" target=\"_blank\">هنا</a> .لرؤية هذا الخط على خطوط جوجل</em>"
+
+#: core/customizer/controls/select-images.php:36
+#@ layerswp
+msgid "Choose Background"
+msgstr "اختيار الخلفية"
+
+#: core/customizer/init.php:71
+#: core/helpers/post.php:338
+#: core/meta/init.php:183
+#: core/options-panel/partials/dashboard.php:39
+#@ layerswp
+msgid "Edit Layout"
+msgstr "تحرير التخطيط"
+
+#: core/customizer/init.php:72
+#@ layerswp
+msgid "Use this area to add widgets to your page, use the (Layers) widgets for the Body section."
+msgstr ".استخدام هذه المنطقة لإضافة التطبيقات المصغرة على الصفحة الخاصة بك، واستخدام (الطبقات) التطبيقات المصغرة في القسم المخصص لمحتوى الصفحة"
+
+#: core/customizer/init.php:167
+#@ layerswp
+msgid "Builder Pages:"
+msgstr ":الصفحات المنشئة"
+
+#: core/customizer/init.php:190
+#: core/customizer/init.php:204
+#@ layerswp
+msgid "Layers Dashboard"
+msgstr "لوحة معلومات الطبقات"
+
+#: core/customizer/init.php:194
+#@ layerswp
+msgid "Preview this page"
+msgstr "قم بمعاينة هذه الصفحة"
+
+#: core/customizer/init.php:199
+#@ layerswp
+msgid "Add new Layers page"
+msgstr "إضافة طبقات جديدة للصفحة"
+
+#: core/helpers/api.php:41
+#@ layerswp
+msgid "WooCommerce for Layers"
+msgstr "للطبقات WooCommerce"
+
+#: core/helpers/api.php:42
+#@ layerswp
+msgid "Adds an advanced product widget, product slider and multiple page layouts."
+msgstr ".إضافة التطبيق المصغر المتقدم للمنتج، شريط التمرير للمنتج وتخطيطات الصفحات المتعددة"
+
+#: core/helpers/api.php:48
+#@ layerswp
+msgid "Showcase for Layers"
+msgstr "واجهة عرض الطبقات"
+
+#: core/helpers/api.php:49
+#@ layerswp
+msgid "List your portfolio items with relevant meta such as client, web url and project role."
+msgstr ".سرد عناصر محفظتك مع البيانات الفوقية ذات الصلة مثل العميل، رابط الشبكة، ودور المشروع"
+
+#: core/helpers/custom-fonts.php:111
+#@ layerswp
+msgid "Default"
+msgstr "القيمة المبدئية"
+
+#: core/helpers/design-bar.php:254
+#: core/widgets/modules/content.php:315
+#@ layerswp
+msgid "List Style"
+msgstr "نمط القائمة"
+
+#: core/helpers/design-bar.php:267
+#: core/widgets/modules/content.php:324
+#@ layerswp
+msgid "Grid"
+msgstr "شبكة الخطوط"
+
+#: core/helpers/design-bar.php:268
+#@ layerswp
+msgid "List"
+msgstr "القائمة"
+
+#: core/helpers/design-bar.php:269
+#: core/widgets/modules/content.php:325
+#@ layerswp
+msgid "Masonry"
+msgstr "البناء"
+
+#: core/helpers/design-bar.php:295
+#: core/helpers/design-bar.php:304
+#@ layerswp
+msgid "Columns"
+msgstr "الأعمدة"
+
+#: core/helpers/design-bar.php:309
+#@ layerswp
+msgid "1 Column"
+msgstr "عمود واحد"
+
+#: core/helpers/design-bar.php:310
+#@ layerswp
+msgid "2 Columns"
+msgstr "عمودين"
+
+#: core/helpers/design-bar.php:311
+#@ layerswp
+msgid "3 Columns"
+msgstr "ثلاتة أعمدة"
+
+#: core/helpers/design-bar.php:312
+#@ layerswp
+msgid "4 Columns"
+msgstr "أربعة أعمدة"
+
+#: core/helpers/design-bar.php:313
+#@ layerswp
+msgid "6 Columns"
+msgstr "ستة أعمدة"
+
+#: core/helpers/design-bar.php:318
+#: core/widgets/modules/content.php:330
+#@ layerswp
+msgid "Gutter"
+msgstr "مزراب"
+
+#: core/helpers/design-bar.php:346
+#: core/helpers/design-bar.php:539
+#@ layerswp
+msgid "Text Align"
+msgstr "محاذاة النص"
+
+#: core/helpers/design-bar.php:362
+#: core/helpers/design-bar.php:547
+#@ layerswp
+msgid "Justify"
+msgstr "تسوية"
+
+#: core/helpers/design-bar.php:388
+#@ layerswp
+msgid "Image Align"
+msgstr "محاذاة الصورة"
+
+#: core/helpers/design-bar.php:429
+#: core/helpers/design-bar.php:438
+#@ layerswp
+msgid "Featured Image"
+msgstr "الصورة المعروضة"
+
+#: core/helpers/design-bar.php:445
+#@ layerswp
+msgid "Video URL (oEmbed)"
+msgstr "(رابط الفيديو (وىمبيد"
+
+#: core/helpers/design-bar.php:456
+#: core/helpers/design-bar.php:501
+#@ layerswp
+msgid "Portrait"
+msgstr "طولي"
+
+#: core/helpers/design-bar.php:457
+#: core/helpers/design-bar.php:502
+#@ layerswp
+msgid "Landscape"
+msgstr "عرضي"
+
+#: core/helpers/design-bar.php:460
+#@ layerswp
+msgid "Round"
+msgstr "دائري"
+
+#: core/helpers/design-bar.php:488
+#@ layerswp
+msgid "Image Ratio"
+msgstr "نسبة الصورة"
+
+#: core/helpers/design-bar.php:554
+#@ layerswp
+msgid "Text Size"
+msgstr "حجم النص"
+
+#: core/helpers/design-bar.php:559
+#@ layerswp
+msgid "Small"
+msgstr "صغير"
+
+#: core/helpers/design-bar.php:560
+#@ layerswp
+msgid "Medium"
+msgstr "متوسط"
+
+#: core/helpers/design-bar.php:561
+#@ layerswp
+msgid "Large"
+msgstr "كبير"
+
+#: core/helpers/design-bar.php:600
+#: core/helpers/forms.php:252
+#@ layerswp
+msgid "Choose Image"
+msgstr "اختر الصورة"
+
+#: core/helpers/design-bar.php:607
+#@ layerswp
+msgid "Color"
+msgstr "اللون"
+
+#: core/helpers/design-bar.php:627
+#@ layerswp
+msgid "Position"
+msgstr "الموضع"
+
+#: core/helpers/design-bar.php:641
+#@ layerswp
+msgid "Stretch"
+msgstr "الإمتداد"
+
+#: core/helpers/design-bar.php:648
+#@ layerswp
+msgid "Darken"
+msgstr "مظلم"
+
+#: core/helpers/design-bar.php:676
+#@ layerswp
+msgid "Advanced"
+msgstr "متقدم"
+
+#: core/helpers/design-bar.php:682
+#@ layerswp
+msgid "Custom Class(es)"
+msgstr "(الدرجة المخصصة (الدرجات المخصصة"
+
+#: core/helpers/design-bar.php:690
+#@ layerswp
+msgid "Custom CSS"
+msgstr "CSS مخصص"
+
+#: core/helpers/design-bar.php:698
+#@ layerswp
+msgid "Padding (px)"
+msgstr "(ترك مساحة (بكسل"
+
+#: core/helpers/design-bar.php:705
+#@ layerswp
+msgid "Margin (px)"
+msgstr "(الهامش (بكسل"
+
+#: core/helpers/design-bar.php:712
+#@ layerswp
+msgid "Widget Anchor ID"
+msgstr "حساب التطبيق المصغر انكور"
+
+#: core/helpers/forms.php:22
+#@ layerswp
+msgid "Widget"
+msgstr "التطبيق المصغر"
+
+#: core/helpers/forms.php:99
+#@ layerswp
+msgid "Newest First"
+msgstr "الجديد أولا"
+
+#: core/helpers/forms.php:100
+#@ layerswp
+msgid "Oldest First"
+msgstr "القديم أولا"
+
+#: core/helpers/forms.php:101
+#@ layerswp
+msgid "Random"
+msgstr "عشوائي"
+
+#: core/helpers/forms.php:102
+#@ layerswp
+msgid "Titles A-Z"
+msgstr "A-Z العناوين"
+
+#: core/helpers/forms.php:103
+#@ layerswp
+msgid "Titles Z-A"
+msgstr "Z-A العناوين"
+
+#: core/helpers/forms.php:104
+#@ layerswp
+msgid "Most Comments"
+msgstr "معظم التعليقات"
+
+#: core/helpers/forms.php:105
+#@ layerswp
+msgid "Custom Order"
+msgstr "الترتيب المخصص"
+
+#: core/helpers/forms.php:229
+#@ layerswp
+msgid "Visual Mode"
+msgstr "الوضع البصري"
+
+#: core/helpers/forms.php:230
+#: core/helpers/forms.php:231
+#@ layerswp
+msgid "HTML Mode"
+msgstr "HTML وضع"
+
+#: core/helpers/forms.php:246
+#: core/helpers/forms.php:278
+#: core/helpers/forms.php:317
+#@ layerswp
+msgid "Remove"
+msgstr "إزالة"
+
+#: core/helpers/forms.php:250
+#@ layerswp
+msgid "Select an Image"
+msgstr "تحديد الصورة"
+
+#: core/helpers/forms.php:251
+#@ layerswp
+msgid "Use Image"
+msgstr "استخدام الصورة"
+
+#: core/helpers/forms.php:274
+#@ layerswp
+msgid "Select a File"
+msgstr "تحديد الملف"
+
+#: core/helpers/forms.php:274
+#@ layerswp
+msgid "Use File"
+msgstr "استخدام الملف"
+
+#: core/helpers/forms.php:275
+#@ layerswp
+msgid "Choose a File"
+msgstr "اختيار الملف"
+
+#: core/helpers/forms.php:321
+#, php-format
+#@ layerswp
+msgid "Drop a file here or %s"
+msgstr "%s إسقاط الملف هنا أو"
+
+#: core/helpers/forms.php:360
+#: core/helpers/forms.php:435
+#@ layerswp
+msgid "Darken to improve readability"
+msgstr "تعتيمه لتحسين إمكانية القراءة"
+
+#: core/helpers/forms.php:371
+#: core/helpers/forms.php:446
+#@ layerswp
+msgid "Tile Background"
+msgstr "بلاط الخلفية"
+
+#: core/helpers/forms.php:382
+#: core/helpers/forms.php:457
+#@ layerswp
+msgid "Fixed Background"
+msgstr "الخلفية الثابتة"
+
+#: core/helpers/forms.php:393
+#@ layerswp
+msgid "Enter your .mp4 link"
+msgstr ".mp4 أدخل رابط ملف"
+
+#: core/helpers/forms.php:404
+#@ layerswp
+msgid "Enter your .ogv link"
+msgstr ".ogv أدخل رابط"
+
+#: core/helpers/migrator.php:102
+#@ layerswp
+msgid "Application"
+msgstr "التطبيق"
+
+#: core/helpers/migrator.php:108
+#@ layerswp
+msgid "Contact Page"
+msgstr "صفحة الاتصال"
+
+#: core/helpers/migrator.php:114
+#@ layerswp
+msgid "Landing Page"
+msgstr "الصفحة المقصودة"
+
+#: core/helpers/migrator.php:120
+#@ layerswp
+msgid "Lookbook Page"
+msgstr "Lookbook صفحة"
+
+#: core/helpers/migrator.php:126
+#@ layerswp
+msgid "One Pager"
+msgstr "جهاز النداء واحد"
+
+#: core/helpers/migrator.php:132
+#@ layerswp
+msgid "Portfolio Page"
+msgstr "صفحة المحفظة"
+
+#: core/helpers/migrator.php:138
+#@ layerswp
+msgid "Video Page"
+msgstr "صفحة الفيديو"
+
+#: core/helpers/migrator.php:144
+#@ layerswp
+msgid "Blank Page"
+msgstr "صفحة فارغة"
+
+#: core/helpers/migrator.php:591
+#@ layerswp
+msgid "(Copy)"
+msgstr "(نسخ)"
+
+#: core/helpers/migrator.php:649
+#: core/options-panel/partials/get-started.php:326
+#: core/options-panel/partials/get-started.php:327
+#@ layerswp
+msgid "Home Page"
+msgstr "الصفحة الرئيسية"
+
+#: core/helpers/migrator.php:724
+#@ layerswp
+msgid "Sidebar does not exist in theme (using Inactive)"
+msgstr "(الشريط الجانبي غير موجود في موضوع (الإستخدام الغير النشط"
+
+#: core/helpers/migrator.php:766
+#@ layerswp
+msgid "Widget already exists"
+msgstr "التطبيق المصغر موجود مسبقا"
+
+#: core/helpers/migrator.php:815
+#@ layerswp
+msgid "Imported"
+msgstr "مستورد"
+
+#: core/helpers/migrator.php:818
+#@ layerswp
+msgid "Imported to Inactive"
+msgstr "مستورد غير نشط"
+
+#: core/helpers/migrator.php:824
+#@ layerswp
+msgid "No Title"
+msgstr "لا يوجد عنوان"
+
+#: core/helpers/post.php:56
+#, php-format
+#@ layerswp
+msgid "View all posts in %s"
+msgstr "%s مشاهدة جميع المشاركات في"
+
+#: core/helpers/post.php:58
+#: core/helpers/post.php:77
+#@ layerswp
+msgid ", "
+msgstr ", "
+
+#: core/helpers/post.php:75
+#, php-format
+#@ layerswp
+msgid "View all posts tagged %s"
+msgstr "%s مشاهدة جميع المشاركات الموسومة في"
+
+#: core/helpers/post.php:98
+#, php-format
+#@ layerswp
+msgid "<a href=\"%1$s\" title=\"%2$s\" rel=\"author\">%3$s</a>"
+msgstr "<a href=\"%1$s\" title=\"%2$s\" rel=\"author\">%3$s</a>"
+
+#: core/helpers/post.php:100
+#, php-format
+#@ layerswp
+msgid "View all posts by %s"
+msgstr "%s عرض جميع مشاركات بواسطة"
+
+#: core/helpers/post.php:123
+#@ layerswp
+msgid "(Edit)"
+msgstr "(تحرير)"
+
+#: core/helpers/post.php:129
+#, php-format
+#@ layerswp
+msgid "%1$s at %2$s"
+msgstr "%1$s at %2$s"
+
+#: core/helpers/post.php:135
+#@ layerswp
+msgid "Your comment is awaiting moderation."
+msgstr ".تعليقك ينتظر الموافقة عليه"
+
+#: core/helpers/post.php:157
+#@ layerswp
+msgid "You shall not pass"
+msgstr "لا يحق لك المرور"
+
+#: core/helpers/template.php:24
+#@ layerswp
+msgid "Home"
+msgstr "الرئيسية"
+
+#: core/helpers/template.php:35
+#: core/helpers/template.php:304
+#@ layerswp
+msgid "Search"
+msgstr "البحث"
+
+#: core/helpers/template.php:45
+#: core/helpers/template.php:329
+#@ layerswp
+msgid "Shop"
+msgstr "المتجر"
+
+#: core/helpers/template.php:317
+#, php-format
+#@ layerswp
+msgid "Daily Archives: %s"
+msgstr "%s :الأرشيفات اليومية"
+
+#: core/helpers/template.php:319
+#, php-format
+#@ layerswp
+msgid "Monthly Archives: %s"
+msgstr "%s :الأرشيفات الشهرية"
+
+#: core/helpers/template.php:319
+#@ layerswp
+msgctxt "monthly archives date format"
+msgid "F Y"
+msgstr "صيغة التاريخ للأرشيفات الشهرية"
+
+#: core/helpers/template.php:321
+#, php-format
+#@ layerswp
+msgid "Yearly Archives: %s"
+msgstr "%s :الأرشيفات السنوية"
+
+#: core/helpers/template.php:321
+#@ layerswp
+msgctxt "yearly archives date format"
+msgid "Y"
+msgstr "صيغة التاريخ للأرشيفات السنوية"
+
+#: core/helpers/template.php:334
+#@ layerswp
+msgid "Archives"
+msgstr "الأرشيفات"
+
+#: core/helpers/template.php:1106
+#@ layerswp
+msgid "Your browser does not support the video tag."
+msgstr "متصفحك لا يدعم سمة هذا الفيديو"
+
+#: core/meta/config.php:16
+#@ layerswp
+msgid ": Options"
+msgstr "الخيارات :"
+
+#: core/meta/config.php:21
+#@ layerswp
+msgid "Rich Media"
+msgstr "الميديا الغنية"
+
+#: core/meta/config.php:24
+#@ layerswp
+msgid "Video URL"
+msgstr "رابط الفيديو"
+
+#: core/meta/init.php:161
+#@ layerswp
+msgid "You can drag and drop widgets, edit content and tweak the design. Click the button below to see your page come to life."
+msgstr ".يمكنك سحب وإسقاط التطبيقات المصغرة، تحرير المحتوى وتطويع التصميم. انقر فوق الزر أدناه لرؤية صفحتك"
+
+#: core/meta/init.php:162
+#@ layerswp
+msgid "Edit Your Page"
+msgstr "تعديل صفحتك"
+
+#: core/meta/init.php:208
+#@ layerswp
+msgid "Build Your Page"
+msgstr "إنشاء صفحتك"
+
+#: core/options-panel/ajax.php:56
+#@ layerswp
+msgid "No Logo uploaded"
+msgstr "لم يتم تحميل الشعار"
+
+#: core/options-panel/ajax.php:90
+#@ layerswp
+msgid "Logo updated"
+msgstr "تحديث الشعار"
+
+#: core/options-panel/ajax.php:94
+#@ layerswp
+msgid "There was an error when updating your logo."
+msgstr ".حدث خطأ أثناء تحديث الشعار الخاص بك"
+
+#: core/options-panel/ajax.php:102
+#@ layerswp
+msgid "Option updated"
+msgstr "تم تحديث الخيار"
+
+#: core/options-panel/init.php:170
+#: core/options-panel/init.php:171
+#@ layerswp
+msgid "Get Started"
+msgstr "البدء"
+
+#: core/options-panel/init.php:180
+#: core/options-panel/init.php:181
+#: core/options-panel/partials/add-new-page.php:12
+#: core/options-panel/partials/dashboard.php:48
+#@ layerswp
+msgid "Add New Page"
+msgstr "إضافة صفحة جديدة"
+
+#: core/options-panel/init.php:192
+#: core/options-panel/init.php:193
+#: core/options-panel/partials/dashboard.php:32
+#@ layerswp
+msgid "Layers Pages"
+msgstr "صفحات الطبقات"
+
+#: core/options-panel/init.php:202
+#: core/options-panel/init.php:203
+#@ layerswp
+msgid "Customize"
+msgstr "تخصيص"
+
+#: core/options-panel/init.php:211
+#: core/options-panel/init.php:212
+#: core/options-panel/partials/backup.php:5
+#@ layerswp
+msgid "Backup"
+msgstr "النسخ الاحتياطي"
+
+#: core/options-panel/init.php:220
+#: core/options-panel/partials/dashboard.php:8
+#@ layerswp
+msgid "Dashboard"
+msgstr "لوحة التحكم الرئيسية"
+
+#: core/options-panel/partials/add-new-page.php:25
+#@ layerswp
+msgid "Add a page title"
+msgstr "إضافة عنوان الصفحة"
+
+#: core/options-panel/partials/add-new-page.php:34
+#: core/widgets/modules/contact.php:270
+#: core/widgets/modules/content.php:362
+#: core/widgets/modules/content.php:499
+#: core/widgets/modules/post.php:444
+#: core/widgets/modules/slider.php:515
+#@ layerswp
+msgid "Enter title here"
+msgstr "إدخال العنوان هنا"
+
+#: core/options-panel/partials/add-new-page.php:43
+#@ layerswp
+msgid "Proceed to Customizer"
+msgstr "انتقل إلى المفصل حسب الطلب"
+
+#: core/options-panel/partials/add-new-page.php:46
+#@ layerswp
+msgid "Cancel"
+msgstr "إلغاء"
+
+#: core/options-panel/partials/backup.php:14
+#@ layerswp
+msgid "Backup your pages"
+msgstr "صفحات النسخة الاحتياطية الخاصة بك"
+
+#: core/options-panel/partials/backup.php:16
+#@ layerswp
+msgid "Convert your Layers pages into regular WordPress pages, preserving the content you have worked so hard to create."
+msgstr ".تحويل صفحات الطبقات الخاصة بك إلى صفحات وردبرس العادية، والحفاظ على المحتوى الذي عملت بجد لإنشائه"
+
+#: core/options-panel/partials/backup.php:20
+#@ layerswp
+msgid "0%"
+msgstr "0%"
+
+#: core/options-panel/partials/backup.php:24
+#@ layerswp
+msgid "Backup my Pages Now"
+msgstr "إجراء النسخ الإحتياطي لصفحات موقعي الآن"
+
+#: core/options-panel/partials/backup.php:30
+#@ layerswp
+msgid "Backed Up Pages:"
+msgstr ":إجراء النسخ الإحتياطي لصفحات الموقع"
+
+#: core/options-panel/partials/dashboard.php:20
+#@ layerswp
+msgid "Start Using Layers"
+msgstr "البدء في استخدام الطبقات"
+
+#: core/options-panel/partials/dashboard.php:22
+#@ layerswp
+msgid "Follow the easy steps to creating amazing layouts quickly and easily. "
+msgstr ".اتباع الخطوات البسيطة لإنشاء تخطيطات رائعة بشكل سريع وسهل"
+
+#: core/options-panel/partials/dashboard.php:26
+#@ layerswp
+msgid "Get Started &rarr;"
+msgstr "&rarr; ابدأ"
+
+#: core/options-panel/partials/dashboard.php:40
+#@ layerswp
+msgid "Edit"
+msgstr "تحرير"
+
+#: core/options-panel/partials/dashboard.php:41
+#@ layerswp
+msgid "View"
+msgstr "عرض"
+
+#: core/options-panel/partials/dashboard.php:59
+#@ layerswp
+msgid "Extensions"
+msgstr "الملحقات"
+
+#: core/options-panel/partials/dashboard.php:75
+#@ layerswp
+msgid "Coming soon"
+msgstr "ستوضع قريبا"
+
+#: core/options-panel/partials/dashboard.php:83
+#@ layerswp
+msgid "Purchase"
+msgstr "شراء"
+
+#: core/options-panel/partials/dashboard.php:88
+#@ layerswp
+msgid "More Details"
+msgstr "مزيد من التفاصيل"
+
+#: core/options-panel/partials/dashboard.php:105
+#@ layerswp
+msgid "What you need"
+msgstr "ما الذي تحتاجه"
+
+#: core/options-panel/partials/dashboard.php:109
+#@ layerswp
+msgid "WordPress 4.0"
+msgstr "وردبرس 4.0"
+
+#: core/options-panel/partials/dashboard.php:111
+#@ layerswp
+msgid "Layers requires you run the latest version of WordPress, please make sure you're up to date!"
+msgstr "!تتطلب منك الطبقات تشغيل أحدث نسخة من برنامج وردبرس، يرجى التأكد من حصولك على آخر التحديثات"
+
+#: core/options-panel/partials/dashboard.php:115
+#@ layerswp
+msgid "You're up to date"
+msgstr "لقد حصلت على آخر التحديثات"
+
+#: core/options-panel/partials/dashboard.php:117
+#@ layerswp
+msgid "Update WordPress"
+msgstr "تحديث وردبرس"
+
+#: core/options-panel/partials/dashboard.php:122
+#@ layerswp
+msgid "The Layers Updater"
+msgstr "برنامج محدث الطبقات"
+
+#: core/options-panel/partials/dashboard.php:124
+#@ layerswp
+msgid "Make sure you're always running the latest version of Layers by installing the Layers Updater"
+msgstr "تأكد من أنك تقوم بتشغيل الإصدار الأحدث من الطبقات عن طريق تثبيت برنامج محدث الطبقات"
+
+#: core/options-panel/partials/dashboard.php:128
+#@ layerswp
+msgid "Installed"
+msgstr "تم تثبيته"
+
+#: core/options-panel/partials/dashboard.php:144
+#@ layerswp
+msgid "Helpful Tips"
+msgstr "نصائح مفيدة"
+
+#: core/options-panel/partials/get-started.php:16
+#@ layerswp
+msgid "Skip"
+msgstr "تخطى"
+
+#: core/options-panel/partials/get-started.php:28
+#@ layerswp
+msgid "Welcome to Layers!"
+msgstr "!مرحبا بكم في الطبقات"
+
+#: core/options-panel/partials/get-started.php:32
+#@ layerswp
+msgid "Layers is a revolutionary WordPress Site Builder that makes website building a dream come true!"
+msgstr "!الطبقات هي منشئ الموقع وردبرس الذي يجعل من إنشاء موقع الويب الحلم الذي أصبح حقيقة"
+
+#: core/options-panel/partials/get-started.php:35
+#@ layerswp
+msgid "The following short steps are designed to show you how Layers works and get you to creating amazing layouts quickly!"
+msgstr "!تم تصميم الخطوات القصيرة التالية لتبين لكم كيفية عمل الطبقات والحصول على إنشاء تخطيطات مذهلة بسرعة"
+
+#: core/options-panel/partials/get-started.php:38
+#@ layerswp
+msgid "Enjoy the ride!"
+msgstr "!الاستمتاع بالرحلة"
+
+#: core/widgets/modules/slider.php:397
+#@ layerswp
+msgid "Slider Height"
+msgstr "ارتفاع شريط التمرير"
+
+#: core/widgets/modules/slider.php:445
+#@ layerswp
+msgid "Add New Slide"
+msgstr "إضافة شريحة جديدة"
+
+#: core/widgets/modules/slider.php:481
+#@ layerswp
+msgid "Slide"
+msgstr "الشريحة"
+
+#: core/widgets/modules/slider.php:514
+#@ layerswp
+msgid "Enter a Title"
+msgstr "أدخل العنوان"
+
+#: footer.php:3
+#@ layerswp
+msgid "Back to top"
+msgstr "الرجوع الى أعلى الصفحة"
+
+#: functions.php:162
+#@ layerswp
+msgid "Top Left Menu"
+msgstr "أعلى يسار القائمة"
+
+#: functions.php:163
+#@ layerswp
+msgid "Top Right Menu"
+msgstr "أعلى يمين القائمة"
+
+#: functions.php:164
+#@ layerswp
+msgid "Header Menu"
+msgstr "رأس القائمة"
+
+#: functions.php:165
+#@ layerswp
+msgid "Right Header Menu"
+msgstr "رأس القائمة الأيمن"
+
+#: functions.php:166
+#@ layerswp
+msgid "Footer Menu"
+msgstr "ذيل القائمة"
+
+#: functions.php:194
+#@ layerswp
+msgid "Mobile Sidebar"
+msgstr "الشريط الجانبي المتنقل"
+
+#: functions.php:195
+#@ layerswp
+msgid "This sidebar will only appear on mobile devices."
+msgstr ".هذا الشريط الجانبي يظهر فقط على الأجهزة النقالة"
+
+#: functions.php:204
+#@ layerswp
+msgid "Left Sidebar"
+msgstr "الشريط الجانبي الأيسر"
+
+#: functions.php:213
+#@ layerswp
+msgid "Right Sidebar"
+msgstr "الشريط الجانبي الأيمن"
+
+#: functions.php:226
+#@ layerswp
+msgid "Footer "
+msgstr "تذييل الصفحة"
+
+#: functions.php:240
+#@ layerswp
+msgid "Left Shop Sidebar"
+msgstr "الشريط الجانبي الأيسر للمتجر"
+
+#: functions.php:249
+#@ layerswp
+msgid "Right Shop Sidebar"
+msgstr "الشريط الجانبي الأيمن للمتجر"
+
+#: functions.php:397
+#@ layerswp
+msgid "Be patient while we import the widget data and images."
+msgstr ".يرجى التحلي بالصبر حتى نقوم باستيراد بيانات التطبيق المصغر والصور"
+
+#: functions.php:398
+#@ layerswp
+msgid "Import Complete"
+msgstr "الاستيراد الكامل"
+
+#: functions.php:399
+#@ layerswp
+msgid "Importing Your Content"
+msgstr "استيراد محتواك"
+
+#: functions.php:400
+#@ layerswp
+msgid "Edit Your New Page"
+msgstr "تعديل صفحتك الجديدة"
+
+#: functions.php:437
+#@ layerswp
+msgid "Saving..."
+msgstr "...حفظ"
+
+#: functions.php:438
+#@ layerswp
+msgid "Done!"
+msgstr "!تم بنجاح"
+
+#: functions.php:459
+#@ layerswp
+msgid "Your pages have been successfully backed up!"
+msgstr "!لقد تم نسخ صفحاتك بنجاح"
+
+#: partials/content-empty.php:9
+#@ layerswp
+msgid "No posts found"
+msgstr "لم يتم العثور على أية مشاركات"
+
+#: partials/content-empty.php:12
+#@ layerswp
+msgid "Use the search form below to find the page you're looking for:"
+msgstr ":استخدام نموذج البحث أدناه للعثور على الصفحة التي تبحث عنها"
+
+#: partials/content-single.php:29
+#@ ocmx
+msgid "<span>Pages:</span>"
+msgstr "<span>:الصفحات</span>"
+
+#: partials/portfolio-list.php:24
+#@ layerswp
+msgid "View Project"
+msgstr "عرض المشروع"
+
+#: comments.php:6
+#, php-format
+#@ layerswp
+msgid "One Comment on &ldquo;%2$s&rdquo;"
+msgid_plural "%1$s Comments on &ldquo;%2$s&rdquo;"
+msgstr[0] "&ldquo;%2$s&rdquo; تعليق واحد على"
+msgstr[1] "&ldquo;%2$s&rdquo; تعليق واحد على"
+msgstr[2] "&ldquo;%2$s&rdquo; تعليق واحد على"
+msgstr[3] "&ldquo;%2$s&rdquo; تعليق واحد على"
+msgstr[4] "&ldquo;%2$s&rdquo; تعليق واحد على"
+msgstr[5] "&ldquo;%2$s&rdquo; تعليق واحد على"
+
+#: comments.php:19
+#@ layerswp
+msgid "&larr;"
+msgstr "&larr;"
+
+#: comments.php:20
+#@ layerswp
+msgid "&rarr;"
+msgstr "&rarr;"
+
+#: core/helpers/design-bar.php:458
+#: core/helpers/design-bar.php:503
+#@ layerswp
+msgid "Square"
+msgstr "المربع"
+
+#: core/options-panel/partials/get-started.php:45
+#@ layerswp
+msgid "Let's get started &rarr;"
+msgstr "&rarr; دعونا نبدأ مع"
+
+#: core/options-panel/partials/get-started.php:55
+#@ layerswp
+msgid "For the Pros: Layers will automatically assign the tagline to Settings &rarr; General."
+msgstr "&rarr; بالنسبة للمحترفين: ستعين الطبقات سطر الوصف بشكل تلقائي للإعدادات العامة بالنسبة ل"
+
+#: core/options-panel/partials/get-started.php:69
+#: core/options-panel/partials/get-started.php:157
+#: core/options-panel/partials/get-started.php:236
+#@ layerswp
+msgid "Getting Started"
+msgstr "ابدء"
+
+#: core/options-panel/partials/get-started.php:73
+#@ layerswp
+msgid "Building pages"
+msgstr "منشىء الصفحات"
+
+#: core/options-panel/partials/get-started.php:77
+#@ layerswp
+msgid "Layers splits your page into horizontal rows, and you build up your pages with blocks of content called &lsquo;Widgets&rsquo;, one per row."
+msgstr "&lsquo;Widgets&rsquo;, تقوم الطبقات بتقسيم صفحتك إلى صفوف أفقية، ويمكنك بناء صفحاتك مع كتل من المحتويات واحد لكل صف والتي تسمى"
+
+#: core/options-panel/partials/get-started.php:80
+#@ layerswp
+msgid "Each time you want to add a new content block, simply click &lsquo;Add Widget&rsquo; and select one from the list which has the blue Layers icon."
+msgstr ".عندما تريد إضافة كتلة محتوى جديد، ببساطة انقر  واختر واحدا من القائمة التي لديها رمز الطبقات الأزرق"
+
+#: core/options-panel/partials/get-started.php:86
+#@ layerswp
+msgid "Got it, Next Step &rarr;"
+msgstr "&rarr; حصلت عليها، الخطوة التالية"
+
+#: core/options-panel/partials/get-started.php:101
+#@ layerswp
+msgid "What is the name of your website?"
+msgstr "ما هو اسم موقع الويب الخاص بك؟"
+
+#: core/options-panel/partials/get-started.php:104
+#@ layerswp
+msgid "Enter your website name below. We&apos;ll use this in your site title and in search results."
+msgstr "أدخل اسم موقع الويب الخاص بك في الأسفل. سوف نستخدم هذا في عنوان موقع الويب الخاص بك وفي نتائج البحث"
+
+#: core/options-panel/partials/get-started.php:108
+#@ layerswp
+msgid "Site Name"
+msgstr "اسم الموقع"
+
+#: core/options-panel/partials/get-started.php:128
+#@ layerswp
+msgid "Saving your Site Name"
+msgstr "حفظ اسم موقع الويب الخاص بك"
+
+#: core/options-panel/partials/get-started.php:130
+#: core/options-panel/partials/get-started.php:169
+#: core/options-panel/partials/get-started.php:212
+#: core/options-panel/partials/get-started.php:253
+#: core/options-panel/partials/get-started.php:297
+#@ layerswp
+msgid "Next Step &rarr;"
+msgstr "&rarr; الخطوة التالية"
+
+#: core/options-panel/partials/get-started.php:142
+#@ layerswp
+msgid "For the Pros: Layers will automatically assign this site name to Settings &rarr; General"
+msgstr "&rarr; بالنسبة للمحترفين: ستعين الطبقات اسم الموقع بشكل تلقائي للإعدادات العامة بالنسبة ل"
+
+#: core/options-panel/partials/get-started.php:161
+#@ layerswp
+msgid "Editing widget content"
+msgstr "تعديل محتوى التطبيق المصغر"
+
+#: core/options-panel/partials/get-started.php:184
+#@ layerswp
+msgid "How would you best describe your site?"
+msgstr "كيف يمكنك وصف موقع الويب الخاص بك على أفضل نحو؟"
+
+#: core/options-panel/partials/get-started.php:187
+#@ layerswp
+msgid "A tagline describes who and what you are in just a few simple words. For example Layers is a &ldquo;WordPress Site Builder&rdquo; - simple, easy, quick to read. Now you try:"
+msgstr ":يصف سطر الوصف من أنت وماذا تكون في بضع كلمات بسيطة. على سبيل المثال الطبقات هو منشئ الموقع ووردبرس ـ بسيط، سهل وسريع القراءة. الآن يمكنك تجربته"
+
+#: core/options-panel/partials/get-started.php:191
+#@ layerswp
+msgid "Site Tagline"
+msgstr "سطر وصف الموقع"
+
+#: core/options-panel/partials/get-started.php:211
+#@ layerswp
+msgid "Saving your Tagline"
+msgstr "حفظ سطر الوصف الخاص بك"
+
+#: core/options-panel/partials/get-started.php:219
+#@ layerswp
+msgid "Keep it simple"
+msgstr "ابقائه بسيطا"
+
+#: core/options-panel/partials/get-started.php:220
+#@ layerswp
+msgid "Avoid buzz words"
+msgstr "تجنب الكلمات الرنانة"
+
+#: core/options-panel/partials/get-started.php:221
+#@ layerswp
+msgid "Make sure it describes what you offer"
+msgstr "تأكد من أنك تصف ما تقوم بعرضه"
+
+#: core/options-panel/partials/get-started.php:222
+#@ layerswp
+msgid "For the Pros: Layers will automatically assign the tagline to Settings &rarr; General"
+msgstr "&rarr; بالنسبة للمحترفين: ستعين الطبقات سطر الوصف بشكل تلقائي للإعدادات العامة بالنسبة ل"
+
+#: core/options-panel/partials/get-started.php:240
+#@ layerswp
+msgid "Customizing widgets"
+msgstr "تخصيص التطبيقات المصغرة"
+
+#: core/options-panel/partials/get-started.php:244
+#@ layerswp
+msgid "Unique to each Layers widget is the revolutionary &ldquo;Design Bar&rdquo; which allows you to set its design parameters without touching a line of code."
+msgstr ".تعتبر فريدة لكل تطبيق مصغر للطبقات التي هي أداة التصميم. والتي تسمح لك بتعيين معلمات تصميمه دون لمس أي سطر من أسطر التعليمات البرمجية"
+
+#: core/options-panel/partials/get-started.php:247
+#@ layerswp
+msgid "Depending on the widget you've added, you can change things like background images, font sizes, list styles and more."
+msgstr ".اعتمادا على التطبيق المصغر الذي قمت بإضافته، يمكنك تغيير عدة الأشياء مثل صور الخلفية، أحجام الخطوط، أساليب القائمة، وأكثر من ذلك"
+
+#: core/options-panel/partials/get-started.php:268
+#@ layerswp
+msgid "Would you like to add your logo?"
+msgstr "هل ترغب في إضافة شعارك؟"
+
+#: core/options-panel/partials/get-started.php:271
+#@ layerswp
+msgid "Layers will add your logo and position it properly. If you don&apos;t have one yet, no problem, you can add it later, or skip this step if you&apos;d just prefer to use text."
+msgstr "سوف تقوم الطبقات بإضافة شعارك ووضعه بشكل صحيح إذا لم يكن لديك أي شعار لحد الآن لا مشكلة يمكنك إضافته لاحقا أو تخطي هذه الخطوة إذا كنت ترغب فقط في استخدام النص"
+
+#: core/options-panel/partials/get-started.php:279
+#@ layerswp
+msgid "Choose Logo"
+msgstr "اختيار شعار"
+
+#: core/options-panel/partials/get-started.php:296
+#@ layerswp
+msgid "Updating your Logo"
+msgstr "تحديث شعارك"
+
+#: core/options-panel/partials/get-started.php:304
+#@ layerswp
+msgid "For best results, use an image between 40px and 200px tall and not more than 1000px wide"
+msgstr "للحصول على أفضل النتائج، استخدم صورة بين 40 بكسل و200 بكسل في الطول وليس أكثر من 1000 بكسل في العرض"
+
+#: core/options-panel/partials/get-started.php:305
+#@ layerswp
+msgid "PNGs with a transparent background work best but GIFs or JPGs are fine too"
+msgstr "بي إن جي\" مع خلفية شفافة ستعمل بشكل أفضل ولكن \"جي آي إف\" أو \"جيه بي إي جي\" ستعمل بشكل رائع كذلك\" "
+
+#: core/options-panel/partials/get-started.php:306
+#@ layerswp
+msgid "Try keep your logo file size below 500kb"
+msgstr "حاول إبقاء حجم ملف الشعار الخاص بك التالي 500 كيلوبايت"
+
+#: core/options-panel/partials/get-started.php:320
+#@ layerswp
+msgid "Page Title"
+msgstr "عنوان الصفحة"
+
+#: core/options-panel/partials/get-started.php:349
+#@ layerswp
+msgid "Now let&apos;s create your first Layers page!"
+msgstr "!الآن لنقم بإنشاء صفحة الطبقات الأولى"
+
+#: core/options-panel/partials/get-started.php:353
+#@ layerswp
+msgid "You will be able to edit your layout on the next page. Here we go! "
+msgstr "!سوف تتمكن من تعديل التصميم الخاص بك على الصفحة التالية. وهكذا"
+
+#: core/options-panel/partials/get-started.php:359
+#@ layerswp
+msgid "Creating your Page"
+msgstr "إنشاء الصفحة الخاصة بك"
+
+#: core/options-panel/partials/get-started.php:360
+#@ layerswp
+msgid "First choose a layout"
+msgstr "اختيار التخطيط أولا "
+
+#: core/options-panel/partials/get-started.php:360
+#@ layerswp
+msgid "Start Building"
+msgstr "بداية البناء"
+
+#: core/options-panel/partials/preset-layouts.php:20
+#@ layerswp
+msgid "Select"
+msgstr "اختيار"
+
+#: core/third-party/site-logo/inc/class-site-logo-control.php:19
+#@ layerswp
+msgid "Add logo"
+msgstr "إضافة الشعار"
+
+#: core/third-party/site-logo/inc/class-site-logo-control.php:20
+#@ layerswp
+msgid "Set as logo"
+msgstr "إعداده على شكل شعار"
+
+#: core/third-party/site-logo/inc/class-site-logo-control.php:21
+#@ layerswp
+msgid "Choose logo"
+msgstr "اختيار الشعار"
+
+#: core/third-party/site-logo/inc/class-site-logo-control.php:22
+#@ layerswp
+msgid "Change logo"
+msgstr "تغيير الشعار"
+
+#: core/third-party/site-logo/inc/class-site-logo-control.php:23
+#@ layerswp
+msgid "Remove logo"
+msgstr "إزالة الشعار"
+
+#: core/third-party/site-logo/inc/class-site-logo-control.php:24
+#@ layerswp
+msgid "No logo set"
+msgstr "لا توجد مجموعة الشعارات"
+
+#: core/third-party/site-logo/inc/class-site-logo.php:81
+#@ layerswp
+msgid "Site Title, Tagline, and Logo"
+msgstr "عنوان الموقع، سطر الوصف، والشعار"
+
+#: core/third-party/site-logo/inc/class-site-logo.php:92
+#@ layerswp
+msgid "Display Header Text"
+msgstr "عرض رأس النص"
+
+#: core/third-party/site-logo/inc/class-site-logo.php:114
+#@ layerswp
+msgid "Logo"
+msgstr "الشعار"
+
+#: core/third-party/site-logo/inc/class-site-logo.php:254
+#@ layerswp
+msgid "Site Logo"
+msgstr "شعار الموقع"
+
+#: core/widgets/init.php:80
+#@ layerswp
+msgid " Body"
+msgstr "محتوى الصفحة"
+
+#: core/widgets/init.php:165
+#@ layerswp
+msgid "Layers Builder section."
+msgstr ".قسم منشئ الطبقات"
+
+#: core/widgets/init.php:190
+#@ layerswp
+msgid "Are you sure you want to remove this slide?"
+msgstr "هل أنت متأكد أنك تريد إزالة هذه الشريحة؟"
+
+#: core/widgets/init.php:202
+#@ layerswp
+msgid "Are you sure you want to remove this column?"
+msgstr "هل أنت متأكد أنك تريد إزالة هذا العمود؟"
+
+#: core/widgets/modules/contact.php:26
+#@ layerswp
+msgid "Contact Details &amp; Maps"
+msgstr "تفاصيل الاتصال والخرائط"
+
+#: core/widgets/modules/contact.php:37
+#: core/widgets/modules/content.php:33
+#: core/widgets/modules/post.php:42
+#: core/widgets/modules/slider.php:37
+#@ default
+msgid "This widget is used to display your "
+msgstr "يستخدم هذا التطبيق المصغر لعرض"
+
+#: core/widgets/modules/contact.php:207
+#: core/widgets/modules/post.php:322
+#@ layerswp
+msgid "Display"
+msgstr "عرض"
+
+#: core/widgets/modules/contact.php:216
+#@ layerswp
+msgid "Map Height"
+msgstr "طول الخريطة"
+
+#: core/widgets/modules/contact.php:223
+#@ layerswp
+msgid "Show Google Map"
+msgstr "عرض خريطة جوجل"
+
+#: core/widgets/modules/contact.php:230
+#@ layerswp
+msgid "Show Address"
+msgstr "إظهار العنوان"
+
+#: core/widgets/modules/contact.php:237
+#@ layerswp
+msgid "Show Contact Form"
+msgstr "إظهار نموذج الاتصال"
+
+#: core/widgets/modules/contact.php:258
+#@ layerswp
+msgid "Contact"
+msgstr "اتصال"
+
+#: core/widgets/modules/contact.php:282
+#: core/widgets/modules/content.php:374
+#: core/widgets/modules/content.php:512
+#: core/widgets/modules/post.php:457
+#: core/widgets/modules/slider.php:528
+#@ layerswp
+msgid "Short Excerpt"
+msgstr "مقتطفات قصيرة"
+
+#: core/widgets/modules/contact.php:295
+#@ layerswp
+msgid "Address"
+msgstr "العنوان"
+
+#: core/widgets/modules/contact.php:296
+#: core/widgets/modules/contact.php:346
+#@ layerswp
+msgid "Place your help text here please."
+msgstr ".وضع نص المساعدة هنا من فضلك"
+
+#: core/widgets/modules/contact.php:301
+#@ layerswp
+msgid "Google Maps Location"
+msgstr "مكان خرائط جوجل"
+
+#: core/widgets/modules/contact.php:307
+#@ layerswp
+msgid "e.g. 300 Prestwich Str, Cape Town, South Africa"
+msgstr "مثلا 300 شارع بريستويتش، كيب تاون، جنوب أفريقيا"
+
+#: core/widgets/modules/contact.php:313
+#@ layerswp
+msgid "Google Maps Latitude & Longitude (Optional)"
+msgstr "(خط العرض والطول لخرائط غوغل (اختياري"
+
+#: core/widgets/modules/contact.php:319
+#@ layerswp
+msgid "e.g. 33.9253 S, 18.4239 E"
+msgstr "مثلا 33.9253 جنوبا، 18.4239 شمالا"
+
+#: core/widgets/modules/contact.php:325
+#@ layerswp
+msgid "Address Shown"
+msgstr "العنوان المعروض"
+
+#: core/widgets/modules/contact.php:331
+#@ layerswp
+msgid "e.g. Prestwich Str, Cape Town"
+msgstr "مثلا شارع بريستويتش، كيب تاون"
+
+#: core/widgets/modules/contact.php:345
+#@ layerswp
+msgid "Contact Form"
+msgstr "نموذج الاتصال"
+
+#: core/widgets/modules/contact.php:356
+#@ layerswp
+msgid "Contact form embed code"
+msgstr "نموذج الاتصال لكود الإلصاق"
+
+#: core/widgets/modules/content.php:26
+#@ layerswp
+msgid "Content"
+msgstr "المحتوى"
+
+#: core/widgets/modules/content.php:405
+#@ layerswp
+msgid "Add New Column"
+msgstr "إضافة عمود جديد"
+
+#: core/widgets/modules/content.php:438
+#@ layerswp
+msgid "Column"
+msgstr "العمود"
+
+#: core/widgets/modules/content.php:474
+#@ layerswp
+msgid "1 of 12 columns"
+msgstr "واحد من 12 عمودا"
+
+#: core/widgets/modules/content.php:475
+#@ layerswp
+msgid "2 of 12 columns"
+msgstr "اثنان من 12 عمودا"
+
+#: core/widgets/modules/content.php:476
+#@ layerswp
+msgid "3 of 12 columns"
+msgstr "ثلاثة من 12 عمودا"
+
+#: core/widgets/modules/content.php:477
+#@ layerswp
+msgid "4 of 12 columns"
+msgstr "أربعة من 12 عمودا"
+
+#: core/widgets/modules/content.php:478
+#@ layerswp
+msgid "5 of 12 columns"
+msgstr "خمسة من 12 عمودا"
+
+#: core/widgets/modules/content.php:479
+#@ layerswp
+msgid "6 of 12 columns"
+msgstr "ستة من 12 عمودا"
+
+#: core/widgets/modules/content.php:480
+#@ layerswp
+msgid "8 of 12 columns"
+msgstr "ثمانية من 12 عمودا"
+
+#: core/widgets/modules/content.php:481
+#@ layerswp
+msgid "9 of 12 columns"
+msgstr "تسعة من 12 عمودا"
+
+#: core/widgets/modules/content.php:482
+#@ layerswp
+msgid "10 of 12 columns"
+msgstr "عشرة من 12 عمودا"
+
+#: core/widgets/modules/content.php:483
+#@ layerswp
+msgid "12 of 12 columns"
+msgstr "اثنا عشر من 12 عمودا"
+
+#: core/widgets/modules/content.php:493
+#: core/widgets/modules/slider.php:508
+#@ layerswp
+msgid "Title"
+msgstr "العنوان"
+
+#: core/widgets/modules/content.php:506
+#: core/widgets/modules/slider.php:522
+#@ layerswp
+msgid "Excerpt"
+msgstr "مقتطفات"
+
+#: core/widgets/modules/content.php:521
+#: core/widgets/modules/slider.php:537
+#@ layerswp
+msgid "Button Link"
+msgstr "زر الرابط"
+
+#: core/widgets/modules/content.php:527
+#: core/widgets/modules/slider.php:543
+#@ layerswp
+msgid "http://"
+msgstr "http://"
+
+#: core/widgets/modules/content.php:534
+#: core/widgets/modules/slider.php:549
+#@ layerswp
+msgid "Button Text"
+msgstr "زر النص"
+
+#: core/widgets/modules/content.php:540
+#: core/widgets/modules/slider.php:555
+#@ layerswp
+msgid "e.g. \"Read More\""
+msgstr "مثلا  اقرأ المزيد "
+
+#: core/widgets/modules/post.php:26
+#@ layerswp
+msgid "Posts"
+msgstr "المشاركات"
+
+#: core/widgets/modules/post.php:65
+#: partials/content-list.php:22
+#@ layerswp
+msgid "Read More"
+msgstr "اقرأ المزيد"
+
+#: core/widgets/modules/post.php:329
+#@ layerswp
+msgid "Title &amp; Excerpt Position"
+msgstr "موضع العنوان ومقتطفات"
+
+#: core/widgets/modules/post.php:331
+#@ layerswp
+msgid "Regular"
+msgstr "منتظم"
+
+#: core/widgets/modules/post.php:340
+#@ layerswp
+msgid "Show Featured Images"
+msgstr "إظهار الصور المميزة"
+
+#: core/widgets/modules/post.php:347
+#@ layerswp
+msgid "Show  Post Titles"
+msgstr "إظهار عناوين المشاركات"
+
+#: core/widgets/modules/post.php:354
+#@ layerswp
+msgid "Show Post Excerpts"
+msgstr "إظهار مقتطفات المشاركات"
+
+#: core/widgets/modules/post.php:363
+#@ layerswp
+msgid "Excerpts Length"
+msgstr "طول مدة المقتطفات"
+
+#: core/widgets/modules/post.php:370
+#@ layerswp
+msgid "Show Post Dates"
+msgstr "إظهار تواريخ المشاركات"
+
+#: core/widgets/modules/post.php:377
+#@ layerswp
+msgid "Show Post Author"
+msgstr "إظهار المشاركات المؤلف"
+
+#: core/widgets/modules/post.php:384
+#@ layerswp
+msgid "Show Tags"
+msgstr "إظهار الكلمات الدلالية"
+
+#: core/widgets/modules/post.php:391
+#@ layerswp
+msgid "Show Categories"
+msgstr "إظهار التصنيفات"
+
+#: core/widgets/modules/post.php:398
+#@ layerswp
+msgid "Show \"Read More\" Buttons"
+msgstr "\"إظهار أزرار  \"اقرأ المزيد"
+
+#: core/widgets/modules/post.php:412
+#@ layerswp
+msgid "Show Pagination"
+msgstr "إظهار ترقيم الصفحات"
+
+#: core/widgets/modules/post.php:431
+#@ layerswp
+msgid "Post"
+msgstr "المشاركة"
+
+#: core/widgets/modules/post.php:467
+#@ layerswp
+msgid "Category to Display"
+msgstr "عرض التصنيفات"
+
+#: core/widgets/modules/post.php:468
+#@ layerswp
+msgid "All"
+msgstr "الكل"
+
+#: core/widgets/modules/post.php:475
+#@ layerswp
+msgid "Select a Category"
+msgstr "الإختيار من التصنيفات"
+
+#: core/widgets/modules/post.php:483
+#@ layerswp
+msgid "Number of items to show"
+msgstr "عدد العناصر التي ستظهر"
+
+#: core/widgets/modules/post.php:484
+#@ layerswp
+msgid "Show All"
+msgstr "عرض الكل"
+
+#: core/widgets/modules/post.php:499
+#@ layerswp
+msgid "Sort by"
+msgstr "الترتيب حسب"
+
+#: core/widgets/modules/slider.php:26
+#: core/widgets/modules/slider.php:358
+#@ layerswp
+msgid "Slider"
+msgstr "شريط التمرير"
+
+#: core/widgets/modules/slider.php:351
+#@ layerswp
+msgid "Full Screen"
+msgstr "الشاشة كاملة"
+
+#: core/widgets/modules/slider.php:365
+#@ layerswp
+msgid "Show Slider Arrows"
+msgstr "إظهار أسهم شريط التمرير"
+
+#: core/widgets/modules/slider.php:372
+#@ layerswp
+msgid "Show Slider Dots"
+msgstr "إظهار نقاط شريط التمرير"
+
+#: core/widgets/modules/slider.php:379
+#@ layerswp
+msgid "Autoplay Slides"
+msgstr "التشغيل التلقائي للشرائح"
+
+#: core/widgets/modules/slider.php:387
+#@ layerswp
+msgid "Time in seconds, eg. 2"
+msgstr "الوقت بالثواني، على سبيل المثال. 2"
+
+#: core/widgets/modules/slider.php:389
+#@ layerswp
+msgid "Slide Interval"
+msgstr "الفاصل الزمني للشرائحة"
+
+#: core/options-panel/partials/get-started.php:164
+#@ layerswp
+msgid "To edit a widget's content, just click on it in the widget area on the left hand side. The widget panel will slide out allowing you to edit its content and customize its settings. You can also shift-click on the widget itself in the preview area."
+msgstr ""
+
+#: core/widgets/modules/post.php:405
+#@ layerswp
+msgid "\"Read More\" Text"
+msgstr ""
+

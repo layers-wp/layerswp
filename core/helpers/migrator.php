@@ -41,6 +41,14 @@ class Layers_Widget_Migrator {
 	}
 
 	/**
+	*  Make sure that the stylesheet directory is nice ans clean for JSON
+	*/
+
+	function get_translated_stylesheet_uri(){
+		return str_replace('/', '\/', get_stylesheet_directory_uri() );
+	}
+
+	/**
 	*  Layers Preset Widget Page Layouts
 	*/
 	function get_preset_layouts(){
@@ -445,7 +453,22 @@ class Layers_Widget_Migrator {
 
 		$i = $image_pieces[count($image_pieces)-1];
 
-		return $wpdb->get_var( $wpdb->prepare( "SELECT ID FROM {$wpdb->posts} WHERE guid LIKE %s", "%$i%" ) );
+		// Setup the Stylesheet directories to pick up the images from a local directory
+		$theme_image_dir = get_stylesheet_directory() . '/assets/preset-images/' . $i;
+		$theme_image_url = get_stylesheet_directory_uri() . '/assets/preset-images/' . $i;
+
+		$media_library_image = $wpdb->get_var( $wpdb->prepare( "SELECT ID FROM {$wpdb->posts} WHERE guid LIKE %s", "%$i%" ) );
+
+		// If the image we are looking for exists in the media library send it over
+		if( $media_library_image ) return $media_library_image;
+
+		// If the image we are looking for exists in the theme directory, use that instead
+		if( file_exists( $theme_image_dir ) ) {
+			return $this->get_attachment_id_from_url( media_sideload_image( $theme_image_url, 0 ) );
+		}
+
+		// If nothing is found, just return NULL
+		return NULL;
 	}
 
 	/**

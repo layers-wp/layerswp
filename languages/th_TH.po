@@ -38,7 +38,7 @@ msgstr "ตั้งค่าหน้า"
 #: core/customizer/config.php:27
 #@ layerswp
 msgid "Control your content's default layout."
-msgstr "ตั้งค่ารูปแบบหลักของบทความ"
+msgstr "ตั้งค่ารูปแบบหลักของเนื้อหา"
 
 #: core/customizer/config.php:31
 #@ layerswp
@@ -517,7 +517,7 @@ msgstr "วูคอมเมิสสำหรับเลเยอร์"
 #: core/helpers/api.php:42
 #@ layerswp
 msgid "Adds an advanced product widget, product slider and multiple page layouts."
-msgstr "เพิ่มวิทเจ็ดสินค้าขั้นสูง, สไลสินค้า และรูปแบบหน้าหลายหน้า"
+msgstr "เพิ่มวิทเจ็ดสินค้าขั้นสูง, สไลด์สินค้า และรูปแบบหน้าหลายหน้า"
 
 #: core/helpers/api.php:48
 #@ layerswp
@@ -1046,7 +1046,7 @@ msgstr "ที่อยู่วีดีโอ"
 #: core/meta/init.php:161
 #@ layerswp
 msgid "You can drag and drop widgets, edit content and tweak the design. Click the button below to see your page come to life."
-msgstr "คุณสามารถลากและวางวิทเจ็ด แก้ไขบทความและออกแบบ กดที่ปุ่มด้านล่างเพื่อดูหน้าของคุณออกมามีชีวิต"
+msgstr "คุณสามารถลากและวางวิทเจ็ด แก้ไขเนื้อหาและออกแบบ กดที่ปุ่มด้านล่างเพื่อดูหน้าของคุณออกมามีชีวิต"
 
 #: core/meta/init.php:162
 #@ layerswp
@@ -1151,7 +1151,7 @@ msgstr "สำรองหน้าของคุณไว้"
 #: core/options-panel/partials/backup.php:16
 #@ layerswp
 msgid "Convert your Layers pages into regular WordPress pages, preserving the content you have worked so hard to create."
-msgstr "แปลงหน้าเลเยอร์ของคุณไปเป็นหน้าเวิดเพลสธรรมดา เก็บบทความที่คุณได้สร้างมาอย่างยากละบากไว้"
+msgstr "แปลงหน้าเลเยอร์ของคุณไปเป็นหน้าเวิดเพลสธรรมดา เก็บเนื้อหาที่คุณได้สร้างมาอย่างยากละบากไว้"
 
 #: core/options-panel/partials/backup.php:20
 #@ layerswp
@@ -1286,17 +1286,17 @@ msgstr "ขอให้สนุก!"
 #: core/widgets/modules/slider.php:397
 #@ layerswp
 msgid "Slider Height"
-msgstr "ความสูงของสไลน์"
+msgstr "ความสูงของสไลด์"
 
 #: core/widgets/modules/slider.php:445
 #@ layerswp
 msgid "Add New Slide"
-msgstr "เพิ่มสไลน์ใหม่"
+msgstr "เพิ่มสไลด์ใหม่"
 
 #: core/widgets/modules/slider.php:481
 #@ layerswp
 msgid "Slide"
-msgstr "สไลน์"
+msgstr "สไลด์"
 
 #: core/widgets/modules/slider.php:514
 #@ layerswp
@@ -1381,7 +1381,7 @@ msgstr "นำเข้าเสร็จเรียบร้อย"
 #: functions.php:399
 #@ layerswp
 msgid "Importing Your Content"
-msgstr "กำลังนำเข้าบทความของคุณ"
+msgstr "กำลังนำเข้าเนื้อหาของคุณ"
 
 #: functions.php:400
 #@ layerswp
@@ -1428,75 +1428,75 @@ msgstr "ดูโครงงาน"
 #@ layerswp
 msgid "One Comment on &ldquo;%2$s&rdquo;"
 msgid_plural "%1$s Comments on &ldquo;%2$s&rdquo;"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "หนึ่งความเห็นบน &ldquo;%2$s&rdquo;"
+msgstr[1] "%1$s ความเห็น &ldquo;%2$s&rdquo;"
 
 #: comments.php:19
 #@ layerswp
 msgid "&larr;"
-msgstr ""
+msgstr "&larr;"
 
 #: comments.php:20
 #@ layerswp
 msgid "&rarr;"
-msgstr ""
+msgstr "&rarr;"
 
 #: core/options-panel/partials/get-started.php:45
 #@ layerswp
 msgid "Let's get started &rarr;"
-msgstr ""
+msgstr "มาเริ่มกันเลย&rarr;"
 
 #: core/options-panel/partials/get-started.php:55
 #@ layerswp
 msgid "For the Pros: Layers will automatically assign the tagline to Settings &rarr; General."
-msgstr ""
+msgstr "ข้อดีคือ: เลเยอร์จะตั้งสโลแกนอัตโนมัติเพื่อตั้งค่า &rarr; ทั่วไป"
 
 #: core/options-panel/partials/get-started.php:69
 #: core/options-panel/partials/get-started.php:157
 #: core/options-panel/partials/get-started.php:236
 #@ layerswp
 msgid "Getting Started"
-msgstr ""
+msgstr "เริ่มกันเลย"
 
 #: core/options-panel/partials/get-started.php:73
 #@ layerswp
 msgid "Building pages"
-msgstr ""
+msgstr "สร้างหน้า"
 
 #: core/options-panel/partials/get-started.php:77
 #@ layerswp
 msgid "Layers splits your page into horizontal rows, and you build up your pages with blocks of content called &lsquo;Widgets&rsquo;, one per row."
-msgstr ""
+msgstr "เลเยอร์จะแบ่งหน้าของคุณเป็นแถวในแนวนอน และคุณจะสร้างหน้าของคุณด้วยกล่องเนื้อหา ที่เรียกว่า&lsquo;วิทเจ็ด&rsquo;, หนึ่งอันต่อแถว."
 
 #: core/options-panel/partials/get-started.php:80
 #@ layerswp
 msgid "Each time you want to add a new content block, simply click &lsquo;Add Widget&rsquo; and select one from the list which has the blue Layers icon."
-msgstr ""
+msgstr "แต่ละครั้งที่คุณต้องการเพิ่มกล่องเนื้อหาใหม่ ทำได้โดยเพียงกดที่ &lsquo;เพิ่มวิทเจ็ด&rsquo;และเลือกอันที่ต้องการจากรายการซึ่งมีสัญลักษณ์สีฟ้า"
 
 #: core/options-panel/partials/get-started.php:86
 #@ layerswp
 msgid "Got it, Next Step &rarr;"
-msgstr ""
+msgstr "เข้าใจแล้ว, ขั้นต่อไป"
 
 #: core/options-panel/partials/get-started.php:101
 #@ layerswp
 msgid "What is the name of your website?"
-msgstr ""
+msgstr "เว็บไซต์ของคุณชื่อว่าอะไร"
 
 #: core/options-panel/partials/get-started.php:104
 #@ layerswp
 msgid "Enter your website name below. We&apos;ll use this in your site title and in search results."
-msgstr ""
+msgstr "ใส่ชื่อเว็บไซต์ของคุณด้านล่าง เรา&apos;จะใช้มันในหัวเรื่องหน้าของคุณและในผลการค้นหา"
 
 #: core/options-panel/partials/get-started.php:108
 #@ layerswp
 msgid "Site Name"
-msgstr ""
+msgstr "ชื่อหน้า"
 
 #: core/options-panel/partials/get-started.php:128
 #@ layerswp
 msgid "Saving your Site Name"
-msgstr ""
+msgstr "บันทึกชื่อหน้าของคุณ"
 
 #: core/options-panel/partials/get-started.php:130
 #: core/options-panel/partials/get-started.php:169
@@ -1505,222 +1505,222 @@ msgstr ""
 #: core/options-panel/partials/get-started.php:297
 #@ layerswp
 msgid "Next Step &rarr;"
-msgstr ""
+msgstr "ขั้นต่อไป &rarr;"
 
 #: core/options-panel/partials/get-started.php:142
 #@ layerswp
 msgid "For the Pros: Layers will automatically assign this site name to Settings &rarr; General"
-msgstr ""
+msgstr "ข้อดีคือ: เลเยอร์จะตั้งชื่อหน้านี้อัตโนมัติเป็นตั้งค่า &rarr; ทั่วไป"
 
 #: core/options-panel/partials/get-started.php:161
 #@ layerswp
 msgid "Editing widget content"
-msgstr ""
+msgstr "แก้ไขวิทเจ็ดเนื้อหา"
 
 #: core/options-panel/partials/get-started.php:164
 #@ layerswp
 msgid "To edit a widget's content, just click on it in the widget area on the left hand side. The widget panel will slide out allowing you to edit its content and customize its settings. You can also shift-click on the widget itself in the preview area."
-msgstr ""
+msgstr "เพื่อแก้ไขวิทเจ็ดเนื้อหา เพียงกดในส่วนของวิทเจ็ดที่ด้านซ้าย ส่วนควบคุมวิทเจ็ดจะเลื่อนออกมาเพื่อให้คุณได้แก้ไขเนื้อหาและปรับแต่ง คุณยังสามารถใช้ ชิฟและกด บนวิทเจ็ดในส่วนการชม"
 
 #: core/options-panel/partials/get-started.php:184
 #@ layerswp
 msgid "How would you best describe your site?"
-msgstr ""
+msgstr "คุณจะอธิบายหน้าของคุณอย่างไรให้ดีที่สุด?"
 
 #: core/options-panel/partials/get-started.php:187
 #@ layerswp
 msgid "A tagline describes who and what you are in just a few simple words. For example Layers is a &ldquo;WordPress Site Builder&rdquo; - simple, easy, quick to read. Now you try:"
-msgstr ""
+msgstr "สโลแกนจะใช้อธิวายว่าคุณคือใครและคุณเป็นใครในถ้อยคำสั้นๆ ตัวอย่างเช่น &ldquo;ตัวสร้างหน้าเวิดเพลส&rdquo; - ธรรมดา, ง่าย, สั้น ทีนี้มาลองกันเลย"
 
 #: core/options-panel/partials/get-started.php:191
 #@ layerswp
 msgid "Site Tagline"
-msgstr ""
+msgstr "สโลแกนของหน้า"
 
 #: core/options-panel/partials/get-started.php:211
 #@ layerswp
 msgid "Saving your Tagline"
-msgstr ""
+msgstr "บันทึกสโลแกนของหน้า"
 
 #: core/options-panel/partials/get-started.php:219
 #@ layerswp
 msgid "Keep it simple"
-msgstr ""
+msgstr "เอาให้เข้าใจง่ายไว้"
 
 #: core/options-panel/partials/get-started.php:220
 #@ layerswp
 msgid "Avoid buzz words"
-msgstr ""
+msgstr "หลีกเลี่ยงคำเฉพาะ"
 
 #: core/options-panel/partials/get-started.php:221
 #@ layerswp
 msgid "Make sure it describes what you offer"
-msgstr ""
+msgstr "ให้มั่นใจว่าได้ใส่สิ่งที่คุณทำบนหน้า"
 
 #: core/options-panel/partials/get-started.php:222
 #@ layerswp
 msgid "For the Pros: Layers will automatically assign the tagline to Settings &rarr; General"
-msgstr ""
+msgstr "ข้อดีคือ: เลเยอร์จะตั้งสโลแกนเป็นตั้งค่า &rarr; ทั่วไป"
 
 #: core/options-panel/partials/get-started.php:240
 #@ layerswp
 msgid "Customizing widgets"
-msgstr ""
+msgstr "ปรับแต่งวิทเจ็ด"
 
 #: core/options-panel/partials/get-started.php:244
 #@ layerswp
 msgid "Unique to each Layers widget is the revolutionary &ldquo;Design Bar&rdquo; which allows you to set its design parameters without touching a line of code."
-msgstr ""
+msgstr "เลเยอร์แต่ละอันจะมีความพิเศษ &ldquo; มีแถบออกแบบ &rdquo; ที่จะทำให้คุณสามารถออกแบบได้โดยไม่ต้องเขียนโค๊ด"
 
 #: core/options-panel/partials/get-started.php:247
 #@ layerswp
 msgid "Depending on the widget you've added, you can change things like background images, font sizes, list styles and more."
-msgstr ""
+msgstr "โดยขึ้นอยู่กับวิทเจ็ดที่คุณเพิ่ม คุณสามารถเปลี่ยนสิ่งต่างๆได้ เช่น พื้นหลัง ขนาดตัวอักษร รูปแบบรายการ และอื่นๆ"
 
 #: core/options-panel/partials/get-started.php:268
 #@ layerswp
 msgid "Would you like to add your logo?"
-msgstr ""
+msgstr "คุณต้องการเพิ่มโลโก้ไหม?"
 
 #: core/options-panel/partials/get-started.php:271
 #@ layerswp
 msgid "Layers will add your logo and position it properly. If you don&apos;t have one yet, no problem, you can add it later, or skip this step if you&apos;d just prefer to use text."
-msgstr ""
+msgstr "เลเยอร์จะช่วยเพิ่มโลโก้และจัดตำแหน่งให้อย่างเหมาะสม หากคุุณ&apos;ยังไม่มี ไม่มีปัญหา คุณสามารถเพิ่มมันภายหลังได้ หรือข้ามขั้นตอนนี้ไปก่อน ถ้าหากคุณ&apos;dต้องการใช้เป็นแบบข้อความ"
 
 #: core/options-panel/partials/get-started.php:279
 #@ layerswp
 msgid "Choose Logo"
-msgstr ""
+msgstr "เลือกโลโก้"
 
 #: core/options-panel/partials/get-started.php:296
 #@ layerswp
 msgid "Updating your Logo"
-msgstr ""
+msgstr "อัพเดทโลโก้ของคุณ"
 
 #: core/options-panel/partials/get-started.php:304
 #@ layerswp
 msgid "For best results, use an image between 40px and 200px tall and not more than 1000px wide"
-msgstr ""
+msgstr "เพื่อผลลัพธ์ที่ดีที่สุด ควรใช้ภาพความสูงระหว่าง 40px และ 200px และกว้างไม่เกิน 1000px"
 
 #: core/options-panel/partials/get-started.php:305
 #@ layerswp
 msgid "PNGs with a transparent background work best but GIFs or JPGs are fine too"
-msgstr ""
+msgstr "ภาพ PNGs ที่มีพื้นหลังโปร่งใสจะให้ผลลัพธ์ดีมาก แต่ GIFs หรือ JPGs ก็ดีเช่นกัน"
 
 #: core/options-panel/partials/get-started.php:306
 #@ layerswp
 msgid "Try keep your logo file size below 500kb"
-msgstr ""
+msgstr "พยายามให้ขนาดไฟล์โลโก้ของคุณต่ำกว่า 500kb"
 
 #: core/options-panel/partials/get-started.php:320
 #@ layerswp
 msgid "Page Title"
-msgstr ""
+msgstr "หัวข้อหน้า"
 
 #: core/options-panel/partials/get-started.php:349
 #@ layerswp
 msgid "Now let&apos;s create your first Layers page!"
-msgstr ""
+msgstr "ตอนนี้มาเริ่ม&apos;สร้างหน้าเลเยอร์แรก!"
 
 #: core/options-panel/partials/get-started.php:353
 #@ layerswp
 msgid "You will be able to edit your layout on the next page. Here we go! "
-msgstr ""
+msgstr "คุณจะสามารถแก้ไขรูปแบบในหน้าต่อไป เริ่มกันเลย!"
 
 #: core/options-panel/partials/get-started.php:359
 #@ layerswp
 msgid "Creating your Page"
-msgstr ""
+msgstr "สร้างหน้าของคุณ"
 
 #: core/options-panel/partials/get-started.php:360
 #@ layerswp
 msgid "First choose a layout"
-msgstr ""
+msgstr "อย่างแรก เริ่มเลือกรูปแบบ"
 
 #: core/options-panel/partials/get-started.php:360
 #@ layerswp
 msgid "Start Building"
-msgstr ""
+msgstr "เริ่มสร้าง"
 
 #: core/options-panel/partials/preset-layouts.php:20
 #@ layerswp
 msgid "Select"
-msgstr ""
+msgstr "เลือก"
 
 #: core/third-party/site-logo/inc/class-site-logo-control.php:19
 #@ layerswp
 msgid "Add logo"
-msgstr ""
+msgstr "เพิ่มโลโก้"
 
 #: core/third-party/site-logo/inc/class-site-logo-control.php:20
 #@ layerswp
 msgid "Set as logo"
-msgstr ""
+msgstr "ตั้งค่าเป็นโลโก้"
 
 #: core/third-party/site-logo/inc/class-site-logo-control.php:21
 #@ layerswp
 msgid "Choose logo"
-msgstr ""
+msgstr "เลือกโลโก้"
 
 #: core/third-party/site-logo/inc/class-site-logo-control.php:22
 #@ layerswp
 msgid "Change logo"
-msgstr ""
+msgstr "เปลี่ยนโลโก้"
 
 #: core/third-party/site-logo/inc/class-site-logo-control.php:23
 #@ layerswp
 msgid "Remove logo"
-msgstr ""
+msgstr "เอาโลโก้ออก"
 
 #: core/third-party/site-logo/inc/class-site-logo-control.php:24
 #@ layerswp
 msgid "No logo set"
-msgstr ""
+msgstr "ไม่มีโลโก้"
 
 #: core/third-party/site-logo/inc/class-site-logo.php:81
 #@ layerswp
 msgid "Site Title, Tagline, and Logo"
-msgstr ""
+msgstr "ชื่อหน้า สโลแกน และโลโก้"
 
 #: core/third-party/site-logo/inc/class-site-logo.php:92
 #@ layerswp
 msgid "Display Header Text"
-msgstr ""
+msgstr "แสดงข้อความส่วนหัว"
 
 #: core/third-party/site-logo/inc/class-site-logo.php:114
 #@ layerswp
 msgid "Logo"
-msgstr ""
+msgstr "โลโก้"
 
 #: core/third-party/site-logo/inc/class-site-logo.php:254
 #@ layerswp
 msgid "Site Logo"
-msgstr ""
+msgstr "โลโกหน้า"
 
 #: core/widgets/init.php:80
 #@ layerswp
 msgid " Body"
-msgstr ""
+msgstr "ส่วนร่าง"
 
 #: core/widgets/init.php:165
 #@ layerswp
 msgid "Layers Builder section."
-msgstr ""
+msgstr "ส่วนสร้างเลเยอร์"
 
 #: core/widgets/init.php:190
 #@ layerswp
 msgid "Are you sure you want to remove this slide?"
-msgstr ""
+msgstr "คุณแน่ใจไหมว่าต้องการลบสไลด์?"
 
 #: core/widgets/init.php:202
 #@ layerswp
 msgid "Are you sure you want to remove this column?"
-msgstr ""
+msgstr "คุณมั่นใจไหมว่าต้องการลบแถวนี้?"
 
 #: core/widgets/modules/contact.php:26
 #@ layerswp
 msgid "Contact Details &amp; Maps"
-msgstr ""
+msgstr "รายละเอียดการติดต่อ &amp; แผนที่"
 
 #: core/widgets/modules/contact.php:37
 #: core/widgets/modules/content.php:33
@@ -1728,38 +1728,38 @@ msgstr ""
 #: core/widgets/modules/slider.php:37
 #@ default
 msgid "This widget is used to display your "
-msgstr ""
+msgstr " วิทเจ็ดนี้จะใช้แสดง"
 
 #: core/widgets/modules/contact.php:207
 #: core/widgets/modules/post.php:322
 #@ layerswp
 msgid "Display"
-msgstr ""
+msgstr "แสดง"
 
 #: core/widgets/modules/contact.php:216
 #@ layerswp
 msgid "Map Height"
-msgstr ""
+msgstr "ความสูงแผนที่"
 
 #: core/widgets/modules/contact.php:223
 #@ layerswp
 msgid "Show Google Map"
-msgstr ""
+msgstr "แสดงกูเกิ้ลแมพ"
 
 #: core/widgets/modules/contact.php:230
 #@ layerswp
 msgid "Show Address"
-msgstr ""
+msgstr "แสดงที่อยู่"
 
 #: core/widgets/modules/contact.php:237
 #@ layerswp
 msgid "Show Contact Form"
-msgstr ""
+msgstr "แสดงฟอร์มการติดต่อ"
 
 #: core/widgets/modules/contact.php:258
 #@ layerswp
 msgid "Contact"
-msgstr ""
+msgstr "ติดต่อ"
 
 #: core/widgets/modules/contact.php:282
 #: core/widgets/modules/content.php:374
@@ -1768,304 +1768,304 @@ msgstr ""
 #: core/widgets/modules/slider.php:528
 #@ layerswp
 msgid "Short Excerpt"
-msgstr ""
+msgstr "ตัดย่อสั้นๆ"
 
 #: core/widgets/modules/contact.php:295
 #@ layerswp
 msgid "Address"
-msgstr ""
+msgstr "ที่อยู่"
 
 #: core/widgets/modules/contact.php:296
 #: core/widgets/modules/contact.php:346
 #@ layerswp
 msgid "Place your help text here please."
-msgstr ""
+msgstr "กรุณาใส่ข้อความการช่วยเหลือของคุณที่นี่"
 
 #: core/widgets/modules/contact.php:301
 #@ layerswp
 msgid "Google Maps Location"
-msgstr ""
+msgstr "ตำแหน่งกูเกิ้ลแมพ"
 
 #: core/widgets/modules/contact.php:307
 #@ layerswp
 msgid "e.g. 300 Prestwich Str, Cape Town, South Africa"
-msgstr ""
+msgstr "เช่น 300 เพลสทวิส เมืองเคป แอฟริกาใต้"
 
 #: core/widgets/modules/contact.php:313
 #@ layerswp
 msgid "Google Maps Latitude & Longitude (Optional)"
-msgstr ""
+msgstr "เส้นรุ้ง&เส้นแวง กูเกิ้ลแมพ(ใส่หรือไม่ก็ได้)"
 
 #: core/widgets/modules/contact.php:319
 #@ layerswp
 msgid "e.g. 33.9253 S, 18.4239 E"
-msgstr ""
+msgstr "เช่น 33.9253 S, 18.429 E"
 
 #: core/widgets/modules/contact.php:325
 #@ layerswp
 msgid "Address Shown"
-msgstr ""
+msgstr "แสดงที่อยู่"
 
 #: core/widgets/modules/contact.php:331
 #@ layerswp
 msgid "e.g. Prestwich Str, Cape Town"
-msgstr ""
+msgstr "เช่น ถนนเพลสตัน เมืองเคป"
 
 #: core/widgets/modules/contact.php:345
 #@ layerswp
 msgid "Contact Form"
-msgstr ""
+msgstr "ฟอร์มติดต่อ"
 
 #: core/widgets/modules/contact.php:356
 #@ layerswp
 msgid "Contact form embed code"
-msgstr ""
+msgstr "ฟอร์มติดต่อฝังโค๊ด"
 
 #: core/widgets/modules/content.php:26
 #@ layerswp
 msgid "Content"
-msgstr ""
+msgstr "เนื้อหา"
 
 #: core/widgets/modules/content.php:405
 #@ layerswp
 msgid "Add New Column"
-msgstr ""
+msgstr "เพิ่มแถวใหม่"
 
 #: core/widgets/modules/content.php:438
 #@ layerswp
 msgid "Column"
-msgstr ""
+msgstr "แถว"
 
 #: core/widgets/modules/content.php:474
 #@ layerswp
 msgid "1 of 12 columns"
-msgstr ""
+msgstr "1 ใน 12 แถว"
 
 #: core/widgets/modules/content.php:475
 #@ layerswp
 msgid "2 of 12 columns"
-msgstr ""
+msgstr "2 ใน 12 แถว"
 
 #: core/widgets/modules/content.php:476
 #@ layerswp
 msgid "3 of 12 columns"
-msgstr ""
+msgstr "3 ใน 12 แถว"
 
 #: core/widgets/modules/content.php:477
 #@ layerswp
 msgid "4 of 12 columns"
-msgstr ""
+msgstr "4 ใน 12 แถว"
 
 #: core/widgets/modules/content.php:478
 #@ layerswp
 msgid "5 of 12 columns"
-msgstr ""
+msgstr "5 ใน 12 แถว"
 
 #: core/widgets/modules/content.php:479
 #@ layerswp
 msgid "6 of 12 columns"
-msgstr ""
+msgstr "6 ใน 12 แถว"
 
 #: core/widgets/modules/content.php:480
 #@ layerswp
 msgid "8 of 12 columns"
-msgstr ""
+msgstr "8 ใน 12 แถว"
 
 #: core/widgets/modules/content.php:481
 #@ layerswp
 msgid "9 of 12 columns"
-msgstr ""
+msgstr "9 ใน 12 แถว"
 
 #: core/widgets/modules/content.php:482
 #@ layerswp
 msgid "10 of 12 columns"
-msgstr ""
+msgstr "10 ใน 12 แถว"
 
 #: core/widgets/modules/content.php:483
 #@ layerswp
 msgid "12 of 12 columns"
-msgstr ""
+msgstr "12 ใน 12 แถว"
 
 #: core/widgets/modules/content.php:493
 #: core/widgets/modules/slider.php:508
 #@ layerswp
 msgid "Title"
-msgstr ""
+msgstr "หัวเรื่อง"
 
 #: core/widgets/modules/content.php:506
 #: core/widgets/modules/slider.php:522
 #@ layerswp
 msgid "Excerpt"
-msgstr ""
+msgstr "ตัดย่อ"
 
 #: core/widgets/modules/content.php:521
 #: core/widgets/modules/slider.php:537
 #@ layerswp
 msgid "Button Link"
-msgstr ""
+msgstr "ปุ่มเชื่อมโยง"
 
 #: core/widgets/modules/content.php:527
 #: core/widgets/modules/slider.php:543
 #@ layerswp
 msgid "http://"
-msgstr ""
+msgstr "http://"
 
 #: core/widgets/modules/content.php:534
 #: core/widgets/modules/slider.php:549
 #@ layerswp
 msgid "Button Text"
-msgstr ""
+msgstr "ปุ่มข้อความ"
 
 #: core/widgets/modules/content.php:540
 #: core/widgets/modules/slider.php:555
 #@ layerswp
 msgid "e.g. \"Read More\""
-msgstr ""
+msgstr "เช่น \"อ่านเพิ่มเติม\""
 
 #: core/widgets/modules/post.php:26
 #@ layerswp
 msgid "Posts"
-msgstr ""
+msgstr "โพส"
 
 #: core/widgets/modules/post.php:65
 #: partials/content-list.php:22
 #@ layerswp
 msgid "Read More"
-msgstr ""
+msgstr "อ่านเพิ่มเติม"
 
 #: core/widgets/modules/post.php:329
 #@ layerswp
 msgid "Title &amp; Excerpt Position"
-msgstr ""
+msgstr "หัวเรื่อง &amp; ตำแหน่งที่ตัดย่อ"
 
 #: core/widgets/modules/post.php:331
 #@ layerswp
 msgid "Regular"
-msgstr ""
+msgstr "ปกติ"
 
 #: core/widgets/modules/post.php:340
 #@ layerswp
 msgid "Show Featured Images"
-msgstr ""
+msgstr "แสดงภาพเด่น"
 
 #: core/widgets/modules/post.php:347
 #@ layerswp
 msgid "Show  Post Titles"
-msgstr ""
+msgstr "แสดงชื่อเรื่องโพส"
 
 #: core/widgets/modules/post.php:354
 #@ layerswp
 msgid "Show Post Excerpts"
-msgstr ""
+msgstr "แสดงการตัดย่อของโพส"
 
 #: core/widgets/modules/post.php:363
 #@ layerswp
 msgid "Excerpts Length"
-msgstr ""
+msgstr "ขนาดในการตัดย่อ"
 
 #: core/widgets/modules/post.php:370
 #@ layerswp
 msgid "Show Post Dates"
-msgstr ""
+msgstr "แสดงวันที่ของโพส"
 
 #: core/widgets/modules/post.php:377
 #@ layerswp
 msgid "Show Post Author"
-msgstr ""
+msgstr "แสดงผู้เขียนโพส"
 
 #: core/widgets/modules/post.php:384
 #@ layerswp
 msgid "Show Tags"
-msgstr ""
+msgstr "แสดงแท๊ก"
 
 #: core/widgets/modules/post.php:391
 #@ layerswp
 msgid "Show Categories"
-msgstr ""
+msgstr "แสดงหมวดหมู่"
 
 #: core/widgets/modules/post.php:398
 #@ layerswp
 msgid "Show \"Read More\" Buttons"
-msgstr ""
+msgstr "แสดงปุ่ม \"อ่านเพิ่มเติม\""
 
 #: core/widgets/modules/post.php:405
 #@ layerswp
 msgid "\"Read More\" Text"
-msgstr ""
+msgstr "ข้อความ\"อ่านเพิ่มเติม\""
 
 #: core/widgets/modules/post.php:412
 #@ layerswp
 msgid "Show Pagination"
-msgstr ""
+msgstr "แสดงหมายเลขหน้า"
 
 #: core/widgets/modules/post.php:431
 #@ layerswp
 msgid "Post"
-msgstr ""
+msgstr "โพส"
 
 #: core/widgets/modules/post.php:467
 #@ layerswp
 msgid "Category to Display"
-msgstr ""
+msgstr "หมวดหมู่ที่แสดง"
 
 #: core/widgets/modules/post.php:468
 #@ layerswp
 msgid "All"
-msgstr ""
+msgstr "ทั้งหมด"
 
 #: core/widgets/modules/post.php:475
 #@ layerswp
 msgid "Select a Category"
-msgstr ""
+msgstr "เลือกหมวดหมู่"
 
 #: core/widgets/modules/post.php:483
 #@ layerswp
 msgid "Number of items to show"
-msgstr ""
+msgstr "ตัวเลขของสิ่งที่ตองการให้แสดง"
 
 #: core/widgets/modules/post.php:484
 #@ layerswp
 msgid "Show All"
-msgstr ""
+msgstr "แสดงทั้งหมด"
 
 #: core/widgets/modules/post.php:499
 #@ layerswp
 msgid "Sort by"
-msgstr ""
+msgstr "เรียงโดย"
 
 #: core/widgets/modules/slider.php:26
 #: core/widgets/modules/slider.php:358
 #@ layerswp
 msgid "Slider"
-msgstr ""
+msgstr "สไลด์"
 
 #: core/widgets/modules/slider.php:351
 #@ layerswp
 msgid "Full Screen"
-msgstr ""
+msgstr "เต็มจอ"
 
 #: core/widgets/modules/slider.php:365
 #@ layerswp
 msgid "Show Slider Arrows"
-msgstr ""
+msgstr "แสดงลูกศรสไลด์"
 
 #: core/widgets/modules/slider.php:372
 #@ layerswp
 msgid "Show Slider Dots"
-msgstr ""
+msgstr "แสดงปุ่มสไลด์"
 
 #: core/widgets/modules/slider.php:379
 #@ layerswp
 msgid "Autoplay Slides"
-msgstr ""
+msgstr "เล่นสไลด์อัตโนมัติ"
 
 #: core/widgets/modules/slider.php:387
 #@ layerswp
 msgid "Time in seconds, eg. 2"
-msgstr ""
+msgstr "เวลาเป็นวิ เช่น 2"
 
 #: core/widgets/modules/slider.php:389
 #@ layerswp
 msgid "Slide Interval"
-msgstr ""
+msgstr "ช่วงเวลาสไลด์"
 

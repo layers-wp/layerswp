@@ -1946,6 +1946,7 @@ object{
     .media-image.small img{
         max-width: 64px;
     }
+    .image-rounded img,
     .media-image.image-rounded img{
         border-radius: 100%;
     }

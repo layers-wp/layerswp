@@ -270,6 +270,9 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
     .story p{
         margin-bottom: 26px;
     }
+    .story address{
+        margin-bottom: 26px;
+    }
     .story a{
         border-bottom: 1px solid #ddd;
     }

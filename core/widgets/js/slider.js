@@ -127,8 +127,14 @@ jQuery(document).ready(function($){
 			$post_data,
 			function(data){
 
+				// Set slide
+				$slide = $(data);
+				
 				// Append module HTML
-				$slideList.append( data );
+				$slideList.append($slide);
+				
+				// Add Open Class to slide
+				$slide.addClass('open');
 
 				// Append slide IDs to the slides input
 				$slide_guids = [];

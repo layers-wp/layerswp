@@ -7,6 +7,8 @@
 ??
 
 * **Fix** - Added better customizer default handling via the `layers_customizer_control_defaults` hook
+* **Tweak** - Header cart background color has changed for a hash value to a transparent rgba background color for better handling of different header colors
+* **Tweak** - Improved spacing of the comment form block as well as a font-size decrease for "Leave a Reply"
 
 ## 1.0.8
 ### 02 April 2015

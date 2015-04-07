@@ -14,7 +14,7 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 /*- HEADER CART -------------*/
 .header-cart{
     display: inline-block;
-    background: #555;
+    background: rgba(0, 0, 0, 0.3);
     padding-left: 10px;
     padding-right: 10px;
     position: relative;

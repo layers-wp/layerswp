@@ -140,8 +140,14 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 				// If only one slide
 				$slider_class[] = 'single-slide';
 			}
-			$slider_class = implode( ' ', $slider_class ); ?>
-			<section class="widget row slide swiper-container <?php echo $slider_class; ?> <?php echo $this->get_widget_layout_class( $widget ); ?> <?php echo $this->check_and_return( $widget , 'design', 'advanced', 'customclass' ) ?> <?php echo $this->get_widget_spacing_class( $widget ); ?>" id="<?php echo $widget_id; ?>" <?php if( $this->check_and_return( $widget , 'slide_height' ) ) echo 'style="height: ' . $widget['slide_height'] . 'px;"' ?>>
+			$slider_class = implode( ' ', $slider_class );
+			
+			// Get slider height css
+			$slider_height_css = '';
+			if( FALSE == $this->check_and_return( $widget , 'autoheight_slides' ) && $this->check_and_return( $widget , 'slide_height' ) ) {
+				$slider_height_css = 'height: ' . $widget['slide_height'] . 'px; ';
+			} ?>
+			<section class="widget row slide swiper-container <?php echo $slider_class; ?> <?php echo $this->get_widget_layout_class( $widget ); ?> <?php echo $this->check_and_return( $widget , 'design', 'advanced', 'customclass' ) ?> <?php echo $this->get_widget_spacing_class( $widget ); ?>" id="<?php echo $widget_id; ?>" style="<?php echo esc_attr( $slider_height_css ); ?>" >
 				<?php if( !empty( $widget[ 'slides' ] ) ) { ?>
 					<?php if( 1 < count( $widget[ 'slides' ] ) && isset( $widget['show_slider_arrows'] ) ) { ?>
 						 <div class="arrows">
@@ -197,6 +203,17 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 								$slide_class[] = $slide['design']['fonts'][ 'align' ];
 							}
 							$slide_class = implode( ' ', $slide_class );
+							
+							// Set Overlay CSS Classes
+							$overlay_class = array();
+							$overlay_class[] = 'overlay';
+							if( isset( $slide['design'][ 'background' ][ 'darken' ] ) ) {
+								$overlay_class[] = 'darken';
+							}
+							if( '' != $this->check_and_return( $slide, 'design' , 'background', 'image' ) || '' != $this->check_and_return( $slide, 'design' , 'background', 'color' ) ) {
+								$overlay_class[] = 'content';
+							}
+							$overlay_classes = implode( ' ', $overlay_class );
 
 							// Set link entire slide or not
 							$slide_wrapper_tag = 'div';
@@ -206,7 +223,7 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 								$slide_wrapper_href = 'href="' . esc_url( $slide['link'] ) . '"';
 							} ?>
 							<<?php echo $slide_wrapper_tag; ?> <?php echo $slide_wrapper_href; ?> id="<?php echo $widget_id; ?>-<?php echo $slide_key; ?>" class="<?php echo $slide_class; ?>" style="float: left;">
-								<div class="overlay <?php if( isset( $slide['design'][ 'background' ][ 'darken' ] ) ) echo 'darken'; ?>"  <?php if( $this->check_and_return( $widget , 'slide_height' ) ) echo 'style="height: ' . $widget['slide_height'] . 'px;"' ?>>
+								<div class="<?php echo $overlay_classes; ?>" >
 									<div class="container clearfix">
 										<?php if( '' != $slide['title'] || '' != $slide['excerpt'] || '' != $slide['link'] ) { ?>
 											<div class="copy-container">
@@ -239,51 +256,57 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 			 		</div>
 				<?php } // if !empty( $widget->slides ) ?>
 		 	</section>
-		 	<?php if( !empty( $widget[ 'slides' ] ) && 1 < count( $widget[ 'slides' ] ) ) {
-		 		$swiper_js_obj = str_replace( '-' , '_' , $this->get_field_id( 'slider' ) ); ?>
-			 	<script>
-					jQuery(function($){
+	 		<?php $swiper_js_obj = str_replace( '-' , '_' , $this->get_field_id( 'slider' ) ); ?>
+		 	<script>
+				jQuery(function($){
 
-						var <?php echo $swiper_js_obj; ?> = $('#<?php echo $widget_id; ?>').swiper({
-							//Your options here:
-							mode:'horizontal',
-							<?php if( isset( $widget['show_slider_dots'] ) ) { ?>
-								pagination: '.<?php echo $this->get_field_id( 'pages' ); ?>',
-							<?php } ?>
-							paginationClickable: true,
-							watchActiveIndex: true,
-							loop: true
-							<?php if( isset( $widget['autoplay_slides'] ) && isset( $widget['slide_time'] ) && is_numeric( $widget['slide_time'] ) ) {?>, autoplay: <?php echo ($widget['slide_time']*1000); ?><?php }?>
-							<?php if( '' != get_option( $this->get_field_id( 'slider' ) . '_slide_ids' ) && isset( $wp_customize ) && ( strlen( $widget[ 'slide_ids' ] ) > strlen( get_option( $this->get_field_id( 'slider' ) . '_slide_ids' ) ) ) ) { ?>,initialSlide: <?php echo count( explode( ',', $widget['slide_ids']) ) - 1; ?><?php } ?>
-						});
+					var <?php echo $swiper_js_obj; ?> = $('#<?php echo $widget_id; ?>').swiper({
+						//Your options here:
+						mode:'horizontal',
+						<?php if( '' == $slider_height_css ) { ?>
+							calculateHeight: true,
+						<?php } ?>
+						<?php if( isset( $widget['show_slider_dots'] ) && ( !empty( $widget[ 'slides' ] ) && 1 < count( $widget[ 'slides' ] ) ) ) { ?>
+							pagination: '.<?php echo $this->get_field_id( 'pages' ); ?>',
+						<?php } ?>
+						paginationClickable: true,
+						watchActiveIndex: true,
+						loop: true
+						<?php if( isset( $widget['autoplay_slides'] ) && isset( $widget['slide_time'] ) && is_numeric( $widget['slide_time'] ) ) {?>
+							, autoplay: <?php echo ($widget['slide_time']*1000); ?>
+						<?php }?>
+						<?php if( '' != get_option( $this->get_field_id( 'slider' ) . '_slide_ids' ) && isset( $wp_customize ) && ( strlen( $widget[ 'slide_ids' ] ) > strlen( get_option( $this->get_field_id( 'slider' ) . '_slide_ids' ) ) ) ) { ?>
+							,initialSlide: <?php echo count( explode( ',', $widget['slide_ids']) ) - 1; ?>
+						<?php } ?>
+					});
 
-						<?php if( 1 < count( $widget[ 'slides' ] ) ) { ?>
-							// Allow keyboard control
-							<?php echo $swiper_js_obj; ?>.enableKeyboardControl();
-						<?php } // if > 1 slide ?>
+					<?php if( 1 < count( $widget[ 'slides' ] ) ) { ?>
+						// Allow keyboard control
+						<?php echo $swiper_js_obj; ?>.enableKeyboardControl();
+					<?php } // if > 1 slide ?>
 
-						$('#<?php echo $widget_id; ?>').find('.arrows a').on( 'click' , function(e){
-							e.preventDefault();
+					$('#<?php echo $widget_id; ?>').find('.arrows a').on( 'click' , function(e){
+						e.preventDefault();
 
-							// "Hi Mom"
-							$that = $(this);
+						// "Hi Mom"
+						$that = $(this);
 
-							if( $that.hasClass( 'swiper-pagination-switch' ) ){ // Anchors
-								<?php echo $swiper_js_obj; ?>.swipeTo( $that.index() );
-							} else if( $that.hasClass( 'l-left-arrow' ) ){ // Previous
-								<?php echo $swiper_js_obj; ?>.swipePrev();
-							} else if( $that.hasClass( 'l-right-arrow' ) ){ // Next
-								<?php echo $swiper_js_obj; ?>.swipeNext();
-							}
+						if( $that.hasClass( 'swiper-pagination-switch' ) ){ // Anchors
+							<?php echo $swiper_js_obj; ?>.swipeTo( $that.index() );
+						} else if( $that.hasClass( 'l-left-arrow' ) ){ // Previous
+							<?php echo $swiper_js_obj; ?>.swipePrev();
+						} else if( $that.hasClass( 'l-right-arrow' ) ){ // Next
+							<?php echo $swiper_js_obj; ?>.swipeNext();
+						}
 
-							return false;
-						});
+						return false;
+					});
 
-						<?php echo $swiper_js_obj; ?>.init();
+					<?php echo $swiper_js_obj; ?>.init();
 
-					})
-			 	</script>
-			<?php } // if !empty( $widget->slides )
+				})
+		 	</script>
+			<?php
 
 			update_option( $this->get_field_id( 'slider' ) . '_slide_ids' , $widget[ 'slide_ids' ] );
 		}
@@ -389,12 +412,20 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 									'label' => __( 'Slide Interval' , 'layerswp' ),
 									'data' => array( 'show-if-selector' => '#' . $this->get_field_id( 'autoplay_slides' ), 'show-if-value' => 'true' )
 								),
+								'autoheight_slides' => array(
+									'type' => 'checkbox',
+									'name' => $this->get_field_name( 'autoheight_slides' ) ,
+									'id' => $this->get_field_id( 'autoheight_slides' ) ,
+									'value' => ( isset( $autoheight_slides ) ) ? $autoheight_slides : NULL,
+									'label' => __( 'Auto Height Slides' , 'layerswp' ),
+								),
 								'slide_height' => array(
 									'type' => 'number',
 									'name' => $this->get_field_name( 'slide_height' ) ,
 									'id' => $this->get_field_id( 'slide_height' ) ,
 									'value' => ( isset( $slide_height ) ) ? $slide_height : NULL,
-									'label' => __( 'Slider Height' , 'layerswp' )
+									'label' => __( 'Slider Height' , 'layerswp' ),
+									'data' => array( 'show-if-selector' => '#' . $this->get_field_id( 'autoheight_slides' ), 'show-if-value' => 'false' ),
 								)
 							)
 					)

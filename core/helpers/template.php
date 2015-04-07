@@ -593,7 +593,6 @@ if( !function_exists( 'layers_get_theme_mod' ) ) {
 		// Set theme option default
 		$default = ( isset( $layers_customizer_defaults[ $name ][ 'value' ] ) ? $layers_customizer_defaults[ $name ][ 'value' ] : FALSE );
 
-
 		// If color control always return a value
 		if (
 				isset( $layers_customizer_defaults[ $name ][ 'type' ] ) &&

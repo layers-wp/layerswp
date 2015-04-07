@@ -46,6 +46,8 @@ class Layers_Customizer_Defaults {
 	 * Initializes the instance by registering the controls of it's config
 	 */
 	public function init() {
+		global $layers_customizer_defaults;
+
 		// Grab the customizer config
 		$this->config = new Layers_Customizer_Config();
 		foreach( $this->config->controls() as $section_key => $controls ) {
@@ -59,7 +61,9 @@ class Layers_Customizer_Defaults {
 				$this->register_control_defaults( $setting_key, $control_data[ 'type' ], ( isset( $control_data['default'] ) ? $control_data['default'] : NULL ) );
 			}
 		}
-		}
+
+		$layers_customizer_defaults = apply_filters( 'layers_customizer_defaults', $layers_customizer_defaults );
+	}
 
 	/**
 	* Register Control Defaults
@@ -77,8 +81,6 @@ class Layers_Customizer_Defaults {
 					'type' =>$type
 				);
 		}
-
-		return apply_filters( 'layers_customizer_defaults', $layers_customizer_defaults );
 	}
 
 }

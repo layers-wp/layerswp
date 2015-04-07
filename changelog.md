@@ -1,5 +1,20 @@
 # Layers Changelog
 
+=======
+## 1.0.9
+### ?? ??? 2015
+
+??
+
+* **Fix** - Added better customizer default handling via the `layers_customizer_control_defaults` hook
+
+## 1.0.8
+### 02 April 2015
+
+Hotfix for the Slider responsive CSS
+
+* **Fix** - Update 1.0.7 broke sliders in phone view, this fixes that, slides now behave as in 1.0.6
+
 ## 1.0.7
 ### 02 April 2015
 

@@ -542,7 +542,7 @@ object{
     }
     .row + .copyright{
         padding-top: 20px;
-        border-top: 2px solid #ddd;
+        border-top: 2px solid rgba(0, 0, 0, 0.15);
     }
 
     /*---------------------------*/

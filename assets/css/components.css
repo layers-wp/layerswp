@@ -360,6 +360,12 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
     }
 
         /*-----------------------*/
+        /*- BUTTONS IN STORY ----*/
+        .story .button{
+            border-bottom: none;
+        }
+
+        /*-----------------------*/
         /*- WP CAPTIONS ---------*/
         .wp-caption{
             max-width: 100%;
@@ -471,6 +477,7 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
         margin-bottom: 15px;
     }
     .form-allowed-tags{
+        max-width: 660px;
         margin-bottom: 15px;
         font-size: 1.4rem;
     }

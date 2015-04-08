@@ -276,6 +276,9 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
     .story a{
         border-bottom: 1px solid #ddd;
     }
+    .story a:not(.button){
+        border-bottom: 1px solid #ddd;
+    }
     .story a:hover{
         border-color: #999;
     }
@@ -361,12 +364,6 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
     .story blockquote p:last-child{
         margin-bottom: 0;
     }
-
-        /*-----------------------*/
-        /*- BUTTONS IN STORY ----*/
-        .story .button{
-            border-bottom: none;
-        }
 
         /*-----------------------*/
         /*- WP CAPTIONS ---------*/

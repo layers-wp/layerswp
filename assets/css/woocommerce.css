@@ -403,6 +403,17 @@ p.stars span a:focus{
             float: none;
         }
 
+        .variation dt,
+        .variation dd{
+            float: left;
+            margin-right: 4px;
+            font-size: 1.2rem;
+        }
+        .variation dd + dt{
+            clear: left;
+        }
+
+
     /*-----------------------*/
     /*- WOOCOMMERCE TABS ----*/
     .woocommerce-tabs{

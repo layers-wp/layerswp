@@ -77,7 +77,8 @@ del .amount{
 }
 .product-images .onsale,
 .img-wrap .onsale,
-.image-container .onsale {
+.image-container .onsale,
+.thumbnail-media .onsale {
     position: absolute;
     top: 10px;
     left: 10px;
@@ -106,6 +107,14 @@ del .amount{
     height: 16px;
     background: url(../images/woocommerce/star.png) repeat-x left 0;
     background-size: 18px 48px;
+}
+.product-images .star-rating,
+.img-wrap .star-rating,
+.image-container .star-rating,
+.thumbnail-media .star-rating {
+    position: absolute;
+    top: 10px;
+    right: 10px;
 }
 .star-rating span{
     background: url(../images/woocommerce/star.png) repeat-x left -32px;

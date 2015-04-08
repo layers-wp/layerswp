@@ -1732,7 +1732,7 @@ object{
     .sub-menu li{
         clear: both;
         display: block;
-        width: 150px;
+        width: 180px;
         margin: 0;
         border: none;
         border-bottom: 1px dotted #ddd;

@@ -77,7 +77,8 @@ del .amount{
 }
 .product-images .onsale,
 .img-wrap .onsale,
-.image-container .onsale {
+.image-container .onsale,
+.thumbnail-media .onsale {
     position: absolute;
     top: 10px;
     left: 10px;
@@ -106,6 +107,14 @@ del .amount{
     height: 16px;
     background: url(../images/woocommerce/star.png) repeat-x left 0;
     background-size: 18px 48px;
+}
+.product-images .star-rating,
+.img-wrap .star-rating,
+.image-container .star-rating,
+.thumbnail-media .star-rating {
+    position: absolute;
+    top: 10px;
+    right: 10px;
 }
 .star-rating span{
     background: url(../images/woocommerce/star.png) repeat-x left -32px;
@@ -730,17 +739,26 @@ p.stars span a:focus{
         max-width: 500px;
     }
     .select2-container .select2-choice{
-        border: 2px solid #eee;
-        border-radius: 0;
-        line-height: 32px;
+        border-radius: 0px;
+        height: 36px;
+        border: 2px solid #EEE;
+        background: none;
     }
     .select2-dropdown-open.select2-drop-above .select2-choice,
     .select2-dropdown-open.select2-drop-above .select2-choices,
     .select2-drop.select2-drop-active,
     .select2-drop.select2-drop-above.select2-drop-active{
+        background: #fff;
         border-radius: 0;
         border-width: 2px;
         border-color: #eee;
+        box-shadow: none;
+        color: #777;
+    }
+
+    .select2-drop{
+        margin-top: -2px;
+        box-shadow: none;
     }
     .select2-drop.select2-drop-above{
         border-radius: 0;
@@ -749,9 +767,21 @@ p.stars span a:focus{
         padding: 4px;
     }
     .select2-search input{
+        background: none;
         border-radius: 0;
         border-width: 2px;
         border-color: #eee;
+    }
+    .select2-container .select2-choice .select2-arrow{
+        border-left: none;
+        background: none;
+    }
+    .select2-container .select2-choice .select2-arrow b{
+        background: none;
+    }
+    .select2-container .select2-choice > .select2-chosen{
+        line-height: 34px;
+        color: #777;
     }
 
     /*-----------------------*/
@@ -929,7 +959,6 @@ p.stars span a:focus{
         background: #F5F5F5;
         overflow: hidden;
         margin-bottom: 20px;
-        font-size: 1.6rem;
     }
     .woocommerce-message a{
         margin-right: 10px;

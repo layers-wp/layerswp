@@ -131,8 +131,14 @@ jQuery(document).ready(function($){
 			$post_data,
 			function(data){
 
+				// Set column
+				$column = $(data);
+				
 				// Append column HTML
-				$columnList.append( data );
+				$columnList.append($column);
+				
+				// Add Open Class to column
+				$column.addClass('open');
 
 				// Append column IDs to the columns input
 				$column_guids = [];

@@ -126,21 +126,27 @@ class Layers_Options_Panel {
 	*/
 
 	public function get_menu_pages(){
-		global $submenu;
 
-		if( isset( $submenu[ 'layers-dashboard' ] ) ) {
-			foreach ( $submenu[ 'layers-dashboard' ] as $menu_key => $menu_details ) {
-				$sub_menu[ 'label' ] = $menu_details[0];
-				$sub_menu[ 'cap' ] = $menu_details[1];
-				$sub_menu[ 'link' ] = ( strpos( $menu_details[2], '.php' ) ? admin_url( $menu_details[2] ) : menu_page_url( $menu_details[2], false ) );
+		$menu = apply_filters( 'layers_dashboard_header_links', array(
+					'layers-dashboard' => array(
+						'label' => 'Dashboard',
+						'link' => admin_url( '?page=layers-dashboard' ),
+					),
+					'layers-get-started' => array(
+						'label' => 'Get Started',
+						'link' => admin_url( '?page=layers-get-started' ),
+					),
+					'layers-add-new-page' => array(
+						'label' => 'Add New Page',
+						'link' => admin_url( '?page=layers-add-new-page' ),
+					),
+					'layers-pages' => array(
+						'label' => 'Layers Pages',
+						'link' => admin_url( '?post_type=page&amp;filter=layers' ),
+					),
+				);
 
-				$menu[] = $sub_menu;
-			}
-
-			return $menu;
-		}
-
-		return NULL;
+		return $menu;
 	}
 
 }
@@ -235,8 +241,8 @@ function layers_load_options_panel_ajax(){
 	// Include ajax functions
 	require_once LAYERS_TEMPLATE_DIR . '/core/options-panel/ajax.php';
 
-    $onboarding_ajax = new Layers_Onboarding_Ajax();
-    $onboarding_ajax->init();
+	$onboarding_ajax = new Layers_Onboarding_Ajax();
+	$onboarding_ajax->init();
 }
 
 add_action( 'init' , 'layers_load_options_panel_ajax' );

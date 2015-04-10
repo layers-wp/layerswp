@@ -36,22 +36,10 @@ jQuery(function($) {
 
         $action = $that.data( 'skip-action' );
 
-        $.post(
-                ajaxurl,
-                {
-                    action: $action,
-                    setup_step_key: $that.data( 'setup-step-key' ),
-                },
-                function(data){
+        $container.hide().next().hide().removeClass( 'layers-hide' ).fadeIn( 250 );
+        $container.remove();
 
-                    $results = $.parseJSON( data );
-
-                    $container.hide().next().hide().removeClass( 'layers-hide' ).fadeIn( 250 );
-                    $container.remove();
-
-                    layers_check_dashboard_setup_completion();
-                }
-            ); // $.post
+        layers_check_dashboard_setup_completion();
     });
 
     /**
@@ -78,18 +66,21 @@ jQuery(function($) {
                 ajaxurl,
                 {
                     action: $action,
-                    site_setup_key: $that.data( 'setup-key' ),
+                    setup_step_key: $that.data( 'setup-step-key' ),
                     data: $data,
                     layers_onboarding_update_nonce: layers_onboarding_params.update_option_nonce
 
                 },
                 function(data){
+
+                    console.log( data );
+
                     $results = $.parseJSON( data );
 
                     $container.hide().next().hide().removeClass( 'layers-hide' ).fadeIn( 250 );
                     $container.remove();
 
-                    layers_check_dashboard_setup_completion();
+                    layers_check_dashboard_setup_completion( true );
                 }
             ); // $.post
     });
@@ -99,14 +90,12 @@ jQuery(function($) {
     */
 
 
-    function layers_check_dashboard_setup_completion( $container ){
+    function layers_check_dashboard_setup_completion(){
 
         $that = $( '.layers-dashboard-setup-form' );
 
         if( 0 == $that.length ){
             $( '.layers-site-setup-panel' ).hide();
-
-            $( '.layers-site-setup-completion' ).hide().removeClass( 'layers-hide' ).fadeIn();
         }
     }
 

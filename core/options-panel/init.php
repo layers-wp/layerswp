@@ -134,19 +134,19 @@ class Layers_Options_Panel {
 		$menu = apply_filters( 'layers_dashboard_header_links', array(
 					'layers-dashboard' => array(
 						'label' => 'Dashboard',
-						'link' => admin_url( '?page=layers-dashboard' ),
+						'link' => admin_url( 'admin.php?page=layers-dashboard' ),
 					),
 					'layers-get-started' => array(
 						'label' => 'Get Started',
-						'link' => admin_url( '?page=layers-get-started' ),
+						'link' => admin_url( 'admin.php?page=layers-get-started' ),
 					),
 					'layers-add-new-page' => array(
 						'label' => 'Add New Page',
-						'link' => admin_url( '?page=layers-add-new-page' ),
+						'link' => admin_url( 'admin.php?page=layers-add-new-page' ),
 					),
 					'layers-pages' => array(
 						'label' => 'Layers Pages',
-						'link' => admin_url( '?post_type=page&amp;filter=layers' ),
+						'link' => admin_url( 'edit.php?post_type=page&amp;filter=layers' ),
 					),
 				)
 		);
@@ -176,57 +176,58 @@ class Layers_Options_Panel {
 
 	public function site_setup_actions(){
 
-		$site_setup_actions = array(
-				'google-analytics' => array(
-					'label' => __( 'Google Analytics', 'layerswp' ),
-					'excerpt' => __( 'Enter in your Google Analytics ID to enable website traffic reporting.', 'layerswp' ),
-					'form' => array(
-							'layers-header-google-id' => array(
-									'type' => 'text',
-									'name' => 'layers-header-google-id',
-									'id' => 'layers-header-google-id',
-									'placeholder' => __( 'UA-xxxxxx-xx', 'layerswp' ),
-									'value' => layers_get_theme_mod( 'header-google-id' )
-								)
-						),
-					'skip-action' => 'layers_site_setup_step_dismissal',
-					'submit-action' => 'layers_onboarding_set_theme_mods',
-					'submit-text' => __( 'Save', 'layerswp' )
+		$site_setup_actions[ 'google-analytics' ] =  array(
+			'label' => __( 'Google Analytics', 'layerswp' ),
+			'excerpt' => __( 'Enter in your Google Analytics ID to enable website traffic reporting.', 'layerswp' ),
+			'form' => array(
+					'layers-header-google-id' => array(
+							'type' => 'text',
+							'name' => 'layers-header-google-id',
+							'id' => 'layers-header-google-id',
+							'placeholder' => __( 'UA-xxxxxx-xx', 'layerswp' ),
+							'value' => layers_get_theme_mod( 'header-google-id' )
+						)
 				),
-				'copyright' => array(
-					'label' => __( 'Copyright Text', 'layerswp' ),
-					'form' => array(
-							'layers-footer-copyright-text' => array(
-									'type' => 'text',
-									'name' => 'layers-footer-copyright-text',
-									'id' => 'layers-footer-copyright-text',
-									'placeholder' => __( 'Made at the tip of Africa. &copy;', 'layerswp' ),
-									'value' => layers_get_theme_mod( 'footer-copyright-text' )
-								)
-						),
-					'skip-action' => 'layers_site_setup_step_dismissal',
-					'submit-action' => 'layers_onboarding_set_theme_mods',
-					'submit-text' => __( 'Save', 'layerswp' )
-				),
-				'menus' => array(
-					'label' => __( 'Setup your website menu', 'layerswp' ),
-					'excerpt' => __( sprintf( 'Navigation is a key element of setting up your website. Controly our menus here. For more information read our <a href="%s" target="_blank">help guide</a>.', 'http://docs.layerswp.com/doc/create-your-menus/' ), 'layerswp' ),
-					'form' => array(
-							'layers-menu-link' => array(
-									'type' => 'button',
-									'name' => 'layers-menu-link',
-									'id' => 'layers-menu-link',
-									'href' => admin_url( 'nav-menus.php' ),
-									'target' => '_blank',
-									'tag' => 'a',
-									'class' => 'layers-button btn-primary',
-									'label' => __( 'Setup Menus', 'layerswp' ),
-								)
-						),
-					'skip-action' => 'layers_site_setup_step_dismissal'
-				)
-			);
+			'skip-action' => 'layers_site_setup_step_dismissal',
+			'submit-action' => 'layers_onboarding_set_theme_mods',
+			'submit-text' => __( 'Save', 'layerswp' )
+		);
 
+		$site_setup_actions[ 'copyright' ] = array(
+			'label' => __( 'Copyright Text', 'layerswp' ),
+			'form' => array(
+					'layers-footer-copyright-text' => array(
+							'type' => 'text',
+							'name' => 'layers-footer-copyright-text',
+							'id' => 'layers-footer-copyright-text',
+							'placeholder' => __( 'Made at the tip of Africa. &copy;', 'layerswp' ),
+							'value' => layers_get_theme_mod( 'footer-copyright-text' )
+						)
+				),
+			'skip-action' => 'layers_site_setup_step_dismissal',
+			'submit-action' => 'layers_onboarding_set_theme_mods',
+			'submit-text' => __( 'Save', 'layerswp' )
+		);
+
+		if( 0 == count( get_posts( 'post_type=nav_menu_item' ) ) ) {
+			$site_setup_actions[ 'menus' ] = array(
+				'label' => __( 'Setup your website menu', 'layerswp' ),
+				'excerpt' => __( sprintf( 'Navigation is a key element of setting up your website. Controly our menus here. For more information read our <a href="%s" target="_blank">help guide</a>.', 'http://docs.layerswp.com/doc/create-your-menus/' ), 'layerswp' ),
+				'form' => array(
+						'layers-menu-link' => array(
+								'type' => 'button',
+								'name' => 'layers-menu-link',
+								'id' => 'layers-menu-link',
+								'href' => admin_url( 'nav-menus.php' ),
+								'target' => '_blank',
+								'tag' => 'a',
+								'class' => 'layers-button btn-primary',
+								'label' => __( 'Setup Menus', 'layerswp' ),
+							)
+					),
+				'skip-action' => 'layers_site_setup_step_dismissal'
+			);
+		}
 		return apply_filters( 'layers_setup_actions' , $site_setup_actions );
 	}
 

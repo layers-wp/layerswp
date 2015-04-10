@@ -4,7 +4,7 @@ $user = wp_get_current_user(); ?>
 <?php // Instantiate Inputs
 $form_elements = new Layers_Form_Elements(); ?>
 
-<?php // Get the API up and running for the extension listing
+<?php // Get the API up and running for the plugin listing
 $api = new Layers_API(); ?>
 
 <section id="layers-dashboard-page" class="layers-area-wrapper">
@@ -17,45 +17,42 @@ $api = new Layers_API(); ?>
 			<div class="layers-row">
 
 				<div class="layers-column layers-span-4">
-
-					<div class="layers-panel layers-push-bottom">
-						<div class="layers-panel-title">
-							<h4 class="layers-heading"><?php _e( 'Layers Pages' , 'layerswp' ); ?></h4>
+					<?php if( count( layers_get_builder_pages() ) > 1 ) { ?>
+						<div class="layers-panel layers-push-bottom">
+							<div class="layers-panel-title">
+								<h4 class="layers-heading"><?php _e( 'Layers Pages' , 'layerswp' ); ?></h4>
+							</div>
+							<ul class="layers-list layers-page-list">
+									<?php foreach( layers_get_builder_pages() as $page ) { ?>
+										<li>
+											<a class="layers-page-list-title" href="<?php echo admin_url( 'post.php?post=' . $page->ID . '&action=edit' ); ?>"><?php echo $page->post_title; ?></a>
+											<span class="layers-page-edit-links">
+												<a href="<?php echo admin_url( 'customize.php?url=' . esc_url( get_the_permalink( $page->ID ) ) ); ?>"><?php _e( 'Edit Layout' , 'layerswp' ); ?></a> |
+												<a href="<?php echo admin_url( 'post.php?post=' . $page->ID . '&action=edit' ); ?>"><?php _e( 'Edit' , 'layerswp' ); ?></a> |
+												<a href="<?php echo get_the_permalink( $page->ID ); ?>"><?php _e( 'View' , 'layerswp' ); ?></a>
+											</span>
+										</li>
+									<?php }?>
+							</ul>
+							<div class="layers-button-well">
+								<a class="layers-button" href="<?php echo admin_url( 'admin.php?page=layers-add-new-page' ); ?>">
+									<?php _e( 'Add New Page' , 'layerswp' ); ?>
+								</a>
+							</div>
 						</div>
-						<ul class="layers-list layers-page-list">
-							<?php if( count( layers_get_builder_pages() ) > 1 ) { ?>
-								<?php foreach( layers_get_builder_pages() as $page ) { ?>
-									<li>
-										<a class="layers-page-list-title" href="<?php echo admin_url( 'post.php?post=' . $page->ID . '&action=edit' ); ?>"><?php echo $page->post_title; ?></a>
-										<span class="layers-page-edit-links">
-											<a href="<?php echo admin_url( 'customize.php?url=' . esc_url( get_the_permalink( $page->ID ) ) ); ?>"><?php _e( 'Edit Layout' , 'layerswp' ); ?></a> |
-											<a href="<?php echo admin_url( 'post.php?post=' . $page->ID . '&action=edit' ); ?>"><?php _e( 'Edit' , 'layerswp' ); ?></a> |
-											<a href="<?php echo get_the_permalink( $page->ID ); ?>"><?php _e( 'View' , 'layerswp' ); ?></a>
-										</span>
-									</li>
-								<?php }?>
-							<?php } else { ?>
-								<li><?php _e( 'You have not created any Layers Pages yet' , 'layerswp' ); ?></li>
-							<?php }?>
-						</ul>
-						<div class="layers-button-well">
-							<a class="layers-button" href="<?php echo admin_url( 'admin.php?page=layers-add-new-page' ); ?>">
-								<?php _e( 'Add New Page' , 'layerswp' ); ?>
+					<?php } else { ?>
+						<div class="layers-panel layers-content layers-push-bottom">
+							<div class="layers-section-title layers-small">
+								<h3 class="layers-heading"><?php _e( 'Start Using Layers' , 'layerswp' ); ?></h3>
+								<p class="layers-excerpt">
+									<?php _e( 'Follow the easy steps to creating amazing layouts quickly and easily. ' , 'layerswp' ); ?>
+								</p>
+							</div>
+							<a href="<?php echo admin_url( 'admin.php?page=layers-get-started' ); ?>" class="layers-button btn-large btn-primary">
+								<?php _e( 'Get Started &rarr;' , 'layerswp' ); ?>
 							</a>
 						</div>
-					</div>
-
-					<div class="layers-panel layers-content layers-push-bottom">
-						<div class="layers-section-title layers-small">
-							<h3 class="layers-heading"><?php _e( 'Start Using Layers' , 'layerswp' ); ?></h3>
-							<p class="layers-excerpt">
-								<?php _e( 'Follow the easy steps to creating amazing layouts quickly and easily. ' , 'layerswp' ); ?>
-							</p>
-						</div>
-						<a href="<?php echo admin_url( 'admin.php?page=layers-get-started' ); ?>" class="layers-button btn-large btn-primary">
-							<?php _e( 'Get Started &rarr;' , 'layerswp' ); ?>
-						</a>
-					</div>
+					<?php }?>
 
 				</div>
 
@@ -70,13 +67,6 @@ $api = new Layers_API(); ?>
 							$setup_steps[] = $key;
 						}
 					} ?>
-
-					<div class="layers-status-notice layers-site-setup-completion uptodate  layers-hide">
-						<h5 class="layers-status-notice-heading">
-							<i class="icon-tick"></i>
-							<span><?php _e( 'Congrats your site is setup!' , 'layerswp' ); ?></span>
-						</h5>
-					</div>
 
 					<?php if( isset( $setup_steps ) ) { ?>
 						<div class="layers-panel layers-site-setup-panel">
@@ -114,7 +104,7 @@ $api = new Layers_API(); ?>
 										<div class="layers-button-well">
 											<?php if( isset( $setup_details[ 'skip-action' ] ) ) { ?>
 												<a class="layers-button btn-link layers-pull-right layers-dashboard-skip" data-setup-step-key="<?php echo $setup_key; ?>" data-skip-action="<?php echo $setup_details[ 'skip-action' ]; ?>">
-													<?php _e( 'Dismiss' , 'layerswp' ); ?>
+													<?php _e( 'Skip' , 'layerswp' ); ?>
 												</a>
 											<?php } ?>
 											<?php if( isset( $setup_details[ 'submit-action' ] ) ) { ?>
@@ -128,43 +118,50 @@ $api = new Layers_API(); ?>
 								</div>
 							<?php } ?>
 						</div>
+					<?php } else { ?>
+						<div class="layers-status-notice layers-site-setup-completion uptodate">
+							<h5 class="layers-status-notice-heading">
+								<i class="icon-tick"></i>
+								<span><?php _e( 'Congrats your site is setup!' , 'layerswp' ); ?></span>
+							</h5>
+						</div>
 					<?php } ?>
 
-					<div class="layers-panel layers-content layers-push-bottom">
-						<div class="layers-section-title layers-tiny">
-							<h3 class="layers-heading"><?php _e( 'Themes &amp; Extensions' , 'layerswp' ); ?></h3>
-							<p class="layers-excerpt">
-								<?php _e( '
-									Looking for a theme or extension to achieve something unique with your website?
-									Browse the massive Layers Marketplace on Envato and take your site to the next level.
-								' , 'layerswp' ); ?>
-							</p>
+					<?php if( 0 == count( layers_get_plugins() ) ) { ?>
+						<div class="layers-panel layers-content layers-push-bottom">
+							<div class="layers-section-title layers-tiny">
+								<h3 class="layers-heading"><?php _e( 'Themes &amp; Extensions' , 'layerswp' ); ?></h3>
+								<p class="layers-excerpt">
+									<?php _e( 'Looking for a theme or plugin to achieve something unique with your website?
+										Browse the massive Layers Marketplace on Envato and take your site to the next level.' , 'layerswp' ); ?>
+								</p>
+							</div>
+							<a href="{themeforest.net/layers}" class="layers-button btn-primary">
+								<?php _e( 'Browse &rarr;' , 'layerswp' ); ?>
+							</a>
 						</div>
-						<a href="{themeforest.net/layers}" class="layers-button btn-primary">
-							<?php _e( 'Browse &rarr;' , 'layerswp' ); ?>
-						</a>
-					</div>
+					<?php } else { ?>
+						<div class="layers-panel">
+							<div class="layers-panel-title">
+								<h4 class="layers-heading"><?php _e( 'Installed Extensions' , 'layerswp' ); ?></h4>
+							</div>
 
-					<div class="layers-panel">
-						<div class="layers-panel-title">
-							<h4 class="layers-heading"><?php _e( 'Installed Extensions' , 'layerswp' ); ?></h4>
+							<ul class="layers-list layers-extensions">
+								 <?php foreach( layers_get_plugins() as $extension_key => $extension_details ) { ?>
+									<li>
+										<h4 class="layers-heading">
+											<?php echo $extension_details[ 'Name' ]; ?>
+										</h4>
+										<?php if( isset( $extension_details[ 'Description' ] ) ){ ?>
+											<p>
+												<?php echo $extension_details[ 'Description' ]; ?>
+											</p>
+										<?php } ?>
+									</li>
+								<?php } // foreach extensions ?>
+							</ul>
 						</div>
-
-						<ul class="layers-list layers-extensions">
-							 <?php foreach( layers_get_plugins() as $extension_key => $extension_details ) { ?>
-								<li>
-									<h4 class="layers-heading">
-										<?php echo $extension_details[ 'Name' ]; ?>
-									</h4>
-									<?php if( isset( $extension_details[ 'Description' ] ) ){ ?>
-										<p>
-											<?php echo $extension_details[ 'Description' ]; ?>
-										</p>
-									<?php } ?>
-								</li>
-							<?php } // foreach extensions ?>
-						</ul>
-					</div>
+					<?php } ?>
 				</div>
 				<div class="layers-column layers-span-4">
 					<div class="layers-panel layers-push-bottom">

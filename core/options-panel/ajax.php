@@ -65,9 +65,8 @@ if( !class_exists( 'Layers_Onboarding_Ajax' ) ) {
 				$data
 			);
 
-			if( isset( $_POST[ 'site_setup_key' ] ) ) {
-				$this->dismiss_setup_step( $_POST[ 'site_setup_key' ] );
-
+			if( isset( $_POST[ 'setup_step_key' ] ) ) {
+				$this->dismiss_setup_step( $_POST[ 'setup_step_key' ] );
 			}
 
 			foreach ( $data as $option_key => $option_value ) {

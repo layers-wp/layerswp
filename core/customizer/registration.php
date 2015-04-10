@@ -283,7 +283,16 @@ class Layers_Customizer_Regsitrar {
 						$control_data
 					)
 				);
+			} else if( 'layers-number' == $control_data['type'] ) {
 
+				// Add Control
+				$this->customizer->add_control(
+					new Layers_Customize_Number_Control(
+						$this->customizer,
+						$setting_key,
+						$control_data
+					)
+				);
 			} else {
 
 				// Add Control

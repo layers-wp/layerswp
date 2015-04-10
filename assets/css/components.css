@@ -270,7 +270,13 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
     .story p{
         margin-bottom: 26px;
     }
+    .story address{
+        margin-bottom: 26px;
+    }
     .story a{
+        border-bottom: 1px solid #ddd;
+    }
+    .story a:not(.button){
         border-bottom: 1px solid #ddd;
     }
     .story a:hover{
@@ -452,9 +458,13 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
         color: #999;
         font-size: 1.2rem;
     }
+    .comment-respond{
+        clear: both;
+        margin-top: 6%;
+    }
     .comment-reply-title{
         color: #323232;
-        font-size: 2.8rem;
+        font-size: 2.5rem;
     }
     .logged-in-as{
         margin-bottom: 20px;
@@ -467,6 +477,7 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
         margin-bottom: 15px;
     }
     .form-allowed-tags{
+        max-width: 660px;
         margin-bottom: 15px;
         font-size: 1.4rem;
     }
@@ -575,7 +586,7 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
         width: 100%;
     }
     aside .search-field{
-        border: none;
+        margin-bottom: 5px;
     }
 
     /*---------------------------*/

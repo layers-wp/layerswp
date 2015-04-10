@@ -49,12 +49,32 @@ div#widgets-right div[id*='obox-layers-builder']{
     /*- WIDGET COLOR STYLING ----*/
 
     /*- Layers Badge -*/
+    /*
     .customize-control-widget_form.wide-widget-control div[id*='layers-widget'] .widget-top h4:before{
         content: "\e62f";
         margin: 0 10px 0 0;
         font-size: 12px;
         color: #0BA6E0;
         font-family: 'layers-interface';
+    }
+    */
+    .customize-control-widget_form.wide-widget-control div[id*='layers-widget'] .widget-top h4:before{
+        margin: 0 7px 0 -1px;
+        content: "\e62f";
+        font-size: 9px;
+        color: #FFFFFF;
+        font-family: 'layers-interface';
+        background: #00A4EC;
+        border-radius: 100px;
+        width: 14px;
+        line-height: 13px;
+        text-align: center;
+        padding: 1px 0 0;
+        border: 0;
+        display: inline-block;
+        /* top: 21px; */
+        /* left: -26px; */
+        box-shadow: -1px 2px 0 rgba(0, 0, 0, 0.09);
     }
     .customize-control-widget_form.wide-widget-control.expanded div[id*='layers-widget'] .widget-top h4:before{
         color: #fff;
@@ -79,6 +99,7 @@ div#widgets-right div[id*='obox-layers-builder']{
     }
 
     /*- Layers Badge in Widget Selection Tray -*/
+    /*
     #available-widgets div[id*='layers-widget'].widget .widget-top:before{
         float: right;
         margin: -12px -8px 0 0;
@@ -86,6 +107,25 @@ div#widgets-right div[id*='obox-layers-builder']{
         font-size: 12px;
         color: #0BA6E0;
         font-family: 'layers-interface';
+    }
+    */
+    #available-widgets div[id*='layers-widget'].widget .widget-title:after{
+        margin: -12px -8px 0 0;
+        content: "\e62f";
+        font-size: 9px;
+        color: #FFFFFF;
+        font-family: 'layers-interface';
+        background: #00A4EC;
+        border-radius: 100px;
+        width: 14px;
+        line-height: 13px;
+        text-align: center;
+        padding: 1px 0 0;
+        border: 0;
+        position: absolute;
+        top: 21px;
+        left: -26px;
+        box-shadow: -1px 2px 0 rgba(0, 0, 0, 0.09);
     }
 
     /*---------------------------*/

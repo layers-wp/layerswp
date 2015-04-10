@@ -225,16 +225,16 @@ $api = new Layers_API(); ?>
 						</div>
 						<ul class="layers-list layers-extensions">
 							<li>
-								<a class="layers-page-list-title" target="_blank" href="http://docs.layerswp.com/setup-guide/#build-your-home-page">Build Your Home Page</a>
+								<a class="layers-page-list-title" target="_blank" href="http://docs.layerswp.com/setup-guide/#build-your-home-page"><?php _e( 'Build Your Home Page', 'layerswp' ); ?></a>
 							</li>
 							<li>
-								<a class="layers-page-list-title" target="_blank" href="http://docs.layerswp.com/setup-guide/#site-settings">Site Settings</a>
+								<a class="layers-page-list-title" target="_blank" href="http://docs.layerswp.com/setup-guide/#site-settings"><?php _e( 'Site Settings', 'layerswp' ); ?></a>
 							</li>
 							<li>
-								<a class="layers-page-list-title" target="_blank" href="http://docs.layerswp.com/setup-guide/#create-your-menus">Create Your Menus</a>
+								<a class="layers-page-list-title" target="_blank" href="http://docs.layerswp.com/setup-guide/#create-your-menus"><?php _e( 'Create Your Menus', 'layerswp' ); ?></a>
 							</li>
 							<li>
-								<a class="layers-page-list-title" target="_blank" href="http://docs.layerswp.com/doc/how-to-speed-up-your-website/">How to Speed Up Your Website</a>
+								<a class="layers-page-list-title" target="_blank" href="http://docs.layerswp.com/doc/how-to-speed-up-your-website/"><?php _e( 'How to Speed Up Your Website', 'layerswp' ); ?></a>
 							</li>
 						</ul>
 						<div class="layers-button-well">
@@ -266,9 +266,7 @@ $api = new Layers_API(); ?>
 						<div class="layers-panel">
 							<div class="layers-section-title layers-tiny layers-no-push-bottom layers-content">
 								<h4 class="layers-heading">
-									<a href="<?php echo $news_item[ 'link' ]; ?>" target="_blank">
-										<?php echo $news_item[ 'title' ]; ?>
-									</a>
+									<?php echo $news_item[ 'title' ]; ?>
 								</h4>
 							</div>
 							<div class="layers-copy">
@@ -286,4 +284,5 @@ $api = new Layers_API(); ?>
 		</div>
 	</section>
 <?php } ?>
+
 <?php $this->footer(); ?>

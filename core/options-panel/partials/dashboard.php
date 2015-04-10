@@ -250,105 +250,40 @@ $api = new Layers_API(); ?>
 	</div>
 </section>
 
-<section class="layers-area-wrapper">
-	<div class="layers-row layers-well-alt layers-content-large">
+<?php $news = $this->get_layers_news(); ?>
 
-		<div class="layers-section-title layers-small">
-			<h3 class="layers-heading"><?php _e( 'Layers News' , 'layerswp' ); ?></h3>
+<?php if( 0 < count( $news ) && $news ) { ?>
+	<section class="layers-area-wrapper">
+		<div class="layers-row layers-well-alt layers-content-large">
+
+			<div class="layers-section-title layers-small">
+				<h3 class="layers-heading"><?php _e( 'Layers News' , 'layerswp' ); ?></h3>
+			</div>
+
+			<div class="layers-row">
+				<?php foreach( $news as $news_id => $news_item ) { ?>
+					<div class="layers-column layers-span-3">
+						<div class="layers-panel">
+							<div class="layers-section-title layers-tiny layers-no-push-bottom layers-content">
+								<h4 class="layers-heading">
+									<a href="<?php echo $news_item[ 'link' ]; ?>" target="_blank">
+										<?php echo $news_item[ 'title' ]; ?>
+									</a>
+								</h4>
+							</div>
+							<div class="layers-copy">
+								<?php echo $news_item[ 'excerpt' ]; ?>
+							</div>
+							<div class="layers-button-well">
+								<a href="<?php echo $news_item[ 'link' ]; ?>" class="layers-button" target="_blank">
+									<?php _e( 'Continue Reading' , 'layerswp' ); ?>
+								</a>
+							</div>
+						</div>
+					</div>
+				<?php } ?>
+			</div>
 		</div>
-
-		<div class="layers-row">
-
-
-
-			<div class="layers-column layers-span-3">
-				<div class="layers-panel">
-					<div class="layers-featured-image">
-						<img src="http://blog.oboxthemes.com/wp-content/uploads/2015/03/march-update-1000x300.png" />
-					</div>
-					<div class="layers-section-title layers-tiny layers-no-push-bottom layers-content">
-						<h4 class="layers-heading">Layers is now with packaged with 5 languages and much more to come</h4>
-					</div>
-					<div class="layers-copy">
-						<p>
-							With Layers being our first open-source product we are quickly learning how awesome
-							it is to have people outside of Obox make contributions. With just over a month having
-							passed since launch we’ve had an overwhelming amount of contributions to the core
-							and for that we are incredibly grateful.
-						</p>
-					</div>
-					<div class="layers-button-well">
-						<a href="http://blog.oboxthemes.com/layers-is-now-with-packaged-with-5-languages-and-much-more-to-come/" class="layers-button">
-							Continue Reading
-						</a>
-					</div>
-				</div>
-			</div>
-
-			<div class="layers-column layers-span-3">
-				<div class="layers-panel">
-					<div class="layers-featured-image">
-						<img src="http://blog.oboxthemes.com/wp-content/uploads/2015/03/adii-joins-obox-1000x527.jpg" />
-					</div>
-					<div class="layers-section-title layers-tiny layers-no-push-bottom layers-content">
-						<h4 class="layers-heading">Adii, co-founder of WooThemes and WooCommerce, has joined Obox</h4>
-					</div>
-					<div class="layers-copy">
-						<p>
-							This post has been 6 years in the making. I’ll start at the beginning with a brief history of how Marc, David and Adii came to be part of the same company.
-						</p>
-					</div>
-					<div class="layers-button-well">
-						<a href="http://blog.oboxthemes.com/adii-co-founder-of-woothemes-and-woocommerce-has-joined-obox/" class="layers-button">
-							Continue Reading
-						</a>
-					</div>
-				</div>
-			</div>
-
-			<div class="layers-column layers-span-3">
-				<div class="layers-panel">
-					<div class="layers-featured-image">
-						<img src="http://blog.oboxthemes.com/wp-content/uploads/2015/03/calyx-joins-obox-2x-1000x520.jpg" />
-					</div>
-					<div class="layers-section-title layers-tiny layers-no-push-bottom layers-content">
-						<h4 class="layers-heading">Obox acquires Calyx</h4>
-					</div>
-					<div class="layers-copy">
-						<p>
-							Last year in September Marc and I took part in the WordCamp do_action charity day in Cape Town with our primary task being to judge the event and help the various charities involved with their websites.
-						</p>
-					</div>
-					<div class="layers-button-well">
-						<a href="http://blog.oboxthemes.com/calyx-joins-obox/" class="layers-button">
-							Continue Reading
-						</a>
-					</div>
-				</div>
-			</div>
-
-			<div class="layers-column layers-span-3">
-				<div class="layers-panel">
-					<div class="layers-featured-image">
-						<img src="http://blog.oboxthemes.com/wp-content/uploads/2015/02/layers-by-obox-1000x520.jpg" />
-					</div>
-					<div class="layers-section-title layers-tiny layers-no-push-bottom layers-content">
-						<h4 class="layers-heading">From today, the way you build WordPress sites will change. Say hello to Layers</h4>
-					</div>
-					<div class="layers-copy">
-						<p>
-							We’re extremely excited to introduce Layers to the world, marking the realisation of 9 months of work by Obox. Layers is a revolutionary site builder that allows you to create beautiful websites easily. The best part? It’s free, forever. If you’re the jump-straight-in type, you can download or try it right now for free.   Why?
-						</p>
-					</div>
-					<div class="layers-button-well">
-						<a href="http://blog.oboxthemes.com/calyx-joins-obox/" class="layers-button">
-							Continue Reading
-						</a>
-					</div>
-				</div>
-			</div>
-
-		</div>
-	</div>
-</section>
+	</section>
+<?php } ?>
 <?php $this->footer(); ?>

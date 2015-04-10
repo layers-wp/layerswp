@@ -154,6 +154,22 @@ class Layers_Options_Panel {
 		return $menu;
 	}
 
+	public function get_layers_news(){
+		$news_feed = fetch_feed( 'http://blog.oboxthemes.com/tag/layers/feed/' );
+
+		if( is_wp_error( $news_feed ) ) {
+			return false;
+		} else {
+			$news_items = $news_feed->get_items( 0, 4 );
+			foreach( $news_items as $item ){
+				$feed_items[ $item->get_id() ][ 'title' ] = esc_attr( $item->get_title() );
+				$feed_items[ $item->get_id() ][ 'link' ] = $item->get_permalink();
+				$feed_items[ $item->get_id() ][ 'excerpt' ] = $item->get_description();
+			}
+			return $feed_items;
+		}
+	}
+
 	/**
 	* Get Layers Setup Options
 	*/

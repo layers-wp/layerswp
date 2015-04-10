@@ -12,6 +12,7 @@
 * **Tweak** - Improved spacing of the comment form block as well as a font-size decrease for "Leave a Reply"
 * **Tweak** - Gave copyright border-color rgba (same reason as header cart)
 * **Tweak** - Better .button styling in .story
+* **Tweak** - Increased the width of sub menus
 
 ## 1.0.8
 ### 02 April 2015

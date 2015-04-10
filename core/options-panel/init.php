@@ -164,7 +164,6 @@ class Layers_Options_Panel {
 			foreach( $news_items as $item ){
 				$feed_items[ $item->get_id() ][ 'title' ] = esc_attr( $item->get_title() );
 				$feed_items[ $item->get_id() ][ 'link' ] = $item->get_permalink();
-				$feed_items[ $item->get_id() ][ 'thumbnails' ] = $item->get_enclosure()->get_thumbnail();
 				$feed_items[ $item->get_id() ][ 'excerpt' ] = $item->get_description();
 			}
 			return $feed_items;

@@ -147,41 +147,19 @@ $api = new Layers_API(); ?>
 
 					<div class="layers-panel">
 						<div class="layers-panel-title">
-							<h4 class="layers-heading"><?php _e( 'Extensions' , 'layerswp' ); ?></h4>
+							<h4 class="layers-heading"><?php _e( 'Installed Extensions' , 'layerswp' ); ?></h4>
 						</div>
 
 						<ul class="layers-list layers-extensions">
-							<?php foreach( $api->get_extension_list() as $extension_key => $extension_details ) { ?>
+							 <?php foreach( layers_get_plugins() as $extension_key => $extension_details ) { ?>
 								<li>
 									<h4 class="layers-heading">
-										<?php echo $extension_details[ 'title' ]; ?>
+										<?php echo $extension_details[ 'Name' ]; ?>
 									</h4>
-									<?php if( isset( $extension_details[ 'description' ] ) ){ ?>
+									<?php if( isset( $extension_details[ 'Description' ] ) ){ ?>
 										<p>
-											<?php echo $extension_details[ 'description' ]; ?>
+											<?php echo $extension_details[ 'Description' ]; ?>
 										</p>
-									<?php } ?>
-									<?php if( isset( $extension_details[ 'available' ] ) && false == $extension_details[ 'available' ] ) { ?>
-										<div class="layers-btn-group">
-											<button class="layers-button btn-subtle" disabled="disabled"><?php _e( 'Coming soon' , 'layerswp' ); ?></button>
-										</div>
-									<?php } else { ?>
-										<?php if( isset( $extension_details[ 'links' ] ) && ( isset( $extension_details[ 'links' ][ 'purchase' ] ) || isset( $extension_details[ 'links' ][ 'details' ] ) ) ){ ?>
-											<div class="layers-btn-group">
-												<div class="layers-btn-group">
-													<?php if( NULL != $extension_details[ 'links' ][ 'purchase' ] ) { ?>
-														<a class="layers-button" href="<?php echo $extension_details[ 'links' ][ 'purchase' ]; ?>" target="_blank">
-															<?php _e( 'Purchase' , 'layerswp' ) ;?>
-														</a>
-													<?php } ?>
-													<?php if( NULL != $extension_details[ 'links' ][ 'details' ] ) { ?>
-														<a class="layers-button btn-link" href="<?php echo $extension_details[ 'links' ][ 'details' ]; ?>" target="_blank">
-															<?php _e( 'More Details' , 'layerswp' ) ;?>
-														</a>
-													<?php } ?>
-												</div>
-											</div>
-										<?php } ?>
 									<?php } ?>
 								</li>
 							<?php } // foreach extensions ?>

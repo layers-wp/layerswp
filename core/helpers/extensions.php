@@ -181,11 +181,13 @@ add_filter( 'taxonomy_template', 'layers_get_custom_taxonomy_template' );
 //@TODO: Cleanup this code
 if( !function_exists( 'layers_get_plugins') ) {
 	function layers_get_plugins(){
-		$plugins = get_plugins();
+		$active_plugins = wp_get_active_and_valid_plugins();
 		$layers_plugins = array();
-		foreach ( (array) $plugins as $plugin => $headers ) {
-			if( isset( $headers[ 'Layers Plugin' ] ) && 'true' == strtolower( $headers[ 'Layers Plugin' ] ) ){
-				$layers_plugins[ $plugin ] = $headers;
+		foreach ( (array) $active_plugins as $plugin_key ) {
+			$plugin_data = get_plugin_data( $plugin_key );
+
+			if( isset( $plugin_data[ 'Layers Plugin' ] ) && 'true' == strtolower( $plugin_data[ 'Layers Plugin' ] ) ){
+				$layers_plugins[ $plugin_key ] = $plugin_data;
 			}
 		}
 

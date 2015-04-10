@@ -167,32 +167,6 @@ $api = new Layers_API(); ?>
 					</div>
 				</div>
 				<div class="layers-column layers-span-4">
-
-					<div class="layers-status-notice uptodate">
-						<h5 class="layers-status-notice-heading">
-							<i class="icon-tick"></i>
-							<span><?php _e( 'Layers is up-to-date' , 'layerswp' ); ?></span>
-						</h5>
-					</div>
-					<a class="layers-status-notice outdated" href="">
-						<h5 class="layers-status-notice-heading">
-							<i class="icon-cross"></i>
-							<span><?php _e( 'Please update Layers' , 'layerswp' ); ?></span>
-						</h5>
-					</a>
-					<div class="layers-status-notice uptodate">
-						<h5 class="layers-status-notice-heading">
-							<i class="icon-tick"></i>
-							<span><?php _e( 'WordPress is up-to-date' , 'layerswp' ); ?></span>
-						</h5>
-					</div>
-					<a class="layers-status-notice outdated" href="">
-						<h5 class="layers-status-notice-heading">
-							<i class="icon-cross"></i>
-							<span><?php _e( 'Please update WordPress' , 'layerswp' ); ?></span>
-						</h5>
-					</a>
-
 					<div class="layers-panel layers-push-bottom">
 						<div class="layers-panel-title">
 							<h4 class="layers-heading">

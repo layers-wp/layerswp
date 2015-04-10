@@ -145,9 +145,6 @@ class Layers_Customizer_Regsitrar {
 
 			$setting_key = $this->prefix . $control_key;
 
-			// Register control default value
-			$this->register_control_defaults( $setting_key, ( isset( $control_data['default'] ) ? $control_data['default'] : NULL ) );
-
 			// Assign control to the relevant section
 			$control_data[ 'section' ] = $this->prefix . $panel_section_key;
 
@@ -303,23 +300,6 @@ class Layers_Customizer_Regsitrar {
 	}
 
 	/**
-	* Register Control Defaults
-	*/
-
-	public function register_control_defaults( $key = NULL , $value = NULL ){
-
-		global $layers_customizer_defaults;
-
-		if( !isset( $layers_customizer_defaults ) ) $layers_customizer_defaults = array();
-
-		if( NULL != $key ){
-			$layers_customizer_defaults[ $key ] = esc_attr( $value );
-		}
-
-		return apply_filters( 'layers_customizer_defaults', $layers_customizer_defaults );
-	}
-
-	/**
 	* Move Default Sections
 	*/
 
@@ -373,7 +353,7 @@ class Layers_Customizer_Regsitrar {
 				$callback = 'esc_textarea';
 				break;
 			case 'layers-code' :
-				$callback = 'esc_textarea';
+				$callback = false;
 				break;
 			default :
 				$callback = 'sanitize_text_field';

@@ -27,59 +27,9 @@ class Layers_Widget_Migrator {
 
 	public function init() {
 
-		if( isset( $_GET[ 'layers-export' ] ) ) $this->create_export_file();
-
 		// Add current builder pages as presets
 		add_filter( 'layers_preset_layouts' , array( $this , 'add_builder_preset_layouts') );
 
-		// Add allowance for JSON to be added via the media uploader
-		add_filter( 'upload_mimes', array( $this, 'allow_json_uploads' ), 1, 1);
-	}
-
-	/**
-	*  Simple output of a JSON'd string of the widget data
-	*/
-
-	function create_export_file(){
-
-		// Make sur a post ID exists or return
-		if( !isset( $_GET[ 'post' ] ) ) return;
-
-		// Get the post ID
-		$post_id = $_GET[ 'post' ];
-
-		$post = get_post( $post_id );
-
-		$widget_data = json_encode( $this->export_data( $post ) );
-
-		$filesize = strlen( $widget_data );
-
-		// Headers to prompt "Save As"
-		header( 'Content-Type: application/json' );
-		header( 'Content-Disposition: attachment; filename=' . $post->post_name .'-' . date( 'Y-m-d' ) . '.json' );
-		header( 'Expires: 0' );
-		header( 'Cache-Control: must-revalidate' );
-		header( 'Pragma: public' );
-		header( 'Content-Length: ' . $filesize );
-
-		// Clear buffering just in case
-		@ob_end_clean();
-		flush();
-
-		// Output file contents
-		die( $widget_data );
-
-
-		// Stop execution
-		wp_redirect( admin_url( 'post.php?post=' . $post->ID . '&action=edit'  ) );
-
-	}
-
-	function allow_json_uploads( $mime_types ){
-		//Creating a new array will reset the allowed filetypes
-		$mime_types[ 'json|JSON' ] = 'application/json';
-
-		return $mime_types;
 	}
 
 	/**
@@ -88,6 +38,14 @@ class Layers_Widget_Migrator {
 
 	function get_translated_dir_uri(){
 		return str_replace('/', '\/', get_template_directory_uri() );
+	}
+
+	/**
+	*  Make sure that the stylesheet directory is nice ans clean for JSON
+	*/
+
+	function get_translated_stylesheet_uri(){
+		return str_replace('/', '\/', get_stylesheet_directory_uri() );
 	}
 
 	/**
@@ -495,7 +453,22 @@ class Layers_Widget_Migrator {
 
 		$i = $image_pieces[count($image_pieces)-1];
 
-		return $wpdb->get_var( $wpdb->prepare( "SELECT ID FROM {$wpdb->posts} WHERE guid LIKE %s", "%$i%" ) );
+		// Setup the Stylesheet directories to pick up the images from a local directory
+		$theme_image_dir = get_stylesheet_directory() . '/assets/preset-images/' . $i;
+		$theme_image_url = get_stylesheet_directory_uri() . '/assets/preset-images/' . $i;
+
+		$media_library_image = $wpdb->get_var( $wpdb->prepare( "SELECT ID FROM {$wpdb->posts} WHERE guid LIKE %s", "%$i%" ) );
+
+		// If the image we are looking for exists in the media library send it over
+		if( $media_library_image ) return $media_library_image;
+
+		// If the image we are looking for exists in the theme directory, use that instead
+		if( file_exists( $theme_image_dir ) ) {
+			return $this->get_attachment_id_from_url( media_sideload_image( $theme_image_url, 0 ) );
+		}
+
+		// If nothing is found, just return NULL
+		return NULL;
 	}
 
 	/**
@@ -860,3 +833,47 @@ if( !function_exists( 'layers_builder_export_ajax_init' ) ) {
 	}
 }
 add_action( 'init' , 'layers_builder_export_ajax_init' );
+
+
+/**
+*  Simple output of a JSON'd string of the widget data
+*/
+
+function layers_create_export_file(){
+
+	$layers_migrator = new Layers_Widget_Migrator();
+
+	// Make sur a post ID exists or return
+	if( !isset( $_GET[ 'post' ] ) ) return;
+
+	// Get the post ID
+	$post_id = $_GET[ 'post' ];
+
+	$post = get_post( $post_id );
+
+	$widget_data = json_encode( $layers_migrator->export_data( $post ) );
+
+	$filesize = strlen( $widget_data );
+
+	// Headers to prompt "Save As"
+	header( 'Content-Type: application/json' );
+	header( 'Content-Disposition: attachment; filename=' . $post->post_name .'-' . date( 'Y-m-d' ) . '.json' );
+	header( 'Expires: 0' );
+	header( 'Cache-Control: must-revalidate' );
+	header( 'Pragma: public' );
+	header( 'Content-Length: ' . $filesize );
+
+	// Clear buffering just in case
+	@ob_end_clean();
+	flush();
+
+	// Output file contents
+	die( $widget_data );
+
+	// Stop execution
+	wp_redirect( admin_url( 'post.php?post=' . $post->ID . '&action=edit'  ) );
+
+}
+if( isset( $_GET[ 'layers-export' ] ) ) {
+	add_action( 'init' , 'layers_create_export_file' );
+}

@@ -367,7 +367,7 @@ add_action( 'body_class', 'layers_body_class' );
  */
 if( !function_exists( 'layers_apply_customizer_styles' ) ) {
 	function layers_apply_customizer_styles() {
-		
+
 		// Header
 		if( layers_get_theme_mod( 'header-background-color' ) ){
 			$bg_opacity = ( layers_get_theme_mod( 'header-overlay') ) ? .5 : 1 ;
@@ -592,7 +592,6 @@ if( !function_exists( 'layers_get_theme_mod' ) ) {
 
 		// Set theme option default
 		$default = ( isset( $layers_customizer_defaults[ $name ][ 'value' ] ) ? $layers_customizer_defaults[ $name ][ 'value' ] : FALSE );
-
 
 		// If color control always return a value
 		if (
@@ -841,7 +840,7 @@ if( !function_exists( 'layers_inline_styles' ) ) {
 			break;
 
 		}
-		
+
 		// Bail if no css is generated
 		if ( '' == trim( $css ) ) return false;
 
@@ -877,7 +876,7 @@ if( !function_exists( 'layers_inline_styles' ) ) {
 if( !function_exists( 'layers_apply_inline_styles' ) ) {
 	function layers_apply_inline_styles(){
 		global $layers_inline_css;
-		
+
 		$layers_inline_css = apply_filters( 'layers_inline_css', $layers_inline_css );
 
 		wp_enqueue_style(
@@ -898,7 +897,7 @@ add_action( 'get_footer' , 'layers_apply_inline_styles', 100 );
 */
 if( !function_exists( 'layers_apply_custom_styles' ) ) {
 	function layers_apply_custom_styles(){
-		
+
 		wp_enqueue_style(
 			LAYERS_THEME_SLUG . '-custom-styles',
 			get_template_directory_uri() . '/assets/css/custom.css'
@@ -907,7 +906,7 @@ if( !function_exists( 'layers_apply_custom_styles' ) ) {
 			LAYERS_THEME_SLUG . '-custom-styles',
 			layers_get_theme_mod( 'custom-css' )
 		);
-		
+
 	}
 } // layers_apply_custom_styles
 add_action( 'get_footer' , 'layers_apply_custom_styles', 100 );
@@ -1083,6 +1082,27 @@ if ( ! function_exists( 'layers_light_or_dark' ) ) {
 } // layers_light_or_dark
 
 /**
+ * Detect if a color is light or dark
+ *
+ * @param string $color hex color eg #666666
+ * @return string 'light' | 'dark'
+ */
+if ( ! function_exists( 'layers_is_light_or_dark' ) ) {
+	function layers_is_light_or_dark( $color ) {
+
+		$hex = str_replace( '#', '', $color );
+
+		$c_r = hexdec( substr( $hex, 0, 2 ) );
+		$c_g = hexdec( substr( $hex, 2, 2 ) );
+		$c_b = hexdec( substr( $hex, 4, 2 ) );
+
+		$brightness = ( ( $c_r * 299 ) + ( $c_g * 587 ) + ( $c_b * 114 ) ) / 1000;
+
+		return ( $brightness > 155 ) ? 'light' : 'dark' ;
+	}
+}
+
+/**
  * Standard menu fallback
  */
 
@@ -1127,3 +1147,15 @@ if ( ! function_exists( 'layers_get_standard_wp_taxonomies' ) ) {
 		return array( 'category', 'nav_menu', 'category', 'link_category', 'post_format' );
 	}
 } // layers_get_standard_wp_taxonomies
+
+if ( ! function_exists( 'layers_allow_json_uploads' ) ) {
+	function layers_allow_json_uploads( $mime_types ){
+		//Creating a new array will reset the allowed filetypes
+		$mime_types[ 'json|JSON' ] = 'application/json';
+
+		return $mime_types;
+	}
+} // layers_allow_json_uploads
+
+// Add allowance for JSON to be added via the media uploader
+add_filter( 'upload_mimes', 'layers_allow_json_uploads' );

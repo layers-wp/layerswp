@@ -474,6 +474,26 @@ class Layers_Customizer_Config {
 							);
 		} // if WooCommerce
 
-		return apply_filters( 'layers_customizer_controls', $controls );
+		$filtered_controls = $this->apply_defaults( $controls );
+
+		return apply_filters( 'layers_customizer_controls', $filtered_controls );
+	}
+
+	private function apply_defaults( $controls ){
+
+		$defaults = apply_filters( 'layers_customizer_control_defaults' , array() );
+
+		if( empty( $defaults ) ) return $controls;
+
+		foreach( $controls as $section_key => $control ){
+
+			foreach( $control as $control_key => $control_data ) {
+				if( isset( $defaults[ $control_key ] ) ){
+					$controls[ $section_key ][ $control_key ][ 'default' ] = $defaults[ $control_key ];
+				}
+			}
+		}
+
+		return $controls;
 	}
 }

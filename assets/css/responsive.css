@@ -121,15 +121,15 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
         float: none !important;
         width: auto !important;
         text-align: center !important;
-        -webkit-transform: translateY(0);
-        transform: translateY(0);
+        -webkit-transform: translateY(0) !important;
+        transform: translateY(0) !important;
     }
     .swiper-slide .image-container{
         float: none !important;
         width: auto !important;
         text-align: center !important;
-        -webkit-transform: translateY(0);
-        transform: translateY(0);
+        -webkit-transform: translateY(0) !important;
+        transform: translateY(0) !important;
     }
 
     /*---------------------------*/

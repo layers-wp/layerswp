@@ -99,6 +99,7 @@ class Layers_Widgets {
 			$old_theme_mods = get_option( 'theme_mods_' . $old_theme );
 
 			// Update our 'new' theme with the widgets we have cultivated so nicely for our builder pages
+			update_option( 'theme_mods_' . basename( get_stylesheet_directory() ) , $old_theme_mods );
 			set_theme_mod( 'sidebars_widgets' , $old_theme_mods[ 'sidebars_widgets' ] );
 		}
 	}

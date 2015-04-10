@@ -110,7 +110,7 @@
 	}
 
 
-.customize-controls-layers-button-dashboard:after{
+.customize-controls-layers-button-dashboard-main:after{
 	font-family: "layers-interface" !important;
 	content: "\e62f" !important;
 	font-size: 15px !important;
@@ -139,6 +139,11 @@ a.customize-controls-layers-button i{
 	display: inline-block;
 	font-style: normal;
 }
+.layers-button-icon-dashboard:after{
+	font-family: "layers-interface" !important;
+	content: "\e62f" !important;
+	font-size: 15px !important;
+}
 a.customize-controls-layers-button:hover{
 	background: #fff;
 	border-color: #ccc;
@@ -147,8 +152,6 @@ a.customize-controls-layers-button:hover{
 	-webkit-box-shadow: none;
 	box-shadow: none;
 }
-a.customize-controls-layers-button-dashboard{}
-a.customize-controls-layers-button-preview{}
 a.customize-controls-layers-button-preview .icon{
 	font-size: 18px;
 }

@@ -13,6 +13,7 @@
 * **Tweak** - Gave copyright border-color rgba (same reason as header cart)
 * **Tweak** - Better .button styling in .story
 * **Tweak** - Increased the width of sub menus
+* **Enhancement** - Added support for the 'target' attribute to the button form type
 
 ## 1.0.8
 ### 02 April 2015
@@ -33,7 +34,7 @@ Layers page Import / Export fix
 * **Fix** - Page exports would occasionally cause users to reach a 'Warning: headers already sent by' error, we've fixed this error by moving the export trigger
 * **Fix** - The page import button would fail with a JSON not allowed error, we have added json and JSON to allowed file types to counteract this problem
 * **Fix** - When switching to a Layers child theme, customizer settings are now kept alive and transferred to your child theme
-* **Enhancement** - Widget placeholder text is now translatable.
+* **Enhancement** - Widget placeholder text is now translatable
 * **Enhancement** - Added hooks to title container, posts and pages
 
 

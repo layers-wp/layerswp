@@ -36,7 +36,9 @@ class Layers_Options_Panel {
 		$this->options_panel_dir = LAYERS_TEMPLATE_DIR . '/core/options-panel/';
 
 		// Setup the partial var
-		$this->page =  str_replace( LAYERS_THEME_SLUG . '-' , '', $_GET[ 'page' ] );
+		if( isset( $_GET[ 'page' ] ) ){
+			$this->page =  str_replace( LAYERS_THEME_SLUG . '-' , '', $_GET[ 'page' ] );
+		}
 
 	}
 
@@ -152,6 +154,79 @@ class Layers_Options_Panel {
 		return $menu;
 	}
 
+	/**
+	* Get Layers Setup Options
+	*/
+
+	public function site_setup_actions(){
+
+		$site_setup_actions = array(
+				'google-analytics' => array(
+					'label' => __( 'Google Analytics', 'layerswp' ),
+					'excerpt' => __( 'Enter in your Google Analytics ID to enable website traffic reporting.', 'layerswp' ),
+					'form' => array(
+							'layers-header-google-id' => array(
+									'type' => 'text',
+									'name' => 'layers-header-google-id',
+									'id' => 'layers-header-google-id',
+									'placeholder' => __( 'UA-xxxxxx-xx', 'layerswp' ),
+									'value' => layers_get_theme_mod( 'header-google-id' )
+								)
+						),
+					'skip-action' => 'layers_site_setup_step_dismissal',
+					'submit-action' => 'layers_onboarding_set_theme_mods',
+					'submit-text' => __( 'Save', 'layerswp' )
+				),
+				'copyright' => array(
+					'label' => __( 'Copyright Text', 'layerswp' ),
+					'form' => array(
+							'layers-footer-copyright-text' => array(
+									'type' => 'text',
+									'name' => 'layers-footer-copyright-text',
+									'id' => 'layers-footer-copyright-text',
+									'placeholder' => __( 'Made at the tip of Africa. &copy;', 'layerswp' ),
+									'value' => layers_get_theme_mod( 'footer-copyright-text' )
+								)
+						),
+					'skip-action' => 'layers_site_setup_step_dismissal',
+					'submit-action' => 'layers_onboarding_set_theme_mods',
+					'submit-text' => __( 'Save', 'layerswp' )
+				),
+				'menus' => array(
+					'label' => __( 'Setup your website menu', 'layerswp' ),
+					'excerpt' => __( sprintf( 'Navigation is a key element of setting up your website. Controly our menus here. For more information read our <a href="%s" target="_blank">help guide</a>.', 'http://docs.layerswp.com/doc/create-your-menus/' ), 'layerswp' ),
+					'form' => array(
+							'layers-menu-link' => array(
+									'type' => 'button',
+									'name' => 'layers-menu-link',
+									'id' => 'layers-menu-link',
+									'href' => admin_url( 'nav-menus.php' ),
+									'target' => '_blank',
+									'tag' => 'a',
+									'class' => 'layers-button btn-primary',
+									'label' => __( 'Setup Menus', 'layerswp' ),
+								)
+						),
+					'skip-action' => 'layers_site_setup_step_dismissal'
+				)
+			);
+
+		return apply_filters( 'layers_setup_actions' , $site_setup_actions );
+	}
+
+	public function enqueue_dashboard_scripts(){
+
+		wp_enqueue_script(
+			LAYERS_THEME_SLUG . '-dashboard' ,
+			get_template_directory_uri() . '/core/assets/dashboard.js',
+			array(
+				'jquery',
+			),
+			LAYERS_VERSION
+		); // Sticky-Kit
+
+	}
+
 }
 
 /**
@@ -160,10 +235,12 @@ class Layers_Options_Panel {
 
 function layers_options_panel_menu(){
 
+	$layers_options_panel = new Layers_Options_Panel();
+
 	global $submenu;
 
 	// dashboard Page
-	add_menu_page(
+	$dashboard = add_menu_page(
 		LAYERS_THEME_TITLE,
 		LAYERS_THEME_TITLE,
 		'edit_theme_options',
@@ -172,6 +249,8 @@ function layers_options_panel_menu(){
 		'none',
 		3
 	);
+
+	add_action('admin_print_scripts-' . $dashboard, array( $layers_options_panel, 'enqueue_dashboard_scripts') );
 
 	// Get Started
 	add_submenu_page(
@@ -213,17 +292,6 @@ function layers_options_panel_menu(){
 		'edit_theme_options',
 		'customize.php'
 	);
-
-	// Backup Page
-	add_submenu_page(
-		LAYERS_THEME_SLUG . '-dashboard',
-		__( 'Plugins' , 'layerswp' ),
-		__( 'Plugins' , 'layerswp' ),
-		'edit_theme_options',
-		LAYERS_THEME_SLUG . '-plugins',
-		'layers_options_panel_ui'
-	);
-
 
 	// Backup Page
 	add_submenu_page(

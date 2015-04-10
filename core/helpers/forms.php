@@ -475,10 +475,10 @@ class Layers_Form_Elements {
 			* Button Selector
 			*/
 			case 'button' :
-				$tag = ( '' == $input->tag ) ? 'button' : $input->tag ;
-				$href = ( '' == $input->href ) ? '' : 'href="' . $input->href . '"' ;
-				?>
-				<<?php echo $tag; ?>  class="layers-button btn-medium" <?php echo $href ?> <?php echo implode ( ' ' , $input_props ); ?> data-button_text="<?php echo esc_attr( $input->label ); ?>">
+				$tag = ( isset( $input->tag ) && '' != $input->tag ) ? $input->tag : 'button' ;
+				$href = ( isset( $input->href ) && '' != $input->href ) ? 'href="' . $input->href . '"' : '' ;
+				$target = ( isset( $input->target ) && '' != $input->target ) ? 'target="' . $input->target . '"' : '' ;?>
+				<<?php echo $tag; ?>  class="layers-button btn-medium" <?php echo $href ?> <?php echo $target; ?> <?php echo implode ( ' ' , $input_props ); ?> data-button_text="<?php echo esc_attr( $input->label ); ?>">
 					<?php echo esc_attr( $input->label ); ?>
 				</<?php echo $tag; ?>>
 			<?php break;

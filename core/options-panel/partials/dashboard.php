@@ -1,9 +1,13 @@
 <?php // Fetch current user information
 $user = wp_get_current_user(); ?>
+
+<?php // Instantiate Inputs
+$form_elements = new Layers_Form_Elements(); ?>
+
 <?php // Get the API up and running for the extension listing
 $api = new Layers_API(); ?>
 
-<section class="layers-area-wrapper">
+<section id="layers-dashboard-page" class="layers-area-wrapper">
 
 	<?php $this->header( __( 'Dashboard' , 'layerswp' ) ); ?>
 
@@ -19,15 +23,19 @@ $api = new Layers_API(); ?>
 							<h4 class="layers-heading"><?php _e( 'Layers Pages' , 'layerswp' ); ?></h4>
 						</div>
 						<ul class="layers-list layers-page-list">
-							<?php foreach( layers_get_builder_pages() as $page ) { ?>
-								<li>
-									<a class="layers-page-list-title" href="<?php echo admin_url( 'post.php?post=' . $page->ID . '&action=edit' ); ?>"><?php echo $page->post_title; ?></a>
-									<span class="layers-page-edit-links">
-										<a href="<?php echo admin_url( 'customize.php?url=' . esc_url( get_the_permalink() ) ); ?>"><?php _e( 'Edit Layout' , 'layerswp' ); ?></a> |
-										<a href="<?php echo admin_url( 'post.php?post=' . $page->ID . '&action=edit' ); ?>"><?php _e( 'Edit' , 'layerswp' ); ?></a> |
-										<a href="<?php echo get_the_permalink( $page->ID ); ?>"><?php _e( 'View' , 'layerswp' ); ?></a>
-									</span>
-								</li>
+							<?php if( count( layers_get_builder_pages() ) > 1 ) { ?>
+								<?php foreach( layers_get_builder_pages() as $page ) { ?>
+									<li>
+										<a class="layers-page-list-title" href="<?php echo admin_url( 'post.php?post=' . $page->ID . '&action=edit' ); ?>"><?php echo $page->post_title; ?></a>
+										<span class="layers-page-edit-links">
+											<a href="<?php echo admin_url( 'customize.php?url=' . esc_url( get_the_permalink( $page->ID ) ) ); ?>"><?php _e( 'Edit Layout' , 'layerswp' ); ?></a> |
+											<a href="<?php echo admin_url( 'post.php?post=' . $page->ID . '&action=edit' ); ?>"><?php _e( 'Edit' , 'layerswp' ); ?></a> |
+											<a href="<?php echo get_the_permalink( $page->ID ); ?>"><?php _e( 'View' , 'layerswp' ); ?></a>
+										</span>
+									</li>
+								<?php }?>
+							<?php } else { ?>
+								<li><?php _e( 'You have not created any Layers Pages yet' , 'layerswp' ); ?></li>
 							<?php }?>
 						</ul>
 						<div class="layers-button-well">
@@ -53,79 +61,74 @@ $api = new Layers_API(); ?>
 
 				<div class="layers-column layers-span-4">
 
-					<div class="layers-status-notice uptodate">
+					<?php /*
+					* Check to see if we have dismissed or gone through any of the setup steps
+					*/
+					$dismissed_setup_steps = get_option( 'layers_dismissed_setup_steps' );
+					foreach( array_keys( $this->site_setup_actions() ) as $key ) {
+						if( !is_array( $dismissed_setup_steps ) || !in_array( $key, $dismissed_setup_steps ) ) {
+							$setup_steps[] = $key;
+						}
+					} ?>
+
+					<div class="layers-status-notice layers-site-setup-completion uptodate  layers-hide">
 						<h5 class="layers-status-notice-heading">
 							<i class="icon-tick"></i>
 							<span><?php _e( 'Congrats your site is setup!' , 'layerswp' ); ?></span>
 						</h5>
 					</div>
 
-					<div class="layers-panel">
-						<div class="layers-panel-title">
-							<h4 class="layers-heading"><?php _e( 'Complete Your Site Setup' , 'layerswp' ); ?></h4>
-						</div>
+					<?php if( isset( $setup_steps ) ) { ?>
+						<div class="layers-panel layers-site-setup-panel">
+							<div class="layers-panel-title">
+								<h4 class="layers-heading"><?php _e( 'Complete Your Site Setup' , 'layerswp' ); ?></h4>
+							</div>
+							<?php $setup_index = 0; ?>
+							<?php foreach( $this->site_setup_actions() as $setup_key => $setup_details ) {
 
-						<div class="layers-content">
-							<div class="layers-section-title layers-tiny">
-								<h3 class="layers-heading">Google Analytics</h3>
-								<p class="layers-excerpt">
-									Enter in your Google Analytics ID to enable website traffic reporting.
-								</p>
-							</div>
-							<div class="layers-form-item">
-								<input type="text" placeholder="UA-xxxxxx-xx" />
-							</div>
-						</div>
-						<div class="layers-button-well">
-							<a class="layers-button btn-link layers-pull-right">
-								<?php _e( 'Skip' , 'layerswp' ); ?>
-							</a>
-							<a class="layers-button" href="">
-								<?php _e( 'Save &amp; Proceed &rarr;' , 'layerswp' ); ?>
-							</a>
-						</div>
+								if( !in_array( $setup_key, $setup_steps ) ) continue; ?>
 
-						<div class="layers-content">
-							<div class="layers-section-title layers-tiny">
-								<h3 class="layers-heading">Copyright Text</h3>
-								<p class="layers-excerpt">
-									Words about setting up the menu and where to do it. Maybe a link to a how-to as well.
-								</p>
-							</div>
-							<div class="layers-form-item">
-								<input type="text" placeholder="Made at the tip of Africa &copy;" />
-							</div>
+								<div class="layers-dashboard-setup-form <?php echo ( 0 != $setup_index ) ? 'layers-hide' : ''; ?>">
+									<div class="layers-content">
+										<?php if( isset( $setup_details[ 'label' ] ) || isset( $setup_details[ 'excerpt' ] ) ) { ?>
+											<div class="layers-section-title layers-tiny">
+												<?php if( isset( $setup_details[ 'label' ] ) ) { ?>
+													<h3 class="layers-heading"><?php echo $setup_details[ 'label' ]; ?></h3>
+												<?php } ?>
+												<?php if( isset( $setup_details[ 'excerpt' ] ) ) { ?>
+													<p class="layers-excerpt">
+														<?php echo $setup_details[ 'excerpt' ]; ?>
+													</p>
+												<?php } ?>
+											</div>
+										<?php } ?>
+										<?php if( isset( $setup_details[ 'form' ] ) ){ ?>
+											<?php foreach( $setup_details[ 'form' ] as $form_id => $form_details ) { ?>
+												<div class="layers-form-item">
+													<?php $form_elements->input( $form_details ); ?>
+												</div>
+											<?php } ?>
+										<?php } ?>
+									</div>
+									<?php if( isset( $setup_details[ 'skip-action' ] ) || isset( $setup_details[ 'submit-action' ] ) ) { ?>
+										<div class="layers-button-well">
+											<?php if( isset( $setup_details[ 'skip-action' ] ) ) { ?>
+												<a class="layers-button btn-link layers-pull-right layers-dashboard-skip" data-setup-step-key="<?php echo $setup_key; ?>" data-skip-action="<?php echo $setup_details[ 'skip-action' ]; ?>">
+													<?php _e( 'Dismiss' , 'layerswp' ); ?>
+												</a>
+											<?php } ?>
+											<?php if( isset( $setup_details[ 'submit-action' ] ) ) { ?>
+												<a class="layers-button" href="" data-setup-step-key="<?php echo $setup_key; ?>" data-submit-action="<?php echo $setup_details[ 'submit-action' ]; ?>">
+													<?php echo ( isset( $setup_details[ 'submit-text' ] ) ) ? $setup_details[ 'submit-text' ] : __( 'Save &amp; Proceed &rarr;' , 'layerswp' ); ?>
+												</a>
+											<?php } ?>
+										</div>
+									<?php } ?>
+									<?php $setup_index++; ?>
+								</div>
+							<?php } ?>
 						</div>
-						<div class="layers-button-well">
-							<a class="layers-button btn-link layers-pull-right">
-								<?php _e( 'Skip' , 'layerswp' ); ?>
-							</a>
-							<a class="layers-button" href="">
-								<?php _e( 'Save &amp; Proceed &rarr;' , 'layerswp' ); ?>
-							</a>
-						</div>
-
-						<div class="layers-content">
-							<div class="layers-section-title layers-tiny">
-								<h3 class="layers-heading">Setup your website menu</h3>
-								<p class="layers-excerpt">
-									Words about setting up the menu and where to do it. Maybe a link to a how-to as well.
-								</p>
-							</div>
-							<a class="layers-button btn-primary">
-								<?php _e( 'Setup Menu' , 'layerswp' ); ?>
-							</a>
-						</div>
-						<div class="layers-button-well">
-							<a class="layers-button btn-link layers-pull-right">
-								<?php _e( 'Skip' , 'layerswp' ); ?>
-							</a>
-							<a class="layers-button" href="">
-								<?php _e( 'Proceed &rarr;' , 'layerswp' ); ?>
-							</a>
-						</div>
-
-					</div>
+					<?php } ?>
 
 					<div class="layers-panel layers-content layers-push-bottom">
 						<div class="layers-section-title layers-tiny">

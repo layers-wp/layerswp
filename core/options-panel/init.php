@@ -144,7 +144,8 @@ class Layers_Options_Panel {
 						'label' => 'Layers Pages',
 						'link' => admin_url( '?post_type=page&amp;filter=layers' ),
 					),
-				);
+				)
+		);
 
 		return $menu;
 	}
@@ -210,6 +211,17 @@ function layers_options_panel_menu(){
 		'edit_theme_options',
 		'customize.php'
 	);
+
+	// Backup Page
+	add_submenu_page(
+		LAYERS_THEME_SLUG . '-dashboard',
+		__( 'Plugins' , 'layerswp' ),
+		__( 'Plugins' , 'layerswp' ),
+		'edit_theme_options',
+		LAYERS_THEME_SLUG . '-plugins',
+		'layers_options_panel_ui'
+	);
+
 
 	// Backup Page
 	add_submenu_page(

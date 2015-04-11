@@ -47,18 +47,31 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
         max-width: 1000px;
         transform-style: preserve-3d;
     }
+    .swiper-slide .overlay{
+        height: 100%;
+    }
     .swiper-slide .overlay.darken{
         background-color: rgba(0, 0, 0, 0.2);
     }
     .swiper-slide .container{
         position: relative;
         top: 50%;
+        transform: translateY(-50%);
+        -webkit-transform: translateY(-50%);
+    }
+    .swiper-slide.image-left .container,
+    .swiper-slide.image-right .container{
+        transform: none;
+        -webkit-transform: none;
     }
     .swiper-slide .copy-container{
         max-width: 1040px;
         margin: auto;
         padding: 0;
         position: relative;
+    }
+    .swiper-slide.image-left .copy-container,
+    .swiper-slide.image-right .copy-container{
         top: 50%;
         -webkit-transform: translateY(-50%);
         transform: translateY(-50%);
@@ -68,8 +81,11 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
     }
     .swiper-slide .image-container{
         position: relative;
-        top: 50%;
         text-align: center;
+    }
+    .swiper-slide.image-left .image-container,
+    .swiper-slide.image-right .image-container{
+        top: 50%;
         -webkit-transform: translateY(-50%);
         transform: translateY(-50%);
     }

@@ -1548,7 +1548,8 @@ input[type=text].layers-color-selector.wp-color-picker{
 .layers-accordions-sortable{}
 .layers-accordions-sortable .layers-accordion-item{
     margin-bottom: 10px;
-    border: 1px solid #eee;
+    border: 1px solid #E8E8E8;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.02);
 }
 .layers-accordions-sortable .layers-accordion-item:hover{
     border-color: #ccc;
@@ -1556,8 +1557,11 @@ input[type=text].layers-color-selector.wp-color-picker{
 .layers-accordions-sortable .layers-accordion-title{
     padding: 10px;
     border-top: none;
-    border-bottom:  1px solid #eee;
+    border-bottom: 1px solid transparent;
     cursor: move;
+}
+.layers-accordion-item.open .layers-accordion-title{
+    border-bottom: 1px solid #E7E7E7;
 }
 .layers-accordions-sortable .layers-accordion-title:after{
     line-height: 37px;

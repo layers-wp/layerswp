@@ -155,7 +155,7 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 						<?php } ?>
 					</div>
 			 		<div class="swiper-wrapper">
-						<?php foreach ( explode( ',', $widget[ 'slide_ids' ] ) as $slide_key ) {
+						<?php foreach ( wp_parse_id_list( $widget[ 'slide_ids' ] ) as $slide_key ) {
 
 							// Make sure we've got a column going on here
 							if( !isset( $widget[ 'slides' ][ $slide_key ] ) ) continue;
@@ -254,7 +254,7 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 							watchActiveIndex: true,
 							loop: true
 							<?php if( isset( $widget['autoplay_slides'] ) && isset( $widget['slide_time'] ) && is_numeric( $widget['slide_time'] ) ) {?>, autoplay: <?php echo ($widget['slide_time']*1000); ?><?php }?>
-							<?php if( '' != get_option( $this->get_field_id( 'slider' ) . '_slide_ids' ) && isset( $wp_customize ) && ( strlen( $widget[ 'slide_ids' ] ) > strlen( get_option( $this->get_field_id( 'slider' ) . '_slide_ids' ) ) ) ) { ?>,initialSlide: <?php echo count( explode( ',', $widget['slide_ids']) ) - 1; ?><?php } ?>
+							<?php if( '' != get_option( $this->get_field_id( 'slider' ) . '_slide_ids' ) && isset( $wp_customize ) && ( strlen( $widget[ 'slide_ids' ] ) > strlen( get_option( $this->get_field_id( 'slider' ) . '_slide_ids' ) ) ) ) { ?>,initialSlide: <?php echo count( wp_parse_id_list( $widget['slide_ids']) ) - 1; ?><?php } ?>
 						});
 
 						<?php if( 1 < count( $widget[ 'slides' ] ) ) { ?>
@@ -430,7 +430,7 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 						); ?>
 
 						<?php // If we have some slides, let's break out their IDs into an array
-						if( isset( $slide_ids ) && '' != $slide_ids ) $slides = explode( ',' , $slide_ids ); ?>
+						if( isset( $slide_ids ) && '' != $slide_ids ) $slides = wp_parse_id_list( $slide_ids ); ?>
 
 						<ul id="slide_list_<?php echo esc_attr( $this->number ); ?>" class="layers-accordions layers-accordions-sortable layers-sortable" data-id_base="<?php echo $this->id_base; ?>" data-number="<?php echo esc_attr( $this->number ); ?>">
 							<?php if( isset( $slides ) && is_array( $slides ) ) { ?>

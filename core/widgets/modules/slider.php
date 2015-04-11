@@ -285,7 +285,9 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 			 	</script>
 			<?php } // if !empty( $widget->slides )
 
-			update_option( $this->get_field_id( 'slider' ) . '_slide_ids' , $widget[ 'slide_ids' ] );
+			if ( is_customize_preview() ) {
+				update_option( $this->get_field_id( 'slider' ) . '_slide_ids' , $widget[ 'slide_ids' ] );
+			}
 		}
 
 		/**

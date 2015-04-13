@@ -808,6 +808,20 @@ if( !function_exists( 'layers_inline_styles' ) ) {
 
 			break;
 
+			case 'border' :
+
+				// Set the background array
+				$border_args = $args['border'];
+
+				if( isset( $border_args['color'] ) && '' != $border_args['color'] ){
+					$css .= 'border-color: ' . $border_args[ 'color' ] . ';';
+				}
+
+				if( isset( $border_args['width'] ) && '' != $border_args['width'] ){
+					$css .= 'border-width: ' . $border_args[ 'width' ] . 'px;';
+				}
+			break;
+
 			case 'color' :
 
 				if( '' == $args[ 'color' ] ) return ;

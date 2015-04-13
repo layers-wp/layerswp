@@ -42,6 +42,11 @@ div#widgets-right div[id*='obox-layers-builder']{
     display: none !important;
 }
 
+.layers-soft-hide{
+    visibility: hidden;
+}
+
+
 /*----------------------------------*/
 /*- WORDPRESS RESETS / OVERRIDES ---*/
 

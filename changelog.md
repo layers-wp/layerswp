@@ -13,7 +13,7 @@
 * **Tweak** - Gave copyright border-color rgba (same reason as header cart)
 * **Tweak** - Better .button styling in .story
 * **Tweak** - Increased the width of sub menus
-
+* **Enhancement** - Added 'border' option to the `layers_inline_styles` function
 ## 1.0.8
 ### 02 April 2015
 

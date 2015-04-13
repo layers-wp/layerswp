@@ -293,6 +293,66 @@ class Layers_Customizer_Regsitrar {
 						$control_data
 					)
 				);
+			} else if( 'text' == $control_data['type'] ) {
+
+				// Add Control
+				$this->customizer->add_control(
+					new WP_Customize_Control(
+						$this->customizer,
+						$setting_key,
+						$control_data
+					)
+				);
+			} else if( 'color' == $control_data['type'] ) {
+
+				// Add Control
+				$this->customizer->add_control(
+					new WP_Customize_Color_Control(
+						$this->customizer,
+						$setting_key,
+						$control_data
+					)
+				);
+			} else if( 'upload' == $control_data['type'] ) {
+
+				// Add Control
+				$this->customizer->add_control(
+					new WP_Customize_Upload_Control(
+						$this->customizer,
+						$setting_key,
+						$control_data
+					)
+				);
+			} else if( 'image' == $control_data['type'] ) {
+
+				// Add Control
+				$this->customizer->add_control(
+					new WP_Customize_Image_Control(
+						$this->customizer,
+						$setting_key,
+						$control_data
+					)
+				);
+			} else if( 'background-image' == $control_data['type'] ) {
+
+				// Add Control
+				$this->customizer->add_control(
+					new WP_Customize_Background_Image_Control(
+						$this->customizer,
+						$setting_key,
+						$control_data
+					)
+				);
+			} else if( 'header-image' == $control_data['type'] ) {
+
+				// Add Control
+				$this->customizer->add_control(
+					new WP_Customize_Header_Image_Control(
+						$this->customizer,
+						$setting_key,
+						$control_data
+					)
+				);
 			} else {
 
 				// Add Control
@@ -300,7 +360,6 @@ class Layers_Customizer_Regsitrar {
 					$setting_key,
 					$control_data
 				);
-
 			}
 
 			$control_priority++;

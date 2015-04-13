@@ -1236,20 +1236,61 @@ input[type=text].layers-color-selector.wp-color-picker{
 
 /*---------------------------*/
 /*- CUSTOMIZER CONTROLS -----*/
-.customize-control .layers-customize-control .layers-form-item{
-    margin: 0 0 3px;
-}
 .customize-control .layers-customize-control.layers-customize-control-heading{
     margin: 0 0 -8px;
 }
-.customize-control .layers-customize-control.layers-customize-control-checkbox{
-    margin-top: 10px;
-}
+
 .customize-control .layers-customize-control.layers-pull-top{
     margin-top: 6px;
 }
-.customize-control .layers-customize-control.layers-pull-bottom{
+.customize-control  .layers-customize-control.layers-pull-bottom{
     margin-bottom: -9px;
+}
+
+/*-----------------------------*/
+/*- CUSTOMIZER CONTROLS - NEW -*/
+li[id*='accordion-section-layers'] .customize-control .layers-customize-control .layers-form-item{
+    margin: 0 0 3px;
+}
+li[id*='accordion-section-layers'] .customize-control-title{
+    display: block;
+    margin-bottom: 2px;
+    font-size: 11px;
+    text-transform: uppercase;
+    font-weight: 600;
+    line-height: inher#F00;
+}
+li[id*='accordion-section-layers'] .customize-control-layers-heading{
+    margin: 8px 0 4px 0;
+    
+}#customize-controls li[id*='accordion-section-layers'] .customize-control .layers-customize-control.layers-customize-control-heading .customize-control-title{
+    display: block;
+    font-size: 14px;
+    line-height: 24px;
+    font-weight: 600;
+    text-transform: none;
+}
+li[id*='accordion-section-layers'] .customize-control .layers-customize-control.layers-customize-control-heading{
+    margin: 8px 0 0;
+}
+li[id*='accordion-section-layers'] .customize-control .wp-color-result{
+    margin: 0;
+}
+li[id*='accordion-section-layers'] .customize-control.customize-control-image .actions{
+    margin-bottom: 0;
+}
+li[id*='accordion-section-layers'] .layers-visuals-wrapper.layers-visuals-inline .layers-icon-wrapper{
+    padding: 6px 10px;
+}
+li[id*='accordion-section-layers'] .layers-visuals-item:not(.layers-active) .layers-icon-wrapper{
+    border-color: #ECECEC;
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.02) inset;
+}
+li[id*='accordion-section-layers'] .layers-visuals-item .layers-icon-wrapper:hover{
+    box-shadow: 0px 1px 0px rgba(255, 255, 255, 0.4) inset, 0px 1px 0px rgba(0, 0, 0, 0.08);
+    background: #2EA2CC;
+    border-color: #0074A2;
+    color: #fff;
 }
 
 /*---------------------------*/
@@ -1258,8 +1299,8 @@ input[type=text].layers-color-selector.wp-color-picker{
     display: block;
     float: right;
     width: 88px;
-    height: 45px;
-    background: url(images/layers-logo-dark.png) no-repeat bottom;
+    height: 410px 0;
+    bound: url(images/layers-logo-dark.png) no-repeat bottom;
     background-size: 88px 20px;
     overflow: hidden;
     text-indent: -999px;

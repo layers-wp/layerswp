@@ -129,10 +129,10 @@ jQuery(document).ready(function($){
 
 				// Set slide
 				$slide = $(data);
-				
+
 				// Append module HTML
 				$slideList.append($slide);
-				
+
 				// Add Open Class to slide
 				$slide.addClass('open');
 

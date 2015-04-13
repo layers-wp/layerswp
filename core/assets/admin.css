@@ -1233,22 +1233,8 @@ input[type=text].layers-color-selector.wp-color-picker{
         transform: translate3d(0, 0, 0);
     }
 
-
-/*---------------------------*/
-/*- CUSTOMIZER CONTROLS -----*/
-.customize-control .layers-customize-control.layers-customize-control-heading{
-    margin: 0 0 -8px;
-}
-
-.customize-control .layers-customize-control.layers-pull-top{
-    margin-top: 6px;
-}
-.customize-control  .layers-customize-control.layers-pull-bottom{
-    margin-bottom: -9px;
-}
-
 /*-----------------------------*/
-/*- CUSTOMIZER CONTROLS - NEW -*/
+/*- CUSTOMIZER CONTROLS -------*/
 li[id*='accordion-section-layers'] .customize-control .layers-customize-control .layers-form-item{
     margin: 0 0 3px;
 }
@@ -1260,18 +1246,21 @@ li[id*='accordion-section-layers'] .customize-control-title{
     font-weight: 600;
     line-height: inher#F00;
 }
+li[id*='accordion-section-layers'] .description{
+    color: #999 !important;
+}
 li[id*='accordion-section-layers'] .customize-control-layers-heading{
     margin: 8px 0 4px 0;
-    
-}#customize-controls li[id*='accordion-section-layers'] .customize-control .layers-customize-control.layers-customize-control-heading .customize-control-title{
+}
+li[id*='accordion-section-layers'] .customize-control .layers-customize-control.layers-customize-control-heading{
+    margin: 0 ;
+}
+li[id*='accordion-section-layers'] .customize-control .layers-customize-control.layers-customize-control-heading .customize-control-title{
     display: block;
     font-size: 14px;
     line-height: 24px;
     font-weight: 600;
     text-transform: none;
-}
-li[id*='accordion-section-layers'] .customize-control .layers-customize-control.layers-customize-control-heading{
-    margin: 8px 0 0;
 }
 li[id*='accordion-section-layers'] .customize-control .wp-color-result{
     margin: 0;
@@ -1282,15 +1271,17 @@ li[id*='accordion-section-layers'] .customize-control.customize-control-image .a
 li[id*='accordion-section-layers'] .layers-visuals-wrapper.layers-visuals-inline .layers-icon-wrapper{
     padding: 6px 10px;
 }
-li[id*='accordion-section-layers'] .layers-visuals-item:not(.layers-active) .layers-icon-wrapper{
-    border-color: #ECECEC;
-    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.02) inset;
-}
 li[id*='accordion-section-layers'] .layers-visuals-item .layers-icon-wrapper:hover{
     box-shadow: 0px 1px 0px rgba(255, 255, 255, 0.4) inset, 0px 1px 0px rgba(0, 0, 0, 0.08);
     background: #2EA2CC;
     border-color: #0074A2;
     color: #fff;
+}
+.customize-control .layers-customize-control.layers-pull-top{
+    margin-top: 6px;
+}
+.customize-control  .layers-customize-control.layers-pull-bottom{
+    margin-bottom: -9px;
 }
 
 /*---------------------------*/

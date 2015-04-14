@@ -1074,6 +1074,80 @@ p.stars span a:focus{
         background: #222;
     }
 
+/*-------------------------------*/
+/*- PRICE FILTER WIDGET ---------*/
+/*-------------------------------*/
+
+    .widget_price_filter{
+        overflow: hidden;
+    }
+    .widget_price_filter .widgettitle{
+        display: none;
+    }
+
+    .price_slider_wrapper .price_slider{
+        margin-bottom: 10px;
+    }
+    .price_slider_wrapper .ui-widget-content{
+        border-radius: 1em;
+        background: #ccc;
+    }
+
+    .ui-slider-horizontal{
+        height: 8px;
+    }
+    .ui-slider{
+        position: relative;
+        text-align: left;
+    }
+    .ui-slider .ui-slider-range{
+        position: absolute;
+        z-index: 1;
+        font-size: .7em;
+        display: block;
+        border: 0;
+        background: rgba(0, 0, 0, 0.08);
+        border-radius: 1em;
+    }
+
+    .ui-slider-horizontal .ui-slider-range{
+        top: 0;
+        height: 100%;
+    }
+    .ui-slider .ui-slider-handle{
+        position: absolute;
+        z-index: 2;
+        width: 12px;
+        height: 12px;
+        margin-top: -2px;
+        border-radius: 1em;
+        cursor: pointer;
+        background: #333;
+    }
+
+    .ui-slider .ui-slider-handle:last-child{
+        margin-left: -12px;
+    }
+    .ui-state-default,
+    .ui-widget-content .ui-state-default,
+    .ui-widget-header .ui-state-default{
+        background: #333;
+    }
+
+    .price_slider_amount .button{
+        float: left;
+        height: 24px;
+        padding: 0 8px;
+        font-size: 1.1rem;
+        letter-spacing: 0;
+    }
+    .price_slider_amount .price_label{
+        float: right;
+        font-size: 1.1rem;
+        line-height: 24px;
+        font-weight: 700;
+    }
+
 
 .woocommerce-checkout .form-row .chosen-container{
     max-width: 500px;

@@ -563,6 +563,7 @@ class Layers_Design_Controller {
             ),
             'fonts-color' => array(
                 'type' => 'color',
+                'label' => __( 'Text Color', 'layerswp' ),
                 'name' => $this->widget['name'] . '[fonts][color]',
                 'id' => $this->widget['id'] . '-fonts-color',
                 'value' => ( isset( $this->values['fonts']['color'] ) ) ? $this->values['fonts']['color'] : NULL
@@ -604,7 +605,7 @@ class Layers_Design_Controller {
             ),
             'background-color' => array(
                 'type' => 'color',
-                'label' => __( 'Color', 'layerswp' ),
+                'label' => __( 'Background Color', 'layerswp' ),
                 'name' => $this->widget['name'] . '[background][color]',
                 'id' => $this->widget['id'] . '-background-color',
                 'value' => ( isset( $this->values['background']['color'] ) ) ? $this->values['background']['color'] : NULL

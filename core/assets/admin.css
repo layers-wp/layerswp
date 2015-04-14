@@ -1241,6 +1241,9 @@ li[id*='accordion-section-layers'] .customize-control{
 li[id*='accordion-section-layers'] .customize-control.customize-control-layers-heading{
     margin: 12px 0 0px;
 }
+li[id*='accordion-section-layers'] .customize-control:first-child{
+    margin: 6px 0 0px;
+}
 li[id*='accordion-section-layers'] .customize-control .customize-control-title{
     display: block;
     margin-bottom: 2px;
@@ -1277,6 +1280,9 @@ li[id*='accordion-section-layers'] .layers-visuals-wrapper.layers-visuals-inline
 }
 .customize-control  .layers-customize-control.layers-pull-bottom{
     margin-bottom: -9px;
+}
+.icon-image-none:before {
+    content: "\e61b";
 }
 
 /*---------------------------*/

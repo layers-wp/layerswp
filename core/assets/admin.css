@@ -1247,7 +1247,8 @@ li[id*='accordion-section-layers'] .customize-control .customize-control-title{
     font-size: 11px;
     text-transform: uppercase;
     font-weight: 600;
-    line-height: inher#F00;
+    line-height: inherit;
+    color: inherit;
 }
 li[id*='accordion-section-layers'] .customize-control .description{
     color: #999 !important;

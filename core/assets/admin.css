@@ -1239,19 +1239,18 @@ li[id*='accordion-section-layers'] .customize-control{
     margin: 6px 0;
 }
 li[id*='accordion-section-layers'] .customize-control.customize-control-layers-heading{
-    margin: 12px 0 0px;
+    margin:0;
 }
 li[id*='accordion-section-layers'] .customize-control:first-child{
     margin: 6px 0 0px;
 }
 li[id*='accordion-section-layers'] .customize-control .customize-control-title{
     display: block;
-    margin-bottom: 2px;
-    font-size: 11px;
-    text-transform: uppercase;
-    font-weight: 600;
+    margin-bottom: 6px;
+    font-size: 13px;
+    text-transform: none;
     line-height: inherit;
-    color: inherit;
+    font-weight: normal;
 }
 li[id*='accordion-section-layers'] .customize-control .description{
     color: #999 !important;
@@ -1265,6 +1264,7 @@ li[id*='accordion-section-layers'] .customize-control .layers-customize-control.
     line-height: 24px;
     font-weight: 600;
     text-transform: none;
+    margin: 0;
 }
 li[id*='accordion-section-layers'] .customize-control .wp-color-result{
     margin: 0;

@@ -183,18 +183,6 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 
 			<section class="widget row content-vertical-massive <?php echo $this->check_and_return( $widget , 'design', 'advanced', 'customclass' ) ?> <?php echo $this->get_widget_spacing_class( $widget ); ?>" id="<?php echo $widget_id; ?>">
 
-				<pre>
-				jQuery(function($){
-						layers_masonry_settings[ '<?php echo $widget_id; ?>' ] = [{
-								itemSelector: '.layers-masonry-column',
-								masonry: {
-									gutter: <?php echo ( isset( $widget['design'][ 'gutter' ] ) ? 20 : 0 ); ?>
-								}
-							}];
-
-						$('#<?php echo $widget_id; ?>').find('.list-masonry').layers_masonry( layers_masonry_settings[ '<?php echo $widget_id; ?>' ][0] );
-					});
-				</pre>
 				<?php if( '' != $this->check_and_return( $widget , 'title' ) ||'' != $this->check_and_return( $widget , 'excerpt' ) ) { ?>
 					<div class="container clearfix">
 						<div class="section-title <?php echo $this->check_and_return( $widget , 'design', 'fonts', 'size' ); ?> <?php echo $this->check_and_return( $widget , 'design', 'fonts', 'align' ); ?> clearfix">

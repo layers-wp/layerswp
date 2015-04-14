@@ -204,10 +204,16 @@ p.stars span a:focus{
 }
 .products .product{
     position: relative;
-    padding: 20px;
+    padding: 20px 20px 10px;
     margin-bottom: 20px;
     background: #f5f5f5;
     overflow: hidden;
+}
+.products .button{
+    margin: 0 0 15px;
+}
+.products .stock{
+    margin: 0 0 10px;
 }
 .products .product a:first-child{
     display: block;
@@ -317,9 +323,10 @@ p.stars span a:focus{
         /*-------------------*/
         /*- STOCK -----------*/
         .stock{
-            font-size: 1.3rem;
+            font-size: 1.4rem;
             text-transform: uppercase;
             margin-bottom: 20px;
+            font-weight: bold;
         }
         .stock.in-stock{
             color: #93B25E;

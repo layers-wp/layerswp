@@ -190,6 +190,7 @@ p.stars span a:focus{
 }
 .woocommerce-ordering{
     float: right;
+    margin-left: 10px;
     font-size: 1.3rem;
 }
 .woocommerce-ordering select{
@@ -219,13 +220,13 @@ p.stars span a:focus{
     display: block;
 }
 .products .img-wrap{
-    margin: -20px -20px 20px;
+    margin: -20px -20px 0;
 }
 .products .img-wrap img{
     display: block;
 }
 .products h3{
-    margin: 0px 0px 10px;
+    margin: 20px 0 0;
     font-size: 2.0rem;
     font-weight: 400;
 }
@@ -236,7 +237,10 @@ p.stars span a:focus{
 }
 .products .price{
     display: inline-block;
-    margin: 0 0 20px;
+    margin: 0;
+}
+.products .button{
+    margin-top: 10px;
 }
 .products .added_to_cart{
     padding: 4px 10px;
@@ -244,6 +248,13 @@ p.stars span a:focus{
     font-size: 1.0rem;
     font-weight: 600;
 }
+
+    /*---------------------------*/
+    /*- ACCURATE SPACING --------*/
+    .products h3 + .price{
+        margin-top: 10px;
+    }
+
 
 /*---------------------------*/
 /*- RELATED PRODUCTS --------*/

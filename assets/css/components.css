@@ -450,6 +450,20 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
         }
 
 /*-------------------------------*/
+/*- COMMENTS --------------------*/
+/*-------------------------------*/
+
+    .comment{
+        clear: both;
+    }
+    .comment .comment{
+        margin-top: 30px;
+    }
+    .comment .comment:last-child{
+        margin-bottom: 0;
+    }
+
+/*-------------------------------*/
 /*- COMMENTS FORM ---------------*/
 /*-------------------------------*/
 
@@ -555,7 +569,6 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
         color: #8F8F8F;
     }
 
-
         /*-----------------------*/
         /*- WIDGET NAV MENU -----*/
         .sidebar .widget.widget_nav_menu{
@@ -573,10 +586,14 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
             text-align: left;
         }
 
+
     /*---------------------------*/
     /*- SEARCH WIDGET -----------*/
     .screen-reader-text{
         display: none;
+    }
+    .search-form{
+        overflow: hidden;
     }
     .search-form label{
         margin-bottom: 0;
@@ -690,3 +707,17 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
     }
 
 
+
+@media only screen and (min-width: 769px) {
+
+    .sidebar .search-field{
+        width: 65%;
+        float: left;
+    }
+    .sidebar .search-submit{
+        float: left;
+        width: 35%;
+        height: 36px;
+    }
+
+}

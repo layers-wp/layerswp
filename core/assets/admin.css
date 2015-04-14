@@ -1214,23 +1214,58 @@ input[type=text].layers-color-selector.wp-color-picker{
         transform: translate3d(0, 0, 0);
     }
 
-
-/*---------------------------*/
-/*- CUSTOMIZER CONTROLS -----*/
-.customize-control .layers-customize-control .layers-form-item{
+/*-----------------------------*/
+/*- CUSTOMIZER CONTROLS -------*/
+li[id*='accordion-section-layers'] .customize-control{
+    margin: 6px 0;
+}
+li[id*='accordion-section-layers'] .customize-control.customize-control-layers-heading{
+    /* margin:0; */
+}
+li[id*='accordion-section-layers'] .customize-control:first-child{
+    margin: 6px 0 0px;
+}
+li[id*='accordion-section-layers'] .customize-control .customize-control-title{
+    display: block;
+    margin-bottom: 6px;
+    font-size: 13px;
+    text-transform: none;
+    line-height: inherit;
+    font-weight: normal;
+}
+li[id*='accordion-section-layers'] hr{
+    border: 0;
+    border-top: 0;
+    border-bottom: 1px solid #EEE;
+}
+li[id*='accordion-section-layers'] .customize-control .layers-form-item{
     margin: 0 0 3px;
 }
-.customize-control .layers-customize-control.layers-customize-control-heading{
-    margin: 0 0 -8px;
+li[id*='accordion-section-layers'] .customize-control .heading-label .customize-control-title{
+    font-size: 14px;
+    line-height: 24px;
+    font-weight: bold;
+    margin: 0 0 4px;
 }
-.customize-control .layers-customize-control.layers-customize-control-checkbox{
-    margin-top: 10px;
+li[id*='accordion-section-layers'] .customize-control .description{
+    color: #999 !important;
 }
-.customize-control .layers-customize-control.layers-pull-top{
-    margin-top: 6px;
+li[id*='accordion-section-layers'] .customize-control .layers-customize-control.layers-customize-control-heading{
+    margin: 40 x 0;
 }
-.customize-control .layers-customize-control.layers-pull-bottom{
-    margin-bottom: -9px;
+li[id*='accordion-section-layers'] .customize-control .layers-customize-control.layers-customize-control-heading .customize-control-title{
+    display: block;
+    font-size: 14px;
+    line-height: 24px;
+    font-weight: 600;
+    text-transform: none;
+    margin: 0;
+}
+li[id*='accordion-section-layers'] .customize-control .wp-color-result{
+    margin: 0;
+}
+li[id*='accordion-section-layers'] .customize-control.customize-control-image .actions{
+    margin-bottom: 0;
 }
 
 /*---------------------------*/
@@ -1239,8 +1274,8 @@ input[type=text].layers-color-selector.wp-color-picker{
     display: block;
     float: right;
     width: 88px;
-    height: 45px;
-    background: url(images/layers-logo-dark.png) no-repeat bottom;
+    height: 410px 0;
+    bound: url(images/layers-logo-dark.png) no-repeat bottom;
     background-size: 88px 20px;
     overflow: hidden;
     text-indent: -999px;

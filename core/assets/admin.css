@@ -1220,7 +1220,7 @@ li[id*='accordion-section-layers'] .customize-control{
     margin: 6px 0;
 }
 li[id*='accordion-section-layers'] .customize-control.customize-control-layers-heading{
-    margin:0;
+    /* margin:0; */
 }
 li[id*='accordion-section-layers'] .customize-control:first-child{
     margin: 6px 0 0px;
@@ -1233,14 +1233,22 @@ li[id*='accordion-section-layers'] .customize-control .customize-control-title{
     line-height: inherit;
     font-weight: normal;
 }
-li[id*='accordion-section-layers'] .customize-control .heading-label .customize-controllayers--title{
+li[id*='accordion-section-layers'] hr{
+    border: 0;
+    border-top: 0;
+    border-bottom: 1px solid #EEE;
+}
+li[id*='accordion-section-layers'] .customize-control .layers-form-item{
+    margin: 0 0 3px;
+}
+li[id*='accordion-section-layers'] .customize-control .heading-label .customize-control-title{
     font-size: 14px;
     line-height: 24px;
-    font-    margin: 0;
+    font-weight: bold;
+    margin: 0 0 4px;
 }
 li[id*='accordion-section-layers'] .customize-control .description{
     color: #999 !important;
-    margin: 6p;
 }
 li[id*='accordion-section-layers'] .customize-control .layers-customize-control.layers-customize-control-heading{
     margin: 40 x 0;
@@ -1258,18 +1266,6 @@ li[id*='accordion-section-layers'] .customize-control .wp-color-result{
 }
 li[id*='accordion-section-layers'] .customize-control.customize-control-image .actions{
     margin-bottom: 0;
-}
-li[id*='accordion-section-layers'] .layers-visuals-wrapper.layers-visuals-inline .layers-icon-wrapper{
-    padding: 6px 10px;
-}
-.customize-control .layers-customize-control.layers-pull-top{
-    margin-top: 6px;
-}
-.customize-control  .layers-customize-control.layers-pull-bottom{
-    margin-bottom: -9px;
-}
-.icon-image-none:before {
-    content: "\e61b";
 }
 
 /*---------------------------*/

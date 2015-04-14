@@ -7,6 +7,9 @@ $form_elements = new Layers_Form_Elements(); ?>
 <?php // Get the API up and running for the plugin listing
 $api = new Layers_API(); ?>
 
+<?php // Load up Layers theme info
+$theme_info = wp_get_theme( 'layerswp' ); ?>
+
 <section id="layers-dashboard-page" class="layers-area-wrapper">
 
 	<?php $this->header( __( 'Dashboard' , 'layerswp' ) ); ?>
@@ -118,14 +121,10 @@ $api = new Layers_API(); ?>
 								</div>
 							<?php } ?>
 						</div>
-					<?php } else { ?>
-						<div class="layers-status-notice layers-site-setup-completion uptodate">
-							<h5 class="layers-status-notice-heading">
-								<i class="icon-tick"></i>
-								<span><?php _e( 'Congrats your site is setup!' , 'layerswp' ); ?></span>
-							</h5>
-						</div>
-					<?php } ?>
+					<?php } else {
+						// Site Setup Contrats
+						$this->notice( 'good' , __( 'Congrats your site is setup!' , 'layerswp' ) ) ;
+					} ?>
 
 					<?php if( 0 == count( layers_get_plugins() ) ) { ?>
 						<div class="layers-panel layers-content layers-push-bottom">
@@ -156,6 +155,9 @@ $api = new Layers_API(); ?>
 											<p>
 												<?php echo $extension_details[ 'Description' ]; ?>
 											</p>
+										<?php } ?>
+										<?php if( version_compare( $theme_info->get( 'Version' ), $extension_details[ 'Layers Required Version' ], '<' ) ){ ?>
+											<?php  $this->notice( 'bad' , __( sprintf( 'Requires Layers %s', $extension_details[ 'Layers Required Version' ] ), 'layerswp' ) ); ?>
 										<?php } ?>
 									</li>
 								<?php } // foreach extensions ?>

@@ -1811,11 +1811,11 @@ input[type=text].layers-color-selector.wp-color-picker{
 
         /*-------------------*/
         /*- STATUS COLORS ---*/
-        .uptodate{
+        .layers-status-good{
             background: #A3C567;
             border-color: #93B25E;
         }
-        .outdated{
+        .layers-status-bad{
             background: #E1574C;
             border-color: #B0453D;
         }

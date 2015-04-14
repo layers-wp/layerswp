@@ -126,9 +126,21 @@ class Layers_Options_Panel {
 	<?php }
 
 	/**
+	* Dashboard Notices
+	*/
+	public function notice( $good_or_bad = 'good', $message = FALSE ){
+		if( FALSE == $message ) return; ?>
+		<div class="layers-status-notice layers-site-setup-completion layers-status-<?php echo $good_or_bad; ?>">
+			<h5 class="layers-status-notice-heading">
+				<i class="icon-<?php echo ( 'good' == $good_or_bad ) ? 'tick' : 'cross'; ?>"></i>
+				<span><?php echo $message; ?></span>
+			</h5>
+		</div>
+	<?php }
+
+	/**
 	* Get Layers Regsitered Menus
 	*/
-
 	public function get_menu_pages(){
 
 		$menu = apply_filters( 'layers_dashboard_header_links', array(

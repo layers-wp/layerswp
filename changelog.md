@@ -16,6 +16,7 @@
 * **Tweak** - Nested comments now clear the .copy div in the parent comment
 * **Tweak** - The 'search' button in the Search Widget is now inline with the input field on screens larger than tablets
 * **Enhancement** - Added 'border' option to the `layers_inline_styles` function
+* **Enhancement** - Builder pages now obey password protection
 
 ## 1.0.8
 ### 02 April 2015

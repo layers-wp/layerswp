@@ -402,6 +402,10 @@ if( !function_exists( 'layers_apply_customizer_styles' ) ) {
 		
 		// Section Title - Headings
 		layers_inline_styles( '.section-title .heading', 'css', array( 'css' => 'color: ' . layers_get_theme_mod( 'section-title-heading-color', FALSE ) . '; ' ) );
+		
+		// Section Title - Excerpt
+		layers_inline_styles( '.section-title .excerpt', 'css', array( 'css' => 'color: ' . layers_get_theme_mod( 'section-title-excerpt-color', FALSE ) . '; ' ) );
+		
 	}
 } // layers_apply_customizer_styles
 add_action( 'wp_enqueue_scripts', 'layers_apply_customizer_styles', 100 );
@@ -610,6 +614,14 @@ if( !function_exists( 'layers_get_center_column_class' ) ) {
 			$classes[] = 'span-8';
 		}
 
+		// Invert if body background is dark
+		if ( 'dark' == layers_is_light_or_dark( layers_get_theme_mod( 'body-background-color', FALSE ) ) ){
+			$classes[] = 'invert';
+		}
+		
+		// Apply any classes passed as parameter
+		if( '' != $class ) $classes[] = $class;
+		
 		$classes = array_map( 'esc_attr', $classes );
 
 		$classes = apply_filters( 'layers_center_column_class', $classes, $class );

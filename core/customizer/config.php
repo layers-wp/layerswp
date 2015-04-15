@@ -337,7 +337,14 @@ class Layers_Customizer_Config {
 									'subtitle' => '',
 									'description' => __( 'The background color of the titles you see on your blog page and other locations' , 'layerswp' ),
 									'type' => 'layers-color',
-									'default' => '#999999',
+									'default' => '#F3F3F3F',
+								),
+								'section-title-heading-color' => array(
+									'label' => __( 'Section Title Heading Color' , 'layerswp' ),
+									'subtitle' => '',
+									'description' => __( 'The color of the section titles all around your site' , 'layerswp' ),
+									'type' => 'layers-color',
+									'default' => '#323232',
 								),
 							);
 

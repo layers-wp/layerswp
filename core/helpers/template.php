@@ -614,6 +614,11 @@ if( !function_exists( 'layers_get_center_column_class' ) ) {
 			$classes[] = 'span-8';
 		}
 
+		// Invert if body background is dark
+		if ( 'dark' == layers_is_light_or_dark( layers_get_theme_mod( 'body-background-color', FALSE ) ) ){
+			$classes[] = 'invert';
+		}
+		
 		// Apply any classes passed as parameter
 		if( '' != $class ) $classes[] = $class;
 		

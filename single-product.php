@@ -25,7 +25,7 @@ get_header(); ?>
                     <div class="row">
                         
                         <!-- Show the Images -->
-                        <div class="column product-images span-6 <?php echo ( 'image-right' == layers_get_theme_mod( 'woocommerce-product-page-layout' ) ) ? 'pull-right no-gutter' : '' ?>">
+                        <div class="column product-images span-6 <?php echo ( 'advanced-layout-right' == layers_get_theme_mod( 'woocommerce-product-page-layout' ) ) ? 'pull-right no-gutter' : '' ?>">
                             <?php do_action( 'woocommerce_before_single_product_summary', $post, $_product ); ?>
                         </div>
 

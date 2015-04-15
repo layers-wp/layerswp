@@ -373,7 +373,7 @@ if( !function_exists( 'layers_apply_customizer_styles' ) ) {
 			$bg_opacity = ( layers_get_theme_mod( 'header-overlay') ) ? .5 : 1 ;
 			layers_inline_styles( '.header-site, .header-site.header-sticky', 'css', array( 'css' => 'background-color: rgba(' . implode( ', ' , layers_hex2rgb( layers_get_theme_mod( 'header-background-color' ) ) ) . ', ' . $bg_opacity . ');' ) );
 		}
-		
+
 		// Body
 		layers_inline_styles( '.wrapper-site', 'background', array( 'background' => array( 'color' => layers_get_theme_mod( 'body-background-color' ) ) ) );
 		if ( 'light' != layers_is_light_or_dark( layers_get_theme_mod( 'body-background-color', FALSE ) ) ){
@@ -405,7 +405,7 @@ add_action( 'wp_enqueue_scripts', 'layers_apply_customizer_styles', 100 );
  */
 function layers_add_invert_class( $classes ) {
 	$classes[] = 'invert';
-	
+
 	return $classes;
 }
 
@@ -857,6 +857,22 @@ if( !function_exists( 'layers_inline_styles' ) ) {
 				}
 			break;
 
+			case 'button' :
+
+				// Set the background array
+				$button_args = $args['button'];
+
+				if( isset( $button_args['background-color'] ) && '' != $button_args['background-color'] ){
+					$css .= 'background-color: ' . $button_args['background-color'] . '; ';
+				}
+
+				if( isset( $button_args['color'] ) && '' != $button_args['color'] ){
+					$css .= 'color: ' . $button_args['color'] . '; ';
+				}
+
+			break;
+
+
 			case 'margin' :
 			case 'padding' :
 
@@ -928,6 +944,7 @@ if( !function_exists( 'layers_inline_styles' ) ) {
 
 		}
 
+
 		// Bail if no css is generated
 		if ( '' == trim( $css ) ) return false;
 
@@ -956,6 +973,45 @@ if( !function_exists( 'layers_inline_styles' ) ) {
 		$layers_inline_css .= $inline_css;
 	}
 } // layers_inline_styles
+
+/**
+* Style Generator Just for Buttons
+*
+* @param    string     $type   Type of style to generate, background, color, text-shadow, border
+* @param    array       $args
+*
+* @return   string     $layers_inline_css CSS to append to the inline widget styles that have been generated
+*/
+if( !function_exists( 'layers_inline_button_styles' ) ) {
+	function layers_inline_button_styles( $container_id = NULL, $type = 'background' , $args = array() ){
+
+		// Add styling for the standard colors
+
+		layers_inline_styles( $container_id, $type, $args );
+
+		// Add styling for the hover colors
+		if( isset( $args['selectors'] ) ) {
+			$hover_args = $args;
+			foreach( $args['selectors'] as $selector ){
+				$new_selectors[] = $selector. ':hover';
+			}
+			$hover_args['selectors'] = $new_selectors;
+		}
+
+		// Generate a lighter text color
+		if( isset( $args[ 'button' ][ 'color' ] ) ){
+			$hover_args[ 'button' ]['color'] = layers_hex_lighter( $args[ 'button' ][ 'color' ] );
+		}
+
+		// Generate a lighter text background color
+		if( isset( $args[ 'button' ][ 'background-color' ] ) ){
+			$hover_args[ 'button' ]['background-color'] = layers_hex_lighter( $args[ 'button' ][ 'background-color' ] );
+		}
+
+		// Apply hover colors
+		if( isset( $hover_args ) ) layers_inline_styles( $container_id, $type, $hover_args );
+	}
+}
 
 /**
 * Apply Inline Styles
@@ -1141,6 +1197,56 @@ if(!function_exists('layers_hex2rgb') ) {
 	   $rgb = array($r, $g, $b);
 
 	   return $rgb; // returns an array with the rgb values
+	}
+}
+
+if ( ! function_exists( 'layers_hex_darker' ) ) {
+	/**
+	 * Hex darker/lighter/contrast functions for colours
+	 *
+	 * @param mixed $color
+	 * @param int $factor (default: 30)
+	 * @return string
+	 */
+	function layers_hex_darker( $color, $factor = 30 ) {
+		$base  = layers_hex2rgb( $color );
+		$color = '#';
+		foreach ( $base as $k => $v ) {
+			$amount      = $v / 100;
+			$amount      = round( $amount * $factor );
+			$new_decimal = $v - $amount;
+			$new_hex_component = dechex( $new_decimal );
+			if ( strlen( $new_hex_component ) < 2 ) {
+				$new_hex_component = "0" . $new_hex_component;
+			}
+			$color .= $new_hex_component;
+		}
+		return $color;
+	}
+}
+if ( ! function_exists( 'layers_hex_lighter' ) ) {
+	/**
+	 * Hex darker/lighter/contrast functions for colours
+	 *
+	 * @param mixed $color
+	 * @param int $factor (default: 30)
+	 * @return string
+	 */
+	function layers_hex_lighter( $color, $factor = 30 ) {
+		$base  = layers_hex2rgb( $color );
+		$color = '#';
+		foreach ( $base as $k => $v ) {
+			$amount      = 255 - $v;
+			$amount      = $amount / 100;
+			$amount      = round( $amount * $factor );
+			$new_decimal = $v + $amount;
+			$new_hex_component = dechex( $new_decimal );
+			if ( strlen( $new_hex_component ) < 2 ) {
+				$new_hex_component = "0" . $new_hex_component;
+			}
+			$color .= $new_hex_component;
+		}
+		return $color;
 	}
 }
 

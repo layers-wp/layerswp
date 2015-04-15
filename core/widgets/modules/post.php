@@ -121,6 +121,7 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 			if( $this->check_and_return( $widget,'design', 'background' ) ) layers_inline_styles( '#' . $widget_id, 'background', array( 'background' => $widget['design'][ 'background' ] ) );
 			if( $this->check_and_return( $widget,'design', 'fonts', 'color' ) ) layers_inline_styles( '#' . $widget_id, 'color', array( 'selectors' => array( '.section-title h3.heading' , '.section-title p.excerpt' ) , 'color' => $widget['design']['fonts'][ 'color' ] ) );
 			if( $this->check_and_return( $widget, 'design', 'column-background-color' ) ) layers_inline_styles( '#' . $widget_id, 'background', array( 'selectors' => array( '.thumbnail-body' ) , 'background' => array( 'color' => $this->check_and_return( $widget, 'design', 'column-background-color' ) ) ) );
+			if( $this->check_and_return( $widget, 'design', 'buttons' ) ) layers_inline_button_styles( '#' . $widget_id, 'button', array( 'selectors' => array( '.thumbnail-body a.button' ) ,'button' => $this->check_and_return( $widget, 'design', 'buttons' ) ) );
 
 			// Apply the advanced widget styling
 			$this->apply_widget_advanced_styling( $widget_id, $widget );
@@ -321,6 +322,7 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 					'fonts',
 					'custom',
 					'columns',
+					'buttons',
 					'liststyle',
 					'imageratios',
 					'background',

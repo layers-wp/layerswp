@@ -614,6 +614,9 @@ if( !function_exists( 'layers_get_center_column_class' ) ) {
 			$classes[] = 'span-8';
 		}
 
+		// Apply any classes passed as parameter
+		if( '' != $class ) $classes[] = $class;
+		
 		$classes = array_map( 'esc_attr', $classes );
 
 		$classes = apply_filters( 'layers_center_column_class', $classes, $class );

@@ -313,6 +313,13 @@ class Layers_Design_Controller {
 					'6' => __( '6 Columns', 'layerswp' )
 				)
 			),
+			'color' => array(
+				'type' => 'color',
+				'label' => __( 'Background Color', 'layerswp' ),
+				'name' => $this->widget['name'] . '[column-background-color]',
+				'id' => $this->widget['id'] . '-columns-background-color',
+				'value' => ( isset( $this->values['column--background-color'] ) ) ? $this->values['column-background-color'] : NULL
+			),
 			'gutter' => array(
 				'type' => 'checkbox',
 				'label' => __( 'Gutter', 'layerswp' ),

@@ -97,7 +97,7 @@ body{
     font-size: 1.5rem;
     line-height: 1.5;
     background-color: #454545;
-    color: #777;
+    color: rgba(0, 0, 0, 0.55);
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
@@ -107,7 +107,7 @@ h3,
 h4,
 h5,
 h6{
-    color: #000;
+    color: rgba(0, 0, 0, 0.85);
     font-weight: 400;
 }
 

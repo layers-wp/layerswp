@@ -28,4 +28,4 @@
 
 		<?php do_action( 'layers_after_header' ); ?>
 
-		<section id="wrapper-content" <?php layers_wrapper_class( 'wrapper-content', 'wrapper-content' ); // layer_wrapper_content_class() ?> >
+		<section id="wrapper-content" <?php layers_wrapper_class( 'wrapper-content', 'wrapper-content' ); ?> >

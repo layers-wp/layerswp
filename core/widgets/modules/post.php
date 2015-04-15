@@ -204,7 +204,17 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 							if( 'list-list' == $widget['design'][ 'liststyle' ] ) { ?>
 								<?php get_template_part( 'partials/content' , 'list' ); ?>
 							<?php } else { ?>
-								<article class="column<?php if( !isset( $widget['design'][ 'gutter' ] ) ) echo '-flush'; ?> <?php echo $span_class; ?> layers-masonry-column thumbnail <?php if( 'overlay' == $this->check_and_return( $widget , 'text_style' ) ) echo 'with-overlay'; ?>" data-cols="<?php echo $col_count; ?>">
+								<?php /*
+								* Column class generator
+								*/
+								$post_column_class = array();
+								$post_column_class[] = 'layers-masonry-column thumbnail';
+								$post_column_class[] = 'column' . ( !isset( $widget['design'][ 'gutter' ] ) ? '-flush' : '' );
+								$post_column_class[] = $span_class;
+								$post_column_class[] = ( 'overlay' == $this->check_and_return( $widget , 'text_style' ) ? 'with-overlay' : ''  ) ;
+								$post_column_class[] = ( '' != $this->check_and_return( $widget, 'design', 'column-background-color' ) && 'dark' == layers_is_light_or_dark( $this->check_and_return( $widget, 'design', 'column-background-color' ) ) ? 'invert' : '' ); ?>
+
+								<article class="<?php echo implode( ' ' , $post_column_class ); ?>" data-cols="<?php echo $col_count; ?>">
 									<?php // Layers Featured Media
 									if( isset( $widget['show_media'] ) ) {
 										echo layers_post_featured_media(

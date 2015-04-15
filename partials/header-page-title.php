@@ -1,7 +1,7 @@
 <?php global $layers_page_title_shown; $layers_page_title_shown = 1; ?>
 <?php $details = layers_get_page_title(); ?>
 <?php if( isset( $details[ 'title' ] ) || isset( $details[ 'excerpt' ] ) ) { ?>
-    <div <?php layers_wrapper_class( 'title-container', 'title-container' ); ?>>
+    <div <?php layers_wrapper_class( 'title_container', 'title-container' ); ?>>
         <?php do_action('layers_before_header_page_title'); ?>
         <div class="title">
             <?php layers_bread_crumbs(); ?>

@@ -139,10 +139,10 @@ small{
     font-size: 1.2rem;
 }
 a{
-    color: #454545;
+    color: rgba(0, 0, 0, 0.75);
 }
 a:hover{
-    color: #7D8FA2;
+    color: rgba(0, 0, 0, 1);
 }
 img{
     max-width: 100%;
@@ -655,17 +655,17 @@ object{
         /*-----------------------*/
         /*- SECTION REGULAR -----*/
         .section-title .heading{
-            color: #323232;
+            color: rgba(0, 0, 0, 0.85);
             font-size: 3rem;
         }
         .section-title .heading a{
-            color: #454545;
+            color: rgba(0, 0, 0, 0.85);
         }
         .section-title .heading a:hover{
-            color: #323232;
+            color: rgba(0, 0, 0, 1);
         }
         .section-title .excerpt{
-            color: #8f8f8f;
+            color: rgba(0, 0, 0, 0.55);
             font-size: 2rem;
         }
 
@@ -2074,7 +2074,7 @@ object{
         font-size: 1.2rem;
     }
     .thumbnail-body .excerpt{
-        color: #777;
+        color: rgba(0, 0, 0, 0.55);
     }
     .thumbnail-body p{
         margin: 10px 0 0;

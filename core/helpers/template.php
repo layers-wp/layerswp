@@ -377,7 +377,7 @@ if( !function_exists( 'layers_apply_customizer_styles' ) ) {
 		// Body
 		layers_inline_styles( '.wrapper-site', 'background', array( 'background' => array( 'color' => layers_get_theme_mod( 'body-background-color' ) ) ) );
 		if ( 'dark' == layers_is_light_or_dark( layers_get_theme_mod( 'body-background-color' ) ) ){
-			$classes = add_filter( 'layer_site_wrapper_class', 'layers_add_invert_class' );
+			$classes = add_filter( 'layer_wrapper_content_class', 'layers_add_invert_class' );
 		}
 
 		// Footer
@@ -510,7 +510,6 @@ if( !function_exists( 'layers_get_site_wrapper_class' ) ) {
 
 		$classes = array();
 
-		// Add the general site header class
 		$classes[] = 'wrapper-site';
 
 		$classes = apply_filters( 'layer_site_wrapper_class', $classes, $class );
@@ -531,6 +530,38 @@ if( !function_exists( 'layer_site_wrapper_class' ) ) {
 		echo 'class="' . join( ' ', layers_get_site_wrapper_class( $class ) ) . '"';
 	}
 } // layer_site_wrapper_class
+
+/**
+ * Retrieve the classes for the wrapper content element as an array.
+ *
+ * @param string|array $class One or more classes to add to the class list.
+ * @return array Array of classes.
+ */
+if( !function_exists( 'layers_get_wrapper_content_class' ) ) {
+	function layers_get_wrapper_content_class( $class = '' ){
+
+		$classes = array();
+
+		$classes[] = 'wrapper-content';
+
+		$classes = apply_filters( 'layer_wrapper_content_class', $classes, $class );
+
+		return $classes;
+	}
+}
+
+/**
+ * Display the classes for the wrapper content element.
+ *
+ * @param string|array $class One or more classes to add to the class list.
+ */
+
+if( !function_exists( 'layer_wrapper_content_class' ) ) {
+	function layer_wrapper_content_class( $class = '' ) {
+		// Separates classes with a single space, collates classes for body element
+		echo 'class="' . join( ' ', layers_get_wrapper_content_class( $class ) ) . '"';
+	}
+}
 
 /**
  * Retrieve the classes for the center column on archive and single pages

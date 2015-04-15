@@ -400,6 +400,8 @@ if( !function_exists( 'layers_apply_customizer_styles' ) ) {
 			add_filter( 'layers_title-container_class', 'layers_add_invert_class' );
 		}
 		
+		// Section Title - Headings
+		layers_inline_styles( '.section-title .heading', 'css', array( 'css' => 'color: ' . layers_get_theme_mod( 'section-title-heading-color', FALSE ) . '; ' ) );
 	}
 } // layers_apply_customizer_styles
 add_action( 'wp_enqueue_scripts', 'layers_apply_customizer_styles', 100 );

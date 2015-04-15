@@ -1007,11 +1007,6 @@ if( !function_exists( 'layers_inline_button_styles' ) ) {
 			$hover_args['selectors'] = $new_selectors;
 		}
 
-		// Generate a lighter text color
-		if( isset( $args[ 'button' ][ 'color' ] ) ){
-			$hover_args[ 'button' ]['color'] = layers_hex_lighter( $args[ 'button' ][ 'color' ] );
-		}
-
 		// Generate a lighter text background color
 		if( isset( $args[ 'button' ][ 'background-color' ] ) ){
 			$hover_args[ 'button' ]['background-color'] = layers_hex_lighter( $args[ 'button' ][ 'background-color' ] );

@@ -376,8 +376,10 @@ if( !function_exists( 'layers_apply_customizer_styles' ) ) {
 
 		// Body
 		layers_inline_styles( '.wrapper-site', 'background', array( 'background' => array( 'color' => layers_get_theme_mod( 'body-background-color' ) ) ) );
-		if ( 'light' != layers_is_light_or_dark( layers_get_theme_mod( 'body-background-color', FALSE ) ) ){
-			//add_filter( 'layers_wrapper-content_class', 'layers_add_invert_class' );
+		if ( 'dark' == layers_is_light_or_dark( layers_get_theme_mod( 'body-background-color', FALSE ) ) ){
+			
+			// Article elemnts on Single
+			add_filter( 'layers_center_column_class', 'layers_add_invert_class' );
 		}
 
 		// Footer
@@ -612,11 +614,6 @@ if( !function_exists( 'layers_get_center_column_class' ) ) {
 		// Default to Header Left if there are no matches above
 		if( empty( $classes ) ) {
 			$classes[] = 'span-8';
-		}
-
-		// Invert if body background is dark
-		if ( 'dark' == layers_is_light_or_dark( layers_get_theme_mod( 'body-background-color', FALSE ) ) ){
-			$classes[] = 'invert';
 		}
 		
 		// Apply any classes passed as parameter

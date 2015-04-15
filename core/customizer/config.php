@@ -328,30 +328,30 @@ class Layers_Customizer_Config {
 								'body-background-color' => array(
 									'label' => __( 'Background Color' , 'layerswp' ),
 									'subtitle' => '',
-									'description' => __( 'The background color of the main body of your site' , 'layerswp' ),
+									'description' => __( 'Element, element, element & element' , 'layerswp' ),
 									'type' => 'layers-color',
 									'default' => '#FFFFFF',
 								),
 								'title-background-color' => array(
 									'label' => __( 'Title Background Color' , 'layerswp' ),
 									'subtitle' => '',
-									'description' => __( 'The background color of the titles you see on your blog page and other locations' , 'layerswp' ),
+									'description' => __( 'Element, element, element & element' , 'layerswp' ),
 									'type' => 'layers-color',
-									'default' => '#F3F3F3F',
+									'default' => '#F3F3F3',
 								),
 								'section-title-heading-color' => array(
 									'label' => __( 'Section Title Heading Color' , 'layerswp' ),
 									'subtitle' => '',
-									'description' => __( 'The color of the section titles all around your site' , 'layerswp' ),
+									'description' => __( 'Element, element, element & element' , 'layerswp' ),
 									'type' => 'layers-color',
-									'default' => '#323232',
+									'default' => 'rgba(0, 0, 0, 0.85)', //#323232
 								),
 								'section-title-excerpt-color' => array(
 									'label' => __( 'Section Title Excerpt Color' , 'layerswp' ),
 									'subtitle' => '',
-									'description' => __( 'The color of the section titles all around your site' , 'layerswp' ),
+									'description' => __( 'Element, element, element & element' , 'layerswp' ),
 									'type' => 'layers-color',
-									'default' => '#323232',
+									'default' => 'rgba(0, 0, 0, 0.55)', // #323232
 								),
 							);
 

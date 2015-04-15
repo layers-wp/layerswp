@@ -245,7 +245,7 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
                                                     }
                                                 }; ?>
                                                 <?php if( 'overlay' != $this->check_and_return( $widget, 'text_style' ) ) { ?>
-    												<?php layers_post_meta( $post->ID, $layers_post_meta_to_display );?>
+    												<?php layers_post_meta( $post->ID, $layers_post_meta_to_display, 'footer' , 'meta-info ' . ( '' != $this->check_and_return( $widget, 'design', 'column-background-color' ) && 'dark' == layers_is_light_or_dark( $this->check_and_return( $widget, 'design', 'column-background-color' ) ) ? 'invert' : '' ) );?>
     											<?php } // Don't show meta if we have chosen overlay ?>
                                                 <?php if( isset( $widget['show_call_to_action'] ) && $this->check_and_return( $widget , 'call_to_action' ) ) { ?>
 													<a href="<?php the_permalink(); ?>" class="button"><?php echo $widget['call_to_action']; ?></a>

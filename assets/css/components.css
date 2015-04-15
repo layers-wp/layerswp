@@ -398,7 +398,7 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
     /*- META INFO ---------------*/
     .meta-info{
         clear: both;
-        color: #8f8f8f;
+        color: rgba(0, 0, 0, 0.65);
         font-size: 1.2rem;
     }
     .meta-info + .heading{
@@ -720,4 +720,19 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
         height: 36px;
     }
 
+}
+
+
+/*-------------------------------*/
+/*- INVERT COMPONENTS ----------*/
+/*-------------------------------*/
+
+.invert .meta-info{
+    color: rgba(255, 255, 255, 0.65);
+}
+.invert .meta-info a{
+    color: rgba(255, 255, 255, 0.85);
+}
+.invert .meta-info a:hover{
+    color: rgba(255, 255, 255, 1);
 }

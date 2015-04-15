@@ -18,6 +18,9 @@
 * **Enhancement** - Added 'border' option to the `layers_inline_styles` function
 * **Enhancement** - Builder pages now obey password protection
 
+* **Enhancement** - Bread crumbs css is now based on RGBA for better handling of container background colors
+* **Enhancement** - Bread crumbs css now included in .invert class
+
 ## 1.0.8
 ### 02 April 2015
 

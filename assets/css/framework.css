@@ -1843,7 +1843,7 @@ object{
         display: inline-block;
         margin: 0 0 15px;
         overflow: hidden;
-        color: #777;
+        color: rgba(0, 0, 0, 0.55);
         font-size: 1.2rem;
     }
     .bread-crumbs li{
@@ -1851,10 +1851,10 @@ object{
         margin-right: 10px;
     }
     .bread-crumbs a{
-        color: #454545;
+        color: rgba(0, 0, 0, 0.75);
     }
     .bread-crumbs a:hover{
-        color: #454545;
+        color: rgba(0, 0, 0, 0.85);
         text-decoration: underline;
     }
     .title-small .bread-crumbs{
@@ -2359,6 +2359,16 @@ object{
     }
     .header-site.invert .responsive-nav .l-menu{
         color: rgba(255, 255, 255, 1);
+    }
+
+    /*---------------------------*/
+    /*- BREAD CRUMBS INVERT -----*/
+    .invert .bread-crumbs{
+        color: rgba(255, 255, 255, 0.55);
+    }
+    .invert .bread-crumbs a,
+    .invert .bread-crumbs a:hover{
+        color: rgba(255, 255, 255, 0.75);
     }
 
     /*---------------------------*/

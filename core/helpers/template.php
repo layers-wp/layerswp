@@ -397,7 +397,7 @@ if( !function_exists( 'layers_apply_customizer_styles' ) ) {
 		// Title Container
 		layers_inline_styles( '.title-container', 'background', array( 'background' => array( 'color' => layers_get_theme_mod( 'title-background-color', FALSE ) ) ) );
 		if ( 'light' != layers_is_light_or_dark( layers_get_theme_mod( 'title-background-color', FALSE ) ) ){
-			add_filter( 'layers_title-container_class', 'layers_add_invert_class' );
+			add_filter( 'layers_title_container_class', 'layers_add_invert_class' );
 		}
 
 		// Section Title - Headings

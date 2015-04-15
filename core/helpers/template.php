@@ -373,6 +373,12 @@ if( !function_exists( 'layers_apply_customizer_styles' ) ) {
 			$bg_opacity = ( layers_get_theme_mod( 'header-overlay') ) ? .5 : 1 ;
 			layers_inline_styles( '.header-site, .header-site.header-sticky', 'css', array( 'css' => 'background-color: rgba(' . implode( ', ' , layers_hex2rgb( layers_get_theme_mod( 'header-background-color' ) ) ) . ', ' . $bg_opacity . ');' ) );
 		}
+		
+		// Body
+		layers_inline_styles( '.wrapper-site', 'background', array( 'background' => array( 'color' => layers_get_theme_mod( 'body-background-color' ) ) ) );
+		if ( 'dark' == layers_is_light_or_dark( layers_get_theme_mod( 'body-background-color' ) ) ){
+			$classes = add_filter( 'layer_site_wrapper_class', 'layers_add_invert_class' );
+		}
 
 		// Footer
 		layers_inline_styles( '#footer, #footer.well', 'background', array(
@@ -390,6 +396,18 @@ if( !function_exists( 'layers_apply_customizer_styles' ) ) {
 	}
 } // layers_apply_customizer_styles
 add_action( 'wp_enqueue_scripts', 'layers_apply_customizer_styles', 100 );
+
+/**
+ * Helper that simply adds an invert class to an array of classes.
+ * For use in conjunction with Filters.
+ *
+ * @param array $class Existing array of classes passed by the filter.
+ */
+function layers_add_invert_class( $classes ) {
+	$classes[] = 'invert';
+	
+	return $classes;
+}
 
 /**
  * Retrieve the classes for the header element as an array.
@@ -474,7 +492,6 @@ if( !function_exists( 'layers_get_header_class' ) ) {
  *
  * @param string|array $class One or more classes to add to the class list.
  */
-
 if( !function_exists( 'layers_header_class' ) ) {
 	function layers_header_class( $class = '' ) {
 		// Separates classes with a single space, collates classes for body element
@@ -499,7 +516,6 @@ if( !function_exists( 'layers_get_site_wrapper_class' ) ) {
 		$classes = apply_filters( 'layer_site_wrapper_class', $classes, $class );
 
 		return $classes;
-
 	}
 } // layers_get_site_wrapper_class
 

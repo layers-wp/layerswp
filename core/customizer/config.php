@@ -32,6 +32,11 @@ class Layers_Customizer_Config {
 							'description' => __( 'Control your header\'s logo, layout, colors and font.' , 'layerswp' ), // @TODO Put a helper here
 							'priority' => 60
 						),
+			'body' => array(
+							'title' => __( 'Body' , 'layerswp' ),
+							'description' => __( 'Control your body\'s custom text, widget areas and layout.' , 'layerswp' ), // @TODO Put a helper here
+							'priority' => 70
+						),
 			'footer' => array(
 							'title' => __( 'Footer' , 'layerswp' ),
 							'description' => __( 'Control your footer\'s custom text, widget areas and layout.' , 'layerswp' ), // @TODO Put a helper here
@@ -135,6 +140,10 @@ class Layers_Customizer_Config {
 						'woocommerce-sidebars' => array(
 							'title' =>__( 'Sidebars' , 'layerswp' ),
 							'panel' => 'woocommerce'
+						),
+						'body' => array(
+							'title' =>__( 'Body' , 'layerswp' ),
+							'panel' => 'body'
 						)
 					);
 
@@ -314,6 +323,15 @@ class Layers_Customizer_Config {
 								), // post-sidebar
 							);
 
+		// Body -> Body
+		$controls['body'] = array(
+								'body-background-color' => array(
+									'label' => '',
+									'subtitle' => __( 'Background Color' , 'layerswp' ),
+									'type' => 'layers-color',
+									'default' => '#F3F3F3',
+								),
+							);
 
 		// Footer -> Layout -> Layout
 		$controls['footer-layout'] = array(

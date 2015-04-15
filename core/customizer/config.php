@@ -326,10 +326,18 @@ class Layers_Customizer_Config {
 		// Body -> Body
 		$controls['body'] = array(
 								'body-background-color' => array(
-									'label' => '',
-									'subtitle' => __( 'Background Color' , 'layerswp' ),
+									'label' => __( 'Background Color' , 'layerswp' ),
+									'subtitle' => '',
+									'description' => __( 'The background color of the main body of your site' , 'layerswp' ),
 									'type' => 'layers-color',
 									'default' => '#FFFFFF',
+								),
+								'title-background-color' => array(
+									'label' => __( 'Title Background Color' , 'layerswp' ),
+									'subtitle' => '',
+									'description' => __( 'The background color of the titles you see on your blog page and other locations' , 'layerswp' ),
+									'type' => 'layers-color',
+									'default' => '#999999',
 								),
 							);
 

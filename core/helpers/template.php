@@ -376,8 +376,8 @@ if( !function_exists( 'layers_apply_customizer_styles' ) ) {
 		
 		// Body
 		layers_inline_styles( '.wrapper-site', 'background', array( 'background' => array( 'color' => layers_get_theme_mod( 'body-background-color' ) ) ) );
-		if ( 'light' == layers_is_light_or_dark( layers_get_theme_mod( 'body-background-color' ) ) ){
-			add_filter( 'layer_wrapper_content_class', 'layers_add_invert_class' );
+		if ( 'light' != layers_is_light_or_dark( layers_get_theme_mod( 'body-background-color', FALSE ) ) ){
+			add_filter( 'layers_wrapper-content_class', 'layers_add_invert_class' );
 		}
 
 		// Footer
@@ -544,7 +544,7 @@ if( !function_exists( 'layers_get_wrapper_content_class' ) ) {
 
 		$classes[] = 'wrapper-content';
 
-		$classes = apply_filters( 'layer_wrapper_content_class', $classes, $class );
+		$classes = apply_filters( 'layers_wrapper_content_class', $classes, $class );
 
 		return $classes;
 	}
@@ -556,8 +556,8 @@ if( !function_exists( 'layers_get_wrapper_content_class' ) ) {
  * @param string|array $class One or more classes to add to the class list.
  */
 
-if( !function_exists( 'layer_wrapper_content_class' ) ) {
-	function layer_wrapper_content_class( $class = '' ) {
+if( !function_exists( 'layers_wrapper_content_class' ) ) {
+	function layers_wrapper_content_class( $class = '' ) {
 		// Separates classes with a single space, collates classes for body element
 		echo 'class="' . join( ' ', layers_get_wrapper_content_class( $class ) ) . '"';
 	}
@@ -624,13 +624,31 @@ if( !function_exists( 'layers_center_column_class' ) ) {
 } // layers_center_column_class
 
 /**
+ * Display the classes for the wrapper content element.
+ *
+ * @param string|array $class One or more classes to add to the class list.
+ */
+if( !function_exists( 'layers_wrapper_class' ) ) {
+	function layers_wrapper_class( $id = '', $class = '' ) {
+		
+		$classes = explode( ' ', $class ); // Convert string of classes to an array
+
+		$classes = apply_filters( 'layers_' . $id . '_class', $classes );
+
+		// Separates classes with a single space, collates classes for body element
+		echo 'class="' . join( ' ', $classes ) . '"';
+	}
+}
+
+/**
  * Retrieve theme modification value for the current theme.
  *
  * @param string $name Theme modification name.
+ * @param string $allow_empty Whether the Theme modification should return empty, or the default, if no value is set.
  * @return string
  */
 if( !function_exists( 'layers_get_theme_mod' ) ) {
-	function layers_get_theme_mod( $name = '' ) {
+	function layers_get_theme_mod( $name = '', $allow_empty = TRUE ) {
 
 		global $layers_customizer_defaults;
 
@@ -641,16 +659,24 @@ if( !function_exists( 'layers_get_theme_mod' ) ) {
 		$default = ( isset( $layers_customizer_defaults[ $name ][ 'value' ] ) ? $layers_customizer_defaults[ $name ][ 'value' ] : FALSE );
 
 		// If color control always return a value
+		/*
+		@TODO: Bring this back in at a later date, if necessary
 		if (
 				isset( $layers_customizer_defaults[ $name ][ 'type' ] ) &&
 				'layers-color' == $layers_customizer_defaults[ $name ][ 'type' ]
 			){
 			$default = '';
 		}
-
+ 		*/
+ 		
 		// Get theme option
 		$theme_mod = get_theme_mod( $name, $default );
-
+		
+		// Template can choose whether to allow empty
+		if ( '' == $theme_mod && FALSE == $allow_empty && FALSE != $default ) {
+			$theme_mod = $default;
+		}
+		
 		// Return theme option
 		return $theme_mod;
 	}

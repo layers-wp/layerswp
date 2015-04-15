@@ -126,6 +126,12 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 			// Apply the advanced widget styling
 			$this->apply_widget_advanced_styling( $widget_id, $widget );
 
+			// Apply slider arrow color
+			if( $this->check_and_return( $widget, 'slider_arrow_color' ) ) layers_inline_styles( '#' . $widget_id, 'color', array( 'selectors' => array( '.arrows a' ), 'color' => $this->check_and_return( $widget, 'slider_arrow_color' ) ) );
+			if( $this->check_and_return( $widget, 'slider_arrow_color' ) ) layers_inline_styles( '#' . $widget_id, 'border', array( 'selectors' => array( 'span.swiper-pagination-switch' ), 'border' => array( 'color' => $this->check_and_return( $widget, 'slider_arrow_color' ) ) ) );
+			if( $this->check_and_return( $widget, 'slider_arrow_color' ) ) layers_inline_styles( '#' . $widget_id, 'background', array( 'selectors' => array( 'span.swiper-pagination-switch' ), 'background' => array( 'color' => $this->check_and_return( $widget, 'slider_arrow_color' ) ) ) );
+			if( $this->check_and_return( $widget, 'slider_arrow_color' ) ) layers_inline_styles( '#' . $widget_id, 'background', array( 'selectors' => array( 'span.swiper-pagination-switch.swiper-active-switch' ), 'background' => array( 'color' => 'transparent !important' ) ) );
+
 			// Slider Class
 			$slider_class = array();
 			if( isset( $widget['design']['layout'] ) && '' != $widget['design']['layout'] ) {
@@ -393,6 +399,13 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 									'id' => $this->get_field_id( 'show_slider_dots' ) ,
 									'value' => ( isset( $show_slider_dots ) ) ? $show_slider_dots : NULL,
 									'label' => __( 'Show Slider Dots' , 'layerswp' )
+								),
+								'slider_arrow_color' => array(
+									'type' => 'color',
+									'name' => $this->get_field_name( 'slider_arrow_color' ) ,
+									'id' => $this->get_field_id( 'slider_arrow_color' ) ,
+									'value' => ( isset( $slider_arrow_color ) ) ? $slider_arrow_color : NULL,
+									'label' => __( 'Slider Controls Color' , 'layers-woocommerce' )
 								),
 								'autoplay_slides' => array(
 									'type' => 'checkbox',

@@ -393,19 +393,19 @@ if( !function_exists( 'layers_apply_customizer_styles' ) ) {
 		) );
 		layers_inline_styles( '#footer h5, #footer p, #footer li, #footer .textwidget, #footer.well', 'color', array( 'color' => layers_get_theme_mod( 'footer-body-color' ) ) );
 		layers_inline_styles( '#footer a, #footer.well a', 'color', array( 'color' => layers_get_theme_mod( 'footer-link-color' ) ) );
-		
+
 		// Title Container
 		layers_inline_styles( '.title-container', 'background', array( 'background' => array( 'color' => layers_get_theme_mod( 'title-background-color', FALSE ) ) ) );
 		if ( 'light' != layers_is_light_or_dark( layers_get_theme_mod( 'title-background-color', FALSE ) ) ){
-			add_filter( 'layers_title-container_class', 'layers_add_invert_class' );
+			add_filter( 'layers_title_container_class', 'layers_add_invert_class' );
 		}
-		
+
 		// Section Title - Headings
 		layers_inline_styles( '.section-title .heading', 'css', array( 'css' => 'color: ' . layers_get_theme_mod( 'section-title-heading-color', FALSE ) . '; ' ) );
-		
+
 		// Section Title - Excerpt
 		layers_inline_styles( '.section-title .excerpt', 'css', array( 'css' => 'color: ' . layers_get_theme_mod( 'section-title-excerpt-color', FALSE ) . '; ' ) );
-		
+
 	}
 } // layers_apply_customizer_styles
 add_action( 'wp_enqueue_scripts', 'layers_apply_customizer_styles', 100 );
@@ -618,10 +618,10 @@ if( !function_exists( 'layers_get_center_column_class' ) ) {
 		if ( 'dark' == layers_is_light_or_dark( layers_get_theme_mod( 'body-background-color', FALSE ) ) ){
 			$classes[] = 'invert';
 		}
-		
+
 		// Apply any classes passed as parameter
 		if( '' != $class ) $classes[] = $class;
-		
+
 		$classes = array_map( 'esc_attr', $classes );
 
 		$classes = apply_filters( 'layers_center_column_class', $classes, $class );
@@ -650,11 +650,11 @@ if( !function_exists( 'layers_center_column_class' ) ) {
  * @param string|array $class One or more classes to add to the class list.
  */
 if( !function_exists( 'layers_wrapper_class' ) ) {
-	function layers_wrapper_class( $id = '', $class = '' ) {
-		
+	function layers_wrapper_class( $key = '', $class = '' ) {
+
 		$classes = explode( ' ', $class ); // Convert string of classes to an array
 
-		$classes = apply_filters( 'layers_' . $id . '_class', $classes );
+		$classes = apply_filters( 'layers_' . $key . '_class', $classes );
 
 		// Separates classes with a single space, collates classes for body element
 		echo 'class="' . join( ' ', $classes ) . '"';
@@ -689,15 +689,15 @@ if( !function_exists( 'layers_get_theme_mod' ) ) {
 			$default = '';
 		}
  		*/
- 		
+
 		// Get theme option
 		$theme_mod = get_theme_mod( $name, $default );
-		
+
 		// Template can choose whether to allow empty
 		if ( '' == $theme_mod && FALSE == $allow_empty && FALSE != $default ) {
 			$theme_mod = $default;
 		}
-		
+
 		// Return theme option
 		return $theme_mod;
 	}

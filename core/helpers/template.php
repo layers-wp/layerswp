@@ -376,8 +376,8 @@ if( !function_exists( 'layers_apply_customizer_styles' ) ) {
 		
 		// Body
 		layers_inline_styles( '.wrapper-site', 'background', array( 'background' => array( 'color' => layers_get_theme_mod( 'body-background-color' ) ) ) );
-		if ( 'dark' == layers_is_light_or_dark( layers_get_theme_mod( 'body-background-color' ) ) ){
-			$classes = add_filter( 'layer_wrapper_content_class', 'layers_add_invert_class' );
+		if ( 'light' == layers_is_light_or_dark( layers_get_theme_mod( 'body-background-color' ) ) ){
+			add_filter( 'layer_wrapper_content_class', 'layers_add_invert_class' );
 		}
 
 		// Footer

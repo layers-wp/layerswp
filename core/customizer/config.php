@@ -329,7 +329,7 @@ class Layers_Customizer_Config {
 									'label' => '',
 									'subtitle' => __( 'Background Color' , 'layerswp' ),
 									'type' => 'layers-color',
-									'default' => '#F3F3F3',
+									'default' => '#FFFFFF',
 								),
 							);
 

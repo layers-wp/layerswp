@@ -399,7 +399,7 @@ if( !function_exists( 'layers_apply_customizer_styles' ) ) {
 		// Title Container
 		layers_inline_styles( '.title-container', 'background', array( 'background' => array( 'color' => layers_get_theme_mod( 'title-background-color', FALSE ) ) ) );
 		if ( 'light' != layers_is_light_or_dark( layers_get_theme_mod( 'title-background-color', FALSE ) ) ){
-			add_filter( 'layers_title-container_class', 'layers_add_invert_class' );
+			add_filter( 'layers_title_container_class', 'layers_add_invert_class' );
 		}
 		
 		// Section Title - Headings
@@ -615,7 +615,7 @@ if( !function_exists( 'layers_get_center_column_class' ) ) {
 		if( empty( $classes ) ) {
 			$classes[] = 'span-8';
 		}
-		
+
 		// Apply any classes passed as parameter
 		if( '' != $class ) $classes[] = $class;
 		
@@ -647,11 +647,11 @@ if( !function_exists( 'layers_center_column_class' ) ) {
  * @param string|array $class One or more classes to add to the class list.
  */
 if( !function_exists( 'layers_wrapper_class' ) ) {
-	function layers_wrapper_class( $id = '', $class = '' ) {
+	function layers_wrapper_class( $key = '', $class = '' ) {
 		
 		$classes = explode( ' ', $class ); // Convert string of classes to an array
 
-		$classes = apply_filters( 'layers_' . $id . '_class', $classes );
+		$classes = apply_filters( 'layers_' . $key . '_class', $classes );
 
 		// Separates classes with a single space, collates classes for body element
 		echo 'class="' . join( ' ', $classes ) . '"';

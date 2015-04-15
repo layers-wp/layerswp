@@ -15,11 +15,12 @@
 * **Tweak** - Increased the width of sub menus
 * **Tweak** - Nested comments now clear the .copy div in the parent comment
 * **Tweak** - The 'search' button in the Search Widget is now inline with the input field on screens larger than tablets
+* **Tweak** - Bread crumbs css is now based on RGBA for better handling of container background colors
+* **Tweak** - Bread crumbs css now included in .invert class
+* **Tweak** - Removed color from headings in .story and .copy as they are already declared as defaults at the top of the CSS
+* **Enhancement** - Added .invert styling for headers
 * **Enhancement** - Added 'border' option to the `layers_inline_styles` function
 * **Enhancement** - Builder pages now obey password protection
-
-* **Enhancement** - Bread crumbs css is now based on RGBA for better handling of container background colors
-* **Enhancement** - Bread crumbs css now included in .invert class
 
 ## 1.0.8
 ### 02 April 2015

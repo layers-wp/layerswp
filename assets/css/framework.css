@@ -2152,31 +2152,26 @@ object{
     }
     .copy h1{
         margin-bottom: 26px;
-        color: #323232;
         font-size: 3.2rem;
         font-weight: 700;
     }
     .copy h2{
         margin-bottom: 26px;
-        color: #323232;
         font-size: 2.2rem;
         font-weight: 700;
     }
     .copy h3{
         margin-bottom: 26px;
-        color: #323232;
         font-size: 1.8rem;
         font-weight: 700;
     }
     .copy h4{
         margin-bottom: 26px;
-        color: #323232;
         font-size: 1.5rem;
         font-weight: 700;
     }
     .copy h5{
         margin-bottom: 26px;
-        color: #323232;
         font-size: 1.3rem;
     }
     .copy blockquote{
@@ -2265,10 +2260,15 @@ object{
 
     .invert{
         border: none;
-        color: #fff;
+        color: rgba(255, 255, 255, 0.85);
     }
-    .invert h5{
-        color: #fff;
+    .invert h1,
+    .invert h2,
+    .invert h3,
+    .invert h4,
+    .invert h5,
+    .invert h6{
+        color: rgba(255, 255, 255, 0.95);
     }
     .invert code{
         background: rgba(255, 255, 255, 0.2);
@@ -2308,10 +2308,6 @@ object{
     .invert .section-title .excerpt,
     .invert.section-title .excerpt{
         color: rgba(255, 255, 255, 0.8);
-    }
-    .invert .avatar-image{
-        border-color: #fff;
-        box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.4);
     }
 
         /*-----------------------*/

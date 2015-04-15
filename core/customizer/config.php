@@ -346,6 +346,13 @@ class Layers_Customizer_Config {
 									'type' => 'layers-color',
 									'default' => '#323232',
 								),
+								'section-title-excerpt-color' => array(
+									'label' => __( 'Section Title Excerpt Color' , 'layerswp' ),
+									'subtitle' => '',
+									'description' => __( 'The color of the section titles all around your site' , 'layerswp' ),
+									'type' => 'layers-color',
+									'default' => '#323232',
+								),
 							);
 
 		// Footer -> Layout -> Layout

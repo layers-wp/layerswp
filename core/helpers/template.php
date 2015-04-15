@@ -402,6 +402,10 @@ if( !function_exists( 'layers_apply_customizer_styles' ) ) {
 		
 		// Section Title - Headings
 		layers_inline_styles( '.section-title .heading', 'css', array( 'css' => 'color: ' . layers_get_theme_mod( 'section-title-heading-color', FALSE ) . '; ' ) );
+		
+		// Section Title - Excerpt
+		layers_inline_styles( '.section-title .excerpt', 'css', array( 'css' => 'color: ' . layers_get_theme_mod( 'section-title-excerpt-color', FALSE ) . '; ' ) );
+		
 	}
 } // layers_apply_customizer_styles
 add_action( 'wp_enqueue_scripts', 'layers_apply_customizer_styles', 100 );

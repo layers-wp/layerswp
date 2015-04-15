@@ -318,7 +318,7 @@ class Layers_Design_Controller {
 				'label' => __( 'Background Color', 'layerswp' ),
 				'name' => $this->widget['name'] . '[column-background-color]',
 				'id' => $this->widget['id'] . '-columns-background-color',
-				'value' => ( isset( $this->values['column--background-color'] ) ) ? $this->values['column-background-color'] : NULL
+				'value' => ( isset( $this->values['column-background-color'] ) ) ? $this->values['column-background-color'] : NULL
 			),
 			'gutter' => array(
 				'type' => 'checkbox',

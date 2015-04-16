@@ -36,11 +36,17 @@ div#widgets-right div[id*='obox-layers-builder']{
 #available-widgets .widget-tpl{}
 #available-widgets .widget-tpl[id*='layers-widget']{
     display: block !important;
+    border-right: 4px solid #00A4EC;
 }
 
 .layers-hide{
     display: none !important;
 }
+
+.layers-soft-hide{
+    visibility: hidden;
+}
+
 
 /*----------------------------------*/
 /*- WORDPRESS RESETS / OVERRIDES ---*/
@@ -49,12 +55,25 @@ div#widgets-right div[id*='obox-layers-builder']{
     /*- WIDGET COLOR STYLING ----*/
 
     /*- Layers Badge -*/
+    /*
     .customize-control-widget_form.wide-widget-control div[id*='layers-widget'] .widget-top h4:before{
         content: "\e62f";
         margin: 0 10px 0 0;
         font-size: 12px;
         color: #0BA6E0;
         font-family: 'layers-interface';
+    }
+    */
+    .customize-control-widget_form.wide-widget-control div[id*='layers-widget'] .widget-top h4:before{
+        content: "\e62f";
+        font-size: 11px;
+        color: #00A4EC;
+        font-family: "layers-interface";
+        text-align: center;
+        padding: 1px 0px 0px;
+        border: 0px none;
+        display: inline-block;
+        margin-right: 8px;
     }
     .customize-control-widget_form.wide-widget-control.expanded div[id*='layers-widget'] .widget-top h4:before{
         color: #fff;
@@ -79,13 +98,15 @@ div#widgets-right div[id*='obox-layers-builder']{
     }
 
     /*- Layers Badge in Widget Selection Tray -*/
-    #available-widgets div[id*='layers-widget'].widget .widget-top:before{
-        float: right;
-        margin: -12px -8px 0 0;
+    #available-widgets div[id*='layers-widget'].widget .widget-title:after{
         content: "\e62f";
         font-size: 12px;
-        color: #0BA6E0;
+        color: #00A4EC;
         font-family: 'layers-interface';
+        text-align: center;
+        position: absolute;
+        top: -1px;
+        right: 0;
     }
 
     /*---------------------------*/
@@ -1193,23 +1214,58 @@ input[type=text].layers-color-selector.wp-color-picker{
         transform: translate3d(0, 0, 0);
     }
 
-
-/*---------------------------*/
-/*- CUSTOMIZER CONTROLS -----*/
-.customize-control .layers-customize-control .layers-form-item{
+/*-----------------------------*/
+/*- CUSTOMIZER CONTROLS -------*/
+li[id*='accordion-section-layers'] .customize-control{
+    margin: 6px 0;
+}
+li[id*='accordion-section-layers'] .customize-control.customize-control-layers-heading{
+    /* margin:0; */
+}
+li[id*='accordion-section-layers'] .customize-control:first-child{
+    margin: 6px 0 0px;
+}
+li[id*='accordion-section-layers'] .customize-control .customize-control-title{
+    display: block;
+    margin-bottom: 6px;
+    font-size: 13px;
+    text-transform: none;
+    line-height: inherit;
+    font-weight: normal;
+}
+li[id*='accordion-section-layers'] hr{
+    border: 0;
+    border-top: 0;
+    border-bottom: 1px solid #EEE;
+}
+li[id*='accordion-section-layers'] .customize-control .layers-form-item{
     margin: 0 0 3px;
 }
-.customize-control .layers-customize-control.layers-customize-control-heading{
-    margin: 0 0 -8px;
+li[id*='accordion-section-layers'] .customize-control .heading-label .customize-control-title{
+    font-size: 14px;
+    line-height: 24px;
+    font-weight: bold;
+    margin: 0 0 4px;
 }
-.customize-control .layers-customize-control.layers-customize-control-checkbox{
-    margin-top: 10px;
+li[id*='accordion-section-layers'] .customize-control .description{
+    color: #999 !important;
 }
-.customize-control .layers-customize-control.layers-pull-top{
-    margin-top: 6px;
+li[id*='accordion-section-layers'] .customize-control .layers-customize-control.layers-customize-control-heading{
+    margin: 40 x 0;
 }
-.customize-control .layers-customize-control.layers-pull-bottom{
-    margin-bottom: -9px;
+li[id*='accordion-section-layers'] .customize-control .layers-customize-control.layers-customize-control-heading .customize-control-title{
+    display: block;
+    font-size: 14px;
+    line-height: 24px;
+    font-weight: 600;
+    text-transform: none;
+    margin: 0;
+}
+li[id*='accordion-section-layers'] .customize-control .wp-color-result{
+    margin: 0;
+}
+li[id*='accordion-section-layers'] .customize-control.customize-control-image .actions{
+    margin-bottom: 0;
 }
 
 /*---------------------------*/
@@ -1218,8 +1274,8 @@ input[type=text].layers-color-selector.wp-color-picker{
     display: block;
     float: right;
     width: 88px;
-    height: 45px;
-    background: url(images/layers-logo-dark.png) no-repeat bottom;
+    height: 410px 0;
+    bound: url(images/layers-logo-dark.png) no-repeat bottom;
     background-size: 88px 20px;
     overflow: hidden;
     text-indent: -999px;
@@ -1548,7 +1604,8 @@ input[type=text].layers-color-selector.wp-color-picker{
 .layers-accordions-sortable{}
 .layers-accordions-sortable .layers-accordion-item{
     margin-bottom: 10px;
-    border: 1px solid #eee;
+    border: 1px solid #E8E8E8;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.02);
 }
 .layers-accordions-sortable .layers-accordion-item:hover{
     border-color: #ccc;
@@ -1556,8 +1613,11 @@ input[type=text].layers-color-selector.wp-color-picker{
 .layers-accordions-sortable .layers-accordion-title{
     padding: 10px;
     border-top: none;
-    border-bottom:  1px solid #eee;
+    border-bottom: 1px solid transparent;
     cursor: move;
+}
+.layers-accordion-item.open .layers-accordion-title{
+    border-bottom: 1px solid #E7E7E7;
 }
 .layers-accordions-sortable .layers-accordion-title:after{
     line-height: 37px;

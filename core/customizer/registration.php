@@ -145,9 +145,6 @@ class Layers_Customizer_Regsitrar {
 
 			$setting_key = $this->prefix . $control_key;
 
-			// Register control default value
-			$this->register_control_defaults( $setting_key, ( isset( $control_data['default'] ) ? $control_data['default'] : NULL ) );
-
 			// Assign control to the relevant section
 			$control_data[ 'section' ] = $this->prefix . $panel_section_key;
 
@@ -286,7 +283,76 @@ class Layers_Customizer_Regsitrar {
 						$control_data
 					)
 				);
+			} else if( 'layers-number' == $control_data['type'] ) {
 
+				// Add Control
+				$this->customizer->add_control(
+					new Layers_Customize_Number_Control(
+						$this->customizer,
+						$setting_key,
+						$control_data
+					)
+				);
+			} else if( 'text' == $control_data['type'] ) {
+
+				// Add Control
+				$this->customizer->add_control(
+					new WP_Customize_Control(
+						$this->customizer,
+						$setting_key,
+						$control_data
+					)
+				);
+			} else if( 'color' == $control_data['type'] ) {
+
+				// Add Control
+				$this->customizer->add_control(
+					new WP_Customize_Color_Control(
+						$this->customizer,
+						$setting_key,
+						$control_data
+					)
+				);
+			} else if( 'upload' == $control_data['type'] ) {
+
+				// Add Control
+				$this->customizer->add_control(
+					new WP_Customize_Upload_Control(
+						$this->customizer,
+						$setting_key,
+						$control_data
+					)
+				);
+			} else if( 'image' == $control_data['type'] ) {
+
+				// Add Control
+				$this->customizer->add_control(
+					new WP_Customize_Image_Control(
+						$this->customizer,
+						$setting_key,
+						$control_data
+					)
+				);
+			} else if( 'background-image' == $control_data['type'] ) {
+
+				// Add Control
+				$this->customizer->add_control(
+					new WP_Customize_Background_Image_Control(
+						$this->customizer,
+						$setting_key,
+						$control_data
+					)
+				);
+			} else if( 'header-image' == $control_data['type'] ) {
+
+				// Add Control
+				$this->customizer->add_control(
+					new WP_Customize_Header_Image_Control(
+						$this->customizer,
+						$setting_key,
+						$control_data
+					)
+				);
 			} else {
 
 				// Add Control
@@ -294,29 +360,11 @@ class Layers_Customizer_Regsitrar {
 					$setting_key,
 					$control_data
 				);
-
 			}
 
 			$control_priority++;
 
 		} // foreach controls panel_section_key
-	}
-
-	/**
-	* Register Control Defaults
-	*/
-
-	public function register_control_defaults( $key = NULL , $value = NULL ){
-
-		global $layers_customizer_defaults;
-
-		if( !isset( $layers_customizer_defaults ) ) $layers_customizer_defaults = array();
-
-		if( NULL != $key ){
-			$layers_customizer_defaults[ $key ] = esc_attr( $value );
-		}
-
-		return apply_filters( 'layers_customizer_defaults', $layers_customizer_defaults );
 	}
 
 	/**

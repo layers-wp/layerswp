@@ -47,18 +47,31 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
         max-width: 1000px;
         transform-style: preserve-3d;
     }
+    .swiper-slide .overlay{
+        height: 100%;
+    }
     .swiper-slide .overlay.darken{
         background-color: rgba(0, 0, 0, 0.2);
     }
     .swiper-slide .container{
         position: relative;
         top: 50%;
+        transform: translateY(-50%);
+        -webkit-transform: translateY(-50%);
+    }
+    .swiper-slide.image-left .container,
+    .swiper-slide.image-right .container{
+        transform: none;
+        -webkit-transform: none;
     }
     .swiper-slide .copy-container{
         max-width: 1040px;
         margin: auto;
         padding: 0;
         position: relative;
+    }
+    .swiper-slide.image-left .copy-container,
+    .swiper-slide.image-right .copy-container{
         top: 50%;
         -webkit-transform: translateY(-50%);
         transform: translateY(-50%);
@@ -68,8 +81,11 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
     }
     .swiper-slide .image-container{
         position: relative;
-        top: 50%;
         text-align: center;
+    }
+    .swiper-slide.image-left .image-container,
+    .swiper-slide.image-right .image-container{
+        top: 50%;
         -webkit-transform: translateY(-50%);
         transform: translateY(-50%);
     }
@@ -254,7 +270,13 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
     .story p{
         margin-bottom: 26px;
     }
+    .story address{
+        margin-bottom: 26px;
+    }
     .story a{
+        border-bottom: 1px solid #ddd;
+    }
+    .story a:not(.button){
         border-bottom: 1px solid #ddd;
     }
     .story a:hover{
@@ -428,6 +450,20 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
         }
 
 /*-------------------------------*/
+/*- COMMENTS --------------------*/
+/*-------------------------------*/
+
+    .comment{
+        clear: both;
+    }
+    .comment .comment{
+        margin-top: 30px;
+    }
+    .comment .comment:last-child{
+        margin-bottom: 0;
+    }
+
+/*-------------------------------*/
 /*- COMMENTS FORM ---------------*/
 /*-------------------------------*/
 
@@ -436,9 +472,13 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
         color: #999;
         font-size: 1.2rem;
     }
+    .comment-respond{
+        clear: both;
+        margin-top: 6%;
+    }
     .comment-reply-title{
         color: #323232;
-        font-size: 2.8rem;
+        font-size: 2.5rem;
     }
     .logged-in-as{
         margin-bottom: 20px;
@@ -451,6 +491,7 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
         margin-bottom: 15px;
     }
     .form-allowed-tags{
+        max-width: 660px;
         margin-bottom: 15px;
         font-size: 1.4rem;
     }
@@ -528,7 +569,6 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
         color: #8F8F8F;
     }
 
-
         /*-----------------------*/
         /*- WIDGET NAV MENU -----*/
         .sidebar .widget.widget_nav_menu{
@@ -546,10 +586,14 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
             text-align: left;
         }
 
+
     /*---------------------------*/
     /*- SEARCH WIDGET -----------*/
     .screen-reader-text{
         display: none;
+    }
+    .search-form{
+        overflow: hidden;
     }
     .search-form label{
         margin-bottom: 0;
@@ -559,7 +603,7 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
         width: 100%;
     }
     aside .search-field{
-        border: none;
+        margin-bottom: 5px;
     }
 
     /*---------------------------*/
@@ -663,3 +707,17 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
     }
 
 
+
+@media only screen and (min-width: 769px) {
+
+    .sidebar .search-field{
+        width: 65%;
+        float: left;
+    }
+    .sidebar .search-submit{
+        float: left;
+        width: 35%;
+        height: 36px;
+    }
+
+}

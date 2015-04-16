@@ -593,7 +593,6 @@ if( !function_exists( 'layers_get_theme_mod' ) ) {
 		// Set theme option default
 		$default = ( isset( $layers_customizer_defaults[ $name ][ 'value' ] ) ? $layers_customizer_defaults[ $name ][ 'value' ] : FALSE );
 
-
 		// If color control always return a value
 		if (
 				isset( $layers_customizer_defaults[ $name ][ 'type' ] ) &&
@@ -807,6 +806,20 @@ if( !function_exists( 'layers_inline_styles' ) ) {
 					$css .= $type . '-left: ' . $trbl_args['left'] . '; ';
 				}
 
+			break;
+
+			case 'border' :
+
+				// Set the background array
+				$border_args = $args['border'];
+
+				if( isset( $border_args['color'] ) && '' != $border_args['color'] ){
+					$css .= 'border-color: ' . $border_args[ 'color' ] . ';';
+				}
+
+				if( isset( $border_args['width'] ) && '' != $border_args['width'] ){
+					$css .= 'border-width: ' . $border_args[ 'width' ] . 'px;';
+				}
 			break;
 
 			case 'color' :
@@ -1081,6 +1094,27 @@ if ( ! function_exists( 'layers_light_or_dark' ) ) {
 		return $brightness > 155 ? $dark : $light;
 	}
 } // layers_light_or_dark
+
+/**
+ * Detect if a color is light or dark
+ *
+ * @param string $color hex color eg #666666
+ * @return string 'light' | 'dark'
+ */
+if ( ! function_exists( 'layers_is_light_or_dark' ) ) {
+	function layers_is_light_or_dark( $color ) {
+
+		$hex = str_replace( '#', '', $color );
+
+		$c_r = hexdec( substr( $hex, 0, 2 ) );
+		$c_g = hexdec( substr( $hex, 2, 2 ) );
+		$c_b = hexdec( substr( $hex, 4, 2 ) );
+
+		$brightness = ( ( $c_r * 299 ) + ( $c_g * 587 ) + ( $c_b * 114 ) ) / 1000;
+
+		return ( $brightness > 155 ) ? 'light' : 'dark' ;
+	}
+}
 
 /**
  * Standard menu fallback

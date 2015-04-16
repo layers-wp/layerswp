@@ -394,7 +394,9 @@ object{
 /*- HEADERS ---------------------*/
 
     .header-site{
-        background: #f3f3f3;
+        background-color: #f3f3f3;
+        background-position: 50% 50%;
+        background-repeat: no-repeat;
     }
 
     .header-site .container{
@@ -469,7 +471,7 @@ object{
         opacity: 1;
     }
     .header-site.header-sticky{
-        background: rgba(243, 243, 243, 0.5);
+        background-color: rgba(243, 243, 243, 0.5);
     }
     .header-overlay{
         position: absolute;
@@ -540,7 +542,7 @@ object{
     }
     .row + .copyright{
         padding-top: 20px;
-        border-top: 2px solid #ddd;
+        border-top: 2px solid rgba(0, 0, 0, 0.15);
     }
 
     /*---------------------------*/
@@ -581,7 +583,7 @@ object{
         margin-right: auto;
     }
     .title-container .title{
-        padding: 4% 20px;
+        padding: 3% 20px;
         max-width: 1040px;
         margin: auto;
     }
@@ -1730,7 +1732,7 @@ object{
     .sub-menu li{
         clear: both;
         display: block;
-        width: 150px;
+        width: 180px;
         margin: 0;
         border: none;
         border-bottom: 1px dotted #ddd;
@@ -1944,6 +1946,7 @@ object{
     .media-image.small img{
         max-width: 64px;
     }
+    .image-rounded img,
     .media-image.image-rounded img{
         border-radius: 100%;
     }

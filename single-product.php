@@ -22,15 +22,15 @@ get_header(); ?>
             <div <?php layers_center_column_class(); ?>>
                 <div class="product-top clearfix">
                     <?php do_action( 'woocommerce_before_single_product', $post, $_product ); ?>
-
                     <div class="row">
+                        
                         <!-- Show the Images -->
-                        <div class="column span-6 product-images">
+                        <div class="column product-images span-6 <?php echo ( 'advanced-layout-right' == layers_get_theme_mod( 'woocommerce-product-page-layout' ) ) ? 'pull-right no-gutter' : '' ?>">
                             <?php do_action( 'woocommerce_before_single_product_summary', $post, $_product ); ?>
                         </div>
 
                         <!-- Show the Product Summary -->
-                        <div class="column span-6 purchase-options-container">
+                        <div class="column purchase-options-container span-6">
                             <?php do_action( 'woocommerce_single_product_summary', $post, $_product ); ?>
                         </div>
                     </div>

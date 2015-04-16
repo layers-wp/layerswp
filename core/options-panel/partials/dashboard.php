@@ -19,8 +19,75 @@ $theme_info = wp_get_theme( 'layerswp' ); ?>
 
 			<div class="layers-row">
 
-				<div class="layers-column layers-span-4">
+				<div class="layers-column layers-span-3">
+
 					<?php if( count( layers_get_builder_pages() ) > 1 ) { ?>
+
+						<?php /*
+						* Check to see if we have dismissed or gone through any of the setup steps
+						*/
+						$dismissed_setup_steps = get_option( 'layers_dismissed_setup_steps' );
+						foreach( array_keys( $this->site_setup_actions() ) as $key ) {
+							if( !is_array( $dismissed_setup_steps ) || !in_array( $key, $dismissed_setup_steps ) ) {
+								$setup_steps[] = $key;
+							}
+						} ?>
+
+						<?php if( isset( $setup_steps ) ) { ?>
+							<div class="layers-panel layers-site-setup-panel">
+								<div class="layers-panel-title">
+									<h4 class="layers-heading"><?php _e( 'Complete Your Site Setup' , 'layerswp' ); ?></h4>
+								</div>
+								<?php $setup_index = 0; ?>
+								<?php foreach( $this->site_setup_actions() as $setup_key => $setup_details ) {
+
+									if( !in_array( $setup_key, $setup_steps ) ) continue; ?>
+
+									<div class="layers-dashboard-setup-form <?php echo ( 0 != $setup_index ) ? 'layers-hide' : ''; ?>">
+										<div class="layers-content">
+											<?php if( isset( $setup_details[ 'label' ] ) || isset( $setup_details[ 'excerpt' ] ) ) { ?>
+												<div class="layers-section-title layers-tiny">
+													<?php if( isset( $setup_details[ 'label' ] ) ) { ?>
+														<h3 class="layers-heading"><?php echo $setup_details[ 'label' ]; ?></h3>
+													<?php } ?>
+													<?php if( isset( $setup_details[ 'excerpt' ] ) ) { ?>
+														<p class="layers-excerpt">
+															<?php echo $setup_details[ 'excerpt' ]; ?>
+														</p>
+													<?php } ?>
+												</div>
+											<?php } ?>
+											<?php if( isset( $setup_details[ 'form' ] ) ){ ?>
+												<?php foreach( $setup_details[ 'form' ] as $form_id => $form_details ) { ?>
+													<div class="layers-form-item">
+														<?php $form_elements->input( $form_details ); ?>
+													</div>
+												<?php } ?>
+											<?php } ?>
+										</div>
+										<?php if( isset( $setup_details[ 'skip-action' ] ) || isset( $setup_details[ 'submit-action' ] ) ) { ?>
+											<div class="layers-button-well">
+												<?php if( isset( $setup_details[ 'skip-action' ] ) ) { ?>
+													<a class="layers-button btn-link layers-pull-right layers-dashboard-skip" data-setup-step-key="<?php echo $setup_key; ?>" data-skip-action="<?php echo $setup_details[ 'skip-action' ]; ?>">
+														<?php _e( 'Skip' , 'layerswp' ); ?>
+													</a>
+												<?php } ?>
+												<?php if( isset( $setup_details[ 'submit-action' ] ) ) { ?>
+													<a class="layers-button" href="" data-setup-step-key="<?php echo $setup_key; ?>" data-submit-action="<?php echo $setup_details[ 'submit-action' ]; ?>">
+														<?php echo ( isset( $setup_details[ 'submit-text' ] ) ) ? $setup_details[ 'submit-text' ] : __( 'Save &amp; Proceed &rarr;' , 'layerswp' ); ?>
+													</a>
+												<?php } ?>
+											</div>
+										<?php } ?>
+										<?php $setup_index++; ?>
+									</div>
+								<?php } ?>
+							</div>
+						<?php } else {
+							// Site Setup Contrats
+							$this->notice( 'good' , __( 'Well done, your site setup is complete!' , 'layerswp' ) ) ;
+						} ?>
+
 						<div class="layers-panel layers-push-bottom">
 							<div class="layers-panel-title">
 								<h4 class="layers-heading"><?php _e( 'Layers Pages' , 'layerswp' ); ?></h4>
@@ -59,22 +126,21 @@ $theme_info = wp_get_theme( 'layerswp' ); ?>
 
 				</div>
 
-				<div class="layers-column layers-span-4">
-
-					<?php if( 0 == count( layers_get_plugins() ) ) { ?>
-						<div class="layers-panel layers-content layers-push-bottom">
-							<div class="layers-section-title layers-tiny">
-								<h3 class="layers-heading"><?php _e( 'Themes &amp; Extensions' , 'layerswp' ); ?></h3>
-								<p class="layers-excerpt">
-									<?php _e( 'Looking for a theme or plugin to achieve something unique with your website?
-										Browse the massive Layers Marketplace on Envato and take your site to the next level.' , 'layerswp' ); ?>
-								</p>
-							</div>
-							<a href="{themeforest.net/layers}" class="layers-button btn-primary">
-								<?php _e( 'Browse &rarr;' , 'layerswp' ); ?>
-							</a>
+				<div class="layers-column layers-span-6">
+					<div class="layers-panel layers-content layers-push-bottom">
+						<div class="layers-section-title layers-tiny">
+							<h3 class="layers-heading"><?php _e( 'Themes &amp; Extensions' , 'layerswp' ); ?></h3>
+							<p class="layers-excerpt">
+								<?php _e( 'Looking for a theme or plugin to achieve something unique with your website?
+									Browse the massive Layers Marketplace on Envato and take your site to the next level.' , 'layerswp' ); ?>
+							</p>
 						</div>
-					<?php } else { ?>
+						<a href="{themeforest.net/layers}" class="layers-button btn-primary">
+							<?php _e( 'Browse &rarr;' , 'layerswp' ); ?>
+						</a>
+					</div>
+
+					<?php if( 0 < count( layers_get_plugins() ) ) { ?>
 						<div class="layers-panel">
 							<div class="layers-panel-title">
 								<h4 class="layers-heading"><?php _e( 'Installed Extensions' , 'layerswp' ); ?></h4>
@@ -100,91 +166,8 @@ $theme_info = wp_get_theme( 'layerswp' ); ?>
 						</div>
 					<?php } ?>
 
-					<div class="layers-panel layers-push-bottom">
-						<div class="layers-section-title layers-tiny layers-content">
-							<div class="layers-column layers-span-3">
-								<img src="<?php echo LAYERS_TEMPLATE_URI; ?>/core/assets/images/github-badge.png" alt="<?php _e( 'Github badge' , 'layerswp' ); ?>"/>
-							</div>
-							<div class="layers-column layers-span-9 layers-last">
-								<h3 class="layers-heading"><?php _e( 'Contribute to Layers' , 'layerswp' ); ?></h3>
-								<p class="layers-excerpt">
-									<?php _e( sprintf( 'Get involved with the community of this awesome project and contribute enhancements, features, and bug fixes to the core code of <a href="%s" target="_blank">Layers on GitHub</a>. Check out the Issues tab for ways to help!', 'http://github.com/Obox/layerswp/' ) , 'layerswp' ); ?>
-								</p>
-							</div>
-						</div>
-						<div class="layers-button-well">
-							<a href="http://github.com/Obox/layerswp/" class="layers-button layers-pull-right" target="_blank">
-								<?php _e( 'Contribute' , 'layerswp' ); ?>
-							</a>
-						</div>
-					</div>
 				</div>
-				<div class="layers-column layers-span-4">
-
-					<?php /*
-					* Check to see if we have dismissed or gone through any of the setup steps
-					*/
-					$dismissed_setup_steps = get_option( 'layers_dismissed_setup_steps' );
-					foreach( array_keys( $this->site_setup_actions() ) as $key ) {
-						if( !is_array( $dismissed_setup_steps ) || !in_array( $key, $dismissed_setup_steps ) ) {
-							$setup_steps[] = $key;
-						}
-					} ?>
-
-					<?php if( isset( $setup_steps ) ) { ?>
-						<div class="layers-panel layers-site-setup-panel">
-							<div class="layers-panel-title">
-								<h4 class="layers-heading"><?php _e( 'Complete Your Site Setup' , 'layerswp' ); ?></h4>
-							</div>
-							<?php $setup_index = 0; ?>
-							<?php foreach( $this->site_setup_actions() as $setup_key => $setup_details ) {
-
-								if( !in_array( $setup_key, $setup_steps ) ) continue; ?>
-
-								<div class="layers-dashboard-setup-form <?php echo ( 0 != $setup_index ) ? 'layers-hide' : ''; ?>">
-									<div class="layers-content">
-										<?php if( isset( $setup_details[ 'label' ] ) || isset( $setup_details[ 'excerpt' ] ) ) { ?>
-											<div class="layers-section-title layers-tiny">
-												<?php if( isset( $setup_details[ 'label' ] ) ) { ?>
-													<h3 class="layers-heading"><?php echo $setup_details[ 'label' ]; ?></h3>
-												<?php } ?>
-												<?php if( isset( $setup_details[ 'excerpt' ] ) ) { ?>
-													<p class="layers-excerpt">
-														<?php echo $setup_details[ 'excerpt' ]; ?>
-													</p>
-												<?php } ?>
-											</div>
-										<?php } ?>
-										<?php if( isset( $setup_details[ 'form' ] ) ){ ?>
-											<?php foreach( $setup_details[ 'form' ] as $form_id => $form_details ) { ?>
-												<div class="layers-form-item">
-													<?php $form_elements->input( $form_details ); ?>
-												</div>
-											<?php } ?>
-										<?php } ?>
-									</div>
-									<?php if( isset( $setup_details[ 'skip-action' ] ) || isset( $setup_details[ 'submit-action' ] ) ) { ?>
-										<div class="layers-button-well">
-											<?php if( isset( $setup_details[ 'skip-action' ] ) ) { ?>
-												<a class="layers-button btn-link layers-pull-right layers-dashboard-skip" data-setup-step-key="<?php echo $setup_key; ?>" data-skip-action="<?php echo $setup_details[ 'skip-action' ]; ?>">
-													<?php _e( 'Skip' , 'layerswp' ); ?>
-												</a>
-											<?php } ?>
-											<?php if( isset( $setup_details[ 'submit-action' ] ) ) { ?>
-												<a class="layers-button" href="" data-setup-step-key="<?php echo $setup_key; ?>" data-submit-action="<?php echo $setup_details[ 'submit-action' ]; ?>">
-													<?php echo ( isset( $setup_details[ 'submit-text' ] ) ) ? $setup_details[ 'submit-text' ] : __( 'Save &amp; Proceed &rarr;' , 'layerswp' ); ?>
-												</a>
-											<?php } ?>
-										</div>
-									<?php } ?>
-									<?php $setup_index++; ?>
-								</div>
-							<?php } ?>
-						</div>
-					<?php } else {
-						// Site Setup Contrats
-						$this->notice( 'good' , __( 'Congrats your site is setup!' , 'layerswp' ) ) ;
-					} ?>
+				<div class="layers-column layers-span-3">
 
 					<?php /*
 					* Grab the Quick Help Feed
@@ -217,28 +200,39 @@ $theme_info = wp_get_theme( 'layerswp' ); ?>
 					<?php } ?>
 
 					<div class="layers-panel layers-push-bottom">
-					<div class="layers-panel-title">
-								<h4 class="layers-heading"><?php _e( 'Stay in the Loop' , 'layerswp' ); ?></h4>
+						<div class="layers-content clearfix">
+							<div class="layers-section-title layers-tiny">
+								<h3 class="layers-heading"><?php _e( 'Stay in the Loop' , 'layerswp' ); ?></h3>
+								<p class="layers-excerpt">
+									<?php _e( 'Sign up to our monthly newsletter to find out when we launch new features, products.' , 'layerswp' ); ?>
+								</p>
 							</div>
-						<div class="layers-section-title layers-tiny layers-content">
-							<p class="layers-excerpt">
-								<form action="http://oboxdesign.createsend.com/t/r/s/ittddii/" method="post" id="subForm">
-									<p>
-										<label for="fieldName"><?php _e( 'Name' , 'layerswp' ); ?></label><br />
-										<input id="fieldName" name="cm-name" type="text" />
-									</p>
-									<p>
-										<label for="fieldEmail"><?php _e( 'Email' , 'layerswp' ); ?></label><br />
-										<input id="fieldEmail" name="cm-ittddii-ittddii" type="email" required />
-									</p>
-									<p>
-										<button class="layers-button" type="submit">Subscribe</button>
-									</p>
-								</form>
-							</p>
+							<form action="http://oboxdesign.createsend.com/t/r/s/ittddii/" method="post" id="subForm">
+								<div class="layers-form-item layers-form-inline">
+									<label for="fieldEmail"><?php _e( 'Email Address' , 'layerswp' ); ?></label>
+									<input id="fieldEmail" name="cm-ittddii-ittddii" type="email" placeholder="john@smith.com" />
+									<button class="layers-button btn-primary" type="submit">Subscribe</button>
+								</div>
+							</form>
 						</div>
 					</div>
 
+					<div class="layers-panel layers-push-bottom">
+						<div class="layers-media layers-image-left layers-content layers-no-push-bottom">
+							<div class="layers-media-image layers-small">
+								<img src="<?php echo LAYERS_TEMPLATE_URI; ?>/core/assets/images/github-badge.png" alt="<?php _e( 'Github badge' , 'layerswp' ); ?>"/>
+							</div>
+							<div class="layers-media-body">
+								<h3 class="layers-heading"><?php _e( 'Contribute to Layers' , 'layerswp' ); ?></h3>
+								<p class="layers-excerpt">
+									<?php _e( sprintf( 'Get involved with the community of this awesome project
+									and contribute enhancements, features, and bug fixes to the core code of
+									<a href="%s" target="_blank">Layers on GitHub</a>. Check out the Issues tab for ways to help!',
+									'http://github.com/Obox/layerswp/' ) , 'layerswp' ); ?>
+								</p>
+							</div>
+						</div>
+					</div>
 
 				</div>
 
@@ -264,13 +258,17 @@ if( 0 < count( $news ) && $news ) { ?>
 				<?php foreach( $news as $news_id => $news_item ) { ?>
 					<div class="layers-column layers-span-3">
 						<div class="layers-panel">
-							<div class="layers-section-title layers-tiny layers-no-push-bottom layers-content">
-								<h4 class="layers-heading">
-									<?php echo $news_item[ 'title' ]; ?>
-								</h4>
-							</div>
-							<div class="layers-copy">
-								<?php echo $news_item[ 'excerpt' ]; ?>
+							<div class="layers-content">
+								<div class="layers-section-title layers-tiny">
+									<h4 class="layers-heading">
+										<a href="<?php echo $news_item[ 'link' ]; ?>">
+											<?php echo $news_item[ 'title' ]; ?>
+										</a>
+									</h4>
+								</div>
+								<div class="layers-excerpt">
+									<?php echo $news_item[ 'excerpt' ]; ?>
+								</div>
 							</div>
 							<div class="layers-button-well">
 								<a href="<?php echo $news_item[ 'link' ]; ?>" class="layers-button" target="_blank">
@@ -278,6 +276,7 @@ if( 0 < count( $news ) && $news ) { ?>
 								</a>
 							</div>
 						</div>
+
 					</div>
 				<?php } ?>
 			</div>

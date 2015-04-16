@@ -21,13 +21,13 @@ jQuery(document).ready(function($){
 	/**
 	* 1 - Sortable items
 	*/
-	layers_set_slide_sorable();
+	layers_set_slide_sortable();
 
 	$(document).on ( 'widget-added' , function(){
-		layers_set_slide_sorable();
+		layers_set_slide_sortable();
 	});
 
-	function layers_set_slide_sorable(){
+	function layers_set_slide_sortable(){
 
 		var $slide_lists = $( 'ul[id^="slide_list_"]' );
 
@@ -51,7 +51,7 @@ jQuery(document).ready(function($){
 				$slideInput.val( $slide_guids.join() ).layers_trigger_change();
 			}
 		});
-	};
+	}
 
 	/**
 	* 2 - Banner Removal & Additions
@@ -128,7 +128,11 @@ jQuery(document).ready(function($){
 			function(data){
 
 				// Set slide
-				$slide = $(data);
+				var $slide = $(data);
+
+				var layers_debounce_input = _.debounce(function( element ){
+					$( element ).layers_trigger_change();
+				}, 200);
 
 				// Append module HTML
 				$slideList.append($slide);
@@ -146,9 +150,25 @@ jQuery(document).ready(function($){
 				$slideInput.val( $slide_guids.join() ).layers_trigger_change();
 
 				// Trigger color selectors
-				jQuery('.layers-color-selector').wpColorPicker();
+				$('.layers-color-selector').wpColorPicker({
+					change: function(event, ui){
+						if( 'undefined' !== typeof event ){
+							//Update the color input
+							$(event.target).val( ui.color.toString() );
+
+							// Debounce the color changes
+							layers_debounce_input( event.target );
+						}
+					},
+					clear: function(event) {
+						if( 'undefined' !== typeof event ){
+							// Debounce the reset change
+							layers_debounce_input( $(event.target).parent('.wp-picker-input-wrap').find('.wp-color-picker') );
+						}
+					},
+				});
 			}
-		) // $.post
+		); // $.post
 	});
 
 	/**

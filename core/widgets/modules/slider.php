@@ -270,11 +270,13 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 							pagination: '.<?php echo $this->get_field_id( 'pages' ); ?>',
 						<?php } ?>
 						paginationClickable: true,
-						watchActiveIndex: true,
-						loop: true
+						watchActiveIndex: true
+						<?php if( 1 < count( $widget[ 'slides' ] ) ) { ?>
+							,loop: true
+						<?php } ?>
 						<?php if( isset( $widget['autoplay_slides'] ) && isset( $widget['slide_time'] ) && is_numeric( $widget['slide_time'] ) ) {?>
 							, autoplay: <?php echo ($widget['slide_time']*1000); ?>
-						<?php }?>
+						<?php } ?>
 						<?php if( '' != get_option( $this->get_field_id( 'slider' ) . '_slide_ids' ) && isset( $wp_customize ) && ( strlen( $widget[ 'slide_ids' ] ) > strlen( get_option( $this->get_field_id( 'slider' ) . '_slide_ids' ) ) ) ) { ?>
 							,initialSlide: <?php echo count( explode( ',', $widget['slide_ids']) ) - 1; ?>
 						<?php } ?>

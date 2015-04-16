@@ -1008,7 +1008,6 @@ if( !function_exists( 'layers_inline_button_styles' ) ) {
 	function layers_inline_button_styles( $container_id = NULL, $type = 'background' , $args = array() ){
 
 		// Add styling for the standard colors
-
 		layers_inline_styles( $container_id, $type, $args );
 
 		// Add styling for the hover colors
@@ -1023,7 +1022,7 @@ if( !function_exists( 'layers_inline_button_styles' ) ) {
 			$hover_args = $args;
 			
 			foreach( $args['selectors'] as $selector ){
-				$new_selectors[] = $selector. ':hover';
+				$new_selectors[] = $selector . ':hover';
 			}
 			$hover_args['selectors'] = $new_selectors;
 		}

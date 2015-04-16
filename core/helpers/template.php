@@ -1009,7 +1009,15 @@ if( !function_exists( 'layers_inline_button_styles' ) ) {
 
 		// Add styling for the hover colors
 		if( isset( $args['selectors'] ) ) {
+			
+			if ( ! is_array( $args['selectors'] ) ) {
+				// Make sure selectors is array if comma seperated string is passed
+				$args['selectors'] = explode( ',', $args['selectors'] );
+				$args['selectors'] = array_map( 'trim', $args['selectors'] );
+			}
+			
 			$hover_args = $args;
+			
 			foreach( $args['selectors'] as $selector ){
 				$new_selectors[] = $selector. ':hover';
 			}

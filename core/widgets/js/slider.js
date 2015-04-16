@@ -38,6 +38,12 @@ jQuery(document).ready(function($){
 				// Banner UL, looking up from our current target
 				$slideList = li.item.closest( 'ul' );
 
+				// Set focus slide
+				$widget = li.item.closest( '.widget' );
+				$slide_index = li.item.index();
+				$slide_guid = li.item.data( 'guid' );
+				layers_set_slide_index( $widget, $slide_index, $slide_guid );
+
 				// Banners <input>
 				$slideInput = $( '#slide_ids_input_' + $slideList.data( 'number' ) );
 
@@ -170,5 +176,27 @@ jQuery(document).ready(function($){
 		$that.closest( '.layers-accordion-item' ).find( 'span.layers-detail' ).text( $string );
 
 	});
+
+	/**
+	* 4 - Slider Focus
+	*/
+	$(document).on( 'focus click' , 'ul[id^="slide_list_"] li a.layers-accordion-title', function(e){
+
+		// Set focus slide
+		$widget = $(this).closest( '.widget' );
+		$li = $(this).parent();
+
+		if( undefined !== $li.data('guid') ){
+			$slide_index = $li.index();
+			$slide_guid = $li.data('guid');
+			layers_set_slide_index( $widget, $slide_index, $slide_guid );
+		}
+	});
+
+	function layers_set_slide_index( $widget, $slide_index, $slide_guid ){
+		if( undefined !== $widget ){
+			$widget.find( 'input[data-focus-slide="true"]' ).val( $slide_index );
+		}
+	}
 
 }); //jQuery

@@ -299,8 +299,8 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 						<?php if( isset( $widget['autoplay_slides'] ) && isset( $widget['slide_time'] ) && is_numeric( $widget['slide_time'] ) ) {?>
 							, autoplay: <?php echo ($widget['slide_time']*1000); ?>
 						<?php }?>
-						<?php if( '' != get_option( $this->get_field_id( 'slider' ) . '_slide_ids' ) && isset( $wp_customize ) && ( strlen( $widget[ 'slide_ids' ] ) > strlen( get_option( $this->get_field_id( 'slider' ) . '_slide_ids' ) ) ) ) { ?>
-							,initialSlide: <?php echo count( explode( ',', $widget['slide_ids']) ) - 1; ?>
+						<?php if( isset( $wp_customize ) && $this->check_and_return( $widget, 'focus_slide' ) ) { ?>
+							,initialSlide: <?php echo $this->check_and_return( $widget, 'focus_slide' ); ?>
 						<?php } ?>
 					});
 
@@ -330,10 +330,7 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 
 				})
 		 	</script>
-			<?php
-
-			update_option( $this->get_field_id( 'slider' ) . '_slide_ids' , $widget[ 'slide_ids' ] );
-		}
+		<?php }
 
 		/**
 		*  Widget update
@@ -489,6 +486,18 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 							)
 						); ?>
 
+						<?php echo $this->form_elements()->input(
+							array(
+								'type' => 'hidden',
+								'name' => $this->get_field_name( 'focus_slide' ) ,
+								'id' => $this->get_field_name( 'focus_slide' ) ,
+								'value' => ( isset( $focus_slide ) ) ? $focus_slide : NULL,
+								'data' => array(
+									'focus-slide' => 'true'
+								)
+							)
+						); ?>
+
 						<?php // If we have some slides, let's break out their IDs into an array
 						if( isset( $slide_ids ) && '' != $slide_ids ) $slides = wp_parse_id_list( $slide_ids ); ?>
 
@@ -524,8 +533,6 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 
 			// If there is no GUID create one. There should always be one but this is a fallback
 			if( ! isset( $slide_guid ) ) $slide_guid = rand( 1 , 1000 );
-
-
 
 			// Turn the widget details into an object, it makes the code cleaner
 			$widget_details = (object) $widget_details;

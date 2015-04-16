@@ -147,7 +147,13 @@ jQuery(document).ready(function($){
 				$slide_guids = [];
 				$slideList.find( 'li.layers-accordion-item' ).each(function(){
 					$slide_guids.push( $(this).data( 'guid' ) );
+					$slide_index = $(this).index();
+					$slide_guid = $(this).data( 'guid' );
 				});
+
+				// Set focus slide
+				$widget = $slideList.closest( '.widget' );
+				layers_set_slide_index( $widget, $slide_index, $slide_guid );
 
 				// Trigger change for ajax save
 				$slideInput.val( $slide_guids.join() ).layers_trigger_change();

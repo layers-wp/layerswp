@@ -65,7 +65,6 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 					'background' => array(
 						'position' => 'center',
 						'repeat' => 'no-repeat',
-						'color' => '#444',
 						'size' => 'cover'
 					),
 					'fonts' => array(
@@ -132,28 +131,36 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 			if( $this->check_and_return( $widget, 'slider_arrow_color' ) ) layers_inline_styles( '#' . $widget_id, 'background', array( 'selectors' => array( 'span.swiper-pagination-switch' ), 'background' => array( 'color' => $this->check_and_return( $widget, 'slider_arrow_color' ) ) ) );
 			if( $this->check_and_return( $widget, 'slider_arrow_color' ) ) layers_inline_styles( '#' . $widget_id, 'background', array( 'selectors' => array( 'span.swiper-pagination-switch.swiper-active-switch' ), 'background' => array( 'color' => 'transparent !important' ) ) );
 
-			// Slider Class
-			$slider_class = array();
-			if( isset( $widget['design']['layout'] ) && '' != $widget['design']['layout'] ) {
-				// Slider layout eg 'slider-layout-full-screen'
-				$slider_class[] = 'slider-' . $widget['design']['layout'];
-			}
-			if( ! isset( $widget['design']['layout'] ) || ( isset( $widget['design']['layout'] ) && 'layout-full-screen' != $widget['design']['layout'] ) ) {
-				// If slider is not full screen
-				$slider_class[] = 'not-full-screen';
-			}
-			if( 1 == count( $widget[ 'slides' ] ) ) {
-				// If only one slide
-				$slider_class[] = 'single-slide';
-			}
-			$slider_class = implode( ' ', $slider_class );
 
 			// Get slider height css
 			$slider_height_css = '';
 			if( FALSE == $this->check_and_return( $widget , 'autoheight_slides' ) && $this->check_and_return( $widget , 'slide_height' ) ) {
 				$slider_height_css = 'height: ' . $widget['slide_height'] . 'px; ';
-			} ?>
-			<section class="widget row slide swiper-container <?php echo $slider_class; ?> <?php echo $this->get_widget_layout_class( $widget ); ?> <?php echo $this->check_and_return( $widget , 'design', 'advanced', 'customclass' ) ?> <?php echo $this->get_widget_spacing_class( $widget ); ?>" id="<?php echo $widget_id; ?>" style="<?php echo esc_attr( $slider_height_css ); ?>" >
+			}
+
+			/**
+			* Generate the widget container class
+			*/
+			$widget_container_class = array();
+			$widget_container_class[] = 'widget row slide swiper-container';
+			$widget_container_class[] = $this->get_widget_layout_class( $widget );
+			$widget_container_class[] = $this->check_and_return( $widget , 'design', 'advanced', 'customclass' );
+			$widget_container_class[] = $this->get_widget_spacing_class( $widget );
+			if( isset( $widget['design']['layout'] ) && '' != $widget['design']['layout'] ) {
+				// Slider layout eg 'slider-layout-full-screen'
+				$widget_container_class[] = 'slider-' . $widget['design']['layout'];
+			}
+			if( ! isset( $widget['design']['layout'] ) || ( isset( $widget['design']['layout'] ) && 'layout-full-screen' != $widget['design']['layout'] ) ) {
+				// If slider is not full screen
+				$widget_container_class[] = 'not-full-screen';
+			}
+			if( 1 == count( $widget[ 'slides' ] ) ) {
+				// If only one slide
+				$widget_container_class[] = 'single-slide';
+			}
+			$widget_container_class = implode( ' ', apply_filters( 'layers_slider_widget_container_class' , $widget_container_class ) ); ?>
+
+			<section class="<?php echo $widget_container_class; ?>" id="<?php echo $widget_id; ?>" style="<?php echo esc_attr( $slider_height_css ); ?>" >
 				<?php if( !empty( $widget[ 'slides' ] ) ) { ?>
 					<?php if( 1 < count( $widget[ 'slides' ] ) && isset( $widget['show_slider_arrows'] ) ) { ?>
 						 <div class="arrows">
@@ -196,9 +203,16 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 								$use_image_ratio = 'large';
 							}
 
-							// Set Slide CSS Classes
+ 							/**
+							* Set Individual Slide CSS
+							*/
 							$slide_class = array();
-							$slide_class[] = 'invert swiper-slide';
+							$slide_class[] = 'swiper-slide';
+							if( $this->check_and_return( $slide, 'design', 'background' , 'color' ) ) {
+								if( 'dark' == layers_is_light_or_dark( $this->check_and_return( $slide, 'design', 'background' , 'color' ) ) ) {
+									$slide_class[] = 'invert';
+								}
+							}
 							if( false != $this->check_and_return( $slide , 'image' ) || 'image-left' == $slide['design'][ 'imagealign' ] || 'image-top' == $slide['design'][ 'imagealign' ] ) {
 								$slide_class[] = 'has-image';
 							}
@@ -210,17 +224,6 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 							}
 							$slide_class = implode( ' ', $slide_class );
 
-							// Set Overlay CSS Classes
-							$overlay_class = array();
-							$overlay_class[] = 'overlay';
-							if( isset( $slide['design'][ 'background' ][ 'darken' ] ) ) {
-								$overlay_class[] = 'darken';
-							}
-							if( '' != $this->check_and_return( $slide, 'design' , 'background', 'image' ) || '' != $this->check_and_return( $slide, 'design' , 'background', 'color' ) ) {
-								$overlay_class[] = 'content';
-							}
-							$overlay_classes = implode( ' ', $overlay_class );
-
 							// Set link entire slide or not
 							$slide_wrapper_tag = 'div';
 							$slide_wrapper_href = '';
@@ -228,7 +231,20 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 								$slide_wrapper_tag = 'a';
 								$slide_wrapper_href = 'href="' . esc_url( $slide['link'] ) . '"';
 							} ?>
-							<<?php echo $slide_wrapper_tag; ?> <?php echo $slide_wrapper_href; ?> id="<?php echo $widget_id; ?>-<?php echo $slide_key; ?>" class="<?php echo $slide_class; ?>" style="float: left;">
+							<<?php echo $slide_wrapper_tag; ?> <?php echo $slide_wrapper_href; ?> class="<?php echo $slide_class; ?>" id="<?php echo $widget_id; ?>-<?php echo $slide_key; ?>" style="float: left;">
+								<?php /**
+								* Set Overlay CSS Classes
+								*/
+								$overlay_class = array();
+								$overlay_class[] = 'overlay';
+								if( isset( $slide['design'][ 'background' ][ 'darken' ] ) ) {
+									$overlay_class[] = 'darken';
+								}
+								if( '' != $this->check_and_return( $slide, 'design' , 'background', 'image' ) || '' != $this->check_and_return( $slide, 'design' , 'background', 'color' ) ) {
+									$overlay_class[] = 'content';
+								}
+								$overlay_classes = implode( ' ', $overlay_class ); ?>
+
 								<div class="<?php echo $overlay_classes; ?>" >
 									<div class="container clearfix">
 										<?php if( '' != $slide['title'] || '' != $slide['excerpt'] || '' != $slide['link'] ) { ?>
@@ -276,13 +292,15 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 							pagination: '.<?php echo $this->get_field_id( 'pages' ); ?>',
 						<?php } ?>
 						paginationClickable: true,
-						watchActiveIndex: true,
-						loop: true
+						watchActiveIndex: true
+						<?php if( 1 < count( $widget[ 'slides' ] ) ) { ?>
+							,loop: true
+						<?php } ?>
 						<?php if( isset( $widget['autoplay_slides'] ) && isset( $widget['slide_time'] ) && is_numeric( $widget['slide_time'] ) ) {?>
 							, autoplay: <?php echo ($widget['slide_time']*1000); ?>
 						<?php }?>
-						<?php if( '' != get_option( $this->get_field_id( 'slider' ) . '_slide_ids' ) && isset( $wp_customize ) && ( strlen( $widget[ 'slide_ids' ] ) > strlen( get_option( $this->get_field_id( 'slider' ) . '_slide_ids' ) ) ) ) { ?>
-							,initialSlide: <?php echo count( explode( ',', $widget['slide_ids']) ) - 1; ?>
+						<?php if( isset( $wp_customize ) && $this->check_and_return( $widget, 'focus_slide' ) ) { ?>
+							,initialSlide: <?php echo $this->check_and_return( $widget, 'focus_slide' ); ?>
 						<?php } ?>
 					});
 
@@ -312,10 +330,7 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 
 				})
 		 	</script>
-			<?php
-
-			update_option( $this->get_field_id( 'slider' ) . '_slide_ids' , $widget[ 'slide_ids' ] );
-		}
+		<?php }
 
 		/**
 		*  Widget update
@@ -471,6 +486,18 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 							)
 						); ?>
 
+						<?php echo $this->form_elements()->input(
+							array(
+								'type' => 'hidden',
+								'name' => $this->get_field_name( 'focus_slide' ) ,
+								'id' => $this->get_field_name( 'focus_slide' ) ,
+								'value' => ( isset( $focus_slide ) ) ? $focus_slide : NULL,
+								'data' => array(
+									'focus-slide' => 'true'
+								)
+							)
+						); ?>
+
 						<?php // If we have some slides, let's break out their IDs into an array
 						if( isset( $slide_ids ) && '' != $slide_ids ) $slides = wp_parse_id_list( $slide_ids ); ?>
 
@@ -506,8 +533,6 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 
 			// If there is no GUID create one. There should always be one but this is a fallback
 			if( ! isset( $slide_guid ) ) $slide_guid = rand( 1 , 1000 );
-
-
 
 			// Turn the widget details into an object, it makes the code cleaner
 			$widget_details = (object) $widget_details;

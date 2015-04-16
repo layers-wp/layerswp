@@ -107,13 +107,12 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 			if( !empty( $widget['design'][ 'background' ] ) ) layers_inline_styles( '#' . $widget_id, 'background', array( 'background' => $widget['design'][ 'background' ] ) );
 			if( !empty( $widget['design']['fonts'][ 'color' ] ) ) layers_inline_styles( '#' . $widget_id, 'color', array( 'selectors' => array( '.section-title h3.heading' , '.section-title p.excerpt' ) , 'color' => $widget['design']['fonts'][ 'color' ] ) );
 
-
 			// Apply the advanced widget styling
 			$this->apply_widget_advanced_styling( $widget_id, $widget ); ?>
 
 			<section class="widget row content-vertical-massive <?php echo $this->check_and_return( $widget , 'design', 'advanced', 'customclass' ) ?> <?php echo $this->get_widget_spacing_class( $widget ); ?>" id="<?php echo $widget_id; ?>">
 				<?php if( '' != $this->check_and_return( $widget , 'title' ) ||'' != $this->check_and_return( $widget , 'excerpt' ) ) { ?>
-					<div class="container">
+					<div class="container <?php echo ( $this->check_and_return( $widget, 'design', 'background' , 'color' ) && 'dark' == layers_is_light_or_dark( $this->check_and_return( $widget, 'design', 'background' , 'color' ) ) ? 'invert' : '' ); ?>">
 						<div class="section-title <?php echo $this->check_and_return( $widget , 'design', 'fonts', 'size' ); ?> <?php echo $this->check_and_return( $widget , 'design', 'fonts', 'align' ); ?> clearfix">
 							<?php if( '' != $widget['title'] ) { ?>
 								<h3 class="heading"><?php echo esc_html( $widget['title'] ); ?></h3>
@@ -213,6 +212,16 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 							if( !$this->check_and_return( $widget, 'design', 'gutter' ) ) {
 								$column_inner_class[] = 'no-push-bottom';
 							}
+							if( $this->check_and_return( $column, 'design', 'background' , 'color' ) ) {
+								if( 'dark' == layers_is_light_or_dark( $this->check_and_return( $column, 'design', 'background' , 'color' ) ) ) {
+									$column_inner_class[] = 'invert';
+								}
+							} else {
+								if( $this->check_and_return( $widget, 'design', 'background' , 'color' ) && 'dark' == layers_is_light_or_dark( $this->check_and_return( $widget, 'design', 'background' , 'color' ) ) ) {
+									$column_inner_class[] = 'invert';
+								}
+							}
+
 							$column_inner_class[] = $this->check_and_return( $column, 'design', 'imagealign' );
 							$column_inner_class[] = $this->check_and_return( $column, 'design', 'fonts' , 'size' );
 							$column_inner_class = implode( ' ', $column_inner_class ); ?>

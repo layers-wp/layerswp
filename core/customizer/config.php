@@ -141,8 +141,8 @@ class Layers_Customizer_Config {
 							'title' =>__( 'Sidebars' , 'layerswp' ),
 							'panel' => 'woocommerce'
 						),
-						'body' => array(
-							'title' =>__( 'Body' , 'layerswp' ),
+						'body-customization' => array(
+							'title' =>__( 'Customization' , 'layerswp' ),
 							'panel' => 'body'
 						)
 					);
@@ -324,7 +324,7 @@ class Layers_Customizer_Config {
 							);
 
 		// Body -> Body
-		$controls['body'] = array(
+		$controls['body-customization'] = array(
 								'body-background-color' => array(
 									'label' => __( 'Background Color' , 'layerswp' ),
 									'subtitle' => '',

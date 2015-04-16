@@ -9,6 +9,7 @@
  * 1 - Sortable items
  * 2 - Slide Removal & Additions
  * 3 - Slide Title Update
+ * 4 - Curreny Slide Focussing
  *
  * Author: Obox Themes
  * Author URI: http://www.oboxthemes.com/

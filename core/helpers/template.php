@@ -413,29 +413,56 @@ if( !function_exists( 'layers_apply_customizer_styles' ) ) {
 		));
 		
 		// Buttons
-		layers_inline_button_styles(
-			'',
-			'button',
-			array(
-				'selectors' => array(
-					'input[type="button"]',
-					'input[type="submit"]',
-					'button',
-					'.button',
-					'.form-submit input[type="submit"]',
-					// Inverts
-					'.invert input[type="button"]',
-					'.invert input[type="submit"]',
-					'.invert button',
-					'.invert .button',
-					'.invert .form-submit input[type="submit"]',
-				),
-				'button' => array(
-					'background-color' => layers_get_theme_mod( 'button-background-color', FALSE ),
-					'color' => layers_get_theme_mod( 'button-text-color', FALSE ),
-				)
+		layers_inline_button_styles( '', 'button', array(
+			'selectors' => array(
+				'input[type="button"]',
+				'input[type="submit"]',
+				'button',
+				'.button',
+				'.form-submit input[type="submit"]',
+				// Inverts
+				'.invert input[type="button"]',
+				'.invert input[type="submit"]',
+				'.invert button',
+				'.invert .button',
+				'.invert .form-submit input[type="submit"]',
+			),
+			'button' => array(
+				'background-color' => layers_get_theme_mod( 'button-background-color', FALSE ),
+				'color' => layers_get_theme_mod( 'button-text-color', FALSE ),
 			)
-		);
+		) );
+		
+		// Content - Heading
+		layers_inline_styles( '', 'color', array(
+			'selectors' => array(
+				'.copy h1',
+				'.copy h2',
+				'.copy h3',
+				'.copy h4',
+				'.copy h5',
+				'.copy h6',
+				'.story h1',
+				'.story h2',
+				'.story h3',
+				'.story h4',
+				'.story h5',
+				'.story h6',
+			),
+			'color' => layers_get_theme_mod( 'body-heading-color', FALSE ),
+		) );
+		
+		// Content - Links
+		layers_inline_button_styles( '', 'button', array(
+			'selectors' => array( '.copy a', '.story a' ),
+			'button' => array( 'color' => layers_get_theme_mod( 'body-link-color', FALSE ) ),
+		) );
+		
+		// Sidebar Well
+		layers_inline_styles( '', 'button', array(
+			'selectors' => array( '.sidebar .well' ),
+			'button' => array( 'color' => layers_get_theme_mod( 'sidebar-well-color', FALSE ) ),
+		) );
 		
 	}
 } // layers_apply_customizer_styles

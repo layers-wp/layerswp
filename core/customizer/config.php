@@ -141,8 +141,8 @@ class Layers_Customizer_Config {
 							'title' =>__( 'Sidebars' , 'layerswp' ),
 							'panel' => 'woocommerce'
 						),
-						'body' => array(
-							'title' =>__( 'Body' , 'layerswp' ),
+						'body-customization' => array(
+							'title' =>__( 'Customization' , 'layerswp' ),
 							'panel' => 'body'
 						)
 					);
@@ -324,7 +324,7 @@ class Layers_Customizer_Config {
 							);
 
 		// Body -> Body
-		$controls['body'] = array(
+		$controls['body-customization'] = array(
 								'body-background-color' => array(
 									'label' => __( 'Background Color' , 'layerswp' ),
 									'subtitle' => '',
@@ -374,6 +374,28 @@ class Layers_Customizer_Config {
 									'type' => 'layers-color',
 									'default' => '#FFFFFF',
 								),
+								'body-heading-color' => array(
+									'label' => __( 'Story Heading Color' , 'layerswp' ),
+									'subtitle' => '',
+									'description' => __( 'Elements, element, element & element' , 'layerswp' ),
+									'type' => 'layers-color',
+									'default' => '#FFFFFF',
+								),
+								'body-link-color' => array(
+									'label' => __( 'Story Link Color' , 'layerswp' ),
+									'subtitle' => '',
+									'description' => __( 'Href Elements, element, element & element' , 'layerswp' ),
+									'type' => 'layers-color',
+									'default' => '#FFFFFF',
+								),
+								'sidebar-well-color' => array(
+									'label' => __( 'Sidebar Well Background Color' , 'layerswp' ),
+									'subtitle' => '',
+									'description' => __( 'Elements, element, element & element' , 'layerswp' ),
+									'type' => 'layers-color',
+									'default' => '#FFFFFF',
+								),
+								//'.copy a, .copy a hover, .story a, .story a hover'
 							);
 
 		// Footer -> Layout -> Layout

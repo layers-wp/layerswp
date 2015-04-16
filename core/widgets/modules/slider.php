@@ -65,7 +65,6 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 					'background' => array(
 						'position' => 'center',
 						'repeat' => 'no-repeat',
-						'color' => '#444',
 						'size' => 'cover'
 					),
 					'fonts' => array(
@@ -208,7 +207,12 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 							* Set Individual Slide CSS
 							*/
 							$slide_class = array();
-							$slide_class[] = 'invert swiper-slide';
+							$slide_class[] = 'swiper-slide';
+							if( $this->check_and_return( $slide, 'design', 'background' , 'color' ) ) {
+								if( 'dark' == layers_is_light_or_dark( $this->check_and_return( $slide, 'design', 'background' , 'color' ) ) ) {
+									$slide_class[] = 'invert';
+								}
+							}
 							if( false != $this->check_and_return( $slide , 'image' ) || 'image-left' == $slide['design'][ 'imagealign' ] || 'image-top' == $slide['design'][ 'imagealign' ] ) {
 								$slide_class[] = 'has-image';
 							}
@@ -288,8 +292,10 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 							pagination: '.<?php echo $this->get_field_id( 'pages' ); ?>',
 						<?php } ?>
 						paginationClickable: true,
-						watchActiveIndex: true,
-						loop: true
+						watchActiveIndex: true
+						<?php if( 1 < count( $widget[ 'slides' ] ) ) { ?>
+							,loop: true
+						<?php } ?>
 						<?php if( isset( $widget['autoplay_slides'] ) && isset( $widget['slide_time'] ) && is_numeric( $widget['slide_time'] ) ) {?>
 							, autoplay: <?php echo ($widget['slide_time']*1000); ?>
 						<?php }?>

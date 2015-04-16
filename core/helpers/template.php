@@ -464,6 +464,11 @@ if( !function_exists( 'layers_apply_customizer_styles' ) ) {
 			'button' => array( 'color' => layers_get_theme_mod( 'sidebar-well-color', FALSE ) ),
 		) );
 		
+		// Meta Background
+		layers_inline_styles( '.meta', 'css', array( 'css' => 'background-color: ' . layers_get_theme_mod( 'meta-background-color', FALSE ) . '; ' ) );
+		if ( 'light' != layers_is_light_or_dark( layers_get_theme_mod( 'meta-background-color', FALSE ) ) ){
+			add_filter( 'layers_---_class', 'layers_add_invert_class' );
+		}
 	}
 } // layers_apply_customizer_styles
 add_action( 'wp_enqueue_scripts', 'layers_apply_customizer_styles', 100 );

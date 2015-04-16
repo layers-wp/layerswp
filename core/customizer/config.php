@@ -395,7 +395,13 @@ class Layers_Customizer_Config {
 									'type' => 'layers-color',
 									'default' => '#FFFFFF',
 								),
-								//'.copy a, .copy a hover, .story a, .story a hover'
+								'meta-background-color' => array(
+									'label' => __( 'Meta Background Color' , 'layerswp' ),
+									'subtitle' => '',
+									'description' => __( 'Elements, element, element & element' , 'layerswp' ),
+									'type' => 'layers-color',
+									'default' => '#FFFFFF',
+								),
 							);
 
 		// Footer -> Layout -> Layout

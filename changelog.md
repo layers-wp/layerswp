@@ -21,6 +21,7 @@
 * **Enhancement** - Added .invert styling for headers
 * **Enhancement** - Added 'border' option to the `layers_inline_styles` function
 * **Enhancement** - Builder pages now obey password protection
+* **Enhancement** - Slider now focusses on which ever slide you are busy editing
 
 ## 1.0.8
 ### 02 April 2015

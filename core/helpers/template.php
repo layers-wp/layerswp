@@ -974,12 +974,12 @@ if( !function_exists( 'layers_inline_styles' ) ) {
 		}
 
 		if( isset( $args['selectors'] ) ) {
-
-			if ( is_string( $args['selectors'] ) && '' != $args['selectors'] ) {
-				$inline_css .= $args['selectors'];
-			} else if( !empty( $args['selectors'] ) ){
-				$inline_css .= implode( ', ' .$inline_css . ' ',  $args['selectors'] );
-			}
+			
+			// If selectors passed as array then convert them to comma separated string
+			if ( is_array( $args['selectors'] ) ) $args['selectors'] = implode( ', ', $args['selectors'] );
+			
+			// Apply Selectors to CSS declaration
+			$inline_css .= $args['selectors'];
 		}
 
 		if( '' == $inline_css) {

@@ -166,7 +166,7 @@ class Layers_Options_Panel {
 		return $menu;
 	}
 
-	public function get_layers_feed( $type = 'news', $count = 4 ){
+	public function get_layers_feed( $type = 'news', $count = 3 ){
 		if( 'news' == $type ) {
 			$feed_url = 'http://blog.oboxthemes.com/tag/layers/feed/';
 		} else if( 'docs' == $type ) {

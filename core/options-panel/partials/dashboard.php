@@ -68,12 +68,12 @@ $theme_info = wp_get_theme( 'layerswp' ); ?>
 										<?php if( isset( $setup_details[ 'skip-action' ] ) || isset( $setup_details[ 'submit-action' ] ) ) { ?>
 											<div class="layers-button-well">
 												<?php if( isset( $setup_details[ 'skip-action' ] ) ) { ?>
-													<a class="layers-button btn-link layers-pull-right layers-dashboard-skip" data-setup-step-key="<?php echo $setup_key; ?>" data-skip-action="<?php echo $setup_details[ 'skip-action' ]; ?>">
+													<a class="layers-button btn-link layers-dashboard-skip" data-setup-step-key="<?php echo $setup_key; ?>" data-skip-action="<?php echo $setup_details[ 'skip-action' ]; ?>">
 														<?php _e( 'Skip' , 'layerswp' ); ?>
 													</a>
 												<?php } ?>
 												<?php if( isset( $setup_details[ 'submit-action' ] ) ) { ?>
-													<a class="layers-button" href="" data-setup-step-key="<?php echo $setup_key; ?>" data-submit-action="<?php echo $setup_details[ 'submit-action' ]; ?>">
+													<a class="layers-button layers-pull-right" href="" data-setup-step-key="<?php echo $setup_key; ?>" data-submit-action="<?php echo $setup_details[ 'submit-action' ]; ?>">
 														<?php echo ( isset( $setup_details[ 'submit-text' ] ) ) ? $setup_details[ 'submit-text' ] : __( 'Save &amp; Proceed &rarr;' , 'layerswp' ); ?>
 													</a>
 												<?php } ?>
@@ -200,24 +200,6 @@ $theme_info = wp_get_theme( 'layerswp' ); ?>
 					<?php } ?>
 
 					<div class="layers-panel layers-push-bottom">
-						<div class="layers-content clearfix">
-							<div class="layers-section-title layers-tiny">
-								<h3 class="layers-heading"><?php _e( 'Stay in the Loop' , 'layerswp' ); ?></h3>
-								<p class="layers-excerpt">
-									<?php _e( 'Sign up to our monthly newsletter to find out when we launch new features, products.' , 'layerswp' ); ?>
-								</p>
-							</div>
-							<form action="http://oboxdesign.createsend.com/t/r/s/ittddii/" method="post" id="subForm">
-								<div class="layers-form-item layers-form-inline">
-									<label for="fieldEmail"><?php _e( 'Email Address' , 'layerswp' ); ?></label>
-									<input id="fieldEmail" name="cm-ittddii-ittddii" type="email" placeholder="john@smith.com" />
-									<button class="layers-button btn-primary" type="submit">Subscribe</button>
-								</div>
-							</form>
-						</div>
-					</div>
-
-					<div class="layers-panel layers-push-bottom">
 						<div class="layers-media layers-image-left layers-content layers-no-push-bottom">
 							<div class="layers-media-image layers-small">
 								<img src="<?php echo LAYERS_TEMPLATE_URI; ?>/core/assets/images/github-badge.png" alt="<?php _e( 'Github badge' , 'layerswp' ); ?>"/>
@@ -279,6 +261,23 @@ if( 0 < count( $news ) && $news ) { ?>
 
 					</div>
 				<?php } ?>
+				<div class="layers-column layers-span-3">
+					<div class="layers-panel layers-content clearfix">
+						<div class="layers-section-title layers-tiny">
+							<h3 class="layers-heading"><?php _e( 'Stay in the Loop' , 'layerswp' ); ?></h3>
+							<p class="layers-excerpt">
+								<?php _e( 'Sign up to our monthly newsletter to find out when we launch new features, products.' , 'layerswp' ); ?>
+							</p>
+						</div>
+						<form action="http://oboxdesign.createsend.com/t/r/s/ittddii/" method="post" id="subForm">
+							<div class="layers-form-item layers-form-inline">
+								<label for="fieldEmail"><?php _e( 'Email Address' , 'layerswp' ); ?></label>
+								<input id="fieldEmail" name="cm-ittddii-ittddii" type="email" placeholder="john@smith.com" />
+								<button class="layers-button btn-primary" type="submit">Subscribe</button>
+							</div>
+						</form>
+					</div>
+				</div>
 			</div>
 		</div>
 	</section>

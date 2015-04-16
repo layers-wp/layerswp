@@ -1004,7 +1004,7 @@ if( !function_exists( 'layers_inline_styles' ) ) {
 		if( isset( $args['selectors'] ) ) {
 			
 			// If selectors passed as array then convert them to comma separated string
-			if ( is_array( $args['selectors'] ) ) $args['selectors'] = implode( ', ', $args['selectors'] );
+			if ( is_array( $args['selectors'] ) ) $args['selectors'] = implode( ', ' . $inline_css . ' ', $args['selectors'] );
 			
 			// Apply Selectors to CSS declaration
 			$inline_css .= $args['selectors'];

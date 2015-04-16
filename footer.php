@@ -7,7 +7,7 @@
 
 		<?php do_action( 'layers_before_footer' ); ?>
 
-		<footer id="footer" class="footer-site">
+		<footer id="footer" <?php layers_wrapper_class( 'footer_site', 'footer-site' ); ?>>
 			<?php do_action( 'layers_before_footer_inner' ); ?>
 			<div class="<?php if( 'layout-fullwidth' != layers_get_theme_mod( 'footer-width' ) ) echo 'container'; ?>  clearfix">
 				<?php // Do logic related to the footer widget area count

@@ -377,13 +377,12 @@ if( !function_exists( 'layers_apply_customizer_styles' ) ) {
 		// Body
 		layers_inline_styles( '.wrapper-site', 'background', array( 'background' => array( 'color' => layers_get_theme_mod( 'body-background-color' ) ) ) );
 		if ( 'dark' == layers_is_light_or_dark( layers_get_theme_mod( 'body-background-color', FALSE ) ) ){
-			
 			// Article elemnts on Single
 			add_filter( 'layers_center_column_class', 'layers_add_invert_class' );
 		}
 
 		// Footer
-		layers_inline_styles( '#footer, #footer.well', 'background', array(
+		layers_inline_styles( '.footer-site', 'background', array(
 			'background' => array(
 				'color' => layers_get_theme_mod( 'footer-background-color' ),
 				'repeat' => layers_get_theme_mod( 'footer-background-repeat' ),
@@ -393,8 +392,12 @@ if( !function_exists( 'layers_apply_customizer_styles' ) ) {
 				'fixed' => false, // hardcode (not an option)
 			),
 		) );
-		layers_inline_styles( '#footer h5, #footer p, #footer li, #footer .textwidget, #footer.well', 'color', array( 'color' => layers_get_theme_mod( 'footer-body-color' ) ) );
-		layers_inline_styles( '#footer a, #footer.well a', 'color', array( 'color' => layers_get_theme_mod( 'footer-link-color' ) ) );
+		if ( 'dark' == layers_is_light_or_dark( layers_get_theme_mod( 'footer-background-color' ) ) ){
+			add_filter( 'layers_footer_site_class', 'layers_add_invert_class' );
+		}
+		
+		//layers_inline_styles( '.footer-site, .footer-site h5, .footer-site p, .footer-site li, .footer-site .textwidget, .footer-site .well', 'color', array( 'color' => layers_get_theme_mod( 'footer-body-color' ) ) );
+		//layers_inline_styles( '.footer-site a, .footer-site.well a', 'color', array( 'color' => layers_get_theme_mod( 'footer-link-color' ) ) );
 		
 		// Title Container
 		layers_inline_styles( '.title-container', 'background', array( 'background' => array( 'color' => layers_get_theme_mod( 'title-background-color', FALSE ) ) ) );

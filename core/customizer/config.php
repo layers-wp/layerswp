@@ -443,6 +443,7 @@ class Layers_Customizer_Config {
 
 		// Footer -> Layout -> Customization
 		$controls['footer-customization'] = array(
+								/*
 								'footer-font-heading' => array(
 									'type'  => 'layers-heading',
 									'label'    => __( 'Text' , 'layerswp' ),
@@ -460,6 +461,7 @@ class Layers_Customizer_Config {
 								'footer-customization-break-1' => array(
 									'type'     => 'layers-seperator'
 								),
+								*/
 								'footer-background-heading' => array(
 									'type'  => 'layers-heading',
 									'label'    => __( 'Background' , 'layerswp' ),

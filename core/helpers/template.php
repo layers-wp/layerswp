@@ -981,12 +981,14 @@ if( !function_exists( 'layers_inline_styles' ) ) {
 			$inline_css .= $args['selectors'];
 		}
 
+		// Apply inline CSS
 		if( '' == $inline_css) {
 			$inline_css .= $css;
 		} else {
 			$inline_css .= '{' . $css . '} ';
 		}
 
+		// Add the new CSS to the existing CSS
 		$layers_inline_css .= $inline_css;
 	}
 } // layers_inline_styles

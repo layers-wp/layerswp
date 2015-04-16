@@ -353,6 +353,27 @@ class Layers_Customizer_Config {
 									'type' => 'layers-color',
 									'default' => 'rgba(0, 0, 0, 0.55)', // #323232
 								),
+								'section-title-excerpt-color' => array(
+									'label' => __( 'Section Title Excerpt Color' , 'layerswp' ),
+									'subtitle' => '',
+									'description' => __( 'Element, element, element & element' , 'layerswp' ),
+									'type' => 'layers-color',
+									'default' => 'rgba(0, 0, 0, 0.55)', // #323232
+								),
+								'button-background-color' => array(
+									'label' => __( 'Button Background Color' , 'layerswp' ),
+									'subtitle' => '',
+									'description' => __( 'Element, element, element & element' , 'layerswp' ),
+									'type' => 'layers-color',
+									'default' => '#454545',
+								),
+								'button-text-color' => array(
+									'label' => __( 'Button Text Color' , 'layerswp' ),
+									'subtitle' => '',
+									'description' => __( 'Element, element, element & element' , 'layerswp' ),
+									'type' => 'layers-color',
+									'default' => '#FFFFFF',
+								),
 							);
 
 		// Footer -> Layout -> Layout

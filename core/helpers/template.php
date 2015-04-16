@@ -412,6 +412,31 @@ if( !function_exists( 'layers_apply_customizer_styles' ) ) {
 			'css' => 'color: ' . layers_get_theme_mod( 'section-title-excerpt-color', FALSE ) . '; '
 		));
 		
+		// Buttons
+		layers_inline_button_styles(
+			'',
+			'button',
+			array(
+				'selectors' => array(
+					'input[type="button"]',
+					'input[type="submit"]',
+					'button',
+					'.button',
+					'.form-submit input[type="submit"]',
+					// Inverts
+					'.invert input[type="button"]',
+					'.invert input[type="submit"]',
+					'.invert button',
+					'.invert .button',
+					'.invert .form-submit input[type="submit"]',
+				),
+				'button' => array(
+					'background-color' => layers_get_theme_mod( 'button-background-color', FALSE ),
+					'color' => layers_get_theme_mod( 'button-text-color', FALSE ),
+				)
+			)
+		);
+		
 	}
 } // layers_apply_customizer_styles
 add_action( 'wp_enqueue_scripts', 'layers_apply_customizer_styles', 100 );

@@ -61,6 +61,66 @@ $theme_info = wp_get_theme( 'layerswp' ); ?>
 
 				<div class="layers-column layers-span-4">
 
+					<?php if( 0 == count( layers_get_plugins() ) ) { ?>
+						<div class="layers-panel layers-content layers-push-bottom">
+							<div class="layers-section-title layers-tiny">
+								<h3 class="layers-heading"><?php _e( 'Themes &amp; Extensions' , 'layerswp' ); ?></h3>
+								<p class="layers-excerpt">
+									<?php _e( 'Looking for a theme or plugin to achieve something unique with your website?
+										Browse the massive Layers Marketplace on Envato and take your site to the next level.' , 'layerswp' ); ?>
+								</p>
+							</div>
+							<a href="{themeforest.net/layers}" class="layers-button btn-primary">
+								<?php _e( 'Browse &rarr;' , 'layerswp' ); ?>
+							</a>
+						</div>
+					<?php } else { ?>
+						<div class="layers-panel">
+							<div class="layers-panel-title">
+								<h4 class="layers-heading"><?php _e( 'Installed Extensions' , 'layerswp' ); ?></h4>
+							</div>
+
+							<ul class="layers-list layers-extensions">
+								 <?php foreach( layers_get_plugins() as $extension_key => $extension_details ) { ?>
+									<li>
+										<h4 class="layers-heading">
+											<?php echo $extension_details[ 'Name' ]; ?>
+										</h4>
+										<?php if( isset( $extension_details[ 'Description' ] ) ){ ?>
+											<p>
+												<?php echo $extension_details[ 'Description' ]; ?>
+											</p>
+										<?php } ?>
+										<?php if( version_compare( $theme_info->get( 'Version' ), $extension_details[ 'Layers Required Version' ], '<' ) ){ ?>
+											<?php  $this->notice( 'bad' , __( sprintf( 'Requires Layers %s', $extension_details[ 'Layers Required Version' ] ), 'layerswp' ) ); ?>
+										<?php } ?>
+									</li>
+								<?php } // foreach extensions ?>
+							</ul>
+						</div>
+					<?php } ?>
+
+					<div class="layers-panel layers-push-bottom">
+						<div class="layers-section-title layers-tiny layers-content">
+							<div class="layers-column layers-span-3">
+								<img src="<?php echo LAYERS_TEMPLATE_URI; ?>/core/assets/images/github-badge.png" alt="<?php _e( 'Github badge' , 'layerswp' ); ?>"/>
+							</div>
+							<div class="layers-column layers-span-9 layers-last">
+								<h3 class="layers-heading"><?php _e( 'Contribute to Layers' , 'layerswp' ); ?></h3>
+								<p class="layers-excerpt">
+									<?php _e( sprintf( 'Get involved with the community of this awesome project and contribute enhancements, features, and bug fixes to the core code of <a href="%s" target="_blank">Layers on GitHub</a>. Check out the Issues tab for ways to help!', 'http://github.com/Obox/layerswp/' ) , 'layerswp' ); ?>
+								</p>
+							</div>
+						</div>
+						<div class="layers-button-well">
+							<a href="http://github.com/Obox/layerswp/" class="layers-button layers-pull-right" target="_blank">
+								<?php _e( 'Contribute' , 'layerswp' ); ?>
+							</a>
+						</div>
+					</div>
+				</div>
+				<div class="layers-column layers-span-4">
+
 					<?php /*
 					* Check to see if we have dismissed or gone through any of the setup steps
 					*/
@@ -126,74 +186,60 @@ $theme_info = wp_get_theme( 'layerswp' ); ?>
 						$this->notice( 'good' , __( 'Congrats your site is setup!' , 'layerswp' ) ) ;
 					} ?>
 
-					<?php if( 0 == count( layers_get_plugins() ) ) { ?>
-						<div class="layers-panel layers-content layers-push-bottom">
-							<div class="layers-section-title layers-tiny">
-								<h3 class="layers-heading"><?php _e( 'Themes &amp; Extensions' , 'layerswp' ); ?></h3>
-								<p class="layers-excerpt">
-									<?php _e( 'Looking for a theme or plugin to achieve something unique with your website?
-										Browse the massive Layers Marketplace on Envato and take your site to the next level.' , 'layerswp' ); ?>
-								</p>
-							</div>
-							<a href="{themeforest.net/layers}" class="layers-button btn-primary">
-								<?php _e( 'Browse &rarr;' , 'layerswp' ); ?>
-							</a>
-						</div>
-					<?php } else { ?>
-						<div class="layers-panel">
-							<div class="layers-panel-title">
-								<h4 class="layers-heading"><?php _e( 'Installed Extensions' , 'layerswp' ); ?></h4>
-							</div>
+					<?php /*
+					* Grab the Quick Help Feed
+					*/
+					$docs = $this->get_layers_feed( 'docs', 10 );
 
+					if( 0 < count( $docs ) && $docs ) { ?>
+
+						<div class="layers-panel layers-push-bottom">
+							<div class="layers-panel-title">
+								<h4 class="layers-heading">
+									<a href="http://docs.layerswp.com/">
+										<?php _e( 'Quick Help' , 'layerswp' ); ?>
+									</a>
+								</h4>
+							</div>
 							<ul class="layers-list layers-extensions">
-								 <?php foreach( layers_get_plugins() as $extension_key => $extension_details ) { ?>
+								<?php foreach( $docs as $docs_id => $docs_item ) { ?>
 									<li>
-										<h4 class="layers-heading">
-											<?php echo $extension_details[ 'Name' ]; ?>
-										</h4>
-										<?php if( isset( $extension_details[ 'Description' ] ) ){ ?>
-											<p>
-												<?php echo $extension_details[ 'Description' ]; ?>
-											</p>
-										<?php } ?>
-										<?php if( version_compare( $theme_info->get( 'Version' ), $extension_details[ 'Layers Required Version' ], '<' ) ){ ?>
-											<?php  $this->notice( 'bad' , __( sprintf( 'Requires Layers %s', $extension_details[ 'Layers Required Version' ] ), 'layerswp' ) ); ?>
-										<?php } ?>
+										<a class="layers-page-list-title" target="_blank" href="<?php echo $docs_item[ 'link' ]; ?>"><?php echo $docs_item[ 'title' ]; ?></a>
 									</li>
-								<?php } // foreach extensions ?>
+								<?php } ?>
 							</ul>
+							<div class="layers-button-well">
+								<a class="layers-button" href="http://docs.layerswp.com/" target="_blank">
+									<?php _e( 'Get more useful tips' , 'layerswp' ); ?>
+								</a>
+							</div>
 						</div>
 					<?php } ?>
-				</div>
-				<div class="layers-column layers-span-4">
+
 					<div class="layers-panel layers-push-bottom">
-						<div class="layers-panel-title">
-							<h4 class="layers-heading">
-								<a href="http://docs.layerswp.com/">
-									<?php _e( 'Quick Help' , 'layerswp' ); ?>
-								</a>
-							</h4>
-						</div>
-						<ul class="layers-list layers-extensions">
-							<li>
-								<a class="layers-page-list-title" target="_blank" href="http://docs.layerswp.com/setup-guide/#build-your-home-page"><?php _e( 'Build Your Home Page', 'layerswp' ); ?></a>
-							</li>
-							<li>
-								<a class="layers-page-list-title" target="_blank" href="http://docs.layerswp.com/setup-guide/#site-settings"><?php _e( 'Site Settings', 'layerswp' ); ?></a>
-							</li>
-							<li>
-								<a class="layers-page-list-title" target="_blank" href="http://docs.layerswp.com/setup-guide/#create-your-menus"><?php _e( 'Create Your Menus', 'layerswp' ); ?></a>
-							</li>
-							<li>
-								<a class="layers-page-list-title" target="_blank" href="http://docs.layerswp.com/doc/how-to-speed-up-your-website/"><?php _e( 'How to Speed Up Your Website', 'layerswp' ); ?></a>
-							</li>
-						</ul>
-						<div class="layers-button-well">
-							<a class="layers-button" href="http://docs.layerswp.com/" target="_blank">
-								<?php _e( 'Get more useful tips' , 'layerswp' ); ?>
-							</a>
+					<div class="layers-panel-title">
+								<h4 class="layers-heading"><?php _e( 'Stay in the Loop' , 'layerswp' ); ?></h4>
+							</div>
+						<div class="layers-section-title layers-tiny layers-content">
+							<p class="layers-excerpt">
+								<form action="http://oboxdesign.createsend.com/t/r/s/ittddii/" method="post" id="subForm">
+									<p>
+										<label for="fieldName"><?php _e( 'Name' , 'layerswp' ); ?></label><br />
+										<input id="fieldName" name="cm-name" type="text" />
+									</p>
+									<p>
+										<label for="fieldEmail"><?php _e( 'Email' , 'layerswp' ); ?></label><br />
+										<input id="fieldEmail" name="cm-ittddii-ittddii" type="email" required />
+									</p>
+									<p>
+										<button class="layers-button" type="submit">Subscribe</button>
+									</p>
+								</form>
+							</p>
 						</div>
 					</div>
+
+
 				</div>
 
 			</div>
@@ -201,9 +247,12 @@ $theme_info = wp_get_theme( 'layerswp' ); ?>
 	</div>
 </section>
 
-<?php $news = $this->get_layers_news(); ?>
+<?php /*
+* Grab the News Feed
+*/
+$news = $this->get_layers_feed( 'news' );
 
-<?php if( 0 < count( $news ) && $news ) { ?>
+if( 0 < count( $news ) && $news ) { ?>
 	<section class="layers-area-wrapper">
 		<div class="layers-row layers-well-alt layers-content-large">
 

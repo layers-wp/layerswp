@@ -79,8 +79,8 @@ class Layers_Options_Panel {
 							</li>
 						<?php } ?>
 					</ul>
-					<form class="layers-help-search">
-						<input type="search" placeholder="Search Layers Help..." />
+					<form class="layers-help-search" action="http://docs.layerswp.com" target="_blank" method="get">
+						<input name="s" type="search" placeholder="Search Layers Help..." />
 					</form>
 				</nav>
 
@@ -166,13 +166,20 @@ class Layers_Options_Panel {
 		return $menu;
 	}
 
-	public function get_layers_news(){
-		$news_feed = fetch_feed( 'http://blog.oboxthemes.com/tag/layers/feed/' );
+	public function get_layers_feed( $type = 'news', $count = 4 ){
+		if( 'news' == $type ) {
+			$feed_url = 'http://blog.oboxthemes.com/tag/layers/feed/';
+		} else if( 'docs' == $type ) {
+			$feed_url = 'http://docs.layerswp.com/keywords/layers-dashboard/feed/';
+		}
 
-		if( is_wp_error( $news_feed ) ) {
+		$feed = fetch_feed( $feed_url );
+
+		if( is_wp_error( $feed ) ) {
 			return false;
 		} else {
-			$news_items = $news_feed->get_items( 0, 4 );
+			$news_items = $feed->get_items( 0, $count );
+
 			foreach( $news_items as $item ){
 				$feed_items[ $item->get_id() ][ 'title' ] = esc_attr( $item->get_title() );
 				$feed_items[ $item->get_id() ][ 'link' ] = $item->get_permalink();

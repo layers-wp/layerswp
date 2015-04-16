@@ -466,16 +466,16 @@ class Layers_Customizer_Config {
 									'type'  => 'layers-heading',
 									'label'    => __( 'Background' , 'layerswp' ),
 								),
-								'footer-background-image' => array(
-									'label' => '',
-									'subtitle' => __( 'Background Image' , 'layerswp' ),
-									'type' => 'layers-select-images', //wierd bug in WP4.1 that requires a type to be in the array, or will revert to default control
-								),
 								'footer-background-color' => array(
 									'label' => '',
 									'subtitle' => __( 'Background Color' , 'layerswp' ),
 									'type' => 'layers-color',
 									'default' => '#F3F3F3',
+								),
+								'footer-background-image' => array(
+									'label' => '',
+									'subtitle' => __( 'Background Image' , 'layerswp' ),
+									'type' => 'layers-select-images', //wierd bug in WP4.1 that requires a type to be in the array, or will revert to default control
 								),
 								'footer-background-repeat' => array(
 									'label' => '',

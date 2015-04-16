@@ -890,7 +890,7 @@ add_action ( 'wp_print_scripts', 'layers_add_google_analytics' );
 
 /**
 * Style Generator
-* 
+*
 * @param   string   $container_id   ID of the container if any
 * @param   string   $type           Type of style to generate, background, color, text-shadow, border
 * @param   array    $args

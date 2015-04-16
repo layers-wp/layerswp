@@ -517,7 +517,7 @@ object{
     /*---------------------------*/
     /*- FOOTER COPY -------------*/
     .copyright{
-        color: #999;
+        color: rgba(0, 0, 0, 0.45);
         font-size: 1.2rem;
     }
     .row.copyright{
@@ -2433,3 +2433,10 @@ object{
             background-color: #009EEC;
             color: #fff;
         }
+    
+    /*---------------------------*/
+    /*- FOOTER INVERT -----------*/
+    
+    .invert .copyright {
+        color: rgba(255,255,255,0.55);
+    }

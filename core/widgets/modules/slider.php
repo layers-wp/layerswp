@@ -63,6 +63,7 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 					'imagealign' => 'image-top',
 					'imageratios' => NULL,
 					'background' => array(
+						'color' => '#444',
 						'position' => 'center',
 						'repeat' => 'no-repeat',
 						'size' => 'cover'

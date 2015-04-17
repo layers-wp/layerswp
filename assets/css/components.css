@@ -350,8 +350,8 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
     .story blockquote{
         padding: 20px;
         margin-bottom: 26px;
-        background: #f0f0f0;
-        color: #999;
+        background: rgba(0, 0, 0, 0.05);
+        color: rgba(0, 0, 0, 0.55);
     }
     .story blockquote p:last-child{
         margin-bottom: 0;
@@ -474,7 +474,6 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
     }
     .logged-in-as{
         margin-bottom: 20px;
-        color: #8F8F8F;
     }
     p[class*='comment-form'] .required{
         color: #900;

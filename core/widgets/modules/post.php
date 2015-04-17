@@ -276,9 +276,12 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 							<?php }; // if list-list == liststyle ?>
 						<?php }; // while have_posts ?>
 					<?php }; // if have_posts ?>
-					<?php if( isset( $widget['show_pagination'] ) ) layers_pagination( array( 'query' => $post_query ), 'div', 'pagination row span-12 text-center' ); ?>
-
 				</div>
+				<?php if( isset( $widget['show_pagination'] ) ) { ?>
+					<div class="row products container list-grid">
+						<?php layers_pagination( array( 'query' => $post_query ), 'div', 'pagination row span-12 text-center' ); ?>
+					</div>
+				<?php } ?>
 			</section>
 
 			<?php if( 'list-masonry' == $this->check_and_return( $widget , 'design', 'liststyle' ) ) { ?>

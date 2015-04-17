@@ -418,17 +418,9 @@ if( !function_exists( 'layers_apply_customizer_styles' ) ) {
 		// Buttons
 		layers_inline_button_styles( '', 'button', array(
 			'selectors' => array(
-				'input[type="button"]',
-				'input[type="submit"]',
-				'button',
-				'.button',
-				'.form-submit input[type="submit"]',
+				'input[type="button"]', 'input[type="submit"]', 'button', '.button', '.form-submit input[type="submit"]',
 				// Inverts
-				'.invert input[type="button"]',
-				'.invert input[type="submit"]',
-				'.invert button',
-				'.invert .button',
-				'.invert .form-submit input[type="submit"]',
+				'.invert input[type="button"]', '.invert input[type="submit"]', '.invert button', '.invert .button', '.invert .form-submit input[type="submit"]',
 			),
 			'button' => array(
 				'background-color' => layers_get_theme_mod( 'button-background-color', FALSE ),
@@ -439,18 +431,8 @@ if( !function_exists( 'layers_apply_customizer_styles' ) ) {
 		// Content - Heading
 		layers_inline_styles( '', 'color', array(
 			'selectors' => array(
-				'.copy h1',
-				'.copy h2',
-				'.copy h3',
-				'.copy h4',
-				'.copy h5',
-				'.copy h6',
-				'.story h1',
-				'.story h2',
-				'.story h3',
-				'.story h4',
-				'.story h5',
-				'.story h6',
+				'.copy h1', '.copy h2', '.copy h3', '.copy h4', '.copy h5', '.copy h6',
+				'.story h1', '.story h2', '.story h3', '.story h4', '.story h5', '.story h6',
 			),
 			'color' => layers_get_theme_mod( 'body-heading-color', FALSE ),
 		) );
@@ -708,7 +690,8 @@ if( !function_exists( 'layers_center_column_class' ) ) {
 /**
  * Display the classes for the wrapper content element.
  *
- * @param string|array $class One or more classes to add to the class list.
+ * @param   string   $key     Key to be used to populate the filter.
+ * @param   string   $class   One or more classes to add to the class list.
  */
 if( !function_exists( 'layers_wrapper_class' ) ) {
 	function layers_wrapper_class( $key = '', $class = '' ) {

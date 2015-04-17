@@ -326,22 +326,22 @@ class Layers_Customizer_Config {
 		// Body -> Body
 		$controls['body-customization'] = array(
 								'body-background-color' => array(
-									'label' => __( 'Background', 'layerswp' ),
-									'subtitle' => '',
+									'label' => '',
+									'subtitle' => __( 'Background', 'layerswp' ),
 									'description' => __( 'Element, element, element & element', 'layerswp' ),
 									'type' => 'layers-color',
 									'default' => '#FFFFFF',
 								),
 								'title-background-color' => array(
-									'label' => __( 'Title Background', 'layerswp' ),
-									'subtitle' => '',
+									'label' => '',
+									'subtitle' => __( 'Title Background', 'layerswp' ),
 									'description' => __( 'Element, element, element & element', 'layerswp' ),
 									'type' => 'layers-color',
 									'default' => '#F3F3F3',
 								),
 								'section-title-heading-color' => array(
-									'label' => __( 'Section Title Heading', 'layerswp' ),
-									'subtitle' => '',
+									'label' => '',
+									'subtitle' => __( 'Section Title Heading', 'layerswp' ),
 									'description' => __( 'Element, element, element & element', 'layerswp' ),
 									'type' => 'layers-color',
 									'default' => 'rgba(0, 0, 0, 0.85)', //#323232

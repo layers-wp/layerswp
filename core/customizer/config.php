@@ -379,7 +379,7 @@ class Layers_Customizer_Config {
 									'subtitle' => __( 'Story Link', 'layerswp' ),
 									'description' => __( 'Href Elements, element, element & element', 'layerswp' ),
 									'type' => 'layers-color',
-									'default' => '#FFFFFF',
+									'default' => 'rgba(0, 0, 0, 0.75)',
 								),
 								'sidebar-well-color' => array(
 									'label' => '',

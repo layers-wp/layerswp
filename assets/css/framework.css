@@ -1471,14 +1471,11 @@ object{
     /*---------------------------*/
     /*- WELLS -------------------*/
     .well{
-        background-color: #f3f3f3;
-    }
-    .well .well{
-        background-color: #eee;
+        background-color: rgba(0, 0, 0, 0.05);
     }
     .well-block{
         background-color: #fff;
-        border: 3px solid #eee;
+        border: 3px solid rgba(0, 0, 0, 0.08);
     }
 
     /*---------------------------*/
@@ -2289,6 +2286,11 @@ object{
         color: #fff;
     }
 
+    .invert blockquote{
+        background: rgba(255, 255, 255, 0.15);
+        color: rgba(255, 255, 255, 0.55);
+    }
+
     .invert input,
     .invert textarea,
     .invert select{
@@ -2433,10 +2435,9 @@ object{
             background-color: #009EEC;
             color: #fff;
         }
-    
+
     /*---------------------------*/
     /*- FOOTER INVERT -----------*/
-    
     .invert .copyright {
         color: rgba(255,255,255,0.55);
     }

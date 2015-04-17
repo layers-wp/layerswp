@@ -444,10 +444,25 @@ if( !function_exists( 'layers_apply_customizer_styles' ) ) {
 		) );
 		
 		// Sidebar Well
-		layers_inline_styles( '', 'button', array(
+		layers_inline_styles( '', 'background', array(
 			'selectors' => array( '.sidebar .well' ),
-			'button' => array( 'color' => layers_get_theme_mod( 'sidebar-well-color', FALSE ) ),
+			'background' => array( 'color' => layers_get_theme_mod( 'sidebar-well-color', FALSE ) ),
 		) );
+		/*
+		add_filter( 'dynamic_sidebar_params', function( $sidebars ){
+			foreach ( $sidebars as $sidebar ) {
+				if( array_key_exists( 'class', $sidebar ) ){
+					$sidebar['before_widget'] = str_replace( '">', ' invert">', $sidebar['before_widget'] );
+				}
+			}
+			return $sidebars;
+		});
+		*/
+		/*
+		if ( 'light' != layers_is_light_or_dark( layers_get_theme_mod( 'sidebar-well-color', FALSE ) ) ){
+			add_filter( 'layers_sidebar_well_class', 'layers_add_invert_class' );
+		}
+		*/
 		
 		// Meta Background
 		layers_inline_styles( '.meta', 'css', array( 'css' => 'background-color: ' . layers_get_theme_mod( 'meta-background-color', FALSE ) . '; ' ) );

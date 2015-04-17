@@ -326,22 +326,22 @@ class Layers_Customizer_Config {
 		// Body -> Body
 		$controls['body-customization'] = array(
 								'body-background-color' => array(
-									'label' => __( 'Background', 'layerswp' ),
-									'subtitle' => '',
+									'label' => '',
+									'subtitle' => __( 'Background', 'layerswp' ),
 									'description' => __( 'Element, element, element & element', 'layerswp' ),
 									'type' => 'layers-color',
 									'default' => '#FFFFFF',
 								),
 								'title-background-color' => array(
-									'label' => __( 'Title Background', 'layerswp' ),
-									'subtitle' => '',
+									'label' => '',
+									'subtitle' => __( 'Title Background', 'layerswp' ),
 									'description' => __( 'Element, element, element & element', 'layerswp' ),
 									'type' => 'layers-color',
 									'default' => '#F3F3F3',
 								),
 								'section-title-heading-color' => array(
-									'label' => __( 'Section Title Heading', 'layerswp' ),
-									'subtitle' => '',
+									'label' => '',
+									'subtitle' => __( 'Section Title Heading', 'layerswp' ),
 									'description' => __( 'Element, element, element & element', 'layerswp' ),
 									'type' => 'layers-color',
 									'default' => 'rgba(0, 0, 0, 0.85)', //#323232
@@ -374,14 +374,7 @@ class Layers_Customizer_Config {
 									'type' => 'layers-color',
 									'default' => '#FFFFFF',
 								),
-								'body-heading-color' => array(
-									'label' => '',
-									'subtitle' => __( 'Story Heading', 'layerswp' ),
-									'description' => __( 'Elements, element, element & element', 'layerswp' ),
-									'type' => 'layers-color',
-									'default' => '#FFFFFF',
-								),
-								'body-link-color' => array(
+								'story-link-color' => array(
 									'label' => '',
 									'subtitle' => __( 'Story Link', 'layerswp' ),
 									'description' => __( 'Href Elements, element, element & element', 'layerswp' ),
@@ -390,7 +383,7 @@ class Layers_Customizer_Config {
 								),
 								'sidebar-well-color' => array(
 									'label' => '',
-									'subtitle' => __( 'Sidebar Well Background', 'layerswp' ),
+									'subtitle' => __( 'Sidebar Background', 'layerswp' ),
 									'description' => __( 'Elements, element, element & element', 'layerswp' ),
 									'type' => 'layers-color',
 									'default' => '#FFFFFF',

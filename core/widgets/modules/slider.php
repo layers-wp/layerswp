@@ -213,6 +213,8 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 								if( 'dark' == layers_is_light_or_dark( $this->check_and_return( $slide, 'design', 'background' , 'color' ) ) ) {
 									$slide_class[] = 'invert';
 								}
+							} else {
+								$slide_class[] = 'invert';
 							}
 							if( false != $this->check_and_return( $slide , 'image' ) || 'image-left' == $slide['design'][ 'imagealign' ] || 'image-top' == $slide['design'][ 'imagealign' ] ) {
 								$slide_class[] = 'has-image';
@@ -528,8 +530,12 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 			// $instance Defaults
 			$instance_defaults = $this->slide_defaults;
 
+			// Clear the defaults if they're not needed
+			if( !empty( $instance ) ) $instance_defaults = array();
+
 			// Parse $instance
 			$instance = wp_parse_args( $instance, $instance_defaults );
+
 			extract( $instance, EXTR_SKIP );
 
 			// If there is no GUID create one. There should always be one but this is a fallback

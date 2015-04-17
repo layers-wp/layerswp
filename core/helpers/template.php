@@ -1059,7 +1059,7 @@ if( !function_exists( 'layers_inline_styles' ) ) {
 
 /**
 * Style Generator Just for Buttons
-* 
+*
 * @param   string   $container_id   ID of the container if any
 * @param   string   $type           Type of style to generate, background, color, text-shadow, border
 * @param   array    $args

@@ -1249,9 +1249,11 @@ li[id*='accordion-section-layers'] .customize-control .heading-label .customize-
 }
 li[id*='accordion-section-layers'] .customize-control .description{
     color: #999 !important;
+    margin: -2px 0 8px;
+    font-size: 13px;
 }
 li[id*='accordion-section-layers'] .customize-control .layers-customize-control.layers-customize-control-heading{
-    margin: 40 x 0;
+    margin: 0;
 }
 li[id*='accordion-section-layers'] .customize-control .layers-customize-control.layers-customize-control-heading .customize-control-title{
     display: block;

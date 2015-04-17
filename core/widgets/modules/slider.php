@@ -234,7 +234,7 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 								$slide_wrapper_tag = 'a';
 								$slide_wrapper_href = 'href="' . esc_url( $slide['link'] ) . '"';
 							} ?>
-							<<?php echo $slide_wrapper_tag; ?> <?php echo $slide_wrapper_href; ?> class="<?php echo $slide_class; ?>" id="<?php echo $widget_id; ?>-<?php echo $slide_key; ?>" style="float: left;">
+							<<?php echo $slide_wrapper_tag; ?> <?php echo $slide_wrapper_href; ?> class="<?php echo $slide_class; ?>" id="<?php echo $widget_id; ?>-<?php echo $slide_key; ?>" style="float: left; <?php echo $slider_height_css; ?>">
 								<?php /**
 								* Set Overlay CSS Classes
 								*/
@@ -281,6 +281,7 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 			 		</div>
 				<?php } // if !empty( $widget->slides ) ?>
 		 	</section>
+						<?php if( 1 < count( $widget[ 'slides' ] ) ) { ?>
 	 		<?php $swiper_js_obj = str_replace( '-' , '_' , $this->get_field_id( 'slider' ) ); ?>
 		 	<script>
 				jQuery(function($){
@@ -333,6 +334,7 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 
 				})
 		 	</script>
+		 	<?php } // if > 1 slide ?>
 		<?php }
 
 		/**

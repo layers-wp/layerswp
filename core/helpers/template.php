@@ -894,11 +894,24 @@ add_action ( 'wp_print_scripts', 'layers_add_google_analytics' );
 *
 * @param   string   $container_id   ID of the container if any
 * @param   string   $type           Type of style to generate, background, color, text-shadow, border
-* @param   array    $args
+* @param   array    $args			$args array
 */
 if( !function_exists( 'layers_inline_styles' ) ) {
-	function layers_inline_styles( $container_id = NULL, $type = 'background' , $args = array() ){
-
+	function layers_inline_styles( $arg1 = NULL, $arg2 = NULL, $arg3 = NULL ){
+		
+		if ( 3 == func_num_args() ) {
+			// layers_inline_styles( '#element', 'background', array( 'selectors' => '.element', 'background' => array( 'color' => '#FFF' ) ) );
+			$container_id = $arg1; $type = $arg2; $args = $arg3;
+		}
+		elseif ( 2 == func_num_args() ) {
+			// layers_inline_styles( '#element', array( 'selectors' => array( '.element' ), 'css' => array( 'color' => '#FFF' ) ) );
+			$container_id = $arg1; $type = 'css'; $args = $arg2;
+		}
+		elseif ( 1 == func_num_args() ) {
+			// layers_inline_styles( array( 'selectors' => array( '.element' ), 'css' => array( 'color' => '#FFF' ) ) );
+			$container_id = ''; $type = 'css'; $args = $arg1;
+		}
+		
 		// Get the generated CSS
 		global $layers_inline_css;
 
@@ -1015,17 +1028,22 @@ if( !function_exists( 'layers_inline_styles' ) ) {
 			break;
 
 			case 'css' :
-
-				$css .= $args['css'];
-
-			break;
-
 			default :
-				$css .= $args['css'];
+				
+				if ( isset( $args['css'] ) ) {
+					if ( is_array( $args['css'] ) ){
+						foreach ( $args['css'] as $css_atribute => $css_value ) {
+							$css .= "$css_atribute: $css_value;";
+						}
+					}
+					else {
+						$css .= $args['css'];
+					}
+				}
+
 			break;
 
 		}
-
 
 		// Bail if no css is generated
 		if ( '' == trim( $css ) ) return false;

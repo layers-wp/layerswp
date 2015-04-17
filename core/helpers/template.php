@@ -696,12 +696,24 @@ if( !function_exists( 'layers_center_column_class' ) ) {
 if( !function_exists( 'layers_wrapper_class' ) ) {
 	function layers_wrapper_class( $key = '', $class = '' ) {
 		
+		echo 'class="' . join( ' ', layers_get_wrapper_class( $key, $class ) ) . '"';
+	}
+}
+
+/**
+ * Get the classes for the wrapper content element.
+ *
+ * @param   string   $key     Key to be used to populate the filter.
+ * @param   string   $class   One or more classes to add to the class list.
+ *
+ * @return  string   html style list of classes
+ */
+if( !function_exists( 'layers_get_wrapper_class' ) ) {
+	function layers_get_wrapper_class( $key = '', $class = '' ) {
+		
 		$classes = explode( ' ', $class ); // Convert string of classes to an array
-
-		$classes = apply_filters( 'layers_' . $key . '_class', $classes );
-
-		// Separates classes with a single space, collates classes for body element
-		echo 'class="' . join( ' ', $classes ) . '"';
+		
+		return apply_filters( 'layers_' . $key . '_class', $classes );
 	}
 }
 

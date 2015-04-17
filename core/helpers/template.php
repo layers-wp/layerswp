@@ -1046,10 +1046,10 @@ if( !function_exists( 'layers_inline_styles' ) ) {
 		}
 
 		// Apply inline CSS
-		if( '' == $inline_css) {
+		if( '' == $inline_css ) {
 			$inline_css .= $css;
 		} else {
-			$inline_css .= '{' . $css . '} ';
+			$inline_css .= '{ ' . $css . '} ';
 		}
 
 		// Add the new CSS to the existing CSS

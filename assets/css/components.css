@@ -273,13 +273,10 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
     .story address{
         margin-bottom: 26px;
     }
-    .story a{
-        border-bottom: 1px solid #ddd;
-    }
     .story a:not(.button){
         border-bottom: 1px solid #ddd;
     }
-    .story a:hover{
+    .story a:not(.button):hover{
         border-color: #999;
     }
     .story ul{

@@ -426,19 +426,29 @@ if( !function_exists( 'layers_apply_customizer_styles' ) ) {
 				'background-color' => layers_get_theme_mod( 'button-background-color', FALSE ),
 				'color' => layers_get_theme_mod( 'button-text-color', FALSE ),
 			)
-		) );
+		));
 		
 		// Content - Links
-		layers_inline_button_styles( '', 'button', array(
-			'selectors' => array( '.copy a', '.story a' ),
-			'button' => array( 'color' => layers_get_theme_mod( 'story-link-color', FALSE ) ),
-		) );
+		layers_inline_styles( array(
+			'selectors' => array( '.copy a:not(.button)', '.story a:not(.button)' ),
+			'css' => array(
+				'color' => layers_get_theme_mod( 'story-link-color', FALSE ),
+				'border-bottom-color' => layers_get_theme_mod( 'story-link-color', FALSE ),
+			),
+		));
+		layers_inline_styles( array(
+			'selectors' => array( '.copy a:not(.button):hover', '.story a:not(.button):hover' ),
+			'css' => array(
+				'color' => layers_too_light_then_dark( layers_get_theme_mod( 'story-link-color', FALSE ) ),
+				'border-bottom-color' => layers_too_light_then_dark( layers_get_theme_mod( 'story-link-color', FALSE ) ),
+			),
+		));
 		
 		// Sidebar Well
 		layers_inline_styles( '', 'background', array(
 			'selectors' => array( '.sidebar .well' ),
 			'background' => array( 'color' => layers_get_theme_mod( 'sidebar-well-color', FALSE ) ),
-		) );
+		));
 		/*
 		add_filter( 'dynamic_sidebar_params', function( $sidebars ){
 			foreach ( $sidebars as $sidebar ) {

@@ -21,7 +21,7 @@ $theme_info = wp_get_theme( 'layerswp' ); ?>
 
 				<div class="layers-column layers-span-3">
 
-					<?php if( count( layers_get_builder_pages() ) > 1 ) { ?>
+					<?php if( count( layers_get_builder_pages() ) > 0 ) { ?>
 
 						<?php /*
 						* Check to see if we have dismissed or gone through any of the setup steps

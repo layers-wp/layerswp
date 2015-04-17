@@ -128,11 +128,22 @@ class Layers_Options_Panel {
 	/**
 	* Dashboard Notices
 	*/
-	public function notice( $good_or_bad = 'good', $message = FALSE ){
+	public function notice( $good_or_bad = 'good', $message = FALSE, $classes = array() ){
 		if( FALSE == $message ) return; ?>
-		<div class="layers-status-notice layers-site-setup-completion layers-status-<?php echo $good_or_bad; ?>">
+		<div class="layers-status-notice layers-site-setup-completion layers-status-<?php echo $good_or_bad; ?> <?php echo implode( ' ' , $classes ); ?>">
 			<h5 class="layers-status-notice-heading">
-				<i class="icon-<?php echo ( 'good' == $good_or_bad ) ? 'tick' : 'cross'; ?>"></i>
+				<?php switch ( $good_or_bad ) {
+					case 'good' :
+						$icon = 'tick';
+					break;
+					case 'bad' :
+						$icon = 'cross';
+					break;
+					default :
+						$icon = 'display';
+					break;
+				} ?>
+				<i class="icon-<?php echo $icon; ?>"></i>
 				<span><?php echo $message; ?></span>
 			</h5>
 		</div>

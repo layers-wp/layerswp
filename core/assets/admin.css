@@ -1883,6 +1883,10 @@ div[id*='layers-widget'] .spinner{
             background: #A3C567;
             border-color: #93B25E;
         }
+        .layers-status-neutral{
+            background: #2EA2CC;
+            border-color: #0074A2;
+        }
         .layers-status-bad{
             background: #E1574C;
             border-color: #B0453D;

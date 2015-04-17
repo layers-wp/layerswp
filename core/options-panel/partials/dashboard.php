@@ -33,7 +33,8 @@ $theme_info = wp_get_theme( 'layerswp' ); ?>
 							}
 						} ?>
 
-						<?php if( isset( $setup_steps ) ) { ?>
+						<?php if( isset( $setup_steps ) ) {
+							$this->notice( 'neutral' , __( 'Click here to continue your site setup.' , 'layerswp' ), array( 'layers-continue-site-setup', 'layers-hide' ) ) ; ?>
 							<div class="layers-panel layers-site-setup-panel">
 								<div class="layers-panel-title">
 									<h4 class="layers-heading"><?php _e( 'Complete Your Site Setup' , 'layerswp' ); ?></h4>

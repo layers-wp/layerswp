@@ -18,86 +18,104 @@
 
 jQuery(function($) {
 
-    /**
-    * 1.a - Site Setup Dismiss button
-    *
-    * Used to Dismiss setup steps via the "Complete Your Site Setup" panel
-    */
+	/**
+	* 1.a - Site Setup Dismiss button
+	*
+	* Used to Dismiss setup steps via the "Complete Your Site Setup" panel
+	*/
 
-    $(document).on( 'click', '#layers-dashboard-page a[data-skip-action]', function(e){
+	$(document).on( 'click', '#layers-dashboard-page a[data-skip-action]', function(e){
 
-        e.preventDefault();
+		e.preventDefault();
 
-        //Hi Mom!
-        $that = $(this);
+		//Hi Mom!
+		$that = $(this);
 
-        $container = $that.closest( '.layers-dashboard-setup-form' );
-        $form = $container.find( '.layers-content' );
+		$container = $that.closest( '.layers-dashboard-setup-form' );
+		$form = $container.find( '.layers-content' );
 
-        $action = $that.data( 'skip-action' );
+		$action = $that.data( 'skip-action' );
 
-        $container.hide().next().hide().removeClass( 'layers-hide' ).fadeIn( 250 );
-        $container.remove();
+		$container.hide().next().hide().removeClass( 'layers-hide' ).fadeIn( 250 );
 
-        layers_check_dashboard_setup_completion();
-    });
+		layers_check_dashboard_setup_completion();
+	});
 
-    /**
-    * 1.b - Site Setup Save button
-    *
-    * Used to Save setup steps via the "Complete Your Site Setup" panel
-    */
+	/**
+	* 1.b - Site Setup Save button
+	*
+	* Used to Save setup steps via the "Complete Your Site Setup" panel
+	*/
 
-    $(document).on( 'click', '#layers-dashboard-page a[data-submit-action]', function(e){
+	$(document).on( 'click', '#layers-dashboard-page a[data-submit-action]', function(e){
 
-        e.preventDefault();
+		e.preventDefault();
 
-        //Hi Mom!
-        $that = $(this);
+		//Hi Mom!
+		$that = $(this);
 
-        $container = $that.closest( '.layers-dashboard-setup-form' );
-        $form = $container.find( '.layers-content' );
+		$container = $that.closest( '.layers-dashboard-setup-form' );
+		$form = $container.find( '.layers-content' );
 
-        $data = $form.find( 'input, textarea, select' ).serialize();
+		$data = $form.find( 'input, textarea, select' ).serialize();
 
-        $action = $that.data( 'submit-action' );
+		$action = $that.data( 'submit-action' );
 
-        $.post(
-                ajaxurl,
-                {
-                    action: $action,
-                    setup_step_key: $that.data( 'setup-step-key' ),
-                    data: $data,
-                    layers_onboarding_update_nonce: layers_onboarding_params.update_option_nonce
+		$.post(
+				ajaxurl,
+				{
+					action: $action,
+					setup_step_key: $that.data( 'setup-step-key' ),
+					data: $data,
+					layers_onboarding_update_nonce: layers_onboarding_params.update_option_nonce
 
-                },
-                function(data){
+				},
+				function(data){
 
-                    console.log( data );
+					console.log( data );
 
-                    $results = $.parseJSON( data );
+					$results = $.parseJSON( data );
 
-                    $container.hide().next().hide().removeClass( 'layers-hide' ).fadeIn( 250 );
-                    $container.remove();
+					$container.hide().next().hide().removeClass( 'layers-hide' ).fadeIn( 250 );
+					$container.remove();
 
-                    layers_check_dashboard_setup_completion( true );
-                }
-            ); // $.post
-    });
+					layers_check_dashboard_setup_completion( true );
+				}
+			); // $.post
+	});
 
-    /**
-    * 1.b - Site Setup Completion Message
-    */
+	/**
+	* 1.b - Site Setup Completion Message
+	*/
 
 
-    function layers_check_dashboard_setup_completion(){
+	function layers_check_dashboard_setup_completion(){
 
-        $that = $( '.layers-dashboard-setup-form' );
+		$setup_form = $( '.layers-dashboard-setup-form' );
 
-        if( 0 == $that.length ){
-            $( '.layers-site-setup-panel' ).hide();
-        }
-    }
+		if( 0 == $setup_form.length ){
+			$( '.layers-site-setup-panel' ).hide();
+		} else if( $setup_form.filter(':hidden').length == $setup_form.length ){
+			$( '.layers-site-setup-panel' ).hide();
+			$( '.layers-continue-site-setup' ).hide().removeClass( 'layers-hide' ).slideDown();
+		}
+	}
+
+	/**
+	* 2 - Site Setup Continue
+	*/
+
+	$(document).on( 'click', '.layers-continue-site-setup', function(e){
+
+		$button = $(this);
+
+		$setup_panel = $( '.layers-site-setup-panel' );
+
+		$setup_panel.fadeIn();
+		$setup_panel.find( '.layers-dashboard-setup-form' ).eq( 0 ).fadeIn();
+
+		$button.slideUp();
+	});
 
 });
 

@@ -1335,6 +1335,35 @@ if ( ! function_exists( 'layers_hex_lighter' ) ) {
 }
 
 /**
+ * If the color that will be retuend is too light, then make it darker
+ * Used sepecially for auto hover colors
+ *
+ * @param  string  $color
+ * @param  string  $factor (default: 30)
+ * @return string
+ */
+
+if ( ! function_exists( 'layers_too_light_then_dark' ) ) {
+	/**
+	* Style Generator
+	*
+	* @param   string   $container_id   ID of the container if any
+	* @param   string   $type           Type of style to generate, background, color, text-shadow, border
+	* @param   array    $args			$args array
+	*/
+	function layers_too_light_then_dark( $color, $factor = 30 ) {
+		
+		if ( '#ffffff' == layers_hex_lighter( $color, 96 ) ) {
+			$color = layers_hex_darker( $color, $factor / 3 );
+		}
+		else {
+			$color = layers_hex_lighter( $color, $factor );
+		}
+		return $color;
+	}
+}
+
+/**
  * Detect if we should use a light or dark colour on a background colour
  *
  * @param mixed $color

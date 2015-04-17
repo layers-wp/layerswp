@@ -2302,14 +2302,22 @@ object{
         color: #fff;
     }
 
-    .invert .section-title .heading,
-    .invert.section-title .heading{
-        color: #fff;
-    }
-    .invert .section-title .excerpt,
-    .invert.section-title .excerpt{
-        color: rgba(255, 255, 255, 0.8);
-    }
+        /*-----------------------*/
+        /*- SECTION TITLE -------*/
+
+        .invert .section-title .heading,
+        .invert.section-title .heading{
+            color: #fff;
+        }
+        .invert .section-title .excerpt,
+        .invert.section-title .excerpt{
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .invert .section-title .heading a,
+        .invert.section-title .heading a{
+            color: #fff;
+        }
 
         /*-----------------------*/
         /*- LOGO INVERT ---------*/

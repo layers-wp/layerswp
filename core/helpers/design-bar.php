@@ -93,7 +93,9 @@ class Layers_Design_Controller {
 
 					$method = $key . '_component';
 
-					$this->$method( $args );
+					if( method_exists( $this, $method ) ){
+						$this->$method( $args );
+					}
 
 					$this->controls[] = trim( ob_get_clean() );
 				}
@@ -102,7 +104,9 @@ class Layers_Design_Controller {
 
 				$method = $c . '_component';
 
-				$this->$method();
+				if( method_exists( $this, $method ) ){
+					$this->$method();
+				}
 
 				$this->controls[] = trim( ob_get_clean() );
 			}

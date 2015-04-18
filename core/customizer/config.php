@@ -325,7 +325,7 @@ class Layers_Customizer_Config {
 
 		// Body -> Body
 		$controls['body-customization'] = array(
-								/*
+
 								'body-background-color' => array(
 									'label' => '',
 									'subtitle' => __( 'Background', 'layerswp' ),
@@ -333,7 +333,6 @@ class Layers_Customizer_Config {
 									'type' => 'layers-color',
 									'default' => '#FFFFFF',
 								),
-								*/
 								'title-background-color' => array(
 									'label' => '',
 									'subtitle' => __( 'Title Background', 'layerswp' ),

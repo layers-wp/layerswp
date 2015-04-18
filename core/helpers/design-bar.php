@@ -93,7 +93,9 @@ class Layers_Design_Controller {
 
 					$method = $key . '_component';
 
-					$this->$method( $args );
+					if( method_exists( $this, $method ) ){
+						$this->$method( $args );
+					}
 
 					$this->controls[] = trim( ob_get_clean() );
 				}
@@ -102,7 +104,9 @@ class Layers_Design_Controller {
 
 				$method = $c . '_component';
 
-				$this->$method();
+				if( method_exists( $this, $method ) ){
+					$this->$method();
+				}
 
 				$this->controls[] = trim( ob_get_clean() );
 			}
@@ -312,6 +316,13 @@ class Layers_Design_Controller {
 					'4' => __( '4 Columns', 'layerswp' ),
 					'6' => __( '6 Columns', 'layerswp' )
 				)
+			),
+			'color' => array(
+				'type' => 'color',
+				'label' => __( 'Background Color', 'layerswp' ),
+				'name' => $this->widget['name'] . '[column-background-color]',
+				'id' => $this->widget['id'] . '-columns-background-color',
+				'value' => ( isset( $this->values['column-background-color'] ) ) ? $this->values['column-background-color'] : NULL
 			),
 			'gutter' => array(
 				'type' => 'checkbox',
@@ -655,7 +666,46 @@ class Layers_Design_Controller {
 
 		$this->render_control( $key, apply_filters( 'layerswp_background_component_args', $args, $key, $this->type, $this->widget, $this->values ) );
 	}
+	/**
+	 * Call To Action Customization - Static Option
+	 *
+	 * @param    array       $args       Additional arguments to pass to this function
+	 */
+	public function buttons_component( $args = NULL ) {
 
+		// If there is no widget information provided, can the operation
+		if ( NULL == $this->widget )
+			return;
+
+		// Set a key for this input
+		$key = 'buttons';
+
+		// Setup icon CSS
+		$args['icon-css'] = 'icon-call-to-action';
+
+		// Add a Label
+		$args['label'] = __( 'Buttons', 'layerswp' );
+
+		// Add elements
+		$args['elements'] = array(
+			'buttons-background-color' => array(
+				'type' => 'color',
+				'label' => __( 'Background Color', 'layerswp' ),
+				'name' => $this->widget['name'] . '[buttons][background-color]',
+				'id' => $this->widget['id'] . '-buttons-background',
+				'value' => ( isset( $this->values['buttons']['background-color'] ) ) ? $this->values['buttons']['background-color'] : NULL
+			),
+			'buttons-text-color' => array(
+				'type' => 'color',
+				'label' => __( 'Text Color', 'layerswp' ),
+				'name' => $this->widget['name'] . '[buttons][color]',
+				'id' => $this->widget['id'] . '-buttons-color',
+				'value' => ( isset( $this->values['buttons']['color'] ) ) ? $this->values['buttons']['color'] : NULL
+			),
+		);
+
+		$this->render_control( $key, apply_filters( 'layerswp_button_colors_component_args', $args, $key, $this->type, $this->widget, $this->values ) );
+	}
 	/**
 	 * Advanced - Static Option
 	 *

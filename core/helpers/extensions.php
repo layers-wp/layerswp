@@ -177,3 +177,29 @@ if ( !function_exists( 'layers_get_custom_taxonomy_template' ) ) {
 	}
 } // layers_get_custom_taxonomy_template
 add_filter( 'taxonomy_template', 'layers_get_custom_taxonomy_template' );
+
+//@TODO: Cleanup this code
+if( !function_exists( 'layers_get_plugins') ) {
+	function layers_get_plugins(){
+		$active_plugins = wp_get_active_and_valid_plugins();
+		$layers_plugins = array();
+		foreach ( (array) $active_plugins as $plugin_key ) {
+			$plugin_data = get_plugin_data( $plugin_key );
+
+			if( isset( $plugin_data[ 'Layers Plugin' ] ) && 'true' == strtolower( $plugin_data[ 'Layers Plugin' ] ) ){
+				$layers_plugins[ $plugin_key ] = $plugin_data;
+			}
+		}
+
+		return $layers_plugins;
+	}
+} // layers_get_plugins
+
+if( !function_exists( 'layers_plugin_headers') ) {
+	function layers_plugin_headers( $extra_headers ) {
+		$extra_headers[] = 'Layers Plugin';
+		$extra_headers[] = 'Layers Required Version';
+		return $extra_headers;
+	}
+} // layers_get_plugins
+add_filter( 'extra_plugin_headers', 'layers_plugin_headers' );

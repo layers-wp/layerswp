@@ -125,12 +125,6 @@ class Layers_Customizer_Config {
 							'title' =>__( 'Layout' , 'layerswp' ),
 							'panel' => 'footer'
 						),
-						/*
-						'footer-customization' => array(
-							'title' =>__( 'Customization' , 'layerswp' ),
-							'panel' => 'footer'
-						),
-						*/
 						'footer-text' => array(
 							'title' =>__( 'Text' , 'layerswp' ),
 							'panel' => 'footer'
@@ -242,6 +236,11 @@ class Layers_Customizer_Config {
 										'header-logo-center' => __( 'Logo Center' , 'layerswp' )
 									)
 								),
+								'header-background-color' => array(
+									'type'		=> 'layers-color',
+									'label'		=> __( 'Background Color' , 'layerswp' ),
+									'default'	=> '#F3F3F3',
+								),
 								'header-layout-break-1' => array(
 									'type'     => 'layers-seperator'
 								),
@@ -259,6 +258,9 @@ class Layers_Customizer_Config {
 									'type'     => 'layers-checkbox',
 									'label'    => __( 'Overlay' , 'layerswp' ),
 									'default'	=> FALSE,
+								),
+								'header-layout-break-2' => array(
+									'type'     => 'layers-seperator',
 								),
 							); // header-layout
 
@@ -281,6 +283,16 @@ class Layers_Customizer_Config {
 								) // scripts
 							);
 
+		$controls['content-layout'] = array(
+								'main-color' => array(
+									'label' => '',
+									'subtitle' => __( 'Accent Color', 'layerswp' ),
+									'description' => __( 'Applies to section title backgrounds, button backgrounds and text links.', 'layerswp' ),
+									'type' => 'layers-color',
+									'default' => '#00A4EC',
+								)
+							);
+
 		$controls['content-sidebars'] = array(
 								'single-sidebar-heading' => array(
 									'type'  => 'layers-heading',
@@ -297,7 +309,7 @@ class Layers_Customizer_Config {
 									'label'     => __( 'Display Right Sidebar' , 'layerswp' ),
 									'default'   => TRUE,
 								), // post-sidebar
-								'content-layout-break-2' => array(
+								'content-sidebars-break-2' => array(
 									'type'     => 'layers-seperator'
 								),
 								'archive-sidebar-heading' => array(
@@ -317,17 +329,6 @@ class Layers_Customizer_Config {
 								), // post-sidebar
 							);
 
-		// Body -> Body
-		$controls['body-customization'] = array(
-								'main-color' => array(
-									'label' => '',
-									'subtitle' => __( 'Main Color', 'layerswp' ),
-									'description' => __( 'Element, element, element & element', 'layerswp' ),
-									'type' => 'layers-color',
-									'default' => '#00A4EC',
-								),
-							);
-
 		// Footer -> Layout -> Layout
 		$controls['footer-layout'] = array(
 								'footer-width' => array(
@@ -338,6 +339,12 @@ class Layers_Customizer_Config {
 										'layout-fullwidth' => __( 'Full Width' , 'layerswp' )
 									)
 								), // layout,
+								'footer-background-color' => array(
+									'label' => '',
+									'subtitle' => __( 'Background Color' , 'layerswp' ),
+									'type' => 'layers-color',
+									'default' => '#F3F3F3',
+								),
 								'footer-layout-break-1' => array(
 									'type'     => 'layers-seperator'
 								),
@@ -364,49 +371,6 @@ class Layers_Customizer_Config {
 									'default' => true
 								),
 							); // footer-layout
-
-		// Footer -> Layout -> Customization
-		/*
-		$controls['footer-customization'] = array(
-								'footer-background-heading' => array(
-									'type'  => 'layers-heading',
-									'label'    => __( 'Background' , 'layerswp' ),
-								),
-								'footer-background-image' => array(
-									'label' => '',
-									'subtitle' => __( 'Background Image' , 'layerswp' ),
-									'type' => 'layers-select-images', //wierd bug in WP4.1 that requires a type to be in the array, or will revert to default control
-								),
-								'footer-background-repeat' => array(
-									'label' => '',
-									'subtitle' => __( 'Background Repeat' , 'layerswp' ),
-									'type' => 'layers-select',
-									'choices' => array(
-										'no-repeat' => __( 'No Repeat' , 'layerswp' ),
-										'repeat' => __( 'Repeat' , 'layerswp' ),
-										'repeat-x' => __( 'Repeat Horizontal' , 'layerswp' ),
-										'repeat-y' => __( 'Repeat Vertical' , 'layerswp' ),
-									),
-								),
-								'footer-background-position' => array(
-									'label' => '',
-									'subtitle' => __( 'Background Position' , 'layerswp' ),
-									'type' => 'layers-select',
-									'choices' => array(
-										'center' => __( 'Center' , 'layerswp' ),
-										'top' => __( 'Top' , 'layerswp' ),
-										'bottom' => __( 'Bottom' , 'layerswp' ),
-										'left' => __( 'Left' , 'layerswp' ),
-										'right' => __( 'Right' , 'layerswp' ),
-									),
-								),
-								'footer-background-stretch' => array(
-									'label' => __( 'Background Stretch' , 'layerswp' ),
-									'subtitle' => '',
-									'type' => 'layers-checkbox',
-								),
-							);
-		*/
 
 		// Footer -> Layout -> Text
 		$controls['footer-text'] = array(

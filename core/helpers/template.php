@@ -367,34 +367,57 @@ add_action( 'body_class', 'layers_body_class' );
  */
 if( !function_exists( 'layers_apply_customizer_styles' ) ) {
 	function layers_apply_customizer_styles() {
-		
-		$color = layers_get_theme_mod( 'main-color', FALSE );
-		
-		// Header
+
+		/**
+		* Setup the colors to use below
+		*/
+		$main_color = layers_get_theme_mod( 'main-color', FALSE );
+		$header_color = layers_get_theme_mod( 'header-background-color', FALSE );
+		$footer_color = layers_get_theme_mod( 'footer-background-color', FALSE );
+
+		/**
+		* Header Colors
+		*/
+
+		// Opacity
 		$bg_opacity = ( layers_get_theme_mod( 'header-overlay') ) ? .5 : 1 ;
+
+		// Apply the BG Color
 		layers_inline_styles( '.header-site, .header-site.header-sticky', 'css', array(
-			'css' => 'background-color: rgba(' . implode( ', ' , layers_hex2rgb( $color ) ) . ', ' . $bg_opacity . '); '
+			'css' => 'background-color: rgba(' . implode( ', ' , layers_hex2rgb( $header_color ) ) . ', ' . $bg_opacity . '); '
 		));
-		if ( 'light' != layers_is_light_or_dark( $color ) ){
+
+		// Add Invert if the color is not light
+		if ( 'light' != layers_is_light_or_dark( $header_color ) ){
 			add_filter( 'layers_header_class', 'layers_add_invert_class' );
 		}
-		
-		// Footer
+
+		/**
+		* Footer Colors
+		*/
+
+		// Apply the BG Color
 		layers_inline_styles( '.footer-site', 'background', array(
 			'background' => array(
-				'color' => $color,
+				'color' => $footer_color,
 			),
 		) );
-		if ( 'dark' == layers_is_light_or_dark( $color ) ){
+
+		// Add Invert if the color is dark
+		if ( 'dark' == layers_is_light_or_dark( $footer_color ) ){
 			add_filter( 'layers_footer_site_class', 'layers_add_invert_class' );
 		}
-		
+
+		/**
+		* General Colors
+		*/
+
 		// Title Container
-		layers_inline_styles( '.title-container', 'background', array( 'background' => array( 'color' => $color ) ) );
-		if ( 'light' != layers_is_light_or_dark( $color ) ){
+		layers_inline_styles( '.title-container', 'background', array( 'background' => array( 'color' => $main_color ) ) );
+		if ( 'light' != layers_is_light_or_dark( $main_color ) ){
 			add_filter( 'layers_title_container_class', 'layers_add_invert_class' );
 		}
-		
+
 		// Buttons
 		layers_inline_button_styles( '', 'button', array(
 			'selectors' => array(
@@ -403,54 +426,37 @@ if( !function_exists( 'layers_apply_customizer_styles' ) ) {
 				'.invert input[type="button"]', '.invert input[type="submit"]', '.invert button', '.invert .button', '.invert .form-submit input[type="submit"]',
 			),
 			'button' => array(
-				'background-color' => $color,
-				//'color' => $color,
+				'background-color' => $main_color,
 			)
 		));
-		
+
 		// Content - Links
 		layers_inline_styles( array(
 			'selectors' => array( '.copy a:not(.button)', '.story a:not(.button)' ),
 			'css' => array(
-				'color' => $color,
-				'border-bottom-color' => $color,
+				'color' => $main_color,
+				'border-bottom-color' => $main_color,
 			),
 		));
 		layers_inline_styles( array(
 			'selectors' => array( '.copy a:not(.button):hover', '.story a:not(.button):hover' ),
 			'css' => array(
-				'color' => layers_too_light_then_dark( $color ),
-				'border-bottom-color' => layers_too_light_then_dark( $color ),
+				'color' => layers_too_light_then_dark( $main_color ),
+				'border-bottom-color' => layers_too_light_then_dark( $main_color ),
 			),
 		));
-		
+
 		// Sidebar Well
 		layers_inline_styles( '', 'background', array(
 			'selectors' => array( '.sidebar .well' ),
-			'background' => array( 'color' => $color ),
+			'background' => array( 'color' => $main_color ),
 		));
-		/*
-		add_filter( 'dynamic_sidebar_params', function( $sidebars ){
-			foreach ( $sidebars as $sidebar ) {
-				if( array_key_exists( 'class', $sidebar ) ){
-					$sidebar['before_widget'] = str_replace( '">', ' invert">', $sidebar['before_widget'] );
-				}
-			}
-			return $sidebars;
-		});
-		*/
-		/*
-		if ( 'light' != layers_is_light_or_dark( $color ) ){
-			add_filter( 'layers_sidebar_well_class', 'layers_add_invert_class' );
-		}
-		*/
-		
+
 		// Meta Background
-		layers_inline_styles( '.meta', 'css', array( 'css' => 'background-color: ' . $color . '; ' ) );
-		if ( 'light' != layers_is_light_or_dark( $color ) ){
+		layers_inline_styles( '.meta', 'css', array( 'css' => 'background-color: ' . $main_color . '; ' ) );
+		if ( 'light' != layers_is_light_or_dark( $main_color ) ){
 			add_filter( 'layers_---_class', 'layers_add_invert_class' );
 		}
-		
 	}
 }
 add_action( 'wp_enqueue_scripts', 'layers_apply_customizer_styles', 100 );
@@ -471,7 +477,7 @@ if( !function_exists( 'layers_apply_customizer_general_styles_general' ) ) {
 				'fixed' => false, // hardcode (not an option)
 			),
 		));
-		
+
 	}
 }
 add_action( 'wp_enqueue_scripts', 'layers_apply_customizer_general_styles_general', 100 );
@@ -672,7 +678,7 @@ if( !function_exists( 'layers_get_center_column_class' ) ) {
 
 		// Apply any classes passed as parameter
 		if( '' != $class ) $classes[] = $class;
-		
+
 		$classes = array_map( 'esc_attr', $classes );
 
 		$classes = apply_filters( 'layers_center_column_class', $classes, $class );
@@ -703,7 +709,7 @@ if( !function_exists( 'layers_center_column_class' ) ) {
  */
 if( !function_exists( 'layers_wrapper_class' ) ) {
 	function layers_wrapper_class( $key = '', $class = '' ) {
-		
+
 		echo 'class="' . join( ' ', layers_get_wrapper_class( $key, $class ) ) . '"';
 	}
 }
@@ -718,9 +724,9 @@ if( !function_exists( 'layers_wrapper_class' ) ) {
  */
 if( !function_exists( 'layers_get_wrapper_class' ) ) {
 	function layers_get_wrapper_class( $key = '', $class = '' ) {
-		
+
 		$classes = explode( ' ', $class ); // Convert string of classes to an array
-		
+
 		return apply_filters( 'layers_' . $key . '_class', $classes );
 	}
 }
@@ -753,15 +759,15 @@ if( !function_exists( 'layers_get_theme_mod' ) ) {
 			$default = '';
 		}
  		*/
- 		
+
 		// Get theme option
 		$theme_mod = get_theme_mod( $name, $default );
-		
+
 		// Template can choose whether to allow empty
 		if ( '' == $theme_mod && FALSE == $allow_empty && FALSE != $default ) {
 			$theme_mod = $default;
 		}
-		
+
 		// Return theme option
 		return $theme_mod;
 	}
@@ -900,7 +906,7 @@ add_action ( 'wp_print_scripts', 'layers_add_google_analytics' );
 */
 if( !function_exists( 'layers_inline_styles' ) ) {
 	function layers_inline_styles( $arg1 = NULL, $arg2 = NULL, $arg3 = NULL ){
-		
+
 		if ( 3 == func_num_args() ) {
 			// layers_inline_styles( '#element', 'background', array( 'selectors' => '.element', 'background' => array( 'color' => '#FFF' ) ) );
 			$container_id = $arg1; $type = $arg2; $args = $arg3;
@@ -913,7 +919,7 @@ if( !function_exists( 'layers_inline_styles' ) ) {
 			// layers_inline_styles( array( 'selectors' => array( '.element' ), 'css' => array( 'color' => '#FFF' ) ) );
 			$container_id = ''; $type = 'css'; $args = $arg1;
 		}
-		
+
 		// Get the generated CSS
 		global $layers_inline_css;
 
@@ -1031,7 +1037,7 @@ if( !function_exists( 'layers_inline_styles' ) ) {
 
 			case 'css' :
 			default :
-				
+
 				if ( isset( $args['css'] ) ) {
 					if ( is_array( $args['css'] ) ){
 						foreach ( $args['css'] as $css_atribute => $css_value ) {
@@ -1092,15 +1098,15 @@ if( !function_exists( 'layers_inline_button_styles' ) ) {
 
 		// Add styling for the hover colors
 		if( isset( $args['selectors'] ) ) {
-			
+
 			if ( ! is_array( $args['selectors'] ) ) {
 				// Make sure selectors is array if comma seperated string is passed
 				$args['selectors'] = explode( ',', $args['selectors'] );
 				$args['selectors'] = array_map( 'trim', $args['selectors'] );
 			}
-			
+
 			$hover_args = $args;
-			
+
 			foreach( $args['selectors'] as $selector ){
 				$new_selectors[] = $selector . ':hover';
 			}
@@ -1372,7 +1378,7 @@ if ( ! function_exists( 'layers_too_light_then_dark' ) ) {
 	* @param   array    $args			$args array
 	*/
 	function layers_too_light_then_dark( $color, $factor = 30 ) {
-		
+
 		if ( '#ffffff' == layers_hex_lighter( $color, 96 ) ) {
 			$color = layers_hex_darker( $color, $factor / 3 );
 		}

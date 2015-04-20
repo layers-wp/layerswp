@@ -213,11 +213,8 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 							$column_class = array();
 							$column_class[] = 'layers-masonry-column';
 							$column_class[] = $span_class;
-							if( !isset( $widget['design'][ 'gutter' ] ) ) {
-								$column_class[] = 'column-flush';
-							} else {
-								$column_class[] = 'column';
-							}
+							$column_class[] = ( 'list-masonry' == $this->check_and_return( $widget, 'design', 'liststyle' ) ? 'no-gutter' : '' );
+							$column_class[] = 'column' . ( 'on' != $this->check_and_return( $widget, 'design', 'gutter' ) ? '-flush' : '' );
 							if( '' != $this->check_and_return( $column, 'design' , 'background', 'image' ) || '' != $this->check_and_return( $column, 'design' , 'background', 'color' ) ) {
 								$column_class[] = 'content';
 							}
@@ -288,9 +285,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 						layers_masonry_settings[ '<?php echo $widget_id; ?>' ] = [{
 								itemSelector: '.layers-masonry-column',
 								layoutMode: 'masonry',
-								masonry: {
-									gutter: <?php echo ( isset( $widget['design'][ 'gutter' ] ) ? 20 : 0 ); ?>
-								}
+								gutter: <?php echo ( isset( $widget['design'][ 'gutter' ] ) ? 20 : 0 ); ?>
 							}];
 
 						$('#<?php echo $widget_id; ?>').find('.list-masonry').layers_masonry( layers_masonry_settings[ '<?php echo $widget_id; ?>' ][0] );

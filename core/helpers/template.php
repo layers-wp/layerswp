@@ -367,53 +367,33 @@ add_action( 'body_class', 'layers_body_class' );
  */
 if( !function_exists( 'layers_apply_customizer_styles' ) ) {
 	function layers_apply_customizer_styles() {
-
+		
+		$color = layers_get_theme_mod( 'main-color', FALSE );
+		
 		// Header
-		if( layers_get_theme_mod( 'header-background-color' ) ){
-			$bg_opacity = ( layers_get_theme_mod( 'header-overlay') ) ? .5 : 1 ;
-			layers_inline_styles( '.header-site, .header-site.header-sticky', 'css', array( 'css' => 'background-color: rgba(' . implode( ', ' , layers_hex2rgb( layers_get_theme_mod( 'header-background-color' ) ) ) . ', ' . $bg_opacity . ');' ) );
+		$bg_opacity = ( layers_get_theme_mod( 'header-overlay') ) ? .5 : 1 ;
+		layers_inline_styles( '.header-site, .header-site.header-sticky', 'css', array(
+			'css' => 'background-color: rgba(' . implode( ', ' , layers_hex2rgb( $color ) ) . ', ' . $bg_opacity . '); '
+		));
+		if ( 'light' != layers_is_light_or_dark( $color ) ){
+			add_filter( 'layers_header_class', 'layers_add_invert_class' );
 		}
-
-		// Body
-		layers_inline_styles( '.wrapper-site', 'background', array( 'background' => array( 'color' => layers_get_theme_mod( 'body-background-color' ) ) ) );
-		if ( 'dark' == layers_is_light_or_dark( layers_get_theme_mod( 'body-background-color', FALSE ) ) ){
-			// Article elemnts on Single
-			add_filter( 'layers_center_column_class', 'layers_add_invert_class' );
-		}
-
+		
 		// Footer
 		layers_inline_styles( '.footer-site', 'background', array(
 			'background' => array(
-				'color' => layers_get_theme_mod( 'footer-background-color' ),
-				'repeat' => layers_get_theme_mod( 'footer-background-repeat' ),
-				'position' => layers_get_theme_mod( 'footer-background-position' ),
-				'stretch' => layers_get_theme_mod( 'footer-background-stretch' ),
-				'image' => layers_get_theme_mod( 'footer-background-image' ),
-				'fixed' => false, // hardcode (not an option)
+				'color' => $color,
 			),
 		) );
-		if ( 'dark' == layers_is_light_or_dark( layers_get_theme_mod( 'footer-background-color' ) ) ){
+		if ( 'dark' == layers_is_light_or_dark( $color ) ){
 			add_filter( 'layers_footer_site_class', 'layers_add_invert_class' );
 		}
 		
-		//layers_inline_styles( '.footer-site, .footer-site h5, .footer-site p, .footer-site li, .footer-site .textwidget, .footer-site .well', 'color', array( 'color' => layers_get_theme_mod( 'footer-body-color' ) ) );
-		//layers_inline_styles( '.footer-site a, .footer-site.well a', 'color', array( 'color' => layers_get_theme_mod( 'footer-link-color' ) ) );
-		
 		// Title Container
-		layers_inline_styles( '.title-container', 'background', array( 'background' => array( 'color' => layers_get_theme_mod( 'title-background-color', FALSE ) ) ) );
-		if ( 'light' != layers_is_light_or_dark( layers_get_theme_mod( 'title-background-color', FALSE ) ) ){
+		layers_inline_styles( '.title-container', 'background', array( 'background' => array( 'color' => $color ) ) );
+		if ( 'light' != layers_is_light_or_dark( $color ) ){
 			add_filter( 'layers_title_container_class', 'layers_add_invert_class' );
 		}
-		
-		// Section Title - Headings
-		layers_inline_styles( '.section-title .heading', 'css', array(
-			'css' => 'color: ' . layers_get_theme_mod( 'section-title-heading-color', FALSE ) . '; '
-		));
-		
-		// Section Title - Excerpt
-		layers_inline_styles( '.section-title .excerpt', 'css', array(
-			'css' => 'color: ' . layers_get_theme_mod( 'section-title-excerpt-color', FALSE ) . '; '
-		));
 		
 		// Buttons
 		layers_inline_button_styles( '', 'button', array(
@@ -423,8 +403,8 @@ if( !function_exists( 'layers_apply_customizer_styles' ) ) {
 				'.invert input[type="button"]', '.invert input[type="submit"]', '.invert button', '.invert .button', '.invert .form-submit input[type="submit"]',
 			),
 			'button' => array(
-				'background-color' => layers_get_theme_mod( 'button-background-color', FALSE ),
-				'color' => layers_get_theme_mod( 'button-text-color', FALSE ),
+				'background-color' => $color,
+				//'color' => $color,
 			)
 		));
 		
@@ -432,22 +412,22 @@ if( !function_exists( 'layers_apply_customizer_styles' ) ) {
 		layers_inline_styles( array(
 			'selectors' => array( '.copy a:not(.button)', '.story a:not(.button)' ),
 			'css' => array(
-				'color' => layers_get_theme_mod( 'story-link-color', FALSE ),
-				'border-bottom-color' => layers_get_theme_mod( 'story-link-color', FALSE ),
+				'color' => $color,
+				'border-bottom-color' => $color,
 			),
 		));
 		layers_inline_styles( array(
 			'selectors' => array( '.copy a:not(.button):hover', '.story a:not(.button):hover' ),
 			'css' => array(
-				'color' => layers_too_light_then_dark( layers_get_theme_mod( 'story-link-color', FALSE ) ),
-				'border-bottom-color' => layers_too_light_then_dark( layers_get_theme_mod( 'story-link-color', FALSE ) ),
+				'color' => layers_too_light_then_dark( $color ),
+				'border-bottom-color' => layers_too_light_then_dark( $color ),
 			),
 		));
 		
 		// Sidebar Well
 		layers_inline_styles( '', 'background', array(
 			'selectors' => array( '.sidebar .well' ),
-			'background' => array( 'color' => layers_get_theme_mod( 'sidebar-well-color', FALSE ) ),
+			'background' => array( 'color' => $color ),
 		));
 		/*
 		add_filter( 'dynamic_sidebar_params', function( $sidebars ){
@@ -460,19 +440,41 @@ if( !function_exists( 'layers_apply_customizer_styles' ) ) {
 		});
 		*/
 		/*
-		if ( 'light' != layers_is_light_or_dark( layers_get_theme_mod( 'sidebar-well-color', FALSE ) ) ){
+		if ( 'light' != layers_is_light_or_dark( $color ) ){
 			add_filter( 'layers_sidebar_well_class', 'layers_add_invert_class' );
 		}
 		*/
 		
 		// Meta Background
-		layers_inline_styles( '.meta', 'css', array( 'css' => 'background-color: ' . layers_get_theme_mod( 'meta-background-color', FALSE ) . '; ' ) );
-		if ( 'light' != layers_is_light_or_dark( layers_get_theme_mod( 'meta-background-color', FALSE ) ) ){
+		layers_inline_styles( '.meta', 'css', array( 'css' => 'background-color: ' . $color . '; ' ) );
+		if ( 'light' != layers_is_light_or_dark( $color ) ){
 			add_filter( 'layers_---_class', 'layers_add_invert_class' );
 		}
+		
 	}
-} // layers_apply_customizer_styles
+}
 add_action( 'wp_enqueue_scripts', 'layers_apply_customizer_styles', 100 );
+
+/**
+ * Apply Customizer settings to site housing
+ */
+if( !function_exists( 'layers_apply_customizer_general_styles_general' ) ) {
+	function layers_apply_customizer_general_styles_general() {
+
+		// Footer
+		layers_inline_styles( '.footer-site', 'background', array(
+			'background' => array(
+				'repeat' => layers_get_theme_mod( 'footer-background-repeat' ),
+				'position' => layers_get_theme_mod( 'footer-background-position' ),
+				'stretch' => layers_get_theme_mod( 'footer-background-stretch' ),
+				'image' => layers_get_theme_mod( 'footer-background-image' ),
+				'fixed' => false, // hardcode (not an option)
+			),
+		));
+		
+	}
+}
+add_action( 'wp_enqueue_scripts', 'layers_apply_customizer_general_styles_general', 100 );
 
 /**
  * Helper that simply adds an invert class to an array of classes.
@@ -514,16 +516,6 @@ if( !function_exists( 'layers_get_header_class' ) ) {
 		// Handle overlay / not overlay
 		if( TRUE == $header_overlay_option ){
 			$classes[] = 'header-overlay';
-		}
-
-		// Handle invert if background-color light / dark
-		$light_or_dark = layers_light_or_dark( $header_background_color_option, '#000000' /*dark*/, '#FFFFFF' /*light*/ );
-
-		if (
-				'#FFFFFF' == $light_or_dark
-				&& '' != $header_background_color_option
-			) {
-			$classes[] = 'invert';
 		}
 
 		// Add full-width class

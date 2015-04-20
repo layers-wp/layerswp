@@ -125,10 +125,12 @@ class Layers_Customizer_Config {
 							'title' =>__( 'Layout' , 'layerswp' ),
 							'panel' => 'footer'
 						),
+						/*
 						'footer-customization' => array(
 							'title' =>__( 'Customization' , 'layerswp' ),
 							'panel' => 'footer'
 						),
+						*/
 						'footer-text' => array(
 							'title' =>__( 'Text' , 'layerswp' ),
 							'panel' => 'footer'
@@ -258,14 +260,6 @@ class Layers_Customizer_Config {
 									'label'    => __( 'Overlay' , 'layerswp' ),
 									'default'	=> FALSE,
 								),
-								'header-layout-break-2' => array(
-									'type'     => 'layers-seperator',
-								),
-								'header-background-color' => array(
-									'type'		=> 'layers-color',
-									'label'		=> __( 'Background Color' , 'layerswp' ),
-									'default'	=> '#F3F3F3',
-								),
 							); // header-layout
 
 		// Header -> Layout -> Scripts
@@ -325,76 +319,12 @@ class Layers_Customizer_Config {
 
 		// Body -> Body
 		$controls['body-customization'] = array(
-
-								'body-background-color' => array(
+								'main-color' => array(
 									'label' => '',
-									'subtitle' => __( 'Background', 'layerswp' ),
+									'subtitle' => __( 'Main Color', 'layerswp' ),
 									'description' => __( 'Element, element, element & element', 'layerswp' ),
 									'type' => 'layers-color',
-									'default' => '#FFFFFF',
-								),
-								'title-background-color' => array(
-									'label' => '',
-									'subtitle' => __( 'Title Background', 'layerswp' ),
-									'description' => __( 'Element, element, element & element', 'layerswp' ),
-									'type' => 'layers-color',
-									'default' => '#F3F3F3',
-								),
-								'section-title-heading-color' => array(
-									'label' => '',
-									'subtitle' => __( 'Section Title Heading', 'layerswp' ),
-									'description' => __( 'Element, element, element & element', 'layerswp' ),
-									'type' => 'layers-color',
-									'default' => 'rgba(0, 0, 0, 0.85)', //#323232
-								),
-								'section-title-excerpt-color' => array(
-									'label' => '',
-									'subtitle' => __( 'Section Title Excerpt', 'layerswp' ),
-									'description' => __( 'Element, element, element & element', 'layerswp' ),
-									'type' => 'layers-color',
-									'default' => 'rgba(0, 0, 0, 0.55)', // #323232
-								),
-								'section-title-excerpt-color' => array(
-									'label' => '',
-									'subtitle' => __( 'Section Title Excerpt', 'layerswp' ),
-									'description' => __( 'Element, element, element & element', 'layerswp' ),
-									'type' => 'layers-color',
-									'default' => 'rgba(0, 0, 0, 0.55)', // #323232
-								),
-								'button-background-color' => array(
-									'label' => '',
-									'subtitle' => __( 'Button Background', 'layerswp' ),
-									'description' => __( 'Element, element, element & element', 'layerswp' ),
-									'type' => 'layers-color',
-									'default' => '#454545',
-								),
-								'button-text-color' => array(
-									'label' => '',
-									'subtitle' => __( 'Button Text', 'layerswp' ),
-									'description' => __( 'Element, element, element & element', 'layerswp' ),
-									'type' => 'layers-color',
-									'default' => '#FFFFFF',
-								),
-								'story-link-color' => array(
-									'label' => '',
-									'subtitle' => __( 'Story Link', 'layerswp' ),
-									'description' => __( 'Href Elements, element, element & element', 'layerswp' ),
-									'type' => 'layers-color',
-									'default' => 'rgba(0, 0, 0, 0.75)',
-								),
-								'sidebar-well-color' => array(
-									'label' => '',
-									'subtitle' => __( 'Sidebar Background', 'layerswp' ),
-									'description' => __( 'Elements, element, element & element', 'layerswp' ),
-									'type' => 'layers-color',
-									'default' => '#FFFFFF',
-								),
-								'meta-background-color' => array(
-									'label' => '',
-									'subtitle' => __( 'Meta Background', 'layerswp' ),
-									'description' => __( 'Elements, element, element & element', 'layerswp' ),
-									'type' => 'layers-color',
-									'default' => '#FFFFFF',
+									'default' => '#00A4EC',
 								),
 							);
 
@@ -436,35 +366,11 @@ class Layers_Customizer_Config {
 							); // footer-layout
 
 		// Footer -> Layout -> Customization
+		/*
 		$controls['footer-customization'] = array(
-								/*
-								'footer-font-heading' => array(
-									'type'  => 'layers-heading',
-									'label'    => __( 'Text' , 'layerswp' ),
-								),
-								'footer-body-color' => array(
-									'type'  => 'layers-color',
-									'subtitle' => __( 'Text Color' , 'layerswp' ),
-									'default' => '#000000',
-								),
-								'footer-link-color' => array(
-									'type' => 'layers-color',
-									'subtitle' => __( 'Link Color' , 'layerswp' ),
-									'default' => '#35A6E8',
-								),
-								'footer-customization-break-1' => array(
-									'type'     => 'layers-seperator'
-								),
-								*/
 								'footer-background-heading' => array(
 									'type'  => 'layers-heading',
 									'label'    => __( 'Background' , 'layerswp' ),
-								),
-								'footer-background-color' => array(
-									'label' => '',
-									'subtitle' => __( 'Background Color' , 'layerswp' ),
-									'type' => 'layers-color',
-									'default' => '#F3F3F3',
 								),
 								'footer-background-image' => array(
 									'label' => '',
@@ -499,7 +405,8 @@ class Layers_Customizer_Config {
 									'subtitle' => '',
 									'type' => 'layers-checkbox',
 								),
-							); // footer-customization
+							);
+		*/
 
 		// Footer -> Layout -> Text
 		$controls['footer-text'] = array(

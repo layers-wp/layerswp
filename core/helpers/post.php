@@ -187,8 +187,9 @@ if( !function_exists( 'layers_post_class' ) ) {
 
         $classes[] = 'container';
 
-        if( is_post_type_archive( 'product' ) ||  is_tax( 'product_cat' ) ||  is_tax( 'product_tag' ) ) {
-            $classes[] = 'column span-4';
+	if( is_post_type_archive( 'product' ) || is_tax( 'product_cat' ) || is_tax( 'product_tag' ) ) {
+		$classes[] = 'column';
+                $classes[] = 'span-4';
         }
 
         return $classes;
@@ -327,14 +328,14 @@ if ( ! function_exists( 'layers_filter_admin_pages_views' ) ) {
  * @return null Nothing is returned, the Edit button is added the admin toolbar
 */
 
-if( ! function_exists( 'layers_add_builder_edit_button' ) ) {
-    function layers_add_builder_edit_button(){
+if( ! function_exists( 'layers_edit_layout_admin_menu' ) ) {
+	function layers_edit_layout_admin_menu(){
         global $wp_admin_bar, $post;
 
         if( is_page() && layers_is_builder_page() ){
             $current_url = ( is_ssl() ? 'https://' : 'http://' ) . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
             $args = array(
-                'id'    => 'my_page',
+				'id'    => 'layers-edit-layout',
                 'title' => '<span class="ab-icon"></span><span class="ab-label">' . __( 'Edit Layout' , 'layerswp' ) . '</span>',
                 'href'  => add_query_arg( 'url', urlencode( $current_url ), wp_customize_url() ),
                 'meta'  => array( 'class' => 'my-toolbar-page' )
@@ -343,23 +344,42 @@ if( ! function_exists( 'layers_add_builder_edit_button' ) ) {
         }
     }
 }
-add_action( 'admin_bar_menu', 'layers_add_builder_edit_button', 90 );
+add_action( 'admin_bar_menu', 'layers_edit_layout_admin_menu', 90 );
+
+/**
+ * Add "Add New Layers Page" to the admin bar
+ *
+ * @return null Nothing is returned, the new button is added the admin toolbar
+*/
+
+if( ! function_exists( 'layers_add_new_page_admin_menu' ) ) {
+	function layers_add_new_page_admin_menu(){
+		global $wp_admin_bar, $post;
+
+		$args = array(
+			'parent' => 'new-content',
+			'id'    => 'layers-add-page',
+			'title' =>__( 'Layers Page' , 'layerswp' ),
+			'href' => admin_url( 'admin.php?page=layers-add-new-page' )
+		);
+		$wp_admin_bar->add_node( $args );
+	}
+}
+add_action( 'admin_bar_menu', 'layers_add_new_page_admin_menu', 90 );
 
 // Output custom css to add Icon to admin bar edit button.
 if( ! function_exists( 'layers_add_builder_edit_button_css' ) ) {
     function layers_add_builder_edit_button_css() {
         global $pagenow;
-        if ( 'post.php' === $pagenow || ! is_admin() ) :
-            ?>
+		if ( 'post.php' === $pagenow || ! is_admin() ) : ?>
             <style>
-            #wp-admin-bar-my_page .ab-icon:before{
+			#wp-admin-bar-layers-edit-layout .ab-icon:before{
                 font-family: "layers-interface" !important;
                 content: "\e62f" !important;
                 font-size: 16px !important;
             }
             </style>
-            <?php
-        endif;
+		<?php endif;
     }
 }
 add_action('wp_print_styles', 'layers_add_builder_edit_button_css');

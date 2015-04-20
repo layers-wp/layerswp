@@ -97,7 +97,7 @@ body{
     font-size: 1.5rem;
     line-height: 1.5;
     background-color: #454545;
-    color: #777;
+    color: rgba(0, 0, 0, 0.55);
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
@@ -107,7 +107,7 @@ h3,
 h4,
 h5,
 h6{
-    color: #000;
+    color: rgba(0, 0, 0, 0.85);
     font-weight: 400;
 }
 
@@ -139,10 +139,10 @@ small{
     font-size: 1.2rem;
 }
 a{
-    color: #454545;
+    color: rgba(0, 0, 0, 0.75);
 }
 a:hover{
-    color: #7D8FA2;
+    color: rgba(0, 0, 0, 1);
 }
 img{
     max-width: 100%;
@@ -517,7 +517,7 @@ object{
     /*---------------------------*/
     /*- FOOTER COPY -------------*/
     .copyright{
-        color: #999;
+        color: rgba(0, 0, 0, 0.45);
         font-size: 1.2rem;
     }
     .row.copyright{
@@ -655,17 +655,17 @@ object{
         /*-----------------------*/
         /*- SECTION REGULAR -----*/
         .section-title .heading{
-            color: #323232;
+            color: rgba(0, 0, 0, 0.85);
             font-size: 3rem;
         }
         .section-title .heading a{
-            color: #454545;
+            color: rgba(0, 0, 0, 0.85);
         }
         .section-title .heading a:hover{
-            color: #323232;
+            color: rgba(0, 0, 0, 1);
         }
         .section-title .excerpt{
-            color: #8f8f8f;
+            color: rgba(0, 0, 0, 0.55);
             font-size: 2rem;
         }
 
@@ -1417,14 +1417,13 @@ object{
         margin-bottom: 20px;
         vertical-align: top;
         overflow: hidden;
-        border: 2px solid #eee;
+        border: 2px solid rgba(0, 0, 0, 0.08);
     }
     table th{
         padding: 10px;
         text-align: left;
         vertical-align: middle;
-        background-color: #fff;
-        border-bottom: 2px solid #eee;
+        border-bottom: 2px solid rgba(0, 0, 0, 0.08);
         color: #454545;
         font-size: 1.2rem;
         font-weight: 700;
@@ -1433,7 +1432,7 @@ object{
     table td{
         padding: 10px;
         vertical-align: top;
-        border-bottom: 2px solid #eee;
+        border-bottom: 2px solid rgba(0, 0, 0, 0.08);
     }
     table tr:last-child td{
         border-bottom: none;
@@ -1471,14 +1470,11 @@ object{
     /*---------------------------*/
     /*- WELLS -------------------*/
     .well{
-        background-color: #f3f3f3;
-    }
-    .well .well{
-        background-color: #eee;
+        background-color: rgba(0, 0, 0, 0.05);
     }
     .well-block{
         background-color: #fff;
-        border: 3px solid #eee;
+        border: 3px solid rgba(0, 0, 0, 0.08);
     }
 
     /*---------------------------*/
@@ -1843,7 +1839,7 @@ object{
         display: inline-block;
         margin: 0 0 15px;
         overflow: hidden;
-        color: #777;
+        color: rgba(0, 0, 0, 0.55);
         font-size: 1.2rem;
     }
     .bread-crumbs li{
@@ -1851,10 +1847,10 @@ object{
         margin-right: 10px;
     }
     .bread-crumbs a{
-        color: #454545;
+        color: rgba(0, 0, 0, 0.75);
     }
     .bread-crumbs a:hover{
-        color: #454545;
+        color: rgba(0, 0, 0, 0.85);
         text-decoration: underline;
     }
     .title-small .bread-crumbs{
@@ -2074,7 +2070,7 @@ object{
         font-size: 1.2rem;
     }
     .thumbnail-body .excerpt{
-        color: #777;
+        color: rgba(0, 0, 0, 0.55);
     }
     .thumbnail-body p{
         margin: 10px 0 0;
@@ -2152,31 +2148,26 @@ object{
     }
     .copy h1{
         margin-bottom: 26px;
-        color: #323232;
         font-size: 3.2rem;
         font-weight: 700;
     }
     .copy h2{
         margin-bottom: 26px;
-        color: #323232;
         font-size: 2.2rem;
         font-weight: 700;
     }
     .copy h3{
         margin-bottom: 26px;
-        color: #323232;
         font-size: 1.8rem;
         font-weight: 700;
     }
     .copy h4{
         margin-bottom: 26px;
-        color: #323232;
         font-size: 1.5rem;
         font-weight: 700;
     }
     .copy h5{
         margin-bottom: 26px;
-        color: #323232;
         font-size: 1.3rem;
     }
     .copy blockquote{
@@ -2265,10 +2256,15 @@ object{
 
     .invert{
         border: none;
-        color: #fff;
+        color: rgba(255, 255, 255, 0.85);
     }
-    .invert h5{
-        color: #fff;
+    .invert h1,
+    .invert h2,
+    .invert h3,
+    .invert h4,
+    .invert h5,
+    .invert h6{
+        color: rgba(255, 255, 255, 0.95);
     }
     .invert code{
         background: rgba(255, 255, 255, 0.2);
@@ -2289,6 +2285,11 @@ object{
         color: #fff;
     }
 
+    .invert blockquote{
+        background: rgba(255, 255, 255, 0.15);
+        color: rgba(255, 255, 255, 0.55);
+    }
+
     .invert input,
     .invert textarea,
     .invert select{
@@ -2301,18 +2302,22 @@ object{
         color: #fff;
     }
 
-    .invert .section-title .heading,
-    .invert.section-title .heading{
-        color: #fff;
-    }
-    .invert .section-title .excerpt,
-    .invert.section-title .excerpt{
-        color: rgba(255, 255, 255, 0.8);
-    }
-    .invert .avatar-image{
-        border-color: #fff;
-        box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.4);
-    }
+        /*-----------------------*/
+        /*- SECTION TITLE -------*/
+
+        .invert .section-title .heading,
+        .invert.section-title .heading{
+            color: #fff;
+        }
+        .invert .section-title .excerpt,
+        .invert.section-title .excerpt{
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .invert .section-title .heading a,
+        .invert.section-title .heading a{
+            color: #fff;
+        }
 
         /*-----------------------*/
         /*- LOGO INVERT ---------*/
@@ -2359,6 +2364,16 @@ object{
     }
     .header-site.invert .responsive-nav .l-menu{
         color: rgba(255, 255, 255, 1);
+    }
+
+    /*---------------------------*/
+    /*- BREAD CRUMBS INVERT -----*/
+    .invert .bread-crumbs{
+        color: rgba(255, 255, 255, 0.55);
+    }
+    .invert .bread-crumbs a,
+    .invert .bread-crumbs a:hover{
+        color: rgba(255, 255, 255, 0.75);
     }
 
     /*---------------------------*/
@@ -2427,3 +2442,12 @@ object{
             background-color: #009EEC;
             color: #fff;
         }
+
+    /*---------------------------*/
+    /*- FOOTER INVERT -----------*/
+    .invert .copyright {
+        color: rgba(255,255,255,0.55);
+    }
+    .footer-site.invert .section-nav-title{
+        color: rgba(255,255,255,0.55);
+    }

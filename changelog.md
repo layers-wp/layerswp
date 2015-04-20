@@ -8,12 +8,23 @@
 
 * **Fix** - Added better customizer default handling via the `layers_customizer_control_defaults` hook
 * **Fix** - Payment method block alignment no longer has a margin on the left
+* **Fix** - Fixed pagination location on the post widget
+* **Fix** - Gutter option on all widgets with masonry active now works
 * **Tweak** - Header cart background color has changed for a hash value to a transparent rgba background color for better handling of different header colors
 * **Tweak** - Improved spacing of the comment form block as well as a font-size decrease for "Leave a Reply"
 * **Tweak** - Gave copyright border-color rgba (same reason as header cart)
 * **Tweak** - Better .button styling in .story
 * **Tweak** - Increased the width of sub menus
+* **Tweak** - Nested comments now clear the .copy div in the parent comment
+* **Tweak** - The 'search' button in the Search Widget is now inline with the input field on screens larger than tablets
+* **Tweak** - Bread crumbs css is now based on RGBA for better handling of container background colors
+* **Tweak** - Bread crumbs css now included in .invert class
+* **Tweak** - Removed color from headings in .story and .copy as they are already declared as defaults at the top of the CSS
 * **Enhancement** - Added support for the 'target' attribute to the button form type
+* **Enhancement** - Added .invert styling for headers
+* **Enhancement** - Added 'border' option to the `layers_inline_styles` function
+* **Enhancement** - Builder pages now obey password protection
+* **Enhancement** - Slider now focusses on which ever slide you are busy editing
 
 ## 1.0.8
 ### 02 April 2015

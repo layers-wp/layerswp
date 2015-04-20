@@ -393,6 +393,9 @@ class Layers_Customizer_Regsitrar {
 				$section->priority = $section_data[ 'priority' ];
 			}
 		}
+
+		// Remove the theme switcher Panel, Layers isn't ready for that
+		$this->customizer->remove_section( 'themes' );
 	}
 
 	/**

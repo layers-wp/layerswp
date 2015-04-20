@@ -92,7 +92,7 @@ if( !class_exists( 'Layers_Contact_Widget' ) ) {
 			}
 			// Set the background styling
 			if( !empty( $widget['design'][ 'background' ] ) ) layers_inline_styles( '#' . $widget_id, 'background', array( 'background' => $widget['design'][ 'background' ] ) );
-			if( !empty( $widget['design']['fonts'][ 'color' ] ) ) layers_inline_styles( '#' . $widget_id, 'color', array( 'selectors' => array( '.section-title h3.heading' , '.section-title p.excerpt' , '.section-title small', 'form p' , 'form label' ) , 'color' => $widget['design']['fonts'][ 'color' ] ) );
+			if( !empty( $widget['design']['fonts'][ 'color' ] ) ) layers_inline_styles( '#' . $widget_id, 'color', array( 'selectors' => array( '.section-title h3.heading' , '.section-title p.excerpt' , '.section-title small', '.form.content' , 'form p' , 'form label' ) , 'color' => $widget['design']['fonts'][ 'color' ] ) );
 
 			// Apply the advanced widget styling
 			$this->apply_widget_advanced_styling( $widget_id, $widget );
@@ -104,13 +104,30 @@ if( !class_exists( 'Layers_Contact_Widget' ) ) {
 				$form_class = 'span-12';
 			}
 
-			$mapwidth = 'span-12'; ?>
+			$mapwidth = 'span-12';
 
-			<section class="layers-contact-widget widget content-vertical-massive row <?php echo $this->check_and_return( $widget , 'design', 'advanced', 'customclass' ) ?> <?php echo $this->get_widget_spacing_class( $widget ); ?>" id="<?php echo $widget_id; ?>">
+			/**
+			* Generate the widget container class
+			*/
+			$widget_container_class = array();
+			$widget_container_class[] = 'widget row content-vertical-massive layers-contact-widget';
+			$widget_container_class[] = $this->check_and_return( $widget , 'design', 'advanced', 'customclass' );
+			$widget_container_class[] = $this->get_widget_spacing_class( $widget );
+			$widget_container_class = implode( ' ', apply_filters( 'layers_contact_widget_container_class' , $widget_container_class ) ); ?>
 
+			<section class="<?php echo $widget_container_class; ?>" id="<?php echo $widget_id; ?>">
 				<?php if( '' != $this->check_and_return( $widget , 'title' ) ||'' != $this->check_and_return( $widget , 'excerpt' ) ) { ?>
 					<div class="container clearfix">
-						<div class="section-title <?php echo $this->check_and_return( $widget , 'design', 'fonts', 'size' ); ?> <?php echo $this->check_and_return( $widget , 'design', 'fonts', 'align' ); ?> clearfix">
+						<?php /**
+						* Generate the Section Title Classes
+						*/
+						$section_title_class = array();
+						$section_title_class[] = 'section-title clearfix';
+						$section_title_class[] = $this->check_and_return( $widget , 'design', 'fonts', 'size' );
+						$section_title_class[] = $this->check_and_return( $widget , 'design', 'fonts', 'align' );
+						$section_title_class[] = ( $this->check_and_return( $widget, 'design', 'background' , 'color' ) && 'dark' == layers_is_light_or_dark( $this->check_and_return( $widget, 'design', 'background' , 'color' ) ) ? 'invert' : '' );
+						$section_title_class = implode( ' ', $section_title_class ); ?>
+						<div class="<?php echo $section_title_class; ?>">
 							<?php if( '' != $widget['title'] ) { ?>
 								<h3 class="heading"><?php echo esc_html( $widget['title'] ); ?></h3>
 							<?php } ?>
@@ -121,9 +138,16 @@ if( !class_exists( 'Layers_Contact_Widget' ) ) {
 					</div>
 				<?php } // if title || excerpt ?>
 
-
-				<div class="row <?php echo $this->get_widget_layout_class( $widget ); ?>">
-					<?php if( ( '' != $widget['address_shown'] && isset( $widget['show_address'] ) ) || $this->check_and_return( $widget, 'show_contact_form' ) ) {?>
+				<?php /**
+				* Generate the Widget Body Class
+				*/
+				$widget_body_class = array();
+				$widget_body_class[] = 'row';
+				$widget_body_class[] = $this->get_widget_layout_class( $widget );
+				$widget_body_class[] = ( $this->check_and_return( $widget, 'design', 'background' , 'color' ) && 'dark' == layers_is_light_or_dark( $this->check_and_return( $widget, 'design', 'background' , 'color' ) ) ? 'invert' : '' );
+				$widget_body_class = implode( ' ', $widget_body_class ); ?>
+				<div class="<?php echo $widget_body_class; ?>">
+					<?php if( ( '' != $widget['address_shown'] && isset( $widget['show_address'] ) ) || ( $this->check_and_return( $widget, 'contact_form' ) && $this->check_and_return( $widget, 'show_contact_form' ) ) ) {?>
 						<div class="column <?php echo $form_class; ?> form content">
 							<?php if( $this->check_and_return( $widget, 'show_address' ) ) { ?>
 								<address class="copy">
@@ -136,6 +160,7 @@ if( !class_exists( 'Layers_Contact_Widget' ) ) {
 						</div>
 						<?php $mapwidth = 'span-6'; ?>
 					<?php } // if show_contact_form || address_shown ?>
+
 					<?php if( isset( $hasmap ) ) { ?>
 						<div class="column no-push-bottom <?php echo esc_attr( $mapwidth ); ?>">
 							<?php if ( isset( $wp_customize ) ) { ?>

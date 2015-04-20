@@ -273,13 +273,10 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
     .story address{
         margin-bottom: 26px;
     }
-    .story a{
-        border-bottom: 1px solid #ddd;
-    }
     .story a:not(.button){
         border-bottom: 1px solid #ddd;
     }
-    .story a:hover{
+    .story a:not(.button):hover{
         border-color: #999;
     }
     .story ul{
@@ -323,31 +320,26 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
     .story h1{
         margin-bottom: 26px;
-        color: #323232;
         font-size: 3.2rem;
         font-weight: 700;
     }
     .story h2{
         margin-bottom: 26px;
-        color: #323232;
         font-size: 2.2rem;
         font-weight: 700;
     }
     .story h3{
         margin-bottom: 26px;
-        color: #323232;
         font-size: 2.0rem;
         font-weight: 700;
     }
     .story h4{
         margin-bottom: 26px;
-        color: #323232;
         font-size: 1.8rem;
         font-weight: 700;
     }
     .story h5{
         margin-bottom: 26px;
-        color: #323232;
         font-size: 1.4rem;
         font-weight: 700;
     }
@@ -358,8 +350,8 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
     .story blockquote{
         padding: 20px;
         margin-bottom: 26px;
-        background: #f0f0f0;
-        color: #999;
+        background: rgba(0, 0, 0, 0.05);
+        color: rgba(0, 0, 0, 0.55);
     }
     .story blockquote p:last-child{
         margin-bottom: 0;
@@ -398,7 +390,7 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
     /*- META INFO ---------------*/
     .meta-info{
         clear: both;
-        color: #8f8f8f;
+        color: rgba(0, 0, 0, 0.65);
         font-size: 1.2rem;
     }
     .meta-info + .heading{
@@ -482,7 +474,6 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
     }
     .logged-in-as{
         margin-bottom: 20px;
-        color: #8F8F8F;
     }
     p[class*='comment-form'] .required{
         color: #900;
@@ -720,4 +711,19 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
         height: 36px;
     }
 
+}
+
+
+/*-------------------------------*/
+/*- INVERT COMPONENTS ----------*/
+/*-------------------------------*/
+
+.invert .meta-info{
+    color: rgba(255, 255, 255, 0.65);
+}
+.invert .meta-info a{
+    color: rgba(255, 255, 255, 0.85);
+}
+.invert .meta-info a:hover{
+    color: rgba(255, 255, 255, 1);
 }

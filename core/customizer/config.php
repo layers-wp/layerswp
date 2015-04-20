@@ -32,6 +32,11 @@ class Layers_Customizer_Config {
 							'description' => __( 'Control your header\'s logo, layout, colors and font.' , 'layerswp' ), // @TODO Put a helper here
 							'priority' => 60
 						),
+			'body' => array(
+							'title' => __( 'Body Colors' , 'layerswp' ),
+							'description' => __( 'Control your body\'s custom text, widget areas and layout.' , 'layerswp' ), // @TODO Put a helper here
+							'priority' => 70
+						),
 			'footer' => array(
 							'title' => __( 'Footer' , 'layerswp' ),
 							'description' => __( 'Control your footer\'s custom text, widget areas and layout.' , 'layerswp' ), // @TODO Put a helper here
@@ -120,10 +125,12 @@ class Layers_Customizer_Config {
 							'title' =>__( 'Layout' , 'layerswp' ),
 							'panel' => 'footer'
 						),
+						/*
 						'footer-customization' => array(
 							'title' =>__( 'Customization' , 'layerswp' ),
 							'panel' => 'footer'
 						),
+						*/
 						'footer-text' => array(
 							'title' =>__( 'Text' , 'layerswp' ),
 							'panel' => 'footer'
@@ -135,6 +142,10 @@ class Layers_Customizer_Config {
 						'woocommerce-sidebars' => array(
 							'title' =>__( 'Sidebars' , 'layerswp' ),
 							'panel' => 'woocommerce'
+						),
+						'body-customization' => array(
+							'title' =>__( 'Customization' , 'layerswp' ),
+							'panel' => 'body'
 						)
 					);
 
@@ -249,14 +260,6 @@ class Layers_Customizer_Config {
 									'label'    => __( 'Overlay' , 'layerswp' ),
 									'default'	=> FALSE,
 								),
-								'header-layout-break-2' => array(
-									'type'     => 'layers-seperator',
-								),
-								'header-background-color' => array(
-									'type'		=> 'layers-color',
-									'label'		=> __( 'Background Color' , 'layerswp' ),
-									'default'	=> '#F3F3F3',
-								),
 							); // header-layout
 
 		// Header -> Layout -> Scripts
@@ -314,6 +317,16 @@ class Layers_Customizer_Config {
 								), // post-sidebar
 							);
 
+		// Body -> Body
+		$controls['body-customization'] = array(
+								'main-color' => array(
+									'label' => '',
+									'subtitle' => __( 'Main Color', 'layerswp' ),
+									'description' => __( 'Element, element, element & element', 'layerswp' ),
+									'type' => 'layers-color',
+									'default' => '#00A4EC',
+								),
+							);
 
 		// Footer -> Layout -> Layout
 		$controls['footer-layout'] = array(
@@ -353,24 +366,8 @@ class Layers_Customizer_Config {
 							); // footer-layout
 
 		// Footer -> Layout -> Customization
+		/*
 		$controls['footer-customization'] = array(
-								'footer-font-heading' => array(
-									'type'  => 'layers-heading',
-									'label'    => __( 'Text' , 'layerswp' ),
-								),
-								'footer-body-color' => array(
-									'type'  => 'layers-color',
-									'subtitle' => __( 'Text Color' , 'layerswp' ),
-									'default' => '#000000',
-								),
-								'footer-link-color' => array(
-									'type' => 'layers-color',
-									'subtitle' => __( 'Link Color' , 'layerswp' ),
-									'default' => '#35A6E8',
-								),
-								'footer-customization-break-1' => array(
-									'type'     => 'layers-seperator'
-								),
 								'footer-background-heading' => array(
 									'type'  => 'layers-heading',
 									'label'    => __( 'Background' , 'layerswp' ),
@@ -379,12 +376,6 @@ class Layers_Customizer_Config {
 									'label' => '',
 									'subtitle' => __( 'Background Image' , 'layerswp' ),
 									'type' => 'layers-select-images', //wierd bug in WP4.1 that requires a type to be in the array, or will revert to default control
-								),
-								'footer-background-color' => array(
-									'label' => '',
-									'subtitle' => __( 'Background Color' , 'layerswp' ),
-									'type' => 'layers-color',
-									'default' => '#F3F3F3',
 								),
 								'footer-background-repeat' => array(
 									'label' => '',
@@ -414,7 +405,8 @@ class Layers_Customizer_Config {
 									'subtitle' => '',
 									'type' => 'layers-checkbox',
 								),
-							); // footer-customization
+							);
+		*/
 
 		// Footer -> Layout -> Text
 		$controls['footer-text'] = array(

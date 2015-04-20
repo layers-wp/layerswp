@@ -259,23 +259,7 @@ class Layers_Customizer_Config {
 									'type'     => 'layers-checkbox',
 									'label'    => __( 'Overlay' , 'layerswp' ),
 									'default'	=> FALSE,
-								),
-								'header-opacity' => array(
-									'type'     => 'layers-select',
-									'label'    => __( 'Opacity' , 'layerswp' ),
-									'default'	=> 50,
-									'choices' => array(
-										0 => __( 'None' , 'layerswp' ),
-										25 => __( 'Light' , 'layerswp' ),
-										50 => __( 'Medium' , 'layerswp' ),
-										75 => __( 'Heavy' , 'layerswp' ),
-										100 => __( 'Full' , 'layerswp' ),
-									),
-									'linked' => array(
-										'show-if-selector' => '#layers-header-overlay',
-										'show-if-value' => 'true'
-									)
-								),
+								)
 							); // header-layout
 
 		// Header -> Layout -> Scripts
@@ -405,7 +389,7 @@ class Layers_Customizer_Config {
 						'subtitle' => __( 'Site Accent Color', 'layerswp' ),
 						'description' => __( 'Applies to section title backgrounds, button backgrounds, sidebar widgets, and text links.', 'layerswp' ),
 						'type' => 'layers-color',
-						'default' => '#00A4EC',
+						'default' => '#F3F3F3',
 					),
 					'footer-background-color' => array(
 						'label' => '',

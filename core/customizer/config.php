@@ -389,7 +389,7 @@ class Layers_Customizer_Config {
 						'subtitle' => __( 'Site Accent Color', 'layerswp' ),
 						'description' => __( 'Applies to section title backgrounds, button backgrounds, sidebar widgets, and text links.', 'layerswp' ),
 						'type' => 'layers-color',
-						'default' => '#00A4EC',
+						'default' => '#F3F3F3',
 					),
 					'footer-background-color' => array(
 						'label' => '',

@@ -388,7 +388,9 @@ if( !function_exists( 'layers_apply_customizer_styles' ) ) {
 		));
 
 		// Add Invert if the color is not light
-		if ( 'light' != layers_is_light_or_dark( $header_color ) ){
+		if( layers_get_theme_mod( 'header-overlay') && 75 > layers_get_theme_mod( 'header-opacity' ) ) {
+			add_filter( 'layers_header_class', 'layers_add_invert_class' );
+		} else if ( 'light' != layers_is_light_or_dark( $header_color ) ){
 			add_filter( 'layers_header_class', 'layers_add_invert_class' );
 		}
 

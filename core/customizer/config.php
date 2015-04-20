@@ -260,21 +260,8 @@ class Layers_Customizer_Config {
 									'label'    => __( 'Overlay' , 'layerswp' ),
 									'default'	=> FALSE,
 								),
-								'header-opacity' => array(
-									'type'     => 'layers-select',
-									'label'    => __( 'Opacity' , 'layerswp' ),
-									'default'	=> 50,
-									'choices' => array(
-										0 => __( 'None' , 'layerswp' ),
-										25 => __( 'Light' , 'layerswp' ),
-										50 => __( 'Medium' , 'layerswp' ),
-										75 => __( 'Heavy' , 'layerswp' ),
-										100 => __( 'Full' , 'layerswp' ),
-									),
-									'linked' => array(
-										'show-if-selector' => '#layers-header-overlay',
-										'show-if-value' => 'true'
-									)
+								'header-layout-break-2' => array(
+									'type'     => 'layers-seperator',
 								),
 							); // header-layout
 

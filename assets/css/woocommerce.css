@@ -274,6 +274,23 @@ p.stars span a:focus{
 
 
 /*---------------------------*/
+/*- UPSELL PRODUCTS ---------*/
+.upsells h2{
+    margin-bottom: 15px;
+    font-size: 2.4rem;
+}
+.upsells.products .product{
+    float: left;
+    width: 32%;
+    margin-right: 2%;
+    position: relative;
+}
+.upsells.products .product:nth-child(3n+3){
+    margin-right: 0;
+}
+
+
+/*---------------------------*/
 /*- PRODUCT SINGLE ----------*/
 
     /*-----------------------*/
@@ -318,7 +335,7 @@ p.stars span a:focus{
         font-size: 1rem;
         font-weight: 700;
     }
-    .purchase-options-container .price{
+    .purchase-options-container .price[itemprop="offers"]{
         margin: 0px 0 10px;
         font-size: 2.4rem;
     }
@@ -1176,6 +1193,13 @@ p.stars span a:focus{
     /*---------------------------*/
     /*- PRODUCT LISTS -----------*/
     .related.products li.product{
+        clear: both;
+        width: auto;
+        max-width: 100%;
+        margin: 0 0 20px;
+    }
+
+    .upsells.products li.product{
         clear: both;
         width: auto;
         max-width: 100%;

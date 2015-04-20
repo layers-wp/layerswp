@@ -58,6 +58,7 @@ class Layers_Customizer {
 			require_once get_template_directory() . $controls_dir . 'font.php';
 			require_once get_template_directory() . $controls_dir . 'heading.php';
 			require_once get_template_directory() . $controls_dir . 'number.php';
+			require_once get_template_directory() . $controls_dir . 'range.php';
 			require_once get_template_directory() . $controls_dir . 'select.php';
 			require_once get_template_directory() . $controls_dir . 'select-icons.php';
 			require_once get_template_directory() . $controls_dir . 'select-images.php';
@@ -185,7 +186,7 @@ class Layers_Customizer {
 	function render_customizer_menu() {
 		?>
 		<div id="customize-controls-layers-actions">
-			
+
 			<ul class="layers-customizer-nav">
 				<li>
 					<span class="customize-controls-layers-button customize-controls-layers-button-dashboard-main" title="<?php esc_html( _e( 'Layers Dashboard' , 'layerswp' ) ) ?>" href="<?php echo admin_url( 'admin.php?page=layers-add-new-page' ); ?>"></span>
@@ -210,13 +211,13 @@ class Layers_Customizer {
 								'icon_class'	=> 'layers-button-icon-dashboard',
 							),
 						);
-						
+
 						// Filter the Layers Customizer Menu
 						$layers_customizer_menu = apply_filters( 'layers_customizer_menu', $layers_customizer_menu );
-						
+
 						// Render the Layers Customizer Menu
 						foreach ( $layers_customizer_menu as $id => $args ) {
-							
+
 							$text = ( isset( $args['text'] ) && '' !== trim( $args['text'] ) ) ? esc_html( $args['text'] ) : '' ;
 							$icon_class = ( isset( $args['icon_class'] ) && '' !== trim( $args['icon_class'] ) ) ? esc_attr( $args['icon_class'] ) : '' ;
 							$href = ( isset( $args['link'] ) && '' !== trim( $args['link'] ) ) ? 'href="' . esc_url( $args['link'] ) . '"' : '' ;
@@ -233,7 +234,7 @@ class Layers_Customizer {
 					</ul>
 				</li>
 			</ul>
-			
+
 		</div>
 		<?php
 	}

@@ -380,7 +380,7 @@ if( !function_exists( 'layers_apply_customizer_styles' ) ) {
 		*/
 
 		// Opacity
-		$bg_opacity = ( layers_get_theme_mod( 'header-overlay') ) ? .5 : 1 ;
+		$bg_opacity = ( layers_get_theme_mod( 'header-overlay') ) ? layers_get_theme_mod( 'header-opacity' ) * 0.01 : 0.5 ;
 
 		// Apply the BG Color
 		layers_inline_styles( '.header-site, .header-site.header-sticky', 'css', array(

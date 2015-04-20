@@ -380,7 +380,7 @@ if( !function_exists( 'layers_apply_customizer_styles' ) ) {
 		*/
 
 		// Opacity
-		$bg_opacity = ( layers_get_theme_mod( 'header-overlay') ) ? layers_get_theme_mod( 'header-opacity' ) * 0.01 : 1.0 ;
+		$bg_opacity = ( layers_get_theme_mod( 'header-overlay') ) ? .5 : 1 ;
 
 		// Apply the BG Color
 		layers_inline_styles( '.header-site, .header-site.header-sticky', 'css', array(
@@ -388,9 +388,7 @@ if( !function_exists( 'layers_apply_customizer_styles' ) ) {
 		));
 
 		// Add Invert if the color is not light
-		if( layers_get_theme_mod( 'header-overlay') && 75 > layers_get_theme_mod( 'header-opacity' ) ) {
-			add_filter( 'layers_header_class', 'layers_add_invert_class' );
-		} else if ( 'light' != layers_is_light_or_dark( $header_color ) ){
+		if ( 'light' != layers_is_light_or_dark( $header_color ) ){
 			add_filter( 'layers_header_class', 'layers_add_invert_class' );
 		}
 

@@ -371,7 +371,7 @@ if( !function_exists( 'layers_apply_customizer_styles' ) ) {
 		/**
 		* Setup the colors to use below
 		*/
-		$main_color = layers_get_theme_mod( 'main-color', FALSE );
+		$main_color = layers_get_theme_mod( 'site-accent-color', FALSE );
 		$header_color = layers_get_theme_mod( 'header-background-color', FALSE );
 		$footer_color = layers_get_theme_mod( 'footer-background-color', FALSE );
 

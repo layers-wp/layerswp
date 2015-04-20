@@ -65,7 +65,7 @@ class Layers_Customizer_Config {
 												);
 
 		$default_sections[ 'colors' ] = array(
-											'title' => __( 'Background Color' , 'layerswp' ),
+											'title' => __( 'Colors' , 'layerswp' ),
 											'panel' => 'site-settings',
 											'priority' => 55,
 										);
@@ -96,6 +96,12 @@ class Layers_Customizer_Config {
 							'description' => __( 'First create a menu then come back here to place it.' , 'layerswp' ),
 							'priority' => 50,
 							'panel' => 'site-settings'
+						),
+						'site-colors' => array(
+							'title' =>__( 'Colors' , 'layerswp' ),
+							'panel' => 'site-settings',
+							'priority' => 45
+
 						),
 						'content-layout' => array(
 							'title' =>__( 'Layout' , 'layerswp' ),
@@ -236,11 +242,6 @@ class Layers_Customizer_Config {
 										'header-logo-center' => __( 'Logo Center' , 'layerswp' )
 									)
 								),
-								'header-background-color' => array(
-									'type'		=> 'layers-color',
-									'label'		=> __( 'Background Color' , 'layerswp' ),
-									'default'	=> '#F3F3F3',
-								),
 								'header-layout-break-1' => array(
 									'type'     => 'layers-seperator'
 								),
@@ -281,16 +282,6 @@ class Layers_Customizer_Config {
 									'description' => __( 'Enter in any custom script to include in your site\'s header. Be sure to use double quotes for strings.' , 'layerswp' ),
 									'default' => ''
 								) // scripts
-							);
-
-		$controls['content-layout'] = array(
-								'main-color' => array(
-									'label' => '',
-									'subtitle' => __( 'Accent Color', 'layerswp' ),
-									'description' => __( 'Applies to section title backgrounds, button backgrounds and text links.', 'layerswp' ),
-									'type' => 'layers-color',
-									'default' => '#00A4EC',
-								)
 							);
 
 		$controls['content-sidebars'] = array(
@@ -339,12 +330,6 @@ class Layers_Customizer_Config {
 										'layout-fullwidth' => __( 'Full Width' , 'layerswp' )
 									)
 								), // layout,
-								'footer-background-color' => array(
-									'label' => '',
-									'subtitle' => __( 'Background Color' , 'layerswp' ),
-									'type' => 'layers-color',
-									'default' => '#F3F3F3',
-								),
 								'footer-layout-break-1' => array(
 									'type'     => 'layers-seperator'
 								),
@@ -390,6 +375,33 @@ class Layers_Customizer_Config {
 						'default' => ''
 					), // scripts
 				); // footer-scripts
+
+		$controls['site-colors'] = array(
+					'site-color-heading' => array(
+						'type'  => 'layers-heading',
+						'label'    => __( 'Site Wide Colors' , 'layerswp' ),
+						'description' => __( 'These options do not have an effect the color settings set in your Layers Pages.' , 'layerswp' ),
+					),
+					'header-background-color' => array(
+						'type'		=> 'layers-color',
+						'label'		=> __( 'Header Color' , 'layerswp' ),
+						'default'	=> '#F3F3F3',
+					),
+					'site-accent-color' => array(
+						'label' => '',
+						'subtitle' => __( 'Site Accent Color', 'layerswp' ),
+						'description' => __( 'Applies to section title backgrounds, button backgrounds, sidebar widgets, and text links.', 'layerswp' ),
+						'type' => 'layers-color',
+						'default' => '#00A4EC',
+					),
+					'footer-background-color' => array(
+						'label' => '',
+						'subtitle' => __( 'Footer Color' , 'layerswp' ),
+						'type' => 'layers-color',
+						'default' => '#F3F3F3',
+					),
+				);
+
 
 
 		if( class_exists( 'WooCommerce' ) ) {

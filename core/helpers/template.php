@@ -368,7 +368,7 @@ add_action( 'body_class', 'layers_body_class' );
 if( !function_exists( 'layers_apply_customizer_styles' ) ) {
 	function layers_apply_customizer_styles() {
 		
-		$color = layers_get_theme_mod( 'main-color');
+		$color = layers_get_theme_mod( 'main-color', FALSE );
 		
 		// Header
 		$bg_opacity = ( layers_get_theme_mod( 'header-overlay') ) ? .5 : 1 ;

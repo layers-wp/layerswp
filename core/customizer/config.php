@@ -324,7 +324,7 @@ class Layers_Customizer_Config {
 									'subtitle' => __( 'Main Color', 'layerswp' ),
 									'description' => __( 'Element, element, element & element', 'layerswp' ),
 									'type' => 'layers-color',
-									'default' => '#F3F3F3',
+									'default' => '#00A4EC',
 								),
 							);
 

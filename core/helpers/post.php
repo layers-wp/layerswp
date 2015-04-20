@@ -187,8 +187,9 @@ if( !function_exists( 'layers_post_class' ) ) {
 
 		$classes[] = 'container';
 
-		if( is_post_type_archive( 'product' ) ||  is_tax( 'product_cat' ) ) {
-			$classes[] = 'column span-4';
+		if( is_post_type_archive( 'product' ) || is_tax( 'product_cat' ) || is_tax( 'product_tag' ) ) {
+			$classes[] = 'column';
+            $classes[] = 'span-4';
 		}
 
 		return $classes;

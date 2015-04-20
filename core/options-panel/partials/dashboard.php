@@ -128,19 +128,6 @@ $theme_info = wp_get_theme( 'layerswp' ); ?>
 				</div>
 
 				<div class="layers-column layers-span-6">
-					<div class="layers-panel layers-content layers-push-bottom">
-						<div class="layers-section-title layers-tiny">
-							<h3 class="layers-heading"><?php _e( 'Themes &amp; Extensions' , 'layerswp' ); ?></h3>
-							<p class="layers-excerpt">
-								<?php _e( 'Looking for a theme or plugin to achieve something unique with your website?
-									Browse the massive Layers Marketplace on Envato and take your site to the next level.' , 'layerswp' ); ?>
-							</p>
-						</div>
-						<a href="{themeforest.net/layers}" class="layers-button btn-primary">
-							<?php _e( 'Browse &rarr;' , 'layerswp' ); ?>
-						</a>
-					</div>
-
 					<?php if( 0 < count( layers_get_plugins() ) ) { ?>
 						<div class="layers-panel">
 							<div class="layers-panel-title">

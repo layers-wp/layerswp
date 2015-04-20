@@ -335,7 +335,7 @@ p.stars span a:focus{
         font-size: 1rem;
         font-weight: 700;
     }
-    .purchase-options-container .price[itemprop="offers"]{
+    .purchase-options-container [itemprop="offers"] .price{
         margin: 0px 0 10px;
         font-size: 2.4rem;
     }

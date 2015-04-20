@@ -371,7 +371,7 @@ if( !function_exists( 'layers_apply_customizer_styles' ) ) {
 		/**
 		* Setup the colors to use below
 		*/
-		$main_color = layers_get_theme_mod( 'site-accent-color', FALSE );
+		$main_color = layers_get_theme_mod( 'site-accent-color' , TRUE );
 		$header_color = layers_get_theme_mod( 'header-background-color', FALSE );
 		$footer_color = layers_get_theme_mod( 'footer-background-color', FALSE );
 
@@ -413,8 +413,8 @@ if( !function_exists( 'layers_apply_customizer_styles' ) ) {
 		*/
 
 		// Title Container
-		layers_inline_styles( '.title-container', 'background', array( 'background' => array( 'color' => $main_color ) ) );
-		if ( 'light' != layers_is_light_or_dark( $main_color ) ){
+		layers_inline_styles( '.title-container', 'background', array( 'background' => array( 'color' => $header_color ) ) );
+		if ( 'dark' == layers_is_light_or_dark( $header_color ) ){
 			add_filter( 'layers_title_container_class', 'layers_add_invert_class' );
 		}
 

@@ -446,17 +446,6 @@ if( !function_exists( 'layers_apply_customizer_styles' ) ) {
 			),
 		));
 
-		// Sidebar Well
-		layers_inline_styles( '', 'background', array(
-			'selectors' => array( '.sidebar .well' ),
-			'background' => array( 'color' => $main_color ),
-		));
-
-		// Meta Background
-		layers_inline_styles( '.meta', 'css', array( 'css' => 'background-color: ' . $main_color . '; ' ) );
-		if ( 'light' != layers_is_light_or_dark( $main_color ) ){
-			add_filter( 'layers_---_class', 'layers_add_invert_class' );
-		}
 	}
 }
 add_action( 'wp_enqueue_scripts', 'layers_apply_customizer_styles', 100 );

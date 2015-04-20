@@ -262,13 +262,14 @@ class Layers_Customizer_Config {
 								),
 								'header-opacity' => array(
 									'type'     => 'layers-select',
-									'label'    => __( 'Transparency' , 'layerswp' ),
+									'label'    => __( 'Opacity' , 'layerswp' ),
 									'default'	=> 50,
 									'choices' => array(
-										0 => __( 'Transparent' , 'layerswp' ),
-										20 => __( 'Semi-Transparent' , 'layerswp' ),
-										70 => __( 'Medium  Transparency' , 'layerswp' ),
-										100 => __( 'No Transparency' , 'layerswp' ),
+										0 => __( 'None' , 'layerswp' ),
+										25 => __( 'Light' , 'layerswp' ),
+										50 => __( 'Medium' , 'layerswp' ),
+										75 => __( 'Heavy' , 'layerswp' ),
+										100 => __( 'None' , 'layerswp' ),
 									),
 									'linked' => array(
 										'show-if-selector' => '#layers-header-overlay',

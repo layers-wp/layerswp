@@ -77,6 +77,8 @@ if( !function_exists( 'jetpack_the_site_logo' ) ) {
 			return;
 		}
 
+		if( '' == $logo['id'] ) return;
+
 		// We have a logo. Logo is go.
 		$html = sprintf( '<a href="%1$s" class="site-logo-link" rel="home">%2$s</a>',
 			esc_url( home_url( '/' ) ),

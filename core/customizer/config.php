@@ -269,7 +269,7 @@ class Layers_Customizer_Config {
 										25 => __( 'Light' , 'layerswp' ),
 										50 => __( 'Medium' , 'layerswp' ),
 										75 => __( 'Heavy' , 'layerswp' ),
-										100 => __( 'None' , 'layerswp' ),
+										100 => __( 'Full' , 'layerswp' ),
 									),
 									'linked' => array(
 										'show-if-selector' => '#layers-header-overlay',

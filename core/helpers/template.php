@@ -304,7 +304,9 @@ if( !function_exists( 'layers_get_page_title' ) ) {
 			$title_array['title'] = __( 'Search' , 'layerswp' );
 			$title_array['excerpt'] = get_search_query();
 		} elseif( is_tag() ) {
-			$title_array['title'] = single_tag_title();
+			$tags = get_the_category();
+			$title_array['title'] = $tags[0]->name;
+			$title_array['excerpt'] = $tags[0]->description;
 		} elseif(!is_page() && is_category() ) {
 			$category = get_the_category();
 			$title_array['title'] = $category[0]->name;
@@ -1424,12 +1426,12 @@ if ( ! function_exists( 'layers_light_or_dark' ) ) {
  */
 if ( ! function_exists( 'layers_is_light_or_dark' ) ) {
 	function layers_is_light_or_dark( $color ) {
-		
+
 		if ( FALSE === strpos( $color, '#' ) ){
 			// Not a color
 			return NULL;
 		}
-		
+
 		$hex = str_replace( '#', '', $color );
 
 		$c_r = hexdec( substr( $hex, 0, 2 ) );

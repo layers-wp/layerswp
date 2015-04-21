@@ -373,7 +373,6 @@ if( !function_exists( 'layers_apply_customizer_styles' ) ) {
 		*/
 		$main_color = layers_get_theme_mod( 'site-accent-color' , TRUE );
 		$header_color = layers_get_theme_mod( 'header-background-color', FALSE );
-		$header_color_no_default = layers_get_theme_mod( 'header-background-color', TRUE );
 		$footer_color = layers_get_theme_mod( 'footer-background-color', FALSE );
 
 		/**
@@ -414,13 +413,12 @@ if( !function_exists( 'layers_apply_customizer_styles' ) ) {
 		*/
 
 		// Title Container
-		layers_inline_styles( '.title-container', 'background', array( 'background' => array( 'color' => $header_color_no_default ) ) );
-		if ( 'dark' == layers_is_light_or_dark( $header_color_no_default ) ){
+		layers_inline_styles( '.title-container', 'background', array( 'background' => array( 'color' => $header_color ) ) );
+		if ( 'dark' == layers_is_light_or_dark( $header_color ) ){
 			add_filter( 'layers_title_container_class', 'layers_add_invert_class' );
 		}
 
 		// Buttons
-		//$button_text_color = ( $main_color )
 		layers_inline_button_styles( '', 'button', array(
 			'selectors' => array(
 				'input[type="button"]', 'input[type="submit"]', 'button', '.button', '.form-submit input[type="submit"]',
@@ -1083,7 +1081,21 @@ if( !function_exists( 'layers_inline_styles' ) ) {
 */
 if( !function_exists( 'layers_inline_button_styles' ) ) {
 	function layers_inline_button_styles( $container_id = NULL, $type = 'background' , $args = array() ){
-
+		
+		// Auto text color based on background color
+		if( isset( $args[ 'button' ][ 'background-color' ] ) && NULL !== layers_is_light_or_dark( $args[ 'button' ][ 'background-color' ] ) ){
+			
+			// temporarily darken the background color, so we only switch text color if very light
+			$background_darker = layers_hex_darker( $args[ 'button' ][ 'background-color' ], 28 );
+			
+			if ( 'light' == layers_is_light_or_dark( $background_darker ) ) {
+				$args['button']['color'] = 'rgba(0,0,0,.85)';
+			}
+			else if ( 'dark' == layers_is_light_or_dark( $background_darker ) ) {
+				$args['button']['color'] = '#FFFFFF';
+			}
+		}
+		
 		// Add styling for the standard colors
 		layers_inline_styles( $container_id, $type, $args );
 

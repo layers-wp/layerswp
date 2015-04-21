@@ -58,19 +58,19 @@ jQuery(function($) {
                 // First element is Slider.
 
                 // Pad necessary element(s).
-                $first_element.find('.swiper-slide .overlay').css({ 'paddingTop': $( $header ).height() }, { easing: 'layersEaseInOut', duration: 400 });
+                $first_element.find('.swiper-slide .overlay').css({ 'paddingTop': $header.outerHeight() }, { easing: 'layersEaseInOut', duration: 400 });
             }
             else if( $first_element.hasClass('title-container') ) {
 
                 // First element is Title (eg WooCommerce).
 
                 // Pad necessary element(s).
-                $first_element.css({ 'paddingTop': $( $header ).height() }, { easing: 'layersEaseInOut', duration: 400 });
+                $first_element.css({ 'paddingTop': $header.outerHeight() }, { easing: 'layersEaseInOut', duration: 400 });
             }
             else{
 
                 // Pad the site to compensate for overlay header.
-                $content_wrapper.css( 'paddingTop', $( $header ).height() );
+                $content_wrapper.css( 'paddingTop', $header.outerHeight() );
             }
 
         }

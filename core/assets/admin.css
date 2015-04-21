@@ -253,13 +253,6 @@ div[id*='layers-widget'] .widget-control-actions{
     border-radius: 100px;
     font-size: 0px;
 }
-div[id*='layers-widget'] .widget-control-actions .alignleft {
-    float:right;
-}
-div[id*='layers-widget'] .widget-control-actions .alignright {
-    float:left;
-    margin-right: 6px;
-}
 div[id*='layers-widget'] .widget-control-actions a{
     display: inline-block;
     padding: 0 8px;
@@ -283,13 +276,36 @@ div[id*='layers-widget'] .widget-control-actions .widget-control-remove{
 div[id*='layers-widget'] .widget-control-actions .widget-control-remove:hover{
     background-color: #F2413D;
 }
-
 div[id*='layers-widget'] .spinner{
+    display: none;
     margin: 2px -3px 0 5px;
     background: url(images/spinner.gif) right no-repeat;
     background-size: 20px 20px;
     opacity: 1;
 }
+
+/*
+div[id*='layers-widget'] .widget-control-actions .alignleft {
+    float:right;
+}
+div[id*='layers-widget'] .widget-control-actions .alignright {
+    float:left;
+    margin-right: 6px;
+}
+div[id*='layers-widget'] .spinner{
+    display: inline-block;
+    margin: 2px -3px 0 5px;
+    background: url(images/spinner.gif) right no-repeat;
+    background-size: 20px 20px;
+    opacity: 0;
+    transform: translate(-20px, 0px);
+    transition: .3s ease-in-out;
+}
+.previewer-loading div[id*='layers-widget'] .spinner{
+    opacity:1;
+    transform: translate(0px, 0px);
+}
+*/
 
 /*---------------------------*/
 /*- CONTAINERS --------------*/

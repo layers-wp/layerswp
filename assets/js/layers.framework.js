@@ -55,16 +55,12 @@ jQuery(function($) {
 
             if( $first_element.hasClass( 'slide' ) ) {
 
-                // First element is Slider.
-
-                // Pad necessary element(s).
+                // First element is Slider Widget.
                 $first_element.find('.swiper-slide .overlay').css({ 'paddingTop': $header.outerHeight() }, { easing: 'layersEaseInOut', duration: 400 });
             }
             else if( $first_element.hasClass('title-container') ) {
-
+                
                 // First element is Title (eg WooCommerce).
-
-                // Pad necessary element(s).
                 $first_element.css({ 'paddingTop': $header.outerHeight() }, { easing: 'layersEaseInOut', duration: 400 });
             }
             else{

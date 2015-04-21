@@ -428,34 +428,35 @@ if( !function_exists( 'layers_apply_customizer_styles' ) ) {
 			}
 		}
 
-		// Buttons
-		layers_inline_button_styles( '', 'button', array(
-			'selectors' => array(
-				'input[type="button"]', 'input[type="submit"]', 'button', '.button', '.form-submit input[type="submit"]',
-				// Inverts
-				'.invert input[type="button"]', '.invert input[type="submit"]', '.invert button', '.invert .button', '.invert .form-submit input[type="submit"]',
-			),
-			'button' => array(
-				'background-color' => $main_color,
-			)
-		));
+		if( '' != $main_color ) {
+			// Buttons
+			layers_inline_button_styles( '', 'button', array(
+				'selectors' => array(
+					'input[type="button"]', 'input[type="submit"]', 'button', '.button', '.form-submit input[type="submit"]',
+					// Inverts
+					'.invert input[type="button"]', '.invert input[type="submit"]', '.invert button', '.invert .button', '.invert .form-submit input[type="submit"]',
+				),
+				'button' => array(
+					'background-color' => $main_color,
+				)
+			));
 
-		// Content - Links
-		layers_inline_styles( array(
-			'selectors' => array( '.copy a:not(.button)', '.story a:not(.button)' ),
-			'css' => array(
-				'color' => $main_color,
-				'border-bottom-color' => $main_color,
-			),
-		));
-		layers_inline_styles( array(
-			'selectors' => array( '.copy a:not(.button):hover', '.story a:not(.button):hover' ),
-			'css' => array(
-				'color' => layers_too_light_then_dark( $main_color ),
-				'border-bottom-color' => layers_too_light_then_dark( $main_color ),
-			),
-		));
-
+			// Content - Links
+			layers_inline_styles( array(
+				'selectors' => array( '.copy a:not(.button)', '.story a:not(.button)' ),
+				'css' => array(
+					'color' => $main_color,
+					'border-bottom-color' => $main_color,
+				),
+			));
+			layers_inline_styles( array(
+				'selectors' => array( '.copy a:not(.button):hover', '.story a:not(.button):hover' ),
+				'css' => array(
+					'color' => layers_too_light_then_dark( $main_color ),
+					'border-bottom-color' => layers_too_light_then_dark( $main_color ),
+				),
+			));
+		}
 	}
 }
 add_action( 'wp_enqueue_scripts', 'layers_apply_customizer_styles', 100 );

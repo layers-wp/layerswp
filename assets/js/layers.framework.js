@@ -8,10 +8,9 @@
  * Contents
  * 1 - Screen height matching
  * 2 - Container padding for header fixed
- * 3 - Widget closing when clicking on the canvas
- * 4 - Offsite sidebar Toggles
- * 5 - Sticky Header
- * 6 - FitVids
+ * 3 - Offsite sidebar Toggles
+ * 4 - Sticky Header
+ * 5 - FitVids
  *
  * Author: Obox Themes
  * Author URI: http://www.oboxthemes.com/
@@ -78,15 +77,7 @@ jQuery(function($) {
     }
 
     /**
-    * 3 - Widget Closing when clicking on the canvas
-    */
-    $(document).on( 'click' , 'html, body'  , function(e){
-        // Close widgets
-        $(window.parent.document).find( '.control-panel-content .widget-rendered.expanded' ).removeClass( 'expanded' );
-    });
-
-    /**
-    * 4 - Offsite sidebar Toggles
+    * 3 - Offsite sidebar Toggles
     */
     $(document).on( 'click' , '[data-toggle^="#"]'  , function(e){
         e.preventDefault();
@@ -103,7 +94,7 @@ jQuery(function($) {
     });
 
     /**
-    * 5 - Sticky Header
+    * 4 - Sticky Header
     */
 
     // Set site header element
@@ -148,7 +139,7 @@ jQuery(function($) {
 	});
 
 	/**
-    * 6 - FitVids resposive video embeds.
+    * 5 - FitVids resposive video embeds.
     *
 	* Target your .container, .wrapper, .post, etc.
     */

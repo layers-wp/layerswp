@@ -388,7 +388,7 @@ if( !function_exists( 'layers_apply_customizer_styles' ) ) {
 		));
 
 		// Add Invert if the color is not light
-		if ( 'light' != layers_is_light_or_dark( $header_color ) ){
+		if ( 'dark' == layers_is_light_or_dark( $header_color ) ){
 			add_filter( 'layers_header_class', 'layers_add_invert_class' );
 		}
 
@@ -419,6 +419,7 @@ if( !function_exists( 'layers_apply_customizer_styles' ) ) {
 		}
 
 		// Buttons
+		//$button_text_color = ( $main_color )
 		layers_inline_button_styles( '', 'button', array(
 			'selectors' => array(
 				'input[type="button"]', 'input[type="submit"]', 'button', '.button', '.form-submit input[type="submit"]',
@@ -1410,7 +1411,12 @@ if ( ! function_exists( 'layers_light_or_dark' ) ) {
  */
 if ( ! function_exists( 'layers_is_light_or_dark' ) ) {
 	function layers_is_light_or_dark( $color ) {
-
+		
+		if ( FALSE === strpos( $color, '#' ) ){
+			// Not a color
+			return NULL;
+		}
+		
 		$hex = str_replace( '#', '', $color );
 
 		$c_r = hexdec( substr( $hex, 0, 2 ) );

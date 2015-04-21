@@ -307,7 +307,7 @@ if( !function_exists( 'layers_get_page_title' ) ) {
 			$tags = get_the_category();
 			$title_array['title'] = $tags[0]->name;
 			$title_array['excerpt'] = $tags[0]->description;
-		} elseif(!is_page() && is_category() ) {
+		} elseif( !is_page() && is_category() ) {
 			$category = get_the_category();
 			$title_array['title'] = $category[0]->name;
 			$title_array['excerpt'] = $category[0]->description;
@@ -375,6 +375,7 @@ if( !function_exists( 'layers_apply_customizer_styles' ) ) {
 		*/
 		$main_color = layers_get_theme_mod( 'site-accent-color' , TRUE );
 		$header_color = layers_get_theme_mod( 'header-background-color', FALSE );
+		$header_color_no_default = layers_get_theme_mod( 'header-background-color', TRUE );
 		$footer_color = layers_get_theme_mod( 'footer-background-color', FALSE );
 
 		/**
@@ -385,29 +386,34 @@ if( !function_exists( 'layers_apply_customizer_styles' ) ) {
 		$bg_opacity = ( layers_get_theme_mod( 'header-overlay') ) ? .5 : 1 ;
 
 		// Apply the BG Color
-		layers_inline_styles( '.header-site, .header-site.header-sticky', 'css', array(
-			'css' => 'background-color: rgba(' . implode( ', ' , layers_hex2rgb( $header_color ) ) . ', ' . $bg_opacity . '); '
-		));
+		if( '' != $header_color ) {
+			layers_inline_styles( '.header-site, .header-site.header-sticky', 'css', array(
+				'css' => 'background-color: rgba(' . implode( ', ' , layers_hex2rgb( $header_color ) ) . ', ' . $bg_opacity . '); '
+			));
 
-		// Add Invert if the color is not light
-		if ( 'dark' == layers_is_light_or_dark( $header_color ) ){
-			add_filter( 'layers_header_class', 'layers_add_invert_class' );
+			// Add Invert if the color is not light
+			if ( 'dark' == layers_is_light_or_dark( $header_color ) ){
+
+				add_filter( 'layers_header_class', 'layers_add_invert_class' );
+			}
 		}
 
 		/**
 		* Footer Colors
 		*/
 
-		// Apply the BG Color
-		layers_inline_styles( '.footer-site', 'background', array(
-			'background' => array(
-				'color' => $footer_color,
-			),
-		) );
+		if( '' != $footer_color ) {
+			// Apply the BG Color
+			layers_inline_styles( '.footer-site', 'background', array(
+				'background' => array(
+					'color' => $footer_color,
+				),
+			) );
 
-		// Add Invert if the color is dark
-		if ( 'dark' == layers_is_light_or_dark( $footer_color ) ){
-			add_filter( 'layers_footer_site_class', 'layers_add_invert_class' );
+			// Add Invert if the color is dark
+			if ( 'dark' == layers_is_light_or_dark( $footer_color ) ){
+				add_filter( 'layers_footer_site_class', 'layers_add_invert_class' );
+			}
 		}
 
 		/**
@@ -415,9 +421,11 @@ if( !function_exists( 'layers_apply_customizer_styles' ) ) {
 		*/
 
 		// Title Container
-		layers_inline_styles( '.title-container', 'background', array( 'background' => array( 'color' => $header_color ) ) );
-		if ( 'dark' == layers_is_light_or_dark( $header_color ) ){
-			add_filter( 'layers_title_container_class', 'layers_add_invert_class' );
+		if( '' != $header_color ) {
+			layers_inline_styles( '.title-container', 'background', array( 'background' => array( 'color' => $header_color ) ) );
+			if ( 'dark' == layers_is_light_or_dark( $header_color ) ){
+				add_filter( 'layers_title_container_class', 'layers_add_invert_class' );
+			}
 		}
 
 		// Buttons
@@ -1083,13 +1091,13 @@ if( !function_exists( 'layers_inline_styles' ) ) {
 */
 if( !function_exists( 'layers_inline_button_styles' ) ) {
 	function layers_inline_button_styles( $container_id = NULL, $type = 'background' , $args = array() ){
-		
+
 		// Auto text color based on background color
 		if( isset( $args[ 'button' ][ 'background-color' ] ) && NULL !== layers_is_light_or_dark( $args[ 'button' ][ 'background-color' ] ) ){
-			
+
 			// temporarily darken the background color, so we only switch text color if very light
 			$background_darker = layers_hex_darker( $args[ 'button' ][ 'background-color' ], 28 );
-			
+
 			if ( 'light' == layers_is_light_or_dark( $background_darker ) ) {
 				$args['button']['color'] = 'rgba(0,0,0,.85)';
 			}
@@ -1097,7 +1105,7 @@ if( !function_exists( 'layers_inline_button_styles' ) ) {
 				$args['button']['color'] = '#FFFFFF';
 			}
 		}
-		
+
 		// Add styling for the standard colors
 		layers_inline_styles( $container_id, $type, $args );
 

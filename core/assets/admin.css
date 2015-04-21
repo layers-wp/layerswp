@@ -253,6 +253,13 @@ div[id*='layers-widget'] .widget-control-actions{
     border-radius: 100px;
     font-size: 0px;
 }
+div[id*='layers-widget'] .widget-control-actions .alignleft {
+    float:right;
+}
+div[id*='layers-widget'] .widget-control-actions .alignright {
+    float:left;
+    margin-right: 6px;
+}
 div[id*='layers-widget'] .widget-control-actions a{
     display: inline-block;
     padding: 0 8px;

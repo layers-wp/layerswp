@@ -373,6 +373,7 @@ if( !function_exists( 'layers_apply_customizer_styles' ) ) {
 		*/
 		$main_color = layers_get_theme_mod( 'site-accent-color' , TRUE );
 		$header_color = layers_get_theme_mod( 'header-background-color', FALSE );
+		$header_color_no_default = layers_get_theme_mod( 'header-background-color', TRUE );
 		$footer_color = layers_get_theme_mod( 'footer-background-color', FALSE );
 
 		/**
@@ -413,8 +414,8 @@ if( !function_exists( 'layers_apply_customizer_styles' ) ) {
 		*/
 
 		// Title Container
-		layers_inline_styles( '.title-container', 'background', array( 'background' => array( 'color' => $header_color ) ) );
-		if ( 'dark' == layers_is_light_or_dark( $header_color ) ){
+		layers_inline_styles( '.title-container', 'background', array( 'background' => array( 'color' => $header_color_no_default ) ) );
+		if ( 'dark' == layers_is_light_or_dark( $header_color_no_default ) ){
 			add_filter( 'layers_title_container_class', 'layers_add_invert_class' );
 		}
 

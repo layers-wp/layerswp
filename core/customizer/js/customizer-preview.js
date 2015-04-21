@@ -31,10 +31,10 @@
 
 		init: function () {
 			var self = this; // cache previewer reference
-			
+
 			// layers-loaded event sent when the previewer is initialised
 			this.preview.bind( 'active', function() {
-				
+
 				/**
 				 * 1 - Fix customizer FOUC during render
 				 *
@@ -45,7 +45,7 @@
 				setTimeout(function() {
 					$('body').css({ 'font-size': '1.5rem' });
 				},3000 );
-				
+
 				/**
 				 * 2 - Customizer UX Enhancements
 				 *
@@ -54,20 +54,20 @@
 
 				// Edit widget buttons
 				$( '.widget' ).each( function( index, val ) {
-					
+
 					var $that = $(this);
 
 					// Add Edit Buttons
 					var $button = $( '<button class="layers-edit-widget">Edit</button>' );
 					//$that.append( $button );
-					
+
 					// Send event to parent on click
 					$button.click( function( event ) {
 						var $widget_id = $button.parent( '.widget' ).attr( 'id' );
 						self.preview.send( 'layers-open-widget', { 'id' : 'customize-control-widget_' + $widget_id } );
 					});
 				});
-				
+
 				// Close all widgets
 				$( document ).on( 'click', function( e ){
 					if ( false == $( e.target ).hasClass( 'layers-edit-widget' ) ) {

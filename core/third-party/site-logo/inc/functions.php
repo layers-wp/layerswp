@@ -65,6 +65,8 @@ if( !function_exists( 'jetpack_the_site_logo' ) ) {
 		$logo = get_option( 'site_logo' );
 		$size = site_logo()->theme_size();
 
+		if( !isset( $logo['id'] ) || ( isset( $logo['id']  ) && ( '' == $logo['id'] || 0 == $logo['id'] ) ) ) return;
+
 		// Bail if no logo is set. Leave a placeholder if we're in the Customizer, though (needed for the live preview).
 		if ( ! jetpack_has_site_logo() ) {
 			if ( jetpack_is_customize_preview() ) {
@@ -76,8 +78,6 @@ if( !function_exists( 'jetpack_the_site_logo' ) ) {
 			}
 			return;
 		}
-
-		if( '' == $logo['id'] ) return;
 
 		// We have a logo. Logo is go.
 		$html = sprintf( '<a href="%1$s" class="site-logo-link" rel="home">%2$s</a>',

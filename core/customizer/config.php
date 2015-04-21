@@ -65,7 +65,7 @@ class Layers_Customizer_Config {
 												);
 
 		$default_sections[ 'colors' ] = array(
-											'title' => __( 'Background Color' , 'layerswp' ),
+											'title' => __( 'Colors' , 'layerswp' ),
 											'panel' => 'site-settings',
 											'priority' => 55,
 										);
@@ -97,6 +97,12 @@ class Layers_Customizer_Config {
 							'priority' => 50,
 							'panel' => 'site-settings'
 						),
+						'site-colors' => array(
+							'title' =>__( 'Colors' , 'layerswp' ),
+							'panel' => 'site-settings',
+							'priority' => 45
+
+						),
 						'content-layout' => array(
 							'title' =>__( 'Layout' , 'layerswp' ),
 							'panel' => 'site-settings'
@@ -125,12 +131,6 @@ class Layers_Customizer_Config {
 							'title' =>__( 'Layout' , 'layerswp' ),
 							'panel' => 'footer'
 						),
-						/*
-						'footer-customization' => array(
-							'title' =>__( 'Customization' , 'layerswp' ),
-							'panel' => 'footer'
-						),
-						*/
 						'footer-text' => array(
 							'title' =>__( 'Text' , 'layerswp' ),
 							'panel' => 'footer'
@@ -259,7 +259,7 @@ class Layers_Customizer_Config {
 									'type'     => 'layers-checkbox',
 									'label'    => __( 'Overlay' , 'layerswp' ),
 									'default'	=> FALSE,
-								),
+								)
 							); // header-layout
 
 		// Header -> Layout -> Scripts
@@ -297,7 +297,7 @@ class Layers_Customizer_Config {
 									'label'     => __( 'Display Right Sidebar' , 'layerswp' ),
 									'default'   => TRUE,
 								), // post-sidebar
-								'content-layout-break-2' => array(
+								'content-sidebars-break-2' => array(
 									'type'     => 'layers-seperator'
 								),
 								'archive-sidebar-heading' => array(
@@ -315,17 +315,6 @@ class Layers_Customizer_Config {
 									'label' 	=> __( 'Display Right Sidebar' , 'layerswp' ),
 									'default' 	=> TRUE,
 								), // post-sidebar
-							);
-
-		// Body -> Body
-		$controls['body-customization'] = array(
-								'main-color' => array(
-									'label' => '',
-									'subtitle' => __( 'Main Color', 'layerswp' ),
-									'description' => __( 'Element, element, element & element', 'layerswp' ),
-									'type' => 'layers-color',
-									'default' => '#00A4EC',
-								),
 							);
 
 		// Footer -> Layout -> Layout
@@ -365,49 +354,6 @@ class Layers_Customizer_Config {
 								),
 							); // footer-layout
 
-		// Footer -> Layout -> Customization
-		/*
-		$controls['footer-customization'] = array(
-								'footer-background-heading' => array(
-									'type'  => 'layers-heading',
-									'label'    => __( 'Background' , 'layerswp' ),
-								),
-								'footer-background-image' => array(
-									'label' => '',
-									'subtitle' => __( 'Background Image' , 'layerswp' ),
-									'type' => 'layers-select-images', //wierd bug in WP4.1 that requires a type to be in the array, or will revert to default control
-								),
-								'footer-background-repeat' => array(
-									'label' => '',
-									'subtitle' => __( 'Background Repeat' , 'layerswp' ),
-									'type' => 'layers-select',
-									'choices' => array(
-										'no-repeat' => __( 'No Repeat' , 'layerswp' ),
-										'repeat' => __( 'Repeat' , 'layerswp' ),
-										'repeat-x' => __( 'Repeat Horizontal' , 'layerswp' ),
-										'repeat-y' => __( 'Repeat Vertical' , 'layerswp' ),
-									),
-								),
-								'footer-background-position' => array(
-									'label' => '',
-									'subtitle' => __( 'Background Position' , 'layerswp' ),
-									'type' => 'layers-select',
-									'choices' => array(
-										'center' => __( 'Center' , 'layerswp' ),
-										'top' => __( 'Top' , 'layerswp' ),
-										'bottom' => __( 'Bottom' , 'layerswp' ),
-										'left' => __( 'Left' , 'layerswp' ),
-										'right' => __( 'Right' , 'layerswp' ),
-									),
-								),
-								'footer-background-stretch' => array(
-									'label' => __( 'Background Stretch' , 'layerswp' ),
-									'subtitle' => '',
-									'type' => 'layers-checkbox',
-								),
-							);
-		*/
-
 		// Footer -> Layout -> Text
 		$controls['footer-text'] = array(
 				'footer-copyright-text' => array(
@@ -426,6 +372,36 @@ class Layers_Customizer_Config {
 						'default' => ''
 					), // scripts
 				); // footer-scripts
+
+		$controls['site-colors'] = array(
+					'site-color-heading' => array(
+						'type'  => 'layers-heading',
+						'label'    => __( 'Site Wide Colors' , 'layerswp' ),
+						'description' => __( 'These options allow you to change the key colors of your Layers website.' , 'layerswp' ),
+					),
+					'header-background-color' => array(
+						'label' => '',
+						'subtitle'		=> __( 'Header Color' , 'layerswp' ),
+						'description' => __( 'This affects the background colors of your site header and page titles.', 'layerswp' ),
+						'type'		=> 'layers-color',
+						'default'	=> '#F3F3F3',
+					),
+					'site-accent-color' => array(
+						'label' => '',
+						'subtitle' => __( 'Site Accent Color', 'layerswp' ),
+						'description' => __( 'Choose a color for your buttons and links.', 'layerswp' ),
+						'type' => 'layers-color',
+						'default' => '#F3F3F3',
+					),
+					'footer-background-color' => array(
+						'label' => '',
+						'subtitle' => __( 'Footer Color' , 'layerswp' ),
+						'description' => __( 'This affects the background color of your site footer.', 'layerswp' ),
+						'type' => 'layers-color',
+						'default' => '#F3F3F3',
+					),
+				);
+
 
 
 		if( class_exists( 'WooCommerce' ) ) {

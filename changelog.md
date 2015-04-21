@@ -10,6 +10,8 @@
 * **Fix** - Payment method block alignment no longer has a margin on the left
 * **Fix** - Fixed pagination location on the post widget
 * **Fix** - Gutter option on all widgets with masonry active now works
+* **Fix** - Fixed .pull-right problem where adding it to a .column was not forcing float: right;
+* **Fix** - .upsells now align properly on desktop and mobile
 * **Tweak** - Header cart background color has changed for a hash value to a transparent rgba background color for better handling of different header colors
 * **Tweak** - Improved spacing of the comment form block as well as a font-size decrease for "Leave a Reply"
 * **Tweak** - Gave copyright border-color rgba (same reason as header cart)

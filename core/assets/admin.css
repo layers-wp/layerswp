@@ -1313,12 +1313,15 @@ li[id*='accordion-section-layers'] .customize-control .wp-color-result{
 li[id*='accordion-section-layers'] .customize-control.customize-control-image .actions{
     margin-bottom: 0;
 }
-.customize-control-site_logo .current {
-    background-color: red;
+.customize-control-site_logo .current img{
+    display: block;
+    max-width: 100%;
+    margin: auto;
+    padding: 10px;
     background-image: url(../assets/images/transparent-tile.png);
     border-radius: 4px;
-    border: 2px solid #C0C0C0;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.13) inset;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05) inset;
+    box-sizing: border-box;
 }
 
 /*---------------------------*/

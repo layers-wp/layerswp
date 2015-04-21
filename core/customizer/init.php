@@ -75,10 +75,10 @@ class Layers_Customizer {
 			);
 
 			// Enqueue Styles
-			add_action( 'admin_enqueue_scripts', array( $this, 'admin_enqueue_scripts' ) , 50 );
+			add_action( 'customize_controls_print_footer_scripts', array( $this, 'admin_enqueue_scripts' ) );
 			add_action( 'admin_enqueue_scripts', array( $this, 'admin_print_styles' ) , 50 );
 			add_action( 'customize_controls_print_styles' , array( $this, 'admin_print_styles' ) );
-			add_action( 'customize_preview_init', array( $this, 'customizer_preview_enqueue_scripts' ) , 50 );
+			add_action( 'customize_preview_init', array( $this, 'customizer_preview_enqueue_scripts' ) );
 
 			// Render layers customizer menu
 			add_action( 'customize_controls_print_footer_scripts' , array( $this, 'render_customizer_menu' ) );
@@ -99,8 +99,7 @@ class Layers_Customizer {
 			LAYERS_THEME_SLUG . '-admin-customizer' ,
 			get_template_directory_uri() . '/core/customizer/js/customizer.js' ,
 			array(
-				'backbone',
-				'jquery',
+				'customize-controls',
 				'wp-color-picker'
 			),
 			LAYERS_VERSION,
@@ -121,13 +120,17 @@ class Layers_Customizer {
 
 	public function customizer_preview_enqueue_scripts(){
 
-		// Customizer Preview general
 		wp_enqueue_script(
 			LAYERS_THEME_SLUG . '-admin-customizer-preview',
 			get_template_directory_uri() . '/core/customizer/js/customizer-preview.js',
-			array(
-				'jquery',
-			),
+			array( 'customize-preview-widgets' ),
+			LAYERS_VERSION
+		);
+		
+		wp_enqueue_style(
+			LAYERS_THEME_SLUG . '-admin-customizer-preview',
+			get_template_directory_uri() . '/core/customizer/css/customizer-preview.css',
+			array(),
 			LAYERS_VERSION
 		);
 	}
@@ -138,14 +141,12 @@ class Layers_Customizer {
 
 	public function admin_print_styles(){
 
-		// Widget styles
-		wp_register_style(
+		wp_enqueue_style(
 			LAYERS_THEME_SLUG . '-admin-customizer',
 			get_template_directory_uri() . '/core/customizer/css/customizer.css',
 			array(),
 			LAYERS_VERSION
 		);
-		wp_enqueue_style( LAYERS_THEME_SLUG . '-admin-customizer' );
 	}
 
 	/**

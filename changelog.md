@@ -1,9 +1,12 @@
 # Layers Changelog
 
 =======
-## 1.0.9
+## 1.1.0
 ### 22 April 2015
 
+New color controls and much smarter handling of text colors, plus a brand new Layers Dashboard!
+
+* **Enhancement** - New Dashboard! The Layers Dashboard now has quick setup links, a live documentation search, plugin lists and a news feed
 * **Enhancement** - Added column color support to the Post Widget
 * **Enhancement** - All Widgets now get intelligent text coloring which responds to the light or darkness of your background colors
 * **Enhancement** - Added button color selectors to the Post widget
@@ -14,9 +17,13 @@
 * **Enhancement** - Builder pages now obey password protection
 * **Enhancement** - Slider now focusses on which ever slide you are busy editing
 * **Enhancement** - If there is only a map widget on the page, it will sit flush with the header
-* **Enhancement** - New Dashboard! The Layers Dashboard now has quick setup links, a live documentation search, plugin lists and a news feed
 * **Enhancement** - Improved support for WooCommerce price filter widget
 * **Enhancement** - Improved default color settings for child themers
+* **Enhancement** - Improved handling of `layers_inline_styles()` which now uses `func_num_args()`
+* **Enhancement** - Added new Button controller to the design bar which affects button background colors along with `layers_inline_button_styles()`
+* **Enhancement** - Added more a dynamic class which handles the use of adding .invert to containers
+* **Enhancement** - Added filters to the Layers sidebar classes
+* **Enhancement** - Improved class handling in Layers widgets, each widget now has a much neater way of creating widget container classes
 * **Fix** - Added better customizer default handling via the `layers_customizer_control_defaults` hook
 * **Fix** - Payment method block alignment no longer has a margin on the left
 * **Fix** - Pagination location on the post widget

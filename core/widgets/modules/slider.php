@@ -135,7 +135,7 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 
 			// Get slider height css
 			$slider_height_css = '';
-			if( FALSE == $this->check_and_return( $widget , 'autoheight_slides' ) && $this->check_and_return( $widget , 'slide_height' ) ) {
+			if( 'layout-full-screen' != $this->check_and_return( $widget , 'design', 'layout' ) && FALSE == $this->check_and_return( $widget , 'autoheight_slides' ) && $this->check_and_return( $widget , 'slide_height' ) ) {
 				$slider_height_css = 'height: ' . $widget['slide_height'] . 'px; ';
 			}
 

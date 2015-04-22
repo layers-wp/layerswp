@@ -37,6 +37,7 @@ New color controls and much smarter handling of text colors, plus a brand new La
 * **Fix** - Slider image-center + text right will now align all text correctly
 * **Fix** - Removing your logo no longer leaves a broken image
 * **Fix** - WooCommerce product tag archives now have the correct styling
+* **Fix** - Slider 'layout-full-screen' not working - if auto height is not checked then slider hard sets height which stops full-screen working
 * **Tweak** - Header cart background color has changed for a hash value to a transparent rgba background color for better handling of different header colors
 * **Tweak** - Improved spacing of the comment form block as well as a font-size decrease for "Leave a Reply"
 * **Tweak** - Gave copyright border-color rgba (same reason as header cart)

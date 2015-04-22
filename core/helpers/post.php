@@ -337,7 +337,7 @@ if( ! function_exists( 'layers_edit_layout_admin_menu' ) ) {
 			$args = array(
 				'id'    => 'layers-edit-layout',
 				'title' => '<span class="ab-icon"></span><span class="ab-label">' . __( 'Edit Layout' , 'layerswp' ) . '</span>',
-				'href'  => add_query_arg( 'url', urlencode( $current_url ), wp_customize_url() ),
+				'href'  => esc_url( add_query_arg( 'url', urlencode( $current_url ), wp_customize_url() ) ),
 				'meta'  => array( 'class' => 'my-toolbar-page' )
 			);
 			$wp_admin_bar->add_node( $args );

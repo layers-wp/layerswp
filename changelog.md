@@ -48,6 +48,7 @@ New color controls and much smarter handling of text colors, plus a brand new La
 * **Tweak** - Bread crumbs css now included in .invert class
 * **Tweak** - Removed color from headings in .story and .copy as they are already declared as defaults at the top of the CSS
 * **Tweak** - All color settings (Header and Footer included) are now find under Site Settings > Colors
+* **Tweak** - Escaped 'add_query_arg()' as possible security flaw was recently identified
 * **Notice** - Layers 1.0.9 has full WordPress 4.2 compatability
 
 

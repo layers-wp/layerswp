@@ -12,19 +12,19 @@ New color controls and much smarter handling of text colors, plus a brand new La
 * **Enhancement** - Added button color selectors to the Post widget
 * **Enhancement** - Added support for the 'target' attribute to the button form type
 * **Enhancement** - Added .invert styling for headers
-* **Enhancement** - Added 'border' option to the `layers_inline_styles` function
+* **Enhancement** - Added 'border' option to the 'layers_inline_styles' function
 * **Enhancement** - Added Site Accent color which affects all buttons and links
 * **Enhancement** - Builder pages now obey password protection
 * **Enhancement** - Slider now focusses on which ever slide you are busy editing
 * **Enhancement** - If there is only a map widget on the page, it will sit flush with the header
 * **Enhancement** - Improved support for WooCommerce price filter widget
 * **Enhancement** - Improved default color settings for child themers
-* **Enhancement** - Improved handling of `layers_inline_styles()` which now uses `func_num_args()`
-* **Enhancement** - Added new Button controller to the design bar which affects button background colors along with `layers_inline_button_styles()`
+* **Enhancement** - Improved handling of 'layers_inline_styles()' which now uses 'func_num_args()'
+* **Enhancement** - Added new Button controller to the design bar which affects button background colors along with 'layers_inline_button_styles()'
 * **Enhancement** - Added more a dynamic class which handles the use of adding .invert to containers
 * **Enhancement** - Added filters to the Layers sidebar classes
 * **Enhancement** - Improved class handling in Layers widgets, each widget now has a much neater way of creating widget container classes
-* **Fix** - Added better customizer default handling via the `layers_customizer_control_defaults` hook
+* **Fix** - Added better customizer default handling via the 'layers_customizer_control_defaults' hook
 * **Fix** - Logo Center with no menu no longer breaks
 * **Fix** - Payment method block alignment no longer has a margin on the left
 * **Fix** - Pagination location on the post widget

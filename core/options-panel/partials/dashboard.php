@@ -128,6 +128,26 @@ $theme_info = wp_get_theme( 'layerswp' ); ?>
 				</div>
 
 				<div class="layers-column layers-span-6">
+					<div class="layers-panel layers-push-bottom">
+						<div class="layers-section-title layers-content layers-tiny">
+							<h3 class="layers-heading"><?php _e( 'Themes &amp; Extensions' , 'layerswp' ); ?></h3>
+							<p class="layers-excerpt">
+								<?php _e( 'Looking for a theme or plugin to achieve something unique with your website?
+									Browse the massive Layers Marketplace on Envato and take your site to the next level.' , 'layerswp' ); ?>
+							</p>
+						</div>
+						<div class="layers-button-well">
+							<a href="http://themeforest.net/attributes/framework/Layers%20WP" target="_blank" class="layers-button btn-primary">
+								<?php _e( 'Themes' , 'layerswp' ); ?>
+							</a>
+							<a href="http://codecanyon.net/search?term=skins+layers+wp+style+kits" target="_blank" class="layers-button btn-primary">
+								<?php _e( 'Style Kits' , 'layerswp' ); ?>
+							</a>
+							<a href="http://codecanyon.net/attributes/compatible-with/Layers%20WP" target="_blank" class="layers-button btn-primary">
+								<?php _e( 'Extensions' , 'layerswp' ); ?>
+							</a>
+						</div>
+					</div>
 					<?php if( 0 < count( layers_get_plugins() ) ) { ?>
 						<div class="layers-panel">
 							<div class="layers-panel-title">
@@ -198,7 +218,7 @@ $theme_info = wp_get_theme( 'layerswp' ); ?>
 									<?php _e( sprintf( 'Get involved with the community of this awesome project
 									and contribute enhancements, features, and bug fixes to the core code of
 									<a href="%s" target="_blank">Layers on GitHub</a>. Check out the Issues tab for ways to help!',
-									'http://github.com/Obox/layerswp/' ) , 'layerswp' ); ?>
+									'http://docs.layerswp.com/contributing-to-layers/' ) , 'layerswp' ); ?>
 								</p>
 							</div>
 						</div>

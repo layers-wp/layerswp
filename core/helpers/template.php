@@ -426,16 +426,6 @@ if( !function_exists( 'layers_apply_customizer_styles' ) ) {
 			if ( 'dark' == layers_is_light_or_dark( $header_color ) ){
 				add_filter( 'layers_title_container_class', 'layers_add_invert_class' );
 			}
-			
-			// Sidebars
-			layers_inline_styles( '.sidebar .well', 'background', array( 'background' => array( 'color' => $header_color ) ) );
-			if ( 'dark' == layers_is_light_or_dark( $header_color ) ){
-				add_filter( 'layers_body_sidebar_class', 'layers_add_invert_class' );
-				add_filter( 'layers_left_sidebar_class', 'layers_add_invert_class' );
-				add_filter( 'layers_right_sidebar_class', 'layers_add_invert_class' );
-				add_filter( 'layers_left_woocommerce_sidebar_class', 'layers_add_invert_class' );
-				add_filter( 'layers_right_woocommerce_sidebar_class', 'layers_add_invert_class' );
-			}
 		}
 
 		if( '' != $main_color ) {

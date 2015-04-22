@@ -36,7 +36,9 @@ class Layers_Options_Panel {
 		$this->options_panel_dir = LAYERS_TEMPLATE_DIR . '/core/options-panel/';
 
 		// Setup the partial var
-		$this->page =  str_replace( LAYERS_THEME_SLUG . '-' , '', $_GET[ 'page' ] );
+		if( isset( $_GET[ 'page' ] ) ){
+			$this->page =  str_replace( LAYERS_THEME_SLUG . '-' , '', $_GET[ 'page' ] );
+		}
 
 	}
 
@@ -54,13 +56,8 @@ class Layers_Options_Panel {
 
 		if( isset( $_GET[ 'page' ] ) ) $current_page = $_GET[ 'page' ]; ?>
 		<header class="layers-page-title layers-section-title layers-large layers-content-large layers-no-push-bottom">
-			<div class="layers-container">
+
 				<?php _e( sprintf( '<a href="%s" class="layers-logo">Layers</a>', 'http://layerswp.com' ), 'layerswp' ); ?>
-				<?php if( !class_exists( 'Layers_Updater' ) ) { ?>
-					<span class="layers-pull-right layers-content">
-						<?php _e( sprintf( '<a class="layers-button btn-link" href="%s">Get the Layers Updater</a>', 'http://www.layerswp.com/download/layers-updater/' ) , 'layerswp' ); ?>
-					</span>
-				<?php } ?>
 				<?php if( isset( $title ) ) { ?>
 					<h2 class="layers-heading" id="layers-options-header"><?php echo esc_html( $title ); ?></h2>
 				<?php } ?>
@@ -76,10 +73,17 @@ class Layers_Options_Panel {
 								</a>
 							</li>
 						<?php }?>
+						<?php if( !class_exists( 'Layers_Updater' ) ) { ?>
+							<li>
+								<?php _e( sprintf( '<a class="layers-get-updater" href="%s">Get the Layers Updater</a>', 'http://www.layerswp.com/download/layers-updater/' ) , 'layerswp' ); ?>
+							</li>
+						<?php } ?>
 					</ul>
+					<form class="layers-help-search" action="http://docs.layerswp.com" target="_blank" method="get">
+						<input name="s" type="search" placeholder="Search Layers Help..." />
+					</form>
 				</nav>
 
-			</div>
 		</header>
 	<?php }
 
@@ -122,25 +126,152 @@ class Layers_Options_Panel {
 	<?php }
 
 	/**
+	* Dashboard Notices
+	*/
+	public function notice( $good_or_bad = 'good', $message = FALSE, $classes = array() ){
+		if( FALSE == $message ) return; ?>
+		<div class="layers-status-notice layers-site-setup-completion layers-status-<?php echo $good_or_bad; ?> <?php echo implode( ' ' , $classes ); ?>">
+			<h5 class="layers-status-notice-heading">
+				<?php switch ( $good_or_bad ) {
+					case 'good' :
+						$icon = 'tick';
+					break;
+					case 'bad' :
+						$icon = 'cross';
+					break;
+					default :
+						$icon = 'display';
+					break;
+				} ?>
+				<i class="icon-<?php echo $icon; ?>"></i>
+				<span><?php echo $message; ?></span>
+			</h5>
+		</div>
+	<?php }
+
+	/**
 	* Get Layers Regsitered Menus
 	*/
-
 	public function get_menu_pages(){
-		global $submenu;
 
-		if( isset( $submenu[ 'layers-dashboard' ] ) ) {
-			foreach ( $submenu[ 'layers-dashboard' ] as $menu_key => $menu_details ) {
-				$sub_menu[ 'label' ] = $menu_details[0];
-				$sub_menu[ 'cap' ] = $menu_details[1];
-				$sub_menu[ 'link' ] = ( strpos( $menu_details[2], '.php' ) ? admin_url( $menu_details[2] ) : menu_page_url( $menu_details[2], false ) );
+		$menu = apply_filters( 'layers_dashboard_header_links', array(
+					'layers-dashboard' => array(
+						'label' => 'Dashboard',
+						'link' => admin_url( 'admin.php?page=layers-dashboard' ),
+					),
+					'layers-get-started' => array(
+						'label' => 'Get Started',
+						'link' => admin_url( 'admin.php?page=layers-get-started' ),
+					),
+					'layers-add-new-page' => array(
+						'label' => 'Add New Page',
+						'link' => admin_url( 'admin.php?page=layers-add-new-page' ),
+					),
+					'layers-pages' => array(
+						'label' => 'Layers Pages',
+						'link' => admin_url( 'edit.php?post_type=page&amp;filter=layers' ),
+					),
+				)
+		);
 
-				$menu[] = $sub_menu;
-			}
+		return $menu;
+	}
 
-			return $menu;
+	public function get_layers_feed( $type = 'news', $count = 3 ){
+		if( 'news' == $type ) {
+			$feed_url = 'http://blog.oboxthemes.com/tag/layers/feed/';
+		} else if( 'docs' == $type ) {
+			$feed_url = 'http://docs.layerswp.com/keywords/layers-dashboard/feed/';
 		}
 
-		return NULL;
+		$feed = fetch_feed( $feed_url );
+
+		if( is_wp_error( $feed ) ) {
+			return false;
+		} else {
+			$news_items = $feed->get_items( 0, $count );
+
+			foreach( $news_items as $item ){
+				$feed_items[ $item->get_id() ][ 'title' ] = esc_attr( $item->get_title() );
+				$feed_items[ $item->get_id() ][ 'link' ] = $item->get_permalink();
+				$feed_items[ $item->get_id() ][ 'excerpt' ] = $item->get_description();
+			}
+			return $feed_items;
+		}
+	}
+
+	/**
+	* Get Layers Setup Options
+	*/
+
+	public function site_setup_actions(){
+
+		$site_setup_actions[ 'google-analytics' ] =  array(
+			'label' => __( 'Google Analytics', 'layerswp' ),
+			'excerpt' => __( 'Enter in your Google Analytics ID to enable website traffic reporting.', 'layerswp' ),
+			'form' => array(
+					'layers-header-google-id' => array(
+							'type' => 'text',
+							'name' => 'layers-header-google-id',
+							'id' => 'layers-header-google-id',
+							'placeholder' => __( 'UA-xxxxxx-xx', 'layerswp' ),
+							'value' => layers_get_theme_mod( 'header-google-id' )
+						)
+				),
+			'skip-action' => 'layers_site_setup_step_dismissal',
+			'submit-action' => 'layers_onboarding_set_theme_mods',
+			'submit-text' => __( 'Save', 'layerswp' )
+		);
+
+		$site_setup_actions[ 'copyright' ] = array(
+			'label' => __( 'Copyright Text', 'layerswp' ),
+			'form' => array(
+					'layers-footer-copyright-text' => array(
+							'type' => 'text',
+							'name' => 'layers-footer-copyright-text',
+							'id' => 'layers-footer-copyright-text',
+							'placeholder' => __( 'Made at the tip of Africa. &copy;', 'layerswp' ),
+							'value' => layers_get_theme_mod( 'footer-copyright-text' )
+						)
+				),
+			'skip-action' => 'layers_site_setup_step_dismissal',
+			'submit-action' => 'layers_onboarding_set_theme_mods',
+			'submit-text' => __( 'Save', 'layerswp' )
+		);
+
+		if( 0 == count( get_posts( 'post_type=nav_menu_item' ) ) ) {
+			$site_setup_actions[ 'menus' ] = array(
+				'label' => __( 'Setup your website menu', 'layerswp' ),
+				'excerpt' => __( sprintf( 'Navigation is a key element of setting up your website. Controly our menus here. For more information read our <a href="%s" target="_blank">help guide</a>.', 'http://docs.layerswp.com/doc/create-your-menus/' ), 'layerswp' ),
+				'form' => array(
+						'layers-menu-link' => array(
+								'type' => 'button',
+								'name' => 'layers-menu-link',
+								'id' => 'layers-menu-link',
+								'href' => admin_url( 'nav-menus.php' ),
+								'target' => '_blank',
+								'tag' => 'a',
+								'class' => 'layers-button btn-primary',
+								'label' => __( 'Setup Menus', 'layerswp' ),
+							)
+					),
+				'skip-action' => 'layers_site_setup_step_dismissal'
+			);
+		}
+		return apply_filters( 'layers_setup_actions' , $site_setup_actions );
+	}
+
+	public function enqueue_dashboard_scripts(){
+
+		wp_enqueue_script(
+			LAYERS_THEME_SLUG . '-dashboard' ,
+			get_template_directory_uri() . '/core/assets/dashboard.js',
+			array(
+				'jquery',
+			),
+			LAYERS_VERSION
+		); // Sticky-Kit
+
 	}
 
 }
@@ -151,10 +282,12 @@ class Layers_Options_Panel {
 
 function layers_options_panel_menu(){
 
+	$layers_options_panel = new Layers_Options_Panel();
+
 	global $submenu;
 
 	// dashboard Page
-	add_menu_page(
+	$dashboard = add_menu_page(
 		LAYERS_THEME_TITLE,
 		LAYERS_THEME_TITLE,
 		'edit_theme_options',
@@ -163,6 +296,8 @@ function layers_options_panel_menu(){
 		'none',
 		3
 	);
+
+	add_action('admin_print_scripts-' . $dashboard, array( $layers_options_panel, 'enqueue_dashboard_scripts') );
 
 	// Get Started
 	add_submenu_page(
@@ -235,8 +370,8 @@ function layers_load_options_panel_ajax(){
 	// Include ajax functions
 	require_once LAYERS_TEMPLATE_DIR . '/core/options-panel/ajax.php';
 
-    $onboarding_ajax = new Layers_Onboarding_Ajax();
-    $onboarding_ajax->init();
+	$onboarding_ajax = new Layers_Onboarding_Ajax();
+	$onboarding_ajax->init();
 }
 
 add_action( 'init' , 'layers_load_options_panel_ajax' );

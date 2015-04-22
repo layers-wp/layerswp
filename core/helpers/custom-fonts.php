@@ -38,7 +38,7 @@ if( !function_exists( 'layers_generate_customizer_fonts' ) ) {
 		}
 	}
 }
-add_action( 'wp' , 'layers_generate_customizer_fonts' );
+add_action( 'wp' , 'layers_generate_customizer_fonts', 50 );
 
 /**
  * Generate custom font CSS and enqueue it

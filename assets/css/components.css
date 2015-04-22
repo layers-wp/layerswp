@@ -270,10 +270,13 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
     .story p{
         margin-bottom: 26px;
     }
-    .story a{
+    .story address{
+        margin-bottom: 26px;
+    }
+    .story a:not(.button){
         border-bottom: 1px solid #ddd;
     }
-    .story a:hover{
+    .story a:not(.button):hover{
         border-color: #999;
     }
     .story ul{
@@ -317,31 +320,26 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
     .story h1{
         margin-bottom: 26px;
-        color: #323232;
         font-size: 3.2rem;
         font-weight: 700;
     }
     .story h2{
         margin-bottom: 26px;
-        color: #323232;
         font-size: 2.2rem;
         font-weight: 700;
     }
     .story h3{
         margin-bottom: 26px;
-        color: #323232;
         font-size: 2.0rem;
         font-weight: 700;
     }
     .story h4{
         margin-bottom: 26px;
-        color: #323232;
         font-size: 1.8rem;
         font-weight: 700;
     }
     .story h5{
         margin-bottom: 26px;
-        color: #323232;
         font-size: 1.4rem;
         font-weight: 700;
     }
@@ -352,8 +350,8 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
     .story blockquote{
         padding: 20px;
         margin-bottom: 26px;
-        background: #f0f0f0;
-        color: #999;
+        background: rgba(0, 0, 0, 0.05);
+        color: rgba(0, 0, 0, 0.55);
     }
     .story blockquote p:last-child{
         margin-bottom: 0;
@@ -392,7 +390,7 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
     /*- META INFO ---------------*/
     .meta-info{
         clear: both;
-        color: #8f8f8f;
+        color: rgba(0, 0, 0, 0.65);
         font-size: 1.2rem;
     }
     .meta-info + .heading{
@@ -444,6 +442,20 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
         }
 
 /*-------------------------------*/
+/*- COMMENTS --------------------*/
+/*-------------------------------*/
+
+    .comment{
+        clear: both;
+    }
+    .comment .comment{
+        margin-top: 30px;
+    }
+    .comment .comment:last-child{
+        margin-bottom: 0;
+    }
+
+/*-------------------------------*/
 /*- COMMENTS FORM ---------------*/
 /*-------------------------------*/
 
@@ -452,13 +464,16 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
         color: #999;
         font-size: 1.2rem;
     }
+    .comment-respond{
+        clear: both;
+        margin-top: 6%;
+    }
     .comment-reply-title{
         color: #323232;
-        font-size: 2.8rem;
+        font-size: 2.5rem;
     }
     .logged-in-as{
         margin-bottom: 20px;
-        color: #8F8F8F;
     }
     p[class*='comment-form'] .required{
         color: #900;
@@ -467,6 +482,7 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
         margin-bottom: 15px;
     }
     .form-allowed-tags{
+        max-width: 660px;
         margin-bottom: 15px;
         font-size: 1.4rem;
     }
@@ -544,7 +560,6 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
         color: #8F8F8F;
     }
 
-
         /*-----------------------*/
         /*- WIDGET NAV MENU -----*/
         .sidebar .widget.widget_nav_menu{
@@ -562,10 +577,14 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
             text-align: left;
         }
 
+
     /*---------------------------*/
     /*- SEARCH WIDGET -----------*/
     .screen-reader-text{
         display: none;
+    }
+    .search-form{
+        overflow: hidden;
     }
     .search-form label{
         margin-bottom: 0;
@@ -575,7 +594,7 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
         width: 100%;
     }
     aside .search-field{
-        border: none;
+        margin-bottom: 5px;
     }
 
     /*---------------------------*/
@@ -679,3 +698,32 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
     }
 
 
+
+@media only screen and (min-width: 769px) {
+
+    .sidebar .search-field{
+        width: 65%;
+        float: left;
+    }
+    .sidebar .search-submit{
+        float: left;
+        width: 35%;
+        height: 36px;
+    }
+
+}
+
+
+/*-------------------------------*/
+/*- INVERT COMPONENTS ----------*/
+/*-------------------------------*/
+
+.invert .meta-info{
+    color: rgba(255, 255, 255, 0.65);
+}
+.invert .meta-info a{
+    color: rgba(255, 255, 255, 0.85);
+}
+.invert .meta-info a:hover{
+    color: rgba(255, 255, 255, 1);
+}

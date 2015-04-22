@@ -8,10 +8,9 @@
  * Contents
  * 1 - Screen height matching
  * 2 - Container padding for header fixed
- * 3 - Widget closing when clicking on the canvas
- * 4 - Offsite sidebar Toggles
- * 5 - Sticky Header
- * 6 - FitVids
+ * 3 - Offsite sidebar Toggles
+ * 4 - Sticky Header
+ * 5 - FitVids
  *
  * Author: Obox Themes
  * Author URI: http://www.oboxthemes.com/
@@ -56,37 +55,25 @@ jQuery(function($) {
 
             if( $first_element.hasClass( 'slide' ) ) {
 
-                // First element is Slider.
-
-                // Pad necessary element(s).
-                $first_element.find('.swiper-slide .overlay').css({ 'paddingTop': $( $header ).height() }, { easing: 'layersEaseInOut', duration: 400 });
+                // First element is Slider Widget.
+                $first_element.find('.swiper-slide .overlay').css({ 'paddingTop': $header.outerHeight() }, { easing: 'layersEaseInOut', duration: 400 });
             }
             else if( $first_element.hasClass('title-container') ) {
-
+                
                 // First element is Title (eg WooCommerce).
-
-                // Pad necessary element(s).
-                $first_element.css({ 'paddingTop': $( $header ).height() }, { easing: 'layersEaseInOut', duration: 400 });
+                $first_element.css({ 'paddingTop': $header.outerHeight() }, { easing: 'layersEaseInOut', duration: 400 });
             }
             else{
 
                 // Pad the site to compensate for overlay header.
-                $content_wrapper.css( 'paddingTop', $( $header ).height() );
+                $content_wrapper.css( 'paddingTop', $header.outerHeight() );
             }
 
         }
     }
 
     /**
-    * 3 - Widget Closing when clicking on the canvas
-    */
-    $(document).on( 'click' , 'html, body'  , function(e){
-        // Close widgets
-        $(window.parent.document).find( '.control-panel-content .widget-rendered.expanded' ).removeClass( 'expanded' );
-    });
-
-    /**
-    * 4 - Offsite sidebar Toggles
+    * 3 - Offsite sidebar Toggles
     */
     $(document).on( 'click' , '[data-toggle^="#"]'  , function(e){
         e.preventDefault();
@@ -103,7 +90,7 @@ jQuery(function($) {
     });
 
     /**
-    * 5 - Sticky Header
+    * 4 - Sticky Header
     */
 
     // Set site header element
@@ -148,7 +135,7 @@ jQuery(function($) {
 	});
 
 	/**
-    * 6 - FitVids resposive video embeds.
+    * 5 - FitVids resposive video embeds.
     *
 	* Target your .container, .wrapper, .post, etc.
     */

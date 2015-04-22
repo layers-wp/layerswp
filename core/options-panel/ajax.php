@@ -32,6 +32,55 @@ if( !class_exists( 'Layers_Onboarding_Ajax' ) ) {
 		public function init() {
 
 			add_action( 'wp_ajax_layers_onboarding_update_options', array( $this, 'update_options' ) );
+			add_action( 'wp_ajax_layers_onboarding_set_theme_mods', array( $this, 'set_theme_mods' ) );
+			add_action( 'wp_ajax_layers_site_setup_step_dismissal', array( $this, 'dismiss_setup_step' ) );
+
+		}
+
+		public function dismiss_setup_step( $step_key = NULL ){
+			if( NULL == $step_key ) {
+				if( isset( $_POST[ 'setup_step_key' ] ) ) {
+					$step_key = $_POST[ 'setup_step_key' ];
+				}
+			}
+
+			if( NULL == $step_key ) die( json_encode( array( 'success' => false, 'message' => __( 'No setup step defined' , 'layerswp' ) ) ) );
+
+			$dismissed_setup_steps = get_option( 'layers_dismissed_setup_steps' );
+
+			$dismissed_setup_steps[] = $step_key;
+
+			update_option( 'layers_dismissed_setup_steps', $dismissed_setup_steps );
+
+			die( json_encode( array( 'success' => true, 'message' => __( 'Setup step dismissed' , 'layerswp' ) ) ) );
+		}
+
+		public function set_theme_mods(){
+
+			if( !check_ajax_referer( 'layers-onboarding-update-options', 'layers_onboarding_update_nonce', false ) ) die( 'You threw a Nonce exception' ); // Nonce
+
+			// Parse our input data
+			parse_str(
+				urldecode( stripslashes( $_POST[ 'data' ] ) ),
+				$data
+			);
+
+			if( isset( $_POST[ 'setup_step_key' ] ) ) {
+				$this->dismiss_setup_step( $_POST[ 'setup_step_key' ] );
+			}
+
+			foreach ( $data as $option_key => $option_value ) {
+
+				$clean_option_value = esc_attr( stripslashes( $option_value ) );
+
+				switch ( $option_key ) {
+					default :
+						set_theme_mod( $option_key, $clean_option_value );
+
+						die( json_encode( array( 'success' => true, 'message' => __( 'Theme Mod updated' , 'layerswp' ) ) ) );
+					break;
+				}
+			}
 
 		}
 

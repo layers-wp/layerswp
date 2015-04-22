@@ -23,7 +23,6 @@ global $post, $layers_post_meta_to_display, $layers_page_title_shown; ?>
     <?php do_action('layers_before_single_content'); ?>
 <?php if ( '' != get_the_content() ) { ?>
     <?php if( 'template-blank.php' != get_page_template_slug() ) { ?>
-
         <div class="story">
     <?php } ?>
 

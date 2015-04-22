@@ -60,7 +60,7 @@ if (!function_exists('layers_woocommerce_center_column_class')) {
         if( !function_exists( 'is_shop' ) ) {
             return $classes;
         } else {
-            if( !is_shop() && !is_post_type_archive( 'product' ) && !is_singular( 'product' ) && !is_tax( 'product_cat' ) ) {
+            if( !is_shop() && !is_post_type_archive( 'product' ) && !is_singular( 'product' ) && !is_tax( 'product_cat' )  && !is_tax( 'product_tag' ) ) {
                 return $classes;
             }
         }

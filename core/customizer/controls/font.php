@@ -22,7 +22,7 @@ if( !class_exists( 'Layers_Customize_Font_Control' ) ) {
 
 			$values = false; ?>
 
-			<div id="layers-customize-control-<?php echo esc_attr( $this->id ); ?>" class="layers-customize-control layers-customize-control-<?php echo esc_attr( str_replace( 'layers-', '', $this->type ) ); ?>" <?php echo $this->get_linked_data(); ?> >
+			<div id="layers-customize-control-<?php echo esc_attr( $this->id ); ?>" class="layers-customize-control layers-customize-control-<?php echo esc_attr( str_replace( 'layers-', '', $this->type ) ); ?> <?php echo esc_attr( $this->class ); ?>" <?php echo $this->get_linked_data(); ?> >
 
 				<span class="customize-control-title">
 					<?php echo esc_html( $this->label ); ?>
@@ -48,7 +48,7 @@ if( !class_exists( 'Layers_Customize_Font_Control' ) ) {
 				</div>
 
 				<div class="description customize-control-description" data-base-url="https://www.google.com/fonts/specimen/">
-					<<?php echo sprintf( __( '<em>Click <a href="%1s" target="_blank">here</a> to see this font on Google Fonts.</em>' , 'layerswp' ), 'https://www.google.com/fonts/specimen/' . $this->value() ); ?>
+						<?php echo sprintf( __( '<em>Click <a href="%1s" target="_blank">here</a> to see this font on Google Fonts.</em>' , 'layerswp' ), 'https://www.google.com/fonts/specimen/' . $this->value() ); ?>
 				</div>
 			</div>
 			<?php

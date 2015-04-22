@@ -1,0 +1,18 @@
+/*
+ Customizer Preview Specific CSS
+
+ Author: Obox Themes
+ Author URI: http://www.oboxthemes.com/
+ License: GNU General Public License v2 or later
+ License URI: http://www.gnu.org/licenses/gpl-2.0.html
+*/
+
+/*
+.widget { position: relative; }
+
+.layers-edit-widget { padding: 5px 13px 4px; position: absolute; top: 10px; right: 10px; border-radius: 3px; font-size: 13px; font-weight: 600; color: #2C2C2C; background-color: #FAFAFA; box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08); border: 1px solid rgba(197, 197, 197, 1);}
+.layers-edit-widget:hover { background-color: #F0F0F0; color: #4D4D4D; border: 1px solid rgba(0, 0, 0, 0.49); box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);}
+
+.widget .layers-edit-widget { opacity: 0; }
+.widget:hover .layers-edit-widget { opacity: 1; }
+*/

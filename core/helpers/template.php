@@ -304,8 +304,10 @@ if( !function_exists( 'layers_get_page_title' ) ) {
 			$title_array['title'] = __( 'Search' , 'layerswp' );
 			$title_array['excerpt'] = get_search_query();
 		} elseif( is_tag() ) {
-			$title_array['title'] = single_tag_title();
-		} elseif(!is_page() && is_category() ) {
+			$tags = get_the_category();
+			$title_array['title'] = $tags[0]->name;
+			$title_array['excerpt'] = $tags[0]->description;
+		} elseif( !is_page() && is_category() ) {
 			$category = get_the_category();
 			$title_array['title'] = $category[0]->name;
 			$title_array['excerpt'] = $category[0]->description;
@@ -368,28 +370,139 @@ add_action( 'body_class', 'layers_body_class' );
 if( !function_exists( 'layers_apply_customizer_styles' ) ) {
 	function layers_apply_customizer_styles() {
 
-		// Header
-		if( layers_get_theme_mod( 'header-background-color' ) ){
-			$bg_opacity = ( layers_get_theme_mod( 'header-overlay') ) ? .5 : 1 ;
-			layers_inline_styles( '.header-site, .header-site.header-sticky', 'css', array( 'css' => 'background-color: rgba(' . implode( ', ' , layers_hex2rgb( layers_get_theme_mod( 'header-background-color' ) ) ) . ', ' . $bg_opacity . ');' ) );
+		/**
+		* Setup the colors to use below
+		*/
+		$main_color = layers_get_theme_mod( 'site-accent-color' , TRUE );
+		$header_color = layers_get_theme_mod( 'header-background-color', FALSE );
+		$header_color_no_default = layers_get_theme_mod( 'header-background-color', TRUE );
+		$footer_color = layers_get_theme_mod( 'footer-background-color', FALSE );
+
+		/**
+		* Header Colors
+		*/
+
+		// Opacity
+		$bg_opacity = ( layers_get_theme_mod( 'header-overlay') ) ? .5 : 1 ;
+
+		// Apply the BG Color
+		if( '' != $header_color ) {
+			layers_inline_styles( '.header-site, .header-site.header-sticky', 'css', array(
+				'css' => 'background-color: rgba(' . implode( ', ' , layers_hex2rgb( $header_color ) ) . ', ' . $bg_opacity . '); '
+			));
+
+			// Add Invert if the color is not light
+			if ( 'dark' == layers_is_light_or_dark( $header_color ) ){
+
+				add_filter( 'layers_header_class', 'layers_add_invert_class' );
+			}
 		}
 
+		/**
+		* Footer Colors
+		*/
+
+		if( '' != $footer_color ) {
+			// Apply the BG Color
+			layers_inline_styles( '.footer-site', 'background', array(
+				'background' => array(
+					'color' => $footer_color,
+				),
+			) );
+
+			// Add Invert if the color is dark
+			if ( 'dark' == layers_is_light_or_dark( $footer_color ) ){
+				add_filter( 'layers_footer_site_class', 'layers_add_invert_class' );
+			}
+		}
+
+		/**
+		* General Colors
+		*/
+
+		if( '' != $header_color ) {
+			// Title Container
+			layers_inline_styles( '.title-container', 'background', array( 'background' => array( 'color' => $header_color ) ) );
+			if ( 'dark' == layers_is_light_or_dark( $header_color ) ){
+				add_filter( 'layers_title_container_class', 'layers_add_invert_class' );
+			}
+			
+			// Sidebars
+			layers_inline_styles( '.sidebar .well', 'background', array( 'background' => array( 'color' => $header_color ) ) );
+			if ( 'dark' == layers_is_light_or_dark( $header_color ) ){
+				add_filter( 'layers_body_sidebar_class', 'layers_add_invert_class' );
+				add_filter( 'layers_left_sidebar_class', 'layers_add_invert_class' );
+				add_filter( 'layers_right_sidebar_class', 'layers_add_invert_class' );
+				add_filter( 'layers_left_woocommerce_sidebar_class', 'layers_add_invert_class' );
+				add_filter( 'layers_right_woocommerce_sidebar_class', 'layers_add_invert_class' );
+			}
+		}
+
+		if( '' != $main_color ) {
+			// Buttons
+			layers_inline_button_styles( '', 'button', array(
+				'selectors' => array(
+					'input[type="button"]', 'input[type="submit"]', 'button', '.button', '.form-submit input[type="submit"]',
+					// Inverts
+					'.invert input[type="button"]', '.invert input[type="submit"]', '.invert button', '.invert .button', '.invert .form-submit input[type="submit"]',
+				),
+				'button' => array(
+					'background-color' => $main_color,
+				)
+			));
+
+			// Content - Links
+			layers_inline_styles( array(
+				'selectors' => array( '.copy a:not(.button)', '.story a:not(.button)' ),
+				'css' => array(
+					'color' => $main_color,
+					'border-bottom-color' => $main_color,
+				),
+			));
+			layers_inline_styles( array(
+				'selectors' => array( '.copy a:not(.button):hover', '.story a:not(.button):hover' ),
+				'css' => array(
+					'color' => layers_too_light_then_dark( $main_color ),
+					'border-bottom-color' => layers_too_light_then_dark( $main_color ),
+				),
+			));
+		}
+	}
+}
+add_action( 'wp_enqueue_scripts', 'layers_apply_customizer_styles', 100 );
+
+/**
+ * Apply Customizer settings to site housing
+ */
+if( !function_exists( 'layers_apply_customizer_general_styles_general' ) ) {
+	function layers_apply_customizer_general_styles_general() {
+
 		// Footer
-		layers_inline_styles( '#footer, #footer.well', 'background', array(
+		layers_inline_styles( '.footer-site', 'background', array(
 			'background' => array(
-				'color' => layers_get_theme_mod( 'footer-background-color' ),
 				'repeat' => layers_get_theme_mod( 'footer-background-repeat' ),
 				'position' => layers_get_theme_mod( 'footer-background-position' ),
 				'stretch' => layers_get_theme_mod( 'footer-background-stretch' ),
 				'image' => layers_get_theme_mod( 'footer-background-image' ),
 				'fixed' => false, // hardcode (not an option)
 			),
-		) );
-		layers_inline_styles( '#footer h5, #footer p, #footer li, #footer .textwidget, #footer.well', 'color', array( 'color' => layers_get_theme_mod( 'footer-body-color' ) ) );
-		layers_inline_styles( '#footer a, #footer.well a', 'color', array( 'color' => layers_get_theme_mod( 'footer-link-color' ) ) );
+		));
+
 	}
-} // layers_apply_customizer_styles
-add_action( 'wp_enqueue_scripts', 'layers_apply_customizer_styles', 100 );
+}
+add_action( 'wp_enqueue_scripts', 'layers_apply_customizer_general_styles_general', 100 );
+
+/**
+ * Helper that simply adds an invert class to an array of classes.
+ * For use in conjunction with Filters.
+ *
+ * @param array $class Existing array of classes passed by the filter.
+ */
+function layers_add_invert_class( $classes ) {
+	$classes[] = 'invert';
+
+	return $classes;
+}
 
 /**
  * Retrieve the classes for the header element as an array.
@@ -419,16 +532,6 @@ if( !function_exists( 'layers_get_header_class' ) ) {
 		// Handle overlay / not overlay
 		if( TRUE == $header_overlay_option ){
 			$classes[] = 'header-overlay';
-		}
-
-		// Handle invert if background-color light / dark
-		$light_or_dark = layers_light_or_dark( $header_background_color_option, '#000000' /*dark*/, '#FFFFFF' /*light*/ );
-
-		if (
-				'#FFFFFF' == $light_or_dark
-				&& '' != $header_background_color_option
-			) {
-			$classes[] = 'invert';
 		}
 
 		// Add full-width class
@@ -474,7 +577,6 @@ if( !function_exists( 'layers_get_header_class' ) ) {
  *
  * @param string|array $class One or more classes to add to the class list.
  */
-
 if( !function_exists( 'layers_header_class' ) ) {
 	function layers_header_class( $class = '' ) {
 		// Separates classes with a single space, collates classes for body element
@@ -493,13 +595,11 @@ if( !function_exists( 'layers_get_site_wrapper_class' ) ) {
 
 		$classes = array();
 
-		// Add the general site header class
 		$classes[] = 'wrapper-site';
 
 		$classes = apply_filters( 'layer_site_wrapper_class', $classes, $class );
 
 		return $classes;
-
 	}
 } // layers_get_site_wrapper_class
 
@@ -515,6 +615,38 @@ if( !function_exists( 'layer_site_wrapper_class' ) ) {
 		echo 'class="' . join( ' ', layers_get_site_wrapper_class( $class ) ) . '"';
 	}
 } // layer_site_wrapper_class
+
+/**
+ * Retrieve the classes for the wrapper content element as an array.
+ *
+ * @param string|array $class One or more classes to add to the class list.
+ * @return array Array of classes.
+ */
+if( !function_exists( 'layers_get_wrapper_content_class' ) ) {
+	function layers_get_wrapper_content_class( $class = '' ){
+
+		$classes = array();
+
+		$classes[] = 'wrapper-content';
+
+		$classes = apply_filters( 'layers_wrapper_content_class', $classes, $class );
+
+		return $classes;
+	}
+}
+
+/**
+ * Display the classes for the wrapper content element.
+ *
+ * @param string|array $class One or more classes to add to the class list.
+ */
+
+if( !function_exists( 'layers_wrapper_content_class' ) ) {
+	function layers_wrapper_content_class( $class = '' ) {
+		// Separates classes with a single space, collates classes for body element
+		echo 'class="' . join( ' ', layers_get_wrapper_content_class( $class ) ) . '"';
+	}
+}
 
 /**
  * Retrieve the classes for the center column on archive and single pages
@@ -554,6 +686,9 @@ if( !function_exists( 'layers_get_center_column_class' ) ) {
 			$classes[] = 'span-8';
 		}
 
+		// Apply any classes passed as parameter
+		if( '' != $class ) $classes[] = $class;
+
 		$classes = array_map( 'esc_attr', $classes );
 
 		$classes = apply_filters( 'layers_center_column_class', $classes, $class );
@@ -577,13 +712,44 @@ if( !function_exists( 'layers_center_column_class' ) ) {
 } // layers_center_column_class
 
 /**
+ * Display the classes for the wrapper content element.
+ *
+ * @param   string   $key     Key to be used to populate the filter.
+ * @param   string   $class   One or more classes to add to the class list.
+ */
+if( !function_exists( 'layers_wrapper_class' ) ) {
+	function layers_wrapper_class( $key = '', $class = '' ) {
+
+		echo 'class="' . join( ' ', layers_get_wrapper_class( $key, $class ) ) . '"';
+	}
+}
+
+/**
+ * Get the classes for the wrapper content element.
+ *
+ * @param   string   $key     Key to be used to populate the filter.
+ * @param   string   $class   One or more classes to add to the class list.
+ *
+ * @return  string   html style list of classes
+ */
+if( !function_exists( 'layers_get_wrapper_class' ) ) {
+	function layers_get_wrapper_class( $key = '', $class = '' ) {
+
+		$classes = explode( ' ', $class ); // Convert string of classes to an array
+
+		return apply_filters( 'layers_' . $key . '_class', $classes );
+	}
+}
+
+/**
  * Retrieve theme modification value for the current theme.
  *
  * @param string $name Theme modification name.
+ * @param string $allow_empty Whether the Theme modification should return empty, or the default, if no value is set.
  * @return string
  */
 if( !function_exists( 'layers_get_theme_mod' ) ) {
-	function layers_get_theme_mod( $name = '' ) {
+	function layers_get_theme_mod( $name = '', $allow_empty = TRUE ) {
 
 		global $layers_customizer_defaults;
 
@@ -593,17 +759,24 @@ if( !function_exists( 'layers_get_theme_mod' ) ) {
 		// Set theme option default
 		$default = ( isset( $layers_customizer_defaults[ $name ][ 'value' ] ) ? $layers_customizer_defaults[ $name ][ 'value' ] : FALSE );
 
-
 		// If color control always return a value
+		/*
+		@TODO: Bring this back in at a later date, if necessary
 		if (
 				isset( $layers_customizer_defaults[ $name ][ 'type' ] ) &&
 				'layers-color' == $layers_customizer_defaults[ $name ][ 'type' ]
 			){
 			$default = '';
 		}
+ 		*/
 
 		// Get theme option
 		$theme_mod = get_theme_mod( $name, $default );
+
+		// Template can choose whether to allow empty
+		if ( '' == $theme_mod && FALSE == $allow_empty && FALSE != $default ) {
+			$theme_mod = $default;
+		}
 
 		// Return theme option
 		return $theme_mod;
@@ -737,13 +910,25 @@ add_action ( 'wp_print_scripts', 'layers_add_google_analytics' );
 /**
 * Style Generator
 *
-* @param    string     $type   Type of style to generate, background, color, text-shadow, border
-* @param    array       $args
-*
-* @return   string     $layers_inline_css CSS to append to the inline widget styles that have been generated
+* @param   string   $container_id   ID of the container if any
+* @param   string   $type           Type of style to generate, background, color, text-shadow, border
+* @param   array    $args			$args array
 */
 if( !function_exists( 'layers_inline_styles' ) ) {
-	function layers_inline_styles( $container_id = NULL, $type = 'background' , $args = array() ){
+	function layers_inline_styles( $arg1 = NULL, $arg2 = NULL, $arg3 = NULL ){
+
+		if ( 3 == func_num_args() ) {
+			// layers_inline_styles( '#element', 'background', array( 'selectors' => '.element', 'background' => array( 'color' => '#FFF' ) ) );
+			$container_id = $arg1; $type = $arg2; $args = $arg3;
+		}
+		elseif ( 2 == func_num_args() ) {
+			// layers_inline_styles( '#element', array( 'selectors' => array( '.element' ), 'css' => array( 'color' => '#FFF' ) ) );
+			$container_id = $arg1; $type = 'css'; $args = $arg2;
+		}
+		elseif ( 1 == func_num_args() ) {
+			// layers_inline_styles( array( 'selectors' => array( '.element' ), 'css' => array( 'color' => '#FFF' ) ) );
+			$container_id = ''; $type = 'css'; $args = $arg1;
+		}
 
 		// Get the generated CSS
 		global $layers_inline_css;
@@ -785,6 +970,22 @@ if( !function_exists( 'layers_inline_styles' ) ) {
 				}
 			break;
 
+			case 'button' :
+
+				// Set the background array
+				$button_args = $args['button'];
+
+				if( isset( $button_args['background-color'] ) && '' != $button_args['background-color'] ){
+					$css .= 'background-color: ' . $button_args['background-color'] . '; ';
+				}
+
+				if( isset( $button_args['color'] ) && '' != $button_args['color'] ){
+					$css .= 'color: ' . $button_args['color'] . '; ';
+				}
+
+			break;
+
+
 			case 'margin' :
 			case 'padding' :
 
@@ -809,6 +1010,20 @@ if( !function_exists( 'layers_inline_styles' ) ) {
 
 			break;
 
+			case 'border' :
+
+				// Set the background array
+				$border_args = $args['border'];
+
+				if( isset( $border_args['color'] ) && '' != $border_args['color'] ){
+					$css .= 'border-color: ' . $border_args[ 'color' ] . ';';
+				}
+
+				if( isset( $border_args['width'] ) && '' != $border_args['width'] ){
+					$css .= 'border-width: ' . $border_args[ 'width' ] . 'px;';
+				}
+			break;
+
 			case 'color' :
 
 				if( '' == $args[ 'color' ] ) return ;
@@ -831,13 +1046,19 @@ if( !function_exists( 'layers_inline_styles' ) ) {
 			break;
 
 			case 'css' :
-
-				$css .= $args['css'];
-
-			break;
-
 			default :
-				$css .= $args['css'];
+
+				if ( isset( $args['css'] ) ) {
+					if ( is_array( $args['css'] ) ){
+						foreach ( $args['css'] as $css_atribute => $css_value ) {
+							$css .= "$css_atribute: $css_value;";
+						}
+					}
+					else {
+						$css .= $args['css'];
+					}
+				}
+
 			break;
 
 		}
@@ -853,23 +1074,78 @@ if( !function_exists( 'layers_inline_styles' ) ) {
 		}
 
 		if( isset( $args['selectors'] ) ) {
-
-			if ( is_string( $args['selectors'] ) && '' != $args['selectors'] ) {
-				$inline_css .= $args['selectors'];
-			} else if( !empty( $args['selectors'] ) ){
-				$inline_css .= implode( ', ' .$inline_css . ' ',  $args['selectors'] );
-			}
+            if ( is_string( $args['selectors'] ) && '' != $args['selectors'] ) {
+            	$inline_css .= $args['selectors'];
+            } else if( is_array( $args['selectors'] ) && !empty( $args['selectors'] ) ){
+            	$inline_css .= implode( ', ' . $inline_css . ' ',  $args['selectors'] );
+            }
 		}
 
-		if( '' == $inline_css) {
+		// Apply inline CSS
+		if( '' == $inline_css ) {
 			$inline_css .= $css;
 		} else {
-			$inline_css .= '{' . $css . '} ';
+			$inline_css .= '{ ' . $css . '} ';
 		}
 
+		// Add the new CSS to the existing CSS
 		$layers_inline_css .= $inline_css;
 	}
 } // layers_inline_styles
+
+/**
+* Style Generator Just for Buttons
+*
+* @param   string   $container_id   ID of the container if any
+* @param   string   $type           Type of style to generate, background, color, text-shadow, border
+* @param   array    $args
+*/
+if( !function_exists( 'layers_inline_button_styles' ) ) {
+	function layers_inline_button_styles( $container_id = NULL, $type = 'background' , $args = array() ){
+
+		// Auto text color based on background color
+		if( isset( $args[ 'button' ][ 'background-color' ] ) && NULL !== layers_is_light_or_dark( $args[ 'button' ][ 'background-color' ] ) ){
+
+			// temporarily darken the background color, so we only switch text color if very light
+			$background_darker = layers_hex_darker( $args[ 'button' ][ 'background-color' ], 28 );
+
+			if ( 'light' == layers_is_light_or_dark( $background_darker ) ) {
+				$args['button']['color'] = 'rgba(0,0,0,.85)';
+			}
+			else if ( 'dark' == layers_is_light_or_dark( $background_darker ) ) {
+				$args['button']['color'] = '#FFFFFF';
+			}
+		}
+
+		// Add styling for the standard colors
+		layers_inline_styles( $container_id, $type, $args );
+
+		// Add styling for the hover colors
+		if( isset( $args['selectors'] ) ) {
+
+			if ( ! is_array( $args['selectors'] ) ) {
+				// Make sure selectors is array if comma seperated string is passed
+				$args['selectors'] = explode( ',', $args['selectors'] );
+				$args['selectors'] = array_map( 'trim', $args['selectors'] );
+			}
+
+			$hover_args = $args;
+
+			foreach( $args['selectors'] as $selector ){
+				$new_selectors[] = $selector . ':hover';
+			}
+			$hover_args['selectors'] = $new_selectors;
+		}
+
+		// Generate a lighter text background color
+		if( isset( $args[ 'button' ][ 'background-color' ] ) ){
+			$hover_args[ 'button' ]['background-color'] = layers_hex_lighter( $args[ 'button' ][ 'background-color' ] );
+		}
+
+		// Apply hover colors
+		if( isset( $hover_args ) ) layers_inline_styles( $container_id, $type, $hover_args );
+	}
+}
 
 /**
 * Apply Inline Styles
@@ -1058,6 +1334,85 @@ if(!function_exists('layers_hex2rgb') ) {
 	}
 }
 
+if ( ! function_exists( 'layers_hex_darker' ) ) {
+	/**
+	 * Hex darker/lighter/contrast functions for colours
+	 *
+	 * @param mixed $color
+	 * @param int $factor (default: 30)
+	 * @return string
+	 */
+	function layers_hex_darker( $color, $factor = 30 ) {
+		$base  = layers_hex2rgb( $color );
+		$color = '#';
+		foreach ( $base as $k => $v ) {
+			$amount      = $v / 100;
+			$amount      = round( $amount * $factor );
+			$new_decimal = $v - $amount;
+			$new_hex_component = dechex( $new_decimal );
+			if ( strlen( $new_hex_component ) < 2 ) {
+				$new_hex_component = "0" . $new_hex_component;
+			}
+			$color .= $new_hex_component;
+		}
+		return $color;
+	}
+}
+if ( ! function_exists( 'layers_hex_lighter' ) ) {
+	/**
+	 * Hex darker/lighter/contrast functions for colours
+	 *
+	 * @param mixed $color
+	 * @param int $factor (default: 30)
+	 * @return string
+	 */
+	function layers_hex_lighter( $color, $factor = 30 ) {
+		$base  = layers_hex2rgb( $color );
+		$color = '#';
+		foreach ( $base as $k => $v ) {
+			$amount      = 255 - $v;
+			$amount      = $amount / 100;
+			$amount      = round( $amount * $factor );
+			$new_decimal = $v + $amount;
+			$new_hex_component = dechex( $new_decimal );
+			if ( strlen( $new_hex_component ) < 2 ) {
+				$new_hex_component = "0" . $new_hex_component;
+			}
+			$color .= $new_hex_component;
+		}
+		return $color;
+	}
+}
+
+/**
+ * If the color that will be retuend is too light, then make it darker
+ * Used sepecially for auto hover colors
+ *
+ * @param  string  $color
+ * @param  string  $factor (default: 30)
+ * @return string
+ */
+
+if ( ! function_exists( 'layers_too_light_then_dark' ) ) {
+	/**
+	* Style Generator
+	*
+	* @param   string   $container_id   ID of the container if any
+	* @param   string   $type           Type of style to generate, background, color, text-shadow, border
+	* @param   array    $args			$args array
+	*/
+	function layers_too_light_then_dark( $color, $factor = 30 ) {
+
+		if ( '#ffffff' == layers_hex_lighter( $color, 96 ) ) {
+			$color = layers_hex_darker( $color, $factor / 3 );
+		}
+		else {
+			$color = layers_hex_lighter( $color, $factor );
+		}
+		return $color;
+	}
+}
+
 /**
  * Detect if we should use a light or dark colour on a background colour
  *
@@ -1090,6 +1445,11 @@ if ( ! function_exists( 'layers_light_or_dark' ) ) {
  */
 if ( ! function_exists( 'layers_is_light_or_dark' ) ) {
 	function layers_is_light_or_dark( $color ) {
+
+		if ( FALSE === strpos( $color, '#' ) ){
+			// Not a color
+			return NULL;
+		}
 
 		$hex = str_replace( '#', '', $color );
 

@@ -22,6 +22,8 @@ jQuery(function($) {
 
         $anchor_count = $( '.layers-onboard-slide' ).length;
 
+        if( 1 == $anchor_count ) return;
+
         for( $i = 0; $i < $anchor_count; $i++ ){
 
             $title = $( '.layers-onboard-slide' ).eq( $i ).find( '.layers-section-title h3' ).text();

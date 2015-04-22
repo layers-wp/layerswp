@@ -1,22 +1,19 @@
 <?php  /**
- * Select
+ * range
  *
- * This file is used to register and display the custom Layers Select Box
+ * This file is used to register and display the custom Layers range
  *
  * @package Layers
  * @since Layers 1.0.0
  */
 
-if( !class_exists( 'Layers_Customize_Select_Control' ) ) {
+if( !class_exists( 'Layers_Customize_Range_Control' ) ) {
 
-	class Layers_Customize_Select_Control extends Layers_Customize_Control {
+	class Layers_Customize_Range_Control extends Layers_Customize_Control {
 
-		public $type = 'layers-select';
+		public $type = 'layers-range';
 
 		public function render_content() {
-
-			// Exit if there are no choises
-			if ( empty( $this->choices ) ) return;
 
 			$form_elements = new Layers_Form_Elements();
 
@@ -29,19 +26,23 @@ if( !class_exists( 'Layers_Customize_Select_Control' ) ) {
 				</span>
 
 				<div class="layers-form-item">
+
 					<?php if ( '' != $this->subtitle ) : ?>
 						<label class="layers-form-row"><?php echo $this->subtitle; ?></label>
 					<?php endif; ?>
 
-					<div class="layers-select-wrapper layers-form-item">
+					<div class="layers-form-item">
 						<?php echo $form_elements->input(
 							array(
-								'type' => 'select',
+								'type' => 'range',
 								'label' => ( isset( $this->label ) ? $this->label : '' ),
-								'name' => '' ,
-								'id' =>  $this->id,
-								'options' => $this->choices,
+								'name' => '',
+								'id' => $this->id,
+   								'value' => stripslashes( $this->value() ),
 								'data' => $this->get_customize_data(),
+								'min' => ( isset( $this->min ) ? $this->min : 0 ) ,
+								'max' => ( isset( $this->max ) ? $this->max : 100 ) ,
+								'step' => ( isset( $this->step ) ? $this->step : 1 ) ,
 							)
 						); ?>
 					</div>
@@ -57,4 +58,4 @@ if( !class_exists( 'Layers_Customize_Select_Control' ) ) {
 			<?php
 		}
 	}
-} // !class_exists( 'Layers_Customize_Select_Control' )
+} // !class_exists( 'Layers_Customize_Range_Control' )

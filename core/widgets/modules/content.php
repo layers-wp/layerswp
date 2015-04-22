@@ -107,14 +107,31 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 			if( !empty( $widget['design'][ 'background' ] ) ) layers_inline_styles( '#' . $widget_id, 'background', array( 'background' => $widget['design'][ 'background' ] ) );
 			if( !empty( $widget['design']['fonts'][ 'color' ] ) ) layers_inline_styles( '#' . $widget_id, 'color', array( 'selectors' => array( '.section-title h3.heading' , '.section-title p.excerpt' ) , 'color' => $widget['design']['fonts'][ 'color' ] ) );
 
-
 			// Apply the advanced widget styling
-			$this->apply_widget_advanced_styling( $widget_id, $widget ); ?>
+			$this->apply_widget_advanced_styling( $widget_id, $widget );
 
-			<section class="widget row content-vertical-massive <?php echo $this->check_and_return( $widget , 'design', 'advanced', 'customclass' ) ?> <?php echo $this->get_widget_spacing_class( $widget ); ?>" id="<?php echo $widget_id; ?>">
+			/**
+			* Generate the widget container class
+			*/
+			$widget_container_class = array();
+			$widget_container_class[] = 'widget row content-vertical-massive';
+			$widget_container_class[] = $this->check_and_return( $widget , 'design', 'advanced', 'customclass' );
+			$widget_container_class[] = $this->get_widget_spacing_class( $widget );
+			$widget_container_class = implode( ' ', apply_filters( 'layers_content_widget_container_class' , $widget_container_class ) ); ?>
+
+			<section class="<?php echo $widget_container_class; ?>" id="<?php echo $widget_id; ?>">
 				<?php if( '' != $this->check_and_return( $widget , 'title' ) ||'' != $this->check_and_return( $widget , 'excerpt' ) ) { ?>
-					<div class="container">
-						<div class="section-title <?php echo $this->check_and_return( $widget , 'design', 'fonts', 'size' ); ?> <?php echo $this->check_and_return( $widget , 'design', 'fonts', 'align' ); ?> clearfix">
+					<div class="container clearfix">
+						<?php /**
+						* Generate the Section Title Classes
+						*/
+						$section_title_class = array();
+						$section_title_class[] = 'section-title clearfix';
+						$section_title_class[] = $this->check_and_return( $widget , 'design', 'fonts', 'size' );
+						$section_title_class[] = $this->check_and_return( $widget , 'design', 'fonts', 'align' );
+						$section_title_class[] = ( $this->check_and_return( $widget, 'design', 'background' , 'color' ) && 'dark' == layers_is_light_or_dark( $this->check_and_return( $widget, 'design', 'background' , 'color' ) ) ? 'invert' : '' );
+						$section_title_class = implode( ' ', $section_title_class ); ?>
+						<div class="<?php echo $section_title_class; ?>">
 							<?php if( '' != $widget['title'] ) { ?>
 								<h3 class="heading"><?php echo esc_html( $widget['title'] ); ?></h3>
 							<?php } ?>
@@ -190,34 +207,45 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 							// Set the column link
 							$link = $this->check_and_return( $column , 'link' );
 
-							// Set Column CSS Classes
+ 							/**
+							* Set Individual Column CSS
+							*/
 							$column_class = array();
 							$column_class[] = 'layers-masonry-column';
 							$column_class[] = $span_class;
-							if( !isset( $widget['design'][ 'gutter' ] ) ) {
-								$column_class[] = 'column-flush';
-							} else {
-								$column_class[] = 'column';
-							}
+							$column_class[] = ( 'list-masonry' == $this->check_and_return( $widget, 'design', 'liststyle' ) ? 'no-gutter' : '' );
+							$column_class[] = 'column' . ( 'on' != $this->check_and_return( $widget, 'design', 'gutter' ) ? '-flush' : '' );
 							if( '' != $this->check_and_return( $column, 'design' , 'background', 'image' ) || '' != $this->check_and_return( $column, 'design' , 'background', 'color' ) ) {
 								$column_class[] = 'content';
 							}
 							if( false != $media ) {
 								$column_class[] = 'has-image';
 							}
-							$column_class = implode( ' ', $column_class );
-
-							// Set Column Inner CSS Classes
-							$column_inner_class = array();
-							$column_inner_class[] = 'media';
-							if( !$this->check_and_return( $widget, 'design', 'gutter' ) ) {
-								$column_inner_class[] = 'no-push-bottom';
-							}
-							$column_inner_class[] = $this->check_and_return( $column, 'design', 'imagealign' );
-							$column_inner_class[] = $this->check_and_return( $column, 'design', 'fonts' , 'size' );
-							$column_inner_class = implode( ' ', $column_inner_class ); ?>
+							$column_class = implode( ' ', $column_class ); ?>
 
 							<div id="<?php echo $widget_id; ?>-<?php echo $column_key; ?>" class="<?php echo $column_class; ?>">
+								<?php /**
+								* Set Overlay CSS Classes
+								*/
+								$column_inner_class = array();
+								$column_inner_class[] = 'media';
+								if( !$this->check_and_return( $widget, 'design', 'gutter' ) ) {
+									$column_inner_class[] = 'no-push-bottom';
+								}
+								if( $this->check_and_return( $column, 'design', 'background' , 'color' ) ) {
+									if( 'dark' == layers_is_light_or_dark( $this->check_and_return( $column, 'design', 'background' , 'color' ) ) ) {
+										$column_inner_class[] = 'invert';
+									}
+								} else {
+									if( $this->check_and_return( $widget, 'design', 'background' , 'color' ) && 'dark' == layers_is_light_or_dark( $this->check_and_return( $widget, 'design', 'background' , 'color' ) ) ) {
+										$column_inner_class[] = 'invert';
+									}
+								}
+
+								$column_inner_class[] = $this->check_and_return( $column, 'design', 'imagealign' );
+								$column_inner_class[] = $this->check_and_return( $column, 'design', 'fonts' , 'size' );
+								$column_inner_class = implode( ' ', $column_inner_class ); ?>
+
 								<div class="<?php echo $column_inner_class; ?>">
 									<?php if( NULL != $media ) { ?>
 										<div class="media-image <?php echo ( ( isset( $column['design'][ 'imageratios' ] ) && 'image-round' == $column['design'][ 'imageratios' ] ) ? 'image-rounded' : '' ); ?>">
@@ -257,9 +285,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 						layers_masonry_settings[ '<?php echo $widget_id; ?>' ] = [{
 								itemSelector: '.layers-masonry-column',
 								layoutMode: 'masonry',
-								masonry: {
-									gutter: <?php echo ( isset( $widget['design'][ 'gutter' ] ) ? 20 : 0 ); ?>
-								}
+								gutter: <?php echo ( isset( $widget['design'][ 'gutter' ] ) ? 20 : 0 ); ?>
 							}];
 
 						$('#<?php echo $widget_id; ?>').find('.list-masonry').layers_masonry( layers_masonry_settings[ '<?php echo $widget_id; ?>' ][0] );

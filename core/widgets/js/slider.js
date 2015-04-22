@@ -9,6 +9,7 @@
  * 1 - Sortable items
  * 2 - Slide Removal & Additions
  * 3 - Slide Title Update
+ * 4 - Curreny Slide Focussing
  *
  * Author: Obox Themes
  * Author URI: http://www.oboxthemes.com/
@@ -37,6 +38,12 @@ jQuery(document).ready(function($){
 			stop: function(e , li){
 				// Banner UL, looking up from our current target
 				$slideList = li.item.closest( 'ul' );
+
+				// Set focus slide
+				$widget = li.item.closest( '.widget' );
+				$slide_index = li.item.index();
+				$slide_guid = li.item.data( 'guid' );
+				layers_set_slide_index( $widget, $slide_index, $slide_guid );
 
 				// Banners <input>
 				$slideInput = $( '#slide_ids_input_' + $slideList.data( 'number' ) );
@@ -127,14 +134,26 @@ jQuery(document).ready(function($){
 			$post_data,
 			function(data){
 
+				// Set slide
+				$slide = $(data);
+
 				// Append module HTML
-				$slideList.append( data );
+				$slideList.append($slide);
+
+				// Add Open Class to slide
+				$slide.addClass('open');
 
 				// Append slide IDs to the slides input
 				$slide_guids = [];
 				$slideList.find( 'li.layers-accordion-item' ).each(function(){
 					$slide_guids.push( $(this).data( 'guid' ) );
+					$slide_index = $(this).index();
+					$slide_guid = $(this).data( 'guid' );
 				});
+
+				// Set focus slide
+				$widget = $slideList.closest( '.widget' );
+				layers_set_slide_index( $widget, $slide_index, $slide_guid );
 
 				// Trigger change for ajax save
 				$slideInput.val( $slide_guids.join() ).layers_trigger_change();
@@ -164,5 +183,27 @@ jQuery(document).ready(function($){
 		$that.closest( '.layers-accordion-item' ).find( 'span.layers-detail' ).text( $string );
 
 	});
+
+	/**
+	* 4 - Slider Focus
+	*/
+	$(document).on( 'focus click' , 'ul[id^="slide_list_"] li a.layers-accordion-title', function(e){
+
+		// Set focus slide
+		$widget = $(this).closest( '.widget' );
+		$li = $(this).parent();
+
+		if( undefined !== $li.data('guid') ){
+			$slide_index = $li.index();
+			$slide_guid = $li.data('guid');
+			layers_set_slide_index( $widget, $slide_index, $slide_guid );
+		}
+	});
+
+	function layers_set_slide_index( $widget, $slide_index, $slide_guid ){
+		if( undefined !== $widget ){
+			$widget.find( 'input[data-focus-slide="true"]' ).val( $slide_index );
+		}
+	}
 
 }); //jQuery

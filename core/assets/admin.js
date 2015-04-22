@@ -323,13 +323,13 @@ jQuery(function($) {
 
 	$( document ).on( 'click' , '.widget ul.layers-visuals-wrapper > li.layers-visuals-item > a.layers-icon-wrapper' , function(e){
 		e.preventDefault();
-		
+
 		// "Hi Mom"
 		$that = $(this);
-		
+
 		// Close Siblings
 		$that.parent( 'li.layers-visuals-item' ).siblings().not( $that.parent() ).removeClass( 'layers-active' );
-		
+
 		// Toggle active state
 		$that.parent( 'li.layers-visuals-item' ).toggleClass( 'layers-active' );
 	});
@@ -394,11 +394,10 @@ jQuery(function($) {
 		}
 	});
 
-	$( document ).on( 'widget-updated' , function( updatedWidgetId ){
-		setTimeout(
-			layers_widget_focus( updatedWidgetId ),
-			1000
-		)
+	$( document ).on( 'widget-updated' , function( event, $updatedWidget ){
+		var widget_id = $updatedWidget.find( '.widget-id' ).val();
+		layers_widget_focus( widget_id );
+		// further actions with the id
 	});
 
 	function layers_widget_focus( $widget_id ){

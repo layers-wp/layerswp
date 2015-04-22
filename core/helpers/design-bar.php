@@ -695,13 +695,6 @@ class Layers_Design_Controller {
 				'id' => $this->widget['id'] . '-buttons-background',
 				'value' => ( isset( $this->values['buttons']['background-color'] ) ) ? $this->values['buttons']['background-color'] : NULL
 			),
-			'buttons-text-color' => array(
-				'type' => 'color',
-				'label' => __( 'Text Color', 'layerswp' ),
-				'name' => $this->widget['name'] . '[buttons][color]',
-				'id' => $this->widget['id'] . '-buttons-color',
-				'value' => ( isset( $this->values['buttons']['color'] ) ) ? $this->values['buttons']['color'] : NULL
-			),
 		);
 
 		$this->render_control( $key, apply_filters( 'layerswp_button_colors_component_args', $args, $key, $this->type, $this->widget, $this->values ) );

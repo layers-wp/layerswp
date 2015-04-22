@@ -25,6 +25,7 @@ New color controls and much smarter handling of text colors, plus a brand new La
 * **Enhancement** - Added filters to the Layers sidebar classes
 * **Enhancement** - Improved class handling in Layers widgets, each widget now has a much neater way of creating widget container classes
 * **Fix** - Added better customizer default handling via the `layers_customizer_control_defaults` hook
+* **Fix** - Logo Center with no menu no longer breaks
 * **Fix** - Payment method block alignment no longer has a margin on the left
 * **Fix** - Pagination location on the post widget
 * **Fix** - Clicking the canvas in the customizer now closes widgets using the customizer API

@@ -917,6 +917,7 @@ if( !function_exists( 'layers_inline_styles' ) ) {
 		}
 		elseif ( 1 == func_num_args() ) {
 			// layers_inline_styles( array( 'selectors' => array( '.element' ), 'css' => array( 'color' => '#FFF' ) ) );
+			// layers_inline_styles( '.element { color: #FFF; }' );
 			$container_id = ''; $type = 'css'; $args = $arg1;
 		}
 
@@ -1038,15 +1039,22 @@ if( !function_exists( 'layers_inline_styles' ) ) {
 			case 'css' :
 			default :
 
-				if ( isset( $args['css'] ) ) {
-					if ( is_array( $args['css'] ) ){
-						foreach ( $args['css'] as $css_atribute => $css_value ) {
-							$css .= "$css_atribute: $css_value;";
+				if ( is_array( $args ) ){
+					
+					if ( isset( $args['css'] ) ) {
+						if ( is_array( $args['css'] ) ){
+							foreach ( $args['css'] as $css_atribute => $css_value ) {
+								$css .= "$css_atribute: $css_value;";
+							}
+						}
+						else {
+							$css .= $args['css'];
 						}
 					}
-					else {
-						$css .= $args['css'];
-					}
+				}
+				else if ( is_string( $args ) ){
+					
+					$css .= $args;
 				}
 
 			break;

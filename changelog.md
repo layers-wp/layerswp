@@ -1,6 +1,15 @@
 # Layers Changelog
 
 =======
+## 1.1.1
+### 23 April 2015
+
+New color controls and much smarter handling of text colors, plus a brand new Layers Dashboard!
+
+* **Tweak** - Dashboard edit
+* **Fix** - Custom font variants now load correctly
+
+=======
 ## 1.1.0
 ### 22 April 2015
 

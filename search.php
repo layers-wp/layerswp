@@ -6,8 +6,9 @@
  * @since Layers 1.0.0
  */
 
-get_header(); ?>
-<?php get_template_part( 'partials/header' , 'page-title' ); ?>
+get_header();
+
+get_template_part( 'partials/header' , 'page-title' ); ?>
 <section <?php post_class( 'content-main archive clearfix' ); ?>>
 	<?php get_sidebar( 'left' ); ?>
 

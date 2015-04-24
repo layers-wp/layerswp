@@ -201,6 +201,23 @@ class Layers_Form_Elements {
 				</select>
 			<?php break;
 			/**
+			* Multi select boxes
+			*/
+			case 'multi-select' :
+				// Force the selection to be an array
+				$select_values =  (array) $input->value; ?>
+				<select size="1" <?php echo implode ( ' ' , $input_props ); ?> multiple="multiple">
+					<?php if( NULL != $input->placeholder ) { ?>
+						<option value=''><?php echo esc_html( $input->placeholder ); ?></option>
+					<?php } // if NULL != placeholder ?>
+					<?php foreach( $input->options as $value => $label ) { ?>
+						<option value='<?php echo esc_attr( $value ); ?>' <?php if( is_array( $select_values ) && in_array( $value, $select_values ) ) echo 'selected=selected'; ?>>
+							<?php echo esc_html( $label ); ?>
+						</option>
+					<?php } // foreach options ?>
+				</select>
+			<?php break;
+			/**
 			* Select 'icons' such as the column selector
 			*/
 			case 'select-icons' : ?>

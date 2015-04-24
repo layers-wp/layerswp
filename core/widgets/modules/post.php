@@ -161,6 +161,7 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 
 			// Do the special taxonomy array()
 			if( isset( $widget['category'] ) && '' != $widget['category'] && 0 != $widget['category'] ){
+
 				$query_args['tax_query'] = array(
 					array(
 						"taxonomy" => $this->taxonomy,
@@ -307,6 +308,9 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 		*/
 
 		function update($new_instance, $old_instance) {
+
+			$old_instance[ 'category' ] = $new_instance[ 'category' ];
+
 			if ( isset( $this->checkboxes ) ) {
 				foreach( $this->checkboxes as $cb ) {
 					if( isset( $old_instance[ $cb ] ) ) {
@@ -493,7 +497,7 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 							); ?>
 						</p>
 						<?php // Grab the terms as an array and loop 'em to generate the $options for the input
-						$terms = get_terms( $this->taxonomy );
+						$terms = get_terms( $this->taxonomy , array( 'hide_empty' => false ) );
 						if( !is_wp_error( $terms ) ) { ?>
 							<p class="layers-form-item">
 								<label for="<?php echo $this->get_field_id( 'category' ); ?>"><?php echo __( 'Category to Display' , 'layerswp' ); ?></label>
@@ -501,12 +505,12 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 								foreach ( $terms as $t ) $category_options[ $t->term_id ] = $t->name;
 								echo $this->form_elements()->input(
 									array(
-										'type' => 'select',
-										'name' => $this->get_field_name( 'category' ) ,
+										'type' => 'multi-select',
+										'name' => $this->get_field_name( 'category' ) . '[]' ,
 										'id' => $this->get_field_id( 'category' ) ,
 										'placeholder' => __( 'Select a Category' , 'layerswp' ),
 										'value' => ( isset( $category ) ) ? $category : NULL ,
-										'options' => $category_options
+										'options' => $category_options,
 									)
 								); ?>
 							</p>

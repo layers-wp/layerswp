@@ -487,10 +487,12 @@ add_action( 'wp_enqueue_scripts', 'layers_apply_customizer_general_styles_genera
  *
  * @param array $class Existing array of classes passed by the filter.
  */
-function layers_add_invert_class( $classes ) {
-	$classes[] = 'invert';
+if( !function_exists( 'layers_add_invert_class' ) ) {
+	function layers_add_invert_class( $classes ) {
+		$classes[] = 'invert';
 
-	return $classes;
+		return $classes;
+	}
 }
 
 /**
@@ -501,10 +503,12 @@ function layers_add_invert_class( $classes ) {
  *
  * @return bool Whether the color was dark, hook exists, invert was hooked successfuly
  */
-function layers_maybe_set_invert( $color, $hook ) {
-	
-	if ( 'dark' == layers_is_light_or_dark( $color ) ){
-		return add_filter( $hook, 'layers_add_invert_class' );
+if( !function_exists( 'layers_maybe_set_invert' ) ) {
+	function layers_maybe_set_invert( $color, $hook ) {
+		
+		if ( 'dark' == layers_is_light_or_dark( $color ) ){
+			return add_filter( $hook, 'layers_add_invert_class' );
+		}
 	}
 }
 

@@ -494,6 +494,21 @@ function layers_add_invert_class( $classes ) {
 }
 
 /**
+ * Helper that checks if a color is light or dark then hooks an invert filter to a get_class.
+ *
+ * @param string $color Hex color to check aginst.
+ * @param string $hook  Name of the to add the 'invert' to if the color is dark.
+ *
+ * @return bool Whether the color was dark, hook exists, invert was hooked successfuly
+ */
+function layers_maybe_set_invert( $color, $hook ) {
+	
+	if ( 'dark' == layers_is_light_or_dark( $color ) ){
+		return add_filter( $hook, 'layers_add_invert_class' );
+	}
+}
+
+/**
  * Retrieve the classes for the header element as an array.
  *
  * @param string|array $class One or more classes to add to the class list.

@@ -9,6 +9,8 @@
  * Contents
  * 1.a - Site Setup Dismiss button
  * 1.b - Site Setup Save & proceed button
+ * 1.c - Site Setup Completion Message
+ * 2 - Dashboard Feeds
  *
  * Author: Obox Themes
  * Author URI: http://www.oboxthemes.com/
@@ -73,8 +75,6 @@ jQuery(function($) {
                 },
                 function(data){
 
-                    console.log( data );
-
                     $results = $.parseJSON( data );
 
                     $container.hide().next().hide().removeClass( 'layers-hide' ).fadeIn( 250 );
@@ -86,9 +86,8 @@ jQuery(function($) {
     });
 
     /**
-    * 1.b - Site Setup Completion Message
+    * 1.c - Site Setup Completion Message
     */
-
 
     function layers_check_dashboard_setup_completion(){
 
@@ -98,6 +97,39 @@ jQuery(function($) {
             $( '.layers-site-setup-panel' ).hide();
         }
     }
+
+    /**
+    * 2 - Dashboard Feeds
+    */
+
+
+    $( '[data-layers-feed]' ).each( function(){
+
+        //Hi Mom!
+        var $feed_container = $(this);
+
+        $.post(
+                ajaxurl,
+                {
+                    action: 'layers_dashboard_load_feed',
+                    feed: $feed_container.data( 'layers-feed' ),
+                    count: $feed_container.data( 'layers-feed-count' ),
+                    layers_dashboard_feed_nonce: layers_dashboard_params.layers_dashboard_feed_nonce
+
+                },
+                function(data){
+
+                    $results = $.parseJSON( data );
+
+                    if( true == $results.success ){
+
+                        $feed_container.find( '[data-loading]' ).remove();
+
+                        $feed_container.prepend( $results.feed );
+                    }
+                }
+            ); // $.post
+    });
 
 });
 

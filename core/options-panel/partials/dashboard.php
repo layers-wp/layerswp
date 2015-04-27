@@ -128,6 +128,26 @@ $theme_info = wp_get_theme( 'layerswp' ); ?>
 				</div>
 
 				<div class="layers-column layers-span-6">
+					<div class="layers-panel layers-push-bottom">
+						<div class="layers-section-title layers-content layers-tiny">
+							<h3 class="layers-heading"><?php _e( 'Themes &amp; Extensions' , 'layerswp' ); ?></h3>
+							<p class="layers-excerpt">
+								<?php _e( 'Looking for a theme or plugin to achieve something unique with your website?
+									Browse the massive Layers Marketplace on Envato and take your site to the next level.' , 'layerswp' ); ?>
+							</p>
+						</div>
+						<div class="layers-button-well">
+							<a href="http://themeforest.net/attributes/framework/Layers%20WP" target="_blank" class="layers-button btn-primary">
+								<?php _e( 'Themes' , 'layerswp' ); ?>
+							</a>
+							<a href="http://codecanyon.net/search?term=skins+layers+wp+style+kits" target="_blank" class="layers-button btn-primary">
+								<?php _e( 'Style Kits' , 'layerswp' ); ?>
+							</a>
+							<a href="http://codecanyon.net/attributes/compatible-with/Layers%20WP" target="_blank" class="layers-button btn-primary">
+								<?php _e( 'Extensions' , 'layerswp' ); ?>
+							</a>
+						</div>
+					</div>
 					<?php if( 0 < count( layers_get_plugins() ) ) { ?>
 						<div class="layers-panel">
 							<div class="layers-panel-title">
@@ -157,35 +177,25 @@ $theme_info = wp_get_theme( 'layerswp' ); ?>
 				</div>
 				<div class="layers-column layers-span-3">
 
-					<?php /*
-					* Grab the Quick Help Feed
-					*/
-					$docs = $this->get_layers_feed( 'docs', 10 );
-
-					if( 0 < count( $docs ) && $docs ) { ?>
-
-						<div class="layers-panel layers-push-bottom">
-							<div class="layers-panel-title">
-								<h4 class="layers-heading">
-									<a href="http://docs.layerswp.com/">
-										<?php _e( 'Quick Help' , 'layerswp' ); ?>
-									</a>
-								</h4>
-							</div>
-							<ul class="layers-list layers-extensions">
-								<?php foreach( $docs as $docs_id => $docs_item ) { ?>
-									<li>
-										<a class="layers-page-list-title" target="_blank" href="<?php echo $docs_item[ 'link' ]; ?>"><?php echo $docs_item[ 'title' ]; ?></a>
-									</li>
-								<?php } ?>
-							</ul>
-							<div class="layers-button-well">
-								<a class="layers-button" href="http://docs.layerswp.com/" target="_blank">
-									<?php _e( 'Get more useful tips' , 'layerswp' ); ?>
+					<div class="layers-panel layers-push-bottom">
+						<div class="layers-panel-title">
+							<h4 class="layers-heading">
+								<a href="http://docs.layerswp.com/">
+									<?php _e( 'Quick Help' , 'layerswp' ); ?>
 								</a>
-							</div>
+							</h4>
 						</div>
-					<?php } ?>
+						<ul class="layers-list layers-extensions" data-layers-feed="docs" data-laters-feed-count="5">
+							<li data-loading="1">
+								<?php _e( "Loading feed..." , 'layerswp' ); ?>
+							</li>
+						</ul>
+						<div class="layers-button-well">
+							<a class="layers-button" href="http://docs.layerswp.com/" target="_blank">
+								<?php _e( 'Get more useful tips' , 'layerswp' ); ?>
+							</a>
+						</div>
+					</div>
 
 					<div class="layers-panel layers-push-bottom">
 						<div class="layers-media layers-image-left layers-content layers-no-push-bottom">
@@ -210,65 +220,42 @@ $theme_info = wp_get_theme( 'layerswp' ); ?>
 		</div>
 	</div>
 </section>
+<section class="layers-area-wrapper">
+	<div class="layers-row layers-well-alt layers-content-large">
 
-<?php /*
-* Grab the News Feed
-*/
-$news = $this->get_layers_feed( 'news' );
+		<div class="layers-section-title layers-small">
+			<h3 class="layers-heading"><?php _e( 'Layers News' , 'layerswp' ); ?></h3>
+		</div>
 
-if( 0 < count( $news ) && $news ) { ?>
-	<section class="layers-area-wrapper">
-		<div class="layers-row layers-well-alt layers-content-large">
-
-			<div class="layers-section-title layers-small">
-				<h3 class="layers-heading"><?php _e( 'Layers News' , 'layerswp' ); ?></h3>
-			</div>
-
-			<div class="layers-row">
-				<?php foreach( $news as $news_id => $news_item ) { ?>
-					<div class="layers-column layers-span-3">
-						<div class="layers-panel">
-							<div class="layers-content">
-								<div class="layers-section-title layers-tiny">
-									<h4 class="layers-heading">
-										<a href="<?php echo $news_item[ 'link' ]; ?>">
-											<?php echo $news_item[ 'title' ]; ?>
-										</a>
-									</h4>
-								</div>
-								<div class="layers-excerpt">
-									<?php echo $news_item[ 'excerpt' ]; ?>
-								</div>
-							</div>
-							<div class="layers-button-well">
-								<a href="<?php echo $news_item[ 'link' ]; ?>" class="layers-button" target="_blank">
-									<?php _e( 'Continue Reading' , 'layerswp' ); ?>
-								</a>
-							</div>
-						</div>
-
-					</div>
-				<?php } ?>
-				<div class="layers-column layers-span-3">
-					<div class="layers-panel layers-content clearfix">
+		<div class="layers-row" data-layers-feed="news" data-layers-feed-count="3">
+			<div class="layers-column layers-span-3" data-loading="1">
+				<div class="layers-panel">
+					<div class="layers-content">
 						<div class="layers-section-title layers-tiny">
-							<h3 class="layers-heading"><?php _e( 'Stay in the Loop' , 'layerswp' ); ?></h3>
-							<p class="layers-excerpt">
-								<?php _e( 'Sign up to our monthly newsletter to find out when we launch new features, products.' , 'layerswp' ); ?>
-							</p>
+							<h4 class="layers-heading"><?php _e( 'Loading Layers News' , 'layerswp' ); ?></h4>
 						</div>
-						<form action="http://oboxdesign.createsend.com/t/r/s/ittddii/" method="post" id="subForm">
-							<div class="layers-form-item layers-form-inline">
-								<label for="fieldEmail"><?php _e( 'Email Address' , 'layerswp' ); ?></label>
-								<input id="fieldEmail" name="cm-ittddii-ittddii" type="email" placeholder="john@smith.com" />
-								<button class="layers-button btn-primary" type="submit">Subscribe</button>
-							</div>
-						</form>
 					</div>
 				</div>
 			</div>
+			<div class="layers-column layers-span-3">
+				<div class="layers-panel layers-content clearfix">
+					<div class="layers-section-title layers-tiny">
+						<h3 class="layers-heading"><?php _e( 'Stay in the Loop' , 'layerswp' ); ?></h3>
+						<p class="layers-excerpt">
+							<?php _e( 'Sign up to our monthly newsletter to find out when we launch new features, products.' , 'layerswp' ); ?>
+						</p>
+					</div>
+					<form action="http://oboxdesign.createsend.com/t/r/s/ittddii/" method="post" id="subForm">
+						<div class="layers-form-item layers-form-inline">
+							<label for="fieldEmail"><?php _e( 'Email Address' , 'layerswp' ); ?></label>
+							<input id="fieldEmail" name="cm-ittddii-ittddii" type="email" placeholder="john@smith.com" />
+							<button class="layers-button btn-primary" type="submit">Subscribe</button>
+						</div>
+					</form>
+				</div>
+			</div>
 		</div>
-	</section>
-<?php } ?>
+	</div>
+</section>
 
 <?php $this->footer(); ?>

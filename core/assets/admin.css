@@ -276,13 +276,36 @@ div[id*='layers-widget'] .widget-control-actions .widget-control-remove{
 div[id*='layers-widget'] .widget-control-actions .widget-control-remove:hover{
     background-color: #F2413D;
 }
-
 div[id*='layers-widget'] .spinner{
+    display: none;
     margin: 2px -3px 0 5px;
     background: url(images/spinner.gif) right no-repeat;
     background-size: 20px 20px;
     opacity: 1;
 }
+
+/*
+div[id*='layers-widget'] .widget-control-actions .alignleft {
+    float:right;
+}
+div[id*='layers-widget'] .widget-control-actions .alignright {
+    float:left;
+    margin-right: 6px;
+}
+div[id*='layers-widget'] .spinner{
+    display: inline-block;
+    margin: 2px -3px 0 5px;
+    background: url(images/spinner.gif) right no-repeat;
+    background-size: 20px 20px;
+    opacity: 0;
+    transform: translate(-20px, 0px);
+    transition: .3s ease-in-out;
+}
+.previewer-loading div[id*='layers-widget'] .spinner{
+    opacity:1;
+    transform: translate(0px, 0px);
+}
+*/
 
 /*---------------------------*/
 /*- CONTAINERS --------------*/
@@ -655,6 +678,11 @@ div[id*='layers-widget'] .spinner{
         height: 38px;
         margin: 0;
     }
+
+    .customize-control .layers-form-item select[multiple]{
+        min-height: 90px;
+    }
+
     .customize-control .layers-textarea{
         width: 100%;
         padding: 8px;
@@ -2563,6 +2591,7 @@ input[type=radio]:checked + .layers-settings-icon span{
         .layers-onboard-slide.layers-onboard-slide-inactive{
             visibility: none;
             opacity: 0;
+            z-index: 1;
             transform: translateX(20px);
             transform: scale(0.95);
         }

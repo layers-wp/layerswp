@@ -34,7 +34,7 @@ if( !class_exists( 'Layers_Contact_Widget' ) ) {
 				);
 
 	 		/* Widget settings. */
-			$widget_ops = array( 'classname' => 'obox-layers-' . $this->widget_id .'-widget', 'description' => __( 'This widget is used to display your ') . $this->widget_title . '.' );
+			$widget_ops = array( 'classname' => 'obox-layers-' . $this->widget_id .'-widget', 'description' => __( 'This widget is used to display your ', 'layerswp' ) . $this->widget_title . '.' );
 
 			/* Widget control settings. */
 			$control_ops = array( 'width' => LAYERS_WIDGET_WIDTH_SMALL, 'height' => NULL, 'id_base' => LAYERS_THEME_SLUG . '-widget-' . $this->widget_id );
@@ -103,8 +103,11 @@ if( !class_exists( 'Layers_Contact_Widget' ) ) {
 			} else {
 				$form_class = 'span-12';
 			}
-
 			$mapwidth = 'span-12';
+
+			// Set Display Variables
+			$show_address_or_contactform = ( ( '' != $widget['address_shown'] && isset( $widget['show_address'] ) ) || ( $this->check_and_return( $widget, 'contact_form' ) && $this->check_and_return( $widget, 'show_contact_form' ) ) ) ? TRUE : FALSE ;
+			$show_title_or_excerpt = ( '' != $widget['title'] && '' != $widget['excerpt'] ) ? TRUE : FALSE ;
 
 			/**
 			* Generate the widget container class
@@ -113,10 +116,11 @@ if( !class_exists( 'Layers_Contact_Widget' ) ) {
 			$widget_container_class[] = 'widget row content-vertical-massive layers-contact-widget';
 			$widget_container_class[] = $this->check_and_return( $widget , 'design', 'advanced', 'customclass' );
 			$widget_container_class[] = $this->get_widget_spacing_class( $widget );
+			if( !$show_title_or_excerpt && !$show_address_or_contactform  ) $widget_container_class[] = 'no-inset-top no-inset-bottom';
 			$widget_container_class = implode( ' ', apply_filters( 'layers_contact_widget_container_class' , $widget_container_class ) ); ?>
 
 			<section class="<?php echo $widget_container_class; ?>" id="<?php echo $widget_id; ?>">
-				<?php if( '' != $this->check_and_return( $widget , 'title' ) ||'' != $this->check_and_return( $widget , 'excerpt' ) ) { ?>
+				<?php if( $show_title_or_excerpt ) { ?>
 					<div class="container clearfix">
 						<?php /**
 						* Generate the Section Title Classes
@@ -147,7 +151,7 @@ if( !class_exists( 'Layers_Contact_Widget' ) ) {
 				$widget_body_class[] = ( $this->check_and_return( $widget, 'design', 'background' , 'color' ) && 'dark' == layers_is_light_or_dark( $this->check_and_return( $widget, 'design', 'background' , 'color' ) ) ? 'invert' : '' );
 				$widget_body_class = implode( ' ', $widget_body_class ); ?>
 				<div class="<?php echo $widget_body_class; ?>">
-					<?php if( ( '' != $widget['address_shown'] && isset( $widget['show_address'] ) ) || ( $this->check_and_return( $widget, 'contact_form' ) && $this->check_and_return( $widget, 'show_contact_form' ) ) ) {?>
+					<?php if( $show_address_or_contactform ) {?>
 						<div class="column <?php echo $form_class; ?> form content">
 							<?php if( $this->check_and_return( $widget, 'show_address' ) ) { ?>
 								<address class="copy">

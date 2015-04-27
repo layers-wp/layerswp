@@ -198,7 +198,7 @@ $theme_info = wp_get_theme( 'layerswp' ); ?>
 									<?php _e( sprintf( 'Get involved with the community of this awesome project
 									and contribute enhancements, features, and bug fixes to the core code of
 									<a href="%s" target="_blank">Layers on GitHub</a>. Check out the Issues tab for ways to help!',
-									'http://github.com/Obox/layerswp/' ) , 'layerswp' ); ?>
+									'http://docs.layerswp.com/contributing-to-layers/' ) , 'layerswp' ); ?>
 								</p>
 							</div>
 						</div>

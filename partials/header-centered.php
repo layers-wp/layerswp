@@ -1,5 +1,7 @@
 <div class="column inline-left-nav">
-    <?php wp_nav_menu( array( 'theme_location' => LAYERS_THEME_SLUG . '-primary' ,'container' => 'nav', 'container_class' => 'nav nav-horizontal', 'fallback_cb' => 'layers_menu_fallback' ) ); ?>
+    <nav class="nav nav-horizontal">
+        <?php wp_nav_menu( array( 'theme_location' => LAYERS_THEME_SLUG . '-primary' ,'container' => FALSE, 'fallback_cb' => 'layers_menu_fallback' )); ?>
+    </nav>
 </div>
 
 <div class="column inline-right-nav">

@@ -10,7 +10,7 @@
             </h3>
         </div>
 
-        <div class="row comment-list">
+        <div <?php layers_wrapper_class( 'comment_list', 'row comment-list' ); ?>>
             <?php wp_list_comments( array( 'callback' => 'layers_comment', 'style' => 'div' ) ); ?>
         </div><!-- .commentlist -->
 

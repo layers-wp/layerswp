@@ -135,7 +135,7 @@ strong{
     font-weight: 700;
 }
 small{
-    color: #8f8f8f;
+    color: rgba(0, 0, 0, 0.5);
     font-size: 1.2rem;
 }
 a{
@@ -2277,13 +2277,19 @@ object{
         color: #fff;
     }
     .invert small{
-        color: #ccc;
+        color: rgba(255, 255, 255, 0.7);
     }
     .invert a{
         color: #fff;
     }
     .invert a:hover{
         color: #fff;
+    }
+
+    .invert .copy a:not(.button),
+    .invert .story a:not(.button) {
+        color: rgba(255, 255, 255, 0.7);
+        border-bottom-color: rgba(255, 255, 255, 0.7);
     }
 
     .invert blockquote{
@@ -2443,6 +2449,12 @@ object{
             background-color: #009EEC;
             color: #fff;
         }
+    
+    /*---------------------------*/
+    /*- INVERT COMMENTS ---------*/
+    .invert .comment {
+        color: rgba(255, 255, 255, 0.75);
+    }
 
     /*---------------------------*/
     /*- FOOTER INVERT -----------*/

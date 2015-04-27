@@ -15,7 +15,7 @@ get_header(); ?>
         <?php /**
         * Maybe show the left sidebar
         */
-        layers_maybe_get_sidebar( 'left-woocommerce-sidebar', 'column pull-left sidebar span-3' );?>
+        layers_maybe_get_sidebar( 'left-woocommerce-sidebar', implode( ' ', layers_get_wrapper_class( 'body_sidebar', 'column pull-left sidebar span-3' ) ) ); ?>
         <?php if ( have_posts()) : ?>
             <section <?php layers_center_column_class(); ?>>
 
@@ -42,6 +42,6 @@ get_header(); ?>
         <?php /**
         * Maybe show the right sidebar
         */
-        layers_maybe_get_sidebar( 'right-woocommerce-sidebar', 'column pull-right sidebar span-3 no-gutter' ); ?>
+        layers_maybe_get_sidebar( 'right-woocommerce-sidebar', implode( ' ', layers_get_wrapper_class( 'body_sidebar', 'column pull-right sidebar span-3 no-gutter' ) ) ); ?>
 </section>
 <?php get_footer(); ?>

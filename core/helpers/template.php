@@ -304,8 +304,10 @@ if( !function_exists( 'layers_get_page_title' ) ) {
 			$title_array['title'] = __( 'Search' , 'layerswp' );
 			$title_array['excerpt'] = get_search_query();
 		} elseif( is_tag() ) {
-			$title_array['title'] = single_tag_title();
-		} elseif(!is_page() && is_category() ) {
+			$tags = get_the_category();
+			$title_array['title'] = $tags[0]->name;
+			$title_array['excerpt'] = $tags[0]->description;
+		} elseif( !is_page() && is_category() ) {
 			$category = get_the_category();
 			$title_array['title'] = $category[0]->name;
 			$title_array['excerpt'] = $category[0]->description;
@@ -373,6 +375,7 @@ if( !function_exists( 'layers_apply_customizer_styles' ) ) {
 		*/
 		$main_color = layers_get_theme_mod( 'site-accent-color' , TRUE );
 		$header_color = layers_get_theme_mod( 'header-background-color', FALSE );
+		$header_color_no_default = layers_get_theme_mod( 'header-background-color', TRUE );
 		$footer_color = layers_get_theme_mod( 'footer-background-color', FALSE );
 
 		/**
@@ -383,69 +386,76 @@ if( !function_exists( 'layers_apply_customizer_styles' ) ) {
 		$bg_opacity = ( layers_get_theme_mod( 'header-overlay') ) ? .5 : 1 ;
 
 		// Apply the BG Color
-		layers_inline_styles( '.header-site, .header-site.header-sticky', 'css', array(
-			'css' => 'background-color: rgba(' . implode( ', ' , layers_hex2rgb( $header_color ) ) . ', ' . $bg_opacity . '); '
-		));
+		if( '' != $header_color ) {
+			layers_inline_styles( '.header-site, .header-site.header-sticky', 'css', array(
+				'css' => 'background-color: rgba(' . implode( ', ' , layers_hex2rgb( $header_color ) ) . ', ' . $bg_opacity . '); '
+			));
 
-		// Add Invert if the color is not light
-		if ( 'light' != layers_is_light_or_dark( $header_color ) ){
-			add_filter( 'layers_header_class', 'layers_add_invert_class' );
+			// Add Invert if the color is not light
+			if ( 'dark' == layers_is_light_or_dark( $header_color ) ){
+				add_filter( 'layers_header_class', 'layers_add_invert_class' );
+			}
 		}
 
 		/**
 		* Footer Colors
 		*/
 
-		// Apply the BG Color
-		layers_inline_styles( '.footer-site', 'background', array(
-			'background' => array(
-				'color' => $footer_color,
-			),
-		) );
+		if( '' != $footer_color ) {
+			// Apply the BG Color
+			layers_inline_styles( '.footer-site', 'background', array(
+				'background' => array(
+					'color' => $footer_color,
+				),
+			) );
 
-		// Add Invert if the color is dark
-		if ( 'dark' == layers_is_light_or_dark( $footer_color ) ){
-			add_filter( 'layers_footer_site_class', 'layers_add_invert_class' );
+			// Add Invert if the color is dark
+			if ( 'dark' == layers_is_light_or_dark( $footer_color ) ){
+				add_filter( 'layers_footer_site_class', 'layers_add_invert_class' );
+			}
 		}
 
 		/**
 		* General Colors
 		*/
 
-		// Title Container
-		layers_inline_styles( '.title-container', 'background', array( 'background' => array( 'color' => $header_color ) ) );
-		if ( 'dark' == layers_is_light_or_dark( $header_color ) ){
-			add_filter( 'layers_title_container_class', 'layers_add_invert_class' );
+		if( '' != $header_color ) {
+			// Title Container
+			layers_inline_styles( '.title-container', 'background', array( 'background' => array( 'color' => $header_color ) ) );
+			if ( 'dark' == layers_is_light_or_dark( $header_color ) ){
+				add_filter( 'layers_title_container_class', 'layers_add_invert_class' );
+			}
 		}
 
-		// Buttons
-		layers_inline_button_styles( '', 'button', array(
-			'selectors' => array(
-				'input[type="button"]', 'input[type="submit"]', 'button', '.button', '.form-submit input[type="submit"]',
-				// Inverts
-				'.invert input[type="button"]', '.invert input[type="submit"]', '.invert button', '.invert .button', '.invert .form-submit input[type="submit"]',
-			),
-			'button' => array(
-				'background-color' => $main_color,
-			)
-		));
+		if( '' != $main_color ) {
+			// Buttons
+			layers_inline_button_styles( '', 'button', array(
+				'selectors' => array(
+					'input[type="button"]', 'input[type="submit"]', 'button', '.button', '.form-submit input[type="submit"]',
+					// Inverts
+					'.invert input[type="button"]', '.invert input[type="submit"]', '.invert button', '.invert .button', '.invert .form-submit input[type="submit"]',
+				),
+				'button' => array(
+					'background-color' => $main_color,
+				)
+			));
 
-		// Content - Links
-		layers_inline_styles( array(
-			'selectors' => array( '.copy a:not(.button)', '.story a:not(.button)' ),
-			'css' => array(
-				'color' => $main_color,
-				'border-bottom-color' => $main_color,
-			),
-		));
-		layers_inline_styles( array(
-			'selectors' => array( '.copy a:not(.button):hover', '.story a:not(.button):hover' ),
-			'css' => array(
-				'color' => layers_too_light_then_dark( $main_color ),
-				'border-bottom-color' => layers_too_light_then_dark( $main_color ),
-			),
-		));
-
+			// Content - Links
+			layers_inline_styles( array(
+				'selectors' => array( '.copy a:not(.button)', '.story a:not(.button)' ),
+				'css' => array(
+					'color' => $main_color,
+					'border-bottom-color' => $main_color,
+				),
+			));
+			layers_inline_styles( array(
+				'selectors' => array( '.copy a:not(.button):hover', '.story a:not(.button):hover' ),
+				'css' => array(
+					'color' => layers_too_light_then_dark( $main_color ),
+					'border-bottom-color' => layers_too_light_then_dark( $main_color ),
+				),
+			));
+		}
 	}
 }
 add_action( 'wp_enqueue_scripts', 'layers_apply_customizer_styles', 100 );
@@ -477,10 +487,29 @@ add_action( 'wp_enqueue_scripts', 'layers_apply_customizer_general_styles_genera
  *
  * @param array $class Existing array of classes passed by the filter.
  */
-function layers_add_invert_class( $classes ) {
-	$classes[] = 'invert';
+if( !function_exists( 'layers_add_invert_class' ) ) {
+	function layers_add_invert_class( $classes ) {
+		$classes[] = 'invert';
 
-	return $classes;
+		return $classes;
+	}
+}
+
+/**
+ * Helper that checks if a color is light or dark then hooks an invert filter to a get_class.
+ *
+ * @param string $color Hex color to check aginst.
+ * @param string $hook  Name of the to add the 'invert' to if the color is dark.
+ *
+ * @return bool Whether the color was dark, hook exists, invert was hooked successfuly
+ */
+if( !function_exists( 'layers_maybe_set_invert' ) ) {
+	function layers_maybe_set_invert( $color, $hook ) {
+		
+		if ( 'dark' == layers_is_light_or_dark( $color ) ){
+			return add_filter( $hook, 'layers_add_invert_class' );
+		}
+	}
 }
 
 /**
@@ -906,6 +935,7 @@ if( !function_exists( 'layers_inline_styles' ) ) {
 		}
 		elseif ( 1 == func_num_args() ) {
 			// layers_inline_styles( array( 'selectors' => array( '.element' ), 'css' => array( 'color' => '#FFF' ) ) );
+			// layers_inline_styles( '.element { color: #FFF; }' );
 			$container_id = ''; $type = 'css'; $args = $arg1;
 		}
 
@@ -1027,15 +1057,22 @@ if( !function_exists( 'layers_inline_styles' ) ) {
 			case 'css' :
 			default :
 
-				if ( isset( $args['css'] ) ) {
-					if ( is_array( $args['css'] ) ){
-						foreach ( $args['css'] as $css_atribute => $css_value ) {
-							$css .= "$css_atribute: $css_value;";
+				if ( is_array( $args ) ){
+					
+					if ( isset( $args['css'] ) ) {
+						if ( is_array( $args['css'] ) ){
+							foreach ( $args['css'] as $css_atribute => $css_value ) {
+								$css .= "$css_atribute: $css_value;";
+							}
+						}
+						else {
+							$css .= $args['css'];
 						}
 					}
-					else {
-						$css .= $args['css'];
-					}
+				}
+				else if ( is_string( $args ) ){
+					
+					$css .= $args;
 				}
 
 			break;
@@ -1081,6 +1118,20 @@ if( !function_exists( 'layers_inline_styles' ) ) {
 */
 if( !function_exists( 'layers_inline_button_styles' ) ) {
 	function layers_inline_button_styles( $container_id = NULL, $type = 'background' , $args = array() ){
+
+		// Auto text color based on background color
+		if( isset( $args[ 'button' ][ 'background-color' ] ) && NULL !== layers_is_light_or_dark( $args[ 'button' ][ 'background-color' ] ) ){
+
+			// temporarily darken the background color, so we only switch text color if very light
+			$background_darker = layers_hex_darker( $args[ 'button' ][ 'background-color' ], 28 );
+
+			if ( 'light' == layers_is_light_or_dark( $background_darker ) ) {
+				$args['button']['color'] = 'rgba(0,0,0,.85)';
+			}
+			else if ( 'dark' == layers_is_light_or_dark( $background_darker ) ) {
+				$args['button']['color'] = '#FFFFFF';
+			}
+		}
 
 		// Add styling for the standard colors
 		layers_inline_styles( $container_id, $type, $args );
@@ -1272,156 +1323,6 @@ if( !function_exists( 'layers_translate_image_ratios' ) ) {
 		return 'layers-' . $image_ratio;
 	}
 } // layers_get_header_class
-
-/**
- * Convert hex value to rgb array.
- *
- * @param	string	$hex
- * @return	array	implode(",", $rgb); returns the rgb values separated by commas
- */
-
-if(!function_exists('layers_hex2rgb') ) {
-	function layers_hex2rgb($hex) {
-	   $hex = str_replace("#", "", $hex);
-
-	   if(strlen($hex) == 3) {
-			$r = hexdec(substr($hex,0,1).substr($hex,0,1));
-			$g = hexdec(substr($hex,1,1).substr($hex,1,1));
-			$b = hexdec(substr($hex,2,1).substr($hex,2,1));
-	   } else {
-			$r = hexdec(substr($hex,0,2));
-			$g = hexdec(substr($hex,2,2));
-			$b = hexdec(substr($hex,4,2));
-	   }
-	   $rgb = array($r, $g, $b);
-
-	   return $rgb; // returns an array with the rgb values
-	}
-}
-
-if ( ! function_exists( 'layers_hex_darker' ) ) {
-	/**
-	 * Hex darker/lighter/contrast functions for colours
-	 *
-	 * @param mixed $color
-	 * @param int $factor (default: 30)
-	 * @return string
-	 */
-	function layers_hex_darker( $color, $factor = 30 ) {
-		$base  = layers_hex2rgb( $color );
-		$color = '#';
-		foreach ( $base as $k => $v ) {
-			$amount      = $v / 100;
-			$amount      = round( $amount * $factor );
-			$new_decimal = $v - $amount;
-			$new_hex_component = dechex( $new_decimal );
-			if ( strlen( $new_hex_component ) < 2 ) {
-				$new_hex_component = "0" . $new_hex_component;
-			}
-			$color .= $new_hex_component;
-		}
-		return $color;
-	}
-}
-if ( ! function_exists( 'layers_hex_lighter' ) ) {
-	/**
-	 * Hex darker/lighter/contrast functions for colours
-	 *
-	 * @param mixed $color
-	 * @param int $factor (default: 30)
-	 * @return string
-	 */
-	function layers_hex_lighter( $color, $factor = 30 ) {
-		$base  = layers_hex2rgb( $color );
-		$color = '#';
-		foreach ( $base as $k => $v ) {
-			$amount      = 255 - $v;
-			$amount      = $amount / 100;
-			$amount      = round( $amount * $factor );
-			$new_decimal = $v + $amount;
-			$new_hex_component = dechex( $new_decimal );
-			if ( strlen( $new_hex_component ) < 2 ) {
-				$new_hex_component = "0" . $new_hex_component;
-			}
-			$color .= $new_hex_component;
-		}
-		return $color;
-	}
-}
-
-/**
- * If the color that will be retuend is too light, then make it darker
- * Used sepecially for auto hover colors
- *
- * @param  string  $color
- * @param  string  $factor (default: 30)
- * @return string
- */
-
-if ( ! function_exists( 'layers_too_light_then_dark' ) ) {
-	/**
-	* Style Generator
-	*
-	* @param   string   $container_id   ID of the container if any
-	* @param   string   $type           Type of style to generate, background, color, text-shadow, border
-	* @param   array    $args			$args array
-	*/
-	function layers_too_light_then_dark( $color, $factor = 30 ) {
-
-		if ( '#ffffff' == layers_hex_lighter( $color, 96 ) ) {
-			$color = layers_hex_darker( $color, $factor / 3 );
-		}
-		else {
-			$color = layers_hex_lighter( $color, $factor );
-		}
-		return $color;
-	}
-}
-
-/**
- * Detect if we should use a light or dark colour on a background colour
- *
- * @param mixed $color
- * @param string $dark (default: '#000000')
- * @param string $light (default: '#FFFFFF')
- * @return string
- */
-
-if ( ! function_exists( 'layers_light_or_dark' ) ) {
-	function layers_light_or_dark( $color, $dark = '#000000', $light = '#FFFFFF' ) {
-
-		$hex = str_replace( '#', '', $color );
-
-		$c_r = hexdec( substr( $hex, 0, 2 ) );
-		$c_g = hexdec( substr( $hex, 2, 2 ) );
-		$c_b = hexdec( substr( $hex, 4, 2 ) );
-
-		$brightness = ( ( $c_r * 299 ) + ( $c_g * 587 ) + ( $c_b * 114 ) ) / 1000;
-
-		return $brightness > 155 ? $dark : $light;
-	}
-} // layers_light_or_dark
-
-/**
- * Detect if a color is light or dark
- *
- * @param string $color hex color eg #666666
- * @return string 'light' | 'dark'
- */
-if ( ! function_exists( 'layers_is_light_or_dark' ) ) {
-	function layers_is_light_or_dark( $color ) {
-
-		$hex = str_replace( '#', '', $color );
-
-		$c_r = hexdec( substr( $hex, 0, 2 ) );
-		$c_g = hexdec( substr( $hex, 2, 2 ) );
-		$c_b = hexdec( substr( $hex, 4, 2 ) );
-
-		$brightness = ( ( $c_r * 299 ) + ( $c_g * 587 ) + ( $c_b * 114 ) ) / 1000;
-
-		return ( $brightness > 155 ) ? 'light' : 'dark' ;
-	}
-}
 
 /**
  * Standard menu fallback

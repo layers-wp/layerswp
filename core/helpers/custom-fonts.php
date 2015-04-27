@@ -127,8 +127,10 @@ if ( ! function_exists( 'layers_get_google_font_options' ) ) {
 if ( ! function_exists( 'layers_get_google_font_variants' ) ) {
 	function layers_get_google_font_variants( $font, $variants = array() ) {
 		$chosen_variants = array();
+
 		if ( empty( $variants ) ) {
-			$layers_custom_fonts = ttfmake_get_google_fonts();
+
+			$layers_custom_fonts = layers_get_google_fonts();
 
 			if ( array_key_exists( $font, $layers_custom_fonts ) ) {
 				$variants = $layers_custom_fonts[ $font ]['variants'];
@@ -151,6 +153,8 @@ if ( ! function_exists( 'layers_get_google_font_variants' ) ) {
 		if ( in_array( '700', $variants ) ) {
 			$chosen_variants[] = '700';
 		}
+
+		$chosen_variants = array_merge( $chosen_variants, $variants );
 
 		return apply_filters( 'layers_font_variants', array_unique( $chosen_variants ), $font, $variants );
 	}

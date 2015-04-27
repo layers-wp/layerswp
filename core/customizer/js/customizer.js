@@ -41,7 +41,7 @@
 		init: function () {
 
 			var $that = this;
-			
+
 			/**
 			 * 1 - Page Builder Macro
 			 */
@@ -155,29 +155,30 @@
 
 				$description.find( 'a' ).attr( 'href' , $description.data( 'base-url' ) + $that.val() );
 			});
-			
+
 			/**
 			 * 4 - Customizer UX Enhancements
 			 *
 			 * Handle edit buttons and and other UI elemnts
 			 */
-			
+
 			// Edit widget buttons
 			this.preview.bind( 'layers-open-widget', function( data ) {
-				
+
 				// Get the widget form
 				var $widget_element = $( '#' + data.id );
-				
+
 				// Close widget form if expanded
 				if ( ! $widget_element.hasClass( 'expanded' ) ) {
 					$widget_element.find( '.widget-top' ).click();
 				}
 			});
-			
+
 			// Close all expanded widgets
 			this.preview.bind( 'layers-close-all-widgets', function( data ) {
-				
-				$( '.customize-control-widget_form.expanded' ).find( '.widget-top' ).click();
+
+				$( '.customize-control-widget_form.expanded' ).find( '.widget-inside' ).hide();
+				$( '.customize-control-widget_form.expanded' ).find( '.widget-control-close' ).click();
 			});
 		}
 	};

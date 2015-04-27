@@ -1,17 +1,52 @@
 # Layers Changelog
 
 =======
-## 1.0.9
-### ?? ??? 2015
+## 1.1.1
+### 23 April 2015
 
-??
+New color controls and much smarter handling of text colors, plus a brand new Layers Dashboard!
 
-* **Fix** - Added better customizer default handling via the `layers_customizer_control_defaults` hook
+* **Tweak** - Dashboard edit
+* **Fix** - Custom font variants now load correctly
+
+=======
+## 1.1.0
+### 22 April 2015
+
+New color controls and much smarter handling of text colors, plus a brand new Layers Dashboard!
+
+* **Enhancement** - New Dashboard! The Layers Dashboard now has quick setup links, a live documentation search, plugin lists and a news feed
+* **Enhancement** - Added column color support to the Post Widget
+* **Enhancement** - All Widgets now get intelligent text coloring which responds to the light or darkness of your background colors
+* **Enhancement** - Added button color selectors to the Post widget
+* **Enhancement** - Added support for the 'target' attribute to the button form type
+* **Enhancement** - Added .invert styling for headers
+* **Enhancement** - Added 'border' option to the 'layers_inline_styles' function
+* **Enhancement** - Added Site Accent color which affects all buttons and links
+* **Enhancement** - Builder pages now obey password protection
+* **Enhancement** - Slider now focusses on which ever slide you are busy editing
+* **Enhancement** - If there is only a map widget on the page, it will sit flush with the header
+* **Enhancement** - Improved support for WooCommerce price filter widget
+* **Enhancement** - Improved default color settings for child themers
+* **Enhancement** - Improved handling of 'layers_inline_styles()' which now uses 'func_num_args()'
+* **Enhancement** - Added new Button controller to the design bar which affects button background colors along with 'layers_inline_button_styles()'
+* **Enhancement** - Added more a dynamic class which handles the use of adding .invert to containers
+* **Enhancement** - Added filters to the Layers sidebar classes
+* **Enhancement** - Improved class handling in Layers widgets, each widget now has a much neater way of creating widget container classes
+* **Fix** - Added better customizer default handling via the 'layers_customizer_control_defaults' hook
+* **Fix** - Logo Center with no menu no longer breaks
 * **Fix** - Payment method block alignment no longer has a margin on the left
-* **Fix** - Fixed pagination location on the post widget
+* **Fix** - Pagination location on the post widget
+* **Fix** - Clicking the canvas in the customizer now closes widgets using the customizer API
 * **Fix** - Gutter option on all widgets with masonry active now works
-* **Fix** - Fixed .pull-right problem where adding it to a .column was not forcing float: right;
+* **Fix** - .pull-right problem where adding it to a .column was not forcing float: right;
 * **Fix** - .upsells now align properly on desktop and mobile
+* **Fix** - Tag archive pages
+* **Fix** - Layers pages set to password protected now require a password to view
+* **Fix** - Slider image-center + text right will now align all text correctly
+* **Fix** - Removing your logo no longer leaves a broken image
+* **Fix** - WooCommerce product tag archives now have the correct styling
+* **Fix** - Slider 'layout-full-screen' not working - if auto height is not checked then slider hard sets height which stops full-screen working
 * **Tweak** - Header cart background color has changed for a hash value to a transparent rgba background color for better handling of different header colors
 * **Tweak** - Improved spacing of the comment form block as well as a font-size decrease for "Leave a Reply"
 * **Tweak** - Gave copyright border-color rgba (same reason as header cart)
@@ -22,11 +57,10 @@
 * **Tweak** - Bread crumbs css is now based on RGBA for better handling of container background colors
 * **Tweak** - Bread crumbs css now included in .invert class
 * **Tweak** - Removed color from headings in .story and .copy as they are already declared as defaults at the top of the CSS
-* **Enhancement** - Added support for the 'target' attribute to the button form type
-* **Enhancement** - Added .invert styling for headers
-* **Enhancement** - Added 'border' option to the `layers_inline_styles` function
-* **Enhancement** - Builder pages now obey password protection
-* **Enhancement** - Slider now focusses on which ever slide you are busy editing
+* **Tweak** - All color settings (Header and Footer included) are now find under Site Settings > Colors
+* **Tweak** - Escaped 'add_query_arg()' as possible security flaw was recently identified
+* **Notice** - Layers 1.0.9 has full WordPress 4.2 compatability
+
 
 ## 1.0.8
 ### 02 April 2015

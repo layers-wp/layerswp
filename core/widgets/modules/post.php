@@ -309,8 +309,6 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 
 		function update($new_instance, $old_instance) {
 
-			$old_instance[ 'category' ] = $new_instance[ 'category' ];
-
 			if ( isset( $this->checkboxes ) ) {
 				foreach( $this->checkboxes as $cb ) {
 					if( isset( $old_instance[ $cb ] ) ) {
@@ -505,8 +503,8 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 								foreach ( $terms as $t ) $category_options[ $t->term_id ] = $t->name;
 								echo $this->form_elements()->input(
 									array(
-										'type' => 'multi-select',
-										'name' => $this->get_field_name( 'category' ) . '[]' ,
+										'type' => 'select',
+										'name' => $this->get_field_name( 'category' ) ,
 										'id' => $this->get_field_id( 'category' ) ,
 										'placeholder' => __( 'Select a Category' , 'layerswp' ),
 										'value' => ( isset( $category ) ) ? $category : NULL ,

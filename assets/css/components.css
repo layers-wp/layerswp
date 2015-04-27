@@ -716,15 +716,15 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 
 /*-------------------------------*/
-/*- INVERT COMPONENTS ----------*/
+/*- INVERT COMPONENTS -----------*/
 /*-------------------------------*/
 
-.invert .meta-info{
-    color: rgba(255, 255, 255, 0.65);
-}
-.invert .meta-info a{
-    color: rgba(255, 255, 255, 0.85);
-}
-.invert .meta-info a:hover{
-    color: rgba(255, 255, 255, 1);
-}
+    .invert .meta-info{
+        color: rgba(255, 255, 255, 0.65);
+    }
+    .invert .meta-info a{
+        color: rgba(255, 255, 255, 0.85);
+    }
+    .invert .meta-info a:hover{
+        color: rgba(255, 255, 255, 1);
+    }

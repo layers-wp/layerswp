@@ -1314,3 +1314,17 @@ p.stars span a:focus{
     }
 
 }
+
+/*-------------------------------*/
+/*- INVERT COMPONENTS -----------*/
+/*-------------------------------*/
+
+    .invert .amount{
+        color: rgba(255, 255, 255, 0.95);
+    }
+    .invert .price del{
+        color: rgba(255, 255, 255, 0.80);
+    }
+    .invert del .amount{
+        color: rgba(255, 255, 255, 0.80);
+    }

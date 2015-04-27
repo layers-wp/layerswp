@@ -2520,6 +2520,19 @@ input[type=radio]:checked + .layers-settings-icon span{
         .layers-page-edit-links a:hover{
             color: #2EA2CC;
         }
+        .layers-list cite{
+            padding: 1px 3px;
+            background: #eee;
+            border-radius: 3px;
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-style: normal;
+        }
+        .layers-list cite a{
+            text-decoration: none;
+            color: #595959;
+        }
 
     /*---------------------------*/
     /*- LAYERS ONBOARDING -------*/

@@ -1,6 +1,13 @@
 # Layers Changelog
 
 =======
+## 1.1.2
+### ? ? ?
+
+* **Tweak** - Comment avatars now 54px for better centering of Comment Name and Date
+* **Tweak** - WooCommerce pricing can now be inverted
+
+=======
 ## 1.1.1
 ### 23 April 2015
 

@@ -473,11 +473,9 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
         margin-top: 0;
         padding: 20px;
         background: rgba(0, 0, 0, 0.05);
-        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
     }
     .comment-list .comment .comment-respond{
         margin-top: 20px;
-        border-bottom: none;
     }
     .comment-reply-title{
         color: #323232;

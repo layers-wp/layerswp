@@ -58,10 +58,10 @@ jQuery(document).ready(function($){
 				$slideInput.val( $slide_guids.join() ).layers_trigger_change();
 			}
 		});
-	};
+	}
 
 	/**
-	* 2 - Banner Removal & Additions
+	* 2 - Slide Removal & Additions
 	*/
 
 	$(document).on( 'click' , 'ul[id^="slide_list_"] .icon-trash' , function(e){
@@ -165,7 +165,7 @@ jQuery(document).ready(function($){
 	});
 
 	/**
-	* 3 - Banner Title Update
+	* 3 - Slide Title Update
 	*/
 
 	$(document).on( 'keyup' , 'ul[id^="slide_list_"] input[id*="-title"]' , function(e){
@@ -185,7 +185,7 @@ jQuery(document).ready(function($){
 	});
 
 	/**
-	* 4 - Slider Focus
+	* 4 - Curreny Slide Focussing
 	*/
 	$(document).on( 'focus click' , 'ul[id^="slide_list_"] li a.layers-accordion-title', function(e){
 

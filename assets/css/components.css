@@ -450,7 +450,7 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
         clear: both;
     }
     .comment .comment{
-        margin-top: 30px;
+        margin-top: 20px;
     }
     .comment .comment:last-child{
         margin-bottom: 0;
@@ -468,6 +468,16 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
     .comment-respond{
         clear: both;
         margin-top: 6%;
+    }
+    .comment-list .comment-respond{
+        margin-top: 0;
+        padding: 20px;
+        background: rgba(0, 0, 0, 0.05);
+        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    }
+    .comment-list .comment .comment-respond{
+        margin-top: 20px;
+        border-bottom: none;
     }
     .comment-reply-title{
         color: #323232;

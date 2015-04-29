@@ -678,6 +678,11 @@ div[id*='layers-widget'] .spinner{
         height: 38px;
         margin: 0;
     }
+
+    .customize-control .layers-form-item select[multiple]{
+        min-height: 90px;
+    }
+
     .customize-control .layers-textarea{
         width: 100%;
         padding: 8px;

@@ -177,29 +177,6 @@ class Layers_Options_Panel {
 		return $menu;
 	}
 
-	public function get_layers_feed( $type = 'news', $count = 3 ){
-		if( 'news' == $type ) {
-			$feed_url = 'http://blog.oboxthemes.com/tag/layers/feed/';
-		} else if( 'docs' == $type ) {
-			$feed_url = 'http://docs.layerswp.com/keywords/layers-dashboard/feed/';
-		}
-
-		$feed = fetch_feed( $feed_url );
-
-		if( is_wp_error( $feed ) ) {
-			return false;
-		} else {
-			$news_items = $feed->get_items( 0, $count );
-
-			foreach( $news_items as $item ){
-				$feed_items[ $item->get_id() ][ 'title' ] = esc_attr( $item->get_title() );
-				$feed_items[ $item->get_id() ][ 'link' ] = $item->get_permalink();
-				$feed_items[ $item->get_id() ][ 'excerpt' ] = $item->get_description();
-			}
-			return $feed_items;
-		}
-	}
-
 	/**
 	* Get Layers Setup Options
 	*/
@@ -271,6 +248,15 @@ class Layers_Options_Panel {
 			),
 			LAYERS_VERSION
 		); // Sticky-Kit
+
+		wp_localize_script(
+			LAYERS_THEME_SLUG . '-dashboard' ,
+			"layers_dashboard_params",
+			array(
+				'layers_dashboard_feed_nonce' => wp_create_nonce( 'layers-dashboard-feed' ),
+				'layers_dashboard_dismiss_setup_step_nonce' => wp_create_nonce( 'layers-dashboard-dismiss-setup-step' )
+			)
+		); // Onboarding ajax parameters
 
 	}
 

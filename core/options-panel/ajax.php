@@ -34,10 +34,76 @@ if( !class_exists( 'Layers_Onboarding_Ajax' ) ) {
 			add_action( 'wp_ajax_layers_onboarding_update_options', array( $this, 'update_options' ) );
 			add_action( 'wp_ajax_layers_onboarding_set_theme_mods', array( $this, 'set_theme_mods' ) );
 			add_action( 'wp_ajax_layers_site_setup_step_dismissal', array( $this, 'dismiss_setup_step' ) );
+			add_action( 'wp_ajax_layers_dashboard_load_feed', array( $this, 'load_feed' ) );
+
+		}
+
+		public function load_feed(){
+
+			if( !check_ajax_referer( 'layers-dashboard-feed', 'layers_dashboard_feed_nonce', false ) ) die( 'You threw a Nonce exception' ); // Nonce
+
+			$type = ( isset( $_POST[ 'feed' ] ) ? $_POST[ 'feed' ] : 'news' );
+			$count = ( isset( $_POST[ 'count' ] ) ? $_POST[ 'count' ] : 5 );
+
+			if( NULL == $type ) die( json_encode( array( 'success' => false, 'message' => __( 'No feed specified' , 'layerswp' ) ) ) );
+
+			if( 'news' == $type ) {
+				$feed_url = 'http://blog.oboxthemes.com/tag/layers/feed/';
+			} else if( 'docs' == $type ) {
+				$feed_url = 'http://docs.layerswp.com/keywords/layers-dashboard/feed/';
+			}
+
+			$feed = fetch_feed( $feed_url );
+
+			if( is_wp_error( $feed ) ) {
+				return false;
+			} else {
+				$feed_items = $feed->get_items( 0, $count );
+
+				ob_start();
+
+				foreach( $feed_items as $item ){ ?>
+					<?php if( 'news' == $type ) { ?>
+						<div class="layers-column layers-span-3">
+							<div class="layers-panel">
+								<div class="layers-content">
+									<div class="layers-section-title layers-tiny">
+										<h4 class="layers-heading">
+											<a href="<?php echo $item->get_permalink(); ?>">
+												<?php echo esc_attr( $item->get_title() ); ?>
+											</a>
+										</h4>
+									</div>
+									<div class="layers-excerpt">
+										<?php echo $item->get_description(); ?>
+									</div>
+								</div>
+								<div class="layers-button-well">
+									<a href="<?php echo $item->get_permalink(); ?>" class="layers-button" target="_blank">
+										<?php _e( 'Continue Reading' , 'layerswp' ); ?>
+									</a>
+								</div>
+							</div>
+						</div>
+					<?php } else if( 'docs' == $type ) { ?>
+						<li>
+							<a class="layers-page-list-title" target="_blank" href="<?php echo $item->get_permalink(); ?>"><?php echo esc_attr( $item->get_title() ); ?></a>
+						</li>
+					<?php } ?>
+				<?php }
+
+				$feed_html = trim( ob_get_clean() );
+
+				die( json_encode( array( 'success' => true, 'feed' => $feed_html ) ) );
+			}
 
 		}
 
 		public function dismiss_setup_step( $step_key = NULL ){
+
+			if( !check_ajax_referer( 'layers-dashboard-dismiss-setup-step', 'layers_dashboard_dismiss_setup_step_nonce', false ) ) die( 'You threw a Nonce exception' ); // Nonce
+
+
 			if( NULL == $step_key ) {
 				if( isset( $_POST[ 'setup_step_key' ] ) ) {
 					$step_key = $_POST[ 'setup_step_key' ];

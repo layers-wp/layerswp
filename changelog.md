@@ -1,6 +1,16 @@
 # Layers Changelog
 
 =======
+## 1.1.2
+### 29 April 2015
+
+New dashboard links, color helper file and form item support
+
+* **Fix** - Added missing text domain to widget descriptions
+* **Tweak** - Moved color helper functions into their own file, `/core/helpers/color.php`
+* **Enhancement** - Added support for multi select boxes in `/core/helpers/form.php`, developers can use `multi-select` input type.
+
+=======
 ## 1.1.1
 ### 23 April 2015
 

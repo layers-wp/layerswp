@@ -42,9 +42,10 @@ class Layers_Customizer_Regsitrar {
 
 		// Register the customizer object
 		global $wp_customize;
+		
 		$this->customizer = $wp_customize;
 
-		//
+		// Set Prefix
 		$this->prefix  = LAYERS_THEME_SLUG . '-';
 
 		// Grab the customizer config
@@ -447,7 +448,7 @@ class Layers_Customizer_Regsitrar {
 		return $callback;
 	}
 
-} // class Layers_Customizer_Regsitrar
+}
 
 function layers_register_customizer(){
 	$layers_customizer_reg = Layers_Customizer_Regsitrar::get_instance();

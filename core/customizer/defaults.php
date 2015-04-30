@@ -9,14 +9,8 @@
 
 class Layers_Customizer_Defaults {
 
-	/**
-	* @var string
-	*/
 	public $prefix;
 
-	/**
-	* @var Layers_Customizer_Config
-	*/
 	public $config;
 	
 	private static $instance; // stores singleton class
@@ -94,6 +88,6 @@ if( !function_exists( 'layers_set_customizer_defaults' ) ) {
 	function layers_set_customizer_defaults(){
 		$layers_customizer_defaults = Layers_Customizer_Defaults::get_instance();
 	}
-} // if !layers_set_customizer_defaults
+}
 add_action( 'customize_register' , 'layers_set_customizer_defaults' );
 add_action( 'wp' , 'layers_set_customizer_defaults');

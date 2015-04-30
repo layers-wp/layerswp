@@ -47,7 +47,7 @@ class Layers_Customizer_Defaults {
 		// Grab the customizer config
 		$this->config = Layers_Customizer_Config::get_instance();
 		
-		foreach( $this->config->controls() as $section_key => $controls ) {
+		foreach( $this->config->controls as $section_key => $controls ) {
 
 			foreach( $controls as $control_key => $control_data ){
 

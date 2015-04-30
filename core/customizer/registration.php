@@ -55,11 +55,11 @@ class Layers_Customizer_Regsitrar {
 		//Register the panels and sections based on this instance's config
 		
 		// Start registration with the panels & sections
-		$this->register_panels( $this->config->panels() );
-		$this->register_sections ( $this->config->sections() );
+		$this->register_panels( $this->config->panels );
+		$this->register_sections ( $this->config->sections );
 
 		// Move default sections into Layers Panels
-		$this->move_default_sections( $this->config->default_sections() );
+		$this->move_default_sections( $this->config->default_sections );
 	}
 
 	/**
@@ -125,7 +125,7 @@ class Layers_Customizer_Regsitrar {
 			$section_priority++;
 
 			// Register Sections for this Panel
-			$this->register_controls ( $section_key , $this->config->controls() );
+			$this->register_controls ( $section_key , $this->config->controls );
 		}
 
 	}

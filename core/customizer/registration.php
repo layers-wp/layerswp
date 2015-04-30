@@ -51,7 +51,6 @@ class Layers_Customizer_Regsitrar {
 		// Grab the customizer config
 		$this->config = Layers_Customizer_Config::get_instance();
 		
-		
 		//Register the panels and sections based on this instance's config
 		
 		// Start registration with the panels & sections
@@ -60,6 +59,15 @@ class Layers_Customizer_Regsitrar {
 
 		// Move default sections into Layers Panels
 		$this->move_default_sections( $this->config->default_sections );
+		
+		// Change 'Widgets' panel title to 'Edit Layout'
+		$wp_customize->add_panel(
+			'widgets', array(
+				'priority' => 0,
+				'title' => __('Edit Layout' , 'layerswp' ),
+				'description' => Layers_Customizer::get_instance()->render_builder_page_dropdown() . __('Use this area to add widgets to your page, use the (Layers) widgets for the Body section.' , 'layerswp' ),
+			)
+		);
 	}
 
 	/**

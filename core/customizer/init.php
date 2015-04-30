@@ -66,15 +66,6 @@ class Layers_Customizer {
 			require_once get_template_directory() . $controls_dir . 'text.php';
 			require_once get_template_directory() . $controls_dir . 'textarea.php';
 
-			// If we are in a builder page, update the Widgets title
-			$wp_customize->add_panel(
-				'widgets', array(
-					'priority' => 0,
-					'title' => __('Edit Layout' , 'layerswp' ),
-					'description' => $this->render_builder_page_dropdown() . __('Use this area to add widgets to your page, use the (Layers) widgets for the Body section.' , 'layerswp' ),
-				)
-			);
-
 			// Enqueue Styles
 			add_action( 'customize_controls_print_footer_scripts', array( $this, 'admin_enqueue_scripts' ) );
 			add_action( 'admin_enqueue_scripts', array( $this, 'admin_print_styles' ) , 50 );

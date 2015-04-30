@@ -9,31 +9,31 @@
 
 class Layers_Customizer {
 
-	private static $instance;
+	private static $instance; // stores singleton class
+    
+    /**
+    *  Get Instance creates a singleton class that's cached to stop duplicate instances
+    */
+    public static function get_instance() {
+        if ( ! self::$instance ) {
+            self::$instance = new self();
+            self::$instance->init();
+        }
+        return self::$instance;
+    }
 
-	/**
-	*  Retrieve static/global instance of the Layers Customizer
-	*/
+    /**
+    *  Construct empty on purpose
+    */
 
-	public static function get_instance(){
-		if ( ! isset( self::$instance ) ) {
-			self::$instance = new Layers_Customizer();
-		}
-		return self::$instance;
-	}
+    private function __construct() {}
 
-	/**
-	*  Constructor
-	*/
-
-	public function __construct() {
-	}
-
-	/**
-	 * Initializes the instance
-	 * @global type $wp_customize
-	 */
-	public function init() {
+    /**
+    *  Init behaves like, and replaces, construct
+    */
+    
+    public function init() {
+    	
 		global $wp_customize;
 
 		// Setup some folder variables
@@ -247,8 +247,7 @@ class Layers_Customizer {
 */
 
 function layers_customizer_init(){
-	$layers_widget = new Layers_Customizer();
-	$layers_widget->init();
+	$layers_widget = Layers_Customizer::get_instance();
 }
 add_action( 'customize_register' , 'layers_customizer_init' , 50 );
 add_action( 'init' , 'layers_customizer_init');

@@ -9,8 +9,6 @@
 
 class Layers_Customizer_Defaults {
 
-	private static $instance;
-
 	/**
 	* @var string
 	*/
@@ -20,36 +18,41 @@ class Layers_Customizer_Defaults {
 	* @var Layers_Customizer_Config
 	*/
 	public $config;
+	
+	private static $instance; // stores singleton class
+    
+    /**
+    *  Get Instance creates a singleton class that's cached to stop duplicate instances
+    */
+    public static function get_instance() {
+        if ( ! self::$instance ) {
+            self::$instance = new self();
+            self::$instance->init();
+        }
+        return self::$instance;
+    }
 
+    /**
+    *  Construct empty on purpose
+    */
 
-	/**
-	*  Retrieves static/global instance
-	*/
+    private function __construct() {}
 
-	public static function get_instance(){
-		if( ! isset( self::$instance ) ) {
-			self::$instance = new Layers_Customizer_Defaults();
-		}
-		return self::$instance;
-	}
-
-	/**
-	*  Constructor
-	*/
-
-	public function __construct() {
+    /**
+    *  Init behaves like, and replaces, construct
+    */
+    
+    public function init() {
+	
+		global $layers_customizer_defaults;
+	
 		// Setup prefix to use
 		$this->prefix  = LAYERS_THEME_SLUG . '-';
-	}
-
-	/**
-	 * Initializes the instance by registering the controls of it's config
-	 */
-	public function init() {
-		global $layers_customizer_defaults;
-
+		
+		
 		// Grab the customizer config
-		$this->config = new Layers_Customizer_Config();
+		$this->config = Layers_Customizer_Config::get_instance();
+		
 		foreach( $this->config->controls() as $section_key => $controls ) {
 
 			foreach( $controls as $control_key => $control_data ){
@@ -89,8 +92,7 @@ class Layers_Customizer_Defaults {
 */
 if( !function_exists( 'layers_set_customizer_defaults' ) ) {
 	function layers_set_customizer_defaults(){
-		$layers_customizer_defaults = new Layers_Customizer_Defaults();
-		$layers_customizer_defaults->init();
+		$layers_customizer_defaults = Layers_Customizer_Defaults::get_instance();
 	}
 } // if !layers_set_customizer_defaults
 add_action( 'customize_register' , 'layers_set_customizer_defaults' );

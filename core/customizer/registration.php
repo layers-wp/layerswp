@@ -8,31 +8,37 @@
  */
 
 class Layers_Customizer_Regsitrar {
-
-	private static $instance;
-
+	
 	public $customizer;
 
 	public $config;
 
 	public $prefix;
+	
+    private static $instance; // stores singleton class
+    
+    /**
+    *  Get Instance creates a singleton class that's cached to stop duplicate instances
+    */
+    public static function get_instance() {
+        if ( ! self::$instance ) {
+            self::$instance = new self();
+            self::$instance->init();
+        }
+        return self::$instance;
+    }
 
-	/**
-	*  Initiator
-	*/
+    /**
+    *  Construct empty on purpose
+    */
 
-	public static function get_instance(){
-		if ( ! isset( self::$instance ) ) {
-			self::$instance = new Layers_Customizer_Regsitrar();
-		}
-		return self::$instance;
-	}
+    private function __construct() {}
 
-	/**
-	*  Constructor
-	*/
-
-	public function __construct() {
+    /**
+    *  Init behaves like, and replaces, construct
+    */
+    
+    public function init() {
 
 		// Register the customizer object
 		global $wp_customize;
@@ -42,13 +48,11 @@ class Layers_Customizer_Regsitrar {
 		$this->prefix  = LAYERS_THEME_SLUG . '-';
 
 		// Grab the customizer config
-		$this->config = new Layers_Customizer_Config();
-	}
-
-	/**
-	 * Register the panels and sections based on this instance's config
-	 */
-	public function init() {
+		$this->config = Layers_Customizer_Config::get_instance();
+		
+		
+		//Register the panels and sections based on this instance's config
+		
 		// Start registration with the panels & sections
 		$this->register_panels( $this->config->panels() );
 		$this->register_sections ( $this->config->sections() );
@@ -446,10 +450,7 @@ class Layers_Customizer_Regsitrar {
 } // class Layers_Customizer_Regsitrar
 
 function layers_register_customizer(){
-
-	$layers_customizer_reg = new Layers_Customizer_Regsitrar();
-	$layers_customizer_reg->init();
-
+	$layers_customizer_reg = Layers_Customizer_Regsitrar::get_instance();
 }
 
 add_action( 'customize_register', 'layers_register_customizer', 99 );

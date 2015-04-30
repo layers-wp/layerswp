@@ -8,6 +8,31 @@
  */
 
 class Layers_Customizer_Config {
+	
+	private static $instance; // stores singleton class
+    
+    /**
+    *  Get Instance creates a singleton class that's cached to stop duplicate instances
+    */
+    public static function get_instance() {
+        if ( ! self::$instance ) {
+            self::$instance = new self();
+            self::$instance->init();
+        }
+        return self::$instance;
+    }
+
+    /**
+    *  Construct empty on purpose
+    */
+
+    private function __construct() {}
+
+    /**
+    *  Init behaves like, and replaces, construct
+    */
+    
+    public function init() {}
 
 	/**
 	* Layers Customiser Panels

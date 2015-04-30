@@ -17,7 +17,7 @@ if( !function_exists( 'layers_generate_customizer_fonts' ) ) {
 		global $layers_custom_fonts;
 
 		// Apply Font Styles
-		$customizer_options = new Layers_Customizer_Config();
+		$customizer_options = Layers_Customizer_Config::get_instance();
 		foreach( $customizer_options->controls() as $controls ) {
 			foreach( $controls as $control_key => $control_data ){
 

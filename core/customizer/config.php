@@ -488,9 +488,9 @@ class Layers_Customizer_Config {
 							);
 		} // if WooCommerce
 
-		$filtered_controls = $this->apply_defaults( $controls );
+		$controls = $this->apply_defaults( $controls );
 
-		return apply_filters( 'layers_customizer_controls', $filtered_controls );
+		return apply_filters( 'layers_customizer_controls', $controls );
 	}
 
 	private function apply_defaults( $controls ){

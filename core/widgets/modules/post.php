@@ -49,8 +49,8 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 
 			/* Setup Widget Defaults */
 			$this->defaults = array (
-				'title' => 'Latest Posts',
-				'excerpt' => 'Stay up to date with all our latest news and launches. Only the best quality makes it onto our blog!',
+				'title' => __( 'Latest Posts', 'layerswp' ),
+				'excerpt' => __( 'Stay up to date with all our latest news and launches. Only the best quality makes it onto our blog!', 'layerswp' ),
 				'text_style' => 'regular',
 				'category' => 0,
 				'show_media' => 'on',

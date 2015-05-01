@@ -55,10 +55,10 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 			);
 
 			$this->slide_defaults = array (
-				'title' => 'Slider Title',
-				'excerpt' => 'Short Excerpt',
+				'title' => __( 'Slider Title', 'layerswp' ),
+				'excerpt' => __( 'Short Excerpt', 'layerswp' ),
 				'link' => NULL,
-				'link_text' => 'See More',
+				'link_text' => __( 'See More', 'layerswp' ),
 				'design' => array(
 					'imagealign' => 'image-top',
 					'imageratios' => NULL,

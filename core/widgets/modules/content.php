@@ -40,8 +40,8 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 
 			/* Setup Widget Defaults */
 			$this->defaults = array (
-				'title' => 'Our Services',
-				'excerpt' => 'Our services run deep and are backed by over ten years of experience.',
+				'title' => __( 'Our Services', 'layerswp' ),
+				'excerpt' => __( 'Our services run deep and are backed by over ten years of experience.', 'layerswp' ),
 				'design' => array(
 					'layout' => 'layout-boxed',
 					'liststyle' => 'list-grid',
@@ -62,8 +62,8 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 			);
 
 			$this->column_defaults = array (
-				'title' => 'Your service title',
-				'excerpt' => 'Give us a brief description of the service that you are promoting. Try keep it short so that it is easy for people to scan your page.',
+				'title' => __( 'Your service title', 'layerswp' ),
+				'excerpt' => __( 'Give us a brief description of the service that you are promoting. Try keep it short so that it is easy for people to scan your page.', 'layerswp' ),
 				'width' => '4',
 				'design' => array(
 					'imagealign' => 'image-top',

@@ -1,6 +1,15 @@
 # Layers Changelog
 
 =======
+## 1.1.3
+### 01 May 2015
+
+Post widget hotfix
+
+* **Fix** - Post widget category selection is now fixed
+
+
+=======
 ## 1.1.2
 ### 29 April 2015
 

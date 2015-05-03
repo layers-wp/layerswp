@@ -30,7 +30,7 @@ global $post, $layers_post_meta_to_display, $layers_page_title_shown; ?>
         <?php wp_link_pages( array(
             'link_before'   => '<span>',
             'link_after'    => '</span>',
-            'before'        => '<p class="inner-post-pagination">' . __('<span>Pages:</span>', 'ocmx'),
+            'before'        => '<p class="inner-post-pagination"><span>' . __('Pages:', 'layerswp') . '</span>',
             'after'     => '</p>'
         )); ?>
 

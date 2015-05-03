@@ -425,7 +425,7 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 									'name' => $this->get_field_name( 'slider_arrow_color' ) ,
 									'id' => $this->get_field_id( 'slider_arrow_color' ) ,
 									'value' => ( isset( $slider_arrow_color ) ) ? $slider_arrow_color : NULL,
-									'label' => __( 'Slider Controls Color' , 'layers-woocommerce' )
+									'label' => __( 'Slider Controls Color' , 'layerswp' )
 								),
 								'autoplay_slides' => array(
 									'type' => 'checkbox',

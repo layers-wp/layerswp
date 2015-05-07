@@ -8,6 +8,52 @@
  */
 
 class Layers_Customizer_Config {
+	
+	public $panels;
+	
+	public $default_sections;
+	
+	public $sections;
+	
+	public $controls;
+	
+	private static $instance; // stores singleton class
+    
+    /**
+    *  Get Instance creates a singleton class that's cached to stop duplicate instances
+    */
+    public static function get_instance() {
+        if ( ! self::$instance ) {
+            self::$instance = new self();
+            self::$instance->init();
+        }
+        return self::$instance;
+    }
+
+    /**
+    *  Construct empty on purpose
+    */
+
+    private function __construct() {}
+
+    /**
+    *  Init behaves like, and replaces, construct
+    */
+    
+    public function init() {
+    	
+		// Init and store panels
+		$this->panels = $this->panels();
+		
+		// Init and store default_sections
+		$this->default_sections = $this->default_sections();
+		
+		// Init and store sections
+		$this->sections = $this->sections();
+		
+		// Init and store controls
+		$this->controls = $this->controls();
+    }
 
 	/**
 	* Layers Customiser Panels
@@ -15,7 +61,7 @@ class Layers_Customizer_Config {
 	* @return   array 			Panels to be registered in the customizer
 	*/
 
-	public function panels(){
+	private function panels(){
 
 		$panels = array(
 			'branding' => array(
@@ -57,7 +103,7 @@ class Layers_Customizer_Config {
 	* @return   array 			Sections to be registered in the customizer
 	*/
 
-	public function default_sections(){
+	private function default_sections(){
 
 		$default_sections[ 'title_tagline' ] = array(
 													'title' => __( 'Logo &amp; Title' , 'layerswp' ),
@@ -88,7 +134,7 @@ class Layers_Customizer_Config {
 	* @return array Sections to be registered in the customizer
 	*/
 
-	public function sections(){
+	private function sections(){
 
 		$sections = array(
 						'nav' => array( // This is used before any menus are registered. Then replaced by WP Naviagation
@@ -153,7 +199,7 @@ class Layers_Customizer_Config {
 		return apply_filters( 'layers_customizer_sections', $sections );
 	}
 
-	public function controls( $controls = array() ){
+	private function controls( $controls = array() ){
 
 		// Setup some folder variables
 		$customizer_dir = '/core/customizer/';
@@ -441,10 +487,12 @@ class Layers_Customizer_Config {
 								), // post-sidebar
 							);
 		} // if WooCommerce
+		
+		$controls = apply_filters( 'layers_customizer_controls', $controls );
+		
+		$controls = $this->apply_defaults( $controls );
 
-		$filtered_controls = $this->apply_defaults( $controls );
-
-		return apply_filters( 'layers_customizer_controls', $filtered_controls );
+		return $controls;
 	}
 
 	private function apply_defaults( $controls ){

@@ -8,53 +8,66 @@
  */
 
 class Layers_Customizer_Regsitrar {
-
-	private static $instance;
-
+	
 	public $customizer;
 
 	public $config;
 
 	public $prefix;
+	
+    private static $instance; // stores singleton class
+    
+    /**
+    *  Get Instance creates a singleton class that's cached to stop duplicate instances
+    */
+    public static function get_instance() {
+        if ( ! self::$instance ) {
+            self::$instance = new self();
+            self::$instance->init();
+        }
+        return self::$instance;
+    }
 
-	/**
-	*  Initiator
-	*/
+    /**
+    *  Construct empty on purpose
+    */
 
-	public static function get_instance(){
-		if ( ! isset( self::$instance ) ) {
-			self::$instance = new Layers_Customizer_Regsitrar();
-		}
-		return self::$instance;
-	}
+    private function __construct() {}
 
-	/**
-	*  Constructor
-	*/
-
-	public function __construct() {
+    /**
+    *  Init behaves like, and replaces, construct
+    */
+    
+    public function init() {
 
 		// Register the customizer object
 		global $wp_customize;
+		
 		$this->customizer = $wp_customize;
 
-		//
+		// Set Prefix
 		$this->prefix  = LAYERS_THEME_SLUG . '-';
 
 		// Grab the customizer config
-		$this->config = new Layers_Customizer_Config();
-	}
-
-	/**
-	 * Register the panels and sections based on this instance's config
-	 */
-	public function init() {
+		$this->config = Layers_Customizer_Config::get_instance();
+		
+		//Register the panels and sections based on this instance's config
+		
 		// Start registration with the panels & sections
-		$this->register_panels( $this->config->panels() );
-		$this->register_sections ( $this->config->sections() );
+		$this->register_panels( $this->config->panels );
+		$this->register_sections ( $this->config->sections );
 
 		// Move default sections into Layers Panels
-		$this->move_default_sections( $this->config->default_sections() );
+		$this->move_default_sections( $this->config->default_sections );
+		
+		// Change 'Widgets' panel title to 'Edit Layout'
+		$wp_customize->add_panel(
+			'widgets', array(
+				'priority' => 0,
+				'title' => __('Edit Layout' , 'layerswp' ),
+				'description' => Layers_Customizer::get_instance()->render_builder_page_dropdown() . __('Use this area to add widgets to your page, use the (Layers) widgets for the Body section.' , 'layerswp' ),
+			)
+		);
 	}
 
 	/**
@@ -120,7 +133,7 @@ class Layers_Customizer_Regsitrar {
 			$section_priority++;
 
 			// Register Sections for this Panel
-			$this->register_controls ( $section_key , $this->config->controls() );
+			$this->register_controls ( $section_key , $this->config->controls );
 		}
 
 	}
@@ -443,13 +456,10 @@ class Layers_Customizer_Regsitrar {
 		return $callback;
 	}
 
-} // class Layers_Customizer_Regsitrar
+}
 
 function layers_register_customizer(){
-
-	$layers_customizer_reg = new Layers_Customizer_Regsitrar();
-	$layers_customizer_reg->init();
-
+	$layers_customizer_reg = Layers_Customizer_Regsitrar::get_instance();
 }
 
 add_action( 'customize_register', 'layers_register_customizer', 99 );

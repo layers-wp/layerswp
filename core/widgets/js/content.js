@@ -133,10 +133,10 @@ jQuery(document).ready(function($){
 
 				// Set column
 				$column = $(data);
-				
+
 				// Append column HTML
 				$columnList.append($column);
-				
+
 				// Add Open Class to column
 				$column.addClass('open');
 

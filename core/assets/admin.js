@@ -425,11 +425,14 @@ jQuery(function($) {
 			$editor.editable({
 				inlineMode: false,
 				initOnClick: true,
+				paragraphy: false,
 				buttons: [
 					'sep',
 					'bold',
 					'italic',
-					'underline'
+					'underline',
+					'strikeThrough',
+					'html',
 				]
 			}).on('editable.contentChanged', function (e, editor) {
 				$editor.layers_trigger_change();

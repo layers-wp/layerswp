@@ -305,7 +305,7 @@ if( !class_exists( 'Layers_Contact_Widget' ) ) {
 						<p class="layers-form-item">
 							<?php echo $this->form_elements()->input(
 								array(
-									'type' => 'textarea',
+									'type' => 'rte',
 									'name' => $this->get_field_name( 'excerpt' ) ,
 									'id' => $this->get_field_id( 'excerpt' ) ,
 									'placeholder' =>  __( 'Short Excerpt' , 'layerswp' ),

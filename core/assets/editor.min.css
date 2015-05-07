@@ -45,7 +45,7 @@ button {
 }
 .froala-box {
 	position: relative;
-	width: 100%;
+	width: 99.6%;
 	padding: 0px;
 	margin: 0;
 	background: #fff;
@@ -1820,4 +1820,16 @@ hr.fr-tag {
 .froala-editor.ie8 button.fr-trigger:hover:after {
   border-top-color: #ffffff;
   z-index: 3;
+}
+
+
+button[data-cmd="html"]{
+	float: right !important;
+	background-color: #f0f0f0 !important;
+	color: #999 !important;
+}
+
+button[data-cmd="html"].fr-bttn.active{
+	background: #202020 !important;
+	color: #fff !important;
 }

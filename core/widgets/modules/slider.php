@@ -600,7 +600,7 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 								<label for="<?php echo $this->get_custom_field_id( $widget_details, 'slides',  $slide_guid, 'excerpt' ); ?>"><?php _e( 'Excerpt' , 'layerswp' ); ?></label>
 								<?php echo $this->form_elements()->input(
 									array(
-										'type' => 'textarea',
+										'type' => 'rte',
 										'name' => $this->get_custom_field_name( $widget_details, 'slides',  $slide_guid, 'excerpt' ),
 										'id' => $this->get_custom_field_id( $widget_details, 'slides',  $slide_guid, 'excerpt' ),
 										'placeholder' => __( 'Short Excerpt' , 'layerswp' ),

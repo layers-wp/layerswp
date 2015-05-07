@@ -107,7 +107,7 @@ if( !class_exists( 'Layers_Contact_Widget' ) ) {
 
 			// Set Display Variables
 			$show_address_or_contactform = ( ( '' != $widget['address_shown'] && isset( $widget['show_address'] ) ) || ( $this->check_and_return( $widget, 'contact_form' ) && $this->check_and_return( $widget, 'show_contact_form' ) ) ) ? TRUE : FALSE ;
-			$show_title_or_excerpt = ( '' != $widget['title'] && '' != $widget['excerpt'] ) ? TRUE : FALSE ;
+			$show_title_or_excerpt = ( '' != $widget['title'] || '' != $widget['excerpt'] ) ? TRUE : FALSE ;
 
 			/**
 			* Generate the widget container class

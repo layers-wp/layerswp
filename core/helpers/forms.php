@@ -238,18 +238,10 @@ class Layers_Form_Elements {
 				<textarea <?php echo implode ( ' ' , $input_props ); ?> <?php if( isset( $input->rows ) ) echo 'rows="' . $input->rows . '"'; ?>><?php echo esc_textarea( $input->value ); ?></textarea>
 			<?php break;
 			/**
-			* Tiny MCE
+			* Rich Text Editor
 			*/
-			case 'tinymce' : ?>
-				<div class="layers-form-item" id="layers-tinymce-<?php echo esc_attr( $input->id ); ?>">
-					<a href="" class="layers-t-right layers-tiny-mce-switch" data-mode="visual"
-					data-visual_label="<?php _e( 'Visual Mode' , 'layerswp' ); ?>"
-					data-html_label="<?php _e( 'HTML Mode' , 'layerswp' ); ?>">
-						<?php _e( 'HTML Mode' , 'layerswp' ); ?>
-					</a>
-					<div class="editible editible-<?php echo esc_attr( $input->id ); ?>" data-id="<?php echo esc_attr( $input->id ); ?>"><?php echo esc_html( $input->value ); ?></div>
-					<textarea class="layers-hide layers-textarea layers-tiny-mce-textarea" <?php echo implode ( ' ' , $input_props ); ?> <?php if( isset( $input->rows ) ) echo 'rows="' . $input->rows . '"'; ?>><?php echo $input->value; ?></textarea>
-				</div>
+			case 'rte' : ?>
+				<textarea class="layers-textarea layers-rte" <?php echo implode ( ' ' , $input_props ); ?> <?php if( isset( $input->rows ) ) echo 'rows="' . $input->rows . '"'; ?>><?php echo $input->value; ?></textarea>
 			<?php break;
 			/**
 			* Image Uploader

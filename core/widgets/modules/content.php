@@ -394,7 +394,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 					<p class="layers-form-item">
 						<?php echo $this->form_elements()->input(
 							array(
-								'type' => 'textarea',
+								'type' => 'rte',
 								'name' => $this->get_field_name( 'excerpt' ) ,
 								'id' => $this->get_field_id( 'excerpt' ) ,
 								'placeholder' =>  __( 'Short Excerpt' , 'layerswp' ),
@@ -532,7 +532,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 								<label for="<?php echo $this->get_custom_field_id( $widget_details, 'columns',  $column_guid, 'excerpt' ); ?>"><?php _e( 'Excerpt' , 'layerswp' ); ?></label>
 								<?php echo $this->form_elements()->input(
 									array(
-										'type' => 'textarea',
+										'type' => 'rte',
 										'name' => $this->get_custom_field_name( $widget_details, 'columns',  $column_guid, 'excerpt' ),
 										'id' => $this->get_custom_field_id( $widget_details, 'columns',  $column_guid, 'excerpt' ),
 										'placeholder' => __( 'Short Excerpt' , 'layerswp' ),

@@ -415,28 +415,25 @@ jQuery(function($) {
 	*/
 
 	layers_enqueue_init( function(){
-		$( '.editible' ).each( function(){
+		$( '.layers-rte' ).each( function(){
 			// "Hi Mom"
-			var $that = $(this);
+			var $editor = $(this);
 
 			// Set the ID for this element
-			var id = $that.data ( 'id' );
+			var id = $editor.data ( 'id' );
 
-			var editor = new MediumEditor('.editible-' + id, {
-					anchorButton: true,
-					anchorButtonClass: 'button'
-				});
-
-			$( '.editible-' + id  ).on( 'input' , function(e){
-				// "Hi Mom!"
-				$that = $(this);
-
-				// Set the input
-				var textarea = $( '#' + id );
-
-				textarea.val( $that.html() );
-				textarea.layers_trigger_change();
-			});
+			$editor.editable({
+				inlineMode: false,
+				initOnClick: true,
+				buttons: [
+					'sep',
+					'bold',
+					'italic',
+					'underline'
+				]
+			}).on('editable.contentChanged', function (e, editor) {
+				$editor.layers_trigger_change();
+			})
 		});
 	});
 

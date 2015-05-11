@@ -147,7 +147,7 @@ class Layers_Form_Elements {
 		// Switch our input type
 		switch( $input->type ) {
 			case 'text' : ?>
-				<input type="text" <?php echo implode ( ' ' , $input_props ); ?> value="<?php echo $input->value; ?>" />
+				<input type="text" <?php echo implode ( ' ' , $input_props ); ?> value="<?php echo esc_attr( $input->value ); ?>" />
 			<?php break;
 			/**
 			* Number Inputs

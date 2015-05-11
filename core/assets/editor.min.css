@@ -620,6 +620,7 @@ hr.fr-tag {
   line-height: 140%;
 }
 .froala-editor.f-inline {
+  z-index: 999999 !important;
   position: absolute;
 }
 .froala-editor * {
@@ -1333,6 +1334,11 @@ hr.fr-tag {
 .froala-popup.froala-image-editor-popup div.f-popup-line + div.f-popup-line {
   border-top: solid 1px #cccccc;
   padding: 5px;
+}
+.froala-popup.froala-link-popup{
+  margin-top: -5px;
+  border: 1px solid #ddd;
+  border-top: 3px solid;
 }
 .froala-popup.froala-link-popup div.f-popup-line button {
   float: right;

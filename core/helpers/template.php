@@ -505,7 +505,7 @@ if( !function_exists( 'layers_add_invert_class' ) ) {
  */
 if( !function_exists( 'layers_maybe_set_invert' ) ) {
 	function layers_maybe_set_invert( $color, $hook ) {
-		
+
 		if ( 'dark' == layers_is_light_or_dark( $color ) ){
 			return add_filter( $hook, 'layers_add_invert_class' );
 		}
@@ -1058,7 +1058,7 @@ if( !function_exists( 'layers_inline_styles' ) ) {
 			default :
 
 				if ( is_array( $args ) ){
-					
+
 					if ( isset( $args['css'] ) ) {
 						if ( is_array( $args['css'] ) ){
 							foreach ( $args['css'] as $css_atribute => $css_value ) {
@@ -1071,7 +1071,7 @@ if( !function_exists( 'layers_inline_styles' ) ) {
 					}
 				}
 				else if ( is_string( $args ) ){
-					
+
 					$css .= $args;
 				}
 

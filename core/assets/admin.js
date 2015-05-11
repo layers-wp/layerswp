@@ -638,6 +638,8 @@ jQuery(function($) {
 				inlineMode: false,
 				initOnClick: true,
 				paragraphy: false,
+				convertMailAddresses: true,
+				countCharacters: true,
 				buttons:  $allow_buttons,
 				allowedTags: $allow_tags,
 				key: 'YWd1WDPTa1ZNRGe1OC1c1=='

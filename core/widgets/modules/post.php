@@ -477,7 +477,7 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 									'id' => $this->get_field_id( 'title' ) ,
 									'placeholder' => __( 'Enter title here' , 'layerswp' ),
 									'value' => ( isset( $title ) ) ? $title : NULL ,
-									'class' => 'layers-text layers-large'
+									'class' => 'layers-text layers-large',
 								)
 							); ?>
 						</p>
@@ -490,7 +490,8 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 									'id' => $this->get_field_id( 'excerpt' ) ,
 									'placeholder' => __( 'Short Excerpt' , 'layerswp' ),
 									'value' => ( isset( $excerpt ) ) ? $excerpt : NULL ,
-									'class' => 'layers-textarea layers-large'
+									'class' => 'layers-textarea layers-large',
+									'supports' => array( 'bold', 'italic', 'underline', 'strikeThrough', 'subscript', 'superscript', 'fontFamily', 'fontSize' )
 								)
 							); ?>
 						</p>

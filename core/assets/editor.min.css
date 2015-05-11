@@ -1791,7 +1791,12 @@ hr.fr-tag {
 }
 .froala-element.froala-view{
 	padding: 8px;
+  font-size: 14px;
 	box-shadow: inset 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+.froala-element.froala-view p{
+  font-size: 14px;
+  color: rgb(50, 55, 60);
 }
 .froala-element.f-basic span.f-img-editor {
   left: 0;

@@ -20,13 +20,12 @@
  * 7 - Design Controller toggles
  * 8 - Design Controller Height Matcher
  * 9 - Widget Focussing
- * 10 - Init 'Medium' editors
- * 11 - Trigger input changes
- * 12 - Add Last Class to Design Bar Elements
- * 13 - Show/Hide linked elements
- * 14 - Run Initialisations
- * 15 - Layers Custom Easing
- * 16 - Layers Pages Backups
+ * 10 - Trigger input changes
+ * 11 - Add Last Class to Design Bar Elements
+ * 12 - Show/Hide linked elements
+ * 13 - Run Initialisations
+ * 14 - Layers Custom Easing
+ * 15 - Layers Pages Backups
  *
  * Author: Obox Themes
  * Author URI: http://www.oboxthemes.com/
@@ -411,74 +410,7 @@ jQuery(function($) {
 	}
 
 	/**
-	* 10 - Init 'Medium' editors
-	*/
-
-	layers_enqueue_init( function(){
-		$( '.layers-rte' ).each( function(){
-			// "Hi Mom"
-			var $editor = $(this);
-
-			// Set the ID for this element
-			var id = $editor.data ( 'id' );
-
-			$editor.editable({
-				inlineMode: false,
-				initOnClick: true,
-				paragraphy: false,
-				buttons: [
-					'sep',
-					'bold',
-					'italic',
-					'underline',
-					'strikeThrough',
-					'html',
-				]
-			}).on('editable.contentChanged', function (e, editor) {
-				$editor.layers_trigger_change();
-			})
-		});
-	});
-
-	$( document ).on( 'keyup mouseup' , '.layers-tiny-mce-textarea' , function(e){
-
-		// "Hi Mom!"
-		$that = $(this);
-
-		// Update the 'Medium Editor' with our information
-		$that.siblings( '.editible' ).html( $that.val() );
-	});
-
-	$( document ).on( 'click' , '.layers-tiny-mce-switch' , function(e){
-		e.preventDefault();
-
-		// "Hi Mom!"
-		$that = $(this);
-
-		// Switch text editor mode
-		if( 'visual' ==  $that.data( 'mode' ) ){
-
-			// Switch modes
-			$that.data( 'mode' , 'html' );
-
-			// Change Button Label to 'Visual'
-			$that.text( $that.data( 'visual_label' ) );
-		} else {
-
-			// Switch modes
-			$that.data( 'mode' , 'visual' );
-
-			// Change Button Label to 'HTML'
-			$that.text( $that.data( 'html_label' ) );
-		}
-
-		$that.siblings( 'textarea' ).toggleClass( 'layers-hide' );
-		$that.siblings( '.editible' ).toggleClass( 'layers-hide' );
-
-	});
-
-	/**
-	* 11 - Trigger input changes
+	* 10 - Trigger input changes
 	*/
 
 	$.fn.layers_trigger_change = function() {
@@ -489,11 +421,12 @@ jQuery(function($) {
 		//var $widget_synced = $( document ).trigger( 'widget-synced', $(this).closest( '.control-section' ).find( '.widget:first' ) );
 
 		// Reset 'show if' selectors;
+		layers_init_editors();
 		layers_init_show_if();
 	};
 
 	/**
-	* 12 - Add Last Class to Elements
+	* 11 - Add Last Class to Elements
 	*/
 
 	layers_enqueue_init( function(){
@@ -509,7 +442,7 @@ jQuery(function($) {
 	});
 
 	/**
-	* 13 - Show/Hide linked elements
+	* 12 - Show/Hide linked elements
 	*/
 
 	// Instantiate the show/hide lookup
@@ -590,7 +523,7 @@ jQuery(function($) {
 	}
 
 	/**
-	* 14 - Run Initialisations
+	* 13 - Run Initialisations
 	*/
 
 	$layers_init_position = 0;
@@ -613,7 +546,7 @@ jQuery(function($) {
 	}
 
 	/**
-	* 15 - Layers Custom Easing
+	* 14 - Layers Custom Easing
 	*
 	* Extend jQuery easing with custom Layers easing function for UI animations - eg slideUp, SlideDown
 	*/
@@ -624,7 +557,7 @@ jQuery(function($) {
 	} });
 
 	/**
-	* 16 - Layers Backup Pages
+	* 15 - Layers Backup Pages
 	*
 	* Backup Layers pages so that users can transfer themes
 	*/
@@ -676,6 +609,47 @@ jQuery(function($) {
 
 		layers_backup_builder_page( $pageid, $that );
 	});
+
+
+	/**
+	* 16 - Init 'Medium' editors
+	*/
+
+	layers_init_editors();
+
+
+	function layers_init_editors(){
+		$( '.layers-rte' ).each( function(){
+			// "Hi Mom"
+			var $editor = $(this);
+
+			// If I am already an RTE, do nothing
+			if( $editor.siblings( '.froala-box' ).length > 0 ) {
+				return true;
+			}
+
+
+			// Set the ID for this element
+			var id = $editor.data ( 'id' );
+			var $allow_buttons =  $editor.data( 'supports' ).split(',');
+			var $allow_tags =  $editor.data( 'allowed-tags' ).split(',');
+			var $editor_data = {
+				zIndex: 99,
+				inlineMode: false,
+				initOnClick: true,
+				paragraphy: false,
+				buttons:  $allow_buttons,
+				allowedTags: $allow_tags,
+				key: 'YWd1WDPTa1ZNRGe1OC1c1=='
+			};
+
+			$editor.editable(
+					$editor_data
+				).on('editable.contentChanged', function (e, editor) {
+				$editor.layers_trigger_change();
+			});
+		});
+	}
 
 });
 

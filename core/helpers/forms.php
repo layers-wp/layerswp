@@ -240,8 +240,13 @@ class Layers_Form_Elements {
 			/**
 			* Rich Text Editor
 			*/
-			case 'rte' : ?>
-				<textarea class="layers-textarea layers-rte" <?php echo implode ( ' ' , $input_props ); ?> <?php if( isset( $input->rows ) ) echo 'rows="' . $input->rows . '"'; ?>><?php echo $input->value; ?></textarea>
+			case 'rte' :
+				// Apply allowed tags list
+				$allowed_tags = ( isset( $input->allowed_tags ) && is_array( $input->allowed_tags ) ? implode( ',' , $input->allowed_tags ) : 'a,br,b,strong,i,em,blockquote' );
+
+				// Add custom button support
+				$supports = ( isset( $input->supports ) && is_array( $input->supports ) ? implode( ',' , $input->supports ) : 'sep,bold,italic,underline,strikeThrough,removeFormat,html' ); ?>
+				<textarea class="layers-textarea layers-rte" data-allowed-tags="<?php echo $allowed_tags; ?>" data-supports="<?php echo $supports ; ?>" <?php echo implode ( ' ' , $input_props ); ?> <?php if( isset( $input->rows ) ) echo 'rows="' . $input->rows . '"'; ?>><?php echo $input->value; ?></textarea>
 			<?php break;
 			/**
 			* Image Uploader

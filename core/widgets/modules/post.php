@@ -491,7 +491,6 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 									'placeholder' => __( 'Short Excerpt' , 'layerswp' ),
 									'value' => ( isset( $excerpt ) ) ? $excerpt : NULL ,
 									'class' => 'layers-textarea layers-large',
-									'supports' => array( 'bold', 'italic', 'underline', 'strikeThrough', 'subscript', 'superscript', 'fontFamily', 'fontSize' )
 								)
 							); ?>
 						</p>

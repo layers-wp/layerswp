@@ -617,6 +617,20 @@ jQuery(function($) {
 
 	layers_init_editors();
 
+	$(document).on ( 'widget-added' , function( event, widget_focus ){
+		$( widget_focus ).find( '.layers-rte' ).each( function(){
+			var $editor = $(this);
+
+			// Set the ID for this element
+			var id = $editor[0].id;
+
+			if( $editor.siblings( '.froala-box' ).length > 0 ) {
+				$editor.siblings( '.froala-box' ).remove();
+			}
+
+			layers_init_editor( id );
+		});
+	});
 
 	function layers_init_editors(){
 		$( '.layers-rte' ).each( function(){
@@ -628,29 +642,41 @@ jQuery(function($) {
 				return true;
 			}
 
-
 			// Set the ID for this element
-			var id = $editor.data ( 'id' );
-			var $allow_buttons =  $editor.data( 'supports' ).split(',');
-			var $allow_tags =  $editor.data( 'allowed-tags' ).split(',');
-			var $editor_data = {
-				zIndex: 99,
-				inlineMode: false,
-				initOnClick: true,
-				paragraphy: false,
-				convertMailAddresses: true,
-				countCharacters: true,
-				buttons:  $allow_buttons,
-				allowedTags: $allow_tags,
-				key: 'YWd1WDPTa1ZNRGe1OC1c1=='
-			};
+			var id = $editor[0].id
 
-			$editor.editable(
-					$editor_data
-				).on('editable.contentChanged', function (e, editor) {
-				$editor.layers_trigger_change();
-			});
+			layers_init_editor( id );
 		});
+	}
+
+	function layers_init_editor( $id ){
+		var $editor = $( '#' + $id );
+
+		if( $editor.hasClass( 'layers-rte' ) );
+
+		var $allow_buttons =  $editor.data( 'supports' ).split(',');
+		var $allow_tags =  $editor.data( 'allowed-tags' ).split(',');
+
+		var $editor_data = {
+			zIndex: 99,
+			inlineMode: false,
+			initOnClick: true,
+			paragraphy: false,
+			convertMailAddresses: true,
+			countCharacters: true,
+			buttons:  $allow_buttons,
+			allowedTags: $allow_tags,
+			key: 'YWd1WDPTa1ZNRGe1OC1c1=='
+		};
+
+		console.log( $id );
+		console.log( $editor_data );
+
+		$editor.editable(
+				$editor_data
+			).on('editable.contentChanged', function (e, editor) {
+			$editor.layers_trigger_change();
+			});
 	}
 
 });

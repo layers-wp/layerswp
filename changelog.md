@@ -7,6 +7,7 @@
 Hotfix
 
 * **Fix** - Quotations in text fields are now properly escaped
+* **Fix** - Fixed the post widget which was broken between 1.1.2 and 1.1.3
 
 =======
 ## 1.1.3

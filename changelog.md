@@ -8,6 +8,7 @@ Hotfix
 
 * **Fix** - Quotations in text fields are now properly escaped
 * **Fix** - Fixed the post widget which was broken between 1.1.2 and 1.1.3
+* **Enhancement** - Added a filter to the `layers_inline_styles()` function, developers can now use the `layers_inline_' . $type . '_css` filter to add custom CSS  to the inline style generator
 
 =======
 ## 1.1.3

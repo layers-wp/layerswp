@@ -10,6 +10,7 @@ Hotfix
 * **Fix** - Quotations in text fields are now properly escaped
 * **Fix** - Fixed the post widget which was broken between 1.1.2 and 1.1.3
 * **Fix** - Changed the site title from an <h3 /> to an <h1 />, better for SEO
+* **Fix** - Removed query strings from Layers custom font includes, this fixes the 404 issue some users experienced when loading the customizer
 
 =======
 ## 1.1.3

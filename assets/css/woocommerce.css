@@ -1328,3 +1328,15 @@ p.stars span a:focus{
     .invert del .amount{
         color: rgba(255, 255, 255, 0.80);
     }
+
+/*-------------------------------*/
+/*- SHORTCODES ------------------*/
+/*-------------------------------*/
+
+.woocommerce ul.products li.product, .woocommerce-page ul.products li.product {
+    float: left;
+    margin: 0 3.8% 2.992em 0;
+    padding: 0;
+    position: relative;
+    width: 22.05%;
+}

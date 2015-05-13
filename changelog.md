@@ -11,6 +11,7 @@ Hotfix
 * **Fix** - Fixed the post widget which was broken between 1.1.2 and 1.1.3
 * **Fix** - Changed the site title from an <h3 /> to an <h1 />, better for SEO
 * **Fix** - Removed query strings from Layers custom font includes, this fixes the 404 issue some users experienced when loading the customizer
+* **Enhancement** - Added a filter to the `layers_inline_styles()` function, developers can now use the `layers_inline_' . $type . '_css` filter to add custom CSS  to the inline style generator
 
 =======
 ## 1.1.3

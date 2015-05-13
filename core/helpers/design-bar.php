@@ -138,8 +138,11 @@ class Layers_Design_Controller {
 		$label = $args[ 'label' ];
 		$menu_wrapper_class = ( isset( $args[ 'wrapper-class' ] ) ? $args[ 'wrapper-class' ] : 'layers-pop-menu-wrapper layers-content-small' );
 
+		// Add a fallback to the elements arguments
+		$element_args = ( isset( $args[ 'elements' ] ) ? $args[ 'elements' ] : array() );
+
 		// Return filtered element array
-		$elements = apply_filters( 'layers_design_bar_' . $key . '_elements', $args[ 'elements' ] ); ?>
+		$elements = apply_filters( 'layers_design_bar_' . $key . '_elements', $element_args ); ?>
 
 		<li class="layers-visuals-item">
 			<a href="" class="layers-icon-wrapper">

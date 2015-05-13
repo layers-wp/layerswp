@@ -6,6 +6,7 @@
 
 Hotfix
 
+* **Fix** - Leaving the `elements` argument for custom Design Bar items would throw an error, we've created a fallback for it
 * **Fix** - Quotations in text fields are now properly escaped
 * **Fix** - Fixed the post widget which was broken between 1.1.2 and 1.1.3
 

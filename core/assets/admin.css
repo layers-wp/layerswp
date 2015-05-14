@@ -1263,6 +1263,44 @@ div[id*='layers-widget'] .spinner{
         transform: translate3d(0, 0, 0);
     }
 
+    /*-----------------------------*/
+    /*- RICH TEXT EDITING ---------*/
+    .layers-form-item .froala-editor button.fr-bttn,
+    .layers-form-item .froala-editor button.fr-trigger{
+        width: 33px;
+        line-height: 14px;
+        font-size: 14px;
+        padding: 2px;
+        margin: 4px;
+        border: 1px solid transparent;
+        border-radius: 3px;
+        color: #444;
+        transition: all 0.2s ease-in-out 0s;
+    }
+    .layers-form-item .froala-editor button.fr-bttn:after{
+        border-right: 1px solid;
+    }
+    .layers-form-item .froala-editor button.fr-bttn:hover,
+    .layers-form-item .froala-editor .bttn-wrapper:not(.touch) button.fr-bttn:hover,
+    .layers-form-item .froala-editor button.fr-bttn.active:hover{
+        box-shadow: 0px 1px 0px rgba(255, 255, 255, 0.4) inset, 0px 1px 0px rgba(0, 0, 0, 0.08);
+        background: #2EA2CC;
+        border-color: #0074A2;
+        color: #FFF;
+    }
+    .layers-form-item .froala-editor button.fr-bttn.active{
+        background: #E7E7E7;
+        border-color: #CCC;
+        color: #444;
+        box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.1) inset;
+    }
+    .layers-form-item .froala-editor button.fr-bttn i{
+        font-size: 14px;
+    }
+
+
+
+
 /*-----------------------------*/
 /*- CUSTOMIZER CONTROLS -------*/
 li[id*='accordion-section-layers'] .customize-control{

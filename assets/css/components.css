@@ -56,13 +56,13 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
     .swiper-slide .container{
         position: relative;
         top: 50%;
-        transform: translateY(-50%);
         -webkit-transform: translateY(-50%);
+        transform: translateY(-50%);
     }
     .swiper-slide.image-left .container,
     .swiper-slide.image-right .container{
-        transform: none;
         -webkit-transform: none;
+        transform: none;
     }
     .swiper-slide .copy-container{
         max-width: 1040px;
@@ -173,15 +173,18 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
             overflow: hidden;
             text-indent: -999px;
             cursor: pointer;
+            -webkit-transform: scale(1);
             transform: scale(1);
             transition: all 0.2s ease-in-out;
         }
         .swiper-container .swiper-pagination-switch:hover{
+            -webkit-transform: scale(1.5);
             transform: scale(1.5);
             background: transparent;
             border: 2px solid #fff;
         }
         .swiper-container .swiper-pagination-switch.swiper-visible-switch.swiper-active-switch{
+            -webkit-transform: scale(1.5);
             transform: scale(1.5);
             background: transparent;
             border: 2px solid #fff;

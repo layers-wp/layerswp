@@ -1951,9 +1951,11 @@ object{
         display: block;
         overflow: hidden;
     }
-    .media .excerpt{
+
+    .column:not(.span-12) .media .excerpt{
         max-width: 745px;
     }
+
     .media .text-center .excerpt{
         margin-left: auto;
         margin-right: auto;
@@ -2449,7 +2451,7 @@ object{
             background-color: #009EEC;
             color: #fff;
         }
-    
+
     /*---------------------------*/
     /*- INVERT COMMENTS ---------*/
     .invert .comment {

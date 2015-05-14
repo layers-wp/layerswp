@@ -13,6 +13,7 @@ Hotfix
 * **Fix** - WooCommerce column shortcodes no longer break
 * **Enhancement** - Setting content widget to 12 columns no longer forces 745px max width on the excerpt container
 * **Enhancement** - Added a filter to the `layers_inline_styles()` function, developers can now use the `layers_inline_' . $type . '_css` filter to add custom CSS  to the inline style generator
+* **Enhancement** - Improved the instantiatio of customizer defaults and color controls
 
 =======
 ## 1.1.3

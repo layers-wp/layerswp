@@ -428,6 +428,6 @@ if( !function_exists( 'layers_post_featured_media' ) ) {
 			$output = '<'.$wrap. ( '' != $wrap_class ? ' class="' . $wrap_class . '"' : '' ) . '>' . $output . '</' . $wrap . '>';
 		}
 
-		return $output;
+		return apply_filters('layers_post_featured_media', $output);
 	}
 } // layers_post_featured_media

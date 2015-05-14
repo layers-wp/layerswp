@@ -14,7 +14,8 @@ Hotfix
 * **Enhancement** - Setting content widget to 12 columns no longer forces 745px max width on the excerpt container
 * **Enhancement** - Added a filter to the `layers_inline_styles()` function, developers can now use the `layers_inline_' . $type . '_css` filter to add custom CSS  to the inline style generator
 * **Enhancement** - Improved the instantiatio of customizer defaults and color controls
-
+* **Enhancement** - Improved the instantiatio of customizer defaults and color controls
+* **Enhancement** - Added filter on the `layers_post_featured_media();` function to control the output of the HTML
 =======
 ## 1.1.3
 ### 01 May 2015

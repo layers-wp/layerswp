@@ -503,9 +503,11 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 												'4' => __( '4 of 12 columns' , 'layerswp' ),
 												'5' => __( '5 of 12 columns' , 'layerswp' ),
 												'6' => __( '6 of 12 columns' , 'layerswp' ),
+												'7' => __( '7 of 12 columns' , 'layerswp' ),
 												'8' => __( '8 of 12 columns' , 'layerswp' ),
 												'9' => __( '9 of 12 columns' , 'layerswp' ),
 												'10' => __( '10 of 12 columns' , 'layerswp' ),
+												'11' => __( '11 of 12 columns' , 'layerswp' ),
 												'12' => __( '12 of 12 columns' , 'layerswp' )
 											)
 										)

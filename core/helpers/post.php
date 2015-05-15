@@ -118,7 +118,7 @@ if( !function_exists( 'layers_comment' ) ) {
 		<?php if( 2  < $depth && isset( $GLOBALS['lastdepth'] ) && $depth != $GLOBALS['lastdepth'] ) { ?>
 			<div class="row comments-nested push-top">
 		<?php } ?>
-		<div <?php comment_class( 'content push-bottom well' ); ?> id="comment-<?php comment_ID(); ?>">
+		<div <?php comment_class( 'content well' ); ?> id="comment-<?php comment_ID(); ?>">
 			<div class="avatar push-bottom clearfix">
 				<?php edit_comment_link(__('(Edit)' , 'layerswp' ),'<small class="pull-right">','</small>') ?>
 				<a class="avatar-image" href="">
@@ -428,6 +428,6 @@ if( !function_exists( 'layers_post_featured_media' ) ) {
 			$output = '<'.$wrap. ( '' != $wrap_class ? ' class="' . $wrap_class . '"' : '' ) . '>' . $output . '</' . $wrap . '>';
 		}
 
-		return $output;
+		return apply_filters('layers_post_featured_media', $output);
 	}
 } // layers_post_featured_media

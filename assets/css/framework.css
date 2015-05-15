@@ -730,6 +730,7 @@ object{
         top: 0;
         z-index: 1;
         opacity: 0;
+        -webkit-transform: scale(0.95);
         transform: scale(0.95);
         transition: all 0.3s ease-in-out 0s;
         font-size: 1.4rem;
@@ -750,6 +751,7 @@ object{
 
     .open[class*=' off-canvas-']{
         opacity: 1;
+        -webkit-transform: scale(1);
         transform: scale(1);
         overflow-y: scroll;
     }
@@ -1929,6 +1931,7 @@ object{
     .media{
         overflow: hidden;
         display: block;
+        -webkit-transform-style: preserve-3d;
         transform-style: preserve-3d;
     }
     .media-image{
@@ -1951,9 +1954,11 @@ object{
         display: block;
         overflow: hidden;
     }
-    .media .excerpt{
+
+    .column:not(.span-12) .media .excerpt{
         max-width: 745px;
     }
+
     .media .text-center .excerpt{
         margin-left: auto;
         margin-right: auto;
@@ -2048,10 +2053,12 @@ object{
     .thumbnail-media img{
         display: block;
         margin: auto;
+        -webkit-transform: scale(1);
         transform: scale(1);
         transition: 0.2s all ease-in-out, 4s transform ease-in-out;
     }
     .thumbnail-media:hover img{
+        -webkit-transform: scale(1.08);
         transform: scale(1.08);
     }
     .thumbnail-body{
@@ -2449,7 +2456,7 @@ object{
             background-color: #009EEC;
             color: #fff;
         }
-    
+
     /*---------------------------*/
     /*- INVERT COMMENTS ---------*/
     .invert .comment {

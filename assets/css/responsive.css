@@ -632,6 +632,7 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
     .pull-right-10{margin-right: -85%;}
     .pull-right-11{margin-right: -93.5%;}
 
+
     /*---------------------------*/
     /*- MARGIN RESET ------------*/
     .row .span-1:nth-child(12n+12),
@@ -828,6 +829,7 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
     .with-overlay .heading{
         opacity: 0;
         color: #fff;
+        -webkit-transform: translate3d(0, 10px, 0);
         transform: translate3d(0, 10px, 0);
         transition: 0.2s all ease-in-out 0.1s;
     }
@@ -842,6 +844,7 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
         background: none;
         border: 2px solid #fff;
         position: relative;
+        -webkit-transform: translate3d(0, 10px, 0);
         transform: translate3d(0, 10px, 0);
         transition: transform 0.2s ease-in-out 0.2s, opacity 0.2s ease-in-out 0.25s;
     }
@@ -852,6 +855,7 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
         /*-----------------------*/
         /*- OVERLAY HOVER -------*/
         .with-overlay:hover .thumbnail-media img{
+            -webkit-transform: scale(1.08);
             transform: scale(1.08);
         }
         .with-overlay:hover .thumbnail-body{
@@ -859,10 +863,12 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
             opacity: 1;
         }
         .with-overlay:hover .heading{
+            -webkit-transform: translate3d(0, 0, 0);
             transform: translate3d(0, 0, 0);
             opacity: 1;
         }
         .with-overlay:hover .button{
+            -webkit-transform: translate3d(0, 0, 0);
             transform: translate3d(0, 0, 0);
             opacity: 1;
         }

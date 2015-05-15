@@ -17,8 +17,9 @@ if( !function_exists( 'layers_generate_customizer_fonts' ) ) {
 		global $layers_custom_fonts;
 
 		// Apply Font Styles
-		$customizer_options = new Layers_Customizer_Config();
-		foreach( $customizer_options->controls() as $controls ) {
+		$customizer_options = Layers_Customizer_Config::get_instance();
+		
+		foreach( $customizer_options->controls as $controls ) {
 			foreach( $controls as $control_key => $control_data ){
 
 				if( 'layers-font' == $control_data[ 'type' ] && layers_get_theme_mod( $control_key ) ) {

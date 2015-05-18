@@ -374,7 +374,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 			); ?>
 			<div class="layers-container-large" id="layers-column-widget-<?php echo $this->number; ?>">
 				<?php $this->form_elements()->header( array(
-					'title' =>'Content',
+					'title' => $this->widget_title,
 					'icon_class' =>'text'
 				) ); ?>
 

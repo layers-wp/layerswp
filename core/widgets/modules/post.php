@@ -259,9 +259,9 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 															the_content();
 														echo '</div>';
                                                     } else if( isset( $widget['excerpt_length'] ) && 0 != $widget['excerpt_length'] && strlen( get_the_excerpt() ) > $widget['excerpt_length'] ){
-                                                        echo '<p class="excerpt">' . substr( get_the_excerpt() , 0 , $widget['excerpt_length'] ) . '&#8230;</p>';
+                                                        echo '<p class="excerpt">' , substr( get_the_excerpt() , 0 , $widget['excerpt_length'] ) , '&#8230;</p>';
                                                     } else if( '' != get_the_excerpt() ){
-                                                        echo '<p class="excerpt">' . get_the_excerpt() . '</p>';
+                                                        echo '<p class="excerpt">' , get_the_excerpt() , '</p>';
                                                     }
                                                 }; ?>
                                                 <?php if( 'overlay' != $this->check_and_return( $widget, 'text_style' ) ) { ?>

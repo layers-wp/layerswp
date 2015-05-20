@@ -8,17 +8,17 @@
  */
 
 class Layers_Customizer_Config {
-	
+
 	public $panels;
-	
+
 	public $default_sections;
-	
+
 	public $sections;
-	
+
 	public $controls;
-	
+
 	private static $instance; // stores singleton class
-    
+
     /**
     *  Get Instance creates a singleton class that's cached to stop duplicate instances
     */
@@ -39,18 +39,18 @@ class Layers_Customizer_Config {
     /**
     *  Init behaves like, and replaces, construct
     */
-    
+
     public function init() {
-    	
+
 		// Init and store panels
 		$this->panels = $this->panels();
-		
+
 		// Init and store default_sections
 		$this->default_sections = $this->default_sections();
-		
+
 		// Init and store sections
 		$this->sections = $this->sections();
-		
+
 		// Init and store controls
 		$this->controls = $this->controls();
     }
@@ -446,6 +446,12 @@ class Layers_Customizer_Config {
 						'type' => 'layers-color',
 						'default' => '#F3F3F3',
 					),
+					'upsell-colorkit-heading' => array(
+						'type'  => 'layers-heading',
+						'class' => 'layers-usell-tag',
+						'label'    => __( 'Upgrade to ColorKit' , 'layerswp' ),
+						'description' => __( 'Want more color customzation? <a target="_blank" href="http://codecanyon.net/item/colorkit-color-customization-for-layers/11225042">Purchase ColorKit</a> and get the full box of crayons!' , 'layerswp' ),
+					),
 				);
 
 
@@ -487,9 +493,9 @@ class Layers_Customizer_Config {
 								), // post-sidebar
 							);
 		} // if WooCommerce
-		
+
 		$controls = apply_filters( 'layers_customizer_controls', $controls );
-		
+
 		$controls = $this->apply_defaults( $controls );
 
 		return $controls;

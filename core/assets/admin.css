@@ -2251,7 +2251,7 @@ input[type=radio]:checked + .layers-settings-icon span{
 }
 
 /*---------------------------*/
-/*- INTERFACE COPY ----------*/
+/*- COLOR PICKER ------------*/
 .wp-picker-container .iris-picker{
     width: 200px !important;
     height: 170px !important;
@@ -2273,6 +2273,19 @@ input[type=radio]:checked + .layers-settings-icon span{
 
 /*---------------------------*/
 /*- INTERFACE COPY ----------*/
+
+
+    li[id*="accordion-section-layers"] .customize-control
+    .layers-customize-control.layers-customize-control-heading.layers-usell-tag
+    .customize-control-title{
+        display: inline;
+        padding: 1px 5px;
+        background: #009EEC;
+        border-radius: 3px;
+        color: #FFF;
+        text-transform: uppercase;
+        font-size: 11px;
+    }
 
     /*-----------------------*/
     /*- FEATURE LIST --------*/

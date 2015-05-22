@@ -16,6 +16,8 @@ class Layers_Customizer_Config {
 	public $sections;
 	
 	public $controls;
+
+	private $page_id;
 	
 	private static $instance; // stores singleton class
     
@@ -41,6 +43,9 @@ class Layers_Customizer_Config {
     */
     
     public function init() {
+
+    	// Init and store Page ID
+    	$this->set_page_id();
     	
 		// Init and store panels
 		$this->panels = $this->panels();
@@ -53,6 +58,7 @@ class Layers_Customizer_Config {
 		
 		// Init and store controls
 		$this->controls = $this->controls();
+
     }
 
 	/**
@@ -67,6 +73,11 @@ class Layers_Customizer_Config {
 			'branding' => array(
 							'title' => __( 'Branding' , 'layerswp' ),
 							'priority' => 20
+						),
+			'page-settings' => array(
+							'title' => __( get_the_title($this->page_id).' Settings' , 'layerswp' ),
+							'description' => __( 'Control your page\'s layout.' , 'layerswp' ), // @TODO Put a helper here
+							'priority' => 30
 						),
 			'site-settings' => array(
 							'title' => __( 'Site Settings' , 'layerswp' ),
@@ -194,6 +205,19 @@ class Layers_Customizer_Config {
 							'panel' => 'body'
 						)
 					);
+
+
+
+		if($this->page_id) {
+			$sections['page-header-'.$this->page_id] = array(
+				'title' =>__( 'Header' , 'layerswp' ),
+				'panel' => 'page-settings'
+			);
+			$sections['page-content-sidebars-'.$this->page_id] = array(
+				'title' =>__( 'Sidebars' , 'layerswp' ),
+				'panel' => 'page-settings'
+			);
+		}
 
 
 		return apply_filters( 'layers_customizer_sections', $sections );
@@ -487,12 +511,94 @@ class Layers_Customizer_Config {
 								), // post-sidebar
 							);
 		} // if WooCommerce
+
+
+
+		// If we allow Page Settings
+		if($this->page_id) {
+			$controls['page-header-'.$this->page_id] = array(
+					'page-header-width-'.$this->page_id => array(
+						'type'     => 'layers-select-icons',
+						'label'    => __( 'Header Width' , 'layerswp' ),
+						'default' => 'layout-boxed',
+						'choices' => array(
+							'layout-boxed' => __( 'Boxed' , 'layerswp' ),
+							'layout-fullwidth' => __( 'Full Width' , 'layerswp' )
+						)
+					),
+					'page-header-layout-break-0-'.$this->page_id => array(
+						'type'     => 'layers-seperator'
+					),
+					'page-header-background-heading-'.$this->page_id => array(
+						'type'  => 'layers-heading',
+						'label'    => __( 'Header Background' , 'layerswp' ),
+					),
+					'page-header-color-'.$this->page_id => array(
+						'type'     => 'color',
+						'label'    => __( 'Color Header Background' , 'layerswp' ),
+						'default' => ''
+					),
+					'page-header-image-'.$this->page_id => array(
+						'type'     => 'image',
+						'label'    => __( 'Image Header Background' , 'layerswp' ),
+						'default' => ''
+					)
+				);
+
+			$controls['page-content-sidebars-'.$this->page_id] = array(
+					'page-single-sidebar-heading-'.$this->page_id => array(
+						'type'  => 'layers-heading',
+						'label'    => __( 'Single Post Sidebar(s)' , 'layerswp' ),
+						'description' => __( 'This option affects your single post pages.' , 'layerswp' ),
+					),
+					'page-single-left-sidebar-'.$this->page_id => array(
+						'type'      => 'layers-checkbox',
+						'label'     => __( 'Display Left Sidebar' , 'layerswp' ),
+						'default'   => FALSE,
+					), // post-sidebar
+					'page-single-right-sidebar-'.$this->page_id => array(
+						'type'      => 'layers-checkbox',
+						'label'     => __( 'Display Right Sidebar' , 'layerswp' ),
+						'default'   => TRUE,
+					), // post-sidebar
+				);
+		} // if Page Settings
 		
 		$controls = apply_filters( 'layers_customizer_controls', $controls );
 		
 		$controls = $this->apply_defaults( $controls );
 
 		return $controls;
+	}
+
+	/**
+	 * get_page_id
+	 *
+	 * Stores the page id to allow the Page Settings panel
+	 * 
+	 * @return void
+	 */
+	private function set_page_id() {
+
+		// If it's inside the customizer, we get the URL
+		if(isset($_GET['url']) && $_GET['url']) {
+			$this->page_id = url_to_postid( $_GET['url'] );
+		}
+
+		// If it's inside the iFrame, we get the URL from the referer
+		if(isset($_POST['wp_customize']) && $_POST['wp_customize'] == 'on') {
+			$url = explode("url=",$_SERVER['HTTP_REFERER']);
+			if(isset($url[1])) {
+				$url = $url[1];
+				$this->page_id = url_to_postid( $url );
+			}
+		}
+
+		// If we're not in particular page, then we configure the front page.
+		if(!$this->page_id) {
+			$this->page_id = get_option('page_on_front');
+		}
+
 	}
 
 	private function apply_defaults( $controls ){

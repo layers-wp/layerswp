@@ -488,7 +488,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 							array(
 								'width' => array(
 									'icon-css' => 'icon-columns',
-									'label' => 'Column Width',
+									'label' => __( 'Column Width', 'layerswp' ),
 									'elements' => array(
 										'layout' => array(
 											'type' => 'select',

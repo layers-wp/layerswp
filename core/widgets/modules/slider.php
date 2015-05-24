@@ -34,7 +34,7 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 				);
 
 	 		/* Widget settings. */
-			$widget_ops = array( 'classname' => 'obox-layers-' . $this->widget_id .'-widget', 'description' => __( 'This widget is used to display your ', 'layerswp' ) . $this->widget_id . '.' );
+			$widget_ops = array( 'classname' => 'obox-layers-' . $this->widget_id .'-widget', 'description' => __( 'This widget is used to display your ', 'layerswp' ) . $this->widget_title . '.' );
 
 			/* Widget control settings. */
 			$control_ops = array( 'width' => LAYERS_WIDGET_WIDTH_LARGE, 'height' => NULL, 'id_base' => LAYERS_THEME_SLUG . '-widget-' . $this->widget_id );
@@ -425,7 +425,7 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 									'name' => $this->get_field_name( 'slider_arrow_color' ) ,
 									'id' => $this->get_field_id( 'slider_arrow_color' ) ,
 									'value' => ( isset( $slider_arrow_color ) ) ? $slider_arrow_color : NULL,
-									'label' => __( 'Slider Controls Color' , 'layers-woocommerce' )
+									'label' => __( 'Slider Controls Color' , 'layerswp' )
 								),
 								'autoplay_slides' => array(
 									'type' => 'checkbox',

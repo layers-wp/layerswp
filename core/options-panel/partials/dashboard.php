@@ -137,13 +137,13 @@ $theme_info = wp_get_theme( 'layerswp' ); ?>
 							</p>
 						</div>
 						<div class="layers-button-well">
-							<a href="http://themeforest.net/attributes/framework/Layers%20WP" target="_blank" class="layers-button btn-primary">
+							<a href="http://bit.ly/layers-themes" target="_blank" class="layers-button btn-primary">
 								<?php _e( 'Themes' , 'layerswp' ); ?>
 							</a>
-							<a href="http://codecanyon.net/search?term=skins+layers+wp+style+kits" target="_blank" class="layers-button btn-primary">
+							<a href="http://bit.ly/layers-stylekits" target="_blank" class="layers-button btn-primary">
 								<?php _e( 'Style Kits' , 'layerswp' ); ?>
 							</a>
-							<a href="http://codecanyon.net/attributes/compatible-with/Layers%20WP" target="_blank" class="layers-button btn-primary">
+							<a href="http://bit.ly/layers-extensions" target="_blank" class="layers-button btn-primary">
 								<?php _e( 'Extensions' , 'layerswp' ); ?>
 							</a>
 						</div>

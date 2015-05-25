@@ -7,6 +7,7 @@
 Hotfix
 
 * **Fix** - Post widget pagination now works when you're using the Post Widget in a non-front page page
+* **Enhancement** - Added bit.ly links to the dashboard marketplace buttons
 
 =======
 ## 1.1.4

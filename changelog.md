@@ -1,6 +1,14 @@
 # Layers Changelog
 
 =======
+## 1.1.5
+### ??  May 2015
+
+Hotfix
+
+* **Fix** - Post widget pagination now works when you're using the Post Widget in a non-front page page
+
+=======
 ## 1.1.4
 ### 15  May 2015
 

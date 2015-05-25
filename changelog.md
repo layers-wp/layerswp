@@ -5,10 +5,11 @@
 ### ??  May 2015
 
 Hotfix
-
+layers_before_blog_template
 * **Fix** - Post widget pagination now works when you're using the Post Widget in a non-front page page
 * **Tweak** - Moved to MailChimp from Campaign Monitor for the newsletter signup form in the Layers Dash
 * **Enhancement** - Added bit.ly links to the dashboard marketplace buttons
+* **Enhancement** - Added `layers_before_blog_template` and `layers_after_blog_template` hooks to the `template-blog.php` page template
 
 =======
 ## 1.1.4

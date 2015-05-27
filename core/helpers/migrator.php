@@ -527,7 +527,7 @@ class Layers_Widget_Migrator {
 	*/
 
 	public function do_ajax_import(){
-die( print_r( $_POST ) );
+
 		if( !check_ajax_referer( 'layers-migrator-import', 'nonce', false ) ) die( 'You threw a Nonce exception' ); // Nonce
 
 		// Set the page ID

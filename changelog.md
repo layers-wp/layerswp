@@ -6,6 +6,7 @@
 
 Hotfix
 layers_before_blog_template
+* **Fix** - Layers page imports are fixed for imports with a lot of JSON involved
 * **Fix** - Post widget pagination now works when you're using the Post Widget in a non-front page page
 * **Tweak** - Moved to MailChimp from Campaign Monitor for the newsletter signup form in the Layers Dash
 * **Enhancement** - Added bit.ly links to the dashboard marketplace buttons

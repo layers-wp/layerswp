@@ -52,6 +52,9 @@ class Layers_Widgets {
 		add_action( 'admin_enqueue_scripts', array( $this, 'admin_print_styles' ) , 50 );
 		add_action( 'customize_controls_print_styles' , array( $this, 'admin_print_styles' ) );
 
+		// Add a widget backup function
+		add_action( 'customize_save' , array( $this, 'backup_sidebars_widgets' ) );
+
 		// Register Sidebars
 		$this->register_sidebars();
 		$this->register_dynamic_sidebars();
@@ -102,6 +105,33 @@ class Layers_Widgets {
 			update_option( 'theme_mods_' . basename( get_stylesheet_directory() ) , $old_theme_mods );
 			set_theme_mod( 'sidebars_widgets' , $old_theme_mods[ 'sidebars_widgets' ] );
 		}
+	}
+
+	/**
+	*  Widget Setting backup function
+	*/
+	public function backup_sidebars_widgets(){
+		global $sidebars_widgets;
+
+		$this->widget_backup_key = 'layers_sidebars_widgets_history';
+
+		$sidebars_widgets_history = get_option( $this->widget_backup_key );
+
+		if( is_array( $sidebars_widgets_history ) ){
+			if( count( $sidebars_widgets_history ) > 10 ){
+				delete_option ( $sidebars_widgets_history[0] );
+				array_shift( $sidebars_widgets_history );
+			}
+		} else {
+			$sidebars_widgets_history = array();
+		}
+
+		$new_widget_settings_key = 'sidebars_widgets_' . date( 'Ymjhis' );
+
+		$sidebars_widgets_history[] = $new_widget_settings_key;
+
+		update_option( $this->widget_backup_key, $sidebars_widgets_history );
+		update_option( $new_widget_settings_key, $sidebars_widgets );
 	}
 
 	/**

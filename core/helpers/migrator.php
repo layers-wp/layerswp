@@ -10,6 +10,9 @@
 class Layers_Widget_Migrator {
 
 	private static $instance;
+
+	private static $widget_backup_key;
+
 	/**
 	*  Initiator
 	*/
@@ -31,6 +34,7 @@ class Layers_Widget_Migrator {
 		add_filter( 'layers_preset_layouts' , array( $this , 'add_builder_preset_layouts') );
 
 	}
+
 
 	/**
 	*  Make sure that the template directory is nice ans clean for JSON

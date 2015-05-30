@@ -664,6 +664,13 @@ class Layers_Design_Controller {
 				'name' => $this->widget['name'] . '[background][darken]',
 				'id' => $this->widget['id'] . '-background-darken',
 				'value' => ( isset( $this->values['background']['darken'] ) ) ? $this->values['background']['darken'] : NULL
+			),
+			'background-fixed' => array(
+				'type' => 'checkbox',
+				'label' => __( 'Fixed', 'layerswp' ),
+				'name' => $this->widget['name'] . '[background][fixed]',
+				'id' => $this->widget['id'] . '-background-fixed',
+				'value' => ( isset( $this->values['background']['fixed'] ) ) ? $this->values['background']['fixed'] : NULL
 			)
 		);
 

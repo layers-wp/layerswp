@@ -8,34 +8,15 @@
 <body <?php body_class(); ?>>
 	<?php get_sidebar( 'off-canvas'); ?>
 	<?php do_action( 'layers_before_site_wrapper' ); ?>
-	<?php
-		$header_styles=array();
-
-		if(layers_get_theme_mod('page-header-color-'.get_the_ID())) {
-			$header_styles[] = 'background-color:'.layers_get_theme_mod('page-header-color-'.get_the_ID());
-		}
-
-		if(layers_get_theme_mod('page-header-image-'.get_the_ID())) {
-			$header_styles[] = 'background-image:url('.layers_get_theme_mod('page-header-image-'.get_the_ID()).")";
-		}
-	?>
-
-	<?php
-		// If there is no setting, we get it from Site Settings
-		if(!($header_width = layers_get_theme_mod('page-header-width-'.get_the_ID()))) {
-			$header_width = layers_get_theme_mod('header-width');
-		}
-	?>
-
 	<section <?php layer_site_wrapper_class(); ?>>
 
 		<?php do_action( 'layers_before_header' ); ?>
 
 		<?php get_template_part( 'partials/header' , 'secondary' ); ?>
 
-		<header <?php layers_header_class(); ?>  style="<?php echo implode(";",$header_styles); ?>">
+		<header <?php layers_header_class(); ?> >
 			<?php do_action( 'layers_before_header_inner' ); ?>
-			<div class="<?php if( 'layout-fullwidth' != $header_width ) echo 'container'; ?> clearfix">
+			<div class="<?php if( 'layout-fullwidth' != layers_get_theme_mod( 'header-width' ) ) echo 'container'; ?> clearfix">
 				<?php if( 'header-logo-center' == layers_get_theme_mod( 'header-menu-layout' ) ) {
 					get_template_part( 'partials/header' , 'centered' );
 				} else {

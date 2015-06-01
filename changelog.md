@@ -8,10 +8,21 @@ Hotfix
 
 * **Fix** - Layers page imports are fixed for imports with a lot of JSON involved
 * **Fix** - Post widget pagination now works when you're using the Post Widget in a non-front page page
+* **Fix** - Deleted `partials/portfolio-list.php`, it is unused
 * **Tweak** - Moved to MailChimp from Campaign Monitor for the newsletter signup form in the Layers Dash
 * **Enhancement** - Added bit.ly links to the dashboard marketplace buttons
 * **Enhancement** - Each column in the content widget now gets a class which includes the columns $guid making for better CSS targeting
 * **Enhancement** - Added `layers_before_blog_template` and `layers_after_blog_template` hooks to the `template-blog.php` page template
+* **Enhancement** - Added `layers_after_single_title` hook and moved the `layers_before_single_title_meta` and `layers_after_single_title_meta` hooks inside the post meta if() conditional
+* **Enhancement** - Added `layers_after_list_post_content` hook and moved the `layers_before_list_post_content` inside the content if() condition
+* **Enhancement** - Added `layers_after_list_post_title` hook
+* **Enhancement** - Added `layers_after_list_post_meta` hook
+* **Enhancement** - Added `layers_before/after_site_description` hook
+* **Enhancement** - Added `layers_after_comments` hook and moved comments hook into comments.php
+* **Enhancement** - Moved `layers_before/after_title_heading` inside the if() condition which displays the title
+* **Enhancement** - Added `layers_before/after_title_excerpt` in `/partials/header-page-title.php`
+* **Enhancement** - Improved partial doc blocks and fixed up code formatting
+* **Enhancement** - Removed errand ?> at the end of `get_footer();` in all archive and single files
 
 =======
 ## 1.1.4

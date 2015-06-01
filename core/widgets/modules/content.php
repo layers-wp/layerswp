@@ -256,7 +256,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 										</div>
 									<?php } ?>
 
-									<?php if( $this->check_and_return( $column, 'title' ) || $this->check_and_return( $column, 'excerpt' ) ) { ?>
+									<?php if( $this->check_and_return( $column, 'title' ) || $this->check_and_return( $column, 'excerpt' ) || $this->check_and_return( $column, 'link_text' ) ) { ?>
 										<div class="media-body <?php echo ( isset( $column['design']['fonts'][ 'align' ] ) ) ? $column['design']['fonts'][ 'align' ] : ''; ?>">
 											<?php if( $this->check_and_return( $column, 'title') ) { ?>
 												<h5 class="heading">

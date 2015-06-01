@@ -9,6 +9,7 @@ Hotfix
 * **Fix** - Layers page imports are fixed for imports with a lot of JSON involved
 * **Fix** - Post widget pagination now works when you're using the Post Widget in a non-front page page
 * **Fix** - Deleted `partials/portfolio-list.php`, it is unused
+* **Fix** - Corrected the map pin when using Longitude and Latitude
 * **Tweak** - Moved to MailChimp from Campaign Monitor for the newsletter signup form in the Layers Dash
 * **Enhancement** - Added bit.ly links to the dashboard marketplace buttons
 * **Enhancement** - Each column in the content widget now gets a class which includes the columns $guid making for better CSS targeting

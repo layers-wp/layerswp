@@ -212,6 +212,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 							*/
 							$column_class = array();
 							$column_class[] = 'layers-masonry-column';
+							$column_class[] = $this->id_base . '-' . $column_key;
 							$column_class[] = $span_class;
 							$column_class[] = ( 'list-masonry' == $this->check_and_return( $widget, 'design', 'liststyle' ) ? 'no-gutter' : '' );
 							$column_class[] = 'column' . ( 'on' != $this->check_and_return( $widget, 'design', 'gutter' ) ? '-flush' : '' );
@@ -255,7 +256,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 										</div>
 									<?php } ?>
 
-									<?php if( $this->check_and_return( $column, 'title' ) || $this->check_and_return( $column, 'excerpt' ) ) { ?>
+									<?php if( $this->check_and_return( $column, 'title' ) || $this->check_and_return( $column, 'excerpt' ) || $this->check_and_return( $column, 'link_text' ) ) { ?>
 										<div class="media-body <?php echo ( isset( $column['design']['fonts'][ 'align' ] ) ) ? $column['design']['fonts'][ 'align' ] : ''; ?>">
 											<?php if( $this->check_and_return( $column, 'title') ) { ?>
 												<h5 class="heading">

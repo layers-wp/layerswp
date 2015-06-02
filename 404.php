@@ -1,6 +1,6 @@
 <?php
 /**
- * The template for displaying a single post
+ * The template for displaying the 404 page
  *
  * @package Layers
  * @since Layers 1.0.0
@@ -21,4 +21,4 @@ get_header(); ?>
     </div>
 </section>
 
-<?php get_footer(); ?>
+<?php get_footer();

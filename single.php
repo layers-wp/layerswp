@@ -29,4 +29,4 @@ get_header(); ?>
 	<?php do_action('layers_after_post_loop'); ?>
 </section>
 
-<?php get_footer(); ?>
+<?php get_footer();

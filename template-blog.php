@@ -7,8 +7,9 @@
  * @since Layers 1.0.0
  */
 
-get_header(); ?>
-<?php get_template_part( 'partials/header' , 'page-title' ); ?>
+get_header();
+do_action( 'layers_before_blog_template' );
+get_template_part( 'partials/header' , 'page-title' ); ?>
 <section <?php post_class( 'content-main archive clearfix' ); ?>>
 	<?php get_sidebar( 'left' ); ?>
 
@@ -33,4 +34,5 @@ get_header(); ?>
 
 	<?php get_sidebar( 'right' ); ?>
 </section>
-<?php get_footer();
+<?php do_action( 'layers_after_blog_template' );
+get_footer();

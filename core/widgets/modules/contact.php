@@ -388,7 +388,7 @@ if( !class_exists( 'Layers_Contact_Widget' ) ) {
 										)
 									); ?>
 									<small class="layers-small-note">
-										<?php _e( sprintf( 'Need to create a contact form? Try <a href="$1%s" target="ejejcsingle">Gravity Forms</a>', 'https://www.e-junkie.com/ecom/gb.php?cl=54585&c=ib&aff=221037' ) , 'layerswp' ); ?>
+										<?php _e( sprintf( 'Need to create a contact form? Try <a href="%1$s" target="ejejcsingle">Gravity Forms</a>', 'https://www.e-junkie.com/ecom/gb.php?cl=54585&c=ib&aff=221037' ) , 'layerswp' ); ?>
 									</small>
 								</p>
 							</div>

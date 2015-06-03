@@ -336,6 +336,16 @@ function layers_options_panel_menu(){
 		'layers_options_panel_ui'
 	);
 
+	// Add Preset Pages
+	add_submenu_page(
+		LAYERS_THEME_SLUG . '-dashboard',
+		__( 'Browse StyleKits' , 'layerswp' ),
+		__( 'Browse StyleKits' , 'layerswp' ),
+		'edit_theme_options',
+		LAYERS_THEME_SLUG . '-style-kits',
+		'layers_options_panel_ui'
+	);
+
 	// This modifies the Layers submenu item - must be done here as $submenu
 	// is only created if $submenu items are added using add_submenu_page
 	$submenu[LAYERS_THEME_SLUG . '-dashboard'][0][0] = __( 'Dashboard' , 'layerswp' );

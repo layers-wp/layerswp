@@ -12,6 +12,7 @@ Hotfix
 * **Fix** - Corrected the map pin when using Longitude and Latitude
 * **Fix** - When using just a link and link text in a content widget column, there is no need to enter in a blank excerpt to get the button to show
 * **Tweak** - Moved to MailChimp from Campaign Monitor for the newsletter signup form in the Layers Dash
+* **Tweak** - DevKit and ColorKit mentions added to customizer
 * **Enhancement** - Added bit.ly links to the dashboard marketplace buttons
 * **Enhancement** - Each column in the content widget now gets a class which includes the columns $guid making for better CSS targeting
 * **Enhancement** - Added `layers_before_blog_template` and `layers_after_blog_template` hooks to the `template-blog.php` page template

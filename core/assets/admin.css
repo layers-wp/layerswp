@@ -2275,8 +2275,17 @@ input[type=radio]:checked + .layers-settings-icon span{
 /*- INTERFACE COPY ----------*/
 
 
+    /*-----------------------*/
+    /*- UPSELL --------------*/
     li[id*="accordion-section-layers"] .customize-control
-    .layers-customize-control.layers-customize-control-heading.layers-usell-tag
+    .layers-customize-control.layers-customize-control-heading.layers-upsell-tag{
+        padding: 8px 10px 5px;
+        background: #f5f5f5;
+        border-radius: 5px;
+    }
+
+    li[id*="accordion-section-layers"] .customize-control
+    .layers-customize-control.layers-customize-control-heading.layers-upsell-tag
     .customize-control-title{
         display: inline;
         padding: 1px 5px;

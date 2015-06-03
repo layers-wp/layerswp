@@ -75,8 +75,6 @@ jQuery(function($) {
                 },
                 function(data){
 
-                    console.log( data );
-
                     $results = $.parseJSON( data );
 
                     $container.hide().next().hide().removeClass( 'layers-hide' ).fadeIn( 250 );

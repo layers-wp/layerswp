@@ -428,6 +428,7 @@ if( ! function_exists( 'layers_admin_scripts' ) ) {
 			array(
 				'preset_layout_nonce' => wp_create_nonce( 'layers-migrator-preset-layouts' ),
 				'update_option_nonce' => wp_create_nonce( 'layers-onboarding-update-options' ),
+				'set_theme_mod_nonce' => wp_create_nonce( 'layers-onboarding-set-theme-mods' ),
 			)
 		); // Onboarding ajax parameters
 

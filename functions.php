@@ -59,11 +59,6 @@ require_once get_template_directory() . '/core/customizer/init.php';
 require_once get_template_directory() . '/core/meta/init.php';
 
 /*
- * Load Widgets
- */
-require_once get_template_directory() . '/core/widgets/init.php';
-
-/*
  * Load Front-end helpers
  */
 require_once get_template_directory() . '/core/helpers/color.php';

@@ -11,6 +11,7 @@ Hotfix
 * **Fix** - Deleted `partials/portfolio-list.php`, it is unused
 * **Fix** - Corrected the map pin when using Longitude and Latitude
 * **Fix** - When using just a link and link text in a content widget column, there is no need to enter in a blank excerpt to get the button to show
+* **Fix** - Removed duplicate code for loading the the Widgets Initialization files.
 * **Tweak** - Moved to MailChimp from Campaign Monitor for the newsletter signup form in the Layers Dash
 * **Tweak** - DevKit and ColorKit mentions added to customizer
 * **Enhancement** - Added bit.ly links to the dashboard marketplace buttons

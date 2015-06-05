@@ -2,15 +2,16 @@
 
 =======
 ## 1.1.5
-### 06  June 2015
+### 05  June 2015
 
 Hotfix
 
 * **Fix** - Layers page imports are fixed for imports with a lot of JSON involved
-* **Fix** - Post widget pagination now works when you're using the Post Widget in a non-front page page
+* **Fix** - Post widget pagination now works when you're using the Post Widget in a non-front page page. Fixes #130
 * **Fix** - Deleted `partials/portfolio-list.php`, it is unused
-* **Fix** - Corrected the map pin when using Longitude and Latitude
+* **Fix** - Corrected the map pin when using Longitude and Latitude. Fixes #128
 * **Fix** - When using just a link and link text in a content widget column, there is no need to enter in a blank excerpt to get the button to show
+* **Fix** - Google Analytics in the Dashboard quick start now saves. Fixes #162
 * **Tweak** - Moved to MailChimp from Campaign Monitor for the newsletter signup form in the Layers Dash
 * **Tweak** - DevKit and ColorKit mentions added to customizer
 * **Enhancement** - Added bit.ly links to the dashboard marketplace buttons
@@ -22,7 +23,7 @@ Hotfix
 * **Enhancement** - Added `layers_after_list_post_meta` hook
 * **Enhancement** - Added `layers_before/after_site_description` hook
 * **Enhancement** - Added `layers_after_comments` hook and moved comments hook into comments.php
-* **Enhancement** - Moved `layers_before/after_title_heading` inside the if() condition which displays the title
+* **Enhancement** - Moved `layers_before/after_title_heading` inside the `if()` condition which displays the title
 * **Enhancement** - Added `layers_before/after_title_excerpt` in `/partials/header-page-title.php`
 * **Enhancement** - Improved partial doc blocks and fixed up code formatting
 * **Enhancement** - Removed errand ?> at the end of `get_footer();` in all archive and single files

@@ -222,20 +222,20 @@ class Layers_Form_Elements {
 			*/
 			case 'select-icons' : ?>
 				<?php foreach( $input->options as $value => $label ) { ?>
-					<label href="" class="layers-icon-wrapper <?php if( $value == $input->value ) echo 'layers-active'; ?>" for="<?php echo esc_attr( $input->id ) .'-' . esc_attr( $value ); ?>">
+					<label href="" class="layers-icon-wrapper <?php if( $value == $input->value ) echo 'layers-active'; ?>" for="<?php echo esc_attr( $input->id ) ,'-' , esc_attr( $value ); ?>">
 						<span class="icon-<?php echo esc_attr( $value ); ?>"></span>
 						<span class="layers-icon-description">
 							<?php echo esc_html( $label ); ?>
 						</span>
 					</label>
-					<input type="radio" <?php echo implode ( ' ' , $input_props ); ?> id="<?php echo esc_attr( $input->id ) .'-' . esc_attr( $value ); ?>" value="<?php echo esc_attr( $value ); ?>" <?php checked( $input->value , $value , true ); ?> class="layers-hide" />
+					<input type="radio" <?php echo implode ( ' ' , $input_props ); ?> id="<?php echo esc_attr( $input->id ) ,'-' , esc_attr( $value ); ?>" value="<?php echo esc_attr( $value ); ?>" <?php checked( $input->value , $value , true ); ?> class="layers-hide" />
 				<?php } // foreach options ?>
 			<?php break;
 			/**
 			* Text areas
 			*/
 			case 'textarea' : ?>
-				<textarea <?php echo implode ( ' ' , $input_props ); ?> <?php if( isset( $input->rows ) ) echo 'rows="' . $input->rows . '"'; ?>><?php echo esc_textarea( $input->value ); ?></textarea>
+				<textarea <?php echo implode ( ' ' , $input_props ); ?> <?php if( isset( $input->rows ) ) echo 'rows="' , $input->rows , '"'; ?>><?php echo esc_textarea( $input->value ); ?></textarea>
 			<?php break;
 			/**
 			* Tiny MCE
@@ -248,7 +248,7 @@ class Layers_Form_Elements {
 						<?php _e( 'HTML Mode' , 'layerswp' ); ?>
 					</a>
 					<div class="editible editible-<?php echo esc_attr( $input->id ); ?>" data-id="<?php echo esc_attr( $input->id ); ?>"><?php echo esc_html( $input->value ); ?></div>
-					<textarea class="layers-hide layers-textarea layers-tiny-mce-textarea" <?php echo implode ( ' ' , $input_props ); ?> <?php if( isset( $input->rows ) ) echo 'rows="' . $input->rows . '"'; ?>><?php echo $input->value; ?></textarea>
+					<textarea class="layers-hide layers-textarea layers-tiny-mce-textarea" <?php echo implode ( ' ' , $input_props ); ?> <?php if( isset( $input->rows ) ) echo 'rows="' , $input->rows , '"'; ?>><?php echo $input->value; ?></textarea>
 				</div>
 			<?php break;
 			/**
@@ -522,7 +522,7 @@ class Layers_Form_Elements {
 									'class' => 'layers-hide-controls',
 								)
 							); ?>
-							<label for="<?php echo esc_attr( $input->id ) . '-' . $key; ?>"><?php echo esc_html( $label ); ?></label>
+							<label for="<?php echo esc_attr( $input->id ) , '-' , $key; ?>"><?php echo esc_html( $label ); ?></label>
 						</div>
 					<?php } // foreach fields ?>
 				</div>

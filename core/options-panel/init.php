@@ -89,6 +89,9 @@ class Layers_Options_Panel {
 		// Set the page slug if everything is kosher
 		$page_slug = str_replace( 'layers-', '' , $current_page );
 
+		// Sanitize the slug
+		$page_slug = esc_attr( $page_slug );
+
 		// Return the page slug
 		return $page_slug;
 	}

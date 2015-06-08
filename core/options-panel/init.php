@@ -77,12 +77,19 @@ class Layers_Options_Panel {
 	*/
 	public function get_current_page(){
 
+		// Make sure we have a 'page' query to look at
 		if( ! isset( $_GET['page'] ) ) wp_die( __( 'No page has been set.' , 'layerswp' ) );
 
-		if( ! in_array( $_GET['page'], $this->valid_page_slugs ) ) wp_die( __( 'Invalid page slug' , 'layerswp' ) );
+		// Set the current page if the 'page' query exists
+		$current_page = $_GET['page'];
 
-		$page_slug = str_replace( 'layers-', '' , $_GET['page'] );
+		// Check the current page against valid pages
+		if( ! in_array( $current_page , $this->valid_page_slugs ) ) wp_die( __( 'Invalid page slug' , 'layerswp' ) );
 
+		// Set the page slug if everything is kosher
+		$page_slug = str_replace( 'layers-', '' , $current_page );
+
+		// Return the page slug
 		return $page_slug;
 	}
 

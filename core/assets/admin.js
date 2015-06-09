@@ -674,9 +674,6 @@ jQuery(function($) {
 				$editor_data
 			).on('editable.contentChanged', function (e, editor) {
 				$editor.layers_trigger_change();
-			}).on('editable.blur', function (e, editor) {
-				$hidden = $(this).editable('destroy');
-				layers_init_editor( $id );
 			});
 	}
 

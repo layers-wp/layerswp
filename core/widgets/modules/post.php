@@ -341,9 +341,9 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 			if( !empty( $instance ) ) $instance_defaults = array();
 
 			// Parse $instance
-			$instance = wp_parse_args( $instance, $instance_defaults );
+			$widget = wp_parse_args( $instance, $instance_defaults );
 
-			extract( $instance, EXTR_SKIP );
+			print_r( $widget );
 
 			$design_bar_components = apply_filters( 'layers_' . $this->widget_id . '_widget_design_bar_components' , array(
 					'layout',
@@ -366,7 +366,7 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 									'type' => 'select',
 									'name' => $this->get_field_name( 'text_style' ) ,
 									'id' => $this->get_field_id( 'text_style' ) ,
-									'value' => ( isset( $text_style ) ) ? $text_style : NULL,
+									'value' => ( isset( $widget['text_style'] ) ) ? $widget['text_style'] : NULL,
 									'label' => __( 'Title &amp; Excerpt Position' , 'layerswp' ),
 									'options' => array(
 											'regular' => __( 'Regular' , 'layerswp' ),
@@ -377,21 +377,21 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 									'type' => 'checkbox',
 									'name' => $this->get_field_name( 'show_media' ) ,
 									'id' => $this->get_field_id( 'show_media' ) ,
-									'value' => ( isset( $show_media ) ) ? $show_media : NULL,
+									'value' => ( isset( $widget['show_media'] ) ) ? $widget['show_media'] : NULL,
 									'label' => __( 'Show Featured Images' , 'layerswp' )
 								),
 								'show_titles' => array(
 									'type' => 'checkbox',
 									'name' => $this->get_field_name( 'show_titles' ) ,
 									'id' => $this->get_field_id( 'show_titles' ) ,
-									'value' => ( isset( $show_titles ) ) ? $show_titles : NULL,
+									'value' => ( isset( $widget['show_titles'] ) ) ? $widget['show_titles'] : NULL,
 									'label' => __( 'Show  Post Titles' , 'layerswp' )
 								),
 								'show_excerpts' => array(
 									'type' => 'checkbox',
 									'name' => $this->get_field_name( 'show_excerpts' ) ,
 									'id' => $this->get_field_id( 'show_excerpts' ) ,
-									'value' => ( isset( $show_excerpts ) ) ? $show_excerpts : NULL,
+									'value' => ( isset( $widget['show_excerpts'] ) ) ? $widget['show_excerpts'] : NULL,
 									'label' => __( 'Show Post Excerpts' , 'layerswp' )
 								),
                                 'excerpt_length' => array(
@@ -400,56 +400,56 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
                                     'id' => $this->get_field_id( 'excerpt_length' ) ,
                                     'min' => 0,
                                     'max' => 10000,
-                                    'value' => ( isset( $excerpt_length ) ) ? $excerpt_length : NULL,
+                                    'value' => ( isset( $widget['excerpt_length'] ) ) ? $widget['excerpt_length'] : NULL,
                                     'label' => __( 'Excerpts Length' , 'layerswp' )
                                 ),
 								'show_dates' => array(
 									'type' => 'checkbox',
 									'name' => $this->get_field_name( 'show_dates' ) ,
 									'id' => $this->get_field_id( 'show_dates' ) ,
-									'value' => ( isset( $show_dates ) ) ? $show_dates : NULL,
+									'value' => ( isset( $widget['show_dates'] ) ) ? $widget['show_dates'] : NULL,
 									'label' => __( 'Show Post Dates' , 'layerswp' )
 								),
 								'show_author' => array(
 									'type' => 'checkbox',
 									'name' => $this->get_field_name( 'show_author' ) ,
 									'id' => $this->get_field_id( 'show_author' ) ,
-									'value' => ( isset( $show_author ) ) ? $show_author : NULL,
+									'value' => ( isset( $widget['show_author'] ) ) ? $widget['show_author'] : NULL,
 									'label' => __( 'Show Post Author' , 'layerswp' )
 								),
 								'show_tags' => array(
 									'type' => 'checkbox',
 									'name' => $this->get_field_name( 'show_tags' ) ,
 									'id' => $this->get_field_id( 'show_tags' ) ,
-									'value' => ( isset( $show_tags ) ) ? $show_tags : NULL,
+									'value' => ( isset( $widget['show_tags'] ) ) ? $widget['show_tags'] : NULL,
 									'label' => __( 'Show Tags' , 'layerswp' )
 								),
 								'show_categories' => array(
 									'type' => 'checkbox',
 									'name' => $this->get_field_name( 'show_categories' ) ,
 									'id' => $this->get_field_id( 'show_categories' ) ,
-									'value' => ( isset( $show_categories ) ) ? $show_categories : NULL,
+									'value' => ( isset( $widget['show_categories'] ) ) ? $widget['show_categories'] : NULL,
 									'label' => __( 'Show Categories' , 'layerswp' )
 								),
 								'show_call_to_action' => array(
 									'type' => 'checkbox',
 									'name' => $this->get_field_name( 'show_call_to_action' ) ,
 									'id' => $this->get_field_id( 'show_call_to_action' ) ,
-									'value' => ( isset( $show_call_to_action ) ) ? $show_call_to_action : NULL,
+									'value' => ( isset( $widget['show_call_to_action'] ) ) ? $widget['show_call_to_action'] : NULL,
 									'label' => __( 'Show "Read More" Buttons' , 'layerswp' )
 								),
                                 'call_to_action' => array(
                                     'type' => 'text',
                                     'name' => $this->get_field_name( 'call_to_action' ) ,
                                     'id' => $this->get_field_id( 'call_to_action' ) ,
-                                    'value' => ( isset( $call_to_action ) ) ? $call_to_action : NULL,
+                                    'value' => ( isset( $widget['call_to_action'] ) ) ? $widget['call_to_action'] : NULL,
                                     'label' => __( '"Read More" Text' , 'layerswp' )
                                 ),
 								'show_pagination' => array(
 									'type' => 'checkbox',
 									'name' => $this->get_field_name( 'show_pagination' ) ,
 									'id' => $this->get_field_id( 'show_pagination' ) ,
-									'value' => ( isset( $show_pagination ) ) ? $show_pagination : NULL,
+									'value' => ( isset( $widget['show_pagination'] ) ) ? $widget['show_pagination'] : NULL,
 									'label' => __( 'Show Pagination' , 'layerswp' )
 								),
 							)
@@ -483,7 +483,7 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 									'name' => $this->get_field_name( 'title' ) ,
 									'id' => $this->get_field_id( 'title' ) ,
 									'placeholder' => __( 'Enter title here' , 'layerswp' ),
-									'value' => ( isset( $title ) ) ? $title : NULL ,
+									'value' => ( isset( $widget['title'] ) ) ? $widget['title'] : NULL,
 									'class' => 'layers-text layers-large'
 								)
 							); ?>
@@ -496,7 +496,7 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 									'name' => $this->get_field_name( 'excerpt' ) ,
 									'id' => $this->get_field_id( 'excerpt' ) ,
 									'placeholder' => __( 'Short Excerpt' , 'layerswp' ),
-									'value' => ( isset( $excerpt ) ) ? $excerpt : NULL ,
+									'value' => ( isset( $widget['excerpt'] ) ) ? $widget['excerpt'] : NULL,
 									'class' => 'layers-textarea layers-large'
 								)
 							); ?>
@@ -514,7 +514,7 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 										'name' => $this->get_field_name( 'category' ) ,
 										'id' => $this->get_field_id( 'category' ) ,
 										'placeholder' => __( 'Select a Category' , 'layerswp' ),
-										'value' => ( isset( $category ) ) ? $category : NULL ,
+										'value' => ( isset( $widget['category'] ) ) ? $widget['category'] : NULL,
 										'options' => $category_options,
 									)
 								); ?>
@@ -529,7 +529,7 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 									'type' => 'number',
 									'name' => $this->get_field_name( 'posts_per_page' ) ,
 									'id' => $this->get_field_id( 'posts_per_page' ) ,
-									'value' => ( isset( $posts_per_page ) ) ? $posts_per_page : NULL ,
+									'value' => ( isset( $widget['posts_per_page'] ) ) ? $widget['posts_per_page'] : NULL,
 									'min' => '-1',
 									'max' => '100'
 								)
@@ -543,7 +543,7 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 									'type' => 'select',
 									'name' => $this->get_field_name( 'order' ) ,
 									'id' => $this->get_field_id( 'order' ) ,
-									'value' => ( isset( $order ) ) ? $order : NULL ,
+									'value' => ( isset( $widget['order'] ) ) ? $widget['order'] : NULL,
 									'options' => $this->form_elements()->get_sort_options()
 								)
 							); ?>

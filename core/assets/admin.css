@@ -1313,48 +1313,6 @@ div[id*='layers-widget'] .spinner{
             font-size: 13px;
         }
 
-        /*-------------------------*/
-        /*- RTE POP UP ------------*/
-        .froala-editor:not(.froala-modal):before{
-            display: none !important;
-        }
-        .froala-editor .froala-popup.froala-link-popup{
-            font-family: inherit !important;
-            background: #F5F5F5 !important;
-            border: 1px solid #DDD !important;
-            border-radius: 3px;
-            box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.1);
-        }
-        .froala-editor .froala-popup h4{
-            padding: 10px 10px 0 !important;
-            margin-bottom: 0px !important;
-            font-size: 11px !important;
-            text-transform: uppercase !important;
-            color: #777 !important;
-            font-weight: 600 !important;
-        }
-        .froala-editor .froala-popup div.f-popup-line{
-            padding: 10px !important;
-            margin: 0 !important;
-        }
-        .froala-editor .froala-popup div.f-popup-line input[type="text"]{
-            line-height: normal;
-            height: auto !important;
-            padding: 8px;
-            margin: 0px;
-            background: #fff;
-            border: 1px solid #ddd;
-            box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1) inset;
-        }
-        .froala-popup button.fr-p-bttn.f-ok{
-            border-radius: 3px;
-            padding: 0px 8px;
-            background-color: #2EA2CC !important;
-            border: 1px solid #0074A2;
-            box-shadow: 0px 1px 0px rgba(255, 255, 255, 0.4) inset, 0px 1px 0px rgba(0, 0, 0, 0.08);
-        }
-
-
 
 /*-----------------------------*/
 /*- CUSTOMIZER CONTROLS -------*/

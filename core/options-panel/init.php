@@ -78,7 +78,7 @@ class Layers_Options_Panel {
 	public function get_current_page(){
 
 		// Make sure we have a 'page' query to look at
-		if( ! isset( $_GET['page'] ) ) wp_die( __( 'No page has been set.' , 'layerswp' ) );
+		if( ! isset( $_GET['page'] ) ) wp_die( __( 'No page argument has been set.' , 'layerswp' ) );
 
 		// Set the current page if the 'page' query exists
 		$current_page = $_GET['page'];

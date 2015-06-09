@@ -147,7 +147,7 @@ class Layers_Form_Elements {
 		// Switch our input type
 		switch( $input->type ) {
 			case 'text' : ?>
-				<input type="text" <?php echo implode ( ' ' , $input_props ); ?> value="<?php echo $input->value; ?>" />
+				<input type="text" <?php echo implode ( ' ' , $input_props ); ?> value="<?php echo esc_attr( $input->value ); ?>" />
 			<?php break;
 			/**
 			* Number Inputs
@@ -194,7 +194,7 @@ class Layers_Form_Elements {
 						<option value=''><?php echo esc_html( $input->placeholder ); ?></option>
 					<?php } // if NULL != placeholder ?>
 					<?php foreach( $input->options as $value => $label ) { ?>
-						<option value='<?php echo esc_attr( $value ); ?>' <?php selected( $input->value , $value, true ); ?>>
+						<option value='<?php echo esc_attr( $value ); ?>' <?php if( !is_object( $input->value ) ) selected( $input->value , $value, true ); ?>>
 							<?php echo esc_html( $label ); ?>
 						</option>
 					<?php } // foreach options ?>

@@ -61,6 +61,8 @@
 			// Helper to get current url
 			// provide default_url fix for when no querystring 'url' exists,
 			// which happens when coming from Appearance > Customizer
+			if( !wp.customize.previewer ) return;
+
 			var default_url = wp.customize.previewer.previewUrl();
 			function layers_get_customizer_url() {
 				if( layers_get_parameter_by_name('url', window.location) ){

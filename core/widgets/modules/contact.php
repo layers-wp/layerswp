@@ -345,7 +345,7 @@ if( !class_exists( 'Layers_Contact_Widget' ) ) {
 											'type' => 'text',
 											'name' => $this->get_field_name( 'google_maps_long_lat' ) ,
 											'id' => $this->get_field_id( 'google_maps_long_lat' ) ,
-											'placeholder' => __( 'e.g. 33.9253 S, 18.4239 E' , 'layerswp' ),
+											'placeholder' => __( 'e.g. -34.038181, 18.363826' , 'layerswp' ),
 											'value' => ( isset( $google_maps_long_lat ) ) ? $google_maps_long_lat : NULL
 										)
 									); ?>

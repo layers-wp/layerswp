@@ -22,4 +22,4 @@ get_header(); ?>
     <?php do_action('layers_after_page_loop'); ?>
 </section>
 
-<?php get_footer(); ?>
+<?php get_footer();

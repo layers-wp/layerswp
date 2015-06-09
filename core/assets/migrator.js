@@ -79,8 +79,8 @@ jQuery(document).ready(function($){
 		var $page_data = {
 				action: 'layers_create_builder_page_from_preset',
 				post_title: $( '#layers_preset_page_title' ).val(),
+				nonce: layers_migrator_params.preset_layout_nonce,
 				widget_data: $.parseJSON( $widget_data ),
-				nonce: layers_migrator_params.preset_layout_nonce
 			};
 
 		jQuery.post(
@@ -137,14 +137,15 @@ jQuery(document).ready(function($){
 				var $page_data = {
 						action: 'layers_import_widgets',
 						post_id: $that.data('post-id'),
+						nonce: layers_migrator_params.import_layout_nonce,
 						widget_data: import_data,
-						nonce: layers_migrator_params.import_layout_nonce
 					};
 
 				$.post(
 					ajaxurl,
 					$page_data,
 					function(data){
+
 						// Upon completion update the import button
 						jQuery( '#layers-page-import-button' ).fadeOut( 500, function() {
 							jQuery(this).text( migratori18n.complete_message ).fadeIn().attr('disabled','disabled');

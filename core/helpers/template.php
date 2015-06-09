@@ -1079,6 +1079,8 @@ if( !function_exists( 'layers_inline_styles' ) ) {
 
 		}
 
+		$css = apply_filters( 'layers_inline_' . $type . '_css' , $css, $args);
+
 		// Bail if no css is generated
 		if ( '' == trim( $css ) ) return false;
 

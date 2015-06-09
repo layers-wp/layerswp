@@ -878,6 +878,50 @@ p.stars span a:focus{
         margin-bottom: 40px;
     }
 
+    .woocommerce[class*=' columns-'] .product{
+        float: left;
+        margin-right: 2%;
+        padding: 20px;
+        max-width: 100%;
+    }
+
+    @media only screen and (min-width: 481px) and (max-width: 768px){
+
+        .woocommerce.columns-2 .product,
+        .woocommerce.columns-3 .product,
+        .woocommerce.columns-4 .product{width: 49%;}
+
+        .woocommerce.columns-5 .product,
+        .woocommerce.columns-6 .product{width: 32%;}
+
+        .woocommerce.columns-2 .product:nth-child(2n+2),
+        .woocommerce.columns-3 .product:nth-child(2n+2),
+        .woocommerce.columns-4 .product:nth-child(2n+2),
+        .woocommerce.columns-5 .product:nth-child(3n+3),
+        .woocommerce.columns-6 .product:nth-child(3n+3){
+            margin-right: 0;
+        }
+
+    }
+
+    @media only screen and (min-width: 769px) {
+
+        .woocommerce.columns-2 .product{width: 49%;}
+        .woocommerce.columns-3 .product{width: 32%;}
+        .woocommerce.columns-4 .product{width: 23.5%;}
+        .woocommerce.columns-5 .product{width: 18.4%;}
+        .woocommerce.columns-6 .product{width: 15%;}
+
+        .woocommerce.columns-2 .product:nth-child(2n+2),
+        .woocommerce.columns-3 .product:nth-child(3n+3),
+        .woocommerce.columns-4 .product:nth-child(4n+4),
+        .woocommerce.columns-5 .product:nth-child(5n+5),
+        .woocommerce.columns-6 .product:nth-child(6n+6){
+            margin-right: 0;
+        }
+
+    }
+
 /*---------------------------*/
 /*- ORDER REVIEW ------------*/
 

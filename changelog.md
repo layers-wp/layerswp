@@ -1,6 +1,51 @@
 # Layers Changelog
 
 =======
+## 1.1.5
+### 05  June 2015
+
+Hotfix
+
+* **Fix** - Layers page imports are fixed for imports with a lot of JSON involved
+* **Fix** - Post widget pagination now works when you're using the Post Widget in a non-front page page. Fixes #130
+* **Fix** - Deleted `partials/portfolio-list.php`, it is unused
+* **Fix** - Corrected the map pin when using Longitude and Latitude. Fixes #128
+* **Fix** - When using just a link and link text in a content widget column, there is no need to enter in a blank excerpt to get the button to show
+* **Fix** - Google Analytics in the Dashboard quick start now saves. Fixes #162
+* **Tweak** - Moved to MailChimp from Campaign Monitor for the newsletter signup form in the Layers Dash
+* **Tweak** - DevKit and ColorKit mentions added to customizer
+* **Enhancement** - Added bit.ly links to the dashboard marketplace buttons
+* **Enhancement** - Each column in the content widget now gets a class which includes the columns $guid making for better CSS targeting
+* **Enhancement** - Added `layers_before_blog_template` and `layers_after_blog_template` hooks to the `template-blog.php` page template
+* **Enhancement** - Added `layers_after_single_title` hook and moved the `layers_before_single_title_meta` and `layers_after_single_title_meta` hooks inside the post meta if() conditional
+* **Enhancement** - Added `layers_after_list_post_content` hook and moved the `layers_before_list_post_content` inside the content if() condition
+* **Enhancement** - Added `layers_after_list_post_title` hook
+* **Enhancement** - Added `layers_after_list_post_meta` hook
+* **Enhancement** - Added `layers_before/after_site_description` hook
+* **Enhancement** - Added `layers_after_comments` hook and moved comments hook into comments.php
+* **Enhancement** - Moved `layers_before/after_title_heading` inside the `if()` condition which displays the title
+* **Enhancement** - Added `layers_before/after_title_excerpt` in `/partials/header-page-title.php`
+* **Enhancement** - Improved partial doc blocks and fixed up code formatting
+* **Enhancement** - Removed errand ?> at the end of `get_footer();` in all archive and single files
+
+=======
+## 1.1.4
+### 15  May 2015
+
+Hotfix
+
+* **Fix** - Leaving the `elements` argument for custom Design Bar items would throw an error, we've created a fallback for it
+* **Fix** - Quotations in text fields are now properly escaped
+* **Fix** - Fixed the post widget which was broken between 1.1.2 and 1.1.3
+* **Fix** - Removed query strings from Layers custom font includes, this fixes the 404 issue some users experienced when loading the customizer
+* **Fix** - WooCommerce column shortcodes no longer break
+* **Enhancement** - Setting content widget to 12 columns no longer forces 745px max width on the excerpt container
+* **Enhancement** - Added a filter to the `layers_inline_styles()` function, developers can now use the `layers_inline_' . $type . '_css` filter to add custom CSS  to the inline style generator
+* **Enhancement** - Improved the instantiation of customizer defaults and color controls
+* **Enhancement** - Added filter on the `layers_post_featured_media();` function to control the output of the HTML
+* **Enhancement** - Better handling of animations in Safari
+
+=======
 ## 1.1.3
 ### 01 May 2015
 

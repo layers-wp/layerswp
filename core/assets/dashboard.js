@@ -70,7 +70,7 @@ jQuery(function($) {
                     action: $action,
                     setup_step_key: $that.data( 'setup-step-key' ),
                     data: $data,
-                    layers_onboarding_update_nonce: layers_onboarding_params.update_option_nonce
+                    layers_set_theme_mod_nonce: layers_onboarding_params.set_theme_mod_nonce
 
                 },
                 function(data){

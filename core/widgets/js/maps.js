@@ -32,9 +32,9 @@ function layers_check_address($){
 		$longlat = ( undefined !== $that.data( 'longlat' ) ) ? $that.data( 'longlat' ) : null;
 
 		if( null !== $longlat ){
-			$longlat = $longlat.split(",");
-			var latitude = $longlat[0];
-			var longitude = $longlat[1];
+			$longlat_array = $longlat.split(",");
+			var latitude = $longlat_array[0];
+			var longitude = $longlat_array[1];
 		} else {
 			var latitude = "-34.397";
 			var longitude = "150.644";
@@ -51,23 +51,42 @@ function layers_check_address($){
 			}
 		);
 
-		$location = ( undefined !== $that.data( 'location' ) ) ? $that.data( 'location' ) : null ;
+		if( undefined !== $that.data( 'location' ) ){
+			/**
+			* Set the marker on the text location
+			*/
+			$location = $that.data( 'location' );
 
-		if( null !== $location ){
 			geocoder.geocode( { 'address': $location},
 				function(results, status) {
 					if (status == google.maps.GeocoderStatus.OK) {
 
 						// Center the map
-						$map.setCenter(results[0].geometry.location);
+						$map.setCenter( ( results[0].geometry.location ? results[0].geometry.location : latlng ) );
 
 						// Add the map marker
 						var marker = new google.maps.Marker({
 							map: $map,
-							position: results[0].geometry.location
+							position: ( results[0].geometry.location ? results[0].geometry.location : latlng )
 						});
 					}
 				});
+		}
+		if( undefined !== $that.data( 'longlat' ) ){
+
+			/**
+			* Set the marker on Longitude and Latitude
+			*/
+			var $longlat_marker = new google.maps.LatLng( latitude, longitude );
+
+			// Center the map
+			$map.setCenter( latlng );
+
+			// Add the map marker
+			var marker = new google.maps.Marker({
+				map: $map,
+				position: $longlat_marker
+			});
 		}
 
 	})

@@ -145,7 +145,14 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 
 			// Begin query arguments
 			$query_args = array();
-			$query_args[ 'paged' ] = (get_query_var('page')) ? get_query_var('page') : 1;
+			if( get_query_var('paged') ) {
+				$query_args[ 'paged' ] = get_query_var('paged') ;
+			} else if ( get_query_var('page') ) {
+				$query_args[ 'paged' ] = get_query_var('page');
+			} else {
+				$query_args[ 'paged' ] = 1;
+			}
+
 			$query_args[ 'post_type' ] = $this->post_type;
 			$query_args[ 'posts_per_page' ] = $widget['posts_per_page'];
 			if( isset( $widget['order'] ) ) {

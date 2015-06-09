@@ -1276,10 +1276,9 @@ div[id*='layers-widget'] .spinner{
         border-radius: 3px;
         color: #444;
         transition: all 0.2s ease-in-out 0s;
+        box-shadow: 0px 1px 0px rgba(255, 255, 255, 0) inset;
     }
-    .layers-form-item .froala-editor button.fr-bttn:after{
-        border-right: 1px solid;
-    }
+
     .layers-form-item .froala-editor button.fr-bttn:hover,
     .layers-form-item .froala-editor .bttn-wrapper:not(.touch) button.fr-bttn:hover,
     .layers-form-item .froala-editor button.fr-bttn.active:hover{
@@ -1288,16 +1287,31 @@ div[id*='layers-widget'] .spinner{
         border-color: #0074A2;
         color: #FFF;
     }
-    .layers-form-item .froala-editor button.fr-bttn.active{
-        background: #E7E7E7;
-        border-color: #CCC;
-        color: #444;
-        box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.1) inset;
-    }
-    .layers-form-item .froala-editor button.fr-bttn i{
-        font-size: 14px;
-    }
 
+        /*-------------------------*/
+        /*- WHEN IN HTML MODE -----*/
+        .layers-form-item .f-html .froala-editor button.fr-bttn:hover,
+        .layers-form-item .f-html .froala-editor .bttn-wrapper:not(.touch) button.fr-bttn:hover,
+        .layers-form-item .f-html .froala-editor button.fr-bttn.active:hover{
+            border-color: transparent;
+            box-shadow: none;
+        }
+
+        .layers-form-item .froala-editor button.fr-bttn.active{
+            border-color: #111;
+            color: #444;
+            box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.1) inset;
+        }
+        .layers-form-item .froala-editor button.fr-bttn i{
+            font-size: 14px;
+        }
+        .layers-form-item .f-html .froala-element{
+            background-color: #2c2c2c;
+        }
+        .layers-form-item .f-html .froala-element textarea{
+            color: #eee;
+            font-size: 13px;
+        }
 
 
 

@@ -26,6 +26,7 @@
  * 13 - Run Initialisations
  * 14 - Layers Custom Easing
  * 15 - Layers Pages Backups
+ * 16 - Init Editors
  *
  * Author: Obox Themes
  * Author URI: http://www.oboxthemes.com/
@@ -612,7 +613,7 @@ jQuery(function($) {
 
 
 	/**
-	* 16 - Init 'Medium' editors
+	* 16 - Init Editors
 	*/
 
 	layers_init_editors();
@@ -669,13 +670,13 @@ jQuery(function($) {
 			key: 'YWd1WDPTa1ZNRGe1OC1c1=='
 		};
 
-		console.log( $id );
-		console.log( $editor_data );
-
 		$editor.editable(
 				$editor_data
 			).on('editable.contentChanged', function (e, editor) {
-			$editor.layers_trigger_change();
+				$editor.layers_trigger_change();
+			}).on('editable.blur', function (e, editor) {
+				$hidden = $(this).editable('destroy');
+				layers_init_editor( $id );
 			});
 	}
 

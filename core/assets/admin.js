@@ -687,14 +687,14 @@ jQuery(function($) {
 	
 	$( document ).on( 'click focus' , '.control-panel-content .widget-rendered' , function(e){
 		$that = $(this);
-		init_widget( $that );
+		layers_init_widget( $that );
 	});
 
 	$(document).on ( 'widget-added' , function( event, widget_focus ){
-		init_widget( widget_focus.parent() );
+		layers_init_widget( widget_focus.parent() );
 	});
 
-	function init_widget( $widget_li ){
+	function layers_init_widget( $widget_li ){
 
 		// Check if has been initialized before
 		if ( !$widget_li.hasClass( 'intialized' ) ){

@@ -140,7 +140,6 @@ jQuery(function($) {
 		file_frame.open();
 	});
 
-
 	// 2.c - General File Remove Button
 	$(document).on( 'click' , '.layers-file-remove' , function(e){
 		e.preventDefault();
@@ -229,8 +228,15 @@ jQuery(function($) {
 	/**
 	* 4 - Color Selectors
 	*/
-
-	layers_enqueue_init( function(){ layers_set_color_selectors( document ) } );
+	
+	// Init Colr Pciker on 'widget-initialize'
+	$( document ).on( 'widget-initialize', '.widget', function( e ){
+		// "Hi Mom""
+		$that = $(this);
+		
+		// Init Color Pickers
+		layers_set_color_selectors( $that );
+	});
 
 	function layers_set_color_selectors( element ){
 
@@ -256,21 +262,7 @@ jQuery(function($) {
 
 	}
 
-	// Initialise color selectors on widget add.
-
-	$(document).on ( 'widget-added' , function( event, widget_focus ){
-		$( widget_focus ).find('.layers-color-selector').each(function(){
-			var $picker = $(this);
-			$picker.closest('.wp-picker-container').replaceWith( $picker );
-		});
-
-		setTimeout( function() {
-			layers_set_color_selectors( widget_focus );
-		} , 250 );
-	} );
-
 	// Debounce function for color changing.
-
 	var layers_debounce_input = _.debounce(function( element ){
 		$( element ).layers_trigger_change();
 	}, 200);
@@ -611,23 +603,6 @@ jQuery(function($) {
 	* 16 - Init Editors
 	*/
 
-	layers_init_editors();
-
-	$(document).on ( 'widget-added' , function( event, widget_focus ){
-		$( widget_focus ).find( '.layers-rte' ).each( function(){
-			var $editor = $(this);
-
-			// Set the ID for this element
-			var id = $editor[0].id;
-
-			if( $editor.siblings( '.froala-box' ).length > 0 ) {
-				$editor.siblings( '.froala-box' ).remove();
-			}
-
-			layers_init_editor( id );
-		});
-	});
-
 	function layers_init_editors(){
 		$( '.layers-rte' ).each( function(){
 			// "Hi Mom"
@@ -678,6 +653,30 @@ jQuery(function($) {
 				editor.$editor.slideUp({ duration: 80, easing: 'layersEaseInOut' });
 			});
 	}
+	
+	// Init Froala on widget widget-initialize
+	$( document ).on( 'widget-initialize', '.widget', function( e ){
+		
+		// "Hi Mom"
+		$that = $(this);
+		
+		// Get the target element
+		$that.find( '.layers-rte' ).each( function(){
+
+			// "Hi Mom"
+			var $editor = $(this);
+
+			// If I am already an RTE, do nothing
+			if( $editor.siblings( '.froala-box' ).length > 0 ) {
+				return true;
+			}
+
+			// Set the ID for this element
+			var id = $editor[0].id
+
+			layers_init_editor( id );
+		});
+	});
 	
 	/**
 	* 17 - Widget Initialization Event

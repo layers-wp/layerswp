@@ -27,6 +27,7 @@
  * 14 - Layers Custom Easing
  * 15 - Layers Pages Backups
  * 16 - Init Editors
+ * 17 - Widget Initialization Event
  *
  * Author: Obox Themes
  * Author URI: http://www.oboxthemes.com/
@@ -394,12 +395,6 @@ jQuery(function($) {
 		}
 	});
 
-	$( document ).on( 'widget-updated' , function( event, $updatedWidget ){
-		var widget_id = $updatedWidget.find( '.widget-id' ).val();
-		layers_widget_focus( widget_id );
-		// further actions with the id
-	});
-
 	function layers_widget_focus( $widget_id ){
 
 		// Scroll to this widget
@@ -675,6 +670,35 @@ jQuery(function($) {
 			).on('editable.contentChanged', function (e, editor) {
 				$editor.layers_trigger_change();
 			});
+	}
+	
+	/**
+	* 17 - Widget Initialization Event
+	*
+	* Dispense 'widget-initialize' event each time a widget is focused, clicked or added
+	* to allow for just-in-time init instead of massive bulk init
+	*/
+	
+	$( document ).on( 'click focus' , '.control-panel-content .widget-rendered' , function(e){
+		$that = $(this);
+		init_widget( $that );
+	});
+
+	$(document).on ( 'widget-added' , function( event, widget_focus ){
+		init_widget( widget_focus.parent() );
+	});
+
+	function init_widget( $widget_li ){
+
+		// Check if has been initialized before
+		if ( !$widget_li.hasClass( 'intialized' ) ){
+			
+			// If never initialized before then set it to intialized
+			$widget_li.addClass('intialized');
+			
+			// Trigger Initialize event
+			$widget_li.children( '.widget' ).trigger( 'widget-initialize' );
+		}
 	}
 
 });

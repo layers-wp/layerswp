@@ -665,10 +665,17 @@ jQuery(function($) {
 			key: 'YWd1WDPTa1ZNRGe1OC1c1=='
 		};
 
-		$editor.editable(
-				$editor_data
-			).on('editable.contentChanged', function (e, editor) {
+		$editor.editable( $editor_data )
+			.on('editable.contentChanged', function (e, editor) {
 				$editor.layers_trigger_change();
+			})
+			.on('editable.focus', function (e, editor) {
+				//console.log('focus');
+				editor.$editor.slideDown({ duration: 80, easing: 'layersEaseInOut' });
+			})
+			.on('editable.blur', function (e, editor) {
+				//console.log('blur');
+				editor.$editor.slideUp({ duration: 80, easing: 'layersEaseInOut' });
 			});
 	}
 	

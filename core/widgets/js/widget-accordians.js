@@ -38,10 +38,19 @@
 	});
 
 	// 1.b - Accodian Init
-
-	function layers_init_accordians(){
-
-		$( '.layers-accordions' ).each( function(){
+	
+	// Init on widget widget-initialize
+	$( document ).on( 'widget-initialize', '.widget', function( e ){
+		// 'this' is the widget
+		layers_init_accordians( $(this) );
+	});
+	
+	function layers_init_accordians( $element_s ){
+		
+		$element_s.find( '.layers-accordions' ).each( function(){
+			
+			console.log('acordian!!!!');
+			
 			var $that = $(this);
 
 			$that.find( 'li.layers-accordion-item' ).first().addClass( 'open' );
@@ -58,14 +67,10 @@
 		});
 	} // @TODO: Make sure that when adding a new widget, that the right accordians are open & closed
 
-	$(document).on ( 'widget-added' , function(){
-		layers_init_accordians();
-	});
-
 	// 1.c - Accodian Widget Click
 
 	$( document ).on( 'click' , '#available-widgets div[id^="widget-tpl-layers-"]' , function(){
-		layers_init_accordians();
+		//layers_init_accordians();
 	});
 
 	/**

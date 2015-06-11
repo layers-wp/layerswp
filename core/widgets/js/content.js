@@ -21,35 +21,38 @@ jQuery(document).ready(function($){
 	/**
 	* 1 - Sortable items
 	*/
-	layers_set_column_sortable();
-
-	$(document).on ( 'widget-added' , function(){
-		layers_set_column_sortable();
+	
+	$( document ).on( 'widget-initialize', '.widget', function( e ){
+		// 'this' is the widget
+		layers_set_column_sortable( $(this) );
 	});
 
-	function layers_set_column_sortable(){
+	function layers_set_column_sortable( $element_s ){
 
-		var $column_lists = $( 'ul[id^="column_list_"]' );
+		$element_s.find( 'ul[id^="column_list_"]' ).each( function(){
+			
+			$that = $(this);
 
-		$column_lists.sortable({
-			placeholder: "layers-sortable-drop",
-			handle: ".layers-accordion-title",
-			stop: function(e , li){
-				// Module UL, looking up from our current target
-				$columnList = li.item.closest( 'ul' );
+			$that.sortable({
+				placeholder: "layers-sortable-drop",
+				handle: ".layers-accordion-title",
+				stop: function(e , li){
+					// Module UL, looking up from our current target
+					$columnList = li.item.closest( 'ul' );
 
-				// Modules <input>
-				$columnInput = $( '#column_ids_input_' + $columnList.data( 'number' ) );
+					// Modules <input>
+					$columnInput = $( '#column_ids_input_' + $columnList.data( 'number' ) );
 
-				// Apply new column order
-				$column_guids = [];
-				$columnList.find( 'li.layers-accordion-item' ).each(function(){
-					$column_guids.push( $(this).data( 'guid' ) );
-				});
+					// Apply new column order
+					$column_guids = [];
+					$columnList.find( 'li.layers-accordion-item' ).each(function(){
+						$column_guids.push( $(this).data( 'guid' ) );
+					});
 
-				// Trigger change for ajax save
-				$columnInput.val( $column_guids.join() ).layers_trigger_change();
-			}
+					// Trigger change for ajax save
+					$columnInput.val( $column_guids.join() ).layers_trigger_change();
+				}
+			});
 		});
 	}
 

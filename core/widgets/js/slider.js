@@ -22,41 +22,46 @@ jQuery(document).ready(function($){
 	/**
 	* 1 - Sortable items
 	*/
-	layers_set_slide_sortable();
-
-	$(document).on ( 'widget-added' , function(){
-		layers_set_slide_sortable();
+	
+	// Init on widget widget-initialize
+	$( document ).on( 'widget-initialize', '.widget', function( e ){
+		// 'this' is the widget
+		layers_set_slide_sortable( $(this) );
 	});
 
-	function layers_set_slide_sortable(){
+	function layers_set_slide_sortable( $element_s ){
+		
+		$element_s.find( 'ul[id^="slide_list_"]' ).each( function(){
+			
+			$that = $(this);
+			
+			$that.sortable({
+				placeholder: "layers-sortable-drop",
+				handle: ".layers-accordion-title",
+				stop: function(e , li){
+					// Banner UL, looking up from our current target
+					$slideList = li.item.closest( 'ul' );
 
-		var $slide_lists = $( 'ul[id^="slide_list_"]' );
+					// Set focus slide
+					$widget = li.item.closest( '.widget' );
+					$slide_index = li.item.index();
+					$slide_guid = li.item.data( 'guid' );
+					layers_set_slide_index( $widget, $slide_index, $slide_guid );
 
-		$slide_lists.sortable({
-			placeholder: "layers-sortable-drop",
-			handle: ".layers-accordion-title",
-			stop: function(e , li){
-				// Banner UL, looking up from our current target
-				$slideList = li.item.closest( 'ul' );
+					// Banners <input>
+					$slideInput = $( '#slide_ids_input_' + $slideList.data( 'number' ) );
 
-				// Set focus slide
-				$widget = li.item.closest( '.widget' );
-				$slide_index = li.item.index();
-				$slide_guid = li.item.data( 'guid' );
-				layers_set_slide_index( $widget, $slide_index, $slide_guid );
+					// Apply new slide order
+					$slide_guids = [];
+					$slideList.find( 'li.layers-accordion-item' ).each(function(){
+						$slide_guids.push( $(this).data( 'guid' ) );
+					});
 
-				// Banners <input>
-				$slideInput = $( '#slide_ids_input_' + $slideList.data( 'number' ) );
-
-				// Apply new slide order
-				$slide_guids = [];
-				$slideList.find( 'li.layers-accordion-item' ).each(function(){
-					$slide_guids.push( $(this).data( 'guid' ) );
-				});
-
-				// Trigger change for ajax save
-				$slideInput.val( $slide_guids.join() ).layers_trigger_change();
-			}
+					// Trigger change for ajax save
+					$slideInput.val( $slide_guids.join() ).layers_trigger_change();
+				}
+			});
+				
 		});
 	}
 

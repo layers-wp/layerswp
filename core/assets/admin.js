@@ -214,7 +214,10 @@ jQuery(function($) {
 	* 3 - Color Selectors
 	*/
 	
-	// Init Colr Pciker on 'widget-initialize'
+	// Init all except widgets on load
+	layers_set_color_selectors( $( '#customize-theme-controls > ul > li.accordion-section' ).not( '#accordion-panel-widgets' ) );
+	
+	// Init on widget widget-initialize
 	$( document ).on( 'widget-initialize', '.widget', function( e ){
 		// "Hi Mom""
 		$that = $(this);
@@ -223,28 +226,32 @@ jQuery(function($) {
 		layers_set_color_selectors( $that );
 	});
 
-	function layers_set_color_selectors( element ){
+	function layers_set_color_selectors( $element_s ){
 
-		$(element).find('.layers-color-selector').wpColorPicker({
-			change: function(event, ui){
-				if( 'undefined' !== typeof event ){
+		$element_s.each(function(){
+			// "Hi Mom"
+			$that = $(this);
 
-					//Update the color input
-					$(event.target).val( ui.color.toString() );
+			$that.find('.layers-color-selector').wpColorPicker({
+				change: function(event, ui){
+					if( 'undefined' !== typeof event ){
 
-					// Debounce the color changes
-					layers_debounce_input( event.target );
-				}
-			},
-			clear: function(event) {
-				if( 'undefined' !== typeof event ){
+						//Update the color input
+						$(event.target).val( ui.color.toString() );
 
-					// Debounce the reset change
-					layers_debounce_input( jQuery(event.target).parent('.wp-picker-input-wrap').find('.wp-color-picker') );
-				}
-			},
+						// Debounce the color changes
+						layers_debounce_input( event.target );
+					}
+				},
+				clear: function(event) {
+					if( 'undefined' !== typeof event ){
+
+						// Debounce the reset change
+						layers_debounce_input( jQuery(event.target).parent('.wp-picker-input-wrap').find('.wp-color-picker') );
+					}
+				},
+			});
 		});
-
 	}
 
 	// Debounce function for color changing.
@@ -255,17 +262,32 @@ jQuery(function($) {
 	/**
 	* 4 - Sortable Columns
 	*/
-
-	layers_enqueue_init( function(){ layers_set_sortable_cols(); } );
-
-	function layers_set_sortable_cols(){
+	
+	// Init all except widgets on load
+	layers_init_sortable_columns( $( '#customize-theme-controls > ul > li.accordion-section' ).not( '#accordion-panel-widgets' ) );
+	
+	// Init on widget widget-initialize
+	$( document ).on( 'widget-initialize', '.widget', function( e ){
+		// "Hi Mom"
+		$that = $(this);
+		
 		if( $.sortable == undefined ) return;
-
-		$( '.layers-sortable' ).sortable({
-			placeholder: "layers-sortable-drop"
+		
+		layers_init_sortable_columns( $that );
+	});
+	
+	function layers_init_sortable_columns( $element_s ){
+		
+		$element_s.each(function(){
+			
+			// "Hi Mom"
+			$that = $(this);
+			
+			$that.find( '.layers-sortable' ).sortable({
+				placeholder: "layers-sortable-drop"
+			});
 		});
 	}
-
 
 	/**
 	* 5 - Tabs
@@ -401,9 +423,27 @@ jQuery(function($) {
 	/**
 	* 10 - Add Last Class to Elements
 	*/
-
-	layers_enqueue_init( function(){
-		$('.layers-visuals-wrapper').each(function(){
+	
+	// Init all except widgets on load
+	layers_init_add_last_class( $( '#customize-theme-controls > ul > li.accordion-section' ).not( '#accordion-panel-widgets' ) );
+	
+	// Init on widget widget-initialize
+	$( document ).on( 'widget-initialize', '.widget', function( e ){
+		// "Hi Mom"
+		$that = $(this);
+		
+		layers_init_add_last_class( $that );
+	});
+	
+	function layers_init_add_last_class( $element_s ){
+		
+		$element_s.each(function(){
+			
+			// "Hi Mom"
+			$that = $(this);
+			
+			$that.find('.layers-visuals-wrapper').each(function(){
+				
 				// "Hi Mom!"
 				$that = $(this);
 
@@ -411,31 +451,46 @@ jQuery(function($) {
 					$that.find( 'li' ).eq(-1).addClass( 'layers-last' );
 					$that.find( 'li' ).eq(-2).addClass( 'layers-last' );
 				}
+			});
 		});
-	});
+	}
 
 	/**
 	* 11 - Show/Hide linked elements
 	*/
+	
+	// Init all except widgets on load
+	layers_init_show_if( $( '#customize-theme-controls > ul > li.accordion-section' ).not( '#accordion-panel-widgets' ) );
 
-	// Instantiate the show/hide lookup
-	layers_enqueue_init( function(){ layers_init_show_if(); } );
+	// Init on widget widget-initialize
+	$( document ).on( 'widget-initialize', '.widget', function( e ){
+		// "Hi Mom"
+		$that = $(this);
+		
+		layers_init_show_if( $that );
+	});
+	
+	function layers_init_show_if( $element_s ){
+		
+		$element_s.each(function(){
+			
+			// "Hi Mom"
+			$that = $(this);
+			
+			$that.find('[data-show-if-selector]').each(function(){
 
-	function layers_init_show_if(){
-		$('[data-show-if-selector]').each(function(){
+				var $target_element = $(this);
 
-			var $target_element = $(this);
-
-			var $source_element_selector = $target_element.attr( 'data-show-if-selector' );
-
-			layers_apply_show_if( $source_element_selector );
-
-			$( document ).on( 'change', $source_element_selector, function(e){
+				var $source_element_selector = $target_element.attr( 'data-show-if-selector' );
 
 				layers_apply_show_if( $source_element_selector );
 
-			});
+				$( document ).on( 'change', $source_element_selector, function(e){
 
+					layers_apply_show_if( $source_element_selector );
+
+				});
+			});
 		});
 	}
 
@@ -559,29 +614,47 @@ jQuery(function($) {
 
 		layers_backup_builder_page( $pageid, $that );
 	});
-
-
+	
 	/**
 	* 14 - Init RTE Editors
 	*/
+	
+	// Init all except widgets on load
+	layers_init_editors( $( '#customize-theme-controls > ul > li.accordion-section' ).not( '#accordion-panel-widgets' ) );
 
-	function layers_init_editors(){
-		$( '.layers-rte' ).each( function(){
+	// Init on widget widget-initialize
+	$( document ).on( 'widget-initialize', '.widget', function( e ){
+		
+		// "Hi Mom""
+		$that = $(this);
+		
+		layers_init_editors( $that );
+	});
+	
+	function layers_init_editors( $element_s ){
+		
+		$element_s.each(function(){
+			
 			// "Hi Mom"
-			var $editor = $(this);
+			$that = $(this);
+			
+			$that.find( '.layers-rte' ).each( function(){
+				
+				var $editor = $(this);
 
-			// If I am already an RTE, do nothing
-			if( $editor.siblings( '.froala-box' ).length > 0 ) {
-				return true;
-			}
+				// If I am already an RTE, do nothing
+				if( $editor.siblings( '.froala-box' ).length > 0 ) {
+					return true;
+				}
 
-			// Set the ID for this element
-			var id = $editor[0].id
+				// Set the ID for this element
+				var id = $editor[0].id
 
-			layers_init_editor( id );
+				layers_init_editor( id );
+			});
 		});
 	}
-
+	
 	function layers_init_editor( $id ){
 		var $editor = $( '#' + $id );
 
@@ -618,30 +691,6 @@ jQuery(function($) {
 		$editor.data('fa.editable').$editor.addClass('hide');
 		
 	}
-	
-	// Init Froala on widget widget-initialize
-	$( document ).on( 'widget-initialize', '.widget', function( e ){
-		
-		// "Hi Mom"
-		$that = $(this);
-		
-		// Get the target element
-		$that.find( '.layers-rte' ).each( function(){
-
-			// "Hi Mom"
-			var $editor = $(this);
-
-			// If I am already an RTE, do nothing
-			if( $editor.siblings( '.froala-box' ).length > 0 ) {
-				return true;
-			}
-
-			// Set the ID for this element
-			var id = $editor[0].id
-
-			layers_init_editor( id );
-		});
-	});
 	
 	/**
 	* 15 - Widget Initialization Event

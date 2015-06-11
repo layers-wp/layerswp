@@ -7,27 +7,25 @@
  * @since Layers 1.0.0
  *
  * Contents
- * 1 - Enqueue Initialisation Helper
- * 2 - Media Uploaders
- * 2.a - Image Remove Button
- * 2.b - Image Upload Button
- * 2.c - General File Remove Button
- * 2.d - General File Upload Button
- * 3 - Background Selectors
- * 4 - Color Selectors
- * 5 - Sortable Columns
- * 6 - Tabs
- * 7 - Design Controller toggles
- * 8 - Design Controller Height Matcher
- * 9 - Widget Focussing
- * 10 - Trigger input changes
- * 11 - Add Last Class to Design Bar Elements
- * 12 - Show/Hide linked elements
- * 13 - Run Initialisations
- * 14 - Layers Custom Easing
- * 15 - Layers Pages Backups
- * 16 - Init RTE Editors
- * 17 - Widget Initialization Event
+ * 1 - Media Uploaders
+ * 1.a - Image Remove Button
+ * 1.b - Image Upload Button
+ * 1.c - General File Remove Button
+ * 1.d - General File Upload Button
+ * 2 - Background Selectors
+ * 3 - Color Selectors
+ * 4 - Sortable Columns
+ * 5 - Tabs
+ * 6 - Design Controller toggles
+ * 7 - Design Controller Height Matcher
+ * 8 - Widget Focussing
+ * 9 - Trigger input changes
+ * 10 - Add Last Class to Design Bar Elements
+ * 11 - Show/Hide linked elements
+ * 12 - Layers Custom Easing
+ * 13 - Layers Pages Backups
+ * 14 - Init RTE Editors
+ * 15 - Widget Initialization Event
  *
  * Author: Obox Themes
  * Author URI: http://www.oboxthemes.com/
@@ -38,23 +36,10 @@
 jQuery(function($) {
 
 	/**
-	* 1 - Enqueue Initialisation Helper
-	*
-	* Used to stagger the initialisation of elements to avoid Firefox non-responsive script warning.
-	* Function adds individual function to an array that is initialised step by step at the end of the file.
+	* 1 - Media Uploaders
 	*/
 
-	var $layers_init_array = [];
-
-	function layers_enqueue_init( $init_function ) {
-		$layers_init_array.push( $init_function );
-	}
-
-	/**
-	* 2 - Media Uploaders
-	*/
-
-	// 2.a - Image Remove Button
+	// 1.a - Image Remove Button
 	var file_frame;
 	$(document).on( 'click' , '.layers-image-container .layers-image-remove' , function(e){
 		e.preventDefault();
@@ -73,7 +58,7 @@ jQuery(function($) {
 		return false;
 	});
 
-	// 2.b - Image Upload Button
+	// 1.b - Image Upload Button
 	$(document).on( 'click' , '.layers-image-upload-button' , function(e){
 		e.preventDefault();
 
@@ -140,7 +125,7 @@ jQuery(function($) {
 		file_frame.open();
 	});
 
-	// 2.c - General File Remove Button
+	// 1.c - General File Remove Button
 	$(document).on( 'click' , '.layers-file-remove' , function(e){
 		e.preventDefault();
 
@@ -154,7 +139,7 @@ jQuery(function($) {
 		return false;
 	});
 
-	// 2.d - General File Upload Button
+	// 1.d - General File Upload Button
 	$(document).on( 'click' , '.layers-regular-uploader' , function(e){
 		e.preventDefault();
 
@@ -198,7 +183,7 @@ jQuery(function($) {
 	});
 
 	/**
-	* 3 -Background Selectors
+	* 2 -Background Selectors
 	*/
 	$(document).on( 'click', '.layers-background-selector li' , function(e){
 		e.preventDefault();
@@ -226,7 +211,7 @@ jQuery(function($) {
 	});
 
 	/**
-	* 4 - Color Selectors
+	* 3 - Color Selectors
 	*/
 	
 	// Init Colr Pciker on 'widget-initialize'
@@ -268,7 +253,7 @@ jQuery(function($) {
 	}, 200);
 
 	/**
-	* 5 - Sortable Columns
+	* 4 - Sortable Columns
 	*/
 
 	layers_enqueue_init( function(){ layers_set_sortable_cols(); } );
@@ -283,7 +268,7 @@ jQuery(function($) {
 
 
 	/**
-	* 6 - Tabs
+	* 5 - Tabs
 	*/
 	$( document ).on( 'click' , '.layers-tabs li' , function(e){
 		e.preventDefault();
@@ -306,7 +291,7 @@ jQuery(function($) {
 
 
 	/**
-	* 7 - Design Controller toggles
+	* 6 - Design Controller toggles
 	*/
 	$( document ).on( 'click', function(e) {
 		var eventTarget = $(e.target);
@@ -361,7 +346,7 @@ jQuery(function($) {
 	});
 
 	/**
-	* 8 - Design Controller Height Matcher
+	* 7 - Design Controller Height Matcher
 	*/
 	$(window).bind( 'resize load', function(){
 		layers_set_visual_wrapper_height();
@@ -372,7 +357,7 @@ jQuery(function($) {
 	}
 
 	/**
-	* 9 - Widget Focussing
+	* 8 - Widget Focussing
 	*/
 	$( document ).on( 'click focus' , '.control-panel-content .widget-rendered' , function(e){
 		// "Hi Mom"
@@ -398,7 +383,7 @@ jQuery(function($) {
 	}
 
 	/**
-	* 10 - Trigger input changes
+	* 9 - Trigger input changes
 	*/
 
 	$.fn.layers_trigger_change = function() {
@@ -414,7 +399,7 @@ jQuery(function($) {
 	};
 
 	/**
-	* 11 - Add Last Class to Elements
+	* 10 - Add Last Class to Elements
 	*/
 
 	layers_enqueue_init( function(){
@@ -430,7 +415,7 @@ jQuery(function($) {
 	});
 
 	/**
-	* 12 - Show/Hide linked elements
+	* 11 - Show/Hide linked elements
 	*/
 
 	// Instantiate the show/hide lookup
@@ -511,30 +496,7 @@ jQuery(function($) {
 	}
 
 	/**
-	* 13 - Run Initialisations
-	*/
-
-	$layers_init_position = 0;
-
-	layers_sequence_loader();
-
-	function layers_sequence_loader(){
-		setTimeout( function(){
-
-			// Run current init function.
-			$layers_init_array[ $layers_init_position ]();
-
-			// Step to next point in init array
-			$layers_init_position++;
-
-			// If there are more elements in init array then continue to loop.
-			if ( $layers_init_position < $layers_init_array.length ) layers_sequence_loader();
-
-		}, 10 );
-	}
-
-	/**
-	* 14 - Layers Custom Easing
+	* 12 - Layers Custom Easing
 	*
 	* Extend jQuery easing with custom Layers easing function for UI animations - eg slideUp, SlideDown
 	*/
@@ -545,7 +507,7 @@ jQuery(function($) {
 	} });
 
 	/**
-	* 15 - Layers Backup Pages
+	* 13 - Layers Backup Pages
 	*
 	* Backup Layers pages so that users can transfer themes
 	*/
@@ -600,7 +562,7 @@ jQuery(function($) {
 
 
 	/**
-	* 16 - Init RTE Editors
+	* 14 - Init RTE Editors
 	*/
 
 	function layers_init_editors(){
@@ -682,7 +644,7 @@ jQuery(function($) {
 	});
 	
 	/**
-	* 17 - Widget Initialization Event
+	* 15 - Widget Initialization Event
 	*
 	* Dispense 'widget-initialize' event each time a widget is focused, clicked or added
 	* to allow for just-in-time init instead of massive bulk init

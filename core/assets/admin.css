@@ -1279,11 +1279,15 @@ div[id*='layers-widget'] .spinner{
         background: #FFF;
         border: 1px solid #E5E5E5;
         border-bottom: 0;
-        /*
-        position: absolute;
-        bottom: 100%;
-        box-shadow: 0 -1px 0px rgba(0, 0, 0, 0.02), 0 -4px 0px rgba(0, 0, 0, 0.01);
-        */
+        transition: .2s ease-in-out .2s;
+        overflow: hidden;
+        height: 38px;
+    }
+    
+    .froala-editor.f-basic.hide{
+        transform: translate( 0, 30px );
+        height: 0;
+        opacity:0;
     }
 
     .layers-form-item .froala-editor button.fr-bttn,

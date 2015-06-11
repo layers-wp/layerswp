@@ -21,13 +21,13 @@ jQuery(document).ready(function($){
 	/**
 	* 1 - Sortable items
 	*/
-	layers_set_column_sorable();
+	layers_set_column_sortable();
 
 	$(document).on ( 'widget-added' , function(){
-		layers_set_column_sorable();
+		layers_set_column_sortable();
 	});
 
-	function layers_set_column_sorable(){
+	function layers_set_column_sortable(){
 
 		var $column_lists = $( 'ul[id^="column_list_"]' );
 
@@ -89,7 +89,7 @@ jQuery(document).ready(function($){
 		$columnInput.val( $column_guids.join() ).layers_trigger_change();
 
 		// Reset Sortable Items
-		layers_set_column_sorable();
+		layers_set_column_sortable();
 	});
 
 	$(document).on( 'click' , '.layers-add-widget-column' , function(e){

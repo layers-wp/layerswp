@@ -22,13 +22,13 @@ jQuery(document).ready(function($){
 	/**
 	* 1 - Sortable items
 	*/
-	layers_set_slide_sorable();
+	layers_set_slide_sortable();
 
 	$(document).on ( 'widget-added' , function(){
-		layers_set_slide_sorable();
+		layers_set_slide_sortable();
 	});
 
-	function layers_set_slide_sorable(){
+	function layers_set_slide_sortable(){
 
 		var $slide_lists = $( 'ul[id^="slide_list_"]' );
 

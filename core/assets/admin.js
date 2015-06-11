@@ -26,7 +26,7 @@
  * 13 - Run Initialisations
  * 14 - Layers Custom Easing
  * 15 - Layers Pages Backups
- * 16 - Init Editors
+ * 16 - Init RTE Editors
  * 17 - Widget Initialization Event
  *
  * Author: Obox Themes
@@ -600,7 +600,7 @@ jQuery(function($) {
 
 
 	/**
-	* 16 - Init Editors
+	* 16 - Init RTE Editors
 	*/
 
 	function layers_init_editors(){

@@ -219,11 +219,8 @@ jQuery(function($) {
 	
 	// Init on widget widget-initialize
 	$( document ).on( 'widget-initialize', '.widget', function( e ){
-		// "Hi Mom""
-		$widget = $(this);
-		
-		// Init Color Pickers
-		layers_set_color_selectors( $widget );
+		// 'this' is the widget
+		layers_set_color_selectors( $(this) );
 	});
 
 	function layers_set_color_selectors( $element_s ){
@@ -268,12 +265,12 @@ jQuery(function($) {
 	
 	// Init on widget widget-initialize
 	$( document ).on( 'widget-initialize', '.widget', function( e ){
-		// "Hi Mom"
-		$widget = $(this);
 		
+		// Bail if no sortable
 		if( $.sortable == undefined ) return;
-		
-		layers_init_sortable_columns( $widget );
+
+		// 'this' is the widget
+		layers_init_sortable_columns( $(this) );
 	});
 	
 	function layers_init_sortable_columns( $element_s ){
@@ -429,10 +426,8 @@ jQuery(function($) {
 	
 	// Init on widget widget-initialize
 	$( document ).on( 'widget-initialize', '.widget', function( e ){
-		// "Hi Mom"
-		$widget = $(this);
-		
-		layers_init_add_last_class( $widget );
+		// 'this' is the widget
+		layers_init_add_last_class( $(this) );
 	});
 	
 	function layers_init_add_last_class( $element_s ){
@@ -464,10 +459,8 @@ jQuery(function($) {
 
 	// Init on widget widget-initialize
 	$( document ).on( 'widget-initialize', '.widget', function( e ){
-		// "Hi Mom"
-		$widget = $(this);
-		
-		layers_init_show_if( $widget );
+		// 'this' is the widget
+		layers_init_show_if( $(this) );
 	});
 	
 	function layers_init_show_if( $element_s ){
@@ -624,10 +617,8 @@ jQuery(function($) {
 
 	// Init on widget widget-initialize
 	$( document ).on( 'widget-initialize', '.widget', function( e ){
-		// "Hi Mom""
-		$widget = $(this);
-		
-		layers_init_editors( $widget );
+		// 'this' is the widget
+		layers_init_editors( $(this) );
 	});
 	
 	function layers_init_editors( $element_s ){

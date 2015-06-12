@@ -18,14 +18,13 @@
  * 5 - Sortable Columns
  * 6 - Tabs
  * 7 - Design Controller toggles
- * 8 - Design Controller Height Matcher
- * 9 - Widget Focussing
- * 10 - Trigger input changes
- * 11 - Add Last Class to Design Bar Elements
- * 12 - Show/Hide linked elements
- * 13 - Layers Pages Backups
- * 14 - Init RTE Editors
- * 15 - Widget Initialization Event
+ * 8 - Widget Focussing
+ * 9 - Trigger input changes
+ * 10 - Add Last Class to Design Bar Elements
+ * 11 - Show/Hide linked elements
+ * 12 - Layers Pages Backups
+ * 13 - Init RTE Editors
+ * 14 - Widget Initialization Event
  *
  * Author: Obox Themes
  * Author URI: http://www.oboxthemes.com/
@@ -376,18 +375,7 @@ jQuery(function($) {
 	});
 
 	/**
-	* 8 - Design Controller Height Matcher
-	*/
-	$(window).bind( 'resize load', function(){
-		layers_set_visual_wrapper_height();
-	} );
-	function layers_set_visual_wrapper_height(){
-		// Set the visual wrapper to the same height as the window
-		// $( '.layers-visuals-wrapper' ).css( 'height' , $(window).height() );
-	}
-
-	/**
-	* 9 - Widget Focussing
+	* 8 - Widget Focussing
 	*/
 	$( document ).on( 'click focus' , '.control-panel-content .widget-rendered' , function(e){
 		// "Hi Mom"
@@ -413,7 +401,7 @@ jQuery(function($) {
 	}
 
 	/**
-	* 10 - Trigger input changes
+	* 9 - Trigger input changes
 	*/
 
 	$.fn.layers_trigger_change = function() {
@@ -429,7 +417,7 @@ jQuery(function($) {
 	};
 
 	/**
-	* 11 - Add Last Class to Elements
+	* 10 - Add Last Class to Elements
 	*/
 	
 	// Init all except widgets on load
@@ -462,7 +450,7 @@ jQuery(function($) {
 	}
 
 	/**
-	* 12 - Show/Hide linked elements
+	* 11 - Show/Hide linked elements
 	*/
 	
 	// Init all except widgets on load
@@ -555,7 +543,7 @@ jQuery(function($) {
 	}
 
 	/**
-	* 13 - Layers Backup Pages
+	* 12 - Layers Backup Pages
 	*
 	* Backup Layers pages so that users can transfer themes
 	*/
@@ -609,7 +597,7 @@ jQuery(function($) {
 	});
 	
 	/**
-	* 14 - Init RTE Editors
+	* 13 - Init RTE Editors
 	*/
 	
 	// Init all except widgets on load
@@ -683,7 +671,7 @@ jQuery(function($) {
 	}
 	
 	/**
-	* 15 - Widget Initialization Event
+	* 14 - Widget Initialization Event
 	*
 	* Dispense 'widget-initialize' event each time a widget is focused, clicked or added
 	* to allow for just-in-time init instead of massive bulk init

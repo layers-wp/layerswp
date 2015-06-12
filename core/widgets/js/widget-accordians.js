@@ -49,8 +49,6 @@
 		
 		$element_s.find( '.layers-accordions' ).each( function(){
 			
-			console.log('acordian!!!!');
-			
 			var $that = $(this);
 
 			$that.find( 'li.layers-accordion-item' ).first().addClass( 'open' );

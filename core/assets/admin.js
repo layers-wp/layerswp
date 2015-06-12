@@ -7,25 +7,24 @@
  * @since Layers 1.0.0
  *
  * Contents
- * 1 - Media Uploaders
- * 1.a - Image Remove Button
- * 1.b - Image Upload Button
- * 1.c - General File Remove Button
- * 1.d - General File Upload Button
- * 2 - Background Selectors
- * 3 - Color Selectors
- * 4 - Sortable Columns
- * 5 - Tabs
- * 6 - Design Controller toggles
- * 7 - Design Controller Height Matcher
+ * 1 - Layers Custom Easing
+ * 2 - Media Uploaders
+ * 2.a - Image Remove Button
+ * 2.b - Image Upload Button
+ * 2.c - General File Remove Button
+ * 2.d - General File Upload Button
+ * 3 - Background Selectors
+ * 4 - Color Selectors
+ * 5 - Sortable Columns
+ * 6 - Tabs
+ * 7 - Design Controller toggles
  * 8 - Widget Focussing
  * 9 - Trigger input changes
  * 10 - Add Last Class to Design Bar Elements
  * 11 - Show/Hide linked elements
- * 12 - Layers Custom Easing
- * 13 - Layers Pages Backups
- * 14 - Init RTE Editors
- * 15 - Widget Initialization Event
+ * 12 - Layers Pages Backups
+ * 13 - Init RTE Editors
+ * 14 - Widget Initialization Event
  *
  * Author: Obox Themes
  * Author URI: http://www.oboxthemes.com/
@@ -34,12 +33,23 @@
 */
 
 jQuery(function($) {
-
+	
 	/**
-	* 1 - Media Uploaders
+	* 1 - Layers Custom Easing
+	*
+	* Extend jQuery easing with custom Layers easing function for UI animations - eg slideUp, SlideDown
 	*/
 
-	// 1.a - Image Remove Button
+	jQuery.extend( jQuery.easing, { layersEaseInOut: function (x, t, b, c, d) {
+		if ((t/=d/2) < 1) return c/2*t*t + b;
+		return -c/2 * ((--t)*(t-2) - 1) + b;
+	}});
+
+	/**
+	* 2 - Media Uploaders
+	*/
+
+	// 2.a - Image Remove Button
 	var file_frame;
 	$(document).on( 'click' , '.layers-image-container .layers-image-remove' , function(e){
 		e.preventDefault();
@@ -58,7 +68,7 @@ jQuery(function($) {
 		return false;
 	});
 
-	// 1.b - Image Upload Button
+	// 2.b - Image Upload Button
 	$(document).on( 'click' , '.layers-image-upload-button' , function(e){
 		e.preventDefault();
 
@@ -125,7 +135,7 @@ jQuery(function($) {
 		file_frame.open();
 	});
 
-	// 1.c - General File Remove Button
+	// 2.c - General File Remove Button
 	$(document).on( 'click' , '.layers-file-remove' , function(e){
 		e.preventDefault();
 
@@ -139,7 +149,7 @@ jQuery(function($) {
 		return false;
 	});
 
-	// 1.d - General File Upload Button
+	// 2.d - General File Upload Button
 	$(document).on( 'click' , '.layers-regular-uploader' , function(e){
 		e.preventDefault();
 
@@ -183,7 +193,7 @@ jQuery(function($) {
 	});
 
 	/**
-	* 2 -Background Selectors
+	* 3 -Background Selectors
 	*/
 	$(document).on( 'click', '.layers-background-selector li' , function(e){
 		e.preventDefault();
@@ -211,7 +221,7 @@ jQuery(function($) {
 	});
 
 	/**
-	* 3 - Color Selectors
+	* 4 - Color Selectors
 	*/
 	
 	// Init all except widgets on load
@@ -257,7 +267,7 @@ jQuery(function($) {
 	}, 200);
 
 	/**
-	* 4 - Sortable Columns
+	* 5 - Sortable Columns
 	*/
 	
 	// Init all except widgets on load
@@ -287,7 +297,7 @@ jQuery(function($) {
 	}
 
 	/**
-	* 5 - Tabs
+	* 6 - Tabs
 	*/
 	$( document ).on( 'click' , '.layers-tabs li' , function(e){
 		e.preventDefault();
@@ -310,7 +320,7 @@ jQuery(function($) {
 
 
 	/**
-	* 6 - Design Controller toggles
+	* 7 - Design Controller toggles
 	*/
 	$( document ).on( 'click', function(e) {
 		var eventTarget = $(e.target);
@@ -363,17 +373,6 @@ jQuery(function($) {
 		$that.siblings( '.layers-visuals-item' ).removeClass( 'layers-active' );
 
 	});
-
-	/**
-	* 7 - Design Controller Height Matcher
-	*/
-	$(window).bind( 'resize load', function(){
-		layers_set_visual_wrapper_height();
-	} );
-	function layers_set_visual_wrapper_height(){
-		// Set the visual wrapper to the same height as the window
-		// $( '.layers-visuals-wrapper' ).css( 'height' , $(window).height() );
-	}
 
 	/**
 	* 8 - Widget Focussing
@@ -544,18 +543,7 @@ jQuery(function($) {
 	}
 
 	/**
-	* 12 - Layers Custom Easing
-	*
-	* Extend jQuery easing with custom Layers easing function for UI animations - eg slideUp, SlideDown
-	*/
-
-	jQuery.extend( jQuery.easing, { layersEaseInOut: function (x, t, b, c, d) {
-		if ((t/=d/2) < 1) return c/2*t*t + b;
-		return -c/2 * ((--t)*(t-2) - 1) + b;
-	} });
-
-	/**
-	* 13 - Layers Backup Pages
+	* 12 - Layers Backup Pages
 	*
 	* Backup Layers pages so that users can transfer themes
 	*/
@@ -609,7 +597,7 @@ jQuery(function($) {
 	});
 	
 	/**
-	* 14 - Init RTE Editors
+	* 13 - Init RTE Editors
 	*/
 	
 	// Init all except widgets on load
@@ -683,7 +671,7 @@ jQuery(function($) {
 	}
 	
 	/**
-	* 15 - Widget Initialization Event
+	* 14 - Widget Initialization Event
 	*
 	* Dispense 'widget-initialize' event each time a widget is focused, clicked or added
 	* to allow for just-in-time init instead of massive bulk init

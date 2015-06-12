@@ -7,22 +7,22 @@
  * @since Layers 1.0.0
  *
  * Contents
- * 1 - Media Uploaders
- * 1.a - Image Remove Button
- * 1.b - Image Upload Button
- * 1.c - General File Remove Button
- * 1.d - General File Upload Button
- * 2 - Background Selectors
- * 3 - Color Selectors
- * 4 - Sortable Columns
- * 5 - Tabs
- * 6 - Design Controller toggles
- * 7 - Design Controller Height Matcher
- * 8 - Widget Focussing
- * 9 - Trigger input changes
- * 10 - Add Last Class to Design Bar Elements
- * 11 - Show/Hide linked elements
- * 12 - Layers Custom Easing
+ * 1 - Layers Custom Easing
+ * 2 - Media Uploaders
+ * 2.a - Image Remove Button
+ * 2.b - Image Upload Button
+ * 2.c - General File Remove Button
+ * 2.d - General File Upload Button
+ * 3 - Background Selectors
+ * 4 - Color Selectors
+ * 5 - Sortable Columns
+ * 6 - Tabs
+ * 7 - Design Controller toggles
+ * 8 - Design Controller Height Matcher
+ * 9 - Widget Focussing
+ * 10 - Trigger input changes
+ * 11 - Add Last Class to Design Bar Elements
+ * 12 - Show/Hide linked elements
  * 13 - Layers Pages Backups
  * 14 - Init RTE Editors
  * 15 - Widget Initialization Event
@@ -34,12 +34,23 @@
 */
 
 jQuery(function($) {
-
+	
 	/**
-	* 1 - Media Uploaders
+	* 1 - Layers Custom Easing
+	*
+	* Extend jQuery easing with custom Layers easing function for UI animations - eg slideUp, SlideDown
 	*/
 
-	// 1.a - Image Remove Button
+	jQuery.extend( jQuery.easing, { layersEaseInOut: function (x, t, b, c, d) {
+		if ((t/=d/2) < 1) return c/2*t*t + b;
+		return -c/2 * ((--t)*(t-2) - 1) + b;
+	}});
+
+	/**
+	* 2 - Media Uploaders
+	*/
+
+	// 2.a - Image Remove Button
 	var file_frame;
 	$(document).on( 'click' , '.layers-image-container .layers-image-remove' , function(e){
 		e.preventDefault();
@@ -58,7 +69,7 @@ jQuery(function($) {
 		return false;
 	});
 
-	// 1.b - Image Upload Button
+	// 2.b - Image Upload Button
 	$(document).on( 'click' , '.layers-image-upload-button' , function(e){
 		e.preventDefault();
 
@@ -125,7 +136,7 @@ jQuery(function($) {
 		file_frame.open();
 	});
 
-	// 1.c - General File Remove Button
+	// 2.c - General File Remove Button
 	$(document).on( 'click' , '.layers-file-remove' , function(e){
 		e.preventDefault();
 
@@ -139,7 +150,7 @@ jQuery(function($) {
 		return false;
 	});
 
-	// 1.d - General File Upload Button
+	// 2.d - General File Upload Button
 	$(document).on( 'click' , '.layers-regular-uploader' , function(e){
 		e.preventDefault();
 
@@ -183,7 +194,7 @@ jQuery(function($) {
 	});
 
 	/**
-	* 2 -Background Selectors
+	* 3 -Background Selectors
 	*/
 	$(document).on( 'click', '.layers-background-selector li' , function(e){
 		e.preventDefault();
@@ -211,7 +222,7 @@ jQuery(function($) {
 	});
 
 	/**
-	* 3 - Color Selectors
+	* 4 - Color Selectors
 	*/
 	
 	// Init all except widgets on load
@@ -257,7 +268,7 @@ jQuery(function($) {
 	}, 200);
 
 	/**
-	* 4 - Sortable Columns
+	* 5 - Sortable Columns
 	*/
 	
 	// Init all except widgets on load
@@ -287,7 +298,7 @@ jQuery(function($) {
 	}
 
 	/**
-	* 5 - Tabs
+	* 6 - Tabs
 	*/
 	$( document ).on( 'click' , '.layers-tabs li' , function(e){
 		e.preventDefault();
@@ -310,7 +321,7 @@ jQuery(function($) {
 
 
 	/**
-	* 6 - Design Controller toggles
+	* 7 - Design Controller toggles
 	*/
 	$( document ).on( 'click', function(e) {
 		var eventTarget = $(e.target);
@@ -365,7 +376,7 @@ jQuery(function($) {
 	});
 
 	/**
-	* 7 - Design Controller Height Matcher
+	* 8 - Design Controller Height Matcher
 	*/
 	$(window).bind( 'resize load', function(){
 		layers_set_visual_wrapper_height();
@@ -376,7 +387,7 @@ jQuery(function($) {
 	}
 
 	/**
-	* 8 - Widget Focussing
+	* 9 - Widget Focussing
 	*/
 	$( document ).on( 'click focus' , '.control-panel-content .widget-rendered' , function(e){
 		// "Hi Mom"
@@ -402,7 +413,7 @@ jQuery(function($) {
 	}
 
 	/**
-	* 9 - Trigger input changes
+	* 10 - Trigger input changes
 	*/
 
 	$.fn.layers_trigger_change = function() {
@@ -418,7 +429,7 @@ jQuery(function($) {
 	};
 
 	/**
-	* 10 - Add Last Class to Elements
+	* 11 - Add Last Class to Elements
 	*/
 	
 	// Init all except widgets on load
@@ -451,7 +462,7 @@ jQuery(function($) {
 	}
 
 	/**
-	* 11 - Show/Hide linked elements
+	* 12 - Show/Hide linked elements
 	*/
 	
 	// Init all except widgets on load
@@ -542,17 +553,6 @@ jQuery(function($) {
 		});
 
 	}
-
-	/**
-	* 12 - Layers Custom Easing
-	*
-	* Extend jQuery easing with custom Layers easing function for UI animations - eg slideUp, SlideDown
-	*/
-
-	jQuery.extend( jQuery.easing, { layersEaseInOut: function (x, t, b, c, d) {
-		if ((t/=d/2) < 1) return c/2*t*t + b;
-		return -c/2 * ((--t)*(t-2) - 1) + b;
-	} });
 
 	/**
 	* 13 - Layers Backup Pages

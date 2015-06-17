@@ -33,7 +33,7 @@
 */
 
 jQuery(function($) {
-	
+
 	/**
 	* 1 - Layers Custom Easing
 	*
@@ -223,10 +223,10 @@ jQuery(function($) {
 	/**
 	* 4 - Color Selectors
 	*/
-	
+
 	// Init all except widgets on load
 	layers_set_color_selectors( $( '#customize-theme-controls > ul > li.accordion-section' ).not( '#accordion-panel-widgets' ) );
-	
+
 	// Init on widget widget-initialize
 	$( document ).on( 'widget-initialize', '.widget', function( e ){
 		// 'this' is the widget
@@ -269,27 +269,27 @@ jQuery(function($) {
 	/**
 	* 5 - Sortable Columns
 	*/
-	
+
 	// Init all except widgets on load
 	layers_init_sortable_columns( $( '#customize-theme-controls > ul > li.accordion-section' ).not( '#accordion-panel-widgets' ) );
-	
+
 	// Init on widget widget-initialize
 	$( document ).on( 'widget-initialize', '.widget', function( e ){
-		
+
 		// Bail if no sortable
 		if( $.sortable == undefined ) return;
 
 		// 'this' is the widget
 		layers_init_sortable_columns( $(this) );
 	});
-	
+
 	function layers_init_sortable_columns( $element_s ){
-		
+
 		$element_s.each(function(){
-			
+
 			// "Hi Mom"
 			$that = $(this);
-			
+
 			$that.find( '.layers-sortable' ).sortable({
 				placeholder: "layers-sortable-drop"
 			});
@@ -419,25 +419,25 @@ jQuery(function($) {
 	/**
 	* 10 - Add Last Class to Elements
 	*/
-	
+
 	// Init all except widgets on load
 	layers_init_add_last_class( $( '#customize-theme-controls > ul > li.accordion-section' ).not( '#accordion-panel-widgets' ) );
-	
+
 	// Init on widget widget-initialize
 	$( document ).on( 'widget-initialize', '.widget', function( e ){
 		// 'this' is the widget
 		layers_init_add_last_class( $(this) );
 	});
-	
+
 	function layers_init_add_last_class( $element_s ){
-		
+
 		$element_s.each(function(){
-			
+
 			// "Hi Mom"
 			$that = $(this);
-			
+
 			$that.find('.layers-visuals-wrapper').each(function(){
-				
+
 				// "Hi Mom!"
 				$that = $(this);
 
@@ -452,7 +452,7 @@ jQuery(function($) {
 	/**
 	* 11 - Show/Hide linked elements
 	*/
-	
+
 	// Init all except widgets on load
 	layers_init_show_if( $( '#customize-theme-controls > ul > li.accordion-section' ).not( '#accordion-panel-widgets' ) );
 
@@ -461,14 +461,14 @@ jQuery(function($) {
 		// 'this' is the widget
 		layers_init_show_if( $(this) );
 	});
-	
+
 	function layers_init_show_if( $element_s ){
-		
+
 		$element_s.each(function(){
-			
+
 			// "Hi Mom"
 			$that = $(this);
-			
+
 			$that.find('[data-show-if-selector]').each(function(){
 
 				var $target_element = $(this);
@@ -595,11 +595,11 @@ jQuery(function($) {
 
 		layers_backup_builder_page( $pageid, $that );
 	});
-	
+
 	/**
 	* 13 - Init RTE Editors
 	*/
-	
+
 	// Init all except widgets on load
 	layers_init_editors( $( '#customize-theme-controls > ul > li.accordion-section' ).not( '#accordion-panel-widgets' ) );
 
@@ -608,16 +608,16 @@ jQuery(function($) {
 		// 'this' is the widget
 		layers_init_editors( $(this) );
 	});
-	
+
 	function layers_init_editors( $element_s ){
-		
+
 		$element_s.each(function(){
-			
+
 			// "Hi Mom"
 			$that = $(this);
-			
+
 			$that.find( '.layers-rte' ).each( function(){
-				
+
 				var $editor = $(this);
 
 				// If I am already an RTE, do nothing
@@ -632,7 +632,7 @@ jQuery(function($) {
 			});
 		});
 	}
-	
+
 	function layers_init_editor( $id ){
 		var $editor = $( '#' + $id );
 
@@ -652,7 +652,7 @@ jQuery(function($) {
 			allowedTags: $allow_tags,
 			key: 'YWd1WDPTa1ZNRGe1OC1c1=='
 		};
-		
+
 		$editor.editable( $editor_data )
 			.on('editable.contentChanged', function (e, editor) {
 				$editor.layers_trigger_change();
@@ -665,18 +665,18 @@ jQuery(function($) {
 				//console.log('blur');
 				editor.$editor.addClass('hide');
 			});
-		
+
 		$editor.data('fa.editable').$editor.addClass('hide');
-		
+
 	}
-	
+
 	/**
 	* 14 - Widget Initialization Event
 	*
 	* Dispense 'widget-initialize' event each time a widget is focused, clicked or added
 	* to allow for just-in-time init instead of massive bulk init
 	*/
-	
+
 	$( document ).on( 'click focus' , '.control-panel-content .widget-rendered' , function(e){
 		$that = $(this);
 		layers_init_widget( $that );
@@ -690,12 +690,15 @@ jQuery(function($) {
 
 		// Check if has been initialized before
 		if ( !$widget_li.hasClass( 'intialized' ) ){
-			
+
 			// If never initialized before then set it to intialized
 			$widget_li.addClass('intialized');
-			
+
 			// Trigger Initialize event
-			$widget_li.children( '.widget' ).trigger( 'widget-initialize' );
+			setTimeout(function(){
+				$widget_li.children( '.widget' ).trigger( 'widget-initialize' );
+			} , 250 );
+
 		}
 	}
 

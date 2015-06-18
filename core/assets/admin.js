@@ -409,11 +409,7 @@ jQuery(function($) {
 		// Trigger 'change' and 'blur' to reset the customizer
 		$changed = $(this).trigger("change").trigger("blur");
 
-		//var $widget_synced = $( document ).trigger( 'widget-synced', $(this).closest( '.control-section' ).find( '.widget:first' ) );
-
-		// Reset 'show if' selectors;
-		// layers_init_editors();
-		// layers_init_show_if();
+		console.log( $changed );
 	};
 
 	/**
@@ -647,7 +643,6 @@ jQuery(function($) {
 			initOnClick: false,
 			paragraphy: false,
 			convertMailAddresses: true,
-			countCharacters: true,
 			buttons:  $allow_buttons,
 			allowedTags: $allow_tags,
 			key: 'YWd1WDPTa1ZNRGe1OC1c1=='
@@ -655,16 +650,17 @@ jQuery(function($) {
 
 		$editor.editable( $editor_data )
 			.on('editable.contentChanged', function (e, editor) {
-				$editor.layers_trigger_change();
+				layers_debounce_input( $editor );
 			})
 			.on('editable.focus', function (e, editor) {
-				//console.log('focus');
+
 				editor.$editor.removeClass('hide');
 			})
 			.on('editable.blur', function (e, editor) {
-				//console.log('blur');
+
 				editor.$editor.addClass('hide');
 			});
+
 
 		$editor.data('fa.editable').$editor.addClass('hide');
 

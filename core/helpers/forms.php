@@ -242,7 +242,7 @@ class Layers_Form_Elements {
 			*/
 			case 'rte' :
 				// Apply allowed tags list
-				$allow_tags = ( isset( $input->allow_tags ) && is_array( $input->allow_tags ) ? implode( ',' , $input->allow_tags ) : 'a,br,b,strong,i,em,blockquote' );
+				$allow_tags = ( isset( $input->allow_tags ) && is_array( $input->allow_tags ) ? implode( ',' , $input->allow_tags ) : 'a,br,b,strong,i,em,blockquote,strike,button' );
 
 				// Add custom button support
 				$supports = ( isset( $input->supports ) && is_array( $input->supports ) ? implode( ',' , $input->supports ) : 'sep,bold,italic,underline,strikeThrough,createLink,removeFormat,html' ); ?>

@@ -697,7 +697,7 @@ jQuery(function($) {
 			// Trigger Initialize event
 			setTimeout(function(){
 				$widget_li.children( '.widget' ).trigger( 'widget-initialize' );
-			} , 250 );
+			} , 550 );
 
 		}
 	}

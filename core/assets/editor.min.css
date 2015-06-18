@@ -240,6 +240,12 @@ pre.fr-tag {
   background-clip: padding-box;
   font-family: "Courier New", Courier, monospace;
 }
+
+.froala-view a{
+  color: inherit;
+  border-bottom: 1px dotted #222;
+}
+
 .froala-view blockquote,
 blockquote.fr-tag {
   margin-left: 20px;

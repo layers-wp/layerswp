@@ -81,11 +81,11 @@ if( !function_exists( 'layers_post_meta' ) ) {
 		} // foreach $display
 
 		if( !empty( $meta_to_display ) ) {
-			echo '<' . $wrapper . ( ( '' != $wrapper_class ) ? ' class="' . $wrapper_class .'"' : NULL ) . '>';
+			echo '<' , $wrapper , ( ( '' != $wrapper_class ) ? ' class="' . $wrapper_class . '"' : NULL ) , '>';
 				echo '<p>';
 					echo implode( ' ' , $meta_to_display );
 				echo '</p>';
-			echo '</' . $wrapper . '>';
+			echo '</' , $wrapper , '>';
 		}
 	}
 } // layers_post_meta

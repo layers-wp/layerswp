@@ -8,15 +8,15 @@
  */
 
 class Layers_Customizer_Regsitrar {
-	
+
 	public $customizer;
 
 	public $config;
 
 	public $prefix;
-	
+
     private static $instance; // stores singleton class
-    
+
     /**
     *  Get Instance creates a singleton class that's cached to stop duplicate instances
     */
@@ -37,12 +37,12 @@ class Layers_Customizer_Regsitrar {
     /**
     *  Init behaves like, and replaces, construct
     */
-    
+
     public function init() {
 
 		// Register the customizer object
 		global $wp_customize;
-		
+
 		$this->customizer = $wp_customize;
 
 		// Set Prefix
@@ -50,16 +50,16 @@ class Layers_Customizer_Regsitrar {
 
 		// Grab the customizer config
 		$this->config = Layers_Customizer_Config::get_instance();
-		
+
 		//Register the panels and sections based on this instance's config
-		
+
 		// Start registration with the panels & sections
 		$this->register_panels( $this->config->panels );
 		$this->register_sections ( $this->config->sections );
 
 		// Move default sections into Layers Panels
 		$this->move_default_sections( $this->config->default_sections );
-		
+
 		// Change 'Widgets' panel title to 'Edit Layout'
 		$wp_customize->add_panel(
 			'widgets', array(
@@ -250,6 +250,16 @@ class Layers_Customizer_Regsitrar {
 				// Add Control
 				$this->customizer->add_control(
 					new Layers_Customize_Textarea_Control(
+						$this->customizer,
+						$setting_key,
+						$control_data
+					)
+				);
+			} else if( 'layers-rte' == $control_data['type'] ) {
+
+				// Add Control
+				$this->customizer->add_control(
+					new Layers_Customize_RTE_Control(
 						$this->customizer,
 						$setting_key,
 						$control_data
@@ -447,6 +457,9 @@ class Layers_Customizer_Regsitrar {
 				$callback = 'esc_textarea';
 				break;
 			case 'layers-code' :
+				$callback = false;
+				break;
+			case 'layers-rte' :
 				$callback = false;
 				break;
 			default :

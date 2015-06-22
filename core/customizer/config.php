@@ -410,7 +410,7 @@ class Layers_Customizer_Config {
 		// Footer -> Layout -> Text
 		$controls['footer-text'] = array(
 				'footer-copyright-text' => array(
-					'type'     => 'layers-text',
+					'type'     => 'layers-rte',
 					'label'    => __( 'Copyright Text' , 'layerswp' ),
 					'default' => ' Made at the tip of Africa. &copy;',
 				), // copyright

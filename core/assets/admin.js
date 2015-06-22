@@ -98,8 +98,8 @@ jQuery(function($) {
 		// "Hi Mom"
 		$that = $(this);
 
-		// Get the container
-		$container = $that.closest( '.layers-image-container' );
+ 		// Get the container
+ 		$container = $that.closest( '.layers-image-container' );
 
 		$that.siblings('img').remove();
 		$container.removeClass( 'layers-has-image' );
@@ -114,10 +114,10 @@ jQuery(function($) {
 		e.preventDefault();
 
 		// "Hi Mom"
-		$that = $(this);
+ 		$that = $(this);
 
-		// Get the container
-		$container = $that.closest( '.layers-image-container' );
+ 		// Get the container
+ 		$container = $that.closest( '.layers-image-container' );
 
 		// If the media frame already exists, reopen it.
 		if ( file_frame ) {
@@ -195,7 +195,7 @@ jQuery(function($) {
 		e.preventDefault();
 
 		// "Hi Mom"
-		$that = $(this);
+ 		$that = $(this);
 
 		// If the media frame already exists, reopen it.
 		if ( file_frame ) {
@@ -275,7 +275,7 @@ jQuery(function($) {
 	});
 
 	function layers_set_color_selectors( $element ){
-		
+
 		$color_pickers = $();
 
 		$element.each( function( index, element ){
@@ -295,24 +295,24 @@ jQuery(function($) {
 	function layers_set_color_selector( $element ){
 
 		$element.wpColorPicker({
-			change: function(event, ui){
-				if( 'undefined' !== typeof event ){
+				change: function(event, ui){
+					if( 'undefined' !== typeof event ){
 
-					//Update the color input
-					$(event.target).val( ui.color.toString() );
+						//Update the color input
+						$(event.target).val( ui.color.toString() );
 
-					// Debounce the color changes
-					layers_debounce_input( event.target );
-				}
-			},
-			clear: function(event) {
-				if( 'undefined' !== typeof event ){
+						// Debounce the color changes
+						layers_debounce_input( event.target );
+					}
+				},
+				clear: function(event) {
+					if( 'undefined' !== typeof event ){
 
-					// Debounce the reset change
-					layers_debounce_input( jQuery(event.target).parent('.wp-picker-input-wrap').find('.wp-color-picker') );
-				}
-			},
-		});
+						// Debounce the reset change
+						layers_debounce_input( jQuery(event.target).parent('.wp-picker-input-wrap').find('.wp-color-picker') );
+					}
+				},
+			});
 	}
 
 	// Debounce function for color changing.
@@ -399,13 +399,13 @@ jQuery(function($) {
 		// "Hi Mom"
 		$that = $(this);
 
-		// Get the input value
+ 		// Get the input value
 		$value = $('#' + $that.attr( 'for' ) ).val();
 
 		// Capture the closest fellow form items
 		$form_items = $that.closest( '.layers-form-item' ).siblings( '.layers-form-item' ).length
 
-		if( 0 == $form_items ){
+ 		if( 0 == $form_items ){
 			$that.closest( '.layers-pop-menu-wrapper' ).siblings( '.layers-icon-wrapper' ).find( 'span[class^="icon-"]' ).attr( 'class', 'icon-' + $value );
 		}
 		// Toggle active state
@@ -452,7 +452,7 @@ jQuery(function($) {
 
 		$iframe.find('html, body').animate(
 			{
-				scrollTop: $iframe.find( '#' + $widget_id ).offset().top
+			scrollTop: $iframe.find( '#' + $widget_id ).offset().top
 			},
 			{
 				duration: 900,
@@ -470,11 +470,7 @@ jQuery(function($) {
 		// Trigger 'change' and 'blur' to reset the customizer
 		$changed = $(this).trigger("change").trigger("blur");
 
-		//var $widget_synced = $( document ).trigger( 'widget-synced', $(this).closest( '.control-section' ).find( '.widget:first' ) );
-
-		// Reset 'show if' selectors;
-		// layers_init_editors();
-		// layers_init_show_if();
+		console.log( $changed );
 	};
 
 	/**
@@ -708,7 +704,6 @@ jQuery(function($) {
 			initOnClick: false,
 			paragraphy: false,
 			convertMailAddresses: true,
-			countCharacters: true,
 			buttons:  $allow_buttons,
 			allowedTags: $allow_tags,
 			key: 'YWd1WDPTa1ZNRGe1OC1c1=='
@@ -716,21 +711,22 @@ jQuery(function($) {
 		
 		$editor.editable( $editor_data )
 			.on('editable.contentChanged', function (e, editor) {
-				$editor.layers_trigger_change();
+				layers_debounce_input( $editor );
 			})
 			.on('editable.focus', function (e, editor) {
-				//console.log('focus');
+
 				editor.$editor.removeClass('hide');
 			})
 			.on('editable.blur', function (e, editor) {
-				//console.log('blur');
+
 				editor.$editor.addClass('hide');
 			});
 		
+
 		$editor.data('fa.editable').$editor.addClass('hide');
 		
 	}
-
+	
 	/**
 	* 15 - Custom Widget Initialization Events
 	*
@@ -806,7 +802,7 @@ jQuery(function($) {
 	$( document ).on( 'layers-widget-expand', '.customize-control-widget_form', function(e){
 		layers_widget_expand( $(this) );
 	});
-	
+
 	$( document ).on( 'layers-widget-collapse', '.customize-control-widget_form', function(e){
 		layers_widget_collapse( $(this) );
 	});
@@ -814,7 +810,7 @@ jQuery(function($) {
 	
 	/*
 	function layers_widget_expand( $widget_li ){
-		
+
 		var $widget = $widget_li.children( '.widget' );
 		
 		// Close other open widgets.
@@ -828,7 +824,7 @@ jQuery(function($) {
 			
 			$widget_li.addClass( 'layers-loading' );
 		}
-		
+
 		// Check if has been initialized before
 		if ( !$widget_li.hasClass( 'layers-initialized' ) ){
 			
@@ -858,7 +854,7 @@ jQuery(function($) {
 			.stop_queue( 'expand' )
 			.queue( 'expand', 1 )
 			.queue( 'expand', function(){
-				
+			
 				$widget_li.addClass('layers-expanded');
 			})
 			.queue( 'expand', 300 )
@@ -867,10 +863,12 @@ jQuery(function($) {
 				$widget.trigger( 'layers-widget-scroll' );
 			});
 			
+			// Trigger Initialize event
+			$widget_li.children( '.widget' ).trigger( 'widget-initialize' );
 		}
 		
 	}
-	
+
 	function layers_widget_collapse( $widget_li ){
 		
 		var $widget = $widget_li.children( '.widget' );
@@ -941,8 +939,8 @@ jQuery(function($) {
   	.queue( 'name', 2000 )
   	.queue( 'name', function(){
  		console.log('TWO!');
-  	});
-  	
+});
+
  *
  */
 

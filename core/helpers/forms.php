@@ -138,7 +138,7 @@ class Layers_Form_Elements {
 		$input_props = array();
 		$input_props['id'] = ( NULL != $input->id && 'select-icons' != $input->type ) ? 'id="' .  $input->id . '"' : NULL ;
 		$input_props['name'] = ( NULL != $input->name ) ? 'name="' .  $input->name . '"' : NULL ;
-		$input_props['placeholder'] = ( NULL != $input->placeholder ) ? 'placeholder="' .  esc_attr( $input->placeholder ) . '"' : NULL ;
+		$input_props['placeholder'] = ( NULL != $input->placeholder ) ? 'placeholder="' . esc_attr( $input->placeholder ) . '"' : NULL ;
 		$input_props['class'] = ( NULL != $input->class ) ? 'class="' .  $input->class . '"' : NULL ;
 		$input_props['disabled'] = isset( $input->disabled ) ? 'disabled="disabled"' : NULL ;
 
@@ -222,31 +222,31 @@ class Layers_Form_Elements {
 			*/
 			case 'select-icons' : ?>
 				<?php foreach( $input->options as $value => $label ) { ?>
-					<label href="" class="layers-icon-wrapper <?php if( $value == $input->value ) echo 'layers-active'; ?>" for="<?php echo esc_attr( $input->id ) .'-' . esc_attr( $value ); ?>">
+					<label href="" class="layers-icon-wrapper <?php if( $value == $input->value ) echo 'layers-active'; ?>" for="<?php echo esc_attr( $input->id ) ,'-', esc_attr( $value ); ?>">
 						<span class="icon-<?php echo esc_attr( $value ); ?>"></span>
 						<span class="layers-icon-description">
 							<?php echo esc_html( $label ); ?>
 						</span>
 					</label>
-					<input type="radio" <?php echo implode ( ' ' , $input_props ); ?> id="<?php echo esc_attr( $input->id ) .'-' . esc_attr( $value ); ?>" value="<?php echo esc_attr( $value ); ?>" <?php checked( $input->value , $value , true ); ?> class="layers-hide" />
+					<input type="radio" <?php echo implode ( ' ' , $input_props ); ?> id="<?php echo esc_attr( $input->id ) ,'-', esc_attr( $value ); ?>" value="<?php echo esc_attr( $value ); ?>" <?php checked( $input->value , $value , true ); ?> class="layers-hide" />
 				<?php } // foreach options ?>
 			<?php break;
 			/**
 			* Text areas
 			*/
 			case 'textarea' : ?>
-				<textarea <?php echo implode ( ' ' , $input_props ); ?> <?php if( isset( $input->rows ) ) echo 'rows="' . $input->rows . '"'; ?>><?php echo esc_textarea( $input->value ); ?></textarea>
+				<textarea <?php echo implode ( ' ' , $input_props ); ?> <?php if( isset( $input->rows ) ) echo 'rows="' , $input->rows , '"'; ?>><?php echo esc_textarea( $input->value ); ?></textarea>
 			<?php break;
 			/**
 			* Rich Text Editor
 			*/
 			case 'rte' :
 				// Apply allowed tags list
-				$allow_tags = ( isset( $input->allow_tags ) && is_array( $input->allow_tags ) ? implode( ',' , $input->allow_tags ) : 'a,br,b,strong,i,em,blockquote' );
+				$allow_tags = ( isset( $input->allow_tags ) && is_array( $input->allow_tags ) ? implode( ',' , $input->allow_tags ) : 'a,br,b,strong,i,em,blockquote,strike,button' );
 
 				// Add custom button support
 				$supports = ( isset( $input->supports ) && is_array( $input->supports ) ? implode( ',' , $input->supports ) : 'sep,bold,italic,underline,strikeThrough,createLink,removeFormat,html' ); ?>
-				<textarea class="layers-textarea layers-rte" data-allowed-tags="<?php echo $allow_tags; ?>" data-supports="<?php echo $supports ; ?>" <?php echo implode ( ' ' , $input_props ); ?> <?php if( isset( $input->rows ) ) echo 'rows="' . $input->rows . '"'; ?>><?php echo $input->value; ?></textarea>
+				<textarea class="layers-textarea layers-rte" data-allowed-tags="<?php echo $allow_tags; ?>" data-supports="<?php echo $supports ; ?>" <?php echo implode ( ' ' , $input_props ); ?> <?php if( isset( $input->rows ) ) echo 'rows="' , $input->rows , '"'; ?>><?php echo $input->value; ?></textarea>
 			<?php break;
 			/**
 			* Image Uploader

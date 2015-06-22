@@ -44,7 +44,13 @@ jQuery(function($) {
 
 	var $layers_init_collection = [];
 
-	function layers_enqueue_init( $function ) {
+	function layers_enqueue_init( $function, $run_instantly ) {
+				
+		// If 'run_instantly' then just execute now and then bail.
+		if( true === $run_instantly ){
+			$function();
+			return false;
+		}
 		
 		$layers_init_collection.push( $function );
 		
@@ -72,7 +78,7 @@ jQuery(function($) {
 				}
 			}
 
-		}, 50 );
+		}, 10 );
 	}
 	
 	/**
@@ -271,48 +277,49 @@ jQuery(function($) {
 	// Init on widget layers-widget-initialize
 	$( document ).on( 'layers-widget-initialize', '.widget', function( e ){
 		// 'this' is the widget
-		layers_set_color_selectors( $(this) );
+		layers_set_color_selectors( $(this), true );
 	});
 
-	function layers_set_color_selectors( $element ){
-
-		$color_pickers = $();
-
-		$element.each( function( index, element ){
-			element = $(element);
-			$color_pickers = $color_pickers.add( element.find( '.layers-color-selector') );
-		});
+	function layers_set_color_selectors( $element_s, $run_instantly ){
 		
-		$color_pickers.each( function(  index, element ){
-			element = $(element);
-			layers_enqueue_init( function(){
-				layers_set_color_selector( element );
+		$element_s.each( function( i, group ) {
+			
+			$group = $(group);
+			
+			$group.find( '.layers-color-selector').each( function( j, element ) {
+				
+				var $element = $(element);
+				
+				layers_enqueue_init( function(){
+					layers_set_color_selector( $element );
+				}, $run_instantly );
+				
 			});
 		});
 	}
 	
 	
 	function layers_set_color_selector( $element ){
-
+		
 		$element.wpColorPicker({
-				change: function(event, ui){
-					if( 'undefined' !== typeof event ){
+			change: function(event, ui){
+				if( 'undefined' !== typeof event ){
 
-						//Update the color input
-						$(event.target).val( ui.color.toString() );
+					//Update the color input
+					$(event.target).val( ui.color.toString() );
 
-						// Debounce the color changes
-						layers_debounce_input( event.target );
-					}
-				},
-				clear: function(event) {
-					if( 'undefined' !== typeof event ){
+					// Debounce the color changes
+					layers_debounce_input( event.target );
+				}
+			},
+			clear: function(event) {
+				if( 'undefined' !== typeof event ){
 
-						// Debounce the reset change
-						layers_debounce_input( jQuery(event.target).parent('.wp-picker-input-wrap').find('.wp-color-picker') );
-					}
-				},
-			});
+					// Debounce the reset change
+					layers_debounce_input( jQuery(event.target).parent('.wp-picker-input-wrap').find('.wp-color-picker') );
+				}
+			},
+		});
 	}
 
 	// Debounce function for color changing.
@@ -339,13 +346,17 @@ jQuery(function($) {
 	
 	function layers_init_sortable_columns( $element_s ){
 		
-		$element_s.each(function(){
+		$element_s.each( function( i, group ) {
 			
-			// "Hi Mom"
-			$that = $(this);
+			$group = $(group);
 			
-			$that.find( '.layers-sortable' ).sortable({
-				placeholder: "layers-sortable-drop"
+			$group.find( '.layers-sortable').each( function( j, element ) {
+				
+				var $element = $(element);
+				
+				$element.sortable({
+					placeholder: "layers-sortable-drop"
+				});
 			});
 		});
 	}
@@ -483,25 +494,25 @@ jQuery(function($) {
 	// Init on widget layers-widget-initialize
 	$( document ).on( 'layers-widget-initialize', '.widget', function( e ){
 		// 'this' is the widget
-		layers_init_add_last_class( $(this) );
+		layers_init_add_last_class( $(this), true );
 	});
 	
-	function layers_init_add_last_class( $element_s ){
+	function layers_init_add_last_class( $element_s, $run_instantly ){
 		
-		$element_s.each(function(){
+		$element_s.each( function( i, group ) {
 			
-			// "Hi Mom"
-			$that = $(this);
+			$group = $(group);
 			
-			$that.find('.layers-visuals-wrapper').each(function(){
+			$group.find( '.layers-visuals-wrapper').each( function( j, element ) {
 				
-				// "Hi Mom!"
-				$that = $(this);
-
-				if( $that.find( 'li' ).length > 3 ){
-					$that.find( 'li' ).eq(-1).addClass( 'layers-last' );
-					$that.find( 'li' ).eq(-2).addClass( 'layers-last' );
-				}
+				var $element = $(element);
+				
+				layers_enqueue_init( function(){
+					if( $element.find( 'li' ).length > 3 ){
+						$element.find( 'li' ).eq(-1).addClass( 'layers-last' );
+						$element.find( 'li' ).eq(-2).addClass( 'layers-last' );
+					}
+				}, $run_instantly );
 			});
 		});
 	}
@@ -516,29 +527,30 @@ jQuery(function($) {
 	// Init on widget layers-widget-initialize
 	$( document ).on( 'layers-widget-initialize', '.widget', function( e ){
 		// 'this' is the widget
-		layers_init_show_if( $(this) );
+		layers_init_show_if( $(this), true );
 	});
 	
-	function layers_init_show_if( $element_s ){
+	function layers_init_show_if( $element_s, $run_instantly ){
 		
-		$element_s.each(function(){
+		$element_s.each( function( i, group ) {
 			
-			// "Hi Mom"
-			$that = $(this);
+			$group = $(group);
 			
-			$that.find('[data-show-if-selector]').each(function(){
-
-				var $target_element = $(this);
+			$group.find( '[data-show-if-selector]').each( function( j, element ) {
+				
+				var $target_element = $(element);
 
 				var $source_element_selector = $target_element.attr( 'data-show-if-selector' );
-
-				layers_apply_show_if( $source_element_selector );
-
-				$( document ).on( 'change', $source_element_selector, function(e){
-
+				
+				layers_enqueue_init( function(){
+					
 					layers_apply_show_if( $source_element_selector );
 
-				});
+					$( document ).on( 'change', $source_element_selector, function(e){
+						layers_apply_show_if( $source_element_selector );
+					});
+					
+				}, $run_instantly );
 			});
 		});
 	}
@@ -663,36 +675,39 @@ jQuery(function($) {
 	// Init on widget layers-widget-initialize
 	$( document ).on( 'layers-widget-initialize', '.widget', function( e ){
 		// 'this' is the widget
-		layers_init_editors( $(this) );
+		layers_init_editors( $(this), true );
 	});
 	
-	function layers_init_editors( $element_s ){
+	function layers_init_editors( $element_s, $run_instantly ){
 		
-		$element_s.each(function(){
+		$element_s.each( function( i, group ) {
 			
-			// "Hi Mom"
-			$that = $(this);
+			$group = $(group);
 			
-			$that.find( '.layers-rte' ).each( function(){
+			$group.find( '.layers-rte').each( function( j, element ) {
 				
-				var $editor = $(this);
-
+				var $element = $(element);
+			
 				// If I am already an RTE, do nothing
-				if( $editor.siblings( '.froala-box' ).length > 0 ) {
+				if( $element.siblings( '.froala-box' ).length > 0 ) {
 					return true;
 				}
-
+				
 				// Set the ID for this element
-				var id = $editor[0].id
-
-				layers_init_editor( id );
+				var $id = $element[0].id
+				
+				layers_enqueue_init( function(){
+					
+					layers_init_editor( $id );
+				}, $run_instantly );
 			});
 		});
 	}
 	
 	function layers_init_editor( $id ){
+		
 		var $editor = $( '#' + $id );
-
+		
 		if( $editor.hasClass( 'layers-rte' ) );
 
 		var $allow_buttons =  $editor.data( 'supports' ).split(',');
@@ -721,10 +736,8 @@ jQuery(function($) {
 
 				editor.$editor.addClass('hide');
 			});
-		
 
 		$editor.data('fa.editable').$editor.addClass('hide');
-		
 	}
 	
 	/**
@@ -746,6 +759,8 @@ jQuery(function($) {
 		$widget = $widget_li.find( '.widget' );
 		
 		layers_initilaize_widget( $widget_li, $widget, e );
+		
+		$widget_li.removeClass( 'layers-loading' );
 	});
 	
 	$( document ).on( 'collapse', '.customize-control-widget_form', function(e){
@@ -778,7 +793,6 @@ jQuery(function($) {
 		}
 		
 		setTimeout(function() {
-			$widget_li.removeClass( 'layers-loading' );
 			$widget.trigger( 'layers-widget-scroll' );
 		}, 100 );
 	}

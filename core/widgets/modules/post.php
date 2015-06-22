@@ -343,8 +343,6 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 			// Parse $instance
 			$widget = wp_parse_args( $instance, $instance_defaults );
 
-			print_r( $widget );
-
 			$design_bar_components = apply_filters( 'layers_' . $this->widget_id . '_widget_design_bar_components' , array(
 					'layout',
 					'fonts',
@@ -492,7 +490,7 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 						<p class="layers-form-item">
 							<?php echo $this->form_elements()->input(
 								array(
-									'type' => 'textarea',
+									'type' => 'rte',
 									'name' => $this->get_field_name( 'excerpt' ) ,
 									'id' => $this->get_field_id( 'excerpt' ) ,
 									'placeholder' => __( 'Short Excerpt' , 'layerswp' ),

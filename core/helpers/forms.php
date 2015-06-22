@@ -242,10 +242,10 @@ class Layers_Form_Elements {
 			*/
 			case 'rte' :
 				// Apply allowed tags list
-				$allow_tags = ( isset( $input->allow_tags ) && is_array( $input->allow_tags ) ? implode( ',' , $input->allow_tags ) : 'a,br,b,strong,i,em,blockquote,strike,button' );
+				$allow_tags = ( isset( $input->allow_tags ) && is_array( $input->allow_tags ) ? implode( ',' , $input->allow_tags ) : 'a,br,b,strong,i,em,blockquote,strike,button,ol,ul,li' );
 
 				// Add custom button support
-				$supports = ( isset( $input->supports ) && is_array( $input->supports ) ? implode( ',' , $input->supports ) : 'sep,bold,italic,underline,strikeThrough,createLink,removeFormat,html' ); ?>
+				$supports = ( isset( $input->supports ) && is_array( $input->supports ) ? implode( ',' , $input->supports ) : 'sep,bold,italic,underline,strikeThrough,createLink,insertOrderedList,insertUnorderedList,removeFormat,html' ); ?>
 				<textarea class="layers-textarea layers-rte" data-allowed-tags="<?php echo $allow_tags; ?>" data-supports="<?php echo $supports ; ?>" <?php echo implode ( ' ' , $input_props ); ?> <?php if( isset( $input->rows ) ) echo 'rows="' , $input->rows , '"'; ?>><?php echo $input->value; ?></textarea>
 			<?php break;
 			/**

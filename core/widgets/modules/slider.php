@@ -423,14 +423,14 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 									'type' => 'color',
 									'name' => $this->get_field_name( 'slider_arrow_color' ) ,
 									'id' => $this->get_field_id( 'slider_arrow_color' ) ,
-									'value' => ( isset( $slider_arrow_color ) ) ? $slider_arrow_color : NULL,
+									'value' => ( isset( $widget['slider_arrow_color'] ) ) ? $widget['slider_arrow_color'] : NULL,
 									'label' => __( 'Slider Controls Color' , 'layers-woocommerce' )
 								),
 								'autoplay_slides' => array(
 									'type' => 'checkbox',
 									'name' => $this->get_field_name( 'autoplay_slides' ) ,
 									'id' => $this->get_field_id( 'autoplay_slides' ) ,
-									'value' => ( isset( $autoplay_slides ) ) ? $autoplay_slides : NULL,
+									'value' => ( isset( $widget['autoplay_slides'] ) ) ? $widget['autoplay_slides'] : NULL,
 									'label' => __( 'Autoplay Slides' , 'layerswp' )
 								),
 								'slide_time' => array(
@@ -440,7 +440,7 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 									'min' => 1,
 									'max' => 10,
 									'placeholder' => __( 'Time in seconds, eg. 2' , 'layerswp' ),
-									'value' => ( isset( $slide_time ) ) ? $slide_time : NULL,
+									'value' => ( isset( $widget['slide_time'] ) ) ? $widget['slide_time'] : NULL,
 									'label' => __( 'Slide Interval' , 'layerswp' ),
 									'data' => array( 'show-if-selector' => '#' . $this->get_field_id( 'autoplay_slides' ), 'show-if-value' => 'true' )
 								),
@@ -448,14 +448,14 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 									'type' => 'checkbox',
 									'name' => $this->get_field_name( 'autoheight_slides' ) ,
 									'id' => $this->get_field_id( 'autoheight_slides' ) ,
-									'value' => ( isset( $autoheight_slides ) ) ? $autoheight_slides : NULL,
+									'value' => ( isset( $widget['autoheight_slides'] ) ) ? $widget['autoheight_slides'] : NULL,
 									'label' => __( 'Auto Height Slides' , 'layerswp' ),
 								),
 								'slide_height' => array(
 									'type' => 'number',
 									'name' => $this->get_field_name( 'slide_height' ) ,
 									'id' => $this->get_field_id( 'slide_height' ) ,
-									'value' => ( isset( $slide_height ) ) ? $slide_height : NULL,
+									'value' => ( isset( $widget['slide_height'] ) ) ? $widget['slide_height'] : NULL,
 									'label' => __( 'Slider Height' , 'layerswp' ),
 									'data' => array( 'show-if-selector' => '#' . $this->get_field_id( 'autoheight_slides' ), 'show-if-value' => 'false' ),
 								)

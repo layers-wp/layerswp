@@ -23,8 +23,8 @@ jQuery(document).ready(function($){
 	* 1 - Sortable items
 	*/
 	
-	// Init on widget widget-initialize
-	$( document ).on( 'widget-initialize', '.widget', function( e ){
+	// Init on widget layers-widget-initialize
+	$( document ).on( 'layers-widget-initialize', '.widget', function( e ){
 		// 'this' is the widget
 		layers_set_slide_sortable( $(this) );
 	});

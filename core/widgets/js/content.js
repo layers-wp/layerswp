@@ -22,7 +22,7 @@ jQuery(document).ready(function($){
 	* 1 - Sortable items
 	*/
 	
-	$( document ).on( 'widget-initialize', '.widget', function( e ){
+	$( document ).on( 'layers-widget-initialize', '.widget', function( e ){
 		// 'this' is the widget
 		layers_set_column_sortable( $(this) );
 	});

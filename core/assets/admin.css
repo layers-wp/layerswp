@@ -75,25 +75,70 @@ div#widgets-right div[id*='obox-layers-builder']{
         display: inline-block;
         margin-right: 8px;
     }
-    .customize-control-widget_form.wide-widget-control.expanded div[id*='layers-widget'] .widget-top h4:before{
+    .customize-control-widget_form.wide-widget-control.layers-focussed div[id*='layers-widget'] .widget-top h4:before{
         color: #fff;
+    }
+    /*- Layers Widget Loading -*/
+    .customize-control-widget_form.wide-widget-control div[id*='layers-widget'] .widget-top:after{
+        /* background-image: url( images/spinner-on-blue.gif ); */
+        /* background-position: 50% 50%; */
+        /* background-repeat: no-repeat; */
+        /* background-color: #FFF; */
+        color: #FFF9F7;
+        font-size: 10px;
+        font-weight: 900;
+        text-transform: uppercase;
+        transition: .2s ease-in-out;
+        width: auto;
+        height: auto;
+        line-height: 17px;
+        border-radius: 40px;
+        padding: 0 10px;
+        content: "Loading...";
+        position: absolute;
+        right: 4px;
+        top: 14px;
+        opacity: 0;
+    }
+    .customize-control-widget_form.wide-widget-control.layers-loading div[id*='layers-widget'] .widget-top:after{
+        opacity: 1;
+    }
+    .customize-control-widget_form.wide-widget-control.layers-loading div[id*='layers-widget'] .widget-top a.widget-action:after{
+        content: "";
+        display: block;
+        width: 20px;
+        height: 20px;
+    }
+    /*- Layers Widget Focussed -*/
+
+    .customize-control-widget_form.wide-widget-control.expanded:not(.collapsing) .widget-top{
+        background-color: #FAFAFA;
     }
 
-    /*- Layers Widget Active -*/
-    .customize-control-widget_form.wide-widget-control.expanded:not(.collapsing) div[id*='layers-widget'] .widget-top{
-        background: #0BA6E0;
-        border-color: #0D5F83;
+    .customize-control-widget_form.wide-widget-control.layers-focussed .widget .widget-top{
+        background: #0BA6E0 !important;
+        border-color: #0E77A5;
         color: #3D454E;
     }
-    .customize-control-widget_form.wide-widget-control.expanded:not(.collapsing) div[id*='layers-widget'] .widget-top .widget-title h4{
+    .customize-control-widget_form.wide-widget-control.expanded .widget .widget-top,
+    .customize-control-widget_form.wide-widget-control.layers-focussed .widget .widget-top{
+        -webkit-transition: 0s !important;
+        transition: 0s !important;
+    }
+    .customize-control-widget_form.wide-widget-control.layers-focussed .widget .widget-top:hover{
+        background: #0BA6E0;
+        border-color: #053E57 !important;
+        color: #3D454E;
+	}
+    .customize-control-widget_form.wide-widget-control.layers-focussed .widget .widget-top .widget-title h4{
         color: #fff;
     }
-    .customize-control-widget_form.wide-widget-control.expanded:not(.collapsing) div[id*='layers-widget'] .widget-top .widget-title .in-widget-title{
+    .customize-control-widget_form.wide-widget-control.layers-focussed .widget .widget-top .widget-title .in-widget-title{
         color: rgba(255, 255, 255, 0.8);
     }
 
     /*- Expanded Arrow Tip -*/
-    .customize-control-widget_form.wide-widget-control.expanded a.widget-action:after{
+    .customize-control-widget_form.wide-widget-control.layers-focussed a.widget-action:after{
         color: #fff;
     }
 
@@ -126,7 +171,11 @@ div#widgets-right div[id*='obox-layers-builder']{
         overflow: hidden;
         box-shadow: 3px 0 3px rgba(0, 0, 0, 0.1);
         transform: translate3d(-10px, 0, 0);
-        transition: all 0.2s ease-in-out 0.2s;
+        transition: all 0.2s ease-in-out;
+        background-image: url(images/spinner-on-white.gif);
+        background-position: 50% 20%;
+        background-repeat: no-repeat;
+        background-color: #F5F5F5;
     }
     /*-- Open --*/
     .customize-control-widget_form.wide-widget-control.expanded div[id*='layers-widget'] .widget-inside{
@@ -136,10 +185,9 @@ div#widgets-right div[id*='obox-layers-builder']{
         transform: translate3d(0, 0, 0);
     }
     /*-- Closing --*/
-    .customize-control-widget_form.wide-widget-control.collapsing div[id*='layers-widget'] .widget-inside{
+    .customize-control-widget_form.wide-widget-control.expanded.collapsing div[id*='layers-widget'] .widget-inside{
         transform: translate3d(-10px, 0, 0);
         opacity: 0;
-        transition-delay: none;
     }
 
     .customize-control-widget_form.wide-widget-control div[id*='layers-widget'] .widget-inside .form{
@@ -147,17 +195,22 @@ div#widgets-right div[id*='obox-layers-builder']{
         height: 100%;
         min-width: 660px;
         position: relative;
-        opacity: 0;
-        transform: translate3d(-20px, 0, 0);
+        /* opacity: 0; */
+        /* transform: translate3d(-20px, 0, 0); */
         transition: transform 0.15s ease-in-out, opacity 0.15s ease-in-out;
-    }
-    .customize-control-widget_form.wide-widget-control.expanded div[id*='layers-widget'] .widget-inside .form{
+        overflow: scroll;
+        background-color: white;
+    
         opacity: 1;
-        transform: translate3d(0, 0, 0);
+}
+    .customize-control-widget_form.wide-widget-control.expanded div[id*='layers-widget'] .widget-inside .form{
+        /* opacity: 1; */
+        /* transform: translate3d(0, 0, 0); */
+        overflow: auto;
     }
     .customize-control-widget_form.wide-widget-control.collapsing div[id*='layers-widget'] .widget-inside .form{
-        opacity: 0;
-        transition-delay: 0.2s;
+        /* opacity: 1; */
+        /* transition-delay: 0.2s; */
     }
 
     /*- COLLAPSED SIDEBAR ------------*/
@@ -918,6 +971,7 @@ div[id*='layers-widget'] .spinner{
         margin: 0;
         transition: transform 0.2s ease-in-out, opacity 0.2s ease-in-out;
     }
+    
         /*-- ANIMATE ICONS --*/
         .customize-control-widget_form.wide-widget-control div[id*='layers-widget'] .widget-inside .layers-visuals-item{
             opacity: 0;

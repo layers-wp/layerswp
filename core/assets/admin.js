@@ -43,6 +43,8 @@ jQuery(function($) {
 	*/
 
 	var $layers_init_collection = [];
+	
+	var $queue_busy = false;
 
 	function layers_enqueue_init( $function, $run_instantly ) {
 				
@@ -61,16 +63,25 @@ jQuery(function($) {
 	
 	function layers_sequence_loader(){
 		
-		clearTimeout( $layers_init_timeout );
+		// Bail if nothing is in queue
+		if ( $queue_busy || $layers_init_collection.length <= 0 ) return;
+		
+		// Lock the queue to prevent overlapping
+		$queue_busy = true;
+		
+		// Get current item off the start of the queue
+		var $current_item = $layers_init_collection.shift();
 		
 		$layers_init_timeout = setTimeout( function(){
 
 			if ( typeof $layers_init_collection[0] !=='undefined' ){
 				
-				// Get current item off the start of the queue
-				var $current_item = $layers_init_collection.shift();
-				
+				// Execute the current item
 				$current_item();
+				
+				$queue_busy = false;
+				
+				//console.log('ping!');
 				
 				// If there are more elements in init array then continue to loop.
 				if ( typeof $layers_init_collection[0] !=='undefined' ){
@@ -779,22 +790,24 @@ jQuery(function($) {
 	
 	function layers_initilaize_widget( $widget_li, $widget, e ){
 		
-		$('.layers-focussed').not( $widget_li ).removeClass('layers-focussed');
-		
 		$widget_li.addClass('layers-focussed');
+		
+		$('.layers-focussed').not( $widget_li ).removeClass('layers-focussed');
 		
 		// Record if widget has been initialized before.
 		if ( !$widget_li.hasClass( 'layers-initialized' ) ){
 			
 			$widget_li.addClass('layers-loading');
 			
-			$widget.trigger( 'layers-widget-initialize' );
-			$widget_li.addClass( 'layers-initialized' );
+			setTimeout(function(){
+				$widget.trigger( 'layers-widget-initialize' );
+				$widget_li.addClass( 'layers-initialized' );
+			}, 50 );
 		}
 		
 		setTimeout(function() {
 			$widget.trigger( 'layers-widget-scroll' );
-		}, 100 );
+		}, 200 );
 	}
 	
 	$( document ).on( 'collapse', '.customize-control-widget_form', function(e){

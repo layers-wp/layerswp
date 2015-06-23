@@ -759,31 +759,33 @@ jQuery(function($) {
 	*/
 	
 	$( document ).on( 'mousedown', '.customize-control-widget_form .widget-top', function(e){
-		$widget_li = $(this).closest('.customize-control-widget_form');
-		$widget = $widget_li.find('.widget');
+		var $widget_li = $(this).closest('.customize-control-widget_form');
+		var $widget = $widget_li.find('.widget');
 
 		layers_initilaize_widget( $widget_li, $widget, e );
 	});
 	
 	$( document ).on( 'expand', '.customize-control-widget_form', function(e){
-		$widget_li = $(this);
-		$widget = $widget_li.find( '.widget' );
+		var $widget_li = $(this);
+		var $widget = $widget_li.find( '.widget' );
 		
 		layers_initilaize_widget( $widget_li, $widget, e );
 		
-		$widget_li.removeClass( 'layers-loading' );
+		setTimeout(function(){
+			$widget_li.removeClass( 'layers-loading' );
+		}, 1100 );
 	});
 	
 	$( document ).on( 'collapse', '.customize-control-widget_form', function(e){
-		$widget_li = $(this);
-		$widget = $widget_li.find( '.widget' );
+		var $widget_li = $(this);
+		var $widget = $widget_li.find( '.widget' );
 		
 		$widget_li.addClass('collapsing');
 	});
 	
 	$( document ).on( 'collapsed', '.customize-control-widget_form', function(e){
-		$widget_li = $(this);
-		$widget = $widget_li.find( '.widget' );
+		var $widget_li = $(this);
+		var $widget = $widget_li.find( '.widget' );
 		
 		$widget_li.removeClass('collapsing');
 	});
@@ -792,7 +794,7 @@ jQuery(function($) {
 		
 		$widget_li.addClass('layers-focussed');
 		
-		$('.layers-focussed').not( $widget_li ).removeClass('layers-focussed');
+		$('.layers-focussed').not( $widget_li ).removeClass('layers-focussed layers-loading');
 		
 		// Record if widget has been initialized before.
 		if ( !$widget_li.hasClass( 'layers-initialized' ) ){
@@ -811,8 +813,8 @@ jQuery(function($) {
 	}
 	
 	$( document ).on( 'collapse', '.customize-control-widget_form', function(e){
-		$widget_li = $(this);
-		$widget = $widget_li.find( '.widget' );
+		var $widget_li = $(this);
+		var $widget = $widget_li.find( '.widget' );
 		
 		$widget_li.removeClass('layers-focussed');
 	});

@@ -89,6 +89,7 @@ div#widgets-right div[id*='obox-layers-builder']{
         font-weight: 900;
         text-transform: uppercase;
         transition: .1s ease-in-out;
+        transition: 0s !important;
         width: auto;
         height: auto;
         line-height: 17px;

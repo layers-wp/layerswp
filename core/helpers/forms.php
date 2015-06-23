@@ -242,11 +242,21 @@ class Layers_Form_Elements {
 			*/
 			case 'rte' :
 				// Apply allowed tags list
-				$allow_tags = ( isset( $input->allow_tags ) && is_array( $input->allow_tags ) ? implode( ',' , $input->allow_tags ) : 'a,br,b,strong,i,em,blockquote,strike,button,ol,ul,li' );
+				$allow_tags = ( isset( $input->allow_tags ) && is_array( $input->allow_tags ) ? implode( ',' , $input->allow_tags ) : array( 'a','br','b','strong','i','em','blockquote','strike','button','ol','ul','li' ) );
 
 				// Add custom button support
-				$supports = ( isset( $input->supports ) && is_array( $input->supports ) ? implode( ',' , $input->supports ) : 'sep,bold,italic,underline,strikeThrough,createLink,insertOrderedList,insertUnorderedList,removeFormat,html' ); ?>
-				<textarea class="layers-textarea layers-rte" data-allowed-tags="<?php echo $allow_tags; ?>" data-supports="<?php echo $supports ; ?>" <?php echo implode ( ' ' , $input_props ); ?> <?php if( isset( $input->rows ) ) echo 'rows="' , $input->rows , '"'; ?>><?php echo $input->value; ?></textarea>
+				$allow_buttons = ( isset( $input->allow_buttons ) && is_array( $input->allow_buttons ) ? $input->allow_buttons : array( 'sep','bold','italic','underline','strikeThrough','createLink','insertOrderedList','insertUnorderedList','removeFormat','html' ) );
+
+				// Check for disabling of standard buttons
+				if( isset( $input->disallow_buttons ) && is_array( $input->disallow_buttons ) ) {
+					foreach( $allow_buttons as $button_key => $button_value ){
+						if( in_array( $button_value , $input->disallow_buttons ) ){
+							unset( $allow_buttons[ $button_key ] );
+						}
+					}
+				} ?>
+				<textarea
+					class="layers-textarea layers-rte" data-allowed-tags="<?php echo implode( ',' , $allow_tags ); ?>" data-allowed-buttons="<?php echo implode( ',' , $allow_buttons ) ; ?>" <?php echo implode ( ' ' , $input_props ); ?> <?php if( isset( $input->rows ) ) echo 'rows="' , $input->rows , '"'; ?>><?php echo $input->value; ?></textarea>
 			<?php break;
 			/**
 			* Image Uploader

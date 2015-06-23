@@ -721,7 +721,7 @@ jQuery(function($) {
 		
 		if( $editor.hasClass( 'layers-rte' ) );
 
-		var $allow_buttons =  $editor.data( 'supports' ).split(',');
+		var $allow_buttons =  $editor.data( 'allowed-buttons' ).split(',');
 		var $allow_tags =  $editor.data( 'allowed-tags' ).split(',');
 
 		var $editor_data = {
@@ -759,7 +759,7 @@ jQuery(function($) {
 	*/
 	
 	$( document ).on( 'mousedown', '.customize-control-widget_form .widget-top', function(e){
-		
+
 		// Use of 'mousedown' is integral and allows us fire events before WP expand,
 		// so we can do things like Highligting the Widget Title, display first time 'LOADING' text,
 		// so in the case of a JS hang-up casued by WP's large set of events on Widget expand,
@@ -787,7 +787,7 @@ jQuery(function($) {
 		// Delay the removal of 'layers-loading' so it always displays for a defienite length of time,
 		// so the user is able to read it.
 		setTimeout(function(){
-			$widget_li.removeClass( 'layers-loading' );
+		$widget_li.removeClass( 'layers-loading' );
 		}, 1100 );
 	});
 	
@@ -824,10 +824,10 @@ jQuery(function($) {
 			
 			if ( 'mousedown' === e.type ) {
 				// If event is 'mousedown' it's our early envoked event so we can do things before all the WP things
-				setTimeout(function(){
-					$widget.trigger( 'layers-widget-initialize' );
-				}, 50 );
-			}
+			setTimeout(function(){
+				$widget.trigger( 'layers-widget-initialize' );
+			}, 50 );
+		}
 			else {
 				// If event is 'expand' it's a WP envoked event that we use as backup if the 'mousedown' was not used.
 				// eg 'shift-click' on widget in customizer-preview

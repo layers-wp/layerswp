@@ -602,6 +602,7 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 										'id' => $this->get_custom_field_id( $widget_details, 'slides',  $slide_guid, 'excerpt' ),
 										'placeholder' => __( 'Short Excerpt' , 'layerswp' ),
 										'value' => ( isset( $slide['excerpt'] ) ) ? $slide['excerpt'] : NULL ,
+										'disallow_buttons' => array( 'insertOrderedList','insertUnorderedList' ),
 										'class' => 'layers-textarea',
 										'rows' => 6
 									)

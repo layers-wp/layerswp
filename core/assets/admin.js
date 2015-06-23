@@ -759,18 +759,33 @@ jQuery(function($) {
 	*/
 	
 	$( document ).on( 'mousedown', '.customize-control-widget_form .widget-top', function(e){
+		
+		// Use of 'mousedown' is integral and allows us fire events before WP expand,
+		// so we can do things like Highligting the Widget Title, display first time 'LOADING' text,
+		// so in the case of a JS hang-up casued by WP's large set of events on Widget expand,
+		// we have given the user feedback so they knwo what is going on.
+		
 		var $widget_li = $(this).closest('.customize-control-widget_form');
 		var $widget = $widget_li.find('.widget');
 
-		layers_initilaize_widget( $widget_li, $widget, e );
+		layers_expand_widget( $widget_li, $widget, e );
 	});
 	
 	$( document ).on( 'expand', '.customize-control-widget_form', function(e){
 		var $widget_li = $(this);
 		var $widget = $widget_li.find( '.widget' );
 		
-		layers_initilaize_widget( $widget_li, $widget, e );
+		// duplicate call to 'layers_expand_widget' incase 'mousedown' is not triggerd
+		// eg 'shift-click' on widget in customizer-preview.
+		layers_expand_widget( $widget_li, $widget, e );
 		
+		// Scroll only on expand.
+		setTimeout(function() {
+			$widget.trigger( 'layers-widget-scroll' );
+		}, 200 );
+		
+		// Delay the removal of 'layers-loading' so it always displays for a defienite length of time,
+		// so the user is able to read it.
 		setTimeout(function(){
 			$widget_li.removeClass( 'layers-loading' );
 		}, 1100 );
@@ -780,44 +795,46 @@ jQuery(function($) {
 		var $widget_li = $(this);
 		var $widget = $widget_li.find( '.widget' );
 		
-		$widget_li.addClass('collapsing');
+		$widget_li.removeClass('layers-focussed');
+		
+		// Used for animation of the widget closing
+		$widget_li.addClass('layers-collapsing');
 	});
 	
 	$( document ).on( 'collapsed', '.customize-control-widget_form', function(e){
 		var $widget_li = $(this);
 		var $widget = $widget_li.find( '.widget' );
 		
-		$widget_li.removeClass('collapsing');
+		$widget_li.removeClass('layers-collapsing');
 	});
 	
-	function layers_initilaize_widget( $widget_li, $widget, e ){
+	function layers_expand_widget( $widget_li, $widget, e ){
 		
+		// Instant user feedback
 		$widget_li.addClass('layers-focussed');
 		
+		// Instantly remove other
 		$('.layers-focussed').not( $widget_li ).removeClass('layers-focussed layers-loading');
 		
-		// Record if widget has been initialized before.
-		if ( !$widget_li.hasClass( 'layers-initialized' ) ){
+		// Handle the first time Init of a widget.
+		if ( !$widget_li.hasClass( 'layers-loading' ) && !$widget_li.hasClass( 'layers-initialized' ) ){
 			
 			$widget_li.addClass('layers-loading');
+			$widget_li.addClass( 'layers-initialized' );
 			
-			setTimeout(function(){
+			if ( 'mousedown' === e.type ) {
+				// If event is 'mousedown' it's our early envoked event so we can do things before all the WP things
+				setTimeout(function(){
+					$widget.trigger( 'layers-widget-initialize' );
+				}, 50 );
+			}
+			else {
+				// If event is 'expand' it's a WP envoked event that we use as backup if the 'mousedown' was not used.
+				// eg 'shift-click' on widget in customizer-preview
 				$widget.trigger( 'layers-widget-initialize' );
-				$widget_li.addClass( 'layers-initialized' );
-			}, 50 );
+			}
 		}
-		
-		setTimeout(function() {
-			$widget.trigger( 'layers-widget-scroll' );
-		}, 200 );
 	}
-	
-	$( document ).on( 'collapse', '.customize-control-widget_form', function(e){
-		var $widget_li = $(this);
-		var $widget = $widget_li.find( '.widget' );
-		
-		$widget_li.removeClass('layers-focussed');
-	});
 	
 	/*
 	$( document ).on( 'mousedown', '.customize-control-widget_form .widget-top', function(e){

@@ -34,7 +34,7 @@
 */
 
 jQuery(function($) {
-	
+
 	/**
 	* 1 - Enqueue Initialisation Helper
 	*
@@ -43,46 +43,46 @@ jQuery(function($) {
 	*/
 
 	var $layers_init_collection = [];
-	
+
 	var $queue_busy = false;
 
 	function layers_enqueue_init( $function, $run_instantly ) {
-				
+
 		// If 'run_instantly' then just execute now and then bail.
 		if( true === $run_instantly ){
 			$function();
 			return false;
 		}
-		
+
 		$layers_init_collection.push( $function );
-		
+
 		layers_sequence_loader();
 	}
-	
+
 	var $layers_init_timeout;
-	
+
 	function layers_sequence_loader(){
-		
+
 		// Bail if nothing is in queue
 		if ( $queue_busy || $layers_init_collection.length <= 0 ) return;
-		
+
 		// Lock the queue to prevent overlapping
 		$queue_busy = true;
-		
+
 		// Get current item off the start of the queue
 		var $current_item = $layers_init_collection.shift();
-		
+
 		$layers_init_timeout = setTimeout( function(){
 
 			if ( typeof $layers_init_collection[0] !=='undefined' ){
-				
+
 				// Execute the current item
 				$current_item();
-				
+
 				$queue_busy = false;
-				
+
 				//console.log('ping!');
-				
+
 				// If there are more elements in init array then continue to loop.
 				if ( typeof $layers_init_collection[0] !=='undefined' ){
 					layers_sequence_loader();
@@ -91,7 +91,7 @@ jQuery(function($) {
 
 		}, 10 );
 	}
-	
+
 	/**
 	* 2 - Layers Custom Easing
 	*
@@ -281,10 +281,10 @@ jQuery(function($) {
 	/**
 	* 5 - Color Selectors
 	*/
-	
+
 	// Init all except widgets on load
 	layers_set_color_selectors( $( '#customize-theme-controls > ul > li.accordion-section' ).not( '#accordion-panel-widgets' ) );
-	
+
 	// Init on widget layers-widget-initialize
 	$( document ).on( 'layers-widget-initialize', '.widget', function( e ){
 		// 'this' is the widget
@@ -292,26 +292,26 @@ jQuery(function($) {
 	});
 
 	function layers_set_color_selectors( $element_s, $run_instantly ){
-		
+
 		$element_s.each( function( i, group ) {
-			
+
 			$group = $(group);
-			
+
 			$group.find( '.layers-color-selector').each( function( j, element ) {
-				
+
 				var $element = $(element);
-				
+
 				layers_enqueue_init( function(){
 					layers_set_color_selector( $element );
 				}, $run_instantly );
-				
+
 			});
 		});
 	}
-	
-	
+
+
 	function layers_set_color_selector( $element ){
-		
+
 		$element.wpColorPicker({
 			change: function(event, ui){
 				if( 'undefined' !== typeof event ){
@@ -341,30 +341,30 @@ jQuery(function($) {
 	/**
 	* 6 - Sortable Columns
 	*/
-	
+
 	// Init all except widgets on load
 	layers_init_sortable_columns( $( '#customize-theme-controls > ul > li.accordion-section' ).not( '#accordion-panel-widgets' ) );
-	
+
 	// Init on widget layers-widget-initialize
 	$( document ).on( 'layers-widget-initialize', '.widget', function( e ){
-		
+
 		// Bail if no sortable
 		if( $.sortable == undefined ) return;
 
 		// 'this' is the widget
 		layers_init_sortable_columns( $(this) );
 	});
-	
+
 	function layers_init_sortable_columns( $element_s ){
-		
+
 		$element_s.each( function( i, group ) {
-			
+
 			$group = $(group);
-			
+
 			$group.find( '.layers-sortable').each( function( j, element ) {
-				
+
 				var $element = $(element);
-				
+
 				$element.sortable({
 					placeholder: "layers-sortable-drop"
 				});
@@ -453,7 +453,7 @@ jQuery(function($) {
 	/**
 	* 9 - Widget Focussing
 	*/
-	
+
 	$( document ).on( 'layers-widget-scroll' , '.widget' , function(e){
 		// "Hi Mom"
 		$that = $(this);
@@ -498,26 +498,26 @@ jQuery(function($) {
 	/**
 	* 11 - Add Last Class to Elements
 	*/
-	
+
 	// Init all except widgets on load
 	layers_init_add_last_class( $( '#customize-theme-controls > ul > li.accordion-section' ).not( '#accordion-panel-widgets' ) );
-	
+
 	// Init on widget layers-widget-initialize
 	$( document ).on( 'layers-widget-initialize', '.widget', function( e ){
 		// 'this' is the widget
 		layers_init_add_last_class( $(this), true );
 	});
-	
+
 	function layers_init_add_last_class( $element_s, $run_instantly ){
-		
+
 		$element_s.each( function( i, group ) {
-			
+
 			$group = $(group);
-			
+
 			$group.find( '.layers-visuals-wrapper').each( function( j, element ) {
-				
+
 				var $element = $(element);
-				
+
 				layers_enqueue_init( function(){
 					if( $element.find( 'li' ).length > 3 ){
 						$element.find( 'li' ).eq(-1).addClass( 'layers-last' );
@@ -531,7 +531,7 @@ jQuery(function($) {
 	/**
 	* 12 - Show/Hide linked elements
 	*/
-	
+
 	// Init all except widgets on load
 	layers_init_show_if( $( '#customize-theme-controls > ul > li.accordion-section' ).not( '#accordion-panel-widgets' ) );
 
@@ -540,27 +540,27 @@ jQuery(function($) {
 		// 'this' is the widget
 		layers_init_show_if( $(this), true );
 	});
-	
+
 	function layers_init_show_if( $element_s, $run_instantly ){
-		
+
 		$element_s.each( function( i, group ) {
-			
+
 			$group = $(group);
-			
+
 			$group.find( '[data-show-if-selector]').each( function( j, element ) {
-				
+
 				var $target_element = $(element);
 
 				var $source_element_selector = $target_element.attr( 'data-show-if-selector' );
-				
+
 				layers_enqueue_init( function(){
-					
+
 					layers_apply_show_if( $source_element_selector );
 
 					$( document ).on( 'change', $source_element_selector, function(e){
 						layers_apply_show_if( $source_element_selector );
 					});
-					
+
 				}, $run_instantly );
 			});
 		});
@@ -675,11 +675,11 @@ jQuery(function($) {
 
 		layers_backup_builder_page( $pageid, $that );
 	});
-	
+
 	/**
 	* 14 - Init RTE Editors
 	*/
-	
+
 	// Init all except widgets on load
 	layers_init_editors( $( '#customize-theme-controls > ul > li.accordion-section' ).not( '#accordion-panel-widgets' ) );
 
@@ -688,40 +688,40 @@ jQuery(function($) {
 		// 'this' is the widget
 		layers_init_editors( $(this), true );
 	});
-	
+
 	function layers_init_editors( $element_s, $run_instantly ){
-		
+
 		$element_s.each( function( i, group ) {
-			
+
 			$group = $(group);
-			
+
 			$group.find( '.layers-rte').each( function( j, element ) {
-				
+
 				var $element = $(element);
-			
+
 				// If I am already an RTE, do nothing
 				if( $element.siblings( '.froala-box' ).length > 0 ) {
 					return true;
 				}
-				
+
 				// Set the ID for this element
 				var $id = $element[0].id
-				
+
 				layers_enqueue_init( function(){
-					
+
 					layers_init_editor( $id );
 				}, $run_instantly );
 			});
 		});
 	}
-	
+
 	function layers_init_editor( $id ){
-		
+
 		var $editor = $( '#' + $id );
-		
+
 		if( $editor.hasClass( 'layers-rte' ) );
 
-		var $allow_buttons =  $editor.data( 'supports' ).split(',');
+		var $allow_buttons =  $editor.data( 'allowed-buttons' ).split(',');
 		var $allow_tags =  $editor.data( 'allowed-tags' ).split(',');
 
 		var $editor_data = {
@@ -734,7 +734,7 @@ jQuery(function($) {
 			allowedTags: $allow_tags,
 			key: 'YWd1WDPTa1ZNRGe1OC1c1=='
 		};
-		
+
 		$editor.editable( $editor_data )
 			.on('editable.contentChanged', function (e, editor) {
 				layers_debounce_input( $editor );
@@ -750,82 +750,82 @@ jQuery(function($) {
 
 		$editor.data('fa.editable').$editor.addClass('hide');
 	}
-	
+
 	/**
 	* 15 - Custom Widget Initialization Events
 	*
 	* Dispense 'layers-widget-initialize' when widget is focused first time, or added
 	* to allow for just-in-time init instead of massive bulk init.
 	*/
-	
+
 	$( document ).on( 'mousedown', '.customize-control-widget_form .widget-top', function(e){
 		$widget_li = $(this).closest('.customize-control-widget_form');
 		$widget = $widget_li.find('.widget');
 
 		layers_initilaize_widget( $widget_li, $widget, e );
 	});
-	
+
 	$( document ).on( 'expand', '.customize-control-widget_form', function(e){
 		$widget_li = $(this);
 		$widget = $widget_li.find( '.widget' );
-		
+
 		layers_initilaize_widget( $widget_li, $widget, e );
-		
+
 		$widget_li.removeClass( 'layers-loading' );
 	});
-	
+
 	$( document ).on( 'collapse', '.customize-control-widget_form', function(e){
 		$widget_li = $(this);
 		$widget = $widget_li.find( '.widget' );
-		
+
 		$widget_li.addClass('collapsing');
 	});
-	
+
 	$( document ).on( 'collapsed', '.customize-control-widget_form', function(e){
 		$widget_li = $(this);
 		$widget = $widget_li.find( '.widget' );
-		
+
 		$widget_li.removeClass('collapsing');
 	});
-	
+
 	function layers_initilaize_widget( $widget_li, $widget, e ){
-		
+
 		$widget_li.addClass('layers-focussed');
-		
+
 		$('.layers-focussed').not( $widget_li ).removeClass('layers-focussed');
-		
+
 		// Record if widget has been initialized before.
 		if ( !$widget_li.hasClass( 'layers-initialized' ) ){
-			
+
 			$widget_li.addClass('layers-loading');
-			
+
 			setTimeout(function(){
 				$widget.trigger( 'layers-widget-initialize' );
 				$widget_li.addClass( 'layers-initialized' );
 			}, 50 );
 		}
-		
+
 		setTimeout(function() {
 			$widget.trigger( 'layers-widget-scroll' );
 		}, 200 );
 	}
-	
+
 	$( document ).on( 'collapse', '.customize-control-widget_form', function(e){
 		$widget_li = $(this);
 		$widget = $widget_li.find( '.widget' );
-		
+
 		$widget_li.removeClass('layers-focussed');
 	});
-	
+
 	/*
 	$( document ).on( 'mousedown', '.customize-control-widget_form .widget-top', function(e){
 		$(this).closest( '.widget' ).trigger( 'layers-widget-expand' );
 	});
-	
+
 	// $( document ).on( 'expanded', '.customize-control-widget_form', function(e){
 	// 	$(this).closest( '.widget' ).trigger( 'layers-widget-expand' );
 	// });
-	
+
 	$( document ).on( 'layers-widget-expand', '.customize-control-widget_form', function(e){
 		layers_widget_expand( $(this) );
 	});
@@ -834,93 +834,93 @@ jQuery(function($) {
 		layers_widget_collapse( $(this) );
 	});
 	*/
-	
+
 	/*
 	function layers_widget_expand( $widget_li ){
 
 		var $widget = $widget_li.children( '.widget' );
-		
+
 		// Close other open widgets.
 		$('.customize-control-widget_form.layers-focussed').find('.widget').trigger('layers-widget-collapse');
-		
+
 		// First thing focus the clicked widget so we can color it.
 		$widget_li.addClass( 'layers-focussed' );
-		
+
 		// Widget has never been opened before then add loading and focussing class
 		if ( !$widget_li.hasClass('layers-initialized') ) {
-			
+
 			$widget_li.addClass( 'layers-loading' );
 		}
 
 		// Check if has been initialized before
 		if ( !$widget_li.hasClass( 'layers-initialized' ) ){
-			
+
 			$.layerswp
 			.stop_queue( 'expand' )
 			.queue( 'expand', 500 )
 			.queue( 'expand', function(){
-				
+
 				$widget.trigger( 'layers-widget-initialize' );
 			})
 			.queue( 'expand', 300 )
 			.queue( 'expand', function(){
-				
+
 				$widget_li
 				.removeClass( 'layers-loading' )
 				.addClass( 'layers-expanded layers-initialized' );
 			})
 			.queue( 'expand', 300 )
 			.queue( 'expand', function(){
-				
+
 				$widget.trigger( 'layers-widget-scroll' );
 			});
 		}
 		else {
-			
+
 			$.layerswp
 			.stop_queue( 'expand' )
 			.queue( 'expand', 1 )
 			.queue( 'expand', function(){
-			
+
 				$widget_li.addClass('layers-expanded');
 			})
 			.queue( 'expand', 300 )
 			.queue( 'expand', function(){
-				
+
 				$widget.trigger( 'layers-widget-scroll' );
 			});
-			
+
 			// Trigger Initialize event
 			$widget_li.children( '.widget' ).trigger( 'widget-initialize' );
 		}
-		
+
 	}
 
 	function layers_widget_collapse( $widget_li ){
-		
+
 		var $widget = $widget_li.children( '.widget' );
-		
+
 		if ( !$widget_li.hasClass('layers-collapsing') ){
-			
+
 			$widget_li.removeClass('layers-focussed expanded');
 			$widget_li.addClass('layers-collapsing');
-			
+
 			$.layerswp
 			.stop_queue( 'collapse' )
 			.queue( 'collapse', 1 )
 			.queue( 'collapse', function(){
-				
+
 				// Add class
 				$widget_li.addClass('layers-collapsing');
 			})
 			.queue( 'collapse', 200 )
 			.queue( 'collapse', function(){
-				
+
 				// Add class
 				$widget_li.removeClass('layers-collapsing layers-expanded layers-focussed expanded');
 			});
 		}
-		
+
 	}
 	*/
 
@@ -935,7 +935,7 @@ jQuery(function($) {
   	.queue( 'one', function(){
  		console.log('one2');
   	} );
-  	
+
   	$.layerswp
 	.queue( 'two', 2000 )
 	.queue( 'two', function(){
@@ -946,7 +946,7 @@ jQuery(function($) {
  		console.log('two2');
   	} );
   	*/
-  	
+
 });
 
 /**
@@ -972,18 +972,18 @@ jQuery(function($) {
  */
 
 (function( $ ) {
- 	
+
  	// Setup or get layerswp.
 	$.fn.layerswp = $.fn.layerswp || {};
 
 	$.layerswp = $.extend({
 
 		_queue: {
-			
+
 			main_queue_collection: [],
 
 			queue_busy: [],
-	 
+
 			add_to_queue: function( $args, $name ) {
 
 				var $defaults = {
@@ -992,83 +992,83 @@ jQuery(function($) {
 				};
 
 				$args = $.extend( $defaults, $args );
-				
+
 				if ( !this.main_queue_collection[$name] ) this.main_queue_collection[$name] = [];
 				this.main_queue_collection[$name].push( $args );
-				
+
 				this.check_queue( $name );
 			},
-	 
+
 			check_queue: function( $name ) {
-				
+
 				$queue_collection = this.main_queue_collection[$name];
 
 				// Bail if nothing is in queue
 				if ( this.queue_busy[$name] || $queue_collection.length <= 0 ) return;
-				
+
 				// Lock the queue to prevent overlapping
 				this.queue_busy[$name] = true;
-				
+
 				// Get current item off the start of the queue
 				var $current_item = $queue_collection.shift();
 
 				// Apply : --- DELAY ---
 				setTimeout( this.next_step.bind( this, $name, $current_item ), $current_item.delay );
 			},
-			
+
 			next_step: function() {
-				
+
 				$name = arguments[0];
 				$current_item = arguments[1];
-				
+
 				// Apply : --- FUNCTION ---
 				if( typeof( $current_item.function ) === "function" ) $current_item.function();
-				
+
 				// Un-lock the queue
 				this.queue_busy[$name] = false;
-				
+
 				// Recheck this queue
 				this.check_queue( $name );
 			}
-			
+
 		}
 
 	}, $.layerswp );
-	
+
 	// Make 'queue' call a default function 'add_to_queue' in '_queue' so it can be added easy.
 	$.layerswp = $.extend({
-		
+
 		queue: function( $arg1, $arg2 ){
-			
+
 			if( $.type( $arg1 ) === "string" ){
 				$name = $arg1; $args = $arg2;
 			}
 			else{
 				$name = '_general_'; $args = $arg1;
 			}
-			
+
 			if( typeof $.layerswp._queue.queue_busy[$name] === 'undefined' ){
 				$.layerswp._queue.queue_busy[$name] = false;
 			}
-			
+
 			$.layerswp._queue.add_to_queue( $args, $name );
-			
+
 			return this;
 		},
-		
+
 		stop_queue: function( $name ) {
-			
+
 			if( !$name ) $name = '_general_';
-			
+
 			if ( ! typeof $.layerswp._queue.main_queue_collection[ $name ] === 'undefined' ){
-				
+
 				$.layerswp._queue.main_queue_collection[$name] = [];
 				$.layerswp._queue.queue_busy[$name] = false;
 			}
-			
+
 			return this;
 		}
-		
+
 	}, $.layerswp );
- 
+
 }( jQuery ));

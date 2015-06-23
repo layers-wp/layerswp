@@ -328,12 +328,6 @@ if( ! function_exists( 'layers_scripts' ) ) {
 				LAYERS_VERSION
 			); // Woocommerce
 		}
-		wp_register_style(
-			LAYERS_THEME_SLUG . '-font-awesome',
-			get_template_directory_uri() . '/core/assets/font-awesome.min.css',
-			array(),
-			LAYERS_VERSION
-		); // Inline Editor
 
 		wp_enqueue_style(
 			LAYERS_THEME_SLUG . '-style' ,
@@ -375,8 +369,12 @@ if( ! function_exists( 'layers_admin_scripts' ) ) {
 		); // Inline Editor
 
 		wp_enqueue_style(
-			LAYERS_THEME_SLUG . '-font-awesome'
+			LAYERS_THEME_SLUG . '-admin-font-awesome',
+			get_template_directory_uri() . '/core/assets/font-awesome.min.css',
+			array(),
+			LAYERS_VERSION
 		); // Inline Editor
+
 
 		wp_enqueue_script(
 			LAYERS_THEME_SLUG . '-admin-editor' ,

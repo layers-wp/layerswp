@@ -83,31 +83,28 @@ div#widgets-right div[id*='obox-layers-builder']{
         /* background-image: url( images/spinner-on-blue.gif ); */
         /* background-position: 50% 50%; */
         /* background-repeat: no-repeat; */
-        /* background-color: #FFF; */
+        background-color: #0BA6E0;
         color: #FFF9F7;
         font-size: 10px;
         font-weight: 900;
         text-transform: uppercase;
-        transition: .2s ease-in-out;
+        transition: .1s ease-in-out;
         width: auto;
         height: auto;
         line-height: 17px;
         border-radius: 40px;
-        padding: 0 10px;
+        padding: 0 7px;
         content: "Loading...";
         position: absolute;
-        right: 4px;
+        right: 6px;
         top: 14px;
         opacity: 0;
     }
     .customize-control-widget_form.wide-widget-control.layers-loading div[id*='layers-widget'] .widget-top:after{
         opacity: 1;
     }
-    .customize-control-widget_form.wide-widget-control.layers-loading div[id*='layers-widget'] .widget-top a.widget-action:after{
-        content: "";
-        display: block;
-        width: 20px;
-        height: 20px;
+    .customize-control-widget_form.wide-widget-control.layers-loading div[id*='layers-widget'] .widget-top .widget-title-action{
+        opacity: 0;
     }
     /*- Layers Widget Focussed -*/
 

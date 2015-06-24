@@ -643,6 +643,17 @@ object{
         .section-title.large .excerpt{
             font-size: 2.5rem;
         }
+        .section-title.large .excerpt p:not(:first-child){
+            margin-top: 1.5rem;
+        }
+        .section-title.large .excerpt ul,
+        .section-title.large .excerpt ol {
+            margin: 0 0 0 5rem;
+        }
+        .section-title.large .excerpt ul:not(:first-child),
+        .section-title.large .excerpt ol:not(:first-child){
+            margin-top: 1.5rem;
+        }
 
         /*-----------------------*/
         /*- SECTION SMALL -------*/
@@ -651,6 +662,17 @@ object{
         }
         .section-title.small .excerpt{
             font-size: 1.5rem;
+        }
+        .section-title.small .excerpt p:not(:first-child){
+            margin-top: .5rem;
+        }
+        .section-title.small .excerpt ul,
+        .section-title.small .excerpt ol {
+            margin: 0 0 0 3rem;
+        }
+        .section-title.small .excerpt ul:not(:first-child),
+        .section-title.small .excerpt ol:not(:first-child){
+            margin-top: .5rem;
         }
 
         /*-----------------------*/
@@ -669,6 +691,17 @@ object{
             color: rgba(0, 0, 0, 0.55);
             font-size: 2rem;
         }
+        .section-title .excerpt p:not(:first-child){
+            margin-top: 1rem;
+        }
+        .section-title .excerpt ul,
+        .section-title .excerpt ol {
+            margin: 0 0 0 4rem;
+        }
+        .section-title .excerpt ul:not(:first-child),
+        .section-title .excerpt ol:not(:first-child){
+            margin-top: 1rem;
+        }
 
         /*-----------------------*/
         /*- SECTION TINY --------*/
@@ -678,6 +711,17 @@ object{
         }
         .section-title.tiny .excerpt{
             font-size: 1.3rem;
+        }
+        .section-title.tiny .excerpt p:not(:first-child){
+            margin-top: .5rem;
+        }
+        .section-title.tiny .excerpt ul,
+        .section-title.tiny .excerpt ol {
+            margin: 0 0 0 3rem;
+        }
+        .section-title.tiny .excerpt ul:not(:first-child),
+        .section-title.tiny .excerpt ol:not(:first-child){
+            margin-top: 1.5rem;
         }
 
     .section-title + .container{
@@ -1993,6 +2037,14 @@ object{
         .media.small .excerpt{
             font-size: 1.3rem;
         }
+        .media.small .excerpt ul,
+        .media.small .excerpt ol {
+            margin: 0 0 0 3rem;
+        }
+        .media.small .excerpt ul:not(:first-child),
+        .media.small .excerpt ol:not(:first-child){
+            margin-top: 1.3rem;
+        }
 
         /*-----------------------*/
         /*- MEDIA MEDIUM --------*/
@@ -2007,6 +2059,14 @@ object{
         }
         .media.medium p:not(:first-child),
         .media.medium .button{
+            margin-top: 1.5rem;
+        }
+        .media.medium .excerpt ul,
+        .media.medium .excerpt ol {
+            margin: 0 0 0 3rem;
+        }
+        .media.medium .excerpt ul:not(:first-child),
+        .media.medium .excerpt ol:not(:first-child){
             margin-top: 1.5rem;
         }
 
@@ -2028,6 +2088,14 @@ object{
         }
         .media.large .excerpt{
             font-size: 2rem;
+        }
+        .media.large .excerpt ul,
+        .media.large .excerpt ol {
+            margin: 0 0 0 4rem;
+        }
+        .media.large .excerpt ul:not(:first-child),
+        .media.large .excerpt ol:not(:first-child){
+            margin-top: 2rem;
         }
 
 
@@ -2194,17 +2262,14 @@ object{
 
 .excerpt li{
     list-style-type: inherit;
-    overflow: visible;
 }
 .excerpt li ul,
 .excerpt li ol {
 	margin:0 1.5rem;
 }
-
 .excerpt ul,
 .excerpt ol {
-	margin: 0 0 0 2.1rem;
-	overflow: visible;
+	margin: 0 0 0 3rem;
 }
 .excerpt ul:not(:first-child),
 .excerpt ol:not(:first-child){

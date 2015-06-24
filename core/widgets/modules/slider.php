@@ -257,7 +257,7 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 														<h3 class="heading"><?php echo $slide['title']; ?></h3>
 													<?php } ?>
 													<?php if( $this->check_and_return( $slide , 'excerpt' ) ) { ?>
-														<div class="excerpt"><?php echo apply_filters( 'the_content', $slide['excerpt'] ); ?></div>
+														<div class="excerpt"><?php layers_the_content( $slide['excerpt'] ); ?></div>
 													<?php } ?>
 													<?php if( 'div' == $slide_wrapper_tag && $this->check_and_return( $slide, 'link' ) && $this->check_and_return( $slide , 'link_text' ) ) { ?>
 														<a href="<?php echo $slide['link']; ?>" class="button btn-<?php echo $this->check_and_return( $slide , 'design' , 'fonts' , 'size' ); ?>"><?php echo $slide['link_text']; ?></a>

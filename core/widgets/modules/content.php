@@ -136,7 +136,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 								<h3 class="heading"><?php echo esc_html( $widget['title'] ); ?></h3>
 							<?php } ?>
 							<?php if( '' != $widget['excerpt'] ) { ?>
-								<p class="excerpt"><?php echo $widget['excerpt']; ?></p>
+								<div class="excerpt"><?php echo $widget['excerpt']; ?></div>
 							<?php } ?>
 						</div>
 					</div>
@@ -266,7 +266,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 												</h5>
 											<?php } ?>
 											<?php if( $this->check_and_return( $column, 'excerpt' ) ) { ?>
-												<div class="excerpt"><?php echo apply_filters( 'the_content', $column['excerpt'] ); ?></div>
+												<div class="excerpt"><?php layers_the_content( $column['excerpt'] ); ?></div>
 											<?php } ?>
 											<?php if( isset( $column['link'] ) && $this->check_and_return( $column , 'link_text' ) ) { ?>
 												<a href="<?php echo $column['link']; ?>" class="button btn-<?php echo $this->check_and_return( $column , 'design' , 'fonts' , 'size' ); ?>"><?php echo $column['link_text']; ?></a>

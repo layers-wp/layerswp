@@ -1389,7 +1389,44 @@ div[id*='layers-widget'] .spinner{
             color: #eee;
             font-size: 13px;
         }
+        /*-------------------------------*/
+        /*- RTE LIST STYLING --------*/
+        /*-------------------------------*/
 
+        .froala-view li{
+            list-style-type: inherit;
+            overflow: visible;
+        }
+        .froala-view li ul,
+        .froala-view li ol {
+            padding:0 10px;
+        }
+
+        .froala-view ul,
+        .froala-view ol {
+            padding: 0 0 0 10px;
+            overflow: visible;
+        }
+        .froala-view ul,
+        .froala-view ol{
+            margin: 0;
+            padding-bottom: 10px;
+        }
+        .froala-view ul {
+            list-style-type:disc;
+        }
+        .froala-view ol {
+            list-style-type:decimal;
+        }
+        .froala-view ol ol {
+            list-style: upper-alpha;
+        }
+        .froala-view ol ol ol {
+            list-style: lower-roman;
+        }
+        .froala-view ol ol ol ol {
+            list-style: lower-alpha;
+        }
 
 /*-----------------------------*/
 /*- CUSTOMIZER CONTROLS -------*/

@@ -242,7 +242,7 @@ class Layers_Form_Elements {
 			*/
 			case 'rte' :
 				// Apply allowed tags list
-				$allow_tags = ( isset( $input->allow_tags ) && is_array( $input->allow_tags ) ? implode( ',' , $input->allow_tags ) : array( 'a','br','b','strong','i','em','blockquote','strike','button','ol','ul','li' ) );
+				$allow_tags = ( isset( $input->allow_tags ) && is_array( $input->allow_tags ) ? implode( ',' , $input->allow_tags ) : array( 'a','br','b','strong','i','em','blockquote','strike','button','ol','ul','li', 'p' ) );
 
 				// Add custom button support
 				$allow_buttons = ( isset( $input->allow_buttons ) && is_array( $input->allow_buttons ) ? $input->allow_buttons : array( 'sep','bold','italic','underline','strikeThrough','createLink','insertOrderedList','insertUnorderedList','removeFormat','html' ) );
@@ -255,8 +255,7 @@ class Layers_Form_Elements {
 						}
 					}
 				} ?>
-				<textarea
-					class="layers-textarea layers-rte" data-allowed-tags="<?php echo implode( ',' , $allow_tags ); ?>" data-allowed-buttons="<?php echo implode( ',' , $allow_buttons ) ; ?>" <?php echo implode ( ' ' , $input_props ); ?> <?php if( isset( $input->rows ) ) echo 'rows="' , $input->rows , '"'; ?>><?php echo $input->value; ?></textarea>
+				<textarea class="layers-textarea layers-rte" data-allowed-tags="<?php echo implode( ',' , $allow_tags ); ?>" data-allowed-buttons="<?php echo implode( ',' , $allow_buttons ) ; ?>" <?php echo implode ( ' ' , $input_props ); ?> <?php if( isset( $input->rows ) ) echo 'rows="' , $input->rows , '"'; ?>><?php echo $input->value; ?></textarea>
 			<?php break;
 			/**
 			* Image Uploader

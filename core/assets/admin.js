@@ -728,7 +728,7 @@ jQuery(function($) {
 			zIndex: 99,
 			inlineMode: false,
 			initOnClick: false,
-			paragraphy: false,
+			paragraphy: true,
 			convertMailAddresses: true,
 			buttons:  $allow_buttons,
 			allowedTags: $allow_tags,

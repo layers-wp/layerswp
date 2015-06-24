@@ -2189,6 +2189,44 @@ object{
     }
 
 /*-------------------------------*/
+/*- EXCERPT LIST STYLING --------*/
+/*-------------------------------*/
+
+.excerpt li{
+    list-style-type: inherit;
+    overflow: visible;
+}
+.excerpt li ul,
+.excerpt li ol {
+	margin:0 1.5rem;
+}
+
+.excerpt ul,
+.excerpt ol {
+	margin: 0 0 0 2.1rem;
+	overflow: visible;
+}
+.excerpt ul:not(:first-child),
+.excerpt ol:not(:first-child){
+    margin-top: 1.5rem;
+}
+.excerpt ul {
+	list-style-type:disc;
+}
+.excerpt ol {
+	list-style-type:decimal;
+}
+.excerpt ol ol {
+	list-style: upper-alpha;
+}
+.excerpt ol ol ol {
+	list-style: lower-roman;
+}
+.excerpt ol ol ol ol {
+	list-style: lower-alpha;
+}
+
+/*-------------------------------*/
 /*- COLOR RESETS ----------------*/
 /*-------------------------------*/
 

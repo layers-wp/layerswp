@@ -760,7 +760,7 @@ jQuery(function($) {
 	* to allow for just-in-time init instead of massive bulk init.
 	*/
 	
-	$( document ).on( 'mousedown', '.customize-control-widget_form .widget-top', layers_widget_mousedown_event = function(e){
+	$( document ).on( 'mousedown', '.customize-control-widget_form .widget-top', function(e){
 
 		// Use of 'mousedown' is integral and allows us fire events before WP expand,
 		// so we can do things like Highligting the Widget Title, display first time 'LOADING' text,
@@ -773,7 +773,7 @@ jQuery(function($) {
 		layers_expand_widget( $widget_li, $widget, e );
 	});
 	
-	$( document ).on( 'expand', '.customize-control-widget_form', layers_widget_expand_event = function(e){
+	$( document ).on( 'expand', '.customize-control-widget_form', function(e){
 		var $widget_li = $(this);
 		var $widget = $widget_li.find( '.widget' );
 		
@@ -793,7 +793,7 @@ jQuery(function($) {
 		}, 1100 );
 	});
 	
-	$( document ).on( 'collapse', '.customize-control-widget_form', layers_widget_collapse_event = function(e){
+	$( document ).on( 'collapse', '.customize-control-widget_form', function(e){
 		var $widget_li = $(this);
 		var $widget = $widget_li.find( '.widget' );
 		
@@ -803,7 +803,7 @@ jQuery(function($) {
 		$widget_li.addClass('layers-collapsing');
 	});
 	
-	$( document ).on( 'collapsed', '.customize-control-widget_form', layers_widget_collapsed_event = function(e){
+	$( document ).on( 'collapsed', '.customize-control-widget_form', function(e){
 		var $widget_li = $(this);
 		var $widget = $widget_li.find( '.widget' );
 		

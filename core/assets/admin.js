@@ -748,6 +748,15 @@ jQuery(function($) {
 				editor.$editor.addClass('hide');
 			});
 
+		// Fix for 'clear formatting' button not working - envokes sending change to customizer prev
+		$(document).on( 'click', '.fr-bttn[data-cmd="removeFormat"]', function(){
+			var $editor = $(this).closest('.layers-form-item').find('.layers-rte');
+			_.defer( function(arguments) {
+				$editor.editable('blur');
+				$editor.editable('focus');
+			});
+		});
+		
 		$editor.data('fa.editable').$editor.addClass('hide');
 	}
 	

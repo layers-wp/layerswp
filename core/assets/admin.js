@@ -735,19 +735,18 @@ jQuery(function($) {
 			key: 'YWd1WDPTa1ZNRGe1OC1c1=='
 		};
 		
+		// Editor events
 		$editor.editable( $editor_data )
 			.on('editable.contentChanged', function (e, editor) {
 				layers_debounce_input( $editor );
 			})
 			.on('editable.focus', function (e, editor) {
-
 				editor.$editor.removeClass('hide');
 			})
 			.on('editable.blur', function (e, editor) {
-
 				editor.$editor.addClass('hide');
 			});
-
+		
 		// Fix for 'clear formatting' button not working - envokes sending change to customizer prev
 		$(document).on( 'click', '.fr-bttn[data-cmd="removeFormat"]', function(){
 			var $editor = $(this).closest('.layers-form-item').find('.layers-rte');
@@ -757,6 +756,7 @@ jQuery(function($) {
 			});
 		});
 		
+		// Add hide class to all editors on startup
 		$editor.data('fa.editable').$editor.addClass('hide');
 	}
 	

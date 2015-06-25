@@ -151,10 +151,10 @@ class Layers_Design_Controller {
 					<?php echo $label; ?>
 				</span>
 			</a>
-			<?php if( isset( $args['elements'] ) ) { ?>
+			<?php if( isset( $elements ) ) { ?>
 				<div class="<?php echo esc_attr( $menu_wrapper_class ); ?>">
 					<div class="layers-pop-menu-setting">
-						<?php foreach( $args['elements'] as $key => $form_args ) { ?>
+						<?php foreach( $elements as $key => $form_args ) { ?>
 						   <?php echo $this->render_input( $form_args ); ?>
 						<?php } ?>
 					</div>

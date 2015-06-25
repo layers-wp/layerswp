@@ -39,8 +39,8 @@
 
 	// 1.b - Accodian Init
 	
-	// Init on widget layers-widget-initialize
-	$( document ).on( 'layers-widget-initialize', '.widget', function( e ){
+	// Init interface inside widgets
+	$( document ).on( 'layers-interface-init', '.widget', function( e ){
 		// 'this' is the widget
 		layers_init_accordians( $(this) );
 	});

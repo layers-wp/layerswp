@@ -22,7 +22,7 @@ jQuery(document).ready(function($){
 	* 1 - Sortable items
 	*/
 	
-	$( document ).on( 'layers-widget-initialize', '.widget', function( e ){
+	$( document ).on( 'layers-interface-init', '.widget', function( e ){
 		// 'this' is the widget
 		layers_set_column_sortable( $(this) );
 	});
@@ -152,8 +152,8 @@ jQuery(document).ready(function($){
 				// Trigger change for ajax save
 				$columnInput.val( $column_guids.join() ).layers_trigger_change();
 
-				// Trigger color selectors
-				jQuery('.layers-color-selector').wpColorPicker();
+				// Trigger interface init. will trigger init of elemnts eg colorpickers etc
+				$column.trigger('layers-interface-init');
 			}
 		) // $.post
 

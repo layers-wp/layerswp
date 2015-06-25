@@ -23,8 +23,8 @@ jQuery(document).ready(function($){
 	* 1 - Sortable items
 	*/
 	
-	// Init on widget layers-widget-initialize
-	$( document ).on( 'layers-widget-initialize', '.widget', function( e ){
+	// Init interface inside widgets
+	$( document ).on( 'layers-interface-init', '.widget', function( e ){
 		// 'this' is the widget
 		layers_set_slide_sortable( $(this) );
 	});
@@ -163,8 +163,8 @@ jQuery(document).ready(function($){
 				// Trigger change for ajax save
 				$slideInput.val( $slide_guids.join() ).layers_trigger_change();
 
-				// Trigger color selectors
-				jQuery('.layers-color-selector').wpColorPicker();
+				// Trigger interface init. will trigger init of elemnts eg colorpickers etc
+				$slide.trigger('layers-interface-init');
 			}
 		) // $.post
 	});

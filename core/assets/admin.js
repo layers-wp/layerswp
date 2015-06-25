@@ -282,11 +282,11 @@ jQuery(function($) {
 	* 5 - Color Selectors
 	*/
 	
-	// Init all except widgets on load
+	// Init interface in all except widgets on load
 	layers_set_color_selectors( $( '#customize-theme-controls > ul > li.accordion-section' ).not( '#accordion-panel-widgets' ) );
 	
-	// Init on widget layers-widget-initialize
-	$( document ).on( 'layers-widget-initialize', '.widget', function( e ){
+	// Init interface inside widgets
+	$( document ).on( 'layers-interface-init', '.widget', function( e ){
 		// 'this' is the widget
 		layers_set_color_selectors( $(this), true );
 	});
@@ -342,11 +342,11 @@ jQuery(function($) {
 	* 6 - Sortable Columns
 	*/
 	
-	// Init all except widgets on load
+	// Init interface in all except widgets on load
 	layers_init_sortable_columns( $( '#customize-theme-controls > ul > li.accordion-section' ).not( '#accordion-panel-widgets' ) );
 	
-	// Init on widget layers-widget-initialize
-	$( document ).on( 'layers-widget-initialize', '.widget', function( e ){
+	// Init interface inside widgets
+	$( document ).on( 'layers-interface-init', '.widget', function( e ){
 		
 		// Bail if no sortable
 		if( $.sortable == undefined ) return;
@@ -499,11 +499,11 @@ jQuery(function($) {
 	* 11 - Add Last Class to Elements
 	*/
 	
-	// Init all except widgets on load
+	// Init interface in all except widgets on load
 	layers_init_add_last_class( $( '#customize-theme-controls > ul > li.accordion-section' ).not( '#accordion-panel-widgets' ) );
 	
-	// Init on widget layers-widget-initialize
-	$( document ).on( 'layers-widget-initialize', '.widget', function( e ){
+	// Init interface inside widgets
+	$( document ).on( 'layers-interface-init', '.widget', function( e ){
 		// 'this' is the widget
 		layers_init_add_last_class( $(this), true );
 	});
@@ -532,11 +532,11 @@ jQuery(function($) {
 	* 12 - Show/Hide linked elements
 	*/
 	
-	// Init all except widgets on load
+	// Init interface in all except widgets on load
 	layers_init_show_if( $( '#customize-theme-controls > ul > li.accordion-section' ).not( '#accordion-panel-widgets' ) );
 
-	// Init on widget layers-widget-initialize
-	$( document ).on( 'layers-widget-initialize', '.widget', function( e ){
+	// Init interface inside widgets
+	$( document ).on( 'layers-interface-init', '.widget', function( e ){
 		// 'this' is the widget
 		layers_init_show_if( $(this), true );
 	});
@@ -680,11 +680,11 @@ jQuery(function($) {
 	* 14 - Init RTE Editors
 	*/
 	
-	// Init all except widgets on load
+	// Init interface in all except widgets on load
 	layers_init_editors( $( '#customize-theme-controls > ul > li.accordion-section' ).not( '#accordion-panel-widgets' ) );
 
-	// Init on widget layers-widget-initialize
-	$( document ).on( 'layers-widget-initialize', '.widget', function( e ){
+	// Init interface inside widgets
+	$( document ).on( 'layers-interface-init', '.widget', function( e ){
 		// 'this' is the widget
 		layers_init_editors( $(this), true );
 	});
@@ -754,7 +754,9 @@ jQuery(function($) {
 	/**
 	* 15 - Custom Widget Initialization Events
 	*
-	* Dispense 'layers-widget-initialize' when widget is focused first time, or added
+	* Dispense 'layers-interface-init' when:
+	* 1. widget is focused first time
+	* 2. accordion element is added inside widget
 	* to allow for just-in-time init instead of massive bulk init.
 	*/
 	
@@ -825,13 +827,13 @@ jQuery(function($) {
 			if ( 'mousedown' === e.type ) {
 				// If event is 'mousedown' it's our early envoked event so we can do things before all the WP things
 			setTimeout(function(){
-				$widget.trigger( 'layers-widget-initialize' );
+				$widget.trigger( 'layers-interface-init' );
 			}, 50 );
 		}
 			else {
 				// If event is 'expand' it's a WP envoked event that we use as backup if the 'mousedown' was not used.
 				// eg 'shift-click' on widget in customizer-preview
-				$widget.trigger( 'layers-widget-initialize' );
+				$widget.trigger( 'layers-interface-init' );
 			}
 		}
 	}

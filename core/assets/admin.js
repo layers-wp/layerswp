@@ -115,8 +115,8 @@ jQuery(function($) {
 		// "Hi Mom"
 		$that = $(this);
 
- 		// Get the container
- 		$container = $that.closest( '.layers-image-container' );
+		// Get the container
+		$container = $that.closest( '.layers-image-container' );
 
 		$that.siblings('img').remove();
 		$container.removeClass( 'layers-has-image' );
@@ -131,10 +131,10 @@ jQuery(function($) {
 		e.preventDefault();
 
 		// "Hi Mom"
- 		$that = $(this);
+		$that = $(this);
 
- 		// Get the container
- 		$container = $that.closest( '.layers-image-container' );
+		// Get the container
+		$container = $that.closest( '.layers-image-container' );
 
 		// If the media frame already exists, reopen it.
 		if ( file_frame ) {
@@ -212,7 +212,7 @@ jQuery(function($) {
 		e.preventDefault();
 
 		// "Hi Mom"
- 		$that = $(this);
+		$that = $(this);
 
 		// If the media frame already exists, reopen it.
 		if ( file_frame ) {
@@ -421,13 +421,13 @@ jQuery(function($) {
 		// "Hi Mom"
 		$that = $(this);
 
- 		// Get the input value
+		// Get the input value
 		$value = $('#' + $that.attr( 'for' ) ).val();
 
 		// Capture the closest fellow form items
 		$form_items = $that.closest( '.layers-form-item' ).siblings( '.layers-form-item' ).length
 
- 		if( 0 == $form_items ){
+		if( 0 == $form_items ){
 			$that.closest( '.layers-pop-menu-wrapper' ).siblings( '.layers-icon-wrapper' ).find( 'span[class^="icon-"]' ).attr( 'class', 'icon-' + $value );
 		}
 		// Toggle active state
@@ -826,10 +826,10 @@ jQuery(function($) {
 			
 			if ( 'mousedown' === e.type ) {
 				// If event is 'mousedown' it's our early envoked event so we can do things before all the WP things
-			setTimeout(function(){
-				$widget.trigger( 'layers-interface-init' );
-			}, 50 );
-		}
+				setTimeout(function(){
+					$widget.trigger( 'layers-interface-init' );
+				}, 50 );
+			}
 			else {
 				// If event is 'expand' it's a WP envoked event that we use as backup if the 'mousedown' was not used.
 				// eg 'shift-click' on widget in customizer-preview
@@ -852,19 +852,19 @@ jQuery(function($) {
 	.stop_queue( 'name' )
 	.queue( 'name', 2000 )
 	.queue( 'name', function(){
- 		console.log('ONE!');
-  	})
-  	.queue( 'name', 2000 )
-  	.queue( 'name', function(){
- 		console.log('TWO!');
+		console.log('ONE!');
+	})
+	.queue( 'name', 2000 )
+	.queue( 'name', function(){
+		console.log('TWO!');
 });
 
  *
  */
 
 (function( $ ) {
- 	
- 	// Setup or get layerswp.
+	
+	// Setup or get layerswp.
 	$.fn.layerswp = $.fn.layerswp || {};
 
 	$.layerswp = $.extend({

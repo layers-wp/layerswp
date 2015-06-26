@@ -34,7 +34,7 @@
 */
 
 jQuery(function($) {
-	
+
 	/**
 	* 1 - Enqueue Initialisation Helper
 	*
@@ -43,46 +43,46 @@ jQuery(function($) {
 	*/
 
 	var $layers_init_collection = [];
-	
+
 	var $queue_busy = false;
 
 	function layers_enqueue_init( $function, $run_instantly ) {
-				
+
 		// If 'run_instantly' then just execute now and then bail.
 		if( true === $run_instantly ){
 			$function();
 			return false;
 		}
-		
+
 		$layers_init_collection.push( $function );
-		
+
 		layers_sequence_loader();
 	}
-	
+
 	var $layers_init_timeout;
-	
+
 	function layers_sequence_loader(){
-		
+
 		// Bail if nothing is in queue
 		if ( $queue_busy || $layers_init_collection.length <= 0 ) return;
-		
+
 		// Lock the queue to prevent overlapping
 		$queue_busy = true;
-		
+
 		// Get current item off the start of the queue
 		var $current_item = $layers_init_collection.shift();
-		
+
 		$layers_init_timeout = setTimeout( function(){
 
 			if ( typeof $layers_init_collection[0] !=='undefined' ){
-				
+
 				// Execute the current item
 				$current_item();
-				
+
 				$queue_busy = false;
-				
+
 				//console.log('ping!');
-				
+
 				// If there are more elements in init array then continue to loop.
 				if ( typeof $layers_init_collection[0] !=='undefined' ){
 					layers_sequence_loader();
@@ -91,7 +91,7 @@ jQuery(function($) {
 
 		}, 10 );
 	}
-	
+
 	/**
 	* 2 - Layers Custom Easing
 	*
@@ -281,10 +281,10 @@ jQuery(function($) {
 	/**
 	* 5 - Color Selectors
 	*/
-	
+
 	// Init interface in all except widgets on load
 	layers_set_color_selectors( $( '#customize-theme-controls > ul > li.accordion-section' ).not( '#accordion-panel-widgets' ) );
-	
+
 	// Init interface inside widgets
 	$( document ).on( 'layers-interface-init', '.widget', function( e ){
 		// 'this' is the widget
@@ -292,26 +292,26 @@ jQuery(function($) {
 	});
 
 	function layers_set_color_selectors( $element_s, $run_instantly ){
-		
+
 		$element_s.each( function( i, group ) {
-			
+
 			$group = $(group);
-			
+
 			$group.find( '.layers-color-selector').each( function( j, element ) {
-				
+
 				var $element = $(element);
-				
+
 				layers_enqueue_init( function(){
 					layers_set_color_selector( $element );
 				}, $run_instantly );
-				
+
 			});
 		});
 	}
-	
-	
+
+
 	function layers_set_color_selector( $element ){
-		
+
 		$element.wpColorPicker({
 			change: function(event, ui){
 				if( 'undefined' !== typeof event ){
@@ -341,30 +341,30 @@ jQuery(function($) {
 	/**
 	* 6 - Sortable Columns
 	*/
-	
+
 	// Init interface in all except widgets on load
 	layers_init_sortable_columns( $( '#customize-theme-controls > ul > li.accordion-section' ).not( '#accordion-panel-widgets' ) );
-	
+
 	// Init interface inside widgets
 	$( document ).on( 'layers-interface-init', '.widget', function( e ){
-		
+
 		// Bail if no sortable
 		if( $.sortable == undefined ) return;
 
 		// 'this' is the widget
 		layers_init_sortable_columns( $(this) );
 	});
-	
+
 	function layers_init_sortable_columns( $element_s ){
-		
+
 		$element_s.each( function( i, group ) {
-			
+
 			$group = $(group);
-			
+
 			$group.find( '.layers-sortable').each( function( j, element ) {
-				
+
 				var $element = $(element);
-				
+
 				$element.sortable({
 					placeholder: "layers-sortable-drop"
 				});
@@ -453,7 +453,7 @@ jQuery(function($) {
 	/**
 	* 9 - Widget Focussing
 	*/
-	
+
 	$( document ).on( 'layers-widget-scroll' , '.widget' , function(e){
 		// "Hi Mom"
 		$that = $(this);
@@ -498,26 +498,26 @@ jQuery(function($) {
 	/**
 	* 11 - Add Last Class to Elements
 	*/
-	
+
 	// Init interface in all except widgets on load
 	layers_init_add_last_class( $( '#customize-theme-controls > ul > li.accordion-section' ).not( '#accordion-panel-widgets' ) );
-	
+
 	// Init interface inside widgets
 	$( document ).on( 'layers-interface-init', '.widget', function( e ){
 		// 'this' is the widget
 		layers_init_add_last_class( $(this), true );
 	});
-	
+
 	function layers_init_add_last_class( $element_s, $run_instantly ){
-		
+
 		$element_s.each( function( i, group ) {
-			
+
 			$group = $(group);
-			
+
 			$group.find( '.layers-visuals-wrapper').each( function( j, element ) {
-				
+
 				var $element = $(element);
-				
+
 				layers_enqueue_init( function(){
 					if( $element.find( 'li' ).length > 3 ){
 						$element.find( 'li' ).eq(-1).addClass( 'layers-last' );
@@ -531,7 +531,7 @@ jQuery(function($) {
 	/**
 	* 12 - Show/Hide linked elements
 	*/
-	
+
 	// Init interface in all except widgets on load
 	layers_init_show_if( $( '#customize-theme-controls > ul > li.accordion-section' ).not( '#accordion-panel-widgets' ) );
 
@@ -540,27 +540,27 @@ jQuery(function($) {
 		// 'this' is the widget
 		layers_init_show_if( $(this), true );
 	});
-	
+
 	function layers_init_show_if( $element_s, $run_instantly ){
-		
+
 		$element_s.each( function( i, group ) {
-			
+
 			$group = $(group);
-			
+
 			$group.find( '[data-show-if-selector]').each( function( j, element ) {
-				
+
 				var $target_element = $(element);
 
 				var $source_element_selector = $target_element.attr( 'data-show-if-selector' );
-				
+
 				layers_enqueue_init( function(){
-					
+
 					layers_apply_show_if( $source_element_selector );
 
 					$( document ).on( 'change', $source_element_selector, function(e){
 						layers_apply_show_if( $source_element_selector );
 					});
-					
+
 				}, $run_instantly );
 			});
 		});
@@ -675,11 +675,11 @@ jQuery(function($) {
 
 		layers_backup_builder_page( $pageid, $that );
 	});
-	
+
 	/**
 	* 14 - Init RTE Editors
 	*/
-	
+
 	// Init interface in all except widgets on load
 	layers_init_editors( $( '#customize-theme-controls > ul > li.accordion-section' ).not( '#accordion-panel-widgets' ) );
 
@@ -688,37 +688,37 @@ jQuery(function($) {
 		// 'this' is the widget
 		layers_init_editors( $(this), true );
 	});
-	
+
 	function layers_init_editors( $element_s, $run_instantly ){
-		
+
 		$element_s.each( function( i, group ) {
-			
+
 			$group = $(group);
-			
+
 			$group.find( '.layers-rte').each( function( j, element ) {
-				
+
 				var $element = $(element);
-			
+
 				// If I am already an RTE, do nothing
 				if( $element.siblings( '.froala-box' ).length > 0 ) {
 					return true;
 				}
-				
+
 				// Set the ID for this element
 				var $id = $element[0].id
-				
+
 				layers_enqueue_init( function(){
-					
+
 					layers_init_editor( $id );
 				}, $run_instantly );
 			});
 		});
 	}
-	
+
 	function layers_init_editor( $id ){
-		
+
 		var $editor = $( '#' + $id );
-		
+
 		if( $editor.hasClass( 'layers-rte' ) );
 
 		var $allow_buttons =  $editor.data( 'allowed-buttons' ).split(',');
@@ -729,12 +729,13 @@ jQuery(function($) {
 			inlineMode: false,
 			initOnClick: false,
 			paragraphy: true,
+			typingTimer: 1000,
 			convertMailAddresses: true,
 			buttons:  $allow_buttons,
 			allowedTags: $allow_tags,
 			key: 'YWd1WDPTa1ZNRGe1OC1c1=='
 		};
-		
+
 		// Editor events
 		$editor.editable( $editor_data )
 			.on('editable.contentChanged', function (e, editor) {
@@ -748,7 +749,7 @@ jQuery(function($) {
 				// siwtch to using click outside rather
 				//editor.$box.addClass('hide');
 			});
-		
+
 		// Fix for 'clear formatting' button not working - envokes sending change to customizer prev
 		$(document).on( 'click', '.fr-bttn[data-cmd="removeFormat"]', function(){
 			var $editor = $(this).closest('.layers-form-item').find('.layers-rte');
@@ -757,11 +758,11 @@ jQuery(function($) {
 				$editor.editable('focus');
 			});
 		});
-		
+
 		// Add hide class to all editors parent box on startup, to hide toolbar
 		$editor.data('fa.editable').$box.addClass('hide');
 	}
-	
+
 	// Close editor toolbar on click outside active editor
 	$(document).on( 'click', function(){
 		$('.froala-box:not(.hide)').addClass('hide');
@@ -770,7 +771,7 @@ jQuery(function($) {
 		$('.froala-box').not( $(this) ).addClass('hide');
 		e.stopPropagation();
 	});
-	
+
 	/**
 	* 15 - Custom Widget Initialization Events
 	*
@@ -779,71 +780,71 @@ jQuery(function($) {
 	* 2. accordion element is added inside widget
 	* to allow for just-in-time init instead of massive bulk init.
 	*/
-	
+
 	$( document ).on( 'mousedown', '.customize-control-widget_form .widget-top', function(e){
 
 		// Use of 'mousedown' is integral and allows us fire events before WP expand,
 		// so we can do things like Highligting the Widget Title, display first time 'LOADING' text,
 		// so in the case of a JS hang-up casued by WP's large set of events on Widget expand,
 		// we have given the user feedback so they knwo what is going on.
-		
+
 		var $widget_li = $(this).closest('.customize-control-widget_form');
 		var $widget = $widget_li.find('.widget');
 
 		layers_expand_widget( $widget_li, $widget, e );
 	});
-	
+
 	$( document ).on( 'expand', '.customize-control-widget_form', function(e){
 		var $widget_li = $(this);
 		var $widget = $widget_li.find( '.widget' );
-		
+
 		// duplicate call to 'layers_expand_widget' incase 'mousedown' is not triggerd
 		// eg 'shift-click' on widget in customizer-preview.
 		layers_expand_widget( $widget_li, $widget, e );
-		
+
 		// Scroll only on expand.
 		setTimeout(function() {
 			$widget.trigger( 'layers-widget-scroll' );
 		}, 200 );
-		
+
 		// Delay the removal of 'layers-loading' so it always displays for a defienite length of time,
 		// so the user is able to read it.
 		setTimeout(function(){
 		$widget_li.removeClass( 'layers-loading' );
 		}, 1100 );
 	});
-	
+
 	$( document ).on( 'collapse', '.customize-control-widget_form', function(e){
 		var $widget_li = $(this);
 		var $widget = $widget_li.find( '.widget' );
-		
+
 		$widget_li.removeClass('layers-focussed');
-		
+
 		// Used for animation of the widget closing
 		$widget_li.addClass('layers-collapsing');
 	});
-	
+
 	$( document ).on( 'collapsed', '.customize-control-widget_form', function(e){
 		var $widget_li = $(this);
 		var $widget = $widget_li.find( '.widget' );
-		
+
 		$widget_li.removeClass('layers-collapsing');
 	});
-	
+
 	function layers_expand_widget( $widget_li, $widget, e ){
-		
+
 		// Instant user feedback
 		$widget_li.addClass('layers-focussed');
-		
+
 		// Instantly remove other
 		$('.layers-focussed').not( $widget_li ).removeClass('layers-focussed layers-loading');
-		
+
 		// Handle the first time Init of a widget.
 		if ( !$widget_li.hasClass( 'layers-loading' ) && !$widget_li.hasClass( 'layers-initialized' ) ){
-			
+
 			$widget_li.addClass('layers-loading');
 			$widget_li.addClass( 'layers-initialized' );
-			
+
 			if ( 'mousedown' === e.type ) {
 				// If event is 'mousedown' it's our early envoked event so we can do things before all the WP things
 				setTimeout(function(){
@@ -857,7 +858,7 @@ jQuery(function($) {
 			}
 		}
 	}
-  	
+
 });
 
 /**
@@ -883,18 +884,18 @@ jQuery(function($) {
  */
 
 (function( $ ) {
-	
+
 	// Setup or get layerswp.
 	$.fn.layerswp = $.fn.layerswp || {};
 
 	$.layerswp = $.extend({
 
 		_queue: {
-			
+
 			main_queue_collection: [],
 
 			queue_busy: [],
-	 
+
 			add_to_queue: function( $args, $name ) {
 
 				var $defaults = {
@@ -903,83 +904,83 @@ jQuery(function($) {
 				};
 
 				$args = $.extend( $defaults, $args );
-				
+
 				if ( !this.main_queue_collection[$name] ) this.main_queue_collection[$name] = [];
 				this.main_queue_collection[$name].push( $args );
-				
+
 				this.check_queue( $name );
 			},
-	 
+
 			check_queue: function( $name ) {
-				
+
 				$queue_collection = this.main_queue_collection[$name];
 
 				// Bail if nothing is in queue
 				if ( this.queue_busy[$name] || $queue_collection.length <= 0 ) return;
-				
+
 				// Lock the queue to prevent overlapping
 				this.queue_busy[$name] = true;
-				
+
 				// Get current item off the start of the queue
 				var $current_item = $queue_collection.shift();
 
 				// Apply : --- DELAY ---
 				setTimeout( this.next_step.bind( this, $name, $current_item ), $current_item.delay );
 			},
-			
+
 			next_step: function() {
-				
+
 				$name = arguments[0];
 				$current_item = arguments[1];
-				
+
 				// Apply : --- FUNCTION ---
 				if( typeof( $current_item.function ) === "function" ) $current_item.function();
-				
+
 				// Un-lock the queue
 				this.queue_busy[$name] = false;
-				
+
 				// Recheck this queue
 				this.check_queue( $name );
 			}
-			
+
 		}
 
 	}, $.layerswp );
-	
+
 	// Make 'queue' call a default function 'add_to_queue' in '_queue' so it can be added easy.
 	$.layerswp = $.extend({
-		
+
 		queue: function( $arg1, $arg2 ){
-			
+
 			if( $.type( $arg1 ) === "string" ){
 				$name = $arg1; $args = $arg2;
 			}
 			else{
 				$name = '_general_'; $args = $arg1;
 			}
-			
+
 			if( typeof $.layerswp._queue.queue_busy[$name] === 'undefined' ){
 				$.layerswp._queue.queue_busy[$name] = false;
 			}
-			
+
 			$.layerswp._queue.add_to_queue( $args, $name );
-			
+
 			return this;
 		},
-		
+
 		stop_queue: function( $name ) {
-			
+
 			if( !$name ) $name = '_general_';
-			
+
 			if ( ! typeof $.layerswp._queue.main_queue_collection[ $name ] === 'undefined' ){
-				
+
 				$.layerswp._queue.main_queue_collection[$name] = [];
 				$.layerswp._queue.queue_busy[$name] = false;
 			}
-			
+
 			return this;
 		}
-		
+
 	}, $.layerswp );
- 
+
 }( jQuery ));

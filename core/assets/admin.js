@@ -792,10 +792,12 @@ jQuery(function($) {
 	// Close editor toolbar on click outside active editor
 	$(document).on( 'mousedown', function(){
 		$('.froala-box:not(.hide)').addClass('hide');
-		console.log('ss');
 	});
 	$(document).on( 'mousedown', '.froala-box', function(e){
 		$('.froala-box').not( $(this) ).addClass('hide');
+		e.stopPropagation();
+	});
+	$(document).on( 'mousedown', '.froala-popup', function(e){
 		e.stopPropagation();
 	});
 

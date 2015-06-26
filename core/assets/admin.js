@@ -729,7 +729,7 @@ jQuery(function($) {
 			inlineMode: false,
 			initOnClick: false,
 			paragraphy: true,
-			typingTimer: 1000,
+			typingTimer: 500,
 			convertMailAddresses: true,
 			buttons:  $allow_buttons,
 			allowedTags: $allow_tags,

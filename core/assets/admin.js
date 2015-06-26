@@ -732,26 +732,7 @@ jQuery(function($) {
 			typingTimer: 1000,
 			convertMailAddresses: true,
 			key: 'YWd1WDPTa1ZNRGe1OC1c1==',
-			customButtons: {
-				clearHTML: {
-					title: 'Clear HTML',
-					icon: {
-						type: 'font',
-						value: 'fa fa-eraser'
-					},
-					callback: function () {
-						this.setHTML(
-							this.oldHTML.toString().replace(/<style([\s\S]*?)<\/style>/gi, ' ')
-							.replace(/<script([\s\S]*?)<\/script>/gi, ' ')
-							.replace(/(<(?:.|\n)*?>)/gm, ' ')
-							.replace(/\s+/gm, ' ')
-						);
-					},
-					refresh: function () {
-						// This method is called when the state of the button might have been changed.
-					}
-				}
-			}
+			plainPaste: true
 		};
 
 		if( $editor.data( 'allowed-buttons' ) ) {

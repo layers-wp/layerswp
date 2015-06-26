@@ -22,41 +22,46 @@ jQuery(document).ready(function($){
 	/**
 	* 1 - Sortable items
 	*/
-	layers_set_slide_sorable();
-
-	$(document).on ( 'widget-added' , function(){
-		layers_set_slide_sorable();
+	
+	// Init interface inside widgets
+	$( document ).on( 'layers-interface-init', '.widget', function( e ){
+		// 'this' is the widget
+		layers_set_slide_sortable( $(this) );
 	});
 
-	function layers_set_slide_sorable(){
+	function layers_set_slide_sortable( $element_s ){
+		
+		$element_s.find( 'ul[id^="slide_list_"]' ).each( function(){
+			
+			$that = $(this);
+			
+			$that.sortable({
+				placeholder: "layers-sortable-drop",
+				handle: ".layers-accordion-title",
+				stop: function(e , li){
+					// Banner UL, looking up from our current target
+					$slideList = li.item.closest( 'ul' );
 
-		var $slide_lists = $( 'ul[id^="slide_list_"]' );
+					// Set focus slide
+					$widget = li.item.closest( '.widget' );
+					$slide_index = li.item.index();
+					$slide_guid = li.item.data( 'guid' );
+					layers_set_slide_index( $widget, $slide_index, $slide_guid );
 
-		$slide_lists.sortable({
-			placeholder: "layers-sortable-drop",
-			handle: ".layers-accordion-title",
-			stop: function(e , li){
-				// Banner UL, looking up from our current target
-				$slideList = li.item.closest( 'ul' );
+					// Banners <input>
+					$slideInput = $( '#slide_ids_input_' + $slideList.data( 'number' ) );
 
-				// Set focus slide
-				$widget = li.item.closest( '.widget' );
-				$slide_index = li.item.index();
-				$slide_guid = li.item.data( 'guid' );
-				layers_set_slide_index( $widget, $slide_index, $slide_guid );
+					// Apply new slide order
+					$slide_guids = [];
+					$slideList.find( 'li.layers-accordion-item' ).each(function(){
+						$slide_guids.push( $(this).data( 'guid' ) );
+					});
 
-				// Banners <input>
-				$slideInput = $( '#slide_ids_input_' + $slideList.data( 'number' ) );
-
-				// Apply new slide order
-				$slide_guids = [];
-				$slideList.find( 'li.layers-accordion-item' ).each(function(){
-					$slide_guids.push( $(this).data( 'guid' ) );
-				});
-
-				// Trigger change for ajax save
-				$slideInput.val( $slide_guids.join() ).layers_trigger_change();
-			}
+					// Trigger change for ajax save
+					$slideInput.val( $slide_guids.join() ).layers_trigger_change();
+				}
+			});
+				
 		});
 	}
 
@@ -119,15 +124,14 @@ jQuery(document).ready(function($){
 		});
 
 		$post_data ={
-				action: 'layers_slider_widget_actions',
-				widget_action: 'add',
-				id_base: $slideList.data( 'id_base' ),
-				instance: $serialized_inputs.join( '&' ),
-				last_guid: ( 0 !== $slideList.find( 'li.layers-accordion-item' ).length ) ? $slideList.find( 'li.layers-accordion-item' ).last().data( 'guid' ) : false,
-				number: $slideList.data( 'number' ),
-				nonce: layers_widget_params.nonce
-
-			};
+			action: 'layers_slider_widget_actions',
+			widget_action: 'add',
+			id_base: $slideList.data( 'id_base' ),
+			instance: $serialized_inputs.join( '&' ),
+			last_guid: ( 0 !== $slideList.find( 'li.layers-accordion-item' ).length ) ? $slideList.find( 'li.layers-accordion-item' ).last().data( 'guid' ) : false,
+			number: $slideList.data( 'number' ),
+			nonce: layers_widget_params.nonce
+		};
 
 		$.post(
 			ajaxurl,
@@ -158,8 +162,8 @@ jQuery(document).ready(function($){
 				// Trigger change for ajax save
 				$slideInput.val( $slide_guids.join() ).layers_trigger_change();
 
-				// Trigger color selectors
-				jQuery('.layers-color-selector').wpColorPicker();
+				// Trigger interface init. will trigger init of elemnts eg colorpickers etc
+				$slide.trigger('layers-interface-init');
 			}
 		) // $.post
 	});

@@ -75,25 +75,68 @@ div#widgets-right div[id*='obox-layers-builder']{
         display: inline-block;
         margin-right: 8px;
     }
-    .customize-control-widget_form.wide-widget-control.expanded div[id*='layers-widget'] .widget-top h4:before{
+    .customize-control-widget_form.wide-widget-control.layers-focussed div[id*='layers-widget'] .widget-top h4:before{
         color: #fff;
+    }
+    /*- Layers Widget Loading -*/
+    .customize-control-widget_form.wide-widget-control div[id*='layers-widget'] .widget-top:after{
+        /* background-image: url( images/spinner-on-blue.gif ); */
+        /* background-position: 50% 50%; */
+        /* background-repeat: no-repeat; */
+        /* background-color: #0BA6E0; */
+        color: #FFF9F7;
+        font-size: 10px;
+        font-weight: 900;
+        text-transform: uppercase;
+        transition: .1s ease-in-out;
+        transition: 0s !important;
+        width: auto;
+        height: auto;
+        line-height: 17px;
+        border-radius: 40px;
+        padding: 0 6px;
+        content: "Loading";
+        position: absolute;
+        right: 6px;
+        top: 15px;
+        opacity: 0;
+    }
+    .customize-control-widget_form.wide-widget-control.layers-loading div[id*='layers-widget'] .widget-top:after{
+        opacity: 1;
+    }
+    .customize-control-widget_form.wide-widget-control.layers-loading div[id*='layers-widget'] .widget-top .widget-title-action{
+        opacity: 0;
+    }
+    /*- Layers Widget Focussed -*/
+
+    .customize-control-widget_form.wide-widget-control.expanded:not(.layers-collapsing) .widget-top{
+        background-color: #FAFAFA;
     }
 
-    /*- Layers Widget Active -*/
-    .customize-control-widget_form.wide-widget-control.expanded:not(.collapsing) div[id*='layers-widget'] .widget-top{
-        background: #0BA6E0;
-        border-color: #0D5F83;
+    .customize-control-widget_form.wide-widget-control.layers-focussed .widget .widget-top{
+        background: #0BA6E0 !important;
+        border-color: #0E77A5;
         color: #3D454E;
     }
-    .customize-control-widget_form.wide-widget-control.expanded:not(.collapsing) div[id*='layers-widget'] .widget-top .widget-title h4{
+    .customize-control-widget_form.wide-widget-control.expanded .widget .widget-top,
+    .customize-control-widget_form.wide-widget-control.layers-focussed .widget .widget-top{
+        -webkit-transition: 0s !important;
+        transition: 0s !important;
+    }
+    .customize-control-widget_form.wide-widget-control.layers-focussed .widget .widget-top:hover{
+        background: #0BA6E0;
+        border-color: #053E57 !important;
+        color: #3D454E;
+	}
+    .customize-control-widget_form.wide-widget-control.layers-focussed .widget .widget-top .widget-title h4{
         color: #fff;
     }
-    .customize-control-widget_form.wide-widget-control.expanded:not(.collapsing) div[id*='layers-widget'] .widget-top .widget-title .in-widget-title{
+    .customize-control-widget_form.wide-widget-control.layers-focussed .widget .widget-top .widget-title .in-widget-title{
         color: rgba(255, 255, 255, 0.8);
     }
 
     /*- Expanded Arrow Tip -*/
-    .customize-control-widget_form.wide-widget-control.expanded a.widget-action:after{
+    .customize-control-widget_form.wide-widget-control.layers-focussed a.widget-action:after{
         color: #fff;
     }
 
@@ -126,7 +169,11 @@ div#widgets-right div[id*='obox-layers-builder']{
         overflow: hidden;
         box-shadow: 3px 0 3px rgba(0, 0, 0, 0.1);
         transform: translate3d(-10px, 0, 0);
-        transition: all 0.2s ease-in-out 0.2s;
+        transition: all 0.2s ease-in-out;
+        background-image: url(images/spinner-on-white.gif);
+        background-position: 50% 20%;
+        background-repeat: no-repeat;
+        background-color: #F5F5F5;
     }
     /*-- Open --*/
     .customize-control-widget_form.wide-widget-control.expanded div[id*='layers-widget'] .widget-inside{
@@ -136,10 +183,9 @@ div#widgets-right div[id*='obox-layers-builder']{
         transform: translate3d(0, 0, 0);
     }
     /*-- Closing --*/
-    .customize-control-widget_form.wide-widget-control.collapsing div[id*='layers-widget'] .widget-inside{
+    .customize-control-widget_form.wide-widget-control.expanded.layers-collapsing div[id*='layers-widget'] .widget-inside{
         transform: translate3d(-10px, 0, 0);
         opacity: 0;
-        transition-delay: none;
     }
 
     .customize-control-widget_form.wide-widget-control div[id*='layers-widget'] .widget-inside .form{
@@ -147,17 +193,22 @@ div#widgets-right div[id*='obox-layers-builder']{
         height: 100%;
         min-width: 660px;
         position: relative;
-        opacity: 0;
-        transform: translate3d(-20px, 0, 0);
+        /* opacity: 0; */
+        /* transform: translate3d(-20px, 0, 0); */
         transition: transform 0.15s ease-in-out, opacity 0.15s ease-in-out;
-    }
-    .customize-control-widget_form.wide-widget-control.expanded div[id*='layers-widget'] .widget-inside .form{
+        overflow: scroll;
+        background-color: white;
+    
         opacity: 1;
-        transform: translate3d(0, 0, 0);
+}
+    .customize-control-widget_form.wide-widget-control.expanded div[id*='layers-widget'] .widget-inside .form{
+        /* opacity: 1; */
+        /* transform: translate3d(0, 0, 0); */
+        overflow: auto;
     }
-    .customize-control-widget_form.wide-widget-control.collapsing div[id*='layers-widget'] .widget-inside .form{
-        opacity: 0;
-        transition-delay: 0.2s;
+    .customize-control-widget_form.wide-widget-control.layers-collapsing div[id*='layers-widget'] .widget-inside .form{
+        /* opacity: 1; */
+        /* transition-delay: 0.2s; */
     }
 
     /*- COLLAPSED SIDEBAR ------------*/
@@ -918,6 +969,7 @@ div[id*='layers-widget'] .spinner{
         margin: 0;
         transition: transform 0.2s ease-in-out, opacity 0.2s ease-in-out;
     }
+    
         /*-- ANIMATE ICONS --*/
         .customize-control-widget_form.wide-widget-control div[id*='layers-widget'] .widget-inside .layers-visuals-item{
             opacity: 0;
@@ -1262,6 +1314,125 @@ div[id*='layers-widget'] .spinner{
         opacity: 1;
         transform: translate3d(0, 0, 0);
     }
+
+    /*-----------------------------*/
+    /*- RICH TEXT EDITING ---------*/
+
+    .layers-form-item .froala-box{
+        width: 100%;
+        border: 0;
+    }
+    
+    .froala-element.froala-view{
+        border: 1px solid #DDD;
+    }
+    
+    .froala-editor.f-basic{
+        background: #FFF;
+        border: 1px solid #E5E5E5;
+        border-bottom: 0;
+        transition: .2s ease-in-out .2s;
+        overflow: hidden;
+        height: 38px;
+    }
+    
+    .froala-box.hide .froala-editor.f-basic{
+        transform: translate( 0, 30px );
+        height: 0;
+        opacity:0;
+    }
+
+    .layers-form-item .froala-editor button.fr-bttn,
+    .layers-form-item .froala-editor button.fr-trigger{
+        width: 33px;
+        line-height: 14px;
+        font-size: 14px;
+        padding: 2px;
+        margin: 4px;
+        border: 1px solid transparent;
+        border-radius: 3px;
+        color: #444;
+        transition: all 0.2s ease-in-out 0s;
+        box-shadow: 0px 1px 0px rgba(255, 255, 255, 0) inset;
+    }
+
+    .layers-form-item .froala-editor button.fr-bttn:hover,
+    .layers-form-item .froala-editor .bttn-wrapper:not(.touch) button.fr-bttn:hover,
+    .layers-form-item .froala-editor button.fr-bttn.active:hover{
+        box-shadow: 0px 1px 0px rgba(255, 255, 255, 0.4) inset, 0px 1px 0px rgba(0, 0, 0, 0.08);
+        background: #2EA2CC;
+        border-color: #0074A2;
+        color: #FFF;
+    }
+
+        /*-------------------------*/
+        /*- WHEN IN HTML MODE -----*/
+        .layers-form-item .f-html .froala-editor button.fr-bttn:hover,
+        .layers-form-item .f-html .froala-editor .bttn-wrapper:not(.touch) button.fr-bttn:hover,
+        .layers-form-item .f-html .froala-editor button.fr-bttn.active:hover{
+            border-color: transparent;
+            box-shadow: none;
+        }
+        
+        .layers-form-item .froala-editor .bttn-wrapper:not(.touch) button.fr-bttn.active{
+            border-color: rgba(0, 0, 0, 0.05);
+            color: #444;
+            box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.03) inset;
+            background-color: #F0F0F0;
+            transition: 0s;
+        }
+        .layers-form-item .froala-editor .bttn-wrapper:not(.touch) button.fr-bttn:active,
+        .layers-form-item .froala-editor .bttn-wrapper:not(.touch) button.fr-bttn:active{
+            background-color: #F0F0F0;
+        }
+        .layers-form-item .froala-editor button.fr-bttn i{
+            font-size: 14px;
+        }
+        .layers-form-item .f-html .froala-element{
+            background-color: #2c2c2c;
+        }
+        .layers-form-item .f-html .froala-element textarea{
+            color: #eee;
+            font-size: 13px;
+        }
+        /*-------------------------------*/
+        /*- RTE LIST STYLING --------*/
+        /*-------------------------------*/
+
+        .froala-view li{
+            list-style-type: inherit;
+            overflow: visible;
+        }
+        .froala-view li ul,
+        .froala-view li ol {
+            padding:0 10px;
+        }
+
+        .froala-view ul,
+        .froala-view ol {
+            padding: 0 0 0 10px;
+            overflow: visible;
+        }
+        .froala-view ul,
+        .froala-view ol{
+            margin: 0;
+            padding-bottom: 10px;
+        }
+        .froala-view ul {
+            list-style-type:disc;
+        }
+        .froala-view ol {
+            list-style-type:decimal;
+        }
+        .froala-view ol ol {
+            list-style: upper-alpha;
+        }
+        .froala-view ol ol ol {
+            list-style: lower-roman;
+        }
+        .froala-view ol ol ol ol {
+            list-style: lower-alpha;
+        }
 
 /*-----------------------------*/
 /*- CUSTOMIZER CONTROLS -------*/

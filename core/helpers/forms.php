@@ -138,7 +138,7 @@ class Layers_Form_Elements {
 		$input_props = array();
 		$input_props['id'] = ( NULL != $input->id && 'select-icons' != $input->type ) ? 'id="' .  $input->id . '"' : NULL ;
 		$input_props['name'] = ( NULL != $input->name ) ? 'name="' .  $input->name . '"' : NULL ;
-		$input_props['placeholder'] = ( NULL != $input->placeholder ) ? 'placeholder="' .  esc_attr( $input->placeholder ) . '"' : NULL ;
+		$input_props['placeholder'] = ( NULL != $input->placeholder ) ? 'placeholder="' . esc_attr( $input->placeholder ) . '"' : NULL ;
 		$input_props['class'] = ( NULL != $input->class ) ? 'class="' .  $input->class . '"' : NULL ;
 		$input_props['disabled'] = isset( $input->disabled ) ? 'disabled="disabled"' : NULL ;
 
@@ -222,34 +222,46 @@ class Layers_Form_Elements {
 			*/
 			case 'select-icons' : ?>
 				<?php foreach( $input->options as $value => $label ) { ?>
-					<label href="" class="layers-icon-wrapper <?php if( $value == $input->value ) echo 'layers-active'; ?>" for="<?php echo esc_attr( $input->id ) .'-' . esc_attr( $value ); ?>">
+					<label href="" class="layers-icon-wrapper <?php if( $value == $input->value ) echo 'layers-active'; ?>" for="<?php echo esc_attr( $input->id ) ,'-', esc_attr( $value ); ?>">
 						<span class="icon-<?php echo esc_attr( $value ); ?>"></span>
 						<span class="layers-icon-description">
 							<?php echo esc_html( $label ); ?>
 						</span>
 					</label>
-					<input type="radio" <?php echo implode ( ' ' , $input_props ); ?> id="<?php echo esc_attr( $input->id ) .'-' . esc_attr( $value ); ?>" value="<?php echo esc_attr( $value ); ?>" <?php checked( $input->value , $value , true ); ?> class="layers-hide" />
+					<input type="radio" <?php echo implode ( ' ' , $input_props ); ?> id="<?php echo esc_attr( $input->id ) ,'-', esc_attr( $value ); ?>" value="<?php echo esc_attr( $value ); ?>" <?php checked( $input->value , $value , true ); ?> class="layers-hide" />
 				<?php } // foreach options ?>
 			<?php break;
 			/**
 			* Text areas
 			*/
 			case 'textarea' : ?>
-				<textarea <?php echo implode ( ' ' , $input_props ); ?> <?php if( isset( $input->rows ) ) echo 'rows="' . $input->rows . '"'; ?>><?php echo esc_textarea( $input->value ); ?></textarea>
+				<textarea <?php echo implode ( ' ' , $input_props ); ?> <?php if( isset( $input->rows ) ) echo 'rows="' , $input->rows , '"'; ?>><?php echo esc_textarea( $input->value ); ?></textarea>
 			<?php break;
 			/**
-			* Tiny MCE
+			* Rich Text Editor
 			*/
-			case 'tinymce' : ?>
-				<div class="layers-form-item" id="layers-tinymce-<?php echo esc_attr( $input->id ); ?>">
-					<a href="" class="layers-t-right layers-tiny-mce-switch" data-mode="visual"
-					data-visual_label="<?php _e( 'Visual Mode' , 'layerswp' ); ?>"
-					data-html_label="<?php _e( 'HTML Mode' , 'layerswp' ); ?>">
-						<?php _e( 'HTML Mode' , 'layerswp' ); ?>
-					</a>
-					<div class="editible editible-<?php echo esc_attr( $input->id ); ?>" data-id="<?php echo esc_attr( $input->id ); ?>"><?php echo esc_html( $input->value ); ?></div>
-					<textarea class="layers-hide layers-textarea layers-tiny-mce-textarea" <?php echo implode ( ' ' , $input_props ); ?> <?php if( isset( $input->rows ) ) echo 'rows="' . $input->rows . '"'; ?>><?php echo $input->value; ?></textarea>
-				</div>
+			case 'rte' :
+				// Apply allowed tags list
+				$allow_tags = ( isset( $input->allow_tags ) && is_array( $input->allow_tags ) ? implode( ',' , $input->allow_tags ) : array() );
+
+				// Add custom button support
+				$allow_buttons = ( isset( $input->allow_buttons ) && is_array( $input->allow_buttons ) ? $input->allow_buttons : array( 'sep','bold','italic','underline','strikeThrough','createLink','insertOrderedList','insertUnorderedList','removeFormat','html' ) );
+
+				// Check for disabling of standard buttons
+				if( isset( $input->disallow_buttons ) && is_array( $input->disallow_buttons ) ) {
+					foreach( $allow_buttons as $button_key => $button_value ){
+						if( in_array( $button_value , $input->disallow_buttons ) ){
+							unset( $allow_buttons[ $button_key ] );
+						}
+					}
+				} ?>
+				<textarea
+					class="layers-textarea layers-rte"
+					<?php if( !empty( $allow_tags ) ) { ?>data-allowed-tags="<?php echo implode( ',' , $allow_tags ); ?>"<?php } ?>
+					<?php if( !empty( $allow_buttons ) ) { ?>data-allowed-buttons="<?php echo implode( ',' , $allow_buttons ) ; ?>"<?php } ?>
+					<?php if( isset( $input->rows ) ) { ?>rows="<?php echo $input->rows; ?>"<?php } ?>
+					<?php echo implode ( ' ' , $input_props ); ?>
+					><?php echo $input->value; ?></textarea>
 			<?php break;
 			/**
 			* Image Uploader

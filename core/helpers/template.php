@@ -588,7 +588,7 @@ if( !function_exists( 'layers_get_header_class' ) ) {
 if( !function_exists( 'layers_header_class' ) ) {
 	function layers_header_class( $class = '' ) {
 		// Separates classes with a single space, collates classes for body element
-		echo 'class="' . join( ' ', layers_get_header_class( $class ) ) . '"';
+		echo 'class="' , join( ' ', layers_get_header_class( $class ) ) , '"';
 	}
 } // layers_header_class
 
@@ -620,7 +620,7 @@ if( !function_exists( 'layers_get_site_wrapper_class' ) ) {
 if( !function_exists( 'layer_site_wrapper_class' ) ) {
 	function layer_site_wrapper_class( $class = '' ) {
 		// Separates classes with a single space, collates classes for body element
-		echo 'class="' . join( ' ', layers_get_site_wrapper_class( $class ) ) . '"';
+		echo 'class="' , join( ' ', layers_get_site_wrapper_class( $class ) ) , '"';
 	}
 } // layer_site_wrapper_class
 
@@ -652,7 +652,7 @@ if( !function_exists( 'layers_get_wrapper_content_class' ) ) {
 if( !function_exists( 'layers_wrapper_content_class' ) ) {
 	function layers_wrapper_content_class( $class = '' ) {
 		// Separates classes with a single space, collates classes for body element
-		echo 'class="' . join( ' ', layers_get_wrapper_content_class( $class ) ) . '"';
+		echo 'class="' , join( ' ', layers_get_wrapper_content_class( $class ) ) , '"';
 	}
 }
 
@@ -715,7 +715,7 @@ if( !function_exists( 'layers_get_center_column_class' ) ) {
 if( !function_exists( 'layers_center_column_class' ) ) {
 	function layers_center_column_class( $class = '' ) {
 		// Separates classes with a single space, collates classes for body element
-		echo 'class="' . join( ' ', layers_get_center_column_class( $class ) ) . '"';
+		echo 'class="' , join( ' ', layers_get_center_column_class( $class ) ) , '"';
 	}
 } // layers_center_column_class
 
@@ -728,7 +728,7 @@ if( !function_exists( 'layers_center_column_class' ) ) {
 if( !function_exists( 'layers_wrapper_class' ) ) {
 	function layers_wrapper_class( $key = '', $class = '' ) {
 
-		echo 'class="' . join( ' ', layers_get_wrapper_class( $key, $class ) ) . '"';
+		echo 'class="' , join( ' ', layers_get_wrapper_class( $key, $class ) ) , '"';
 	}
 }
 
@@ -866,7 +866,7 @@ if( !function_exists( 'layers_add_additional_header_scripts' ) ) {
 		$add_additional_header_scripts = apply_filters( 'layers_header_scripts' , layers_get_theme_mod( 'header-custom-scripts' ) );
 
 		if( '' != $add_additional_header_scripts ) {
-			echo '<script>' . trim( htmlspecialchars_decode(  $add_additional_header_scripts ) ) . '</script>';
+			echo '<script>' , trim( htmlspecialchars_decode(  $add_additional_header_scripts ) ) , '</script>';
 		}
 	}
 } // layers_add_additional_header_scripts
@@ -883,7 +883,7 @@ if( !function_exists( 'layers_add_additional_footer_scripts' ) ) {
 		$additional_footer_scripts = apply_filters( 'layers_footer_scripts' , layers_get_theme_mod( 'footer-custom-scripts' ) );
 
 		if( '' != $additional_footer_scripts ) {
-			echo '<script>' . stripslashes( htmlspecialchars_decode( $additional_footer_scripts ) ) . '</script>';
+			echo '<script>' , stripslashes( htmlspecialchars_decode( $additional_footer_scripts ) ) , '</script>';
 		}
 	}
 } // layers_add_additional_header_scripts
@@ -1383,3 +1383,40 @@ if ( ! function_exists( 'layers_allow_json_uploads' ) ) {
 
 // Add allowance for JSON to be added via the media uploader
 add_filter( 'upload_mimes', 'layers_allow_json_uploads' );
+
+/**
+ * Get Content & Get Excerpt helpers
+ *
+ * Helper is like WordPress the_content but considers RTE before returning content.
+ */
+
+if ( ! function_exists( 'layers_get_content' ) ) {
+	function layers_get_content( $content = '' ) {
+		
+		// Remove 'wpautop' so RTE can be output cleanly. This assumes every content is an RTE (Rich Text Editor)
+		remove_filter( 'the_content', 'wpautop' );
+		$content = apply_filters( 'the_content', $content );
+		add_filter( 'the_content', 'wpautop' );
+		return $content;
+	}
+}
+if ( ! function_exists( 'layers_get_excerpt' ) ) {
+	function layers_get_excerpt( $content = '' ) {
+		
+		remove_filter( 'the_excerpt', 'wpautop' );
+		$content = apply_filters( 'the_excerpt', $content );
+		add_filter( 'the_excerpt', 'wpautop' );
+		return $content;
+	}
+}
+
+if ( ! function_exists( 'layers_the_content' ) ) {
+	function layers_the_content( $content = '' ) {
+		echo layers_get_content( $content );
+	}
+}
+if ( ! function_exists( 'layers_the_excerpt' ) ) {
+	function layers_the_excerpt( $content = '' ) {
+		echo layers_get_excerpt( $content );
+	}
+}

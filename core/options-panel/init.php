@@ -13,6 +13,8 @@ class Layers_Options_Panel {
 
 	public $page;
 
+	public $valid_page_slugs;
+
 	public $options_panel_dir;
 
 	/**
@@ -30,23 +32,68 @@ class Layers_Options_Panel {
 	*/
 	public function __construct() {
 
-		global $pagenow;
+		// Exit on missing ABSPATH
+		if ( ! defined( 'ABSPATH' ) ) exit;
+
+		global $page;
 
 		// Setup some folder variables
 		$this->options_panel_dir = LAYERS_TEMPLATE_DIR . '/core/options-panel/';
 
-		// Setup the partial var
-		if( isset( $_GET[ 'page' ] ) ){
-			$this->page =  str_replace( LAYERS_THEME_SLUG . '-' , '', $_GET[ 'page' ] );
-		}
-
+		$this->set_valid_page_slugs();
 	}
 
 	public function init() {
 
 		// Load template
-		$this->body( $this->page );
+		$this->body( $this->get_current_page() );
 
+	}
+
+	/**
+	* Set a list of valid pages we can access via this method
+	*/
+	public function set_valid_page_slugs(){
+		global $submenu;
+
+		if( !isset( $submenu[ 'layers-dashboard' ] ) ) return;
+
+		$page_list = $submenu[ 'layers-dashboard' ];
+
+		$this->valid_page_slugs = array();
+
+		foreach( $page_list as $sub_menu_page ){
+
+			// Make sure that the slug is valid
+			if( !isset( $sub_menu_page[2] ) ) continue;
+
+			// Load up the valid pages
+			$this->valid_page_slugs[] = $sub_menu_page[2];
+		}
+	}
+
+	/**
+	* Parse $_GET['page'] and get the current page template to load
+	*/
+	public function get_current_page(){
+
+		// Make sure we have a 'page' query to look at
+		if( ! isset( $_GET['page'] ) ) wp_die( __( 'No page argument has been set.' , 'layerswp' ) );
+
+		// Set the current page if the 'page' query exists
+		$current_page = $_GET['page'];
+
+		// Check the current page against valid pages
+		if( ! in_array( $current_page , $this->valid_page_slugs ) ) wp_die( __( 'Invalid page slug' , 'layerswp' ) );
+
+		// Set the page slug if everything is kosher
+		$page_slug = str_replace( 'layers-', '' , $current_page );
+
+		// Sanitize the slug
+		$page_slug = esc_attr( $page_slug );
+
+		// Return the page slug
+		return $page_slug;
 	}
 
 	/**

@@ -94,6 +94,8 @@ class Layers_Widgets {
 		// If we are using a Layers theme, then let's make sure widgets are kept between our theme switch
 		if( LAYERS_THEME_SLUG == basename( get_template_directory() ) || 'layerswp' == basename( get_template_directory() ) ){
 
+//			die( print_r( $sidebars_widgets, true ) );
+
 			// Fetch the old theme and its theme mods
 			$old_theme = get_option( 'theme_switched' );
 			$old_theme_mods = get_option( 'theme_mods_' . $old_theme );

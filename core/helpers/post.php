@@ -72,7 +72,7 @@ if( !function_exists( 'layers_post_meta' ) ) {
 					if( !$the_tags ) continue;
 
 					foreach ( $the_tags as $tag ){
-						$tags[] = ' <a href="'.get_category_link( $tag->term_id ).'" title="' . esc_attr( sprintf( __( "View all posts tagged %s", LAYERS_THEME_SLUG ), $tag->name ) ) . '">'.$tag->name.'</a>';
+						$tags[] = ' <a href="'.get_term_link( $tag ).'" title="' . esc_attr( sprintf( __( "View all posts tagged %s", LAYERS_THEME_SLUG ), $tag->name ) ) . '">'.$tag->name.'</a>';
 					}
 					$meta_to_display[] = '<span class="meta-item meta-tags"><i class="l-tags"></i> ' . implode( __( ', ' , 'layerswp' ), $tags ) . '</span>';
 					break;
@@ -81,11 +81,11 @@ if( !function_exists( 'layers_post_meta' ) ) {
 		} // foreach $display
 
 		if( !empty( $meta_to_display ) ) {
-			echo '<' . $wrapper . ( ( '' != $wrapper_class ) ? ' class="' . $wrapper_class .'"' : NULL ) . '>';
+			echo '<' , $wrapper , ( ( '' != $wrapper_class ) ? ' class="' . $wrapper_class . '"' : NULL ) , '>';
 				echo '<p>';
 					echo implode( ' ' , $meta_to_display );
 				echo '</p>';
-			echo '</' . $wrapper . '>';
+			echo '</' , $wrapper , '>';
 		}
 	}
 } // layers_post_meta

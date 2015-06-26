@@ -1,6 +1,19 @@
 # Layers Changelog
 
 =======
+## 1.1.6
+### ?? June 2015
+
+Security updates, new RTE feature
+
+* **Fix** - Tags in post meta all around the theme are now fixed
+* **Feature** - Introducind the Rich Text Editor!
+* **Security** - Added extra checks on the Theme Options partial logic
+* **Security** - Decreased the usage of `extract` to avoid $GLOBAL[] overwrites in widget forms
+* **Enhancement** - Changed concat method for echo functions in some files to enhance performance
+
+
+=======
 ## 1.1.5
 ### 05  June 2015
 

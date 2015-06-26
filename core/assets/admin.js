@@ -721,20 +721,46 @@ jQuery(function($) {
 
 		if( $editor.hasClass( 'layers-rte' ) );
 
-		var $allow_buttons =  $editor.data( 'allowed-buttons' ).split(',');
-		var $allow_tags =  $editor.data( 'allowed-tags' ).split(',');
-
 		var $editor_data = {
 			zIndex: 99,
 			inlineMode: false,
 			initOnClick: false,
+			imageButtons: [ 'removeImage' ],
+			pasteImage: false,
+			mediaManager: false,
 			paragraphy: true,
 			typingTimer: 1000,
 			convertMailAddresses: true,
-			buttons:  $allow_buttons,
-			allowedTags: $allow_tags,
-			key: 'YWd1WDPTa1ZNRGe1OC1c1=='
+			key: 'YWd1WDPTa1ZNRGe1OC1c1==',
+			customButtons: {
+				clearHTML: {
+					title: 'Clear HTML',
+					icon: {
+						type: 'font',
+						value: 'fa fa-eraser'
+					},
+					callback: function () {
+						this.setHTML(
+							this.oldHTML.toString().replace(/<style([\s\S]*?)<\/style>/gi, ' ')
+							.replace(/<script([\s\S]*?)<\/script>/gi, ' ')
+							.replace(/(<(?:.|\n)*?>)/gm, ' ')
+							.replace(/\s+/gm, ' ')
+						);
+					},
+					refresh: function () {
+						// This method is called when the state of the button might have been changed.
+					}
+				}
+			}
 		};
+
+		if( $editor.data( 'allowed-buttons' ) ) {
+			$editor_data.buttons = $editor.data( 'allowed-buttons' ).split(',');
+		}
+
+		if( $editor.data( 'allowed-tags' ) ) {
+			$editor_data.allowedTags = $editor.data( 'allowed-tags' ).split(',');
+		}
 
 		// Editor events
 		$editor.editable( $editor_data )

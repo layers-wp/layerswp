@@ -242,10 +242,10 @@ class Layers_Form_Elements {
 			*/
 			case 'rte' :
 				// Apply allowed tags list
-				$allow_tags = ( isset( $input->allow_tags ) && is_array( $input->allow_tags ) ? implode( ',' , $input->allow_tags ) : array( 'a','br','b','strong','i','em','blockquote','strike','button','ol','ul','li', 'p' ) );
+				$allow_tags = ( isset( $input->allow_tags ) && is_array( $input->allow_tags ) ? implode( ',' , $input->allow_tags ) : array() );
 
 				// Add custom button support
-				$allow_buttons = ( isset( $input->allow_buttons ) && is_array( $input->allow_buttons ) ? $input->allow_buttons : array( 'sep','bold','italic','underline','strikeThrough','createLink','insertOrderedList','insertUnorderedList','removeFormat','html' ) );
+				$allow_buttons = ( isset( $input->allow_buttons ) && is_array( $input->allow_buttons ) ? $input->allow_buttons : array( 'sep','bold','italic','underline','strikeThrough','createLink','insertOrderedList','insertUnorderedList','clearHTML','html' ) );
 
 				// Check for disabling of standard buttons
 				if( isset( $input->disallow_buttons ) && is_array( $input->disallow_buttons ) ) {
@@ -255,7 +255,13 @@ class Layers_Form_Elements {
 						}
 					}
 				} ?>
-				<textarea class="layers-textarea layers-rte" data-allowed-tags="<?php echo implode( ',' , $allow_tags ); ?>" data-allowed-buttons="<?php echo implode( ',' , $allow_buttons ) ; ?>" <?php echo implode ( ' ' , $input_props ); ?> <?php if( isset( $input->rows ) ) echo 'rows="' , $input->rows , '"'; ?>><?php echo $input->value; ?></textarea>
+				<textarea
+					class="layers-textarea layers-rte"
+					<?php if( !empty( $allow_tags ) ) { ?>data-allowed-tags="<?php echo implode( ',' , $allow_tags ); ?>"<?php } ?>
+					<?php if( !empty( $allow_buttons ) ) { ?>data-allowed-buttons="<?php echo implode( ',' , $allow_buttons ) ; ?>"<?php } ?>
+					<?php if( isset( $input->rows ) ) { ?>rows="<?php echo $input->rows; ?>"<?php } ?>
+					<?php echo implode ( ' ' , $input_props ); ?>
+					><?php echo $input->value; ?></textarea>
 			<?php break;
 			/**
 			* Image Uploader

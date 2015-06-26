@@ -1373,17 +1373,13 @@ div[id*='layers-widget'] .spinner{
             border-color: transparent;
             box-shadow: none;
         }
-        
-        .layers-form-item .froala-editor .bttn-wrapper:not(.touch) button.fr-bttn.active{
+        .layers-form-item .froala-editor .bttn-wrapper:not(.touch) button.fr-bttn.active,
+        .layers-form-item .froala-editor .bttn-wrapper:not(.touch) button.fr-bttn:active{
             border-color: rgba(0, 0, 0, 0.05);
             color: #444;
             box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.03) inset;
             background-color: #F0F0F0;
             transition: 0s;
-        }
-        .layers-form-item .froala-editor .bttn-wrapper:not(.touch) button.fr-bttn:active,
-        .layers-form-item .froala-editor .bttn-wrapper:not(.touch) button.fr-bttn:active{
-            background-color: #F0F0F0;
         }
         .layers-form-item .froala-editor button.fr-bttn i{
             font-size: 14px;

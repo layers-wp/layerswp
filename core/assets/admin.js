@@ -729,7 +729,7 @@ jQuery(function($) {
 			inlineMode: false,
 			initOnClick: false,
 			paragraphy: true,
-			typingTimer: 500,
+			typingTimer: 1000,
 			convertMailAddresses: true,
 			buttons:  $allow_buttons,
 			allowedTags: $allow_tags,
@@ -739,7 +739,7 @@ jQuery(function($) {
 		// Editor events
 		$editor.editable( $editor_data )
 			.on('editable.contentChanged', function (e, editor) {
-				layers_debounce_input( $editor );
+				$editor.layers_trigger_change();
 			})
 			.on('editable.focus', function (e, editor) {
 				// Show toolbar on editor focus

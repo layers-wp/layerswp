@@ -741,10 +741,12 @@ jQuery(function($) {
 				layers_debounce_input( $editor );
 			})
 			.on('editable.focus', function (e, editor) {
-				editor.$editor.removeClass('hide');
+				// Show toolbar on editor focus
+				editor.$box.removeClass('hide');
 			})
 			.on('editable.blur', function (e, editor) {
-				editor.$editor.addClass('hide');
+				// siwtch to using click outside rather
+				//editor.$box.addClass('hide');
 			});
 		
 		// Fix for 'clear formatting' button not working - envokes sending change to customizer prev
@@ -756,9 +758,18 @@ jQuery(function($) {
 			});
 		});
 		
-		// Add hide class to all editors on startup
-		$editor.data('fa.editable').$editor.addClass('hide');
+		// Add hide class to all editors parent box on startup, to hide toolbar
+		$editor.data('fa.editable').$box.addClass('hide');
 	}
+	
+	// Close editor toolbar on click outside active editor
+	$(document).on( 'click', function(){
+		$('.froala-box:not(.hide)').addClass('hide');
+	});
+	$(document).on( 'click', '.froala-box', function(e){
+		$('.froala-box').not( $(this) ).addClass('hide');
+		e.stopPropagation();
+	});
 	
 	/**
 	* 15 - Custom Widget Initialization Events

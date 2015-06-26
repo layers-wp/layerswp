@@ -1336,7 +1336,7 @@ div[id*='layers-widget'] .spinner{
         height: 38px;
     }
     
-    .froala-editor.f-basic.hide{
+    .froala-box.hide .froala-editor.f-basic{
         transform: translate( 0, 30px );
         height: 0;
         opacity:0;

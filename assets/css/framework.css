@@ -2273,6 +2273,11 @@ object{
 .excerpt ol {
 	margin: 0 0 0 3rem;
 }
+.text-center ul,
+.text-center ol{
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+}
 .text-center ul li,
 .text-center ol li {
 	list-style-position: inside;

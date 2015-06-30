@@ -2273,14 +2273,14 @@ object{
 .excerpt ol {
 	margin: 0 0 0 3rem;
 }
-.text-center ul,
-.text-center ol{
+.text-center ul, .text-right ul,
+.text-center ol, .text-right ol{
     margin-left: 0 !important;
     margin-right: 0 !important;
 }
-.text-center ul li,
-.text-center ol li {
-	list-style-position: inside;
+.text-center ul li, .text-right ul li,
+.text-center ol li, .text-right ol li {
+    list-style-position: inside;
 }
 .excerpt ul:not(:first-child),
 .excerpt ol:not(:first-child){

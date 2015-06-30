@@ -472,9 +472,13 @@ jQuery(function($) {
 		// Scroll to this widget
 		$iframe = $( '#customize-preview iframe' ).contents();
 
+		$widget = $iframe.find( '#' + $widget_id );
+
+		if( 0 ==  $widget.length )  return;
+
 		$iframe.find('html, body').animate(
 			{
-			scrollTop: $iframe.find( '#' + $widget_id ).offset().top
+			scrollTop: $widget.offset().top
 			},
 			{
 				duration: 900,

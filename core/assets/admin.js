@@ -286,7 +286,7 @@ jQuery(function($) {
 	layers_set_color_selectors( $( '#customize-theme-controls > ul > li.accordion-section' ).not( '#accordion-panel-widgets' ) );
 
 	// Init interface inside widgets
-	$( document ).on( 'layers-interface-init', '.widget', function( e ){
+	$( document ).on( 'layers-interface-init', '.widget, .layers-accordions', function( e ){
 		// 'this' is the widget
 		layers_set_color_selectors( $(this), true );
 	});
@@ -843,7 +843,7 @@ jQuery(function($) {
 		$widget_li.removeClass('layers-collapsing');
 	});
 
-	$( document ).on( 'layers-interface-init', '.widget, .layers-accordions', function(e){
+	$( document ).on( 'layers-interface-init', '.widget, .layers-accordions', function( e ){
 		// Stop the event bubbling upt the tree, so elements initialized inside widgets, don't re-init the parent widget.
 		e.stopPropagation();
 	});

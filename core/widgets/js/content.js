@@ -139,8 +139,6 @@ jQuery(document).ready(function($){
 				// Set column
 				$column = $(data);
 
-				//$column.find('.layers-accordion-section').hide();
-
 				$column.find('.layers-accordion-section').hide();
 
 				// Append column HTML
@@ -157,7 +155,7 @@ jQuery(document).ready(function($){
 
 				// Trigger interface init. will trigger init of elemnts eg colorpickers etc
 				$column.trigger('layers-interface-init');
-
+				
 				// Remove loading class
 				$that.removeClass('layers-loading-button');
 

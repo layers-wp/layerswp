@@ -98,13 +98,19 @@ jQuery(document).ready(function($){
 
 		// Trigger change for ajax save
 		$slideInput.val( $slide_guids.join() ).layers_trigger_change();
+		
+		// Reset Sortable Items
+		layers_set_column_sortable( $that );
 	});
 
 	$(document).on( 'click' , '.layers-add-widget-slide' , function(e){
 		e.preventDefault();
 
 		// "Hi Mom"
-		$that = $(this);
+		var $that = $(this);
+		
+		// Add loading class
+		$that.addClass('layers-loading-button');
 
 		// Create the list selector
 		$slideListId = '#slide_list_' + $that.data( 'number' );
@@ -140,12 +146,11 @@ jQuery(document).ready(function($){
 
 				// Set slide
 				$slide = $(data);
+				
+				$slide.find('.layers-accordion-section').hide();
 
 				// Append module HTML
 				$slideList.append($slide);
-
-				// Add Open Class to slide
-				$slide.addClass('open');
 
 				// Append slide IDs to the slides input
 				$slide_guids = [];
@@ -161,9 +166,17 @@ jQuery(document).ready(function($){
 
 				// Trigger change for ajax save
 				$slideInput.val( $slide_guids.join() ).layers_trigger_change();
-
+				
 				// Trigger interface init. will trigger init of elemnts eg colorpickers etc
 				$slide.trigger('layers-interface-init');
+				
+				// Remove loading class
+				$that.removeClass('layers-loading-button');
+				
+				// Add Open Class to column
+				setTimeout( function(){
+					$slide.find('.layers-accordion-title').trigger('click');
+				}, 300 );
 			}
 		) // $.post
 	});
@@ -185,7 +198,6 @@ jQuery(document).ready(function($){
 
 		// Update the accordian title
 		$that.closest( '.layers-accordion-item' ).find( 'span.layers-detail' ).text( $string );
-
 	});
 
 	/**

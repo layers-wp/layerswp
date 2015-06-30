@@ -409,14 +409,14 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 									'type' => 'checkbox',
 									'name' => $this->get_field_name( 'show_slider_arrows' ) ,
 									'id' => $this->get_field_id( 'show_slider_arrows' ) ,
-									'value' => ( isset( $show_slider_arrows ) ) ? $show_slider_arrows : NULL,
+									'value' => ( isset(  $widget['show_slider_arrows'] ) ) ?  $widget['show_slider_arrows'] : NULL,
 									'label' => __( 'Show Slider Arrows' , 'layerswp' )
 								),
 								'show_slider_dots' => array(
 									'type' => 'checkbox',
 									'name' => $this->get_field_name( 'show_slider_dots' ) ,
 									'id' => $this->get_field_id( 'show_slider_dots' ) ,
-									'value' => ( isset( $show_slider_dots ) ) ? $show_slider_dots : NULL,
+									'value' => ( isset(  $widget['show_slider_dots'] ) ) ?  $widget['show_slider_dots'] : NULL,
 									'label' => __( 'Show Slider Dots' , 'layerswp' )
 								),
 								'slider_arrow_color' => array(

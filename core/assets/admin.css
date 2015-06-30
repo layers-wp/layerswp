@@ -1852,9 +1852,16 @@ li[id*='accordion-section-layers'] .customize-control.customize-control-image .a
     .layers-accordion-item:first-child .layers-accordion-title{
         border-top-width: 0;
     }
-
     .layers-accordion-section{
         background: #fff;
+    }
+    .layers-accordion-section:after{
+        content: "";
+        display: block;
+        float: none;
+        clear: both;
+        width: 100%;
+        clear: both;
     }
     .layers-accordion-item:last-child .layers-accordion-section{
         border-bottom: none;

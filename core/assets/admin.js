@@ -473,14 +473,14 @@ jQuery(function($) {
 		// Scroll to this widget
 		$iframe = $( '#customize-preview iframe' ).contents();
 		$widget = $iframe.find( '#' + $widget_id );
-		
+
 		// Check if the widget can be found - can't be found during widget-add
 		if ( 0 < $widget.length ){
-			$iframe.find('html, body').animate(
+		$iframe.find('html, body').animate(
 				{ scrollTop: $widget.offset().top },
 				{ duration: 900, easing: 'layersEaseInOut' }
 			);
-		}
+			}
 	}
 
 	/**
@@ -822,7 +822,7 @@ jQuery(function($) {
 		// Delay the removal of 'layers-loading' so it always displays for a defienite length of time,
 		// so the user is able to read it.
 		setTimeout(function(){
-			$widget_li.removeClass( 'layers-loading' );
+		$widget_li.removeClass( 'layers-loading' );
 		}, 1100 );
 	});
 

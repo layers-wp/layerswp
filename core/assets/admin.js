@@ -822,7 +822,7 @@ jQuery(function($) {
 		// Delay the removal of 'layers-loading' so it always displays for a defienite length of time,
 		// so the user is able to read it.
 		setTimeout(function(){
-		$widget_li.removeClass( 'layers-loading' );
+			$widget_li.removeClass( 'layers-loading' );
 		}, 1100 );
 	});
 

@@ -732,7 +732,7 @@ jQuery(function($) {
 			typingTimer: 1000,
 			convertMailAddresses: true,
 			key: 'YWd1WDPTa1ZNRGe1OC1c1==',
-			plainPaste: true
+			plainPaste: false
 		};
 
 		if( $editor.data( 'allowed-buttons' ) ) {
@@ -740,7 +740,9 @@ jQuery(function($) {
 		}
 
 		if( $editor.data( 'allowed-tags' ) ) {
-			$editor_data.allowedTags = $editor.data( 'allowed-tags' ).split(',');
+			if( '' !== $editor.data ){
+				$editor_data.allowedTags = $editor.data( 'allowed-tags' ).split(',');
+			}
 		}
 
 		// Editor events

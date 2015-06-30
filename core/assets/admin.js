@@ -457,6 +457,7 @@ jQuery(function($) {
 	$( document ).on( 'layers-widget-scroll' , '.widget' , function(e){
 		// "Hi Mom"
 		$that = $(this);
+		
 		if( !$that.hasClass( 'expanded' ) ){
 
 			// Get the id of this widget
@@ -471,16 +472,15 @@ jQuery(function($) {
 
 		// Scroll to this widget
 		$iframe = $( '#customize-preview iframe' ).contents();
-
-		$iframe.find('html, body').animate(
-			{
-			scrollTop: $iframe.find( '#' + $widget_id ).offset().top
-			},
-			{
-				duration: 900,
-				easing: 'layersEaseInOut'
-			}
-		);
+		$widget = $iframe.find( '#' + $widget_id );
+		
+		// Check if the widget can be found - can't be found during widget-add
+		if ( 0 < $widget.length ){
+			$iframe.find('html, body').animate(
+				{ scrollTop: $widget.offset().top },
+				{ duration: 900, easing: 'layersEaseInOut' }
+			);
+		}
 	}
 
 	/**

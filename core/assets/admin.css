@@ -55,15 +55,6 @@ div#widgets-right div[id*='obox-layers-builder']{
     /*- WIDGET COLOR STYLING ----*/
 
     /*- Layers Badge -*/
-    /*
-    .customize-control-widget_form.wide-widget-control div[id*='layers-widget'] .widget-top h4:before{
-        content: "\e62f";
-        margin: 0 10px 0 0;
-        font-size: 12px;
-        color: #0BA6E0;
-        font-family: 'layers-interface';
-    }
-    */
     .customize-control-widget_form.wide-widget-control div[id*='layers-widget'] .widget-top h4:before{
         content: "\e62f";
         font-size: 11px;
@@ -107,12 +98,16 @@ div#widgets-right div[id*='obox-layers-builder']{
     .customize-control-widget_form.wide-widget-control.layers-loading div[id*='layers-widget'] .widget-top .widget-title-action{
         opacity: 0;
     }
-    /*- Layers Widget Focussed -*/
+    
+    /*- Layers Widget Rendered -*/
+    .customize-control-widget_form.wide-widget-control:not(.widget-rendered) .widget-top{
+        opacity: 1;
+    }
 
+    /*- Layers Widget Focussed -*/
     .customize-control-widget_form.wide-widget-control.expanded:not(.layers-collapsing) .widget-top{
         background-color: #FAFAFA;
     }
-
     .customize-control-widget_form.wide-widget-control.layers-focussed .widget .widget-top{
         background: #0BA6E0 !important;
         border-color: #0E77A5;

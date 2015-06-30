@@ -24,7 +24,7 @@ jQuery(document).ready(function($){
 	*/
 	
 	// Init interface inside widgets
-	$( document ).on( 'layers-interface-init', '.widget', function( e ){
+	$( document ).on( 'layers-interface-init', '.widget, .layers-accordions', function( e ){
 		// 'this' is the widget
 		layers_set_slide_sortable( $(this) );
 	});

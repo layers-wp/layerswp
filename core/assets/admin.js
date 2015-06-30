@@ -346,7 +346,7 @@ jQuery(function($) {
 	layers_init_sortable_columns( $( '#customize-theme-controls > ul > li.accordion-section' ).not( '#accordion-panel-widgets' ) );
 
 	// Init interface inside widgets
-	$( document ).on( 'layers-interface-init', '.widget', function( e ){
+	$( document ).on( 'layers-interface-init', '.widget, .layers-accordions', function( e ){
 
 		// Bail if no sortable
 		if( $.sortable == undefined ) return;
@@ -503,7 +503,7 @@ jQuery(function($) {
 	layers_init_add_last_class( $( '#customize-theme-controls > ul > li.accordion-section' ).not( '#accordion-panel-widgets' ) );
 
 	// Init interface inside widgets
-	$( document ).on( 'layers-interface-init', '.widget', function( e ){
+	$( document ).on( 'layers-interface-init', '.widget, .layers-accordions', function( e ){
 		// 'this' is the widget
 		layers_init_add_last_class( $(this), true );
 	});
@@ -536,7 +536,7 @@ jQuery(function($) {
 	layers_init_show_if( $( '#customize-theme-controls > ul > li.accordion-section' ).not( '#accordion-panel-widgets' ) );
 
 	// Init interface inside widgets
-	$( document ).on( 'layers-interface-init', '.widget', function( e ){
+	$( document ).on( 'layers-interface-init', '.widget, .layers-accordions', function( e ){
 		// 'this' is the widget
 		layers_init_show_if( $(this), true );
 	});
@@ -684,7 +684,7 @@ jQuery(function($) {
 	layers_init_editors( $( '#customize-theme-controls > ul > li.accordion-section' ).not( '#accordion-panel-widgets' ) );
 
 	// Init interface inside widgets
-	$( document ).on( 'layers-interface-init', '.widget', function( e ){
+	$( document ).on( 'layers-interface-init', '.widget, .layers-accordions', function( e ){
 		// 'this' is the widget
 		layers_init_editors( $(this), true );
 	});
@@ -841,6 +841,11 @@ jQuery(function($) {
 		$widget_li.removeClass('layers-collapsing');
 	});
 
+	$( document ).on( 'layers-interface-init', '.widget, .layers-accordions', function(e){
+		// Stop the event bubbling upt the tree, so elements initialized inside widgets, don't re-init the parent widget.
+		e.stopPropagation();
+	});
+
 	function layers_expand_widget( $widget_li, $widget, e ){
 
 		// Instant user feedback
@@ -883,11 +888,11 @@ jQuery(function($) {
 	.stop_queue( 'name' )
 	.queue( 'name', 2000 )
 	.queue( 'name', function(){
-		console.log('ONE!');
+		//console.log('ONE!');
 	})
 	.queue( 'name', 2000 )
 	.queue( 'name', function(){
-		console.log('TWO!');
+		//console.log('TWO!');
 });
 
  *

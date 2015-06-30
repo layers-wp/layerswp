@@ -2895,7 +2895,7 @@ input[type=radio]:checked + .layers-settings-icon span{
             display: block;
         }
 
-        /*------------------------------------------*/
+        /*-------------------------------------*/
         /*- PRESET LAYOUTS CONTROLS -----------*/
         .layers-button.layers-proceed-to-customizer{
             position: relative;
@@ -2939,3 +2939,53 @@ input[type=radio]:checked + .layers-settings-icon span{
         .layers-button.layers-proceed-to-customizer.disable:hover:before{
             opacity:1;
         }
+
+/*--------------------------------*/
+/*- LOADING INDICATORS -----------*/
+
+@-webkit-keyframes move {
+    0% { background-position: 0 0; }
+    100% { background-position: 50px 50px; }
+}
+@-moz-keyframes move {
+    0% { background-position: 0 0; }
+    100% { background-position: 50px 50px; }
+}
+
+.layers-button.layers-loading-button {
+    background-image: -webkit-gradient(
+            linear,
+            0 0,
+            100% 100%,
+            color-stop(.25, rgba(0, 0, 0, .05)),
+            color-stop(.25, rgba(0, 0, 0, 0)),
+            color-stop(.5, rgba(0, 0, 0, 0)),
+            color-stop(.5, rgba(0, 0, 0, .05)),
+            color-stop(.75, rgba(0, 0, 0, .05)),
+            color-stop(.75, rgba(0, 0, 0, 0)),
+            to(rgba(0, 0, 0, 0))
+        );
+    background-image: -moz-linear-gradient(
+            -45deg,
+            rgba(0, 0, 0, .05) 25%,
+            rgba(0, 0, 0, 0) 25%,
+            rgba(0, 0, 0, 0) 50%,
+            rgba(0, 0, 0, .05) 50%,
+            rgba(0, 0, 0, .05) 75%,
+            rgba(0, 0, 0, 0) 75%,
+            transparent
+        );
+    
+    -webkit-background-size: 50px 50px;
+    -moz-background-size: 50px 50px;
+    background-size: 50px 50px;
+    
+    -webkit-animation: move 2s linear infinite;
+    -moz-animation: move 2s linear infinite;
+    animation: move 2s linear infinite;
+    
+    background-color: #FAFAFA;
+    background-position: 50%;
+    color: #999999;
+    pointer-events: none;
+}

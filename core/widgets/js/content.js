@@ -21,8 +21,8 @@ jQuery(document).ready(function($){
 	/**
 	* 1 - Sortable items
 	*/
-	
-	$( document ).on( 'layers-interface-init', '.widget', function( e ){
+
+	$( document ).on( 'layers-interface-init', '.widget, .layers-accordions', function( e ){
 		// 'this' is the widget
 		layers_set_column_sortable( $(this) );
 	});
@@ -30,7 +30,7 @@ jQuery(document).ready(function($){
 	function layers_set_column_sortable( $element_s ){
 
 		$element_s.find( 'ul[id^="column_list_"]' ).each( function(){
-			
+
 			$that = $(this);
 
 			$that.sortable({
@@ -92,14 +92,17 @@ jQuery(document).ready(function($){
 		$columnInput.val( $column_guids.join() ).layers_trigger_change();
 
 		// Reset Sortable Items
-		layers_set_column_sortable();
+		layers_set_column_sortable( $that );
 	});
 
 	$(document).on( 'click' , '.layers-add-widget-column' , function(e){
 		e.preventDefault();
 
 		// "Hi Mom"
-		$that = $(this);
+		var $that = $(this);
+
+		// Add loading class
+		$that.addClass('layers-loading-button');
 
 		// Create the list selector
 		$columnListId = '#column_list_' + $that.data( 'number' );
@@ -136,11 +139,12 @@ jQuery(document).ready(function($){
 				// Set column
 				$column = $(data);
 
+				//$column.find('.layers-accordion-section').hide();
+
+				$column.find('.layers-accordion-section').hide();
+
 				// Append column HTML
 				$columnList.append($column);
-
-				// Add Open Class to column
-				$column.addClass('open');
 
 				// Append column IDs to the columns input
 				$column_guids = [];
@@ -153,6 +157,14 @@ jQuery(document).ready(function($){
 
 				// Trigger interface init. will trigger init of elemnts eg colorpickers etc
 				$column.trigger('layers-interface-init');
+
+				// Remove loading class
+				$that.removeClass('layers-loading-button');
+
+				// Add Open Class to column
+				setTimeout( function(){
+					$column.find('.layers-accordion-title').trigger('click');
+				}, 300 );
 			}
 		) // $.post
 

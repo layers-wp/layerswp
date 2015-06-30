@@ -28,42 +28,36 @@
 		// Toggle this accordian
 		$me = $(this).closest( 'li.layers-accordion-item' );
 		$me.toggleClass( 'open' );
-		$me.find( '.layers-accordion-section' ).first().slideToggle();
+		$me.find( '.layers-accordion-section' ).first().slideToggle({ easing: 'layersEaseInOut' });
 
 		// Close non-active accordians
 		$siblings = $me.siblings();
 		$siblings.removeClass( 'open' );
-		$siblings.find( '.layers-accordion-section' ).slideUp();
-
+		$siblings.find( '.layers-accordion-section' ).slideUp({ easing: 'layersEaseInOut' });
 	});
 
 	// 1.b - Accodian Init
-	
+
 	// Init interface inside widgets
-	$( document ).on( 'layers-interface-init', '.widget', function( e ){
+	$( document ).on( 'layers-interface-init', '.widget, .layers-accordions', function( e ){
 		// 'this' is the widget
 		layers_init_accordians( $(this) );
 	});
-	
+
 	function layers_init_accordians( $element_s ){
-		
+
 		$element_s.find( '.layers-accordions' ).each( function(){
-			
-			var $that = $(this);
+
+			$that = $(this);
 
 			$that.find( 'li.layers-accordion-item' ).first().addClass( 'open' );
-
-			$that.find( 'li.layers-accordion-item' ).each( function() {
-				$li = $(this);
-
-				if( $li.hasClass( 'open' ) ){
-					$li.find( '.layers-accordion-section' ).first().slideDown();
-				} else {
-					$li.find( '.layers-accordion-section' ).slideUp();
-				}
+			$that.find( 'li.layers-accordion-item' ).not(':first').each( function() {
+				var $li = $(this);
+				$li.find( '.layers-accordion-section' ).hide();
 			});
 		});
-	} // @TODO: Make sure that when adding a new widget, that the right accordians are open & closed
+
+	}
 
 	// 1.c - Accodian Widget Click
 

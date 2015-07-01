@@ -392,7 +392,7 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 								'label' => __( '' , 'layerswp' ),
 								'name' => $this->get_field_name( 'design' ) . '[layout]' ,
 								'id' => $this->get_field_id( 'design-layout' ) ,
-								'value' => ( isset( $design['layout'] ) ) ? $design['layout'] : NULL,
+								'value' => ( isset( $widget['design']['layout'] ) ) ? $widget['design']['layout'] : NULL,
 								'options' => array(
 									'layout-boxed' => __( 'Boxed' , 'layerswp' ),
 									'layout-fullwidth' => __( 'Full Width' , 'layerswp' ),

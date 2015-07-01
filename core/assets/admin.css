@@ -1881,13 +1881,14 @@ li[id*='accordion-section-layers'] .customize-control.customize-control-image .a
         cursor: move;
     }
     .layers-accordion-item.open .layers-accordion-title{
-        border-bottom: 1px solid #E7E7E7;
+        /* border-bottom: 1px solid #E7E7E7; */
     }
     .layers-accordions-sortable .layers-accordion-title:after{
         line-height: 37px;
         border-color: #eee;
     }
     .layers-accordions-sortable .layers-accordion-section{
+        border-top: 1px solid #EEE;
         border-bottom: none;
     }
 

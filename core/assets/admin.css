@@ -1381,11 +1381,14 @@ div[id*='layers-widget'] .spinner{
         }
         .layers-form-item .f-html .froala-element{
             background-color: #2c2c2c;
+            padding: 0;
         }
         .layers-form-item .f-html .froala-element textarea{
             color: #eee;
             font-size: 13px;
+            padding: 5px 6px;
         }
+        
         /*-------------------------------*/
         /*- RTE LIST STYLING --------*/
         /*-------------------------------*/

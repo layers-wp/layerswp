@@ -752,11 +752,11 @@ jQuery(function($) {
 			})
 			.on('editable.focus', function (e, editor) {
 				// Show toolbar on editor focus
-				editor.$box.removeClass('hide');
+				editor.$box.removeClass('froala-toolbar-hide');
 			})
 			.on('editable.blur', function (e, editor) {
 				// siwtch to using click outside rather
-				//editor.$box.addClass('hide');
+				//editor.$box.addClass('froala-toolbar-hide');
 			});
 
 		// Fix for 'clear formatting' button not working - envokes sending change to customizer prev
@@ -768,13 +768,13 @@ jQuery(function($) {
 			});
 		});
 
-		// Add hide class to all editors parent box on startup, to hide toolbar
-		$editor.data('fa.editable').$box.addClass('hide');
+		// Add froala-toolbar-hide class to all editors parent box on startup, to hide toolbar
+		$editor.data('fa.editable').$box.addClass('froala-toolbar-hide');
 	}
 
 	// Close editor toolbar on click outside active editor
 	$(document).on( 'mousedown', function(){
-		$('.froala-box:not(.hide)').each(function(){
+		$('.froala-box:not(.froala-toolbar-hide)').each(function(){
 						
 			// If the editor is in HTML view then swicth back.
 			$rte_active_html_button = $(this).find( '.active[data-cmd="html"]' );
@@ -784,11 +784,11 @@ jQuery(function($) {
 			}
 
 			// Then hide the toolbar
-			$(this).addClass('hide');
+			$(this).addClass('froala-toolbar-hide');
 		});
 	});
 	$(document).on( 'mousedown', '.froala-box', function(e){
-		$('.froala-box').not( $(this) ).addClass('hide');
+		$('.froala-box').not( $(this) ).addClass('froala-toolbar-hide');
 		e.stopPropagation();
 	});
 	$(document).on( 'mousedown', '.froala-popup', function(e){

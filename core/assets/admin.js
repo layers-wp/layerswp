@@ -457,7 +457,7 @@ jQuery(function($) {
 	$( document ).on( 'layers-widget-scroll' , '.widget' , function(e){
 		// "Hi Mom"
 		$that = $(this);
-		
+
 		if( !$that.hasClass( 'expanded' ) ){
 
 			// Get the id of this widget
@@ -722,17 +722,19 @@ jQuery(function($) {
 		if( $editor.hasClass( 'layers-rte' ) );
 
 		var $editor_data = {
-			zIndex: 99,
+			allowScript: true,
+			allowStyle: true,
+			convertMailAddresses: true,
 			inlineMode: false,
 			initOnClick: false,
 			imageButtons: [ 'removeImage' ],
-			pasteImage: false,
-			mediaManager: false,
-			paragraphy: true,
-			typingTimer: 1000,
-			convertMailAddresses: true,
 			key: 'YWd1WDPTa1ZNRGe1OC1c1==',
-			plainPaste: false
+			mediaManager: false,
+			pasteImage: false,
+			paragraphy: true,
+			plainPaste: false,
+			typingTimer: 1000,
+			zIndex: 99,
 		};
 
 		if( $editor.data( 'allowed-buttons' ) ) {
@@ -775,7 +777,7 @@ jQuery(function($) {
 	// Close editor toolbar on click outside active editor
 	$(document).on( 'mousedown', function(){
 		$('.froala-box:not(.froala-toolbar-hide)').each(function(){
-						
+
 			// If the editor is in HTML view then swicth back.
 			$rte_active_html_button = $(this).find( '.active[data-cmd="html"]' );
 			$rte_textarea = $(this).siblings('textarea');

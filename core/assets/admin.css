@@ -2556,9 +2556,16 @@ input[type=radio]:checked + .layers-settings-icon span{
     top: 1px;
 }
 
-.layers-wp-dashboard-panel{
-    margin: -12px;
-}
+    /*-------------------------*/
+    /*- WORDPRESS DASHBOARD ---*/
+    #dashboard-widgets div.postbox[id^='layers-'] .hndle{
+        background: #0BA6E0;
+        color: #fff;
+    }
+
+    .layers-wp-dashboard-panel{
+        margin: -12px;
+    }
 
     /*---------------------------*/
     /*- HORIZONTAL NAVIGATION ---*/

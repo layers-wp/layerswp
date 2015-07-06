@@ -1,6 +1,15 @@
 # Layers Changelog
 
 =======
+## 1.2.1
+### 03 July 2015
+
+Hotfix for the new RTE feature
+
+* **Fix** - The RTE now allows <script /> tags as not to affect
+* **Fix** - Hiding of the text editor before initialization now uses a less specific class than .hide
+
+=======
 ## 1.2.0
 ### 30 June 2015
 

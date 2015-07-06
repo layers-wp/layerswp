@@ -41,6 +41,8 @@ class Layers_Options_Panel {
 		$this->options_panel_dir = LAYERS_TEMPLATE_DIR . '/core/options-panel/';
 
 		$this->set_valid_page_slugs();
+
+		add_action( 'wp_dashboard_setup', array( &$this, 'layers_add_dashboard_widgets' ) );
 	}
 
 	public function init() {
@@ -284,6 +286,79 @@ class Layers_Options_Panel {
 		}
 		return apply_filters( 'layers_setup_actions' , $site_setup_actions );
 	}
+
+	public function layers_add_dashboard_widgets(){
+		wp_add_dashboard_widget(
+			'layers-addons',
+			__( 'Layers Themes &amp; Extensions', 'layers' ),
+			array( &$this, 'layers_dashboard_widget' ),
+			NULL,
+			array(
+				'type' => 'addons'
+			)
+		);
+
+		if( !class_exists( 'Layers_WooCommerce' ) ) {
+			wp_add_dashboard_widget(
+				'layers-storekit',
+				__( 'Boost your site with StoreKit!', 'layers' ),
+				array( &$this, 'layers_dashboard_widget' ),
+				NULL,
+				array(
+					'type' => 'upsell-storekit'
+				)
+			);
+
+		}
+	}
+
+	function layers_dashboard_widget( $var, $args ){ ?>
+		<div class="layers-wp-dashboard-panel">
+			<?php if( 'addons' == $args[ 'args' ][ 'type' ] ) { ?>
+				<div class="layers-section-title layers-content layers-tiny">
+					<p class="layers-excerpt">
+						<?php _e( 'Looking for a theme or plugin to achieve something unique with your website?
+							Browse the massive Layers Marketplace on Envato and take your site to the next level.' , 'layerswp' ); ?>
+					</p>
+				</div>
+				<div class="layers-button-well">
+					<a href="http://bit.ly/layers-themes" target="_blank" class="layers-button btn-primary">
+						<?php _e( 'Themes' , 'layerswp' ); ?>
+					</a>
+					<a href="http://bit.ly/layers-stylekits" target="_blank" class="layers-button btn-primary">
+						<?php _e( 'Style Kits' , 'layerswp' ); ?>
+					</a>
+					<a href="http://bit.ly/layers-extensions" target="_blank" class="layers-button btn-primary">
+						<?php _e( 'Extensions' , 'layerswp' ); ?>
+					</a>
+				</div>
+			<?php } ?>
+			<?php if( 'upsell-storekit' == $args[ 'args' ][ 'type' ] ) { ?>
+				<div class="layers-section-title layers-content layers-tiny layers-no-push-bottom">
+					<div class="layers-media layers-image-left">
+						<div class="layers-media-image layers-small">
+							<img src="<?php echo get_template_directory_uri(); ?>/core/assets/images/thumb-storekit.png" alt="StoreKit" />
+						</div>
+						<div class="layers-media-body">
+							<p class="layers-excerpt froala-view">
+								<?php _e( 'Running WooCommerce? Well we have the perfect extension to go with Layers.' , 'layerswp' ); ?>
+								<ul>
+									<li>Three new WooCommerce Widgets</li>
+									<li>Customize standard WooCommerce elements</li>
+									<li>Menu Cart display customization</li>
+								</ul>
+							</p>
+						</div>
+					</div>
+				</div>
+				<div class="layers-button-well">
+					<a href="http://bit.ly/layers-get-storekit" target="_blank" class="layers-button btn-primary">
+						<?php _e( 'Get StoreKit Now!' , 'layerswp' ); ?>
+					</a>
+				</div>
+			<?php } ?>
+		</div>
+	<?php }
 
 	public function enqueue_dashboard_scripts(){
 

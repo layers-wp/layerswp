@@ -359,10 +359,32 @@ if( !function_exists( 'layers_body_class' ) ) {
 			$classes[] = 'layers-header-overlay';
 		}
 
+		// Add class that spans across all post archives
+		if( layers_is_post_list_template() || is_archive() ) {
+			$classes[] = 'layers-post-archive';
+		}
+
 		return apply_filters( 'layers_body_class', $classes );
 	}
 } // layers_body_class
 add_action( 'body_class', 'layers_body_class' );
+
+/**
+ * Check for a Layers Blog List Page
+ */
+if( !function_exists( 'layers_is_post_list' ) ) {
+	function layers_is_post_list_template() {
+		if(
+			is_page_template( 'template-blog.php' ) ||
+			is_page_template( 'template-both-sidebar.php' ) ||
+			is_page_template( 'template-left-sidebar.php' ) ||
+			is_page_template( 'template-right-sidebar.php' ) ){
+			return TRUE;
+		} else {
+			return FALSE;
+		}
+	}
+}
 
 /**
  * Apply Customizer settings to site housing

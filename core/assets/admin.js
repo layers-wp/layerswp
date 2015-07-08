@@ -38,24 +38,26 @@ jQuery(function($) {
 	/**
 	* 1 - Enqueue Initialisation Helper
 	*
-	* Used to stagger the initialisation of elements to avoid Firefox non-responsive script warning.
-	* Function adds individual function to an array that is initialised step by step at the end of the file.
+	* Used to stagger the initialization of elements to avoid CPU freeze-ups.
+	* Function adds individual initialization functions to a queue that is processed step by step with a slight break in between each step.
 	*/
-
+	
 	var $layers_init_collection = [];
 
 	var $queue_busy = false;
 
 	function layers_enqueue_init( $function, $run_instantly ) {
 
-		// If 'run_instantly' then just execute now and then bail.
-		if( true === $run_instantly ){
+		// If 'run_instantly' and is a function then execute now and bail immediately
+		if( true === $run_instantly && 'function' == typeof $function ){
 			$function();
 			return false;
 		}
-
+		
+		// Add to the queue
 		$layers_init_collection.push( $function );
-
+		
+		// Always try to execute the queue
 		layers_sequence_loader();
 	}
 
@@ -63,31 +65,28 @@ jQuery(function($) {
 
 	function layers_sequence_loader(){
 
-		// Bail if nothing is in queue
+		// Bail if the queue is busy or empty
 		if ( $queue_busy || $layers_init_collection.length <= 0 ) return;
 
-		// Lock the queue to prevent overlapping
+		// Lock the queue while executing current step
 		$queue_busy = true;
 
-		// Get current item off the start of the queue
+		// Get and remove the next item from the queue
 		var $current_item = $layers_init_collection.shift();
-
+		
+		// Stagger the queue.
 		$layers_init_timeout = setTimeout( function(){
 
-			if ( typeof $layers_init_collection[0] !=='undefined' ){
-
-				// Execute the current item
+			// Execute the current item, after checking it's is a function
+			if ( 'function' == typeof $layers_init_collection[0] ){
 				$current_item();
-
-				$queue_busy = false;
-
-				//console.log('ping!');
-
-				// If there are more elements in init array then continue to loop.
-				if ( typeof $layers_init_collection[0] !=='undefined' ){
-					layers_sequence_loader();
-				}
 			}
+			
+			// Unlock the queue for the next check
+			$queue_busy = false;
+
+			// Loop around and check the queue again
+			layers_sequence_loader();
 
 		}, 10 );
 	}
@@ -285,22 +284,25 @@ jQuery(function($) {
 	// Init interface in all except widgets on load
 	layers_set_color_selectors( $( '#customize-theme-controls > ul > li.accordion-section' ).not( '#accordion-panel-widgets' ) );
 
-	// Init interface inside widgets
+	// Init interface inside widgets and accordions
 	$( document ).on( 'layers-interface-init', '.widget, .layers-accordions', function( e ){
 		// 'this' is the widget
 		layers_set_color_selectors( $(this), true );
 	});
 
 	function layers_set_color_selectors( $element_s, $run_instantly ){
-
+		
+		// Loop through each of the element_s, that are groups to look inside of for elements to be initialized.
 		$element_s.each( function( i, group ) {
-
+			
 			$group = $(group);
-
+			
+			// Loop through each color-picker
 			$group.find( '.layers-color-selector').each( function( j, element ) {
 
 				var $element = $(element);
-
+				
+				// Add each color-picker initialization to the queue
 				layers_enqueue_init( function(){
 					layers_set_color_selector( $element );
 				}, $run_instantly );
@@ -309,9 +311,9 @@ jQuery(function($) {
 		});
 	}
 
-
 	function layers_set_color_selector( $element ){
-
+		
+		// Initialize the individual color-picker
 		$element.wpColorPicker({
 			change: function(event, ui){
 				if( 'undefined' !== typeof event ){
@@ -808,10 +810,10 @@ jQuery(function($) {
 
 	$( document ).on( 'mousedown', '.customize-control-widget_form .widget-top', function(e){
 
-		// Use of 'mousedown' is integral and allows us fire events before WP expand,
-		// so we can do things like Highligting the Widget Title, display first time 'LOADING' text,
-		// so in the case of a JS hang-up casued by WP's large set of events on Widget expand,
-		// we have given the user feedback so they knwo what is going on.
+		// Use of 'mousedown' is integral and allows us to fire events before WP expand,
+		// so we can do things like Highlighting the Widget Title, display 'LOADING' text,
+		// so in the case of a JS hang-up we have given the user feedback so they
+		// know what is going on.
 
 		var $widget_li = $(this).closest('.customize-control-widget_form');
 		var $widget = $widget_li.find('.widget');
@@ -823,7 +825,7 @@ jQuery(function($) {
 		var $widget_li = $(this);
 		var $widget = $widget_li.find( '.widget' );
 
-		// duplicate call to 'layers_expand_widget' incase 'mousedown' is not triggerd
+		// duplicate call to 'layers_expand_widget' in-case 'mousedown' is not triggered
 		// eg 'shift-click' on widget in customizer-preview.
 		layers_expand_widget( $widget_li, $widget, e );
 
@@ -832,7 +834,7 @@ jQuery(function($) {
 			$widget.trigger( 'layers-widget-scroll' );
 		}, 200 );
 
-		// Delay the removal of 'layers-loading' so it always displays for a defienite length of time,
+		// Delay the removal of 'layers-loading' so it always displays for a definite length of time,
 		// so the user is able to read it.
 		setTimeout(function(){
 		$widget_li.removeClass( 'layers-loading' );
@@ -857,7 +859,7 @@ jQuery(function($) {
 	});
 
 	$( document ).on( 'layers-interface-init', '.widget, .layers-accordions', function( e ){
-		// Stop the event bubbling upt the tree, so elements initialized inside widgets, don't re-init the parent widget.
+		// Stop the event bubbling up the dom, so elements initialized inside widgets, don't re-init the parent widget.
 		e.stopPropagation();
 	});
 
@@ -876,13 +878,13 @@ jQuery(function($) {
 			$widget_li.addClass( 'layers-initialized' );
 
 			if ( 'mousedown' === e.type ) {
-				// If event is 'mousedown' it's our early envoked event so we can do things before all the WP things
+				// If event is 'mousedown' it's our early invoked event so we can do things before all the WP things
 				setTimeout(function(){
 					$widget.trigger( 'layers-interface-init' );
 				}, 50 );
 			}
 			else {
-				// If event is 'expand' it's a WP envoked event that we use as backup if the 'mousedown' was not used.
+				// If event is 'expand' it's a WP invoked event that we use as backup if the 'mousedown' was not used.
 				// eg 'shift-click' on widget in customizer-preview
 				$widget.trigger( 'layers-interface-init' );
 			}

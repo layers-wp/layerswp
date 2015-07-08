@@ -359,9 +359,9 @@ if( !function_exists( 'layers_body_class' ) ) {
 			$classes[] = 'layers-header-overlay';
 		}
 
-		// Add class that spans across all post archives
-		if( layers_is_post_list_template() || is_archive() ) {
-			$classes[] = 'layers-post-archive';
+		// Add class that spans across all post archives and single pages
+		if( layers_is_post_list_template() || is_archive() || is_singular( 'post' ) ) {
+			$classes[] = 'layers-post-page';
 		}
 
 		return apply_filters( 'layers_body_class', $classes );

@@ -6,7 +6,9 @@
 
 * **Fix** - Category and Tag header titles are now correct, no longer relying on the `single_cat_title();` function.
 * **Fix** - Post List view in the Post Widget now works correctly obeying the display options too.
-* **Fix** - post_class() was missing from article wrapper in content-list.php, we've added it in now.
+* **Fix** - `post_class();` was missing from article wrapper in content-list.php, we've added it in now.
+* **Enhancement** - Removed html excaping from the footer, so that users can use basic HTML in their footer text.
+
 =======
 ## 1.2.1
 ### 03 July 2015

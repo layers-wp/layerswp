@@ -304,13 +304,11 @@ if( !function_exists( 'layers_get_page_title' ) ) {
 			$title_array['title'] = __( 'Search' , 'layerswp' );
 			$title_array['excerpt'] = get_search_query();
 		} elseif( is_tag() ) {
-			$tags = get_the_category();
-			$title_array['title'] = $tags[0]->name;
-			$title_array['excerpt'] = $tags[0]->description;
+			$title_array['title'] = single_tag_title( '' , false );
+			$title_array['excerpt'] = get_the_archive_description();
 		} elseif( !is_page() && is_category() ) {
-			$category = get_the_category();
-			$title_array['title'] = $category[0]->name;
-			$title_array['excerpt'] = $category[0]->description;
+			$title_array['title'] = single_cat_title( '', false );
+			$title_array['excerpt'] = get_the_archive_description();
 		} elseif (!is_page() && get_query_var('term' ) != '' ) {
 			$term = get_term_by( 'slug', get_query_var('term' ), get_query_var( 'taxonomy' ) );
 			$title_array['title'] = $term->name;

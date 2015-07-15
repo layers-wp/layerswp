@@ -1,6 +1,12 @@
 # Layers Changelog
 
 =======
+##1.2.2
+### ? July 2015
+
+* **Fix** - Category and Tag header titles are now correct, no longer relying on the `single_cat_title();` function.
+
+=======
 ## 1.2.1
 ### 03 July 2015
 

@@ -5,7 +5,7 @@
 ### ? July 2015
 
 * **Fix** - Category and Tag header titles are now correct, no longer relying on the `single_cat_title();` function.
-
+* **Fix** - Post List view in the Post Widget now works correctly obeying the display options too.
 =======
 ## 1.2.1
 ### 03 July 2015

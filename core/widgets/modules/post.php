@@ -63,7 +63,7 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 				'excerpt_length' => 200,
 				'show_call_to_action' => 'on',
 				'call_to_action' => __( 'Read More' , 'layerswp' ),
-                'posts_per_page' => 6,
+				'posts_per_page' => 6,
 				'design' => array(
 					'layout' => 'layout-boxed',
 					'imageratios' => 'image-square',
@@ -107,7 +107,7 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 
 			// Set the span class for each column
 			if( 'list-list' == $widget['design'][ 'liststyle' ] ) {
-                $col_count = 1;
+				$col_count = 1;
 				$span_class = 'span-12';
 			} else if( isset( $widget['design'][ 'columns']  ) ) {
 				$col_count = str_ireplace('columns-', '', $widget['design'][ 'columns']  );
@@ -227,7 +227,46 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 							$post_query->the_post();
 
 							if( 'list-list' == $widget['design'][ 'liststyle' ] ) { ?>
-								<?php get_template_part( 'partials/content' , 'list' ); ?>
+								<article id="post-<?php the_ID(); ?>" class="row push-bottom-large">
+									<?php if( isset( $widget['show_titles'] ) ) { ?>
+										<header class="section-title large">
+											<h1 class="heading"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h1>
+										</header>
+									<?php } ?>
+
+									<?php // Layers Featured Media
+									if( isset( $widget['show_media'] ) ) {
+										echo layers_post_featured_media(
+											array(
+												'postid' => get_the_ID(),
+												'wrap_class' => 'thumbnail push-bottom span-5 column' .  ( ( isset( $column['design'][ 'imageratios' ] ) && 'image-round' == $column['design'][ 'imageratios' ] ) ? ' image-rounded' : '' ),
+												'size' => $use_image_ratio
+											)
+										);
+									} // if Show Media ?>
+
+									<?php if( isset( $widget['show_excerpts'] ) || $widget['show_call_to_action'] || !empty( $layers_post_meta_to_display ) ) { ?>
+										<div class="column span-7">
+											<?php if( isset( $widget['show_excerpts'] ) ) {
+												if( isset( $widget['excerpt_length'] ) && '' == $widget['excerpt_length'] ) {
+													echo '<div class="copy push-bottom">';
+														the_content();
+													echo '</div>';
+												} else if( isset( $widget['excerpt_length'] ) && 0 != $widget['excerpt_length'] && strlen( get_the_excerpt() ) > $widget['excerpt_length'] ){
+													echo '<div class="copy push-bottom">' . substr( get_the_excerpt() , 0 , $widget['excerpt_length'] ) . '&#8230;</div>';
+												} else if( '' != get_the_excerpt() ){
+													echo '<div class="copy push-bottom">' . get_the_excerpt() . '</div>';
+												}
+											}; ?>
+
+											<?php layers_post_meta( get_the_ID(), $layers_post_meta_to_display, 'footer' , 'meta-info push-bottom ' . ( '' != $this->check_and_return( $widget, 'design', 'column-background-color' ) && 'dark' == layers_is_light_or_dark( $this->check_and_return( $widget, 'design', 'column-background-color' ) ) ? 'invert' : '' ) );?>
+
+											<?php if( isset( $widget['show_call_to_action'] ) && $this->check_and_return( $widget , 'call_to_action' ) ) { ?>
+												<p><a href="<?php the_permalink(); ?>" class="button"><?php echo $widget['call_to_action']; ?></a></p>
+											<?php } // show call to action ?>
+										</div>
+									<?php } ?>
+								</article>
 							<?php } else {
 								/**
 								* Set Individual Column CSS
@@ -265,16 +304,16 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 														echo '<div class="excerpt">';
 															the_content();
 														echo '</div>';
-                                                    } else if( isset( $widget['excerpt_length'] ) && 0 != $widget['excerpt_length'] && strlen( get_the_excerpt() ) > $widget['excerpt_length'] ){
-                                                        echo '<div class="excerpt">' . substr( get_the_excerpt() , 0 , $widget['excerpt_length'] ) . '&#8230;</div>';
-                                                    } else if( '' != get_the_excerpt() ){
-                                                        echo '<div class="excerpt">' . get_the_excerpt() . '</div>';
-                                                    }
-                                                }; ?>
-                                                <?php if( 'overlay' != $this->check_and_return( $widget, 'text_style' ) ) { ?>
-    												<?php layers_post_meta( get_the_ID(), $layers_post_meta_to_display, 'footer' , 'meta-info ' . ( '' != $this->check_and_return( $widget, 'design', 'column-background-color' ) && 'dark' == layers_is_light_or_dark( $this->check_and_return( $widget, 'design', 'column-background-color' ) ) ? 'invert' : '' ) );?>
-    											<?php } // Don't show meta if we have chosen overlay ?>
-                                                <?php if( isset( $widget['show_call_to_action'] ) && $this->check_and_return( $widget , 'call_to_action' ) ) { ?>
+													} else if( isset( $widget['excerpt_length'] ) && 0 != $widget['excerpt_length'] && strlen( get_the_excerpt() ) > $widget['excerpt_length'] ){
+														echo '<div class="excerpt">' . substr( get_the_excerpt() , 0 , $widget['excerpt_length'] ) . '&#8230;</div>';
+													} else if( '' != get_the_excerpt() ){
+														echo '<div class="excerpt">' . get_the_excerpt() . '</div>';
+													}
+												}; ?>
+												<?php if( 'overlay' != $this->check_and_return( $widget, 'text_style' ) ) { ?>
+													<?php layers_post_meta( get_the_ID(), $layers_post_meta_to_display, 'footer' , 'meta-info ' . ( '' != $this->check_and_return( $widget, 'design', 'column-background-color' ) && 'dark' == layers_is_light_or_dark( $this->check_and_return( $widget, 'design', 'column-background-color' ) ) ? 'invert' : '' ) );?>
+												<?php } // Don't show meta if we have chosen overlay ?>
+												<?php if( isset( $widget['show_call_to_action'] ) && $this->check_and_return( $widget , 'call_to_action' ) ) { ?>
 													<a href="<?php the_permalink(); ?>" class="button"><?php echo $widget['call_to_action']; ?></a>
 												<?php } // show call to action ?>
 											</div>
@@ -392,15 +431,15 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 									'value' => ( isset( $widget['show_excerpts'] ) ) ? $widget['show_excerpts'] : NULL,
 									'label' => __( 'Show Post Excerpts' , 'layerswp' )
 								),
-                                'excerpt_length' => array(
-                                    'type' => 'number',
-                                    'name' => $this->get_field_name( 'excerpt_length' ) ,
-                                    'id' => $this->get_field_id( 'excerpt_length' ) ,
-                                    'min' => 0,
-                                    'max' => 10000,
-                                    'value' => ( isset( $widget['excerpt_length'] ) ) ? $widget['excerpt_length'] : NULL,
-                                    'label' => __( 'Excerpts Length' , 'layerswp' )
-                                ),
+								'excerpt_length' => array(
+									'type' => 'number',
+									'name' => $this->get_field_name( 'excerpt_length' ) ,
+									'id' => $this->get_field_id( 'excerpt_length' ) ,
+									'min' => 0,
+									'max' => 10000,
+									'value' => ( isset( $widget['excerpt_length'] ) ) ? $widget['excerpt_length'] : NULL,
+									'label' => __( 'Excerpts Length' , 'layerswp' )
+								),
 								'show_dates' => array(
 									'type' => 'checkbox',
 									'name' => $this->get_field_name( 'show_dates' ) ,
@@ -436,13 +475,13 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 									'value' => ( isset( $widget['show_call_to_action'] ) ) ? $widget['show_call_to_action'] : NULL,
 									'label' => __( 'Show "Read More" Buttons' , 'layerswp' )
 								),
-                                'call_to_action' => array(
-                                    'type' => 'text',
-                                    'name' => $this->get_field_name( 'call_to_action' ) ,
-                                    'id' => $this->get_field_id( 'call_to_action' ) ,
-                                    'value' => ( isset( $widget['call_to_action'] ) ) ? $widget['call_to_action'] : NULL,
-                                    'label' => __( '"Read More" Text' , 'layerswp' )
-                                ),
+								'call_to_action' => array(
+									'type' => 'text',
+									'name' => $this->get_field_name( 'call_to_action' ) ,
+									'id' => $this->get_field_id( 'call_to_action' ) ,
+									'value' => ( isset( $widget['call_to_action'] ) ) ? $widget['call_to_action'] : NULL,
+									'label' => __( '"Read More" Text' , 'layerswp' )
+								),
 								'show_pagination' => array(
 									'type' => 'checkbox',
 									'name' => $this->get_field_name( 'show_pagination' ) ,

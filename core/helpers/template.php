@@ -313,6 +313,9 @@ if( !function_exists( 'layers_get_page_title' ) ) {
 			$term = get_term_by( 'slug', get_query_var('term' ), get_query_var( 'taxonomy' ) );
 			$title_array['title'] = $term->name;
 			$title_array['excerpt'] = $term->description;
+		} elseif( is_author() ) {
+			$title_array['title'] = get_the_author();
+			$title_array['excerpt'] =  get_the_author_meta('user_description');
 		} elseif ( is_day() ) {
 			$title_array['title' ] = sprintf( __( 'Daily Archives: %s' , 'layerswp' ), get_the_date() );
 		} elseif ( is_month() ) {

@@ -98,7 +98,7 @@ div#widgets-right div[id*='obox-layers-builder']{
     .customize-control-widget_form.wide-widget-control.layers-loading div[id*='layers-widget'] .widget-top .widget-title-action{
         opacity: 0;
     }
-    
+
     /*- Layers Widget Rendered -*/
     .customize-control-widget_form.wide-widget-control:not(.widget-rendered) .widget-top{
         opacity: 1;
@@ -193,7 +193,7 @@ div#widgets-right div[id*='obox-layers-builder']{
         transition: transform 0.15s ease-in-out, opacity 0.15s ease-in-out;
         overflow: scroll;
         background-color: white;
-    
+
         opacity: 1;
 }
     .customize-control-widget_form.wide-widget-control.expanded div[id*='layers-widget'] .widget-inside .form{
@@ -964,7 +964,7 @@ div[id*='layers-widget'] .spinner{
         margin: 0;
         transition: transform 0.2s ease-in-out, opacity 0.2s ease-in-out;
     }
-    
+
         /*-- ANIMATE ICONS --*/
         .customize-control-widget_form.wide-widget-control div[id*='layers-widget'] .widget-inside .layers-visuals-item{
             opacity: 0;
@@ -1317,11 +1317,11 @@ div[id*='layers-widget'] .spinner{
         width: 100%;
         border: 0;
     }
-    
+
     .froala-element.froala-view{
         border: 1px solid #DDD;
     }
-    
+
     .froala-editor.f-basic{
         background: #FFF;
         border: 1px solid #E5E5E5;
@@ -1330,7 +1330,7 @@ div[id*='layers-widget'] .spinner{
         overflow: hidden;
         height: 38px;
     }
-    
+
     .froala-box.froala-toolbar-hide .froala-editor.f-basic{
         transform: translate( 0, 30px );
         height: 0;
@@ -1388,7 +1388,7 @@ div[id*='layers-widget'] .spinner{
             font-size: 13px;
             padding: 5px 6px;
         }
-        
+
         /*-------------------------------*/
         /*- RTE LIST STYLING --------*/
         /*-------------------------------*/
@@ -1768,6 +1768,9 @@ li[id*='accordion-section-layers'] .customize-control.customize-control-image .a
         clear: both;
         border-top: 1px solid #E5E5E5;
         background: #F5F5F5;
+    }
+    .inside .layers-button-well{
+        margin: 0px -12px -12px;
     }
 
     /*-----------------------*/
@@ -2556,7 +2559,14 @@ input[type=radio]:checked + .layers-settings-icon span{
     top: 1px;
 }
 
-
+    /*-------------------------*/
+    /*- WORDPRESS DASHBOARD ---*/
+    .layers-ticks-wp li{
+        padding-left: 26px;
+        background: url("images/tick-wp.png") no-repeat left;
+        background-size: 16px 16px;
+        color: #777;
+    }
 
     /*---------------------------*/
     /*- HORIZONTAL NAVIGATION ---*/
@@ -2974,15 +2984,15 @@ input[type=radio]:checked + .layers-settings-icon span{
             rgba(0, 0, 0, 0) 75%,
             transparent
         );
-    
+
     -webkit-background-size: 50px 50px;
     -moz-background-size: 50px 50px;
     background-size: 50px 50px;
-    
+
     -webkit-animation: move 2s linear infinite;
     -moz-animation: move 2s linear infinite;
     animation: move 2s linear infinite;
-    
+
     background-color: #FAFAFA;
     background-position: 50%;
     color: #999999;

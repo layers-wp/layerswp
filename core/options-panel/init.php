@@ -290,7 +290,7 @@ class Layers_Options_Panel {
 	public function layers_add_dashboard_widgets(){
 		wp_add_dashboard_widget(
 			'layers-addons',
-			__( 'Layers Themes &amp; Extensions', 'layers' ),
+			__( 'Layers Themes, Style Kits &amp; Extensions', 'layers' ),
 			array( &$this, 'layers_dashboard_widget' ),
 			NULL,
 			array(

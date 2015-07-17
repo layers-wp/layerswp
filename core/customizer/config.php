@@ -228,7 +228,7 @@ class Layers_Customizer_Config {
 									'type'  => 'layers-heading',
 									'class' => 'layers-upsell-tag',
 									'label'    => __( 'Upgrade to DevKit' , 'layerswp' ),
-									'description' => __( 'Want the best CSS customization interface? <a target="_blank" href="http://codecanyon.net/item/devkit-developer-tools-for-layers-/11221313?ref=obox">Purchase DevKit</a> and save bundles of time!' , 'layerswp' ),
+									'description' => __( 'Want the best CSS customization interface? <a target="_blank" href="http://bit.ly/layers-devkit">Purchase DevKit</a> and save bundles of time!' , 'layerswp' ),
 								),
 							); // css
 
@@ -457,7 +457,7 @@ class Layers_Customizer_Config {
 						'type'  => 'layers-heading',
 						'class' => 'layers-upsell-tag',
 						'label'    => __( 'Upgrade to ColorKit' , 'layerswp' ),
-						'description' => __( 'Want more color customzation? <a target="_blank" href="http://codecanyon.net/item/colorkit-color-customization-for-layers/11225042?ref=obox">Purchase ColorKit</a> and get the full box of crayons!' , 'layerswp' ),
+						'description' => __( 'Want more color customzation? <a target="_blank" href="http://bit.ly/layers-colorkit">Purchase ColorKit</a> and get the full box of crayons!' , 'layerswp' ),
 					),
 				);
 

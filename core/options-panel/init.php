@@ -340,23 +340,23 @@ class Layers_Options_Panel {
 							<img src="<?php echo get_template_directory_uri(); ?>/core/assets/images/thumb-storekit.png" alt="StoreKit" />
 						</div>
 						<div class="layers-media-body">
-							<h3 class="layers-heading">Boost your sales with StoreKit!</h3>
+							<h3 class="layers-heading"><?php _e( 'Boost your sales with StoreKit!' , 'layerswp' ); ?></h3>
 							<div class="layers-excerpt">
 								<p><?php _e( 'Supercharge your WooCommerce store with the StoreKit plugin for Layers' , 'layerswp' ); ?></p>
 								<ul class="layers-ticks-wp">
-									<li>Unique Product Slider</li>
-									<li>Product List Widget</li>
-									<li>Product Categories Widget</li>
-									<li>Product Page Customization</li>
-									<li>Shop Page Customization</li>
-									<li>Menu Cart Customization</li>
+									<li><?php _e( 'Unique Product Slider' , 'layerswp' ); ?></li>
+									<li><?php _e( 'Product List Widget' , 'layerswp' ); ?></li>
+									<li><?php _e( 'Product Categories Widget' , 'layerswp' ); ?></li>
+									<li><?php _e( 'Product Page Customization' , 'layerswp' ); ?></li>
+									<li><?php _e( 'Shop Page Customization' , 'layerswp' ); ?></li>
+									<li><?php _e( 'Menu Cart Customization' , 'layerswp' ); ?></li>
 								</ul>
 							</div>
 						</div>
 					</div>
 				</div>
 				<div class="layers-button-well">
-					<a href="http://bit.ly/layers-get-storekit" target="_blank" class="layers-button btn-primary">
+					<a href="http://bit.ly/layers-storekit" target="_blank" class="layers-button btn-primary">
 						<?php _e( 'Get StoreKit Now!' , 'layerswp' ); ?>
 					</a>
 				</div>

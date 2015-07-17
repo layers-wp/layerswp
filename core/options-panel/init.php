@@ -301,7 +301,7 @@ class Layers_Options_Panel {
 		if( !class_exists( 'Layers_WooCommerce' ) ) {
 			wp_add_dashboard_widget(
 				'layers-storekit',
-				__( 'Boost your sales with StoreKit!', 'layers' ),
+				__( 'Upgrade WooCommerce with StoreKit', 'layers' ),
 				array( &$this, 'layers_dashboard_widget' ),
 				NULL,
 				array(
@@ -315,7 +315,7 @@ class Layers_Options_Panel {
 	function layers_dashboard_widget( $var, $args ){ ?>
 		<div class="layers-wp-dashboard-panel">
 			<?php if( 'addons' == $args[ 'args' ][ 'type' ] ) { ?>
-				<div class="layers-section-title layers-content layers-tiny">
+				<div class="layers-section-title layers-tiny">
 					<p class="layers-excerpt">
 						<?php _e( 'Looking for a theme or plugin to achieve something unique with your website?
 							Browse the massive Layers Marketplace on Envato and take your site to the next level.' , 'layerswp' ); ?>
@@ -334,15 +334,16 @@ class Layers_Options_Panel {
 				</div>
 			<?php } ?>
 			<?php if( 'upsell-storekit' == $args[ 'args' ][ 'type' ] ) { ?>
-				<div class="layers-section-title layers-content layers-tiny layers-no-push-bottom">
+				<div class="layers-section-title layers-tiny layers-no-push-bottom">
 					<div class="layers-media layers-image-left">
 						<div class="layers-media-image layers-small">
 							<img src="<?php echo get_template_directory_uri(); ?>/core/assets/images/thumb-storekit.png" alt="StoreKit" />
 						</div>
 						<div class="layers-media-body">
-							<p class="layers-excerpt froala-view">
-								<?php _e( 'Supercharge your WooCommerce store with the StoreKit plugin for Layers' , 'layerswp' ); ?>
-								<ul>
+							<h3 class="layers-heading">Boost your sales with StoreKit!</h3>
+							<div class="layers-excerpt">
+								<p><?php _e( 'Supercharge your WooCommerce store with the StoreKit plugin for Layers' , 'layerswp' ); ?></p>
+								<ul class="layers-ticks-wp">
 									<li>Unique Product Slider</li>
 									<li>Product List Widget</li>
 									<li>Product Categories Widget</li>
@@ -350,7 +351,7 @@ class Layers_Options_Panel {
 									<li>Shop Page Customization</li>
 									<li>Menu Cart Customization</li>
 								</ul>
-							</p>
+							</div>
 						</div>
 					</div>
 				</div>

@@ -1769,6 +1769,9 @@ li[id*='accordion-section-layers'] .customize-control.customize-control-image .a
         border-top: 1px solid #E5E5E5;
         background: #F5F5F5;
     }
+    .inside .layers-button-well{
+        margin: 0px -12px -12px;
+    }
 
     /*-----------------------*/
     /*- BUTTON COLLECTION ---*/
@@ -2558,13 +2561,11 @@ input[type=radio]:checked + .layers-settings-icon span{
 
     /*-------------------------*/
     /*- WORDPRESS DASHBOARD ---*/
-    #dashboard-widgets div.postbox[id^='layers-'] .hndle{
-        background: #0BA6E0;
-        color: #fff;
-    }
-
-    .layers-wp-dashboard-panel{
-        margin: -12px;
+    .layers-ticks-wp li{
+        padding-left: 26px;
+        background: url("images/tick-wp.png") no-repeat left;
+        background-size: 16px 16px;
+        color: #777;
     }
 
     /*---------------------------*/

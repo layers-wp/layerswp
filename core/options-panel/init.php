@@ -301,7 +301,7 @@ class Layers_Options_Panel {
 		if( !class_exists( 'Layers_WooCommerce' ) ) {
 			wp_add_dashboard_widget(
 				'layers-storekit',
-				__( 'Boost your site with StoreKit!', 'layers' ),
+				__( 'Boost your sales with StoreKit!', 'layers' ),
 				array( &$this, 'layers_dashboard_widget' ),
 				NULL,
 				array(
@@ -341,11 +341,14 @@ class Layers_Options_Panel {
 						</div>
 						<div class="layers-media-body">
 							<p class="layers-excerpt froala-view">
-								<?php _e( 'Running WooCommerce? Well we have the perfect extension to go with Layers.' , 'layerswp' ); ?>
+								<?php _e( 'Supercharge your WooCommerce store with the StoreKit plugin for Layers' , 'layerswp' ); ?>
 								<ul>
-									<li>Three new WooCommerce Widgets</li>
-									<li>Customize standard WooCommerce elements</li>
-									<li>Menu Cart display customization</li>
+									<li>Unique Product Slider</li>
+									<li>Product List Widget</li>
+									<li>Product Categories Widget</li>
+									<li>Product Page Customization</li>
+									<li>Shop Page Customization</li>
+									<li>Menu Cart Customization</li>
 								</ul>
 							</p>
 						</div>

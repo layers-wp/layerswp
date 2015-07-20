@@ -21,7 +21,7 @@ define( 'LAYERS_BUILDER_TEMPLATE' , 'builder.php' );
  * Set the content width based on the theme's design and stylesheet.
  */
 if ( ! isset( $content_width ) )
-	$content_width = 660; /* pixels */
+	$content_width = 1080; /* pixels */
 
 
 /**
@@ -30,9 +30,18 @@ if ( ! isset( $content_width ) )
 function layers_set_content_width() {
 	global $content_width;
 
-	if ( is_page_template( 'full-width.php' ) ) {
+	$left_sidebar_active = layers_can_show_sidebar( 'left-sidebar' );
+	$right_sidebar_active = layers_can_show_sidebar( 'right-sidebar' );
+
+	if( is_page_template( LAYERS_BUILDER_TEMPLATE ) ) {
 		$content_width = 1080;
-	} elseif( is_singular() ) {
+	} else if( is_page_template( 'template-both-sidebar.php' ) ||
+		is_page_template( 'template-left-sidebar.php' ) ||
+		is_page_template( 'template-right-sidebar.php' ) ){
+		$content_width = 660;
+	} elseif ( is_page_template( 'template-blog.php' ) ) {
+		$content_width = 1080;
+	} elseif( $left_sidebar_active || $right_sidebar_active ){
 		$content_width = 660;
 	}
 }

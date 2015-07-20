@@ -8,6 +8,7 @@
 * **Fix** - Post List view in the Post Widget now works correctly obeying the display options too.
 * **Fix** - `post_class();` was missing from article wrapper in content-list.php, we've added it in now.
 * **Fix** - Author Title missing from Post Author archive page.
+* **Enhancement** - Corrected the `$content_width;` in `functions.php`
 * **Enhancement** - Removed html excaping from the footer, so that users can use basic HTML in their footer text.
 * **Enhancement** - Changed the Layers Widget constructors in preperation for WordPress 4.3
 

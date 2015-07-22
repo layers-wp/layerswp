@@ -807,13 +807,13 @@ jQuery(function($) {
 	* 2. accordion element is added inside widget
 	* to allow for just-in-time init instead of massive bulk init.
 	*/
+	
+	$( '.customize-control-widget_form .widget-top' ).click( function(e){
 
-	$( document ).on( 'mousedown', '.customize-control-widget_form .widget-top', function(e){
-
-		// Use of 'mousedown' is integral and allows us to fire events before WP expand,
-		// so we can do things like Highlighting the Widget Title, display 'LOADING' text,
-		// so in the case of a JS hang-up we have given the user feedback so they
-		// know what is going on.
+		// Attach 'click' event that we will re-order, in the next step, to occur
+		// before WP click, so we can do things like Highlighting the Widget Title,
+		// display 'LOADING' text, so in the case of a JS hang-up we have given the
+		// user feedback so they know what is going on.
 
 		var $widget_li = $(this).closest('.customize-control-widget_form');
 		var $widget = $widget_li.find('.widget');
@@ -823,12 +823,19 @@ jQuery(function($) {
 
 		}, 150 )
 	});
+	
+	$('.customize-control-widget_form .widget-top').each( function( index, element ){
+
+		// Switch the order that the 'click' event occur so ours happens before WP
+		if ( typeof $._data === 'function' ) $._data( element, 'events' ).click.reverse();
+		else $( element ).data('events').click.reverse();
+	});
 
 	$( document ).on( 'expand', '.customize-control-widget_form', function(e){
 		var $widget_li = $(this);
 		var $widget = $widget_li.find( '.widget' );
 
-		// duplicate call to 'layers_expand_widget' in-case 'mousedown' is not triggered
+		// duplicate call to 'layers_expand_widget' in-case 'click' is not triggered
 		// eg 'shift-click' on widget in customizer-preview.
 		layers_expand_widget( $widget_li, $widget, e );
 
@@ -840,7 +847,7 @@ jQuery(function($) {
 		// Delay the removal of 'layers-loading' so it always displays for a definite length of time,
 		// so the user is able to read it.
 		setTimeout(function(){
-		$widget_li.removeClass( 'layers-loading' );
+			$widget_li.removeClass( 'layers-loading' );
 		}, 1100 );
 	});
 
@@ -880,14 +887,14 @@ jQuery(function($) {
 			$widget_li.addClass('layers-loading');
 			$widget_li.addClass( 'layers-initialized' );
 
-			if ( 'mousedown' === e.type ) {
-				// If event is 'mousedown' it's our early invoked event so we can do things before all the WP things
+			if ( 'click' === e.type ) {
+				// If event is 'click' it's our early invoked event so we can do things before all the WP things
 				setTimeout(function(){
 					$widget.trigger( 'layers-interface-init' );
 				}, 50 );
 			}
 			else {
-				// If event is 'expand' it's a WP invoked event that we use as backup if the 'mousedown' was not used.
+				// If event is 'expand' it's a WP invoked event that we use as backup if the 'click' was not used.
 				// eg 'shift-click' on widget in customizer-preview
 				$widget.trigger( 'layers-interface-init' );
 			}
@@ -895,127 +902,3 @@ jQuery(function($) {
 	}
 
 });
-
-/**
- * Queue jQuery Plugin
- *
- * Plugin for layers that allows the queuing of events so they happen in a set sequence.
- * Uses setTimeout at it's core, but provides a mroe linear syntax when defining the code.
- *
- * e.g.
-
-	$.layerswp
-	.stop_queue( 'name' )
-	.queue( 'name', 2000 )
-	.queue( 'name', function(){
-		//console.log('ONE!');
-	})
-	.queue( 'name', 2000 )
-	.queue( 'name', function(){
-		//console.log('TWO!');
-});
-
- *
- */
-
-(function( $ ) {
-
-	// Setup or get layerswp.
-	$.fn.layerswp = $.fn.layerswp || {};
-
-	$.layerswp = $.extend({
-
-		_queue: {
-
-			main_queue_collection: [],
-
-			queue_busy: [],
-
-			add_to_queue: function( $args, $name ) {
-
-				var $defaults = {
-					delay: ( 'number' === typeof $args ) ? $args : 1,
-					function: ( 'function' === typeof $args ) ? $args : function(){},
-				};
-
-				$args = $.extend( $defaults, $args );
-
-				if ( !this.main_queue_collection[$name] ) this.main_queue_collection[$name] = [];
-				this.main_queue_collection[$name].push( $args );
-
-				this.check_queue( $name );
-			},
-
-			check_queue: function( $name ) {
-
-				$queue_collection = this.main_queue_collection[$name];
-
-				// Bail if nothing is in queue
-				if ( this.queue_busy[$name] || $queue_collection.length <= 0 ) return;
-
-				// Lock the queue to prevent overlapping
-				this.queue_busy[$name] = true;
-
-				// Get current item off the start of the queue
-				var $current_item = $queue_collection.shift();
-
-				// Apply : --- DELAY ---
-				setTimeout( this.next_step.bind( this, $name, $current_item ), $current_item.delay );
-			},
-
-			next_step: function() {
-
-				$name = arguments[0];
-				$current_item = arguments[1];
-
-				// Apply : --- FUNCTION ---
-				if( typeof( $current_item.function ) === "function" ) $current_item.function();
-
-				// Un-lock the queue
-				this.queue_busy[$name] = false;
-
-				// Recheck this queue
-				this.check_queue( $name );
-			}
-
-		}
-
-	}, $.layerswp );
-
-	// Make 'queue' call a default function 'add_to_queue' in '_queue' so it can be added easy.
-	$.layerswp = $.extend({
-
-		queue: function( $arg1, $arg2 ){
-
-			if( $.type( $arg1 ) === "string" ){
-				$name = $arg1; $args = $arg2;
-			}
-			else{
-				$name = '_general_'; $args = $arg1;
-			}
-
-			if( typeof $.layerswp._queue.queue_busy[$name] === 'undefined' ){
-				$.layerswp._queue.queue_busy[$name] = false;
-			}
-
-			$.layerswp._queue.add_to_queue( $args, $name );
-
-			return this;
-		},
-
-		stop_queue: function( $name ) {
-
-			if( !$name ) $name = '_general_';
-
-			if ( ! typeof $.layerswp._queue.main_queue_collection[ $name ] === 'undefined' ){
-
-				$.layerswp._queue.main_queue_collection[$name] = [];
-				$.layerswp._queue.queue_busy[$name] = false;
-			}
-
-			return this;
-		}
-
-	}, $.layerswp );
-
-}( jQuery ));

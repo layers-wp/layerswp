@@ -19,7 +19,7 @@
 
 Hotfix for the new RTE feature
 
-* **Fix** - The RTE now allows `<script />` tags as not to affect.
+* **Fix** - The RTE now allows `script` tags as not to affect existing installs.
 * **Fix** - Hiding of the text editor before initialization now uses a less specific class than `.hide`.
 
 =======
@@ -238,7 +238,7 @@ Security and code quality updates
 * **Fix** - Deleting all slides then adding your first slide again threw an error (thanks @prettyboymp).
 * **Fix** - Fix references from i8n to i18n.
 * **Fix** - Added `check_ajax_referer()` for Ajax nonceing.
-* **Fix** - Removed double `<title />` tag.
+* **Fix** - Removed double `title` tag.
 * **Fix** - Improved nonce handling and removed any reference to `$_REQUEST[]` in the code.
 * **Fix** - Updated Google maps API link for SSL compatability (thanks @oskapt).
 * **Fix** - Improved localization (thanks @tmconnect).

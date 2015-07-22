@@ -807,7 +807,7 @@ jQuery(function($) {
 	* 2. accordion element is added inside widget
 	* to allow for just-in-time init instead of massive bulk init.
 	*/
-	
+
 	$( '.customize-control-widget_form .widget-top' ).click( function(e){
 
 		// Attach 'click' event that we will re-order, in the next step, to occur
@@ -817,13 +817,10 @@ jQuery(function($) {
 
 		var $widget_li = $(this).closest('.customize-control-widget_form');
 		var $widget = $widget_li.find('.widget');
-		console.log( $widget_li );
-		setTimeout( function(){
-			layers_expand_widget( $widget_li, $widget, e );
 
-		}, 150 )
+		layers_expand_widget( $widget_li, $widget, e );
 	});
-	
+
 	$('.customize-control-widget_form .widget-top').each( function( index, element ){
 
 		// Switch the order that the 'click' event occur so ours happens before WP

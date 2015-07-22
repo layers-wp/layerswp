@@ -41,7 +41,7 @@ jQuery(function($) {
 	* Used to stagger the initialization of elements to avoid CPU freeze-ups.
 	* Function adds individual initialization functions to a queue that is processed step by step with a slight break in between each step.
 	*/
-	
+
 	var $layers_init_collection = [];
 
 	var $queue_busy = false;
@@ -53,10 +53,10 @@ jQuery(function($) {
 			$function();
 			return false;
 		}
-		
+
 		// Add to the queue
 		$layers_init_collection.push( $function );
-		
+
 		// Always try to execute the queue
 		layers_sequence_loader();
 	}
@@ -73,7 +73,7 @@ jQuery(function($) {
 
 		// Get and remove the next item from the queue
 		var $current_item = $layers_init_collection.shift();
-		
+
 		// Stagger the queue.
 		$layers_init_timeout = setTimeout( function(){
 
@@ -81,7 +81,7 @@ jQuery(function($) {
 			if ( 'function' == typeof $layers_init_collection[0] ){
 				$current_item();
 			}
-			
+
 			// Unlock the queue for the next check
 			$queue_busy = false;
 
@@ -291,17 +291,17 @@ jQuery(function($) {
 	});
 
 	function layers_set_color_selectors( $element_s, $run_instantly ){
-		
+
 		// Loop through each of the element_s, that are groups to look inside of for elements to be initialized.
 		$element_s.each( function( i, group ) {
-			
+
 			$group = $(group);
-			
+
 			// Loop through each color-picker
 			$group.find( '.layers-color-selector').each( function( j, element ) {
 
 				var $element = $(element);
-				
+
 				// Add each color-picker initialization to the queue
 				layers_enqueue_init( function(){
 					layers_set_color_selector( $element );
@@ -312,7 +312,7 @@ jQuery(function($) {
 	}
 
 	function layers_set_color_selector( $element ){
-		
+
 		// Initialize the individual color-picker
 		$element.wpColorPicker({
 			change: function(event, ui){
@@ -784,7 +784,7 @@ jQuery(function($) {
 			$rte_active_html_button = $(this).find( '.active[data-cmd="html"]' );
 			$rte_textarea = $(this).siblings('textarea');
 			if ( 0 < $rte_active_html_button.length && 0 < $rte_textarea.length ){
-				$rte_textarea.editable( 'exec', 'html' );
+				//$rte_textarea.editable( 'exec', 'html' );
 			}
 
 			// Then hide the toolbar
@@ -817,8 +817,11 @@ jQuery(function($) {
 
 		var $widget_li = $(this).closest('.customize-control-widget_form');
 		var $widget = $widget_li.find('.widget');
+		console.log( $widget_li );
+		setTimeout( function(){
+			layers_expand_widget( $widget_li, $widget, e );
 
-		layers_expand_widget( $widget_li, $widget, e );
+		}, 150 )
 	});
 
 	$( document ).on( 'expand', '.customize-control-widget_form', function(e){

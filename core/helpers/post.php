@@ -403,7 +403,8 @@ if( !function_exists( 'layers_post_featured_media' ) ) {
 			'postid' => $post->ID,
 			'wrap' => 'div',
 			'wrap_class' => 'thumbnail',
-			'size' => 'medium'
+			'size' => 'medium',
+			'hide_href' => false
 		);
 
 		$args = wp_parse_args( $args, $defaults );
@@ -421,8 +422,12 @@ if( !function_exists( 'layers_post_featured_media' ) ) {
 			$output .= $featured_media;
 		}
 
-		if( !isset( $hide_href ) && !isset( $post_meta[ 'video-url' ] ) && ( !is_single() && !is_page_template( 'template-blog.php' ) ) ){
-			$output = '<a href="' .get_permalink( $postid ) . '">' . $output . '</a>';
+		if( TRUE != $hide_href ){
+			if( has_post_thumbnail() ) {
+				if( !is_single() ){
+					$output = '<a href="' .get_permalink( $postid ) . '">' . $output . '</a>';
+				}
+			}
 		}
 
 		if( '' != $wrap ) {

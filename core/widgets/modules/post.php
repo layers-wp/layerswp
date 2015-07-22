@@ -287,7 +287,8 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 											array(
 												'postid' => get_the_ID(),
 												'wrap_class' => 'thumbnail-media' .  ( ( isset( $column['design'][ 'imageratios' ] ) && 'image-round' == $column['design'][ 'imageratios' ] ) ? ' image-rounded' : '' ),
-												'size' => $use_image_ratio
+												'size' => $use_image_ratio,
+												'hide_href' => false
 											)
 										);
 									} // if Show Media ?>

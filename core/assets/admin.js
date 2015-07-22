@@ -828,41 +828,40 @@ jQuery(function($) {
 		else $( element ).data('events').click.reverse();
 	});
 
-	$( document ).on( 'expand', '.customize-control-widget_form', function(e){
+	$( document ).on( 'expand collapse collapsed', '.customize-control-widget_form', function(e){
+
 		var $widget_li = $(this);
 		var $widget = $widget_li.find( '.widget' );
 
-		// duplicate call to 'layers_expand_widget' in-case 'click' is not triggered
-		// eg 'shift-click' on widget in customizer-preview.
-		layers_expand_widget( $widget_li, $widget, e );
+		if( 'expand' == e.type ){
 
-		// Scroll only on expand.
-		setTimeout(function() {
-			$widget.trigger( 'layers-widget-scroll' );
-		}, 200 );
+			// duplicate call to 'layers_expand_widget' in-case 'click' is not triggered
+			// eg 'shift-click' on widget in customizer-preview.
+			layers_expand_widget( $widget_li, $widget, e );
 
-		// Delay the removal of 'layers-loading' so it always displays for a definite length of time,
-		// so the user is able to read it.
-		setTimeout(function(){
-			$widget_li.removeClass( 'layers-loading' );
-		}, 1100 );
-	});
+			// Scroll only on expand.
+			setTimeout(function() {
+				$widget.trigger( 'layers-widget-scroll' );
+			}, 200 );
 
-	$( document ).on( 'collapse', '.customize-control-widget_form', function(e){
-		var $widget_li = $(this);
-		var $widget = $widget_li.find( '.widget' );
+			// Delay the removal of 'layers-loading' so it always displays for a definite length of time,
+			// so the user is able to read it.
+			setTimeout(function(){
+				$widget_li.removeClass( 'layers-loading' );
+			}, 1100 );
 
-		$widget_li.removeClass('layers-focussed');
+		} else if( 'collapse' == e.type ){
 
-		// Used for animation of the widget closing
-		$widget_li.addClass('layers-collapsing');
-	});
+			$widget_li.removeClass('layers-focussed');
 
-	$( document ).on( 'collapsed', '.customize-control-widget_form', function(e){
-		var $widget_li = $(this);
-		var $widget = $widget_li.find( '.widget' );
+			// Used for animation of the widget closing
+			$widget_li.addClass('layers-collapsing');
 
-		$widget_li.removeClass('layers-collapsing');
+		} else if( 'collapsed' == e.type ){
+
+			$widget_li.removeClass('layers-collapsing');
+
+		}
 	});
 
 	$( document ).on( 'layers-interface-init', '.widget, .layers-accordions', function( e ){
@@ -875,7 +874,7 @@ jQuery(function($) {
 		// Instant user feedback
 		$widget_li.addClass('layers-focussed');
 
-		// Instantly remove other
+		// Instantly remove other classes
 		$('.layers-focussed').not( $widget_li ).removeClass('layers-focussed layers-loading');
 
 		// Handle the first time Init of a widget.
@@ -889,8 +888,7 @@ jQuery(function($) {
 				setTimeout(function(){
 					$widget.trigger( 'layers-interface-init' );
 				}, 50 );
-			}
-			else {
+			} else {
 				// If event is 'expand' it's a WP invoked event that we use as backup if the 'click' was not used.
 				// eg 'shift-click' on widget in customizer-preview
 				$widget.trigger( 'layers-interface-init' );

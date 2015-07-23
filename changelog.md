@@ -2,7 +2,7 @@
 
 =======
 ##1.2.2
-### ? July 2015
+### 24 July 2015
 
 * **Fix** - Category and Tag header titles are now correct, no longer relying on the `single_cat_title();` function.
 * **Fix** - Post List view in the Post Widget now works correctly obeying the display options too.
@@ -11,7 +11,7 @@
 * **Fix** - Fixed post image links in the post widget, archive pages and single pages.
 * **Enhancement** - Corrected the `$content_width;` in `functions.php`.
 * **Enhancement** - Removed html excaping from the footer, so that users can use basic HTML in their footer text.
-* **Enhancement** - Changed the Layers Widget constructors in preperation for WordPress 4.3.
+* **Enhancement** - Changed the Layers Widget constructors in preperation for `WordPress 4.3`.
 
 =======
 ## 1.2.1

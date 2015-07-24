@@ -413,6 +413,7 @@ class Layers_Customizer_Config {
 					'type'     => 'layers-text',
 					'label'    => __( 'Copyright Text' , 'layerswp' ),
 					'default' => ' Made at the tip of Africa. &copy;',
+					'sanitize_callback' => FALSE
 				), // copyright
 			); // footer-text
 

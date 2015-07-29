@@ -41,6 +41,9 @@ class Layers_Options_Panel {
 		$this->options_panel_dir = LAYERS_TEMPLATE_DIR . '/core/options-panel/';
 
 		$this->set_valid_page_slugs();
+		
+		// Remove homless Layers widgets
+		add_action( 'after_delete_post' , array( $this, 'remove_homeless_widgets' ), 11 );
 	}
 
 	public function init() {
@@ -305,6 +308,62 @@ class Layers_Options_Panel {
 			)
 		); // Onboarding ajax parameters
 
+	}
+	
+	/**
+	 * Remove homeless Sidebars and their Widgets that no longer belong to a Layers page.
+	 */
+	public function remove_homeless_widgets() {
+		
+		global $wp_registered_sidebars, $wp_registered_widgets;
+		
+		// Get all Sidebars with their Widgets.
+		$all_sidebars = wp_get_sidebars_widgets();
+		
+		// Used to collect the newly cleaned sidebars.
+		$cleaned_sidebars = array();
+		
+		// Loop through the sidebars.
+		foreach ( $all_sidebars as $sidebar_id => $sidebar_widgets ) {
+			
+			// Only perform the clean-up on Layers sidebars.
+			if ( FALSE !== strpos( $sidebar_id, 'obox-layers-builder-' ) ) {
+				
+				// Check if the page that created this sidebar still exists.
+				$page_id = ltrim( $sidebar_id, "obox-layers-builder-" );
+				
+				if ( NULL === get_post( $page_id ) ) {
+						
+					// Loop over each widget_id so we can fetch the data out of the wp_options table.
+					foreach( $sidebar_widgets as $widget_id ) {
+						
+						// The name of the option in the database is the name of the widget class.
+						$option_name = $wp_registered_widgets[$widget_id]['callback'][0]->option_name;
+						
+						// Widget data is stored as an associative array. To get the right data we need the right key from $wp_registered_widgets.
+						$key = $wp_registered_widgets[$widget_id]['params'][0]['number'];
+						
+						// Get the widgets collection associative using the pre-got key.
+						$widget_data = get_option( $option_name );
+						
+						// Remove this widget from the collection.
+						unset( $widget_data[$key] );
+						
+						// Put the widget collection back in the DB.
+						update_option( $option_name, $widget_data );
+					}
+					
+					// Skip to the next so it's not added to the cleaned sidebar collection.
+					continue;
+				}
+			}
+			
+			// If we get to here then sidebar is still existent so add it to cleaned sidebars collection.
+			$cleaned_sidebars[$sidebar_id] = $sidebar_widgets;
+		}
+		
+		// Put the entire Sidebars with Widgets data back in the DB.
+		wp_set_sidebars_widgets( $cleaned_sidebars );
 	}
 
 }

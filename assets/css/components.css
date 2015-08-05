@@ -347,6 +347,10 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
         font-size: 1.4rem;
         font-weight: 700;
     }
+    .story h6{
+        margin-bottom: 26px;
+        font-size: 1.4rem;
+    }
     .story table{
         font-size: 1.4rem;
     }

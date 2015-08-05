@@ -2247,6 +2247,11 @@ object{
     .copy h5{
         margin-bottom: 26px;
         font-size: 1.3rem;
+        font-weight: 700;
+    }
+    .copy h6{
+        margin-bottom: 26px;
+        font-size: 1.3rem;
     }
     .copy blockquote{
         padding-left: 26px;

@@ -1,6 +1,12 @@
 # Layers Changelog
 
 =======
+##1.2.3
+### ?? August 2015
+* **Tweak** - Onsale badge now dynamic with addition of a transparent background color.
+* **Enhancement** - Added margin bottom to H6 in .copy and .story
+
+=======
 ##1.2.2
 ### 24 July 2015
 

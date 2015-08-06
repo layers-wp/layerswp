@@ -10,7 +10,7 @@
 
 get_header(); ?>
 
-<section id="post-<?php the_ID(); ?>" <?php post_class( 'content-main clearfix' ); ?>>
+<section id="post-<?php the_ID(); ?>" <?php post_class( 'container content-main clearfix' ); ?>>
     <div class="row">
 
         <?php get_sidebar( 'left' ); ?>

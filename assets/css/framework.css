@@ -1803,21 +1803,21 @@ object{
         top: 40px;
         transition: all 0.2s ease-in-out;
     }
-    .nav li .sub-menu .sub-menu,
+    .nav > ul > li .sub-menu .sub-menu,
     .nav li:hover > .sub-menu .sub-menu{
-        left: 155px;
+        left: 185px;
         top: -3px;
     }
-    .nav > li:last-child .sub-menu{
+    .nav > ul > li:last-child .sub-menu{
         right: 0;
         left: auto;
     }
-    .nav > li:last-child .sub-menu .sub-menu{
-        right: 155px;
+    .nav li:last-child .sub-menu .sub-menu{
+        right: 185px;
         left: auto;
     }
     .nav-vertical .sub-menu{
-        left: 150px;
+        left: 180px;
         right: auto;
         top: -3px;
         box-shadow: 3px 3px 0px rgba(0, 0, 0, 0.05);

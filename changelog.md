@@ -5,6 +5,7 @@
 ### ?? August 2015
 * **Tweak** - Onsale badge now dynamic with addition of a transparent background color.
 * **Enhancement** - Added margin bottom to H6 in .copy and .story
+* **Enhancement** - Last menu item sub menu no longer falls off screen
 
 =======
 ##1.2.2

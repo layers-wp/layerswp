@@ -251,7 +251,7 @@ if( !class_exists( 'Layers_Contact_Widget' ) ) {
 									'value' => ( isset( $widget['map_height'] ) ) ? $widget['map_height'] : NULL,
 									'label' => __( 'Map Height' , 'layerswp' ),
 									'data' => array(
-										'show-if-selector' => '#'.$this->get_field_id( 'show_google_map' ),
+										'show-if-selector' => '#' . $this->get_field_id( 'show_google_map' ),
 										'show-if-value' => 'true',
 									)
 								),
@@ -267,7 +267,7 @@ if( !class_exists( 'Layers_Contact_Widget' ) ) {
 											'12' => __( 'Far', 'layerswp' ),
 										),
 										'data' => array(
-											'show-if-selector' => '#'.$this->get_field_id( 'show_google_map' ),
+											'show-if-selector' => '#' . $this->get_field_id( 'show_google_map' ),
 											'show-if-value' => 'true',
 										)
 									),

@@ -732,10 +732,19 @@ p.stars span a:focus{
         font-weight: 600;
     }
     .shipping-calculator-form{
-        margin-top: 15px;
+        margin-top: 10px;
     }
     .shipping-calculator-button{
         display: block;
+    }
+    .woocommerce-shipping-calculator p{
+        margin-bottom: 0;
+    }
+    .shipping-calculator-form .form-row{
+        margin-top: 5px;
+    }
+    .shipping-calculator-form button[name="calc_shipping"]{
+        margin-top: 5px;
     }
 
 /*---------------------------*/

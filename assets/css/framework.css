@@ -533,13 +533,11 @@ object{
     }
     .copyright .nav-horizontal a{
         padding: 0;
-        color: #454545;
         font-size: 1.2rem;
         font-weight: 700;
     }
     .copyright .nav-horizontal a:hover{
         background: none;
-        color: #323232;
     }
     .row + .copyright{
         padding-top: 20px;

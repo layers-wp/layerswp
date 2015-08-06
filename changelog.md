@@ -3,6 +3,8 @@
 =======
 ##1.2.3
 ### ?? August 2015
+
+* **Fix** - Re-added the `.container` class to `page.php`, `template-right-sidebar.php`, `template-left-sidebar.php` and `template-both-sidebar.php`.
 * **Tweak** - Onsale badge now dynamic with addition of a transparent background color.
 * **Enhancement** - Added margin bottom to H6 in .copy and `.story`.
 * **Enhancement** - Last menu item sub menu no longer falls off the screen.

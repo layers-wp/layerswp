@@ -543,6 +543,12 @@ object{
         padding-top: 20px;
         border-top: 2px solid rgba(0, 0, 0, 0.15);
     }
+    .invert .copyright .nav-horizontal a{
+        color: rgba(255, 255, 255, 0.75);
+    }
+    .invert .copyright .nav-horizontal a:hover{
+        color: rgba(255, 255, 255, 1);
+    }
 
     /*---------------------------*/
     /*- LAYERS BADGE ------------*/

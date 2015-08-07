@@ -2,7 +2,7 @@
 
 =======
 ##1.2.3
-### ?? August 2015
+### 07 August 2015
 
 * **Fix** - Re-added the `.container` class to `page.php`, `template-right-sidebar.php`, `template-left-sidebar.php` and `template-both-sidebar.php`.
 * **Fix** - Inverted footer menu links now display on dark backgrounds

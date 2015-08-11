@@ -190,7 +190,13 @@ if( !function_exists( 'layers_post_class' ) ) {
 
 		if( is_post_type_archive( 'product' ) || is_tax( 'product_cat' ) || is_tax( 'product_tag' ) ) {
 			$classes[] = 'column';
-			$classes[] = 'span-4';
+
+			// Honor WC loop columns filter
+			$wc_span = 12 / apply_filters( 'loop_shop_columns', 4 );
+			$spans = array(12, 6, 3, 2, 1);
+			$span  = in_array($wc_span, $spans) ? $wc_span : 4;
+
+			$classes[] = 'span-'.$span;
 		}
 
 		return $classes;

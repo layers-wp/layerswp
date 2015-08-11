@@ -184,13 +184,12 @@ add_action( 'wp_ajax_layers_backup_builder_pages', 'layers_backup_builder_pages'
 */
 if( !function_exists( 'layers_post_class' ) ) {
 	function layers_post_class( $classes ) {
-
-		global $woocommerce;
+		global $woocommerce, $wp_query;
 
 		if( is_single() )
 			$classes[] = 'container';
 
-		if( ( isset( $woocommerce ) && is_cart() && 'product' == get_post_type() ) || is_post_type_archive( 'product' ) || is_tax( 'product_cat' ) || is_tax( 'product_tag' ) ) {
+		if( ( isset( $woocommerce ) && is_cart() && 'product' == get_post_type() ) || is_post_type_archive( 'product' ) || is_tax( 'product_cat' ) || is_tax( 'product_tag' ) || ( is_tax() && preg_match('|^pa_|', $wp_query->queried_object->taxonomy, $m ) ) ) {
 
 			$classes[] = 'column';
 			// Honor WC loop columns filter

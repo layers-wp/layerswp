@@ -98,6 +98,10 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
     .swiper-slide.image-top.text-center .excerpt{
         max-width: 745px;
     }
+    .slide:not(.single-slide) .swiper-slide{
+        cursor: -webkit-grab;
+        cursor: -moz-grab;
+    }
 
     /*---------------------------*/
     /*- SLIDER IMAGES -----------*/
@@ -500,7 +504,7 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
     .form-allowed-tags{
         max-width: 660px;
         margin-bottom: 15px;
-        font-size: 1.4rem;
+        font-size: 1.2rem;
     }
     .form-allowed-tags code{
         padding: 0;
@@ -528,15 +532,10 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 /*- WORDPRESS WIDGETS -----------*/
 /*-------------------------------*/
 
-    .sidebar .widget li{
+    .sidebar .widget li:not(:last-child){
         padding: 0 0 6px;
         margin: 0 0 6px;
-        border-bottom: 1px solid rgba(0, 0, 0, 0.15);
-    }
-    .sidebar .widget li:last-child{
-        padding-bottom: 0;
-        margin-bottom: 0;
-        border-bottom: none;
+        border-bottom: 1px dotted rgba(0, 0, 0, 0.12);
     }
     .sidebar .widget li ul{
         margin: 6px 0 0 10px;

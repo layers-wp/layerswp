@@ -310,7 +310,7 @@ class Layers_Customizer_Config {
 								),
 								'header-overlay' => array(
 									'type'     => 'layers-checkbox',
-									'label'    => __( 'Transparent' , 'layerswp' ),
+									'label'    => __( 'Transparent Overlay' , 'layerswp' ),
 									'default'	=> FALSE,
 								)
 							); // header-layout

@@ -69,7 +69,7 @@ del .amount{
 /*- ON SALE SETUP -----------*/
 .onsale{
     padding: 2px 8px;
-    background: #777;
+    background: rgba(0, 0, 0, 0.2);
     color: #fff;
     font-size: 1.3rem;
     font-weight: 600;
@@ -347,6 +347,13 @@ p.stars span a:focus{
     div[itemprop="description"] p{
         margin-bottom: 16px;
     }
+
+        /*-------------------*/
+        /*- ON SALE VARIABLE */
+        .product-type-variable .purchase-options-container [itemprop="offers"] .price del{
+            display: block;
+            font-size: 1.4rem;
+        }
 
         /*-------------------*/
         /*- STOCK -----------*/
@@ -725,10 +732,19 @@ p.stars span a:focus{
         font-weight: 600;
     }
     .shipping-calculator-form{
-        margin-top: 15px;
+        margin-top: 10px;
     }
     .shipping-calculator-button{
         display: block;
+    }
+    .woocommerce-shipping-calculator p{
+        margin-bottom: 0;
+    }
+    .shipping-calculator-form .form-row{
+        margin-top: 5px;
+    }
+    .shipping-calculator-form button[name="calc_shipping"]{
+        margin-top: 5px;
     }
 
 /*---------------------------*/

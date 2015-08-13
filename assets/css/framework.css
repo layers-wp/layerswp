@@ -533,17 +533,21 @@ object{
     }
     .copyright .nav-horizontal a{
         padding: 0;
-        color: #454545;
         font-size: 1.2rem;
         font-weight: 700;
     }
     .copyright .nav-horizontal a:hover{
         background: none;
-        color: #323232;
     }
     .row + .copyright{
         padding-top: 20px;
         border-top: 2px solid rgba(0, 0, 0, 0.15);
+    }
+    .invert .copyright .nav-horizontal a{
+        color: rgba(255, 255, 255, 0.75);
+    }
+    .invert .copyright .nav-horizontal a:hover{
+        color: rgba(255, 255, 255, 1);
     }
 
     /*---------------------------*/
@@ -1803,21 +1807,21 @@ object{
         top: 40px;
         transition: all 0.2s ease-in-out;
     }
-    .nav li .sub-menu .sub-menu,
+    .nav > ul > li .sub-menu .sub-menu,
     .nav li:hover > .sub-menu .sub-menu{
-        left: 155px;
+        left: 185px;
         top: -3px;
     }
-    .nav > li:last-child .sub-menu{
+    .nav > ul > li:last-child .sub-menu{
         right: 0;
         left: auto;
     }
-    .nav > li:last-child .sub-menu .sub-menu{
-        right: 155px;
+    .nav li:last-child .sub-menu .sub-menu{
+        right: 185px;
         left: auto;
     }
     .nav-vertical .sub-menu{
-        left: 150px;
+        left: 180px;
         right: auto;
         top: -3px;
         box-shadow: 3px 3px 0px rgba(0, 0, 0, 0.05);
@@ -2245,6 +2249,11 @@ object{
         font-weight: 700;
     }
     .copy h5{
+        margin-bottom: 26px;
+        font-size: 1.3rem;
+        font-weight: 700;
+    }
+    .copy h6{
         margin-bottom: 26px;
         font-size: 1.3rem;
     }

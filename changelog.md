@@ -1,6 +1,17 @@
 # Layers Changelog
 
 =======
+##1.2.3
+### 07 August 2015
+
+* **Fix** - Re-added the `.container` class to `page.php`, `template-right-sidebar.php`, `template-left-sidebar.php` and `template-both-sidebar.php`.
+* **Fix** - Inverted footer menu links now display on dark backgrounds
+* **Tweak** - Onsale badge now dynamic with addition of a transparent background color.
+* **Enhancement** - Added margin bottom to H6 in .copy and `.story`.
+* **Enhancement** - Last menu item sub menu no longer falls off the screen.
+* **Enhancement** - Added a zoom level setting to the Contact widget.
+
+=======
 ##1.2.2
 ### 24 July 2015
 

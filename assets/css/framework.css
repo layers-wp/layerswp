@@ -1838,6 +1838,28 @@ object{
         display: none;
     }
 
+        /*-----------------------*/
+        /*- ARROWS --------------*/
+        .header-site .menu-item-has-children > a:after{
+            margin-left: 8px;
+            content: "\e605";
+            font-family: 'layers-icons';
+            font-weight: normal;
+            font-style: normal;
+            text-decoration: inherit;
+            opacity: 0.4;
+            font-weight: normal;
+            font-size: 0.8rem;
+        }
+        .header-site .sub-menu .menu-item-has-children > a:after{
+            float: right;
+            padding: 5px 0 0;
+            content: "\e600";
+        }
+        .header-site .menu-item-has-children > a:hover:after{
+            opacity: 0.8;
+        }
+
     /*---------------------------*/
     /*- ABOLUTE NAV -------------*/
     .nav-absolute{

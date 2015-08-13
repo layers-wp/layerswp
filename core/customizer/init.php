@@ -83,6 +83,9 @@ class Layers_Customizer {
 	*/
 
 	public function admin_enqueue_scripts(){
+		
+		// Hover Intent
+		wp_enqueue_script( 'hoverIntent' );
 
 		// Media Uploader required scripts
 		wp_enqueue_media();
@@ -112,7 +115,7 @@ class Layers_Customizer {
 	*/
 
 	public function customizer_preview_enqueue_scripts(){
-
+		
 		wp_enqueue_script(
 			LAYERS_THEME_SLUG . '-admin-customizer-preview',
 			get_template_directory_uri() . '/core/customizer/js/customizer-preview.js',

@@ -479,6 +479,9 @@ object{
         width: 100%;
         z-index: 100;
     }
+    .header-overlay-no-push .header-overlay:not(.is_stuck){
+        background-color: transparent;
+    }
 
     /*---------------------------*/
     /*- SECONDARY HEADER --------*/

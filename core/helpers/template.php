@@ -406,7 +406,8 @@ if( !function_exists( 'layers_apply_customizer_styles' ) ) {
 		*/
 
 		// Opacity
-		$bg_opacity = ( layers_get_theme_mod( 'header-overlay') ) ? .5 : 1 ;
+		//$bg_opacity = ( layers_get_theme_mod( 'header-overlay') ) ? .5 : 1 ;
+		$bg_opacity = 1;
 
 		// Apply the BG Color
 		if( '' != $header_color ) {

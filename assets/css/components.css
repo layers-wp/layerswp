@@ -98,6 +98,10 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
     .swiper-slide.image-top.text-center .excerpt{
         max-width: 745px;
     }
+    .slide:not(.single-slide) .swiper-slide{
+        cursor: -webkit-grab;
+        cursor: -moz-grab;
+    }
 
     /*---------------------------*/
     /*- SLIDER IMAGES -----------*/

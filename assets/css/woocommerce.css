@@ -14,20 +14,22 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 /*- HEADER CART -------------*/
 .header-cart{
     display: inline-block;
+    padding: 0 4px;
     background: rgba(0, 0, 0, 0.3);
-    padding-left: 10px;
-    padding-right: 10px;
     position: relative;
     font-size: 1.4rem;
     border-radius: 3px;
     line-height: 40px;
+    overflow: hidden;
+}
+.header-cart span{
+    padding: 0 4px;
 }
 .header-cart .cart{
     margin: 0;
     color: #fff;
 }
 .header-cart .amount{
-    margin-left: 5px;
     transition: all 0.2s ease-in-out;
     color: #fff;
 }

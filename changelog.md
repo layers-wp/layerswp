@@ -8,6 +8,7 @@
 * **Enhancement** - Menu items with sub-menus now have down arrow and right arrows (using Layers Icon font) - DP
 * **Enhancement** - Added a 'grab' cursor to sliders with more than one slide - DP
 * **Enhancement** - Added demo_store announcement css - DP
+* **Enhancement** - Header Cart changes - including css tidy and removal of background color on cart-total span - DP
 
 =======
 ##1.2.3

@@ -1236,7 +1236,6 @@ p.stars span a:focus{
     max-width: 500px;
 }
 
-
 /*-------------------------------*/
 /*- RESPONSIVE ------------------*/
 /*-------------------------------*/
@@ -1370,6 +1369,28 @@ p.stars span a:focus{
     .cart_totals{
         float: right;
         width: 49%;
+    }
+
+    /*---------------------------*/
+    /*- DEMO STORE --------------*/
+    .demo_store{
+        display: block;
+        width: 100%;
+        max-width: 1000px;
+        margin-left: -500px;
+        padding: 5px;
+        background: rgba(0, 0, 0, 0.4);
+        border-radius: 3px;
+        position: fixed;
+        left: 50%;
+        bottom: 10px;
+        z-index: 99;
+        color: #fff;
+        text-align: center;
+        font-weight: 700;
+    }
+    .woocommerce-demo-store .footer-site{
+        padding-bottom: 60px;
     }
 
 }

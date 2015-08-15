@@ -412,17 +412,17 @@ class Layers_Customizer_Regsitrar {
 			$section = $this->customizer->get_section( $section_key );
 
 			// Move this section to a specific panel
-			if( isset( $section_data[ 'panel' ] ) ) {
+			if( isset( $section->panel ) && isset( $section_data[ 'panel' ] ) ) {
 				$section->panel = $this->prefix . $section_data[ 'panel' ];
 			}
 
 			// Prioritize this section
-			if( isset( $section_data[ 'title' ] ) ) {
+			if( isset( $section->title ) && isset( $section_data[ 'title' ] ) ) {
 				$section->title = $section_data[ 'title' ];
 			}
 
 			// Prioritize this section
-			if( isset( $section_data[ 'priority' ] ) ) {
+			if( isset( $section->priority ) && isset( $section_data[ 'priority' ] ) ) {
 				$section->priority = $section_data[ 'priority' ];
 			}
 		}

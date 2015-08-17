@@ -2,7 +2,7 @@
 
 =======
 ##1.2.4
-### ?? August 2015
+### 17 August 2015
 
 * **Fix** - 4.3 bug. Added conditions around the code which moves the default customizer sections around. *MP*
 * **Fix** - 4.3 customizer styling *DP*

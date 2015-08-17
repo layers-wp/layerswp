@@ -3,6 +3,7 @@
 =======
 ##1.2.4
 ### ?? August 2015
+<<<<<<< HEAD
 
 * **Fix** - 4.3 bug. Added conditions around the code which moves the default customizer sections around. *MP*
 * **Tweak** - .form-allowed-tags .2rem smaller font-size. *DP*
@@ -10,6 +11,8 @@
 * **Enhancement** - Menu items with sub-menus now have down arrow and right arrows (using Layers Icon font). *DP*
 * **Enhancement** - Added a 'grab' cursor to sliders with more than one slide. *DP*
 * **Enhancement** - Added demo_store announcement css. *DP*
+* **Enhancement** - Header Cart changes - including css tidy and removal of background color on cart-total span. *DP*
+
 
 =======
 ##1.2.3

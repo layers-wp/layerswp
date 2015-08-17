@@ -46,6 +46,7 @@ class Layers_Customizer_Config {
 		$this->panels = $this->panels();
 
 		// Init and store default_sections
+		$this->default_panels = $this->default_panels();
 		$this->default_sections = $this->default_sections();
 
 		// Init and store sections
@@ -64,10 +65,6 @@ class Layers_Customizer_Config {
 	private function panels(){
 
 		$panels = array(
-			'branding' => array(
-							'title' => __( 'Branding' , 'layerswp' ),
-							'priority' => 20
-						),
 			'site-settings' => array(
 							'title' => __( 'Site Settings' , 'layerswp' ),
 							'description' => __( 'Control your content\'s default layout.' , 'layerswp' ), // @TODO Put a helper here
@@ -77,11 +74,6 @@ class Layers_Customizer_Config {
 							'title' => __( 'Header' , 'layerswp' ),
 							'description' => __( 'Control your header\'s logo, layout, colors and font.' , 'layerswp' ), // @TODO Put a helper here
 							'priority' => 60
-						),
-			'body' => array(
-							'title' => __( 'Body Colors' , 'layerswp' ),
-							'description' => __( 'Control your body\'s custom text, widget areas and layout.' , 'layerswp' ), // @TODO Put a helper here
-							'priority' => 70
 						),
 			'footer' => array(
 							'title' => __( 'Footer' , 'layerswp' ),
@@ -98,6 +90,20 @@ class Layers_Customizer_Config {
 	}
 
 	/**
+	* Layers Customiser Panels
+	*
+	* @return   array 			Panels to be registered in the customizer
+	*/
+
+	private function default_panels(){
+
+		$default_panels[ 'nav_menus' ] = array(
+													'priority' => 50,
+												);
+
+		return apply_filters( 'layers_customizer_default_panels', $default_panels );
+	}
+	/**
 	* Layers Customiser Sections
 	*
 	* @return   array 			Sections to be registered in the customizer
@@ -110,19 +116,13 @@ class Layers_Customizer_Config {
 													'panel' => 'site-settings'
 												);
 
-		$default_sections[ 'colors' ] = array(
-											'title' => __( 'Colors' , 'layerswp' ),
-											'panel' => 'site-settings',
-											'priority' => 55,
-										);
 		$default_sections[ 'background_image' ] = array(
 											'panel' => 'site-settings',
 											'priority' => 55,
 										);
 
-		$default_sections[ 'nav' ] = array(
+		$default_sections[ 'static_front_page' ] = array(
 											'panel' => 'site-settings',
-											'priority' => 50,
 										);
 
 		return apply_filters( 'layers_customizer_default_sections', $default_sections );
@@ -137,21 +137,11 @@ class Layers_Customizer_Config {
 	private function sections(){
 
 		$sections = array(
-						'nav' => array( // This is used before any menus are registered. Then replaced by WP Naviagation
-							'title'       =>__( 'Navigation' , 'layerswp' ),
-							'description' => __( 'First create a menu then come back here to place it.' , 'layerswp' ),
-							'priority' => 50,
-							'panel' => 'site-settings'
-						),
 						'site-colors' => array(
 							'title' =>__( 'Colors' , 'layerswp' ),
 							'panel' => 'site-settings',
 							'priority' => 45
 
-						),
-						'content-layout' => array(
-							'title' =>__( 'Layout' , 'layerswp' ),
-							'panel' => 'site-settings'
 						),
 						'content-sidebars' => array(
 							'title' =>__( 'Sidebars' , 'layerswp' ),
@@ -203,19 +193,6 @@ class Layers_Customizer_Config {
 
 		// Setup some folder variables
 		$customizer_dir = '/core/customizer/';
-
-
-		// Header -> Layout -> Layout  // This is used before any menus are registered. Then replaced by WP Naviagation
-		if ( ! wp_get_nav_menus() ) {
-			$controls['nav'] = array(
-									'general-nav' => array(
-										'type'        => 'layers-button',
-										'text'        => __( 'Create Menu' , 'layerswp' ),
-										'href'        => admin_url( 'nav-menus.php' ),
-									),
-								); // header-layout
-
-		}
 
 		// Header -> Layout -> Layout
 		$controls['css'] = array(

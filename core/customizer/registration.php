@@ -58,6 +58,7 @@ class Layers_Customizer_Regsitrar {
 		$this->register_sections ( $this->config->sections );
 
 		// Move default sections into Layers Panels
+		$this->move_default_panels( $this->config->default_panels );
 		$this->move_default_sections( $this->config->default_sections );
 
 		// Change 'Widgets' panel title to 'Edit Layout'
@@ -401,6 +402,39 @@ class Layers_Customizer_Regsitrar {
 	}
 
 	/**
+	* Move Default Panels
+	*/
+
+	public function move_default_panels( $panels = array() ){
+
+		foreach( $panels as $panel_key => $panel_data ){
+
+			// Get the current panel
+			$panel = $this->customizer->get_panel( $panel_key );
+
+			// Panel Title
+			if( isset( $panel->title ) && isset( $panel_data[ 'title' ] ) ) {
+				$panel->title = $panel_data[ 'title' ];
+			}
+
+			// Panel Priority
+			if( isset( $panel->priority ) && isset( $panel_data[ 'priority' ] ) ) {
+				$panel->priority = $panel_data[ 'priority' ];
+			}
+/*
+			$wp_customize->add_panel(
+				$panel_key, array(
+					'priority' => 0,
+				)
+			);*/
+		}
+
+		// Remove the theme switcher Panel, Layers isn't ready for that
+		$this->customizer->remove_section( 'themes' );
+
+	}
+
+	/**
 	* Move Default Sections
 	*/
 
@@ -416,19 +450,16 @@ class Layers_Customizer_Regsitrar {
 				$section->panel = $this->prefix . $section_data[ 'panel' ];
 			}
 
-			// Prioritize this section
+			// Section Title
 			if( isset( $section->title ) && isset( $section_data[ 'title' ] ) ) {
 				$section->title = $section_data[ 'title' ];
 			}
 
-			// Prioritize this section
+			// Section Priority
 			if( isset( $section->priority ) && isset( $section_data[ 'priority' ] ) ) {
 				$section->priority = $section_data[ 'priority' ];
 			}
 		}
-
-		// Remove the theme switcher Panel, Layers isn't ready for that
-		$this->customizer->remove_section( 'themes' );
 	}
 
 	/**

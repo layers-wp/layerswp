@@ -13,7 +13,13 @@
 @import url(icons.css);
 
 /*------------------------------------*/
-/*- HIDE LAYERS WIDGETS IN APPEARANCE -*/
+/*- CUSTOMIZER Look&Feel OVERRIDES ---*/
+#customize-theme-controls .accordion-section-content{
+    background: #fff; /*-- Make the accordions white --*/
+}
+
+/*------------------------------------*/
+/*- HIDE LAYERS WIDGETS IN APPEARANCE */
 div#widgets-right .widgets-sortables{
     padding-bottom: 1px;
 }

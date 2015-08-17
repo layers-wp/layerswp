@@ -3,7 +3,6 @@
 =======
 ##1.2.4
 ### ?? August 2015
-<<<<<<< HEAD
 
 * **Fix** - 4.3 bug. Added conditions around the code which moves the default customizer sections around. *MP*
 * **Tweak** - .form-allowed-tags .2rem smaller font-size. *DP*

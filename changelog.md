@@ -4,10 +4,13 @@
 ##1.2.4
 ### 17 August 2015
 
+* **Fix** - WooCommerce - Products in archive pages now obey the WooCommerce column settings. Thanks @martin_adamko. *MP*
+* **Fix** - WooCommerce - Products in the cart page no obey the column settings. *MP*
+* **Fix** - Default WooCommerce sites no longer have a forced #f3f3f3 site accent color. *MP*
 * **Fix** - 4.3 bug. Added conditions around the code which moves the default customizer sections around. *MP*
 * **Fix** - 4.3 customizer styling *DP*
-* **Tweak** - .form-allowed-tags .2rem smaller font-size. *DP*
-* **Enhancement** - Tidy up of some .sidebar css code. *DP*
+* **Tweak** - `.form-allowed-tags` .2rem smaller font-size. *DP*
+* **Enhancement** - Tidy up of some `.sidebar` css code. *DP*
 * **Enhancement** - Menu items with sub-menus now have down arrow and right arrows (using Layers Icon font). *DP*
 * **Enhancement** - Added a 'grab' cursor to sliders with more than one slide. *DP*
 * **Enhancement** - Added demo_store announcement css. *DP*

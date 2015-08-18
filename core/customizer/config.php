@@ -426,7 +426,7 @@ class Layers_Customizer_Config {
 				'subtitle' => __( 'Site Accent Color', 'layerswp' ),
 				'description' => __( 'Choose a color for your buttons and links.', 'layerswp' ),
 				'type' => 'layers-color',
-				'default' => '#F3F3F3',
+				'default' => FALSE,
 			),
 			'footer-background-color' => array(
 				'label' => '',

@@ -10,6 +10,8 @@
 * **Fix** - 4.3 bug. Added conditions around the code which moves the default customizer sections around. *MP*
 * **Fix** - 4.3 customizer styling *DP*
 * **Tweak** - `.form-allowed-tags` .2rem smaller font-size. *DP*
+* **Tweak** - Changed Overlay to Transparent Overlay in the customizer.
+* **Tweak** - Changed the behaviour of the overlay to be fully transparent or fully opaque - not semi-transparent at any time. *SOB*
 * **Enhancement** - Tidy up of some `.sidebar` css code. *DP*
 * **Enhancement** - Menu items with sub-menus now have down arrow and right arrows (using Layers Icon font). *DP*
 * **Enhancement** - Added a 'grab' cursor to sliders with more than one slide. *DP*

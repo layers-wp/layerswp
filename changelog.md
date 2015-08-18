@@ -9,6 +9,7 @@
 * **Fix** - Default WooCommerce sites no longer have a forced #f3f3f3 site accent color. *MP*
 * **Fix** - 4.3 bug. Added conditions around the code which moves the default customizer sections around. *MP*
 * **Fix** - 4.3 customizer styling *DP*
+* **Fix** - Fixed  `Undefined index: google_maps_zoom in layerswp/core/widgets/modules/contact.php on line 181` error. *MP*
 * **Tweak** - `.form-allowed-tags` .2rem smaller font-size. *DP*
 * **Enhancement** - Tidy up of some `.sidebar` css code. *DP*
 * **Enhancement** - Menu items with sub-menus now have down arrow and right arrows (using Layers Icon font). *DP*

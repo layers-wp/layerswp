@@ -11,6 +11,8 @@ class Layers_Customizer_Config {
 
 	public $panels;
 
+	public $default_panels;
+
 	public $default_sections;
 
 	public $sections;
@@ -48,6 +50,7 @@ class Layers_Customizer_Config {
 		// Init and store default_sections
 		$this->default_panels = $this->default_panels();
 		$this->default_sections = $this->default_sections();
+		$this->default_controls = $this->default_controls();
 
 		// Init and store sections
 		$this->sections = $this->sections();
@@ -57,7 +60,7 @@ class Layers_Customizer_Config {
     }
 
 	/**
-	* Layers Customiser Panels
+	* Default WP Customiser Panels
 	*
 	* @return   array 			Panels to be registered in the customizer
 	*/
@@ -90,7 +93,7 @@ class Layers_Customizer_Config {
 	}
 
 	/**
-	* Layers Customiser Panels
+	* Default WP Customiser Panels
 	*
 	* @return   array 			Panels to be registered in the customizer
 	*/
@@ -120,6 +123,11 @@ class Layers_Customizer_Config {
 			'panel' => 'site-settings'
 		);
 
+		$default_sections[ 'colors' ] = array(
+			'panel' => 'site-settings',
+			'priority' => 55,
+		);
+
 		$default_sections[ 'background_image' ] = array(
 			'panel' => 'site-settings',
 			'priority' => 55,
@@ -131,6 +139,27 @@ class Layers_Customizer_Config {
 
 		return apply_filters( 'layers_customizer_default_sections', $default_sections );
 	}
+	/**
+	* Default WP Customiser Controls
+	*
+	* @return   array Controls to be registered in the customizer
+	*/
+
+	private function default_controls(){
+
+		$default_controls = array();
+
+		$default_sections[ 'header_textcolor' ] = array(
+			'section' => 'site-colors'
+		);
+
+		$default_sections[ 'background_color' ] = array(
+			'section' => 'site-colors'
+		);
+
+		return apply_filters( 'layers_customizer_default_controls', $default_sections );
+	}
+
 
 	/**
 	* Layers Customiser Sections

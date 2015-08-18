@@ -15,30 +15,30 @@ class Layers_Customizer_Regsitrar {
 
 	public $prefix;
 
-    private static $instance; // stores singleton class
+	private static $instance; // stores singleton class
 
-    /**
-    *  Get Instance creates a singleton class that's cached to stop duplicate instances
-    */
-    public static function get_instance() {
-        if ( ! self::$instance ) {
-            self::$instance = new self();
-            self::$instance->init();
-        }
-        return self::$instance;
-    }
+	/**
+	*  Get Instance creates a singleton class that's cached to stop duplicate instances
+	*/
+	public static function get_instance() {
+		if ( ! self::$instance ) {
+			self::$instance = new self();
+			self::$instance->init();
+		}
+		return self::$instance;
+	}
 
-    /**
-    *  Construct empty on purpose
-    */
+	/**
+	*  Construct empty on purpose
+	*/
 
-    private function __construct() {}
+	private function __construct() {}
 
-    /**
-    *  Init behaves like, and replaces, construct
-    */
+	/**
+	*  Init behaves like, and replaces, construct
+	*/
 
-    public function init() {
+	public function init() {
 
 		// Register the customizer object
 		global $wp_customize;
@@ -60,6 +60,7 @@ class Layers_Customizer_Regsitrar {
 		// Move default sections into Layers Panels
 		$this->move_default_panels( $this->config->default_panels );
 		$this->move_default_sections( $this->config->default_sections );
+		$this->move_default_controls( $this->config->default_controls );
 
 		// Change 'Widgets' panel title to 'Edit Layout'
 		$wp_customize->add_panel(
@@ -421,12 +422,7 @@ class Layers_Customizer_Regsitrar {
 			if( isset( $panel->priority ) && isset( $panel_data[ 'priority' ] ) ) {
 				$panel->priority = $panel_data[ 'priority' ];
 			}
-/*
-			$wp_customize->add_panel(
-				$panel_key, array(
-					'priority' => 0,
-				)
-			);*/
+
 		}
 
 		// Remove the theme switcher Panel, Layers isn't ready for that
@@ -460,6 +456,37 @@ class Layers_Customizer_Regsitrar {
 				$section->priority = $section_data[ 'priority' ];
 			}
 		}
+	}
+	/**
+	* Move Default Controls
+	*/
+
+	public function move_default_controls( $controls = array() ){
+
+		foreach( $controls as $control_key => $control_data ){
+
+			// Get the current control
+			$control = $this->customizer->get_control( $control_key );
+
+			// Move this control to a specific section
+			if( isset( $control->section ) && isset( $control_data[ 'section' ] ) ) {
+				$control->section = $this->prefix . $control_data[ 'section' ];
+			}
+
+			// Section Title
+			if( isset( $control->title ) && isset( $control_data[ 'title' ] ) ) {
+				$control->title = $control_data[ 'title' ];
+			}
+
+			// Section Priority
+			if( isset( $control->priority ) && isset( $control_data[ 'priority' ] ) ) {
+				$control->priority = $control_data[ 'priority' ];
+			}
+		}
+
+
+		// Remove the header text color control, we don't support it yet
+		$this->customizer->remove_section( 'colors' );
 	}
 
 	/**

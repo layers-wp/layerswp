@@ -11,6 +11,8 @@
 * **Fix** - 4.3 customizer styling *DP*
 * **Fix** - Fixed  `Undefined index: google_maps_zoom in layerswp/core/widgets/modules/contact.php on line 181` error. *MP*
 * **Tweak** - `.form-allowed-tags` .2rem smaller font-size. *DP*
+* **Tweak** - Changed Overlay to Transparent Overlay in the customizer.
+* **Tweak** - Changed the behaviour of the overlay to be fully transparent or fully opaque - not semi-transparent at any time. *SOB*
 * **Enhancement** - Tidy up of some `.sidebar` css code. *DP*
 * **Enhancement** - Menu items with sub-menus now have down arrow and right arrows (using Layers Icon font). *DP*
 * **Enhancement** - Added a 'grab' cursor to sliders with more than one slide. *DP*

@@ -74,7 +74,7 @@
 		transform: translate3d(0, 6px, 0);
 		transition: background 0.2s ease-in-out, transform 0.2s ease-in-out, opacity 0.2s ease-in-out, visibility 0.2s ease-in-out;
 	}
-	#customize-controls-layers-actions ul.layers-customizer-nav li:hover ul{
+	#customize-controls-layers-actions ul.layers-customizer-nav li.layers-hover ul{
 		background: #f5f5f5;
 		opacity: 1;
 		visibility: visible;
@@ -91,18 +91,18 @@
 	#customize-controls-layers-actions ul.layers-customizer-nav li ul li:first-child{
 		border-top-color: #e0e0e0;
 	}
-	#customize-controls-layers-actions ul.layers-customizer-nav li:hover ul li{
+	#customize-controls-layers-actions ul.layers-customizer-nav li.layers-hover ul li{
 		opacity: 1;
 		visibility: visible;
 		transform: translate3d(0, 0, 0);
 	}
 		/*-------------------*/
 		/*- ITEM ANIMATION --*/
-		#customize-controls-layers-actions ul.layers-customizer-nav li:hover ul li{transition-delay: 0.25s;}
-		#customize-controls-layers-actions ul.layers-customizer-nav li:hover ul li:nth-child(2){transition-delay: 0.27s;}
-		#customize-controls-layers-actions ul.layers-customizer-nav li:hover ul li:nth-child(3){transition-delay: 0.29s;}
-		#customize-controls-layers-actions ul.layers-customizer-nav li:hover ul li:nth-child(4){transition-delay: 0.31s;}
-		#customize-controls-layers-actions ul.layers-customizer-nav li:hover ul li:nth-child(5){transition-delay: 0.33s;}
+		#customize-controls-layers-actions ul.layers-customizer-nav li.layers-hover ul li{transition-delay: 0.25s;}
+		#customize-controls-layers-actions ul.layers-customizer-nav li.layers-hover ul li:nth-child(2){transition-delay: 0.27s;}
+		#customize-controls-layers-actions ul.layers-customizer-nav li.layers-hover ul li:nth-child(3){transition-delay: 0.29s;}
+		#customize-controls-layers-actions ul.layers-customizer-nav li.layers-hover ul li:nth-child(4){transition-delay: 0.31s;}
+		#customize-controls-layers-actions ul.layers-customizer-nav li.layers-hover ul li:nth-child(5){transition-delay: 0.33s;}
 
 	#customize-controls-layers-actions ul.layers-customizer-nav li ul a{
 		padding: 0 17px 0 14px;

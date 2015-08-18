@@ -57,11 +57,13 @@ jQuery(function($) {
 
                 // First element is Slider Widget.
                 $first_element.find('.swiper-slide .overlay').css({ 'paddingTop': $header.outerHeight() }, { easing: 'layersEaseInOut', duration: 400 });
+                $('body').addClass( 'header-overlay-no-push' );
             }
             else if( $first_element.hasClass('title-container') ) {
                 
                 // First element is Title (eg WooCommerce).
                 $first_element.css({ 'paddingTop': $header.outerHeight() }, { easing: 'layersEaseInOut', duration: 400 });
+                $('body').addClass( 'header-overlay-no-push' );
             }
             else{
 

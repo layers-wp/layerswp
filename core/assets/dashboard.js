@@ -94,7 +94,13 @@ jQuery(function($) {
         $that = $( '.layers-dashboard-setup-form' );
 
         if( 0 == $that.length ){
+
             $( '.layers-site-setup-panel' ).hide();
+
+            /** Log Event on Intercom **/
+            if( Intercom ){
+                $(document).layers_intercom_event( 'completed dashboard site setup' );
+            }
         }
     }
 

@@ -81,6 +81,18 @@ jQuery(function($) {
                 nonce: layers_onboarding_params.preset_layout_nonce
             };
 
+            /** Log Event on Intercom **/
+            if( Intercom ){
+                $(document).layers_intercom_event(
+                    'created layers page',
+                    {
+                        "Template Type": $title,
+                        "Page Name": ( undefined == $( '#preset_page_title' ) ? false : $( '#preset_page_title' ).val() )
+                    }
+                );
+                $(document).layers_intercom_event( 'completed onboarding' );
+            }
+
             jQuery.post(
                 ajaxurl,
                 $page_data,

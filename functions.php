@@ -23,7 +23,6 @@ define( 'LAYERS_BUILDER_TEMPLATE' , 'builder.php' );
 if ( ! isset( $content_width ) )
 	$content_width = 1080; /* pixels */
 
-
 /**
  * Adjust the content width when the full width page template is being used
  */
@@ -73,6 +72,7 @@ require_once get_template_directory() . '/core/meta/init.php';
 require_once get_template_directory() . '/core/helpers/color.php';
 require_once get_template_directory() . '/core/helpers/custom-fonts.php';
 require_once get_template_directory() . '/core/helpers/extensions.php';
+require_once get_template_directory() . '/core/helpers/intercom.php';
 require_once get_template_directory() . '/core/helpers/post.php';
 require_once get_template_directory() . '/core/helpers/post-types.php';
 require_once get_template_directory() . '/core/helpers/sanitization.php';

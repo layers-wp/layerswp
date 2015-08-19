@@ -181,6 +181,33 @@ $theme_info = wp_get_theme( 'layerswp' ); ?>
 						<div class="layers-panel-title">
 							<h4 class="layers-heading">
 								<a href="http://docs.layerswp.com/">
+									<?php _e( 'Layers Concierce In-App Support' , 'layerswp' ); ?>
+								</a>
+							</h4>
+						</div>
+						<div class="layers-dashboard-setup-form ">
+							<div class="layers-content">
+								<div class="layers-excerpt">
+									<p><?php _e( 'Use the Layers concierge to help you find the right Extension or Theme to suit you! With Intercom we are able to help make informed decisions which will enhance the way you use Layers.' , 'layerswp' ); ?></p>
+									<p><a href="" target="_blank"><?php _e( 'Your data is safe with us, view our Privacy Policy', 'layerswp' ); ?></a></p>
+								</div>
+								<div class="layers-checkbox-wrapper layers-form-item">
+									<input type="checkbox" <?php checked( get_option( 'layers_disable_intercom' ) , '' ); ?> />
+									<label>Enable In-App Support</label>
+								</div>
+							</div>
+							<div class="layers-button-well">
+								<a class="layers-button layers-pull-right" href="" data-setup-step-key="google-analytics" data-submit-action="layers_onboarding_set_theme_mods">
+									<?php _e( 'Update' , 'layerswp' ); ?>
+								</a>
+							</div>
+						</div>
+					</div>
+
+					<div class="layers-panel layers-push-bottom">
+						<div class="layers-panel-title">
+							<h4 class="layers-heading">
+								<a href="http://docs.layerswp.com/">
 									<?php _e( 'Quick Help' , 'layerswp' ); ?>
 								</a>
 							</h4>

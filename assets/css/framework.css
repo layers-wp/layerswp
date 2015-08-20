@@ -574,7 +574,7 @@ object{
     .title-container .heading{
         color: #323232;
         font-size: 4.5rem;
-        line-height: 5rem;
+        line-height: 1.2;
     }
     .title-container .excerpt{
         color: #8f8f8f;
@@ -594,21 +594,22 @@ object{
         padding: 3% 20px;
         max-width: 1040px;
         margin: auto;
+        position: relative;
     }
 
     /*---------------------------*/
     /*- TITLE SIZES -------------*/
-    .title.small{
+    .title-container.small .title{
         padding: 1%;
     }
-    .title.large{
+    .title-container.large .title{
         padding: 3%;
     }
-    .title.extra-large{
-        padding: 4%;
+    .title-container.extra-large .title{
+        padding-top: 10%;
     }
-    .title.massive{
-        padding: 6%;
+    .title-container.massive .title{
+        padding-top: 20%;
     }
 
     /*---------------------------*/

@@ -1,6 +1,12 @@
 # Layers Changelog
 
 =======
+##1.X.X
+### XX XX 2015
+
+* **Tweak** - Edit Layout button in the admin-bar now shows on all pages - not just layers pages - as even non Layers pages can have colors, layout, etc Edited. *SOB*
+
+=======
 ##1.2.4
 ### 17 August 2015
 

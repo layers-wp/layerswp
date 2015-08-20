@@ -340,7 +340,7 @@ if( ! function_exists( 'layers_edit_layout_admin_menu' ) ) {
 	function layers_edit_layout_admin_menu(){
 		global $wp_admin_bar, $post;
 
-		if( is_page() && layers_is_builder_page() ){
+		if( !is_admin() ){
 			$current_url = ( is_ssl() ? 'https://' : 'http://' ) . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
 			$args = array(
 				'id'    => 'layers-edit-layout',

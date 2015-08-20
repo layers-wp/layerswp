@@ -99,9 +99,9 @@ if( !class_exists( 'Layers_Onboarding_Ajax' ) ) {
 
 		}
 
-		public function dismiss_setup_step( $step_key = NULL ){
+		public function dismiss_setup_step( $step_key = NULL, $skip_nonce = FALSE ){
 
-			if( !check_ajax_referer( 'layers-dashboard-dismiss-setup-step', 'layers_dashboard_dismiss_setup_step_nonce', false ) ) die( 'You threw a Nonce exception' ); // Nonce
+			if( !$skip_nonce && !check_ajax_referer( 'layers-dashboard-dismiss-setup-step', 'layers_dashboard_dismiss_setup_step_nonce', false ) ) die( 'You threw a Nonce exception' ); // Nonce
 
 
 			if( NULL == $step_key ) {
@@ -123,7 +123,7 @@ if( !class_exists( 'Layers_Onboarding_Ajax' ) ) {
 
 		public function set_theme_mods(){
 
-			if( !check_ajax_referer( 'layers-onboarding-update-options', 'layers_onboarding_update_nonce', false ) ) die( 'You threw a Nonce exception' ); // Nonce
+			if( !check_ajax_referer( 'layers-onboarding-set-theme-mods', 'layers_set_theme_mod_nonce', false ) ) die( 'You threw a Nonce exception' ); // Nonce
 
 			// Parse our input data
 			parse_str(
@@ -132,7 +132,7 @@ if( !class_exists( 'Layers_Onboarding_Ajax' ) ) {
 			);
 
 			if( isset( $_POST[ 'setup_step_key' ] ) ) {
-				$this->dismiss_setup_step( $_POST[ 'setup_step_key' ] );
+				$this->dismiss_setup_step( $_POST[ 'setup_step_key' ], TRUE );
 			}
 
 			foreach ( $data as $option_key => $option_value ) {

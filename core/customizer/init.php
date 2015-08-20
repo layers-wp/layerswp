@@ -9,31 +9,31 @@
 
 class Layers_Customizer {
 
-	private static $instance;
+	private static $instance; // stores singleton class
 
-	/**
-	*  Retrieve static/global instance of the Layers Customizer
-	*/
+    /**
+    *  Get Instance creates a singleton class that's cached to stop duplicate instances
+    */
+    public static function get_instance() {
+        if ( ! self::$instance ) {
+            self::$instance = new self();
+            self::$instance->init();
+        }
+        return self::$instance;
+    }
 
-	public static function get_instance(){
-		if ( ! isset( self::$instance ) ) {
-			self::$instance = new Layers_Customizer();
-		}
-		return self::$instance;
-	}
+    /**
+    *  Construct empty on purpose
+    */
 
-	/**
-	*  Constructor
-	*/
+    private function __construct() {}
 
-	public function __construct() {
-	}
+    /**
+    *  Init behaves like, and replaces, construct
+    */
 
-	/**
-	 * Initializes the instance
-	 * @global type $wp_customize
-	 */
-	public function init() {
+    public function init() {
+
 		global $wp_customize;
 
 		// Setup some folder variables
@@ -63,17 +63,9 @@ class Layers_Customizer {
 			require_once get_template_directory() . $controls_dir . 'select-icons.php';
 			require_once get_template_directory() . $controls_dir . 'select-images.php';
 			require_once get_template_directory() . $controls_dir . 'seperator.php';
+			require_once get_template_directory() . $controls_dir . 'rte.php';
 			require_once get_template_directory() . $controls_dir . 'text.php';
 			require_once get_template_directory() . $controls_dir . 'textarea.php';
-
-			// If we are in a builder page, update the Widgets title
-			$wp_customize->add_panel(
-				'widgets', array(
-					'priority' => 0,
-					'title' => __('Edit Layout' , 'layerswp' ),
-					'description' => $this->render_builder_page_dropdown() . __('Use this area to add widgets to your page, use the (Layers) widgets for the Body section.' , 'layerswp' ),
-				)
-			);
 
 			// Enqueue Styles
 			add_action( 'customize_controls_print_footer_scripts', array( $this, 'admin_enqueue_scripts' ) );
@@ -91,6 +83,9 @@ class Layers_Customizer {
 	*/
 
 	public function admin_enqueue_scripts(){
+		
+		// Hover Intent
+		wp_enqueue_script( 'hoverIntent' );
 
 		// Media Uploader required scripts
 		wp_enqueue_media();
@@ -120,14 +115,14 @@ class Layers_Customizer {
 	*/
 
 	public function customizer_preview_enqueue_scripts(){
-
+		
 		wp_enqueue_script(
 			LAYERS_THEME_SLUG . '-admin-customizer-preview',
 			get_template_directory_uri() . '/core/customizer/js/customizer-preview.js',
 			array( 'customize-preview-widgets' ),
 			LAYERS_VERSION
 		);
-		
+
 		wp_enqueue_style(
 			LAYERS_THEME_SLUG . '-admin-customizer-preview',
 			get_template_directory_uri() . '/core/customizer/css/customizer-preview.css',
@@ -247,8 +242,7 @@ class Layers_Customizer {
 */
 
 function layers_customizer_init(){
-	$layers_widget = new Layers_Customizer();
-	$layers_widget->init();
+	$layers_widget = Layers_Customizer::get_instance();
 }
 add_action( 'customize_register' , 'layers_customizer_init' , 50 );
 add_action( 'init' , 'layers_customizer_init');

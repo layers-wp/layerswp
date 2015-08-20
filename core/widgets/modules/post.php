@@ -45,7 +45,7 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 			$control_ops = array( 'width' => LAYERS_WIDGET_WIDTH_SMALL, 'height' => NULL, 'id_base' => LAYERS_THEME_SLUG . '-widget-' . $this->widget_id );
 
 			/* Create the widget. */
-			$this->WP_Widget( LAYERS_THEME_SLUG . '-widget-' . $this->widget_id , $this->widget_title, $widget_ops, $control_ops );
+			parent::__construct( LAYERS_THEME_SLUG . '-widget-' . $this->widget_id , $this->widget_title, $widget_ops, $control_ops );
 
 			/* Setup Widget Defaults */
 			$this->defaults = array (
@@ -63,7 +63,7 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 				'excerpt_length' => 200,
 				'show_call_to_action' => 'on',
 				'call_to_action' => __( 'Read More' , 'layerswp' ),
-                'posts_per_page' => 6,
+				'posts_per_page' => 6,
 				'design' => array(
 					'layout' => 'layout-boxed',
 					'imageratios' => 'image-square',
@@ -107,7 +107,7 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 
 			// Set the span class for each column
 			if( 'list-list' == $widget['design'][ 'liststyle' ] ) {
-                $col_count = 1;
+				$col_count = 1;
 				$span_class = 'span-12';
 			} else if( isset( $widget['design'][ 'columns']  ) ) {
 				$col_count = str_ireplace('columns-', '', $widget['design'][ 'columns']  );
@@ -119,7 +119,7 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 
 			// Apply Styling
 			layers_inline_styles( '#' . $widget_id, 'background', array( 'background' => $widget['design'][ 'background' ] ) );
-			layers_inline_styles( '#' . $widget_id, 'color', array( 'selectors' => array( '.section-title h3.heading' , '.section-title p.excerpt' ) , 'color' => $widget['design']['fonts'][ 'color' ] ) );
+			layers_inline_styles( '#' . $widget_id, 'color', array( 'selectors' => array( '.section-title h3.heading' , '.section-title div.excerpt' ) , 'color' => $widget['design']['fonts'][ 'color' ] ) );
 			layers_inline_styles( '#' . $widget_id, 'background', array( 'selectors' => array( '.thumbnail:not(.with-overlay) .thumbnail-body' ) , 'background' => array( 'color' => $this->check_and_return( $widget, 'design', 'column-background-color' ) ) ) );
 			layers_inline_button_styles( '#' . $widget_id, 'button', array( 'selectors' => array( '.thumbnail-body a.button' ) ,'button' => $this->check_and_return( $widget, 'design', 'buttons' ) ) );
 
@@ -145,7 +145,14 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 
 			// Begin query arguments
 			$query_args = array();
-			$query_args[ 'paged' ] = (get_query_var('page')) ? get_query_var('page') : 1;
+			if( get_query_var('paged') ) {
+				$query_args[ 'paged' ] = get_query_var('paged') ;
+			} else if ( get_query_var('page') ) {
+				$query_args[ 'paged' ] = get_query_var('page');
+			} else {
+				$query_args[ 'paged' ] = 1;
+			}
+
 			$query_args[ 'post_type' ] = $this->post_type;
 			$query_args[ 'posts_per_page' ] = $widget['posts_per_page'];
 			if( isset( $widget['order'] ) ) {
@@ -209,7 +216,7 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 								<h3 class="heading"><?php echo esc_html( $widget['title'] ); ?></h3>
 							<?php } ?>
 							<?php if( '' != $widget['excerpt'] ) { ?>
-								<p class="excerpt"><?php echo $widget['excerpt']; ?></p>
+								<div class="excerpt"><?php echo $widget['excerpt']; ?></div>
 							<?php } ?>
 						</div>
 					</div>
@@ -220,7 +227,46 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 							$post_query->the_post();
 
 							if( 'list-list' == $widget['design'][ 'liststyle' ] ) { ?>
-								<?php get_template_part( 'partials/content' , 'list' ); ?>
+								<article id="post-<?php the_ID(); ?>" class="row push-bottom-large">
+									<?php if( isset( $widget['show_titles'] ) ) { ?>
+										<header class="section-title large">
+											<h1 class="heading"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h1>
+										</header>
+									<?php } ?>
+
+									<?php // Layers Featured Media
+									if( isset( $widget['show_media'] ) ) {
+										echo layers_post_featured_media(
+											array(
+												'postid' => get_the_ID(),
+												'wrap_class' => 'thumbnail push-bottom span-5 column' .  ( ( isset( $column['design'][ 'imageratios' ] ) && 'image-round' == $column['design'][ 'imageratios' ] ) ? ' image-rounded' : '' ),
+												'size' => $use_image_ratio
+											)
+										);
+									} // if Show Media ?>
+
+									<?php if( isset( $widget['show_excerpts'] ) || $widget['show_call_to_action'] || !empty( $layers_post_meta_to_display ) ) { ?>
+										<div class="column span-7">
+											<?php if( isset( $widget['show_excerpts'] ) ) {
+												if( isset( $widget['excerpt_length'] ) && '' == $widget['excerpt_length'] ) {
+													echo '<div class="copy push-bottom">';
+														the_content();
+													echo '</div>';
+												} else if( isset( $widget['excerpt_length'] ) && 0 != $widget['excerpt_length'] && strlen( get_the_excerpt() ) > $widget['excerpt_length'] ){
+													echo '<div class="copy push-bottom">' . substr( get_the_excerpt() , 0 , $widget['excerpt_length'] ) . '&#8230;</div>';
+												} else if( '' != get_the_excerpt() ){
+													echo '<div class="copy push-bottom">' . get_the_excerpt() . '</div>';
+												}
+											}; ?>
+
+											<?php layers_post_meta( get_the_ID(), $layers_post_meta_to_display, 'footer' , 'meta-info push-bottom ' . ( '' != $this->check_and_return( $widget, 'design', 'column-background-color' ) && 'dark' == layers_is_light_or_dark( $this->check_and_return( $widget, 'design', 'column-background-color' ) ) ? 'invert' : '' ) );?>
+
+											<?php if( isset( $widget['show_call_to_action'] ) && $this->check_and_return( $widget , 'call_to_action' ) ) { ?>
+												<p><a href="<?php the_permalink(); ?>" class="button"><?php echo $widget['call_to_action']; ?></a></p>
+											<?php } // show call to action ?>
+										</div>
+									<?php } ?>
+								</article>
 							<?php } else {
 								/**
 								* Set Individual Column CSS
@@ -241,7 +287,8 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 											array(
 												'postid' => get_the_ID(),
 												'wrap_class' => 'thumbnail-media' .  ( ( isset( $column['design'][ 'imageratios' ] ) && 'image-round' == $column['design'][ 'imageratios' ] ) ? ' image-rounded' : '' ),
-												'size' => $use_image_ratio
+												'size' => $use_image_ratio,
+												'hide_href' => false
 											)
 										);
 									} // if Show Media ?>
@@ -258,16 +305,16 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 														echo '<div class="excerpt">';
 															the_content();
 														echo '</div>';
-                                                    } else if( isset( $widget['excerpt_length'] ) && 0 != $widget['excerpt_length'] && strlen( get_the_excerpt() ) > $widget['excerpt_length'] ){
-                                                        echo '<p class="excerpt">' . substr( get_the_excerpt() , 0 , $widget['excerpt_length'] ) . '&#8230;</p>';
-                                                    } else if( '' != get_the_excerpt() ){
-                                                        echo '<p class="excerpt">' . get_the_excerpt() . '</p>';
-                                                    }
-                                                }; ?>
-                                                <?php if( 'overlay' != $this->check_and_return( $widget, 'text_style' ) ) { ?>
-    												<?php layers_post_meta( get_the_ID(), $layers_post_meta_to_display, 'footer' , 'meta-info ' . ( '' != $this->check_and_return( $widget, 'design', 'column-background-color' ) && 'dark' == layers_is_light_or_dark( $this->check_and_return( $widget, 'design', 'column-background-color' ) ) ? 'invert' : '' ) );?>
-    											<?php } // Don't show meta if we have chosen overlay ?>
-                                                <?php if( isset( $widget['show_call_to_action'] ) && $this->check_and_return( $widget , 'call_to_action' ) ) { ?>
+													} else if( isset( $widget['excerpt_length'] ) && 0 != $widget['excerpt_length'] && strlen( get_the_excerpt() ) > $widget['excerpt_length'] ){
+														echo '<div class="excerpt">' . substr( get_the_excerpt() , 0 , $widget['excerpt_length'] ) . '&#8230;</div>';
+													} else if( '' != get_the_excerpt() ){
+														echo '<div class="excerpt">' . get_the_excerpt() . '</div>';
+													}
+												}; ?>
+												<?php if( 'overlay' != $this->check_and_return( $widget, 'text_style' ) ) { ?>
+													<?php layers_post_meta( get_the_ID(), $layers_post_meta_to_display, 'footer' , 'meta-info ' . ( '' != $this->check_and_return( $widget, 'design', 'column-background-color' ) && 'dark' == layers_is_light_or_dark( $this->check_and_return( $widget, 'design', 'column-background-color' ) ) ? 'invert' : '' ) );?>
+												<?php } // Don't show meta if we have chosen overlay ?>
+												<?php if( isset( $widget['show_call_to_action'] ) && $this->check_and_return( $widget , 'call_to_action' ) ) { ?>
 													<a href="<?php the_permalink(); ?>" class="button"><?php echo $widget['call_to_action']; ?></a>
 												<?php } // show call to action ?>
 											</div>
@@ -334,9 +381,7 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 			if( !empty( $instance ) ) $instance_defaults = array();
 
 			// Parse $instance
-			$instance = wp_parse_args( $instance, $instance_defaults );
-
-			extract( $instance, EXTR_SKIP );
+			$widget = wp_parse_args( $instance, $instance_defaults );
 
 			$design_bar_components = apply_filters( 'layers_' . $this->widget_id . '_widget_design_bar_components' , array(
 					'layout',
@@ -359,7 +404,7 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 									'type' => 'select',
 									'name' => $this->get_field_name( 'text_style' ) ,
 									'id' => $this->get_field_id( 'text_style' ) ,
-									'value' => ( isset( $text_style ) ) ? $text_style : NULL,
+									'value' => ( isset( $widget['text_style'] ) ) ? $widget['text_style'] : NULL,
 									'label' => __( 'Title &amp; Excerpt Position' , 'layerswp' ),
 									'options' => array(
 											'regular' => __( 'Regular' , 'layerswp' ),
@@ -370,79 +415,79 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 									'type' => 'checkbox',
 									'name' => $this->get_field_name( 'show_media' ) ,
 									'id' => $this->get_field_id( 'show_media' ) ,
-									'value' => ( isset( $show_media ) ) ? $show_media : NULL,
+									'value' => ( isset( $widget['show_media'] ) ) ? $widget['show_media'] : NULL,
 									'label' => __( 'Show Featured Images' , 'layerswp' )
 								),
 								'show_titles' => array(
 									'type' => 'checkbox',
 									'name' => $this->get_field_name( 'show_titles' ) ,
 									'id' => $this->get_field_id( 'show_titles' ) ,
-									'value' => ( isset( $show_titles ) ) ? $show_titles : NULL,
+									'value' => ( isset( $widget['show_titles'] ) ) ? $widget['show_titles'] : NULL,
 									'label' => __( 'Show  Post Titles' , 'layerswp' )
 								),
 								'show_excerpts' => array(
 									'type' => 'checkbox',
 									'name' => $this->get_field_name( 'show_excerpts' ) ,
 									'id' => $this->get_field_id( 'show_excerpts' ) ,
-									'value' => ( isset( $show_excerpts ) ) ? $show_excerpts : NULL,
+									'value' => ( isset( $widget['show_excerpts'] ) ) ? $widget['show_excerpts'] : NULL,
 									'label' => __( 'Show Post Excerpts' , 'layerswp' )
 								),
-                                'excerpt_length' => array(
-                                    'type' => 'number',
-                                    'name' => $this->get_field_name( 'excerpt_length' ) ,
-                                    'id' => $this->get_field_id( 'excerpt_length' ) ,
-                                    'min' => 0,
-                                    'max' => 10000,
-                                    'value' => ( isset( $excerpt_length ) ) ? $excerpt_length : NULL,
-                                    'label' => __( 'Excerpts Length' , 'layerswp' )
-                                ),
+								'excerpt_length' => array(
+									'type' => 'number',
+									'name' => $this->get_field_name( 'excerpt_length' ) ,
+									'id' => $this->get_field_id( 'excerpt_length' ) ,
+									'min' => 0,
+									'max' => 10000,
+									'value' => ( isset( $widget['excerpt_length'] ) ) ? $widget['excerpt_length'] : NULL,
+									'label' => __( 'Excerpts Length' , 'layerswp' )
+								),
 								'show_dates' => array(
 									'type' => 'checkbox',
 									'name' => $this->get_field_name( 'show_dates' ) ,
 									'id' => $this->get_field_id( 'show_dates' ) ,
-									'value' => ( isset( $show_dates ) ) ? $show_dates : NULL,
+									'value' => ( isset( $widget['show_dates'] ) ) ? $widget['show_dates'] : NULL,
 									'label' => __( 'Show Post Dates' , 'layerswp' )
 								),
 								'show_author' => array(
 									'type' => 'checkbox',
 									'name' => $this->get_field_name( 'show_author' ) ,
 									'id' => $this->get_field_id( 'show_author' ) ,
-									'value' => ( isset( $show_author ) ) ? $show_author : NULL,
+									'value' => ( isset( $widget['show_author'] ) ) ? $widget['show_author'] : NULL,
 									'label' => __( 'Show Post Author' , 'layerswp' )
 								),
 								'show_tags' => array(
 									'type' => 'checkbox',
 									'name' => $this->get_field_name( 'show_tags' ) ,
 									'id' => $this->get_field_id( 'show_tags' ) ,
-									'value' => ( isset( $show_tags ) ) ? $show_tags : NULL,
+									'value' => ( isset( $widget['show_tags'] ) ) ? $widget['show_tags'] : NULL,
 									'label' => __( 'Show Tags' , 'layerswp' )
 								),
 								'show_categories' => array(
 									'type' => 'checkbox',
 									'name' => $this->get_field_name( 'show_categories' ) ,
 									'id' => $this->get_field_id( 'show_categories' ) ,
-									'value' => ( isset( $show_categories ) ) ? $show_categories : NULL,
+									'value' => ( isset( $widget['show_categories'] ) ) ? $widget['show_categories'] : NULL,
 									'label' => __( 'Show Categories' , 'layerswp' )
 								),
 								'show_call_to_action' => array(
 									'type' => 'checkbox',
 									'name' => $this->get_field_name( 'show_call_to_action' ) ,
 									'id' => $this->get_field_id( 'show_call_to_action' ) ,
-									'value' => ( isset( $show_call_to_action ) ) ? $show_call_to_action : NULL,
+									'value' => ( isset( $widget['show_call_to_action'] ) ) ? $widget['show_call_to_action'] : NULL,
 									'label' => __( 'Show "Read More" Buttons' , 'layerswp' )
 								),
-                                'call_to_action' => array(
-                                    'type' => 'text',
-                                    'name' => $this->get_field_name( 'call_to_action' ) ,
-                                    'id' => $this->get_field_id( 'call_to_action' ) ,
-                                    'value' => ( isset( $call_to_action ) ) ? $call_to_action : NULL,
-                                    'label' => __( '"Read More" Text' , 'layerswp' )
-                                ),
+								'call_to_action' => array(
+									'type' => 'text',
+									'name' => $this->get_field_name( 'call_to_action' ) ,
+									'id' => $this->get_field_id( 'call_to_action' ) ,
+									'value' => ( isset( $widget['call_to_action'] ) ) ? $widget['call_to_action'] : NULL,
+									'label' => __( '"Read More" Text' , 'layerswp' )
+								),
 								'show_pagination' => array(
 									'type' => 'checkbox',
 									'name' => $this->get_field_name( 'show_pagination' ) ,
 									'id' => $this->get_field_id( 'show_pagination' ) ,
-									'value' => ( isset( $show_pagination ) ) ? $show_pagination : NULL,
+									'value' => ( isset( $widget['show_pagination'] ) ) ? $widget['show_pagination'] : NULL,
 									'label' => __( 'Show Pagination' , 'layerswp' )
 								),
 							)
@@ -455,7 +500,7 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 					'name' => $this->get_field_name( 'design' ),
 					'id' => $this->get_field_id( 'design' ),
 				), // Widget Object
-				$instance, // Widget Values
+				$widget, // Widget Values
 				$design_bar_components, // Standard Components
 				$design_bar_custom_components // Add-on Components
 			); ?>
@@ -476,7 +521,7 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 									'name' => $this->get_field_name( 'title' ) ,
 									'id' => $this->get_field_id( 'title' ) ,
 									'placeholder' => __( 'Enter title here' , 'layerswp' ),
-									'value' => ( isset( $title ) ) ? $title : NULL ,
+									'value' => ( isset( $widget['title'] ) ) ? $widget['title'] : NULL,
 									'class' => 'layers-text layers-large'
 								)
 							); ?>
@@ -485,11 +530,11 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 						<p class="layers-form-item">
 							<?php echo $this->form_elements()->input(
 								array(
-									'type' => 'textarea',
+									'type' => 'rte',
 									'name' => $this->get_field_name( 'excerpt' ) ,
 									'id' => $this->get_field_id( 'excerpt' ) ,
 									'placeholder' => __( 'Short Excerpt' , 'layerswp' ),
-									'value' => ( isset( $excerpt ) ) ? $excerpt : NULL ,
+									'value' => ( isset( $widget['excerpt'] ) ) ? $widget['excerpt'] : NULL,
 									'class' => 'layers-textarea layers-large'
 								)
 							); ?>
@@ -507,7 +552,7 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 										'name' => $this->get_field_name( 'category' ) ,
 										'id' => $this->get_field_id( 'category' ) ,
 										'placeholder' => __( 'Select a Category' , 'layerswp' ),
-										'value' => ( isset( $category ) ) ? $category : NULL ,
+										'value' => ( isset( $widget['category'] ) ) ? $widget['category'] : NULL,
 										'options' => $category_options,
 									)
 								); ?>
@@ -522,7 +567,7 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 									'type' => 'number',
 									'name' => $this->get_field_name( 'posts_per_page' ) ,
 									'id' => $this->get_field_id( 'posts_per_page' ) ,
-									'value' => ( isset( $posts_per_page ) ) ? $posts_per_page : NULL ,
+									'value' => ( isset( $widget['posts_per_page'] ) ) ? $widget['posts_per_page'] : NULL,
 									'min' => '-1',
 									'max' => '100'
 								)
@@ -536,7 +581,7 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 									'type' => 'select',
 									'name' => $this->get_field_name( 'order' ) ,
 									'id' => $this->get_field_id( 'order' ) ,
-									'value' => ( isset( $order ) ) ? $order : NULL ,
+									'value' => ( isset( $widget['order'] ) ) ? $widget['order'] : NULL,
 									'options' => $this->form_elements()->get_sort_options()
 								)
 							); ?>

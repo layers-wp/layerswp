@@ -45,4 +45,4 @@ get_header(); ?>
 		*/
 		layers_maybe_get_sidebar( 'right-woocommerce-sidebar', implode( ' ', layers_get_wrapper_class( 'right_woocommerce_sidebar', 'column pull-right sidebar span-3 no-gutter' ) ) ); ?>
 </section>
-<?php get_footer(); ?>
+<?php get_footer();

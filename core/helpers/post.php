@@ -72,7 +72,7 @@ if( !function_exists( 'layers_post_meta' ) ) {
 					if( !$the_tags ) continue;
 
 					foreach ( $the_tags as $tag ){
-						$tags[] = ' <a href="'.get_category_link( $tag->term_id ).'" title="' . esc_attr( sprintf( __( "View all posts tagged %s", LAYERS_THEME_SLUG ), $tag->name ) ) . '">'.$tag->name.'</a>';
+						$tags[] = ' <a href="'.get_term_link( $tag ).'" title="' . esc_attr( sprintf( __( "View all posts tagged %s", LAYERS_THEME_SLUG ), $tag->name ) ) . '">'.$tag->name.'</a>';
 					}
 					$meta_to_display[] = '<span class="meta-item meta-tags"><i class="l-tags"></i> ' . implode( __( ', ' , 'layerswp' ), $tags ) . '</span>';
 					break;
@@ -81,11 +81,11 @@ if( !function_exists( 'layers_post_meta' ) ) {
 		} // foreach $display
 
 		if( !empty( $meta_to_display ) ) {
-			echo '<' . $wrapper . ( ( '' != $wrapper_class ) ? ' class="' . $wrapper_class .'"' : NULL ) . '>';
+			echo '<' , $wrapper , ( ( '' != $wrapper_class ) ? ' class="' . $wrapper_class . '"' : NULL ) , '>';
 				echo '<p>';
 					echo implode( ' ' , $meta_to_display );
 				echo '</p>';
-			echo '</' . $wrapper . '>';
+			echo '</' , $wrapper , '>';
 		}
 	}
 } // layers_post_meta
@@ -118,7 +118,7 @@ if( !function_exists( 'layers_comment' ) ) {
 		<?php if( 2  < $depth && isset( $GLOBALS['lastdepth'] ) && $depth != $GLOBALS['lastdepth'] ) { ?>
 			<div class="row comments-nested push-top">
 		<?php } ?>
-		<div <?php comment_class( 'content push-bottom well' ); ?> id="comment-<?php comment_ID(); ?>">
+		<div <?php comment_class( 'content well' ); ?> id="comment-<?php comment_ID(); ?>">
 			<div class="avatar push-bottom clearfix">
 				<?php edit_comment_link(__('(Edit)' , 'layerswp' ),'<small class="pull-right">','</small>') ?>
 				<a class="avatar-image" href="">
@@ -185,11 +185,19 @@ add_action( 'wp_ajax_layers_backup_builder_pages', 'layers_backup_builder_pages'
 if( !function_exists( 'layers_post_class' ) ) {
 	function layers_post_class( $classes ) {
 
-		$classes[] = 'container';
+		global $woocommerce;
 
-	if( is_post_type_archive( 'product' ) || is_tax( 'product_cat' ) || is_tax( 'product_tag' ) ) {
-		$classes[] = 'column';
-				$classes[] = 'span-4';
+		if( is_single() )
+			$classes[] = 'container';
+
+		if( ( isset( $woocommerce ) && is_cart() && 'product' == get_post_type() ) || is_post_type_archive( 'product' ) || is_tax( 'product_cat' ) || is_tax( 'product_tag' ) ) {
+
+			$classes[] = 'column';
+			// Honor WC loop columns filter
+			$wc_span = 12 / apply_filters( 'loop_shop_columns', 4 );
+			$spans = array(12, 6, 3, 2, 1);
+			$span  = in_array($wc_span, $spans) ? $wc_span : 4;
+			$classes[] = 'span-'.$span;
 		}
 
 		return $classes;
@@ -402,7 +410,8 @@ if( !function_exists( 'layers_post_featured_media' ) ) {
 			'postid' => $post->ID,
 			'wrap' => 'div',
 			'wrap_class' => 'thumbnail',
-			'size' => 'medium'
+			'size' => 'medium',
+			'hide_href' => false
 		);
 
 		$args = wp_parse_args( $args, $defaults );
@@ -420,14 +429,18 @@ if( !function_exists( 'layers_post_featured_media' ) ) {
 			$output .= $featured_media;
 		}
 
-		if( !isset( $hide_href ) && !isset( $post_meta[ 'video-url' ] ) && ( !is_single() && !is_page_template( 'template-blog.php' ) ) ){
-			$output = '<a href="' .get_permalink( $postid ) . '">' . $output . '</a>';
+		if( TRUE != $hide_href ){
+			if( has_post_thumbnail() ) {
+				if( !is_single() ){
+					$output = '<a href="' .get_permalink( $postid ) . '">' . $output . '</a>';
+				}
+			}
 		}
 
 		if( '' != $wrap ) {
 			$output = '<'.$wrap. ( '' != $wrap_class ? ' class="' . $wrap_class . '"' : '' ) . '>' . $output . '</' . $wrap . '>';
 		}
 
-		return $output;
+		return apply_filters('layers_post_featured_media', $output);
 	}
 } // layers_post_featured_media

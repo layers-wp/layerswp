@@ -56,13 +56,13 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
     .swiper-slide .container{
         position: relative;
         top: 50%;
-        transform: translateY(-50%);
         -webkit-transform: translateY(-50%);
+        transform: translateY(-50%);
     }
     .swiper-slide.image-left .container,
     .swiper-slide.image-right .container{
-        transform: none;
         -webkit-transform: none;
+        transform: none;
     }
     .swiper-slide .copy-container{
         max-width: 1040px;
@@ -97,6 +97,10 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
     }
     .swiper-slide.image-top.text-center .excerpt{
         max-width: 745px;
+    }
+    .slide:not(.single-slide) .swiper-slide{
+        cursor: -webkit-grab;
+        cursor: -moz-grab;
     }
 
     /*---------------------------*/
@@ -173,15 +177,18 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
             overflow: hidden;
             text-indent: -999px;
             cursor: pointer;
+            -webkit-transform: scale(1);
             transform: scale(1);
             transition: all 0.2s ease-in-out;
         }
         .swiper-container .swiper-pagination-switch:hover{
+            -webkit-transform: scale(1.5);
             transform: scale(1.5);
             background: transparent;
             border: 2px solid #fff;
         }
         .swiper-container .swiper-pagination-switch.swiper-visible-switch.swiper-active-switch{
+            -webkit-transform: scale(1.5);
             transform: scale(1.5);
             background: transparent;
             border: 2px solid #fff;
@@ -232,7 +239,7 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
         display: block;
         float: left;
         margin-right: 10px;
-        max-width: 64px;
+        max-width: 54px;
         border-radius: 100%;
         position: relative;
         z-index: 1;
@@ -248,6 +255,7 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
     }
     .avatar .avatar-body .avatar-name{
         display: block;
+        font-weight: 700;
     }
     .avatar.middled{
         margin-left: auto;
@@ -342,6 +350,10 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
         margin-bottom: 26px;
         font-size: 1.4rem;
         font-weight: 700;
+    }
+    .story h6{
+        margin-bottom: 26px;
+        font-size: 1.4rem;
     }
     .story table{
         font-size: 1.4rem;
@@ -449,7 +461,7 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
         clear: both;
     }
     .comment .comment{
-        margin-top: 30px;
+        margin-top: 20px;
     }
     .comment .comment:last-child{
         margin-bottom: 0;
@@ -468,6 +480,14 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
         clear: both;
         margin-top: 6%;
     }
+    .comment-list .comment-respond{
+        margin-top: 0;
+        padding: 20px;
+        background: rgba(0, 0, 0, 0.05);
+    }
+    .comment-list .comment .comment-respond{
+        margin-top: 20px;
+    }
     .comment-reply-title{
         color: #323232;
         font-size: 2.5rem;
@@ -484,7 +504,7 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
     .form-allowed-tags{
         max-width: 660px;
         margin-bottom: 15px;
-        font-size: 1.4rem;
+        font-size: 1.2rem;
     }
     .form-allowed-tags code{
         padding: 0;
@@ -512,15 +532,10 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 /*- WORDPRESS WIDGETS -----------*/
 /*-------------------------------*/
 
-    .sidebar .widget li{
+    .sidebar .widget li:not(:last-child){
         padding: 0 0 6px;
         margin: 0 0 6px;
-        border-bottom: 1px solid rgba(0, 0, 0, 0.15);
-    }
-    .sidebar .widget li:last-child{
-        padding-bottom: 0;
-        margin-bottom: 0;
-        border-bottom: none;
+        border-bottom: 1px dotted rgba(0, 0, 0, 0.12);
     }
     .sidebar .widget li ul{
         margin: 6px 0 0 10px;
@@ -715,15 +730,15 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 
 /*-------------------------------*/
-/*- INVERT COMPONENTS ----------*/
+/*- INVERT COMPONENTS -----------*/
 /*-------------------------------*/
 
-.invert .meta-info{
-    color: rgba(255, 255, 255, 0.65);
-}
-.invert .meta-info a{
-    color: rgba(255, 255, 255, 0.85);
-}
-.invert .meta-info a:hover{
-    color: rgba(255, 255, 255, 1);
-}
+    .invert .meta-info{
+        color: rgba(255, 255, 255, 0.65);
+    }
+    .invert .meta-info a{
+        color: rgba(255, 255, 255, 0.85);
+    }
+    .invert .meta-info a:hover{
+        color: rgba(255, 255, 255, 1);
+    }

@@ -304,17 +304,18 @@ if( !function_exists( 'layers_get_page_title' ) ) {
 			$title_array['title'] = __( 'Search' , 'layerswp' );
 			$title_array['excerpt'] = get_search_query();
 		} elseif( is_tag() ) {
-			$tags = get_the_category();
-			$title_array['title'] = $tags[0]->name;
-			$title_array['excerpt'] = $tags[0]->description;
+			$title_array['title'] = single_tag_title( '' , false );
+			$title_array['excerpt'] = get_the_archive_description();
 		} elseif( !is_page() && is_category() ) {
-			$category = get_the_category();
-			$title_array['title'] = $category[0]->name;
-			$title_array['excerpt'] = $category[0]->description;
+			$title_array['title'] = single_cat_title( '', false );
+			$title_array['excerpt'] = get_the_archive_description();
 		} elseif (!is_page() && get_query_var('term' ) != '' ) {
 			$term = get_term_by( 'slug', get_query_var('term' ), get_query_var( 'taxonomy' ) );
 			$title_array['title'] = $term->name;
 			$title_array['excerpt'] = $term->description;
+		} elseif( is_author() ) {
+			$title_array['title'] = get_the_author();
+			$title_array['excerpt'] =  get_the_author_meta('user_description');
 		} elseif ( is_day() ) {
 			$title_array['title' ] = sprintf( __( 'Daily Archives: %s' , 'layerswp' ), get_the_date() );
 		} elseif ( is_month() ) {
@@ -359,10 +360,32 @@ if( !function_exists( 'layers_body_class' ) ) {
 			$classes[] = 'layers-header-overlay';
 		}
 
+		// Add class that spans across all post archives and single pages
+		if( layers_is_post_list_template() || is_archive() || is_singular( 'post' ) ) {
+			$classes[] = 'layers-post-page';
+		}
+
 		return apply_filters( 'layers_body_class', $classes );
 	}
 } // layers_body_class
 add_action( 'body_class', 'layers_body_class' );
+
+/**
+ * Check for a Layers Blog List Page
+ */
+if( !function_exists( 'layers_is_post_list' ) ) {
+	function layers_is_post_list_template() {
+		if(
+			is_page_template( 'template-blog.php' ) ||
+			is_page_template( 'template-both-sidebar.php' ) ||
+			is_page_template( 'template-left-sidebar.php' ) ||
+			is_page_template( 'template-right-sidebar.php' ) ){
+			return TRUE;
+		} else {
+			return FALSE;
+		}
+	}
+}
 
 /**
  * Apply Customizer settings to site housing
@@ -383,7 +406,8 @@ if( !function_exists( 'layers_apply_customizer_styles' ) ) {
 		*/
 
 		// Opacity
-		$bg_opacity = ( layers_get_theme_mod( 'header-overlay') ) ? .5 : 1 ;
+		//$bg_opacity = ( layers_get_theme_mod( 'header-overlay') ) ? .5 : 1 ;
+		$bg_opacity = 1;
 
 		// Apply the BG Color
 		if( '' != $header_color ) {
@@ -505,7 +529,7 @@ if( !function_exists( 'layers_add_invert_class' ) ) {
  */
 if( !function_exists( 'layers_maybe_set_invert' ) ) {
 	function layers_maybe_set_invert( $color, $hook ) {
-		
+
 		if ( 'dark' == layers_is_light_or_dark( $color ) ){
 			return add_filter( $hook, 'layers_add_invert_class' );
 		}
@@ -588,7 +612,7 @@ if( !function_exists( 'layers_get_header_class' ) ) {
 if( !function_exists( 'layers_header_class' ) ) {
 	function layers_header_class( $class = '' ) {
 		// Separates classes with a single space, collates classes for body element
-		echo 'class="' . join( ' ', layers_get_header_class( $class ) ) . '"';
+		echo 'class="' , join( ' ', layers_get_header_class( $class ) ) , '"';
 	}
 } // layers_header_class
 
@@ -620,7 +644,7 @@ if( !function_exists( 'layers_get_site_wrapper_class' ) ) {
 if( !function_exists( 'layer_site_wrapper_class' ) ) {
 	function layer_site_wrapper_class( $class = '' ) {
 		// Separates classes with a single space, collates classes for body element
-		echo 'class="' . join( ' ', layers_get_site_wrapper_class( $class ) ) . '"';
+		echo 'class="' , join( ' ', layers_get_site_wrapper_class( $class ) ) , '"';
 	}
 } // layer_site_wrapper_class
 
@@ -652,7 +676,7 @@ if( !function_exists( 'layers_get_wrapper_content_class' ) ) {
 if( !function_exists( 'layers_wrapper_content_class' ) ) {
 	function layers_wrapper_content_class( $class = '' ) {
 		// Separates classes with a single space, collates classes for body element
-		echo 'class="' . join( ' ', layers_get_wrapper_content_class( $class ) ) . '"';
+		echo 'class="' , join( ' ', layers_get_wrapper_content_class( $class ) ) , '"';
 	}
 }
 
@@ -715,7 +739,7 @@ if( !function_exists( 'layers_get_center_column_class' ) ) {
 if( !function_exists( 'layers_center_column_class' ) ) {
 	function layers_center_column_class( $class = '' ) {
 		// Separates classes with a single space, collates classes for body element
-		echo 'class="' . join( ' ', layers_get_center_column_class( $class ) ) . '"';
+		echo 'class="' , join( ' ', layers_get_center_column_class( $class ) ) , '"';
 	}
 } // layers_center_column_class
 
@@ -728,7 +752,7 @@ if( !function_exists( 'layers_center_column_class' ) ) {
 if( !function_exists( 'layers_wrapper_class' ) ) {
 	function layers_wrapper_class( $key = '', $class = '' ) {
 
-		echo 'class="' . join( ' ', layers_get_wrapper_class( $key, $class ) ) . '"';
+		echo 'class="' , join( ' ', layers_get_wrapper_class( $key, $class ) ) , '"';
 	}
 }
 
@@ -866,7 +890,7 @@ if( !function_exists( 'layers_add_additional_header_scripts' ) ) {
 		$add_additional_header_scripts = apply_filters( 'layers_header_scripts' , layers_get_theme_mod( 'header-custom-scripts' ) );
 
 		if( '' != $add_additional_header_scripts ) {
-			echo '<script>' . trim( htmlspecialchars_decode(  $add_additional_header_scripts ) ) . '</script>';
+			echo '<script>' , trim( htmlspecialchars_decode(  $add_additional_header_scripts ) ) , '</script>';
 		}
 	}
 } // layers_add_additional_header_scripts
@@ -883,7 +907,7 @@ if( !function_exists( 'layers_add_additional_footer_scripts' ) ) {
 		$additional_footer_scripts = apply_filters( 'layers_footer_scripts' , layers_get_theme_mod( 'footer-custom-scripts' ) );
 
 		if( '' != $additional_footer_scripts ) {
-			echo '<script>' . stripslashes( htmlspecialchars_decode( $additional_footer_scripts ) ) . '</script>';
+			echo '<script>' , stripslashes( htmlspecialchars_decode( $additional_footer_scripts ) ) , '</script>';
 		}
 	}
 } // layers_add_additional_header_scripts
@@ -1058,7 +1082,7 @@ if( !function_exists( 'layers_inline_styles' ) ) {
 			default :
 
 				if ( is_array( $args ) ){
-					
+
 					if ( isset( $args['css'] ) ) {
 						if ( is_array( $args['css'] ) ){
 							foreach ( $args['css'] as $css_atribute => $css_value ) {
@@ -1071,13 +1095,15 @@ if( !function_exists( 'layers_inline_styles' ) ) {
 					}
 				}
 				else if ( is_string( $args ) ){
-					
+
 					$css .= $args;
 				}
 
 			break;
 
 		}
+
+		$css = apply_filters( 'layers_inline_' . $type . '_css' , $css, $args);
 
 		// Bail if no css is generated
 		if ( '' == trim( $css ) ) return false;
@@ -1381,3 +1407,40 @@ if ( ! function_exists( 'layers_allow_json_uploads' ) ) {
 
 // Add allowance for JSON to be added via the media uploader
 add_filter( 'upload_mimes', 'layers_allow_json_uploads' );
+
+/**
+ * Get Content & Get Excerpt helpers
+ *
+ * Helper is like WordPress the_content but considers RTE before returning content.
+ */
+
+if ( ! function_exists( 'layers_get_content' ) ) {
+	function layers_get_content( $content = '' ) {
+
+		// Remove 'wpautop' so RTE can be output cleanly. This assumes every content is an RTE (Rich Text Editor)
+		remove_filter( 'the_content', 'wpautop' );
+		$content = apply_filters( 'the_content', $content );
+		add_filter( 'the_content', 'wpautop' );
+		return $content;
+	}
+}
+if ( ! function_exists( 'layers_get_excerpt' ) ) {
+	function layers_get_excerpt( $content = '' ) {
+
+		remove_filter( 'the_excerpt', 'wpautop' );
+		$content = apply_filters( 'the_excerpt', $content );
+		add_filter( 'the_excerpt', 'wpautop' );
+		return $content;
+	}
+}
+
+if ( ! function_exists( 'layers_the_content' ) ) {
+	function layers_the_content( $content = '' ) {
+		echo layers_get_content( $content );
+	}
+}
+if ( ! function_exists( 'layers_the_excerpt' ) ) {
+	function layers_the_excerpt( $content = '' ) {
+		echo layers_get_excerpt( $content );
+	}
+}

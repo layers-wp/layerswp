@@ -34,7 +34,7 @@
 				<div class="row copyright">
 					<?php if( '' != layers_get_theme_mod( 'footer-copyright-text' ) ) {  ?>
 						<div class="column span-6">
-							<p class="site-text"><?php echo esc_html( layers_get_theme_mod( 'footer-copyright-text' ) ); ?></p>
+							<p class="site-text"><?php echo layers_get_theme_mod( 'footer-copyright-text' ); ?></p>
 						</div>
 					<?php } ?>
 					<div class="column span-6 clearfix t-right">

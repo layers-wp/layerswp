@@ -14,20 +14,21 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 /*- HEADER CART -------------*/
 .header-cart{
     display: inline-block;
+    padding: 0 4px;
     background: rgba(0, 0, 0, 0.3);
-    padding-left: 10px;
-    padding-right: 10px;
     position: relative;
     font-size: 1.4rem;
     border-radius: 3px;
     line-height: 40px;
+}
+.header-cart span{
+    padding: 0 4px;
 }
 .header-cart .cart{
     margin: 0;
     color: #fff;
 }
 .header-cart .amount{
-    margin-left: 5px;
     transition: all 0.2s ease-in-out;
     color: #fff;
 }
@@ -69,7 +70,7 @@ del .amount{
 /*- ON SALE SETUP -----------*/
 .onsale{
     padding: 2px 8px;
-    background: #777;
+    background: rgba(0, 0, 0, 0.2);
     color: #fff;
     font-size: 1.3rem;
     font-weight: 600;
@@ -347,6 +348,13 @@ p.stars span a:focus{
     div[itemprop="description"] p{
         margin-bottom: 16px;
     }
+
+        /*-------------------*/
+        /*- ON SALE VARIABLE */
+        .product-type-variable .purchase-options-container [itemprop="offers"] .price del{
+            display: block;
+            font-size: 1.4rem;
+        }
 
         /*-------------------*/
         /*- STOCK -----------*/
@@ -725,10 +733,19 @@ p.stars span a:focus{
         font-weight: 600;
     }
     .shipping-calculator-form{
-        margin-top: 15px;
+        margin-top: 10px;
     }
     .shipping-calculator-button{
         display: block;
+    }
+    .woocommerce-shipping-calculator p{
+        margin-bottom: 0;
+    }
+    .shipping-calculator-form .form-row{
+        margin-top: 5px;
+    }
+    .shipping-calculator-form button[name="calc_shipping"]{
+        margin-top: 5px;
     }
 
 /*---------------------------*/
@@ -876,6 +893,50 @@ p.stars span a:focus{
     .col2-set{
         overflow: hidden;
         margin-bottom: 40px;
+    }
+
+    .woocommerce[class*=' columns-'] .product{
+        float: left;
+        margin-right: 2%;
+        padding: 20px;
+        max-width: 100%;
+    }
+
+    @media only screen and (min-width: 481px) and (max-width: 768px){
+
+        .woocommerce.columns-2 .product,
+        .woocommerce.columns-3 .product,
+        .woocommerce.columns-4 .product{width: 49%;}
+
+        .woocommerce.columns-5 .product,
+        .woocommerce.columns-6 .product{width: 32%;}
+
+        .woocommerce.columns-2 .product:nth-child(2n+2),
+        .woocommerce.columns-3 .product:nth-child(2n+2),
+        .woocommerce.columns-4 .product:nth-child(2n+2),
+        .woocommerce.columns-5 .product:nth-child(3n+3),
+        .woocommerce.columns-6 .product:nth-child(3n+3){
+            margin-right: 0;
+        }
+
+    }
+
+    @media only screen and (min-width: 769px) {
+
+        .woocommerce.columns-2 .product{width: 49%;}
+        .woocommerce.columns-3 .product{width: 32%;}
+        .woocommerce.columns-4 .product{width: 23.5%;}
+        .woocommerce.columns-5 .product{width: 18.4%;}
+        .woocommerce.columns-6 .product{width: 15%;}
+
+        .woocommerce.columns-2 .product:nth-child(2n+2),
+        .woocommerce.columns-3 .product:nth-child(3n+3),
+        .woocommerce.columns-4 .product:nth-child(4n+4),
+        .woocommerce.columns-5 .product:nth-child(5n+5),
+        .woocommerce.columns-6 .product:nth-child(6n+6){
+            margin-right: 0;
+        }
+
     }
 
 /*---------------------------*/
@@ -1040,7 +1101,7 @@ p.stars span a:focus{
 
     .widget .cart_list li,
     .cart_list li{
-        border-bottom: 1px solid #ddd;
+        border-bottom: 1px dotted rgba(0, 0, 0, 0.12);
         padding-bottom: 10px;
         margin-bottom: 10px;
     }
@@ -1049,7 +1110,6 @@ p.stars span a:focus{
         margin: 3px 10px 0 0;
     }
     .cart_list .remove + a{
-        overflow: hidden;
         margin-bottom: 5px;
     }
     .cart_list .quantity{
@@ -1176,7 +1236,6 @@ p.stars span a:focus{
 .woocommerce-checkout .form-row .chosen-container{
     max-width: 500px;
 }
-
 
 /*-------------------------------*/
 /*- RESPONSIVE ------------------*/
@@ -1313,4 +1372,40 @@ p.stars span a:focus{
         width: 49%;
     }
 
+    /*---------------------------*/
+    /*- DEMO STORE --------------*/
+    .demo_store{
+        display: block;
+        width: 100%;
+        max-width: 1000px;
+        margin-left: -500px;
+        padding: 5px;
+        background: rgba(0, 0, 0, 0.4);
+        border-radius: 3px;
+        position: fixed;
+        left: 50%;
+        bottom: 10px;
+        z-index: 99;
+        color: #fff;
+        text-align: center;
+        font-weight: 700;
+    }
+    .woocommerce-demo-store .footer-site{
+        padding-bottom: 60px;
+    }
+
 }
+
+/*-------------------------------*/
+/*- INVERT COMPONENTS -----------*/
+/*-------------------------------*/
+
+    .invert .amount{
+        color: rgba(255, 255, 255, 0.95);
+    }
+    .invert .price del{
+        color: rgba(255, 255, 255, 0.80);
+    }
+    .invert del .amount{
+        color: rgba(255, 255, 255, 0.80);
+    }

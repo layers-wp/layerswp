@@ -137,13 +137,13 @@ $theme_info = wp_get_theme( 'layerswp' ); ?>
 							</p>
 						</div>
 						<div class="layers-button-well">
-							<a href="http://themeforest.net/attributes/framework/Layers%20WP" target="_blank" class="layers-button btn-primary">
+							<a href="http://bit.ly/layers-themes" target="_blank" class="layers-button btn-primary">
 								<?php _e( 'Themes' , 'layerswp' ); ?>
 							</a>
-							<a href="http://codecanyon.net/search?term=skins+layers+wp+style+kits" target="_blank" class="layers-button btn-primary">
+							<a href="http://bit.ly/layers-stylekits" target="_blank" class="layers-button btn-primary">
 								<?php _e( 'Style Kits' , 'layerswp' ); ?>
 							</a>
-							<a href="http://codecanyon.net/attributes/compatible-with/Layers%20WP" target="_blank" class="layers-button btn-primary">
+							<a href="http://bit.ly/layers-extensions" target="_blank" class="layers-button btn-primary">
 								<?php _e( 'Extensions' , 'layerswp' ); ?>
 							</a>
 						</div>
@@ -245,11 +245,18 @@ $theme_info = wp_get_theme( 'layerswp' ); ?>
 							<?php _e( 'Sign up to our monthly newsletter to find out when we launch new features, products.' , 'layerswp' ); ?>
 						</p>
 					</div>
-					<form action="http://oboxdesign.createsend.com/t/r/s/ittddii/" method="post" id="subForm">
-						<div class="layers-form-item layers-form-inline">
-							<label for="fieldEmail"><?php _e( 'Email Address' , 'layerswp' ); ?></label>
-							<input id="fieldEmail" name="cm-ittddii-ittddii" type="email" placeholder="john@smith.com" />
-							<button class="layers-button btn-primary" type="submit">Subscribe</button>
+					<form action="//oboxthemes.us10.list-manage.com/subscribe/post?u=5b9a020fcf797987098cc7bca&amp;id=069cfedbbc" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+						<div id="mc_embed_signup_scroll" class="layers-form-item layers-form-inline">
+							<div class="mc-field-group">
+								<label for="mce-EMAIL"><?php _e( 'Email Address' , 'layerswp' ); ?></label>
+								<input type="email" value="" name="EMAIL" class="required email layers-form-inline input" id="mce-EMAIL">
+								<button type="submit" name="subscribe" id="mc-embedded-subscribe" class="layers-button btn-primary"><?php _e( 'Subscribe' , 'layerswp' ); ?></button><input type="hidden" name="SIGNUP" id="SIGNUP" value="layerswp" />
+							</div>
+							<div id="mce-responses" class="clear">
+								<div class="response" id="mce-error-response" style="display:none"></div>
+								<div class="response" id="mce-success-response" style="display:none"></div>
+							</div> <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+							<div style="position: absolute; left: -5000px;"><input type="text" name="b_5b9a020fcf797987098cc7bca_069cfedbbc" tabindex="-1" value=""></div>
 						</div>
 					</form>
 				</div>

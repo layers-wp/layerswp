@@ -68,11 +68,7 @@ if( !class_exists( 'Layers_Onboarding_Ajax' ) ) {
 							<div class="layers-panel">
 								<div class="layers-content">
 									<div class="layers-section-title layers-tiny">
-										<h4 class="layers-heading">
-											<a href="<?php echo $item->get_permalink(); ?>">
-												<?php echo esc_attr( $item->get_title() ); ?>
-											</a>
-										</h4>
+										<h4 class="layers-heading"><a href="<?php echo $item->get_permalink(); ?>"><?php echo esc_attr( $item->get_title() ); ?></a></h4>
 									</div>
 									<div class="layers-excerpt">
 										<?php echo $item->get_description(); ?>

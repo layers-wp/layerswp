@@ -254,7 +254,7 @@ $theme_info = wp_get_theme( 'layerswp' ); ?>
 			<h3 class="layers-heading"><?php _e( 'Layers News' , 'layerswp' ); ?></h3>
 		</div>
 
-		<div class="layers-row" data-layers-feed="news" data-layers-feed-count="3">
+		<div id="layers-dashboard-news-feed" class="layers-row" data-layers-feed="news" data-layers-feed-count="3">
 			<div class="layers-column layers-span-3" data-loading="1">
 				<div class="layers-panel">
 					<div class="layers-content">
@@ -272,7 +272,7 @@ $theme_info = wp_get_theme( 'layerswp' ); ?>
 							<?php _e( 'Sign up to our monthly newsletter to find out when we launch new features, products.' , 'layerswp' ); ?>
 						</p>
 					</div>
-					<form action="//oboxthemes.us10.list-manage.com/subscribe/post?u=5b9a020fcf797987098cc7bca&amp;id=069cfedbbc" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+					<form id="layers-dashboard-newsletter" action="//oboxthemes.us10.list-manage.com/subscribe/post?u=5b9a020fcf797987098cc7bca&amp;id=069cfedbbc" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" target="_blank"  validate>
 						<div id="mc_embed_signup_scroll" class="layers-form-item layers-form-inline">
 							<div class="mc-field-group">
 								<label for="mce-EMAIL"><?php _e( 'Email Address' , 'layerswp' ); ?></label>

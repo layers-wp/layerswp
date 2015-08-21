@@ -65,7 +65,7 @@ class Layers_Intercom {
 		/**
 		 * User centric data
 		 */
-		$json[ 'email' ] = $current_user->user_email;
+		$json[ 'email' ] = (string) $current_user->user_email;
 		$json[ 'name' ] = (string) $current_user->display_name;
 		$json[ 'created_at' ] = strtotime( $current_user->user_registered );
 
@@ -102,18 +102,17 @@ class Layers_Intercom {
 		 * Important plugins
 		 */
 
-		$json[ 'Easy Digital Downloads' ] = (string) ( class_exists( 'Easy_Digital_Downloads' ) ? "Yes" : "No" );
-		$json[ 'WooCommerce' ] = (string) ( class_exists( 'WooCommerce' ) ? "Yes" : "No" );
-		$json[ 'DevKit' ] = (string) ( class_exists( 'Layers_DevKit' ) ? "Yes" : "No" );
-		$json[ 'ColorKit' ] = (string) ( class_exists( 'Layers_ColorKit' ) ? "Yes" : "No" );
-		$json[ 'StoreKit' ] = (string) ( class_exists( 'Layers_WooCommerce' ) ? "Yes" : "No" );
+		$json[ 'Easy Digital Downloads' ] = (bool) ( class_exists( 'Easy_Digital_Downloads' ) ? 1 : 0 );
+		$json[ 'WooCommerce' ] = (bool) ( class_exists( 'WooCommerce' ) ? 1 : 0 );
+		$json[ 'DevKit' ] = (bool) ( class_exists( 'Layers_DevKit' ) ? 1 : 0 );
+		$json[ 'ColorKit' ] = (bool) ( class_exists( 'Layers_ColorKit' ) ? 1 : 0 );
+		$json[ 'StoreKit' ] = (bool) ( class_exists( 'Layers_WooCommerce' ) ? 1 : 0 );
+		$json[ 'Layers Updater' ] = (bool) ( class_exists( 'Layers_Updater' ) ||  is_plugin_active_for_network( 'Layers_Updater') ? 1 : 0 );
 
 		// jsonify the settings
-		$settings_json = json_encode( (object) $json ); ?>
+		$settings_json = json_encode( (object) $json, ( defined( 'JSON_PRETTY_PRINT' ) ? JSON_PRETTY_PRINT : FALSE ) ); ?>
 
-		<script>
-			window.intercomSettings = <?php echo $settings_json; ?>;
-		</script>
+		<script>window.intercomSettings = <?php echo $settings_json; ?>;</script>
 
 		<script>(function(){var w=window;var ic=w.Intercom;if(typeof ic==="function"){ic('reattach_activator');ic('update',intercomSettings);}else{var d=document;var i=function(){i.c(arguments)};i.q=[];i.c=function(args){i.q.push(args)};w.Intercom=i;function l(){var s=d.createElement('script');s.type='text/javascript';s.async=true;s.src='https://widget.intercom.io/widget/<?php echo $this->app_id; ?>';var x=d.getElementsByTagName('script')[0];x.parentNode.insertBefore(s,x);}if(w.attachEvent){w.attachEvent('onload',l);}else{w.addEventListener('load',l,false);}}})()</script>
 	<?php }

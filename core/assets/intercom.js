@@ -40,4 +40,9 @@ jQuery(function ( $ ) {
                 "Link URL": $(this).attr( 'href' ),
             });
     })
+
+    $(document).on( 'click', '.layers-get-updater', function(){
+
+         $(document).layers_intercom_event( 'clicked layers updater link' );
+    })
 });

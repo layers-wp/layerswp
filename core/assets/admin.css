@@ -244,25 +244,28 @@ div#widgets-right div[id*='obox-layers-builder']{
     .layers-product:nth-child(3n+3){
         margin-right: 0;
     }
+    .layers-product:hover{
+        border: 1px solid #009eec;
+    }
     .layers-product-screenshot{
-        height: 350px;
+        height: 296px;
         overflow-x: hidden;
     }
     .layers-product-screenshot img{
         width: 100%;
     }
     .layers-product-name{
-        font-size: 15px;
-        font-weight: 600;
         height: 18px;
         margin: 0px;
         padding: 15px;
         overflow: hidden;
-        white-space: nowrap;
-        text-overflow: ellipsis;
         background: rgba(255, 255, 255, 0.65);
         border-top: 1px solid #dedede;
+        font-size: 15px;
+        font-weight: 600;
         color: #000;
+        white-space: nowrap;
+        text-overflow: ellipsis;
     }
     .layers-product-actions{
         position: absolute;
@@ -273,11 +276,11 @@ div#widgets-right div[id*='obox-layers-builder']{
     }
 
     .blank-product{
-        border: 4px dashed #ccc;
+        border: 2px dashed #ccc;
         background: #fff;
     }
     .blank-product .layers-product-screenshot{
-        height: 345px;
+        height: 295px;
     }
     .blank-product .layers-product-name{
         background: none;
@@ -285,8 +288,8 @@ div#widgets-right div[id*='obox-layers-builder']{
         border-top: none;
     }
     .blank-product:hover{
-        background-color: #009DF3;
-        border-color: transparent;
+        background-color: #009eec;
+        border: 2px dashed transparent;
         transition: all 0.2s ease-in-out;
     }
     .blank-product:hover .layers-product-name{

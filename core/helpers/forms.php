@@ -271,7 +271,7 @@ class Layers_Form_Elements {
 					<div class="layers-image-display layers-image-upload-button">
 						<!-- Image -->
 						<?php if( isset( $input->value ) ) {
-							$img = wp_get_attachment_image_src( $input->value , 'thumbnail' );?>
+							$img = wp_get_attachment_image_src( $input->value , 'medium' );?>
 							<img data-src="<?php echo $img[0]; ?>" />
 						<?php } ?>
 						<!-- Remove button -->

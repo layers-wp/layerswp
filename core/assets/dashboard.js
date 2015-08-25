@@ -157,7 +157,7 @@ jQuery(function($) {
 
 		$(document).on( 'submit', '#layers-dashboard-newsletter', function(){
 
-			 $(document).layers_intercom_event( 'clicked to up to newsletter' );
+			 $(document).layers_intercom_event( 'submitted newsletter signup' );
 		})
 	}
 

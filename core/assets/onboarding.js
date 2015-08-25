@@ -18,190 +18,190 @@
 
 jQuery(function($) {
 
-    function layers_onboarding_load_anchors(){
+	function layers_onboarding_load_anchors(){
 
-        $anchor_count = $( '.layers-onboard-slide' ).length;
+		$anchor_count = $( '.layers-onboard-slide' ).length;
 
-        if( 1 == $anchor_count ) return;
+		if( 1 == $anchor_count ) return;
 
-        for( $i = 0; $i < $anchor_count; $i++ ){
+		for( $i = 0; $i < $anchor_count; $i++ ){
 
-            $title = $( '.layers-onboard-slide' ).eq( $i ).find( '.layers-section-title h3' ).text();
+			$title = $( '.layers-onboard-slide' ).eq( $i ).find( '.layers-section-title h3' ).text();
 
-            $anchor_template = $( '<a href="" />' );
-            $anchor_template.addClass( 'layers-dot layers-tooltip' );
-            if( 0 == $i ){
-                $anchor_template.addClass( 'dot-active' );
-            }
+			$anchor_template = $( '<a href="" />' );
+			$anchor_template.addClass( 'layers-dot layers-tooltip' );
+			if( 0 == $i ){
+				$anchor_template.addClass( 'dot-active' );
+			}
 
-            $anchor_template.attr( 'title' , $title.trim() );
+			$anchor_template.attr( 'title' , $title.trim() );
 
-            $( '.onboard-nav-dots' ).append( $anchor_template );
+			$( '.onboard-nav-dots' ).append( $anchor_template );
 
-        };
-    }
+		};
+	}
 
-    layers_onboarding_load_anchors();
+	layers_onboarding_load_anchors();
 
-    $(window).on( 'resize, load',function(){
-        $( '.layers-template-selector' ).css( 'max-height', $( '#wpbody-content' ).height() - 150 );
-    });
+	$(window).on( 'resize, load',function(){
+		$( '.layers-template-selector' ).css( 'max-height', $( '#wpbody-content' ).height() - 150 );
+	});
 
-    $(document).on( 'click' , '.onbard-next-step' , function(e){
-        e.preventDefault();
+	$(document).on( 'click' , '.onbard-next-step' , function(e){
+		e.preventDefault();
 
-        // "Hi Mom"
-        $that = $(this);
+		// "Hi Mom"
+		$that = $(this);
 
-        if( $that.hasClass( 'disable' ) ) return;
+		if( $that.hasClass( 'disable' ) ) return;
 
-        $form = $that.closest( '.layers-onboard-slide' );
+		$form = $that.closest( '.layers-onboard-slide' );
 
-        $action = $form.find( 'input[name="action"]' ).val();
+		$action = $form.find( 'input[name="action"]' ).val();
 
-        if( 'layers_select_preset' == $action ) {
+		if( 'layers_select_preset' == $action ) {
 
-            $progress_indicator = $form.find( '.layers-save-progress' );
-            $progress_indicator_message = $progress_indicator.data( 'busy-message' );
+			$progress_indicator = $form.find( '.layers-save-progress' );
+			$progress_indicator_message = $progress_indicator.data( 'busy-message' );
 
-            $that.text( $progress_indicator_message ).attr( 'disabled' , 'disabled' ).addClass( 'disable' );
+			$that.text( $progress_indicator_message ).attr( 'disabled' , 'disabled' ).addClass( 'disable' );
 
-            $id = $( 'input[name="layes-preset-layout"]:checked' ).val();
+			$id = $( 'input[name="layes-preset-layout"]:checked' ).val();
 
-            // No template selected
-            if( ! $id ){ return false; }
+			// No template selected
+			if( ! $id ){ return false; }
 
-            $title = $('#layers-preset-layout-' + $id + '-title' ).val();
-            $widget_data = $('#layers-preset-layout-' + $id + '-widget_data' ).val();
+			$title = $('#layers-preset-layout-' + $id + '-title' ).val();
+			$widget_data = $('#layers-preset-layout-' + $id + '-widget_data' ).val();
 
-            var $page_data = {
-                action: 'layers_create_builder_page_from_preset',
-                post_title: ( undefined == $( '#preset_page_title' ) ? false : $( '#preset_page_title' ).val() ),
-                widget_data: $.parseJSON( $widget_data ),
-                nonce: layers_onboarding_params.preset_layout_nonce
-            };
+			var $page_data = {
+				action: 'layers_create_builder_page_from_preset',
+				post_title: ( undefined == $( '#preset_page_title' ) ? false : $( '#preset_page_title' ).val() ),
+				widget_data: $.parseJSON( $widget_data ),
+				nonce: layers_onboarding_params.preset_layout_nonce
+			};
 
-            /** Log Event on Intercom **/
-            if( Intercom ){
-                $(document).layers_intercom_event(
-                    'created layers page',
-                    {
-                        "Template Type": $title,
-                        "Page Name": ( undefined == $( '#preset_page_title' ) ? false : $( '#preset_page_title' ).val() )
-                    }
-                );
-                $(document).layers_intercom_event( 'completed onboarding' );
-            }
+			/** Log Event on Intercom **/
+			if( Intercom ){
+				$(document).layers_intercom_event(
+					'created layers page',
+					{
+						"Template Type": $title,
+						"Page Name": ( undefined == $( '#preset_page_title' ) ? false : $( '#preset_page_title' ).val() )
+					}
+				);
+				$(document).layers_intercom_event( 'completed onboarding' );
+			}
 
-            jQuery.post(
-                ajaxurl,
-                $page_data,
-                function(data){
+			jQuery.post(
+				ajaxurl,
+				$page_data,
+				function(data){
 
-                    $results = $.parseJSON( data );
+					$results = $.parseJSON( data );
 
-                    $that.text( onboardingi18n.step_done_message );
+					$that.text( onboardingi18n.step_done_message );
 
-                    setTimeout( function(){ window.location.assign( $results.customizer_location ); }, 350 );
-                }
-            );
+					setTimeout( function(){ window.location.assign( $results.customizer_location ); }, 350 );
+				}
+			);
 
-        } else if( undefined !== $action ) {
+		} else if( undefined !== $action ) {
 
-            $progress_indicator = $form.find( '.layers-save-progress' );
-            $progress_indicator_message = $progress_indicator.data( 'busy-message' );
-            $progress_indicator.text( $progress_indicator_message ).hide().removeClass( 'layers-hide' ).fadeIn(150);
+			$progress_indicator = $form.find( '.layers-save-progress' );
+			$progress_indicator_message = $progress_indicator.data( 'busy-message' );
+			$progress_indicator.text( $progress_indicator_message ).hide().removeClass( 'layers-hide' ).fadeIn(150);
 
-            $data = $form.find( 'input, textarea, select' ).serialize();
+			$data = $form.find( 'input, textarea, select' ).serialize();
 
-            $.post(
-                ajaxurl,
-                {
-                    action: $action,
-                    data: $data,
-                    layers_onboarding_update_nonce: layers_onboarding_params.update_option_nonce
+			$.post(
+				ajaxurl,
+				{
+					action: $action,
+					data: $data,
+					layers_onboarding_update_nonce: layers_onboarding_params.update_option_nonce
 
-                },
-                function(data){
+				},
+				function(data){
 
-                    $results = $.parseJSON( data );
-                    if( true == $results.success ) {
-                        $form.find( '.layers-save-progress' ).text( onboardingi18n.step_done_message );
+					$results = $.parseJSON( data );
+					if( true == $results.success ) {
+						$form.find( '.layers-save-progress' ).text( onboardingi18n.step_done_message );
 
-                        setTimeout( function(){
-                            $form.find( '.layers-save-progress' ).hide();
-                            layers_next_onboarding_slide()
-                        }, 350 );
-                    }
+						setTimeout( function(){
+							$form.find( '.layers-save-progress' ).hide();
+							layers_next_onboarding_slide()
+						}, 350 );
+					}
 
-                }
-            ) // $.post
-        } else {
-            // Go to the next slide
-            layers_next_onboarding_slide();
-        }
+				}
+			) // $.post
+		} else {
+			// Go to the next slide
+			layers_next_onboarding_slide();
+		}
 
-    });
+	});
 
-    $(document).on( 'click' , '#layers-onboard-skip' , function(e){
-        e.preventDefault();
+	$(document).on( 'click' , '#layers-onboard-skip' , function(e){
+		e.preventDefault();
 
-        // "Hi Mom"
-        $that = $(this);
+		// "Hi Mom"
+		$that = $(this);
 
-        // Go to the next slide
-        layers_next_onboarding_slide();
-    });
+		// Go to the next slide
+		layers_next_onboarding_slide();
+	});
 
-    $(document).on( 'click' , '#layers-onboard-anchors a' , function(e){
-        e.preventDefault();
+	$(document).on( 'click' , '#layers-onboard-anchors a' , function(e){
+		e.preventDefault();
 
-        // "Hi Mom"
-        $that = $(this);
+		// "Hi Mom"
+		$that = $(this);
 
-        $i = $that.index();
+		$i = $that.index();
 
-        layers_change_onboarding_slide( $i );
-    });
+		layers_change_onboarding_slide( $i );
+	});
 
-    $( 'input[name="layes-preset-layout"]' ).on( 'change' , function(e){
-        // "Hi Mom"
-        $that = $(this);
+	$( 'input[name="layes-preset-layout"]' ).on( 'change' , function(e){
+		// "Hi Mom"
+		$that = $(this);
 
-        // Enable the button when preset seleted
-        if( $( 'input[name="layes-preset-layout"]:checked' ).length ){
-            $( '.layers-proceed-to-customizer' ).removeClass('disable');
-        }
-        else{
-            $( '.layers-proceed-to-customizer' ).addClass('disable');
-        }
-    });
+		// Enable the button when preset seleted
+		if( $( 'input[name="layes-preset-layout"]:checked' ).length ){
+			$( '.layers-proceed-to-customizer' ).removeClass('disable');
+		}
+		else{
+			$( '.layers-proceed-to-customizer' ).addClass('disable');
+		}
+	});
 
-    function layers_next_onboarding_slide(){
-        $current = $( '#layers-onboard-anchors a.dot-active').index();
-        $next = (+$current+1);
+	function layers_next_onboarding_slide(){
+		$current = $( '#layers-onboard-anchors a.dot-active').index();
+		$next = (+$current+1);
 
-        layers_change_onboarding_slide( $next );
-    }
+		layers_change_onboarding_slide( $next );
+	}
 
-    function layers_change_onboarding_slide( $i ){
+	function layers_change_onboarding_slide( $i ){
 
-        $max = $( '.onboard-nav-dots a' ).length-1;
+		$max = $( '.onboard-nav-dots a' ).length-1;
 
-        if( $i == $max ) {
-            $('#layers-onboard-skip').fadeOut();
-        } else {
-            $('#layers-onboard-skip').fadeIn();
-        }
+		if( $i == $max ) {
+			$('#layers-onboard-skip').fadeOut();
+		} else {
+			$('#layers-onboard-skip').fadeIn();
+		}
 
-        if( $i > $max ) return;
+		if( $i > $max ) return;
 
-        // Update anchor classes
-        $( '#layers-onboard-anchors a').eq( $i ).addClass( 'dot-active' ).siblings().removeClass( 'dot-active' );
+		// Update anchor classes
+		$( '#layers-onboard-anchors a').eq( $i ).addClass( 'dot-active' ).siblings().removeClass( 'dot-active' );
 
-        // Update slider classes
-        $( '.layers-onboard-slide' ).eq( $i ).addClass( 'layers-onboard-slide-current' ).removeClass( 'layers-onboard-slide-inactive' ).siblings().removeClass( 'layers-onboard-slide-current' ).addClass( 'layers-onboard-slide-inactive' );
+		// Update slider classes
+		$( '.layers-onboard-slide' ).eq( $i ).addClass( 'layers-onboard-slide-current' ).removeClass( 'layers-onboard-slide-inactive' ).siblings().removeClass( 'layers-onboard-slide-current' ).addClass( 'layers-onboard-slide-inactive' );
 
-        $( '.layers-onboard-slide' ).eq( $i ).find( 'input, select, textarea, .layers-image-upload-button' ).first().focus();
-    }
+		$( '.layers-onboard-slide' ).eq( $i ).find( 'input, select, textarea, .layers-image-upload-button' ).first().focus();
+	}
 });

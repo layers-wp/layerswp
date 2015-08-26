@@ -82,7 +82,7 @@ jQuery(function($) {
 			};
 
 			/** Log Event on Intercom **/
-			if( Intercom ){
+			if( 'undefined' !== typeof Intercom  ){
 				$(document).layers_intercom_event(
 					'created layers page',
 					{
@@ -107,7 +107,6 @@ jQuery(function($) {
 			);
 
 		} else if( undefined !== $action ) {
-
 			$progress_indicator = $form.find( '.layers-save-progress' );
 			$progress_indicator_message = $progress_indicator.data( 'busy-message' );
 			$progress_indicator.text( $progress_indicator_message ).hide().removeClass( 'layers-hide' ).fadeIn(150);
@@ -123,7 +122,6 @@ jQuery(function($) {
 
 				},
 				function(data){
-
 					$results = $.parseJSON( data );
 					if( true == $results.success ) {
 						$form.find( '.layers-save-progress' ).text( onboardingi18n.step_done_message );

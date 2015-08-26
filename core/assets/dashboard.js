@@ -60,21 +60,26 @@ jQuery(function($) {
 		$container = $that.closest( '.layers-dashboard-setup-form' );
 		$form = $container.find( '.layers-content' );
 
-		$data = $form.find( 'input, textarea, select' ).serialize();
+		$form_data = $form.find( 'input, textarea, select' ).serialize();
 
 		$action = $that.data( 'submit-action' );
 
-		$.post(
-				ajaxurl,
-				{
+		$data = {
 					action: $action,
 					setup_step_key: $that.data( 'setup-step-key' ),
-					data: $data,
-					layers_set_theme_mod_nonce: layers_onboarding_params.set_theme_mod_nonce
+					data: $form_data
+				};
 
-				},
+		if( 'layers_onboarding_update_options' == $action ){
+			$data.layers_onboarding_update_nonce = layers_onboarding_params.update_option_nonce
+		} else {
+			$data.layers_set_theme_mod_nonce = layers_onboarding_params.set_theme_mod_nonce
+		}
+
+		$.post(
+				ajaxurl,
+				$form_data,
 				function(data){
-
 					$results = $.parseJSON( data );
 
 					$container.hide().next().hide().removeClass( 'layers-hide' ).fadeIn( 250 );
@@ -98,11 +103,47 @@ jQuery(function($) {
 			$( '.layers-site-setup-panel' ).hide();
 
 			/** Log Event on Intercom **/
-			if( Intercom ){
+			if( 'undefined' !== typeof Intercom  ){
 				$(document).layers_intercom_event( 'completed dashboard site setup' );
 			}
 		}
 	}
+
+	/**
+	* 1.d - Intercom Switch
+	*/
+	$(document).on( 'click', '#layers-dashboard-page a[data-intercom-switch-action]', function(e){
+
+		e.preventDefault();
+
+		//Hi Mom!
+		$that = $(this);
+
+		$container = $that.closest( '.layers-dashboard-setup-form' );
+
+		$form = $container.find( '.layers-content' );
+
+		$form_data = $form.find( 'input, textarea, select' ).serialize();
+
+		$action = $that.data( 'intercom-switch-action' );
+
+		$form_data = {
+					action: $action,
+					setup_step_key: $that.data( 'setup-step-key' ),
+					data: $form_data
+				};
+
+		$form_data.layers_onboarding_update_nonce = layers_onboarding_params.update_option_nonce;
+
+		$.post(
+				ajaxurl,
+				$form_data,
+				function(data){
+
+					$results = $.parseJSON( data );
+				}
+			); // $.post
+	});
 
 	/**
 	* 2 - Dashboard Feeds
@@ -140,7 +181,7 @@ jQuery(function($) {
 	/**
 	* 2 - Log "Viewed Dashboard" Event on Intercom
 	*/
-	if( Intercom ){
+	if( 'undefined' !== typeof Intercom  ){
 
 		$('#layers-dashboard-page').each( function(){
 

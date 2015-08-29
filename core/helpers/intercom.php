@@ -68,6 +68,7 @@ class Layers_Intercom {
 		$json[ 'email' ] = (string) $current_user->user_email;
 		$json[ 'name' ] = (string) $current_user->display_name;
 		$json[ 'created_at' ] = strtotime( $current_user->user_registered );
+		$json[ 'company' ] = strtotime( get_bloginfo( 'name' ) );
 
 
 		/**

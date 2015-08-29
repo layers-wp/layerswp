@@ -139,8 +139,8 @@ jQuery(function($) {
 				ajaxurl,
 				$form_data,
 				function(data){
-
 					$results = $.parseJSON( data );
+					location.reload();
 				}
 			); // $.post
 	});
@@ -185,7 +185,7 @@ jQuery(function($) {
 
 		$('#layers-dashboard-page').each( function(){
 
-			$(document).layers_intercom_event( 'viewed layers dashboard' );
+			Intercom( 'update', { "Viewed Dashboard": true } );
 		})
 
 		$(document).on( 'click', '#layers-dashboard-news-feed a', function(){

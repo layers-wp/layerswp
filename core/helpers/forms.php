@@ -270,7 +270,10 @@ class Layers_Form_Elements {
 				<section class="layers-image-container <?php if( isset( $input->value ) && NULL != $input->value ) echo 'layers-has-image'; ?>">
 					<div class="layers-image-display layers-image-upload-button">
 						<!-- Image -->
-						<?php if( isset( $input->value ) ) echo wp_get_attachment_image( $input->value , 'medium' ); ?>
+						<?php if( isset( $input->value ) ) {
+							$img = wp_get_attachment_image_src( $input->value , 'medium' );?>
+							<img data-src="<?php echo $img[0]; ?>" />
+						<?php } ?>
 						<!-- Remove button -->
 						<a class="layers-image-remove" href=""><?php _e( 'Remove' , 'layerswp' ); ?></a>
 					</div>
@@ -361,7 +364,10 @@ class Layers_Form_Elements {
 									); ?>
 
 									<!-- Image -->
-									<?php if( isset( $input->value->image ) ) echo wp_get_attachment_image( $input->value->image , 'thumbnail' ); ?>
+									<?php if( isset( $input->value->image ) ) {
+										$img = wp_get_attachment_image_src( $input->value->image , 'thumbnail' );?>
+										<img data-src="<?php echo $img[0]; ?>" />
+									<?php } ?>
 								</div>
 							</div>
 							<div class="layers-row">

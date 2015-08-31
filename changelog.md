@@ -2,8 +2,8 @@
 
 
 =======
-##1.X.X
-### XX XX 2015
+##1.2.5
+### ?? August 2015
 * **Tweak** - Edit Layout button in the admin-bar now shows on all pages - not just layers pages - as even non Layers pages can have colors, layout, etc Edited. *SOB*
 * **Tweak** - .title padding is now set on the parent container to accommodate for future features and better font size control *DP*
 * **Enhancement** - .title line-height is more compliant to font changes *DP*

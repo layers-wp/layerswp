@@ -402,6 +402,7 @@ jQuery(function($) {
 	*/
 	$( document ).on( 'click', function(e) {
 		var eventTarget = $(e.target);
+
 		// close any pop-ups that arent the target of the current click
 		$('.widget .layers-visuals-item.layers-active' ).not( eventTarget.closest('.layers-visuals-item') ).removeClass( 'layers-active' );
 	});
@@ -412,11 +413,12 @@ jQuery(function($) {
 		// "Hi Mom"
 		$that = $(this);
 
+		// Toggle active state
+		$that.trigger( 'layers-design-bar-menu', $that );
+		$that.parent( 'li.layers-visuals-item' ).toggleClass( 'layers-active' );
+
 		// Close Siblings
 		$that.parent( 'li.layers-visuals-item' ).siblings().not( $that.parent() ).removeClass( 'layers-active' );
-
-		// Toggle active state
-		$that.parent( 'li.layers-visuals-item' ).toggleClass( 'layers-active' );
 	});
 
 	$( document ).on( 'click' , '.widget .layers-visuals-wrapper li.layers-visuals-item label.layers-icon-wrapper' , function(e){
@@ -432,7 +434,9 @@ jQuery(function($) {
 		if( 0 == $form_items ){
 			$that.closest( '.layers-pop-menu-wrapper' ).siblings( '.layers-icon-wrapper' ).find( 'span[class^="icon-"]' ).attr( 'class', 'icon-' + $value );
 		}
+
 		// Toggle active state
+		$that.trigger( 'layers-design-bar-menu', $that );
 		$that.addClass( 'layers-active' );
 
 		// Close siblings
@@ -445,11 +449,19 @@ jQuery(function($) {
 		$that = $(this);
 
 		// Toggle active state
+		$that.trigger( 'layers-design-bar-menu', $that );
 		$that.addClass( 'layers-active' );
 
 		// Close siblings
 		$that.siblings( '.layers-visuals-item' ).removeClass( 'layers-active' );
 
+	});
+
+	$( document ).on( 'layers-design-bar-menu', '.layers-visuals-item', function( e, menu_item ){
+		$img = $(this).find( 'img[data-src]' );
+		$img.each(function(){
+			$(this).attr( 'src', $(this).data( 'src' ) );
+		});
 	});
 
 	/**

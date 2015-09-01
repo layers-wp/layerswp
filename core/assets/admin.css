@@ -1673,6 +1673,10 @@ li[id*='accordion-section-layers'] .customize-control.customize-control-image .a
         line-height: 26px;
         text-align: center;
     }
+    .layers-button:before{
+        transition: all .2s;
+        -webkit-transition: all .2s;
+    }
     .layers-button:hover{
         background-color: #f2f2f2;
         color: #555;
@@ -1785,6 +1789,61 @@ li[id*='accordion-section-layers'] .customize-control.customize-control-image .a
         overflow: hidden;
     }
 
+    /*--------------------------------*/
+    /*- LOADING INDICATORS -----------*/
+
+    @-webkit-keyframes loading-background-animation {
+        0% { background-position: 0 0; }
+        100% { background-position: 50px 50px; }
+    }
+    @-moz-keyframes loading-background-animation {
+        0% { background-position: 0 0; }
+        100% { background-position: 50px 50px; }
+    }
+
+    .layers-button.layers-loading-button {
+        background-image: -webkit-gradient(
+                linear,
+                0 0,
+                100% 100%,
+                color-stop(.25, rgba(0, 0, 0, .05)),
+                color-stop(.25, rgba(0, 0, 0, 0)),
+                color-stop(.5, rgba(0, 0, 0, 0)),
+                color-stop(.5, rgba(0, 0, 0, .05)),
+                color-stop(.75, rgba(0, 0, 0, .05)),
+                color-stop(.75, rgba(0, 0, 0, 0)),
+                to(rgba(0, 0, 0, 0))
+            );
+        background-image: -moz-linear-gradient(
+                -45deg,
+                rgba(0, 0, 0, .05) 25%,
+                rgba(0, 0, 0, 0) 25%,
+                rgba(0, 0, 0, 0) 50%,
+                rgba(0, 0, 0, .05) 50%,
+                rgba(0, 0, 0, .05) 75%,
+                rgba(0, 0, 0, 0) 75%,
+                transparent
+            );
+
+        -webkit-background-size: 50px 50px;
+        -moz-background-size: 50px 50px;
+        background-size: 50px 50px;
+
+        -webkit-animation: loading-background-animation 2s linear infinite;
+        -moz-animation: loading-background-animation 2s linear infinite;
+        animation: loading-background-animation 2s linear infinite;
+        
+        background-color: #FAFAFA;
+        border: 1px solid #CCC;
+        background-position: 50%;
+        color: #999999;
+        pointer-events: none;
+    }
+    .layers-button.btn-primary.layers-loading-button {
+        background-color: #D2D2D2;
+        border: 1px solid #A7A7A7;
+        color: #FFFFFF;
+    }
 
 /*---------------------------*/
 /*- LABELS ------------------*/
@@ -2954,53 +3013,3 @@ input[type=radio]:checked + .layers-settings-icon span{
         .layers-button.layers-proceed-to-customizer.disable:hover:before{
             opacity:1;
         }
-
-/*--------------------------------*/
-/*- LOADING INDICATORS -----------*/
-
-@-webkit-keyframes move {
-    0% { background-position: 0 0; }
-    100% { background-position: 50px 50px; }
-}
-@-moz-keyframes move {
-    0% { background-position: 0 0; }
-    100% { background-position: 50px 50px; }
-}
-
-.layers-button.layers-loading-button {
-    background-image: -webkit-gradient(
-            linear,
-            0 0,
-            100% 100%,
-            color-stop(.25, rgba(0, 0, 0, .05)),
-            color-stop(.25, rgba(0, 0, 0, 0)),
-            color-stop(.5, rgba(0, 0, 0, 0)),
-            color-stop(.5, rgba(0, 0, 0, .05)),
-            color-stop(.75, rgba(0, 0, 0, .05)),
-            color-stop(.75, rgba(0, 0, 0, 0)),
-            to(rgba(0, 0, 0, 0))
-        );
-    background-image: -moz-linear-gradient(
-            -45deg,
-            rgba(0, 0, 0, .05) 25%,
-            rgba(0, 0, 0, 0) 25%,
-            rgba(0, 0, 0, 0) 50%,
-            rgba(0, 0, 0, .05) 50%,
-            rgba(0, 0, 0, .05) 75%,
-            rgba(0, 0, 0, 0) 75%,
-            transparent
-        );
-
-    -webkit-background-size: 50px 50px;
-    -moz-background-size: 50px 50px;
-    background-size: 50px 50px;
-
-    -webkit-animation: move 2s linear infinite;
-    -moz-animation: move 2s linear infinite;
-    animation: move 2s linear infinite;
-
-    background-color: #FAFAFA;
-    background-position: 50%;
-    color: #999999;
-    pointer-events: none;
-}

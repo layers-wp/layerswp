@@ -612,6 +612,23 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
         margin-bottom: 5px;
     }
 
+        /*-----------------------*/
+        /*- SEARCH IN FOOTER ----*/
+        .footer-site .search-form label{
+            width: 70%;
+            float: left;
+
+        }
+        .footer-site .search-form .search-field{
+            border-radius: 4px 0 0 4px;
+        }
+        .footer-site .search-submit{
+            width: 30%;
+            float: left;
+            height: 36px;
+            border-radius: 0 4px 4px 0;
+        }
+
     /*---------------------------*/
     /*- CALENDAR WIDGET ---------*/
     #wp-calendar{

@@ -234,8 +234,9 @@ object{
         position: relative;
         left: 0;
         top: 0;
-        transition: left 0.3s ease-in-out 0s, top 0.3s ease-in-out 0s, width 0.3s ease-in-out 0s;
+        transition: left 0.3s ease-in-out 0s,  opacity 0.2s ease-in-out 0.1s, top 0.3s ease-in-out 0s, width 0.3s ease-in-out 0s;
         z-index: 2;
+        opacity: 1;
     }
 
     .wrapper-content{
@@ -574,7 +575,7 @@ object{
     .title-container .heading{
         color: #323232;
         font-size: 4.5rem;
-        line-height: 5rem;
+        line-height: 1.2;
     }
     .title-container .excerpt{
         color: #8f8f8f;
@@ -594,21 +595,22 @@ object{
         padding: 3% 20px;
         max-width: 1040px;
         margin: auto;
+        position: relative;
     }
 
     /*---------------------------*/
     /*- TITLE SIZES -------------*/
-    .title.small{
+    .title-container.small .title{
         padding: 1%;
     }
-    .title.large{
+    .title-container.large .title{
         padding: 3%;
     }
-    .title.extra-large{
-        padding: 4%;
+    .title-container.extra-large .title{
+        padding-top: 10%;
     }
-    .title.massive{
-        padding: 6%;
+    .title-container.massive .title{
+        padding-top: 20%;
     }
 
     /*---------------------------*/
@@ -768,15 +770,33 @@ object{
     /*---------------------------*/
     /*- CLOSE CANVAS ------------*/
     .close-canvas{
-        background: #555;
-        color: #999;
+        padding: 4px 8px 3px;
+        background: rgba(0, 0, 0, 0.2);
+        z-index: 100;
+        position: absolute;
+        top: 5px;
+        right: 5px;
+        border-radius: 3px;
+        font-size: 1.1rem;
+        text-transform: uppercase;
+        text-align: right;
+        cursor: pointer;
+    }
+    .close-canvas i{
+        margin-right: 4px;
+        font-size: 10px;
     }
     .close-canvas:hover{
         color: #fff;
     }
 
+    .admin-bar section[class*=' off-canvas-'] .close-canvas{
+        top: 32px;
+    }
+
+
     section[class*=' off-canvas-']{
-        padding-top: 20px;
+        padding-top: 30px;
         position: fixed;
         top: 0;
         z-index: 1;
@@ -809,6 +829,9 @@ object{
 
     /*---------------------------*/
     /*- WRAPPER POSITIONING -----*/
+    .open + .wrapper-site{
+        opacity: 0.85;
+    }
     .off-canvas-right.open + .wrapper-site{
         left: -240px;
     }
@@ -817,20 +840,6 @@ object{
     }
     .off-canvas-top.open + .wrapper-site{
         top: 200px;
-    }
-
-    /*---------------------------*/
-    /*- CLOSE CANVAS ------------*/
-    .close-canvas{
-        padding: 10px;
-        position: absolute;
-        top: 0;
-        right: 0;
-        cursor: pointer;
-        z-index: 100;
-    }
-    .admin-bar section[class*=' off-canvas-'] .close-canvas{
-        top: 32px;
     }
 
     /*---------------------------*/
@@ -874,7 +883,7 @@ object{
         /*-----------------------*/
         /*- OFF CANVAS MENU -----*/
         section[class*=' off-canvas-'] .nav-mobile{
-            margin-top: -20px;
+            margin-top: 0px;
         }
         section[class*=' off-canvas-'] .nav-vertical li{
             padding: 0;
@@ -2473,7 +2482,7 @@ object{
         }
         .invert .section-title .excerpt,
         .invert.section-title .excerpt{
-            color: rgba(255, 255, 255, 0.8);
+            color: rgba(255, 255, 255, 0.95);
         }
 
         .invert .section-title .heading a,

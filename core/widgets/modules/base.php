@@ -110,12 +110,13 @@ if( !class_exists( 'Layers_Widget' ) ) {
 		*/
 
 		function apply_widget_advanced_styling( $widget_id, $widget = NULL ){
-
+			
 			// We need a widget to get the settings from
 			if( NULL == $widget ) return;
 
-			// Apply Margin & Padding
-
+			/**
+			 * Apply Margin & Padding
+			 */
 			$types = array( 'margin', 'padding', );
 			$fields = array( 'top', 'right', 'bottom', 'left', );
 
@@ -128,16 +129,26 @@ if( !class_exists( 'Layers_Widget' ) ) {
 				if( NULL != $values && is_array( $values ) ) {
 					foreach ( $fields as $field ) {
 						if( isset( $values[ $field ] ) && '' != $values[ $field ] && is_numeric( $values[ $field ] ) ) {
+							
 							// If value is set, and is number, then add 'px' to it
 							$values[ $field ] .= 'px';
 						}
 					}
+					
 					// Apply the TRBL styles
-					layers_inline_styles( '#' . $widget_id, $type, array( $type => $values ) );
+					if ( 'padding' == $type && isset( $widget['slides'] ) && 1 <= count( $widget['slides'] ) ){
+						layers_inline_styles( '#' . $widget_id . ' .swiper-slide > .content', $type, array( $type => $values ) );
+					}
+					else{
+						layers_inline_styles( '#' . $widget_id, $type, array( $type => $values ) );
+					}
+					
 				}
 			}
-
-			// Custom CSS
+			
+			/**
+			 * Custom CSS
+			 */
 			if( $this->check_and_return( $widget, 'design', 'advanced', 'customcss' ) ) layers_inline_styles( NULL, 'css', array( 'css' => $this->check_and_return( $widget, 'design', 'advanced', 'customcss' )  ) );
 
 		}

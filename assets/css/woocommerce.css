@@ -48,9 +48,9 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 /*- PRICE & AMOUNT SETUP ----*/
 .price{
     display: inline-block;
+    color: #93B25E;
 }
 .amount{
-    color: #93B25E;
     font-weight: 600;
 }
 .price del{
@@ -252,7 +252,8 @@ p.stars span a:focus{
 
     /*---------------------------*/
     /*- ACCURATE SPACING --------*/
-    .products h3 + .price{
+    .products h3 + .price,
+    .products .star-rating + .price{
         margin-top: 10px;
     }
 
@@ -409,7 +410,7 @@ p.stars span a:focus{
         .product_meta{
             padding: 10px;
             margin-bottom: 20px;
-            background: #f5f5f5;
+            background: rgba(0, 0, 0, 0.05);
             clear: both;
         }
         .product_meta span{

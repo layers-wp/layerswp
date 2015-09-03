@@ -12,9 +12,9 @@ class Layers_Customizer_Defaults {
 	public $prefix;
 
 	public $config;
-	
+
 	private static $instance; // stores singleton class
-    
+
     /**
     *  Get Instance creates a singleton class that's cached to stop duplicate instances
     */
@@ -30,23 +30,23 @@ class Layers_Customizer_Defaults {
     *  Construct empty on purpose
     */
 
-    private function __construct() {}
+    public function __construct() {}
 
     /**
     *  Init behaves like, and replaces, construct
     */
-    
+
     public function init() {
-	
+
 		global $layers_customizer_defaults;
-	
+
 		// Setup prefix to use
 		$this->prefix  = LAYERS_THEME_SLUG . '-';
-		
-		
+
+
 		// Grab the customizer config
 		$this->config = Layers_Customizer_Config::get_instance();
-		
+
 		foreach( $this->config->controls as $section_key => $controls ) {
 
 			foreach( $controls as $control_key => $control_data ){

@@ -309,6 +309,50 @@ $layers_migrator = new Layers_Widget_Migrator(); ?>
 				</div>
 			</div>
 
+			<!-- Upload a Logo -->
+			<div class="layers-onboard-slide layers-animate layers-onboard-slide-inactive">
+				<div class="layers-column layers-span-8 postbox">
+					<div class="layers-content-large">
+						<!-- Your content goes here -->
+						<div class="layers-section-title">
+							<h3 class="layers-heading">
+								<?php _e( 'Layers Concierge Messenger' , 'layerswp' ); ?>
+							</h3>
+							<p class="layers-excerpt">
+								 <?php _e( 'Enable the Layers Concierge to connect with the Layers team directly from inside Layers. We can help you make informed decisions about themes and extensions and point you in the right direction when you need support with your site and Layers.' , 'layerswp' ); ?>
+							</p>
+						</div>
+						<?php echo $form_elements->input( array(
+							'type' => 'hidden',
+							'name' => 'action',
+							'id' => 'action',
+							'value' => 'layers_update_intercom'
+						) ); ?>
+						<div class="layers-checkbox-wrapper layers-form-item">
+							<input id="layers-disable-intercom" name="layers_intercom" type="checkbox" <?php checked( get_option( 'layers_disable_intercom' ) , '' ); ?> />
+							<label for="layers-disable-intercom"><?php _e( 'Enable Layers Concierge', 'layerswp' ); ?></label>
+						</div>
+						<p><a href="" target="_blank"><?php _e( 'Your data is safe with us. View our Privacy Policy', 'layerswp' ); ?></a></p>
+					</div>
+					<div class="layers-button-well">
+						<span class="layers-save-progress layers-hide layers-button btn-link" data-busy-message="<?php _e( 'Saving Your Preference' , 'layerswp' ); ?>"></span>
+						<a class="layers-button btn-primary layers-pull-right onbard-next-step" href=""><?php _e( 'Next Step &rarr;' , 'layerswp' ); ?></a>
+					</div>
+				</div>
+				<div class="layers-column layers-span-4 no-gutter">
+					<div class="layers-content">
+
+						<!-- Your helpful tips go here -->
+						<ul class="layers-help-list">
+							<li><?php _e( 'Get advice on the right theme for your site.' , 'layerswp' ); ?></li>
+							<li><?php _e( 'Help choosing extensions.' , 'layerswp' ); ?></li>
+							<li><?php _e( 'Feedback? Let us know as soon as it comes to mind.' , 'layerswp' ); ?></li>
+							<li><?php _e( 'Have a problem? We\'ll send you the best link to solve your issues.' , 'layerswp' ); ?></li>
+							<li><?php _e( 'Allow Layers to collect non-sensitive diagnostic data and usage information to help us improve our theme and best assist you.' , 'layerswp' ); ?></li>
+						</ul>
+					</div>
+				</div>
+			</div>
 
 
 			<!-- Select a Layout -->

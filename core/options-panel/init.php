@@ -61,9 +61,11 @@ class Layers_Options_Panel {
 				<?php if( isset( $title ) ) { ?>
 					<h2 class="layers-heading" id="layers-options-header"><?php echo esc_html( $title ); ?></h2>
 				<?php } ?>
+
 				<?php if( isset( $excerpt ) ) { ?>
 					<p class="layers-excerpt"><?php echo esc_html( $excerpt ); ?></p>
 				<?php } ?>
+
 				<nav class="layers-nav-horizontal layers-dashboard-nav">
 					<ul>
 						<?php foreach( $this->get_menu_pages()  as $menu_key => $menu_details ) { ?>
@@ -170,6 +172,10 @@ class Layers_Options_Panel {
 					'layers-pages' => array(
 						'label' => 'Layers Pages',
 						'link' => admin_url( 'edit.php?post_type=page&amp;filter=layers' ),
+					),
+					'layers-pages' => array(
+						'label' => 'Marketplace',
+						'link' => admin_url( 'admin.php?page=layers-marketplace' ),
 					),
 				)
 		);
@@ -339,10 +345,10 @@ function layers_options_panel_menu(){
 	// Add Preset Pages
 	add_submenu_page(
 		LAYERS_THEME_SLUG . '-dashboard',
-		__( 'Browse StyleKits' , 'layerswp' ),
-		__( 'Browse StyleKits' , 'layerswp' ),
+		__( 'Marketplace' , 'layerswp' ),
+		__( 'Marketplace' , 'layerswp' ),
 		'edit_theme_options',
-		LAYERS_THEME_SLUG . '-style-kits',
+		LAYERS_THEME_SLUG . '-marketplace',
 		'layers_options_panel_ui'
 	);
 

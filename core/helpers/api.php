@@ -29,8 +29,14 @@ class Layers_API {
 
 	public function __construct() {
 
-		// Nothing to see here
+		// hook add_query_vars function into query_vars
+		add_filter('query_vars', array( $this, 'add_query_vars' ) );
 
+	}
+
+	function add_query_vars($vars) {
+		$vars[] = "type";
+		return $vars;
 	}
 
 	public function get_auth_token( $method = 'basic' ){
@@ -48,7 +54,7 @@ class Layers_API {
 		$remote_url = self::ENVATO_API_URL . $endpoint . $query_string;
 
 		// Set the query transient key
-		$cache_key = 'layers_envato_query_' . base64_decode( $remote_url );
+		$cache_key = 'layers_envato_query_' . base64_encode( $remote_url );
 
 		// Return a cached version of the query if we have one
 		if( get_transient( $cache_key ) ) return get_transient( $cache_key );
@@ -75,7 +81,7 @@ class Layers_API {
 		} else if( isset( $remote_query[ 'response' ][ 'code' ] ) && 200 == $remote_query[ 'response' ][ 'code' ] ) {
 
 			// Cache a successful query
-			set_transient( $cache_key , wp_remote_retrieve_body( $remote_query ) );
+			set_transient( $cache_key , wp_remote_retrieve_body( $remote_query ), 60 );
 
 			return wp_remote_retrieve_body( $remote_query );
 		} else {
@@ -111,8 +117,22 @@ class Layers_API {
 
 	public function get_theme_list(){
 		$endpoint = 'discovery/search/search/item';
-		$args[ 'site' ] = 'themeforest.net';
-		$args[ 'compatible_with '] = 'Layers%20WP';
+
+		// Specify a query string here we tell the API what search parameters to use
+		$query_string = 'site=themeforest.net&compatible_with=Layers%20WP';
+
+		// Do the API call
+		$api_call = $this->do_envato_api_call( $endpoint, $query_string, 'get' );
+
+		if( is_wp_error( $api_call ) ) {
+
+			// Return an error if we have one
+			return $api_call;
+		} else {
+
+			// If the call is successful, well then send back decoded JSON
+			return json_decode( $api_call );
+		}
 	}
 
 	/**
@@ -120,7 +140,21 @@ class Layers_API {
 	*/
 	public function get_extension_list(){
 		$endpoint = 'discovery/search/search/item';
-		$args[ 'site' ] = 'codecanyon.net';
-		$args[ 'compatible_with '] = 'Layers%20WP';
+
+		// Specify a query string here we tell the API what search parameters to use
+		$query_string = 'site=codecanyon.net&compatible_with=Layers%20WP';
+
+		// Do the API call
+		$api_call = $this->do_envato_api_call( $endpoint, $query_string, 'get' );
+
+		if( is_wp_error( $api_call ) ) {
+
+			// Return an error if we have one
+			return $api_call;
+		} else {
+
+			// If the call is successful, well then send back decoded JSON
+			return json_decode( $api_call );
+		}
 	}
 }

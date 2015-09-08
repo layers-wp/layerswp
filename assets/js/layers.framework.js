@@ -55,20 +55,38 @@ jQuery(function($) {
 
             if( $first_element.hasClass( 'slide' ) ) {
 
-                // First element is Slider Widget.
-                $first_element.find('.swiper-slide .overlay').css({ 'paddingTop': $header.outerHeight() }, { easing: 'layersEaseInOut', duration: 400 });
+            	// Reset previous incase this is being re-aplied due to window resize.
+				$first_element.find('.swiper-slide > .content' ).css('padding-top', '' );
+
+            	var padding_top = $first_element.find('.swiper-slide > .content' ).eq(0).css('padding-top').replace('px', '');
+				padding_top = ( '' != padding_top ) ? parseInt( padding_top ) : 0 ;
+
+            	// First element is Slider Widget.
+                $first_element.find('.swiper-slide > .content').css({ 'paddingTop': padding_top + $header.outerHeight() }, { easing: 'layersEaseInOut', duration: 400 });
                 $('body').addClass( 'header-overlay-no-push' );
             }
             else if( $first_element.hasClass('title-container') ) {
+
+				// Reset previous incase this is being re-aplied due to window resize.
+				$first_element.css('padding-top', '' );
+				
+            	var padding_top = $first_element.css('padding-top').replace('px', '');
+				padding_top = ( '' != padding_top ) ? parseInt( padding_top ) : 0 ;
                 
                 // First element is Title (eg WooCommerce).
-                $first_element.css({ 'paddingTop': $header.outerHeight() }, { easing: 'layersEaseInOut', duration: 400 });
+                $first_element.css({ 'paddingTop': $header.outerHeight() + padding_top }, { easing: 'layersEaseInOut', duration: 400 });
                 $('body').addClass( 'header-overlay-no-push' );
             }
             else{
+				
+				// Reset previous incase this is being re-aplied due to window resize.
+				$content_wrapper.css('padding-top', '' );
+
+            	var padding_top = $content_wrapper.css('padding-top').replace('px', '');
+				padding_top = ( '' != padding_top ) ? parseInt( padding_top ) : 0 ;
 
                 // Pad the site to compensate for overlay header.
-                $content_wrapper.css( 'paddingTop', $header.outerHeight() );
+                $content_wrapper.css( 'paddingTop', $header.outerHeight() + padding_top );
             }
 
         }

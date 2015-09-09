@@ -143,7 +143,10 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 			* Generate the widget container class
 			*/
 			$widget_container_class = array();
-			$widget_container_class[] = 'widget row slide swiper-container';
+			$widget_container_class[] = 'widget';
+			$widget_container_class[] = 'row';
+			$widget_container_class[] = 'slide';
+			$widget_container_class[] = 'swiper-container';
 			$widget_container_class[] = $this->get_widget_layout_class( $widget );
 			$widget_container_class[] = $this->check_and_return( $widget , 'design', 'advanced', 'customclass' );
 			$widget_container_class[] = $this->get_widget_spacing_class( $widget );

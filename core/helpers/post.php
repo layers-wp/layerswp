@@ -204,6 +204,7 @@ if( !function_exists( 'layers_post_class' ) ) {
 	}
 }
 add_filter( 'post_class' , 'layers_post_class' );
+add_filter( 'product_cat_class' , 'layers_post_class' );
 
 /**
  *  The following function creates a builder page

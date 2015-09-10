@@ -54,15 +54,16 @@ jQuery(function($) {
             $first_element = $content_wrapper.children().eq(0);
 
             if( $first_element.hasClass( 'slide' ) ) {
-
-            	// Reset previous incase this is being re-aplied due to window resize.
+				
+				// Reset previous incase this is being re-aplied due to window resize.
 				$first_element.find('.swiper-slide > .content' ).css('padding-top', '' );
 
             	var padding_top = $first_element.find('.swiper-slide > .content' ).eq(0).css('padding-top').replace('px', '');
 				padding_top = ( '' != padding_top ) ? parseInt( padding_top ) : 0 ;
 
             	// First element is Slider Widget.
-                $first_element.find('.swiper-slide > .content').css({ 'paddingTop': padding_top + $header.outerHeight() }, { easing: 'layersEaseInOut', duration: 400 });
+                $first_element.find('.swiper-slide > .content').css({ 'paddingTop': padding_top + $header.outerHeight() });
+                
                 $('body').addClass( 'header-overlay-no-push' );
             }
             else if( $first_element.hasClass('title-container') ) {
@@ -74,7 +75,7 @@ jQuery(function($) {
 				padding_top = ( '' != padding_top ) ? parseInt( padding_top ) : 0 ;
                 
                 // First element is Title (eg WooCommerce).
-                $first_element.css({ 'paddingTop': $header.outerHeight() + padding_top }, { easing: 'layersEaseInOut', duration: 400 });
+                $first_element.css({ 'paddingTop': $header.outerHeight() + padding_top });
                 $('body').addClass( 'header-overlay-no-push' );
             }
             else{

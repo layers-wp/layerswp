@@ -380,6 +380,33 @@ object{
     }
 
     /*---------------------------*/
+    /*- HORIZONTAL MARGIN ---------*/
+    .push-left{
+        margin-left: 2%;
+    }
+    .push-left-small{
+        margin-left: 1%;
+    }
+    .push-left-medium{
+        margin-left: 3%;
+    }
+    .push-left-large{
+        margin-left: 6%;
+    }
+    .push-right{
+        margin-right: 2%;
+    }
+    .push-right-small{
+        margin-right: 1%;
+    }
+    .push-right-medium{
+        margin-right: 3%;
+    }
+    .push-right-large{
+        margin-right: 6%;
+    }
+
+    /*---------------------------*/
     /*- CLEAR MARGIN ------------*/
     .no-push{
         margin: 0;

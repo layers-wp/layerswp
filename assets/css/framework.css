@@ -479,6 +479,9 @@ object{
         width: 100%;
         z-index: 100;
     }
+    .header-overlay-no-push .header-overlay:not(.is_stuck){
+        background-color: transparent;
+    }
 
     /*---------------------------*/
     /*- SECONDARY HEADER --------*/
@@ -533,17 +536,21 @@ object{
     }
     .copyright .nav-horizontal a{
         padding: 0;
-        color: #454545;
         font-size: 1.2rem;
         font-weight: 700;
     }
     .copyright .nav-horizontal a:hover{
         background: none;
-        color: #323232;
     }
     .row + .copyright{
         padding-top: 20px;
         border-top: 2px solid rgba(0, 0, 0, 0.15);
+    }
+    .invert .copyright .nav-horizontal a{
+        color: rgba(255, 255, 255, 0.75);
+    }
+    .invert .copyright .nav-horizontal a:hover{
+        color: rgba(255, 255, 255, 1);
     }
 
     /*---------------------------*/
@@ -643,6 +650,17 @@ object{
         .section-title.large .excerpt{
             font-size: 2.5rem;
         }
+        .section-title.large .excerpt p:not(:first-child){
+            margin-top: 1.5rem;
+        }
+        .section-title.large .excerpt ul,
+        .section-title.large .excerpt ol {
+            margin: 0 0 0 5rem;
+        }
+        .section-title.large .excerpt ul:not(:first-child),
+        .section-title.large .excerpt ol:not(:first-child){
+            margin-top: 1.5rem;
+        }
 
         /*-----------------------*/
         /*- SECTION SMALL -------*/
@@ -651,6 +669,17 @@ object{
         }
         .section-title.small .excerpt{
             font-size: 1.5rem;
+        }
+        .section-title.small .excerpt p:not(:first-child){
+            margin-top: .5rem;
+        }
+        .section-title.small .excerpt ul,
+        .section-title.small .excerpt ol {
+            margin: 0 0 0 3rem;
+        }
+        .section-title.small .excerpt ul:not(:first-child),
+        .section-title.small .excerpt ol:not(:first-child){
+            margin-top: .5rem;
         }
 
         /*-----------------------*/
@@ -669,6 +698,17 @@ object{
             color: rgba(0, 0, 0, 0.55);
             font-size: 2rem;
         }
+        .section-title .excerpt p:not(:first-child){
+            margin-top: 1rem;
+        }
+        .section-title .excerpt ul,
+        .section-title .excerpt ol {
+            margin: 0 0 0 4rem;
+        }
+        .section-title .excerpt ul:not(:first-child),
+        .section-title .excerpt ol:not(:first-child){
+            margin-top: 1rem;
+        }
 
         /*-----------------------*/
         /*- SECTION TINY --------*/
@@ -678,6 +718,17 @@ object{
         }
         .section-title.tiny .excerpt{
             font-size: 1.3rem;
+        }
+        .section-title.tiny .excerpt p:not(:first-child){
+            margin-top: .5rem;
+        }
+        .section-title.tiny .excerpt ul,
+        .section-title.tiny .excerpt ol {
+            margin: 0 0 0 3rem;
+        }
+        .section-title.tiny .excerpt ul:not(:first-child),
+        .section-title.tiny .excerpt ol:not(:first-child){
+            margin-top: 1.5rem;
         }
 
     .section-title + .container{
@@ -871,7 +922,9 @@ object{
     input[type=url],
     input[type=search],
     input[type=password],
-    input[type=number]{
+    input[type=number],
+    input[type=tel],
+    input[type=date]{
         max-width: 500px;
         padding: 0 8px;
         height: 36px;
@@ -1757,21 +1810,21 @@ object{
         top: 40px;
         transition: all 0.2s ease-in-out;
     }
-    .nav li .sub-menu .sub-menu,
+    .nav > ul > li .sub-menu .sub-menu,
     .nav li:hover > .sub-menu .sub-menu{
-        left: 155px;
+        left: 185px;
         top: -3px;
     }
-    .nav > li:last-child .sub-menu{
+    .nav > ul > li:last-child .sub-menu{
         right: 0;
         left: auto;
     }
-    .nav > li:last-child .sub-menu .sub-menu{
-        right: 155px;
+    .nav li:last-child .sub-menu .sub-menu{
+        right: 185px;
         left: auto;
     }
     .nav-vertical .sub-menu{
-        left: 150px;
+        left: 180px;
         right: auto;
         top: -3px;
         box-shadow: 3px 3px 0px rgba(0, 0, 0, 0.05);
@@ -1787,6 +1840,28 @@ object{
     #footer .sub-menu{
         display: none;
     }
+
+        /*-----------------------*/
+        /*- ARROWS --------------*/
+        .header-site .menu-item-has-children > a:after{
+            margin-left: 8px;
+            content: "\e605";
+            font-family: 'layers-icons';
+            font-weight: normal;
+            font-style: normal;
+            text-decoration: inherit;
+            opacity: 0.4;
+            font-weight: normal;
+            font-size: 0.8rem;
+        }
+        .header-site .sub-menu .menu-item-has-children > a:after{
+            float: right;
+            padding: 5px 0 0;
+            content: "\e600";
+        }
+        .header-site .menu-item-has-children > a:hover:after{
+            opacity: 0.8;
+        }
 
     /*---------------------------*/
     /*- ABOLUTE NAV -------------*/
@@ -1993,6 +2068,14 @@ object{
         .media.small .excerpt{
             font-size: 1.3rem;
         }
+        .media.small .excerpt ul,
+        .media.small .excerpt ol {
+            margin: 0 0 0 3rem;
+        }
+        .media.small .excerpt ul:not(:first-child),
+        .media.small .excerpt ol:not(:first-child){
+            margin-top: 1.3rem;
+        }
 
         /*-----------------------*/
         /*- MEDIA MEDIUM --------*/
@@ -2007,6 +2090,14 @@ object{
         }
         .media.medium p:not(:first-child),
         .media.medium .button{
+            margin-top: 1.5rem;
+        }
+        .media.medium .excerpt ul,
+        .media.medium .excerpt ol {
+            margin: 0 0 0 3rem;
+        }
+        .media.medium .excerpt ul:not(:first-child),
+        .media.medium .excerpt ol:not(:first-child){
             margin-top: 1.5rem;
         }
 
@@ -2028,6 +2119,14 @@ object{
         }
         .media.large .excerpt{
             font-size: 2rem;
+        }
+        .media.large .excerpt ul,
+        .media.large .excerpt ol {
+            margin: 0 0 0 4rem;
+        }
+        .media.large .excerpt ul:not(:first-child),
+        .media.large .excerpt ol:not(:first-child){
+            margin-top: 2rem;
         }
 
 
@@ -2177,6 +2276,11 @@ object{
     .copy h5{
         margin-bottom: 26px;
         font-size: 1.3rem;
+        font-weight: 700;
+    }
+    .copy h6{
+        margin-bottom: 26px;
+        font-size: 1.3rem;
     }
     .copy blockquote{
         padding-left: 26px;
@@ -2187,6 +2291,50 @@ object{
     .copy a.button{
         border-bottom: none;
     }
+
+/*-------------------------------*/
+/*- EXCERPT LIST STYLING --------*/
+/*-------------------------------*/
+
+.excerpt li{
+    list-style-type: inherit;
+}
+.excerpt li ul,
+.excerpt li ol {
+	margin:0 1.5rem;
+}
+.excerpt ul,
+.excerpt ol {
+	margin: 0 0 0 3rem;
+}
+.text-center ul, .text-right ul,
+.text-center ol, .text-right ol{
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+}
+.text-center ul li, .text-right ul li,
+.text-center ol li, .text-right ol li {
+    list-style-position: inside;
+}
+.excerpt ul:not(:first-child),
+.excerpt ol:not(:first-child){
+    margin-top: 1.5rem;
+}
+.excerpt ul {
+	list-style-type:disc;
+}
+.excerpt ol {
+	list-style-type:decimal;
+}
+.excerpt ol ol {
+	list-style: upper-alpha;
+}
+.excerpt ol ol ol {
+	list-style: lower-roman;
+}
+.excerpt ol ol ol ol {
+	list-style: lower-alpha;
+}
 
 /*-------------------------------*/
 /*- COLOR RESETS ----------------*/

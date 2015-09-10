@@ -30,7 +30,7 @@ if( isset( $details[ 'title' ] ) || isset( $details[ 'excerpt' ] ) ) { ?>
 
 			if( isset( $details[ 'excerpt' ] ) && '' != $details[ 'excerpt' ] ) { ?>
 				<?php do_action('layers_before_title_excerpt'); ?>
-				<p class="excerpt"><?php echo $details[ 'excerpt' ]; ?></p>
+				<div class="excerpt"><?php echo $details[ 'excerpt' ]; ?></div>
 				<?php do_action('layers_after_title_excerpt'); ?>
 			<?php } // if isset $excerpt ?>
 		</div>

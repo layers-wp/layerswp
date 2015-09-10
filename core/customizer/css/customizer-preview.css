@@ -16,3 +16,8 @@
 .widget .layers-edit-widget { opacity: 0; }
 .widget:hover .layers-edit-widget { opacity: 1; }
 */
+
+body.wp-customizer-unloading {
+	opacity: 0.85 !important;
+	background-color: black !important;
+}

@@ -8,41 +8,41 @@
  */
 
 class Layers_Customizer_Regsitrar {
-	
+
 	public $customizer;
 
 	public $config;
 
 	public $prefix;
-	
-    private static $instance; // stores singleton class
-    
-    /**
-    *  Get Instance creates a singleton class that's cached to stop duplicate instances
-    */
-    public static function get_instance() {
-        if ( ! self::$instance ) {
-            self::$instance = new self();
-            self::$instance->init();
-        }
-        return self::$instance;
-    }
 
-    /**
-    *  Construct empty on purpose
-    */
+	private static $instance; // stores singleton class
 
-    private function __construct() {}
+	/**
+	*  Get Instance creates a singleton class that's cached to stop duplicate instances
+	*/
+	public static function get_instance() {
+		if ( ! self::$instance ) {
+			self::$instance = new self();
+			self::$instance->init();
+		}
+		return self::$instance;
+	}
 
-    /**
-    *  Init behaves like, and replaces, construct
-    */
-    
-    public function init() {
+	/**
+	*  Construct empty on purpose
+	*/
+
+	private function __construct() {}
+
+	/**
+	*  Init behaves like, and replaces, construct
+	*/
+
+	public function init() {
 
 		// Register the customizer object
 		global $wp_customize;
-		
+
 		$this->customizer = $wp_customize;
 
 		// Set Prefix
@@ -50,16 +50,18 @@ class Layers_Customizer_Regsitrar {
 
 		// Grab the customizer config
 		$this->config = Layers_Customizer_Config::get_instance();
-		
+
 		//Register the panels and sections based on this instance's config
-		
+
 		// Start registration with the panels & sections
 		$this->register_panels( $this->config->panels );
 		$this->register_sections ( $this->config->sections );
 
 		// Move default sections into Layers Panels
+		$this->move_default_panels( $this->config->default_panels );
 		$this->move_default_sections( $this->config->default_sections );
-		
+		$this->move_default_controls( $this->config->default_controls );
+
 		// Change 'Widgets' panel title to 'Edit Layout'
 		$wp_customize->add_panel(
 			'widgets', array(
@@ -255,6 +257,16 @@ class Layers_Customizer_Regsitrar {
 						$control_data
 					)
 				);
+			} else if( 'layers-rte' == $control_data['type'] ) {
+
+				// Add Control
+				$this->customizer->add_control(
+					new Layers_Customize_RTE_Control(
+						$this->customizer,
+						$setting_key,
+						$control_data
+					)
+				);
 
 			} else if( 'layers-font' == $control_data['type'] ) {
 
@@ -391,6 +403,34 @@ class Layers_Customizer_Regsitrar {
 	}
 
 	/**
+	* Move Default Panels
+	*/
+
+	public function move_default_panels( $panels = array() ){
+
+		foreach( $panels as $panel_key => $panel_data ){
+
+			// Get the current panel
+			$panel = $this->customizer->get_panel( $panel_key );
+
+			// Panel Title
+			if( isset( $panel->title ) && isset( $panel_data[ 'title' ] ) ) {
+				$panel->title = $panel_data[ 'title' ];
+			}
+
+			// Panel Priority
+			if( isset( $panel->priority ) && isset( $panel_data[ 'priority' ] ) ) {
+				$panel->priority = $panel_data[ 'priority' ];
+			}
+
+		}
+
+		// Remove the theme switcher Panel, Layers isn't ready for that
+		$this->customizer->remove_section( 'themes' );
+
+	}
+
+	/**
 	* Move Default Sections
 	*/
 
@@ -402,23 +442,51 @@ class Layers_Customizer_Regsitrar {
 			$section = $this->customizer->get_section( $section_key );
 
 			// Move this section to a specific panel
-			if( isset( $section_data[ 'panel' ] ) ) {
+			if( isset( $section->panel ) && isset( $section_data[ 'panel' ] ) ) {
 				$section->panel = $this->prefix . $section_data[ 'panel' ];
 			}
 
-			// Prioritize this section
-			if( isset( $section_data[ 'title' ] ) ) {
+			// Section Title
+			if( isset( $section->title ) && isset( $section_data[ 'title' ] ) ) {
 				$section->title = $section_data[ 'title' ];
 			}
 
-			// Prioritize this section
-			if( isset( $section_data[ 'priority' ] ) ) {
+			// Section Priority
+			if( isset( $section->priority ) && isset( $section_data[ 'priority' ] ) ) {
 				$section->priority = $section_data[ 'priority' ];
 			}
 		}
+	}
+	/**
+	* Move Default Controls
+	*/
 
-		// Remove the theme switcher Panel, Layers isn't ready for that
-		$this->customizer->remove_section( 'themes' );
+	public function move_default_controls( $controls = array() ){
+
+		foreach( $controls as $control_key => $control_data ){
+
+			// Get the current control
+			$control = $this->customizer->get_control( $control_key );
+
+			// Move this control to a specific section
+			if( isset( $control->section ) && isset( $control_data[ 'section' ] ) ) {
+				$control->section = $this->prefix . $control_data[ 'section' ];
+			}
+
+			// Section Title
+			if( isset( $control->title ) && isset( $control_data[ 'title' ] ) ) {
+				$control->title = $control_data[ 'title' ];
+			}
+
+			// Section Priority
+			if( isset( $control->priority ) && isset( $control_data[ 'priority' ] ) ) {
+				$control->priority = $control_data[ 'priority' ];
+			}
+		}
+
+
+		// Remove the header text color control, we don't support it yet
+		$this->customizer->remove_section( 'colors' );
 	}
 
 	/**
@@ -447,6 +515,9 @@ class Layers_Customizer_Regsitrar {
 				$callback = 'esc_textarea';
 				break;
 			case 'layers-code' :
+				$callback = false;
+				break;
+			case 'layers-rte' :
 				$callback = false;
 				break;
 			default :

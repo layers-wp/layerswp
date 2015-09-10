@@ -10,7 +10,7 @@
 get_header();
 do_action( 'layers_before_blog_template' );
 get_template_part( 'partials/header' , 'page-title' ); ?>
-<section <?php post_class( 'content-main archive clearfix' ); ?>>
+<section class="container content-main archive clearfix">
 	<?php get_sidebar( 'left' ); ?>
 
 	<?php

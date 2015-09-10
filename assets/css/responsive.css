@@ -873,6 +873,13 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
             opacity: 1;
         }
 
+        /*-----------------------*/
+        /*- MEDIA SMALL ---------*/
+        .has-image .image-left.small .media-body,
+        .has-image .image-right.small .media-body{
+            margin-top: 0;
+        }
+
 /*-------------------------------*/
 /*- OFF CANVAS MENU -------------*/
 

@@ -8,7 +8,7 @@
 
 get_header(); ?>
 <?php get_template_part( 'partials/header' , 'page-title' ); ?>
-<section <?php post_class( 'content-main archive clearfix' ); ?>>
+<section class="container content-main archive clearfix">
 	<?php get_sidebar( 'left' ); ?>
 
 	<?php if( have_posts() ) : ?>

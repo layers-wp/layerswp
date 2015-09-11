@@ -101,6 +101,49 @@ class Layers_Options_Panel {
 	/**
 	* Complex Header with Menu
 	*/
+	public function marketplace_header( $title = NULL, $excerpt = NULL ){
+
+		if( isset( $_GET[ 'type' ] ) ) $type = $_GET[ 'type' ]; else $type = 'themes' ?>
+		<header class="layers-page-title layers-section-title layers-large layers-content-large layers-no-push-bottom">
+
+				<?php _e( sprintf( '<a href="%s" class="layers-logo">Layers</a>', 'http://layerswp.com' ), 'layerswp' ); ?>
+				<?php if( isset( $title ) ) { ?>
+					<h2 class="layers-heading" id="layers-options-header"><?php echo esc_html( $title ); ?></h2>
+				<?php } ?>
+
+				<?php if( isset( $excerpt ) ) { ?>
+					<p class="layers-excerpt"><?php echo esc_html( $excerpt ); ?></p>
+				<?php } ?>
+
+				<nav class="layers-nav-horizontal layers-dashboard-nav">
+					<ul>
+						<li <?php if( 'themes' == $type ) { ?>class="active"<?php } ?>>
+							<a href="<?php echo admin_url( 'admin.php?page=layers-marketplace&type=themes'); ?>">
+								<?php _e( 'Themes' , 'layerswp' ); ?>
+							</a>
+						</li>
+						<li <?php if( 'stylekits' == $type ) { ?>class="active"<?php } ?>>
+							<a href="<?php echo admin_url( 'admin.php?page=layers-marketplace&type=stylekits'); ?>">
+								<?php _e( 'StyleKits' , 'layerswp' ); ?>
+							</a>
+						</li>
+						<li <?php if( 'extensions' == $type ) { ?>class="active"<?php } ?>>
+							<a href="<?php echo admin_url( 'admin.php?page=layers-marketplace&type=extensions'); ?>">
+								<?php _e( 'Extensions' , 'layerswp' ); ?>
+							</a>
+						</li>
+					</ul>
+					<form class="layers-help-search" action="http://docs.layerswp.com" target="_blank" method="get">
+						<input name="s" type="search" placeholder="Search Layers Help..." />
+					</form>
+				</nav>
+
+		</header>
+	<?php }
+
+	/**
+	* Complex Header with Menu
+	*/
 	public function header( $title = NULL, $excerpt = NULL ){
 
 		if( isset( $_GET[ 'page' ] ) ) $current_page = $_GET[ 'page' ]; ?>

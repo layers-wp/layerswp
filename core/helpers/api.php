@@ -61,6 +61,7 @@ class Layers_API {
 
 		// Set the Auth token for our query
 		$remote_args = array(
+				'timeout' => 5,
 				'headers' => array(
 						'Authorization' => 'Bearer ' . $this->get_auth_token()
 				)

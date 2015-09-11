@@ -26,6 +26,7 @@
  * 13 - Layers Pages Backups
  * 14 - Init RTE Editors
  * 15 - Custom Widget Initialization Events
+ * 16 - Layers Marketplace
  *
  * Author: Obox Themes
  * Author URI: http://www.oboxthemes.com/
@@ -895,5 +896,102 @@ jQuery(function($) {
 			}
 		}
 	}
+
+	/**
+	* 16 - Layers Marketplace
+	*
+	* Dispense 'layers-interface-init' when:
+	* 1. widget is focused first time
+	* 2. accordion element is added inside widget
+	* to allow for just-in-time init instead of massive bulk init.
+	*/
+
+	$(document).on( 'click', '#layers-marketplace .theme-overlay button.close', function(e){
+		e.preventDefault();
+
+		$( '.theme-overlay' ).fadeOut(250).addClass( 'layers-hide' );
+	});
+
+	$(document).on( 'click', '#layers-marketplace [data-view-item^="product-details-"]', function(e){
+		e.preventDefault();
+
+		var $layers_a = $(this);
+
+		$id = '#' + $layers_a.attr('data-view-item');
+
+		window.location.hash = $layers_a.attr('data-view-item');
+
+		var $my_data = $( $id ).find( 'input' ).val();
+
+		var $json = jQuery.parseJSON( $my_data );
+
+		$modal = $( '.theme-overlay' );
+
+		/**
+		* Product Screenshot
+		*/
+		if( $json.previews ){
+			if( $json.previews.icon_with_landscape_preview ){
+				$screenshot = $json.previews.icon_with_landscape_preview;
+			} else {
+				$screenshot = $json.previews.icon_with_video_preview;
+			}
+		}
+		$modal.find( '.theme-screenshots img' ).attr( 'src', $screenshot.landscape_url );
+
+		/**
+		* Product Details
+		*/
+		$modal.find( '.theme-name' ).text( $json.name );
+		$modal.find( '.theme-author' ).text( $json.author_username );
+		var decoded_description = $("<div/>").html($json.description).text();
+		$modal.find( '.theme-description' ).text( decoded_description );
+		$modal.find( '.theme-price' ).text( $json.price_cents/100 );
+		$modal.find( '.theme-demo-link' ).attr( 'href' , $json.previews.live_site.url );
+		$modal.find( '.theme-buy-link' ).attr( 'href' , $json.url );
+
+		/**
+		* Next / Previous buttons
+		*/
+		if( 1 > $( $id ).prev().length ){
+			$prev = $('.layers-products .layers-product').eq( $('.layers-products .layers-product').length - 1 ).attr( 'id' );
+		} else {
+			$prev = $( $id ).prev().attr( 'id' );
+		}
+		$modal.find( '.left' ).show().attr( 'data-view-item' , $prev );
+
+		if( 1 > $( $id ).next().length ){
+			$next = $('.layers-products .layers-product').eq(0).attr( 'id' );
+		} else {
+			$next = $( $id ).next().attr( 'id' );
+		}
+		$modal.find( '.right' ).show().attr( 'data-view-item' , $next );
+
+		/**
+		* Rating
+		*/
+		$modal.find( '.theme-rating' ).html('');
+		if( 3 > $json.rating.count ){
+			$modal.find( '.theme-rating' ).hide();
+		} else {
+			$modal.find( '.theme-rating' ).show();
+			for( i = 1; i < 6; i++ ){
+				if( i <= $json.rating.rating ){
+					$star_class = 'star star-full';
+				} else {
+					$star_class = 'star star-empty';
+				}
+
+				$modal.find( '.theme-rating' ).append( $('<span class="' + $star_class + '" />') );
+			}
+		}
+
+
+		$( '.theme-wrap' ).css( 'max-width', 1260 );
+		if( $( '.theme-overlay' ).hasClass( 'layers-hide' ) ){
+			$( '.theme-overlay' ).hide().removeClass( 'layers-hide' ).fadeIn(250);
+		}
+
+	});
 
 });

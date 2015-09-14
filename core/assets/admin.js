@@ -930,14 +930,8 @@ jQuery(function($) {
 		/**
 		* Product Screenshot
 		*/
-		if( $json.previews ){
-			if( $json.previews.icon_with_landscape_preview ){
-				$screenshot = $json.previews.icon_with_landscape_preview;
-			} else {
-				$screenshot = $json.previews.icon_with_video_preview;
-			}
-		}
-		$modal.find( '.theme-screenshots img' ).attr( 'src', $screenshot.landscape_url );
+		$screenshot = $( $id ).find( '.layers-product-screenshot' ).html();
+		$modal.find( '.theme-screenshots' ).html( $( $screenshot ).removeAttr( 'width') );
 
 		/**
 		* Product Details
@@ -985,7 +979,6 @@ jQuery(function($) {
 				$modal.find( '.theme-rating' ).append( $('<span class="' + $star_class + '" />') );
 			}
 		}
-
 
 		$( '.theme-wrap' ).css( 'max-width', 1260 );
 		if( $( '.theme-overlay' ).hasClass( 'layers-hide' ) ){

@@ -54,10 +54,12 @@ class Layers_API {
 		$remote_url = self::ENVATO_API_URL . $endpoint . $query_string;
 
 		// Set the query transient key
-		$cache_key = 'layers_envato_query_' . base64_encode( $remote_url );
+		$cache_key = 'layers_envato_query_' . base64_encode( substr( $remote_url, 0,15) );
 
 		// Return a cached version of the query if we have one
-		if( get_transient( $cache_key ) ) return get_transient( $cache_key );
+		if( FALSE !== get_transient( $cache_key ) ) {
+			return get_transient( $cache_key );
+		}
 
 		// Set the Auth token for our query
 		$remote_args = array(

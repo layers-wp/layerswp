@@ -23,7 +23,9 @@ if( !in_array( $type, $valid_types ) ) return; ?>
 		$excerpt = __( 'Themes' , 'layerswp' );
 		$products = $api->get_theme_list();
 		$fallback_url = 'http://bit.ly/layers-themes';
-}; ?>
+};
+
+$all_authors = array(); ?>
 
 <section id="layers-marketplace" class="layers-area-wrapper">
 
@@ -41,8 +43,14 @@ if( !in_array( $type, $valid_types ) ) return; ?>
 						<a href="<?php echo $fallback_url; ?>" class="layers-button btn-primary btn-large"><?php _e( 'Go to Envato', 'layerswp' ); ?></a>
 					</div>
 				<?php } else { ?>
-					<?php foreach( $products->matches as $key => $details ) { ?>
-						<div id="product-details-<?php echo $key; ?>" class="layers-product active" tabindex="0">
+					<?php foreach( $products->matches as $key => $details ) {
+						if( !in_array( $details->author_username, $all_authors ) ){
+							$all_authors[] = array(
+								'username' => $details->author_username,
+								'url' => $details->author_url
+							);
+						} ?>
+						<div id="product-details-<?php echo $key; ?>" class="layers-product active" tabindex="0"  data-rating="<?php echo ( $details->rating->count > 0 ? $details->rating->rating : '' ) ; ?>" data-author="<?php echo $details->author_username; ?>">
 							<input type="hidden" value='<?php echo htmlspecialchars( json_encode( $details ) ); ?>' />
 							<label for="layers-preset-layout-<?php echo esc_attr( $key ); ?>-radio">
 								<h3 class="layers-product-name" id="<?php echo esc_attr( $key ); ?>"><?php echo esc_html( $details->name ); ?></h3>
@@ -55,9 +63,9 @@ if( !in_array( $type, $valid_types ) ) return; ?>
 								if ( isset( $previews->icon_with_landscape_preview->landscape_url ) && strpos( $previews->icon_with_landscape_preview->landscape_url, '//' ) ) {
 									$is_img = 1;
 									$image_src = $previews->icon_with_landscape_preview->landscape_url ;
-                        } else if ( isset( $previews->icon_with_video_preview->landscape_url ) && strpos( $previews->icon_with_video_preview->landscape_url, '//' ) ) {
+								} else if ( isset( $previews->icon_with_video_preview->landscape_url ) && strpos( $previews->icon_with_video_preview->landscape_url, '//' ) ) {
 									$is_img = 1;
-                           $image_src = $previews->icon_with_video_preview->landscape_url ;
+                           			$image_src = $previews->icon_with_video_preview->landscape_url ;
 								} else if ( isset( $previews->icon_with_video_preview->video_url ) && strpos( $previews->icon_with_video_preview->video_url, '//' ) ) {
 									$is_img = 0;
 									$video_src = $previews->icon_with_video_preview->video_url ;
@@ -85,6 +93,14 @@ if( !in_array( $type, $valid_types ) ) return; ?>
 							</label>
 						</div>
 					<?php } // Get Preset Layouts ?>
+					<script>
+						var layers_market_authors = jQuery.parseJSON( '<?php echo json_encode( $all_authors ); ?>' );
+
+						jQuery.each( layers_market_authors, function( key, value ){
+							jQuery( '#layers-marketplace-authors' ).append( jQuery( '<option value="'+ value.username + '">' + value.username + '</option>') );
+						});
+
+					</script>
 				<?php } ?>
 			</div>
 		</div>

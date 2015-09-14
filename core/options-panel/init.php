@@ -133,11 +133,22 @@ class Layers_Options_Panel {
 							</a>
 						</li>
 					</ul>
-					<form class="layers-help-search" action="http://docs.layerswp.com" target="_blank" method="get">
-						<input name="s" type="search" placeholder="Search Layers Help..." />
+					<form class="layers-help-search" action="" target="_blank" method="get">
+						<label><?php _e( 'Author: ', 'layerswp' ); ?></label>
+						<select id="layers-marketplace-authors" class="push-right">
+							<option><?php _e( '-- All --' , 'layerswp' ); ?></option>
+						</select>
+						<label><?php _e( 'Minimum Rating: ', 'layerswp' ); ?></label>
+						<select id="layers-marketplace-ratings" class="push-right">
+							<option value=""><?php _e( 'Any' , 'layerswp' ); ?></option>
+							<option value="5"><?php _e( '5 stars' , 'layerswp' ); ?></option>
+							<option value="4"><?php _e( '4 stars' , 'layerswp' ); ?></option>
+							<option value="3"><?php _e( '3 stars' , 'layerswp' ); ?></option>
+							<option value="2"><?php _e( '2 stars' , 'layerswp' ); ?></option>
+							<option value="1"><?php _e( '1 star' , 'layerswp' ); ?></option>
+						</select>
 					</form>
 				</nav>
-
 		</header>
 	<?php }
 

@@ -899,17 +899,27 @@ jQuery(function($) {
 
 	/**
 	* 16 - Layers Marketplace
-	*
-	* Dispense 'layers-interface-init' when:
-	* 1. widget is focused first time
-	* 2. accordion element is added inside widget
-	* to allow for just-in-time init instead of massive bulk init.
 	*/
 
 	$(document).on( 'click', '#layers-marketplace .theme-overlay button.close', function(e){
 		e.preventDefault();
 
 		$( '.theme-overlay' ).fadeOut(250).addClass( 'layers-hide' );
+	});
+
+	$(document).on( 'change', '#layers-marketplace #layers-marketplace-authors', function(e){
+		e.preventDefault();
+
+		$val = $(this).val();
+
+		$( '.layers-product' ).each(function(){
+			if( $(this).data( 'author' ) == $val ){
+				$(this).show();
+			} else {
+				$(this).hide();
+			}
+
+		});
 	});
 
 	$( '#layers-marketplace' ).on( "keyup", function( event ) {

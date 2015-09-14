@@ -78,8 +78,8 @@ class Layers_API {
 
 		if( is_wp_error( $remote_query ) ){
 
-			// If there's an error let us know about it
-			return $remote_query; // @TODO: Do something smarter than give us NULL
+			// If there's an error, we handle it on the front end so just return it
+			return $remote_query;
 
 		} else if( isset( $remote_query[ 'response' ][ 'code' ] ) && 200 == $remote_query[ 'response' ][ 'code' ] ) {
 

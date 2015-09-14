@@ -60,26 +60,21 @@ jQuery(function($) {
 		$container = $that.closest( '.layers-dashboard-setup-form' );
 		$form = $container.find( '.layers-content' );
 
-		$form_data = $form.find( 'input, textarea, select' ).serialize();
+		$data = $form.find( 'input, textarea, select' ).serialize();
 
 		$action = $that.data( 'submit-action' );
 
-		$data = {
-					action: $action,
-					setup_step_key: $that.data( 'setup-step-key' ),
-					data: $form_data
-				};
-
-		if( 'layers_onboarding_update_options' == $action ){
-			$data.layers_onboarding_update_nonce = layers_onboarding_params.update_option_nonce
-		} else {
-			$data.layers_set_theme_mod_nonce = layers_onboarding_params.set_theme_mod_nonce
-		}
-
 		$.post(
 				ajaxurl,
-				$form_data,
+				{
+					action: $action,
+					setup_step_key: $that.data( 'setup-step-key' ),
+					data: $data,
+					layers_set_theme_mod_nonce: layers_onboarding_params.set_theme_mod_nonce
+
+				},
 				function(data){
+
 					$results = $.parseJSON( data );
 
 					$container.hide().next().hide().removeClass( 'layers-hide' ).fadeIn( 250 );
@@ -99,13 +94,7 @@ jQuery(function($) {
 		$that = $( '.layers-dashboard-setup-form' );
 
 		if( 0 == $that.length ){
-
 			$( '.layers-site-setup-panel' ).hide();
-
-			/** Log Event on Intercom **/
-			if( 'undefined' !== typeof Intercom  ){
-				$(document).layers_intercom_event( 'completed dashboard site setup' );
-			}
 		}
 	}
 

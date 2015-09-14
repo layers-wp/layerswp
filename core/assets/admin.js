@@ -912,6 +912,27 @@ jQuery(function($) {
 		$( '.theme-overlay' ).fadeOut(250).addClass( 'layers-hide' );
 	});
 
+	$( '#layers-marketplace' ).on( "keyup", function( event ) {
+		e.preventDefault();
+
+		$modal = $( '.theme-overlay' );
+
+		// Esc
+		if( 27 ==  event.which ){
+			$modal.find( '.close' ).click();
+		}
+
+		// <-
+		if( 37 ==  event.which ){
+			$modal.find( '.left' ).click();
+		}
+
+		// ->
+		if( 39 ==  event.which ){
+			$modal.find( '.right' ).click();
+		}
+	});
+
 	$(document).on( 'click', '#layers-marketplace [data-view-item^="product-details-"]', function(e){
 		e.preventDefault();
 

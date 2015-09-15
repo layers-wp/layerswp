@@ -294,6 +294,25 @@ div#widgets-right div[id*='obox-layers-builder']{
         transition: all 0.2s ease-in-out;
     }
 
+    /*---------------------------*/
+    /*- MARKETPLACE LISTS ----*/
+    #layers-marketplace .theme-overlay .theme-author-img{
+        border-radius: 100%;
+        border: 1px solid #ddd;
+        float: left;
+        max-width: 45px;
+    }
+    #layers-marketplace .theme-overlay .theme-meta {
+        float: left;
+        padding-top: 2px;
+    }
+    #layers-marketplace .theme-overlay .theme-meta span{
+        clear: both;
+        display: block;
+        margin: 0;
+        padding: 0;
+    }
+
 /*---------------------------*/
 /*- DELETE / CLOSE / LOADING */
 div[id*='layers-widget'] .widget-control-actions{
@@ -681,6 +700,37 @@ div[id*='layers-widget'] .spinner{
 }
 .layers-push-bottom-massive{
     margin-bottom: 60px !important;
+}
+.layers-push-right{
+    margin-right: 20px !important;
+}
+.layers-push-right-small{
+    margin-right: 10px !important;
+}
+.layers-push-right-medium{
+    margin-right: 30px !important;
+}
+.layers-push-right-large{
+    margin-right: 40px !important;
+}
+.layers-push-right-massive{
+    margin-right: 60px !important;
+}
+
+.layers-push-left{
+    margin-left: 20px !important;
+}
+.layers-push-left-small{
+    margin-left: 10px !important;
+}
+.layers-push-left-medium{
+    margin-left: 30px !important;
+}
+.layers-push-left-large{
+    margin-left: 40px !important;
+}
+.layers-push-left-massive{
+    margin-left: 60px !important;
 }
 
 .layers-t-left{

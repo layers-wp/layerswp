@@ -121,14 +121,16 @@ $all_authors = array(); ?>
 					<div class="theme-screenshots"><img /></div>
 					<div class="theme-info">
 						<h3 class="theme-name"></h3>
-						<p class="theme-rating star-rating"></p>
-						<p class="theme-info">
-							<span class="layers-pull-left">
-								<img class="theme-author-img" width="40" style="border-radius: 100%;" />
+						<p class="layers-row">
+							<span class="layers-pull-left layers-push-right-small">
+								<img class="theme-author-img" />
 							</span>
-							<span class="theme-author"></span>
-							<span class="theme-sales"></span>
+							<span class="theme-meta">
+								<span class="theme-author"></span>
+								<span class="theme-sales"></span>
+							</span>
 						</p>
+						<p class="theme-rating star-rating"></p>
 						<p class="theme-description"></p>
 					</div>
 			  </div>

@@ -48,13 +48,13 @@ class Layers_API {
 
 	private function do_envato_api_call( $endpoint = 'market/total-items.json', $query_string = NULL , $method = 'get' ){
 
-		$query_string = ( $query_string ? '?' . $query_string : '' );
+		$query_string = ( $query_string ? '?' . $query_string . '&sort_by=sales&sort_direction=desc' : 'sort_by=sales&sort_direction=desc' );
 
 		// Set the remote URL
 		$remote_url = self::ENVATO_API_URL . $endpoint . $query_string;
 
 		// Set the query transient key
-		$cache_key = 'layers_envato_query_' . base64_encode( substr( $query_string, 0,15) );
+		$cache_key = 'lmp_' . base64_encode( substr( $query_string, 0,35) );
 
 		// Return a cached version of the query if we have one
 		if( FALSE !== get_transient( $cache_key ) ) {
@@ -65,7 +65,7 @@ class Layers_API {
 		$remote_args = array(
 				'timeout' => 5,
 				'headers' => array(
-						'Authorization' => 'Bearer ' . $this->get_auth_token()
+					'Authorization' => 'Bearer ' . $this->get_auth_token()
 				)
 			);
 

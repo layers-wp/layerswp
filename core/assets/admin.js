@@ -913,8 +913,23 @@ jQuery(function($) {
 		$val = $(this).val();
 
 		$( '.layers-product' ).each(function(){
-			if( $(this).data( 'author' ) == $val ){
-				$(this).show();
+			if( $(this).data( 'author' ) == $val || '' == $val){
+				$(this).removeClass( 'layers-hide' );
+			} else {
+				$(this).addClass( 'layers-hide' );
+			}
+
+		});
+	});
+
+	$(document).on( 'change', '#layers-marketplace #layers-marketplace-ratings', function(e){
+		e.preventDefault();
+
+		$val = $(this).val();
+
+		$( '.layers-product' ).each(function(){
+			if( $(this).data( 'rating' ) > $val || '' == $val){
+				$(this).fadeIn();
 			} else {
 				$(this).hide();
 			}
@@ -922,7 +937,7 @@ jQuery(function($) {
 		});
 	});
 
-	$( '#layers-marketplace' ).on( "keyup", function( event ) {
+	$( '.layers_page_layers-marketplace' ).on( "keyup", function( e ) {
 		e.preventDefault();
 
 		$modal = $( '.theme-overlay' );
@@ -968,12 +983,15 @@ jQuery(function($) {
 		* Product Details
 		*/
 		$modal.find( '.theme-name' ).text( $json.name );
+		$modal.find( '.theme-author-img' ).attr( 'src' , $json.author_image );
 		$modal.find( '.theme-author' ).text( $json.author_username );
+		$modal.find( '.theme-sales' ).html( '<strong>Sales:</strong> ' + $json.number_of_sales );
+
 		var decoded_description = $("<div/>").html($json.description).text();
 		$modal.find( '.theme-description' ).text( decoded_description );
 		$modal.find( '.theme-price' ).text( $json.price_cents/100 );
-		$modal.find( '.theme-demo-link' ).attr( 'href' , $json.previews.live_site.url );
-		$modal.find( '.theme-buy-link' ).attr( 'href' , $json.url );
+		$modal.find( '.theme-demo-link' ).attr( 'href' , $json.previews.live_site.url + '?ref=obox' );
+		$modal.find( '.theme-buy-link' ).attr( 'href' , $json.url  + '?ref=obox' );
 
 		/**
 		* Next / Previous buttons

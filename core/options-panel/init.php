@@ -134,13 +134,12 @@ class Layers_Options_Panel {
 						</li>
 					</ul>
 					<form class="layers-help-search" action="" target="_blank" method="get">
-						<label><?php _e( 'Author: ', 'layerswp' ); ?></label>
+						<label><?php _e( 'Filter: ', 'layerswp' ); ?></label>
 						<select id="layers-marketplace-authors" class="push-right">
-							<option><?php _e( '-- All --' , 'layerswp' ); ?></option>
+							<option value=""><?php _e( '-- Author --' , 'layerswp' ); ?></option>
 						</select>
-						<label><?php _e( 'Minimum Rating: ', 'layerswp' ); ?></label>
 						<select id="layers-marketplace-ratings" class="push-right">
-							<option value=""><?php _e( 'Any' , 'layerswp' ); ?></option>
+							<option value=""><?php _e( '-- Rating --' , 'layerswp' ); ?></option>
 							<option value="5"><?php _e( '5 stars' , 'layerswp' ); ?></option>
 							<option value="4"><?php _e( '4 stars' , 'layerswp' ); ?></option>
 							<option value="3"><?php _e( '3 stars' , 'layerswp' ); ?></option>

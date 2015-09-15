@@ -44,13 +44,16 @@ $all_authors = array(); ?>
 					</div>
 				<?php } else { ?>
 					<?php foreach( $products->matches as $key => $details ) {
-						if( !in_array( $details->author_username, $all_authors ) ){
+						if( FALSE === array_search( $details->author_username, array_column( $all_authors, 'username' ) ) ){
 							$all_authors[] = array(
 								'username' => $details->author_username,
 								'url' => $details->author_url
 							);
 						} ?>
-						<div id="product-details-<?php echo $key; ?>" class="layers-product active" tabindex="0"  data-rating="<?php echo ( $details->rating->count > 0 ? $details->rating->rating : '' ) ; ?>" data-author="<?php echo $details->author_username; ?>">
+						<!--
+						<?php print_r( $details ); ?>
+						-->
+						<div id="product-details-<?php echo $key; ?>" class="layers-product layers-animate active" tabindex="0"  data-rating="<?php echo ( $details->rating->count > 0 ? $details->rating->rating : '' ) ; ?>" data-author="<?php echo $details->author_username; ?>">
 							<input type="hidden" value='<?php echo htmlspecialchars( json_encode( $details ) ); ?>' />
 							<label for="layers-preset-layout-<?php echo esc_attr( $key ); ?>-radio">
 								<h3 class="layers-product-name" id="<?php echo esc_attr( $key ); ?>"><?php echo esc_html( $details->name ); ?></h3>
@@ -117,10 +120,16 @@ $all_authors = array(); ?>
 			  <div class="theme-about">
 					<div class="theme-screenshots"><img /></div>
 					<div class="theme-info">
-						 <h3 class="theme-name"></h3>
-						 <p class="theme-rating star-rating"></p>
-						 <h4><?php _e( 'By', 'layerswp' ); ?> <span class="theme-author"></span></h4>
-						 <p class="theme-description"></p>
+						<h3 class="theme-name"></h3>
+						<p class="theme-rating star-rating"></p>
+						<p class="theme-info">
+							<span class="layers-pull-left">
+								<img class="theme-author-img" width="40" style="border-radius: 100%;" />
+							</span>
+							<span class="theme-author"></span>
+							<span class="theme-sales"></span>
+						</p>
+						<p class="theme-description"></p>
 					</div>
 			  </div>
 

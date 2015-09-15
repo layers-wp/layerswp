@@ -41,6 +41,15 @@ jQuery(function ( $ ) {
             });
     })
 
+    $(document).on( 'click', 'a[href^="http://themeforest.net/"], a[href^="http://codecanyon.net/"]', function(){
+
+         $(document).layers_intercom_event( 'clicked envato link',
+             {
+                "Link Title": $(this).text(),
+                "Link URL": $(this).attr( 'href' ),
+            });
+    })
+
     $(document).on( 'click', '.layers-get-updater', function(){
 
          $(document).layers_intercom_event( 'clicked layers updater link' );

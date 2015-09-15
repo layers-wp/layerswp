@@ -274,7 +274,8 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 								* Set Individual Column CSS
 								*/
 								$post_column_class = array();
-								$post_column_class[] = 'layers-masonry-column thumbnail';
+								$post_column_class[] = 'layers-masonry-column';
+								$post_column_class[] = 'thumbnail';
 								$post_column_class[] = ( 'list-masonry' == $this->check_and_return( $widget, 'design', 'liststyle' ) ? 'no-gutter' : '' );
 								$post_column_class[] = 'column' . ( 'on' != $this->check_and_return( $widget, 'design', 'gutter' ) ? '-flush' : '' );
 								$post_column_class[] = $span_class;

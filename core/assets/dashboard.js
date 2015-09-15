@@ -101,6 +101,7 @@ jQuery(function($) {
 	/**
 	* 1.d - Intercom Switch
 	*/
+
 	$(document).on( 'click', '#layers-dashboard-page a[data-intercom-switch-action]', function(e){
 
 		e.preventDefault();

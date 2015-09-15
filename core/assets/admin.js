@@ -26,6 +26,7 @@
  * 13 - Layers Pages Backups
  * 14 - Init RTE Editors
  * 15 - Custom Widget Initialization Events
+ * 16 - Intercom checkbox
  *
  * Author: Obox Themes
  * Author URI: http://www.oboxthemes.com/
@@ -896,4 +897,19 @@ jQuery(function($) {
 		}
 	}
 
+	/**
+	* 16 - Intercom checkbox
+	*/
+
+	$(document).on( 'change', '#layers-enable-intercom', function(e){
+
+		if( 'undefined' !== typeof Intercom ){
+			if( !$(this).prop('checked') ){
+				Intercom('shutdown');
+			} else if( 'undefined' !== typeof window.intercomSettings ){
+				Intercom('boot', window.intercomSettings );
+			}
+		}
+
+	});
 });

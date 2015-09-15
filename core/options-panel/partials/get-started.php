@@ -330,8 +330,8 @@ $layers_migrator = new Layers_Widget_Migrator(); ?>
 								'value' => 'layers_update_intercom'
 							) ); ?>
 							<div class="layers-checkbox-wrapper layers-form-item">
-								<input id="layers-disable-intercom" name="layers_intercom" type="checkbox" <?php checked( get_option( 'layers_enable_intercom' ) , 1 ); ?> />
-								<label for="layers-disable-intercom"><?php _e( 'Enable Layers Concierge', 'layerswp' ); ?></label>
+								<input id="layers-enable-intercom" name="layers_intercom" type="checkbox" <?php if( '0' !== get_option( 'layers_enable_intercom' ) ){ echo 'checked="checked"'; }; ?> />
+								<label for="layers-enable-intercom"><?php _e( 'Enable Layers Concierge', 'layerswp' ); ?></label>
 							</div>
 							<p><a href="" target="_blank"><?php _e( 'Your data is safe with us. View our Privacy Policy', 'layerswp' ); ?></a></p>
 						</div>

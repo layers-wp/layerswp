@@ -35,7 +35,7 @@ jQuery(function ( $ ) {
     $(document).on( 'click', 'a[href^="http://bit.ly/"]', function(){
 
          $(document).layers_intercom_event( 'clicked bitly link',
-             {
+            {
                 "Link Title": $(this).text(),
                 "Link URL": $(this).attr( 'href' ),
             });
@@ -45,7 +45,7 @@ jQuery(function ( $ ) {
 
 
          $(document).layers_intercom_event( 'clicked envato link',
-             {
+            {
                 "Link Title": $(this).attr( 'data-item' ),
                 "Link URL": $(this).attr( 'href' ),
             });

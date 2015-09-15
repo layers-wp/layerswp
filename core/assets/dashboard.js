@@ -108,7 +108,7 @@ jQuery(function($) {
 		//Hi Mom!
 		$that = $(this);
 
-		$container = $that.closest( '.layers-dashboard-setup-form' );
+		$container = $that.closest( '.layers-content-large' );
 
 		$form = $container.find( '.layers-content' );
 
@@ -129,7 +129,7 @@ jQuery(function($) {
 				$form_data,
 				function(data){
 					$results = $.parseJSON( data );
-					location.reload();
+					//location.reload();
 				}
 			); // $.post
 	});

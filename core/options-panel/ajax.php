@@ -158,9 +158,9 @@ if( !class_exists( 'Layers_Onboarding_Ajax' ) ) {
 			);
 
 			if( isset( $data[ 'layers_intercom' ] ) ){
-				update_option( 'layers_disable_intercom' , FALSE );
+				update_option( 'layers_enable_intercom' , '1' );
 			} else{
-				update_option( 'layers_disable_intercom' , TRUE );
+				update_option( 'layers_enable_intercom' , '0' );
 			}
 
 			die( json_encode( array( 'success' => true, 'message' => __( 'Intercom Updated' , 'layerswp' ) ) ) );

@@ -18,7 +18,7 @@ class Layers_Intercom {
 	function __construct(){
 
 
-		if( TRUE == get_option( 'layers_disable_intercom' ) )
+		if( FALSE == get_option( 'layers_enable_intercom' ) || '' == get_option( 'layers_enable_intercom' ) )
 			return;
 
 		add_action( 'admin_enqueue_scripts', array( $this, 'admin_enqueue_scripts' ) , 50 );

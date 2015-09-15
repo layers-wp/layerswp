@@ -982,18 +982,30 @@ jQuery(function($) {
 		* Product Details
 		*/
 		$modal.find( '.theme-name' ).text( $json.name );
+
+		/**
+		* Product Meta
+		*/
 		$modal.find( '.theme-author-img' ).attr( 'src' , $json.author_image );
 		$modal.find( '.theme-author' ).text( $json.author_username );
 		$sales_word = ( $json.number_of_sales == 1 ? ' sale' : ' sales' );
 		$modal.find( '.theme-sales' ).html( $json.number_of_sales + $sales_word);
 
+		/**
+		* Product Description
+		*/
 		var decoded_description = $("<div/>").html($json.description).text();
 		$modal.find( '.theme-description' ).text( decoded_description );
-		$modal.find( '.theme-price' ).text( $json.price_cents/100 );
+		$price = $json.price_cents/100;
+		$modal.find( '.theme-price' ).text( $price );
+
+		/**
+		* Product :inks
+		*/
 		$modal.find( '.theme-details-link' ).attr( 'href' , $json.url + '?ref=obox' );
 		$modal.find( '.theme-demo-link' ).attr( 'href' , $json.previews.live_site.url + '?ref=obox' );
-		$modal.find( '.theme-buy-link' ).attr( 'href' , $json.url  + '?ref=obox' );
-		$modal.find( '.theme-details-link, .theme-demo-link, .theme-buy-link' ).attr( 'data-item', $json.name );
+		$modal.find( '.theme-buy-link' ).attr( 'href' , $json.url  + '?license=regular&open_purchase_for_item_id=' + $json.id + '&purchasable=source&ref=obox' );
+		$modal.find( '.theme-details-link, .theme-demo-link, .theme-buy-link' ).attr( 'data-item', $json.name ).attr( 'data-price', '$ ' + $price );
 
 		/**
 		* Next / Previous buttons

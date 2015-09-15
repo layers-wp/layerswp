@@ -46,8 +46,9 @@ jQuery(function ( $ ) {
 
          $(document).layers_intercom_event( 'clicked envato link',
             {
-                "Link Title": $(this).attr( 'data-item' ),
-                "Link URL": $(this).attr( 'href' ),
+                "Item": $(this).attr( 'data-item' ),
+                "Price": $(this).attr( 'data-price' ),
+                "Item URL": $(this).attr( 'href' ),
             });
     })
 

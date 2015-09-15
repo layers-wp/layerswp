@@ -919,8 +919,6 @@ jQuery(function($) {
 				$(this).hide();
 			}
 		});
-
-		jQuery('.layers-products').masonry();
 	});
 
 	$(document).on( 'change', '#layers-marketplace #layers-marketplace-ratings', function(e){
@@ -936,8 +934,6 @@ jQuery(function($) {
 			}
 
 		});
-
-		jQuery('.layers-products').masonry();
 	});
 
 	$( '.layers_page_layers-marketplace' ).on( "keyup", function( e ) {

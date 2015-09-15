@@ -426,16 +426,15 @@ class Layers_Options_Panel {
 	public function enqueue_dashboard_scripts(){
 
 		wp_enqueue_script(
+			LAYERS_THEME_SLUG . '-plugins-js'
+		);
+		wp_enqueue_script(
 			LAYERS_THEME_SLUG . '-dashboard' ,
 			get_template_directory_uri() . '/core/assets/dashboard.js',
 			array(
 				'jquery',
 			),
 			LAYERS_VERSION
-		); // Sticky-Kit
-
-		wp_enqueue_script(
-			LAYERS_THEME_SLUG . '-masonry'
 		); // Sticky-Kit
 
 		wp_localize_script(
@@ -447,6 +446,19 @@ class Layers_Options_Panel {
 			)
 		); // Onboarding ajax parameters
 
+	}
+
+	public function enqueue_marketplace_scripts(){
+		wp_enqueue_script( 'masonry' ); // Wordpress Masonry
+
+		wp_enqueue_script(
+			LAYERS_THEME_SLUG . '-layers-masonry-js' ,
+			get_template_directory_uri() . '/assets/js/layers.masonry.js',
+			array(
+				'jquery'
+			),
+			LAYERS_VERSION
+		); // Layers Masonry Function
 	}
 
 }
@@ -475,7 +487,7 @@ function layers_options_panel_menu(){
 	add_action('admin_print_scripts-' . $dashboard, array( $layers_options_panel, 'enqueue_dashboard_scripts') );
 
 	// Get Started
-	add_submenu_page(
+	$get_started = add_submenu_page(
 		LAYERS_THEME_SLUG . '-dashboard',
 		__( 'Get Started' , 'layerswp' ),
 		__( 'Get Started' , 'layerswp' ),
@@ -485,7 +497,7 @@ function layers_options_panel_menu(){
 	);
 
 	// Add Preset Pages
-	add_submenu_page(
+	$add_new_page = add_submenu_page(
 		LAYERS_THEME_SLUG . '-dashboard',
 		__( 'Add New Page' , 'layerswp' ),
 		__( 'Add New Page' , 'layerswp' ),
@@ -497,7 +509,7 @@ function layers_options_panel_menu(){
 	// Layers Pages
 	if( layers_get_builder_pages() ){
 		// Only show if there are actually Layers pages.
-		add_submenu_page(
+		$layers_pages = add_submenu_page(
 			LAYERS_THEME_SLUG . '-dashboard',
 			__( 'Layers Pages' , 'layerswp' ),
 			__( 'Layers Pages' , 'layerswp' ),
@@ -507,7 +519,7 @@ function layers_options_panel_menu(){
 	}
 
 	// Customize
-	add_submenu_page(
+	$customize = add_submenu_page(
 		LAYERS_THEME_SLUG . '-dashboard',
 		__( 'Customize' , 'layerswp' ),
 		__( 'Customize' , 'layerswp' ),
@@ -516,7 +528,7 @@ function layers_options_panel_menu(){
 	);
 
 	// Backup Page
-	add_submenu_page(
+	$backup = add_submenu_page(
 		LAYERS_THEME_SLUG . '-dashboard',
 		__( 'Backup' , 'layerswp' ),
 		__( 'Backup' , 'layerswp' ),
@@ -526,7 +538,7 @@ function layers_options_panel_menu(){
 	);
 
 	// Add Preset Pages
-	add_submenu_page(
+	$marketplace = add_submenu_page(
 		LAYERS_THEME_SLUG . '-dashboard',
 		__( 'Marketplace' , 'layerswp' ),
 		__( 'Marketplace' , 'layerswp' ),
@@ -534,6 +546,7 @@ function layers_options_panel_menu(){
 		LAYERS_THEME_SLUG . '-marketplace',
 		'layers_options_panel_ui'
 	);
+
 
 	// This modifies the Layers submenu item - must be done here as $submenu
 	// is only created if $submenu items are added using add_submenu_page

@@ -53,7 +53,7 @@ $all_authors = array(); ?>
 						<!--
 						<?php print_r( $details ); ?>
 						-->
-						<div id="product-details-<?php echo $key; ?>" class="layers-product layers-animate active" tabindex="0"  data-rating="<?php echo ( $details->rating->count > 0 ? $details->rating->rating : '' ) ; ?>" data-author="<?php echo $details->author_username; ?>">
+						<div id="product-details-<?php echo $key; ?>" class="layers-product active" tabindex="0"  data-rating="<?php echo ( $details->rating->count > 0 ? $details->rating->rating : '' ) ; ?>" data-author="<?php echo $details->author_username; ?>">
 							<input type="hidden" value='<?php echo htmlspecialchars( json_encode( $details ) ); ?>' />
 							<label for="layers-preset-layout-<?php echo esc_attr( $key ); ?>-radio">
 								<h3 class="layers-product-name" id="<?php echo esc_attr( $key ); ?>"><?php echo esc_html( $details->name ); ?></h3>

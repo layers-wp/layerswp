@@ -296,6 +296,36 @@ div#widgets-right div[id*='obox-layers-builder']{
 
     /*---------------------------*/
     /*- MARKETPLACE LISTS ----*/
+    #layers-marketplace .layers-product{
+        height: auto;
+        max-height: 300px;
+        overflow-y: hidden;
+    }
+
+    #layers-marketplace .layers-product .layers-product-screenshot{
+        height: auto;
+        max-height: 300px;
+    }
+    /*
+    #layers-marketplace .layers-product-name{
+        background-color: #444;
+        color: #fff;
+        border: 0;
+    }
+    */
+    #layers-marketplace .layers-marketplace-actions{
+        background-color: rgba( 0,0,0,0.5);
+        bottom: 0;
+        margin: 0;
+        padding: 6px 0px;
+        position: absolute;
+        width: 100%;
+    }
+
+    #layers-marketplace .layers-marketplace-actions .theme-rating{
+        padding-top: 4px;
+    }
+
     #layers-marketplace .theme-overlay .theme-author-img{
         border-radius: 100%;
         border: 1px solid #ddd;

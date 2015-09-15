@@ -75,7 +75,7 @@ $all_authors = array(); ?>
 								} ?>
 
 								<?php if( isset( $image_src ) ) { ?>
-									<div class="layers-product-screenshot" style="height: 241px; overflow-y: hidden;" data-view-item="product-details-<?php echo $key; ?>">
+									<div class="layers-product-screenshot" data-view-item="product-details-<?php echo $key; ?>">
 										<?php if( 1 == $is_img ) { ?>
 											<img src="<?php echo esc_url( $image_src ); ?>" />
 										<?php } else { ?>
@@ -84,19 +84,31 @@ $all_authors = array(); ?>
 									</div>
 								<?php } ?>
 
-								<div class="layers-product-actions">
-									<a class="layers-button btn-subtle" data-view-item="product-details-<?php echo $key; ?>" href="<?php echo esc_attr( $details->url ); ?>" target="_blank">
-										<?php _e( 'Details' , 'layerswp' ); ?>
-									</a>
-									<a class="layers-button btn-primary" href="<?php echo esc_attr( $details->url ); ?>" target="_blank">
+								<div class="layers-marketplace-actions">
+									<?php if( isset( $details->rating ) && 2 <= $details->rating->count && 2<= $details->rating->rating ) { ?>
+										<div class="layers-pull-left theme-rating star-rating layers-push-left-small" style="display: block;">
+											<?php for( $i = 1; $i < 6; $i++ ){ ?>
+												<?php if( $details->rating->rating >= $i ) { ?>
+													<span class="star star-full"></span>
+												<?php } else { ?>
+													<span class="star star-empty"></span>
+												<?php } ?>
+											<?php } ?>
+										</div>
+									<?php } ?>
+									<a class="layers-pull-right layers-button btn-primary layers-push-right-small" href="<?php echo esc_attr( $details->url ); ?>" target="_blank">
 										<?php _e( 'Buy for ' , 'layerswp' ); ?>
 										$<?php echo (float) ($details->price_cents/100); ?>
+									</a>
+									<a class="layers-pull-right layers-button btn-subtle layers-push-right-small" data-view-item="product-details-<?php echo $key; ?>" href="<?php echo esc_attr( $details->url ); ?>" target="_blank">
+										<?php _e( 'Details' , 'layerswp' ); ?>
 									</a>
 								</div>
 							</label>
 						</div>
 					<?php } // Get Preset Layouts ?>
 					<script>
+						// Fill the author select box
 						var layers_market_authors = jQuery.parseJSON( '<?php echo json_encode( $all_authors ); ?>' );
 
 						jQuery.each( layers_market_authors, function( key, value ){

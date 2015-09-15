@@ -914,12 +914,13 @@ jQuery(function($) {
 
 		$( '.layers-product' ).each(function(){
 			if( $(this).data( 'author' ) == $val || '' == $val){
-				$(this).removeClass( 'layers-hide' );
+				$(this).show();
 			} else {
-				$(this).addClass( 'layers-hide' );
+				$(this).hide();
 			}
-
 		});
+
+		jQuery('.layers-products').masonry();
 	});
 
 	$(document).on( 'change', '#layers-marketplace #layers-marketplace-ratings', function(e){
@@ -935,6 +936,8 @@ jQuery(function($) {
 			}
 
 		});
+
+		jQuery('.layers-products').masonry();
 	});
 
 	$( '.layers_page_layers-marketplace' ).on( "keyup", function( e ) {
@@ -985,7 +988,8 @@ jQuery(function($) {
 		$modal.find( '.theme-name' ).text( $json.name );
 		$modal.find( '.theme-author-img' ).attr( 'src' , $json.author_image );
 		$modal.find( '.theme-author' ).text( $json.author_username );
-		$modal.find( '.theme-sales' ).html( '<strong>Sales:</strong> ' + $json.number_of_sales );
+		$sales_word = ( $json.number_of_sales == 1 ? ' sale' : ' sales' );
+		$modal.find( '.theme-sales' ).html( $json.number_of_sales + $sales_word);
 
 		var decoded_description = $("<div/>").html($json.description).text();
 		$modal.find( '.theme-description' ).text( decoded_description );
@@ -996,19 +1000,19 @@ jQuery(function($) {
 		/**
 		* Next / Previous buttons
 		*/
-		if( 1 > $( $id ).prev().length ){
+		if( 1 > $( $id ).prev( 'div.layers-product' ).length ){
 			$prev = $('.layers-products .layers-product').eq( $('.layers-products .layers-product').length - 1 ).attr( 'id' );
 		} else {
 			$prev = $( $id ).prev().attr( 'id' );
 		}
-		$modal.find( '.left' ).show().attr( 'data-view-item' , $prev );
+		$modal.find( '.left' ).attr( 'data-view-item' , $prev );
 
-		if( 1 > $( $id ).next().length ){
+		if( 1 > $( $id ).next( 'div.layers-product' ).length ){
 			$next = $('.layers-products .layers-product').eq(0).attr( 'id' );
 		} else {
 			$next = $( $id ).next().attr( 'id' );
 		}
-		$modal.find( '.right' ).show().attr( 'data-view-item' , $next );
+		$modal.find( '.right' ).attr( 'data-view-item' , $next );
 
 		/**
 		* Rating

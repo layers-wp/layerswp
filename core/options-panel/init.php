@@ -434,6 +434,10 @@ class Layers_Options_Panel {
 			LAYERS_VERSION
 		); // Sticky-Kit
 
+		wp_enqueue_script(
+			LAYERS_THEME_SLUG . '-masonry'
+		); // Sticky-Kit
+
 		wp_localize_script(
 			LAYERS_THEME_SLUG . '-dashboard' ,
 			"layers_dashboard_params",

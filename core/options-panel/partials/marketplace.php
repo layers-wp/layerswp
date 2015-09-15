@@ -50,9 +50,6 @@ $all_authors = array(); ?>
 								'url' => $details->author_url
 							);
 						} ?>
-						<!--
-						<?php print_r( $details ); ?>
-						-->
 						<div id="product-details-<?php echo $key; ?>" class="layers-product active" tabindex="0"  data-rating="<?php echo ( $details->rating->count > 0 ? $details->rating->rating : '' ) ; ?>" data-author="<?php echo $details->author_username; ?>">
 							<input type="hidden" value='<?php echo htmlspecialchars( json_encode( $details ) ); ?>' />
 							<label for="layers-preset-layout-<?php echo esc_attr( $key ); ?>-radio">
@@ -100,7 +97,7 @@ $all_authors = array(); ?>
 										<?php _e( 'Buy for ' , 'layerswp' ); ?>
 										$<?php echo (float) ($details->price_cents/100); ?>
 									</a>
-									<a class="layers-pull-right layers-button btn-subtle layers-push-right-small" data-view-item="product-details-<?php echo $key; ?>" href="<?php echo esc_attr( $details->url ); ?>" target="_blank">
+									<a class="layers-pull-right layers-button btn-subtle layers-push-right-small" data-item="<?php echo esc_attr( $details->name ); ?>" data-view-item="product-details-<?php echo $key; ?>" href="<?php echo esc_attr( $details->url ); ?>" target="_blank">
 										<?php _e( 'Details' , 'layerswp' ); ?>
 									</a>
 								</div>
@@ -149,6 +146,9 @@ $all_authors = array(); ?>
 
 			  <div class="theme-actions">
 					<div class="inactive-theme">
+						<a href="" class="button button-secondary theme-details-link">
+							<?php _e( 'View More Info' , 'layerswp' ); ?>
+						</a>
 						<a href="" class="button button-secondary theme-demo-link">
 							<?php _e( 'View Demo' , 'layerswp' ); ?>
 						</a>

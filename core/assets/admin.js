@@ -990,8 +990,10 @@ jQuery(function($) {
 		var decoded_description = $("<div/>").html($json.description).text();
 		$modal.find( '.theme-description' ).text( decoded_description );
 		$modal.find( '.theme-price' ).text( $json.price_cents/100 );
+		$modal.find( '.theme-details-link' ).attr( 'href' , $json.url + '?ref=obox' );
 		$modal.find( '.theme-demo-link' ).attr( 'href' , $json.previews.live_site.url + '?ref=obox' );
 		$modal.find( '.theme-buy-link' ).attr( 'href' , $json.url  + '?ref=obox' );
+		$modal.find( '.theme-details-link, .theme-demo-link, .theme-buy-link' ).attr( 'data-item', $json.name );
 
 		/**
 		* Next / Previous buttons

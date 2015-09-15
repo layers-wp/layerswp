@@ -94,7 +94,7 @@ $all_authors = array(); ?>
 											<?php } ?>
 										</div>
 									<?php } ?>
-									<a class="layers-pull-right layers-button btn-primary layers-push-right-small" href="<?php echo esc_attr( $details->url ); ?>?license=regular&open_purchase_for_item_id=<?php echo $details->id; ?>&purchasable=source&ref=obox" target="_blank">
+									<a class="layers-pull-right layers-button btn-primary layers-push-right-small" href="<?php echo esc_attr( $details->url ); ?>?license=regular&open_purchase_for_item_id=<?php echo $details->id; ?>&purchasable=source&ref=obox" target="_blank" data-item="<?php echo esc_attr( $details->name ); ?>" data-price="$ <?php echo (float) ($details->price_cents/100); ?>">
 										<?php _e( 'Buy for ' , 'layerswp' ); ?>
 										$<?php echo (float) ($details->price_cents/100); ?>
 									</a>

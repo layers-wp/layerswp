@@ -686,6 +686,37 @@ div[id*='layers-widget'] .spinner{
     margin-bottom: 60px !important;
 }
 
+.layers-push-right{
+    margin-right: 20px !important;
+}
+.layers-push-right-small{
+    margin-right: 10px !important;
+}
+.layers-push-right-medium{
+    margin-right: 30px !important;
+}
+.layers-push-right-large{
+    margin-right: 40px !important;
+}
+.layers-push-right-massive{
+    margin-right: 60px !important;
+}
+
+.layers-push-left{
+    margin-left: 20px !important;
+}
+.layers-push-left-small{
+    margin-left: 10px !important;
+}
+.layers-push-left-medium{
+    margin-left: 30px !important;
+}
+.layers-push-left-large{
+    margin-left: 40px !important;
+}
+.layers-push-left-massive{
+    margin-left: 60px !important;
+}
 .layers-t-left{
     text-align: left;
 }
@@ -1835,7 +1866,7 @@ li[id*='accordion-section-layers'] .customize-control.customize-control-image .a
         -webkit-animation: loading-background-animation 2s linear infinite;
         -moz-animation: loading-background-animation 2s linear infinite;
         animation: loading-background-animation 2s linear infinite;
-        
+
         background-color: #FAFAFA;
         border: 1px solid #CCC;
         background-position: 50%;

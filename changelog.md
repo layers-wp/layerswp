@@ -7,6 +7,7 @@
 * **Tweak** - Edit Layout button in the admin-bar now shows on all pages - not just layers pages - as even non Layers pages can have colors, layout, etc Edited. *SOB*
 * **Tweak** - .title padding is now set on the parent container to accommodate for future features and better font size control. *DP*
 * **Tweak** - .amount color has been moved to the .price wrapper. *DP*
+* **Tweak** - Remove 'Edit Layout' from the admin-bar as it is redundant now that WP has added 'Customize' to the admin-bar. *SOB*
 * **Enhancement** - .title line-height is more compliant to font changes. *DP*
 * **Enhancement** - Fixed WooCommerce category listings in the shop page. *MP*
 * **Enhancement** - Search box no longer brakes to two lines in the footer. *DP*

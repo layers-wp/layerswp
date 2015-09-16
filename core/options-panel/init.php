@@ -44,7 +44,7 @@ class Layers_Options_Panel {
 
 		add_action( 'wp_dashboard_setup', array( &$this, 'layers_add_dashboard_widgets' ) );
 
-                // Remove homless Layers widgets
+		// Remove homeless Layers widgets
 		add_action( 'after_delete_post' , array( $this, 'remove_homeless_widgets' ), 11 );
 	}
 

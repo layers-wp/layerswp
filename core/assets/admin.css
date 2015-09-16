@@ -374,7 +374,7 @@ div#widgets-right div[id*='obox-layers-builder']{
         text-decoration: none;
     }
 
-    @media only screen and (max-width: 1400px){
+    @media only screen and (max-width: 1440px){
 
         #layers-marketplace .layers-help-search {
             width: 60%;

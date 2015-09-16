@@ -327,6 +327,7 @@ div#widgets-right div[id*='obox-layers-builder']{
     #layers-marketplace .layers-product{
         height: auto;
         max-height: 300px;
+        margin-right: 2%;
         overflow-y: hidden;
     }
 

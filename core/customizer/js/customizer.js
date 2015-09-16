@@ -124,6 +124,12 @@
 			// Move the Layers tooltips to correct place.
 			$('.customize-controls-close').addClass('layers-tooltip layers-tooltip-left').prepend( $('.layers-tooltip-text-close') );
 			$('.control-panel-back').addClass('layers-tooltip layers-tooltip-left').prepend( $('.layers-tooltip-text-back') );
+			
+			// Delay showing of main nav with hoverIntent
+			$( 'ul.layers-customizer-nav > li' ).hoverIntent(
+				function() { $( this ).addClass( 'layers-hover' ); },
+				function() { $( this ).removeClass( 'layers-hover' ); }
+			);
 
 			/**
 			 * 3 - Better history states in customizer

@@ -185,17 +185,26 @@ add_action( 'wp_ajax_layers_backup_builder_pages', 'layers_backup_builder_pages'
 if( !function_exists( 'layers_post_class' ) ) {
 	function layers_post_class( $classes ) {
 
-		$classes[] = 'container';
+		global $woocommerce;
 
-	if( is_post_type_archive( 'product' ) || is_tax( 'product_cat' ) || is_tax( 'product_tag' ) ) {
-		$classes[] = 'column';
-				$classes[] = 'span-4';
+		if( is_single() )
+			$classes[] = 'container';
+
+		if( ( isset( $woocommerce ) && is_cart() && 'product' == get_post_type() ) || is_post_type_archive( 'product' ) || is_tax( 'product_cat' ) || is_tax( 'product_tag' ) ) {
+
+			$classes[] = 'column';
+			// Honor WC loop columns filter
+			$wc_span = 12 / apply_filters( 'loop_shop_columns', 4 );
+			$spans = array(12, 6, 3, 2, 1);
+			$span  = in_array($wc_span, $spans) ? $wc_span : 4;
+			$classes[] = 'span-'.$span;
 		}
 
 		return $classes;
 	}
 }
 add_filter( 'post_class' , 'layers_post_class' );
+add_filter( 'product_cat_class' , 'layers_post_class' );
 
 /**
  *  The following function creates a builder page
@@ -332,7 +341,7 @@ if( ! function_exists( 'layers_edit_layout_admin_menu' ) ) {
 	function layers_edit_layout_admin_menu(){
 		global $wp_admin_bar, $post;
 
-		if( is_page() && layers_is_builder_page() ){
+		if( !is_admin() ){
 			$current_url = ( is_ssl() ? 'https://' : 'http://' ) . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
 			$args = array(
 				'id'    => 'layers-edit-layout',
@@ -402,7 +411,8 @@ if( !function_exists( 'layers_post_featured_media' ) ) {
 			'postid' => $post->ID,
 			'wrap' => 'div',
 			'wrap_class' => 'thumbnail',
-			'size' => 'medium'
+			'size' => 'medium',
+			'hide_href' => false
 		);
 
 		$args = wp_parse_args( $args, $defaults );
@@ -420,8 +430,12 @@ if( !function_exists( 'layers_post_featured_media' ) ) {
 			$output .= $featured_media;
 		}
 
-		if( !isset( $hide_href ) && !isset( $post_meta[ 'video-url' ] ) && ( !is_single() && !is_page_template( 'template-blog.php' ) ) ){
-			$output = '<a href="' .get_permalink( $postid ) . '">' . $output . '</a>';
+		if( TRUE != $hide_href ){
+			if( has_post_thumbnail() ) {
+				if( !is_single() ){
+					$output = '<a href="' .get_permalink( $postid ) . '">' . $output . '</a>';
+				}
+			}
 		}
 
 		if( '' != $wrap ) {

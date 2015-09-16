@@ -500,6 +500,18 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
         margin-bottom: 15px;
     }
 
+    /*---------------------------*/
+    /*- CLOSE OFF CANVAS --------*/
+    .admin-bar section[class*=' off-canvas-'] .close-canvas{
+        top: 46px;
+    }
+
+    /*---------------------------*/
+    /*- OFF CANVAS SIDEBAR ------*/
+    .admin-bar section[class*=" off-canvas-"] .nav-mobile{
+        margin-top: 47px;
+    }
+
 }
 
 
@@ -871,6 +883,13 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
             -webkit-transform: translate3d(0, 0, 0);
             transform: translate3d(0, 0, 0);
             opacity: 1;
+        }
+
+        /*-----------------------*/
+        /*- MEDIA SMALL ---------*/
+        .has-image .image-left.small .media-body,
+        .has-image .image-right.small .media-body{
+            margin-top: 0;
         }
 
 /*-------------------------------*/

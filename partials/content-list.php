@@ -7,7 +7,7 @@
  */
 
 global $post, $layers_post_meta_to_display; ?>
-<article id="post-<?php the_ID(); ?>" class="push-bottom-large">
+<article id="post-<?php the_ID(); ?>" <?php post_class( 'push-bottom-large' ); ?>>
 	<?php do_action('layers_before_list_post_title'); ?>
 	<header class="section-title large">
 		<?php do_action('layers_before_list_title'); ?>

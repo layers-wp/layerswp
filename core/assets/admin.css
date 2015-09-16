@@ -13,7 +13,13 @@
 @import url(icons.css);
 
 /*------------------------------------*/
-/*- HIDE LAYERS WIDGETS IN APPEARANCE -*/
+/*- CUSTOMIZER Look&Feel OVERRIDES ---*/
+#customize-theme-controls .accordion-section-content{
+    background: #fff; /*-- Make the accordions white --*/
+}
+
+/*------------------------------------*/
+/*- HIDE LAYERS WIDGETS IN APPEARANCE */
 div#widgets-right .widgets-sortables{
     padding-bottom: 1px;
 }
@@ -98,7 +104,7 @@ div#widgets-right div[id*='obox-layers-builder']{
     .customize-control-widget_form.wide-widget-control.layers-loading div[id*='layers-widget'] .widget-top .widget-title-action{
         opacity: 0;
     }
-    
+
     /*- Layers Widget Rendered -*/
     .customize-control-widget_form.wide-widget-control:not(.widget-rendered) .widget-top{
         opacity: 1;
@@ -193,7 +199,7 @@ div#widgets-right div[id*='obox-layers-builder']{
         transition: transform 0.15s ease-in-out, opacity 0.15s ease-in-out;
         overflow: scroll;
         background-color: white;
-    
+
         opacity: 1;
 }
     .customize-control-widget_form.wide-widget-control.expanded div[id*='layers-widget'] .widget-inside .form{
@@ -238,25 +244,28 @@ div#widgets-right div[id*='obox-layers-builder']{
     .layers-product:nth-child(3n+3){
         margin-right: 0;
     }
+    .layers-product:hover{
+        border: 1px solid #009eec;
+    }
     .layers-product-screenshot{
-        height: 350px;
+        height: 296px;
         overflow-x: hidden;
     }
     .layers-product-screenshot img{
         width: 100%;
     }
     .layers-product-name{
-        font-size: 15px;
-        font-weight: 600;
         height: 18px;
         margin: 0px;
         padding: 15px;
         overflow: hidden;
-        white-space: nowrap;
-        text-overflow: ellipsis;
         background: rgba(255, 255, 255, 0.65);
         border-top: 1px solid #dedede;
+        font-size: 15px;
+        font-weight: 600;
         color: #000;
+        white-space: nowrap;
+        text-overflow: ellipsis;
     }
     .layers-product-actions{
         position: absolute;
@@ -267,11 +276,11 @@ div#widgets-right div[id*='obox-layers-builder']{
     }
 
     .blank-product{
-        border: 4px dashed #ccc;
+        border: 2px dashed #ccc;
         background: #fff;
     }
     .blank-product .layers-product-screenshot{
-        height: 345px;
+        height: 295px;
     }
     .blank-product .layers-product-name{
         background: none;
@@ -279,8 +288,8 @@ div#widgets-right div[id*='obox-layers-builder']{
         border-top: none;
     }
     .blank-product:hover{
-        background-color: #009DF3;
-        border-color: transparent;
+        background-color: #009eec;
+        border: 2px dashed transparent;
         transition: all 0.2s ease-in-out;
     }
     .blank-product:hover .layers-product-name{
@@ -677,6 +686,37 @@ div[id*='layers-widget'] .spinner{
     margin-bottom: 60px !important;
 }
 
+.layers-push-right{
+    margin-right: 20px !important;
+}
+.layers-push-right-small{
+    margin-right: 10px !important;
+}
+.layers-push-right-medium{
+    margin-right: 30px !important;
+}
+.layers-push-right-large{
+    margin-right: 40px !important;
+}
+.layers-push-right-massive{
+    margin-right: 60px !important;
+}
+
+.layers-push-left{
+    margin-left: 20px !important;
+}
+.layers-push-left-small{
+    margin-left: 10px !important;
+}
+.layers-push-left-medium{
+    margin-left: 30px !important;
+}
+.layers-push-left-large{
+    margin-left: 40px !important;
+}
+.layers-push-left-massive{
+    margin-left: 60px !important;
+}
 .layers-t-left{
     text-align: left;
 }
@@ -964,7 +1004,7 @@ div[id*='layers-widget'] .spinner{
         margin: 0;
         transition: transform 0.2s ease-in-out, opacity 0.2s ease-in-out;
     }
-    
+
         /*-- ANIMATE ICONS --*/
         .customize-control-widget_form.wide-widget-control div[id*='layers-widget'] .widget-inside .layers-visuals-item{
             opacity: 0;
@@ -1317,11 +1357,11 @@ div[id*='layers-widget'] .spinner{
         width: 100%;
         border: 0;
     }
-    
+
     .froala-element.froala-view{
         border: 1px solid #DDD;
     }
-    
+
     .froala-editor.f-basic{
         background: #FFF;
         border: 1px solid #E5E5E5;
@@ -1330,7 +1370,7 @@ div[id*='layers-widget'] .spinner{
         overflow: hidden;
         height: 38px;
     }
-    
+
     .froala-box.froala-toolbar-hide .froala-editor.f-basic{
         transform: translate( 0, 30px );
         height: 0;
@@ -1388,7 +1428,7 @@ div[id*='layers-widget'] .spinner{
             font-size: 13px;
             padding: 5px 6px;
         }
-        
+
         /*-------------------------------*/
         /*- RTE LIST STYLING --------*/
         /*-------------------------------*/
@@ -1667,6 +1707,10 @@ li[id*='accordion-section-layers'] .customize-control.customize-control-image .a
         line-height: 26px;
         text-align: center;
     }
+    .layers-button:before{
+        transition: all .2s;
+        -webkit-transition: all .2s;
+    }
     .layers-button:hover{
         background-color: #f2f2f2;
         color: #555;
@@ -1769,6 +1813,9 @@ li[id*='accordion-section-layers'] .customize-control.customize-control-image .a
         border-top: 1px solid #E5E5E5;
         background: #F5F5F5;
     }
+    .inside .layers-button-well{
+        margin: 0px -12px -12px;
+    }
 
     /*-----------------------*/
     /*- BUTTON COLLECTION ---*/
@@ -1776,6 +1823,61 @@ li[id*='accordion-section-layers'] .customize-control.customize-control-image .a
         overflow: hidden;
     }
 
+    /*--------------------------------*/
+    /*- LOADING INDICATORS -----------*/
+
+    @-webkit-keyframes loading-background-animation {
+        0% { background-position: 0 0; }
+        100% { background-position: 50px 50px; }
+    }
+    @-moz-keyframes loading-background-animation {
+        0% { background-position: 0 0; }
+        100% { background-position: 50px 50px; }
+    }
+
+    .layers-button.layers-loading-button {
+        background-image: -webkit-gradient(
+                linear,
+                0 0,
+                100% 100%,
+                color-stop(.25, rgba(0, 0, 0, .05)),
+                color-stop(.25, rgba(0, 0, 0, 0)),
+                color-stop(.5, rgba(0, 0, 0, 0)),
+                color-stop(.5, rgba(0, 0, 0, .05)),
+                color-stop(.75, rgba(0, 0, 0, .05)),
+                color-stop(.75, rgba(0, 0, 0, 0)),
+                to(rgba(0, 0, 0, 0))
+            );
+        background-image: -moz-linear-gradient(
+                -45deg,
+                rgba(0, 0, 0, .05) 25%,
+                rgba(0, 0, 0, 0) 25%,
+                rgba(0, 0, 0, 0) 50%,
+                rgba(0, 0, 0, .05) 50%,
+                rgba(0, 0, 0, .05) 75%,
+                rgba(0, 0, 0, 0) 75%,
+                transparent
+            );
+
+        -webkit-background-size: 50px 50px;
+        -moz-background-size: 50px 50px;
+        background-size: 50px 50px;
+
+        -webkit-animation: loading-background-animation 2s linear infinite;
+        -moz-animation: loading-background-animation 2s linear infinite;
+        animation: loading-background-animation 2s linear infinite;
+
+        background-color: #FAFAFA;
+        border: 1px solid #CCC;
+        background-position: 50%;
+        color: #999999;
+        pointer-events: none;
+    }
+    .layers-button.btn-primary.layers-loading-button {
+        background-color: #D2D2D2;
+        border: 1px solid #A7A7A7;
+        color: #FFFFFF;
+    }
 
 /*---------------------------*/
 /*- LABELS ------------------*/
@@ -2556,7 +2658,14 @@ input[type=radio]:checked + .layers-settings-icon span{
     top: 1px;
 }
 
-
+    /*-------------------------*/
+    /*- WORDPRESS DASHBOARD ---*/
+    .layers-ticks-wp li{
+        padding-left: 26px;
+        background: url("images/tick-wp.png") no-repeat left;
+        background-size: 16px 16px;
+        color: #777;
+    }
 
     /*---------------------------*/
     /*- HORIZONTAL NAVIGATION ---*/
@@ -2938,53 +3047,3 @@ input[type=radio]:checked + .layers-settings-icon span{
         .layers-button.layers-proceed-to-customizer.disable:hover:before{
             opacity:1;
         }
-
-/*--------------------------------*/
-/*- LOADING INDICATORS -----------*/
-
-@-webkit-keyframes move {
-    0% { background-position: 0 0; }
-    100% { background-position: 50px 50px; }
-}
-@-moz-keyframes move {
-    0% { background-position: 0 0; }
-    100% { background-position: 50px 50px; }
-}
-
-.layers-button.layers-loading-button {
-    background-image: -webkit-gradient(
-            linear,
-            0 0,
-            100% 100%,
-            color-stop(.25, rgba(0, 0, 0, .05)),
-            color-stop(.25, rgba(0, 0, 0, 0)),
-            color-stop(.5, rgba(0, 0, 0, 0)),
-            color-stop(.5, rgba(0, 0, 0, .05)),
-            color-stop(.75, rgba(0, 0, 0, .05)),
-            color-stop(.75, rgba(0, 0, 0, 0)),
-            to(rgba(0, 0, 0, 0))
-        );
-    background-image: -moz-linear-gradient(
-            -45deg,
-            rgba(0, 0, 0, .05) 25%,
-            rgba(0, 0, 0, 0) 25%,
-            rgba(0, 0, 0, 0) 50%,
-            rgba(0, 0, 0, .05) 50%,
-            rgba(0, 0, 0, .05) 75%,
-            rgba(0, 0, 0, 0) 75%,
-            transparent
-        );
-    
-    -webkit-background-size: 50px 50px;
-    -moz-background-size: 50px 50px;
-    background-size: 50px 50px;
-    
-    -webkit-animation: move 2s linear infinite;
-    -moz-animation: move 2s linear infinite;
-    animation: move 2s linear infinite;
-    
-    background-color: #FAFAFA;
-    background-position: 50%;
-    color: #999999;
-    pointer-events: none;
-}

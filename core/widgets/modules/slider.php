@@ -40,7 +40,7 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 			$control_ops = array( 'width' => LAYERS_WIDGET_WIDTH_LARGE, 'height' => NULL, 'id_base' => LAYERS_THEME_SLUG . '-widget-' . $this->widget_id );
 
 			/* Create the widget. */
-			$this->WP_Widget( LAYERS_THEME_SLUG . '-widget-' . $this->widget_id , $this->widget_title, $widget_ops, $control_ops );
+			parent::__construct( LAYERS_THEME_SLUG . '-widget-' . $this->widget_id , $this->widget_title, $widget_ops, $control_ops );
 
 			/* Setup Widget Defaults */
 			$this->defaults = array (
@@ -143,7 +143,10 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 			* Generate the widget container class
 			*/
 			$widget_container_class = array();
-			$widget_container_class[] = 'widget row slide swiper-container';
+			$widget_container_class[] = 'widget';
+			$widget_container_class[] = 'row';
+			$widget_container_class[] = 'slide';
+			$widget_container_class[] = 'swiper-container';
 			$widget_container_class[] = $this->get_widget_layout_class( $widget );
 			$widget_container_class[] = $this->check_and_return( $widget , 'design', 'advanced', 'customclass' );
 			$widget_container_class[] = $this->get_widget_spacing_class( $widget );
@@ -159,8 +162,12 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 				// If only one slide
 				$widget_container_class[] = 'single-slide';
 			}
-			$widget_container_class = implode( ' ', apply_filters( 'layers_slider_widget_container_class' , $widget_container_class ) ); ?>
-
+			$widget_container_class = implode( ' ', apply_filters( 'layers_slider_widget_container_class' , $widget_container_class ) );
+			
+			/**
+			 * Slider HTML
+			 */
+			?>
 			<section class="<?php echo $widget_container_class; ?>" id="<?php echo $widget_id; ?>" style="<?php echo esc_attr( $slider_height_css ); ?>" >
 				<?php if( !empty( $widget[ 'slides' ] ) ) { ?>
 					<?php if( 1 < count( $widget[ 'slides' ] ) && isset( $widget['show_slider_arrows'] ) ) { ?>
@@ -281,66 +288,69 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 			 		</div>
 				<?php } // if !empty( $widget->slides ) ?>
 		 	</section>
+			
+			<?php
+			/**
+			 * Slider javascript initialize
+			 */
+			if( 1 < count( $widget[ 'slides' ] ) ) : ?>
+	 			<?php $swiper_js_obj = str_replace( '-' , '_' , $this->get_field_id( 'slider' ) ); ?>
+			 	<script>
+					jQuery(function($){
+
+						var <?php echo $swiper_js_obj; ?> = $('#<?php echo $widget_id; ?>').swiper({
+							mode:'horizontal',
+							<?php if( '' == $slider_height_css ) { ?>
+								calculateHeight: true,
+							<?php } ?>
+							<?php if( isset( $widget['show_slider_dots'] ) && ( !empty( $widget[ 'slides' ] ) && 1 < count( $widget[ 'slides' ] ) ) ) { ?>
+								pagination: '.<?php echo $this->get_field_id( 'pages' ); ?>',
+							<?php } ?>
+							paginationClickable: true,
+							watchActiveIndex: true
+							<?php if( 1 < count( $widget[ 'slides' ] ) ) { ?>
+								,loop: true
+							<?php } ?>
+							<?php if( isset( $widget['autoplay_slides'] ) && isset( $widget['slide_time'] ) && is_numeric( $widget['slide_time'] ) ) {?>
+								, autoplay: <?php echo ($widget['slide_time']*1000); ?>
+							<?php }?>
+							<?php if( isset( $wp_customize ) && $this->check_and_return( $widget, 'focus_slide' ) ) { ?>
+								,initialSlide: <?php echo $this->check_and_return( $widget, 'focus_slide' ); ?>
+							<?php } ?>
+						});
+
 						<?php if( 1 < count( $widget[ 'slides' ] ) ) { ?>
-	 		<?php $swiper_js_obj = str_replace( '-' , '_' , $this->get_field_id( 'slider' ) ); ?>
-		 	<script>
-				jQuery(function($){
+							// Allow keyboard control
+							<?php echo $swiper_js_obj; ?>.enableKeyboardControl();
+						<?php } // if > 1 slide ?>
 
-					var <?php echo $swiper_js_obj; ?> = $('#<?php echo $widget_id; ?>').swiper({
-						//Your options here:
-						mode:'horizontal',
-						<?php if( '' == $slider_height_css ) { ?>
-							calculateHeight: true,
-						<?php } ?>
-						<?php if( isset( $widget['show_slider_dots'] ) && ( !empty( $widget[ 'slides' ] ) && 1 < count( $widget[ 'slides' ] ) ) ) { ?>
-							pagination: '.<?php echo $this->get_field_id( 'pages' ); ?>',
-						<?php } ?>
-						paginationClickable: true,
-						watchActiveIndex: true
-						<?php if( 1 < count( $widget[ 'slides' ] ) ) { ?>
-							,loop: true
-						<?php } ?>
-						<?php if( isset( $widget['autoplay_slides'] ) && isset( $widget['slide_time'] ) && is_numeric( $widget['slide_time'] ) ) {?>
-							, autoplay: <?php echo ($widget['slide_time']*1000); ?>
-						<?php }?>
-						<?php if( isset( $wp_customize ) && $this->check_and_return( $widget, 'focus_slide' ) ) { ?>
-							,initialSlide: <?php echo $this->check_and_return( $widget, 'focus_slide' ); ?>
-						<?php } ?>
-					});
+						$('#<?php echo $widget_id; ?>').find('.arrows a').on( 'click' , function(e){
+							e.preventDefault();
 
-					<?php if( 1 < count( $widget[ 'slides' ] ) ) { ?>
-						// Allow keyboard control
-						<?php echo $swiper_js_obj; ?>.enableKeyboardControl();
-					<?php } // if > 1 slide ?>
+							// "Hi Mom"
+							$that = $(this);
 
-					$('#<?php echo $widget_id; ?>').find('.arrows a').on( 'click' , function(e){
-						e.preventDefault();
+							if( $that.hasClass( 'swiper-pagination-switch' ) ){ // Anchors
+								<?php echo $swiper_js_obj; ?>.swipeTo( $that.index() );
+							} else if( $that.hasClass( 'l-left-arrow' ) ){ // Previous
+								<?php echo $swiper_js_obj; ?>.swipePrev();
+							} else if( $that.hasClass( 'l-right-arrow' ) ){ // Next
+								<?php echo $swiper_js_obj; ?>.swipeNext();
+							}
 
-						// "Hi Mom"
-						$that = $(this);
+							return false;
+						});
 
-						if( $that.hasClass( 'swiper-pagination-switch' ) ){ // Anchors
-							<?php echo $swiper_js_obj; ?>.swipeTo( $that.index() );
-						} else if( $that.hasClass( 'l-left-arrow' ) ){ // Previous
-							<?php echo $swiper_js_obj; ?>.swipePrev();
-						} else if( $that.hasClass( 'l-right-arrow' ) ){ // Next
-							<?php echo $swiper_js_obj; ?>.swipeNext();
-						}
-
-						return false;
-					});
-
-					<?php echo $swiper_js_obj; ?>.init();
-
-				})
-		 	</script>
-		 	<?php } // if > 1 slide ?>
+						<?php echo $swiper_js_obj; ?>.init();
+					})
+			 	</script>
+		 	<?php endif; ?>
+		 	
 		<?php }
 
 		/**
 		*  Widget update
 		*/
-
 	 	function update($new_instance, $old_instance) {
 
 	 		if ( isset( $this->checkboxes ) ) {
@@ -363,7 +373,6 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 		*  Widget form
 		*
 		* We use regular HTML here, it makes reading the widget much easier than if we used just php to echo all the HTML out.
-		*
 		*/
 		function form( $instance ){
 

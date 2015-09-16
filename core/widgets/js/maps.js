@@ -45,7 +45,7 @@ function layers_check_address($){
 		$map = new google.maps.Map( $that[0] ,
 			{
 				scrollwheel: false,
-				zoom: 10,
+				zoom: $that.data('zoom-level'),
   				center: latlng,
   				mapTypeId: google.maps.MapTypeId.ROADMAP
 			}

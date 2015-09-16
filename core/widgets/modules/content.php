@@ -36,7 +36,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 			$control_ops = array( 'width' => LAYERS_WIDGET_WIDTH_LARGE, 'height' => NULL, 'id_base' => LAYERS_THEME_SLUG . '-widget-' . $this->widget_id );
 
 			/* Create the widget. */
-			$this->WP_Widget( LAYERS_THEME_SLUG . '-widget-' . $this->widget_id , $this->widget_title, $widget_ops, $control_ops );
+			parent::__construct( LAYERS_THEME_SLUG . '-widget-' . $this->widget_id , $this->widget_title, $widget_ops, $control_ops );
 
 			/* Setup Widget Defaults */
 			$this->defaults = array (
@@ -114,7 +114,9 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 			* Generate the widget container class
 			*/
 			$widget_container_class = array();
-			$widget_container_class[] = 'widget row content-vertical-massive';
+			$widget_container_class[] = 'widget';
+			$widget_container_class[] = 'row';
+			$widget_container_class[] = 'content-vertical-massive';
 			$widget_container_class[] = $this->check_and_return( $widget , 'design', 'advanced', 'customclass' );
 			$widget_container_class[] = $this->get_widget_spacing_class( $widget );
 			$widget_container_class = implode( ' ', apply_filters( 'layers_content_widget_container_class' , $widget_container_class ) ); ?>

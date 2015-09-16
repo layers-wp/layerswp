@@ -173,7 +173,7 @@ jQuery(function($) {
 
     } );
 
-    $(document).on( 'keyup change clear', '#layers-marketplace #layers-marketplace-search, #layers-marketplace #layers-marketplace-authors, #layers-marketplace #layers-marketplace-ratings', function(e){
+    $(document).on( 'keyup change', '#layers-marketplace #layers-marketplace-search, #layers-marketplace #layers-marketplace-authors, #layers-marketplace #layers-marketplace-ratings', function(e){
         e.preventDefault();
 
         $search_val = $( '#layers-marketplace #layers-marketplace-search' ).val().toLowerCase();

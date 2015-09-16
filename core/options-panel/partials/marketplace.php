@@ -47,11 +47,10 @@ $all_authors = array(); ?>
 						if( FALSE === in_array( $details->author_username, $all_authors ) ){
 							$all_authors[] = $details->author_username;
 						} ?>
-
-						<div id="product-details-<?php echo $key; ?>" class="layers-product layers-animate" tabindex="0"  data-rating="<?php echo ( $details->rating->count > 0 ? $details->rating->rating : '' ) ; ?>" data-author="<?php echo $details->author_username; ?>">
+						<div id="product-details-<?php echo $details->id; ?>" class="layers-product layers-animate" tabindex="0"  data-rating="<?php echo ( $details->rating->count > 0 ? $details->rating->rating : '' ) ; ?>" data-author="<?php echo $details->author_username; ?>">
 							<input  class="layers-product-json" type="hidden" value='<?php echo htmlspecialchars( json_encode( $details ) ); ?>' />
-							<label for="layers-preset-layout-<?php echo esc_attr( $key ); ?>-radio">
-								<h3 class="layers-product-name" id="<?php echo esc_attr( $key ); ?>"><?php echo esc_html( $details->name ); ?></h3>
+							<label for="layers-preset-layout-<?php echo esc_attr( $details->id ); ?>-radio">
+								<h3 class="layers-product-name" id="<?php echo esc_attr( $details->id ); ?>"><?php echo esc_html( $details->name ); ?></h3>
 
 								<?php /**
 								* Get images and/or video
@@ -70,7 +69,7 @@ $all_authors = array(); ?>
 								} ?>
 
 								<?php if( isset( $image_src ) ) { ?>
-									<div class="layers-product-screenshot" data-view-item="product-details-<?php echo $key; ?>">
+									<div class="layers-product-screenshot" data-view-item="product-details-<?php echo $details->id; ?>">
 										<?php if( 1 == $is_img ) { ?>
 											<img src="<?php echo esc_url( $image_src ); ?>" />
 										<?php } else { ?>
@@ -95,7 +94,7 @@ $all_authors = array(); ?>
 										<?php _e( 'Buy for ' , 'layerswp' ); ?>
 										$<?php echo (float) ($details->price_cents/100); ?>
 									</a>
-									<a class="layers-pull-right layers-button btn-subtle layers-push-right-small" data-item="<?php echo esc_attr( $details->name ); ?>" data-view-item="product-details-<?php echo $key; ?>" href="<?php echo esc_attr( $details->url ); ?>" target="_blank">
+									<a class="layers-pull-right layers-button btn-subtle layers-push-right-small" data-item="<?php echo esc_attr( $details->name ); ?>" data-view-item="product-details-<?php echo $details->id; ?>" href="<?php echo esc_attr( $details->url ); ?>" target="_blank">
 										<?php _e( 'Details' , 'layerswp' ); ?>
 									</a>
 								</div>

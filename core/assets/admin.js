@@ -901,10 +901,37 @@ jQuery(function($) {
 	* 16 - Layers Marketplace
 	*/
 
+	$(document).on( 'click', '#layers-marketplace .theme-backdrop', function(e){
+		if( $(this).not( '.theme-overlay' ) ){
+			$( '#layers-marketplace .theme-overlay button.close' ).trigger( 'click' );
+		}
+	});
+
 	$(document).on( 'click', '#layers-marketplace .theme-overlay button.close', function(e){
 		e.preventDefault();
 
 		$( '.theme-overlay' ).fadeOut(250).addClass( 'layers-hide' );
+	});
+
+	$( '.layers_page_layers-marketplace' ).on( "keyup", function( e ) {
+		e.preventDefault();
+
+		$modal = $( '.theme-overlay' );
+
+		// Esc
+		if( 27 ==  event.which ){
+			$modal.find( '.close' ).click();
+		}
+
+		// <-
+		if( 37 ==  event.which ){
+			$modal.find( '.left' ).click();
+		}
+
+		// ->
+		if( 39 ==  event.which ){
+			$modal.find( '.right' ).click();
+		}
 	});
 
 	$(document).on( 'keyup change', '#layers-marketplace #layers-marketplace-search, #layers-marketplace #layers-marketplace-authors, #layers-marketplace #layers-marketplace-ratings', function(e){
@@ -956,28 +983,6 @@ jQuery(function($) {
 		// Do something about the information we've got
 		$( $valid_products.join(", ") ).removeClass( 'layers-hide' );
 		$( $invalid_products.join(", ") ).addClass( 'layers-hide' );
-	});
-
-
-	$( '.layers_page_layers-marketplace' ).on( "keyup", function( e ) {
-		e.preventDefault();
-
-		$modal = $( '.theme-overlay' );
-
-		// Esc
-		if( 27 ==  event.which ){
-			$modal.find( '.close' ).click();
-		}
-
-		// <-
-		if( 37 ==  event.which ){
-			$modal.find( '.left' ).click();
-		}
-
-		// ->
-		if( 39 ==  event.which ){
-			$modal.find( '.right' ).click();
-		}
 	});
 
 	$(document).on( 'click', '#layers-marketplace [data-view-item^="product-details-"]', function(e){
@@ -1066,7 +1071,6 @@ jQuery(function($) {
 			}
 		}
 
-		$( '.theme-wrap' ).css( 'max-width', 1260 );
 		if( $( '.theme-overlay' ).hasClass( 'layers-hide' ) ){
 			$( '.theme-overlay' ).hide().removeClass( 'layers-hide' ).fadeIn(250);
 		}

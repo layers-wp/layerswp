@@ -1032,7 +1032,11 @@ jQuery(function($) {
 		* Product :inks
 		*/
 		$modal.find( '.theme-details-link' ).attr( 'href' , $json.url + '?ref=obox' );
-		$modal.find( '.theme-demo-link' ).attr( 'href' , $json.previews.live_site.url + '?ref=obox' );
+		if( 'undefined' !== typeof $json.previews.live_site ){
+			$modal.find( '.theme-demo-link' ).show().attr( 'href' , $json.previews.live_site.url + '?ref=obox' );
+		} else {
+			$modal.find( '.theme-demo-link' ).hide();
+		}
 		$modal.find( '.theme-buy-link' ).attr( 'href' , $json.url  + '?license=regular&open_purchase_for_item_id=' + $json.id + '&purchasable=source&ref=obox' );
 		$modal.find( '.theme-details-link, .theme-demo-link, .theme-buy-link' ).attr( 'data-item', $json.name ).attr( 'data-price', '$ ' + $price );
 

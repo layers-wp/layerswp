@@ -135,7 +135,7 @@ $all_authors = array(); ?>
 								<img class="theme-author-img" />
 							</span>
 							<span class="theme-meta">
-								<span class="theme-author"></span>
+								<a class="theme-author" target="_blank"></a>
 								<span class="theme-sales"></span>
 							</span>
 						</p>

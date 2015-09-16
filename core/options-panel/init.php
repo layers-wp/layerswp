@@ -450,18 +450,17 @@ class Layers_Options_Panel {
 	}
 
 	public function enqueue_marketplace_scripts(){
-		wp_enqueue_script( 'masonry' ); // Wordpress Masonry
 
 		wp_enqueue_script(
-			LAYERS_THEME_SLUG . '-layers-masonry-js' ,
-			get_template_directory_uri() . '/assets/js/layers.masonry.js',
+			LAYERS_THEME_SLUG . '-marketplace' ,
+			get_template_directory_uri() . '/core/assets/marketplace.js',
 			array(
-				'jquery'
+				'jquery',
 			),
 			LAYERS_VERSION
-		); // Layers Masonry Function
-	}
+		); // Sticky-Kit
 
+	}
 }
 
 /**
@@ -547,6 +546,9 @@ function layers_options_panel_menu(){
 		LAYERS_THEME_SLUG . '-marketplace',
 		'layers_options_panel_ui'
 	);
+
+	add_action('admin_print_scripts-' . $marketplace, array( $layers_options_panel, 'enqueue_marketplace_scripts') );
+
 
 
 	// This modifies the Layers submenu item - must be done here as $submenu

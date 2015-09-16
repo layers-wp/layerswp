@@ -351,6 +351,7 @@ div#widgets-right div[id*='obox-layers-builder']{
 
     #layers-marketplace .theme-overlay .theme-screenshots img{
         border: 1px solid #ddd;
+        width: 100%;
     }
 
     #layers-marketplace .theme-overlay .theme-author-img{
@@ -365,11 +366,12 @@ div#widgets-right div[id*='obox-layers-builder']{
         padding-top: 2px;
     }
 
-    #layers-marketplace .theme-overlay .theme-meta span{
+    #layers-marketplace .theme-overlay .theme-meta span, #layers-marketplace .theme-overlay .theme-meta a{
         clear: both;
         display: block;
         margin: 0;
         padding: 0;
+        text-decoration: none;
     }
 
 /*---------------------------*/

@@ -1020,12 +1020,13 @@ jQuery(function($) {
 		$modal.find( '.theme-sales' ).html( $json.number_of_sales + $sales_word);
 
 		/**
-		* Product Description
+		* Product Description & Summary
 		*/
-		var decoded_description = $("<div/>").html($json.description).text();
+		var decoded_description = $("<div/>").html( $json.description ).text();
 		$modal.find( '.theme-description' ).text( decoded_description );
 		$price = $json.price_cents/100;
 		$modal.find( '.theme-price' ).text( $price );
+		$modal.find( '.theme-tags' ).text( $json.summary );
 
 		/**
 		* Product :inks

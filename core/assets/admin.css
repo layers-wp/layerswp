@@ -359,10 +359,12 @@ div#widgets-right div[id*='obox-layers-builder']{
         float: left;
         max-width: 45px;
     }
+
     #layers-marketplace .theme-overlay .theme-meta {
         float: left;
         padding-top: 2px;
     }
+
     #layers-marketplace .theme-overlay .theme-meta span{
         clear: both;
         display: block;

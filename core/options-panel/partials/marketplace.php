@@ -47,6 +47,9 @@ $all_authors = array(); ?>
 						if( FALSE === in_array( $details->author_username, $all_authors ) ){
 							$all_authors[] = $details->author_username;
 						} ?>
+						<!-- <pre>
+						<?php print_r( $details ); ?>
+						</pre>-->
 						<div id="product-details-<?php echo $details->id; ?>" class="layers-product layers-animate" tabindex="0"  data-rating="<?php echo ( $details->rating->count > 0 ? $details->rating->rating : '' ) ; ?>" data-author="<?php echo $details->author_username; ?>">
 							<input  class="layers-product-json" type="hidden" value='<?php echo htmlspecialchars( json_encode( $details ) ); ?>' />
 							<label for="layers-preset-layout-<?php echo esc_attr( $details->id ); ?>-radio">
@@ -138,6 +141,7 @@ $all_authors = array(); ?>
 						</p>
 						<p class="theme-rating star-rating"></p>
 						<p class="theme-description"></p>
+						<p class="theme-tags"></p>
 					</div>
 			  </div>
 

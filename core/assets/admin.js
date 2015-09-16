@@ -907,34 +907,57 @@ jQuery(function($) {
 		$( '.theme-overlay' ).fadeOut(250).addClass( 'layers-hide' );
 	});
 
-	$(document).on( 'change', '#layers-marketplace #layers-marketplace-authors', function(e){
+	$(document).on( 'keyup change', '#layers-marketplace #layers-marketplace-search, #layers-marketplace #layers-marketplace-authors, #layers-marketplace #layers-marketplace-ratings', function(e){
 		e.preventDefault();
 
-		$val = $(this).val();
+		$search_val = $('#layers-marketplace #layers-marketplace-search').val().toLowerCase();
+		$author_val = $( '#layers-marketplace #layers-marketplace-authors' ).val().toLowerCase();
+		$rating_val = $('#layers-marketplace #layers-marketplace-ratings').val();
+
+		$valid_products = new Array();
+		$invalid_products = new Array();
 
 		$( '.layers-product' ).each(function(){
-			if( $(this).data( 'author' ) == $val || '' == $val){
-				$(this).show();
-			} else {
-				$(this).hide();
-			}
-		});
-	});
 
-	$(document).on( 'change', '#layers-marketplace #layers-marketplace-ratings', function(e){
-		e.preventDefault();
+			// Start with a valid product
+			var $valid = true;
 
-		$val = $(this).val();
+			// Decode the JSON
+			var $json_string = $(this).find('.layers-product-json').val().toLowerCase();
+			var $json_decoded = $.parseJSON( $json_string );
 
-		$( '.layers-product' ).each(function(){
-			if( $(this).data( 'rating' ) > $val || '' == $val){
-				$(this).fadeIn();
-			} else {
-				$(this).hide();
+			// Set the Product ID
+			var $product_id = '#' + $(this).attr( 'id' );
+
+			// Check the Search Box
+			if( '' !== $search_val && -1 == $json_string.indexOf( $search_val ) ) {
+				$valid = false;
 			}
 
+			// Check the Rating
+			if( '' !== $rating_val && $rating_val > $json_decoded.rating.rating ){
+				$valid = false;
+			}
+
+			// Check the Author
+			if( '' !== $author_val && $author_val !== $json_decoded.author_username ){
+				$valid = false;
+			}
+
+			// If valid is still true, add this product to the valid_products array
+
+			if( true == $valid ){
+				$valid_products.push( $product_id );
+			} else {
+				$invalid_products.push( $product_id );
+			}
 		});
+
+		// Do something about the information we've got
+		$( $valid_products.join(", ") ).removeClass( 'layers-hide' );
+		$( $invalid_products.join(", ") ).addClass( 'layers-hide' );
 	});
+
 
 	$( '.layers_page_layers-marketplace' ).on( "keyup", function( e ) {
 		e.preventDefault();

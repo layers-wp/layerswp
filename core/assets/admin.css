@@ -296,6 +296,29 @@ div#widgets-right div[id*='obox-layers-builder']{
 
     /*---------------------------*/
     /*- MARKETPLACE LISTS ----*/
+    #layers-marketplace .layers-help-search{
+        width: 45%;
+        text-align: right;
+    }
+
+    #layers-marketplace .layers-help-search label{
+        position: relative;
+        top: -2px;
+        font-size: 11px;
+        text-transform: uppercase;
+        color: #777;
+        font-weight: 600;
+    }
+
+    #layers-marketplace .layers-help-search select{
+        height: 32px;
+        margin-top: -4px;
+    }
+
+    #layers-marketplace #layers-marketplace-search{
+        max-width: 200px;
+    }
+
     #layers-marketplace .layers-product{
         height: auto;
         max-height: 300px;

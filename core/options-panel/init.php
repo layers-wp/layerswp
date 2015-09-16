@@ -134,7 +134,7 @@ class Layers_Options_Panel {
 						</li>
 					</ul>
 					<form class="layers-help-search" action="" target="_blank" method="get">
-						<label><?php _e( 'Filter: ', 'layerswp' ); ?></label>
+						<label><?php _e( 'Filters: ', 'layerswp' ); ?></label>
 						<select id="layers-marketplace-authors" class="push-right">
 							<option value=""><?php _e( '-- Author --' , 'layerswp' ); ?></option>
 						</select>
@@ -146,6 +146,7 @@ class Layers_Options_Panel {
 							<option value="2"><?php _e( '2 stars' , 'layerswp' ); ?></option>
 							<option value="1"><?php _e( '1 star' , 'layerswp' ); ?></option>
 						</select>
+						<input id="layers-marketplace-search" type="search" placeholder="<?php _e( 'Search...' , 'layerswp' ); ?>"/>
 					</form>
 				</nav>
 		</header>

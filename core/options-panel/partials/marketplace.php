@@ -43,14 +43,18 @@ $all_authors = array(); ?>
 						<a href="<?php echo $fallback_url; ?>" class="layers-button btn-primary btn-large"><?php _e( 'Go to Envato', 'layerswp' ); ?></a>
 					</div>
 				<?php } else { ?>
+					<div id="layers-marketplace-empty-search" class="layers-section-title layers-large layers-content-large layers-t-center layers-hide">
+						<h3 class="layers-heading"><?php _e( 'Oh No!' , 'layerswp'); ?></h3>
+						<div class="layers-media-body layers-push-bottom">
+							<p class="layers-excerpt"><?php _e( sprintf( 'Your search returned a grand total of zero %s. <br /> Clear your search and try again.', strtolower( $excerpt ) ) , 'layerswp'); ?></p>
+						</div>
+						<a id="layers-marketplace-clear-search" class="layers-button btn-primary btn-large"><?php _e( 'Try Again', 'layerswp' ); ?></a>
+					</div>
 					<?php foreach( $products->matches as $key => $details ) {
 						if( FALSE === in_array( $details->author_username, $all_authors ) ){
 							$all_authors[] = $details->author_username;
 						} ?>
-						<!-- <pre>
-						<?php print_r( $details ); ?>
-						</pre>-->
-						<div id="product-details-<?php echo $details->id; ?>" class="layers-product layers-animate" tabindex="0"  data-rating="<?php echo ( $details->rating->count > 0 ? $details->rating->rating : '' ) ; ?>" data-author="<?php echo $details->author_username; ?>">
+						<div id="product-details-<?php echo $details->id; ?>" class="layers-product layers-animate" tabindex="0" data-rating="<?php echo ( $details->rating->count > 0 ? $details->rating->rating : '' ) ; ?>" data-author="<?php echo $details->author_username; ?>">
 							<input  class="layers-product-json" type="hidden" value='<?php echo htmlspecialchars( json_encode( $details ) ); ?>' />
 							<label for="layers-preset-layout-<?php echo esc_attr( $details->id ); ?>-radio">
 								<h3 class="layers-product-name" id="<?php echo esc_attr( $details->id ); ?>"><?php echo esc_html( $details->name ); ?></h3>
@@ -82,7 +86,7 @@ $all_authors = array(); ?>
 								<?php } ?>
 
 								<div class="layers-marketplace-actions">
-									<?php if( isset( $details->rating ) && 2 <= $details->rating->count && 2<= $details->rating->rating ) { ?>
+									<?php if( isset( $details->rating ) && 3 <= $details->rating->count && 2<= $details->rating->rating ) { ?>
 										<div class="layers-pull-left theme-rating star-rating layers-push-left-small" style="display: block;">
 											<?php for( $i = 1; $i < 6; $i++ ){ ?>
 												<?php if( $details->rating->rating >= $i ) { ?>
@@ -147,10 +151,10 @@ $all_authors = array(); ?>
 
 			  <div class="theme-actions">
 					<div class="inactive-theme">
-						<a href="" class="button button-secondary theme-details-link">
+						<a href="" class="button button-secondary theme-details-link" target="_blank">
 							<?php _e( 'View More Info' , 'layerswp' ); ?>
 						</a>
-						<a href="" class="button button-secondary theme-demo-link">
+						<a href="" class="button button-secondary theme-demo-link" target="_blank">
 							<?php _e( 'View Demo' , 'layerswp' ); ?>
 						</a>
 						<a href="" class="button button-primary theme-buy-link">

@@ -140,7 +140,7 @@ jQuery(function($) {
         * Rating
         */
         $modal.find( '.theme-rating' ).html('');
-        if( 3 > $json.rating.count ){
+        if( 3 >= $json.rating.count ){
             $modal.find( '.theme-rating' ).hide();
         } else {
             $modal.find( '.theme-rating' ).show();
@@ -164,12 +164,21 @@ jQuery(function($) {
     /**
     * 4 - Marketplace Filter and Search functions
     */
+    $(document).on( 'click', '#layers-marketplace-clear-search', function(e){
+        e.preventDefault();
+
+        $( '#layers-marketplace #layers-marketplace-search' ).val('').trigger( 'change' );
+        $( '#layers-marketplace #layers-marketplace-authors' ).val('');
+        $( '#layers-marketplace #layers-marketplace-ratings' ).val('');
+
+    } );
+
     $(document).on( 'keyup change', '#layers-marketplace #layers-marketplace-search, #layers-marketplace #layers-marketplace-authors, #layers-marketplace #layers-marketplace-ratings', function(e){
         e.preventDefault();
 
-        $search_val = $('#layers-marketplace #layers-marketplace-search').val().toLowerCase();
+        $search_val = $( '#layers-marketplace #layers-marketplace-search' ).val().toLowerCase();
         $author_val = $( '#layers-marketplace #layers-marketplace-authors' ).val().toLowerCase();
-        $rating_val = $('#layers-marketplace #layers-marketplace-ratings').val();
+        $rating_val = $( '#layers-marketplace #layers-marketplace-ratings').val();
 
         $valid_products = new Array();
         $invalid_products = new Array();
@@ -211,6 +220,12 @@ jQuery(function($) {
         });
 
         // Do something about the information we've got
+        if( 0 == $valid_products.length && $( '#layers-marketplace-empty-search' ).hasClass( 'layers-hide' ) ){
+            $( '#layers-marketplace-empty-search' ).hide().removeClass( 'layers-hide' ).fadeIn( 750 );
+        } else if( 0 < $valid_products.length ) {
+            $( '#layers-marketplace-empty-search' ).addClass( 'layers-hide' );
+        }
+
         $( $valid_products.join(", ") ).removeClass( 'layers-hide' );
         $( $invalid_products.join(", ") ).addClass( 'layers-hide' );
     });

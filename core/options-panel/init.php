@@ -537,17 +537,19 @@ function layers_options_panel_menu(){
 		'layers_options_panel_ui'
 	);
 
-	// Add Preset Pages
-	$marketplace = add_submenu_page(
-		LAYERS_THEME_SLUG . '-dashboard',
-		__( 'Marketplace' , 'layerswp' ),
-		__( 'Marketplace' , 'layerswp' ),
-		'edit_theme_options',
-		LAYERS_THEME_SLUG . '-marketplace',
-		'layers_options_panel_ui'
-	);
+	// Marketplace
+	if( !defined( 'LAYERS_DISABLE_MARKETPLACE' ) ){
+		$marketplace = add_submenu_page(
+			LAYERS_THEME_SLUG . '-dashboard',
+			__( 'Marketplace' , 'layerswp' ),
+			__( 'Marketplace' , 'layerswp' ),
+			'edit_theme_options',
+			LAYERS_THEME_SLUG . '-marketplace',
+			'layers_options_panel_ui'
+		);
 
-	add_action('admin_print_scripts-' . $marketplace, array( $layers_options_panel, 'enqueue_marketplace_scripts') );
+		add_action('admin_print_scripts-' . $marketplace, array( $layers_options_panel, 'enqueue_marketplace_scripts') );
+	}
 
 
 

@@ -168,12 +168,12 @@ jQuery(function($) {
         e.preventDefault();
 
         $( '#layers-marketplace #layers-marketplace-search' ).val('').trigger( 'change' );
-        $( '#layers-marketplace #layers-marketplace-authors' ).val('');
-        $( '#layers-marketplace #layers-marketplace-ratings' ).val('');
+        $( '#layers-marketplace #layers-marketplace-authors' ).val('').trigger( 'change' );
+        $( '#layers-marketplace #layers-marketplace-ratings' ).val('').trigger( 'change' );
 
     } );
 
-    $(document).on( 'keyup change', '#layers-marketplace #layers-marketplace-search, #layers-marketplace #layers-marketplace-authors, #layers-marketplace #layers-marketplace-ratings', function(e){
+    $(document).on( 'keyup change clear', '#layers-marketplace #layers-marketplace-search, #layers-marketplace #layers-marketplace-authors, #layers-marketplace #layers-marketplace-ratings', function(e){
         e.preventDefault();
 
         $search_val = $( '#layers-marketplace #layers-marketplace-search' ).val().toLowerCase();

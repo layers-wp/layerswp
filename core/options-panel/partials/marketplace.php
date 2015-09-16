@@ -44,11 +44,8 @@ $all_authors = array(); ?>
 					</div>
 				<?php } else { ?>
 					<?php foreach( $products->matches as $key => $details ) {
-						if( FALSE === array_search( $details->author_username, array_column( $all_authors, 'username' ) ) ){
-							$all_authors[] = array(
-								'username' => $details->author_username,
-								'url' => $details->author_url
-							);
+						if( FALSE === in_array( $details->author_username, $all_authors ) ){
+							$all_authors[] = $details->author_username;
 						} ?>
 
 						<div id="product-details-<?php echo $key; ?>" class="layers-product layers-animate" tabindex="0"  data-rating="<?php echo ( $details->rating->count > 0 ? $details->rating->rating : '' ) ; ?>" data-author="<?php echo $details->author_username; ?>">
@@ -108,9 +105,9 @@ $all_authors = array(); ?>
 					<script>
 						// Fill the author select box
 						var layers_market_authors = jQuery.parseJSON( '<?php echo json_encode( $all_authors ); ?>' );
-
-						jQuery.each( layers_market_authors, function( key, value ){
-							jQuery( '#layers-marketplace-authors' ).append( jQuery( '<option value="'+ value.username + '">' + value.username + '</option>') );
+						layers_market_authors.sort();
+						jQuery.each( layers_market_authors, function( key, username ){
+							jQuery( '#layers-marketplace-authors' ).append( jQuery( '<option value="'+ username.toString().toLowerCase() + '">' + username + '</option>') );
 						});
 
 					</script>

@@ -349,6 +349,10 @@ div#widgets-right div[id*='obox-layers-builder']{
         padding-top: 4px;
     }
 
+    #layers-marketplace .theme-overlay .theme-screenshots img{
+        border: 1px solid #ddd;
+    }
+
     #layers-marketplace .theme-overlay .theme-author-img{
         border-radius: 100%;
         border: 1px solid #ddd;

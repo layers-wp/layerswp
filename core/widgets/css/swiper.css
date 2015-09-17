@@ -171,6 +171,7 @@
   border-radius: 100%;
   background: #000;
   opacity: 0.2;
+  margin: 0 2px;
 }
 button.swiper-pagination-bullet {
   border: none;

@@ -26,6 +26,7 @@
  * 13 - Layers Pages Backups
  * 14 - Init RTE Editors
  * 15 - Custom Widget Initialization Events
+ * 16 - Widget Peek/hide to preview changes
  *
  * Author: Obox Themes
  * Author URI: http://www.oboxthemes.com/
@@ -907,5 +908,20 @@ jQuery(function($) {
 			}
 		}
 	}
+	
+	/**
+	 * 16 - Widget Peek/hide to preview changes
+	 */
+	
+	// Add the peek buttons to all the Layers Widget actions.
+	$('<span class="layers-widget-peek-button dashicons dashicons-visibility">').insertBefore('.widget-control-actions br');
+	
+	// Add the hover hiding of the Widget interface.
+	$('.layers-widget-peek-button').each(function(index, el) {
+		$(el).hover(
+			function(){ $(this).closest('.widget-inside').addClass('layers-peek-widget'); },
+			function(){	$(this).closest('.widget-inside').removeClass('layers-peek-widget'); }
+		);
+	});
 
 });

@@ -43,6 +43,8 @@ class Layers_Options_Panel {
 		$this->set_valid_page_slugs();
 
 		add_action( 'wp_dashboard_setup', array( &$this, 'layers_add_dashboard_widgets' ) );
+
+		add_action( 'print_media_templates', array( &$this, 'upload_upsell_media_template' ) );
 	}
 
 	public function init() {
@@ -217,6 +219,10 @@ class Layers_Options_Panel {
 
 		// Include Partials, we're using require so that inside the partial we can use $this to access the header and footer
 		require $this->options_panel_dir . 'partials/' . $partial . '.php';
+	}
+
+	public function upload_upsell_media_template(){
+		$this->body( 'discover-more-photos' );
 	}
 
 	/**

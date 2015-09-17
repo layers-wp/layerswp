@@ -46,15 +46,19 @@ class Layers_API {
 		return $token;
 	}
 
-	private function do_envato_api_call( $endpoint = 'market/total-items.json', $query_string = NULL , $method = 'get' ){
+	private function do_envato_api_call( $endpoint = 'market/total-items.json', $query_string = NULL , $method = 'get', $timeout = 5 ){
 
-		$query_string = ( $query_string ? '?' . $query_string . '&page_size=500&sort_by=sales&sort_direction=desc' : 'sort_by=sales&sort_direction=desc' );
+		$query_string = ( $query_string ? '?' . $query_string . '&page_size=500&sort_by=sales&sort_direction=desc' : '?' . 'sort_by=sales&sort_direction=desc' );
 
 		// Set the remote URL
 		$remote_url = self::ENVATO_API_URL . $endpoint . $query_string;
 
 		// Set the query transient key
 		$cache_key = 'lmp_' . base64_encode( substr( $query_string, 0,35) );
+
+		// Quick cache dumper
+		$dump_cache = 0;
+		if( 1 == $dump_cache ) delete_transient( $cache_key );
 
 		// Return a cached version of the query if we have one
 		if( FALSE !== get_transient( $cache_key ) ) {
@@ -63,7 +67,7 @@ class Layers_API {
 
 		// Set the Auth token for our query
 		$remote_args = array(
-				'timeout' => 5,
+				'timeout' => $timeout,
 				'headers' => array(
 					'Authorization' => 'Bearer ' . $this->get_auth_token()
 				)
@@ -90,7 +94,7 @@ class Layers_API {
 		} else {
 
 			// If the response code isn't right, throw an error
-			return WP_Error( __( 'Error' , 'layerswp' ) , __( 'Something broke and we can\'t load the stream' , 'layerswp' ) );
+			return new WP_Error( __( 'Error' , 'layerswp' ) , __( 'Something broke and we can\'t load the stream' , 'layerswp' ) );
 		}
 	}
 
@@ -159,5 +163,22 @@ class Layers_API {
 			// If the call is successful, well then send back decoded JSON
 			return json_decode( $api_call );
 		}
+	}
+	public function get_popular( $site = 'themeforest' ){
+		$endpoint = 'market/popular:' . $site . '.json';
+
+		// Do the API call
+		$api_call = $this->do_envato_api_call( $endpoint, '', 'get', 2 );
+
+		if( is_wp_error( $api_call ) ) {
+
+			// Return an error if we have one
+			return $api_call;
+		} else {
+
+			// If the call is successful, well then send back decoded JSON
+			return json_decode( $api_call );
+		}
+
 	}
 }

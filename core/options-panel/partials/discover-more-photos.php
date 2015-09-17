@@ -1,3 +1,5 @@
+<?php // Get the API up and running for the plugin listing
+$api = new Layers_API(); ?>
 <!-- Uderscore Temnplate -->
 <?php if( !isset( $_GET[ 'tab' ] ) ) { ?>
     <script type="text/html" id="tmpl-layers-discover-more-photos">
@@ -13,12 +15,33 @@
             </div>
         </div>
 
-        <div class="layers-discover-more-feature layers-push-bottom-large"></div>
+        <div class="layers-row layers-content layers-discover-more-feature layers-push-bottom">
+            <?php /**
+            * Retrieve Popular photos
+            */
+            $popular = $api->get_popular( 'photodune' );
 
-        <div class="layers-row">
-            <a class="layers-button btn-primary btn-large" href="http://bit.ly/layers-photodune" target="_blank"><?php _e( 'Find the Perfect Photo' , 'layerswp' ); ?></a>
+            if( !is_wp_error( $popular ) ) {
+                if( isset( $popular->popular->items_last_week ) ){
+                    shuffle( $popular->popular->items_last_week ) ?>
+                    <?php foreach( $popular->popular->items_last_week as $key => $photo ) { ?>
+                        <?php if( 8 <= $key ) continue; ?>
+                        <!-- <?php print_r( $photo ) ;?> -->
+                        <div class="layers-column layers-span-3 t-center">
+                            <a href="<?php echo $photo->url; ?>?ref=obox" target="_blank">
+                                <img alt="<?php echo esc_attr( $photo->item ); ?>" src="<?php echo $photo->live_preview_url; ?>" />
+                            </a>
+                        </div>
+                   <?php } ?>
+                <?php }
+            } else { ?>
+                <img src="<?php echo get_template_directory_uri(); ?>/core/assets/images/more-photos.jpg" />
+            <?php } ?>
         </div>
 
+        <p class="layers-clearfix">
+            <a class="layers-button btn-primary btn-large" href="http://bit.ly/layers-photodune" target="_blank"><?php _e( 'Find the Perfect Photo' , 'layerswp' ); ?></a>
+        </p>
     </div>
 <?php if( !isset( $_GET[ 'tab' ] ) ) { ?>
     </script>

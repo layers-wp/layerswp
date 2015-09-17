@@ -3079,6 +3079,27 @@ input[type=radio]:checked + .layers-settings-icon span{
         }
 
 /*--------------------------------*/
+/*- DISCOVER MORE PHOTOS ---------*/
+.layers-discover-more-photos{
+    padding: 4%;
+    text-align: center;
+}
+.layers-discover-more-feature{
+    width: 100%;
+    max-width: 600px;
+    background: url("images/more-photos.jpg") no-repeat center;
+    background-size: 100%;
+    height: 200px;
+    margin: 0 auto 20px;
+}
+.layers-discover-more-photos .btn-primary{
+    color: #fff;
+}
+.layers-discover-more-photos .btn-primary:hover{
+    color: #fff;
+}
+
+/*--------------------------------*/
 /*- LOADING INDICATORS -----------*/
 
 @-webkit-keyframes move {

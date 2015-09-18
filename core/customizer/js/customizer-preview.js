@@ -59,7 +59,7 @@
 
 					// Add Edit Buttons
 					var $button = $( '<button class="layers-edit-widget">Edit</button>' );
-					//$that.append( $button );
+					$that.append( $button );
 
 					// Send event to parent on click
 					$button.click( function( event ) {

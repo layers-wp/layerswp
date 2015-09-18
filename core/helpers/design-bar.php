@@ -68,46 +68,56 @@ class Layers_Design_Controller {
 			</ul>
 		</div>
 	<?php }
-
+	
 	private function setup_controls() {
 
 		$this->controls = array();
-
-
-		foreach( (array) $this->components as $c ) {
-			if ( ( 'custom' === $c ) && !empty( $this->custom_components ) ) {
-				foreach ( $this->custom_components as $key => $custom_component_args ) {
+		
+		foreach( (array) $this->components as $component_key => $component_value ) {
+			
+			if ( is_array( $component_value ) ) {
+				
+				// This case allows for overriding of existing Design Bar Component types, and the creating of new custom Components.
+				$method = "{$component_key}_component";
+				
+				if ( method_exists( $this, $method ) ) {
+					
+					// This is the overriding existing component case.
 					ob_start();
-
+					$this->$method( $component_value );
+					$this->controls[] = trim( ob_get_clean() );
+				}
+				else {
+					
+					// This is the creating of new custom component case.
+					ob_start();
+					$this->custom_component(
+						$component_key, // Give the component a key (will be used as class name too)
+						$component_value // Send through the inputs that will be used
+					);
+					$this->controls[] = trim( ob_get_clean() );
+				}
+			}
+			elseif ( 'custom' === $component_value && !empty( $this->custom_components ) ) {
+				
+				// This case is legacy - the old method of creating custom components.
+				foreach ( $this->custom_components as $key => $custom_component_args ) {
+					
+					ob_start();
 					$this->custom_component(
 						$key, // Give the component a key (will be used as class name too)
 						$custom_component_args // Send through the inputs that will be used
 					);
-
-					$this->controls[] = trim( ob_get_clean() );
-
-				}
-			} elseif ( is_array( $c ) ) {
-				foreach( $c as $key => $args ) {
-					ob_start();
-
-					$method = $key . '_component';
-
-					if( method_exists( $this, $method ) ){
-						$this->$method( $args );
-					}
-
 					$this->controls[] = trim( ob_get_clean() );
 				}
-			} elseif ( 'custom' != $c ) {
+			}
+			elseif ( method_exists( $this, "{$component_value}_component" ) ) {
+				
+				// This is the standard method of calling a component that already exists
+				$method = "{$component_value}_component";
+				
 				ob_start();
-
-				$method = $c . '_component';
-
-				if( method_exists( $this, $method ) ){
-					$this->$method();
-				}
-
+				$this->$method();
 				$this->controls[] = trim( ob_get_clean() );
 			}
 		}
@@ -286,7 +296,7 @@ class Layers_Design_Controller {
 	 *
 	 * @param    array       $args       Additional arguments to pass to this function
 	 */
-	public function columns_component( $args = NULL ) {
+	public function columns_component( $args = array() ) {
 
 		// If there is no widget information provided, can the operation
 		if ( NULL == $this->widget )
@@ -305,7 +315,7 @@ class Layers_Design_Controller {
 		$args['wrapper-class'] = 'layers-pop-menu-wrapper layers-animate layers-content-small';
 
 		// Add elements
-		$args['elements'] = array(
+		$defaults['elements'] = array(
 			'columns' => array(
 				'type' => 'select',
 				'label' => __( 'Columns', 'layerswp' ),
@@ -335,6 +345,8 @@ class Layers_Design_Controller {
 				'value' => ( isset( $this->values['gutter'] ) ) ? $this->values['gutter'] : NULL
 			)
 		);
+		
+		$args = array_merge_recursive( $defaults, $args );
 
 		$this->render_control( $key, apply_filters( 'layerswp_columns_component_args', $args, $key, $this->type, $this->widget, $this->values ) );
 	}

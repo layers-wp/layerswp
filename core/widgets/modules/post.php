@@ -442,7 +442,8 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 									'min' => 0,
 									'max' => 10000,
 									'value' => ( isset( $widget['excerpt_length'] ) ) ? $widget['excerpt_length'] : NULL,
-									'label' => __( 'Excerpts Length' , 'layerswp' )
+									'label' => __( 'Excerpts Length' , 'layerswp' ),
+									'data' => array( 'show-if-selector' => '#' . $this->get_field_id( 'show_excerpts' ), 'show-if-value' => 'true' ),
 								),
 								'show_dates' => array(
 									'type' => 'checkbox',
@@ -477,14 +478,15 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 									'name' => $this->get_field_name( 'show_call_to_action' ) ,
 									'id' => $this->get_field_id( 'show_call_to_action' ) ,
 									'value' => ( isset( $widget['show_call_to_action'] ) ) ? $widget['show_call_to_action'] : NULL,
-									'label' => __( 'Show "Read More" Buttons' , 'layerswp' )
+									'label' => __( 'Show "Read More" Buttons' , 'layerswp' ),
 								),
 								'call_to_action' => array(
 									'type' => 'text',
 									'name' => $this->get_field_name( 'call_to_action' ) ,
 									'id' => $this->get_field_id( 'call_to_action' ) ,
 									'value' => ( isset( $widget['call_to_action'] ) ) ? $widget['call_to_action'] : NULL,
-									'label' => __( '"Read More" Text' , 'layerswp' )
+									'label' => __( '"Read More" Text' , 'layerswp' ),
+									'data' => array( 'show-if-selector' => '#' . $this->get_field_id( 'show_call_to_action' ), 'show-if-value' => 'true' ),
 								),
 								'show_pagination' => array(
 									'type' => 'checkbox',

@@ -917,11 +917,7 @@ jQuery(function($) {
 	$('<span class="layers-widget-peek-button dashicons dashicons-visibility">').insertBefore('.widget-control-actions br');
 	
 	// Add the hover hiding of the Widget interface.
-	$('.layers-widget-peek-button').each(function(index, el) {
-		$(el).hover(
-			function(){ $(this).closest('.widget-inside').addClass('layers-peek-widget'); },
-			function(){	$(this).closest('.widget-inside').removeClass('layers-peek-widget'); }
-		);
-	});
+	$(document).on( 'mouseenter', '.layers-widget-peek-button', function(){ $(this).closest('.widget-inside').addClass('layers-peek-widget'); } );
+	$(document).on( 'mouseleave', '.layers-widget-peek-button', function(){ $(this).closest('.widget-inside').removeClass('layers-peek-widget'); } );
 
 });

@@ -17,8 +17,9 @@ class Layers_Intercom {
 
 	function __construct(){
 
+		global $wp_customize;
 
-		if( '1' !== get_option( 'layers_enable_intercom' )  )
+		if( '1' !== get_option( 'layers_enable_intercom' ) || isset( $wp_customize ) )
 			return;
 
 		add_action( 'admin_enqueue_scripts', array( $this, 'admin_enqueue_scripts' ) , 50 );

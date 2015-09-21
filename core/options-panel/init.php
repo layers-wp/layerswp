@@ -144,6 +144,12 @@ class Layers_Options_Panel {
 						<select id="layers-marketplace-authors" class="push-right">
 							<option value=""><?php _e( '-- Author --' , 'layerswp' ); ?></option>
 						</select>
+						<!--
+						<label><?php _e( 'Price: ', 'layerswp' ); ?></label>
+						<input type="number" />
+						<label><?php _e( 'to ', 'layerswp' ); ?></label>
+						<input type="number" />
+						-->
 						<select id="layers-marketplace-ratings" class="push-right">
 							<option value=""><?php _e( '-- Rating --' , 'layerswp' ); ?></option>
 							<option value="5"><?php _e( '5 stars' , 'layerswp' ); ?></option>

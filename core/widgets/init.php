@@ -53,7 +53,10 @@ class Layers_Widgets {
 		add_action( 'customize_controls_print_styles' , array( $this, 'admin_print_styles' ) );
 
 		// Add a widget backup function
-		add_action( 'customize_save' , array( $this, 'backup_sidebars_widgets' ) );
+
+//		add_action( 'do_backup_sidebars_widgets' , array( $this, 'backup_sidebars_widgets' ) );
+		add_action( 'customize_save', array( $this, 'backup_sidebars_widgets' ) );
+		add_action( 'init', array( $this, 'register_backup_post_type' ) );
 
 		// Register Sidebars
 		$this->register_sidebars();
@@ -110,28 +113,56 @@ class Layers_Widgets {
 	/**
 	*  Widget Setting backup function
 	*/
+	/*
+	public function set_backup_cron(){
+		wp_schedule_single_event( time() + 60, 'do_backup_sidebars_widgets' );
+	}
+	*/
+	public function register_backup_post_type(){
+		global $sidebars_widgets;
+
+		register_post_type( 'layers-backup', array(
+			'public'             => true,
+			'publicly_queryable' => true,
+			'show_ui'            => true,
+			'show_in_menu'       => true,
+			'supports' => array(
+				'title',
+				'revisions'
+			),
+			'labels' => array(
+				'name' => _x( 'Backups', 'post type general name', 'layerswp' ),
+				'singular_name' => _x( 'Backup', 'post type singular name', 'layerswp' ),
+				'menu_name' => _x( 'Backups', 'admin menu', 'layerswp' ),
+			)
+		) );
+	}
+
 	public function backup_sidebars_widgets(){
 		global $sidebars_widgets;
 
-		$this->widget_backup_key = 'layers_sidebars_widgets_history';
-
-		$sidebars_widgets_history = get_option( $this->widget_backup_key );
-
-		if( is_array( $sidebars_widgets_history ) ){
-			if( count( $sidebars_widgets_history ) > 10 ){
-				delete_option ( $sidebars_widgets_history[0] );
-				array_shift( $sidebars_widgets_history );
-			}
-		} else {
-			$sidebars_widgets_history = array();
+		if( isset( $sidebars_widgets[ 'wp_inactive_widgets' ] ) ) {
+			unset( $sidebars_widgets[ 'wp_inactive_widgets' ] );
 		}
 
-		$new_widget_settings_key = 'sidebars_widgets_' . date( 'Ymjhis' );
+		foreach( $sidebars_widgets as $sidebar_key => $sidebar_data ){
+			if( FALSE !== strpos( $sidebar_key,  'orphaned_' ) ){
+				unset( $sidebars_widgets[ $sidebar_key ] ) ;
+			}
+		}
 
-		$sidebars_widgets_history[] = $new_widget_settings_key;
+		$check_for_post = get_posts( 'post_type=layers-backup&posts_per_page=1&post_status=any' );
 
-		update_option( $this->widget_backup_key, $sidebars_widgets_history );
-		update_option( $new_widget_settings_key, $sidebars_widgets );
+		if( !empty( $check_for_post ) ){
+			$post[ 'ID' ] = $check_for_post[0]->ID;
+		}
+
+		$post[ 'post_title' ] = __( 'Layers Backups' , 'layerswp' );
+		$post[ 'post_type' ] = 'layers-backup';
+		$post[ 'post_status' ] = 'publish';
+		$post[ 'post_content' ] = serialize( $sidebars_widgets );
+
+		wp_insert_post( $post );
 	}
 
 	/**

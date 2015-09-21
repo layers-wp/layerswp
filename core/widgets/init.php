@@ -54,8 +54,8 @@ class Layers_Widgets {
 
 		// Add a widget backup function
 
-//		add_action( 'do_backup_sidebars_widgets' , array( $this, 'backup_sidebars_widgets' ) );
 		add_action( 'customize_save', 'layers_backup_sidebars_widgets' , 50 );
+		add_action( 'wp_restore_post_revision' , array( $this, 'restore_widget_backup' ), 10, 2 );
 		add_action( 'init', array( $this, 'register_backup_post_type' ) );
 
 		// Register Sidebars
@@ -207,6 +207,26 @@ class Layers_Widgets {
 
 	}
 
+	public function restore_widget_backup( $post_id, $revision_id){
+
+
+		$post = get_post( $post_id, OBJECT );
+		if( 'layers-backup' !== $post->post_type ) return;
+
+		// Get the revision information
+		$revision = get_post( $revision_id, OBJECT );
+
+		$layers_migrator = new Layers_Widget_Migrator();
+
+		$widget_data = $revision->post_excerpt;
+
+		if( is_wp_error( unserialize( $widget_data ) ) ) return;
+
+		foreach( unserialize( $widget_data ) as $layers_page_id => $backup_data ){
+			$layers_migrator->import( array( 'post_id' => $layers_page_id, 'widget_data' => $backup_data ), true );
+		}
+	}
+
 	/**
 	*  Enqueue Widget Scripts
 	*/
@@ -314,7 +334,7 @@ function layers_backup_sidebars_widgets(){
 		$export_data = $migrator->export_data( $page );
 
 		if( !empty( $export_data ) ){
-			$page_raw_widget_data[] = $export_data;
+			$page_raw_widget_data[ $page->ID ] = $export_data;
 		}
 	}
 
@@ -323,12 +343,6 @@ function layers_backup_sidebars_widgets(){
 
 	foreach( $get_layers_pages as $page ){
 		$export_data = $migrator->page_widget_plain_data( $page );
-		/*
-		echo '<h3>' . $page->post_title . '</h3>';
-		echo '<pre>';
-		print_r( $export_data );
-		echo '</pre>';
-		*/
 
 		if( !empty( $export_data ) ){
 			$page_content .= '
@@ -352,4 +366,3 @@ function layers_backup_sidebars_widgets(){
 
 	wp_insert_post( $post );
 }
-add_action( 'admin_init' , 'layers_backup_sidebars_widgets' );

@@ -710,11 +710,11 @@ class Layers_Widget_Migrator {
 	*  Import
 	*/
 
-	public function import( $import_data = NULL ) {
+	public function import( $import_data = NULL, $clear_page = NULL ) {
 
 		if( NULL == $import_data ) return;
 
-		global $wp_registered_sidebars;
+		global $wp_registered_sidebars, $sidebars_widgets;
 
 		// Get all available widgets site supports
 		$available_widgets = $this->available_widgets();
@@ -729,6 +729,33 @@ class Layers_Widget_Migrator {
 		$results = array();
 
 		if( empty( $import_data[ 'widget_data' ] ) ) return;
+
+		$sidebar_key = 'obox-layers-builder-' . $import_data[ 'post_id' ];
+
+		if( NULL !== $clear_page && isset( $sidebars_widgets[ $sidebar_key ] ) ){
+
+
+			$sidebar_data = $sidebars_widgets[ $sidebar_key ];
+
+			foreach ( $sidebar_data as $widget ) {
+				$id_base = preg_replace( '/-[0-9]+$/', '', $widget );
+				$instance_id_number = str_replace( $id_base . '-', '', $widget );
+
+				$single_widget_instances = get_option( 'widget_' . $id_base );
+
+				// Remove this page's widgets
+				if( isset( $single_widget_instances[ $instance_id_number ] ) ){
+					unset( $single_widget_instances[ $instance_id_number ] );
+				}
+
+				update_option( 'widget_' . $id_base, $single_widget_instances );
+			}
+
+			// Remove this page's widget information
+			unset( $sidebars_widgets[ $sidebar_key ] );
+
+			update_option( 'sidebars_widgets', $sidebars_widgets );
+		}
 
 		foreach( $import_data[ 'widget_data' ] as $sidebar_id => $sidebar_data ) {
 

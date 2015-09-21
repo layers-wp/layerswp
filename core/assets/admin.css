@@ -13,7 +13,13 @@
 @import url(icons.css);
 
 /*------------------------------------*/
-/*- HIDE LAYERS WIDGETS IN APPEARANCE -*/
+/*- CUSTOMIZER Look&Feel OVERRIDES ---*/
+#customize-theme-controls .accordion-section-content{
+    background: #fff; /*-- Make the accordions white --*/
+}
+
+/*------------------------------------*/
+/*- HIDE LAYERS WIDGETS IN APPEARANCE */
 div#widgets-right .widgets-sortables{
     padding-bottom: 1px;
 }
@@ -55,15 +61,6 @@ div#widgets-right div[id*='obox-layers-builder']{
     /*- WIDGET COLOR STYLING ----*/
 
     /*- Layers Badge -*/
-    /*
-    .customize-control-widget_form.wide-widget-control div[id*='layers-widget'] .widget-top h4:before{
-        content: "\e62f";
-        margin: 0 10px 0 0;
-        font-size: 12px;
-        color: #0BA6E0;
-        font-family: 'layers-interface';
-    }
-    */
     .customize-control-widget_form.wide-widget-control div[id*='layers-widget'] .widget-top h4:before{
         content: "\e62f";
         font-size: 11px;
@@ -75,25 +72,72 @@ div#widgets-right div[id*='obox-layers-builder']{
         display: inline-block;
         margin-right: 8px;
     }
-    .customize-control-widget_form.wide-widget-control.expanded div[id*='layers-widget'] .widget-top h4:before{
+    .customize-control-widget_form.wide-widget-control.layers-focussed div[id*='layers-widget'] .widget-top h4:before{
         color: #fff;
+    }
+    /*- Layers Widget Loading -*/
+    .customize-control-widget_form.wide-widget-control div[id*='layers-widget'] .widget-top:after{
+        /* background-image: url( images/spinner-on-blue.gif ); */
+        /* background-position: 50% 50%; */
+        /* background-repeat: no-repeat; */
+        /* background-color: #0BA6E0; */
+        color: #FFF9F7;
+        font-size: 10px;
+        font-weight: 900;
+        text-transform: uppercase;
+        transition: .1s ease-in-out;
+        transition: 0s !important;
+        width: auto;
+        height: auto;
+        line-height: 17px;
+        border-radius: 40px;
+        padding: 0 6px;
+        content: "Loading";
+        position: absolute;
+        right: 6px;
+        top: 15px;
+        opacity: 0;
+    }
+    .customize-control-widget_form.wide-widget-control.layers-loading div[id*='layers-widget'] .widget-top:after{
+        opacity: 1;
+    }
+    .customize-control-widget_form.wide-widget-control.layers-loading div[id*='layers-widget'] .widget-top .widget-title-action{
+        opacity: 0;
     }
 
-    /*- Layers Widget Active -*/
-    .customize-control-widget_form.wide-widget-control.expanded:not(.collapsing) div[id*='layers-widget'] .widget-top{
-        background: #0BA6E0;
-        border-color: #0D5F83;
+    /*- Layers Widget Rendered -*/
+    .customize-control-widget_form.wide-widget-control:not(.widget-rendered) .widget-top{
+        opacity: 1;
+    }
+
+    /*- Layers Widget Focussed -*/
+    .customize-control-widget_form.wide-widget-control.expanded:not(.layers-collapsing) .widget-top{
+        background-color: #FAFAFA;
+    }
+    .customize-control-widget_form.wide-widget-control.layers-focussed .widget .widget-top{
+        background: #0BA6E0 !important;
+        border-color: #0E77A5;
         color: #3D454E;
     }
-    .customize-control-widget_form.wide-widget-control.expanded:not(.collapsing) div[id*='layers-widget'] .widget-top .widget-title h4{
+    .customize-control-widget_form.wide-widget-control.expanded .widget .widget-top,
+    .customize-control-widget_form.wide-widget-control.layers-focussed .widget .widget-top{
+        -webkit-transition: 0s !important;
+        transition: 0s !important;
+    }
+    .customize-control-widget_form.wide-widget-control.layers-focussed .widget .widget-top:hover{
+        background: #0BA6E0;
+        border-color: #053E57 !important;
+        color: #3D454E;
+	}
+    .customize-control-widget_form.wide-widget-control.layers-focussed .widget .widget-top .widget-title h4{
         color: #fff;
     }
-    .customize-control-widget_form.wide-widget-control.expanded:not(.collapsing) div[id*='layers-widget'] .widget-top .widget-title .in-widget-title{
+    .customize-control-widget_form.wide-widget-control.layers-focussed .widget .widget-top .widget-title .in-widget-title{
         color: rgba(255, 255, 255, 0.8);
     }
 
     /*- Expanded Arrow Tip -*/
-    .customize-control-widget_form.wide-widget-control.expanded a.widget-action:after{
+    .customize-control-widget_form.wide-widget-control.layers-focussed a.widget-action:after{
         color: #fff;
     }
 
@@ -126,7 +170,11 @@ div#widgets-right div[id*='obox-layers-builder']{
         overflow: hidden;
         box-shadow: 3px 0 3px rgba(0, 0, 0, 0.1);
         transform: translate3d(-10px, 0, 0);
-        transition: all 0.2s ease-in-out 0.2s;
+        transition: all 0.2s ease-in-out;
+        background-image: url(images/spinner-on-white.gif);
+        background-position: 50% 20%;
+        background-repeat: no-repeat;
+        background-color: #F5F5F5;
     }
     /*-- Open --*/
     .customize-control-widget_form.wide-widget-control.expanded div[id*='layers-widget'] .widget-inside{
@@ -136,10 +184,9 @@ div#widgets-right div[id*='obox-layers-builder']{
         transform: translate3d(0, 0, 0);
     }
     /*-- Closing --*/
-    .customize-control-widget_form.wide-widget-control.collapsing div[id*='layers-widget'] .widget-inside{
+    .customize-control-widget_form.wide-widget-control.expanded.layers-collapsing div[id*='layers-widget'] .widget-inside{
         transform: translate3d(-10px, 0, 0);
         opacity: 0;
-        transition-delay: none;
     }
 
     .customize-control-widget_form.wide-widget-control div[id*='layers-widget'] .widget-inside .form{
@@ -147,17 +194,22 @@ div#widgets-right div[id*='obox-layers-builder']{
         height: 100%;
         min-width: 660px;
         position: relative;
-        opacity: 0;
-        transform: translate3d(-20px, 0, 0);
+        /* opacity: 0; */
+        /* transform: translate3d(-20px, 0, 0); */
         transition: transform 0.15s ease-in-out, opacity 0.15s ease-in-out;
-    }
-    .customize-control-widget_form.wide-widget-control.expanded div[id*='layers-widget'] .widget-inside .form{
+        overflow: scroll;
+        background-color: white;
+
         opacity: 1;
-        transform: translate3d(0, 0, 0);
+}
+    .customize-control-widget_form.wide-widget-control.expanded div[id*='layers-widget'] .widget-inside .form{
+        /* opacity: 1; */
+        /* transform: translate3d(0, 0, 0); */
+        overflow: auto;
     }
-    .customize-control-widget_form.wide-widget-control.collapsing div[id*='layers-widget'] .widget-inside .form{
-        opacity: 0;
-        transition-delay: 0.2s;
+    .customize-control-widget_form.wide-widget-control.layers-collapsing div[id*='layers-widget'] .widget-inside .form{
+        /* opacity: 1; */
+        /* transition-delay: 0.2s; */
     }
 
     /*- COLLAPSED SIDEBAR ------------*/
@@ -918,6 +970,7 @@ div[id*='layers-widget'] .spinner{
         margin: 0;
         transition: transform 0.2s ease-in-out, opacity 0.2s ease-in-out;
     }
+
         /*-- ANIMATE ICONS --*/
         .customize-control-widget_form.wide-widget-control div[id*='layers-widget'] .widget-inside .layers-visuals-item{
             opacity: 0;
@@ -1263,6 +1316,124 @@ div[id*='layers-widget'] .spinner{
         transform: translate3d(0, 0, 0);
     }
 
+    /*-----------------------------*/
+    /*- RICH TEXT EDITING ---------*/
+
+    .layers-form-item .froala-box{
+        width: 100%;
+        border: 0;
+    }
+
+    .froala-element.froala-view{
+        border: 1px solid #DDD;
+    }
+
+    .froala-editor.f-basic{
+        background: #FFF;
+        border: 1px solid #E5E5E5;
+        border-bottom: 0;
+        transition: .2s ease-in-out .2s;
+        overflow: hidden;
+        height: 38px;
+    }
+
+    .froala-box.froala-toolbar-hide .froala-editor.f-basic{
+        transform: translate( 0, 30px );
+        height: 0;
+        opacity:0;
+    }
+
+    .layers-form-item .froala-editor button.fr-bttn,
+    .layers-form-item .froala-editor button.fr-trigger{
+        width: 33px;
+        line-height: 14px;
+        font-size: 14px;
+        padding: 2px;
+        margin: 4px;
+        border: 1px solid transparent;
+        border-radius: 3px;
+        color: #444;
+        transition: all 0.2s ease-in-out 0s;
+        box-shadow: 0px 1px 0px rgba(255, 255, 255, 0) inset;
+    }
+
+    .layers-form-item .froala-editor button.fr-bttn:hover,
+    .layers-form-item .froala-editor .bttn-wrapper:not(.touch) button.fr-bttn:hover,
+    .layers-form-item .froala-editor button.fr-bttn.active:hover{
+        box-shadow: 0px 1px 0px rgba(255, 255, 255, 0.4) inset, 0px 1px 0px rgba(0, 0, 0, 0.08);
+        background: #2EA2CC;
+        border-color: #0074A2;
+        color: #FFF;
+    }
+
+        /*-------------------------*/
+        /*- WHEN IN HTML MODE -----*/
+        .layers-form-item .f-html .froala-editor button.fr-bttn:hover,
+        .layers-form-item .f-html .froala-editor .bttn-wrapper:not(.touch) button.fr-bttn:hover,
+        .layers-form-item .f-html .froala-editor button.fr-bttn.active:hover{
+            border-color: transparent;
+            box-shadow: none;
+        }
+        .layers-form-item .froala-editor .bttn-wrapper:not(.touch) button.fr-bttn.active,
+        .layers-form-item .froala-editor .bttn-wrapper:not(.touch) button.fr-bttn:active{
+            border-color: rgba(0, 0, 0, 0.05);
+            color: #444;
+            box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.03) inset;
+            background-color: #F0F0F0;
+            transition: 0s;
+        }
+        .layers-form-item .froala-editor button.fr-bttn i{
+            font-size: 14px;
+        }
+        .layers-form-item .f-html .froala-element{
+            background-color: #2c2c2c;
+            padding: 0;
+        }
+        .layers-form-item .f-html .froala-element textarea{
+            color: #eee;
+            font-size: 13px;
+            padding: 5px 6px;
+        }
+
+        /*-------------------------------*/
+        /*- RTE LIST STYLING --------*/
+        /*-------------------------------*/
+
+        .froala-view li{
+            list-style-type: inherit;
+            overflow: visible;
+        }
+        .froala-view li ul,
+        .froala-view li ol {
+            padding:0 10px;
+        }
+
+        .froala-view ul,
+        .froala-view ol {
+            padding: 0 0 0 10px;
+            overflow: visible;
+        }
+        .froala-view ul,
+        .froala-view ol{
+            margin: 0;
+            padding-bottom: 10px;
+        }
+        .froala-view ul {
+            list-style-type:disc;
+        }
+        .froala-view ol {
+            list-style-type:decimal;
+        }
+        .froala-view ol ol {
+            list-style: upper-alpha;
+        }
+        .froala-view ol ol ol {
+            list-style: lower-roman;
+        }
+        .froala-view ol ol ol ol {
+            list-style: lower-alpha;
+        }
+
 /*-----------------------------*/
 /*- CUSTOMIZER CONTROLS -------*/
 li[id*='accordion-section-layers'] .customize-control{
@@ -1604,6 +1775,9 @@ li[id*='accordion-section-layers'] .customize-control.customize-control-image .a
         border-top: 1px solid #E5E5E5;
         background: #F5F5F5;
     }
+    .inside .layers-button-well{
+        margin: 0px -12px -12px;
+    }
 
     /*-----------------------*/
     /*- BUTTON COLLECTION ---*/
@@ -1685,9 +1859,16 @@ li[id*='accordion-section-layers'] .customize-control.customize-control-image .a
     .layers-accordion-item:first-child .layers-accordion-title{
         border-top-width: 0;
     }
-
     .layers-accordion-section{
         background: #fff;
+    }
+    .layers-accordion-section:after{
+        content: "";
+        display: block;
+        float: none;
+        clear: both;
+        width: 100%;
+        clear: both;
     }
     .layers-accordion-item:last-child .layers-accordion-section{
         border-bottom: none;
@@ -1712,13 +1893,14 @@ li[id*='accordion-section-layers'] .customize-control.customize-control-image .a
         cursor: move;
     }
     .layers-accordion-item.open .layers-accordion-title{
-        border-bottom: 1px solid #E7E7E7;
+        /* border-bottom: 1px solid #E7E7E7; */
     }
     .layers-accordions-sortable .layers-accordion-title:after{
         line-height: 37px;
         border-color: #eee;
     }
     .layers-accordions-sortable .layers-accordion-section{
+        border-top: 1px solid #EEE;
         border-bottom: none;
     }
 
@@ -2251,7 +2433,7 @@ input[type=radio]:checked + .layers-settings-icon span{
 }
 
 /*---------------------------*/
-/*- INTERFACE COPY ----------*/
+/*- COLOR PICKER ------------*/
 .wp-picker-container .iris-picker{
     width: 200px !important;
     height: 170px !important;
@@ -2273,6 +2455,28 @@ input[type=radio]:checked + .layers-settings-icon span{
 
 /*---------------------------*/
 /*- INTERFACE COPY ----------*/
+
+
+    /*-----------------------*/
+    /*- UPSELL --------------*/
+    li[id*="accordion-section-layers"] .customize-control
+    .layers-customize-control.layers-customize-control-heading.layers-upsell-tag{
+        padding: 8px 10px 5px;
+        background: #f5f5f5;
+        border-radius: 5px;
+    }
+
+    li[id*="accordion-section-layers"] .customize-control
+    .layers-customize-control.layers-customize-control-heading.layers-upsell-tag
+    .customize-control-title{
+        display: inline;
+        padding: 1px 5px;
+        background: #009EEC;
+        border-radius: 3px;
+        color: #FFF;
+        text-transform: uppercase;
+        font-size: 11px;
+    }
 
     /*-----------------------*/
     /*- FEATURE LIST --------*/
@@ -2361,7 +2565,14 @@ input[type=radio]:checked + .layers-settings-icon span{
     top: 1px;
 }
 
-
+    /*-------------------------*/
+    /*- WORDPRESS DASHBOARD ---*/
+    .layers-ticks-wp li{
+        padding-left: 26px;
+        background: url("images/tick-wp.png") no-repeat left;
+        background-size: 16px 16px;
+        color: #777;
+    }
 
     /*---------------------------*/
     /*- HORIZONTAL NAVIGATION ---*/
@@ -2699,7 +2910,7 @@ input[type=radio]:checked + .layers-settings-icon span{
             display: block;
         }
 
-        /*------------------------------------------*/
+        /*-------------------------------------*/
         /*- PRESET LAYOUTS CONTROLS -----------*/
         .layers-button.layers-proceed-to-customizer{
             position: relative;
@@ -2743,3 +2954,53 @@ input[type=radio]:checked + .layers-settings-icon span{
         .layers-button.layers-proceed-to-customizer.disable:hover:before{
             opacity:1;
         }
+
+/*--------------------------------*/
+/*- LOADING INDICATORS -----------*/
+
+@-webkit-keyframes move {
+    0% { background-position: 0 0; }
+    100% { background-position: 50px 50px; }
+}
+@-moz-keyframes move {
+    0% { background-position: 0 0; }
+    100% { background-position: 50px 50px; }
+}
+
+.layers-button.layers-loading-button {
+    background-image: -webkit-gradient(
+            linear,
+            0 0,
+            100% 100%,
+            color-stop(.25, rgba(0, 0, 0, .05)),
+            color-stop(.25, rgba(0, 0, 0, 0)),
+            color-stop(.5, rgba(0, 0, 0, 0)),
+            color-stop(.5, rgba(0, 0, 0, .05)),
+            color-stop(.75, rgba(0, 0, 0, .05)),
+            color-stop(.75, rgba(0, 0, 0, 0)),
+            to(rgba(0, 0, 0, 0))
+        );
+    background-image: -moz-linear-gradient(
+            -45deg,
+            rgba(0, 0, 0, .05) 25%,
+            rgba(0, 0, 0, 0) 25%,
+            rgba(0, 0, 0, 0) 50%,
+            rgba(0, 0, 0, .05) 50%,
+            rgba(0, 0, 0, .05) 75%,
+            rgba(0, 0, 0, 0) 75%,
+            transparent
+        );
+
+    -webkit-background-size: 50px 50px;
+    -moz-background-size: 50px 50px;
+    background-size: 50px 50px;
+
+    -webkit-animation: move 2s linear infinite;
+    -moz-animation: move 2s linear infinite;
+    animation: move 2s linear infinite;
+
+    background-color: #FAFAFA;
+    background-position: 50%;
+    color: #999999;
+    pointer-events: none;
+}

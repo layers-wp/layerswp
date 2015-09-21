@@ -40,7 +40,7 @@ if( !class_exists( 'Layers_Contact_Widget' ) ) {
 			$control_ops = array( 'width' => LAYERS_WIDGET_WIDTH_SMALL, 'height' => NULL, 'id_base' => LAYERS_THEME_SLUG . '-widget-' . $this->widget_id );
 
 			/* Create the widget. */
-			$this->WP_Widget( LAYERS_THEME_SLUG . '-widget-' . $this->widget_id , $this->widget_title, $widget_ops, $control_ops );
+			parent::__construct( LAYERS_THEME_SLUG . '-widget-' . $this->widget_id , $this->widget_title, $widget_ops, $control_ops );
 
 			/* Setup Widget Defaults */
 			$this->defaults = array (
@@ -52,6 +52,7 @@ if( !class_exists( 'Layers_Contact_Widget' ) ) {
 				'show_contact_form' => 'on',
 				'google_maps_location' => NULL,
 				'google_maps_long_lat' => NULL,
+				'google_maps_zoom' => 14,
 				'map_height' => 400,
 				'design' => array(
 					'layout' => 'layout-boxed',
@@ -92,7 +93,7 @@ if( !class_exists( 'Layers_Contact_Widget' ) ) {
 			}
 			// Set the background styling
 			if( !empty( $widget['design'][ 'background' ] ) ) layers_inline_styles( '#' . $widget_id, 'background', array( 'background' => $widget['design'][ 'background' ] ) );
-			if( !empty( $widget['design']['fonts'][ 'color' ] ) ) layers_inline_styles( '#' . $widget_id, 'color', array( 'selectors' => array( '.section-title h3.heading' , '.section-title p.excerpt' , '.section-title small', '.form.content' , 'form p' , 'form label' ) , 'color' => $widget['design']['fonts'][ 'color' ] ) );
+			if( !empty( $widget['design']['fonts'][ 'color' ] ) ) layers_inline_styles( '#' . $widget_id, 'color', array( 'selectors' => array( '.section-title h3.heading' , '.section-title div.excerpt' , '.section-title small', '.form.content' , 'form p' , 'form label' ) , 'color' => $widget['design']['fonts'][ 'color' ] ) );
 
 			// Apply the advanced widget styling
 			$this->apply_widget_advanced_styling( $widget_id, $widget );
@@ -136,7 +137,7 @@ if( !class_exists( 'Layers_Contact_Widget' ) ) {
 								<h3 class="heading"><?php echo esc_html( $widget['title'] ); ?></h3>
 							<?php } ?>
 							<?php if( '' != $widget['excerpt'] ) { ?>
-								<p class="excerpt"><?php echo $widget['excerpt']; ?></p>
+								<div class="excerpt"><?php echo $widget['excerpt']; ?></div>
 							<?php } ?>
 						</div>
 					</div>
@@ -174,10 +175,10 @@ if( !class_exists( 'Layers_Contact_Widget' ) ) {
 									$map_center =  $widget['google_maps_long_lat'];
 								} ?>
 								<div class="layers-map" style="height: <?php echo esc_attr( $widget['map_height'] ); ?>px; overflow: hidden;">
-									<img src="https://maps.googleapis.com/maps/api/staticmap?center=<?php echo esc_attr( $map_center ); ?>&zoom=11&size=1960x<?php echo $widget['map_height']; ?>&scale=2&markers=color:red|<?php echo esc_attr( $map_center ); ?>" class="google-map-img" />
+									<img src="https://maps.googleapis.com/maps/api/staticmap?center=<?php echo esc_attr( $map_center ); ?>&zoom=<?php echo ( isset( $widget['google_maps_zoom'] ) ? $widget['google_maps_zoom'] : 14 ) ; ?>&size=1960x<?php echo $widget['map_height']; ?>&scale=2&markers=color:red|<?php echo esc_attr( $map_center ); ?>" class="google-map-img" />
 								</div>
 							<?php } else { ?>
-								<div class="layers-map" style="height: <?php echo esc_attr( $widget['map_height'] ); ?>px;" <?php if( '' != $widget['google_maps_location'] ) { ?>data-location="<?php echo $widget['google_maps_location']; ?>"<?php } ?> <?php if( '' != $widget['google_maps_long_lat'] ) { ?>data-longlat="<?php echo $widget['google_maps_long_lat']; ?>"<?php } ?>></div>
+								<div class="layers-map" style="height: <?php echo esc_attr( $widget['map_height'] ); ?>px;" data-zoom-level="<?php echo ( isset( $widget['google_maps_zoom'] ) ? $widget['google_maps_zoom'] : 14 ); ?>" <?php if( '' != $widget['google_maps_location'] ) { ?>data-location="<?php echo $widget['google_maps_location']; ?>"<?php } ?> <?php if( '' != $widget['google_maps_long_lat'] ) { ?>data-longlat="<?php echo $widget['google_maps_long_lat']; ?>"<?php } ?>></div>
 							<?php } ?>
 						</div>
 					<?php } ?>
@@ -219,8 +220,7 @@ if( !class_exists( 'Layers_Contact_Widget' ) ) {
 			if( !empty( $instance ) ) $instance_defaults = array();
 
 			// Parse $instance
-			$instance = wp_parse_args( $instance, $instance_defaults );
-			extract( $instance, EXTR_SKIP );
+			$widget = wp_parse_args( $instance, $instance_defaults );
 
 			$design_bar_components = apply_filters( 'layers_' . $this->widget_id . '_widget_design_bar_components' , array(
 					'layout',
@@ -235,34 +235,54 @@ if( !class_exists( 'Layers_Contact_Widget' ) ) {
 						'icon-css' => 'icon-display',
 						'label' => __( 'Display', 'layerswp' ),
 						'elements' => array(
+								'show_google_map' => array(
+										'type' => 'checkbox',
+										'name' => $this->get_field_name( 'show_google_map' ) ,
+										'id' => $this->get_field_id( 'show_google_map' ) ,
+										'value' => ( isset( $widget['show_google_map'] ) ) ? $widget['show_google_map'] : NULL,
+										'label' => __( 'Show Google Map' , 'layerswp' )
+									),
 								'map_height' => array(
 									'type' => 'number',
 									'name' => $this->get_field_name( 'map_height' ) ,
 									'id' => $this->get_field_id( 'map_height' ) ,
 									'min' => 150,
 									'max' => 1600,
-									'value' => ( isset( $map_height ) ) ? $map_height : NULL,
-									'label' => __( 'Map Height' , 'layerswp' )
+									'value' => ( isset( $widget['map_height'] ) ) ? $widget['map_height'] : NULL,
+									'label' => __( 'Map Height' , 'layerswp' ),
+									'data' => array(
+										'show-if-selector' => '#' . $this->get_field_id( 'show_google_map' ),
+										'show-if-value' => 'true',
+									)
 								),
-								'show_google_map' => array(
-										'type' => 'checkbox',
-										'name' => $this->get_field_name( 'show_google_map' ) ,
-										'id' => $this->get_field_id( 'show_google_map' ) ,
-										'value' => ( isset( $show_google_map ) ) ? $show_google_map : NULL,
-										'label' => __( 'Show Google Map' , 'layerswp' )
+								'google_maps_zoom' => array(
+									'type' => 'select',
+									'name' => $this->get_field_name( 'google_maps_zoom' ) ,
+									'id' => $this->get_field_id( 'google_maps_zoom' ) ,
+									'value' => ( isset( $widget['google_maps_zoom'] ) ) ? $widget['google_maps_zoom'] : NULL,
+									'label' => __( 'Google Map Zoom Level' , 'layerswp' ),
+									'options' => array(
+											'16' => __( 'Close', 'layerswp' ),
+											'14' => __( 'Default', 'layerswp' ),
+											'12' => __( 'Far', 'layerswp' ),
+										),
+										'data' => array(
+											'show-if-selector' => '#' . $this->get_field_id( 'show_google_map' ),
+											'show-if-value' => 'true',
+										)
 									),
 								'show_address' => array(
 										'type' => 'checkbox',
 										'name' => $this->get_field_name( 'show_address' ) ,
 										'id' => $this->get_field_id( 'show_address' ) ,
-										'value' => ( isset( $show_address ) ) ? $show_address : NULL,
+										'value' => ( isset( $widget['show_address'] ) ) ? $widget['show_address'] : NULL,
 										'label' => __( 'Show Address' , 'layerswp' )
 									),
 								'show_contact_form' => array(
 										'type' => 'checkbox',
 										'name' => $this->get_field_name( 'show_contact_form' ) ,
 										'id' => $this->get_field_id( 'show_contact_form' ) ,
-										'value' => ( isset( $show_contact_form ) ) ? $show_contact_form : NULL,
+										'value' => ( isset( $widget['show_contact_form'] ) ) ? $widget['show_contact_form'] : NULL,
 										'label' => __( 'Show Contact Form' , 'layerswp' )
 									)
 							)
@@ -276,7 +296,7 @@ if( !class_exists( 'Layers_Contact_Widget' ) ) {
 					'name' => $this->get_field_name( 'design' ),
 					'id' => $this->get_field_id( 'design' ),
 				), // Widget Object
-				$instance, // Widget Values
+				$widget, // Widget Values
 				$design_bar_components, // Standard Components
 				$design_bar_custom_components // Add-on Components
 			); ?>
@@ -297,7 +317,7 @@ if( !class_exists( 'Layers_Contact_Widget' ) ) {
 									'name' => $this->get_field_name( 'title' ) ,
 									'id' => $this->get_field_id( 'title' ) ,
 									'placeholder' => __( 'Enter title here' , 'layerswp' ),
-									'value' => ( isset( $title ) ) ? $title : NULL ,
+									'value' => ( isset( $widget['title'] ) ) ? $widget['title'] : NULL ,
 									'class' => 'layers-text layers-large'
 								)
 							); ?>
@@ -305,11 +325,11 @@ if( !class_exists( 'Layers_Contact_Widget' ) ) {
 						<p class="layers-form-item">
 							<?php echo $this->form_elements()->input(
 								array(
-									'type' => 'textarea',
+									'type' => 'rte',
 									'name' => $this->get_field_name( 'excerpt' ) ,
 									'id' => $this->get_field_id( 'excerpt' ) ,
 									'placeholder' =>  __( 'Short Excerpt' , 'layerswp' ),
-									'value' => ( isset( $excerpt ) ) ? $excerpt : NULL ,
+									'value' => ( isset( $widget['excerpt'] ) ) ? $widget['excerpt'] : NULL ,
 									'class' => 'layers-textarea layers-large'
 								)
 							); ?>
@@ -334,7 +354,7 @@ if( !class_exists( 'Layers_Contact_Widget' ) ) {
 											'name' => $this->get_field_name( 'google_maps_location' ) ,
 											'id' => $this->get_field_id( 'google_maps_location' ) ,
 											'placeholder' => __( 'e.g. 300 Prestwich Str, Cape Town, South Africa' , 'layerswp' ),
-											'value' => ( isset( $google_maps_location ) ) ? $google_maps_location : NULL
+											'value' => ( isset( $widget['google_maps_location'] ) ) ? $widget['google_maps_location'] : NULL
 										)
 									); ?>
 								</p>
@@ -345,8 +365,8 @@ if( !class_exists( 'Layers_Contact_Widget' ) ) {
 											'type' => 'text',
 											'name' => $this->get_field_name( 'google_maps_long_lat' ) ,
 											'id' => $this->get_field_id( 'google_maps_long_lat' ) ,
-											'placeholder' => __( 'e.g. 33.9253 S, 18.4239 E' , 'layerswp' ),
-											'value' => ( isset( $google_maps_long_lat ) ) ? $google_maps_long_lat : NULL
+											'placeholder' => __( 'e.g. -34.038181, 18.363826' , 'layerswp' ),
+											'value' => ( isset( $widget['google_maps_long_lat'] ) ) ? $widget['google_maps_long_lat'] : NULL
 										)
 									); ?>
 								</p>
@@ -354,11 +374,11 @@ if( !class_exists( 'Layers_Contact_Widget' ) ) {
 									<label for="<?php echo $this->get_field_id( 'address_shown' ); ?>"><?php _e( 'Address Shown' , 'layerswp' ); ?></label>
 									<?php echo $this->form_elements()->input(
 										array(
-											'type' => 'textarea',
+											'type' => 'rte',
 											'name' => $this->get_field_name( 'address_shown' ) ,
 											'id' => $this->get_field_id( 'address_shown' ) ,
 											'placeholder' => __( 'e.g. Prestwich Str, Cape Town' , 'layerswp' ),
-											'value' => ( isset( $address_shown ) ) ? $address_shown : NULL,
+											'value' => ( isset( $widget['address_shown'] ) ) ? $widget['address_shown'] : NULL,
 											'class' => 'layers-textarea'
 										)
 									); ?>
@@ -383,7 +403,7 @@ if( !class_exists( 'Layers_Contact_Widget' ) ) {
 											'name' => $this->get_field_name( 'contact_form' ) ,
 											'id' => $this->get_field_id( 'contact_form' ) ,
 											'placeholder' =>  __( 'Contact form embed code' , 'layerswp' ),
-											'value' => ( isset( $contact_form ) ) ? $contact_form : NULL ,
+											'value' => ( isset( $widget['contact_form'] ) ) ? $widget['contact_form'] : NULL ,
 											'class' => 'layers-textarea'
 										)
 									); ?>

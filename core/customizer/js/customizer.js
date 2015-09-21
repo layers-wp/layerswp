@@ -61,6 +61,8 @@
 			// Helper to get current url
 			// provide default_url fix for when no querystring 'url' exists,
 			// which happens when coming from Appearance > Customizer
+			if( !wp.customize.previewer ) return;
+
 			var default_url = wp.customize.previewer.previewUrl();
 			function layers_get_customizer_url() {
 				if( layers_get_parameter_by_name('url', window.location) ){
@@ -122,6 +124,12 @@
 			// Move the Layers tooltips to correct place.
 			$('.customize-controls-close').addClass('layers-tooltip layers-tooltip-left').prepend( $('.layers-tooltip-text-close') );
 			$('.control-panel-back').addClass('layers-tooltip layers-tooltip-left').prepend( $('.layers-tooltip-text-back') );
+			
+			// Delay showing of main nav with hoverIntent
+			$( 'ul.layers-customizer-nav > li' ).hoverIntent(
+				function() { $( this ).addClass( 'layers-hover' ); },
+				function() { $( this ).removeClass( 'layers-hover' ); }
+			);
 
 			/**
 			 * 3 - Better history states in customizer

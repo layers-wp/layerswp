@@ -10,7 +10,7 @@
 /**
  * The current version of the theme. Use a random number for SCRIPT_DEBUG mode
  */
-define( 'LAYERS_VERSION', '1.1.4' );
+define( 'LAYERS_VERSION', '1.2.4' );
 define( 'LAYERS_TEMPLATE_URI' , get_template_directory_uri() );
 define( 'LAYERS_TEMPLATE_DIR' , get_template_directory() );
 define( 'LAYERS_THEME_TITLE' , 'Layers' );
@@ -21,7 +21,7 @@ define( 'LAYERS_BUILDER_TEMPLATE' , 'builder.php' );
  * Set the content width based on the theme's design and stylesheet.
  */
 if ( ! isset( $content_width ) )
-	$content_width = 660; /* pixels */
+	$content_width = 1080; /* pixels */
 
 
 /**
@@ -30,9 +30,18 @@ if ( ! isset( $content_width ) )
 function layers_set_content_width() {
 	global $content_width;
 
-	if ( is_page_template( 'full-width.php' ) ) {
+	$left_sidebar_active = layers_can_show_sidebar( 'left-sidebar' );
+	$right_sidebar_active = layers_can_show_sidebar( 'right-sidebar' );
+
+	if( is_page_template( LAYERS_BUILDER_TEMPLATE ) ) {
 		$content_width = 1080;
-	} elseif( is_singular() ) {
+	} else if( is_page_template( 'template-both-sidebar.php' ) ||
+		is_page_template( 'template-left-sidebar.php' ) ||
+		is_page_template( 'template-right-sidebar.php' ) ){
+		$content_width = 660;
+	} elseif ( is_page_template( 'template-blog.php' ) ) {
+		$content_width = 1080;
+	} elseif( $left_sidebar_active || $right_sidebar_active ){
 		$content_width = 660;
 	}
 }
@@ -57,11 +66,6 @@ require_once get_template_directory() . '/core/customizer/init.php';
  * Load Custom Post Meta
  */
 require_once get_template_directory() . '/core/meta/init.php';
-
-/*
- * Load Widgets
- */
-require_once get_template_directory() . '/core/widgets/init.php';
 
 /*
  * Load Front-end helpers
@@ -368,10 +372,18 @@ if( ! function_exists( 'layers_admin_scripts' ) ) {
 
 		wp_enqueue_style(
 			LAYERS_THEME_SLUG . '-admin-editor',
-			get_template_directory_uri() . '/core/assets/editor.min.css',
+			get_template_directory_uri() . '/core/assets/editor.css',
 			array(),
 			LAYERS_VERSION
 		); // Inline Editor
+
+		wp_enqueue_style(
+			LAYERS_THEME_SLUG . '-admin-font-awesome',
+			get_template_directory_uri() . '/core/assets/font-awesome.min.css',
+			array(),
+			LAYERS_VERSION
+		); // Inline Editor
+
 
 		wp_enqueue_script(
 			LAYERS_THEME_SLUG . '-admin-editor' ,
@@ -428,6 +440,7 @@ if( ! function_exists( 'layers_admin_scripts' ) ) {
 			array(
 				'preset_layout_nonce' => wp_create_nonce( 'layers-migrator-preset-layouts' ),
 				'update_option_nonce' => wp_create_nonce( 'layers-onboarding-update-options' ),
+				'set_theme_mod_nonce' => wp_create_nonce( 'layers-onboarding-set-theme-mods' ),
 			)
 		); // Onboarding ajax parameters
 

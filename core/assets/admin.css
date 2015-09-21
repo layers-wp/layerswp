@@ -53,6 +53,7 @@ div#widgets-right div[id*='obox-layers-builder']{
     visibility: hidden;
 }
 
+#menu-posts-layers-backup{ display: none; }
 
 /*----------------------------------*/
 /*- WORDPRESS RESETS / OVERRIDES ---*/

@@ -197,6 +197,20 @@ class Layers_Widget_Migrator {
 	}
 
 	/**
+	*  Get specific widget data
+	*/
+	function get_widget_data( $widget_key ) {
+		global $wp_registered_widget_updates;
+
+		if( isset( $wp_registered_widget_updates[ $widget_key ][ 'callback' ][0] ) ){
+			return $wp_registered_widget_updates[ $widget_key ][ 'callback' ][0];
+		} else {
+			return false;
+		}
+	}
+
+
+	/**
 	*  Widget Instances and their data
 	*/
 
@@ -351,6 +365,40 @@ class Layers_Widget_Migrator {
 		}
 
 		return $sidebars_widget_instances;
+	}
+
+	/**
+	* Widget Plain Text
+	*
+	* Get widget data for a specific page in plain english
+	*/
+
+	function page_widget_plain_data( $post = NULL ){
+		if( NULL == $post ) {
+			global $post;
+		}
+
+		// Get sidebar and widget data for this page
+		$sidebars_widgets = $this->page_sidebars_widgets( $post );
+
+		if( empty( $sidebars_widgets ) ) return;
+
+		$keys = array();
+
+		// Loop through options and look for images @TODO: Add categories to this, could be useful, also add dynamic sidebar widgets
+		foreach( $sidebars_widgets as $option => $data ){
+			foreach( $data as $widget_instance_id => $widget_info ) {
+				$id_base = preg_replace( '/-[0-9]+$/', '', $widget_instance_id );
+				$id_base = str_replace( ' - ', '', $id_base );
+				$widget_data = $this->get_widget_data( $id_base );
+				$keys[ $id_base ] = $widget_data;
+
+			}
+		}
+
+		// Return modified sidebar widgets
+		return $keys;
+
 	}
 
 	/**

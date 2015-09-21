@@ -103,7 +103,6 @@ if( is_admin() ){
 if( ! function_exists( 'layers_setup' ) ) {
 	function layers_setup(){
 
-		$check_for_post = get_posts( 'post_type=layers-backup&posts_per_page=1&post_status=any' );
 		global $pagenow;
 
 		/**
@@ -261,6 +260,7 @@ if( ! function_exists( 'layers_register_standard_sidebars' ) ) {
 				'after_title'   => '</h5>',
 			) );
 		}
+
 	}
 }
 add_action( 'widgets_init' , 'layers_register_standard_sidebars' , 50 );

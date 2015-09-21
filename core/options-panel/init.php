@@ -452,13 +452,43 @@ function layers_options_panel_menu(){
 		'customize.php'
 	);
 
+	$check_for_backups = get_posts( array(
+		'post_type' => 'layers-backup',
+		'posts_per_page' => 1,
+		'post_status' => 'any',
+		'orderby' => 'ID',
+		'order' => 'DESC'
+	));
+
+	if( !empty( $check_for_backups ) ){
+
+		$latest_backup = get_posts(array(
+			'post_type' => 'revision',
+			'posts_per_page' => 1,
+			'post_status' => 'any',
+			'orderby' => 'ID',
+			'order' => 'DESC',
+			'post_parent' => $check_for_backups[0]->ID
+		));
+
+		if( $latest_backup ) {
+			add_submenu_page(
+				LAYERS_THEME_SLUG . '-dashboard',
+				__( 'Backups' , 'layerswp' ),
+				__( 'Backups' , 'layerswp' ),
+					'edit_theme_options',
+					'revision.php?revision=' . $latest_backup[0]->ID
+			);
+		}
+	}
+
 	// Backup Page
 	add_submenu_page(
 		LAYERS_THEME_SLUG . '-dashboard',
-		__( 'Backup' , 'layerswp' ),
-		__( 'Backup' , 'layerswp' ),
+		__( 'Transfer' , 'layerswp' ),
+		__( 'Transfer' , 'layerswp' ),
 		'edit_theme_options',
-		LAYERS_THEME_SLUG . '-backup',
+		LAYERS_THEME_SLUG . '-transfer',
 		'layers_options_panel_ui'
 	);
 

@@ -55,8 +55,12 @@ class Layers_Widgets {
 		// Add a widget backup function
 
 		add_action( 'customize_save', 'layers_backup_sidebars_widgets' , 50 );
-		add_action( 'wp_restore_post_revision' , array( $this, 'restore_widget_backup' ), 10, 2 );
-		add_action( 'init', array( $this, 'register_backup_post_type' ) );
+		add_action( 'delete_post', 'layers_backup_sidebars_widgets', 10 );
+		add_action( 'delete_post', array( $this, 'clear_page_widgets' ) );
+		add_action( 'wp_restore_post_revision' , array( $this, 'restore_backup' ), 10, 2 );
+		if( isset( $_GET['action'] ) && 'restore' == $_GET['action']){
+			add_filter( '_wp_post_revision_fields', array( $this, 'add_revision_fields' ) );
+		}
 
 		// Register Sidebars
 		$this->register_sidebars();
@@ -80,7 +84,7 @@ class Layers_Widgets {
 	*  Register Builder Sidebar Function
 	*/
 
-	public function register_builder_sidebar( $post_id = 0, $post_title = '' ) {
+	public static function register_builder_sidebar( $post_id = 0, $post_title = '' ) {
 		register_sidebar( array(
 			'id'		=> 'obox-layers-builder-' . $post_id,
 			'name'		=> $post_title . __( ' Body' , 'layerswp' ),
@@ -108,34 +112,6 @@ class Layers_Widgets {
 			update_option( 'theme_mods_' . basename( get_stylesheet_directory() ) , $old_theme_mods );
 			set_theme_mod( 'sidebars_widgets' , $old_theme_mods[ 'sidebars_widgets' ] );
 		}
-	}
-
-	/**
-	*  Widget Setting backup function
-	*/
-	/*
-	public function set_backup_cron(){
-		wp_schedule_single_event( time() + 60, 'do_backup_sidebars_widgets' );
-	}
-	*/
-	public function register_backup_post_type(){
-		global $sidebars_widgets;
-
-		register_post_type( 'layers-backup', array(
-			'public'             => true,
-			'publicly_queryable' => true,
-			'show_ui'            => true,
-			'show_in_menu'       => true,
-			'supports' => array(
-				'title',
-				'revisions'
-			),
-			'labels' => array(
-				'name' => _x( 'Backups', 'post type general name', 'layerswp' ),
-				'singular_name' => _x( 'Backup', 'post type singular name', 'layerswp' ),
-				'menu_name' => _x( 'Backups', 'admin menu', 'layerswp' ),
-			)
-		) );
 	}
 
 	/**
@@ -207,8 +183,26 @@ class Layers_Widgets {
 
 	}
 
-	public function restore_widget_backup( $post_id, $revision_id){
+	/**
+	 * Clear page widgets (when deleting a post, to keep a clean db)
+	 */
+	public function clear_page_widgets( $post_id ){
 
+		$layers_sidebar_key = 'obox-layers-builder-' . $post_id;
+
+		$migrator = new Layers_Widget_Migrator();
+		$migrator::clear_page_sidebars_widget( $layers_sidebar_key );
+	}
+
+	public function add_revision_fields( $fields ) {
+		$fields['post_content_filtered'] = __( 'Raw Page Data', 'layerswp' );
+		return $fields;
+	}
+
+	/**
+	 * Restore a Backup from the Layers Widget Revisions
+	 */
+	public function restore_backup( $post_id, $revision_id){
 
 		$post = get_post( $post_id, OBJECT );
 		if( 'layers-backup' !== $post->post_type ) return;
@@ -218,12 +212,12 @@ class Layers_Widgets {
 
 		$layers_migrator = new Layers_Widget_Migrator();
 
-		$widget_data = $revision->post_excerpt;
+		$widget_data = $revision->post_content_filtered;
 
 		if( is_wp_error( unserialize( $widget_data ) ) ) return;
 
 		foreach( unserialize( $widget_data ) as $layers_page_id => $backup_data ){
-			$layers_migrator->import( array( 'post_id' => $layers_page_id, 'widget_data' => $backup_data ), true );
+			$layers_migrator->import( $backup_data, true );
 		}
 	}
 
@@ -321,48 +315,72 @@ function layers_widgets_init(){
 add_action( 'widgets_init' , 'layers_widgets_init' , 20 );
 
 function layers_backup_sidebars_widgets(){
+
 	global $sidebars_widgets;
 
+	// See if there are any widget backups
 	$check_for_post = get_posts( 'post_type=layers-backup&posts_per_page=1&post_status=any' );
 
+	// Prep the migrator
 	$migrator = new Layers_Widget_Migrator();
+
+	// Get a list of the migrator
 	$get_layers_pages = layers_get_builder_pages( 500 );
 
+	// Set a blank array to house the raw widget data
 	$page_raw_widget_data = array();
-
-	foreach( $get_layers_pages as $page ){
-		$export_data = $migrator->export_data( $page );
-
-		if( !empty( $export_data ) ){
-			$page_raw_widget_data[ $page->ID ] = $export_data;
-		}
-	}
-
-	$page_widget_data = array();
 	$page_content = '';
 
+	// Loop through the builder pages spooling up the widget data each time
 	foreach( $get_layers_pages as $page ){
+		$raw_export_data = $migrator->export_data( $page );
 		$export_data = $migrator->page_widget_plain_data( $page );
 
 		if( !empty( $export_data ) ){
-			$page_content .= '
-			'. $page->post_title . ':';
+
+			// Create a hash key so that we can know if this page is unique or not
+			if( '' == get_post_meta( $page->ID, 'layers_hash', true ) ){
+				$page_hash_key = 'layers_page_' . md5( $page->post_name . '-' . $page->ID );
+				update_post_meta( $page->ID, 'layers_hash', $page_hash_key, false );
+			} else {
+				$page_hash_key = get_post_meta( $page->ID, 'layers_hash', true );
+			}
+
+			// Save the raw widget data
+			$page_raw_widget_data[ $page->ID ] = array(
+				'post_id' => $page->ID,
+				'post_hash' => $page_hash_key,
+				'post_title' => esc_attr( $page->post_title ),
+				'widget_data' => $raw_export_data
+			);
+
+			// Set the page content as readable widget data
+$page_content .= '
+'. $page->post_title . ':';
 			foreach( $export_data as $data ){
-				$page_content .= '
-				* ' . $data->name;
+$page_content .= '
+* ' . $data->name;
 			}
 		}
 	}
 
-	if( !empty( $check_for_post ) ){
-		$post[ 'ID' ] = $check_for_post[0]->ID;
-	}
-
+	// Generate the post content
 	$post[ 'post_title' ] = __( 'Layers Backups' , 'layerswp' );
 	$post[ 'post_type' ] = 'layers-backup';
 	$post[ 'post_status' ] = 'publish';
 	$post[ 'post_content' ] = trim( $page_content );
-	$post[ 'post_excerpt' ] = serialize( $page_raw_widget_data );
+	$post[ 'post_content_filtered' ] = serialize( $page_raw_widget_data );
 
-	wp_insert_post( $post );
+	// Do we have an existing post? Well great then let's use it
+	if( !empty( $check_for_post ) ){
+		$post[ 'ID' ] = $check_for_post[0]->ID;
+	} else {
+		$post[ 'ID' ] = wp_insert_post( $post, true );
+	}
+
+	// Update the backup post
+	$post_id = wp_insert_post( $post );
+
+	return $post_id;
 }
+add_action( 'layers_backup_sidebars_widgets', 'layers_backup_sidebars_widgets' );

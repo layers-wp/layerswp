@@ -162,6 +162,25 @@ if( ! function_exists( 'layers_setup' ) ) {
 		add_theme_support( 'automatic-feed-links' );
 
 		/**
+		 * Register the Backup Post Type
+		 */
+		register_post_type( 'layers-backup', array(
+			'public'             => true,
+			'publicly_queryable' => true,
+			'show_ui'            => true,
+			'show_in_menu'       => true,
+			'supports' => array(
+				'title',
+				'revisions'
+			),
+			'labels' => array(
+				'name' => _x( 'Backups', 'post type general name', 'layerswp' ),
+				'singular_name' => _x( 'Backup', 'post type singular name', 'layerswp' ),
+				'menu_name' => _x( 'Backups', 'admin menu', 'layerswp' ),
+			)
+		) );
+
+		/**
 		 * Register nav menus
 		 */
 		register_nav_menus( array(

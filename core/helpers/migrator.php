@@ -597,6 +597,8 @@ class Layers_Widget_Migrator {
 				'customizer_location' => admin_url() . 'customize.php?url=' . esc_url( get_the_permalink( $import_data[ 'post_id' ] ) )
 			);
 
+		do_action( 'layers_backup_sidebars_widgets' );
+
 		die( json_encode( $results ) );
 	}
 
@@ -635,8 +637,9 @@ class Layers_Widget_Migrator {
 				'page_location' => admin_url() . 'post.php?post=' . $pageid . '&action=edit&message=1'
 			);
 
-		die( json_encode( $results ) );
+		do_action( 'layers_backup_sidebars_widgets' );
 
+		die( json_encode( $results ) );
 	}
 
 	/**
@@ -697,13 +700,51 @@ class Layers_Widget_Migrator {
 		}
 
 		$results = array(
-				'post_id' => $import_data[ 'post_id' ],
-				'post_title' => $new_page->post_title,
-				'data_report' => $import_progress,
-				'customizer_location' => admin_url() . 'customize.php?url=' . esc_url( get_the_permalink( $import_data[ 'post_id' ] ) )
-			);
+			'post_id' => $import_data[ 'post_id' ],
+			'post_title' => $new_page->post_title,
+			'data_report' => $import_progress,
+			'customizer_location' => admin_url() . 'customize.php?url=' . esc_url( get_the_permalink( $import_data[ 'post_id' ] ) )
+		);
+
+		do_action( 'layers_backup_sidebars_widgets' );
 
 		die( json_encode( $results ) );
+	}
+
+	/**
+	*  Import
+	*/
+
+	public static function clear_page_sidebars_widget( $sidebar_key = NULL ){
+
+		global $sidebars_widgets;
+
+		if( NULL == $sidebar_key ) return;
+
+		if( isset( $sidebars_widgets[ $sidebar_key ] ) ){
+
+			$sidebar_data = $sidebars_widgets[ $sidebar_key ];
+
+			foreach ( $sidebar_data as $widget ) {
+				$id_base = preg_replace( '/-[0-9]+$/', '', $widget );
+				$instance_id_number = str_replace( $id_base . '-', '', $widget );
+
+				$single_widget_instances = get_option( 'widget_' . $id_base );
+
+				// Remove this page's widgets
+				if( isset( $single_widget_instances[ $instance_id_number ] ) ){
+					unset( $single_widget_instances[ $instance_id_number ] );
+				}
+
+				update_option( 'widget_' . $id_base, $single_widget_instances );
+			}
+
+			// Remove this page's widget information
+			unset( $sidebars_widgets[ $sidebar_key ] );
+
+			update_option( 'sidebars_widgets', $sidebars_widgets );
+		}
+
 	}
 
 	/**
@@ -730,37 +771,14 @@ class Layers_Widget_Migrator {
 
 		if( empty( $import_data[ 'widget_data' ] ) ) return;
 
-		$sidebar_key = 'obox-layers-builder-' . $import_data[ 'post_id' ];
-
-		if( NULL !== $clear_page && isset( $sidebars_widgets[ $sidebar_key ] ) ){
-
-
-			$sidebar_data = $sidebars_widgets[ $sidebar_key ];
-
-			foreach ( $sidebar_data as $widget ) {
-				$id_base = preg_replace( '/-[0-9]+$/', '', $widget );
-				$instance_id_number = str_replace( $id_base . '-', '', $widget );
-
-				$single_widget_instances = get_option( 'widget_' . $id_base );
-
-				// Remove this page's widgets
-				if( isset( $single_widget_instances[ $instance_id_number ] ) ){
-					unset( $single_widget_instances[ $instance_id_number ] );
-				}
-
-				update_option( 'widget_' . $id_base, $single_widget_instances );
-			}
-
-			// Remove this page's widget information
-			unset( $sidebars_widgets[ $sidebar_key ] );
-
-			update_option( 'sidebars_widgets', $sidebars_widgets );
-		}
-
 		foreach( $import_data[ 'widget_data' ] as $sidebar_id => $sidebar_data ) {
 
+			$layers_sidebar_key = 'obox-layers-builder-';
+
+			if( NULL !== $clear_page && isset( $import_data[ 'post_id' ] ) ) $this->clear_page_sidebars_widget( $layers_sidebar_key . $import_data[ 'post_id' ] );
+
 			// If this is a builder page, set the ID to the current page we are importing INTO
-			if( FALSE !== strpos( $sidebar_id , 'obox-layers-builder-' ) ) $sidebar_id = 'obox-layers-builder-' . $import_data[ 'post_id' ];
+			if( FALSE !== strpos( $sidebar_id , $layers_sidebar_key ) ) $sidebar_id = $layers_sidebar_key . $import_data[ 'post_id' ];
 
 			// Check if sidebar is available on this site
 			// Otherwise add widgets to inactive, and say so
@@ -769,6 +787,35 @@ class Layers_Widget_Migrator {
 				$use_sidebar_id = $sidebar_id;
 				$sidebar_message_type = 'success';
 				$sidebar_message = '';
+			} elseif( isset( $import_data[ 'post_hash' ] ) ) {
+				$args = array(
+					'meta_key' => 'layers_hash',
+					'meta_value' => $import_data[ 'post_hash' ],
+					'post_type' => 'page',
+					'post_status' => 'publish,draft',
+					'posts_per_page' => 1
+				);
+
+				$check_for_post = get_posts($args);
+
+				if( !empty( $check_for_post ) ){
+					$new_post_id = $check_for_post[0]->ID;
+				} else {
+					$new_post_id = layers_create_builder_page( $import_data[ 'post_title' ] );
+					update_post_meta( $new_post_id, 'layers_hash', $import_data[ 'post_hash' ], false );
+				}
+
+				if( $new_post_id ) {
+					$sidebar_available = true;
+					$use_sidebar_id = $layers_sidebar_key . $new_post_id;
+					$sidebar_message_type = 'success';
+					$sidebar_message = '';
+				} else {
+					$sidebar_available = false;
+					$use_sidebar_id = 'wp_inactive_widgets'; // add to inactive if sidebar does not exist in theme
+					$sidebar_message_type = 'error';
+					$sidebar_message = __( 'Sidebar does not exist in theme (using Inactive)' , 'layerswp' );
+				}
 			} else {
 				$sidebar_available = false;
 				$use_sidebar_id = 'wp_inactive_widgets'; // add to inactive if sidebar does not exist in theme
@@ -878,6 +925,10 @@ class Layers_Widget_Migrator {
 				$results[$sidebar_id]['widgets'][$widget_instance_id]['message'] = $widget_message;
 
 			}
+		}
+
+		if( !isset( $import_data[ 'post_hash' ] ) ){
+			do_action( 'layers_backup_sidebars_widgets' );
 		}
 
 		return $results;

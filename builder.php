@@ -12,7 +12,6 @@ get_header();
 global $post;
 
 do_action('before_layers_builder_widgets');
-
 if ( post_password_required() ) { ?>
 	<section id="post-<?php the_ID(); ?>" <?php post_class( 'content-main clearfix' ); ?>>
 		<?php do_action('layers_before_post_loop'); ?>

@@ -108,7 +108,8 @@ jQuery(document).ready(function($){
 					layers_set_column_sortable( $that );
 					
 				}});
-			}, 400 );
+				
+			}, 700 );
 			
 		}, 500 );
 	});

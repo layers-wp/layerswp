@@ -1935,6 +1935,11 @@ li[id*='accordion-section-layers'] .customize-control.customize-control-image .a
     .layers-accordion-item{
         margin-bottom: 0;
     }
+    .layers-accordion-item.layers-accordion-item-remove {
+        animation: layers-accordion-item-remove-animation .8s cubic-bezier(.65,-0.02,.72,.29);
+        animation-fill-mode: forwards;
+        -webkit-animation-fill-mode: forwards;
+    }
     .layers-accordion-title{
         display: block;
         margin: 0;
@@ -1991,6 +1996,25 @@ li[id*='accordion-section-layers'] .customize-control.customize-control-image .a
     }
     .layers-accordion-item:last-child .layers-accordion-section{
         border-bottom: none;
+    }
+    
+    @keyframes layers-accordion-item-remove-animation {
+        0% {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        30% {
+            opacity: 1;
+            transform: translateX(50px);
+        }
+        80% {
+            opacity: 1;
+            transform: translateX(-800px);
+        }
+        100% {
+            opacity: 0;
+            transform: translateX(-800px);
+        }
     }
 
 /*---------------------------*/

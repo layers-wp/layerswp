@@ -9,6 +9,8 @@
 
 if( !class_exists( 'Layers_Widget' ) ) {
 	class Layers_Widget extends WP_Widget {
+		
+		public $layers_widget_classname;
 
 		/**
 		* Check option with isset() and echo it out if it exists, if it does not exist, return false
@@ -254,6 +256,134 @@ if( !class_exists( 'Layers_Widget' ) ) {
 				),
 				LAYERS_VERSION
 			); // Layers Masonry Function
+		}
+		
+		/**
+		 * Used to initialise repeater defaults
+		 *
+		 * @param  string   $type            Unique singular slug for the type of repeater. Must just be unique to this widget e.g. button (not buttons)
+		 * @param  integer  $count           How many pre-populated elements do you want to start with.
+		 * @param  array    $defaults_array  A custom associative array that will become the defaults for each element.
+		 */
+		function register_repeater_defaults( $type, $count = 3, $defaults_array = array() ) {
+			
+			// Create array of random guid's to the specified size.
+			$repeat_ids_array = array();
+			$i = 0;
+			while ( $i < $count ) {
+				$repeat_ids_array[] = rand( 1 , 1000 );
+				$i++;
+			}
+			
+			// Store the guid's in a string for the default of the field e.g. button_ids
+			$this->defaults["{$type}_ids"] = implode( ',', $repeat_ids_array );
+			
+			// Start an empty nested array that will hold the new repeated defaults.
+			$this->defaults["{$type}s"] = array();
+			
+			// Add a default to each guid element, these will all be the same but are still needed when our defaulting methodology looks for them.
+			foreach( $repeat_ids_array as $item_id ) {
+				$defaults_name = "{$type}_defaults";
+				$this->defaults["{$type}s"][ $item_id ] = $defaults_array; // Save them to our defaults property.
+			}
+		}
+		
+		/**
+		 * Get repeater items defaults
+		 *
+		 * @param  string   $type           Unique singular slug for the type of repeater. Must just be unique to this widget e.g. button (not buttons)
+		 * @param  integer  $guid           The uique ID of the default element.
+		 */
+		function get_repeater_defaults( $type, $guid = NULL ) {
+			
+			// Set blank instance defaults as backup to be safe.
+			$instance_defaults = array();
+				
+			if ( isset( $this->defaults["{$type}s"][$guid] ) ) {
+				
+				// Look for defaults created correctly by the register_repeater_defaults() method, with specific guid's.
+				$instance_defaults = $this->defaults["{$type}s"][$guid];
+			}
+			else if ( isset( $this->defaults["{$type}s"] ) && ! empty( $this->defaults["{$type}s"] ) ) {
+				
+				// Look for defaults created correctly by the register_repeater_defaults() method, without specific guid's so just get the first one.
+				$instance_defaults = current( $this->defaults["{$type}s"] );
+			}
+			
+			return $instance_defaults;
+		}
+		
+		/**
+		 * The main function that outputs the repeater form item.
+		 *
+		 * @param  string  $type    Unique singular slug for the type of repeater. Must just be unique to this widget e.g. button (not buttons).
+		 * @param  array   $widget  The widget object.
+		 */
+		function repeater( $type = 'button', $widget = array() ){
+			
+			// If we have some items, let's break out their IDs into an array
+			if ( isset( $widget["{$type}_ids"] ) && '' != $widget["{$type}_ids"] ) {
+				$items = explode( ',' , $widget["{$type}_ids"] );
+			}
+			else {
+				$items = array();
+			}
+			
+			// Compile the name of the new item function e.g. column_item.
+			$function_name = "{$type}_item";
+			
+			// Bail if the new_item mehod has not been defined in the custom widget class yet.
+			if ( ! method_exists( $this, $function_name ) ) return false;
+			
+			// Prepare the counter index so we can write the item index to the new_item's.
+			$this->{$type.'_item_count'} = -1;
+			
+			// Predefine the $repeater_id that will be used in the id="" atribute in the HTML
+			$repeater_id = "{$type}_list_{$this->number}";
+			?>
+			<div
+				id="<?php echo esc_attr( $repeater_id ); ?>"
+				class="layers-widget-repeater-group"
+				data-repeater-number="<?php echo esc_attr( $this->number ); ?>"
+				data-repeater-type="<?php echo esc_attr( $type ) ?>"
+				data-repeater-class="<?php echo esc_attr( get_class( $this ) ); ?>"
+				data-repeater-id-base="<?php echo esc_attr( $this->id_base ); ?>"
+				>
+				
+				<?php
+				// This for elemnt is hidden, and will be updated by javascript with the comma separeted list of the guid's of the repeater items ordering.
+				echo $this->form_elements()->input( array(
+					'type'  => 'hidden',
+					'name'  => $this->get_field_name( "{$type}_ids" ),
+					'id'    => "{$type}_ids_input_{$this->number}",
+					'value' => ( isset( $widget["{$type}_ids"] ) ) ? $widget["{$type}_ids"] : NULL,
+					'class' => 'layers-repeater-input',
+				) );
+				?>
+			
+				<ul id="<?php echo $repeater_id ?>_accordion" class="layers-accordions layers-accordions-sortable layers-sortable" >
+					<?php
+					// Loop the repeater items.
+					if( isset( $items ) && is_array( $items ) ) {
+						foreach( $items as $itemguid ) {
+							
+							$this->$function_name(
+								array(
+									'id_base' => $this->id_base,
+									'number' => $this->number,
+								),
+								$itemguid,
+								( isset( $widget[ '{$type}s' ][ $itemguid ] ) ) ? $widget[ '{$type}s' ][ $itemguid ] : NULL
+							);
+						}
+					}
+					?>
+				</ul>
+				<button class="layers-button btn-full layers-widget-repeater-add-item add-new-widget">
+					<?php _e( 'Add New' , 'layerswp' ) ; ?> <?php echo ucfirst( $type ); ?>
+				</button>
+			</div>
+			<?php
 		}
 
 	}

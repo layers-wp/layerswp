@@ -1935,6 +1935,13 @@ li[id*='accordion-section-layers'] .customize-control.customize-control-image .a
     .layers-accordion-item{
         margin-bottom: 0;
     }
+    .layers-widget-repeater:after{
+        content: '';
+        clear:both;
+        float: none;
+        height: 6px;
+        display: block;
+    }
     .layers-accordion-item.layers-accordion-item-remove {
         animation: layers-accordion-item-remove-animation .8s cubic-bezier(.65,-0.02,.72,.29);
         animation-fill-mode: forwards;

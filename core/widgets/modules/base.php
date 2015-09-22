@@ -343,7 +343,7 @@ if( !class_exists( 'Layers_Widget' ) ) {
 			?>
 			<div
 				id="<?php echo esc_attr( $repeater_id ); ?>"
-				class="layers-widget-repeater-group"
+				class="layers-widget-repeater"
 				data-repeater-number="<?php echo esc_attr( $this->number ); ?>"
 				data-repeater-type="<?php echo esc_attr( $type ) ?>"
 				data-repeater-class="<?php echo esc_attr( get_class( $this ) ); ?>"

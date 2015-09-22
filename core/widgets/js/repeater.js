@@ -40,7 +40,7 @@ jQuery(document).ready(function($){
 					
 					// Get Elements
 					$repeater_list = li.item.closest( 'ul' );
-					$repeater_group = $repeater_list.parents('.layers-widget-repeater-group');
+					$repeater_group = $repeater_list.parents('.layers-widget-repeater');
 					$repeater_input = $repeater_group.find('.layers-repeater-input');
 
 					// Apply new column order
@@ -59,7 +59,7 @@ jQuery(document).ready(function($){
 	/**
 	* 2 - Item Removal
 	*/
-	$(document).on( 'click' , '.layers-widget-repeater-group .icon-trash' , function(e){
+	$(document).on( 'click' , '.layers-widget-repeater .layers-icon-error' , function(e){
 		
 		e.preventDefault();
 
@@ -74,7 +74,7 @@ jQuery(document).ready(function($){
 		$repeater_delete_button = $(this);
 		$repeater_item_row      = $repeater_delete_button.closest( '.layers-accordion-item' );
 		$repeater_item_title    = $repeater_item_row.find('.layers-accordion-title');
-		$repeater_group         = $repeater_delete_button.parents('.layers-widget-repeater-group');
+		$repeater_group         = $repeater_delete_button.parents('.layers-widget-repeater');
 		$repeater_list          = $repeater_group.find('.layers-accordions');
 		$repeater_input         = $repeater_group.find('.layers-repeater-input');
 		
@@ -126,7 +126,7 @@ jQuery(document).ready(function($){
 		
 		// Get elements
 		$repeater_add_button = $(this);
-		$repeater_group  = $repeater_add_button.parents('.layers-widget-repeater-group');
+		$repeater_group  = $repeater_add_button.parents('.layers-widget-repeater');
 		$repeater_list   = $repeater_group.find('.layers-accordions');
 		$repeater_input  = $repeater_group.find('.layers-repeater-input');
 		

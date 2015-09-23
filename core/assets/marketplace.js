@@ -175,14 +175,46 @@ jQuery(function($) {
 
     $(document).on( 'change', '#layers-marketplace-sortby', function(e){
         e.preventDefault();
+        marketplace_search();
+    });
+    marketplace_search();
 
-        $action = $(this).data( 'action' );
+    function marketplace_search(){
+        // If this is the first time the page is loading fade in the products
+        $( '.layers-products.layers-hide' ).hide().removeClass( 'layers-hide' ).fadeIn( 350 );
 
-        $new_location = $action + '&' + $(this).val();
+        var $products = $( 'div.layers-products' ),
+        $productsli = $products.children( 'div.layers-product' ),
+        $search_type = $( '#layers-marketplace-sortby' ).val().split('-');
 
-        window.location = $new_location;
+        if( '' == $search_type ){
+            $productsli.sort();
+        } else {
+            $productsli.sort(function(a,b){
+                var an = a.getAttribute( 'data-' + $search_type[0] ),
+                    bn = b.getAttribute( 'data-' + $search_type[0] );
 
-    } );
+                if( 'asc' ==  $search_type[1] ){
+                    if(an > bn) {
+                        return 1;
+                    }
+                    if(an < bn) {
+                        return -1;
+                    }
+                } else {
+                    if(an < bn) {
+                        return 1;
+                    }
+                    if(an > bn) {
+                        return -1;
+                    }
+                }
+                return 0;
+            });
+
+            $productsli.detach().appendTo($products);
+        }
+    }
 
     $(document).on( 'keyup mouseup change', '#layers-marketplace #layers-marketplace-search, #layers-marketplace #layers-marketplace-authors', function(e){
         e.preventDefault();
@@ -251,8 +283,6 @@ jQuery(function($) {
     marketplace_resize();
 
     function  marketplace_resize(){
-
-        console.log( ' Resize event' );
 
         var max_height = 0;
         $( '.layers-product' ).each(function(){

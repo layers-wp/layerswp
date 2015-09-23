@@ -149,7 +149,7 @@ class Layers_Options_Panel {
 						<select id="layers-marketplace-sortby" name="sortby" data-action="<?php echo admin_url( 'admin.php?page=layers-marketplace&type=' . $type ); ?>" class="push-right">
 							<?php if( is_array( $api->get_sort_options() ) ) { ?>
 								<?php foreach( $api->get_sort_options() as $value => $label ) { ?>
-									<option <?php selected( $value, $api->get_sort_string() ); ?>value="<?php echo $value; ?>"><?php echo $label; ?></option>
+									<option value="<?php echo $value; ?>"><?php echo $label; ?></option>
 								<?php } ?>
 							<?php } ?>
 						</select>

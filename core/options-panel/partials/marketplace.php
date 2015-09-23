@@ -33,7 +33,7 @@ $all_authors = array(); ?>
 
 	<div class="layers-row layers-well layers-content-large">
 		<div class="layers-browser">
-			<div class="layers-products">
+			<div class="layers-products layers-hide">
 				<?php if( is_wp_error( $products ) ) { ?>
 					<div class="layers-section-title layers-large layers-content-large layers-t-center">
 						<h3 class="layers-heading"><?php _e( 'Oh No!' , 'layerswp'); ?></h3>
@@ -54,7 +54,18 @@ $all_authors = array(); ?>
 						if( FALSE === in_array( $details->author_username, $all_authors ) ){
 							$all_authors[] = $details->author_username;
 						} ?>
-						<div id="product-details-<?php echo $details->id; ?>" class="layers-product layers-animate" tabindex="0" data-rating="<?php echo ( $details->rating->count > 0 ? $details->rating->rating : '' ) ; ?>" data-author="<?php echo $details->author_username; ?>">
+						<!--
+						<pre><?php print_r( $details ); ?></pre>
+						-->
+						<div
+							id="product-details-<?php echo $details->id; ?>" class="layers-product layers-animate" tabindex="0"
+							data-id="<?php echo $details->id; ?>"
+							data-name="<?php echo esc_attr( $details->name ); ?>"
+							data-sales="<?php echo esc_attr( $details->number_of_sales ); ?>"
+							data-rating="<?php echo ( $details->rating->count > 0 ? $details->rating->rating : '' ) ; ?>"
+							data-author="<?php echo $details->author_username; ?>"
+							data-price="<?php echo (float) ($details->price_cents/100); ?>"
+							data-trending="<?php echo ( isset( $details->trending ) && '1' == $details->trending ? 1 : 0 ); ?>">
 							<input  class="layers-product-json" type="hidden" value='<?php echo htmlspecialchars( json_encode( $details ) ); ?>' />
 							<label for="layers-preset-layout-<?php echo esc_attr( $details->id ); ?>-radio">
 								<h3 class="layers-product-name" id="<?php echo esc_attr( $details->id ); ?>"><?php echo esc_html( $details->name ); ?></h3>

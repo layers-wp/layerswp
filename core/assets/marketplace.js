@@ -71,8 +71,6 @@ jQuery(function($) {
 
         $id = '#' + $layers_a.attr('data-view-item');
 
-        window.location.hash = $layers_a.attr('data-view-item');
-
         var $my_data = $( $id ).find( 'input' ).val();
 
         var $json = jQuery.parseJSON( $my_data );
@@ -175,13 +173,18 @@ jQuery(function($) {
 
     $(document).on( 'change', '#layers-marketplace-sortby', function(e){
         e.preventDefault();
-        marketplace_search();
+        marketplace_sort();
     });
-    marketplace_search();
+    marketplace_sort();
 
-    function marketplace_search(){
+    function marketplace_sort(){
         // If this is the first time the page is loading fade in the products
-        $( '.layers-products.layers-hide' ).hide().removeClass( 'layers-hide' ).fadeIn( 350 );
+        $( '.layers-marketplace-loading' ).fadeOut( 500 );
+
+        setTimeout(function(){
+            $( '.layers-products.layers-hide' ).hide().removeClass( 'layers-hide' ).fadeIn( 350 );
+            marketplace_resize();
+        }, 500 );
 
         var $products = $( 'div.layers-products' ),
         $productsli = $products.children( 'div.layers-product' ),
@@ -193,6 +196,11 @@ jQuery(function($) {
             $productsli.sort(function(a,b){
                 var an = a.getAttribute( 'data-' + $search_type[0] ),
                     bn = b.getAttribute( 'data-' + $search_type[0] );
+
+                if( 'sales' == $search_type[0] || 'price' == $search_type[0] ){
+                    an = +an;
+                    bn = +bn;
+                }
 
                 if( 'asc' ==  $search_type[1] ){
                     if(an > bn) {
@@ -280,7 +288,6 @@ jQuery(function($) {
     $(window).bind( 'resize', function(){
         marketplace_resize();
     });
-    marketplace_resize();
 
     function  marketplace_resize(){
 

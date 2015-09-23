@@ -33,30 +33,29 @@ $all_authors = array(); ?>
 
 	<div class="layers-row layers-well layers-content-large">
 		<div class="layers-browser">
-			<div class="layers-products layers-hide">
-				<?php if( is_wp_error( $products ) ) { ?>
-					<div class="layers-section-title layers-large layers-content-large layers-t-center">
-						<h3 class="layers-heading"><?php _e( 'Oh No!' , 'layerswp'); ?></h3>
-						<div class="layers-media-body layers-push-bottom">
-							<p class="layers-excerpt"><?php _e( sprintf( 'We had some trouble getting the list of %s, luckily though you can just browse the catalogue on Envato.', strtolower( $excerpt ) ) , 'layerswp'); ?></p>
-						</div>
-						<a href="<?php echo $fallback_url; ?>" class="layers-button btn-primary btn-large"><?php _e( 'Go to Envato', 'layerswp' ); ?></a>
+			<?php if( is_wp_error( $products ) ) { ?>
+				<div class="layers-section-title layers-large layers-content-large layers-t-center">
+					<h3 class="layers-heading"><?php _e( 'Oh No!' , 'layerswp'); ?></h3>
+					<div class="layers-media-body layers-push-bottom">
+						<p class="layers-excerpt"><?php _e( sprintf( 'We had some trouble getting the list of %s, luckily though you can just browse the catalogue on Envato.', strtolower( $excerpt ) ) , 'layerswp'); ?></p>
 					</div>
-				<?php } else { ?>
-					<div id="layers-marketplace-empty-search" class="layers-section-title layers-large layers-content-large layers-t-center layers-hide">
-						<h3 class="layers-heading"><?php _e( 'Oh No!' , 'layerswp'); ?></h3>
-						<div class="layers-media-body layers-push-bottom">
-							<p class="layers-excerpt"><?php _e( sprintf( 'Your search returned a grand total of zero %s. <br /> Clear your search and try again.', strtolower( $excerpt ) ) , 'layerswp'); ?></p>
-						</div>
-						<a id="layers-marketplace-clear-search" class="layers-button btn-primary btn-large"><?php _e( 'Try Again', 'layerswp' ); ?></a>
+					<a href="<?php echo $fallback_url; ?>" class="layers-button btn-primary btn-large"><?php _e( 'Go to Envato', 'layerswp' ); ?></a>
+				</div>
+			<?php } else { ?>
+				<div class="layers-marketplace-loading layers-section-title layers-large layers-content-large layers-t-center">
+					<h3 class="layers-heading"><?php _e( 'Loading...' , 'layerswp'); ?></h3>
+					<div class="layers-media-body layers-push-bottom">
+						<p class="layers-excerpt"><?php _e( sprintf( 'We\'re busy gathering and sorting the list of %s, hang tight.', strtolower( $excerpt ) ) , 'layerswp'); ?></p>
 					</div>
+				</div>
+			<?php } ?>
+
+			<?php if( !is_wp_error( $products ) ) { ?>
+				<div class="layers-products layers-hide">
 					<?php foreach( $products->matches as $key => $details ) {
 						if( FALSE === in_array( $details->author_username, $all_authors ) ){
 							$all_authors[] = $details->author_username;
 						} ?>
-						<!--
-						<pre><?php print_r( $details ); ?></pre>
-						-->
 						<div
 							id="product-details-<?php echo $details->id; ?>" class="layers-product layers-animate" tabindex="0"
 							data-id="<?php echo $details->id; ?>"
@@ -66,7 +65,6 @@ $all_authors = array(); ?>
 							data-author="<?php echo $details->author_username; ?>"
 							data-price="<?php echo (float) ($details->price_cents/100); ?>"
 							data-trending="<?php echo ( isset( $details->trending ) && '1' == $details->trending ? 1 : 0 ); ?>">
-							<input  class="layers-product-json" type="hidden" value='<?php echo htmlspecialchars( json_encode( $details ) ); ?>' />
 							<label for="layers-preset-layout-<?php echo esc_attr( $details->id ); ?>-radio">
 								<h3 class="layers-product-name" id="<?php echo esc_attr( $details->id ); ?>"><?php echo esc_html( $details->name ); ?></h3>
 
@@ -117,6 +115,7 @@ $all_authors = array(); ?>
 									</a>
 								</div>
 							</label>
+							<input  class="layers-product-json" type="hidden" value='<?php echo htmlspecialchars( json_encode( $details ) ); ?>' />
 						</div>
 					<?php } // Get Preset Layouts ?>
 					<script>

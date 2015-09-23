@@ -55,7 +55,7 @@ class Layers_API {
 		$this->sort_options = array(
 			'id-desc' => __( '-- Sort By --' , 'layerswp' ),
 			'name-asc' => __( 'Item name A - Z' , 'layerswp' ),
-			'sales-asc' => __( 'Best sellers' , 'layerswp' ),
+			'sales-desc' => __( 'Best sellers' , 'layerswp' ),
 			'rating-desc' => __( 'Best rated' , 'layerswp' ),
 			'price-asc' => __( 'Price: low to high' ),
 			'price-desc' => __( 'Price: high to low' ),

@@ -2062,6 +2062,7 @@ li[id*='accordion-section-layers'] .customize-control.customize-control-image .a
         background: #fff;
         border: 1px dashed #A3C567;
         text-align: center;
+        margin-bottom: 10px;
     }
 
     .layers-sortable-drop a{

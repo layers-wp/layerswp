@@ -162,25 +162,6 @@ if( ! function_exists( 'layers_setup' ) ) {
 		add_theme_support( 'automatic-feed-links' );
 
 		/**
-		 * Register the Backup Post Type
-		 */
-		register_post_type( 'layers-backup', array(
-			'public'             => true,
-			'publicly_queryable' => true,
-			'show_ui'            => true,
-			'show_in_menu'       => true,
-			'supports' => array(
-				'title',
-				'revisions'
-			),
-			'labels' => array(
-				'name' => _x( 'Backups', 'post type general name', 'layerswp' ),
-				'singular_name' => _x( 'Backup', 'post type singular name', 'layerswp' ),
-				'menu_name' => _x( 'Backups', 'admin menu', 'layerswp' ),
-			)
-		) );
-
-		/**
 		 * Register nav menus
 		 */
 		register_nav_menus( array(
@@ -199,12 +180,60 @@ if( ! function_exists( 'layers_setup' ) ) {
 
 			update_option( 'layers_welcome' , 1);
 
-			wp_safe_redirect( admin_url('admin.php?page=' . LAYERS_THEME_SLUG . '-get-started'));
+			// /wp_safe_redirect( admin_url('admin.php?page=' . LAYERS_THEME_SLUG . '-get-started'));
 		}
 
 	} // function layers_setup
 } // if !function layers_setup
-add_action( 'after_setup_theme' , 'layers_setup', 10 );
+add_action( 'after_setup_theme' , 'layers_setup', 100 );
+
+/**
+ * Port Widgets between Layers Parent theme and Child themes
+ */
+function layers_preserve_widgets( $theme ){
+	global $sidebars_widgets;
+
+	$new_theme = wp_get_theme( $_GET[ 'stylesheet' ] );
+	$old_theme = wp_get_theme( get_option( 'theme_switched' ) );
+	$old_theme_mods = get_option( 'theme_mods_' . $old_theme->stylesheet );
+
+	if( isset( $sidebars_widgets[ 'wp_inactive_widgets' ] ) ) unset( $sidebars_widgets[ 'wp_inactive_widgets' ] );
+	if( isset( $old_theme_mods[ 'sidebars_widgets' ] ) ) unset( $old_theme_mods[ 'sidebars_widgets' ] );
+
+	if( 'layerswp' == $old_theme->template ){
+		// Backup Sidebars Widgets
+		if( isset( $sidebars_widgets[ 'wp_inactive_widgets' ] ) ) unset( $sidebars_widgets[ 'wp_inactive_widgets' ] );
+		update_option( 'layerswp_sidebars_widgets_bkp' , $sidebars_widgets );
+
+		// Backup Theme Mods
+		update_option( 'layerswp_theme_mod_bkp' , $old_theme_mods );
+	}
+
+	// If we are using a Layers theme, then let's make sure widgets are kept between our theme switch
+	if( 'layerswp' != $old_theme->template && 'layerswp' == $new_theme->template ){
+
+		if( '' != get_option( 'layerswp_theme_mod_bkp' ) ) {
+			update_option( 'theme_mods_' . $new_theme->stylesheet , get_option( 'layerswp_theme_mod_bkp' ) );
+		}
+
+		if( '' != get_option( 'layerswp_sidebars_widgets_bkp' ) ) {
+			update_option( 'sidebars_widgets' , get_option( 'layerswp_sidebars_widgets_bkp' ) );
+		}
+		die( "CHANGING FROM NON LAYERS TO LAYERS" );
+	} elseif( 'layerswp' == $new_theme->template ){
+		update_option( 'sidebars_widgets', $sidebars_widgets );
+		update_option( 'theme_mods_' . $new_theme->stylesheet , $old_theme_mods );
+	}
+
+
+	// Remove the post revision check, so that we can restore right away after switching back
+	/*
+	add_filter( 'wp_save_post_revision_check_for_changes', '__return_false' );
+	do_action( 'layers_backup_sidebars_widgets' );
+	*/
+}
+
+add_action( 'switch_theme' , 'layers_preserve_widgets' );
 
 /**
 *  Enqueue front end styles and scripts

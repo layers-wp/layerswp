@@ -330,39 +330,35 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 			$widget = wp_parse_args( $instance, $instance_defaults );
 
 			$design_bar_components = apply_filters( 'layers_' . $this->widget_id . '_widget_design_bar_components' , array(
-					'layout',
-					'custom',
-					'fonts',
-					'background',
-					'advanced'
-				) );
-
-			$design_bar_custom_components = apply_filters( 'layers_' . $this->widget_id . '_widget_design_bar_custom_components' , array(
-					'liststyle' => array(
-						'icon-css' => 'icon-list-masonry',
-						'label' => __( 'List Style', 'layerswp' ),
-						'wrapper-class' => 'layers-small to layers-pop-menu-wrapper layers-animate',
-						'elements' => array(
-							'liststyle' => array(
-								'type' => 'select-icons',
-								'name' => $this->get_field_name( 'design' ) . '[liststyle]' ,
-								'id' =>  $this->get_field_name( 'design-liststyle' ),
-								'value' => ( isset( $widget['design'][ 'liststyle' ] ) ) ? $widget['design'][ 'liststyle' ] : NULL,
-								'options' => array(
-									'list-grid' => __( 'Grid' , 'layerswp' ),
-									'list-masonry' => __( 'Masonry' , 'layerswp' )
-								)
-							),
-							'gutter' => array(
-								'type' => 'checkbox',
-								'label' => __( 'Gutter' , 'layerswp' ),
-								'name' => $this->get_field_name( 'design' ) . '[gutter]' ,
-								'id' =>  $this->get_field_name( 'design-gutter' ),
-								'value' => ( isset( $widget['design']['gutter'] ) ) ? $widget['design']['gutter'] : NULL
+				'layout',
+				'liststyle' => array(
+					'icon-css' => 'icon-list-masonry',
+					'label' => __( 'List Style', 'layerswp' ),
+					'wrapper-class' => 'layers-small to layers-pop-menu-wrapper layers-animate',
+					'elements' => array(
+						'liststyle' => array(
+							'type' => 'select-icons',
+							'name' => $this->get_field_name( 'design' ) . '[liststyle]' ,
+							'id' =>  $this->get_field_name( 'design-liststyle' ),
+							'value' => ( isset( $widget['design'][ 'liststyle' ] ) ) ? $widget['design'][ 'liststyle' ] : NULL,
+							'options' => array(
+								'list-grid' => __( 'Grid' , 'layerswp' ),
+								'list-masonry' => __( 'Masonry' , 'layerswp' )
 							)
+						),
+						'gutter' => array(
+							'type' => 'checkbox',
+							'label' => __( 'Gutter' , 'layerswp' ),
+							'name' => $this->get_field_name( 'design' ) . '[gutter]' ,
+							'id' =>  $this->get_field_name( 'design-gutter' ),
+							'value' => ( isset( $widget['design']['gutter'] ) ) ? $widget['design']['gutter'] : NULL
 						)
 					)
-				) );
+				),
+				'fonts',
+				'background',
+				'advanced'
+			) );
 
 			$this->design_bar(
 				'side', // CSS Class Name
@@ -371,8 +367,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 					'id' => $this->get_field_id( 'design' ),
 				), // Widget Object
 				$widget, // Widget Values
-				$design_bar_components, // Standard Components
-				$design_bar_custom_components // Add-on Components
+				$design_bar_components // Components
 			); ?>
 			<div class="layers-container-large" id="layers-column-widget-<?php echo $this->number; ?>">
 				<?php $this->form_elements()->header( array(
@@ -472,21 +467,18 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 					<section class="layers-accordion-section layers-content">
 						<?php $this->design_bar(
 							'top', // CSS Class Name
-							array(
+							array( // Widget Object
 								'name' => $this->get_custom_field_name( $widget_details, 'columns',  $column_guid, 'design' ),
 								'id' => $this->get_custom_field_id( $widget_details, 'columns',  $column_guid, 'design' ),
 								'number' => $widget_details->number,
 								'show_trash' => true
-							), // Widget Object
+							),
 							$column, // Widget Values
-							array(
+							array(  // Components
 								'background',
 								'featuredimage',
 								'imagealign',
 								'fonts',
-								'custom',
-							), // Standard Components
-							array(
 								'width' => array(
 									'icon-css' => 'icon-columns',
 									'label' => 'Column Width',

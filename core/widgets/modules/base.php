@@ -319,10 +319,10 @@ if( !class_exists( 'Layers_Widget' ) ) {
 		 * @param  string  $type    Unique singular slug for the type of repeater. Must just be unique to this widget e.g. button (not buttons).
 		 * @param  array   $widget  The widget object.
 		 */
-		function repeater( $type = 'button', $widget = array() ){
+		function repeater( $type, $widget = array() ) {
 			
 			// If we have some items, let's break out their IDs into an array
-			if ( isset( $widget["{$type}_ids"] ) && '' != $widget["{$type}_ids"] ) {
+			if ( isset( $widget["{$type}_ids"] ) && '' !== $widget["{$type}_ids"] ) {
 				$items = explode( ',' , $widget["{$type}_ids"] );
 			}
 			else {
@@ -332,13 +332,13 @@ if( !class_exists( 'Layers_Widget' ) ) {
 			// Compile the name of the new item function e.g. column_item.
 			$function_name = "{$type}_item";
 			
-			// Bail if the new_item mehod has not been defined in the custom widget class yet.
+			// Bail if the new_item method has not been defined in the custom widget class yet.
 			if ( ! method_exists( $this, $function_name ) ) return false;
 			
 			// Prepare the counter index so we can write the item index to the new_item's.
 			$this->{$type.'_item_count'} = -1;
 			
-			// Predefine the $repeater_id that will be used in the id="" atribute in the HTML
+			// Predefine the $repeater_id that will be used in the id="" attribute in the HTML
 			$repeater_id = "{$type}_list_{$this->number}";
 			?>
 			<div
@@ -351,11 +351,11 @@ if( !class_exists( 'Layers_Widget' ) ) {
 				>
 				
 				<?php
-				// This for elemnt is hidden, and will be updated by javascript with the comma separeted list of the guid's of the repeater items ordering.
+				// This for element is hidden, and will be updated by javascript with the comma separated list of the guid's of the repeater items ordering.
 				echo $this->form_elements()->input( array(
 					'type'  => 'hidden',
 					'name'  => $this->get_field_name( "{$type}_ids" ),
-					'id'    => "{$type}_ids_input_{$this->number}",
+					'id'    => $this->get_field_id( "{$type}_ids" ),
 					'value' => ( isset( $widget["{$type}_ids"] ) ) ? $widget["{$type}_ids"] : NULL,
 					'class' => 'layers-repeater-input',
 				) );
@@ -373,7 +373,7 @@ if( !class_exists( 'Layers_Widget' ) ) {
 									'number' => $this->number,
 								),
 								$itemguid,
-								( isset( $widget[ '{$type}s' ][ $itemguid ] ) ) ? $widget[ '{$type}s' ][ $itemguid ] : NULL
+								( isset( $widget[ "{$type}s" ][ $itemguid ] ) ) ? $widget[ "{$type}s" ][ $itemguid ] : NULL
 							);
 						}
 					}

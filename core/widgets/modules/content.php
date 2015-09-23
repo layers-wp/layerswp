@@ -301,7 +301,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 		*  Widget update
 		*/
 
-		function update($new_instance, $old_instance) {
+		function update( $new_instance, $old_instance ) {
 			if ( isset( $this->checkboxes ) ) {
 				foreach( $this->checkboxes as $cb ) {
 					if( isset( $old_instance[ $cb ] ) ) {

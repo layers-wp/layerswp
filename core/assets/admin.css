@@ -2016,11 +2016,11 @@ li[id*='accordion-section-layers'] .customize-control.customize-control-image .a
         }
         80% {
             opacity: 1;
-            transform: translateX(-800px);
+            transform: translateX(-600px);
         }
         100% {
             opacity: 0;
-            transform: translateX(-800px);
+            transform: translateX(-600px);
         }
     }
 

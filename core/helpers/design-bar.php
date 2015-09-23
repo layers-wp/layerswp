@@ -174,6 +174,7 @@ class Layers_Design_Controller {
 	<?php }
 
 	private function render_trash_control(){
+		
 		if( isset( $this->widget['show_trash'] ) ) { ?>
 		<li class="layers-visuals-item layers-pull-right">
 			<a href="" class="layers-icon-wrapper layers-icon-error">
@@ -825,7 +826,6 @@ class Layers_Design_Controller {
 		// Grab the elements and unset them - so we can work with them individually.
 		$defaults_elements = isset( $defaults['elements'] ) ? $defaults['elements'] : array() ;
 		if ( isset( $defaults['elements'] ) ) unset( $defaults['elements'] );
-		
 		$args_elements = isset( $args['elements'] ) ? $args['elements'] : array() ;
 		if ( isset( $args['elements'] ) ) unset( $args['elements'] );
 		

@@ -10,6 +10,12 @@ class Layers_API {
 
 	private static $instance;
 
+	private static $type;
+
+	private $sort_default;
+
+	public $sort_options;
+
 	const ENVATO_API_URL = 'https://api.envato.com/v1/';
 
 	/**
@@ -36,6 +42,7 @@ class Layers_API {
 
 	function add_query_vars($vars) {
 		$vars[] = "type";
+		$vars[] = "sortby";
 		return $vars;
 	}
 
@@ -46,15 +53,43 @@ class Layers_API {
 		return $token;
 	}
 
+	public function get_sort_options(){
+
+		$this->sort_options = array(
+			'' => __( '-- Sort By --' , 'layerswp' ),
+			'sort_by=name&sort_direction=asc' => __( 'Item name A - Z' , 'layerswp' ),
+			'sort_by=sales&sort_direction=desc' => __( 'Best sellers' , 'layerswp' ),
+			'sort_by=rating&sort_direction=desc' => __( 'Best rated' , 'layerswp' ),
+			'sort_by=price&sort_direction=asc' => __( 'Price: low to high' ),
+			'sort_by=price&sort_direction=desc' => __( 'Price: high to low' ),
+			'sort_by=updated&sort_direction=desc' => __( 'Last Updated' , 'layerswp' ),
+			'sort_by=trending&sort_direction=desc' => __( 'Trending items' , 'layerswp' ),
+		);
+
+		return $this->sort_options;
+	}
+
+	public function get_sort_string(){
+
+		$this->sort_default = 'sort_by=updated&sort_direction=desc';
+
+		if( isset( $_GET[ 'sort_by' ] ) ){
+			$sort_string = 'sort_by=' . $_GET[ 'sort_by' ] . '&sort_direction=' . $_GET[ 'sort_direction' ];
+		}
+
+		return ( isset( $sort_string ) && array_key_exists( $sort_string , $this->get_sort_options() ) ) ? $sort_string : $this->sort_default;
+
+	}
+
 	private function do_envato_api_call( $endpoint = 'market/total-items.json', $query_string = NULL , $method = 'get', $timeout = 5 ){
 
-		$query_string = ( $query_string ? '?' . $query_string . '&page_size=500&sort_by=sales&sort_direction=desc' : '?' . 'sort_by=sales&sort_direction=desc' );
+		$query_string = ( $query_string ? '?' . $query_string . '&page_size=500&' . $this->get_sort_string() : '?' . $this->get_sort_string() );
 
 		// Set the remote URL
 		$remote_url = self::ENVATO_API_URL . $endpoint . $query_string;
 
 		// Set the query transient key
-		$cache_key = 'lmp_' . base64_encode( substr( $query_string, 0,35) );
+		$cache_key = 'lmp_' . $query_string;
 
 		// Quick cache dumper
 		$dump_cache = 0;

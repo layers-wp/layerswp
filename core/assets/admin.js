@@ -26,7 +26,6 @@
  * 13 - Layers Pages Backups
  * 14 - Init RTE Editors
  * 15 - Custom Widget Initialization Events
- * 16 - Layers Marketplace
  *
  * Author: Obox Themes
  * Author URI: http://www.oboxthemes.com/

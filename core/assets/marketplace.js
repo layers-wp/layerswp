@@ -12,6 +12,7 @@
  * 2 - Modal Keyboard Navigation
  * 3 - Modal population script
  * 4 - Marketplace Filter and Search functions
+ * 5 - Item height matcher
  *
  * Author: Obox Themes
  * Author URI: http://www.oboxthemes.com/
@@ -169,11 +170,21 @@ jQuery(function($) {
 
         $( '#layers-marketplace #layers-marketplace-search' ).val('').trigger( 'change' );
         $( '#layers-marketplace #layers-marketplace-authors' ).val('').trigger( 'change' );
-        $( '#layers-marketplace #layers-marketplace-ratings' ).val('').trigger( 'change' );
 
     } );
 
-    $(document).on( 'keyup change', '#layers-marketplace #layers-marketplace-search, #layers-marketplace #layers-marketplace-authors, #layers-marketplace #layers-marketplace-ratings', function(e){
+    $(document).on( 'change', '#layers-marketplace-sortby', function(e){
+        e.preventDefault();
+
+        $action = $(this).data( 'action' );
+
+        $new_location = $action + '&' + $(this).val();
+
+        window.location = $new_location;
+
+    } );
+
+    $(document).on( 'keyup mouseup change', '#layers-marketplace #layers-marketplace-search, #layers-marketplace #layers-marketplace-authors', function(e){
         e.preventDefault();
 
         $search_val = $( '#layers-marketplace #layers-marketplace-search' ).val().toLowerCase();
@@ -229,4 +240,29 @@ jQuery(function($) {
         $( $valid_products.join(", ") ).removeClass( 'layers-hide' );
         $( $invalid_products.join(", ") ).addClass( 'layers-hide' );
     });
+
+    /**
+    * 5 - Marketplace Filter and Search functions
+    */
+
+    $(window).bind( 'resize', function(){
+        marketplace_resize();
+    });
+    marketplace_resize();
+
+    function  marketplace_resize(){
+
+        console.log( ' Resize event' );
+
+        var max_height = 0;
+        $( '.layers-product' ).each(function(){
+
+            if( max_height < $(this).outerHeight() ){
+                max_height = $(this).outerHeight();
+            }
+        });
+
+        $( '.layers-product' ).height( max_height );
+    }
+
 });

@@ -109,6 +109,8 @@ class Layers_Options_Panel {
 	*/
 	public function marketplace_header( $title = NULL, $excerpt = NULL ){
 
+		$api = new Layers_API();
+
 		if( isset( $_GET[ 'type' ] ) ) $type = $_GET[ 'type' ]; else $type = 'themes' ?>
 		<header class="layers-page-title layers-section-title layers-large layers-content-large layers-no-push-bottom">
 
@@ -124,17 +126,17 @@ class Layers_Options_Panel {
 				<nav class="layers-nav-horizontal layers-dashboard-nav">
 					<ul>
 						<li <?php if( 'themes' == $type ) { ?>class="active"<?php } ?>>
-							<a href="<?php echo admin_url( 'admin.php?page=layers-marketplace&type=themes'); ?>">
+							<a href="<?php echo admin_url( 'admin.php?page=layers-marketplace&type=themes' ); ?>">
 								<?php _e( 'Themes' , 'layerswp' ); ?>
 							</a>
 						</li>
 						<li <?php if( 'stylekits' == $type ) { ?>class="active"<?php } ?>>
-							<a href="<?php echo admin_url( 'admin.php?page=layers-marketplace&type=stylekits'); ?>">
+							<a href="<?php echo admin_url( 'admin.php?page=layers-marketplace&type=stylekits' ); ?>">
 								<?php _e( 'StyleKits' , 'layerswp' ); ?>
 							</a>
 						</li>
 						<li <?php if( 'extensions' == $type ) { ?>class="active"<?php } ?>>
-							<a href="<?php echo admin_url( 'admin.php?page=layers-marketplace&type=extensions'); ?>">
+							<a href="<?php echo admin_url( 'admin.php?page=layers-marketplace&type=extensions' ); ?>">
 								<?php _e( 'Extensions' , 'layerswp' ); ?>
 							</a>
 						</li>
@@ -144,19 +146,12 @@ class Layers_Options_Panel {
 						<select id="layers-marketplace-authors" class="push-right">
 							<option value=""><?php _e( '-- Author --' , 'layerswp' ); ?></option>
 						</select>
-						<!--
-						<label><?php _e( 'Price: ', 'layerswp' ); ?></label>
-						<input type="number" />
-						<label><?php _e( 'to ', 'layerswp' ); ?></label>
-						<input type="number" />
-						-->
-						<select id="layers-marketplace-ratings" class="push-right">
-							<option value=""><?php _e( '-- Rating --' , 'layerswp' ); ?></option>
-							<option value="5"><?php _e( '5 stars' , 'layerswp' ); ?></option>
-							<option value="4"><?php _e( '4 stars' , 'layerswp' ); ?></option>
-							<option value="3"><?php _e( '3 stars' , 'layerswp' ); ?></option>
-							<option value="2"><?php _e( '2 stars' , 'layerswp' ); ?></option>
-							<option value="1"><?php _e( '1 star' , 'layerswp' ); ?></option>
+						<select id="layers-marketplace-sortby" name="sortby" data-action="<?php echo admin_url( 'admin.php?page=layers-marketplace&type=' . $type ); ?>" class="push-right">
+							<?php if( is_array( $api->get_sort_options() ) ) { ?>
+								<?php foreach( $api->get_sort_options() as $value => $label ) { ?>
+									<option <?php selected( $value, $api->get_sort_string() ); ?>value="<?php echo $value; ?>"><?php echo $label; ?></option>
+								<?php } ?>
+							<?php } ?>
 						</select>
 						<input id="layers-marketplace-search" type="search" placeholder="<?php _e( 'Search...' , 'layerswp' ); ?>"/>
 					</form>

@@ -1629,8 +1629,8 @@ li[id*='accordion-section-layers'] .customize-control.customize-control-image .a
     display: block;
     float: right;
     width: 88px;
-    height: 410px 0;
-    bound: url(images/layers-logo-dark.png) no-repeat bottom;
+    height: 21px;
+    background: url(images/layers-logo-dark.png) no-repeat bottom;
     background-size: 88px 20px;
     overflow: hidden;
     text-indent: -999px;

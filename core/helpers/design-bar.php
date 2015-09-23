@@ -215,7 +215,7 @@ class Layers_Design_Controller {
 	 *
 	 * @param    array       $args       Additional arguments to pass to this function
 	 */
-	public function layout_component( $args = NULL ) {
+	public function layout_component( $args = array() ) {
 
 		// If there is no widget information provided, can the operation
 		if ( NULL == $this->widget )
@@ -225,16 +225,16 @@ class Layers_Design_Controller {
 		$key = 'layout';
 
 		// Setup icon CSS
-		$args['icon-css'] = ( isset( $this->values['layout'] ) && NULL != $this->values ? 'icon-' . $this->values['layout'] : 'icon-layout-fullwidth' );
+		$defaults['icon-css'] = ( isset( $this->values['layout'] ) && NULL != $this->values ? 'icon-' . $this->values['layout'] : 'icon-layout-fullwidth' );
 
 		// Add a Label
-		$args['label'] = __( 'Layout', 'layerswp' );
+		$defaults['label'] = __( 'Layout', 'layerswp' );
 
 		// Add a Wrapper Class
-		$args['wrapper-class'] = 'layers-pop-menu-wrapper layers-animate layers-small';
+		$defaults['wrapper-class'] = 'layers-pop-menu-wrapper layers-animate layers-small';
 
 		// Add elements
-		$args['elements'] = array(
+		$defaults['elements'] = array(
 			'layout' => array(
 				'type' => 'select-icons',
 				'name' => $this->widget['name'] . '[layout]',
@@ -246,6 +246,8 @@ class Layers_Design_Controller {
 				)
 			)
 		);
+		
+		$args = $this->merge_component( $defaults, $args );
 
 		$this->render_control( $key, apply_filters( 'layerswp_layout_component_args', $args, $key, $this->type, $this->widget, $this->values ) );
 	}
@@ -255,7 +257,7 @@ class Layers_Design_Controller {
 	 *
 	 * @param    array       $args       Additional arguments to pass to this function
 	 */
-	public function liststyle_component( $args = NULL ) {
+	public function liststyle_component( $args = array() ) {
 
 		// If there is no widget information provided, can the operation
 		if ( NULL == $this->widget )
@@ -265,16 +267,16 @@ class Layers_Design_Controller {
 		$key = 'liststyle';
 
 		// Setup icon CSS
-		$args['icon-css'] = ( isset( $this->values['liststyle'] ) && NULL != $this->values ? 'icon-' . $this->values['liststyle'] : 'icon-list-masonry' );
+		$defaults['icon-css'] = ( isset( $this->values['liststyle'] ) && NULL != $this->values ? 'icon-' . $this->values['liststyle'] : 'icon-list-masonry' );
 
 		// Add a Label
-		$args['label'] = __( 'List Style', 'layerswp' );
+		$defaults['label'] = __( 'List Style', 'layerswp' );
 
 		// Add a Wrapper Class
-		$args['wrapper-class'] = 'layers-pop-menu-wrapper layers-animate layers-small';
+		$defaults['wrapper-class'] = 'layers-pop-menu-wrapper layers-animate layers-small';
 
 		// Add elements
-		$args['elements'] = array(
+		$defaults['elements'] = array(
 			'liststyle' => array(
 				'type' => 'select-icons',
 				'name' => $this->widget['name'] . '[liststyle]',
@@ -287,6 +289,8 @@ class Layers_Design_Controller {
 				)
 			)
 		);
+		
+		$args = $this->merge_component( $defaults, $args );
 
 		$this->render_control( $key, apply_filters( 'layerswp_liststyle_component_args', $args, $key, $this->type, $this->widget, $this->values ) );
 	}
@@ -306,13 +310,13 @@ class Layers_Design_Controller {
 		$key = 'columns';
 
 		// Setup icon CSS
-		$args['icon-css'] = 'icon-columns';
+		$defaults['icon-css'] = 'icon-columns';
 
 		// Add a Label
-		$args['label'] = __( 'Columns', 'layerswp' );
+		$defaults['label'] = __( 'Columns', 'layerswp' );
 
 		// Add a Wrapper Class
-		$args['wrapper-class'] = 'layers-pop-menu-wrapper layers-animate layers-content-small';
+		$defaults['wrapper-class'] = 'layers-pop-menu-wrapper layers-animate layers-content-small';
 
 		// Add elements
 		$defaults['elements'] = array(
@@ -346,7 +350,7 @@ class Layers_Design_Controller {
 			)
 		);
 		
-		$args = array_merge_recursive( $defaults, $args );
+		$args = $this->merge_component( $defaults, $args );
 
 		$this->render_control( $key, apply_filters( 'layerswp_columns_component_args', $args, $key, $this->type, $this->widget, $this->values ) );
 	}
@@ -356,7 +360,7 @@ class Layers_Design_Controller {
 	 *
 	 * @param    array       $args       Additional arguments to pass to this function
 	 */
-	public function textalign_component( $args = NULL ) {
+	public function textalign_component( $args = array() ) {
 
 		// If there is no widget information provided, can the operation
 		if ( NULL == $this->widget )
@@ -366,16 +370,16 @@ class Layers_Design_Controller {
 		$key = 'textalign';
 
 		// Setup icon CSS
-		$args['icon-css'] = ( isset( $this->values['textalign'] ) && NULL != $this->values ? 'icon-' . $this->values['textalign'] : 'icon-text-center' );
+		$defaults['icon-css'] = ( isset( $this->values['textalign'] ) && NULL != $this->values ? 'icon-' . $this->values['textalign'] : 'icon-text-center' );
 
 		// Add a Label
-		$args['label'] = __( 'Text Align', 'layerswp' );
+		$defaults['label'] = __( 'Text Align', 'layerswp' );
 
 		// Add a Wrapper Class
-		$args['wrapper-class'] = 'layers-pop-menu-wrapper layers-animate layers-content-small';
+		$defaults['wrapper-class'] = 'layers-pop-menu-wrapper layers-animate layers-content-small';
 
 		// Add elements
-		$args['elements'] = array(
+		$defaults['elements'] = array(
 			'textalign' => array(
 				'type' => 'select-icons',
 				'name' => $this->widget['name'] . '[textalign]',
@@ -389,6 +393,8 @@ class Layers_Design_Controller {
 				)
 			)
 		);
+		
+		$args = $this->merge_component( $defaults, $args );
 
 		$this->render_control( $key, apply_filters( 'layerswp_textalign_component_args', $args, $key, $this->type, $this->widget, $this->values ) );
 	}
@@ -398,7 +404,7 @@ class Layers_Design_Controller {
 	 *
 	 * @param    array       $args       Additional arguments to pass to this function
 	 */
-	public function imagealign_component( $args = NULL ) {
+	public function imagealign_component( $args = array() ) {
 
 		// If there is no widget information provided, can the operation
 		if ( NULL == $this->widget )
@@ -408,16 +414,16 @@ class Layers_Design_Controller {
 		$key = 'imagealign';
 
 		// Setup icon CSS
-		$args['icon-css'] = ( isset( $this->values['imagealign'] ) && NULL != $this->values ? 'icon-' . $this->values['imagealign'] : 'icon-image-left' );
+		$defaults['icon-css'] = ( isset( $this->values['imagealign'] ) && NULL != $this->values ? 'icon-' . $this->values['imagealign'] : 'icon-image-left' );
 
 		// Add a Label
-		$args['label'] = __( 'Image Align', 'layerswp' );
+		$defaults['label'] = __( 'Image Align', 'layerswp' );
 
 		// Add a Wrapper Class
-		$args['wrapper-class'] = 'layers-pop-menu-wrapper layers-animate layers-small';
+		$defaults['wrapper-class'] = 'layers-pop-menu-wrapper layers-animate layers-small';
 
 		// Add elements
-		$args['elements'] = array(
+		$defaults['elements'] = array(
 			'imagealign' => array(
 				'type' => 'select-icons',
 				'name' => $this->widget['name'] . '[imagealign]',
@@ -430,6 +436,8 @@ class Layers_Design_Controller {
 				)
 			),
 		);
+		
+		$args = $this->merge_component( $defaults, $args );
 
 		$this->render_control( $key, apply_filters( 'layerswp_imagealign_component_args', $args, $key, $this->type, $this->widget, $this->values ) );
 	}
@@ -439,7 +447,7 @@ class Layers_Design_Controller {
 	 *
 	 * @param    array       $args       Additional arguments to pass to this function
 	 */
-	public function featuredimage_component( $args = NULL ) {
+	public function featuredimage_component( $args = array() ) {
 
 		// If there is no widget information provided, can the operation
 		if ( NULL == $this->widget )
@@ -449,16 +457,16 @@ class Layers_Design_Controller {
 		$key = 'featuredimage';
 
 		// Setup icon CSS
-		$args['icon-css'] = 'icon-featured-image';
+		$defaults['icon-css'] = 'icon-featured-image';
 
 		// Add a Label
-		$args['label'] = __( 'Featured Image', 'layerswp' );
+		$defaults['label'] = __( 'Featured Image', 'layerswp' );
 
 		// Add a Wrapper Class
-		$args['wrapper-class'] = 'layers-pop-menu-wrapper layers-animate layers-content-small';
+		$defaults['wrapper-class'] = 'layers-pop-menu-wrapper layers-animate layers-content-small';
 
 		// Add elements
-		$args['elements'] = array(
+		$defaults['elements'] = array(
 			'featuredimage' => array(
 				'type' => 'image',
 				'label' => __( 'Featured Image', 'layerswp' ),
@@ -489,6 +497,8 @@ class Layers_Design_Controller {
 				'wrapper-class' => 'layers-icon-group'
 			),
 		);
+		
+		$args = $this->merge_component( $defaults, $args );
 
 		$this->render_control( $key, apply_filters( 'layerswp_featuredimage_component_args', $args, $key, $this->type, $this->widget, $this->values ) );
 	}
@@ -498,7 +508,7 @@ class Layers_Design_Controller {
 	 *
 	 * @param    array       $args       Additional arguments to pass to this function
 	 */
-	public function imageratios_component( $args = NULL ) {
+	public function imageratios_component( $args = array() ) {
 
 		// If there is no widget information provided, can the operation
 		if ( NULL == $this->widget )
@@ -508,16 +518,16 @@ class Layers_Design_Controller {
 		$key = 'imageratios';
 
 		// Setup icon CSS
-		$args['icon-css'] = ( isset( $this->values['imageratios'] ) && NULL != $this->values ? 'icon-' . $this->values['imageratios'] : 'icon-image-size' );
+		$defaults['icon-css'] = ( isset( $this->values['imageratios'] ) && NULL != $this->values ? 'icon-' . $this->values['imageratios'] : 'icon-image-size' );
 
 		// Add a Label
-		$args['label'] = __( 'Image Ratio', 'layerswp' );
+		$defaults['label'] = __( 'Image Ratio', 'layerswp' );
 
 		// Add a Wrapper Class
-		$args['wrapper-class'] = 'layers-pop-menu-wrapper layers-animate layers-small';
+		$defaults['wrapper-class'] = 'layers-pop-menu-wrapper layers-animate layers-small';
 
 		// Add elements
-		$args['elements'] = array(
+		$defaults['elements'] = array(
 			'imageratio' => array(
 				'type' => 'select-icons',
 				'name' => $this->widget['name'] . '[imageratios]',
@@ -531,6 +541,8 @@ class Layers_Design_Controller {
 				)
 			),
 		);
+		
+		$args = $this->merge_component( $defaults, $args );
 
 		$this->render_control( $key, apply_filters( 'layerswp_imageratios_component_args', $args, $key, $this->type, $this->widget, $this->values ) );
 	}
@@ -540,7 +552,7 @@ class Layers_Design_Controller {
 	 *
 	 * @param    array       $args       Additional arguments to pass to this function
 	 */
-	public function fonts_component( $args = NULL ) {
+	public function fonts_component( $args = array() ) {
 
 		// If there is no widget information provided, can the operation
 		if ( NULL == $this->widget )
@@ -550,16 +562,16 @@ class Layers_Design_Controller {
 		$key = 'fonts';
 
 		// Setup icon CSS
-		$args['icon-css'] = 'icon-font-size';
+		$defaults['icon-css'] = 'icon-font-size';
 
 		// Add a Label
-		$args['label'] = __( 'Text', 'layerswp' );
+		$defaults['label'] = __( 'Text', 'layerswp' );
 
 		// Add a Wrapper Class
-		$args['wrapper-class'] = 'layers-pop-menu-wrapper layers-animate layers-content-small';
+		$defaults['wrapper-class'] = 'layers-pop-menu-wrapper layers-animate layers-content-small';
 
 		// Add elements
-		$args['elements'] = array(
+		$defaults['elements'] = array(
 			'fonts-align' => array(
 				'type' => 'select-icons',
 				'label' => __( 'Text Align', 'layerswp' ),
@@ -595,7 +607,9 @@ class Layers_Design_Controller {
 				'value' => ( isset( $this->values['fonts']['color'] ) ) ? $this->values['fonts']['color'] : NULL
 			)
 		);
-
+		
+		$args = $this->merge_component( $defaults, $args );
+		
 		$this->render_control( $key, apply_filters( 'layerswp_font_component_args', $args, $key, $this->type, $this->widget, $this->values ) );
 	}
 
@@ -604,7 +618,7 @@ class Layers_Design_Controller {
 	 *
 	 * @param    array       $args       Additional arguments to pass to this function
 	 */
-	public function background_component( $args = NULL ) {
+	public function background_component( $args = array() ) {
 
 		// If there is no widget information provided, can the operation
 		if ( NULL == $this->widget )
@@ -614,13 +628,13 @@ class Layers_Design_Controller {
 		$key = 'background';
 
 		// Setup icon CSS
-		$args['icon-css'] = 'icon-photo';
+		$defaults['icon-css'] = 'icon-photo';
 
 		// Add a Label
-		$args['label'] = __( 'Background', 'layerswp' );
+		$defaults['label'] = __( 'Background', 'layerswp' );
 
 		// Add elements
-		$args['elements'] = array(
+		$defaults['elements'] = array(
 			'background-image' => array(
 				'type' => 'image',
 				'label' => __( 'Background Image', 'layerswp' ),
@@ -678,15 +692,18 @@ class Layers_Design_Controller {
 				'value' => ( isset( $this->values['background']['darken'] ) ) ? $this->values['background']['darken'] : NULL
 			)
 		);
+		
+		$args = $this->merge_component( $defaults, $args );
 
 		$this->render_control( $key, apply_filters( 'layerswp_background_component_args', $args, $key, $this->type, $this->widget, $this->values ) );
 	}
+	
 	/**
 	 * Call To Action Customization - Static Option
 	 *
 	 * @param    array       $args       Additional arguments to pass to this function
 	 */
-	public function buttons_component( $args = NULL ) {
+	public function buttons_component( $args = array() ) {
 
 		// If there is no widget information provided, can the operation
 		if ( NULL == $this->widget )
@@ -696,13 +713,13 @@ class Layers_Design_Controller {
 		$key = 'buttons';
 
 		// Setup icon CSS
-		$args['icon-css'] = 'icon-call-to-action';
+		$defaults['icon-css'] = 'icon-call-to-action';
 
 		// Add a Label
-		$args['label'] = __( 'Buttons', 'layerswp' );
+		$defaults['label'] = __( 'Buttons', 'layerswp' );
 
 		// Add elements
-		$args['elements'] = array(
+		$defaults['elements'] = array(
 			'buttons-background-color' => array(
 				'type' => 'color',
 				'label' => __( 'Background Color', 'layerswp' ),
@@ -711,6 +728,8 @@ class Layers_Design_Controller {
 				'value' => ( isset( $this->values['buttons']['background-color'] ) ) ? $this->values['buttons']['background-color'] : NULL
 			),
 		);
+		
+		$args = $this->merge_component( $defaults, $args );
 
 		$this->render_control( $key, apply_filters( 'layerswp_button_colors_component_args', $args, $key, $this->type, $this->widget, $this->values ) );
 	}
@@ -719,7 +738,7 @@ class Layers_Design_Controller {
 	 *
 	 * @param    array       $args       Additional arguments to pass to this function
 	 */
-	public function advanced_component( $args = NULL ) {
+	public function advanced_component( $args = array() ) {
 
 		// If there is no widget information provided, can the operation
 		if ( NULL == $this->widget )
@@ -729,13 +748,13 @@ class Layers_Design_Controller {
 		$key = 'advanced';
 
 		// Setup icon CSS
-		$args['icon-css'] = 'icon-settings';
+		$defaults['icon-css'] = 'icon-settings';
 
 		// Add a Label
-		$args['label'] = __( 'Advanced', 'layerswp' );
+		$defaults['label'] = __( 'Advanced', 'layerswp' );
 
 		// Add elements
-		$args['elements'] = array(
+		$defaults['elements'] = array(
 			'customclass' => array(
 				'type' => 'text',
 				'label' => __( 'Custom Class(es)', 'layerswp' ),
@@ -773,6 +792,8 @@ class Layers_Design_Controller {
 				'value' => '#'  . str_ireplace( '-design' , '', $this->widget['id'] )
 			)
 		);
+		
+		$args = $this->merge_component( $defaults, $args );
 
 		$this->render_control( $key, apply_filters( 'layerswp_advanced_component_args', $args, $key, $this->type, $this->widget, $this->values ) );
 	}
@@ -795,4 +816,60 @@ class Layers_Design_Controller {
 		// Render Control
 		$this->render_control( $key, apply_filters( 'layerswp_custom_component_args', $args, $key, $this->type, $this->widget, $this->values ) );
 	}
+	
+	/**
+	 * Merge Compontent
+	 */
+	public function merge_component( $defaults, $args ) {
+		
+		// Grab the elements and unset them - so we can work with them individually.
+		$defaults_elements = isset( $defaults['elements'] ) ? $defaults['elements'] : array() ;
+		if ( isset( $defaults['elements'] ) ) unset( $defaults['elements'] );
+		
+		$args_elements = isset( $args['elements'] ) ? $args['elements'] : array() ;
+		if ( isset( $args['elements'] ) ) unset( $args['elements'] );
+		
+		// New collection of elements consisting of a specific combo of the $defaults and the $args.
+		$new_elements = array();
+		
+		foreach ( $args_elements as $args_key => $args_value ) {
+			
+			if ( is_string( $args_value ) && isset( $defaults_elements[ $args_value ] ) ) {
+				
+				// This case means the caller has specified a custom $args 'elements' config
+				// but has only passed a ref to the input by it's 'string 'background-image'
+				// allowing them to reposition the input without redefining all the settings
+				// the input.
+				$new_elements[ $args_value ] = $defaults_elements[ $args_value ];
+				
+				// We've got what we needed from this element so remove it from the reference array.
+				unset( $defaults_elements[ $args_value ] );
+			}
+			else if ( is_array( $args_value ) && isset( $defaults_elements[ $args_key ] ) ) {
+				
+				// This case means the caller has specified a custom $args 'elements' config
+				// and has specified their own custom input field config - allowing them to
+				// create a new custom field.
+				$new_elements[ $args_key ] = $args_value;
+				
+				// We've got what we needed from this element so remove it from the reference array.
+				unset( $defaults_elements[ $args_key ] );
+			}
+		}
+		
+		// This handles merging the important non-elements like 'icon-css' and 'title'
+		$args = array_merge( $defaults, $args );
+		
+		// Either 'replace' or 'merge' the new input - so either show only the ones you have chosen
+		// or show the ones you have chosen after the defaults of the component.
+		if ( isset( $args['elements_combine'] ) && 'replace' === $args['elements_combine'] ) {
+			$args['elements'] = $new_elements;
+		}
+		else{ // 'merge' or anything else.
+			$args['elements'] = array_merge( $defaults_elements, $new_elements );
+		}
+		
+		return $args;
+	}
+	
 } //class Layers_Design_Controller

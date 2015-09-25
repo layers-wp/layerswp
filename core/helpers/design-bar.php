@@ -721,6 +721,22 @@ class Layers_Design_Controller {
 
 		// Add elements
 		$defaults['elements'] = array(
+			
+			// New
+			'buttons-size' => array(
+				'type' => 'select',
+				'label' => __( 'Size', 'layerswp' ),
+				'name' => $this->widget['name'] . '[buttons][buttons-size]',
+				'id' => $this->widget['id'] . '-buttons-background',
+				'value' => ( isset( $this->values['buttons']['buttons-size'] ) ) ? $this->values['buttons']['buttons-size'] : NULL,
+				'options' => array(
+					'small' => __( 'Small', 'layerswp' ),
+					'medium' => __( 'Medium', 'layerswp' ),
+					'large' => __( 'Large', 'layerswp' )
+				)
+			),
+			
+			// Only this one used to be here.
 			'buttons-background-color' => array(
 				'type' => 'color',
 				'label' => __( 'Background Color', 'layerswp' ),
@@ -728,6 +744,7 @@ class Layers_Design_Controller {
 				'id' => $this->widget['id'] . '-buttons-background',
 				'value' => ( isset( $this->values['buttons']['background-color'] ) ) ? $this->values['buttons']['background-color'] : NULL
 			),
+			
 		);
 		
 		$args = $this->merge_component( $defaults, $args );

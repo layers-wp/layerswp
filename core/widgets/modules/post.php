@@ -39,13 +39,25 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 				); // @TODO: Try make this more dynamic, or leave a different note reminding users to change this if they add/remove checkboxes
 
 			/* Widget settings. */
-			$widget_ops = array( 'classname' => 'obox-layers-' . $this->widget_id .'-widget', 'description' => __( 'This widget is used to display your ', 'layerswp' ) . $this->widget_title . '.' );
+			$widget_ops = array(
+				'classname'   => 'obox-layers-' . $this->widget_id .'-widget',
+				'description' => __( 'This widget is used to display your ', 'layerswp' ) . $this->widget_title . '.',
+			);
 
 			/* Widget control settings. */
-			$control_ops = array( 'width' => LAYERS_WIDGET_WIDTH_SMALL, 'height' => NULL, 'id_base' => LAYERS_THEME_SLUG . '-widget-' . $this->widget_id );
+			$control_ops = array(
+				'width'   => LAYERS_WIDGET_WIDTH_SMALL,
+				'height'  => NULL,
+				'id_base' => LAYERS_THEME_SLUG . '-widget-' . $this->widget_id,
+			);
 
 			/* Create the widget. */
-			parent::__construct( LAYERS_THEME_SLUG . '-widget-' . $this->widget_id , $this->widget_title, $widget_ops, $control_ops );
+			parent::__construct(
+				LAYERS_THEME_SLUG . '-widget-' . $this->widget_id,
+				$this->widget_title,
+				$widget_ops,
+				$control_ops
+			);
 
 			/* Setup Widget Defaults */
 			$this->defaults = array (

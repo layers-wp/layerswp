@@ -119,7 +119,7 @@ if( !class_exists( 'Layers_Widget_Ajax' ) ) {
 					$instance = NULL;
 				}
 				
-				$widget->$item_function( array( 'id_base' => $_POST[ 'id_base' ] , 'number' => $item_number ), NULL, $instance );
+				$widget->$item_function( NULL, $instance );
 			}
 			die();
 		}

@@ -279,11 +279,11 @@ if( !class_exists( 'Layers_Widget' ) ) {
 			$this->defaults["{$type}_ids"] = implode( ',', $repeat_ids_array );
 			
 			// Start an empty nested array that will hold the new repeated defaults.
-			$this->defaults["{$type}"] = array();
+			$this->defaults[$type] = array();
 			
 			// Add a default to each guid element, these will all be the same but are still needed when our defaulting methodology looks for them.
 			foreach( $repeat_ids_array as $item_id ) {
-				$this->defaults["{$type}"][ $item_id ] = $defaults_array; // Save them to our defaults property.
+				$this->defaults[$type][ $item_id ] = $defaults_array; // Save them to our defaults property.
 			}
 		}
 		
@@ -298,15 +298,15 @@ if( !class_exists( 'Layers_Widget' ) ) {
 			// Set blank instance defaults as backup to be safe.
 			$instance_defaults = array();
 				
-			if ( isset( $this->defaults["{$type}"][$guid] ) ) {
+			if ( isset( $this->defaults[$type][$guid] ) ) {
 				
 				// Look for defaults created correctly by the register_repeater_defaults() method, with specific guid's.
-				$instance_defaults = $this->defaults["{$type}"][$guid];
+				$instance_defaults = $this->defaults[$type][$guid];
 			}
-			else if ( isset( $this->defaults["{$type}"] ) && ! empty( $this->defaults["{$type}"] ) ) {
+			else if ( isset( $this->defaults[$type] ) && ! empty( $this->defaults[$type] ) ) {
 				
 				// Look for defaults created correctly by the register_repeater_defaults() method, without specific guid's so just get the first one.
-				$instance_defaults = current( $this->defaults["{$type}"] );
+				$instance_defaults = current( $this->defaults[$type] );
 			}
 			
 			return $instance_defaults;
@@ -367,12 +367,8 @@ if( !class_exists( 'Layers_Widget' ) ) {
 						foreach( $items as $itemguid ) {
 							
 							$this->$function_name(
-								array(
-									'id_base' => $this->id_base,
-									'number' => $this->number,
-								),
 								$itemguid,
-								( isset( $widget[ "{$type}" ][ $itemguid ] ) ) ? $widget[ "{$type}" ][ $itemguid ] : NULL
+								( isset( $widget[ $type ][ $itemguid ] ) ) ? $widget[ $type ][ $itemguid ] : NULL
 							);
 						}
 					}

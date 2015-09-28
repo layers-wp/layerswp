@@ -169,7 +169,6 @@ if( ! function_exists( 'layers_setup' ) ) {
 			LAYERS_THEME_SLUG . '-primary' => __( 'Header Menu' , 'layerswp' ),
 			LAYERS_THEME_SLUG . '-primary-right' => __( 'Right Header Menu' , 'layerswp' ),
 			LAYERS_THEME_SLUG . '-footer' => __( 'Footer Menu' , 'layerswp' ),
-
 		) );
 
 		/**
@@ -353,6 +352,13 @@ if( ! function_exists( 'layers_scripts' ) ) {
 				LAYERS_VERSION
 			); // Admin CSS
 		}
+		
+		wp_register_style(
+			LAYERS_THEME_SLUG . '-font-awesome',
+			get_template_directory_uri() . '/core/assets/font-awesome.min.css',
+			array(),
+			LAYERS_VERSION
+		); // Font Awesome
 
 	}
 }

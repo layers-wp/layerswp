@@ -10,7 +10,7 @@ if( !in_array( $type, $valid_types ) ) return; ?>
 
 <?php switch( $type ){
 	case 'stylekits' :
-		$excerpt = __( 'Style Kits' , 'layerswp' );
+		$excerpt = __( 'StyleKits' , 'layerswp' );
 		$products = $api->get_stylekit_list();
 		$fallback_url = 'http://bit.ly/layers-stylekits';
 		break;
@@ -39,7 +39,7 @@ $all_authors = array(); ?>
 					<div class="layers-media-body layers-push-bottom">
 						<p class="layers-excerpt"><?php _e( sprintf( 'We had some trouble getting the list of %s, luckily though you can just browse the catalogue on Envato.', strtolower( $excerpt ) ) , 'layerswp'); ?></p>
 					</div>
-					<a href="<?php echo $fallback_url; ?>" class="layers-button btn-primary btn-large"><?php _e( 'Go to Envato', 'layerswp' ); ?></a>
+					<a href="<?php echo $fallback_url; ?>" class="layers-button btn-primary btn-large"><?php _e( 'Browse on Envato', 'layerswp' ); ?></a>
 				</div>
 			<?php } else { ?>
 				<div class="layers-marketplace-loading layers-section-title layers-large layers-content-large layers-t-center">
@@ -122,6 +122,7 @@ $all_authors = array(); ?>
 						// Fill the author select box
 						var layers_market_authors = jQuery.parseJSON( '<?php echo json_encode( $all_authors ); ?>' );
 						layers_market_authors.sort();
+						console.log( layers_market_authors );
 						jQuery.each( layers_market_authors, function( key, username ){
 							jQuery( '#layers-marketplace-authors' ).append( jQuery( '<option value="'+ username.toString().toLowerCase() + '">' + username + '</option>') );
 						});

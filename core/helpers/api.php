@@ -67,7 +67,7 @@ class Layers_API {
 
 	private function do_envato_api_call( $endpoint = 'market/total-items.json', $query_string = NULL , $method = 'get', $timeout = 5 ){
 
-		$query_string = ( $query_string ? '?' . $query_string . '&page_size=500' : '' );
+		$query_string = ( $query_string ? '?' . $query_string . '&page_size=500' : '?page_size=500' );
 
 		// Set the remote URL
 		$remote_url = self::ENVATO_API_URL . $endpoint . $query_string;
@@ -76,7 +76,7 @@ class Layers_API {
 		$cache_key = 'lmp_' . $query_string;
 
 		// Quick cache dumper
-		$dump_cache = 1;
+		$dump_cache = 0;
 		if( 1 == $dump_cache ) delete_transient( $cache_key );
 
 		// Return a cached version of the query if we have one

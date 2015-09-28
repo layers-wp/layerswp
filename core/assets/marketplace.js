@@ -101,7 +101,7 @@ jQuery(function($) {
         * Product Description & Summary
         */
         var decoded_description = $("<div/>").html( $json.description ).text();
-        $modal.find( '.theme-description' ).text( decoded_description );
+        $modal.find( '.theme-description' ).html( decoded_description );
         $price = $json.price_cents/100;
         $modal.find( '.theme-price' ).text( $price );
         $modal.find( '.theme-tags' ).text( $json.summary );

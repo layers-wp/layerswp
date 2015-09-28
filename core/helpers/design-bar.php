@@ -860,9 +860,11 @@ class Layers_Design_Controller {
 				$new_elements[ $args_value ] = $defaults_elements[ $args_value ];
 				
 				// We've got what we needed from this element so remove it from the reference array.
-				unset( $defaults_elements[ $args_value ] );
+				if ( isset( $defaults_elements[ $args_key ] ) ) {
+					unset( $defaults_elements[ $args_value ] );
+				}
 			}
-			else if ( is_array( $args_value ) && isset( $defaults_elements[ $args_key ] ) ) {
+			else if ( is_array( $args_value ) ) {
 				
 				// This case means the caller has specified a custom $args 'elements' config
 				// and has specified their own custom input field config - allowing them to
@@ -870,7 +872,9 @@ class Layers_Design_Controller {
 				$new_elements[ $args_key ] = $args_value;
 				
 				// We've got what we needed from this element so remove it from the reference array.
-				unset( $defaults_elements[ $args_key ] );
+				if ( isset( $defaults_elements[ $args_key ] ) ) {
+					unset( $defaults_elements[ $args_key ] );
+				}
 			}
 		}
 		

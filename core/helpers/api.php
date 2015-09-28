@@ -76,7 +76,7 @@ class Layers_API {
 		$cache_key = 'lmp_' . $query_string;
 
 		// Quick cache dumper
-		$dump_cache = 0;
+		$dump_cache = 1;
 		if( 1 == $dump_cache ) delete_transient( $cache_key );
 
 		// Return a cached version of the query if we have one

@@ -139,12 +139,13 @@ jQuery(function($) {
         * Rating
         */
         $modal.find( '.theme-rating' ).html('');
+
         if( 3 >= $json.rating.count ){
             $modal.find( '.theme-rating' ).hide();
         } else {
             $modal.find( '.theme-rating' ).show();
             for( i = 1; i < 6; i++ ){
-                if( i <= $json.rating.rating ){
+                if( i <= Math.round( $json.rating.rating ) ){
                     $star_class = 'star star-full';
                 } else {
                     $star_class = 'star star-empty';

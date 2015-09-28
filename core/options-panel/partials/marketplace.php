@@ -61,7 +61,7 @@ $all_authors = array(); ?>
 							data-id="<?php echo $details->id; ?>"
 							data-name="<?php echo esc_attr( $details->name ); ?>"
 							data-sales="<?php echo esc_attr( $details->number_of_sales ); ?>"
-							data-rating="<?php echo ( $details->rating->count > 0 ? $details->rating->rating : '' ) ; ?>"
+							data-rating="<?php echo ( $details->rating->count > 0 ? ceil( $details->rating->rating ) : '' ) ; ?>"
 							data-author="<?php echo $details->author_username; ?>"
 							data-price="<?php echo (float) ($details->price_cents/100); ?>"
 							data-trending="<?php echo ( isset( $details->trending ) && '1' == $details->trending ? 1 : 0 ); ?>">
@@ -98,7 +98,7 @@ $all_authors = array(); ?>
 									<?php if( isset( $details->rating ) && 3 <= $details->rating->count && 2<= $details->rating->rating ) { ?>
 										<div class="layers-pull-left theme-rating star-rating layers-push-left-small" style="display: block;">
 											<?php for( $i = 1; $i < 6; $i++ ){ ?>
-												<?php if( $details->rating->rating >= $i ) { ?>
+												<?php if( ceil( $details->rating->rating ) >= $i ) { ?>
 													<span class="star star-full"></span>
 												<?php } else { ?>
 													<span class="star star-empty"></span>

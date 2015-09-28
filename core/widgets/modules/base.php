@@ -240,6 +240,48 @@ if( !class_exists( 'Layers_Widget' ) ) {
 
 			return $final_field_id;
 		}
+		
+		/**
+		* Widget name generation (replaces get_custom_field_id)
+		*
+		* @param    string  $field_name_1   Level 1 name
+		* @param    string  $field_name_2   Level 2 name
+	 	* @param    string  $field_name_3   Level 3 name
+	 	* @return   string  Name attribute
+		*/
+		function get_layers_field_name( $field_name_1 = '', $field_name_2 = '', $field_name_3 = '' ) {
+			
+			// If we don't have these important widget details then bail.
+			if ( ! isset( $this->id_base ) || ! isset( $this->number ) ) return;
+			
+			$string = 'widget-' . $this->id_base . '[' . $this->number . ']';
+			if( '' != $field_name_1 ) $string .= '[' . $field_name_1 . ']';
+			if( '' != $field_name_2 ) $string .= '[' . $field_name_2 . ']';
+			if( '' != $field_name_3 ) $string .= '[' . $field_name_3 . ']';
+
+			return $string;
+		}
+
+		/**
+		* Widget id generation (replaces get_custom_field_id)
+		*
+		* @param    string  $field_name_1   Level 1 id
+		* @param    string  $field_name_2   Level 2 id
+	 	* @param    string  $field_name_3   Level 3 id
+	 	* @return   string  Id attribute
+		*/
+		function get_layers_field_id( $field_name_1 = '', $field_name_2 = '', $field_id = '' ) {
+			
+			// If we don't have these important widget details then bail.
+			if ( ! isset( $this->id_base ) || ! isset( $this->number ) ) return;
+			
+			$string = 'widget-' . $this->id_base . '-' . $this->number;
+			if( '' != $field_name_1 ) $string .= '-' . $field_name_1;
+			if( '' != $field_name_2 ) $string .= '-' . $field_name_2;
+			if( '' != $field_id ) $string .= '-' . $field_id;
+
+			return $string;
+		}
 
 		/**
 		* Enqueue Masonry When Need Be

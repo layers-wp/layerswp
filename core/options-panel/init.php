@@ -130,14 +130,14 @@ class Layers_Options_Panel {
 								<?php _e( 'Themes' , 'layerswp' ); ?>
 							</a>
 						</li>
-						<li <?php if( 'stylekits' == $type ) { ?>class="active"<?php } ?>>
-							<a href="<?php echo admin_url( 'admin.php?page=layers-marketplace&type=stylekits' ); ?>">
-								<?php _e( 'StyleKits' , 'layerswp' ); ?>
-							</a>
-						</li>
 						<li <?php if( 'extensions' == $type ) { ?>class="active"<?php } ?>>
 							<a href="<?php echo admin_url( 'admin.php?page=layers-marketplace&type=extensions' ); ?>">
 								<?php _e( 'Extensions' , 'layerswp' ); ?>
+							</a>
+						</li>
+						<li <?php if( 'stylekits' == $type ) { ?>class="active"<?php } ?>>
+							<a href="<?php echo admin_url( 'admin.php?page=layers-marketplace&type=stylekits' ); ?>">
+								<?php _e( 'StyleKits' , 'layerswp' ); ?>
 							</a>
 						</li>
 					</ul>

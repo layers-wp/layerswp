@@ -53,8 +53,8 @@ $all_authors = array(); ?>
 			<?php if( !is_wp_error( $products ) ) { ?>
 				<div class="layers-products layers-hide">
 					<?php foreach( $products->matches as $key => $details ) {
-						if( FALSE === in_array( $details->author_username, $all_authors ) ){
-							$all_authors[] = $details->author_username;
+						if( FALSE === in_array(  ucfirst( strtolower( $details->author_username ) ), $all_authors ) ){
+							$all_authors[] = ucfirst( strtolower( $details->author_username ) );
 						} ?>
 						<div
 							id="product-details-<?php echo $details->id; ?>" class="layers-product layers-animate" tabindex="0"

@@ -66,7 +66,10 @@ $all_authors = array(); ?>
 							data-price="<?php echo (float) ($details->price_cents/100); ?>"
 							data-trending="<?php echo ( isset( $details->trending ) && '1' == $details->trending ? 1 : 0 ); ?>">
 							<label for="layers-preset-layout-<?php echo esc_attr( $details->id ); ?>-radio">
-								<h3 class="layers-product-name" id="<?php echo esc_attr( $details->id ); ?>"><?php echo esc_html( $details->name ); ?></h3>
+								<h3 class="layers-product-name" id="<?php echo esc_attr( $details->id ); ?>">
+									<?php echo esc_html( $details->name ); ?>
+									<span class="layers-sales-count"><?php echo esc_attr( $details->number_of_sales ); ?> sales</span>
+								</h3>
 
 								<?php /**
 								* Get images and/or video
@@ -168,7 +171,7 @@ $all_authors = array(); ?>
 						<a href="" class="button button-secondary theme-demo-link" target="_blank">
 							<?php _e( 'View Demo' , 'layerswp' ); ?>
 						</a>
-						<a href="" class="button button-primary theme-buy-link">
+						<a href="" class="button button-primary theme-buy-link" target="_blank">
 							<?php _e( 'Buy for $', 'layerswp' ); ?> <span class="theme-price"></span>
 						</a>
 					</div>

@@ -331,6 +331,13 @@ div#widgets-right div[id*='obox-layers-builder']{
         overflow-y: hidden;
     }
 
+    #layers-marketplace .layers-product .layers-sales-count{
+        color: #444;
+        float: right;
+        font-size: 12px;
+        font-weight: normal;
+    }
+
     #layers-marketplace .layers-product .layers-product-screenshot{
         height: auto;
     }

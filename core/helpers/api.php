@@ -53,7 +53,7 @@ class Layers_API {
 	public function get_sort_options(){
 
 		$this->sort_options = array(
-			'id-desc' => __( '-- Sort By --' , 'layerswp' ),
+			'id-desc' => __( 'Newest to Oldest' , 'layerswp' ),
 			'name-asc' => __( 'Item name A - Z' , 'layerswp' ),
 			'sales-desc' => __( 'Best sellers' , 'layerswp' ),
 			'rating-desc' => __( 'Best rated' , 'layerswp' ),

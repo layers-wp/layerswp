@@ -144,7 +144,7 @@ class Layers_Options_Panel {
 					<form class="layers-help-search" action="" target="_blank" method="get">
 						<label><?php _e( 'Filters: ', 'layerswp' ); ?></label>
 						<select id="layers-marketplace-authors" class="push-right">
-							<option value=""><?php _e( '-- Author --' , 'layerswp' ); ?></option>
+							<option value=""><?php _e( 'All Authors' , 'layerswp' ); ?></option>
 						</select>
 						<select id="layers-marketplace-sortby" name="sortby" data-action="<?php echo admin_url( 'admin.php?page=layers-marketplace&type=' . $type ); ?>" class="push-right">
 							<?php if( is_array( $api->get_sort_options() ) ) { ?>

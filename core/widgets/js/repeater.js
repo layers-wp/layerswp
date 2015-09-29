@@ -129,6 +129,7 @@ jQuery(document).ready(function($){
 		$repeater_group  = $repeater_add_button.parents('.layers-widget-repeater');
 		$repeater_list   = $repeater_group.find('.layers-accordions');
 		$repeater_input  = $repeater_group.find('.layers-repeater-input');
+		$widget_form     = $repeater_add_button.parents('.widget-content');
 		
 		// Get data
 		var data_repeater_type    = $repeater_group.attr( 'data-repeater-type' );
@@ -147,19 +148,19 @@ jQuery(document).ready(function($){
 				$serialized_inputs.push( $(input).serialize() );
 			}
 		);
+		
+		// Serialize input data
+		$serialized_instance_inputs = $widget_form.find( 'textarea, input, select, checkbox' ).serialize();
 
 		$post_data = {
-			action        : 'layers_widget_new_repeater_item', // required
-			widget_action : 'add-item', // required
-			
+			action        : 'layers_widget_new_repeater_item',
+			widget_action : 'add-item',
 			item_type     : data_repeater_type,
 			item_class    : data_repeater_class,
-			
-			id_base       : data_repeater_id_base, // required
-			instance      : $serialized_inputs.join( '&' ), // required - We pass the entire widget instance so we can parse it and grab the next repeater item that we need.
-			last_guid     : ( 0 !== $repeater_list.find( 'li.layers-accordion-item' ).length ) ? $repeater_list.find( 'li.layers-accordion-item' ).last().data( 'guid' ) : false, // required
-			number        : data_repeater_number, // required
-			nonce         : layers_widget_params.nonce // required
+			instance      : $serialized_instance_inputs,
+			id_base       : data_repeater_id_base,
+			number        : data_repeater_number,
+			nonce         : layers_widget_params.nonce,
 		};
 
 		$.post(

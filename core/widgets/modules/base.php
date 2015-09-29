@@ -389,11 +389,10 @@ if( !class_exists( 'Layers_Widget' ) ) {
 				data-repeater-class="<?php echo esc_attr( get_class( $this ) ); ?>"
 				data-repeater-id-base="<?php echo esc_attr( $this->id_base ); ?>"
 				>
-				
 				<?php
 				// This for element is hidden, and will be updated by javascript with the comma separated list of the guid's of the repeater items ordering.
 				echo $this->form_elements()->input( array(
-					'type'  => 'hidden',
+					'type'  => 'text',
 					'name'  => $this->get_field_name( "{$type}_ids" ),
 					'id'    => $this->get_field_id( "{$type}_ids" ),
 					'value' => ( isset( $widget["{$type}_ids"] ) ) ? $widget["{$type}_ids"] : NULL,
@@ -407,10 +406,9 @@ if( !class_exists( 'Layers_Widget' ) ) {
 					if( isset( $items ) && is_array( $items ) ) {
 						foreach( $items as $itemguid ) {
 							
-							$this->$function_name(
-								$itemguid,
-								( isset( $widget[ $type ][ $itemguid ] ) ) ? $widget[ $type ][ $itemguid ] : NULL
-							);
+							$item_instance = $widget[$type][$itemguid];
+							
+							$this->$function_name( $itemguid, $item_instance );
 						}
 					}
 					?>

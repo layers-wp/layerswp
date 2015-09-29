@@ -390,6 +390,10 @@ div#widgets-right div[id*='obox-layers-builder']{
             width: 48%;
         }
 
+        #layers-marketplace .layers-product .layers-sales-count{
+            display: none;
+        }
+
     }
 
 /*---------------------------*/

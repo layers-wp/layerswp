@@ -250,6 +250,7 @@ div#widgets-right div[id*='obox-layers-builder']{
     }
     .layers-product-screenshot img{
         width: 100%;
+        display: block;
     }
     .layers-product-name{
         font-size: 15px;
@@ -329,6 +330,7 @@ div#widgets-right div[id*='obox-layers-builder']{
     }
 
     #layers-marketplace .layers-marketplace-actions{
+        overflow: hidden;
         padding: 15px 0;
         margin: 0 15px;
         background-color: #fff;
@@ -380,6 +382,11 @@ div#widgets-right div[id*='obox-layers-builder']{
             width: 48%;
         }
 
+    }
+    @media only screen and (max-width: 1279px){
+        .layers-marketplace-actions .star-rating{
+            display: none;
+        }
     }
 
 /*---------------------------*/

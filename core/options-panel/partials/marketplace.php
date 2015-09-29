@@ -99,7 +99,7 @@ $all_authors = array(); ?>
 
 								<div class="layers-marketplace-actions">
 									<?php if( isset( $details->rating ) && 3 <= $details->rating->count && 2<= $details->rating->rating ) { ?>
-										<div class="layers-pull-right theme-rating star-rating layers-push-left-small" style="display: block;">
+										<div class="layers-pull-right theme-rating star-rating layers-push-left-small">
 											<?php for( $i = 1; $i < 6; $i++ ){ ?>
 												<?php if( ceil( $details->rating->rating ) >= $i ) { ?>
 													<span class="star star-full"></span>

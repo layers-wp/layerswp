@@ -293,14 +293,16 @@ jQuery(function($) {
     function  marketplace_resize(){
 
         var max_height = 0;
+        var max_img_height = 0;
+
         $( '.layers-product' ).each(function(){
 
-            if( max_height < $(this).outerHeight() ){
-                max_height = $(this).outerHeight();
+            if( 0 < $(this).find( 'img' ).length && max_img_height < $(this).find( 'img' ).outerHeight() ){
+                max_img_height = $(this).find( 'img' ).outerHeight();
             }
         });
 
-        $( '.layers-product' ).height( max_height );
+        $( '.layers-product .layers-product-screenshot' ).height( max_img_height );
     }
 
 });

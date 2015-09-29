@@ -135,7 +135,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 						$section_title_class = implode( ' ', $section_title_class ); ?>
 						<div class="<?php echo $section_title_class; ?>">
 							<?php if( '' != $widget['title'] ) { ?>
-								<h3 class="heading"><?php echo esc_html( $widget['title'] ); ?></h3>
+								<h3 class="heading"><?php echo $widget['title'] ?></h3>
 							<?php } ?>
 							<?php if( '' != $widget['excerpt'] ) { ?>
 								<div class="excerpt"><?php echo $widget['excerpt']; ?></div>

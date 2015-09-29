@@ -3,11 +3,13 @@
 
 =======
 ##1.2.5
-### ?? August 2015
+### 01 October 2015
+* **Tweak** - We have removed the `esc_html()` from widget titles, this allows for the use of basic HTML tags like `strong`, `span` etc. inside headings. *MP*
 * **Tweak** - Edit Layout button in the admin-bar now shows on all pages - not just layers pages - as even non Layers pages can have colors, layout, etc Edited. *SOB*
 * **Tweak** - .title padding is now set on the parent container to accommodate for future features and better font size control. *DP*
 * **Tweak** - .amount color has been moved to the .price wrapper. *DP*
 * **Tweak** - Remove 'Edit Layout' from the admin-bar as it is redundant now that WP has added 'Customize' to the admin-bar. *SOB*
+* **Fix** - Corrected the widget anchor IDs, also made the input disabled=FALSE so that they're highlightable. *MP*
 * **Enhancement** - .title line-height is more compliant to font changes. *DP*
 * **Enhancement** - Fixed WooCommerce category listings in the shop page. *MP*
 * **Enhancement** - Search box no longer brakes to two lines in the footer. *DP*

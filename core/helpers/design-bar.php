@@ -757,8 +757,8 @@ class Layers_Design_Controller {
 			'widget-id' => array(
 				'type' => 'text',
 				'label' => __( 'Widget Anchor ID', 'layerswp' ),
-				'disabled' => TRUE,
-				'value' => '#'  . str_ireplace( '-design' , '', $this->widget['id'] )
+				'disabled' => FALSE,
+				'value' => '#'  . str_replace( 'widget-layers', 'layers', str_ireplace( '-design' , '', $this->widget['id'] ) )
 			)
 		);
 

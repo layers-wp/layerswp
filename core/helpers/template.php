@@ -1002,6 +1002,19 @@ if( !function_exists( 'layers_inline_styles' ) ) {
 					$css.= 'background-image: url(\'' . $image[0] .'\');';
 				}
 			break;
+			
+			case 'font' :
+
+				// Set the background array
+				$font_args = $args['font'];
+
+				if( isset( $font_args['color'] ) && '' != $font_args['color'] ){
+					$css .= 'color: ' . $font_args['color'] . '; ';
+				}
+				if( isset( $font_args['shadow'] ) && '' != $font_args['shadow'] ){
+					$css .= 'text-shadow: ' . $font_args['shadow'] . '; ';
+				}
+			break;
 
 			case 'button' :
 
@@ -1017,7 +1030,6 @@ if( !function_exists( 'layers_inline_styles' ) ) {
 				}
 
 			break;
-
 
 			case 'margin' :
 			case 'padding' :
@@ -1086,6 +1098,8 @@ if( !function_exists( 'layers_inline_styles' ) ) {
 					if ( isset( $args['css'] ) ) {
 						if ( is_array( $args['css'] ) ){
 							foreach ( $args['css'] as $css_atribute => $css_value ) {
+								// Skip this if a css value is not sent.
+								if ( ! isset( $css_value ) || '' == $css_value || NULL == $css_value ) continue;
 								$css .= "$css_atribute: $css_value;";
 							}
 						}

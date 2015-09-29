@@ -66,10 +66,6 @@ $all_authors = array(); ?>
 							data-price="<?php echo (float) ($details->price_cents/100); ?>"
 							data-trending="<?php echo ( isset( $details->trending ) && '1' == $details->trending ? 1 : 0 ); ?>">
 							<label for="layers-preset-layout-<?php echo esc_attr( $details->id ); ?>-radio">
-								<h3 class="layers-product-name" id="<?php echo esc_attr( $details->id ); ?>">
-									<?php echo esc_html( $details->name ); ?>
-									<span class="layers-sales-count"><?php echo esc_attr( $details->number_of_sales ); ?> sales</span>
-								</h3>
 
 								<?php /**
 								* Get images and/or video
@@ -97,9 +93,13 @@ $all_authors = array(); ?>
 									</div>
 								<?php } ?>
 
+								<h3 class="layers-product-name" id="<?php echo esc_attr( $details->id ); ?>">
+									<?php echo esc_html( $details->name ); ?>
+								</h3>
+
 								<div class="layers-marketplace-actions">
 									<?php if( isset( $details->rating ) && 3 <= $details->rating->count && 2<= $details->rating->rating ) { ?>
-										<div class="layers-pull-left theme-rating star-rating layers-push-left-small" style="display: block;">
+										<div class="layers-pull-right theme-rating star-rating layers-push-left-small" style="display: block;">
 											<?php for( $i = 1; $i < 6; $i++ ){ ?>
 												<?php if( ceil( $details->rating->rating ) >= $i ) { ?>
 													<span class="star star-full"></span>
@@ -109,13 +109,16 @@ $all_authors = array(); ?>
 											<?php } ?>
 										</div>
 									<?php } ?>
-									<a class="layers-pull-right layers-button btn-primary layers-push-right-small" href="<?php echo esc_attr( $details->url ); ?>?license=regular&open_purchase_for_item_id=<?php echo $details->id; ?>&purchasable=source&ref=obox" target="_blank" data-item="<?php echo esc_attr( $details->name ); ?>" data-price="$ <?php echo (float) ($details->price_cents/100); ?>">
+									<a class="layers-pull-left layers-button btn-subtle layers-push-right-small" data-item="<?php echo esc_attr( $details->name ); ?>" data-view-item="product-details-<?php echo $details->id; ?>" href="<?php echo esc_attr( $details->url ); ?>" target="_blank">
+										<?php _e( 'Details' , 'layerswp' ); ?>
+									</a>
+									<a class="layers-pull-left layers-button btn-primary layers-push-right-small" href="<?php echo esc_attr( $details->url ); ?>?license=regular&open_purchase_for_item_id=<?php echo $details->id; ?>&purchasable=source&ref=obox" target="_blank" data-item="<?php echo esc_attr( $details->name ); ?>" data-price="$ <?php echo (float) ($details->price_cents/100); ?>">
 										<?php _e( 'Buy for ' , 'layerswp' ); ?>
 										$<?php echo (float) ($details->price_cents/100); ?>
 									</a>
-									<a class="layers-pull-right layers-button btn-subtle layers-push-right-small" data-item="<?php echo esc_attr( $details->name ); ?>" data-view-item="product-details-<?php echo $details->id; ?>" href="<?php echo esc_attr( $details->url ); ?>" target="_blank">
-										<?php _e( 'Details' , 'layerswp' ); ?>
-									</a>
+									<span class="layers-pull-left layers-sales-count">
+										<?php echo esc_attr( $details->number_of_sales ); ?> sales
+									</span>
 								</div>
 							</label>
 							<input  class="layers-product-json" type="hidden" value='<?php echo htmlspecialchars( json_encode( $details ) ); ?>' />

@@ -26,7 +26,7 @@ For videos, troubleshooting and detailed usage documentation, view the Getting S
 
 ## Page Builder
 
-The core concept of Layers is to enable the user to build layouts using functionality that is native to WordPress. This page template simply provides a single widget area that is designed to work with the Layers Page Builder Widgets specifically, but can accomodate most any widget with a little custom styling.
+The core concept of Layers is to enable the user to build layouts using functionality that is native to WordPress. This page template simply provides a single widget area that is designed to work with the Layers Page Builder Widgets specifically, but can accommodate most any widget with a little custom styling.
 
 [Learn how the page builder works](http://docs.layerswp.com/doc/build-your-home-page/)
 

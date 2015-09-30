@@ -192,8 +192,21 @@ class Layers_Design_Controller {
 	 * @return   array       $array      Array of options, all standard DOM input options
 	 */
 	public function render_input( $form_args = array() ) {
+		
+		// Grab the class if specified.
+		$class = '';
+		if ( isset( $form_args['class'] ) ) {
+			$class .= $form_args['class'];
+			unset( $form_args['class'] );
+		}
+		
+		// If input-class then set it to 'class' arg that the form->input expects.
+		if ( isset( $form_args['input-class'] ) ) {
+			$form_args['class'] = $form_args['input-class'];
+		}
 		?>
-		<div class="layers-<?php echo esc_attr( $form_args['type'] ); ?>-wrapper layers-form-item">
+		<div class="layers-<?php echo esc_attr( $form_args['type'] ); ?>-wrapper layers-form-item <?php echo esc_attr( $class ); ?>">
+			
 			<?php if ( 'checkbox' != $form_args['type'] && isset( $form_args['label'] ) && '' != $form_args['label'] ) { ?>
 				<label><?php echo esc_html( $form_args['label'] ); ?></label>
 			<?php } ?>

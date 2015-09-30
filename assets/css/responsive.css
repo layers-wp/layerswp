@@ -508,9 +508,10 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
     /*---------------------------*/
     /*- OFF CANVAS SIDEBAR ------*/
-    .admin-bar section[class*=" off-canvas-"] .nav-mobile{
-        margin-top: 47px;
+    .admin-bar section[class*=" off-canvas-"]{
+        padding-top: 47px;
     }
+
 
 }
 

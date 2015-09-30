@@ -1186,7 +1186,7 @@ div[id*='layers-widget'] .spinner{
     .layers-pop-menu-setting .layers-form-item{
         padding: 10px;
         margin: 0 -10px;
-        border-bottom: 1px solid #ddd;
+        border-bottom: 1px solid rgba(0,0,0,0.08);
         opacity: 0;
         transition: 0.25s opacity ease-in-out 0.25s, 0.25s transform ease-in-out 0.25s;
     }
@@ -1199,6 +1199,9 @@ div[id*='layers-widget'] .spinner{
     }
     .layers-pop-menu-setting input[type='checkbox'] + label{
         margin-bottom: 0;
+    }
+    .layers-form-item.layers-form-item-advanced {
+        background-color: #ECF5FB;
     }
 
         /*-------------------*/

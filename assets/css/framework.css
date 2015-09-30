@@ -913,8 +913,12 @@ object{
         /*- OFF CANVAS MENU -----*/
         section[class*=' off-canvas-'] .nav-mobile{
             margin-top: 0;
+            padding-top: 0;
             position: relative;
             z-index: 1;
+        }
+        .admin-bar section[class*=' off-canvas-'] .nav-mobile{
+            padding-top: 20px;
         }
         section[class*=' off-canvas-'] .nav-vertical li{
             padding: 0;

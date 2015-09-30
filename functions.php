@@ -403,6 +403,15 @@ if( ! function_exists( 'layers_admin_scripts' ) ) {
 			true
 		);
 
+		wp_enqueue_script(
+			LAYERS_THEME_SLUG . '-media-views' ,
+			get_template_directory_uri() . '/core/assets/media-views.js',
+			array(
+				'media-views'
+			),
+			LAYERS_VERSION
+		); // Discover More Photos
+
 		wp_localize_script(
 			LAYERS_THEME_SLUG . '-admin-migrator',
 			'migratori18n',

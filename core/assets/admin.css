@@ -1667,10 +1667,15 @@ li[id*='accordion-section-layers'] .customize-control.customize-control-image .a
     float: right;
     width: 88px;
     height: 21px;
+    margin-top: 27px;
     background: url(images/layers-logo-dark.png) no-repeat bottom;
-    background-size: 88px 20px;
+    background-size: 100%;
     overflow: hidden;
     text-indent: -999px;
+    opacity: 0.5;
+}
+.layers-logo:hover{
+    opacity: 1;
 }
 .layers-controls-title{
     padding: 8px 20px;
@@ -1688,6 +1693,11 @@ li[id*='accordion-section-layers'] .customize-control.customize-control-image .a
 .layers-heading{
     margin-top: 0;
     padding-top: 0;
+}
+.layers-heading .layers-small{
+    color: #777;
+    font-size: 12px;
+    font-weight: 400;
 }
 .layers-excerpt{
     color: #777;

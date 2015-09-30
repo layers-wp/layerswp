@@ -114,10 +114,15 @@ class Layers_Options_Panel {
 		if( isset( $_GET[ 'type' ] ) ) $type = $_GET[ 'type' ]; else $type = 'themes' ?>
 		<header class="layers-page-title layers-section-title layers-large layers-content-large layers-no-push-bottom">
 
-				<?php _e( sprintf( '<a href="%s" class="envato-market-logo">Powerd by the Envato Marketplace</a>', 'http://envato.com?ref=obox' ), 'layerswp' ); ?>
+				<?php _e( sprintf( '<a href="%s" class="layers-logo">Layers</a>', 'http://layerswp.com' ), 'layerswp' ); ?>
 
 				<?php if( isset( $title ) ) { ?>
-					<h2 class="layers-heading" id="layers-options-header"><?php echo esc_html( $title ); ?></h2>
+					<h2 class="layers-heading" id="layers-options-header">
+						<?php echo esc_html( $title ); ?>
+						<span class="layers-small">
+							<?php _e( sprintf( 'Powerd by <a href="%s">Envato</a>', 'http://www.themeforest.net/?ref=obox' ), 'layerswp' ); ?>
+						</span>
+					</h2>
 				<?php } ?>
 
 				<?php if( isset( $excerpt ) ) { ?>

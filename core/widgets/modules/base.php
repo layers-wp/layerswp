@@ -11,6 +11,8 @@ if( !class_exists( 'Layers_Widget' ) ) {
 	class Layers_Widget extends WP_Widget {
 		
 		public $layers_widget_classname;
+		
+		public $field_attribute_prefixes;
 
 		/**
 		* Check option with isset() and echo it out if it exists, if it does not exist, return false
@@ -253,7 +255,16 @@ if( !class_exists( 'Layers_Widget' ) ) {
 			// If we don't have these important widget details then bail.
 			if ( ! isset( $this->id_base ) || ! isset( $this->number ) ) return;
 			
+			// Compile the first part.
 			$string = 'widget-' . $this->id_base . '[' . $this->number . ']';
+			
+			// If this is called in e.g. a button_item then by setting $field_attribute_prefixes args array,
+			// before it's called the prefixes will be added at this point in the string construction.
+			if ( isset( $this->field_attribute_prefixes ) && ! empty( $this->field_attribute_prefixes ) ) {
+				$string .= '[' . implode( '][', $this->field_attribute_prefixes ) . ']';
+			}
+			
+			// Now add any custom strings passed as args.
 			if( '' != $field_name_1 ) $string .= '[' . $field_name_1 . ']';
 			if( '' != $field_name_2 ) $string .= '[' . $field_name_2 . ']';
 			if( '' != $field_name_3 ) $string .= '[' . $field_name_3 . ']';
@@ -274,7 +285,16 @@ if( !class_exists( 'Layers_Widget' ) ) {
 			// If we don't have these important widget details then bail.
 			if ( ! isset( $this->id_base ) || ! isset( $this->number ) ) return;
 			
+			// Compile the first part.
 			$string = 'widget-' . $this->id_base . '-' . $this->number;
+			
+			// If this is called in e.g. a button_item then by setting $field_attribute_prefixes args array,
+			// before it's called the prefixes will be added at this point in the string construction.
+			if ( isset( $this->field_attribute_prefixes ) && ! empty( $this->field_attribute_prefixes ) ) {
+				$string .= '-' . implode( '-', $this->field_attribute_prefixes );
+			}
+			
+			// Now add any custom strings passed as args.
 			if( '' != $field_name_1 ) $string .= '-' . $field_name_1;
 			if( '' != $field_name_2 ) $string .= '-' . $field_name_2;
 			if( '' != $field_id ) $string .= '-' . $field_id;
@@ -404,11 +424,20 @@ if( !class_exists( 'Layers_Widget' ) ) {
 					<?php
 					// Loop the repeater items.
 					if( isset( $items ) && is_array( $items ) ) {
-						foreach( $items as $itemguid ) {
+						foreach( $items as $item_guid ) {
 							
-							$item_instance = $widget[$type][$itemguid];
+							// Settings this will add these prefixes to both the get_layers_field_id(),
+							// and get_layers_field_name() string construction.
+							$this->field_attribute_prefixes = array( $type, $item_guid );
 							
-							$this->$function_name( $itemguid, $item_instance );
+							// Get just the required item part from the widget instance array.
+							$item_instance = $widget[$type][$item_guid];
+							
+							// Call the item function.
+							$this->$function_name( $item_guid, $item_instance );
+							
+							// Remove the extra attributes.
+							unset( $this->field_attribute_prefixes );
 						}
 					}
 					?>

@@ -122,10 +122,17 @@ if( !class_exists( 'Layers_Widget_Ajax' ) ) {
 				}
 				
 				// Generate a new GUID.
-				$guid = rand( 1 , 1000 );
+				$item_guid = rand( 1 , 1000 );
+				
+				// Settings this will add these prefixes to both the get_layers_field_id(),
+				// and get_layers_field_name() string construction.
+				$widget->field_attribute_prefixes = array( $item_type, $item_guid );
 				
 				// Generate a new item. By passing the GUID as NULL it will duplicate the latest one if it exists, or create a new default based uniqie one.
-				$widget->$item_function( $guid, $item_instance );
+				$widget->$item_function( $item_guid, $item_instance );
+				
+				// Remove the extra attributes.
+				unset( $widget->field_attribute_prefixes );
 			}
 			die();
 		}

@@ -27,7 +27,6 @@ $api = new Layers_API(); ?>
                     shuffle( $popular->popular->items_last_week ) ?>
                     <?php foreach( $popular->popular->items_last_week as $key => $photo ) { ?>
                         <?php if( 8 <= $key ) continue; ?>
-                        <!-- <?php print_r( $photo ) ;?> -->
                         <div class="layers-column layers-span-3 t-center">
                             <a href="<?php echo $photo->url; ?>?ref=obox" target="_blank">
                                 <img alt="<?php echo esc_attr( $photo->item ); ?>" src="<?php echo $photo->live_preview_url; ?>" />

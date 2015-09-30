@@ -234,8 +234,10 @@ object{
         position: relative;
         left: 0;
         top: 0;
-        transition: left 0.3s ease-in-out 0s, top 0.3s ease-in-out 0s, width 0.3s ease-in-out 0s;
+        transition: left 0.3s ease-in-out 0s,  opacity 0.2s ease-in-out 0.1s, top 0.3s ease-in-out 0s, width 0.3s ease-in-out 0s;
         z-index: 2;
+        opacity: 1;
+
     }
 
     .wrapper-content{
@@ -793,33 +795,34 @@ object{
 /*- OFF CANVAS ------------------*/
 
     /*---------------------------*/
-    /*- CLOSE CANVAS ------------*/
+    /*- CLOSE CANVAS BUTTON -----*/
     .close-canvas{
-        padding: 5px 10px;
-        position: absolute;
-        top: 5px;
-        right: 5px;
-        cursor: pointer;
+        padding: 4px 8px 3px;
+        background: rgba(0, 0, 0, 0.2);
         z-index: 100;
-        background: rgba(0, 0, 0, 0.55);
-        color: rgba(255, 255, 255, 0.7);
-        border-radius: 4px;
-        font-size: 1rem;
+        position: absolute;
+        top: 0;
+        right: 0;
+        border-radius: 0 0 0 3px;
+        font-size: 1.1rem;
         text-transform: uppercase;
+        text-align: right;
+        cursor: pointer;
+        z-index: 2;
     }
-    .admin-bar section[class*=' off-canvas-'] .close-canvas{
-        top: 32px;
+    .close-canvas i{
+        margin-right: 4px;
+        font-size: 1rem;
     }
     .close-canvas:hover{
         color: #fff;
     }
-    .close-canvas .l-close{
-        margin-right: 2px;
-        font-size: 0.9rem;
+    .admin-bar section[class*=' off-canvas-'] .close-canvas{
+        top: 32px;
     }
 
     section[class*=' off-canvas-']{
-        padding-top: 20px;
+        padding-top: 30px;
         position: fixed;
         top: 0;
         z-index: 1;
@@ -828,6 +831,9 @@ object{
         transform: scale(0.95);
         transition: all 0.3s ease-in-out 0s;
         font-size: 1.4rem;
+    }
+    .admin-bar section[class*=' off-canvas-']{
+        padding-top: 66px;
     }
     .off-canvas-right{
         width: 240px;
@@ -852,6 +858,9 @@ object{
 
     /*---------------------------*/
     /*- WRAPPER POSITIONING -----*/
+    .open + .wrapper-site{
+        opacity: 0.85;
+    }
     .off-canvas-right.open + .wrapper-site{
         left: -240px;
     }
@@ -903,7 +912,13 @@ object{
         /*-----------------------*/
         /*- OFF CANVAS MENU -----*/
         section[class*=' off-canvas-'] .nav-mobile{
-            margin-top: -20px;
+            margin-top: 0;
+            padding-top: 0;
+            position: relative;
+            z-index: 1;
+        }
+        .admin-bar section[class*=' off-canvas-'] .nav-mobile{
+            padding-top: 20px;
         }
         section[class*=' off-canvas-'] .nav-vertical li{
             padding: 0;

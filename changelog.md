@@ -14,6 +14,7 @@
 * **Enhancement** - Fixed WooCommerce category listings in the shop page. *MP*
 * **Enhancement** - Search box no longer brakes to two lines in the footer. *DP*
 * **Enhancement** - Transparent background color added to Woo product meta. *DP*
+* **Enhancement** - Off canvas pop out has a new close button and the site-wrapper goes 20% darker when pop out is open. *DP*
 
 =======
 ##1.2.4

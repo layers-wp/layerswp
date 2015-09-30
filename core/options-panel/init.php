@@ -35,7 +35,7 @@ class Layers_Options_Panel {
 		// Exit on missing ABSPATH
 		if ( ! defined( 'ABSPATH' ) ) exit;
 
-		global $page, $wp_customize;
+		global $pagenow, $wp_customize;
 
 		// Setup some folder variables
 		$this->options_panel_dir = LAYERS_TEMPLATE_DIR . '/core/options-panel/';
@@ -47,10 +47,7 @@ class Layers_Options_Panel {
 		if( !defined( 'LAYERS_DISABLE_MARKETPLACE' ) ){
 			add_filter( 'media_upload_tabs', array( &$this, 'upload_upsell_media_tab' ) );
 			add_action( 'media_upload_upsell_media', array( &$this, 'upload_upsell_media_form' ) );
-
-			if( isset( $wp_customize ) ) {
-				add_action( 'print_media_templates', array( &$this, 'upload_upsell_media_template' ) );
-			}
+			add_action( 'print_media_templates', array( &$this, 'upload_upsell_media_template' ) );
 		}
 	}
 

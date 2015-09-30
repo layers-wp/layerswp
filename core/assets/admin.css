@@ -3191,6 +3191,7 @@ input[type=radio]:checked + .layers-settings-icon span{
     height: 0;
     padding-bottom: 20%;
     overflow: hidden;
+    background-color: #333333;
 }
 
 .layers-discover-more-feature .layers-column img{
@@ -3201,6 +3202,8 @@ input[type=radio]:checked + .layers-settings-icon span{
 
 .layers-discover-more-photos .btn-primary{
     color: #fff;
+    border: 1px solid #0074A2;
+    box-sizing: border-box;
 }
 .layers-discover-more-photos .btn-primary:hover{
     color: #fff;

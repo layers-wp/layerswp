@@ -54,12 +54,12 @@ class Layers_API {
 
 		$this->sort_options = array(
 			'id-desc' => __( 'Newest to Oldest' , 'layerswp' ),
-			'name-asc' => __( 'Item name A - Z' , 'layerswp' ),
-			'sales-desc' => __( 'Best sellers' , 'layerswp' ),
-			'rating-desc' => __( 'Best rated' , 'layerswp' ),
-			'price-asc' => __( 'Price: low to high' ),
-			'price-desc' => __( 'Price: high to low' ),
-			'trending-desc' => __( 'Trending items' , 'layerswp' ),
+			'name-asc' => __( 'Item Name A - Z' , 'layerswp' ),
+			'sales-desc' => __( 'Best Sellers' , 'layerswp' ),
+			'rating-desc' => __( 'Best Rated' , 'layerswp' ),
+			'price-asc' => __( 'Price: Low to Ligh' ),
+			'price-desc' => __( 'Price: High to Low' ),
+			'trending-desc' => __( 'Trending Items' , 'layerswp' ),
 		);
 
 		return $this->sort_options;

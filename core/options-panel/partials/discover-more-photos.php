@@ -1,7 +1,8 @@
 <?php // Get the API up and running for the plugin listing
 $api = new Layers_API(); ?>
+
 <!-- Uderscore Temnplate -->
-<?php if( !isset( $_GET[ 'tab' ] ) ) { ?>
+<?php if( !isset( $_GET[ 'tab' ] ) || ( isset( $_GET[ 'tab' ] ) && 'upsell_media' !== $_GET[ 'tab' ] ) ) { ?>
     <script type="text/html" id="tmpl-layers-discover-more-photos">
 <?php } ?>
     <div class="layers-discover-more-photos">
@@ -43,7 +44,7 @@ $api = new Layers_API(); ?>
             <a class="layers-button btn-primary btn-large" href="http://bit.ly/layers-photodune" target="_blank"><?php _e( 'Find the Perfect Photo' , 'layerswp' ); ?></a>
         </p>
     </div>
-<?php if( !isset( $_GET[ 'tab' ] ) ) { ?>
+<?php if( !isset( $_GET[ 'tab' ] ) || ( isset( $_GET[ 'tab' ] ) && 'upsell_media' == $_GET[ 'tab' ] ) ) { ?>
     </script>
 <?php } ?>
 <!-- /Uderscore Temnplate -->

@@ -46,6 +46,7 @@ class Layers_Options_Panel {
 
 		if( !defined( 'LAYERS_DISABLE_MARKETPLACE' ) ){
 			add_filter( 'media_upload_tabs', array( &$this, 'upload_upsell_media_tab' ) );
+
 			add_action( 'media_upload_upsell_media', array( &$this, 'upload_upsell_media_form' ) );
 			add_action( 'print_media_templates', array( &$this, 'upload_upsell_media_template' ) );
 		}

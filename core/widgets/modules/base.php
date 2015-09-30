@@ -392,7 +392,7 @@ if( !class_exists( 'Layers_Widget' ) ) {
 				<?php
 				// This for element is hidden, and will be updated by javascript with the comma separated list of the guid's of the repeater items ordering.
 				echo $this->form_elements()->input( array(
-					'type'  => 'text',
+					'type'  => 'hidden',
 					'name'  => $this->get_field_name( "{$type}_ids" ),
 					'id'    => $this->get_field_id( "{$type}_ids" ),
 					'value' => ( isset( $widget["{$type}_ids"] ) ) ? $widget["{$type}_ids"] : NULL,

@@ -363,6 +363,8 @@ add_action( 'wp_enqueue_scripts' , 'layers_scripts' );
 */
 if( ! function_exists( 'layers_admin_scripts' ) ) {
 	function layers_admin_scripts(){
+		global $wp_customize;
+
 		wp_enqueue_style(
 			LAYERS_THEME_SLUG . '-admin',
 			get_template_directory_uri() . '/core/assets/admin.css',
@@ -403,14 +405,16 @@ if( ! function_exists( 'layers_admin_scripts' ) ) {
 			true
 		);
 
-		wp_enqueue_script(
-			LAYERS_THEME_SLUG . '-media-views' ,
-			get_template_directory_uri() . '/core/assets/media-views.js',
-			array(
-				'media-views'
-			),
-			LAYERS_VERSION
-		); // Discover More Photos
+		if( isset( $wp_customize ) ) {
+			wp_enqueue_script(
+				LAYERS_THEME_SLUG . '-media-views' ,
+				get_template_directory_uri() . '/core/assets/media-views.js',
+				array(
+					'media-views'
+				),
+				LAYERS_VERSION
+			); // Discover More Photos
+		}
 
 		wp_localize_script(
 			LAYERS_THEME_SLUG . '-admin-migrator',

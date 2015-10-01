@@ -180,12 +180,12 @@ jQuery(function($) {
 
     function marketplace_sort(){
         // If this is the first time the page is loading fade in the products
-        $( '.layers-marketplace-loading' ).fadeOut( 500 );
+        $( '.layers-marketplace-loading' ).fadeOut( 350 );
 
         setTimeout(function(){
             $( '.layers-products.layers-hide' ).hide().removeClass( 'layers-hide' ).fadeIn( 350 );
             marketplace_resize();
-        }, 500 );
+        }, 350 );
 
         var $products = $( 'div.layers-products' ),
         $productsli = $products.children( 'div.layers-product' ),

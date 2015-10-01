@@ -10,6 +10,7 @@
 * **Tweak** - .amount color has been moved to the .price wrapper. *DP*
 * **Tweak** - Remove 'Edit Layout' from the admin-bar as it is redundant now that WP has added 'Customize' to the admin-bar. *SOB*
 * **Fix** - Corrected the widget anchor IDs, also made the input disabled=FALSE so that they're highlightable. *MP*
+* **Fix** - Fixed clearing issue with large rows on responsive screens. *DP*
 * **Enhancement** - .title line-height is more compliant to font changes. *DP*
 * **Enhancement** - Fixed WooCommerce category listings in the shop page. *MP*
 * **Enhancement** - Search box no longer brakes to two lines in the footer. *DP*

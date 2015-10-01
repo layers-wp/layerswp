@@ -67,7 +67,7 @@ class Layers_API {
 
 	private function do_envato_api_call( $endpoint = 'market/total-items.json', $query_string = NULL , $method = 'get', $timeout = 5 ){
 
-		$query_string = ( $query_string ? '?' . $query_string . '&page_size=500' : '?page_size=500' );
+		$query_string = ( $query_string ? '?' . $query_string . '&page_size=500&sort_by=date&sort_direction=desc' : '?page_size=500&sort_by=date&sort_direction=desc' );
 
 		// Set the remote URL
 		$remote_url = self::ENVATO_API_URL . $endpoint . $query_string;

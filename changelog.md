@@ -16,6 +16,7 @@
 * **Enhancement** - Search box no longer brakes to two lines in the footer. *DP*
 * **Enhancement** - Transparent background color added to Woo product meta. *DP*
 * **Enhancement** - Off canvas pop out has a new close button and the site-wrapper goes 20% darker when pop out is open. *DP*
+* **Enhancement** - Introduciton of the in-app Marketplace. If you are a developer and want to disable this feature just add `define( 'LAYERS_DISABLE_MARKETPLACE', true );` to your `wp-config.php` file. *MP*
 
 =======
 ##1.2.4

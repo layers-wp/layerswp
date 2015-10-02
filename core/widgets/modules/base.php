@@ -80,9 +80,8 @@ if( !class_exists( 'Layers_Widget' ) ) {
 		/**
 		* Get widget spacing as class names
 		*
-		* @return  	string 		Class names
+		* @return   string   Class names.
 		*/
-
 		function get_widget_spacing_class( $widget = NULL ){
 
 			if( NULL == $widget ) return;

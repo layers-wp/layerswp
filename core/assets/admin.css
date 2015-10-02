@@ -567,6 +567,9 @@ div[id*='layers-widget'] .spinner{
     .layers-row .layers-column:last-child{
         margin-right: 0;
     }
+    .layers-row:last-child .layers-column {
+        margin-bottom: 0;
+    }
 
     .layers-span-1{width: 6.5%;}
     .layers-span-2{width: 15%;}

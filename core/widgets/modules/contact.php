@@ -128,12 +128,12 @@ if( !class_exists( 'Layers_Contact_Widget' ) ) {
 			$widget_container_class[] = 'row';
 			$widget_container_class[] = 'content-vertical-massive';
 			$widget_container_class[] = 'layers-contact-widget';
-			$widget_container_class[] = $this->check_and_return( $widget , 'design', 'advanced', 'customclass' );
+			$widget_container_class[] = $this->check_and_return( $widget , 'design', 'advanced', 'customclass' ); // Apply custom class from design-bar's advanced control.
 			$widget_container_class[] = $this->get_widget_spacing_class( $widget );
 			if( !$show_title_or_excerpt && !$show_address_or_contactform  ) $widget_container_class[] = 'no-inset-top no-inset-bottom';
 			$widget_container_class = implode( ' ', apply_filters( 'layers_contact_widget_container_class' , $widget_container_class ) ); ?>
 
-			<section class="<?php echo $widget_container_class; ?>" id="<?php echo $widget_id; ?>">
+			<section id="<?php echo $widget_id; ?>" class="<?php echo $widget_container_class; ?>">
 				<?php if( $show_title_or_excerpt ) { ?>
 					<div class="container clearfix">
 						<?php /**

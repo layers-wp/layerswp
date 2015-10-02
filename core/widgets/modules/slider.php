@@ -159,7 +159,7 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 			$widget_container_class[] = 'slide';
 			$widget_container_class[] = 'swiper-container';
 			$widget_container_class[] = $this->get_widget_layout_class( $widget );
-			$widget_container_class[] = $this->check_and_return( $widget , 'design', 'advanced', 'customclass' );
+			$widget_container_class[] = $this->check_and_return( $widget , 'design', 'advanced', 'customclass' ); // Apply custom class from design-bar's advanced control.
 			$widget_container_class[] = $this->get_widget_spacing_class( $widget );
 			if( isset( $widget['design']['layout'] ) && '' != $widget['design']['layout'] ) {
 				// Slider layout eg 'slider-layout-full-screen'
@@ -179,7 +179,7 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 			 * Slider HTML
 			 */
 			?>
-			<section class="<?php echo $widget_container_class; ?>" id="<?php echo $widget_id; ?>" style="<?php echo esc_attr( $slider_height_css ); ?>" >
+			<section id="<?php echo $widget_id; ?>" class="<?php echo $widget_container_class; ?>" style="<?php echo esc_attr( $slider_height_css ); ?>" >
 				<?php if( !empty( $widget[ 'slides' ] ) ) { ?>
 					<?php if( 1 < count( $widget[ 'slides' ] ) && isset( $widget['show_slider_arrows'] ) ) { ?>
 						 <div class="arrows">

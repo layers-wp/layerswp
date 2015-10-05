@@ -162,3 +162,23 @@ if ( ! function_exists( 'layers_is_light_or_dark' ) ) {
 		return ( $brightness > 155 ) ? 'light' : 'dark' ;
 	}
 }
+
+/**
+ * Detect if a $color is light/dark then return the appropraite color.
+ *
+ * @param   string   $color      hex color eg #666666
+ * @param   string   $if_dark    The color to be returned if passed $color is dark
+ * @param   string   $if_light   The color to be returned if passed $color is light
+ * @return  string   hex color eg #666666
+ */
+if ( ! function_exists( 'layers_get_light_or_dark' ) ) {
+	function layers_get_light_or_dark( $color, $if_dark, $if_light ) {
+		
+		if ( 'dark' == layers_is_light_or_dark( $color ) ) {
+			return $if_light;
+		}
+		elseif ( 'light' == layers_is_light_or_dark( $color ) ) {
+			return $if_dark;
+		}
+	}
+}

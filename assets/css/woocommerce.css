@@ -1092,7 +1092,8 @@ p.stars span a:focus{
             margin-right: 10px;
         }
         .footer-site del,
-        .footer-site ins{
+        .footer-site ins,
+        .footer-site .amount{
             font-size: 1.1rem;
         }
 

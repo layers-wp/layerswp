@@ -429,6 +429,7 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
     .column.span-11,
     .column.span-12{
         float: none;
+        clear: both;
     }
     .column-flush.span-7,
     .column-flush.span-8,
@@ -437,6 +438,7 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
     .column-flush.span-11,
     .column-flush.span-12{
         float: none;
+        clear: both;
     }
 
     /*---------------------------*/
@@ -508,9 +510,10 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
     /*---------------------------*/
     /*- OFF CANVAS SIDEBAR ------*/
-    .admin-bar section[class*=" off-canvas-"] .nav-mobile{
-        margin-top: 47px;
+    .admin-bar section[class*=" off-canvas-"]{
+        padding-top: 47px;
     }
+
 
 }
 

@@ -10,7 +10,7 @@
 /**
  * The current version of the theme. Use a random number for SCRIPT_DEBUG mode
  */
-define( 'LAYERS_VERSION', '1.2.4' );
+define( 'LAYERS_VERSION', '1.2.5' );
 define( 'LAYERS_TEMPLATE_URI' , get_template_directory_uri() );
 define( 'LAYERS_TEMPLATE_DIR' , get_template_directory() );
 define( 'LAYERS_THEME_TITLE' , 'Layers' );
@@ -154,7 +154,7 @@ if( ! function_exists( 'layers_setup' ) ) {
 				'sitetitle',
 				'tagline',
 			),
-			'size' => 'medium',
+			'size' => 'large',
 		) );
 
 		// Automatic Feed Links
@@ -369,6 +369,8 @@ add_action( 'wp_enqueue_scripts' , 'layers_scripts' );
 */
 if( ! function_exists( 'layers_admin_scripts' ) ) {
 	function layers_admin_scripts(){
+		global $pagenow, $wp_customize;
+
 		wp_enqueue_style(
 			LAYERS_THEME_SLUG . '-admin',
 			get_template_directory_uri() . '/core/assets/admin.css',
@@ -408,6 +410,15 @@ if( ! function_exists( 'layers_admin_scripts' ) ) {
 			LAYERS_VERSION,
 			true
 		);
+
+		wp_enqueue_script(
+			LAYERS_THEME_SLUG . '-media-views' ,
+			get_template_directory_uri() . '/core/assets/media-views.js',
+			array(
+				'media-views'
+			),
+			LAYERS_VERSION
+		); // Discover More Photos
 
 		wp_localize_script(
 			LAYERS_THEME_SLUG . '-admin-migrator',

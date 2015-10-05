@@ -253,6 +253,7 @@ div#widgets-right div[id*='obox-layers-builder']{
     }
     .layers-product-screenshot img{
         width: 100%;
+        display: block;
     }
     .layers-product-name{
         height: 18px;
@@ -295,6 +296,100 @@ div#widgets-right div[id*='obox-layers-builder']{
     .blank-product:hover .layers-product-name{
         color: #fff;
         transition: all 0.2s ease-in-out;
+    }
+
+    /*---------------------------*/
+    /*- MARKETPLACE LISTS ----*/
+    #layers-marketplace .theme-wrap{
+        max-width: 1260px;
+    }
+
+    #layers-marketplace .layers-help-search{
+        width: 45%;
+        text-align: right;
+    }
+
+    #layers-marketplace .layers-help-search label{
+        position: relative;
+        top: -2px;
+        font-size: 11px;
+        text-transform: uppercase;
+        color: #777;
+        font-weight: 600;
+    }
+
+    #layers-marketplace .layers-help-search select{
+        height: 32px;
+        margin-top: -4px;
+    }
+
+    #layers-marketplace #layers-marketplace-search{
+        max-width: 200px;
+    }
+
+    #layers-marketplace .layers-product{
+        margin-right: 2%;
+        overflow-y: hidden;
+    }
+
+    #layers-marketplace .layers-marketplace-actions{
+        overflow: hidden;
+        padding: 15px 0;
+        margin: 0 15px;
+        background-color: #fff;
+        border-top: 1px solid #eee;
+    }
+
+    #layers-marketplace .layers-marketplace-actions .theme-rating{
+        padding-top: 4px;
+    }
+
+    #layers-marketplace .theme-overlay .theme-screenshots img{
+        border: 1px solid #ddd;
+        width: 100%;
+    }
+
+    #layers-marketplace .theme-overlay .theme-author-img{
+        border-radius: 100%;
+        border: 1px solid #ddd;
+        float: left;
+        max-width: 45px;
+    }
+
+    #layers-marketplace .layers-sales-count {
+        margin: 0px;
+        color: rgba(0, 0, 0, 0.5);
+        line-height: 28px;
+    }
+
+    #layers-marketplace .theme-overlay .theme-meta {
+        float: left;
+        padding-top: 2px;
+    }
+
+    #layers-marketplace .theme-overlay .theme-meta span, #layers-marketplace .theme-overlay .theme-meta a{
+        clear: both;
+        display: block;
+        margin: 0;
+        padding: 0;
+        text-decoration: none;
+    }
+
+    @media only screen and (max-width: 1440px){
+
+        #layers-marketplace .layers-help-search {
+            width: 60%;
+        }
+
+        #layers-marketplace .layers-product{
+            width: 48%;
+        }
+
+    }
+    @media only screen and (max-width: 1279px){
+        .layers-marketplace-actions .star-rating{
+            display: none;
+        }
     }
 
 /*---------------------------*/
@@ -713,6 +808,37 @@ div[id*='layers-widget'] .spinner{
 }
 .layers-push-bottom-massive{
     margin-bottom: 60px !important;
+}
+.layers-push-right{
+    margin-right: 20px !important;
+}
+.layers-push-right-small{
+    margin-right: 10px !important;
+}
+.layers-push-right-medium{
+    margin-right: 30px !important;
+}
+.layers-push-right-large{
+    margin-right: 40px !important;
+}
+.layers-push-right-massive{
+    margin-right: 60px !important;
+}
+
+.layers-push-left{
+    margin-left: 20px !important;
+}
+.layers-push-left-small{
+    margin-left: 10px !important;
+}
+.layers-push-left-medium{
+    margin-left: 30px !important;
+}
+.layers-push-left-large{
+    margin-left: 40px !important;
+}
+.layers-push-left-massive{
+    margin-left: 60px !important;
 }
 
 .layers-push-right{
@@ -1572,11 +1698,16 @@ li[id*='accordion-section-layers'] .customize-control.customize-control-image .a
     display: block;
     float: right;
     width: 88px;
-    height: 410px 0;
-    bound: url(images/layers-logo-dark.png) no-repeat bottom;
-    background-size: 88px 20px;
+    height: 21px;
+    margin-top: 27px;
+    background: url(images/layers-logo-dark.png) no-repeat bottom;
+    background-size: 100%;
     overflow: hidden;
     text-indent: -999px;
+    opacity: 0.5;
+}
+.layers-logo:hover{
+    opacity: 1;
 }
 .layers-controls-title{
     padding: 8px 20px;
@@ -1594,6 +1725,11 @@ li[id*='accordion-section-layers'] .customize-control.customize-control-image .a
 .layers-heading{
     margin-top: 0;
     padding-top: 0;
+}
+.layers-heading .layers-small{
+    color: #777;
+    font-size: 12px;
+    font-weight: 400;
 }
 .layers-excerpt{
     color: #777;
@@ -3111,3 +3247,88 @@ input[type=radio]:checked + .layers-settings-icon span{
         .layers-button.layers-proceed-to-customizer.disable:hover:before{
             opacity:1;
         }
+
+/*--------------------------------*/
+/*- DISCOVER MORE PHOTOS ---------*/
+.layers-discover-more-photos{
+    padding: 4%;
+    text-align: center;
+}
+
+.layers-discover-more-feature{
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto 20px;
+}
+
+.layers-discover-more-feature .layers-column{
+    height: 0;
+    padding-bottom: 20%;
+    overflow: hidden;
+    background-color: #333333;
+}
+
+.layers-discover-more-feature .layers-column img{
+    left: -35%;
+    max-width: 175%;
+    position: absolute;
+}
+
+.layers-discover-more-photos .btn-primary{
+    color: #fff;
+    border: 1px solid #0074A2;
+    box-sizing: border-box;
+}
+.layers-discover-more-photos .btn-primary:hover{
+    color: #fff;
+}
+
+/*--------------------------------*/
+/*- LOADING INDICATORS -----------*/
+
+@-webkit-keyframes move {
+    0% { background-position: 0 0; }
+    100% { background-position: 50px 50px; }
+}
+@-moz-keyframes move {
+    0% { background-position: 0 0; }
+    100% { background-position: 50px 50px; }
+}
+
+.layers-button.layers-loading-button {
+    background-image: -webkit-gradient(
+            linear,
+            0 0,
+            100% 100%,
+            color-stop(.25, rgba(0, 0, 0, .05)),
+            color-stop(.25, rgba(0, 0, 0, 0)),
+            color-stop(.5, rgba(0, 0, 0, 0)),
+            color-stop(.5, rgba(0, 0, 0, .05)),
+            color-stop(.75, rgba(0, 0, 0, .05)),
+            color-stop(.75, rgba(0, 0, 0, 0)),
+            to(rgba(0, 0, 0, 0))
+        );
+    background-image: -moz-linear-gradient(
+            -45deg,
+            rgba(0, 0, 0, .05) 25%,
+            rgba(0, 0, 0, 0) 25%,
+            rgba(0, 0, 0, 0) 50%,
+            rgba(0, 0, 0, .05) 50%,
+            rgba(0, 0, 0, .05) 75%,
+            rgba(0, 0, 0, 0) 75%,
+            transparent
+        );
+
+    -webkit-background-size: 50px 50px;
+    -moz-background-size: 50px 50px;
+    background-size: 50px 50px;
+
+    -webkit-animation: move 2s linear infinite;
+    -moz-animation: move 2s linear infinite;
+    animation: move 2s linear infinite;
+
+    background-color: #FAFAFA;
+    background-position: 50%;
+    color: #999999;
+    pointer-events: none;
+}

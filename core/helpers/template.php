@@ -960,7 +960,7 @@ if( !function_exists( 'layers_inline_styles' ) ) {
 		elseif ( 1 == func_num_args() ) {
 			// layers_inline_styles( array( 'selectors' => array( '.element' ), 'css' => array( 'color' => '#FFF' ) ) );
 			// layers_inline_styles( '.element { color: #FFF; }' );
-			$container_id = ''; $type = 'css'; $args = $arg1;
+			$container_id = NULL; $type = 'css'; $args = $arg1;
 		}
 
 		// Get the generated CSS
@@ -1111,7 +1111,7 @@ if( !function_exists( 'layers_inline_styles' ) ) {
 		$inline_css = '';
 
 		// If there is a container ID specified, append it to the beginning of the declaration
-		if( NULL != $container_id ) {
+		if( NULL !== $container_id ) {
 			$inline_css = ' ' . $container_id . ' ' . $inline_css;
 		}
 
@@ -1122,9 +1122,9 @@ if( !function_exists( 'layers_inline_styles' ) ) {
             	$inline_css .= implode( ', ' . $inline_css . ' ',  $args['selectors'] );
             }
 		}
-
+		
 		// Apply inline CSS
-		if( '' == $inline_css ) {
+		if( '' == trim( $inline_css ) ) {
 			$inline_css .= $css;
 		} else {
 			$inline_css .= '{ ' . $css . '} ';

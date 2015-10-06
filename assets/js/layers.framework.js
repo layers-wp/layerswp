@@ -11,6 +11,7 @@
  * 3 - Offsite sidebar Toggles
  * 4 - Sticky Header
  * 5 - FitVids
+ * 6 - Layers Custom Easing
  *
  * Author: Obox Themes
  * Author URI: http://www.oboxthemes.com/
@@ -162,5 +163,16 @@ jQuery(function($) {
     */
 	
 	$(".media-image, .thumbnail-media, .widget.slide .image-container").fitVids();
+    
+    /**
+    * 6 - Layers Custom Easing
+    *
+    * Extend jQuery easing with custom Layers easing function for UI animations - eg slideUp, slideDown
+    */
+
+    jQuery.extend( jQuery.easing, { layersEaseInOut: function (x, t, b, c, d) {
+        if ((t/=d/2) < 1) return c/2*t*t + b;
+        return -c/2 * ((--t)*(t-2) - 1) + b;
+    }});
 
 }(jQuery));

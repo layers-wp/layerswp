@@ -95,7 +95,7 @@ jQuery(function($) {
 	/**
 	* 2 - Layers Custom Easing
 	*
-	* Extend jQuery easing with custom Layers easing function for UI animations - eg slideUp, SlideDown
+	* Extend jQuery easing with custom Layers easing function for UI animations - eg slideUp, slideDown
 	*/
 
 	jQuery.extend( jQuery.easing, { layersEaseInOut: function (x, t, b, c, d) {

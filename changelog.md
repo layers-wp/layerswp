@@ -1,5 +1,11 @@
 # Layers Changelog
 
+=======
+##1.2.6
+### ?? ??? 2015
+* **Enhancement** - All WooCommerce widgets no longer look broken when placed in the footer widget areas. *DP*
+* **Enhancement** - Cart quantity color is now dynamic using rgba values. *DP*
+
 
 =======
 ##1.2.5

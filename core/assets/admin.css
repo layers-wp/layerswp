@@ -218,9 +218,8 @@ div#widgets-right div[id*='obox-layers-builder']{
         transition: transform 0.15s ease-in-out, opacity 0.15s ease-in-out;
         overflow: scroll;
         background-color: white;
-
         opacity: 1;
-}
+    }
     .customize-control-widget_form.wide-widget-control.expanded div[id*='layers-widget'] .widget-inside .form{
         /* opacity: 1; */
         /* transform: translate3d(0, 0, 0); */

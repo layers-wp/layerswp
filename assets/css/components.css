@@ -535,7 +535,7 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
     .sidebar .widget li:not(:last-child){
         padding: 0 0 6px;
         margin: 0 0 6px;
-        border-bottom: 1px dotted rgba(0, 0, 0, 0.12);
+        border-bottom: 1px solid rgba(0, 0, 0, 0.12);
     }
     .sidebar .widget li ul{
         margin: 6px 0 0 10px;

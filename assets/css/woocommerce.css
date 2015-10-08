@@ -650,8 +650,38 @@ p.stars span a:focus{
 /*---------------------------*/
 /*- SIDEBAR/WIDGET SETUP ----*/
 
+
+    /*-----------------------*/
+    /*- AMOUNT --------------*/
     .sidebar .amount{
         font-size: 1.3rem;
+    }
+
+    /*-----------------------*/
+    /*- PRODUCT SEARCH ------*/
+    .widget_product_search{
+        overflow: hidden;
+    }
+    .widget_product_search input[type="search"]{
+        border: none;
+        width: 65%;
+        float: left;
+    }
+    .widget_product_search input[type="submit"]{
+        height: 36px;
+        width: 35%;
+        float: left;
+        background: rgba(0, 0, 0, 0.4);
+    }
+
+    /*-----------------------*/
+    /*- RATINGS -------------*/
+    .widget .star-rating{
+        margin-top: 6px;
+    }
+    .widget .reviewer{
+        font-size: 1.2rem;
+        margin-top: 6px;
     }
 
 /*---------------------------*/
@@ -1097,7 +1127,7 @@ p.stars span a:focus{
 
     .widget .cart_list li,
     .cart_list li{
-        border-bottom: 1px dotted rgba(0, 0, 0, 0.12);
+        border-bottom: 1px solid rgba(0, 0, 0, 0.12);
         padding-bottom: 10px;
         margin-bottom: 10px;
     }
@@ -1122,8 +1152,15 @@ p.stars span a:focus{
     .widget_shopping_cart .total .amount{
         float: right;
     }
+    .widget_shopping_cart .buttons{
+        font-size: 0;
+    }
     .widget_shopping_cart .button{
         font-size: 1.2rem;
+        width: 49%;
+    }
+    .widget_shopping_cart .button:first-child{
+        margin-right: 2%;
     }
 
     /*-----------------------*/
@@ -1150,6 +1187,8 @@ p.stars span a:focus{
     }
     section[class*=' off-canvas-'] .widget_shopping_cart .button{
         display: block;
+        width: 100%;
+        margin-right: 0;
         margin-bottom: 5px;
         background: rgba(0, 0, 0, 0.65);
     }
@@ -1240,20 +1279,9 @@ p.stars span a:focus{
 /*-------------------------------*/
 
     /*---------------------------*/
-    /*- PRODUCT SEARCH ------*/
+    /*- PRODUCT SEARCH ----------*/
     .footer-site .widget_product_search{
-        overflow: hidden;
         margin-bottom: 20px;
-    }
-    .footer-site .widget_product_search input[type="search"]{
-        width: 70%;
-        float: left;
-    }
-    .footer-site .widget_product_search input[type="submit"]{
-        height: 36px;
-        width: 30%;
-        float: left;
-        background: rgba(0, 0, 0, 0.4);
     }
 
     /*---------------------------*/
@@ -1271,9 +1299,6 @@ p.stars span a:focus{
         float: right;
         margin-left: 10px;
     }
-    .footer-site .star-rating{
-        margin-top: 6px;
-    }
     .footer-site .reviewer{
         display: inline-block;
         margin-top: 6px;
@@ -1286,9 +1311,9 @@ p.stars span a:focus{
 
     /*---------------------------*/
     /*- CART --------------------*/
-    .footer-site .widget_shopping_cart{
+    .widget_shopping_cart{
         font-size: 1.2rem;
-    }
+    }/*.footer-site */
     .footer-site .empty{
         background: rgba(0, 0, 0, 0.4);
         padding: 8px;
@@ -1298,15 +1323,8 @@ p.stars span a:focus{
         padding-top: 8px;
         border-top: 1px solid rgba(0, 0, 0, 0.1);
     }
-    .footer-site .widget_shopping_cart .buttons{
-        font-size: 0;
-    }
     .footer-site .widget_shopping_cart .button{
         background: rgba(0, 0, 0, 0.4);
-        width: 49%;
-    }
-    .footer-site .widget_shopping_cart .button:first-child{
-        margin-right: 2%;
     }
 
 

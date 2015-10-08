@@ -182,3 +182,38 @@ if ( ! function_exists( 'layers_get_light_or_dark' ) ) {
 		}
 	}
 }
+
+if ( ! function_exists( 'layers_is_lighter' ) ) {
+	function layers_is_lighter( $color, $compare_to_color ) {
+		
+		$color_brigntness            = layers_get_brightness( $color );
+		$compare_to_color_brigntness = layers_get_brightness( $color );
+		
+		return ( $color > $compare_to_color );
+	}
+}
+
+if ( ! function_exists( 'layers_is_darker' ) ) {
+	function layers_is_darker( $color, $factor = 50 ) {
+
+		$color_brigntness            = layers_get_brightness( $color );
+		$compare_to_color_brigntness = layers_get_brightness( $color );
+		
+		return ( $color < $compare_to_color );
+	}
+}
+
+if ( ! function_exists( 'layers_get_brightness' ) ) {
+	function layers_get_brightness( $color ) {
+		
+		$hex = str_replace( '#', '', $color );
+
+		$c_r = hexdec( substr( $hex, 0, 2 ) );
+		$c_g = hexdec( substr( $hex, 2, 2 ) );
+		$c_b = hexdec( substr( $hex, 4, 2 ) );
+
+		$brightness = ( ( $c_r * 299 ) + ( $c_g * 587 ) + ( $c_b * 114 ) ) / 1000;
+
+		return $brightness;
+	}
+}

@@ -162,6 +162,10 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 				// If only one slide
 				$widget_container_class[] = 'single-slide';
 			}
+			if( $this->check_and_return( $widget , 'autoheight_slides' ) ) {
+				// If Auto Height
+				$widget_container_class[] = 'auto-height';
+			}
 			$widget_container_class = implode( ' ', apply_filters( 'layers_slider_widget_container_class' , $widget_container_class ) );
 			
 			/**

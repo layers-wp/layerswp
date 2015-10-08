@@ -54,12 +54,12 @@ class Layers_API {
 
 		$this->sort_options = array(
 			'id-desc' => __( 'Newest to Oldest' , 'layerswp' ),
-			'name-asc' => __( 'Item name A - Z' , 'layerswp' ),
-			'sales-desc' => __( 'Best sellers' , 'layerswp' ),
-			'rating-desc' => __( 'Best rated' , 'layerswp' ),
-			'price-asc' => __( 'Price: low to high' ),
-			'price-desc' => __( 'Price: high to low' ),
-			'trending-desc' => __( 'Trending items' , 'layerswp' ),
+			'name-asc' => __( 'Item Name A - Z' , 'layerswp' ),
+			'sales-desc' => __( 'Best Sellers' , 'layerswp' ),
+			'rating-desc' => __( 'Best Rated' , 'layerswp' ),
+			'price-asc' => __( 'Price: Low to Ligh' ),
+			'price-desc' => __( 'Price: High to Low' ),
+			'trending-desc' => __( 'Trending Items' , 'layerswp' ),
 		);
 
 		return $this->sort_options;
@@ -67,7 +67,7 @@ class Layers_API {
 
 	private function do_envato_api_call( $endpoint = 'market/total-items.json', $query_string = NULL , $method = 'get', $timeout = 5 ){
 
-		$query_string = ( $query_string ? '?' . $query_string . '&page_size=500' : '?page_size=500' );
+		$query_string = ( $query_string ? '?' . $query_string . '&page_size=500&sort_by=date&sort_direction=desc' : '?page_size=500&sort_by=date&sort_direction=desc' );
 
 		// Set the remote URL
 		$remote_url = self::ENVATO_API_URL . $endpoint . $query_string;

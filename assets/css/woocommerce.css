@@ -108,6 +108,7 @@ del .amount{
     height: 16px;
     background: url(../images/woocommerce/star.png) repeat-x left 0;
     background-size: 18px 48px;
+    overflow: hidden;
 }
 .product-images .star-rating,
 .img-wrap .star-rating,
@@ -591,6 +592,13 @@ p.stars span a:focus{
     }
 
 /*---------------------------*/
+/*- SHOP ATTRIBUTES ---------*/
+
+    .shop_attributes th{
+        vertical-align: top;
+    }
+
+/*---------------------------*/
 /*- COMMENT LIST ------------*/
 
     #reviews .commentlist{
@@ -642,8 +650,38 @@ p.stars span a:focus{
 /*---------------------------*/
 /*- SIDEBAR/WIDGET SETUP ----*/
 
+
+    /*-----------------------*/
+    /*- AMOUNT --------------*/
     .sidebar .amount{
         font-size: 1.3rem;
+    }
+
+    /*-----------------------*/
+    /*- PRODUCT SEARCH ------*/
+    .widget_product_search{
+        overflow: hidden;
+    }
+    .widget_product_search input[type="search"]{
+        border: none;
+        width: 65%;
+        float: left;
+    }
+    .widget_product_search input[type="submit"]{
+        height: 36px;
+        width: 35%;
+        float: left;
+        background: rgba(0, 0, 0, 0.4);
+    }
+
+    /*-----------------------*/
+    /*- RATINGS -------------*/
+    .widget .star-rating{
+        margin-top: 6px;
+    }
+    .widget .reviewer{
+        font-size: 1.2rem;
+        margin-top: 6px;
     }
 
 /*---------------------------*/
@@ -1070,7 +1108,6 @@ p.stars span a:focus{
 
 /*-------------------------------*/
 /*- PRODUCT LIST WIDGET ---------*/
-/*-------------------------------*/
 
     .product_list_widget li{
         overflow: hidden;
@@ -1085,39 +1122,29 @@ p.stars span a:focus{
         font-weight: 700;
     }
 
-        /*-----------------------*/
-        /*- PRODUCTS IN FOOTER --*/
-        .footer-site .product_list_widget img{
-            float: left;
-            margin-right: 10px;
-        }
-        .footer-site del,
-        .footer-site ins,
-        .footer-site .amount{
-            font-size: 1.1rem;
-        }
-
 /*-------------------------------*/
 /*- CART WIDGET -----------------*/
-/*-------------------------------*/
 
     .widget .cart_list li,
     .cart_list li{
-        border-bottom: 1px dotted rgba(0, 0, 0, 0.12);
+        border-bottom: 1px solid rgba(0, 0, 0, 0.12);
         padding-bottom: 10px;
         margin-bottom: 10px;
     }
     .cart_list .remove{
-        float: left;
-        margin: 3px 10px 0 0;
+        float: right;
+        margin: 0 0 0 10px;
     }
     .cart_list .remove + a{
         margin-bottom: 5px;
     }
     .cart_list .quantity{
         width: 100%;
-        color: #999;
+        color: rgba(0, 0, 0, 0.65);
         font-size: 1.3rem;
+    }
+    .invert .cart_list .quantity{
+        color: rgba(255, 255, 255, 0.65);
     }
     .widget_shopping_cart .total{
         margin: 10px 0;
@@ -1125,8 +1152,15 @@ p.stars span a:focus{
     .widget_shopping_cart .total .amount{
         float: right;
     }
+    .widget_shopping_cart .buttons{
+        font-size: 0;
+    }
     .widget_shopping_cart .button{
         font-size: 1.2rem;
+        width: 49%;
+    }
+    .widget_shopping_cart .button:first-child{
+        margin-right: 2%;
     }
 
     /*-----------------------*/
@@ -1135,7 +1169,7 @@ p.stars span a:focus{
         padding: 0;
         margin-left: 20px;
         margin-right: 20px;
-        background: #333;
+        background: rgba(0, 0, 0, 0.4);
     }
     section[class*=' off-canvas-'] .widget_shopping_cart .section-nav-title{
         padding: 10px;
@@ -1143,7 +1177,7 @@ p.stars span a:focus{
     }
     section[class*=' off-canvas-'] .cart_list li{
         padding: 10px;
-        border-bottom-color: #444;
+        border-bottom-color: rgba(255, 255, 255, 0.1);
     }
     section[class*=' off-canvas-'] .widget_shopping_cart .total{
         margin: 10px;
@@ -1153,16 +1187,17 @@ p.stars span a:focus{
     }
     section[class*=' off-canvas-'] .widget_shopping_cart .button{
         display: block;
+        width: 100%;
+        margin-right: 0;
         margin-bottom: 5px;
-        background: #555;
+        background: rgba(0, 0, 0, 0.65);
     }
     section[class*=' off-canvas-'] .widget_shopping_cart .button:hover{
-        background: #222;
+        background: rgba(0, 0, 0, 0.85);
     }
 
 /*-------------------------------*/
 /*- PRICE FILTER WIDGET ---------*/
-/*-------------------------------*/
 
     .widget_price_filter{
         overflow: hidden;
@@ -1238,6 +1273,61 @@ p.stars span a:focus{
 .woocommerce-checkout .form-row .chosen-container{
     max-width: 500px;
 }
+
+/*-------------------------------*/
+/*- WIDGETS IN FOOTER -----------*/
+/*-------------------------------*/
+
+    /*---------------------------*/
+    /*- PRODUCT SEARCH ----------*/
+    .footer-site .widget_product_search{
+        margin-bottom: 20px;
+    }
+
+    /*---------------------------*/
+    /*- PRODUCTS LIST -----------*/
+    .footer-site .product_list_widget{
+        font-size: 1.2rem;
+    }
+    .footer-site .product_list_widget li{
+        padding-bottom: 8px;
+        margin-bottom: 8px;
+        overflow: hidden;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    }
+    .footer-site .product_list_widget img{
+        float: right;
+        margin-left: 10px;
+    }
+    .footer-site .reviewer{
+        display: inline-block;
+        margin-top: 6px;
+    }
+    .footer-site del,
+    .footer-site ins,
+    .footer-site .amount{
+        font-size: 1.1rem;
+    }
+
+    /*---------------------------*/
+    /*- CART --------------------*/
+    .widget_shopping_cart{
+        font-size: 1.2rem;
+    }/*.footer-site */
+    .footer-site .empty{
+        background: rgba(0, 0, 0, 0.4);
+        padding: 8px;
+        margin: 0;
+    }
+    .footer-site .widget_shopping_cart .total{
+        padding-top: 8px;
+        border-top: 1px solid rgba(0, 0, 0, 0.1);
+    }
+    .footer-site .widget_shopping_cart .button{
+        background: rgba(0, 0, 0, 0.4);
+    }
+
+
 
 /*-------------------------------*/
 /*- RESPONSIVE ------------------*/

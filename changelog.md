@@ -1,5 +1,12 @@
 # Layers Changelog
 
+=======
+##1.2.6
+### ?? ??? 2015
+* **Enhancement** - All WooCommerce widgets no longer look broken when placed in the footer widget areas. *DP*
+* **Enhancement** - Cart quantity color is now dynamic using rgba values. *DP*
+* **Enhancement** - General WooCommerce widget clean up. *DP*
+
 
 =======
 ##1.2.5
@@ -10,11 +17,13 @@
 * **Tweak** - .amount color has been moved to the .price wrapper. *DP*
 * **Tweak** - Remove 'Edit Layout' from the admin-bar as it is redundant now that WP has added 'Customize' to the admin-bar. *SOB*
 * **Fix** - Corrected the widget anchor IDs, also made the input disabled=FALSE so that they're highlightable. *MP*
+* **Fix** - Fixed clearing issue with large rows on responsive screens. *DP*
 * **Enhancement** - .title line-height is more compliant to font changes. *DP*
 * **Enhancement** - Fixed WooCommerce category listings in the shop page. *MP*
 * **Enhancement** - Search box no longer brakes to two lines in the footer. *DP*
 * **Enhancement** - Transparent background color added to Woo product meta. *DP*
 * **Enhancement** - Off canvas pop out has a new close button and the site-wrapper goes 20% darker when pop out is open. *DP*
+* **Enhancement** - Introduciton of the in-app Marketplace. If you are a developer and want to disable this feature just add `define( 'LAYERS_DISABLE_MARKETPLACE', true );` to your `wp-config.php` file. *MP*
 
 =======
 ##1.2.4

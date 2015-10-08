@@ -1350,6 +1350,9 @@ div[id*='layers-widget'] .spinner{
     .layers-form-item.layers-form-item-advanced {
         background-color: #ECF5FB;
     }
+    .layers-form-item.layers-form-item-temp-disable *{
+        opacity: .2;
+    }
 
         /*-------------------*/
         /*- POP MENU SMALL --*/

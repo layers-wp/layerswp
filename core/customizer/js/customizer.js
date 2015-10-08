@@ -154,7 +154,7 @@
 				layers_update_customizer_interface();
 			}, false);
 
-			$(document).on( 'change', '.layers-customize-control-font select' , function(){
+			$(document).on( 'change', '.layers-customize-control-font select', function(){
 
 				// "Hi Mom"
 				$that = $(this);
@@ -185,9 +185,20 @@
 			// Close all expanded widgets
 			this.preview.bind( 'layers-close-all-widgets', function( data ) {
 
-				$( '.customize-control-widget_form.expanded' ).find( '.widget-inside' ).hide();
-				$( '.customize-control-widget_form.expanded' ).find( '.widget-control-close' ).click();
+				// $( '.customize-control-widget_form.expanded' ).find( '.widget-inside' ).hide();
+				// $( '.customize-control-widget_form.expanded' ).find( '.widget-control-close' ).click();
+				
+				$( '.customize-control-widget_form.expanded' ).addClass('layers-peek');
 			});
+			
+			// Widget Peek
+			/*$(document).on( 'hover', '#customize-preview', function(){
+				$( '.customize-control-widget_form.expanded' ).addClass('layers-peek');
+			});*/
+			$(document).on( 'mouseleave', '#customize-preview', function(){
+				$( '.customize-control-widget_form.expanded' ).removeClass('layers-peek');
+			});
+			
 		}
 	};
 

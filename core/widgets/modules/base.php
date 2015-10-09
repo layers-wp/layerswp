@@ -327,6 +327,15 @@ if( !class_exists( 'Layers_Widget' ) ) {
 		 */
 		function register_repeater_defaults( $type, $count = 3, $defaults_array = array() ) {
 			
+			// This allows to pass any number of default sets to the repeater, and they will be used in a loop to populate the required number of defaults.
+			$count_defaults = func_num_args();
+			$i = 2; // Collect all the defaults arrays after the 3rd,including the 3rd.
+			$defaults_collection = array();
+			while ( $i < $count_defaults ) {
+				$defaults_collection[] = func_get_arg( $i );
+				$i++;
+			}
+			
 			// Create array of random guid's to the specified size.
 			$repeat_ids_array = array();
 			$i = 0;
@@ -342,8 +351,11 @@ if( !class_exists( 'Layers_Widget' ) ) {
 			$this->defaults[$type] = array();
 			
 			// Add a default to each guid element, these will all be the same but are still needed when our defaulting methodology looks for them.
+			$i = 0;
 			foreach( $repeat_ids_array as $item_id ) {
-				$this->defaults[$type][ $item_id ] = $defaults_array; // Save them to our defaults property.
+				$this->defaults[$type][ $item_id ] = $defaults_collection[$i]; // Save them to our defaults property.
+				$i++;
+				if ( ! isset( $defaults_collection[$i] ) ) $i = 0; // Set back to 0 so we loop back around.
 			}
 		}
 		

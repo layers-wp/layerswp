@@ -41,7 +41,7 @@ if ( !function_exists( 'layers_load_templates' ) ) {
 
 		// Set the default file
 		$file = $template;
-
+		;
 		// Check if a custom template exists in the theme folder, if not, load the plugin template file
 		if ( $theme_file = locate_template(  $template_slug ) ) {
 			$file = $theme_file;
@@ -123,6 +123,29 @@ if ( !function_exists( 'layers_locate_plugin_templates' ) ) {
 	}
 } // layers_locate_plugin_templates
 
+/**
+* Get Custom Archive Template
+*
+* This force-adds our custom post type templates to the list of templates to search for, eg. archive-portfolio.php
+*
+* @param string $template Name of the template file we're looking for
+*/
+if ( !function_exists( 'layers_get_custom_archive_template' ) ) {
+	function layers_get_custom_archive_template( $template ) {
+
+		global $wp_query;
+		$object = $wp_query->get_queried_object();
+
+		if ( !in_array( $object->query_var,  layers_get_standard_wp_post_types() ) ) {
+			$templates = array('archive-' . $object->query_var . '.php', 'archive.php');
+			$template = layers_locate_plugin_templates($templates);
+		}
+
+		// return apply_filters('single_template', $template);
+		return $template;
+	}
+} // layers_get_custom_single_template
+add_filter( 'archive_template', 'layers_get_custom_archive_template' );
 /**
 * Get Custom Single Template
 *

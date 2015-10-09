@@ -185,19 +185,18 @@
 			// Close all expanded widgets
 			this.preview.bind( 'layers-close-all-widgets', function( data ) {
 
-				// $( '.customize-control-widget_form.expanded' ).find( '.widget-inside' ).hide();
-				// $( '.customize-control-widget_form.expanded' ).find( '.widget-control-close' ).click();
+				$( '.customize-control-widget_form.expanded' ).find( '.widget-inside' ).hide();
+				$( '.customize-control-widget_form.expanded' ).find( '.widget-control-close' ).click();
 				
-				$( '.customize-control-widget_form.expanded' ).addClass('layers-peek');
+				//$( '.customize-control-widget_form.expanded' ).addClass('layers-peek'); // Peek (Disabled. Testing Only)
 			});
 			
-			// Widget Peek
-			/*$(document).on( 'hover', '#customize-preview', function(){
-				$( '.customize-control-widget_form.expanded' ).addClass('layers-peek');
-			});*/
+			// Widget Peek (Disabled. Testing Only)
+			/*
 			$(document).on( 'mouseleave', '#customize-preview', function(){
 				$( '.customize-control-widget_form.expanded' ).removeClass('layers-peek');
 			});
+			*/
 			
 		}
 	};

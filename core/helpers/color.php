@@ -94,13 +94,6 @@ if ( ! function_exists( 'layers_hex_lighter' ) ) {
  */
 
 if ( ! function_exists( 'layers_too_light_then_dark' ) ) {
-	/**
-	* Style Generator
-	*
-	* @param   string   $container_id   ID of the container if any
-	* @param   string   $type           Type of style to generate, background, color, text-shadow, border
-	* @param   array    $args			$args array
-	*/
 	function layers_too_light_then_dark( $color, $factor = 30 ) {
 
 		if ( '#ffffff' == layers_hex_lighter( $color, 96 ) ) {

@@ -373,7 +373,7 @@ add_action( 'body_class', 'layers_body_class' );
 /**
  * Check for a Layers Blog List Page
  */
-if( !function_exists( 'layers_is_post_list' ) ) {
+if( !function_exists( 'layers_is_post_list_template' ) ) {
 	function layers_is_post_list_template() {
 		if(
 			is_page_template( 'template-blog.php' ) ||

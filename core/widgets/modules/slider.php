@@ -167,7 +167,7 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 				$widget_container_class[] = 'auto-height';
 			}
 			$widget_container_class = implode( ' ', apply_filters( 'layers_slider_widget_container_class' , $widget_container_class ) );
-			
+
 			/**
 			 * Slider HTML
 			 */
@@ -292,64 +292,67 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 			 		</div>
 				<?php } // if !empty( $widget->slides ) ?>
 		 	</section>
-			
+
 			<?php
 			/**
 			 * Slider javascript initialize
 			 */
-			if( 1 < count( $widget[ 'slides' ] ) ) : ?>
-	 			<?php $swiper_js_obj = str_replace( '-' , '_' , $this->get_field_id( 'slider' ) ); ?>
-			 	<script>
-					jQuery(function($){
+			$swiper_js_obj = str_replace( '-' , '_' , $this->get_field_id( 'slider' ) ); ?>
+			<script>
+				jQuery(function($){
 
-						var <?php echo $swiper_js_obj; ?> = $('#<?php echo $widget_id; ?>').swiper({
-							mode:'horizontal',
-							<?php if( '' == $slider_height_css ) { ?>
-								calculateHeight: true,
-							<?php } ?>
-							<?php if( isset( $widget['show_slider_dots'] ) && ( !empty( $widget[ 'slides' ] ) && 1 < count( $widget[ 'slides' ] ) ) ) { ?>
-								pagination: '.<?php echo $this->get_field_id( 'pages' ); ?>',
-							<?php } ?>
-							paginationClickable: true,
-							watchActiveIndex: true
-							<?php if( 1 < count( $widget[ 'slides' ] ) ) { ?>
-								,loop: true
-							<?php } ?>
-							<?php if( isset( $widget['autoplay_slides'] ) && isset( $widget['slide_time'] ) && is_numeric( $widget['slide_time'] ) ) {?>
-								, autoplay: <?php echo ($widget['slide_time']*1000); ?>
-							<?php }?>
-							<?php if( isset( $wp_customize ) && $this->check_and_return( $widget, 'focus_slide' ) ) { ?>
-								,initialSlide: <?php echo $this->check_and_return( $widget, 'focus_slide' ); ?>
-							<?php } ?>
-						});
-
+					var <?php echo $swiper_js_obj; ?> = $('#<?php echo $widget_id; ?>').swiper({
+						mode:'horizontal',
+						<?php if( '' == $slider_height_css ) { ?>
+							calculateHeight: true,
+						<?php } ?>
+						<?php if( isset( $widget['show_slider_dots'] ) && ( !empty( $widget[ 'slides' ] ) && 1 < count( $widget[ 'slides' ] ) ) ) { ?>
+							pagination: '.<?php echo $this->get_field_id( 'pages' ); ?>',
+						<?php } ?>
+						paginationClickable: true,
+						watchActiveIndex: true
 						<?php if( 1 < count( $widget[ 'slides' ] ) ) { ?>
-							// Allow keyboard control
-							<?php echo $swiper_js_obj; ?>.enableKeyboardControl();
-						<?php } // if > 1 slide ?>
+							,loop: true
+						<?php } else { ?>
+							,loop: false
+							,noSwiping: true
+							,allowSwipeToPrev: false
+							,allowSwipeToNext: false
+						<?php } ?>
+						<?php if( isset( $widget['autoplay_slides'] ) && isset( $widget['slide_time'] ) && is_numeric( $widget['slide_time'] ) ) {?>
+							, autoplay: <?php echo ($widget['slide_time']*1000); ?>
+						<?php }?>
+						<?php if( isset( $wp_customize ) && $this->check_and_return( $widget, 'focus_slide' ) ) { ?>
+							,initialSlide: <?php echo $this->check_and_return( $widget, 'focus_slide' ); ?>
+						<?php } ?>
+					});
 
-						$('#<?php echo $widget_id; ?>').find('.arrows a').on( 'click' , function(e){
-							e.preventDefault();
+					<?php if( 1 < count( $widget[ 'slides' ] ) ) { ?>
+						// Allow keyboard control
+						<?php echo $swiper_js_obj; ?>.enableKeyboardControl();
+					<?php } // if > 1 slide ?>
 
-							// "Hi Mom"
-							$that = $(this);
+					$('#<?php echo $widget_id; ?>').find('.arrows a').on( 'click' , function(e){
+						e.preventDefault();
 
-							if( $that.hasClass( 'swiper-pagination-switch' ) ){ // Anchors
-								<?php echo $swiper_js_obj; ?>.swipeTo( $that.index() );
-							} else if( $that.hasClass( 'l-left-arrow' ) ){ // Previous
-								<?php echo $swiper_js_obj; ?>.swipePrev();
-							} else if( $that.hasClass( 'l-right-arrow' ) ){ // Next
-								<?php echo $swiper_js_obj; ?>.swipeNext();
-							}
+						// "Hi Mom"
+						$that = $(this);
 
-							return false;
-						});
+						if( $that.hasClass( 'swiper-pagination-switch' ) ){ // Anchors
+							<?php echo $swiper_js_obj; ?>.swipeTo( $that.index() );
+						} else if( $that.hasClass( 'l-left-arrow' ) ){ // Previous
+							<?php echo $swiper_js_obj; ?>.swipePrev();
+						} else if( $that.hasClass( 'l-right-arrow' ) ){ // Next
+							<?php echo $swiper_js_obj; ?>.swipeNext();
+						}
 
-						<?php echo $swiper_js_obj; ?>.init();
-					})
-			 	</script>
-		 	<?php endif; ?>
-		 	
+						return false;
+					});
+
+					<?php echo $swiper_js_obj; ?>.init();
+				})
+		 	</script>
+
 		<?php }
 
 		/**

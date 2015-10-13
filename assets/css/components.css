@@ -106,14 +106,10 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
     /*---------------------------*/
     /*- AUTO HEIGHT -------------*/
     .auto-height .swiper-slide .content{
-        padding-top: 6%;
-        padding-bottom: 6%;
+        padding-top: 4%;
+        padding-bottom: 4%;
     }
-    .single-slide.auto-height .swiper-slide .container{
-        top: 0;
-        -webkit-transform: translateY(0);
-        transform: translateY(0);
-    }
+    .single-slide.auto-height .swiper-slide .container{}
 
     /*---------------------------*/
     /*- SLIDER IMAGES -----------*/

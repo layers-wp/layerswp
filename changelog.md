@@ -3,6 +3,8 @@
 =======
 ##1.2.6
 ### ?? ??? 2015
+* **Tweak** - Changed "Preview this Page" to "View this Page" *DP*
+* **Fix** - Auto-height slide no longer breaks when you only have one slide. *DP*
 * **Enhancement** - All WooCommerce widgets no longer look broken when placed in the footer widget areas. *DP*
 * **Enhancement** - Cart quantity color is now dynamic using rgba values. *DP*
 * **Enhancement** - General WooCommerce widget clean up. *DP*

@@ -83,7 +83,7 @@ class Layers_Customizer {
 	*/
 
 	public function admin_enqueue_scripts(){
-		
+
 		// Hover Intent
 		wp_enqueue_script( 'hoverIntent' );
 
@@ -115,7 +115,7 @@ class Layers_Customizer {
 	*/
 
 	public function customizer_preview_enqueue_scripts(){
-		
+
 		wp_enqueue_script(
 			LAYERS_THEME_SLUG . '-admin-customizer-preview',
 			get_template_directory_uri() . '/core/customizer/js/customizer-preview.js',
@@ -191,7 +191,7 @@ class Layers_Customizer {
 						// Construct the Layers Customizer Menu
 						$layers_customizer_menu = array(
 							'preview' => array(
-								'text'			=> __( 'Preview this page' , 'layerswp' ),
+								'text'			=> __( 'View this page' , 'layerswp' ),
 								'link'			=> '#',
 								'icon_class'	=> 'icon-display',
 								'target'		=> '_blank',

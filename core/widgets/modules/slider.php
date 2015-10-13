@@ -302,15 +302,30 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 				jQuery(function($){
 
 					var <?php echo $swiper_js_obj; ?> = $('#<?php echo $widget_id; ?>').swiper({
-						mode:'horizontal',
+						mode:'horizontal'
+						,bulletClass: 'swiper-pagination-switch'
+						,bulletActiveClass: 'swiper-active-switch swiper-visible-switch'
+						,paginationClickable: true
+						,watchActiveIndex: true
 						<?php if( '' == $slider_height_css ) { ?>
-							calculateHeight: true,
+							,onInit: function (s) {
+								var height = 0;
+								var slide_height = 0;
+
+								s.slides.each(function( key, slide ){
+									var slide_height = $(slide).find( '.container' ).outerHeight();
+
+									if( height < slide_height ){
+										height = slide_height;
+									}
+								});
+
+								s.container.css({height: height+'px'});
+							}
 						<?php } ?>
 						<?php if( isset( $widget['show_slider_dots'] ) && ( !empty( $widget[ 'slides' ] ) && 1 < count( $widget[ 'slides' ] ) ) ) { ?>
-							pagination: '.<?php echo $this->get_field_id( 'pages' ); ?>',
+							,pagination: '.<?php echo $this->get_field_id( 'pages' ); ?>'
 						<?php } ?>
-						paginationClickable: true,
-						watchActiveIndex: true
 						<?php if( 1 < count( $widget[ 'slides' ] ) ) { ?>
 							,loop: true
 						<?php } else { ?>
@@ -339,11 +354,11 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 						$that = $(this);
 
 						if( $that.hasClass( 'swiper-pagination-switch' ) ){ // Anchors
-							<?php echo $swiper_js_obj; ?>.swipeTo( $that.index() );
+							<?php echo $swiper_js_obj; ?>.slideTo( $that.index() );
 						} else if( $that.hasClass( 'l-left-arrow' ) ){ // Previous
-							<?php echo $swiper_js_obj; ?>.swipePrev();
+							<?php echo $swiper_js_obj; ?>.slidePrev();
 						} else if( $that.hasClass( 'l-right-arrow' ) ){ // Next
-							<?php echo $swiper_js_obj; ?>.swipeNext();
+							<?php echo $swiper_js_obj; ?>.slideNext();
 						}
 
 						return false;

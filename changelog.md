@@ -1,5 +1,9 @@
 # Layers Changelog
 
+=======
+##1.2.?
+### xx October 2015
+* **Fix** - Fixed "Powered by Envato" typo in marketplace. *MP*
 
 =======
 ##1.2.5

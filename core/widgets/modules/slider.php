@@ -265,13 +265,13 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 											<div class="copy-container">
 												<div class="section-title <?php echo ( isset( $slide['design']['fonts'][ 'size' ] ) ? $slide['design']['fonts'][ 'size' ] : '' ); ?>">
 													<?php if( $this->check_and_return( $slide , 'title' ) ) { ?>
-														<h3 class="heading"><?php echo $slide['title']; ?></h3>
+														<h3 data-swiper-parallax="-100" class="heading"><?php echo $slide['title']; ?></h3>
 													<?php } ?>
 													<?php if( $this->check_and_return( $slide , 'excerpt' ) ) { ?>
-														<div class="excerpt"><?php layers_the_content( $slide['excerpt'] ); ?></div>
+														<div data-swiper-parallax="-300" class="excerpt"><?php layers_the_content( $slide['excerpt'] ); ?></div>
 													<?php } ?>
 													<?php if( 'div' == $slide_wrapper_tag && $this->check_and_return( $slide, 'link' ) && $this->check_and_return( $slide , 'link_text' ) ) { ?>
-														<a href="<?php echo $slide['link']; ?>" class="button btn-<?php echo $this->check_and_return( $slide , 'design' , 'fonts' , 'size' ); ?>"><?php echo $slide['link_text']; ?></a>
+														<a data-swiper-parallax="-200" href="<?php echo $slide['link']; ?>" class="button btn-<?php echo $this->check_and_return( $slide , 'design' , 'fonts' , 'size' ); ?>"><?php echo $slide['link_text']; ?></a>
 													<?php } ?>
 												</div>
 											</div>
@@ -307,8 +307,11 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 						,bulletActiveClass: 'swiper-active-switch swiper-visible-switch'
 						,paginationClickable: true
 						,watchActiveIndex: true
-						<?php if( isset( $widget['animation_type'] ) ) { ?>
+						<?php if( 'fade' ==  $this->check_and_return( $widget, 'animation_type' ) ) { ?>
 							,effect: '<?php echo $widget['animation_type']; ?>'
+						<?php } else if( 'parallax' ==  $this->check_and_return( $widget, 'animation_type' ) ) { ?>
+							,speed: 700
+							,parallax: true
 						<?php } ?>
 						<?php if( TRUE == $this->check_and_return( $widget , 'autoheight_slides' ) ) { ?>
 							,onInit: function (s) {
@@ -470,6 +473,7 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 							'options' => array(
 								'slide' => __( 'Slide', 'layers_wp' ),
 								'fade' => __( 'Fade', 'layers_wp' ),
+								'parallax' => __( 'Parallax', 'layers_wp' ),
 							)
 
 						),

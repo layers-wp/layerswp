@@ -307,8 +307,12 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 						,bulletActiveClass: 'swiper-active-switch swiper-visible-switch'
 						,paginationClickable: true
 						,watchActiveIndex: true
-						<?php if( '' == $slider_height_css ) { ?>
+						<?php if( isset( $widget['animation_type'] ) ) { ?>
+							,effect: '<?php echo $widget['animation_type']; ?>'
+						<?php } ?>
+						<?php if( TRUE == $this->check_and_return( $widget , 'autoheight_slides' ) ) { ?>
 							,onInit: function (s) {
+
 								var height = 0;
 								var slide_height = 0;
 
@@ -450,13 +454,25 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 							'value' => ( isset(  $widget['show_slider_dots'] ) ) ?  $widget['show_slider_dots'] : NULL,
 							'label' => __( 'Show Slider Dots' , 'layerswp' )
 						),
-								'slider_arrow_color' => array(
-									'type' => 'color',
-									'name' => $this->get_field_name( 'slider_arrow_color' ) ,
-									'id' => $this->get_field_id( 'slider_arrow_color' ) ,
-									'value' => ( isset( $widget['slider_arrow_color'] ) ) ? $widget['slider_arrow_color'] : NULL,
-									'label' => __( 'Slider Controls Color' , 'layers-woocommerce' )
-								),
+						'slider_arrow_color' => array(
+							'type' => 'color',
+							'name' => $this->get_field_name( 'slider_arrow_color' ) ,
+							'id' => $this->get_field_id( 'slider_arrow_color' ) ,
+							'value' => ( isset( $widget['slider_arrow_color'] ) ) ? $widget['slider_arrow_color'] : NULL,
+							'label' => __( 'Slider Controls Color' , 'layers-woocommerce' )
+						),
+						'animation_type' => array(
+							'type' => 'select',
+							'name' => $this->get_field_name( 'animation_type' ) ,
+							'id' => $this->get_field_id( 'animation_type' ) ,
+							'value' => ( isset(  $widget['animation_type'] ) ) ?  $widget['animation_type'] : 'slide',
+							'label' => __( 'Animation Type' , 'layerswp' ),
+							'options' => array(
+								'slide' => __( 'Slide', 'layers_wp' ),
+								'fade' => __( 'Fade', 'layers_wp' ),
+							)
+
+						),
 						'autoplay_slides' => array(
 							'type' => 'checkbox',
 							'name' => $this->get_field_name( 'autoplay_slides' ) ,

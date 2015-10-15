@@ -920,5 +920,19 @@ jQuery(function($) {
 	$(document).on( 'mouseenter', '.layers-widget-peek-button', function(){ $(this).closest('.widget-inside').addClass('layers-peek-widget'); } );
 	$(document).on( 'mouseleave', '.layers-widget-peek-button', function(){ $(this).closest('.widget-inside').removeClass('layers-peek-widget'); } );
 
+	/**
+	 * 17 - Customizer Control - Range Slider *NEW
+	 */
+	$( document ).on( 'input change', '.layers-customize-control-range input[type="range"]', function( e ){
+		var $range_field = $(this);
+		var $number_field = $(this).siblings('input[type="number"]');
+		$number_field.val( $range_field.val() );
+	});
+	$( document ).on( 'input change', '.layers-customize-control-range input[type="number"]', function( e ){
+		var $number_field = $(this);
+		var $range_field = $(this).siblings('input[type="range"]');
+		$range_field.val( $number_field.val() );
+	});
+	
 
 });

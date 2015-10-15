@@ -922,7 +922,6 @@ div[id*='layers-widget'] .spinner{
         margin-left: auto;
         margin-right: auto;
     }
-
     .layers-form-item label{
         display: block;
         margin-bottom: 2px;
@@ -931,17 +930,18 @@ div[id*='layers-widget'] .spinner{
         color: #777;
         font-weight: 600;
     }
-
+    
+    .customize-control .layers-form-item label{
+        color: inherit;
+    }
     .customize-control .layers-form-item select{
         width: 100%;
         height: 38px;
         margin: 0;
     }
-
     .customize-control .layers-form-item select[multiple]{
         min-height: 90px;
     }
-
     .customize-control .layers-textarea{
         width: 100%;
         padding: 8px;
@@ -1085,7 +1085,7 @@ div[id*='layers-widget'] .spinner{
         display: inline-block;
         width: 16px;
         height: 16px;
-        margin-right: 10px;
+        margin-right: 8px;
         background: #fff url(images/checkbox.png) 0 -32px no-repeat;
         background-size: 16px 16px;
         border: 1px solid #ccc;
@@ -1649,12 +1649,22 @@ div[id*='layers-widget'] .spinner{
 
 /*-----------------------------*/
 /*- CUSTOMIZER CONTROLS -------*/
+
 li[id*='accordion-section-layers'] .customize-control{
     margin: 6px 0;
 }
 li[id*='accordion-section-layers'] .customize-control.customize-control-layers-heading{
     /* margin:0; */
 }
+
+li[id*='accordion-section-layers'] .customize-control .layers-customize-control.layers-customize-control-heading-divider .customize-control-title{
+    display: block;
+    font-size: 14px;
+    line-height: 24px;
+    font-weight: 600;
+    margin: 0;
+}
+
 li[id*='accordion-section-layers'] .customize-control:first-child{
     margin: 6px 0 0px;
 }
@@ -1670,6 +1680,7 @@ li[id*='accordion-section-layers'] hr{
     border: 0;
     border-top: 0;
     border-bottom: 1px solid #EEE;
+    margin: 8px 0;
 }
 li[id*='accordion-section-layers'] .customize-control .layers-form-item{
     margin: 0 0 3px;
@@ -1712,6 +1723,56 @@ li[id*='accordion-section-layers'] .customize-control.customize-control-image .a
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.05) inset;
     box-sizing: border-box;
 }
+
+    /*----------------------*/
+    /*- HEADING DIVIDER ----*/
+
+    .customize-control-layers-heading-divider table {
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        border-spacing: 0;
+    }
+    .customize-control-layers-heading-divider table tr {
+        margin: 0;
+        padding: 0;
+    }
+    .customize-control-layers-heading-divider table tr td:first-child {
+        padding-right: 8px;
+        font-size: 14px;
+        line-height: 24px;
+        font-weight: 600;
+        text-transform: none;
+        margin: 0;
+        white-space: nowrap;
+    }
+    .customize-control-layers-heading-divider table tr td:last-child {
+        width: 100%;
+    }
+    .customize-control-layers-heading-divider table tr td:last-child div{
+        border-bottom: 1px solid #EEE;
+        height: 2px;
+    }
+
+    li[id*='accordion-section-layers'] .customize-control.customize-control-layers-heading-divider .description{
+        margin-top: 3px;
+    }
+
+    /*-----------------------------*/
+    /*- RANGE + NUMBER CONTROL ----*/
+    
+    .layers-customize-control-range input[type="range"]{
+        width: 68%;
+        display: inline-block;
+        height: 11px;
+        padding: 0;
+        margin: 0;
+    }
+    .layers-customize-control-range input[type="number"] {
+        width: 25%;
+        margin: 0 0 0 5%;
+        display: inline-block;
+    }
 
 /*---------------------------*/
 /*- TITLES ------------------*/

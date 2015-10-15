@@ -165,6 +165,8 @@ class Layers_Customizer_Regsitrar {
 
 			// Set control priority to obey order of setup
 			$control_data[ 'priority' ] = $control_priority;
+			
+			$control_data[ 'default' ] = isset( $control_data['default'] ) ? $control_data['default'] : NULL ;
 
 			// Add Setting
 			$this->customizer->add_setting(

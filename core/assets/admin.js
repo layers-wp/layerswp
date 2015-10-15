@@ -793,7 +793,7 @@ jQuery(function($) {
 	$(document).on( 'mousedown', function(){
 		$('.froala-box:not(.froala-toolbar-hide)').each(function(){
 
-			// If the editor is in HTML view then swicth back.
+			// If the editor is in HTML view then switch back.
 			$rte_active_html_button = $(this).find( '.active[data-cmd="html"]' );
 			$rte_textarea = $(this).siblings('textarea');
 			if ( 0 < $rte_active_html_button.length && 0 < $rte_textarea.length ){
@@ -934,5 +934,100 @@ jQuery(function($) {
 		$range_field.val( $number_field.val() );
 	});
 	
+	/**
+	 * 18 - Reset to Default *NEW
+	 */
+	$( document ).on( 'click', '.customize-control-default', function( e ){
+		var $refresh_button = $(this);
+		var $control_holder = $refresh_button.closest('.customize-control');
+		var $default_value = $refresh_button.attr('data-default');
+
+		var $field = $control_holder.find('input, select, textarea');
+		
+		if ( 'checkbox' == $field.eq(0).attr('type') ) {
+			
+			// Checkbox
+			if ( ! $default_value || '' == $default_value ) $field.attr( 'checked', false );
+			else $field.attr( 'checked', true );
+			$field.eq(0).change();
+		}
+		else {
+		//else if ( $field.eq(0).is('input') ) {
+			
+			// Input's, Textarea
+			$field.val( $default_value );
+			$field.eq(0).change();
+		}
+	});
+	
+	/**
+	 * 19 - History States *NEW
+	 */
+	/*
+	var $history = [];
+	var $pointer = 0;
+	
+	$( document ).on( 'change', '.customize-control select', function( e ){
+		
+		var $input = $(this);
+		var $control_holder = $input.closest('.customize-control');
+
+		if ( $history.length !== $pointer ) {
+			console.log('reset!');
+			$history = $history.splice( 0, $pointer );
+			$pointer = 0;
+		}
+		
+		$state = array();
+		$state['element'] = $control_holder;
+		$state['previous_val'] = $control_holder;
+
+		$history.push( [ $control_holder, $input.val() ] );
+		$pointer++;
+
+		console.log( 'history: ' + $history.length + ', Pointer: ' + $pointer );
+		output_state_log();
+	});
+
+	$( document ).on( 'click', '.customize-control-undo', function( e ){
+		
+		var $button = $(this);
+		var $control_holder = $button.closest('.customize-control');
+		var $document = $(document);
+
+		if ( ! $history ) {
+			console.log( 'No Undo States Yet!' );
+			return;
+		}
+
+		$pointer--;
+
+		var $current = $history[ $pointer ];
+		
+		if ( ! $current ) {
+			console.log( 'No More Undo States!' );
+			return;
+		}
+		
+		var $element = $current[0];
+		var $value = $current[1];
+
+		$element.find('select').val( $value );
+
+		console.log( 'history: ' + $history.length + ', Pointer: ' + $pointer );
+		output_state_log();
+	});
+
+	function output_state_log(){
+
+		$( $history ).each(function( index, element ){
+			
+			$marker = '';
+			if ( index == $pointer ) $marker = ' <-';
+
+			console.log( element[1] + $marker );
+		})
+	}
+	*/
 
 });

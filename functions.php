@@ -71,6 +71,7 @@ require_once get_template_directory() . '/core/meta/init.php';
  * Load Front-end helpers
  */
 require_once get_template_directory() . '/core/helpers/color.php';
+require_once get_template_directory() . '/core/helpers/controls.php';
 require_once get_template_directory() . '/core/helpers/custom-fonts.php';
 require_once get_template_directory() . '/core/helpers/extensions.php';
 require_once get_template_directory() . '/core/helpers/post.php';

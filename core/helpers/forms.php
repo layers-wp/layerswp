@@ -534,22 +534,42 @@ class Layers_Form_Elements {
 					'bottom' => __( 'Bottom' , 'layerswp' ),
 					'left' => __( 'Left' , 'layerswp' ),
 				); ?>
-
-				<div class="layers-row layers-input">
-					<?php foreach ( $fields as $key => $label ) { ?>
-						<div class="layers-column-flush layers-span-3">
-							<?php echo $this->input(
-								array(
-									'type' => 'number',
-									'name' => $input->name . '[' . $key . ']',
-									'id' => $input->id . '-' . $key,
-									'value' => ( isset( $input->value->$key ) ) ? $input->value->$key : NULL,
-									'class' => 'layers-hide-controls',
-								)
-							); ?>
-							<label for="<?php echo esc_attr( $input->id ) . '-' . $key; ?>"><?php echo esc_html( $label ); ?></label>
-						</div>
-					<?php } // foreach fields ?>
+				
+				<?php
+				// If caller only wants chosen few feilds e.g. only top & bottom.
+				if( ! empty( $input->fields ) ) {
+					$new_fields = array();
+					foreach ( $input->fields as $value) {
+						$new_fields[$value] = $fields[$value];
+					}
+					$fields = $new_fields;
+					
+					// If the filds chosen were incorrect then bail.
+					if ( empty( $fields ) ) return;
+				}
+				
+				// Calculate column span.
+				$field_span = 12 / count( $fields );
+				$holder_span = count( $fields ) * 3;
+				?>
+				
+				<div class="layers-column-flush layers-span-<?php echo esc_attr( $holder_span ); ?>">
+					<div class="layers-row layers-input layers-trbl-row">
+						<?php foreach ( $fields as $key => $label ) { ?>
+							<div class="layers-column-flush layers-span-<?php echo esc_attr( $field_span ); ?>">
+								<?php echo $this->input(
+									array(
+										'type' => 'number',
+										'name' => $input->name . '[' . $key . ']',
+										'id' => $input->id . '-' . $key,
+										'value' => ( isset( $input->value->$key ) ) ? $input->value->$key : NULL,
+										'class' => 'layers-hide-controls',
+									)
+								); ?>
+								<label for="<?php echo esc_attr( $input->id ) . '-' . $key; ?>"><?php echo esc_html( $label ); ?></label>
+							</div>
+						<?php } // foreach fields ?>
+					</div>
 				</div>
 
 			<?php break;

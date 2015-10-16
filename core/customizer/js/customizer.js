@@ -41,6 +41,8 @@
 		init: function () {
 
 			var $that = this;
+			
+			var $hash_record;
 
 			/**
 			 * 1 - Page Builder Macro
@@ -94,6 +96,7 @@
 			// Update the UI when customizer url changes
 			// eg when an <a> in the preview window is clicked
 			function layers_update_customizer_interface() {
+				
 				//Update the dropdown
 				if( $(layers_builder_pages_drop_down + ' option[value="' + wp.customize.previewer.previewUrl() + '"]').length ){
 					$(layers_builder_pages_drop_down).val( wp.customize.previewer.previewUrl() );
@@ -106,11 +109,12 @@
 
 				// Change the 'Preview Page' button
 				$('.customize-controls-layers-button-preview').attr('href', layers_get_customizer_url() );
-
+				
+				if ( $hash_record ) setTimeout( function() { window.location.hash = $hash_record }, 1000 );
 			}
 			layers_update_customizer_interface();
 
-			// Listen for event when customizer url chnages
+			// Listen for event when customizer url changes
 			function layers_handle_customizer_talkback() {
 				layers_add_history_state();
 				layers_update_customizer_interface();
@@ -155,12 +159,9 @@
 			}, false);
 
 			$(document).on( 'change', '.layers-customize-control-font select', function(){
-
 				// "Hi Mom"
-				$that = $(this);
-
+				$that        = $(this);
 				$description = $that.closest( '.layers-customize-control-font' ).find( '.customize-control-description' );
-
 				$description.find( 'a' ).attr( 'href' , $description.data( 'base-url' ) + $that.val() );
 			});
 
@@ -197,6 +198,49 @@
 				$( '.customize-control-widget_form.expanded' ).removeClass('layers-peek');
 			});
 			*/
+		
+			/**
+			 * Deep linking into Controls.
+			 */
+			
+			// Get the hash and go to it.
+			if ( window.location.hash ) {
+
+				var $hash = window.location.hash.split('#')[1];
+				var $element = $( '#' + $hash );
+				if ( $element.length ) {
+					$hash_record = $hash;
+					//$('#accordion-section-layers-pro-buttons').
+					$element
+						.children('.accordion-section-title')
+						.click();
+				}
+			}
+			
+			// Set the has to the current control id, so the user can refresh. (Accordion Title)
+			$(document).on( 'click', '.accordion-section-title', function(){
+				var $element = $(this);
+				var $parent_accordion = $element.parent('li.accordion-section');
+				
+				// Bail if this is not a control.
+				if ( ! $parent_accordion.length ) return;
+				
+				var $id = $parent_accordion.attr('id');
+				window.location.hash = $id;
+				$hash_record = $id;
+			});
+			// Set the has to the current control id, so the user can refresh. (Accordion Back-Button)
+			$(document).on( 'click', '.customize-section-back', function(){
+				var $element = $(this);
+				var $parent_accordion = $element.parents('li.accordion-section').eq(1);
+				
+				// Bail if this is not a control.
+				if ( ! $parent_accordion.length ) return;
+				
+				var $id = $parent_accordion.attr('id');
+				window.location.hash = $id;
+				$hash_record = $id;
+			});
 			
 		}
 	};

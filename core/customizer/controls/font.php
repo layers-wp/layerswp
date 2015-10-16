@@ -56,4 +56,4 @@ if( !class_exists( 'Layers_Customize_Font_Control' ) ) {
 			<?php
 		}
 	}
-} // !class_exists( 'Layers_Customize_Font_Control' )
+}

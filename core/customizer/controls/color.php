@@ -58,4 +58,4 @@ if( !class_exists( 'Layers_Customize_Color_Control' ) ) {
 		}
 
 	}
-} // !class_exists( 'Layers_Customize_Color_Control' )
+}

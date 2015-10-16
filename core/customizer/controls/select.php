@@ -59,4 +59,4 @@ if( !class_exists( 'Layers_Customize_Select_Control' ) ) {
 			<?php
 		}
 	}
-} // !class_exists( 'Layers_Customize_Select_Control' )
+}

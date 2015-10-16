@@ -54,4 +54,4 @@ if( !class_exists( 'Layers_Customize_Select_Image_Control' ) ) {
 			<?php
 		}
 	}
-} // !class_exists( 'Layers_Customize_Select_Image_Control' )
+}

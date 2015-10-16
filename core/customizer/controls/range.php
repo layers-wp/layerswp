@@ -65,4 +65,4 @@ if( !class_exists( 'Layers_Customize_Range_Control' ) ) {
 			<?php
 		}
 	}
-} // !class_exists( 'Layers_Customize_Range_Control' )
+}

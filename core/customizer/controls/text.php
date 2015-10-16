@@ -57,4 +57,4 @@ if( !class_exists( 'Layers_Customize_Text_Control' ) ) {
 			<?php
 		}
 	}
-} // !class_exists( 'Layers_Customize_Text_Control' )
+}

@@ -47,4 +47,4 @@ if( !class_exists( 'Layers_Customize_Checkbox_Control' ) ) {
 			<?php
 		}
 	}
-} // !class_exists( 'Layers_Customize_Checkbox_Control' )
+}

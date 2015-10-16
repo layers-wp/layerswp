@@ -34,4 +34,4 @@ if( !class_exists( 'Layers_Customize_Heading_Control' ) ) {
 			</div>
 		<?php }
 	}
-} // !class_exists( 'Layers_Customize_Radio_Control' )
+}

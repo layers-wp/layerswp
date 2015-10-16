@@ -166,6 +166,7 @@ class Layers_Customizer_Regsitrar {
 			// Set control priority to obey order of setup
 			$control_data[ 'priority' ] = $control_priority;
 			
+			// Add the default into the control data so it can be accessed if needed.
 			$control_data[ 'default' ] = isset( $control_data['default'] ) ? $control_data['default'] : NULL ;
 
 			// Add Setting
@@ -185,7 +186,7 @@ class Layers_Customizer_Regsitrar {
 				$this->customizer->add_control(
 					new Layers_Customize_Select_Image_Control(
 						$this->customizer,
-						$setting_key ,
+						$setting_key,
 						$control_data
 					)
 				);
@@ -195,7 +196,7 @@ class Layers_Customizer_Regsitrar {
 				$this->customizer->add_control(
 					new Layers_Customize_Select_Icon_Control(
 						$this->customizer,
-						$setting_key ,
+						$setting_key,
 						$control_data
 					)
 				);
@@ -205,7 +206,7 @@ class Layers_Customizer_Regsitrar {
 				$this->customizer->add_control(
 					new Layers_Customize_Seperator_Control(
 						$this->customizer,
-						$setting_key ,
+						$setting_key,
 						$control_data
 					)
 				);
@@ -215,7 +216,7 @@ class Layers_Customizer_Regsitrar {
 				$this->customizer->add_control(
 					new Layers_Customize_Heading_Control(
 						$this->customizer,
-						$setting_key ,
+						$setting_key,
 						$control_data
 					)
 				);
@@ -225,7 +226,7 @@ class Layers_Customizer_Regsitrar {
 				$this->customizer->add_control(
 					new Layers_Customize_Heading_Divider_Control(
 						$this->customizer,
-						$setting_key ,
+						$setting_key,
 						$control_data
 					)
 				);

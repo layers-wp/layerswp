@@ -39,12 +39,15 @@ if( !class_exists( 'Layers_Customize_TRBL_Control' ) ) {
 						<?php echo $form_elements->input(
 							array(
 								'type' => 'trbl-fields',
-								'label' => ( isset( $this->label ) ? $this->label : '' ),
 								'name' => '',
 								'id' => $this->id,
-   								'value' => stripslashes( $this->value() ),
+								'value' => array(
+									'top' => get_option( "{$this->id}-top" ),
+									'right' => get_option( "{$this->id}-right" ),
+									'bottom' => get_option( "{$this->id}-bottom" ),
+									'left' => get_option( "{$this->id}-left" ),
+								),
    								'fields' => $this->fields,
-								'data' => $this->get_customize_data(),
 							)
 						); ?>
 					</div>

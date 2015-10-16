@@ -67,6 +67,7 @@ class Layers_Customizer {
 			require_once get_template_directory() . $controls_dir . 'rte.php';
 			require_once get_template_directory() . $controls_dir . 'text.php';
 			require_once get_template_directory() . $controls_dir . 'textarea.php';
+			require_once get_template_directory() . $controls_dir . 'trbl.php';
 
 			// Enqueue Styles
 			add_action( 'customize_controls_print_footer_scripts', array( $this, 'admin_enqueue_scripts' ) );

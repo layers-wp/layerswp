@@ -506,7 +506,7 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
     p[class*='comment-form'] .required{
         color: #900;
     }
-    p[class*='comment-form'] input{
+    p[class*='comment-form']{
         margin-bottom: 15px;
     }
     .form-allowed-tags{

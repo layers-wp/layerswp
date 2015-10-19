@@ -73,8 +73,8 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
     .swiper-slide.image-left .copy-container,
     .swiper-slide.image-right .copy-container{
         top: 50%;
-        -webkit-transform: translateY(-50%);
-        transform: translateY(-50%);
+        -webkit-transform: translateY(-58%);
+        transform: translateY(-58%);
     }
     .swiper-slide .copy-container .section-title{
         margin-bottom: 0;
@@ -86,8 +86,8 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
     .swiper-slide.image-left .image-container,
     .swiper-slide.image-right .image-container{
         top: 50%;
-        -webkit-transform: translateY(-50%);
-        transform: translateY(-50%);
+        -webkit-transform: translateY(-58%);
+        transform: translateY(-58%);
     }
     .single-slide .swiper-slide{
         width: 100%;

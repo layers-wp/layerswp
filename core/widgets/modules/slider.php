@@ -167,7 +167,7 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 				$widget_container_class[] = 'auto-height';
 			}
 			$widget_container_class = implode( ' ', apply_filters( 'layers_slider_widget_container_class' , $widget_container_class ) );
-			
+
 			/**
 			 * Slider HTML
 			 */
@@ -265,13 +265,13 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 											<div class="copy-container">
 												<div class="section-title <?php echo ( isset( $slide['design']['fonts'][ 'size' ] ) ? $slide['design']['fonts'][ 'size' ] : '' ); ?>">
 													<?php if( $this->check_and_return( $slide , 'title' ) ) { ?>
-														<h3 class="heading"><?php echo $slide['title']; ?></h3>
+														<h3 data-swiper-parallax="-100" class="heading"><?php echo $slide['title']; ?></h3>
 													<?php } ?>
 													<?php if( $this->check_and_return( $slide , 'excerpt' ) ) { ?>
-														<div class="excerpt"><?php layers_the_content( $slide['excerpt'] ); ?></div>
+														<div data-swiper-parallax="-300" class="excerpt"><?php layers_the_content( $slide['excerpt'] ); ?></div>
 													<?php } ?>
 													<?php if( 'div' == $slide_wrapper_tag && $this->check_and_return( $slide, 'link' ) && $this->check_and_return( $slide , 'link_text' ) ) { ?>
-														<a href="<?php echo $slide['link']; ?>" class="button btn-<?php echo $this->check_and_return( $slide , 'design' , 'fonts' , 'size' ); ?>"><?php echo $slide['link_text']; ?></a>
+														<a data-swiper-parallax="-200" href="<?php echo $slide['link']; ?>" class="button btn-<?php echo $this->check_and_return( $slide , 'design' , 'fonts' , 'size' ); ?>"><?php echo $slide['link_text']; ?></a>
 													<?php } ?>
 												</div>
 											</div>
@@ -292,64 +292,79 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 			 		</div>
 				<?php } // if !empty( $widget->slides ) ?>
 		 	</section>
-			
+
 			<?php
 			/**
 			 * Slider javascript initialize
 			 */
-			if( 1 < count( $widget[ 'slides' ] ) ) : ?>
-	 			<?php $swiper_js_obj = str_replace( '-' , '_' , $this->get_field_id( 'slider' ) ); ?>
-			 	<script>
-					jQuery(function($){
+			$swiper_js_obj = str_replace( '-' , '_' , $this->get_field_id( 'slider' ) ); ?>
+			<script>
+				jQuery(function($){
 
-						var <?php echo $swiper_js_obj; ?> = $('#<?php echo $widget_id; ?>').swiper({
-							mode:'horizontal',
-							<?php if( '' == $slider_height_css ) { ?>
-								calculateHeight: true,
-							<?php } ?>
-							<?php if( isset( $widget['show_slider_dots'] ) && ( !empty( $widget[ 'slides' ] ) && 1 < count( $widget[ 'slides' ] ) ) ) { ?>
-								pagination: '.<?php echo $this->get_field_id( 'pages' ); ?>',
-							<?php } ?>
-							paginationClickable: true,
-							watchActiveIndex: true
-							<?php if( 1 < count( $widget[ 'slides' ] ) ) { ?>
-								,loop: true
-							<?php } ?>
-							<?php if( isset( $widget['autoplay_slides'] ) && isset( $widget['slide_time'] ) && is_numeric( $widget['slide_time'] ) ) {?>
-								, autoplay: <?php echo ($widget['slide_time']*1000); ?>
-							<?php }?>
-							<?php if( isset( $wp_customize ) && $this->check_and_return( $widget, 'focus_slide' ) ) { ?>
-								,initialSlide: <?php echo $this->check_and_return( $widget, 'focus_slide' ); ?>
-							<?php } ?>
-						});
-
+					var <?php echo $swiper_js_obj; ?> = $('#<?php echo $widget_id; ?>').swiper({
+						mode:'horizontal'
+						,bulletClass: 'swiper-pagination-switch'
+						,bulletActiveClass: 'swiper-active-switch swiper-visible-switch'
+						,paginationClickable: true
+						,watchActiveIndex: true
+						<?php if( 'fade' ==  $this->check_and_return( $widget, 'animation_type' ) ) { ?>
+							,effect: '<?php echo $widget['animation_type']; ?>'
+						<?php } else if( 'parallax' ==  $this->check_and_return( $widget, 'animation_type' ) ) { ?>
+							,speed: 700
+							,parallax: true
+						<?php } ?>
+						<?php if( isset( $widget['show_slider_dots'] ) && ( !empty( $widget[ 'slides' ] ) && 1 < count( $widget[ 'slides' ] ) ) ) { ?>
+							,pagination: '.<?php echo $this->get_field_id( 'pages' ); ?>'
+						<?php } ?>
 						<?php if( 1 < count( $widget[ 'slides' ] ) ) { ?>
-							// Allow keyboard control
-							<?php echo $swiper_js_obj; ?>.enableKeyboardControl();
-						<?php } // if > 1 slide ?>
+							,loop: true
+						<?php } else { ?>
+							,loop: false
+							,noSwiping: true
+							,allowSwipeToPrev: false
+							,allowSwipeToNext: false
+						<?php } ?>
+						<?php if( isset( $widget['autoplay_slides'] ) && isset( $widget['slide_time'] ) && is_numeric( $widget['slide_time'] ) ) {?>
+							, autoplay: <?php echo ($widget['slide_time']*1000); ?>
+						<?php }?>
+						<?php if( isset( $wp_customize ) && $this->check_and_return( $widget, 'focus_slide' ) ) { ?>
+							,initialSlide: <?php echo $this->check_and_return( $widget, 'focus_slide' ); ?>
+						<?php } ?>
+					});
 
-						$('#<?php echo $widget_id; ?>').find('.arrows a').on( 'click' , function(e){
-							e.preventDefault();
+					<?php if( 1 < count( $widget[ 'slides' ] ) ) { ?>
+						// Allow keyboard control
+						<?php echo $swiper_js_obj; ?>.enableKeyboardControl();
+					<?php } // if > 1 slide ?>
 
-							// "Hi Mom"
-							$that = $(this);
-
-							if( $that.hasClass( 'swiper-pagination-switch' ) ){ // Anchors
-								<?php echo $swiper_js_obj; ?>.swipeTo( $that.index() );
-							} else if( $that.hasClass( 'l-left-arrow' ) ){ // Previous
-								<?php echo $swiper_js_obj; ?>.swipePrev();
-							} else if( $that.hasClass( 'l-right-arrow' ) ){ // Next
-								<?php echo $swiper_js_obj; ?>.swipeNext();
-							}
-
-							return false;
+					<?php if( TRUE == $this->check_and_return( $widget , 'autoheight_slides' ) ) { ?>
+						layers_swiper_resize( <?php echo $swiper_js_obj; ?> );
+						$(window).resize(function(){
+							layers_swiper_resize( <?php echo $swiper_js_obj; ?> );
 						});
+					<?php } ?>
 
-						<?php echo $swiper_js_obj; ?>.init();
-					})
-			 	</script>
-		 	<?php endif; ?>
-		 	
+					$('#<?php echo $widget_id; ?>').find('.arrows a').on( 'click' , function(e){
+						e.preventDefault();
+
+						// "Hi Mom"
+						$that = $(this);
+
+						if( $that.hasClass( 'swiper-pagination-switch' ) ){ // Anchors
+							<?php echo $swiper_js_obj; ?>.slideTo( $that.index() );
+						} else if( $that.hasClass( 'l-left-arrow' ) ){ // Previous
+							<?php echo $swiper_js_obj; ?>.slidePrev();
+						} else if( $that.hasClass( 'l-right-arrow' ) ){ // Next
+							<?php echo $swiper_js_obj; ?>.slideNext();
+						}
+
+						return false;
+					});
+
+					<?php echo $swiper_js_obj; ?>.init();
+				})
+		 	</script>
+
 		<?php }
 
 		/**
@@ -432,13 +447,26 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 							'value' => ( isset(  $widget['show_slider_dots'] ) ) ?  $widget['show_slider_dots'] : NULL,
 							'label' => __( 'Show Slider Dots' , 'layerswp' )
 						),
-								'slider_arrow_color' => array(
-									'type' => 'color',
-									'name' => $this->get_field_name( 'slider_arrow_color' ) ,
-									'id' => $this->get_field_id( 'slider_arrow_color' ) ,
-									'value' => ( isset( $widget['slider_arrow_color'] ) ) ? $widget['slider_arrow_color'] : NULL,
-									'label' => __( 'Slider Controls Color' , 'layers-woocommerce' )
-								),
+						'slider_arrow_color' => array(
+							'type' => 'color',
+							'name' => $this->get_field_name( 'slider_arrow_color' ) ,
+							'id' => $this->get_field_id( 'slider_arrow_color' ) ,
+							'value' => ( isset( $widget['slider_arrow_color'] ) ) ? $widget['slider_arrow_color'] : NULL,
+							'label' => __( 'Slider Controls Color' , 'layers-woocommerce' )
+						),
+						'animation_type' => array(
+							'type' => 'select',
+							'name' => $this->get_field_name( 'animation_type' ) ,
+							'id' => $this->get_field_id( 'animation_type' ) ,
+							'value' => ( isset(  $widget['animation_type'] ) ) ?  $widget['animation_type'] : 'slide',
+							'label' => __( 'Animation Type' , 'layerswp' ),
+							'options' => array(
+								'slide' => __( 'Slide', 'layers_wp' ),
+								'fade' => __( 'Fade', 'layers_wp' ),
+								'parallax' => __( 'Parallax', 'layers_wp' ),
+							)
+
+						),
 						'autoplay_slides' => array(
 							'type' => 'checkbox',
 							'name' => $this->get_field_name( 'autoplay_slides' ) ,

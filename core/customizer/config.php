@@ -191,7 +191,7 @@ class Layers_Customizer_Config {
 				'title' =>__( 'CSS' , 'layerswp' ),
 			),
 			'header-layout' => array(
-				'title' =>__( 'Layout' , 'layerswp' ),
+				'title' =>__( 'Styling' , 'layerswp' ),
 				'panel' => 'header',
 			),
 			'header-scripts' => array(
@@ -281,7 +281,7 @@ class Layers_Customizer_Config {
 			),
 			'header-menu-layout' => array(
 				'type'     => 'layers-select-icons',
-				'label'    => __( 'Logo & Menu Position' , 'layerswp' ),
+				'label'    => __( 'Header Arrangement' , 'layerswp' ),
 				'default' => 'header-logo-left',
 				'choices' => array(
 					'header-logo-left' => __( 'Logo Left' , 'layerswp' ),
@@ -291,12 +291,9 @@ class Layers_Customizer_Config {
 					'header-logo-center' => __( 'Logo Center' , 'layerswp' ),
 				),
 			),
-			'header-layout-break-1' => array(
-				'type'     => 'layers-seperator',
-			),
 			'header-position-heading' => array(
-				'type'  => 'layers-heading',
-				'label'    => __( 'Header Style' , 'layerswp' ),
+				'type'  => 'layers-heading-divider',
+				'label'    => __( 'Features' , 'layerswp' ),
 			),
 			'header-sticky' => array(
 				'type'		=> 'layers-checkbox',
@@ -308,7 +305,7 @@ class Layers_Customizer_Config {
 				'type'     => 'layers-checkbox',
 				'label'    => __( 'Transparent Overlay' , 'layerswp' ),
 				'default'	=> FALSE,
-			)
+			),
 		);
 
 		// Site Settings -> Sidebars

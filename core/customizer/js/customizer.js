@@ -42,7 +42,7 @@
 
 			var $that = this;
 			
-			var $hash_record;
+			var $hash_record = '';
 
 			/**
 			 * 1 - Page Builder Macro
@@ -202,8 +202,10 @@
 			/**
 			 * Deep linking into Controls.
 			 */
+			 
+			var enable_deep_linking = false;
 			
-			// Get the hash and go to it.
+			// Open item if hash is set.
 			if ( window.location.hash ) {
 
 				var $hash = window.location.hash.split('#')[1];
@@ -214,33 +216,74 @@
 					$element
 						.children('.accordion-section-title')
 						.click();
+					
+					$element
+						.children('.widget')
+						.find('.widget-title')
+						.click();
 				}
 			}
 			
-			// Set the has to the current control id, so the user can refresh. (Accordion Title)
-			$(document).on( 'click', '.accordion-section-title', function(){
-				var $element = $(this);
-				var $parent_accordion = $element.parent('li.accordion-section');
+			if ( enable_deep_linking ) {
 				
-				// Bail if this is not a control.
-				if ( ! $parent_accordion.length ) return;
+				// Accordion Open (set the hash)
+				$(document).on( 'click', '.accordion-section-title', function(){
+					if ( !enable_deep_linking ) return false;
+					
+					var $element = $(this);
+					var $parent_accordion = $element.parent('li.accordion-section');
+					
+					// Bail if this is not a control.
+					if ( ! $parent_accordion.length ) return;
+					
+					var $id = $parent_accordion.attr('id');
+					window.location.hash = $id;
+					$hash_record = $id;
+				});
+				// Section Back-Button (set the hash)
+				$(document).on( 'click', '.customize-section-back', function(){
+					var $element = $(this);
+					var $parent_accordion = $element.parents('li.accordion-section').eq(1);
+					
+					// Bail if this is not a control.
+					if ( ! $parent_accordion.length ) return;
+					
+					var $id = $parent_accordion.attr('id');
+					window.location.hash = $id;
+					$hash_record = $id;
+				});
+				// Panel Back-Button (set the hash)
+				$(document).on( 'click', '.customize-panel-back', function(){
+					window.location.hash = '';
+					$hash_record = '';
+				});
 				
-				var $id = $parent_accordion.attr('id');
-				window.location.hash = $id;
-				$hash_record = $id;
-			});
-			// Set the has to the current control id, so the user can refresh. (Accordion Back-Button)
-			$(document).on( 'click', '.customize-section-back', function(){
-				var $element = $(this);
-				var $parent_accordion = $element.parents('li.accordion-section').eq(1);
+				// Widget Open (set the hash)
+				$(document).on( 'click', '.widget-title', function(){
+					var $element = $(this);
+					var $parent_accordion = $element.parents('li.customize-control-widget_form');
+					
+					// Bail if this is not a control.
+					if ( ! $parent_accordion.length ) return;
+					
+					var $id = $parent_accordion.attr('id');
+					window.location.hash = $id;
+					$hash_record = $id;
+				});
+				// Widget Close (set the hash)
+				$(document).on( 'click', '.widget-control-close', function(){
+					var $element = $(this);
+					var $parent_accordion = $element.parents('li.accordion-section').eq(0);
+					
+					// Bail if this is not a control.
+					if ( ! $parent_accordion.length ) return;
+					
+					var $id = $parent_accordion.attr('id');
+					window.location.hash = $id;
+					$hash_record = $id;
+				});
 				
-				// Bail if this is not a control.
-				if ( ! $parent_accordion.length ) return;
-				
-				var $id = $parent_accordion.attr('id');
-				window.location.hash = $id;
-				$hash_record = $id;
-			});
+			}
 			
 		}
 	};

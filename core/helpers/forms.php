@@ -560,32 +560,29 @@ class Layers_Form_Elements {
 				
 				// Calculate column span.
 				$field_span = ( 12 / count( $fields ) );
-				$holder_span = ( count( $fields ) * 3 );
 				?>
-				<div class="layers-column-flush layers-span-<?php echo esc_attr( $holder_span ); ?>">
-					<div class="layers-row layers-input layers-trbl-row">
+				<div class="layers-row layers-input layers-trbl-row">
+				
+					<?php foreach ( $fields as $key => $label ) : ?>
+						<div class="layers-column-flush layers-span-<?php echo esc_attr( $field_span ); ?>">
+							<?php echo $this->input(
+								array(
+									'type' => 'number',
+									'name' => ( isset( $input->name ) ) ? "{$input->name}[$key]" : '',
+									'id' => "{$input->id}-{$key}",
+									'value' => ( isset( $input->value->$key ) ) ? $input->value->$key : NULL,
+									'class' => 'layers-hide-controls',
+									'data' => array(
+										'customize-setting-link' => "{$input->id}-{$key}",
+									),
+								)
+							); ?>
+							<label for="<?php echo esc_attr( $input->id ) . '-' . $key; ?>"><?php echo esc_html( $label ); ?></label>
+						</div>
+					<?php endforeach; ?>
 					
-						<?php foreach ( $fields as $key => $label ) : ?>
-							<div class="layers-column-flush layers-span-<?php echo esc_attr( $field_span ); ?>">
-								<?php echo $this->input(
-									array(
-										'type' => 'number',
-										'name' => ( isset( $input->name ) ) ? "{$input->name}[$key]" : '',
-										'id' => "{$input->id}-{$key}",
-										'value' => ( isset( $input->value->$key ) ) ? $input->value->$key : NULL,
-										'class' => 'layers-hide-controls',
-										'data' => array(
-											'customize-setting-link' => "{$input->id}-{$key}",
-										),
-									)
-								); ?>
-								<label for="<?php echo esc_attr( $input->id ) . '-' . $key; ?>"><?php echo esc_html( $label ); ?></label>
-							</div>
-						<?php endforeach; ?>
-						
-					</div>
 				</div>
-
+				
 			<?php break;
 			/**
 			* Free form HTML

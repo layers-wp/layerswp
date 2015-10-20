@@ -30,6 +30,8 @@ if( !class_exists( 'Layers_Customize_Control' ) ) {
 		public $placeholder = '';
 		
 		public $default = NULL;
+		
+		public $colspan;
 
 		/**
 		* Render content must be overwrittedn by etending class as this renders the control.

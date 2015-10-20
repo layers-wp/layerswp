@@ -33,7 +33,7 @@ if( !class_exists( 'Layers_Customize_Number_Control' ) ) {
 						<label class="layers-form-row"><?php echo $this->subtitle; ?></label>
 					<?php endif; ?>
 
-					<div class="layers-form-item">
+					<div class="layers-form-item <?php echo ( $this->colspan ) ? esc_attr( "layers-column-flush layers-span-{$this->colspan}" ) : '' ?>">
 						<?php echo $form_elements->input(
 							array(
 								'type' => 'number',

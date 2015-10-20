@@ -35,7 +35,7 @@ if( !class_exists( 'Layers_Customize_Select_Control' ) ) {
 						<label class="layers-form-row"><?php echo $this->subtitle; ?></label>
 					<?php endif; ?>
 
-					<div class="layers-select-wrapper layers-form-item">
+					<div class="layers-form-item layers-select-wrapper <?php echo ( $this->colspan ) ? esc_attr( "layers-column-flush layers-span-{$this->colspan}" ) : '' ?>">
 						<?php echo $form_elements->input(
 							array(
 								'type' => 'select',

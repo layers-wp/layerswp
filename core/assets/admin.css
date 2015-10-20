@@ -1354,8 +1354,20 @@ div[id*='layers-widget'] .spinner{
         margin-bottom: 0;
     }
     .layers-form-item.layers-form-item-advanced {
-        background-color: #ECF5FB;
+        background-color: #FDFDFD;
     }
+    /*
+    .layers-form-item.layers-form-item-advanced:after {
+        content: "";
+        display: block;
+        position: absolute;
+        right: 0;
+        background-color: #B7B7B7;
+        height: 100%;
+        top: 0;
+        width: 3px;
+    }
+    */
     .layers-form-item.layers-form-item-temp-disable *{
         opacity: .2;
     }

@@ -539,12 +539,22 @@ class Layers_Form_Elements {
 				// If caller only wants chosen few feilds e.g. only top & bottom.
 				if( ! empty( $input->fields ) ) {
 					$new_fields = array();
-					foreach ( $input->fields as $value) {
-						$new_fields[$value] = $fields[$value];
+					foreach ( $input->fields as $key => $value ) {
+						
+						if ( is_numeric( $key ) ) {
+							// Array element type: [ 'bottom' ]
+							if ( isset( $fields[$value] ) ){ // Make sure that what the user spcified is avalid field of TRBL.
+								$new_fields[$value] = $fields[$value];
+							}
+						}
+						else {
+							// Array element type: [ 'bottom' => 'Bottom (px)' ]
+							$new_fields[$key] = $value;
+						}
 					}
 					$fields = $new_fields;
 					
-					// If the filds chosen were incorrect then bail.
+					// If the fields chosen were incorrect then bail.
 					if ( empty( $fields ) ) return;
 				}
 				

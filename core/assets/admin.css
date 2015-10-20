@@ -1275,11 +1275,11 @@ div[id*='layers-widget'] .spinner{
         position: absolute;
         top: 100%;
         width: 100%;
-        margin: 0;
+        margin: 6px 0 0;
         color: #AEAEAE;
         font-size: 10px;
         text-align: center;
-        line-height: 22px;
+        line-height: 12px;
         font-weight: normal;
     }
     .layers-row.layers-trbl-row .layers-column-flush input {

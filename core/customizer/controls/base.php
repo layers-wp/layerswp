@@ -78,6 +78,7 @@ if( !class_exists( 'Layers_Customize_Control' ) ) {
 		}
 		
 		public function render_history_actions() {
+			return false;
 			?>
 			<div class="customize-control-history">
 				<!-- <a href="#" class="customize-control-undo fa fa-undo"></a> -->

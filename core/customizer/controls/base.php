@@ -66,7 +66,6 @@ if( !class_exists( 'Layers_Customize_Control' ) ) {
 		*
 		* @return  array 	fomratted as the form input needs them;
 		*/
-
 		public function get_customize_data() {
 
 			$link = explode( '="', $this->get_link() );
@@ -77,6 +76,9 @@ if( !class_exists( 'Layers_Customize_Control' ) ) {
 			return $link_array;
 		}
 		
+		/**
+		* Render the Reset-to-Default and possible other history buttons.
+		*/
 		public function render_history_actions() {
 			return false;
 			?>

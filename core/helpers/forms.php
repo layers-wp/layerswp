@@ -536,7 +536,9 @@ class Layers_Form_Elements {
 				); ?>
 				
 				<?php
-				// If caller only wants chosen few feilds e.g. only top & bottom.
+				// If caller only wants chosen few fields can customise the labels e.g.
+				// (1) 'fields' => array( 'top' => 'Top (px)' ) one field 'top' with cusotmized label 'Top (px)'.
+				// (2) 'fields' => array( 'top' ) one field 'top' with standard label 'Top'.
 				if( ! empty( $input->fields ) ) {
 					$new_fields = array();
 					foreach ( $input->fields as $key => $value ) {
@@ -558,7 +560,7 @@ class Layers_Form_Elements {
 					if ( empty( $fields ) ) return;
 				}
 				
-				// Calculate column span.
+				// Calculate column span based on the number of resulting fields.
 				$field_span = ( 12 / count( $fields ) );
 				?>
 				<div class="layers-row layers-input layers-trbl-row">

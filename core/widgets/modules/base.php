@@ -324,6 +324,7 @@ if( !class_exists( 'Layers_Widget' ) ) {
 		 * @param  string   $type            Unique singular slug for the type of repeater. Must just be unique to this widget e.g. button (not buttons)
 		 * @param  integer  $count           How many pre-populated elements do you want to start with.
 		 * @param  array    $defaults_array  A custom associative array that will become the defaults for each element.
+		 * @param  array    $defaults_array  ... (can use any number of consecutive defaults arrays)
 		 */
 		function register_repeater_defaults( $type, $count = 3, $defaults_array = array() ) {
 			

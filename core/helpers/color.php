@@ -176,6 +176,13 @@ if ( ! function_exists( 'layers_get_light_or_dark' ) ) {
 	}
 }
 
+/**
+ * Takes compares one color to another and tells if is lighter
+ *
+ * @param  string $color            hex color string
+ * @param  string $compare_to_color hex color string
+ * @return boolean
+ */
 if ( ! function_exists( 'layers_is_lighter' ) ) {
 	function layers_is_lighter( $color, $compare_to_color ) {
 		
@@ -186,6 +193,13 @@ if ( ! function_exists( 'layers_is_lighter' ) ) {
 	}
 }
 
+/**
+ * Takes compares one color to another and tells if is darker
+ *
+ * @param  string $color            hex color string
+ * @param  string $compare_to_color hex color string
+ * @return boolean
+ */
 if ( ! function_exists( 'layers_is_darker' ) ) {
 	function layers_is_darker( $color, $factor = 50 ) {
 
@@ -196,6 +210,12 @@ if ( ! function_exists( 'layers_is_darker' ) ) {
 	}
 }
 
+/**
+ * Takes a color and returns it's brigtness between 0 and 255.
+ *
+ * @param  string $color hex color string
+ * @return string        brigtness 0-255
+ */
 if ( ! function_exists( 'layers_get_brightness' ) ) {
 	function layers_get_brightness( $color ) {
 		

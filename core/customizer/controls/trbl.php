@@ -1,7 +1,7 @@
 <?php  /**
- * Number
+ * TRBL Field (Top, Right, Bottm, Left)
  *
- * This file is used to register and display the custom Layers Number
+ * This file is used to register and display the custom Layers TRBL field
  *
  * @package Layers
  * @since Layers 1.0.0

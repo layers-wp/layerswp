@@ -203,7 +203,7 @@
 			 * Deep linking into Controls.
 			 */
 			 
-			var enable_deep_linking = true;
+			var enable_deep_linking = false;
 			
 			// Open item if hash is set.
 			if ( window.location.hash ) {

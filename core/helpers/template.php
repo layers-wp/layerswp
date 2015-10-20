@@ -1002,19 +1002,6 @@ if( !function_exists( 'layers_inline_styles' ) ) {
 					$css.= 'background-image: url(\'' . $image[0] .'\');';
 				}
 			break;
-			
-			case 'font' :
-
-				// Set the background array
-				$font_args = $args['font'];
-
-				if( isset( $font_args['color'] ) && '' != $font_args['color'] ){
-					$css .= 'color: ' . $font_args['color'] . '; ';
-				}
-				if( isset( $font_args['shadow'] ) && '' != $font_args['shadow'] ){
-					$css .= 'text-shadow: ' . $font_args['shadow'] . '; ';
-				}
-			break;
 
 			case 'button' :
 

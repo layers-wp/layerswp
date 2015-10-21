@@ -121,7 +121,6 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
     .swiper-slide .copy-container{
         float: none !important;
         width: auto !important;
-        text-align: center !important;
         -webkit-transform: translateY(0) !important;
         transform: translateY(0) !important;
     }
@@ -136,31 +135,25 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
     /*---------------------------*/
     /*- SLIDER NAVIGATION -------*/
     .swiper-container .pages{
-        bottom: 16px;
+        bottom: 6px;
         opacity: 1;
     }
     .swiper-container .arrows{
         display: none;
     }
-
+    
     /*---------------------------*/
-    /*- SINGLE SLIDES -----------*/
-    .single-slide{
-        height: auto !important;
+    /*- AUTO-HEIGHT SLIDES ------*/
+    .auto-height .swiper-slide .container{
+        padding-top: 12% !important;
+        padding-bottom: 12% !important;
     }
-    .single-slide .overlay{
-        padding-top: 40px;
-        padding-bottom: 40px;
-    }
-    .single-slide .swiper-slide .container,
-    .single-slide .swiper-slide .copy-container,
-    .single-slide .swiper-slide .image-container{
-        top: auto;
-        -webkit-transform: translateY(0);
-        transform: translateY(0);
-    }
-    .single-slide .swiper-slide .copy-container + .image-container{
-        margin-top: 40px;
+    .auto-height .swiper-slide.image-left .container .image-container,
+    .auto-height .swiper-slide.image-right .container .image-container,
+    .auto-height .swiper-slide.image-left .container .copy-container,
+    .auto-height .swiper-slide.image-right .container .copy-container {
+        padding-top: 0 !important;
+        padding-bottom: 0 !important;
     }
 
 

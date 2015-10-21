@@ -1,28 +1,33 @@
 # Layers Changelog
 
 =======
-##1.2.X
-### xx October 2015
+##1.2.6
+### ?? ??? 2015
 
-* **Enhancement** - Added Range `layers-range` Customizer control.
-* **Enhancement** - Added Heading Divider `layers-heading-divider` Customizer control.
-* **Enhancement** - Added TRBL (Top, Right, Bottom, Left for Padding and Margin) `layers-trbl-field` Customizer control.
-* **Enhancement** - Added Customizer state-remembering to the Panels, Sections and Widgets so position gets remembered across page-refresh (added in off-state till further testing).
-* **Enhancement** - Added Reset-to-Default button to the controls (added in off-state till further testing).
-* **Enhancement** - Made Font-Awesome available to the theme front-end - `registered` but not `enqueued` so plugin devs can enqueue it by it's hook `layers-font-awesome`.
-* **Enhancement** - Added framework method for doing Repeated Content in the Widgets using the following helper functions `register_repeater_defaults()`, `repeater()`, `get_layers_field_name()`, `get_layers_field_id()`. (see extension-boilerplate - coming soon - and the Layers Widget help docs for more information)
-* **Enhancement** - Added new method to add fields or field-groups to the Layers Design-Bar. (see Design-Bar help docs for more information)
-* **Enhancement** - Added animations to make deleting items in the widgets (with repeater items) more explanatory and friendly. e.g. Columns and  Slides.
-* **Enhancement** - Added custom jquery-easing to use with Widgets on front-end - `layersEaseInOut`.
-* **Tweak** - Changed Customizer headings: 'Layout' becomes 'Styling', 'Logo & Menu Position' becomes 'Header Arrangement', 'Header Style' becomes 'Features'.
-* **Tweak** - Changed existing Layers Widgets to use the new method to add custom fields or field-groups to the design-bar. (see content, post, contact widgets for example. slider was left using old method to test backward-compatibility)
-* **Tweak** - Added classnames to the Layers widgets - `layers-contact-widget`, `layers-content-widget`, `layers-post-widget`, `layers-slider-widget`.
-* **Tweak** - Customizer controls take 'colspan' arg that controls it's column span eg 3 will span 3 of 12 column grid.
-* **Tweak** - TRBL Customizer control can be limited to use just 'top' and 'bottom' by using the 'fields' setting and passing args array of required fields.
-* **Tweak** - To set customizer controls classnames use: `class` to add to the the `container` classname, and `input_class` to add to the `input` classname.
-* **Tweak** - `layers_inline_styles()` now outputs cleaner more human-readable CSS block.
-* **Fix** - Auto padding on top of first widget when is unique widgets like slider now also takes into account the custom padding added by user there to start with.
-
+* **Tweak** - Changed "Preview this Page" to "View this Page" *DP*
+* **Tweak** - Changed Customizer headings: 'Layout' becomes 'Styling', 'Logo & Menu Position' becomes 'Header Arrangement', 'Header Style' becomes 'Features'. *SOB*
+* **Tweak** - Changed existing Layers Widgets to use the new method to add custom fields or field-groups to the design-bar. (see content, post, contact widgets for example. slider was left using old method to test backward-compatibility) *SOB*
+* **Tweak** - Added classnames to the Layers widgets - `layers-contact-widget`, `layers-content-widget`, `layers-post-widget`, `layers-slider-widget`. *SOB*
+* **Tweak** - Customizer controls take 'colspan' arg that controls it's column span eg 3 will span 3 of 12 column grid. *SOB*
+* **Tweak** - TRBL Customizer control can be limited to use just 'top' and 'bottom' by using the 'fields' setting and passing args array of required fields. *SOB*
+* **Tweak** - To set customizer controls classnames use: `class` to add to the the `container` classname, and `input_class` to add to the `input` classname. *SOB*
+* **Tweak** - `layers_inline_styles()` now outputs cleaner more human-readable CSS block. *SOB*
+* **Fix** - Auto-height slide no longer breaks when you only have one slide. *DP*
+* **Fix** - Fixed "Powered by Envato" typo in marketplace. *MP*
+* **Fix** - Auto padding on top of first widget when is unique widgets like slider now also takes into account the custom padding added by user there to start with. *SOB*
+* **Enhancement** - All WooCommerce widgets no longer look broken when placed in the footer widget areas. *DP*
+* **Enhancement** - Cart quantity color is now dynamic using rgba values. *DP*
+* **Enhancement** - General WooCommerce widget clean up. *DP*
+* **Enhancement** - Added Range `layers-range` Customizer control. *SOB*
+* **Enhancement** - Added Heading Divider `layers-heading-divider` Customizer control. *SOB*
+* **Enhancement** - Added TRBL (Top, Right, Bottom, Left for Padding and Margin) `layers-trbl-field` Customizer control. *SOB*
+* **Enhancement** - Added Customizer state-remembering to the Panels, Sections and Widgets so position gets remembered across page-refresh (added in off-state till further testing). *SOB*
+* **Enhancement** - Added Reset-to-Default button to the controls (added in off-state till further testing). *SOB*
+* **Enhancement** - Made Font-Awesome available to the theme front-end - `registered` but not `enqueued` so plugin devs can enqueue it by it's hook `layers-font-awesome`. *SOB*
+* **Enhancement** - Added framework method for doing Repeated Content in the Widgets using the following helper functions `register_repeater_defaults()`, `repeater()`, `get_layers_field_name()`, `get_layers_field_id()`. (see extension-boilerplate - coming soon - and the Layers Widget help docs for more information) *SOB*
+* **Enhancement** - Added new method to add fields or field-groups to the Layers Design-Bar. (see Design-Bar help docs for more information) *SOB*
+* **Enhancement** - Added animations to make deleting items in the widgets (with repeater items) more explanatory and friendly. e.g. Columns and  Slides. *SOB*
+* **Enhancement** - Added custom jquery-easing to use with Widgets on front-end - `layersEaseInOut`. *SOB*
 
 =======
 ##1.2.5

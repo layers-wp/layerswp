@@ -120,7 +120,7 @@ class Layers_Options_Panel {
 					<h2 class="layers-heading" id="layers-options-header">
 						<?php echo esc_html( $title ); ?>
 						<span class="layers-small">
-							<?php _e( sprintf( 'Powerd by <a href="%s">Envato</a>', 'http://www.themeforest.net/?ref=obox' ), 'layerswp' ); ?>
+							<?php _e( sprintf( 'Powered by <a href="%s">Envato</a>', 'http://www.themeforest.net/?ref=obox' ), 'layerswp' ); ?>
 						</span>
 					</h2>
 				<?php } ?>

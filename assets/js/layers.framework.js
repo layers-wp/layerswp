@@ -12,6 +12,7 @@
  * 4 - Sticky Header
  * 5 - FitVids
  * 6 - Layers Custom Easing
+ * 7 - Swiper Height Matching Functions
  *
  * Author: Obox Themes
  * Author URI: http://www.oboxthemes.com/
@@ -163,7 +164,7 @@ jQuery(function($) {
     */
 	
 	$(".media-image, .thumbnail-media, .widget.slide .image-container").fitVids();
-    
+
     /**
     * 6 - Layers Custom Easing
     *
@@ -176,3 +177,24 @@ jQuery(function($) {
     }});
 
 }(jQuery));
+
+/**
+* 7 - Swiper Height Matching Functions
+*
+*/
+
+function layers_swiper_resize( s ){
+
+    var height = 0;
+    var slide_height = 0;
+
+    s.slides.each(function( key, slide ){
+        var slide_height = jQuery(slide).find( '.container' ).outerHeight();
+
+        if( height < slide_height ){
+            height = slide_height;
+        }
+    });
+
+    s.container.css({height: height+'px'});
+}

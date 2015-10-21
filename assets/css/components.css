@@ -42,10 +42,9 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
     /*---------------------------*/
     /*- SLIDER CONTENT ----------*/
-    .swiper-container.container{
-        padding: 0;
-        max-width: 1000px;
-        transform-style: preserve-3d;
+    .swiper-slide img{
+        display: block;
+        margin: auto;
     }
     .swiper-slide .overlay{
         height: 100%;
@@ -53,7 +52,13 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
     .swiper-slide .overlay.darken{
         background-color: rgba(0, 0, 0, 0.2);
     }
+    .swiper-container.container{
+        padding: 0;
+        max-width: 1000px;
+        transform-style: preserve-3d;
+    }
     .swiper-slide .container{
+        padding: 0;
         position: relative;
         top: 50%;
         -webkit-transform: translateY(-50%);
@@ -65,7 +70,7 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
         transform: none;
     }
     .swiper-slide .copy-container{
-        max-width: 1040px;
+        max-width: 1000px;
         margin: auto;
         padding: 0;
         position: relative;
@@ -74,9 +79,6 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
     .swiper-slide.image-right .copy-container{
         -webkit-transform: translateY(-50%);
         transform: translateY(-50%);
-    }
-    .swiper-slide .copy-container .section-title{
-        margin-bottom: 0;
     }
     .swiper-slide .image-container{
         position: relative;
@@ -90,37 +92,40 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
     .single-slide .swiper-slide{
         width: 100%;
     }
+    .slide:not(.single-slide) .swiper-slide{
+        cursor: -webkit-grab;
+        cursor: -moz-grab;
+    }
+    .swiper-slide .section-title{
+        margin-bottom: 0;
+    }
     .swiper-slide .section-title.large .excerpt{
         max-width: none;
     }
     .swiper-slide.image-top.text-center .excerpt{
         max-width: 745px;
     }
-    .slide:not(.single-slide) .swiper-slide{
-        cursor: -webkit-grab;
-        cursor: -moz-grab;
-    }
 
     /*---------------------------*/
     /*- AUTO HEIGHT -------------*/
     .auto-height .swiper-slide .container{
-        padding-top: 4%;
-        padding-bottom: 4%;
+        padding-top: 60px;
+        padding-bottom: 60px;
     }
-    .auto-height .swiper-slide.image-left .container,
-    .auto-height .swiper-slide.image-right .container {
-        padding-top: 0%;
-        padding-bottom: 0%;
+    .auto-height .image-left .container,
+    .auto-height .image-right .container{
+        padding-top: 0;
+        padding-bottom: 0;
     }
-    .auto-height .swiper-slide.image-left .container .copy-container,
-    .auto-height .swiper-slide.image-right .container .copy-container {
-        padding-top: 8%;
-        padding-bottom: 8%;
+    .auto-height .image-left .copy-container,
+    .auto-height .image-right .copy-container{
+        padding-top: 60px;
+        padding-bottom: 60px;
     }
-    .auto-height .swiper-slide.image-left .container .image-container,
-    .auto-height .swiper-slide.image-right .container .image-container {
-        padding-top: 8%;
-        padding-bottom: 8%;
+    .auto-height .image-left .image-container,
+    .auto-height .image-right .image-container{
+        padding-top: 60px;
+        padding-bottom: 60px;
     }
 
     /*---------------------------*/
@@ -441,7 +446,7 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
         overflow: hidden;
     }
     .meta-list li{
-        padding: 5px 0px;
+        padding: 5px 0;
         color: #777;
     }
     div + .meta-list{

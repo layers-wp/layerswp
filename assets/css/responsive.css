@@ -114,22 +114,25 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
     /*---------------------------*/
     /*- SWIPE ITEM --------------*/
     .swiper-slide .container{
-        top: 50% !important;
-        -webkit-transform: translateY(-50%) !important;
-        transform: translateY(-50%) !important;
+        top: 50%;
+        -webkit-transform: translateY(-50%);
+        transform: translateY(-50%);
     }
     .swiper-slide .copy-container{
-        float: none !important;
-        width: auto !important;
-        -webkit-transform: translateY(0) !important;
-        transform: translateY(0) !important;
+        float: none;
+        width: auto;
+        -webkit-transform: translateY(0);
+        transform: translateY(0);
     }
     .swiper-slide .image-container{
-        float: none !important;
-        width: auto !important;
-        text-align: center !important;
-        -webkit-transform: translateY(0) !important;
-        transform: translateY(0) !important;
+        float: none;
+        width: auto;
+        text-align: center;
+        -webkit-transform: translateY(0);
+        transform: translateY(0);
+    }
+    .swiper-slide .copy-container + .image-container{
+        margin-top: 40px;
     }
 
     /*---------------------------*/
@@ -141,19 +144,19 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
     .swiper-container .arrows{
         display: none;
     }
-    
+
     /*---------------------------*/
     /*- AUTO-HEIGHT SLIDES ------*/
-    .auto-height .swiper-slide .container{
-        padding-top: 12% !important;
-        padding-bottom: 12% !important;
+    .auto-height .container{
+        top: auto;
     }
-    .auto-height .swiper-slide.image-left .container .image-container,
-    .auto-height .swiper-slide.image-right .container .image-container,
-    .auto-height .swiper-slide.image-left .container .copy-container,
-    .auto-height .swiper-slide.image-right .container .copy-container {
-        padding-top: 0 !important;
-        padding-bottom: 0 !important;
+    .auto-height .image-left .image-container,
+    .auto-height .image-right .image-container,
+    .auto-height .image-left .copy-container,
+    .auto-height .image-right .copy-container {
+        padding-top: 0;
+        padding-bottom: 0;
+        transform: none;
     }
 
 

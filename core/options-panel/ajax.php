@@ -30,11 +30,12 @@ if( !class_exists( 'Layers_Onboarding_Ajax' ) ) {
 		}
 
 		public function init() {
-
+			add_action( 'wp_ajax_layers_update_intercom', array( $this, 'update_intercom' ) );
 			add_action( 'wp_ajax_layers_onboarding_update_options', array( $this, 'update_options' ) );
 			add_action( 'wp_ajax_layers_onboarding_set_theme_mods', array( $this, 'set_theme_mods' ) );
 			add_action( 'wp_ajax_layers_site_setup_step_dismissal', array( $this, 'dismiss_setup_step' ) );
 			add_action( 'wp_ajax_layers_dashboard_load_feed', array( $this, 'load_feed' ) );
+
 
 		}
 
@@ -68,11 +69,7 @@ if( !class_exists( 'Layers_Onboarding_Ajax' ) ) {
 							<div class="layers-panel">
 								<div class="layers-content">
 									<div class="layers-section-title layers-tiny">
-										<h4 class="layers-heading">
-											<a href="<?php echo $item->get_permalink(); ?>">
-												<?php echo esc_attr( $item->get_title() ); ?>
-											</a>
-										</h4>
+										<h4 class="layers-heading"><a href="<?php echo $item->get_permalink(); ?>"><?php echo esc_attr( $item->get_title() ); ?></a></h4>
 									</div>
 									<div class="layers-excerpt">
 										<?php echo $item->get_description(); ?>
@@ -147,6 +144,26 @@ if( !class_exists( 'Layers_Onboarding_Ajax' ) ) {
 					break;
 				}
 			}
+
+		}
+
+		public function update_intercom() {
+
+			if( !check_ajax_referer( 'layers-onboarding-update-options', 'layers_onboarding_update_nonce', false ) ) die( 'You threw a Nonce exception' ); // Nonce
+
+			// Parse our input data
+			parse_str(
+				urldecode( stripslashes( $_POST[ 'data' ] ) ),
+				$data
+			);
+
+			if( isset( $data[ 'layers_intercom' ] ) ){
+				update_option( 'layers_enable_intercom' , '1' );
+			} else{
+				update_option( 'layers_enable_intercom' , '0' );
+			}
+
+			die( json_encode( array( 'success' => true, 'message' => __( 'Intercom Updated' , 'layerswp' ) ) ) );
 
 		}
 

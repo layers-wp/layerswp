@@ -224,7 +224,7 @@
 				}
 			}
 			
-			if ( enable_deep_linking ) {
+			if ( 1 == layers_customizer_params.enable_deep_linking ) {
 				
 				// Accordion Open (set the hash)
 				$(document).on( 'click', '.accordion-section-title', function(){
@@ -283,6 +283,19 @@
 					$hash_record = $id;
 				});
 				
+			}
+			
+			/**
+			 * Dev Switches.
+			 */
+			var $dev_switch_hash = ( window.location.hash ) ? window.location.hash.split('#')[1] : '';
+			if ( $( '#layers-dev-switch-active' ).length ) {
+				if ( 'layers-dev-switches' == $dev_switch_hash ) {
+					if( ! $( '#layers-dev-switch-active' ).attr( 'checked' ) ) {
+						$( '#layers-dev-switch-active' ).attr( 'checked', true ).change();
+						$( '#accordion-section-layers-dev-switches > h3' ).click();
+					}
+				}
 			}
 			
 		}

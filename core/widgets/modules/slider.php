@@ -313,23 +313,6 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 							,speed: 700
 							,parallax: true
 						<?php } ?>
-						<?php if( TRUE == $this->check_and_return( $widget , 'autoheight_slides' ) ) { ?>
-							,onInit: function (s) {
-
-								var height = 0;
-								var slide_height = 0;
-
-								s.slides.each(function( key, slide ){
-									var slide_height = $(slide).find( '.container' ).outerHeight();
-
-									if( height < slide_height ){
-										height = slide_height;
-									}
-								});
-
-								s.container.css({height: height+'px'});
-							}
-						<?php } ?>
 						<?php if( isset( $widget['show_slider_dots'] ) && ( !empty( $widget[ 'slides' ] ) && 1 < count( $widget[ 'slides' ] ) ) ) { ?>
 							,pagination: '.<?php echo $this->get_field_id( 'pages' ); ?>'
 						<?php } ?>
@@ -353,6 +336,13 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 						// Allow keyboard control
 						<?php echo $swiper_js_obj; ?>.enableKeyboardControl();
 					<?php } // if > 1 slide ?>
+
+					<?php if( TRUE == $this->check_and_return( $widget , 'autoheight_slides' ) ) { ?>
+						layers_swiper_resize( <?php echo $swiper_js_obj; ?> );
+						$(window).resize(function(){
+							layers_swiper_resize( <?php echo $swiper_js_obj; ?> );
+						});
+					<?php } ?>
 
 					$('#<?php echo $widget_id; ?>').find('.arrows a').on( 'click' , function(e){
 						e.preventDefault();

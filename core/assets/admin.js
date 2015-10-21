@@ -26,7 +26,9 @@
  * 13 - Layers Pages Backups
  * 14 - Init RTE Editors
  * 15 - Custom Widget Initialization Events
- * 16 - Widget Peek/hide to preview changes
+ * 16 - Intercom checkbox
+ * 17 - Widget Peek/hide to preview changes
+
  *
  * Author: Obox Themes
  * Author URI: http://www.oboxthemes.com/
@@ -908,14 +910,30 @@ jQuery(function($) {
 			}
 		}
 	}
-	
+
 	/**
-	 * 16 - Widget Peek/hide to preview changes
+	* 16 - Intercom checkbox
+	*/
+
+	$(document).on( 'change', '#layers-enable-intercom', function(e){
+
+		if( 'undefined' !== typeof Intercom ){
+			if( !$(this).prop('checked') ){
+				Intercom('shutdown');
+			} else if( 'undefined' !== typeof window.intercomSettings ){
+				Intercom('boot', window.intercomSettings );
+			}
+		}
+
+	});
+
+	/**
+	 * 17 - Widget Peek/hide to preview changes
 	 */
-	
+
 	// Add the peek buttons to all the Layers Widget actions.
 	$('<span class="layers-widget-peek-button dashicons dashicons-visibility">').insertBefore('.widget-control-actions br');
-	
+
 	// Add the hover hiding of the Widget interface.
 	$(document).on( 'mouseenter', '.layers-widget-peek-button', function(){ $(this).closest('.widget-inside').addClass('layers-peek-widget'); } );
 	$(document).on( 'mouseleave', '.layers-widget-peek-button', function(){ $(this).closest('.widget-inside').removeClass('layers-peek-widget'); } );
@@ -933,7 +951,7 @@ jQuery(function($) {
 		var $range_field = $(this).siblings('input[type="range"]');
 		$range_field.val( $number_field.val() );
 	});
-	
+
 	/**
 	 * 18 - Reset to Default *NEW
 	 */
@@ -943,9 +961,9 @@ jQuery(function($) {
 		var $default_value = $refresh_button.attr('data-default');
 
 		var $field = $control_holder.find('input, select, textarea');
-		
+
 		if ( 'checkbox' == $field.eq(0).attr('type') ) {
-			
+
 			// Checkbox
 			if ( ! $default_value || '' == $default_value ) $field.attr( 'checked', false );
 			else $field.attr( 'checked', true );
@@ -953,22 +971,22 @@ jQuery(function($) {
 		}
 		else {
 		//else if ( $field.eq(0).is('input') ) {
-			
+
 			// Input's, Textarea
 			$field.val( $default_value );
 			$field.eq(0).change();
 		}
 	});
-	
+
 	/**
 	 * 19 - History States *NEW
 	 */
 	/*
 	var $history = [];
 	var $pointer = 0;
-	
+
 	$( document ).on( 'change', '.customize-control select', function( e ){
-		
+
 		var $input = $(this);
 		var $control_holder = $input.closest('.customize-control');
 
@@ -977,7 +995,7 @@ jQuery(function($) {
 			$history = $history.splice( 0, $pointer );
 			$pointer = 0;
 		}
-		
+
 		$state = array();
 		$state['element'] = $control_holder;
 		$state['previous_val'] = $control_holder;
@@ -990,7 +1008,7 @@ jQuery(function($) {
 	});
 
 	$( document ).on( 'click', '.customize-control-undo', function( e ){
-		
+
 		var $button = $(this);
 		var $control_holder = $button.closest('.customize-control');
 		var $document = $(document);
@@ -1003,12 +1021,12 @@ jQuery(function($) {
 		$pointer--;
 
 		var $current = $history[ $pointer ];
-		
+
 		if ( ! $current ) {
 			console.log( 'No More Undo States!' );
 			return;
 		}
-		
+
 		var $element = $current[0];
 		var $value = $current[1];
 
@@ -1021,7 +1039,7 @@ jQuery(function($) {
 	function output_state_log(){
 
 		$( $history ).each(function( index, element ){
-			
+
 			$marker = '';
 			if ( index == $pointer ) $marker = ' <-';
 
@@ -1029,5 +1047,4 @@ jQuery(function($) {
 		})
 	}
 	*/
-
 });

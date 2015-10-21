@@ -27,6 +27,8 @@
  * 14 - Init RTE Editors
  * 15 - Custom Widget Initialization Events
  * 16 - Intercom checkbox
+ * 17 - Widget Peek/hide to preview changes
+
  *
  * Author: Obox Themes
  * Author URI: http://www.oboxthemes.com/
@@ -95,7 +97,7 @@ jQuery(function($) {
 	/**
 	* 2 - Layers Custom Easing
 	*
-	* Extend jQuery easing with custom Layers easing function for UI animations - eg slideUp, SlideDown
+	* Extend jQuery easing with custom Layers easing function for UI animations - eg slideUp, slideDown
 	*/
 
 	jQuery.extend( jQuery.easing, { layersEaseInOut: function (x, t, b, c, d) {
@@ -403,6 +405,7 @@ jQuery(function($) {
 	*/
 	$( document ).on( 'click', function(e) {
 		var eventTarget = $(e.target);
+
 		// close any pop-ups that arent the target of the current click
 		$('.widget .layers-visuals-item.layers-active' ).not( eventTarget.closest('.layers-visuals-item') ).removeClass( 'layers-active' );
 	});
@@ -413,11 +416,12 @@ jQuery(function($) {
 		// "Hi Mom"
 		$that = $(this);
 
+		// Toggle active state
+		$that.trigger( 'layers-design-bar-menu', $that );
+		$that.parent( 'li.layers-visuals-item' ).toggleClass( 'layers-active' );
+
 		// Close Siblings
 		$that.parent( 'li.layers-visuals-item' ).siblings().not( $that.parent() ).removeClass( 'layers-active' );
-
-		// Toggle active state
-		$that.parent( 'li.layers-visuals-item' ).toggleClass( 'layers-active' );
 	});
 
 	$( document ).on( 'click' , '.widget .layers-visuals-wrapper li.layers-visuals-item label.layers-icon-wrapper' , function(e){
@@ -433,7 +437,9 @@ jQuery(function($) {
 		if( 0 == $form_items ){
 			$that.closest( '.layers-pop-menu-wrapper' ).siblings( '.layers-icon-wrapper' ).find( 'span[class^="icon-"]' ).attr( 'class', 'icon-' + $value );
 		}
+
 		// Toggle active state
+		$that.trigger( 'layers-design-bar-menu', $that );
 		$that.addClass( 'layers-active' );
 
 		// Close siblings
@@ -446,11 +452,19 @@ jQuery(function($) {
 		$that = $(this);
 
 		// Toggle active state
+		$that.trigger( 'layers-design-bar-menu', $that );
 		$that.addClass( 'layers-active' );
 
 		// Close siblings
 		$that.siblings( '.layers-visuals-item' ).removeClass( 'layers-active' );
 
+	});
+
+	$( document ).on( 'layers-design-bar-menu', '.layers-visuals-item', function( e, menu_item ){
+		$img = $(this).find( 'img[data-src]' );
+		$img.each(function(){
+			$(this).attr( 'src', $(this).data( 'src' ) );
+		});
 	});
 
 	/**
@@ -781,7 +795,7 @@ jQuery(function($) {
 	$(document).on( 'mousedown', function(){
 		$('.froala-box:not(.froala-toolbar-hide)').each(function(){
 
-			// If the editor is in HTML view then swicth back.
+			// If the editor is in HTML view then switch back.
 			$rte_active_html_button = $(this).find( '.active[data-cmd="html"]' );
 			$rte_textarea = $(this).siblings('textarea');
 			if ( 0 < $rte_active_html_button.length && 0 < $rte_textarea.length ){
@@ -912,4 +926,125 @@ jQuery(function($) {
 		}
 
 	});
+
+	/**
+	 * 17 - Widget Peek/hide to preview changes
+	 */
+
+	// Add the peek buttons to all the Layers Widget actions.
+	$('<span class="layers-widget-peek-button dashicons dashicons-visibility">').insertBefore('.widget-control-actions br');
+
+	// Add the hover hiding of the Widget interface.
+	$(document).on( 'mouseenter', '.layers-widget-peek-button', function(){ $(this).closest('.widget-inside').addClass('layers-peek-widget'); } );
+	$(document).on( 'mouseleave', '.layers-widget-peek-button', function(){ $(this).closest('.widget-inside').removeClass('layers-peek-widget'); } );
+
+	/**
+	 * 17 - Customizer Control - Range Slider *NEW
+	 */
+	$( document ).on( 'input change', '.layers-customize-control-range input[type="range"]', function( e ){
+		var $range_field = $(this);
+		var $number_field = $(this).siblings('input[type="number"]');
+		$number_field.val( $range_field.val() );
+	});
+	$( document ).on( 'input change', '.layers-customize-control-range input[type="number"]', function( e ){
+		var $number_field = $(this);
+		var $range_field = $(this).siblings('input[type="range"]');
+		$range_field.val( $number_field.val() );
+	});
+
+	/**
+	 * 18 - Reset to Default *NEW
+	 */
+	$( document ).on( 'click', '.customize-control-default', function( e ){
+		var $refresh_button = $(this);
+		var $control_holder = $refresh_button.closest('.customize-control');
+		var $default_value = $refresh_button.attr('data-default');
+
+		var $field = $control_holder.find('input, select, textarea');
+
+		if ( 'checkbox' == $field.eq(0).attr('type') ) {
+
+			// Checkbox
+			if ( ! $default_value || '' == $default_value ) $field.attr( 'checked', false );
+			else $field.attr( 'checked', true );
+			$field.eq(0).change();
+		}
+		else {
+		//else if ( $field.eq(0).is('input') ) {
+
+			// Input's, Textarea
+			$field.val( $default_value );
+			$field.eq(0).change();
+		}
+	});
+
+	/**
+	 * 19 - History States *NEW
+	 */
+	/*
+	var $history = [];
+	var $pointer = 0;
+
+	$( document ).on( 'change', '.customize-control select', function( e ){
+
+		var $input = $(this);
+		var $control_holder = $input.closest('.customize-control');
+
+		if ( $history.length !== $pointer ) {
+			console.log('reset!');
+			$history = $history.splice( 0, $pointer );
+			$pointer = 0;
+		}
+
+		$state = array();
+		$state['element'] = $control_holder;
+		$state['previous_val'] = $control_holder;
+
+		$history.push( [ $control_holder, $input.val() ] );
+		$pointer++;
+
+		console.log( 'history: ' + $history.length + ', Pointer: ' + $pointer );
+		output_state_log();
+	});
+
+	$( document ).on( 'click', '.customize-control-undo', function( e ){
+
+		var $button = $(this);
+		var $control_holder = $button.closest('.customize-control');
+		var $document = $(document);
+
+		if ( ! $history ) {
+			console.log( 'No Undo States Yet!' );
+			return;
+		}
+
+		$pointer--;
+
+		var $current = $history[ $pointer ];
+
+		if ( ! $current ) {
+			console.log( 'No More Undo States!' );
+			return;
+		}
+
+		var $element = $current[0];
+		var $value = $current[1];
+
+		$element.find('select').val( $value );
+
+		console.log( 'history: ' + $history.length + ', Pointer: ' + $pointer );
+		output_state_log();
+	});
+
+	function output_state_log(){
+
+		$( $history ).each(function( index, element ){
+
+			$marker = '';
+			if ( index == $pointer ) $marker = ' <-';
+
+			console.log( element[1] + $marker );
+		})
+	}
+	*/
 });

@@ -20,7 +20,9 @@ if( !class_exists( 'Layers_Customize_Checkbox_Control' ) ) {
 			$values = false; ?>
 
 			<div id="layers-customize-control-<?php echo esc_attr( $this->id ); ?>" class="layers-customize-control layers-customize-control-<?php echo esc_attr( str_replace( 'layers-', '', $this->type ) ); ?> <?php echo esc_attr( $this->class ); ?>" <?php echo $this->get_linked_data(); ?> >
-
+				
+				<?php //$this->render_history_actions(); ?>
+				
 				<div class="layers-form-item">
 					<div class="layers-checkbox-wrapper layers-form-item">
 						<?php echo $form_elements->input(
@@ -45,4 +47,4 @@ if( !class_exists( 'Layers_Customize_Checkbox_Control' ) ) {
 			<?php
 		}
 	}
-} // !class_exists( 'Layers_Customize_Checkbox_Control' )
+}

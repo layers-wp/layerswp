@@ -34,13 +34,23 @@ if( !class_exists( 'Layers_Contact_Widget' ) ) {
 				);
 
 	 		/* Widget settings. */
-			$widget_ops = array( 'classname' => 'obox-layers-' . $this->widget_id .'-widget', 'description' => __( 'This widget is used to display your ', 'layerswp' ) . $this->widget_title . '.' );
+			$widget_ops = array(
+				'classname'   => 'obox-layers-' . $this->widget_id .'-widget',
+				'description' => __( 'This widget is used to display your ', 'layerswp' ) . $this->widget_title . '.',
+			);
 
 			/* Widget control settings. */
-			$control_ops = array( 'width' => LAYERS_WIDGET_WIDTH_SMALL, 'height' => NULL, 'id_base' => LAYERS_THEME_SLUG . '-widget-' . $this->widget_id );
+			$control_ops = array( 'width' => LAYERS_WIDGET_WIDTH_SMALL,
+				'height'  => NULL,
+				'id_base' => LAYERS_THEME_SLUG . '-widget-' . $this->widget_id
+			);
 
 			/* Create the widget. */
-			parent::__construct( LAYERS_THEME_SLUG . '-widget-' . $this->widget_id , $this->widget_title, $widget_ops, $control_ops );
+			parent::__construct( LAYERS_THEME_SLUG . '-widget-' . $this->widget_id ,
+				$this->widget_title,
+				$widget_ops,
+				$control_ops
+			);
 
 			/* Setup Widget Defaults */
 			$this->defaults = array (
@@ -114,13 +124,17 @@ if( !class_exists( 'Layers_Contact_Widget' ) ) {
 			* Generate the widget container class
 			*/
 			$widget_container_class = array();
-			$widget_container_class[] = 'widget row content-vertical-massive layers-contact-widget';
-			$widget_container_class[] = $this->check_and_return( $widget , 'design', 'advanced', 'customclass' );
+			$widget_container_class[] = 'widget';
+			$widget_container_class[] = 'layers-contact-widget';
+			$widget_container_class[] = 'row';
+			$widget_container_class[] = 'content-vertical-massive';
+			$widget_container_class[] = 'layers-contact-widget';
+			$widget_container_class[] = $this->check_and_return( $widget , 'design', 'advanced', 'customclass' ); // Apply custom class from design-bar's advanced control.
 			$widget_container_class[] = $this->get_widget_spacing_class( $widget );
 			if( !$show_title_or_excerpt && !$show_address_or_contactform  ) $widget_container_class[] = 'no-inset-top no-inset-bottom';
 			$widget_container_class = implode( ' ', apply_filters( 'layers_contact_widget_container_class' , $widget_container_class ) ); ?>
 
-			<section class="<?php echo $widget_container_class; ?>" id="<?php echo $widget_id; ?>">
+			<section id="<?php echo esc_attr( $widget_id ); ?>" class="<?php echo esc_attr( $widget_container_class ); ?>">
 				<?php if( $show_title_or_excerpt ) { ?>
 					<div class="container clearfix">
 						<?php /**
@@ -134,7 +148,7 @@ if( !class_exists( 'Layers_Contact_Widget' ) ) {
 						$section_title_class = implode( ' ', $section_title_class ); ?>
 						<div class="<?php echo $section_title_class; ?>">
 							<?php if( '' != $widget['title'] ) { ?>
-								<h3 class="heading"><?php echo esc_html( $widget['title'] ); ?></h3>
+								<h3 class="heading"><?php echo $widget['title']; ?></h3>
 							<?php } ?>
 							<?php if( '' != $widget['excerpt'] ) { ?>
 								<div class="excerpt"><?php echo $widget['excerpt']; ?></div>
@@ -225,12 +239,6 @@ if( !class_exists( 'Layers_Contact_Widget' ) ) {
 			$design_bar_components = apply_filters( 'layers_' . $this->widget_id . '_widget_design_bar_components' , array(
 					'layout',
 					'fonts',
-					'custom',
-					'background',
-					'advanced'
-				) );
-
-			$design_bar_custom_components = apply_filters( 'layers_' . $this->widget_id . '_widget_design_bar_custom_components' , array(
 					'display' => array(
 						'icon-css' => 'icon-display',
 						'label' => __( 'Display', 'layerswp' ),
@@ -240,7 +248,7 @@ if( !class_exists( 'Layers_Contact_Widget' ) ) {
 										'name' => $this->get_field_name( 'show_google_map' ) ,
 										'id' => $this->get_field_id( 'show_google_map' ) ,
 										'value' => ( isset( $widget['show_google_map'] ) ) ? $widget['show_google_map'] : NULL,
-										'label' => __( 'Show Google Map' , 'layerswp' )
+							'label' => __( 'Show Google Map' , 'layerswp' ),
 									),
 								'map_height' => array(
 									'type' => 'number',
@@ -253,7 +261,7 @@ if( !class_exists( 'Layers_Contact_Widget' ) ) {
 									'data' => array(
 										'show-if-selector' => '#' . $this->get_field_id( 'show_google_map' ),
 										'show-if-value' => 'true',
-									)
+							),
 								),
 								'google_maps_zoom' => array(
 									'type' => 'select',
@@ -269,26 +277,27 @@ if( !class_exists( 'Layers_Contact_Widget' ) ) {
 										'data' => array(
 											'show-if-selector' => '#' . $this->get_field_id( 'show_google_map' ),
 											'show-if-value' => 'true',
-										)
+							),
 									),
 								'show_address' => array(
 										'type' => 'checkbox',
 										'name' => $this->get_field_name( 'show_address' ) ,
 										'id' => $this->get_field_id( 'show_address' ) ,
 										'value' => ( isset( $widget['show_address'] ) ) ? $widget['show_address'] : NULL,
-										'label' => __( 'Show Address' , 'layerswp' )
+							'label' => __( 'Show Address' , 'layerswp' ),
 									),
 								'show_contact_form' => array(
 										'type' => 'checkbox',
 										'name' => $this->get_field_name( 'show_contact_form' ) ,
 										'id' => $this->get_field_id( 'show_contact_form' ) ,
 										'value' => ( isset( $widget['show_contact_form'] ) ) ? $widget['show_contact_form'] : NULL,
-										'label' => __( 'Show Contact Form' , 'layerswp' )
-									)
-							)
-						)
-					)
-				);
+							'label' => __( 'Show Contact Form' , 'layerswp' ),
+						),
+					),
+				),
+				'background',
+				'advanced',
+			) );
 
 			$this->design_bar(
 				'side', // CSS Class Name
@@ -297,8 +306,7 @@ if( !class_exists( 'Layers_Contact_Widget' ) ) {
 					'id' => $this->get_field_id( 'design' ),
 				), // Widget Object
 				$widget, // Widget Values
-				$design_bar_components, // Standard Components
-				$design_bar_custom_components // Add-on Components
+				$design_bar_components // Components
 			); ?>
 
 			<div class="layers-container-large">
@@ -408,7 +416,7 @@ if( !class_exists( 'Layers_Contact_Widget' ) ) {
 										)
 									); ?>
 									<small class="layers-small-note">
-										<?php _e( sprintf( 'Need to create a contact form? Try <a href="$1%s" target="ejejcsingle">Gravity Forms</a>', 'https://www.e-junkie.com/ecom/gb.php?cl=54585&c=ib&aff=221037' ) , 'layerswp' ); ?>
+										<?php _e( sprintf( 'Need to create a contact form? Try <a href="%1$s" target="ejejcsingle">Gravity Forms</a>', 'https://www.e-junkie.com/ecom/gb.php?cl=54585&c=ib&aff=221037' ) , 'layerswp' ); ?>
 									</small>
 								</p>
 							</div>

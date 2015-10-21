@@ -41,6 +41,8 @@
 		init: function () {
 
 			var $that = this;
+			
+			var $hash_record = '';
 
 			/**
 			 * 1 - Page Builder Macro
@@ -94,6 +96,7 @@
 			// Update the UI when customizer url changes
 			// eg when an <a> in the preview window is clicked
 			function layers_update_customizer_interface() {
+				
 				//Update the dropdown
 				if( $(layers_builder_pages_drop_down + ' option[value="' + wp.customize.previewer.previewUrl() + '"]').length ){
 					$(layers_builder_pages_drop_down).val( wp.customize.previewer.previewUrl() );
@@ -106,11 +109,12 @@
 
 				// Change the 'Preview Page' button
 				$('.customize-controls-layers-button-preview').attr('href', layers_get_customizer_url() );
-
+				
+				if ( $hash_record ) setTimeout( function() { window.location.hash = $hash_record }, 1000 );
 			}
 			layers_update_customizer_interface();
 
-			// Listen for event when customizer url chnages
+			// Listen for event when customizer url changes
 			function layers_handle_customizer_talkback() {
 				layers_add_history_state();
 				layers_update_customizer_interface();
@@ -154,13 +158,10 @@
 				layers_update_customizer_interface();
 			}, false);
 
-			$(document).on( 'change', '.layers-customize-control-font select' , function(){
-
+			$(document).on( 'change', '.layers-customize-control-font select', function(){
 				// "Hi Mom"
-				$that = $(this);
-
+				$that        = $(this);
 				$description = $that.closest( '.layers-customize-control-font' ).find( '.customize-control-description' );
-
 				$description.find( 'a' ).attr( 'href' , $description.data( 'base-url' ) + $that.val() );
 			});
 
@@ -187,7 +188,103 @@
 
 				$( '.customize-control-widget_form.expanded' ).find( '.widget-inside' ).hide();
 				$( '.customize-control-widget_form.expanded' ).find( '.widget-control-close' ).click();
+				
+				//$( '.customize-control-widget_form.expanded' ).addClass('layers-peek'); // Peek (Disabled. Testing Only)
 			});
+			
+			// Widget Peek (Disabled. Testing Only)
+			/*
+			$(document).on( 'mouseleave', '#customize-preview', function(){
+				$( '.customize-control-widget_form.expanded' ).removeClass('layers-peek');
+			});
+			*/
+		
+			/**
+			 * Deep linking into Controls.
+			 */
+			 
+			var enable_deep_linking = false;
+			
+			// Open item if hash is set.
+			if ( window.location.hash ) {
+
+				var $hash = window.location.hash.split('#')[1];
+				var $element = $( '#' + $hash );
+				if ( $element.length ) {
+					$hash_record = $hash;
+					//$('#accordion-section-layers-pro-buttons').
+					$element
+						.children('.accordion-section-title')
+						.click();
+					
+					$element
+						.children('.widget')
+						.find('.widget-title')
+						.click();
+				}
+			}
+			
+			if ( enable_deep_linking ) {
+				
+				// Accordion Open (set the hash)
+				$(document).on( 'click', '.accordion-section-title', function(){
+					if ( !enable_deep_linking ) return false;
+					
+					var $element = $(this);
+					var $parent_accordion = $element.parent('li.accordion-section');
+					
+					// Bail if this is not a control.
+					if ( ! $parent_accordion.length ) return;
+					
+					var $id = $parent_accordion.attr('id');
+					window.location.hash = $id;
+					$hash_record = $id;
+				});
+				// Section Back-Button (set the hash)
+				$(document).on( 'click', '.customize-section-back', function(){
+					var $element = $(this);
+					var $parent_accordion = $element.parents('li.accordion-section').eq(1);
+					
+					// Bail if this is not a control.
+					if ( ! $parent_accordion.length ) return;
+					
+					var $id = $parent_accordion.attr('id');
+					window.location.hash = $id;
+					$hash_record = $id;
+				});
+				// Panel Back-Button (set the hash)
+				$(document).on( 'click', '.customize-panel-back', function(){
+					window.location.hash = '';
+					$hash_record = '';
+				});
+				
+				// Widget Open (set the hash)
+				$(document).on( 'click', '.widget-title', function(){
+					var $element = $(this);
+					var $parent_accordion = $element.parents('li.customize-control-widget_form');
+					
+					// Bail if this is not a control.
+					if ( ! $parent_accordion.length ) return;
+					
+					var $id = $parent_accordion.attr('id');
+					window.location.hash = $id;
+					$hash_record = $id;
+				});
+				// Widget Close (set the hash)
+				$(document).on( 'click', '.widget-control-close', function(){
+					var $element = $(this);
+					var $parent_accordion = $element.parents('li.accordion-section').eq(0);
+					
+					// Bail if this is not a control.
+					if ( ! $parent_accordion.length ) return;
+					
+					var $id = $parent_accordion.attr('id');
+					window.location.hash = $id;
+					$hash_record = $id;
+				});
+				
+			}
+			
 		}
 	};
 

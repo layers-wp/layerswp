@@ -122,13 +122,13 @@ jQuery(document).ready(function($){
 		});
 
 		$post_data = {
-			action: 'layers_content_widget_actions',
-			widget_action: 'add',
-			id_base: $columnList.data( 'id_base' ),
-			instance: $serialized_inputs.join( '&' ),
-			last_guid: ( 0 !== $columnList.find( 'li.layers-accordion-item' ).length ) ? $columnList.find( 'li.layers-accordion-item' ).last().data( 'guid' ) : false,
-			number: $columnList.data( 'number' ),
-			nonce: layers_widget_params.nonce
+			action        : 'layers_content_widget_actions',
+			widget_action : 'add-column',
+			id_base       : $columnList.data( 'id_base' ),
+			instance      : $serialized_inputs.join( '&' ),
+			last_guid     : ( 0 !== $columnList.find( 'li.layers-accordion-item' ).length ) ? $columnList.find( 'li.layers-accordion-item' ).last().data( 'guid' ) : false,
+			number        : $columnList.data( 'number' ),
+			nonce         : layers_widget_params.nonce
 		};
 
 		$.post(
@@ -167,7 +167,7 @@ jQuery(document).ready(function($){
 		) // $.post
 
 	});
-
+	
 	/**
 	* 3 - Module Title Update
 	*/

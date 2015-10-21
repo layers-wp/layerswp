@@ -21,3 +21,34 @@ body.wp-customizer-unloading {
 	opacity: 0.85 !important;
 	background-color: black !important;
 }
+
+.layers-edit-widget{
+	position: fixed;
+	right: -15px;
+	top: 50%;
+	background-color: #FAFAFA;
+	border-radius: 0;
+	color: #232866;
+	border-right: 0;
+	box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.15), 0 1px 4px rgba(0, 0, 0, 0.1);
+	height: 44px;
+	width: 65px;
+	z-index: 999;
+	opacity: 0;
+	outline: 0;
+	text-align: left;
+	padding: 0 12px;
+	pointer-events: none;
+}
+.layers-edit-widget:hover{
+	background-color: #ECECEC;
+	color: #30282D;
+	box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.15), 0 1px 4px rgba(0, 0, 0, 0.1);
+	right: 0;
+}
+
+.widget:hover .layers-edit-widget{
+	opacity: 1;
+	z-index: 1000;
+	pointer-events: initial;
+}

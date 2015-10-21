@@ -72,7 +72,6 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
     }
     .swiper-slide.image-left .copy-container,
     .swiper-slide.image-right .copy-container{
-        top: 50%;
         -webkit-transform: translateY(-50%);
         transform: translateY(-50%);
     }
@@ -85,7 +84,6 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
     }
     .swiper-slide.image-left .image-container,
     .swiper-slide.image-right .image-container{
-        top: 50%;
         -webkit-transform: translateY(-50%);
         transform: translateY(-50%);
     }
@@ -101,6 +99,28 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
     .slide:not(.single-slide) .swiper-slide{
         cursor: -webkit-grab;
         cursor: -moz-grab;
+    }
+
+    /*---------------------------*/
+    /*- AUTO HEIGHT -------------*/
+    .auto-height .swiper-slide .container{
+        padding-top: 4%;
+        padding-bottom: 4%;
+    }
+    .auto-height .swiper-slide.image-left .container,
+    .auto-height .swiper-slide.image-right .container {
+        padding-top: 0%;
+        padding-bottom: 0%;
+    }
+    .auto-height .swiper-slide.image-left .container .copy-container,
+    .auto-height .swiper-slide.image-right .container .copy-container {
+        padding-top: 8%;
+        padding-bottom: 8%;
+    }
+    .auto-height .swiper-slide.image-left .container .image-container,
+    .auto-height .swiper-slide.image-right .container .image-container {
+        padding-top: 8%;
+        padding-bottom: 8%;
     }
 
     /*---------------------------*/
@@ -535,16 +555,16 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
     .sidebar .widget li:not(:last-child){
         padding: 0 0 6px;
         margin: 0 0 6px;
-        border-bottom: 1px dotted rgba(0, 0, 0, 0.12);
+        border-bottom: 1px solid rgba(0, 0, 0, 0.12);
     }
     .sidebar .widget li ul{
         margin: 6px 0 0 10px;
     }
 
-    #footer .widget li{
+    .footer-site .widget li{
         margin-bottom: 8px;
     }
-    #footer .widget li:last-child{
+    .footer-site .widget li:last-child{
         border-bottom: none;
     }
 
@@ -611,6 +631,23 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
     aside .search-field{
         margin-bottom: 5px;
     }
+
+        /*-----------------------*/
+        /*- SEARCH IN FOOTER ----*/
+        .footer-site .search-form label{
+            width: 70%;
+            float: left;
+
+        }
+        .footer-site .search-form .search-field{
+            border-radius: 4px 0 0 4px;
+        }
+        .footer-site .search-submit{
+            width: 30%;
+            float: left;
+            height: 36px;
+            border-radius: 0 4px 4px 0;
+        }
 
     /*---------------------------*/
     /*- CALENDAR WIDGET ---------*/

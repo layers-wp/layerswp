@@ -1,6 +1,52 @@
 # Layers Changelog
 
 =======
+##1.2.6
+### ?? ??? 2015
+
+* **Tweak** - Changed "Preview this Page" to "View this Page" *DP*
+* **Tweak** - Changed Customizer headings: 'Layout' becomes 'Styling', 'Logo & Menu Position' becomes 'Header Arrangement', 'Header Style' becomes 'Features'. *SOB*
+* **Tweak** - Changed existing Layers Widgets to use the new method to add custom fields or field-groups to the design-bar. (see content, post, contact widgets for example. slider was left using old method to test backward-compatibility) *SOB*
+* **Tweak** - Added classnames to the Layers widgets - `layers-contact-widget`, `layers-content-widget`, `layers-post-widget`, `layers-slider-widget`. *SOB*
+* **Tweak** - Customizer controls take 'colspan' arg that controls it's column span eg 3 will span 3 of 12 column grid. *SOB*
+* **Tweak** - TRBL Customizer control can be limited to use just 'top' and 'bottom' by using the 'fields' setting and passing args array of required fields. *SOB*
+* **Tweak** - To set customizer controls classnames use: `class` to add to the the `container` classname, and `input_class` to add to the `input` classname. *SOB*
+* **Tweak** - `layers_inline_styles()` now outputs cleaner more human-readable CSS block. *SOB*
+* **Fix** - Auto-height slide no longer breaks when you only have one slide. *DP*
+* **Fix** - Fixed "Powered by Envato" typo in marketplace. *MP*
+* **Fix** - Auto padding on top of first widget when is unique widgets like slider now also takes into account the custom padding added by user there to start with. *SOB*
+* **Enhancement** - All WooCommerce widgets no longer look broken when placed in the footer widget areas. *DP*
+* **Enhancement** - Cart quantity color is now dynamic using rgba values. *DP*
+* **Enhancement** - General WooCommerce widget clean up. *DP*
+* **Enhancement** - Added Range `layers-range` Customizer control. *SOB*
+* **Enhancement** - Added Heading Divider `layers-heading-divider` Customizer control. *SOB*
+* **Enhancement** - Added TRBL (Top, Right, Bottom, Left for Padding and Margin) `layers-trbl-field` Customizer control. *SOB*
+* **Enhancement** - Added Customizer state-remembering to the Panels, Sections and Widgets so position gets remembered across page-refresh (added in off-state till further testing). *SOB*
+* **Enhancement** - Added Reset-to-Default button to the controls (added in off-state till further testing). *SOB*
+* **Enhancement** - Made Font-Awesome available to the theme front-end - `registered` but not `enqueued` so plugin devs can enqueue it by it's hook `layers-font-awesome`. *SOB*
+* **Enhancement** - Added framework method for doing Repeated Content in the Widgets using the following helper functions `register_repeater_defaults()`, `repeater()`, `get_layers_field_name()`, `get_layers_field_id()`. (see extension-boilerplate - coming soon - and the Layers Widget help docs for more information) *SOB*
+* **Enhancement** - Added new method to add fields or field-groups to the Layers Design-Bar. (see Design-Bar help docs for more information) *SOB*
+* **Enhancement** - Added animations to make deleting items in the widgets (with repeater items) more explanatory and friendly. e.g. Columns and  Slides. *SOB*
+* **Enhancement** - Added custom jquery-easing to use with Widgets on front-end - `layersEaseInOut`. *SOB*
+
+=======
+##1.2.5
+### 01 October 2015
+* **Tweak** - We have removed the `esc_html()` from widget titles, this allows for the use of basic HTML tags like `strong`, `span` etc. inside headings. *MP*
+* **Tweak** - Edit Layout button in the admin-bar now shows on all pages - not just layers pages - as even non Layers pages can have colors, layout, etc Edited. *SOB*
+* **Tweak** - .title padding is now set on the parent container to accommodate for future features and better font size control. *DP*
+* **Tweak** - .amount color has been moved to the .price wrapper. *DP*
+* **Tweak** - Remove 'Edit Layout' from the admin-bar as it is redundant now that WP has added 'Customize' to the admin-bar. *SOB*
+* **Fix** - Corrected the widget anchor IDs, also made the input disabled=FALSE so that they're highlightable. *MP*
+* **Fix** - Fixed clearing issue with large rows on responsive screens. *DP*
+* **Enhancement** - .title line-height is more compliant to font changes. *DP*
+* **Enhancement** - Fixed WooCommerce category listings in the shop page. *MP*
+* **Enhancement** - Search box no longer brakes to two lines in the footer. *DP*
+* **Enhancement** - Transparent background color added to Woo product meta. *DP*
+* **Enhancement** - Off canvas pop out has a new close button and the site-wrapper goes 20% darker when pop out is open. *DP*
+* **Enhancement** - Introduciton of the in-app Marketplace. If you are a developer and want to disable this feature just add `define( 'LAYERS_DISABLE_MARKETPLACE', true );` to your `wp-config.php` file. *MP*
+
+=======
 ##1.2.4
 ### 17 August 2015
 
@@ -11,6 +57,8 @@
 * **Fix** - 4.3 customizer styling *DP*
 * **Fix** - Fixed  `Undefined index: google_maps_zoom in layerswp/core/widgets/modules/contact.php on line 181` error. *MP*
 * **Tweak** - `.form-allowed-tags` .2rem smaller font-size. *DP*
+* **Tweak** - Changed Overlay to Transparent Overlay in the customizer.
+* **Tweak** - Changed the behaviour of the overlay to be fully transparent or fully opaque - not semi-transparent at any time. *SOB*
 * **Enhancement** - Tidy up of some `.sidebar` css code. *DP*
 * **Enhancement** - Menu items with sub-menus now have down arrow and right arrows (using Layers Icon font). *DP*
 * **Enhancement** - Added a 'grab' cursor to sliders with more than one slide. *DP*

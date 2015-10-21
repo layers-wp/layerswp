@@ -165,6 +165,9 @@ class Layers_Customizer_Regsitrar {
 
 			// Set control priority to obey order of setup
 			$control_data[ 'priority' ] = $control_priority;
+			
+			// Add the default into the control data so it can be accessed if needed.
+			$control_data[ 'default' ] = isset( $control_data['default'] ) ? $control_data['default'] : NULL ;
 
 			// Add Setting
 			$this->customizer->add_setting(
@@ -177,13 +180,13 @@ class Layers_Customizer_Regsitrar {
 				)
 			);
 
-
 			if ( 'layers-select-images' == $control_data['type'] ) {
+				
 				// Add Control
 				$this->customizer->add_control(
 					new Layers_Customize_Select_Image_Control(
 						$this->customizer,
-						$setting_key ,
+						$setting_key,
 						$control_data
 					)
 				);
@@ -193,7 +196,7 @@ class Layers_Customizer_Regsitrar {
 				$this->customizer->add_control(
 					new Layers_Customize_Select_Icon_Control(
 						$this->customizer,
-						$setting_key ,
+						$setting_key,
 						$control_data
 					)
 				);
@@ -203,7 +206,7 @@ class Layers_Customizer_Regsitrar {
 				$this->customizer->add_control(
 					new Layers_Customize_Seperator_Control(
 						$this->customizer,
-						$setting_key ,
+						$setting_key,
 						$control_data
 					)
 				);
@@ -213,7 +216,17 @@ class Layers_Customizer_Regsitrar {
 				$this->customizer->add_control(
 					new Layers_Customize_Heading_Control(
 						$this->customizer,
-						$setting_key ,
+						$setting_key,
+						$control_data
+					)
+				);
+			} else if( 'layers-heading-divider' == $control_data['type'] ) {
+
+				// Add Control
+				$this->customizer->add_control(
+					new Layers_Customize_Heading_Divider_Control(
+						$this->customizer,
+						$setting_key,
 						$control_data
 					)
 				);
@@ -323,6 +336,54 @@ class Layers_Customizer_Regsitrar {
 				// Add Control
 				$this->customizer->add_control(
 					new Layers_Customize_Range_Control(
+						$this->customizer,
+						$setting_key,
+						$control_data
+					)
+				);
+			} else if( 'layers-trbl-fields' == $control_data['type'] ) {
+
+				// Add extra settings fields for Top/Right/Bottom/Left
+				$this->customizer->add_setting(
+					$setting_key . '-top',
+					array(
+						'default'    => ( isset( $control_data['default'] ) ? $control_data['default'] : NULL ) ,
+						'type'       => 'theme_mod',
+						'capability' => 'manage_options',
+						'sanitize_callback' => $this->add_sanitize_callback( $control_data )
+					)
+				);
+				$this->customizer->add_setting(
+					$setting_key . '-right',
+					array(
+						'default'    => ( isset( $control_data['default'] ) ? $control_data['default'] : NULL ) ,
+						'type'       => 'theme_mod',
+						'capability' => 'manage_options',
+						'sanitize_callback' => $this->add_sanitize_callback( $control_data )
+					)
+				);
+				$this->customizer->add_setting(
+					$setting_key . '-bottom',
+					array(
+						'default'    => ( isset( $control_data['default'] ) ? $control_data['default'] : NULL ) ,
+						'type'       => 'theme_mod',
+						'capability' => 'manage_options',
+						'sanitize_callback' => $this->add_sanitize_callback( $control_data )
+					)
+				);
+				$this->customizer->add_setting(
+					$setting_key . '-left',
+					array(
+						'default'    => ( isset( $control_data['default'] ) ? $control_data['default'] : NULL ) ,
+						'type'       => 'theme_mod',
+						'capability' => 'manage_options',
+						'sanitize_callback' => $this->add_sanitize_callback( $control_data )
+					)
+				);
+				
+				// Add Control
+				$this->customizer->add_control(
+					new Layers_Customize_TRBL_Control(
 						$this->customizer,
 						$setting_key,
 						$control_data

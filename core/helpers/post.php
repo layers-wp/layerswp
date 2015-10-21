@@ -204,6 +204,7 @@ if( !function_exists( 'layers_post_class' ) ) {
 	}
 }
 add_filter( 'post_class' , 'layers_post_class' );
+add_filter( 'product_cat_class' , 'layers_post_class' );
 
 /**
  *  The following function creates a builder page
@@ -338,9 +339,9 @@ if ( ! function_exists( 'layers_filter_admin_pages_views' ) ) {
 
 if( ! function_exists( 'layers_edit_layout_admin_menu' ) ) {
 	function layers_edit_layout_admin_menu(){
-		global $wp_admin_bar, $post;
-
-		if( is_page() && layers_is_builder_page() ){
+		global $wp_admin_bar, $post, $wp_version;
+		
+		if( !is_admin() && version_compare( $wp_version, '4.2', '<=' ) ){
 			$current_url = ( is_ssl() ? 'https://' : 'http://' ) . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
 			$args = array(
 				'id'    => 'layers-edit-layout',

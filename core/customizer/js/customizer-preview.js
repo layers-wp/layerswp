@@ -48,18 +48,17 @@
 
 				/**
 				 * 2 - Customizer UX Enhancements
-				 *
-				 * Handle edit buttons and and other UI elemnts
 				 */
-
+				
 				// Edit widget buttons
+				/*
 				$( '.widget' ).each( function( index, val ) {
 
 					var $that = $(this);
 
 					// Add Edit Buttons
 					var $button = $( '<button class="layers-edit-widget">Edit</button>' );
-					//$that.append( $button );
+					$that.append( $button );
 
 					// Send event to parent on click
 					$button.click( function( event ) {
@@ -67,7 +66,8 @@
 						self.preview.send( 'layers-open-widget', { 'id' : 'customize-control-widget_' + $widget_id } );
 					});
 				});
-
+				*/
+				
 				// Close all widgets
 				$( document ).on( 'click', function( e ){
 					if ( false == $( e.target ).hasClass( 'layers-edit-widget' ) ) {

@@ -10,7 +10,7 @@
 /**
  * The current version of the theme. Use a random number for SCRIPT_DEBUG mode
  */
-define( 'LAYERS_VERSION', '1.2.4' );
+define( 'LAYERS_VERSION', '1.2.5' );
 define( 'LAYERS_TEMPLATE_URI' , get_template_directory_uri() );
 define( 'LAYERS_TEMPLATE_DIR' , get_template_directory() );
 define( 'LAYERS_THEME_TITLE' , 'Layers' );
@@ -70,6 +70,7 @@ require_once get_template_directory() . '/core/meta/init.php';
  * Load Front-end helpers
  */
 require_once get_template_directory() . '/core/helpers/color.php';
+require_once get_template_directory() . '/core/helpers/controls.php';
 require_once get_template_directory() . '/core/helpers/custom-fonts.php';
 require_once get_template_directory() . '/core/helpers/extensions.php';
 if( !defined( 'LAYERS_DISABLE_INTERCOM' ) ){
@@ -156,7 +157,7 @@ if( ! function_exists( 'layers_setup' ) ) {
 				'sitetitle',
 				'tagline',
 			),
-			'size' => 'medium',
+			'size' => 'large',
 		) );
 
 		// Automatic Feed Links
@@ -171,7 +172,6 @@ if( ! function_exists( 'layers_setup' ) ) {
 			LAYERS_THEME_SLUG . '-primary' => __( 'Header Menu' , 'layerswp' ),
 			LAYERS_THEME_SLUG . '-primary-right' => __( 'Right Header Menu' , 'layerswp' ),
 			LAYERS_THEME_SLUG . '-footer' => __( 'Footer Menu' , 'layerswp' ),
-
 		) );
 
 		/**
@@ -355,6 +355,13 @@ if( ! function_exists( 'layers_scripts' ) ) {
 				LAYERS_VERSION
 			); // Admin CSS
 		}
+		
+		wp_register_style(
+			LAYERS_THEME_SLUG . '-font-awesome',
+			get_template_directory_uri() . '/core/assets/font-awesome.min.css',
+			array(),
+			LAYERS_VERSION
+		); // Font Awesome
 
 	}
 }
@@ -365,6 +372,8 @@ add_action( 'wp_enqueue_scripts' , 'layers_scripts' );
 */
 if( ! function_exists( 'layers_admin_scripts' ) ) {
 	function layers_admin_scripts(){
+		global $pagenow, $wp_customize;
+
 		wp_enqueue_style(
 			LAYERS_THEME_SLUG . '-admin',
 			get_template_directory_uri() . '/core/assets/admin.css',
@@ -404,6 +413,15 @@ if( ! function_exists( 'layers_admin_scripts' ) ) {
 			LAYERS_VERSION,
 			true
 		);
+
+		wp_enqueue_script(
+			LAYERS_THEME_SLUG . '-media-views' ,
+			get_template_directory_uri() . '/core/assets/media-views.js',
+			array(
+				'media-views'
+			),
+			LAYERS_VERSION
+		); // Discover More Photos
 
 		wp_localize_script(
 			LAYERS_THEME_SLUG . '-admin-migrator',

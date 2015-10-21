@@ -30,13 +30,25 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 			$this->checkboxes = array();
 
 			/* Widget settings. */
-			$widget_ops = array( 'classname' => 'obox-layers-' . $this->widget_id .'-widget', 'description' => __( 'This widget is used to display your ', 'layerswp' ) . $this->widget_title . '.' );
+			$widget_ops = array(
+				'classname'   => 'obox-layers-' . $this->widget_id .'-widget',
+				'description' => __( 'This widget is used to display your ', 'layerswp' ) . $this->widget_title . '.',
+			);
 
 			/* Widget control settings. */
-			$control_ops = array( 'width' => LAYERS_WIDGET_WIDTH_LARGE, 'height' => NULL, 'id_base' => LAYERS_THEME_SLUG . '-widget-' . $this->widget_id );
+			$control_ops = array(
+				'width'   => LAYERS_WIDGET_WIDTH_LARGE,
+				'height'  => NULL,
+				'id_base' => LAYERS_THEME_SLUG . '-widget-' . $this->widget_id,
+			);
 
 			/* Create the widget. */
-			parent::__construct( LAYERS_THEME_SLUG . '-widget-' . $this->widget_id , $this->widget_title, $widget_ops, $control_ops );
+			parent::__construct(
+				LAYERS_THEME_SLUG . '-widget-' . $this->widget_id ,
+				$this->widget_title,
+				$widget_ops,
+				$control_ops
+			);
 
 			/* Setup Widget Defaults */
 			$this->defaults = array (
@@ -114,12 +126,15 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 			* Generate the widget container class
 			*/
 			$widget_container_class = array();
-			$widget_container_class[] = 'widget row content-vertical-massive';
-			$widget_container_class[] = $this->check_and_return( $widget , 'design', 'advanced', 'customclass' );
+			$widget_container_class[] = 'widget';
+			$widget_container_class[] = 'layers-content-widget';
+			$widget_container_class[] = 'row';
+			$widget_container_class[] = 'content-vertical-massive';
+			$widget_container_class[] = $this->check_and_return( $widget , 'design', 'advanced', 'customclass' ); // Apply custom class from design-bar's advanced control.
 			$widget_container_class[] = $this->get_widget_spacing_class( $widget );
 			$widget_container_class = implode( ' ', apply_filters( 'layers_content_widget_container_class' , $widget_container_class ) ); ?>
 
-			<section class="<?php echo $widget_container_class; ?>" id="<?php echo $widget_id; ?>">
+			<section id="<?php echo esc_attr( $widget_id ); ?>" class="<?php echo esc_attr( $widget_container_class ); ?>">
 				<?php if( '' != $this->check_and_return( $widget , 'title' ) ||'' != $this->check_and_return( $widget , 'excerpt' ) ) { ?>
 					<div class="container clearfix">
 						<?php /**
@@ -133,7 +148,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 						$section_title_class = implode( ' ', $section_title_class ); ?>
 						<div class="<?php echo $section_title_class; ?>">
 							<?php if( '' != $widget['title'] ) { ?>
-								<h3 class="heading"><?php echo esc_html( $widget['title'] ); ?></h3>
+								<h3 class="heading"><?php echo $widget['title'] ?></h3>
 							<?php } ?>
 							<?php if( '' != $widget['excerpt'] ) { ?>
 								<div class="excerpt"><?php echo $widget['excerpt']; ?></div>
@@ -329,13 +344,6 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 
 			$design_bar_components = apply_filters( 'layers_' . $this->widget_id . '_widget_design_bar_components' , array(
 					'layout',
-					'custom',
-					'fonts',
-					'background',
-					'advanced'
-				) );
-
-			$design_bar_custom_components = apply_filters( 'layers_' . $this->widget_id . '_widget_design_bar_custom_components' , array(
 					'liststyle' => array(
 						'icon-css' => 'icon-list-masonry',
 						'label' => __( 'List Style', 'layerswp' ),
@@ -359,7 +367,10 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 								'value' => ( isset( $widget['design']['gutter'] ) ) ? $widget['design']['gutter'] : NULL
 							)
 						)
-					)
+				),
+				'fonts',
+				'background',
+				'advanced'
 				) );
 
 			$this->design_bar(
@@ -369,8 +380,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 					'id' => $this->get_field_id( 'design' ),
 				), // Widget Object
 				$widget, // Widget Values
-				$design_bar_components, // Standard Components
-				$design_bar_custom_components // Add-on Components
+				$design_bar_components // Components
 			); ?>
 			<div class="layers-container-large" id="layers-column-widget-<?php echo $this->number; ?>">
 				<?php $this->form_elements()->header( array(
@@ -470,21 +480,18 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 					<section class="layers-accordion-section layers-content">
 						<?php $this->design_bar(
 							'top', // CSS Class Name
-							array(
+							array( // Widget Object
 								'name' => $this->get_custom_field_name( $widget_details, 'columns',  $column_guid, 'design' ),
 								'id' => $this->get_custom_field_id( $widget_details, 'columns',  $column_guid, 'design' ),
 								'number' => $widget_details->number,
 								'show_trash' => true
-							), // Widget Object
+							),
 							$column, // Widget Values
-							array(
+							array(  // Components
 								'background',
 								'featuredimage',
 								'imagealign',
 								'fonts',
-								'custom',
-							), // Standard Components
-							array(
 								'width' => array(
 									'icon-css' => 'icon-columns',
 									'label' => 'Column Width',

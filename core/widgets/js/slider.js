@@ -130,13 +130,13 @@ jQuery(document).ready(function($){
 		});
 
 		$post_data ={
-			action: 'layers_slider_widget_actions',
-			widget_action: 'add',
-			id_base: $slideList.data( 'id_base' ),
-			instance: $serialized_inputs.join( '&' ),
-			last_guid: ( 0 !== $slideList.find( 'li.layers-accordion-item' ).length ) ? $slideList.find( 'li.layers-accordion-item' ).last().data( 'guid' ) : false,
-			number: $slideList.data( 'number' ),
-			nonce: layers_widget_params.nonce
+			action        : 'layers_slider_widget_actions',
+			widget_action : 'add-slide',
+			id_base       : $slideList.data( 'id_base' ),
+			instance      : $serialized_inputs.join( '&' ),
+			last_guid     : ( 0 !== $slideList.find( 'li.layers-accordion-item' ).length ) ? $slideList.find( 'li.layers-accordion-item' ).last().data( 'guid' ) : false,
+			number        : $slideList.data( 'number' ),
+			nonce         : layers_widget_params.nonce
 		};
 
 		$.post(

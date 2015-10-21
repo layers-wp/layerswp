@@ -11,6 +11,8 @@
  * 3 - Offsite sidebar Toggles
  * 4 - Sticky Header
  * 5 - FitVids
+ * 6 - Layers Custom Easing
+ * 7 - Swiper Height Matching Functions
  *
  * Author: Obox Themes
  * Author URI: http://www.oboxthemes.com/
@@ -54,21 +56,40 @@ jQuery(function($) {
             $first_element = $content_wrapper.children().eq(0);
 
             if( $first_element.hasClass( 'slide' ) ) {
+				
+				// Reset previous incase this is being re-aplied due to window resize.
+				$first_element.find('.swiper-slide > .content' ).css('padding-top', '' );
 
-                // First element is Slider Widget.
-                $first_element.find('.swiper-slide .overlay').css({ 'paddingTop': $header.outerHeight() }, { easing: 'layersEaseInOut', duration: 400 });
+            	var padding_top = $first_element.find('.swiper-slide > .content' ).eq(0).css('padding-top').replace('px', '');
+				padding_top = ( '' != padding_top ) ? parseInt( padding_top ) : 0 ;
+
+            	// First element is Slider Widget.
+                $first_element.find('.swiper-slide > .content').css({ 'paddingTop': padding_top + $header.outerHeight() });
+                
                 $('body').addClass( 'header-overlay-no-push' );
             }
             else if( $first_element.hasClass('title-container') ) {
+
+				// Reset previous incase this is being re-aplied due to window resize.
+				$first_element.css('padding-top', '' );
+				
+            	var padding_top = $first_element.css('padding-top').replace('px', '');
+				padding_top = ( '' != padding_top ) ? parseInt( padding_top ) : 0 ;
                 
                 // First element is Title (eg WooCommerce).
-                $first_element.css({ 'paddingTop': $header.outerHeight() }, { easing: 'layersEaseInOut', duration: 400 });
+                $first_element.css({ 'paddingTop': $header.outerHeight() + padding_top });
                 $('body').addClass( 'header-overlay-no-push' );
             }
             else{
+				
+				// Reset previous incase this is being re-aplied due to window resize.
+				$content_wrapper.css('padding-top', '' );
+
+            	var padding_top = $content_wrapper.css('padding-top').replace('px', '');
+				padding_top = ( '' != padding_top ) ? parseInt( padding_top ) : 0 ;
 
                 // Pad the site to compensate for overlay header.
-                $content_wrapper.css( 'paddingTop', $header.outerHeight() );
+                $content_wrapper.css( 'paddingTop', $header.outerHeight() + padding_top );
             }
 
         }
@@ -144,4 +165,36 @@ jQuery(function($) {
 	
 	$(".media-image, .thumbnail-media, .widget.slide .image-container").fitVids();
 
+    /**
+    * 6 - Layers Custom Easing
+    *
+    * Extend jQuery easing with custom Layers easing function for UI animations - eg slideUp, slideDown
+    */
+
+    jQuery.extend( jQuery.easing, { layersEaseInOut: function (x, t, b, c, d) {
+        if ((t/=d/2) < 1) return c/2*t*t + b;
+        return -c/2 * ((--t)*(t-2) - 1) + b;
+    }});
+
 }(jQuery));
+
+/**
+* 7 - Swiper Height Matching Functions
+*
+*/
+
+function layers_swiper_resize( s ){
+
+    var height = 0;
+    var slide_height = 0;
+
+    s.slides.each(function( key, slide ){
+        var slide_height = jQuery(slide).find( '.container' ).outerHeight();
+
+        if( height < slide_height ){
+            height = slide_height;
+        }
+    });
+
+    s.container.css({height: height+'px'});
+}

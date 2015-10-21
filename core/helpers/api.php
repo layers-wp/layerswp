@@ -10,6 +10,12 @@ class Layers_API {
 
 	private static $instance;
 
+	private static $type;
+
+	public $sort_options;
+
+	const ENVATO_API_URL = 'https://api.envato.com/v1/';
+
 	/**
 	*  Initiator
 	*/
@@ -27,33 +33,171 @@ class Layers_API {
 
 	public function __construct() {
 
-		// Nothing to see here
+		// hook add_query_vars function into query_vars
+		add_filter('query_vars', array( $this, 'add_query_vars' ) );
 
+	}
+
+	function add_query_vars($vars) {
+		$vars[] = "type";
+		return $vars;
+	}
+
+	public function get_auth_token( $method = 'basic' ){
+		if( 'basic' == $method ) {
+			$token = 'LNjwlQxdcf95fzYWXYF8XqNlnUrofwDU';
+		}
+		return $token;
+	}
+
+	public function get_sort_options(){
+
+		$this->sort_options = array(
+			'id-desc' => __( 'Newest to Oldest' , 'layerswp' ),
+			'name-asc' => __( 'Item Name A - Z' , 'layerswp' ),
+			'sales-desc' => __( 'Best Sellers' , 'layerswp' ),
+			'rating-desc' => __( 'Best Rated' , 'layerswp' ),
+			'price-asc' => __( 'Price: Low to Ligh' ),
+			'price-desc' => __( 'Price: High to Low' ),
+			'trending-desc' => __( 'Trending Items' , 'layerswp' ),
+		);
+
+		return $this->sort_options;
+	}
+
+	private function do_envato_api_call( $endpoint = 'market/total-items.json', $query_string = NULL , $method = 'get', $timeout = 5 ){
+
+		$query_string = ( $query_string ? '?' . $query_string . '&page_size=500&sort_by=date&sort_direction=desc' : '?page_size=500&sort_by=date&sort_direction=desc' );
+
+		// Set the remote URL
+		$remote_url = self::ENVATO_API_URL . $endpoint . $query_string;
+
+		// Set the query transient key
+		$cache_key = 'lmp_' . $query_string;
+
+		// Quick cache dumper
+		$dump_cache = 1;
+		if( 1 == $dump_cache ) delete_transient( $cache_key );
+
+		// Return a cached version of the query if we have one
+		if( FALSE !== get_transient( $cache_key ) ) {
+			return get_transient( $cache_key );
+		}
+
+		// Set the Auth token for our query
+		$remote_args = array(
+				'timeout' => $timeout,
+				'headers' => array(
+					'Authorization' => 'Bearer ' . $this->get_auth_token()
+				)
+			);
+
+		// Choose a method
+		if( 'get' == $method ) {
+			$remote_query = wp_remote_get( $remote_url, $remote_args );
+		} else {
+			$remote_query = wp_remote_post( $remote_url, $remote_args );
+		}
+
+		if( is_wp_error( $remote_query ) ){
+
+			// If there's an error, we handle it on the front end so just return it
+			return $remote_query;
+
+		} else if( isset( $remote_query[ 'response' ][ 'code' ] ) && 200 == $remote_query[ 'response' ][ 'code' ] ) {
+
+			// Cache a successful query
+			set_transient( $cache_key , wp_remote_retrieve_body( $remote_query ), 60 );
+
+			return wp_remote_retrieve_body( $remote_query );
+		} else {
+
+			// If the response code isn't right, throw an error
+			return new WP_Error( __( 'Error' , 'layerswp' ) , __( 'Something broke and we can\'t load the stream' , 'layerswp' ) );
+		}
+	}
+
+	/**
+	* Give us a list of available extensions
+	*/
+	public function get_stylekit_list(){
+		// Set the right end point to use
+		$endpoint = 'discovery/search/search/item';
+
+		// Specify a query string here we tell the API what search parameters to use
+		$query_string = 'site=codecanyon.net&category=skins/layers-wp-style-kits';
+
+		// Do the API call
+		$api_call = $this->do_envato_api_call( $endpoint, $query_string, 'get' );
+
+		if( is_wp_error( $api_call ) ) {
+
+			// Return an error if we have one
+			return $api_call;
+		} else {
+
+			// If the call is successful, well then send back decoded JSON
+			return json_decode( $api_call );
+		}
+	}
+
+	public function get_theme_list(){
+		$endpoint = 'discovery/search/search/item';
+
+		// Specify a query string here we tell the API what search parameters to use
+		$query_string = 'site=themeforest.net&compatible_with=Layers%20WP';
+
+		// Do the API call
+		$api_call = $this->do_envato_api_call( $endpoint, $query_string, 'get' );
+
+		if( is_wp_error( $api_call ) ) {
+
+			// Return an error if we have one
+			return $api_call;
+		} else {
+
+			// If the call is successful, well then send back decoded JSON
+			return json_decode( $api_call );
+		}
 	}
 
 	/**
 	* Give us a list of available extensions
 	*/
 	public function get_extension_list(){
+		$endpoint = 'discovery/search/search/item';
 
-		$extension_list = array(
-				'layers-woocommerce' => array(
-						'title' => __( 'WooCommerce for Layers' , 'layerswp' ),
-						'description' => __( 'Adds an advanced product widget, product slider and multiple page layouts.' , 'layerswp' ),
-						'available' => false,
-						'date' => NULL,
-						'price' => NULL,
-					),
-				'layers-showcase' => array(
-						'title' => __( 'Showcase for Layers' , 'layerswp' ),
-						'description' => __( 'List your portfolio items with relevant meta such as client, web url and project role.' , 'layerswp' ),
-						'available' => false,
-						'date' => NULL,
-						'price' => NULL,
-					),
+		// Specify a query string here we tell the API what search parameters to use
+		$query_string = 'site=codecanyon.net&compatible_with=Layers%20WP';
 
-			);
+		// Do the API call
+		$api_call = $this->do_envato_api_call( $endpoint, $query_string, 'get' );
 
-		return apply_filters( 'layers_extension_list' , $extension_list );
+		if( is_wp_error( $api_call ) ) {
+
+			// Return an error if we have one
+			return $api_call;
+		} else {
+
+			// If the call is successful, well then send back decoded JSON
+			return json_decode( $api_call );
+		}
+	}
+	public function get_popular( $site = 'themeforest' ){
+		$endpoint = 'market/popular:' . $site . '.json';
+
+		// Do the API call
+		$api_call = $this->do_envato_api_call( $endpoint, '', 'get', 2 );
+
+		if( is_wp_error( $api_call ) ) {
+
+			// Return an error if we have one
+			return $api_call;
+		} else {
+
+			// If the call is successful, well then send back decoded JSON
+			return json_decode( $api_call );
+		}
+
 	}
 }

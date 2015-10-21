@@ -12,19 +12,26 @@ if( !class_exists( 'Layers_Customize_Range_Control' ) ) {
 	class Layers_Customize_Range_Control extends Layers_Customize_Control {
 
 		public $type = 'layers-range';
+		
+		public $min;
+		public $max;
+		public $step;
 
 		public function render_content() {
 
 			$form_elements = new Layers_Form_Elements();
 
-			$values = false; ?>
+			$values = false;
+			?>
 
 			<div data-test id="layers-customize-control-<?php echo esc_attr( $this->id ); ?>" class="layers-customize-control layers-customize-control-<?php echo esc_attr( str_replace( 'layers-', '', $this->type ) ); ?> <?php echo esc_attr( $this->class ); ?>" <?php echo $this->get_linked_data(); ?> >
-
+				
+				<?php $this->render_history_actions(); ?>
+				
 				<span class="customize-control-title">
 					<?php echo esc_html( $this->label ); ?>
 				</span>
-
+				
 				<div class="layers-form-item">
 
 					<?php if ( '' != $this->subtitle ) : ?>
@@ -58,4 +65,4 @@ if( !class_exists( 'Layers_Customize_Range_Control' ) ) {
 			<?php
 		}
 	}
-} // !class_exists( 'Layers_Customize_Range_Control' )
+}

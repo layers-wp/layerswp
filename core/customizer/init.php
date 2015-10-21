@@ -57,6 +57,7 @@ class Layers_Customizer {
 			require_once get_template_directory() . $controls_dir . 'color.php';
 			require_once get_template_directory() . $controls_dir . 'font.php';
 			require_once get_template_directory() . $controls_dir . 'heading.php';
+			require_once get_template_directory() . $controls_dir . 'heading-divider.php';
 			require_once get_template_directory() . $controls_dir . 'number.php';
 			require_once get_template_directory() . $controls_dir . 'range.php';
 			require_once get_template_directory() . $controls_dir . 'select.php';
@@ -66,6 +67,7 @@ class Layers_Customizer {
 			require_once get_template_directory() . $controls_dir . 'rte.php';
 			require_once get_template_directory() . $controls_dir . 'text.php';
 			require_once get_template_directory() . $controls_dir . 'textarea.php';
+			require_once get_template_directory() . $controls_dir . 'trbl.php';
 
 			// Enqueue Styles
 			add_action( 'customize_controls_print_footer_scripts', array( $this, 'admin_enqueue_scripts' ) );
@@ -83,7 +85,7 @@ class Layers_Customizer {
 	*/
 
 	public function admin_enqueue_scripts(){
-		
+
 		// Hover Intent
 		wp_enqueue_script( 'hoverIntent' );
 
@@ -115,7 +117,7 @@ class Layers_Customizer {
 	*/
 
 	public function customizer_preview_enqueue_scripts(){
-		
+
 		wp_enqueue_script(
 			LAYERS_THEME_SLUG . '-admin-customizer-preview',
 			get_template_directory_uri() . '/core/customizer/js/customizer-preview.js',
@@ -191,7 +193,7 @@ class Layers_Customizer {
 						// Construct the Layers Customizer Menu
 						$layers_customizer_menu = array(
 							'preview' => array(
-								'text'			=> __( 'Preview this page' , 'layerswp' ),
+								'text'			=> __( 'View this page' , 'layerswp' ),
 								'link'			=> '#',
 								'icon_class'	=> 'icon-display',
 								'target'		=> '_blank',

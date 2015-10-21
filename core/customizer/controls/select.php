@@ -23,7 +23,9 @@ if( !class_exists( 'Layers_Customize_Select_Control' ) ) {
 			$values = false; ?>
 
 			<div data-test id="layers-customize-control-<?php echo esc_attr( $this->id ); ?>" class="layers-customize-control layers-customize-control-<?php echo esc_attr( str_replace( 'layers-', '', $this->type ) ); ?> <?php echo esc_attr( $this->class ); ?>" <?php echo $this->get_linked_data(); ?> >
-
+				
+				<?php $this->render_history_actions(); ?>
+				
 				<span class="customize-control-title">
 					<?php echo esc_html( $this->label ); ?>
 				</span>
@@ -33,7 +35,7 @@ if( !class_exists( 'Layers_Customize_Select_Control' ) ) {
 						<label class="layers-form-row"><?php echo $this->subtitle; ?></label>
 					<?php endif; ?>
 
-					<div class="layers-select-wrapper layers-form-item">
+					<div class="layers-form-item layers-select-wrapper <?php echo ( $this->colspan ) ? esc_attr( "layers-column-flush layers-span-{$this->colspan}" ) : '' ?>">
 						<?php echo $form_elements->input(
 							array(
 								'type' => 'select',
@@ -57,4 +59,4 @@ if( !class_exists( 'Layers_Customize_Select_Control' ) ) {
 			<?php
 		}
 	}
-} // !class_exists( 'Layers_Customize_Select_Control' )
+}

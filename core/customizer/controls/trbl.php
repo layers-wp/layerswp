@@ -1,17 +1,19 @@
 <?php  /**
- * Number
+ * TRBL Field (Top, Right, Bottm, Left)
  *
- * This file is used to register and display the custom Layers Number
+ * This file is used to register and display the custom Layers TRBL field
  *
  * @package Layers
  * @since Layers 1.0.0
  */
 
-if( !class_exists( 'Layers_Customize_Number_Control' ) ) {
+if( !class_exists( 'Layers_Customize_TRBL_Control' ) ) {
+	
+	class Layers_Customize_TRBL_Control extends Layers_Customize_Control {
 
-	class Layers_Customize_Number_Control extends Layers_Customize_Control {
-
-		public $type = 'layers-number';
+		public $type = 'layers-trbl-fields';
+		
+		public $fields = array();
 
 		public function render_content() {
 
@@ -21,7 +23,7 @@ if( !class_exists( 'Layers_Customize_Number_Control' ) ) {
 
 			<div data-test id="layers-customize-control-<?php echo esc_attr( $this->id ); ?>" class="layers-customize-control layers-customize-control-<?php echo esc_attr( str_replace( 'layers-', '', $this->type ) ); ?> <?php echo esc_attr( $this->class ); ?>" <?php echo $this->get_linked_data(); ?> >
 				
-				<?php $this->render_history_actions(); ?>
+				<?php //$this->render_history_actions(); ?>
 				
 				<span class="customize-control-title">
 					<?php echo esc_html( $this->label ); ?>
@@ -36,12 +38,16 @@ if( !class_exists( 'Layers_Customize_Number_Control' ) ) {
 					<div class="layers-form-item <?php echo ( $this->colspan ) ? esc_attr( "layers-column-flush layers-span-{$this->colspan}" ) : '' ?>">
 						<?php echo $form_elements->input(
 							array(
-								'type' => 'number',
-								'label' => ( isset( $this->label ) ? $this->label : '' ),
+								'type' => 'trbl-fields',
 								'name' => '',
 								'id' => $this->id,
-   								'value' => stripslashes( $this->value() ),
-								'data' => $this->get_customize_data(),
+								'value' => array(
+									'top' => get_option( "{$this->id}-top" ),
+									'right' => get_option( "{$this->id}-right" ),
+									'bottom' => get_option( "{$this->id}-bottom" ),
+									'left' => get_option( "{$this->id}-left" ),
+								),
+   								'fields' => $this->fields,
 							)
 						); ?>
 					</div>

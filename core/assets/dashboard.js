@@ -130,7 +130,7 @@ jQuery(function($) {
 				$form_data,
 				function(data){
 					$results = $.parseJSON( data );
-					//location.reload();
+					location.reload();
 				}
 			); // $.post
 	});

@@ -348,13 +348,13 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 							// Allow keyboard control
 							<?php echo $swiper_js_obj; ?>.enableKeyboardControl();
 						<?php } // if > 1 slide ?>
-
-					<?php if( TRUE == $this->check_and_return( $widget , 'autoheight_slides' ) ) { ?>
-						layers_swiper_resize( <?php echo $swiper_js_obj; ?> );
-						$(window).resize(function(){
+						
+						<?php if( TRUE == $this->check_and_return( $widget , 'autoheight_slides' ) ) { ?>
 							layers_swiper_resize( <?php echo $swiper_js_obj; ?> );
-						});
-					<?php } ?>
+							$(window).resize(function(){
+								layers_swiper_resize( <?php echo $swiper_js_obj; ?> );
+							});
+						<?php } ?>
 
 						$('#<?php echo $widget_id; ?>').find('.arrows a').on( 'click' , function(e){
 							e.preventDefault();
@@ -362,12 +362,15 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 							// "Hi Mom"
 							$that = $(this);
 
-							if( $that.hasClass( 'swiper-pagination-switch' ) ){ // Anchors
-							<?php echo $swiper_js_obj; ?>.slideTo( $that.index() );
-							} else if( $that.hasClass( 'l-left-arrow' ) ){ // Previous
-							<?php echo $swiper_js_obj; ?>.slidePrev();
-							} else if( $that.hasClass( 'l-right-arrow' ) ){ // Next
-							<?php echo $swiper_js_obj; ?>.slideNext();
+							if( $that.hasClass( 'swiper-pagination-switch' ) ){
+								// Anchors
+								<?php echo $swiper_js_obj; ?>.slideTo( $that.index() );
+							} else if( $that.hasClass( 'l-left-arrow' ) ){
+								// Previous
+								<?php echo $swiper_js_obj; ?>.slidePrev();
+							} else if( $that.hasClass( 'l-right-arrow' ) ){
+								// Next
+								<?php echo $swiper_js_obj; ?>.slideNext();
 							}
 
 							return false;

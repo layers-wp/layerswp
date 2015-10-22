@@ -41,137 +41,50 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 /*-------------------------------*/
 
     /*---------------------------*/
-    /*- SLIDER CONTENT ----------*/
+    /*- SLIDER DEFAULTS ---------*/
     .swiper-slide img{
         display: block;
         margin: auto;
     }
-    .swiper-slide .overlay{
-        height: 100%;
-    }
-    .swiper-slide .overlay.darken{
-        background-color: rgba(0, 0, 0, 0.2);
-    }
-    .swiper-container.container{
-        padding: 0;
-        max-width: 1000px;
-        transform-style: preserve-3d;
-    }
     .swiper-slide .container{
-        padding: 0;
-        position: relative;
-        top: 50%;
-        -webkit-transform: translateY(-50%);
-        transform: translateY(-50%);
-    }
-    .swiper-slide.image-left .container,
-    .swiper-slide.image-right .container{
-        -webkit-transform: none;
-        transform: none;
-    }
-    .swiper-slide .copy-container{
         max-width: 1000px;
-        margin: auto;
         padding: 0;
-        position: relative;
     }
-    .swiper-slide.image-left .copy-container,
-    .swiper-slide.image-right .copy-container{
-        -webkit-transform: translateY(-50%);
-        transform: translateY(-50%);
-    }
-    .swiper-slide .image-container{
-        position: relative;
-        text-align: center;
-    }
-    .swiper-slide.image-left .image-container,
-    .swiper-slide.image-right .image-container{
-        -webkit-transform: translateY(-50%);
-        transform: translateY(-50%);
-    }
-    .single-slide .swiper-slide{
+    .swiper-slide .overlay.content{
         width: 100%;
     }
-    .slide:not(.single-slide) .swiper-slide{
-        cursor: -webkit-grab;
-        cursor: -moz-grab;
+    .overlay.darken{
+        background: rgba(0, 0, 0, 0.2);
     }
-    .swiper-slide .section-title{
+
+    .swiper-slide .copy-container,
+    .swiper-slide .image-container{
+        width: 100%;
+    }
+    .swiper-slide .container .section-title{
         margin-bottom: 0;
     }
-    .swiper-slide .section-title.large .excerpt{
-        max-width: none;
-    }
-    .swiper-slide.image-top.text-center .excerpt{
-        max-width: 745px;
-    }
 
     /*---------------------------*/
-    /*- AUTO HEIGHT -------------*/
-    .auto-height .swiper-slide .container{
-        padding-top: 60px;
-        padding-bottom: 60px;
+    /*- SLIDER ALIGNMENT --------*/
+    .swiper-slide,
+    .swiper-slide .container{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
     }
-    .auto-height .image-left .container,
-    .auto-height .image-right .container{
-        padding-top: 0;
-        padding-bottom: 0;
+    .swiper-slide .copy-container + .image-container{
+        margin-top: 30px;
     }
-    .auto-height .image-left .copy-container,
-    .auto-height .image-right .copy-container{
-        padding-top: 60px;
-        padding-bottom: 60px;
+    .swiper-slide.image-top .container{
+        flex-direction: column-reverse;
     }
-    .auto-height .image-left .image-container,
-    .auto-height .image-right .image-container{
-        padding-top: 60px;
-        padding-bottom: 60px;
+    .swiper-slide.image-top .copy-container + .image-container{
+        margin-bottom: 30px;
     }
-
-    /*---------------------------*/
-    /*- SLIDER IMAGES -----------*/
-    .image-left .copy-container{
-        float: right;
-        width: 49%;
-    }
-    .image-left .image-container{
-        float: left;
-        width: 49%;
-    }
-    .image-right .copy-container{
-        float: left;
-        width: 49%;
-    }
-    .image-right .image-container{
-        float: right;
-        width: 49%;
-    }
-    .has-image.image-top .container{
-        position: relative;
-        top: 50%;
-        -webkit-transform: translateY(-50%);
-        transform: translateY(-50%);
-    }
-    .has-image.image-top .copy-container{
-        top: auto;
-        -webkit-transform: none;
-        transform: none;
-    }
-    .has-image.image-top .image-container{
-        top: auto;
-        -webkit-transform: none;
-        transform: none;
-    }
-    .image-top .copy-container + .image-container{
-        margin-top: 40px;
-    }
-
-    /*---------------------------*/
-    /*- SLIDER COPY -------------*/
-    .swiper-slide.text-center .excerpt{
-        margin-top: 15px;
-        margin-left: auto;
-        margin-right: auto;
+    .swiper-slide.image-bottom .container{
+        flex-direction: column;
     }
 
     /*---------------------------*/

@@ -54,13 +54,16 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
     .overlay.darken{
         background: rgba(0, 0, 0, 0.2);
     }
+    .auto-height .swiper-slide .overlay{
+        padding-top: 60px;
+        padding-bottom: 60px;
+    }
     .swiper-slide .container{
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
         width: 100%;
-        max-width: 1000px;
         padding: 0;
     }
     .swiper-slide .copy-container,

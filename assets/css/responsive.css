@@ -871,6 +871,7 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
     .swiper-slide.image-left .container{
         flex-direction: row-reverse;
+        justify-content: flex-end;
     }
     .swiper-slide.image-left .image-container{
         width: 50%;
@@ -883,6 +884,7 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
     .swiper-slide.image-right .container{
         flex-direction: row;
+        justify-content: flex-start;
     }
     .swiper-slide.image-right .image-container{
         width: 50%;
@@ -892,6 +894,7 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
         width: 50%;
         padding-right: 20px;
     }
+
 
     .swiper-slide.image-right .copy-container + .image-container,
     .swiper-slide.image-left .copy-container + .image-container{

@@ -28,6 +28,9 @@
 * **Enhancement** - Added new method to add fields or field-groups to the Layers Design-Bar. (see Design-Bar help docs for more information) *SOB*
 * **Enhancement** - Added animations to make deleting items in the widgets (with repeater items) more explanatory and friendly. e.g. Columns and  Slides. *SOB*
 * **Enhancement** - Added custom jquery-easing to use with Widgets on front-end - `layersEaseInOut`. *SOB*
+* **Enhancement** - Slider CSS completely re-written to work with Flexbox, more reliable centering and auto-heighting. *DP*
+* **Enhancement** - Image-bottom slider setting now available. *DP*
+* **Enhancement** - Large font in the slider now resizes to medium in responsive mode. *DP*
 
 =======
 ##1.2.5

@@ -106,8 +106,9 @@ class Layers_Customizer {
 
 		// Localize Scripts
 		wp_localize_script( LAYERS_THEME_SLUG . '-admin-customizer' , "layers_customizer_params", array(
-				'nonce' => wp_create_nonce( 'layers-customizer-actions' ),
-				'builder_page' => ( isset( $_GET[ 'layers-builder' ] ) ? TRUE : FALSE )
+				'nonce'               => wp_create_nonce( 'layers-customizer-actions' ),
+				'builder_page'        => ( isset( $_GET[ 'layers-builder' ] ) ? TRUE : FALSE ),
+				'enable_deep_linking' => ( get_theme_mod( 'layers-dev-switch-customizer-state-record' ) ),
 			)
 		);
 	}

@@ -204,6 +204,7 @@
 			 */
 			 
 			var enable_deep_linking = false;
+			if ( 1 == layers_customizer_params.enable_deep_linking ) enable_deep_linking = true;
 			
 			// Open item if hash is set.
 			if ( window.location.hash ) {

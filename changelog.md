@@ -12,6 +12,7 @@
 * **Tweak** - TRBL Customizer control can be limited to use just 'top' and 'bottom' by using the 'fields' setting and passing args array of required fields. *SOB*
 * **Tweak** - To set customizer controls classnames use: `class` to add to the the `container` classname, and `input_class` to add to the `input` classname. *SOB*
 * **Tweak** - `layers_inline_styles()` now outputs cleaner more human-readable CSS block. *SOB*
+* **Tweak** - Move slider height settings to the top of the settings pop menu. *DP*
 * **Fix** - Auto-height slide no longer breaks when you only have one slide. *DP*
 * **Fix** - Fixed "Powered by Envato" typo in marketplace. *MP*
 * **Fix** - Auto padding on top of first widget when is unique widgets like slider now also takes into account the custom padding added by user there to start with. *SOB*

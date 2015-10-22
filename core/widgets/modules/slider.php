@@ -179,7 +179,7 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 				$widget_container_class[] = 'auto-height';
 			}
 			$widget_container_class = implode( ' ', apply_filters( 'layers_slider_widget_container_class' , $widget_container_class ) );
-			
+
 			/**
 			 * Slider HTML
 			 */
@@ -304,7 +304,7 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 			 		</div>
 				<?php } // if !empty( $widget->slides ) ?>
 		 	</section>
-			
+
 			<?php
 			/**
 			 * Slider javascript initialize
@@ -348,7 +348,7 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 							// Allow keyboard control
 							<?php echo $swiper_js_obj; ?>.enableKeyboardControl();
 						<?php } // if > 1 slide ?>
-						
+
 						<?php if( TRUE == $this->check_and_return( $widget , 'autoheight_slides' ) ) { ?>
 							layers_swiper_resize( <?php echo $swiper_js_obj; ?> );
 							$(window).resize(function(){
@@ -379,7 +379,7 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 						<?php echo $swiper_js_obj; ?>.init();
 					})
 			 	</script>
-		 	
+
 		<?php }
 
 		/**
@@ -448,6 +448,21 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 					'icon-css' => 'icon-slider',
 					'label' => __( 'Slider', 'layerswp' ),
 					'elements' => array(
+						'autoheight_slides' => array(
+							'type' => 'checkbox',
+							'name' => $this->get_field_name( 'autoheight_slides' ) ,
+							'id' => $this->get_field_id( 'autoheight_slides' ) ,
+							'value' => ( isset( $widget['autoheight_slides'] ) ) ? $widget['autoheight_slides'] : NULL,
+							'label' => __( 'Auto Height Slides' , 'layerswp' ),
+						),
+						'slide_height' => array(
+							'type' => 'number',
+							'name' => $this->get_field_name( 'slide_height' ) ,
+							'id' => $this->get_field_id( 'slide_height' ) ,
+							'value' => ( isset( $widget['slide_height'] ) ) ? $widget['slide_height'] : NULL,
+							'label' => __( 'Slider Height (px)' , 'layerswp' ),
+							'data' => array( 'show-if-selector' => '#' . $this->get_field_id( 'autoheight_slides' ), 'show-if-value' => 'false' ),
+						),
 						'show_slider_arrows' => array(
 							'type' => 'checkbox',
 							'name' => $this->get_field_name( 'show_slider_arrows' ) ,
@@ -500,21 +515,6 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 							'value' => ( isset( $widget['slide_time'] ) ) ? $widget['slide_time'] : NULL,
 							'label' => __( 'Slide Interval (seconds)' , 'layerswp' ),
 							'data' => array( 'show-if-selector' => '#' . $this->get_field_id( 'autoplay_slides' ), 'show-if-value' => 'true' )
-						),
-						'autoheight_slides' => array(
-							'type' => 'checkbox',
-							'name' => $this->get_field_name( 'autoheight_slides' ) ,
-							'id' => $this->get_field_id( 'autoheight_slides' ) ,
-							'value' => ( isset( $widget['autoheight_slides'] ) ) ? $widget['autoheight_slides'] : NULL,
-							'label' => __( 'Auto Height Slides' , 'layerswp' ),
-						),
-						'slide_height' => array(
-							'type' => 'number',
-							'name' => $this->get_field_name( 'slide_height' ) ,
-							'id' => $this->get_field_id( 'slide_height' ) ,
-							'value' => ( isset( $widget['slide_height'] ) ) ? $widget['slide_height'] : NULL,
-							'label' => __( 'Slider Height (px)' , 'layerswp' ),
-							'data' => array( 'show-if-selector' => '#' . $this->get_field_id( 'autoheight_slides' ), 'show-if-value' => 'false' ),
 						),
 					),
 				),

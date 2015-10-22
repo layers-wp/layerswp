@@ -611,8 +611,10 @@ jQuery(function($) {
 				$target_element = $target_element.closest('.layers-form-item');
 			}
 
-			if( 0 !== $target_value.indexOf( $source_element_value ) ){
-
+			//if( $target_value.indexOf( $source_element_value ) >= 0 ){
+			if( $target_value.trim() == $source_element_value.trim() ){
+				
+				// Show
 				if( animation_type == 'slideDown' ){
 					$target_element.removeClass( 'layers-hide' );
 					$target_element.slideDown( { duration: 550, easing: 'layersEaseInOut' } );
@@ -623,6 +625,7 @@ jQuery(function($) {
 
 			} else {
 
+				// Hide
 				if( animation_type == 'slideDown' ){
 					$target_element.slideUp( { duration: 550, easing: 'layersEaseInOut', complete: function(){
 						$target_element.addClass( 'layers-hide' );

@@ -220,16 +220,6 @@ class Layers_Customizer_Regsitrar {
 						$control_data
 					)
 				);
-			} else if( 'layers-heading-divider' == $control_data['type'] ) {
-
-				// Add Control
-				$this->customizer->add_control(
-					new Layers_Customize_Heading_Divider_Control(
-						$this->customizer,
-						$setting_key,
-						$control_data
-					)
-				);
 			} else if( 'layers-color' == $control_data['type'] ) {
 
 				// Add Control

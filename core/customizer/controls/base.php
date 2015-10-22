@@ -14,6 +14,8 @@ if( !class_exists( 'Layers_Customize_Control' ) ) {
 		public $type = '';
 
 		public $label = '';
+		
+		public $heading_divider = '';
 
 		public $text = ''; // Used for form elements that have label and text, like Buttons.
 
@@ -87,6 +89,26 @@ if( !class_exists( 'Layers_Customize_Control' ) ) {
 				<!-- <a href="#" class="customize-control-redo fa fa-repeat"></a> -->
 				<a href="#" class="customize-control-default fa fa-refresh" title="<?php _e( 'Reset (cleans the field returning it to original default state)', 'layerswp' ) ?>" data-default="<?php echo esc_attr( $this->default ); ?>"></a>
 			</div>
+			<?php
+		}
+		
+		/**
+		* Render the Reset-to-Default and possible other history buttons.
+		*/
+		public function render_heading_divider( $text ) {
+			?>
+			<table class="layers-heading-divider">
+				<tr>
+					<td>
+						<span class="customize-control-title">
+							<?php echo $text; ?>
+						</span>
+					</td>
+					<td>
+						<div><!----></div>
+					</td>
+				</tr>
+			</table>
 			<?php
 		}
 

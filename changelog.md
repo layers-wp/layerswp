@@ -30,6 +30,7 @@
 * **Enhancement** - Added animations to make deleting items in the widgets (with repeater items) more explanatory and friendly. e.g. Columns and  Slides. *SOB*
 * **Enhancement** - Added custom jquery-easing to use with Widgets on front-end - `layersEaseInOut`. *SOB*
 * **Enhancement** - Slider CSS completely re-written to work with Flexbox, more reliable centering and auto-heighting. *DP*
+* **Enhancement** - Slider CSS has been split between components and responsive.css where relevant to screensize. *DP*
 * **Enhancement** - Image-bottom slider setting now available. *DP*
 * **Enhancement** - Large font in the slider now resizes to medium in responsive mode. *DP*
 

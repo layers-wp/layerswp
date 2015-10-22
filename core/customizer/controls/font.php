@@ -27,7 +27,7 @@ if( !class_exists( 'Layers_Customize_Font_Control' ) ) {
 				<?php $this->render_history_actions(); ?>
 			
 				<span class="customize-control-title">
-					<?php echo esc_html( $this->label ); ?>
+					<?php echo $this->label; ?>
 				</span>
 
 				<div class="layers-form-item">

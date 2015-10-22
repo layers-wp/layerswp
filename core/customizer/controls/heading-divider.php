@@ -24,7 +24,7 @@ if( !class_exists( 'Layers_Customize_Heading_Divider_Control' ) ) {
 						<tr>
 							<td>
 								<span class="customize-control-title">
-									<?php echo esc_html( $this->label ); ?>
+									<?php echo $this->label; ?>
 								</span>
 							</td>
 							<td>

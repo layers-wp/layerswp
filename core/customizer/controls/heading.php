@@ -21,7 +21,7 @@ if( !class_exists( 'Layers_Customize_Heading_Control' ) ) {
 				<?php
 				if( '' != $this->label ) { ?>
 					<span class="customize-control-title">
-						<?php echo esc_html( $this->label ); ?>
+						<?php echo $this->label; ?>
 					</span>
 				<?php } ?>
 

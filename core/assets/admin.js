@@ -588,9 +588,7 @@ jQuery(function($) {
 		$( '[data-show-if-selector="' + $source_element_selector_new + '"]' ).each(function(){
 
 			var $target_element = $(this);
-
-			var $target_element_value = $target_element.data( 'show-if-value' ).toString();
-
+			var $target_value   = $target_element.data( 'show-if-value' ).toString();
 			var $source_element = $( $target_element.data( 'show-if-selector' ).toString() );
 
 			if ( $source_element.attr('type') == 'checkbox' ) {
@@ -613,7 +611,7 @@ jQuery(function($) {
 				$target_element = $target_element.closest('.layers-form-item');
 			}
 
-			if( $target_element_value.indexOf( $source_element_value ) > -1 ){
+			if( 0 !== $target_value.indexOf( $source_element_value ) ){
 
 				if( animation_type == 'slideDown' ){
 					$target_element.removeClass( 'layers-hide' );
@@ -633,7 +631,6 @@ jQuery(function($) {
 				else{
 					$target_element.addClass( 'layers-hide' );
 				}
-
 			}
 		});
 

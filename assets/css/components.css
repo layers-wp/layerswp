@@ -73,6 +73,10 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
     .swiper-slide .section-title{
         margin-bottom: 0;
     }
+    .slide:not(.single-slide) .swiper-slide{
+        cursor: -webkit-grab;
+        cursor: -moz-grab;
+    }
 
     /*---------------------------*/
     /*- SLIDER ALIGNMENT --------*/

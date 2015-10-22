@@ -12,6 +12,7 @@
 * **Tweak** - TRBL Customizer control can be limited to use just 'top' and 'bottom' by using the 'fields' setting and passing args array of required fields. *SOB*
 * **Tweak** - To set customizer controls classnames use: `class` to add to the the `container` classname, and `input_class` to add to the `input` classname. *SOB*
 * **Tweak** - `layers_inline_styles()` now outputs cleaner more human-readable CSS block. *SOB*
+* **Tweak** - Move slider height settings to the top of the settings pop menu. *DP*
 * **Fix** - Auto-height slide no longer breaks when you only have one slide. *DP*
 * **Fix** - Fixed "Powered by Envato" typo in marketplace. *MP*
 * **Fix** - Auto padding on top of first widget when is unique widgets like slider now also takes into account the custom padding added by user there to start with. *SOB*
@@ -28,6 +29,10 @@
 * **Enhancement** - Added new method to add fields or field-groups to the Layers Design-Bar. (see Design-Bar help docs for more information) *SOB*
 * **Enhancement** - Added animations to make deleting items in the widgets (with repeater items) more explanatory and friendly. e.g. Columns and  Slides. *SOB*
 * **Enhancement** - Added custom jquery-easing to use with Widgets on front-end - `layersEaseInOut`. *SOB*
+* **Enhancement** - Slider CSS completely re-written to work with Flexbox, more reliable centering and auto-heighting. *DP*
+* **Enhancement** - Slider CSS has been split between components and responsive.css where relevant to screensize. *DP*
+* **Enhancement** - Image-bottom slider setting now available. *DP*
+* **Enhancement** - Large font in the slider now resizes to medium in responsive mode. *DP*
 
 =======
 ##1.2.5

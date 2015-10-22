@@ -863,6 +863,10 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
     /*---------------------------*/
     /*- SLIDER CONTENT ----------*/
+    .swiper-slide .container{
+        padding-left: 20px;
+        padding-right: 20px;
+    }
 
     .swiper-slide.text-center .excerpt{
         margin-left: auto;

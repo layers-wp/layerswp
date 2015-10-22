@@ -23,6 +23,10 @@ if( !class_exists( 'Layers_Customize_Checkbox_Control' ) ) {
 				
 				<?php //$this->render_history_actions(); ?>
 				
+				<?php if ( '' != $this->heading_divider ) { ?>
+					<?php $this->render_heading_divider( $this->heading_divider ); ?>
+				<?php } ?>
+				
 				<div class="layers-form-item">
 					<div class="layers-checkbox-wrapper layers-form-item">
 						<?php echo $form_elements->input(

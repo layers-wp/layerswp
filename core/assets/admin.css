@@ -1675,14 +1675,6 @@ li[id*='accordion-section-layers'] .customize-control.customize-control-layers-h
     /* margin:0; */
 }
 
-li[id*='accordion-section-layers'] .customize-control .layers-customize-control.layers-customize-control-heading-divider .customize-control-title{
-    display: block;
-    font-size: 14px;
-    line-height: 24px;
-    font-weight: 600;
-    margin: 0;
-}
-
 li[id*='accordion-section-layers'] .customize-control:first-child{
     margin: 6px 0 0px;
 }
@@ -1742,20 +1734,20 @@ li[id*='accordion-section-layers'] .customize-control.customize-control-image .a
     box-sizing: border-box;
 }
 
-    /*----------------------*/
-    /*- HEADING DIVIDER ----*/
+    /*----------------------------------*/
+    /*- HEADING DIVIDER - ALL CONTROLS -*/
 
-    .customize-control-layers-heading-divider table {
+    table.layers-heading-divider {
         width: 100%;
-        margin: 0;
+        margin: 6px 0 0;
         padding: 0;
         border-spacing: 0;
     }
-    .customize-control-layers-heading-divider table tr {
+    table.layers-heading-divider tr {
         margin: 0;
         padding: 0;
     }
-    .customize-control-layers-heading-divider table tr td:first-child {
+    table.layers-heading-divider tr td:first-child {
         padding-right: 6px;
         font-size: 14px;
         line-height: 24px;
@@ -1764,14 +1756,30 @@ li[id*='accordion-section-layers'] .customize-control.customize-control-image .a
         margin: 0;
         white-space: nowrap;
     }
-    .customize-control-layers-heading-divider table tr td:last-child {
+    table.layers-heading-divider tr td:last-child {
         width: 100%;
     }
-    .customize-control-layers-heading-divider table tr td:last-child div{
+    table.layers-heading-divider tr td:last-child div{
         border-bottom: 1px solid #EEE;
         height: 2px;
     }
+    li[id*='accordion-section-layers'] .customize-control table.layers-heading-divider .customize-control-title {
+        display: block;
+        font-size: 14px;
+        line-height: 24px;
+        font-weight: 600;
+        margin: 0 0 6px;
+    }
 
+    /*----------------------------------------*/
+    /*- HEADING DIVIDER - DEDICATED CONTROLS -*/
+
+    li[id*='accordion-section-layers'] .customize-control.customize-control-layers-heading-divider {
+        margin-top: 12px;
+    }
+    li[id*='accordion-section-layers'] .customize-control.customize-control-layers-heading-divider table.layers-heading-divider .customize-control-title {
+        margin: 0;
+    }
     li[id*='accordion-section-layers'] .customize-control.customize-control-layers-heading-divider .description{
         margin-top: 3px;
     }

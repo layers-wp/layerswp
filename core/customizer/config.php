@@ -269,19 +269,16 @@ class Layers_Customizer_Config {
 		$controls['header-layout'] = array(
 			'header-width' => array(
 				'type'     => 'layers-select-icons',
-				'label'    => __( 'Header Width' , 'layerswp' ),
+				'heading_divider' => __( 'Header Width' , 'layerswp' ),
 				'default' => 'layout-boxed',
 				'choices' => array(
 					'layout-boxed' => __( 'Boxed' , 'layerswp' ),
 					'layout-fullwidth' => __( 'Full Width' , 'layerswp' ),
 				),
 			),
-			'header-layout-break-0' => array(
-				'type'     => 'layers-seperator',
-			),
 			'header-menu-layout' => array(
 				'type'     => 'layers-select-icons',
-				'label'    => __( 'Header Arrangement' , 'layerswp' ),
+				'heading_divider' => __( 'Header Arrangement' , 'layerswp' ),
 				'default' => 'header-logo-left',
 				'choices' => array(
 					'header-logo-left' => __( 'Logo Left' , 'layerswp' ),
@@ -292,8 +289,8 @@ class Layers_Customizer_Config {
 				),
 			),
 			'header-position-heading' => array(
-				'type'  => 'layers-heading-divider',
-				'label'    => __( 'Features' , 'layerswp' ),
+				'type'  => 'layers-heading',
+				'heading_divider' => __( 'Features' , 'layerswp' ),
 			),
 			'header-sticky' => array(
 				'type'		=> 'layers-checkbox',

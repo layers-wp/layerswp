@@ -46,17 +46,23 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
         display: block;
         margin: auto;
     }
-    .swiper-slide .container{
-        max-width: 1000px;
-        padding: 0;
-    }
-    .swiper-slide .overlay.content{
+    .swiper-slide .overlay{
+        display: flex;
         width: 100%;
+        height: 100%;
     }
     .overlay.darken{
         background: rgba(0, 0, 0, 0.2);
     }
-
+    .swiper-slide .container{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        max-width: 1000px;
+        padding: 0;
+    }
     .swiper-slide .copy-container,
     .swiper-slide .image-container{
         width: 100%;
@@ -67,23 +73,17 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
     /*---------------------------*/
     /*- SLIDER ALIGNMENT --------*/
-    .swiper-slide,
-    .swiper-slide .container{
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
+    .swiper-slide.image-top .container{
+        flex-direction: column-reverse;
     }
     .swiper-slide .copy-container + .image-container{
         margin-top: 30px;
     }
-    .swiper-slide.image-top .container{
-        flex-direction: column-reverse;
-    }
     .swiper-slide.image-top .copy-container + .image-container{
+        margin-top: 0;
         margin-bottom: 30px;
     }
-    .swiper-slide.image-bottom .container{
+    .swiper-slide.image-bottom .overlay{
         flex-direction: column;
     }
 

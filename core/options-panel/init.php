@@ -78,6 +78,9 @@ class Layers_Options_Panel {
 			// Load up the valid pages
 			$this->valid_page_slugs[] = $sub_menu_page[2];
 		}
+
+		// Layers Marketplace is on it's own top level menu, so we have to shimmy it in
+		$this->valid_page_slugs[] = 'layers-marketplace';
 	}
 
 	/**
@@ -565,13 +568,15 @@ function layers_options_panel_menu(){
 
 	// Marketplace
 	if( !defined( 'LAYERS_DISABLE_MARKETPLACE' ) ){
-		$marketplace = add_submenu_page(
-			LAYERS_THEME_SLUG . '-dashboard',
+		// dashboard Page
+		$marketplace = add_menu_page(
 			__( 'Marketplace' , 'layerswp' ),
 			__( 'Marketplace' , 'layerswp' ),
 			'edit_theme_options',
 			LAYERS_THEME_SLUG . '-marketplace',
-			'layers_options_panel_ui'
+			'layers_options_panel_ui',
+			'none',
+			4
 		);
 
 		add_action('admin_print_scripts-' . $marketplace, array( $layers_options_panel, 'enqueue_marketplace_scripts') );

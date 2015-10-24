@@ -17,6 +17,30 @@ class Layers_Customizer_Regsitrar {
 
 	private static $instance; // stores singleton class
 
+	private $controls = array(
+		'layers-select-images' => 'Layers_Customize_Select_Image_Control',
+		'layers-select-icons' => 'Layers_Customize_Select_Icon_Control',
+		'layers-seperator' => 'Layers_Customize_Seperator_Control',
+		'layers-heading' => 'Layers_Customize_Heading_Control',
+		'layers-color' => 'Layers_Customize_Color_Control',
+		'layers-checkbox' => 'Layers_Customize_Checkbox_Control',
+		'layers-select' => 'Layers_Customize_Select_Control',
+		'layers-textarea' => 'Layers_Customize_Textarea_Control',
+		'layers-rte' => 'Layers_Customize_RTE_Control',
+		'layers-font' => 'Layers_Customize_Font_Control',
+		'layers-button' => 'Layers_Customize_Button_Control',
+		'layers-code' => 'Layers_Customize_Code_Control',
+		'layers-text' => 'Layers_Customize_Text_Control',
+		'layers-number' => 'Layers_Customize_Number_Control',
+		'layers-range' => 'Layers_Customize_Range_Control',
+		'text' => 'WP_Customize_Control',
+		'color' => 'WP_Customize_Color_Control',
+		'upload' => 'WP_Customize_Upload_Control',
+		'image' => 'WP_Customize_Image_Control',
+		'background-image' => 'WP_Customize_Background_Image_Control',
+		'header-image' => 'WP_Customize_Header_Image_Control'
+	);
+
 	/**
 	*  Get Instance creates a singleton class that's cached to stop duplicate instances
 	*/
@@ -177,215 +201,15 @@ class Layers_Customizer_Regsitrar {
 				)
 			);
 
-
-			if ( 'layers-select-images' == $control_data['type'] ) {
+			if ( array_key_exists($control_data['type'], $this->$controls) ) {
 				// Add Control
 				$this->customizer->add_control(
-					new Layers_Customize_Select_Image_Control(
-						$this->customizer,
-						$setting_key ,
-						$control_data
-					)
-				);
-			} else if( 'layers-select-icons' == $control_data['type'] ) {
-
-				// Add Control
-				$this->customizer->add_control(
-					new Layers_Customize_Select_Icon_Control(
-						$this->customizer,
-						$setting_key ,
-						$control_data
-					)
-				);
-			} else if( 'layers-seperator' == $control_data['type'] ) {
-
-				// Add Control
-				$this->customizer->add_control(
-					new Layers_Customize_Seperator_Control(
-						$this->customizer,
-						$setting_key ,
-						$control_data
-					)
-				);
-			} else if( 'layers-heading' == $control_data['type'] ) {
-
-				// Add Control
-				$this->customizer->add_control(
-					new Layers_Customize_Heading_Control(
-						$this->customizer,
-						$setting_key ,
-						$control_data
-					)
-				);
-			} else if( 'layers-color' == $control_data['type'] ) {
-
-				// Add Control
-				$this->customizer->add_control(
-					new Layers_Customize_Color_Control(
-						$this->customizer,
-						$setting_key,
-						$control_data
-					)
-				);
-			} else if( 'layers-checkbox' == $control_data['type'] ) {
-
-				// Add Control
-				$this->customizer->add_control(
-					new Layers_Customize_Checkbox_Control(
-						$this->customizer,
-						$setting_key,
-						$control_data
-					)
-				);
-			} else if( 'layers-select' == $control_data['type'] ) {
-
-				// Add Control
-				$this->customizer->add_control(
-					new Layers_Customize_Select_Control(
-						$this->customizer,
-						$setting_key,
-						$control_data
-					)
-				);
-			} else if( 'layers-textarea' == $control_data['type'] ) {
-
-				// Add Control
-				$this->customizer->add_control(
-					new Layers_Customize_Textarea_Control(
-						$this->customizer,
-						$setting_key,
-						$control_data
-					)
-				);
-			} else if( 'layers-rte' == $control_data['type'] ) {
-
-				// Add Control
-				$this->customizer->add_control(
-					new Layers_Customize_RTE_Control(
-						$this->customizer,
-						$setting_key,
-						$control_data
-					)
-				);
-
-			} else if( 'layers-font' == $control_data['type'] ) {
-
-				// Add Control
-				$this->customizer->add_control(
-					new Layers_Customize_Font_Control(
-						$this->customizer,
-						$setting_key,
-						$control_data
-					)
-				);
-			} else if ( 'layers-button' == $control_data['type'] ) {
-
-				// Add Control
-				$this->customizer->add_control(
-					new Layers_Customize_Button_Control(
-						$this->customizer,
-						$setting_key,
-						$control_data
-					)
-				);
-			} else if( 'layers-code' == $control_data['type'] ) {
-
-				// Add Control
-				$this->customizer->add_control(
-					new Layers_Customize_Code_Control(
-						$this->customizer,
-						$setting_key,
-						$control_data
-					)
-				);
-			} else if( 'layers-text' == $control_data['type'] ) {
-
-				// Add Control
-				$this->customizer->add_control(
-					new Layers_Customize_Text_Control(
-						$this->customizer,
-						$setting_key,
-						$control_data
-					)
-				);
-			} else if( 'layers-number' == $control_data['type'] ) {
-
-				// Add Control
-				$this->customizer->add_control(
-					new Layers_Customize_Number_Control(
-						$this->customizer,
-						$setting_key,
-						$control_data
-					)
-				);
-			} else if( 'layers-range' == $control_data['type'] ) {
-
-				// Add Control
-				$this->customizer->add_control(
-					new Layers_Customize_Range_Control(
-						$this->customizer,
-						$setting_key,
-						$control_data
-					)
-				);
-			} else if( 'text' == $control_data['type'] ) {
-
-				// Add Control
-				$this->customizer->add_control(
-					new WP_Customize_Control(
-						$this->customizer,
-						$setting_key,
-						$control_data
-					)
-				);
-			} else if( 'color' == $control_data['type'] ) {
-
-				// Add Control
-				$this->customizer->add_control(
-					new WP_Customize_Color_Control(
-						$this->customizer,
-						$setting_key,
-						$control_data
-					)
-				);
-			} else if( 'upload' == $control_data['type'] ) {
-
-				// Add Control
-				$this->customizer->add_control(
-					new WP_Customize_Upload_Control(
-						$this->customizer,
-						$setting_key,
-						$control_data
-					)
-				);
-			} else if( 'image' == $control_data['type'] ) {
-
-				// Add Control
-				$this->customizer->add_control(
-					new WP_Customize_Image_Control(
-						$this->customizer,
-						$setting_key,
-						$control_data
-					)
-				);
-			} else if( 'background-image' == $control_data['type'] ) {
-
-				// Add Control
-				$this->customizer->add_control(
-					new WP_Customize_Background_Image_Control(
-						$this->customizer,
-						$setting_key,
-						$control_data
-					)
-				);
-			} else if( 'header-image' == $control_data['type'] ) {
-
-				// Add Control
-				$this->customizer->add_control(
-					new WP_Customize_Header_Image_Control(
-						$this->customizer,
-						$setting_key,
-						$control_data
+					(new ReflectionClass($this->$controls[$control_data['type']]))->newInstanceArgs(
+						array(
+							$this->customizer,
+							$setting_key,
+							$control_data
+						)
 					)
 				);
 			} else {

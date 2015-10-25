@@ -201,10 +201,10 @@ class Layers_Customizer_Regsitrar {
 				)
 			);
 
-			if ( array_key_exists($control_data['type'], $this->$controls) ) {
+			if ( array_key_exists($control_data['type'], $this->controls) ) {
 				// Add Control
 				$this->customizer->add_control(
-					(new ReflectionClass($this->$controls[$control_data['type']]))->newInstanceArgs(
+					(new ReflectionClass($this->controls[$control_data['type']]))->newInstanceArgs(
 						array(
 							$this->customizer,
 							$setting_key,

@@ -426,9 +426,6 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 
 			// Required - Get the name of this type.
 			$type = str_replace( '_item', '', __FUNCTION__ );
-
-			// Required - Increment the item count.
-			$this->{$type.'_item_count'}++;
 			?>
 
 				<li class="layers-accordion-item" data-guid="<?php echo esc_attr( $item_guid ); ?>">

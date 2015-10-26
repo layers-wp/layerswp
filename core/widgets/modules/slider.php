@@ -8,7 +8,7 @@
  */
 if( !class_exists( 'Layers_Slider_Widget' ) ) {
 	class Layers_Slider_Widget extends Layers_Widget {
-
+		
 		/**
 		*  Widget construction
 		*/
@@ -570,12 +570,9 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 
 			// Required - Get the name of this type.
 			$type = str_replace( '_item', '', __FUNCTION__ );
-
-			// Required - Increment the item count.
-			$this->{$type.'_item_count'}++;
 			?>
 
-				<li class="layers-accordion-item <?php echo $this->{$type.'_item_count'}; ?>" data-guid="<?php echo $item_guid; ?>">
+				<li class="layers-accordion-item <?php echo $this->item_count; ?>" data-guid="<?php echo $item_guid; ?>">
 					<a class="layers-accordion-title">
 						<span>
 							<?php _e( 'Slide' , 'layerswp' ); ?>

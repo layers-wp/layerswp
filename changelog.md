@@ -15,6 +15,7 @@
 * **Tweak** - Move slider height settings to the top of the settings pop menu. *DP*
 * **Fix** - Auto-height slide no longer breaks when you only have one slide. *DP*
 * **Fix** - Fixed "Powered by Envato" typo in marketplace. *MP*
+* **Fix** - Fixed an empty search page. *MP*
 * **Fix** - Auto padding on top of first widget when is unique widgets like slider now also takes into account the custom padding added by user there to start with. *SOB*
 * **Enhancement** - All WooCommerce widgets no longer look broken when placed in the footer widget areas. *DP*
 * **Enhancement** - Cart quantity color is now dynamic using rgba values. *DP*

@@ -63,8 +63,8 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 				'show_slider_dots' => 'on',
 				'animation_type' => 'slide',
 			);
-			
-			
+
+
 			/* Setup Widget Repeater Defaults */
 			$this->register_repeater_defaults( 'slide', 2, array(
 				'title' => __( 'Slider Title', 'layerswp' ),
@@ -87,7 +87,7 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 					)
 				)
 			) );
-			
+
 		}
 
 		/**
@@ -538,7 +538,7 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 					'title' =>'Sliders',
 					'icon_class' =>'slider'
 				) ); ?>
-				
+
 				<?php
 				// echo $this->form_elements()->input(
 				// 	array(
@@ -552,7 +552,7 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 				// 	)
 				// );
 				?>
-				
+
 				<section class="layers-accordion-section layers-content">
 					<div class="layers-form-item">
 						<?php $this->repeater( 'slide', $widget ); ?>
@@ -564,7 +564,7 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 		<?php }
 
 		function slide_item( $item_guid, $widget ) {
-			
+
 			// Required - Get the name of this type.
 			$type = str_replace( '_item', '', __FUNCTION__ );
 
@@ -596,15 +596,8 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 								'background',
 								'featuredimage',
 								'imagealign' => array(
-									'icon-css' => ( isset( $widget['design']['imagealign'] ) && NULL != $widget['design'] ? 'icon-' . $widget['design']['imagealign'] : 'icon-image-left' ),
-									'label' => __( 'Image Align', 'layerswp' ),
-									'wrapper-class' => 'layers-pop-menu-wrapper layers-animate layers-small',
 									'elements' => array(
 										'imagealign' => array(
-											'type' => 'select-icons',
-											'name' => $this->get_layers_field_name( 'design', 'imagealign' ),
-											'id' => $this->get_layers_field_id( 'design', 'imagealign' ),
-											'value' => ( isset( $widget['design']['imagealign'] ) ) ? $widget['design']['imagealign'] : NULL,
 											'options' => array(
 												'image-left' => __( 'Left', 'layerswp' ),
 												'image-right' => __( 'Right', 'layerswp' ),

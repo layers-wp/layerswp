@@ -155,6 +155,9 @@ a.customize-controls-layers-button:hover{
 a.customize-controls-layers-button-preview .icon{
 	font-size: 18px;
 }
+.customize-control-site_icon .actions {
+	margin-bottom: 0;
+}
 
 /*-------------------*/
 /*- TOOL TIP --------*/

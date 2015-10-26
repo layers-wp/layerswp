@@ -634,7 +634,25 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 							array(
 								'background',
 								'featuredimage',
-								'imagealign',
+								'imagealign' => array(
+									'icon-css' => 'icon-image-left',
+									'label' => __( 'Image Align', 'layerswp' ),
+									'wrapper-class' => 'layers-pop-menu-wrapper layers-animate layers-small',
+									'elements' => array(
+										'imagealign' => array(
+											'type' => 'select-icons',
+											'name' => $this->get_layers_field_name( 'design', 'imagealign' ),
+											'id' => $this->get_layers_field_id( 'design', 'imagealign' ),
+											'value' => ( isset( $widget['design']['imagealign'] ) ) ? $widget['design']['imagealign'] : NULL,
+											'options' => array(
+												'image-left' => __( 'Left', 'layerswp' ),
+												'image-right' => __( 'Right', 'layerswp' ),
+												'image-top' => __( 'Top', 'layerswp' ),
+												'image-bottom' => __( 'Bottom', 'layerswp' ),
+											),
+										),
+									),
+								),
 								'fonts',
 							) // Standard Components
 						); ?>

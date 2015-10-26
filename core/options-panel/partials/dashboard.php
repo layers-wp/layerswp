@@ -181,15 +181,15 @@ $theme_info = wp_get_theme( 'layerswp' ); ?>
 						<div class="layers-panel layers-push-bottom">
 							<div class="layers-panel-title">
 								<h4 class="layers-heading">
-									<?php _e( 'Layers Concierge Messenger' , 'layerswp' ); ?>
+									<?php _e( 'Layers Messenger' , 'layerswp' ); ?>
 								</h4>
 							</div>
 							<div class="layers-content">
 								<div class="layers-excerpt">
-									<p><?php _e( 'Enable the Layers Concierge to connect with the Layers team directly from inside Layers. We can help you make informed decisions about themes and extensions and point you in the right direction when you need support with your site and Layers.' , 'layerswp' ); ?></p>
+									<p><?php _e( 'Enable the Layers Messenger to connect with the Layers team directly from inside Layers. We can help you make informed decisions about themes and extensions and point you in the right direction when you need support with your site and Layers.' , 'layerswp' ); ?></p>
 								<div class="layers-checkbox-wrapper layers-form-item">
 									<input id="layers-enable-intercom" name="layers_intercom" type="checkbox" <?php if( '1' == get_option( 'layers_enable_intercom' )  ){ echo 'checked="checked"'; }; ?> />
-									<label for="layers-enable-intercom"><?php _e( 'Enable Layers Concierge', 'layerswp' ); ?></label>
+									<label for="layers-enable-intercom"><?php _e( 'Enable Layers Messenger', 'layerswp' ); ?></label>
 								</div>
 									<p><a href="" target="_blank"><?php _e( 'Your data is safe with us. View our Privacy Policy', 'layerswp' ); ?></a></p>
 								</div>

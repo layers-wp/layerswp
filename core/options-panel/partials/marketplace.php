@@ -10,7 +10,7 @@ if( !in_array( $type, $valid_types ) ) return; ?>
 
 <?php switch( $type ){
 	case 'stylekits' :
-		$excerpt = __( 'StyleKits' , 'layerswp' );
+		$excerpt = __( 'Style Kits' , 'layerswp' );
 		$products = $api->get_stylekit_list();
 		$fallback_url = 'http://bit.ly/layers-stylekits';
 		break;

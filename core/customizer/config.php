@@ -86,7 +86,7 @@ class Layers_Customizer_Config {
 			'woocommerce' => array(
 							'title' => __( 'WooCommerce' , 'layerswp' ),
 							'priority' => 100
-						)
+						),
 		);
 
 		return apply_filters( 'layers_customizer_panels', $panels );
@@ -108,6 +108,7 @@ class Layers_Customizer_Config {
 
 		return apply_filters( 'layers_customizer_default_panels', $default_panels );
 	}
+	
 	/**
 	* Layers Customiser Sections
 	*
@@ -139,6 +140,7 @@ class Layers_Customizer_Config {
 
 		return apply_filters( 'layers_customizer_default_sections', $default_sections );
 	}
+	
 	/**
 	* Default WP Customiser Controls
 	*
@@ -170,6 +172,22 @@ class Layers_Customizer_Config {
 	private function sections(){
 
 		$sections = array(
+			
+			// Following default sections need to be added so our registration process can access them
+			'title_tagline' => array(
+				'panel' => 'site-settings'
+			),
+			'colors' => array(
+				'panel' => 'site-settings',
+			),
+			'background_image' => array(
+				'panel' => 'site-settings',
+			),
+			'static_front_page' => array(
+				'panel' => 'site-settings',
+			),
+			// End default sections
+			
 			'site-colors' => array(
 				'title' =>__( 'Colors' , 'layerswp' ),
 				'panel' => 'site-settings',

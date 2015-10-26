@@ -97,7 +97,16 @@ class Layers_Customizer_Regsitrar {
 
 			// If panels are supported, add this as a panel
 			if( $this->customizer_supports_panels() ) {
-				$this->customizer->add_panel( $this->prefix . $panel_key , $panel_data );
+				
+				// Add Panel.
+				if ( in_array( $panel_key, $this->customizer->panels() ) ) {
+					// Panel exists without 'layers-' prepended, so shouldn't be added.
+					continue;
+				}
+				else {
+					// Add Panel with 'layers-' prepended.
+					$this->customizer->add_panel( $this->prefix . $panel_key , $panel_data );
+				}
 			}
 
 		} // foreach panel
@@ -119,8 +128,16 @@ class Layers_Customizer_Regsitrar {
 		foreach( $sections as $section_key => $section_data ){
 
 			if( $this->customizer_supports_panels() && isset( $section_data[ 'panel' ] ) ) {
-				// Set which panel to use
-				$section_data[ 'panel' ] = $this->prefix . $section_data[ 'panel' ];
+				
+				// Add Section.
+				if ( in_array( $section_data[ 'panel' ], $this->customizer->panels() ) ) {
+					// Panel exists without 'layers-' prepended, so add the section to that panel.
+					$section_data[ 'panel' ] = $section_data[ 'panel' ];
+				}
+				else {
+					// Panel exists with 'layers-' prepended, so add the section to that panel.
+					$section_data[ 'panel' ] = $this->prefix . $section_data[ 'panel' ];
+				}
 			}
 
 			if( !isset( $section_data[ 'priority' ] ) ) {
@@ -159,9 +176,16 @@ class Layers_Customizer_Regsitrar {
 		foreach( $controls[ $panel_section_key ] as $control_key => $control_data ){
 
 			$setting_key = $this->prefix . $control_key;
-
-			// Assign control to the relevant section
-			$control_data[ 'section' ] = $this->prefix . $panel_section_key;
+			
+			// Add Control.
+			if ( $this->customizer->get_section( $panel_section_key ) ) {
+				// Section exists without 'layers-' prepended, so add control to it.
+				$control_data[ 'section' ] = $panel_section_key;
+			}
+			else {
+				// Section exists with 'layers-' prepended, so add control to it.
+				$control_data[ 'section' ] = $this->prefix . $panel_section_key;
+			}
 
 			// Set control priority to obey order of setup
 			$control_data[ 'priority' ] = $control_priority;

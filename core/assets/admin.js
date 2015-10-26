@@ -28,7 +28,10 @@
  * 15 - Custom Widget Initialization Events
  * 16 - Intercom checkbox
  * 17 - Widget Peek/hide to preview changes
-
+ * 18 - Customizer Control - Range Slider
+ * 19 - Reset to Default
+ * 20 - History States
+ * 21 - Linking from one section/panel to another.
  *
  * Author: Obox Themes
  * Author URI: http://www.oboxthemes.com/
@@ -939,7 +942,7 @@ jQuery(function($) {
 	$(document).on( 'mouseleave', '.layers-widget-peek-button', function(){ $(this).closest('.widget-inside').removeClass('layers-peek-widget'); } );
 
 	/**
-	 * 17 - Customizer Control - Range Slider *NEW
+	 * 18 - Customizer Control - Range Slider
 	 */
 	$( document ).on( 'input change', '.layers-customize-control-range input[type="range"]', function( e ){
 		var $range_field = $(this);
@@ -953,7 +956,7 @@ jQuery(function($) {
 	});
 
 	/**
-	 * 18 - Reset to Default *NEW
+	 * 19 - Reset to Default
 	 */
 	$( document ).on( 'click', '.customize-control-default', function( e ){
 		var $refresh_button = $(this);
@@ -979,7 +982,7 @@ jQuery(function($) {
 	});
 
 	/**
-	 * 19 - History States *NEW
+	 * 20 - History States
 	 */
 	/*
 	var $history = [];
@@ -1047,4 +1050,23 @@ jQuery(function($) {
 		})
 	}
 	*/
+	
+	/**
+	 * 21 - Linking from one section/panel to another.
+	 *
+	 * Use class `customizer-link` and href `#target-panel-or-section-id`
+	 */
+	$( document ).on( 'click', '.customizer-link', function( e ){
+		
+		$link              = $(this);
+		$related_accordion = $( $link.attr('href') );
+		
+		// If there is a related panel ot section then open it.
+		if ( $related_accordion.length ) {
+			$related_accordion.children( 'h3.accordion-section-title' ).click();
+		}
+
+		return false;
+	});
+
 });

@@ -435,15 +435,15 @@ if( !class_exists( 'Layers_Widget' ) ) {
 				<ul id="<?php echo $repeater_id ?>_accordion" class="layers-accordions layers-accordions-sortable layers-sortable" >
 					<?php
 					// Loop the repeater items.
-					if( isset( $items ) && is_array( $items ) ) {
+					if( isset( $items ) && is_array( $items ) && isset( $widget["{$type}s"] ) && ! empty( $widget["{$type}s"] ) ) {
 						foreach( $items as $item_guid ) {
 							
 							// Settings this will add these prefixes to both the get_layers_field_id(),
 							// and get_layers_field_name() string construction.
-							$this->field_attribute_prefixes = array( $type, $item_guid );
+							$this->field_attribute_prefixes = array( "{$type}s", $item_guid );
 							
 							// Get just the required item part from the widget instance array.
-							$item_instance = $widget[$type][$item_guid];
+							$item_instance = $widget["{$type}s"][$item_guid];
 							
 							// Call the item function.
 							$this->$function_name( $item_guid, $item_instance );

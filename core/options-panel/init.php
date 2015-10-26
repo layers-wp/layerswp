@@ -146,7 +146,7 @@ class Layers_Options_Panel {
 						</li>
 						<li <?php if( 'stylekits' == $type ) { ?>class="active"<?php } ?>>
 							<a href="<?php echo admin_url( 'admin.php?page=layers-marketplace&type=stylekits' ); ?>">
-								<?php _e( 'StyleKits' , 'layerswp' ); ?>
+								<?php _e( 'Style Kits' , 'layerswp' ); ?>
 							</a>
 						</li>
 					</ul>
@@ -515,16 +515,6 @@ function layers_options_panel_menu(){
 
 	add_action('admin_print_scripts-' . $dashboard, array( $layers_options_panel, 'enqueue_dashboard_scripts') );
 
-	// Get Started
-	$get_started = add_submenu_page(
-		LAYERS_THEME_SLUG . '-dashboard',
-		__( 'Get Started' , 'layerswp' ),
-		__( 'Get Started' , 'layerswp' ),
-		'edit_theme_options',
-		LAYERS_THEME_SLUG . '-get-started',
-		'layers_options_panel_ui'
-	);
-
 	// Add Preset Pages
 	$add_new_page = add_submenu_page(
 		LAYERS_THEME_SLUG . '-dashboard',
@@ -556,15 +546,29 @@ function layers_options_panel_menu(){
 		'customize.php'
 	);
 
-	// Backup Page
-	$backup = add_submenu_page(
+	// Transfer Pages
+	$transfer = add_submenu_page(
 		LAYERS_THEME_SLUG . '-dashboard',
-		__( 'Backup' , 'layerswp' ),
-		__( 'Backup' , 'layerswp' ),
+		__( 'Transfer' , 'layerswp' ),
+		__( 'Transfer' , 'layerswp' ),
 		'edit_theme_options',
 		LAYERS_THEME_SLUG . '-backup',
 		'layers_options_panel_ui'
 	);
+
+	// Get Started
+	$get_started = add_submenu_page(
+		LAYERS_THEME_SLUG . '-dashboard',
+		__( 'Setup' , 'layerswp' ),
+		__( 'Setup' , 'layerswp' ),
+		'edit_theme_options',
+		LAYERS_THEME_SLUG . '-get-started',
+		'layers_options_panel_ui'
+	);
+
+	// This modifies the Layers submenu item - must be done here as $submenu
+	// is only created if $submenu items are added using add_submenu_page
+	$submenu[LAYERS_THEME_SLUG . '-dashboard'][0][0] = __( 'Dashboard' , 'layerswp' );
 
 	// Marketplace
 	if( !defined( 'LAYERS_DISABLE_MARKETPLACE' ) ){
@@ -580,13 +584,27 @@ function layers_options_panel_menu(){
 		);
 
 		add_action('admin_print_scripts-' . $marketplace, array( $layers_options_panel, 'enqueue_marketplace_scripts') );
+
+		$marketplace_extensions = add_submenu_page(
+			LAYERS_THEME_SLUG . '-marketplace',
+			__( 'Extensions' , 'layerswp' ),
+			__( 'Extensions' , 'layerswp' ),
+			'edit_theme_options',
+			'admin.php?page=layers-marketplace&type=extensions'
+		);
+
+		// This modifies the Layers submenu item - must be done here as $submenu
+		// is only created if $submenu items are added using add_submenu_page
+		$submenu[LAYERS_THEME_SLUG . '-marketplace'][0][0] = __( 'Themes' , 'layerswp' );
+
+		$marketplace_stylekits = add_submenu_page(
+			LAYERS_THEME_SLUG . '-marketplace',
+			__( 'Style Kits' , 'layerswp' ),
+			__( 'Style Kits' , 'layerswp' ),
+			'edit_theme_options',
+			'admin.php?page=layers-marketplace&type=stylekits'
+		);
 	}
-
-
-
-	// This modifies the Layers submenu item - must be done here as $submenu
-	// is only created if $submenu items are added using add_submenu_page
-	$submenu[LAYERS_THEME_SLUG . '-dashboard'][0][0] = __( 'Dashboard' , 'layerswp' );
 }
 
 add_action( 'admin_menu' , 'layers_options_panel_menu' , 50 );

@@ -4,6 +4,7 @@
 ##1.2.6
 ### ?? ??? 2015
 
+* **Tweak** - Created Using Layers icon is 50% smaller *DP*
 * **Tweak** - Changed "Preview this Page" to "View this Page" *DP*
 * **Tweak** - Changed Customizer headings: 'Layout' becomes 'Styling', 'Logo & Menu Position' becomes 'Header Arrangement', 'Header Style' becomes 'Features'. *SOB*
 * **Tweak** - Changed existing Layers Widgets to use the new method to add custom fields or field-groups to the design-bar. (see content, post, contact widgets for example. slider was left using old method to test backward-compatibility) *SOB*

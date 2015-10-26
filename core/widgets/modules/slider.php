@@ -161,9 +161,11 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 			$widget_container_class[] = 'swiper-container';
 			$widget_container_class[] = $this->check_and_return( $widget , 'design', 'advanced', 'customclass' ); // Apply custom class from design-bar's advanced control.
 			$widget_container_class[] = $this->get_widget_spacing_class( $widget );
-			if( !$this->check_and_return( $widget , 'autoheight_slides' ) ) {
-				$widget_container_class[] = $this->get_widget_layout_class( $widget );
-			} else {
+			$widget_container_class[] = $this->get_widget_layout_class( $widget );
+			if( $this->check_and_return( $widget , 'autoheight_slides' ) ) {
+				if( FALSE !== ( $fullwidth = array_search( 'full-screen', $widget_container_class ) ) ){
+					unset( $widget_container_class[ $fullwidth ] );
+				}
 				$widget_container_class[] = 'auto-height';
 			}
 

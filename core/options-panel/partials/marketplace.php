@@ -132,7 +132,7 @@ $all_authors = array(); ?>
 						// Fill the author select box
 						var layers_market_authors = jQuery.parseJSON( '<?php echo json_encode( $all_authors ); ?>' );
 						layers_market_authors.sort();
-						console.log( layers_market_authors );
+
 						jQuery.each( layers_market_authors, function( key, username ){
 							jQuery( '#layers-marketplace-authors' ).append( jQuery( '<option value="'+ username.toString().toLowerCase() + '">' + username + '</option>') );
 						});

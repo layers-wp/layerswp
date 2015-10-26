@@ -69,6 +69,7 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
     .swiper-slide .copy-container,
     .swiper-slide .image-container{
         width: 100%;
+        position: relative;
     }
     .swiper-slide .section-title{
         margin-bottom: 0;

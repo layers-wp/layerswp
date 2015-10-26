@@ -186,19 +186,24 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 			 * Slider HTML
 			 */
 			?>
-			<section id="<?php echo esc_attr( $widget_id ); ?>" class="<?php echo esc_attr( $widget_container_class ); ?>" style="<?php echo esc_attr( $slider_height_css ); ?>" >
-				<?php if( !empty( $widget[ 'slides' ] ) ) { ?>
+			
+			<?php if( ! empty( $widget[ 'slides' ] ) ) { ?>
+				
+				<section id="<?php echo esc_attr( $widget_id ); ?>" class="<?php echo esc_attr( $widget_container_class ); ?>" style="<?php echo esc_attr( $slider_height_css ); ?>" >
+					
 					<?php if( 1 < count( $widget[ 'slides' ] ) && isset( $widget['show_slider_arrows'] ) ) { ?>
 						 <div class="arrows">
 							<a href="" class="l-left-arrow animate"></a>
 							<a href="" class="l-right-arrow animate"></a>
 						</div>
 					<?php } ?>
+					
 					<div class="<?php echo $this->get_field_id( 'pages' ); ?> pages animate">
 						<?php for( $i = 0; $i < count( $widget[ 'slides' ] ); $i++ ) { ?>
 							<a href="" class="page animate <?php if( 0 == $i ) echo 'active'; ?>"></a>
 						<?php } ?>
 					</div>
+					
 			 		<div class="swiper-wrapper">
 						<?php foreach ( wp_parse_id_list( $widget[ 'slide_ids' ] ) as $slide_key ) {
 
@@ -304,8 +309,9 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 							</<?php echo $slide_wrapper_tag; ?>>
 						<?php } // foreach slides ?>
 			 		</div>
-				<?php } // if !empty( $widget->slides ) ?>
-		 	</section>
+		 		</section>
+		 	
+		 	<?php } ?>
 
 			<?php
 			/**
@@ -539,19 +545,17 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 					'icon_class' =>'slider'
 				) ); ?>
 				
-				<?php
-				// echo $this->form_elements()->input(
-				// 	array(
-				// 		'type' => 'hidden',
-				// 		'name' => $this->get_field_name( 'focus_slide' ) ,
-				// 		'id' => $this->get_field_name( 'focus_slide' ) ,
-				// 		'value' => ( isset( $widget['focus_slide'] ) ) ? $widget['focus_slide'] : NULL,
-				// 		'data' => array(
-				// 			'focus-slide' => 'true'
-				// 		)
-				// 	)
-				// );
-				?>
+				<?php echo $this->form_elements()->input(
+					array(
+						'type' => 'hidden',
+						'name' => $this->get_field_name( 'focus_slide' ) ,
+						'id' => $this->get_field_name( 'focus_slide' ) ,
+						'value' => ( isset( $widget['focus_slide'] ) ) ? $widget['focus_slide'] : NULL,
+						'data' => array(
+							'focus-slide' => 'true'
+						)
+					)
+				); ?>
 				
 				<section class="layers-accordion-section layers-content">
 					<div class="layers-form-item">

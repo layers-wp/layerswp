@@ -6,10 +6,7 @@
  * @package Layers
  * @since Layers 1.0.0
  * Contents
- * 1 - Sortable items
- * 2 - Slide Removal & Additions
- * 3 - Slide Title Update
- * 4 - Curreny Slide Focussing
+ * 1 - Curreny Slide Focussing
  *
  * Author: Obox Themes
  * Author URI: http://www.oboxthemes.com/
@@ -20,7 +17,7 @@
 jQuery(document).ready(function($){
 
 	/**
-	* 4 - Curreny Slide Focussing
+	* 1 - Curreny Slide Focussing
 	*/
 	$(document).on( 'focus click' , 'ul[id^="slide_list_"] li a.layers-accordion-title', function(e){
 

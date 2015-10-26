@@ -70,10 +70,10 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 						'shadow' => NULL
 					)
 				),
-				'column_ids' => rand( 1 , 1000 ).','.rand( 1 , 1000 ).','.rand( 1 , 1000 )
 			);
 
-			$this->column_defaults = array (
+			/* Setup Widget Repeater Defaults */
+			$this->register_repeater_defaults( 'column', 3, array(
 				'title' => __( 'Your service title', 'layerswp' ),
 				'excerpt' => __( 'Give us a brief description of the service that you are promoting. Try keep it short so that it is easy for people to scan your page.', 'layerswp' ),
 				'width' => '4',
@@ -87,12 +87,8 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 						'shadow' => NULL
 					)
 				)
-			);
-
-			// Setup the defaults for each column object
-			foreach( explode( ',', $this->defaults[ 'column_ids' ] ) as $column_id ) {
-					$this->defaults[ 'columns' ][ $column_id ] = $this->column_defaults;
-			}
+			) );
+			
 		}
 
 		/**
@@ -156,7 +152,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 						</div>
 					</div>
 				<?php } ?>
-				<?php if( !empty( $widget['columns'] ) ) { ?>
+				<?php if( ! empty( $widget[ 'columns' ] ) ) { ?>
 					<div class="row <?php echo $this->get_widget_layout_class( $widget ); ?> <?php echo $this->check_and_return( $widget , 'design', 'liststyle' ); ?>">
 						<?php // Set total width so that we can apply .last to the final container
 						$total_width = 0; ?>
@@ -343,35 +339,35 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 			$widget = wp_parse_args( $instance, $instance_defaults );
 
 			$design_bar_components = apply_filters( 'layers_' . $this->widget_id . '_widget_design_bar_components' , array(
-					'layout',
-					'liststyle' => array(
-						'icon-css' => 'icon-list-masonry',
-						'label' => __( 'List Style', 'layerswp' ),
-						'wrapper-class' => 'layers-small to layers-pop-menu-wrapper layers-animate',
-						'elements' => array(
-							'liststyle' => array(
-								'type' => 'select-icons',
-								'name' => $this->get_field_name( 'design' ) . '[liststyle]' ,
-								'id' =>  $this->get_field_name( 'design-liststyle' ),
-								'value' => ( isset( $widget['design'][ 'liststyle' ] ) ) ? $widget['design'][ 'liststyle' ] : NULL,
-								'options' => array(
-									'list-grid' => __( 'Grid' , 'layerswp' ),
-									'list-masonry' => __( 'Masonry' , 'layerswp' )
-								)
-							),
-							'gutter' => array(
-								'type' => 'checkbox',
-								'label' => __( 'Gutter' , 'layerswp' ),
-								'name' => $this->get_field_name( 'design' ) . '[gutter]' ,
-								'id' =>  $this->get_field_name( 'design-gutter' ),
-								'value' => ( isset( $widget['design']['gutter'] ) ) ? $widget['design']['gutter'] : NULL
+				'layout',
+				'liststyle' => array(
+					'icon-css' => 'icon-list-masonry',
+					'label' => __( 'List Style', 'layerswp' ),
+					'wrapper-class' => 'layers-small to layers-pop-menu-wrapper layers-animate',
+					'elements' => array(
+						'liststyle' => array(
+							'type' => 'select-icons',
+							'name' => $this->get_field_name( 'design' ) . '[liststyle]' ,
+							'id' =>  $this->get_field_name( 'design-liststyle' ),
+							'value' => ( isset( $widget['design'][ 'liststyle' ] ) ) ? $widget['design'][ 'liststyle' ] : NULL,
+							'options' => array(
+								'list-grid' => __( 'Grid' , 'layerswp' ),
+								'list-masonry' => __( 'Masonry' , 'layerswp' )
 							)
+						),
+						'gutter' => array(
+							'type' => 'checkbox',
+							'label' => __( 'Gutter' , 'layerswp' ),
+							'name' => $this->get_field_name( 'design' ) . '[gutter]' ,
+							'id' =>  $this->get_field_name( 'design-gutter' ),
+							'value' => ( isset( $widget['design']['gutter'] ) ) ? $widget['design']['gutter'] : NULL
 						)
+					)
 				),
 				'fonts',
 				'background',
-				'advanced'
-				) );
+				'advanced',
+			) );
 
 			$this->design_bar(
 				'side', // CSS Class Name
@@ -414,66 +410,34 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 						); ?>
 					</p>
 
-					<?php echo $this->form_elements()->input(
-						array(
-							'type' => 'hidden',
-							'name' => $this->get_field_name( 'column_ids' ) ,
-							'id' => 'column_ids_input_' . $this->number,
-							'value' => ( isset( $widget['column_ids'] ) ) ? $widget['column_ids'] : NULL
-						)
-					); ?>
-
-					<?php // If we have some columns, let's break out their IDs into an array
-					if( isset( $widget['column_ids'] ) && '' != $widget['column_ids'] ) $columns = explode( ',' , $widget['column_ids'] ); ?>
-
-					<ul id="column_list_<?php echo esc_attr( $this->number ); ?>" class="layers-accordions layers-accordions-sortable layers-sortable" data-id_base="<?php echo $this->id_base; ?>" data-number="<?php echo $this->number; ?>">
-						<?php if( isset( $columns ) && is_array( $columns ) ) { ?>
-							<?php foreach( $columns as $columnguid ) {
-								$this->column_item( array(
-											'id_base' => $this->id_base ,
-											'number' => $this->number
-										) ,
-										$columnguid ,
-										( isset( $widget[ 'columns' ][ $columnguid ] ) ) ? $widget[ 'columns' ][ $columnguid ] : NULL );
-							} ?>
-						<?php }?>
-					</ul>
-					<button class="layers-button btn-full layers-add-widget-column add-new-widget" data-number="<?php echo esc_attr( $this->number ); ?>"><?php _e( 'Add New Column' , 'layerswp' ) ; ?></button>
 				</section>
+				
+				<section class="layers-accordion-section layers-content">
+					<div class="layers-form-item">
+						<?php $this->repeater( 'column', $widget ); ?>
+					</div>
+				</section>
+				
 			</div>
 
-		<?php } // Form
+		<?php }
 
-		function column_item( $widget_details = array() , $column_guid = NULL , $instance = NULL ){
+		function column_item( $item_guid, $widget ){
 
-			// Extract Instance if it's there so that we can use the values in our inputs
+			// Required - Get the name of this type.
+			$type = str_replace( '_item', '', __FUNCTION__ );
 
-			// $instance Defaults
-			$instance_defaults = $this->column_defaults;
+			// Required - Increment the item count.
+			$this->{$type.'_item_count'}++;
+			?>
 
-			// Parse $instance
-			$column = wp_parse_args( $instance, $instance_defaults );
-
-			// If there is no GUID create one. There should always be one but this is a fallback
-			if( ! isset( $column_guid ) ) $column_guid = rand( 1 , 1000 );
-
-			// Turn the widget details into an object, it makes the code cleaner
-			$widget_details = (object) $widget_details;
-
-			// Set a count for each row
-			if( !isset( $this->column_item_count ) ) {
-				$this->column_item_count = 0;
-			} else {
-				$this->column_item_count++;
-			} ?>
-
-				<li class="layers-accordion-item" data-guid="<?php echo esc_attr( $column_guid ); ?>">
+				<li class="layers-accordion-item" data-guid="<?php echo esc_attr( $item_guid ); ?>">
 					<a class="layers-accordion-title">
 						<span>
 							<?php _e( 'Column' , 'layerswp' ); ?>
 							<span class="layers-detail">
-								<?php echo ( isset( $column['title'] ) ? ': ' . substr( stripslashes( strip_tags( $column['title'] ) ), 0 , 50 ) : NULL ); ?>
-								<?php echo ( isset( $column['title'] ) && strlen( $column['title'] ) > 50 ? '...' : NULL ); ?>
+								<?php echo ( isset( $widget['title'] ) ? ': ' . substr( stripslashes( strip_tags( $widget['title'] ) ), 0 , 50 ) : NULL ); ?>
+								<?php echo ( isset( $widget['title'] ) && strlen( $widget['title'] ) > 50 ? '...' : NULL ); ?>
 							</span>
 						</span>
 					</a>
@@ -481,12 +445,12 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 						<?php $this->design_bar(
 							'top', // CSS Class Name
 							array( // Widget Object
-								'name' => $this->get_custom_field_name( $widget_details, 'columns',  $column_guid, 'design' ),
-								'id' => $this->get_custom_field_id( $widget_details, 'columns',  $column_guid, 'design' ),
-								'number' => $widget_details->number,
-								'show_trash' => true
+								'name' => $this->get_layers_field_name( 'design' ),
+								'id' => $this->get_layers_field_id( 'design' ),
+								'number' => $this->number,
+								'show_trash' => FALSE,
 							),
-							$column, // Widget Values
+							$widget, // Widget Values
 							array(  // Components
 								'background',
 								'featuredimage',
@@ -499,9 +463,9 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 										'layout' => array(
 											'type' => 'select',
 											'label' => __( '' , 'layerswp' ),
-											'name' => 'widget-' . $widget_details->id_base . '[' . $widget_details->number . '][columns][' . $column_guid . '][width]' ,
-											'id' => 'widget-' . $widget_details->id_base . '-' . $widget_details->number . '-' . $column_guid . '-width' ,
-											'value' => ( isset( $column['width'] ) ) ? $column['width'] : NULL,
+											'name' => $this->get_layers_field_name( 'width' ),
+											'id' => $this->get_layers_field_id( 'width' ),
+											'value' => ( isset( $widget['width'] ) ) ? $widget['width'] : NULL,
 											'options' => array(
 												'1' => __( '1 of 12 columns' , 'layerswp' ),
 												'2' => __( '2 of 12 columns' , 'layerswp' ),
@@ -524,27 +488,27 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 
 						<div class="layers-row">
 							<p class="layers-form-item">
-								<label for="<?php echo $this->get_custom_field_id( $widget_details, 'columns',  $column_guid, 'title' ); ?>"><?php _e( 'Title' , 'layerswp' ); ?></label>
+								<label for="<?php echo $this->get_layers_field_id( 'title' ); ?>"><?php _e( 'Title' , 'layerswp' ); ?></label>
 								<?php echo $this->form_elements()->input(
 									array(
 										'type' => 'text',
-										'name' => $this->get_custom_field_name( $widget_details, 'columns',  $column_guid, 'title' ),
-										'id' => $this->get_custom_field_id( $widget_details, 'columns',  $column_guid, 'title' ),
+										'name' => $this->get_layers_field_name( 'title' ),
+										'id' => $this->get_layers_field_id( 'title' ),
 										'placeholder' => __( 'Enter title here' , 'layerswp' ),
-										'value' => ( isset( $column['title'] ) ) ? $column['title'] : NULL ,
+										'value' => ( isset( $widget['title'] ) ) ? $widget['title'] : NULL ,
 										'class' => 'layers-text'
 									)
 								); ?>
 							</p>
 							<p class="layers-form-item">
-								<label for="<?php echo $this->get_custom_field_id( $widget_details, 'columns',  $column_guid, 'excerpt' ); ?>"><?php _e( 'Excerpt' , 'layerswp' ); ?></label>
+								<label for="<?php echo $this->get_layers_field_id( 'excerpt' ); ?>"><?php _e( 'Excerpt' , 'layerswp' ); ?></label>
 								<?php echo $this->form_elements()->input(
 									array(
 										'type' => 'rte',
-										'name' => $this->get_custom_field_name( $widget_details, 'columns',  $column_guid, 'excerpt' ),
-										'id' => $this->get_custom_field_id( $widget_details, 'columns',  $column_guid, 'excerpt' ),
+										'name' => $this->get_layers_field_name( 'excerpt' ),
+										'id' => $this->get_layers_field_id( 'excerpt' ),
 										'placeholder' => __( 'Short Excerpt' , 'layerswp' ),
-										'value' => ( isset( $column['excerpt'] ) ) ? $column['excerpt'] : NULL ,
+										'value' => ( isset( $widget['excerpt'] ) ) ? $widget['excerpt'] : NULL ,
 										'class' => 'layers-form-item layers-textarea',
 										'rows' => 6
 									)
@@ -552,27 +516,27 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 							</p>
 							<div class="layers-row">
 								<p class="layers-form-item layers-column layers-span-6">
-									<label for="<?php echo $this->get_custom_field_id( $widget_details, 'columns',  $column_guid, 'link_text' ); ?>"><?php _e( 'Button Link' , 'layerswp' ); ?></label>
+									<label for="<?php echo $this->get_layers_field_id( 'link_text' ); ?>"><?php _e( 'Button Link' , 'layerswp' ); ?></label>
 									<?php echo $this->form_elements()->input(
 										array(
 											'type' => 'text',
-											'name' => $this->get_custom_field_name( $widget_details, 'columns',  $column_guid, 'link' ),
-											'id' => $this->get_custom_field_id( $widget_details, 'columns',  $column_guid, 'link' ),
+											'name' => $this->get_layers_field_name( 'link' ),
+											'id' => $this->get_layers_field_id( 'link' ),
 											'placeholder' => __( 'http://' , 'layerswp' ),
-											'value' => ( isset( $column['link'] ) ) ? $column['link'] : NULL ,
+											'value' => ( isset( $widget['link'] ) ) ? $widget['link'] : NULL ,
 											'class' => 'layers-text',
 										)
 									); ?>
 								</p>
 								<p class="layers-form-item layers-column layers-span-6">
-									<label for="<?php echo $this->get_custom_field_id( $widget_details, 'columns',  $column_guid, 'link_text' ); ?>"><?php _e( 'Button Text' , 'layerswp' ); ?></label>
+									<label for="<?php echo $this->get_layers_field_id( 'link_text' ); ?>"><?php _e( 'Button Text' , 'layerswp' ); ?></label>
 									<?php echo $this->form_elements()->input(
 										array(
 											'type' => 'text',
-											'name' => $this->get_custom_field_name( $widget_details, 'columns',  $column_guid, 'link_text' ),
-											'id' => $this->get_custom_field_id( $widget_details, 'columns',  $column_guid, 'link_text' ),
+											'name' => $this->get_layers_field_name( 'link_text' ),
+											'id' => $this->get_layers_field_id( 'link_text' ),
 											'placeholder' => __( 'e.g. "Read More"' , 'layerswp' ),
-											'value' => ( isset( $column['link_text'] ) ) ? $column['link_text'] : NULL ,
+											'value' => ( isset( $widget['link_text'] ) ) ? $widget['link_text'] : NULL ,
 										)
 									); ?>
 								</p>

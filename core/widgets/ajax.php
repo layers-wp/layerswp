@@ -112,9 +112,9 @@ if( !class_exists( 'Layers_Widget_Ajax' ) ) {
 				parse_str( $instance, $data );
 				$instance  = current( current( $data ) );
 			
-				if ( isset( $instance[$item_type] ) && ! empty( $instance[$item_type] ) ) {
-					$item_instance = end( $instance[$item_type] );
-					//$last_guid = key( $instance[$item_type] );
+				if ( isset( $instance["{$item_type}s"] ) && ! empty( $instance["{$item_type}s"] ) ) {
+					$item_instance = end( $instance["{$item_type}s"] );
+					//$last_guid = key( $instance["{$item_type}s"] );
 				}
 				else {
 					// Required - $instance Defaults
@@ -126,7 +126,7 @@ if( !class_exists( 'Layers_Widget_Ajax' ) ) {
 				
 				// Settings this will add these prefixes to both the get_layers_field_id(),
 				// and get_layers_field_name() string construction.
-				$widget->field_attribute_prefixes = array( $item_type, $item_guid );
+				$widget->field_attribute_prefixes = array( "{$item_type}s", $item_guid );
 				
 				// Generate a new item. By passing the GUID as NULL it will duplicate the latest one if it exists, or create a new default based uniqie one.
 				$widget->$item_function( $item_guid, $item_instance );

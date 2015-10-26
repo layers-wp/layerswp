@@ -68,27 +68,27 @@ class Layers_Design_Controller {
 			</ul>
 		</div>
 	<?php }
-	
+
 	private function setup_controls() {
 
 		$this->controls = array();
-		
+
 		foreach( (array) $this->components as $component_key => $component_value ) {
-			
+
 			if ( is_array( $component_value ) ) {
-				
+
 				// This case allows for overriding of existing Design Bar Component types, and the creating of new custom Components.
 				$method = "{$component_key}_component";
-				
+
 				if ( method_exists( $this, $method ) ) {
-					
+
 					// This is the overriding existing component case.
 					ob_start();
 					$this->$method( $component_value );
 					$this->controls[] = trim( ob_get_clean() );
 				}
 				else {
-					
+
 					// This is the creating of new custom component case.
 					ob_start();
 					$this->custom_component(
@@ -99,10 +99,10 @@ class Layers_Design_Controller {
 				}
 			}
 			elseif ( 'custom' === $component_value && !empty( $this->custom_components ) ) {
-				
+
 				// This case is legacy - the old method of creating custom components.
 				foreach ( $this->custom_components as $key => $custom_component_args ) {
-					
+
 					ob_start();
 					$this->custom_component(
 						$key, // Give the component a key (will be used as class name too)
@@ -112,10 +112,10 @@ class Layers_Design_Controller {
 				}
 			}
 			elseif ( method_exists( $this, "{$component_value}_component" ) ) {
-				
+
 				// This is the standard method of calling a component that already exists
 				$method = "{$component_value}_component";
-				
+
 				ob_start();
 				$this->$method();
 				$this->controls[] = trim( ob_get_clean() );
@@ -174,7 +174,7 @@ class Layers_Design_Controller {
 	<?php }
 
 	private function render_trash_control(){
-		
+
 		if( isset( $this->widget['show_trash'] ) ) { ?>
 		<li class="layers-visuals-item layers-pull-right">
 			<a href="" class="layers-icon-wrapper layers-icon-error">
@@ -192,21 +192,21 @@ class Layers_Design_Controller {
 	 * @return   array       $array      Array of options, all standard DOM input options
 	 */
 	public function render_input( $form_args = array() ) {
-		
+
 		// Grab the class if specified.
 		$class = '';
 		if ( isset( $form_args['class'] ) ) {
 			$class .= $form_args['class'];
 			unset( $form_args['class'] );
 		}
-		
+
 		// If input-class then set it to 'class' arg that the form->input expects.
 		if ( isset( $form_args['input-class'] ) ) {
 			$form_args['class'] = $form_args['input-class'];
 		}
 		?>
 		<div class="layers-<?php echo esc_attr( $form_args['type'] ); ?>-wrapper layers-form-item <?php echo esc_attr( $class ); ?>">
-			
+
 			<?php if ( 'checkbox' != $form_args['type'] && isset( $form_args['label'] ) && '' != $form_args['label'] ) { ?>
 				<label><?php echo esc_html( $form_args['label'] ); ?></label>
 			<?php } ?>
@@ -260,7 +260,7 @@ class Layers_Design_Controller {
 				)
 			)
 		);
-		
+
 		$args = $this->merge_component( $defaults, $args );
 
 		$this->render_control( $key, apply_filters( 'layerswp_layout_component_args', $args, $key, $this->type, $this->widget, $this->values ) );
@@ -303,7 +303,7 @@ class Layers_Design_Controller {
 				)
 			)
 		);
-		
+
 		$args = $this->merge_component( $defaults, $args );
 
 		$this->render_control( $key, apply_filters( 'layerswp_liststyle_component_args', $args, $key, $this->type, $this->widget, $this->values ) );
@@ -363,7 +363,7 @@ class Layers_Design_Controller {
 				'value' => ( isset( $this->values['gutter'] ) ) ? $this->values['gutter'] : NULL
 			)
 		);
-		
+
 		$args = $this->merge_component( $defaults, $args );
 
 		$this->render_control( $key, apply_filters( 'layerswp_columns_component_args', $args, $key, $this->type, $this->widget, $this->values ) );
@@ -407,7 +407,7 @@ class Layers_Design_Controller {
 				)
 			)
 		);
-		
+
 		$args = $this->merge_component( $defaults, $args );
 
 		$this->render_control( $key, apply_filters( 'layerswp_textalign_component_args', $args, $key, $this->type, $this->widget, $this->values ) );
@@ -450,7 +450,7 @@ class Layers_Design_Controller {
 				)
 			),
 		);
-		
+
 		$args = $this->merge_component( $defaults, $args );
 
 		$this->render_control( $key, apply_filters( 'layerswp_imagealign_component_args', $args, $key, $this->type, $this->widget, $this->values ) );
@@ -511,7 +511,7 @@ class Layers_Design_Controller {
 				'wrapper-class' => 'layers-icon-group'
 			),
 		);
-		
+
 		$args = $this->merge_component( $defaults, $args );
 
 		$this->render_control( $key, apply_filters( 'layerswp_featuredimage_component_args', $args, $key, $this->type, $this->widget, $this->values ) );
@@ -555,7 +555,7 @@ class Layers_Design_Controller {
 				)
 			),
 		);
-		
+
 		$args = $this->merge_component( $defaults, $args );
 
 		$this->render_control( $key, apply_filters( 'layerswp_imageratios_component_args', $args, $key, $this->type, $this->widget, $this->values ) );
@@ -621,9 +621,9 @@ class Layers_Design_Controller {
 				'value' => ( isset( $this->values['fonts']['color'] ) ) ? $this->values['fonts']['color'] : NULL
 			)
 		);
-		
+
 		$args = $this->merge_component( $defaults, $args );
-		
+
 		$this->render_control( $key, apply_filters( 'layerswp_font_component_args', $args, $key, $this->type, $this->widget, $this->values ) );
 	}
 
@@ -706,12 +706,12 @@ class Layers_Design_Controller {
 				'value' => ( isset( $this->values['background']['darken'] ) ) ? $this->values['background']['darken'] : NULL
 			)
 		);
-		
+
 		$args = $this->merge_component( $defaults, $args );
 
 		$this->render_control( $key, apply_filters( 'layerswp_background_component_args', $args, $key, $this->type, $this->widget, $this->values ) );
 	}
-	
+
 	/**
 	 * Call To Action Customization - Static Option
 	 *
@@ -734,7 +734,7 @@ class Layers_Design_Controller {
 
 		// Add elements
 		$defaults['elements'] = array(
-			
+
 			// New
 			'buttons-size' => array(
 				'type' => 'select',
@@ -748,7 +748,7 @@ class Layers_Design_Controller {
 					'large' => __( 'Large', 'layerswp' )
 				)
 			),
-			
+
 			// Only this one used to be here.
 			'buttons-background-color' => array(
 				'type' => 'color',
@@ -757,9 +757,9 @@ class Layers_Design_Controller {
 				'id' => $this->widget['id'] . '-buttons-background',
 				'value' => ( isset( $this->values['buttons']['background-color'] ) ) ? $this->values['buttons']['background-color'] : NULL
 			),
-			
+
 		);
-		
+
 		$args = $this->merge_component( $defaults, $args );
 
 		$this->render_control( $key, apply_filters( 'layerswp_button_colors_component_args', $args, $key, $this->type, $this->widget, $this->values ) );
@@ -823,7 +823,7 @@ class Layers_Design_Controller {
 				'value' => '#'  . str_replace( 'widget-layers', 'layers', str_ireplace( '-design' , '', $this->widget['id'] ) )
 			)
 		);
-		
+
 		$args = $this->merge_component( $defaults, $args );
 
 		$this->render_control( $key, apply_filters( 'layerswp_advanced_component_args', $args, $key, $this->type, $this->widget, $this->values ) );
@@ -847,53 +847,60 @@ class Layers_Design_Controller {
 		// Render Control
 		$this->render_control( $key, apply_filters( 'layerswp_custom_component_args', $args, $key, $this->type, $this->widget, $this->values ) );
 	}
-	
+
 	/**
 	 * Merge Compontent
 	 */
 	public function merge_component( $defaults, $args ) {
-		
+
 		// Grab the elements and unset them - so we can work with them individually.
 		$defaults_elements = isset( $defaults['elements'] ) ? $defaults['elements'] : array() ;
 		if ( isset( $defaults['elements'] ) ) unset( $defaults['elements'] );
+
 		$args_elements = isset( $args['elements'] ) ? $args['elements'] : array() ;
 		if ( isset( $args['elements'] ) ) unset( $args['elements'] );
-		
+
 		// New collection of elements consisting of a specific combo of the $defaults and the $args.
 		$new_elements = array();
-		
+
 		foreach ( $args_elements as $args_key => $args_value ) {
-			
+
 			if ( is_string( $args_value ) && isset( $defaults_elements[ $args_value ] ) ) {
-				
+
 				// This case means the caller has specified a custom $args 'elements' config
 				// but has only passed a ref to the input by it's 'string 'background-image'
 				// allowing them to reposition the input without redefining all the settings
 				// the input.
 				$new_elements[ $args_value ] = $defaults_elements[ $args_value ];
-				
+
 				// We've got what we needed from this element so remove it from the reference array.
 				if ( isset( $defaults_elements[ $args_key ] ) ) {
 					unset( $defaults_elements[ $args_value ] );
 				}
 			}
+			else if( is_array( $defaults_elements[ $args_key ] ) && is_array( $args_elements[ $args_key ] ) ) {
+
+				// This case means the caller intends to combine the defaults with new
+				// parameters, keeping the existing fields but adding new things to it
+				$new_elements[ $args_key ] =  $args_elements[ $args_key ] + $defaults_elements[ $args_key ];
+			}
 			else if ( is_array( $args_value ) ) {
-				
+
 				// This case means the caller has specified a custom $args 'elements' config
 				// and has specified their own custom input field config - allowing them to
 				// create a new custom field.
 				$new_elements[ $args_key ] = $args_value;
-				
+
 				// We've got what we needed from this element so remove it from the reference array.
 				if ( isset( $defaults_elements[ $args_key ] ) ) {
 					unset( $defaults_elements[ $args_key ] );
 				}
 			}
 		}
-		
+
 		// This handles merging the important non-elements like 'icon-css' and 'title'
 		$args = array_merge( $defaults, $args );
-		
+
 		// Either 'replace' or 'merge' the new input - so either show only the ones you have chosen
 		// or show the ones you have chosen after the defaults of the component.
 		if ( isset( $args['elements_combine'] ) && 'replace' === $args['elements_combine'] ) {
@@ -902,8 +909,8 @@ class Layers_Design_Controller {
 		else{ // 'merge' or anything else.
 			$args['elements'] = array_merge( $defaults_elements, $new_elements );
 		}
-		
+
 		return $args;
 	}
-	
+
 } //class Layers_Design_Controller

@@ -172,6 +172,22 @@ class Layers_Customizer_Config {
 	private function sections(){
 
 		$sections = array(
+			
+			// Following default sections need to be added so our registration process can access them
+			'title_tagline' => array(
+				'panel' => 'site-settings'
+			),
+			'colors' => array(
+				'panel' => 'site-settings',
+			),
+			'background_image' => array(
+				'panel' => 'site-settings',
+			),
+			'static_front_page' => array(
+				'panel' => 'site-settings',
+			),
+			// End default sections
+			
 			'site-colors' => array(
 				'title' =>__( 'Colors' , 'layerswp' ),
 				'panel' => 'site-settings',

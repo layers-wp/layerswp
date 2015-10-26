@@ -96,6 +96,7 @@
 		visibility: visible;
 		transform: translate3d(0, 0, 0);
 	}
+		
 		/*-------------------*/
 		/*- ITEM ANIMATION --*/
 		#customize-controls-layers-actions ul.layers-customizer-nav li.layers-hover ul li{transition-delay: 0.25s;}
@@ -108,7 +109,6 @@
 		padding: 0 17px 0 14px;
 		border: none;
 	}
-
 
 .customize-controls-layers-button-dashboard-main:after{
 	font-family: "layers-interface" !important;

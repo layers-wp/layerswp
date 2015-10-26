@@ -86,7 +86,7 @@ class Layers_Customizer_Config {
 			'woocommerce' => array(
 							'title' => __( 'WooCommerce' , 'layerswp' ),
 							'priority' => 100
-						)
+						),
 		);
 
 		return apply_filters( 'layers_customizer_panels', $panels );
@@ -108,6 +108,7 @@ class Layers_Customizer_Config {
 
 		return apply_filters( 'layers_customizer_default_panels', $default_panels );
 	}
+	
 	/**
 	* Layers Customiser Sections
 	*
@@ -139,6 +140,7 @@ class Layers_Customizer_Config {
 
 		return apply_filters( 'layers_customizer_default_sections', $default_sections );
 	}
+	
 	/**
 	* Default WP Customiser Controls
 	*

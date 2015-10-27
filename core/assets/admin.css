@@ -1693,7 +1693,7 @@ li[id*='accordion-section-layers'] hr{
     margin: 8px 0;
 }
 li[id*='accordion-section-layers'] .customize-control .layers-form-item{
-    margin: 0 0 3px;
+    margin: 0 0 6px;
 }
 li[id*='accordion-section-layers'] .customize-control .heading-label .customize-control-title{
     font-size: 14px;

@@ -95,7 +95,7 @@ if( !function_exists( 'layers_post_meta' ) ) {
  */
 if ( ! function_exists( 'layers_get_the_author' ) ) {
 	function layers_get_the_author() {
-		return sprintf( __( '<a href="%1$s" title="%2$s" rel="author">%3$s</a>' , 'layerswp' ),
+		return sprintf( __( '<a href="%1$s" title="%2$s" rel="author" class="layerswp_dummy">%3$s</a>' , 'layerswp' ),
 			esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ),
 			esc_attr( sprintf( __( 'View all posts by %s', 'layerswp' ), get_the_author() ) ),
 			esc_attr( get_the_author() )

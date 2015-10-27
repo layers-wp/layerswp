@@ -13,6 +13,8 @@ if( !class_exists( 'Layers_Widget' ) ) {
 		public $layers_widget_classname;
 		
 		public $field_attribute_prefixes;
+		
+		public $item_count;
 
 		/**
 		* Check option with isset() and echo it out if it exists, if it does not exist, return false
@@ -408,7 +410,7 @@ if( !class_exists( 'Layers_Widget' ) ) {
 			if ( ! method_exists( $this, $function_name ) ) return false;
 			
 			// Prepare the counter index so we can write the item index to the new_item's.
-			$this->{$type.'_item_count'} = -1;
+			$this->item_count = -1;
 			
 			// Predefine the $repeater_id that will be used in the id="" attribute in the HTML
 			$repeater_id = "{$type}_list_{$this->number}";
@@ -451,6 +453,9 @@ if( !class_exists( 'Layers_Widget' ) ) {
 							// Settings this will add these prefixes to both the get_layers_field_id(),
 							// and get_layers_field_name() string construction.
 							$this->field_attribute_prefixes = array( "{$type}s", $item_guid );
+							
+							// Increment the item count - for use inside the item if needed.
+							$this->item_count++;
 							
 							// Call the item function.
 							$this->$function_name( $item_guid, $item_instance );

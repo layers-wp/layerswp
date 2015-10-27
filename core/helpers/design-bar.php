@@ -878,7 +878,7 @@ class Layers_Design_Controller {
 					unset( $defaults_elements[ $args_value ] );
 				}
 			}
-			else if( is_array( $defaults_elements[ $args_key ] ) && is_array( $args_elements[ $args_key ] ) ) {
+			else if( isset( $defaults_elements[ $args_key ] ) && is_array( $defaults_elements[ $args_key ] ) && is_array( $args_elements[ $args_key ] ) ) {
 
 				// This case means the caller intends to combine the defaults with new
 				// parameters, keeping the existing fields but adding new things to it

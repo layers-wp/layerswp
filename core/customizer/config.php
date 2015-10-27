@@ -308,7 +308,7 @@ class Layers_Customizer_Config {
 			),
 			'header-position-heading' => array(
 				'type'  => 'layers-heading',
-				'heading_divider' => __( 'Features' , 'layerswp' ),
+				'heading_divider' => __( 'Styling' , 'layerswp' ),
 			),
 			'header-sticky' => array(
 				'type'		=> 'layers-checkbox',

@@ -12,16 +12,19 @@ if( !in_array( $type, $valid_types ) ) return; ?>
 	case 'stylekits' :
 		$excerpt = __( 'Style Kits' , 'layerswp' );
 		$products = $api->get_stylekit_list();
+		$site_key = 'cc';
 		$fallback_url = 'http://bit.ly/layers-stylekits';
 		break;
 	case 'extensions' :
 		$excerpt = __( 'Extensions' , 'layerswp' );
 		$products = $api->get_extension_list();
+		$site_key = 'cc';
 		$fallback_url = 'http://bit.ly/layers-extensions';
 		break;
 	default :
 		$excerpt = __( 'Themes' , 'layerswp' );
 		$products = $api->get_theme_list();
+		$site_key = 'tf';
 		$fallback_url = 'http://bit.ly/layers-themes';
 };
 
@@ -54,16 +57,17 @@ $all_authors = array(); ?>
 				<div class="layers-products layers-hide">
 					<?php foreach( $products->matches as $key => $details ) {
 
-						$campaign_parameters = 'utm_source=marketplace&utm_medium=link&utm_term='. esc_attr( $details->name) .'&utm_campaign=Layers%20Marketplace';
-
 						if( FALSE === in_array(  ucfirst( strtolower( $details->author_username ) ), $all_authors ) ){
 							$all_authors[] = ucfirst( strtolower( $details->author_username ) );
-						} ?>
+						}
+
+						$envato_url = 'http://www.layerswp.com/go-envato/?id=' . esc_attr( $details->id ) . '&item=' . esc_attr( $details->name ) . '&site=' . $site_key; ?>
 						<div
 							id="product-details-<?php echo $details->id; ?>" class="layers-product layers-animate" tabindex="0"
 							data-id="<?php echo $details->id; ?>"
+							data-url="<?php echo esc_attr( $envato_url ); ?>"
+							data-slug="<?php echo sanitize_title( $details->name ); ?>"
 							data-name="<?php echo esc_attr( $details->name ); ?>"
-							data-campaign="<?php echo esc_attr( $campaign_parameters ); ?>"
 							data-sales="<?php echo esc_attr( $details->number_of_sales ); ?>"
 							data-rating="<?php echo ( $details->rating->count > 0 ? ceil( $details->rating->rating ) : '' ) ; ?>"
 							data-author="<?php echo $details->author_username; ?>"
@@ -113,10 +117,10 @@ $all_authors = array(); ?>
 											<?php } ?>
 										</div>
 									<?php } ?>
-									<a class="layers-pull-left layers-button btn-subtle layers-push-right-small" data-item="<?php echo esc_attr( $details->name ); ?>" data-view-item="product-details-<?php echo $details->id; ?>" href="<?php echo esc_attr( $details->url ); ?>?ref=obox&<?php echo $campaign_parameters; ?>" target="_blank">
+									<a class="layers-pull-left layers-button btn-subtle layers-push-right-small" data-item="<?php echo esc_attr( $details->name ); ?>" data-view-item="product-details-<?php echo $details->id; ?>" href="<?php echo $envato_url; ?>" target="_blank">
 										<?php _e( 'Details' , 'layerswp' ); ?>
 									</a>
-									<a class="layers-pull-left layers-button btn-primary layers-push-right-small" href="<?php echo esc_attr( $details->url ); ?>?<?php echo $campaign_parameters; ?>&license=regular&open_purchase_for_item_id=<?php echo $details->id; ?>&purchasable=source&ref=obox" target="_blank" data-item="<?php echo esc_attr( $details->name ); ?>" data-price="$ <?php echo (float) ($details->price_cents/100); ?>">
+									<a class="layers-pull-left layers-button btn-primary layers-push-right-small" href="<?php echo $envato_url; ?>&type=purchase" target="_blank" data-item="<?php echo esc_attr( $details->name ); ?>" data-price="$ <?php echo (float) ($details->price_cents/100); ?>">
 										<?php _e( 'Buy for ' , 'layerswp' ); ?>
 										$<?php echo (float) ($details->price_cents/100); ?>
 									</a>

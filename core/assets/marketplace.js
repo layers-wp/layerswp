@@ -109,13 +109,15 @@ jQuery(function($) {
         /**
         * Product :inks
         */
-        $modal.find( '.theme-details-link' ).attr( 'href' , $json.url + '?ref=obox&' + $( $id ).data( 'campaign' ) );
+        var $url = $( $id ).data( 'url' );
+
+        $modal.find( '.theme-details-link' ).attr( 'href' , $url );
         if( 'undefined' !== typeof $json.previews.live_site ){
-            $modal.find( '.theme-demo-link' ).show().attr( 'href' , $json.previews.live_site.url + '?ref=obox&' + $( $id ).data( 'campaign' ) );
+            $modal.find( '.theme-demo-link' ).show().attr( 'href' , $url + '&type=demo&slug=' + $( $id ).data( 'slug' ) );
         } else {
             $modal.find( '.theme-demo-link' ).hide();
         }
-        $modal.find( '.theme-buy-link' ).attr( 'href' , $json.url  + '?license=regular&open_purchase_for_item_id=' + $json.id + '&purchasable=source&ref=obox&' + $( $id ).data( 'campaign' ) );
+        $modal.find( '.theme-buy-link' ).attr( 'href' , $url + "&type=purchase" );
         $modal.find( '.theme-details-link, .theme-demo-link, .theme-buy-link' ).attr( 'data-item', $json.name ).attr( 'data-price', '$ ' + $price );
 
         /**

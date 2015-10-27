@@ -40,7 +40,7 @@ jQuery(function($) {
     /**
     * 2 - Modal Keyboard Navigation
     */
-    $( '.layers_page_layers-marketplace' ).on( "keyup", function( e ) {
+    $( '.toplevel_page_layers-marketplace' ).on( "keyup", function( e ) {
         e.preventDefault();
 
         $modal = $( '.theme-overlay' );

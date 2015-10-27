@@ -217,7 +217,7 @@ class Layers_Customizer_Config {
 				'panel' => 'header',
 			),
 			'footer-layout' => array(
-				'title' =>__( 'Layout' , 'layerswp' ),
+				'title' =>__( 'Styling' , 'layerswp' ),
 				'panel' => 'footer',
 			),
 			'footer-text' => array(
@@ -419,18 +419,17 @@ class Layers_Customizer_Config {
 		$controls['footer-layout'] = array(
 			'footer-width' => array(
 				'type'     => 'layers-select-icons',
+				'heading_divider' => __( 'Footer Width' , 'layerswp' ),
 				'default' => 'layout-boxed',
 				'choices' => array(
 					'layout-boxed' => __( 'Boxed' , 'layerswp' ),
 					'layout-fullwidth' => __( 'Full Width' , 'layerswp' ),
 				),
 			),
-			'footer-layout-break-1' => array(
-				'type'     => 'layers-seperator',
-			),
 			'footer-sidebar-count' => array(
 				'type'     => 'layers-select',
-				'label'    => __( 'Widget Areas' , 'layerswp' ),
+				'heading_divider'    => __( 'Widget Areas' , 'layerswp' ),
+				'description' => __( 'Choose how many widget areas apear in the footer. Go here to <a class="customizer-link" href="#accordion-panel-widgets">customize footer widgets</a>.', 'layerswp' ),
 				'default' => 4,
 				'sanitize_callback' => 'layers_sanitize_number',
 				'choices' => array(

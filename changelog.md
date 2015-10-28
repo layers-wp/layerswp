@@ -17,6 +17,7 @@
 * **Fix** - Auto-height slide no longer breaks when you only have one slide. *DP*
 * **Fix** - Fixed "Powered by Envato" typo in marketplace. *MP*
 * **Fix** - Fixed an empty search page. *MP*
+* **Fix** - Focus slide fix, when entering the customizer. *MP*
 * **Fix** - Auto padding on top of first widget when is unique widgets like slider now also takes into account the custom padding added by user there to start with. *SOB*
 * **Enhancement** - All WooCommerce widgets no longer look broken when placed in the footer widget areas. *DP*
 * **Enhancement** - Cart quantity color is now dynamic using rgba values. *DP*

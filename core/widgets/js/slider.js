@@ -19,11 +19,11 @@ jQuery(document).ready(function($){
 	/**
 	* 1 - Curreny Slide Focussing
 	*/
-	$(document).on( 'focus click' , 'ul[id^="slide_list_"] li a.layers-accordion-title', function(e){
+	$(document).on( 'focus click' , 'ul[id^="slide_list_"] li a.layers-accordion-title, ul[id^="slide_list_"] li input', function(e){
 
 		// Set focus slide
 		$widget = $(this).closest( '.widget' );
-		$li = $(this).parent();
+		$li = $(this).closest( 'li.layers-accordion-item' );
 
 		if( undefined !== $li.data('guid') ){
 			$slide_index = $li.index();

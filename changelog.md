@@ -35,6 +35,7 @@
 * **Enhancement** - Slider CSS has been split between components and responsive.css where relevant to screensize. *DP*
 * **Enhancement** - Image-bottom slider setting now available. *DP*
 * **Enhancement** - Large font in the slider now resizes to medium in responsive mode. *DP*
+* **Enhancement** - Change list Read More button to be rendered by an action 'layers_list_read_more' - allow disabling, and a filter to get the text 'layers_read_more_text' - allow modifying *SOB*
 
 =======
 ##1.2.5

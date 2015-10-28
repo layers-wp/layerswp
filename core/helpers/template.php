@@ -1451,3 +1451,15 @@ if ( ! function_exists( 'layers_the_excerpt' ) ) {
 		echo layers_get_excerpt( $content );
 	}
 }
+
+/**
+* Read More Buttons
+*/
+if( !function_exists( 'layers_read_more' ) ) {
+	function layers_read_more() {
+		?>
+		<a href="<?php the_permalink(); ?>" class="button"><?php echo apply_filters( 'layers_read_more_text', __( 'Read More' , 'layerswp' ) ); ?></a>
+		<?php
+	}
+}
+add_action( 'layers_list_read_more', 'layers_read_more' );

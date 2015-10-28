@@ -40,6 +40,6 @@ global $post, $layers_post_meta_to_display; ?>
 	<?php do_action('layers_after_list_post_meta'); ?>
 
 	<?php do_action('layers_before_list_read_more'); ?>
-		<p><a href="<?php the_permalink(); ?>" class="button"><?php _e( 'Read More' , 'layerswp' ); ?></a></p>
+	<?php do_action('layers_list_read_more'); ?>
 	<?php do_action('layers_after_list_read_more'); ?>
 </article>

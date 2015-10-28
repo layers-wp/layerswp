@@ -4,7 +4,7 @@
  * This file contains global admin functions
  *
  * @package Layers
- * @since Layers 1.2.5
+ * @since Layers 1.2.6
  *
  * 1 - trackEvent jQuery function
  * 2 - Fringe Events

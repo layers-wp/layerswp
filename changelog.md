@@ -2,7 +2,7 @@
 
 =======
 ##1.2.6
-### ?? ??? 2015
+### 28 Oct 2015
 
 * **Tweak** - Created Using Layers icon is 50% smaller *DP*
 * **Tweak** - Changed "Preview this Page" to "View this Page" *DP*

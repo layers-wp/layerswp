@@ -4,7 +4,7 @@
  * This file is used to run Layers / Obox API Calls
  *
  * @package Layers
- * @since Layers 1.2.5
+ * @since Layers 1.2.6
  */
 
 class Layers_Intercom {

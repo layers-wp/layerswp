@@ -507,7 +507,7 @@ add_action( 'admin_enqueue_scripts' , 'layers_admin_scripts' );
 */
 if( !function_exists( 'layers_excerpt_class' ) ) {
 	function layers_excerpt_class( $excerpt ) {
-		return str_replace('<p', '<p class="excerpt"', $excerpt);
+		return str_replace( '<p', '<p class="excerpt"', $excerpt );
 	}
 } // layers_excerpt_class
 add_filter( "the_excerpt", "layers_excerpt_class" );

@@ -23,12 +23,7 @@ global $post, $layers_post_meta_to_display; ?>
 
 	<?php if( '' != get_the_excerpt() || '' != get_the_content() ) { ?>
 		<?php do_action('layers_before_list_post_content'); ?>
-		<div class="copy">
-			<?php /**
-			* Display the Excerpt
-			*/
-			the_excerpt(); ?>
-		</div>
+		<?php do_action('layers_list_post_content'); ?>
 		<?php do_action('layers_after_list_post_content'); ?>
 	<?php } ?>
 

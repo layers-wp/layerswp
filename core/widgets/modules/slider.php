@@ -567,9 +567,6 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 		<?php }
 
 		function slide_item( $item_guid, $widget ) {
-
-			// Required - Get the name of this type.
-			$type = str_replace( '_item', '', __FUNCTION__ );
 			?>
 
 				<li class="layers-accordion-item <?php echo $this->item_count; ?>" data-guid="<?php echo $item_guid; ?>">

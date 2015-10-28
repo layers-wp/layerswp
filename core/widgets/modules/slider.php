@@ -568,106 +568,106 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 
 		function slide_item( $item_guid, $widget ) {
 			?>
-
-				<li class="layers-accordion-item <?php echo $this->item_count; ?>" data-guid="<?php echo $item_guid; ?>">
-					<a class="layers-accordion-title">
-						<span>
-							<?php _e( 'Slide' , 'layerswp' ); ?>
-							<span class="layers-detail">
-								<?php echo ( isset( $widget['title'] ) ? ': ' . substr( stripslashes( strip_tags( $widget['title'] ) ), 0 , 50 ) : NULL ); ?>
-								<?php echo ( isset( $widget['title'] ) && strlen( $widget['title'] ) > 50 ? '...' : NULL ); ?>
-							</span>
+			<li class="layers-accordion-item <?php echo $this->item_count; ?>" data-guid="<?php echo $item_guid; ?>">
+				<a class="layers-accordion-title">
+					<span>
+						<?php _e( 'Slide' , 'layerswp' ); ?>
+						<span class="layers-detail">
+							<?php echo ( isset( $widget['title'] ) ? ': ' . substr( stripslashes( strip_tags( $widget['title'] ) ), 0 , 50 ) : NULL ); ?>
+							<?php echo ( isset( $widget['title'] ) && strlen( $widget['title'] ) > 50 ? '...' : NULL ); ?>
 						</span>
-					</a>
-					<section class="layers-accordion-section layers-content">
-						<?php $this->design_bar(
-							'top', // CSS Class Name
-							array(
-								'name' => $this->get_layers_field_name( 'design' ),
-								'id' => $this->get_layers_field_id( 'design' ),
-								'number' => $this->number,
-								'show_trash' => FALSE
-							), // Widget Object
-							$widget, // Widget Values
-							array(
-								'background',
-								'featuredimage',
-								'imagealign' => array(
-									'elements' => array(
-										'imagealign' => array(
-											'options' => array(
-												'image-left' => __( 'Left', 'layerswp' ),
-												'image-right' => __( 'Right', 'layerswp' ),
-												'image-top' => __( 'Top', 'layerswp' ),
-												'image-bottom' => __( 'Bottom', 'layerswp' ),
-											),
+					</span>
+				</a>
+				<section class="layers-accordion-section layers-content">
+					<?php $this->design_bar(
+						'top', // CSS Class Name
+						array(
+							'name' => $this->get_layers_field_name( 'design' ),
+							'id' => $this->get_layers_field_id( 'design' ),
+							'number' => $this->number,
+							'show_trash' => FALSE
+						), // Widget Object
+						$widget, // Widget Values
+						array(
+							'background',
+							'featuredimage',
+							'imagealign' => array(
+								'elements' => array(
+									'imagealign' => array(
+										'options' => array(
+											'image-left' => __( 'Left', 'layerswp' ),
+											'image-right' => __( 'Right', 'layerswp' ),
+											'image-top' => __( 'Top', 'layerswp' ),
+											'image-bottom' => __( 'Bottom', 'layerswp' ),
 										),
 									),
 								),
-								'fonts',
-							) // Standard Components
-						); ?>
+							),
+							'fonts',
+						) // Standard Components
+					); ?>
 
+					<div class="layers-row">
+						<p class="layers-form-item">
+							<label for="<?php echo $this->get_layers_field_id( 'title' ); ?>"><?php _e( 'Title' , 'layerswp' ); ?></label>
+							<?php echo $this->form_elements()->input(
+								array(
+									'type' => 'text',
+									'name' => $this->get_layers_field_name( 'title' ),
+									'id' => $this->get_layers_field_id( 'title' ),
+									'placeholder' => __( 'Enter a Title' , 'layerswp' ),
+									'placeholder' => __( 'Enter title here' , 'layerswp' ),
+									'value' => ( isset( $widget['title'] ) ) ? $widget['title'] : NULL ,
+									'class' => 'layers-text'
+								)
+							); ?>
+						</p>
+						<p class="layers-form-item">
+							<label for="<?php echo $this->get_layers_field_id( 'excerpt' ); ?>"><?php _e( 'Excerpt' , 'layerswp' ); ?></label>
+							<?php echo $this->form_elements()->input(
+								array(
+									'type' => 'rte',
+									'name' => $this->get_layers_field_name( 'excerpt' ),
+									'id' => $this->get_layers_field_id( 'excerpt' ),
+									'placeholder' => __( 'Short Excerpt' , 'layerswp' ),
+									'value' => ( isset( $widget['excerpt'] ) ) ? $widget['excerpt'] : NULL ,
+									'disallow_buttons' => array( 'insertOrderedList','insertUnorderedList' ),
+									'class' => 'layers-textarea',
+									'rows' => 6
+								)
+							); ?>
+						</p>
 						<div class="layers-row">
-							<p class="layers-form-item">
-								<label for="<?php echo $this->get_layers_field_id( 'title' ); ?>"><?php _e( 'Title' , 'layerswp' ); ?></label>
+							<p class="layers-form-item layers-column layers-span-6">
+								<label for="<?php echo $this->get_field_id( 'link' ); ?>"><?php _e( 'Button Link' , 'layerswp' ); ?></label>
 								<?php echo $this->form_elements()->input(
 									array(
 										'type' => 'text',
-										'name' => $this->get_layers_field_name( 'title' ),
-										'id' => $this->get_layers_field_id( 'title' ),
-										'placeholder' => __( 'Enter a Title' , 'layerswp' ),
-										'placeholder' => __( 'Enter title here' , 'layerswp' ),
-										'value' => ( isset( $widget['title'] ) ) ? $widget['title'] : NULL ,
-										'class' => 'layers-text'
+										'name' => $this->get_layers_field_name( 'link' ),
+										'id' => $this->get_layers_field_id( 'link' ),
+										'placeholder' => __( 'http://' , 'layerswp' ),
+										'value' => ( isset( $widget['link'] ) ) ? $widget['link'] : NULL ,
 									)
 								); ?>
 							</p>
-							<p class="layers-form-item">
-								<label for="<?php echo $this->get_layers_field_id( 'excerpt' ); ?>"><?php _e( 'Excerpt' , 'layerswp' ); ?></label>
+							<p class="layers-form-item layers-column layers-span-6">
+								<label for="<?php echo $this->get_field_id( 'link' ); ?>"><?php _e( 'Button Text' , 'layerswp' ); ?></label>
 								<?php echo $this->form_elements()->input(
 									array(
-										'type' => 'rte',
-										'name' => $this->get_layers_field_name( 'excerpt' ),
-										'id' => $this->get_layers_field_id( 'excerpt' ),
-										'placeholder' => __( 'Short Excerpt' , 'layerswp' ),
-										'value' => ( isset( $widget['excerpt'] ) ) ? $widget['excerpt'] : NULL ,
-										'disallow_buttons' => array( 'insertOrderedList','insertUnorderedList' ),
-										'class' => 'layers-textarea',
-										'rows' => 6
+										'type' => 'text',
+										'name' => $this->get_layers_field_name( 'link_text' ),
+										'id' => $this->get_layers_field_id( 'link_text' ),
+										'placeholder' => __( 'e.g. "Read More"' , 'layerswp' ),
+										'value' => ( isset( $widget['link_text'] ) ) ? $widget['link_text'] : NULL ,
 									)
 								); ?>
 							</p>
-							<div class="layers-row">
-								<p class="layers-form-item layers-column layers-span-6">
-									<label for="<?php echo $this->get_field_id( 'link' ); ?>"><?php _e( 'Button Link' , 'layerswp' ); ?></label>
-									<?php echo $this->form_elements()->input(
-										array(
-											'type' => 'text',
-											'name' => $this->get_layers_field_name( 'link' ),
-											'id' => $this->get_layers_field_id( 'link' ),
-											'placeholder' => __( 'http://' , 'layerswp' ),
-											'value' => ( isset( $widget['link'] ) ) ? $widget['link'] : NULL ,
-										)
-									); ?>
-								</p>
-								<p class="layers-form-item layers-column layers-span-6">
-									<label for="<?php echo $this->get_field_id( 'link' ); ?>"><?php _e( 'Button Text' , 'layerswp' ); ?></label>
-									<?php echo $this->form_elements()->input(
-										array(
-											'type' => 'text',
-											'name' => $this->get_layers_field_name( 'link_text' ),
-											'id' => $this->get_layers_field_id( 'link_text' ),
-											'placeholder' => __( 'e.g. "Read More"' , 'layerswp' ),
-											'value' => ( isset( $widget['link_text'] ) ) ? $widget['link_text'] : NULL ,
-										)
-									); ?>
-								</p>
-							</div>
 						</div>
-					</section>
-				</li>
-		<?php }
+					</div>
+				</section>
+			</li>
+			<?php
+		}
 
 	} // Class
 

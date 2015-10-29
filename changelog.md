@@ -38,6 +38,7 @@
 * **Enhancement** - Large font in the slider now resizes to medium in responsive mode. *DP*
 * **Enhancement** - Change list Read More button to be rendered by an action 'layers_list_read_more' - allow disabling, and a filter to get the text 'layers_read_more_text' - allow modifying *SOB*
 * **Enhancement** - Layers Messenger, now you can chat to Layers team in your dashboard! *MP*
+
 =======
 ##1.2.5
 ### 01 October 2015

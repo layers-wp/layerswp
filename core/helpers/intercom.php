@@ -90,8 +90,8 @@ class Layers_Intercom {
 
 		$this->layers_theme = wp_get_theme( 'layerswp' );
 
-		$json[ 'WordPress Version' ] = (float) $wp_version;
-		$json[ 'Layers Version' ] = (float) $this->layers_theme->get( 'Version' );
+		$json[ 'WordPress Version' ] = $wp_version;
+		$json[ 'Layers Version' ] = $this->layers_theme->get( 'Version' );
 		$json[ 'Layers Page Count' ] = (float) count( layers_get_builder_pages() );
 
 		/**

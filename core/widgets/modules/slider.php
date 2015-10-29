@@ -64,7 +64,6 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 				'animation_type' => 'slide',
 			);
 
-
 			/* Setup Widget Repeater Defaults */
 			$this->register_repeater_defaults( 'slide', 2, array(
 				'title' => __( 'Slider Title', 'layerswp' ),
@@ -556,6 +555,7 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 						)
 					)
 				); ?>
+				
 				<section class="layers-accordion-section layers-content">
 					<div class="layers-form-item">
 						<?php $this->repeater( 'slide', $widget ); ?>
@@ -606,7 +606,6 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 							'fonts',
 						) // Standard Components
 					); ?>
-
 					<div class="layers-row">
 						<p class="layers-form-item">
 							<label for="<?php echo $this->get_layers_field_id( 'title' ); ?>"><?php _e( 'Title' , 'layerswp' ); ?></label>

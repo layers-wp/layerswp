@@ -379,6 +379,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 				$design_bar_components // Components
 			); ?>
 			<div class="layers-container-large" id="layers-column-widget-<?php echo $this->number; ?>">
+				
 				<?php $this->form_elements()->header( array(
 					'title' =>'Content',
 					'icon_class' =>'text'
@@ -409,7 +410,6 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 							)
 						); ?>
 					</p>
-
 				</section>
 				
 				<section class="layers-accordion-section layers-content">
@@ -478,7 +478,6 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 							),
 						)
 					); ?>
-
 					<div class="layers-row">
 						<p class="layers-form-item">
 							<label for="<?php echo $this->get_layers_field_id( 'title' ); ?>"><?php _e( 'Title' , 'layerswp' ); ?></label>

@@ -373,7 +373,7 @@ add_action( 'body_class', 'layers_body_class' );
 /**
  * Check for a Layers Blog List Page
  */
-if( !function_exists( 'layers_is_post_list' ) ) {
+if( !function_exists( 'layers_is_post_list_template' ) ) {
 	function layers_is_post_list_template() {
 		if(
 			is_page_template( 'template-blog.php' ) ||
@@ -1018,7 +1018,6 @@ if( !function_exists( 'layers_inline_styles' ) ) {
 
 			break;
 
-
 			case 'margin' :
 			case 'padding' :
 
@@ -1086,6 +1085,8 @@ if( !function_exists( 'layers_inline_styles' ) ) {
 					if ( isset( $args['css'] ) ) {
 						if ( is_array( $args['css'] ) ){
 							foreach ( $args['css'] as $css_atribute => $css_value ) {
+								// Skip this if a css value is not sent.
+								if ( ! isset( $css_value ) || '' == $css_value || NULL == $css_value ) continue;
 								$css .= "$css_atribute: $css_value;";
 							}
 						}
@@ -1450,3 +1451,34 @@ if ( ! function_exists( 'layers_the_excerpt' ) ) {
 		echo layers_get_excerpt( $content );
 	}
 }
+
+/**
+* Read More Buttons
+*/
+if( !function_exists( 'layers_read_more_action' ) ) {
+	function layers_read_more_action() {
+		?>
+		<a href="<?php the_permalink(); ?>" class="button"><?php echo apply_filters( 'layers_read_more_text', __( 'Read More' , 'layerswp' ) ); ?></a>
+		<?php
+	}
+}
+add_action( 'layers_list_read_more', 'layers_read_more_action' );
+
+/**
+* List Excerpt
+*/
+if( !function_exists( 'layers_excerpt_action' ) ) {
+	function layers_excerpt_action() {
+		?>
+		<div class="copy">
+			<?php
+			/**
+			* Display the Excerpt
+			*/
+			the_excerpt();
+			?>
+		</div>
+		<?php
+	}
+}
+add_action( 'layers_list_post_content', 'layers_excerpt_action' );

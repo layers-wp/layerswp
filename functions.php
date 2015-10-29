@@ -10,7 +10,7 @@
 /**
  * The current version of the theme. Use a random number for SCRIPT_DEBUG mode
  */
-define( 'LAYERS_VERSION', '1.2.5' );
+define( 'LAYERS_VERSION', '1.2.6' );
 define( 'LAYERS_TEMPLATE_URI' , get_template_directory_uri() );
 define( 'LAYERS_TEMPLATE_DIR' , get_template_directory() );
 define( 'LAYERS_THEME_TITLE' , 'Layers' );
@@ -22,7 +22,6 @@ define( 'LAYERS_BUILDER_TEMPLATE' , 'builder.php' );
  */
 if ( ! isset( $content_width ) )
 	$content_width = 1080; /* pixels */
-
 
 /**
  * Adjust the content width when the full width page template is being used
@@ -71,8 +70,12 @@ require_once get_template_directory() . '/core/meta/init.php';
  * Load Front-end helpers
  */
 require_once get_template_directory() . '/core/helpers/color.php';
+require_once get_template_directory() . '/core/helpers/controls.php';
 require_once get_template_directory() . '/core/helpers/custom-fonts.php';
 require_once get_template_directory() . '/core/helpers/extensions.php';
+if( !defined( 'LAYERS_DISABLE_INTERCOM' ) ){
+	require_once get_template_directory() . '/core/helpers/intercom.php';
+}
 require_once get_template_directory() . '/core/helpers/post.php';
 require_once get_template_directory() . '/core/helpers/post-types.php';
 require_once get_template_directory() . '/core/helpers/sanitization.php';
@@ -169,7 +172,6 @@ if( ! function_exists( 'layers_setup' ) ) {
 			LAYERS_THEME_SLUG . '-primary' => __( 'Header Menu' , 'layerswp' ),
 			LAYERS_THEME_SLUG . '-primary-right' => __( 'Right Header Menu' , 'layerswp' ),
 			LAYERS_THEME_SLUG . '-footer' => __( 'Footer Menu' , 'layerswp' ),
-
 		) );
 
 		/**
@@ -354,6 +356,13 @@ if( ! function_exists( 'layers_scripts' ) ) {
 			); // Admin CSS
 		}
 
+		wp_register_style(
+			LAYERS_THEME_SLUG . '-font-awesome',
+			get_template_directory_uri() . '/core/assets/font-awesome.min.css',
+			array(),
+			LAYERS_VERSION
+		); // Font Awesome
+
 	}
 }
 add_action( 'wp_enqueue_scripts' , 'layers_scripts' );
@@ -498,7 +507,7 @@ add_action( 'admin_enqueue_scripts' , 'layers_admin_scripts' );
 */
 if( !function_exists( 'layers_excerpt_class' ) ) {
 	function layers_excerpt_class( $excerpt ) {
-		return str_replace('<p', '<p class="excerpt"', $excerpt);
+		return str_replace( '<p', '<p class="excerpt"', $excerpt );
 	}
 } // layers_excerpt_class
 add_filter( "the_excerpt", "layers_excerpt_class" );

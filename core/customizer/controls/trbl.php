@@ -1,17 +1,19 @@
 <?php  /**
- * Text
+ * TRBL Field (Top, Right, Bottm, Left)
  *
- * This file is used to register and display the custom Layers Text
+ * This file is used to register and display the custom Layers TRBL field
  *
  * @package Layers
  * @since Layers 1.0.0
  */
 
-if( !class_exists( 'Layers_Customize_Text_Control' ) ) {
+if( !class_exists( 'Layers_Customize_TRBL_Control' ) ) {
+	
+	class Layers_Customize_TRBL_Control extends Layers_Customize_Control {
 
-	class Layers_Customize_Text_Control extends Layers_Customize_Control {
-
-		public $type = 'layers-text';
+		public $type = 'layers-trbl-fields';
+		
+		public $fields = array();
 
 		public function render_content() {
 
@@ -40,12 +42,16 @@ if( !class_exists( 'Layers_Customize_Text_Control' ) ) {
 					<div class="layers-form-item <?php echo ( $this->colspan ) ? esc_attr( "layers-column-flush layers-span-{$this->colspan}" ) : '' ?>">
 						<?php echo $form_elements->input(
 							array(
-								'type' => 'text',
-								'label' => ( isset( $this->label ) ? $this->label : '' ),
-								'name' => '' ,
-								'id' =>  $this->id,
-   								'value' => stripslashes( $this->value() ),
-								'data' => $this->get_customize_data(),
+								'type' => 'trbl-fields',
+								'name' => '',
+								'id' => $this->id,
+								'value' => array(
+									'top' => get_option( "{$this->id}-top" ),
+									'right' => get_option( "{$this->id}-right" ),
+									'bottom' => get_option( "{$this->id}-bottom" ),
+									'left' => get_option( "{$this->id}-left" ),
+								),
+   								'fields' => $this->fields,
 							)
 						); ?>
 					</div>

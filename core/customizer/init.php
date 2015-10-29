@@ -66,6 +66,7 @@ class Layers_Customizer {
 			require_once get_template_directory() . $controls_dir . 'rte.php';
 			require_once get_template_directory() . $controls_dir . 'text.php';
 			require_once get_template_directory() . $controls_dir . 'textarea.php';
+			require_once get_template_directory() . $controls_dir . 'trbl.php';
 
 			// Enqueue Styles
 			add_action( 'customize_controls_print_footer_scripts', array( $this, 'admin_enqueue_scripts' ) );
@@ -104,8 +105,9 @@ class Layers_Customizer {
 
 		// Localize Scripts
 		wp_localize_script( LAYERS_THEME_SLUG . '-admin-customizer' , "layers_customizer_params", array(
-				'nonce' => wp_create_nonce( 'layers-customizer-actions' ),
-				'builder_page' => ( isset( $_GET[ 'layers-builder' ] ) ? TRUE : FALSE )
+				'nonce'               => wp_create_nonce( 'layers-customizer-actions' ),
+				'builder_page'        => ( isset( $_GET[ 'layers-builder' ] ) ? TRUE : FALSE ),
+				'enable_deep_linking' => ( get_theme_mod( 'layers-dev-switch-customizer-state-record' ) ),
 			)
 		);
 	}

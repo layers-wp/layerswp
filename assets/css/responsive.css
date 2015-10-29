@@ -111,51 +111,12 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 /*-------------------------------*/
 /*- SLIDER ----------------------*/
 
-    /*---------------------------*/
-    /*- SWIPE ITEM --------------*/
-    .swiper-slide .container{
-        top: 50% !important;
-        -webkit-transform: translateY(-50%) !important;
-        transform: translateY(-50%) !important;
+    .swiper-slide .section-title.large .heading{
+        font-size: 3rem;
     }
-    .swiper-slide .copy-container{
-        float: none !important;
-        width: auto !important;
-        -webkit-transform: translateY(0) !important;
-        transform: translateY(0) !important;
+    .swiper-slide .section-title.large .excerpt{
+        font-size: 2rem;
     }
-    .swiper-slide .image-container{
-        float: none !important;
-        width: auto !important;
-        text-align: center !important;
-        -webkit-transform: translateY(0) !important;
-        transform: translateY(0) !important;
-    }
-
-    /*---------------------------*/
-    /*- SLIDER NAVIGATION -------*/
-    .swiper-container .pages{
-        bottom: 6px;
-        opacity: 1;
-    }
-    .swiper-container .arrows{
-        display: none;
-    }
-    
-    /*---------------------------*/
-    /*- AUTO-HEIGHT SLIDES ------*/
-    .auto-height .swiper-slide .container{
-        padding-top: 12% !important;
-        padding-bottom: 12% !important;
-    }
-    .auto-height .swiper-slide.image-left .container .image-container,
-    .auto-height .swiper-slide.image-right .container .image-container,
-    .auto-height .swiper-slide.image-left .container .copy-container,
-    .auto-height .swiper-slide.image-right .container .copy-container {
-        padding-top: 0 !important;
-        padding-bottom: 0 !important;
-    }
-
 
 /*-------------------------------*/
 /*- CONTENT ---------------------*/
@@ -897,6 +858,56 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
         display: none;
     }
 
+/*-------------------------------*/
+/*- SLIDER ----------------------*/
+
+    /*---------------------------*/
+    /*- SLIDER CONTENT ----------*/
+    .swiper-slide .container{
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    .swiper-slide.text-center .excerpt{
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .swiper-slide.image-left .container{
+        flex-direction: row-reverse;
+        justify-content: flex-start;
+    }
+    .swiper-slide.image-left .image-container{
+        width: 50%;
+        padding-right: 20px;
+    }
+    .swiper-slide.image-left .copy-container{
+        width: 50%;
+        padding-left: 20px;
+    }
+
+    .swiper-slide.image-right .container{
+        flex-direction: row;
+        justify-content: flex-start;
+    }
+    .swiper-slide.image-right .image-container{
+        width: 50%;
+        padding-left: 20px;
+    }
+    .swiper-slide.image-right .copy-container{
+        width: 50%;
+        padding-right: 20px;
+    }
+    .swiper-slide.text-right .excerpt{
+        float: right;
+    }
+
+
+    .swiper-slide.image-right .copy-container + .image-container,
+    .swiper-slide.image-left .copy-container + .image-container{
+        margin-top: 0;
+    }
+
 }
 
 @media only screen and (min-width: 1100px){
@@ -908,21 +919,21 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
         position: fixed;
         bottom: 20px;
         right: 20px;
-        width: 30px;
-        height: 27px;
+        width: 15px;
+        height: 14px;
         z-index: 99;
         background: url(images/created-using-layers.png) top no-repeat;
-        background-size: 30px 56px;
+        background-size: 15px 28px;
         transition: all 0.15s ease-in-out;
     }
     .created-using-layers span{
         display: none;
     }
     .created-using-layers:after{
-        padding: 4px 6px;
+        padding: 4px 4px;
         position: absolute;
-        bottom: 6px;
-        left: -136px;
+        bottom: -1px;
+        right: 25px;
         z-index: 1;
         content: attr(tooltip);
         background: rgba(0, 157, 243, 0.85);
@@ -931,10 +942,11 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
         opacity: 0;
         visibility: hidden;
         transition: all 0.1s ease-in-out 0.1s;
-        font-size: 0.9rem;
-        line-height: 1.1rem;
+        font-size: 0.8rem;
+        line-height: 0.9rem;
         text-transform: uppercase;
         letter-spacing: 2px;
+        white-space: nowrap;
     }
     .created-using-layers:hover{
         background-position: bottom;
@@ -942,7 +954,7 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
     .created-using-layers:hover:after{
         opacity: 1;
         visibility: visible;
-        left: -140px;
+        right: 20px;
     }
 }
 

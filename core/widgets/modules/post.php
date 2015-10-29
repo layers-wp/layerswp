@@ -39,13 +39,25 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 				); // @TODO: Try make this more dynamic, or leave a different note reminding users to change this if they add/remove checkboxes
 
 			/* Widget settings. */
-			$widget_ops = array( 'classname' => 'obox-layers-' . $this->widget_id .'-widget', 'description' => __( 'This widget is used to display your ', 'layerswp' ) . $this->widget_title . '.' );
+			$widget_ops = array(
+				'classname'   => 'obox-layers-' . $this->widget_id .'-widget',
+				'description' => __( 'This widget is used to display your ', 'layerswp' ) . $this->widget_title . '.',
+			);
 
 			/* Widget control settings. */
-			$control_ops = array( 'width' => LAYERS_WIDGET_WIDTH_SMALL, 'height' => NULL, 'id_base' => LAYERS_THEME_SLUG . '-widget-' . $this->widget_id );
+			$control_ops = array(
+				'width'   => LAYERS_WIDGET_WIDTH_SMALL,
+				'height'  => NULL,
+				'id_base' => LAYERS_THEME_SLUG . '-widget-' . $this->widget_id,
+			);
 
 			/* Create the widget. */
-			parent::__construct( LAYERS_THEME_SLUG . '-widget-' . $this->widget_id , $this->widget_title, $widget_ops, $control_ops );
+			parent::__construct(
+				LAYERS_THEME_SLUG . '-widget-' . $this->widget_id,
+				$this->widget_title,
+				$widget_ops,
+				$control_ops
+			);
 
 			/* Setup Widget Defaults */
 			$this->defaults = array (
@@ -275,7 +287,8 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 								* Set Individual Column CSS
 								*/
 								$post_column_class = array();
-								$post_column_class[] = 'layers-masonry-column thumbnail';
+								$post_column_class[] = 'layers-masonry-column';
+								$post_column_class[] = 'thumbnail';
 								$post_column_class[] = ( 'list-masonry' == $this->check_and_return( $widget, 'design', 'liststyle' ) ? 'no-gutter' : '' );
 								$post_column_class[] = 'column' . ( 'on' != $this->check_and_return( $widget, 'design', 'gutter' ) ? '-flush' : '' );
 								$post_column_class[] = $span_class;
@@ -357,7 +370,7 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 		*  Widget update
 		*/
 
-		function update( $new_instance, $old_instance ) {
+		function update($new_instance, $old_instance) {
 
 			if ( isset( $this->checkboxes ) ) {
 				foreach( $this->checkboxes as $cb ) {
@@ -389,112 +402,110 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 			$design_bar_components = apply_filters( 'layers_' . $this->widget_id . '_widget_design_bar_components' , array(
 					'layout',
 					'fonts',
-					'custom',
+					'display' => array(
+						'icon-css' => 'icon-display',
+						'label' => __( 'Display', 'layerswp' ),
+						'elements' => array(
+								'text_style' => array(
+									'type' => 'select',
+									'name' => $this->get_field_name( 'text_style' ) ,
+									'id' => $this->get_field_id( 'text_style' ) ,
+									'value' => ( isset( $widget['text_style'] ) ) ? $widget['text_style'] : NULL,
+									'label' => __( 'Title &amp; Excerpt Position' , 'layerswp' ),
+									'options' => array(
+											'regular' => __( 'Regular' , 'layerswp' ),
+											'overlay' => __( 'Overlay' , 'layerswp' )
+									)
+								),
+								'show_media' => array(
+									'type' => 'checkbox',
+									'name' => $this->get_field_name( 'show_media' ) ,
+									'id' => $this->get_field_id( 'show_media' ) ,
+									'value' => ( isset( $widget['show_media'] ) ) ? $widget['show_media'] : NULL,
+									'label' => __( 'Show Featured Images' , 'layerswp' )
+								),
+								'show_titles' => array(
+									'type' => 'checkbox',
+									'name' => $this->get_field_name( 'show_titles' ) ,
+									'id' => $this->get_field_id( 'show_titles' ) ,
+									'value' => ( isset( $widget['show_titles'] ) ) ? $widget['show_titles'] : NULL,
+									'label' => __( 'Show  Post Titles' , 'layerswp' )
+								),
+								'show_excerpts' => array(
+									'type' => 'checkbox',
+									'name' => $this->get_field_name( 'show_excerpts' ) ,
+									'id' => $this->get_field_id( 'show_excerpts' ) ,
+									'value' => ( isset( $widget['show_excerpts'] ) ) ? $widget['show_excerpts'] : NULL,
+									'label' => __( 'Show Post Excerpts' , 'layerswp' )
+								),
+								'excerpt_length' => array(
+									'type' => 'number',
+									'name' => $this->get_field_name( 'excerpt_length' ) ,
+									'id' => $this->get_field_id( 'excerpt_length' ) ,
+									'min' => 0,
+									'max' => 10000,
+									'value' => ( isset( $widget['excerpt_length'] ) ) ? $widget['excerpt_length'] : NULL,
+								'label' => __( 'Excerpts Length' , 'layerswp' ),
+								'data' => array( 'show-if-selector' => '#' . $this->get_field_id( 'show_excerpts' ), 'show-if-value' => 'true' ),
+								),
+								'show_dates' => array(
+									'type' => 'checkbox',
+									'name' => $this->get_field_name( 'show_dates' ) ,
+									'id' => $this->get_field_id( 'show_dates' ) ,
+									'value' => ( isset( $widget['show_dates'] ) ) ? $widget['show_dates'] : NULL,
+									'label' => __( 'Show Post Dates' , 'layerswp' )
+								),
+								'show_author' => array(
+									'type' => 'checkbox',
+									'name' => $this->get_field_name( 'show_author' ) ,
+									'id' => $this->get_field_id( 'show_author' ) ,
+									'value' => ( isset( $widget['show_author'] ) ) ? $widget['show_author'] : NULL,
+									'label' => __( 'Show Post Author' , 'layerswp' )
+								),
+								'show_tags' => array(
+									'type' => 'checkbox',
+									'name' => $this->get_field_name( 'show_tags' ) ,
+									'id' => $this->get_field_id( 'show_tags' ) ,
+									'value' => ( isset( $widget['show_tags'] ) ) ? $widget['show_tags'] : NULL,
+									'label' => __( 'Show Tags' , 'layerswp' )
+								),
+								'show_categories' => array(
+									'type' => 'checkbox',
+									'name' => $this->get_field_name( 'show_categories' ) ,
+									'id' => $this->get_field_id( 'show_categories' ) ,
+									'value' => ( isset( $widget['show_categories'] ) ) ? $widget['show_categories'] : NULL,
+									'label' => __( 'Show Categories' , 'layerswp' )
+								),
+								'show_call_to_action' => array(
+									'type' => 'checkbox',
+									'name' => $this->get_field_name( 'show_call_to_action' ) ,
+									'id' => $this->get_field_id( 'show_call_to_action' ) ,
+									'value' => ( isset( $widget['show_call_to_action'] ) ) ? $widget['show_call_to_action'] : NULL,
+								'label' => __( 'Show "Read More" Buttons' , 'layerswp' ),
+								),
+								'call_to_action' => array(
+									'type' => 'text',
+									'name' => $this->get_field_name( 'call_to_action' ) ,
+									'id' => $this->get_field_id( 'call_to_action' ) ,
+									'value' => ( isset( $widget['call_to_action'] ) ) ? $widget['call_to_action'] : NULL,
+								'label' => __( '"Read More" Text' , 'layerswp' ),
+								'data' => array( 'show-if-selector' => '#' . $this->get_field_id( 'show_call_to_action' ), 'show-if-value' => 'true' ),
+								),
+								'show_pagination' => array(
+									'type' => 'checkbox',
+									'name' => $this->get_field_name( 'show_pagination' ) ,
+									'id' => $this->get_field_id( 'show_pagination' ) ,
+									'value' => ( isset( $widget['show_pagination'] ) ) ? $widget['show_pagination'] : NULL,
+									'label' => __( 'Show Pagination' , 'layerswp' )
+								),
+						),
+					),
 					'columns',
 					'buttons',
 					'liststyle',
 					'imageratios',
 					'background',
 					'advanced'
-				) );
-
-			$design_bar_custom_components = apply_filters( 'layers_' . $this->widget_id . '_widget_design_bar_custom_components' , array(
-					'display' => array(
-						'icon-css' => 'icon-display',
-						'label' => __( 'Display', 'layerswp' ),
-						'elements' => array(
-							'text_style' => array(
-								'type' => 'select',
-								'name' => $this->get_field_name( 'text_style' ) ,
-								'id' => $this->get_field_id( 'text_style' ) ,
-								'value' => ( isset( $widget['text_style'] ) ) ? $widget['text_style'] : NULL,
-								'label' => __( 'Title &amp; Excerpt Position' , 'layerswp' ),
-								'options' => array(
-										'regular' => __( 'Regular' , 'layerswp' ),
-										'overlay' => __( 'Overlay' , 'layerswp' )
-								)
-							),
-							'show_media' => array(
-								'type' => 'checkbox',
-								'name' => $this->get_field_name( 'show_media' ) ,
-								'id' => $this->get_field_id( 'show_media' ) ,
-								'value' => ( isset( $widget['show_media'] ) ) ? $widget['show_media'] : NULL,
-								'label' => __( 'Show Featured Images' , 'layerswp' )
-							),
-							'show_titles' => array(
-								'type' => 'checkbox',
-								'name' => $this->get_field_name( 'show_titles' ) ,
-								'id' => $this->get_field_id( 'show_titles' ) ,
-								'value' => ( isset( $widget['show_titles'] ) ) ? $widget['show_titles'] : NULL,
-								'label' => __( 'Show  Post Titles' , 'layerswp' )
-							),
-							'show_excerpts' => array(
-								'type' => 'checkbox',
-								'name' => $this->get_field_name( 'show_excerpts' ) ,
-								'id' => $this->get_field_id( 'show_excerpts' ) ,
-								'value' => ( isset( $widget['show_excerpts'] ) ) ? $widget['show_excerpts'] : NULL,
-								'label' => __( 'Show Post Excerpts' , 'layerswp' )
-							),
-							'excerpt_length' => array(
-								'type' => 'number',
-								'name' => $this->get_field_name( 'excerpt_length' ) ,
-								'id' => $this->get_field_id( 'excerpt_length' ) ,
-								'min' => 0,
-								'max' => 10000,
-								'value' => ( isset( $widget['excerpt_length'] ) ) ? $widget['excerpt_length'] : NULL,
-									'label' => __( 'Excerpts Length' , 'layerswp' )
-							),
-							'show_dates' => array(
-								'type' => 'checkbox',
-								'name' => $this->get_field_name( 'show_dates' ) ,
-								'id' => $this->get_field_id( 'show_dates' ) ,
-								'value' => ( isset( $widget['show_dates'] ) ) ? $widget['show_dates'] : NULL,
-								'label' => __( 'Show Post Dates' , 'layerswp' )
-							),
-							'show_author' => array(
-								'type' => 'checkbox',
-								'name' => $this->get_field_name( 'show_author' ) ,
-								'id' => $this->get_field_id( 'show_author' ) ,
-								'value' => ( isset( $widget['show_author'] ) ) ? $widget['show_author'] : NULL,
-								'label' => __( 'Show Post Author' , 'layerswp' )
-							),
-							'show_tags' => array(
-								'type' => 'checkbox',
-								'name' => $this->get_field_name( 'show_tags' ) ,
-								'id' => $this->get_field_id( 'show_tags' ) ,
-								'value' => ( isset( $widget['show_tags'] ) ) ? $widget['show_tags'] : NULL,
-								'label' => __( 'Show Tags' , 'layerswp' )
-							),
-							'show_categories' => array(
-								'type' => 'checkbox',
-								'name' => $this->get_field_name( 'show_categories' ) ,
-								'id' => $this->get_field_id( 'show_categories' ) ,
-								'value' => ( isset( $widget['show_categories'] ) ) ? $widget['show_categories'] : NULL,
-								'label' => __( 'Show Categories' , 'layerswp' )
-							),
-							'show_call_to_action' => array(
-								'type' => 'checkbox',
-								'name' => $this->get_field_name( 'show_call_to_action' ) ,
-								'id' => $this->get_field_id( 'show_call_to_action' ) ,
-								'value' => ( isset( $widget['show_call_to_action'] ) ) ? $widget['show_call_to_action'] : NULL,
-									'label' => __( 'Show "Read More" Buttons' , 'layerswp' )
-							),
-							'call_to_action' => array(
-								'type' => 'text',
-								'name' => $this->get_field_name( 'call_to_action' ) ,
-								'id' => $this->get_field_id( 'call_to_action' ) ,
-								'value' => ( isset( $widget['call_to_action'] ) ) ? $widget['call_to_action'] : NULL,
-									'label' => __( '"Read More" Text' , 'layerswp' )
-							),
-							'show_pagination' => array(
-								'type' => 'checkbox',
-								'name' => $this->get_field_name( 'show_pagination' ) ,
-								'id' => $this->get_field_id( 'show_pagination' ) ,
-								'value' => ( isset( $widget['show_pagination'] ) ) ? $widget['show_pagination'] : NULL,
-								'label' => __( 'Show Pagination' , 'layerswp' )
-							),
-							)
-						)
 				) );
 
 			$this->design_bar(
@@ -504,8 +515,7 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 					'id' => $this->get_field_id( 'design' ),
 				), // Widget Object
 				$widget, // Widget Values
-				$design_bar_components, // Standard Components
-				$design_bar_custom_components // Add-on Components
+				$design_bar_components // Components
 			); ?>
 			<div class="layers-container-large">
 

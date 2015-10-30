@@ -57,9 +57,6 @@ class Layers_Customizer_Config {
 
 		// Init and store controls
 		$this->controls = $this->controls();
-		
-		// Advanced Active Callback functionality - disabled
-		add_filter( 'customize_control_active', array( $this, 'customize_active_controls' ), 10, 2 );
     }
 
 	/**
@@ -538,16 +535,6 @@ class Layers_Customizer_Config {
 		$controls = $this->apply_defaults( $controls );
 
 		return $controls;
-	}
-	
-	// Advanced Active Callback functionality - for Dev Switches
-	function customize_active_controls( $arg1, $arg2 ) {
-		
-		if( isset( $arg2->id ) && 0 === strpos( $arg2->id, 'layers-dev-switch' ) ){
-			return ( get_theme_mod( 'layers-dev-switch-active' ) );
-		}
-		
-		return true;
 	}
 
 	private function apply_defaults( $controls ){

@@ -46,6 +46,7 @@ class Layers_Customizer {
 		require_once get_template_directory() . $customizer_dir . 'defaults.php';
 
 		if( isset( $wp_customize ) ) {
+			
 			// Include The Panel and Section Registration Class
 			require_once get_template_directory() . $customizer_dir . 'registration.php';
 
@@ -77,6 +78,9 @@ class Layers_Customizer {
 
 			// Render layers customizer menu
 			add_action( 'customize_controls_print_footer_scripts' , array( $this, 'render_customizer_menu' ) );
+			
+			// Advanced Active Callback functionality - disabled
+			add_filter( 'customize_control_active', array( $this, 'customize_active_controls' ), 10, 2 );
 		}
 	}
 
@@ -236,6 +240,16 @@ class Layers_Customizer {
 
 		</div>
 		<?php
+	}
+	
+	// Advanced Active Callback functionality - for Dev Switches
+	function customize_active_controls( $arg1, $arg2 ) {
+		
+		if ( isset( $arg2->id ) && 0 === strpos( $arg2->id, 'layers-dev-switch' ) ) {
+			return ( ( bool ) get_theme_mod( 'layers-dev-switch-active' ) );
+		}
+		
+		return $arg1;
 	}
 
 }

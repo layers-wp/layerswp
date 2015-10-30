@@ -86,7 +86,7 @@ class Layers_Customizer_Config {
 			'woocommerce' => array(
 							'title' => __( 'WooCommerce' , 'layerswp' ),
 							'priority' => 100
-						)
+						),
 		);
 
 		return apply_filters( 'layers_customizer_panels', $panels );
@@ -108,6 +108,7 @@ class Layers_Customizer_Config {
 
 		return apply_filters( 'layers_customizer_default_panels', $default_panels );
 	}
+	
 	/**
 	* Layers Customiser Sections
 	*
@@ -139,6 +140,7 @@ class Layers_Customizer_Config {
 
 		return apply_filters( 'layers_customizer_default_sections', $default_sections );
 	}
+	
 	/**
 	* Default WP Customiser Controls
 	*
@@ -170,51 +172,73 @@ class Layers_Customizer_Config {
 	private function sections(){
 
 		$sections = array(
+			
+			// Following default sections need to be added so our registration process can access them
+			'title_tagline' => array(
+				'panel' => 'site-settings'
+			),
+			'colors' => array(
+				'panel' => 'site-settings',
+			),
+			'background_image' => array(
+				'panel' => 'site-settings',
+			),
+			'static_front_page' => array(
+				'panel' => 'site-settings',
+			),
+			// End default sections
+			
 			'site-colors' => array(
 				'title' =>__( 'Colors' , 'layerswp' ),
 				'panel' => 'site-settings',
-				'priority' => 45
-
+				'priority' => 45,
 			),
 			'content-sidebars' => array(
 				'title' =>__( 'Sidebars' , 'layerswp' ),
-				'panel' => 'site-settings'
+				'panel' => 'site-settings',
 			),
 			'fonts' => array(
 				'title' =>__( 'Fonts' , 'layerswp' ),
-				'panel' => 'site-settings'
-
+				'panel' => 'site-settings',
+			),
+			'dev-switches' => array(
+				'title' =>__( 'Dev Switches', 'layerswp' ),
+				'panel' => 'site-settings',
+			),
+			'buttons' => array(
+				'title' =>__( 'Buttons' , 'layerswp' ),
+				'panel' => 'buttons',
 			),
 			'css' => array(
 				'title' =>__( 'CSS' , 'layerswp' ),
 			),
 			'header-layout' => array(
-				'title' =>__( 'Layout' , 'layerswp' ),
-				'panel' => 'header'
+				'title' =>__( 'Styling' , 'layerswp' ),
+				'panel' => 'header',
 			),
 			'header-scripts' => array(
 				'title' =>__( 'Additional Scripts' , 'layerswp' ),
-				'panel' => 'header'
+				'panel' => 'header',
 			),
 			'footer-layout' => array(
-				'title' =>__( 'Layout' , 'layerswp' ),
-				'panel' => 'footer'
+				'title' =>__( 'Styling' , 'layerswp' ),
+				'panel' => 'footer',
 			),
 			'footer-text' => array(
 				'title' =>__( 'Text' , 'layerswp' ),
-				'panel' => 'footer'
+				'panel' => 'footer',
 			),
 			'footer-scripts' => array(
 				'title' =>__( 'Additional Scripts' , 'layerswp' ),
-				'panel' => 'footer'
+				'panel' => 'footer',
 			),
 			'woocommerce-sidebars' => array(
 				'title' =>__( 'Sidebars' , 'layerswp' ),
-				'panel' => 'woocommerce'
+				'panel' => 'woocommerce',
 			),
 			'body-customization' => array(
 				'title' =>__( 'Customization' , 'layerswp' ),
-				'panel' => 'body'
+				'panel' => 'body',
 			)
 		);
 
@@ -227,23 +251,7 @@ class Layers_Customizer_Config {
 		// Setup some folder variables
 		$customizer_dir = '/core/customizer/';
 
-		// Header -> Layout -> Layout
-		$controls['css'] = array(
-			'custom-css' => array(
-				'type'     => 'layers-code',
-				'placeholder'	=> ".classname {\n\tbackground: #333;\n}",
-				'sanitize_callback' => FALSE
-			),
-			'upsell-devkit-heading' => array(
-				'type'  => 'layers-heading',
-				'class' => 'layers-upsell-tag',
-				'label'    => __( 'Upgrade to DevKit' , 'layerswp' ),
-				'description' => __( 'Want the best CSS customization interface? <a target="_blank" href="http://bit.ly/layers-devkit">Purchase DevKit</a> and save bundles of time!' , 'layerswp' ),
-			),
-		); // css
-
-
-		// Header -> Layout -> Layout
+		// Site Settings -> Fonts
 		$controls['fonts'] = array(
 			'typekit-id' => array(
 				'type' => 'layers-text',
@@ -251,66 +259,60 @@ class Layers_Customizer_Config {
 				'description' => sprintf( __( 'For more information on obtaining your Typekit ID, see <a href="%s" target="_blank">follow this link</a>.', 'layerswp' ), 'http://help.typekit.com/customer/portal/articles/6780' ),
 			),
 			'fonts-break-1' => array(
-				'type'     => 'layers-seperator'
+				'type'     => 'layers-seperator',
 			),
 			'body-fonts' => array(
 				'type' => 'layers-font',
 				'label'    => __( 'Body' , 'layerswp' ),
 				'selectors' => 'body',
-				'choices' => layers_get_google_font_options()
+				'choices' => layers_get_google_font_options(),
 			),
 			'fonts-break-1' => array(
-				'type'     => 'layers-seperator'
+				'type'     => 'layers-seperator',
 			),
 			'heading-fonts' => array(
 				'type' => 'layers-font',
 				'label'    => __( 'Headings' , 'layerswp' ),
 				'selectors' => 'h1,h2,h3,h4,h5,h6, .heading',
-				'choices' => layers_get_google_font_options()
+				'choices' => layers_get_google_font_options(),
 			),
 			'fonts-break-2' => array(
-				'type'     => 'layers-seperator'
+				'type'     => 'layers-seperator',
 			),
 			'form-fonts' => array(
 				'type' => 'layers-font',
 				'label'    => __( 'Buttons' , 'layerswp' ),
 				'selectors' => 'button, .button, input[type=submit]',
-				'choices' => layers_get_google_font_options()
+				'choices' => layers_get_google_font_options(),
 			),
 		);
 
-		// Header -> Layout -> Layout
+		// Site Settings -> Layout
 		$controls['header-layout'] = array(
 			'header-width' => array(
 				'type'     => 'layers-select-icons',
-				'label'    => __( 'Header Width' , 'layerswp' ),
+				'heading_divider' => __( 'Header Width' , 'layerswp' ),
 				'default' => 'layout-boxed',
 				'choices' => array(
 					'layout-boxed' => __( 'Boxed' , 'layerswp' ),
-					'layout-fullwidth' => __( 'Full Width' , 'layerswp' )
-				)
-			),
-			'header-layout-break-0' => array(
-				'type'     => 'layers-seperator'
+					'layout-fullwidth' => __( 'Full Width' , 'layerswp' ),
+				),
 			),
 			'header-menu-layout' => array(
 				'type'     => 'layers-select-icons',
-				'label'    => __( 'Logo & Menu Position' , 'layerswp' ),
+				'heading_divider' => __( 'Header Arrangement' , 'layerswp' ),
 				'default' => 'header-logo-left',
 				'choices' => array(
 					'header-logo-left' => __( 'Logo Left' , 'layerswp' ),
 					'header-logo-right' => __( 'Logo Right' , 'layerswp' ),
 					'header-logo-center-top' => __( 'Logo Center Top' , 'layerswp' ),
 					'header-logo-top' => __( 'Logo Top' , 'layerswp' ),
-					'header-logo-center' => __( 'Logo Center' , 'layerswp' )
-				)
-			),
-			'header-layout-break-1' => array(
-				'type'     => 'layers-seperator'
+					'header-logo-center' => __( 'Logo Center' , 'layerswp' ),
+				),
 			),
 			'header-position-heading' => array(
 				'type'  => 'layers-heading',
-				'label'    => __( 'Header Style' , 'layerswp' ),
+				'heading_divider' => __( 'Header Styling' , 'layerswp' ),
 			),
 			'header-sticky' => array(
 				'type'		=> 'layers-checkbox',
@@ -322,28 +324,10 @@ class Layers_Customizer_Config {
 				'type'     => 'layers-checkbox',
 				'label'    => __( 'Transparent Overlay' , 'layerswp' ),
 				'default'	=> FALSE,
-			)
-		); // header-layout
-
-		// Header -> Layout -> Scripts
-		$controls['header-scripts'] = array(
-			'header-google-id' => array(
-				'type'     => 'layers-text',
-				'label'    => __( 'Google Analytics ID' , 'layerswp' ),
-				'description' => __( 'Enter in your Google Analytics ID to enable website traffic reporting. eg. "UA-xxxxxx-xx' , 'layerswp' ),
-				'default' => '',
-			), // scripts
-			'header-custom-scripts-break-1' => array(
-				'type'     => 'layers-seperator'
 			),
-			'header-custom-scripts' => array(
-				'type'     => 'layers-code',
-				'label'    => __( 'Custom Scripts' , 'layerswp' ),
-				'description' => __( 'Enter in any custom script to include in your site\'s header. Be sure to use double quotes for strings.' , 'layerswp' ),
-				'default' => ''
-			) // scripts
 		);
 
+		// Site Settings -> Sidebars
 		$controls['content-sidebars'] = array(
 			'single-sidebar-heading' => array(
 				'type'  => 'layers-heading',
@@ -361,7 +345,7 @@ class Layers_Customizer_Config {
 				'default'   => TRUE,
 			), // post-sidebar
 			'content-sidebars-break-2' => array(
-				'type'     => 'layers-seperator'
+				'type'     => 'layers-seperator',
 			),
 			'archive-sidebar-heading' => array(
 				'type'  => 'layers-heading',
@@ -380,63 +364,7 @@ class Layers_Customizer_Config {
 			), // post-sidebar
 		);
 
-		// Footer -> Layout -> Layout
-		$controls['footer-layout'] = array(
-			'footer-width' => array(
-				'type'     => 'layers-select-icons',
-				'default' => 'layout-boxed',
-				'choices' => array(
-					'layout-boxed' => __( 'Boxed' , 'layerswp' ),
-					'layout-fullwidth' => __( 'Full Width' , 'layerswp' )
-				)
-			), // layout,
-			'footer-layout-break-1' => array(
-				'type'     => 'layers-seperator'
-			),
-			'footer-sidebar-count' => array(
-				'type'     => 'layers-select',
-				'label'    => __( 'Widget Areas' , 'layerswp' ),
-				'default' => 4,
-				'sanitize_callback' => 'layers_sanitize_number',
-				'choices' => array(
-					'0' => __( 'None' , 'layerswp' ),
-					'1' => __( '1' , 'layerswp' ),
-					'2' => __( '2' , 'layerswp' ),
-					'3' => __( '3' , 'layerswp' ),
-					'4' => __( '4' , 'layerswp' ),
-				)
-			), // layout,
-			'footer-layout-break-2' => array(
-				'type'     => 'layers-seperator'
-			),
-			'show-layers-badge' => array(
-				'label' => __( 'Support Layers' , 'layerswp' ),
-				'description' => __( 'Support Layers by displaying the Layers badge on your site.', 'layerswp' ),
-				'type' => 'layers-checkbox',
-				'default' => true
-			),
-		); // footer-layout
-
-		// Footer -> Layout -> Text
-		$controls['footer-text'] = array(
-			'footer-copyright-text' => array(
-				'type'     => 'layers-text',
-				'label'    => __( 'Copyright Text' , 'layerswp' ),
-				'default' => ' Made at the tip of Africa. &copy;',
-				'sanitize_callback' => FALSE
-			), // copyright
-		); // footer-text
-
-		// Footer -> Layout -> Scripts
-		$controls['footer-scripts'] = array(
-			'footer-custom-scripts' => array(
-				'type'     => 'layers-code',
-				'label'    => __( 'Custom Scripts' , 'layerswp' ),
-				'description' => __( 'Enter in any custom script to include in your site\'s footer. Be sure to use double quotes for strings.' , 'layerswp' ),
-				'default' => ''
-			), // scripts
-		); // footer-scripts
-
+		// Site Settings -> Colors
 		$controls['site-colors'] = array(
 			'site-color-heading' => array(
 				'type'  => 'layers-heading',
@@ -469,6 +397,112 @@ class Layers_Customizer_Config {
 				'class' => 'layers-upsell-tag',
 				'label'    => __( 'Upgrade to ColorKit' , 'layerswp' ),
 				'description' => __( 'Want more color customzation? <a target="_blank" href="http://bit.ly/layers-colorkit">Purchase ColorKit</a> and get the full box of crayons!' , 'layerswp' ),
+			),
+		);
+
+		// Site Settings -> Dev Switches
+		$controls['dev-switches'] = array(
+			'dev-switch-active' => array(
+				'type'     => 'layers-checkbox',
+				'label'    => __( 'Dev Switches Active' , 'layerswp' ),
+				'description' => __( 'Unckecking this will immediately remove this panel. To switch it back on you will need to add #layers-dev-switches to your url.' , 'layerswp' ),
+				'default' => '',
+			),
+			'dev-switch-customizer-state-record' => array(
+				'type'     => 'layers-checkbox',
+				'label'    => __( 'Remember State in Customizer' , 'layerswp' ),
+				'description' => __( 'This feature will add #hash values to the customizer URL so that when the page is refreshed the customizer will go back to it\'s same position.' , 'layerswp' ),
+				'default' => '',
+			),
+		);
+
+		// Header -> Additional Scripts
+		$controls['header-scripts'] = array(
+			'header-google-id' => array(
+				'type'     => 'layers-text',
+				'label'    => __( 'Google Analytics ID' , 'layerswp' ),
+				'description' => __( 'Enter in your Google Analytics ID to enable website traffic reporting. eg. "UA-xxxxxx-xx' , 'layerswp' ),
+				'default' => '',
+			),
+			'header-custom-scripts-break-1' => array(
+				'type'     => 'layers-seperator',
+			),
+			'header-custom-scripts' => array(
+				'type'     => 'layers-code',
+				'label'    => __( 'Custom Scripts' , 'layerswp' ),
+				'description' => __( 'Enter in any custom script to include in your site\'s header. Be sure to use double quotes for strings.' , 'layerswp' ),
+				'default' => '',
+			),
+		);
+
+		// Footer -> Layout
+		$controls['footer-layout'] = array(
+			'footer-width' => array(
+				'type'     => 'layers-select-icons',
+				'heading_divider' => __( 'Footer Width' , 'layerswp' ),
+				'default' => 'layout-boxed',
+				'choices' => array(
+					'layout-boxed' => __( 'Boxed' , 'layerswp' ),
+					'layout-fullwidth' => __( 'Full Width' , 'layerswp' ),
+				),
+			),
+			'footer-sidebar-count' => array(
+				'type'     => 'layers-select',
+				'heading_divider'    => __( 'Widget Areas' , 'layerswp' ),
+				'description' => __( 'Choose how many widget areas apear in the footer. Go here to <a class="customizer-link" href="#accordion-panel-widgets">customize footer widgets</a>.', 'layerswp' ),
+				'default' => 4,
+				'sanitize_callback' => 'layers_sanitize_number',
+				'choices' => array(
+					'0' => __( 'None' , 'layerswp' ),
+					'1' => __( '1' , 'layerswp' ),
+					'2' => __( '2' , 'layerswp' ),
+					'3' => __( '3' , 'layerswp' ),
+					'4' => __( '4' , 'layerswp' ),
+				),
+			),
+			'footer-layout-break-2' => array(
+				'type'     => 'layers-seperator',
+			),
+			'show-layers-badge' => array(
+				'label' => __( 'Support Layers' , 'layerswp' ),
+				'description' => __( 'Support Layers by displaying the Layers badge on your site.', 'layerswp' ),
+				'type' => 'layers-checkbox',
+				'default' => true
+			),
+		);
+
+		// Footer -> Text
+		$controls['footer-text'] = array(
+			'footer-copyright-text' => array(
+				'type'     => 'layers-text',
+				'label'    => __( 'Copyright Text' , 'layerswp' ),
+				'default' => ' Made at the tip of Africa. &copy;',
+				'sanitize_callback' => FALSE
+			),
+		);
+
+		// Footer -> Additional Scripts
+		$controls['footer-scripts'] = array(
+			'footer-custom-scripts' => array(
+				'type'     => 'layers-code',
+				'label'    => __( 'Custom Scripts' , 'layerswp' ),
+				'description' => __( 'Enter in any custom script to include in your site\'s footer. Be sure to use double quotes for strings.' , 'layerswp' ),
+				'default' => '',
+			),
+		);
+
+		// CSS
+		$controls['css'] = array(
+			'custom-css' => array(
+				'type'     => 'layers-code',
+				'placeholder'	=> ".classname {\n\tbackground: #333;\n}",
+				'sanitize_callback' => FALSE
+			),
+			'upsell-devkit-heading' => array(
+				'type'  => 'layers-heading',
+				'class' => 'layers-upsell-tag',
+				'label'    => __( 'Upgrade to DevKit' , 'layerswp' ),
+				'description' => __( 'Want the best CSS customization interface? <a target="_blank" href="http://bit.ly/layers-devkit">Purchase DevKit</a> and save bundles of time!' , 'layerswp' ),
 			),
 		);
 

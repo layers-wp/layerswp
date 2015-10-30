@@ -164,8 +164,15 @@ class Layers_Form_Elements {
 			case 'range' :
 				$input_props['min'] = ( isset( $input->min ) ) ? 'min="' .  $input->min . '"' : NULL ;
 				$input_props['max'] = ( isset( $input->max ) ) ? 'max="' .  $input->max . '"' : NULL ;
-				$input_props['step'] = ( isset( $input->step ) ) ? 'step="' .  $input->step . '"' : NULL ; ?>
+				$input_props['step'] = ( isset( $input->step ) ) ? 'step="' .  $input->step . '"' : NULL ;
+				
+				$number_props = array();
+				$number_props['min'] = $input_props['min'];
+				$number_props['max'] = $input_props['max'];
+				$number_props['step'] = $input_props['step'];
+				?>
 				<input type="range" <?php echo implode ( ' ' , $input_props ); ?> value="<?php echo $input->value; ?>" />
+				<input type="number" <?php echo implode ( ' ' , $input_props ); ?> value="<?php echo $input->value; ?>" />
 			<?php break;
 			/**
 			* Checkboxes - here we look for on/NULL, that's how WP widgets save them
@@ -270,7 +277,10 @@ class Layers_Form_Elements {
 				<section class="layers-image-container <?php if( isset( $input->value ) && NULL != $input->value ) echo 'layers-has-image'; ?>">
 					<div class="layers-image-display layers-image-upload-button">
 						<!-- Image -->
-						<?php if( isset( $input->value ) ) echo wp_get_attachment_image( $input->value , 'medium' ); ?>
+						<?php if( isset( $input->value ) ) {
+							$img = wp_get_attachment_image_src( $input->value , 'medium' );?>
+							<img data-src="<?php echo $img[0]; ?>" />
+						<?php } ?>
 						<!-- Remove button -->
 						<a class="layers-image-remove" href=""><?php _e( 'Remove' , 'layerswp' ); ?></a>
 					</div>
@@ -361,7 +371,10 @@ class Layers_Form_Elements {
 									); ?>
 
 									<!-- Image -->
-									<?php if( isset( $input->value->image ) ) echo wp_get_attachment_image( $input->value->image , 'thumbnail' ); ?>
+									<?php if( isset( $input->value->image ) ) {
+										$img = wp_get_attachment_image_src( $input->value->image , 'thumbnail' );?>
+										<img data-src="<?php echo $img[0]; ?>" />
+									<?php } ?>
 								</div>
 							</div>
 							<div class="layers-row">
@@ -521,24 +534,57 @@ class Layers_Form_Elements {
 					'bottom' => __( 'Bottom' , 'layerswp' ),
 					'left' => __( 'Left' , 'layerswp' ),
 				); ?>
-
-				<div class="layers-row layers-input">
-					<?php foreach ( $fields as $key => $label ) { ?>
-						<div class="layers-column-flush layers-span-3">
+				
+				<?php
+				// If caller only wants chosen few fields can customise the labels e.g.
+				// (1) 'fields' => array( 'top' => 'Top (px)' ) one field 'top' with cusotmized label 'Top (px)'.
+				// (2) 'fields' => array( 'top' ) one field 'top' with standard label 'Top'.
+				if( ! empty( $input->fields ) ) {
+					$new_fields = array();
+					foreach ( $input->fields as $key => $value ) {
+						
+						if ( is_numeric( $key ) ) {
+							// Array element type: [ 'bottom' ]
+							if ( isset( $fields[$value] ) ){ // Make sure that what the user spcified is avalid field of TRBL.
+								$new_fields[$value] = $fields[$value];
+							}
+						}
+						else {
+							// Array element type: [ 'bottom' => 'Bottom (px)' ]
+							$new_fields[$key] = $value;
+						}
+					}
+					$fields = $new_fields;
+					
+					// If the fields chosen were incorrect then bail.
+					if ( empty( $fields ) ) return;
+				}
+				
+				// Calculate column span based on the number of resulting fields.
+				$field_span = ( 12 / count( $fields ) );
+				?>
+				<div class="layers-row layers-input layers-trbl-row">
+				
+					<?php foreach ( $fields as $key => $label ) : ?>
+						<div class="layers-column-flush layers-span-<?php echo esc_attr( $field_span ); ?>">
 							<?php echo $this->input(
 								array(
 									'type' => 'number',
-									'name' => $input->name . '[' . $key . ']',
-									'id' => $input->id . '-' . $key,
+									'name' => ( isset( $input->name ) ) ? "{$input->name}[$key]" : '',
+									'id' => "{$input->id}-{$key}",
 									'value' => ( isset( $input->value->$key ) ) ? $input->value->$key : NULL,
 									'class' => 'layers-hide-controls',
+									'data' => array(
+										'customize-setting-link' => "{$input->id}-{$key}",
+									),
 								)
 							); ?>
 							<label for="<?php echo esc_attr( $input->id ) . '-' . $key; ?>"><?php echo esc_html( $label ); ?></label>
 						</div>
-					<?php } // foreach fields ?>
+					<?php endforeach; ?>
+					
 				</div>
-
+				
 			<?php break;
 			/**
 			* Free form HTML

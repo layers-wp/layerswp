@@ -35,7 +35,7 @@ class Layers_Options_Panel {
 		// Exit on missing ABSPATH
 		if ( ! defined( 'ABSPATH' ) ) exit;
 
-		global $page;
+		global $pagenow, $wp_customize;
 
 		// Setup some folder variables
 		$this->options_panel_dir = LAYERS_TEMPLATE_DIR . '/core/options-panel/';
@@ -43,6 +43,12 @@ class Layers_Options_Panel {
 		$this->set_valid_page_slugs();
 
 		add_action( 'wp_dashboard_setup', array( &$this, 'layers_add_dashboard_widgets' ) );
+
+		if( !defined( 'LAYERS_DISABLE_MARKETPLACE' ) ){
+			add_filter( 'media_upload_tabs', array( &$this, 'upload_upsell_media_tab' ) );
+			add_action( 'media_upload_upsell_media', array( &$this, 'upload_upsell_media_form' ) );
+			add_action( 'print_media_templates', array( &$this, 'upload_upsell_media_template' ) );
+		}
 	}
 
 	public function init() {
@@ -72,6 +78,9 @@ class Layers_Options_Panel {
 			// Load up the valid pages
 			$this->valid_page_slugs[] = $sub_menu_page[2];
 		}
+
+		// Layers Marketplace is on it's own top level menu, so we have to shimmy it in
+		$this->valid_page_slugs[] = 'layers-marketplace';
 	}
 
 	/**
@@ -101,6 +110,67 @@ class Layers_Options_Panel {
 	/**
 	* Complex Header with Menu
 	*/
+	public function marketplace_header( $title = NULL, $excerpt = NULL ){
+
+		$api = new Layers_API();
+
+		if( isset( $_GET[ 'type' ] ) ) $type = $_GET[ 'type' ]; else $type = 'themes' ?>
+		<header class="layers-page-title layers-section-title layers-large layers-content-large layers-no-push-bottom">
+
+				<?php _e( sprintf( '<a href="%s" class="layers-logo">Layers</a>', 'http://layerswp.com' ), 'layerswp' ); ?>
+
+				<?php if( isset( $title ) ) { ?>
+					<h2 class="layers-heading" id="layers-options-header">
+						<?php echo esc_html( $title ); ?>
+						<span class="layers-small">
+							<?php _e( sprintf( 'Powered by <a href="%s">Envato</a>', 'http://www.themeforest.net/?ref=obox' ), 'layerswp' ); ?>
+						</span>
+					</h2>
+				<?php } ?>
+
+				<?php if( isset( $excerpt ) ) { ?>
+					<p class="layers-excerpt"><?php echo esc_html( $excerpt ); ?></p>
+				<?php } ?>
+
+				<nav class="layers-nav-horizontal layers-dashboard-nav">
+					<ul>
+						<li <?php if( 'themes' == $type ) { ?>class="active"<?php } ?>>
+							<a href="<?php echo admin_url( 'admin.php?page=layers-marketplace&type=themes' ); ?>">
+								<?php _e( 'Themes' , 'layerswp' ); ?>
+							</a>
+						</li>
+						<li <?php if( 'extensions' == $type ) { ?>class="active"<?php } ?>>
+							<a href="<?php echo admin_url( 'admin.php?page=layers-marketplace&type=extensions' ); ?>">
+								<?php _e( 'Extensions' , 'layerswp' ); ?>
+							</a>
+						</li>
+						<li <?php if( 'stylekits' == $type ) { ?>class="active"<?php } ?>>
+							<a href="<?php echo admin_url( 'admin.php?page=layers-marketplace&type=stylekits' ); ?>">
+								<?php _e( 'Style Kits' , 'layerswp' ); ?>
+							</a>
+						</li>
+					</ul>
+					<form class="layers-help-search" action="" target="_blank" method="get">
+						<label><?php _e( 'Filters: ', 'layerswp' ); ?></label>
+						<select id="layers-marketplace-authors" class="push-right">
+							<option value=""><?php _e( 'All Authors' , 'layerswp' ); ?></option>
+						</select>
+						<select id="layers-marketplace-sortby" name="sortby" data-action="<?php echo admin_url( 'admin.php?page=layers-marketplace&type=' . $type ); ?>" class="push-right">
+							<?php if( is_array( $api->get_sort_options() ) ) { ?>
+								<?php foreach( $api->get_sort_options() as $value => $label ) { ?>
+									<option value="<?php echo $value; ?>"><?php echo $label; ?></option>
+								<?php } ?>
+							<?php } ?>
+						</select>
+						<input id="layers-marketplace-search" type="search" placeholder="<?php _e( 'Search...' , 'layerswp' ); ?>"/>
+					</form>
+				</nav>
+		</header>
+	<?php }
+
+	/**
+	* Complex Header with Menu
+	*/
 	public function header( $title = NULL, $excerpt = NULL ){
 
 		if( isset( $_GET[ 'page' ] ) ) $current_page = $_GET[ 'page' ]; ?>
@@ -110,9 +180,11 @@ class Layers_Options_Panel {
 				<?php if( isset( $title ) ) { ?>
 					<h2 class="layers-heading" id="layers-options-header"><?php echo esc_html( $title ); ?></h2>
 				<?php } ?>
+
 				<?php if( isset( $excerpt ) ) { ?>
 					<p class="layers-excerpt"><?php echo esc_html( $excerpt ); ?></p>
 				<?php } ?>
+
 				<nav class="layers-nav-horizontal layers-dashboard-nav">
 					<ul>
 						<?php foreach( $this->get_menu_pages()  as $menu_key => $menu_details ) { ?>
@@ -161,6 +233,19 @@ class Layers_Options_Panel {
 
 		// Include Partials, we're using require so that inside the partial we can use $this to access the header and footer
 		require $this->options_panel_dir . 'partials/' . $partial . '.php';
+	}
+	public function upload_upsell_media_template(){
+		$this->body( 'discover-more-photos' );
+	}
+
+	function upload_upsell_media_tab($tabs) {
+		$tabs['upsell_media'] = __( 'Discover More' , 'layerswp' );
+		return $tabs;
+	}
+
+	// call the new tab with wp_iframe
+	function upload_upsell_media_form() {
+		wp_iframe( array( &$this, 'upload_upsell_media_template' ) );
 	}
 
 	/**
@@ -219,6 +304,10 @@ class Layers_Options_Panel {
 					'layers-pages' => array(
 						'label' => 'Layers Pages',
 						'link' => admin_url( 'edit.php?post_type=page&amp;filter=layers' ),
+					),
+					'layers-pages' => array(
+						'label' => 'Marketplace',
+						'link' => admin_url( 'admin.php?page=layers-marketplace' ),
 					),
 				)
 		);
@@ -322,13 +411,13 @@ class Layers_Options_Panel {
 					</p>
 				</div>
 				<div class="layers-button-well">
-					<a href="http://bit.ly/layers-themes" target="_blank" class="layers-button btn-primary">
+					<a href="<?php echo admin_url( 'admin.php?page=layers-marketplace&type=themes' ); ?>" class="layers-button btn-primary">
 						<?php _e( 'Themes' , 'layerswp' ); ?>
 					</a>
-					<a href="http://bit.ly/layers-stylekits" target="_blank" class="layers-button btn-primary">
+					<a href="<?php echo admin_url( 'admin.php?page=layers-marketplace&type=stylekits' ); ?>" class="layers-button btn-primary">
 						<?php _e( 'Style Kits' , 'layerswp' ); ?>
 					</a>
-					<a href="http://bit.ly/layers-extensions" target="_blank" class="layers-button btn-primary">
+					<a href="<?php echo admin_url( 'admin.php?page=layers-marketplace&type=extensions' ); ?>" class="layers-button btn-primary">
 						<?php _e( 'Extensions' , 'layerswp' ); ?>
 					</a>
 				</div>
@@ -367,6 +456,9 @@ class Layers_Options_Panel {
 	public function enqueue_dashboard_scripts(){
 
 		wp_enqueue_script(
+			LAYERS_THEME_SLUG . '-plugins-js'
+		);
+		wp_enqueue_script(
 			LAYERS_THEME_SLUG . '-dashboard' ,
 			get_template_directory_uri() . '/core/assets/dashboard.js',
 			array(
@@ -386,6 +478,18 @@ class Layers_Options_Panel {
 
 	}
 
+	public function enqueue_marketplace_scripts(){
+
+		wp_enqueue_script(
+			LAYERS_THEME_SLUG . '-marketplace' ,
+			get_template_directory_uri() . '/core/assets/marketplace.js',
+			array(
+				'jquery',
+			),
+			LAYERS_VERSION
+		); // Sticky-Kit
+
+	}
 }
 
 /**
@@ -411,18 +515,8 @@ function layers_options_panel_menu(){
 
 	add_action('admin_print_scripts-' . $dashboard, array( $layers_options_panel, 'enqueue_dashboard_scripts') );
 
-	// Get Started
-	add_submenu_page(
-		LAYERS_THEME_SLUG . '-dashboard',
-		__( 'Get Started' , 'layerswp' ),
-		__( 'Get Started' , 'layerswp' ),
-		'edit_theme_options',
-		LAYERS_THEME_SLUG . '-get-started',
-		'layers_options_panel_ui'
-	);
-
 	// Add Preset Pages
-	add_submenu_page(
+	$add_new_page = add_submenu_page(
 		LAYERS_THEME_SLUG . '-dashboard',
 		__( 'Add New Page' , 'layerswp' ),
 		__( 'Add New Page' , 'layerswp' ),
@@ -434,7 +528,7 @@ function layers_options_panel_menu(){
 	// Layers Pages
 	if( layers_get_builder_pages() ){
 		// Only show if there are actually Layers pages.
-		add_submenu_page(
+		$layers_pages = add_submenu_page(
 			LAYERS_THEME_SLUG . '-dashboard',
 			__( 'Layers Pages' , 'layerswp' ),
 			__( 'Layers Pages' , 'layerswp' ),
@@ -444,7 +538,7 @@ function layers_options_panel_menu(){
 	}
 
 	// Customize
-	add_submenu_page(
+	$customize = add_submenu_page(
 		LAYERS_THEME_SLUG . '-dashboard',
 		__( 'Customize' , 'layerswp' ),
 		__( 'Customize' , 'layerswp' ),
@@ -452,8 +546,8 @@ function layers_options_panel_menu(){
 		'customize.php'
 	);
 
-	// Backup Page
-	add_submenu_page(
+	// Transfer Pages
+	$transfer = add_submenu_page(
 		LAYERS_THEME_SLUG . '-dashboard',
 		__( 'Transfer' , 'layerswp' ),
 		__( 'Transfer' , 'layerswp' ),
@@ -462,9 +556,55 @@ function layers_options_panel_menu(){
 		'layers_options_panel_ui'
 	);
 
+	// Get Started
+	$get_started = add_submenu_page(
+		LAYERS_THEME_SLUG . '-dashboard',
+		__( 'Setup' , 'layerswp' ),
+		__( 'Setup' , 'layerswp' ),
+		'edit_theme_options',
+		LAYERS_THEME_SLUG . '-get-started',
+		'layers_options_panel_ui'
+	);
+
 	// This modifies the Layers submenu item - must be done here as $submenu
 	// is only created if $submenu items are added using add_submenu_page
 	$submenu[LAYERS_THEME_SLUG . '-dashboard'][0][0] = __( 'Dashboard' , 'layerswp' );
+
+	// Marketplace
+	if( !defined( 'LAYERS_DISABLE_MARKETPLACE' ) ){
+		// dashboard Page
+		$marketplace = add_menu_page(
+			__( 'Marketplace' , 'layerswp' ),
+			__( 'Marketplace' , 'layerswp' ),
+			'edit_theme_options',
+			LAYERS_THEME_SLUG . '-marketplace',
+			'layers_options_panel_ui',
+			'none',
+			4
+		);
+
+		add_action('admin_print_scripts-' . $marketplace, array( $layers_options_panel, 'enqueue_marketplace_scripts') );
+
+		$marketplace_extensions = add_submenu_page(
+			LAYERS_THEME_SLUG . '-marketplace',
+			__( 'Extensions' , 'layerswp' ),
+			__( 'Extensions' , 'layerswp' ),
+			'edit_theme_options',
+			'admin.php?page=layers-marketplace&type=extensions'
+		);
+
+		// This modifies the Layers submenu item - must be done here as $submenu
+		// is only created if $submenu items are added using add_submenu_page
+		$submenu[LAYERS_THEME_SLUG . '-marketplace'][0][0] = __( 'Themes' , 'layerswp' );
+
+		$marketplace_stylekits = add_submenu_page(
+			LAYERS_THEME_SLUG . '-marketplace',
+			__( 'Style Kits' , 'layerswp' ),
+			__( 'Style Kits' , 'layerswp' ),
+			'edit_theme_options',
+			'admin.php?page=layers-marketplace&type=stylekits'
+		);
+	}
 }
 
 add_action( 'admin_menu' , 'layers_options_panel_menu' , 50 );

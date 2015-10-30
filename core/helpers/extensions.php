@@ -124,6 +124,51 @@ if ( !function_exists( 'layers_locate_plugin_templates' ) ) {
 } // layers_locate_plugin_templates
 
 /**
+* Get Custom Author Template
+*
+* This force-adds our custom post type templates to the list of templates to search for, eg. author-portfolio.php
+*
+* @param string $template Name of the template file we're looking for
+*/
+if ( !function_exists( 'layers_get_custom_author_template' ) ) {
+	function layers_get_custom_author_template($template) {
+		global $wp_query;
+		$object = $wp_query->get_queried_object();
+
+		if ( !in_array( $object->name,  layers_get_standard_wp_post_types() ) ) {
+			$templates = array( 'author.php');
+			$template = layers_locate_plugin_templates($templates);
+		}
+
+		// return apply_filters('author_template', $template);
+		return $template;
+	}
+} // layers_get_custom_author_template
+add_filter( 'author_template', 'layers_get_custom_author_template' );
+/**
+* Get Custom Archive Template
+*
+* This force-adds our custom post type templates to the list of templates to search for, eg. archive-portfolio.php
+*
+* @param string $template Name of the template file we're looking for
+*/
+if ( !function_exists( 'layers_get_custom_archive_template' ) ) {
+	function layers_get_custom_archive_template($template) {
+		global $wp_query;
+		$object = $wp_query->get_queried_object();
+
+		if ( !in_array( $object->name,  layers_get_standard_wp_post_types() ) ) {
+			$templates = array('archive-' . $object->name . '.php', 'archive.php');
+			$template = layers_locate_plugin_templates($templates);
+		}
+
+		// return apply_filters('archive_template', $template);
+		return $template;
+	}
+} // layers_get_custom_archive_template
+add_filter( 'archive_template', 'layers_get_custom_archive_template' );
+
+/**
 * Get Custom Single Template
 *
 * This force-adds our custom post type templates to the list of templates to search for, eg. single-portfolio.php

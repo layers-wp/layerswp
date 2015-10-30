@@ -39,13 +39,25 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 				); // @TODO: Try make this more dynamic, or leave a different note reminding users to change this if they add/remove checkboxes
 
 			/* Widget settings. */
-			$widget_ops = array( 'classname' => 'obox-layers-' . $this->widget_id .'-widget', 'description' => __( 'This widget is used to display your ', 'layerswp' ) . $this->widget_title . '.' );
+			$widget_ops = array(
+				'classname'   => 'obox-layers-' . $this->widget_id .'-widget',
+				'description' => __( 'This widget is used to display your ', 'layerswp' ) . $this->widget_title . '.',
+			);
 
 			/* Widget control settings. */
-			$control_ops = array( 'width' => LAYERS_WIDGET_WIDTH_SMALL, 'height' => NULL, 'id_base' => LAYERS_THEME_SLUG . '-widget-' . $this->widget_id );
+			$control_ops = array(
+				'width'   => LAYERS_WIDGET_WIDTH_SMALL,
+				'height'  => NULL,
+				'id_base' => LAYERS_THEME_SLUG . '-widget-' . $this->widget_id,
+			);
 
 			/* Create the widget. */
-			parent::__construct( LAYERS_THEME_SLUG . '-widget-' . $this->widget_id , $this->widget_title, $widget_ops, $control_ops );
+			parent::__construct(
+				LAYERS_THEME_SLUG . '-widget-' . $this->widget_id,
+				$this->widget_title,
+				$widget_ops,
+				$control_ops
+			);
 
 			/* Setup Widget Defaults */
 			$this->defaults = array (
@@ -194,12 +206,15 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 			* Generate the widget container class
 			*/
 			$widget_container_class = array();
-			$widget_container_class[] = 'widget row content-vertical-massive';
-			$widget_container_class[] = $this->check_and_return( $widget , 'design', 'advanced', 'customclass' );
+			$widget_container_class[] = 'widget';
+			$widget_container_class[] = 'layers-post-widget';
+			$widget_container_class[] = 'row';
+			$widget_container_class[] = 'content-vertical-massive';
+			$widget_container_class[] = $this->check_and_return( $widget , 'design', 'advanced', 'customclass' ); // Apply custom class from design-bar's advanced control.
 			$widget_container_class[] = $this->get_widget_spacing_class( $widget );
 			$widget_container_class = implode( ' ', apply_filters( 'layers_post_widget_container_class' , $widget_container_class ) ); ?>
 
-			<section class=" <?php echo $widget_container_class; ?>" id="<?php echo $widget_id; ?>">
+			<section id="<?php echo esc_attr( $widget_id ); ?>" class="<?php echo esc_attr( $widget_container_class ); ?>">
 				<?php if( '' != $this->check_and_return( $widget , 'title' ) ||'' != $this->check_and_return( $widget , 'excerpt' ) ) { ?>
 					<div class="container clearfix">
 						<?php /**
@@ -213,7 +228,7 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 						$section_title_class = implode( ' ', $section_title_class ); ?>
 						<div class="<?php echo $section_title_class; ?>">
 							<?php if( '' != $widget['title'] ) { ?>
-								<h3 class="heading"><?php echo esc_html( $widget['title'] ); ?></h3>
+								<h3 class="heading"><?php echo $widget['title'] ?></h3>
 							<?php } ?>
 							<?php if( '' != $widget['excerpt'] ) { ?>
 								<div class="excerpt"><?php echo $widget['excerpt']; ?></div>
@@ -272,7 +287,8 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 								* Set Individual Column CSS
 								*/
 								$post_column_class = array();
-								$post_column_class[] = 'layers-masonry-column thumbnail';
+								$post_column_class[] = 'layers-masonry-column';
+								$post_column_class[] = 'thumbnail';
 								$post_column_class[] = ( 'list-masonry' == $this->check_and_return( $widget, 'design', 'liststyle' ) ? 'no-gutter' : '' );
 								$post_column_class[] = 'column' . ( 'on' != $this->check_and_return( $widget, 'design', 'gutter' ) ? '-flush' : '' );
 								$post_column_class[] = $span_class;
@@ -386,16 +402,6 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 			$design_bar_components = apply_filters( 'layers_' . $this->widget_id . '_widget_design_bar_components' , array(
 					'layout',
 					'fonts',
-					'custom',
-					'columns',
-					'buttons',
-					'liststyle',
-					'imageratios',
-					'background',
-					'advanced'
-				) );
-
-			$design_bar_custom_components = apply_filters( 'layers_' . $this->widget_id . '_widget_design_bar_custom_components' , array(
 					'display' => array(
 						'icon-css' => 'icon-display',
 						'label' => __( 'Display', 'layerswp' ),
@@ -439,7 +445,8 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 									'min' => 0,
 									'max' => 10000,
 									'value' => ( isset( $widget['excerpt_length'] ) ) ? $widget['excerpt_length'] : NULL,
-									'label' => __( 'Excerpts Length' , 'layerswp' )
+								'label' => __( 'Excerpts Length' , 'layerswp' ),
+								'data' => array( 'show-if-selector' => '#' . $this->get_field_id( 'show_excerpts' ), 'show-if-value' => 'true' ),
 								),
 								'show_dates' => array(
 									'type' => 'checkbox',
@@ -474,14 +481,15 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 									'name' => $this->get_field_name( 'show_call_to_action' ) ,
 									'id' => $this->get_field_id( 'show_call_to_action' ) ,
 									'value' => ( isset( $widget['show_call_to_action'] ) ) ? $widget['show_call_to_action'] : NULL,
-									'label' => __( 'Show "Read More" Buttons' , 'layerswp' )
+								'label' => __( 'Show "Read More" Buttons' , 'layerswp' ),
 								),
 								'call_to_action' => array(
 									'type' => 'text',
 									'name' => $this->get_field_name( 'call_to_action' ) ,
 									'id' => $this->get_field_id( 'call_to_action' ) ,
 									'value' => ( isset( $widget['call_to_action'] ) ) ? $widget['call_to_action'] : NULL,
-									'label' => __( '"Read More" Text' , 'layerswp' )
+								'label' => __( '"Read More" Text' , 'layerswp' ),
+								'data' => array( 'show-if-selector' => '#' . $this->get_field_id( 'show_call_to_action' ), 'show-if-value' => 'true' ),
 								),
 								'show_pagination' => array(
 									'type' => 'checkbox',
@@ -490,8 +498,14 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 									'value' => ( isset( $widget['show_pagination'] ) ) ? $widget['show_pagination'] : NULL,
 									'label' => __( 'Show Pagination' , 'layerswp' )
 								),
-							)
-						)
+						),
+					),
+					'columns',
+					'buttons',
+					'liststyle',
+					'imageratios',
+					'background',
+					'advanced'
 				) );
 
 			$this->design_bar(
@@ -501,8 +515,7 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 					'id' => $this->get_field_id( 'design' ),
 				), // Widget Object
 				$widget, // Widget Values
-				$design_bar_components, // Standard Components
-				$design_bar_custom_components // Add-on Components
+				$design_bar_components // Components
 			); ?>
 			<div class="layers-container-large">
 

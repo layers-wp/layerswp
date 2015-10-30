@@ -20,10 +20,14 @@ if( !class_exists( 'Layers_Customize_Button_Control' ) ) {
 			$values = false; ?>
 
 			<div id="layers-customize-control-<?php echo esc_attr( $this->id ); ?>" class="layers-customize-control layers-customize-control-<?php echo esc_attr( str_replace( 'layers-', '', $this->type ) ); ?> <?php echo esc_attr( $this->class ); ?>" <?php echo $this->get_linked_data(); ?> >
-
-				<span class="customize-control-title">
-					<?php echo esc_html( $this->label ); ?>
-				</span>
+				
+				<?php if ( '' != $this->heading_divider ) { ?>
+					<?php $this->render_heading_divider( $this->heading_divider ); ?>
+				<?php } ?>
+				
+				<?php if ( '' != $this->label ) { ?>
+					<span class="customize-control-title"><?php echo $this->label; ?></span>
+				<?php } ?>
 
 				<div class="layers-form-item">
 					<div class="<?php echo esc_attr( $this->id ); ?>-wrapper layers-form-item">
@@ -51,4 +55,4 @@ if( !class_exists( 'Layers_Customize_Button_Control' ) ) {
 			<?php
 		}
 	}
-} // !class_exists( 'Layers_Customize_Button_Control' )
+}

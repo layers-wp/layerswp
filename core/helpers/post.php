@@ -20,6 +20,7 @@
 
 if( !function_exists( 'layers_post_meta' ) ) {
 	function layers_post_meta( $post_id = NULL , $display = NULL, $wrapper = 'footer', $wrapper_class = 'meta-info' ) {
+		
 		// If there is no post ID specified, use the current post, does not affect post author, yet.
 		if( NULL == $post_id ) {
 			global $post;
@@ -27,7 +28,12 @@ if( !function_exists( 'layers_post_meta' ) ) {
 		}
 
 		// If there are no items to display, return nothing
-		if( !is_array( $display ) ) $display = array( 'date', 'author', 'categories', 'tags' );
+		if ( ! $display ) {
+			$display = array( 'date', 'author', 'categories', 'tags' );
+		}
+		
+		// Allow for filtering of the display elements.
+		$display = apply_filters( 'layers_post_meta_display', $display );
 
 		foreach ( $display as $meta ) {
 			switch ( $meta ) {
@@ -204,6 +210,7 @@ if( !function_exists( 'layers_post_class' ) ) {
 	}
 }
 add_filter( 'post_class' , 'layers_post_class' );
+add_filter( 'product_cat_class' , 'layers_post_class' );
 
 /**
  *  The following function creates a builder page
@@ -338,9 +345,9 @@ if ( ! function_exists( 'layers_filter_admin_pages_views' ) ) {
 
 if( ! function_exists( 'layers_edit_layout_admin_menu' ) ) {
 	function layers_edit_layout_admin_menu(){
-		global $wp_admin_bar, $post;
-
-		if( is_page() && layers_is_builder_page() ){
+		global $wp_admin_bar, $post, $wp_version;
+		
+		if( !is_admin() && version_compare( $wp_version, '4.2', '<=' ) ){
 			$current_url = ( is_ssl() ? 'https://' : 'http://' ) . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
 			$args = array(
 				'id'    => 'layers-edit-layout',

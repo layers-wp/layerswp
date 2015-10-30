@@ -239,6 +239,19 @@ class Layers_Widgets {
 		wp_localize_script( LAYERS_THEME_SLUG . '-admin-content-widget' , 'contentwidgeti18n', array(
 			'confirm_message' => __( 'Are you sure you want to remove this column?' , 'layerswp' )
 		) );
+		
+		// Repeatable Widget
+		wp_register_script(
+			LAYERS_THEME_SLUG . '-admin-repeater-widget' ,
+			get_template_directory_uri() . '/core/widgets/js/repeater.js' ,
+			array(),
+			LAYERS_VERSION,
+			true
+		);
+		wp_localize_script( LAYERS_THEME_SLUG . '-admin-repeater-widget' , 'contentwidgeti18n', array(
+			'confirm_message' => __( 'Are you sure you want to remove this column?' , 'layerswp' )
+		) );
+		wp_enqueue_script( LAYERS_THEME_SLUG . '-admin-repeater-widget' );
 
 		// Tiny MCE Initiator
 		wp_register_script(

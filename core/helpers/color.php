@@ -94,13 +94,6 @@ if ( ! function_exists( 'layers_hex_lighter' ) ) {
  */
 
 if ( ! function_exists( 'layers_too_light_then_dark' ) ) {
-	/**
-	* Style Generator
-	*
-	* @param   string   $container_id   ID of the container if any
-	* @param   string   $type           Type of style to generate, background, color, text-shadow, border
-	* @param   array    $args			$args array
-	*/
 	function layers_too_light_then_dark( $color, $factor = 30 ) {
 
 		if ( '#ffffff' == layers_hex_lighter( $color, 96 ) ) {
@@ -160,5 +153,80 @@ if ( ! function_exists( 'layers_is_light_or_dark' ) ) {
 		$brightness = ( ( $c_r * 299 ) + ( $c_g * 587 ) + ( $c_b * 114 ) ) / 1000;
 
 		return ( $brightness > 155 ) ? 'light' : 'dark' ;
+	}
+}
+
+/**
+ * Detect if a $color is light/dark then return the appropraite color.
+ *
+ * @param   string   $color      hex color eg #666666
+ * @param   string   $if_dark    The color to be returned if passed $color is dark
+ * @param   string   $if_light   The color to be returned if passed $color is light
+ * @return  string   hex color eg #666666
+ */
+if ( ! function_exists( 'layers_get_light_or_dark' ) ) {
+	function layers_get_light_or_dark( $color, $if_dark, $if_light ) {
+		
+		if ( 'dark' == layers_is_light_or_dark( $color ) ) {
+			return $if_light;
+		}
+		elseif ( 'light' == layers_is_light_or_dark( $color ) ) {
+			return $if_dark;
+		}
+	}
+}
+
+/**
+ * Takes compares one color to another and tells if is lighter
+ *
+ * @param  string $color            hex color string
+ * @param  string $compare_to_color hex color string
+ * @return boolean
+ */
+if ( ! function_exists( 'layers_is_lighter' ) ) {
+	function layers_is_lighter( $color, $compare_to_color ) {
+		
+		$color_brigntness            = layers_get_brightness( $color );
+		$compare_to_color_brigntness = layers_get_brightness( $color );
+		
+		return ( $color > $compare_to_color );
+	}
+}
+
+/**
+ * Takes compares one color to another and tells if is darker
+ *
+ * @param  string $color            hex color string
+ * @param  string $compare_to_color hex color string
+ * @return boolean
+ */
+if ( ! function_exists( 'layers_is_darker' ) ) {
+	function layers_is_darker( $color, $factor = 50 ) {
+
+		$color_brigntness            = layers_get_brightness( $color );
+		$compare_to_color_brigntness = layers_get_brightness( $color );
+		
+		return ( $color < $compare_to_color );
+	}
+}
+
+/**
+ * Takes a color and returns it's brigtness between 0 and 255.
+ *
+ * @param  string $color hex color string
+ * @return string        brigtness 0-255
+ */
+if ( ! function_exists( 'layers_get_brightness' ) ) {
+	function layers_get_brightness( $color ) {
+		
+		$hex = str_replace( '#', '', $color );
+
+		$c_r = hexdec( substr( $hex, 0, 2 ) );
+		$c_g = hexdec( substr( $hex, 2, 2 ) );
+		$c_b = hexdec( substr( $hex, 4, 2 ) );
+
+		$brightness = ( ( $c_r * 299 ) + ( $c_g * 587 ) + ( $c_b * 114 ) ) / 1000;
+
+		return $brightness;
 	}
 }

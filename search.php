@@ -20,6 +20,12 @@ get_template_part( 'partials/header' , 'page-title' ); ?>
 
 			<?php the_posts_pagination(); ?>
 		</div>
+	<?php else : ?>
+		<div class="story">
+			<h3><?php _e( 'No Posts Found', 'layerswp' ); ?></h3>
+			<p><?php _e( 'There are no posts which match your query, please try a different search term.', 'layerswp' ); ?></p>
+			<?php echo get_search_form(); ?>
+		</div>
 	<?php endif; // if has_post() ?>
 
 	<?php get_sidebar( 'right' ); ?>

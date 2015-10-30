@@ -46,6 +46,7 @@ class Layers_Customizer {
 		require_once get_template_directory() . $customizer_dir . 'defaults.php';
 
 		if( isset( $wp_customize ) ) {
+			
 			// Include The Panel and Section Registration Class
 			require_once get_template_directory() . $customizer_dir . 'registration.php';
 
@@ -66,6 +67,7 @@ class Layers_Customizer {
 			require_once get_template_directory() . $controls_dir . 'rte.php';
 			require_once get_template_directory() . $controls_dir . 'text.php';
 			require_once get_template_directory() . $controls_dir . 'textarea.php';
+			require_once get_template_directory() . $controls_dir . 'trbl.php';
 
 			// Enqueue Styles
 			add_action( 'customize_controls_print_footer_scripts', array( $this, 'admin_enqueue_scripts' ) );
@@ -75,6 +77,9 @@ class Layers_Customizer {
 
 			// Render layers customizer menu
 			add_action( 'customize_controls_print_footer_scripts' , array( $this, 'render_customizer_menu' ) );
+			
+			// Advanced Active Callback functionality - disabled
+			add_filter( 'customize_control_active', array( $this, 'customize_active_controls' ), 10, 2 );
 		}
 	}
 
@@ -83,7 +88,7 @@ class Layers_Customizer {
 	*/
 
 	public function admin_enqueue_scripts(){
-		
+
 		// Hover Intent
 		wp_enqueue_script( 'hoverIntent' );
 
@@ -103,9 +108,10 @@ class Layers_Customizer {
 		);
 
 		// Localize Scripts
-		wp_localize_script( LAYERS_THEME_SLUG . '-admin-customizer' , "layers_customizer_params", array(
+		wp_localize_script( LAYERS_THEME_SLUG . '-admin-customizer' , 'layers_customizer_params', array(
 				'nonce' => wp_create_nonce( 'layers-customizer-actions' ),
-				'builder_page' => ( isset( $_GET[ 'layers-builder' ] ) ? TRUE : FALSE )
+				'builder_page' => ( isset( $_GET[ 'layers-builder' ] ) ? TRUE : FALSE ),
+				'enable_deep_linking' => ( get_theme_mod( 'layers-dev-switch-customizer-state-record' ) ),
 			)
 		);
 	}
@@ -115,7 +121,7 @@ class Layers_Customizer {
 	*/
 
 	public function customizer_preview_enqueue_scripts(){
-		
+
 		wp_enqueue_script(
 			LAYERS_THEME_SLUG . '-admin-customizer-preview',
 			get_template_directory_uri() . '/core/customizer/js/customizer-preview.js',
@@ -191,7 +197,7 @@ class Layers_Customizer {
 						// Construct the Layers Customizer Menu
 						$layers_customizer_menu = array(
 							'preview' => array(
-								'text'			=> __( 'Preview this page' , 'layerswp' ),
+								'text'			=> __( 'View this page' , 'layerswp' ),
 								'link'			=> '#',
 								'icon_class'	=> 'icon-display',
 								'target'		=> '_blank',
@@ -233,6 +239,16 @@ class Layers_Customizer {
 
 		</div>
 		<?php
+	}
+
+	// Advanced Active Callback functionality - for Dev Switches
+	function customize_active_controls( $arg1, $arg2 ) {
+		
+		if ( isset( $arg2->id ) && 0 === strpos( $arg2->id, 'layers-dev-switch' ) ) {
+			return ( ( bool ) get_theme_mod( 'layers-dev-switch-active' ) );
+		}
+		
+		return $arg1;
 	}
 
 }

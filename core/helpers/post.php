@@ -20,6 +20,7 @@
 
 if( !function_exists( 'layers_post_meta' ) ) {
 	function layers_post_meta( $post_id = NULL , $display = NULL, $wrapper = 'footer', $wrapper_class = 'meta-info' ) {
+		
 		// If there is no post ID specified, use the current post, does not affect post author, yet.
 		if( NULL == $post_id ) {
 			global $post;
@@ -27,7 +28,12 @@ if( !function_exists( 'layers_post_meta' ) ) {
 		}
 
 		// If there are no items to display, return nothing
-		if( !is_array( $display ) ) $display = array( 'date', 'author', 'categories', 'tags' );
+		if ( ! $display ) {
+			$display = array( 'date', 'author', 'categories', 'tags' );
+		}
+		
+		// Allow for filtering of the display elements.
+		$display = apply_filters( 'layers_post_meta_display', $display );
 
 		foreach ( $display as $meta ) {
 			switch ( $meta ) {

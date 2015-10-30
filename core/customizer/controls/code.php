@@ -23,9 +23,13 @@ if( !class_exists( 'Layers_Customize_Code_Control' ) ) {
 				
 				<?php $this->render_history_actions(); ?>
 				
-				<span class="customize-control-title">
-					<?php echo esc_html( $this->label ); ?>
-				</span>
+				<?php if ( '' != $this->heading_divider ) { ?>
+					<?php $this->render_heading_divider( $this->heading_divider ); ?>
+				<?php } ?>
+				
+				<?php if ( '' != $this->label ) { ?>
+					<span class="customize-control-title"><?php echo $this->label; ?></span>
+				<?php } ?>
 
 				<div class="layers-code-wrapper layers-form-item">
 

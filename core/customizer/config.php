@@ -86,7 +86,7 @@ class Layers_Customizer_Config {
 			'woocommerce' => array(
 							'title' => __( 'WooCommerce' , 'layerswp' ),
 							'priority' => 100
-						)
+						),
 		);
 
 		return apply_filters( 'layers_customizer_panels', $panels );
@@ -108,6 +108,7 @@ class Layers_Customizer_Config {
 
 		return apply_filters( 'layers_customizer_default_panels', $default_panels );
 	}
+	
 	/**
 	* Layers Customiser Sections
 	*
@@ -139,6 +140,7 @@ class Layers_Customizer_Config {
 
 		return apply_filters( 'layers_customizer_default_sections', $default_sections );
 	}
+	
 	/**
 	* Default WP Customiser Controls
 	*
@@ -170,6 +172,22 @@ class Layers_Customizer_Config {
 	private function sections(){
 
 		$sections = array(
+			
+			// Following default sections need to be added so our registration process can access them
+			'title_tagline' => array(
+				'panel' => 'site-settings'
+			),
+			'colors' => array(
+				'panel' => 'site-settings',
+			),
+			'background_image' => array(
+				'panel' => 'site-settings',
+			),
+			'static_front_page' => array(
+				'panel' => 'site-settings',
+			),
+			// End default sections
+			
 			'site-colors' => array(
 				'title' =>__( 'Colors' , 'layerswp' ),
 				'panel' => 'site-settings',
@@ -203,7 +221,7 @@ class Layers_Customizer_Config {
 				'panel' => 'header',
 			),
 			'footer-layout' => array(
-				'title' =>__( 'Layout' , 'layerswp' ),
+				'title' =>__( 'Styling' , 'layerswp' ),
 				'panel' => 'footer',
 			),
 			'footer-text' => array(
@@ -273,19 +291,16 @@ class Layers_Customizer_Config {
 		$controls['header-layout'] = array(
 			'header-width' => array(
 				'type'     => 'layers-select-icons',
-				'label'    => __( 'Header Width' , 'layerswp' ),
+				'heading_divider' => __( 'Header Width' , 'layerswp' ),
 				'default' => 'layout-boxed',
 				'choices' => array(
 					'layout-boxed' => __( 'Boxed' , 'layerswp' ),
 					'layout-fullwidth' => __( 'Full Width' , 'layerswp' ),
 				),
 			),
-			'header-layout-break-0' => array(
-				'type'     => 'layers-seperator',
-			),
 			'header-menu-layout' => array(
 				'type'     => 'layers-select-icons',
-				'label'    => __( 'Header Arrangement' , 'layerswp' ),
+				'heading_divider' => __( 'Header Arrangement' , 'layerswp' ),
 				'default' => 'header-logo-left',
 				'choices' => array(
 					'header-logo-left' => __( 'Logo Left' , 'layerswp' ),
@@ -296,8 +311,8 @@ class Layers_Customizer_Config {
 				),
 			),
 			'header-position-heading' => array(
-				'type'  => 'layers-heading-divider',
-				'label'    => __( 'Features' , 'layerswp' ),
+				'type'  => 'layers-heading',
+				'heading_divider' => __( 'Header Styling' , 'layerswp' ),
 			),
 			'header-sticky' => array(
 				'type'		=> 'layers-checkbox',
@@ -424,18 +439,17 @@ class Layers_Customizer_Config {
 		$controls['footer-layout'] = array(
 			'footer-width' => array(
 				'type'     => 'layers-select-icons',
+				'heading_divider' => __( 'Footer Width' , 'layerswp' ),
 				'default' => 'layout-boxed',
 				'choices' => array(
 					'layout-boxed' => __( 'Boxed' , 'layerswp' ),
 					'layout-fullwidth' => __( 'Full Width' , 'layerswp' ),
 				),
 			),
-			'footer-layout-break-1' => array(
-				'type'     => 'layers-seperator',
-			),
 			'footer-sidebar-count' => array(
 				'type'     => 'layers-select',
-				'label'    => __( 'Widget Areas' , 'layerswp' ),
+				'heading_divider'    => __( 'Widget Areas' , 'layerswp' ),
+				'description' => __( 'Choose how many widget areas apear in the footer. Go here to <a class="customizer-link" href="#accordion-panel-widgets">customize footer widgets</a>.', 'layerswp' ),
 				'default' => 4,
 				'sanitize_callback' => 'layers_sanitize_number',
 				'choices' => array(

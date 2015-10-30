@@ -930,7 +930,7 @@ div[id*='layers-widget'] .spinner{
         color: #777;
         font-weight: 600;
     }
-    
+
     .customize-control .layers-form-item label{
         color: inherit;
     }
@@ -1675,14 +1675,6 @@ li[id*='accordion-section-layers'] .customize-control.customize-control-layers-h
     /* margin:0; */
 }
 
-li[id*='accordion-section-layers'] .customize-control .layers-customize-control.layers-customize-control-heading-divider .customize-control-title{
-    display: block;
-    font-size: 14px;
-    line-height: 24px;
-    font-weight: 600;
-    margin: 0;
-}
-
 li[id*='accordion-section-layers'] .customize-control:first-child{
     margin: 6px 0 0px;
 }
@@ -1701,7 +1693,7 @@ li[id*='accordion-section-layers'] hr{
     margin: 8px 0;
 }
 li[id*='accordion-section-layers'] .customize-control .layers-form-item{
-    margin: 0 0 3px;
+    margin: 0 0 6px;
 }
 li[id*='accordion-section-layers'] .customize-control .heading-label .customize-control-title{
     font-size: 14px;
@@ -1738,24 +1730,23 @@ li[id*='accordion-section-layers'] .customize-control.customize-control-image .a
     padding: 10px;
     background-image: url(../assets/images/transparent-tile.png);
     border-radius: 4px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05) inset;
     box-sizing: border-box;
 }
 
-    /*----------------------*/
-    /*- HEADING DIVIDER ----*/
+    /*----------------------------------*/
+    /*- HEADING DIVIDER - ALL CONTROLS -*/
 
-    .customize-control-layers-heading-divider table {
+    table.layers-heading-divider {
         width: 100%;
-        margin: 0;
+        margin: 6px 0 0;
         padding: 0;
         border-spacing: 0;
     }
-    .customize-control-layers-heading-divider table tr {
+    table.layers-heading-divider tr {
         margin: 0;
         padding: 0;
     }
-    .customize-control-layers-heading-divider table tr td:first-child {
+    table.layers-heading-divider tr td:first-child {
         padding-right: 6px;
         font-size: 14px;
         line-height: 24px;
@@ -1764,21 +1755,37 @@ li[id*='accordion-section-layers'] .customize-control.customize-control-image .a
         margin: 0;
         white-space: nowrap;
     }
-    .customize-control-layers-heading-divider table tr td:last-child {
+    table.layers-heading-divider tr td:last-child {
         width: 100%;
     }
-    .customize-control-layers-heading-divider table tr td:last-child div{
+    table.layers-heading-divider tr td:last-child div{
         border-bottom: 1px solid #EEE;
         height: 2px;
     }
+    li[id*='accordion-section-layers'] .customize-control table.layers-heading-divider .customize-control-title {
+        display: block;
+        font-size: 14px;
+        line-height: 24px;
+        font-weight: 600;
+        margin: 0 0 6px;
+    }
 
+    /*----------------------------------------*/
+    /*- HEADING DIVIDER - DEDICATED CONTROLS -*/
+
+    li[id*='accordion-section-layers'] .customize-control.customize-control-layers-heading-divider {
+        margin-top: 12px;
+    }
+    li[id*='accordion-section-layers'] .customize-control.customize-control-layers-heading-divider table.layers-heading-divider .customize-control-title {
+        margin: 0;
+    }
     li[id*='accordion-section-layers'] .customize-control.customize-control-layers-heading-divider .description{
         margin-top: 3px;
     }
 
     /*-----------------------------*/
     /*- RANGE + NUMBER CONTROL ----*/
-    
+
     .layers-customize-control-range input[type="range"]{
         width: 68%;
         display: inline-block;
@@ -2287,7 +2294,7 @@ li[id*='accordion-section-layers'] .customize-control.customize-control-image .a
     .layers-accordion-item:last-child .layers-accordion-section{
         border-bottom: none;
     }
-    
+
     @keyframes layers-accordion-item-remove-animation {
         0% {
             opacity: 1;
@@ -2991,7 +2998,7 @@ input[type=radio]:checked + .layers-settings-icon span{
     margin: 0 0 60px;
     border-bottom: 2px solid #ddd;
 }
-#toplevel_page_layers-dashboard .wp-menu-image:before {
+#toplevel_page_layers-marketplace .wp-menu-image:before, #toplevel_page_layers-dashboard .wp-menu-image:before {
     content: "\e62f";
     font-family: "layers-interface";
     font-weight: normal;

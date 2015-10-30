@@ -8,7 +8,7 @@
  */
 if( !class_exists( 'Layers_Slider_Widget' ) ) {
 	class Layers_Slider_Widget extends Layers_Widget {
-
+		
 		/**
 		*  Widget construction
 		*/
@@ -59,13 +59,13 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 				'title' => NULL,
 				'excerpt' => NULL,
 				'slide_height' => '550',
-				'slide_ids' => rand( 1 , 1000 ),
 				'show_slider_arrows' => 'on',
 				'show_slider_dots' => 'on',
 				'animation_type' => 'slide',
 			);
 
-			$this->slide_defaults = array (
+			/* Setup Widget Repeater Defaults */
+			$this->register_repeater_defaults( 'slide', 2, array(
 				'title' => __( 'Slider Title', 'layerswp' ),
 				'excerpt' => __( 'Short Excerpt', 'layerswp' ),
 				'link' => NULL,
@@ -85,10 +85,7 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 						'shadow' => ''
 					)
 				)
-			);
-
-			// Setup the defaults for each slide
-			$this->defaults[ 'slides' ][ $this->defaults[ 'slide_ids' ] ] = $this->slide_defaults;
+			) );
 
 		}
 
@@ -159,14 +156,21 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 			$widget_container_class[] = 'row';
 			$widget_container_class[] = 'slide';
 			$widget_container_class[] = 'swiper-container';
-			$widget_container_class[] = $this->get_widget_layout_class( $widget );
 			$widget_container_class[] = $this->check_and_return( $widget , 'design', 'advanced', 'customclass' ); // Apply custom class from design-bar's advanced control.
 			$widget_container_class[] = $this->get_widget_spacing_class( $widget );
+			$widget_container_class[] = $this->get_widget_layout_class( $widget );
+			if( $this->check_and_return( $widget , 'autoheight_slides' ) ) {
+				if( FALSE !== ( $fullwidth = array_search( 'full-screen', $widget_container_class ) ) ){
+					unset( $widget_container_class[ $fullwidth ] );
+				}
+				$widget_container_class[] = 'auto-height';
+			}
+
 			if( isset( $widget['design']['layout'] ) && '' != $widget['design']['layout'] ) {
 				// Slider layout eg 'slider-layout-full-screen'
 				$widget_container_class[] = 'slider-' . $widget['design']['layout'];
 			}
-			if( ! isset( $widget['design']['layout'] ) || ( isset( $widget['design']['layout'] ) && 'layout-full-screen' != $widget['design']['layout'] ) ) {
+			if( ( ! isset( $widget['design']['layout'] ) || ( isset( $widget['design']['layout'] ) && 'layout-full-screen' != $widget['design']['layout'] ) ) ) {
 				// If slider is not full screen
 				$widget_container_class[] = 'not-full-screen';
 			}
@@ -174,29 +178,31 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 				// If only one slide
 				$widget_container_class[] = 'single-slide';
 			}
-			if( $this->check_and_return( $widget , 'autoheight_slides' ) ) {
-				// If Auto Height
-				$widget_container_class[] = 'auto-height';
-			}
+
 			$widget_container_class = implode( ' ', apply_filters( 'layers_slider_widget_container_class' , $widget_container_class ) );
-			
+
 			/**
 			 * Slider HTML
 			 */
 			?>
-			<section id="<?php echo esc_attr( $widget_id ); ?>" class="<?php echo esc_attr( $widget_container_class ); ?>" style="<?php echo esc_attr( $slider_height_css ); ?>" >
-				<?php if( !empty( $widget[ 'slides' ] ) ) { ?>
+
+			<?php if( ! empty( $widget[ 'slides' ] ) ) { ?>
+
+				<section id="<?php echo esc_attr( $widget_id ); ?>" class="<?php echo esc_attr( $widget_container_class ); ?>" style="<?php echo esc_attr( $slider_height_css ); ?>" >
+
 					<?php if( 1 < count( $widget[ 'slides' ] ) && isset( $widget['show_slider_arrows'] ) ) { ?>
 						 <div class="arrows">
 							<a href="" class="l-left-arrow animate"></a>
 							<a href="" class="l-right-arrow animate"></a>
 						</div>
 					<?php } ?>
+
 					<div class="<?php echo $this->get_field_id( 'pages' ); ?> pages animate">
 						<?php for( $i = 0; $i < count( $widget[ 'slides' ] ); $i++ ) { ?>
 							<a href="" class="page animate <?php if( 0 == $i ) echo 'active'; ?>"></a>
 						<?php } ?>
 					</div>
+
 			 		<div class="swiper-wrapper">
 						<?php foreach ( wp_parse_id_list( $widget[ 'slide_ids' ] ) as $slide_key ) {
 
@@ -302,9 +308,10 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 							</<?php echo $slide_wrapper_tag; ?>>
 						<?php } // foreach slides ?>
 			 		</div>
-				<?php } // if !empty( $widget->slides ) ?>
-		 	</section>
-			
+		 		</section>
+
+		 	<?php } ?>
+
 			<?php
 			/**
 			 * Slider javascript initialize
@@ -348,7 +355,7 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 							// Allow keyboard control
 							<?php echo $swiper_js_obj; ?>.enableKeyboardControl();
 						<?php } // if > 1 slide ?>
-						
+
 						<?php if( TRUE == $this->check_and_return( $widget , 'autoheight_slides' ) ) { ?>
 							layers_swiper_resize( <?php echo $swiper_js_obj; ?> );
 							$(window).resize(function(){
@@ -379,7 +386,7 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 						<?php echo $swiper_js_obj; ?>.init();
 					})
 			 	</script>
-		 	
+
 		<?php }
 
 		/**
@@ -448,6 +455,21 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 					'icon-css' => 'icon-slider',
 					'label' => __( 'Slider', 'layerswp' ),
 					'elements' => array(
+						'autoheight_slides' => array(
+							'type' => 'checkbox',
+							'name' => $this->get_field_name( 'autoheight_slides' ) ,
+							'id' => $this->get_field_id( 'autoheight_slides' ) ,
+							'value' => ( isset( $widget['autoheight_slides'] ) ) ? $widget['autoheight_slides'] : NULL,
+							'label' => __( 'Auto Height Slides' , 'layerswp' ),
+						),
+						'slide_height' => array(
+							'type' => 'number',
+							'name' => $this->get_field_name( 'slide_height' ) ,
+							'id' => $this->get_field_id( 'slide_height' ) ,
+							'value' => ( isset( $widget['slide_height'] ) ) ? $widget['slide_height'] : NULL,
+							'label' => __( 'Slider Height (px)' , 'layerswp' ),
+							'data' => array( 'show-if-selector' => '#' . $this->get_field_id( 'autoheight_slides' ), 'show-if-value' => 'false' ),
+						),
 						'show_slider_arrows' => array(
 							'type' => 'checkbox',
 							'name' => $this->get_field_name( 'show_slider_arrows' ) ,
@@ -501,21 +523,6 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 							'label' => __( 'Slide Interval (seconds)' , 'layerswp' ),
 							'data' => array( 'show-if-selector' => '#' . $this->get_field_id( 'autoplay_slides' ), 'show-if-value' => 'true' )
 						),
-						'autoheight_slides' => array(
-							'type' => 'checkbox',
-							'name' => $this->get_field_name( 'autoheight_slides' ) ,
-							'id' => $this->get_field_id( 'autoheight_slides' ) ,
-							'value' => ( isset( $widget['autoheight_slides'] ) ) ? $widget['autoheight_slides'] : NULL,
-							'label' => __( 'Auto Height Slides' , 'layerswp' ),
-						),
-						'slide_height' => array(
-							'type' => 'number',
-							'name' => $this->get_field_name( 'slide_height' ) ,
-							'id' => $this->get_field_id( 'slide_height' ) ,
-							'value' => ( isset( $widget['slide_height'] ) ) ? $widget['slide_height'] : NULL,
-							'label' => __( 'Slider Height (px)' , 'layerswp' ),
-							'data' => array( 'show-if-selector' => '#' . $this->get_field_id( 'autoheight_slides' ), 'show-if-value' => 'false' ),
-						),
 					),
 				),
 			) );
@@ -537,164 +544,129 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 					'icon_class' =>'slider'
 				) ); ?>
 
+				<?php echo $this->form_elements()->input(
+					array(
+						'type' => 'hidden',
+						'name' => $this->get_field_name( 'focus_slide' ) ,
+						'id' => $this->get_field_name( 'focus_slide' ) ,
+						'value' => ( isset( $widget['focus_slide'] ) ) ? $widget['focus_slide'] : NULL,
+						'data' => array(
+							'focus-slide' => 'true'
+						)
+					)
+				); ?>
+				
 				<section class="layers-accordion-section layers-content">
-						<?php echo $this->form_elements()->input(
-							array(
-								'type' => 'hidden',
-								'name' => $this->get_field_name( 'slide_ids' ) ,
-								'id' => 'slide_ids_input_' . $this->number,
-								'value' => ( isset( $widget['slide_ids'] ) ) ? $widget['slide_ids'] : NULL
-							)
-						);
-
-						echo $this->form_elements()->input(
-							array(
-								'type' => 'hidden',
-								'name' => $this->get_field_name( 'focus_slide' ) ,
-								'id' => $this->get_field_name( 'focus_slide' ) ,
-								'value' => ( isset( $widget['focus_slide'] ) ) ? $widget['focus_slide'] : NULL,
-								'data' => array(
-									'focus-slide' => 'true'
-								)
-							)
-						);
-
-						// If we have some slides, let's break out their IDs into an array
-						if( isset( $widget['slide_ids'] ) && '' != $widget['slide_ids'] ) $slides = wp_parse_id_list( $widget['slide_ids'] ); ?>
-
-						<ul id="slide_list_<?php echo esc_attr( $this->number ); ?>" class="layers-accordions layers-accordions-sortable layers-sortable" data-id_base="<?php echo $this->id_base; ?>" data-number="<?php echo esc_attr( $this->number ); ?>">
-							<?php if( isset( $slides ) && is_array( $widget['slides'] ) ) { ?>
-								<?php foreach( $slides as $slide ) {
-									$this->slide_item( array(
-												'id_base' => $this->id_base ,
-												'number' => $this->number
-											) ,
-											$slide ,
-											( isset( $widget[ 'slides' ][ $slide ] ) ) ? $widget[ 'slides' ][ $slide ] : NULL );
-								} ?>
-							<?php } ?>
-						</ul>
-						<button class="layers-button btn-full layers-add-widget-slide add-new-widget" data-number="<?php echo esc_attr( $this->number ); ?>"><?php _e( 'Add New Slide' , 'layerswp' ) ; ?></button>
+					<div class="layers-form-item">
+						<?php $this->repeater( 'slide', $widget ); ?>
+					</div>
 				</section>
 
 			</div>
 
-		<?php } // Form
+		<?php }
 
-		function slide_item( $widget_details = array() , $slide_guid = NULL , $instance = NULL ){
-
-			// Extract Instance if it's there so that we can use the values in our inputs
-
-			// $instance Defaults
-			$instance_defaults = $this->slide_defaults;
-
-			// Clear the defaults if they're not needed
-			if( !empty( $instance ) ) $instance_defaults = array();
-
-			// Parse $instance
-			$slide = wp_parse_args( $instance, $instance_defaults );
-
-			// If there is no GUID create one. There should always be one but this is a fallback
-			if( ! isset( $slide_guid ) ) $slide_guid = rand( 1 , 1000 );
-
-			// Turn the widget details into an object, it makes the code cleaner
-			$widget_details = (object) $widget_details;
-
-			// Set a count for each row
-			if( !isset( $this->slide_item_count ) ) {
-				$this->slide_item_count = 0;
-			} else {
-				$this->slide_item_count++;
-			}?>
-
-				<li class="layers-accordion-item <?php echo $this->slide_item_count; ?>" data-guid="<?php echo $slide_guid; ?>">
-					<a class="layers-accordion-title">
-						<span>
-							<?php _e( 'Slide' , 'layerswp' ); ?>
-							<span class="layers-detail">
-								<?php echo ( isset( $slide['title'] ) ? ': ' . substr( stripslashes( strip_tags( $slide['title'] ) ), 0 , 50 ) : NULL ); ?>
-								<?php echo ( isset( $slide['title'] ) && strlen( $slide['title'] ) > 50 ? '...' : NULL ); ?>
-							</span>
+		function slide_item( $item_guid, $widget ) {
+			?>
+			<li class="layers-accordion-item <?php echo $this->item_count; ?>" data-guid="<?php echo $item_guid; ?>">
+				<a class="layers-accordion-title">
+					<span>
+						<?php _e( 'Slide' , 'layerswp' ); ?>
+						<span class="layers-detail">
+							<?php echo ( isset( $widget['title'] ) ? ': ' . substr( stripslashes( strip_tags( $widget['title'] ) ), 0 , 50 ) : NULL ); ?>
+							<?php echo ( isset( $widget['title'] ) && strlen( $widget['title'] ) > 50 ? '...' : NULL ); ?>
 						</span>
-					</a>
-					<section class="layers-accordion-section layers-content">
-						<?php $this->design_bar(
-							'top', // CSS Class Name
-							array(
-								'name' => $this->get_custom_field_name( $widget_details, 'slides',  $slide_guid, 'design' ),
-								'id' => $this->get_custom_field_id( $widget_details, 'slides',  $slide_guid, 'design' ),
-								'number' => $widget_details->number,
-								'show_trash' => true
-							), // Widget Object
-							$slide, // Widget Values
-							array(
-								'background',
-								'featuredimage',
-								'imagealign',
-								'fonts',
-							) // Standard Components
-						); ?>
-
+					</span>
+				</a>
+				<section class="layers-accordion-section layers-content">
+					<?php $this->design_bar(
+						'top', // CSS Class Name
+						array(
+							'name' => $this->get_layers_field_name( 'design' ),
+							'id' => $this->get_layers_field_id( 'design' ),
+							'number' => $this->number,
+							'show_trash' => FALSE
+						), // Widget Object
+						$widget, // Widget Values
+						array(
+							'background',
+							'featuredimage',
+							'imagealign' => array(
+								'elements' => array(
+									'imagealign' => array(
+										'options' => array(
+											'image-left' => __( 'Left', 'layerswp' ),
+											'image-right' => __( 'Right', 'layerswp' ),
+											'image-top' => __( 'Top', 'layerswp' ),
+											'image-bottom' => __( 'Bottom', 'layerswp' ),
+										),
+									),
+								),
+							),
+							'fonts',
+						) // Standard Components
+					); ?>
+					<div class="layers-row">
+						<p class="layers-form-item">
+							<label for="<?php echo $this->get_layers_field_id( 'title' ); ?>"><?php _e( 'Title' , 'layerswp' ); ?></label>
+							<?php echo $this->form_elements()->input(
+								array(
+									'type' => 'text',
+									'name' => $this->get_layers_field_name( 'title' ),
+									'id' => $this->get_layers_field_id( 'title' ),
+									'placeholder' => __( 'Enter a Title' , 'layerswp' ),
+									'placeholder' => __( 'Enter title here' , 'layerswp' ),
+									'value' => ( isset( $widget['title'] ) ) ? $widget['title'] : NULL ,
+									'class' => 'layers-text'
+								)
+							); ?>
+						</p>
+						<p class="layers-form-item">
+							<label for="<?php echo $this->get_layers_field_id( 'excerpt' ); ?>"><?php _e( 'Excerpt' , 'layerswp' ); ?></label>
+							<?php echo $this->form_elements()->input(
+								array(
+									'type' => 'rte',
+									'name' => $this->get_layers_field_name( 'excerpt' ),
+									'id' => $this->get_layers_field_id( 'excerpt' ),
+									'placeholder' => __( 'Short Excerpt' , 'layerswp' ),
+									'value' => ( isset( $widget['excerpt'] ) ) ? $widget['excerpt'] : NULL ,
+									'disallow_buttons' => array( 'insertOrderedList','insertUnorderedList' ),
+									'class' => 'layers-textarea',
+									'rows' => 6
+								)
+							); ?>
+						</p>
 						<div class="layers-row">
-							<p class="layers-form-item">
-								<label for="<?php echo $this->get_custom_field_id( $widget_details, 'slides',  $slide_guid, 'title' ); ?>"><?php _e( 'Title' , 'layerswp' ); ?></label>
+							<p class="layers-form-item layers-column layers-span-6">
+								<label for="<?php echo $this->get_field_id( 'link' ); ?>"><?php _e( 'Button Link' , 'layerswp' ); ?></label>
 								<?php echo $this->form_elements()->input(
 									array(
 										'type' => 'text',
-										'name' => $this->get_custom_field_name( $widget_details, 'slides',  $slide_guid, 'title' ),
-										'id' => $this->get_custom_field_id( $widget_details, 'slides',  $slide_guid, 'title' ),
-										'placeholder' => __( 'Enter a Title' , 'layerswp' ),
-										'placeholder' => __( 'Enter title here' , 'layerswp' ),
-										'value' => ( isset( $slide['title'] ) ) ? $slide['title'] : NULL ,
-										'class' => 'layers-text'
+										'name' => $this->get_layers_field_name( 'link' ),
+										'id' => $this->get_layers_field_id( 'link' ),
+										'placeholder' => __( 'http://' , 'layerswp' ),
+										'value' => ( isset( $widget['link'] ) ) ? $widget['link'] : NULL ,
 									)
 								); ?>
 							</p>
-							<p class="layers-form-item">
-								<label for="<?php echo $this->get_custom_field_id( $widget_details, 'slides',  $slide_guid, 'excerpt' ); ?>"><?php _e( 'Excerpt' , 'layerswp' ); ?></label>
+							<p class="layers-form-item layers-column layers-span-6">
+								<label for="<?php echo $this->get_field_id( 'link' ); ?>"><?php _e( 'Button Text' , 'layerswp' ); ?></label>
 								<?php echo $this->form_elements()->input(
 									array(
-										'type' => 'rte',
-										'name' => $this->get_custom_field_name( $widget_details, 'slides',  $slide_guid, 'excerpt' ),
-										'id' => $this->get_custom_field_id( $widget_details, 'slides',  $slide_guid, 'excerpt' ),
-										'placeholder' => __( 'Short Excerpt' , 'layerswp' ),
-										'value' => ( isset( $slide['excerpt'] ) ) ? $slide['excerpt'] : NULL ,
-										'disallow_buttons' => array( 'insertOrderedList','insertUnorderedList' ),
-										'class' => 'layers-textarea',
-										'rows' => 6
+										'type' => 'text',
+										'name' => $this->get_layers_field_name( 'link_text' ),
+										'id' => $this->get_layers_field_id( 'link_text' ),
+										'placeholder' => __( 'e.g. "Read More"' , 'layerswp' ),
+										'value' => ( isset( $widget['link_text'] ) ) ? $widget['link_text'] : NULL ,
 									)
 								); ?>
 							</p>
-							<div class="layers-row">
-								<p class="layers-form-item layers-column layers-span-6">
-									<label for="<?php echo $this->get_field_id( 'link' ); ?>"><?php _e( 'Button Link' , 'layerswp' ); ?></label>
-									<?php echo $this->form_elements()->input(
-										array(
-											'type' => 'text',
-											'name' => $this->get_custom_field_name( $widget_details, 'slides',  $slide_guid, 'link' ),
-											'id' => $this->get_custom_field_id( $widget_details, 'slides',  $slide_guid, 'link' ),
-											'placeholder' => __( 'http://' , 'layerswp' ),
-											'value' => ( isset( $slide['link'] ) ) ? $slide['link'] : NULL ,
-										)
-									); ?>
-								</p>
-								<p class="layers-form-item layers-column layers-span-6">
-									<label for="<?php echo $this->get_field_id( 'link' ); ?>"><?php _e( 'Button Text' , 'layerswp' ); ?></label>
-									<?php echo $this->form_elements()->input(
-										array(
-											'type' => 'text',
-											'name' => $this->get_custom_field_name( $widget_details, 'slides',  $slide_guid, 'link_text' ),
-											'id' => $this->get_custom_field_id( $widget_details, 'slides',  $slide_guid, 'link_text' ),
-											'placeholder' => __( 'e.g. "Read More"' , 'layerswp' ),
-											'value' => ( isset( $slide['link_text'] ) ) ? $slide['link_text'] : NULL ,
-										)
-									); ?>
-								</p>
-							</div>
 						</div>
-					</section>
-				</li>
-		<?php }
+					</div>
+				</section>
+			</li>
+			<?php
+		}
 
 	} // Class
 

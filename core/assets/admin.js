@@ -26,7 +26,12 @@
  * 13 - Layers Pages Backups
  * 14 - Init RTE Editors
  * 15 - Custom Widget Initialization Events
- * 16 - Widget Peek/hide to preview changes
+ * 16 - Intercom checkbox
+ * 17 - Widget Peek/hide to preview changes
+ * 18 - Customizer Control - Range Slider
+ * 19 - Reset to Default
+ * 20 - History States
+ * 21 - Linking from one section/panel to another.
  *
  * Author: Obox Themes
  * Author URI: http://www.oboxthemes.com/
@@ -586,9 +591,7 @@ jQuery(function($) {
 		$( '[data-show-if-selector="' + $source_element_selector_new + '"]' ).each(function(){
 
 			var $target_element = $(this);
-
-			var $target_element_value = $target_element.data( 'show-if-value' ).toString();
-
+			var $target_value   = $target_element.data( 'show-if-value' ).toString();
 			var $source_element = $( $target_element.data( 'show-if-selector' ).toString() );
 
 			if ( $source_element.attr('type') == 'checkbox' ) {
@@ -611,8 +614,10 @@ jQuery(function($) {
 				$target_element = $target_element.closest('.layers-form-item');
 			}
 
-			if( $target_element_value.indexOf( $source_element_value ) > -1 ){
-
+			//if( $target_value.indexOf( $source_element_value ) >= 0 ){
+			if( $target_value.trim() == $source_element_value.trim() ){
+				
+				// Show
 				if( animation_type == 'slideDown' ){
 					$target_element.removeClass( 'layers-hide' );
 					$target_element.slideDown( { duration: 550, easing: 'layersEaseInOut' } );
@@ -623,6 +628,7 @@ jQuery(function($) {
 
 			} else {
 
+				// Hide
 				if( animation_type == 'slideDown' ){
 					$target_element.slideUp( { duration: 550, easing: 'layersEaseInOut', complete: function(){
 						$target_element.addClass( 'layers-hide' );
@@ -631,7 +637,6 @@ jQuery(function($) {
 				else{
 					$target_element.addClass( 'layers-hide' );
 				}
-
 			}
 		});
 
@@ -908,20 +913,36 @@ jQuery(function($) {
 			}
 		}
 	}
-	
+
 	/**
-	 * 16 - Widget Peek/hide to preview changes
+	* 16 - Intercom checkbox
+	*/
+
+	$(document).on( 'change', '#layers-enable-intercom', function(e){
+
+		if( 'undefined' !== typeof Intercom ){
+			if( !$(this).prop('checked') ){
+				Intercom('shutdown');
+			} else if( 'undefined' !== typeof window.intercomSettings ){
+				Intercom('boot', window.intercomSettings );
+			}
+		}
+
+	});
+
+	/**
+	 * 17 - Widget Peek/hide to preview changes
 	 */
-	
+
 	// Add the peek buttons to all the Layers Widget actions.
 	$('<span class="layers-widget-peek-button dashicons dashicons-visibility">').insertBefore('.widget-control-actions br');
-	
+
 	// Add the hover hiding of the Widget interface.
 	$(document).on( 'mouseenter', '.layers-widget-peek-button', function(){ $(this).closest('.widget-inside').addClass('layers-peek-widget'); } );
 	$(document).on( 'mouseleave', '.layers-widget-peek-button', function(){ $(this).closest('.widget-inside').removeClass('layers-peek-widget'); } );
 
 	/**
-	 * 17 - Customizer Control - Range Slider *NEW
+	 * 18 - Customizer Control - Range Slider
 	 */
 	$( document ).on( 'input change', '.layers-customize-control-range input[type="range"]', function( e ){
 		var $range_field = $(this);
@@ -933,9 +954,9 @@ jQuery(function($) {
 		var $range_field = $(this).siblings('input[type="range"]');
 		$range_field.val( $number_field.val() );
 	});
-	
+
 	/**
-	 * 18 - Reset to Default *NEW
+	 * 19 - Reset to Default
 	 */
 	$( document ).on( 'click', '.customize-control-default', function( e ){
 		var $refresh_button = $(this);
@@ -943,9 +964,9 @@ jQuery(function($) {
 		var $default_value = $refresh_button.attr('data-default');
 
 		var $field = $control_holder.find('input, select, textarea');
-		
+
 		if ( 'checkbox' == $field.eq(0).attr('type') ) {
-			
+
 			// Checkbox
 			if ( ! $default_value || '' == $default_value ) $field.attr( 'checked', false );
 			else $field.attr( 'checked', true );
@@ -953,22 +974,22 @@ jQuery(function($) {
 		}
 		else {
 		//else if ( $field.eq(0).is('input') ) {
-			
+
 			// Input's, Textarea
 			$field.val( $default_value );
 			$field.eq(0).change();
 		}
 	});
-	
+
 	/**
-	 * 19 - History States *NEW
+	 * 20 - History States
 	 */
 	/*
 	var $history = [];
 	var $pointer = 0;
-	
+
 	$( document ).on( 'change', '.customize-control select', function( e ){
-		
+
 		var $input = $(this);
 		var $control_holder = $input.closest('.customize-control');
 
@@ -977,7 +998,7 @@ jQuery(function($) {
 			$history = $history.splice( 0, $pointer );
 			$pointer = 0;
 		}
-		
+
 		$state = array();
 		$state['element'] = $control_holder;
 		$state['previous_val'] = $control_holder;
@@ -990,7 +1011,7 @@ jQuery(function($) {
 	});
 
 	$( document ).on( 'click', '.customize-control-undo', function( e ){
-		
+
 		var $button = $(this);
 		var $control_holder = $button.closest('.customize-control');
 		var $document = $(document);
@@ -1003,12 +1024,12 @@ jQuery(function($) {
 		$pointer--;
 
 		var $current = $history[ $pointer ];
-		
+
 		if ( ! $current ) {
 			console.log( 'No More Undo States!' );
 			return;
 		}
-		
+
 		var $element = $current[0];
 		var $value = $current[1];
 
@@ -1021,7 +1042,7 @@ jQuery(function($) {
 	function output_state_log(){
 
 		$( $history ).each(function( index, element ){
-			
+
 			$marker = '';
 			if ( index == $pointer ) $marker = ' <-';
 
@@ -1029,5 +1050,23 @@ jQuery(function($) {
 		})
 	}
 	*/
+	
+	/**
+	 * 21 - Linking from one section/panel to another.
+	 *
+	 * Use class `customizer-link` and href `#target-panel-or-section-id`
+	 */
+	$( document ).on( 'click', '.customizer-link', function( e ){
+		
+		$link              = $(this);
+		$related_accordion = $( $link.attr('href') );
+		
+		// If there is a related panel ot section then open it.
+		if ( $related_accordion.length ) {
+			$related_accordion.children( 'h3.accordion-section-title' ).click();
+		}
+
+		return false;
+	});
 
 });

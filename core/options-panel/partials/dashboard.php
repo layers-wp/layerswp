@@ -177,6 +177,31 @@ $theme_info = wp_get_theme( 'layerswp' ); ?>
 				</div>
 				<div class="layers-column layers-span-3">
 
+					<?php if( !defined( 'LAYERS_DISABLE_INTERCOM' ) ){ ?>
+						<div class="layers-panel layers-push-bottom">
+							<div class="layers-panel-title">
+								<h4 class="layers-heading">
+									<?php _e( 'Layers Messenger' , 'layerswp' ); ?>
+								</h4>
+							</div>
+							<div class="layers-content">
+								<div class="layers-excerpt">
+									<p><?php _e( 'Enable the Layers Messenger to connect with the Layers team directly from inside Layers. We can help you make informed decisions about themes and extensions and point you in the right direction when you need support with your site and Layers.' , 'layerswp' ); ?></p>
+								<div class="layers-checkbox-wrapper layers-form-item">
+									<input id="layers-enable-intercom" name="layers_intercom" type="checkbox" <?php if( '1' == get_option( 'layers_enable_intercom' )  ){ echo 'checked="checked"'; }; ?> />
+									<label for="layers-enable-intercom"><?php _e( 'Enable Layers Messenger', 'layerswp' ); ?></label>
+								</div>
+									<p><a href="http://www.layerswp.com/privacy-policy/" target="_blank"><?php _e( 'Your data is safe with us. View our Privacy Policy', 'layerswp' ); ?></a></p>
+								</div>
+							</div>
+							<div class="layers-button-well">
+								<a class="layers-button layers-pull-right" href="" data-setup-step-key="layers_enable_intercom" data-intercom-switch-action="layers_update_intercom">
+									<?php _e( 'Save' , 'layerswp' ); ?>
+								</a>
+							</div>
+						</div>
+					<?php } // If !disable intercom ?>
+
 					<div class="layers-panel layers-push-bottom">
 						<div class="layers-panel-title">
 							<h4 class="layers-heading">
@@ -227,7 +252,7 @@ $theme_info = wp_get_theme( 'layerswp' ); ?>
 			<h3 class="layers-heading"><?php _e( 'Layers News' , 'layerswp' ); ?></h3>
 		</div>
 
-		<div class="layers-row" data-layers-feed="news" data-layers-feed-count="3">
+		<div id="layers-dashboard-news-feed" class="layers-row" data-layers-feed="news" data-layers-feed-count="3">
 			<div class="layers-column layers-span-3" data-loading="1">
 				<div class="layers-panel">
 					<div class="layers-content">
@@ -245,7 +270,7 @@ $theme_info = wp_get_theme( 'layerswp' ); ?>
 							<?php _e( 'Sign up to our monthly newsletter to find out when we launch new features, products.' , 'layerswp' ); ?>
 						</p>
 					</div>
-					<form action="//oboxthemes.us10.list-manage.com/subscribe/post?u=5b9a020fcf797987098cc7bca&amp;id=069cfedbbc" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+					<form id="layers-dashboard-newsletter" action="//oboxthemes.us10.list-manage.com/subscribe/post?u=5b9a020fcf797987098cc7bca&amp;id=069cfedbbc" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" target="_blank"  validate>
 						<div id="mc_embed_signup_scroll" class="layers-form-item layers-form-inline">
 							<div class="mc-field-group">
 								<label for="mce-EMAIL"><?php _e( 'Email Address' , 'layerswp' ); ?></label>

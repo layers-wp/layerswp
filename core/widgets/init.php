@@ -198,9 +198,15 @@ class Layers_Widgets {
 		$layers_migrator = new Layers_Widget_Migrator();
 
 		$widget_data = $revision->post_content_filtered;
-
-		if( is_wp_error( unserialize( $widget_data ) ) || empty( unserialize( $widget_data ) ) ) return;
-
+		
+		// Check for errors.
+		if ( '' == $widget_data || is_wp_error( unserialize( $widget_data ) ) ) return;
+		
+		$widget_data_array = unserialize( $widget_data );
+		
+		// Check if our data is empty.
+		if ( empty( $widget_data_array ) ) return;
+		
 		$layers_migrator->import( unserialize( $widget_data ), true );
 	}
 
@@ -300,9 +306,6 @@ add_action( 'widgets_init' , 'layers_widgets_init' , 20 );
 function layers_backup_sidebars_widgets(){
 
 	global $sidebars_widgets;
-
-	// See if there are any widget backups
-	$check_for_post = get_posts( 'post_type=layers-backup&posts_per_page=1&post_status=any' );
 
 	// Prep the migrator
 	$migrator = new Layers_Widget_Migrator();

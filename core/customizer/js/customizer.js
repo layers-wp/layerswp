@@ -294,8 +294,8 @@
 				if ( 'layers-dev-switches' == $dev_switch_hash ) {
 					if( ! $( '#layers-dev-switch-active' ).attr( 'checked' ) ) {
 						$( '#layers-dev-switch-active' ).attr( 'checked', true ).change();
-						$( '#accordion-section-layers-dev-switches > h3' ).click();
 					}
+					$( '#accordion-section-layers-dev-switches > h3' ).click();
 				}
 			}
 			

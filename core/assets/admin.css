@@ -1865,19 +1865,9 @@ li[id*='accordion-section-layers'] .customize-control.customize-control-image .a
         margin: 0px;
         box-sizing: border-box;
         padding: 4px 8px;
-        border-bottom: 1px solid #E0E0E0;
+        border-bottom: 1px solid #E2E2E2;
         background: #F5F5F5 none repeat scroll 0% 0%;
-    }
-    li[id*='accordion-section-layers'] .customize-control .layers-customize-control.group:not(.layers-customize-control-heading) first,
-    li .customize-control .layers-customize-control.group.first:not(.layers-customize-control-heading) {
-        border-radius: 4px 4px 0px 0px;
-        border-bottom: 1px solid #E0E0E0;
-    }
-    
-    li[id*='accordion-section-layers'] .customize-control .layers-customize-control.group:not(.layers-customize-control-heading) last,
-    li .customize-control .layers-customize-control.group.last:not(.layers-customize-control-heading) {
-        border-radius: 0 0 4px 4px;
-        border-bottom: 1px solid transparent;
+        border-radius: 3px;
     }
     
 /*---------------------------*/

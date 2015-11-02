@@ -615,8 +615,8 @@ jQuery(function($) {
 			}
 
 			//if( $target_value.indexOf( $source_element_value ) >= 0 ){
-			if( $target_value.trim() == $source_element_value.trim() ){
-				
+			if( 'undefined' !== typeof( $source_element_value ) && $target_value.trim() == $source_element_value.trim() ){
+
 				// Show
 				if( animation_type == 'slideDown' ){
 					$target_element.removeClass( 'layers-hide' );
@@ -1050,17 +1050,17 @@ jQuery(function($) {
 		})
 	}
 	*/
-	
+
 	/**
 	 * 21 - Linking from one section/panel to another.
 	 *
 	 * Use class `customizer-link` and href `#target-panel-or-section-id`
 	 */
 	$( document ).on( 'click', '.customizer-link', function( e ){
-		
+
 		$link              = $(this);
 		$related_accordion = $( $link.attr('href') );
-		
+
 		// If there is a related panel ot section then open it.
 		if ( $related_accordion.length ) {
 			$related_accordion.children( 'h3.accordion-section-title' ).click();

@@ -1670,6 +1670,9 @@ div[id*='layers-widget'] .spinner{
 /*- CUSTOMIZER CONTROLS -------*/
 
 li[id*='accordion-section-layers'] .customize-control{
+    margin: 0;
+}
+li[id*='accordion-section-layers'] .customize-control .layers-customize-control {
     margin: 6px 0;
 }
 li[id*='accordion-section-layers'] .customize-control.customize-control-layers-heading{
@@ -1840,7 +1843,43 @@ li[id*='accordion-section-layers'] .customize-control.customize-control-image .a
         border: 1px solid #0073AA;
         box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.21), 0 1px 1px rgba(0, 0, 0, 0.14);
     }
-
+    
+    /*-------------------------------*/
+    /*- CUSTOMIZER CONTROL GROUPS -- */
+    
+    li[id*='accordion-section-layers'] .customize-control .layers-customize-control.layers-customize-control-heading.group table.layers-heading-divider{
+        margin: 12px 0 4px;
+    }
+    li[id*='accordion-section-layers'] .customize-control .layers-customize-control.group:not(.layers-customize-control-heading) .customize-control-title,
+    li .customize-control .layers-customize-control.group:not(.layers-customize-control-heading) .customize-control-title {
+        text-transform: uppercase;
+        font-size: 10px;
+        font-weight: bold;
+        color: #777;
+        letter-spacing: 0.5px;
+        margin-bottom: 3px;
+    }
+    li[id*='accordion-section-layers'] .customize-control .layers-customize-control.group:not(.layers-customize-control-heading),
+    li .customize-control .layers-customize-control.group:not(.layers-customize-control-heading) {
+        display: list-item;
+        margin: 0px;
+        box-sizing: border-box;
+        padding: 4px 8px;
+        border-bottom: 1px solid #E0E0E0;
+        background: #F5F5F5 none repeat scroll 0% 0%;
+    }
+    li[id*='accordion-section-layers'] .customize-control .layers-customize-control.group:not(.layers-customize-control-heading) first,
+    li .customize-control .layers-customize-control.group.first:not(.layers-customize-control-heading) {
+        border-radius: 4px 4px 0px 0px;
+        border-bottom: 1px solid #E0E0E0;
+    }
+    
+    li[id*='accordion-section-layers'] .customize-control .layers-customize-control.group:not(.layers-customize-control-heading) last,
+    li .customize-control .layers-customize-control.group.last:not(.layers-customize-control-heading) {
+        border-radius: 0 0 4px 4px;
+        border-bottom: 1px solid transparent;
+    }
+    
 /*---------------------------*/
 /*- TITLES ------------------*/
 .layers-logo{

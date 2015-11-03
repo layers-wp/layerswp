@@ -1756,6 +1756,13 @@ li[id*='accordion-section-layers'] .customize-control.customize-control-image .a
     /*----------------------------------*/
     /*- HEADING DIVIDER - ALL CONTROLS -*/
 
+    li[id*='accordion-section-layers'] .customize-control .customize-control-title.layers-heading-divider {
+        display: block;
+        font-size: 14px;
+        line-height: 24px;
+        font-weight: 600;
+        margin: 0 0 6px;
+    }
     table.layers-heading-divider {
         width: 100%;
         margin: 6px 0 0;
@@ -1863,7 +1870,15 @@ li[id*='accordion-section-layers'] .customize-control.customize-control-image .a
     /*-------------------------------*/
     /*- CUSTOMIZER CONTROL GROUPS -- */
 
-    li[id*='accordion-section-layers'] .customize-control .layers-customize-control.layers-customize-control-heading.group table.layers-heading-divider{
+    li[id*='accordion-section-layers'] .customize-control .layers-heading-divider {
+        display: block;
+        font-size: 14px;
+        line-height: 24px;
+        font-weight: 600;
+        margin: 0 0 6px;
+    }
+    
+    li[id*='accordion-section-layers'] .customize-control .layers-customize-control.layers-customize-control-heading.group .layers-heading-divider{
         margin: 12px 0 4px;
     }
     li[id*='accordion-section-layers'] .customize-control .layers-customize-control.group:not(.layers-customize-control-heading) .customize-control-title,

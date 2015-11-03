@@ -1862,7 +1862,7 @@ li[id*='accordion-section-layers'] .customize-control.customize-control-image .a
 
     /*-------------------------------*/
     /*- CUSTOMIZER CONTROL GROUPS -- */
-    
+
     li[id*='accordion-section-layers'] .customize-control .layers-customize-control.layers-customize-control-heading.group table.layers-heading-divider{
         margin: 12px 0 4px;
     }
@@ -1878,14 +1878,13 @@ li[id*='accordion-section-layers'] .customize-control.customize-control-image .a
     li[id*='accordion-section-layers'] .customize-control .layers-customize-control.group:not(.layers-customize-control-heading),
     li .customize-control .layers-customize-control.group:not(.layers-customize-control-heading) {
         display: list-item;
-        margin: 0px;
+        margin: 0px 0px 1px;
         box-sizing: border-box;
         padding: 4px 8px;
-        border-bottom: 1px solid #E2E2E2;
         background: #F5F5F5 none repeat scroll 0% 0%;
         border-radius: 3px;
     }
-    
+
 /*---------------------------*/
 /*- TITLES ------------------*/
 .layers-logo{

@@ -447,9 +447,9 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 								'layout-boxed' => __( 'Boxed' , 'layerswp' ),
 								'layout-fullwidth' => __( 'Full Width' , 'layerswp' ),
 								'layout-full-screen' => __( 'Full Screen' , 'layerswp' )
-							)
-						)
-					)
+							),
+						),
+					),
 				),
 				'display' => array(
 					'icon-css' => 'icon-slider',
@@ -475,7 +475,7 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 							'name' => $this->get_field_name( 'show_slider_arrows' ) ,
 							'id' => $this->get_field_id( 'show_slider_arrows' ) ,
 							'value' => ( isset(  $widget['show_slider_arrows'] ) ) ?  $widget['show_slider_arrows'] : NULL,
-							'label' => __( 'Show Slider Arrows' , 'layerswp' )
+							'label' => __( 'Show Slider Arrows' , 'layerswp' ),
 						),
 						'slider_arrow_color' => array(
 							'type' => 'color',
@@ -490,7 +490,7 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 							'name' => $this->get_field_name( 'show_slider_dots' ) ,
 							'id' => $this->get_field_id( 'show_slider_dots' ) ,
 							'value' => ( isset(  $widget['show_slider_dots'] ) ) ?  $widget['show_slider_dots'] : NULL,
-							'label' => __( 'Show Slider Dots' , 'layerswp' )
+							'label' => __( 'Show Slider Dots' , 'layerswp' ),
 						),
 						'animation_type' => array(
 							'type' => 'select',
@@ -502,15 +502,14 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 								'slide' => __( 'Slide', 'layers_wp' ),
 								'fade' => __( 'Fade', 'layers_wp' ),
 								'parallax' => __( 'Parallax', 'layers_wp' ),
-							)
-
+							),
 						),
 						'autoplay_slides' => array(
 							'type' => 'checkbox',
 							'name' => $this->get_field_name( 'autoplay_slides' ) ,
 							'id' => $this->get_field_id( 'autoplay_slides' ) ,
 							'value' => ( isset( $widget['autoplay_slides'] ) ) ? $widget['autoplay_slides'] : NULL,
-							'label' => __( 'Autoplay Slides' , 'layerswp' )
+							'label' => __( 'Autoplay Slides' , 'layerswp' ),
 						),
 						'slide_time' => array(
 							'type' => 'number',
@@ -521,7 +520,7 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 							'placeholder' => __( 'Time in seconds, eg. 2' , 'layerswp' ),
 							'value' => ( isset( $widget['slide_time'] ) ) ? $widget['slide_time'] : NULL,
 							'label' => __( 'Slide Interval (seconds)' , 'layerswp' ),
-							'data' => array( 'show-if-selector' => '#' . $this->get_field_id( 'autoplay_slides' ), 'show-if-value' => 'true' )
+							'data' => array( 'show-if-selector' => '#' . $this->get_field_id( 'autoplay_slides' ), 'show-if-value' => 'true' ),
 						),
 					),
 				),

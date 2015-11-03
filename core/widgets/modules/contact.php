@@ -237,60 +237,60 @@ if( !class_exists( 'Layers_Contact_Widget' ) ) {
 			$widget = wp_parse_args( $instance, $instance_defaults );
 
 			$design_bar_components = apply_filters( 'layers_' . $this->widget_id . '_widget_design_bar_components' , array(
-					'layout',
-					'fonts',
-					'display' => array(
-						'icon-css' => 'icon-display',
-						'label' => __( 'Display', 'layerswp' ),
-						'elements' => array(
-								'show_google_map' => array(
-										'type' => 'checkbox',
-										'name' => $this->get_field_name( 'show_google_map' ) ,
-										'id' => $this->get_field_id( 'show_google_map' ) ,
-										'value' => ( isset( $widget['show_google_map'] ) ) ? $widget['show_google_map'] : NULL,
+				'layout',
+				'fonts',
+				'display' => array(
+					'icon-css' => 'icon-display',
+					'label' => __( 'Display', 'layerswp' ),
+					'elements' => array(
+						'show_google_map' => array(
+							'type' => 'checkbox',
+							'name' => $this->get_field_name( 'show_google_map' ) ,
+							'id' => $this->get_field_id( 'show_google_map' ) ,
+							'value' => ( isset( $widget['show_google_map'] ) ) ? $widget['show_google_map'] : NULL,
 							'label' => __( 'Show Google Map' , 'layerswp' ),
-									),
-								'map_height' => array(
-									'type' => 'number',
-									'name' => $this->get_field_name( 'map_height' ) ,
-									'id' => $this->get_field_id( 'map_height' ) ,
-									'min' => 150,
-									'max' => 1600,
-									'value' => ( isset( $widget['map_height'] ) ) ? $widget['map_height'] : NULL,
-									'label' => __( 'Map Height' , 'layerswp' ),
-									'data' => array(
-										'show-if-selector' => '#' . $this->get_field_id( 'show_google_map' ),
-										'show-if-value' => 'true',
+						),
+						'map_height' => array(
+							'type' => 'number',
+							'name' => $this->get_field_name( 'map_height' ) ,
+							'id' => $this->get_field_id( 'map_height' ) ,
+							'min' => 150,
+							'max' => 1600,
+							'value' => ( isset( $widget['map_height'] ) ) ? $widget['map_height'] : NULL,
+							'label' => __( 'Map Height' , 'layerswp' ),
+							'data' => array(
+								'show-if-selector' => '#' . $this->get_field_id( 'show_google_map' ),
+								'show-if-value' => 'true',
 							),
-								),
-								'google_maps_zoom' => array(
-									'type' => 'select',
-									'name' => $this->get_field_name( 'google_maps_zoom' ) ,
-									'id' => $this->get_field_id( 'google_maps_zoom' ) ,
-									'value' => ( isset( $widget['google_maps_zoom'] ) ) ? $widget['google_maps_zoom'] : NULL,
-									'label' => __( 'Google Map Zoom Level' , 'layerswp' ),
-									'options' => array(
-											'16' => __( 'Close', 'layerswp' ),
-											'14' => __( 'Default', 'layerswp' ),
-											'12' => __( 'Far', 'layerswp' ),
-										),
-										'data' => array(
-											'show-if-selector' => '#' . $this->get_field_id( 'show_google_map' ),
-											'show-if-value' => 'true',
+						),
+						'google_maps_zoom' => array(
+							'type' => 'select',
+							'name' => $this->get_field_name( 'google_maps_zoom' ) ,
+							'id' => $this->get_field_id( 'google_maps_zoom' ) ,
+							'value' => ( isset( $widget['google_maps_zoom'] ) ) ? $widget['google_maps_zoom'] : NULL,
+							'label' => __( 'Google Map Zoom Level' , 'layerswp' ),
+							'options' => array(
+								'16' => __( 'Close', 'layerswp' ),
+								'14' => __( 'Default', 'layerswp' ),
+								'12' => __( 'Far', 'layerswp' ),
 							),
-									),
-								'show_address' => array(
-										'type' => 'checkbox',
-										'name' => $this->get_field_name( 'show_address' ) ,
-										'id' => $this->get_field_id( 'show_address' ) ,
-										'value' => ( isset( $widget['show_address'] ) ) ? $widget['show_address'] : NULL,
+							'data' => array(
+								'show-if-selector' => '#' . $this->get_field_id( 'show_google_map' ),
+								'show-if-value' => 'true',
+							),
+						),
+						'show_address' => array(
+							'type' => 'checkbox',
+							'name' => $this->get_field_name( 'show_address' ) ,
+							'id' => $this->get_field_id( 'show_address' ) ,
+							'value' => ( isset( $widget['show_address'] ) ) ? $widget['show_address'] : NULL,
 							'label' => __( 'Show Address' , 'layerswp' ),
-									),
-								'show_contact_form' => array(
-										'type' => 'checkbox',
-										'name' => $this->get_field_name( 'show_contact_form' ) ,
-										'id' => $this->get_field_id( 'show_contact_form' ) ,
-										'value' => ( isset( $widget['show_contact_form'] ) ) ? $widget['show_contact_form'] : NULL,
+						),
+						'show_contact_form' => array(
+							'type' => 'checkbox',
+							'name' => $this->get_field_name( 'show_contact_form' ) ,
+							'id' => $this->get_field_id( 'show_contact_form' ) ,
+							'value' => ( isset( $widget['show_contact_form'] ) ) ? $widget['show_contact_form'] : NULL,
 							'label' => __( 'Show Contact Form' , 'layerswp' ),
 						),
 					),

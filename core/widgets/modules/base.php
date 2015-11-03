@@ -357,12 +357,12 @@ if( !class_exists( 'Layers_Widget' ) ) {
 			$this->defaults["{$type}_ids"] = implode( ',', $repeat_ids_array );
 			
 			// Start an empty nested array that will hold the new repeated defaults.
-			$this->defaults[$type] = array();
+			$this->defaults["{$type}s"] = array();
 			
 			// Add a default to each guid element, these will all be the same but are still needed when our defaulting methodology looks for them.
 			$i = 0;
 			foreach( $repeat_ids_array as $item_id ) {
-				$this->defaults[$type][ $item_id ] = $defaults_collection[$i]; // Save them to our defaults property.
+				$this->defaults["{$type}s"][ $item_id ] = $defaults_collection[$i]; // Save them to our defaults property.
 				$i++;
 				if ( ! isset( $defaults_collection[$i] ) ) $i = 0; // Set back to 0 so we loop back around.
 			}
@@ -379,15 +379,15 @@ if( !class_exists( 'Layers_Widget' ) ) {
 			// Set blank instance defaults as backup to be safe.
 			$instance_defaults = array();
 				
-			if ( isset( $this->defaults[$type][$guid] ) ) {
+			if ( isset( $this->defaults["{$type}s"][$guid] ) ) {
 				
 				// Look for defaults created correctly by the register_repeater_defaults() method, with specific guid's.
-				$instance_defaults = $this->defaults[$type][$guid];
+				$instance_defaults = $this->defaults["{$type}s"][$guid];
 			}
-			else if ( isset( $this->defaults[$type] ) && ! empty( $this->defaults[$type] ) ) {
+			else if ( isset( $this->defaults["{$type}s"] ) && ! empty( $this->defaults["{$type}s"] ) ) {
 				
 				// Look for defaults created correctly by the register_repeater_defaults() method, without specific guid's so just get the first one.
-				$instance_defaults = current( $this->defaults[$type] );
+				$instance_defaults = current( $this->defaults["{$type}s"] );
 			}
 			
 			return $instance_defaults;

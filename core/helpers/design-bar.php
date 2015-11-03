@@ -251,8 +251,8 @@ class Layers_Design_Controller {
 		$defaults['elements'] = array(
 			'layout' => array(
 				'type' => 'select-icons',
-				'name' => $this->widget['name'] . '[layout]',
-				'id' => $this->widget['id'] . '-layout',
+				'name' => $this->get_layers_field_name( 'layout' ),
+				'id' => $this->get_layers_field_id( 'layout' ),
 				'value' => ( isset( $this->values['layout'] ) ) ? $this->values['layout'] : NULL,
 				'options' => array(
 					'layout-boxed' => __( 'Boxed', 'layerswp' ),
@@ -293,8 +293,8 @@ class Layers_Design_Controller {
 		$defaults['elements'] = array(
 			'liststyle' => array(
 				'type' => 'select-icons',
-				'name' => $this->widget['name'] . '[liststyle]',
-				'id' => $this->widget['id'] . '-liststyle',
+				'name' => $this->get_layers_field_name( 'liststyle' ),
+				'id' => $this->get_layers_field_id( 'liststyle' ),
 				'value' => ( isset( $this->values['liststyle'] ) ) ? $this->values['liststyle'] : NULL,
 				'options' => array(
 					'list-grid' => __( 'Grid', 'layerswp' ),
@@ -337,8 +337,8 @@ class Layers_Design_Controller {
 			'columns' => array(
 				'type' => 'select',
 				'label' => __( 'Columns', 'layerswp' ),
-				'name' => $this->widget['name'] . '[columns]',
-				'id' => $this->widget['id'] . '-columns',
+				'name' => $this->get_layers_field_name( 'columns' ),
+				'id' => $this->get_layers_field_id( 'columns' ),
 				'value' => ( isset( $this->values['columns'] ) ) ? $this->values['columns'] : NULL,
 				'options' => array(
 					'1' => __( '1 Column', 'layerswp' ),
@@ -351,15 +351,15 @@ class Layers_Design_Controller {
 			'color' => array(
 				'type' => 'color',
 				'label' => __( 'Background Color', 'layerswp' ),
-				'name' => $this->widget['name'] . '[column-background-color]',
-				'id' => $this->widget['id'] . '-columns-background-color',
+				'name' => $this->get_layers_field_name( 'column-background-color' ),
+				'id' => $this->get_layers_field_id( 'columns-background-color' ),
 				'value' => ( isset( $this->values['column-background-color'] ) ) ? $this->values['column-background-color'] : NULL
 			),
 			'gutter' => array(
 				'type' => 'checkbox',
 				'label' => __( 'Gutter', 'layerswp' ),
-				'name' => $this->widget['name'] . '[gutter]',
-				'id' => $this->widget['id'] . '-gutter',
+				'name' => $this->get_layers_field_name( 'gutter' ),
+				'id' => $this->get_layers_field_id( 'gutter' ),
 				'value' => ( isset( $this->values['gutter'] ) ) ? $this->values['gutter'] : NULL
 			)
 		);
@@ -396,8 +396,8 @@ class Layers_Design_Controller {
 		$defaults['elements'] = array(
 			'textalign' => array(
 				'type' => 'select-icons',
-				'name' => $this->widget['name'] . '[textalign]',
-				'id' => $this->widget['id'] . '-textalign',
+				'name' => $this->get_layers_field_name( 'textalign' ),
+				'id' => $this->get_layers_field_id( 'textalign' ),
 				'value' => ( isset( $this->values['textalign'] ) ) ? $this->values['textalign'] : NULL,
 				'options' => array(
 					'text-left' => __( 'Left', 'layerswp' ),
@@ -440,8 +440,8 @@ class Layers_Design_Controller {
 		$defaults['elements'] = array(
 			'imagealign' => array(
 				'type' => 'select-icons',
-				'name' => $this->widget['name'] . '[imagealign]',
-				'id' => $this->widget['id'] . '-imagealign',
+				'name' => $this->get_layers_field_name( 'imagealign' ),
+				'id' => $this->get_layers_field_id( 'imagealign' ),
 				'value' => ( isset( $this->values['imagealign'] ) ) ? $this->values['imagealign'] : NULL,
 				'options' => array(
 					'image-left' => __( 'Left', 'layerswp' ),
@@ -484,21 +484,21 @@ class Layers_Design_Controller {
 			'featuredimage' => array(
 				'type' => 'image',
 				'label' => __( 'Featured Image', 'layerswp' ),
-				'name' => $this->widget['name'] . '[featuredimage]',
-				'id' => $this->widget['id'] . '-featuredimage',
+				'name' => $this->get_layers_field_name( 'featuredimage' ),
+				'id' => $this->get_layers_field_id( 'featuredimage' ),
 				'value' => ( isset( $this->values['featuredimage'] ) ) ? $this->values['featuredimage'] : NULL
 			),
 			'featuredvideo' => array(
 				'type' => 'text',
 				'label' => __( 'Video URL (oEmbed)', 'layerswp' ),
-				'name' => $this->widget['name'] . '[featuredvideo]',
-				'id' => $this->widget['id'] . '-featuredvideo',
+				'name' => $this->get_layers_field_name( 'featuredvideo' ),
+				'id' => $this->get_layers_field_id( 'featuredvideo' ),
 				'value' => ( isset( $this->values['featuredvideo'] ) ) ? $this->values['featuredvideo'] : NULL
 			),
 			'imageratios' => array(
 				'type' => 'select-icons',
-				'name' => $this->widget['name'] . '[imageratios]',
-				'id' => $this->widget['id'] . '-imageratios',
+				'name' => $this->get_layers_field_name( 'imageratios' ),
+				'id' => $this->get_layers_field_id( 'imageratios' ),
 				'value' => ( isset( $this->values['imageratios'] ) ) ? $this->values['imageratios'] : NULL,
 				'options' => array(
 					'image-portrait' => __( 'Portrait', 'layerswp' ),
@@ -544,8 +544,8 @@ class Layers_Design_Controller {
 		$defaults['elements'] = array(
 			'imageratio' => array(
 				'type' => 'select-icons',
-				'name' => $this->widget['name'] . '[imageratios]',
-				'id' => $this->widget['id'] . '-imageratios',
+				'name' => $this->get_layers_field_name( 'imageratios' ),
+				'id' => $this->get_layers_field_id( 'imageratios' ),
 				'value' => ( isset( $this->values['imageratios'] ) ) ? $this->values['imageratios'] : NULL,
 				'options' => array(
 					'image-portrait' => __( 'Portrait', 'layerswp' ),
@@ -589,8 +589,8 @@ class Layers_Design_Controller {
 			'fonts-align' => array(
 				'type' => 'select-icons',
 				'label' => __( 'Text Align', 'layerswp' ),
-				'name' => $this->widget['name'] . '[fonts][align]',
-				'id' => $this->widget['id'] . '-fonts-align',
+				'name' => $this->get_layers_field_name( 'fonts', 'align' ),
+				'id' => $this->get_layers_field_id( 'fonts', 'align' ),
 				'value' => ( isset( $this->values['fonts']['align'] ) ) ? $this->values['fonts']['align'] : NULL,
 				'options' => array(
 					'text-left' => __( 'Left', 'layerswp' ),
@@ -604,8 +604,8 @@ class Layers_Design_Controller {
 			'fonts-size' => array(
 				'type' => 'select',
 				'label' => __( 'Text Size', 'layerswp' ),
-				'name' => $this->widget['name'] . '[fonts][size]',
-				'id' => $this->widget['id'] . '-fonts-size',
+				'name' => $this->get_layers_field_name( 'fonts', 'size' ),
+				'id' => $this->get_layers_field_id( 'fonts', 'size' ),
 				'value' => ( isset( $this->values['fonts']['size'] ) ) ? $this->values['fonts']['size'] : NULL,
 				'options' => array(
 					'small' => __( 'Small', 'layerswp' ),
@@ -616,8 +616,8 @@ class Layers_Design_Controller {
 			'fonts-color' => array(
 				'type' => 'color',
 				'label' => __( 'Text Color', 'layerswp' ),
-				'name' => $this->widget['name'] . '[fonts][color]',
-				'id' => $this->widget['id'] . '-fonts-color',
+				'name' => $this->get_layers_field_name( 'fonts', 'color' ),
+				'id' => $this->get_layers_field_id( 'fonts', 'color' ),
 				'value' => ( isset( $this->values['fonts']['color'] ) ) ? $this->values['fonts']['color'] : NULL
 			)
 		);
@@ -653,22 +653,22 @@ class Layers_Design_Controller {
 				'type' => 'image',
 				'label' => __( 'Background Image', 'layerswp' ),
 				'button_label' => __( 'Choose Image', 'layerswp' ),
-				'name' => $this->widget['name'] . '[background][image]',
-				'id' => $this->widget['id'] . '-background-image',
+				'name' => $this->get_layers_field_name( 'background', 'image' ),
+				'id' => $this->get_layers_field_id( 'background', 'image' ),
 				'value' => ( isset( $this->values['background']['image'] ) ) ? $this->values['background']['image'] : NULL
 			),
 			'background-color' => array(
 				'type' => 'color',
 				'label' => __( 'Background Color', 'layerswp' ),
-				'name' => $this->widget['name'] . '[background][color]',
-				'id' => $this->widget['id'] . '-background-color',
+				'name' => $this->get_layers_field_name( 'background', 'color' ),
+				'id' => $this->get_layers_field_id( 'background', 'color' ),
 				'value' => ( isset( $this->values['background']['color'] ) ) ? $this->values['background']['color'] : NULL
 			),
 			'background-repeat' => array(
 				'type' => 'select',
 				'label' => __( 'Repeat', 'layerswp' ),
-				'name' => $this->widget['name'] . '[background][repeat]',
-				'id' => $this->widget['id'] . '-background-repeat',
+				'name' => $this->get_layers_field_name( 'background', 'repeat' ),
+				'id' => $this->get_layers_field_id( 'background', 'repeat' ),
 				'value' => ( isset( $this->values['background']['repeat'] ) ) ? $this->values['background']['repeat'] : NULL,
 				'options' => array(
 					'no-repeat' => __( 'No Repeat', 'layerswp' ),
@@ -680,8 +680,8 @@ class Layers_Design_Controller {
 			'background-position' => array(
 				'type' => 'select',
 				'label' => __( 'Position', 'layerswp' ),
-				'name' => $this->widget['name'] . '[background][position]',
-				'id' => $this->widget['id'] . '-background-position',
+				'name' => $this->get_layers_field_name( 'background', 'position' ),
+				'id' => $this->get_layers_field_id( 'background', 'position' ),
 				'value' => ( isset( $this->values['background']['position'] ) ) ? $this->values['background']['position'] : NULL,
 				'options' => array(
 					'center' => __( 'Center', 'layerswp' ),
@@ -694,15 +694,15 @@ class Layers_Design_Controller {
 			'background-stretch' => array(
 				'type' => 'checkbox',
 				'label' => __( 'Stretch', 'layerswp' ),
-				'name' => $this->widget['name'] . '[background][stretch]',
-				'id' => $this->widget['id'] . '-background-stretch',
+				'name' => $this->get_layers_field_name( 'background', 'stretch' ),
+				'id' => $this->get_layers_field_id( 'background', 'stretch' ),
 				'value' => ( isset( $this->values['background']['stretch'] ) ) ? $this->values['background']['stretch'] : NULL
 			),
 			'background-darken' => array(
 				'type' => 'checkbox',
 				'label' => __( 'Darken', 'layerswp' ),
-				'name' => $this->widget['name'] . '[background][darken]',
-				'id' => $this->widget['id'] . '-background-darken',
+				'name' => $this->get_layers_field_name( 'background', 'darken' ),
+				'id' => $this->get_layers_field_id( 'background', 'darken' ),
 				'value' => ( isset( $this->values['background']['darken'] ) ) ? $this->values['background']['darken'] : NULL
 			)
 		);
@@ -731,7 +731,7 @@ class Layers_Design_Controller {
 
 		// Add a Label
 		$defaults['label'] = __( 'Buttons', 'layerswp' );
-
+		
 		// Add elements
 		$defaults['elements'] = array(
 
@@ -739,8 +739,8 @@ class Layers_Design_Controller {
 			'buttons-size' => array(
 				'type' => 'select',
 				'label' => __( 'Size', 'layerswp' ),
-				'name' => $this->widget['name'] . '[buttons][buttons-size]',
-				'id' => $this->widget['id'] . '-buttons-background',
+				'name' => $this->get_layers_field_name( 'buttons', 'buttons-size' ),
+				'id' => $this->get_layers_field_id( 'buttons', 'buttons-size' ),
 				'value' => ( isset( $this->values['buttons']['buttons-size'] ) ) ? $this->values['buttons']['buttons-size'] : NULL,
 				'options' => array(
 					'small' => __( 'Small', 'layerswp' ),
@@ -753,8 +753,8 @@ class Layers_Design_Controller {
 			'buttons-background-color' => array(
 				'type' => 'color',
 				'label' => __( 'Background Color', 'layerswp' ),
-				'name' => $this->widget['name'] . '[buttons][background-color]',
-				'id' => $this->widget['id'] . '-buttons-background',
+				'name' => $this->get_layers_field_name( 'buttons', 'background-color' ),
+				'id' => $this->get_layers_field_id( 'buttons', 'background-color' ),
 				'value' => ( isset( $this->values['buttons']['background-color'] ) ) ? $this->values['buttons']['background-color'] : NULL
 			),
 
@@ -789,31 +789,31 @@ class Layers_Design_Controller {
 			'customclass' => array(
 				'type' => 'text',
 				'label' => __( 'Custom Class(es)', 'layerswp' ),
-				'name' => $this->widget['name'] . '[advanced][customclass]',
-				'id' => $this->widget['id'] . '-advanced-customclass',
+				'name' => $this->get_layers_field_name( 'advanced', 'customclass' ),
+				'id' => $this->get_layers_field_id( 'advanced', 'customclass' ),
 				'value' => ( isset( $this->values['advanced']['customclass'] ) ) ? $this->values['advanced']['customclass'] : NULL,
 				'placeholder' => 'example-class'
 			),
 			'customcss' => array(
 				'type' => 'textarea',
 				'label' => __( 'Custom CSS', 'layerswp' ),
-				'name' => $this->widget['name'] . '[advanced][customcss]',
-				'id' => $this->widget['id'] . '-advanced-customcss',
+				'name' => $this->get_layers_field_name( 'advanced', 'customcss' ),
+				'id' => $this->get_layers_field_id( 'advanced', 'customcss' ),
 				'value' => ( isset( $this->values['advanced']['customcss'] ) ) ? $this->values['advanced']['customcss'] : NULL,
 				'placeholder' => ".classname {\n\tbackground: #333;\n}"
 			),
 			'padding' => array(
 				'type' => 'trbl-fields',
 				'label' => __( 'Padding (px)', 'layerswp' ),
-				'name' => $this->widget['name'] . '[advanced][padding]',
-				'id' => $this->widget['id'] . '-advanced-padding',
+				'name' => $this->get_layers_field_name( 'advanced', 'padding' ),
+				'id' => $this->get_layers_field_id( 'advanced', 'padding' ),
 				'value' => ( isset( $this->values['advanced']['padding'] ) ) ? $this->values['advanced']['padding'] : NULL
 			),
 			'margin' => array(
 				'type' => 'trbl-fields',
 				'label' => __( 'Margin (px)', 'layerswp' ),
-				'name' => $this->widget['name'] . '[advanced][margin]',
-				'id' => $this->widget['id'] . '-advanced-margin',
+				'name' => $this->get_layers_field_name( 'advanced', 'margin' ),
+				'id' => $this->get_layers_field_id( 'advanced', 'margin' ),
 				'value' => ( isset( $this->values['advanced']['margin'] ) ) ? $this->values['advanced']['margin'] : NULL
 			),
 			'widget-id' => array(
@@ -911,6 +911,59 @@ class Layers_Design_Controller {
 		}
 
 		return $args;
+	}
+	
+	/**
+	 * Widget name generation (replaces get_custom_field_id)
+	 *
+	 * @param    string  $field_name_1   Level 1 name
+	 * @param    string  $field_name_2   Level 2 name
+ 	 * @param    string  $field_name_3   Level 3 name
+ 	 * @return   string  Name attribute
+	 */
+	function get_layers_field_name( $field_name_1 = '', $field_name_2 = '', $field_name_3 = '' ) {
+		
+		// If we don't have these important widget details then bail.
+		if ( ! isset( $this->widget['name'] ) ) return;
+		
+		// Compile the first part.
+		$string = $this->widget['name'];
+		
+		// Now add any custom strings passed as args.
+		if( '' != $field_name_1 ) $string .= '[' . $field_name_1 . ']';
+		if( '' != $field_name_2 ) $string .= '[' . $field_name_2 . ']';
+		if( '' != $field_name_3 ) $string .= '[' . $field_name_3 . ']';
+		
+		if ( ( bool ) layers_get_theme_mod( 'dev-switch-widget-field-names' ) ) {
+			$debug_string = substr( $string, ( strpos( $string, ']' ) + 1 ), strlen( $string ) );
+			echo '<span class="layers-widget-defaults-debug">' . $debug_string . '</span><br />';
+		}
+
+		return $string;
+	}
+
+	/**
+	 * Widget id generation (replaces get_custom_field_id)
+	 *
+	 * @param    string  $field_name_1   Level 1 id
+	 * @param    string  $field_name_2   Level 2 id
+ 	 * @param    string  $field_name_3   Level 3 id
+ 	 * @return   string  Id attribute
+	 */
+	function get_layers_field_id( $field_name_1 = '', $field_name_2 = '', $field_id = '' ) {
+		
+		// If we don't have these important widget details then bail.
+		if ( ! isset( $this->widget['id'] ) ) return;
+		
+		// Compile the first part.
+		$string = $this->widget['id'];
+		
+		// Now add any custom strings passed as args.
+		if( '' != $field_name_1 ) $string .= '-' . $field_name_1;
+		if( '' != $field_name_2 ) $string .= '-' . $field_name_2;
+		if( '' != $field_id ) $string .= '-' . $field_id;
+
+		return $string;
 	}
 
 } //class Layers_Design_Controller

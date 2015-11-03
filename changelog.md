@@ -1,6 +1,13 @@
 # Layers Changelog
 
 =======
+##1.2.7
+### 03 Nov 2015
+
+* **Tweak** - Added a name input to the onboarding process so that we can reference a real person in Layers Messenger. *MP*
+* **Fix** - Adding a new slider threw an error until updated. Now the first add works straight up. *SOB*
+
+=======
 ##1.2.6
 ### 28 Oct 2015
 

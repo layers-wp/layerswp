@@ -213,21 +213,15 @@ div#widgets-right div[id*='obox-layers-builder']{
         height: 100%;
         min-width: 660px;
         position: relative;
-        /* opacity: 0; */
-        /* transform: translate3d(-20px, 0, 0); */
         transition: transform 0.15s ease-in-out, opacity 0.15s ease-in-out;
         overflow: scroll;
         background-color: white;
         opacity: 1;
     }
     .customize-control-widget_form.wide-widget-control.expanded div[id*='layers-widget'] .widget-inside .form{
-        /* opacity: 1; */
-        /* transform: translate3d(0, 0, 0); */
         overflow: auto;
     }
     .customize-control-widget_form.wide-widget-control.layers-collapsing div[id*='layers-widget'] .widget-inside .form{
-        /* opacity: 1; */
-        /* transition-delay: 0.2s; */
     }
 
     /*- COLLAPSED SIDEBAR ------------*/
@@ -315,9 +309,23 @@ div#widgets-right div[id*='obox-layers-builder']{
         color: #fff;
         transition: all 0.2s ease-in-out;
     }
+    
+    /*-----------------------------*/
+    /*- WIDGET DEBUGGING ----------*/
+    .layers-widget-defaults-debug{
+        font-family: monospace;
+        font-size: 11px;
+        letter-spacing: 0px;
+        background-color: #FDFCF1;
+        padding: 2px;
+        color: #735203;
+        border-radius: 3px;
+        border: 1px solid rgba(134, 73, 33, 0.1);
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.01);
+    }
 
     /*---------------------------*/
-    /*- MARKETPLACE LISTS ----*/
+    /*- MARKETPLACE LISTS -------*/
     #layers-marketplace .theme-wrap{
         max-width: 1260px;
     }
@@ -1674,6 +1682,12 @@ li[id*='accordion-section-layers'] .customize-control{
 li[id*='accordion-section-layers'] .customize-control .layers-customize-control {
     margin: 6px 0;
 }
+li[id*='accordion-section-layers'] .customize-control .layers-customize-control:after{
+    clear: both;
+    float: none;
+    display: block;
+    content: '';
+}
 li[id*='accordion-section-layers'] .customize-control.customize-control-layers-heading{
     /* margin:0; */
 }
@@ -1855,7 +1869,7 @@ li[id*='accordion-section-layers'] .customize-control.customize-control-image .a
         font-size: 10px;
         font-weight: bold;
         color: #777;
-        letter-spacing: 0.5px;
+        letter-spacing: 1px;
         margin-bottom: 3px;
     }
     li[id*='accordion-section-layers'] .customize-control .layers-customize-control.group:not(.layers-customize-control-heading),

@@ -93,7 +93,9 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 						'color' => NULL,
 						'shadow' => NULL
 					),
-					'buttons-size' => 'medium',
+					'buttons' => array(
+						'buttons-size' => 'medium',
+					)
 				)
 			);
 		}

@@ -245,28 +245,28 @@ if( !class_exists( 'Layers_Contact_Widget' ) ) {
 					'elements' => array(
 						'show_google_map' => array(
 							'type' => 'checkbox',
-							'name' => $this->get_field_name( 'show_google_map' ) ,
-							'id' => $this->get_field_id( 'show_google_map' ) ,
+							'name' => $this->get_layers_field_name( 'show_google_map' ) ,
+							'id' => $this->get_layers_field_id( 'show_google_map' ) ,
 							'value' => ( isset( $widget['show_google_map'] ) ) ? $widget['show_google_map'] : NULL,
 							'label' => __( 'Show Google Map' , 'layerswp' ),
 						),
 						'map_height' => array(
 							'type' => 'number',
-							'name' => $this->get_field_name( 'map_height' ) ,
-							'id' => $this->get_field_id( 'map_height' ) ,
+							'name' => $this->get_layers_field_name( 'map_height' ) ,
+							'id' => $this->get_layers_field_id( 'map_height' ) ,
 							'min' => 150,
 							'max' => 1600,
 							'value' => ( isset( $widget['map_height'] ) ) ? $widget['map_height'] : NULL,
 							'label' => __( 'Map Height' , 'layerswp' ),
 							'data' => array(
-								'show-if-selector' => '#' . $this->get_field_id( 'show_google_map' ),
+								'show-if-selector' => '#' . $this->get_layers_field_id( 'show_google_map' ),
 								'show-if-value' => 'true',
 							),
 						),
 						'google_maps_zoom' => array(
 							'type' => 'select',
-							'name' => $this->get_field_name( 'google_maps_zoom' ) ,
-							'id' => $this->get_field_id( 'google_maps_zoom' ) ,
+							'name' => $this->get_layers_field_name( 'google_maps_zoom' ) ,
+							'id' => $this->get_layers_field_id( 'google_maps_zoom' ) ,
 							'value' => ( isset( $widget['google_maps_zoom'] ) ) ? $widget['google_maps_zoom'] : NULL,
 							'label' => __( 'Google Map Zoom Level' , 'layerswp' ),
 							'options' => array(
@@ -275,21 +275,21 @@ if( !class_exists( 'Layers_Contact_Widget' ) ) {
 								'12' => __( 'Far', 'layerswp' ),
 							),
 							'data' => array(
-								'show-if-selector' => '#' . $this->get_field_id( 'show_google_map' ),
+								'show-if-selector' => '#' . $this->get_layers_field_id( 'show_google_map' ),
 								'show-if-value' => 'true',
 							),
 						),
 						'show_address' => array(
 							'type' => 'checkbox',
-							'name' => $this->get_field_name( 'show_address' ) ,
-							'id' => $this->get_field_id( 'show_address' ) ,
+							'name' => $this->get_layers_field_name( 'show_address' ) ,
+							'id' => $this->get_layers_field_id( 'show_address' ) ,
 							'value' => ( isset( $widget['show_address'] ) ) ? $widget['show_address'] : NULL,
 							'label' => __( 'Show Address' , 'layerswp' ),
 						),
 						'show_contact_form' => array(
 							'type' => 'checkbox',
-							'name' => $this->get_field_name( 'show_contact_form' ) ,
-							'id' => $this->get_field_id( 'show_contact_form' ) ,
+							'name' => $this->get_layers_field_name( 'show_contact_form' ) ,
+							'id' => $this->get_layers_field_id( 'show_contact_form' ) ,
 							'value' => ( isset( $widget['show_contact_form'] ) ) ? $widget['show_contact_form'] : NULL,
 							'label' => __( 'Show Contact Form' , 'layerswp' ),
 						),
@@ -302,8 +302,8 @@ if( !class_exists( 'Layers_Contact_Widget' ) ) {
 			$this->design_bar(
 				'side', // CSS Class Name
 				array(
-					'name' => $this->get_field_name( 'design' ),
-					'id' => $this->get_field_id( 'design' ),
+					'name' => $this->get_layers_field_name( 'design' ),
+					'id' => $this->get_layers_field_id( 'design' ),
 				), // Widget Object
 				$widget, // Widget Values
 				$design_bar_components // Components
@@ -322,8 +322,8 @@ if( !class_exists( 'Layers_Contact_Widget' ) ) {
 							<?php echo $this->form_elements()->input(
 								array(
 									'type' => 'text',
-									'name' => $this->get_field_name( 'title' ) ,
-									'id' => $this->get_field_id( 'title' ) ,
+									'name' => $this->get_layers_field_name( 'title' ) ,
+									'id' => $this->get_layers_field_id( 'title' ) ,
 									'placeholder' => __( 'Enter title here' , 'layerswp' ),
 									'value' => ( isset( $widget['title'] ) ) ? $widget['title'] : NULL ,
 									'class' => 'layers-text layers-large'
@@ -334,8 +334,8 @@ if( !class_exists( 'Layers_Contact_Widget' ) ) {
 							<?php echo $this->form_elements()->input(
 								array(
 									'type' => 'rte',
-									'name' => $this->get_field_name( 'excerpt' ) ,
-									'id' => $this->get_field_id( 'excerpt' ) ,
+									'name' => $this->get_layers_field_name( 'excerpt' ) ,
+									'id' => $this->get_layers_field_id( 'excerpt' ) ,
 									'placeholder' =>  __( 'Short Excerpt' , 'layerswp' ),
 									'value' => ( isset( $widget['excerpt'] ) ) ? $widget['excerpt'] : NULL ,
 									'class' => 'layers-textarea layers-large'
@@ -355,36 +355,36 @@ if( !class_exists( 'Layers_Contact_Widget' ) ) {
 							); ?>
 							<div class="layers-content">
 								<p class="layers-form-item">
-									<label for="<?php echo $this->get_field_id( 'google_maps_location' ); ?>"><?php _e( 'Google Maps Location' , 'layerswp' ); ?></label>
+									<label for="<?php echo $this->get_layers_field_id( 'google_maps_location' ); ?>"><?php _e( 'Google Maps Location' , 'layerswp' ); ?></label>
 									<?php echo $this->form_elements()->input(
 										array(
 											'type' => 'text',
-											'name' => $this->get_field_name( 'google_maps_location' ) ,
-											'id' => $this->get_field_id( 'google_maps_location' ) ,
+											'name' => $this->get_layers_field_name( 'google_maps_location' ) ,
+											'id' => $this->get_layers_field_id( 'google_maps_location' ) ,
 											'placeholder' => __( 'e.g. 300 Prestwich Str, Cape Town, South Africa' , 'layerswp' ),
 											'value' => ( isset( $widget['google_maps_location'] ) ) ? $widget['google_maps_location'] : NULL
 										)
 									); ?>
 								</p>
 								<p class="layers-form-item">
-									<label for="<?php echo $this->get_field_id( 'google_maps_long_lat' ); ?>"><?php _e( 'Google Maps Latitude & Longitude (Optional)' , 'layerswp' ); ?></label>
+									<label for="<?php echo $this->get_layers_field_id( 'google_maps_long_lat' ); ?>"><?php _e( 'Google Maps Latitude & Longitude (Optional)' , 'layerswp' ); ?></label>
 									<?php echo $this->form_elements()->input(
 										array(
 											'type' => 'text',
-											'name' => $this->get_field_name( 'google_maps_long_lat' ) ,
-											'id' => $this->get_field_id( 'google_maps_long_lat' ) ,
+											'name' => $this->get_layers_field_name( 'google_maps_long_lat' ) ,
+											'id' => $this->get_layers_field_id( 'google_maps_long_lat' ) ,
 											'placeholder' => __( 'e.g. -34.038181, 18.363826' , 'layerswp' ),
 											'value' => ( isset( $widget['google_maps_long_lat'] ) ) ? $widget['google_maps_long_lat'] : NULL
 										)
 									); ?>
 								</p>
 								<p class="layers-form-item">
-									<label for="<?php echo $this->get_field_id( 'address_shown' ); ?>"><?php _e( 'Address Shown' , 'layerswp' ); ?></label>
+									<label for="<?php echo $this->get_layers_field_id( 'address_shown' ); ?>"><?php _e( 'Address Shown' , 'layerswp' ); ?></label>
 									<?php echo $this->form_elements()->input(
 										array(
 											'type' => 'rte',
-											'name' => $this->get_field_name( 'address_shown' ) ,
-											'id' => $this->get_field_id( 'address_shown' ) ,
+											'name' => $this->get_layers_field_name( 'address_shown' ) ,
+											'id' => $this->get_layers_field_id( 'address_shown' ) ,
 											'placeholder' => __( 'e.g. Prestwich Str, Cape Town' , 'layerswp' ),
 											'value' => ( isset( $widget['address_shown'] ) ) ? $widget['address_shown'] : NULL,
 											'class' => 'layers-textarea'
@@ -408,8 +408,8 @@ if( !class_exists( 'Layers_Contact_Widget' ) ) {
 									<?php echo $this->form_elements()->input(
 										array(
 											'type' => 'textarea',
-											'name' => $this->get_field_name( 'contact_form' ) ,
-											'id' => $this->get_field_id( 'contact_form' ) ,
+											'name' => $this->get_layers_field_name( 'contact_form' ) ,
+											'id' => $this->get_layers_field_id( 'contact_form' ) ,
 											'placeholder' =>  __( 'Contact form embed code' , 'layerswp' ),
 											'value' => ( isset( $widget['contact_form'] ) ) ? $widget['contact_form'] : NULL ,
 											'class' => 'layers-textarea'

@@ -347,8 +347,8 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 					'elements' => array(
 						'liststyle' => array(
 							'type' => 'select-icons',
-							'name' => $this->get_field_name( 'design' ) . '[liststyle]' ,
-							'id' =>  $this->get_field_name( 'design-liststyle' ),
+							'name' => $this->get_layers_field_name( 'design', 'liststyle' ) ,
+							'id' =>  $this->get_layers_field_id( 'design', 'liststyle' ) ,
 							'value' => ( isset( $widget['design'][ 'liststyle' ] ) ) ? $widget['design'][ 'liststyle' ] : NULL,
 							'options' => array(
 								'list-grid' => __( 'Grid' , 'layerswp' ),
@@ -358,8 +358,8 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 						'gutter' => array(
 							'type' => 'checkbox',
 							'label' => __( 'Gutter' , 'layerswp' ),
-							'name' => $this->get_field_name( 'design' ) . '[gutter]' ,
-							'id' =>  $this->get_field_name( 'design-gutter' ),
+							'name' => $this->get_layers_field_name( 'design', 'gutter' ) ,
+							'id' =>  $this->get_layers_field_id( 'design', 'gutter' ) ,
 							'value' => ( isset( $widget['design']['gutter'] ) ) ? $widget['design']['gutter'] : NULL
 						)
 					)
@@ -372,8 +372,8 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 			$this->design_bar(
 				'side', // CSS Class Name
 				array(
-					'name' => $this->get_field_name( 'design' ),
-					'id' => $this->get_field_id( 'design' ),
+					'name' => $this->get_layers_field_name( 'design' ),
+					'id' => $this->get_layers_field_id( 'design' ),
 				), // Widget Object
 				$widget, // Widget Values
 				$design_bar_components // Components
@@ -390,8 +390,8 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 						<?php echo $this->form_elements()->input(
 							array(
 								'type' => 'text',
-								'name' => $this->get_field_name( 'title' ) ,
-								'id' => $this->get_field_id( 'title' ) ,
+								'name' => $this->get_layers_field_name( 'title' ) ,
+								'id' => $this->get_layers_field_id( 'title' ) ,
 								'placeholder' => __( 'Enter title here' , 'layerswp' ),
 								'value' => ( isset( $widget['title'] ) ) ? $widget['title'] : NULL ,
 								'class' => 'layers-text layers-large'
@@ -402,8 +402,8 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 						<?php echo $this->form_elements()->input(
 							array(
 								'type' => 'rte',
-								'name' => $this->get_field_name( 'excerpt' ) ,
-								'id' => $this->get_field_id( 'excerpt' ) ,
+								'name' => $this->get_layers_field_name( 'excerpt' ) ,
+								'id' => $this->get_layers_field_id( 'excerpt' ) ,
 								'placeholder' =>  __( 'Short Excerpt' , 'layerswp' ),
 								'value' => ( isset( $widget['excerpt'] ) ) ? $widget['excerpt'] : NULL ,
 								'class' => 'layers-textarea layers-large'

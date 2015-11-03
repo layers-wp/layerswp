@@ -269,6 +269,12 @@ if( !class_exists( 'Layers_Widget' ) ) {
 			if( '' != $field_name_1 ) $string .= '[' . $field_name_1 . ']';
 			if( '' != $field_name_2 ) $string .= '[' . $field_name_2 . ']';
 			if( '' != $field_name_3 ) $string .= '[' . $field_name_3 . ']';
+			
+			if ( ( bool ) layers_get_theme_mod( 'dev-switch-widget-field-names' ) ) {
+				$debug_replace = 'widget-' . $this->id_base . '[' . $this->number . ']';
+				$debug_string = str_replace( $debug_replace, '', $string );
+				echo '<span class="layers-widget-defaults-debug">' . $debug_string . '</span><br />';
+			}
 
 			return $string;
 		}

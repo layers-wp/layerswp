@@ -414,6 +414,12 @@ class Layers_Customizer_Config {
 				'description' => __( 'This feature will add #hash values to the customizer URL so that when the page is refreshed the customizer will go back to it\'s same position.' , 'layerswp' ),
 				'default' => '',
 			),
+			'dev-switch-widget-field-names' => array(
+				'type'     => 'layers-checkbox',
+				'label'    => __( "Display Widget Input 'name' Attributes", 'layerswp' ),
+				'description' => __( 'This is used in preparation of a new Widget so developer can quickly see all the possible fields in a Widget and make sure to set defaults for them.', 'layerswp' ),
+				'default' => '',
+			),
 		);
 
 		// Header -> Additional Scripts

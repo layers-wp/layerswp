@@ -388,14 +388,37 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 					<p class="layers-form-item">
 						<?php echo $this->form_elements()->input(
 							array(
-								'type' => 'text',
-								'name' => $this->get_field_name( 'title' ) ,
-								'id' => $this->get_field_id( 'title' ) ,
-								'placeholder' => __( 'Enter title here' , 'layerswp' ),
-								'value' => ( isset( $widget['title'] ) ) ? $widget['title'] : NULL ,
-								'class' => 'layers-text layers-large'
+								'type' => 'select',
+								'label' => __( 'Option - 1' , 'layerswp' ),
+								'name' => 'Option 1',
+								'id' => 'option-1',
+								'value' => NULL,
+								'options' => array(
+									'1' => __( 'Option 1' , 'layerswp' ),
+									'2' => __( 'Option 2' , 'layerswp' ),
+									'3' => __( 'Option 3' , 'layerswp' ),
+								)
 							)
-						); ?>
+						);
+						?>
+					</p>
+					<p class="layers-form-item">
+						<?php echo $this->form_elements()->input(
+							array(
+								'type' => 'select',
+								'label' => __( 'Option - 2' , 'layerswp' ),
+								'name' => 'Option 2',
+								'id' => 'option-2',
+								'value' => NULL,
+								'options' => array(
+									'4' => __( 'Option 4' , 'layerswp' ),
+									'5' => __( 'Option 5' , 'layerswp' ),
+									'6' => __( 'Option 6' , 'layerswp' ),
+								),
+								'dependency' => array( 'option-1', '!=', '2'  ),
+							)
+						);
+						?>
 					</p>
 					<p class="layers-form-item">
 						<?php echo $this->form_elements()->input(

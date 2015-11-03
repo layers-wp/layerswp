@@ -196,7 +196,7 @@ class Layers_Form_Elements {
 			* Select boxes
 			*/
 			case 'select' : ?>
-				<select size="1" <?php echo implode ( ' ' , $input_props ); ?> <?php if( isset( $input->multiple ) ) echo 'multiple="multiple"'; ?>>
+				<select size="1" data-layers-dependency="<?php echo esc_html( json_encode( $input->dependency ) ); ?>" <?php echo implode ( ' ' , $input_props ); ?> <?php if( isset( $input->multiple ) ) echo 'multiple="multiple"'; ?>>
 					<?php if( NULL != $input->placeholder ) { ?>
 						<option value=''><?php echo esc_html( $input->placeholder ); ?></option>
 					<?php } // if NULL != placeholder ?>

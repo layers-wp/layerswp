@@ -32,6 +32,7 @@
  * 19 - Reset to Default
  * 20 - History States
  * 21 - Linking from one section/panel to another.
+ * 22 - Dependency for fields
  *
  * Author: Obox Themes
  * Author URI: http://www.oboxthemes.com/
@@ -1068,5 +1069,65 @@ jQuery(function($) {
 
 		return false;
 	});
+
+	/**
+	 * 22 - Dependency for fields
+	 *
+	 * Added dependency for all fields to hide the fileds on dependancy
+	 */
+	check_dependencies_for_fields();
+
+	function check_dependencies_for_fields() {
+		//	Check all dependencies
+		$('*[data-layers-dependency]').each(function(index, el) {
+
+			//	Check self selector
+			var self  	= $( el );
+			var id 		= self.attr('id');
+			var dep 	= self.data('layers-dependency');
+			
+			//	Check is array
+			if ( $.isArray( dep ) ) {
+
+				//	Get target, operator & value of dependencies of layers fields
+				var target 	= $('#' + dep[0] );
+				var op 		= dep[1];
+				var value 	= dep[2];
+
+				//	1. Initially - Set dependency for fields on change
+				apply_dependencies(target, self, op, value);
+
+				//	Trigger on target change event
+				target.change(function(event) {
+
+					//	2. Set dependency for fields on change
+					apply_dependencies(target, self, op, value);
+
+				});
+			}
+		});
+	}
+
+	function apply_dependencies(target, self, op, value) {
+
+		//	Get current field value
+		var curr_val = target.val();
+
+		//	Swith statement for all operators
+		switch(op) {
+			case '==': 		if ( curr_val == value ) {
+								self.show();
+							} else {
+								self.hide();
+							}
+			break;
+			case '!=': 		if ( curr_val != value ) {
+								self.show();
+							} else {
+								self.hide();
+							}
+			break;
+		}
+	}
 
 });

@@ -13,6 +13,7 @@
  * 5 - FitVids
  * 6 - Layers Custom Easing
  * 7 - Swiper Height Matching Functions
+ * 8 - Container padding on first widgets for header fixed - helper funcion.
  *
  * Author: Obox Themes
  * Author URI: http://www.oboxthemes.com/

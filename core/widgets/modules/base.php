@@ -244,13 +244,13 @@ if( !class_exists( 'Layers_Widget' ) ) {
 		}
 		
 		/**
-		* Widget name generation (replaces get_custom_field_id)
-		*
-		* @param    string  $field_name_1   Level 1 name
-		* @param    string  $field_name_2   Level 2 name
-	 	* @param    string  $field_name_3   Level 3 name
-	 	* @return   string  Name attribute
-		*/
+		 * Widget name generation (replaces get_custom_field_id)
+		 *
+		 * @param    string  $field_name_1   Level 1 name
+		 * @param    string  $field_name_2   Level 2 name
+	 	 * @param    string  $field_name_3   Level 3 name
+	 	 * @return   string  Name attribute
+		 */
 		function get_layers_field_name( $field_name_1 = '', $field_name_2 = '', $field_name_3 = '' ) {
 			
 			// If we don't have these important widget details then bail.
@@ -280,13 +280,13 @@ if( !class_exists( 'Layers_Widget' ) ) {
 		}
 
 		/**
-		* Widget id generation (replaces get_custom_field_id)
-		*
-		* @param    string  $field_name_1   Level 1 id
-		* @param    string  $field_name_2   Level 2 id
-	 	* @param    string  $field_name_3   Level 3 id
-	 	* @return   string  Id attribute
-		*/
+		 * Widget id generation (replaces get_custom_field_id)
+		 *
+		 * @param    string  $field_name_1   Level 1 id
+		 * @param    string  $field_name_2   Level 2 id
+	 	 * @param    string  $field_name_3   Level 3 id
+	 	 * @return   string  Id attribute
+		 */
 		function get_layers_field_id( $field_name_1 = '', $field_name_2 = '', $field_id = '' ) {
 			
 			// If we don't have these important widget details then bail.

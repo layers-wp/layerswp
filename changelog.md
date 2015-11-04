@@ -6,6 +6,7 @@
 
 * **Tweak** - Added a name input to the onboarding process so that we can reference a real person in Layers Messenger. *MP*
 * **Fix** - Adding a new slider threw an error until updated. Now the first add works straight up. *SOB*
+* **Fix** - Fixed JS error notice when changing Font select. *SOB*
 
 =======
 ##1.2.6

@@ -220,6 +220,11 @@ class Layers_Design_Controller {
 			<?php if ( isset( $form_args['wrapper'] ) ) { ?>
 				</<?php echo $form_args['wrapper']; ?>>
 			<?php } ?>
+			
+			<?php if ( isset( $form_args['description'] ) ) { ?>
+				<div class="layers-form-item-description"><?php echo $form_args['description']; ?></div>
+			<?php } ?>
+			
 		</div>
 		<?php
 	}

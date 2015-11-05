@@ -945,6 +945,12 @@ div[id*='layers-widget'] .spinner{
     .customize-control .layers-form-item label{
         color: inherit;
     }
+    .layers-form-item-description {
+        margin: 1px 0 0;
+        font-size: 10px;
+        color: #9E9E9E;
+        font-style: italic;
+    }
     .customize-control .layers-form-item select{
         width: 100%;
         height: 38px;
@@ -960,6 +966,15 @@ div[id*='layers-widget'] .spinner{
         background: #fff;
         border: 1px solid #ddd;
         box-shadow: inset 1px 1px 2px rgba(0, 0, 0, 0.1);
+    }
+
+    li[id*='accordion-section-layers'] .customize-control .wp-picker-holder{
+        position: absolute;
+        z-index: 10000;
+    }
+    li[id*='accordion-section-layers'] .customize-control .wp-picker-holder .iris-picker{
+        box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+        border-radius: 2px;
     }
 
     .editible,
@@ -1819,6 +1834,7 @@ li[id*='accordion-section-layers'] .customize-control.customize-control-image .a
         height: 11px;
         padding: 0;
         margin: 0;
+        vertical-align: top;
     }
     .layers-customize-control-range input[type="number"] {
         width: 25%;
@@ -1881,8 +1897,8 @@ li[id*='accordion-section-layers'] .customize-control.customize-control-image .a
     li[id*='accordion-section-layers'] .customize-control .layers-customize-control.layers-customize-control-heading.group .layers-heading-divider{
         margin: 12px 0 4px;
     }
-    li[id*='accordion-section-layers'] .customize-control .layers-customize-control.group:not(.layers-customize-control-heading) .customize-control-title,
-    li .customize-control .layers-customize-control.group:not(.layers-customize-control-heading) .customize-control-title {
+    li[id*='accordion-section-layers'] .customize-control .layers-customize-control.group .customize-control-title,
+    li .customize-control .layers-customize-control.group .customize-control-title {
         text-transform: uppercase;
         font-size: 10px;
         font-weight: bold;
@@ -1890,14 +1906,25 @@ li[id*='accordion-section-layers'] .customize-control.customize-control-image .a
         letter-spacing: 1px;
         margin-bottom: 3px;
     }
-    li[id*='accordion-section-layers'] .customize-control .layers-customize-control.group:not(.layers-customize-control-heading),
-    li .customize-control .layers-customize-control.group:not(.layers-customize-control-heading) {
+    li[id*='accordion-section-layers'] .customize-control .layers-customize-control.group,
+    li .customize-control .layers-customize-control.group {
         display: list-item;
         margin: 0px 0px 1px;
         box-sizing: border-box;
         padding: 4px 8px;
         background: #F5F5F5 none repeat scroll 0% 0%;
         border-radius: 3px;
+    }
+    .layers-customize-control.group input,
+    .layers-customize-control.group select {
+        line-height: 28px;
+        height: 29px;
+        font-size: 13px;
+        padding: 0 6px;
+        background: #FBFBFB;
+    }
+    .layers-customize-control.group input[type="number"]{
+        padding-right: 0;
     }
 
 /*---------------------------*/

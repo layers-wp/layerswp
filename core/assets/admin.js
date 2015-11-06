@@ -328,23 +328,23 @@ jQuery(function($) {
 					$(event.target).val( ui.color.toString() );
 
 					// Debounce the color changes
-					layers_debounce_input( event.target );
+					layers_debounce_color_input( event.target );
 				}
 			},
 			clear: function(event) {
 				if( 'undefined' !== typeof event ){
 
 					// Debounce the reset change
-					layers_debounce_input( jQuery(event.target).parent('.wp-picker-input-wrap').find('.wp-color-picker') );
+					layers_debounce_color_input( jQuery(event.target).parent('.wp-picker-input-wrap').find('.wp-color-picker') );
 				}
 			},
 		});
 	}
 
 	// Debounce function for color changing.
-	var layers_debounce_input = _.debounce(function( element ){
+	var layers_debounce_color_input = _.debounce( function( element ){
 		$( element ).layers_trigger_change();
-	}, 200);
+	}, 200, false );
 
 	/**
 	* 6 - Sortable Columns

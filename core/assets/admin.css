@@ -1730,6 +1730,12 @@ li[id*='accordion-section-layers'] hr{
 li[id*='accordion-section-layers'] .customize-control .layers-form-item{
     margin: 0 0 6px;
 }
+li[id*='accordion-section-layers'] .customize-control .layers-form-item:after{
+    content: '';
+    display: block;
+    float: none;
+    clear: both;
+}
 li[id*='accordion-section-layers'] .customize-control .heading-label .customize-control-title{
     font-size: 14px;
     line-height: 24px;
@@ -1915,7 +1921,7 @@ li[id*='accordion-section-layers'] .customize-control.customize-control-image .a
         background: #F5F5F5 none repeat scroll 0% 0%;
         border-radius: 3px;
     }
-    .layers-customize-control.group input,
+    .layers-customize-control.group:not(.layers-customize-control-color ) input,
     .layers-customize-control.group select {
         line-height: 28px;
         height: 29px;
@@ -1923,8 +1929,14 @@ li[id*='accordion-section-layers'] .customize-control.customize-control-image .a
         padding: 0 6px;
         background: #FBFBFB;
     }
+    .layers-customize-control.group input{
+        background: #FBFBFB;
+    }
     .layers-customize-control.group input[type="number"]{
         padding-right: 0;
+    }
+    .layers-customize-control.group input[type="range"]{
+        padding: 0;
     }
 
 /*---------------------------*/

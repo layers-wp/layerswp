@@ -312,7 +312,7 @@ class Layers_Customizer_Config {
 			),
 			'header-position-heading' => array(
 				'type'  => 'layers-heading',
-				'heading_divider' => __( 'Header Styling' , 'layerswp' ),
+				'heading_divider' => __( 'Sticky Header' , 'layerswp' ),
 			),
 			'header-sticky' => array(
 				'type'		=> 'layers-checkbox',
@@ -324,6 +324,10 @@ class Layers_Customizer_Config {
 				'type'     => 'layers-checkbox',
 				'label'    => __( 'Transparent Overlay' , 'layerswp' ),
 				'default'	=> FALSE,
+				'linked' => array(
+					'show-if-selector' => '#layers-header-sticky',
+					'show-if-value' => 'true',
+				),
 			),
 		);
 

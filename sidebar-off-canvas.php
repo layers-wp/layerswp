@@ -5,7 +5,7 @@
     </a>
 
     <div class="row content nav-mobile">
-        <?php wp_nav_menu( array( 'theme_location' => LAYERS_THEME_SLUG . '-primary' ,'container' => 'nav', 'container_class' => 'nav nav-vertical', 'fallback_cb' => create_function('', 'echo "&nbsp";') ) ); ?>
+        <?php wp_nav_menu( array( 'theme_location' => LAYERS_THEME_SLUG . '-primary' ,'container' => 'nav', 'container_class' => 'nav nav-vertical', 'fallback_cb' => 'layers_menu_fallback' ) ); ?>
     </div>
     <?php dynamic_sidebar( LAYERS_THEME_SLUG . '-off-canvas-sidebar' ); ?>
 </section>

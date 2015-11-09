@@ -210,23 +210,23 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 							if( !isset( $widget[ 'slides' ][ $slide_key ] ) ) continue;
 
 							// Setup the relevant slide
-							$slide = $widget[ 'slides' ][ $slide_key ];
+							$item = $widget[ 'slides' ][ $slide_key ];
 
 							// Set the background styling
-							if( !empty( $slide['design'][ 'background' ] ) ) layers_inline_styles( '#' . $widget_id . '-' . $slide_key , 'background', array( 'background' => $slide['design'][ 'background' ] ) );
-							if( !empty( $slide['design']['fonts'][ 'color' ] ) ) layers_inline_styles( '#' . $widget_id . '-' . $slide_key , 'color', array( 'selectors' => array( 'h3.heading', 'h3.heading a', 'div.excerpt' ) , 'color' => $slide['design']['fonts'][ 'color' ] ) );
-							if( !empty( $slide['design']['fonts'][ 'shadow' ] ) ) layers_inline_styles( '#' . $widget_id . '-' . $slide_key , 'text-shadow', array( 'selectors' => array( 'h3.heading', 'h3.heading a',  'div.excerpt' )  , 'text-shadow' => $slide['design']['fonts'][ 'shadow' ] ) );
+							if( !empty( $item['design'][ 'background' ] ) ) layers_inline_styles( '#' . $widget_id . '-' . $slide_key , 'background', array( 'background' => $item['design'][ 'background' ] ) );
+							if( !empty( $item['design']['fonts'][ 'color' ] ) ) layers_inline_styles( '#' . $widget_id . '-' . $slide_key , 'color', array( 'selectors' => array( 'h3.heading', 'h3.heading a', 'div.excerpt' ) , 'color' => $item['design']['fonts'][ 'color' ] ) );
+							if( !empty( $item['design']['fonts'][ 'shadow' ] ) ) layers_inline_styles( '#' . $widget_id . '-' . $slide_key , 'text-shadow', array( 'selectors' => array( 'h3.heading', 'h3.heading a',  'div.excerpt' )  , 'text-shadow' => $item['design']['fonts'][ 'shadow' ] ) );
 
 
 							// Set Featured Media
-							$featureimage = $this->check_and_return( $slide , 'design' , 'featuredimage' );
-							$featurevideo = $this->check_and_return( $slide , 'design' , 'featuredvideo' );
+							$featureimage = $this->check_and_return( $item , 'design' , 'featuredimage' );
+							$featurevideo = $this->check_and_return( $item , 'design' , 'featuredvideo' );
 
 							// Set Image Sizes
-							if( isset( $slide['design'][ 'imageratios' ] ) ){
+							if( isset( $item['design'][ 'imageratios' ] ) ){
 
 									// Translate Image Ratio into something usable
-									$image_ratio = layers_translate_image_ratios( $slide['design'][ 'imageratios' ] );
+									$image_ratio = layers_translate_image_ratios( $item['design'][ 'imageratios' ] );
 									$use_image_ratio = $image_ratio . '-medium';
 
 							} else {
@@ -238,30 +238,30 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 							*/
 							$slide_class = array();
 							$slide_class[] = 'swiper-slide';
-							if( $this->check_and_return( $slide, 'design', 'background' , 'color' ) ) {
-								if( 'dark' == layers_is_light_or_dark( $this->check_and_return( $slide, 'design', 'background' , 'color' ) ) ) {
+							if( $this->check_and_return( $item, 'design', 'background' , 'color' ) ) {
+								if( 'dark' == layers_is_light_or_dark( $this->check_and_return( $item, 'design', 'background' , 'color' ) ) ) {
 									$slide_class[] = 'invert';
 								}
 							} else {
 								$slide_class[] = 'invert';
 							}
-							if( false != $this->check_and_return( $slide , 'image' ) || 'image-left' == $slide['design'][ 'imagealign' ] || 'image-top' == $slide['design'][ 'imagealign' ] ) {
+							if( false != $this->check_and_return( $item , 'image' ) || 'image-left' == $item['design'][ 'imagealign' ] || 'image-top' == $item['design'][ 'imagealign' ] ) {
 								$slide_class[] = 'has-image';
 							}
-							if( isset( $slide['design'][ 'imagealign' ] ) && '' != $slide['design'][ 'imagealign' ] ) {
-								$slide_class[] = $slide['design'][ 'imagealign' ];
+							if( isset( $item['design'][ 'imagealign' ] ) && '' != $item['design'][ 'imagealign' ] ) {
+								$slide_class[] = $item['design'][ 'imagealign' ];
 							}
-							if( isset( $slide['design']['fonts'][ 'align' ] ) && '' != $slide['design']['fonts'][ 'align' ] ) {
-								$slide_class[] = $slide['design']['fonts'][ 'align' ];
+							if( isset( $item['design']['fonts'][ 'align' ] ) && '' != $item['design']['fonts'][ 'align' ] ) {
+								$slide_class[] = $item['design']['fonts'][ 'align' ];
 							}
 							$slide_class = implode( ' ', $slide_class );
 
 							// Set link entire slide or not
 							$slide_wrapper_tag = 'div';
 							$slide_wrapper_href = '';
-							if( $this->check_and_return( $slide, 'link' ) && ! $this->check_and_return( $slide , 'link_text' ) ) {
+							if( $this->check_and_return( $item, 'link' ) && ! $this->check_and_return( $item , 'link_text' ) ) {
 								$slide_wrapper_tag = 'a';
-								$slide_wrapper_href = 'href="' . esc_url( $slide['link'] ) . '"';
+								$slide_wrapper_href = 'href="' . esc_url( $item['link'] ) . '"';
 							} ?>
 							<<?php echo $slide_wrapper_tag; ?> <?php echo $slide_wrapper_href; ?> class="<?php echo $slide_class; ?>" id="<?php echo $widget_id; ?>-<?php echo $slide_key; ?>" style="float: left; <?php echo $slider_height_css; ?>">
 								<?php /**
@@ -269,40 +269,40 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 								*/
 								$overlay_class = array();
 								$overlay_class[] = 'overlay';
-								if( isset( $slide['design'][ 'background' ][ 'darken' ] ) ) {
+								if( isset( $item['design'][ 'background' ][ 'darken' ] ) ) {
 									$overlay_class[] = 'darken';
 								}
-								if( '' != $this->check_and_return( $slide, 'design' , 'background', 'image' ) || '' != $this->check_and_return( $slide, 'design' , 'background', 'color' ) ) {
+								if( '' != $this->check_and_return( $item, 'design' , 'background', 'image' ) || '' != $this->check_and_return( $item, 'design' , 'background', 'color' ) ) {
 									$overlay_class[] = 'content';
 								}
 								$overlay_classes = implode( ' ', $overlay_class ); ?>
 
 								<div class="<?php echo $overlay_classes; ?>" >
 									<div class="container clearfix">
-										<?php if( '' != $slide['title'] || '' != $slide['excerpt'] || '' != $slide['link'] ) { ?>
+										<?php if( '' != $item['title'] || '' != $item['excerpt'] || '' != $item['link'] ) { ?>
 											<div class="copy-container">
-												<div class="section-title <?php echo ( isset( $slide['design']['fonts'][ 'size' ] ) ? $slide['design']['fonts'][ 'size' ] : '' ); ?>">
-													<?php if( $this->check_and_return( $slide , 'title' ) ) { ?>
-														<h3 data-swiper-parallax="-100" class="heading"><?php echo $slide['title']; ?></h3>
+												<div class="section-title <?php echo ( isset( $item['design']['fonts'][ 'size' ] ) ? $item['design']['fonts'][ 'size' ] : '' ); ?>">
+													<?php if( $this->check_and_return( $item , 'title' ) ) { ?>
+														<h3 data-swiper-parallax="-100" class="heading"><?php echo $item['title']; ?></h3>
 													<?php } ?>
-													<?php if( $this->check_and_return( $slide , 'excerpt' ) ) { ?>
-														<div data-swiper-parallax="-300" class="excerpt"><?php layers_the_content( $slide['excerpt'] ); ?></div>
+													<?php if( $this->check_and_return( $item , 'excerpt' ) ) { ?>
+														<div data-swiper-parallax="-300" class="excerpt"><?php layers_the_content( $item['excerpt'] ); ?></div>
 													<?php } ?>
-													<?php if( 'div' == $slide_wrapper_tag && $this->check_and_return( $slide, 'link' ) && $this->check_and_return( $slide , 'link_text' ) ) { ?>
-														<a data-swiper-parallax="-200" href="<?php echo $slide['link']; ?>" class="button btn-<?php echo $this->check_and_return( $slide , 'design' , 'fonts' , 'size' ); ?>"><?php echo $slide['link_text']; ?></a>
+													<?php if( 'div' == $slide_wrapper_tag && $this->check_and_return( $item, 'link' ) && $this->check_and_return( $item , 'link_text' ) ) { ?>
+														<a data-swiper-parallax="-200" href="<?php echo $item['link']; ?>" class="button btn-<?php echo $this->check_and_return( $item , 'design' , 'fonts' , 'size' ); ?>"><?php echo $item['link_text']; ?></a>
 													<?php } ?>
 												</div>
 											</div>
 										<?php } // if title || excerpt ?>
 										<?php if( $featureimage || $featurevideo ) { ?>
-											<div class="image-container <?php echo ( 'image-round' ==  $this->check_and_return( $slide, 'design',  'imageratios' ) ? 'image-rounded' : '' ); ?>">
+											<div class="image-container <?php echo ( 'image-round' ==  $this->check_and_return( $item, 'design',  'imageratios' ) ? 'image-rounded' : '' ); ?>">
 												<?php echo layers_get_feature_media(
 													$featureimage ,
 													$use_image_ratio ,
 													$featurevideo
 												); ?>
 											</div>
-										<?php } // if $slide image  ?>
+										<?php } // if $item image  ?>
 									</div> <!-- .container -->
 								</div> <!-- .overlay -->
 							</<?php echo $slide_wrapper_tag; ?>>

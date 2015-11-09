@@ -152,7 +152,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 						</div>
 					</div>
 				<?php } ?>
-				<?php if( ! empty( $widget[ 'columns' ] ) ) { ?>
+				<?php if ( ! empty( $widget[ 'columns' ] ) ) { ?>
 					<div class="row <?php echo $this->get_widget_layout_class( $widget ); ?> <?php echo $this->check_and_return( $widget , 'design', 'liststyle' ); ?>">
 						<?php foreach ( explode( ',', $widget[ 'column_ids' ] ) as $column_key ) {
 
@@ -168,6 +168,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 							if( !empty( $column['design']['fonts'][ 'shadow' ] ) ) layers_inline_styles( '#' . $widget_id . '-' . $column_key , 'text-shadow', array( 'selectors' => array( 'h5.heading a', 'h5.heading' , 'div.excerpt' , 'div.excerpt p' )  , 'text-shadow' => $column['design']['fonts'][ 'shadow' ] ) );
 
 							if( !isset( $column[ 'width' ] ) ) $column[ 'width' ] = $this->column_defaults[ 'width' ];
+							
 							// Add the correct span class
 							$span_class = 'span-' . $column[ 'width' ];
 
@@ -183,18 +184,12 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 
 								if( !isset( $column[ 'width' ] ) ) $column[ 'width' ] = 6;
 
-								if( 4 > $column['width'] ){
-									$use_image_ratio = $image_ratio . '-medium';
-								} else {
-									$use_image_ratio = $image_ratio . '-large';
-								}
+								if( 4 > $column['width'] ) $use_image_ratio = $image_ratio . '-medium';
+								else $use_image_ratio = $image_ratio . '-large';
 
 							} else {
-								if( 4 > $column['width'] ){
-									$use_image_ratio = 'medium';
-								} else {
-									$use_image_ratio = 'full';
-								}
+								if( 4 > $column['width'] ) $use_image_ratio = 'medium';
+								else $use_image_ratio = 'full';
 							}
 
 							$media = layers_get_feature_media(

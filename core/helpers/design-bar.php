@@ -220,6 +220,11 @@ class Layers_Design_Controller {
 			<?php if ( isset( $form_args['wrapper'] ) ) { ?>
 				</<?php echo $form_args['wrapper']; ?>>
 			<?php } ?>
+			
+			<?php if ( isset( $form_args['description'] ) ) { ?>
+				<div class="layers-form-item-description"><?php echo $form_args['description']; ?></div>
+			<?php } ?>
+			
 		</div>
 		<?php
 	}
@@ -551,7 +556,8 @@ class Layers_Design_Controller {
 					'image-portrait' => __( 'Portrait', 'layerswp' ),
 					'image-landscape' => __( 'Landscape', 'layerswp' ),
 					'image-square' => __( 'Square', 'layerswp' ),
-					'image-no-crop' => __( 'None', 'layerswp' )
+					'image-no-crop' => __( 'None', 'layerswp' ),
+					'image-round' => __( 'Round', 'layerswp' )
 				)
 			),
 		);
@@ -731,7 +737,7 @@ class Layers_Design_Controller {
 
 		// Add a Label
 		$defaults['label'] = __( 'Buttons', 'layerswp' );
-		
+
 		// Add elements
 		$defaults['elements'] = array(
 
@@ -912,7 +918,7 @@ class Layers_Design_Controller {
 
 		return $args;
 	}
-	
+
 	/**
 	 * Widget name generation (replaces get_custom_field_id)
 	 *
@@ -922,18 +928,18 @@ class Layers_Design_Controller {
  	 * @return   string  Name attribute
 	 */
 	function get_layers_field_name( $field_name_1 = '', $field_name_2 = '', $field_name_3 = '' ) {
-		
+
 		// If we don't have these important widget details then bail.
 		if ( ! isset( $this->widget['name'] ) ) return;
-		
+
 		// Compile the first part.
 		$string = $this->widget['name'];
-		
+
 		// Now add any custom strings passed as args.
 		if( '' != $field_name_1 ) $string .= '[' . $field_name_1 . ']';
 		if( '' != $field_name_2 ) $string .= '[' . $field_name_2 . ']';
 		if( '' != $field_name_3 ) $string .= '[' . $field_name_3 . ']';
-		
+
 		if ( ( bool ) layers_get_theme_mod( 'dev-switch-widget-field-names' ) ) {
 			$debug_string = substr( $string, ( strpos( $string, ']' ) + 1 ), strlen( $string ) );
 			echo '<span class="layers-widget-defaults-debug">' . $debug_string . '</span><br />';
@@ -951,13 +957,13 @@ class Layers_Design_Controller {
  	 * @return   string  Id attribute
 	 */
 	function get_layers_field_id( $field_name_1 = '', $field_name_2 = '', $field_id = '' ) {
-		
+
 		// If we don't have these important widget details then bail.
 		if ( ! isset( $this->widget['id'] ) ) return;
-		
+
 		// Compile the first part.
 		$string = $this->widget['id'];
-		
+
 		// Now add any custom strings passed as args.
 		if( '' != $field_name_1 ) $string .= '-' . $field_name_1;
 		if( '' != $field_name_2 ) $string .= '-' . $field_name_2;

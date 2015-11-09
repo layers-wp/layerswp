@@ -328,23 +328,23 @@ jQuery(function($) {
 					$(event.target).val( ui.color.toString() );
 
 					// Debounce the color changes
-					layers_debounce_input( event.target );
+					layers_debounce_color_input( event.target );
 				}
 			},
 			clear: function(event) {
 				if( 'undefined' !== typeof event ){
 
 					// Debounce the reset change
-					layers_debounce_input( jQuery(event.target).parent('.wp-picker-input-wrap').find('.wp-color-picker') );
+					layers_debounce_color_input( jQuery(event.target).parent('.wp-picker-input-wrap').find('.wp-color-picker') );
 				}
 			},
 		});
 	}
 
 	// Debounce function for color changing.
-	var layers_debounce_input = _.debounce(function( element ){
+	var layers_debounce_color_input = _.debounce( function( element ){
 		$( element ).layers_trigger_change();
-	}, 200);
+	}, 200, false );
 
 	/**
 	* 6 - Sortable Columns
@@ -945,15 +945,21 @@ jQuery(function($) {
 	 * 18 - Customizer Control - Range Slider
 	 */
 	$( document ).on( 'input change', '.layers-customize-control-range input[type="range"]', function( e ){
+		// Push changes to the Number input.
 		var $range_field = $(this);
 		var $number_field = $(this).siblings('input[type="number"]');
 		$number_field.val( $range_field.val() );
+		layers_debounce_range_input( $number_field );
 	});
 	$( document ).on( 'input change', '.layers-customize-control-range input[type="number"]', function( e ){
+		// Push changes to the Range input.
 		var $number_field = $(this);
 		var $range_field = $(this).siblings('input[type="range"]');
 		$range_field.val( $number_field.val() );
 	});
+	var layers_debounce_range_input = _.debounce( function( element ){
+		$( element ).layers_trigger_change();
+	}, 550, false );
 
 	/**
 	 * 19 - Reset to Default

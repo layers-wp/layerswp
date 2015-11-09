@@ -294,6 +294,9 @@ if( ! function_exists( 'layers_scripts' ) ) {
 			true
 		); // Framework
 
+		wp_localize_script( LAYERS_THEME_SLUG . '-framework-js', 'layers_script_settings', array(
+			'header_sticky_breakpoint' => apply_filters( 'layers_sticky_header_breakpoint', 270 ),
+		) );
 
 		if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 			wp_enqueue_script( 'comment-reply' );

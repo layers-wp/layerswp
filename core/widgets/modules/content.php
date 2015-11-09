@@ -204,21 +204,21 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
  							/**
 							* Set Individual Column CSS
 							*/
-							$column_class = array();
-							$column_class[] = 'layers-masonry-column';
-							$column_class[] = $this->id_base . '-' . $column_key;
-							$column_class[] = $span_class;
-							$column_class[] = ( 'list-masonry' == $this->check_and_return( $widget, 'design', 'liststyle' ) ? 'no-gutter' : '' );
-							$column_class[] = 'column' . ( 'on' != $this->check_and_return( $widget, 'design', 'gutter' ) ? '-flush' : '' );
+							$classes = array();
+							$classes[] = 'layers-masonry-column';
+							$classes[] = $this->id_base . '-' . $column_key;
+							$classes[] = $span_class;
+							$classes[] = ( 'list-masonry' == $this->check_and_return( $widget, 'design', 'liststyle' ) ? 'no-gutter' : '' );
+							$classes[] = 'column' . ( 'on' != $this->check_and_return( $widget, 'design', 'gutter' ) ? '-flush' : '' );
 							if( '' != $this->check_and_return( $column, 'design' , 'background', 'image' ) || '' != $this->check_and_return( $column, 'design' , 'background', 'color' ) ) {
-								$column_class[] = 'content';
+								$classes[] = 'content';
 							}
 							if( false != $media ) {
-								$column_class[] = 'has-image';
+								$classes[] = 'has-image';
 							}
-							$column_class = implode( ' ', $column_class ); ?>
+							$classes = implode( ' ', $classes ); ?>
 
-							<div id="<?php echo $widget_id; ?>-<?php echo $column_key; ?>" class="<?php echo $column_class; ?>">
+							<div id="<?php echo $widget_id; ?>-<?php echo $column_key; ?>" class="<?php echo esc_attr( $classes ); ?>">
 								<?php /**
 								* Set Overlay CSS Classes
 								*/

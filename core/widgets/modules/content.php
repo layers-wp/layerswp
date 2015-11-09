@@ -154,6 +154,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 				<?php } ?>
 				<?php if( ! empty( $widget[ 'columns' ] ) ) { ?>
 					<div class="row <?php echo $this->get_widget_layout_class( $widget ); ?> <?php echo $this->check_and_return( $widget , 'design', 'liststyle' ); ?>">
+						<div class="row">
 						<?php // Set total width so that we can apply .last to the final container
 						$total_width = 0; ?>
 						<?php foreach ( explode( ',', $widget[ 'column_ids' ] ) as $column_key ) {
@@ -163,6 +164,11 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 
 							// Setup the relevant slide
 							$column = $widget[ 'columns' ][ $column_key ];
+
+							if ($total_width + $column[ 'width' ] > 12) {
+								$total_width = 0;
+								?></div><div class="row"><?php
+							}
 
 							// Set the background styling
 							if( !empty( $column['design'][ 'background' ] ) ) layers_inline_styles( '#' . $widget_id . '-' . $column_key , 'background', array( 'background' => $column['design'][ 'background' ] ) );
@@ -178,9 +184,6 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 
 							if( 12 == $total_width ) {
 								$span_class .= ' last';
-								$total_width = 0;
-							} elseif( $total_width > 12 ) {
-								$total_width = 0;
 							}
 
 							// Set Featured Media
@@ -286,7 +289,9 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 									<?php } ?>
 								</div>
 							</div>
-						<?php } ?>
+						<?php
+						} ?>
+						<div>
 					</div>
 				<?php } ?>
 

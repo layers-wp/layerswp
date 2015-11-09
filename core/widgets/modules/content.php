@@ -222,26 +222,26 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 								<?php /**
 								* Set Overlay CSS Classes
 								*/
-								$column_inner_class = array();
-								$column_inner_class[] = 'media';
+								$column_inner_classes = array();
+								$column_inner_classes[] = 'media';
 								if( !$this->check_and_return( $widget, 'design', 'gutter' ) ) {
-									$column_inner_class[] = 'no-push-bottom';
+									$column_inner_classes[] = 'no-push-bottom';
 								}
 								if( $this->check_and_return( $column, 'design', 'background' , 'color' ) ) {
 									if( 'dark' == layers_is_light_or_dark( $this->check_and_return( $column, 'design', 'background' , 'color' ) ) ) {
-										$column_inner_class[] = 'invert';
+										$column_inner_classes[] = 'invert';
 									}
 								} else {
 									if( $this->check_and_return( $widget, 'design', 'background' , 'color' ) && 'dark' == layers_is_light_or_dark( $this->check_and_return( $widget, 'design', 'background' , 'color' ) ) ) {
-										$column_inner_class[] = 'invert';
+										$column_inner_classes[] = 'invert';
 									}
 								}
 
-								$column_inner_class[] = $this->check_and_return( $column, 'design', 'imagealign' );
-								$column_inner_class[] = $this->check_and_return( $column, 'design', 'fonts' , 'size' );
-								$column_inner_class = implode( ' ', $column_inner_class ); ?>
+								$column_inner_classes[] = $this->check_and_return( $column, 'design', 'imagealign' );
+								$column_inner_classes[] = $this->check_and_return( $column, 'design', 'fonts' , 'size' );
+								$column_inner_classes = implode( ' ', $column_inner_classes ); ?>
 
-								<div class="<?php echo $column_inner_class; ?>">
+								<div class="<?php echo $column_inner_classes; ?>">
 									<?php if( NULL != $media ) { ?>
 										<div class="media-image <?php echo ( ( isset( $column['design'][ 'imageratios' ] ) && 'image-round' == $column['design'][ 'imageratios' ] ) ? 'image-rounded' : '' ); ?>">
 											<?php if( NULL != $link ) { ?><a href="<?php echo $link; ?>"><?php  } ?>

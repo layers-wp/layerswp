@@ -162,12 +162,10 @@ class Layers_Form_Elements {
 			* Range Inputs
 			*/
 			case 'range' :
-			
 				$range_input_props['min'] = ( isset( $input->min ) ) ? 'min="' .  $input->min . '"' : NULL ;
 				$range_input_props['max'] = ( isset( $input->max ) ) ? 'max="' .  $input->max . '"' : NULL ;
 				$range_input_props['step'] = ( isset( $input->step ) ) ? 'step="' .  $input->step . '"' : NULL ;
 				
-				$number_input_props['min'] = $range_input_props['min'];
 				$number_input_props['step'] = $range_input_props['step'];
 				?>
 				<div class="layers-row">

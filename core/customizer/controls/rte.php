@@ -46,6 +46,7 @@ if( !class_exists( 'Layers_Customize_RTE_Control' ) ) {
 								'id' =>  $this->id,
    								'value' => stripslashes( $this->value() ),
 								'data' => $this->get_customize_data(),
+								'placeholder' => $this->placeholder,
 							)
 						); ?>
 					</div>

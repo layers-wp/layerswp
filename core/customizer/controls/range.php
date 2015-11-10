@@ -14,7 +14,9 @@ if( !class_exists( 'Layers_Customize_Range_Control' ) ) {
 		public $type = 'layers-range';
 		
 		public $min;
+		
 		public $max;
+		
 		public $step;
 
 		public function render_content() {
@@ -54,6 +56,7 @@ if( !class_exists( 'Layers_Customize_Range_Control' ) ) {
 								'min' => ( isset( $this->min ) ? $this->min : 0 ) ,
 								'max' => ( isset( $this->max ) ? $this->max : 100 ) ,
 								'step' => ( isset( $this->step ) ? $this->step : 1 ) ,
+								'placeholder' => $this->placeholder,
 							)
 						); ?>
 					</div>

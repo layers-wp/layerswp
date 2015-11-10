@@ -1708,8 +1708,6 @@ li[id*='accordion-section-layers'] .customize-control .layers-customize-control 
 li[id*='accordion-section-layers'] .customize-control:first-child{
     margin: 6px 0 0px;
 }
-li .customize-control .customize-control-title{}
-
 .customize-control customize-control-layers-seperator{
     border: 0;
     border-top: 0;

@@ -162,15 +162,25 @@ class Layers_Form_Elements {
 			* Range Inputs
 			*/
 			case 'range' :
+				
+				$range_input_props = array();
+				$number_input_props = array();
+				
+				$number_input_props['step'] = ( isset( $input->step ) ) ? 'step="' .  $input->step . '"' : NULL ;
+				
 				$range_input_props['min'] = ( isset( $input->min ) ) ? 'min="' .  $input->min . '"' : NULL ;
 				$range_input_props['max'] = ( isset( $input->max ) ) ? 'max="' .  $input->max . '"' : NULL ;
 				$range_input_props['step'] = ( isset( $input->step ) ) ? 'step="' .  $input->step . '"' : NULL ;
+				$range_input_props['placeholder'] = ( isset( $input->placeholder ) ) ? 'placeholder="' .  $input->placeholder . '"' : NULL ;
 				
-				$number_input_props['step'] = $range_input_props['step'];
+				if ( isset( $input->value ) && '' !== $input->value )
+					$range_input_props['value'] = 'value="' .  $input->value . '"';
+				elseif ( isset( $input->placeholder ) )
+					$range_input_props['value'] = 'value="' .  $input->placeholder . '"';
 				?>
 				<div class="layers-row">
 					<div class="layers-column layers-span-9">
-						<input type="range" <?php echo implode ( ' ' , $range_input_props ); ?> value="<?php echo $input->value; ?>" />
+						<input type="range" <?php echo implode ( ' ' , $range_input_props ); ?> />
 					</div>
 					<div class="layers-column layers-span-3">
 						<input type="number" <?php echo implode ( ' ' , $input_props ); ?> <?php echo implode ( ' ' , $number_input_props ); ?> value="<?php echo $input->value; ?>" />

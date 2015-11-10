@@ -955,7 +955,14 @@ jQuery(function($) {
 		// Push changes to the Range input.
 		var $number_field = $(this);
 		var $range_field = $(this).parent().parent().find('input[type="range"]');
-		$range_field.val( $number_field.val() );
+		
+		if ( '' == $number_field.val() && $range_field.attr( 'placeholder' ) ) {
+			$range_field.val( $range_field.attr( 'placeholder' ) );
+		}
+		else {
+			$range_field.attr( 'placeholder' );
+			$range_field.val( $number_field.val() );
+		}
 	});
 	var layers_debounce_range_input = _.debounce( function( element ){
 		$( element ).layers_trigger_change();

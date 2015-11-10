@@ -17,6 +17,9 @@
 #customize-theme-controls .accordion-section-content{
     background: #fff; /*-- Make the accordions white --*/
 }
+#customize-theme-controls .accordion-section-content .customize-control:last-child{
+    margin-bottom: 20px;
+}
 
 /*------------------------------------*/
 /*- HIDE LAYERS WIDGETS IN APPEARANCE */
@@ -309,7 +312,7 @@ div#widgets-right div[id*='obox-layers-builder']{
         color: #fff;
         transition: all 0.2s ease-in-out;
     }
-    
+
     /*-----------------------------*/
     /*- WIDGET DEBUGGING ----------*/
     .layers-widget-defaults-debug{
@@ -1693,35 +1696,21 @@ div[id*='layers-widget'] .spinner{
 
 /*-----------------------------*/
 /*- CUSTOMIZER CONTROLS -------*/
-
+#customize-controls .description{
+    color: #999;
+}
 li[id*='accordion-section-layers'] .customize-control{
     margin: 0;
 }
 li[id*='accordion-section-layers'] .customize-control .layers-customize-control {
     margin: 6px 0;
 }
-li[id*='accordion-section-layers'] .customize-control .layers-customize-control:after{
-    clear: both;
-    float: none;
-    display: block;
-    content: '';
-}
-li[id*='accordion-section-layers'] .customize-control.customize-control-layers-heading{
-    /* margin:0; */
-}
-
 li[id*='accordion-section-layers'] .customize-control:first-child{
     margin: 6px 0 0px;
 }
-li[id*='accordion-section-layers'] .customize-control .customize-control-title{
-    display: block;
-    margin-bottom: 6px;
-    font-size: 13px;
-    text-transform: none;
-    line-height: inherit;
-    font-weight: normal;
-}
-li[id*='accordion-section-layers'] hr{
+li .customize-control .customize-control-title{}
+
+.customize-control customize-control-layers-seperator{
     border: 0;
     border-top: 0;
     border-bottom: 1px solid #EEE;
@@ -1742,14 +1731,7 @@ li[id*='accordion-section-layers'] .customize-control .heading-label .customize-
     font-weight: bold;
     margin: 0 0 4px;
 }
-li[id*='accordion-section-layers'] .customize-control .description{
-    color: #999 !important;
-    margin: -2px 0 8px;
-    font-size: 13px;
-}
-li[id*='accordion-section-layers'] .customize-control .layers-customize-control.layers-customize-control-heading{
-    margin: 0;
-}
+
 li[id*='accordion-section-layers'] .customize-control .layers-customize-control.layers-customize-control-heading .customize-control-title{
     display: block;
     font-size: 14px;
@@ -1820,7 +1802,6 @@ li[id*='accordion-section-layers'] .customize-control.customize-control-image .a
 
     /*----------------------------------------*/
     /*- HEADING DIVIDER - DEDICATED CONTROLS -*/
-
     li[id*='accordion-section-layers'] .customize-control.customize-control-layers-heading-divider {
         margin-top: 12px;
     }
@@ -1833,7 +1814,6 @@ li[id*='accordion-section-layers'] .customize-control.customize-control-image .a
 
     /*-----------------------------*/
     /*- RANGE + NUMBER CONTROL ----*/
-
     .layers-customize-control-range input[type="range"]{
         width: 68%;
         display: inline-block;
@@ -1848,71 +1828,27 @@ li[id*='accordion-section-layers'] .customize-control.customize-control-image .a
         display: inline-block;
     }
 
-    /*---------------------------*/
-    /*- CONTROL DEFAULT RESET ---*/
-
-    .customize-control-history{
-        position: absolute;
-        right: 12px;
-        margin-top: -3px;
-        opacity: 0;
-        transition: 0.08s;
-    }
-    .customize-control-history a{
-        padding: 0px 6px;
-        line-height: 19px;
-        text-align: center;
-        border-radius: 3px;
-        color: #8A8A8A;
-        font-weight: normal;
-        font-size: 11px;
-        white-space: nowrap;
-        width: auto;
-        margin: 0;
-        border: 1px solid transparent;
-        outline: none;
-        box-shadow: none;
-    }
-    .customize-control-history a span{
-        margin-right: 2px;
-        opacity: 0;
-        transition: 0.05s;
-    }
-
-    .customize-control:hover .customize-control-history{
-        opacity: 1;
-    }
-    .customize-control-history a:hover{
-        background-color: #00A0D2;
-        color: white;
-        border: 1px solid #0073AA;
-        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.21), 0 1px 1px rgba(0, 0, 0, 0.14);
-    }
-
     /*-------------------------------*/
     /*- CUSTOMIZER CONTROL GROUPS -- */
-
-    li[id*='accordion-section-layers'] .customize-control .layers-heading-divider {
+    li .customize-control .layers-heading-divider{
         display: block;
         font-size: 14px;
         line-height: 24px;
         font-weight: 600;
         margin: 0 0 6px;
     }
-    
-    li[id*='accordion-section-layers'] .customize-control .layers-customize-control.layers-customize-control-heading.group .layers-heading-divider{
+    li .customize-control .layers-customize-control.layers-customize-control-heading.group .layers-heading-divider{
         margin: 12px 0 4px;
     }
-    li[id*='accordion-section-layers'] .customize-control .layers-customize-control.group .customize-control-title,
+    li .customize-control .layers-customize-control.group .customize-control-title,
     li .customize-control .layers-customize-control.group .customize-control-title {
         text-transform: uppercase;
         font-size: 10px;
         font-weight: bold;
-        color: #777;
         letter-spacing: 1px;
         margin-bottom: 3px;
     }
-    li[id*='accordion-section-layers'] .customize-control .layers-customize-control.group,
+    li .customize-control .layers-customize-control.group,
     li .customize-control .layers-customize-control.group {
         display: list-item;
         margin: 0px 0px 1px;
@@ -1933,10 +1869,11 @@ li[id*='accordion-section-layers'] .customize-control.customize-control-image .a
         background: #FBFBFB;
     }
     .layers-customize-control.group input[type="number"]{
-        padding-right: 0;
+        padding-right: 2px;
     }
     .layers-customize-control.group input[type="range"]{
         padding: 0;
+        background: transparent;
     }
 
 /*---------------------------*/

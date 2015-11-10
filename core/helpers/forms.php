@@ -170,8 +170,14 @@ class Layers_Form_Elements {
 				$number_input_props['min'] = $range_input_props['min'];
 				$number_input_props['step'] = $range_input_props['step'];
 				?>
-				<input type="range" <?php echo implode ( ' ' , $range_input_props ); ?> value="<?php echo $input->value; ?>" />
-				<input type="number" <?php echo implode ( ' ' , $input_props ); ?> <?php echo implode ( ' ' , $number_input_props ); ?> value="<?php echo $input->value; ?>" />
+				<div class="layers-row">
+					<div class="layers-column layers-span-9">
+						<input type="range" <?php echo implode ( ' ' , $range_input_props ); ?> value="<?php echo $input->value; ?>" />
+					</div>
+					<div class="layers-column layers-span-3">
+						<input type="number" <?php echo implode ( ' ' , $input_props ); ?> <?php echo implode ( ' ' , $number_input_props ); ?> value="<?php echo $input->value; ?>" />
+					</div>
+				</div>
 			<?php break;
 			/**
 			* Checkboxes - here we look for on/NULL, that's how WP widgets save them

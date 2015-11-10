@@ -947,14 +947,14 @@ jQuery(function($) {
 	$( document ).on( 'input change', '.layers-customize-control-range input[type="range"]', function( e ){
 		// Push changes to the Number input.
 		var $range_field = $(this);
-		var $number_field = $(this).siblings('input[type="number"]');
+		var $number_field = $(this).parent().parent().find('input[type="number"]');
 		$number_field.val( $range_field.val() );
 		layers_debounce_range_input( $number_field );
 	});
 	$( document ).on( 'input change', '.layers-customize-control-range input[type="number"]', function( e ){
 		// Push changes to the Range input.
 		var $number_field = $(this);
-		var $range_field = $(this).siblings('input[type="range"]');
+		var $range_field = $(this).parent().parent().find('input[type="range"]');
 		$range_field.val( $number_field.val() );
 	});
 	var layers_debounce_range_input = _.debounce( function( element ){

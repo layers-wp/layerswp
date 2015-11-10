@@ -1835,16 +1835,15 @@ li[id*='accordion-section-layers'] .customize-control.customize-control-image .a
     /*- RANGE + NUMBER CONTROL ----*/
 
     .layers-customize-control-range input[type="range"]{
-        width: 68%;
+        width: 92%;
         display: inline-block;
         height: 11px;
         padding: 0;
-        margin: 0;
+        margin: 0 4% 0 4%;
         vertical-align: top;
     }
     .layers-customize-control-range input[type="number"] {
-        width: 25%;
-        margin: 0 0 0 5%;
+        /* width: 25%; */
         display: inline-block;
     }
 

@@ -430,12 +430,11 @@ object{
     }
 
     .header-site .container{
+        display: flex;
+        flex-wrap: nowrap;
+        align-items: center;
+        justify-content: space-between;
         padding: 10px;
-    }
-
-    .header-inline .inline-right-nav{
-        position: relative;
-        z-index: 2;
     }
 
     /*---------------------------*/
@@ -447,7 +446,6 @@ object{
     /*---------------------------*/
     /*- RESPONSIVE BUTTON -------*/
     .responsive-nav{
-        float: right;
         padding: 0;
         margin: 0 0 0 20px;
     }
@@ -461,12 +459,13 @@ object{
     /*---------------------------*/
     /*- DEFAULT ALIGNMENT -------*/
     .header-site nav{
-        float: right;
+        display: flex;
+        flex: 1 1 0%;
+        justify-content: flex-end;
         margin: 0;
         line-height: 40px;
     }
     .header-left .logo{
-        float: left;
         overflow: hidden;
     }
     .header-left .sitename{
@@ -475,15 +474,17 @@ object{
 
     /*---------------------------*/
     /*- ALIGNMENT RIGHT ---------*/
+    .header-right .container{
+        flex-direction: row-reverse;
+    }
     .header-right .logo{
-        float: right;
         overflow: hidden;
     }
     .header-right .sitename{
         margin: 0 10px 0 0;
     }
     .header-right nav{
-        float: left;
+        justify-content: flex-start;
     }
 
     /*---------------------------*/

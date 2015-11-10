@@ -152,61 +152,44 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 						</div>
 					</div>
 				<?php } ?>
-				<?php if( ! empty( $widget[ 'columns' ] ) ) { ?>
+				<?php if ( ! empty( $widget[ 'columns' ] ) ) { ?>
 					<div class="row <?php echo $this->get_widget_layout_class( $widget ); ?> <?php echo $this->check_and_return( $widget , 'design', 'liststyle' ); ?>">
-						<?php // Set total width so that we can apply .last to the final container
-						$total_width = 0; ?>
 						<?php foreach ( explode( ',', $widget[ 'column_ids' ] ) as $column_key ) {
 
 							// Make sure we've got a column going on here
 							if( !isset( $widget[ 'columns' ][ $column_key ] ) ) continue;
 
 							// Setup the relevant slide
-							$column = $widget[ 'columns' ][ $column_key ];
+							$item = $widget[ 'columns' ][ $column_key ];
 
 							// Set the background styling
-							if( !empty( $column['design'][ 'background' ] ) ) layers_inline_styles( '#' . $widget_id . '-' . $column_key , 'background', array( 'background' => $column['design'][ 'background' ] ) );
-							if( !empty( $column['design']['fonts'][ 'color' ] ) ) layers_inline_styles( '#' . $widget_id . '-' . $column_key , 'color', array( 'selectors' => array( 'h5.heading a', 'h5.heading' , 'div.excerpt' , 'div.excerpt p' ) , 'color' => $column['design']['fonts'][ 'color' ] ) );
-							if( !empty( $column['design']['fonts'][ 'shadow' ] ) ) layers_inline_styles( '#' . $widget_id . '-' . $column_key , 'text-shadow', array( 'selectors' => array( 'h5.heading a', 'h5.heading' , 'div.excerpt' , 'div.excerpt p' )  , 'text-shadow' => $column['design']['fonts'][ 'shadow' ] ) );
+							if( !empty( $item['design'][ 'background' ] ) ) layers_inline_styles( '#' . $widget_id . '-' . $column_key , 'background', array( 'background' => $item['design'][ 'background' ] ) );
+							if( !empty( $item['design']['fonts'][ 'color' ] ) ) layers_inline_styles( '#' . $widget_id . '-' . $column_key , 'color', array( 'selectors' => array( 'h5.heading a', 'h5.heading' , 'div.excerpt' , 'div.excerpt p' ) , 'color' => $item['design']['fonts'][ 'color' ] ) );
+							if( !empty( $item['design']['fonts'][ 'shadow' ] ) ) layers_inline_styles( '#' . $widget_id . '-' . $column_key , 'text-shadow', array( 'selectors' => array( 'h5.heading a', 'h5.heading' , 'div.excerpt' , 'div.excerpt p' )  , 'text-shadow' => $item['design']['fonts'][ 'shadow' ] ) );
 
-							if( !isset( $column[ 'width' ] ) ) $column[ 'width' ] = $this->column_defaults[ 'width' ];
+							if( !isset( $item[ 'width' ] ) ) $item[ 'width' ] = $this->column_defaults[ 'width' ];
+							
 							// Add the correct span class
-							$span_class = 'span-' . $column[ 'width' ];
-
-							// Add .last to the final column
-							$total_width += $column[ 'width' ];
-
-							if( 12 == $total_width ) {
-								$span_class .= ' last';
-								$total_width = 0;
-							} elseif( $total_width > 12 ) {
-								$total_width = 0;
-							}
+							$span_class = 'span-' . $item[ 'width' ];
 
 							// Set Featured Media
-							$featureimage = $this->check_and_return( $column , 'design' , 'featuredimage' );
-							$featurevideo = $this->check_and_return( $column , 'design' , 'featuredvideo' );
+							$featureimage = $this->check_and_return( $item , 'design' , 'featuredimage' );
+							$featurevideo = $this->check_and_return( $item , 'design' , 'featuredvideo' );
 
 							// Set Image Sizes
-							if( isset( $column['design'][ 'imageratios' ] ) ){
+							if( isset( $item['design'][ 'imageratios' ] ) ){
 
 								// Translate Image Ratio into something usable
-								$image_ratio = layers_translate_image_ratios( $column['design'][ 'imageratios' ] );
+								$image_ratio = layers_translate_image_ratios( $item['design'][ 'imageratios' ] );
 
-								if( !isset( $column[ 'width' ] ) ) $column[ 'width' ] = 6;
+								if( !isset( $item[ 'width' ] ) ) $item[ 'width' ] = 6;
 
-								if( 4 > $column['width'] ){
-									$use_image_ratio = $image_ratio . '-medium';
-								} else {
-									$use_image_ratio = $image_ratio . '-large';
-								}
+								if( 4 > $item['width'] ) $use_image_ratio = $image_ratio . '-medium';
+								else $use_image_ratio = $image_ratio . '-large';
 
 							} else {
-								if( 4 > $column['width'] ){
-									$use_image_ratio = 'medium';
-								} else {
-									$use_image_ratio = 'full';
-								}
+								if( 4 > $item['width'] ) $use_image_ratio = 'medium';
+								else $use_image_ratio = 'full';
 							}
 
 							$media = layers_get_feature_media(
@@ -216,71 +199,72 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 							);
 
 							// Set the column link
-							$link = $this->check_and_return( $column , 'link' );
+							$link = $this->check_and_return( $item , 'link' );
 
  							/**
 							* Set Individual Column CSS
 							*/
-							$column_class = array();
-							$column_class[] = 'layers-masonry-column';
-							$column_class[] = $this->id_base . '-' . $column_key;
-							$column_class[] = $span_class;
-							$column_class[] = ( 'list-masonry' == $this->check_and_return( $widget, 'design', 'liststyle' ) ? 'no-gutter' : '' );
-							$column_class[] = 'column' . ( 'on' != $this->check_and_return( $widget, 'design', 'gutter' ) ? '-flush' : '' );
-							if( '' != $this->check_and_return( $column, 'design' , 'background', 'image' ) || '' != $this->check_and_return( $column, 'design' , 'background', 'color' ) ) {
-								$column_class[] = 'content';
+							$classes = array();
+							$classes[] = 'layers-masonry-column';
+							$classes[] = $this->id_base . '-' . $column_key;
+							$classes[] = $span_class;
+							$classes[] = ( 'list-masonry' == $this->check_and_return( $widget, 'design', 'liststyle' ) ? 'no-gutter' : '' );
+							$classes[] = 'column' . ( 'on' != $this->check_and_return( $widget, 'design', 'gutter' ) ? '-flush' : '' );
+							$classes[] = $this->check_and_return( $item, 'design', 'advanced', 'customclass' ); // Apply custom class from design-bar's advanced control.
+							if( '' != $this->check_and_return( $item, 'design' , 'background', 'image' ) || '' != $this->check_and_return( $item, 'design' , 'background', 'color' ) ) {
+								$classes[] = 'content';
 							}
 							if( false != $media ) {
-								$column_class[] = 'has-image';
+								$classes[] = 'has-image';
 							}
-							$column_class = implode( ' ', $column_class ); ?>
+							$classes = implode( ' ', $classes ); ?>
 
-							<div id="<?php echo $widget_id; ?>-<?php echo $column_key; ?>" class="<?php echo $column_class; ?>">
+							<div id="<?php echo $widget_id; ?>-<?php echo $column_key; ?>" class="<?php echo esc_attr( $classes ); ?>">
 								<?php /**
 								* Set Overlay CSS Classes
 								*/
-								$column_inner_class = array();
-								$column_inner_class[] = 'media';
+								$column_inner_classes = array();
+								$column_inner_classes[] = 'media';
 								if( !$this->check_and_return( $widget, 'design', 'gutter' ) ) {
-									$column_inner_class[] = 'no-push-bottom';
+									$column_inner_classes[] = 'no-push-bottom';
 								}
-								if( $this->check_and_return( $column, 'design', 'background' , 'color' ) ) {
-									if( 'dark' == layers_is_light_or_dark( $this->check_and_return( $column, 'design', 'background' , 'color' ) ) ) {
-										$column_inner_class[] = 'invert';
+								if( $this->check_and_return( $item, 'design', 'background' , 'color' ) ) {
+									if( 'dark' == layers_is_light_or_dark( $this->check_and_return( $item, 'design', 'background' , 'color' ) ) ) {
+										$column_inner_classes[] = 'invert';
 									}
 								} else {
 									if( $this->check_and_return( $widget, 'design', 'background' , 'color' ) && 'dark' == layers_is_light_or_dark( $this->check_and_return( $widget, 'design', 'background' , 'color' ) ) ) {
-										$column_inner_class[] = 'invert';
+										$column_inner_classes[] = 'invert';
 									}
 								}
 
-								$column_inner_class[] = $this->check_and_return( $column, 'design', 'imagealign' );
-								$column_inner_class[] = $this->check_and_return( $column, 'design', 'fonts' , 'size' );
-								$column_inner_class = implode( ' ', $column_inner_class ); ?>
+								$column_inner_classes[] = $this->check_and_return( $item, 'design', 'imagealign' );
+								$column_inner_classes[] = $this->check_and_return( $item, 'design', 'fonts' , 'size' );
+								$column_inner_classes = implode( ' ', $column_inner_classes ); ?>
 
-								<div class="<?php echo $column_inner_class; ?>">
+								<div class="<?php echo $column_inner_classes; ?>">
 									<?php if( NULL != $media ) { ?>
-										<div class="media-image <?php echo ( ( isset( $column['design'][ 'imageratios' ] ) && 'image-round' == $column['design'][ 'imageratios' ] ) ? 'image-rounded' : '' ); ?>">
+										<div class="media-image <?php echo ( ( isset( $item['design'][ 'imageratios' ] ) && 'image-round' == $item['design'][ 'imageratios' ] ) ? 'image-rounded' : '' ); ?>">
 											<?php if( NULL != $link ) { ?><a href="<?php echo $link; ?>"><?php  } ?>
 												<?php echo $media; ?>
 											<?php if( NULL != $link ) { ?></a><?php  } ?>
 										</div>
 									<?php } ?>
 
-									<?php if( $this->check_and_return( $column, 'title' ) || $this->check_and_return( $column, 'excerpt' ) || $this->check_and_return( $column, 'link_text' ) ) { ?>
-										<div class="media-body <?php echo ( isset( $column['design']['fonts'][ 'align' ] ) ) ? $column['design']['fonts'][ 'align' ] : ''; ?>">
-											<?php if( $this->check_and_return( $column, 'title') ) { ?>
+									<?php if( $this->check_and_return( $item, 'title' ) || $this->check_and_return( $item, 'excerpt' ) || $this->check_and_return( $item, 'link_text' ) ) { ?>
+										<div class="media-body <?php echo ( isset( $item['design']['fonts'][ 'align' ] ) ) ? $item['design']['fonts'][ 'align' ] : ''; ?>">
+											<?php if( $this->check_and_return( $item, 'title') ) { ?>
 												<h5 class="heading">
-													<?php if( NULL != $link && ! ( isset( $column['link'] ) && $this->check_and_return( $column , 'link_text' ) ) ) { ?><a href="<?php echo $column['link']; ?>"><?php } ?>
-														<?php echo $column['title']; ?>
-													<?php if( NULL != $link && ! ( isset( $column['link'] ) && $this->check_and_return( $column , 'link_text' ) ) ) { ?></a><?php } ?>
+													<?php if( NULL != $link && ! ( isset( $item['link'] ) && $this->check_and_return( $item , 'link_text' ) ) ) { ?><a href="<?php echo $item['link']; ?>"><?php } ?>
+														<?php echo $item['title']; ?>
+													<?php if( NULL != $link && ! ( isset( $item['link'] ) && $this->check_and_return( $item , 'link_text' ) ) ) { ?></a><?php } ?>
 												</h5>
 											<?php } ?>
-											<?php if( $this->check_and_return( $column, 'excerpt' ) ) { ?>
-												<div class="excerpt"><?php layers_the_content( $column['excerpt'] ); ?></div>
+											<?php if( $this->check_and_return( $item, 'excerpt' ) ) { ?>
+												<div class="excerpt"><?php layers_the_content( $item['excerpt'] ); ?></div>
 											<?php } ?>
-											<?php if( isset( $column['link'] ) && $this->check_and_return( $column , 'link_text' ) ) { ?>
-												<a href="<?php echo $column['link']; ?>" class="button btn-<?php echo $this->check_and_return( $column , 'design' , 'fonts' , 'size' ); ?>"><?php echo $column['link_text']; ?></a>
+											<?php if( isset( $item['link'] ) && $this->check_and_return( $item , 'link_text' ) ) { ?>
+												<a href="<?php echo $item['link']; ?>" class="button btn-<?php echo $this->check_and_return( $item , 'design' , 'fonts' , 'size' ); ?>"><?php echo $item['link_text']; ?></a>
 											<?php } ?>
 										</div>
 									<?php } ?>
@@ -338,46 +322,45 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 			// Parse $instance
 			$widget = wp_parse_args( $instance, $instance_defaults );
 
-			$design_bar_components = apply_filters( 'layers_' . $this->widget_id . '_widget_design_bar_components' , array(
-				'layout',
-				'liststyle' => array(
-					'icon-css' => 'icon-list-masonry',
-					'label' => __( 'List Style', 'layerswp' ),
-					'wrapper-class' => 'layers-small to layers-pop-menu-wrapper layers-animate',
-					'elements' => array(
-						'liststyle' => array(
-							'type' => 'select-icons',
-							'name' => $this->get_field_name( 'design' ) . '[liststyle]' ,
-							'id' =>  $this->get_field_name( 'design-liststyle' ),
-							'value' => ( isset( $widget['design'][ 'liststyle' ] ) ) ? $widget['design'][ 'liststyle' ] : NULL,
-							'options' => array(
-								'list-grid' => __( 'Grid' , 'layerswp' ),
-								'list-masonry' => __( 'Masonry' , 'layerswp' )
-							)
-						),
-						'gutter' => array(
-							'type' => 'checkbox',
-							'label' => __( 'Gutter' , 'layerswp' ),
-							'name' => $this->get_field_name( 'design' ) . '[gutter]' ,
-							'id' =>  $this->get_field_name( 'design-gutter' ),
-							'value' => ( isset( $widget['design']['gutter'] ) ) ? $widget['design']['gutter'] : NULL
-						)
-					)
-				),
-				'fonts',
-				'background',
-				'advanced',
-			) );
-
 			$this->design_bar(
 				'side', // CSS Class Name
-				array(
-					'name' => $this->get_field_name( 'design' ),
-					'id' => $this->get_field_id( 'design' ),
-				), // Widget Object
+				array( // Widget Object
+					'name' => $this->get_layers_field_name( 'design' ),
+					'id' => $this->get_layers_field_id( 'design' ),
+				),
 				$widget, // Widget Values
-				$design_bar_components // Components
-			); ?>
+				apply_filters( 'layers_column_widget_design_bar_components', array( // Components
+					'layout',
+					'liststyle' => array(
+						'icon-css' => 'icon-list-masonry',
+						'label' => __( 'List Style', 'layerswp' ),
+						'wrapper-class' => 'layers-small to layers-pop-menu-wrapper layers-animate',
+						'elements' => array(
+							'liststyle' => array(
+								'type' => 'select-icons',
+								'name' => $this->get_layers_field_name( 'design', 'liststyle' ) ,
+								'id' =>  $this->get_layers_field_id( 'design', 'liststyle' ) ,
+								'value' => ( isset( $widget['design'][ 'liststyle' ] ) ) ? $widget['design'][ 'liststyle' ] : NULL,
+								'options' => array(
+									'list-grid' => __( 'Grid' , 'layerswp' ),
+									'list-masonry' => __( 'Masonry' , 'layerswp' )
+								)
+							),
+							'gutter' => array(
+								'type' => 'checkbox',
+								'label' => __( 'Gutter' , 'layerswp' ),
+								'name' => $this->get_layers_field_name( 'design', 'gutter' ) ,
+								'id' =>  $this->get_layers_field_id( 'design', 'gutter' ) ,
+								'value' => ( isset( $widget['design']['gutter'] ) ) ? $widget['design']['gutter'] : NULL
+							)
+						)
+					),
+					'fonts',
+					'background',
+					'advanced',
+				) )
+			);
+			?>
 			<div class="layers-container-large" id="layers-column-widget-<?php echo $this->number; ?>">
 				
 				<?php $this->form_elements()->header( array(
@@ -390,8 +373,8 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 						<?php echo $this->form_elements()->input(
 							array(
 								'type' => 'text',
-								'name' => $this->get_field_name( 'title' ) ,
-								'id' => $this->get_field_id( 'title' ) ,
+								'name' => $this->get_layers_field_name( 'title' ) ,
+								'id' => $this->get_layers_field_id( 'title' ) ,
 								'placeholder' => __( 'Enter title here' , 'layerswp' ),
 								'value' => ( isset( $widget['title'] ) ) ? $widget['title'] : NULL ,
 								'class' => 'layers-text layers-large'
@@ -402,8 +385,8 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 						<?php echo $this->form_elements()->input(
 							array(
 								'type' => 'rte',
-								'name' => $this->get_field_name( 'excerpt' ) ,
-								'id' => $this->get_field_id( 'excerpt' ) ,
+								'name' => $this->get_layers_field_name( 'excerpt' ) ,
+								'id' => $this->get_layers_field_id( 'excerpt' ) ,
 								'placeholder' =>  __( 'Short Excerpt' , 'layerswp' ),
 								'value' => ( isset( $widget['excerpt'] ) ) ? $widget['excerpt'] : NULL ,
 								'class' => 'layers-textarea layers-large'
@@ -422,7 +405,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 
 		<?php }
 
-		function column_item( $item_guid, $widget ){
+		function column_item( $item_guid, $widget ) {
 			?>
 			<li class="layers-accordion-item" data-guid="<?php echo esc_attr( $item_guid ); ?>">
 				<a class="layers-accordion-title">
@@ -444,7 +427,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 							'show_trash' => FALSE,
 						),
 						$widget, // Widget Values
-						array(  // Components
+						apply_filters( 'layers_column_widget_column_design_bar_components', array( // Components
 							'background',
 							'featuredimage',
 							'imagealign',
@@ -476,8 +459,15 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 									)
 								)
 							),
-						)
-					); ?>
+							'advanced' => array(
+								'elements' => array(
+									'customclass'
+								),
+								'elements_combine' => 'replace',
+							),
+						) )
+					);
+					?>
 					<div class="layers-row">
 						<p class="layers-form-item">
 							<label for="<?php echo $this->get_layers_field_id( 'title' ); ?>"><?php _e( 'Title' , 'layerswp' ); ?></label>

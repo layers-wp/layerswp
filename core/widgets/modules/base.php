@@ -244,13 +244,13 @@ if( !class_exists( 'Layers_Widget' ) ) {
 		}
 		
 		/**
-		* Widget name generation (replaces get_custom_field_id)
-		*
-		* @param    string  $field_name_1   Level 1 name
-		* @param    string  $field_name_2   Level 2 name
-	 	* @param    string  $field_name_3   Level 3 name
-	 	* @return   string  Name attribute
-		*/
+		 * Widget name generation (replaces get_custom_field_id)
+		 *
+		 * @param    string  $field_name_1   Level 1 name
+		 * @param    string  $field_name_2   Level 2 name
+	 	 * @param    string  $field_name_3   Level 3 name
+	 	 * @return   string  Name attribute
+		 */
 		function get_layers_field_name( $field_name_1 = '', $field_name_2 = '', $field_name_3 = '' ) {
 			
 			// If we don't have these important widget details then bail.
@@ -269,18 +269,24 @@ if( !class_exists( 'Layers_Widget' ) ) {
 			if( '' != $field_name_1 ) $string .= '[' . $field_name_1 . ']';
 			if( '' != $field_name_2 ) $string .= '[' . $field_name_2 . ']';
 			if( '' != $field_name_3 ) $string .= '[' . $field_name_3 . ']';
+			
+			if ( ( bool ) layers_get_theme_mod( 'dev-switch-widget-field-names' ) ) {
+				$debug_replace = 'widget-' . $this->id_base . '[' . $this->number . ']';
+				$debug_string = str_replace( $debug_replace, '', $string );
+				echo '<span class="layers-widget-defaults-debug">' . $debug_string . '</span><br />';
+			}
 
 			return $string;
 		}
 
 		/**
-		* Widget id generation (replaces get_custom_field_id)
-		*
-		* @param    string  $field_name_1   Level 1 id
-		* @param    string  $field_name_2   Level 2 id
-	 	* @param    string  $field_name_3   Level 3 id
-	 	* @return   string  Id attribute
-		*/
+		 * Widget id generation (replaces get_custom_field_id)
+		 *
+		 * @param    string  $field_name_1   Level 1 id
+		 * @param    string  $field_name_2   Level 2 id
+	 	 * @param    string  $field_name_3   Level 3 id
+	 	 * @return   string  Id attribute
+		 */
 		function get_layers_field_id( $field_name_1 = '', $field_name_2 = '', $field_id = '' ) {
 			
 			// If we don't have these important widget details then bail.
@@ -351,12 +357,12 @@ if( !class_exists( 'Layers_Widget' ) ) {
 			$this->defaults["{$type}_ids"] = implode( ',', $repeat_ids_array );
 			
 			// Start an empty nested array that will hold the new repeated defaults.
-			$this->defaults[$type] = array();
+			$this->defaults["{$type}s"] = array();
 			
 			// Add a default to each guid element, these will all be the same but are still needed when our defaulting methodology looks for them.
 			$i = 0;
 			foreach( $repeat_ids_array as $item_id ) {
-				$this->defaults[$type][ $item_id ] = $defaults_collection[$i]; // Save them to our defaults property.
+				$this->defaults["{$type}s"][ $item_id ] = $defaults_collection[$i]; // Save them to our defaults property.
 				$i++;
 				if ( ! isset( $defaults_collection[$i] ) ) $i = 0; // Set back to 0 so we loop back around.
 			}
@@ -373,15 +379,15 @@ if( !class_exists( 'Layers_Widget' ) ) {
 			// Set blank instance defaults as backup to be safe.
 			$instance_defaults = array();
 				
-			if ( isset( $this->defaults[$type][$guid] ) ) {
+			if ( isset( $this->defaults["{$type}s"][$guid] ) ) {
 				
 				// Look for defaults created correctly by the register_repeater_defaults() method, with specific guid's.
-				$instance_defaults = $this->defaults[$type][$guid];
+				$instance_defaults = $this->defaults["{$type}s"][$guid];
 			}
-			else if ( isset( $this->defaults[$type] ) && ! empty( $this->defaults[$type] ) ) {
+			else if ( isset( $this->defaults["{$type}s"] ) && ! empty( $this->defaults["{$type}s"] ) ) {
 				
 				// Look for defaults created correctly by the register_repeater_defaults() method, without specific guid's so just get the first one.
-				$instance_defaults = current( $this->defaults[$type] );
+				$instance_defaults = current( $this->defaults["{$type}s"] );
 			}
 			
 			return $instance_defaults;
@@ -427,8 +433,8 @@ if( !class_exists( 'Layers_Widget' ) ) {
 				// This for element is hidden, and will be updated by javascript with the comma separated list of the guid's of the repeater items ordering.
 				echo $this->form_elements()->input( array(
 					'type'  => 'hidden',
-					'name'  => $this->get_field_name( "{$type}_ids" ),
-					'id'    => $this->get_field_id( "{$type}_ids" ),
+					'name'  => $this->get_layers_field_name( "{$type}_ids" ),
+					'id'    => $this->get_layers_field_id( "{$type}_ids" ),
 					'value' => ( isset( $widget["{$type}_ids"] ) ) ? $widget["{$type}_ids"] : NULL,
 					'class' => 'layers-repeater-input',
 				) );

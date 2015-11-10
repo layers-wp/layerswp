@@ -10,7 +10,7 @@
 /**
  * The current version of the theme. Use a random number for SCRIPT_DEBUG mode
  */
-define( 'LAYERS_VERSION', '1.2.6' );
+define( 'LAYERS_VERSION', '1.2.7' );
 define( 'LAYERS_TEMPLATE_URI' , get_template_directory_uri() );
 define( 'LAYERS_TEMPLATE_DIR' , get_template_directory() );
 define( 'LAYERS_THEME_TITLE' , 'Layers' );
@@ -294,6 +294,9 @@ if( ! function_exists( 'layers_scripts' ) ) {
 			true
 		); // Framework
 
+		wp_localize_script( LAYERS_THEME_SLUG . '-framework-js', 'layers_script_settings', array(
+			'header_sticky_breakpoint' => apply_filters( 'layers_sticky_header_breakpoint', 270 ),
+		) );
 
 		if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 			wp_enqueue_script( 'comment-reply' );

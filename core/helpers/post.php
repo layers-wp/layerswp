@@ -28,9 +28,12 @@ if( !function_exists( 'layers_post_meta' ) ) {
 		}
 
 		// If there are no items to display, return nothing
-		if( !is_array( $display ) ) {
-			$display = apply_filters( 'layers_post_meta_display', array( 'date', 'author', 'categories', 'tags' ) );
+		if ( ! $display ) {
+			$display = array( 'date', 'author', 'categories', 'tags' );
 		}
+		
+		// Allow for filtering of the display elements.
+		$display = apply_filters( 'layers_post_meta_display', $display );
 
 		foreach ( $display as $meta ) {
 			switch ( $meta ) {

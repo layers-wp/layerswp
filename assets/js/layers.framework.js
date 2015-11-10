@@ -69,7 +69,7 @@ jQuery(function($) {
 
 	// Handle scroll passsing the go-sticky position.
 	$("body").waypoint({
-		offset 	: -270,
+		offset 	: - layers_script_settings.header_sticky_breakpoint,
 		handler	: function(direction) {
 			if ( 'down' == direction ) {
 

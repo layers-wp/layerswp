@@ -201,6 +201,10 @@ class Layers_Customizer_Config {
 				'title' =>__( 'Fonts' , 'layerswp' ),
 				'panel' => 'site-settings',
 			),
+			'dev-switches' => array(
+				'title' =>__( 'Dev Switches', 'layerswp' ),
+				'panel' => 'site-settings',
+			),
 			'buttons' => array(
 				'title' =>__( 'Buttons' , 'layerswp' ),
 				'panel' => 'buttons',
@@ -308,7 +312,7 @@ class Layers_Customizer_Config {
 			),
 			'header-position-heading' => array(
 				'type'  => 'layers-heading',
-				'heading_divider' => __( 'Header Styling' , 'layerswp' ),
+				'heading_divider' => __( 'Sticky Header' , 'layerswp' ),
 			),
 			'header-sticky' => array(
 				'type'		=> 'layers-checkbox',
@@ -320,6 +324,10 @@ class Layers_Customizer_Config {
 				'type'     => 'layers-checkbox',
 				'label'    => __( 'Transparent Overlay' , 'layerswp' ),
 				'default'	=> FALSE,
+				'linked' => array(
+					'show-if-selector' => '#layers-header-sticky',
+					'show-if-value' => 'true',
+				),
 			),
 		);
 
@@ -393,6 +401,28 @@ class Layers_Customizer_Config {
 				'class' => 'layers-upsell-tag',
 				'label'    => __( 'Upgrade to ColorKit' , 'layerswp' ),
 				'description' => __( 'Want more color customzation? <a target="_blank" href="http://bit.ly/layers-colorkit">Purchase ColorKit</a> and get the full box of crayons!' , 'layerswp' ),
+			),
+		);
+
+		// Site Settings -> Dev Switches
+		$controls['dev-switches'] = array(
+			'dev-switch-active' => array(
+				'type'     => 'layers-checkbox',
+				'label'    => __( 'Dev Switches Active' , 'layerswp' ),
+				'description' => __( 'Unckecking this will immediately remove this panel. To switch it back on you will need to add #layers-dev-switches to your url.' , 'layerswp' ),
+				'default' => '',
+			),
+			'dev-switch-customizer-state-record' => array(
+				'type'     => 'layers-checkbox',
+				'label'    => __( 'Remember State in Customizer' , 'layerswp' ),
+				'description' => __( 'This feature will add #hash values to the customizer URL so that when the page is refreshed the customizer will go back to it\'s same position.' , 'layerswp' ),
+				'default' => '',
+			),
+			'dev-switch-widget-field-names' => array(
+				'type'     => 'layers-checkbox',
+				'label'    => __( "Display Widget Input 'name' Attributes", 'layerswp' ),
+				'description' => __( 'This is used in preparation of a new Widget so developer can quickly see all the possible fields in a Widget and make sure to set defaults for them.', 'layerswp' ),
+				'default' => '',
 			),
 		);
 

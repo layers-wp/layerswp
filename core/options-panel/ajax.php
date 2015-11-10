@@ -157,6 +157,15 @@ if( !class_exists( 'Layers_Onboarding_Ajax' ) ) {
 				$data
 			);
 
+			if( isset( $data[ 'username' ] ) ){
+				global $current_user;
+
+				$user = new stdClass();
+				$user->ID = (int) get_current_user_id();
+				$user->display_name = $data[ 'username' ];
+
+				wp_update_user( $user ) ;
+			}
 			if( isset( $data[ 'layers_intercom' ] ) ){
 				update_option( 'layers_enable_intercom' , '1' );
 			} else{

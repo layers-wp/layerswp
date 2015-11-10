@@ -162,17 +162,22 @@ class Layers_Form_Elements {
 			* Range Inputs
 			*/
 			case 'range' :
-				$input_props['min'] = ( isset( $input->min ) ) ? 'min="' .  $input->min . '"' : NULL ;
-				$input_props['max'] = ( isset( $input->max ) ) ? 'max="' .  $input->max . '"' : NULL ;
-				$input_props['step'] = ( isset( $input->step ) ) ? 'step="' .  $input->step . '"' : NULL ;
+			
+				$range_input_props['min'] = ( isset( $input->min ) ) ? 'min="' .  $input->min . '"' : NULL ;
+				$range_input_props['max'] = ( isset( $input->max ) ) ? 'max="' .  $input->max . '"' : NULL ;
+				$range_input_props['step'] = ( isset( $input->step ) ) ? 'step="' .  $input->step . '"' : NULL ;
 				
-				$number_props = array();
-				$number_props['min'] = $input_props['min'];
-				$number_props['max'] = $input_props['max'];
-				$number_props['step'] = $input_props['step'];
+				$number_input_props['min'] = $range_input_props['min'];
+				$number_input_props['step'] = $range_input_props['step'];
 				?>
-				<input type="range" <?php echo implode ( ' ' , $input_props ); ?> value="<?php echo $input->value; ?>" />
-				<input type="number" <?php echo implode ( ' ' , $input_props ); ?> value="<?php echo $input->value; ?>" />
+				<div class="layers-row">
+					<div class="layers-column layers-span-9">
+						<input type="range" <?php echo implode ( ' ' , $range_input_props ); ?> value="<?php echo $input->value; ?>" />
+					</div>
+					<div class="layers-column layers-span-3">
+						<input type="number" <?php echo implode ( ' ' , $input_props ); ?> <?php echo implode ( ' ' , $number_input_props ); ?> value="<?php echo $input->value; ?>" />
+					</div>
+				</div>
 			<?php break;
 			/**
 			* Checkboxes - here we look for on/NULL, that's how WP widgets save them

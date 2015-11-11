@@ -258,26 +258,17 @@ class Layers_Customizer_Config {
 				'label'    => __( 'Typekit ID' , 'layerswp' ),
 				'description' => sprintf( __( 'For more information on obtaining your Typekit ID, see <a href="%s" target="_blank">follow this link</a>.', 'layerswp' ), 'http://help.typekit.com/customer/portal/articles/6780' ),
 			),
-			'fonts-break-1' => array(
-				'type'     => 'layers-seperator',
-			),
 			'body-fonts' => array(
 				'type' => 'layers-font',
 				'label'    => __( 'Body' , 'layerswp' ),
 				'selectors' => 'body',
 				'choices' => layers_get_google_font_options(),
 			),
-			'fonts-break-1' => array(
-				'type'     => 'layers-seperator',
-			),
 			'heading-fonts' => array(
 				'type' => 'layers-font',
 				'label'    => __( 'Headings' , 'layerswp' ),
 				'selectors' => 'h1,h2,h3,h4,h5,h6, .heading',
 				'choices' => layers_get_google_font_options(),
-			),
-			'fonts-break-2' => array(
-				'type'     => 'layers-seperator',
 			),
 			'form-fonts' => array(
 				'type' => 'layers-font',
@@ -342,14 +333,11 @@ class Layers_Customizer_Config {
 				'type'      => 'layers-checkbox',
 				'label'     => __( 'Display Left Sidebar' , 'layerswp' ),
 				'default'   => FALSE,
-			), // post-sidebar
+			),
 			'single-right-sidebar' => array(
 				'type'      => 'layers-checkbox',
 				'label'     => __( 'Display Right Sidebar' , 'layerswp' ),
 				'default'   => TRUE,
-			), // post-sidebar
-			'content-sidebars-break-2' => array(
-				'type'     => 'layers-seperator',
 			),
 			'archive-sidebar-heading' => array(
 				'type'  => 'layers-heading',
@@ -360,12 +348,12 @@ class Layers_Customizer_Config {
 				'type'		=> 'layers-checkbox',
 				'label' 	=> __( 'Display Left Sidebar' , 'layerswp' ),
 				'default' 	=> FALSE,
-			), // post-sidebar
+			),
 			'archive-right-sidebar' => array(
 				'type'		=> 'layers-checkbox',
 				'label' 	=> __( 'Display Right Sidebar' , 'layerswp' ),
 				'default' 	=> TRUE,
-			), // post-sidebar
+			),
 		);
 
 		// Site Settings -> Colors
@@ -434,9 +422,6 @@ class Layers_Customizer_Config {
 				'description' => __( 'Enter in your Google Analytics ID to enable website traffic reporting. eg. "UA-xxxxxx-xx' , 'layerswp' ),
 				'default' => '',
 			),
-			'header-custom-scripts-break-1' => array(
-				'type'     => 'layers-seperator',
-			),
 			'header-custom-scripts' => array(
 				'type'     => 'layers-code',
 				'label'    => __( 'Custom Scripts' , 'layerswp' ),
@@ -469,9 +454,6 @@ class Layers_Customizer_Config {
 					'3' => __( '3' , 'layerswp' ),
 					'4' => __( '4' , 'layerswp' ),
 				),
-			),
-			'footer-layout-break-2' => array(
-				'type'     => 'layers-seperator',
 			),
 			'show-layers-badge' => array(
 				'label' => __( 'Support Layers' , 'layerswp' ),
@@ -527,14 +509,11 @@ class Layers_Customizer_Config {
 					'type'      => 'layers-checkbox',
 					'label'     => __( 'Display Left Sidebar' , 'layerswp' ),
 					'default'   => FALSE,
-				), // post-sidebar
+				),
 				'single-right-woocommerce-sidebar' => array(
 					'type'      => 'layers-checkbox',
 					'label'     => __( 'Display Right Sidebar' , 'layerswp' ),
 					'default'   => TRUE,
-				), // post-sidebar
-				'woocommerce-break-1' => array(
-					'type'     => 'layers-seperator'
 				),
 				'label-sidebar-archive' => array(
 					'type'  => 'layers-heading',
@@ -545,12 +524,12 @@ class Layers_Customizer_Config {
 					'type'      => 'layers-checkbox',
 					'label'     => __( 'Display Left Sidebar' , 'layerswp' ),
 					'default'   => FALSE,
-				), // post-sidebar
+				),
 				'archive-right-woocommerce-sidebar' => array(
 					'type'      => 'layers-checkbox',
 					'label'     => __( 'Display Right Sidebar' , 'layerswp' ),
 					'default'   => TRUE,
-				), // post-sidebar
+				),
 			);
 		} // if WooCommerce
 

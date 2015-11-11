@@ -8,7 +8,7 @@
  */
 if( !class_exists( 'Layers_Slider_Widget' ) ) {
 	class Layers_Slider_Widget extends Layers_Widget {
-		
+
 		/**
 		*  Widget construction
 		*/
@@ -553,7 +553,7 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 						)
 					)
 				); ?>
-				
+
 				<section class="layers-accordion-section layers-content">
 					<div class="layers-form-item">
 						<?php $this->repeater( 'slide', $widget ); ?>

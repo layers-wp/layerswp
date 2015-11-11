@@ -185,7 +185,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 
 								if( !isset( $item[ 'width' ] ) ) $item[ 'width' ] = 6;
 
-								if( 4 >= $item['width'] && 'layout-fullwidth' != $this->check_and_return( $widget, 'layout' ) ) $use_image_ratio = $image_ratio . '-medium';
+								if( 4 >= $item['width'] && 'layout-fullwidth' != $this->check_and_return( $widget, 'design', 'layout' ) ) $use_image_ratio = $image_ratio . '-medium';
 
 								else $use_image_ratio = $image_ratio . '-large';
 

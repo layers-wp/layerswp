@@ -88,7 +88,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 					)
 				)
 			) );
-			
+
 		}
 
 		/**
@@ -168,7 +168,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 							if( !empty( $item['design']['fonts'][ 'shadow' ] ) ) layers_inline_styles( '#' . $widget_id . '-' . $column_key , 'text-shadow', array( 'selectors' => array( 'h5.heading a', 'h5.heading' , 'div.excerpt' , 'div.excerpt p' )  , 'text-shadow' => $item['design']['fonts'][ 'shadow' ] ) );
 
 							if( !isset( $item[ 'width' ] ) ) $item[ 'width' ] = $this->column_defaults[ 'width' ];
-							
+
 							// Add the correct span class
 							$span_class = 'span-' . $item[ 'width' ];
 
@@ -177,6 +177,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 							$featurevideo = $this->check_and_return( $item , 'design' , 'featuredvideo' );
 
 							// Set Image Sizes
+
 							if( isset( $item['design'][ 'imageratios' ] ) ){
 
 								// Translate Image Ratio into something usable
@@ -184,7 +185,8 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 
 								if( !isset( $item[ 'width' ] ) ) $item[ 'width' ] = 6;
 
-								if( 4 > $item['width'] ) $use_image_ratio = $image_ratio . '-medium';
+								if( 4 >= $item['width'] && 'layout-fullwidth' != $this->check_and_return( $widget, 'layout' ) ) $use_image_ratio = $image_ratio . '-medium';
+
 								else $use_image_ratio = $image_ratio . '-large';
 
 							} else {
@@ -362,7 +364,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 				$design_bar_components // Components
 			); ?>
 			<div class="layers-container-large" id="layers-column-widget-<?php echo $this->number; ?>">
-				
+
 				<?php $this->form_elements()->header( array(
 					'title' =>'Content',
 					'icon_class' =>'text'
@@ -394,13 +396,13 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 						); ?>
 					</p>
 				</section>
-				
+
 				<section class="layers-accordion-section layers-content">
 					<div class="layers-form-item">
 						<?php $this->repeater( 'column', $widget ); ?>
 					</div>
 				</section>
-				
+
 			</div>
 
 		<?php }

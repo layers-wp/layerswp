@@ -34,6 +34,12 @@ if( !class_exists( 'Layers_Customize_Control' ) ) {
 		public $default = NULL;
 		
 		public $colspan;
+		
+		public $min;
+		
+		public $max;
+		
+		public $step;
 
 		/**
 		* Render content must be overwrittedn by etending class as this renders the control.

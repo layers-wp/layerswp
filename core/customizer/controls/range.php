@@ -12,12 +12,6 @@ if( !class_exists( 'Layers_Customize_Range_Control' ) ) {
 	class Layers_Customize_Range_Control extends Layers_Customize_Control {
 
 		public $type = 'layers-range';
-		
-		public $min;
-		
-		public $max;
-		
-		public $step;
 
 		public function render_content() {
 

@@ -116,15 +116,15 @@ class Layers_Form_Elements {
 	public function input( $args = array() ) {
 
 		$defaults = array(
-				'type' => 'text',
-				'name' => NULL ,
-				'id' => NULL ,
-				'placeholder' => NULL,
-				'data' => NULL,
-				'value' => NULL ,
-				'class' => NULL,
-				'options' => array()
-			);
+			'type' => 'text',
+			'name' => NULL ,
+			'id' => NULL ,
+			'placeholder' => NULL,
+			'data' => NULL,
+			'value' => NULL ,
+			'class' => NULL,
+			'options' => array(),
+		);
 
 		// Turn $args into their own variables
 		$input = (object) wp_parse_args( $args, $defaults );
@@ -138,7 +138,7 @@ class Layers_Form_Elements {
 		$input_props = array();
 		$input_props['id'] = ( NULL != $input->id && 'select-icons' != $input->type ) ? 'id="' .  $input->id . '"' : NULL ;
 		$input_props['name'] = ( NULL != $input->name ) ? 'name="' .  $input->name . '"' : NULL ;
-		$input_props['placeholder'] = ( NULL != $input->placeholder ) ? 'placeholder="' . esc_attr( $input->placeholder ) . '"' : NULL ;
+		$input_props['placeholder'] = ( NULL !== $input->placeholder ) ? 'placeholder="' . esc_attr( $input->placeholder ) . '"' : NULL ;
 		$input_props['class'] = ( NULL != $input->class ) ? 'class="' .  $input->class . '"' : NULL ;
 		$input_props['disabled'] = isset( $input->disabled ) ? 'disabled="disabled"' : NULL ;
 
@@ -168,10 +168,10 @@ class Layers_Form_Elements {
 				
 				$number_input_props['step'] = ( isset( $input->step ) ) ? 'step="' .  $input->step . '"' : NULL ;
 				
-				$range_input_props['min'] = ( isset( $input->min ) ) ? 'min="' .  $input->min . '"' : NULL ;
-				$range_input_props['max'] = ( isset( $input->max ) ) ? 'max="' .  $input->max . '"' : NULL ;
-				$range_input_props['step'] = ( isset( $input->step ) ) ? 'step="' .  $input->step . '"' : NULL ;
-				$range_input_props['placeholder'] = ( isset( $input->placeholder ) ) ? 'placeholder="' .  $input->placeholder . '"' : NULL ;
+				$range_input_props['min'] = ( NULL !== $input->min ) ? 'min="' .  $input->min . '"' : NULL ;
+				$range_input_props['max'] = ( NULL !== $input->max ) ? 'max="' .  $input->max . '"' : NULL ;
+				$range_input_props['step'] = ( NULL !== $input->step ) ? 'step="' .  $input->step . '"' : NULL ;
+				$range_input_props['placeholder'] = ( NULL !== $input->placeholder ) ? 'placeholder="' .  $input->placeholder . '"' : NULL ;
 				
 				if ( isset( $input->value ) && '' !== $input->value )
 					$range_input_props['value'] = 'value="' .  $input->value . '"';

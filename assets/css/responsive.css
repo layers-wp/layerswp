@@ -422,10 +422,24 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 /*--------------------------------------------------------------*/
 @media only screen and (max-width: 768px){
 
-    .header-inline .inline-right-nav{
-        float: right;
-        margin-right: 0;
+    /*---------------------------*/
+    /*- HEADER INLINE -----------*/
+    .header-inline .container{
+        justify-content: space-between;
     }
+    .header-inline .inline-site-logo{
+        display: flex;
+        flex: 1 1 0%;
+    }
+    .header-inline .inline-right-nav{
+        display: flex;
+        flex-direction: row-reverse;
+    }
+    .header-inline .inline-left-nav,
+    .header-site.header-inline nav{
+        display: none;
+    }
+
 
     .pull-left,
     .pull-right{
@@ -654,8 +668,8 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
     .header-center{
         text-align: center;
     }
-    .header-center .logo{
-        float: none;
+    .header-center .container{
+        flex-direction: column;
     }
     .header-center .site-description{
         display: block;
@@ -668,8 +682,6 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
         margin-top: 10px;
     }
     .header-center nav{
-        clear: both;
-        float: none;
         margin-top: 20px;
         text-align: center;
         line-height: 20px;
@@ -677,44 +689,47 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
     /*---------------------------*/
     /*- ALIGNMENT INLINE --------*/
-    .header-inline .logo{
-        text-align: center;
+    .header-inline .container{
+        justify-content: center;
     }
-    .header-inline .site-description{
-        display: block;
-        margin: 0;
+    .header-inline .inline-site-logo{
+        display: flex;
+        justify-content: center;
+        margin: 0 20px;
+        z-index: 1;
     }
-    .header-inline .site-logo-link + .site-description{
-        margin-top: 10px;
-    }
-    .header-inline .column{
-        margin: 0;
-    }
+
+        .header-inline .logo{
+            text-align: center;
+        }
+        .header-inline .site-description{
+            display: block;
+            margin: 0;
+        }
+        .header-inline .site-logo-link + .site-description{
+            margin-top: 10px;
+        }
+
     .header-inline .inline-left-nav{
-        float: left;
-        width: 40.5%;
-        text-align: right;
+        width: 40%;
     }
     .header-inline .inline-right-nav{
-        float: right;
-        width: 40.5%;
-        text-align: left;
+        display: flex;
+        flex-wrap: no-wrap;
+        align-items: flex-start;
+        width: 40%;
         position: relative;
         z-index: 2;
     }
     .header-inline .inline-right-nav nav{
-        float: none;
-    }
-    .header-inline .inline-site-logo{
-        width: 15%;
-        margin: 0 2%;
-        z-index: 1;
+        display: block;
     }
 
     /*---------------------------*/
     /*- NAV BOTTOM --------------*/
-    .nav-clear .logo{
-        float: none;
+    .nav-clear .container{
+        flex-direction: column;
+        align-items: flex-start;
     }
     .nav-clear .site-logo-link + .sitename{
         margin-top: 10px;
@@ -724,8 +739,6 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
     }
     .nav-clear nav{
         display: block;
-        float: none;
-        clear: both;
         margin: 20px 0 0;
         line-height: 20px;
     }
@@ -779,6 +792,7 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
         left: 0;
         width: 100%;
         height: 100%;
+        margin: 0;
         visibility: hidden;
         opacity: 0;
         transition: 0.2s all ease-in-out;

@@ -8,6 +8,7 @@
 * **Fix** - Added https:// support to the onboarding and migrator external urls (videos and images). *MP*
 * **Fix** - Adding a new slider threw an error until updated. Now the first add works straight up. *SOB*
 * **Fix** - Fixed JS error notice when changing Font select. *SOB*
+* **Enhancement** - Header CSS now converted to flexbox for better handling of Layers Pro and general framework modernization. *DP*
 
 =======
 ##1.2.6

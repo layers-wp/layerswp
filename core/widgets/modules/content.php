@@ -212,6 +212,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 							$classes[] = $span_class;
 							$classes[] = ( 'list-masonry' == $this->check_and_return( $widget, 'design', 'liststyle' ) ? 'no-gutter' : '' );
 							$classes[] = 'column' . ( 'on' != $this->check_and_return( $widget, 'design', 'gutter' ) ? '-flush' : '' );
+							$classes[] = $this->check_and_return( $item, 'design', 'advanced', 'customclass' ); // Apply custom class from design-bar's advanced control.
 							if( '' != $this->check_and_return( $item, 'design' , 'background', 'image' ) || '' != $this->check_and_return( $item, 'design' , 'background', 'color' ) ) {
 								$classes[] = 'content';
 							}
@@ -323,46 +324,45 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 			// Parse $instance
 			$widget = wp_parse_args( $instance, $instance_defaults );
 
-			$design_bar_components = apply_filters( 'layers_' . $this->widget_id . '_widget_design_bar_components' , array(
-				'layout',
-				'liststyle' => array(
-					'icon-css' => 'icon-list-masonry',
-					'label' => __( 'List Style', 'layerswp' ),
-					'wrapper-class' => 'layers-small to layers-pop-menu-wrapper layers-animate',
-					'elements' => array(
-						'liststyle' => array(
-							'type' => 'select-icons',
-							'name' => $this->get_layers_field_name( 'design', 'liststyle' ) ,
-							'id' =>  $this->get_layers_field_id( 'design', 'liststyle' ) ,
-							'value' => ( isset( $widget['design'][ 'liststyle' ] ) ) ? $widget['design'][ 'liststyle' ] : NULL,
-							'options' => array(
-								'list-grid' => __( 'Grid' , 'layerswp' ),
-								'list-masonry' => __( 'Masonry' , 'layerswp' )
-							)
-						),
-						'gutter' => array(
-							'type' => 'checkbox',
-							'label' => __( 'Gutter' , 'layerswp' ),
-							'name' => $this->get_layers_field_name( 'design', 'gutter' ) ,
-							'id' =>  $this->get_layers_field_id( 'design', 'gutter' ) ,
-							'value' => ( isset( $widget['design']['gutter'] ) ) ? $widget['design']['gutter'] : NULL
-						)
-					)
-				),
-				'fonts',
-				'background',
-				'advanced',
-			) );
-
 			$this->design_bar(
 				'side', // CSS Class Name
-				array(
+				array( // Widget Object
 					'name' => $this->get_layers_field_name( 'design' ),
 					'id' => $this->get_layers_field_id( 'design' ),
-				), // Widget Object
+				),
 				$widget, // Widget Values
-				$design_bar_components // Components
-			); ?>
+				apply_filters( 'layers_column_widget_design_bar_components', array( // Components
+					'layout',
+					'liststyle' => array(
+						'icon-css' => 'icon-list-masonry',
+						'label' => __( 'List Style', 'layerswp' ),
+						'wrapper-class' => 'layers-small to layers-pop-menu-wrapper layers-animate',
+						'elements' => array(
+							'liststyle' => array(
+								'type' => 'select-icons',
+								'name' => $this->get_layers_field_name( 'design', 'liststyle' ) ,
+								'id' =>  $this->get_layers_field_id( 'design', 'liststyle' ) ,
+								'value' => ( isset( $widget['design'][ 'liststyle' ] ) ) ? $widget['design'][ 'liststyle' ] : NULL,
+								'options' => array(
+									'list-grid' => __( 'Grid' , 'layerswp' ),
+									'list-masonry' => __( 'Masonry' , 'layerswp' )
+								)
+							),
+							'gutter' => array(
+								'type' => 'checkbox',
+								'label' => __( 'Gutter' , 'layerswp' ),
+								'name' => $this->get_layers_field_name( 'design', 'gutter' ) ,
+								'id' =>  $this->get_layers_field_id( 'design', 'gutter' ) ,
+								'value' => ( isset( $widget['design']['gutter'] ) ) ? $widget['design']['gutter'] : NULL
+							)
+						)
+					),
+					'fonts',
+					'background',
+					'advanced',
+				) )
+			);
+			?>
 			<div class="layers-container-large" id="layers-column-widget-<?php echo $this->number; ?>">
 
 				<?php $this->form_elements()->header( array(
@@ -407,7 +407,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 
 		<?php }
 
-		function column_item( $item_guid, $widget ){
+		function column_item( $item_guid, $widget ) {
 			?>
 			<li class="layers-accordion-item" data-guid="<?php echo esc_attr( $item_guid ); ?>">
 				<a class="layers-accordion-title">
@@ -429,7 +429,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 							'show_trash' => FALSE,
 						),
 						$widget, // Widget Values
-						array(  // Components
+						apply_filters( 'layers_column_widget_column_design_bar_components', array( // Components
 							'background',
 							'featuredimage',
 							'imagealign',
@@ -461,8 +461,15 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 									)
 								)
 							),
-						)
-					); ?>
+							'advanced' => array(
+								'elements' => array(
+									'customclass'
+								),
+								'elements_combine' => 'replace',
+							),
+						) )
+					);
+					?>
 					<div class="layers-row">
 						<p class="layers-form-item">
 							<label for="<?php echo $this->get_layers_field_id( 'title' ); ?>"><?php _e( 'Title' , 'layerswp' ); ?></label>

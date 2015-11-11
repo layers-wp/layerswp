@@ -180,7 +180,7 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 			}
 
 			$widget_container_class = implode( ' ', apply_filters( 'layers_slider_widget_container_class' , $widget_container_class ) );
-
+			
 			/**
 			 * Slider HTML
 			 */
@@ -254,6 +254,7 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 							if( isset( $item['design']['fonts'][ 'align' ] ) && '' != $item['design']['fonts'][ 'align' ] ) {
 								$slide_class[] = $item['design']['fonts'][ 'align' ];
 							}
+							$slide_class[] = $this->check_and_return( $item, 'design', 'advanced', 'customclass' ); // Apply custom class from design-bar's advanced control.
 							$slide_class = implode( ' ', $slide_class );
 
 							// Set link entire slide or not
@@ -426,12 +427,7 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 			// Parse $instance
 			$widget = wp_parse_args( $instance, $instance_defaults );
 
-			$design_bar_components = apply_filters( 'layers_' . $this->widget_id . '_widget_design_bar_components' , array(
-				'custom',
-				'advanced'
-			) );
-
-			$design_bar_custom_components = apply_filters( 'layers_' . $this->widget_id . '_widget_design_bar_custom_components' , array(
+			$components = apply_filters( 'layers_slide_widget_design_bar_components', array(
 				'layout' => array(
 					'icon-css' => 'icon-layout-fullwidth',
 					'label' => __( 'Layout', 'layerswp' ),
@@ -524,17 +520,20 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 						),
 					),
 				),
+				'advanced',
 			) );
+			
+			// Legacy application of this filter - Do Not Use! (will be removed soon)
+			$components = apply_filters( 'layers_slide_widget_design_bar_custom_components', $components );
 
 			$this->design_bar(
 				'side', // CSS Class Name
-				array(
+				array( // Widget Object
 					'name' => $this->get_layers_field_name( 'design' ),
 					'id' => $this->get_layers_field_id( 'design' ),
-				), // Widget Object
+				),
 				$widget, // Widget Values
-				$design_bar_components, // Standard Components
-				$design_bar_custom_components // Add-on Components
+				$components // Components
 			); ?>
 			<div class="layers-container-large" id="layers-slide-widget-<?php echo esc_attr( $this->number ); ?>">
 
@@ -587,7 +586,7 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 							'show_trash' => FALSE
 						), // Widget Object
 						$widget, // Widget Values
-						array(
+						apply_filters( 'layers_slide_widget_slide_design_bar_components', array( // Components
 							'background',
 							'featuredimage',
 							'imagealign' => array(
@@ -603,7 +602,13 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 								),
 							),
 							'fonts',
-						) // Standard Components
+							'advanced' => array(
+								'elements' => array(
+									'customclass'
+								),
+								'elements_combine' => 'replace',
+							),
+						) )
 					); ?>
 					<div class="layers-row">
 						<p class="layers-form-item">

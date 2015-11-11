@@ -220,11 +220,11 @@ class Layers_Design_Controller {
 			<?php if ( isset( $form_args['wrapper'] ) ) { ?>
 				</<?php echo $form_args['wrapper']; ?>>
 			<?php } ?>
-			
+
 			<?php if ( isset( $form_args['description'] ) ) { ?>
 				<div class="layers-form-item-description"><?php echo $form_args['description']; ?></div>
 			<?php } ?>
-			
+
 		</div>
 		<?php
 	}
@@ -822,9 +822,16 @@ class Layers_Design_Controller {
 				'id' => $this->get_layers_field_id( 'advanced', 'margin' ),
 				'value' => ( isset( $this->values['advanced']['margin'] ) ) ? $this->values['advanced']['margin'] : NULL
 			),
+			'anchor' => array(
+				'type' => 'text',
+				'label' => __( 'Custom Anchor', 'layerswp' ),
+				'name' => $this->get_layers_field_name( 'advanced', 'anchor' ) ,
+				'id' => $this->get_layers_field_id( 'advanced', 'anchor' ) ,
+				'value' => ( isset( $this->values['advanced']['anchor'] ) ) ? $this->values['advanced']['anchor'] : NULL
+			),
 			'widget-id' => array(
 				'type' => 'text',
-				'label' => __( 'Widget Anchor ID', 'layerswp' ),
+				'label' => __( 'Widget ID', 'layerswp' ),
 				'disabled' => FALSE,
 				'value' => '#'  . str_replace( 'widget-layers', 'layers', str_ireplace( '-design' , '', $this->widget['id'] ) )
 			)

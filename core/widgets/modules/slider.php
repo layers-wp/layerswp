@@ -180,7 +180,7 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 			}
 
 			$widget_container_class = implode( ' ', apply_filters( 'layers_slider_widget_container_class' , $widget_container_class ) );
-			
+
 			/**
 			 * Slider HTML
 			 */
@@ -188,7 +188,7 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 
 			<?php if( ! empty( $widget[ 'slides' ] ) ) { ?>
 
-				<section id="<?php echo esc_attr( $widget_id ); ?>" class="<?php echo esc_attr( $widget_container_class ); ?>" style="<?php echo esc_attr( $slider_height_css ); ?>" >
+				<section id="<?php echo esc_attr( $widget_id ); ?>" class="<?php echo esc_attr( $widget_container_class ); ?>" style="<?php echo esc_attr( $slider_height_css ); ?>"  <?php echo $this->custom_anchor( $widget ); ?>>
 
 					<?php if( 1 < count( $widget[ 'slides' ] ) && isset( $widget['show_slider_arrows'] ) ) { ?>
 						 <div class="arrows">
@@ -520,9 +520,9 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 						),
 					),
 				),
-				'advanced',
+				'advanced'
 			) );
-			
+
 			// Legacy application of this filter - Do Not Use! (will be removed soon)
 			$components = apply_filters( 'layers_slide_widget_design_bar_custom_components', $components );
 

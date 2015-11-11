@@ -217,7 +217,7 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 			$widget_container_class[] = $this->get_widget_spacing_class( $widget );
 			$widget_container_class = implode( ' ', apply_filters( 'layers_post_widget_container_class' , $widget_container_class ) ); ?>
 
-			<section id="<?php echo esc_attr( $widget_id ); ?>" class="<?php echo esc_attr( $widget_container_class ); ?>">
+			<section id="<?php echo esc_attr( $widget_id ); ?>" class="<?php echo esc_attr( $widget_container_class ); ?>" <?php echo $this->custom_anchor( $widget ); ?>>
 				<?php if( '' != $this->check_and_return( $widget , 'title' ) ||'' != $this->check_and_return( $widget , 'excerpt' ) ) { ?>
 					<div class="container clearfix">
 						<?php /**
@@ -515,7 +515,7 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 					'liststyle',
 					'imageratios',
 					'background',
-					'advanced'
+					'advanced',
 				) )
 			); ?>
 			<div class="layers-container-large">

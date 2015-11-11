@@ -134,10 +134,10 @@ if( !class_exists( 'Layers_Contact_Widget' ) ) {
 			if( !$show_title_or_excerpt && !$show_address_or_contactform  ) $widget_container_class[] = 'no-inset-top no-inset-bottom';
 			$widget_container_class = implode( ' ', apply_filters( 'layers_contact_widget_container_class' , $widget_container_class ) ); ?>
 
-			<section id="<?php echo esc_attr( $widget_id ); ?>" class="<?php echo esc_attr( $widget_container_class ); ?>">
+			<section id="<?php echo esc_attr( $widget_id ); ?>" class="<?php echo esc_attr( $widget_container_class ); ?>" <?php echo $this->custom_anchor( $widget ); ?>>
 				<?php if( $show_title_or_excerpt ) { ?>
 					<div class="container clearfix">
-						<?php /**
+						<?php /**f
 						* Generate the Section Title Classes
 						*/
 						$section_title_class = array();
@@ -303,7 +303,7 @@ if( !class_exists( 'Layers_Contact_Widget' ) ) {
 						),
 					),
 					'background',
-					'advanced',
+					'advanced'
 				) )
 			); ?>
 

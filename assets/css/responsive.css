@@ -668,7 +668,8 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
     .header-center{
         text-align: center;
     }
-    .header-center .container{
+    .header-center .container,
+    .header-center > .clearfix{
         flex-direction: column;
     }
     .header-center .site-description{
@@ -689,7 +690,8 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
     /*---------------------------*/
     /*- ALIGNMENT INLINE --------*/
-    .header-inline .container{
+    .header-inline .container,
+    .header-inline > .clearfix{
         justify-content: center;
     }
     .header-inline .inline-site-logo{
@@ -727,7 +729,8 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
     /*---------------------------*/
     /*- NAV BOTTOM --------------*/
-    .nav-clear .container{
+    .nav-clear .container,
+    .nav-clear > .clearfix{
         flex-direction: column;
         align-items: flex-start;
     }

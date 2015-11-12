@@ -429,7 +429,8 @@ object{
         background-repeat: no-repeat;
     }
 
-    .header-site .container{
+    .header-site .container,
+    .header-site > .clearfix{
         display: flex;
         flex-wrap: nowrap;
         align-items: center;
@@ -474,7 +475,8 @@ object{
 
     /*---------------------------*/
     /*- ALIGNMENT RIGHT ---------*/
-    .header-right .container{
+    .header-right .container,
+    .header-right > .clearfix{
         flex-direction: row-reverse;
     }
     .header-right .logo{

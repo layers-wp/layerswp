@@ -27,12 +27,6 @@ if( !class_exists( 'Layers_Customize_Checkbox_Control' ) ) {
 					<?php $this->render_heading_divider( $this->heading_divider ); ?>
 				<?php } ?>
 				
-				<?php if ( '' != $this->description ) : ?>
-					<div class="description customize-control-description">
-						<?php echo $this->description; ?>
-					</div>
-				<?php endif; ?>
-				
 				<div class="layers-form-item">
 					<div class="layers-checkbox-wrapper layers-form-item">
 						<?php echo $form_elements->input(
@@ -46,6 +40,12 @@ if( !class_exists( 'Layers_Customize_Checkbox_Control' ) ) {
 						); ?>
 					</div>
 				</div>
+				
+				<?php if ( '' != $this->description ) : ?>
+					<div class="description customize-control-description">
+						<?php echo $this->description; ?>
+					</div>
+				<?php endif; ?>
 
 			</div>
 			<?php

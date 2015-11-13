@@ -239,9 +239,8 @@ class Layers_Customizer_Config {
 			'body-customization' => array(
 				'title' =>__( 'Customization' , 'layerswp' ),
 				'panel' => 'body',
-			)
+			),
 		);
-
 
 		return apply_filters( 'layers_customizer_sections', $sections );
 	}
@@ -250,6 +249,15 @@ class Layers_Customizer_Config {
 
 		// Setup some folder variables
 		$customizer_dir = '/core/customizer/';
+		
+		$controls['title_tagline'] = array(
+			'upsell-layers-pro-heading' => array(
+				'type'  => 'layers-heading',
+				'class' => 'layers-upsell-tag',
+				'label'    => __( 'Upgrade to Layer Pro' , 'layerswp' ),
+				'description' => __( 'Want more control over your Logo Size & Header Layout? <a target="_blank" href="http://bit.ly/layers-colorkit">Purchase Layers Pro</a> to unlock the full power of Layers!' , 'layerswp' ),
+			),
+		);
 
 		// Site Settings -> Fonts
 		$controls['fonts'] = array(

@@ -66,8 +66,10 @@ class Layers_Customizer_Config {
 	*/
 
 	private function panels(){
-
-		$panels = array(
+		global $layers_customizer_panels;
+		
+		// Set intial config.
+		$layers_customizer_panels = array(
 			'site-settings' => array(
 							'title' => __( 'Site Settings' , 'layerswp' ),
 							'description' => __( 'Control your content\'s default layout.' , 'layerswp' ), // @TODO Put a helper here
@@ -89,7 +91,7 @@ class Layers_Customizer_Config {
 						),
 		);
 
-		return apply_filters( 'layers_customizer_panels', $panels );
+		return apply_filters( 'layers_customizer_panels', $layers_customizer_panels );
 	}
 
 	/**
@@ -170,8 +172,10 @@ class Layers_Customizer_Config {
 	*/
 
 	private function sections(){
-
-		$sections = array(
+		global $layers_customizer_sections;
+		
+		// Set intial config.
+		$layers_customizer_sections = array(
 			
 			// Following default sections need to be added so our registration process can access them
 			'title_tagline' => array(
@@ -242,15 +246,21 @@ class Layers_Customizer_Config {
 			),
 		);
 
-		return apply_filters( 'layers_customizer_sections', $sections );
+		return apply_filters( 'layers_customizer_sections', $layers_customizer_sections );
 	}
 
-	private function controls( $controls = array() ){
-
+	private function controls(){
+		
+		global $layers_customizer_controls;
+		
 		// Setup some folder variables
 		$customizer_dir = '/core/customizer/';
 		
-		$controls['title_tagline'] = array(
+		// Set intial config.
+		$layers_customizer_controls = array();
+		
+		// Site Settings -> Logo & Title
+		$layers_customizer_controls['title_tagline'] = array(
 			'upsell-layers-pro-heading' => array(
 				'type'  => 'layers-heading',
 				'class' => 'layers-upsell-tag',
@@ -260,7 +270,7 @@ class Layers_Customizer_Config {
 		);
 
 		// Site Settings -> Fonts
-		$controls['fonts'] = array(
+		$layers_customizer_controls['fonts'] = array(
 			'typekit-id' => array(
 				'type' => 'layers-text',
 				'label'    => __( 'Typekit ID' , 'layerswp' ),
@@ -287,7 +297,7 @@ class Layers_Customizer_Config {
 		);
 
 		// Site Settings -> Layout
-		$controls['header-layout'] = array(
+		$layers_customizer_controls['header-layout'] = array(
 			'header-width' => array(
 				'type'     => 'layers-select-icons',
 				'heading_divider' => __( 'Header Width' , 'layerswp' ),
@@ -331,7 +341,7 @@ class Layers_Customizer_Config {
 		);
 
 		// Site Settings -> Sidebars
-		$controls['content-sidebars'] = array(
+		$layers_customizer_controls['content-sidebars'] = array(
 			'single-sidebar-heading' => array(
 				'type'  => 'layers-heading',
 				'label'    => __( 'Single Post Sidebar(s)' , 'layerswp' ),
@@ -365,7 +375,7 @@ class Layers_Customizer_Config {
 		);
 
 		// Site Settings -> Colors
-		$controls['site-colors'] = array(
+		$layers_customizer_controls['site-colors'] = array(
 			'site-color-heading' => array(
 				'type'  => 'layers-heading',
 				'label'    => __( 'Site Wide Colors' , 'layerswp' ),
@@ -401,7 +411,7 @@ class Layers_Customizer_Config {
 		);
 
 		// Site Settings -> Dev Switches
-		$controls['dev-switches'] = array(
+		$layers_customizer_controls['dev-switches'] = array(
 			'dev-switch-active' => array(
 				'type'     => 'layers-checkbox',
 				'label'    => __( 'Dev Switches Active' , 'layerswp' ),
@@ -423,7 +433,7 @@ class Layers_Customizer_Config {
 		);
 
 		// Header -> Additional Scripts
-		$controls['header-scripts'] = array(
+		$layers_customizer_controls['header-scripts'] = array(
 			'header-google-id' => array(
 				'type'     => 'layers-text',
 				'label'    => __( 'Google Analytics ID' , 'layerswp' ),
@@ -439,7 +449,7 @@ class Layers_Customizer_Config {
 		);
 
 		// Footer -> Layout
-		$controls['footer-layout'] = array(
+		$layers_customizer_controls['footer-layout'] = array(
 			'footer-width' => array(
 				'type'     => 'layers-select-icons',
 				'heading_divider' => __( 'Footer Width' , 'layerswp' ),
@@ -472,7 +482,7 @@ class Layers_Customizer_Config {
 		);
 
 		// Footer -> Text
-		$controls['footer-text'] = array(
+		$layers_customizer_controls['footer-text'] = array(
 			'footer-copyright-text' => array(
 				'type'     => 'layers-text',
 				'label'    => __( 'Copyright Text' , 'layerswp' ),
@@ -482,7 +492,7 @@ class Layers_Customizer_Config {
 		);
 
 		// Footer -> Additional Scripts
-		$controls['footer-scripts'] = array(
+		$layers_customizer_controls['footer-scripts'] = array(
 			'footer-custom-scripts' => array(
 				'type'     => 'layers-code',
 				'label'    => __( 'Custom Scripts' , 'layerswp' ),
@@ -492,7 +502,7 @@ class Layers_Customizer_Config {
 		);
 
 		// CSS
-		$controls['css'] = array(
+		$layers_customizer_controls['css'] = array(
 			'custom-css' => array(
 				'type'     => 'layers-code',
 				'placeholder'	=> ".classname {\n\tbackground: #333;\n}",
@@ -507,7 +517,7 @@ class Layers_Customizer_Config {
 		);
 
 		if( class_exists( 'WooCommerce' ) ) {
-			$controls[ 'woocommerce-sidebars' ] = array(
+			$layers_customizer_controls[ 'woocommerce-sidebars' ] = array(
 				'label-sidebar-single' => array(
 					'type'  => 'layers-heading',
 					'label'    => __( 'Single Product Sidebar(s)' , 'layerswp' ),
@@ -541,11 +551,13 @@ class Layers_Customizer_Config {
 			);
 		} // if WooCommerce
 
-		$controls = apply_filters( 'layers_customizer_controls', $controls );
+		do_action( 'layers_customizer_controls_modify' );
+		
+		$layers_customizer_controls = apply_filters( 'layers_customizer_controls', $layers_customizer_controls );
+		
+		$layers_customizer_controls = $this->apply_defaults( $layers_customizer_controls );
 
-		$controls = $this->apply_defaults( $controls );
-
-		return $controls;
+		return $layers_customizer_controls;
 	}
 
 	private function apply_defaults( $controls ){

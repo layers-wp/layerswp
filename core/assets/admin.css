@@ -996,6 +996,9 @@ div[id*='layers-widget'] .spinner{
         border: 1px solid #ddd;
         box-shadow: inset 1px 1px 2px rgba(0, 0, 0, 0.1);
     }
+    .layers-customize-control:not(.layers-customize-control-color) .layers-form-item input[type="range"]{
+        height: 36px;
+    }
     .layers-form-item textarea {
         min-height: 100px;
     }
@@ -1815,10 +1818,9 @@ li[id*='accordion-section-layers'] .customize-control.customize-control-image .a
     .layers-customize-control-range input[type="range"]{
         width: 95%;
         display: inline-block;
-        height: 11px;
+        height: 35px;
         padding: 0;
         margin: 0 5% 0 0;
-        vertical-align: top;
     }
     .layers-customize-control-range input[type="number"] {
         /* width: 25%; */
@@ -1869,9 +1871,9 @@ li[id*='accordion-section-layers'] .customize-control.customize-control-image .a
     .layers-customize-control.group input[type="number"]{
         padding-right: 2px;
     }
-    .layers-customize-control.group input[type="range"]{
-        padding: 0;
+    .layers-customize-control.group:not(.layers-customize-control-color) input[type="range"]{
         background: transparent;
+        height: 28px;
     }
     .layers-customize-control.group .description {
         font-size: 12px;

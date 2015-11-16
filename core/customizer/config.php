@@ -67,7 +67,7 @@ class Layers_Customizer_Config {
 
 	private function panels(){
 		global $layers_customizer_panels;
-		
+
 		// Set intial config.
 		$layers_customizer_panels = array(
 			'site-settings' => array(
@@ -110,7 +110,7 @@ class Layers_Customizer_Config {
 
 		return apply_filters( 'layers_customizer_default_panels', $default_panels );
 	}
-	
+
 	/**
 	* Layers Customiser Sections
 	*
@@ -142,7 +142,7 @@ class Layers_Customizer_Config {
 
 		return apply_filters( 'layers_customizer_default_sections', $default_sections );
 	}
-	
+
 	/**
 	* Default WP Customiser Controls
 	*
@@ -173,10 +173,10 @@ class Layers_Customizer_Config {
 
 	private function sections(){
 		global $layers_customizer_sections;
-		
+
 		// Set intial config.
 		$layers_customizer_sections = array(
-			
+
 			// Following default sections need to be added so our registration process can access them
 			'title_tagline' => array(
 				'panel' => 'site-settings'
@@ -191,7 +191,7 @@ class Layers_Customizer_Config {
 				'panel' => 'site-settings',
 			),
 			// End default sections
-			
+
 			'site-colors' => array(
 				'title' =>__( 'Colors' , 'layerswp' ),
 				'panel' => 'site-settings',
@@ -250,15 +250,15 @@ class Layers_Customizer_Config {
 	}
 
 	private function controls(){
-		
+
 		global $layers_customizer_controls;
-		
+
 		// Setup some folder variables
 		$customizer_dir = '/core/customizer/';
-		
+
 		// Set intial config.
 		$layers_customizer_controls = array();
-		
+
 		// Site Settings -> Logo & Title
 		$layers_customizer_controls['title_tagline'] = array(
 			'upsell-layers-pro-heading' => array(
@@ -473,21 +473,17 @@ class Layers_Customizer_Config {
 					'4' => __( '4' , 'layerswp' ),
 				),
 			),
-			'show-layers-badge' => array(
-				'label' => __( 'Support Layers' , 'layerswp' ),
-				'description' => __( 'Support Layers by displaying the Layers badge on your site.', 'layerswp' ),
-				'type' => 'layers-checkbox',
-				'default' => true
-			),
-		);
-
-		// Footer -> Text
-		$layers_customizer_controls['footer-text'] = array(
 			'footer-copyright-text' => array(
 				'type'     => 'layers-text',
 				'label'    => __( 'Copyright Text' , 'layerswp' ),
 				'default' => ' Made at the tip of Africa. &copy;',
 				'sanitize_callback' => FALSE
+			),
+			'show-layers-badge' => array(
+				'label' => __( 'Support Layers' , 'layerswp' ),
+				'description' => __( 'Support Layers by displaying the Layers badge on your site.', 'layerswp' ),
+				'type' => 'layers-checkbox',
+				'default' => true
 			),
 		);
 
@@ -552,9 +548,9 @@ class Layers_Customizer_Config {
 		} // if WooCommerce
 
 		do_action( 'layers_customizer_controls_modify' );
-		
+
 		$layers_customizer_controls = apply_filters( 'layers_customizer_controls', $layers_customizer_controls );
-		
+
 		$layers_customizer_controls = $this->apply_defaults( $layers_customizer_controls );
 
 		return $layers_customizer_controls;

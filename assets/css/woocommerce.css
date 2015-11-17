@@ -646,10 +646,8 @@ p.stars span a:focus{
         margin-bottom: 0;
     }
 
-
 /*---------------------------*/
 /*- SIDEBAR/WIDGET SETUP ----*/
-
 
     /*-----------------------*/
     /*- AMOUNT --------------*/
@@ -1327,6 +1325,21 @@ p.stars span a:focus{
         background: rgba(0, 0, 0, 0.4);
     }
 
+
+/*-------------------------------*/
+/*- LAYERS WIDGETS --------------*/
+/*-------------------------------*/
+.with-overlay .price{
+    opacity: 0;
+    -webkit-transform: translate3d(0, 25px, 0);
+    transform: translate3d(0, 25px, 0);
+    transition: 0.2s all ease-in-out 0.1s;
+}
+.with-overlay:hover .price{
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
+}
 
 
 /*-------------------------------*/

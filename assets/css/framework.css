@@ -427,6 +427,7 @@ object{
         background-color: #f3f3f3;
         background-position: 50% 50%;
         background-repeat: no-repeat;
+        position: relative;
     }
 
     .header-site .container,
@@ -435,6 +436,9 @@ object{
         flex-wrap: nowrap;
         align-items: center;
         justify-content: space-between;
+        position: relative;
+    }
+    .header-site .container{
         padding: 10px;
     }
 

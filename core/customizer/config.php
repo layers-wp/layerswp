@@ -261,11 +261,11 @@ class Layers_Customizer_Config {
 
 		// Site Settings -> Logo & Title
 		$layers_customizer_controls['title_tagline'] = array(
-			'upsell-layers-pro-heading' => array(
+			'logo-upsell-layers-pro' => array(
 				'type'  => 'layers-heading',
 				'class' => 'layers-upsell-tag',
-				'label'    => __( 'Upgrade to Layer Pro' , 'layerswp' ),
-				'description' => __( 'Want more control over your Logo Size & Header Layout? <a target="_blank" href="http://bit.ly/layers-colorkit">Purchase Layers Pro</a> to unlock the full power of Layers!' , 'layerswp' ),
+				'label'    => __( 'Upgrade to Layers Pro' , 'layerswp' ),
+				'description' => __( 'Want more control over your Logo Size & Header Layout? <a target="_blank" href="http://codecanyon.net/item/layers-pro/11225042?ref=obox&utm_source=layers%20theme&utm_medium=link&utm_campaign=Layers%20Pro%20Upsell&utm_content=Site%20Settings%20Logo">Purchase Layers Pro</a> to unlock the full power of Layers!' , 'layerswp' ),
 			),
 		);
 
@@ -338,6 +338,12 @@ class Layers_Customizer_Config {
 					'show-if-value' => 'true',
 				),
 			),
+			'header-upsell-layers-pro' => array(
+				'type'  => 'layers-heading',
+				'class' => 'layers-upsell-tag',
+				'label'    => __( 'Upgrade to Layers Pro' , 'layerswp' ),
+				'description' => __( 'Want more control over your Header Layout? <a target="_blank" href="http://codecanyon.net/item/layers-pro/11225042?ref=obox&utm_source=layers%20theme&utm_medium=link&utm_campaign=Layers%20Pro%20Upsell&utm_content=Site%20Settings%20Header%20Layout">Purchase Layers Pro</a> to unlock the full power of Layers!' , 'layerswp' ),
+			),
 		);
 
 		// Site Settings -> Sidebars
@@ -402,11 +408,11 @@ class Layers_Customizer_Config {
 				'type' => 'layers-color',
 				'default' => '#F3F3F3',
 			),
-			'upsell-colorkit-heading' => array(
+			'colors-upsell-layers-pro' => array(
 				'type'  => 'layers-heading',
 				'class' => 'layers-upsell-tag',
-				'label'    => __( 'Upgrade to ColorKit' , 'layerswp' ),
-				'description' => __( 'Want more color customzation? <a target="_blank" href="http://bit.ly/layers-colorkit">Purchase ColorKit</a> and get the full box of crayons!' , 'layerswp' ),
+				'label'    => __( 'Upgrade to Layers Pro' , 'layerswp' ),
+				'description' => __( 'Want more color customzation? <a target="_blank" href="http://codecanyon.net/item/layers-pro/11225042?ref=obox&utm_source=layers%20theme&utm_medium=link&utm_campaign=Layers%20Pro%20Upsell&utm_content=Footer%20Layout">Purchase Layers Pro</a> and get the full box of crayons!' , 'layerswp' ),
 			),
 		);
 
@@ -484,6 +490,12 @@ class Layers_Customizer_Config {
 				'description' => __( 'Support Layers by displaying the Layers badge on your site.', 'layerswp' ),
 				'type' => 'layers-checkbox',
 				'default' => true
+			),
+			'footer-upsell-layers-pro' => array(
+				'type'  => 'layers-heading',
+				'class' => 'layers-upsell-tag',
+				'label'    => __( 'Upgrade to Layers Pro' , 'layerswp' ),
+				'description' => __( 'Want more control over your Footer Layout? <a target="_blank" href="http://codecanyon.net/item/layers-pro/11225042?ref=obox&utm_source=layers%20theme&utm_medium=link&utm_campaign=Layers%20Pro%20Upsell&utm_content=Site%20Settings%20Footer%20Layout">Purchase Layers Pro</a> to unlock the full power of Layers!' , 'layerswp' ),
 			),
 		);
 

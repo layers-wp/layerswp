@@ -8,6 +8,7 @@
 * **Enhancement** - Added a new custom anchor function to the widget advanced options in core widgets. *MP*
 * **Enhancement** - Adjusted the image ratio logic for the content widget when using a 3 < column layout. *MP*
 * **Enhancement** - Added https:// support for all onboarding videos. *MP*
+* **Tweak** - Added price animation in Woo Widget overlay setting. *DP*
 
 =======
 ##1.2.7

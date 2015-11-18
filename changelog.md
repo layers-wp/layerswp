@@ -5,10 +5,10 @@
 ### 18 Nov 2015
 
 * **Fix** - Removed the menu warning when logging in as a non-admin user. *MP*
-* **Fix** - Fixed an `undefined object` error  in /helpers/extensions.php. *MP*
+* **Fix** - Fixed an `undefined object` error  in `/helpers/extensions.php`. *MP*
 * **Enhancement** - Added a new custom anchor function to the widget advanced options in core widgets. *MP*
 * **Enhancement** - Adjusted the image ratio logic for the content widget when using a 3 < column layout. *MP*
-* **Enhancement** - Added https:// support for all onboarding videos. *MP*
+* **Enhancement** - Added `https://` support for all onboarding videos. *MP*
 * **Enhancement** - Added new filters for the design bar components of the slider & content widget repeater items eg `layers_slide_widget_design_bar_components` *SOB*
 * **Tweak** - Added price animation in Woo Widget overlay setting. *DP*
 * **Tweak** - Changed header tp use flexbox css for *DP*

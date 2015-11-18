@@ -4,9 +4,13 @@
 ##1.2.8
 ### 18 Nov 2015
 
+* **Fix** - Fixed an `undefined object` error  in /helpers/extensions.php. *MP*
+* **Enhancement** - Added a new custom anchor function to the widget advanced options in core widgets. *MP*
+* **Enhancement** - Adjusted the image ratio logic for the content widget when using a 3 < column layout. *MP*
+* **Enhancement** - Added https:// support for all onboarding videos. *MP*
 * **Enhancement** - Added new filters for the design bar components of the slider & content widget repeater items eg `layers_slide_widget_design_bar_components` *SOB*
+* **Tweak** - Added price animation in Woo Widget overlay setting. *DP*
 * **Tweak** - Changed header tp use flexbox css for *DP*
-* **Fix** - Fixed featured image ratios possibly not working on certain some widgets. *MP*
 
 =======
 ##1.2.7
@@ -60,6 +64,7 @@
 =======
 ##1.2.5
 ### 01 October 2015
+
 * **Tweak** - We have removed the `esc_html()` from widget titles, this allows for the use of basic HTML tags like `strong`, `span` etc. inside headings. *MP*
 * **Tweak** - Edit Layout button in the admin-bar now shows on all pages - not just layers pages - as even non Layers pages can have colors, layout, etc Edited. *SOB*
 * **Tweak** - .title padding is now set on the parent container to accommodate for future features and better font size control. *DP*

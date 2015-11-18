@@ -95,7 +95,7 @@ if ( ! function_exists( 'layers_hex_lighter' ) ) {
 
 if ( ! function_exists( 'layers_too_light_then_dark' ) ) {
 	function layers_too_light_then_dark( $color, $factor = 30 ) {
-
+return $color;
 		if ( '#ffffff' == layers_hex_lighter( $color, 96 ) ) {
 			$color = layers_hex_darker( $color, $factor / 3 );
 		}
@@ -166,7 +166,7 @@ if ( ! function_exists( 'layers_is_light_or_dark' ) ) {
  */
 if ( ! function_exists( 'layers_get_light_or_dark' ) ) {
 	function layers_get_light_or_dark( $color, $if_dark, $if_light ) {
-		
+
 		if ( 'dark' == layers_is_light_or_dark( $color ) ) {
 			return $if_light;
 		}
@@ -185,10 +185,10 @@ if ( ! function_exists( 'layers_get_light_or_dark' ) ) {
  */
 if ( ! function_exists( 'layers_is_lighter' ) ) {
 	function layers_is_lighter( $color, $compare_to_color ) {
-		
+
 		$color_brigntness            = layers_get_brightness( $color );
 		$compare_to_color_brigntness = layers_get_brightness( $color );
-		
+
 		return ( $color > $compare_to_color );
 	}
 }
@@ -205,7 +205,7 @@ if ( ! function_exists( 'layers_is_darker' ) ) {
 
 		$color_brigntness            = layers_get_brightness( $color );
 		$compare_to_color_brigntness = layers_get_brightness( $color );
-		
+
 		return ( $color < $compare_to_color );
 	}
 }
@@ -218,7 +218,7 @@ if ( ! function_exists( 'layers_is_darker' ) ) {
  */
 if ( ! function_exists( 'layers_get_brightness' ) ) {
 	function layers_get_brightness( $color ) {
-		
+
 		$hex = str_replace( '#', '', $color );
 
 		$c_r = hexdec( substr( $hex, 0, 2 ) );

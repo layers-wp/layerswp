@@ -3,7 +3,7 @@
 =======
 ##1.2.8
 ### 18 Nov 2015
-
+* **Tweak** - Added price animation in Woo Widget overlay setting. *DP*
 
 
 =======

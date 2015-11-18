@@ -4,7 +4,9 @@
 ##1.2.8
 ### 18 Nov 2015
 
-
+* **Enhancement** - Added new filters for the design bar components of the slider & content widget repeater items eg `layers_slide_widget_design_bar_components` *SOB*
+* **Tweak** - Changed header tp use flexbox css for *DP*
+* **Fix** - Fixed featured image ratios possibly not working on certain some widgets. *MP*
 
 =======
 ##1.2.7

@@ -108,6 +108,7 @@ class Layers_Intercom {
 		$json[ 'WooCommerce' ] = (bool) ( class_exists( 'WooCommerce' ) ? 1 : 0 );
 		$json[ 'DevKit' ] = (bool) ( class_exists( 'Layers_DevKit' ) ? 1 : 0 );
 		$json[ 'ColorKit' ] = (bool) ( class_exists( 'Layers_ColorKit' ) ? 1 : 0 );
+		$json[ 'Layers Pro' ] = (bool) ( class_exists( 'Layers_Pro' ) ? 1 : 0 );
 		$json[ 'StoreKit' ] = (bool) ( class_exists( 'Layers_WooCommerce' ) ? 1 : 0 );
 		$json[ 'Layers Updater' ] = (bool) ( class_exists( 'Layers_Updater' ) ||  is_plugin_active_for_network( 'Layers_Updater') ? 1 : 0 );
 

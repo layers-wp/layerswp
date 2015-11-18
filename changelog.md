@@ -4,6 +4,7 @@
 ##1.2.8
 ### 18 Nov 2015
 
+* **Fix** - Removed the menu warning when logging in as a non-admin user. *MP*
 * **Fix** - Fixed an `undefined object` error  in /helpers/extensions.php. *MP*
 * **Enhancement** - Added a new custom anchor function to the widget advanced options in core widgets. *MP*
 * **Enhancement** - Adjusted the image ratio logic for the content widget when using a 3 < column layout. *MP*

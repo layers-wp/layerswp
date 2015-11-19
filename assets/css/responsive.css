@@ -428,15 +428,22 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
         justify-content: space-between;
     }
     .header-inline .inline-site-logo{
-        display: flex;
+		display: -webkit-box;
         display: -webkit-flex;
+        display: flex;
+		
+		-webkit-box: 1 1 0%;
+        -webkit-flex: 1 1 0%;
         flex: 1 1 0%;
     }
     .header-inline .inline-right-nav{
-        display: flex;
+		display: -webkit-box;
         display: -webkit-flex;
-        flex-direction: row-reverse;
+        display: flex;
+		
+		-webkit-box-orient: horizontal;
         -webkit-flex-direction: row-reverse;
+        flex-direction: row-reverse;
     }
     .header-inline .inline-left-nav,
     .header-site.header-inline nav{
@@ -673,7 +680,9 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
     }
     .header-center .container,
     .header-center > .clearfix{
-        flex-direction: column;
+		-webkit-box-orient: vertical;
+		-webkit-flex-direction: column;
+		flex-direction: column;
     }
     .header-center .site-description{
         display: block;
@@ -698,12 +707,16 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
         justify-content: center;
     }
     .header-inline .inline-site-logo{
+		display: -webkit-box;
+        -webkit-display: flex;
         display: flex;
+		
+		-webkit-box-pack: justify;
+        -webkit-justify-content: center;
         justify-content: center;
+		
         margin: 0 20px;
         z-index: 1;
-        -webkit-display: flex;
-        -webkit-justify-content: center;
     }
 
         .header-inline .logo{
@@ -721,15 +734,21 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
         width: 40%;
     }
     .header-inline .inline-right-nav{
+		display: -webkit-box;
+        -webkit-display: flex;
         display: flex;
+		
+		-webkit-box-wrap: nowrap;
+		-webkit-flex-wrap: no-wrap;
         flex-wrap: no-wrap;
+		
+		-webkit-box-align: flex-start;
+		-webkit-align-items: flex-start;
         align-items: flex-start;
+		
         width: 40%;
         position: relative;
         z-index: 2;
-        -webkit-display: flex;
-        -webkit-flex-wrap: no-wrap;
-        -webkit-align-items: flex-start;
     }
     .header-inline .inline-right-nav nav{
         display: block;
@@ -739,10 +758,13 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
     /*- NAV BOTTOM --------------*/
     .nav-clear .container,
     .nav-clear > .clearfix{
+		-webkit-box-orient: vertical;
+		-webkit-flex-direction: column;
         flex-direction: column;
-        align-items: flex-start;
-        -webkit-flex-direction: column;
+		
+		-webkit-box-align: flex-start;
         -webkit-align-items: flex-start;
+        align-items: flex-start;
     }
     .nav-clear .site-logo-link + .sitename{
         margin-top: 10px;
@@ -901,7 +923,12 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
     }
 
     .swiper-slide.image-left .container{
+		-webkit-box-orient: horizontal;
+		-webkit-flex-direction: row-reverse;
         flex-direction: row-reverse;
+		
+		-webkit-box-pack: justify;
+		-webkit-justify-content: flex-start;
         justify-content: flex-start;
     }
     .swiper-slide.image-left .image-container{
@@ -914,8 +941,13 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
     }
 
     .swiper-slide.image-right .container{
+		-webkit-box-orient: horizontal;
+		-webkit-flex-direction: row;
         flex-direction: row;
-        justify-content: flex-start;
+		
+		-webkit-box-pack: justify;
+		-webkit-justify-content: flex-start;
+		justify-content: flex-start;
     }
     .swiper-slide.image-right .image-container{
         width: 50%;

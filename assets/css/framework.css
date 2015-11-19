@@ -433,10 +433,13 @@ object{
     .header-site .container,
     .header-site > .clearfix{
         display: flex;
+        display: -webkit-flex;
         flex-wrap: nowrap;
         align-items: center;
         justify-content: space-between;
         position: relative;
+        -webkit-flex-wrap: nowrap;
+        -webkit-justify-content: space-between;
     }
     .header-site .container{
         padding: 10px;
@@ -465,10 +468,13 @@ object{
     /*- DEFAULT ALIGNMENT -------*/
     .header-site nav{
         display: flex;
+        display: -webkit-flex;
         flex: 1 1 0%;
         justify-content: flex-end;
         margin: 0;
         line-height: 40px;
+        -webkit-flex: 1 1 0%;
+        -webkit-justify-content: flex-end;
     }
     .header-left .logo{
         overflow: hidden;
@@ -482,6 +488,7 @@ object{
     .header-right .container,
     .header-right > .clearfix{
         flex-direction: row-reverse;
+        -webkit-flex-direction: row-reverse;
     }
     .header-right .logo{
         overflow: hidden;
@@ -491,6 +498,7 @@ object{
     }
     .header-right nav{
         justify-content: flex-start;
+        -webkit-justify-content: flex-start;
     }
 
     /*---------------------------*/

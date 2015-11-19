@@ -18,7 +18,9 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
     .advanced-layout{
         display: flex;
+        display: -webkit-flex;
         flex-direction: row;
+        -webkit-flex-direction: row;
     }
     .advanced-layout-left header{
         order: 1;
@@ -48,6 +50,7 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
     }
     .swiper-slide .overlay{
         display: flex;
+        display: -webkit-flex;
         width: 100%;
         height: 100%;
     }
@@ -60,11 +63,14 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
     }
     .swiper-slide .container{
         display: flex;
+        display: -webkit-flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
         width: 100%;
         padding: 0;
+        -webkit-flex-direction: column;
+        -webkit-justify-content: center;
     }
     .swiper-slide .copy-container,
     .swiper-slide .image-container{
@@ -83,6 +89,7 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
     /*- SLIDER ALIGNMENT --------*/
     .swiper-slide.image-top .container{
         flex-direction: column-reverse;
+        -webkit-flex-direction: column-reverse;
     }
     .swiper-slide .copy-container + .image-container{
         margin-top: 30px;
@@ -93,6 +100,7 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
     }
     .swiper-slide.image-bottom .overlay{
         flex-direction: column;
+        -webkit-flex-direction: column;
     }
 
     /*---------------------------*/

@@ -120,7 +120,10 @@ div#widgets-right div[id*='obox-layers-builder']{
     .customize-control-widget_form.wide-widget-control.layers-focussed .widget .widget-top{
         background: #0BA6E0 !important;
         border-color: #0E77A5;
-        color: #3D454E;
+        color: white;
+    }
+    .customize-control-widget_form.wide-widget-control.layers-focussed .widget .widget-top h3{
+        color: white;
     }
     .customize-control-widget_form.wide-widget-control.expanded .widget .widget-top,
     .customize-control-widget_form.wide-widget-control.layers-focussed .widget .widget-top{
@@ -1911,6 +1914,8 @@ li[id*='accordion-section-layers'] .customize-control.customize-control-image .a
     color: #fff;
     font-size: 20px;
     text-indent: 0;
+    line-height: 29px;
+    font-weight: normal;
 }
 .layers-heading{
     margin-top: 0;

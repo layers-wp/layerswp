@@ -24,19 +24,19 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 .header-cart span{
     padding: 0 4px;
 }
-.header-cart .cart{
+.header-cart > .cart{
     margin: 0;
     color: #fff;
 }
-.header-cart .amount{
+.header-cart > .amount{
     transition: all 0.2s ease-in-out;
     color: #fff;
 }
 .header-fixed .header-cart{
     background: rgba(0, 0, 0, 0.3);
 }
-.header-cart .cart:hover,
-.header-fixed .header-cart:hover .amount{
+.header-cart > .cart:hover,
+.header-fixed > .header-cart:hover .amount{
     color: #fff;
 }
 
@@ -1137,7 +1137,6 @@ p.stars span a:focus{
         margin-bottom: 5px;
     }
     .cart_list .quantity{
-        width: 100%;
         color: rgba(0, 0, 0, 0.65);
         font-size: 1.3rem;
     }

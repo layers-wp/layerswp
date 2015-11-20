@@ -428,10 +428,16 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
         justify-content: space-between;
     }
     .header-inline .inline-site-logo{
+        display: -webkit-flex;
+        -webkit-flex: 1;
+
         display: flex;
-        flex: 1 1 0%;
+        flex: 1;
     }
     .header-inline .inline-right-nav{
+        display: -webkit-flex;
+        -webkit-flex-direction: row-reverse;
+
         display: flex;
         flex-direction: row-reverse;
     }
@@ -671,6 +677,7 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
     .header-center .container,
     .header-center > .clearfix{
         flex-direction: column;
+        -webkit-flex-direction: column;
     }
     .header-center .site-description{
         display: block;
@@ -692,11 +699,17 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
     /*- ALIGNMENT INLINE --------*/
     .header-inline .container,
     .header-inline > .clearfix{
+        -webkit-justify-content: center;
         justify-content: center;
     }
     .header-inline .inline-site-logo{
+        display: -webkit-flex;
+        -webkit-justify-content: center;
+
         display: flex;
         justify-content: center;
+
+        width: 20%;
         margin: 0 20px;
         z-index: 1;
     }
@@ -714,23 +727,35 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
     .header-inline .inline-left-nav{
         width: 40%;
+        position: relative;
+        z-index: 2;
     }
     .header-inline .inline-right-nav{
+        display: -webkit-flex;
+        -webkit-justify-content: flex-start;
+        -webkit-align-items: flex-start;
+
         display: flex;
-        flex-wrap: no-wrap;
+        justify-content: flex-start;
         align-items: flex-start;
+
         width: 40%;
         position: relative;
         z-index: 2;
     }
     .header-inline .inline-right-nav nav{
         display: block;
+        /*-webkit-justify-content: flex-start;
+        justify-content: flex-start;*/
     }
 
     /*---------------------------*/
     /*- NAV BOTTOM --------------*/
     .nav-clear .container,
     .nav-clear > .clearfix{
+        -webkit-flex-direction: column;
+        -webkit-align-items: flex-start;
+
         flex-direction: column;
         align-items: flex-start;
     }
@@ -741,7 +766,10 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
         margin-top: 10px;
     }
     .nav-clear nav{
-        display: block;
+        -webkit-justify-content: flex-start;
+        justify-content: flex-start;
+
+        width: 100%;
         margin: 20px 0 0;
         line-height: 20px;
     }
@@ -891,6 +919,9 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
     }
 
     .swiper-slide.image-left .container{
+        -webkit-flex-direction: row-reverse;
+        -webkit-justify-content: flex-start;
+
         flex-direction: row-reverse;
         justify-content: flex-start;
     }
@@ -904,6 +935,9 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
     }
 
     .swiper-slide.image-right .container{
+        -webkit-flex-direction: row;
+        -webkit-justify-content: flex-start;
+
         flex-direction: row;
         justify-content: flex-start;
     }

@@ -919,6 +919,9 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
     }
 
     .swiper-slide.image-left .container{
+        -webkit-flex-direction: row-reverse;
+        -webkit-justify-content: flex-start;
+
         flex-direction: row-reverse;
         justify-content: flex-start;
     }
@@ -932,6 +935,9 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
     }
 
     .swiper-slide.image-right .container{
+        -webkit-flex-direction: row;
+        -webkit-justify-content: flex-start;
+
         flex-direction: row;
         justify-content: flex-start;
     }

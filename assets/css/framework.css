@@ -432,10 +432,16 @@ object{
 
     .header-site .container,
     .header-site > .clearfix{
+        display: -webkit-flex;
+        -webkit-flex-wrap: nowrap;
+        -webkit-align-items: center;
+        -webkit-justify-content: space-between;
+
         display: flex;
         flex-wrap: nowrap;
         align-items: center;
         justify-content: space-between;
+
         position: relative;
     }
     .header-site .container{
@@ -464,9 +470,14 @@ object{
     /*---------------------------*/
     /*- DEFAULT ALIGNMENT -------*/
     .header-site nav{
+        display: -webkit-flex;
+        -webkit-flex: 1;
+        -webkit-justify-content: flex-end;
+
         display: flex;
         flex: 1 1 0%;
         justify-content: flex-end;
+
         margin: 0;
         line-height: 40px;
     }
@@ -481,6 +492,7 @@ object{
     /*- ALIGNMENT RIGHT ---------*/
     .header-right .container,
     .header-right > .clearfix{
+        -webkit-flex-direction: row-reverse;
         flex-direction: row-reverse;
     }
     .header-right .logo{
@@ -490,6 +502,7 @@ object{
         margin: 0 10px 0 0;
     }
     .header-right nav{
+        -webkit-justify-content: flex-start;
         justify-content: flex-start;
     }
 
@@ -1628,7 +1641,7 @@ object{
     /*---------------------------*/
     /*- LOGO --------------------*/
     .logo{
-        float: left;
+        /*float: left;*/
         padding: 0;
     }
     .sitename{

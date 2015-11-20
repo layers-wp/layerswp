@@ -432,19 +432,16 @@ object{
 
     .header-site .container,
     .header-site > .clearfix{
-        display: -webkit-box;
-		display: -webkit-flex;
-		display: flex;
-		
-        -webkit-box-lines: multiple;
-		-webkit-flex-wrap: nowrap;
-		flex-wrap: nowrap;
-		
-        -webkit-box-pack: justify;
-		-webkit-justify-content: space-between;
-		justify-content: space-between;
-				
+        display: -webkit-flex;
+        -webkit-flex-wrap: nowrap;
+        -webkit-align-items: center;
+        -webkit-justify-content: space-between;
+
+        display: flex;
+        flex-wrap: nowrap;
         align-items: center;
+        justify-content: space-between;
+
         position: relative;
     }
     .header-site .container{
@@ -472,19 +469,15 @@ object{
 
     /*---------------------------*/
     /*- DEFAULT ALIGNMENT -------*/
-    .header-site nav{		
-		display: -webkit-box;
-		display: -webkit-flex;
-		display: flex;
-		
-		-webkit-box: 1 1 0%;
-		-webkit-flex: 1 1 0%;
-		flex: 1 1 0%;
-		
-		-webkit-box-pack: justify;
-		-webkit-justify-content: flex-end;
-		justify-content: flex-end;
-		
+    .header-site nav{
+        display: -webkit-flex;
+        -webkit-flex: 1;
+        -webkit-justify-content: flex-end;
+
+        display: flex;
+        flex: 1 1 0%;
+        justify-content: flex-end;
+
         margin: 0;
         line-height: 40px;
     }
@@ -499,9 +492,8 @@ object{
     /*- ALIGNMENT RIGHT ---------*/
     .header-right .container,
     .header-right > .clearfix{
-        -webkit-box-orient: horizontal;
-		-webkit-flex-direction: row-reverse;
-		flex-direction: row-reverse;
+        -webkit-flex-direction: row-reverse;
+        flex-direction: row-reverse;
     }
     .header-right .logo{
         overflow: hidden;
@@ -510,9 +502,8 @@ object{
         margin: 0 10px 0 0;
     }
     .header-right nav{
-        -webkit-box-pack: justify;
         -webkit-justify-content: flex-start;
-		justify-content: flex-start;
+        justify-content: flex-start;
     }
 
     /*---------------------------*/
@@ -1650,7 +1641,7 @@ object{
     /*---------------------------*/
     /*- LOGO --------------------*/
     .logo{
-        float: left;
+        /*float: left;*/
         padding: 0;
     }
     .sitename{

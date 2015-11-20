@@ -428,21 +428,17 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
         justify-content: space-between;
     }
     .header-inline .inline-site-logo{
-		display: -webkit-box;
         display: -webkit-flex;
+        -webkit-flex: 1;
+
         display: flex;
-		
-		-webkit-box: 1 1 0%;
-        -webkit-flex: 1 1 0%;
         flex: 1 1 0%;
     }
     .header-inline .inline-right-nav{
-		display: -webkit-box;
         display: -webkit-flex;
-        display: flex;
-		
-		-webkit-box-orient: horizontal;
         -webkit-flex-direction: row-reverse;
+
+        display: flex;
         flex-direction: row-reverse;
     }
     .header-inline .inline-left-nav,
@@ -680,9 +676,8 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
     }
     .header-center .container,
     .header-center > .clearfix{
-		-webkit-box-orient: vertical;
-		-webkit-flex-direction: column;
-		flex-direction: column;
+        flex-direction: column;
+        -webkit-flex-direction: column;
     }
     .header-center .site-description{
         display: block;
@@ -704,17 +699,17 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
     /*- ALIGNMENT INLINE --------*/
     .header-inline .container,
     .header-inline > .clearfix{
+        -webkit-justify-content: center;
         justify-content: center;
     }
     .header-inline .inline-site-logo{
-		display: -webkit-box;
-        -webkit-display: flex;
-        display: flex;
-		
-		-webkit-box-pack: justify;
+        display: -webkit-flex;
         -webkit-justify-content: center;
+
+        display: flex;
         justify-content: center;
-		
+
+        width: 20%;
         margin: 0 20px;
         z-index: 1;
     }
@@ -732,38 +727,36 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
     .header-inline .inline-left-nav{
         width: 40%;
+        position: relative;
+        z-index: 2;
     }
     .header-inline .inline-right-nav{
-		display: -webkit-box;
-        -webkit-display: flex;
+        display: -webkit-flex;
+        -webkit-justify-content: flex-start;
+        -webkit-align-items: flex-start;
+
         display: flex;
-		
-		-webkit-box-wrap: nowrap;
-		-webkit-flex-wrap: no-wrap;
-        flex-wrap: no-wrap;
-		
-		-webkit-box-align: flex-start;
-		-webkit-align-items: flex-start;
+        justify-content: flex-start;
         align-items: flex-start;
-		
+
         width: 40%;
         position: relative;
         z-index: 2;
     }
     .header-inline .inline-right-nav nav{
         display: block;
+        /*-webkit-justify-content: flex-start;
+        justify-content: flex-start;*/
     }
 
     /*---------------------------*/
     /*- NAV BOTTOM --------------*/
     .nav-clear .container,
     .nav-clear > .clearfix{
-		-webkit-box-orient: vertical;
-		-webkit-flex-direction: column;
-        flex-direction: column;
-		
-		-webkit-box-align: flex-start;
+        -webkit-flex-direction: column;
         -webkit-align-items: flex-start;
+
+        flex-direction: column;
         align-items: flex-start;
     }
     .nav-clear .site-logo-link + .sitename{
@@ -773,7 +766,10 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
         margin-top: 10px;
     }
     .nav-clear nav{
-        display: block;
+        /*display: -webkit-flex;
+        -webkit-flex: 1;
+        -webkit-justify-content: flex-end;*/
+
         margin: 20px 0 0;
         line-height: 20px;
     }
@@ -923,12 +919,7 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
     }
 
     .swiper-slide.image-left .container{
-		-webkit-box-orient: horizontal;
-		-webkit-flex-direction: row-reverse;
         flex-direction: row-reverse;
-		
-		-webkit-box-pack: justify;
-		-webkit-justify-content: flex-start;
         justify-content: flex-start;
     }
     .swiper-slide.image-left .image-container{
@@ -941,13 +932,8 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
     }
 
     .swiper-slide.image-right .container{
-		-webkit-box-orient: horizontal;
-		-webkit-flex-direction: row;
         flex-direction: row;
-		
-		-webkit-box-pack: justify;
-		-webkit-justify-content: flex-start;
-		justify-content: flex-start;
+        justify-content: flex-start;
     }
     .swiper-slide.image-right .image-container{
         width: 50%;

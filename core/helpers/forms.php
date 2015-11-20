@@ -125,6 +125,12 @@ class Layers_Form_Elements {
 			'class' => NULL,
 			'options' => array(),
 		);
+		
+		// Convert 'choices' to 'options' - so you can use same naming as the controls which use 'options'.
+		if ( isset( $args['choices'] ) && ! empty( $args['choices'] ) && ! isset ( $args['options'] ) ) {
+			$args['options'] = $args['choices'];
+			unset( $args['choices'] );
+		}
 
 		// Turn $args into their own variables
 		$input = (object) wp_parse_args( $args, $defaults );

@@ -464,7 +464,10 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 							'id' => $this->get_layers_field_id( 'slide_height' ) ,
 							'value' => ( isset( $widget['slide_height'] ) ) ? $widget['slide_height'] : NULL,
 							'label' => __( 'Slider Height (px)' , 'layerswp' ),
-							'data' => array( 'show-if-selector' => '#' . $this->get_layers_field_id( 'autoheight_slides' ), 'show-if-value' => 'false' ),
+							'data' => array(
+								'show-if-selector' => '#' . $this->get_layers_field_id( 'autoheight_slides' ),
+								'show-if-value' => 'false',
+							),
 						),
 						'show_slider_arrows' => array(
 							'type' => 'checkbox',
@@ -479,7 +482,10 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 							'id' => $this->get_layers_field_id( 'slider_arrow_color' ) ,
 							'value' => ( isset( $widget['slider_arrow_color'] ) ) ? $widget['slider_arrow_color'] : NULL,
 							'label' => __( 'Slider Controls Color' , 'layers-woocommerce' ),
-							'data' => array( 'show-if-selector' => '#' . $this->get_layers_field_id( 'show_slider_arrows' ), 'show-if-value' => 'true' ),
+							'data' => array(
+								'show-if-selector' => '#' . $this->get_layers_field_id( 'show_slider_arrows' ),
+								'show-if-value' => 'true',
+							),
 						),
 						'show_slider_dots' => array(
 							'type' => 'checkbox',
@@ -516,7 +522,10 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 							'placeholder' => __( 'Time in seconds, eg. 2' , 'layerswp' ),
 							'value' => ( isset( $widget['slide_time'] ) ) ? $widget['slide_time'] : NULL,
 							'label' => __( 'Slide Interval (seconds)' , 'layerswp' ),
-							'data' => array( 'show-if-selector' => '#' . $this->get_layers_field_id( 'autoplay_slides' ), 'show-if-value' => 'true' ),
+							'data' => array(
+								'show-if-selector' => '#' . $this->get_layers_field_id( 'autoplay_slides' ),
+								'show-if-value' => 'true',
+							),
 						),
 					),
 				),

@@ -432,7 +432,7 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
         -webkit-flex: 1;
 
         display: flex;
-        flex: 1 1 0%;
+        flex: 1;
     }
     .header-inline .inline-right-nav{
         display: -webkit-flex;
@@ -766,10 +766,10 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
         margin-top: 10px;
     }
     .nav-clear nav{
-        /*display: -webkit-flex;
-        -webkit-flex: 1;
-        -webkit-justify-content: flex-end;*/
+        -webkit-justify-content: flex-start;
+        justify-content: flex-start;
 
+        width: 100%;
         margin: 20px 0 0;
         line-height: 20px;
     }

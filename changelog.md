@@ -1,6 +1,13 @@
 # Layers Changelog
 
 =======
+##1.2.9
+### 20 Nov 2015
+
+* **Fix** - Fixed header alignment in Safari 8. *DP*
+* **Fix** - Fixed slider alignment in Safari 8. *MP*
+
+=======
 ##1.2.8
 ### 18 Nov 2015
 

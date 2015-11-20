@@ -944,7 +944,7 @@ jQuery(function($) {
 	/**
 	 * 18 - Customizer Control - Range Slider
 	 */
-	$( document ).on( 'input change', '.layers-customize-control-range input[type="range"]', function( e ){
+	$( document ).on( 'input change', '.layers-column input[type="range"]', function( e ){
 		// Push changes to the Number input.
 		var $range_field = $(this);
 		var $number_field = $(this).parent().parent().find('input[type="number"]');
@@ -962,7 +962,7 @@ jQuery(function($) {
 		
 		layers_debounce_range_input( $number_field );
 	});
-	$( document ).on( 'input change', '.layers-customize-control-range input[type="number"]', function( e ){
+	$( document ).on( 'input change', '.layers-column input[type="number"]', function( e ){
 		// Push changes to the Range input.
 		var $number_field = $(this);
 		var $range_field = $(this).parent().parent().find('input[type="range"]');

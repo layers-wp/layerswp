@@ -73,14 +73,14 @@ require_once get_template_directory() . '/core/helpers/color.php';
 require_once get_template_directory() . '/core/helpers/controls.php';
 require_once get_template_directory() . '/core/helpers/custom-fonts.php';
 require_once get_template_directory() . '/core/helpers/extensions.php';
-if( !defined( 'LAYERS_DISABLE_INTERCOM' ) ){
-	require_once get_template_directory() . '/core/helpers/intercom.php';
-}
 require_once get_template_directory() . '/core/helpers/post.php';
 require_once get_template_directory() . '/core/helpers/post-types.php';
 require_once get_template_directory() . '/core/helpers/sanitization.php';
 require_once get_template_directory() . '/core/helpers/template.php';
 require_once get_template_directory() . '/core/helpers/woocommerce.php';
+if( !defined( 'LAYERS_DISABLE_INTERCOM' ) ){
+	require_once get_template_directory() . '/core/helpers/intercom.php';
+}
 
 /*
  * Load Admin-specific files
@@ -100,7 +100,6 @@ if( is_admin() ){
 
 	//Load Options Panel
 	require_once get_template_directory() . '/core/options-panel/init.php';
-
 }
 
 if( ! function_exists( 'layers_setup' ) ) {
@@ -144,7 +143,6 @@ if( ! function_exists( 'layers_setup' ) ) {
 		/**
 		 * Add text domain
 		 */
-
 		load_theme_textdomain('layerswp', get_template_directory() . '/languages');
 
 		/**

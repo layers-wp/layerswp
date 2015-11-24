@@ -106,7 +106,7 @@ class Layers_Intercom {
 
 		$json[ 'Easy Digital Downloads' ] = (bool) ( class_exists( 'Easy_Digital_Downloads' ) ? 1 : 0 );
 		$json[ 'WooCommerce' ] = (bool) ( class_exists( 'WooCommerce' ) ? 1 : 0 );
-		$json[ 'Layers Updater' ] = (bool) ( class_exists( 'Layers_Updater' ) ||  is_plugin_active_for_network( 'Layers_Updater') ? 1 : 0 );
+		$json[ 'Layers Updater' ] = (bool) ( class_exists( 'Layers_Updater' ) || is_plugin_active_for_network( 'Layers_Updater') ? 1 : 0 );
 
 		if( class_exists( 'Layers_DevKit' ) && defined( 'LAYERS_DEVKIT_VER' ) ) {
 			$json[ 'DevKit' ] = LAYERS_DEVKIT_VER;

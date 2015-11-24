@@ -2752,6 +2752,7 @@ input[type=radio]:checked + .layers-settings-icon span{
     border-radius: 3px;
     overflow: hidden;
 }
+/*
 .layers-image-container.has-image .layers-image-display,
 .layers-image-container.layers-has-image .layers-image-display{
     background: none;
@@ -2759,6 +2760,7 @@ input[type=radio]:checked + .layers-settings-icon span{
     height: auto;
     max-height: 108px;
 }
+*/
 .layers-image-remove{
     display: none;
     width: 16px;

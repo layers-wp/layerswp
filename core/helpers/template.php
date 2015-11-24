@@ -1123,20 +1123,20 @@ if( !function_exists( 'layers_inline_styles' ) ) {
             	$inline_css .= implode( ', ' . $inline_css . ' ',  $args['selectors'] );
             }
 		}
-		
+
 		// Apply inline CSS
 		if( '' == trim( $inline_css ) ) {
 			$inline_css .= $css;
 		} else {
 			$inline_css .= '{ ' . $css . '} ';
 		}
-		
+
 		// Format/Clean the CSS.
 		$inline_css = str_replace( "\n", '', $inline_css );
 		$inline_css = str_replace( "\r", '', $inline_css );
 		$inline_css = str_replace( "\t", '', $inline_css );
 		$inline_css = "\n" . $inline_css;
-		
+
 		// Add the new CSS to the existing CSS
 		$layers_inline_css .= $inline_css;
 	}

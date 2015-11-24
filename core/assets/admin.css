@@ -1840,12 +1840,19 @@ li[id*='accordion-section-layers'] .customize-control.customize-control-image .a
         margin: 12px 0 4px;
     }
     li .customize-control .layers-customize-control.group .customize-control-title,
-    li .customize-control.customize-control-layers-color .layers-customize-control.group label {
+    li .customize-control.customize-control-layers-color .layers-customize-control.group label{
         text-transform: uppercase;
         font-size: 10px;
         font-weight: bold;
         letter-spacing: 1px;
         margin-bottom: 6px;
+        line-height: 1.5em;
+    }
+    li .customize-control .layers-customize-control.group label{
+        text-transform: uppercase;
+        font-size: 10px;
+        font-weight: bold;
+        letter-spacing: 1px;
         line-height: 1.5em;
     }
     li .customize-control .layers-customize-control.group,

@@ -95,7 +95,6 @@ if ( ! function_exists( 'layers_hex_lighter' ) ) {
 
 if ( ! function_exists( 'layers_too_light_then_dark' ) ) {
 	function layers_too_light_then_dark( $color, $factor = 30 ) {
-return $color;
 		if ( '#ffffff' == layers_hex_lighter( $color, 96 ) ) {
 			$color = layers_hex_darker( $color, $factor / 3 );
 		}
@@ -114,7 +113,6 @@ return $color;
  * @param string $light (default: '#FFFFFF')
  * @return string
  */
-
 if ( ! function_exists( 'layers_light_or_dark' ) ) {
 	function layers_light_or_dark( $color, $dark = '#000000', $light = '#FFFFFF' ) {
 

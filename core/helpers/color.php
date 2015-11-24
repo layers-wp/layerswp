@@ -85,6 +85,36 @@ if ( ! function_exists( 'layers_hex_lighter' ) ) {
 	}
 }
 
+if ( ! function_exists( 'layers_adjust_brightness' ) ) {
+	/**
+	 * Adjust Brightness colour function.
+	 *
+	 * @param mixed $color
+	 * @param int $steps (default: 50) can be + or - for brighter or dimmer.
+	 * @return string
+	 */
+	function layers_adjust_brightness( $color, $steps = 50 ) {
+		
+		$steps = max( -255, min( 255, $steps ) );
+
+        $color = str_replace( '#', '', $color );
+        if ( strlen( $color ) == 3 ) {
+            $color = str_repeat( substr( $color, 0, 1 ), 2 ) . str_repeat( substr( $color, 1, 1 ), 2 ) . str_repeat( substr( $color, 2, 1), 2 );
+        }
+
+        $color_parts = str_split( $color, 2 );
+        $return = '#';
+
+        foreach ( $color_parts as $color ) {
+            $color = hexdec( $color );
+            $color = max( 0, min( 255, $color + $steps ) );
+            $return .= str_pad( dechex( $color ), 2, '0', STR_PAD_LEFT );
+        }
+
+        return $return;
+	}
+}
+
 /**
  * If the color that will be retuend is too light, then make it darker
  * Used sepecially for auto hover colors

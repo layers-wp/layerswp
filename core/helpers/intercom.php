@@ -106,11 +106,23 @@ class Layers_Intercom {
 
 		$json[ 'Easy Digital Downloads' ] = (bool) ( class_exists( 'Easy_Digital_Downloads' ) ? 1 : 0 );
 		$json[ 'WooCommerce' ] = (bool) ( class_exists( 'WooCommerce' ) ? 1 : 0 );
-		$json[ 'DevKit' ] = (bool) ( class_exists( 'Layers_DevKit' ) ? 1 : 0 );
-		$json[ 'ColorKit' ] = (bool) ( class_exists( 'Layers_ColorKit' ) ? 1 : 0 );
-		$json[ 'Layers Pro' ] = (bool) ( class_exists( 'Layers_Pro' ) ? 1 : 0 );
-		$json[ 'StoreKit' ] = (bool) ( class_exists( 'Layers_WooCommerce' ) ? 1 : 0 );
-		$json[ 'Layers Updater' ] = (bool) ( class_exists( 'Layers_Updater' ) ||  is_plugin_active_for_network( 'Layers_Updater') ? 1 : 0 );
+		$json[ 'Layers Updater' ] = (bool) ( class_exists( 'Layers_Updater' ) || is_plugin_active_for_network( 'Layers_Updater') ? 1 : 0 );
+
+		if( class_exists( 'Layers_DevKit' ) && defined( 'LAYERS_DEVKIT_VER' ) ) {
+			$json[ 'DevKit' ] = LAYERS_DEVKIT_VER;
+		}
+
+		if( class_exists( 'Layers_ColorKit' ) && defined( 'LAYERS_COLORKIT_VER' ) ) {
+			$json[ 'ColorKit' ] = LAYERS_COLORKIT_VER;
+		}
+
+		if( class_exists( 'Layers_WooCommerce' ) && defined( 'LAYERS_STOREKIT_VER' ) ) {
+			$json[ 'StoreKit' ] = LAYERS_STOREKIT_VER;
+		}
+
+		if( class_exists( 'Layers_Pro' ) && defined( 'LAYERS_PRO_VER' ) ) {
+			$json[ 'Layers Pro' ] = LAYERS_PRO_VER;
+		}
 
 		// jsonify the settings
 		$settings_json = json_encode( (object) $json, ( defined( 'JSON_PRETTY_PRINT' ) ? JSON_PRETTY_PRINT : FALSE ) ); ?>

@@ -36,7 +36,7 @@ if(!function_exists('layers_hex2rgb') ) {
 
 if ( ! function_exists( 'layers_hex_darker' ) ) {
 	/**
-	 * Hex darker/lighter/contrast functions for colours
+	 * Hex darker color function.
 	 *
 	 * @param mixed $color
 	 * @param int $factor (default: 30)
@@ -60,13 +60,14 @@ if ( ! function_exists( 'layers_hex_darker' ) ) {
 }
 if ( ! function_exists( 'layers_hex_lighter' ) ) {
 	/**
-	 * Hex darker/lighter/contrast functions for colours
+	 * Hex lighter colour function.
 	 *
 	 * @param mixed $color
 	 * @param int $factor (default: 30)
 	 * @return string
 	 */
 	function layers_hex_lighter( $color, $factor = 30 ) {
+		
 		$base  = layers_hex2rgb( $color );
 		$color = '#';
 		foreach ( $base as $k => $v ) {

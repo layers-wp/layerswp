@@ -468,7 +468,6 @@ jQuery(function($) {
 		});
 	});
 	
-	// Init 
 	$( document ).on( 'click' , '.accordion-section-title' , function(e){
 		// "Hi Mom"
 		$that = $(this);

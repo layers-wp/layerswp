@@ -2751,6 +2751,10 @@ input[type=radio]:checked + .layers-settings-icon span{
     margin-bottom: 10px;
     border-radius: 3px;
     overflow: hidden;
+    cursor: pointer;
+}
+.layers-image-container .layers-image-display:hover{
+    background-color: #EAEAEA;
 }
 /*
 .layers-image-container.has-image .layers-image-display,

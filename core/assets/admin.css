@@ -122,6 +122,9 @@ div#widgets-right div[id*='obox-layers-builder']{
         border-color: #0E77A5;
         color: #3D454E;
     }
+    .customize-control-widget_form.wide-widget-control.layers-focussed .widget .widget-top h3{
+        color: white;
+    }
     .customize-control-widget_form.wide-widget-control.expanded .widget .widget-top,
     .customize-control-widget_form.wide-widget-control.layers-focussed .widget .widget-top{
         -webkit-transition: 0s !important;
@@ -1911,6 +1914,7 @@ li[id*='accordion-section-layers'] .customize-control.customize-control-image .a
     background: #0074A2;
     border-bottom: 1px solid #006086;
     overflow: hidden;
+    line-height: 29px;
 }
 .layers-controls-title .layers-heading{
     margin: 0;
@@ -1918,6 +1922,7 @@ li[id*='accordion-section-layers'] .customize-control.customize-control-image .a
     color: #fff;
     font-size: 20px;
     text-indent: 0;
+    font-weight: normal;
 }
 .layers-heading{
     margin-top: 0;

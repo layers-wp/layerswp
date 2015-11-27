@@ -207,6 +207,7 @@ jQuery(function($) {
 
 		$that.siblings('span').text('');
 		$that.siblings('input').val('').layers_trigger_change();
+		$that.closest( '.layers-file-container' ).removeClass( 'layers-has-file' );
 
 		$that.fadeOut();
 		return false;
@@ -237,6 +238,8 @@ jQuery(function($) {
 		file_frame.on( 'select', function() {
 			// We set multiple to false so only get one image from the uploader
 			attachment = file_frame.state().get('selection').first().toJSON();
+
+			$that.closest( '.layers-file-container' ).addClass( 'layers-has-file' );
 
 			// Fade in Remove button
 			$that.siblings('small').fadeIn();
@@ -948,7 +951,7 @@ jQuery(function($) {
 		// Push changes to the Number input.
 		var $range_field = $(this);
 		var $number_field = $(this).parent().parent().find('input[type="number"]');
-		
+
 		if ( $range_field.attr( 'placeholder' ) && $range_field.attr( 'placeholder' ) == $range_field.val() ) {
 			// If the range-slider is moved and there's a placeholder set
 			// and the slider stops on the placeholder value then empty
@@ -959,14 +962,14 @@ jQuery(function($) {
 			// Set the number value to equal this range.
 			$number_field.val( $range_field.val() );
 		}
-		
+
 		layers_debounce_range_input( $number_field );
 	});
 	$( document ).on( 'input change', '.layers-column input[type="number"]', function( e ){
 		// Push changes to the Range input.
 		var $number_field = $(this);
 		var $range_field = $(this).parent().parent().find('input[type="range"]');
-		
+
 		if ( '' == $number_field.val() && $range_field.attr( 'placeholder' ) ) {
 			// If number field is emptied and there's a placeholder set then
 			// set the range slider so it reflects the placeholder too.

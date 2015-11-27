@@ -8,6 +8,7 @@
 * Contents
 * 1 - Fix customizer FOUC during render
 * 2 - Customizer UX Enhancements
+* 3 - Remove all '#' href's in Preview
 *
 * Author: Obox Themes
 * Author URI: http://www.oboxthemes.com/
@@ -75,6 +76,12 @@
 						self.preview.send( 'layers-close-all-widgets' );
 					}
 				});
+				
+				/**
+				 * 3 - Remove all '#' href's in Preview so WP does not incorrectly activate them causing new page click.
+				 */
+				$( 'a[href="#"]' ).attr( 'href', '' );
+				
 			});
 		}
 	};

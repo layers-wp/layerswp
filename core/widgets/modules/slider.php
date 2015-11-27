@@ -190,6 +190,8 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 
 				<section id="<?php echo esc_attr( $widget_id ); ?>" class="<?php echo esc_attr( $widget_container_class ); ?>" style="<?php echo esc_attr( $slider_height_css ); ?>"  <?php echo $this->custom_anchor( $widget ); ?>>
 
+					<?php do_action( 'layers_before_slider_widget_inner', $this, $widget ); ?>
+
 					<?php if( 1 < count( $widget[ 'slides' ] ) && isset( $widget['show_slider_arrows'] ) ) { ?>
 						 <div class="arrows">
 							<a href="" class="l-left-arrow animate"></a>
@@ -265,6 +267,9 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 								$slide_wrapper_href = 'href="' . esc_url( $item['link'] ) . '"';
 							} ?>
 							<<?php echo $slide_wrapper_tag; ?> <?php echo $slide_wrapper_href; ?> class="<?php echo $slide_class; ?>" id="<?php echo $widget_id; ?>-<?php echo $slide_key; ?>" style="float: left; <?php echo $slider_height_css; ?>">
+
+								<?php do_action( 'layers_before_slider_widget_item_inner', $this, $item ); ?>
+
 								<?php /**
 								* Set Overlay CSS Classes
 								*/
@@ -306,10 +311,16 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 										<?php } // if $item image  ?>
 									</div> <!-- .container -->
 								</div> <!-- .overlay -->
+
+								<?php do_action( 'layers_after_slider_widget_item_inner', $this, $item ); ?>
+
 							</<?php echo $slide_wrapper_tag; ?>>
 						<?php } // foreach slides ?>
-			 		</div>
-		 		</section>
+					</div>
+
+					<?php do_action( 'layers_after_slider_widget_inner', $this, $widget ); ?>
+
+				</section>
 
 		 	<?php } ?>
 
@@ -540,6 +551,7 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 				array( // Widget Object
 					'name' => $this->get_layers_field_name( 'design' ),
 					'id' => $this->get_layers_field_id( 'design' ),
+					'widget_id' => $this->widget_id,
 				),
 				$widget, // Widget Values
 				$components // Components
@@ -591,6 +603,7 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 						array(
 							'name' => $this->get_layers_field_name( 'design' ),
 							'id' => $this->get_layers_field_id( 'design' ),
+							'widget_id' => $this->widget_id . '_item',
 							'number' => $this->number,
 							'show_trash' => FALSE
 						), // Widget Object

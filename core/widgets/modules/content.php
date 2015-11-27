@@ -131,6 +131,9 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 			$widget_container_class = implode( ' ', apply_filters( 'layers_content_widget_container_class' , $widget_container_class ) ); ?>
 
 			<section id="<?php echo esc_attr( $widget_id ); ?>" class="<?php echo esc_attr( $widget_container_class ); ?>" <?php echo $this->custom_anchor( $widget ); ?>>
+
+				<?php do_action( 'layers_before_content_widget_inner', $this, $widget ); ?>
+
 				<?php if( '' != $this->check_and_return( $widget , 'title' ) ||'' != $this->check_and_return( $widget , 'excerpt' ) ) { ?>
 					<div class="container clearfix">
 						<?php /**
@@ -276,6 +279,8 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 					</div>
 				<?php } ?>
 
+				<?php do_action( 'layers_after_content_widget_inner', $this, $widget ); ?>
+
 			</section>
 			<?php if( 'list-masonry' == $this->check_and_return( $widget , 'design', 'liststyle' ) ) { ?>
 				<script>
@@ -329,6 +334,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 				array( // Widget Object
 					'name' => $this->get_layers_field_name( 'design' ),
 					'id' => $this->get_layers_field_id( 'design' ),
+					'widget_id' => $this->widget_id,
 				),
 				$widget, // Widget Values
 				apply_filters( 'layers_column_widget_design_bar_components', array( // Components
@@ -425,6 +431,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 						array( // Widget Object
 							'name' => $this->get_layers_field_name( 'design' ),
 							'id' => $this->get_layers_field_id( 'design' ),
+							'widget_id' => $this->widget_id . '_item',
 							'number' => $this->number,
 							'show_trash' => FALSE,
 						),

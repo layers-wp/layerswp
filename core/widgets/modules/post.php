@@ -218,6 +218,9 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 			$widget_container_class = implode( ' ', apply_filters( 'layers_post_widget_container_class' , $widget_container_class ) ); ?>
 
 			<section id="<?php echo esc_attr( $widget_id ); ?>" class="<?php echo esc_attr( $widget_container_class ); ?>" <?php echo $this->custom_anchor( $widget ); ?>>
+
+				<?php do_action( 'layers_before_post_widget_inner', $this, $widget ); ?>
+
 				<?php if( '' != $this->check_and_return( $widget , 'title' ) ||'' != $this->check_and_return( $widget , 'excerpt' ) ) { ?>
 					<div class="container clearfix">
 						<?php /**
@@ -349,6 +352,9 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 						<?php layers_pagination( array( 'query' => $post_query ), 'div', 'pagination row span-12 text-center' ); ?>
 					</div>
 				<?php } ?>
+
+				<?php do_action( 'layers_after_post_widget_inner', $this, $widget ); ?>
+
 			</section>
 
 			<?php if( 'list-masonry' == $this->check_and_return( $widget , 'design', 'liststyle' ) ) { ?>
@@ -407,6 +413,7 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 				array( // Widget Object
 					'name' => $this->get_layers_field_name( 'design' ),
 					'id' => $this->get_layers_field_id( 'design' ),
+					'widget_id' => $this->widget_id,
 				),
 				$widget, // Widget Values
 				apply_filters( 'layers_post_widget_design_bar_components' , array( // Components

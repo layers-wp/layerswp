@@ -152,7 +152,15 @@ class Layers_Design_Controller {
 		$element_args = ( isset( $args[ 'elements' ] ) ? $args[ 'elements' ] : array() );
 
 		// Return filtered element array
-		$elements = apply_filters( 'layers_design_bar_' . $key . '_elements', $element_args ); ?>
+		$elements = apply_filters( 'layers_design_bar_' . $key . '_elements', $element_args );
+
+		if( isset( $this->widget[ 'widget_id' ] ) ){
+			$elements = apply_filters(
+					'layers_design_bar_' . $key . '_' . $this->widget[ 'widget_id' ] . '_elements',
+					$elements,
+					$this
+				);
+		} ?>
 
 		<li class="layers-visuals-item">
 			<a href="" class="layers-icon-wrapper">

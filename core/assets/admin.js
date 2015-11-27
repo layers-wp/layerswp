@@ -341,6 +341,7 @@ jQuery(function($) {
 					layers_debounce_color_input( jQuery(event.target).parent('.wp-picker-input-wrap').find('.wp-color-picker') );
 				}
 			},
+			palettes: [ '#000000', '#FFFFFFF', '#E2594E', '#F39C12', '#FFCD03', '#A2C661', '#009EEC', '#934F8C' ],
 		});
 	}
 
@@ -452,7 +453,6 @@ jQuery(function($) {
 		$that.siblings( '.layers-icon-wrapper' ).removeClass( 'layers-active' );
 	});
 
-
 	$( document ).on( 'click' , '[id^="layers-customize"] .layers-visuals-item' , function(e){
 		// "Hi Mom"
 		$that = $(this);
@@ -465,8 +465,23 @@ jQuery(function($) {
 		$that.siblings( '.layers-visuals-item' ).removeClass( 'layers-active' );
 
 	});
-
 	$( document ).on( 'layers-design-bar-menu', '.layers-visuals-item', function( e, menu_item ){
+		$img = $(this).find( 'img[data-src]' );
+		$img.each(function(){
+			$(this).attr( 'src', $(this).data( 'src' ) );
+		});
+	});
+	
+	$( document ).on( 'click' , '.accordion-section-title' , function(e){
+		// "Hi Mom"
+		$that = $(this);
+		
+		var $related_accordion = $that.closest('.accordion-section').find('.accordion-section-content');
+		
+		// Toggle active state
+		$related_accordion.trigger( 'layers-design-bar-menu', $that );
+	});
+	$( document ).on( 'layers-design-bar-menu', '.accordion-section-content', function( e, menu_item ){
 		$img = $(this).find( 'img[data-src]' );
 		$img.each(function(){
 			$(this).attr( 'src', $(this).data( 'src' ) );

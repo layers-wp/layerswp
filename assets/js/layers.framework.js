@@ -133,9 +133,8 @@ jQuery(function($) {
 
 function layers_swiper_resize( s ){
 
+	// Find the highest slide, and set the Swiper container to that height.
     var height = 0;
-    var slide_height = 0;
-
     s.slides.each(function( key, slide ){
         
         var slide_height = jQuery(slide).find( '.container' ).outerHeight();
@@ -146,8 +145,7 @@ function layers_swiper_resize( s ){
             height = slide_height;
         }
     });
-
-    s.container.css({height: height+'px'});
+    s.container.css({ height: height+'px' });
 }
 
 /**

@@ -97,7 +97,7 @@
 			// eg when an <a> in the preview window is clicked
 			function layers_update_customizer_interface() {
 				
-				//Update the dropdown
+				// Update the dropdown
 				if( $(layers_builder_pages_drop_down + ' option[value="' + wp.customize.previewer.previewUrl() + '"]').length ){
 					$(layers_builder_pages_drop_down).val( wp.customize.previewer.previewUrl() );
 				} else {

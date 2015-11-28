@@ -257,7 +257,7 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 										echo layers_post_featured_media(
 											array(
 												'postid' => get_the_ID(),
-												'wrap_class' => 'thumbnail push-bottom span-5 column' .  ( ( isset( $column['design'][ 'imageratios' ] ) && 'image-round' == $column['design'][ 'imageratios' ] ) ? ' image-rounded' : '' ),
+												'wrap_class' => 'thumbnail push-bottom span-5 column' .  ( ( isset( $widget['design'][ 'imageratios' ] ) && 'image-round' == $widget['design'][ 'imageratios' ] ) ? ' image-rounded' : '' ),
 												'size' => $use_image_ratio
 											)
 										);
@@ -305,7 +305,7 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 										echo layers_post_featured_media(
 											array(
 												'postid' => get_the_ID(),
-												'wrap_class' => 'thumbnail-media' .  ( ( isset( $column['design'][ 'imageratios' ] ) && 'image-round' == $column['design'][ 'imageratios' ] ) ? ' image-rounded' : '' ),
+												'wrap_class' => 'thumbnail-media' .  ( ( isset( $widget['design'][ 'imageratios' ] ) && 'image-round' == $widget['design'][ 'imageratios' ] ) ? ' image-rounded' : '' ),
 												'size' => $use_image_ratio,
 												'hide_href' => false
 											)

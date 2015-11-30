@@ -514,11 +514,11 @@ jQuery(function($) {
 
 		// Check if the widget can be found - can't be found during widget-add
 		if ( 0 < $widget.length ){
-		$iframe.find('html, body').animate(
+			$iframe.find('html, body').animate(
 				{ scrollTop: $widget.offset().top },
 				{ duration: 900, easing: 'layersEaseInOut' }
 			);
-			}
+		}
 	}
 
 	/**

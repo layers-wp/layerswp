@@ -337,7 +337,7 @@ class Layers_Form_Elements {
 						<?php echo ( isset( $input->button_label ) ? $input->button_label : __( 'Choose File' , 'layerswp' ) ); ?>
 					</button>
 
-					<a class="<?php if( !isset( $input->value ) ) echo 'hide'; ?> layers-file-remove">
+					<a class="<?php if( !isset( $input->value ) ) echo 'hide'; ?> layers-image-remove">
 						<?php _e( 'Remove' , 'layerswp' ); ?>
 					</a>
 					<input type="hidden" <?php echo implode ( ' ' , $input_props ); ?> value="<?php echo $input->value; ?>" />

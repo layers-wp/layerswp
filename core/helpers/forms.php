@@ -326,16 +326,16 @@ class Layers_Form_Elements {
 			*/
 			case 'upload' : ?>
 				<section class="layers-file-container <?php if( isset( $input->value ) && NULL != $input->value ) echo 'layers-has-file'; ?>">
-					<span>
+					<span class="layers-file-name">
 						<!-- Image -->
 						<?php if( isset( $input->value ) ) echo wp_basename( wp_get_attachment_url( $input->value ) , true ); ?>
 					</span>
 
-					<button  class="layers-regular-uploader layers-button btn-medium"
+					<a  class="layers-regular-uploader layers-button btn-medium btn-full"
 						data-title="<?php echo ( isset( $input->button_label ) ? esc_attr( $input->button_label ) : __( 'Choose File' , 'layerswp' ) ); ?>"
 						data-button_text="<?php _e( 'Use File' , 'layerswp' ); ?>">
 						<?php echo ( isset( $input->button_label ) ? $input->button_label : __( 'Choose File' , 'layerswp' ) ); ?>
-					</button>
+					</a>
 
 					<a class="<?php if( !isset( $input->value ) ) echo 'hide'; ?> layers-image-remove">
 						<?php _e( 'Remove' , 'layerswp' ); ?>

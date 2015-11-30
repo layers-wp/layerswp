@@ -962,6 +962,11 @@ div[id*='layers-widget'] .spinner{
         height: 38px;
         margin: 0;
     }
+    .customize-control .layers-visuals-horizontal .layers-form-item select{
+        height: 30px;
+        font-size: 13px;
+        padding: 0 4px;
+    }
     .customize-control .layers-form-item select[multiple]{
         min-height: 90px;
     }
@@ -2759,10 +2764,10 @@ input[type=radio]:checked + .layers-settings-icon span{
 }
 .layers-image-container.layers-has-image .layers-image-display{
     display: block;
-    height: 108px;
+    max-height: 108px;
     padding: 8px;
     margin-bottom: 10px;
-    background: #f5f5f5 url(images/icon-bg-image.png) center no-repeat;
+    background: #f0f0f0 url(images/icon-bg-image.png) center no-repeat;
     background-size: 32px 32px;
     border: 1px solid #ddd;
     border-radius: 3px;
@@ -2771,6 +2776,13 @@ input[type=radio]:checked + .layers-settings-icon span{
 }
 .layers-image-container .layers-image-display:hover{
     background-color: #EAEAEA;
+}
+.layers-image-display img{
+    display: block;
+    max-height: 108px;
+    width: auto;
+    margin: 0 auto;
+    border-radius: none;
 }
 .layers-image-remove{
     display: none;
@@ -2794,13 +2806,6 @@ input[type=radio]:checked + .layers-settings-icon span{
 .layers-image-remove:hover{
     background-color: #F2413D;
 }
-.layers-image-display img{
-    display: block;
-    max-height: 108px;
-    width: auto;
-    margin: 0 auto;
-    border-radius: none;
-}
 .layers-image-display img + .layers-image-remove{
     display: block;
 }
@@ -2808,12 +2813,13 @@ input[type=radio]:checked + .layers-settings-icon span{
 /*---------------------------*/
 /*- FILE UPLOADER -----------*/
 .layers-file-container.layers-has-file{
+    position: relative;
     padding: 8px;
     background: #fff;
     border: 1px solid #ddd;
     border-radius: 3px;
 }
-.layers-file-container.layers-has-file span{
+.layers-file-container.layers-has-file .layers-file-name{
     display: block;
     padding: 0 8px 8px;
     margin: 0 -8px 8px;
@@ -2824,9 +2830,7 @@ input[type=radio]:checked + .layers-settings-icon span{
 }
 
 .layers-file-container.layers-has-file .layers-image-remove{
-    display: inline-block;
-    position: static;
-    vertical-align: middle;
+    display: block;
 }
 /*---------------------------*/
 /*- ELEMENT CONTROLLER ------*/

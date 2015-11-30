@@ -303,10 +303,10 @@ class Layers_Form_Elements {
 							<img data-src="<?php echo $img[0]; ?>" />
 						<?php } ?>
 						<!-- Remove button -->
-						<a class="layers-image-remove" href=""><?php _e( 'Remove' , 'layerswp' ); ?></a>
+						<a href="#removeimage" class="layers-image-remove" href=""><?php _e( 'Remove' , 'layerswp' ); ?></a>
 					</div>
 
-					<a href="#" class="layers-image-upload-button  layers-button btn-full <?php if( isset( $input->value ) && '' != $input->value ) echo 'layers-has-image'; ?>"
+					<a href="#uploadimage" class="layers-image-upload-button  layers-button btn-full <?php if( isset( $input->value ) && '' != $input->value ) echo 'layers-has-image'; ?>"
 						data-title="<?php _e( 'Select an Image' , 'layerswp' ); ?>"
 						data-button_text="<?php _e( 'Use Image' , 'layerswp' ); ?>">
 						<?php echo ( isset( $input->button_label ) ? $input->button_label : __( 'Choose Image' , 'layerswp' ) ); ?>
@@ -328,18 +328,18 @@ class Layers_Form_Elements {
 			*/
 			case 'upload' : ?>
 				<section class="layers-file-container <?php if( isset( $input->value ) && NULL != $input->value ) echo 'layers-has-file'; ?>">
-					<span>
+					<span class="layers-file-name">
 						<!-- Image -->
 						<?php if( isset( $input->value ) ) echo wp_basename( wp_get_attachment_url( $input->value ) , true ); ?>
 					</span>
 
-					<button  class="layers-regular-uploader layers-button btn-medium"
+					<a href="#choosefile" class="layers-regular-uploader layers-button btn-medium btn-full"
 						data-title="<?php echo ( isset( $input->button_label ) ? esc_attr( $input->button_label ) : __( 'Choose File' , 'layerswp' ) ); ?>"
 						data-button_text="<?php _e( 'Use File' , 'layerswp' ); ?>">
 						<?php echo ( isset( $input->button_label ) ? $input->button_label : __( 'Choose File' , 'layerswp' ) ); ?>
-					</button>
+					</a>
 
-					<a class="<?php if( !isset( $input->value ) ) echo 'hide'; ?> layers-file-remove">
+					<a href="#removefile" class="<?php if( !isset( $input->value ) ) echo 'hide'; ?> layers-image-remove layers-file-remove">
 						<?php _e( 'Remove' , 'layerswp' ); ?>
 					</a>
 					<input type="hidden" <?php echo implode ( ' ' , $input_props ); ?> value="<?php echo $input->value; ?>" />

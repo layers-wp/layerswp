@@ -962,6 +962,11 @@ div[id*='layers-widget'] .spinner{
         height: 38px;
         margin: 0;
     }
+    .customize-control .layers-visuals-horizontal .layers-form-item select{
+        height: 30px;
+        font-size: 13px;
+        padding: 0 4px;
+    }
     .customize-control .layers-form-item select[multiple]{
         min-height: 90px;
     }
@@ -2748,12 +2753,23 @@ input[type=radio]:checked + .layers-settings-icon span{
 .layers-image-container{
     position: relative;
 }
+.layers-image-container.layers-has-image {
+    padding: 8px;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
 .layers-image-container .layers-image-display{
-    background: #F0F0F0 url(images/icon-bg-image-small.png) center no-repeat;
-    background-size: 32px 32px;
-    border: 1px dashed #ddd;
-    height: 108px;
+    display: none;
+}
+.layers-image-container.layers-has-image .layers-image-display{
+    display: block;
+    max-height: 108px;
+    padding: 8px;
     margin-bottom: 10px;
+    background: #f0f0f0 url(images/icon-bg-image.png) center no-repeat;
+    background-size: 32px 32px;
+    border: 1px solid #ddd;
     border-radius: 3px;
     overflow: hidden;
     cursor: pointer;
@@ -2761,15 +2777,13 @@ input[type=radio]:checked + .layers-settings-icon span{
 .layers-image-container .layers-image-display:hover{
     background-color: #EAEAEA;
 }
-/*
-.layers-image-container.has-image .layers-image-display,
-.layers-image-container.layers-has-image .layers-image-display{
-    background: none;
-    border: none;
-    height: auto;
+.layers-image-display img{
+    display: block;
     max-height: 108px;
+    width: auto;
+    margin: 0 auto;
+    border-radius: none;
 }
-*/
 .layers-image-remove{
     display: none;
     width: 16px;
@@ -2778,8 +2792,8 @@ input[type=radio]:checked + .layers-settings-icon span{
     background-size: 16px 16px;
     border: 1px solid #BC3F39;
     position: absolute;
-    top: 10px;
-    right: 10px;
+    top: 8px;
+    right: 8px;
     z-index: 2;
     color: #fff;
     font-size: 11px;
@@ -2792,51 +2806,31 @@ input[type=radio]:checked + .layers-settings-icon span{
 .layers-image-remove:hover{
     background-color: #F2413D;
 }
-.layers-image-display img{
-    display: block;
-    height: auto;
-    margin: 0 auto 10px;
-    border-radius: 3px;
-}
 .layers-image-display img + .layers-image-remove{
     display: block;
 }
 
 /*---------------------------*/
 /*- FILE UPLOADER -----------*/
-.layers-file-container.layers-has-file span{
-    background: #F0F0F0;
-    background-size: 32px 32px;
-    border: 1px dashed #ddd;
-    margin-bottom: 10px;
-    border-radius: 3px;
-    width: 100%;
+.layers-file-container.layers-has-file{
     position: relative;
-    display: block;
-    text-align: center;
-    padding: 8px 0px;
-}
-
-.layers-file-container a.layers-file-remove{
-    display: none;
-    cursor: pointer;
-    width: 16px;
-    height: 16px;
-    background: #FF5353 url('images/cross.png') no-repeat;
-    background-size: 16px 16px;
-    border: 1px solid #BC3F39;
-    color: #fff;
-    font-size: 11px;
+    padding: 8px;
+    background: #fff;
+    border: 1px solid #ddd;
     border-radius: 3px;
-    transition: all 0.2s ease-in-out;
-    text-indent: -999px;
-    overflow: hidden;
-    box-shadow: 0px 1px 0px rgba(255, 255, 255, 0.4) inset, 0px 1px 0px rgba(0, 0, 0, 0.08);
+}
+.layers-file-container.layers-has-file .layers-file-name{
+    display: block;
+    padding: 0 8px 8px;
+    margin: 0 -8px 8px;
+    border-bottom: 1px solid #ddd;
+    text-align: center;
+    font-family: "courier new", monospace, sans-serif;
+    font-size: 12px;
 }
 
-.layers-file-container.layers-has-file a.layers-file-remove{
-    display: inline-block;
-
+.layers-file-container.layers-has-file .layers-image-remove{
+    display: block;
 }
 /*---------------------------*/
 /*- ELEMENT CONTROLLER ------*/

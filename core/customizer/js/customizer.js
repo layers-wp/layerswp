@@ -183,14 +183,27 @@
 				}
 			});
 
-			// Close all expanded widgets
+			// Close all expanded widgets - on click-anywhere-in-the-customizer-preview.
 			this.preview.bind( 'layers-close-all-widgets', function( data ) {
-
-				$( '.customize-control-widget_form.expanded' ).find( '.widget-inside' ).hide();
-				$( '.customize-control-widget_form.expanded' ).find( '.widget-control-close' ).click();
-				
-				//$( '.customize-control-widget_form.expanded' ).addClass('layers-peek'); // Peek (Disabled. Testing Only)
+				close_all_open_layers_widgets();
+				// $( '.customize-control-widget_form.expanded' ).addClass('layers-peek'); // Peek (Disabled. Testing Only)
 			});
+			
+			// Close all expanded widgets - on-click-back-on-widget-panel.
+			$( document ).on( 'click', '#accordion-panel-widgets .customize-section-back', function() {
+				close_all_open_layers_widgets();
+			});
+			
+			function close_all_open_layers_widgets() {
+				
+				// Old
+				// $( '.customize-control-widget_form.expanded' ).find( '.widget-inside' ).hide();
+				// $( '.customize-control-widget_form.expanded' ).find( '.widget-control-close' ).click();
+				
+				// New - Close any open widget forms, especially our wide Layers forms
+				$( '.customize-control-widget_form.expanded .widget-top' ).click();
+				$( '.customize-control-widget_form.expanded' ).find( '.widget-control-close' ).click();
+			}
 			
 			// Widget Peek (Disabled. Testing Only)
 			/*

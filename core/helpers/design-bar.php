@@ -663,6 +663,13 @@ class Layers_Design_Controller {
 
 		// Add elements
 		$defaults['elements'] = array(
+			'background-color' => array(
+				'type' => 'color',
+				'label' => __( 'Background Color', 'layerswp' ),
+				'name' => $this->get_layers_field_name( 'background', 'color' ),
+				'id' => $this->get_layers_field_id( 'background', 'color' ),
+				'value' => ( isset( $this->values['background']['color'] ) ) ? $this->values['background']['color'] : NULL
+			),
 			'background-image' => array(
 				'type' => 'image',
 				'label' => __( 'Background Image', 'layerswp' ),
@@ -670,13 +677,6 @@ class Layers_Design_Controller {
 				'name' => $this->get_layers_field_name( 'background', 'image' ),
 				'id' => $this->get_layers_field_id( 'background', 'image' ),
 				'value' => ( isset( $this->values['background']['image'] ) ) ? $this->values['background']['image'] : NULL
-			),
-			'background-color' => array(
-				'type' => 'color',
-				'label' => __( 'Background Color', 'layerswp' ),
-				'name' => $this->get_layers_field_name( 'background', 'color' ),
-				'id' => $this->get_layers_field_id( 'background', 'color' ),
-				'value' => ( isset( $this->values['background']['color'] ) ) ? $this->values['background']['color'] : NULL
 			),
 			'background-repeat' => array(
 				'type' => 'select',

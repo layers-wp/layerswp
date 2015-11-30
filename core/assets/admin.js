@@ -471,13 +471,13 @@ jQuery(function($) {
 			$(this).attr( 'src', $(this).data( 'src' ) );
 		});
 	});
-	
+
 	$( document ).on( 'click' , '.accordion-section-title' , function(e){
 		// "Hi Mom"
 		$that = $(this);
-		
+
 		var $related_accordion = $that.closest('.accordion-section').find('.accordion-section-content');
-		
+
 		// Toggle active state
 		$related_accordion.trigger( 'layers-design-bar-menu', $that );
 	});
@@ -954,7 +954,7 @@ jQuery(function($) {
 
 	// Init interface inside widgets and accordions
 	$( document ).on( 'layers-interface-init', '.widget, .layers-accordions', function( e ){
-		
+
 		// Add the peek buttons to all the Layers Widget actions.
 		$(this).find('.widget-control-actions .alignleft').prepend('<span class="layers-widget-peek-button dashicons dashicons-visibility">');
 		// $('<span class="layers-widget-peek-button dashicons dashicons-visibility">').insertBefore('.widget-control-actions br');

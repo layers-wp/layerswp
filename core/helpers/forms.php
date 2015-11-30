@@ -124,6 +124,7 @@ class Layers_Form_Elements {
 			'value' => NULL ,
 			'class' => NULL,
 			'options' => array(),
+			'sync_setting' => NULL,
 		);
 
 		// Convert 'choices' to 'options' - so you can use same naming as the controls which use 'options'.
@@ -147,6 +148,7 @@ class Layers_Form_Elements {
 		$input_props['placeholder'] = ( NULL !== $input->placeholder ) ? 'placeholder="' . esc_attr( $input->placeholder ) . '"' : NULL ;
 		$input_props['class'] = ( NULL != $input->class ) ? 'class="' .  $input->class . '"' : NULL ;
 		$input_props['disabled'] = isset( $input->disabled ) ? 'disabled="disabled"' : NULL ;
+		$input_props['sync-setting'] = isset( $input->sync_setting ) ? 'data-sync-setting="' . $input->sync_setting . '"' : NULL ;
 
 		if( NULL != $input->data ) { foreach( $input->data as $data_key => $data_value ){ $input_props[ 'data-' . $data_key ] = 'data-' . $data_key . '="' . esc_attr( $data_value ) . '"'; } }
 

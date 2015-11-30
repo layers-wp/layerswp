@@ -177,10 +177,10 @@ jQuery(function($) {
 
 			// Create new image object
 			var $image = $('<img />').attr({
-				class: 'image-reveal',
-				src:  $attachment.url,
-				height:  $attachment.height,
-				width: $attachment.width
+				class  : 'image-reveal',
+				src    :  $attachment.url,
+				height :  $attachment.height,
+				width  : $attachment.width
 			});
 
 			$container.children('.layers-image-display').eq(0).append( $image );

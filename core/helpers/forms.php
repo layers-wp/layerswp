@@ -296,8 +296,8 @@ class Layers_Form_Elements {
 				<section class="layers-image-container <?php if( isset( $input->value ) && NULL != $input->value ) echo 'layers-has-image'; ?>">
 					<div class="layers-image-display layers-image-upload-button">
 						<!-- Image -->
-						<?php if( isset( $input->value ) ) {
-							$img = wp_get_attachment_image_src( $input->value , 'medium' );?>
+						<?php if( isset( $input->value ) && '' !== $input->value ) { ?>
+							<?php $img = wp_get_attachment_image_src( $input->value , 'medium' ); ?>
 							<img data-src="<?php echo $img[0]; ?>" />
 						<?php } ?>
 						<!-- Remove button -->

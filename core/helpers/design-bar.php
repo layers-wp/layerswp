@@ -680,7 +680,7 @@ class Layers_Design_Controller {
 			),
 			'background-repeat' => array(
 				'type' => 'select',
-				'label' => __( 'Repeat', 'layerswp' ),
+				'label' => __( 'Background Repeat', 'layerswp' ),
 				'name' => $this->get_layers_field_name( 'background', 'repeat' ),
 				'id' => $this->get_layers_field_id( 'background', 'repeat' ),
 				'value' => ( isset( $this->values['background']['repeat'] ) ) ? $this->values['background']['repeat'] : NULL,
@@ -693,7 +693,7 @@ class Layers_Design_Controller {
 			),
 			'background-position' => array(
 				'type' => 'select',
-				'label' => __( 'Position', 'layerswp' ),
+				'label' => __( 'Background Position', 'layerswp' ),
 				'name' => $this->get_layers_field_name( 'background', 'position' ),
 				'id' => $this->get_layers_field_id( 'background', 'position' ),
 				'value' => ( isset( $this->values['background']['position'] ) ) ? $this->values['background']['position'] : NULL,
@@ -707,14 +707,14 @@ class Layers_Design_Controller {
 			),
 			'background-stretch' => array(
 				'type' => 'checkbox',
-				'label' => __( 'Stretch', 'layerswp' ),
+				'label' => __( 'Background Stretch', 'layerswp' ),
 				'name' => $this->get_layers_field_name( 'background', 'stretch' ),
 				'id' => $this->get_layers_field_id( 'background', 'stretch' ),
 				'value' => ( isset( $this->values['background']['stretch'] ) ) ? $this->values['background']['stretch'] : NULL
 			),
 			'background-darken' => array(
 				'type' => 'checkbox',
-				'label' => __( 'Darken', 'layerswp' ),
+				'label' => __( 'Background Darken', 'layerswp' ),
 				'name' => $this->get_layers_field_name( 'background', 'darken' ),
 				'id' => $this->get_layers_field_id( 'background', 'darken' ),
 				'value' => ( isset( $this->values['background']['darken'] ) ) ? $this->values['background']['darken'] : NULL

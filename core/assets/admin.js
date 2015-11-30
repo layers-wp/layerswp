@@ -557,7 +557,7 @@ jQuery(function($) {
 				var $element = $(element);
 
 				layers_enqueue_init( function(){
-					if( $element.find( 'li' ).length > 3 ){
+					if( $element.find( 'li' ).length > 4 ){
 						$element.find( 'li' ).eq(-1).addClass( 'layers-last' );
 						$element.find( 'li' ).eq(-2).addClass( 'layers-last' );
 					}

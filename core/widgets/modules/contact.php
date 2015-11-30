@@ -135,6 +135,9 @@ if( !class_exists( 'Layers_Contact_Widget' ) ) {
 			$widget_container_class = implode( ' ', apply_filters( 'layers_contact_widget_container_class' , $widget_container_class ) ); ?>
 
 			<section id="<?php echo esc_attr( $widget_id ); ?>" class="<?php echo esc_attr( $widget_container_class ); ?>" <?php echo $this->custom_anchor( $widget ); ?>>
+
+				<?php do_action( 'layers_before_contact_widget_inner', $this, $widget ); ?>
+
 				<?php if( $show_title_or_excerpt ) { ?>
 					<div class="container clearfix">
 						<?php /**f
@@ -197,6 +200,9 @@ if( !class_exists( 'Layers_Contact_Widget' ) ) {
 						</div>
 					<?php } ?>
 				</div>
+
+				<?php do_action( 'layers_after_contact_widget_inner', $this, $widget ); ?>
+
 			</section>
 
 			<?php if ( !isset( $wp_customize ) ) {
@@ -241,6 +247,7 @@ if( !class_exists( 'Layers_Contact_Widget' ) ) {
 				array( // Widget Object
 					'name' => $this->get_layers_field_name( 'design' ),
 					'id' => $this->get_layers_field_id( 'design' ),
+					'widget_id' => $this->widget_id,
 				),
 				$widget, // Widget Values
 				apply_filters( 'layers_map_widget_design_bar_components' , array( // Components

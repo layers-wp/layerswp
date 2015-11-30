@@ -125,7 +125,7 @@ class Layers_Form_Elements {
 			'class' => NULL,
 			'options' => array(),
 		);
-		
+
 		// Convert 'choices' to 'options' - so you can use same naming as the controls which use 'options'.
 		if ( isset( $args['choices'] ) && ! empty( $args['choices'] ) && ! isset ( $args['options'] ) ) {
 			$args['options'] = $args['choices'];
@@ -168,17 +168,17 @@ class Layers_Form_Elements {
 			* Range Inputs
 			*/
 			case 'range' :
-				
+
 				$range_input_props = array();
 				$number_input_props = array();
-				
+
 				$number_input_props['step'] = ( isset( $input->step ) ) ? 'step="' .  $input->step . '"' : NULL ;
-				
+
 				$range_input_props['min'] = ( NULL !== $input->min ) ? 'min="' .  $input->min . '"' : NULL ;
 				$range_input_props['max'] = ( NULL !== $input->max ) ? 'max="' .  $input->max . '"' : NULL ;
 				$range_input_props['step'] = ( NULL !== $input->step ) ? 'step="' .  $input->step . '"' : NULL ;
 				$range_input_props['placeholder'] = ( NULL !== $input->placeholder ) ? 'placeholder="' .  $input->placeholder . '"' : NULL ;
-				
+
 				if ( isset( $input->value ) && '' !== $input->value )
 					$range_input_props['value'] = 'value="' .  $input->value . '"';
 				elseif ( isset( $input->placeholder ) )
@@ -325,17 +325,23 @@ class Layers_Form_Elements {
 			* Regular Uploader
 			*/
 			case 'upload' : ?>
-				<span>
-					<!-- Image -->
-					<?php if( isset( $input->value ) ) echo wp_basename( wp_get_attachment_url( $input->value ) , true ); ?>
-				</span>
-				<button  class="layers-regular-uploader layers-button btn-medium" data-title="<?php _e( 'Select a File' , 'layerswp' ); ?>" data-button_text="<?php _e( 'Use File' , 'layerswp' ); ?>">
-					<?php _e( 'Choose a File' , LAYERS_THEME_SLUG  ); ?>
-				</button>
-				<small class="<?php if( !isset( $input->value ) ) echo 'hide'; ?> layers-file-remove">
-					<?php _e( 'Remove' , 'layerswp' ); ?>
-				</small>
-				<input type="hidden" <?php echo implode ( ' ' , $input_props ); ?> value="<?php echo $input->value; ?>" />
+				<section class="layers-file-container <?php if( isset( $input->value ) && NULL != $input->value ) echo 'layers-has-file'; ?>">
+					<span>
+						<!-- Image -->
+						<?php if( isset( $input->value ) ) echo wp_basename( wp_get_attachment_url( $input->value ) , true ); ?>
+					</span>
+
+					<button  class="layers-regular-uploader layers-button btn-medium"
+						data-title="<?php echo ( isset( $input->button_label ) ? esc_attr( $input->button_label ) : __( 'Choose File' , 'layerswp' ) ); ?>"
+						data-button_text="<?php _e( 'Use File' , 'layerswp' ); ?>">
+						<?php echo ( isset( $input->button_label ) ? $input->button_label : __( 'Choose File' , 'layerswp' ) ); ?>
+					</button>
+
+					<a class="<?php if( !isset( $input->value ) ) echo 'hide'; ?> layers-file-remove">
+						<?php _e( 'Remove' , 'layerswp' ); ?>
+					</a>
+					<input type="hidden" <?php echo implode ( ' ' , $input_props ); ?> value="<?php echo $input->value; ?>" />
+				</section>
 			<?php break;
 			/**
 			* Background Controller
@@ -553,7 +559,7 @@ class Layers_Form_Elements {
 					'bottom' => __( 'Bottom' , 'layerswp' ),
 					'left' => __( 'Left' , 'layerswp' ),
 				); ?>
-				
+
 				<?php
 				// If caller only wants chosen few fields can customise the labels e.g.
 				// (1) 'fields' => array( 'top' => 'Top (px)' ) one field 'top' with cusotmized label 'Top (px)'.
@@ -561,7 +567,7 @@ class Layers_Form_Elements {
 				if( ! empty( $input->fields ) ) {
 					$new_fields = array();
 					foreach ( $input->fields as $key => $value ) {
-						
+
 						if ( is_numeric( $key ) ) {
 							// Array element type: [ 'bottom' ]
 							if ( isset( $fields[$value] ) ){ // Make sure that what the user spcified is avalid field of TRBL.
@@ -574,16 +580,16 @@ class Layers_Form_Elements {
 						}
 					}
 					$fields = $new_fields;
-					
+
 					// If the fields chosen were incorrect then bail.
 					if ( empty( $fields ) ) return;
 				}
-				
+
 				// Calculate column span based on the number of resulting fields.
 				$field_span = ( 12 / count( $fields ) );
 				?>
 				<div class="layers-row layers-input layers-trbl-row">
-				
+
 					<?php foreach ( $fields as $key => $label ) : ?>
 						<div class="layers-column-flush layers-span-<?php echo esc_attr( $field_span ); ?>">
 							<?php echo $this->input(
@@ -601,9 +607,9 @@ class Layers_Form_Elements {
 							<label for="<?php echo esc_attr( $input->id ) . '-' . $key; ?>"><?php echo esc_html( $label ); ?></label>
 						</div>
 					<?php endforeach; ?>
-					
+
 				</div>
-				
+
 			<?php break;
 			/**
 			* Free form HTML

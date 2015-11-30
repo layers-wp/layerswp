@@ -268,7 +268,7 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 							} ?>
 							<<?php echo $slide_wrapper_tag; ?> <?php echo $slide_wrapper_href; ?> class="<?php echo $slide_class; ?>" id="<?php echo $widget_id; ?>-<?php echo $slide_key; ?>" style="float: left; <?php echo $slider_height_css; ?>">
 
-								<?php do_action( 'layers_before_slider_widget_item_inner', $this, $item ); ?>
+								<?php do_action( 'layers_before_slider_widget_item_inner', $this, $item, $widget ); ?>
 
 								<?php /**
 								* Set Overlay CSS Classes
@@ -312,7 +312,7 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 									</div> <!-- .container -->
 								</div> <!-- .overlay -->
 
-								<?php do_action( 'layers_after_slider_widget_item_inner', $this, $item ); ?>
+								<?php do_action( 'layers_after_slider_widget_item_inner', $this, $item, $widget ); ?>
 
 							</<?php echo $slide_wrapper_tag; ?>>
 						<?php } // foreach slides ?>

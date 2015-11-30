@@ -476,7 +476,7 @@ div[id*='layers-widget'] .widget-control-actions .alignright{
 	float: right;
 }
 .widget-control-actions .layers-widget-peek-button {
-    float: right;
+    float: left;
     display: block;
     font-size: 20px;
     line-height: 24px;

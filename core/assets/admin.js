@@ -949,8 +949,13 @@ jQuery(function($) {
 	 * 17 - Widget Peek/hide to preview changes
 	 */
 
-	// Add the peek buttons to all the Layers Widget actions.
-	$('<span class="layers-widget-peek-button dashicons dashicons-visibility">').insertBefore('.widget-control-actions br');
+	// Init interface inside widgets and accordions
+	$( document ).on( 'layers-interface-init', '.widget, .layers-accordions', function( e ){
+		
+		// Add the peek buttons to all the Layers Widget actions.
+		$(this).find('.widget-control-actions .alignleft').prepend('<span class="layers-widget-peek-button dashicons dashicons-visibility">');
+		// $('<span class="layers-widget-peek-button dashicons dashicons-visibility">').insertBefore('.widget-control-actions br');
+	});
 
 	// Add the hover hiding of the Widget interface.
 	$(document).on( 'mouseenter', '.layers-widget-peek-button', function(){ $(this).closest('.widget-inside').addClass('layers-peek-widget'); } );

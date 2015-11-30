@@ -707,14 +707,14 @@ class Layers_Design_Controller {
 			),
 			'background-stretch' => array(
 				'type' => 'checkbox',
-				'label' => __( 'Background Stretch', 'layerswp' ),
+				'label' => __( 'Stretch', 'layerswp' ),
 				'name' => $this->get_layers_field_name( 'background', 'stretch' ),
 				'id' => $this->get_layers_field_id( 'background', 'stretch' ),
 				'value' => ( isset( $this->values['background']['stretch'] ) ) ? $this->values['background']['stretch'] : NULL
 			),
 			'background-darken' => array(
 				'type' => 'checkbox',
-				'label' => __( 'Background Darken', 'layerswp' ),
+				'label' => __( 'Darken', 'layerswp' ),
 				'name' => $this->get_layers_field_name( 'background', 'darken' ),
 				'id' => $this->get_layers_field_id( 'background', 'darken' ),
 				'value' => ( isset( $this->values['background']['darken'] ) ) ? $this->values['background']['darken'] : NULL

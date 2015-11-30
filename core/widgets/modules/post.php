@@ -205,6 +205,7 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 			if( isset( $widget['show_author'] ) ) $layers_post_meta_to_display[] = 'author';
 			if( isset( $widget['show_categories'] ) ) $layers_post_meta_to_display[] = 'categories';
 			if( isset( $widget['show_tags'] ) ) $layers_post_meta_to_display[] = 'tags';
+			
 			/**
 			* Generate the widget container class
 			*/
@@ -266,7 +267,7 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 										);
 									} // if Show Media ?>
 
-									<?php if( isset( $widget['show_excerpts'] ) || $widget['show_call_to_action'] || !empty( $layers_post_meta_to_display ) ) { ?>
+									<?php if( isset( $widget['show_excerpts'] ) || $widget['show_call_to_action'] || ! empty( $layers_post_meta_to_display ) ) { ?>
 										<div class="column span-7">
 											<?php if( isset( $widget['show_excerpts'] ) ) {
 												if( isset( $widget['excerpt_length'] ) && '' == $widget['excerpt_length'] ) {

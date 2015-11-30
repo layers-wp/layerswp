@@ -15,7 +15,7 @@ if( !class_exists( 'Layers_Customize_Select_Control' ) ) {
 
 		public function render_content() {
 
-			// Exit if there are no choises
+			// Exit if there are no choices
 			if ( empty( $this->choices ) ) return;
 
 			$form_elements = new Layers_Form_Elements();

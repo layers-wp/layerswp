@@ -1388,8 +1388,11 @@ object{
         display: inline-block;
         margin-bottom: 10px;
         vertical-align: middle;
+        overflow: hidden;
     }
-    .button-group + .button-group{margin-right: 10px;}
+    .button-group + .button-group{
+        margin-right: 10px;
+    }
     .pull-right .button-group + .button-group{
         margin-left: 10px;
         margin-right: 0;
@@ -1402,10 +1405,9 @@ object{
     /*---------------------------*/
     /*- BUTTON COLLECTION -------*/
     .button-collection{
+        margin-bottom: 20px;
+        vertical-align: middle;
         overflow: hidden;
-    }
-    .title-container .button-group{
-        margin-bottom: 0;
     }
 
 

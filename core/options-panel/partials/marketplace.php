@@ -54,7 +54,11 @@ $all_authors = array(); ?>
 			<?php } ?>
 
 			<?php if( !is_wp_error( $products ) ) { ?>
+				<div class="layers-marketplace-intro layers-section-title layers-small layers-content-small layers-hide">
+					<p class="layers-excerpt"> <?php _e( 'You are viewing', 'layerswp' ); ?> <span id="intro-product-type"> <?php echo strtolower( $excerpt ); ?>,</span><span id="intro-author"></span> <?php _e( 'ordered', 'layerswp' ); ?> <span id="intro-sort"><?php _e( 'by last updated', 'layerswp' ); ?></span>.</p>
+				</div>
 				<div class="layers-products layers-hide">
+
 					<?php foreach( $products->matches as $key => $details ) {
 
 						if( FALSE === in_array(  ucfirst( strtolower( $details->author_username ) ), $all_authors ) ){
@@ -67,6 +71,7 @@ $all_authors = array(); ?>
 							data-id="<?php echo $details->id; ?>"
 							data-url="<?php echo esc_attr( $envato_url ); ?>"
 							data-slug="<?php echo sanitize_title( $details->name ); ?>"
+							data-updated="<?php echo strtotime( $details->updated_at ); ?>"
 							data-name="<?php echo esc_attr( $details->name ); ?>"
 							data-sales="<?php echo esc_attr( $details->number_of_sales ); ?>"
 							data-rating="<?php echo ( $details->rating->count > 0 ? ceil( $details->rating->rating ) : '' ) ; ?>"

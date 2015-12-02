@@ -1333,6 +1333,43 @@ div[id*='layers-widget'] .spinner{
     }
     .layers-row.layers-trbl-row .layers-column-flush:last-child input { }
 
+    /*-----------------------*/
+    /*- LAYERS PRO UPSELL ---*/
+
+    .layers-visuals-item.layers-pro-upsell{
+        font-size: 11px;
+        border-radius: 4px 4px 0px 0px;
+        display: block;
+        color: rgba(255, 255, 255, 0.8);
+        clear: both;
+        background: #444;
+        opacity: 0.5 !important;
+        position: absolute;
+        bottom: 0px;
+    }
+    .layers-visuals-item.layers-pro-upsell span{
+        display: block;
+        padding: 8px 4px;
+        text-align: center;
+    }
+
+    .layers-visuals-item.layers-pro-upsell:hover{
+        opacity: 1 !important;
+    }
+
+    .layers-visuals-item.layers-pro-upsell:hover a{
+        background: #009EEC;
+    }
+
+    .layers-visuals-item.layers-pro-upsell a{
+        color: rgba(255, 255, 255, 0.8);
+        display: block;
+        margin-top: 2px;
+        padding: 8px 0px;
+        text-transform: uppercase;
+        text-align: center;
+        width: 100%;
+    }
 
     /*-----------------------*/
     /*- SETTINGS POP MENU ---*/

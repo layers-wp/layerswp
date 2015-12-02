@@ -65,6 +65,12 @@ class Layers_Design_Controller {
 				$this->render_controls(); ?>
 				<?php // Show trash icon (for use when in an accordian)
 				$this->render_trash_control(); ?>
+				<?php if( 'side' == $this->type && !class_exists( 'Layers_Pro' ) ) { ?>
+					<li class="layers-visuals-item layers-pro-upsell">
+						<span><?php _e( 'Unlock the full power of Layers with Layers Pro', 'layerswp' ); ?></span>
+						<a href="http://codecanyon.net/item/layers-pro-extended-customization-for-layers/11225042?ref=obox&utm_source=layers%20theme&utm_medium=link&utm_campaign=Layers%20Pro%20Upsell&utm_content=Widget%20Design%20Bar"><?php _e( 'Get it now', 'layerswp' ); ?></a>
+					</li>
+				<?php } ?>
 			</ul>
 		</div>
 	<?php }

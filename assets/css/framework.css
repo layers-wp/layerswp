@@ -1283,8 +1283,7 @@ object{
         padding: 5px 15px;
         background-color: #454545;
         border: none;
-        border-color: rgba(0,0,0,0.5);
-        border-style: solid;
+        border-color: transparent;
         color: #fff;
         text-align: center;
         vertical-align: middle;

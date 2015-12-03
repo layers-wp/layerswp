@@ -513,12 +513,6 @@ function layers_options_panel_menu(){
 		3
 	);
 
-	// This modifies the Layers submenu item - must be done here as $submenu
-	// is only created if $submenu items are added using add_submenu_page
-	if( isset( $submenu[ 'layers-dashboard' ] ) ) {
-		$submenu[LAYERS_THEME_SLUG . '-dashboard'][0][0] = __( 'Dashboard' , 'layerswp' );
-	}
-
 	add_action('admin_print_scripts-' . $dashboard, array( $layers_options_panel, 'enqueue_dashboard_scripts') );
 
 	// Add Preset Pages
@@ -572,6 +566,12 @@ function layers_options_panel_menu(){
 		'layers_options_panel_ui'
 	);
 
+	// This modifies the Layers submenu item - must be done here as $submenu
+	// is only created if $submenu items are added using add_submenu_page
+	if( isset( $submenu[ 'layers-dashboard' ] ) ) {
+		$submenu[LAYERS_THEME_SLUG . '-dashboard'][0][0] = __( 'Dashboard' , 'layerswp' );
+	}
+
 	// Marketplace
 	if( !defined( 'LAYERS_DISABLE_MARKETPLACE' ) ){
 		// dashboard Page
@@ -584,14 +584,6 @@ function layers_options_panel_menu(){
 			'none',
 			4
 		);
-
-		// This modifies the Layers submenu item - must be done here as $submenu
-		// is only created if $submenu items are added using add_submenu_page
-
-		if( isset( $submenu[ 'layers-marketplace' ] ) ) {
-			$submenu[LAYERS_THEME_SLUG . '-marketplace'][0][0] = __( 'Themes' , 'layerswp' );
-		}
-
 
 		add_action('admin_print_scripts-' . $marketplace, array( $layers_options_panel, 'enqueue_marketplace_scripts') );
 
@@ -609,6 +601,14 @@ function layers_options_panel_menu(){
 			'edit_theme_options',
 			'admin.php?page=layers-marketplace&type=stylekits'
 		);
+
+		// This modifies the Layers submenu item - must be done here as $submenu
+		// is only created if $submenu items are added using add_submenu_page
+
+		if( isset( $submenu[ 'layers-marketplace' ] ) ) {
+			$submenu[LAYERS_THEME_SLUG . '-marketplace'][0][0] = __( 'Themes' , 'layerswp' );
+		}
+
 	}
 }
 

@@ -7,6 +7,7 @@
 * **Tweak** - Updated Envato Marketplace to list themes by last updated by default. *MP*
 * **Tweak** - Updated Envato Marketplace to show the filter information as an intro. *MP*
 * **Tweak** - Updated the Layers Messenger to show plugin version. *MP*
+* **Tweak** - Removed Transparent overlay reliance on the Sticky header setting. *MP*
 * **Tweak** - The design bar Background image interface has been redesigned to cater for video backgrounds. *DP*
 * **Enhancement** - .button-collection has been refined to cater for .button-social and preparation for more inline buttons in original widget. *DP*
 * **Enhancement** - Added a new filter to design bar controls in preparation for further Layers Pro features. *MP*

@@ -1283,8 +1283,7 @@ object{
         padding: 5px 15px;
         background-color: #454545;
         border: none;
-        border-color: rgba(0,0,0,0.5);
-        border-style: solid;
+        border-color: transparent;
         color: #fff;
         text-align: center;
         vertical-align: middle;
@@ -1389,8 +1388,11 @@ object{
         display: inline-block;
         margin-bottom: 10px;
         vertical-align: middle;
+        overflow: hidden;
     }
-    .button-group + .button-group{margin-right: 10px;}
+    .button-group + .button-group{
+        margin-right: 10px;
+    }
     .pull-right .button-group + .button-group{
         margin-left: 10px;
         margin-right: 0;
@@ -1403,10 +1405,9 @@ object{
     /*---------------------------*/
     /*- BUTTON COLLECTION -------*/
     .button-collection{
+        margin-bottom: 20px;
+        vertical-align: middle;
         overflow: hidden;
-    }
-    .title-container .button-group{
-        margin-bottom: 0;
     }
 
 

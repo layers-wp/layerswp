@@ -3552,3 +3552,46 @@ input[type=radio]:checked + .layers-settings-icon span{
     color: #999999;
     pointer-events: none;
 }
+
+/*---------------------*/
+/*- TIP-TIP -----------*/
+div#tiptip_holder {
+    z-index: 9999999;
+}
+#tiptip_holder #tiptip_content {
+    max-width: 198px;
+    padding: 3px 6px;
+    font-size: 11px;
+    line-height: 1.5em;
+    box-shadow: none;
+    border: 0;
+    background: rgba(0,0,0,0.75);
+}
+#tiptip_holder.tip_top #tiptip_arrow {
+	border-top-color: rgba(255,255,255,0.35);
+}
+#tiptip_holder.tip_bottom #tiptip_arrow {
+	border-bottom-color: rgba(255,255,255,0.35);
+}
+#tiptip_holder.tip_right #tiptip_arrow {
+	border-right-color: rgba(255,255,255,0.35);
+}
+#tiptip_holder.tip_left #tiptip_arrow {
+	border-left-color: rgba(255,255,255,0.35);
+}
+#tiptip_holder.tip_top #tiptip_arrow_inner {
+    margin-top: -6px;
+    border-top-color: rgba(0,0,0,0.75);
+}
+#tiptip_holder.tip_bottom #tiptip_arrow_inner {
+    margin-top: -6px;
+    border-bottom-color: rgba(0,0,0,0.75);
+}
+#tiptip_holder.tip_right #tiptip_arrow_inner {
+    margin-left: -6px;
+	border-right-color: rgba(0,0,0,0.75);
+}
+#tiptip_holder.tip_left #tiptip_arrow_inner {
+    margin-left: -6px;
+	border-left-color: rgba(0,0,0,0.75);
+}

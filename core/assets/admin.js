@@ -32,6 +32,7 @@
  * 19 - Reset to Default
  * 20 - History States
  * 21 - Linking from one section/panel to another.
+ * 24 - Init Tip-Tip
  *
  * Author: Obox Themes
  * Author URI: http://www.oboxthemes.com/
@@ -1117,5 +1118,49 @@ jQuery(function($) {
 
 		return false;
 	});
+	
+	/**
+	* 24 - Init Tip-Tip
+	*/
+
+	// Init interface in all except widgets on load
+	init_tip_tip( $( '#customize-theme-controls > ul > li.accordion-section' ).not( '#accordion-panel-widgets' ) );
+
+	// Init interface inside widgets
+	$( document ).on( 'layers-interface-init', '.widget, .layers-accordions', function( e ){
+		// 'this' is the widget
+		init_tip_tip( $(this), true );
+	});
+
+	function init_tip_tip( $element_s, $run_instantly ){
+
+		$element_s.each( function( i, group ) {
+
+			var $group = $(group);
+
+			$group.find( '[data-tip]').each( function( j, element ) {
+
+				var $element = $(element);
+				
+				// Tooltips
+				$element.layersTip({
+					'attribute' : 'data-tip',
+					'fadeIn' : 300,
+					'fadeOut' : 300,
+					'delay' : 200,
+					'defaultPosition' : 'top',
+					'edgeOffset' : 3,
+					'maxWidth' : '300px'
+					//'enter' : function() {
+					//	//jQuery("#tiptip_holder").addClass("cx_tip_tip");
+					//	jQuery("#tiptip_holder #tiptip_content").addClass('cx_tip_tip');
+					//}
+					//'keepAlive' : true,
+					//'activation' : 'click'
+				});
+				
+			});
+		});
+	}
 
 });

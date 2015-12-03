@@ -376,6 +376,20 @@ if( ! function_exists( 'layers_admin_scripts' ) ) {
 		global $pagenow, $wp_customize;
 
 		wp_enqueue_style(
+			LAYERS_THEME_SLUG . '-tip-tip' ,
+			get_template_directory_uri() . '/core/assets/tipTip.css',
+			array(),
+			LAYERS_VERSION
+		); // Tip-Tip CSS
+		
+		wp_enqueue_style(
+			LAYERS_THEME_SLUG . '-admin-font-awesome',
+			get_template_directory_uri() . '/core/assets/font-awesome.min.css',
+			array(),
+			LAYERS_VERSION
+		); // Inline Editor
+		
+		wp_enqueue_style(
 			LAYERS_THEME_SLUG . '-admin',
 			get_template_directory_uri() . '/core/assets/admin.css',
 			array(),
@@ -388,14 +402,16 @@ if( ! function_exists( 'layers_admin_scripts' ) ) {
 			array(),
 			LAYERS_VERSION
 		); // Inline Editor
-
-		wp_enqueue_style(
-			LAYERS_THEME_SLUG . '-admin-font-awesome',
-			get_template_directory_uri() . '/core/assets/font-awesome.min.css',
-			array(),
-			LAYERS_VERSION
-		); // Inline Editor
-
+		
+		wp_enqueue_script(
+			LAYERS_THEME_SLUG . '-tip-tip' ,
+			get_template_directory_uri() . '/core/assets/jquery.tipTip.minified.js',
+			array(
+				'jquery',
+			),
+			LAYERS_VERSION,
+			true
+		); // Tip-Tip JS
 
 		wp_enqueue_script(
 			LAYERS_THEME_SLUG . '-admin-editor' ,

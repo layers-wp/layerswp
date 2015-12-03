@@ -9,10 +9,12 @@
 * **Tweak** - Updated the Layers Messenger to show plugin version. *MP*
 * **Tweak** - Removed Transparent overlay reliance on the Sticky header setting. *MP*
 * **Tweak** - The design bar Background image interface has been redesigned to cater for video backgrounds. *DP*
+* **Tweak** - Added `Blog > Archive` & `Blog > Posts & Pages` panels and sections, replaceing `Site Settings > Sidebars`. *MP*
 * **Enhancement** - .button-collection has been refined to cater for .button-social and preparation for more inline buttons in original widget. *DP*
 * **Enhancement** - Added a new filter to design bar controls in preparation for further Layers Pro features. *MP*
 * **Enhancement** - Added a new hooks to the the core Layers widgets, such as `layers_after_slider_widget_inner` . *MP*
 * **Enhancement** - Added `layers_get_vimeo_id` and `layers_get_youtube_id` functions to `helpers/template.php`. *MP*
+* **Fix** - Fixed the space between title and colon ":" in the slider and content widgets. *MP*
 
 =======
 ##1.2.9

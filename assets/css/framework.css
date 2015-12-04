@@ -444,8 +444,7 @@ object{
 
         position: relative;
     }
-    .header-site .container,
-    .header-site > .header-block{
+    .header-site .container{
         padding: 10px;
     }
 

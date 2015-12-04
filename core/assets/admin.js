@@ -32,6 +32,8 @@
  * 19 - Reset to Default
  * 20 - History States
  * 21 - Linking from one section/panel to another.
+ * 22 - Synced Widget Settings
+ * 23 - Mimic Widget Settings
  * 24 - Init Tip-Tip
  *
  * Author: Obox Themes
@@ -305,7 +307,7 @@ jQuery(function($) {
 		// Loop through each of the element_s, that are groups to look inside of for elements to be initialized.
 		$element_s.each( function( i, group ) {
 
-			$group = $(group);
+			var $group = $(group);
 
 			// Loop through each color-picker
 			$group.find( '.layers-color-selector').each( function( j, element ) {
@@ -372,7 +374,7 @@ jQuery(function($) {
 
 		$element_s.each( function( i, group ) {
 
-			$group = $(group);
+			var $group = $(group);
 
 			$group.find( '.layers-sortable').each( function( j, element ) {
 
@@ -1118,6 +1120,151 @@ jQuery(function($) {
 
 		return false;
 	});
+	
+	
+	/**
+	 * 22 - Synced Widget Settings (NOT YET  READY FOR USE)
+	 */
+	
+	// Init interface inside widgets and accordions
+	$( document ).on( 'layers-interface-init', '.widget, .layers-accordions', function( e ){
+		// 'this' is the widget
+		layers_sync_setting_init( $(this), true );
+	});
+
+	function layers_sync_setting_init( $element_s, $run_instantly ){
+
+		// Loop through each of the element_s, that are groups to look inside of for elements to be initialized.
+		$element_s.each( function( i, group ) {
+
+			var $group = $(group);
+
+			// Loop through each color-picker
+			$group.find( '[data-sync-setting]').each( function( j, element ) {
+				
+				var $input_el         = $(this);
+				var $sync_setting_key = $input_el.attr('data-sync-setting');
+				var $sync_setting_id  = '#' + $sync_setting_key;
+				var $sync_setting_el  = $( $sync_setting_id );
+				
+				// Bail if the sync_setting_el doesn't exists.
+				if ( ! $sync_setting_el.length ) return true;
+				
+				// Wrap the input in the UX.
+				var $main_holder = '';
+				$main_holder += '<div class="layers-sync-setting-holder layers-use-widget-value">';
+				$main_holder += '	<div class="layers-widget-setting">';
+				$main_holder += '		<span class="display-setting-button display-setting-revert fa fa-chain-broken"></span>';
+				$main_holder += '	</div>';
+				$main_holder += '	<div class="layers-global-setting">';
+				$main_holder += '		<input disabled type="text" value="">';
+				$main_holder += '		<span class="display-setting-button display-setting-edit fa fa-link"></span>';
+				$main_holder += '	</div>';
+				$main_holder += '</div>';
+				$main_holder = $( $main_holder );
+				
+				$main_holder.insertAfter( $input_el );
+				$main_holder.find('.layers-widget-setting').prepend( $input_el );
+				
+				// If hte main input is emty then show the user the sync-setting value.
+				if ( '' == $input_el.val() ) {
+					$main_holder.removeClass('layers-use-widget-value');
+					$main_holder.addClass('layers-use-global-value');
+				}
+				
+				// Set the inital Preview of the setting to be synced.
+				$main_holder.find('.layers-global-setting input').val( $sync_setting_el.val() );
+				
+				// Trigger the update of the preview whenever the Synced Setting is changed.
+				$( document ).on( 'change, keyup', $sync_setting_id, function(){
+					$main_holder.find('.layers-global-setting input').val( $sync_setting_el.val() );
+				});
+				
+			});
+		});
+	}
+	
+	$( document ).on( 'click', '.layers-global-setting .display-setting-button', function( e ){
+		
+		var $global_setting_unlink_button = $(this);
+		var $global_setting_holder        = $global_setting_unlink_button.closest('.layers-global-setting');
+		var $main_holder                  = $global_setting_holder.closest('.layers-sync-setting-holder');
+		var $widget_setting_input         = $main_holder.find('.layers-widget-setting input');
+		
+		$main_holder.addClass('layers-use-widget-value');
+		$main_holder.removeClass('layers-use-global-value');
+		$widget_setting_input.focus();
+	});
+	
+	$( document ).on( 'click', '.layers-widget-setting .display-setting-button', function( e ){
+		
+		var $widget_setting_unlink_button = $(this);
+		var $widget_setting_holder        = $widget_setting_unlink_button.closest('.layers-widget-setting');
+		var $main_holder                  = $widget_setting_holder.closest('.layers-sync-setting-holder');
+		var $widget_setting_input         = $widget_setting_holder.find('input');
+		
+		$widget_setting_input.val('');
+		$main_holder.removeClass('layers-use-widget-value');
+		$main_holder.addClass('layers-use-global-value');
+	});
+
+	$( document ).on( 'blur', '.layers-widget-setting input', function( e ){
+		
+		var $widget_setting_input = $(this);
+		var $main_holder = $widget_setting_input.closest('.layers-sync-setting-holder');
+
+		if ( '' == $widget_setting_input.val() ) {
+			$main_holder.removeClass('layers-use-widget-value');
+			$main_holder.addClass('layers-use-global-value');
+		}
+	});
+	
+	
+	/**
+	 * 23 - Mimic Widget Settings (NOT YET  READY FOR USE)
+	 */
+	
+	// Init interface inside widgets and accordions
+	$( document ).on( 'layers-interface-init', '.widget, .layers-accordions', function( e ){
+		// 'this' is the widget
+		layers_mimic_setting_init( $(this), true );
+	});
+
+	function layers_mimic_setting_init( $element_s, $run_instantly ){
+
+		// Loop through each of the element_s, that are groups to look inside of for elements to be initialized.
+		$element_s.each( function( i, group ) {
+
+			var $group = $(group);
+
+			// Loop through each color-picker
+			$group.find( '[data-mimic-setting]').each( function( j, element ) {
+				
+				var $input_el         = $(this);
+				var $sync_setting_key = $input_el.attr('data-mimic-setting');
+				var $sync_setting_id  = '#' + $sync_setting_key;
+				var $sync_setting_el  = $( $sync_setting_id );
+				
+				console.log( $sync_setting_el.val(), $input_el );
+				
+				// Bail if the sync_setting_el doesn't exists.
+				if ( ! $sync_setting_el.length ) return true;
+				
+				// Set the inital Preview of the setting to be synced.
+				$input_el.val('');
+				$input_el.attr( 'disabled', 'true' );
+				
+				$input_el.attr( 'placeholder', $sync_setting_el.val() );
+				
+				// Trigger the update of the preview whenever the Synced Setting is changed.
+				$( document ).off( '.layers-mimic-setting' );
+				$( document ).on( 'change.layers-mimic-setting, keyup.layers-mimic-setting', $sync_setting_id, function(){
+					$( '[data-mimic-setting="' + $sync_setting_key + '"]' ).attr( 'placeholder', $(this).val() );
+				});
+				
+			});
+		});
+	}
 	
 	/**
 	* 24 - Init Tip-Tip

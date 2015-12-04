@@ -529,7 +529,7 @@ class Layers_Design_Controller {
 					'image-round' => __( 'Round', 'layerswp' ),
 				),
 				'wrapper' => 'div',
-				'wrapper-class' => 'layers-icon-group'
+				'wrapper-class' => 'layers-icon-group layers-icon-group-outline'
 			),
 		);
 
@@ -621,7 +621,7 @@ class Layers_Design_Controller {
 					'text-justify' => __( 'Justify', 'layerswp' )
 				),
 				'wrapper' => 'div',
-				'wrapper-class' => 'layers-icon-group'
+				'wrapper-class' => 'layers-icon-group layers-icon-group-outline'
 			),
 			'fonts-size' => array(
 				'type' => 'select',

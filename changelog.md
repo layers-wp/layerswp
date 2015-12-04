@@ -17,6 +17,7 @@
 * **Enhancement** - Added `layers_get_vimeo_id` and `layers_get_youtube_id` functions to `helpers/template.php`. *MP*
 * **Fix** - Fixed the space between title and colon ":" in the slider and content widgets. *MP*
 * **Fix** - Fixed dynamic updating of repeater widget item titles. *MP*
+* **Fix** - Fixed round image ratio in the posts widget. *MP*
 
 =======
 ##1.2.9

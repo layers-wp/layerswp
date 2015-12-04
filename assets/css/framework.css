@@ -72,9 +72,9 @@ input, select{vertical-align:middle;}
 .story:after{clear: both;}
 .story{*zoom: 1;}
 
-nav:before, nav:after{content: " "; display: table;}
+/*nav:before, nav:after{content: " "; display: table;}
 nav:after{clear: both;}
-nav{*zoom: 1;}
+nav{*zoom: 1;}*/
 
 /*-------------------------------*/
 /*- DEFAULTS --------------------*/
@@ -425,13 +425,13 @@ object{
 
     .header-site{
         background-color: #f3f3f3;
-        background-position: 50% 50%;
+        background-position: center;
         background-repeat: no-repeat;
         position: relative;
     }
 
     .header-site .container,
-    .header-site > .clearfix{
+    .header-site > .header-block{
         display: -webkit-flex;
         -webkit-flex-wrap: nowrap;
         -webkit-align-items: center;
@@ -444,7 +444,8 @@ object{
 
         position: relative;
     }
-    .header-site .container{
+    .header-site .container,
+    .header-site > .header-block{
         padding: 10px;
     }
 
@@ -471,12 +472,12 @@ object{
     /*- DEFAULT ALIGNMENT -------*/
     .header-site nav{
         display: -webkit-flex;
-        -webkit-flex: 1;
-        -webkit-justify-content: flex-end;
+        -webkit-flex-direction: row;
+        -webkit-align-items: center;
 
         display: flex;
-        flex: 1;
-        justify-content: flex-end;
+        flex-direction: row;
+        align-items: center;
 
         margin: 0;
         line-height: 40px;
@@ -491,7 +492,7 @@ object{
     /*---------------------------*/
     /*- ALIGNMENT RIGHT ---------*/
     .header-right .container,
-    .header-right > .clearfix{
+    .header-right > .header-block{
         -webkit-flex-direction: row-reverse;
         flex-direction: row-reverse;
     }
@@ -500,10 +501,6 @@ object{
     }
     .header-right .sitename{
         margin: 0 10px 0 0;
-    }
-    .header-right nav{
-        -webkit-justify-content: flex-start;
-        justify-content: flex-start;
     }
 
     /*---------------------------*/

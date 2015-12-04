@@ -72,6 +72,13 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 /*-------------------------------*/
 /*- NAVIGATION ------------------*/
 
+
+    /*-------------------------------*/
+    /*- HEADER RIGHT REPSONSIVE NAV -*/
+    .header-right .responsive-nav{
+        margin-left: 0;
+    }
+
     /*---------------------------*/
     /*- TABBED NAV --------------*/
     .nav-tabs{
@@ -425,6 +432,7 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
     /*---------------------------*/
     /*- HEADER INLINE -----------*/
     .header-inline .container{
+        -webkit-justify-content: space-between;
         justify-content: space-between;
     }
     .header-inline .inline-site-logo{
@@ -445,7 +453,6 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
     .header-site.header-inline nav{
         display: none;
     }
-
 
     .pull-left,
     .pull-right{
@@ -745,14 +752,12 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
     }
     .header-inline .inline-right-nav nav{
         display: block;
-        /*-webkit-justify-content: flex-start;
-        justify-content: flex-start;*/
     }
 
     /*---------------------------*/
     /*- NAV BOTTOM --------------*/
     .nav-clear .container,
-    .nav-clear > .clearfix{
+    .nav-clear > .header-block{
         -webkit-flex-direction: column;
         -webkit-align-items: flex-start;
 
@@ -766,9 +771,6 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
         margin-top: 10px;
     }
     .nav-clear nav{
-        -webkit-justify-content: flex-start;
-        justify-content: flex-start;
-
         width: 100%;
         margin: 20px 0 0;
         line-height: 20px;

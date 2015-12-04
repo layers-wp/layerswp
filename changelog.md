@@ -18,6 +18,7 @@
 * **Fix** - Fixed the space between title and colon ":" in the slider and content widgets. *MP*
 * **Fix** - Fixed dynamic updating of repeater widget item titles. *MP*
 * **Fix** - Fixed round image ratio in the posts widget. *MP*
+* **Fix** - Fixed round image ratio CSS in the posts widget. *DP*
 
 =======
 ##1.2.9

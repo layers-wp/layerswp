@@ -818,7 +818,6 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 /*-------------------------------*/
 /*- THUMBNAILS ------------------*/
 
-
     /*---------------------------*/
     /*- OVERLAY -----------------*/
     .with-overlay{
@@ -836,6 +835,9 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
         transition: 0.2s all ease-in-out;
         text-align: center;
     }
+    .with-overlay .image-rounded + .thumbnail-body{
+        border-radius: 100%;
+    }
     .with-overlay .overlay{
         display: block;
         position: relative;
@@ -845,7 +847,7 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
         transform: translateY(-50%);
     }
     .with-overlay .thumbnail-body{
-        background: rgba(0, 0, 0, 0.65);
+        background: rgba(0, 0, 0, 0.65) !important;
     }
     .with-overlay .heading{
         opacity: 0;

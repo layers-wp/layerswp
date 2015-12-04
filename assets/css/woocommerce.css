@@ -646,6 +646,9 @@ p.stars span a:focus{
     #reviews div[itemprop="description"] p:last-child{
         margin-bottom: 0;
     }
+    #reviews .form-submit{
+        margin-bottom: 0;
+    }
 
 /*---------------------------*/
 /*- SIDEBAR/WIDGET SETUP ----*/

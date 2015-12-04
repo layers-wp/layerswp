@@ -553,7 +553,7 @@ jQuery(function($) {
 
 		$element_s.each( function( i, group ) {
 
-			$group = $(group);
+			var $group = $(group);
 
 			$group.find( '.layers-visuals-wrapper').each( function( j, element ) {
 
@@ -586,7 +586,7 @@ jQuery(function($) {
 
 		$element_s.each( function( i, group ) {
 
-			$group = $(group);
+			var $group = $(group);
 
 			$group.find( '[data-show-if-selector]').each( function( j, element ) {
 
@@ -734,7 +734,7 @@ jQuery(function($) {
 
 		$element_s.each( function( i, group ) {
 
-			$group = $(group);
+			var $group = $(group);
 
 			$group.find( '.layers-rte').each( function( j, element ) {
 

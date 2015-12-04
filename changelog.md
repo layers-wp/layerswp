@@ -4,6 +4,7 @@
 ##1.2.10
 ### xx Dec 2015
 
+* **Tweak** - Flexbox header CSS clean and much less hacky. *DP*
 * **Tweak** - Updated Envato Marketplace to list themes by last updated by default. *MP*
 * **Tweak** - Updated Envato Marketplace to show the filter information as an intro. *MP*
 * **Tweak** - Updated the Layers Messenger to show plugin version. *MP*

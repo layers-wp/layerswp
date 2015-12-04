@@ -823,7 +823,6 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
     /*- OVERLAY -----------------*/
     .with-overlay{
         overflow: hidden;
-        text-shadow: 0px 1px 2px rgba(0, 0, 0, 0.6);
     }
     .with-overlay .thumbnail-body{
         position: absolute;

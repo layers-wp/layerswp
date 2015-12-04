@@ -434,7 +434,7 @@ jQuery(function($) {
 		$that.parent( 'li.layers-visuals-item' ).siblings().not( $that.parent() ).removeClass( 'layers-active' );
 	});
 
-	$( document ).on( 'click' , '.widget .layers-visuals-wrapper li.layers-visuals-item label.layers-icon-wrapper' , function(e){
+	$( document ).on( 'click' , '.layers-select-icons label.layers-icon-wrapper' , function(e){
 		// "Hi Mom"
 		$that = $(this);
 

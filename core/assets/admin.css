@@ -1446,6 +1446,38 @@ div[id*='layers-widget'] .spinner{
     }
     .layers-row.layers-trbl-row .layers-column-flush:last-child input { }
 
+    /*-----------------------*/
+    /*- LAYERS PRO UPSELL ---*/
+    .layers-visuals-item.layers-pro-upsell{
+        position: absolute;
+        bottom: 0;
+    }
+    .layers-visuals-item.layers-pro-upsell a{
+        display: block;
+        margin: 4px;
+        padding: 4px;
+        border: 1px solid rgba(0, 0, 0, 0.2);
+        border-radius: 3px;
+        color: rgba(0, 0, 0, 0.3);
+        font-size: 9px;
+        line-height: 12px;
+        font-weight: 600;
+        text-align: center;
+        text-transform: uppercase;
+        transition: all 0.15s ease-in-out;
+    }
+    .layers-visuals-item.layers-pro-upsell a:hover{
+        background: #2EA2CC;
+        border-color: #0074A2;
+        color: #fff;
+        box-shadow:
+            0px 1px 0px rgba(255, 255, 255, 0.4) inset,
+            0px 1px 0px rgba(0, 0, 0, 0.08);
+    }
+    .layers-visuals-item.layers-pro-upsell a:active{
+        position: relative;
+        top: 1px;
+    }
 
     /*-----------------------*/
     /*- SETTINGS POP MENU ---*/

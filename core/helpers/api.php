@@ -53,13 +53,38 @@ class Layers_API {
 	public function get_sort_options(){
 
 		$this->sort_options = array(
-			'id-desc' => __( 'Newest to Oldest' , 'layerswp' ),
-			'name-asc' => __( 'Item Name A - Z' , 'layerswp' ),
-			'sales-desc' => __( 'Best Sellers' , 'layerswp' ),
-			'rating-desc' => __( 'Best Rated' , 'layerswp' ),
-			'price-asc' => __( 'Price: Low to Ligh' ),
-			'price-desc' => __( 'Price: High to Low' ),
-			'trending-desc' => __( 'Trending Items' , 'layerswp' ),
+			'updated-desc' => array(
+				'label' => __( 'Last Updated' , 'layerswp' ),
+				'excerpt-label' => __( 'by last updated' , 'layerswp' ),
+			),
+			'id-desc' => array(
+				'label' => __( 'Newest to Oldest' , 'layerswp' ),
+				'excerpt-label' => __( 'by release date' , 'layerswp' ),
+			),
+			'name-asc' => array(
+				'label' => __( 'Item Name A - Z' , 'layerswp' ),
+				'excerpt-label' => __( 'alphabetically' , 'layerswp' ),
+			),
+			'sales-desc' => array(
+				'label' => __( 'Best Sellers' , 'layerswp' ),
+				'excerpt-label' => __( 'by highest sales' , 'layerswp' ),
+			),
+			'rating-desc' => array(
+				'label' => __( 'Best Rated' , 'layerswp' ),
+				'excerpt-label' => __( 'by highest rating' , 'layerswp' ),
+			),
+			'price-asc' => array(
+				'label' => __( 'Price: Low to Ligh' ),
+				'excerpt-label' => __( 'by least expensive' ),
+			),
+			'price-desc' => array(
+				'label' => __( 'Price: High to Low' ),
+				'excerpt-label' => __( 'by most expensive' ),
+			),
+			'trending-desc' => array(
+				'label' => __( 'Trending Items' , 'layerswp' ),
+				'excerpt-label' => __( 'by trending' ),
+			),
 		);
 
 		return $this->sort_options;
@@ -67,7 +92,7 @@ class Layers_API {
 
 	private function do_envato_api_call( $endpoint = 'market/total-items.json', $query_string = NULL , $method = 'get', $timeout = 5 ){
 
-		$default_query_string = 'page_size=100&sort_by=date&sort_direction=desc';
+		$default_query_string = 'page_size=100&sort_by=updated&sort_direction=desc';
 
 		$query_string = ( $query_string ? '?' . $query_string . '&' . $default_query_string : '?' . $default_query_string );
 

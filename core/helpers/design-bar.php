@@ -53,14 +53,10 @@ class Layers_Design_Controller {
 	}
 
 	public function render_design_bar() {
-		
-		$container_class = array();
-		$container_class[] = 'layers-design-bar';
-		$container_class[] = ( 'side' == $this->type ? 'layers-design-bar-right' : 'layers-design-bar-horizontal' );
-		$container_class[] = 'layers-visuals';
-		$container_class[] = ( 'side' == $this->type ? 'layers-pull-right' : 'layers-visuals-horizontal' );
-		?>
-		<div class="<?php echo esc_attr( implode( ' ', $container_class ) ); ?>">
+
+		$container_class = ( 'side' == $this->type ? 'layers-pull-right' : 'layers-visuals-horizontal' ); ?>
+
+		<div class="layers-visuals <?php echo esc_attr( $container_class ); ?>">
 			<h6 class="layers-visuals-title">
 				<span class="icon-settings layers-small"></span>
 			</h6>
@@ -69,6 +65,13 @@ class Layers_Design_Controller {
 				$this->render_controls(); ?>
 				<?php // Show trash icon (for use when in an accordian)
 				$this->render_trash_control(); ?>
+				<?php if( 'side' == $this->type && !class_exists( 'Layers_Pro' ) ) { ?>
+					<li class="layers-visuals-item layers-pro-upsell">
+						<a href="http://codecanyon.net/item/layers-pro-extended-customization-for-layers/11225042?ref=obox&utm_source=layers%20theme&utm_medium=link&utm_campaign=Layers%20Pro%20Upsell&utm_content=Widget%20Design%20Bar" target="_blank">
+							<?php _e( 'Upgrade to Layers Pro', 'layerswp' ); ?>
+						</a>
+					</li>
+				<?php } ?>
 			</ul>
 		</div>
 	<?php }

@@ -590,11 +590,7 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 			<li class="layers-accordion-item <?php echo $this->item_count; ?>" data-guid="<?php echo $item_guid; ?>">
 				<a class="layers-accordion-title">
 					<span>
-						<?php _e( 'Slide' , 'layerswp' ); ?>
-						<span class="layers-detail">
-							<?php echo ( isset( $widget['title'] ) ? ': ' . substr( stripslashes( strip_tags( $widget['title'] ) ), 0 , 50 ) : NULL ); ?>
-							<?php echo ( isset( $widget['title'] ) && strlen( $widget['title'] ) > 50 ? '...' : NULL ); ?>
-						</span>
+						<?php _e( 'Slide' , 'layerswp' ); ?><span class="layers-detail"><?php echo ( isset( $widget['title'] ) ? ': ' . substr( stripslashes( strip_tags( $widget['title'] ) ), 0 , 50 ) : NULL ); ?><?php echo ( isset( $widget['title'] ) && strlen( $widget['title'] ) > 50 ? '...' : NULL ); ?></span>
 					</span>
 				</a>
 				<section class="layers-accordion-section layers-content">

@@ -54,9 +54,13 @@ class Layers_Design_Controller {
 
 	public function render_design_bar() {
 
-		$container_class = ( 'side' == $this->type ? 'layers-pull-right' : 'layers-visuals-horizontal' ); ?>
-
-		<div class="layers-visuals <?php echo esc_attr( $container_class ); ?>">
+		$container_class = array();
+		$container_class[] = 'layers-design-bar';
+		$container_class[] = ( 'side' == $this->type ? 'layers-design-bar-right' : 'layers-design-bar-horizontal' );
+		$container_class[] = ( 'side' == $this->type ? 'layers-pull-right' : 'layers-visuals-horizontal' );
+		$container_class[] = 'layers-visuals';
+		?>
+		<div class="<?php echo esc_attr( implode( ' ', $container_class ) ); ?>">
 			<h6 class="layers-visuals-title">
 				<span class="icon-settings layers-small"></span>
 			</h6>

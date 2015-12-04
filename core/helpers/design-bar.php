@@ -54,12 +54,17 @@ class Layers_Design_Controller {
 
 	public function render_design_bar() {
 
-		$container_class = ( 'side' == $this->type ? 'layers-pull-right' : 'layers-visuals-horizontal' ); ?>
-		<div class="layers-visuals <?php echo esc_attr( $container_class ); ?>">
+		$container_class = array();
+		$container_class[] = 'layers-design-bar';
+		$container_class[] = ( 'side' == $this->type ? 'layers-design-bar-right' : 'layers-design-bar-horizontal' );
+		$container_class[] = ( 'side' == $this->type ? 'layers-pull-right' : 'layers-visuals-horizontal' );
+		$container_class[] = 'layers-visuals';
+		?>
+		<div class="<?php echo esc_attr( implode( ' ', $container_class ) ); ?>">
 			<h6 class="layers-visuals-title">
 				<span class="icon-settings layers-small"></span>
 			</h6>
-			<ul class="layers-visuals-wrapper layers-clearfix">
+			<ul class="layers-design-bar-nav layers-visuals-wrapper layers-clearfix">
 				<?php // Render Design Controls
 				$this->render_controls(); ?>
 				<?php // Show trash icon (for use when in an accordian)
@@ -168,7 +173,7 @@ class Layers_Design_Controller {
 				);
 		} ?>
 
-		<li class="layers-visuals-item">
+		<li class="layers-design-bar-nav-item layers-visuals-item">
 			<a href="" class="layers-icon-wrapper">
 				<span class="<?php echo esc_attr( $icon_css ); ?>"></span>
 				<span class="layers-icon-description">
@@ -207,19 +212,23 @@ class Layers_Design_Controller {
 	 */
 	public function render_input( $form_args = array() ) {
 
-		// Grab the class if specified.
-		$class = '';
-		if ( isset( $form_args['class'] ) ) {
-			$class .= $form_args['class'];
-			unset( $form_args['class'] );
-		}
-
 		// If input-class then set it to 'class' arg that the form->input expects.
 		if ( isset( $form_args['input-class'] ) ) {
 			$form_args['class'] = $form_args['input-class'];
 		}
+		
+		// Prep Class
+		$class = array();
+		$class[] = 'layers-form-item';
+		$class[] = 'layers-' . $form_args['type'] . '-wrapper';
+		$class[] = 'layers-design-bar-form-item';
+		if ( isset( $form_args['class'] ) ) {
+			// Grab the class if specified.
+			$class[] = $form_args['class'];
+			unset( $form_args['class'] );
+		}
 		?>
-		<div class="layers-<?php echo esc_attr( $form_args['type'] ); ?>-wrapper layers-form-item <?php echo esc_attr( $class ); ?>">
+		<div class="<?php echo esc_attr( implode( ' ', $class ) ); ?>">
 
 			<?php if ( 'checkbox' != $form_args['type'] && isset( $form_args['label'] ) && '' != $form_args['label'] ) { ?>
 				<label><?php echo esc_html( $form_args['label'] ); ?></label>
@@ -527,7 +536,7 @@ class Layers_Design_Controller {
 					'image-round' => __( 'Round', 'layerswp' ),
 				),
 				'wrapper' => 'div',
-				'wrapper-class' => 'layers-icon-group'
+				'wrapper-class' => 'layers-icon-group layers-icon-group-outline'
 			),
 		);
 
@@ -619,7 +628,7 @@ class Layers_Design_Controller {
 					'text-justify' => __( 'Justify', 'layerswp' )
 				),
 				'wrapper' => 'div',
-				'wrapper-class' => 'layers-icon-group'
+				'wrapper-class' => 'layers-icon-group layers-icon-group-outline'
 			),
 			'fonts-size' => array(
 				'type' => 'select',

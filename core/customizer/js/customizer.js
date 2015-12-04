@@ -186,7 +186,6 @@
 			// Close all expanded widgets - on click-anywhere-in-the-customizer-preview.
 			this.preview.bind( 'layers-close-all-widgets', function( data ) {
 				close_all_open_layers_widgets();
-				// $( '.customize-control-widget_form.expanded' ).addClass('layers-peek'); // Peek (Disabled. Testing Only)
 			});
 			
 			// Close all expanded widgets - on-click-back-on-widget-panel.
@@ -204,13 +203,6 @@
 				$( '.customize-control-widget_form.expanded .widget-top' ).click();
 				$( '.customize-control-widget_form.expanded' ).find( '.widget-control-close' ).click();
 			}
-			
-			// Widget Peek (Disabled. Testing Only)
-			/*
-			$(document).on( 'mouseleave', '#customize-preview', function(){
-				$( '.customize-control-widget_form.expanded' ).removeClass('layers-peek');
-			});
-			*/
 		
 			/**
 			 * Deep linking into Controls.

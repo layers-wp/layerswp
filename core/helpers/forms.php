@@ -125,6 +125,7 @@ class Layers_Form_Elements {
 			'class' => NULL,
 			'options' => array(),
 			'sync_setting' => NULL,
+			'mimic_setting' => NULL,
 		);
 
 		// Convert 'choices' to 'options' - so you can use same naming as the controls which use 'options'.
@@ -149,6 +150,7 @@ class Layers_Form_Elements {
 		$input_props['class'] = ( NULL != $input->class ) ? 'class="' .  $input->class . '"' : NULL ;
 		$input_props['disabled'] = isset( $input->disabled ) ? 'disabled="disabled"' : NULL ;
 		$input_props['sync-setting'] = isset( $input->sync_setting ) ? 'data-sync-setting="' . $input->sync_setting . '"' : NULL ;
+		$input_props['mimic-setting'] = isset( $input->mimic_setting ) ? 'data-mimic-setting="' . $input->mimic_setting . '"' : NULL ;
 
 		if( NULL != $input->data ) { foreach( $input->data as $data_key => $data_value ){ $input_props[ 'data-' . $data_key ] = 'data-' . $data_key . '="' . esc_attr( $data_value ) . '"'; } }
 
@@ -249,15 +251,38 @@ class Layers_Form_Elements {
 			* Select 'icons' such as the column selector
 			*/
 			case 'select-icons' : ?>
-				<?php foreach( $input->options as $value => $label ) { ?>
-					<label href="" class="layers-icon-wrapper <?php if( $value == $input->value ) echo 'layers-active'; ?>" for="<?php echo esc_attr( $input->id ) ,'-', esc_attr( $value ); ?>">
-						<span class="icon-<?php echo esc_attr( $value ); ?>"></span>
-						<span class="layers-icon-description">
-							<?php echo esc_html( $label ); ?>
-						</span>
-					</label>
-					<input type="radio" <?php echo implode ( ' ' , $input_props ); ?> id="<?php echo esc_attr( $input->id ) ,'-', esc_attr( $value ); ?>" value="<?php echo esc_attr( $value ); ?>" <?php checked( $input->value , $value , true ); ?> class="layers-hide" />
-				<?php } // foreach options ?>
+				<div class="layers-select-icons">
+					<?php foreach( $input->options as $key => $value ) {
+						if ( is_array( $value ) ) {
+							$name = $value['name'];
+							$class = $value['class'];
+							$data_string = '';
+							if ( ! empty( $value['data'] ) ) {
+								foreach ( $value['data'] as $data_key => $data_value) {
+									$data_string .= 'data-' . esc_attr( $data_key ) . '="' . $data_value . '" ';
+								}
+							}
+						}
+						else {
+							$name = $value;
+							$class = "icon-{$key}";
+							$data_string = '';
+						}
+						?>
+						<label
+							href=""
+							class="layers-icon-wrapper <?php if( $key == $input->value ) echo 'layers-active'; ?>"
+							for="<?php echo esc_attr( $input->id ) ,'-', esc_attr( $key ); ?>"
+							<?php echo $data_string ?>
+							>
+							<span class="<?php echo esc_attr( $class ); ?>"></span>
+							<span class="layers-icon-description">
+								<?php echo esc_html( $name ); ?>
+							</span>
+						</label>
+						<input type="radio" <?php echo implode ( ' ' , $input_props ); ?> id="<?php echo esc_attr( $input->id ) ,'-', esc_attr( $key ); ?>" value="<?php echo esc_attr( $key ); ?>" <?php checked( $input->value , $key , true ); ?> class="layers-hide" />
+					<?php } // foreach options ?>
+				</div>
 			<?php break;
 			/**
 			* Text areas

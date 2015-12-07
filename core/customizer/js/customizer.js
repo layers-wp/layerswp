@@ -168,7 +168,7 @@
 			/**
 			 * 4 - Customizer UX Enhancements
 			 *
-			 * Handle edit buttons and and other UI elemnts
+			 * Apply and handle UI elements and enhancements.
 			 */
 
 			// Edit widget buttons
@@ -195,11 +195,7 @@
 			
 			function close_all_open_layers_widgets() {
 				
-				// Old
-				// $( '.customize-control-widget_form.expanded' ).find( '.widget-inside' ).hide();
-				// $( '.customize-control-widget_form.expanded' ).find( '.widget-control-close' ).click();
-				
-				// New - Close any open widget forms, especially our wide Layers forms
+				// Close any open widget forms, especially our wide Layers forms
 				$( '.customize-control-widget_form.expanded .widget-top' ).click();
 				$( '.customize-control-widget_form.expanded' ).find( '.widget-control-close' ).click();
 			}
@@ -216,9 +212,11 @@
 
 				var $hash = window.location.hash.split('#')[1];
 				var $element = $( '#' + $hash );
+				
 				if ( $element.length ) {
+					
 					$hash_record = $hash;
-					//$('#accordion-section-layers-pro-buttons').
+					
 					$element
 						.children('.accordion-section-title')
 						.click();
@@ -288,7 +286,6 @@
 					window.location.hash = $id;
 					$hash_record = $id;
 				});
-				
 			}
 			
 			/**

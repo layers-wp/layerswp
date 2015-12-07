@@ -135,7 +135,7 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 			// Apply Styling
 			layers_inline_styles( '#' . $widget_id, 'background', array( 'background' => $widget['design'][ 'background' ] ) );
 			layers_inline_styles( '#' . $widget_id, 'color', array( 'selectors' => array( '.section-title h3.heading' , '.section-title div.excerpt' ) , 'color' => $widget['design']['fonts'][ 'color' ] ) );
-			layers_inline_styles( '#' . $widget_id, 'background', array( 'selectors' => array( '.thumbnail:not(.with-overlay) .thumbnail-body' ) , 'background' => array( 'color' => $this->check_and_return( $widget, 'design', 'column-background-color' ) ) ) );
+			layers_inline_styles( '#' . $widget_id, 'background', array( 'selectors' => array( '.thumbnail-body' ) , 'background' => array( 'color' => $this->check_and_return( $widget, 'design', 'column-background-color' ) ) ) );
 			layers_inline_button_styles( '#' . $widget_id, 'button', array( 'selectors' => array( '.thumbnail-body a.button' ) ,'button' => $this->check_and_return( $widget, 'design', 'buttons' ) ) );
 
 			// Apply the advanced widget styling
@@ -205,7 +205,7 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 			if( isset( $widget['show_author'] ) ) $layers_post_meta_to_display[] = 'author';
 			if( isset( $widget['show_categories'] ) ) $layers_post_meta_to_display[] = 'categories';
 			if( isset( $widget['show_tags'] ) ) $layers_post_meta_to_display[] = 'tags';
-			
+
 			/**
 			* Generate the widget container class
 			*/
@@ -256,12 +256,12 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 										</header>
 									<?php } ?>
 
-									<?php // Layers Featured Media
+									<?php // Layers Featured Media );
 									if( isset( $widget['show_media'] ) ) {
 										echo layers_post_featured_media(
 											array(
 												'postid' => get_the_ID(),
-												'wrap_class' => 'thumbnail push-bottom span-5 column' .  ( ( isset( $column['design'][ 'imageratios' ] ) && 'image-round' == $column['design'][ 'imageratios' ] ) ? ' image-rounded' : '' ),
+												'wrap_class' => 'thumbnail push-bottom span-5 column' .  ( 'image-round' == $this->check_and_return( $widget, 'design', 'imageratios' ) ? ' image-rounded' : '' ),
 												'size' => $use_image_ratio
 											)
 										);
@@ -309,7 +309,7 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 										echo layers_post_featured_media(
 											array(
 												'postid' => get_the_ID(),
-												'wrap_class' => 'thumbnail-media' .  ( ( isset( $column['design'][ 'imageratios' ] ) && 'image-round' == $column['design'][ 'imageratios' ] ) ? ' image-rounded' : '' ),
+												'wrap_class' => 'thumbnail-media' .  ( ( 'image-round' == $this->check_and_return( $widget, 'design', 'imageratios' ) ) ? ' image-rounded' : '' ),
 												'size' => $use_image_ratio,
 												'hide_href' => false
 											)

@@ -2211,6 +2211,9 @@ object{
         position: relative;
         z-index: 1;
     }
+    .thumbnail-media.image-rounded{
+        border-radius: 100%;
+    }
     .thumbnail-media img{
         display: block;
         margin: auto;

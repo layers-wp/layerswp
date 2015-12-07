@@ -1036,6 +1036,7 @@ div[id*='layers-widget'] .spinner{
     .layers-form-item-description {
         margin: 6px 0 0;
         font-size: 12px;
+        line-height: 1.3em;
         color: #9E9E9E;
         font-style: italic;
         text-transform: none;

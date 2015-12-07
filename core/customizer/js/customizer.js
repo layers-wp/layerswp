@@ -43,6 +43,8 @@
 			var $that = this;
 			
 			var $hash_record = '';
+			
+			$( document ).trigger( 'layers-customizer-init' );
 
 			/**
 			 * 1 - Page Builder Macro

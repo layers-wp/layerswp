@@ -69,12 +69,17 @@
 				});
 				*/
 				
-				// Close all widgets
+				// Close all widgets when clickign anywhere in document.
 				$( document ).on( 'click', function( e ){
-					if ( false == $( e.target ).hasClass( 'layers-edit-widget' ) ) {
-						// Send 'close all' event to parent so long as not Edit button clicked
-						self.preview.send( 'layers-close-all-widgets' );
-					}
+					
+					// Don't close all widgets if shift-cliking a Widget.
+					if ( true === e.shiftKey ) return true;
+					
+					// Don't close all widgets if clicking Edit-Widget button.
+					if ( true === $( e.target ).hasClass( 'layers-edit-widget' ) ) return true;
+						
+					// Send 'close all' event to parent.
+					self.preview.send( 'layers-close-all-widgets' );
 				});
 				
 				/**

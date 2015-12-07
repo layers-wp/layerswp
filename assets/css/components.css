@@ -45,6 +45,10 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 /*- SLIDER ----------------------*/
 /*-------------------------------*/
 
+    .swiper-container.container{
+        padding: 0px;
+    }
+
     /*---------------------------*/
     /*- SLIDER DEFAULTS ---------*/
     .swiper-slide img{

@@ -19,6 +19,7 @@
 * **Fix** - Fixed dynamic updating of repeater widget item titles. *MP*
 * **Fix** - Fixed round image ratio in the posts widget. *MP*
 * **Fix** - Fixed round image ratio CSS in the posts widget. *DP*
+* **Fix** - Fixed slider arrow centering when layout-boxed is chosen. *MP*
 
 =======
 ##1.2.9

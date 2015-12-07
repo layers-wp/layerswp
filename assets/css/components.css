@@ -69,15 +69,18 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
         padding-bottom: 60px;
     }
     .swiper-slide .container{
-        display: flex;
         display: -webkit-flex;
+        -webkit-flex-direction: column;
+        -webkit-justify-content: center;
+        -webkit-align-items: center;
+
+        display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
+
         width: 100%;
         padding: 0;
-        -webkit-flex-direction: column;
-        -webkit-justify-content: center;
     }
     .swiper-slide .copy-container,
     .swiper-slide .image-container{

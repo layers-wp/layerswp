@@ -1054,11 +1054,6 @@ div[id*='layers-widget'] .spinner{
         height: 38px;
         margin: 0;
     }
-    .customize-control .layers-visuals-horizontal .layers-form-item select{
-        height: 30px;
-        font-size: 13px;
-        padding: 0 4px;
-    }
     .customize-control .layers-form-item select[multiple]{
         min-height: 90px;
     }
@@ -1092,6 +1087,7 @@ div[id*='layers-widget'] .spinner{
         width: 100%;
         padding: 8px;
         margin: 0;
+        line-height: 18px;
         background: #fff;
         border: 1px solid #ddd;
         box-shadow: inset 1px 1px 2px rgba(0, 0, 0, 0.1);
@@ -1353,6 +1349,33 @@ div[id*='layers-widget'] .spinner{
         color: #fff;
         text-align: center;
         text-transform: uppercase;
+    }
+    
+    /*----------------------------*/
+    /*- FORM ITEMS ---------------*/
+    .editible,
+    .layers-design-bar .layers-form-item .layers-input,
+    .layers-design-bar .layers-form-item select,
+    .layers-design-bar .layers-form-item input[type="text"]:not(.layers-color-selector),
+    .layers-design-bar .layers-form-item input[type="email"],
+    .layers-design-bar .layers-form-item input[type="number"],
+    .layers-design-bar .layers-form-item input[type="password"],
+    .layers-design-bar .layers-form-item input[type="link"],
+    .layers-design-bar .layers-form-item textarea {
+        padding: 0 8px;
+        font-size: 13px;
+        height: 30px;
+        border: 1px solid #ddd;
+        box-shadow: inset 1px 1px 2px rgba(0, 0, 0, 0.1);
+        margin-bottom: 3px;
+    }
+    .layers-design-bar .layers-form-item select{
+        padding: 0 4px;
+    }
+    .layers-design-bar .layers-form-item textarea{
+    }
+    .layers-design-bar .layers-form-item input[type="number"]{
+        padding-right: 0;
     }
 
     /*---------------------------*/

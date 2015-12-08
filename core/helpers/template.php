@@ -101,17 +101,27 @@ if( !function_exists( 'layers_bread_crumbs' ) ) {
 						$category_title = single_cat_title( "", false );
 						$category_id = get_cat_ID( $category_title );
 						$category_object = get_category( $category_id );
-						$term = $category_object->slug;
+
+						if( is_object( $category_object ) ) {
+							$term = $category_object->slug;
+						} else {
+							$term = '';
+						}
+
 						$taxonomy = 'category';
+						$term_object = get_term_by( 'slug', $term , $taxonomy );
 					} else {
 						$term = get_query_var('term' );
 						$taxonomy = get_query_var( 'taxonomy' );
+						$term_object = get_term_by( 'slug', $term , $taxonomy );
 					}
 
-					$term = get_term_by( 'slug', $term , $taxonomy );
+					if( is_object( $term_object ) )
+						$parent_id = $term_object->parent;
+					else
+						$parent_id = FALSE;
 
 					// Start with this terms's parent ID
-					$parent_id = $term->parent;
 
 					// Loop through parent terms and grab their IDs
 					while( $parent_id ) {

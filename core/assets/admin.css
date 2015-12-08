@@ -1756,123 +1756,124 @@ div[id*='layers-widget'] .spinner{
         transform: translate3d(0, 0, 0);
     }
 
-    /*-----------------------------*/
-    /*- RICH TEXT EDITING ---------*/
+/*-----------------------------*/
+/*- RICH TEXT EDITING ---------*/
 
-    .layers-form-item .froala-box{
-        width: 100%;
-        border: 0;
+.layers-form-item .froala-box{
+    width: 100%;
+    border: 0;
+}
+
+.froala-element.froala-view{
+    border: 1px solid #DDD;
+}
+
+.froala-editor.f-basic{
+    background: #FFF;
+    border: 1px solid #E5E5E5;
+    border-bottom: 0;
+    transition: .2s ease-in-out .2s;
+    overflow: hidden;
+    height: 38px;
+}
+
+.froala-box.froala-toolbar-hide .froala-editor.f-basic{
+    transform: translate( 0, 30px );
+    height: 0;
+    opacity:0;
+}
+
+.layers-form-item .froala-editor button.fr-bttn,
+.layers-form-item .froala-editor button.fr-trigger{
+    width: 33px;
+    line-height: 14px;
+    font-size: 14px;
+    padding: 2px;
+    margin: 4px;
+    border: 1px solid transparent;
+    border-radius: 3px;
+    color: #444;
+    transition: all 0.2s ease-in-out 0s;
+    box-shadow: 0px 1px 0px rgba(255, 255, 255, 0) inset;
+}
+
+.layers-form-item .froala-editor button.fr-bttn:hover,
+.layers-form-item .froala-editor .bttn-wrapper:not(.touch) button.fr-bttn:hover,
+.layers-form-item .froala-editor button.fr-bttn.active:hover{
+    box-shadow: 0px 1px 0px rgba(255, 255, 255, 0.4) inset, 0px 1px 0px rgba(0, 0, 0, 0.08);
+    background: #2EA2CC;
+    border-color: #0074A2;
+    color: #FFF;
+}
+
+    /*-------------------------*/
+    /*- WHEN IN HTML MODE -----*/
+    .layers-form-item .f-html .froala-editor button.fr-bttn:hover,
+    .layers-form-item .f-html .froala-editor .bttn-wrapper:not(.touch) button.fr-bttn:hover,
+    .layers-form-item .f-html .froala-editor button.fr-bttn.active:hover{
+        border-color: transparent;
+        box-shadow: none;
     }
-
-    .froala-element.froala-view{
-        border: 1px solid #DDD;
-    }
-
-    .froala-editor.f-basic{
-        background: #FFF;
-        border: 1px solid #E5E5E5;
-        border-bottom: 0;
-        transition: .2s ease-in-out .2s;
-        overflow: hidden;
-        height: 38px;
-    }
-
-    .froala-box.froala-toolbar-hide .froala-editor.f-basic{
-        transform: translate( 0, 30px );
-        height: 0;
-        opacity:0;
-    }
-
-    .layers-form-item .froala-editor button.fr-bttn,
-    .layers-form-item .froala-editor button.fr-trigger{
-        width: 33px;
-        line-height: 14px;
-        font-size: 14px;
-        padding: 2px;
-        margin: 4px;
-        border: 1px solid transparent;
-        border-radius: 3px;
+    .layers-form-item .froala-editor .bttn-wrapper:not(.touch) button.fr-bttn.active,
+    .layers-form-item .froala-editor .bttn-wrapper:not(.touch) button.fr-bttn:active{
+        border-color: rgba(0, 0, 0, 0.05);
         color: #444;
-        transition: all 0.2s ease-in-out 0s;
-        box-shadow: 0px 1px 0px rgba(255, 255, 255, 0) inset;
+        box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.03) inset;
+        background-color: #F0F0F0;
+        transition: 0s;
+    }
+    .layers-form-item .froala-editor button.fr-bttn i{
+        font-size: 14px;
+    }
+    .layers-form-item .f-html .froala-element{
+        background-color: #2c2c2c;
+        padding: 0;
+    }
+    .layers-form-item .f-html .froala-element textarea{
+        color: #eee;
+        font-size: 13px;
+        padding: 5px 6px;
     }
 
-    .layers-form-item .froala-editor button.fr-bttn:hover,
-    .layers-form-item .froala-editor .bttn-wrapper:not(.touch) button.fr-bttn:hover,
-    .layers-form-item .froala-editor button.fr-bttn.active:hover{
-        box-shadow: 0px 1px 0px rgba(255, 255, 255, 0.4) inset, 0px 1px 0px rgba(0, 0, 0, 0.08);
-        background: #2EA2CC;
-        border-color: #0074A2;
-        color: #FFF;
+    /*-------------------------------*/
+    /*- RTE LIST STYLING --------*/
+    /*-------------------------------*/
+
+    .froala-view li{
+        list-style-type: inherit;
+        overflow: visible;
+    }
+    .froala-view li ul,
+    .froala-view li ol {
+        padding:0 10px;
     }
 
-        /*-------------------------*/
-        /*- WHEN IN HTML MODE -----*/
-        .layers-form-item .f-html .froala-editor button.fr-bttn:hover,
-        .layers-form-item .f-html .froala-editor .bttn-wrapper:not(.touch) button.fr-bttn:hover,
-        .layers-form-item .f-html .froala-editor button.fr-bttn.active:hover{
-            border-color: transparent;
-            box-shadow: none;
-        }
-        .layers-form-item .froala-editor .bttn-wrapper:not(.touch) button.fr-bttn.active,
-        .layers-form-item .froala-editor .bttn-wrapper:not(.touch) button.fr-bttn:active{
-            border-color: rgba(0, 0, 0, 0.05);
-            color: #444;
-            box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.03) inset;
-            background-color: #F0F0F0;
-            transition: 0s;
-        }
-        .layers-form-item .froala-editor button.fr-bttn i{
-            font-size: 14px;
-        }
-        .layers-form-item .f-html .froala-element{
-            background-color: #2c2c2c;
-            padding: 0;
-        }
-        .layers-form-item .f-html .froala-element textarea{
-            color: #eee;
-            font-size: 13px;
-            padding: 5px 6px;
-        }
+    .froala-view ul,
+    .froala-view ol {
+        padding: 0 0 0 10px;
+        overflow: visible;
+    }
+    .froala-view ul,
+    .froala-view ol{
+        margin: 0;
+        padding-bottom: 10px;
+    }
+    .froala-view ul {
+        list-style-type:disc;
+    }
+    .froala-view ol {
+        list-style-type:decimal;
+    }
+    .froala-view ol ol {
+        list-style: upper-alpha;
+    }
+    .froala-view ol ol ol {
+        list-style: lower-roman;
+    }
+    .froala-view ol ol ol ol {
+        list-style: lower-alpha;
+    }
 
-        /*-------------------------------*/
-        /*- RTE LIST STYLING --------*/
-        /*-------------------------------*/
-
-        .froala-view li{
-            list-style-type: inherit;
-            overflow: visible;
-        }
-        .froala-view li ul,
-        .froala-view li ol {
-            padding:0 10px;
-        }
-
-        .froala-view ul,
-        .froala-view ol {
-            padding: 0 0 0 10px;
-            overflow: visible;
-        }
-        .froala-view ul,
-        .froala-view ol{
-            margin: 0;
-            padding-bottom: 10px;
-        }
-        .froala-view ul {
-            list-style-type:disc;
-        }
-        .froala-view ol {
-            list-style-type:decimal;
-        }
-        .froala-view ol ol {
-            list-style: upper-alpha;
-        }
-        .froala-view ol ol ol {
-            list-style: lower-roman;
-        }
-        .froala-view ol ol ol ol {
-            list-style: lower-alpha;
-        }
 
 /*-----------------------------*/
 /*- CUSTOMIZER CONTROLS -------*/
@@ -2041,7 +2042,7 @@ li[id*='accordion-section-layers'] .customize-control.customize-control-image .a
         background: #F5F5F5 none repeat scroll 0% 0%;
         border-radius: 3px;
     }
-    .layers-customize-control.group:not(.layers-customize-control-color ) input,
+    .layers-customize-control.group:not(.layers-customize-control-color) input,
     .layers-customize-control.group select {
         line-height: 28px;
         height: 29px;

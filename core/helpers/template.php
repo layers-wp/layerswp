@@ -1515,13 +1515,15 @@ add_action( 'layers_list_read_more', 'layers_read_more_action' );
 */
 if( !function_exists( 'layers_excerpt_action' ) ) {
 	function layers_excerpt_action() {
+		// Return if there's nothing to show
+		if( '' == get_the_excerpt() ) return;
 		?>
 		<div class="copy">
 			<?php
-			/**
-			* Display the Excerpt
-			*/
-			the_excerpt();
+				/**
+				* Display the Excerpt
+				*/
+				the_excerpt();
 			?>
 		</div>
 		<?php

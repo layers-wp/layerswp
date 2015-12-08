@@ -1107,9 +1107,10 @@ div[id*='layers-widget'] .spinner{
         font-size: 11px;
         font-style: italic;
     }
-    input[type=text].layers-color-selector.wp-color-picker{
+    .layers-customize-control input[type=text].layers-color-selector.wp-color-picker{
         float: left;
         padding: 3px;
+        margin: 0 0 0 6px;
     }
     .editible{
         clear: both;

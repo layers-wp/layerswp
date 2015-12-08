@@ -344,7 +344,7 @@ jQuery(function($) {
 					layers_debounce_color_input( jQuery(event.target).parent('.wp-picker-input-wrap').find('.wp-color-picker') );
 				}
 			},
-			palettes: [ '#000000', '#FFFFFFF', '#E2594E', '#F39C12', '#FFCD03', '#A2C661', '#009EEC', '#934F8C' ],
+			palettes: [ '#000000', '#FFFFFF', '#E2594E', '#F39C12', '#FFCD03', '#A2C661', '#009EEC', '#934F8C' ],
 		});
 	}
 

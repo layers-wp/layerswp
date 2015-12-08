@@ -1,6 +1,14 @@
 # Layers Changelog
 
 =======
+##1.2.11
+### xx Dec 2015
+
+* **Fix** - Fixed Top/Right/Bottom/Left labels in design bar. *DP*
+
+
+
+=======
 ##1.2.10
 ### 08 Dec 2015
 

@@ -1110,6 +1110,12 @@ div[id*='layers-widget'] .spinner{
     .layers-form-item input[type=text].layers-color-selector.wp-color-picker{
         float: left;
         padding: 3px;
+        border-top-left-radius: 3px;
+        border-bottom-left-radius: 3px;
+    }
+    .layers-form-item .wp-picker-input-wrap {
+        box-shadow: 0 1px 1px rgba(0,0,0,0.05);
+        border-radius: 3px;
     }
     .layers-form-item .wp-picker-input-wrap .button {
         margin-left: 0;
@@ -1928,7 +1934,7 @@ li[id*='accordion-section-layers'] .customize-control .layers-customize-control.
 }
 .layers-form-item .wp-color-result{
     margin-right: 6px;
-    box-shadow: none;
+    box-shadow: 0 1px 1px rgba(0,0,0,0.08);
 }
 li[id*='accordion-section-layers'] .customize-control.customize-control-image .actions{
     margin-bottom: 0;

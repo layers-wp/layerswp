@@ -201,25 +201,28 @@ class Layers_Customizer_Config {
 
 		// End default sections
 
+		$layers_customizer_sections[ 'site-general' ] = array(
+			'title' =>__( 'General' , 'layerswp' ),
+			'panel' => 'site-settings',
+			'priority' => 45,
+		);
+
 		$layers_customizer_sections[ 'site-colors' ] = array(
 			'title' =>__( 'Colors' , 'layerswp' ),
 			'panel' => 'site-settings',
-			'priority' => 45,
+			'priority' => 50,
 		);
 
 		$layers_customizer_sections[ 'fonts' ] = array(
 			'title' =>__( 'Fonts' , 'layerswp' ),
 			'panel' => 'site-settings',
+			'priority' => 55,
 		);
 
 		$layers_customizer_sections[ 'dev-switches' ] = array(
 			'title' =>__( 'Dev Switches', 'layerswp' ),
 			'panel' => 'site-settings',
-		);
-
-		$layers_customizer_sections[ 'buttons' ] = array(
-			'title' =>__( 'Buttons' , 'layerswp' ),
-			'panel' => 'buttons',
+			'priority' => 100,
 		);
 
 		$layers_customizer_sections[ 'css' ] = array(
@@ -235,7 +238,6 @@ class Layers_Customizer_Config {
 			'title' =>__( 'Additional Scripts' , 'layerswp' ),
 			'panel' => 'header',
 		);
-
 
 		$layers_customizer_sections[ 'header-layout' ] = array(
 			'title' =>__( 'Styling' , 'layerswp' ),

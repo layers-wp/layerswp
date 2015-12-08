@@ -2,7 +2,7 @@
 
 =======
 ##1.2.10
-### xx Dec 2015
+### 08 Dec 2015
 
 * **Tweak** - Flexbox header CSS clean and much less hacky. *DP*
 * **Tweak** - Updated Envato Marketplace to list themes by last updated by default. *MP*

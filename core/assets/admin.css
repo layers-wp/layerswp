@@ -1107,10 +1107,16 @@ div[id*='layers-widget'] .spinner{
         font-size: 11px;
         font-style: italic;
     }
-    .layers-customize-control input[type=text].layers-color-selector.wp-color-picker{
+    .layers-form-item input[type=text].layers-color-selector.wp-color-picker{
         float: left;
         padding: 3px;
-        margin: 0 0 0 6px;
+    }
+    .layers-form-item .wp-picker-input-wrap .button {
+        margin-left: 0;
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+        box-shadow: none;
+        border-left: 0;
     }
     .editible{
         clear: both;
@@ -1920,8 +1926,9 @@ li[id*='accordion-section-layers'] .customize-control .layers-customize-control.
     text-transform: none;
     margin: 0;
 }
-li[id*='accordion-section-layers'] .customize-control .wp-color-result{
-    margin: 0;
+.layers-form-item .wp-color-result{
+    margin-right: 6px;
+    box-shadow: none;
 }
 li[id*='accordion-section-layers'] .customize-control.customize-control-image .actions{
     margin-bottom: 0;

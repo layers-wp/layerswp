@@ -194,7 +194,7 @@ div#widgets-right div[id*='obox-layers-builder']{
         transform: translate3d(-10px, 0, 0);
         opacity: 0;
     }
-    
+
     .customize-control-widget_form.wide-widget-control div[id*='layers-widget'] .widget-inside .form{
         padding: 0 !important;
         height: 100%;
@@ -627,7 +627,7 @@ div[id*='layers-widget'] .spinner{
     color: #444;
     box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.1);
 }
-    
+
     /*---------------------------*/
     /*- ICON-GROUP --------------*/
     .layers-icon-group {
@@ -661,7 +661,7 @@ div[id*='layers-widget'] .spinner{
     .layers-icon-group .layers-icon-wrapper img{
         max-width: 100%;
     }
-    
+
     /*---------------------------*/
     /*- ICON-GROUP OUTLINED -----*/
     .layers-icon-group.layers-icon-group-outline {
@@ -1195,7 +1195,7 @@ div[id*='layers-widget'] .spinner{
         border-radius: 0 3px 3px 0;
         box-shadow: none;
     }
-    
+
     .layers-sync-setting-holder {
         position: relative;
     }
@@ -1224,7 +1224,7 @@ div[id*='layers-widget'] .spinner{
     .layers-sync-setting-holder.layers-use-widget-value .layers-global-setting{
         display: none;
     }
-    
+
     .layers-global-setting {
         top: 0;
         left: 0;
@@ -1357,7 +1357,7 @@ div[id*='layers-widget'] .spinner{
         text-align: center;
         text-transform: uppercase;
     }
-    
+
     /*----------------------------*/
     /*- FORM ITEMS ---------------*/
     .editible,
@@ -1387,7 +1387,7 @@ div[id*='layers-widget'] .spinner{
 
     /*---------------------------*/
     /*- ICON-GROUP - DESIGN-BAR -*/
-    
+
     .layers-design-bar .layers-visuals-item{
         position: relative;
         padding: 1px;
@@ -1418,7 +1418,7 @@ div[id*='layers-widget'] .spinner{
         .layers-design-bar .layers-visuals-item:nth-child(10){transition-delay: 0.43s;}
         .layers-design-bar .layers-visuals-item:nth-child(11){transition-delay: 0.45s;}
 
-    
+
     .layers-visuals-item .layers-icon-error{
         color: #FF5353;
     }
@@ -2945,8 +2945,7 @@ input[type=radio]:checked + .layers-settings-icon span{
     max-height: 108px;
     padding: 8px;
     margin-bottom: 10px;
-    background: #f0f0f0 url(images/icon-bg-image.png) center no-repeat;
-    background-size: 32px 32px;
+    background: #f0f0f0;
     border: 1px solid #ddd;
     border-radius: 3px;
     overflow: hidden;

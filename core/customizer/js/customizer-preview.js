@@ -6,9 +6,10 @@
 * @package Layers
 * @since Layers 1.0.4
 * Contents
-* 1 - Fix customizer FOUC during render
-* 2 - Customizer UX Enhancements
-* 3 - Remove all '#' href's in Preview
+* 1 - Send Custom Customizer Init Event to the parent
+* 2 - Fix customizer FOUC during render
+* 3 - Customizer UX Enhancements
+* 4 - Remove all '#' href's in Preview
 *
 * Author: Obox Themes
 * Author URI: http://www.oboxthemes.com/
@@ -35,9 +36,14 @@
 
 			// layers-loaded event sent when the previewer is initialised
 			this.preview.bind( 'active', function() {
+				
+				/**
+				 * 1 - Send Custom Customizer Init Event to the parent.
+				 */
+				self.preview.send( 'layers-customizer-preview-init' );
 
 				/**
-				 * 1 - Fix customizer FOUC during render
+				 * 2 - Fix customizer FOUC during render
 				 *
 				 * Fix issue where font size is incorrectly displayed due to % font-size in an iframe in chrome
 				 */
@@ -48,7 +54,7 @@
 				},3000 );
 
 				/**
-				 * 2 - Customizer UX Enhancements
+				 * 3 - Customizer UX Enhancements
 				 */
 				
 				// Edit widget buttons
@@ -83,7 +89,7 @@
 				});
 				
 				/**
-				 * 3 - Remove all '#' href's in Preview so WP does not incorrectly activate them causing new page click.
+				 * 4 - Remove all '#' href's in Preview so WP does not incorrectly activate them causing new page click.
 				 */
 				$( 'a[href="#"]' ).attr( 'href', '' );
 				

@@ -6,10 +6,11 @@
  * @package Layers
  * @since Layers 1.0.0
  * Contents
- * 1 - Page Builder Macro
- * 2 - Customizer UI enhancements
- * 3 - Better history states in customizer
- * 4 - Customizer UX Enhancements
+ * 1 - Trigger Custom Customizer Init Events
+ * 2 - Page Builder Macro
+ * 3 - Customizer UI enhancements
+ * 4 - Better history states in customizer
+ * 5 - Customizer UX Enhancements
  *
  * Author: Obox Themes
  * Author URI: http://www.oboxthemes.com/
@@ -44,10 +45,26 @@
 			
 			var $hash_record = '';
 			
+			/**
+			 * 1 - Trigger Custom Customizer Init Events.
+			 *
+			 * Trigger high level events on the document that let us know when the
+			 * Customizer and Customizer Preview have initialized - so the we know
+			 * the DOM has been modified by WP and we can proceed to make DOM mods
+			 * of our own.
+			 */
+			
+			// e.g. $( document ).on( 'layers-customizer-init', function(){ /* do something... */ });
 			$( document ).trigger( 'layers-customizer-init' );
+			
+			// e.g. $( document ).on( 'layers-customizer-preview-init', function(){ /* do something... */ });
+			// This event originates from customizer-preview.js
+			this.preview.bind( 'layers-customizer-preview-init', function( data ) {
+				$( document ).trigger( 'layers-customizer-preview-init' );
+			});
 
 			/**
-			 * 1 - Page Builder Macro
+			 * 2 - Page Builder Macro
 			 */
 
 			if( true == layers_customizer_params.builder_page ){
@@ -56,7 +73,7 @@
 			}
 
 			/**
-			 * 2 - Customizer UI enhancements
+			 * 3 - Customizer UI enhancements
 			 */
 
 			var layers_builder_pages_drop_down = '.layers-customizer-pages-dropdown select',
@@ -138,7 +155,7 @@
 			);
 
 			/**
-			 * 3 - Better history states in customizer
+			 * 4 - Better history states in customizer
 			 *
 			 * TODO: Check WP bleeding edge versions for this functionality.
 			 * https://core.trac.wordpress.org/ticket/28536
@@ -168,7 +185,7 @@
 			});
 
 			/**
-			 * 4 - Customizer UX Enhancements
+			 * 5 - Customizer UX Enhancements
 			 *
 			 * Apply and handle UI elements and enhancements.
 			 */

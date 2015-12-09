@@ -532,6 +532,7 @@ object{
     /*- SECONDARY HEADER --------*/
     .header-secondary{
         display: none;
+        padding: 10px 0;
         background: #333;
     }
     .header-secondary nav{

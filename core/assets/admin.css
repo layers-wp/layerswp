@@ -1066,11 +1066,11 @@ div[id*='layers-widget'] .spinner{
         box-shadow: inset 1px 1px 2px rgba(0, 0, 0, 0.1);
     }
 
-    li[id*='accordion-section-layers'] .customize-control .wp-picker-holder{
+    li[id*='customize-control-layers'].customize-control .wp-picker-holder{
         position: absolute;
         z-index: 10000;
     }
-    li[id*='accordion-section-layers'] .customize-control .wp-picker-holder .iris-picker{
+    li[id*='customize-control-layers'].customize-control .wp-picker-holder .iris-picker{
         box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
         border-radius: 2px;
     }
@@ -1854,7 +1854,6 @@ div[id*='layers-widget'] .spinner{
     /*-------------------------------*/
     /*- RTE LIST STYLING --------*/
     /*-------------------------------*/
-
     .froala-view li{
         list-style-type: inherit;
         overflow: visible;
@@ -1896,66 +1895,67 @@ div[id*='layers-widget'] .spinner{
 #customize-controls .description{
     color: #999;
 }
-li[id*='accordion-section-layers'] .customize-control{
+li[id*='customize-control-layers'].customize-control{
     margin: 0;
 }
-li[id*='accordion-section-layers'] .customize-control .layers-customize-control {
+li[id*='customize-control-layers'].customize-control .layers-customize-control {
     padding: 6px 0;
 }
-li[id*='accordion-section-layers'] .customize-control:first-child{
+li[id*='customize-control-layers'].customize-control:first-child{
     margin: 6px 0 0px;
 }
-.customize-control customize-control-layers-seperator{
-    border: 0;
-    border-top: 0;
-    border-bottom: 1px solid #EEE;
-    margin: 8px 0;
-}
-li[id*='accordion-section-layers'] .customize-control .layers-form-item{
+li[id*='customize-control-layers'].customize-control .layers-form-item{
     margin: 0 0 6px;
 }
-li[id*='accordion-section-layers'] .customize-control .layers-form-item:after{
+li[id*='customize-control-layers'].customize-control .layers-form-item:after{
     content: '';
     display: block;
     float: none;
     clear: both;
 }
-li[id*='accordion-section-layers'] .customize-control .heading-label .customize-control-title{
-    font-size: 14px;
-    line-height: 24px;
-    font-weight: bold;
-    margin: 0 0 4px;
-}
 
-li[id*='accordion-section-layers'] .customize-control .layers-customize-control.layers-customize-control-heading .customize-control-title{
-    display: block;
-    font-size: 14px;
-    line-height: 24px;
-    font-weight: 600;
-    text-transform: none;
-    margin: 0;
-}
-.layers-form-item .wp-color-result{
-    margin-right: 6px;
-    box-shadow: 0 1px 1px rgba(0,0,0,0.08);
-}
-li[id*='accordion-section-layers'] .customize-control.customize-control-image .actions{
-    margin-bottom: 0;
-}
-.customize-control-site_logo .current img{
-    display: block;
-    max-width: 100%;
-    margin: auto;
-    padding: 10px;
-    background-image: url(../assets/images/transparent-tile.png);
-    border-radius: 4px;
-    box-sizing: border-box;
-}
+    /*-----------------------------*/
+    /*- SPECIFIC FORM TYPES -------*/
+    .customize-control customize-control-layers-seperator{
+        border: 0;
+        border-top: 0;
+        border-bottom: 1px solid #EEE;
+        margin: 8px 0;
+    }
+    .layers-form-item .wp-color-result{
+        margin: 0 6px 3px 0;
+        box-shadow: 0 1px 1px rgba(0,0,0,0.08);
+    }
+    li[id*='customize-control-layers'].customize-control.customize-control-image .actions{
+        margin-bottom: 0;
+    }
+    .customize-control-site_logo .current img{
+        display: block;
+        max-width: 100%;
+        margin: auto;
+        padding: 10px;
+        background-image: url(../assets/images/transparent-tile.png);
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
 
-    /*----------------------------------*/
-    /*- HEADING DIVIDER - ALL CONTROLS -*/
-
-    li[id*='accordion-section-layers'] .customize-control .customize-control-title.layers-heading-divider {
+    /*----------------------------*/
+    /*- HEADING CONTROLS -------- */
+    li[id*='customize-control-layers'].customize-control .heading-label .customize-control-title{
+        font-size: 14px;
+        line-height: 24px;
+        font-weight: bold;
+        margin: 0 0 4px;
+    }
+    li[id*='customize-control-layers'].customize-control .layers-customize-control.layers-customize-control-heading .customize-control-title{
+        display: block;
+        font-size: 14px;
+        line-height: 24px;
+        font-weight: 600;
+        text-transform: none;
+        margin: 0;
+    }
+    li[id*='customize-control-layers'].customize-control .customize-control-title.layers-heading-divider {
         display: block;
         font-size: 14px;
         line-height: 24px;
@@ -1988,7 +1988,7 @@ li[id*='accordion-section-layers'] .customize-control.customize-control-image .a
         border-bottom: 1px solid #EEE;
         height: 2px;
     }
-    li[id*='accordion-section-layers'] .customize-control table.layers-heading-divider .customize-control-title {
+    li[id*='customize-control-layers'].customize-control table.layers-heading-divider .customize-control-title {
         display: block;
         font-size: 14px;
         line-height: 24px;
@@ -1998,13 +1998,13 @@ li[id*='accordion-section-layers'] .customize-control.customize-control-image .a
 
     /*----------------------------------------*/
     /*- HEADING DIVIDER - DEDICATED CONTROLS -*/
-    li[id*='accordion-section-layers'] .customize-control.customize-control-layers-heading-divider {
+    li[id*='customize-control-layers'].customize-control.customize-control-layers-heading-divider {
         margin-top: 12px;
     }
-    li[id*='accordion-section-layers'] .customize-control.customize-control-layers-heading-divider table.layers-heading-divider .customize-control-title {
+    li[id*='customize-control-layers'].customize-control.customize-control-layers-heading-divider table.layers-heading-divider .customize-control-title {
         margin: 0;
     }
-    li[id*='accordion-section-layers'] .customize-control.customize-control-layers-heading-divider .description{
+    li[id*='customize-control-layers'].customize-control.customize-control-layers-heading-divider .description{
         margin-top: 3px;
     }
 
@@ -2022,6 +2022,15 @@ li[id*='accordion-section-layers'] .customize-control.customize-control-image .a
     .layers-customize-control-range input[type="number"] {
         /* width: 25%; */
         display: inline-block;
+    }
+    
+    /*----------------------*/
+    /*- CHECKBOX -----------*/
+    li[id*='customize-control-layers'].customize-control .layers-customize-control-checkbox .layers-form-item{
+        margin: 0;
+    }
+    li[id*='customize-control-layers'].customize-control .layers-customize-control-checkbox .description{
+        margin-top: .2em;
     }
 
     /*-------------------------------*/
@@ -2091,6 +2100,9 @@ li[id*='accordion-section-layers'] .customize-control.customize-control-image .a
         .layers-customize-control.group.layers-customize-control-range input[type="range"]{
             height: 28px;
             padding: 0;
+        }
+        .layers-customize-control.group.layers-customize-control-checkbox label{
+            margin-bottom: 6px;
         }
         
 

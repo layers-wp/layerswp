@@ -1,6 +1,14 @@
 # Layers Changelog
 
 =======
+##1.2.11
+### xx Dec 2015
+
+* **Fix** - Fixed Top/Right/Bottom/Left labels in design bar. *DP*
+
+
+
+=======
 ##1.2.10
 ### 08 Dec 2015
 
@@ -19,6 +27,7 @@
 * **Fix** - Fixed dynamic updating of repeater widget item titles. *MP*
 * **Fix** - Fixed round image ratio in the posts widget. *MP*
 * **Fix** - Fixed round image ratio CSS in the posts widget. *DP*
+* **Fix** - Breadcrumbs were throwing an undefined object error in some intances. *MP*
 * **Fix** - Fixed slider arrow centering when layout-boxed is chosen. *MP*
 * **Fix** - Fixed the presence of an empty div when a post in the archive page has no content. *MP*
 

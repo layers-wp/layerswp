@@ -6,6 +6,7 @@
 
 * **Fix** - Fixed author `<a href />` for Portuguese translations. *MP*
 * **Fix** - Fixed Top/Right/Bottom/Left labels in design bar. *DP*
+* **Fix** - Transparent Overlay containing background image now works. *DP*
 * **Tweak** - .header-secondary left/right padding was out on large screens - fixed. *DP*
 
 

@@ -2070,31 +2070,29 @@ li[id*='accordion-section-layers'] .customize-control.customize-control-image .a
         
         /*---------------------------*/
         /*- GROUP INPUTS ------------*/
-    .layers-customize-control.group:not(.layers-customize-control-color) input,
-    .layers-customize-control.group select {
-        line-height: 28px;
-        height: 29px;
-        font-size: 13px;
-        padding: 0 6px;
-        background: #FBFBFB;
-    }
-    .layers-customize-control.group input{
-        background: #FBFBFB;
-    }
-    .layers-customize-control.group input[type="number"]{
-            padding-right: 0;
-    }
-    .layers-customize-control.group:not(.layers-customize-control-color) input[type="range"]{
-        background: transparent;
-        height: 28px;
-    }
+        .layers-customize-control.group:not(.layers-customize-control-color) input,
+        .layers-customize-control.group select {
+            line-height: 28px;
+            height: 29px;
+            font-size: 13px;
+            padding: 0 6px;
+            background: #FBFBFB;
+        }
+        .layers-customize-control.group input{
+            background: #FBFBFB;
+        }
+        .layers-customize-control.group input[type="number"]{
+                padding-right: 0;
+        }
+        .layers-customize-control.group:not(.layers-customize-control-color) input[type="range"]{
+            background: transparent;
+            height: 28px;
+        }
         .layers-customize-control.group.layers-customize-control-range input[type="range"]{
             height: 28px;
             padding: 0;
         }
-        .layers-customize-control.group.layers-customize-control-range input[type="number"]{
-            
-    }
+        
 
 /*---------------------------*/
 /*- TITLES ------------------*/

@@ -8,6 +8,7 @@
 * **Fix** - Fixed Top/Right/Bottom/Left labels in design bar. *DP*
 * **Fix** - Transparent Overlay containing background image now works. *DP*
 * **Tweak** - .header-secondary left/right padding was out on large screens - fixed. *DP*
+* **Tweak** - .nav-tabs colors now more dynamic for better background color/image handling. *DP*
 
 
 

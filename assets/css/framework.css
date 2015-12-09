@@ -1777,7 +1777,7 @@ object{
     /*- TABBED NAV --------------*/
     .nav-tabs{
         padding: 20px 20px 0;
-        background-color: #eee;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
     }
     .nav-tabs ul{
         overflow: hidden;
@@ -1791,17 +1791,15 @@ object{
     .nav-tabs a{
         display: block;
         padding: 6px 15px;
-        background-color: #f3f3f3;
-        color: #8f8f8f;
+        border: 1px solid transparent;
+        border-bottom: none;
         font-weight: 700;
     }
     .nav-tabs a:hover{
-        color: #454545;
-        background-color: #f3f3f3;
+        background: rgba(0, 0, 0, 0.1);
     }
     .nav-tabs .active a{
-        background-color: #fff;
-        color: #454545;
+        border-color: rgba(0, 0, 0, 0.1);
     }
     .nav-small a,
     .nav-small span{
@@ -2580,6 +2578,10 @@ object{
         .invert .nav > li > a:hover{
             color: #fff;
             opacity: 1;
+        }
+
+        .invert .nav-tabs a{
+            color: #fff;
         }
 
     /*---------------------------*/

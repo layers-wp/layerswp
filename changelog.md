@@ -4,6 +4,7 @@
 ##1.2.11
 ### xx Dec 2015
 
+* **Fix** - Fixed author `<a href />` for Portuguese translations. *MP*
 * **Fix** - Fixed Top/Right/Bottom/Left labels in design bar. *DP*
 * **Tweak** - .header-secondary left/right padding was out on large screens - fixed. *DP*
 

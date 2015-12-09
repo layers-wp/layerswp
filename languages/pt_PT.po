@@ -886,7 +886,7 @@ msgstr "Visualizar todas as postagens com o marcador %s"
 #: core/helpers/post.php:98
 #, php-format
 msgid "<a href=\"%1$s\" title=\"%2$s\" rel=\"author\">%3$s</a>"
-msgstr "< a href=\"%1$s\" title=\"%2$s\" rel=\"author\">%3$s</a>"
+msgstr "<a href=\"%1$s\" title=\"%2$s\" rel=\"author\">%3$s</a>"
 
 # @ layerswp
 #: core/helpers/post.php:100

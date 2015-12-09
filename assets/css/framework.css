@@ -525,13 +525,14 @@ object{
         z-index: 100;
     }
     .header-overlay-no-push .header-overlay:not(.is_stuck){
-        background-color: transparent;
+        background: transparent;
     }
 
     /*---------------------------*/
     /*- SECONDARY HEADER --------*/
     .header-secondary{
         display: none;
+        padding: 10px 0;
         background: #333;
     }
     .header-secondary nav{

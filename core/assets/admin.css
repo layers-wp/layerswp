@@ -1386,6 +1386,7 @@ div[id*='layers-widget'] .spinner{
         padding: 0 4px;
     }
     .layers-design-bar .layers-form-item textarea{
+        padding: 8px;
     }
     .layers-design-bar .layers-form-item input[type="number"]{
         padding-right: 0;
@@ -1443,7 +1444,7 @@ div[id*='layers-widget'] .spinner{
         float: none;
     }
     .layers-row.layers-trbl-row {
-        padding: 0;
+        padding: 0 !important;
         margin-bottom: 16px;
     }
     .layers-row.layers-trbl-row .layers-column-flush {
@@ -1456,7 +1457,8 @@ div[id*='layers-widget'] .spinner{
         width:1px;
         height: 12px;
         position:absolute;
-        top: 12px;
+        top: 50%;
+        margin-top: -26%;
         right:0;
         content:'';
         background: rgba(0, 0, 0, 0.08);

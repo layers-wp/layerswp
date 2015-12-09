@@ -134,7 +134,7 @@ div#widgets-right div[id*='obox-layers-builder']{
         background: #0BA6E0;
         border-color: #053E57 !important;
         color: #3D454E;
-	}
+    }
     .customize-control-widget_form.wide-widget-control.layers-focussed .widget .widget-top .widget-title h4{
         color: #fff;
     }
@@ -451,10 +451,10 @@ div[id*='layers-widget'] .spinner{
 }
 /* Widget Peek Button */
 div[id*='layers-widget'] .widget-control-actions .alignleft{
-	float: right;
+    float: right;
 }
 div[id*='layers-widget'] .widget-control-actions .alignright{
-	float: right;
+    float: right;
 }
 .widget-control-actions .layers-widget-peek-button {
     float: left;
@@ -634,7 +634,7 @@ div[id*='layers-widget'] .spinner{
         overflow: hidden;
         padding: 0;
         display: inline-block;
-	}
+    }
     .layers-icon-group .layers-icon-wrapper{
         display: block;
         float: left;
@@ -1390,6 +1390,9 @@ div[id*='layers-widget'] .spinner{
     .layers-design-bar .layers-form-item input[type="number"]{
         padding-right: 0;
     }
+    .layers-design-bar .layers-form-item input[type="range"]{
+        height: 30px;
+    }
 
     /*---------------------------*/
     /*- ICON-GROUP - DESIGN-BAR -*/
@@ -2007,13 +2010,15 @@ li[id*='accordion-section-layers'] .customize-control.customize-control-image .a
 
     /*-----------------------------*/
     /*- RANGE + NUMBER CONTROL ----*/
+    .layers-range-wrapper input[type="range"],
     .layers-customize-control-range input[type="range"]{
         width: 95%;
         display: inline-block;
         height: 35px;
         padding: 0;
-        margin: 0 5% 0 0;
+        margin: 0;
     }
+    .layers-range-wrapper input[type="number"],
     .layers-customize-control-range input[type="number"] {
         /* width: 25%; */
         display: inline-block;
@@ -2056,30 +2061,40 @@ li[id*='accordion-section-layers'] .customize-control.customize-control-image .a
         background: #F5F5F5 none repeat scroll 0% 0%;
         border-radius: 3px;
     }
-    .layers-customize-control.group:not(.layers-customize-control-color) input,
-    .layers-customize-control.group select {
-        line-height: 28px;
-        height: 29px;
-        font-size: 13px;
-        padding: 0 6px;
-        background: #FBFBFB;
-    }
-    .layers-customize-control.group input{
-        background: #FBFBFB;
-    }
-    .layers-customize-control.group input[type="number"]{
-        padding-right: 2px;
-    }
-    .layers-customize-control.group:not(.layers-customize-control-color) input[type="range"]{
-        background: transparent;
-        height: 28px;
-    }
     .layers-customize-control.group .description {
         font-size: 12px;
         line-height: 1.3em;
         margin-bottom: 6px;
         margin-top: -6px;
     }
+        
+        /*---------------------------*/
+        /*- GROUP INPUTS ------------*/
+        .layers-customize-control.group:not(.layers-customize-control-color) input,
+        .layers-customize-control.group select {
+            line-height: 28px;
+            height: 29px;
+            font-size: 13px;
+            padding: 0 6px;
+            background: #FBFBFB;
+        }
+        .layers-customize-control.group input{
+            background: #FBFBFB;
+        }
+        .layers-customize-control.group input[type="number"]{
+            padding-right: 0;
+        }
+        .layers-customize-control.group:not(.layers-customize-control-color) input[type="range"]{
+            background: transparent;
+            height: 28px;
+        }
+        .layers-customize-control.group.layers-customize-control-range input[type="range"]{
+            height: 28px;
+            padding: 0;
+        }
+        .layers-customize-control.group.layers-customize-control-range input[type="number"]{
+            
+        }
 
 /*---------------------------*/
 /*- TITLES ------------------*/
@@ -3771,16 +3786,16 @@ div#tiptip_holder {
     background: rgba(0,0,0,0.75);
 }
 #tiptip_holder.tip_top #tiptip_arrow {
-	border-top-color: rgba(255,255,255,0.35);
+    border-top-color: rgba(255,255,255,0.35);
 }
 #tiptip_holder.tip_bottom #tiptip_arrow {
-	border-bottom-color: rgba(255,255,255,0.35);
+    border-bottom-color: rgba(255,255,255,0.35);
 }
 #tiptip_holder.tip_right #tiptip_arrow {
-	border-right-color: rgba(255,255,255,0.35);
+    border-right-color: rgba(255,255,255,0.35);
 }
 #tiptip_holder.tip_left #tiptip_arrow {
-	border-left-color: rgba(255,255,255,0.35);
+    border-left-color: rgba(255,255,255,0.35);
 }
 #tiptip_holder.tip_top #tiptip_arrow_inner {
     margin-top: -6px;
@@ -3792,9 +3807,9 @@ div#tiptip_holder {
 }
 #tiptip_holder.tip_right #tiptip_arrow_inner {
     margin-left: -6px;
-	border-right-color: rgba(0,0,0,0.75);
+    border-right-color: rgba(0,0,0,0.75);
 }
 #tiptip_holder.tip_left #tiptip_arrow_inner {
     margin-left: -6px;
-	border-left-color: rgba(0,0,0,0.75);
+    border-left-color: rgba(0,0,0,0.75);
 }

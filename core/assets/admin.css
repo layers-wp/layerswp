@@ -718,7 +718,10 @@ div[id*='layers-widget'] .spinner{
     .layers-icon-group-large .layers-icon-wrapper [class*="fa"] {
         font-size: 18px;
         height: auto;
-        line-height: 29px;
+        line-height: 18px;
+        vertical-align: middle;
+        position: relative;
+        top: -1px;
     }
 
     /*---------------------------*/

@@ -492,7 +492,7 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 							'name' => $this->get_layers_field_name( 'slider_arrow_color' ) ,
 							'id' => $this->get_layers_field_id( 'slider_arrow_color' ) ,
 							'value' => ( isset( $widget['slider_arrow_color'] ) ) ? $widget['slider_arrow_color'] : NULL,
-							'label' => __( 'Slider Controls Color' , 'layers-woocommerce' ),
+							'label' => __( 'Slider Controls Color' , 'layerswp' ),
 							'data' => array(
 								'show-if-selector' => '#' . $this->get_layers_field_id( 'show_slider_arrows' ),
 								'show-if-value' => 'true',
@@ -512,9 +512,9 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 							'value' => ( isset(  $widget['animation_type'] ) ) ?  $widget['animation_type'] : 'slide',
 							'label' => __( 'Animation Type' , 'layerswp' ),
 							'options' => array(
-								'slide' => __( 'Slide', 'layers_wp' ),
-								'fade' => __( 'Fade', 'layers_wp' ),
-								'parallax' => __( 'Parallax', 'layers_wp' ),
+								'slide' => __( 'Slide', 'layerswp' ),
+								'fade' => __( 'Fade', 'layerswp' ),
+								'parallax' => __( 'Parallax', 'layerswp' ),
 							),
 						),
 						'autoplay_slides' => array(

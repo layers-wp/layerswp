@@ -1734,6 +1734,15 @@ object{
         font-size: 1.2rem;
     }
 
+        /*-----------------------*/
+        /*- SITE HEADER > NAV ---*/
+        .header-site .nav-horizontal > ul > li{
+            margin: 0 2px;
+        }
+        .header-site .nav-horizontal > ul > li > a{
+            padding: 0 10px;
+        }
+
     /*---------------------------*/
     /*- HORIZONTAL NAV CENTERED -*/
     .nav-centered{

@@ -1666,6 +1666,10 @@ msgstr ""
 msgid "Column"
 msgstr ""
 
+#: ../core/widgets/modules/content.php:444
+msgid "Column Width"
+msgstr ""
+
 #: ../core/widgets/modules/content.php:499
 msgid "1 of 12 columns"
 msgstr ""
@@ -1842,6 +1846,10 @@ msgstr ""
 
 #: ../core/widgets/modules/slider.php:26 ../core/widgets/modules/slider.php:406
 msgid "Slider"
+msgstr ""
+
+#: ../core/widgets/modules/slider.php:562
+msgid "Sliders"
 msgstr ""
 
 #: ../core/widgets/modules/slider.php:58

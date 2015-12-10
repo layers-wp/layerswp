@@ -479,7 +479,7 @@ object{
         align-items: center;
 
         margin: 0;
-        line-height: 40px;
+        line-height: 30px;
     }
     .header-left .logo{
         overflow: hidden;

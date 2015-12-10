@@ -3,29 +3,25 @@ msgstr ""
 "Project-Id-Version: Layers v1.0.4\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: Tue Sep 01 2015 14:21:59 GMT+0200 (Central European "
-"Daylight Time)\n"
-"Last-Translator: vail <v@eternityrites.com>\n"
+"PO-Revision-Date: 2015-12-10 09:52+0000\n"
+"Last-Translator: Alireza Sabzalian\n"
 "Language-Team: \n"
-"Language: English\n"
-"Plural-Forms: nplurals=2; plural=n != 1\n"
+"Language: en\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-SourceCharset: utf-8\n"
-"X-Generator: Loco - https://localise.biz/\n"
-"X-Poedit-Language: English\n"
-"X-Poedit-Country: UNITED STATES\n"
-"X-Poedit-KeywordsList: _:1;gettext:1;dgettext:2;ngettext:1,2;dngettext:2,3;"
-"__:1;_e:1;_c:1;_n:1,2;_n_noop:1,2;_nc:1,2;__ngettext:1,2;__ngettext_noop:1,2;"
-"_x:1,2c;_ex:1,2c;_nx:1,2,4c;_nx_noop:1,2,3c;_n_js:1,2;_nx_js:1,2,3c;"
-"esc_attr__:1;esc_html__:1;esc_attr_e:1;esc_html_e:1;esc_attr_x:1,2c;"
-"esc_html_x:1,2c;comments_number_link:2,3;t:1;st:1;trans:1;transChoice:1,2\n"
-"X-Poedit-Basepath: ../\n"
-"X-Poedit-Bookmarks: \n"
-"X-Poedit-SearchPath-0: .\n"
+"X-Generator: Poedit 1.8.6\n"
+"X-Poedit-KeywordsList: _:1;gettext:1;dgettext:2;ngettext:1,2;dngettext:2,3;__:1;"
+"_e:1;_c:1;_n:1,2;_n_noop:1,2;_nc:1,2;__ngettext:1,2;__ngettext_noop:1,2;_x:1,2c;"
+"_ex:1,2c;_nx:1,2,4c;_nx_noop:1,2,3c;_n_js:1,2;_nx_js:1,2,3c;esc_attr__:1;"
+"esc_html__:1;esc_attr_e:1;esc_html_e:1;esc_attr_x:1,2c;esc_html_x:1,2c;"
+"comments_number_link:2,3;t:1;st:1;trans:1;transChoice:1,2\n"
+"X-Poedit-Basepath: ..\n"
 "X-Textdomain-Support: yes\n"
-"X-Loco-Target-Locale: en_US"
+"X-Loco-Target-Locale: en_US\n"
+"X-Poedit-SearchPath-0: .\n"
 
 #: ../comments.php:15
 #, php-format
@@ -197,8 +193,8 @@ msgstr ""
 
 #: ../core/customizer/config.php:241
 msgid ""
-"Want the best CSS customization interface? <a target=\"_blank\" href=\"http:"
-"//bit.ly/layers-devkit\">Purchase DevKit</a> and save bundles of time!"
+"Want the best CSS customization interface? <a target=\"_blank\" href=\"http://"
+"bit.ly/layers-devkit\">Purchase DevKit</a> and save bundles of time!"
 msgstr ""
 
 #: ../core/customizer/config.php:250
@@ -208,8 +204,8 @@ msgstr ""
 #: ../core/customizer/config.php:251
 #, php-format
 msgid ""
-"For more information on obtaining your Typekit ID, see <a href=\"%s\" "
-"target=\"_blank\">follow this link</a>."
+"For more information on obtaining your Typekit ID, see <a href=\"%s\" target="
+"\"_blank\">follow this link</a>."
 msgstr ""
 
 #: ../core/customizer/config.php:258
@@ -280,8 +276,8 @@ msgstr ""
 
 #: ../core/customizer/config.php:333
 msgid ""
-"Enter in your Google Analytics ID to enable website traffic reporting. eg. "
-"\"UA-xxxxxx-xx"
+"Enter in your Google Analytics ID to enable website traffic reporting. eg. \"UA-"
+"xxxxxx-xx"
 msgstr ""
 
 #: ../core/customizer/config.php:341 ../core/customizer/config.php:434
@@ -445,8 +441,8 @@ msgstr ""
 
 #: ../core/customizer/registration.php:70
 msgid ""
-"Use this area to add widgets to your page, use the (Layers) widgets for the "
-"Body section."
+"Use this area to add widgets to your page, use the (Layers) widgets for the Body "
+"section."
 msgstr ""
 
 #: ../core/customizer/controls/font.php:51
@@ -474,8 +470,8 @@ msgstr ""
 
 #: ../core/helpers/api.php:49
 msgid ""
-"List your portfolio items with relevant meta such as client, web url and "
-"project role."
+"List your portfolio items with relevant meta such as client, web url and project "
+"role."
 msgstr ""
 
 #: ../core/helpers/custom-fonts.php:112 ../core/widgets/modules/contact.php:266
@@ -523,7 +519,7 @@ msgid "6 Columns"
 msgstr ""
 
 #: ../core/helpers/design-bar.php:325 ../core/helpers/design-bar.php:622 ..
-#: /core/helpers/design-bar.php:696 ../core/helpers/forms.php:370 ..
+#: /core/helpers/design-bar.php:696 ../core/helpers/forms.php:370
 #: /core/helpers/forms.php:445
 msgid "Background Color"
 msgstr ""
@@ -537,7 +533,7 @@ msgid "Text Align"
 msgstr ""
 
 #: ../core/helpers/design-bar.php:373 ../core/helpers/design-bar.php:415 ..
-#: /core/helpers/design-bar.php:558 ../core/helpers/design-bar.php:650 ..
+#: /core/helpers/design-bar.php:558 ../core/helpers/design-bar.php:650
 #: /core/helpers/forms.php:522
 msgid "Left"
 msgstr ""
@@ -548,7 +544,7 @@ msgid "Center"
 msgstr ""
 
 #: ../core/helpers/design-bar.php:375 ../core/helpers/design-bar.php:416 ..
-#: /core/helpers/design-bar.php:560 ../core/helpers/design-bar.php:651 ..
+#: /core/helpers/design-bar.php:560 ../core/helpers/design-bar.php:651
 #: /core/helpers/forms.php:520
 msgid "Right"
 msgstr ""
@@ -1040,8 +1036,8 @@ msgstr ""
 #: ../core/options-panel/init.php:320
 msgid ""
 "Looking for a theme or plugin to achieve something unique with your website?\n"
-"							Browse the massive Layers Marketplace on Envato and take your site to "
-"the next level."
+"\t\t\t\t\t\t\tBrowse the massive Layers Marketplace on Envato and take your site "
+"to the next level."
 msgstr ""
 
 #: ../core/options-panel/init.php:326 ../core/options-panel/partials/dashboard.
@@ -1130,7 +1126,7 @@ msgstr ""
 
 #: ../core/options-panel/partials/add-new-page.php:34 ..
 #: /core/widgets/modules/contact.php:319 ../core/widgets/modules/content.php:388 .
-#: ./core/widgets/modules/content.php:526 ../core/widgets/modules/post.php:523 ..
+#: core/widgets/modules/content.php:526 ../core/widgets/modules/post.php:523
 #: /core/widgets/modules/slider.php:590
 msgid "Enter title here"
 msgstr ""
@@ -1149,8 +1145,8 @@ msgstr ""
 
 #: ../core/options-panel/partials/backup.php:16
 msgid ""
-"Convert your Layers pages into regular WordPress pages, preserving the "
-"content you have worked so hard to create."
+"Convert your Layers pages into regular WordPress pages, preserving the content "
+"you have worked so hard to create."
 msgstr ""
 
 #: ../core/options-panel/partials/backup.php:20
@@ -1213,8 +1209,8 @@ msgstr ""
 #: ../core/options-panel/partials/dashboard.php:135
 msgid ""
 "Looking for a theme or plugin to achieve something unique with your website?\n"
-"									Browse the massive Layers Marketplace on Envato and take your site "
-"to the next level."
+"\t\t\t\t\t\t\t\t\tBrowse the massive Layers Marketplace on Envato and take your "
+"site to the next level."
 msgstr ""
 
 #: ../core/options-panel/partials/dashboard.php:154
@@ -1273,14 +1269,14 @@ msgstr ""
 
 #: ../core/options-panel/partials/get-started.php:32
 msgid ""
-"Layers is a revolutionary WordPress Site Builder that makes website building "
-"a dream come true!"
+"Layers is a revolutionary WordPress Site Builder that makes website building a "
+"dream come true!"
 msgstr ""
 
 #: ../core/options-panel/partials/get-started.php:35
 msgid ""
-"The following short steps are designed to show you how Layers works and get "
-"you to creating amazing layouts quickly!"
+"The following short steps are designed to show you how Layers works and get you "
+"to creating amazing layouts quickly!"
 msgstr ""
 
 #: ../core/options-panel/partials/get-started.php:38
@@ -1293,8 +1289,8 @@ msgstr ""
 
 #: ../core/options-panel/partials/get-started.php:55
 msgid ""
-"For the Pros: Layers will automatically assign the tagline to Settings &rarr;"
-" General."
+"For the Pros: Layers will automatically assign the tagline to Settings &rarr; "
+"General."
 msgstr ""
 
 #: ../core/options-panel/partials/get-started.php:69 ../core/options-
@@ -1309,8 +1305,8 @@ msgstr ""
 
 #: ../core/options-panel/partials/get-started.php:77
 msgid ""
-"Layers splits your page into horizontal rows, and you build up your pages "
-"with blocks of content called &lsquo;Widgets&rsquo;, one per row."
+"Layers splits your page into horizontal rows, and you build up your pages with "
+"blocks of content called &lsquo;Widgets&rsquo;, one per row."
 msgstr ""
 
 #: ../core/options-panel/partials/get-started.php:80
@@ -1343,15 +1339,15 @@ msgstr ""
 
 #: ../core/options-panel/partials/get-started.php:130 ../core/options-
 #: panel/partials/get-started.php:169 ../core/options-panel/partials/get-started.
-#: php:212 ../core/options-panel/partials/get-started.php:253 ../core/options-
+#: php:212 ../core/options-panel/partials/get-started.php:253
 #: panel/partials/get-started.php:297
 msgid "Next Step &rarr;"
 msgstr ""
 
 #: ../core/options-panel/partials/get-started.php:142
 msgid ""
-"For the Pros: Layers will automatically assign this site name to Settings "
-"&rarr; General"
+"For the Pros: Layers will automatically assign this site name to Settings &rarr; "
+"General"
 msgstr ""
 
 #: ../core/options-panel/partials/get-started.php:161
@@ -1360,10 +1356,10 @@ msgstr ""
 
 #: ../core/options-panel/partials/get-started.php:164
 msgid ""
-"To edit a widget's content, just click on it in the widget area on the left "
-"hand side. The widget panel will slide out allowing you to edit its content "
-"and customize its settings. You can also shift-click on the widget itself in "
-"the preview area."
+"To edit a widget's content, just click on it in the widget area on the left hand "
+"side. The widget panel will slide out allowing you to edit its content and "
+"customize its settings. You can also shift-click on the widget itself in the "
+"preview area."
 msgstr ""
 
 #: ../core/options-panel/partials/get-started.php:184
@@ -1372,9 +1368,9 @@ msgstr ""
 
 #: ../core/options-panel/partials/get-started.php:187
 msgid ""
-"A tagline describes who and what you are in just a few simple words. For "
-"example Layers is a &ldquo;WordPress Site Builder&rdquo; - simple, easy, "
-"quick to read. Now you try:"
+"A tagline describes who and what you are in just a few simple words. For example "
+"Layers is a &ldquo;WordPress Site Builder&rdquo; - simple, easy, quick to read. "
+"Now you try:"
 msgstr ""
 
 #: ../core/options-panel/partials/get-started.php:191
@@ -1399,8 +1395,8 @@ msgstr ""
 
 #: ../core/options-panel/partials/get-started.php:222
 msgid ""
-"For the Pros: Layers will automatically assign the tagline to Settings &rarr;"
-" General"
+"For the Pros: Layers will automatically assign the tagline to Settings &rarr; "
+"General"
 msgstr ""
 
 #: ../core/options-panel/partials/get-started.php:240
@@ -1409,9 +1405,8 @@ msgstr ""
 
 #: ../core/options-panel/partials/get-started.php:244
 msgid ""
-"Unique to each Layers widget is the revolutionary &ldquo;Design Bar&rdquo; "
-"which allows you to set its design parameters without touching a line of "
-"code."
+"Unique to each Layers widget is the revolutionary &ldquo;Design Bar&rdquo; which "
+"allows you to set its design parameters without touching a line of code."
 msgstr ""
 
 #: ../core/options-panel/partials/get-started.php:247
@@ -1426,9 +1421,9 @@ msgstr ""
 
 #: ../core/options-panel/partials/get-started.php:271
 msgid ""
-"Layers will add your logo and position it properly. If you don&apos;t have "
-"one yet, no problem, you can add it later, or skip this step if you&apos;d "
-"just prefer to use text."
+"Layers will add your logo and position it properly. If you don&apos;t have one "
+"yet, no problem, you can add it later, or skip this step if you&apos;d just "
+"prefer to use text."
 msgstr ""
 
 #: ../core/options-panel/partials/get-started.php:279
@@ -1542,7 +1537,7 @@ msgid "Contact Details &amp; Maps"
 msgstr ""
 
 #: ../core/widgets/modules/contact.php:37 ../core/widgets/modules/content.php:33 .
-#: ./core/widgets/modules/post.php:42 ../core/widgets/modules/slider.php:37
+#: core/widgets/modules/post.php:42 ../core/widgets/modules/slider.php:37
 msgid "This widget is used to display your "
 msgstr ""
 
@@ -1590,9 +1585,9 @@ msgstr ""
 msgid "Contact"
 msgstr ""
 
-#: ../core/widgets/modules/contact.php:331 ../core/widgets/modules/content.php:
-#: 400 ../core/widgets/modules/content.php:539 ../core/widgets/modules/post.php:
-#: 536 ../core/widgets/modules/slider.php:59 ../core/widgets/modules/slider.php:603
+#: ../core/widgets/modules/contact.php:331 ../core/widgets/modules/content.php:400
+#: ../core/widgets/modules/content.php:539 ../core/widgets/modules/post.php:536
+#: ../core/widgets/modules/slider.php:59 ../core/widgets/modules/slider.php:603
 msgid "Short Excerpt"
 msgstr ""
 
@@ -1654,8 +1649,8 @@ msgstr ""
 
 #: ../core/widgets/modules/content.php:66
 msgid ""
-"Give us a brief description of the service that you are promoting. Try keep "
-"it short so that it is easy for people to scan your page."
+"Give us a brief description of the service that you are promoting. Try keep it "
+"short so that it is easy for people to scan your page."
 msgstr ""
 
 #: ../core/widgets/modules/content.php:431

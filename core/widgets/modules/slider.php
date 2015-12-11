@@ -187,10 +187,13 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 			?>
 
 			<?php if( ! empty( $widget[ 'slides' ] ) ) { ?>
+				
+				<?php do_action( 'layers_before_widget', $this, $widget ); ?>
 
 				<section id="<?php echo esc_attr( $widget_id ); ?>" class="<?php echo esc_attr( $widget_container_class ); ?>" style="<?php echo esc_attr( $slider_height_css ); ?>"  <?php echo $this->custom_anchor( $widget ); ?>>
 
 					<?php do_action( 'layers_before_slider_widget_inner', $this, $widget ); ?>
+					<?php do_action( 'layers_before_widget_inner', $this, $widget ); ?>
 
 					<?php if( 1 < count( $widget[ 'slides' ] ) && isset( $widget['show_slider_arrows'] ) ) { ?>
 						 <div class="arrows">
@@ -319,8 +322,11 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 					</div>
 
 					<?php do_action( 'layers_after_slider_widget_inner', $this, $widget ); ?>
+					<?php do_action( 'layers_after_widget_inner', $this, $widget ); ?>
 
 				</section>
+				
+				<?php do_action( 'layers_after_widget', $this, $widget ); ?>
 
 		 	<?php } ?>
 

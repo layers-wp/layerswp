@@ -129,11 +129,13 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 			$widget_container_class[] = $this->check_and_return( $widget , 'design', 'advanced', 'customclass' ); // Apply custom class from design-bar's advanced control.
 			$widget_container_class[] = $this->get_widget_spacing_class( $widget );
 			$widget_container_class = implode( ' ', apply_filters( 'layers_content_widget_container_class' , $widget_container_class ) ); ?>
+			
+			<?php do_action( 'layers_before_widget', $this, $widget ); ?>
 
 			<section id="<?php echo esc_attr( $widget_id ); ?>" class="<?php echo esc_attr( $widget_container_class ); ?>" <?php echo $this->custom_anchor( $widget ); ?>>
-
-
+				
 				<?php do_action( 'layers_before_content_widget_inner', $this, $widget ); ?>
+				<?php do_action( 'layers_before_widget_inner', $this, $widget ); ?>
 
 				<?php if ( NULL !== $this->check_and_return( $widget , 'title' ) || NULL !== $this->check_and_return( $widget , 'excerpt' ) ) { ?>
 
@@ -282,8 +284,12 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 				<?php } ?>
 
 				<?php do_action( 'layers_after_content_widget_inner', $this, $widget ); ?>
+				<?php do_action( 'layers_after_widget_inner', $this, $widget ); ?>
 
 			</section>
+			
+			<?php do_action( 'layers_after_widget', $this, $widget ); ?>
+			
 			<?php if( 'list-masonry' == $this->check_and_return( $widget , 'design', 'liststyle' ) ) { ?>
 				<script>
 					jQuery(function($){

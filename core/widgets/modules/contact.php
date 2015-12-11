@@ -133,10 +133,13 @@ if( !class_exists( 'Layers_Contact_Widget' ) ) {
 			$widget_container_class[] = $this->get_widget_spacing_class( $widget );
 			if( !$show_title_or_excerpt && !$show_address_or_contactform  ) $widget_container_class[] = 'no-inset-top no-inset-bottom';
 			$widget_container_class = implode( ' ', apply_filters( 'layers_contact_widget_container_class' , $widget_container_class ) ); ?>
+			
+			<?php do_action( 'layers_before_widget', $this, $widget ); ?>
 
 			<section id="<?php echo esc_attr( $widget_id ); ?>" class="<?php echo esc_attr( $widget_container_class ); ?>" <?php echo $this->custom_anchor( $widget ); ?>>
-
+				
 				<?php do_action( 'layers_before_contact_widget_inner', $this, $widget ); ?>
+				<?php do_action( 'layers_before_widget_inner', $this, $widget ); ?>
 
 				<?php if( $show_title_or_excerpt ) { ?>
 					<div class="container clearfix">
@@ -202,8 +205,11 @@ if( !class_exists( 'Layers_Contact_Widget' ) ) {
 				</div>
 
 				<?php do_action( 'layers_after_contact_widget_inner', $this, $widget ); ?>
+				<?php do_action( 'layers_after_widget_inner', $this, $widget ); ?>
 
 			</section>
+			
+			<?php do_action( 'layers_after_widget', $this, $widget ); ?>
 
 			<?php if ( !isset( $wp_customize ) ) {
 				wp_enqueue_script( LAYERS_THEME_SLUG . " -map-api","//maps.googleapis.com/maps/api/js?sensor=false");

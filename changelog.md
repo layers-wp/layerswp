@@ -4,6 +4,7 @@
 ##1.2.11
 ### xx Dec 2015
 
+* **Fix** - Fixed margin-right bug in tablet mode on rows that span full width. *DP*
 * **Fix** - Fixed author `<a href />` for Portuguese translations. *MP*
 * **Fix** - Fixed Top/Right/Bottom/Left labels in design bar. *DP*
 * **Fix** - Transparent Overlay containing background image now works. *DP*

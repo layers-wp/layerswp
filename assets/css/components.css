@@ -17,7 +17,12 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 /*-------------------------------*/
 
     .advanced-layout{
+		display: -webkit-box;
+        display: -webkit-flex;
         display: flex;
+
+		-webkit-box-orient: horizontal;
+        -webkit-flex-direction: row;
         flex-direction: row;
     }
     .advanced-layout-left header{
@@ -40,6 +45,10 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 /*- SLIDER ----------------------*/
 /*-------------------------------*/
 
+    .swiper-container.container{
+        padding: 0px;
+    }
+
     /*---------------------------*/
     /*- SLIDER DEFAULTS ---------*/
     .swiper-slide img{
@@ -48,8 +57,10 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
     }
     .swiper-slide .overlay{
         display: flex;
+        display: -webkit-flex;
         width: 100%;
         height: 100%;
+        position: relative;
     }
     .overlay.darken{
         background: rgba(0, 0, 0, 0.2);
@@ -59,10 +70,16 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
         padding-bottom: 60px;
     }
     .swiper-slide .container{
+        display: -webkit-flex;
+        -webkit-flex-direction: column;
+        -webkit-justify-content: center;
+        -webkit-align-items: center;
+
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
+
         width: 100%;
         padding: 0;
     }
@@ -83,6 +100,7 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
     /*- SLIDER ALIGNMENT --------*/
     .swiper-slide.image-top .container{
         flex-direction: column-reverse;
+        -webkit-flex-direction: column-reverse;
     }
     .swiper-slide .copy-container + .image-container{
         margin-top: 30px;
@@ -93,6 +111,7 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
     }
     .swiper-slide.image-bottom .overlay{
         flex-direction: column;
+        -webkit-flex-direction: column;
     }
 
     /*---------------------------*/
@@ -444,7 +463,7 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
     p[class*='comment-form'] .required{
         color: #900;
     }
-    p[class*='comment-form'] input{
+    p[class*='comment-form']{
         margin-bottom: 15px;
     }
     .form-allowed-tags{
@@ -676,6 +695,29 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
     }
 
 
+/*-------------------------------*/
+/*- INVERT COMPONENTS -----------*/
+/*-------------------------------*/
+
+    .invert .meta-info{
+        color: rgba(255, 255, 255, 0.65);
+    }
+    .invert .meta-info a{
+        color: rgba(255, 255, 255, 0.85);
+    }
+    .invert .meta-info a:hover{
+        color: rgba(255, 255, 255, 1);
+    }
+
+
+/*-------------------------------*/
+/*- RESPONSIVE COMPONENTS -------*/
+/*-------------------------------*/
+@media only screen and (max-width: 480px){
+    .swiper-container .arrows{
+        display: none;
+    }
+}
 
 @media only screen and (min-width: 769px) {
 
@@ -690,18 +732,3 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
     }
 
 }
-
-
-/*-------------------------------*/
-/*- INVERT COMPONENTS -----------*/
-/*-------------------------------*/
-
-    .invert .meta-info{
-        color: rgba(255, 255, 255, 0.65);
-    }
-    .invert .meta-info a{
-        color: rgba(255, 255, 255, 0.85);
-    }
-    .invert .meta-info a:hover{
-        color: rgba(255, 255, 255, 1);
-    }

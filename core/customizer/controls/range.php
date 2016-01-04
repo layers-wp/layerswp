@@ -12,10 +12,6 @@ if( !class_exists( 'Layers_Customize_Range_Control' ) ) {
 	class Layers_Customize_Range_Control extends Layers_Customize_Control {
 
 		public $type = 'layers-range';
-		
-		public $min;
-		public $max;
-		public $step;
 
 		public function render_content() {
 
@@ -36,6 +32,12 @@ if( !class_exists( 'Layers_Customize_Range_Control' ) ) {
 					<span class="customize-control-title"><?php echo $this->label; ?></span>
 				<?php } ?>
 				
+				<?php if ( '' != $this->description ) : ?>
+					<div class="description customize-control-description">
+						<?php echo $this->description; ?>
+					</div>
+				<?php endif; ?>
+				
 				<div class="layers-form-item">
 
 					<?php if ( '' != $this->subtitle ) : ?>
@@ -54,16 +56,11 @@ if( !class_exists( 'Layers_Customize_Range_Control' ) ) {
 								'min' => ( isset( $this->min ) ? $this->min : 0 ) ,
 								'max' => ( isset( $this->max ) ? $this->max : 100 ) ,
 								'step' => ( isset( $this->step ) ? $this->step : 1 ) ,
+								'placeholder' => $this->placeholder,
 							)
 						); ?>
 					</div>
 				</div>
-
-				<?php if ( '' != $this->description ) : ?>
-					<div class="description customize-control-description">
-						<?php echo $this->description; ?>
-					</div>
-				<?php endif; ?>
 
 			</div>
 			<?php

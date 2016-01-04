@@ -30,6 +30,12 @@ if( !class_exists( 'Layers_Customize_CSS_Control' ) ) {
 				<?php if ( '' != $this->label ) { ?>
 					<span class="customize-control-title"><?php echo $this->label; ?></span>
 				<?php } ?>
+				
+				<?php if ( '' != $this->description ) : ?>
+					<div class="description customize-control-description">
+						<?php echo esc_html( $this->description ); ?>
+					</div>
+				<?php endif; ?>
 
 				<div class="layers-form-item">
 					<div class="layers-css-wrapper layers-form-item">
@@ -45,12 +51,6 @@ if( !class_exists( 'Layers_Customize_CSS_Control' ) ) {
 						); ?>
 					</div>
 				</div>
-
-				<?php if ( '' != $this->description ) : ?>
-					<div class="description customize-control-description">
-						<?php echo esc_html( $this->description ); ?>
-					</div>
-				<?php endif; ?>
 
 			</div>
 			<?php

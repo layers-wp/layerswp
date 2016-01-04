@@ -18,7 +18,7 @@ if( !function_exists( 'layers_generate_customizer_fonts' ) ) {
 
 		// Apply Font Styles
 		$customizer_options = Layers_Customizer_Config::get_instance();
-		
+
 		foreach( $customizer_options->controls as $controls ) {
 			foreach( $controls as $control_key => $control_data ){
 
@@ -109,7 +109,7 @@ if ( ! function_exists( 'layers_get_google_font_options' ) ) {
 		$font_options = array();
 
 		// The firest option is none ie. default
-		$font_options[ '' ] = '--- ' . __( 'Default' , 'layerswp' ) . '---';
+		$font_options[ '' ] = '--- ' . __( 'Default' , 'layerswp' ) . ' ---';
 
 		foreach( layers_get_google_fonts() as $font_key => $font_data ){
 			$font_options[ $font_key ] = esc_html( ( isset( $font_data[ 'label' ] ) ? $font_data[ 'label' ] : $font_key ) );

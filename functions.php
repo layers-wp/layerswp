@@ -10,7 +10,7 @@
 /**
  * The current version of the theme. Use a random number for SCRIPT_DEBUG mode
  */
-define( 'LAYERS_VERSION', '1.2.6' );
+define( 'LAYERS_VERSION', '1.2.10' );
 define( 'LAYERS_TEMPLATE_URI' , get_template_directory_uri() );
 define( 'LAYERS_TEMPLATE_DIR' , get_template_directory() );
 define( 'LAYERS_THEME_TITLE' , 'Layers' );
@@ -73,14 +73,14 @@ require_once get_template_directory() . '/core/helpers/color.php';
 require_once get_template_directory() . '/core/helpers/controls.php';
 require_once get_template_directory() . '/core/helpers/custom-fonts.php';
 require_once get_template_directory() . '/core/helpers/extensions.php';
-if( !defined( 'LAYERS_DISABLE_INTERCOM' ) ){
-	require_once get_template_directory() . '/core/helpers/intercom.php';
-}
 require_once get_template_directory() . '/core/helpers/post.php';
 require_once get_template_directory() . '/core/helpers/post-types.php';
 require_once get_template_directory() . '/core/helpers/sanitization.php';
 require_once get_template_directory() . '/core/helpers/template.php';
 require_once get_template_directory() . '/core/helpers/woocommerce.php';
+if( !defined( 'LAYERS_DISABLE_INTERCOM' ) ){
+	require_once get_template_directory() . '/core/helpers/intercom.php';
+}
 
 /*
  * Load Admin-specific files
@@ -100,7 +100,6 @@ if( is_admin() ){
 
 	//Load Options Panel
 	require_once get_template_directory() . '/core/options-panel/init.php';
-
 }
 
 if( ! function_exists( 'layers_setup' ) ) {
@@ -145,7 +144,6 @@ if( ! function_exists( 'layers_setup' ) ) {
 		/**
 		 * Add text domain
 		 */
-
 		load_theme_textdomain('layerswp', get_template_directory() . '/languages');
 
 		/**
@@ -344,6 +342,9 @@ if( ! function_exists( 'layers_scripts' ) ) {
 			true
 		); // Framework
 
+		wp_localize_script( LAYERS_THEME_SLUG . '-framework-js', 'layers_script_settings', array(
+			'header_sticky_breakpoint' => apply_filters( 'layers_sticky_header_breakpoint', 270 ),
+		) );
 
 		if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 			wp_enqueue_script( 'comment-reply' );
@@ -425,6 +426,20 @@ if( ! function_exists( 'layers_admin_scripts' ) ) {
 		global $pagenow, $wp_customize;
 
 		wp_enqueue_style(
+			LAYERS_THEME_SLUG . '-tip-tip' ,
+			get_template_directory_uri() . '/core/assets/tipTip.css',
+			array(),
+			LAYERS_VERSION
+		); // Tip-Tip CSS
+		
+		wp_enqueue_style(
+			LAYERS_THEME_SLUG . '-admin-font-awesome',
+			get_template_directory_uri() . '/core/assets/font-awesome.min.css',
+			array(),
+			LAYERS_VERSION
+		); // Inline Editor
+		
+		wp_enqueue_style(
 			LAYERS_THEME_SLUG . '-admin',
 			get_template_directory_uri() . '/core/assets/admin.css',
 			array(),
@@ -437,14 +452,16 @@ if( ! function_exists( 'layers_admin_scripts' ) ) {
 			array(),
 			LAYERS_VERSION
 		); // Inline Editor
-
-		wp_enqueue_style(
-			LAYERS_THEME_SLUG . '-admin-font-awesome',
-			get_template_directory_uri() . '/core/assets/font-awesome.min.css',
-			array(),
-			LAYERS_VERSION
-		); // Inline Editor
-
+		
+		wp_enqueue_script(
+			LAYERS_THEME_SLUG . '-tip-tip' ,
+			get_template_directory_uri() . '/core/assets/jquery.tipTip.minified.js',
+			array(
+				'jquery',
+			),
+			LAYERS_VERSION,
+			true
+		); // Tip-Tip JS
 
 		wp_enqueue_script(
 			LAYERS_THEME_SLUG . '-admin-editor' ,

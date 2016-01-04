@@ -28,7 +28,7 @@ if( !function_exists( 'layers_post_meta' ) ) {
 		}
 
 		// If there are no items to display, return nothing
-		if ( ! $display ) {
+		if ( NULL === $display ) {
 			$display = array( 'date', 'author', 'categories', 'tags' );
 		}
 		

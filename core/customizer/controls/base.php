@@ -34,6 +34,12 @@ if( !class_exists( 'Layers_Customize_Control' ) ) {
 		public $default = NULL;
 		
 		public $colspan;
+		
+		public $min;
+		
+		public $max;
+		
+		public $step;
 
 		/**
 		* Render content must be overwrittedn by etending class as this renders the control.
@@ -97,6 +103,12 @@ if( !class_exists( 'Layers_Customize_Control' ) ) {
 		*/
 		public function render_heading_divider( $text ) {
 			?>
+			<span class="customize-control-title layers-heading-divider">
+				<?php echo $text; ?>
+			</span>
+			<?php
+			/*
+			?>
 			<table class="layers-heading-divider">
 				<tr>
 					<td>
@@ -110,6 +122,7 @@ if( !class_exists( 'Layers_Customize_Control' ) ) {
 				</tr>
 			</table>
 			<?php
+			*/
 		}
 
 	}

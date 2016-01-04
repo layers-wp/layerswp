@@ -38,4 +38,23 @@ jQuery(document).ready(function($){
 		}
 	}
 
+	/**
+	* 2 - Slide Title Update
+	*/
+
+	$(document).on( 'keyup' , 'ul[id^="slide_list_"] input[id*="-title"]' , function(e){
+
+		// "Hi Mom"
+		$that = $(this);
+
+		// Set the string value
+		$val = $that.val().toString().substr( 0 , 51 );
+
+		// Set the Title
+		$string = ': ' + ( $val.length > 50 ? $val + '...' : $val );
+
+		// Update the accordian title
+		$that.closest( '.layers-accordion-item' ).find( 'span.layers-detail' ).text( $string );
+	});
+
 }); //jQuery

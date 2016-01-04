@@ -1,6 +1,73 @@
 # Layers Changelog
 
 =======
+##1.2.11
+### xx Dec 2015
+
+* **Fix** - Fixed margin-right bug in tablet mode on rows that span full width. *DP*
+* **Fix** - Fixed author `<a href />` for Portuguese translations. *MP*
+* **Fix** - Fixed Top/Right/Bottom/Left labels in design bar. *DP*
+* **Fix** - Transparent Overlay containing background image now works. *DP*
+* **Tweak** - .header-secondary left/right padding was out on large screens - fixed. *DP*
+* **Tweak** - .nav-tabs colors now more dynamic for better background color/image handling. *DP*
+* **Tweak** - .header-site nav-horizontal link spacing (padding/margin) has been adjusted to cater for Layers Pro customization. *DP*
+* **Tweak** - Removed opacity: 0.x settings and replaced with rgba on .invert classes. *DP*
+
+
+=======
+##1.2.10
+### 08 Dec 2015
+
+* **Tweak** - Flexbox header CSS clean and much less hacky. *DP*
+* **Tweak** - Updated Envato Marketplace to list themes by last updated by default. *MP*
+* **Tweak** - Updated Envato Marketplace to show the filter information as an intro. *MP*
+* **Tweak** - Updated the Layers Messenger to show plugin version. *MP*
+* **Tweak** - Removed Transparent overlay reliance on the Sticky header setting. *MP*
+* **Tweak** - The design bar Background image interface has been redesigned to cater for video backgrounds. *DP*
+* **Tweak** - Added `Blog > Archive` & `Blog > Posts & Pages` panels and sections, replaceing `Site Settings > Sidebars`. *MP*
+* **Enhancement** - .button-collection has been refined to cater for .button-social and preparation for more inline buttons in original widget. *DP*
+* **Enhancement** - Added a new filter to design bar controls in preparation for further Layers Pro features. *MP*
+* **Enhancement** - Added a new hooks to the the core Layers widgets, such as `layers_after_slider_widget_inner` . *MP*
+* **Enhancement** - Added `layers_get_vimeo_id` and `layers_get_youtube_id` functions to `helpers/template.php`. *MP*
+* **Fix** - Fixed the space between title and colon ":" in the slider and content widgets. *MP*
+* **Fix** - Fixed dynamic updating of repeater widget item titles. *MP*
+* **Fix** - Fixed round image ratio in the posts widget. *MP*
+* **Fix** - Fixed round image ratio CSS in the posts widget. *DP*
+* **Fix** - Breadcrumbs were throwing an undefined object error in some intances. *MP*
+* **Fix** - Fixed slider arrow centering when layout-boxed is chosen. *MP*
+* **Fix** - Fixed the presence of an empty div when a post in the archive page has no content. *MP*
+
+=======
+##1.2.9
+### 20 Nov 2015
+
+* **Fix** - Fixed header alignment in Safari 8. *DP*
+* **Fix** - Fixed slider alignment in Safari 8. *MP*
+
+=======
+##1.2.8
+### 18 Nov 2015
+
+* **Fix** - Removed the menu warning when logging in as a non-admin user. *MP*
+* **Fix** - Fixed an `undefined object` error  in `/helpers/extensions.php`. *MP*
+* **Enhancement** - Added a new custom anchor function to the widget advanced options in core widgets. *MP*
+* **Enhancement** - Adjusted the image ratio logic for the content widget when using a 3 < column layout. *MP*
+* **Enhancement** - Added `https://` support for all onboarding videos. *MP*
+* **Enhancement** - Added new filters for the design bar components of the slider & content widget repeater items eg `layers_slide_widget_design_bar_components` *SOB*
+* **Tweak** - Added price animation in Woo Widget overlay setting. *DP*
+* **Tweak** - Changed header tp use flexbox css for *DP*
+
+=======
+##1.2.7
+### 03 Nov 2015
+
+* **Tweak** - Added a name input to the onboarding process so that we can reference a real person in Layers Messenger. *MP*
+* **Fix** - Added https:// support to the onboarding and migrator external urls (videos and images). *MP*
+* **Fix** - Adding a new slider threw an error until updated. Now the first add works straight up. *SOB*
+* **Fix** - Fixed JS error notice when changing Font select. *SOB*
+* **Enhancement** - Header CSS now converted to flexbox for better handling of Layers Pro and general framework modernization. *DP*
+
+=======
 ##1.2.6
 ### 28 Oct 2015
 
@@ -42,6 +109,7 @@
 =======
 ##1.2.5
 ### 01 October 2015
+
 * **Tweak** - We have removed the `esc_html()` from widget titles, this allows for the use of basic HTML tags like `strong`, `span` etc. inside headings. *MP*
 * **Tweak** - Edit Layout button in the admin-bar now shows on all pages - not just layers pages - as even non Layers pages can have colors, layout, etc Edited. *SOB*
 * **Tweak** - .title padding is now set on the parent container to accommodate for future features and better font size control. *DP*

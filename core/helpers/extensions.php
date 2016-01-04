@@ -157,7 +157,7 @@ if ( !function_exists( 'layers_get_custom_archive_template' ) ) {
 		global $wp_query;
 		$object = $wp_query->get_queried_object();
 
-		if ( !in_array( $object->name,  layers_get_standard_wp_post_types() ) ) {
+		if ( is_object( $object ) && !in_array( $object->name, layers_get_standard_wp_post_types() ) ) {
 			$templates = array('archive-' . $object->name . '.php', 'archive.php');
 			$template = layers_locate_plugin_templates($templates);
 		}

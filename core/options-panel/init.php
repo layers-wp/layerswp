@@ -129,7 +129,7 @@ class Layers_Options_Panel {
 				<?php } ?>
 
 				<?php if( isset( $excerpt ) ) { ?>
-					<p class="layers-excerpt"><?php echo esc_html( $excerpt ); ?></p>
+					<p class="layers-excerpt"><?php echo $excerpt; ?></p>
 				<?php } ?>
 
 				<nav class="layers-nav-horizontal layers-dashboard-nav">
@@ -157,8 +157,8 @@ class Layers_Options_Panel {
 						</select>
 						<select id="layers-marketplace-sortby" name="sortby" data-action="<?php echo admin_url( 'admin.php?page=layers-marketplace&type=' . $type ); ?>" class="push-right">
 							<?php if( is_array( $api->get_sort_options() ) ) { ?>
-								<?php foreach( $api->get_sort_options() as $value => $label ) { ?>
-									<option value="<?php echo $value; ?>"><?php echo $label; ?></option>
+								<?php foreach( $api->get_sort_options() as $value => $info ) { ?>
+									<option value="<?php echo $value; ?>" data-excerpt-label="<?php echo esc_attr( $info[ 'excerpt-label' ] ); ?>"><?php echo $info[ 'label' ]; ?></option>
 								<?php } ?>
 							<?php } ?>
 						</select>
@@ -568,7 +568,9 @@ function layers_options_panel_menu(){
 
 	// This modifies the Layers submenu item - must be done here as $submenu
 	// is only created if $submenu items are added using add_submenu_page
-	$submenu[LAYERS_THEME_SLUG . '-dashboard'][0][0] = __( 'Dashboard' , 'layerswp' );
+	if( isset( $submenu[ 'layers-dashboard' ] ) ) {
+		$submenu[LAYERS_THEME_SLUG . '-dashboard'][0][0] = __( 'Dashboard' , 'layerswp' );
+	}
 
 	// Marketplace
 	if( !defined( 'LAYERS_DISABLE_MARKETPLACE' ) ){
@@ -592,11 +594,6 @@ function layers_options_panel_menu(){
 			'edit_theme_options',
 			'admin.php?page=layers-marketplace&type=extensions'
 		);
-
-		// This modifies the Layers submenu item - must be done here as $submenu
-		// is only created if $submenu items are added using add_submenu_page
-		$submenu[LAYERS_THEME_SLUG . '-marketplace'][0][0] = __( 'Themes' , 'layerswp' );
-
 		$marketplace_stylekits = add_submenu_page(
 			LAYERS_THEME_SLUG . '-marketplace',
 			__( 'Style Kits' , 'layerswp' ),
@@ -604,6 +601,14 @@ function layers_options_panel_menu(){
 			'edit_theme_options',
 			'admin.php?page=layers-marketplace&type=stylekits'
 		);
+
+		// This modifies the Layers submenu item - must be done here as $submenu
+		// is only created if $submenu items are added using add_submenu_page
+
+		if( isset( $submenu[ 'layers-marketplace' ] ) ) {
+			$submenu[LAYERS_THEME_SLUG . '-marketplace'][0][0] = __( 'Themes' , 'layerswp' );
+		}
+
 	}
 }
 

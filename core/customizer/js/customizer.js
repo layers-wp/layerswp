@@ -6,10 +6,11 @@
  * @package Layers
  * @since Layers 1.0.0
  * Contents
- * 1 - Page Builder Macro
- * 2 - Customizer UI enhancements
- * 3 - Better history states in customizer
- * 4 - Customizer UX Enhancements
+ * 1 - Trigger Custom Customizer Init Events
+ * 2 - Page Builder Macro
+ * 3 - Customizer UI enhancements
+ * 4 - Better history states in customizer
+ * 5 - Customizer UX Enhancements
  *
  * Author: Obox Themes
  * Author URI: http://www.oboxthemes.com/
@@ -43,9 +44,27 @@
 			var $that = this;
 			
 			var $hash_record = '';
+			
+			/**
+			 * 1 - Trigger Custom Customizer Init Events.
+			 *
+			 * Trigger high level events on the document that let us know when the
+			 * Customizer and Customizer Preview have initialized - so the we know
+			 * the DOM has been modified by WP and we can proceed to make DOM mods
+			 * of our own.
+			 */
+			
+			// e.g. $( document ).on( 'layers-customizer-init', function(){ /* do something... */ });
+			$( document ).trigger( 'layers-customizer-init' );
+			
+			// e.g. $( document ).on( 'layers-customizer-preview-init', function(){ /* do something... */ });
+			// This event originates from customizer-preview.js
+			this.preview.bind( 'layers-customizer-preview-init', function( data ) {
+				$( document ).trigger( 'layers-customizer-preview-init' );
+			});
 
 			/**
-			 * 1 - Page Builder Macro
+			 * 2 - Page Builder Macro
 			 */
 
 			if( true == layers_customizer_params.builder_page ){
@@ -54,7 +73,7 @@
 			}
 
 			/**
-			 * 2 - Customizer UI enhancements
+			 * 3 - Customizer UI enhancements
 			 */
 
 			var layers_builder_pages_drop_down = '.layers-customizer-pages-dropdown select',
@@ -97,7 +116,7 @@
 			// eg when an <a> in the preview window is clicked
 			function layers_update_customizer_interface() {
 				
-				//Update the dropdown
+				// Update the dropdown
 				if( $(layers_builder_pages_drop_down + ' option[value="' + wp.customize.previewer.previewUrl() + '"]').length ){
 					$(layers_builder_pages_drop_down).val( wp.customize.previewer.previewUrl() );
 				} else {
@@ -136,7 +155,7 @@
 			);
 
 			/**
-			 * 3 - Better history states in customizer
+			 * 4 - Better history states in customizer
 			 *
 			 * TODO: Check WP bleeding edge versions for this functionality.
 			 * https://core.trac.wordpress.org/ticket/28536
@@ -160,15 +179,15 @@
 
 			$(document).on( 'change', '.layers-customize-control-font select', function(){
 				// "Hi Mom"
-				$that        = $(this);
-				$description = $that.closest( '.layers-customize-control-font' ).find( '.customize-control-description' );
+				var $that        = $(this);
+				var $description = $that.closest( '.layers-customize-control-font' ).find( '.customize-control-description' );
 				$description.find( 'a' ).attr( 'href' , $description.data( 'base-url' ) + $that.val() );
 			});
 
 			/**
-			 * 4 - Customizer UX Enhancements
+			 * 5 - Customizer UX Enhancements
 			 *
-			 * Handle edit buttons and and other UI elemnts
+			 * Apply and handle UI elements and enhancements.
 			 */
 
 			// Edit widget buttons
@@ -183,21 +202,22 @@
 				}
 			});
 
-			// Close all expanded widgets
+			// Close all expanded widgets - on click-anywhere-in-the-customizer-preview.
 			this.preview.bind( 'layers-close-all-widgets', function( data ) {
-
-				$( '.customize-control-widget_form.expanded' ).find( '.widget-inside' ).hide();
-				$( '.customize-control-widget_form.expanded' ).find( '.widget-control-close' ).click();
-				
-				//$( '.customize-control-widget_form.expanded' ).addClass('layers-peek'); // Peek (Disabled. Testing Only)
+				close_all_open_layers_widgets();
 			});
 			
-			// Widget Peek (Disabled. Testing Only)
-			/*
-			$(document).on( 'mouseleave', '#customize-preview', function(){
-				$( '.customize-control-widget_form.expanded' ).removeClass('layers-peek');
+			// Close all expanded widgets - on-click-back-on-widget-panel.
+			$( document ).on( 'click', '#accordion-panel-widgets .customize-section-back', function() {
+				close_all_open_layers_widgets();
 			});
-			*/
+			
+			function close_all_open_layers_widgets() {
+				
+				// Close any open widget forms, especially our wide Layers forms
+				$( '.customize-control-widget_form.expanded .widget-top' ).click();
+				$( '.customize-control-widget_form.expanded' ).find( '.widget-control-close' ).click();
+			}
 		
 			/**
 			 * Deep linking into Controls.
@@ -211,9 +231,11 @@
 
 				var $hash = window.location.hash.split('#')[1];
 				var $element = $( '#' + $hash );
+				
 				if ( $element.length ) {
+					
 					$hash_record = $hash;
-					//$('#accordion-section-layers-pro-buttons').
+					
 					$element
 						.children('.accordion-section-title')
 						.click();
@@ -283,7 +305,6 @@
 					window.location.hash = $id;
 					$hash_record = $id;
 				});
-				
 			}
 			
 			/**
@@ -291,7 +312,7 @@
 			 */
 			var $dev_switch_hash = ( window.location.hash ) ? window.location.hash.split('#')[1] : '';
 			if ( $( '#layers-dev-switch-active' ).length ) {
-				if ( 'layers-dev-switches' == $dev_switch_hash ) {
+				if ( 'layers-develop' == $dev_switch_hash ) {
 					if( ! $( '#layers-dev-switch-active' ).attr( 'checked' ) ) {
 						$( '#layers-dev-switch-active' ).attr( 'checked', true ).change();
 					}

@@ -50,7 +50,7 @@ $layers_migrator = new Layers_Widget_Migrator(); ?>
 						<!-- Your helpful tips go here -->
 						<ul class="layers-help-list">
 							<li>
-								<?php _e( sprintf( 'If you\'re ever stuck or need help with your Layers site please visit our <a href="%s" rel="nofollow">helpful documentation.</a>', 'http://docs.layerswp.com' ) , 'layerswp' ); ?>
+								<?php _e( sprintf( 'If you\'re ever stuck or need help with your Layers site please visit our <a href="%s" rel="nofollow">helpful documentation.</a>', '//docs.layerswp.com' ) , 'layerswp' ); ?>
 							</li>
 							<li class="pro-tip"><?php _e( 'For the Pros: Layers will automatically assign the tagline to Settings &rarr; General.' , 'layerswp' ); ?></li>
 						</ul>
@@ -69,7 +69,7 @@ $layers_migrator = new Layers_Widget_Migrator(); ?>
 									<?php _e( 'Layers Messenger' , 'layerswp' ); ?>
 								</h3>
 								<p class="layers-excerpt">
-									 <?php _e( 'Enable the Layers Messenger to connect with the Layers team directly from inside Layers. We can help you make informed decisions about themes and extensions and point you in the right direction when you need support with your site and Layers.' , 'layerswp' ); ?>
+									<?php _e( 'Enable the Layers Messenger to connect with the Layers team directly from inside Layers. We can help you make informed decisions about themes and extensions and point you in the right direction when you need support with your site and Layers.' , 'layerswp' ); ?>
 								</p>
 							</div>
 							<?php echo $form_elements->input( array(
@@ -78,11 +78,25 @@ $layers_migrator = new Layers_Widget_Migrator(); ?>
 								'id' => 'action',
 								'value' => 'layers_update_intercom'
 							) ); ?>
-							<div class="layers-checkbox-wrapper layers-form-item">
+							<div class="layers-checkbox-wrapper layers-form-item layers-push-bottom-medium">
 								<input id="layers-enable-intercom" name="layers_intercom" type="checkbox" <?php if( '0' !== get_option( 'layers_enable_intercom' ) ){ echo 'checked="checked"'; }; ?> />
 								<label for="layers-enable-intercom"><?php _e( 'Enable Layers Messenger', 'layerswp' ); ?></label>
 							</div>
-							<p><a href="http://www.layerswp.com/privacy-policy/" target="_blank"><?php _e( 'Your data is safe with us. View our Privacy Policy', 'layerswp' ); ?></a></p>
+							<p data-show-if-selector="#layers-enable-intercom" data-show-if-value="true" class="layers-form-item">
+								<label><?php _e( 'Your Name' , 'layerswp' ); ?></label>
+								<?php
+									global $current_user;
+									echo $form_elements->input( array(
+										'type' => 'text',
+										'name' => 'username',
+										'id' => 'username',
+										'placeholder' => $current_user->display_name,
+										'value' =>  $current_user->display_name,
+										'class' => 'layers-text layers-large'
+								   ) );
+								?>
+							</p>
+							<p><a href="//www.layerswp.com/privacy-policy/" target="_blank"><?php _e( 'Your data is safe with us. View our Privacy Policy', 'layerswp' ); ?></a></p>
 						</div>
 						<div class="layers-button-well">
 							<span class="layers-save-progress layers-hide layers-button btn-link" data-busy-message="<?php _e( 'Saving Your Preference' , 'layerswp' ); ?>"></span>
@@ -134,7 +148,7 @@ $layers_migrator = new Layers_Widget_Migrator(); ?>
 					</div>
 				</div>
 				<div class="layers-column layers-span-6 no-gutter layers-demo-video">
-					<?php layers_show_html5_video( 'http://cdn.oboxsites.com/layers/videos/adding-a-widget.mp4', 490 ); ?>
+					<?php layers_show_html5_video( '//cdn.oboxsites.com/layers/videos/adding-a-widget.mp4', 490 ); ?>
 				</div>
 			</div>
 
@@ -183,7 +197,7 @@ $layers_migrator = new Layers_Widget_Migrator(); ?>
 						<!-- Your helpful tips go here -->
 						<ul class="layers-help-list">
 							<li>
-								<?php _e( sprintf( 'For tips on how best to name your website, we suggest reading <a href="%s" rel="nofollow">this post</a>', 'http://docs.layerswp.com' ) , 'layerswp' ); ?>
+								<?php _e( sprintf( 'For tips on how best to name your website, we suggest reading <a href="%s" rel="nofollow">this post</a>', '//docs.layerswp.com' ) , 'layerswp' ); ?>
 							</li>
 							<li class="pro-tip">
 								<?php _e( 'For the Pros: Layers will automatically assign this site name to Settings &rarr; General' , 'layerswp' ); ?>
@@ -217,7 +231,7 @@ $layers_migrator = new Layers_Widget_Migrator(); ?>
 					</div>
 				</div>
 				<div class="layers-column layers-span-8 no-gutter layers-demo-video">
-					<?php layers_show_html5_video( 'http://cdn.oboxsites.com/layers/videos/widget-slider.mp4', 660 ); ?>
+					<?php layers_show_html5_video( '//cdn.oboxsites.com/layers/videos/widget-slider.mp4', 660 ); ?>
 				</div>
 			</div>
 
@@ -301,7 +315,7 @@ $layers_migrator = new Layers_Widget_Migrator(); ?>
 					</div>
 				</div>
 				<div class="layers-column layers-span-6 no-gutter layers-demo-video">
-					<?php layers_show_html5_video( 'http://cdn.oboxsites.com/layers/videos/design-bar.mp4', 490 ); ?>
+					<?php layers_show_html5_video( '//cdn.oboxsites.com/layers/videos/design-bar.mp4', 490 ); ?>
 				</div>
 			</div>
 

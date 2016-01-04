@@ -101,17 +101,27 @@ if( !function_exists( 'layers_bread_crumbs' ) ) {
 						$category_title = single_cat_title( "", false );
 						$category_id = get_cat_ID( $category_title );
 						$category_object = get_category( $category_id );
-						$term = $category_object->slug;
+
+						if( is_object( $category_object ) ) {
+							$term = $category_object->slug;
+						} else {
+							$term = '';
+						}
+
 						$taxonomy = 'category';
+						$term_object = get_term_by( 'slug', $term , $taxonomy );
 					} else {
 						$term = get_query_var('term' );
 						$taxonomy = get_query_var( 'taxonomy' );
+						$term_object = get_term_by( 'slug', $term , $taxonomy );
 					}
 
-					$term = get_term_by( 'slug', $term , $taxonomy );
+					if( is_object( $term_object ) )
+						$parent_id = $term_object->parent;
+					else
+						$parent_id = FALSE;
 
 					// Start with this terms's parent ID
-					$parent_id = $term->parent;
 
 					// Loop through parent terms and grab their IDs
 					while( $parent_id ) {
@@ -1123,20 +1133,20 @@ if( !function_exists( 'layers_inline_styles' ) ) {
             	$inline_css .= implode( ', ' . $inline_css . ' ',  $args['selectors'] );
             }
 		}
-		
+
 		// Apply inline CSS
 		if( '' == trim( $inline_css ) ) {
 			$inline_css .= $css;
 		} else {
 			$inline_css .= '{ ' . $css . '} ';
 		}
-		
+
 		// Format/Clean the CSS.
 		$inline_css = str_replace( "\n", '', $inline_css );
 		$inline_css = str_replace( "\r", '', $inline_css );
 		$inline_css = str_replace( "\t", '', $inline_css );
 		$inline_css = "\n" . $inline_css;
-		
+
 		// Add the new CSS to the existing CSS
 		$layers_inline_css .= $inline_css;
 	}
@@ -1284,6 +1294,52 @@ if( !function_exists( 'layers_get_feature_media' ) ) {
 
 		return $media_output;
 	}
+}
+/**
+ * Get youtube video ID from URL
+ *
+ * @param string $url
+ * @return string Youtube video id or FALSE if none found.
+ */
+function layers_get_youtube_id($url) {
+	$pattern =
+		'%^# Match any youtube URL
+		(?:https?://)?  # Optional scheme. Either http or https
+		(?:www\.)?      # Optional www subdomain
+		(?:             # Group host alternatives
+			youtu\.be/    # Either youtu.be,
+			| youtube\.com  # or youtube.com
+		(?:           # Group path alternatives
+		/embed/     # Either /embed/
+		| /v/         # or /v/
+		| /watch\?v=  # or /watch\?v=
+		)             # End path alternatives.
+		)               # End host alternatives.
+		([\w-]{10,12})  # Allow 10-12 for 11 char youtube id.
+		$%x';
+	$result = preg_match($pattern, $url, $matches);
+
+	if (false !== $result) {
+		return $matches[1];
+	}
+	return false;
+}
+
+/**
+ * Get Vimeo video ID from URL
+ *
+ * @param string $url
+ * @return string Vimeo video id or FALSE if none found.
+ */
+function layers_get_vimeo_id($url) {
+	$pattern = '/https?:\/\/(?:www\.)?vimeo.com\/(?:channels\/(?:\w+\/)?|groups\/([^\/]*)\/videos\/|album\/(\d+)\/video\/|)(\d+)(?:$|\/|\?)/';
+
+	$result = preg_match($pattern, $url, $matches);
+
+	if (false !== $result && isset( $matches[3] ) ) {
+		return $matches[3];
+	}
+	return false;
 }
 
 /**
@@ -1469,13 +1525,15 @@ add_action( 'layers_list_read_more', 'layers_read_more_action' );
 */
 if( !function_exists( 'layers_excerpt_action' ) ) {
 	function layers_excerpt_action() {
+		// Return if there's nothing to show
+		if( '' == get_the_excerpt() ) return;
 		?>
 		<div class="copy">
 			<?php
-			/**
-			* Display the Excerpt
-			*/
-			the_excerpt();
+				/**
+				* Display the Excerpt
+				*/
+				the_excerpt();
 			?>
 		</div>
 		<?php

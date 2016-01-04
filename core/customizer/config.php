@@ -66,8 +66,10 @@ class Layers_Customizer_Config {
 	*/
 
 	private function panels(){
+		global $layers_customizer_panels;
 
-		$panels = array(
+		// Set intial config.
+		$layers_customizer_panels = array(
 			'site-settings' => array(
 							'title' => __( 'Site Settings' , 'layerswp' ),
 							'description' => __( 'Control your content\'s default layout.' , 'layerswp' ), // @TODO Put a helper here
@@ -78,18 +80,26 @@ class Layers_Customizer_Config {
 							'description' => __( 'Control your header\'s logo, layout, colors and font.' , 'layerswp' ), // @TODO Put a helper here
 							'priority' => 60
 						),
+
+			'blog-archive-single' => array(
+							'title' => __( 'Blog' , 'layerswp' ),
+							'description' => __( 'Control your sites\'s sidebars and blog layout.' , 'layerswp' ), // @TODO Put a helper here
+							'priority' => 70
+						),
+
 			'footer' => array(
 							'title' => __( 'Footer' , 'layerswp' ),
 							'description' => __( 'Control your footer\'s custom text, widget areas and layout.' , 'layerswp' ), // @TODO Put a helper here
 							'priority' => 80
 						),
+
 			'woocommerce' => array(
 							'title' => __( 'WooCommerce' , 'layerswp' ),
 							'priority' => 100
 						),
 		);
 
-		return apply_filters( 'layers_customizer_panels', $panels );
+		return apply_filters( 'layers_customizer_panels', $layers_customizer_panels );
 	}
 
 	/**
@@ -108,7 +118,7 @@ class Layers_Customizer_Config {
 
 		return apply_filters( 'layers_customizer_default_panels', $default_panels );
 	}
-	
+
 	/**
 	* Layers Customiser Sections
 	*
@@ -140,7 +150,7 @@ class Layers_Customizer_Config {
 
 		return apply_filters( 'layers_customizer_default_sections', $default_sections );
 	}
-	
+
 	/**
 	* Default WP Customiser Controls
 	*
@@ -170,96 +180,134 @@ class Layers_Customizer_Config {
 	*/
 
 	private function sections(){
+		global $layers_customizer_sections;
 
-		$sections = array(
-			
-			// Following default sections need to be added so our registration process can access them
-			'title_tagline' => array(
-				'panel' => 'site-settings'
-			),
-			'colors' => array(
-				'panel' => 'site-settings',
-			),
-			'background_image' => array(
-				'panel' => 'site-settings',
-			),
-			'static_front_page' => array(
-				'panel' => 'site-settings',
-			),
-			// End default sections
-			
-			'site-colors' => array(
-				'title' =>__( 'Colors' , 'layerswp' ),
-				'panel' => 'site-settings',
-				'priority' => 45,
-			),
-			'content-sidebars' => array(
-				'title' =>__( 'Sidebars' , 'layerswp' ),
-				'panel' => 'site-settings',
-			),
-			'fonts' => array(
-				'title' =>__( 'Fonts' , 'layerswp' ),
-				'panel' => 'site-settings',
-			),
-			'dev-switches' => array(
-				'title' =>__( 'Dev Switches', 'layerswp' ),
-				'panel' => 'site-settings',
-			),
-			'buttons' => array(
-				'title' =>__( 'Buttons' , 'layerswp' ),
-				'panel' => 'buttons',
-			),
-			'css' => array(
-				'title' =>__( 'CSS' , 'layerswp' ),
-			),
-			'header-layout' => array(
-				'title' =>__( 'Styling' , 'layerswp' ),
-				'panel' => 'header',
-			),
-			'header-scripts' => array(
-				'title' =>__( 'Additional Scripts' , 'layerswp' ),
-				'panel' => 'header',
-			),
-			'footer-layout' => array(
-				'title' =>__( 'Styling' , 'layerswp' ),
-				'panel' => 'footer',
-			),
-			'footer-text' => array(
-				'title' =>__( 'Text' , 'layerswp' ),
-				'panel' => 'footer',
-			),
-			'footer-scripts' => array(
-				'title' =>__( 'Additional Scripts' , 'layerswp' ),
-				'panel' => 'footer',
-			),
-			'woocommerce-sidebars' => array(
-				'title' =>__( 'Sidebars' , 'layerswp' ),
-				'panel' => 'woocommerce',
-			),
-			'body-customization' => array(
-				'title' =>__( 'Customization' , 'layerswp' ),
-				'panel' => 'body',
-			)
+		// Following default sections need to be added so our registration process can access them
+		$layers_customizer_sections[ 'title_tagline' ] = array(
+			'panel' => 'site-settings'
 		);
 
+		$layers_customizer_sections[ 'colors' ] = array(
+			'panel' => 'site-settings',
+		);
 
-		return apply_filters( 'layers_customizer_sections', $sections );
+		$layers_customizer_sections[ 'background_image' ] = array(
+			'panel' => 'site-settings',
+		);
+
+		$layers_customizer_sections[ 'static_front_page' ] = array(
+			'panel' => 'site-settings',
+		);
+
+		// End default sections
+
+		$layers_customizer_sections[ 'site-general' ] = array(
+			'title' =>__( 'General' , 'layerswp' ),
+			'panel' => 'site-settings',
+			'priority' => 45,
+		);
+
+		$layers_customizer_sections[ 'site-colors' ] = array(
+			'title' =>__( 'Colors' , 'layerswp' ),
+			'panel' => 'site-settings',
+			'priority' => 50,
+		);
+
+		$layers_customizer_sections[ 'fonts' ] = array(
+			'title' =>__( 'Fonts' , 'layerswp' ),
+			'panel' => 'site-settings',
+			'priority' => 55,
+		);
+
+		$layers_customizer_sections[ 'dev-switches' ] = array(
+			'title' =>__( 'Dev Switches', 'layerswp' ),
+			'panel' => 'site-settings',
+			'priority' => 100,
+		);
+
+		$layers_customizer_sections[ 'css' ] = array(
+			'title' =>__( 'CSS' , 'layerswp' ),
+		);
+
+		$layers_customizer_sections[ 'header-layout' ] = array(
+			'title' =>__( 'Styling' , 'layerswp' ),
+			'panel' => 'header',
+		);
+
+		$layers_customizer_sections[ 'header-scripts' ] = array(
+			'title' =>__( 'Additional Scripts' , 'layerswp' ),
+			'panel' => 'header',
+		);
+
+		$layers_customizer_sections[ 'header-layout' ] = array(
+			'title' =>__( 'Styling' , 'layerswp' ),
+			'panel' => 'header',
+		);
+
+		$layers_customizer_sections[ 'blog-archive' ] = array(
+			'title' => __( 'Archive', 'layers-pro' ),
+			'panel' => 'blog-archive-single',
+		);
+
+		$layers_customizer_sections['blog-single' ] = array(
+			'title' => __( 'Posts &amp; Pages', 'layers-pro' ),
+			'panel' => 'blog-archive-single',
+		);
+
+		$layers_customizer_sections['footer-layout' ] = array(
+			'title' =>__( 'Styling' , 'layerswp' ),
+			'panel' => 'footer',
+		);
+
+		$layers_customizer_sections['footer-text' ] = array(
+			'title' =>__( 'Text' , 'layerswp' ),
+			'panel' => 'footer',
+		);
+
+		$layers_customizer_sections['footer-scripts' ] = array(
+			'title' =>__( 'Additional Scripts' , 'layerswp' ),
+			'panel' => 'footer',
+		);
+
+		$layers_customizer_sections['woocommerce-sidebars' ] = array(
+			'title' =>__( 'Sidebars' , 'layerswp' ),
+			'panel' => 'woocommerce',
+		);
+
+		$layers_customizer_sections['body-customization' ] = array(
+			'title' =>__( 'Customization' , 'layerswp' ),
+			'panel' => 'body',
+		);
+
+		return apply_filters( 'layers_customizer_sections', $layers_customizer_sections );
 	}
 
-	private function controls( $controls = array() ){
+	private function controls(){
+
+		global $layers_customizer_controls;
 
 		// Setup some folder variables
 		$customizer_dir = '/core/customizer/';
 
+		// Set intial config.
+		$layers_customizer_controls = array();
+
+		// Site Settings -> Logo & Title
+		$layers_customizer_controls['title_tagline'] = array(
+			'logo-upsell-layers-pro' => array(
+				'type'  => 'layers-heading',
+				'class' => 'layers-upsell-tag',
+				'label'    => __( 'Upgrade to Layers Pro' , 'layerswp' ),
+				'description' => __( 'Want more control over your Logo Size & Header Layout? <a target="_blank" href="http://codecanyon.net/item/layers-pro-extended-customization-for-layers/11225042?ref=obox&utm_source=layers%20theme&utm_medium=link&utm_campaign=Layers%20Pro%20Upsell&utm_content=Site%20Settings%20Logo">Purchase Layers Pro</a> to unlock the full power of Layers!' , 'layerswp' ),
+			),
+		);
+
 		// Site Settings -> Fonts
-		$controls['fonts'] = array(
+		$layers_customizer_controls['fonts'] = array(
 			'typekit-id' => array(
 				'type' => 'layers-text',
 				'label'    => __( 'Typekit ID' , 'layerswp' ),
 				'description' => sprintf( __( 'For more information on obtaining your Typekit ID, see <a href="%s" target="_blank">follow this link</a>.', 'layerswp' ), 'http://help.typekit.com/customer/portal/articles/6780' ),
-			),
-			'fonts-break-1' => array(
-				'type'     => 'layers-seperator',
 			),
 			'body-fonts' => array(
 				'type' => 'layers-font',
@@ -267,17 +315,11 @@ class Layers_Customizer_Config {
 				'selectors' => 'body',
 				'choices' => layers_get_google_font_options(),
 			),
-			'fonts-break-1' => array(
-				'type'     => 'layers-seperator',
-			),
 			'heading-fonts' => array(
 				'type' => 'layers-font',
 				'label'    => __( 'Headings' , 'layerswp' ),
 				'selectors' => 'h1,h2,h3,h4,h5,h6, .heading',
 				'choices' => layers_get_google_font_options(),
-			),
-			'fonts-break-2' => array(
-				'type'     => 'layers-seperator',
 			),
 			'form-fonts' => array(
 				'type' => 'layers-font',
@@ -288,7 +330,7 @@ class Layers_Customizer_Config {
 		);
 
 		// Site Settings -> Layout
-		$controls['header-layout'] = array(
+		$layers_customizer_controls['header-layout'] = array(
 			'header-width' => array(
 				'type'     => 'layers-select-icons',
 				'heading_divider' => __( 'Header Width' , 'layerswp' ),
@@ -312,7 +354,7 @@ class Layers_Customizer_Config {
 			),
 			'header-position-heading' => array(
 				'type'  => 'layers-heading',
-				'heading_divider' => __( 'Header Styling' , 'layerswp' ),
+				'heading_divider' => __( 'Sticky Header' , 'layerswp' ),
 			),
 			'header-sticky' => array(
 				'type'		=> 'layers-checkbox',
@@ -324,11 +366,23 @@ class Layers_Customizer_Config {
 				'type'     => 'layers-checkbox',
 				'label'    => __( 'Transparent Overlay' , 'layerswp' ),
 				'default'	=> FALSE,
+				/*
+				'linked' => array(
+					'show-if-selector' => '#layers-header-sticky',
+					'show-if-value' => 'true',
+				),
+				*/
+			),
+			'header-upsell-layers-pro' => array(
+				'type'  => 'layers-heading',
+				'class' => 'layers-upsell-tag',
+				'label'    => __( 'Upgrade to Layers Pro' , 'layerswp' ),
+				'description' => __( 'Want more control over your Header Layout? <a target="_blank" href="http://codecanyon.net/item/layers-pro-extended-customization-for-layers/11225042?ref=obox&utm_source=layers%20theme&utm_medium=link&utm_campaign=Layers%20Pro%20Upsell&utm_content=Site%20Settings%20Header%20Layout">Purchase Layers Pro</a> to unlock the full power of Layers!' , 'layerswp' ),
 			),
 		);
 
 		// Site Settings -> Sidebars
-		$controls['content-sidebars'] = array(
+		$layers_customizer_controls['blog-single'] = array(
 			'single-sidebar-heading' => array(
 				'type'  => 'layers-heading',
 				'label'    => __( 'Single Post Sidebar(s)' , 'layerswp' ),
@@ -338,34 +392,46 @@ class Layers_Customizer_Config {
 				'type'      => 'layers-checkbox',
 				'label'     => __( 'Display Left Sidebar' , 'layerswp' ),
 				'default'   => FALSE,
-			), // post-sidebar
+			),
 			'single-right-sidebar' => array(
 				'type'      => 'layers-checkbox',
 				'label'     => __( 'Display Right Sidebar' , 'layerswp' ),
 				'default'   => TRUE,
-			), // post-sidebar
-			'content-sidebars-break-2' => array(
-				'type'     => 'layers-seperator',
 			),
+			'blog-single-upsell-layers-pro' => array(
+				'type'  => 'layers-heading',
+				'class' => 'layers-upsell-tag',
+				'label'    => __( 'Upgrade to Layers Pro' , 'layerswp' ),
+				'description' => __( 'Want more blog customzation? <a target="_blank" href="http://codecanyon.net/item/layers-pro-extended-customization-for-layers/11225042?ref=obox&utm_source=layers%20theme&utm_medium=link&utm_campaign=Layers%20Pro%20Upsell&utm_content=Blog%20Single">Purchase Layers Pro</a> and take control over your posts!' , 'layerswp' ),
+			),
+		);
+
+		$layers_customizer_controls['blog-archive'] = array(
 			'archive-sidebar-heading' => array(
 				'type'  => 'layers-heading',
-				'label'    => __( 'Post List Sidebar(s)' , 'layerswp' ),
+				'label'    => __( 'Archive Sidebar(s)' , 'layerswp' ),
 				'description' => __( 'This option affects your category, tag, author and search pages.' , 'layerswp' ),
 			),
 			'archive-left-sidebar' => array(
 				'type'		=> 'layers-checkbox',
 				'label' 	=> __( 'Display Left Sidebar' , 'layerswp' ),
 				'default' 	=> FALSE,
-			), // post-sidebar
+			),
 			'archive-right-sidebar' => array(
 				'type'		=> 'layers-checkbox',
 				'label' 	=> __( 'Display Right Sidebar' , 'layerswp' ),
 				'default' 	=> TRUE,
-			), // post-sidebar
+			),
+			'blog-archive-upsell-layers-pro' => array(
+				'type'  => 'layers-heading',
+				'class' => 'layers-upsell-tag',
+				'label'    => __( 'Upgrade to Layers Pro' , 'layerswp' ),
+				'description' => __( 'Want more blog customzation? <a target="_blank" href="http://codecanyon.net/item/layers-pro-extended-customization-for-layers/11225042?ref=obox&utm_source=layers%20theme&utm_medium=link&utm_campaign=Layers%20Pro%20Upsell&utm_content=Blog%20Archive">Purchase Layers Pro</a> and take control over your post archive!' , 'layerswp' ),
+			),
 		);
 
 		// Site Settings -> Colors
-		$controls['site-colors'] = array(
+		$layers_customizer_controls['site-colors'] = array(
 			'site-color-heading' => array(
 				'type'  => 'layers-heading',
 				'label'    => __( 'Site Wide Colors' , 'layerswp' ),
@@ -392,20 +458,20 @@ class Layers_Customizer_Config {
 				'type' => 'layers-color',
 				'default' => '#F3F3F3',
 			),
-			'upsell-colorkit-heading' => array(
+			'colors-upsell-layers-pro' => array(
 				'type'  => 'layers-heading',
 				'class' => 'layers-upsell-tag',
-				'label'    => __( 'Upgrade to ColorKit' , 'layerswp' ),
-				'description' => __( 'Want more color customzation? <a target="_blank" href="http://bit.ly/layers-colorkit">Purchase ColorKit</a> and get the full box of crayons!' , 'layerswp' ),
+				'label'    => __( 'Upgrade to Layers Pro' , 'layerswp' ),
+				'description' => __( 'Want more color customzation? <a target="_blank" href="http://codecanyon.net/item/layers-pro-extended-customization-for-layers/11225042?ref=obox&utm_source=layers%20theme&utm_medium=link&utm_campaign=Layers%20Pro%20Upsell&utm_content=Footer%20Layout">Purchase Layers Pro</a> and get the full box of crayons!' , 'layerswp' ),
 			),
 		);
 
 		// Site Settings -> Dev Switches
-		$controls['dev-switches'] = array(
+		$layers_customizer_controls['dev-switches'] = array(
 			'dev-switch-active' => array(
 				'type'     => 'layers-checkbox',
 				'label'    => __( 'Dev Switches Active' , 'layerswp' ),
-				'description' => __( 'Unckecking this will immediately remove this panel. To switch it back on you will need to add #layers-dev-switches to your url.' , 'layerswp' ),
+				'description' => __( 'Unckecking this will immediately remove this panel. To switch it back on you will need to add #layers-develop to your url.' , 'layerswp' ),
 				'default' => '',
 			),
 			'dev-switch-customizer-state-record' => array(
@@ -414,18 +480,21 @@ class Layers_Customizer_Config {
 				'description' => __( 'This feature will add #hash values to the customizer URL so that when the page is refreshed the customizer will go back to it\'s same position.' , 'layerswp' ),
 				'default' => '',
 			),
+			'dev-switch-widget-field-names' => array(
+				'type'     => 'layers-checkbox',
+				'label'    => __( "Display Widget Input 'name' Attributes", 'layerswp' ),
+				'description' => __( 'This is used in preparation of a new Widget so developer can quickly see all the possible fields in a Widget and make sure to set defaults for them.', 'layerswp' ),
+				'default' => '',
+			),
 		);
 
 		// Header -> Additional Scripts
-		$controls['header-scripts'] = array(
+		$layers_customizer_controls['header-scripts'] = array(
 			'header-google-id' => array(
 				'type'     => 'layers-text',
 				'label'    => __( 'Google Analytics ID' , 'layerswp' ),
 				'description' => __( 'Enter in your Google Analytics ID to enable website traffic reporting. eg. "UA-xxxxxx-xx' , 'layerswp' ),
 				'default' => '',
-			),
-			'header-custom-scripts-break-1' => array(
-				'type'     => 'layers-seperator',
 			),
 			'header-custom-scripts' => array(
 				'type'     => 'layers-code',
@@ -436,7 +505,7 @@ class Layers_Customizer_Config {
 		);
 
 		// Footer -> Layout
-		$controls['footer-layout'] = array(
+		$layers_customizer_controls['footer-layout'] = array(
 			'footer-width' => array(
 				'type'     => 'layers-select-icons',
 				'heading_divider' => __( 'Footer Width' , 'layerswp' ),
@@ -460,8 +529,11 @@ class Layers_Customizer_Config {
 					'4' => __( '4' , 'layerswp' ),
 				),
 			),
-			'footer-layout-break-2' => array(
-				'type'     => 'layers-seperator',
+			'footer-copyright-text' => array(
+				'type'     => 'layers-text',
+				'label'    => __( 'Copyright Text' , 'layerswp' ),
+				'default' => ' Made at the tip of Africa. &copy;',
+				'sanitize_callback' => FALSE
 			),
 			'show-layers-badge' => array(
 				'label' => __( 'Support Layers' , 'layerswp' ),
@@ -469,20 +541,16 @@ class Layers_Customizer_Config {
 				'type' => 'layers-checkbox',
 				'default' => true
 			),
-		);
-
-		// Footer -> Text
-		$controls['footer-text'] = array(
-			'footer-copyright-text' => array(
-				'type'     => 'layers-text',
-				'label'    => __( 'Copyright Text' , 'layerswp' ),
-				'default' => ' Made at the tip of Africa. &copy;',
-				'sanitize_callback' => FALSE
+			'footer-upsell-layers-pro' => array(
+				'type'  => 'layers-heading',
+				'class' => 'layers-upsell-tag',
+				'label'    => __( 'Upgrade to Layers Pro' , 'layerswp' ),
+				'description' => __( 'Want more control over your Footer Layout? <a target="_blank" href="http://codecanyon.net/item/layers-pro-extended-customization-for-layers/11225042?ref=obox&utm_source=layers%20theme&utm_medium=link&utm_campaign=Layers%20Pro%20Upsell&utm_content=Site%20Settings%20Footer%20Layout">Purchase Layers Pro</a> to unlock the full power of Layers!' , 'layerswp' ),
 			),
 		);
 
 		// Footer -> Additional Scripts
-		$controls['footer-scripts'] = array(
+		$layers_customizer_controls['footer-scripts'] = array(
 			'footer-custom-scripts' => array(
 				'type'     => 'layers-code',
 				'label'    => __( 'Custom Scripts' , 'layerswp' ),
@@ -492,7 +560,7 @@ class Layers_Customizer_Config {
 		);
 
 		// CSS
-		$controls['css'] = array(
+		$layers_customizer_controls['css'] = array(
 			'custom-css' => array(
 				'type'     => 'layers-code',
 				'placeholder'	=> ".classname {\n\tbackground: #333;\n}",
@@ -507,7 +575,7 @@ class Layers_Customizer_Config {
 		);
 
 		if( class_exists( 'WooCommerce' ) ) {
-			$controls[ 'woocommerce-sidebars' ] = array(
+			$layers_customizer_controls[ 'woocommerce-sidebars' ] = array(
 				'label-sidebar-single' => array(
 					'type'  => 'layers-heading',
 					'label'    => __( 'Single Product Sidebar(s)' , 'layerswp' ),
@@ -517,14 +585,11 @@ class Layers_Customizer_Config {
 					'type'      => 'layers-checkbox',
 					'label'     => __( 'Display Left Sidebar' , 'layerswp' ),
 					'default'   => FALSE,
-				), // post-sidebar
+				),
 				'single-right-woocommerce-sidebar' => array(
 					'type'      => 'layers-checkbox',
 					'label'     => __( 'Display Right Sidebar' , 'layerswp' ),
 					'default'   => TRUE,
-				), // post-sidebar
-				'woocommerce-break-1' => array(
-					'type'     => 'layers-seperator'
 				),
 				'label-sidebar-archive' => array(
 					'type'  => 'layers-heading',
@@ -535,20 +600,22 @@ class Layers_Customizer_Config {
 					'type'      => 'layers-checkbox',
 					'label'     => __( 'Display Left Sidebar' , 'layerswp' ),
 					'default'   => FALSE,
-				), // post-sidebar
+				),
 				'archive-right-woocommerce-sidebar' => array(
 					'type'      => 'layers-checkbox',
 					'label'     => __( 'Display Right Sidebar' , 'layerswp' ),
 					'default'   => TRUE,
-				), // post-sidebar
+				),
 			);
 		} // if WooCommerce
 
-		$controls = apply_filters( 'layers_customizer_controls', $controls );
+		do_action( 'layers_customizer_controls_modify' );
 
-		$controls = $this->apply_defaults( $controls );
+		$layers_customizer_controls = apply_filters( 'layers_customizer_controls', $layers_customizer_controls );
 
-		return $controls;
+		$layers_customizer_controls = $this->apply_defaults( $layers_customizer_controls );
+
+		return $layers_customizer_controls;
 	}
 
 	private function apply_defaults( $controls ){

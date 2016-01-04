@@ -108,11 +108,13 @@ if( ! function_exists( 'layers_remove_config_element' ) ) {
 		
 		foreach ( $config as $group_key => $group_array ) {
 			
+			// Remove top level elements - like the Panels & Sections.
+			if ( $key == $group_key ) unset( $config[$key] );
+			
+			// Remove deeper level elements - like the Controls.
 			if ( isset( $group_array[$key] ) ) {
-				
-				unset( $group_array[$key] );
-								
-				$config[$group_key] = $group_array;
+				unset( $group_array[$key] ); // Remove it.
+				$config[$group_key] = $group_array; // Return it to the config array.
 			}
 		}
 		

@@ -6,8 +6,10 @@
 * @package Layers
 * @since Layers 1.0.4
 * Contents
-* 1 - Fix customizer FOUC during render
-* 2 - Customizer UX Enhancements
+* 1 - Send Custom Customizer Init Event to the parent
+* 2 - Fix customizer FOUC during render
+* 3 - Customizer UX Enhancements
+* 4 - Remove all '#' href's in Preview
 *
 * Author: Obox Themes
 * Author URI: http://www.oboxthemes.com/
@@ -34,9 +36,14 @@
 
 			// layers-loaded event sent when the previewer is initialised
 			this.preview.bind( 'active', function() {
+				
+				/**
+				 * 1 - Send Custom Customizer Init Event to the parent.
+				 */
+				self.preview.send( 'layers-customizer-preview-init' );
 
 				/**
-				 * 1 - Fix customizer FOUC during render
+				 * 2 - Fix customizer FOUC during render
 				 *
 				 * Fix issue where font size is incorrectly displayed due to % font-size in an iframe in chrome
 				 */
@@ -47,7 +54,7 @@
 				},3000 );
 
 				/**
-				 * 2 - Customizer UX Enhancements
+				 * 3 - Customizer UX Enhancements
 				 */
 				
 				// Edit widget buttons
@@ -68,13 +75,24 @@
 				});
 				*/
 				
-				// Close all widgets
+				// Close all widgets when clickign anywhere in document.
 				$( document ).on( 'click', function( e ){
-					if ( false == $( e.target ).hasClass( 'layers-edit-widget' ) ) {
-						// Send 'close all' event to parent so long as not Edit button clicked
-						self.preview.send( 'layers-close-all-widgets' );
-					}
+					
+					// Don't close all widgets if shift-cliking a Widget.
+					if ( true === e.shiftKey ) return true;
+					
+					// Don't close all widgets if clicking Edit-Widget button.
+					if ( true === $( e.target ).hasClass( 'layers-edit-widget' ) ) return true;
+						
+					// Send 'close all' event to parent.
+					self.preview.send( 'layers-close-all-widgets' );
 				});
+				
+				/**
+				 * 4 - Remove all '#' href's in Preview so WP does not incorrectly activate them causing new page click.
+				 */
+				$( 'a[href="#"]' ).attr( 'href', '' );
+				
 			});
 		}
 	};

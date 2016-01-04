@@ -40,7 +40,7 @@ if( !class_exists( 'Layers_Customize_Checkbox_Control' ) ) {
 						); ?>
 					</div>
 				</div>
-
+				
 				<?php if ( '' != $this->description ) : ?>
 					<div class="description customize-control-description">
 						<?php echo $this->description; ?>

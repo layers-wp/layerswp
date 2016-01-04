@@ -15,7 +15,7 @@ if( !class_exists( 'Layers_Customize_Select_Control' ) ) {
 
 		public function render_content() {
 
-			// Exit if there are no choises
+			// Exit if there are no choices
 			if ( empty( $this->choices ) ) return;
 
 			$form_elements = new Layers_Form_Elements();
@@ -33,6 +33,12 @@ if( !class_exists( 'Layers_Customize_Select_Control' ) ) {
 				<?php if ( '' != $this->label ) { ?>
 					<span class="customize-control-title"><?php echo $this->label; ?></span>
 				<?php } ?>
+				
+				<?php if ( '' != $this->description ) : ?>
+					<div class="description customize-control-description">
+						<?php echo $this->description; ?>
+					</div>
+				<?php endif; ?>
 
 				<div class="layers-form-item">
 					<?php if ( '' != $this->subtitle ) : ?>
@@ -52,12 +58,6 @@ if( !class_exists( 'Layers_Customize_Select_Control' ) ) {
 						); ?>
 					</div>
 				</div>
-
-				<?php if ( '' != $this->description ) : ?>
-					<div class="description customize-control-description">
-						<?php echo $this->description; ?>
-					</div>
-				<?php endif; ?>
 
 			</div>
 			<?php

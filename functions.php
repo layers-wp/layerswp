@@ -395,6 +395,13 @@ if( ! function_exists( 'layers_admin_scripts' ) ) {
 			array(),
 			LAYERS_VERSION
 		); // Admin CSS
+		
+		wp_enqueue_style(
+			LAYERS_THEME_SLUG . '-dashboard',
+			get_template_directory_uri() . '/core/assets/dashboard.css',
+			array(),
+			LAYERS_VERSION
+		);
 
 		wp_enqueue_style(
 			LAYERS_THEME_SLUG . '-admin-editor',

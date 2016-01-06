@@ -309,28 +309,6 @@ div[id*='layers-widget'] .widget-control-actions .alignright{
 	opacity:0 !important;
 }
 
-/*
-div[id*='layers-widget'] .widget-control-actions .alignleft {
-	float:right;
-}
-div[id*='layers-widget'] .widget-control-actions .alignright {
-	float:left;
-	margin-right: 6px;
-}
-div[id*='layers-widget'] .spinner{
-	display: inline-block;
-	margin: 2px -3px 0 5px;
-	background: url(images/spinner.gif) right no-repeat;
-	background-size: 20px 20px;
-	opacity: 0;
-	transform: translate(-20px, 0px);
-	transition: .3s ease-in-out;
-}
-.previewer-loading div[id*='layers-widget'] .spinner{
-	opacity:1;
-	transform: translate(0px, 0px);
-}
-*/
 
 /*---------------------------*/
 /*- CONTAINERS --------------*/
@@ -1725,222 +1703,6 @@ div[id*='layers-widget'] .spinner{
 	}
 
 
-/*-----------------------------*/
-/*- CUSTOMIZER CONTROLS -------*/
-#customize-controls .description{
-	color: #999;
-}
-li[id*='customize-control-layers'].customize-control{
-	margin: 0;
-}
-li[id*='customize-control-layers'].customize-control .layers-customize-control {
-	padding: 6px 0;
-}
-li[id*='customize-control-layers'].customize-control:first-child{
-	margin: 6px 0 0px;
-}
-li[id*='customize-control-layers'].customize-control .layers-form-item{
-	margin: 0 0 6px;
-}
-li[id*='customize-control-layers'].customize-control .layers-form-item:after{
-	content: '';
-	display: block;
-	float: none;
-	clear: both;
-}
-
-	/*-----------------------------*/
-	/*- SPECIFIC FORM TYPES -------*/
-	.customize-control customize-control-layers-seperator{
-		border: 0;
-		border-top: 0;
-		border-bottom: 1px solid #EEE;
-		margin: 8px 0;
-	}
-	.layers-form-item .wp-color-result{
-		margin: 0 6px 3px 0;
-		box-shadow: 0 1px 1px rgba(0,0,0,0.08);
-	}
-	li[id*='customize-control-layers'].customize-control.customize-control-image .actions{
-		margin-bottom: 0;
-	}
-	.customize-control-site_logo .current img{
-		display: block;
-		max-width: 100%;
-		margin: auto;
-		padding: 10px;
-		background-image: url(../assets/images/transparent-tile.png);
-		border-radius: 4px;
-		box-sizing: border-box;
-	}
-
-	/*----------------------------*/
-	/*- HEADING CONTROLS -------- */
-	li[id*='customize-control-layers'].customize-control .heading-label .customize-control-title{
-		font-size: 14px;
-		line-height: 24px;
-		font-weight: bold;
-		margin: 0 0 4px;
-	}
-	li[id*='customize-control-layers'].customize-control .layers-customize-control.layers-customize-control-heading .customize-control-title{
-		display: block;
-		font-size: 14px;
-		line-height: 24px;
-		font-weight: 600;
-		text-transform: none;
-		margin: 0;
-	}
-	li[id*='customize-control-layers'].customize-control .customize-control-title.layers-heading-divider {
-		display: block;
-		font-size: 14px;
-		line-height: 24px;
-		font-weight: 600;
-		margin: 0 0 6px;
-	}
-	table.layers-heading-divider {
-		width: 100%;
-		margin: 6px 0 0;
-		padding: 0;
-		border-spacing: 0;
-	}
-	table.layers-heading-divider tr {
-		margin: 0;
-		padding: 0;
-	}
-	table.layers-heading-divider tr td:first-child {
-		padding-right: 6px;
-		font-size: 14px;
-		line-height: 24px;
-		font-weight: 600;
-		text-transform: none;
-		margin: 0;
-		white-space: nowrap;
-	}
-	table.layers-heading-divider tr td:last-child {
-		width: 100%;
-	}
-	table.layers-heading-divider tr td:last-child div{
-		border-bottom: 1px solid #EEE;
-		height: 2px;
-	}
-	li[id*='customize-control-layers'].customize-control table.layers-heading-divider .customize-control-title {
-		display: block;
-		font-size: 14px;
-		line-height: 24px;
-		font-weight: 600;
-		margin: 0 0 6px;
-	}
-
-	/*----------------------------------------*/
-	/*- HEADING DIVIDER - DEDICATED CONTROLS -*/
-	li[id*='customize-control-layers'].customize-control.customize-control-layers-heading-divider {
-		margin-top: 12px;
-	}
-	li[id*='customize-control-layers'].customize-control.customize-control-layers-heading-divider table.layers-heading-divider .customize-control-title {
-		margin: 0;
-	}
-	li[id*='customize-control-layers'].customize-control.customize-control-layers-heading-divider .description{
-		margin-top: 3px;
-	}
-
-	/*-----------------------------*/
-	/*- RANGE + NUMBER CONTROL ----*/
-	.layers-range-wrapper input[type="range"],
-	.layers-customize-control-range input[type="range"]{
-		width: 95%;
-		display: inline-block;
-		height: 35px;
-		padding: 0;
-		margin: 0;
-	}
-	.layers-range-wrapper input[type="number"],
-	.layers-customize-control-range input[type="number"] {
-		/* width: 25%; */
-		display: inline-block;
-	}
-
-	/*----------------------*/
-	/*- CHECKBOX -----------*/
-	li[id*='customize-control-layers'].customize-control .layers-customize-control-checkbox .layers-form-item{
-		margin: 0;
-	}
-	li[id*='customize-control-layers'].customize-control .layers-customize-control-checkbox .description{
-		margin-top: .2em;
-	}
-
-	/*-------------------------------*/
-	/*- CUSTOMIZER CONTROL GROUPS -- */
-	li .customize-control .layers-heading-divider{
-		display: block;
-		font-size: 14px;
-		line-height: 24px;
-		font-weight: 600;
-		margin: 0 0 6px;
-	}
-	li .customize-control .layers-customize-control.layers-customize-control-heading.group .layers-heading-divider{
-		margin: 12px 0 4px;
-	}
-	li .customize-control .layers-customize-control.group .customize-control-title,
-	li .customize-control.customize-control-layers-color .layers-customize-control.group label{
-		text-transform: uppercase;
-		font-size: 10px;
-		font-weight: bold;
-		letter-spacing: 1px;
-		margin-bottom: 6px;
-		line-height: 1.5em;
-	}
-	li .customize-control .layers-customize-control.group label{
-		text-transform: uppercase;
-		font-size: 10px;
-		font-weight: bold;
-		letter-spacing: 1px;
-		line-height: 1.5em;
-	}
-	li .customize-control .layers-customize-control.group,
-	li .customize-control .layers-customize-control.group {
-		display: list-item;
-		margin: 0px 0px 1px;
-		box-sizing: border-box;
-		padding: 8px 8px 4px 8px;
-		background: #F5F5F5 none repeat scroll 0% 0%;
-		border-radius: 3px;
-	}
-	.layers-customize-control.group .description {
-		font-size: 12px;
-		line-height: 1.3em;
-		margin-bottom: 6px;
-		margin-top: -6px;
-	}
-
-		/*---------------------------*/
-		/*- GROUP INPUTS ------------*/
-		.layers-customize-control.group:not(.layers-customize-control-color) input,
-		.layers-customize-control.group select {
-			line-height: 28px;
-			height: 29px;
-			font-size: 13px;
-			padding: 0 6px;
-			background: #FBFBFB;
-		}
-		.layers-customize-control.group input{
-			background: #FBFBFB;
-		}
-		.layers-customize-control.group input[type="number"]{
-				padding-right: 0;
-		}
-		.layers-customize-control.group:not(.layers-customize-control-color) input[type="range"]{
-			background: transparent;
-			height: 28px;
-		}
-		.layers-customize-control.group.layers-customize-control-range input[type="range"]{
-			height: 28px;
-			padding: 0;
-		}
-		.layers-customize-control.group.layers-customize-control-checkbox label{
-			margin-bottom: 6px;
-		}
-
-
 /*---------------------------*/
 /*- TITLES ------------------*/
 .layers-logo{
@@ -3090,8 +2852,8 @@ input[type=radio]:checked + .layers-settings-icon span{
 	color: #fff;
 }
 
-/*--------------------------------*/
-/*- LOADING INDICATORS -----------*/
+/*-------------------------------*/
+/*- LOADING INDICATORS ----------*/
 
 @-webkit-keyframes move {
 	0% { background-position: 0 0; }
@@ -3140,8 +2902,8 @@ input[type=radio]:checked + .layers-settings-icon span{
 	pointer-events: none;
 }
 
-/*---------------------*/
-/*- TIP-TIP -----------*/
+/*-------------------------------*/
+/*- TIP-TIP ---------------------*/
 div#tiptip_holder {
 	z-index: 9999999;
 }
@@ -3182,3 +2944,224 @@ div#tiptip_holder {
 	margin-left: -6px;
 	border-left-color: rgba(0,0,0,0.75);
 }
+
+
+
+/*-------------------------------*/
+/*- OPTIONS PANEL CSS -----------*/
+/*-------------------------------*/
+
+/*-------------------------------*/
+/*- CUSTOMIZER CONTROLS ---------*/
+#customize-controls .description{
+    color: #999;
+}
+li[id*='customize-control-layers'].customize-control{
+    margin: 0;
+}
+li[id*='customize-control-layers'].customize-control .l_option-customize-control {
+    padding: 6px 0;
+}
+li[id*='customize-control-layers'].customize-control:first-child{
+    margin: 6px 0 0px;
+}
+li[id*='customize-control-layers'].customize-control .l_option-form-item{
+    margin: 0 0 6px;
+}
+li[id*='customize-control-layers'].customize-control .l_option-form-item:after{
+    content: '';
+    display: block;
+    float: none;
+    clear: both;
+}
+
+    /*-----------------------------*/
+    /*- SPECIFIC FORM TYPES -------*/
+    .customize-control customize-control-layers-seperator{
+        border: 0;
+        border-top: 0;
+        border-bottom: 1px solid #EEE;
+        margin: 8px 0;
+    }
+    .l_option-form-item .wp-color-result{
+        margin: 0 6px 3px 0;
+        box-shadow: 0 1px 1px rgba(0,0,0,0.08);
+    }
+    li[id*='customize-control-layers'].customize-control.customize-control-image .actions{
+        margin-bottom: 0;
+    }
+    .customize-control-site_logo .current img{
+        display: block;
+        max-width: 100%;
+        margin: auto;
+        padding: 10px;
+        background-image: url(../assets/images/transparent-tile.png);
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+
+    /*----------------------------*/
+    /*- HEADING CONTROLS -------- */
+    li[id*='customize-control-layers'].customize-control .heading-label .customize-control-title{
+        font-size: 14px;
+        line-height: 24px;
+        font-weight: bold;
+        margin: 0 0 4px;
+    }
+    li[id*='customize-control-layers'].customize-control .l_option-customize-control.l_option-customize-control-heading .customize-control-title{
+        display: block;
+        font-size: 14px;
+        line-height: 24px;
+        font-weight: 600;
+        text-transform: none;
+        margin: 0;
+    }
+    li[id*='customize-control-layers'].customize-control .customize-control-title.l_option-heading-divider {
+        display: block;
+        font-size: 14px;
+        line-height: 24px;
+        font-weight: 600;
+        margin: 0 0 6px;
+    }
+    table.l_option-heading-divider {
+        width: 100%;
+        margin: 6px 0 0;
+        padding: 0;
+        border-spacing: 0;
+    }
+    table.l_option-heading-divider tr {
+        margin: 0;
+        padding: 0;
+    }
+    table.l_option-heading-divider tr td:first-child {
+        padding-right: 6px;
+        font-size: 14px;
+        line-height: 24px;
+        font-weight: 600;
+        text-transform: none;
+        margin: 0;
+        white-space: nowrap;
+    }
+    table.l_option-heading-divider tr td:last-child {
+        width: 100%;
+    }
+    table.l_option-heading-divider tr td:last-child div{
+        border-bottom: 1px solid #EEE;
+        height: 2px;
+    }
+    li[id*='customize-control-layers'].customize-control table.l_option-heading-divider .customize-control-title {
+        display: block;
+        font-size: 14px;
+        line-height: 24px;
+        font-weight: 600;
+        margin: 0 0 6px;
+    }
+
+    /*----------------------------------------*/
+    /*- HEADING DIVIDER - DEDICATED CONTROLS -*/
+    li[id*='customize-control-layers'].customize-control.customize-control-layers-heading-divider {
+        margin-top: 12px;
+    }
+    li[id*='customize-control-layers'].customize-control.customize-control-layers-heading-divider table.l_option-heading-divider .customize-control-title {
+        margin: 0;
+    }
+    li[id*='customize-control-layers'].customize-control.customize-control-layers-heading-divider .description{
+        margin-top: 3px;
+    }
+
+    /*-----------------------------*/
+    /*- RANGE + NUMBER CONTROL ----*/
+    .l_option-range-wrapper input[type="range"],
+    .l_option-customize-control-range input[type="range"]{
+        width: 95%;
+        display: inline-block;
+        height: 35px;
+        padding: 0;
+        margin: 0;
+    }
+    .l_option-range-wrapper input[type="number"],
+    .l_option-customize-control-range input[type="number"] {
+        /* width: 25%; */
+        display: inline-block;
+    }
+
+    /*----------------------*/
+    /*- CHECKBOX -----------*/
+    li[id*='customize-control-layers'].customize-control .l_option-customize-control-checkbox .l_option-form-item{
+        margin: 0;
+    }
+    li[id*='customize-control-layers'].customize-control .l_option-customize-control-checkbox .description{
+        margin-top: .2em;
+    }
+
+    /*-------------------------------*/
+    /*- CUSTOMIZER CONTROL GROUPS -- */
+    li .customize-control .l_option-heading-divider{
+        display: block;
+        font-size: 14px;
+        line-height: 24px;
+        font-weight: 600;
+        margin: 0 0 6px;
+    }
+    li .customize-control .l_option-customize-control.l_option-customize-control-heading.group .l_option-heading-divider{
+        margin: 12px 0 4px;
+    }
+    li .customize-control .l_option-customize-control.group .customize-control-title,
+    li .customize-control.customize-control-layers-color .l_option-customize-control.group label{
+        text-transform: uppercase;
+        font-size: 10px;
+        font-weight: bold;
+        letter-spacing: 1px;
+        margin-bottom: 6px;
+        line-height: 1.5em;
+    }
+    li .customize-control .l_option-customize-control.group label{
+        text-transform: uppercase;
+        font-size: 10px;
+        font-weight: bold;
+        letter-spacing: 1px;
+        line-height: 1.5em;
+    }
+    li .customize-control .l_option-customize-control.group,
+    li .customize-control .l_option-customize-control.group {
+        display: list-item;
+        margin: 0px 0px 1px;
+        box-sizing: border-box;
+        padding: 8px 8px 4px 8px;
+        background: #F5F5F5 none repeat scroll 0% 0%;
+        border-radius: 3px;
+    }
+    .l_option-customize-control.group .description {
+        font-size: 12px;
+        line-height: 1.3em;
+        margin-bottom: 6px;
+        margin-top: -6px;
+    }
+
+        /*---------------------------*/
+        /*- GROUP INPUTS ------------*/
+        .l_option-customize-control.group:not(.l_option-customize-control-color) input,
+        .l_option-customize-control.group select {
+            line-height: 28px;
+            height: 29px;
+            font-size: 13px;
+            padding: 0 6px;
+            background: #FBFBFB;
+        }
+        .l_option-customize-control.group input{
+            background: #FBFBFB;
+        }
+        .l_option-customize-control.group input[type="number"]{
+                padding-right: 0;
+        }
+        .l_option-customize-control.group:not(.l_option-customize-control-color) input[type="range"]{
+            background: transparent;
+            height: 28px;
+        }
+        .l_option-customize-control.group.l_option-customize-control-range input[type="range"]{
+            height: 28px;
+            padding: 0;
+        }
+        .l_option-customize-control.group.l_option-customize-control-checkbox label{
+            margin-bottom: 6px;
+        }

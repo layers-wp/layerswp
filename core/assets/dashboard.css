@@ -9,6 +9,66 @@
 
 @import url(icons.css);
 
+@media only screen and (max-width: 480px){
+
+/*-------------------------------*/
+/*- COLUMNS ---------------------*/
+
+	/*---------------------------*/
+	/*- SPAN - 1 ----------------*/
+	.l_admin-column.l_admin-span-1{
+		float: left;
+		width: 15%;
+		margin-right: 2%;
+	}
+	.l_admin-column.l_admin-span-1:nth-child(6n+6){
+		margin-right: 0;
+	}
+
+	/*---------------------------*/
+	/*- SPAN - 2 ----------------*/
+	.l_admin-column.l_admin-span-2{
+		float: left;
+		width: 48%;
+		margin-right: 4%;
+	}
+	.l_admin-column.l_admin-span-2:nth-child(2n){
+		margin-right: 0;
+	}
+
+	/*---------------------------*/
+	/*- CLEARING SPANS ----------*/
+	.l_admin-column.span-1:nth-child(6n+7),
+	.l_admin-column.span-2:nth-child(2n+3){
+		clear: left;
+	}
+
+}
+@media only screen and (min-width: 481px){
+
+}
+@media only screen and (min-width: 481px) and (max-width: 640px){
+
+}
+@media only screen and (min-width: 481px) and (max-width: 768px){
+
+}
+@media only screen and (min-width: 601px) and (max-width: 782px){
+
+}
+@media only screen and (max-width: 768px){
+
+}
+@media only screen and (min-width: 601px) and (max-width: 860px){
+
+}
+@media only screen and (min-width: 769px) {
+
+}
+@media only screen and (min-width: 1100px){
+
+}
+
 /*---------------------------*/
 /*- THE GRID ----------------*/
 
@@ -41,12 +101,6 @@
 		position: relative;
 		box-sizing: border-box;
 	}
-	.l_admin-column-flush{
-		float: left;
-		margin: 0;
-		position: relative;
-		box-sizing: border-box;
-	}
 	.l_admin-row .l_admin-column:last-child{
 		margin-right: 0;
 	}
@@ -66,19 +120,6 @@
 	.l_admin-span-10{width: 83%;}
 	.l_admin-span-11{width: 91.5%;}
 	.l_admin-span-12{width: 100%;}
-
-	.l_admin-column-flush.l_admin-span-1{width: 8.333333%;}
-	.l_admin-column-flush.l_admin-span-2{width: 16.6667%;}
-	.l_admin-column-flush.l_admin-span-3{width: 25%;}
-	.l_admin-column-flush.l_admin-span-4{width: 33.33333%;}
-	.l_admin-column-flush.l_admin-span-5{width: 41.66665%;}
-	.l_admin-column-flush.l_admin-span-6{width: 50%;}
-	.l_admin-column-flush.l_admin-span-7{width: 58.1%;}
-	.l_admin-column-flush.l_admin-span-8{width: 66.4%;}
-	.l_admin-column-flush.l_admin-span-9{width: 74.7%;}
-	.l_admin-column-flush.l_admin-span-10{width: 83%;}
-	.l_admin-column-flush.l_admin-span-11{width: 91.3%;}
-	.l_admin-column-flush.l_admin-span-12{width: 100%;}
 
 	.l_admin-row .l_admin-column.l_admin-span-1:nth-child(12n+12){margin-right: 0;}
 	.l_admin-row .l_admin-column.l_admin-span-2:nth-child(6n+6){margin-right: 0;}
@@ -136,20 +177,17 @@
 
 	/*-----------------------*/
 	/*- COLUMN TWEAKERS -----*/
-	.no-gutter{margin-right: 0;}
-	.middled, .row .column.middled{float: none; margin: auto;}
-	.l_admin-last{ margin-right: 0; }
-
-	.l_admin-drag{
-		display: block;
-		height: 8px;
-		margin-bottom: 10px;
-		background: url(images/drag.png) top center repeat-x;
-		cursor: move;
-		opacity: 0.5;
-		transition: 0.2s all ease-in-out
+	.no-gutter{
+		margin-right: 0;
 	}
-	.l_admin-drag:hover{opacity: 1;}
+	.middled,
+	.row .column.middled{
+		float: none;
+		margin: auto;
+	}
+	.l_admin-last{
+		margin-right: 0;
+	}
 
 /*---------------------------*/
 /*- ELEMENT CONTROLLERS -----*/

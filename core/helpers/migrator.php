@@ -200,12 +200,12 @@ class Layers_Widget_Migrator {
 	*  Get specific widget data
 	*/
 	function get_widget_data( $widget_key ) {
-		global $wp_registered_widget_updates;
+		global $wp_widget_factory;
 
-		if( isset( $wp_registered_widget_updates[ $widget_key ][ 'callback' ][0] ) ){
-			return $wp_registered_widget_updates[ $widget_key ][ 'callback' ][0];
-		} else {
-			return false;
+		foreach( $wp_widget_factory->widgets as $widget_object => $widget_data ) {
+			if(  $widget_key == $widget_data->id_base ){
+				return $widget_data;
+			}
 		}
 	}
 
@@ -246,7 +246,7 @@ class Layers_Widget_Migrator {
 	/**
 	*  Get valid sidebars for a specific page
 	*
-	* @param object Post Object of page to generate export data for
+	* @param object Post Object of page to generate export data
 	* @return array An array of sidebar ids that are valid for this page
 	*/
 
@@ -311,6 +311,7 @@ class Layers_Widget_Migrator {
 	/**
 	*  Populate Sidebars/Widgets array
 	*
+	* @param object Post Object of page to generate export data for
 	* @return array Array including page sidebar & widget settings
 	*/
 
@@ -368,31 +369,57 @@ class Layers_Widget_Migrator {
 	}
 
 	/**
+	* Widget As Content
+	*
+	* @param object Widget Export data
+	* @return string A plain text version of the page content
+	*/
+
+	function page_widgets_as_content( $export_data = NULL ) {
+
+		if( empty( $export_data ) ) return false;
+
+		if( is_string( $export_data ) ) $export_data = json_decode( $export_data );
+		// Set the bare content variable
+		$page_content = '';
+
+		// Loop through raw export data and populate the content
+		foreach( $export_data as $data ){
+$page_content .= '* ' . $data->name. '
+';
+			}
+
+			return $page_content;
+	}
+
+	/**
 	* Widget Plain Text
 	*
+	* @param object Post Object of page to generate export data for
 	* Get widget data for a specific page in plain english
 	*/
 
-	function page_widget_plain_data( $post = NULL ){
-		if( NULL == $post ) {
-			global $post;
-		}
+	function page_widget_data( $post_or_widget_json = NULL ){
 
-		// Get sidebar and widget data for this page
-		$sidebars_widgets = $this->page_sidebars_widgets( $post );
+		if( is_object( $post_or_widget_json ) ) {
+			// Get sidebar and widget data for this page
+			$sidebars_widgets = $this->page_sidebars_widgets( $post_or_widget_json );
+		} else {
+			$sidebars_widgets = json_decode( $post_or_widget_json );
+		}
 
 		if( empty( $sidebars_widgets ) ) return;
 
 		$keys = array();
 
-		// Loop through options and look for images @TODO: Add categories to this, could be useful, also add dynamic sidebar widgets
 		foreach( $sidebars_widgets as $option => $data ){
+
 			foreach( $data as $widget_instance_id => $widget_info ) {
+
 				$id_base = preg_replace( '/-[0-9]+$/', '', $widget_instance_id );
 				$id_base = str_replace( ' - ', '', $id_base );
 				$widget_data = $this->get_widget_data( $id_base );
-				$keys[ $id_base ] = $widget_data;
-
+				$keys[ $widget_instance_id ] = $widget_data;
 			}
 		}
 
@@ -665,48 +692,85 @@ class Layers_Widget_Migrator {
 	*/
 
 	public function create_builder_page_from_preset(){
-		global $layers_widgets;
+		global $layers_widgets, $wpdb;
 
 		if( !check_ajax_referer( 'layers-migrator-preset-layouts', 'nonce', false ) ) die( 'You threw a Nonce exception' ); // Nonce
 
-		$check_builder_pages = layers_get_builder_pages();
+		$post = array();
 
 		if( isset( $_POST[ 'post_title' ] )  ){
-			$post_title = $_POST[ 'post_title' ];
+			$post[ 'post_title' ] = $_POST[ 'post_title' ];
 		} else {
-			$post_title = __( 'Home Page' , 'layerswp' );
+			$post[ 'post_title' ] = __( 'Home Page' , 'layerswp' );
 		}
 
-		// Generate builder page and return page ID
-		$import_data[ 'post_id' ] = layers_create_builder_page( $post_title );
-		$new_page = get_post( $import_data[ 'post_id' ] );
+		$last_post_id = $wpdb->get_var( "SELECT ID FROM $wpdb->posts ORDER BY ID DESC" );
 
-		// Register Builder Sidebar
-		$layers_widgets->register_builder_sidebar( $import_data[ 'post_id' ] );
+		$new_page_id = ( $last_post_id + 1 );
 
-		// Add Widget Data to the import array
+		/**
+		* Register sidebar
+		*/
+
+		$layers_widgets->register_builder_sidebar( $new_page_id );
+
+		/**
+		* Set Import Parameters
+		*/
+
+		$import_data[ 'post_id' ] = $new_page_id;
 		if( isset( $_POST[ 'widget_data' ] ) ) {
 			$import_data[ 'widget_data' ] = $_POST[ 'widget_data' ];
 		} else {
 			$import_data[ 'widget_data' ] = NULL;
 		}
 
-		// Run data import
-		$import_progress = $this->import( $import_data );
+		/**
+		* Maybe set home page
+		*/
 
+		$check_builder_pages = layers_get_builder_pages();
 		if( count( $check_builder_pages ) == 0 ){
 			update_option( 'page_on_front', $import_data[ 'post_id' ] );
 			update_option( 'show_on_front', 'page' );
 		}
 
-		$results = array(
-			'post_id' => $import_data[ 'post_id' ],
-			'post_title' => $new_page->post_title,
-			'data_report' => $import_progress,
-			'customizer_location' => admin_url() . 'customize.php?url=' . esc_url( get_the_permalink( $import_data[ 'post_id' ] ) )
+		/**
+		* Create Page
+		*/
+		$page_raw_widget_data = array(
+			'post_id' => $new_page_id,
+			'post_title' => esc_attr( $post[ 'post_title' ] ),
+			'widget_data' => $import_data[ 'widget_data' ]
 		);
 
-		do_action( 'layers_backup_sidebars_widgets' );
+		$export_data = $this->page_widget_data( json_encode( $import_data[ 'widget_data' ] ) );
+
+		$post[ 'post_type' ] = 'page';
+		$post[ 'post_status'] = 'publish';
+		$post[ 'post_content' ] = trim( $this->page_widgets_as_content( $export_data ) );
+		$post[ 'post_content_filtered' ] = serialize( $page_raw_widget_data );
+
+		$pageid = wp_insert_post ($post);
+
+		update_post_meta( $pageid , '_wp_page_template', LAYERS_BUILDER_TEMPLATE );
+
+		/*
+		* Run Import
+		*/
+
+		$import_progress = $this->import( $import_data, TRUE );
+
+		/*
+		* Send results home
+		*/
+
+		$results = array(
+			'post_id' => $new_page_id,
+			'post_title' => esc_attr( $post[ 'post_title' ] ),
+			'data_report' => $import_progress,
+			'customizer_location' => admin_url() . 'customize.php?url=' . esc_url( get_the_permalink( $new_page_id ) )
+		);
 
 		die( json_encode( $results ) );
 	}
@@ -751,7 +815,7 @@ class Layers_Widget_Migrator {
 	*  Import
 	*/
 
-	public function import( $import_data = NULL, $clear_page = NULL ) {
+	public function import( $import_data = NULL, $is_preset = FALSE, $clear_page = FALSE ) {
 
 		if( NULL == $import_data ) return;
 
@@ -775,7 +839,7 @@ class Layers_Widget_Migrator {
 
 			$layers_sidebar_key = 'obox-layers-builder-';
 
-			if( NULL !== $clear_page && isset( $import_data[ 'post_id' ] ) ) $this->clear_page_sidebars_widget( $layers_sidebar_key . $import_data[ 'post_id' ] );
+			if( FALSE !== $clear_page && isset( $import_data[ 'post_id' ] ) ) $this->clear_page_sidebars_widget( $layers_sidebar_key . $import_data[ 'post_id' ] );
 
 			// If this is a builder page, set the ID to the current page we are importing INTO
 			if( FALSE !== strpos( $sidebar_id , $layers_sidebar_key ) ) $sidebar_id = $layers_sidebar_key . $import_data[ 'post_id' ];
@@ -927,9 +991,8 @@ class Layers_Widget_Migrator {
 			}
 		}
 
-		if( !isset( $import_data[ 'post_hash' ] ) ){
+		if( FALSE == $is_preset )
 			do_action( 'layers_backup_sidebars_widgets' );
-		}
 
 		return $results;
 	}

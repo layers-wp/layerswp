@@ -49,6 +49,9 @@ class Layers_Widgets {
 		add_action( 'admin_enqueue_scripts', array( $this, 'admin_print_styles' ) , 50 );
 		add_action( 'customize_controls_print_styles' , array( $this, 'admin_print_styles' ) );
 
+		//Backup widgets pre-theme switch
+		add_action( 'pre_set_theme_mod_sidebars_widgets', 'layers_backup_sidebars_widgets' );
+
 		// Add a widget backup function
 		add_action( 'customize_save_after', 'layers_backup_sidebars_widgets' , 50 );
 		add_action( 'delete_post', 'layers_backup_sidebars_widgets', 10 );
@@ -198,16 +201,20 @@ class Layers_Widgets {
 		$layers_migrator = new Layers_Widget_Migrator();
 
 		$widget_data = $revision->post_content_filtered;
-		
+
+		if( is_wp_error( unserialize( $widget_data ) ) ) {
+			print_r( unserialize( $widget_data ) );
+		}
+
 		// Check for errors.
 		if ( '' == $widget_data || is_wp_error( unserialize( $widget_data ) ) ) return;
-		
+
 		$widget_data_array = unserialize( $widget_data );
-		
+
 		// Check if our data is empty.
 		if ( empty( $widget_data_array ) ) return;
-		
-		$layers_migrator->import( unserialize( $widget_data ), true );
+
+		$import = $layers_migrator->import( unserialize( $widget_data ), FALSE, TRUE );
 	}
 
 	/**
@@ -239,7 +246,7 @@ class Layers_Widgets {
 		wp_localize_script( LAYERS_THEME_SLUG . '-admin-content-widget' , 'contentwidgeti18n', array(
 			'confirm_message' => __( 'Are you sure you want to remove this column?' , 'layerswp' )
 		) );
-		
+
 		// Repeatable Widget
 		wp_register_script(
 			LAYERS_THEME_SLUG . '-admin-repeater-widget' ,
@@ -328,8 +335,10 @@ function layers_backup_sidebars_widgets(){
 
 	// Loop through the builder pages spooling up the widget data each time
 	foreach( $get_layers_pages as $page ){
+
 		$raw_export_data = $migrator->export_data( $page );
-		$export_data = $migrator->page_widget_plain_data( $page );
+
+		$export_data = $migrator->page_widget_data( $page );
 
 		if( !empty( $export_data ) ){
 
@@ -349,24 +358,14 @@ function layers_backup_sidebars_widgets(){
 				'widget_data' => $raw_export_data
 			);
 
-			// Set the page content as readable widget data
-$page_content = '
-'. $page->post_title . ':';
-			foreach( $export_data as $data ){
-$page_content .= '
-* ' . $data->name;
-			}
-
 			// Generate the post content
 			$post = (array) $page;
-			$post[ 'post_content' ] = trim( $page_content );
+			$post[ 'post_content' ] = $migrator->page_widgets_as_content( $export_data );
 			$post[ 'post_content_filtered' ] = serialize( $page_raw_widget_data );
 
 			// Update the backup post
 			$post_id = wp_insert_post( $post );
 		}
 	}
-
-	return $post_id;
 }
 add_action( 'layers_backup_sidebars_widgets', 'layers_backup_sidebars_widgets' );

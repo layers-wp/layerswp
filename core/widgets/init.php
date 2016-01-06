@@ -57,6 +57,7 @@ class Layers_Widgets {
 		add_action( 'delete_post', 'layers_backup_sidebars_widgets', 10 );
 		add_action( 'delete_post', array( $this, 'clear_page_widgets' ) );
 		add_action( 'wp_restore_post_revision' , array( $this, 'restore_backup' ), 10, 2 );
+		add_action( 'init', array( $this, 'check_for_revisions' ) );
 
 		if( isset( $_REQUEST['action'] ) && ( 'restore' == $_REQUEST['action'] || 'customize_save' == $_REQUEST['action'] ) ){
 			add_filter( '_wp_post_revision_fields', array( $this, 'add_revision_fields' ) );
@@ -217,6 +218,28 @@ class Layers_Widgets {
 		$import = $layers_migrator->import( unserialize( $widget_data ), FALSE, TRUE );
 	}
 
+	public function check_for_revisions(){
+
+		if( get_option( 'layers_init_revisions' ) ) return;
+
+		// Get a list of the migrator
+		$get_layers_pages = layers_get_builder_pages( 500 );
+
+		$revisions_exist = FALSE;
+
+		// Loop through the builder pages spooling up the widget data each time
+		foreach( $get_layers_pages as $page ){
+			if( NULL !== wp_get_post_revision( $page ) ){
+				$revisions_exist = TRUE;
+			}
+		}
+
+		if( ! $revisions_exist ) {
+			layers_backup_sidebars_widgets( TRUE );
+			add_option( 'layers_init_revisions', TRUE );
+		}
+	}
+
 	/**
 	*  Enqueue Widget Scripts
 	*/
@@ -323,7 +346,7 @@ function layers_widgets_init(){
 }
 add_action( 'widgets_init' , 'layers_widgets_init' , 20 );
 
-function layers_backup_sidebars_widgets(){
+function layers_backup_sidebars_widgets( $no_revisions = FALSE ){
 
 	global $sidebars_widgets;
 
@@ -364,7 +387,15 @@ function layers_backup_sidebars_widgets(){
 			$post[ 'post_content_filtered' ] = serialize( $page_raw_widget_data );
 
 			// Update the backup post
-			$post_id = wp_insert_post( $post );
+
+			if( TRUE == $no_revisions )
+				remove_action('pre_post_update', 'wp_save_post_revision');// stop revisions
+
+			$post_id = wp_update_post( $post );
+
+			if( TRUE == $no_revisions )
+				add_action('pre_post_update', 'wp_save_post_revision');// restart revisions
+
 		}
 	}
 }

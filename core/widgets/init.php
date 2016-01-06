@@ -194,7 +194,7 @@ class Layers_Widgets {
 
 		$post = get_post( $post_id, OBJECT );
 
-		if( 'layers-backup' !== $post->post_type && ( 'page' == $post->post_type && LAYERS_BUILDER_TEMPLATE !== basename( get_page_template( $post_id ) ) ) ) return;
+		if( 'page' == $post->post_type && LAYERS_BUILDER_TEMPLATE !== get_post_meta( $post_id, '_wp_page_template', true ) ) return;
 
 		// Get the revision information
 		$revision = get_post( $revision_id, OBJECT );
@@ -203,9 +203,7 @@ class Layers_Widgets {
 
 		$widget_data = $revision->post_content_filtered;
 
-		if( is_wp_error( unserialize( $widget_data ) ) ) {
-			print_r( unserialize( $widget_data ) );
-		}
+		if( is_wp_error( unserialize( $widget_data ) ) ) return;
 
 		// Check for errors.
 		if ( '' == $widget_data || is_wp_error( unserialize( $widget_data ) ) ) return;
@@ -229,7 +227,9 @@ class Layers_Widgets {
 
 		// Loop through the builder pages spooling up the widget data each time
 		foreach( $get_layers_pages as $page ){
-			if( NULL !== wp_get_post_revision( $page ) ){
+			$revisions = wp_get_post_revisions( $page );
+
+			if( !empty( $revisions )  ){
 				$revisions_exist = TRUE;
 			}
 		}

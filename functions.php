@@ -180,6 +180,7 @@ if( ! function_exists( 'layers_setup' ) ) {
 
 			update_option( 'layers_welcome' , 1);
 
+			// @TODO: Remove this comment out
 			// /wp_safe_redirect( admin_url('admin.php?page=' . LAYERS_THEME_SLUG . '-get-started'));
 		}
 
@@ -190,50 +191,41 @@ add_action( 'after_setup_theme' , 'layers_setup', 100 );
 /**
  * Port Widgets between Layers Parent theme and Child themes
  */
-function layers_preserve_widgets( $theme ){
-	global $sidebars_widgets;
+function layers_backup_site( $value ){
+	$theme = wp_get_theme();
 
-	$new_theme = wp_get_theme( $_GET[ 'stylesheet' ] );
-	$old_theme = wp_get_theme( get_option( 'theme_switched' ) );
-	$old_theme_mods = get_option( 'theme_mods_' . $old_theme->stylesheet );
+	$widget_data = $value[ 'data' ];
+	if( isset( $widget_data[ 'wp_inactive_widgets' ] ) ) unset( $widget_data[ 'wp_inactive_widgets' ] );
 
-	if( isset( $sidebars_widgets[ 'wp_inactive_widgets' ] ) ) unset( $sidebars_widgets[ 'wp_inactive_widgets' ] );
-	if( isset( $old_theme_mods[ 'sidebars_widgets' ] ) ) unset( $old_theme_mods[ 'sidebars_widgets' ] );
+	update_option( 'layers_tm_backup', get_theme_mods() );
+	update_option( 'layers_wgt_backup', $widget_data );
 
-	if( 'layerswp' == $old_theme->template ){
-		// Backup Sidebars Widgets
-		if( isset( $sidebars_widgets[ 'wp_inactive_widgets' ] ) ) unset( $sidebars_widgets[ 'wp_inactive_widgets' ] );
-		update_option( 'layerswp_sidebars_widgets_bkp' , $sidebars_widgets );
-
-		// Backup Theme Mods
-		update_option( 'layerswp_theme_mod_bkp' , $old_theme_mods );
-	}
-
-	// If we are using a Layers theme, then let's make sure widgets are kept between our theme switch
-	if( 'layerswp' != $old_theme->template && 'layerswp' == $new_theme->template ){
-
-		if( '' != get_option( 'layerswp_theme_mod_bkp' ) ) {
-			update_option( 'theme_mods_' . $new_theme->stylesheet , get_option( 'layerswp_theme_mod_bkp' ) );
-		}
-
-		if( '' != get_option( 'layerswp_sidebars_widgets_bkp' ) ) {
-			update_option( 'sidebars_widgets' , get_option( 'layerswp_sidebars_widgets_bkp' ) );
-		}
-		die( "CHANGING FROM NON LAYERS TO LAYERS" );
-	} elseif( 'layerswp' == $new_theme->template ){
-		update_option( 'sidebars_widgets', $sidebars_widgets );
-		update_option( 'theme_mods_' . $new_theme->stylesheet , $old_theme_mods );
-	}
-
-
-	// Remove the post revision check, so that we can restore right away after switching back
-	/*
-	add_filter( 'wp_save_post_revision_check_for_changes', '__return_false' );
-	do_action( 'layers_backup_sidebars_widgets' );
-	*/
+	layers_backup_sidebars_widgets();
 }
+add_action( 'pre_set_theme_mod_sidebars_widgets' , 'layers_backup_site' );
 
-add_action( 'switch_theme' , 'layers_preserve_widgets' );
+function layers_resore_site(){
+	global $layers_widgets;
+
+	$theme = wp_get_theme();
+	$layers_tm_backup = get_option( 'layers_tm_backup' );
+	$layers_wgt_backup = get_option( 'layers_wgt_backup' );
+
+	if( $layers_tm_backup ) {
+		update_option( 'theme_mods_' . $theme->stylesheet, $layers_tm_backup );
+		delete_option ( 'layers_tm_backup' );
+	}
+
+	if( $layers_wgt_backup ) {
+		update_option( 'sidebars_widgets', $layers_wgt_backup );
+		delete_option ( 'layers_wgt_backup' );
+	}
+
+//die( ':)' );
+
+}
+add_action( 'after_setup_theme' , 'layers_resore_site', 50 );
+
 
 /**
 *  Enqueue front end styles and scripts
@@ -431,14 +423,14 @@ if( ! function_exists( 'layers_admin_scripts' ) ) {
 			array(),
 			LAYERS_VERSION
 		); // Tip-Tip CSS
-		
+
 		wp_enqueue_style(
 			LAYERS_THEME_SLUG . '-admin-font-awesome',
 			get_template_directory_uri() . '/core/assets/font-awesome.min.css',
 			array(),
 			LAYERS_VERSION
 		); // Inline Editor
-		
+
 		wp_enqueue_style(
 			LAYERS_THEME_SLUG . '-admin',
 			get_template_directory_uri() . '/core/assets/admin.css',
@@ -452,7 +444,7 @@ if( ! function_exists( 'layers_admin_scripts' ) ) {
 			array(),
 			LAYERS_VERSION
 		); // Inline Editor
-		
+
 		wp_enqueue_script(
 			LAYERS_THEME_SLUG . '-tip-tip' ,
 			get_template_directory_uri() . '/core/assets/jquery.tipTip.minified.js',

@@ -385,11 +385,13 @@ class Layers_Widget_Migrator {
 
 		// Loop through raw export data and populate the content
 		foreach( $export_data as $data ){
+			if( isset( $data->name ) ) {
 $page_content .= '* ' . $data->name. '
 ';
 			}
+		}
 
-			return $page_content;
+		return $page_content;
 	}
 
 	/**

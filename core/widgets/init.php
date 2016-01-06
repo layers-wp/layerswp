@@ -366,11 +366,11 @@ function layers_backup_sidebars_widgets( $no_revisions = FALSE ){
 		if( !empty( $export_data ) ){
 
 			// Create a hash key so that we can know if this page is unique or not
-			if( '' == get_post_meta( $page->ID, 'layers_hash', true ) ){
+			if( '' == get_post_meta( $page->ID, '_layers_hash', true ) ){
 				$page_hash_key = 'layers_page_' . md5( $page->post_name . '-' . $page->ID );
-				update_post_meta( $page->ID, 'layers_hash', $page_hash_key, false );
+				update_post_meta( $page->ID, '_layers_hash', $page_hash_key, false );
 			} else {
-				$page_hash_key = get_post_meta( $page->ID, 'layers_hash', true );
+				$page_hash_key = get_post_meta( $page->ID, '_layers_hash', true );
 			}
 
 			// Save the raw widget data

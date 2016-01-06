@@ -853,7 +853,7 @@ $page_content .= '* ' . $data->name. '
 				$sidebar_message = '';
 			} elseif( isset( $import_data[ 'post_hash' ] ) ) {
 				$args = array(
-					'meta_key' => 'layers_hash',
+					'meta_key' => '_layers_hash',
 					'meta_value' => $import_data[ 'post_hash' ],
 					'post_type' => 'page',
 					'post_status' => 'publish,draft',
@@ -866,7 +866,7 @@ $page_content .= '* ' . $data->name. '
 					$new_post_id = $check_for_post[0]->ID;
 				} else {
 					$new_post_id = layers_create_builder_page( $import_data[ 'post_title' ] );
-					update_post_meta( $new_post_id, 'layers_hash', $import_data[ 'post_hash' ], false );
+					update_post_meta( $new_post_id, '_layers_hash', $import_data[ 'post_hash' ], false );
 				}
 
 				if( $new_post_id ) {

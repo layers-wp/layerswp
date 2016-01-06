@@ -224,7 +224,7 @@ function layers_resore_site(){
 //die( ':)' );
 
 }
-add_action( 'after_setup_theme' , 'layers_resore_site', 50 );
+add_action( 'after_switch_theme' , 'layers_resore_site', 50 );
 
 
 /**

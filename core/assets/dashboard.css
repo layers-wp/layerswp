@@ -9,66 +9,6 @@
 
 @import url(icons.css);
 
-@media only screen and (max-width: 480px){
-
-/*-------------------------------*/
-/*- COLUMNS ---------------------*/
-
-	/*---------------------------*/
-	/*- SPAN - 1 ----------------*/
-	.l_admin-column.l_admin-span-1{
-		float: left;
-		width: 15%;
-		margin-right: 2%;
-	}
-	.l_admin-column.l_admin-span-1:nth-child(6n+6){
-		margin-right: 0;
-	}
-
-	/*---------------------------*/
-	/*- SPAN - 2 ----------------*/
-	.l_admin-column.l_admin-span-2{
-		float: left;
-		width: 48%;
-		margin-right: 4%;
-	}
-	.l_admin-column.l_admin-span-2:nth-child(2n){
-		margin-right: 0;
-	}
-
-	/*---------------------------*/
-	/*- CLEARING SPANS ----------*/
-	.l_admin-column.span-1:nth-child(6n+7),
-	.l_admin-column.span-2:nth-child(2n+3){
-		clear: left;
-	}
-
-}
-@media only screen and (min-width: 481px){
-
-}
-@media only screen and (min-width: 481px) and (max-width: 640px){
-
-}
-@media only screen and (min-width: 481px) and (max-width: 768px){
-
-}
-@media only screen and (min-width: 601px) and (max-width: 782px){
-
-}
-@media only screen and (max-width: 768px){
-
-}
-@media only screen and (min-width: 601px) and (max-width: 860px){
-
-}
-@media only screen and (min-width: 769px) {
-
-}
-@media only screen and (min-width: 1100px){
-
-}
-
 /*---------------------------*/
 /*- THE GRID ----------------*/
 
@@ -108,72 +48,9 @@
 		margin-bottom: 0;
 	}
 
-	.l_admin-span-1{width: 6.5%;}
-	.l_admin-span-2{width: 15%;}
-	.l_admin-span-3{width: 23.5%;}
-	.l_admin-span-4{width: 32%;}
-	.l_admin-span-5{width: 40.5%;}
-	.l_admin-span-6{width: 49%;}
-	.l_admin-span-7{width: 57.5%;}
-	.l_admin-span-8{width: 66%;}
-	.l_admin-span-9{width: 74.5%;}
-	.l_admin-span-10{width: 83%;}
-	.l_admin-span-11{width: 91.5%;}
-	.l_admin-span-12{width: 100%;}
-
-	.l_admin-row .l_admin-column.l_admin-span-1:nth-child(12n+12){margin-right: 0;}
-	.l_admin-row .l_admin-column.l_admin-span-2:nth-child(6n+6){margin-right: 0;}
-
-	.l_admin-row .l_admin-column.l_admin-span-3:nth-child(4n+4){margin-right: 0;}
-	.l_admin-row .l_admin-column.l_admin-span-3:nth-child(4n+5){clear: left;}
-
-	.l_admin-row .l_admin-column.l_admin-span-4:nth-child(3n+3){margin-right: 0;}
-	.l_admin-row .l_admin-column.l_admin-span-4:nth-child(3n+4){clear: left;}
-
-	.l_admin-row .l_admin-column.l_admin-span-6 + .l_admin-span-6{margin-right: 0;}
-	.l_admin-row .l_admin-column.l_admin-span-6:nth-child(2n+3){clear: left;}
-
-	.l_admin-middled{
-		margin-left: auto;
-		margin-right: auto;
-	}
 	.l_admin-no-gutter{
 		margin-right: 0;
 	}
-
-	/*-----------------------*/
-	/*- BROAD BASED COLUMNS -*/
-	div[class*='layers-columns-'] div[class*='layers-span'],
-	div[class*='layers-columns-'] .l_admin-sortable-drop{
-		float: left;
-		padding: 10px;
-		margin: 0;
-		text-align: center;
-		-webkit-box-sizing: border-box;
-		-moz-box-sizing: border-box;
-		box-sizing: border-box;
-		transition: all 0.2s ease-in-out;
-		transform: scale(1);
-	}
-
-	div[class*='layers-columns-'] div[class*='layers-span'].ui-sortable-helper{
-		transition: none;
-	}
-	div[class*='layers-columns-'] div[class*='layers-span'].ui-sortable-helper:active{
-	}
-	.l_admin-columns-4 .l_admin-span, .l_admin-columns-4 .l_admin-sortable-drop{width: 25%;}
-	.l_admin-columns-3 .l_admin-span, .l_admin-columns-3 .l_admin-sortable-drop{width: 33%;}
-	.l_admin-columns-2 .l_admin-span, .l_admin-columns-2 .l_admin-sortable-drop{width: 50%;}
-	.l_admin-columns-1 .l_admin-span, .l_admin-columns-1 .l_admin-sortable-drop{width: 100%;}
-
-		.l_admin-columns-3 .l_admin-span-position-4{display: none;}
-
-		.l_admin-columns-2 .l_admin-span-position-3,
-		.l_admin-columns-2 .l_admin-span-position-4{display: none;}
-
-		.l_admin-columns-1 .l_admin-span-position-2,
-		.l_admin-columns-1 .l_admin-span-position-3,
-		.l_admin-columns-1 .l_admin-span-position-4{display: none;}
 
 	/*-----------------------*/
 	/*- COLUMN TWEAKERS -----*/
@@ -188,6 +65,190 @@
 	.l_admin-last{
 		margin-right: 0;
 	}
+
+@media only screen and (max-width: 480px){
+
+/*-------------------------------*/
+/*- COLUMNS ---------------------*/
+
+	.l_admin-column{
+		margin-right: 0;
+	}
+
+    /*---------------------------*/
+    /*- SPAN - 1 ----------------*/
+    .l_admin-column.l_admin-span-1{
+        float: left;
+        width: 15%;
+        margin-right: 2%;
+    }
+    .l_admin-column.l_admin-span-1:nth-child(6n+6){
+        margin-right: 0;
+    }
+
+    /*---------------------------*/
+    /*- SPAN - 2 ----------------*/
+    .l_admin-column.l_admin-span-2{
+        float: left;
+        width: 48%;
+        margin-right: 4%;
+    }
+    .l_admin-column.l_admin-span-2:nth-child(2n){
+        margin-right: 0;
+    }
+
+    /*---------------------------*/
+    /*- CLEARING SPANS ----------*/
+    .l_admin-column.l_admin-span-1:nth-child(6n+7),
+    .l_admin-column.l_admin-span-2:nth-child(2n+3){
+        clear: left;
+    }
+
+}
+@media only screen and (min-width: 481px){
+
+    /*---------------------------*/
+    /*- COLUMNS -----------------*/
+    .l_admin-column{
+        float: left;
+        margin-right: 2%;
+    }
+
+    /*---------------------------*/
+    /*- SPAN - 3 ----------------*/
+    .l_admin-column.l_admin-span-3:nth-child(4n+4){
+        margin-right: 0;
+    }
+
+    /*---------------------------*/
+    /*- SPAN - 4 ----------------*/
+    .l_admin-column.l_admin-span-4{
+        float: left;
+        width: 32%;
+        margin-right: 2%;
+    }
+    .l_admin-column.l_admin-span-4:last-child,
+    .l_admin-column.l_admin-span-4:nth-child(3n+3){
+        margin-right: 0;
+    }
+
+    /*---------------------------*/
+    /*- SPAN - 6 ----------------*/
+    .l_admin-column.l_admin-span-6{
+        width: 49%;
+        margin-right: 2%;
+    }
+    .l_admin-column.l_admin-span-6:nth-child(2n+2){
+        margin-right: 0;
+    }
+
+}
+
+@media only screen and (min-width: 481px) and (max-width: 768px){
+
+    /*---------------------------*/
+    /*- SPAN - 2 ----------------*/
+    .l_admin-column.l_admin-span-2{
+        float: left;
+        width: 32%;
+        margin-right: 2%;
+    }
+    .l_admin-column.l_admin-span-2:nth-child(3n+3){
+        margin-right: 0;
+    }
+
+    /*---------------------------*/
+    /*- SPAN - 3 ----------------*/
+    .l_admin-column.l_admin-span-3{
+        float: left;
+        width: 49%;
+        margin-right: 2%;
+    }
+    .l_admin-column.l_admin-span-3:nth-child(2n+2){
+        margin-right: 0;
+    }
+
+
+    /*---------------------------*/
+    /*- LARGE COLUMNS -----------*/
+    .l_admin-column.l_admin-span-7,
+    .l_admin-column.l_admin-span-8,
+    .l_admin-column.l_admin-span-9,
+    .l_admin-column.l_admin-span-10,
+    .l_admin-column.l_admin-span-11,
+    .l_admin-column.l_admin-span-12{
+        float: none;
+        clear: both;
+        margin-right: 0;
+    }
+    /*---------------------------*/
+    /*- CLEARING SPANS ----------*/
+    .l_admin-column.l_admin-span-2:nth-child(3n+4),
+    .l_admin-column.l_admin-span-3:nth-child(2n+3){
+        clear: left;
+    }
+
+}
+@media only screen and (min-width: 601px) and (max-width: 782px){
+
+}
+@media only screen and (max-width: 768px){
+
+}
+@media only screen and (min-width: 601px) and (max-width: 860px){
+
+}
+@media only screen and (min-width: 769px) {
+
+    /*---------------------------*/
+    /*- COLUMN WIDTHS -----------*/
+    .l_admin-span-1{width: 6.5%;}
+    .l_admin-span-2{width: 15%;}
+    .l_admin-span-3{width: 23.5%;}
+    .l_admin-span-4{width: 33.33333%;}
+    .l_admin-span-5{width: 40.5%;}
+    .l_admin-span-7{width: 57.5%;}
+    .l_admin-span-8{width: 66%;}
+    .l_admin-span-9{width: 74.5%;}
+    .l_admin-span-10{width: 83%;}
+    .l_admin-span-11{width: 91.5%;}
+    .l_admin-span-12{
+        clear: both;
+        float: none;
+    }
+
+
+    /*---------------------------*/
+    /*- MARGIN RESET ------------*/
+    .row .l_admin-span-1:nth-child(12n+12),
+    .row .l_admin-span-2:nth-child(6n+6),
+    .row .l_admin-span-4:nth-child(3n+3),
+    .row .l_admin-span-6:nth-child(2n+2){
+        margin-right: 0;
+    }
+
+    /*---------------------------*/
+    /*- CLEAR RESET -------------*/
+    .row .l_admin-span-2:nth-child(6n+7),
+    .row .l_admin-span-3:nth-child(4n+5),
+    .row .l_admin-span-4:nth-child(3n+4),
+    .row .l_admin-span-6:nth-child(2n+3){
+        clear: left;
+    }
+
+    /*---------------------------*/
+    /*- EXCEPTIONS --------------*/
+    .l_admin-column.l_admin-span-3 + .l_admin-column.l_admin-span-6 + .l_admin-column.l_admin-span-3{
+        margin-left: 2%;
+    }
+    .l_admin-column.l_admin-span-9 + .l_admin-column.l_admin-span-3{
+        margin-right: 0;
+    }
+    .l_admin-column.l_admin-span-12{
+        margin-right: 0;
+    }
+
+}
 
 /*---------------------------*/
 /*- ELEMENT CONTROLLERS -----*/

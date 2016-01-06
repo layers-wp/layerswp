@@ -389,19 +389,35 @@ if( ! function_exists( 'layers_admin_scripts' ) ) {
 			LAYERS_VERSION
 		); // Inline Editor
 		
-		wp_enqueue_style(
-			LAYERS_THEME_SLUG . '-admin',
-			get_template_directory_uri() . '/core/assets/admin.css',
-			array(),
-			LAYERS_VERSION
-		); // Admin CSS
 		
-		wp_enqueue_style(
-			LAYERS_THEME_SLUG . '-dashboard',
-			get_template_directory_uri() . '/core/assets/dashboard.css',
-			array(),
-			LAYERS_VERSION
-		);
+		// Main Admin CSS's
+		
+		if ( isset( $wp_customize ) ) {
+			
+			/**
+			 * Customizer (only)
+			 */
+			
+			wp_enqueue_style(
+				LAYERS_THEME_SLUG . '-admin',
+				get_template_directory_uri() . '/core/assets/admin.css',
+				array(),
+				LAYERS_VERSION
+			); // Admin CSS
+		}
+		else {
+			
+			/**
+			 * Admin Dashboard (only)
+			 */
+			
+			wp_enqueue_style(
+				LAYERS_THEME_SLUG . '-dashboard',
+				get_template_directory_uri() . '/core/assets/dashboard.css',
+				array(),
+				LAYERS_VERSION
+			);
+		}
 
 		wp_enqueue_style(
 			LAYERS_THEME_SLUG . '-admin-editor',

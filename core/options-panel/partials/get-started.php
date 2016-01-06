@@ -17,9 +17,98 @@ $layers_migrator = new Layers_Widget_Migrator(); ?>
 		</div>
 
 		<div class="layers-onboard-slider">
+		
+			<!-- Give your site a Name -->
+			<div class="layers-onboard-slide layers-animate layers-onboard-slide-current">
+				<div class="layers-column layers-span-8 postbox">
+					
+					<div class="layers-content-large ">
+						
+						
+						<!-- Your content goes here -->
+						<div class="layers-section-title">
+							<h3 class="layers-heading">
+								<?php _e( 'What is the name of your website?' , 'layerswp' ); ?>
+							</h3>
+							<p class="layers-excerpt">
+								<?php _e( 'Enter your website name below. We&apos;ll use this in your site title and in search results.' , 'layerswp' ); ?>
+							</p>
+						</div>
+						<p class="layers-form-item">
+							<label><?php _e( 'Site Name' , 'layerswp' ); ?></label>
+							<?php
+							echo $form_elements->input( array(
+								'type' => 'text',
+								'name' => 'blogname',
+								'id' => 'blogname',
+								'placeholder' => get_bloginfo( 'name' ),
+								'value' => get_bloginfo( 'name' ),
+								'class' => 'layers-text layers-large',
+							) );
+							?>
+						</p>
+						
+						
+						<br>
+						<br>
+						
+						
+						<!-- Your content goes here -->
+						<div class="layers-section-title">
+							<h3 class="layers-heading">
+								<?php _e( 'Choose a primary color?' , 'layerswp' ); ?>
+							</h3>
+							<p class="layers-excerpt">
+								<?php _e( 'We\'ll use this color in select places around your website.' , 'layerswp' ); ?>
+							</p>
+						</div>
+						<p class="layers-form-item">
+							<label><?php _e( 'Site Name' , 'layerswp' ); ?></label>
+							<?php
+								echo $form_elements->input( array(
+									'type' => 'color',
+									'name' => 'site_color',
+									'id' => 'site_color',
+									'value' => '#009eec',
+								) );
+							?>
+						</p>
+						
+						
+						<?php echo $form_elements->input( array(
+							'type' => 'hidden',
+							'name' => 'action',
+							'id' => 'action',
+							'value' => 'layers_onboarding_update_options'
+						) ); ?>
+						
+						
+					</div>
+					
+					<div class="layers-button-well">
+						<span class="layers-save-progress layers-hide layers-button btn-link" data-busy-message="<?php _e( 'Saving your Site Name' , 'layerswp' ); ?>"></span>
+						<a class="layers-button btn-primary layers-pull-right onbard-next-step" href="">
+							<?php _e( 'Next Step &rarr;' , 'layerswp' ); ?>
+						</a>
+					</div>
+				</div>
+				<div class="layers-column layers-span-4 no-gutter">
+					<div class="layers-content">
+						<!-- Your helpful tips go here -->
+						<ul class="layers-help-list">
+							<li>
+								<?php _e( sprintf( 'For tips on how best to name your website, we suggest reading <a href="%s" rel="nofollow">this post</a>', '//docs.layerswp.com' ) , 'layerswp' ); ?>
+							</li>
+							<li class="pro-tip">
+								<?php _e( 'For the Pros: Layers will automatically assign this site name to Settings &rarr; General' , 'layerswp' ); ?>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
 
 			<!-- Welcome -->
-			<div class="layers-onboard-slide layers-animate layers-onboard-slide-current">
+			<div class="layers-onboard-slide layers-animate">
 				<div class="layers-column layers-span-8 postbox">
 					<div class="layers-content-large">
 						<!-- Your content goes here -->
@@ -57,7 +146,7 @@ $layers_migrator = new Layers_Widget_Migrator(); ?>
 					</div>
 				</div>
 			</div>
-
+			
 			<?php if( !defined( 'LAYERS_DISABLE_INTERCOM' ) ){ ?>
 				<!-- Enable / Disable Intercom -->
 				<div class="layers-onboard-slide layers-animate layers-onboard-slide-inactive">
@@ -149,61 +238,6 @@ $layers_migrator = new Layers_Widget_Migrator(); ?>
 				</div>
 				<div class="layers-column layers-span-6 no-gutter layers-demo-video">
 					<?php layers_show_html5_video( '//cdn.oboxsites.com/layers/videos/adding-a-widget.mp4', 490 ); ?>
-				</div>
-			</div>
-
-			<!-- Give your site a Name -->
-			<div class="layers-onboard-slide layers-animate layers-onboard-slide-inactive">
-				<div class="layers-column layers-span-8 postbox">
-					<div class="layers-content-large ">
-						<!-- Your content goes here -->
-						<div class="layers-section-title">
-							<h3 class="layers-heading">
-								<?php _e( 'What is the name of your website?' , 'layerswp' ); ?>
-							</h3>
-							<p class="layers-excerpt">
-								<?php _e( 'Enter your website name below. We&apos;ll use this in your site title and in search results.' , 'layerswp' ); ?>
-							</p>
-						</div>
-						<p class="layers-form-item">
-							<label><?php _e( 'Site Name' , 'layerswp' ); ?></label>
-							<?php
-							   echo $form_elements->input( array(
-									'type' => 'text',
-									'name' => 'blogname',
-									'id' => 'blogname',
-									'placeholder' => get_bloginfo( 'name' ),
-									'value' => get_bloginfo( 'name' ),
-									'class' => 'layers-text layers-large'
-							   ) );
-							?>
-						</p>
-						<?php echo $form_elements->input( array(
-							'type' => 'hidden',
-							'name' => 'action',
-							'id' => 'action',
-							'value' => 'layers_onboarding_update_options'
-						) ); ?>
-					</div>
-					<div class="layers-button-well">
-						<span class="layers-save-progress layers-hide layers-button btn-link" data-busy-message="<?php _e( 'Saving your Site Name' , 'layerswp' ); ?>"></span>
-						<a class="layers-button btn-primary layers-pull-right onbard-next-step" href="">
-							<?php _e( 'Next Step &rarr;' , 'layerswp' ); ?>
-						</a>
-					</div>
-				</div>
-				<div class="layers-column layers-span-4 no-gutter">
-					<div class="layers-content">
-						<!-- Your helpful tips go here -->
-						<ul class="layers-help-list">
-							<li>
-								<?php _e( sprintf( 'For tips on how best to name your website, we suggest reading <a href="%s" rel="nofollow">this post</a>', '//docs.layerswp.com' ) , 'layerswp' ); ?>
-							</li>
-							<li class="pro-tip">
-								<?php _e( 'For the Pros: Layers will automatically assign this site name to Settings &rarr; General' , 'layerswp' ); ?>
-							</li>
-						</ul>
-					</div>
 				</div>
 			</div>
 

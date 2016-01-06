@@ -237,11 +237,31 @@ if( !class_exists( 'Layers_Onboarding_Ajax' ) ) {
 						}
 
 						break;
+					
+					case 'site_color' :
+						
+						$header_color = $clean_option_value;
+						$accent_color = layers_adjust_brightness( $clean_option_value, -50, TRUE );
+						$footer_color = '#2b2b2b';
+						
+						set_theme_mod( 'layers-header-background-color', $header_color );
+						set_theme_mod( 'layers-site-accent-color', $accent_color );
+						set_theme_mod( 'layers-footer-background-color', $footer_color );
+						
+						die( json_encode( array(
+							'success' => true,
+							'message' => __( 'Option updated' , 'layerswp' ),
+						) ) );
+						
+						break;
+						
 					default :
+						
 						update_option( $option_key, $clean_option_value );
 
 						die( json_encode( array( 'success' => true, 'message' => __( 'Option updated' , 'layerswp' ) ) ) );
-					break;
+						
+						break;
 
 				}
 			}

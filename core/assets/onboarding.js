@@ -20,16 +20,16 @@ jQuery(function($) {
 
 	function layers_onboarding_load_anchors(){
 
-		$anchor_count = $( '.layers-onboard-slide' ).length;
+		$anchor_count = $( '.l_admin-onboard-slide' ).length;
 
 		if( 1 == $anchor_count ) return;
 
 		for( $i = 0; $i < $anchor_count; $i++ ){
 
-			$title = $( '.layers-onboard-slide' ).eq( $i ).find( '.layers-section-title h3' ).text();
+			$title = $( '.l_admin-onboard-slide' ).eq( $i ).find( '.l_admin-section-title h3' ).text();
 
 			$anchor_template = $( '<a href="" />' );
-			$anchor_template.addClass( 'layers-dot layers-tooltip' );
+			$anchor_template.addClass( 'l_admin-dot layers-tooltip' );
 			if( 0 == $i ){
 				$anchor_template.addClass( 'dot-active' );
 			}
@@ -44,7 +44,7 @@ jQuery(function($) {
 	layers_onboarding_load_anchors();
 
 	$(window).on( 'resize, load',function(){
-		$( '.layers-template-selector' ).css( 'max-height', $( '#wpbody-content' ).height() - 150 );
+		$( '.l_admin-template-selector' ).css( 'max-height', $( '#wpbody-content' ).height() - 150 );
 	});
 
 	$(document).on( 'click' , '.onbard-next-step' , function(e){
@@ -55,13 +55,13 @@ jQuery(function($) {
 
 		if( $that.hasClass( 'disable' ) ) return;
 
-		$form = $that.closest( '.layers-onboard-slide' );
+		$form = $that.closest( '.l_admin-onboard-slide' );
 
 		$action = $form.find( 'input[name="action"]' ).val();
 
 		if( 'layers_select_preset' == $action ) {
 
-			$progress_indicator = $form.find( '.layers-save-progress' );
+			$progress_indicator = $form.find( '.l_admin-save-progress' );
 			$progress_indicator_message = $progress_indicator.data( 'busy-message' );
 
 			$that.text( $progress_indicator_message ).attr( 'disabled' , 'disabled' ).addClass( 'disable' );
@@ -107,7 +107,7 @@ jQuery(function($) {
 			);
 
 		} else if( undefined !== $action ) {
-			$progress_indicator = $form.find( '.layers-save-progress' );
+			$progress_indicator = $form.find( '.l_admin-save-progress' );
 			$progress_indicator_message = $progress_indicator.data( 'busy-message' );
 			$progress_indicator.text( $progress_indicator_message ).hide().removeClass( 'layers-hide' ).fadeIn(150);
 
@@ -124,10 +124,10 @@ jQuery(function($) {
 				function(data){
 					$results = $.parseJSON( data );
 					if( true == $results.success ) {
-						$form.find( '.layers-save-progress' ).text( onboardingi18n.step_done_message );
+						$form.find( '.l_admin-save-progress' ).text( onboardingi18n.step_done_message );
 
 						setTimeout( function(){
-							$form.find( '.layers-save-progress' ).hide();
+							$form.find( '.l_admin-save-progress' ).hide();
 							layers_next_onboarding_slide()
 						}, 350 );
 					}
@@ -168,10 +168,10 @@ jQuery(function($) {
 
 		// Enable the button when preset seleted
 		if( $( 'input[name="layes-preset-layout"]:checked' ).length ){
-			$( '.layers-proceed-to-customizer' ).removeClass('disable');
+			$( '.l_admin-proceed-to-customizer' ).removeClass('disable');
 		}
 		else{
-			$( '.layers-proceed-to-customizer' ).addClass('disable');
+			$( '.l_admin-proceed-to-customizer' ).addClass('disable');
 		}
 	});
 
@@ -198,8 +198,8 @@ jQuery(function($) {
 		$( '#layers-onboard-anchors a').eq( $i ).addClass( 'dot-active' ).siblings().removeClass( 'dot-active' );
 
 		// Update slider classes
-		$( '.layers-onboard-slide' ).eq( $i ).addClass( 'layers-onboard-slide-current' ).removeClass( 'layers-onboard-slide-inactive' ).siblings().removeClass( 'layers-onboard-slide-current' ).addClass( 'layers-onboard-slide-inactive' );
+		$( '.l_admin-onboard-slide' ).eq( $i ).addClass( 'layers-onboard-slide-current' ).removeClass( 'layers-onboard-slide-inactive' ).siblings().removeClass( 'layers-onboard-slide-current' ).addClass( 'layers-onboard-slide-inactive' );
 
-		$( '.layers-onboard-slide' ).eq( $i ).find( 'input, select, textarea, .layers-image-upload-button' ).first().focus();
+		$( '.l_admin-onboard-slide' ).eq( $i ).find( 'input, select, textarea, .l_admin-image-upload-button' ).first().focus();
 	}
 });

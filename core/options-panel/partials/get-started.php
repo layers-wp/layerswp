@@ -7,27 +7,27 @@ $form_elements = new Layers_Form_Elements(); ?>
 <?php // Instantiate the widget migrator
 $layers_migrator = new Layers_Widget_Migrator(); ?>
 
-<section class="layers-area-wrapper">
+<section class="l_admin-area-wrapper">
 
-	<div class="layers-onboard-wrapper">
+	<div class="l_admin-onboard-wrapper">
 
-		<div class="layers-onboard-controllers">
-			<div class="onboard-nav-dots layers-pull-left" id="layers-onboard-anchors"></div>
-			<a class="layers-button btn-link layers-pull-right" href="" id="layers-onboard-skip"><?php _e( 'Skip' , 'layerswp' ); ?></a>
+		<div class="l_admin-onboard-controllers">
+			<div class="onboard-nav-dots l_admin-pull-left" id="layers-onboard-anchors"></div>
+			<a class="l_admin-button btn-link l_admin-pull-right" href="" id="layers-onboard-skip"><?php _e( 'Skip' , 'layerswp' ); ?></a>
 		</div>
 
-		<div class="layers-onboard-slider">
+		<div class="l_admin-onboard-slider">
 
 			<!-- Welcome -->
-			<div class="layers-onboard-slide layers-animate layers-onboard-slide-current">
-				<div class="layers-column layers-span-8 postbox">
-					<div class="layers-content-large">
+			<div class="l_admin-onboard-slide l_admin-animate l_admin-onboard-slide-current">
+				<div class="l_admin-column l_admin-span-8 postbox">
+					<div class="l_admin-content-large">
 						<!-- Your content goes here -->
-						<div class="layers-section-title layers-no-push-bottom">
-							<h3 class="layers-heading">
+						<div class="l_admin-section-title l_admin-no-push-bottom">
+							<h3 class="l_admin-heading">
 								<?php _e( 'Welcome to Layers!' , 'layerswp' ); ?>
 							</h3>
-							<div class="layers-excerpt">
+							<div class="l_admin-excerpt">
 								<p>
 									<?php _e( 'Layers is a revolutionary WordPress Site Builder that makes website building a dream come true!' , 'layerswp' ); ?>
 								</p>
@@ -41,14 +41,14 @@ $layers_migrator = new Layers_Widget_Migrator(); ?>
 							</div>
 						</div>
 					</div>
-					<div class="layers-button-well">
-						<a class="layers-button btn-primary layers-pull-right onbard-next-step" href=""><?php _e( 'Let\'s get started &rarr;' , 'layerswp' ); ?></a>
+					<div class="l_admin-button-well">
+						<a class="l_admin-button btn-primary l_admin-pull-right onbard-next-step" href=""><?php _e( 'Let\'s get started &rarr;' , 'layerswp' ); ?></a>
 					</div>
 				</div>
-				<div class="layers-column layers-span-4 no-gutter">
-					<div class="layers-content">
+				<div class="l_admin-column l_admin-span-4 no-gutter">
+					<div class="l_admin-content">
 						<!-- Your helpful tips go here -->
-						<ul class="layers-help-list">
+						<ul class="l_admin-help-list">
 							<li>
 								<?php _e( sprintf( 'If you\'re ever stuck or need help with your Layers site please visit our <a href="%s" rel="nofollow">helpful documentation.</a>', '//docs.layerswp.com' ) , 'layerswp' ); ?>
 							</li>
@@ -60,15 +60,15 @@ $layers_migrator = new Layers_Widget_Migrator(); ?>
 
 			<?php if( !defined( 'LAYERS_DISABLE_INTERCOM' ) ){ ?>
 				<!-- Enable / Disable Intercom -->
-				<div class="layers-onboard-slide layers-animate layers-onboard-slide-inactive">
-					<div class="layers-column layers-span-8 postbox">
-						<div class="layers-content-large">
+				<div class="l_admin-onboard-slide l_admin-animate l_admin-onboard-slide-inactive">
+					<div class="l_admin-column l_admin-span-8 postbox">
+						<div class="l_admin-content-large">
 							<!-- Your content goes here -->
-							<div class="layers-section-title">
-								<h3 class="layers-heading">
+							<div class="l_admin-section-title">
+								<h3 class="l_admin-heading">
 									<?php _e( 'Layers Messenger' , 'layerswp' ); ?>
 								</h3>
-								<p class="layers-excerpt">
+								<p class="l_admin-excerpt">
 									<?php _e( 'Enable the Layers Messenger to connect with the Layers team directly from inside Layers. We can help you make informed decisions about themes and extensions and point you in the right direction when you need support with your site and Layers.' , 'layerswp' ); ?>
 								</p>
 							</div>
@@ -78,11 +78,11 @@ $layers_migrator = new Layers_Widget_Migrator(); ?>
 								'id' => 'action',
 								'value' => 'layers_update_intercom'
 							) ); ?>
-							<div class="layers-checkbox-wrapper layers-form-item layers-push-bottom-medium">
+							<div class="l_admin-checkbox-wrapper l_admin-form-item l_admin-push-bottom-medium">
 								<input id="layers-enable-intercom" name="layers_intercom" type="checkbox" <?php if( '0' !== get_option( 'layers_enable_intercom' ) ){ echo 'checked="checked"'; }; ?> />
 								<label for="layers-enable-intercom"><?php _e( 'Enable Layers Messenger', 'layerswp' ); ?></label>
 							</div>
-							<p data-show-if-selector="#layers-enable-intercom" data-show-if-value="true" class="layers-form-item">
+							<p data-show-if-selector="#layers-enable-intercom" data-show-if-value="true" class="l_admin-form-item">
 								<label><?php _e( 'Your Name' , 'layerswp' ); ?></label>
 								<?php
 									global $current_user;
@@ -92,22 +92,22 @@ $layers_migrator = new Layers_Widget_Migrator(); ?>
 										'id' => 'username',
 										'placeholder' => $current_user->display_name,
 										'value' =>  $current_user->display_name,
-										'class' => 'layers-text layers-large'
+										'class' => 'layers-text l_admin-large'
 								   ) );
 								?>
 							</p>
 							<p><a href="//www.layerswp.com/privacy-policy/" target="_blank"><?php _e( 'Your data is safe with us. View our Privacy Policy', 'layerswp' ); ?></a></p>
 						</div>
-						<div class="layers-button-well">
-							<span class="layers-save-progress layers-hide layers-button btn-link" data-busy-message="<?php _e( 'Saving Your Preference' , 'layerswp' ); ?>"></span>
-							<a class="layers-button btn-primary layers-pull-right onbard-next-step" href=""><?php _e( 'Next Step &rarr;' , 'layerswp' ); ?></a>
+						<div class="l_admin-button-well">
+							<span class="l_admin-save-progress l_admin-hide l_admin-button btn-link" data-busy-message="<?php _e( 'Saving Your Preference' , 'layerswp' ); ?>"></span>
+							<a class="l_admin-button btn-primary l_admin-pull-right onbard-next-step" href=""><?php _e( 'Next Step &rarr;' , 'layerswp' ); ?></a>
 						</div>
 					</div>
-					<div class="layers-column layers-span-4 no-gutter">
-						<div class="layers-content">
+					<div class="l_admin-column l_admin-span-4 no-gutter">
+						<div class="l_admin-content">
 
 							<!-- Your helpful tips go here -->
-							<ul class="layers-help-list">
+							<ul class="l_admin-help-list">
 								<li><?php _e( 'Get advice on the right theme for your site.' , 'layerswp' ); ?></li>
 								<li><?php _e( 'Help choosing extensions.' , 'layerswp' ); ?></li>
 								<li><?php _e( 'Feedback? Let us know as soon as it comes to mind.' , 'layerswp' ); ?></li>
@@ -120,20 +120,20 @@ $layers_migrator = new Layers_Widget_Migrator(); ?>
 			<?php } // If !disable intercom ?>
 
 			<!-- Learn the Ropes: Widgets -->
-			<div class="layers-onboard-slide layers-animate layers-onboard-slide-inactive">
-				<div class="layers-column layers-span-6 postbox">
-					<div class="layers-content-large">
+			<div class="l_admin-onboard-slide l_admin-animate l_admin-onboard-slide-inactive">
+				<div class="l_admin-column l_admin-span-6 postbox">
+					<div class="l_admin-content-large">
 						<!-- Your content goes here -->
-						<div class="layers-section-title layers-small layers-no-push-bottom">
-							<div class="layers-push-bottom-small">
-								<small class="layers-label label-secondary">
+						<div class="l_admin-section-title l_admin-small l_admin-no-push-bottom">
+							<div class="l_admin-push-bottom-small">
+								<small class="l_admin-label label-secondary">
 									<?php _e( 'Getting Started' , 'layerswp' ); ?>
 								</small>
 							</div>
-							<h3 class="layers-heading">
+							<h3 class="l_admin-heading">
 								<?php _e( 'Building pages' , 'layerswp' ); ?>
 							</h3>
-							<div class="layers-excerpt">
+							<div class="l_admin-excerpt">
 								<p>
 									<?php _e( 'Layers splits your page into horizontal rows, and you build up your pages with blocks of content called &lsquo;Widgets&rsquo;, one per row.' , 'layerswp' ); ?>
 								</p>
@@ -143,29 +143,29 @@ $layers_migrator = new Layers_Widget_Migrator(); ?>
 							</div>
 						</div>
 					</div>
-					<div class="layers-button-well">
-						<a class="layers-button btn-primary layers-pull-right onbard-next-step" href=""><?php _e( 'Got it, Next Step &rarr;' , 'layerswp' ); ?></a>
+					<div class="l_admin-button-well">
+						<a class="l_admin-button btn-primary l_admin-pull-right onbard-next-step" href=""><?php _e( 'Got it, Next Step &rarr;' , 'layerswp' ); ?></a>
 					</div>
 				</div>
-				<div class="layers-column layers-span-6 no-gutter layers-demo-video">
+				<div class="l_admin-column l_admin-span-6 no-gutter l_admin-demo-video">
 					<?php layers_show_html5_video( '//cdn.oboxsites.com/layers/videos/adding-a-widget.mp4', 490 ); ?>
 				</div>
 			</div>
 
 			<!-- Give your site a Name -->
-			<div class="layers-onboard-slide layers-animate layers-onboard-slide-inactive">
-				<div class="layers-column layers-span-8 postbox">
-					<div class="layers-content-large ">
+			<div class="l_admin-onboard-slide l_admin-animate l_admin-onboard-slide-inactive">
+				<div class="l_admin-column l_admin-span-8 postbox">
+					<div class="l_admin-content-large ">
 						<!-- Your content goes here -->
-						<div class="layers-section-title">
-							<h3 class="layers-heading">
+						<div class="l_admin-section-title">
+							<h3 class="l_admin-heading">
 								<?php _e( 'What is the name of your website?' , 'layerswp' ); ?>
 							</h3>
-							<p class="layers-excerpt">
+							<p class="l_admin-excerpt">
 								<?php _e( 'Enter your website name below. We&apos;ll use this in your site title and in search results.' , 'layerswp' ); ?>
 							</p>
 						</div>
-						<p class="layers-form-item">
+						<p class="l_admin-form-item">
 							<label><?php _e( 'Site Name' , 'layerswp' ); ?></label>
 							<?php
 							   echo $form_elements->input( array(
@@ -174,7 +174,7 @@ $layers_migrator = new Layers_Widget_Migrator(); ?>
 									'id' => 'blogname',
 									'placeholder' => get_bloginfo( 'name' ),
 									'value' => get_bloginfo( 'name' ),
-									'class' => 'layers-text layers-large'
+									'class' => 'layers-text l_admin-large'
 							   ) );
 							?>
 						</p>
@@ -185,17 +185,17 @@ $layers_migrator = new Layers_Widget_Migrator(); ?>
 							'value' => 'layers_onboarding_update_options'
 						) ); ?>
 					</div>
-					<div class="layers-button-well">
-						<span class="layers-save-progress layers-hide layers-button btn-link" data-busy-message="<?php _e( 'Saving your Site Name' , 'layerswp' ); ?>"></span>
-						<a class="layers-button btn-primary layers-pull-right onbard-next-step" href="">
+					<div class="l_admin-button-well">
+						<span class="l_admin-save-progress l_admin-hide l_admin-button btn-link" data-busy-message="<?php _e( 'Saving your Site Name' , 'layerswp' ); ?>"></span>
+						<a class="l_admin-button btn-primary l_admin-pull-right onbard-next-step" href="">
 							<?php _e( 'Next Step &rarr;' , 'layerswp' ); ?>
 						</a>
 					</div>
 				</div>
-				<div class="layers-column layers-span-4 no-gutter">
-					<div class="layers-content">
+				<div class="l_admin-column l_admin-span-4 no-gutter">
+					<div class="l_admin-content">
 						<!-- Your helpful tips go here -->
-						<ul class="layers-help-list">
+						<ul class="l_admin-help-list">
 							<li>
 								<?php _e( sprintf( 'For tips on how best to name your website, we suggest reading <a href="%s" rel="nofollow">this post</a>', '//docs.layerswp.com' ) , 'layerswp' ); ?>
 							</li>
@@ -208,47 +208,47 @@ $layers_migrator = new Layers_Widget_Migrator(); ?>
 			</div>
 
 			<!-- Learn the Ropes: Design Bar -->
-			<div class="layers-onboard-slide layers-animate layers-onboard-slide-inactive">
-				<div class="layers-column layers-span-4 postbox">
-					<div class="layers-content-large">
+			<div class="l_admin-onboard-slide l_admin-animate l_admin-onboard-slide-inactive">
+				<div class="l_admin-column l_admin-span-4 postbox">
+					<div class="l_admin-content-large">
 						<!-- Your content goes here -->
-						<div class="layers-section-title layers-small layers-no-push-bottom">
-							<div class="layers-push-bottom-small">
-								<small class="layers-label label-secondary">
+						<div class="l_admin-section-title l_admin-small l_admin-no-push-bottom">
+							<div class="l_admin-push-bottom-small">
+								<small class="l_admin-label label-secondary">
 									<?php _e( 'Getting Started' , 'layerswp' ); ?>
 								</small>
 							</div>
-							<h3 class="layers-heading">
+							<h3 class="l_admin-heading">
 								<?php _e( 'Editing widget content' , 'layerswp' ); ?>
 							</h3>
-							<div class="layers-excerpt">
+							<div class="l_admin-excerpt">
 								<p><?php _e( "To edit a widget's content, just click on it in the widget area on the left hand side. The widget panel will slide out allowing you to edit its content and customize its settings. You can also shift-click on the widget itself in the preview area." , 'layerswp' ); ?></p>
 							</div>
 						</div>
 					</div>
-					<div class="layers-button-well">
-						<a class="layers-button btn-primary layers-pull-right onbard-next-step" href=""><?php _e( 'Next Step &rarr;' , 'layerswp' ); ?></a>
+					<div class="l_admin-button-well">
+						<a class="l_admin-button btn-primary l_admin-pull-right onbard-next-step" href=""><?php _e( 'Next Step &rarr;' , 'layerswp' ); ?></a>
 					</div>
 				</div>
-				<div class="layers-column layers-span-8 no-gutter layers-demo-video">
+				<div class="l_admin-column l_admin-span-8 no-gutter l_admin-demo-video">
 					<?php layers_show_html5_video( '//cdn.oboxsites.com/layers/videos/widget-slider.mp4', 660 ); ?>
 				</div>
 			</div>
 
 			<!-- Give your site a Tagline -->
-			<div class="layers-onboard-slide layers-animate layers-onboard-slide-inactive">
-				<div class="layers-column layers-span-8 postbox">
-					<div class="layers-content-large">
+			<div class="l_admin-onboard-slide l_admin-animate l_admin-onboard-slide-inactive">
+				<div class="l_admin-column l_admin-span-8 postbox">
+					<div class="l_admin-content-large">
 						<!-- Your content goes here -->
-						<div class="layers-section-title">
-							<h3 class="layers-heading">
+						<div class="l_admin-section-title">
+							<h3 class="l_admin-heading">
 								<?php _e( 'How would you best describe your site?' , 'layerswp' ); ?>
 							</h3>
-							<p class="layers-excerpt">
+							<p class="l_admin-excerpt">
 								<?php _e( 'A tagline describes who and what you are in just a few simple words. For example Layers is a &ldquo;WordPress Site Builder&rdquo; - simple, easy, quick to read. Now you try:' , 'layerswp' ); ?>
 							</p>
 						</div>
-						<p class="layers-form-item">
+						<p class="l_admin-form-item">
 							<label><?php _e( 'Site Tagline' , 'layerswp' ); ?></label>
 							<?php
 							   echo $form_elements->input( array(
@@ -257,7 +257,7 @@ $layers_migrator = new Layers_Widget_Migrator(); ?>
 									'id' => 'blogdescription',
 									'placeholder' => get_bloginfo( 'description' ),
 									'value' => get_bloginfo( 'description' ),
-									'class' => 'layers-text layers-large'
+									'class' => 'layers-text l_admin-large'
 							   ) );
 							?>
 						</p>
@@ -268,15 +268,15 @@ $layers_migrator = new Layers_Widget_Migrator(); ?>
 							'value' => 'layers_onboarding_update_options'
 						) ); ?>
 					</div>
-					<div class="layers-button-well">
-						<span class="layers-save-progress layers-hide layers-button btn-link" data-busy-message="<?php _e( 'Saving your Tagline' , 'layerswp' ); ?>"></span>
-						<a class="layers-button btn-primary layers-pull-right onbard-next-step" href=""><?php _e( 'Next Step &rarr;' , 'layerswp' ); ?></a>
+					<div class="l_admin-button-well">
+						<span class="l_admin-save-progress l_admin-hide l_admin-button btn-link" data-busy-message="<?php _e( 'Saving your Tagline' , 'layerswp' ); ?>"></span>
+						<a class="l_admin-button btn-primary l_admin-pull-right onbard-next-step" href=""><?php _e( 'Next Step &rarr;' , 'layerswp' ); ?></a>
 					</div>
 				</div>
-				<div class="layers-column layers-span-4 no-gutter">
-					<div class="layers-content">
+				<div class="l_admin-column l_admin-span-4 no-gutter">
+					<div class="l_admin-content">
 						<!-- Your helpful tips go here -->
-						<ul class="layers-help-list">
+						<ul class="l_admin-help-list">
 							<li><?php _e( 'Keep it simple' , 'layerswp' ); ?></li>
 							<li><?php _e( 'Avoid buzz words' , 'layerswp' ); ?></li>
 							<li><?php _e( 'Make sure it describes what you offer' , 'layerswp' ); ?></li>
@@ -287,20 +287,20 @@ $layers_migrator = new Layers_Widget_Migrator(); ?>
 			</div>
 
 			<!-- Learn the Ropes: Editing Widgets -->
-			<div class="layers-onboard-slide layers-animate layers-onboard-slide-inactive">
-				<div class="layers-column layers-span-6 postbox">
-					<div class="layers-content-large">
+			<div class="l_admin-onboard-slide l_admin-animate l_admin-onboard-slide-inactive">
+				<div class="l_admin-column l_admin-span-6 postbox">
+					<div class="l_admin-content-large">
 						<!-- Your content goes here -->
-						<div class="layers-section-title layers-small layers-no-push-bottom">
-							<div class="layers-push-bottom-small">
-								<small class="layers-label label-secondary">
+						<div class="l_admin-section-title l_admin-small l_admin-no-push-bottom">
+							<div class="l_admin-push-bottom-small">
+								<small class="l_admin-label label-secondary">
 									<?php _e( 'Getting Started' , 'layerswp' ); ?>
 								</small>
 							</div>
-							<h3 class="layers-heading">
+							<h3 class="l_admin-heading">
 								<?php _e( 'Customizing widgets' , 'layerswp' ); ?>
 							</h3>
-							<div class="layers-excerpt">
+							<div class="l_admin-excerpt">
 								<p>
 									<?php _e( 'Unique to each Layers widget is the revolutionary &ldquo;Design Bar&rdquo; which allows you to set its design parameters without touching a line of code.' , 'layerswp' ); ?>
 								</p>
@@ -310,31 +310,31 @@ $layers_migrator = new Layers_Widget_Migrator(); ?>
 							</div>
 						</div>
 					</div>
-					<div class="layers-button-well">
-						<a class="layers-button btn-primary layers-pull-right onbard-next-step" href=""><?php _e( 'Next Step &rarr;' , 'layerswp' ); ?></a>
+					<div class="l_admin-button-well">
+						<a class="l_admin-button btn-primary l_admin-pull-right onbard-next-step" href=""><?php _e( 'Next Step &rarr;' , 'layerswp' ); ?></a>
 					</div>
 				</div>
-				<div class="layers-column layers-span-6 no-gutter layers-demo-video">
+				<div class="l_admin-column l_admin-span-6 no-gutter l_admin-demo-video">
 					<?php layers_show_html5_video( '//cdn.oboxsites.com/layers/videos/design-bar.mp4', 490 ); ?>
 				</div>
 			</div>
 
 			<!-- Upload a Logo -->
-			<div class="layers-onboard-slide layers-animate layers-onboard-slide-inactive">
-				<div class="layers-column layers-span-8 postbox">
-					<div class="layers-content-large">
+			<div class="l_admin-onboard-slide l_admin-animate l_admin-onboard-slide-inactive">
+				<div class="l_admin-column l_admin-span-8 postbox">
+					<div class="l_admin-content-large">
 						<!-- Your content goes here -->
-						<div class="layers-section-title">
-							<h3 class="layers-heading">
+						<div class="l_admin-section-title">
+							<h3 class="l_admin-heading">
 								<?php _e( 'Would you like to add your logo?' , 'layerswp' ); ?>
 							</h3>
-							<p class="layers-excerpt">
+							<p class="l_admin-excerpt">
 								 <?php _e( 'Layers will add your logo and position it properly. If you don&apos;t have one yet, no problem, you can add it later, or skip this step if you&apos;d just prefer to use text.' , 'layerswp' ); ?>
 							</p>
 						</div>
 						<?php $site_logo = get_option( 'site_logo' ); ?>
-						<div class="layers-logo-wrapper">
-							<div class="layers-logo-upload-controller">
+						<div class="l_admin-logo-wrapper">
+							<div class="l_admin-logo-upload-controller">
 								<?php
 								   echo $form_elements->input( array(
 										'label' => __( 'Choose Logo' , 'layerswp' ),
@@ -353,15 +353,15 @@ $layers_migrator = new Layers_Widget_Migrator(); ?>
 							'value' => 'layers_onboarding_update_options'
 						) ); ?>
 					</div>
-					<div class="layers-button-well">
-						<span class="layers-save-progress layers-hide layers-button btn-link" data-busy-message="<?php _e( 'Updating your Logo' , 'layerswp' ); ?>"></span>
-						<a class="layers-button btn-primary layers-pull-right onbard-next-step" href=""><?php _e( 'Next Step &rarr;' , 'layerswp' ); ?></a>
+					<div class="l_admin-button-well">
+						<span class="l_admin-save-progress l_admin-hide l_admin-button btn-link" data-busy-message="<?php _e( 'Updating your Logo' , 'layerswp' ); ?>"></span>
+						<a class="l_admin-button btn-primary l_admin-pull-right onbard-next-step" href=""><?php _e( 'Next Step &rarr;' , 'layerswp' ); ?></a>
 					</div>
 				</div>
-				<div class="layers-column layers-span-4 no-gutter">
-					<div class="layers-content">
+				<div class="l_admin-column l_admin-span-4 no-gutter">
+					<div class="l_admin-content">
 						<!-- Your helpful tips go here -->
-						<ul class="layers-help-list">
+						<ul class="l_admin-help-list">
 							<li><?php _e( 'For best results, use an image between 40px and 200px tall and not more than 1000px wide' , 'layerswp' ); ?></li>
 							<li><?php _e( 'PNGs with a transparent background work best but GIFs or JPGs are fine too' , 'layerswp' ); ?></li>
 							<li><?php _e( 'Try keep your logo file size below 500kb' , 'layerswp' ); ?></li>
@@ -371,11 +371,11 @@ $layers_migrator = new Layers_Widget_Migrator(); ?>
 			</div>
 
 			<!-- Select a Layout -->
-			<div class="layers-onboard-slide layers-animate layers-onboard-slide-inactive">
-				<div class="layers-column layers-span-8 layers-template-selector postbox">
-					<div class="layers-content">
+			<div class="l_admin-onboard-slide l_admin-animate l_admin-onboard-slide-inactive">
+				<div class="l_admin-column l_admin-span-8 l_admin-template-selector postbox">
+					<div class="l_admin-content">
 						 <?php if( layers_get_builder_pages() ) { ?>
-							 <p class="layers-form-item">
+							 <p class="l_admin-form-item">
 								<label><?php _e( 'Page Title' , 'layerswp' ); ?></label>
 								<?php
 								   echo $form_elements->input( array(
@@ -384,7 +384,7 @@ $layers_migrator = new Layers_Widget_Migrator(); ?>
 										'id' => 'preset_page_title',
 										'placeholder' => __( 'Home Page' , 'layerswp' ),
 										'value' => __( 'Home Page' , 'layerswp' ),
-										'class' => 'layers-text layers-large layers-push-bottom-medium'
+										'class' => 'layers-text l_admin-large l_admin-push-bottom-medium'
 								   ) );
 								?>
 							</p>
@@ -400,23 +400,23 @@ $layers_migrator = new Layers_Widget_Migrator(); ?>
 						) ); ?>
 					</div>
 				</div>
-				<div class="layers-column layers-span-4 no-gutter postbox">
-					<div class="layers-content-large">
+				<div class="l_admin-column l_admin-span-4 no-gutter postbox">
+					<div class="l_admin-content-large">
 						<!-- Your content goes here -->
-						<div class="layers-section-title layers-small">
-							<h3 class="layers-heading">
+						<div class="l_admin-section-title l_admin-small">
+							<h3 class="l_admin-heading">
 								<?php _e( 'Now let&apos;s create your first Layers page!' , 'layerswp' ); ?>
 							</h3>
-							<div class="layers-excerpt">
+							<div class="l_admin-excerpt">
 								<p>
 									<?php _e( 'You will be able to edit your layout on the next page. Here we go! ' , 'layerswp' ); ?>
 								</p>
 							</div>
 						</div>
 					</div>
-					<div class="layers-button-well">
-						<span class="layers-save-progress layers-hide layers-button btn-link" data-busy-message="<?php _e( 'Creating your Page' , 'layerswp' ); ?>"></span>
-						<a class="layers-button btn-primary layers-pull-right onbard-next-step layers-proceed-to-customizer disable layers-tooltip" tooltip="<?php _e( 'First choose a layout' , 'layerswp' ); ?>" href=""><?php _e( 'Start Building' , 'layerswp' ); ?></a>
+					<div class="l_admin-button-well">
+						<span class="l_admin-save-progress l_admin-hide l_admin-button btn-link" data-busy-message="<?php _e( 'Creating your Page' , 'layerswp' ); ?>"></span>
+						<a class="l_admin-button btn-primary l_admin-pull-right onbard-next-step l_admin-proceed-to-customizer disable l_admin-tooltip" tooltip="<?php _e( 'First choose a layout' , 'layerswp' ); ?>" href=""><?php _e( 'Start Building' , 'layerswp' ); ?></a>
 					</div>
 				</div>
 			</div>

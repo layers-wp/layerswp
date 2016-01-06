@@ -65,18 +65,18 @@ if( !class_exists( 'Layers_Onboarding_Ajax' ) ) {
 
 				foreach( $feed_items as $item ){ ?>
 					<?php if( 'news' == $type ) { ?>
-						<div class="layers-column layers-span-3">
-							<div class="layers-panel">
-								<div class="layers-content">
-									<div class="layers-section-title layers-tiny">
-										<h4 class="layers-heading"><a href="<?php echo $item->get_permalink(); ?>"><?php echo esc_attr( $item->get_title() ); ?></a></h4>
+						<div class="l_admin-column l_admin-span-3">
+							<div class="l_admin-panel">
+								<div class="l_admin-content">
+									<div class="l_admin-section-title l_admin-tiny">
+										<h4 class="l_admin-heading"><a href="<?php echo $item->get_permalink(); ?>"><?php echo esc_attr( $item->get_title() ); ?></a></h4>
 									</div>
-									<div class="layers-excerpt">
+									<div class="l_admin-excerpt">
 										<?php echo $item->get_description(); ?>
 									</div>
 								</div>
-								<div class="layers-button-well">
-									<a href="<?php echo $item->get_permalink(); ?>" class="layers-button" target="_blank">
+								<div class="l_admin-button-well">
+									<a href="<?php echo $item->get_permalink(); ?>" class="l_admin-button" target="_blank">
 										<?php _e( 'Continue Reading' , 'layerswp' ); ?>
 									</a>
 								</div>
@@ -84,7 +84,7 @@ if( !class_exists( 'Layers_Onboarding_Ajax' ) ) {
 						</div>
 					<?php } else if( 'docs' == $type ) { ?>
 						<li>
-							<a class="layers-page-list-title" target="_blank" href="<?php echo $item->get_permalink(); ?>"><?php echo esc_attr( $item->get_title() ); ?></a>
+							<a class="l_admin-page-list-title" target="_blank" href="<?php echo $item->get_permalink(); ?>"><?php echo esc_attr( $item->get_title() ); ?></a>
 						</li>
 					<?php } ?>
 				<?php }

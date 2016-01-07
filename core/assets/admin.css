@@ -3827,3 +3827,17 @@ div#tiptip_holder {
     margin-left: -6px;
 	border-left-color: rgba(0,0,0,0.75);
 }
+
+
+.onboarding-notice-item {
+    padding-left: 16px;
+}
+.onboarding-notice-item .fa {
+    color: #e2594e;
+    margin-left: -16px;
+}
+.onboarding-notice-item code {
+    padding: 1px 4px;
+    /* background: 0; */
+    /* color: #989898; */
+}

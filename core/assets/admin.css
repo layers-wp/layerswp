@@ -419,9 +419,9 @@ div[id*='layers-widget'] .widget-control-actions .alignright{
 	box-shadow: none;
 }
 .layers-visuals-item .layers-icon-wrapper:hover{
-	box-shadow: 0px 1px 0px rgba(255, 255, 255, 0.4) inset, 0px 1px 0px rgba(0, 0, 0, 0.08);
-	background: #2EA2CC;
-	border-color: #0074A2;
+	box-shadow: 0px 1px 0px #006799;
+	background: #008EC2;
+	border-color: #006799;
 	color: #fff;
 }
 .layers-visuals-item.layers-active > .layers-icon-wrapper,

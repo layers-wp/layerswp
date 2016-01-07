@@ -1152,8 +1152,8 @@ div[id*='layers-widget'] .widget-control-actions .alignright{
 		font-weight: 400;
 	}
 
-/*---------------------------*/
-/*- DESIGN BAR --------------*/
+/*-------------------------------*/
+/*- DESIGN BAR ------------------*/
 
 	.layers-design-bar{
 		position: absolute;
@@ -1167,16 +1167,19 @@ div[id*='layers-widget'] .widget-control-actions .alignright{
 		width: calc(100% - 90px);
 	}
 	.layers-design-bar .layers-visuals-title{
-		padding: 13px 0px 13px;
+		padding: 15px 0px;
 		margin: 0px;
 		background: #222;
 		color: #fff;
 		text-align: center;
 		text-transform: uppercase;
 	}
+	.layers-design-bar .layers-visuals-title .icon-settings{
+		display: block;
+	}
 
-	/*----------------------------*/
-	/*- FORM ITEMS ---------------*/
+	/*---------------------------*/
+	/*- FORM ITEMS --------------*/
 	.editible,
 	.layers-design-bar .layers-form-item .layers-input,
 	.layers-design-bar .layers-form-item select,
@@ -1299,8 +1302,8 @@ div[id*='layers-widget'] .widget-control-actions .alignright{
 	}
 	.layers-row.layers-trbl-row .layers-column-flush:last-child input { }
 
-	/*-----------------------*/
-	/*- LAYERS PRO UPSELL ---*/
+	/*---------------------------*/
+	/*- LAYERS PRO UPSELL -------*/
 	.layers-visuals-item.layers-pro-upsell{
 		position: absolute;
 		bottom: 0;
@@ -1332,8 +1335,8 @@ div[id*='layers-widget'] .widget-control-actions .alignright{
 		top: 1px;
 	}
 
-	/*-----------------------*/
-	/*- SETTINGS POP MENU ---*/
+	/*---------------------------*/
+	/*- SETTINGS POP MENU -------*/
 	.layers-pop-menu-wrapper{
 		position: absolute;
 		top: 5px;
@@ -1398,8 +1401,8 @@ div[id*='layers-widget'] .widget-control-actions .alignright{
 		opacity: .2;
 	}
 
-		/*-------------------*/
-		/*- POP MENU SMALL --*/
+		/*-----------------------*/
+		/*- POP MENU SMALL ------*/
 		.layers-pop-menu-wrapper.layers-small{
 			top: 0px;
 			width: 84px;
@@ -1416,8 +1419,8 @@ div[id*='layers-widget'] .widget-control-actions .alignright{
 			margin: 0 !important;
 		}
 
-	/*-------------------------*/
-	/*- SETTINGS - HORIZONTAL -*/
+	/*---------------------------*/
+	/*- SETTINGS - HORIZONTAL ---*/
 	.layers-content .layers-visuals.layers-visuals-horizontal{
 		position: relative;
 		right: auto;
@@ -1432,7 +1435,7 @@ div[id*='layers-widget'] .widget-control-actions .alignright{
 	}
 	.layers-visuals.layers-visuals-horizontal .layers-visuals-title{
 		float: left;
-		padding: 12px 16px 9px;
+		padding: 12px 16px 13px;
 		margin: 0px;
 		background: #F0F0F0;
 		color: #999;
@@ -1460,8 +1463,8 @@ div[id*='layers-widget'] .widget-control-actions .alignright{
 		font-size: 16px;
 	}
 
-		/*-------------------*/
-		/*- TOOL TIP --------*/
+		/*-----------------------*/
+		/*- TOOL TIP ------------*/
 		.layers-visuals-horizontal .layers-icon-description{
 			position: absolute;
 			top: 43px;
@@ -1491,8 +1494,8 @@ div[id*='layers-widget'] .widget-control-actions .alignright{
 			transition: all 0.1s ease-in-out;
 		}
 
-		/*-------------------*/
-		/*- TOOL TIP TIP ----*/
+		/*-----------------------*/
+		/*- TOOL TIP TIP --------*/
 		.layers-visuals-horizontal .layers-icon-description:before{
 			border: solid;
 			border-color: rgba(0, 0, 0, 0.7) transparent;
@@ -1536,8 +1539,8 @@ div[id*='layers-widget'] .widget-control-actions .alignright{
 		margin: 5px;
 	}
 
-	/*-----------------------*/
-	/*- POP UP ANIMATIONS ---*/
+	/*---------------------------*/
+	/*- POP UP ANIMATIONS -------*/
 	.layers-pop-menu-setting .layers-form-item{transform: translate3d(-10px, 0, 0);}
 	.layers-pop-menu-setting .layers-form-item:nth-child(2){transition-delay: 0.27s;}
 	.layers-pop-menu-setting .layers-form-item:nth-child(3){transition-delay: 0.29s;}
@@ -1573,8 +1576,8 @@ div[id*='layers-widget'] .widget-control-actions .alignright{
 		transform: translate3d(0, 0, 0);
 	}
 
-/*-----------------------------*/
-/*- RICH TEXT EDITING ---------*/
+/*-------------------------------*/
+/*- RICH TEXT EDITING -----------*/
 
 .layers-form-item .froala-box{
 	width: 100%;
@@ -1623,8 +1626,8 @@ div[id*='layers-widget'] .widget-control-actions .alignright{
 	color: #FFF;
 }
 
-	/*-------------------------*/
-	/*- WHEN IN HTML MODE -----*/
+	/*---------------------------*/
+	/*- WHEN IN HTML MODE -------*/
 	.layers-form-item .f-html .froala-editor button.fr-bttn:hover,
 	.layers-form-item .f-html .froala-editor .bttn-wrapper:not(.touch) button.fr-bttn:hover,
 	.layers-form-item .f-html .froala-editor button.fr-bttn.active:hover{
@@ -1652,9 +1655,9 @@ div[id*='layers-widget'] .widget-control-actions .alignright{
 		padding: 5px 6px;
 	}
 
-	/*-------------------------------*/
+	/*---------------------------*/
 	/*- RTE LIST STYLING --------*/
-	/*-------------------------------*/
+	/*---------------------------*/
 	.froala-view li{
 		list-style-type: inherit;
 		overflow: visible;
@@ -1693,166 +1696,27 @@ div[id*='layers-widget'] .widget-control-actions .alignright{
 
 /*---------------------------*/
 /*- TITLES ------------------*/
-.layers-logo{
-	display: block;
-	float: right;
-	width: 88px;
-	height: 21px;
-	margin-top: 27px;
-	background: url(images/layers-logo-dark.png) no-repeat bottom;
-	background-size: 100%;
-	overflow: hidden;
-	text-indent: -999px;
-	opacity: 0.5;
-}
-.layers-logo:hover{
-	opacity: 1;
-}
-.layers-controls-title{
-	padding: 8px 20px;
-	background: #0074A2;
-	border-bottom: 1px solid #006086;
-	overflow: hidden;
-	line-height: 29px;
-}
-.layers-controls-title .layers-heading{
-	margin: 0;
-	padding: 0;
-	color: #fff;
-	font-size: 20px;
-	text-indent: 0;
-	font-weight: normal;
-}
-.layers-heading{
-	margin-top: 0;
-	padding-top: 0;
-}
-.layers-heading .layers-small{
-	color: #777;
-	font-size: 12px;
-	font-weight: 400;
-}
-.layers-excerpt{
-	color: #777;
-}
 
-.layers-section-title{
-	margin-bottom: 30px;
-}
-.layers-section-title .layers-heading{
-	margin: 0;
-	padding: 0;
-	font-size: 28px;
-	line-height: 38px;
-	color: #222;
-	font-weight: 400;
-}
-.layers-section-title .layers-excerpt{
-	max-width: 830px;
-	margin: 10px 0 0;
-	padding: 0;
-	font-size: 20px;
-	line-height: 30px;
-}
-.layers-section-title .layers-excerpt p{
-	font-size: 20px;
-	line-height: 30px;
-}
-.layers-section-title .layers-excerpt + .layers-button{
-	margin-top: 20px;
-}
-
-	/*-----------------------*/
-	/*- SECTION SIZE --------*/
-	.layers-section-title.layers-large{
-		margin-bottom: 15px;
+	.layers-controls-title{
+		padding: 8px 20px;
+		background: #0074A2;
+		border-bottom: 1px solid #006086;
+		overflow: hidden;
+		line-height: 29px;
 	}
-	.layers-section-title.layers-large .layers-heading{
-		font-size: 44px;
-		line-height: 54px;
-		font-weight: 300;
-	}
-	.layers-section-title.layers-large .layers-excerpt{
-		max-width: 830px;
-		font-size: 26px;
-		line-height: 36px;
-		font-weight: 300;
-	}
-	.layers-section-title.layers-large .layers-excerpt p{
-		font-size: 26px;
-		line-height: 36px;
-		font-weight: 300;
-	}
-
-	.layers-section-title.layers-small{
-		margin-bottom: 15px;
-	}
-	.layers-section-title.layers-small .layers-heading{
-		font-size: 24px;
-		line-height: 34px;
-	}
-	.layers-section-title.layers-small .layers-excerpt{
-		font-size: 16px;
-		line-height: 26px;
-	}
-	.layers-section-title.layers-small .layers-excerpt p{
-		font-size: 16px;
-		line-height: 26px;
-	}
-
-	.layers-section-title.layers-tiny{
-		margin-bottom: 15px;
-	}
-	.layers-section-title.layers-tiny .layers-heading{
-		font-size: 16px;
-		line-height: 26px;
-		font-weight: 700;
-	}
-	.layers-section-title.layers-tiny .layers-excerpt{
-		margin-top: 5px !important;
-		font-size: 14px;
-		line-height: 24px;
-		font-weight: normal;
-	}
-	.layers-section-title.layers-tiny .layers-excerpt p{
-		font-size: 14px;
-		line-height: 24px;
-		font-weight: normal;
-	}
-
-		/*-------------------*/
-		/*- ALIGNMENTS ------*/
-		.layers-section-title.layers-text-center{
-			text-align: center;
-		}
-		.layers-section-title.layers-text-center .layers-excerpt{
-			margin-left: auto;
-			margin-right: auto;
-		}
-
-	.invert.layers-section-title .layers-heading{
-		color: #fff;
-	}
-	.invert.layers-section-title .layers-excerpt{
-		color: rgba(255, 255, 255, 0.95);
-	}
-
-/*---------------------------*/
-/*- COPY --------------------*/
-
-	.layers-copy{
-		color: #656565;
-	}
-	.layers-copy p{
+	.layers-controls-title .layers-heading{
+		margin: 0;
 		padding: 0;
-		margin: 0 0 16px;
+		color: #fff;
+		font-size: 20px;
+		text-indent: 0;
+		font-weight: normal;
 	}
-	.layers-panel .layers-copy{
-		padding: 20px;
-	}
-	.layers-panel .layers-section-title + .layers-copy{
+	.layers-heading{
+		margin-top: 0;
 		padding-top: 0;
 	}
+
 
 /*---------------------------*/
 /*- BUTTONS -----------------*/
@@ -1992,9 +1856,8 @@ div[id*='layers-widget'] .widget-control-actions .alignright{
 		overflow: hidden;
 	}
 
-	/*--------------------------------*/
-	/*- LOADING INDICATORS -----------*/
-
+	/*-----------------------*/
+	/*- LOADING INDICATORS --*/
 	@-webkit-keyframes loading-background-animation {
 		0% { background-position: 0 0; }
 		100% { background-position: 50px 50px; }
@@ -2047,26 +1910,6 @@ div[id*='layers-widget'] .widget-control-actions .alignright{
 		border: 1px solid #A7A7A7;
 		color: #FFFFFF;
 	}
-
-/*---------------------------*/
-/*- LABELS ------------------*/
-
-	.layers-label{
-		padding: 0 5px;
-		background: #ddd;
-		border-radius: 3px;
-		font-size: 10px;
-		text-transform: uppercase;
-		color: #777;
-	}
-
-	/*-----------------------*/
-	/*- SECONDARY LABEL -----*/
-	.label-secondary{
-		background: #009DF3;
-		color: #fff;
-	}
-
 
 /*---------------------------*/
 /*- ACCORDIONS --------------*/
@@ -2155,7 +1998,7 @@ div[id*='layers-widget'] .widget-control-actions .alignright{
 		}
 		30% {
 			opacity: 1;
-			transform: translateX(50px);
+			transform: translateX(10px);
 		}
 		80% {
 			opacity: 1;
@@ -2184,9 +2027,6 @@ div[id*='layers-widget'] .widget-control-actions .alignright{
 		border-top: none;
 		border-bottom: 1px solid transparent;
 		cursor: move;
-	}
-	.layers-accordion-item.open .layers-accordion-title{
-		/* border-bottom: 1px solid #E7E7E7; */
 	}
 	.layers-accordions-sortable .layers-accordion-title:after{
 		line-height: 37px;
@@ -2222,208 +2062,7 @@ div[id*='layers-widget'] .widget-control-actions .alignright{
 		box-shadow: 0 1px 6px rgba(0, 0, 0, 0.05) !important;
 	}
 
-/*---------------------------*/
-/*- MEDIA -------------------*/
 
-	.layers-media{
-		overflow: hidden;
-		margin-bottom: 20px;
-		display: block;
-	}
-
-	.layers-media-image{
-		text-align: center;
-		margin-right: auto;
-		margin-left: auto;
-		max-height: 450px;
-		overflow: hidden;
-	}
-	.layers-media-image img{
-		display: block;
-		margin: auto;
-		max-width: 100%;
-		height: auto;
-	}
-	.layers-media-image.layers-small img{
-		max-width: 64px;
-	}
-
-	.layers-media .layers-media-body{
-		display: block;
-		overflow: hidden;
-	}
-	.layers-media .layers-media-image + .layers-media-body{
-		margin-top: 20px;
-	}
-
-	.layers-media.layers-image-left .layers-media-image{
-		float: left;
-		max-width: 50%;
-		margin-right: 15px;
-	}
-	.layers-media.layers-image-right .layers-media-image{
-		float: right;
-		max-width: 50%;
-		margin-right: 0;
-		margin-left: 15px;
-	}
-
-	.layers-media.layers-image-left .layers-media-image + .layers-media-body{
-		margin-top: 0;
-	}
-
-	.layers-media .layers-heading{
-		font-size: 16px;
-		margin: 0;
-	}
-	.layers-media .layers-media-image + .layers-heading{
-		margin-top: 20px;
-	}
-
-	.layers-media .layers-excerpt{
-		margin: 8px 0 0;
-		font-weight: 400;
-	}
-	.layers-media p{margin-top: 8px;}
-	.layers-media ul{margin-top: 8px;}
-
-	.layers-t-center .layers-media-body .layers-excerpt{
-		margin-left: auto;
-		margin-right: auto;
-	}
-
-	.layers-media .layers-btn-group{margin-top: 15px;}
-	.layers-media .layers-button{margin-top: 15px;}
-	.layers-media .layers-btn-group .layers-button{margin-top: 0px;}
-
-
-/*---------------------------*/
-/*- TOOLTIPS ----------------*/
-.tooltip{
-	float: right;
-	width: 16px;
-	height: 16px;
-	background: #fff url(images/icon-info.png) center no-repeat;
-	background-size: 16px 16px;
-	border: 1px solid #ccc;
-	border-radius: 100%;
-	position: relative;
-	cursor: help;
-}
-.tooltip:after{
-	width: 220px;
-	padding: 15px;
-	background: rgba(0, 0, 0, 0.85);
-	border-radius: 3px;
-	position: absolute;
-	right: -10px;
-	top: 16px;
-	z-index: 98;
-	color: #f0f0f0;
-	content: attr(tooltip);
-	line-height: 24px;
-	visibility: hidden;
-	opacity: 0;
-	transition: all 0.2s ease-in-out;
-
-	font-weight: 400;
-	font-size: 12px;
-	line-height: 22px;
-	text-transform: none;
-}
-.tooltip:before{
-	border: solid;
-	border-color: rgba(0, 0, 0, 0.85) transparent;
-	border-width: 0 6px 6px 6px;
-	content: "";
-	position: absolute;
-	right: 2px;
-	top: 10px;
-	z-index: 99;
-	visibility: hidden;
-	opacity: 0;
-	transition: all 0.2s ease-in-out;}
-
-.tooltip:hover:after{
-	opacity: 1;
-	visibility: visible;
-	top: 25px;
-}
-.tooltip:hover:before{
-	opacity: 1;
-	visibility: visible;
-	top: 19px;
-}
-
-
-/*---------------------------*/
-/*- NOTICE STYLING ----------*/
-
-	.layers-success{
-		display: inline-block;
-		padding: 5px 10px;
-		background: #fff;
-		border: 1px solid #A3C567;
-		font-weight: bold;
-		color: #A3C567;
-		border-left:  4px solid #A3C567;
-	}
-
-	/*-----------------------*/
-	/*- STATUS NOTICE -------*/
-	.layers-status-notice{
-		display: block;
-		margin-bottom: 10px;
-		border: 1px solid;
-		color: #fff;
-		font-weight: bold;
-		overflow: hidden;
-		text-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
-		line-height: 32px;
-	}
-	a.layers-status-notice:hover{
-		color: #fff;
-		text-decoration: none;
-	}
-	a.layers-status-notice:hover span{
-		text-decoration: underline;
-	}
-	.layers-status-notice [class^="icon-"],
-	.layers-status-notice [class*=" icon-"]{
-		float: left;
-		width: 32px;
-		border-right: 1px solid rgba(0, 0, 0, 0.2);
-		text-align: center;
-		font-size: 14px;
-		line-height: 32px;
-	}
-	.layers-status-notice-heading{
-		margin: 0;
-		padding: 0;
-		font-size: 12px;
-		font-weight: bold;
-		line-height: 12px;
-	}
-	.layers-status-notice-heading span{
-		float: left;
-		padding: 10px 0 10px 8px;
-		overflow: hidden;
-	}
-
-		/*-------------------*/
-		/*- STATUS COLORS ---*/
-		.layers-status-good{
-			background: #A3C567;
-			border-color: #93B25E;
-		}
-		.layers-status-neutral{
-			background: #2EA2CC;
-			border-color: #0074A2;
-		}
-		.layers-status-bad{
-			background: #E1574C;
-			border-color: #B0453D;
-		}
 
 /*---------------------------*/
 /*- ICON STYLING ------------*/
@@ -2475,43 +2114,44 @@ input[type=radio]:checked + .layers-settings-icon span{
 
 /*---------------------------*/
 /*- RADIO PILLS -------------*/
-.layers-radio-pills-collection{
-	overflow: hidden;
-}
-.layers-radio-pills{
-	float: left;
-	margin-right: 10px;
-}
-.layers-radio-pills input[type=radio]{
-	display: none;
-}
-.layers-radio-pills span{
-	display: block;
-	float: left;
-	padding: 3px 10px 3px 0px;
-	color: #333;
-	font-size: 10px;
-	font-weight: 700;
-	line-height: 17px;
-}
-.layers-radio-pills input[type=radio] + label{
-	display: block;
-	float: left;
-	padding: 3px 10px;
-	background: #f5f5f5;
-	color: #777;
-	font-size: 10px;
-	font-weight: 700;
-	line-height: 17px;
-	text-transform: uppercase;
-}
-.layers-radio-pills input[type=radio] + label:hover{
-	background-color: #0289C0;
-	color: #fff;
-}
 
-.layers-radio-pills input[type=radio]:first-child + label{border-radius: 3px 0px 0px 3px;}
-.layers-radio-pills label:last-child{border-radius: 0px 3px 3px 0px;}
+	.layers-radio-pills-collection{
+		overflow: hidden;
+	}
+	.layers-radio-pills{
+		float: left;
+		margin-right: 10px;
+	}
+	.layers-radio-pills input[type=radio]{
+		display: none;
+	}
+	.layers-radio-pills span{
+		display: block;
+		float: left;
+		padding: 3px 10px 3px 0px;
+		color: #333;
+		font-size: 10px;
+		font-weight: 700;
+		line-height: 17px;
+	}
+	.layers-radio-pills input[type=radio] + label{
+		display: block;
+		float: left;
+		padding: 3px 10px;
+		background: #f5f5f5;
+		color: #777;
+		font-size: 10px;
+		font-weight: 700;
+		line-height: 17px;
+		text-transform: uppercase;
+	}
+	.layers-radio-pills input[type=radio] + label:hover{
+		background-color: #0289C0;
+		color: #fff;
+	}
+
+	.layers-radio-pills input[type=radio]:first-child + label{border-radius: 3px 0px 0px 3px;}
+	.layers-radio-pills label:last-child{border-radius: 0px 3px 3px 0px;}
 
 
 /*---------------------------*/

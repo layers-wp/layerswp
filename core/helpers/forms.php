@@ -26,8 +26,7 @@ class Layers_Form_Elements {
 		$header = (object) wp_parse_args( $args, $defaults ); ?>
 
 		<div class="layers-controls-title">
-			<h2 class="layers-heading layers-icon layers-icon-<?php $header->icon_class; ?>">
-				<!-- <i class="icon-<?php echo $header->icon_class; ?>-small"></i> -->
+			<h2 class="layers-heading">
 				<?php echo esc_html( $header->title ); ?>
 			</h2>
 		</div>

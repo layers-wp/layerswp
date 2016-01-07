@@ -115,7 +115,7 @@ class Layers_Options_Panel {
 		$api = new Layers_API();
 
 		if( isset( $_GET[ 'type' ] ) ) $type = $_GET[ 'type' ]; else $type = 'themes' ?>
-		<header class="l_admin-page-title l_admin-section-title l_admin-large l_admin-content-large l_admin-no-push-bottom">
+		<header class="l_admin-page-title l_admin-section-title l_admin-large l_admin-content l_admin-no-push-bottom">
 
 				<?php _e( sprintf( '<a href="%s" class="l_admin-logo">Layers</a>', 'http://layerswp.com' ), 'layerswp' ); ?>
 
@@ -174,7 +174,7 @@ class Layers_Options_Panel {
 	public function header( $title = NULL, $excerpt = NULL ){
 
 		if( isset( $_GET[ 'page' ] ) ) $current_page = $_GET[ 'page' ]; ?>
-		<header class="l_admin-page-title l_admin-section-title l_admin-large l_admin-content-large l_admin-no-push-bottom">
+		<header class="l_admin-page-title l_admin-section-title l_admin-large l_admin-content l_admin-no-push-bottom">
 
 				<?php _e( sprintf( '<a href="%s" class="l_admin-logo">Layers</a>', 'http://layerswp.com' ), 'layerswp' ); ?>
 				<?php if( isset( $title ) ) { ?>

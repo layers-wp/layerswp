@@ -14,9 +14,8 @@ $theme_info = wp_get_theme( 'layerswp' ); ?>
 
 	<?php $this->header( __( 'Dashboard' , 'layerswp' ) ); ?>
 
-	<div class="l_admin-row l_admin-well l_admin-content-large">
+	<div class="l_admin-row l_admin-well l_admin-content">
 		<div class="l_admin-container-large">
-
 			<div class="l_admin-row">
 
 				<div class="l_admin-column l_admin-span-3">

@@ -4,7 +4,7 @@
 
 	<?php $this->header( __( 'Transfer' , 'layerswp' ) ); ?>
 
-	<div class="l_admin-row layers-well layers-content-large">
+	<div class="l_admin-row layers-well layers-content">
 		<div class="l_admin-container-large">
 			<div class="l_admin-row">
 

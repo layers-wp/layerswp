@@ -11,7 +11,7 @@ $find_builder_page = layers_get_builder_pages(); ?>
 
    <?php $this->header( __( 'Add New Page' , 'layerswp' ) ); ?>
 
-   <div class="l_admin-row l_admin-well l_admin-content-large">
+   <div class="l_admin-row l_admin-well l_admin-content">
       <?php $this->load_partial( 'preset-layouts' ); ?>
    </div>
 

@@ -36,9 +36,9 @@
 	}
 
 	.l_admin-column{
-		float: left;
-		margin: 0 2% 20px 0;
+		margin-bottom: 20px;
 		position: relative;
+		max-width: 100%;
 		box-sizing: border-box;
 	}
 	.l_admin-row .l_admin-column:last-child{
@@ -64,6 +64,10 @@
 	}
 	.l_admin-last{
 		margin-right: 0;
+	}
+
+	.l_admin-area-wrapper{
+		margin-left: -10px;
 	}
 
 @media only screen and (max-width: 480px){
@@ -106,6 +110,12 @@
 
 }
 @media only screen and (min-width: 481px){
+
+    /*---------------------------*/
+    /*- ADMIN WRAPPER -----------*/
+	.l_admin-area-wrapper{
+		margin-left: -20px;
+	}
 
     /*---------------------------*/
     /*- COLUMNS -----------------*/
@@ -385,18 +395,18 @@
 		z-index: 99;
 	}
 	.l_admin-content-small{
-		padding: 10px;
+		padding: 1%;
 	}
 	.l_admin-content{
-		padding: 20px;
+		padding: 2%;
 		position: relative;
 	}
 	.l_admin-content-large{
-		padding: 40px;
+		padding: 4%;
 		position: relative;
 	}
 	.l_admin-content-massive{
-		padding: 60px;
+		padding: 6%;
 		position: relative;
 	}
 	.l_admin-content img{
@@ -1186,9 +1196,6 @@
 /*-------------------------------*/
 /*- LAYERS PAGES ----------------*/
 
-	.l_admin-area-wrapper{
-		margin-left: -20px;
-	}
 	.l_admin-page-title{
 		background: #F1F1F1;
 	}
@@ -1240,7 +1247,7 @@
 	/*---------------------------*/
 	/*- HORIZONTAL NAVIGATION ---*/
 	.l_admin-nav-horizontal{
-		padding: 0 20px;
+		padding: 0 10px;
 		margin-top: 15px;
 		background: #fff;
 		border: 1px solid #ddd;
@@ -1248,16 +1255,17 @@
 		box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.04);
 	}
 	.l_admin-nav-horizontal ul{
+		display: inline-block;
 		margin: 0;
 		padding: 0;
 	}
 	.l_admin-nav-horizontal li{
-		float: left;
-		margin: 0 10px;
+		display: inline-block;
+		margin: 0px 10px;
 	}
 	.l_admin-nav-horizontal li a{
-		padding: 15px 0px;
 		display: block;
+		padding: 15px 0px;
 		text-align: center;
 		color: #777;
 	}
@@ -1621,169 +1629,171 @@
 
 /*-------------------------------*/
 /*- PRESET / THEME LISTS --------*/
-.l_admin-browser{
-	overflow: hidden;
-}
-.l_admin-products{
-	clear: both;
-	padding: 0 0 100px;
-}
-.l_admin-product{
-	box-sizing: border-box;
-	cursor: pointer;
-	float: left;
-	margin: 0 2% 2% 0;
-	position: relative;
-	width: 31%;
-	border: 1px solid #dedede;
-}
-.l_admin-product:nth-child(3n+3){
-	margin-right: 0;
-}
-.l_admin-product:hover{
-	border: 1px solid #009eec;
-}
-.l_admin-product-screenshot{
-	height: 296px;
-	overflow-x: hidden;
-}
-.l_admin-product-screenshot img{
-	width: 100%;
-	display: block;
-}
-.l_admin-product-name{
-	height: 18px;
-	margin: 0px;
-	padding: 15px;
-	overflow: hidden;
-	background: rgba(255, 255, 255, 0.65);
-	border-top: 1px solid #dedede;
-	font-size: 15px;
-	font-weight: 600;
-	color: #000;
-	white-space: nowrap;
-	text-overflow: ellipsis;
-}
-.l_admin-product-actions{
-	position: absolute;
-	right: 0;
-	bottom: 0;
-	padding: 9px 10px 0px;
-	height: 38px;
-}
 
-.blank-product{
-	border: 2px dashed #ccc;
-	background: #fff;
-}
-.blank-product .l_admin-product-screenshot{
-	height: 295px;
-}
-.blank-product .l_admin-product-name{
-	background: none;
-	text-align: center;
-	border-top: none;
-}
-.blank-product:hover{
-	background-color: #009eec;
-	border: 2px dashed transparent;
-	transition: all 0.2s ease-in-out;
-}
-.blank-product:hover .l_admin-product-name{
-	color: #fff;
-	transition: all 0.2s ease-in-out;
-}
+	.l_admin-browser{
+		overflow: hidden;
+	}
+	.l_admin-products{
+		clear: both;
+		padding: 0 0 100px;
+	}
+	.l_admin-product{
+		box-sizing: border-box;
+		cursor: pointer;
+		float: left;
+		margin: 0 2% 2% 0;
+		position: relative;
+		width: 31%;
+		border: 1px solid #dedede;
+	}
+	.l_admin-product:nth-child(3n+3){
+		margin-right: 0;
+	}
+	.l_admin-product:hover{
+		border: 1px solid #009eec;
+	}
+	.l_admin-product-screenshot{
+		height: 296px;
+		overflow-x: hidden;
+	}
+	.l_admin-product-screenshot img{
+		width: 100%;
+		display: block;
+	}
+	.l_admin-product-name{
+		height: 18px;
+		margin: 0px;
+		padding: 15px;
+		overflow: hidden;
+		background: rgba(255, 255, 255, 0.65);
+		border-top: 1px solid #dedede;
+		font-size: 15px;
+		font-weight: 600;
+		color: #000;
+		white-space: nowrap;
+		text-overflow: ellipsis;
+	}
+	.l_admin-product-actions{
+		position: absolute;
+		right: 0;
+		bottom: 0;
+		padding: 9px 10px 0px;
+		height: 38px;
+	}
+
+	.blank-product{
+		border: 2px dashed #ccc;
+		background: #fff;
+	}
+	.blank-product .l_admin-product-screenshot{
+		height: 295px;
+	}
+	.blank-product .l_admin-product-name{
+		background: none;
+		text-align: center;
+		border-top: none;
+	}
+	.blank-product:hover{
+		background-color: #009eec;
+		border: 2px dashed transparent;
+		transition: all 0.2s ease-in-out;
+	}
+	.blank-product:hover .l_admin-product-name{
+		color: #fff;
+		transition: all 0.2s ease-in-out;
+	}
 
 /*-------------------------------*/
 /*- MARKETPLACE LISTS -----------*/
-#layers-marketplace .theme-wrap{
-	max-width: 1260px;
-}
 
-#layers-marketplace .l_admin-help-search{
-	width: 45%;
-	text-align: right;
-}
+	#layers-marketplace .theme-wrap{
+		max-width: 1260px;
+	}
 
-#layers-marketplace .l_admin-help-search label{
-	position: relative;
-	top: -2px;
-	font-size: 11px;
-	text-transform: uppercase;
-	color: #777;
-	font-weight: 600;
-}
+	#layers-marketplace .l_admin-help-search{
+		width: 45%;
+		text-align: right;
+	}
 
-#layers-marketplace .l_admin-help-search select{
-	height: 32px;
-	margin-top: -4px;
-}
+	#layers-marketplace .l_admin-help-search label{
+		position: relative;
+		top: -2px;
+		font-size: 11px;
+		text-transform: uppercase;
+		color: #777;
+		font-weight: 600;
+	}
 
-#layers-marketplace #layers-marketplace-search{
-	max-width: 200px;
-}
+	#layers-marketplace .l_admin-help-search select{
+		height: 32px;
+		margin-top: -4px;
+	}
 
-#layers-marketplace .l_admin-product{
-	margin-right: 2%;
-	overflow-y: hidden;
-}
-
-#layers-marketplace .l_admin-marketplace-actions{
-	overflow: hidden;
-	padding: 15px 0;
-	margin: 0 15px;
-	background-color: #fff;
-	border-top: 1px solid #eee;
-}
-
-#layers-marketplace .l_admin-marketplace-actions .theme-rating{
-	padding-top: 4px;
-}
-
-#layers-marketplace .theme-overlay .theme-screenshots img{
-	border: 1px solid #ddd;
-	width: 100%;
-}
-
-#layers-marketplace .theme-overlay .theme-author-img{
-	border-radius: 100%;
-	border: 1px solid #ddd;
-	float: left;
-	max-width: 45px;
-}
-
-#layers-marketplace .l_admin-sales-count {
-	margin: 0px;
-	color: rgba(0, 0, 0, 0.5);
-	line-height: 28px;
-}
-
-#layers-marketplace .theme-overlay .theme-meta {
-	float: left;
-	padding-top: 2px;
-}
-
-#layers-marketplace .theme-overlay .theme-meta span, #layers-marketplace .theme-overlay .theme-meta a{
-	clear: both;
-	display: block;
-	margin: 0;
-	padding: 0;
-	text-decoration: none;
-}
-
-@media only screen and (max-width: 1440px){
-
-	#layers-marketplace .l_admin-help-search {
-		width: 60%;
+	#layers-marketplace #layers-marketplace-search{
+		max-width: 200px;
 	}
 
 	#layers-marketplace .l_admin-product{
-		width: 48%;
+		margin-right: 2%;
+		overflow-y: hidden;
 	}
 
-}
-@media only screen and (max-width: 1279px){
-	.l_admin-marketplace-actions .star-rating{
-		display: none;
+	#layers-marketplace .l_admin-marketplace-actions{
+		overflow: hidden;
+		padding: 15px 0;
+		margin: 0 15px;
+		background-color: #fff;
+		border-top: 1px solid #eee;
 	}
-}
+
+	#layers-marketplace .l_admin-marketplace-actions .theme-rating{
+		padding-top: 4px;
+	}
+
+	#layers-marketplace .theme-overlay .theme-screenshots img{
+		border: 1px solid #ddd;
+		width: 100%;
+	}
+
+	#layers-marketplace .theme-overlay .theme-author-img{
+		border-radius: 100%;
+		border: 1px solid #ddd;
+		float: left;
+		max-width: 45px;
+	}
+
+	#layers-marketplace .l_admin-sales-count {
+		margin: 0px;
+		color: rgba(0, 0, 0, 0.5);
+		line-height: 28px;
+	}
+
+	#layers-marketplace .theme-overlay .theme-meta {
+		float: left;
+		padding-top: 2px;
+	}
+
+	#layers-marketplace .theme-overlay .theme-meta span, #layers-marketplace .theme-overlay .theme-meta a{
+		clear: both;
+		display: block;
+		margin: 0;
+		padding: 0;
+		text-decoration: none;
+	}
+
+	@media only screen and (max-width: 1440px){
+
+		#layers-marketplace .l_admin-help-search {
+			width: 60%;
+		}
+
+		#layers-marketplace .l_admin-product{
+			width: 48%;
+		}
+
+	}
+	@media only screen and (max-width: 1279px){
+		.l_admin-marketplace-actions .star-rating{
+			display: none;
+		}
+	}

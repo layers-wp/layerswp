@@ -92,17 +92,17 @@ $theme_info = wp_get_theme( 'layerswp' ); ?>
 							<div class="l_admin-panel-title">
 								<h4 class="l_admin-heading"><?php _e( 'Layers Pages' , 'layerswp' ); ?></h4>
 							</div>
-							<ul class="l_admin-list l_admin-page-list">
-									<?php foreach( layers_get_builder_pages() as $page ) { ?>
-										<li>
-											<a class="l_admin-page-list-title" href="<?php echo admin_url( 'post.php?post=' . $page->ID . '&action=edit' ); ?>"><?php echo $page->post_title; ?></a>
-											<span class="l_admin-page-edit-links">
-												<a href="<?php echo admin_url( 'customize.php?url=' . esc_url( get_the_permalink( $page->ID ) ) ); ?>"><?php _e( 'Edit Layout' , 'layerswp' ); ?></a> |
-												<a href="<?php echo admin_url( 'post.php?post=' . $page->ID . '&action=edit' ); ?>"><?php _e( 'Edit' , 'layerswp' ); ?></a> |
-												<a href="<?php echo get_the_permalink( $page->ID ); ?>"><?php _e( 'View' , 'layerswp' ); ?></a>
-											</span>
-										</li>
-									<?php }?>
+							<ul class="l_admin-list l_admin-page-list l_admin-scroll">
+								<?php foreach( layers_get_builder_pages() as $page ) { ?>
+									<li>
+										<a class="l_admin-page-list-title" href="<?php echo admin_url( 'post.php?post=' . $page->ID . '&action=edit' ); ?>"><?php echo $page->post_title; ?></a>
+										<span class="l_admin-page-edit-links">
+											<a href="<?php echo admin_url( 'customize.php?url=' . esc_url( get_the_permalink( $page->ID ) ) ); ?>"><?php _e( 'Edit Layout' , 'layerswp' ); ?></a> |
+											<a href="<?php echo admin_url( 'post.php?post=' . $page->ID . '&action=edit' ); ?>"><?php _e( 'Edit' , 'layerswp' ); ?></a> |
+											<a href="<?php echo get_the_permalink( $page->ID ); ?>"><?php _e( 'View' , 'layerswp' ); ?></a>
+										</span>
+									</li>
+								<?php }?>
 							</ul>
 							<div class="l_admin-button-well">
 								<a class="l_admin-button" href="<?php echo admin_url( 'admin.php?page=layers-add-new-page' ); ?>">
@@ -178,30 +178,34 @@ $theme_info = wp_get_theme( 'layerswp' ); ?>
 
 					<?php if( !defined( 'LAYERS_DISABLE_INTERCOM' ) ){ ?>
 						<div class="l_admin-panel l_admin-push-bottom">
-							<div class="l_admin-media l_admin-image-left l_admin-content l_admin-no-push-bottom">
+							<div class="l_admin-panel-title">
+								<h4 class="l_admin-heading">
+									<a href="http://docs.layerswp.com/">
+										<?php _e( 'Layers Messenger' , 'layerswp' ); ?>
+									</a>
+								</h4>
+							</div>
+							<div class="l_admin-media l_admin-image-left l_admin-content-large l_admin-no-push-bottom">
 								<div class="l_admin-media-image l_admin-small">
 									<img src="<?php echo LAYERS_TEMPLATE_URI; ?>/core/assets/images/icon-layers-messenger.png" alt="<?php _e( 'Layers Messenger' , 'layerswp' ); ?>"/>
 								</div>
 								<div class="l_admin-media-body">
-									<h3 class="l_admin-heading">
-										<?php _e( 'Layers Messenger' , 'layerswp' ); ?>
-									</h3>
 									<div class="l_admin-excerpt">
 										<p>
-												<?php _e( 'Enable the Layers Messenger to connect with the Layers team directly from inside Layers.
-												We can help you make informed decisions about themes and extensions and point you in the right direction when
-												you need support with your site and Layers.' , 'layerswp' ); ?>
+											<?php _e( 'Enable the Layers Messenger to connect with the Layers team directly from inside your WordPress dashboard.' , 'layerswp' ); ?>
 										</p>
 										<div class="l_admin-checkbox-wrapper l_admin-form-item">
 											<input id="layers-enable-intercom" name="layers_intercom" type="checkbox" <?php if( '1' == get_option( 'layers_enable_intercom' )  ){ echo 'checked="checked"'; }; ?> />
 											<label for="layers-enable-intercom"><?php _e( 'Enable Layers Messenger', 'layerswp' ); ?></label>
 										</div>
-										<p><a href="http://www.layerswp.com/privacy-policy/" target="_blank"><?php _e( 'Your data is safe with us. View our Privacy Policy', 'layerswp' ); ?></a></p>
-										<a class="l_admin-button" href="" data-setup-step-key="layers_enable_intercom" data-intercom-switch-action="layers_update_intercom">
-											<?php _e( 'Save' , 'layerswp' ); ?>
-										</a>
 									</div>
 								</div>
+							</div>
+							<div class="l_admin-button-well">
+								<a class="l_admin-button btn-link l_admin-pull-right" href="http://www.layerswp.com/privacy-policy/" target="_blank"><?php _e( 'Your data is safe with us', 'layerswp' ); ?></a>
+								<a class="l_admin-button" href="" data-setup-step-key="layers_enable_intercom" data-intercom-switch-action="layers_update_intercom">
+									<?php _e( 'Save Setting' , 'layerswp' ); ?>
+								</a>
 							</div>
 						</div>
 					<?php } // If !disable intercom ?>
@@ -227,7 +231,7 @@ $theme_info = wp_get_theme( 'layerswp' ); ?>
 					</div>
 
 					<div class="l_admin-panel l_admin-push-bottom">
-						<div class="l_admin-media l_admin-image-left l_admin-content l_admin-no-push-bottom">
+						<div class="l_admin-media l_admin-image-left l_admin-content-large">
 							<div class="l_admin-media-image l_admin-small">
 								<img src="<?php echo LAYERS_TEMPLATE_URI; ?>/core/assets/images/github-badge.png" alt="<?php _e( 'Github badge' , 'layerswp' ); ?>"/>
 							</div>
@@ -250,7 +254,7 @@ $theme_info = wp_get_theme( 'layerswp' ); ?>
 	</div>
 </section>
 <section class="l_admin-area-wrapper">
-	<div class="l_admin-row l_admin-well-alt l_admin-content-large">
+	<div class="l_admin-row l_admin-well-alt l_admin-content">
 
 		<div class="l_admin-section-title l_admin-small">
 			<h3 class="l_admin-heading"><?php _e( 'Layers News' , 'layerswp' ); ?></h3>
@@ -259,7 +263,7 @@ $theme_info = wp_get_theme( 'layerswp' ); ?>
 		<div id="layers-dashboard-news-feed" class="l_admin-row" data-layers-feed="news" data-layers-feed-count="3">
 			<div class="l_admin-column l_admin-span-3" data-loading="1">
 				<div class="l_admin-panel">
-					<div class="l_admin-content">
+					<div class="l_admin-content-large">
 						<div class="l_admin-section-title l_admin-tiny">
 							<h4 class="l_admin-heading"><?php _e( 'Loading Layers News' , 'layerswp' ); ?></h4>
 						</div>
@@ -267,7 +271,7 @@ $theme_info = wp_get_theme( 'layerswp' ); ?>
 				</div>
 			</div>
 			<div class="l_admin-column l_admin-span-3">
-				<div class="l_admin-panel l_admin-content clearfix">
+				<div class="l_admin-panel l_admin-content-large clearfix">
 					<div class="l_admin-section-title l_admin-tiny">
 						<h3 class="l_admin-heading"><?php _e( 'Stay in the Loop' , 'layerswp' ); ?></h3>
 						<p class="l_admin-excerpt">

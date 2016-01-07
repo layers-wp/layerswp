@@ -428,7 +428,7 @@
 		box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.04);
 	}
 	.l_admin-modal-container{
-	   position: fixed;
+		position: fixed;
 		width: 100%;
 		display: none;
 		top: 0;
@@ -451,6 +451,10 @@
 		left: 50%;
 		-webkit-transform: translate(-50% ,-50%);
 		transform: translate(-50% ,-50%);
+	}
+	.l_admin-scroll{
+		max-height: 450px;
+		overflow-y: scroll;
 	}
 
 /*---------------------------*/
@@ -749,6 +753,7 @@
 	}
 	.btn-link:hover{
 		background-color: transparent;
+		border-color: transparent;
 		color: #1E8CBE;
 	}
 
@@ -899,6 +904,9 @@
 	.l_admin-heading{
 		margin-top: 0;
 		padding-top: 0;
+	}
+	.l_admin-heading a{
+		text-decoration: none;
 	}
 	.l_admin-heading .l_admin-small{
 		color: #777;
@@ -1141,8 +1149,12 @@
 		margin: 8px 0 0;
 		font-weight: 400;
 	}
-	.l_admin-media p{margin-top: 8px;}
-	.l_admin-media ul{margin-top: 8px;}
+	.l_admin-media p{
+		margin-top: 8px;
+	}
+	.l_admin-media ul{
+		margin-top: 8px;
+	}
 
 	.l_admin-t-center .l_admin-media-body .l_admin-excerpt{
 		margin-left: auto;

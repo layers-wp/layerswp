@@ -67,7 +67,7 @@ if( !class_exists( 'Layers_Onboarding_Ajax' ) ) {
 					<?php if( 'news' == $type ) { ?>
 						<div class="l_admin-column l_admin-span-3">
 							<div class="l_admin-panel">
-								<div class="l_admin-content">
+								<div class="l_admin-content-large">
 									<div class="l_admin-section-title l_admin-tiny">
 										<h4 class="l_admin-heading"><a href="<?php echo $item->get_permalink(); ?>"><?php echo esc_attr( $item->get_title() ); ?></a></h4>
 									</div>

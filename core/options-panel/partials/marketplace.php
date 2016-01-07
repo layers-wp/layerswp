@@ -37,7 +37,7 @@ $all_authors = array(); ?>
 	<div class="l_admin-row l_admin-well l_admin-content">
 		<div class="l_admin-browser">
 			<?php if( is_wp_error( $products ) ) { ?>
-				<div class="l_admin-section-title l_admin-large l_admin-content-large l_admin-t-center">
+				<div class="l_admin-section-title l_admin-large l_admin-content l_admin-t-center">
 					<h3 class="l_admin-heading"><?php _e( 'Oh No!' , 'layerswp'); ?></h3>
 					<div class="l_admin-media-body l_admin-push-bottom">
 						<p class="l_admin-excerpt"><?php _e( sprintf( 'We had some trouble getting the list of %s, luckily though you can just browse the catalogue on Envato.', strtolower( $excerpt ) ) , 'layerswp'); ?></p>

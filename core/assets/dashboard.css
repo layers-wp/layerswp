@@ -10,6 +10,16 @@
 @import url(icons.css);
 
 /*---------------------------*/
+/*- DEFAULT CONTROLS --------*/
+.l_admin-hide{
+	display: none !important;
+}
+.l_admin-soft-hide{
+	visibility: hidden;
+}
+
+
+/*---------------------------*/
 /*- THE GRID ----------------*/
 
 	.l_admin-row:before, .l_admin-row:after{

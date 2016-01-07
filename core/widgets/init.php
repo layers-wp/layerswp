@@ -58,10 +58,7 @@ class Layers_Widgets {
 		add_action( 'delete_post', array( $this, 'clear_page_widgets' ) );
 		add_action( 'wp_restore_post_revision' , array( $this, 'restore_backup' ), 10, 2 );
 		add_action( 'init', array( $this, 'check_for_revisions' ) );
-
-		if( isset( $_REQUEST['action'] ) && ( 'restore' == $_REQUEST['action'] || 'customize_save' == $_REQUEST['action'] ) ){
-			add_filter( '_wp_post_revision_fields', array( $this, 'add_revision_fields' ) );
-		}
+		add_filter( '_wp_post_revision_fields', array( $this, 'add_revision_fields' ) );
 
 		// Register Sidebars
 		$this->register_sidebars();
@@ -236,6 +233,7 @@ class Layers_Widgets {
 
 		if( ! $revisions_exist ) {
 			layers_backup_sidebars_widgets( TRUE );
+
 			add_option( 'layers_init_revisions', TRUE );
 		}
 	}
@@ -388,14 +386,7 @@ function layers_backup_sidebars_widgets( $no_revisions = FALSE ){
 
 			// Update the backup post
 
-			if( TRUE == $no_revisions )
-				remove_action('pre_post_update', 'wp_save_post_revision');// stop revisions
-
 			$post_id = wp_update_post( $post );
-
-			if( TRUE == $no_revisions )
-				add_action('pre_post_update', 'wp_save_post_revision');// restart revisions
-
 		}
 	}
 }

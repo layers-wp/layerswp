@@ -221,8 +221,6 @@ function layers_resore_site(){
 		delete_option ( 'layers_wgt_backup' );
 	}
 
-//die( ':)' );
-
 }
 add_action( 'after_switch_theme' , 'layers_resore_site', 50 );
 

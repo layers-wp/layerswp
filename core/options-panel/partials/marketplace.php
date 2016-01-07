@@ -34,30 +34,30 @@ $all_authors = array(); ?>
 
 	<?php $this->marketplace_header( 'Marketplace' ); ?>
 
-	<div class="l_admin-row layers-well layers-content">
+	<div class="l_admin-row l_admin-well l_admin-content">
 		<div class="l_admin-browser">
 			<?php if( is_wp_error( $products ) ) { ?>
-				<div class="l_admin-section-title layers-large layers-content-large layers-t-center">
+				<div class="l_admin-section-title l_admin-large l_admin-content-large l_admin-t-center">
 					<h3 class="l_admin-heading"><?php _e( 'Oh No!' , 'layerswp'); ?></h3>
-					<div class="l_admin-media-body layers-push-bottom">
+					<div class="l_admin-media-body l_admin-push-bottom">
 						<p class="l_admin-excerpt"><?php _e( sprintf( 'We had some trouble getting the list of %s, luckily though you can just browse the catalogue on Envato.', strtolower( $excerpt ) ) , 'layerswp'); ?></p>
 					</div>
 					<a href="<?php echo $fallback_url; ?>" class="l_admin-button btn-primary btn-large"><?php _e( 'Browse on Envato', 'layerswp' ); ?></a>
 				</div>
 			<?php } else { ?>
-				<div class="l_admin-marketplace-loading layers-section-title layers-large layers-content-large layers-t-center">
+				<div class="l_admin-marketplace-loading l_admin-section-title l_admin-large l_admin-content-large l_admin-t-center">
 					<h3 class="l_admin-heading"><?php _e( 'Loading...' , 'layerswp'); ?></h3>
-					<div class="l_admin-media-body layers-push-bottom">
+					<div class="l_admin-media-body l_admin-push-bottom">
 						<p class="l_admin-excerpt"><?php _e( sprintf( 'We\'re busy gathering and sorting the list of %s, hang tight.', strtolower( $excerpt ) ) , 'layerswp'); ?></p>
 					</div>
 				</div>
 			<?php } ?>
 
 			<?php if( !is_wp_error( $products ) ) { ?>
-				<div class="l_admin-marketplace-intro layers-section-title layers-small layers-content-small layers-hide">
+				<div class="l_admin-marketplace-intro l_admin-section-title l_admin-small l_admin-content-small l_admin-hide">
 					<p class="l_admin-excerpt"> <?php _e( 'You are viewing', 'layerswp' ); ?> <span id="intro-product-type"> <?php echo strtolower( $excerpt ); ?>,</span><span id="intro-author"></span> <?php _e( 'ordered', 'layerswp' ); ?> <span id="intro-sort"><?php _e( 'by last updated', 'layerswp' ); ?></span>.</p>
 				</div>
-				<div class="l_admin-products layers-hide">
+				<div class="l_admin-products l_admin-hide">
 
 					<?php foreach( $products->matches as $key => $details ) {
 
@@ -67,7 +67,7 @@ $all_authors = array(); ?>
 
 						$envato_url = 'http://www.layerswp.com/go-envato/?id=' . esc_attr( $details->id ) . '&item=' . esc_attr( $details->name ) . '&site=' . $site_key; ?>
 						<div
-							id="product-details-<?php echo $details->id; ?>" class="l_admin-product layers-animate" tabindex="0"
+							id="product-details-<?php echo $details->id; ?>" class="l_admin-product l_admin-animate" tabindex="0"
 							data-id="<?php echo $details->id; ?>"
 							data-url="<?php echo esc_attr( $envato_url ); ?>"
 							data-slug="<?php echo sanitize_title( $details->name ); ?>"
@@ -112,7 +112,7 @@ $all_authors = array(); ?>
 
 								<div class="l_admin-marketplace-actions">
 									<?php if( isset( $details->rating ) && 3 <= $details->rating->count && 2<= $details->rating->rating ) { ?>
-										<div class="l_admin-pull-right theme-rating star-rating layers-push-left-small">
+										<div class="l_admin-pull-right theme-rating star-rating l_admin-push-left-small">
 											<?php for( $i = 1; $i < 6; $i++ ){ ?>
 												<?php if( ceil( $details->rating->rating ) >= $i ) { ?>
 													<span class="star star-full"></span>
@@ -122,14 +122,14 @@ $all_authors = array(); ?>
 											<?php } ?>
 										</div>
 									<?php } ?>
-									<a class="l_admin-pull-left layers-button btn-subtle layers-push-right-small" data-item="<?php echo esc_attr( $details->name ); ?>" data-view-item="product-details-<?php echo $details->id; ?>" href="<?php echo $envato_url; ?>" target="_blank">
+									<a class="l_admin-pull-left l_admin-button btn-subtle l_admin-push-right-small" data-item="<?php echo esc_attr( $details->name ); ?>" data-view-item="product-details-<?php echo $details->id; ?>" href="<?php echo $envato_url; ?>" target="_blank">
 										<?php _e( 'Details' , 'layerswp' ); ?>
 									</a>
-									<a class="l_admin-pull-left layers-button btn-primary layers-push-right-small" href="<?php echo $envato_url; ?>&type=purchase" target="_blank" data-item="<?php echo esc_attr( $details->name ); ?>" data-price="$ <?php echo (float) ($details->price_cents/100); ?>">
+									<a class="l_admin-pull-left l_admin-button btn-primary l_admin-push-right-small" href="<?php echo $envato_url; ?>&type=purchase" target="_blank" data-item="<?php echo esc_attr( $details->name ); ?>" data-price="$ <?php echo (float) ($details->price_cents/100); ?>">
 										<?php _e( 'Buy for ' , 'layerswp' ); ?>
 										$<?php echo (float) ($details->price_cents/100); ?>
 									</a>
-									<span class="l_admin-pull-left layers-sales-count">
+									<span class="l_admin-pull-left l_admin-sales-count">
 										<?php echo esc_attr( $details->number_of_sales ); ?> sales
 									</span>
 								</div>
@@ -152,7 +152,7 @@ $all_authors = array(); ?>
 		</div>
 	</div>
 
-	<div class="theme-overlay layers-hide">
+	<div class="theme-overlay l_admin-hide">
 		 <div class="theme-backdrop"></div>
 		 <div class="theme-wrap">
 			  <div class="theme-header">
@@ -165,7 +165,7 @@ $all_authors = array(); ?>
 					<div class="theme-info">
 						<h3 class="theme-name"></h3>
 						<p class="l_admin-row">
-							<span class="l_admin-pull-left layers-push-right-small">
+							<span class="l_admin-pull-left l_admin-push-right-small">
 								<img class="theme-author-img" />
 							</span>
 							<span class="theme-meta">

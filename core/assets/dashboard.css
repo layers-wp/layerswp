@@ -1663,14 +1663,9 @@
 	.l_admin-product{
 		box-sizing: border-box;
 		cursor: pointer;
-		float: left;
-		margin: 0 2% 2% 0;
 		position: relative;
-		width: 31%;
 		border: 1px solid #dedede;
-	}
-	.l_admin-product:nth-child(3n+3){
-		margin-right: 0;
+		overflow-y: hidden;
 	}
 	.l_admin-product:hover{
 		border: 1px solid #009eec;
@@ -1756,11 +1751,6 @@
 		max-width: 200px;
 	}
 
-	#layers-marketplace .l_admin-product{
-		margin-right: 2%;
-		overflow-y: hidden;
-	}
-
 	#layers-marketplace .l_admin-marketplace-actions{
 		overflow: hidden;
 		padding: 15px 0;
@@ -1808,10 +1798,6 @@
 
 		#layers-marketplace .l_admin-help-search {
 			width: 60%;
-		}
-
-		#layers-marketplace .l_admin-product{
-			width: 48%;
 		}
 
 	}

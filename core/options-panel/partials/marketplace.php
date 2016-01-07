@@ -67,7 +67,7 @@ $all_authors = array(); ?>
 
 						$envato_url = 'http://www.layerswp.com/go-envato/?id=' . esc_attr( $details->id ) . '&item=' . esc_attr( $details->name ) . '&site=' . $site_key; ?>
 						<div
-							id="product-details-<?php echo $details->id; ?>" class="l_admin-product l_admin-animate" tabindex="0"
+							id="product-details-<?php echo $details->id; ?>" class="l_admin-column l_admin-span-4 l_admin-product l_admin-animate" tabindex="0"
 							data-id="<?php echo $details->id; ?>"
 							data-url="<?php echo esc_attr( $envato_url ); ?>"
 							data-slug="<?php echo sanitize_title( $details->name ); ?>"
@@ -137,21 +137,22 @@ $all_authors = array(); ?>
 							<input  class="l_admin-product-json" type="hidden" value='<?php echo htmlspecialchars( json_encode( $details ) ); ?>' />
 						</div>
 					<?php } // Get Preset Layouts ?>
-					<script>
-						// Fill the author select box
-						var layers_market_authors = jQuery.parseJSON( '<?php echo json_encode( $all_authors ); ?>' );
-						layers_market_authors.sort();
-
-						jQuery.each( layers_market_authors, function( key, username ){
-							jQuery( '#layers-marketplace-authors' ).append( jQuery( '<option value="'+ username.toString().toLowerCase() + '">' + username + '</option>') );
-						});
-
-					</script>
 				<?php } ?>
 			</div>
 		</div>
 	</div>
+	<?php if( !is_wp_error( $products ) ) { ?>
+		<script>
+			// Fill the author select box
+			var layers_market_authors = jQuery.parseJSON( '<?php echo json_encode( $all_authors ); ?>' );
+			layers_market_authors.sort();
 
+			jQuery.each( layers_market_authors, function( key, username ){
+				jQuery( '#layers-marketplace-authors' ).append( jQuery( '<option value="'+ username.toString().toLowerCase() + '">' + username + '</option>') );
+			});
+
+		</script>
+	<?php } ?>
 	<div class="theme-overlay l_admin-hide">
 		 <div class="theme-backdrop"></div>
 		 <div class="theme-wrap">

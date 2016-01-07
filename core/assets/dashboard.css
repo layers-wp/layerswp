@@ -677,7 +677,7 @@
 		border-radius: 3px;
 		white-space: nowrap;
 		box-sizing: border-box;
-		box-shadow: 0px 1px 0px rgba(255, 255, 255, 0.4) inset, 0px 1px 0px rgba(0, 0, 0, 0.08);
+		box-shadow: 0px 1px 0px rgba(0, 0, 0, 0.1);
 		vertical-align: middle;
 		cursor: pointer;
 		color: #555;
@@ -685,28 +685,32 @@
 		font-size: 13px;
 		line-height: 26px;
 		text-align: center;
+		transform: translateY(0px);
 	}
 	.l_admin-button:before{
 		transition: all .2s;
 		-webkit-transition: all .2s;
 	}
 	.l_admin-button:hover{
-		background-color: #f2f2f2;
+		border-color: #999;
 		color: #555;
 	}
-	.l_admin-button:focus{
-		box-shadow: none;
+	.l_admin-button:active{
+		box-shadow: 0px 2px 0px rgba(0, 0, 0, 0.1) inset;
+		transform: translateY(1px);
 	}
 
 	/*-----------------------*/
 	/*- PRIMARY BUTTON ------*/
 	.btn-primary{
-		background: #2EA2CC;
-		border-color: #0074A2;
+		background: #0085BA;
+		border-color: #006799;
+		box-shadow: 0px 1px 0px #006799;
 		color: #fff;
 	}
 	.btn-primary:hover{
-		background: #1E8CBE;
+		background: #008EC2;
+		border-color: #006799;
 		color: #fff;
 	}
 
@@ -1285,17 +1289,14 @@
 			border-color: #0073A6;
 		}
 		.l_admin-dashboard-nav .l_admin-get-updater{
-			padding: 4px 10px;
+			display: inline-block;
+			height: auto;
+			padding: 2px 10px;
 			margin: 10px 0;
-			border: none;
-			background: #2EA2CC;
-			border: 1px solid #0074A2;
-			border-radius: 3px;
+			border-bottom: 1px;
 			color: #fff;
-			box-shadow: 0px 1px 0px rgba(255, 255, 255, 0.4) inset, 0px 1px 0px rgba(0, 0, 0, 0.08);
 		}
 		.l_admin-dashboard-nav .l_admin-get-updater:hover{
-			background: none repeat scroll 0% 0% #1E8CBE;
 			color: #fff;
 		}
 

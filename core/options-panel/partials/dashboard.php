@@ -178,25 +178,30 @@ $theme_info = wp_get_theme( 'layerswp' ); ?>
 
 					<?php if( !defined( 'LAYERS_DISABLE_INTERCOM' ) ){ ?>
 						<div class="l_admin-panel l_admin-push-bottom">
-							<div class="l_admin-panel-title">
-								<h4 class="l_admin-heading">
-									<?php _e( 'Layers Messenger' , 'layerswp' ); ?>
-								</h4>
-							</div>
-							<div class="l_admin-content">
-								<div class="l_admin-excerpt">
-									<p><?php _e( 'Enable the Layers Messenger to connect with the Layers team directly from inside Layers. We can help you make informed decisions about themes and extensions and point you in the right direction when you need support with your site and Layers.' , 'layerswp' ); ?></p>
-									<div class="l_admin-checkbox-wrapper l_admin-form-item">
-										<input id="layers-enable-intercom" name="layers_intercom" type="checkbox" <?php if( '1' == get_option( 'layers_enable_intercom' )  ){ echo 'checked="checked"'; }; ?> />
-										<label for="layers-enable-intercom"><?php _e( 'Enable Layers Messenger', 'layerswp' ); ?></label>
-									</div>
-									<p><a href="http://www.layerswp.com/privacy-policy/" target="_blank"><?php _e( 'Your data is safe with us. View our Privacy Policy', 'layerswp' ); ?></a></p>
+							<div class="l_admin-media l_admin-image-left l_admin-content l_admin-no-push-bottom">
+								<div class="l_admin-media-image l_admin-small">
+									<img src="<?php echo LAYERS_TEMPLATE_URI; ?>/core/assets/images/icon-layers-messenger.png" alt="<?php _e( 'Layers Messenger' , 'layerswp' ); ?>"/>
 								</div>
-							</div>
-							<div class="l_admin-button-well">
-								<a class="l_admin-button l_admin-pull-right" href="" data-setup-step-key="layers_enable_intercom" data-intercom-switch-action="layers_update_intercom">
-									<?php _e( 'Save' , 'layerswp' ); ?>
-								</a>
+								<div class="l_admin-media-body">
+									<h3 class="l_admin-heading">
+										<?php _e( 'Layers Messenger' , 'layerswp' ); ?>
+									</h3>
+									<div class="l_admin-excerpt">
+										<p>
+												<?php _e( 'Enable the Layers Messenger to connect with the Layers team directly from inside Layers.
+												We can help you make informed decisions about themes and extensions and point you in the right direction when
+												you need support with your site and Layers.' , 'layerswp' ); ?>
+										</p>
+										<div class="l_admin-checkbox-wrapper l_admin-form-item">
+											<input id="layers-enable-intercom" name="layers_intercom" type="checkbox" <?php if( '1' == get_option( 'layers_enable_intercom' )  ){ echo 'checked="checked"'; }; ?> />
+											<label for="layers-enable-intercom"><?php _e( 'Enable Layers Messenger', 'layerswp' ); ?></label>
+										</div>
+										<p><a href="http://www.layerswp.com/privacy-policy/" target="_blank"><?php _e( 'Your data is safe with us. View our Privacy Policy', 'layerswp' ); ?></a></p>
+										<a class="l_admin-button" href="" data-setup-step-key="layers_enable_intercom" data-intercom-switch-action="layers_update_intercom">
+											<?php _e( 'Save' , 'layerswp' ); ?>
+										</a>
+									</div>
+								</div>
 							</div>
 						</div>
 					<?php } // If !disable intercom ?>

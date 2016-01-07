@@ -196,7 +196,7 @@ class Layers_Options_Panel {
 						<?php }?>
 						<?php if( !class_exists( 'Layers_Updater' ) ) { ?>
 							<li>
-								<?php _e( sprintf( '<a class="l_admin-get-updater" href="%s">Get the Layers Updater</a>', 'http://www.layerswp.com/download/layers-updater/' ) , 'layerswp' ); ?>
+								<?php _e( sprintf( '<a class="l_admin-get-updater l_admin-button btn-primary" href="%s">Get the Layers Updater</a>', 'http://www.layerswp.com/download/layers-updater/' ) , 'layerswp' ); ?>
 							</li>
 						<?php } ?>
 					</ul>

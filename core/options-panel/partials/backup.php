@@ -4,13 +4,13 @@
 
 	<?php $this->header( __( 'Transfer' , 'layerswp' ) ); ?>
 
-	<div class="l_admin-row layers-well layers-content">
+	<div class="l_admin-row l_admin-well l_admin-content">
 		<div class="l_admin-container-large">
 			<div class="l_admin-row">
 
-				<div class="l_admin-column layers-panel layers-span-8">
-					<div class="l_admin-content layers-push-bottom">
-						<div class="l_admin-section-title layers-small">
+				<div class="l_admin-column l_admin-panel l_admin-span-8">
+					<div class="l_admin-content l_admin-push-bottom">
+						<div class="l_admin-section-title l_admin-small">
 							<h3 class="l_admin-heading"><?php _e( 'Transfer your pages' , 'layerswp' ); ?></h3>
 							<p class="l_admin-excerpt">
 								<?php _e( 'Convert your Layers pages into regular WordPress pages, preserving the content you have worked so hard to create.' , 'layerswp' ); ?>
@@ -24,8 +24,8 @@
 						<a id="layers-backup-pages" class="l_admin-button btn-large btn-primary"><?php _e( 'Transfer my Pages Now' , 'layerswp' ); ?></a>
 					</div>
 				</div>
-				<div class="l_admin-column layers-span-4">
-					<div class="l_admin-panel layers-push-bottom">
+				<div class="l_admin-column l_admin-span-4">
+					<div class="l_admin-panel l_admin-push-bottom">
 						<div class="l_admin-panel-title">
 							<h4 class="l_admin-heading"><?php _e( 'Transferred Up Pages:' , 'layerswp' ); ?></h4>
 						</div>

@@ -241,7 +241,7 @@ $all_authors = array(); ?>
 					<a href="" class="button button-secondary theme-demo-link" target="_blank">
 						<?php _e( 'Preview' , 'layerswp' ); ?>
 					</a>
-					<a href="" class="l_admin-button btn-secondary theme-buy-link" target="_blank">
+					<a href="" class="button btn-secondary theme-buy-link" target="_blank">
 						<span class="l_admin-price">
 							$<?php echo (float) ($details->price_cents/100); ?>
 						</span>

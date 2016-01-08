@@ -143,6 +143,23 @@ $all_authors = array(); ?>
 										$video_src = $previews->icon_with_video_preview->video_url ;
 									} ?>
 
+									<div class="l_admin-product-extra-info l_admin-animate">
+										<span class="l_admin-pull-left l_admin-sales-count">
+											<?php echo esc_attr( $details->number_of_sales ); ?> sales
+										</span>
+										<?php if( isset( $details->rating ) && 3 <= $details->rating->count && 2<= $details->rating->rating ) { ?>
+											<div class="l_admin-pull-right theme-rating star-rating l_admin-push-left-small">
+												<?php for( $i = 1; $i < 6; $i++ ){ ?>
+													<?php if( ceil( $details->rating->rating ) >= $i ) { ?>
+														<span class="star star-full"></span>
+													<?php } else { ?>
+														<span class="star star-empty"></span>
+													<?php } ?>
+												<?php } ?>
+											</div>
+										<?php } ?>
+									</div>
+
 									<?php if( isset( $image_src ) ) { ?>
 										<div class="l_admin-product-screenshot" data-view-item="product-details-<?php echo $details->id; ?>">
 											<?php if( 1 == $is_img ) { ?>
@@ -158,27 +175,15 @@ $all_authors = array(); ?>
 									</h3>
 
 									<div class="l_admin-marketplace-actions">
-										<?php if( isset( $details->rating ) && 3 <= $details->rating->count && 2<= $details->rating->rating ) { ?>
-											<div class="l_admin-pull-right theme-rating star-rating l_admin-push-left-small">
-												<?php for( $i = 1; $i < 6; $i++ ){ ?>
-													<?php if( ceil( $details->rating->rating ) >= $i ) { ?>
-														<span class="star star-full"></span>
-													<?php } else { ?>
-														<span class="star star-empty"></span>
-													<?php } ?>
-												<?php } ?>
-											</div>
-										<?php } ?>
 										<a class="l_admin-pull-left l_admin-button btn-subtle l_admin-push-right-small" data-item="<?php echo esc_attr( $details->name ); ?>" data-view-item="product-details-<?php echo $details->id; ?>" href="<?php echo $envato_url; ?>" target="_blank">
 											<?php _e( 'Details' , 'layerswp' ); ?>
 										</a>
-										<a class="l_admin-pull-left l_admin-button btn-primary l_admin-push-right-small" href="<?php echo $envato_url; ?>&type=purchase" target="_blank" data-item="<?php echo esc_attr( $details->name ); ?>" data-price="$ <?php echo (float) ($details->price_cents/100); ?>">
-											<?php _e( 'Buy for ' , 'layerswp' ); ?>
-											$<?php echo (float) ($details->price_cents/100); ?>
+										<a class="l_admin-pull-right l_admin-button btn-secondary l_admin-push-left-small" href="<?php echo $envato_url; ?>&type=purchase" target="_blank" data-item="<?php echo esc_attr( $details->name ); ?>" data-price="$ <?php echo (float) ($details->price_cents/100); ?>">
+											<span class="l_admin-price">
+												$<?php echo (float) ($details->price_cents/100); ?>
+											</span>
+											<?php _e( 'Buy Now' , 'layerswp' ); ?>
 										</a>
-										<span class="l_admin-pull-left l_admin-sales-count">
-											<?php echo esc_attr( $details->number_of_sales ); ?> sales
-										</span>
 									</div>
 								</label>
 								<input  class="l_admin-product-json" type="hidden" value='<?php echo htmlspecialchars( json_encode( $details ) ); ?>' />
@@ -204,43 +209,46 @@ $all_authors = array(); ?>
 	<div class="theme-overlay l_admin-hide">
 		 <div class="theme-backdrop"></div>
 		 <div class="theme-wrap">
-			  <div class="theme-header">
-					<button class="left dashicons dashicons-no"><span class="screen-reader-text">Show previous</span></button>
-					<button class="right dashicons dashicons-no"><span class="screen-reader-text">Show next</span></button>
-					<button class="close dashicons dashicons-no"><span class="screen-reader-text">Close details dialog</span></button>
-			  </div>
-			  <div class="theme-about">
-					<div class="theme-screenshots"><img /></div>
-					<div class="theme-info">
-						<h3 class="theme-name"></h3>
-						<p class="l_admin-row">
-							<span class="l_admin-pull-left l_admin-push-right-small">
-								<img class="theme-author-img" />
-							</span>
-							<span class="theme-meta">
-								<a class="theme-author" target="_blank"></a>
-								<span class="theme-sales"></span>
-							</span>
-						</p>
-						<p class="theme-rating star-rating"></p>
-						<p class="theme-description"></p>
-						<p class="theme-tags"></p>
-					</div>
-			  </div>
+			<div class="theme-header">
+				<button class="left dashicons dashicons-no"><span class="screen-reader-text">Show previous</span></button>
+				<button class="right dashicons dashicons-no"><span class="screen-reader-text">Show next</span></button>
+				<button class="close dashicons dashicons-no"><span class="screen-reader-text">Close details dialog</span></button>
+			</div>
+			<div class="theme-about">
+				<div class="theme-screenshots"><img /></div>
+				<div class="theme-info">
+					<h3 class="theme-name"></h3>
+					<p class="l_admin-row">
+						<span class="l_admin-pull-left l_admin-push-right-small">
+							<img class="theme-author-img" />
+						</span>
+						<span class="theme-meta">
+							<a class="theme-author" target="_blank"></a>
+							<span class="theme-sales"></span>
+						</span>
+					</p>
+					<p class="theme-rating star-rating"></p>
+					<p class="theme-description"></p>
+					<p class="theme-tags"></p>
+				</div>
+			</div>
 
-			  <div class="theme-actions">
-					<div class="inactive-theme">
-						<a href="" class="button button-secondary theme-details-link" target="_blank">
-							<?php _e( 'View More Info' , 'layerswp' ); ?>
-						</a>
-						<a href="" class="button button-secondary theme-demo-link" target="_blank">
-							<?php _e( 'View Demo' , 'layerswp' ); ?>
-						</a>
-						<a href="" class="button button-primary theme-buy-link" target="_blank">
-							<?php _e( 'Buy for $', 'layerswp' ); ?> <span class="theme-price"></span>
-						</a>
-					</div>
-			  </div>
+			<div class="theme-actions">
+				<div class="inactive-theme">
+					<a href="" class="button button-secondary theme-details-link" target="_blank">
+						<?php _e( 'More Info' , 'layerswp' ); ?>
+					</a>
+					<a href="" class="button button-secondary theme-demo-link" target="_blank">
+						<?php _e( 'Preview' , 'layerswp' ); ?>
+					</a>
+					<a href="" class="l_admin-button btn-secondary theme-buy-link" target="_blank">
+						<span class="l_admin-price">
+							$<?php echo (float) ($details->price_cents/100); ?>
+						</span>
+						<?php _e( 'Buy Now', 'layerswp' ); ?>
+					</a>
+				</div>
+			</div>
 		 </div>
 	</div>
 

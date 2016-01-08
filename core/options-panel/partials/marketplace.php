@@ -36,109 +36,157 @@ $all_authors = array(); ?>
 
 	<div class="l_admin-row l_admin-well l_admin-content">
 		<div class="l_admin-browser">
-			<?php if( is_wp_error( $products ) ) { ?>
-				<div class="l_admin-section-title l_admin-large l_admin-content l_admin-t-center">
-					<h3 class="l_admin-heading"><?php _e( 'Oh No!' , 'layerswp'); ?></h3>
-					<div class="l_admin-media-body l_admin-push-bottom">
-						<p class="l_admin-excerpt"><?php _e( sprintf( 'We had some trouble getting the list of %s, luckily though you can just browse the catalogue on Envato.', strtolower( $excerpt ) ) , 'layerswp'); ?></p>
+
+			<div class="l_admin-column l_admin-span-2">
+				<div class="l_admin-section-title l_admin-tiny">
+					<h3 class="l_admin-heading">
+						<?php _e( 'Marketplace Filters' , 'layerswp' ); ?>
+					</h3>
+					<?php if( !is_wp_error( $products ) ) { ?>
+						<p class="l_admin-excerpt">
+							<?php _e( 'You are viewing', 'layerswp' ); ?> <span id="intro-product-type"> <?php echo strtolower( $excerpt ); ?>,</span><span id="intro-author"></span> <?php _e( 'ordered', 'layerswp' ); ?> <span id="intro-sort"><?php _e( 'by last updated', 'layerswp' ); ?></span>.
+						</p>
+					<?php } ?>
+				</div>
+
+				<div class="l_admin-panel l_admin-push-bottom">
+					<div class="l_admin-panel-title">
+						<h4 class="l_admin-heading"><?php _e( 'Product Type' , 'layerswp' ); ?></h4>
 					</div>
-					<a href="<?php echo $fallback_url; ?>" class="l_admin-button btn-primary btn-large"><?php _e( 'Browse on Envato', 'layerswp' ); ?></a>
+					<ul class="l_admin-list l_admin-page-list">
+						<li>
+							<a href="">Themes</a>
+						</li>
+						<li>
+							<a href="">Extensions</a>
+						</li>
+						<li>
+							<a href="">StyleKits</a>
+						</li>
+					</ul>
 				</div>
-			<?php } else { ?>
-				<div class="l_admin-marketplace-loading l_admin-section-title l_admin-large l_admin-content-large l_admin-t-center">
-					<h3 class="l_admin-heading"><?php _e( 'Loading...' , 'layerswp'); ?></h3>
-					<div class="l_admin-media-body l_admin-push-bottom">
-						<p class="l_admin-excerpt"><?php _e( sprintf( 'We\'re busy gathering and sorting the list of %s, hang tight.', strtolower( $excerpt ) ) , 'layerswp'); ?></p>
+
+				<div class="l_admin-panel l_admin-push-bottom">
+					<div class="l_admin-panel-title">
+						<h4 class="l_admin-heading"><?php _e( 'Categories' , 'layerswp' ); ?></h4>
 					</div>
+					<ul class="l_admin-list l_admin-page-list">
+						<li>
+							<a href="">WooCommerce</a> <span class="l_admin-label label-subtle">(15)</span>
+						</li>
+						<li>
+							<a href="">Business</a> <span class="l_admin-label label-subtle">(3)</span>
+						</li>
+						<li>
+							<a href="">Multi-purpose</a> <span class="l_admin-label label-subtle">(3)</span>
+						</li>
+					</ul>
 				</div>
-			<?php } ?>
 
-			<?php if( !is_wp_error( $products ) ) { ?>
-				<div class="l_admin-marketplace-intro l_admin-section-title l_admin-small l_admin-content-small l_admin-hide">
-					<p class="l_admin-excerpt"> <?php _e( 'You are viewing', 'layerswp' ); ?> <span id="intro-product-type"> <?php echo strtolower( $excerpt ); ?>,</span><span id="intro-author"></span> <?php _e( 'ordered', 'layerswp' ); ?> <span id="intro-sort"><?php _e( 'by last updated', 'layerswp' ); ?></span>.</p>
-				</div>
-				<div class="l_admin-products l_admin-hide">
+			</div>
+			<div class="l_admin-column l_admin-span-10">
 
-					<?php foreach( $products->matches as $key => $details ) {
+				<?php if( is_wp_error( $products ) ) { ?>
+					<div class="l_admin-section-title l_admin-large l_admin-content l_admin-t-center">
+						<h3 class="l_admin-heading"><?php _e( 'Oh No!' , 'layerswp'); ?></h3>
+						<div class="l_admin-media-body l_admin-push-bottom">
+							<p class="l_admin-excerpt"><?php _e( sprintf( 'We had some trouble getting the list of %s, luckily though you can just browse the catalogue on Envato.', strtolower( $excerpt ) ) , 'layerswp'); ?></p>
+						</div>
+						<a href="<?php echo $fallback_url; ?>" class="l_admin-button btn-primary btn-large"><?php _e( 'Browse on Envato', 'layerswp' ); ?></a>
+					</div>
+				<?php } else { ?>
+					<div class="l_admin-marketplace-loading l_admin-section-title l_admin-large l_admin-content-large l_admin-t-center">
+						<h3 class="l_admin-heading"><?php _e( 'Loading...' , 'layerswp'); ?></h3>
+						<div class="l_admin-media-body l_admin-push-bottom">
+							<p class="l_admin-excerpt"><?php _e( sprintf( 'We\'re busy gathering and sorting the list of %s, hang tight.', strtolower( $excerpt ) ) , 'layerswp'); ?></p>
+						</div>
+					</div>
+				<?php } ?>
 
-						if( FALSE === in_array(  ucfirst( strtolower( $details->author_username ) ), $all_authors ) ){
-							$all_authors[] = ucfirst( strtolower( $details->author_username ) );
-						}
+				<?php if( !is_wp_error( $products ) ) { ?>
+					<div class="l_admin-products l_admin-hide">
 
-						$envato_url = 'http://www.layerswp.com/go-envato/?id=' . esc_attr( $details->id ) . '&item=' . esc_attr( $details->name ) . '&site=' . $site_key; ?>
-						<div
-							id="product-details-<?php echo $details->id; ?>" class="l_admin-column l_admin-span-4 l_admin-product l_admin-animate" tabindex="0"
-							data-id="<?php echo $details->id; ?>"
-							data-url="<?php echo esc_attr( $envato_url ); ?>"
-							data-slug="<?php echo sanitize_title( $details->name ); ?>"
-							data-updated="<?php echo strtotime( $details->updated_at ); ?>"
-							data-name="<?php echo esc_attr( $details->name ); ?>"
-							data-sales="<?php echo esc_attr( $details->number_of_sales ); ?>"
-							data-rating="<?php echo ( $details->rating->count > 0 ? ceil( $details->rating->rating ) : '' ) ; ?>"
-							data-author="<?php echo $details->author_username; ?>"
-							data-price="<?php echo (float) ($details->price_cents/100); ?>"
-							data-trending="<?php echo ( isset( $details->trending ) && '1' == $details->trending ? 1 : 0 ); ?>">
-							<label for="layers-preset-layout-<?php echo esc_attr( $details->id ); ?>-radio">
+						<?php foreach( $products->matches as $key => $details ) {
 
-								<?php /**
-								* Get images and/or video
-								**/
-								$previews = $details->previews;
+							if( FALSE === in_array(  ucfirst( strtolower( $details->author_username ) ), $all_authors ) ){
+								$all_authors[] = ucfirst( strtolower( $details->author_username ) );
+							}
 
-								if ( isset( $previews->icon_with_landscape_preview->landscape_url ) && strpos( $previews->icon_with_landscape_preview->landscape_url, '//' ) ) {
-									$is_img = 1;
-									$image_src = $previews->icon_with_landscape_preview->landscape_url ;
-								} else if ( isset( $previews->icon_with_video_preview->landscape_url ) && strpos( $previews->icon_with_video_preview->landscape_url, '//' ) ) {
-									$is_img = 1;
-                           			$image_src = $previews->icon_with_video_preview->landscape_url ;
-								} else if ( isset( $previews->icon_with_video_preview->video_url ) && strpos( $previews->icon_with_video_preview->video_url, '//' ) ) {
-									$is_img = 0;
-									$video_src = $previews->icon_with_video_preview->video_url ;
-								} ?>
+							$envato_url = 'http://www.layerswp.com/go-envato/?id=' . esc_attr( $details->id ) . '&item=' . esc_attr( $details->name ) . '&site=' . $site_key; ?>
+							<div
+								id="product-details-<?php echo $details->id; ?>" class="l_admin-column l_admin-span-4 l_admin-product l_admin-animate" tabindex="0"
+								data-id="<?php echo $details->id; ?>"
+								data-url="<?php echo esc_attr( $envato_url ); ?>"
+								data-slug="<?php echo sanitize_title( $details->name ); ?>"
+								data-updated="<?php echo strtotime( $details->updated_at ); ?>"
+								data-name="<?php echo esc_attr( $details->name ); ?>"
+								data-sales="<?php echo esc_attr( $details->number_of_sales ); ?>"
+								data-rating="<?php echo ( $details->rating->count > 0 ? ceil( $details->rating->rating ) : '' ) ; ?>"
+								data-author="<?php echo $details->author_username; ?>"
+								data-price="<?php echo (float) ($details->price_cents/100); ?>"
+								data-trending="<?php echo ( isset( $details->trending ) && '1' == $details->trending ? 1 : 0 ); ?>">
+								<label for="layers-preset-layout-<?php echo esc_attr( $details->id ); ?>-radio">
 
-								<?php if( isset( $image_src ) ) { ?>
-									<div class="l_admin-product-screenshot" data-view-item="product-details-<?php echo $details->id; ?>">
-										<?php if( 1 == $is_img ) { ?>
-											<img src="<?php echo esc_url( $image_src ); ?>" />
-										<?php } else { ?>
-											<?php layers_show_html5_video( esc_url( $video_src ) ); ?>
-										<?php } ?>
-									</div>
-								<?php } ?>
+									<?php /**
+									* Get images and/or video
+									**/
+									$previews = $details->previews;
 
-								<h3 class="l_admin-product-name" id="<?php echo esc_attr( $details->id ); ?>">
-									<?php echo esc_html( $details->name ); ?>
-								</h3>
+									if ( isset( $previews->icon_with_landscape_preview->landscape_url ) && strpos( $previews->icon_with_landscape_preview->landscape_url, '//' ) ) {
+										$is_img = 1;
+										$image_src = $previews->icon_with_landscape_preview->landscape_url ;
+									} else if ( isset( $previews->icon_with_video_preview->landscape_url ) && strpos( $previews->icon_with_video_preview->landscape_url, '//' ) ) {
+										$is_img = 1;
+	                           			$image_src = $previews->icon_with_video_preview->landscape_url ;
+									} else if ( isset( $previews->icon_with_video_preview->video_url ) && strpos( $previews->icon_with_video_preview->video_url, '//' ) ) {
+										$is_img = 0;
+										$video_src = $previews->icon_with_video_preview->video_url ;
+									} ?>
 
-								<div class="l_admin-marketplace-actions">
-									<?php if( isset( $details->rating ) && 3 <= $details->rating->count && 2<= $details->rating->rating ) { ?>
-										<div class="l_admin-pull-right theme-rating star-rating l_admin-push-left-small">
-											<?php for( $i = 1; $i < 6; $i++ ){ ?>
-												<?php if( ceil( $details->rating->rating ) >= $i ) { ?>
-													<span class="star star-full"></span>
-												<?php } else { ?>
-													<span class="star star-empty"></span>
-												<?php } ?>
+									<?php if( isset( $image_src ) ) { ?>
+										<div class="l_admin-product-screenshot" data-view-item="product-details-<?php echo $details->id; ?>">
+											<?php if( 1 == $is_img ) { ?>
+												<img src="<?php echo esc_url( $image_src ); ?>" />
+											<?php } else { ?>
+												<?php layers_show_html5_video( esc_url( $video_src ) ); ?>
 											<?php } ?>
 										</div>
 									<?php } ?>
-									<a class="l_admin-pull-left l_admin-button btn-subtle l_admin-push-right-small" data-item="<?php echo esc_attr( $details->name ); ?>" data-view-item="product-details-<?php echo $details->id; ?>" href="<?php echo $envato_url; ?>" target="_blank">
-										<?php _e( 'Details' , 'layerswp' ); ?>
-									</a>
-									<a class="l_admin-pull-left l_admin-button btn-primary l_admin-push-right-small" href="<?php echo $envato_url; ?>&type=purchase" target="_blank" data-item="<?php echo esc_attr( $details->name ); ?>" data-price="$ <?php echo (float) ($details->price_cents/100); ?>">
-										<?php _e( 'Buy for ' , 'layerswp' ); ?>
-										$<?php echo (float) ($details->price_cents/100); ?>
-									</a>
-									<span class="l_admin-pull-left l_admin-sales-count">
-										<?php echo esc_attr( $details->number_of_sales ); ?> sales
-									</span>
-								</div>
-							</label>
-							<input  class="l_admin-product-json" type="hidden" value='<?php echo htmlspecialchars( json_encode( $details ) ); ?>' />
-						</div>
-					<?php } // Get Preset Layouts ?>
-				<?php } ?>
-			</div>
+
+									<h3 class="l_admin-product-name" id="<?php echo esc_attr( $details->id ); ?>">
+										<?php echo esc_html( $details->name ); ?>
+									</h3>
+
+									<div class="l_admin-marketplace-actions">
+										<?php if( isset( $details->rating ) && 3 <= $details->rating->count && 2<= $details->rating->rating ) { ?>
+											<div class="l_admin-pull-right theme-rating star-rating l_admin-push-left-small">
+												<?php for( $i = 1; $i < 6; $i++ ){ ?>
+													<?php if( ceil( $details->rating->rating ) >= $i ) { ?>
+														<span class="star star-full"></span>
+													<?php } else { ?>
+														<span class="star star-empty"></span>
+													<?php } ?>
+												<?php } ?>
+											</div>
+										<?php } ?>
+										<a class="l_admin-pull-left l_admin-button btn-subtle l_admin-push-right-small" data-item="<?php echo esc_attr( $details->name ); ?>" data-view-item="product-details-<?php echo $details->id; ?>" href="<?php echo $envato_url; ?>" target="_blank">
+											<?php _e( 'Details' , 'layerswp' ); ?>
+										</a>
+										<a class="l_admin-pull-left l_admin-button btn-primary l_admin-push-right-small" href="<?php echo $envato_url; ?>&type=purchase" target="_blank" data-item="<?php echo esc_attr( $details->name ); ?>" data-price="$ <?php echo (float) ($details->price_cents/100); ?>">
+											<?php _e( 'Buy for ' , 'layerswp' ); ?>
+											$<?php echo (float) ($details->price_cents/100); ?>
+										</a>
+										<span class="l_admin-pull-left l_admin-sales-count">
+											<?php echo esc_attr( $details->number_of_sales ); ?> sales
+										</span>
+									</div>
+								</label>
+								<input  class="l_admin-product-json" type="hidden" value='<?php echo htmlspecialchars( json_encode( $details ) ); ?>' />
+							</div>
+						<?php } // Get Preset Layouts ?>
+					<?php } ?>
+				</div>
+			</div> <!-- /span-9 -->
 		</div>
 	</div>
 	<?php if( !is_wp_error( $products ) ) { ?>

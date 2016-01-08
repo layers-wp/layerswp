@@ -117,54 +117,55 @@ class Layers_Options_Panel {
 		if( isset( $_GET[ 'type' ] ) ) $type = $_GET[ 'type' ]; else $type = 'themes' ?>
 		<header class="l_admin-page-title l_admin-section-title l_admin-large l_admin-content l_admin-no-push-bottom">
 
-				<?php _e( sprintf( '<a href="%s" class="l_admin-logo">Layers</a>', 'http://layerswp.com' ), 'layerswp' ); ?>
+			<?php _e( sprintf( '<a href="%s" class="l_admin-logo">Layers</a>', 'http://layerswp.com' ), 'layerswp' ); ?>
 
-				<?php if( isset( $title ) ) { ?>
-					<h2 class="l_admin-heading" id="layers-options-header">
-						<?php echo esc_html( $title ); ?>
-						<span class="l_admin-small">
-							<?php _e( sprintf( 'Powered by <a href="%s">Envato</a>', 'http://www.themeforest.net/?ref=obox' ), 'layerswp' ); ?>
-						</span>
-					</h2>
-				<?php } ?>
+			<?php if( isset( $title ) ) { ?>
+				<h2 class="l_admin-heading" id="layers-options-header">
+					<?php echo esc_html( $title ); ?>
+					<span class="l_admin-small">
+						<?php _e( sprintf( 'Powered by <a href="%s">Envato</a>', 'http://www.themeforest.net/?ref=obox' ), 'layerswp' ); ?>
+					</span>
+				</h2>
+			<?php } ?>
 
-				<?php if( isset( $excerpt ) ) { ?>
-					<p class="l_admin-excerpt"><?php echo $excerpt; ?></p>
-				<?php } ?>
+			<?php if( isset( $excerpt ) ) { ?>
+				<p class="l_admin-excerpt"><?php echo $excerpt; ?></p>
+			<?php } ?>
 
-				<nav class="l_admin-nav-horizontal l_admin-dashboard-nav">
-					<ul>
-						<li <?php if( 'themes' == $type ) { ?>class="active"<?php } ?>>
-							<a href="<?php echo admin_url( 'admin.php?page=layers-marketplace&type=themes' ); ?>">
-								<?php _e( 'Themes' , 'layerswp' ); ?>
-							</a>
-						</li>
-						<li <?php if( 'extensions' == $type ) { ?>class="active"<?php } ?>>
-							<a href="<?php echo admin_url( 'admin.php?page=layers-marketplace&type=extensions' ); ?>">
-								<?php _e( 'Extensions' , 'layerswp' ); ?>
-							</a>
-						</li>
-						<li <?php if( 'stylekits' == $type ) { ?>class="active"<?php } ?>>
-							<a href="<?php echo admin_url( 'admin.php?page=layers-marketplace&type=stylekits' ); ?>">
-								<?php _e( 'Style Kits' , 'layerswp' ); ?>
-							</a>
-						</li>
-					</ul>
-					<form class="l_admin-help-search" action="" target="_blank" method="get">
-						<label><?php _e( 'Filters: ', 'layerswp' ); ?></label>
-						<select id="layers-marketplace-authors" class="push-right">
-							<option value=""><?php _e( 'All Authors' , 'layerswp' ); ?></option>
-						</select>
-						<select id="layers-marketplace-sortby" name="sortby" data-action="<?php echo admin_url( 'admin.php?page=layers-marketplace&type=' . $type ); ?>" class="push-right">
-							<?php if( is_array( $api->get_sort_options() ) ) { ?>
-								<?php foreach( $api->get_sort_options() as $value => $info ) { ?>
-									<option value="<?php echo $value; ?>" data-excerpt-label="<?php echo esc_attr( $info[ 'excerpt-label' ] ); ?>"><?php echo $info[ 'label' ]; ?></option>
-								<?php } ?>
+			<nav class="l_admin-nav-horizontal l_admin-dashboard-nav">
+				<ul>
+					<li <?php if( 'themes' == $type ) { ?>class="active"<?php } ?>>
+						<a href="<?php echo admin_url( 'admin.php?page=layers-marketplace&type=themes' ); ?>">
+							<?php _e( 'Themes' , 'layerswp' ); ?>
+						</a>
+					</li>
+					<li <?php if( 'extensions' == $type ) { ?>class="active"<?php } ?>>
+						<a href="<?php echo admin_url( 'admin.php?page=layers-marketplace&type=extensions' ); ?>">
+							<?php _e( 'Extensions' , 'layerswp' ); ?>
+						</a>
+					</li>
+					<li <?php if( 'stylekits' == $type ) { ?>class="active"<?php } ?>>
+						<a href="<?php echo admin_url( 'admin.php?page=layers-marketplace&type=stylekits' ); ?>">
+							<?php _e( 'Style Kits' , 'layerswp' ); ?>
+						</a>
+					</li>
+				</ul>
+				<form class="l_admin-help-search" action="" target="_blank" method="get">
+					<label><?php _e( 'Filters: ', 'layerswp' ); ?></label>
+					<select id="layers-marketplace-authors" class="push-right">
+						<option value=""><?php _e( 'All Authors' , 'layerswp' ); ?></option>
+					</select>
+					<select id="layers-marketplace-sortby" name="sortby" data-action="<?php echo admin_url( 'admin.php?page=layers-marketplace&type=' . $type ); ?>" class="push-right">
+						<?php if( is_array( $api->get_sort_options() ) ) { ?>
+							<?php foreach( $api->get_sort_options() as $value => $info ) { ?>
+								<option value="<?php echo $value; ?>" data-excerpt-label="<?php echo esc_attr( $info[ 'excerpt-label' ] ); ?>"><?php echo $info[ 'label' ]; ?></option>
 							<?php } ?>
-						</select>
-						<input id="layers-marketplace-search" type="search" placeholder="<?php _e( 'Search...' , 'layerswp' ); ?>"/>
-					</form>
-				</nav>
+						<?php } ?>
+					</select>
+					<input id="layers-marketplace-search" type="search" placeholder="<?php _e( 'Search...' , 'layerswp' ); ?>"/>
+				</form>
+			</nav>
+
 		</header>
 	<?php }
 

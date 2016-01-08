@@ -877,6 +877,13 @@
 		color: #FFFFFF;
 	}
 
+/*---------------------------*/
+/*- LABELS/BADGES -----------*/
+
+	.l_admin-label.label-subtle{
+		color: #999;
+	}
+
 
 /*---------------------------*/
 /*- TITLES ------------------*/
@@ -1402,14 +1409,14 @@
 			margin: 0 0 10px;
 			color: #777;
 		}
-		.l_admin-page-list-title{
+		.l_admin-list a{
 			font-weight: bold;
 			text-decoration: none;
 		}
 		.l_admin-page-edit-links{
+			float: right;
 			opacity: 0;
 			visibility: hidden;
-			float: right;
 		}
 		.l_admin-list li:hover .l_admin-page-edit-links{
 			opacity: 1;
@@ -1421,6 +1428,7 @@
 		.l_admin-page-edit-links a{
 			color: #999;
 			text-decoration: none;
+			font-weight: normal;
 		}
 		.l_admin-page-edit-links a:hover{
 			color: #2EA2CC;

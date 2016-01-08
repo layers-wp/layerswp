@@ -21,7 +21,7 @@
 						</div>
 					</div>
 					<div class="l_admin-button-well">
-						<a id="layers-backup-pages" class="l_admin-button btn-large btn-primary"><?php _e( 'Transfer my Pages Now' , 'layerswp' ); ?></a>
+						<a id="layers-backup-pages" class="button button-primary btn-large"><?php _e( 'Transfer my Pages Now' , 'layerswp' ); ?></a>
 					</div>
 				</div>
 				<div class="l_admin-column l_admin-span-4">

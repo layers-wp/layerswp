@@ -76,7 +76,7 @@ if( !class_exists( 'Layers_Onboarding_Ajax' ) ) {
 									</div>
 								</div>
 								<div class="l_admin-button-well">
-									<a href="<?php echo $item->get_permalink(); ?>" class="l_admin-button" target="_blank">
+									<a href="<?php echo $item->get_permalink(); ?>" class="button" target="_blank">
 										<?php _e( 'Continue Reading' , 'layerswp' ); ?>
 									</a>
 								</div>

@@ -175,7 +175,7 @@ $all_authors = array(); ?>
 									</h3>
 
 									<div class="l_admin-marketplace-actions">
-										<a class="l_admin-pull-left l_admin-button btn-subtle l_admin-push-right-small" data-item="<?php echo esc_attr( $details->name ); ?>" data-view-item="product-details-<?php echo $details->id; ?>" href="<?php echo $envato_url; ?>" target="_blank">
+										<a class="l_admin-pull-left button l_admin-push-right-small" data-item="<?php echo esc_attr( $details->name ); ?>" data-view-item="product-details-<?php echo $details->id; ?>" href="<?php echo $envato_url; ?>" target="_blank">
 											<?php _e( 'Details' , 'layerswp' ); ?>
 										</a>
 										<a class="l_admin-pull-right l_admin-button btn-secondary l_admin-push-left-small" href="<?php echo $envato_url; ?>&type=purchase" target="_blank" data-item="<?php echo esc_attr( $details->name ); ?>" data-price="$ <?php echo (float) ($details->price_cents/100); ?>">

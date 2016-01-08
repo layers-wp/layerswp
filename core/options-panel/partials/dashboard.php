@@ -68,12 +68,12 @@ $theme_info = wp_get_theme( 'layerswp' ); ?>
 										<?php if( isset( $setup_details[ 'skip-action' ] ) || isset( $setup_details[ 'submit-action' ] ) ) { ?>
 											<div class="l_admin-button-well">
 												<?php if( isset( $setup_details[ 'skip-action' ] ) ) { ?>
-													<a class="l_admin-button btn-link l_admin-dashboard-skip" data-setup-step-key="<?php echo $setup_key; ?>" data-skip-action="<?php echo $setup_details[ 'skip-action' ]; ?>">
+													<a class="button btn-link l_admin-dashboard-skip" data-setup-step-key="<?php echo $setup_key; ?>" data-skip-action="<?php echo $setup_details[ 'skip-action' ]; ?>">
 														<?php _e( 'Skip' , 'layerswp' ); ?>
 													</a>
 												<?php } ?>
 												<?php if( isset( $setup_details[ 'submit-action' ] ) ) { ?>
-													<a class="l_admin-button l_admin-pull-right" href="" data-setup-step-key="<?php echo $setup_key; ?>" data-submit-action="<?php echo $setup_details[ 'submit-action' ]; ?>">
+													<a class="button l_admin-pull-right" href="" data-setup-step-key="<?php echo $setup_key; ?>" data-submit-action="<?php echo $setup_details[ 'submit-action' ]; ?>">
 														<?php echo ( isset( $setup_details[ 'submit-text' ] ) ) ? $setup_details[ 'submit-text' ] : __( 'Save &amp; Proceed &rarr;' , 'layerswp' ); ?>
 													</a>
 												<?php } ?>
@@ -105,7 +105,7 @@ $theme_info = wp_get_theme( 'layerswp' ); ?>
 								<?php }?>
 							</ul>
 							<div class="l_admin-button-well">
-								<a class="l_admin-button" href="<?php echo admin_url( 'admin.php?page=layers-add-new-page' ); ?>">
+								<a class="button" href="<?php echo admin_url( 'admin.php?page=layers-add-new-page' ); ?>">
 									<?php _e( 'Add New Page' , 'layerswp' ); ?>
 								</a>
 							</div>
@@ -118,7 +118,7 @@ $theme_info = wp_get_theme( 'layerswp' ); ?>
 									<?php _e( 'Follow the easy steps to creating amazing layouts quickly and easily. ' , 'layerswp' ); ?>
 								</p>
 							</div>
-							<a href="<?php echo admin_url( 'admin.php?page=layers-get-started' ); ?>" class="l_admin-button btn-large btn-primary">
+							<a href="<?php echo admin_url( 'admin.php?page=layers-get-started' ); ?>" class="button btn-large button-primary">
 								<?php _e( 'Get Started &rarr;' , 'layerswp' ); ?>
 							</a>
 						</div>
@@ -136,13 +136,13 @@ $theme_info = wp_get_theme( 'layerswp' ); ?>
 							</p>
 						</div>
 						<div class="l_admin-button-well">
-							<a href="<?php echo admin_url( 'admin.php?page=layers-marketplace&type=themes' ); ?>" class="l_admin-button btn-primary">
+							<a href="<?php echo admin_url( 'admin.php?page=layers-marketplace&type=themes' ); ?>" class="button button-primary">
 								<?php _e( 'Themes' , 'layerswp' ); ?>
 							</a>
-							<a href="<?php echo admin_url( 'admin.php?page=layers-marketplace&type=stylekits' ); ?>" class="l_admin-button btn-primary">
+							<a href="<?php echo admin_url( 'admin.php?page=layers-marketplace&type=stylekits' ); ?>" class="button button-primary">
 								<?php _e( 'Style Kits' , 'layerswp' ); ?>
 							</a>
-							<a href="<?php echo admin_url( 'admin.php?page=layers-marketplace&type=extensions' ); ?>" class="l_admin-button btn-primary">
+							<a href="<?php echo admin_url( 'admin.php?page=layers-marketplace&type=extensions' ); ?>" class="button button-primary">
 								<?php _e( 'Extensions' , 'layerswp' ); ?>
 							</a>
 						</div>
@@ -202,8 +202,8 @@ $theme_info = wp_get_theme( 'layerswp' ); ?>
 								</div>
 							</div>
 							<div class="l_admin-button-well">
-								<a class="l_admin-button btn-link l_admin-pull-right" href="http://www.layerswp.com/privacy-policy/" target="_blank"><?php _e( 'Your data is safe with us', 'layerswp' ); ?></a>
-								<a class="l_admin-button" href="" data-setup-step-key="layers_enable_intercom" data-intercom-switch-action="layers_update_intercom">
+								<a class="button btn-link l_admin-pull-right" href="http://www.layerswp.com/privacy-policy/" target="_blank"><?php _e( 'Your data is safe with us', 'layerswp' ); ?></a>
+								<a class="button" href="" data-setup-step-key="layers_enable_intercom" data-intercom-switch-action="layers_update_intercom">
 									<?php _e( 'Save Setting' , 'layerswp' ); ?>
 								</a>
 							</div>
@@ -224,7 +224,7 @@ $theme_info = wp_get_theme( 'layerswp' ); ?>
 							</li>
 						</ul>
 						<div class="l_admin-button-well">
-							<a class="l_admin-button" href="http://docs.layerswp.com/" target="_blank">
+							<a class="button" href="http://docs.layerswp.com/" target="_blank">
 								<?php _e( 'Get more useful tips' , 'layerswp' ); ?>
 							</a>
 						</div>
@@ -283,7 +283,7 @@ $theme_info = wp_get_theme( 'layerswp' ); ?>
 							<div class="mc-field-group">
 								<label for="mce-EMAIL"><?php _e( 'Email Address' , 'layerswp' ); ?></label>
 								<input type="email" value="" name="EMAIL" class="required email l_admin-form-inline input" id="mce-EMAIL">
-								<button type="submit" name="subscribe" id="mc-embedded-subscribe" class="l_admin-button btn-primary"><?php _e( 'Subscribe' , 'layerswp' ); ?></button><input type="hidden" name="SIGNUP" id="SIGNUP" value="layerswp" />
+								<button type="submit" name="subscribe" id="mc-embedded-subscribe" class="button button-primary"><?php _e( 'Subscribe' , 'layerswp' ); ?></button><input type="hidden" name="SIGNUP" id="SIGNUP" value="layerswp" />
 							</div>
 							<div id="mce-responses" class="clear">
 								<div class="response" id="mce-error-response" style="display:none"></div>

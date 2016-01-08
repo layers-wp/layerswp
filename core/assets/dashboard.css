@@ -49,7 +49,7 @@
 	}
 
 	.l_admin-column{
-		margin-bottom: 20px;
+		margin-bottom: 2%;
 		position: relative;
 		max-width: 100%;
 		box-sizing: border-box;
@@ -57,10 +57,6 @@
 	.l_admin-row .l_admin-column:last-child{
 		margin-right: 0;
 	}
-	.l_admin-row:last-child .l_admin-column{
-		margin-bottom: 0;
-	}
-
 	.l_admin-no-gutter{
 		margin-right: 0;
 	}
@@ -120,6 +116,31 @@
     .l_admin-column.l_admin-span-2:nth-child(2n+3){
         clear: left;
     }
+
+	/*---------------------------*/
+	/*- DASHBOARD NAV -----------*/
+	.l_admin-nav-horizontal.l_admin-dashboard-nav{
+		display: none;
+		padding: 0;
+	}
+	.l_admin-nav-horizontal.l_admin-dashboard-nav ul{
+		display: block;
+	}
+	.l_admin-nav-horizontal.l_admin-dashboard-nav li{
+		display: block;
+		margin: 0 !important;
+		padding: 0;
+	}
+	.l_admin-nav-horizontal.l_admin-dashboard-nav li a:not(.l_admin-get-updater){
+		margin: 0;
+		padding: 8px 10px !important;
+		border-bottom: 1px solid #ddd;
+		text-align: left;
+	}
+	.l_admin-nav-horizontal.l_admin-dashboard-nav .l_admin-get-updater{
+		display: block;
+		margin: 0;
+	}
 
 }
 @media only screen and (min-width: 481px){
@@ -270,6 +291,13 @@
     .l_admin-column.l_admin-span-12{
         margin-right: 0;
     }
+
+    /*---------------------------*/
+    /*- LOGO --------------------*/
+	.l_admin-logo{
+		float: right;
+		margin: 27px 0 0;
+	}
 
 }
 
@@ -759,14 +787,14 @@
 
 	/*-----------------------*/
 	/*- LINK BUTTON --------*/
-	.btn-link{
+	.button.btn-link{
 		background-color: transparent;
 		border-color: transparent;
 		color: #2EA2CC;
 		text-decoration: underline;
 		box-shadow: none;
 	}
-	.btn-link:hover{
+	.button.btn-link:hover{
 		background-color: transparent;
 		border-color: transparent;
 		color: #1E8CBE;
@@ -788,22 +816,22 @@
 
 	/*-----------------------*/
 	/*- BUTTON SIZES --------*/
-	.l_admin-button.btn-small{
+	.button.btn-small{
 		height: 24px;
 		font-size: 11px;
 		line-height: 22px;
 	}
-	.l_admin-button.btn-large{
+	.button.btn-large{
 		height: 38px;
 		font-size: 16px;
 		line-height: 34px;
 	}
-	.l_admin-button.btn-massive{
+	.button.btn-massive{
 		height: 44px;
 		font-size: 18px;
 		line-height: 40px;
 	}
-	.l_admin-button.btn-full{
+	.button.btn-full{
 		display: block;
 	}
 
@@ -895,10 +923,9 @@
 
 	.l_admin-logo{
 		display: block;
-		float: right;
 		width: 88px;
 		height: 21px;
-		margin-top: 27px;
+		margin-bottom: 10px;
 		background: url(images/layers-logo-dark.png) no-repeat bottom;
 		background-size: 100%;
 		overflow: hidden;
@@ -1671,7 +1698,6 @@
 	}
 	.l_admin-products{
 		clear: both;
-		padding: 0 0 100px;
 	}
 	.l_admin-product{
 		box-sizing: border-box;

@@ -446,7 +446,7 @@ class Layers_Options_Panel {
 					</div>
 				</div>
 				<div class="l_admin-button-well">
-					<a href="http://bit.ly/layers-storekit" target="_blank" class="l_admin-button btn-primary">
+					<a href="http://bit.ly/layers-storekit" target="_blank" class="button button-primary">
 						<?php _e( 'Get StoreKit Now!' , 'layerswp' ); ?>
 					</a>
 				</div>

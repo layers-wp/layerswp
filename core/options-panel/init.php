@@ -367,7 +367,7 @@ class Layers_Options_Panel {
 								'href' => admin_url( 'nav-menus.php' ),
 								'target' => '_blank',
 								'tag' => 'a',
-								'class' => 'layers-button btn-primary',
+								'class' => 'l_admin-button btn-primary',
 								'label' => __( 'Setup Menus', 'layerswp' ),
 							)
 					),

@@ -1206,12 +1206,14 @@
 		margin-top: 20px;
 	}
 
-	.l_admin-media .l_admin-excerpt{
+	.l_admin-media .l_admin-heading + .l_admin-excerpt{
 		margin: 8px 0 0;
-		font-weight: 400;
 	}
 	.l_admin-media p{
 		margin-top: 8px;
+	}
+	.l_admin-media p:first-child{
+		margin-top: 0;
 	}
 	.l_admin-media ul{
 		margin-top: 8px;

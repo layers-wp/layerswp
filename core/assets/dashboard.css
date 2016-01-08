@@ -1744,7 +1744,7 @@
 	.l_admin-price{
 		display: inline-block;
 		padding-right: 7px;
-		margin: -3px 5px -3px -3px;
+		margin: -3px 5px -3px 0;
 		border-right: 1px solid rgba(0, 0, 0, 0.1);
 		color: #FFF;
 		font-weight: bold;

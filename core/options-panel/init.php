@@ -367,7 +367,7 @@ class Layers_Options_Panel {
 								'href' => admin_url( 'nav-menus.php' ),
 								'target' => '_blank',
 								'tag' => 'a',
-								'class' => 'l_admin-button button-primary',
+								'class' => 'button button-primary',
 								'label' => __( 'Setup Menus', 'layerswp' ),
 							)
 					),
@@ -412,13 +412,13 @@ class Layers_Options_Panel {
 					</p>
 				</div>
 				<div class="l_admin-button-well">
-					<a href="<?php echo admin_url( 'admin.php?page=layers-marketplace&type=themes' ); ?>" class="l_admin-button btn-primary">
+					<a href="<?php echo admin_url( 'admin.php?page=layers-marketplace&type=themes' ); ?>" class="button button-primary">
 						<?php _e( 'Themes' , 'layerswp' ); ?>
 					</a>
-					<a href="<?php echo admin_url( 'admin.php?page=layers-marketplace&type=stylekits' ); ?>" class="l_admin-button btn-primary">
+					<a href="<?php echo admin_url( 'admin.php?page=layers-marketplace&type=stylekits' ); ?>" class="button button-primary">
 						<?php _e( 'Style Kits' , 'layerswp' ); ?>
 					</a>
-					<a href="<?php echo admin_url( 'admin.php?page=layers-marketplace&type=extensions' ); ?>" class="l_admin-button btn-primary">
+					<a href="<?php echo admin_url( 'admin.php?page=layers-marketplace&type=extensions' ); ?>" class="button button-primary">
 						<?php _e( 'Extensions' , 'layerswp' ); ?>
 					</a>
 				</div>

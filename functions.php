@@ -216,9 +216,18 @@ function layers_resore_site(){
 		delete_option ( 'layers_tm_backup' );
 	}
 
+	// If the last theme was activated via the themes.php screen, use that backup
 	if( $layers_wgt_backup ) {
 		update_option( 'sidebars_widgets', $layers_wgt_backup );
 		delete_option ( 'layers_wgt_backup' );
+
+	// If a user used the customizer to preview the last theme before activating, look for widgets having been backed up via the theme_mods
+	} elseif( get_theme_mod( 'sidebars_widgets' ) ){
+		$layers_wgt_backup = get_theme_mod( 'sidebars_widgets' );
+		if( isset( $layers_wgt_backup[ 'data' ] ) ) {
+			update_option( 'sidebars_widgets', $layers_wgt_backup );
+			delete_theme_mod( 'sidebars_widgets' );
+		}
 	}
 
 }

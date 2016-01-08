@@ -37,7 +37,7 @@ $all_authors = array(); ?>
 	<div class="l_admin-row l_admin-well l_admin-content">
 		<div class="l_admin-browser">
 
-			<div class="l_admin-column l_admin-span-2">
+			<div class="l_admin-column l_admin-span-3 l_admin-marketplace-filter">
 				<div class="l_admin-section-title l_admin-tiny">
 					<h3 class="l_admin-heading">
 						<?php _e( 'Marketplace Filters' , 'layerswp' ); ?>
@@ -84,7 +84,7 @@ $all_authors = array(); ?>
 				</div>
 
 			</div>
-			<div class="l_admin-column l_admin-span-10">
+			<div class="l_admin-column l_admin-span-9 l_admin-marketplace-products">
 
 				<?php if( is_wp_error( $products ) ) { ?>
 					<div class="l_admin-section-title l_admin-large l_admin-content l_admin-t-center">
@@ -175,10 +175,10 @@ $all_authors = array(); ?>
 									</h3>
 
 									<div class="l_admin-marketplace-actions">
-										<a class="l_admin-pull-left button l_admin-push-right-small" data-item="<?php echo esc_attr( $details->name ); ?>" data-view-item="product-details-<?php echo $details->id; ?>" href="<?php echo $envato_url; ?>" target="_blank">
+										<a class="l_admin-pull-left button" data-item="<?php echo esc_attr( $details->name ); ?>" data-view-item="product-details-<?php echo $details->id; ?>" href="<?php echo $envato_url; ?>" target="_blank">
 											<?php _e( 'Details' , 'layerswp' ); ?>
 										</a>
-										<a class="l_admin-pull-right l_admin-button btn-secondary l_admin-push-left-small" href="<?php echo $envato_url; ?>&type=purchase" target="_blank" data-item="<?php echo esc_attr( $details->name ); ?>" data-price="$ <?php echo (float) ($details->price_cents/100); ?>">
+										<a class="l_admin-pull-right button btn-secondary" href="<?php echo $envato_url; ?>&type=purchase" target="_blank" data-item="<?php echo esc_attr( $details->name ); ?>" data-price="$ <?php echo (float) ($details->price_cents/100); ?>">
 											<span class="l_admin-price">
 												$<?php echo (float) ($details->price_cents/100); ?>
 											</span>

@@ -413,7 +413,9 @@ div[id*='layers-widget'] .widget-control-actions .alignright{
 	text-align: center;
 	color: #444;
 	outline: 0;
+	transform: translateY(0px);
 	transition: all 0.2s ease-in-out;
+	box-shadow: 0px 1px 0px rgba(255, 255, 255, 0);
 }
 .layers-visuals-item .layers-icon-wrapper:focus{
 	box-shadow: none;
@@ -423,6 +425,11 @@ div[id*='layers-widget'] .widget-control-actions .alignright{
 	background: #008EC2;
 	border-color: #006799;
 	color: #fff;
+}
+.layers-visuals-item .layers-icon-wrapper:active{
+	transition: none;
+	box-shadow: 0px 2px 0px rgba(0, 0, 0, 0.1) inset;
+	transform: translateY(1px);
 }
 .layers-visuals-item.layers-active > .layers-icon-wrapper,
 .layers-visuals-item.layers-active > .layers-icon-wrapper:hover{
@@ -1323,16 +1330,14 @@ div[id*='layers-widget'] .widget-control-actions .alignright{
 		transition: all 0.15s ease-in-out;
 	}
 	.layers-visuals-item.layers-pro-upsell a:hover{
-		background: #2EA2CC;
-		border-color: #0074A2;
+		background: #0085BA;
+		border-color: #006799;
+		box-shadow: 0px 1px 0px #006799;
 		color: #fff;
-		box-shadow:
-			0px 1px 0px rgba(255, 255, 255, 0.4) inset,
-			0px 1px 0px rgba(0, 0, 0, 0.08);
 	}
 	.layers-visuals-item.layers-pro-upsell a:active{
-		position: relative;
-		top: 1px;
+		box-shadow: 0px 2px 0px rgba(0, 0, 0, 0.1) inset;
+		transform: translateY(1px);
 	}
 
 	/*---------------------------*/
@@ -1613,17 +1618,17 @@ div[id*='layers-widget'] .widget-control-actions .alignright{
 	border: 1px solid transparent;
 	border-radius: 3px;
 	color: #444;
-	transition: all 0.2s ease-in-out 0s;
-	box-shadow: 0px 1px 0px rgba(255, 255, 255, 0) inset;
+	transition: all 0.1s ease-in-out 0s;
+	box-shadow: 0px 1px 0px rgba(255, 255, 255, 0);
 }
 
 .layers-form-item .froala-editor button.fr-bttn:hover,
 .layers-form-item .froala-editor .bttn-wrapper:not(.touch) button.fr-bttn:hover,
 .layers-form-item .froala-editor button.fr-bttn.active:hover{
-	box-shadow: 0px 1px 0px rgba(255, 255, 255, 0.4) inset, 0px 1px 0px rgba(0, 0, 0, 0.08);
-	background: #2EA2CC;
-	border-color: #0074A2;
-	color: #FFF;
+	background: #008EC2;
+	border-color: #006799;
+	box-shadow: 0px 1px 0px #006799;
+	color: #fff;
 }
 
 	/*---------------------------*/
@@ -1636,10 +1641,10 @@ div[id*='layers-widget'] .widget-control-actions .alignright{
 	}
 	.layers-form-item .froala-editor .bttn-wrapper:not(.touch) button.fr-bttn.active,
 	.layers-form-item .froala-editor .bttn-wrapper:not(.touch) button.fr-bttn:active{
-		border-color: rgba(0, 0, 0, 0.05);
+		border-color: #ccc;
 		color: #444;
-		box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.03) inset;
-		background-color: #F0F0F0;
+		box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.1) inset;
+		background-color: #e7e7e7;
 		transition: 0s;
 	}
 	.layers-form-item .froala-editor button.fr-bttn i{
@@ -1653,6 +1658,9 @@ div[id*='layers-widget'] .widget-control-actions .alignright{
 		color: #eee;
 		font-size: 13px;
 		padding: 5px 6px;
+	}
+	button[data-cmd="html"]:hover{
+		box-shadow: none !important;
 	}
 
 	/*---------------------------*/

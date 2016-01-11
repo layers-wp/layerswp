@@ -1286,16 +1286,27 @@ jQuery(function($) {
 	/**
 	* 24 - Init Tip-Tip
 	*/
+	
+	if ( $('#customize-preview, #customize-controls').length ) {
+		
+		// Customizer
+		
+		// Init interface in all except widgets on load
+		init_tip_tip( $( '#customize-theme-controls > ul > li.accordion-section' ).not( '#accordion-panel-widgets' ) );
 
-	// Init interface in all except widgets on load
-	init_tip_tip( $( '#customize-theme-controls > ul > li.accordion-section' ).not( '#accordion-panel-widgets' ) );
-
-	// Init interface inside widgets
-	$( document ).on( 'layers-interface-init', '.widget, .layers-accordions', function( e ){
-		// 'this' is the widget
-		init_tip_tip( $(this), true );
-	});
-
+		// Init interface inside widgets
+		$( document ).on( 'layers-interface-init', '.widget, .layers-accordions', function( e ){
+			// 'this' is the widget
+			init_tip_tip( $(this), true );
+		});
+	}
+	else{
+		
+		// Admin Dashboard
+		
+		init_tip_tip( $( document ) );
+	}
+	
 	function init_tip_tip( $element_s, $run_instantly ){
 
 		$element_s.each( function( i, group ) {

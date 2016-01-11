@@ -3829,15 +3829,73 @@ div#tiptip_holder {
 }
 
 
-.onboarding-notice-item {
-    padding-left: 16px;
-}
-.onboarding-notice-item .fa {
-    color: #e2594e;
-    margin-left: -16px;
-}
-.onboarding-notice-item code {
-    padding: 1px 4px;
-    /* background: 0; */
-    /* color: #989898; */
-}
+/*-------------------------*/
+/*- ONBAORDING NEW --------*/
+
+    /*------------------------*/
+    /*- NOTICES --------------*/
+    .onboarding-notice-item {
+        padding-left: 16px;
+    }
+    .onboarding-notice-item .fa {
+        color: #e2594e;
+        margin-left: -16px;
+    }
+    .onboarding-notice-item code {
+        padding: 1px 4px;
+    }
+
+    /*------------------------*/
+    /*- COMBO FORM -----------*/
+    .onboarding-form-sentence{
+        color: #6B6B6B;
+        font-size: 16px;
+        margin-bottom: 25px;
+        display: inline-block;
+        width: 50%;
+    }
+    .onboarding-form-item {
+        position: relative;
+        line-height: 31px;
+        display: inline-block;
+        width: 49%;
+    }
+    .onboarding-form-item.onboarding-form-item-no-border{
+        border: none;
+    }
+    .onboarding-form-item input,
+    .onboarding-form-item select{
+        background: rgba(0, 0, 0, 0.01);
+        background: none;
+        border: none;
+        border-bottom: 1px dashed rgba(0,0,0,0.18);
+        box-shadow: none;
+        font-size: 16px;
+        padding: 0;
+        outline: none;
+        margin: 0;
+        color: #6C6C6C;
+        font-style: italic;
+        width: 91%;
+        line-height: 28px;
+    }
+    .onboarding-form-item input:focus,
+    .onboarding-form-item select:focus{
+        box-shadow: none;
+        border-color: #868686;
+    }
+    .onboarding-form-sentence .fa,
+    .onboarding-form-item .fa {
+        position: relative;
+        top: -1px;
+        color: #B9B9B9;
+        font-size: 11px;
+        border: 7px solid transparent;
+        border-right-width: 0;
+        border-left-width: 3px;
+        cursor: pointer;
+    }
+    .onboarding-form-sentence .fa:hover,
+    .onboarding-form-item .fa:hover{
+        color: #656565;
+    }

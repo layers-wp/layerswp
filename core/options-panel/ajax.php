@@ -185,6 +185,11 @@ if( !class_exists( 'Layers_Onboarding_Ajax' ) ) {
 				urldecode( stripslashes( $_POST[ 'data' ] ) ),
 				$data
 			);
+			
+			$return_message = array(
+				'success' => true,
+				'message' => __( 'Done!' , 'layerswp' ),
+			);
 
 			foreach ( $data as $option_key => $option_value ) {
 
@@ -218,7 +223,7 @@ if( !class_exists( 'Layers_Onboarding_Ajax' ) ) {
 							}
 						}
 
-						if( !is_wp_error( $get_attachment ) && FALSE != $get_attachment ) {
+						if( ! is_wp_error( $get_attachment ) && FALSE != $get_attachment ) {
 
 							$site_logo_array = array(
 									'id' => $clean_option_value,
@@ -228,11 +233,17 @@ if( !class_exists( 'Layers_Onboarding_Ajax' ) ) {
 
 							update_option( $option_key, $site_logo_array );
 
-							die( json_encode( array( 'success' => true, 'message' => __( 'Logo updated' , 'layerswp' ) ) ) );
+							$return_message = array(
+								'success' => true,
+								'message' => __( 'Logo updated' , 'layerswp' ),
+							);
 
 						} else {
 
-							die( json_encode( array( 'success' => false, 'message' => __( 'There was an error when updating your logo.' , 'layerswp' ) ) ) );
+							$return_message = array(
+								'success' => false,
+								'message' => __( 'There was an error when updating your logo.' , 'layerswp' ),
+							);
 
 						}
 
@@ -248,10 +259,10 @@ if( !class_exists( 'Layers_Onboarding_Ajax' ) ) {
 						set_theme_mod( 'layers-site-accent-color', $accent_color );
 						set_theme_mod( 'layers-footer-background-color', $footer_color );
 						
-						die( json_encode( array(
+						$return_message = array(
 							'success' => true,
-							'message' => __( 'Option updated' , 'layerswp' ),
-						) ) );
+							'message' => __( 'Option updated Bong!' , 'layerswp' ),
+						);
 						
 						break;
 						
@@ -259,12 +270,17 @@ if( !class_exists( 'Layers_Onboarding_Ajax' ) ) {
 						
 						update_option( $option_key, $clean_option_value );
 
-						die( json_encode( array( 'success' => true, 'message' => __( 'Option updated' , 'layerswp' ) ) ) );
+						$return_message = array(
+							'success' => true,
+							'message' => __( 'Option updated Bing' , 'layerswp' ),
+						);
 						
 						break;
-
 				}
 			}
+			
+			die( json_encode( $return_message ) );
+			
 		}
 	}
 } // if class_exists

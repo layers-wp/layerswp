@@ -67,8 +67,7 @@ function render_onboarding_warnings() {
 					
 					<div class="layers-content-large ">
 						
-						
-						<!-- Your content goes here -->
+						<!-- Heading -->
 						<div class="layers-section-title">
 							<h3 class="layers-heading">
 								<?php _e( 'What is the name of your website?' , 'layerswp' ); ?>
@@ -77,8 +76,13 @@ function render_onboarding_warnings() {
 								<?php _e( 'Enter your website name below. We&apos;ll use this in your site title and in search results.' , 'layerswp' ); ?>
 							</p>
 						</div>
-						<p class="layers-form-item">
-							<label><?php _e( 'Site Name' , 'layerswp' ); ?></label>
+						
+						<!-- Sentence -->
+						<span class="onboarding-form-sentence">
+							<?php _e( 'What is the name of your website?' , 'layerswp' ); ?>
+							<i class="fa fa-question-circle" data-tip="<?php echo esc_attr( __( 'Enter your website name below. We&apos;ll use this in your site title and in search results.' , 'layerswp' ) ); ?>"></i>
+						</span>
+						<span class="onboarding-form-item">
 							<?php
 							echo $form_elements->input( array(
 								'type' => 'text',
@@ -89,67 +93,70 @@ function render_onboarding_warnings() {
 								'class' => 'layers-text layers-large',
 							) );
 							?>
-						</p>
-						
+						</span>
 						
 						<br>
-						<br>
 						
-						
-						<!-- Your content goes here -->
-						<div class="layers-section-title">
-							<h3 class="layers-heading">
-								<?php _e( 'Choose a primary color?' , 'layerswp' ); ?>
-							</h3>
-							<p class="layers-excerpt">
-								<?php _e( 'We\'ll use this color in select places around your website.' , 'layerswp' ); ?>
-							</p>
-						</div>
-						<p class="layers-form-item">
-							<label><?php _e( 'Site Name' , 'layerswp' ); ?></label>
+						<!-- Sentence -->
+						<span class="onboarding-form-sentence">
+							<?php _e( 'What will your site be used for?' , 'layerswp' ); ?>
+							<i class="fa fa-question-circle" data-tip="<?php _e( 'This will help us better tailor your experience.' , 'layerswp' ); ?>"></i>
+						</span>
+						<span class="onboarding-form-item">
 							<?php
-								echo $form_elements->input( array(
-									'type' => 'color',
-									'name' => 'site_color',
-									'id' => 'site_color',
-									'value' => '#009eec',
-								) );
+							echo $form_elements->input( array(
+								'type' => 'select',
+								'name' => 'info_site_usage',
+								'id' => 'info_site_usage',
+								'value' => '#009eec',
+								'options' => array(
+									'' => '',
+									'business' => 'Business',
+									'art' => 'Art',
+									'education' => 'Education',
+									'general' => 'General',
+								),
+							) );
 							?>
-						</p>
+						</span>
 						
-						
-						<br>
-						<br>
-						
-						
-						<!-- Your content goes here -->
-						<div class="layers-section-title">
-							<h3 class="layers-heading">
-								<?php _e( 'What will your site be used for?' , 'layerswp' ); ?>
-							</h3>
-							<p class="layers-excerpt">
-								<?php _e( 'This will help us better tailor your experience.' , 'layerswp' ); ?>
-							</p>
-						</div>
-						<p class="layers-form-item">
-							<label><?php _e( 'Site Name' , 'layerswp' ); ?></label>
+						<!-- Sentence -->
+						<span class="onboarding-form-sentence">
+							<?php _e( 'How would you describe your site?' , 'layerswp' ); ?>
+							<i class="fa fa-question-circle" data-tip="<?php _e( 'A tagline describes who and what you are in just a few simple words. For example Layers is a &ldquo;WordPress Site Builder&rdquo; - simple, easy, quick to read. Now you try:' , 'layerswp' ); ?>"></i>
+						</span>
+						<span class="onboarding-form-item onboarding-form-item-no-border">
 							<?php
-								echo $form_elements->input( array(
-									'type' => 'select',
-									'name' => 'info_site_usage',
-									'id' => 'info_site_usage',
-									'value' => '#009eec',
-									'options' => array(
-										'' => '',
-										'business' => 'Business',
-										'art' => 'Art',
-										'education' => 'Education',
-										'general' => 'General',
-									),
-								) );
+							echo $form_elements->input( array(
+								'type' => 'text',
+								'name' => 'blogdescription',
+								'id' => 'blogdescription',
+								'placeholder' => get_bloginfo( 'description' ),
+								'value' => get_bloginfo( 'description' ),
+								'class' => 'layers-text layers-large'
+							) );
 							?>
-						</p>
+						</span>
 						
+						<br>
+						
+						<!-- Sentence -->
+						<span class="onboarding-form-sentence">
+							<?php _e( 'Choose a primary color?' , 'layerswp' ); ?>
+							<i class="fa fa-question-circle" data-tip="<?php _e( 'We\'ll use this color in select places around your website.' , 'layerswp' ); ?>"></i>
+						</span>
+						<span class="onboarding-form-item onboarding-form-item-no-border">
+							<?php
+							echo $form_elements->input( array(
+								'type' => 'color',
+								'name' => 'site_color',
+								'id' => 'site_color',
+								'value' => ( get_theme_mod( 'layers-header-background-color' ) ) ? get_theme_mod( 'layers-header-background-color' ) : '#009eec',
+							) );
+							?>
+						</span>
+						
+						<br>
 						
 						<?php echo $form_elements->input( array(
 							'type' => 'hidden',
@@ -157,7 +164,6 @@ function render_onboarding_warnings() {
 							'id' => 'action',
 							'value' => 'layers_onboarding_update_options'
 						) ); ?>
-						
 						
 					</div>
 					
@@ -345,58 +351,6 @@ function render_onboarding_warnings() {
 				</div>
 				<div class="layers-column layers-span-8 no-gutter layers-demo-video">
 					<?php layers_show_html5_video( '//cdn.oboxsites.com/layers/videos/widget-slider.mp4', 660 ); ?>
-				</div>
-			</div>
-
-			<!-- Give your site a Tagline -->
-			<div class="layers-onboard-slide layers-animate layers-onboard-slide-inactive">
-				<div class="layers-column layers-span-8 postbox">
-					<div class="layers-content-large">
-						<!-- Your content goes here -->
-						<div class="layers-section-title">
-							<h3 class="layers-heading">
-								<?php _e( 'How would you best describe your site?' , 'layerswp' ); ?>
-							</h3>
-							<p class="layers-excerpt">
-								<?php _e( 'A tagline describes who and what you are in just a few simple words. For example Layers is a &ldquo;WordPress Site Builder&rdquo; - simple, easy, quick to read. Now you try:' , 'layerswp' ); ?>
-							</p>
-						</div>
-						<p class="layers-form-item">
-							<label><?php _e( 'Site Tagline' , 'layerswp' ); ?></label>
-							<?php
-							   echo $form_elements->input( array(
-									'type' => 'text',
-									'name' => 'blogdescription',
-									'id' => 'blogdescription',
-									'placeholder' => get_bloginfo( 'description' ),
-									'value' => get_bloginfo( 'description' ),
-									'class' => 'layers-text layers-large'
-							   ) );
-							?>
-						</p>
-						<?php echo $form_elements->input( array(
-							'type' => 'hidden',
-							'name' => 'action',
-							'id' => 'action',
-							'value' => 'layers_onboarding_update_options'
-						) ); ?>
-					</div>
-					<div class="layers-button-well">
-						<span class="layers-save-progress layers-hide layers-button btn-link" data-busy-message="<?php _e( 'Saving your Tagline' , 'layerswp' ); ?>"></span>
-						<a class="layers-button btn-primary layers-pull-right onbard-next-step" href=""><?php _e( 'Next Step &rarr;' , 'layerswp' ); ?></a>
-					</div>
-				</div>
-				<div class="layers-column layers-span-4 no-gutter">
-					<div class="layers-content">
-						<!-- Your helpful tips go here -->
-						<ul class="layers-help-list">
-							<li><?php _e( 'Keep it simple' , 'layerswp' ); ?></li>
-							<li><?php _e( 'Avoid buzz words' , 'layerswp' ); ?></li>
-							<li><?php _e( 'Make sure it describes what you offer' , 'layerswp' ); ?></li>
-							<li class="pro-tip"><?php _e( 'For the Pros: Layers will automatically assign the tagline to Settings &rarr; General' , 'layerswp' ); ?></li>
-							<?php render_onboarding_warnings(); ?>
-						</ul>
-					</div>
 				</div>
 			</div>
 

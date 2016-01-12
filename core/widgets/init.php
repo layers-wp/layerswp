@@ -54,15 +54,14 @@ class Layers_Widgets {
 
 		// Add a widget backup function
 		add_action( 'customize_save_after', 'layers_backup_sidebars_widgets' , 50 );
-		add_action( 'delete_post', 'layers_backup_sidebars_widgets', 10 );
+//		add_action( 'delete_post', 'layers_backup_sidebars_widgets', 10 );
 		add_action( 'delete_post', array( $this, 'clear_page_widgets' ), 0 );
 		add_action( 'wp_restore_post_revision' , array( $this, 'restore_backup' ), 10, 2 );
-		add_action( 'init', array( $this, 'check_for_revisions' ) );
+		add_action( 'init', array( $this, 'check_for_revisions' ), 50 );
 
-		if( isset( $_REQUEST['action'] ) && ( 'restore' == $_REQUEST['action'] || 'customize_save' == $_REQUEST['action'] ) ){
+		if( ( defined('DOING_AUTOSAVE') && DOING_AUTOSAVE )  || ( isset( $_REQUEST['action'] ) && ( 'restore' == $_REQUEST['action'] || 'customize_save' == $_REQUEST['action'] ) ) ){
 			add_filter( '_wp_post_revision_fields', array( $this, 'add_revision_fields' ) );
 		}
-
 		add_filter( '_wp_post_revision_fields', array( $this, 'add_revision_meta_fields' ) );
 		add_filter( '_wp_post_revision_field_widget_order', array( $this, 'add_widget_order_field' ), 10, 2 );
 
@@ -241,12 +240,22 @@ class Layers_Widgets {
 		// Check if our data is empty.
 		if ( empty( $widget_data_array ) ) return;
 
-		$import = $layers_migrator->import( unserialize( $widget_data ), FALSE, TRUE );
+		$import = $layers_migrator->import( unserialize( $widget_data ), TRUE, TRUE );
+
+		// Update widget order on the post
+		$widget_order  = get_metadata( 'post', $revision->ID, '_layers_widget_order', true );
+
+		if ( false !== $widget_order )
+			update_post_meta( $post_id, '_layers_widget_order', $widget_order );
+		else
+			delete_post_meta( $post_id, '_layers_widget_order' );
 	}
 
 	public function check_for_revisions(){
 
-		if( get_option( 'layers_init_revisions' ) ) return;
+		global $wp_customize;
+
+		// if( get_option( 'layers_init_revisions' ) ) return;
 
 		// Get a list of the migrator
 		$get_layers_pages = layers_get_builder_pages( 500 );
@@ -429,46 +438,12 @@ function layers_backup_page_sidebars_widgets( $page = NULL, $no_revisions = FALS
 
 		// Start the output buffer
 
-		ob_start();
-		dynamic_sidebar( 'obox-layers-builder-' . $page->ID );
 
-		$page_content = "";
-		$page_content = trim( ob_get_clean() );
-		$page_content = preg_replace('#<script(.*?)>(.*?)</script>#is', '', $page_content);
-		/*
-		$page_content = preg_replace("/<([a-z][a-z0-9]*)(?:[^>]*(\ssrc=['\"][^'\"]*['\"]))?[^>]*?(\/?)>/i",'<$1$2$3>', $page_content);
-		*/
-//		$page_content = strip_tags( $page_content, '<b><i><strong><em><quote><h1><h2><h3><h4><h5><img>' ); // <p><b><i><strong><em><quote><a><h1><h2><h3><h4><h5><img><script>
-		$page_content = wp_kses( $page_content, array(
-			'a' => array(
-				'href' => array(),
-				'target' => array(),
-			),
-			'img' => array(
-				'src' => array(),
-				'width' => array(),
-				'height' => array(),
-			),
-			'p',
-			'b',
-			'i',
-			'strong',
-			'em',
-			'quote',
-			'h1',
-			'h2',
-			'h3',
-			'h4',
-			'h5',
-		) );
-		$page_content = preg_replace('/(?:(?:\r\n|\r|\n)\s*){2}/s', "\n\n", $page_content);
-		$page_content = preg_replace("/(<a[^href]*href=[\"']{2}[^>]*>)([^<>]*|.*)(<\\/a>)/m", "$2", $page_content);
-		$page_content = str_replace( '  ', '', $page_content );
 
 		// Generate the post content
 		$post = (array) $page;
 		$post[ 'post_content_filtered' ] = serialize( $page_raw_widget_data );
-		$post[ 'post_content' ] = $page_content;
+		$post[ 'post_content' ] = layers_get_builder_page_content( $page->ID );
 
 
 		// Update the backup post & get the revision ID

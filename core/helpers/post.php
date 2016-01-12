@@ -20,7 +20,7 @@
 
 if( !function_exists( 'layers_post_meta' ) ) {
 	function layers_post_meta( $post_id = NULL , $display = NULL, $wrapper = 'footer', $wrapper_class = 'meta-info' ) {
-		
+
 		// If there is no post ID specified, use the current post, does not affect post author, yet.
 		if( NULL == $post_id ) {
 			global $post;
@@ -31,7 +31,7 @@ if( !function_exists( 'layers_post_meta' ) ) {
 		if ( NULL === $display ) {
 			$display = array( 'date', 'author', 'categories', 'tags' );
 		}
-		
+
 		// Allow for filtering of the display elements.
 		$display = apply_filters( 'layers_post_meta_display', $display );
 
@@ -262,6 +262,55 @@ if( ! function_exists( 'layers_get_builder_pages' ) ) {
 	}
 }
 
+
+/**
+ * Get builder page content as HTML
+ *
+ * @param   int   $post_id ID of post to check.
+ *
+ * @return  string    $page_content is plain HTML version of the page content
+*/
+if( ! function_exists( 'layers_get_builder_page_content' ) ) {
+	function layers_get_builder_page_content( $page_id = NULL ){
+
+		if( NULL == $page_id ) return '';
+
+		global $layers_widgets;
+
+		ob_start();
+		dynamic_sidebar( 'obox-layers-builder-' . $page_id );
+		$page_content = "";
+		$page_content = trim( ob_get_clean() );
+		$page_content = preg_replace('#<script(.*?)>(.*?)</script>#is', '', $page_content);
+		$page_content = wp_kses( $page_content, array(
+			'a' => array(
+				'href' => array(),
+				'target' => array(),
+			),
+			'img' => array(
+				'src' => array(),
+				'width' => array(),
+				'height' => array(),
+			),
+			'p',
+			'b',
+			'i',
+			'strong',
+			'em',
+			'quote',
+			'h1',
+			'h2',
+			'h3',
+			'h4',
+			'h5',
+		) );
+		$page_content = preg_replace('/(?:(?:\r\n|\r|\n)\s*){2}/s', "\n\n", $page_content);
+		$page_content = preg_replace("/(<a[^href]*href=[\"']{2}[^>]*>)([^<>]*|.*)(<\\/a>)/m", "$2", $page_content);
+		$page_content = str_replace( '  ', '', $page_content );
+
+		return $page_content;
+	}
+}
 /**
  * Conditional check if is Layers page
  *
@@ -346,7 +395,7 @@ if ( ! function_exists( 'layers_filter_admin_pages_views' ) ) {
 if( ! function_exists( 'layers_edit_layout_admin_menu' ) ) {
 	function layers_edit_layout_admin_menu(){
 		global $wp_admin_bar, $post, $wp_version;
-		
+
 		if( !is_admin() && version_compare( $wp_version, '4.2', '<=' ) ){
 			$current_url = ( is_ssl() ? 'https://' : 'http://' ) . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
 			$args = array(

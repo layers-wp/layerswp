@@ -698,64 +698,47 @@ $page_content .= '* ' . $data->name. '
 
 		if( !check_ajax_referer( 'layers-migrator-preset-layouts', 'nonce', false ) ) die( 'You threw a Nonce exception' ); // Nonce
 
+
+		remove_action('pre_post_update', 'wp_save_post_revision');
 		$post = array();
+		$import_data = array();
+
+		/**
+		* Check to see if we've created a builder page before
+		*/
+
+		$check_builder_pages = layers_get_builder_pages();
 
 		if( isset( $_POST[ 'post_title' ] )  ){
-			$post[ 'post_title' ] = $_POST[ 'post_title' ];
+			$page_title = $_POST[ 'post_title' ];
 		} else {
-			$post[ 'post_title' ] = __( 'Home Page' , 'layerswp' );
+			$page_title = __( 'Home Page' , 'layerswp' );
 		}
 
-		$last_post_id = $wpdb->get_var( "SELECT ID FROM $wpdb->posts ORDER BY ID DESC" );
+		/**
+		* Create Builder Page
+		*/
 
-		$new_page_id = ( $last_post_id + 1 );
+		$import_data[ 'post_id' ] = layers_create_builder_page( $page_title );
+		$new_page_id = $import_data[ 'post_id' ];
+		$new_page = get_post( $import_data[ 'post_id' ] );
 
 		/**
 		* Register sidebar
 		*/
 
 		$layers_widgets->register_builder_sidebar( $new_page_id );
+		$sidebar = dynamic_sidebar( 'obox-layers-builder-' . $new_page_id );
 
 		/**
 		* Set Import Parameters
 		*/
 
-		$import_data[ 'post_id' ] = $new_page_id;
 		if( isset( $_POST[ 'widget_data' ] ) ) {
 			$import_data[ 'widget_data' ] = $_POST[ 'widget_data' ];
 		} else {
 			$import_data[ 'widget_data' ] = NULL;
 		}
-
-		/**
-		* Maybe set home page
-		*/
-
-		$check_builder_pages = layers_get_builder_pages();
-		if( count( $check_builder_pages ) == 0 ){
-			update_option( 'page_on_front', $import_data[ 'post_id' ] );
-			update_option( 'show_on_front', 'page' );
-		}
-
-		/**
-		* Create Page
-		*/
-		$page_raw_widget_data = array(
-			'post_id' => $new_page_id,
-			'post_title' => esc_attr( $post[ 'post_title' ] ),
-			'widget_data' => $import_data[ 'widget_data' ]
-		);
-
-		$export_data = $this->page_widget_data( json_encode( $import_data[ 'widget_data' ] ) );
-
-		$post[ 'post_type' ] = 'page';
-		$post[ 'post_status'] = 'publish';
-		$post[ 'post_content' ] = trim( $this->page_widgets_as_content( $export_data ) );
-		$post[ 'post_content_filtered' ] = serialize( $page_raw_widget_data );
-
-		$pageid = wp_insert_post ($post);
-
-		update_post_meta( $pageid , '_wp_page_template', LAYERS_BUILDER_TEMPLATE );
 
 		/*
 		* Run Import
@@ -763,13 +746,36 @@ $page_content .= '* ' . $data->name. '
 
 		$import_progress = $this->import( $import_data, TRUE );
 
+		/**
+		* Maybe set home page
+		*/
+
+		if( count( $check_builder_pages ) == 0 ){
+			update_option( 'page_on_front', $new_page_id );
+			update_option( 'show_on_front', 'page' );
+		}
+
+		/**
+		* Create Page
+		*/
+
+		$page_raw_widget_data = array(
+			'post_id' => $new_page_id,
+			'post_title' => esc_attr( $page_title ),
+			'widget_data' => $import_data[ 'widget_data' ]
+		);
+
+		$export_data = $this->page_widget_data( json_encode( $import_data[ 'widget_data' ] ) );
+
+		update_post_meta( $new_page_id, '_layers_widget_order', trim( $this->page_widgets_as_content( $export_data ) ) );
+
 		/*
 		* Send results home
 		*/
 
 		$results = array(
 			'post_id' => $new_page_id,
-			'post_title' => esc_attr( $post[ 'post_title' ] ),
+			'post_title' => esc_attr( $page_title ),
 			'data_report' => $import_progress,
 			'customizer_location' => admin_url() . 'customize.php?url=' . esc_url( get_the_permalink( $new_page_id ) )
 		);
@@ -1022,7 +1028,7 @@ if( !function_exists( 'layers_builder_export_ajax_init' ) ) {
 		$layers_migrator = new Layers_Widget_Migrator();
 
 		add_action( 'wp_ajax_layers_import_widgets', array( $layers_migrator, 'do_ajax_import' ) );
-		add_action( 'wp_ajax_layers_create_builder_page_from_preset', array( $layers_migrator, 'create_builder_page_from_preset' ) );
+		add_action( 'wp_ajax_layers_create_builder_page_from_preset', array( $layers_migrator, 'create_builder_page_from_preset' ), 50 );
 		add_action( 'wp_ajax_layers_update_builder_page', array( $layers_migrator, 'update_builder_page' ) );
 		add_action( 'wp_ajax_layers_duplicate_builder_page', array( $layers_migrator, 'do_ajax_duplicate' ) );
 	}

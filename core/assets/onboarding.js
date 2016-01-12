@@ -33,8 +33,8 @@ jQuery(function($) {
 			if( 0 == $i ){
 				layers_onboarding_set_anchor(0);
 			}
-
-			$anchor_template.attr( 'title' , $title.trim() );
+			
+			$anchor_template.attr( 'title' , $title.trim() + ' (' + ( $i+1) + ' of ' + $anchor_count + ')' );
 
 			$( '.onboard-nav-dots' ).append( $anchor_template );
 

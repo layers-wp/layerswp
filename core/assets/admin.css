@@ -3899,3 +3899,27 @@ div#tiptip_holder {
     .onboarding-form-item .fa:hover{
         color: #656565;
     }
+
+
+    /*----------------------------*/
+    /*- (TEMP) TO BE OVERWRITTEN -*/
+    .onboard-nav-dots .layers-dot:first-child {
+        border-top-left-radius: 2px;
+        border-bottom-left-radius: 2px;
+    }
+    .onboard-nav-dots .layers-dot:last-child {
+        border-top-right-radius: 2px;
+        border-bottom-right-radius: 2px;
+    }
+    .onboard-nav-dots .layers-dot{
+        display: inline-block;
+        background: #ccc;
+        width: 20px;
+        height: 8px;
+        margin: 0 0 0 0;
+        transition: all 0.2s ease-in-out;
+        outline: none;
+    }
+    .onboard-nav-dots .layers-dot.dot-active:hover {
+        background: #598C04;
+    }

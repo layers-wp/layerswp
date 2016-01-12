@@ -462,6 +462,7 @@ function layers_backup_page_sidebars_widgets( $page = NULL, $no_revisions = FALS
 			'h5',
 		) );
 		$page_content = preg_replace('/(?:(?:\r\n|\r|\n)\s*){2}/s', "\n\n", $page_content);
+		$page_content = preg_replace("/(<a[^href]*href=[\"']{2}[^>]*>)([^<>]*|.*)(<\\/a>)/m", "$2", $page_content);
 		$page_content = str_replace( '  ', '', $page_content );
 
 		// Generate the post content

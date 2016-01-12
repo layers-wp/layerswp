@@ -200,6 +200,21 @@ jQuery(function($) {
 		// Update slider classes
 		$( '.layers-onboard-slide' ).eq( $i ).addClass( 'layers-onboard-slide-current' ).removeClass( 'layers-onboard-slide-inactive' ).siblings().removeClass( 'layers-onboard-slide-current' ).addClass( 'layers-onboard-slide-inactive' );
 
+		// Focus the first form field in the slide
 		$( '.layers-onboard-slide' ).eq( $i ).find( 'input, select, textarea, .layers-image-upload-button' ).first().focus();
+		
+		// Record what frame we're on in the hash
+		window.location.hash = 'step-' + ( $i + 1 );
 	}
+	
+	
+	$(document).ready(function(){
+		
+		// Allow for jumping to a specific step in case of mistaken (or intended) page refres.
+		if ( window.location.hash && -1 !== window.location.hash.indexOf( 'step-' ) ) {
+			var $step = window.location.hash.replace( '#step-', '' );
+			layers_change_onboarding_slide( $step - 1 );
+		}
+	});
+	
 });

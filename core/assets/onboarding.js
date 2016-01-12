@@ -31,7 +31,7 @@ jQuery(function($) {
 			$anchor_template = $( '<a href="" />' );
 			$anchor_template.addClass( 'layers-dot layers-tooltip' );
 			if( 0 == $i ){
-				$anchor_template.addClass( 'dot-active' );
+				layers_onboarding_set_anchor(0);
 			}
 
 			$anchor_template.attr( 'title' , $title.trim() );
@@ -39,6 +39,16 @@ jQuery(function($) {
 			$( '.onboard-nav-dots' ).append( $anchor_template );
 
 		};
+	}
+	
+	function layers_onboarding_set_anchor( $i ){
+		
+		// Update anchor classes
+		$( '#layers-onboard-anchors a').each(function(index, el) {
+			
+			if ( index <= $i ) $(el).addClass( 'dot-active' );
+			else $(el).removeClass( 'dot-active' );
+		});
 	}
 
 	layers_onboarding_load_anchors();
@@ -176,7 +186,7 @@ jQuery(function($) {
 	});
 
 	function layers_next_onboarding_slide(){
-		$current = $( '#layers-onboard-anchors a.dot-active').index();
+		$current = $( '#layers-onboard-anchors a.dot-active').last().index();
 		$next = (+$current+1);
 
 		layers_change_onboarding_slide( $next );
@@ -195,7 +205,7 @@ jQuery(function($) {
 		if( $i > $max ) return;
 
 		// Update anchor classes
-		$( '#layers-onboard-anchors a').eq( $i ).addClass( 'dot-active' ).siblings().removeClass( 'dot-active' );
+		layers_onboarding_set_anchor($i);
 
 		// Update slider classes
 		$( '.layers-onboard-slide' ).eq( $i ).addClass( 'layers-onboard-slide-current' ).removeClass( 'layers-onboard-slide-inactive' ).siblings().removeClass( 'layers-onboard-slide-current' ).addClass( 'layers-onboard-slide-inactive' );
@@ -210,7 +220,7 @@ jQuery(function($) {
 	
 	$(document).ready(function(){
 		
-		// Allow for jumping to a specific step in case of mistaken (or intended) page refres.
+		// Allow for jumping to a specific step in case of mistaken (or intended) page refresh.
 		if ( window.location.hash && -1 !== window.location.hash.indexOf( 'step-' ) ) {
 			var $step = window.location.hash.replace( '#step-', '' );
 			layers_change_onboarding_slide( $step - 1 );

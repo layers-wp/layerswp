@@ -61,8 +61,49 @@ function render_onboarding_warnings() {
 
 		<div class="layers-onboard-slider">
 		
-			<!-- Give your site a Name -->
+			<!-- Welcome -->
 			<div class="layers-onboard-slide layers-animate layers-onboard-slide-current">
+				<div class="layers-column layers-span-8 postbox">
+					<div class="layers-content-large">
+						<!-- Your content goes here -->
+						<div class="layers-section-title layers-no-push-bottom">
+							<h3 class="layers-heading">
+								<?php _e( 'Welcome to Layers!' , 'layerswp' ); ?>
+							</h3>
+							<div class="layers-excerpt">
+								<p>
+									<?php _e( 'Layers is a revolutionary WordPress Site Builder that makes website building a dream come true!' , 'layerswp' ); ?>
+								</p>
+								<p>
+									<?php _e( 'The following short steps are designed to show you how Layers works and get you to creating amazing layouts quickly!' , 'layerswp' ); ?>
+								</p>
+								<p>
+									<?php _e( 'Enjoy the ride!' , 'layerswp' ); ?>
+								</p>
+
+							</div>
+						</div>
+					</div>
+					<div class="layers-button-well">
+						<a class="layers-button btn-primary layers-pull-right onbard-next-step" href=""><?php _e( 'Let\'s get started &rarr;' , 'layerswp' ); ?></a>
+					</div>
+				</div>
+				<div class="layers-column layers-span-4 no-gutter">
+					<div class="layers-content">
+						<!-- Your helpful tips go here -->
+						<ul class="layers-help-list">
+							<li>
+								<?php _e( sprintf( 'If you\'re ever stuck or need help with your Layers site please visit our <a href="%s" rel="nofollow">helpful documentation.</a>', '//docs.layerswp.com' ) , 'layerswp' ); ?>
+							</li>
+							<li class="pro-tip"><?php _e( 'For the Pros: Layers will automatically assign the tagline to Settings &rarr; General.' , 'layerswp' ); ?></li>
+							<?php render_onboarding_warnings(); ?>
+						</ul>
+					</div>
+				</div>
+			</div>
+			
+			<!-- Capture site details (previously 'Give your site a Name') -->
+			<div class="layers-onboard-slide layers-animate layers-onboard-slide-inactive">
 				<div class="layers-column layers-span-8 postbox">
 					
 					<div class="layers-content-large ">
@@ -189,49 +230,56 @@ function render_onboarding_warnings() {
 					</div>
 				</div>
 			</div>
-
-			<!-- Welcome -->
-			<div class="layers-onboard-slide layers-animate">
+			
+			<!-- Create Default Pages -->
+			<div class="layers-onboard-slide layers-animate layers-onboard-slide-inactive">
 				<div class="layers-column layers-span-8 postbox">
 					<div class="layers-content-large">
 						<!-- Your content goes here -->
-						<div class="layers-section-title layers-no-push-bottom">
+						<div class="layers-section-title">
 							<h3 class="layers-heading">
-								<?php _e( 'Welcome to Layers!' , 'layerswp' ); ?>
+								<?php _e( 'Create Starter Page(s)', 'layerswp' ); ?>
 							</h3>
-							<div class="layers-excerpt">
-								<p>
-									<?php _e( 'Layers is a revolutionary WordPress Site Builder that makes website building a dream come true!' , 'layerswp' ); ?>
-								</p>
-								<p>
-									<?php _e( 'The following short steps are designed to show you how Layers works and get you to creating amazing layouts quickly!' , 'layerswp' ); ?>
-								</p>
-								<p>
-									<?php _e( 'Enjoy the ride!' , 'layerswp' ); ?>
-								</p>
-
-							</div>
+							<p class="layers-excerpt">
+								<?php _e( "There are some standard pages that nearly all websites need. We reccomend that you let us create these for you and apply settings to make them work best with Layers. *these can easily be deleted later if you're not sure", 'layerswp' ); ?>
+							</p>
 						</div>
+						
+						<?php echo $form_elements->input( array(
+							'type' => 'hidden',
+							'name' => 'action',
+							'id' => 'action',
+							'value' => 'layers_onboarding_create_pages'
+						) ); ?>
+						
+						<div class="layers-checkbox-wrapper layers-form-item">
+							<input id="layers-create-page-blog" name="create-page-blog" value="Blog" type="checkbox" checked="checked" />
+							<label for="layers-create-page-blog"><?php _e( 'Blog Page', 'layerswp' ); ?></label>
+						</div>
+						
 					</div>
 					<div class="layers-button-well">
-						<a class="layers-button btn-primary layers-pull-right onbard-next-step" href=""><?php _e( 'Let\'s get started &rarr;' , 'layerswp' ); ?></a>
+						<span class="layers-save-progress layers-hide layers-button btn-link" data-busy-message="<?php _e( 'Creating Page(s)', 'layerswp' ); ?>"></span>
+						<a class="layers-button btn-primary layers-pull-right onbard-next-step" href=""><?php _e( 'Next Step &rarr;' , 'layerswp' ); ?></a>
 					</div>
 				</div>
 				<div class="layers-column layers-span-4 no-gutter">
 					<div class="layers-content">
+
 						<!-- Your helpful tips go here -->
 						<ul class="layers-help-list">
-							<li>
-								<?php _e( sprintf( 'If you\'re ever stuck or need help with your Layers site please visit our <a href="%s" rel="nofollow">helpful documentation.</a>', '//docs.layerswp.com' ) , 'layerswp' ); ?>
-							</li>
-							<li class="pro-tip"><?php _e( 'For the Pros: Layers will automatically assign the tagline to Settings &rarr; General.' , 'layerswp' ); ?></li>
+							<li><?php _e( 'Get advice on the right theme for your site.' , 'layerswp' ); ?></li>
+							<li><?php _e( 'Help choosing extensions.' , 'layerswp' ); ?></li>
+							<li><?php _e( 'Feedback? Let us know as soon as it comes to mind.' , 'layerswp' ); ?></li>
+							<li><?php _e( 'Have a problem? We\'ll send you the best link to solve your issues.' , 'layerswp' ); ?></li>
+							<li><?php _e( 'Allow Layers to collect non-sensitive diagnostic data and usage information to help us improve our theme and best assist you.' , 'layerswp' ); ?></li>
 							<?php render_onboarding_warnings(); ?>
 						</ul>
 					</div>
 				</div>
 			</div>
 			
-			<?php if( !defined( 'LAYERS_DISABLE_INTERCOM' ) ){ ?>
+			<?php if( ! defined( 'LAYERS_DISABLE_INTERCOM' ) ){ ?>
 				<!-- Enable / Disable Intercom -->
 				<div class="layers-onboard-slide layers-animate layers-onboard-slide-inactive">
 					<div class="layers-column layers-span-8 postbox">
@@ -439,7 +487,7 @@ function render_onboarding_warnings() {
 				</div>
 			</div>
 
-			<!-- Select a Layout -->
+			<!-- Create a page to be your first Layout -->
 			<div class="layers-onboard-slide layers-animate layers-onboard-slide-inactive">
 				<div class="layers-column layers-span-8 layers-template-selector postbox">
 					<div class="layers-content">

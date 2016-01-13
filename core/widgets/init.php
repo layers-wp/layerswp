@@ -255,10 +255,12 @@ class Layers_Widgets {
 
 		global $wp_customize;
 
-		// if( get_option( 'layers_init_revisions' ) ) return;
+		if( get_option( 'layers_init_revisions' ) ) return;
 
 		// Get a list of the migrator
 		$get_layers_pages = layers_get_builder_pages( 500 );
+
+		if( empty( $get_layers_pages ) ) return;
 
 		$revisions_exist = FALSE;
 
@@ -385,81 +387,100 @@ function layers_widgets_init(){
 	$layers_widgets->init();
 }
 add_action( 'widgets_init' , 'layers_widgets_init' , 20 );
+add_action( 'widgets_init' , 'layers_widgets_init' , 20 );
+if( !function_exists( 'layers_backup_sidebars_widgets' ) ) {
+	function layers_backup_sidebars_widgets( $no_revisions = FALSE ){
 
-function layers_backup_sidebars_widgets( $no_revisions = FALSE ){
+		global $sidebars_widgets;
 
-	global $sidebars_widgets;
+		// Get a list of the migrator
+		$get_layers_pages = layers_get_builder_pages( 500 );
 
-	// Prep the migrator
-	$migrator = new Layers_Widget_Migrator();
+		// Loop through the builder pages spooling up the widget data each time
+		$revisions = array();
+		foreach( $get_layers_pages as $page ){
 
-	// Get a list of the migrator
-	$get_layers_pages = layers_get_builder_pages( 500 );
+			$revisions[] = layers_backup_page_sidebars_widgets( $page );
+		}
 
-	// Loop through the builder pages spooling up the widget data each time
-	$revisions = array();
-	foreach( $get_layers_pages as $page ){
-
-		$revisions[] = layers_backup_page_sidebars_widgets( $page );
 	}
-
 }
 add_action( 'layers_backup_sidebars_widgets', 'layers_backup_sidebars_widgets' );
 
+if( !function_exists( 'layers_backup_page_sidebars_widgets' ) ) {
+	function layers_backup_page_sidebars_widgets( $page = NULL, $no_revisions = FALSE ){
 
-function layers_backup_page_sidebars_widgets( $page = NULL, $no_revisions = FALSE ){
-
-	// Prep the migrator
-	$migrator = new Layers_Widget_Migrator();
-
-	if( NULL == $page || !is_object( $page ) ) return;
-
-	$raw_export_data = $migrator->export_data( $page );
-
-	$export_data = $migrator->page_widget_data( $page );
-
-	if( !empty( $export_data ) ){
-
-		// Create a hash key so that we can know if this page is unique or not
-		if( '' == get_post_meta( $page->ID, '_layers_hash', true ) ){
-			$page_hash_key = 'layers_page_' . md5( $page->post_name . '-' . $page->ID );
-			update_post_meta( $page->ID, '_layers_hash', $page_hash_key, false );
-		} else {
-			$page_hash_key = get_post_meta( $page->ID, '_layers_hash', true );
+		if( !class_exists( 'Layers_Widget_Migrator' ) ) {
+			require get_template_directory() . '/core/helpers/migrator.php';
 		}
 
-		// Save the raw widget data
-		$page_raw_widget_data = array(
-			'post_id' => $page->ID,
-			'post_hash' => $page_hash_key,
-			'post_title' => esc_attr( $page->post_title ),
-			'widget_data' => $raw_export_data
-		);
+		// Prep the migrator
+		$migrator = new Layers_Widget_Migrator();
 
-		// Start the output buffer
+		error_log( 'Checking page' . print_r( $page, true ) );
 
+		if( NULL == $page || !is_object( $page ) ) return;
 
+		$raw_export_data = $migrator->export_data( $page );
 
-		// Generate the post content
-		$post = (array) $page;
-		$post[ 'post_content_filtered' ] = serialize( $page_raw_widget_data );
-		$post[ 'post_content' ] = layers_get_builder_page_content( $page->ID );
+		$export_data = $migrator->page_widget_data( $page );
 
+		if( !empty( $export_data ) ){
 
-		// Update the backup post & get the revision ID
-		$post_id = wp_update_post( $post );
-		$revisions = wp_get_post_revisions( $page->ID, array( 'posts_per_page' => 1 ) );
-		$latest_revision = reset( $revisions );
+			// Create a hash key so that we can know if this page is unique or not
+			if( '' == get_post_meta( $page->ID, '_layers_hash', true ) ){
+				$page_hash_key = 'layers_page_' . md5( $page->post_name . '-' . $page->ID );
+				update_post_meta( $page->ID, '_layers_hash', $page_hash_key, false );
+			} else {
+				$page_hash_key = get_post_meta( $page->ID, '_layers_hash', true );
+			}
 
-		// Add widget order field
-		update_post_meta( $page->ID, '_layers_widget_order', $migrator->page_widgets_as_content( $export_data ), true );
-		add_metadata( 'post', $latest_revision->ID, '_layers_widget_order', $migrator->page_widgets_as_content( $export_data ), true );
+			// Save the raw widget data
+			$page_raw_widget_data = array(
+				'post_id' => $page->ID,
+				'post_hash' => $page_hash_key,
+				'post_title' => esc_attr( $page->post_title ),
+				'widget_data' => $raw_export_data
+			);
 
-		$return = array(
-			'post_id' => $post_id,
-			'revision_id' => $latest_revision->ID
-		);
+			// Generate the post content
+			$post = (array) $page;
+			$post[ 'post_content_filtered' ] = serialize( $page_raw_widget_data );
+			$post[ 'post_content' ] = layers_get_builder_page_content( $page->ID );
 
-		return $return;
+			error_log( 'Post Information' . print_r( $post, true ) );
+
+			// Update the backup post & get the revision ID
+			$post_id = wp_update_post( $post );
+			$revisions = wp_get_post_revisions( $page->ID, array( 'posts_per_page' => 1 ) );
+			$latest_revision = reset( $revisions );
+
+			// Add widget order field
+			update_post_meta( $page->ID, '_layers_widget_order', $migrator->page_widgets_as_content( $export_data ), true );
+			add_metadata( 'post', $latest_revision->ID, '_layers_widget_order', $migrator->page_widgets_as_content( $export_data ), true );
+
+			$return = array(
+				'post_id' => $post_id,
+				'revision_id' => $latest_revision->ID
+			);
+
+			return $return;
+		}
 	}
 }
+function layers_check_for_preset_backup(){
+	global $wp_customize;
+
+	if( $wp_customize ){
+		if( get_option( 'layers_cron_page_backup' ) ){
+
+			$page_id = get_option( 'layers_cron_page_backup' );
+
+			$page = get_post( $page_id );
+			if( NULL == $page ) return;
+
+			layers_backup_page_sidebars_widgets( $page );
+		}
+	}
+}
+add_action( 'init', 'layers_check_for_preset_backup' );

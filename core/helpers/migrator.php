@@ -728,7 +728,6 @@ $page_content .= '* ' . $data->name. '
 		*/
 
 		$layers_widgets->register_builder_sidebar( $new_page_id );
-		$sidebar = dynamic_sidebar( 'obox-layers-builder-' . $new_page_id );
 
 		/**
 		* Set Import Parameters
@@ -758,7 +757,6 @@ $page_content .= '* ' . $data->name. '
 		/**
 		* Create Page
 		*/
-
 		$page_raw_widget_data = array(
 			'post_id' => $new_page_id,
 			'post_title' => esc_attr( $page_title ),
@@ -768,6 +766,8 @@ $page_content .= '* ' . $data->name. '
 		$export_data = $this->page_widget_data( json_encode( $import_data[ 'widget_data' ] ) );
 
 		update_post_meta( $new_page_id, '_layers_widget_order', trim( $this->page_widgets_as_content( $export_data ) ) );
+
+		update_option( 'layers_cron_page_backup' , $new_page_id );
 
 		/*
 		* Send results home
@@ -998,9 +998,14 @@ $page_content .= '* ' . $data->name. '
 
 			}
 		}
+		ob_start();
+		dynamic_sidebar( 'obox-layers-builder-' . $import_data[ 'post_id' ] );
+		$results[ 'sidebar_html' ] = trim( ob_get_clean() );
 
-		if( FALSE == $is_preset )
+		if( FALSE == $is_preset ) {
+			error_log( 'Import -> Run Backup Sidebars' );
 			do_action( 'layers_backup_sidebars_widgets' );
+		}
 
 		return $results;
 	}

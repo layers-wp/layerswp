@@ -198,7 +198,7 @@ jQuery(function($) {
 		$( '#layers-onboard-anchors a').eq( $i ).addClass( 'dot-active' ).siblings().removeClass( 'dot-active' );
 
 		// Update slider classes
-		$( '.l_admin-onboard-slide' ).eq( $i ).addClass( 'layers-onboard-slide-current' ).removeClass( 'layers-onboard-slide-inactive' ).siblings().removeClass( 'layers-onboard-slide-current' ).addClass( 'layers-onboard-slide-inactive' );
+		$( '.l_admin-onboard-slide' ).eq( $i ).addClass( 'l_admin-onboard-slide-current' ).removeClass( 'l_admin-onboard-slide-inactive' ).siblings().removeClass( 'l_admin-onboard-slide-current' ).addClass( 'l_admin-onboard-slide-inactive' );
 
 		$( '.l_admin-onboard-slide' ).eq( $i ).find( 'input, select, textarea, .l_admin-image-upload-button' ).first().focus();
 	}

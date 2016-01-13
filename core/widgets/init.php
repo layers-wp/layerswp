@@ -481,7 +481,7 @@ function layers_check_for_preset_backup(){
 
 			layers_backup_page_sidebars_widgets( $page );
 
-			delete_option( 'layers_cron_page_backup' )
+			delete_option( 'layers_cron_page_backup' );
 		}
 	}
 }

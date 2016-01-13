@@ -40,6 +40,7 @@ jQuery(function($) {
 
 		};
 	}
+	layers_onboarding_load_anchors();
 	
 	function layers_onboarding_set_anchor( $i ){
 		
@@ -50,8 +51,6 @@ jQuery(function($) {
 			else $(el).removeClass( 'dot-active' );
 		});
 	}
-
-	layers_onboarding_load_anchors();
 
 	$(window).on( 'resize, load',function(){
 		$( '.layers-template-selector' ).css( 'max-height', $( '#wpbody-content' ).height() - 150 );
@@ -170,6 +169,7 @@ jQuery(function($) {
 		$i = $that.index();
 
 		layers_change_onboarding_slide( $i );
+		history.pushState( { step: $i }, null, '#step-' + ( $i + 1 ) );
 	});
 
 	$( 'input[name="layes-preset-layout"]' ).on( 'change' , function(e){
@@ -190,6 +190,7 @@ jQuery(function($) {
 		$next = (+$current+1);
 
 		layers_change_onboarding_slide( $next );
+		history.pushState( { step: $next }, null, '#step-' + ( $next + 1 ) );
 	}
 
 	function layers_change_onboarding_slide( $i ){
@@ -212,18 +213,28 @@ jQuery(function($) {
 
 		// Focus the first form field in the slide
 		$( '.layers-onboard-slide' ).eq( $i ).find( 'input, select, textarea, .layers-image-upload-button' ).first().focus();
-		
-		// Record what frame we're on in the hash
-		window.location.hash = 'step-' + ( $i + 1 );
 	}
 	
+	// History - Allow forward/backward through the history states (enables frame stepping).
+	window.addEventListener('popstate', function(e) {
+		if ( null !== e.state ) {
+			if ( e.state.hasOwnProperty('step') ) {
+				layers_change_onboarding_slide( e.state.step );
+			}
+		}
+	});
 	
 	$(document).ready(function(){
 		
 		// Allow for jumping to a specific step in case of mistaken (or intended) page refresh.
-		if ( window.location.hash && -1 !== window.location.hash.indexOf( 'step-' ) ) {
-			var $step = window.location.hash.replace( '#step-', '' );
-			layers_change_onboarding_slide( $step - 1 );
+		if ( -1 !== window.location.hash.indexOf( 'step-' ) ) {
+			var $step = window.location.hash.replace( '#step-', '' ) - 1;
+			layers_change_onboarding_slide( $step );
+			history.pushState( { step: ( $step ) }, null, null );
+		}
+		else{
+			layers_change_onboarding_slide(0);
+			history.replaceState( { step: 0 }, null, null );
 		}
 	});
 	

@@ -254,7 +254,10 @@ function render_onboarding_warnings() {
 						
 						<div class="layers-checkbox-wrapper layers-form-item">
 							<input id="layers-create-page-blog" name="create-page-blog" value="Blog" type="checkbox" checked="checked" />
-							<label for="layers-create-page-blog"><?php _e( 'Blog Page', 'layerswp' ); ?></label>
+							<label for="layers-create-page-blog">
+								<?php _e( 'Blog Page', 'layerswp' ); ?>
+								<i class="fa fa-question-circle" data-tip="<?php _e( 'Blog page shows your blog posts.' , 'layerswp' ); ?>"></i>
+							</label>
 						</div>
 						
 					</div>

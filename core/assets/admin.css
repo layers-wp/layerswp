@@ -3848,17 +3848,18 @@ div#tiptip_holder {
     /*------------------------*/
     /*- COMBO FORM -----------*/
     .onboarding-form-sentence{
-        color: #6B6B6B;
+        color: #5D5D5D;
         font-size: 16px;
         margin-bottom: 25px;
         display: inline-block;
-        width: 50%;
+        width: 55%;
+        font-weight: bold;
     }
     .onboarding-form-item {
         position: relative;
         line-height: 31px;
         display: inline-block;
-        width: 49%;
+        width: 44%;
     }
     .onboarding-form-item.onboarding-form-item-no-border{
         border: none;
@@ -3875,7 +3876,6 @@ div#tiptip_holder {
         outline: none;
         margin: 0;
         color: #6C6C6C;
-        font-style: italic;
         width: 91%;
         line-height: 28px;
     }
@@ -3884,19 +3884,22 @@ div#tiptip_holder {
         box-shadow: none;
         border-color: #868686;
     }
-    .onboarding-form-sentence .fa,
-    .onboarding-form-item .fa {
+    .layers-onboard-slider .fa-question-circle{
         position: relative;
-        top: -1px;
+        top: 0px;
         color: #B9B9B9;
-        font-size: 11px;
+        font-size: 13px;
         border: 7px solid transparent;
         border-right-width: 0;
-        border-left-width: 3px;
+        border-left-width: 2px;
+        border-bottom-width: 2px;
+        border-top-width: 2px;
         cursor: pointer;
+        /* vertical-align: text-bottom; */
+        height: auto;
+        /* background: rgba(255, 0, 0, 0.41); */
     }
-    .onboarding-form-sentence .fa:hover,
-    .onboarding-form-item .fa:hover{
+    .layers-onboard-slider .fa-question-circle:hover{
         color: #656565;
     }
 

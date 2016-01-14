@@ -755,11 +755,11 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 	.header-inline .inline-right-nav{
 		display: -webkit-flex;
 		-webkit-justify-content: flex-start;
-		-webkit-align-items: flex-start;
+		-webkit-align-items: center;
 
 		display: flex;
 		justify-content: flex-start;
-		align-items: flex-start;
+		align-items: center;
 
 		width: 40%;
 		position: relative;

@@ -2,7 +2,7 @@
 
 =======
 ##1.2.11
-### xx Dec 2015
+### xx Jan 2016
 
 * **Fix** - Fixed margin-right bug in tablet mode on rows that span full width. *DP*
 * **Fix** - Fixed author `<a href />` for Portuguese translations. *MP*
@@ -12,6 +12,7 @@
 * **Tweak** - .nav-tabs colors now more dynamic for better background color/image handling. *DP*
 * **Tweak** - .header-site nav-horizontal link spacing (padding/margin) has been adjusted to cater for Layers Pro customization. *DP*
 * **Tweak** - Removed opacity: 0.x settings and replaced with rgba on .invert classes. *DP*
+* **Tweak** - Fixed menu verticle alignment quirks in header-center layout. *DP*
 
 
 =======

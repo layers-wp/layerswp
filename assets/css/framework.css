@@ -1923,6 +1923,7 @@ object{
 			opacity: 0.4;
 			font-weight: normal;
 			font-size: 0.8rem;
+			vertical-align: middle;
 		}
 		.header-site .sub-menu .menu-item-has-children > a:after{
 			float: right;

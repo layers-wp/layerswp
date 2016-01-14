@@ -115,56 +115,57 @@ class Layers_Options_Panel {
 		$api = new Layers_API();
 
 		if( isset( $_GET[ 'type' ] ) ) $type = $_GET[ 'type' ]; else $type = 'themes' ?>
-		<header class="layers-page-title layers-section-title layers-large layers-content-large layers-no-push-bottom">
+		<header class="l_admin-page-title l_admin-section-title l_admin-large l_admin-content l_admin-no-push-bottom">
 
-				<?php _e( sprintf( '<a href="%s" class="layers-logo">Layers</a>', 'http://layerswp.com' ), 'layerswp' ); ?>
+			<?php _e( sprintf( '<a href="%s" class="l_admin-logo">Layers</a>', 'http://layerswp.com' ), 'layerswp' ); ?>
 
-				<?php if( isset( $title ) ) { ?>
-					<h2 class="layers-heading" id="layers-options-header">
-						<?php echo esc_html( $title ); ?>
-						<span class="layers-small">
-							<?php _e( sprintf( 'Powered by <a href="%s">Envato</a>', 'http://www.themeforest.net/?ref=obox' ), 'layerswp' ); ?>
-						</span>
-					</h2>
-				<?php } ?>
+			<?php if( isset( $title ) ) { ?>
+				<h2 class="l_admin-heading" id="layers-options-header">
+					<?php echo esc_html( $title ); ?>
+					<span class="l_admin-small">
+						<?php _e( sprintf( 'Powered by <a href="%s">Envato</a>', 'http://www.themeforest.net/?ref=obox' ), 'layerswp' ); ?>
+					</span>
+				</h2>
+			<?php } ?>
 
-				<?php if( isset( $excerpt ) ) { ?>
-					<p class="layers-excerpt"><?php echo $excerpt; ?></p>
-				<?php } ?>
+			<?php if( isset( $excerpt ) ) { ?>
+				<p class="l_admin-excerpt"><?php echo $excerpt; ?></p>
+			<?php } ?>
 
-				<nav class="layers-nav-horizontal layers-dashboard-nav">
-					<ul>
-						<li <?php if( 'themes' == $type ) { ?>class="active"<?php } ?>>
-							<a href="<?php echo admin_url( 'admin.php?page=layers-marketplace&type=themes' ); ?>">
-								<?php _e( 'Themes' , 'layerswp' ); ?>
-							</a>
-						</li>
-						<li <?php if( 'extensions' == $type ) { ?>class="active"<?php } ?>>
-							<a href="<?php echo admin_url( 'admin.php?page=layers-marketplace&type=extensions' ); ?>">
-								<?php _e( 'Extensions' , 'layerswp' ); ?>
-							</a>
-						</li>
-						<li <?php if( 'stylekits' == $type ) { ?>class="active"<?php } ?>>
-							<a href="<?php echo admin_url( 'admin.php?page=layers-marketplace&type=stylekits' ); ?>">
-								<?php _e( 'Style Kits' , 'layerswp' ); ?>
-							</a>
-						</li>
-					</ul>
-					<form class="layers-help-search" action="" target="_blank" method="get">
-						<label><?php _e( 'Filters: ', 'layerswp' ); ?></label>
-						<select id="layers-marketplace-authors" class="push-right">
-							<option value=""><?php _e( 'All Authors' , 'layerswp' ); ?></option>
-						</select>
-						<select id="layers-marketplace-sortby" name="sortby" data-action="<?php echo admin_url( 'admin.php?page=layers-marketplace&type=' . $type ); ?>" class="push-right">
-							<?php if( is_array( $api->get_sort_options() ) ) { ?>
-								<?php foreach( $api->get_sort_options() as $value => $info ) { ?>
-									<option value="<?php echo $value; ?>" data-excerpt-label="<?php echo esc_attr( $info[ 'excerpt-label' ] ); ?>"><?php echo $info[ 'label' ]; ?></option>
-								<?php } ?>
+			<nav class="l_admin-nav-horizontal l_admin-dashboard-nav">
+				<ul>
+					<li <?php if( 'themes' == $type ) { ?>class="active"<?php } ?>>
+						<a href="<?php echo admin_url( 'admin.php?page=layers-marketplace&type=themes' ); ?>">
+							<?php _e( 'Themes' , 'layerswp' ); ?>
+						</a>
+					</li>
+					<li <?php if( 'extensions' == $type ) { ?>class="active"<?php } ?>>
+						<a href="<?php echo admin_url( 'admin.php?page=layers-marketplace&type=extensions' ); ?>">
+							<?php _e( 'Extensions' , 'layerswp' ); ?>
+						</a>
+					</li>
+					<li <?php if( 'stylekits' == $type ) { ?>class="active"<?php } ?>>
+						<a href="<?php echo admin_url( 'admin.php?page=layers-marketplace&type=stylekits' ); ?>">
+							<?php _e( 'Style Kits' , 'layerswp' ); ?>
+						</a>
+					</li>
+				</ul>
+				<form class="l_admin-help-search" action="" target="_blank" method="get">
+					<label><?php _e( 'Filters: ', 'layerswp' ); ?></label>
+					<select id="layers-marketplace-authors" class="push-right">
+						<option value=""><?php _e( 'All Authors' , 'layerswp' ); ?></option>
+					</select>
+					<select id="layers-marketplace-sortby" name="sortby" data-action="<?php echo admin_url( 'admin.php?page=layers-marketplace&type=' . $type ); ?>" class="push-right">
+						<?php if( is_array( $api->get_sort_options() ) ) { ?>
+							<?php foreach( $api->get_sort_options() as $value => $info ) { ?>
+								<option value="<?php echo $value; ?>" data-excerpt-label="<?php echo esc_attr( $info[ 'excerpt-label' ] ); ?>"><?php echo $info[ 'label' ]; ?></option>
 							<?php } ?>
-						</select>
-						<input id="layers-marketplace-search" type="search" placeholder="<?php _e( 'Search...' , 'layerswp' ); ?>"/>
-					</form>
-				</nav>
+						<?php } ?>
+					</select>
+					<input id="layers-marketplace-search" type="search" placeholder="<?php _e( 'Search...' , 'layerswp' ); ?>"/>
+				</form>
+			</nav>
+
 		</header>
 	<?php }
 
@@ -174,18 +175,18 @@ class Layers_Options_Panel {
 	public function header( $title = NULL, $excerpt = NULL ){
 
 		if( isset( $_GET[ 'page' ] ) ) $current_page = $_GET[ 'page' ]; ?>
-		<header class="layers-page-title layers-section-title layers-large layers-content-large layers-no-push-bottom">
+		<header class="l_admin-page-title l_admin-section-title l_admin-large l_admin-content l_admin-no-push-bottom">
 
-				<?php _e( sprintf( '<a href="%s" class="layers-logo">Layers</a>', 'http://layerswp.com' ), 'layerswp' ); ?>
+				<?php _e( sprintf( '<a href="%s" class="l_admin-logo">Layers</a>', 'http://layerswp.com' ), 'layerswp' ); ?>
 				<?php if( isset( $title ) ) { ?>
-					<h2 class="layers-heading" id="layers-options-header"><?php echo esc_html( $title ); ?></h2>
+					<h2 class="l_admin-heading" id="layers-options-header"><?php echo esc_html( $title ); ?></h2>
 				<?php } ?>
 
 				<?php if( isset( $excerpt ) ) { ?>
-					<p class="layers-excerpt"><?php echo esc_html( $excerpt ); ?></p>
+					<p class="l_admin-excerpt"><?php echo esc_html( $excerpt ); ?></p>
 				<?php } ?>
 
-				<nav class="layers-nav-horizontal layers-dashboard-nav">
+				<nav class="l_admin-nav-horizontal l_admin-dashboard-nav">
 					<ul>
 						<?php foreach( $this->get_menu_pages()  as $menu_key => $menu_details ) { ?>
 							<li <?php if( isset( $current_page ) && strpos( $menu_details[ 'link' ],  $current_page ) ) { ?>class="active"<?php } ?>>
@@ -196,11 +197,11 @@ class Layers_Options_Panel {
 						<?php }?>
 						<?php if( !class_exists( 'Layers_Updater' ) ) { ?>
 							<li>
-								<?php _e( sprintf( '<a class="layers-get-updater" href="%s">Get the Layers Updater</a>', 'http://www.layerswp.com/download/layers-updater/' ) , 'layerswp' ); ?>
+								<?php _e( sprintf( '<a class="l_admin-get-updater l_admin-button btn-primary" href="%s">Get the Layers Updater</a>', 'http://www.layerswp.com/download/layers-updater/' ) , 'layerswp' ); ?>
 							</li>
 						<?php } ?>
 					</ul>
-					<form class="layers-help-search" action="http://docs.layerswp.com" target="_blank" method="get">
+					<form class="l_admin-help-search" action="http://docs.layerswp.com" target="_blank" method="get">
 						<input name="s" type="search" placeholder="Search Layers Help..." />
 					</form>
 				</nav>
@@ -252,7 +253,7 @@ class Layers_Options_Panel {
 	* Footer
 	*/
 	public function footer( $args = array() ){ ?>
-		<footer class="layers-footer">
+		<footer class="l_admin-footer">
 			<p>
 				<?php _e( sprintf( 'Layers is a product of <a href="%1$s">Obox Themes</a>. For questions and feedback please <a href="%2$s">Visit our Help site</a>', 'http://oboxthemes.com/', 'http://docs.layerswp.com') , 'layerswp' ); ?>
 			</p>
@@ -264,8 +265,8 @@ class Layers_Options_Panel {
 	*/
 	public function notice( $good_or_bad = 'good', $message = FALSE, $classes = array() ){
 		if( FALSE == $message ) return; ?>
-		<div class="layers-status-notice layers-site-setup-completion layers-status-<?php echo $good_or_bad; ?> <?php echo implode( ' ' , $classes ); ?>">
-			<h5 class="layers-status-notice-heading">
+		<div class="l_admin-status-notice l_admin-site-setup-completion l_admin-status-<?php echo $good_or_bad; ?> <?php echo implode( ' ' , $classes ); ?>">
+			<h5 class="l_admin-status-notice-heading">
 				<?php switch ( $good_or_bad ) {
 					case 'good' :
 						$icon = 'tick';
@@ -366,7 +367,7 @@ class Layers_Options_Panel {
 								'href' => admin_url( 'nav-menus.php' ),
 								'target' => '_blank',
 								'tag' => 'a',
-								'class' => 'layers-button btn-primary',
+								'class' => 'button button-primary',
 								'label' => __( 'Setup Menus', 'layerswp' ),
 							)
 					),
@@ -402,37 +403,37 @@ class Layers_Options_Panel {
 	}
 
 	function layers_dashboard_widget( $var, $args ){ ?>
-		<div class="layers-wp-dashboard-panel">
+		<div class="l_admin-wp-dashboard-panel">
 			<?php if( 'addons' == $args[ 'args' ][ 'type' ] ) { ?>
-				<div class="layers-section-title layers-tiny">
-					<p class="layers-excerpt">
+				<div class="l_admin-section-title l_admin-tiny">
+					<p class="l_admin-excerpt">
 						<?php _e( 'Looking for a theme or plugin to achieve something unique with your website?
 							Browse the massive Layers Marketplace on Envato and take your site to the next level.' , 'layerswp' ); ?>
 					</p>
 				</div>
-				<div class="layers-button-well">
-					<a href="<?php echo admin_url( 'admin.php?page=layers-marketplace&type=themes' ); ?>" class="layers-button btn-primary">
+				<div class="l_admin-button-well">
+					<a href="<?php echo admin_url( 'admin.php?page=layers-marketplace&type=themes' ); ?>" class="button button-primary">
 						<?php _e( 'Themes' , 'layerswp' ); ?>
 					</a>
-					<a href="<?php echo admin_url( 'admin.php?page=layers-marketplace&type=stylekits' ); ?>" class="layers-button btn-primary">
+					<a href="<?php echo admin_url( 'admin.php?page=layers-marketplace&type=stylekits' ); ?>" class="button button-primary">
 						<?php _e( 'Style Kits' , 'layerswp' ); ?>
 					</a>
-					<a href="<?php echo admin_url( 'admin.php?page=layers-marketplace&type=extensions' ); ?>" class="layers-button btn-primary">
+					<a href="<?php echo admin_url( 'admin.php?page=layers-marketplace&type=extensions' ); ?>" class="button button-primary">
 						<?php _e( 'Extensions' , 'layerswp' ); ?>
 					</a>
 				</div>
 			<?php } ?>
 			<?php if( 'upsell-storekit' == $args[ 'args' ][ 'type' ] ) { ?>
-				<div class="layers-section-title layers-tiny layers-no-push-bottom">
-					<div class="layers-media layers-image-left">
-						<div class="layers-media-image layers-small">
+				<div class="l_admin-section-title l_admin-tiny l_admin-no-push-bottom">
+					<div class="l_admin-media l_admin-image-left">
+						<div class="l_admin-media-image l_admin-small">
 							<img src="<?php echo get_template_directory_uri(); ?>/core/assets/images/thumb-storekit.png" alt="StoreKit" />
 						</div>
-						<div class="layers-media-body">
-							<h3 class="layers-heading"><?php _e( 'Boost your sales with StoreKit!' , 'layerswp' ); ?></h3>
-							<div class="layers-excerpt">
+						<div class="l_admin-media-body">
+							<h3 class="l_admin-heading"><?php _e( 'Boost your sales with StoreKit!' , 'layerswp' ); ?></h3>
+							<div class="l_admin-excerpt">
 								<p><?php _e( 'Supercharge your WooCommerce store with the StoreKit plugin for Layers' , 'layerswp' ); ?></p>
-								<ul class="layers-ticks-wp">
+								<ul class="l_admin-ticks-wp">
 									<li><?php _e( 'Unique Product Slider' , 'layerswp' ); ?></li>
 									<li><?php _e( 'Product List Widget' , 'layerswp' ); ?></li>
 									<li><?php _e( 'Product Categories Widget' , 'layerswp' ); ?></li>
@@ -444,8 +445,8 @@ class Layers_Options_Panel {
 						</div>
 					</div>
 				</div>
-				<div class="layers-button-well">
-					<a href="http://bit.ly/layers-storekit" target="_blank" class="layers-button btn-primary">
+				<div class="l_admin-button-well">
+					<a href="http://bit.ly/layers-storekit" target="_blank" class="button button-primary">
 						<?php _e( 'Get StoreKit Now!' , 'layerswp' ); ?>
 					</a>
 				</div>

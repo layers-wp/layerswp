@@ -112,46 +112,46 @@ class Layers_Custom_Meta {
 		$is_builder_used = ( 'builder.php' == basename( get_page_template() ) ) ? true : false; ?>
 
 		<div id="layers_toggle_builder" class=" <?php echo ( true == $is_builder_used ? '' : 'layers-hide' ) ?>">
-				<div  class="postbox layers-push-top">
-					<div class="layers-section-title layers-no-push-bottom layers-content-large">
-						<div class="layers-heading">
+				<div  class="postbox l_admin-push-top">
+					<div class="l_admin-section-title l_admin-no-push-bottom l_admin-content">
+						<div class="l_admin-heading">
 							<?php ( 'auto-draft' == $post->post_status ? _e( 'Your page is almost ready.' , 'layerswp' ) : _e( 'Your page is ready.' , 'layerswp' ) ); ?>
 						</div>
-						<p class="layers-excerpt">
+						<p class="l_admin-excerpt">
 							<?php ( 'auto-draft' == $post->post_status ? _e( 'Click the Start button below to set this page up for Layers.' , 'layerswp' ) : _e( 'You can drag and drop widgets, edit content and tweak the design. Click the button below to see your page come to life.' , 'layerswp' ) ); ?>
 						</p>
 					</div>
-					<div class="layers-button-well clearfix">
-						<a href="<?php echo admin_url() . 'customize.php?url=' . esc_url( get_the_permalink() ); ?>" class="layers-button btn-massive btn-primary btn-full <?php echo ( 'auto-draft' == $post->post_status ? 'disable' : '' ); ?>" id="<?php echo ( isset( $post->ID ) ? 'builder-button-' . $post->ID : 'builder-button-' . rand(0,1) ); ?>">
+					<div class="l_admin-button-well clearfix">
+						<a href="<?php echo admin_url() . 'customize.php?url=' . esc_url( get_the_permalink() ); ?>" class="l_admin-button btn-massive btn-primary btn-full <?php echo ( 'auto-draft' == $post->post_status ? 'disable' : '' ); ?>" id="<?php echo ( isset( $post->ID ) ? 'builder-button-' . $post->ID : 'builder-button-' . rand(0,1) ); ?>">
 							<?php ( 'auto-draft' == $post->post_status ? _e( 'Start' , 'layerswp' ) : _e( 'Edit Your Page' , 'layerswp' ) ); ?>
 						</a>
 					</div>
 				</div>
 
-				<div class="layers-row">
+				<div class="l_admin-row">
 
-					<div class="layers-column layers-span-4 postbox layers-content">
-						<div class="layers-section-title layers-tiny">
-							<h4 class="layers-heading">Export Layout</h4>
-							<p class="layers-excerpt">Export your layout to a <code>.json</code> file which you can use to upload to another site.</p>
+					<div class="l_admin-column l_admin-span-4 postbox l_admin-content">
+						<div class="l_admin-section-title l_admin-tiny">
+							<h4 class="l_admin-heading">Export Layout</h4>
+							<p class="l_admin-excerpt">Export your layout to a <code>.json</code> file which you can use to upload to another site.</p>
 						</div>
-						<a href="?post=<?php echo get_the_ID(); ?>&amp;action=edit&amp;layers-export=1" class="layers-button">Export</a>
+						<a href="?post=<?php echo get_the_ID(); ?>&amp;action=edit&amp;layers-export=1" class="l_admin-button">Export</a>
 					</div>
 
-					<div class="layers-column layers-span-4 postbox layers-content">
-						<div class="layers-section-title layers-tiny">
-							<h4 class="layers-heading">Import Layout</h4>
-							<p class="layers-excerpt"> Upload a layout file (eg. <code><?php echo $post->post_name; ?>.json</code>) by clicking the button below.</p>
+					<div class="l_admin-column l_admin-span-4 postbox l_admin-content">
+						<div class="l_admin-section-title l_admin-tiny">
+							<h4 class="l_admin-heading">Import Layout</h4>
+							<p class="l_admin-excerpt"> Upload a layout file (eg. <code><?php echo $post->post_name; ?>.json</code>) by clicking the button below.</p>
 						</div>
-						<button class="layers-button" id="layers-page-import-button" data-post-id="<?php echo get_the_ID(); ?>" data-title="Upload .json" data-button_text="Upload &amp; Import">Upload &amp; Import</button>
+						<button class="l_admin-button" id="layers-page-import-button" data-post-id="<?php echo get_the_ID(); ?>" data-title="Upload .json" data-button_text="Upload &amp; Import">Upload &amp; Import</button>
 					</div>
 
-					<div class="layers-column layers-span-4 postbox layers-content">
-						<div class="layers-section-title layers-tiny">
-							<h4 class="layers-heading">Duplicate Layout</h4>
-							<p class="layers-excerpt">Easily duplicate your layout, settings, text and images in order to get started quickly with a new page.</p>
+					<div class="l_admin-column l_admin-span-4 postbox l_admin-content">
+						<div class="l_admin-section-title l_admin-tiny">
+							<h4 class="l_admin-heading">Duplicate Layout</h4>
+							<p class="l_admin-excerpt">Easily duplicate your layout, settings, text and images in order to get started quickly with a new page.</p>
 						</div>
-						<button href="" class="layers-button" id="layers-page-duplicate-button" data-post-id="<?php echo get_the_ID(); ?>">Duplicate</button>
+						<button href="" class="l_admin-button" id="layers-page-duplicate-button" data-post-id="<?php echo get_the_ID(); ?>">Duplicate</button>
 					</div>
 
 				</div>
@@ -310,8 +310,8 @@ class Layers_Custom_Meta {
 		// If there is Post Meta, loop over the tabs.
 		if( isset( $this->custom_meta[ $meta_index ] ) ){ ?>
 			<!-- Tabs -->
-			<div class="layers-nav layers-nav-tabs">
-				<ul class="layers-tabs clearfix">
+			<div class="l_admin-nav l_admin-nav-tabs">
+				<ul class="l_admin-tabs clearfix">
 					<?php foreach( $this->custom_meta[ $meta_index ]['custom-meta'] as $key => $meta_option ){ ?>
 						<li <?php if( !isset( $inactive ) ) echo 'class="active"'; ?>><a href="#"><?php echo $meta_option[ 'title' ]; ?></a></li>
 						<?php $inactive=1; ?>
@@ -319,14 +319,14 @@ class Layers_Custom_Meta {
 				</ul>
 			</div>
 			<!-- Tab Content -->
-			<div class="layers-tab-content">
+			<div class="l_admin-tab-content">
 				<?php foreach( $this->custom_meta[ $meta_index ]['custom-meta'] as $key => $meta_option ){ ?>
-					<section class="layers-accordion-section layers-content layers-tab-content <?php if( isset( $hide_tab ) ) echo 'layers-hide'; ?> customize-control"> <?php // @TODO: Remove .customizer-control class ?>
-						<div class="layers-row clearfix">
+					<section class="l_admin-accordion-section l_admin-content l_admin-tab-content <?php if( isset( $hide_tab ) ) echo 'layers-hide'; ?> customize-control"> <?php // @TODO: Remove .customizer-control class ?>
+						<div class="l_admin-row clearfix">
 							<?php if( isset( $meta_option[ 'elements' ] ) ) { ?>
 								<fieldset>
 									<?php foreach( $meta_option[ 'elements' ] as $input_key => $input ) { ?>
-										<p class="layers-form-item">
+										<p class="l_admin-form-item">
 											<label><?php echo $input[ 'label' ]; ?></label>
 											<?php  echo $form_elements->input(
 												array(

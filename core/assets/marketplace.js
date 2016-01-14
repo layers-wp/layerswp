@@ -34,7 +34,7 @@ jQuery(function($) {
 	$(document).on( 'click', '#layers-marketplace .theme-overlay button.close', function(e){
 		e.preventDefault();
 
-		$( '.theme-overlay' ).fadeOut(250).addClass( 'layers-hide' );
+		$( '.theme-overlay' ).fadeOut(250).addClass( 'l_admin-hide' );
 	});
 
 	/**
@@ -80,7 +80,7 @@ jQuery(function($) {
 		/**
 		* Product Screenshot
 		*/
-		$screenshot = $( $id ).find( '.layers-product-screenshot' ).html();
+		$screenshot = $( $id ).find( '.l_admin-product-screenshot' ).html();
 		$modal.find( '.theme-screenshots' ).html( $( $screenshot ).removeAttr( 'width') );
 
 		/**
@@ -124,15 +124,15 @@ jQuery(function($) {
 		/**
 		* Next / Previous buttons
 		*/
-		if( 1 > $( $id ).prev( 'div.layers-product' ).length ){
-			$prev = $('.layers-products .layers-product').eq( $('.layers-products .layers-product').length - 1 ).attr( 'id' );
+		if( 1 > $( $id ).prev( 'div.l_admin-product' ).length ){
+			$prev = $('.l_admin-products .l_admin-product').eq( $('.l_admin-products .l_admin-product').length - 1 ).attr( 'id' );
 		} else {
 			$prev = $( $id ).prev().attr( 'id' );
 		}
 		$modal.find( '.left' ).attr( 'data-view-item' , $prev );
 
-		if( 1 > $( $id ).next( 'div.layers-product' ).length ){
-			$next = $('.layers-products .layers-product').eq(0).attr( 'id' );
+		if( 1 > $( $id ).next( 'div.l_admin-product' ).length ){
+			$next = $('.l_admin-products .l_admin-product').eq(0).attr( 'id' );
 		} else {
 			$next = $( $id ).next().attr( 'id' );
 		}
@@ -158,8 +158,8 @@ jQuery(function($) {
 			}
 		}
 
-		if( $( '.theme-overlay' ).hasClass( 'layers-hide' ) ){
-			$( '.theme-overlay' ).hide().removeClass( 'layers-hide' ).fadeIn(250);
+		if( $( '.theme-overlay' ).hasClass( 'l_admin-hide' ) ){
+			$( '.theme-overlay' ).hide().removeClass( 'l_admin-hide' ).fadeIn(250);
 		}
 
 	});
@@ -183,16 +183,16 @@ jQuery(function($) {
 
 	function marketplace_sort(){
 		// If this is the first time the page is loading fade in the products
-		$( '.layers-marketplace-loading' ).fadeOut( 350 );
+		$( '.l_admin-marketplace-loading' ).fadeOut( 350 );
 
 		setTimeout(function(){
-			$( '.layers-products.layers-hide' ).hide().removeClass( 'layers-hide' ).fadeIn( 350 );
-			$( '.layers-marketplace-intro.layers-hide' ).hide().removeClass( 'layers-hide' ).fadeIn( 350 );
+			$( '.l_admin-products.l_admin-hide' ).hide().removeClass( 'l_admin-hide' ).fadeIn( 350 );
+			$( '.l_admin-marketplace-intro.l_admin-hide' ).hide().removeClass( 'l_admin-hide' ).fadeIn( 350 );
 			marketplace_resize();
 		}, 350 );
 
-		var $products = $( 'div.layers-products' ),
-		$productsli = $products.children( 'div.layers-product' ),
+		var $products = $( 'div.l_admin-products' ),
+		$productsli = $products.children( 'div.l_admin-product' ),
 		$search_type = $( '#layers-marketplace-sortby' ).val().split('-');
 
 		$( '#intro-sort' ).text( $( '#layers-marketplace-sortby option:selected').data( 'excerpt-label' ) );
@@ -246,13 +246,13 @@ jQuery(function($) {
 		$valid_products = new Array();
 		$invalid_products = new Array();
 
-		$( '.layers-product' ).each(function(){
+		$( '.l_admin-product' ).each(function(){
 
 			// Start with a valid product
 			var $valid = true;
 
 			// Decode the JSON
-			var $json_string = $(this).find('.layers-product-json').val().toLowerCase();
+			var $json_string = $(this).find('.l_admin-product-json').val().toLowerCase();
 			var $json_decoded = $.parseJSON( $json_string );
 
 			// Set the Product ID
@@ -283,14 +283,14 @@ jQuery(function($) {
 		});
 
 		// Do something about the information we've got
-		if( 0 == $valid_products.length && $( '#layers-marketplace-empty-search' ).hasClass( 'layers-hide' ) ){
-			$( '#layers-marketplace-empty-search' ).hide().removeClass( 'layers-hide' ).fadeIn( 750 );
+		if( 0 == $valid_products.length && $( '#layers-marketplace-empty-search' ).hasClass( 'l_admin-hide' ) ){
+			$( '#layers-marketplace-empty-search' ).hide().removeClass( 'l_admin-hide' ).fadeIn( 750 );
 		} else if( 0 < $valid_products.length ) {
-			$( '#layers-marketplace-empty-search' ).addClass( 'layers-hide' );
+			$( '#layers-marketplace-empty-search' ).addClass( 'l_admin-hide' );
 		}
 
-		$( $valid_products.join(", ") ).removeClass( 'layers-hide' );
-		$( $invalid_products.join(", ") ).addClass( 'layers-hide' );
+		$( $valid_products.join(", ") ).removeClass( 'l_admin-hide' );
+		$( $invalid_products.join(", ") ).addClass( 'l_admin-hide' );
 	});
 
 	/**
@@ -306,14 +306,14 @@ jQuery(function($) {
 		var max_height = 0;
 		var max_img_height = 0;
 
-		$( '.layers-product' ).each(function(){
+		$( '.l_admin-product' ).each(function(){
 
 			if( 0 < $(this).find( 'img' ).length && max_img_height < $(this).find( 'img' ).outerHeight() ){
 				max_img_height = $(this).find( 'img' ).outerHeight();
 			}
 		});
 
-		$( '.layers-product .layers-product-screenshot' ).height( max_img_height );
+		$( '.l_admin-product .l_admin-product-screenshot' ).height( max_img_height );
 	}
 
 });

@@ -61,9 +61,9 @@ class Layers_Design_Controller {
 		$container_class[] = 'layers-visuals';
 		?>
 		<div class="<?php echo esc_attr( implode( ' ', $container_class ) ); ?>">
-			<h6 class="layers-visuals-title">
+			<div class="layers-visuals-title">
 				<span class="icon-settings layers-small"></span>
-			</h6>
+			</div>
 			<ul class="layers-design-bar-nav layers-visuals-wrapper layers-clearfix">
 				<?php // Render Design Controls
 				$this->render_controls(); ?>
@@ -216,7 +216,7 @@ class Layers_Design_Controller {
 		if ( isset( $form_args['input-class'] ) ) {
 			$form_args['class'] = $form_args['input-class'];
 		}
-		
+
 		// Prep Class
 		$class = array();
 		$class[] = 'layers-form-item';

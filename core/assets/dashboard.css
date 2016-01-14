@@ -88,34 +88,34 @@
 		margin-right: 0;
 	}
 
-    /*---------------------------*/
-    /*- SPAN - 1 ----------------*/
-    .l_admin-column.l_admin-span-1{
-        float: left;
-        width: 15%;
-        margin-right: 2%;
-    }
-    .l_admin-column.l_admin-span-1:nth-child(6n+6){
-        margin-right: 0;
-    }
+	/*---------------------------*/
+	/*- SPAN - 1 ----------------*/
+	.l_admin-column.l_admin-span-1{
+		float: left;
+		width: 15%;
+		margin-right: 2%;
+	}
+	.l_admin-column.l_admin-span-1:nth-child(6n+6){
+		margin-right: 0;
+	}
 
-    /*---------------------------*/
-    /*- SPAN - 2 ----------------*/
-    .l_admin-column.l_admin-span-2{
-        float: left;
-        width: 48%;
-        margin-right: 4%;
-    }
-    .l_admin-column.l_admin-span-2:nth-child(2n){
-        margin-right: 0;
-    }
+	/*---------------------------*/
+	/*- SPAN - 2 ----------------*/
+	.l_admin-column.l_admin-span-2{
+		float: left;
+		width: 48%;
+		margin-right: 4%;
+	}
+	.l_admin-column.l_admin-span-2:nth-child(2n){
+		margin-right: 0;
+	}
 
-    /*---------------------------*/
-    /*- CLEARING SPANS ----------*/
-    .l_admin-column.l_admin-span-1:nth-child(6n+7),
-    .l_admin-column.l_admin-span-2:nth-child(2n+3){
-        clear: left;
-    }
+	/*---------------------------*/
+	/*- CLEARING SPANS ----------*/
+	.l_admin-column.l_admin-span-1:nth-child(6n+7),
+	.l_admin-column.l_admin-span-2:nth-child(2n+3){
+		clear: left;
+	}
 
 	/*---------------------------*/
 	/*- DASHBOARD NAV -----------*/
@@ -145,92 +145,92 @@
 }
 @media only screen and (min-width: 481px){
 
-    /*---------------------------*/
-    /*- ADMIN WRAPPER -----------*/
+	/*---------------------------*/
+	/*- ADMIN WRAPPER -----------*/
 	.l_admin-area-wrapper{
 		margin-left: -20px;
 	}
 
-    /*---------------------------*/
-    /*- COLUMNS -----------------*/
-    .l_admin-column{
-        float: left;
-        margin-right: 2%;
-    }
+	/*---------------------------*/
+	/*- COLUMNS -----------------*/
+	.l_admin-column{
+		float: left;
+		margin-right: 2%;
+	}
 
-    /*---------------------------*/
-    /*- SPAN - 3 ----------------*/
-    .l_admin-column.l_admin-span-3:nth-child(4n+4){
-        margin-right: 0;
-    }
+	/*---------------------------*/
+	/*- SPAN - 3 ----------------*/
+	.l_admin-column.l_admin-span-3:nth-child(4n+4){
+		margin-right: 0;
+	}
 
-    /*---------------------------*/
-    /*- SPAN - 4 ----------------*/
-    .l_admin-column.l_admin-span-4{
-        float: left;
-        width: 32%;
-        margin-right: 2%;
-    }
-    .l_admin-column.l_admin-span-4:last-child,
-    .l_admin-column.l_admin-span-4:nth-child(3n+3){
-        margin-right: 0;
-    }
+	/*---------------------------*/
+	/*- SPAN - 4 ----------------*/
+	.l_admin-column.l_admin-span-4{
+		float: left;
+		width: 32%;
+		margin-right: 2%;
+	}
+	.l_admin-column.l_admin-span-4:last-child,
+	.l_admin-column.l_admin-span-4:nth-child(3n+3){
+		margin-right: 0;
+	}
 
-    /*---------------------------*/
-    /*- SPAN - 6 ----------------*/
-    .l_admin-column.l_admin-span-6{
-        width: 49%;
-        margin-right: 2%;
-    }
-    .l_admin-column.l_admin-span-6:nth-child(2n+2){
-        margin-right: 0;
-    }
+	/*---------------------------*/
+	/*- SPAN - 6 ----------------*/
+	.l_admin-column.l_admin-span-6{
+		width: 49%;
+		margin-right: 2%;
+	}
+	.l_admin-column.l_admin-span-6:nth-child(2n+2){
+		margin-right: 0;
+	}
 
 }
 
 @media only screen and (min-width: 481px) and (max-width: 768px){
 
-    /*---------------------------*/
-    /*- SPAN - 2 ----------------*/
-    .l_admin-column.l_admin-span-2{
-        float: left;
-        width: 32%;
-        margin-right: 2%;
-    }
-    .l_admin-column.l_admin-span-2:nth-child(3n+3){
-        margin-right: 0;
-    }
+	/*---------------------------*/
+	/*- SPAN - 2 ----------------*/
+	.l_admin-column.l_admin-span-2{
+		float: left;
+		width: 32%;
+		margin-right: 2%;
+	}
+	.l_admin-column.l_admin-span-2:nth-child(3n+3){
+		margin-right: 0;
+	}
 
-    /*---------------------------*/
-    /*- SPAN - 3 ----------------*/
-    .l_admin-column.l_admin-span-3{
-        float: left;
-        width: 49%;
-        margin-right: 2%;
-    }
-    .l_admin-column.l_admin-span-3:nth-child(2n+2){
-        margin-right: 0;
-    }
+	/*---------------------------*/
+	/*- SPAN - 3 ----------------*/
+	.l_admin-column.l_admin-span-3{
+		float: left;
+		width: 49%;
+		margin-right: 2%;
+	}
+	.l_admin-column.l_admin-span-3:nth-child(2n+2){
+		margin-right: 0;
+	}
 
 
-    /*---------------------------*/
-    /*- LARGE COLUMNS -----------*/
-    .l_admin-column.l_admin-span-7,
-    .l_admin-column.l_admin-span-8,
-    .l_admin-column.l_admin-span-9,
-    .l_admin-column.l_admin-span-10,
-    .l_admin-column.l_admin-span-11,
-    .l_admin-column.l_admin-span-12{
-        float: none;
-        clear: both;
-        margin-right: 0;
-    }
-    /*---------------------------*/
-    /*- CLEARING SPANS ----------*/
-    .l_admin-column.l_admin-span-2:nth-child(3n+4),
-    .l_admin-column.l_admin-span-3:nth-child(2n+3){
-        clear: left;
-    }
+	/*---------------------------*/
+	/*- LARGE COLUMNS -----------*/
+	.l_admin-column.l_admin-span-7,
+	.l_admin-column.l_admin-span-8,
+	.l_admin-column.l_admin-span-9,
+	.l_admin-column.l_admin-span-10,
+	.l_admin-column.l_admin-span-11,
+	.l_admin-column.l_admin-span-12{
+		float: none;
+		clear: both;
+		margin-right: 0;
+	}
+	/*---------------------------*/
+	/*- CLEARING SPANS ----------*/
+	.l_admin-column.l_admin-span-2:nth-child(3n+4),
+	.l_admin-column.l_admin-span-3:nth-child(2n+3){
+		clear: left;
+	}
 
 }
 @media only screen and (min-width: 601px) and (max-width: 782px){
@@ -244,56 +244,56 @@
 }
 @media only screen and (min-width: 769px){
 
-    /*---------------------------*/
-    /*- COLUMN WIDTHS -----------*/
-    .l_admin-span-1{width: 6.5%;}
-    .l_admin-span-2{width: 15%;}
-    .l_admin-span-3{width: 23.5%;}
-    .l_admin-span-4{width: 33.33333%;}
-    .l_admin-span-5{width: 40.5%;}
-    .l_admin-span-7{width: 57.5%;}
-    .l_admin-span-8{width: 66%;}
-    .l_admin-span-9{width: 74.5%;}
-    .l_admin-span-10{width: 83%;}
-    .l_admin-span-11{width: 91.5%;}
-    .l_admin-span-12{
-        clear: both;
-        float: none;
-    }
+	/*---------------------------*/
+	/*- COLUMN WIDTHS -----------*/
+	.l_admin-span-1{width: 6.5%;}
+	.l_admin-span-2{width: 15%;}
+	.l_admin-span-3{width: 23.5%;}
+	.l_admin-span-4{width: 33.33333%;}
+	.l_admin-span-5{width: 40.5%;}
+	.l_admin-span-7{width: 57.5%;}
+	.l_admin-span-8{width: 66%;}
+	.l_admin-span-9{width: 74.5%;}
+	.l_admin-span-10{width: 83%;}
+	.l_admin-span-11{width: 91.5%;}
+	.l_admin-span-12{
+		clear: both;
+		float: none;
+	}
 
 
-    /*---------------------------*/
-    /*- MARGIN RESET ------------*/
-    .l_admin-row .l_admin-span-1:nth-child(12n+12),
-    .l_admin-row .l_admin-span-2:nth-child(6n+6),
-    .l_admin-row .l_admin-span-4:nth-child(3n+3),
-    .l_admin-row .l_admin-span-6:nth-child(2n+2){
-        margin-right: 0;
-    }
+	/*---------------------------*/
+	/*- MARGIN RESET ------------*/
+	.l_admin-row .l_admin-span-1:nth-child(12n+12),
+	.l_admin-row .l_admin-span-2:nth-child(6n+6),
+	.l_admin-row .l_admin-span-4:nth-child(3n+3),
+	.l_admin-row .l_admin-span-6:nth-child(2n+2){
+		margin-right: 0;
+	}
 
-    /*---------------------------*/
-    /*- CLEAR RESET -------------*/
-    .l_admin-row .l_admin-span-2:nth-child(6n+7),
-    .l_admin-row .l_admin-span-3:nth-child(4n+5),
-    .l_admin-row .l_admin-span-4:nth-child(3n+4),
-    .l_admin-row .l_admin-span-6:nth-child(2n+3){
-        clear: left;
-    }
+	/*---------------------------*/
+	/*- CLEAR RESET -------------*/
+	.l_admin-row .l_admin-span-2:nth-child(6n+7),
+	.l_admin-row .l_admin-span-3:nth-child(4n+5),
+	.l_admin-row .l_admin-span-4:nth-child(3n+4),
+	.l_admin-row .l_admin-span-6:nth-child(2n+3){
+		clear: left;
+	}
 
-    /*---------------------------*/
-    /*- EXCEPTIONS --------------*/
-    .l_admin-column.l_admin-span-3 + .l_admin-column.l_admin-span-6 + .l_admin-column.l_admin-span-3{
-        margin-left: 2%;
-    }
-    .l_admin-column.l_admin-span-9 + .l_admin-column.l_admin-span-3{
-        margin-right: 0;
-    }
-    .l_admin-column.l_admin-span-12{
-        margin-right: 0;
-    }
+	/*---------------------------*/
+	/*- EXCEPTIONS --------------*/
+	.l_admin-column.l_admin-span-3 + .l_admin-column.l_admin-span-6 + .l_admin-column.l_admin-span-3{
+		margin-left: 2%;
+	}
+	.l_admin-column.l_admin-span-9 + .l_admin-column.l_admin-span-3{
+		margin-right: 0;
+	}
+	.l_admin-column.l_admin-span-12{
+		margin-right: 0;
+	}
 
-    /*---------------------------*/
-    /*- LOGO --------------------*/
+	/*---------------------------*/
+	/*- LOGO --------------------*/
 	.l_admin-logo{
 		float: right;
 		margin: 27px 0 0;
@@ -302,8 +302,8 @@
 }
 @media only screen and (min-width: 1440px){
 
-    /*---------------------------*/
-    /*- MARKETPLACE GRID --------*/
+	/*---------------------------*/
+	/*- MARKETPLACE GRID --------*/
 	.l_admin-span-3.l_admin-marketplace-filter{
 		width: 15%;
 	}
@@ -1525,12 +1525,23 @@
 			background: #ccc;
 			width: 20px;
 			height: 8px;
-			margin: 0 1px 0 0;
+			margin: 0;
 			transition: all 0.2s ease-in-out;
 			outline: none;
 		}
+		.onboard-nav-dots .l_admin-dot:first-child {
+			border-top-left-radius: 2px;
+			border-bottom-left-radius: 2px;
+		}
+		.onboard-nav-dots .l_admin-dot:last-child {
+			border-top-right-radius: 2px;
+			border-bottom-right-radius: 2px;
+		}
 		.onboard-nav-dots .l_admin-dot:hover{
 			background: #555;
+		}
+		.onboard-nav-dots .l_admin-dot.dot-active:hover {
+			background: #598C04;
 		}
 		.onboard-nav-dots .l_admin-dot.dot-active{
 			background: #7DC800;
@@ -1894,99 +1905,77 @@
 	}
 	
 
-/*---------------------------------------------------*/
+/*----------------------------------------------------*/
 /*- ONBAORDING NEW - TO BE MERGED INTO ABOVE --------*/
 
-    /*------------------------*/
-    /*- NOTICES --------------*/
-    .onboarding-notice-item {
-        padding-left: 16px;
-    }
-    .onboarding-notice-item .fa {
-        color: #e2594e;
-        margin-left: -16px;
-    }
-    .onboarding-notice-item code {
-        padding: 1px 4px;
-    }
+	/*------------------------*/
+	/*- NOTICES --------------*/
+	.onboarding-notice-item {
+		padding-left: 16px;
+	}
+	.onboarding-notice-item .fa {
+		color: #e2594e;
+		margin-left: -16px;
+	}
+	.onboarding-notice-item code {
+		padding: 1px 4px;
+	}
 
-    /*------------------------*/
-    /*- COMBO SLIDE ----------*/
-    .onboarding-form-sentence{
-        color: #5D5D5D;
-        font-size: 16px;
-        margin-bottom: 25px;
-        display: inline-block;
-        width: 55%;
-        font-weight: bold;
-    }
-    .onboarding-form-item {
-        position: relative;
-        line-height: 31px;
-        display: inline-block;
-        width: 44%;
-    }
-    .onboarding-form-item.onboarding-form-item-no-border{
-        border: none;
-    }
-    .onboarding-form-item input,
-    .onboarding-form-item select{
-        background: rgba(0, 0, 0, 0.01);
-        background: none;
-        border: none;
-        border-bottom: 1px dashed rgba(0,0,0,0.18);
-        box-shadow: none;
-        font-size: 16px;
-        padding: 0;
-        outline: none;
-        margin: 0;
-        color: #6C6C6C;
-        width: 91%;
-        line-height: 28px;
-    }
-    .onboarding-form-item input:focus,
-    .onboarding-form-item select:focus{
-        box-shadow: none;
-        border-color: #868686;
-    }
-    .l_admin-onboard-slider .fa-question-circle{
-        position: relative;
-        top: 0px;
-        color: #B9B9B9;
-        font-size: 13px;
-        border: 7px solid transparent;
-        border-right-width: 0;
-        border-left-width: 2px;
-        border-bottom-width: 2px;
-        border-top-width: 2px;
-        cursor: pointer;
-        /* vertical-align: text-bottom; */
-        height: auto;
-        /* background: rgba(255, 0, 0, 0.41); */
-    }
-    .l_admin-onboard-slider .fa-question-circle:hover{
-        color: #656565;
-    }
-
-    /*--------------------------------------------------------------*/
-    /*- (TEMP) TO BE MERGED - THESE CLASSES LAREADY EXISTS ABOVE ---*/
-    .onboard-nav-dots .l_admin-dot:first-child {
-        border-top-left-radius: 2px;
-        border-bottom-left-radius: 2px;
-    }
-    .onboard-nav-dots .l_admin-dot:last-child {
-        border-top-right-radius: 2px;
-        border-bottom-right-radius: 2px;
-    }
-    .onboard-nav-dots .l_admin-dot{
-        display: inline-block;
-        background: #ccc;
-        width: 20px;
-        height: 8px;
-        margin: 0 0 0 0;
-        transition: all 0.2s ease-in-out;
-        outline: none;
-    }
-    .onboard-nav-dots .l_admin-dot.dot-active:hover {
-        background: #598C04;
-    }
+	/*------------------------*/
+	/*- COMBO SLIDE ----------*/
+	.onboarding-form-sentence{
+		color: #5D5D5D;
+		font-size: 16px;
+		margin-bottom: 25px;
+		display: inline-block;
+		width: 55%;
+		font-weight: bold;
+	}
+	.onboarding-form-item {
+		position: relative;
+		line-height: 31px;
+		display: inline-block;
+		width: 44%;
+	}
+	.onboarding-form-item.onboarding-form-item-no-border{
+		border: none;
+	}
+	.onboarding-form-item input,
+	.onboarding-form-item select{
+		background: rgba(0, 0, 0, 0.01);
+		background: none;
+		border: none;
+		border-bottom: 1px dashed rgba(0,0,0,0.18);
+		box-shadow: none;
+		font-size: 16px;
+		padding: 0;
+		outline: none;
+		margin: 0;
+		color: #6C6C6C;
+		width: 91%;
+		line-height: 28px;
+	}
+	.onboarding-form-item input:focus,
+	.onboarding-form-item select:focus{
+		box-shadow: none;
+		border-color: #868686;
+	}
+	.l_admin-onboard-slider .fa-question-circle{
+		position: relative;
+		top: 0px;
+		color: #B9B9B9;
+		font-size: 13px;
+		border: 7px solid transparent;
+		border-right-width: 0;
+		border-left-width: 2px;
+		border-bottom-width: 2px;
+		border-top-width: 2px;
+		cursor: pointer;
+		/* vertical-align: text-bottom; */
+		height: auto;
+		/* background: rgba(255, 0, 0, 0.41); */
+	}
+	.l_admin-onboard-slider .fa-question-circle:hover{
+		color: #656565;
+	}
+	

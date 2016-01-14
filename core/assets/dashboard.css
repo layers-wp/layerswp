@@ -1892,3 +1892,101 @@
 			display: none;
 		}
 	}
+	
+
+/*---------------------------------------------------*/
+/*- ONBAORDING NEW - TO BE MERGED INTO ABOVE --------*/
+
+    /*------------------------*/
+    /*- NOTICES --------------*/
+    .onboarding-notice-item {
+        padding-left: 16px;
+    }
+    .onboarding-notice-item .fa {
+        color: #e2594e;
+        margin-left: -16px;
+    }
+    .onboarding-notice-item code {
+        padding: 1px 4px;
+    }
+
+    /*------------------------*/
+    /*- COMBO SLIDE ----------*/
+    .onboarding-form-sentence{
+        color: #5D5D5D;
+        font-size: 16px;
+        margin-bottom: 25px;
+        display: inline-block;
+        width: 55%;
+        font-weight: bold;
+    }
+    .onboarding-form-item {
+        position: relative;
+        line-height: 31px;
+        display: inline-block;
+        width: 44%;
+    }
+    .onboarding-form-item.onboarding-form-item-no-border{
+        border: none;
+    }
+    .onboarding-form-item input,
+    .onboarding-form-item select{
+        background: rgba(0, 0, 0, 0.01);
+        background: none;
+        border: none;
+        border-bottom: 1px dashed rgba(0,0,0,0.18);
+        box-shadow: none;
+        font-size: 16px;
+        padding: 0;
+        outline: none;
+        margin: 0;
+        color: #6C6C6C;
+        width: 91%;
+        line-height: 28px;
+    }
+    .onboarding-form-item input:focus,
+    .onboarding-form-item select:focus{
+        box-shadow: none;
+        border-color: #868686;
+    }
+    .l_admin-onboard-slider .fa-question-circle{
+        position: relative;
+        top: 0px;
+        color: #B9B9B9;
+        font-size: 13px;
+        border: 7px solid transparent;
+        border-right-width: 0;
+        border-left-width: 2px;
+        border-bottom-width: 2px;
+        border-top-width: 2px;
+        cursor: pointer;
+        /* vertical-align: text-bottom; */
+        height: auto;
+        /* background: rgba(255, 0, 0, 0.41); */
+    }
+    .l_admin-onboard-slider .fa-question-circle:hover{
+        color: #656565;
+    }
+
+    /*--------------------------------------------------------------*/
+    /*- (TEMP) TO BE MERGED - THESE CLASSES LAREADY EXISTS ABOVE ---*/
+    .onboard-nav-dots .l_admin-dot:first-child {
+        border-top-left-radius: 2px;
+        border-bottom-left-radius: 2px;
+    }
+    .onboard-nav-dots .l_admin-dot:last-child {
+        border-top-right-radius: 2px;
+        border-bottom-right-radius: 2px;
+    }
+    .onboard-nav-dots .l_admin-dot{
+        display: inline-block;
+        background: #ccc;
+        width: 20px;
+        height: 8px;
+        margin: 0 0 0 0;
+        transition: all 0.2s ease-in-out;
+        outline: none;
+    }
+    .onboard-nav-dots .l_admin-dot.dot-active:hover {
+        background: #598C04;
+    }

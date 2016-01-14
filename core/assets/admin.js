@@ -292,16 +292,33 @@ jQuery(function($) {
 	/**
 	* 5 - Color Selectors
 	*/
+	
+	if ( $('#customize-preview, #customize-controls').length ) {
+		
+		// Customizer
+		
+		// Init interface in all except widgets on load
+		layers_set_color_selectors( $( '#customize-theme-controls > ul > li.accordion-section' ).not( '#accordion-panel-widgets' ) );
+		
+		// Init interface inside widgets and accordions
+		$( document ).on( 'layers-interface-init', '.widget, .layers-accordions', function( e ){
+			// 'this' is the widget
+			layers_set_color_selectors( $(this), true );
+		});
+	}
+	else{
+		
+		// Admin Dashboard
+		
+		$( '.layers-color-selector').each( function( j, element ) {
 
-	// Init interface in all except widgets on load
-	layers_set_color_selectors( $( '#customize-theme-controls > ul > li.accordion-section' ).not( '#accordion-panel-widgets' ) );
+			var $element = $(element);
 
-	// Init interface inside widgets and accordions
-	$( document ).on( 'layers-interface-init', '.widget, .layers-accordions', function( e ){
-		// 'this' is the widget
-		layers_set_color_selectors( $(this), true );
-	});
-
+			// Add each color-picker initialization to the queue
+			layers_set_color_selector( $element );
+		});
+	}
+	
 	function layers_set_color_selectors( $element_s, $run_instantly ){
 
 		// Loop through each of the element_s, that are groups to look inside of for elements to be initialized.
@@ -1269,16 +1286,27 @@ jQuery(function($) {
 	/**
 	* 24 - Init Tip-Tip
 	*/
+	
+	if ( $('#customize-preview, #customize-controls').length ) {
+		
+		// Customizer
+		
+		// Init interface in all except widgets on load
+		init_tip_tip( $( '#customize-theme-controls > ul > li.accordion-section' ).not( '#accordion-panel-widgets' ) );
 
-	// Init interface in all except widgets on load
-	init_tip_tip( $( '#customize-theme-controls > ul > li.accordion-section' ).not( '#accordion-panel-widgets' ) );
-
-	// Init interface inside widgets
-	$( document ).on( 'layers-interface-init', '.widget, .layers-accordions', function( e ){
-		// 'this' is the widget
-		init_tip_tip( $(this), true );
-	});
-
+		// Init interface inside widgets
+		$( document ).on( 'layers-interface-init', '.widget, .layers-accordions', function( e ){
+			// 'this' is the widget
+			init_tip_tip( $(this), true );
+		});
+	}
+	else{
+		
+		// Admin Dashboard
+		
+		init_tip_tip( $( document ) );
+	}
+	
 	function init_tip_tip( $element_s, $run_instantly ){
 
 		$element_s.each( function( i, group ) {

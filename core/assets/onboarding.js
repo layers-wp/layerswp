@@ -31,17 +31,26 @@ jQuery(function($) {
 			$anchor_template = $( '<a href="" />' );
 			$anchor_template.addClass( 'l_admin-dot layers-tooltip' );
 			if( 0 == $i ){
-				$anchor_template.addClass( 'dot-active' );
+				layers_onboarding_set_anchor(0);
 			}
-
-			$anchor_template.attr( 'title' , $title.trim() );
+			
+			$anchor_template.attr( 'title' , $title.trim() + ' (' + ( $i+1) + ' of ' + $anchor_count + ')' );
 
 			$( '.onboard-nav-dots' ).append( $anchor_template );
 
 		};
 	}
-
 	layers_onboarding_load_anchors();
+	
+	function layers_onboarding_set_anchor( $i ){
+		
+		// Update anchor classes
+		$( '#layers-onboard-anchors a').each(function(index, el) {
+			
+			if ( index <= $i ) $(el).addClass( 'dot-active' );
+			else $(el).removeClass( 'dot-active' );
+		});
+	}
 
 	$(window).on( 'resize, load',function(){
 		$( '.l_admin-template-selector' ).css( 'max-height', $( '#wpbody-content' ).height() - 150 );
@@ -160,6 +169,7 @@ jQuery(function($) {
 		$i = $that.index();
 
 		layers_change_onboarding_slide( $i );
+		history.pushState( { step: $i }, null, '#step-' + ( $i + 1 ) );
 	});
 
 	$( 'input[name="layes-preset-layout"]' ).on( 'change' , function(e){
@@ -176,10 +186,11 @@ jQuery(function($) {
 	});
 
 	function layers_next_onboarding_slide(){
-		$current = $( '#layers-onboard-anchors a.dot-active').index();
+		$current = $( '#layers-onboard-anchors a.dot-active').last().index();
 		$next = (+$current+1);
 
 		layers_change_onboarding_slide( $next );
+		history.pushState( { step: $next }, null, '#step-' + ( $next + 1 ) );
 	}
 
 	function layers_change_onboarding_slide( $i ){
@@ -195,11 +206,36 @@ jQuery(function($) {
 		if( $i > $max ) return;
 
 		// Update anchor classes
-		$( '#layers-onboard-anchors a').eq( $i ).addClass( 'dot-active' ).siblings().removeClass( 'dot-active' );
+		layers_onboarding_set_anchor($i);
 
 		// Update slider classes
 		$( '.l_admin-onboard-slide' ).eq( $i ).addClass( 'l_admin-onboard-slide-current' ).removeClass( 'l_admin-onboard-slide-inactive' ).siblings().removeClass( 'l_admin-onboard-slide-current' ).addClass( 'l_admin-onboard-slide-inactive' );
 
+		// Focus the first form field in the slide
 		$( '.l_admin-onboard-slide' ).eq( $i ).find( 'input, select, textarea, .l_admin-image-upload-button' ).first().focus();
 	}
+	
+	// History - Allow forward/backward through the history states (enables frame stepping).
+	window.addEventListener('popstate', function(e) {
+		if ( null !== e.state ) {
+			if ( e.state.hasOwnProperty('step') ) {
+				layers_change_onboarding_slide( e.state.step );
+			}
+		}
+	});
+	
+	$(document).ready(function(){
+		
+		// Allow for jumping to a specific step in case of mistaken (or intended) page refresh.
+		if ( -1 !== window.location.hash.indexOf( 'step-' ) ) {
+			var $step = window.location.hash.replace( '#step-', '' ) - 1;
+			layers_change_onboarding_slide( $step );
+			history.pushState( { step: ( $step ) }, null, null );
+		}
+		else{
+			layers_change_onboarding_slide(0);
+			history.replaceState( { step: 0 }, null, null );
+		}
+	});
+	
 });

@@ -13,7 +13,7 @@
 * **Tweak** - .header-site nav-horizontal link spacing (padding/margin) has been adjusted to cater for Layers Pro customization. *DP*
 * **Tweak** - Removed opacity: 0.x settings and replaced with rgba on .invert classes. *DP*
 * **Tweak** - Fixed menu verticle alignment quirks in header-center layout. *DP*
-
+* **Tweak** - Split admin.css into three separate files for easier management and distinction between dashboard, customizer and global css *DP* *SOB*
 
 =======
 ##1.2.10

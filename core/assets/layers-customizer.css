@@ -42,21 +42,12 @@ div#widgets-right div[id*='obox-layers-builder']{
 }
 
 /*----------------------------------*/
-/*- HIDING NONE LAYERS WIDGETS ------*/
+/*- HIDING NON LAYERS WIDGETS ------*/
 #available-widgets .widget-tpl{}
 #available-widgets .widget-tpl[id*='layers-widget']{
 	/* display: block !important; */
 	border-right: 4px solid #00A4EC;
 }
-
-.layers-hide{
-	display: none !important;
-}
-
-.layers-soft-hide{
-	visibility: hidden;
-}
-
 
 /*----------------------------------*/
 /*- WORDPRESS RESETS / OVERRIDES ---*/

@@ -104,7 +104,7 @@ $all_authors = array(); ?>
 				<?php } ?>
 
 				<?php if( !is_wp_error( $products ) ) { ?>
-					<div class="l_admin-products l_admin-hide">
+					<div class="l_admin-products layers-hide">
 
 						<?php foreach( $products->matches as $key => $details ) {
 
@@ -206,7 +206,7 @@ $all_authors = array(); ?>
 
 		</script>
 	<?php } ?>
-	<div class="theme-overlay l_admin-hide">
+	<div class="theme-overlay layers-hide">
 		 <div class="theme-backdrop"></div>
 		 <div class="theme-wrap">
 			<div class="theme-header">

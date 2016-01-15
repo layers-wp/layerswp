@@ -6,7 +6,7 @@
 
 		<?php foreach( $layers_migrator->get_preset_layouts() as $template_key => $template ) { ?>
 			<div class="l_admin-product l_admin-column l_admin-span-3 active  <?php echo ( isset( $template[ 'container-css' ] ) ?  esc_attr( $template[ 'container-css' ] ) : '' ); ?>" tabindex="0">
-				<input name="layes-preset-layout" id="layers-preset-layout-<?php echo $template_key; ?>-radio" class="l_admin-hide" type="radio" value="<?php echo $template_key; ?>" />
+				<input name="layes-preset-layout" id="layers-preset-layout-<?php echo $template_key; ?>-radio" class="layers-hide" type="radio" value="<?php echo $template_key; ?>" />
 				<label for="layers-preset-layout-<?php echo esc_attr( $template_key ); ?>-radio">
 					<input id="layers-preset-layout-<?php echo esc_attr( $template_key ); ?>-title" type="hidden" value="<?php echo $template[ 'title' ]; ?>" />
 					<input id="layers-preset-layout-<?php echo esc_attr( $template_key ); ?>-widget_data" type="hidden" value="<?php echo esc_attr( $template[ 'json' ] ); ?>" />

@@ -209,7 +209,7 @@ function render_onboarding_warnings() {
 					</div>
 					
 					<div class="l_admin-button-well">
-						<span class="l_admin-save-progress l_admin-hide l_admin-button btn-link" data-busy-message="<?php _e( 'Saving your Site Name' , 'layerswp' ); ?>"></span>
+						<span class="l_admin-save-progress layers-hide l_admin-button btn-link" data-busy-message="<?php _e( 'Saving your Site Name' , 'layerswp' ); ?>"></span>
 						<a class="l_admin-button btn-primary l_admin-pull-right onbard-next-step" href="">
 							<?php _e( 'Next Step &rarr;' , 'layerswp' ); ?>
 						</a>
@@ -262,7 +262,7 @@ function render_onboarding_warnings() {
 						
 					</div>
 					<div class="l_admin-button-well">
-						<span class="l_admin-save-progress l_admin-hide l_admin-button btn-link" data-busy-message="<?php _e( 'Creating Page(s)', 'layerswp' ); ?>"></span>
+						<span class="l_admin-save-progress layers-hide l_admin-button btn-link" data-busy-message="<?php _e( 'Creating Page(s)', 'layerswp' ); ?>"></span>
 						<a class="l_admin-button btn-primary l_admin-pull-right onbard-next-step" href=""><?php _e( 'Next Step &rarr;' , 'layerswp' ); ?></a>
 					</div>
 				</div>
@@ -323,7 +323,7 @@ function render_onboarding_warnings() {
 							<p><a href="//www.layerswp.com/privacy-policy/" target="_blank"><?php _e( 'Your data is safe with us. View our Privacy Policy', 'layerswp' ); ?></a></p>
 						</div>
 						<div class="l_admin-button-well">
-							<span class="l_admin-save-progress l_admin-hide l_admin-button btn-link" data-busy-message="<?php _e( 'Saving Your Preference' , 'layerswp' ); ?>"></span>
+							<span class="l_admin-save-progress layers-hide l_admin-button btn-link" data-busy-message="<?php _e( 'Saving Your Preference' , 'layerswp' ); ?>"></span>
 							<a class="l_admin-button btn-primary l_admin-pull-right onbard-next-step" href=""><?php _e( 'Next Step &rarr;' , 'layerswp' ); ?></a>
 						</div>
 					</div>
@@ -473,7 +473,7 @@ function render_onboarding_warnings() {
 						) ); ?>
 					</div>
 					<div class="l_admin-button-well">
-						<span class="l_admin-save-progress l_admin-hide l_admin-button btn-link" data-busy-message="<?php _e( 'Updating your Logo' , 'layerswp' ); ?>"></span>
+						<span class="l_admin-save-progress layers-hide l_admin-button btn-link" data-busy-message="<?php _e( 'Updating your Logo' , 'layerswp' ); ?>"></span>
 						<a class="l_admin-button btn-primary l_admin-pull-right onbard-next-step" href=""><?php _e( 'Next Step &rarr;' , 'layerswp' ); ?></a>
 					</div>
 				</div>
@@ -535,7 +535,7 @@ function render_onboarding_warnings() {
 						</div>
 					</div>
 					<div class="l_admin-button-well">
-						<span class="l_admin-save-progress l_admin-hide l_admin-button btn-link" data-busy-message="<?php _e( 'Creating your Page' , 'layerswp' ); ?>"></span>
+						<span class="l_admin-save-progress layers-hide l_admin-button btn-link" data-busy-message="<?php _e( 'Creating your Page' , 'layerswp' ); ?>"></span>
 						<a class="l_admin-button btn-primary l_admin-pull-right onbard-next-step l_admin-proceed-to-customizer disable l_admin-tooltip" tooltip="<?php _e( 'First choose a layout' , 'layerswp' ); ?>" href=""><?php _e( 'Start Building' , 'layerswp' ); ?></a>
 					</div>
 				</div>

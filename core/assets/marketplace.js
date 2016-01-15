@@ -34,7 +34,7 @@ jQuery(function($) {
 	$(document).on( 'click', '#layers-marketplace .theme-overlay button.close', function(e){
 		e.preventDefault();
 
-		$( '.theme-overlay' ).fadeOut(250).addClass( 'l_admin-hide' );
+		$( '.theme-overlay' ).fadeOut(250).addClass( 'layers-hide' );
 	});
 
 	/**
@@ -158,8 +158,8 @@ jQuery(function($) {
 			}
 		}
 
-		if( $( '.theme-overlay' ).hasClass( 'l_admin-hide' ) ){
-			$( '.theme-overlay' ).hide().removeClass( 'l_admin-hide' ).fadeIn(250);
+		if( $( '.theme-overlay' ).hasClass( 'layers-hide' ) ){
+			$( '.theme-overlay' ).hide().removeClass( 'layers-hide' ).fadeIn(250);
 		}
 
 	});
@@ -186,8 +186,8 @@ jQuery(function($) {
 		$( '.l_admin-marketplace-loading' ).fadeOut( 350 );
 
 		setTimeout(function(){
-			$( '.l_admin-products.l_admin-hide' ).hide().removeClass( 'l_admin-hide' ).fadeIn( 350 );
-			$( '.l_admin-marketplace-intro.l_admin-hide' ).hide().removeClass( 'l_admin-hide' ).fadeIn( 350 );
+			$( '.l_admin-products.layers-hide' ).hide().removeClass( 'layers-hide' ).fadeIn( 350 );
+			$( '.l_admin-marketplace-intro.layers-hide' ).hide().removeClass( 'layers-hide' ).fadeIn( 350 );
 			marketplace_resize();
 		}, 350 );
 
@@ -283,14 +283,14 @@ jQuery(function($) {
 		});
 
 		// Do something about the information we've got
-		if( 0 == $valid_products.length && $( '#layers-marketplace-empty-search' ).hasClass( 'l_admin-hide' ) ){
-			$( '#layers-marketplace-empty-search' ).hide().removeClass( 'l_admin-hide' ).fadeIn( 750 );
+		if( 0 == $valid_products.length && $( '#layers-marketplace-empty-search' ).hasClass( 'layers-hide' ) ){
+			$( '#layers-marketplace-empty-search' ).hide().removeClass( 'layers-hide' ).fadeIn( 750 );
 		} else if( 0 < $valid_products.length ) {
-			$( '#layers-marketplace-empty-search' ).addClass( 'l_admin-hide' );
+			$( '#layers-marketplace-empty-search' ).addClass( 'layers-hide' );
 		}
 
-		$( $valid_products.join(", ") ).removeClass( 'l_admin-hide' );
-		$( $invalid_products.join(", ") ).addClass( 'l_admin-hide' );
+		$( $valid_products.join(", ") ).removeClass( 'layers-hide' );
+		$( $invalid_products.join(", ") ).addClass( 'layers-hide' );
 	});
 
 	/**

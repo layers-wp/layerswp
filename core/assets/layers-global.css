@@ -7,4 +7,11 @@
  License URI: http://www.gnu.org/licenses/gpl-2.0.html
 */
 
-
+/*------------------------------*/
+/*- GENERAL --------------------*/
+.layers-hide{
+	display: none !important;
+}
+.layers-soft-hide{
+	visibility: hidden;
+}

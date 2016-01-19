@@ -76,7 +76,7 @@ $all_categories = array(); ?>
 					</div>
 
 					<div class="accordion-section">
-						<h3 class="accordion-section-title l_admin-heading"><?php _e( 'Filters' , 'layerswp' ); ?></h3>
+						<h3 class="accordion-section-title l_admin-heading"><?php _e( 'Sorting &amp; Filters' , 'layerswp' ); ?></h3>
 						<ul class="accordion-section-content l_admin-list l_admin-page-list">
 							<li>
 								<input id="layers-marketplace-search" type="search" placeholder="<?php _e( 'Search...' , 'layerswp' ); ?>"/>

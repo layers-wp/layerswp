@@ -376,7 +376,7 @@ if( ! function_exists( 'layers_admin_scripts' ) ) {
 		global $pagenow, $wp_customize;
 		
 		/**
-		 * Tip-Tip ( Reanamed to layerTip )
+		 * Tip-Tip (renamed to layerTip )
 		 */
 		wp_enqueue_style(
 			LAYERS_THEME_SLUG . '-tip-tip' ,

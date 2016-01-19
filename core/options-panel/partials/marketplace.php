@@ -28,7 +28,11 @@ if( !in_array( $type, $valid_types ) ) return; ?>
 		$fallback_url = 'http://bit.ly/layers-themes';
 };
 
-$all_authors = array(); ?>
+wp_enqueue_script( 'accordion' );
+
+$all_authors = array();
+$all_tags = array();
+$all_categories = array(); ?>
 
 <section id="layers-marketplace" class="l_admin-area-wrapper">
 
@@ -48,39 +52,64 @@ $all_authors = array(); ?>
 						</p>
 					<?php } ?>
 				</div>
+				<div class="accordion-container">
+					<div class="accordion-section open">
+						<h3 class="accordion-section-title l_admin-heading"><?php _e( 'Product Type' , 'layerswp' ); ?></h3>
+						<ul class="accordion-section-content l_admin-list l_admin-page-list">
+							<li <?php if( 'themes' == $type ) { ?>class="active"<?php } ?>>
+								<a href="<?php echo admin_url( 'admin.php?page=layers-marketplace&type=themes' ); ?>">
+									<?php _e( 'Themes' , 'layerswp' ); ?>
+								</a>
+							</li>
+							<li <?php if( 'extensions' == $type ) { ?>class="active"<?php } ?>>
+								<a href="<?php echo admin_url( 'admin.php?page=layers-marketplace&type=extensions' ); ?>">
+									<?php _e( 'Extensions' , 'layerswp' ); ?>
+								</a>
+							</li>
+							<li <?php if( 'stylekits' == $type ) { ?>class="active"<?php } ?>>
+								<a href="<?php echo admin_url( 'admin.php?page=layers-marketplace&type=stylekits' ); ?>">
+									<?php _e( 'Style Kits' , 'layerswp' ); ?>
+								</a>
+							</li>
+						</ul>
 
-				<div class="l_admin-panel l_admin-push-bottom">
-					<div class="l_admin-panel-title">
-						<h4 class="l_admin-heading"><?php _e( 'Product Type' , 'layerswp' ); ?></h4>
 					</div>
-					<ul class="l_admin-list l_admin-page-list">
-						<li>
-							<a href="">Themes</a>
-						</li>
-						<li>
-							<a href="">Extensions</a>
-						</li>
-						<li>
-							<a href="">StyleKits</a>
-						</li>
-					</ul>
-				</div>
 
-				<div class="l_admin-panel l_admin-push-bottom">
-					<div class="l_admin-panel-title">
-						<h4 class="l_admin-heading"><?php _e( 'Categories' , 'layerswp' ); ?></h4>
+					<div class="accordion-section">
+						<h3 class="accordion-section-title l_admin-heading"><?php _e( 'Filters' , 'layerswp' ); ?></h3>
+						<ul class="accordion-section-content l_admin-list l_admin-page-list">
+							<li>
+								<input id="layers-marketplace-search" type="search" placeholder="<?php _e( 'Search...' , 'layerswp' ); ?>"/>
+							</li>
+							<li>
+								<select id="layers-marketplace-authors" class="push-right">
+									<option value=""><?php _e( 'All Authors' , 'layerswp' ); ?></option>
+								</select>
+							</li>
+							<li>
+								<select id="layers-marketplace-sortby" name="sortby" data-action="<?php echo admin_url( 'admin.php?page=layers-marketplace&type=' . $type ); ?>" class="push-right">
+									<?php if( is_array( $api->get_sort_options() ) ) { ?>
+										<?php foreach( $api->get_sort_options() as $value => $info ) { ?>
+											<option value="<?php echo $value; ?>" data-excerpt-label="<?php echo esc_attr( $info[ 'excerpt-label' ] ); ?>"><?php echo $info[ 'label' ]; ?></option>
+										<?php } ?>
+									<?php } ?>
+								</select>
+							</li>
+						</ul>
 					</div>
-					<ul class="l_admin-list l_admin-page-list">
-						<li>
-							<a href="">WooCommerce</a> <span class="l_admin-label label-subtle">(15)</span>
-						</li>
-						<li>
-							<a href="">Business</a> <span class="l_admin-label label-subtle">(3)</span>
-						</li>
-						<li>
-							<a href="">Multi-purpose</a> <span class="l_admin-label label-subtle">(3)</span>
-						</li>
-					</ul>
+
+					<div class="accordion-section">
+						<h3 class="accordion-section-title l_admin-heading"><?php _e( 'Categories' , 'layerswp' ); ?></h3>
+						<ul class="accordion-section-content l_admin-list l_admin-page-list" id="layers-marketplace-categories">
+						</ul>
+					</div>
+
+					<div class="accordion-section">
+						<h3 class="accordion-section-title l_admin-heading"><?php _e( 'Tags' , 'layerswp' ); ?></h3>
+						<ul class="accordion-section-content l_admin-list l_admin-page-list" id="layers-marketplace-tags">
+						</ul>
+					</div>
+
 				</div>
 
 			</div>
@@ -112,11 +141,37 @@ $all_authors = array(); ?>
 								$all_authors[] = ucfirst( strtolower( $details->author_username ) );
 							}
 
+							foreach( explode( '/', $details->classification ) as $c_value ){
+								if( isset( $all_categories[$c_value] ) ) {
+									$c_count = $all_categories[ $c_value ][ 'count' ];
+								} else {
+									$c_count = 0;
+								}
+								$all_categories[$c_value] = array(
+									'count' => ( $c_count+1 )
+								);
+							}
+							ksort( $all_categories );
+
+							foreach( $details->tags as $t_key => $t_value ) {
+								if( isset( $all_tags[$t_value] ) ) {
+									$t_count = $all_tags[ $t_value ][ 'count' ];
+								} else {
+									$t_count = 0;
+								}
+								$all_tags[$t_value] = array(
+									'count' => ( $t_count+1 )
+								);
+							}
+							ksort( $all_tags );
+
 							$envato_url = 'http://www.layerswp.com/go-envato/?id=' . esc_attr( $details->id ) . '&item=' . esc_attr( $details->name ) . '&site=' . $site_key; ?>
 							<div
 								id="product-details-<?php echo $details->id; ?>" class="l_admin-column l_admin-span-4 l_admin-product l_admin-animate" tabindex="0"
 								data-id="<?php echo $details->id; ?>"
 								data-url="<?php echo esc_attr( $envato_url ); ?>"
+								data-tags="<?php echo strtolower( implode( ',', $details->tags ) ); ?>"
+								data-categories="<?php echo strtolower( $details->classification ); ?>"
 								data-slug="<?php echo sanitize_title( $details->name ); ?>"
 								data-updated="<?php echo strtotime( $details->updated_at ); ?>"
 								data-name="<?php echo esc_attr( $details->name ); ?>"
@@ -204,6 +259,25 @@ $all_authors = array(); ?>
 				jQuery( '#layers-marketplace-authors' ).append( jQuery( '<option value="'+ username.toString().toLowerCase() + '">' + username + '</option>') );
 			});
 
+			var layers_market_cats = jQuery.parseJSON( '<?php echo json_encode( $all_categories ); ?>' );
+
+			jQuery.each( layers_market_cats, function( key, value ){
+				var key_string = key.toString().toLowerCase();
+
+				jQuery( '#layers-marketplace-categories' ).append(
+					jQuery( '<li><input type="checkbox" name="layers-marketplace-categories" id="cat-' + key_string + '" value="' + key_string + '" /><label for="cat-' + key_string + '">' + key_string + '</label> <span class="l_admin-label label-subtle">(' + value.count + ')</span></li>')
+				);
+			});
+
+			var layers_market_tags = jQuery.parseJSON( '<?php echo json_encode( $all_tags ); ?>' );
+
+			jQuery.each( layers_market_tags, function( key, value ){
+				var key_string = key.toString().toLowerCase();
+
+				jQuery( '#layers-marketplace-tags' ).append(
+					jQuery( '<li><input type="checkbox" name="layers-marketplace-tags" id="tag-' + key_string + '" value="' + key_string + '" /><label for="tag-' + key_string + '">' + key_string + '</label> <span class="l_admin-label label-subtle">(' + value.count + ')</span></li>')
+				);
+			});
 		</script>
 	<?php } ?>
 	<div class="theme-overlay layers-hide">

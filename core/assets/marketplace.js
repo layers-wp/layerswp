@@ -167,6 +167,7 @@ jQuery(function($) {
 	/**
 	* 4 - Marketplace Filter and Search functions
 	*/
+
 	$(document).on( 'click', '#layers-marketplace-clear-search', function(e){
 		e.preventDefault();
 
@@ -231,12 +232,14 @@ jQuery(function($) {
 		}
 	}
 
-	$(document).on( 'keyup mouseup change', '#layers-marketplace #layers-marketplace-search, #layers-marketplace #layers-marketplace-authors', function(e){
+	$(document).on( 'keyup mouseup change', '#layers-marketplace #layers-marketplace-search, #layers-marketplace #layers-marketplace-authors, #layers-marketplace input[name="layers-marketplace-categories"], #layers-marketplace input[name="layers-marketplace-tags"]', function(e){
 		e.preventDefault();
 
 		$search_val = $( '#layers-marketplace #layers-marketplace-search' ).val().toLowerCase();
 		$author_val = $( '#layers-marketplace #layers-marketplace-authors' ).val().toLowerCase();
 		$rating_val = $( '#layers-marketplace #layers-marketplace-ratings').val();
+		$cats = $( '#layers-marketplace input[name="layers-marketplace-categories"]:checked' );
+		$tags = $( '#layers-marketplace input[name="layers-marketplace-tags"]:checked' );
 
 
 		if( '' !== $author_val ){
@@ -248,8 +251,12 @@ jQuery(function($) {
 
 		$( '.l_admin-product' ).each(function(){
 
+			var $li = $(this);
+
 			// Start with a valid product
 			var $valid = true;
+			var $cats_valid = false;
+			var $tags_valid = false;
 
 			// Decode the JSON
 			var $json_string = $(this).find('.l_admin-product-json').val().toLowerCase();
@@ -258,24 +265,57 @@ jQuery(function($) {
 			// Set the Product ID
 			var $product_id = '#' + $(this).attr( 'id' );
 
+			if( '' == $search_val && '' == $author_val && '' == $rating_val && 0 == $cats.count && 0 == $tags )// Check the Categories
+				$valid = true;
+
+			if( 0 == $cats.length ) {
+				$cats_valid = true;
+			} else {
+				$cats.each(function( c_key, c_val ){
+					c_val_string = $( c_val ).val();
+
+					if( -1 < $li.data( 'categories' ).toString().indexOf( c_val_string ) )
+						$cats_valid = true;
+				})
+			}
+
+			// Check the Tags
+			if( 0 == $tags.length ) {
+				$tags_valid = true;
+			} else {
+				$tags.each(function( t_key, t_val ){
+					t_val_string = $( t_val ).val();
+
+				console.log( t_val_string );
+				console.log( $li.data( 'tags' ) );
+				console.log( $li.data( 'tags' ).toString().indexOf( t_val_string ) );
+
+					if( -1 < $li.data( 'tags' ).toString().indexOf( t_val_string ) )
+						$tags_valid = true;
+				})
+			}
+
 			// Check the Search Box
 			if( '' !== $search_val && -1 == $json_string.indexOf( $search_val ) ) {
+				console.log( "Search not found" );
 				$valid = false;
 			}
 
 			// Check the Rating
 			if( '' !== $rating_val && $rating_val > $json_decoded.rating.rating ){
+				console.log( "Rating not found" );
 				$valid = false;
 			}
 
 			// Check the Author
 			if( '' !== $author_val && $author_val !== $json_decoded.author_username ){
+				console.log( "Author not found" );
 				$valid = false;
 			}
 
 			// If valid is still true, add this product to the valid_products array
 
-			if( true == $valid ){
+			if( true == $valid && true == $cats_valid && true == $tags_valid ){
 				$valid_products.push( $product_id );
 			} else {
 				$invalid_products.push( $product_id );

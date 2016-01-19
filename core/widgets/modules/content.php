@@ -132,7 +132,6 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 
 			<section id="<?php echo esc_attr( $widget_id ); ?>" class="<?php echo esc_attr( $widget_container_class ); ?>" <?php echo $this->custom_anchor( $widget ); ?>>
 
-
 				<?php do_action( 'layers_before_content_widget_inner', $this, $widget ); ?>
 
 				<?php if ( NULL !== $this->check_and_return( $widget , 'title' ) || NULL !== $this->check_and_return( $widget , 'excerpt' ) ) { ?>
@@ -207,6 +206,14 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 
 							// Set the column link
 							$link = $this->check_and_return( $item , 'link' );
+							
+							// Link is a number - so is probs a post_id (Testing).
+							if ( is_numeric( $item['link'] ) ) {
+								if ( $post_link = get_permalink( $item['link'] ) ) {
+									$item['link'] = $post_link;
+								}
+							}
+							
 
  							/**
 							* Set Individual Column CSS
@@ -262,9 +269,13 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 										<div class="media-body <?php echo ( isset( $item['design']['fonts'][ 'align' ] ) ) ? $item['design']['fonts'][ 'align' ] : ''; ?>">
 											<?php if( $this->check_and_return( $item, 'title') ) { ?>
 												<h5 class="heading">
-													<?php if( NULL != $link && ! ( isset( $item['link'] ) && $this->check_and_return( $item , 'link_text' ) ) ) { ?><a href="<?php echo $item['link']; ?>"><?php } ?>
+													<?php if( NULL != $link && ! ( isset( $item['link'] ) && $this->check_and_return( $item , 'link_text' ) ) ) { ?>
+														<a href="<?php echo $item['link']; ?>">
+													<?php } ?>
 														<?php echo $item['title']; ?>
-													<?php if( NULL != $link && ! ( isset( $item['link'] ) && $this->check_and_return( $item , 'link_text' ) ) ) { ?></a><?php } ?>
+													<?php if( NULL != $link && ! ( isset( $item['link'] ) && $this->check_and_return( $item , 'link_text' ) ) ) { ?>
+														</a>
+													<?php } ?>
 												</h5>
 											<?php } ?>
 											<?php if( $this->check_and_return( $item, 'excerpt' ) ) { ?>

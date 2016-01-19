@@ -592,3 +592,63 @@ if( !function_exists( 'layers_excerpt_class' ) ) {
 } // layers_excerpt_class
 add_filter( "the_excerpt", "layers_excerpt_class" );
 add_filter( "get_the_excerpt", "layers_excerpt_class" );
+
+
+/**
+ * Movie Post-Type
+ */
+add_action( 'init', 'create_posttype' );
+function create_posttype() {
+	
+	$labels = array(
+		'name' => __( 'Movies' ),
+		'singular_name' => __( 'Movie' )
+	);
+	
+	register_post_type(
+		'movies',
+		array(
+			'labels' => $labels,
+			'public' => true,
+			'has_archive' => true,
+			'rewrite' => array('slug' => 'movies'),
+			'supports' => array( 'thumbnail', 'title', 'editor' ),
+		)
+	);
+	
+}
+
+/**
+ * Genre Taxonomy
+ */
+add_action( 'init', 'create_genre_hierarchical_taxonomy', 0 );
+function create_genre_hierarchical_taxonomy() {
+	
+	$labels = array(
+		'name' => _x( 'Genres', 'taxonomy general name' ),
+		'singular_name' => _x( 'Genre', 'taxonomy singular name' ),
+		'search_items' =>  __( 'Search Genres' ),
+		'all_items' => __( 'All Genres' ),
+		'parent_item' => __( 'Parent Genre' ),
+		'parent_item_colon' => __( 'Parent Genre:' ),
+		'edit_item' => __( 'Edit Genre' ),
+		'update_item' => __( 'Update Genre' ),
+		'add_new_item' => __( 'Add New Genre' ),
+		'new_item_name' => __( 'New Genre Name' ),
+		'menu_name' => __( 'Genres' ),
+	);
+	
+	register_taxonomy(
+		'genre',
+		array('movies'),
+		array(
+			'hierarchical' => true,
+			'labels' => $labels,
+			'show_ui' => true,
+			'show_admin_column' => true,
+			'query_var' => true,
+			'rewrite' => array( 'slug' => 'topic' ),
+		)
+	);
+}
+

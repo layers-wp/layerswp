@@ -387,7 +387,7 @@ function layers_widgets_init(){
 	$layers_widgets->init();
 }
 add_action( 'widgets_init' , 'layers_widgets_init' , 20 );
-add_action( 'widgets_init' , 'layers_widgets_init' , 20 );
+
 if( !function_exists( 'layers_backup_sidebars_widgets' ) ) {
 	function layers_backup_sidebars_widgets( $no_revisions = FALSE ){
 
@@ -410,14 +410,13 @@ add_action( 'layers_backup_sidebars_widgets', 'layers_backup_sidebars_widgets' )
 if( !function_exists( 'layers_backup_page_sidebars_widgets' ) ) {
 	function layers_backup_page_sidebars_widgets( $page = NULL, $no_revisions = FALSE ){
 
+		// If the migrator class does not exist, then force load the migrator.php file
 		if( !class_exists( 'Layers_Widget_Migrator' ) ) {
 			require get_template_directory() . '/core/helpers/migrator.php';
 		}
 
 		// Prep the migrator
 		$migrator = new Layers_Widget_Migrator();
-
-		error_log( 'Checking page' . print_r( $page, true ) );
 
 		if( NULL == $page || !is_object( $page ) ) return;
 

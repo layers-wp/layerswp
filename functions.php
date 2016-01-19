@@ -392,6 +392,21 @@ if( ! function_exists( 'layers_admin_scripts' ) ) {
 			true
 		);
 		
+		/**
+		 * Select2 (also enqueued by Storekit and WooCommerce).
+		 */
+		wp_enqueue_style(
+			'select2',
+			get_template_directory_uri() . '/core/assets/plugins/select2/select2.min.css',
+			array(),
+			LAYERS_VERSION
+		);
+		wp_enqueue_script(
+			'select2',
+			get_template_directory_uri() . '/core/assets/plugins/select2/select2.min.js',
+			array( 'jquery' ),
+			LAYERS_VERSION
+		);
 		
 		/**
 		 * FontAwesome

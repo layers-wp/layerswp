@@ -100,16 +100,15 @@ $all_categories = array(); ?>
 
 					<div class="accordion-section">
 						<h3 class="accordion-section-title l_admin-heading"><?php _e( 'Categories' , 'layerswp' ); ?></h3>
-						<ul class="accordion-section-content l_admin-list l_admin-page-list" id="layers-marketplace-categories">
-						</ul>
+						<div class="accordion-section-content l_admin-list l_admin-page-list" id="layers-marketplace-categories">
+						</div>
 					</div>
 
 					<div class="accordion-section">
 						<h3 class="accordion-section-title l_admin-heading"><?php _e( 'Tags' , 'layerswp' ); ?></h3>
-						<ul class="accordion-section-content l_admin-list l_admin-page-list" id="layers-marketplace-tags">
-						</ul>
+						<div class="accordion-section-content l_admin-list l_admin-page-list" id="layers-marketplace-tags">
+						</div>
 					</div>
-
 				</div>
 
 			</div>
@@ -250,6 +249,42 @@ $all_categories = array(); ?>
 		</div>
 	</div>
 	<?php if( !is_wp_error( $products ) ) { ?>
+		<style>
+			#layers-marketplace-tags input[type="checkbox"], #layers-marketplace-categories  input[type="checkbox"] {
+				display: none;
+			}
+			#layers-marketplace-tags input[type="checkbox"]:checked + label, #layers-marketplace-categories  input[type="checkbox"]:checked + label {
+				background: rgb(46, 162, 204);
+			}
+			#layers-marketplace-tags input[type="checkbox"]:checked + label span, #layers-marketplace-categories  input[type="checkbox"]:checked + label  span{
+				color: rgba( 255, 255, 255, 0.8 );
+				border-color: rgba( 255, 255, 255, 0.8 );
+			}
+			#layers-marketplace-tags label, #layers-marketplace-categories label {
+				background: #f5f5f5;
+				border-radius: 0;
+				border: 1px solid #ddd;
+				box-shadow: none;
+				display: block;
+				float: left;
+				margin: 3px 3px 3px 3px;
+				max-width: none;
+			}
+			#layers-marketplace-tags label span , #layers-marketplace-categories label span {
+				float: left;
+			}
+			#layers-marketplace-tags label span:first-child , #layers-marketplace-categories label span:first-child {
+				border-right: 1px solid rgb(221, 221, 221);
+				display: block;
+				margin-right: 5px;
+				padding: 5px 8px;
+			}
+			#layers-marketplace-tags label span.label-subtle , #layers-marketplace-categories label span.label-subtle {
+				font-size: 11px;
+				padding-top: 5px;
+				padding-right: 5px;
+			}
+		</style>
 		<script>
 			// Fill the author select box
 			var layers_market_authors = jQuery.parseJSON( '<?php echo json_encode( $all_authors ); ?>' );
@@ -265,7 +300,7 @@ $all_categories = array(); ?>
 				var key_string = key.toString().toLowerCase();
 
 				jQuery( '#layers-marketplace-categories' ).append(
-					jQuery( '<li><input type="checkbox" name="layers-marketplace-categories" id="cat-' + key_string + '" value="' + key_string + '" /><label for="cat-' + key_string + '">' + key_string + '</label> <span class="l_admin-label label-subtle">(' + value.count + ')</span></li>')
+					jQuery( '<input type="checkbox" name="layers-marketplace-categories" id="cat-' + key_string + '" value="' + key_string + '" /><label for="cat-' + key_string + '"><span class="l_admin-label">' + key_string + '</span> <span class="l_admin-label label-subtle">' + value.count + '</span></label>')
 				);
 			});
 
@@ -275,7 +310,7 @@ $all_categories = array(); ?>
 				var key_string = key.toString().toLowerCase();
 
 				jQuery( '#layers-marketplace-tags' ).append(
-					jQuery( '<li><input type="checkbox" name="layers-marketplace-tags" id="tag-' + key_string + '" value="' + key_string + '" /><label for="tag-' + key_string + '">' + key_string + '</label> <span class="l_admin-label label-subtle">(' + value.count + ')</span></li>')
+					jQuery( '<input type="checkbox" name="layers-marketplace-tags" id="tag-' + key_string + '" value="' + key_string + '" /><label for="tag-' + key_string + '"><span class="l_admin-label">' + key_string + '</span> <span class="l_admin-label label-subtle">' + value.count + '</span></label>')
 				);
 			});
 		</script>

@@ -315,7 +315,7 @@ jQuery(function($) {
 
 			// If valid is still true, add this product to the valid_products array
 
-			if( true == $valid && ( true == $cats_valid || true == $tags_valid ) ){
+			if( true == $valid && true == $cats_valid && true == $tags_valid ){
 				$valid_products.push( $product_id );
 			} else {
 				$invalid_products.push( $product_id );

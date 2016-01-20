@@ -76,29 +76,6 @@ $all_categories = array(); ?>
 					</div>
 
 					<div class="accordion-section">
-						<h3 class="accordion-section-title l_admin-heading"><?php _e( 'Sorting &amp; Filters' , 'layerswp' ); ?></h3>
-						<ul class="accordion-section-content l_admin-list l_admin-page-list">
-							<li>
-								<input id="layers-marketplace-search" type="search" placeholder="<?php _e( 'Search...' , 'layerswp' ); ?>"/>
-							</li>
-							<li>
-								<select id="layers-marketplace-authors" class="push-right">
-									<option value=""><?php _e( 'All Authors' , 'layerswp' ); ?></option>
-								</select>
-							</li>
-							<li>
-								<select id="layers-marketplace-sortby" name="sortby" data-action="<?php echo admin_url( 'admin.php?page=layers-marketplace&type=' . $type ); ?>" class="push-right">
-									<?php if( is_array( $api->get_sort_options() ) ) { ?>
-										<?php foreach( $api->get_sort_options() as $value => $info ) { ?>
-											<option value="<?php echo $value; ?>" data-excerpt-label="<?php echo esc_attr( $info[ 'excerpt-label' ] ); ?>"><?php echo $info[ 'label' ]; ?></option>
-										<?php } ?>
-									<?php } ?>
-								</select>
-							</li>
-						</ul>
-					</div>
-
-					<div class="accordion-section">
 						<h3 class="accordion-section-title l_admin-heading"><?php _e( 'Categories' , 'layerswp' ); ?></h3>
 						<div class="accordion-section-content l_admin-list l_admin-page-list" id="layers-marketplace-categories">
 						</div>
@@ -132,6 +109,30 @@ $all_categories = array(); ?>
 				<?php } ?>
 
 				<?php if( !is_wp_error( $products ) ) { ?>
+
+					<div class="l_admin-row">
+						<div class="l_admin-column l_admin-column l_admin-pull-right">
+							<input id="layers-marketplace-search" type="search" placeholder="<?php _e( 'Search...' , 'layerswp' ); ?>"/>
+
+							<label>
+								<?php _e( 'Authors:', 'layerswp' ); ?>
+								<select id="layers-marketplace-authors" class="push-right">
+									<option value=""><?php _e( 'All Authors' , 'layerswp' ); ?></option>
+								</select>
+							</label>
+							<label>
+								<?php _e( 'Order:', 'layerswp' ); ?>
+								<select id="layers-marketplace-sortby" name="sortby" data-action="<?php echo admin_url( 'admin.php?page=layers-marketplace&type=' . $type ); ?>" class="push-right">
+									<?php if( is_array( $api->get_sort_options() ) ) { ?>
+										<?php foreach( $api->get_sort_options() as $value => $info ) { ?>
+											<option value="<?php echo $value; ?>" data-excerpt-label="<?php echo esc_attr( $info[ 'excerpt-label' ] ); ?>"><?php echo $info[ 'label' ]; ?></option>
+										<?php } ?>
+									<?php } ?>
+								</select>
+							</label>
+						</div>
+					</div>
+
 					<div class="l_admin-products layers-hide">
 
 						<?php foreach( $products->matches as $key => $details ) {

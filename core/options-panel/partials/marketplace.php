@@ -54,41 +54,44 @@ $all_categories = array(); ?>
 
 					<input id="layers-marketplace-search" type="search" placeholder="<?php _e( 'Search...' , 'layerswp' ); ?>"/>
 				</div>
-				<div class="accordion-container">
-					<div class="accordion-section open">
-						<h3 class="accordion-section-title l_admin-heading"><?php _e( 'Product Type' , 'layerswp' ); ?></h3>
-						<ul class="accordion-section-content l_admin-list l_admin-page-list">
-							<li <?php if( 'themes' == $type ) { ?>class="active"<?php } ?>>
-								<a href="<?php echo admin_url( 'admin.php?page=layers-marketplace&type=themes' ); ?>">
-									<?php _e( 'Themes' , 'layerswp' ); ?>
-								</a>
-							</li>
-							<li <?php if( 'extensions' == $type ) { ?>class="active"<?php } ?>>
-								<a href="<?php echo admin_url( 'admin.php?page=layers-marketplace&type=extensions' ); ?>">
-									<?php _e( 'Extensions' , 'layerswp' ); ?>
-								</a>
-							</li>
-							<li <?php if( 'stylekits' == $type ) { ?>class="active"<?php } ?>>
-								<a href="<?php echo admin_url( 'admin.php?page=layers-marketplace&type=stylekits' ); ?>">
-									<?php _e( 'Style Kits' , 'layerswp' ); ?>
-								</a>
-							</li>
-						</ul>
-
+				<div class="l_admin-panel">
+					<div class="l_admin-panel-title">
+						<h3 class="l_admin-heading"><?php _e( 'Product Type' , 'layerswp' ); ?></h3>
 					</div>
+					<ul class="l_admin-list l_admin-page-list">
+						<li <?php if( 'themes' == $type ) { ?>class="active"<?php } ?>>
+							<a href="<?php echo admin_url( 'admin.php?page=layers-marketplace&type=themes' ); ?>">
+								<?php _e( 'Themes' , 'layerswp' ); ?>
+							</a>
+						</li>
+						<li <?php if( 'extensions' == $type ) { ?>class="active"<?php } ?>>
+							<a href="<?php echo admin_url( 'admin.php?page=layers-marketplace&type=extensions' ); ?>">
+								<?php _e( 'Extensions' , 'layerswp' ); ?>
+							</a>
+						</li>
+						<li <?php if( 'stylekits' == $type ) { ?>class="active"<?php } ?>>
+							<a href="<?php echo admin_url( 'admin.php?page=layers-marketplace&type=stylekits' ); ?>">
+								<?php _e( 'Style Kits' , 'layerswp' ); ?>
+							</a>
+						</li>
+					</ul>
 
-					<div class="accordion-section">
-						<h3 class="accordion-section-title l_admin-heading"><?php _e( 'Categories' , 'layerswp' ); ?></h3>
-						<div class="accordion-section-content l_admin-list l_admin-page-list" id="layers-marketplace-categories">
-						</div>
+				</div>
+
+				<div class="l_admin-panel">
+					<div class="l_admin-panel-title">
+						<h3 class="l_admin-heading"><?php _e( 'Categories' , 'layerswp' ); ?></h3>
 					</div>
-
+					<div class="l_admin-content l_admin-row" id="layers-marketplace-categories">
+					</div>
+				</div>
+<!--
 					<div class="accordion-section">
 						<h3 class="accordion-section-title l_admin-heading"><?php _e( 'Tags' , 'layerswp' ); ?></h3>
 						<div class="accordion-section-content l_admin-list l_admin-page-list" id="layers-marketplace-tags">
 						</div>
 					</div>
-				</div>
+-->
 
 			</div>
 			<div class="l_admin-column l_admin-span-9 l_admin-marketplace-products">

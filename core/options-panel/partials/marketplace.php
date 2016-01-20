@@ -262,8 +262,12 @@ $all_categories = array(); ?>
 			}
 			#layers-marketplace-tags input[type="checkbox"]:checked + label span, #layers-marketplace-categories  input[type="checkbox"]:checked + label  span{
 				color: rgba( 255, 255, 255, 0.8 );
-				border-color: rgba( 255, 255, 255, 0.8 );
 			}
+
+			#layers-marketplace-categories  label:hover{
+				background-color: #e5e5e5;
+			}
+
 			#layers-marketplace-tags label, #layers-marketplace-categories label {
 				background: #f5f5f5;
 				border-radius: 0;
@@ -274,15 +278,18 @@ $all_categories = array(); ?>
 				margin: 3px 3px 3px 3px;
 				max-width: none;
 			}
+
 			#layers-marketplace-tags label span , #layers-marketplace-categories label span {
 				float: left;
 			}
+
 			#layers-marketplace-tags label span:first-child , #layers-marketplace-categories label span:first-child {
 				border-right: 1px solid rgb(221, 221, 221);
 				display: block;
 				margin-right: 5px;
 				padding: 5px 8px;
 			}
+
 			#layers-marketplace-tags label span.label-subtle , #layers-marketplace-categories label span.label-subtle {
 				font-size: 11px;
 				padding-top: 5px;
@@ -304,7 +311,7 @@ $all_categories = array(); ?>
 				var key_string = key.toString().toLowerCase();
 
 				jQuery( '#layers-marketplace-categories' ).append(
-					jQuery( '<input type="checkbox" name="layers-marketplace-categories" id="cat-' + key_string + '" value="' + key_string + '" /><label for="cat-' + key_string + '"><span class="l_admin-label">' + key_string + '</span> <span class="l_admin-label label-subtle">' + value.count + '</span></label>')
+					jQuery( '<input type="checkbox" name="layers-marketplace-categories" id="cat-' + key_string + '" value="' + key_string + '" /><label for="cat-' + key_string + '" class="l_admin-animate"><span class="l_admin-label">' + key_string + '</span> <span class="l_admin-label label-subtle">' + value.count + '</span></label>')
 				);
 			});
 
@@ -326,6 +333,9 @@ $all_categories = array(); ?>
 				<button class="left dashicons dashicons-no"><span class="screen-reader-text">Show previous</span></button>
 				<button class="right dashicons dashicons-no"><span class="screen-reader-text">Show next</span></button>
 				<button class="close dashicons dashicons-no"><span class="screen-reader-text">Close details dialog</span></button>
+			</div>
+
+			<div class="theme-preview layers-hide">
 			</div>
 			<div class="theme-about">
 				<div class="theme-screenshots"><img /></div>

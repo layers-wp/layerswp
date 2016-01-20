@@ -99,7 +99,19 @@ jQuery(function($) {
 		$modal.find( '.theme-sales' ).html( $json.number_of_sales + $sales_word);
 
 		/**
-		* Product :inks
+		* Product Preview
+
+		if( 'undefined' !== typeof( $json.previews.live_site.url ) ){
+			$iframe = $( '<iframe />' ).attr( 'src', $json.previews.live_site.url );
+			$( '.theme-preview' ).html( $iframe ).removeClass( 'layers-hide' ).show();
+			$( '.theme-about' ).hide();
+		} else {
+			$( '.theme-about' ).addClass( 'layers-hide' ).show();
+		}
+		*/
+
+		/**
+		* Product Links
 		*/
 		var $url = $( $id ).data( 'url' );
 

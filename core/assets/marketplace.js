@@ -188,6 +188,7 @@ jQuery(function($) {
 
 		setTimeout(function(){
 			$( '.l_admin-products.layers-hide' ).hide().removeClass( 'layers-hide' ).fadeIn( 350 );
+			$( '#layers-marketplace-sort.layers-hide' ).hide().removeClass( 'layers-hide' ).fadeIn( 350 );
 			$( '.l_admin-marketplace-intro.layers-hide' ).hide().removeClass( 'layers-hide' ).fadeIn( 350 );
 			marketplace_resize();
 		}, 350 );

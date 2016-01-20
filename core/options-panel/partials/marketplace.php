@@ -51,6 +51,8 @@ $all_categories = array(); ?>
 							<?php _e( 'You are viewing', 'layerswp' ); ?> <span id="intro-product-type"> <?php echo strtolower( $excerpt ); ?>,</span><span id="intro-author"></span> <?php _e( 'ordered', 'layerswp' ); ?> <span id="intro-sort"><?php _e( 'by last updated', 'layerswp' ); ?></span>.
 						</p>
 					<?php } ?>
+
+					<input id="layers-marketplace-search" type="search" placeholder="<?php _e( 'Search...' , 'layerswp' ); ?>"/>
 				</div>
 				<div class="accordion-container">
 					<div class="accordion-section open">
@@ -110,10 +112,8 @@ $all_categories = array(); ?>
 
 				<?php if( !is_wp_error( $products ) ) { ?>
 
-					<div class="l_admin-row">
+					<div id="layers-marketplace-sort" class="l_admin-row layers-hide">
 						<div class="l_admin-column l_admin-column l_admin-pull-right">
-							<input id="layers-marketplace-search" type="search" placeholder="<?php _e( 'Search...' , 'layerswp' ); ?>"/>
-
 							<label>
 								<?php _e( 'Authors:', 'layerswp' ); ?>
 								<select id="layers-marketplace-authors" class="push-right">

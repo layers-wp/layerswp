@@ -1837,7 +1837,10 @@
 	}
 
 	#layers-marketplace #layers-marketplace-search{
-		max-width: 200px;
+		max-width: 100%;
+		width: 100%;
+		padding: 8px 10px;
+		margin: 10px 0px;
 	}
 
 	#layers-marketplace .l_admin-marketplace-actions{
@@ -1890,7 +1893,7 @@
 			display: none;
 		}
 	}
-	
+
 
 /*----------------------------------------------------*/
 /*- ONBAORDING NEW - TO BE MERGED INTO ABOVE --------*/
@@ -1965,4 +1968,3 @@
 	.l_admin-onboard-slider .fa-question-circle:hover{
 		color: #656565;
 	}
-	

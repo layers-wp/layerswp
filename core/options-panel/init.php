@@ -514,16 +514,6 @@ function layers_options_panel_menu(){
 		'customize.php'
 	);
 
-	// Transfer Pages
-	$transfer = add_submenu_page(
-		LAYERS_THEME_SLUG . '-dashboard',
-		__( 'Transfer' , 'layerswp' ),
-		__( 'Transfer' , 'layerswp' ),
-		'edit_theme_options',
-		LAYERS_THEME_SLUG . '-backup',
-		'layers_options_panel_ui'
-	);
-
 	// Get Started
 	$get_started = add_submenu_page(
 		LAYERS_THEME_SLUG . '-dashboard',

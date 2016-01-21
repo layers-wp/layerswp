@@ -374,7 +374,7 @@ add_action( 'wp_enqueue_scripts' , 'layers_scripts' );
 if( ! function_exists( 'layers_admin_scripts' ) ) {
 	function layers_admin_scripts(){
 		global $pagenow, $wp_customize;
-		
+
 		/**
 		 * Tip-Tip ( Reanamed to layerTip )
 		 */
@@ -391,8 +391,8 @@ if( ! function_exists( 'layers_admin_scripts' ) ) {
 			LAYERS_VERSION,
 			true
 		);
-		
-		
+
+
 		/**
 		 * FontAwesome
 		 */
@@ -402,8 +402,8 @@ if( ! function_exists( 'layers_admin_scripts' ) ) {
 			array(),
 			LAYERS_VERSION
 		);
-		
-		
+
+
 		/**
 		 * Main Admin CSS's
 		 */
@@ -415,7 +415,7 @@ if( ! function_exists( 'layers_admin_scripts' ) ) {
 		);
 
 		if ( isset( $wp_customize ) ) {
-			
+
 			/**
 			 * Admin Customizer (only)
 			 */
@@ -427,7 +427,7 @@ if( ! function_exists( 'layers_admin_scripts' ) ) {
 			);
 		}
 		else {
-			
+
 			/**
 			 * Admin Dashboard (only)
 			 */
@@ -438,8 +438,8 @@ if( ! function_exists( 'layers_admin_scripts' ) ) {
 				LAYERS_VERSION
 			);
 		}
-		
-		
+
+
 		/**
 		 * Admin Editor
 		 */
@@ -449,7 +449,7 @@ if( ! function_exists( 'layers_admin_scripts' ) ) {
 			array(),
 			LAYERS_VERSION
 		);
-		
+
 		wp_enqueue_script(
 			LAYERS_THEME_SLUG . '-admin-editor' ,
 			get_template_directory_uri() . '/core/assets/editor.min.js' ,
@@ -457,8 +457,8 @@ if( ! function_exists( 'layers_admin_scripts' ) ) {
 			LAYERS_VERSION,
 			true
 		);
-		
-		
+
+
 		/**
 		 * Admin Migrator
 		 */
@@ -490,8 +490,8 @@ if( ! function_exists( 'layers_admin_scripts' ) ) {
 					'preset_layout_nonce' => wp_create_nonce( 'layers-migrator-preset-layouts' ),
 				)
 		);
-		
-		
+
+
 		/**
 		 * Discover More Photos
 		 */
@@ -503,8 +503,8 @@ if( ! function_exists( 'layers_admin_scripts' ) ) {
 			),
 			LAYERS_VERSION
 		);
-		
-		
+
+
 		/**
 		 * Admin Onboarding
 		 */
@@ -534,8 +534,8 @@ if( ! function_exists( 'layers_admin_scripts' ) ) {
 				'step_done_message' => __( 'Done!' , 'layerswp' )
 			)
 		);
-		
-		
+
+
 		/**
 		 * Admin JS
 		 */
@@ -550,15 +550,7 @@ if( ! function_exists( 'layers_admin_scripts' ) ) {
 			LAYERS_VERSION,
 			true
 		);
-		wp_localize_script(
-			LAYERS_THEME_SLUG . '-admin' ,
-			"layers_admin_params",
-			array(
-				'backup_pages_nonce' => wp_create_nonce( 'layers-backup-pages' ),
-				'backup_pages_success_message' => __('Your pages have been successfully backed up!', 'layerswp' )
-			)
-		);
-		
+
 		wp_enqueue_media();
 
 	}

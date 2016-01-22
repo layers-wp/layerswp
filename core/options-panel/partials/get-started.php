@@ -11,41 +11,41 @@ $layers_migrator = new Layers_Widget_Migrator();
 
 function render_onboarding_warnings() {
 	global $wp_version;
-	
+
 	$required_wp_version        = '4.5';
 	$required_layers_foldername = 'layerswp-bong';
-	
+
 	$theme = wp_get_theme();
 	$current_folder_name = $theme->template;
-	
+
 	if (
 			version_compare( $wp_version, $required_wp_version, '<' ) ||
 			'' !== $required_layers_foldername
 		) {
-		
+
 		echo '<li class="pro-tip">';
 		echo '<strong>' . __( 'Notice(s):', 'layerswp' ) . '</strong>';
-		
+
 		// Check WP version.
 		if ( version_compare( $wp_version, $required_wp_version, '<' ) ) {
 			?>
 			<div class="onboarding-notice-item">
-				<i class="fa fa-exclamation-triangle"></i> 
+				<i class="fa fa-exclamation-triangle"></i>
 				<?php echo sprintf( __( "Layers works best with WordPress <code>version %s</code>. Your's is <code>version %s</code>. Please think about doing an <a href='%s'>update</a> soon.", 'layerswp' ), $required_wp_version, $wp_version, network_admin_url( 'update-core.php' ) ); ?>
 			</div>
 			<?php
 		}
-		
+
 		// Check Layers folder version.
 		if ( $current_folder_name !== $required_layers_foldername ) {
 			?>
 			<div class="onboarding-notice-item">
-				<i class="fa fa-exclamation-triangle"></i> 
+				<i class="fa fa-exclamation-triangle"></i>
 				<?php echo sprintf( __( 'Your Layers theme folder needs to be named <code>/%s</code> - yours is named <code>/%s</code>. Please rename it.', 'layerswp' ), $required_layers_foldername, $current_folder_name ); ?>
 			</div>
 			<?php
 		}
-		
+
 		echo '</li>';
 	}
 }
@@ -60,7 +60,7 @@ function render_onboarding_warnings() {
 		</div>
 
 		<div class="l_admin-onboard-slider">
-		
+
 			<!-- Welcome -->
 			<div class="l_admin-onboard-slide l_admin-animate l_admin-onboard-slide-current">
 				<div class="l_admin-column l_admin-span-8 postbox">
@@ -101,29 +101,28 @@ function render_onboarding_warnings() {
 					</div>
 				</div>
 			</div>
-			
+
 			<!-- Capture site details (previously 'Give your site a Name') -->
 			<div class="l_admin-onboard-slide l_admin-animate l_admin-onboard-slide-inactive">
 				<div class="l_admin-column l_admin-span-8 postbox">
-					
+
 					<div class="l_admin-content-large ">
-						
+
 						<!-- Heading -->
 						<div class="l_admin-section-title">
 							<h3 class="l_admin-heading">
-								<?php _e( 'What is the name of your website?' , 'layerswp' ); ?>
+								<?php _e( 'Let&rsquo;s do some quick setup' , 'layerswp' ); ?>
 							</h3>
 							<p class="l_admin-excerpt">
 								<?php _e( 'Enter your website name below. We&apos;ll use this in your site title and in search results.' , 'layerswp' ); ?>
 							</p>
 						</div>
-						
-						<!-- Sentence -->
-						<span class="onboarding-form-sentence">
-							<?php _e( 'What is the name of your website?' , 'layerswp' ); ?>
-							<i class="fa fa-question-circle" data-tip="<?php echo esc_attr( __( 'Enter your website name below. We&apos;ll use this in your site title and in search results.' , 'layerswp' ) ); ?>"></i>
-						</span>
-						<span class="onboarding-form-item">
+
+						<div class="l_admin-form-item">
+							<label>
+								<?php _e( 'What is the name of your website?' , 'layerswp' ); ?>
+								<i class="fa fa-question-circle" data-tip="<?php echo esc_attr( __( 'Enter your website name below. We&apos;ll use this in your site title and in search results.' , 'layerswp' ) ); ?>"></i>
+							</label>
 							<?php
 							echo $form_elements->input( array(
 								'type' => 'text',
@@ -134,39 +133,49 @@ function render_onboarding_warnings() {
 								'class' => 'layers-text l_admin-large',
 							) );
 							?>
-						</span>
-						
-						<br>
-						
-						<!-- Sentence -->
-						<span class="onboarding-form-sentence">
-							<?php _e( 'What will your site be used for?' , 'layerswp' ); ?>
-							<i class="fa fa-question-circle" data-tip="<?php _e( 'This will help us better tailor your experience.' , 'layerswp' ); ?>"></i>
-						</span>
-						<span class="onboarding-form-item">
+						</div>
+
+						<div class="l_admin-form-item">
+							<label>
+								<?php _e( 'What will your site be used for?' , 'layerswp' ); ?>
+								<i class="fa fa-question-circle" data-tip="<?php _e( 'This will help us better tailor your experience.' , 'layerswp' ); ?>"></i>
+							</label>
 							<?php
 							echo $form_elements->input( array(
 								'type' => 'select',
 								'name' => 'info_site_usage',
 								'id' => 'info_site_usage',
-								'value' => '#009eec',
+								'value' => '',
 								'options' => array(
 									'' => '',
+									'blog-magazine' => 'Blog Magazine',
 									'business' => 'Business',
-									'art' => 'Art',
+									'charity' => 'Charity',
+									'churches' => 'Churches',
+									'corporate' => 'Corporate',
+									'creative' => 'Creative',
+									'ecommerce' => 'eCommerce',
 									'education' => 'Education',
-									'general' => 'General',
+									'experimental' => 'Experimental',
+									'health-beauty' => 'Health and Beauty',
+									'nonprofit' => 'Nonprofit',
+									'personal' => 'Personal',
+									'portfolio' => 'Portfolio',
+									'retail' => 'Retail',
+									'technology' => 'Technology',
+									'woocommerce' => 'Woocommerce',
+									'just-testing' => 'Just Testing',
+									'other' => 'Other'
 								),
 							) );
 							?>
-						</span>
-						
-						<!-- Sentence -->
-						<span class="onboarding-form-sentence">
-							<?php _e( 'How would you describe your site?' , 'layerswp' ); ?>
-							<i class="fa fa-question-circle" data-tip="<?php _e( 'A tagline describes who and what you are in just a few simple words. For example Layers is a &ldquo;WordPress Site Builder&rdquo; - simple, easy, quick to read. Now you try:' , 'layerswp' ); ?>"></i>
-						</span>
-						<span class="onboarding-form-item onboarding-form-item-no-border">
+						</div>
+
+						<div class="l_admin-form-item">
+							<label>
+								<?php _e( 'How would you describe your site?' , 'layerswp' ); ?>
+								<i class="fa fa-question-circle" data-tip="<?php _e( 'A tagline describes who and what you are in just a few simple words. For example Layers is a &ldquo;WordPress Site Builder&rdquo; - simple, easy, quick to read. Now you try:' , 'layerswp' ); ?>"></i>
+							</label>
 							<?php
 							echo $form_elements->input( array(
 								'type' => 'text',
@@ -177,16 +186,13 @@ function render_onboarding_warnings() {
 								'class' => 'layers-text l_admin-large'
 							) );
 							?>
-						</span>
-						
-						<br>
-						
-						<!-- Sentence -->
-						<span class="onboarding-form-sentence">
-							<?php _e( 'Choose a primary color?' , 'layerswp' ); ?>
-							<i class="fa fa-question-circle" data-tip="<?php _e( 'We\'ll use this color in select places around your website.' , 'layerswp' ); ?>"></i>
-						</span>
-						<span class="onboarding-form-item onboarding-form-item-no-border">
+						</div>
+
+						<div class="l_admin-form-item">
+							<label>
+								<?php _e( 'Choose a primary color?' , 'layerswp' ); ?>
+								<i class="fa fa-question-circle" data-tip="<?php _e( 'We\'ll use this color in select places around your website.' , 'layerswp' ); ?>"></i>
+							</label>
 							<?php
 							echo $form_elements->input( array(
 								'type' => 'color',
@@ -195,19 +201,18 @@ function render_onboarding_warnings() {
 								'value' => ( get_theme_mod( 'layers-header-background-color' ) ) ? get_theme_mod( 'layers-header-background-color' ) : '#009eec',
 							) );
 							?>
-						</span>
-						
-						<br>
-						
+						</div>
+
+
 						<?php echo $form_elements->input( array(
 							'type' => 'hidden',
 							'name' => 'action',
 							'id' => 'action',
 							'value' => 'layers_onboarding_update_options'
 						) ); ?>
-						
+
 					</div>
-					
+
 					<div class="l_admin-button-well">
 						<span class="l_admin-save-progress layers-hide l_admin-button btn-link" data-busy-message="<?php _e( 'Saving your Site Name' , 'layerswp' ); ?>"></span>
 						<a class="l_admin-button btn-primary l_admin-pull-right onbard-next-step" href="">
@@ -230,7 +235,7 @@ function render_onboarding_warnings() {
 					</div>
 				</div>
 			</div>
-			
+
 			<!-- Create Default Pages -->
 			<div class="l_admin-onboard-slide l_admin-animate l_admin-onboard-slide-inactive">
 				<div class="l_admin-column l_admin-span-8 postbox">
@@ -244,14 +249,14 @@ function render_onboarding_warnings() {
 								<?php _e( "There are some standard pages that nearly all websites need. We reccomend that you let us create these for you and apply settings to make them work best with Layers. *these can easily be deleted later if you're not sure", 'layerswp' ); ?>
 							</p>
 						</div>
-						
+
 						<?php echo $form_elements->input( array(
 							'type' => 'hidden',
 							'name' => 'action',
 							'id' => 'action',
 							'value' => 'layers_onboarding_create_pages'
 						) ); ?>
-						
+
 						<div class="layers-checkbox-wrapper l_admin-form-item">
 							<input id="layers-create-page-blog" name="create-page-blog" value="Blog" type="checkbox" checked="checked" />
 							<label for="layers-create-page-blog">
@@ -259,7 +264,7 @@ function render_onboarding_warnings() {
 								<i class="fa fa-question-circle" data-tip="<?php _e( 'Blog page shows your blog posts.' , 'layerswp' ); ?>"></i>
 							</label>
 						</div>
-						
+
 					</div>
 					<div class="l_admin-button-well">
 						<span class="l_admin-save-progress layers-hide l_admin-button btn-link" data-busy-message="<?php _e( 'Creating Page(s)', 'layerswp' ); ?>"></span>
@@ -281,7 +286,7 @@ function render_onboarding_warnings() {
 					</div>
 				</div>
 			</div>
-			
+
 			<?php if( ! defined( 'LAYERS_DISABLE_INTERCOM' ) ){ ?>
 				<!-- Enable / Disable Intercom -->
 				<div class="l_admin-onboard-slide l_admin-animate l_admin-onboard-slide-inactive">

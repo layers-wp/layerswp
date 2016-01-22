@@ -305,6 +305,15 @@ if( !function_exists( 'layers_get_page_title' ) ) {
 			$title_array['title'] = $parentpage->post_title;
 			if($parentpage->post_excerpt != ''){ $title_array['excerpt'] = $parentpage->post_excerpt; }
 
+		} elseif( function_exists('is_shop') && ( is_post_type_archive( 'product' ) || ( get_post_type() == "product") ) ) {
+			if( function_exists( 'woocommerce_get_page_id' )  && -1 != woocommerce_get_page_id('shop') ) {
+				$shop_page = get_post( woocommerce_get_page_id('shop') );
+				if( is_object( $shop_page ) ) {
+					$title_array['title' ] = $shop_page->post_title;
+				}
+			} else {
+				$title_array['title' ] = __( 'Shop' , 'layerswp' );
+			}
 		} elseif( is_page() ) {
 			while ( have_posts() ) { the_post();
 				$title_array['title'] = get_the_title();
@@ -332,15 +341,6 @@ if( !function_exists( 'layers_get_page_title' ) ) {
 			$title_array['title' ] = sprintf( __( 'Monthly Archives: %s' , 'layerswp' ), get_the_date( _x( 'F Y', 'monthly archives date format' , 'layerswp' ) ) );
 		} elseif ( is_year() ) {
 			$title_array['title' ] = sprintf( __( 'Yearly Archives: %s' , 'layerswp' ), get_the_date( _x( 'Y', 'yearly archives date format' , 'layerswp' ) ) );
-		} elseif( function_exists('is_shop') && ( is_post_type_archive( 'product' ) || ( get_post_type() == "product") ) ) {
-			if( function_exists( 'woocommerce_get_page_id' )  && -1 != woocommerce_get_page_id('shop') ) {
-				$shop_page = get_post( woocommerce_get_page_id('shop') );
-				if( is_object( $shop_page ) ) {
-					$title_array['title' ] = $shop_page->post_title;
-				}
-			} else {
-				$title_array['title' ] = __( 'Shop' , 'layerswp' );
-			}
 		} elseif( is_single() ) {
 			$title_array['title' ] = get_the_title();
 		} else {

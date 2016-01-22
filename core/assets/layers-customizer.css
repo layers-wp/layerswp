@@ -2707,6 +2707,9 @@ li[id*='customize-control-layers'].customize-control .l_option-form-item:after{
         height: 35px;
         padding: 0;
         margin: 0;
+        border: initial;
+        box-shadow: initial;
+        padding: 0;
     }
     .l_option-range-wrapper input[type="number"],
     .l_option-customize-control-range input[type="number"] {
@@ -2743,6 +2746,7 @@ li[id*='customize-control-layers'].customize-control .l_option-form-item:after{
         letter-spacing: 1px;
         margin-bottom: 6px;
         line-height: 1.5em;
+        display: block;
     }
     li .customize-control .l_option-customize-control.group label{
         text-transform: uppercase;

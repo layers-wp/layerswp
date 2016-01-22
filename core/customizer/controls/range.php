@@ -38,28 +38,25 @@ if( !class_exists( 'Layers_Customize_Range_Control' ) ) {
 					</div>
 				<?php endif; ?>
 
+				<?php if ( '' != $this->subtitle ) : ?>
+					<label class="layers-form-row"><?php echo $this->subtitle; ?></label>
+				<?php endif; ?>
+
 				<div class="layers-form-item">
-
-					<?php if ( '' != $this->subtitle ) : ?>
-						<label class="layers-form-row"><?php echo $this->subtitle; ?></label>
-					<?php endif; ?>
-
-					<div class="layers-form-item">
-						<?php echo $form_elements->input(
-							array(
-								'type' => 'range',
-								'label' => ( isset( $this->label ) ? $this->label : '' ),
-								'name' => '',
-								'id' => $this->id,
-   								'value' => stripslashes( $this->value() ),
-								'data' => $this->get_customize_data(),
-								'min' => ( isset( $this->min ) ? $this->min : 0 ) ,
-								'max' => ( isset( $this->max ) ? $this->max : 100 ) ,
-								'step' => ( isset( $this->step ) ? $this->step : 1 ) ,
-								'placeholder' => $this->placeholder,
-							)
-						); ?>
-					</div>
+					<?php echo $form_elements->input(
+						array(
+							'type' => 'range',
+							'label' => ( isset( $this->label ) ? $this->label : '' ),
+							'name' => '',
+							'id' => $this->id,
+								'value' => stripslashes( $this->value() ),
+							'data' => $this->get_customize_data(),
+							'min' => ( isset( $this->min ) ? $this->min : 0 ) ,
+							'max' => ( isset( $this->max ) ? $this->max : 100 ) ,
+							'step' => ( isset( $this->step ) ? $this->step : 1 ) ,
+							'placeholder' => $this->placeholder,
+						)
+					); ?>
 				</div>
 
 			</div>

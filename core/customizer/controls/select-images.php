@@ -36,12 +36,12 @@ if( !class_exists( 'Layers_Customize_Select_Image_Control' ) ) {
 						<?php echo $this->description; ?>
 					</div>
 				<?php endif; ?>
-
+				
+				<?php if ( '' != $this->subtitle ) : ?>
+					<label class="layers-form-row"><?php echo $this->subtitle; ?></label>
+				<?php endif; ?>
+				
 				<div class="layers-form-item">
-					<?php if ( '' != $this->subtitle ) : ?>
-						<label class="layers-form-row"><?php echo $this->subtitle; ?></label>
-					<?php endif; ?>
-
 					<?php echo $form_elements->input(
 						array(
 							'type' => 'image',
@@ -53,7 +53,7 @@ if( !class_exists( 'Layers_Customize_Select_Image_Control' ) ) {
 						)
 					); ?>
 				</div>
-
+				
 			</div>
 			<?php
 		}

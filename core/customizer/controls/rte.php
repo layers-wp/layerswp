@@ -37,25 +37,22 @@ if( !class_exists( 'Layers_Customize_RTE_Control' ) ) {
 					</div>
 				<?php endif; ?>
 
+				<?php if ( '' != $this->subtitle ) : ?>
+					<label class="layers-form-row"><?php echo $this->subtitle; ?></label>
+				<?php endif; ?>
+
 				<div class="layers-form-item">
-
-					<?php if ( '' != $this->subtitle ) : ?>
-						<label class="layers-form-row"><?php echo $this->subtitle; ?></label>
-					<?php endif; ?>
-
-					<div class="layers-form-item">
-						<?php echo $form_elements->input(
-							array(
-								'type' => 'rte',
-								'label' => ( isset( $this->label ) ? $this->label : '' ),
-								'name' => '' ,
-								'id' =>  $this->id,
-   								'value' => stripslashes( $this->value() ),
-								'data' => $this->get_customize_data(),
-								'placeholder' => $this->placeholder,
-							)
-						); ?>
-					</div>
+					<?php echo $form_elements->input(
+						array(
+							'type' => 'rte',
+							'label' => ( isset( $this->label ) ? $this->label : '' ),
+							'name' => '' ,
+							'id' =>  $this->id,
+								'value' => stripslashes( $this->value() ),
+							'data' => $this->get_customize_data(),
+							'placeholder' => $this->placeholder,
+						)
+					); ?>
 				</div>
 
 			</div>

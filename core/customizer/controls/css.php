@@ -36,20 +36,18 @@ if( !class_exists( 'Layers_Customize_CSS_Control' ) ) {
 						<?php echo esc_html( $this->description ); ?>
 					</div>
 				<?php endif; ?>
-
-				<div class="layers-form-item">
-					<div class="layers-css-wrapper layers-form-item">
-						<?php echo $form_elements->input(
-							array(
-								'type' => 'textarea',
-								'label' => $this->label,
-								'name' => '',
-								'id' => $this->id,
-								'data' => $this->get_customize_data(),
-								'placeholder' => $this->placeholder,
-							)
-						); ?>
-					</div>
+				
+				<div class="layers-form-item layers-css-wrapper">
+					<?php echo $form_elements->input(
+						array(
+							'type' => 'textarea',
+							'label' => $this->label,
+							'name' => '',
+							'id' => $this->id,
+							'data' => $this->get_customize_data(),
+							'placeholder' => $this->placeholder,
+						)
+					); ?>
 				</div>
 
 			</div>

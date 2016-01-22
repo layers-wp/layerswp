@@ -30,31 +30,26 @@ if( !class_exists( 'Layers_Customize_Color_Control' ) ) {
 					<span class="customize-control-title"><?php echo $this->label; ?></span>
 				<?php } ?>
 
-				<div class="layers-form-item">
+				<?php if ( '' != $this->subtitle ) : ?>
+					<label class="layers-form-row"><?php echo $this->subtitle; ?></label>
+				<?php endif; ?>
 
-					<?php if ( '' != $this->subtitle ) : ?>
-						<label class="layers-form-row"><?php echo $this->subtitle; ?></label>
-					<?php endif; ?>
-
-					<?php if ( '' != $this->description ) : ?>
-						<div class="description customize-control-description">
-							<?php echo $this->description; ?>
-						</div>
-					<?php endif; ?>
-
-					<div class="layers-form-item">
-						<?php
-						echo $form_elements->input(
-							array(
-								'type' => 'color',
-								'name' => '',
-								'id' =>  $this->id,
-								'value' => $this->value(),
-								'data' => $this->get_customize_data(),
-							)
-						);
-						?>
+				<?php if ( '' != $this->description ) : ?>
+					<div class="description customize-control-description">
+						<?php echo $this->description; ?>
 					</div>
+				<?php endif; ?>
+
+				<div class="layers-form-item">
+					<?php echo $form_elements->input(
+						array(
+							'type' => 'color',
+							'name' => '',
+							'id' =>  $this->id,
+							'value' => $this->value(),
+							'data' => $this->get_customize_data(),
+						)
+					); ?>
 				</div>
 
 			</div>

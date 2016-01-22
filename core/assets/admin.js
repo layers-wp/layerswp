@@ -637,13 +637,13 @@ jQuery(function($) {
 
 			// Set the reveal animation type.
 			var animation_type = 'none';
-			if ( $target_element.hasClass('layers-customize-control') ){
+			if ( $target_element.hasClass('l_option-customize-control') ){
 				animation_type = 'slideDown';
 			}
 
 			// If is a Customize Control then hide the whole control.
-			if ( $target_element.hasClass('layers-customize-control') ){
-				$target_element = $target_element.closest('.customize-control');
+			if ( $target_element.hasClass('l_option-customize-control') ){
+				$target_element = $target_element.parent('.customize-control');
 			} else {
 				$target_element = $target_element.closest('.layers-form-item');
 			}

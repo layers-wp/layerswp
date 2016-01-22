@@ -33,24 +33,22 @@ if( !class_exists( 'Layers_Customize_Font_Control' ) ) {
 				<?php if ( '' != $this->label ) { ?>
 					<span class="customize-control-title"><?php echo $this->label; ?></span>
 				<?php } ?>
+				
+				<?php if ( '' != $this->subtitle ) : ?>
+					<label class="layers-form-row"><?php echo $this->subtitle; ?></label>
+				<?php endif; ?>
 
-				<div class="layers-form-item">
-					<?php if ( '' != $this->subtitle ) : ?>
-						<label class="layers-form-row"><?php echo $this->subtitle; ?></label>
-					<?php endif; ?>
-
-					<div class="layers-font-wrapper layers-form-item">
-						<?php echo $form_elements->input(
-							array(
-								'type' => 'select',
-								'label' => ( isset( $this->label ) ? $this->label : '' ),
-								'name' => '' ,
-								'id' =>  $this->id,
-								'options' => $this->choices,
-								'data' => $this->get_customize_data(),
-							)
-						); ?>
-					</div>
+				<div class="layers-form-item layers-font-wrapper">
+					<?php echo $form_elements->input(
+						array(
+							'type' => 'select',
+							'label' => ( isset( $this->label ) ? $this->label : '' ),
+							'name' => '' ,
+							'id' =>  $this->id,
+							'options' => $this->choices,
+							'data' => $this->get_customize_data(),
+						)
+					); ?>
 				</div>
 
 				<div class="description customize-control-description" data-base-url="https://www.google.com/fonts/specimen/">

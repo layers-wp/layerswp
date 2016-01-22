@@ -909,7 +909,7 @@ div[id*='layers-widget'] .widget-control-actions .alignright{
 	.layers-form-item input:disabled{
 		background: #F7F7F7;
 	}
-	.layers-customize-control:not(.layers-customize-control-color) .layers-form-item input[type="range"]{
+	.l_option-customize-control .layers-form-item input[type="range"]{
 		height: 36px;
 	}
 	.layers-form-item textarea {
@@ -2426,14 +2426,14 @@ input[type=radio]:checked + .layers-settings-icon span{
 	/*-----------------------*/
 	/*- UPSELL --------------*/
 	li[id*="accordion-section"] .customize-control
-	.layers-customize-control.layers-customize-control-heading.layers-upsell-tag{
+	.l_option-customize-control.l_option-customize-control-heading.layers-upsell-tag{
 		padding: 8px 10px 5px;
 		background: #f5f5f5;
 		border-radius: 5px;
 	}
 
 	li[id*="accordion-section"] .customize-control
-	.layers-customize-control.layers-customize-control-heading.layers-upsell-tag
+	.l_option-customize-control.l_option-customize-control-heading.layers-upsell-tag
 	.customize-control-title{
 		display: inline;
 		padding: 1px 5px;
@@ -2594,10 +2594,10 @@ li[id*='customize-control-layers'].customize-control .l_option-customize-control
 li[id*='customize-control-layers'].customize-control:first-child{
     margin: 6px 0 0px;
 }
-li[id*='customize-control-layers'].customize-control .l_option-form-item{
+li[id*='customize-control-layers'].customize-control .layers-form-item{
     margin: 0 0 6px;
 }
-li[id*='customize-control-layers'].customize-control .l_option-form-item:after{
+li[id*='customize-control-layers'].customize-control .layers-form-item:after{
     content: '';
     display: block;
     float: none;
@@ -2612,7 +2612,7 @@ li[id*='customize-control-layers'].customize-control .l_option-form-item:after{
         border-bottom: 1px solid #EEE;
         margin: 8px 0;
     }
-    .l_option-form-item .wp-color-result{
+    .layers-form-item .wp-color-result{
         margin: 0 6px 3px 0;
         box-shadow: 0 1px 1px rgba(0,0,0,0.08);
     }
@@ -2707,6 +2707,9 @@ li[id*='customize-control-layers'].customize-control .l_option-form-item:after{
         height: 35px;
         padding: 0;
         margin: 0;
+        border: initial;
+        box-shadow: initial;
+        padding: 0;
     }
     .l_option-range-wrapper input[type="number"],
     .l_option-customize-control-range input[type="number"] {
@@ -2716,7 +2719,7 @@ li[id*='customize-control-layers'].customize-control .l_option-form-item:after{
 
     /*----------------------*/
     /*- CHECKBOX -----------*/
-    li[id*='customize-control-layers'].customize-control .l_option-customize-control-checkbox .l_option-form-item{
+    li[id*='customize-control-layers'].customize-control .l_option-customize-control-checkbox .layers-form-item{
         margin: 0;
     }
     li[id*='customize-control-layers'].customize-control .l_option-customize-control-checkbox .description{
@@ -2743,6 +2746,7 @@ li[id*='customize-control-layers'].customize-control .l_option-form-item:after{
         letter-spacing: 1px;
         margin-bottom: 6px;
         line-height: 1.5em;
+        display: block;
     }
     li .customize-control .l_option-customize-control.group label{
         text-transform: uppercase;

@@ -82,7 +82,7 @@ $all_categories = array(); ?>
 					<div class="l_admin-panel-title">
 						<h3 class="l_admin-heading">
 							<?php _e( 'Categories' , 'layerswp' ); ?>
-							<span class="l_admin-pull-right l_admin-label label-subtle layers-hide" id="layers-marketplace-categories-selected"></span>
+							<a href="#" class="l_admin-pull-right l_admin-label label-subtle layers-hide" id="layers-marketplace-categories-clear" data-type="categories"><?php _e( 'Clear', 'layerswp' ); ?></a>
 						</h3>
 					</div>
 					<ul class="l_admin-list l_admin-page-list" id="layers-marketplace-categories">
@@ -93,10 +93,10 @@ $all_categories = array(); ?>
 					<div class="l_admin-panel-title">
 						<h3 class="l_admin-heading">
 							<?php _e( 'Tags' , 'layerswp' ); ?>
-							<span class="l_admin-pull-right l_admin-label label-subtle layers-hide" id="layers-marketplace-tags-selected"></span>
+							<a href="#" class="l_admin-pull-right l_admin-label label-subtle layers-hide" id="layers-marketplace-tags-clear" data-type="tags"><?php _e( 'Clear', 'layerswp' ); ?></a>
 						</h3>
 					</div>
-					<div class="l_admin-animate" id="layers-marketplace-tags">
+					<div class="l_admin-animate l_admin-template-selector" id="layers-marketplace-tags">
 					</div>
 				</div>
 			</div>
@@ -262,14 +262,8 @@ $all_categories = array(); ?>
 		<style>
 			#layers-marketplace-tags{
 				display: block;
-				max-height: 200px;
-				overflow: hidden;
 			}
 
-			#layers-marketplace-tags:hover{
-				display: block;
-				max-height: none;
-			}
 			#layers-marketplace-tags input[type="checkbox"] {
 				display: none;
 			}

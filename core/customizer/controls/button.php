@@ -34,21 +34,21 @@ if( !class_exists( 'Layers_Customize_Button_Control' ) ) {
 						<?php echo $this->description; ?>
 					</div>
 				<?php endif; ?>
-
-				<div class="layers-form-item">
-					<div class="<?php echo esc_attr( $this->id ); ?>-wrapper layers-form-item">
-
-						<?php echo $form_elements->input(
-							array(
-								'type'  => 'button',
-								'label' => $this->text,
-								'id'    => $this->id,
-								'tag'   => 'a',
-								'href'  => $this->href,
-							)
-						); ?>
-
-					</div>
+				
+				<?php if ( '' != $this->subtitle ) : ?>
+					<label class="layers-form-row"><?php echo $this->subtitle; ?></label>
+				<?php endif; ?>
+				
+				<div class="layers-form-item <?php echo esc_attr( $this->id ); ?>-wrapper ">
+					<?php echo $form_elements->input(
+						array(
+							'type'  => 'button',
+							'label' => $this->text,
+							'id'    => $this->id,
+							'tag'   => 'a',
+							'href'  => $this->href,
+						)
+					); ?>
 				</div>
 
 			</div>

@@ -21,7 +21,7 @@ if( !class_exists( 'Layers_Customize_TRBL_Control' ) ) {
 
 			$values = false; ?>
 
-			<div data-test id="layers-customize-control-<?php echo esc_attr( $this->id ); ?>" class="layers-customize-control l_option-customize-control-<?php echo esc_attr( str_replace( 'layers-', '', $this->type ) ); ?> <?php echo esc_attr( $this->class ); ?>" <?php echo $this->get_linked_data(); ?> >
+			<div id="layers-customize-control-<?php echo esc_attr( $this->id ); ?>" class="l_option-customize-control l_option-customize-control-<?php echo esc_attr( str_replace( 'layers-', '', $this->type ) ); ?> <?php echo esc_attr( $this->class ); ?>" <?php echo $this->get_linked_data(); ?> >
 
 				<?php $this->render_history_actions(); ?>
 
@@ -39,28 +39,25 @@ if( !class_exists( 'Layers_Customize_TRBL_Control' ) ) {
 					</div>
 				<?php endif; ?>
 
-				<div class="layers-form-item">
+				<?php if ( '' != $this->subtitle ) : ?>
+					<label class="layers-form-row"><?php echo $this->subtitle; ?></label>
+				<?php endif; ?>
 
-					<?php if ( '' != $this->subtitle ) : ?>
-						<label class="layers-form-row"><?php echo $this->subtitle; ?></label>
-					<?php endif; ?>
-
-					<div class="layers-form-item <?php echo ( $this->colspan ) ? esc_attr( "layers-column-flush layers-span-{$this->colspan}" ) : '' ?>">
-						<?php echo $form_elements->input(
-							array(
-								'type' => 'trbl-fields',
-								'name' => '',
-								'id' => $this->id,
-								'value' => array(
-									'top' => get_option( "{$this->id}-top" ),
-									'right' => get_option( "{$this->id}-right" ),
-									'bottom' => get_option( "{$this->id}-bottom" ),
-									'left' => get_option( "{$this->id}-left" ),
-								),
-   								'fields' => $this->fields,
-							)
-						); ?>
-					</div>
+				<div class="layers-form-item <?php echo ( $this->colspan ) ? esc_attr( "layers-column-flush layers-span-{$this->colspan}" ) : '' ?>">
+					<?php echo $form_elements->input(
+						array(
+							'type' => 'trbl-fields',
+							'name' => '',
+							'id' => $this->id,
+							'value' => array(
+								'top' => get_option( "{$this->id}-top" ),
+								'right' => get_option( "{$this->id}-right" ),
+								'bottom' => get_option( "{$this->id}-bottom" ),
+								'left' => get_option( "{$this->id}-left" ),
+							),
+								'fields' => $this->fields,
+						)
+					); ?>
 				</div>
 
 			</div>

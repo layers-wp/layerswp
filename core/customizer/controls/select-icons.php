@@ -37,25 +37,24 @@ if( !class_exists( 'Layers_Customize_Select_Icon_Control' ) ) {
 						<?php echo $this->description; ?>
 					</div>
 				<?php endif; ?>
-
-				<div class="layers-form-item">
-					<?php if ( '' != $this->subtitle ) : ?>
-						<div class="layers-form-row"><?php echo $this->subtitle; ?></div>
-					<?php endif; ?>
-					<ul class="layers-visuals-wrapper layers-visuals-inline layers-clearfix">
-						<?php foreach ( $this->choices as $value => $label ) : ?>
-								<li class="layers-visuals-item <?php if( $value == $this->value() ) echo 'layers-active'; ?>">
-									<label class="layers-icon-wrapper layers-select-images">
-										<span class="icon-<?php echo $value; ?>"></span>
-										<span class="layers-icon-description">
-											<?php echo $label; ?>
-										</span>
-										<input class="layers-hide" type="radio" value="<?php echo esc_attr( $value ); ?>" name="<?php echo esc_attr( $name ); ?>" <?php $this->link(); checked( $this->value(), $value ); ?> />
-									</label>
-								</li>
-						<?php endforeach; ?>
-					</ul>
-				</div>
+				
+				<?php if ( '' != $this->subtitle ) : ?>
+					<div class="layers-form-row"><?php echo $this->subtitle; ?></div>
+				<?php endif; ?>
+				
+				<ul class="layers-visuals-wrapper layers-visuals-inline layers-clearfix">
+					<?php foreach ( $this->choices as $value => $label ) : ?>
+							<li class="layers-visuals-item <?php if( $value == $this->value() ) echo 'layers-active'; ?>">
+								<label class="layers-icon-wrapper layers-select-images">
+									<span class="icon-<?php echo $value; ?>"></span>
+									<span class="layers-icon-description">
+										<?php echo $label; ?>
+									</span>
+									<input class="layers-hide" type="radio" value="<?php echo esc_attr( $value ); ?>" name="<?php echo esc_attr( $name ); ?>" <?php $this->link(); checked( $this->value(), $value ); ?> />
+								</label>
+							</li>
+					<?php endforeach; ?>
+				</ul>
 
 			</div>
 			<?php

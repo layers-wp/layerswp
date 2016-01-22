@@ -7,7 +7,7 @@
  * @since Layers 1.0.0
  */
 
-if( !class_exists( 'Layers_Widget_Ajax' ) ) {
+if( ! class_exists( 'Layers_Widget_Ajax' ) ) {
 
 	class Layers_Widget_Ajax {
 
@@ -35,6 +35,9 @@ if( !class_exists( 'Layers_Widget_Ajax' ) ) {
 			add_action( 'wp_ajax_layers_slider_widget_actions', array( $this, 'slider_widget_actions' ) );
 			add_action( 'wp_ajax_layers_content_widget_actions', array( $this, 'content_widget_actions' ) );
 			add_action( 'wp_ajax_layers_widget_new_repeater_item', array( $this, 'widget_new_repeater_item' ) );
+			
+			// Widget Link Actions
+			add_action( 'wp_ajax_layers_widget_linking_actions', array( $this, 'widget_linking_actions' ) );
 		}
 		function slider_widget_actions(){
 
@@ -137,7 +140,74 @@ if( !class_exists( 'Layers_Widget_Ajax' ) ) {
 			}
 			die();
 		}
+		
+		function widget_linking_actions(){
+			global $post;
+			// if( ! check_ajax_referer( 'layers-widget-actions', 'nonce', false ) ) die( 'You threw a Nonce exception' ); // Nonce
+			// if( 'add-column' == $_POST[ 'widget_action'] ) { }
+			
+			$args = array();
+			
+			$args['posts_per_page'] = 3;
+			$args['paged'] = $_GET['page'];
+			
+			$data = array();
+			
+			if ( isset( $_GET['term'] ) && '' !== $_GET['term'] ) {
+				
+				
+				add_filter( 'posts_where', 'post_title_search_filter', 10, 2 );
+				
+				$args['post_type'] = get_post_types();
+				
+				query_posts( $args );
 
+				// the Loop
+				while ( have_posts() ) : the_post();
+					$data[] = array(
+						'id' => $post->ID,
+						'text' => $post->post_title,
+					);
+				endwhile;
+				
+				echo json_encode( $data );
+			}
+			else {
+				
+				
+				$args['post_type'] = array( 'posts', 'page' );
+				
+				query_posts( $args );
+
+				// the Loop
+				while ( have_posts() ) : the_post();
+					$data[] = array(
+						'id' => $post->ID,
+						'text' => $post->post_title,
+					);
+				endwhile;
+				
+				$new_data = array(
+					array(
+						'text' => 'Pages',
+						'children' => $data,
+					),
+				);
+				
+				echo json_encode( $new_data );
+			}
+			
+			die();
+		}
+
+	}
+	
+	function post_title_search_filter( $where, &$wp_query ) {
+		global $wpdb;
+		if ( isset( $_GET['term'] ) && $term = $_GET['term'] ) {
+			$where .= ' AND ' . $wpdb->posts . '.post_title LIKE \'' . esc_sql( $wpdb->esc_like( $term ) ) . '%\'';
+		}
+		return $where;
 	}
 
 	function layers_register_widget_ajax(){

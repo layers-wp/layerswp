@@ -96,7 +96,7 @@ $all_categories = array(); ?>
 							<a href="#" class="l_admin-pull-right l_admin-label label-subtle layers-hide" id="layers-marketplace-tags-clear" data-type="tags"><?php _e( 'Clear', 'layerswp' ); ?></a>
 						</h3>
 					</div>
-					<div class="l_admin-animate" id="layers-marketplace-tags">
+					<div class="l_admin-animate l_admin-template-selector" id="layers-marketplace-tags">
 					</div>
 				</div>
 			</div>
@@ -262,14 +262,8 @@ $all_categories = array(); ?>
 		<style>
 			#layers-marketplace-tags{
 				display: block;
-				max-height: 200px;
-				overflow: hidden;
 			}
 
-			#layers-marketplace-tags:hover{
-				display: block;
-				max-height: none;
-			}
 			#layers-marketplace-tags input[type="checkbox"] {
 				display: none;
 			}

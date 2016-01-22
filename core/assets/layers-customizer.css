@@ -905,6 +905,17 @@ div[id*='layers-widget'] .widget-control-actions .alignright{
 		border: 1px solid #ddd;
 		box-shadow: inset 1px 1px 2px rgba(0, 0, 0, 0.1);
 	}
+	.layers-form-item select {
+		display: block;
+		width: 100%;
+		padding: 8px;
+		margin: 0;
+		line-height: 18px;
+		background: #fff;
+		border: 1px solid #ddd;
+		box-shadow: inset 1px 1px 2px rgba(0, 0, 0, 0.1);
+		outline: none;
+	}
 	.layers-form-item .layers-input:disabled,
 	.layers-form-item input:disabled{
 		background: #F7F7F7;
@@ -966,7 +977,8 @@ div[id*='layers-widget'] .widget-control-actions .alignright{
 	.layers-form-item input[type=number]:focus,
 	.layers-form-item input[type=password]:focus,
 	.layers-form-item input[type=link]:focus,
-	.customize-control .layers-textarea:focus{
+	.customize-control .layers-textarea:focus,
+	.layers-form-item select:focus{
 		border-color: #0289C0;
 	}
 	.layers-form-item input[type=text]:invalid,
@@ -1057,6 +1069,23 @@ div[id*='layers-widget'] .widget-control-actions .alignright{
 	}
 	.layers-sync-setting-holder.layers-use-widget-value .layers-global-setting{
 		display: none;
+	}
+	
+	/*--------------------*/
+	/*- NEW --------------*/
+	.select2-container{
+		z-index: 10000000;
+	}
+	.layers-link-type-ux{
+		position: relative;
+	}
+	.layers-link-type-ux label{
+		position: absolute;
+		top: -18px;
+		right: 0;
+		font-style: italic;
+		color: rgba(0,0,0,0.25) !important;
+		font-weight: normal;
 	}
 
 /*-----------------------*/

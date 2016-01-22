@@ -397,13 +397,13 @@ if( ! function_exists( 'layers_admin_scripts' ) ) {
 		 */
 		wp_enqueue_style(
 			'select2',
-			get_template_directory_uri() . '/core/assets/plugins/select2/select2.min.css',
+			get_template_directory_uri() . '/core/assets/plugins/select2/select2.css',
 			array(),
 			LAYERS_VERSION
 		);
 		wp_enqueue_script(
 			'select2',
-			get_template_directory_uri() . '/core/assets/plugins/select2/select2.min.js',
+			get_template_directory_uri() . '/core/assets/plugins/select2/select2.js',
 			array( 'jquery' ),
 			LAYERS_VERSION
 		);

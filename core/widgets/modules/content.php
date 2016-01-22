@@ -514,20 +514,91 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 								)
 							); ?>
 						</p>
-						<div class="layers-row">
+						
+						<div class="layers-row layers-push-bottom-small">
 							<p class="layers-form-item layers-column layers-span-6">
-								<label for="<?php echo $this->get_layers_field_id( 'link_text' ); ?>"><?php _e( 'Button Link' , 'layerswp' ); ?></label>
+								<label for="<?php echo $this->get_layers_field_id( 'link_type' ); ?>"><?php _e( 'Button Link Type' , 'layerswp' ); ?></label>
 								<?php echo $this->form_elements()->input(
 									array(
-										'type' => 'text',
-										'name' => $this->get_layers_field_name( 'link' ),
-										'id' => $this->get_layers_field_id( 'link' ),
-										'placeholder' => __( 'http://' , 'layerswp' ),
-										'value' => ( isset( $widget['link'] ) ) ? $widget['link'] : NULL ,
+										'type' => 'select',
+										'name' => $this->get_layers_field_name( 'link_type' ),
+										'id' => $this->get_layers_field_id( 'link_type' ),
+										// 'placeholder' => __( 'http://' , 'layerswp' ),
+										'options' => array(
+											'custom' => __( 'Custom', 'layerswp' ),
+											'post' => __( 'Post/Page (incl. Custom Post Types)', 'layerswp' ),
+											'post_type_archive' => __( 'Post Archives (incl. Custom Post Types)', 'layerswp' ),
+											'taxonomy_archive' => __( 'Taxonomy Archives (incl. Custom Taxonomies)', 'layerswp' ),
+										),
+										'value' => ( isset( $widget['link_type'] ) ) ? $widget['link_type'] : NULL ,
 										'class' => 'layers-text',
 									)
 								); ?>
 							</p>
+							<div class="layers-form-item layers-column layers-span-6">
+								
+								<label for="<?php echo $this->get_layers_field_id( 'link' ); ?>"><?php _e( 'Button Link' , 'layerswp' ); ?></label>
+								
+								<div class="layers-form-item layers-link-type-ux layers-link-type-ux-link" data-show-if-selector="#<?php echo $this->get_layers_field_id( 'link_type' ) ?>" data-show-if-value="custom">
+									<label>
+										<?php _e( 'Custom', 'layerswp' ) ?>
+									</label>
+									
+									<?php echo $this->form_elements()->input(
+										array(
+											'type' => 'text',
+											'name' => $this->get_layers_field_name( 'link' ),
+											'id' => $this->get_layers_field_id( 'link' ),
+											'placeholder' => __( 'http://' , 'layerswp' ),
+											'value' => ( isset( $widget['link'] ) ) ? $widget['link'] : NULL ,
+											'class' => 'layers-text',
+										)
+									); ?>
+								</div>
+								
+								<div class="layers-form-item layers-link-type-ux layers-link-type-ux-link_post" data-show-if-selector="#<?php echo $this->get_layers_field_id( 'link_type' ) ?>" data-show-if-value="post">
+									<label>
+										<?php _e( 'Post/Page', 'layerswp' ) ?>
+									</label>
+									
+									<?php
+									$att_name = $this->get_layers_field_name( 'link_post' );
+									$att_id = $this->get_layers_field_id( 'link_post' );
+									$att_value = ( isset( $widget['link_post'] ) ) ? $widget['link_post'] : NULL;
+									?>
+									
+									<input type="hidde" class="js-data-example-ajax" name="<?php echo $att_name ?>" id="<?php echo $att_id ?>" value="<?php echo $att_value ?>">
+									
+									<!--
+									<select class="js-data-example-ajax" name="<?php echo $att_name ?>" id="<?php echo $att_id ?>" value="<?php echo $att_value ?>" >
+										<?php if ( $att_value ) { ?>
+											<option value="<?php echo $att_value ?>" selected="selected"><?php echo $att_value; ?></option>
+										<?php } ?>
+									</select>
+									-->
+									
+									<!-- <input type="text" class="js-data-example-ajax" name="<?php echo $att_name ?>" id="<?php echo $att_id ?>" value="<?php echo $att_value ?>"> -->
+									
+									<?php /* echo $this->form_elements()->input(
+										array(
+											'type' => 'select',
+											'name' => $this->get_layers_field_name( 'link_post' ),
+											'id' => $this->get_layers_field_id( 'link_post' ),
+											// 'placeholder' => __( 'http://' , 'layerswp' ),
+											'value' => ( isset( $widget['link_post'] ) ) ? $widget['link_post'] : NULL,
+											'class' => 'layers-text js-data-example-ajax',
+											'options' => array(
+												'12345' => '...',
+											),
+										)
+									); */ ?>
+								</div>
+								
+							</div>
+							
+						</div>
+						
+						<div class="layers-row">
 							<p class="layers-form-item layers-column layers-span-6">
 								<label for="<?php echo $this->get_layers_field_id( 'link_text' ); ?>"><?php _e( 'Button Text' , 'layerswp' ); ?></label>
 								<?php echo $this->form_elements()->input(
@@ -540,7 +611,24 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 									)
 								); ?>
 							</p>
+							<p class="layers-form-item layers-column layers-span-6">
+								<label for="<?php echo $this->get_layers_field_id( 'link_target' ); ?>"><?php _e( 'Button Target' , 'layerswp' ); ?></label>
+								<?php echo $this->form_elements()->input(
+									array(
+										'type' => 'select',
+										'name' => $this->get_layers_field_name( 'link_target' ),
+										'id' => $this->get_layers_field_id( 'link_target' ),
+										// 'placeholder' => __( 'e.g. "Read More"' , 'layerswp' ),
+										'options' => array(
+											'_self' => __( 'Same Tab', 'layerswp' ),
+											'_blank' => __( 'New Tab', 'layerswp' ),
+										),
+										'value' => ( isset( $widget['link_target'] ) ) ? $widget['link_target'] : NULL ,
+									)
+								); ?>
+							</p>
 						</div>
+						
 					</div>
 				</section>
 			</li>

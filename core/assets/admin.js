@@ -369,6 +369,204 @@ jQuery(function($) {
 	var layers_debounce_color_input = _.debounce( function( element ){
 		$( element ).layers_trigger_change();
 	}, 200, false );
+	
+	
+	
+	/**
+	* 666 - Init Select 2
+	*/
+	
+	// Init interface in all except widgets on load
+	layers_init_link_ux( $( '#customize-theme-controls > ul > li.accordion-section' ).not( '#accordion-panel-widgets' ) );
+
+	// Init interface inside widgets
+	$( document ).on( 'layers-interface-init', '.widget, .layers-accordions', function( e ){
+
+		// 'this' is the widget
+		layers_init_link_ux( $(this) );
+	});
+
+	function layers_init_link_ux( $element_s ){
+
+		$element_s.each( function( i, group ) {
+
+			$(group).find( '.layers-link-type-ux').each( function( j, $element ) {
+				
+				// $( $element ).css({ opacity: .5 });
+			});
+		});
+	}
+	
+	
+	
+	/**
+	* 666 - Init Select 2
+	*/
+	
+	// Init interface in all except widgets on load
+	layers_init_select_2( $( '#customize-theme-controls > ul > li.accordion-section' ).not( '#accordion-panel-widgets' ) );
+
+	// Init interface inside widgets
+	$( document ).on( 'layers-interface-init', '.widget, .layers-accordions', function( e ){
+
+		// 'this' is the widget
+		layers_init_select_2( $(this) );
+	});
+
+	function layers_init_select_2( $element_s ){
+
+		$element_s.each( function( i, group ) {
+
+			$(group).find( '.js-data-example-ajax').each( function( j, element ) {
+				
+				$(element).select2({
+					
+					ajax: {
+						url: ajaxurl,
+						dataType: 'json',
+						quietMillis: 250,
+						data: function(term, page) {
+							
+							return {
+								action: 'layers_widget_linking_actions',
+								term: term,
+								page: page,
+							};
+						},
+						results: function(data, params) {
+							
+							return {
+								results: data,
+								more: true,
+							};
+						},
+						cache: true
+					},
+					escapeMarkup: function(markup) {
+						
+						// let our custom formatter work
+						return markup;
+					},
+					minimumInputLength: 1,
+					// formatResult: function(data) {
+						
+					// 	if (data.loading) return data.text;
+						
+					// 	var markup = "";
+					// 	markup += "<div>";
+					// 	markup += data.text;
+					// 	markup += "</div>";
+
+					// 	return markup;
+					// },
+					formatSelection: function(data) {
+						
+						return data.text;
+					},
+					dropdownCssClass: 'layers-select-2-widget',
+					minimumInputLength: 1,
+				});
+
+				$(element).on('select2-open', function(){
+					// $(element).select2('search', '');
+				});
+
+				
+				// Select2 - v4
+				/*
+				$(element).select2({
+					
+					ajax: {
+						url: ajaxurl,
+						dataType: 'json',
+						delay: 250,
+						data: function(params) {
+							
+							return {
+								action: 'layers_widget_linking_actions',
+								q: params.term, // search term
+								page: params.page
+							};
+						},
+						processResults: function(data, params) {
+							
+							// parse the results into the format expected by Select2
+							// since we are using custom formatting functions we do not need to
+							// alter the remote JSON data, except to indicate that infinite
+							// scrolling can be used
+							params.page = params.page || 1;
+							
+							// Reformat Data (Optional. if not in desired format)
+							// var new_results = [];
+							// $(data.items).each(function(index, val) {
+							// 	new_results.push({
+							// 		id    : val.full_name,
+							// 		text  : val.full_name,
+							// 	});
+							// });
+							
+							return {
+								results: data,
+								// results: data.items,
+								pagination: {
+									more: (params.page * 30) < data.total_count
+								}
+							};
+						},
+						cache: true
+					},
+					escapeMarkup: function(markup) {
+						
+						// let our custom formatter work
+						return markup;
+					},
+					minimumInputLength: 1,
+					templateResult: function(data) {
+						
+						if (data.loading) return data.text;
+						
+						var markup = "";
+						markup += "<div>";
+						markup += data.text;
+						markup += "</div>";
+
+						return markup;
+					},
+					templateSelection: function(data) {
+						
+						return data.text;
+					},
+				});
+
+				$.ajax({
+					url: "https://api.github.com/search/repositories",
+					dataType: 'json',
+					delay: 250,
+					data: {
+						q: $(element).val(),
+					},
+					success: (function(data) {
+						
+						var $items = data.items;
+						
+						console.log( $items );
+						
+						$($items).each(function(index, el) {
+							
+							$(element).append( $("<option/>", {
+								value: el.full_name,
+								text: "Option -- " + el.full_name,
+								selected: true
+							}));
+						});
+					})
+				});
+				*/
+				
+			});
+		});
+	}
+	
 
 	/**
 	* 6 - Sortable Columns

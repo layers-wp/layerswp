@@ -312,10 +312,8 @@ jQuery(function($) {
 		
 		$( '.layers-color-selector').each( function( j, element ) {
 
-			var $element = $(element);
-
 			// Add each color-picker initialization to the queue
-			layers_set_color_selector( $element );
+			layers_set_color_selector( $(element) );
 		});
 	}
 	
@@ -324,16 +322,12 @@ jQuery(function($) {
 		// Loop through each of the element_s, that are groups to look inside of for elements to be initialized.
 		$element_s.each( function( i, group ) {
 
-			var $group = $(group);
-
 			// Loop through each color-picker
-			$group.find( '.layers-color-selector').each( function( j, element ) {
-
-				var $element = $(element);
+			$(group).find( '.layers-color-selector').each( function( j, element ) {
 
 				// Add each color-picker initialization to the queue
 				layers_enqueue_init( function(){
-					layers_set_color_selector( $element );
+					layers_set_color_selector( $(element) );
 				}, $run_instantly );
 
 			});
@@ -589,13 +583,9 @@ jQuery(function($) {
 
 		$element_s.each( function( i, group ) {
 
-			var $group = $(group);
+			$(group).find( '.layers-sortable').each( function( j, element ) {
 
-			$group.find( '.layers-sortable').each( function( j, element ) {
-
-				var $element = $(element);
-
-				$element.sortable({
+				$(element).sortable({
 					placeholder: "layers-sortable-drop"
 				});
 			});
@@ -768,16 +758,12 @@ jQuery(function($) {
 
 		$element_s.each( function( i, group ) {
 
-			var $group = $(group);
-
-			$group.find( '.layers-visuals-wrapper').each( function( j, element ) {
-
-				var $element = $(element);
+			$(group).find( '.layers-visuals-wrapper').each( function( j, element ) {
 
 				layers_enqueue_init( function(){
-					if( $element.find( 'li' ).length > 4 ){
-						$element.find( 'li' ).eq(-1).addClass( 'layers-last' );
-						$element.find( 'li' ).eq(-2).addClass( 'layers-last' );
+					if( $(element).find( 'li' ).length > 4 ){
+						$(element).find( 'li' ).eq(-1).addClass( 'layers-last' );
+						$(element).find( 'li' ).eq(-2).addClass( 'layers-last' );
 					}
 				}, $run_instantly );
 			});
@@ -801,9 +787,7 @@ jQuery(function($) {
 
 		$element_s.each( function( i, group ) {
 
-			var $group = $(group);
-
-			$group.find( '[data-show-if-selector]').each( function( j, element ) {
+			$(group).find( '[data-show-if-selector]').each( function( j, element ) {
 
 				var $target_element = $(element);
 
@@ -949,19 +933,15 @@ jQuery(function($) {
 
 		$element_s.each( function( i, group ) {
 
-			var $group = $(group);
-
-			$group.find( '.layers-rte').each( function( j, element ) {
-
-				var $element = $(element);
+			$(group).find( '.layers-rte').each( function( j, element ) {
 
 				// If I am already an RTE, do nothing
-				if( $element.siblings( '.froala-box' ).length > 0 ) {
+				if( $(element).siblings( '.froala-box' ).length > 0 ) {
 					return true;
 				}
 
 				// Set the ID for this element
-				var $id = $element[0].id
+				var $id = $(element)[0].id
 
 				layers_enqueue_init( function(){
 
@@ -1351,11 +1331,9 @@ jQuery(function($) {
 
 		// Loop through each of the element_s, that are groups to look inside of for elements to be initialized.
 		$element_s.each( function( i, group ) {
-
-			var $group = $(group);
-
+			
 			// Loop through each color-picker
-			$group.find( '[data-sync-setting]').each( function( j, element ) {
+			$(group).find( '[data-sync-setting]').each( function( j, element ) {
 				
 				var $input_el         = $(this);
 				var $sync_setting_key = $input_el.attr('data-sync-setting');
@@ -1450,10 +1428,8 @@ jQuery(function($) {
 		// Loop through each of the element_s, that are groups to look inside of for elements to be initialized.
 		$element_s.each( function( i, group ) {
 
-			var $group = $(group);
-
 			// Loop through each color-picker
-			$group.find( '[data-mimic-setting]').each( function( j, element ) {
+			$(group).find( '[data-mimic-setting]').each( function( j, element ) {
 				
 				var $input_el         = $(this);
 				var $sync_setting_key = $input_el.attr('data-mimic-setting');
@@ -1508,15 +1484,11 @@ jQuery(function($) {
 	function init_tip_tip( $element_s, $run_instantly ){
 
 		$element_s.each( function( i, group ) {
-
-			var $group = $(group);
-
-			$group.find( '[data-tip]').each( function( j, element ) {
-
-				var $element = $(element);
+			
+			$(group).find( '[data-tip]').each( function( j, element ) {
 				
 				// Tooltips
-				$element.layersTip({
+				$(element).layersTip({
 					'attribute' : 'data-tip',
 					'fadeIn' : 300,
 					'fadeOut' : 300,

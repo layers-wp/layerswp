@@ -283,7 +283,10 @@ jQuery(function($) {
 
 			if( 0 == $cats.length ) {
 				$cats_valid = true;
+				$( '#layers-marketplace-categories-selected' ).text('').addClass( 'layers-hide' );
 			} else {
+				$( '#layers-marketplace-categories-selected' ).text( $cats.length ).removeClass( 'layers-hide' );
+
 				$cats.each(function( c_key, c_val ){
 					c_val_string = $( c_val ).val();
 
@@ -295,13 +298,12 @@ jQuery(function($) {
 			// Check the Tags
 			if( 0 == $tags.length ) {
 				$tags_valid = true;
+				$( '#layers-marketplace-tags-selected' ).text('').addClass( 'layers-hide' );
 			} else {
+				$( '#layers-marketplace-tags-selected' ).text( $tags.length ).removeClass( 'layers-hide' );
+
 				$tags.each(function( t_key, t_val ){
 					t_val_string = $( t_val ).val();
-
-				console.log( t_val_string );
-				console.log( $li.data( 'tags' ) );
-				console.log( $li.data( 'tags' ).toString().indexOf( t_val_string ) );
 
 					if( -1 < $li.data( 'tags' ).toString().indexOf( t_val_string ) )
 						$tags_valid = true;
@@ -310,13 +312,11 @@ jQuery(function($) {
 
 			// Check the Search Box
 			if( '' !== $search_val && -1 == $json_string.indexOf( $search_val ) ) {
-				console.log( "Search not found" );
 				$valid = false;
 			}
 
 			// Check the Rating
 			if( '' !== $rating_val && $rating_val > $json_decoded.rating.rating ){
-				console.log( "Rating not found" );
 				$valid = false;
 			}
 

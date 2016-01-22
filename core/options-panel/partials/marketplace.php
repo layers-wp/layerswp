@@ -80,19 +80,25 @@ $all_categories = array(); ?>
 
 				<div class="l_admin-panel">
 					<div class="l_admin-panel-title">
-						<h3 class="l_admin-heading"><?php _e( 'Categories' , 'layerswp' ); ?></h3>
+						<h3 class="l_admin-heading">
+							<?php _e( 'Categories' , 'layerswp' ); ?>
+							<span class="l_admin-pull-right l_admin-label label-subtle layers-hide" id="layers-marketplace-categories-selected"></span>
+						</h3>
 					</div>
-					<div class="l_admin-content l_admin-row" id="layers-marketplace-categories">
+					<ul class="l_admin-list l_admin-page-list" id="layers-marketplace-categories">
+					</ul>
+				</div>
+
+				<div class="l_admin-panel">
+					<div class="l_admin-panel-title">
+						<h3 class="l_admin-heading">
+							<?php _e( 'Tags' , 'layerswp' ); ?>
+							<span class="l_admin-pull-right l_admin-label label-subtle layers-hide" id="layers-marketplace-tags-selected"></span>
+						</h3>
+					</div>
+					<div class="l_admin-animate" id="layers-marketplace-tags">
 					</div>
 				</div>
-<!--
-					<div class="accordion-section">
-						<h3 class="accordion-section-title l_admin-heading"><?php _e( 'Tags' , 'layerswp' ); ?></h3>
-						<div class="accordion-section-content l_admin-list l_admin-page-list" id="layers-marketplace-tags">
-						</div>
-					</div>
--->
-
 			</div>
 			<div class="l_admin-column l_admin-span-9 l_admin-marketplace-products">
 
@@ -254,21 +260,31 @@ $all_categories = array(); ?>
 	</div>
 	<?php if( !is_wp_error( $products ) ) { ?>
 		<style>
-			#layers-marketplace-tags input[type="checkbox"], #layers-marketplace-categories  input[type="checkbox"] {
+			#layers-marketplace-tags{
+				display: block;
+				max-height: 200px;
+				overflow: hidden;
+			}
+
+			#layers-marketplace-tags:hover{
+				display: block;
+				max-height: none;
+			}
+			#layers-marketplace-tags input[type="checkbox"] {
 				display: none;
 			}
-			#layers-marketplace-tags input[type="checkbox"]:checked + label, #layers-marketplace-categories  input[type="checkbox"]:checked + label {
+			#layers-marketplace-tags input[type="checkbox"]:checked + label{
 				background: rgb(46, 162, 204);
 			}
-			#layers-marketplace-tags input[type="checkbox"]:checked + label span, #layers-marketplace-categories  input[type="checkbox"]:checked + label  span{
+			#layers-marketplace-tags input[type="checkbox"]:checked + label span{
 				color: rgba( 255, 255, 255, 0.8 );
 			}
 
-			#layers-marketplace-categories  label:hover{
+			#layers-marketplace-tags  label:hover{
 				background-color: #e5e5e5;
 			}
 
-			#layers-marketplace-tags label, #layers-marketplace-categories label {
+			#layers-marketplace-tags label{
 				background: #f5f5f5;
 				border-radius: 0;
 				border: 1px solid #ddd;
@@ -279,18 +295,18 @@ $all_categories = array(); ?>
 				max-width: none;
 			}
 
-			#layers-marketplace-tags label span , #layers-marketplace-categories label span {
+			#layers-marketplace-tags label span{
 				float: left;
 			}
 
-			#layers-marketplace-tags label span:first-child , #layers-marketplace-categories label span:first-child {
+			#layers-marketplace-tags label span:first-child{
 				border-right: 1px solid rgb(221, 221, 221);
 				display: block;
 				margin-right: 5px;
 				padding: 5px 8px;
 			}
 
-			#layers-marketplace-tags label span.label-subtle , #layers-marketplace-categories label span.label-subtle {
+			#layers-marketplace-tags label span.label-subtle{
 				font-size: 11px;
 				padding-top: 5px;
 				padding-right: 5px;
@@ -311,7 +327,7 @@ $all_categories = array(); ?>
 				var key_string = key.toString().toLowerCase();
 
 				jQuery( '#layers-marketplace-categories' ).append(
-					jQuery( '<input type="checkbox" name="layers-marketplace-categories" id="cat-' + key_string + '" value="' + key_string + '" /><label for="cat-' + key_string + '" class="l_admin-animate"><span class="l_admin-label">' + key_string + '</span> <span class="l_admin-label label-subtle">' + value.count + '</span></label>')
+					jQuery( '<li><label for="cat-' + key_string + '" class="l_admin-animate"><input type="checkbox" name="layers-marketplace-categories" id="cat-' + key_string + '" value="' + key_string + '" /><span class="l_admin-label">' + key_string + '</span> <span class="l_admin-label label-subtle">' + value.count + '</span></label>')
 				);
 			});
 

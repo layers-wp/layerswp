@@ -186,7 +186,7 @@ class Layers_Widgets {
 	 */
 
 	public function add_revision_fields( $fields ) {
-error_log( "ADD REVISION FIELD 1" );
+
 		$fields['post_content_filtered'] = __( 'Raw Page Data', 'layerswp' );
 
 		return $fields;
@@ -232,11 +232,6 @@ error_log( "ADD REVISION FIELD 1" );
 
 		$widget_data = $revision->post_content_filtered;
 
-error_log( "POST AND REVISION IDs" );
-error_log( "REVISION: " . $revision_id );
-error_log( "POST: " . $post_id );
-error_log( "WIDGET DATA: " . $widget_data  );
-
 		if( is_wp_error( unserialize( $widget_data ) ) ) return;
 
 		// Check for errors.
@@ -248,19 +243,14 @@ error_log( "WIDGET DATA: " . $widget_data  );
 		// Check if our data is empty.
 		if ( empty( $widget_data_array ) ) return;
 
-error_log( "RUN IMPORT" );
 		$import = $layers_migrator->import( unserialize( $widget_data ), TRUE, TRUE );
 
 		// Update widget order on the post
 		$widget_order  = get_metadata( 'post', $revision_id, '_layers_widget_order', true );
 
-error_log( "LATEST WIDGET ORDER" );
-error_log( $widget_order );
-
 		$latest_revisions = wp_get_post_revisions( $post_id, array( 'post_type' => 'page' ) );
 		$latest_revision = reset( $latest_revisions );
 
-error_log( "NEW REVISION ID" . print_r( $latest_revision, true ) );
 
 		if ( false !== $widget_order ) {
 			add_metadata( 'post', $latest_revision->ID, '_layers_widget_order', $widget_order );
@@ -464,8 +454,6 @@ if( !function_exists( 'layers_backup_page_sidebars_widgets' ) ) {
 			$post = (array) $page;
 			$post[ 'post_content_filtered' ] = serialize( $page_raw_widget_data );
 			$post[ 'post_content' ] = layers_get_builder_page_content( $page->ID );
-
-			error_log( 'Post Information' . print_r( $post, true ) );
 
 			// Update the backup post & get the revision ID
 			$post_id = wp_update_post( $post );

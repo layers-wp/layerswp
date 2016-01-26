@@ -516,7 +516,8 @@
 	.l_admin-form-item input[type="number"],
 	.l_admin-form-item input[type="password"],
 	.l_admin-form-item input[type="link"],
-	.l_admin-form-item textarea{
+	.l_admin-form-item textarea,
+	.l_admin-form-item select{
 		display: block;
 		width: 100%;
 		padding: 8px;
@@ -526,8 +527,16 @@
 		border: 1px solid #ddd;
 		box-shadow: inset 1px 1px 2px rgba(0, 0, 0, 0.1);
 	}
+	.l_admin-form-item select{
+		width: auto;
+		height: auto;
+		padding-left: 4px;
+		padding-right: 4px;
+		min-width: 50%;
+	}
 	.l_admin-form-item .l_admin-input:disabled,
-	.l_admin-form-item input:disabled{
+	.l_admin-form-item input:disabled,
+	.l_admin-form-item select:disabled{
 		background: #F7F7F7;
 	}
 
@@ -545,6 +554,7 @@
 	.l_admin-form-item input[type=number]:hover,
 	.l_admin-form-item input[type=password]:hover,
 	.l_admin-form-item input[type=link]:hover,
+	.l_admin-form-item select:hover,
 	.customize-control .l_admin-textarea:hover{
 		border-color: #ccc;
 	}
@@ -553,6 +563,7 @@
 	.l_admin-form-item input[type=number]:focus,
 	.l_admin-form-item input[type=password]:focus,
 	.l_admin-form-item input[type=link]:focus,
+	.l_admin-form-item select:focus,
 	.customize-control .l_admin-textarea:focus{
 		border-color: #0289C0;
 	}
@@ -561,6 +572,7 @@
 	.l_admin-form-item input[type=number]:invalid,
 	.l_admin-form-item input[type=password]:invalid,
 	.l_admin-form-item input[type=link]:invalid,
+	.l_admin-form-item select:invalid,
 	.customize-control .l_admin-textarea:invalid{
 		border-color: #FF9898;
 		background: rgba(255, 0, 0, 0.1);
@@ -569,11 +581,11 @@
 	.l_admin-form-item input[type=email].l_admin-large,
 	.l_admin-form-item input[type=number].l_admin-large,
 	.l_admin-form-item input[type=password].l_admin-large,
-	.l_admin-form-item input[type=link].l_admin-large{
+	.l_admin-form-item input[type=link].l_admin-large,
+	.l_admin-form-item select.l_admin-large{
 		font-size: 20px;
 		line-height: 28px;
 	}
-
 
 	/* Hide Number Input Controls */
 	.l_admin-hide-controls[type=number],

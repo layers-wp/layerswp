@@ -343,15 +343,17 @@ class Layers_Options_Panel {
 	}
 
 	public function layers_add_dashboard_widgets(){
-		wp_add_dashboard_widget(
-			'layers-addons',
-			__( 'Layers Themes, Style Kits &amp; Extensions', 'layers' ),
-			array( &$this, 'layers_dashboard_widget' ),
-			NULL,
-			array(
-				'type' => 'addons'
-			)
-		);
+		if( !defined( 'LAYERS_DISABLE_MARKETPLACE' ) ){
+			wp_add_dashboard_widget(
+				'layers-addons',
+				__( 'Layers Themes, Style Kits &amp; Extensions', 'layers' ),
+				array( &$this, 'layers_dashboard_widget' ),
+				NULL,
+				array(
+					'type' => 'addons'
+				)
+			);
+		}
 
 		if( !class_exists( 'Layers_WooCommerce' ) ) {
 			wp_add_dashboard_widget(

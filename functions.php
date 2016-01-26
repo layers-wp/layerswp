@@ -104,6 +104,7 @@ if( is_admin() ){
 
 if( ! function_exists( 'layers_setup' ) ) {
 	function layers_setup(){
+
 		global $pagenow;
 
 		/**
@@ -184,7 +185,53 @@ if( ! function_exists( 'layers_setup' ) ) {
 
 	} // function layers_setup
 } // if !function layers_setup
-add_action( 'after_setup_theme' , 'layers_setup', 10 );
+add_action( 'after_setup_theme' , 'layers_setup', 100 );
+
+/**
+ * Port Widgets between Layers Parent theme and Child themes
+ */
+function layers_backup_site( $value ){
+	$theme = wp_get_theme();
+
+	$widget_data = $value[ 'data' ];
+	if( isset( $widget_data[ 'wp_inactive_widgets' ] ) ) unset( $widget_data[ 'wp_inactive_widgets' ] );
+
+	update_option( 'layers_tm_backup', get_theme_mods() );
+	update_option( 'layers_wgt_backup', $widget_data );
+
+	layers_backup_sidebars_widgets();
+}
+add_action( 'pre_set_theme_mod_sidebars_widgets' , 'layers_backup_site' );
+
+function layers_resore_site(){
+	global $layers_widgets;
+
+	$theme = wp_get_theme();
+	$layers_tm_backup = get_option( 'layers_tm_backup' );
+	$layers_wgt_backup = get_option( 'layers_wgt_backup' );
+
+	if( $layers_tm_backup ) {
+		update_option( 'theme_mods_' . $theme->stylesheet, $layers_tm_backup );
+		delete_option ( 'layers_tm_backup' );
+	}
+
+	// If the last theme was activated via the themes.php screen, use that backup
+	if( $layers_wgt_backup ) {
+		update_option( 'sidebars_widgets', $layers_wgt_backup );
+		delete_option ( 'layers_wgt_backup' );
+
+	// If a user used the customizer to preview the last theme before activating, look for widgets having been backed up via the theme_mods
+	} elseif( get_theme_mod( 'sidebars_widgets' ) ){
+		$layers_wgt_backup = get_theme_mod( 'sidebars_widgets' );
+		if( isset( $layers_wgt_backup[ 'data' ] ) ) {
+			update_option( 'sidebars_widgets', $layers_wgt_backup );
+			delete_theme_mod( 'sidebars_widgets' );
+		}
+	}
+
+}
+add_action( 'after_switch_theme' , 'layers_resore_site', 50 );
+
 
 /**
 *  Enqueue front end styles and scripts
@@ -259,6 +306,7 @@ if( ! function_exists( 'layers_register_standard_sidebars' ) ) {
 				'after_title'   => '</h5>',
 			) );
 		}
+
 	}
 }
 add_action( 'widgets_init' , 'layers_register_standard_sidebars' , 50 );
@@ -449,7 +497,6 @@ if( ! function_exists( 'layers_admin_scripts' ) ) {
 			array(),
 			LAYERS_VERSION
 		);
-
 		wp_enqueue_script(
 			LAYERS_THEME_SLUG . '-admin-editor' ,
 			get_template_directory_uri() . '/core/assets/editor.min.js' ,

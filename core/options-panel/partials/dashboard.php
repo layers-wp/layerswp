@@ -185,7 +185,7 @@ $theme_info = wp_get_theme( 'layerswp' ); ?>
 									</a>
 								</h4>
 							</div>
-							<div class="l_admin-media l_admin-image-left l_admin-content-large l_admin-no-push-bottom">
+							<div class="l_admin-media l_admin-image-left l_admin-content l_admin-no-push-bottom">
 								<div class="l_admin-media-image l_admin-small">
 									<img src="<?php echo LAYERS_TEMPLATE_URI; ?>/core/assets/images/icon-layers-messenger.png" alt="<?php _e( 'Layers Messenger' , 'layerswp' ); ?>"/>
 								</div>
@@ -231,7 +231,7 @@ $theme_info = wp_get_theme( 'layerswp' ); ?>
 					</div>
 
 					<div class="l_admin-panel l_admin-push-bottom">
-						<div class="l_admin-media l_admin-image-left l_admin-content-large">
+						<div class="l_admin-media l_admin-image-left l_admin-content">
 							<div class="l_admin-media-image l_admin-small">
 								<img src="<?php echo LAYERS_TEMPLATE_URI; ?>/core/assets/images/github-badge.png" alt="<?php _e( 'Github badge' , 'layerswp' ); ?>"/>
 							</div>
@@ -263,7 +263,7 @@ $theme_info = wp_get_theme( 'layerswp' ); ?>
 		<div id="layers-dashboard-news-feed" class="l_admin-row" data-layers-feed="news" data-layers-feed-count="3">
 			<div class="l_admin-column l_admin-span-3" data-loading="1">
 				<div class="l_admin-panel">
-					<div class="l_admin-content-large">
+					<div class="l_admin-content">
 						<div class="l_admin-section-title l_admin-tiny">
 							<h4 class="l_admin-heading"><?php _e( 'Loading Layers News' , 'layerswp' ); ?></h4>
 						</div>
@@ -271,7 +271,7 @@ $theme_info = wp_get_theme( 'layerswp' ); ?>
 				</div>
 			</div>
 			<div class="l_admin-column l_admin-span-3">
-				<div class="l_admin-panel l_admin-content-large clearfix">
+				<div class="l_admin-panel l_admin-content clearfix">
 					<div class="l_admin-section-title l_admin-tiny">
 						<h3 class="l_admin-heading"><?php _e( 'Stay in the Loop' , 'layerswp' ); ?></h3>
 						<p class="l_admin-excerpt">

@@ -85,7 +85,7 @@ $all_categories = array(); ?>
 							<a href="#" class="l_admin-pull-right l_admin-label label-subtle layers-hide" id="layers-marketplace-categories-clear" data-type="categories"><?php _e( 'Clear', 'layerswp' ); ?></a>
 						</h3>
 					</div>
-					<ul class="l_admin-list l_admin-page-list" id="layers-marketplace-categories">
+					<ul class="l_admin-list l_admin-page-list l_admin-scroll" id="layers-marketplace-categories">
 					</ul>
 				</div>
 
@@ -96,7 +96,7 @@ $all_categories = array(); ?>
 							<a href="#" class="l_admin-pull-right l_admin-label label-subtle layers-hide" id="layers-marketplace-tags-clear" data-type="tags"><?php _e( 'Clear', 'layerswp' ); ?></a>
 						</h3>
 					</div>
-					<div class="l_admin-animate l_admin-template-selector" id="layers-marketplace-tags">
+					<div class="l_admin-content-small l_admin-scroll" id="layers-marketplace-tags">
 					</div>
 				</div>
 			</div>
@@ -111,7 +111,7 @@ $all_categories = array(); ?>
 						<a href="<?php echo $fallback_url; ?>" class="l_admin-button btn-primary btn-large"><?php _e( 'Browse on Envato', 'layerswp' ); ?></a>
 					</div>
 				<?php } else { ?>
-					<div class="l_admin-marketplace-loading l_admin-section-title l_admin-large l_admin-content-large l_admin-t-center">
+					<div class="l_admin-marketplace-loading l_admin-section-title l_admin-large l_admin-content l_admin-t-center">
 						<h3 class="l_admin-heading"><?php _e( 'Loading...' , 'layerswp'); ?></h3>
 						<div class="l_admin-media-body l_admin-push-bottom">
 							<p class="l_admin-excerpt"><?php _e( sprintf( 'We\'re busy gathering and sorting the list of %s, hang tight.', strtolower( $excerpt ) ) , 'layerswp'); ?></p>

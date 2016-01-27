@@ -930,19 +930,19 @@ add_action ( 'wp_footer', 'layers_add_additional_footer_scripts' );
  */
 if( !function_exists( 'layers_add_google_analytics' ) ) {
 	function layers_add_google_analytics() {
+		global $wp_customize;
 
 		$analytics_id = layers_get_theme_mod( 'header-google-id' );
-
-		if( '' != $analytics_id ) { ?>
+		
+		if ( ! isset( $wp_customize ) && '' != $analytics_id ) { ?>
 			<script>
-			  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-			  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-			  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-			  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+				(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+				(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+				m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+				})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-			  ga('create', '<?php echo $analytics_id; ?>', 'auto');
-			  ga('send', 'pageview');
-
+				ga('create', '<?php echo $analytics_id; ?>', 'auto');
+				ga('send', 'pageview');
 			</script>
 		<?php }
 	}

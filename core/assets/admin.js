@@ -594,6 +594,60 @@ jQuery(function($) {
 		// 'this' is the widget
 		layers_init_show_if( $(this), true );
 	});
+	
+	function layers_apply_show_if( $source_element_selector_new ){
+
+		$( '[data-show-if-selector="' + $source_element_selector_new + '"]' ).each(function(){
+
+			var $target_element = $(this);
+			var $target_value   = $target_element.data( 'show-if-value' ).toString();
+			var $source_element = $( $target_element.data( 'show-if-selector' ).toString() );
+			var $operator   = $target_element.data( 'show-if-operator' );
+			
+			if ( $source_element.attr('type') == 'checkbox' ) {
+				$source_element_value = ( $source_element.is(':checked') ) ? 'true' : 'false' ;
+			}
+			else {
+				$source_element_value = $source_element.val();
+			}
+		
+			if ( 'undefined' === typeof( $source_element_value ) ) {
+				layers_show_if_display( 'hide', $target_element );
+				return false;
+			}
+			
+			// Apply the chosen Operator (default: ==)
+			switch( $operator ) {
+				
+				case '!=':
+					
+					if ( $target_value.trim() != $source_element_value.trim() ) {
+						// Show
+						layers_show_if_display( 'show', $target_element );
+					} else {
+						// Hide
+						layers_show_if_display( 'hide', $target_element );
+					}
+					
+					break;
+				
+				case '==':
+				default:
+					
+					if ( $target_value.trim() == $source_element_value.trim() ) {
+						// Show
+						layers_show_if_display( 'show', $target_element );
+					} else {
+						// Hide
+						layers_show_if_display( 'hide', $target_element );
+					}
+					
+					break;
+			}
+			
+		});
+
+	}
 
 	function layers_init_show_if( $element_s, $run_instantly ){
 
@@ -627,7 +681,8 @@ jQuery(function($) {
 			var $target_element = $(this);
 			var $target_value   = $target_element.data( 'show-if-value' ).toString();
 			var $source_element = $( $target_element.data( 'show-if-selector' ).toString() );
-
+			var $operator       = $target_element.data( 'show-if-operator' );
+			
 			if ( $source_element.attr('type') == 'checkbox' ) {
 				$source_element_value = ( $source_element.is(':checked') ) ? 'true' : 'false' ;
 			}
@@ -635,45 +690,81 @@ jQuery(function($) {
 				$source_element_value = $source_element.val();
 			}
 
-			// Set the reveal animation type.
-			var animation_type = 'none';
-			if ( $target_element.hasClass('l_option-customize-control') ){
-				animation_type = 'slideDown';
+			if ( 'undefined' === typeof( $source_element_value ) ) {
+				layers_show_if_display( 'hide', $target_element );
+				return false;
 			}
-
-			// If is a Customize Control then hide the whole control.
-			if ( $target_element.hasClass('l_option-customize-control') ){
-				$target_element = $target_element.parent('.customize-control');
-			} else {
-				$target_element = $target_element.closest('.layers-form-item');
+			
+			// Apply the chosen Operator (default: ==)
+			switch( $operator ) {
+				
+				case '!=':
+					
+					if ( $target_value.trim() != $source_element_value.trim() ) {
+						// Show
+						layers_show_if_display( 'show', $target_element );
+					} else {
+						// Hide
+						layers_show_if_display( 'hide', $target_element );
+					}
+					
+					break;
+				
+				case '==':
+				default:
+					
+					if ( $target_value.trim() == $source_element_value.trim() ) {
+						// Show
+						layers_show_if_display( 'show', $target_element );
+					} else {
+						// Hide
+						layers_show_if_display( 'hide', $target_element );
+					}
+					
+					break;
 			}
-
-			//if( $target_value.indexOf( $source_element_value ) >= 0 ){
-			if( 'undefined' !== typeof( $source_element_value ) && $target_value.trim() == $source_element_value.trim() ){
-
-				// Show
-				if( animation_type == 'slideDown' ){
-					$target_element.removeClass( 'layers-hide' );
-					$target_element.slideDown( { duration: 550, easing: 'layersEaseInOut' } );
-				}
-				else{
-					$target_element.removeClass( 'layers-hide' );
-				}
-
-			} else {
-
-				// Hide
-				if( animation_type == 'slideDown' ){
-					$target_element.slideUp( { duration: 550, easing: 'layersEaseInOut', complete: function(){
-						$target_element.addClass( 'layers-hide' );
-					} } );
-				}
-				else{
-					$target_element.addClass( 'layers-hide' );
-				}
-			}
+			
 		});
+	}
 
+	function layers_show_if_display( $state, $target_element ) {
+		
+		// Calculate the reveal animation type.
+		var animation_type = 'none';
+		if ( $target_element.hasClass('l_option-customize-control') ){
+			animation_type = 'slideDown';
+		}
+		
+		// Calculate if this is Customize Control or Design-Bar item.
+		if ( $target_element.hasClass('l_option-customize-control') ){
+			$target_element = $target_element.closest('.customize-control');
+		} else {
+			$target_element = $target_element.closest('.layers-form-item');
+		}
+		
+		if ( 'hide' == $state ) {
+			
+			// Hide
+			if( animation_type == 'slideDown' ){
+				$target_element.slideUp( { duration: 550, easing: 'layersEaseInOut', complete: function(){
+					$target_element.addClass( 'layers-hide' );
+				} } );
+			}
+			else{
+				$target_element.addClass( 'layers-hide' );
+			}
+		}
+		else {
+			
+			// Show
+			if( animation_type == 'slideDown' ){
+				$target_element.removeClass( 'layers-hide' );
+				$target_element.slideDown( { duration: 550, easing: 'layersEaseInOut' } );
+			}
+			else{
+				$target_element.removeClass( 'layers-hide' );
+			}
+		}
 	}
 
 	/**

@@ -407,7 +407,7 @@ if( ! function_exists( 'layers_scripts' ) ) {
 
 		wp_register_style(
 			LAYERS_THEME_SLUG . '-font-awesome',
-			get_template_directory_uri() . '/core/assets/font-awesome.min.css',
+			get_template_directory_uri() . '/core/assets/plugins/font-awesome/font-awesome.min.css',
 			array(),
 			LAYERS_VERSION
 		); // Font Awesome
@@ -428,13 +428,13 @@ if( ! function_exists( 'layers_admin_scripts' ) ) {
 		 */
 		wp_enqueue_style(
 			LAYERS_THEME_SLUG . '-tip-tip' ,
-			get_template_directory_uri() . '/core/assets/tipTip.css',
+			get_template_directory_uri() . '/core/assets/plugins/tip-tip/jquery.tipTip.css',
 			array(),
 			LAYERS_VERSION
 		);
 		wp_enqueue_script(
 			LAYERS_THEME_SLUG . '-tip-tip' ,
-			get_template_directory_uri() . '/core/assets/jquery.tipTip.minified.js',
+			get_template_directory_uri() . '/core/assets/plugins/tip-tip/jquery.tipTip.minified.js',
 			array( 'jquery' ),
 			LAYERS_VERSION,
 			true
@@ -446,7 +446,7 @@ if( ! function_exists( 'layers_admin_scripts' ) ) {
 		 */
 		wp_enqueue_style(
 			LAYERS_THEME_SLUG . '-admin-font-awesome',
-			get_template_directory_uri() . '/core/assets/font-awesome.min.css',
+			get_template_directory_uri() . '/core/assets/plugins/font-awesome/font-awesome.min.css',
 			array(),
 			LAYERS_VERSION
 		);
@@ -493,13 +493,13 @@ if( ! function_exists( 'layers_admin_scripts' ) ) {
 		 */
 		wp_enqueue_style(
 			LAYERS_THEME_SLUG . '-admin-editor',
-			get_template_directory_uri() . '/core/assets/editor.css',
+			get_template_directory_uri() . '/core/assets/plugins/froala/editor.css',
 			array(),
 			LAYERS_VERSION
 		);
 		wp_enqueue_script(
 			LAYERS_THEME_SLUG . '-admin-editor' ,
-			get_template_directory_uri() . '/core/assets/editor.min.js' ,
+			get_template_directory_uri() . '/core/assets/plugins/froala/editor.min.js' ,
 			array( 'jquery' ),
 			LAYERS_VERSION,
 			true

@@ -4,6 +4,7 @@
 ##1.3.0
 ### xx Jan 2016
 
+* **Fix** - Removed Google Analytics when users are in the customizer. *MP*
 * **Fix** - Fixed page title when front page is set to static page to display the shop. *MP*
 * **Fix** - Fixed margin-right bug in tablet mode on rows that span full width. *DP*
 * **Fix** - Fixed author `<a href />` for Portuguese translations. *MP*

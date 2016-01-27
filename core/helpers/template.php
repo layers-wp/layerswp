@@ -932,6 +932,10 @@ if( !function_exists( 'layers_add_google_analytics' ) ) {
 	function layers_add_google_analytics() {
 		global $wp_customize;
 
+		global $wp_customize;
+
+		if( isset( $wp_customize ) ) return;
+
 		$analytics_id = layers_get_theme_mod( 'header-google-id' );
 		
 		if ( ! isset( $wp_customize ) && '' != $analytics_id ) { ?>

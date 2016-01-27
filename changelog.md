@@ -15,6 +15,8 @@
 * **Tweak** - Removed opacity: 0.x settings and replaced with rgba on .invert classes. *DP*
 * **Tweak** - Fixed menu verticle alignment quirks in header-center layout. *DP*
 * **Tweak** - Split admin.css into three separate files for easier management and distinction between dashboard, customizer and global css *DP* *SOB*
+* **Tweak** - Move plugin .js and .css files to `core/assets/plugins/` *SOB*
+* **Tweak** - Don't load Google Analytics in the Customizer *SOB*
 * **Enhancement** - Updated marketplace filters. *MP*
 
 =======

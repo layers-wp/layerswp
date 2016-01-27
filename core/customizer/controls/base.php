@@ -55,8 +55,21 @@ if( !class_exists( 'Layers_Customize_Control' ) ) {
 		*/
 		public function get_linked_data() {
 
-			if ( isset( $this->linked ) && is_array( $this->linked ) && isset( $this->linked['show-if-selector'] ) && isset( $this->linked['show-if-value'] ) ) {
-				return 'data-show-if-selector="' . esc_attr( $this->linked['show-if-selector'] ) . '" data-show-if-value="' . esc_attr( $this->linked['show-if-value'] ) . '" ';
+			if (
+					isset( $this->linked ) &&
+					is_array( $this->linked ) &&
+					isset( $this->linked['show-if-selector'] ) &&
+					isset( $this->linked['show-if-value'] )
+				) {
+				
+				$return = '';
+				$return .= 'data-show-if-selector="' . esc_attr( $this->linked['show-if-selector'] ) . '" ';
+				$return .= 'data-show-if-value="' . esc_attr( $this->linked['show-if-value'] ) . '" ';
+				
+				if ( isset( $this->linked['show-if-operator'] ) )
+					$return .= 'data-show-if-operator="' . esc_attr( $this->linked['show-if-operator'] ) . '" ';
+				
+				return $return;
 			}
 
 			/*
@@ -64,7 +77,8 @@ if( !class_exists( 'Layers_Customize_Control' ) ) {
 			Used when registering a control in config
 			'linked'    => array(
 					'show-if-selector' => "#layers-header-layout-fixed",
-					'show-if-value' => "true",
+					'show-if-value'    => "true",
+					'show-if-operator' => "!=",
 			)
 			*/
 		}

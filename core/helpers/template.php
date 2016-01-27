@@ -931,6 +931,10 @@ add_action ( 'wp_footer', 'layers_add_additional_footer_scripts' );
 if( !function_exists( 'layers_add_google_analytics' ) ) {
 	function layers_add_google_analytics() {
 
+		global $wp_customize;
+
+		if( isset( $wp_customize ) ) return;
+
 		$analytics_id = layers_get_theme_mod( 'header-google-id' );
 
 		if( '' != $analytics_id ) { ?>

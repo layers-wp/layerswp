@@ -12,8 +12,8 @@ $layers_migrator = new Layers_Widget_Migrator();
 function render_onboarding_warnings() {
 	global $wp_version;
 
-	$required_wp_version        = '4.5';
-	$required_layers_foldername = 'layerswp-bong';
+	$required_wp_version        = '4.4';
+	$required_layers_foldername = 'layerswp';
 
 	$theme = wp_get_theme();
 	$current_folder_name = $theme->template;

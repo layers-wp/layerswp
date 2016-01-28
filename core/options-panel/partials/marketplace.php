@@ -38,8 +38,8 @@ $all_categories = array(); ?>
 
 	<?php $this->marketplace_header( 'Marketplace' ); ?>
 
-	<div class="l_admin-row l_admin-well l_admin-content">
-		<div class="l_admin-browser">
+	<div class="l_admin-well l_admin-content">
+		<div class="l_admin-browser l_admin-row ">
 
 			<div class="l_admin-column l_admin-span-3 l_admin-marketplace-filter">
 				<div class="l_admin-section-title l_admin-tiny">

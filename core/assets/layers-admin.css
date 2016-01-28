@@ -1633,12 +1633,9 @@
 			overflow-y: scroll;
 		}
 		.l_admin-template-selector .l_admin-product{
-			width: 48%;
-			margin: 0 4% 4% 0;
+			width: calc(100% / 2 - 20px);
 		}
-		.l_admin-template-selector .l_admin-product:nth-child(2n+2){
-			margin-right: 0;
-		}
+
 		.l_admin-onboard-slide .l_admin-product:focus{
 			border-color: #009eec;
 		}

@@ -19,7 +19,7 @@ if( !class_exists( 'Layers_Customize_Text_Control' ) ) {
 
 			$values = false; ?>
 
-			<div data-test id="layers-customize-control-<?php echo esc_attr( $this->id ); ?>" class="l_option-customize-control l_option-customize-control-<?php echo esc_attr( str_replace( 'layers-', '', $this->type ) ); ?> <?php echo esc_attr( $this->class ); ?>" <?php echo $this->get_linked_data(); ?> >
+			<div id="layers-customize-control-<?php echo esc_attr( $this->id ); ?>" class="l_option-customize-control l_option-customize-control-<?php echo esc_attr( str_replace( 'layers-', '', $this->type ) ); ?> <?php echo esc_attr( $this->class ); ?>" <?php echo $this->get_linked_data(); ?> >
 
 				<?php $this->render_history_actions(); ?>
 
@@ -37,25 +37,22 @@ if( !class_exists( 'Layers_Customize_Text_Control' ) ) {
 					</div>
 				<?php endif; ?>
 
-				<div class="layers-form-item">
+				<?php if ( '' != $this->subtitle ) : ?>
+					<label class="layers-form-row"><?php echo $this->subtitle; ?></label>
+				<?php endif; ?>
 
-					<?php if ( '' != $this->subtitle ) : ?>
-						<label class="layers-form-row"><?php echo $this->subtitle; ?></label>
-					<?php endif; ?>
-
-					<div class="layers-form-item <?php echo ( $this->colspan ) ? esc_attr( "layers-column-flush layers-span-{$this->colspan}" ) : '' ?>">
-						<?php echo $form_elements->input(
-							array(
-								'type' => 'text',
-								'label' => ( isset( $this->label ) ? $this->label : '' ),
-								'name' => '' ,
-								'id' =>  $this->id,
-   								'value' => stripslashes( $this->value() ),
-								'data' => $this->get_customize_data(),
-								'placeholder' => $this->placeholder,
-							)
-						); ?>
-					</div>
+				<div class="layers-form-item <?php echo ( $this->colspan ) ? esc_attr( "layers-column-flush layers-span-{$this->colspan}" ) : '' ?>">
+					<?php echo $form_elements->input(
+						array(
+							'type' => 'text',
+							'label' => ( isset( $this->label ) ? $this->label : '' ),
+							'name' => '' ,
+							'id' =>  $this->id,
+								'value' => stripslashes( $this->value() ),
+							'data' => $this->get_customize_data(),
+							'placeholder' => $this->placeholder,
+						)
+					); ?>
 				</div>
 
 			</div>

@@ -99,7 +99,19 @@ jQuery(function($) {
 		$modal.find( '.theme-sales' ).html( $json.number_of_sales + $sales_word);
 
 		/**
-		* Product :inks
+		* Product Preview
+
+		if( 'undefined' !== typeof( $json.previews.live_site.url ) ){
+			$iframe = $( '<iframe />' ).attr( 'src', $json.previews.live_site.url );
+			$( '.theme-preview' ).html( $iframe ).removeClass( 'layers-hide' ).show();
+			$( '.theme-about' ).hide();
+		} else {
+			$( '.theme-about' ).addClass( 'layers-hide' ).show();
+		}
+		*/
+
+		/**
+		* Product Links
 		*/
 		var $url = $( $id ).data( 'url' );
 
@@ -167,12 +179,34 @@ jQuery(function($) {
 	/**
 	* 4 - Marketplace Filter and Search functions
 	*/
+
+	$(document).on( 'click', '#layers-marketplace-categories-clear, #layers-marketplace-tags-clear', function(e){
+
+		e.preventDefault();
+
+		$(this).addClass( 'layers-hide' );
+
+		$cats = $( '#layers-marketplace input[name="layers-marketplace-categories"]:checked' );
+		$tags = $( '#layers-marketplace input[name="layers-marketplace-tags"]:checked' );
+
+		if( 'categories' == $(this).data( 'type' ) ){
+			$cats.prop( 'checked', false );
+		}
+
+		if( 'tags' == $(this).data( 'type' ) ){
+			$tags.prop( 'checked', false );
+		}
+
+		marketplace_filter();
+	});
+
 	$(document).on( 'click', '#layers-marketplace-clear-search', function(e){
 		e.preventDefault();
 
-		$( '#layers-marketplace #layers-marketplace-search' ).val('').trigger( 'change' );
-		$( '#layers-marketplace #layers-marketplace-authors' ).val('').trigger( 'change' );
+		$( '#layers-marketplace #layers-marketplace-search' ).val('');
+		$( '#layers-marketplace #layers-marketplace-authors' ).val('');
 
+		marketplace_filter();
 	} );
 
 	$(document).on( 'change', '#layers-marketplace-sortby', function(e){
@@ -187,6 +221,7 @@ jQuery(function($) {
 
 		setTimeout(function(){
 			$( '.l_admin-products.layers-hide' ).hide().removeClass( 'layers-hide' ).fadeIn( 350 );
+			$( '#layers-marketplace-sort.layers-hide' ).hide().removeClass( 'layers-hide' ).fadeIn( 350 );
 			$( '.l_admin-marketplace-intro.layers-hide' ).hide().removeClass( 'layers-hide' ).fadeIn( 350 );
 			marketplace_resize();
 		}, 350 );
@@ -231,12 +266,21 @@ jQuery(function($) {
 		}
 	}
 
-	$(document).on( 'keyup mouseup change', '#layers-marketplace #layers-marketplace-search, #layers-marketplace #layers-marketplace-authors', function(e){
+	$(document).on( 'keyup mouseup change', '#layers-marketplace #layers-marketplace-search, #layers-marketplace #layers-marketplace-authors, #layers-marketplace input[name="layers-marketplace-categories"], #layers-marketplace input[name="layers-marketplace-tags"]', function(e){
+
 		e.preventDefault();
+
+		marketplace_filter();
+	});
+
+	function marketplace_filter(){
 
 		$search_val = $( '#layers-marketplace #layers-marketplace-search' ).val().toLowerCase();
 		$author_val = $( '#layers-marketplace #layers-marketplace-authors' ).val().toLowerCase();
 		$rating_val = $( '#layers-marketplace #layers-marketplace-ratings').val();
+
+		$cats = $( '#layers-marketplace input[name="layers-marketplace-categories"]:checked' );
+		$tags = $( '#layers-marketplace input[name="layers-marketplace-tags"]:checked' );
 
 
 		if( '' !== $author_val ){
@@ -248,8 +292,12 @@ jQuery(function($) {
 
 		$( '.l_admin-product' ).each(function(){
 
+			var $li = $(this);
+
 			// Start with a valid product
 			var $valid = true;
+			var $cats_valid = false;
+			var $tags_valid = false;
 
 			// Decode the JSON
 			var $json_string = $(this).find('.l_admin-product-json').val().toLowerCase();
@@ -257,6 +305,38 @@ jQuery(function($) {
 
 			// Set the Product ID
 			var $product_id = '#' + $(this).attr( 'id' );
+
+			if( '' == $search_val && '' == $author_val && '' == $rating_val && 0 == $cats.count && 0 == $tags )// Check the Categories
+				$valid = true;
+
+			if( 0 == $cats.length ) {
+				$cats_valid = true;
+				$( '#layers-marketplace-categories-clear' ).addClass( 'layers-hide' );
+			} else {
+				$( '#layers-marketplace-categories-clear' ).removeClass( 'layers-hide' );
+
+				$cats.each(function( c_key, c_val ){
+					c_val_string = $( c_val ).val();
+
+					if( -1 < $li.data( 'categories' ).toString().indexOf( c_val_string ) )
+						$cats_valid = true;
+				})
+			}
+
+			// Check the Tags
+			if( 0 == $tags.length ) {
+				$tags_valid = true;
+				$( '#layers-marketplace-tags-clear' ).addClass( 'layers-hide' );
+			} else {
+				$( '#layers-marketplace-tags-clear' ).removeClass( 'layers-hide' );
+
+				$tags.each(function( t_key, t_val ){
+					t_val_string = $( t_val ).val();
+
+					if( -1 < $li.data( 'tags' ).toString().indexOf( t_val_string ) )
+						$tags_valid = true;
+				})
+			}
 
 			// Check the Search Box
 			if( '' !== $search_val && -1 == $json_string.indexOf( $search_val ) ) {
@@ -270,12 +350,13 @@ jQuery(function($) {
 
 			// Check the Author
 			if( '' !== $author_val && $author_val !== $json_decoded.author_username ){
+				console.log( "Author not found" );
 				$valid = false;
 			}
 
 			// If valid is still true, add this product to the valid_products array
 
-			if( true == $valid ){
+			if( true == $valid && true == $cats_valid && true == $tags_valid ){
 				$valid_products.push( $product_id );
 			} else {
 				$invalid_products.push( $product_id );
@@ -291,7 +372,7 @@ jQuery(function($) {
 
 		$( $valid_products.join(", ") ).removeClass( 'layers-hide' );
 		$( $invalid_products.join(", ") ).addClass( 'layers-hide' );
-	});
+	}
 
 	/**
 	* 5 - Marketplace Filter and Search functions

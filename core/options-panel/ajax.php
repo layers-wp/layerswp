@@ -68,7 +68,7 @@ if( !class_exists( 'Layers_Onboarding_Ajax' ) ) {
 					<?php if( 'news' == $type ) { ?>
 						<div class="l_admin-column l_admin-span-3">
 							<div class="l_admin-panel">
-								<div class="l_admin-content-large">
+								<div class="l_admin-content">
 									<div class="l_admin-section-title l_admin-tiny">
 										<h4 class="l_admin-heading"><a href="<?php echo $item->get_permalink(); ?>"><?php echo esc_attr( $item->get_title() ); ?></a></h4>
 									</div>
@@ -186,7 +186,7 @@ if( !class_exists( 'Layers_Onboarding_Ajax' ) ) {
 				urldecode( stripslashes( $_POST[ 'data' ] ) ),
 				$data
 			);
-			
+
 			$return_message = array(
 				'success' => true,
 				'message' => __( 'Done!' , 'layerswp' ),
@@ -249,41 +249,41 @@ if( !class_exists( 'Layers_Onboarding_Ajax' ) ) {
 						}
 
 						break;
-					
+
 					case 'site_color' :
-						
+
 						$header_color = $clean_option_value;
 						$accent_color = layers_adjust_brightness( $clean_option_value, -50, TRUE );
 						$footer_color = '#2b2b2b';
-						
+
 						set_theme_mod( 'layers-header-background-color', $header_color );
 						set_theme_mod( 'layers-site-accent-color', $accent_color );
 						set_theme_mod( 'layers-footer-background-color', $footer_color );
-						
+
 						$return_message = array(
 							'success' => true,
 							'message' => __( 'Option updated Bong!' , 'layerswp' ),
 						);
-						
+
 						break;
-						
+
 					default :
-						
+
 						update_option( $option_key, $clean_option_value );
 
 						$return_message = array(
 							'success' => true,
 							'message' => __( 'Option updated Bing' , 'layerswp' ),
 						);
-						
+
 						break;
 				}
 			}
-			
+
 			die( json_encode( $return_message ) );
-			
+
 		}
-		
+
 		public function create_pages(){
 
 			if( ! check_ajax_referer( 'layers-onboarding-update-options', 'layers_onboarding_update_nonce', false ) ) die( 'You threw a Nonce exception' ); // Nonce
@@ -293,7 +293,7 @@ if( !class_exists( 'Layers_Onboarding_Ajax' ) ) {
 				urldecode( stripslashes( $_POST[ 'data' ] ) ),
 				$data
 			);
-			
+
 			$return_message = array(
 				'success' => true,
 				'message' => __( 'Done!' , 'layerswp' ),
@@ -306,14 +306,14 @@ if( !class_exists( 'Layers_Onboarding_Ajax' ) ) {
 				switch ( $option_key ) {
 
 					case 'create-page-blog' :
-						
+
 						// Blog page does't yet exists so create it.
 						$page = array(
 							'post_type' => 'page',
 							'post_status' => 'publish',
 							'post_title' => 'Blog',
 						);
-						
+
 						$existing_page = get_posts( array(
 							's' => 'Blog',
 							'post_type' => 'page',
@@ -325,36 +325,36 @@ if( !class_exists( 'Layers_Onboarding_Ajax' ) ) {
 								)
 							)
 						) );
-						
+
 						if ( empty( $existing_page ) ) {
-							
+
 							// Blog page does't yet exists so create it.
 							$pageid = wp_insert_post( $page );
 							update_post_meta( $pageid , '_wp_page_template', 'template-blog.php' );
 						}
 						else {
-							
+
 							$page['ID'] = $existing_page[0]->ID;
-							
+
 							// Blog page exists so make sure it's published.
 							$pageid = wp_update_post( $page );
 						}
-						
+
 						$return_message = array(
 							'success' => true,
 							'message' => __( 'Page Created' , 'layerswp' ),
 						);
-						
+
 						break;
-						
+
 					default :
-						
+
 						break;
 				}
 			}
-			
+
 			die( json_encode( $return_message ) );
 		}
-		
+
 	}
 } // if class_exists

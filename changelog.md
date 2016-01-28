@@ -1,9 +1,11 @@
 # Layers Changelog
 
 =======
-##1.2.11
+##1.3.0
 ### xx Jan 2016
 
+* **Fix** - Removed Google Analytics when users are in the customizer. *MP*
+* **Fix** - Fixed page title when front page is set to static page to display the shop. *MP*
 * **Fix** - Fixed margin-right bug in tablet mode on rows that span full width. *DP*
 * **Fix** - Fixed author `<a href />` for Portuguese translations. *MP*
 * **Fix** - Fixed Top/Right/Bottom/Left labels in design bar. *DP*
@@ -14,6 +16,10 @@
 * **Tweak** - Removed opacity: 0.x settings and replaced with rgba on .invert classes. *DP*
 * **Tweak** - Fixed menu verticle alignment quirks in header-center layout. *DP*
 * **Tweak** - Split admin.css into three separate files for easier management and distinction between dashboard, customizer and global css *DP* *SOB*
+* **Tweak** - Move plugin .js and .css files to `core/assets/plugins/` *SOB*
+* **Tweak** - Don't load Google Analytics in the Customizer *SOB*
+* **Tweak** - Added the `show-if-operator` functionality: `==`(defaults) or `!=` *SOB*
+* **Enhancement** - Updated marketplace filters. *MP*
 
 =======
 ##1.2.10

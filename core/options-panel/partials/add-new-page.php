@@ -39,7 +39,7 @@ $find_builder_page = layers_get_builder_pages(); ?>
 				<a id="layers-preset-proceed" href="" class="button button-primary btn-large" data-post_id="" data-location="">
 					<?php _e( 'Proceed to Customizer' , 'layerswp' ); ?>
 				</a>
-				<a id="layers-preset-cancel" href="" class="l_admin-button btn-link">
+				<a id="layers-preset-cancel" href="" class="button btn-link btn-large pull-right">
 					<?php _e( 'Cancel' , 'layerswp' ); ?>
 				</a>
 

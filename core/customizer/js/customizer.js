@@ -177,10 +177,10 @@
 				layers_update_customizer_interface();
 			}, false);
 
-			$(document).on( 'change', '.layers-customize-control-font select', function(){
+			$(document).on( 'change', '.l_option-customize-control-font select', function(){
 				// "Hi Mom"
 				var $that        = $(this);
-				var $description = $that.closest( '.layers-customize-control-font' ).find( '.customize-control-description' );
+				var $description = $that.closest( '.l_option-customize-control-font' ).find( '.customize-control-description' );
 				$description.find( 'a' ).attr( 'href' , $description.data( 'base-url' ) + $that.val() );
 			});
 

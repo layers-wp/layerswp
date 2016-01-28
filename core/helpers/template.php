@@ -305,6 +305,15 @@ if( !function_exists( 'layers_get_page_title' ) ) {
 			$title_array['title'] = $parentpage->post_title;
 			if($parentpage->post_excerpt != ''){ $title_array['excerpt'] = $parentpage->post_excerpt; }
 
+		} elseif( function_exists('is_shop') && ( is_post_type_archive( 'product' ) || ( get_post_type() == "product") ) ) {
+			if( function_exists( 'woocommerce_get_page_id' )  && -1 != woocommerce_get_page_id('shop') ) {
+				$shop_page = get_post( woocommerce_get_page_id('shop') );
+				if( is_object( $shop_page ) ) {
+					$title_array['title' ] = $shop_page->post_title;
+				}
+			} else {
+				$title_array['title' ] = __( 'Shop' , 'layerswp' );
+			}
 		} elseif( is_page() ) {
 			while ( have_posts() ) { the_post();
 				$title_array['title'] = get_the_title();
@@ -332,15 +341,6 @@ if( !function_exists( 'layers_get_page_title' ) ) {
 			$title_array['title' ] = sprintf( __( 'Monthly Archives: %s' , 'layerswp' ), get_the_date( _x( 'F Y', 'monthly archives date format' , 'layerswp' ) ) );
 		} elseif ( is_year() ) {
 			$title_array['title' ] = sprintf( __( 'Yearly Archives: %s' , 'layerswp' ), get_the_date( _x( 'Y', 'yearly archives date format' , 'layerswp' ) ) );
-		} elseif( function_exists('is_shop') && ( is_post_type_archive( 'product' ) || ( get_post_type() == "product") ) ) {
-			if( function_exists( 'woocommerce_get_page_id' )  && -1 != woocommerce_get_page_id('shop') ) {
-				$shop_page = get_post( woocommerce_get_page_id('shop') );
-				if( is_object( $shop_page ) ) {
-					$title_array['title' ] = $shop_page->post_title;
-				}
-			} else {
-				$title_array['title' ] = __( 'Shop' , 'layerswp' );
-			}
 		} elseif( is_single() ) {
 			$title_array['title' ] = get_the_title();
 		} else {
@@ -930,19 +930,22 @@ add_action ( 'wp_footer', 'layers_add_additional_footer_scripts' );
  */
 if( !function_exists( 'layers_add_google_analytics' ) ) {
 	function layers_add_google_analytics() {
+		global $wp_customize;
+		
+		// Bail if in customizer.
+		if( isset( $wp_customize ) ) return;
 
 		$analytics_id = layers_get_theme_mod( 'header-google-id' );
-
-		if( '' != $analytics_id ) { ?>
+		
+		if ( '' != $analytics_id ) { ?>
 			<script>
-			  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-			  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-			  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-			  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+				(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+				(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+				m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+				})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-			  ga('create', '<?php echo $analytics_id; ?>', 'auto');
-			  ga('send', 'pageview');
-
+				ga('create', '<?php echo $analytics_id; ?>', 'auto');
+				ga('send', 'pageview');
 			</script>
 		<?php }
 	}

@@ -131,41 +131,6 @@ class Layers_Options_Panel {
 			<?php if( isset( $excerpt ) ) { ?>
 				<p class="l_admin-excerpt"><?php echo $excerpt; ?></p>
 			<?php } ?>
-
-			<nav class="l_admin-nav-horizontal l_admin-dashboard-nav">
-				<ul>
-					<li <?php if( 'themes' == $type ) { ?>class="active"<?php } ?>>
-						<a href="<?php echo admin_url( 'admin.php?page=layers-marketplace&type=themes' ); ?>">
-							<?php _e( 'Themes' , 'layerswp' ); ?>
-						</a>
-					</li>
-					<li <?php if( 'extensions' == $type ) { ?>class="active"<?php } ?>>
-						<a href="<?php echo admin_url( 'admin.php?page=layers-marketplace&type=extensions' ); ?>">
-							<?php _e( 'Extensions' , 'layerswp' ); ?>
-						</a>
-					</li>
-					<li <?php if( 'stylekits' == $type ) { ?>class="active"<?php } ?>>
-						<a href="<?php echo admin_url( 'admin.php?page=layers-marketplace&type=stylekits' ); ?>">
-							<?php _e( 'Style Kits' , 'layerswp' ); ?>
-						</a>
-					</li>
-				</ul>
-				<form class="l_admin-help-search" action="" target="_blank" method="get">
-					<label><?php _e( 'Filters: ', 'layerswp' ); ?></label>
-					<select id="layers-marketplace-authors" class="push-right">
-						<option value=""><?php _e( 'All Authors' , 'layerswp' ); ?></option>
-					</select>
-					<select id="layers-marketplace-sortby" name="sortby" data-action="<?php echo admin_url( 'admin.php?page=layers-marketplace&type=' . $type ); ?>" class="push-right">
-						<?php if( is_array( $api->get_sort_options() ) ) { ?>
-							<?php foreach( $api->get_sort_options() as $value => $info ) { ?>
-								<option value="<?php echo $value; ?>" data-excerpt-label="<?php echo esc_attr( $info[ 'excerpt-label' ] ); ?>"><?php echo $info[ 'label' ]; ?></option>
-							<?php } ?>
-						<?php } ?>
-					</select>
-					<input id="layers-marketplace-search" type="search" placeholder="<?php _e( 'Search...' , 'layerswp' ); ?>"/>
-				</form>
-			</nav>
-
 		</header>
 	<?php }
 
@@ -378,15 +343,17 @@ class Layers_Options_Panel {
 	}
 
 	public function layers_add_dashboard_widgets(){
-		wp_add_dashboard_widget(
-			'layers-addons',
-			__( 'Layers Themes, Style Kits &amp; Extensions', 'layers' ),
-			array( &$this, 'layers_dashboard_widget' ),
-			NULL,
-			array(
-				'type' => 'addons'
-			)
-		);
+		if( !defined( 'LAYERS_DISABLE_MARKETPLACE' ) ){
+			wp_add_dashboard_widget(
+				'layers-addons',
+				__( 'Layers Themes, Style Kits &amp; Extensions', 'layers' ),
+				array( &$this, 'layers_dashboard_widget' ),
+				NULL,
+				array(
+					'type' => 'addons'
+				)
+			);
+		}
 
 		if( !class_exists( 'Layers_WooCommerce' ) ) {
 			wp_add_dashboard_widget(
@@ -455,6 +422,8 @@ class Layers_Options_Panel {
 	<?php }
 
 	public function enqueue_dashboard_scripts(){
+
+		wp_enqueue_script( 'accordion' );
 
 		wp_enqueue_script(
 			LAYERS_THEME_SLUG . '-plugins-js'
@@ -545,16 +514,6 @@ function layers_options_panel_menu(){
 		__( 'Customize' , 'layerswp' ),
 		'edit_theme_options',
 		'customize.php'
-	);
-
-	// Transfer Pages
-	$transfer = add_submenu_page(
-		LAYERS_THEME_SLUG . '-dashboard',
-		__( 'Transfer' , 'layerswp' ),
-		__( 'Transfer' , 'layerswp' ),
-		'edit_theme_options',
-		LAYERS_THEME_SLUG . '-backup',
-		'layers_options_panel_ui'
 	);
 
 	// Get Started

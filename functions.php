@@ -184,7 +184,53 @@ if( ! function_exists( 'layers_setup' ) ) {
 
 	} // function layers_setup
 } // if !function layers_setup
-add_action( 'after_setup_theme' , 'layers_setup', 10 );
+add_action( 'after_setup_theme' , 'layers_setup', 100 );
+
+/**
+ * Port Widgets between Layers Parent theme and Child themes
+ */
+function layers_backup_site( $value ){
+	$theme = wp_get_theme();
+
+	$widget_data = $value[ 'data' ];
+	if( isset( $widget_data[ 'wp_inactive_widgets' ] ) ) unset( $widget_data[ 'wp_inactive_widgets' ] );
+
+	update_option( 'layers_tm_backup', get_theme_mods() );
+	update_option( 'layers_wgt_backup', $widget_data );
+
+	layers_backup_sidebars_widgets();
+}
+add_action( 'pre_set_theme_mod_sidebars_widgets' , 'layers_backup_site' );
+
+function layers_resore_site(){
+	global $layers_widgets;
+
+	$theme = wp_get_theme();
+	$layers_tm_backup = get_option( 'layers_tm_backup' );
+	$layers_wgt_backup = get_option( 'layers_wgt_backup' );
+
+	if( $layers_tm_backup ) {
+		update_option( 'theme_mods_' . $theme->stylesheet, $layers_tm_backup );
+		delete_option ( 'layers_tm_backup' );
+	}
+
+	// If the last theme was activated via the themes.php screen, use that backup
+	if( $layers_wgt_backup ) {
+		update_option( 'sidebars_widgets', $layers_wgt_backup );
+		delete_option ( 'layers_wgt_backup' );
+
+	// If a user used the customizer to preview the last theme before activating, look for widgets having been backed up via the theme_mods
+	} elseif( get_theme_mod( 'sidebars_widgets' ) ){
+		$layers_wgt_backup = get_theme_mod( 'sidebars_widgets' );
+		if( isset( $layers_wgt_backup[ 'data' ] ) ) {
+			update_option( 'sidebars_widgets', $layers_wgt_backup );
+			delete_theme_mod( 'sidebars_widgets' );
+		}
+	}
+
+}
+add_action( 'after_switch_theme' , 'layers_resore_site', 50 );
+
 
 /**
 *  Enqueue front end styles and scripts
@@ -359,7 +405,7 @@ if( ! function_exists( 'layers_scripts' ) ) {
 
 		wp_register_style(
 			LAYERS_THEME_SLUG . '-font-awesome',
-			get_template_directory_uri() . '/core/assets/font-awesome.min.css',
+			get_template_directory_uri() . '/core/assets/plugins/font-awesome/font-awesome.min.css',
 			array(),
 			LAYERS_VERSION
 		); // Font Awesome
@@ -380,13 +426,13 @@ if( ! function_exists( 'layers_admin_scripts' ) ) {
 		 */
 		wp_enqueue_style(
 			LAYERS_THEME_SLUG . '-tip-tip' ,
-			get_template_directory_uri() . '/core/assets/tipTip.css',
+			get_template_directory_uri() . '/core/assets/plugins/tip-tip/jquery.tipTip.css',
 			array(),
 			LAYERS_VERSION
 		);
 		wp_enqueue_script(
 			LAYERS_THEME_SLUG . '-tip-tip' ,
-			get_template_directory_uri() . '/core/assets/jquery.tipTip.minified.js',
+			get_template_directory_uri() . '/core/assets/plugins/tip-tip/jquery.tipTip.minified.js',
 			array( 'jquery' ),
 			LAYERS_VERSION,
 			true
@@ -413,7 +459,7 @@ if( ! function_exists( 'layers_admin_scripts' ) ) {
 		 */
 		wp_enqueue_style(
 			LAYERS_THEME_SLUG . '-admin-font-awesome',
-			get_template_directory_uri() . '/core/assets/font-awesome.min.css',
+			get_template_directory_uri() . '/core/assets/plugins/font-awesome/font-awesome.min.css',
 			array(),
 			LAYERS_VERSION
 		);
@@ -460,14 +506,13 @@ if( ! function_exists( 'layers_admin_scripts' ) ) {
 		 */
 		wp_enqueue_style(
 			LAYERS_THEME_SLUG . '-admin-editor',
-			get_template_directory_uri() . '/core/assets/editor.css',
+			get_template_directory_uri() . '/core/assets/plugins/froala/editor.css',
 			array(),
 			LAYERS_VERSION
 		);
-		
 		wp_enqueue_script(
 			LAYERS_THEME_SLUG . '-admin-editor' ,
-			get_template_directory_uri() . '/core/assets/editor.min.js' ,
+			get_template_directory_uri() . '/core/assets/plugins/froala/editor.min.js' ,
 			array( 'jquery' ),
 			LAYERS_VERSION,
 			true
@@ -592,63 +637,3 @@ if( !function_exists( 'layers_excerpt_class' ) ) {
 } // layers_excerpt_class
 add_filter( "the_excerpt", "layers_excerpt_class" );
 add_filter( "get_the_excerpt", "layers_excerpt_class" );
-
-
-/**
- * Movie Post-Type
- */
-add_action( 'init', 'create_posttype' );
-function create_posttype() {
-	
-	$labels = array(
-		'name' => __( 'Movies' ),
-		'singular_name' => __( 'Movie' )
-	);
-	
-	register_post_type(
-		'movies',
-		array(
-			'labels' => $labels,
-			'public' => true,
-			'has_archive' => true,
-			'rewrite' => array('slug' => 'movies'),
-			'supports' => array( 'thumbnail', 'title', 'editor' ),
-		)
-	);
-	
-}
-
-/**
- * Genre Taxonomy
- */
-add_action( 'init', 'create_genre_hierarchical_taxonomy', 0 );
-function create_genre_hierarchical_taxonomy() {
-	
-	$labels = array(
-		'name' => _x( 'Genres', 'taxonomy general name' ),
-		'singular_name' => _x( 'Genre', 'taxonomy singular name' ),
-		'search_items' =>  __( 'Search Genres' ),
-		'all_items' => __( 'All Genres' ),
-		'parent_item' => __( 'Parent Genre' ),
-		'parent_item_colon' => __( 'Parent Genre:' ),
-		'edit_item' => __( 'Edit Genre' ),
-		'update_item' => __( 'Update Genre' ),
-		'add_new_item' => __( 'Add New Genre' ),
-		'new_item_name' => __( 'New Genre Name' ),
-		'menu_name' => __( 'Genres' ),
-	);
-	
-	register_taxonomy(
-		'genre',
-		array('movies'),
-		array(
-			'hierarchical' => true,
-			'labels' => $labels,
-			'show_ui' => true,
-			'show_admin_column' => true,
-			'query_var' => true,
-			'rewrite' => array( 'slug' => 'topic' ),
-		)
-	);
-}
-

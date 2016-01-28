@@ -905,6 +905,14 @@
 	.l_admin-label.label-subtle{
 		color: #999;
 	}
+	.l_admin-label.label-highlight{
+		padding: 1px 5px;
+		background: #009eec;
+		border-radius: 3px;
+		color: #fff;
+		font-weight: 700;
+		text-transform: uppercase;
+	}
 
 
 /*---------------------------*/

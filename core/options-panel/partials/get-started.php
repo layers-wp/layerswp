@@ -356,7 +356,7 @@ function render_onboarding_warnings() {
 						<!-- Your content goes here -->
 						<div class="l_admin-section-title l_admin-small l_admin-no-push-bottom">
 							<div class="l_admin-push-bottom-small">
-								<small class="l_admin-label label-secondary">
+								<small class="l_admin-label label-highlight">
 									<?php _e( 'Getting Started' , 'layerswp' ); ?>
 								</small>
 							</div>
@@ -389,7 +389,7 @@ function render_onboarding_warnings() {
 						<!-- Your content goes here -->
 						<div class="l_admin-section-title l_admin-small l_admin-no-push-bottom">
 							<div class="l_admin-push-bottom-small">
-								<small class="l_admin-label label-secondary">
+								<small class="l_admin-label label-highlight">
 									<?php _e( 'Getting Started' , 'layerswp' ); ?>
 								</small>
 							</div>
@@ -417,7 +417,7 @@ function render_onboarding_warnings() {
 						<!-- Your content goes here -->
 						<div class="l_admin-section-title l_admin-small l_admin-no-push-bottom">
 							<div class="l_admin-push-bottom-small">
-								<small class="l_admin-label label-secondary">
+								<small class="l_admin-label label-highlight">
 									<?php _e( 'Getting Started' , 'layerswp' ); ?>
 								</small>
 							</div>

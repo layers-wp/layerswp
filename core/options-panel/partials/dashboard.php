@@ -67,14 +67,14 @@ $theme_info = wp_get_theme( 'layerswp' ); ?>
 										</div>
 										<?php if( isset( $setup_details[ 'skip-action' ] ) || isset( $setup_details[ 'submit-action' ] ) ) { ?>
 											<div class="l_admin-button-well">
-												<?php if( isset( $setup_details[ 'skip-action' ] ) ) { ?>
-													<a class="button btn-link l_admin-dashboard-skip" data-setup-step-key="<?php echo $setup_key; ?>" data-skip-action="<?php echo $setup_details[ 'skip-action' ]; ?>">
-														<?php _e( 'Skip' , 'layerswp' ); ?>
+												<?php if( isset( $setup_details[ 'submit-action' ] ) ) { ?>
+													<a class="button" href="" data-setup-step-key="<?php echo $setup_key; ?>" data-submit-action="<?php echo $setup_details[ 'submit-action' ]; ?>">
+														<?php echo ( isset( $setup_details[ 'submit-text' ] ) ) ? $setup_details[ 'submit-text' ] : __( 'Save &amp; Proceed &rarr;' , 'layerswp' ); ?>
 													</a>
 												<?php } ?>
-												<?php if( isset( $setup_details[ 'submit-action' ] ) ) { ?>
-													<a class="button l_admin-pull-right" href="" data-setup-step-key="<?php echo $setup_key; ?>" data-submit-action="<?php echo $setup_details[ 'submit-action' ]; ?>">
-														<?php echo ( isset( $setup_details[ 'submit-text' ] ) ) ? $setup_details[ 'submit-text' ] : __( 'Save &amp; Proceed &rarr;' , 'layerswp' ); ?>
+												<?php if( isset( $setup_details[ 'skip-action' ] ) ) { ?>
+													<a class="button btn-link l_admin-dashboard-skip l_admin-pull-right" data-setup-step-key="<?php echo $setup_key; ?>" data-skip-action="<?php echo $setup_details[ 'skip-action' ]; ?>">
+														<?php _e( 'Skip' , 'layerswp' ); ?>
 													</a>
 												<?php } ?>
 											</div>
@@ -126,7 +126,7 @@ $theme_info = wp_get_theme( 'layerswp' ); ?>
 
 				</div>
 
-				<div class="l_admin-column l_admin-span-6">
+				<div class="l_admin-column l_admin-span-5">
 					<?php if( !defined( 'LAYERS_DISABLE_MARKETPLACE' ) ){ ?>
 						<div class="l_admin-panel l_admin-push-bottom">
 							<div class="l_admin-section-title l_admin-content l_admin-tiny">
@@ -176,7 +176,7 @@ $theme_info = wp_get_theme( 'layerswp' ); ?>
 					<?php } ?>
 
 				</div>
-				<div class="l_admin-column l_admin-span-3">
+				<div class="l_admin-column l_admin-span-4">
 
 					<?php if( !defined( 'LAYERS_DISABLE_INTERCOM' ) ){ ?>
 						<div class="l_admin-panel l_admin-push-bottom">

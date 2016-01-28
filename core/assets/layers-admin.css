@@ -472,10 +472,10 @@
 	.l_admin-form-item label{
 		display: block;
 		margin-bottom: 2px;
-		font-size: 11px;
-		text-transform: uppercase;
-		color: #777;
-		font-weight: 600;
+		font-size: 14px;
+		line-height: 24px;
+		font-weight: bold;
+		color: #555;
 	}
 
 	.l_admin-form-item-description{
@@ -590,6 +590,15 @@
 	}
 
 	/*-------------------*/
+	/*- COLOR PICKER ----*/
+	.l_admin-form-item .wp-picker-container input.wp-color-picker[type="text"]{
+		float: left;
+		padding: 3px 5px;
+		box-shadow: 0px 1px 0px #ccc;
+	}
+
+
+	/*-------------------*/
 	/*- CHECKBOX --------*/
 	.l_admin-checkbox-wrapper input[type=checkbox]{
 		display: none;
@@ -634,6 +643,20 @@
 	.l_admin-invert .l_admin-checkbox-wrapper label{
 		color: #ccc;
 	}
+
+		/*---------------*/
+		/*- CHECKBOX LRG */
+		.l_admin-checkbox-wrapper.l_admin-large label{
+			font-size: 18px;
+		}
+		.l_admin-checkbox-wrapper.l_admin-large label:before{
+			width: 32px;
+			height: 32px;
+			margin-top: -4px;
+			background-size: 32px;
+			border-radius: 3px;
+			vertical-align: middle;
+		}
 
 	/*-------------------*/
 	/*- RADIO -----------*/

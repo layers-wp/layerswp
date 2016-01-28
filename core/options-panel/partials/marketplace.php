@@ -176,7 +176,7 @@ $all_categories = array(); ?>
 
 							$envato_url = 'http://www.layerswp.com/go-envato/?id=' . esc_attr( $details->id ) . '&item=' . esc_attr( $details->name ) . '&site=' . $site_key; ?>
 							<div
-								id="product-details-<?php echo $details->id; ?>" class="l_admin-column l_admin-span-4 l_admin-product l_admin-animate" tabindex="0"
+								id="product-details-<?php echo $details->id; ?>" class="l_admin-column l_admin-span-6 l_admin-product l_admin-animate" tabindex="0"
 								data-id="<?php echo $details->id; ?>"
 								data-url="<?php echo esc_attr( $envato_url ); ?>"
 								data-tags="<?php echo strtolower( implode( ',', $details->tags ) ); ?>"

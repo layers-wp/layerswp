@@ -56,10 +56,10 @@ function render_onboarding_warnings() {
 
 		<div class="l_admin-onboard-controllers">
 			<div class="onboard-nav-dots l_admin-pull-left" id="layers-onboard-anchors"></div>
-			<a class="l_admin-button btn-link l_admin-pull-right" href="" id="layers-onboard-skip"><?php _e( 'Skip' , 'layerswp' ); ?></a>
+			<a class="button btn-link l_admin-pull-right" href="" id="layers-onboard-skip"><?php _e( 'Skip' , 'layerswp' ); ?></a>
 		</div>
 
-		<div class="l_admin-onboard-slider">
+		<div class="l_admin-onboard-slider l_admin-row">
 
 			<!-- Welcome -->
 			<div class="l_admin-onboard-slide l_admin-animate l_admin-onboard-slide-current">
@@ -114,7 +114,7 @@ function render_onboarding_warnings() {
 								<?php _e( 'Let&rsquo;s do some quick setup' , 'layerswp' ); ?>
 							</h3>
 							<p class="l_admin-excerpt">
-								<?php _e( 'Enter your website name below. We&apos;ll use this in your site title and in search results.' , 'layerswp' ); ?>
+								<?php _e( 'Tell us a bit about your site so that we can po.' , 'layerswp' ); ?>
 							</p>
 						</div>
 
@@ -131,6 +131,23 @@ function render_onboarding_warnings() {
 								'placeholder' => get_bloginfo( 'name' ),
 								'value' => get_bloginfo( 'name' ),
 								'class' => 'layers-text l_admin-large',
+							) );
+							?>
+						</div>
+
+						<div class="l_admin-form-item">
+							<label>
+								<?php _e( 'How would you describe your site?' , 'layerswp' ); ?>
+								<i class="fa fa-question-circle" data-tip="<?php _e( 'A tagline describes who and what you are in just a few simple words. For example Layers is a &ldquo;WordPress Site Builder&rdquo; - simple, easy, quick to read. Now you try:' , 'layerswp' ); ?>"></i>
+							</label>
+							<?php
+							echo $form_elements->input( array(
+								'type' => 'text',
+								'name' => 'blogdescription',
+								'id' => 'blogdescription',
+								'placeholder' => get_bloginfo( 'description' ),
+								'value' => get_bloginfo( 'description' ),
+								'class' => 'layers-text l_admin-large'
 							) );
 							?>
 						</div>
@@ -167,23 +184,6 @@ function render_onboarding_warnings() {
 									'just-testing' => 'Just Testing',
 									'other' => 'Other'
 								),
-							) );
-							?>
-						</div>
-
-						<div class="l_admin-form-item">
-							<label>
-								<?php _e( 'How would you describe your site?' , 'layerswp' ); ?>
-								<i class="fa fa-question-circle" data-tip="<?php _e( 'A tagline describes who and what you are in just a few simple words. For example Layers is a &ldquo;WordPress Site Builder&rdquo; - simple, easy, quick to read. Now you try:' , 'layerswp' ); ?>"></i>
-							</label>
-							<?php
-							echo $form_elements->input( array(
-								'type' => 'text',
-								'name' => 'blogdescription',
-								'id' => 'blogdescription',
-								'placeholder' => get_bloginfo( 'description' ),
-								'value' => get_bloginfo( 'description' ),
-								'class' => 'layers-text l_admin-large'
 							) );
 							?>
 						</div>

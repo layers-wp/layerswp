@@ -9,7 +9,7 @@ $find_builder_page = layers_get_builder_pages(); ?>
 
 <section class="l_admin-area-wrapper" id="layers-add-new-page">
 	<?php $this->header( __( 'Add New Page' , 'layerswp' ) ); ?>
-	<div class="l_admin-row l_admin-well l_admin-content">
+	<div class="l_admin-well l_admin-content">
 		<?php $this->load_partial( 'preset-layouts' ); ?>
 	</div>
 </section>

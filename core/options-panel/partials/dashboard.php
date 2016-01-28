@@ -14,7 +14,7 @@ $theme_info = wp_get_theme( 'layerswp' ); ?>
 
 	<?php $this->header( __( 'Dashboard' , 'layerswp' ) ); ?>
 
-	<div class="l_admin-row l_admin-well l_admin-content">
+	<div class="l_admin-well l_admin-content">
 		<div class="l_admin-container-large">
 			<div class="l_admin-row">
 
@@ -256,19 +256,17 @@ $theme_info = wp_get_theme( 'layerswp' ); ?>
 	</div>
 </section>
 <section class="l_admin-area-wrapper">
-	<div class="l_admin-row l_admin-well-alt l_admin-content">
+	<div class="l_admin-well-alt l_admin-content">
 
 		<div class="l_admin-section-title l_admin-small">
 			<h3 class="l_admin-heading"><?php _e( 'Layers News' , 'layerswp' ); ?></h3>
 		</div>
 
 		<div id="layers-dashboard-news-feed" class="l_admin-row" data-layers-feed="news" data-layers-feed-count="3">
-			<div class="l_admin-column l_admin-span-3" data-loading="1">
-				<div class="l_admin-panel">
-					<div class="l_admin-content">
-						<div class="l_admin-section-title l_admin-tiny">
-							<h4 class="l_admin-heading"><?php _e( 'Loading Layers News' , 'layerswp' ); ?></h4>
-						</div>
+			<div class="l_admin-column l_admin-span-3 l_admin-panel" data-loading="1">
+				<div class="l_admin-content">
+					<div class="l_admin-section-title l_admin-tiny">
+						<h4 class="l_admin-heading"><?php _e( 'Loading Layers News' , 'layerswp' ); ?></h4>
 					</div>
 				</div>
 			</div>

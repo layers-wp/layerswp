@@ -22,7 +22,7 @@ $find_builder_page = layers_get_builder_pages(); ?>
 				<?php _e( 'Add a page title' , 'layerswp' ); ?>
 			</h2>
 
-			<p class="l_admin-form-item l_admin-span-12">
+			<p class="l_admin-form-item">
 				<?php
 					echo $form_elements->input( array(
 						'type' => 'text',

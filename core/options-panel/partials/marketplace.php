@@ -6,9 +6,9 @@ $valid_types = array( 'stylekits' , 'extensions' , 'themes' );
 
 $type = isset( $_GET[ 'type' ] ) ? $_GET[ 'type' ] : 'themes';
 
-if( !in_array( $type, $valid_types ) ) return; ?>
+if( !in_array( $type, $valid_types ) ) return;
 
-<?php switch( $type ){
+switch( $type ){
 	case 'stylekits' :
 		$excerpt = __( 'Style Kits' , 'layerswp' );
 		$products = $api->get_stylekit_list();
@@ -78,25 +78,27 @@ $all_categories = array(); ?>
 
 				</div>
 
-				<div class="l_admin-panel">
-					<div class="l_admin-panel-title">
-						<h3 class="l_admin-heading">
-							<?php _e( 'Categories' , 'layerswp' ); ?>
-							<a href="#" class="l_admin-pull-right l_admin-label label-subtle layers-hide" id="layers-marketplace-categories-clear" data-type="categories"><?php _e( 'Clear', 'layerswp' ); ?></a>
-						</h3>
+				<div class="accordion-container">
+					<div class="l_admin-panel accordion-section open">
+						<div class="l_admin-panel-title accordion-section-title">
+							<h3 class="l_admin-heading">
+								<?php _e( 'Categories' , 'layerswp' ); ?>
+								<a href="#" class="l_admin-pull-right l_admin-label label-subtle layers-hide" id="layers-marketplace-categories-clear" data-type="categories"><?php _e( 'Clear', 'layerswp' ); ?></a>
+							</h3>
+						</div>
+						<ul class="l_admin-list l_admin-page-list l_admin-scroll accordion-section-content" id="layers-marketplace-categories">
+						</ul>
 					</div>
-					<ul class="l_admin-list l_admin-page-list l_admin-scroll" id="layers-marketplace-categories">
-					</ul>
-				</div>
 
-				<div class="l_admin-panel">
-					<div class="l_admin-panel-title">
-						<h3 class="l_admin-heading">
-							<?php _e( 'Tags' , 'layerswp' ); ?>
-							<a href="#" class="l_admin-pull-right l_admin-label label-subtle layers-hide" id="layers-marketplace-tags-clear" data-type="tags"><?php _e( 'Clear', 'layerswp' ); ?></a>
-						</h3>
-					</div>
-					<div class="l_admin-content-small l_admin-scroll" id="layers-marketplace-tags">
+					<div class="l_admin-panel accordion-section">
+						<div class="l_admin-panel-title accordion-section-title">
+							<h3 class="l_admin-heading">
+								<?php _e( 'Tags' , 'layerswp' ); ?>
+								<a href="#" class="l_admin-pull-right l_admin-label label-subtle layers-hide" id="layers-marketplace-tags-clear" data-type="tags"><?php _e( 'Clear', 'layerswp' ); ?></a>
+							</h3>
+						</div>
+						<div class="l_admin-content-small l_admin-scroll accordion-section-content" id="layers-marketplace-tags">
+						</div>
 					</div>
 				</div>
 			</div>

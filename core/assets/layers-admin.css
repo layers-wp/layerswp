@@ -1384,6 +1384,7 @@
 			margin: 0;
 			padding: 10px;
 			background: #fff;
+			border: none;
 			border-bottom: 1px solid #e5e5e5;
 			color: #222;
 		}
@@ -1409,6 +1410,18 @@
 			display: block;
 			max-width: 100%;
 		}
+
+			/*-------------------*/
+			/*- PAGE LIST -------*/
+			.accordion-section .l_admin-panel-title{
+				border-bottom-color: transparent;
+			}
+			.accordion-section.open .l_admin-panel-title{
+				border-bottom-color: #e5e5e5;
+			}
+			.js .accordion-section-title::after{
+				top: 9px;
+			}
 
 		/*-----------------------*/
 		/*- PAGE LIST -----------*/

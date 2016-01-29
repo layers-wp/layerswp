@@ -37,10 +37,10 @@ jQuery(document).ready(function($) {
 
 		// If we use the builder, show the "build" button
 		if('builder.php' == $that.val() ){
-			$( '#layers_toggle_builder' ).removeClass( 'layers-hide' );
+			$( '#layers_toggle_builder' ).removeClass( 'l_admin-hide' );
 			$( $non_layers_boxes ).hide();
 		} else {
-			$( '#layers_toggle_builder' ).addClass( 'layers-hide' );
+			$( '#layers_toggle_builder' ).addClass( 'l_admin-hide' );
 			$( $non_layers_boxes ).show();
 		}
 

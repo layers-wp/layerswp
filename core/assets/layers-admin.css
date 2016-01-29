@@ -9,6 +9,9 @@
 
 @import url(icons.css);
 
+.l_admin-hide{ display: none !important; }
+.l_admin-soft-hide{ display: none; }
+
 /*---------------------------*/
 /*- THE GRID ----------------*/
 

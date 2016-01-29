@@ -48,7 +48,7 @@ div#widgets-right div[id*='obox-layers-builder']{
     border-right: 4px solid #00A4EC;
 }
 
-.layers-hide{
+.l_admin-hide{
     display: none !important;
 }
 
@@ -195,7 +195,7 @@ div#widgets-right div[id*='obox-layers-builder']{
         transform: translate3d(-10px, 0, 0);
         opacity: 0;
     }
-    
+
     .customize-control-widget_form.wide-widget-control div[id*='layers-widget'] .widget-inside .form{
         padding: 0 !important;
         height: 100%;
@@ -628,7 +628,7 @@ div[id*='layers-widget'] .spinner{
     color: #444;
     box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.1);
 }
-    
+
     /*---------------------------*/
     /*- ICON-GROUP --------------*/
     .layers-icon-group {
@@ -662,7 +662,7 @@ div[id*='layers-widget'] .spinner{
     .layers-icon-group .layers-icon-wrapper img{
         max-width: 100%;
     }
-    
+
     /*---------------------------*/
     /*- ICON-GROUP OUTLINED -----*/
     .layers-icon-group.layers-icon-group-outline {
@@ -1184,9 +1184,9 @@ div[id*='layers-widget'] .spinner{
     }
 
     /* Hide Number Input Controls */
-    .layers-hide-controls[type=number],
-    .layers-hide-controls::-webkit-inner-spin-button,
-    .layers-hide-controls::-webkit-outer-spin-button {
+    .l_admin-hide-controls[type=number],
+    .l_admin-hide-controls::-webkit-inner-spin-button,
+    .l_admin-hide-controls::-webkit-outer-spin-button {
         -webkit-appearance: none; /*chrome*/
         -moz-appearance: textfield; /*firefox*/
     }
@@ -1205,7 +1205,7 @@ div[id*='layers-widget'] .spinner{
         border-radius: 0 3px 3px 0;
         box-shadow: none;
     }
-    
+
     .layers-sync-setting-holder {
         position: relative;
     }
@@ -1234,7 +1234,7 @@ div[id*='layers-widget'] .spinner{
     .layers-sync-setting-holder.layers-use-widget-value .layers-global-setting{
         display: none;
     }
-    
+
     .layers-global-setting {
         top: 0;
         left: 0;
@@ -1367,7 +1367,7 @@ div[id*='layers-widget'] .spinner{
         text-align: center;
         text-transform: uppercase;
     }
-    
+
     /*----------------------------*/
     /*- FORM ITEMS ---------------*/
     .editible,
@@ -1401,7 +1401,7 @@ div[id*='layers-widget'] .spinner{
 
     /*---------------------------*/
     /*- ICON-GROUP - DESIGN-BAR -*/
-    
+
     .layers-design-bar .layers-visuals-item{
         position: relative;
         padding: 1px;
@@ -1432,7 +1432,7 @@ div[id*='layers-widget'] .spinner{
         .layers-design-bar .layers-visuals-item:nth-child(10){transition-delay: 0.43s;}
         .layers-design-bar .layers-visuals-item:nth-child(11){transition-delay: 0.45s;}
 
-    
+
     .layers-visuals-item .layers-icon-error{
         color: #FF5353;
     }
@@ -2029,7 +2029,7 @@ li[id*='customize-control-layers'].customize-control .layers-form-item:after{
         /* width: 25%; */
         display: inline-block;
     }
-    
+
     /*----------------------*/
     /*- CHECKBOX -----------*/
     li[id*='customize-control-layers'].customize-control .layers-customize-control-checkbox .layers-form-item{
@@ -2082,7 +2082,7 @@ li[id*='customize-control-layers'].customize-control .layers-form-item:after{
         margin-bottom: 6px;
         margin-top: -6px;
     }
-        
+
         /*---------------------------*/
         /*- GROUP INPUTS ------------*/
         .layers-customize-control.group:not(.layers-customize-control-color) input,
@@ -2110,7 +2110,7 @@ li[id*='customize-control-layers'].customize-control .layers-form-item:after{
         .layers-customize-control.group.layers-customize-control-checkbox label{
             margin-bottom: 6px;
         }
-        
+
 
 /*---------------------------*/
 /*- TITLES ------------------*/

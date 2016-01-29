@@ -111,7 +111,7 @@ class Layers_Custom_Meta {
 
 		$is_builder_used = ( 'builder.php' == basename( get_page_template() ) ) ? true : false; ?>
 
-		<div id="layers_toggle_builder" class=" <?php echo ( true == $is_builder_used ? '' : 'layers-hide' ) ?>">
+		<div id="layers_toggle_builder" class=" <?php echo ( true == $is_builder_used ? '' : 'l_admin-hide' ) ?>">
 				<div  class="postbox l_admin-push-top">
 					<div class="l_admin-section-title l_admin-no-push-bottom l_admin-content">
 						<div class="l_admin-heading">
@@ -321,7 +321,7 @@ class Layers_Custom_Meta {
 			<!-- Tab Content -->
 			<div class="l_admin-tab-content">
 				<?php foreach( $this->custom_meta[ $meta_index ]['custom-meta'] as $key => $meta_option ){ ?>
-					<section class="l_admin-accordion-section l_admin-content l_admin-tab-content <?php if( isset( $hide_tab ) ) echo 'layers-hide'; ?> customize-control"> <?php // @TODO: Remove .customizer-control class ?>
+					<section class="l_admin-accordion-section l_admin-content l_admin-tab-content <?php if( isset( $hide_tab ) ) echo 'l_admin-hide'; ?> customize-control"> <?php // @TODO: Remove .customizer-control class ?>
 						<div class="l_admin-row clearfix">
 							<?php if( isset( $meta_option[ 'elements' ] ) ) { ?>
 								<fieldset>

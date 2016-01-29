@@ -38,7 +38,7 @@ jQuery(function($) {
 
 		$action = $that.data( 'skip-action' );
 
-		$container.hide().next().hide().removeClass( 'layers-hide' ).fadeIn( 250 );
+		$container.hide().next().hide().removeClass( 'l_admin-hide' ).fadeIn( 250 );
 		$container.remove();
 
 		layers_check_dashboard_setup_completion();
@@ -77,7 +77,7 @@ jQuery(function($) {
 
 					$results = $.parseJSON( data );
 
-					$container.hide().next().hide().removeClass( 'layers-hide' ).fadeIn( 250 );
+					$container.hide().next().hide().removeClass( 'l_admin-hide' ).fadeIn( 250 );
 					$container.remove();
 
 					layers_check_dashboard_setup_completion( true );

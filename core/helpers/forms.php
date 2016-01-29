@@ -279,7 +279,7 @@ class Layers_Form_Elements {
 								<?php echo esc_html( $name ); ?>
 							</span>
 						</label>
-						<input type="radio" <?php echo implode ( ' ' , $input_props ); ?> id="<?php echo esc_attr( $input->id ) ,'-', esc_attr( $key ); ?>" value="<?php echo esc_attr( $key ); ?>" <?php checked( $input->value , $key , true ); ?> class="layers-hide" />
+						<input type="radio" <?php echo implode ( ' ' , $input_props ); ?> id="<?php echo esc_attr( $input->id ) ,'-', esc_attr( $key ); ?>" value="<?php echo esc_attr( $key ); ?>" <?php checked( $input->value , $key , true ); ?> class="l_admin-hide" />
 					<?php } // foreach options ?>
 				</div>
 			<?php break;
@@ -404,10 +404,10 @@ class Layers_Form_Elements {
 							<div class="layers-form-item">
 								<div class="layers-image-uploader layers-animate layers-push-bottom">
 									<!-- Remove button -->
-									<a class="layers-image-remove <?php if( !isset( $input->value->image ) ) echo 'layers-hide'; ?>" href=""><?php _e( 'Remove' , 'layerswp' ); ?></a>
+									<a class="layers-image-remove <?php if( !isset( $input->value->image ) ) echo 'l_admin-hide'; ?>" href=""><?php _e( 'Remove' , 'layerswp' ); ?></a>
 
 									<!-- Instructions -->
-									<p <?php if( isset( $input->value->image ) ) echo 'class="layers-hide"'; ?>>
+									<p <?php if( isset( $input->value->image ) ) echo 'class="l_admin-hide"'; ?>>
 										<?php printf( __( 'Drop a file here or %s' , 'layerswp' ) , '<a href="#">select a file.</a>' ); ?>
 									</p>
 
@@ -624,7 +624,7 @@ class Layers_Form_Elements {
 									'name' => ( isset( $input->name ) ) ? "{$input->name}[$key]" : '',
 									'id' => "{$input->id}-{$key}",
 									'value' => ( isset( $input->value->$key ) ) ? $input->value->$key : NULL,
-									'class' => 'layers-hide-controls',
+									'class' => 'l_admin-hide-controls',
 									'data' => array(
 										'customize-setting-link' => "{$input->id}-{$key}",
 									),

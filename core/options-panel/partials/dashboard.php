@@ -33,7 +33,7 @@ $theme_info = wp_get_theme( 'layerswp' ); ?>
 						} ?>
 
 						<?php if( isset( $setup_steps ) ) {
-							$this->notice( 'neutral' , __( 'Click here to continue your site setup.' , 'layerswp' ), array( 'layers-continue-site-setup', 'layers-hide' ) ) ; ?>
+							$this->notice( 'neutral' , __( 'Click here to continue your site setup.' , 'layerswp' ), array( 'layers-continue-site-setup', 'l_admin-hide' ) ) ; ?>
 							<div class="l_admin-panel l_admin-site-setup-panel">
 								<div class="l_admin-panel-title">
 									<h4 class="l_admin-heading"><?php _e( 'Complete Your Site Setup' , 'layerswp' ); ?></h4>
@@ -43,7 +43,7 @@ $theme_info = wp_get_theme( 'layerswp' ); ?>
 
 									if( !in_array( $setup_key, $setup_steps ) ) continue; ?>
 
-									<div class="l_admin-dashboard-setup-form <?php echo ( 0 != $setup_index ) ? 'layers-hide' : ''; ?>">
+									<div class="l_admin-dashboard-setup-form <?php echo ( 0 != $setup_index ) ? 'l_admin-hide' : ''; ?>">
 										<div class="l_admin-content">
 											<?php if( isset( $setup_details[ 'label' ] ) || isset( $setup_details[ 'excerpt' ] ) ) { ?>
 												<div class="l_admin-section-title l_admin-tiny">

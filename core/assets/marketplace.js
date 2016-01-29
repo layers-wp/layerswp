@@ -34,7 +34,7 @@ jQuery(function($) {
 	$(document).on( 'click', '#layers-marketplace .theme-overlay button.close', function(e){
 		e.preventDefault();
 
-		$( '.theme-overlay' ).fadeOut(250).addClass( 'layers-hide' );
+		$( '.theme-overlay' ).fadeOut(250).addClass( 'l_admin-hide' );
 	});
 
 	/**
@@ -103,10 +103,10 @@ jQuery(function($) {
 
 		if( 'undefined' !== typeof( $json.previews.live_site.url ) ){
 			$iframe = $( '<iframe />' ).attr( 'src', $json.previews.live_site.url );
-			$( '.theme-preview' ).html( $iframe ).removeClass( 'layers-hide' ).show();
+			$( '.theme-preview' ).html( $iframe ).removeClass( 'l_admin-hide' ).show();
 			$( '.theme-about' ).hide();
 		} else {
-			$( '.theme-about' ).addClass( 'layers-hide' ).show();
+			$( '.theme-about' ).addClass( 'l_admin-hide' ).show();
 		}
 		*/
 
@@ -170,8 +170,8 @@ jQuery(function($) {
 			}
 		}
 
-		if( $( '.theme-overlay' ).hasClass( 'layers-hide' ) ){
-			$( '.theme-overlay' ).hide().removeClass( 'layers-hide' ).fadeIn(250);
+		if( $( '.theme-overlay' ).hasClass( 'l_admin-hide' ) ){
+			$( '.theme-overlay' ).hide().removeClass( 'l_admin-hide' ).fadeIn(250);
 		}
 
 	});
@@ -184,7 +184,7 @@ jQuery(function($) {
 
 		e.preventDefault();
 
-		$(this).addClass( 'layers-hide' );
+		$(this).addClass( 'l_admin-hide' );
 
 		$cats = $( '#layers-marketplace input[name="layers-marketplace-categories"]:checked' );
 		$tags = $( '#layers-marketplace input[name="layers-marketplace-tags"]:checked' );
@@ -220,9 +220,9 @@ jQuery(function($) {
 		$( '.l_admin-marketplace-loading' ).fadeOut( 350 );
 
 		setTimeout(function(){
-			$( '.l_admin-products.layers-hide' ).hide().removeClass( 'layers-hide' ).fadeIn( 350 );
-			$( '#layers-marketplace-sort.layers-hide' ).hide().removeClass( 'layers-hide' ).fadeIn( 350 );
-			$( '.l_admin-marketplace-intro.layers-hide' ).hide().removeClass( 'layers-hide' ).fadeIn( 350 );
+			$( '.l_admin-products.l_admin-hide' ).hide().removeClass( 'l_admin-hide' ).fadeIn( 350 );
+			$( '#layers-marketplace-sort.l_admin-hide' ).hide().removeClass( 'l_admin-hide' ).fadeIn( 350 );
+			$( '.l_admin-marketplace-intro.l_admin-hide' ).hide().removeClass( 'l_admin-hide' ).fadeIn( 350 );
 			marketplace_resize();
 		}, 350 );
 
@@ -311,9 +311,9 @@ jQuery(function($) {
 
 			if( 0 == $cats.length ) {
 				$cats_valid = true;
-				$( '#layers-marketplace-categories-clear' ).addClass( 'layers-hide' );
+				$( '#layers-marketplace-categories-clear' ).addClass( 'l_admin-hide' );
 			} else {
-				$( '#layers-marketplace-categories-clear' ).removeClass( 'layers-hide' );
+				$( '#layers-marketplace-categories-clear' ).removeClass( 'l_admin-hide' );
 
 				$cats.each(function( c_key, c_val ){
 					c_val_string = $( c_val ).val();
@@ -326,9 +326,9 @@ jQuery(function($) {
 			// Check the Tags
 			if( 0 == $tags.length ) {
 				$tags_valid = true;
-				$( '#layers-marketplace-tags-clear' ).addClass( 'layers-hide' );
+				$( '#layers-marketplace-tags-clear' ).addClass( 'l_admin-hide' );
 			} else {
-				$( '#layers-marketplace-tags-clear' ).removeClass( 'layers-hide' );
+				$( '#layers-marketplace-tags-clear' ).removeClass( 'l_admin-hide' );
 
 				$tags.each(function( t_key, t_val ){
 					t_val_string = $( t_val ).val();
@@ -364,14 +364,14 @@ jQuery(function($) {
 		});
 
 		// Do something about the information we've got
-		if( 0 == $valid_products.length && $( '#layers-marketplace-empty-search' ).hasClass( 'layers-hide' ) ){
-			$( '#layers-marketplace-empty-search' ).hide().removeClass( 'layers-hide' ).fadeIn( 750 );
+		if( 0 == $valid_products.length && $( '#layers-marketplace-empty-search' ).hasClass( 'l_admin-hide' ) ){
+			$( '#layers-marketplace-empty-search' ).hide().removeClass( 'l_admin-hide' ).fadeIn( 750 );
 		} else if( 0 < $valid_products.length ) {
-			$( '#layers-marketplace-empty-search' ).addClass( 'layers-hide' );
+			$( '#layers-marketplace-empty-search' ).addClass( 'l_admin-hide' );
 		}
 
-		$( $valid_products.join(", ") ).removeClass( 'layers-hide' );
-		$( $invalid_products.join(", ") ).addClass( 'layers-hide' );
+		$( $valid_products.join(", ") ).removeClass( 'l_admin-hide' );
+		$( $invalid_products.join(", ") ).addClass( 'l_admin-hide' );
 	}
 
 	/**

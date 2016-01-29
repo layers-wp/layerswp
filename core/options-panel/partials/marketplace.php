@@ -83,7 +83,7 @@ $all_categories = array(); ?>
 						<div class="l_admin-panel-title accordion-section-title">
 							<h3 class="l_admin-heading">
 								<?php _e( 'Categories' , 'layerswp' ); ?>
-								<a href="#" class="l_admin-pull-right l_admin-label label-subtle layers-hide" id="layers-marketplace-categories-clear" data-type="categories"><?php _e( 'Clear', 'layerswp' ); ?></a>
+								<a href="#" class="l_admin-pull-right l_admin-label label-subtle l_admin-hide" id="layers-marketplace-categories-clear" data-type="categories"><?php _e( 'Clear', 'layerswp' ); ?></a>
 							</h3>
 						</div>
 						<ul class="l_admin-list l_admin-page-list l_admin-scroll accordion-section-content" id="layers-marketplace-categories">
@@ -94,10 +94,10 @@ $all_categories = array(); ?>
 						<div class="l_admin-panel-title accordion-section-title">
 							<h3 class="l_admin-heading">
 								<?php _e( 'Tags' , 'layerswp' ); ?>
-								<a href="#" class="l_admin-pull-right l_admin-label label-subtle layers-hide" id="layers-marketplace-tags-clear" data-type="tags"><?php _e( 'Clear', 'layerswp' ); ?></a>
+								<a href="#" class="l_admin-pull-right l_admin-label label-subtle l_admin-hide" id="layers-marketplace-tags-clear" data-type="tags"><?php _e( 'Clear', 'layerswp' ); ?></a>
 							</h3>
 						</div>
-						<div class="l_admin-content-small l_admin-scroll accordion-section-content" id="layers-marketplace-tags">
+						<div class="l_admin-content-small l_admin-scroll l_admin-soft-hide accordion-section-content" style="display: none;" id="layers-marketplace-tags">
 						</div>
 					</div>
 				</div>
@@ -123,7 +123,7 @@ $all_categories = array(); ?>
 
 				<?php if( !is_wp_error( $products ) ) { ?>
 
-					<div id="layers-marketplace-sort" class="l_admin-row layers-hide">
+					<div id="layers-marketplace-sort" class="l_admin-row l_admin-hide">
 						<div class="l_admin-column l_admin-column l_admin-pull-right">
 							<label>
 								<?php _e( 'Authors:', 'layerswp' ); ?>
@@ -144,7 +144,7 @@ $all_categories = array(); ?>
 						</div>
 					</div>
 
-					<div class="l_admin-products layers-hide">
+					<div class="l_admin-products l_admin-hide">
 
 						<?php foreach( $products->matches as $key => $details ) {
 
@@ -338,7 +338,7 @@ $all_categories = array(); ?>
 			});
 		</script>
 	<?php } ?>
-	<div class="theme-overlay layers-hide">
+	<div class="theme-overlay l_admin-hide">
 		 <div class="theme-backdrop"></div>
 		 <div class="theme-wrap">
 			<div class="theme-header">
@@ -347,7 +347,7 @@ $all_categories = array(); ?>
 				<button class="close dashicons dashicons-no"><span class="screen-reader-text">Close details dialog</span></button>
 			</div>
 
-			<div class="theme-preview layers-hide">
+			<div class="theme-preview l_admin-hide">
 			</div>
 			<div class="theme-about">
 				<div class="theme-screenshots"><img /></div>

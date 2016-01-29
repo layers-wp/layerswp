@@ -38,7 +38,7 @@ jQuery(document).ready(function($){
 
 		// Show the Modal
 		$( '.l_admin-modal-container' ).find( '.l_admin-media-image' ).html( $button.find('img') );
-		$( '.l_admin-modal-container' ).hide().removeClass( 'layers-hide' ).fadeIn( 350 );
+		$( '.l_admin-modal-container' ).hide().removeClass( 'l_admin-hide' ).fadeIn( 350 );
 		$( '#adminmenu' ).fadeOut();
 
 		$( '#layers_preset_page_title' ).val( $title );
@@ -69,8 +69,8 @@ jQuery(document).ready(function($){
 		// "Hi Mom!"
 		$that = $(this);
 
-		$( '.l_admin-load-bar' ).hide().removeClass( 'layers-hide' ).fadeIn( 750 );
-		$( '#layers-preset-layout-next-button' ).addClass( 'layers-hide' );
+		$( '.l_admin-load-bar' ).hide().removeClass( 'l_admin-hide' ).fadeIn( 750 );
+		$( '#layers-preset-layout-next-button' ).addClass( 'l_admin-hide' );
 
 		$( '.l_admin-progress' ).removeClass( 'zero complete' ).css('width' , 0);
 		var $load_bar_percent = 0;

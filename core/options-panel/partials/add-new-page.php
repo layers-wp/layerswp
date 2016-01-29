@@ -14,7 +14,7 @@ $find_builder_page = layers_get_builder_pages(); ?>
 	</div>
 </section>
 
-<section class="l_admin-modal-container layers-hide">
+<section class="l_admin-modal-container l_admin-hide">
 	<div class="l_admin-vertical-center l_admin-modal">
 		<div class="l_admin-section-title l_admin-no-push-bottom">
 
@@ -43,7 +43,7 @@ $find_builder_page = layers_get_builder_pages(); ?>
 					<?php _e( 'Cancel' , 'layerswp' ); ?>
 				</a>
 
-				<div class="l_admin-load-bar layers-hide">
+				<div class="l_admin-load-bar l_admin-hide">
 					<span class="l_admin-progress zero"></span>
 				</div>
 			</p>

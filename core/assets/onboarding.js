@@ -114,7 +114,7 @@ jQuery(function($) {
 		} else if( undefined !== $action ) {
 			$progress_indicator = $form.find( '.l_admin-save-progress' );
 			$progress_indicator_message = $progress_indicator.data( 'busy-message' );
-			$progress_indicator.text( $progress_indicator_message ).hide().removeClass( 'layers-hide' ).fadeIn(150);
+			$progress_indicator.text( $progress_indicator_message ).hide().removeClass( 'l_admin-hide' ).fadeIn(150);
 
 			$data = $form.find( 'input, textarea, select' ).serialize();
 

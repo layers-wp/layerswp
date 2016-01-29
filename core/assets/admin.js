@@ -747,22 +747,22 @@ jQuery(function($) {
 			// Hide
 			if( animation_type == 'slideDown' ){
 				$target_element.slideUp( { duration: 550, easing: 'layersEaseInOut', complete: function(){
-					$target_element.addClass( 'layers-hide' );
+					$target_element.addClass( 'l_admin-hide' );
 				} } );
 			}
 			else{
-				$target_element.addClass( 'layers-hide' );
+				$target_element.addClass( 'l_admin-hide' );
 			}
 		}
 		else {
 
 			// Show
 			if( animation_type == 'slideDown' ){
-				$target_element.removeClass( 'layers-hide' );
+				$target_element.removeClass( 'l_admin-hide' );
 				$target_element.slideDown( { duration: 550, easing: 'layersEaseInOut' } );
 			}
 			else{
-				$target_element.removeClass( 'layers-hide' );
+				$target_element.removeClass( 'l_admin-hide' );
 			}
 		}
 	}

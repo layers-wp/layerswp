@@ -133,7 +133,7 @@ class Layers_Widget_Migrator {
 				'screenshot' => get_permalink( $page->ID ),
 				'screenshot_type' => 'dynamic',
 				'json' =>  esc_attr( json_encode( $this->export_data( $page ) ) ),
-				'container-css' => 'layers-hide layers-existing-page-preset'
+				'container-css' => 'l_admin-hide layers-existing-page-preset'
 			);
 		}
 

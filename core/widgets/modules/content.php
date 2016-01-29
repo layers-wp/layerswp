@@ -546,12 +546,22 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 							</label>
 							
 							<div class="layers-form-collection closed">
-								<div class="layers-form-collection-header">Clifton Property <span class="layers-form-collection-header-sub layers-form-collection-header-sub-1">- Clifton Property </span><span class="layers-form-collection-header-sub layers-form-collection-header-sub-2">- This Tab </span></div>
+								<div class="layers-form-collection-header">
+									<span data-mimic-selector="#<?php echo $this->get_layers_field_id( 'link_text' ); ?>">
+										<?php echo isset( $widget['link_text'] ) ? $widget['link_text'] : '' ; ?>
+									</span>
+									<span class="layers-form-collection-header-sub layers-form-collection-header-sub-1">
+										 - <span data-mimic-selector="#<?php echo $this->get_layers_field_id( 'link_type' ); ?>"></span>
+									</span>
+									<span class="layers-form-collection-header-sub layers-form-collection-header-sub-2">
+										 - <span data-mimic-selector="#<?php echo $this->get_layers_field_id( 'link_target' ); ?>"></span>
+									</span>
+								</div>
 								<div class="layers-form-collection-content">
 								
 									<!-- /Content -->
 									
-									<div class="layers-row layers-push-bottom-small">
+									<div class="layers-row">
 										<p class="layers-form-item layers-column layers-span-6">
 											<label for="<?php echo $this->get_layers_field_id( 'link_type' ); ?>"><?php _e( 'Link Type' , 'layerswp' ); ?></label>
 											<?php echo $this->form_elements()->input(
@@ -603,7 +613,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 												$att_value = ( isset( $widget['link_post'] ) ) ? $widget['link_post'] : NULL;
 												?>
 												
-												<input type="hidde" class="js-data-example-ajax" name="<?php echo $att_name ?>" id="<?php echo $att_id ?>" value="<?php echo $att_value ?>">
+												<input type="hidden" class="js-data-example-ajax" name="<?php echo $att_name ?>" id="<?php echo $att_id ?>" value="<?php echo $att_value ?>">
 											</div>
 											
 											<div class="layers-form-item layers-link-type-ux layers-link-type-ux-link_post_type_archive" data-show-if-selector="#<?php echo $this->get_layers_field_id( 'link_type' ) ?>" data-show-if-value="post_type_archive">
@@ -615,7 +625,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 												$att_id = $this->get_layers_field_id( 'link_post_type_archive' );
 												$att_value = ( isset( $widget['link_post_type_archive'] ) ) ? $widget['link_post_type_archive'] : NULL;
 												?>
-												<input type="hidde" class="js-data-example-ajax" name="<?php echo $att_name ?>" id="<?php echo $att_id ?>" value="<?php echo $att_value ?>">
+												<input type="hidden" class="js-data-example-ajax" name="<?php echo $att_name ?>" id="<?php echo $att_id ?>" value="<?php echo $att_value ?>">
 											</div>
 											
 											<div class="layers-form-item layers-link-type-ux layers-link-type-ux-link_taxonomy_archive" data-show-if-selector="#<?php echo $this->get_layers_field_id( 'link_type' ) ?>" data-show-if-value="taxonomy_archive">
@@ -627,7 +637,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 												$att_id = $this->get_layers_field_id( 'link_taxonomy_archive' );
 												$att_value = ( isset( $widget['link_taxonomy_archive'] ) ) ? $widget['link_taxonomy_archive'] : NULL;
 												?>
-												<input type="hidde" class="js-data-example-ajax" name="<?php echo $att_name ?>" id="<?php echo $att_id ?>" value="<?php echo $att_value ?>">
+												<input type="hidden" class="js-data-example-ajax" name="<?php echo $att_name ?>" id="<?php echo $att_id ?>" value="<?php echo $att_value ?>">
 											</div>
 											
 										</div>

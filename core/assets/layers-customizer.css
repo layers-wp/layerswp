@@ -1087,7 +1087,7 @@ div[id*='layers-widget'] .widget-control-actions .alignright{
 		top: -18px;
 		right: 0;
 		font-style: italic;
-		color: rgba(0,0,0,0.25) !important;
+		color: rgba(0,0,0,0.1) !important;
 		font-weight: normal;
 	}
 	
@@ -1110,13 +1110,16 @@ div[id*='layers-widget'] .widget-control-actions .alignright{
 	}
 	.layers-form-collection-header {
 		box-shadow: 0 1px 0 rgba(0, 0, 0, 0.05);
-		padding: 10px 10px;
+		padding: 10px 30px 10px 10px;
 		/* margin-bottom: -1px; */
 		position: relative;
 		font-size: 14px;
 		cursor: pointer;
 		/* background: #fbfbfb; */
 		transition: .3s;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
 	}
 	.closed .layers-form-collection-header{
 		background: none;
@@ -1129,8 +1132,8 @@ div[id*='layers-widget'] .widget-control-actions .alignright{
 		top: 0;
 		right: 0;
 		z-index: 1;
-		content: '\e00d';
-		font: 400 14px/47px layers-interface;
+		content: "\f0c1";
+		font: 400 14px/47px fontawesome;
 		color: #aaa;
 		cursor: pointer;
 		/* background: red; */

@@ -31,6 +31,7 @@
  * 18 - Reset to Default
  * 19 - Linking from one section/panel to another.
  * 20 - Init Tip-Tip
+ * 21 - Mimic Form Element Values
  *
  * Author: Obox Themes
  * Author URI: http://www.oboxthemes.com/
@@ -804,7 +805,7 @@ jQuery(function($) {
 			});
 		});
 	}
-
+	
 	/**
 	* 12 - Show/Hide linked elements
 	*/
@@ -1311,6 +1312,44 @@ jQuery(function($) {
 					//'activation' : 'click'
 				});
 				
+			});
+		});
+	}
+	
+	/**
+	* 21 - Mimic Form Element Values
+	*
+	* by specifying `data-mimic-selector` a form element will keep updated with the value of any other element.
+	*/
+
+	// Init interface in all except widgets on load
+	layers_init_mimic_data( $( '#customize-theme-controls > ul > li.accordion-section' ).not( '#accordion-panel-widgets' ) );
+
+	// Init interface inside widgets
+	$( document ).on( 'layers-interface-init', '.widget, .layers-accordions', function( e ){
+		// 'this' is the widget
+		layers_init_mimic_data( $(this), true );
+	});
+
+	function layers_init_mimic_data( $element_s, $run_instantly ){
+		
+		$element_s.each( function( i, group ) {
+			$(group).find( '[data-mimic-selector]').each( function( j, element ) {
+				
+				var selector = $(element).attr('data-mimic-selector');
+				
+				$(document).on( 'change keyup', selector, function(){
+					
+					if ( $(this).is('select') )
+						$(element).text( $(selector).find(":selected").text() );
+					else
+						$(element).text( $(selector).val() );
+				});
+				
+				if ( $(selector).is('select') )
+					$(element).text( $(selector).find(":selected").text() );
+				else
+					$(element).text( $(selector).val() );
 			});
 		});
 	}

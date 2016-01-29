@@ -613,7 +613,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 												$att_value = ( isset( $widget['link_post'] ) ) ? $widget['link_post'] : NULL;
 												?>
 												
-												<input type="hidden" class="js-data-example-ajax" name="<?php echo $att_name ?>" id="<?php echo $att_id ?>" value="<?php echo $att_value ?>">
+												<input type="hidden" class="layers-widget-dynamic-linking-select" name="<?php echo $att_name ?>" id="<?php echo $att_id ?>" value="<?php echo $att_value ?>">
 											</div>
 											
 											<div class="layers-form-item layers-link-type-ux layers-link-type-ux-link_post_type_archive" data-show-if-selector="#<?php echo $this->get_layers_field_id( 'link_type' ) ?>" data-show-if-value="post_type_archive">
@@ -625,7 +625,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 												$att_id = $this->get_layers_field_id( 'link_post_type_archive' );
 												$att_value = ( isset( $widget['link_post_type_archive'] ) ) ? $widget['link_post_type_archive'] : NULL;
 												?>
-												<input type="hidden" class="js-data-example-ajax" name="<?php echo $att_name ?>" id="<?php echo $att_id ?>" value="<?php echo $att_value ?>">
+												<input type="hidden" class="layers-widget-dynamic-linking-select" name="<?php echo $att_name ?>" id="<?php echo $att_id ?>" value="<?php echo $att_value ?>">
 											</div>
 											
 											<div class="layers-form-item layers-link-type-ux layers-link-type-ux-link_taxonomy_archive" data-show-if-selector="#<?php echo $this->get_layers_field_id( 'link_type' ) ?>" data-show-if-value="taxonomy_archive">
@@ -637,7 +637,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 												$att_id = $this->get_layers_field_id( 'link_taxonomy_archive' );
 												$att_value = ( isset( $widget['link_taxonomy_archive'] ) ) ? $widget['link_taxonomy_archive'] : NULL;
 												?>
-												<input type="hidden" class="js-data-example-ajax" name="<?php echo $att_name ?>" id="<?php echo $att_id ?>" value="<?php echo $att_value ?>">
+												<input type="hidden" class="layers-widget-dynamic-linking-select" name="<?php echo $att_name ?>" id="<?php echo $att_id ?>" value="<?php echo $att_value ?>">
 											</div>
 											
 										</div>

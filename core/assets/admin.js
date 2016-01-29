@@ -408,7 +408,7 @@ jQuery(function($) {
 
 		$element_s.each( function( i, group ) {
 
-			$(group).find( '.js-data-example-ajax').each( function( j, element ) {
+			$(group).find( '.layers-widget-dynamic-linking-select').each( function( j, element ) {
 				
 				var related_type_select = $(element).parents('.layers-form-collection').find('[id$="-link_type"]');
 				

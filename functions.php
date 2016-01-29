@@ -447,6 +447,12 @@ if( ! function_exists( 'layers_admin_scripts' ) ) {
 			array(),
 			LAYERS_VERSION
 		);
+		wp_enqueue_style(
+			'select2-skins',
+			get_template_directory_uri() . '/core/assets/plugins/select2/select-2-skins.css',
+			array(),
+			LAYERS_VERSION
+		);
 		wp_enqueue_script(
 			'select2',
 			get_template_directory_uri() . '/core/assets/plugins/select2/select2.js',

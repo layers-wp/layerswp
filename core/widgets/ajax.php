@@ -146,56 +146,72 @@ if( ! class_exists( 'Layers_Widget_Ajax' ) ) {
 			// if( ! check_ajax_referer( 'layers-widget-actions', 'nonce', false ) ) die( 'You threw a Nonce exception' ); // Nonce
 			// if( 'add-column' == $_POST[ 'widget_action'] ) { }
 			
-			$args = array();
+			$link_type = $_GET['link_type'];
 			
-			$args['posts_per_page'] = 3;
-			$args['paged'] = $_GET['page'];
+			// Data collection.
+			$data_collection = array();
 			
-			$data = array();
-			
-			if ( isset( $_GET['term'] ) && '' !== $_GET['term'] ) {
+			switch ( $link_type ) {
 				
+				case 'post':
 				
-				add_filter( 'posts_where', 'post_title_search_filter', 10, 2 );
+					/**
+					 * Post
+					 */
 				
-				$args['post_type'] = get_post_types();
-				
-				query_posts( $args );
+					if ( isset( $_GET['term'] ) && '' !== $_GET['term'] ) {
+						// Only search if there is a post to start with.
+						
+						$args = array();
+						$args['posts_per_page'] = 3;
+						$args['paged'] = $_GET['page'];
+						$args['post_type'] = get_post_types();
+						
+						// Add filter for the 'LIKE' Title DB search.
+						add_filter( 'posts_where', 'post_title_search_filter', 10, 2 );
+						
+						// Search the posts.
+						query_posts( $args );
 
-				// the Loop
-				while ( have_posts() ) : the_post();
-					$data[] = array(
-						'id' => $post->ID,
-						'text' => $post->post_title,
-					);
-				endwhile;
+						// Loop and collect the data.
+						while ( have_posts() ) : the_post();
+							$data_collection[] = array(
+								'id' => $post->ID,
+								'text' => $post->post_title,
+							);
+						endwhile;
+					}
+					
+					break;
 				
-				echo json_encode( $data );
+				case 'post_type_archive':
+					
+					/**
+					 * Post-Type Archive
+					 */
+					
+					$post_types = get_post_types( array(), 'objects' );
+					
+					foreach ( $post_types as $post_type => $post_type_value ) {
+						$data_collection[] = array(
+							'id' => $post_type,
+							'text' => $post_type_value->name,
+						);
+					}
+					
+					break;
+				
+				case 'taxonomy_archive':
+					
+					/**
+					 * Post-Type Archive
+					 */
+					
+					break;
 			}
-			else {
-				
-				
-				$args['post_type'] = array( 'posts', 'page' );
-				
-				query_posts( $args );
-
-				// the Loop
-				while ( have_posts() ) : the_post();
-					$data[] = array(
-						'id' => $post->ID,
-						'text' => $post->post_title,
-					);
-				endwhile;
-				
-				$new_data = array(
-					array(
-						'text' => 'Pages',
-						'children' => $data,
-					),
-				);
-				
-				echo json_encode( $new_data );
-			}
+			
+			// Echo the data in the format that Select-2 can use.
+			echo json_encode( $data_collection );
 			
 			die();
 		}

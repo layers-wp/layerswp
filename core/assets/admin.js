@@ -409,6 +409,8 @@ jQuery(function($) {
 
 			$(group).find( '.js-data-example-ajax').each( function( j, element ) {
 				
+				var related_type_select = $(element).parents('.layers-form-collection').find('[id$="-link_type"]');
+				
 				$(element).select2({
 					
 					ajax: {
@@ -419,6 +421,7 @@ jQuery(function($) {
 							
 							return {
 								action: 'layers_widget_linking_actions',
+								link_type: related_type_select.val(),
 								term: term,
 								page: page,
 							};
@@ -437,7 +440,6 @@ jQuery(function($) {
 						// let our custom formatter work
 						return markup;
 					},
-					minimumInputLength: 1,
 					// formatResult: function(data) {
 						
 					// 	if (data.loading) return data.text;
@@ -453,8 +455,11 @@ jQuery(function($) {
 						
 						return data.text;
 					},
-					dropdownCssClass: 'layers-select-2-widget',
+					containerCssClass: 'tpx-select2-container',
+					dropdownCssClass: 'tpx-select2-drop',
 					minimumInputLength: 1,
+					// width: 'resolve',
+					width: '100%',
 				});
 
 				$(element).on('select2-open', function(){
@@ -556,6 +561,40 @@ jQuery(function($) {
 			});
 		});
 	}
+
+
+	/**
+	* 6 - Form Collections
+	*/
+
+	// Init interface in all except widgets on load
+	layers_init_form_collections( $( '#customize-theme-controls > ul > li.accordion-section' ).not( '#accordion-panel-widgets' ) );
+
+	// Init interface inside widgets
+	$( document ).on( 'layers-interface-init', '.widget, .layers-accordions', function( e ){
+
+		// 'this' is the widget
+		layers_init_form_collections( $(this) );
+	});
+
+	function layers_init_form_collections( $element_s ){
+		$element_s.each( function( i, group ) {
+			$(group).find('.layers-form-collection').each( function( j, element ) {
+
+// 				$(element).sortable({
+// 					placeholder: "layers-sortable-drop"
+// 				});
+			});
+		});
+	}
+
+	$(document).on('click', '.layers-form-collection-header', function(){
+		
+		$parent_collection = $(this).closest('.layers-form-collection');
+		
+		$parent_collection.toggleClass('closed');
+	});
+
 	
 
 	/**

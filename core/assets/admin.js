@@ -681,6 +681,22 @@ jQuery(function($) {
 										layers_show_hide_apply( false,  animation_type, $target_element );
 									}
 						break;
+
+					case '!=': 		console.log($target_value.trim() + ' != ' + $source_element_value.trim() );
+									if(  $target_value.trim() != $source_element_value.trim() ) {
+										layers_show_hide_apply( true,  animation_type, $target_element );
+									} else {
+										layers_show_hide_apply( false,  animation_type, $target_element );
+									}
+						break;
+
+					case '!==': 		console.log($target_value.trim() + ' !== ' + $source_element_value.trim() );
+									if(  $target_value.trim() !== $source_element_value.trim() ) {
+										layers_show_hide_apply( true,  animation_type, $target_element );
+									} else {
+										layers_show_hide_apply( false,  animation_type, $target_element );
+									}
+						break;
 				}
 			}
 		});
@@ -695,18 +711,18 @@ jQuery(function($) {
 
 		if( is_true ){
 			if( animation_type == 'slideDown' ){
+				$target_element.removeClass( 'layers-hide' );
+				$target_element.slideDown( { duration: 550, easing: 'layersEaseInOut' } );
+			} else {
+				$target_element.removeClass( 'layers-hide' );
+			}
+		} else {
+			if( animation_type == 'slideDown' ){
 				$target_element.slideUp( { duration: 550, easing: 'layersEaseInOut', complete: function(){
 					$target_element.addClass( 'layers-hide' );
 				} } );
 			} else{
 				$target_element.addClass( 'layers-hide' );
-			}
-		} else {
-			if( animation_type == 'slideDown' ){
-				$target_element.removeClass( 'layers-hide' );
-				$target_element.slideDown( { duration: 550, easing: 'layersEaseInOut' } );
-			} else {
-				$target_element.removeClass( 'layers-hide' );
 			}
 		}
 	}

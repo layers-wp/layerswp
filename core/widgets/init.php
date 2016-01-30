@@ -43,7 +43,6 @@ class Layers_Widgets {
 		require_once get_template_directory() . $module_dir . 'content.php';
 		require_once get_template_directory() . $module_dir . 'post.php';
 		require_once get_template_directory() . $module_dir . 'slider.php';
-		require_once get_template_directory() . $module_dir . 'test-hide-show.php'; // Testing Hide / Show elements
 
 		// When switching to a child theme, preserve page builder pages
 		add_action('switch_theme', array( $this , 'preserve_widgets' ) );

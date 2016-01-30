@@ -23,6 +23,7 @@
  * 10 - Trigger input changes
  * 11 - Add Last Class to Design Bar Elements
  * 12 - Show/Hide linked elements
+ * 12.a - Apply Show/Hide elements by condition
  * 13 - Layers Pages Backups
  * 14 - Init RTE Editors
  * 15 - Custom Widget Initialization Events
@@ -611,9 +612,11 @@ jQuery(function($) {
 
 		$( '[data-show-if-selector="' + $source_element_selector_new + '"]' ).each(function(){
 
+			var $is_true = false;
 			var $target_element = $(this);
 			var $target_value   = $target_element.data( 'show-if-value' ).toString();
 			var $source_element = $( $target_element.data( 'show-if-selector' ).toString() );
+			var $source_operator = $target_element.data( 'show-if-operator' );
 
 			if ( $source_element.attr('type') == 'checkbox' ) {
 				$source_element_value = ( $source_element.is(':checked') ) ? 'true' : 'false' ;
@@ -635,32 +638,93 @@ jQuery(function($) {
 				$target_element = $target_element.closest('.layers-form-item');
 			}
 
-			//if( $target_value.indexOf( $source_element_value ) >= 0 ){
-			if( 'undefined' !== typeof( $source_element_value ) && $target_value.trim() == $source_element_value.trim() ){
+			console.clear();
+			console.log('is_true: ' + $is_true );
+			console.log('target_value: ' + $target_value );
+			console.log('source_operator: ' + $source_operator );
+			console.log('source_element_value: ' + $source_element_value );
 
-				// Show
-				if( animation_type == 'slideDown' ){
-					$target_element.removeClass( 'layers-hide' );
-					$target_element.slideDown( { duration: 550, easing: 'layersEaseInOut' } );
-				}
-				else{
-					$target_element.removeClass( 'layers-hide' );
-				}
+			/** UPDATE TEMPORARY ANIMATION ALWAYS TRUE */
+			animation_type = 'slideDown';
 
-			} else {
+			if( 'undefined' !== typeof( $source_operator ) && 'undefined' !== typeof( $source_element_value ) ) {
+				switch( $source_operator ) {
 
-				// Hide
-				if( animation_type == 'slideDown' ){
-					$target_element.slideUp( { duration: 550, easing: 'layersEaseInOut', complete: function(){
-						$target_element.addClass( 'layers-hide' );
-					} } );
-				}
-				else{
-					$target_element.addClass( 'layers-hide' );
+					case '==': 		console.log($target_value.trim() + ' == ' + $source_element_value.trim() );
+									if(  $target_value.trim() == $source_element_value.trim() ) {
+										layers_show_hide_apply( true,  animation_type, $target_element );
+									} else {
+										layers_show_hide_apply( false,  animation_type, $target_element );
+									}
+						break;
+
+					case '===': 	console.log($target_value.trim() + ' === ' + $source_element_value.trim() );
+									if(  $target_value.trim() === $source_element_value.trim() ) {
+										layers_show_hide_apply( true,  animation_type, $target_element );
+									} else {
+										layers_show_hide_apply( false,  animation_type, $target_element );
+									}
+						break;
+
+					case '>=': 		console.log($target_value.trim() + ' >= ' + $source_element_value.trim() );
+									if(  $target_value.trim() >= $source_element_value.trim() ) {
+										layers_show_hide_apply( true,  animation_type, $target_element );
+									} else {
+										layers_show_hide_apply( false,  animation_type, $target_element );
+									}
+						break;
+
+					case '<=': 		console.log($target_value.trim() + ' <= ' + $source_element_value.trim() );
+									if(  $target_value.trim() <= $source_element_value.trim() ) {
+										layers_show_hide_apply( true,  animation_type, $target_element );
+									} else {
+										layers_show_hide_apply( false,  animation_type, $target_element );
+									}
+						break;
+
+					case '!=': 		console.log($target_value.trim() + ' != ' + $source_element_value.trim() );
+									if(  $target_value.trim() != $source_element_value.trim() ) {
+										layers_show_hide_apply( true,  animation_type, $target_element );
+									} else {
+										layers_show_hide_apply( false,  animation_type, $target_element );
+									}
+						break;
+
+					case '!==': 		console.log($target_value.trim() + ' !== ' + $source_element_value.trim() );
+									if(  $target_value.trim() !== $source_element_value.trim() ) {
+										layers_show_hide_apply( true,  animation_type, $target_element );
+									} else {
+										layers_show_hide_apply( false,  animation_type, $target_element );
+									}
+						break;
 				}
 			}
 		});
 
+	}
+
+	/**
+	* 12.a - Apply Show/Hide elements by condition
+	*/
+
+	function layers_show_hide_apply( is_true,  animation_type, $target_element ) {
+
+		if( is_true ){
+			if( animation_type == 'slideDown' ){
+				$target_element.removeClass( 'layers-hide' );
+				$target_element.slideDown( { duration: 550, easing: 'layersEaseInOut' } );
+			} else {
+				$target_element.removeClass( 'layers-hide' );
+			}
+		} else {
+			if( animation_type == 'slideDown' ){
+				$target_element.slideUp( { duration: 550, easing: 'layersEaseInOut', complete: function(){
+					$target_element.addClass( 'layers-hide' );
+				} } );
+			} else{
+				$target_element.addClass( 'layers-hide' );
+			}
+		}
 	}
 
 	/**

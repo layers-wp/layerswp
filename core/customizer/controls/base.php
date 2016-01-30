@@ -55,8 +55,8 @@ if( !class_exists( 'Layers_Customize_Control' ) ) {
 		*/
 		public function get_linked_data() {
 
-			if ( isset( $this->linked ) && is_array( $this->linked ) && isset( $this->linked['show-if-selector'] ) && isset( $this->linked['show-if-value'] ) ) {
-				return 'data-show-if-selector="' . esc_attr( $this->linked['show-if-selector'] ) . '" data-show-if-value="' . esc_attr( $this->linked['show-if-value'] ) . '" ';
+			if ( isset( $this->linked ) && is_array( $this->linked ) && isset( $this->linked['show-if-selector'] ) && isset( $this->linked['show-if-value'] ) && isset( $this->linked['show-if-operator'] ) ) {
+				return 'data-show-if-selector="' . esc_attr( $this->linked['show-if-selector'] ) . '" data-show-if-value="' . esc_attr( $this->linked['show-if-value'] ) . '" data-show-if-operator="' . esc_attr( $this->linked['show-if-operator'] ) . '" ';
 			}
 
 			/*

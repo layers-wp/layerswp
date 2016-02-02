@@ -489,7 +489,7 @@ if( !class_exists( 'Layers_Widget' ) ) {
 			if( NULL == $widget ) return;
 
 			if( $this->check_and_return( $widget,  'design', 'advanced', 'anchor' ) ) { ?>
-				name="<?php echo esc_attr( $this->check_and_return( $widget,  'design', 'advanced', 'anchor' ) ); ?>"
+				<a name="<?php echo esc_attr( $this->check_and_return( $widget,  'design', 'advanced', 'anchor' ) ); ?>"></a>
 			<?php }
 		}
 

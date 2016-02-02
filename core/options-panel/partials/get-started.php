@@ -20,10 +20,11 @@ function render_onboarding_warnings() {
 
 	if (
 			version_compare( $wp_version, $required_wp_version, '<' ) ||
-			'' !== $required_layers_foldername
+			$current_folder_name !== $required_layers_foldername
 		) {
 
 		echo '<li class="pro-tip">';
+
 		echo '<strong>' . __( 'Notice(s):', 'layerswp' ) . '</strong>';
 
 		// Check WP version.

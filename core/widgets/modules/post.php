@@ -454,7 +454,12 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 								'name' => $this->get_layers_field_name( 'show_excerpts' ) ,
 								'id' => $this->get_layers_field_id( 'show_excerpts' ) ,
 								'value' => ( isset( $widget['show_excerpts'] ) ) ? $widget['show_excerpts'] : NULL,
-								'label' => __( 'Show Post Excerpts' , 'layerswp' )
+								'label' => __( 'Show Post Excerpts' , 'layerswp' ),
+								'data' => array(
+									'show-if-selector' => '#' . $this->get_layers_field_id( 'text_style' ),
+									'show-if-value' => 'overlay',
+									'show-if-operator' => '!='
+								),
 							),
 							'excerpt_length' => array(
 								'type' => 'number',

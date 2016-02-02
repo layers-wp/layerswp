@@ -1,7 +1,7 @@
 # Layers Changelog
 
 =======
-##1.3.0
+##1.2.11
 ### xx Jan 2016
 
 * **Fix** - Removed Google Analytics when users are in the customizer. *MP*
@@ -10,6 +10,7 @@
 * **Fix** - Fixed author `<a href />` for Portuguese translations. *MP*
 * **Fix** - Fixed Top/Right/Bottom/Left labels in design bar. *DP*
 * **Fix** - Transparent Overlay containing background image now works. *DP*
+* **Fix** - Fixed word-wrap issue in RTE when text is pasted in. *DP*
 * **Tweak** - .header-secondary left/right padding was out on large screens - fixed. *DP*
 * **Tweak** - .nav-tabs colors now more dynamic for better background color/image handling. *DP*
 * **Tweak** - .header-site nav-horizontal link spacing (padding/margin) has been adjusted to cater for Layers Pro customization. *DP*

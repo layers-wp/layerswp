@@ -471,28 +471,48 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 								'name' => $this->get_layers_field_name( 'show_dates' ) ,
 								'id' => $this->get_layers_field_id( 'show_dates' ) ,
 								'value' => ( isset( $widget['show_dates'] ) ) ? $widget['show_dates'] : NULL,
-								'label' => __( 'Show Post Dates' , 'layerswp' )
+								'label' => __( 'Show Post Dates' , 'layerswp' ),
+								'data' => array(
+									'show-if-selector' => '#' . $this->get_layers_field_id( 'text_style' ),
+									'show-if-value' => 'overlay',
+									'show-if-operator' => '!='
+								),
 							),
 							'show_author' => array(
 								'type' => 'checkbox',
 								'name' => $this->get_layers_field_name( 'show_author' ) ,
 								'id' => $this->get_layers_field_id( 'show_author' ) ,
 								'value' => ( isset( $widget['show_author'] ) ) ? $widget['show_author'] : NULL,
-								'label' => __( 'Show Post Author' , 'layerswp' )
+								'label' => __( 'Show Post Author' , 'layerswp' ),
+								'data' => array(
+									'show-if-selector' => '#' . $this->get_layers_field_id( 'text_style' ),
+									'show-if-value' => 'overlay',
+									'show-if-operator' => '!='
+								),
 							),
 							'show_tags' => array(
 								'type' => 'checkbox',
 								'name' => $this->get_layers_field_name( 'show_tags' ) ,
 								'id' => $this->get_layers_field_id( 'show_tags' ) ,
 								'value' => ( isset( $widget['show_tags'] ) ) ? $widget['show_tags'] : NULL,
-								'label' => __( 'Show Tags' , 'layerswp' )
+								'label' => __( 'Show Tags' , 'layerswp' ),
+								'data' => array(
+									'show-if-selector' => '#' . $this->get_layers_field_id( 'text_style' ),
+									'show-if-value' => 'overlay',
+									'show-if-operator' => '!='
+								),
 							),
 							'show_categories' => array(
 								'type' => 'checkbox',
 								'name' => $this->get_layers_field_name( 'show_categories' ) ,
 								'id' => $this->get_layers_field_id( 'show_categories' ) ,
 								'value' => ( isset( $widget['show_categories'] ) ) ? $widget['show_categories'] : NULL,
-								'label' => __( 'Show Categories' , 'layerswp' )
+								'label' => __( 'Show Categories' , 'layerswp' ),
+								'data' => array(
+									'show-if-selector' => '#' . $this->get_layers_field_id( 'text_style' ),
+									'show-if-value' => 'overlay',
+									'show-if-operator' => '!='
+								),
 							),
 							'show_call_to_action' => array(
 								'type' => 'checkbox',

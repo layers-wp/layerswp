@@ -631,6 +631,66 @@ jQuery(function($) {
 
 					break;
 
+				case '!==':
+
+					if ( $target_value.trim() !== $source_element_value.trim() ) {
+						// Show
+						layers_show_if_display( 'show', $target_element );
+					} else {
+						// Hide
+						layers_show_if_display( 'hide', $target_element );
+					}
+
+					break;
+
+				case '>':
+
+					if ( $target_value.trim() > $source_element_value.trim() ) {
+						// Show
+						layers_show_if_display( 'show', $target_element );
+					} else {
+						// Hide
+						layers_show_if_display( 'hide', $target_element );
+					}
+
+					break;
+
+				case '<':
+
+					if ( $target_value.trim() < $source_element_value.trim() ) {
+						// Show
+						layers_show_if_display( 'show', $target_element );
+					} else {
+						// Hide
+						layers_show_if_display( 'hide', $target_element );
+					}
+
+					break;
+
+				case '>=':
+
+					if ( $target_value.trim() >= $source_element_value.trim() ) {
+						// Show
+						layers_show_if_display( 'show', $target_element );
+					} else {
+						// Hide
+						layers_show_if_display( 'hide', $target_element );
+					}
+
+					break;
+
+				case '<=':
+
+					if ( $target_value.trim() <= $source_element_value.trim() ) {
+						// Show
+						layers_show_if_display( 'show', $target_element );
+					} else {
+						// Hide
+						layers_show_if_display( 'hide', $target_element );
+					}
+
+					break;
+
 				case '==':
 				default:
 

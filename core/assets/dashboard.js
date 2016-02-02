@@ -109,7 +109,7 @@ jQuery(function($) {
 		//Hi Mom!
 		$that = $(this);
 
-		$container = $that.closest( '.l_admin-content-large' );
+		$container = $that.closest( '.l_admin-panel' );
 
 		$form = $container.find( '.l_admin-content' );
 
@@ -130,6 +130,7 @@ jQuery(function($) {
 				$form_data,
 				function(data){
 					$results = $.parseJSON( data );
+					console.log( $results );
 					location.reload();
 				}
 			); // $.post

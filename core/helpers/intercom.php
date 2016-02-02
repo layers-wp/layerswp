@@ -124,6 +124,21 @@ class Layers_Intercom {
 			$json[ 'Layers Pro' ] = LAYERS_PRO_VER;
 		}
 
+		if( get_option( 'info_site_usage' ) ) {
+			$json[ 'Site Category' ] = get_option( 'info_site_usage' );
+		}
+
+		if( get_option( 'site_color' ) ) {
+			$json[ 'Site Color' ] = get_option( 'site_color' );
+		}
+
+		$json[ 'Launchpad' ] = ( class_exists( 'apollo_launchpad' ) ? 1 : 0 );
+
+		$launchpad = get_option("apollo_display_options");
+		if( isset( $launchpad["launchdate"] ) ){
+			$json[ 'launched_at' ] = strtotime( $launchpad["launchdate"] );
+		}
+
 		// jsonify the settings
 		$settings_json = json_encode( (object) $json, ( defined( 'JSON_PRETTY_PRINT' ) ? JSON_PRETTY_PRINT : FALSE ) ); ?>
 

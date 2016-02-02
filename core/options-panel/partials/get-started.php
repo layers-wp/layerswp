@@ -186,7 +186,6 @@ $layers_migrator = new Layers_Widget_Migrator(); ?>
 							<li class="pro-tip">
 								<?php _e( 'For the Pros: Layers will automatically assign this site name to Settings &rarr; General' , 'layerswp' ); ?>
 							</li>
-							<?php render_onboarding_warnings(); ?>
 						</ul>
 					</div>
 				</div>

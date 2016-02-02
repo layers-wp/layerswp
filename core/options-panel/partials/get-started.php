@@ -6,51 +6,7 @@ $user = wp_get_current_user();
 $form_elements = new Layers_Form_Elements();
 
 // Instantiate the widget migrator
-$layers_migrator = new Layers_Widget_Migrator();
-
-
-function render_onboarding_warnings() {
-	global $wp_version;
-
-	$required_wp_version        = '4.4';
-	$required_layers_foldername = 'layerswp';
-
-	$theme = wp_get_theme();
-	$current_folder_name = $theme->template;
-
-	if (
-			version_compare( $wp_version, $required_wp_version, '<' ) ||
-			$current_folder_name !== $required_layers_foldername
-		) {
-
-		echo '<li class="pro-tip">';
-
-		echo '<strong>' . __( 'Notice(s):', 'layerswp' ) . '</strong>';
-
-		// Check WP version.
-		if ( version_compare( $wp_version, $required_wp_version, '<' ) ) {
-			?>
-			<div class="onboarding-notice-item">
-				<i class="fa fa-exclamation-triangle"></i>
-				<?php echo sprintf( __( "Layers works best with WordPress <code>version %s</code>. Your's is <code>version %s</code>. Please think about doing an <a href='%s'>update</a> soon.", 'layerswp' ), $required_wp_version, $wp_version, network_admin_url( 'update-core.php' ) ); ?>
-			</div>
-			<?php
-		}
-
-		// Check Layers folder version.
-		if ( $current_folder_name !== $required_layers_foldername ) {
-			?>
-			<div class="onboarding-notice-item">
-				<i class="fa fa-exclamation-triangle"></i>
-				<?php echo sprintf( __( 'Your Layers theme folder needs to be named <code>/%s</code> - yours is named <code>/%s</code>. Please rename it.', 'layerswp' ), $required_layers_foldername, $current_folder_name ); ?>
-			</div>
-			<?php
-		}
-
-		echo '</li>';
-	}
-}
-?>
+$layers_migrator = new Layers_Widget_Migrator(); ?>
 <section class="l_admin-area-wrapper">
 
 	<div class="l_admin-onboard-wrapper">
@@ -97,7 +53,6 @@ function render_onboarding_warnings() {
 								<?php _e( sprintf( 'If you\'re ever stuck or need help with your Layers site please visit our <a href="%s" target="_blank" rel="nofollow">helpful documentation.</a>', '//docs.layerswp.com' ) , 'layerswp' ); ?>
 							</li>
 							<li class="pro-tip"><?php _e( 'For the Pros: Layers will automatically assign the tagline to Settings &rarr; General.' , 'layerswp' ); ?></li>
-							<?php render_onboarding_warnings(); ?>
 						</ul>
 					</div>
 				</div>
@@ -282,7 +237,6 @@ function render_onboarding_warnings() {
 							<li><?php _e( 'Feedback? Let us know as soon as it comes to mind.' , 'layerswp' ); ?></li>
 							<li><?php _e( 'Have a problem? We\'ll send you the best link to solve your issues.' , 'layerswp' ); ?></li>
 							<li><?php _e( 'Allow Layers to collect non-sensitive diagnostic data and usage information to help us improve our theme and best assist you.' , 'layerswp' ); ?></li>
-							<?php render_onboarding_warnings(); ?>
 						</ul>
 					</div>
 				</div>
@@ -343,7 +297,6 @@ function render_onboarding_warnings() {
 								<li><?php _e( 'Feedback? Let us know as soon as it comes to mind.' , 'layerswp' ); ?></li>
 								<li><?php _e( 'Have a problem? We\'ll send you the best link to solve your issues.' , 'layerswp' ); ?></li>
 								<li><?php _e( 'Allow Layers to collect non-sensitive diagnostic data and usage information to help us improve our theme and best assist you.' , 'layerswp' ); ?></li>
-								<?php render_onboarding_warnings(); ?>
 							</ul>
 						</div>
 					</div>
@@ -490,7 +443,6 @@ function render_onboarding_warnings() {
 							<li><?php _e( 'For best results, use an image between 40px and 200px tall and not more than 1000px wide' , 'layerswp' ); ?></li>
 							<li><?php _e( 'PNGs with a transparent background work best but GIFs or JPGs are fine too' , 'layerswp' ); ?></li>
 							<li><?php _e( 'Try keep your logo file size below 500kb' , 'layerswp' ); ?></li>
-							<?php render_onboarding_warnings(); ?>
 						</ul>
 					</div>
 				</div>

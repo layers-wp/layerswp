@@ -140,6 +140,7 @@ $layers_migrator = new Layers_Widget_Migrator(); ?>
 									'just-testing' => __( 'Just Testing', 'layerswp' ),
 									'other' => __( 'Other', 'layerswp' )
 								),
+								'class' => 'l_admin-large',
 							) );
 							?>
 						</div>

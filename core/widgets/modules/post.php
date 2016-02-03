@@ -72,10 +72,11 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 				'show_author' => 'on',
 				'show_tags' => 'on',
 				'show_categories' => 'on',
+				'show_pagination' => 'on',
 				'excerpt_length' => 200,
 				'show_call_to_action' => 'on',
 				'call_to_action' => __( 'Read More' , 'layerswp' ),
-				'posts_per_page' => 6,
+				'posts_per_page' => get_option( 'posts_per_page' ),
 				'design' => array(
 					'layout' => 'layout-boxed',
 					'imageratios' => 'image-square',
@@ -435,6 +436,13 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 										'overlay' => __( 'Overlay' , 'layerswp' )
 								)
 							),
+							'show_pagination' => array(
+								'type' => 'checkbox',
+								'name' => $this->get_layers_field_name( 'show_pagination' ) ,
+								'id' => $this->get_layers_field_id( 'show_pagination' ) ,
+								'value' => ( isset( $widget['show_pagination'] ) ) ? $widget['show_pagination'] : NULL,
+								'label' => __( 'Show Pagination' , 'layerswp' )
+							),
 							'show_media' => array(
 								'type' => 'checkbox',
 								'name' => $this->get_layers_field_name( 'show_media' ) ,
@@ -533,13 +541,6 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 								'value' => ( isset( $widget['call_to_action'] ) ) ? $widget['call_to_action'] : NULL,
 								'label' => __( '"Read More" Text' , 'layerswp' ),
 								'data' => array( 'show-if-selector' => '#' . $this->get_layers_field_id( 'show_call_to_action' ), 'show-if-value' => 'true' ),
-							),
-							'show_pagination' => array(
-								'type' => 'checkbox',
-								'name' => $this->get_layers_field_name( 'show_pagination' ) ,
-								'id' => $this->get_layers_field_id( 'show_pagination' ) ,
-								'value' => ( isset( $widget['show_pagination'] ) ) ? $widget['show_pagination'] : NULL,
-								'label' => __( 'Show Pagination' , 'layerswp' )
 							),
 						),
 					),

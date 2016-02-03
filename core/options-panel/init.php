@@ -413,7 +413,7 @@ class Layers_Options_Panel {
 					</div>
 				</div>
 				<div class="l_admin-button-well">
-					<a href="http://bit.ly/layers-storekit" target="_blank" class="button button-primary">
+					<a href="http://codecanyon.net/item/storekit-woocommerce-for-layers/11223808?ref=obox&utm_source=layers%20theme&utm_medium=link&utm_campaign=StoreKit%20Upsell&utm_content=Dashboard" target="_blank" class="button button-primary">
 						<?php _e( 'Get StoreKit Now!' , 'layerswp' ); ?>
 					</a>
 				</div>

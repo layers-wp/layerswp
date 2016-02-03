@@ -562,10 +562,14 @@
 	.l_admin-form-item input[type=email].l_admin-large,
 	.l_admin-form-item input[type=number].l_admin-large,
 	.l_admin-form-item input[type=password].l_admin-large,
-	.l_admin-form-item input[type=link].l_admin-large,
-	.l_admin-form-item select.l_admin-large{
+	.l_admin-form-item input[type=link].l_admin-large{
 		font-size: 20px;
 		line-height: 28px;
+	}
+	.l_admin-form-item select.l_admin-large{
+		font-size: 14px;
+		padding-top: 11px;
+		padding-bottom: 11px;
 	}
 
 	/* Hide Number Input Controls */

@@ -11,6 +11,7 @@
 * **Fix** - Fixed Top/Right/Bottom/Left labels in design bar. *DP*
 * **Fix** - Transparent Overlay containing background image now works. *DP*
 * **Fix** - Fixed word-wrap issue in RTE when text is pasted in. *DP*
+* **Fix** - Fixed pagination not working when `Blog` page is set as `Front page` (`Settings > Front page`). *SOB*
 * **Tweak** - .header-secondary left/right padding was out on large screens - fixed. *DP*
 * **Tweak** - .nav-tabs colors now more dynamic for better background color/image handling. *DP*
 * **Tweak** - .header-site nav-horizontal link spacing (padding/margin) has been adjusted to cater for Layers Pro customization. *DP*

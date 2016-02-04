@@ -2,7 +2,7 @@
 
 =======
 ##1.2.11
-### xx Jan 2016
+### 04 Feb 2016
 
 * **Fix** - Fixed the custom widget anchors. *MP*
 * **Fix** - Removed Google Analytics when users are in the customizer. *MP*

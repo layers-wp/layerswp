@@ -1003,7 +1003,6 @@ $page_content .= '* ' . $data->name. '
 		$results[ 'sidebar_html' ] = trim( ob_get_clean() );
 
 		if( FALSE == $is_preset ) {
-			error_log( 'Import -> Run Backup Sidebars' );
 			do_action( 'layers_backup_sidebars_widgets' );
 		}
 

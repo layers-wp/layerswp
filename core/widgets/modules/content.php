@@ -559,7 +559,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 								</div>
 								<div class="layers-form-collection-content">
 								
-									<!-- /Content -->
+									<!-- Content -->
 									
 									<div class="layers-row">
 										<p class="layers-form-item layers-column layers-span-6">

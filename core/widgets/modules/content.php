@@ -585,7 +585,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 											
 											<label for="<?php echo $this->get_layers_field_id( 'link' ); ?>"><?php _e( 'Link' , 'layerswp' ); ?></label>
 											
-											<div class="layers-form-item layers-link-type-ux layers-link-type-ux-link" data-show-if-selector= "#<?php echo $this->get_layers_field_id( 'link_type' ); ?> data-show-if-value="custom">
+											<div class="layers-form-item layers-link-type-ux layers-link-type-ux-link" data-show-if-selector= "#<?php echo $this->get_layers_field_id( 'link_type' ); ?>" data-show-if-value="custom">
 												<label>
 													<?php _e( 'Custom', 'layerswp' ) ?>
 												</label>
@@ -601,7 +601,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 												); ?>
 											</div>
 											
-											<div class="layers-form-item layers-link-type-ux layers-link-type-ux-link_post" data-show-if-selector= "#<?php echo $this->get_layers_field_id( 'link_type' ); ?> data-show-if-value="post">
+											<div class="layers-form-item layers-link-type-ux layers-link-type-ux-link_post" data-show-if-selector= "#<?php echo $this->get_layers_field_id( 'link_type' ); ?>" data-show-if-value="post">
 												<label>
 													<?php _e( 'Post/Page', 'layerswp' ) ?>
 												</label>
@@ -617,7 +617,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 												); ?>
 											</div>
 											
-											<div class="layers-form-item layers-link-type-ux layers-link-type-ux-link_post_type_archive" data-show-if-selector= "#<?php echo $this->get_layers_field_id( 'link_type' ); ?> data-show-if-value="post_type_archive">
+											<div class="layers-form-item layers-link-type-ux layers-link-type-ux-link_post_type_archive" data-show-if-selector= "#<?php echo $this->get_layers_field_id( 'link_type' ); ?>" data-show-if-value="post_type_archive">
 												<label>
 													<?php _e( 'Post Archives', 'layerswp' ) ?>
 												</label>
@@ -633,7 +633,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 												); ?>
 											</div>
 											
-											<div class="layers-form-item layers-link-type-ux layers-link-type-ux-link_taxonomy_archive" data-show-if-selector= "#<?php echo $this->get_layers_field_id( 'link_type' ); ?> data-show-if-value="taxonomy_archive">
+											<div class="layers-form-item layers-link-type-ux layers-link-type-ux-link_taxonomy_archive" data-show-if-selector= "#<?php echo $this->get_layers_field_id( 'link_type' ); ?>" data-show-if-value="taxonomy_archive">
 												<label>
 													<?php _e( 'Taxonomy Archives', 'layerswp' ) ?>
 												</label>

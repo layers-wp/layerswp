@@ -403,7 +403,7 @@ jQuery(function($) {
 	/**
 	* 7 - Tabs
 	*/
-	$( document ).on( 'click' , '.layers-tabs li' , function(e){
+	$( document ).on( 'click' , '.l_admin-tabs li' , function(e){
 		e.preventDefault();
 		// "Hi Mom"
 		$that = $(this);
@@ -415,11 +415,11 @@ jQuery(function($) {
 		$that.addClass( 'active' ).siblings().removeClass( 'active' );
 
 		// Get the nearest tab containers
-		$tab_nav = $that.closest( '.layers-nav-tabs' );
-		$tab_container = $tab_nav.siblings('.layers-tab-content');
+		$tab_nav = $that.closest( '.l_admin-nav-tabs' );
+		$tab_container = $tab_nav.siblings('.l_admin-tab-content');
 
 		// Show/Hide tabs
-		$tab_container.find( 'section.layers-tab-content' ).eq( $i ).slideDown().siblings( 'section.layers-tab-content' ).slideUp();
+		$tab_container.find( 'section.l_admin-tab-content' ).eq( $i ).slideDown().siblings( 'section.l_admin-tab-content' ).slideUp();
 	});
 
 

@@ -741,6 +741,90 @@
 		font-weight: 400;
 	}
 
+	/*---------------------------*/
+	/*- BACKGROUND UPLOADER -----*/
+	.layers-image-uploader{
+		display: block;
+		height: 200px;
+		margin-bottom: 15px;
+		border: 1px dashed #ddd;
+		position: relative;
+		overflow: hidden;
+		transform-style: preserve-3d;
+		text-align: center;
+	}
+	.layers-image-uploader p{
+		padding: 40px 10px 0;
+		margin: 60px 0 0;
+		background: url(images/icon-bgimage-small.png) top no-repeat;
+		background-size: 32px 32px;
+		color: #777;
+	}
+	.layers-image-uploader:hover{
+		border-color: #168ABE;
+	}
+	.layers-image-uploader.layers-small{
+		min-height: 200px;
+	}
+	.layers-image-container{
+		position: relative;
+	}
+	.layers-image-container.layers-has-image {
+		/* padding: 8px; */
+		/* background: #fff; */
+		/* border: 1px solid #ddd; */
+		/* border-radius: 4px; */
+	}
+	.layers-image-container .layers-image-display{
+		display: none;
+	}
+	.layers-image-container.layers-has-image .layers-image-display{
+		display: block;
+		max-height: 108px;
+		padding: 8px;
+		margin-bottom: 10px;
+		background: #f0f0f0;
+		border: 1px solid #ddd;
+		border-radius: 3px;
+		overflow: hidden;
+		cursor: pointer;
+	}
+	.layers-image-container .layers-image-display:hover{
+		background-color: #EAEAEA;
+	}
+	.layers-image-display img{
+		display: block;
+		max-height: 108px;
+		width: auto;
+		margin: 0 auto;
+		border-radius: none;
+	}
+	.layers-image-remove{
+		display: none;
+		width: 16px;
+		height: 16px;
+		background: #FF5353 url('images/cross.png') no-repeat;
+		background-size: 16px 16px;
+		border: 1px solid #BC3F39;
+		position: absolute;
+		top: 8px;
+		right: 8px;
+		z-index: 2;
+		color: #fff;
+		font-size: 11px;
+		border-radius: 3px;
+		transition: all 0.2s ease-in-out;
+		text-indent: -999px;
+		overflow: hidden;
+		box-shadow: 0px 1px 0px rgba(255, 255, 255, 0.4) inset, 0px 1px 0px rgba(0, 0, 0, 0.08);
+	}
+	.layers-image-remove:hover{
+		background-color: #F2413D;
+	}
+	.layers-image-display img + .layers-image-remove{
+		display: block;
+	}
+
 /*---------------------------*/
 /*- BUTTONS -----------------*/
 
@@ -1633,10 +1717,6 @@
 			min-height: 360px;
 		}
 		.l_admin-logo-wrapper{
-			padding: 10px;
-			background: #f0f0f0;
-			border: 1px solid #eee;
-			text-align: center;
 		}
 		.l_admin-logo-upload{
 			padding: 20px;
@@ -1644,7 +1724,7 @@
 		.l_admin-logo-upload img{
 			display: inline-block;
 		}
-		.l_admin-logo-wrapper .l_admin-image-container.l_admin-has-image .l_admin-image-display{
+		.l_admin-logo-wrapper .layers-image-container.layers-has-image .layers-image-display{
 			max-height: none;
 		}
 		.l_admin-demo-video{

@@ -586,145 +586,41 @@ jQuery(function($) {
 	* 12 - Show/Hide linked elements
 	*/
 
-	// Init interface in all except widgets on load
-	layers_init_show_if( $( '#customize-theme-controls > ul > li.accordion-section' ).not( '#accordion-panel-widgets' ) );
-
-	// Init interface inside widgets
-	$( document ).on( 'layers-interface-init', '.widget, .layers-accordions', function( e ){
-		// 'this' is the widget
-		layers_init_show_if( $(this), true );
-	});
-
-	function layers_apply_show_if( $source_element_selector_new ){
-
-		$( '[data-show-if-selector="' + $source_element_selector_new + '"]' ).each(function(){
-
-			var $target_element = $(this);
-			var $target_value   = $target_element.data( 'show-if-value' ).toString();
-			var $source_element = $( $target_element.data( 'show-if-selector' ).toString() );
-			var $operator   = $target_element.data( 'show-if-operator' );
-
-			if ( $source_element.attr('type') == 'checkbox' ) {
-				$source_element_value = ( $source_element.is(':checked') ) ? 'true' : 'false' ;
-			}
-			else {
-				$source_element_value = $source_element.val();
-			}
-
-			if ( 'undefined' === typeof( $source_element_value ) ) {
-				layers_show_if_display( 'hide', $target_element );
-				return false;
-			}
-
-			// Apply the chosen Operator (default: ==)
-			switch( $operator ) {
-
-				case '!=':
-
-					if ( $target_value.trim() != $source_element_value.trim() ) {
-						// Show
-						layers_show_if_display( 'show', $target_element );
-					} else {
-						// Hide
-						layers_show_if_display( 'hide', $target_element );
-					}
-
-					break;
-
-				case '!==':
-
-					if ( $target_value.trim() !== $source_element_value.trim() ) {
-						// Show
-						layers_show_if_display( 'show', $target_element );
-					} else {
-						// Hide
-						layers_show_if_display( 'hide', $target_element );
-					}
-
-					break;
-
-				case '>':
-
-					if ( $target_value.trim() > $source_element_value.trim() ) {
-						// Show
-						layers_show_if_display( 'show', $target_element );
-					} else {
-						// Hide
-						layers_show_if_display( 'hide', $target_element );
-					}
-
-					break;
-
-				case '<':
-
-					if ( $target_value.trim() < $source_element_value.trim() ) {
-						// Show
-						layers_show_if_display( 'show', $target_element );
-					} else {
-						// Hide
-						layers_show_if_display( 'hide', $target_element );
-					}
-
-					break;
-
-				case '>=':
-
-					if ( $target_value.trim() >= $source_element_value.trim() ) {
-						// Show
-						layers_show_if_display( 'show', $target_element );
-					} else {
-						// Hide
-						layers_show_if_display( 'hide', $target_element );
-					}
-
-					break;
-
-				case '<=':
-
-					if ( $target_value.trim() <= $source_element_value.trim() ) {
-						// Show
-						layers_show_if_display( 'show', $target_element );
-					} else {
-						// Hide
-						layers_show_if_display( 'hide', $target_element );
-					}
-
-					break;
-
-				case '==':
-				default:
-
-					if ( $target_value.trim() == $source_element_value.trim() ) {
-						// Show
-						layers_show_if_display( 'show', $target_element );
-					} else {
-						// Hide
-						layers_show_if_display( 'hide', $target_element );
-					}
-
-					break;
-			}
-
+	if ( $('body.wp-customizer').length ) {
+		// Customizer
+		
+		// Init interface in all except widgets on load
+		layers_init_show_if( $( '#customize-theme-controls > ul > li.accordion-section' ).not( '#accordion-panel-widgets' ) );
+		
+		// Init interface inside widgets
+		$( document ).on( 'layers-interface-init', '.widget, .layers-accordions', function( e ){
+			// 'this' is the widget
+			layers_init_show_if( $(this), true );
 		});
-
 	}
-
+	else{
+		// Not Customizer
+		layers_init_show_if( $( 'body' ), true );
+	}
+	
 	function layers_init_show_if( $element_s, $run_instantly ){
 
 		$element_s.each( function( i, group ) {
 
 			var $group = $(group);
-
+			
 			$group.find( '[data-show-if-selector]').each( function( j, element ) {
-
+				
 				var $target_element = $(element);
 
 				var $source_element_selector = $target_element.attr( 'data-show-if-selector' );
 
 				layers_enqueue_init( function(){
+					
+					console.log('kkkk');
 
 					layers_apply_show_if( $source_element_selector );
-
+					
 					$( document ).on( 'change', $source_element_selector, function(e){
 						layers_apply_show_if( $source_element_selector );
 					});
@@ -760,27 +656,66 @@ jQuery(function($) {
 
 				case '!=':
 
-					if ( $target_value.trim() != $source_element_value.trim() ) {
-						// Show
-						layers_show_if_display( 'show', $target_element );
-					} else {
-						// Hide
-						layers_show_if_display( 'hide', $target_element );
-					}
+					if ( $target_value.trim() != $source_element_value.trim() )
+						layers_show_if_display( 'show', $target_element ); // Show
+					else
+						layers_show_if_display( 'hide', $target_element ); // Hide
+					
+					break;
 
+				case '!==':
+
+					if ( $target_value.trim() !== $source_element_value.trim() )
+						layers_show_if_display( 'show', $target_element ); // Show
+					else
+						layers_show_if_display( 'hide', $target_element ); // Hide
+					
+					break;
+
+				case '>':
+
+					if ( $target_value.trim() > $source_element_value.trim() )
+						layers_show_if_display( 'show', $target_element ); // Show
+					else
+						layers_show_if_display( 'hide', $target_element ); // Hide
+					
+					break;
+
+				case '<':
+
+					if ( $target_value.trim() < $source_element_value.trim() )
+						layers_show_if_display( 'show', $target_element ); // Show
+					else
+						layers_show_if_display( 'hide', $target_element ); // Hide
+					
+					break;
+
+				case '>=':
+
+					if ( $target_value.trim() >= $source_element_value.trim() )
+						layers_show_if_display( 'show', $target_element ); // Show
+					else
+						layers_show_if_display( 'hide', $target_element ); // Hide
+					
+					break;
+
+				case '<=':
+
+					if ( $target_value.trim() <= $source_element_value.trim() )
+						layers_show_if_display( 'show', $target_element ); // Show
+					else
+						layers_show_if_display( 'hide', $target_element ); // Hide
+					
 					break;
 
 				case '==':
 				default:
 
-					if ( $target_value.trim() == $source_element_value.trim() ) {
-						// Show
-						layers_show_if_display( 'show', $target_element );
-					} else {
-						// Hide
-						layers_show_if_display( 'hide', $target_element );
-					}
-
+					if ( $target_value.trim() == $source_element_value.trim() )
+						layers_show_if_display( 'show', $target_element ); // Show
+					else
+						layers_show_if_display( 'hide', $target_element ); // Hide
+					
 					break;
 			}
 
@@ -791,16 +726,31 @@ jQuery(function($) {
 
 		// Calculate the reveal animation type.
 		var animation_type = 'none';
+		
+		// Get the right target element depending on what kind of component this is (is Customize Control or Design-Bar item)
 		if ( $target_element.hasClass('l_option-customize-control') ){
+			
+			// Target element is - Customize Control (entire control)
+			$target_element = $target_element.parent('.customize-control');
 			animation_type = 'slideDown';
 		}
-
-		// Calculate if this is Customize Control or Design-Bar item.
-		if ( $target_element.hasClass('l_option-customize-control') ){
-			$target_element = $target_element.closest('.customize-control');
-		} else {
+		else if ( $target_element.parents( '.layers-design-bar' ).length ) {
+			
+			// Target element is - Design Bar (form-item)
 			$target_element = $target_element.closest('.layers-form-item');
+			animation_type = 'slideDown';
 		}
+		else if ( $target_element.parent( '.layers-form-item, .layers-form-item' ).length ) {
+			
+			// Target element is - Input contained inside a `form-item` container.
+			$target_element = $target_element.parent( '.layers-form-item, .layers-form-item' );
+		}
+		else{
+			
+			// Target element is - any specific element.
+			$target_element = $target_element;
+		}
+		
 
 		if ( 'hide' == $state ) {
 

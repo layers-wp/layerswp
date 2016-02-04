@@ -1715,6 +1715,20 @@
 		.l_admin-button.l_admin-proceed-to-customizer.disable:hover:before{
 			opacity:1;
 		}
+		
+		/*----------------------*/
+		/*- INTERCOM SLIDE -----*/
+		#layers-intercom-data-policy-link {
+			text-decoration: none;
+			font-size: 12px;
+			float: right;
+			color: #B3B3B3;
+			font-style: italic;
+			line-height: 24px;
+		}
+		#layers-intercom-data-policy-link:hover {
+			text-decoration: underline;
+		}
 
 
 /*-------------------------------*/

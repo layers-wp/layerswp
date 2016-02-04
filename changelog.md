@@ -28,6 +28,7 @@
 * **Tweak** - Post widget defaults now include "on" for pagination and `posts_per_page` mimmics WP settings. *MP*
 * **Enhancement** - Updated marketplace filters. *MP*
 * **Enhancement** - Added an extra level of depth to the widget `get_custom_field_name()` and `get_custom_field_name()` functions. *MP*
+* **Enhancement** - Implemented the new Layers Page Revision feature. *MP*
 
 =======
 ##1.2.10

@@ -545,8 +545,6 @@ jQuery(function($) {
 
 		// Trigger 'change' and 'blur' to reset the customizer
 		$changed = $(this).trigger("change").trigger("blur");
-
-		//console.log( $changed );
 	};
 
 	/**
@@ -617,8 +615,6 @@ jQuery(function($) {
 
 				layers_enqueue_init( function(){
 					
-					console.log('kkkk');
-
 					layers_apply_show_if( $source_element_selector );
 					
 					$( document ).on( 'change', $source_element_selector, function(e){

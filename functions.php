@@ -10,7 +10,7 @@
 /**
  * The current version of the theme. Use a random number for SCRIPT_DEBUG mode
  */
-define( 'LAYERS_VERSION', '1.2.10' );
+define( 'LAYERS_VERSION', '1.2.11' );
 define( 'LAYERS_TEMPLATE_URI' , get_template_directory_uri() );
 define( 'LAYERS_TEMPLATE_DIR' , get_template_directory() );
 define( 'LAYERS_THEME_TITLE' , 'Layers' );
@@ -161,6 +161,9 @@ if( ! function_exists( 'layers_setup' ) ) {
 
 		// Automatic Feed Links
 		add_theme_support( 'automatic-feed-links' );
+
+		// Add support for excerpts in pages
+		add_post_type_support( 'page', 'excerpt' );
 
 		/**
 		 * Register nav menus

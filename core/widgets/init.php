@@ -56,7 +56,6 @@ class Layers_Widgets {
 
 		// Add a widget backup function
 		add_action( 'customize_save_after', 'layers_backup_sidebars_widgets' , 50 );
-//		add_action( 'delete_post', 'layers_backup_sidebars_widgets', 10 );
 		add_action( 'delete_post', array( $this, 'clear_page_widgets' ), 0 );
 		add_action( 'wp_restore_post_revision' , array( $this, 'restore_backup' ), 10, 2 );
 		add_action( 'init', array( $this, 'check_for_revisions' ), 50 );
@@ -274,9 +273,8 @@ class Layers_Widgets {
 
 		// Loop through the builder pages spooling up the widget data each time
 		foreach( $get_layers_pages as $page ){
-			$revisions = wp_get_post_revisions( $page );
 
-			if( !empty( $revisions )  ){
+			if( '' !== get_post_meta( $page->ID, '_layers_hash', true ) ) {
 				$revisions_exist = TRUE;
 			}
 		}

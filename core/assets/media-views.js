@@ -20,8 +20,6 @@
 	        BackupWpMediaFrameSelect.prototype.initialize.apply( this, arguments );
 	        
 	        this.on( 'content:render:layers_discover', this.layers_discoverContent, this );
-	        
-	        //console.log( this.options.state );
 	    },
 	    
 	    /**

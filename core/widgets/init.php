@@ -273,9 +273,8 @@ class Layers_Widgets {
 
 		// Loop through the builder pages spooling up the widget data each time
 		foreach( $get_layers_pages as $page ){
-			$revisions = wp_get_post_revisions( $page );
 
-			if( !empty( $revisions )  ){
+			if( '' !== get_post_meta( $page->ID, '_layers_hash', true ) ) {
 				$revisions_exist = TRUE;
 			}
 		}

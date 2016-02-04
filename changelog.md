@@ -1,25 +1,34 @@
 # Layers Changelog
 
 =======
-##1.3.0
-### xx Jan 2016
+##1.2.11
+### 04 Feb 2016
 
+* **Fix** - Fixed the custom widget anchors. *MP*
 * **Fix** - Removed Google Analytics when users are in the customizer. *MP*
 * **Fix** - Fixed page title when front page is set to static page to display the shop. *MP*
 * **Fix** - Fixed margin-right bug in tablet mode on rows that span full width. *DP*
 * **Fix** - Fixed author `<a href />` for Portuguese translations. *MP*
 * **Fix** - Fixed Top/Right/Bottom/Left labels in design bar. *DP*
 * **Fix** - Transparent Overlay containing background image now works. *DP*
+* **Fix** - Fixed word-wrap issue in RTE when text is pasted in. *DP*
+* **Fix** - Fixed pagination not working when `Blog` page is set as `Front page` (`Settings > Front page`). *SOB*
+* **Fix** - Fixed tabbed navigation in the WP Dash. *DP*
 * **Tweak** - .header-secondary left/right padding was out on large screens - fixed. *DP*
+* **Tweak** - Removed width 100% from .media-body. *DP*
 * **Tweak** - .nav-tabs colors now more dynamic for better background color/image handling. *DP*
 * **Tweak** - .header-site nav-horizontal link spacing (padding/margin) has been adjusted to cater for Layers Pro customization. *DP*
 * **Tweak** - Removed opacity: 0.x settings and replaced with rgba on .invert classes. *DP*
 * **Tweak** - Fixed menu verticle alignment quirks in header-center layout. *DP*
-* **Tweak** - Split admin.css into three separate files for easier management and distinction between dashboard, customizer and global css *DP* *SOB*
-* **Tweak** - Move plugin .js and .css files to `core/assets/plugins/` *SOB*
-* **Tweak** - Don't load Google Analytics in the Customizer *SOB*
-* **Tweak** - Added the `show-if-operator` functionality: `==`(defaults) or `!=` *SOB*
+* **Tweak** - Split admin.css into three separate files for easier management and distinction between dashboard, customizer and global css. *DP* *SOB*
+* **Tweak** - Move plugin .js and .css files to `core/assets/plugins/`. *SOB*
+* **Tweak** - Don't load Google Analytics in the Customizer. *SOB*
+* **Tweak** - Added the `show-if-operator` functionality: `==`(defaults) or `!=` or `>=` or `<=` or `<` or `>`. *SOB*
+* **Tweak** - Added the `show-if` logic to the Post Widget meta information when selecting overlay. *MP*
+* **Tweak** - Post widget defaults now include "on" for pagination and `posts_per_page` mimmics WP settings. *MP*
 * **Enhancement** - Updated marketplace filters. *MP*
+* **Enhancement** - Added an extra level of depth to the widget `get_custom_field_name()` and `get_custom_field_name()` functions. *MP*
+* **Enhancement** - Implemented the new Layers Page Revision feature. *MP*
 
 =======
 ##1.2.10

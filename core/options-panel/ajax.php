@@ -66,21 +66,19 @@ if( !class_exists( 'Layers_Onboarding_Ajax' ) ) {
 
 				foreach( $feed_items as $item ){ ?>
 					<?php if( 'news' == $type ) { ?>
-						<div class="l_admin-column l_admin-span-3">
-							<div class="l_admin-panel">
-								<div class="l_admin-content">
-									<div class="l_admin-section-title l_admin-tiny">
-										<h4 class="l_admin-heading"><a href="<?php echo $item->get_permalink(); ?>"><?php echo esc_attr( $item->get_title() ); ?></a></h4>
-									</div>
-									<div class="l_admin-excerpt">
-										<?php echo $item->get_description(); ?>
-									</div>
+						<div class="l_admin-column l_admin-span-3 l_admin-panel">
+							<div class="l_admin-content">
+								<div class="l_admin-section-title l_admin-tiny">
+									<h4 class="l_admin-heading"><a href="<?php echo $item->get_permalink(); ?>"><?php echo esc_attr( $item->get_title() ); ?></a></h4>
 								</div>
-								<div class="l_admin-button-well">
-									<a href="<?php echo $item->get_permalink(); ?>" class="button" target="_blank">
-										<?php _e( 'Continue Reading' , 'layerswp' ); ?>
-									</a>
+								<div class="l_admin-excerpt">
+									<?php echo $item->get_description(); ?>
 								</div>
+							</div>
+							<div class="l_admin-button-well">
+								<a href="<?php echo $item->get_permalink(); ?>" class="button" target="_blank">
+									<?php _e( 'Continue Reading' , 'layerswp' ); ?>
+								</a>
 							</div>
 						</div>
 					<?php } else if( 'docs' == $type ) { ?>
@@ -262,7 +260,7 @@ if( !class_exists( 'Layers_Onboarding_Ajax' ) ) {
 
 						$return_message = array(
 							'success' => true,
-							'message' => __( 'Option updated Bong!' , 'layerswp' ),
+							'message' => __( 'Option updated' , 'layerswp' ),
 						);
 
 						break;
@@ -273,7 +271,7 @@ if( !class_exists( 'Layers_Onboarding_Ajax' ) ) {
 
 						$return_message = array(
 							'success' => true,
-							'message' => __( 'Option updated Bing' , 'layerswp' ),
+							'message' => __( 'Option updated' , 'layerswp' ),
 						);
 
 						break;

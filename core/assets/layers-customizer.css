@@ -1,6 +1,6 @@
 /*
  Layers Admin Customizer Styling CSS (Section&Panels, Widget Form, Customizer UI)
- 
+
  - ANIMATION PACE cubic-bezier(0, 0.275, 0.125, 1) 0s
  - ACCENT COLOR #0289C0
  - ACCENT HOVER #0D5F83
@@ -1008,9 +1008,9 @@ div[id*='layers-widget'] .widget-control-actions .alignright{
 	}
 
 	/* Hide Number Input Controls */
-	.layers-hide-controls[type=number],
-	.layers-hide-controls::-webkit-inner-spin-button,
-	.layers-hide-controls::-webkit-outer-spin-button {
+	.l_admin-hide-controls[type=number],
+	.l_admin-hide-controls::-webkit-inner-spin-button,
+	.l_admin-hide-controls::-webkit-outer-spin-button {
 		-webkit-appearance: none; /*chrome*/
 		-moz-appearance: textfield; /*firefox*/
 	}

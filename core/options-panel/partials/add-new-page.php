@@ -9,12 +9,12 @@ $find_builder_page = layers_get_builder_pages(); ?>
 
 <section class="l_admin-area-wrapper" id="layers-add-new-page">
 	<?php $this->header( __( 'Add New Page' , 'layerswp' ) ); ?>
-	<div class="l_admin-row l_admin-well l_admin-content">
+	<div class="l_admin-well l_admin-content">
 		<?php $this->load_partial( 'preset-layouts' ); ?>
 	</div>
 </section>
 
-<section class="l_admin-modal-container layers-hide">
+<section class="l_admin-modal-container l_admin-hide">
 	<div class="l_admin-vertical-center l_admin-modal">
 		<div class="l_admin-section-title l_admin-no-push-bottom">
 
@@ -22,7 +22,7 @@ $find_builder_page = layers_get_builder_pages(); ?>
 				<?php _e( 'Add a page title' , 'layerswp' ); ?>
 			</h2>
 
-			<p class="l_admin-form-item l_admin-span-12">
+			<p class="l_admin-form-item">
 				<?php
 					echo $form_elements->input( array(
 						'type' => 'text',
@@ -43,7 +43,7 @@ $find_builder_page = layers_get_builder_pages(); ?>
 					<?php _e( 'Cancel' , 'layerswp' ); ?>
 				</a>
 
-				<div class="l_admin-load-bar layers-hide">
+				<div class="l_admin-load-bar l_admin-hide">
 					<span class="l_admin-progress zero"></span>
 				</div>
 			</p>

@@ -91,6 +91,7 @@ html{
 	-webkit-font-smoothing: antialiased;
 	-moz-font-smoothing: antialiased;
 	text-rendering: optimizeLegibility;
+	-webkit-overflow-scrolling: touch;
 }
 body{
 	overflow-x: hidden;
@@ -154,15 +155,31 @@ object{
 	max-width: 100%;
 }
 
-.desktop-collapse{display: none;}
-.cursor-clickable{cursor: pointer;}
-.cursor-resizable{cursor: ew-resize;}
-.cursor-grabable{cursor: -webkit-grab; cursor: -moz-grab;}
-.hide{display: none;}
-.animate{transition: all 0.2s ease-in-out;}
+.desktop-collapse{
+	display: none;
+}
+.cursor-clickable{
+	cursor: pointer;
+}
+.cursor-resizable{
+	cursor: ew-resize;
+}
+.cursor-grabable{
+	cursor: -webkit-grab;
+	cursor: -moz-grab;
+}
+.hide{
+	display: none;
+}
+.animate{
+	transition: all 0.2s ease-in-out;
+}
 .post-date{
 	display: block;
 	font-size: 1.2rem;
+}
+.excerpt{
+	word-wrap: break-word;
 }
 
 
@@ -1857,7 +1874,7 @@ object{
 		width: 180px;
 		margin: 0;
 		border: none;
-		border-bottom: 1px dotted #ddd;
+		border-bottom: 1px solid #ddd;
 	}
 	.sub-menu li:last-child{
 		border-bottom: none;
@@ -2114,7 +2131,6 @@ object{
 		/*- IMAGE TOP -----------*/
 		.media.image-top .media-body{
 			float: none;
-			width: 100%;
 		}
 		.has-image .media-body{
 			margin-top: 15px;

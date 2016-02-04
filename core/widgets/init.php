@@ -56,15 +56,16 @@ class Layers_Widgets {
 
 		// Add a widget backup function
 		add_action( 'customize_save_after', 'layers_backup_sidebars_widgets' , 50 );
-//		add_action( 'delete_post', 'layers_backup_sidebars_widgets', 10 );
 		add_action( 'delete_post', array( $this, 'clear_page_widgets' ), 0 );
 		add_action( 'wp_restore_post_revision' , array( $this, 'restore_backup' ), 10, 2 );
 		add_action( 'init', array( $this, 'check_for_revisions' ), 50 );
 
-		if( isset( $wp_customize ) || ( defined('DOING_AUTOSAVE') && DOING_AUTOSAVE )  || ( isset( $_REQUEST['action'] ) && ( 'restore' == $_REQUEST['action'] || 'customize_save' == $_REQUEST['action'] ) ) ){
-			add_filter( '_wp_post_revision_fields', array( $this, 'add_revision_fields' ) );
+
+		if( !isset( $wp_customize ) && !( isset( $_REQUEST['action'] ) && ( 'restore' == $_REQUEST['action'] || 'customize_save' == $_REQUEST['action'] ) ) ){
+			add_action( 'save_post', array( $this, 'save_revision_fields_on_save' ), 10, 2 );
 		}
-		add_filter( '_wp_post_revision_fields', array( $this, 'add_revision_meta_fields' ) );
+
+		add_filter( '_wp_post_revision_fields', array( $this, 'add_revision_fields' ), TRUE );
 		add_filter( '_wp_post_revision_field_widget_order', array( $this, 'add_widget_order_field' ), 10, 2 );
 
 		// Register Sidebars
@@ -181,18 +182,13 @@ class Layers_Widgets {
 		$migrator::clear_page_sidebars_widget( $layers_sidebar_key );
 	}
 
-	/**
-	 * Add the Raw Page Data field to the backup revision
-	 */
-
 	public function add_revision_fields( $fields ) {
+		global $current_screen;
 
-		$fields['post_content_filtered'] = __( 'Raw Page Data', 'layerswp' );
+		if( !( is_object( $current_screen) && 'revision' == $current_screen->base && !isset( $_GET[ 'action' ] ) ) ) {
+			$fields['post_content_filtered'] = __( 'Raw Page Data', 'layerswp' );
+		}
 
-		return $fields;
-	}
-
-	public function add_revision_meta_fields( $fields ) {
 		$new_fields = array();
 		foreach( $fields as $f_key => $f_value ){
 			if( $f_key == 'post_content' ){
@@ -213,6 +209,26 @@ class Layers_Widgets {
 		global $revision;
 		if( is_object( $revision ) )
 			return get_metadata( 'post', $revision->ID, '_layers_widget_order', true );
+	}
+
+	/**
+	 * Add special revision meta fields when updating pages through Page > Edit
+	 */
+
+	function save_revision_fields_on_save( $post_id, $post ) {
+
+		$parent_id = wp_is_post_revision( $post_id );
+
+		if ( $parent_id ) {
+
+			$parent  = get_post( $parent_id );
+
+			$migrator = new Layers_Widget_Migrator();
+			$export_data = $migrator->page_widget_data( $parent );
+
+			if ( false !== $export_data )
+				add_metadata( 'post', $post_id, '_layers_widget_order', $migrator->page_widgets_as_content( $export_data ) );
+		}
 	}
 
 	/**
@@ -274,9 +290,8 @@ class Layers_Widgets {
 
 		// Loop through the builder pages spooling up the widget data each time
 		foreach( $get_layers_pages as $page ){
-			$revisions = wp_get_post_revisions( $page );
 
-			if( !empty( $revisions )  ){
+			if( '' !== get_post_meta( $page->ID, '_layers_hash', true ) ) {
 				$revisions_exist = TRUE;
 			}
 		}
@@ -289,6 +304,8 @@ class Layers_Widgets {
 			add_option( 'layers_init_revisions', TRUE );
 		}
 	}
+
+
 
 	/**
 	*  Enqueue Widget Scripts

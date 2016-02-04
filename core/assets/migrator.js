@@ -38,7 +38,7 @@ jQuery(document).ready(function($){
 
 		// Show the Modal
 		$( '.l_admin-modal-container' ).find( '.l_admin-media-image' ).html( $button.find('img') );
-		$( '.l_admin-modal-container' ).hide().removeClass( 'layers-hide' ).fadeIn( 350 );
+		$( '.l_admin-modal-container' ).hide().removeClass( 'l_admin-hide' ).fadeIn( 350 );
 		$( '#adminmenu' ).fadeOut();
 
 		$( '#layers_preset_page_title' ).val( $title );
@@ -69,8 +69,8 @@ jQuery(document).ready(function($){
 		// "Hi Mom!"
 		$that = $(this);
 
-		$( '.l_admin-load-bar' ).hide().removeClass( 'layers-hide' ).fadeIn( 750 );
-		$( '#layers-preset-layout-next-button' ).addClass( 'layers-hide' );
+		$( '.l_admin-load-bar' ).hide().removeClass( 'l_admin-hide' ).fadeIn( 750 );
+		$( '#layers-preset-layout-next-button' ).addClass( 'l_admin-hide' );
 
 		$( '.l_admin-progress' ).removeClass( 'zero complete' ).css('width' , 0);
 		var $load_bar_percent = 0;
@@ -150,7 +150,7 @@ jQuery(document).ready(function($){
 						// Upon completion update the import button
 						jQuery( '#layers-page-import-button' ).fadeOut( 500, function() {
 							jQuery(this).text( migratori18n.complete_message ).fadeIn().attr('disabled','disabled');
-						} ).closest( '.l_admin-column' ).addClass( 'layers-success' );
+						} ).closest( '.l_admin-column' ).addClass( 'l_admin-success' );
 					}
 				);
 
@@ -191,7 +191,7 @@ jQuery(document).ready(function($){
 				$results = $.parseJSON( data );
 
 				$a = $('<a />').attr('class' , 'layers-button btn-link' ).attr( 'href' , $results.page_location ).text( migratori18n.duplicate_complete_message );
-				jQuery( '#layers-page-duplicate-button' ).closest( '.l_admin-column' ).addClass( 'layers-success' );
+				jQuery( '#layers-page-duplicate-button' ).closest( '.l_admin-column' ).addClass( 'l_admin-success' );
 				jQuery( '#layers-page-duplicate-button' ).replaceWith( $a );
 			}
 		);

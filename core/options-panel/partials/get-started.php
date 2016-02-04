@@ -6,60 +6,17 @@ $user = wp_get_current_user();
 $form_elements = new Layers_Form_Elements();
 
 // Instantiate the widget migrator
-$layers_migrator = new Layers_Widget_Migrator();
-
-
-function render_onboarding_warnings() {
-	global $wp_version;
-
-	$required_wp_version        = '4.4';
-	$required_layers_foldername = 'layerswp';
-
-	$theme = wp_get_theme();
-	$current_folder_name = $theme->template;
-
-	if (
-			version_compare( $wp_version, $required_wp_version, '<' ) ||
-			'' !== $required_layers_foldername
-		) {
-
-		echo '<li class="pro-tip">';
-		echo '<strong>' . __( 'Notice(s):', 'layerswp' ) . '</strong>';
-
-		// Check WP version.
-		if ( version_compare( $wp_version, $required_wp_version, '<' ) ) {
-			?>
-			<div class="onboarding-notice-item">
-				<i class="fa fa-exclamation-triangle"></i>
-				<?php echo sprintf( __( "Layers works best with WordPress <code>version %s</code>. Your's is <code>version %s</code>. Please think about doing an <a href='%s'>update</a> soon.", 'layerswp' ), $required_wp_version, $wp_version, network_admin_url( 'update-core.php' ) ); ?>
-			</div>
-			<?php
-		}
-
-		// Check Layers folder version.
-		if ( $current_folder_name !== $required_layers_foldername ) {
-			?>
-			<div class="onboarding-notice-item">
-				<i class="fa fa-exclamation-triangle"></i>
-				<?php echo sprintf( __( 'Your Layers theme folder needs to be named <code>/%s</code> - yours is named <code>/%s</code>. Please rename it.', 'layerswp' ), $required_layers_foldername, $current_folder_name ); ?>
-			</div>
-			<?php
-		}
-
-		echo '</li>';
-	}
-}
-?>
+$layers_migrator = new Layers_Widget_Migrator(); ?>
 <section class="l_admin-area-wrapper">
 
 	<div class="l_admin-onboard-wrapper">
 
 		<div class="l_admin-onboard-controllers">
 			<div class="onboard-nav-dots l_admin-pull-left" id="layers-onboard-anchors"></div>
-			<a class="l_admin-button btn-link l_admin-pull-right" href="" id="layers-onboard-skip"><?php _e( 'Skip' , 'layerswp' ); ?></a>
+			<a class="button btn-link l_admin-pull-right" href="" id="layers-onboard-skip"><?php _e( 'Skip' , 'layerswp' ); ?></a>
 		</div>
 
-		<div class="l_admin-onboard-slider">
+		<div class="l_admin-onboard-slider l_admin-row">
 
 			<!-- Welcome -->
 			<div class="l_admin-onboard-slide l_admin-animate l_admin-onboard-slide-current">
@@ -72,10 +29,10 @@ function render_onboarding_warnings() {
 							</h3>
 							<div class="l_admin-excerpt">
 								<p>
-									<?php _e( 'Layers is a revolutionary WordPress Site Builder that makes website building a dream come true!' , 'layerswp' ); ?>
+									<?php _e( 'Layers is a revolutionary WordPress Site Builder that makes website building a dream come true.' , 'layerswp' ); ?>
 								</p>
 								<p>
-									<?php _e( 'The following short steps are designed to show you how Layers works and get you to creating amazing layouts quickly!' , 'layerswp' ); ?>
+									<?php _e( 'The following short steps are designed to show you how Layers works so that you can start creating amazing layouts.' , 'layerswp' ); ?>
 								</p>
 								<p>
 									<?php _e( 'Enjoy the ride!' , 'layerswp' ); ?>
@@ -93,10 +50,9 @@ function render_onboarding_warnings() {
 						<!-- Your helpful tips go here -->
 						<ul class="l_admin-help-list">
 							<li>
-								<?php _e( sprintf( 'If you\'re ever stuck or need help with your Layers site please visit our <a href="%s" rel="nofollow">helpful documentation.</a>', '//docs.layerswp.com' ) , 'layerswp' ); ?>
+								<?php _e( sprintf( 'If you\'re ever stuck or need help with your Layers site please visit our <a href="%s" target="_blank" rel="nofollow">helpful documentation.</a>', '//docs.layerswp.com' ) , 'layerswp' ); ?>
 							</li>
 							<li class="pro-tip"><?php _e( 'For the Pros: Layers will automatically assign the tagline to Settings &rarr; General.' , 'layerswp' ); ?></li>
-							<?php render_onboarding_warnings(); ?>
 						</ul>
 					</div>
 				</div>
@@ -114,7 +70,7 @@ function render_onboarding_warnings() {
 								<?php _e( 'Let&rsquo;s do some quick setup' , 'layerswp' ); ?>
 							</h3>
 							<p class="l_admin-excerpt">
-								<?php _e( 'Enter your website name below. We&apos;ll use this in your site title and in search results.' , 'layerswp' ); ?>
+								<?php _e( 'Tell us a bit about your site so that we can give you the best website building experience possible.' , 'layerswp' ); ?>
 							</p>
 						</div>
 
@@ -137,42 +93,6 @@ function render_onboarding_warnings() {
 
 						<div class="l_admin-form-item">
 							<label>
-								<?php _e( 'What will your site be used for?' , 'layerswp' ); ?>
-								<i class="fa fa-question-circle" data-tip="<?php _e( 'This will help us better tailor your experience.' , 'layerswp' ); ?>"></i>
-							</label>
-							<?php
-							echo $form_elements->input( array(
-								'type' => 'select',
-								'name' => 'info_site_usage',
-								'id' => 'info_site_usage',
-								'value' => '',
-								'options' => array(
-									'' => '',
-									'blog-magazine' => 'Blog Magazine',
-									'business' => 'Business',
-									'charity' => 'Charity',
-									'churches' => 'Churches',
-									'corporate' => 'Corporate',
-									'creative' => 'Creative',
-									'ecommerce' => 'eCommerce',
-									'education' => 'Education',
-									'experimental' => 'Experimental',
-									'health-beauty' => 'Health and Beauty',
-									'nonprofit' => 'Nonprofit',
-									'personal' => 'Personal',
-									'portfolio' => 'Portfolio',
-									'retail' => 'Retail',
-									'technology' => 'Technology',
-									'woocommerce' => 'Woocommerce',
-									'just-testing' => 'Just Testing',
-									'other' => 'Other'
-								),
-							) );
-							?>
-						</div>
-
-						<div class="l_admin-form-item">
-							<label>
 								<?php _e( 'How would you describe your site?' , 'layerswp' ); ?>
 								<i class="fa fa-question-circle" data-tip="<?php _e( 'A tagline describes who and what you are in just a few simple words. For example Layers is a &ldquo;WordPress Site Builder&rdquo; - simple, easy, quick to read. Now you try:' , 'layerswp' ); ?>"></i>
 							</label>
@@ -184,6 +104,43 @@ function render_onboarding_warnings() {
 								'placeholder' => get_bloginfo( 'description' ),
 								'value' => get_bloginfo( 'description' ),
 								'class' => 'layers-text l_admin-large'
+							) );
+							?>
+						</div>
+
+						<div class="l_admin-form-item">
+							<label>
+								<?php _e( 'What will your site be used for?' , 'layerswp' ); ?>
+								<i class="fa fa-question-circle" data-tip="<?php _e( 'This will help us better tailor your experience.' , 'layerswp' ); ?>"></i>
+							</label>
+							<?php
+							echo $form_elements->input( array(
+								'type' => 'select',
+								'name' => 'info_site_usage',
+								'id' => 'info_site_usage',
+								'value' => get_option( 'info_site_usage' ),
+								'options' => array(
+									'' => __( '-- Pick a Category --', 'layerswp' ),
+									'blog-magazine' => __( 'Blog Magazine', 'layerswp' ),
+									'business' => __( 'Business', 'layerswp' ),
+									'charity' => __( 'Charity', 'layerswp' ),
+									'churches' => __( 'Churches', 'layerswp' ),
+									'corporate' => __( 'Corporate', 'layerswp' ),
+									'creative' => __( 'Creative', 'layerswp' ),
+									'ecommerce' => __( 'eCommerce', 'layerswp' ),
+									'education' => __( 'Education', 'layerswp' ),
+									'experimental' => __( 'Experimental', 'layerswp' ),
+									'health-beauty' => __( 'Health and Beauty', 'layerswp' ),
+									'nonprofit' => __( 'Nonprofit', 'layerswp' ),
+									'personal' => __( 'Personal', 'layerswp' ),
+									'portfolio' => __( 'Portfolio', 'layerswp' ),
+									'retail' => __( 'Retail', 'layerswp' ),
+									'technology' => __( 'Technology', 'layerswp' ),
+									'woocommerce' => __( 'Woocommerce', 'layerswp' ),
+									'just-testing' => __( 'Just Testing', 'layerswp' ),
+									'other' => __( 'Other', 'layerswp' )
+								),
+								'class' => 'l_admin-large',
 							) );
 							?>
 						</div>
@@ -214,7 +171,7 @@ function render_onboarding_warnings() {
 					</div>
 
 					<div class="l_admin-button-well">
-						<span class="l_admin-save-progress layers-hide l_admin-button btn-link" data-busy-message="<?php _e( 'Saving your Site Name' , 'layerswp' ); ?>"></span>
+						<span class="l_admin-save-progress l_admin-hide l_admin-button btn-link" data-busy-message="<?php _e( 'Saving your Site Name' , 'layerswp' ); ?>"></span>
 						<a class="l_admin-button btn-primary l_admin-pull-right onbard-next-step" href="">
 							<?php _e( 'Next Step &rarr;' , 'layerswp' ); ?>
 						</a>
@@ -230,7 +187,6 @@ function render_onboarding_warnings() {
 							<li class="pro-tip">
 								<?php _e( 'For the Pros: Layers will automatically assign this site name to Settings &rarr; General' , 'layerswp' ); ?>
 							</li>
-							<?php render_onboarding_warnings(); ?>
 						</ul>
 					</div>
 				</div>
@@ -257,7 +213,7 @@ function render_onboarding_warnings() {
 							'value' => 'layers_onboarding_create_pages'
 						) ); ?>
 
-						<div class="layers-checkbox-wrapper l_admin-form-item">
+						<div class="l_admin-checkbox-wrapper l_admin-large l_admin-form-item">
 							<input id="layers-create-page-blog" name="create-page-blog" value="Blog" type="checkbox" checked="checked" />
 							<label for="layers-create-page-blog">
 								<?php _e( 'Blog Page', 'layerswp' ); ?>
@@ -267,7 +223,7 @@ function render_onboarding_warnings() {
 
 					</div>
 					<div class="l_admin-button-well">
-						<span class="l_admin-save-progress layers-hide l_admin-button btn-link" data-busy-message="<?php _e( 'Creating Page(s)', 'layerswp' ); ?>"></span>
+						<span class="l_admin-save-progress l_admin-hide l_admin-button btn-link" data-busy-message="<?php _e( 'Creating Page(s)', 'layerswp' ); ?>"></span>
 						<a class="l_admin-button btn-primary l_admin-pull-right onbard-next-step" href=""><?php _e( 'Next Step &rarr;' , 'layerswp' ); ?></a>
 					</div>
 				</div>
@@ -281,7 +237,6 @@ function render_onboarding_warnings() {
 							<li><?php _e( 'Feedback? Let us know as soon as it comes to mind.' , 'layerswp' ); ?></li>
 							<li><?php _e( 'Have a problem? We\'ll send you the best link to solve your issues.' , 'layerswp' ); ?></li>
 							<li><?php _e( 'Allow Layers to collect non-sensitive diagnostic data and usage information to help us improve our theme and best assist you.' , 'layerswp' ); ?></li>
-							<?php render_onboarding_warnings(); ?>
 						</ul>
 					</div>
 				</div>
@@ -298,7 +253,7 @@ function render_onboarding_warnings() {
 									<?php _e( 'Layers Messenger' , 'layerswp' ); ?>
 								</h3>
 								<p class="l_admin-excerpt">
-									<?php _e( 'Enable the Layers Messenger to connect with the Layers team directly from inside Layers. We can help you make informed decisions about themes and extensions and point you in the right direction when you need support with your site and Layers.' , 'layerswp' ); ?>
+									<?php _e( 'Enable Layers Messenger to connect with the Layers team directly from inside Layers. By doing so we can provide you with support for your Layers site directly from your WordPress dashboard.' , 'layerswp' ); ?>
 								</p>
 							</div>
 							<?php echo $form_elements->input( array(
@@ -307,11 +262,12 @@ function render_onboarding_warnings() {
 								'id' => 'action',
 								'value' => 'layers_update_intercom'
 							) ); ?>
-							<div class="layers-checkbox-wrapper l_admin-form-item l_admin-push-bottom-medium">
+							<div class="l_admin-checkbox-wrapper l_admin-large l_admin-form-item l_admin-push-bottom-medium">
 								<input id="layers-enable-intercom" name="layers_intercom" type="checkbox" <?php if( '0' !== get_option( 'layers_enable_intercom' ) ){ echo 'checked="checked"'; }; ?> />
 								<label for="layers-enable-intercom"><?php _e( 'Enable Layers Messenger', 'layerswp' ); ?></label>
 							</div>
 							<p data-show-if-selector="#layers-enable-intercom" data-show-if-value="true" class="l_admin-form-item">
+								<a href="//www.layerswp.com/privacy-policy/" target="_blank" id="layers-intercom-data-policy-link"><?php _e( 'Your data is safe with us. View our Privacy Policy', 'layerswp' ); ?></a>
 								<label><?php _e( 'Your Name' , 'layerswp' ); ?></label>
 								<?php
 									global $current_user;
@@ -325,10 +281,9 @@ function render_onboarding_warnings() {
 								   ) );
 								?>
 							</p>
-							<p><a href="//www.layerswp.com/privacy-policy/" target="_blank"><?php _e( 'Your data is safe with us. View our Privacy Policy', 'layerswp' ); ?></a></p>
 						</div>
 						<div class="l_admin-button-well">
-							<span class="l_admin-save-progress layers-hide l_admin-button btn-link" data-busy-message="<?php _e( 'Saving Your Preference' , 'layerswp' ); ?>"></span>
+							<span class="l_admin-save-progress l_admin-hide l_admin-button btn-link" data-busy-message="<?php _e( 'Saving Your Preference' , 'layerswp' ); ?>"></span>
 							<a class="l_admin-button btn-primary l_admin-pull-right onbard-next-step" href=""><?php _e( 'Next Step &rarr;' , 'layerswp' ); ?></a>
 						</div>
 					</div>
@@ -342,7 +297,6 @@ function render_onboarding_warnings() {
 								<li><?php _e( 'Feedback? Let us know as soon as it comes to mind.' , 'layerswp' ); ?></li>
 								<li><?php _e( 'Have a problem? We\'ll send you the best link to solve your issues.' , 'layerswp' ); ?></li>
 								<li><?php _e( 'Allow Layers to collect non-sensitive diagnostic data and usage information to help us improve our theme and best assist you.' , 'layerswp' ); ?></li>
-								<?php render_onboarding_warnings(); ?>
 							</ul>
 						</div>
 					</div>
@@ -356,7 +310,7 @@ function render_onboarding_warnings() {
 						<!-- Your content goes here -->
 						<div class="l_admin-section-title l_admin-small l_admin-no-push-bottom">
 							<div class="l_admin-push-bottom-small">
-								<small class="l_admin-label label-secondary">
+								<small class="l_admin-label label-highlight">
 									<?php _e( 'Getting Started' , 'layerswp' ); ?>
 								</small>
 							</div>
@@ -389,7 +343,7 @@ function render_onboarding_warnings() {
 						<!-- Your content goes here -->
 						<div class="l_admin-section-title l_admin-small l_admin-no-push-bottom">
 							<div class="l_admin-push-bottom-small">
-								<small class="l_admin-label label-secondary">
+								<small class="l_admin-label label-highlight">
 									<?php _e( 'Getting Started' , 'layerswp' ); ?>
 								</small>
 							</div>
@@ -417,7 +371,7 @@ function render_onboarding_warnings() {
 						<!-- Your content goes here -->
 						<div class="l_admin-section-title l_admin-small l_admin-no-push-bottom">
 							<div class="l_admin-push-bottom-small">
-								<small class="l_admin-label label-secondary">
+								<small class="l_admin-label label-highlight">
 									<?php _e( 'Getting Started' , 'layerswp' ); ?>
 								</small>
 							</div>
@@ -478,7 +432,7 @@ function render_onboarding_warnings() {
 						) ); ?>
 					</div>
 					<div class="l_admin-button-well">
-						<span class="l_admin-save-progress layers-hide l_admin-button btn-link" data-busy-message="<?php _e( 'Updating your Logo' , 'layerswp' ); ?>"></span>
+						<span class="l_admin-save-progress l_admin-hide l_admin-button btn-link" data-busy-message="<?php _e( 'Updating your Logo' , 'layerswp' ); ?>"></span>
 						<a class="l_admin-button btn-primary l_admin-pull-right onbard-next-step" href=""><?php _e( 'Next Step &rarr;' , 'layerswp' ); ?></a>
 					</div>
 				</div>
@@ -489,7 +443,6 @@ function render_onboarding_warnings() {
 							<li><?php _e( 'For best results, use an image between 40px and 200px tall and not more than 1000px wide' , 'layerswp' ); ?></li>
 							<li><?php _e( 'PNGs with a transparent background work best but GIFs or JPGs are fine too' , 'layerswp' ); ?></li>
 							<li><?php _e( 'Try keep your logo file size below 500kb' , 'layerswp' ); ?></li>
-							<?php render_onboarding_warnings(); ?>
 						</ul>
 					</div>
 				</div>
@@ -540,7 +493,7 @@ function render_onboarding_warnings() {
 						</div>
 					</div>
 					<div class="l_admin-button-well">
-						<span class="l_admin-save-progress layers-hide l_admin-button btn-link" data-busy-message="<?php _e( 'Creating your Page' , 'layerswp' ); ?>"></span>
+						<span class="l_admin-save-progress l_admin-hide l_admin-button btn-link" data-busy-message="<?php _e( 'Creating your Page' , 'layerswp' ); ?>"></span>
 						<a class="l_admin-button btn-primary l_admin-pull-right onbard-next-step l_admin-proceed-to-customizer disable l_admin-tooltip" tooltip="<?php _e( 'First choose a layout' , 'layerswp' ); ?>" href=""><?php _e( 'Start Building' , 'layerswp' ); ?></a>
 					</div>
 				</div>

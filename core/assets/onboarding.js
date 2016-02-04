@@ -33,7 +33,7 @@ jQuery(function($) {
 			if( 0 == $i ){
 				layers_onboarding_set_anchor(0);
 			}
-			
+
 			$anchor_template.attr( 'title' , $title.trim() + ' (' + ( $i+1) + ' of ' + $anchor_count + ')' );
 
 			$( '.onboard-nav-dots' ).append( $anchor_template );
@@ -41,20 +41,16 @@ jQuery(function($) {
 		};
 	}
 	layers_onboarding_load_anchors();
-	
+
 	function layers_onboarding_set_anchor( $i ){
-		
+
 		// Update anchor classes
 		$( '#layers-onboard-anchors a').each(function(index, el) {
-			
+
 			if ( index <= $i ) $(el).addClass( 'dot-active' );
 			else $(el).removeClass( 'dot-active' );
 		});
 	}
-
-	$(window).on( 'resize, load',function(){
-		$( '.l_admin-template-selector' ).css( 'max-height', $( '#wpbody-content' ).height() - 150 );
-	});
 
 	$(document).on( 'click' , '.onbard-next-step' , function(e){
 		e.preventDefault();
@@ -73,8 +69,8 @@ jQuery(function($) {
 			$progress_indicator = $form.find( '.l_admin-save-progress' );
 			$progress_indicator_message = $progress_indicator.data( 'busy-message' );
 
-			$that.text( $progress_indicator_message ).attr( 'disabled' , 'disabled' ).addClass( 'disable' );
-
+			$that.text( $progress_indicator_message ).attr( 'disabled' , 'disabled' ).addClass( 'disable disable-tip' );
+			
 			$id = $( 'input[name="layes-preset-layout"]:checked' ).val();
 
 			// No template selected
@@ -118,7 +114,7 @@ jQuery(function($) {
 		} else if( undefined !== $action ) {
 			$progress_indicator = $form.find( '.l_admin-save-progress' );
 			$progress_indicator_message = $progress_indicator.data( 'busy-message' );
-			$progress_indicator.text( $progress_indicator_message ).hide().removeClass( 'layers-hide' ).fadeIn(150);
+			$progress_indicator.text( $progress_indicator_message ).hide().removeClass( 'l_admin-hide' ).fadeIn(150);
 
 			$data = $form.find( 'input, textarea, select' ).serialize();
 
@@ -214,7 +210,7 @@ jQuery(function($) {
 		// Focus the first form field in the slide
 		$( '.l_admin-onboard-slide' ).eq( $i ).find( 'input, select, textarea, .l_admin-image-upload-button' ).first().focus();
 	}
-	
+
 	// History - Allow forward/backward through the history states (enables frame stepping).
 	window.addEventListener('popstate', function(e) {
 		if ( null !== e.state ) {
@@ -223,9 +219,9 @@ jQuery(function($) {
 			}
 		}
 	});
-	
+
 	$(document).ready(function(){
-		
+
 		// Allow for jumping to a specific step in case of mistaken (or intended) page refresh.
 		if ( -1 !== window.location.hash.indexOf( 'step-' ) ) {
 			var $step = window.location.hash.replace( '#step-', '' ) - 1;
@@ -237,5 +233,5 @@ jQuery(function($) {
 			history.replaceState( { step: 0 }, null, null );
 		}
 	});
-	
+
 });

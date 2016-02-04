@@ -14,7 +14,7 @@ $theme_info = wp_get_theme( 'layerswp' ); ?>
 
 	<?php $this->header( __( 'Dashboard' , 'layerswp' ) ); ?>
 
-	<div class="l_admin-row l_admin-well l_admin-content">
+	<div class="l_admin-well l_admin-content">
 		<div class="l_admin-container-large">
 			<div class="l_admin-row">
 
@@ -33,7 +33,7 @@ $theme_info = wp_get_theme( 'layerswp' ); ?>
 						} ?>
 
 						<?php if( isset( $setup_steps ) ) {
-							$this->notice( 'neutral' , __( 'Click here to continue your site setup.' , 'layerswp' ), array( 'layers-continue-site-setup', 'layers-hide' ) ) ; ?>
+							$this->notice( 'neutral' , __( 'Click here to continue your site setup.' , 'layerswp' ), array( 'layers-continue-site-setup', 'l_admin-hide' ) ) ; ?>
 							<div class="l_admin-panel l_admin-site-setup-panel">
 								<div class="l_admin-panel-title">
 									<h4 class="l_admin-heading"><?php _e( 'Complete Your Site Setup' , 'layerswp' ); ?></h4>
@@ -43,7 +43,7 @@ $theme_info = wp_get_theme( 'layerswp' ); ?>
 
 									if( !in_array( $setup_key, $setup_steps ) ) continue; ?>
 
-									<div class="l_admin-dashboard-setup-form <?php echo ( 0 != $setup_index ) ? 'layers-hide' : ''; ?>">
+									<div class="l_admin-dashboard-setup-form <?php echo ( 0 != $setup_index ) ? 'l_admin-hide' : ''; ?>">
 										<div class="l_admin-content">
 											<?php if( isset( $setup_details[ 'label' ] ) || isset( $setup_details[ 'excerpt' ] ) ) { ?>
 												<div class="l_admin-section-title l_admin-tiny">
@@ -67,14 +67,14 @@ $theme_info = wp_get_theme( 'layerswp' ); ?>
 										</div>
 										<?php if( isset( $setup_details[ 'skip-action' ] ) || isset( $setup_details[ 'submit-action' ] ) ) { ?>
 											<div class="l_admin-button-well">
-												<?php if( isset( $setup_details[ 'skip-action' ] ) ) { ?>
-													<a class="button btn-link l_admin-dashboard-skip" data-setup-step-key="<?php echo $setup_key; ?>" data-skip-action="<?php echo $setup_details[ 'skip-action' ]; ?>">
-														<?php _e( 'Skip' , 'layerswp' ); ?>
+												<?php if( isset( $setup_details[ 'submit-action' ] ) ) { ?>
+													<a class="button" href="" data-setup-step-key="<?php echo $setup_key; ?>" data-submit-action="<?php echo $setup_details[ 'submit-action' ]; ?>">
+														<?php echo ( isset( $setup_details[ 'submit-text' ] ) ) ? $setup_details[ 'submit-text' ] : __( 'Save &amp; Proceed &rarr;' , 'layerswp' ); ?>
 													</a>
 												<?php } ?>
-												<?php if( isset( $setup_details[ 'submit-action' ] ) ) { ?>
-													<a class="button l_admin-pull-right" href="" data-setup-step-key="<?php echo $setup_key; ?>" data-submit-action="<?php echo $setup_details[ 'submit-action' ]; ?>">
-														<?php echo ( isset( $setup_details[ 'submit-text' ] ) ) ? $setup_details[ 'submit-text' ] : __( 'Save &amp; Proceed &rarr;' , 'layerswp' ); ?>
+												<?php if( isset( $setup_details[ 'skip-action' ] ) ) { ?>
+													<a class="button btn-link l_admin-dashboard-skip l_admin-pull-right" data-setup-step-key="<?php echo $setup_key; ?>" data-skip-action="<?php echo $setup_details[ 'skip-action' ]; ?>">
+														<?php _e( 'Skip' , 'layerswp' ); ?>
 													</a>
 												<?php } ?>
 											</div>
@@ -126,7 +126,7 @@ $theme_info = wp_get_theme( 'layerswp' ); ?>
 
 				</div>
 
-				<div class="l_admin-column l_admin-span-6">
+				<div class="l_admin-column l_admin-span-5">
 					<?php if( !defined( 'LAYERS_DISABLE_MARKETPLACE' ) ){ ?>
 						<div class="l_admin-panel l_admin-push-bottom">
 							<div class="l_admin-section-title l_admin-content l_admin-tiny">
@@ -176,7 +176,7 @@ $theme_info = wp_get_theme( 'layerswp' ); ?>
 					<?php } ?>
 
 				</div>
-				<div class="l_admin-column l_admin-span-3">
+				<div class="l_admin-column l_admin-span-4">
 
 					<?php if( !defined( 'LAYERS_DISABLE_INTERCOM' ) ){ ?>
 						<div class="l_admin-panel l_admin-push-bottom">
@@ -256,19 +256,17 @@ $theme_info = wp_get_theme( 'layerswp' ); ?>
 	</div>
 </section>
 <section class="l_admin-area-wrapper">
-	<div class="l_admin-row l_admin-well-alt l_admin-content">
+	<div class="l_admin-well-alt l_admin-content">
 
 		<div class="l_admin-section-title l_admin-small">
 			<h3 class="l_admin-heading"><?php _e( 'Layers News' , 'layerswp' ); ?></h3>
 		</div>
 
 		<div id="layers-dashboard-news-feed" class="l_admin-row" data-layers-feed="news" data-layers-feed-count="3">
-			<div class="l_admin-column l_admin-span-3" data-loading="1">
-				<div class="l_admin-panel">
-					<div class="l_admin-content">
-						<div class="l_admin-section-title l_admin-tiny">
-							<h4 class="l_admin-heading"><?php _e( 'Loading Layers News' , 'layerswp' ); ?></h4>
-						</div>
+			<div class="l_admin-column l_admin-span-3 l_admin-panel" data-loading="1">
+				<div class="l_admin-content">
+					<div class="l_admin-section-title l_admin-tiny">
+						<h4 class="l_admin-heading"><?php _e( 'Loading Layers News' , 'layerswp' ); ?></h4>
 					</div>
 				</div>
 			</div>

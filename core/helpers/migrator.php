@@ -133,7 +133,7 @@ class Layers_Widget_Migrator {
 				'screenshot' => get_permalink( $page->ID ),
 				'screenshot_type' => 'dynamic',
 				'json' =>  esc_attr( json_encode( $this->export_data( $page ) ) ),
-				'container-css' => 'layers-hide layers-existing-page-preset'
+				'container-css' => 'l_admin-hide layers-existing-page-preset'
 			);
 		}
 
@@ -1003,7 +1003,6 @@ $page_content .= '* ' . $data->name. '
 		$results[ 'sidebar_html' ] = trim( ob_get_clean() );
 
 		if( FALSE == $is_preset ) {
-			error_log( 'Import -> Run Backup Sidebars' );
 			do_action( 'layers_backup_sidebars_widgets' );
 		}
 

@@ -111,7 +111,7 @@ class Layers_Custom_Meta {
 
 		$is_builder_used = ( 'builder.php' == basename( get_page_template() ) ) ? true : false; ?>
 
-		<div id="layers_toggle_builder" class=" <?php echo ( true == $is_builder_used ? '' : 'layers-hide' ) ?>">
+		<div id="layers_toggle_builder" class=" <?php echo ( true == $is_builder_used ? '' : 'l_admin-hide' ) ?>">
 				<div  class="postbox l_admin-push-top">
 					<div class="l_admin-section-title l_admin-no-push-bottom l_admin-content">
 						<div class="l_admin-heading">
@@ -122,7 +122,7 @@ class Layers_Custom_Meta {
 						</p>
 					</div>
 					<div class="l_admin-button-well clearfix">
-						<a href="<?php echo admin_url() . 'customize.php?url=' . esc_url( get_the_permalink() ); ?>" class="l_admin-button btn-massive btn-primary btn-full <?php echo ( 'auto-draft' == $post->post_status ? 'disable' : '' ); ?>" id="<?php echo ( isset( $post->ID ) ? 'builder-button-' . $post->ID : 'builder-button-' . rand(0,1) ); ?>">
+						<a href="<?php echo admin_url() . 'customize.php?url=' . esc_url( get_the_permalink() ); ?>" class="button btn-massive btn-primary btn-full <?php echo ( 'auto-draft' == $post->post_status ? 'disable' : '' ); ?>" id="<?php echo ( isset( $post->ID ) ? 'builder-button-' . $post->ID : 'builder-button-' . rand(0,1) ); ?>">
 							<?php ( 'auto-draft' == $post->post_status ? _e( 'Start' , 'layerswp' ) : _e( 'Edit Your Page' , 'layerswp' ) ); ?>
 						</a>
 					</div>
@@ -132,26 +132,26 @@ class Layers_Custom_Meta {
 
 					<div class="l_admin-column l_admin-span-4 postbox l_admin-content">
 						<div class="l_admin-section-title l_admin-tiny">
-							<h4 class="l_admin-heading">Export Layout</h4>
-							<p class="l_admin-excerpt">Export your layout to a <code>.json</code> file which you can use to upload to another site.</p>
+							<h4 class="l_admin-heading"><?php _e( 'Export Layout', 'layerswp' ); ?></h4>
+							<p class="l_admin-excerpt"><?php _e( 'Export your layout to a <code>.json</code> file which you can use to upload to another site.', 'layerswp' ); ?></p>
 						</div>
-						<a href="?post=<?php echo get_the_ID(); ?>&amp;action=edit&amp;layers-export=1" class="l_admin-button">Export</a>
+						<a href="?post=<?php echo get_the_ID(); ?>&amp;action=edit&amp;layers-export=1" class="button"><?php _e( 'Export', 'layerswp' ); ?></a>
 					</div>
 
 					<div class="l_admin-column l_admin-span-4 postbox l_admin-content">
 						<div class="l_admin-section-title l_admin-tiny">
-							<h4 class="l_admin-heading">Import Layout</h4>
-							<p class="l_admin-excerpt"> Upload a layout file (eg. <code><?php echo $post->post_name; ?>.json</code>) by clicking the button below.</p>
+							<h4 class="l_admin-heading"><?php _e( 'Import Layout', 'layerswp' ); ?></h4>
+							<p class="l_admin-excerpt"><?php _e( 'Upload a layout file (eg. <code>' . $post->post_name . '.json</code>) by clicking the button below.', 'layerswp' ); ?></p>
 						</div>
-						<button class="l_admin-button" id="layers-page-import-button" data-post-id="<?php echo get_the_ID(); ?>" data-title="Upload .json" data-button_text="Upload &amp; Import">Upload &amp; Import</button>
+						<button class="button" id="layers-page-import-button" data-post-id="<?php echo get_the_ID(); ?>" data-title="Upload .json" data-button_text="Upload &amp; Import"><?php _e( 'Upload &amp; Import', 'layerswp' ); ?></button>
 					</div>
 
 					<div class="l_admin-column l_admin-span-4 postbox l_admin-content">
 						<div class="l_admin-section-title l_admin-tiny">
-							<h4 class="l_admin-heading">Duplicate Layout</h4>
-							<p class="l_admin-excerpt">Easily duplicate your layout, settings, text and images in order to get started quickly with a new page.</p>
+							<h4 class="l_admin-heading"><?php _e( 'Duplicate Layout', 'layerswp' ); ?></h4>
+							<p class="l_admin-excerpt"><?php _e( 'Easily duplicate your layout, settings, text and images in order to get started quickly with a new page.', 'layerswp' ); ?></p>
 						</div>
-						<button href="" class="l_admin-button" id="layers-page-duplicate-button" data-post-id="<?php echo get_the_ID(); ?>">Duplicate</button>
+						<button href="" class="button" id="layers-page-duplicate-button" data-post-id="<?php echo get_the_ID(); ?>"><?php _e( 'Duplicate', 'layerswp' ); ?></button>
 					</div>
 
 				</div>
@@ -321,7 +321,7 @@ class Layers_Custom_Meta {
 			<!-- Tab Content -->
 			<div class="l_admin-tab-content">
 				<?php foreach( $this->custom_meta[ $meta_index ]['custom-meta'] as $key => $meta_option ){ ?>
-					<section class="l_admin-accordion-section l_admin-content l_admin-tab-content <?php if( isset( $hide_tab ) ) echo 'layers-hide'; ?> customize-control"> <?php // @TODO: Remove .customizer-control class ?>
+					<section class="l_admin-accordion-section l_admin-content l_admin-tab-content <?php if( isset( $hide_tab ) ) echo 'l_admin-hide'; ?> customize-control"> <?php // @TODO: Remove .customizer-control class ?>
 						<div class="l_admin-row clearfix">
 							<?php if( isset( $meta_option[ 'elements' ] ) ) { ?>
 								<fieldset>

@@ -6,9 +6,9 @@ $valid_types = array( 'stylekits' , 'extensions' , 'themes' );
 
 $type = isset( $_GET[ 'type' ] ) ? $_GET[ 'type' ] : 'themes';
 
-if( !in_array( $type, $valid_types ) ) return; ?>
+if( !in_array( $type, $valid_types ) ) return;
 
-<?php switch( $type ){
+switch( $type ){
 	case 'stylekits' :
 		$excerpt = __( 'Style Kits' , 'layerswp' );
 		$products = $api->get_stylekit_list();
@@ -38,8 +38,8 @@ $all_categories = array(); ?>
 
 	<?php $this->marketplace_header( 'Marketplace' ); ?>
 
-	<div class="l_admin-row l_admin-well l_admin-content">
-		<div class="l_admin-browser">
+	<div class="l_admin-well l_admin-content">
+		<div class="l_admin-browser l_admin-row ">
 
 			<div class="l_admin-column l_admin-span-3 l_admin-marketplace-filter">
 				<div class="l_admin-section-title l_admin-tiny">
@@ -78,25 +78,27 @@ $all_categories = array(); ?>
 
 				</div>
 
-				<div class="l_admin-panel">
-					<div class="l_admin-panel-title">
-						<h3 class="l_admin-heading">
-							<?php _e( 'Categories' , 'layerswp' ); ?>
-							<a href="#" class="l_admin-pull-right l_admin-label label-subtle layers-hide" id="layers-marketplace-categories-clear" data-type="categories"><?php _e( 'Clear', 'layerswp' ); ?></a>
-						</h3>
+				<div class="accordion-container">
+					<div class="l_admin-panel accordion-section open">
+						<div class="l_admin-panel-title accordion-section-title">
+							<h3 class="l_admin-heading">
+								<?php _e( 'Categories' , 'layerswp' ); ?>
+								<a href="#" class="l_admin-pull-right l_admin-label label-subtle l_admin-hide" id="layers-marketplace-categories-clear" data-type="categories"><?php _e( 'Clear', 'layerswp' ); ?></a>
+							</h3>
+						</div>
+						<ul class="l_admin-list l_admin-page-list l_admin-scroll accordion-section-content" id="layers-marketplace-categories">
+						</ul>
 					</div>
-					<ul class="l_admin-list l_admin-page-list l_admin-scroll" id="layers-marketplace-categories">
-					</ul>
-				</div>
 
-				<div class="l_admin-panel">
-					<div class="l_admin-panel-title">
-						<h3 class="l_admin-heading">
-							<?php _e( 'Tags' , 'layerswp' ); ?>
-							<a href="#" class="l_admin-pull-right l_admin-label label-subtle layers-hide" id="layers-marketplace-tags-clear" data-type="tags"><?php _e( 'Clear', 'layerswp' ); ?></a>
-						</h3>
-					</div>
-					<div class="l_admin-content-small l_admin-scroll" id="layers-marketplace-tags">
+					<div class="l_admin-panel accordion-section">
+						<div class="l_admin-panel-title accordion-section-title">
+							<h3 class="l_admin-heading">
+								<?php _e( 'Tags' , 'layerswp' ); ?>
+								<a href="#" class="l_admin-pull-right l_admin-label label-subtle l_admin-hide" id="layers-marketplace-tags-clear" data-type="tags"><?php _e( 'Clear', 'layerswp' ); ?></a>
+							</h3>
+						</div>
+						<div class="l_admin-content-small l_admin-scroll l_admin-soft-hide accordion-section-content" style="display: none;" id="layers-marketplace-tags">
+						</div>
 					</div>
 				</div>
 			</div>
@@ -121,7 +123,7 @@ $all_categories = array(); ?>
 
 				<?php if( !is_wp_error( $products ) ) { ?>
 
-					<div id="layers-marketplace-sort" class="l_admin-row layers-hide">
+					<div id="layers-marketplace-sort" class="l_admin-row l_admin-hide">
 						<div class="l_admin-column l_admin-column l_admin-pull-right">
 							<label>
 								<?php _e( 'Authors:', 'layerswp' ); ?>
@@ -142,7 +144,7 @@ $all_categories = array(); ?>
 						</div>
 					</div>
 
-					<div class="l_admin-products layers-hide">
+					<div class="l_admin-products l_admin-hide">
 
 						<?php foreach( $products->matches as $key => $details ) {
 
@@ -176,7 +178,7 @@ $all_categories = array(); ?>
 
 							$envato_url = 'http://www.layerswp.com/go-envato/?id=' . esc_attr( $details->id ) . '&item=' . esc_attr( $details->name ) . '&site=' . $site_key; ?>
 							<div
-								id="product-details-<?php echo $details->id; ?>" class="l_admin-column l_admin-span-4 l_admin-product l_admin-animate" tabindex="0"
+								id="product-details-<?php echo $details->id; ?>" class="l_admin-column l_admin-span-6 l_admin-product l_admin-animate" tabindex="0"
 								data-id="<?php echo $details->id; ?>"
 								data-url="<?php echo esc_attr( $envato_url ); ?>"
 								data-tags="<?php echo strtolower( implode( ',', $details->tags ) ); ?>"
@@ -336,7 +338,7 @@ $all_categories = array(); ?>
 			});
 		</script>
 	<?php } ?>
-	<div class="theme-overlay layers-hide">
+	<div class="theme-overlay l_admin-hide">
 		 <div class="theme-backdrop"></div>
 		 <div class="theme-wrap">
 			<div class="theme-header">
@@ -345,7 +347,7 @@ $all_categories = array(); ?>
 				<button class="close dashicons dashicons-no"><span class="screen-reader-text">Close details dialog</span></button>
 			</div>
 
-			<div class="theme-preview layers-hide">
+			<div class="theme-preview l_admin-hide">
 			</div>
 			<div class="theme-about">
 				<div class="theme-screenshots"><img /></div>

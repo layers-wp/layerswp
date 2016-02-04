@@ -15,6 +15,7 @@
 * **Fix** - Fixed pagination not working when `Blog` page is set as `Front page` (`Settings > Front page`). *SOB*
 * **Fix** - Fixed tabbed navigation in the WP Dash. *DP*
 * **Tweak** - .header-secondary left/right padding was out on large screens - fixed. *DP*
+* **Tweak** - Removed width 100% from .media-body. *DP*
 * **Tweak** - .nav-tabs colors now more dynamic for better background color/image handling. *DP*
 * **Tweak** - .header-site nav-horizontal link spacing (padding/margin) has been adjusted to cater for Layers Pro customization. *DP*
 * **Tweak** - Removed opacity: 0.x settings and replaced with rgba on .invert classes. *DP*

@@ -267,6 +267,7 @@ $layers_migrator = new Layers_Widget_Migrator(); ?>
 								<label for="layers-enable-intercom"><?php _e( 'Enable Layers Messenger', 'layerswp' ); ?></label>
 							</div>
 							<p data-show-if-selector="#layers-enable-intercom" data-show-if-value="true" class="l_admin-form-item">
+								<a href="//www.layerswp.com/privacy-policy/" target="_blank" id="layers-intercom-data-policy-link"><?php _e( 'Your data is safe with us. View our Privacy Policy', 'layerswp' ); ?></a>
 								<label><?php _e( 'Your Name' , 'layerswp' ); ?></label>
 								<?php
 									global $current_user;
@@ -280,7 +281,6 @@ $layers_migrator = new Layers_Widget_Migrator(); ?>
 								   ) );
 								?>
 							</p>
-							<p><a href="//www.layerswp.com/privacy-policy/" target="_blank"><?php _e( 'Your data is safe with us. View our Privacy Policy', 'layerswp' ); ?></a></p>
 						</div>
 						<div class="l_admin-button-well">
 							<span class="l_admin-save-progress l_admin-hide l_admin-button btn-link" data-busy-message="<?php _e( 'Saving Your Preference' , 'layerswp' ); ?>"></span>

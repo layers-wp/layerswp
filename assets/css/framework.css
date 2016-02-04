@@ -2131,7 +2131,6 @@ object{
 		/*- IMAGE TOP -----------*/
 		.media.image-top .media-body{
 			float: none;
-			width: 100%;
 		}
 		.has-image .media-body{
 			margin-top: 15px;

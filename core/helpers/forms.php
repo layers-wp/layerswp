@@ -113,6 +113,7 @@ class Layers_Form_Elements {
 	*/
 
 	public function input( $args = array() ) {
+		global $wp_customize;
 
 		$defaults = array(
 			'type' => 'text',
@@ -318,19 +319,20 @@ class Layers_Form_Elements {
 			/**
 			* Image Uploader
 			*/
-			case 'image' : ?>
-				<section class="layers-image-container <?php if( isset( $input->value ) && NULL != $input->value ) echo 'layers-has-image'; ?>">
+			case 'image' :
+				$has_image = ( bool ) ( isset( $input->value ) && '' !== $input->value && NULL != $input->value ); ?>
+				<section class="layers-image-container <?php echo ( $has_image ) ? 'layers-has-image' : '' ; ?>">
 					<div class="layers-image-display layers-image-upload-button">
 						<!-- Image -->
-						<?php if( isset( $input->value ) && '' !== $input->value ) { ?>
-							<?php $img = wp_get_attachment_image_src( $input->value , 'medium' ); ?>
-							<img data-src="<?php echo $img[0]; ?>" />
+						<?php if ( $has_image ) { ?>
+							<?php $img = wp_get_attachment_image_src( $input->value, 'medium' ); ?>
+							<img <?php echo isset( $wp_customize ) ? 'data-src' : 'src' ; ?>="<?php echo $img[0]; ?>" />
 						<?php } ?>
 						<!-- Remove button -->
 						<a href="#removeimage" class="layers-image-remove" href=""><?php _e( 'Remove' , 'layerswp' ); ?></a>
 					</div>
 
-					<a href="#uploadimage" class="layers-image-upload-button  layers-button btn-full <?php if( isset( $input->value ) && '' != $input->value ) echo 'layers-has-image'; ?>"
+					<a href="#uploadimage" class="layers-image-upload-button button layers-button btn-full <?php echo ( $has_image ) ? 'layers-has-image' : '' ; ?>"
 						data-title="<?php _e( 'Select an Image' , 'layerswp' ); ?>"
 						data-button_text="<?php _e( 'Use Image' , 'layerswp' ); ?>">
 						<?php echo ( isset( $input->button_label ) ? $input->button_label : __( 'Choose Image' , 'layerswp' ) ); ?>
@@ -341,7 +343,7 @@ class Layers_Form_Elements {
 							'type' => 'hidden',
 							'name' => $input->name,
 							'id' => $input->id,
-							'value' => ( isset( $input->value ) ) ? $input->value : NULL,
+							'value' => ( $has_image ) ? $input->value : NULL,
 							'data' => ( NULL != $input->data ) ? $input->data : NULL,
 						)
 					); ?>

@@ -56,7 +56,6 @@ class Layers_Widgets {
 
 		// Add a widget backup function
 		add_action( 'customize_save_after', 'layers_backup_sidebars_widgets' , 50 );
-//		add_action( 'delete_post', 'layers_backup_sidebars_widgets', 10 );
 		add_action( 'delete_post', array( $this, 'clear_page_widgets' ), 0 );
 		add_action( 'wp_restore_post_revision' , array( $this, 'restore_backup' ), 10, 2 );
 		add_action( 'init', array( $this, 'check_for_revisions' ), 50 );

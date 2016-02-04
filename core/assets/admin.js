@@ -958,10 +958,10 @@ jQuery(function($) {
 			$target_element = $target_element.closest('.layers-form-item');
 			animation_type = 'slideDown';
 		}
-		else if ( $target_element.parent( '.layers-form-item, .layers-form-item' ).length ) {
+		else if ( $target_element.parent( '.l_admin-form-item, .layers-form-item' ).length ) {
 			
-			// Target element is - Input contained inside a `form-item` container.
-			$target_element = $target_element.parent( '.layers-form-item, .layers-form-item' );
+			// Target element is - Input contained inside a `..form-item` container.
+			$target_element = $target_element.parent( '.l_admin-form-item, .layers-form-item' );
 		}
 		else{
 			

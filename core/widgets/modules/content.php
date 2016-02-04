@@ -585,11 +585,10 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 											
 											<label for="<?php echo $this->get_layers_field_id( 'link' ); ?>"><?php _e( 'Link' , 'layerswp' ); ?></label>
 											
-											<div class="layers-form-item layers-link-type-ux layers-link-type-ux-link" data-show-if-selector="#<?php echo $this->get_layers_field_id( 'link_type' ) ?>" data-show-if-value="custom">
+											<div class="layers-form-item layers-link-type-ux layers-link-type-ux-link" data-show-if-selector= "#<?php echo $this->get_layers_field_id( 'link_type' ); ?> data-show-if-value="custom">
 												<label>
 													<?php _e( 'Custom', 'layerswp' ) ?>
 												</label>
-												
 												<?php echo $this->form_elements()->input(
 													array(
 														'type' => 'text',
@@ -602,42 +601,52 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 												); ?>
 											</div>
 											
-											<div class="layers-form-item layers-link-type-ux layers-link-type-ux-link_post" data-show-if-selector="#<?php echo $this->get_layers_field_id( 'link_type' ) ?>" data-show-if-value="post">
+											<div class="layers-form-item layers-link-type-ux layers-link-type-ux-link_post" data-show-if-selector= "#<?php echo $this->get_layers_field_id( 'link_type' ); ?> data-show-if-value="post">
 												<label>
 													<?php _e( 'Post/Page', 'layerswp' ) ?>
 												</label>
-												
-												<?php
-												$att_name = $this->get_layers_field_name( 'link_post' );
-												$att_id = $this->get_layers_field_id( 'link_post' );
-												$att_value = ( isset( $widget['link_post'] ) ) ? $widget['link_post'] : NULL;
-												?>
-												
-												<input type="hidden" class="layers-widget-dynamic-linking-select" name="<?php echo $att_name ?>" id="<?php echo $att_id ?>" value="<?php echo $att_value ?>">
+												<?php echo $this->form_elements()->input(
+													array(
+														'type' => 'hidden',
+														'name' => $this->get_layers_field_name( 'link_post' ),
+														'id' => $this->get_layers_field_id( 'link_post' ),
+														'placeholder' => __( 'http://' , 'layerswp' ),
+														'value' => ( isset( $widget['link_post'] ) ) ? $widget['link_post'] : NULL ,
+														'class' => 'layers-text layers-widget-dynamic-linking-select',
+													)
+												); ?>
 											</div>
 											
-											<div class="layers-form-item layers-link-type-ux layers-link-type-ux-link_post_type_archive" data-show-if-selector="#<?php echo $this->get_layers_field_id( 'link_type' ) ?>" data-show-if-value="post_type_archive">
+											<div class="layers-form-item layers-link-type-ux layers-link-type-ux-link_post_type_archive" data-show-if-selector= "#<?php echo $this->get_layers_field_id( 'link_type' ); ?> data-show-if-value="post_type_archive">
 												<label>
 													<?php _e( 'Post Archives', 'layerswp' ) ?>
 												</label>
-												<?php
-												$att_name = $this->get_layers_field_name( 'link_post_type_archive' );
-												$att_id = $this->get_layers_field_id( 'link_post_type_archive' );
-												$att_value = ( isset( $widget['link_post_type_archive'] ) ) ? $widget['link_post_type_archive'] : NULL;
-												?>
-												<input type="hidden" class="layers-widget-dynamic-linking-select" name="<?php echo $att_name ?>" id="<?php echo $att_id ?>" value="<?php echo $att_value ?>">
+												<?php echo $this->form_elements()->input(
+													array(
+														'type' => 'hidden',
+														'name' => $this->get_layers_field_name( 'link_post_type_archive' ),
+														'id' => $this->get_layers_field_id( 'link_post_type_archive' ),
+														'placeholder' => __( 'http://' , 'layerswp' ),
+														'value' => ( isset( $widget['link_post_type_archive'] ) ) ? $widget['link_post_type_archive'] : NULL ,
+														'class' => 'layers-text layers-widget-dynamic-linking-select',
+													)
+												); ?>
 											</div>
 											
-											<div class="layers-form-item layers-link-type-ux layers-link-type-ux-link_taxonomy_archive" data-show-if-selector="#<?php echo $this->get_layers_field_id( 'link_type' ) ?>" data-show-if-value="taxonomy_archive">
+											<div class="layers-form-item layers-link-type-ux layers-link-type-ux-link_taxonomy_archive" data-show-if-selector= "#<?php echo $this->get_layers_field_id( 'link_type' ); ?> data-show-if-value="taxonomy_archive">
 												<label>
 													<?php _e( 'Taxonomy Archives', 'layerswp' ) ?>
 												</label>
-												<?php
-												$att_name = $this->get_layers_field_name( 'link_taxonomy_archive' );
-												$att_id = $this->get_layers_field_id( 'link_taxonomy_archive' );
-												$att_value = ( isset( $widget['link_taxonomy_archive'] ) ) ? $widget['link_taxonomy_archive'] : NULL;
-												?>
-												<input type="hidden" class="layers-widget-dynamic-linking-select" name="<?php echo $att_name ?>" id="<?php echo $att_id ?>" value="<?php echo $att_value ?>">
+												<?php echo $this->form_elements()->input(
+													array(
+														'type' => 'hidden',
+														'name' => $this->get_layers_field_name( 'link_taxonomy_archive' ),
+														'id' => $this->get_layers_field_id( 'link_taxonomy_archive' ),
+														'placeholder' => __( 'http://' , 'layerswp' ),
+														'value' => ( isset( $widget['link_taxonomy_archive'] ) ) ? $widget['link_taxonomy_archive'] : NULL ,
+														'class' => 'layers-text layers-widget-dynamic-linking-select',
+													)
+												); ?>
 											</div>
 											
 										</div>

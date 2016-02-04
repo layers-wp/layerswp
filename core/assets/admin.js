@@ -403,7 +403,7 @@ jQuery(function($) {
 	/**
 	* 7 - Tabs
 	*/
-	$( document ).on( 'click' , '.l_admin-tabs li' , function(e){
+	$( document ).on( 'click' , '.l_admin-tabs li, .l_admin-tabs li a' , function(e){
 		e.preventDefault();
 		// "Hi Mom"
 		$that = $(this);

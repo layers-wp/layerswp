@@ -162,6 +162,9 @@ if( ! function_exists( 'layers_setup' ) ) {
 		// Automatic Feed Links
 		add_theme_support( 'automatic-feed-links' );
 
+		// Add support for excerpts in pages
+		add_post_type_support( 'page', 'excerpt' );
+
 		/**
 		 * Register nav menus
 		 */

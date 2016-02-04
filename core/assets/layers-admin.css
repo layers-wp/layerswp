@@ -1736,6 +1736,7 @@
 		.l_admin-button.disable{
 			background: #ADADAD;
 			border-color: #9F9F9F;
+			box-shadow: none;
 			color: #fff;
 		}
 
@@ -1838,6 +1839,13 @@
 		.l_admin-button.l_admin-proceed-to-customizer.disable:hover:after,
 		.l_admin-button.l_admin-proceed-to-customizer.disable:hover:before{
 			opacity:1;
+		}
+		.l_admin-button.l_admin-proceed-to-customizer.disable-tip{
+			pointer-events: none;
+		}
+		.l_admin-button.l_admin-proceed-to-customizer.disable-tip:hover:after,
+		.l_admin-button.l_admin-proceed-to-customizer.disable-tip:hover:after{
+			opacity: 0 !important;
 		}
 		
 		/*----------------------*/

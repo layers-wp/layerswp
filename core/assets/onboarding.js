@@ -69,8 +69,8 @@ jQuery(function($) {
 			$progress_indicator = $form.find( '.l_admin-save-progress' );
 			$progress_indicator_message = $progress_indicator.data( 'busy-message' );
 
-			$that.text( $progress_indicator_message ).attr( 'disabled' , 'disabled' ).addClass( 'disable' );
-
+			$that.text( $progress_indicator_message ).attr( 'disabled' , 'disabled' ).addClass( 'disable disable-tip' );
+			
 			$id = $( 'input[name="layes-preset-layout"]:checked' ).val();
 
 			// No template selected

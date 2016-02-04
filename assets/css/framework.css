@@ -1874,7 +1874,7 @@ object{
 		width: 180px;
 		margin: 0;
 		border: none;
-		border-bottom: 1px dotted #ddd;
+		border-bottom: 1px solid #ddd;
 	}
 	.sub-menu li:last-child{
 		border-bottom: none;

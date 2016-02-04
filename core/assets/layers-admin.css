@@ -66,6 +66,45 @@
 		margin-left: -10px;
 	}
 
+	/*---------------------------*/
+	/*- TABBED NAV --------------*/
+	.l_admin-nav-tabs{
+		text-align: center;
+	}
+	.l_admin-nav-tabs ul{
+		margin: 0;
+		background: #F3F3F3;
+		margin-top: -6px;
+		margin: -6px -12px 0;
+		border-bottom: 1px solid #eee;
+		overflow: hidden;
+	}
+	.l_admin-nav-tabs li{
+		float: left;
+		margin: 0px;
+	}
+	.l_admin-nav-tabs a{
+		display: block;
+		padding: 10px 15px;
+		background: #F3F3F3;
+		font-weight: 600;
+		color: #8F8F8F;
+		text-decoration: none;
+		border-right: 1px solid #eee;
+		border-top: none;
+		border-bottom: none;
+		margin: 0px;
+	}
+	.l_admin-nav-tabs a:hover{
+		color: #454545;
+		background: #F3F3F3;
+	}
+	.l_admin-nav-tabs .active a{
+		background: #fff;
+		border-bottom: 0 none;
+		color: #454545;
+	}
+
 /*-------------------------------*/
 /*- #mobile ---------------------*/
 @media only screen and (max-width: 480px){

@@ -410,18 +410,16 @@ class Layers_Options_Panel {
 							<img src="<?php echo get_template_directory_uri(); ?>/core/assets/images/thumb-layers-pro.png" alt="LayersPro" />
 						</div>
 						<div class="l_admin-media-body">
-							<h3 class="l_admin-heading"><?php _e( 'Unlock the full power of Layers!' , 'layerswp' ); ?></h3>
 							<div class="l_admin-excerpt">
-								<p><?php _e( 'Layers Pro adds more customizability in the Layers framework' , 'layerswp' ); ?></p>
+								<p><?php _e( 'Layers Pro unlocks customizability in the Layers framework.' , 'layerswp' ); ?></p>
 								<ul class="l_admin-ticks-wp">
-									<li><?php _e( 'Make the logo BIGGER' , 'layerswp' ); ?></li>
+									<li><?php _e( 'Make the logo bigger' , 'layerswp' ); ?></li>
 									<li><?php _e( 'Add video backgrounds' , 'layerswp' ); ?></li>
 									<li><?php _e( 'Add a header background image' , 'layerswp' ); ?></li>
 									<li><?php _e( 'Full button styling control' , 'layerswp' ); ?></li>
 									<li><?php _e( 'New customization controls' , 'layerswp' ); ?></li>
-									<li><?php _e( 'Accordian & Tab Widgets' , 'layerswp' ); ?></li>
-									<li><?php _e( 'Post Carousel Widget' , 'layerswp' ); ?></li>
 									<li><?php _e( 'Get more control over your blog' , 'layerswp' ); ?></li>
+									<li><?php _e( '4 new widgets' , 'layerswp' ); ?></li>
 								</ul>
 							</div>
 						</div>
@@ -431,7 +429,7 @@ class Layers_Options_Panel {
 					<a href="http://codecanyon.net/item/layers-pro-extended-customization-for-layers/11225042?ref=obox&utm_source=layers%20theme&utm_medium=link&utm_campaign=Layers%20Pro%20Upsell&utm_content=WP%20Dashboard" target="_blank" class="button button-primary">
 						<?php _e( 'Get Layers Pro Now!' , 'layerswp' ); ?>
 					</a>
-					<a href="http://codecanyon.net/item/layers-pro-extended-customization-for-layers/11225042?ref=obox&utm_source=layers%20theme&utm_medium=link&utm_campaign=Layers%20Pro%20Upsell&utm_content=WP%20Dashboard" target="_blank" class="button button-link"><?php _e( 'Learn More' , 'layerswp' ); ?></a>
+					<a href="http://www.layerswp.com/layers-pro/?utm_source=layers%20theme&utm_medium=link&utm_campaign=Layers%20Pro%20Upsell&utm_content=WP%20Dashboard" target="_blank" class="button btn-link"><?php _e( 'Learn More' , 'layerswp' ); ?></a>
 				</div>
 			<?php } ?>
 			<?php if( 'upsell-storekit' == $args[ 'args' ][ 'type' ] ) { ?>

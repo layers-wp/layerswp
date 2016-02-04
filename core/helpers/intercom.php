@@ -128,15 +128,11 @@ class Layers_Intercom {
 			$json[ 'Site Category' ] = get_option( 'info_site_usage' );
 		}
 
-		if( get_option( 'site_color' ) ) {
-			$json[ 'Site Color' ] = get_option( 'site_color' );
-		}
-
 		$json[ 'Launchpad' ] = ( class_exists( 'apollo_launchpad' ) ? 1 : 0 );
 
-		$launchpad = get_option("apollo_display_options");
-		if( isset( $launchpad["launchdate"] ) ){
-			$json[ 'launched_at' ] = strtotime( $launchpad["launchdate"] );
+		$launchpad = get_option( 'apollo_display_options' );
+		if( isset( $launchpad['launchdate'] ) ){
+			$json[ 'launched_at' ] = strtotime( $launchpad['launchdate'] );
 		}
 
 		// jsonify the settings

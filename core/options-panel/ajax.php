@@ -260,7 +260,7 @@ if( !class_exists( 'Layers_Onboarding_Ajax' ) ) {
 
 						$return_message = array(
 							'success' => true,
-							'message' => __( 'Option updated Bong!' , 'layerswp' ),
+							'message' => __( 'Option updated' , 'layerswp' ),
 						);
 
 						break;
@@ -271,7 +271,7 @@ if( !class_exists( 'Layers_Onboarding_Ajax' ) ) {
 
 						$return_message = array(
 							'success' => true,
-							'message' => __( 'Option updated Bing' , 'layerswp' ),
+							'message' => __( 'Option updated' , 'layerswp' ),
 						);
 
 						break;

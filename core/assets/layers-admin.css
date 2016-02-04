@@ -744,6 +744,9 @@
 /*---------------------------*/
 /*- BUTTONS -----------------*/
 
+	.button{
+		text-align: center;
+	}
 	.l_admin-button{
 		display: inline-block;
 		height: 28px;
@@ -779,12 +782,14 @@
 
 	/*-----------------------*/
 	/*- PRIMARY BUTTON ------*/
+	.button.btn-primary,
 	.btn-primary{
 		background: #0085BA;
 		border-color: #006799;
 		box-shadow: 0px 1px 0px #006799;
 		color: #fff;
 	}
+	.button.btn-primary:hover,
 	.btn-primary:hover{
 		background: #008EC2;
 		border-color: #006799;

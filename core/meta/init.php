@@ -141,7 +141,7 @@ class Layers_Custom_Meta {
 					<div class="l_admin-column l_admin-span-4 postbox l_admin-content">
 						<div class="l_admin-section-title l_admin-tiny">
 							<h4 class="l_admin-heading"><?php _e( 'Import Layout', 'layerswp' ); ?></h4>
-							<p class="l_admin-excerpt"><?php _e( 'Upload a layout file (eg. <code><?php echo $post->post_name; ?>.json</code>) by clicking the button below.', 'layerswp' ); ?></p>
+							<p class="l_admin-excerpt"><?php _e( 'Upload a layout file (eg. <code>' . $post->post_name . '.json</code>) by clicking the button below.', 'layerswp' ); ?></p>
 						</div>
 						<button class="button" id="layers-page-import-button" data-post-id="<?php echo get_the_ID(); ?>" data-title="Upload .json" data-button_text="Upload &amp; Import"><?php _e( 'Upload &amp; Import', 'layerswp' ); ?></button>
 					</div>

@@ -246,19 +246,17 @@ if( !function_exists( 'layers_create_builder_page' ) ) {
 */
 
 if( ! function_exists( 'layers_get_builder_pages' ) ) {
-	function layers_get_builder_pages ( $limit = 500 ) {
+	function layers_get_builder_pages ( $limit = -1 ) {
 		global $layers_builder_pages;
 
 		// Fetch Builder Pages
-		$layers_builder_pages = get_posts(array(
-			'post_status' => 'publish,draft,private',
+		return get_posts( array(
+			'post_status' => get_post_stati(),
 			'post_type' => 'page',
 			'meta_key' => '_wp_page_template',
 			'meta_value' => LAYERS_BUILDER_TEMPLATE,
 			'posts_per_page' => $limit
-		));
-
-		return $layers_builder_pages;
+		) );
 	}
 }
 

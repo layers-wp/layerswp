@@ -730,23 +730,11 @@ jQuery(function($) {
 			$target_element = $target_element.parent('.customize-control');
 			animation_type = 'slideDown';
 		}
-		else if ( $target_element.parents( '.layers-design-bar' ).length ) {
+		else if ( $target_element.hasClass('layers-design-bar-form-item') ) {
 			
 			// Target element is - Design Bar (form-item)
-			$target_element = $target_element.closest('.layers-form-item');
 			animation_type = 'slideDown';
 		}
-		else if ( $target_element.parent( '.layers-form-item, .layers-form-item' ).length ) {
-			
-			// Target element is - Input contained inside a `form-item` container.
-			$target_element = $target_element.parent( '.layers-form-item, .layers-form-item' );
-		}
-		else{
-			
-			// Target element is - any specific element.
-			$target_element = $target_element;
-		}
-		
 
 		if ( 'hide' == $state ) {
 

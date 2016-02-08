@@ -1,12 +1,6 @@
 # Layers Changelog
 
 =======
-##1.X.XX
-### xx Xxx 2016
-
-* **Fix** - Fixed `layers_get_builder_pages()` so that it gets all possible post_status, especially auto_draft. *SOB*
-
-=======
 ##1.2.11
 ### 04 Feb 2016
 

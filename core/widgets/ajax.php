@@ -7,7 +7,7 @@
  * @since Layers 1.0.0
  */
 
-if( !class_exists( 'Layers_Widget_Ajax' ) ) {
+if( ! class_exists( 'Layers_Widget_Ajax' ) ) {
 
 	class Layers_Widget_Ajax {
 
@@ -35,6 +35,9 @@ if( !class_exists( 'Layers_Widget_Ajax' ) ) {
 			add_action( 'wp_ajax_layers_slider_widget_actions', array( $this, 'slider_widget_actions' ) );
 			add_action( 'wp_ajax_layers_content_widget_actions', array( $this, 'content_widget_actions' ) );
 			add_action( 'wp_ajax_layers_widget_new_repeater_item', array( $this, 'widget_new_repeater_item' ) );
+			
+			// Widget Link Actions
+			add_action( 'wp_ajax_layers_widget_linking_actions', array( $this, 'widget_linking_actions' ) );
 		}
 		function slider_widget_actions(){
 
@@ -137,7 +140,90 @@ if( !class_exists( 'Layers_Widget_Ajax' ) ) {
 			}
 			die();
 		}
+		
+		function widget_linking_actions(){
+			global $post;
+			// if( ! check_ajax_referer( 'layers-widget-actions', 'nonce', false ) ) die( 'You threw a Nonce exception' ); // Nonce
+			// if( 'add-column' == $_POST[ 'widget_action'] ) { }
+			
+			$link_type = $_GET['link_type'];
+			
+			// Data collection.
+			$data_collection = array();
+			
+			switch ( $link_type ) {
+				
+				case 'post':
+				
+					/**
+					 * Post
+					 */
+				
+					if ( isset( $_GET['term'] ) && '' !== $_GET['term'] ) {
+						// Only search if there is a post to start with.
+						
+						$args = array();
+						$args['posts_per_page'] = 3;
+						$args['paged'] = $_GET['page'];
+						$args['post_type'] = get_post_types();
+						
+						// Add filter for the 'LIKE' Title DB search.
+						add_filter( 'posts_where', 'post_title_search_filter', 10, 2 );
+						
+						// Search the posts.
+						query_posts( $args );
 
+						// Loop and collect the data.
+						while ( have_posts() ) : the_post();
+							$data_collection[] = array(
+								'id' => $post->ID,
+								'text' => $post->post_title,
+							);
+						endwhile;
+					}
+					
+					break;
+				
+				case 'post_type_archive':
+					
+					/**
+					 * Post-Type Archive
+					 */
+					
+					$post_types = get_post_types( array(), 'objects' );
+					
+					foreach ( $post_types as $post_type => $post_type_value ) {
+						$data_collection[] = array(
+							'id' => $post_type,
+							'text' => $post_type_value->name,
+						);
+					}
+					
+					break;
+				
+				case 'taxonomy_archive':
+					
+					/**
+					 * Post-Type Archive
+					 */
+					
+					break;
+			}
+			
+			// Echo the data in the format that Select-2 can use.
+			echo json_encode( $data_collection );
+			
+			die();
+		}
+
+	}
+	
+	function post_title_search_filter( $where, &$wp_query ) {
+		global $wpdb;
+		if ( isset( $_GET['term'] ) && $term = $_GET['term'] ) {
+			$where .= ' AND ' . $wpdb->posts . '.post_title LIKE \'' . esc_sql( $wpdb->esc_like( $term ) ) . '%\'';
+		}
+		return $where;
 	}
 
 	function layers_register_widget_ajax(){

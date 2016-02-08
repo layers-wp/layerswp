@@ -31,6 +31,7 @@
  * 18 - Reset to Default
  * 19 - Linking from one section/panel to another.
  * 20 - Init Tip-Tip
+ * 21 - Mimic Form Element Values
  *
  * Author: Obox Themes
  * Author URI: http://www.oboxthemes.com/
@@ -360,6 +361,243 @@ jQuery(function($) {
 		$( element ).layers_trigger_change();
 	}, 200, false );
 
+	
+	
+	/**
+	* 666 - Init Select 2
+	*/
+	
+	// Init interface in all except widgets on load
+	layers_init_link_ux( $( '#customize-theme-controls > ul > li.accordion-section' ).not( '#accordion-panel-widgets' ) );
+
+	// Init interface inside widgets
+	$( document ).on( 'layers-interface-init', '.widget, .layers-accordions', function( e ){
+
+		// 'this' is the widget
+		layers_init_link_ux( $(this) );
+	});
+
+	function layers_init_link_ux( $element_s ){
+
+		$element_s.each( function( i, group ) {
+
+			$(group).find( '.layers-link-type-ux').each( function( j, $element ) {
+				
+				// $( $element ).css({ opacity: .5 });
+			});
+		});
+	}
+	
+	
+	
+	/**
+	* 666 - Init Select 2
+	*/
+	
+	// Init interface in all except widgets on load
+	layers_init_select_2( $( '#customize-theme-controls > ul > li.accordion-section' ).not( '#accordion-panel-widgets' ) );
+
+	// Init interface inside widgets
+	$( document ).on( 'layers-interface-init', '.widget, .layers-accordions', function( e ){
+
+		// 'this' is the widget
+		layers_init_select_2( $(this) );
+	});
+
+	function layers_init_select_2( $element_s ){
+
+		$element_s.each( function( i, group ) {
+
+			$(group).find( '.layers-widget-dynamic-linking-select').each( function( j, element ) {
+				
+				var related_type_select = $(element).parents('.layers-form-collection').find('[id$="-link_type"]');
+				
+				$(element).select2({
+					
+					ajax: {
+						url: ajaxurl,
+						dataType: 'json',
+						quietMillis: 250,
+						data: function(term, page) {
+							
+							return {
+								action: 'layers_widget_linking_actions',
+								link_type: related_type_select.val(),
+								term: term,
+								page: page,
+							};
+						},
+						results: function(data, params) {
+							
+							return {
+								results: data,
+								more: true,
+							};
+						},
+						cache: true
+					},
+					escapeMarkup: function(markup) {
+						
+						// let our custom formatter work
+						return markup;
+					},
+					// formatResult: function(data) {
+						
+					// 	if (data.loading) return data.text;
+						
+					// 	var markup = "";
+					// 	markup += "<div>";
+					// 	markup += data.text;
+					// 	markup += "</div>";
+
+					// 	return markup;
+					// },
+					formatSelection: function(data) {
+						
+						return data.text;
+					},
+					containerCssClass: 'tpx-select2-container',
+					dropdownCssClass: 'tpx-select2-drop',
+					minimumInputLength: 1,
+					// width: 'resolve',
+					width: '100%',
+				});
+
+				$(element).on('select2-open', function(){
+					// $(element).select2('search', '');
+				});
+
+				
+				// Select2 - v4
+				/*
+				$(element).select2({
+					
+					ajax: {
+						url: ajaxurl,
+						dataType: 'json',
+						delay: 250,
+						data: function(params) {
+							
+							return {
+								action: 'layers_widget_linking_actions',
+								q: params.term, // search term
+								page: params.page
+							};
+						},
+						processResults: function(data, params) {
+							
+							// parse the results into the format expected by Select2
+							// since we are using custom formatting functions we do not need to
+							// alter the remote JSON data, except to indicate that infinite
+							// scrolling can be used
+							params.page = params.page || 1;
+							
+							// Reformat Data (Optional. if not in desired format)
+							// var new_results = [];
+							// $(data.items).each(function(index, val) {
+							// 	new_results.push({
+							// 		id    : val.full_name,
+							// 		text  : val.full_name,
+							// 	});
+							// });
+							
+							return {
+								results: data,
+								// results: data.items,
+								pagination: {
+									more: (params.page * 30) < data.total_count
+								}
+							};
+						},
+						cache: true
+					},
+					escapeMarkup: function(markup) {
+						
+						// let our custom formatter work
+						return markup;
+					},
+					minimumInputLength: 1,
+					templateResult: function(data) {
+						
+						if (data.loading) return data.text;
+						
+						var markup = "";
+						markup += "<div>";
+						markup += data.text;
+						markup += "</div>";
+
+						return markup;
+					},
+					templateSelection: function(data) {
+						
+						return data.text;
+					},
+				});
+
+				$.ajax({
+					url: "https://api.github.com/search/repositories",
+					dataType: 'json',
+					delay: 250,
+					data: {
+						q: $(element).val(),
+					},
+					success: (function(data) {
+						
+						var $items = data.items;
+						
+						console.log( $items );
+						
+						$($items).each(function(index, el) {
+							
+							$(element).append( $("<option/>", {
+								value: el.full_name,
+								text: "Option -- " + el.full_name,
+								selected: true
+							}));
+						});
+					})
+				});
+				*/
+				
+			});
+		});
+	}
+
+
+	/**
+	* 6 - Form Collections
+	*/
+
+	// Init interface in all except widgets on load
+	layers_init_form_collections( $( '#customize-theme-controls > ul > li.accordion-section' ).not( '#accordion-panel-widgets' ) );
+
+	// Init interface inside widgets
+	$( document ).on( 'layers-interface-init', '.widget, .layers-accordions', function( e ){
+
+		// 'this' is the widget
+		layers_init_form_collections( $(this) );
+	});
+
+	function layers_init_form_collections( $element_s ){
+		$element_s.each( function( i, group ) {
+			$(group).find('.layers-form-collection').each( function( j, element ) {
+
+// 				$(element).sortable({
+// 					placeholder: "layers-sortable-drop"
+// 				});
+			});
+		});
+	}
+
+	$(document).on('click', '.layers-form-collection-header', function(){
+		
+		$parent_collection = $(this).closest('.layers-form-collection');
+		
+		$parent_collection.toggleClass('closed');
+	});
+
+	
+
 	/**
 	* 6 - Sortable Columns
 	*/
@@ -573,34 +811,34 @@ jQuery(function($) {
 	if ( $('body.wp-customizer').length ) {
 		// Customizer
 		
-		// Init interface in all except widgets on load
-		layers_init_show_if( $( '#customize-theme-controls > ul > li.accordion-section' ).not( '#accordion-panel-widgets' ) );
-		
-		// Init interface inside widgets
-		$( document ).on( 'layers-interface-init', '.widget, .layers-accordions', function( e ){
-			// 'this' is the widget
-			layers_init_show_if( $(this), true );
-		});
+	        // Init interface in all except widgets on load
+	        layers_init_show_if( $( '#customize-theme-controls > ul > li.accordion-section' ).not( '#accordion-panel-widgets' ) );
+        
+	        // Init interface inside widgets
+	        $( document ).on( 'layers-interface-init', '.widget, .layers-accordions', function( e ){
+		        // 'this' is the widget
+		        layers_init_show_if( $(this), true );
+	        });
 	}
-	else{
+	else {
 		// Not Customizer
 		layers_init_show_if( $( 'body' ), true );
 	}
-	
+
 	function layers_init_show_if( $element_s, $run_instantly ){
 
 		$element_s.each( function( i, group ) {
 
 			$(group).find( '[data-show-if-selector]').each( function( j, element ) {
-				
+
 				var $target_element = $(element);
 
 				var $source_element_selector = $target_element.attr( 'data-show-if-selector' );
 
 				layers_enqueue_init( function(){
-					
+
 					layers_apply_show_if( $source_element_selector );
-					
+
 					$( document ).on( 'change', $source_element_selector, function(e){
 						layers_apply_show_if( $source_element_selector );
 					});
@@ -618,7 +856,7 @@ jQuery(function($) {
 			var $target_value   = $target_element.data( 'show-if-value' ).toString();
 			var $source_element = $( $target_element.data( 'show-if-selector' ).toString() );
 			var $operator       = $target_element.data( 'show-if-operator' );
-
+			
 			if ( $source_element.attr('type') == 'checkbox' ) {
 				$source_element_value = ( $source_element.is(':checked') ) ? 'true' : 'false' ;
 			}
@@ -630,12 +868,12 @@ jQuery(function($) {
 				layers_show_if_display( 'hide', $target_element );
 				return false;
 			}
-
+			
 			// Apply the chosen Operator (default: ==)
 			switch( $operator ) {
-
+				
 				case '!=':
-
+					
 					if ( $target_value.trim() != $source_element_value.trim() )
 						layers_show_if_display( 'show', $target_element ); // Show
 					else
@@ -687,10 +925,10 @@ jQuery(function($) {
 						layers_show_if_display( 'hide', $target_element ); // Hide
 					
 					break;
-
+				
 				case '==':
 				default:
-
+					
 					if ( $target_value.trim() == $source_element_value.trim() )
 						layers_show_if_display( 'show', $target_element ); // Show
 					else
@@ -698,12 +936,12 @@ jQuery(function($) {
 					
 					break;
 			}
-
+			
 		});
 	}
 
 	function layers_show_if_display( $state, $target_element ) {
-
+		
 		// Calculate the reveal animation type.
 		var animation_type = 'none';
 		
@@ -721,7 +959,7 @@ jQuery(function($) {
 		}
 
 		if ( 'hide' == $state ) {
-
+			
 			// Hide
 			if( animation_type == 'slideDown' ){
 				$target_element.slideUp( { duration: 550, easing: 'layersEaseInOut', complete: function(){
@@ -733,7 +971,7 @@ jQuery(function($) {
 			}
 		}
 		else {
-
+			
 			// Show
 			if( animation_type == 'slideDown' ){
 				$target_element.removeClass( 'l_admin-hide' );
@@ -1122,6 +1360,44 @@ jQuery(function($) {
 					//'activation' : 'click'
 				});
 
+			});
+		});
+	}
+
+	/**
+	* 21 - Mimic Form Element Values
+	*
+	* by specifying `data-mimic-selector` a form element will keep updated with the value of any other element.
+	*/
+
+	// Init interface in all except widgets on load
+	layers_init_mimic_data( $( '#customize-theme-controls > ul > li.accordion-section' ).not( '#accordion-panel-widgets' ) );
+
+	// Init interface inside widgets
+	$( document ).on( 'layers-interface-init', '.widget, .layers-accordions', function( e ){
+		// 'this' is the widget
+		layers_init_mimic_data( $(this), true );
+	});
+
+	function layers_init_mimic_data( $element_s, $run_instantly ){
+		
+		$element_s.each( function( i, group ) {
+			$(group).find( '[data-mimic-selector]').each( function( j, element ) {
+				
+				var selector = $(element).attr('data-mimic-selector');
+				
+				$(document).on( 'change keyup', selector, function(){
+					
+					if ( $(this).is('select') )
+						$(element).text( $(selector).find(":selected").text() );
+					else
+						$(element).text( $(selector).val() );
+				});
+				
+				if ( $(selector).is('select') )
+					$(element).text( $(selector).find(":selected").text() );
+				else
+					$(element).text( $(selector).val() );
 			});
 		});
 	}

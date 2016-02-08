@@ -718,14 +718,14 @@ jQuery(function($) {
 	if ( $('body.wp-customizer').length ) {
 		// Customizer
 		
-	        // Init interface in all except widgets on load
-	        layers_init_show_if( $( '#customize-theme-controls > ul > li.accordion-section' ).not( '#accordion-panel-widgets' ) );
-        
-	        // Init interface inside widgets
-	        $( document ).on( 'layers-interface-init', '.widget, .layers-accordions', function( e ){
-		        // 'this' is the widget
-		        layers_init_show_if( $(this), true );
-	        });
+			// Init interface in all except widgets on load
+			layers_init_show_if( $( '#customize-theme-controls > ul > li.accordion-section' ).not( '#accordion-panel-widgets' ) );
+		
+			// Init interface inside widgets
+			$( document ).on( 'layers-interface-init', '.widget, .layers-accordions', function( e ){
+				// 'this' is the widget
+				layers_init_show_if( $(this), true );
+			});
 	}
 	else {
 		// Not Customizer

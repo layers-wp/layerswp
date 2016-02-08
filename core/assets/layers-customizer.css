@@ -1088,8 +1088,9 @@ div[id*='layers-widget'] .widget-control-actions .alignright{
 		top: -18px;
 		right: 0;
 		font-style: italic;
-		color: rgba(0,0,0,0.1) !important;
+		opacity: .15;
 		font-weight: normal;
+		display: none;
 	}
 	
 	/*------------------------------------*/

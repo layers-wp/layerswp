@@ -31,7 +31,7 @@
  * 18 - Reset to Default
  * 19 - Linking from one section/panel to another.
  * 20 - Init Tip-Tip
- * 21 - Mimic Form Element Values
+ * 21 - Linking-UX
  *
  * Author: Obox Themes
  * Author URI: http://www.oboxthemes.com/
@@ -367,177 +367,6 @@ jQuery(function($) {
 	var layers_debounce_color_input = _.debounce( function( element ){
 		$( element ).layers_trigger_change();
 	}, 200, false );
-
-	
-	
-	/**
-	* 666 - Init Select 2
-	*/
-	
-	// Init interface in all except widgets on load
-	layers_init_link_ux( $( '#customize-theme-controls > ul > li.accordion-section' ).not( '#accordion-panel-widgets' ) );
-
-	// Init interface inside widgets
-	$( document ).on( 'layers-interface-init', '.widget, .layers-accordions', function( e ){
-
-		// 'this' is the widget
-		layers_init_link_ux( $(this) );
-	});
-
-	function layers_init_link_ux( $element_s ){
-
-		$element_s.each( function( i, group ) {
-
-			$(group).find( '.layers-link-type-ux').each( function( j, $element ) {
-				
-				// $( $element ).css({ opacity: .5 });
-			});
-		});
-	}
-	
-	
-	
-	/**
-	* 666 - Init Select 2
-	*/
-	
-	// Init interface in all except widgets on load
-	layers_init_select_2( $( '#customize-theme-controls > ul > li.accordion-section' ).not( '#accordion-panel-widgets' ) );
-
-	// Init interface inside widgets
-	$( document ).on( 'layers-interface-init', '.widget, .layers-accordions', function( e ){
-
-		// 'this' is the widget
-		layers_init_select_2( $(this) );
-	});
-
-	function layers_init_select_2( $element_s ){
-
-		$element_s.each( function( i, group ) {
-
-			$(group).find( '.layers-widget-dynamic-linking-select').each( function( j, element ) {
-				
-				// Get the xxxx-link-type inputs and convert them to layersSlct2.
-				var related_type_select = $(element).parents('.layers-form-collection').find('[id$="-link_type"]');
-				var related_type_text = related_type_select.val();
-				
-				$(element).layersSlct2({
-					ajax: {
-						url: ajaxurl,
-						dataType: 'json',
-						quietMillis: 250,
-						data: function(term, page) {
-							
-							return {
-								action    :'layers_widget_linking_searches',
-								link_type :related_type_text,
-								term      :term,
-								page      :page,
-							};
-						},
-						results: function(data, params) {
-							
-							return {
-								results: data,
-								more: true,
-							};
-						},
-						cache: true
-					},
-					escapeMarkup: function(markup) {
-						
-						// let our custom formatter work
-						return markup;
-					},
-					initSelection: function(element, callback) {
-						
-						// convert the value to a Name by doing reverse-lookup of the id.
-						var id = $(element).val();
-						if (id !== "") {
-							jQuery.ajax({
-								type     : 'post',
-								dataType : 'json',
-								url      : ajaxurl,
-								data     : {
-									action    : 'layers_widget_linking_initial_selections',
-									post_id   : id,
-									link_type : related_type_text,
-								},
-								success: function( data ) {
-									
-									// var return_data = [];
-									// return_data.push({ id: 3, text: 'Testytest' });
-									
-									// callback(return_data);
-									callback({ id: data.id, text: data.text });
-								}
-							});
-						}
-					},
-					formatSelection: function(data) {
-						
-						return data.text;
-					},
-					containerCssClass: 'tpx-layersSlct2-container',
-					dropdownCssClass: 'tpx-layersSlct2-drop',
-					minimumInputLength: 1,
-					width: '100%',
-				});
-				
-			});
-		});
-	}
-
-
-	/**
-	* 6 - Form Collections
-	*/
-
-	// Init interface in all except widgets on load
-	layers_init_form_collections( $( '#customize-theme-controls > ul > li.accordion-section' ).not( '#accordion-panel-widgets' ) );
-
-	// Init interface inside widgets
-	$( document ).on( 'layers-interface-init', '.widget, .layers-accordions', function( e ){
-
-		// 'this' is the widget
-		layers_init_form_collections( $(this) );
-	});
-
-	function layers_init_form_collections( $element_s ){
-		$element_s.each( function( i, group ) {
-			$(group).find('.layers-form-collection').each( function( j, element ) {
-				
-				$collection_holder = $(element);
-				$collection_content = $collection_holder.find('.layers-form-collection-content');
-				
-				$collection_content.hide();
-			});
-		});
-	}
-
-	$(document).on('click', '.layers-form-collection-header', function(){
-		
-		$collection_holder = $(this).closest('.layers-form-collection');
-		$collection_content = $collection_holder.find('.layers-form-collection-content');
-		
-		if ( $collection_holder.hasClass('closed') ) {
-			$collection_holder.removeClass('closed');
-			$collection_content.slideDown({ easing: 'layersEaseInOut', duration: 250 });
-		}
-		else{
-			$collection_holder.addClass('closed');
-			$collection_content.slideUp({ easing: 'layersEaseInOut', duration: 250 });
-		}
-		
-		
-		$other_collection_holders = $('.layers-form-collection').not( $collection_holder );
-		$other_collection_contents = $other_collection_holders.find('.layers-form-collection-content');
-		
-		$other_collection_holders.addClass('closed');
-		$other_collection_contents.slideUp({ easing: 'layersEaseInOut', duration: 250 });
-	});
-
-	
 
 	/**
 	* 6 - Sortable Columns
@@ -1306,41 +1135,149 @@ jQuery(function($) {
 	}
 
 	/**
-	* 21 - Mimic Form Element Values
-	*
-	* by specifying `data-mimic-selector` a form element will keep updated with the value of any other element.
+	* 21 - Linking-UX
 	*/
 
 	// Init interface in all except widgets on load
-	layers_init_mimic_data( $( '#customize-theme-controls > ul > li.accordion-section' ).not( '#accordion-panel-widgets' ) );
+	layers_init_form_collections( $( '#customize-theme-controls > ul > li.accordion-section' ).not( '#accordion-panel-widgets' ) );
 
 	// Init interface inside widgets
 	$( document ).on( 'layers-interface-init', '.widget, .layers-accordions', function( e ){
+
 		// 'this' is the widget
-		layers_init_mimic_data( $(this), true );
+		layers_init_form_collections( $(this) );
 	});
 
-	function layers_init_mimic_data( $element_s, $run_instantly ){
-		
+	function layers_init_form_collections( $element_s ){
 		$element_s.each( function( i, group ) {
-			$(group).find( '[data-mimic-selector]').each( function( j, element ) {
+			
+			/**
+			 * Get the link-type inputs and convert them to layersSlct2.
+			 */
+			$(group).find( '.layers-widget-dynamic-linking-select').each( function( j, element ) {
 				
-				var selector = $(element).attr('data-mimic-selector');
+				var related_type_select = $(element).parents('.layers-form-collection').find('[id$="-link_type"]');
+				var related_type_text = related_type_select.val();
 				
-				$(document).on( 'change keyup', selector, function(){
-					
-					if ( $(this).is('select') )
-						$(element).text( $(selector).find(":selected").text() );
-					else
-						$(element).text( $(selector).val() );
+				$(element).layersSlct2({
+					ajax: {
+						url: ajaxurl,
+						dataType: 'json',
+						quietMillis: 250,
+						data: function(term, page) {
+							
+							return {
+								action    :'layers_widget_linking_searches',
+								link_type :related_type_text,
+								term      :term,
+								page      :page,
+							};
+						},
+						results: function(data, params) {
+							
+							return {
+								results: data,
+								more: true,
+							};
+						},
+						cache: true
+					},
+					escapeMarkup: function(markup) {
+						
+						// let our custom formatter work
+						return markup;
+					},
+					initSelection: function(element, callback) {
+						
+						// convert the value to a Name by doing reverse-lookup of the id.
+						var id = $(element).val();
+						if (id !== "") {
+							jQuery.ajax({
+								type     : 'post',
+								dataType : 'json',
+								url      : ajaxurl,
+								data     : {
+									action    : 'layers_widget_linking_initial_selections',
+									post_id   : id,
+									link_type : related_type_text,
+								},
+								success: function( data ) {
+									callback({ id: data.id, text: data.text });
+								}
+							});
+						}
+					},
+					formatSelection: function(data) {
+						
+						return data.text;
+					},
+					containerCssClass: 'tpx-layersSlct2-container',
+					dropdownCssClass: 'tpx-layersSlct2-drop',
+					minimumInputLength: 1,
+					width: '100%',
 				});
 				
-				if ( $(selector).is('select') )
-					$(element).text( $(selector).find(":selected").text() );
-				else
-					$(element).text( $(selector).val() );
+			});
+			
+			/**
+			 * Dynamic updating of the Linking-UX heading.
+			 */
+			$(group).find('.layers-form-collection').each( function( j, element ) {
+				
+				// Cache elements.
+				var $collection_holder = $(element);
+				var $collection_content = $collection_holder.find('.layers-form-collection-content');
+				var $collection_heading = $collection_holder.find('.layers-form-collection-header');
+				
+				// Hide content part - like an accordion.
+				$collection_content.hide();
+				
+				// Update the heading on change of any input/select.
+				$(element).find('select, input').on( 'change keyup layers_init_linking', function(){
+					
+					var link_text = $(element).find('[id$="-link_text"]').val();
+					var link_target = $(element).find('[id$="-link_target"]').find(":selected").text();
+					
+					if ( '' != link_text )
+						var new_text = link_text + '<span class="layers-form-collection-header-sub layers-form-collection-header-sub-2"> - ' + link_target + '</span>';
+					else
+						var new_text = '&nbsp;';
+					
+					$collection_heading.html( new_text );
+				});
+				
+				// Ping an intial update at the start.
+				$(element).find('select, input').eq(0).trigger('layers_init_linking');
 			});
 		});
 	}
+	
+	// Accordion-type panel of the Linking-UX
+	$(document).on('click', '.layers-form-collection-header', function(){
+		
+		/**
+		 * Show the current panel.
+		 */
+		$collection_holder = $(this).closest('.layers-form-collection');
+		$collection_content = $collection_holder.find('.layers-form-collection-content');
+		
+		if ( $collection_holder.hasClass('closed') ) {
+			$collection_holder.removeClass('closed');
+			$collection_content.slideDown({ easing: 'layersEaseInOut', duration: 250 });
+		}
+		else{
+			$collection_holder.addClass('closed');
+			$collection_content.slideUp({ easing: 'layersEaseInOut', duration: 250 });
+		}
+		
+		/**
+		 * Hide the other panel (that are still showing)
+		 */
+		$other_collection_holders = $('.layers-form-collection:not(".closed")').not( $collection_holder );
+		$other_collection_contents = $other_collection_holders.find('.layers-form-collection-content');
+		
+		$other_collection_holders.addClass('closed');
+		$other_collection_contents.slideUp({ easing: 'layersEaseInOut', duration: 250 });
+	});
 
 });

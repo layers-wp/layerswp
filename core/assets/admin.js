@@ -506,19 +506,35 @@ jQuery(function($) {
 	function layers_init_form_collections( $element_s ){
 		$element_s.each( function( i, group ) {
 			$(group).find('.layers-form-collection').each( function( j, element ) {
-
-// 				$(element).sortable({
-// 					placeholder: "layers-sortable-drop"
-// 				});
+				
+				$collection_holder = $(element);
+				$collection_content = $collection_holder.find('.layers-form-collection-content');
+				
+				$collection_content.hide();
 			});
 		});
 	}
 
 	$(document).on('click', '.layers-form-collection-header', function(){
 		
-		$parent_collection = $(this).closest('.layers-form-collection');
+		$collection_holder = $(this).closest('.layers-form-collection');
+		$collection_content = $collection_holder.find('.layers-form-collection-content');
 		
-		$parent_collection.toggleClass('closed');
+		if ( $collection_holder.hasClass('closed') ) {
+			$collection_holder.removeClass('closed');
+			$collection_content.slideDown({ easing: 'layersEaseInOut', duration: 250 });
+		}
+		else{
+			$collection_holder.addClass('closed');
+			$collection_content.slideUp({ easing: 'layersEaseInOut', duration: 250 });
+		}
+		
+		
+		$other_collection_holders = $('.layers-form-collection').not( $collection_holder );
+		$other_collection_contents = $other_collection_holders.find('.layers-form-collection-content');
+		
+		$other_collection_holders.addClass('closed');
+		$other_collection_contents.slideUp({ easing: 'layersEaseInOut', duration: 250 });
 	});
 
 	

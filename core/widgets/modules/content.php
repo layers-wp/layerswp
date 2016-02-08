@@ -610,7 +610,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 														'type' => 'hidden',
 														'name' => $this->get_layers_field_name( 'link_post' ),
 														'id' => $this->get_layers_field_id( 'link_post' ),
-														'placeholder' => __( 'http://' , 'layerswp' ),
+														'placeholder' => __( '-- Choose --' , 'layerswp' ),
 														'value' => ( isset( $widget['link_post'] ) ) ? $widget['link_post'] : NULL ,
 														'class' => 'layers-text layers-widget-dynamic-linking-select',
 													)

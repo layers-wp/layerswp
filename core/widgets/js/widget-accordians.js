@@ -28,12 +28,12 @@
 		// Toggle this accordian
 		$me = $(this).closest( 'li.layers-accordion-item' );
 		$me.toggleClass( 'open' );
-		$me.find( '.layers-accordion-section' ).first().slideToggle({ easing: 'layersEaseInOut' });
+		$me.find( '.layers-accordion-section' ).first().slideToggle({ easing: 'layersEaseInOut', duration: 250 });
 
 		// Close non-active accordians
 		$siblings = $me.siblings();
 		$siblings.removeClass( 'open' );
-		$siblings.find( '.layers-accordion-section' ).slideUp({ easing: 'layersEaseInOut' });
+		$siblings.find( '.layers-accordion-section' ).slideUp({ easing: 'layersEaseInOut', duration: 250 });
 	});
 
 	// 1.b - Accodian Init

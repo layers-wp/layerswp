@@ -4,7 +4,7 @@
  * www.drewwilson.com
  * code.drewwilson.com/entry/tiptip-jquery-plugin
  *
- * Layers: rename 'tipTip'->'layersTip' - to avoid script clashes if other load the same script.
+ * Layers: rename 'tipTip'->'layersTip' - to avoid script clashes if other plugin/themes load the same script.
  *
  * Version 1.3   -   Updated: Mar. 23, 2010
  *

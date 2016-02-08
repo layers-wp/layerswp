@@ -412,7 +412,7 @@ jQuery(function($) {
 				
 				var related_type_select = $(element).parents('.layers-form-collection').find('[id$="-link_type"]');
 				
-				$(element).select2({
+				$(element).layersSlct2({
 					
 					ajax: {
 						url: ajaxurl,
@@ -456,15 +456,15 @@ jQuery(function($) {
 						
 						return data.text;
 					},
-					containerCssClass: 'tpx-select2-container',
-					dropdownCssClass: 'tpx-select2-drop',
+					containerCssClass: 'tpx-layersSlct2-container',
+					dropdownCssClass: 'tpx-layersSlct2-drop',
 					minimumInputLength: 1,
 					// width: 'resolve',
 					width: '100%',
 				});
 
-				$(element).on('select2-open', function(){
-					// $(element).select2('search', '');
+				$(element).on('layersSlct2-open', function(){
+					// $(element).layersSlct2('search', '');
 				});
 			});
 		});

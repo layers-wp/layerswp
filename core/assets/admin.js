@@ -410,10 +410,11 @@ jQuery(function($) {
 
 			$(group).find( '.layers-widget-dynamic-linking-select').each( function( j, element ) {
 				
+				// Get the xxxx-link-type inputs and convert them to layersSlct2.
 				var related_type_select = $(element).parents('.layers-form-collection').find('[id$="-link_type"]');
+				var related_type_text = related_type_select.val();
 				
 				$(element).layersSlct2({
-					
 					ajax: {
 						url: ajaxurl,
 						dataType: 'json',
@@ -421,10 +422,10 @@ jQuery(function($) {
 						data: function(term, page) {
 							
 							return {
-								action: 'layers_widget_linking_actions',
-								link_type: related_type_select.val(),
-								term: term,
-								page: page,
+								action    :'layers_widget_linking_searches',
+								link_type :related_type_text,
+								term      :term,
+								page      :page,
 							};
 						},
 						results: function(data, params) {
@@ -441,17 +442,31 @@ jQuery(function($) {
 						// let our custom formatter work
 						return markup;
 					},
-					// formatResult: function(data) {
+					initSelection: function(element, callback) {
 						
-					// 	if (data.loading) return data.text;
-						
-					// 	var markup = "";
-					// 	markup += "<div>";
-					// 	markup += data.text;
-					// 	markup += "</div>";
-
-					// 	return markup;
-					// },
+						// convert the value to a Name by doing reverse-lookup of the id.
+						var id = $(element).val();
+						if (id !== "") {
+							jQuery.ajax({
+								type     : 'post',
+								dataType : 'json',
+								url      : ajaxurl,
+								data     : {
+									action    : 'layers_widget_linking_initial_selections',
+									post_id   : id,
+									link_type : related_type_text,
+								},
+								success: function( data ) {
+									
+									// var return_data = [];
+									// return_data.push({ id: 3, text: 'Testytest' });
+									
+									// callback(return_data);
+									callback({ id: data.id, text: data.text });
+								}
+							});
+						}
+					},
 					formatSelection: function(data) {
 						
 						return data.text;
@@ -459,13 +474,9 @@ jQuery(function($) {
 					containerCssClass: 'tpx-layersSlct2-container',
 					dropdownCssClass: 'tpx-layersSlct2-drop',
 					minimumInputLength: 1,
-					// width: 'resolve',
 					width: '100%',
 				});
-
-				$(element).on('layersSlct2-open', function(){
-					// $(element).layersSlct2('search', '');
-				});
+				
 			});
 		});
 	}

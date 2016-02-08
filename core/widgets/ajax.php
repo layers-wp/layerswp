@@ -37,7 +37,8 @@ if( ! class_exists( 'Layers_Widget_Ajax' ) ) {
 			add_action( 'wp_ajax_layers_widget_new_repeater_item', array( $this, 'widget_new_repeater_item' ) );
 			
 			// Widget Link Actions
-			add_action( 'wp_ajax_layers_widget_linking_actions', array( $this, 'widget_linking_actions' ) );
+			add_action( 'wp_ajax_layers_widget_linking_searches', array( $this, 'widget_linking_searches' ) );
+			add_action( 'wp_ajax_layers_widget_linking_initial_selections', array( $this, 'widget_linking_initial_selections' ) );
 		}
 		function slider_widget_actions(){
 
@@ -141,7 +142,7 @@ if( ! class_exists( 'Layers_Widget_Ajax' ) ) {
 			die();
 		}
 		
-		function widget_linking_actions(){
+		function widget_linking_searches(){
 			global $post;
 			// if( ! check_ajax_referer( 'layers-widget-actions', 'nonce', false ) ) die( 'You threw a Nonce exception' ); // Nonce
 			// if( 'add-column' == $_POST[ 'widget_action'] ) { }
@@ -177,7 +178,8 @@ if( ! class_exists( 'Layers_Widget_Ajax' ) ) {
 						while ( have_posts() ) : the_post();
 							$data_collection[] = array(
 								'id' => $post->ID,
-								'text' => $post->post_title,
+								// 'text' => $post->post_title,
+								'text' => $post->post_title . ' (' . $post->post_type . ')',
 							);
 						endwhile;
 					}
@@ -198,6 +200,59 @@ if( ! class_exists( 'Layers_Widget_Ajax' ) ) {
 							'text' => $post_type_value->name,
 						);
 					}
+					
+					break;
+				
+				case 'taxonomy_archive':
+					
+					/**
+					 * Post-Type Archive
+					 */
+					
+					break;
+			}
+			
+			// Echo the data in the format that Select-2 can use.
+			echo json_encode( $data_collection );
+			
+			die();
+		}
+		
+		function widget_linking_initial_selections(){
+			global $post;
+			// if( ! check_ajax_referer( 'layers-widget-actions', 'nonce', false ) ) die( 'You threw a Nonce exception' ); // Nonce
+			// if( 'add-column' == $_POST[ 'widget_action'] ) { }
+			
+			$link_type = $_POST['link_type'];
+			
+			// Data collection.
+			$data_collection = array();
+			
+			switch ( $link_type ) {
+				
+				case 'post':
+				
+					/**
+					 * Post
+					 */
+				
+					if ( isset( $_POST['post_id'] ) && '' !== $_POST['post_id'] ) {
+						
+						$post_id = $_POST['post_id'];
+						
+						$data_collection = array(
+							'id'   => $post_id,
+							'text' => get_the_title( $post_id ) . ' (' . get_post_type( $post_id ) . ')',
+						);
+					}
+					
+					break;
+				
+				case 'post_type_archive':
+					
+					/**
+					 * Post-Type Archive
+					 */
 					
 					break;
 				

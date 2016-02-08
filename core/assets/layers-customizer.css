@@ -866,8 +866,7 @@ div[id*='layers-widget'] .widget-control-actions .alignright{
 		/* width: 100%; */
 		height: 36px;
 		margin: 0;
-		padding-top: 0;
-		padding-bottom: 0;
+		padding: 0 4px;
 	}
 	.layersSlct2-drop {
 		z-index: 10000000;

@@ -572,7 +572,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 													// 'placeholder' => __( 'http://' , 'layerswp' ),
 													'options' => array(
 														'custom'            => __( 'Custom', 'layerswp' ),
-														'post'              => __( 'Post/Page (incl. Custom Post Types)', 'layerswp' ),
+														'post'              => __( 'Page, Post, Custom Post Type', 'layerswp' ),
 														// 'post_type_archive' => __( 'Post Archives (incl. Custom Post Types)', 'layerswp' ),
 														// 'taxonomy_archive'  => __( 'Taxonomy Archives (incl. Custom Taxonomies)', 'layerswp' ),
 													),

@@ -1,11 +1,12 @@
+/**
+ * Extend the WP Media Uploader, Select BackBone interface.
+ *
+ * Add a tab to the media manager popup.
+ *
+ * @see /wp-includes/js/media-views.js
+ */
 
 ( function( exports, $ ) {
-
-	/**
-	 * Extend the WP Media Uploader, Select BackBone interface.
-	 *
-	 * @see /wp-includes/js/media-views.js
-	 */
 
 	// Extend wp.media.view.MediaFrame.Select
 
@@ -19,8 +20,6 @@
 	        BackupWpMediaFrameSelect.prototype.initialize.apply( this, arguments );
 	        
 	        this.on( 'content:render:layers_discover', this.layers_discoverContent, this );
-	        
-	        //console.log( this.options.state );
 	    },
 	    
 	    /**

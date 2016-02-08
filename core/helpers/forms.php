@@ -26,8 +26,7 @@ class Layers_Form_Elements {
 		$header = (object) wp_parse_args( $args, $defaults ); ?>
 
 		<div class="layers-controls-title">
-			<h2 class="layers-heading layers-icon layers-icon-<?php $header->icon_class; ?>">
-				<!-- <i class="icon-<?php echo $header->icon_class; ?>-small"></i> -->
+			<h2 class="layers-heading">
 				<?php echo esc_html( $header->title ); ?>
 			</h2>
 		</div>
@@ -114,6 +113,7 @@ class Layers_Form_Elements {
 	*/
 
 	public function input( $args = array() ) {
+		global $wp_customize;
 
 		$defaults = array(
 			'type' => 'text',
@@ -280,7 +280,7 @@ class Layers_Form_Elements {
 								<?php echo esc_html( $name ); ?>
 							</span>
 						</label>
-						<input type="radio" <?php echo implode ( ' ' , $input_props ); ?> id="<?php echo esc_attr( $input->id ) ,'-', esc_attr( $key ); ?>" value="<?php echo esc_attr( $key ); ?>" <?php checked( $input->value , $key , true ); ?> class="layers-hide" />
+						<input type="radio" <?php echo implode ( ' ' , $input_props ); ?> id="<?php echo esc_attr( $input->id ) ,'-', esc_attr( $key ); ?>" value="<?php echo esc_attr( $key ); ?>" <?php checked( $input->value , $key , true ); ?> class="l_admin-hide" />
 					<?php } // foreach options ?>
 				</div>
 			<?php break;
@@ -319,19 +319,20 @@ class Layers_Form_Elements {
 			/**
 			* Image Uploader
 			*/
-			case 'image' : ?>
-				<section class="layers-image-container <?php if( isset( $input->value ) && NULL != $input->value ) echo 'layers-has-image'; ?>">
+			case 'image' :
+				$has_image = ( bool ) ( isset( $input->value ) && '' !== $input->value && NULL != $input->value ); ?>
+				<section class="layers-image-container <?php echo ( $has_image ) ? 'layers-has-image' : '' ; ?>">
 					<div class="layers-image-display layers-image-upload-button">
 						<!-- Image -->
-						<?php if( isset( $input->value ) && '' !== $input->value ) { ?>
-							<?php $img = wp_get_attachment_image_src( $input->value , 'medium' ); ?>
-							<img data-src="<?php echo $img[0]; ?>" />
+						<?php if ( $has_image ) { ?>
+							<?php $img = wp_get_attachment_image_src( $input->value, 'medium' ); ?>
+							<img <?php echo isset( $wp_customize ) ? 'data-src' : 'src' ; ?>="<?php echo $img[0]; ?>" />
 						<?php } ?>
 						<!-- Remove button -->
 						<a href="#removeimage" class="layers-image-remove" href=""><?php _e( 'Remove' , 'layerswp' ); ?></a>
 					</div>
 
-					<a href="#uploadimage" class="layers-image-upload-button  layers-button btn-full <?php if( isset( $input->value ) && '' != $input->value ) echo 'layers-has-image'; ?>"
+					<a href="#uploadimage" class="layers-image-upload-button button layers-button btn-full <?php echo ( $has_image ) ? 'layers-has-image' : '' ; ?>"
 						data-title="<?php _e( 'Select an Image' , 'layerswp' ); ?>"
 						data-button_text="<?php _e( 'Use Image' , 'layerswp' ); ?>">
 						<?php echo ( isset( $input->button_label ) ? $input->button_label : __( 'Choose Image' , 'layerswp' ) ); ?>
@@ -342,7 +343,7 @@ class Layers_Form_Elements {
 							'type' => 'hidden',
 							'name' => $input->name,
 							'id' => $input->id,
-							'value' => ( isset( $input->value ) ) ? $input->value : NULL,
+							'value' => ( $has_image ) ? $input->value : NULL,
 							'data' => ( NULL != $input->data ) ? $input->data : NULL,
 						)
 					); ?>
@@ -405,10 +406,10 @@ class Layers_Form_Elements {
 							<div class="layers-form-item">
 								<div class="layers-image-uploader layers-animate layers-push-bottom">
 									<!-- Remove button -->
-									<a class="layers-image-remove <?php if( !isset( $input->value->image ) ) echo 'layers-hide'; ?>" href=""><?php _e( 'Remove' , 'layerswp' ); ?></a>
+									<a class="layers-image-remove <?php if( !isset( $input->value->image ) ) echo 'l_admin-hide'; ?>" href=""><?php _e( 'Remove' , 'layerswp' ); ?></a>
 
 									<!-- Instructions -->
-									<p <?php if( isset( $input->value->image ) ) echo 'class="layers-hide"'; ?>>
+									<p <?php if( isset( $input->value->image ) ) echo 'class="l_admin-hide"'; ?>>
 										<?php printf( __( 'Drop a file here or %s' , 'layerswp' ) , '<a href="#">select a file.</a>' ); ?>
 									</p>
 
@@ -625,7 +626,7 @@ class Layers_Form_Elements {
 									'name' => ( isset( $input->name ) ) ? "{$input->name}[$key]" : '',
 									'id' => "{$input->id}-{$key}",
 									'value' => ( isset( $input->value->$key ) ) ? $input->value->$key : NULL,
-									'class' => 'layers-hide-controls',
+									'class' => 'l_admin-hide-controls',
 									'data' => array(
 										'customize-setting-link' => "{$input->id}-{$key}",
 									),

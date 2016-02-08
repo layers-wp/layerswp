@@ -33,12 +33,12 @@ jQuery(function($) {
 		//Hi Mom!
 		$that = $(this);
 
-		$container = $that.closest( '.layers-dashboard-setup-form' );
-		$form = $container.find( '.layers-content' );
+		$container = $that.closest( '.l_admin-dashboard-setup-form' );
+		$form = $container.find( '.l_admin-content' );
 
 		$action = $that.data( 'skip-action' );
 
-		$container.hide().next().hide().removeClass( 'layers-hide' ).fadeIn( 250 );
+		$container.hide().next().hide().removeClass( 'l_admin-hide' ).fadeIn( 250 );
 		$container.remove();
 
 		layers_check_dashboard_setup_completion();
@@ -57,8 +57,8 @@ jQuery(function($) {
 		//Hi Mom!
 		$that = $(this);
 
-		$container = $that.closest( '.layers-dashboard-setup-form' );
-		$form = $container.find( '.layers-content' );
+		$container = $that.closest( '.l_admin-dashboard-setup-form' );
+		$form = $container.find( '.l_admin-content' );
 
 		$data = $form.find( 'input, textarea, select' ).serialize();
 
@@ -77,7 +77,7 @@ jQuery(function($) {
 
 					$results = $.parseJSON( data );
 
-					$container.hide().next().hide().removeClass( 'layers-hide' ).fadeIn( 250 );
+					$container.hide().next().hide().removeClass( 'l_admin-hide' ).fadeIn( 250 );
 					$container.remove();
 
 					layers_check_dashboard_setup_completion( true );
@@ -91,10 +91,10 @@ jQuery(function($) {
 
 	function layers_check_dashboard_setup_completion(){
 
-		$that = $( '.layers-dashboard-setup-form' );
+		$that = $( '.l_admin-dashboard-setup-form' );
 
 		if( 0 == $that.length ){
-			$( '.layers-site-setup-panel' ).hide();
+			$( '.l_admin-site-setup-panel' ).hide();
 		}
 	}
 
@@ -109,9 +109,9 @@ jQuery(function($) {
 		//Hi Mom!
 		$that = $(this);
 
-		$container = $that.closest( '.layers-content-large' );
+		$container = $that.closest( '.l_admin-panel' );
 
-		$form = $container.find( '.layers-content' );
+		$form = $container.find( '.l_admin-content' );
 
 		$form_data = $form.find( 'input, textarea, select' ).serialize();
 
@@ -181,7 +181,7 @@ jQuery(function($) {
 		$(document).on( 'click', '#layers-dashboard-news-feed a', function(){
 			 $(document).layers_intercom_event( 'clicked news item',
 				{
-					"Link Title": $(this).closest( '.layers-column.layers-span-3' ).find( 'h4' ).find('a').text(),
+					"Link Title": $(this).closest( '.l_admin-column.l_admin-span-3' ).find( 'h4' ).find('a').text(),
 					"Link URL": $(this).attr( 'href' ),
 				});
 		})

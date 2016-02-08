@@ -196,7 +196,7 @@ if( !class_exists( 'Layers_Widget' ) ) {
 	 	* @param 	string 		$field_name Field name
 	 	* @return 	string 		Name attribute for $field_name
 		*/
-		function get_custom_field_name( $widget_details = NULL, $level1 = '' , $level2 = '', $field_name = '' ) {
+		function get_custom_field_name( $widget_details = NULL, $level1 = '', $level2 = '', $level3 = '', $level4 = '' ) {
 
 			// If there is no widget object then ignore
 			if( NULL == $widget_details ) return;
@@ -209,8 +209,11 @@ if( !class_exists( 'Layers_Widget' ) ) {
 			// Add second level of input string
 			if( '' != $level2 ) $final_field_name .= '[' . $level2 . ']';
 
-			// Add field name
-			if( '' != $field_name ) $final_field_name .= '[' . $field_name . ']';
+			// Add third level of input string
+			if( '' != $level3 ) $final_field_name .= '[' . $level3 . ']';
+
+			// Add fourth level of input string
+			if( '' != $level4 ) $final_field_name .= '[' . $level4 . ']';
 
 			return $final_field_name;
 		}
@@ -224,7 +227,7 @@ if( !class_exists( 'Layers_Widget' ) ) {
 	 	* @param 	string 		$field_name Field name
 	 	* @return 	string 		Name attribute for $field_name
 		*/
-		function get_custom_field_id( $widget_details = NULL, $level1 = '' , $level2 = '', $field_id = '' ) {
+		function get_custom_field_id( $widget_details = NULL, $level1 = '', $level2 = '', $level3 = '', $level4 = '' ) {
 
 			// If there is no widget object then ignore
 			if( NULL == $widget_details ) return;
@@ -237,8 +240,11 @@ if( !class_exists( 'Layers_Widget' ) ) {
 			// Add second level of input string
 			if( '' != $level2 ) $final_field_id .= '-' . $level2;
 
-			// Add field name
-			if( '' != $field_id ) $final_field_id .= '-' . $field_id;
+			// Add third level of input string
+			if( '' != $level3 ) $final_field_id .= '-' . $level3;
+
+			// Add fourth level of input string
+			if( '' != $level4) $final_field_id .= '-' . $level4;
 
 			return $final_field_id;
 		}
@@ -249,9 +255,10 @@ if( !class_exists( 'Layers_Widget' ) ) {
 		 * @param    string  $field_name_1   Level 1 name
 		 * @param    string  $field_name_2   Level 2 name
 	 	 * @param    string  $field_name_3   Level 3 name
+	 	 * @param    string  $field_name_4   Level 4 name
 	 	 * @return   string  Name attribute
 		 */
-		function get_layers_field_name( $field_name_1 = '', $field_name_2 = '', $field_name_3 = '' ) {
+		function get_layers_field_name( $field_name_1 = '', $field_name_2 = '', $field_name_3 = '', $field_name_4 = '' ) {
 
 			// If we don't have these important widget details then bail.
 			if ( ! isset( $this->id_base ) || ! isset( $this->number ) ) return;
@@ -269,6 +276,7 @@ if( !class_exists( 'Layers_Widget' ) ) {
 			if( '' != $field_name_1 ) $string .= '[' . $field_name_1 . ']';
 			if( '' != $field_name_2 ) $string .= '[' . $field_name_2 . ']';
 			if( '' != $field_name_3 ) $string .= '[' . $field_name_3 . ']';
+			if( '' != $field_name_4 ) $string .= '[' . $field_name_4 . ']';
 
 			if ( ( bool ) layers_get_theme_mod( 'dev-switch-widget-field-names' ) ) {
 				$debug_replace = 'widget-' . $this->id_base . '[' . $this->number . ']';
@@ -285,9 +293,10 @@ if( !class_exists( 'Layers_Widget' ) ) {
 		 * @param    string  $field_name_1   Level 1 id
 		 * @param    string  $field_name_2   Level 2 id
 	 	 * @param    string  $field_name_3   Level 3 id
+	 	 * @param    string  $field_name_4   Level 4 id
 	 	 * @return   string  Id attribute
 		 */
-		function get_layers_field_id( $field_name_1 = '', $field_name_2 = '', $field_id = '' ) {
+		function get_layers_field_id( $field_name_1 = '', $field_name_2 = '', $field_name_3 = '', $field_name_4 = '' ) {
 
 			// If we don't have these important widget details then bail.
 			if ( ! isset( $this->id_base ) || ! isset( $this->number ) ) return;
@@ -304,7 +313,8 @@ if( !class_exists( 'Layers_Widget' ) ) {
 			// Now add any custom strings passed as args.
 			if( '' != $field_name_1 ) $string .= '-' . $field_name_1;
 			if( '' != $field_name_2 ) $string .= '-' . $field_name_2;
-			if( '' != $field_id ) $string .= '-' . $field_id;
+			if( '' != $field_name_3 ) $string .= '-' . $field_name_3;
+			if( '' != $field_name_4 ) $string .= '-' . $field_name_4;
 
 			return $string;
 		}
@@ -489,7 +499,7 @@ if( !class_exists( 'Layers_Widget' ) ) {
 			if( NULL == $widget ) return;
 
 			if( $this->check_and_return( $widget,  'design', 'advanced', 'anchor' ) ) { ?>
-				name="<?php echo esc_attr( $this->check_and_return( $widget,  'design', 'advanced', 'anchor' ) ); ?>"
+				<a name="<?php echo esc_attr( $this->check_and_return( $widget,  'design', 'advanced', 'anchor' ) ); ?>"></a>
 			<?php }
 		}
 

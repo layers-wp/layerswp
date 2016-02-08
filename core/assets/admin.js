@@ -23,18 +23,14 @@
  * 10 - Trigger input changes
  * 11 - Add Last Class to Design Bar Elements
  * 12 - Show/Hide linked elements
- * 13 - Layers Pages Backups
- * 14 - Init RTE Editors
- * 15 - Custom Widget Initialization Events
- * 16 - Intercom checkbox
- * 17 - Widget Peek/hide to preview changes
- * 18 - Customizer Control - Range Slider
- * 19 - Reset to Default
- * 20 - History States
- * 21 - Linking from one section/panel to another.
- * 22 - Synced Widget Settings
- * 23 - Mimic Widget Settings
- * 24 - Init Tip-Tip
+ * 13 - Init RTE Editors
+ * 14 - Custom Widget Initialization Events
+ * 15 - Intercom checkbox
+ * 16 - Widget Peek/hide to preview changes
+ * 17 - Customizer Control - Range Slider
+ * 18 - Reset to Default
+ * 19 - Linking from one section/panel to another.
+ * 20 - Init Tip-Tip
  *
  * Author: Obox Themes
  * Author URI: http://www.oboxthemes.com/
@@ -293,14 +289,31 @@ jQuery(function($) {
 	* 5 - Color Selectors
 	*/
 
-	// Init interface in all except widgets on load
-	layers_set_color_selectors( $( '#customize-theme-controls > ul > li.accordion-section' ).not( '#accordion-panel-widgets' ) );
+	if ( $('#customize-preview, #customize-controls').length ) {
 
-	// Init interface inside widgets and accordions
-	$( document ).on( 'layers-interface-init', '.widget, .layers-accordions', function( e ){
-		// 'this' is the widget
-		layers_set_color_selectors( $(this), true );
-	});
+		// Customizer
+
+		// Init interface in all except widgets on load
+		layers_set_color_selectors( $( '#customize-theme-controls > ul > li.accordion-section' ).not( '#accordion-panel-widgets' ) );
+
+		// Init interface inside widgets and accordions
+		$( document ).on( 'layers-interface-init', '.widget, .layers-accordions', function( e ){
+			// 'this' is the widget
+			layers_set_color_selectors( $(this), true );
+		});
+	}
+	else{
+
+		// Admin Dashboard
+
+		$( '.layers-color-selector').each( function( j, element ) {
+
+			var $element = $(element);
+
+			// Add each color-picker initialization to the queue
+			layers_set_color_selector( $element );
+		});
+	}
 
 	function layers_set_color_selectors( $element_s, $run_instantly ){
 
@@ -390,7 +403,7 @@ jQuery(function($) {
 	/**
 	* 7 - Tabs
 	*/
-	$( document ).on( 'click' , '.layers-tabs li' , function(e){
+	$( document ).on( 'click' , '.l_admin-tabs li, .l_admin-tabs li a' , function(e){
 		e.preventDefault();
 		// "Hi Mom"
 		$that = $(this);
@@ -402,11 +415,11 @@ jQuery(function($) {
 		$that.addClass( 'active' ).siblings().removeClass( 'active' );
 
 		// Get the nearest tab containers
-		$tab_nav = $that.closest( '.layers-nav-tabs' );
-		$tab_container = $tab_nav.siblings('.layers-tab-content');
+		$tab_nav = $that.closest( '.l_admin-nav-tabs' );
+		$tab_container = $tab_nav.siblings('.l_admin-tab-content');
 
 		// Show/Hide tabs
-		$tab_container.find( 'section.layers-tab-content' ).eq( $i ).slideDown().siblings( 'section.layers-tab-content' ).slideUp();
+		$tab_container.find( 'section.l_admin-tab-content' ).eq( $i ).slideDown().siblings( 'section.l_admin-tab-content' ).slideUp();
 	});
 
 
@@ -532,8 +545,6 @@ jQuery(function($) {
 
 		// Trigger 'change' and 'blur' to reset the customizer
 		$changed = $(this).trigger("change").trigger("blur");
-
-		//console.log( $changed );
 	};
 
 	/**
@@ -573,31 +584,39 @@ jQuery(function($) {
 	* 12 - Show/Hide linked elements
 	*/
 
-	// Init interface in all except widgets on load
-	layers_init_show_if( $( '#customize-theme-controls > ul > li.accordion-section' ).not( '#accordion-panel-widgets' ) );
-
-	// Init interface inside widgets
-	$( document ).on( 'layers-interface-init', '.widget, .layers-accordions', function( e ){
-		// 'this' is the widget
-		layers_init_show_if( $(this), true );
-	});
-
+	if ( $('body.wp-customizer').length ) {
+		// Customizer
+		
+		// Init interface in all except widgets on load
+		layers_init_show_if( $( '#customize-theme-controls > ul > li.accordion-section' ).not( '#accordion-panel-widgets' ) );
+		
+		// Init interface inside widgets
+		$( document ).on( 'layers-interface-init', '.widget, .layers-accordions', function( e ){
+			// 'this' is the widget
+			layers_init_show_if( $(this), true );
+		});
+	}
+	else{
+		// Not Customizer
+		layers_init_show_if( $( 'body' ), true );
+	}
+	
 	function layers_init_show_if( $element_s, $run_instantly ){
 
 		$element_s.each( function( i, group ) {
 
 			var $group = $(group);
-
+			
 			$group.find( '[data-show-if-selector]').each( function( j, element ) {
-
+				
 				var $target_element = $(element);
 
 				var $source_element_selector = $target_element.attr( 'data-show-if-selector' );
 
 				layers_enqueue_init( function(){
-
+					
 					layers_apply_show_if( $source_element_selector );
-
+					
 					$( document ).on( 'change', $source_element_selector, function(e){
 						layers_apply_show_if( $source_element_selector );
 					});
@@ -614,6 +633,7 @@ jQuery(function($) {
 			var $target_element = $(this);
 			var $target_value   = $target_element.data( 'show-if-value' ).toString();
 			var $source_element = $( $target_element.data( 'show-if-selector' ).toString() );
+			var $operator       = $target_element.data( 'show-if-operator' );
 
 			if ( $source_element.attr('type') == 'checkbox' ) {
 				$source_element_value = ( $source_element.is(':checked') ) ? 'true' : 'false' ;
@@ -622,103 +642,139 @@ jQuery(function($) {
 				$source_element_value = $source_element.val();
 			}
 
-			// Set the reveal animation type.
-			var animation_type = 'none';
-			if ( $target_element.hasClass('layers-customize-control') ){
-				animation_type = 'slideDown';
+			if ( 'undefined' === typeof( $source_element_value ) ) {
+				layers_show_if_display( 'hide', $target_element );
+				return false;
 			}
 
-			// If is a Customize Control then hide the whole control.
-			if ( $target_element.hasClass('layers-customize-control') ){
-				$target_element = $target_element.closest('.customize-control');
-			} else {
-				$target_element = $target_element.closest('.layers-form-item');
+			// Apply the chosen Operator (default: ==)
+			switch( $operator ) {
+
+				case '!=':
+
+					if ( $target_value.trim() != $source_element_value.trim() )
+						layers_show_if_display( 'show', $target_element ); // Show
+					else
+						layers_show_if_display( 'hide', $target_element ); // Hide
+					
+					break;
+
+				case '!==':
+
+					if ( $target_value.trim() !== $source_element_value.trim() )
+						layers_show_if_display( 'show', $target_element ); // Show
+					else
+						layers_show_if_display( 'hide', $target_element ); // Hide
+					
+					break;
+
+				case '>':
+
+					if ( $target_value.trim() > $source_element_value.trim() )
+						layers_show_if_display( 'show', $target_element ); // Show
+					else
+						layers_show_if_display( 'hide', $target_element ); // Hide
+					
+					break;
+
+				case '<':
+
+					if ( $target_value.trim() < $source_element_value.trim() )
+						layers_show_if_display( 'show', $target_element ); // Show
+					else
+						layers_show_if_display( 'hide', $target_element ); // Hide
+					
+					break;
+
+				case '>=':
+
+					if ( $target_value.trim() >= $source_element_value.trim() )
+						layers_show_if_display( 'show', $target_element ); // Show
+					else
+						layers_show_if_display( 'hide', $target_element ); // Hide
+					
+					break;
+
+				case '<=':
+
+					if ( $target_value.trim() <= $source_element_value.trim() )
+						layers_show_if_display( 'show', $target_element ); // Show
+					else
+						layers_show_if_display( 'hide', $target_element ); // Hide
+					
+					break;
+
+				case '==':
+				default:
+
+					if ( $target_value.trim() == $source_element_value.trim() )
+						layers_show_if_display( 'show', $target_element ); // Show
+					else
+						layers_show_if_display( 'hide', $target_element ); // Hide
+					
+					break;
 			}
 
-			//if( $target_value.indexOf( $source_element_value ) >= 0 ){
-			if( 'undefined' !== typeof( $source_element_value ) && $target_value.trim() == $source_element_value.trim() ){
-
-				// Show
-				if( animation_type == 'slideDown' ){
-					$target_element.removeClass( 'layers-hide' );
-					$target_element.slideDown( { duration: 550, easing: 'layersEaseInOut' } );
-				}
-				else{
-					$target_element.removeClass( 'layers-hide' );
-				}
-
-			} else {
-
-				// Hide
-				if( animation_type == 'slideDown' ){
-					$target_element.slideUp( { duration: 550, easing: 'layersEaseInOut', complete: function(){
-						$target_element.addClass( 'layers-hide' );
-					} } );
-				}
-				else{
-					$target_element.addClass( 'layers-hide' );
-				}
-			}
 		});
-
 	}
 
-	/**
-	* 13 - Layers Backup Pages
-	*
-	* Backup Layers pages so that users can transfer themes
-	*/
-	var $complete_pages = 1;
+	function layers_show_if_display( $state, $target_element ) {
 
-	function layers_backup_builder_page( $pageid, $page_li ){
+		// Calculate the reveal animation type.
+		var animation_type = 'none';
+		
+		// Get the right target element depending on what kind of component this is (is Customize Control or Design-Bar item)
+		if ( $target_element.hasClass('l_option-customize-control') ){
+			
+			// Target element is - Customize Control (entire control)
+			$target_element = $target_element.parent('.customize-control');
+			animation_type = 'slideDown';
+		}
+		else if ( $target_element.parents( '.layers-design-bar' ).length ) {
+			
+			// Target element is - Design Bar (form-item)
+			$target_element = $target_element.closest('.layers-form-item');
+			animation_type = 'slideDown';
+		}
+		else if ( $target_element.parent( '.layers-form-item, .layers-form-item' ).length ) {
+			
+			// Target element is - Input contained inside a `form-item` container.
+			$target_element = $target_element.parent( '.layers-form-item, .layers-form-item' );
+		}
+		else{
+			
+			// Target element is - any specific element.
+			$target_element = $target_element;
+		}
+		
 
-		var $total_pages = $( '.layers-list li' ).length;
+		if ( 'hide' == $state ) {
 
-		$.post(
-			ajaxurl,
-			{
-				action: 'layers_backup_builder_pages',
-				pageid: $pageid,
-				layers_backup_pages_nonce: layers_admin_params.backup_pages_nonce
-			},
-			function(data){
-				// Check off this page
-				$page_li.removeClass( 'cross' ).addClass( 'tick' );
-
-				// Load Bar %
-				var $load_bar_width = $complete_pages/$total_pages;
-				var $load_bar_percent = 100*$load_bar_width;
-				$( '.layers-progress' ).animate({width: $load_bar_percent+"%"} ).text( Math.round($load_bar_percent)+'%');
-
-				if( 100 == $load_bar_percent ) $( '.layers-progress' ).delay(500).addClass( 'complete' ).text( layers_admin_params.backup_pages_success_message );
-
-				// Set Complete count
-				$complete_pages++;
-
-				if( $complete_pages <= $total_pages ){
-					var $next_page_li = $page_li.next();
-					var $pageid = $next_page_li.data( 'page_id' );
-
-					layers_backup_builder_page( $pageid, $next_page_li );
-				}
+			// Hide
+			if( animation_type == 'slideDown' ){
+				$target_element.slideUp( { duration: 550, easing: 'layersEaseInOut', complete: function(){
+					$target_element.addClass( 'l_admin-hide' );
+				} } );
 			}
-		) // $.post
+			else{
+				$target_element.addClass( 'l_admin-hide' );
+			}
+		}
+		else {
+
+			// Show
+			if( animation_type == 'slideDown' ){
+				$target_element.removeClass( 'l_admin-hide' );
+				$target_element.slideDown( { duration: 550, easing: 'layersEaseInOut' } );
+			}
+			else{
+				$target_element.removeClass( 'l_admin-hide' );
+			}
+		}
 	}
 
-	$(document).on( 'click', '#layers-backup-pages', function(){
-
-		// Adjust progress bar
-		$( '.layers-progress' ).removeClass( 'zero complete' ).css('width' , 0);
-
-		// "Hi Mom"
-		var $that = $( '.layers-list li' ).eq(0);
-		var $pageid = $that.data( 'page_id' );
-
-		layers_backup_builder_page( $pageid, $that );
-	});
-
 	/**
-	* 14 - Init RTE Editors
+	* 13 - Init RTE Editors
 	*/
 
 	// Init interface in all except widgets on load
@@ -839,7 +895,7 @@ jQuery(function($) {
 	});
 
 	/**
-	* 15 - Custom Widget Initialization Events
+	* 14 - Custom Widget Initialization Events
 	*
 	* Dispense 'layers-interface-init' when:
 	* 1. widget is focused first time
@@ -936,7 +992,7 @@ jQuery(function($) {
 	}
 
 	/**
-	* 16 - Intercom checkbox
+	* 15 - Intercom checkbox
 	*/
 
 	$(document).on( 'change', '#layers-enable-intercom', function(e){
@@ -952,7 +1008,7 @@ jQuery(function($) {
 	});
 
 	/**
-	 * 17 - Widget Peek/hide to preview changes
+	 * 16 - Widget Peek/hide to preview changes
 	 */
 
 	// Init interface inside widgets and accordions
@@ -968,7 +1024,7 @@ jQuery(function($) {
 	$(document).on( 'mouseleave', '.layers-widget-peek-button', function(){ $(this).closest('.widget-inside').removeClass('layers-peek-widget'); } );
 
 	/**
-	 * 18 - Customizer Control - Range Slider
+	 * 17 - Customizer Control - Range Slider
 	 */
 	$( document ).on( 'input change', '.layers-column input[type="range"]', function( e ){
 		// Push changes to the Number input.
@@ -1008,7 +1064,7 @@ jQuery(function($) {
 	}, 550, false );
 
 	/**
-	 * 19 - Reset to Default
+	 * 18 - Reset to Default
 	 */
 	$( document ).on( 'click', '.customize-control-default', function( e ){
 		var $refresh_button = $(this);
@@ -1034,77 +1090,7 @@ jQuery(function($) {
 	});
 
 	/**
-	 * 20 - History States
-	 */
-	/*
-	var $history = [];
-	var $pointer = 0;
-
-	$( document ).on( 'change', '.customize-control select', function( e ){
-
-		var $input = $(this);
-		var $control_holder = $input.closest('.customize-control');
-
-		if ( $history.length !== $pointer ) {
-			console.log('reset!');
-			$history = $history.splice( 0, $pointer );
-			$pointer = 0;
-		}
-
-		$state = array();
-		$state['element'] = $control_holder;
-		$state['previous_val'] = $control_holder;
-
-		$history.push( [ $control_holder, $input.val() ] );
-		$pointer++;
-
-		console.log( 'history: ' + $history.length + ', Pointer: ' + $pointer );
-		output_state_log();
-	});
-
-	$( document ).on( 'click', '.customize-control-undo', function( e ){
-
-		var $button = $(this);
-		var $control_holder = $button.closest('.customize-control');
-		var $document = $(document);
-
-		if ( ! $history ) {
-			console.log( 'No Undo States Yet!' );
-			return;
-		}
-
-		$pointer--;
-
-		var $current = $history[ $pointer ];
-
-		if ( ! $current ) {
-			console.log( 'No More Undo States!' );
-			return;
-		}
-
-		var $element = $current[0];
-		var $value = $current[1];
-
-		$element.find('select').val( $value );
-
-		console.log( 'history: ' + $history.length + ', Pointer: ' + $pointer );
-		output_state_log();
-	});
-
-	function output_state_log(){
-
-		$( $history ).each(function( index, element ){
-
-			$marker = '';
-			if ( index == $pointer ) $marker = ' <-';
-
-			console.log( element[1] + $marker );
-		})
-	}
-	*/
-
-	/**
-	 * 21 - Linking from one section/panel to another.
+	 * 19 - Linking from one section/panel to another.
 	 *
 	 * Use class `customizer-link` and href `#target-panel-or-section-id`
 	 */
@@ -1120,164 +1106,30 @@ jQuery(function($) {
 
 		return false;
 	});
-	
-	
+
 	/**
-	 * 22 - Synced Widget Settings (NOT YET  READY FOR USE)
-	 */
-	
-	// Init interface inside widgets and accordions
-	$( document ).on( 'layers-interface-init', '.widget, .layers-accordions', function( e ){
-		// 'this' is the widget
-		layers_sync_setting_init( $(this), true );
-	});
-
-	function layers_sync_setting_init( $element_s, $run_instantly ){
-
-		// Loop through each of the element_s, that are groups to look inside of for elements to be initialized.
-		$element_s.each( function( i, group ) {
-
-			var $group = $(group);
-
-			// Loop through each color-picker
-			$group.find( '[data-sync-setting]').each( function( j, element ) {
-				
-				var $input_el         = $(this);
-				var $sync_setting_key = $input_el.attr('data-sync-setting');
-				var $sync_setting_id  = '#' + $sync_setting_key;
-				var $sync_setting_el  = $( $sync_setting_id );
-				
-				// Bail if the sync_setting_el doesn't exists.
-				if ( ! $sync_setting_el.length ) return true;
-				
-				// Wrap the input in the UX.
-				var $main_holder = '';
-				$main_holder += '<div class="layers-sync-setting-holder layers-use-widget-value">';
-				$main_holder += '	<div class="layers-widget-setting">';
-				$main_holder += '		<span class="display-setting-button display-setting-revert fa fa-chain-broken"></span>';
-				$main_holder += '	</div>';
-				$main_holder += '	<div class="layers-global-setting">';
-				$main_holder += '		<input disabled type="text" value="">';
-				$main_holder += '		<span class="display-setting-button display-setting-edit fa fa-link"></span>';
-				$main_holder += '	</div>';
-				$main_holder += '</div>';
-				$main_holder = $( $main_holder );
-				
-				$main_holder.insertAfter( $input_el );
-				$main_holder.find('.layers-widget-setting').prepend( $input_el );
-				
-				// If hte main input is emty then show the user the sync-setting value.
-				if ( '' == $input_el.val() ) {
-					$main_holder.removeClass('layers-use-widget-value');
-					$main_holder.addClass('layers-use-global-value');
-				}
-				
-				// Set the inital Preview of the setting to be synced.
-				$main_holder.find('.layers-global-setting input').val( $sync_setting_el.val() );
-				
-				// Trigger the update of the preview whenever the Synced Setting is changed.
-				$( document ).on( 'change, keyup', $sync_setting_id, function(){
-					$main_holder.find('.layers-global-setting input').val( $sync_setting_el.val() );
-				});
-				
-			});
-		});
-	}
-	
-	$( document ).on( 'click', '.layers-global-setting .display-setting-button', function( e ){
-		
-		var $global_setting_unlink_button = $(this);
-		var $global_setting_holder        = $global_setting_unlink_button.closest('.layers-global-setting');
-		var $main_holder                  = $global_setting_holder.closest('.layers-sync-setting-holder');
-		var $widget_setting_input         = $main_holder.find('.layers-widget-setting input');
-		
-		$main_holder.addClass('layers-use-widget-value');
-		$main_holder.removeClass('layers-use-global-value');
-		$widget_setting_input.focus();
-	});
-	
-	$( document ).on( 'click', '.layers-widget-setting .display-setting-button', function( e ){
-		
-		var $widget_setting_unlink_button = $(this);
-		var $widget_setting_holder        = $widget_setting_unlink_button.closest('.layers-widget-setting');
-		var $main_holder                  = $widget_setting_holder.closest('.layers-sync-setting-holder');
-		var $widget_setting_input         = $widget_setting_holder.find('input');
-		
-		$widget_setting_input.val('');
-		$main_holder.removeClass('layers-use-widget-value');
-		$main_holder.addClass('layers-use-global-value');
-	});
-
-	$( document ).on( 'blur', '.layers-widget-setting input', function( e ){
-		
-		var $widget_setting_input = $(this);
-		var $main_holder = $widget_setting_input.closest('.layers-sync-setting-holder');
-
-		if ( '' == $widget_setting_input.val() ) {
-			$main_holder.removeClass('layers-use-widget-value');
-			$main_holder.addClass('layers-use-global-value');
-		}
-	});
-	
-	
-	/**
-	 * 23 - Mimic Widget Settings (NOT YET  READY FOR USE)
-	 */
-	
-	// Init interface inside widgets and accordions
-	$( document ).on( 'layers-interface-init', '.widget, .layers-accordions', function( e ){
-		// 'this' is the widget
-		layers_mimic_setting_init( $(this), true );
-	});
-
-	function layers_mimic_setting_init( $element_s, $run_instantly ){
-
-		// Loop through each of the element_s, that are groups to look inside of for elements to be initialized.
-		$element_s.each( function( i, group ) {
-
-			var $group = $(group);
-
-			// Loop through each color-picker
-			$group.find( '[data-mimic-setting]').each( function( j, element ) {
-				
-				var $input_el         = $(this);
-				var $sync_setting_key = $input_el.attr('data-mimic-setting');
-				var $sync_setting_id  = '#' + $sync_setting_key;
-				var $sync_setting_el  = $( $sync_setting_id );
-				
-				console.log( $sync_setting_el.val(), $input_el );
-				
-				// Bail if the sync_setting_el doesn't exists.
-				if ( ! $sync_setting_el.length ) return true;
-				
-				// Set the inital Preview of the setting to be synced.
-				$input_el.val('');
-				$input_el.attr( 'disabled', 'true' );
-				
-				$input_el.attr( 'placeholder', $sync_setting_el.val() );
-				
-				// Trigger the update of the preview whenever the Synced Setting is changed.
-				$( document ).off( '.layers-mimic-setting' );
-				$( document ).on( 'change.layers-mimic-setting, keyup.layers-mimic-setting', $sync_setting_id, function(){
-					$( '[data-mimic-setting="' + $sync_setting_key + '"]' ).attr( 'placeholder', $(this).val() );
-				});
-				
-			});
-		});
-	}
-	
-	/**
-	* 24 - Init Tip-Tip
+	* 20 - Init Tip-Tip
 	*/
 
-	// Init interface in all except widgets on load
-	init_tip_tip( $( '#customize-theme-controls > ul > li.accordion-section' ).not( '#accordion-panel-widgets' ) );
+	if ( $('#customize-preview, #customize-controls').length ) {
 
-	// Init interface inside widgets
-	$( document ).on( 'layers-interface-init', '.widget, .layers-accordions', function( e ){
-		// 'this' is the widget
-		init_tip_tip( $(this), true );
-	});
+		// Customizer
+
+		// Init interface in all except widgets on load
+		init_tip_tip( $( '#customize-theme-controls > ul > li.accordion-section' ).not( '#accordion-panel-widgets' ) );
+
+		// Init interface inside widgets
+		$( document ).on( 'layers-interface-init', '.widget, .layers-accordions', function( e ){
+			// 'this' is the widget
+			init_tip_tip( $(this), true );
+		});
+	}
+	else{
+
+		// Admin Dashboard
+
+		init_tip_tip( $( document ) );
+	}
 
 	function init_tip_tip( $element_s, $run_instantly ){
 
@@ -1288,7 +1140,7 @@ jQuery(function($) {
 			$group.find( '[data-tip]').each( function( j, element ) {
 
 				var $element = $(element);
-				
+
 				// Tooltips
 				$element.layersTip({
 					'attribute' : 'data-tip',
@@ -1305,7 +1157,7 @@ jQuery(function($) {
 					//'keepAlive' : true,
 					//'activation' : 'click'
 				});
-				
+
 			});
 		});
 	}

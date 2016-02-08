@@ -437,7 +437,7 @@ if( ! function_exists( 'layers_admin_scripts' ) ) {
 		);
 		wp_enqueue_script(
 			LAYERS_THEME_SLUG . '-tip-tip' ,
-			get_template_directory_uri() . '/core/assets/plugins/tip-tip/jquery.tipTip.minified.js',
+			get_template_directory_uri() . '/core/assets/plugins/tip-tip/jquery.tipTip.js',
 			array( 'jquery' ),
 			LAYERS_VERSION,
 			true

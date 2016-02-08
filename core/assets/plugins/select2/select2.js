@@ -8,6 +8,8 @@ General Public License version 2 (the "GPL License"). You may choose either lice
 use of this software only upon the condition that you accept all of the terms of either the Apache
 License or the GPL License.
 
+Layers: rename 'select2'->'layersSlct2', 'Select2'->'LayersSlct2' - to avoid script clashes if other load the same script.
+
 You may obtain a copy of the Apache License and the GPL License at:
 
     http://www.apache.org/licenses/LICENSE-2.0

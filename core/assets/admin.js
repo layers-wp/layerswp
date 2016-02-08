@@ -102,11 +102,18 @@ jQuery(function($) {
 	*
 	* Extend jQuery easing with custom Layers easing function for UI animations - eg slideUp, slideDown
 	*/
-
-	jQuery.extend( jQuery.easing, { layersEaseInOut: function (x, t, b, c, d) {
+	
+	// easeInOutQuad
+	/*jQuery.extend( jQuery.easing, { layersEaseInOut: function (x, t, b, c, d) {
 		if ((t/=d/2) < 1) return c/2*t*t + b;
 		return -c/2 * ((--t)*(t-2) - 1) + b;
-	}});
+	}});*/
+	
+	// easeInOutQuint
+    jQuery.extend( jQuery.easing, { layersEaseInOut: function (x, t, b, c, d) {
+        if ((t/=d/2) < 1) return c/2*t*t*t*t*t + b;
+        return c/2*((t-=2)*t*t*t*t + 2) + b;
+    }});
 
 	/**
 	* 3 - Media Uploaders

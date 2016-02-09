@@ -115,7 +115,11 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 		*  Widget front end display
 		*/
 	 	function widget( $args, $instance ) {
-	 		global $wp_customize;
+			global $wp_customize, $layers_inline_css;
+
+			$this->old_inline_css = $layers_inline_css;
+			$this->inline_css = '';
+
 			// Turn $args array into variables.
 			extract( $args );
 
@@ -135,10 +139,10 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 			$this->apply_widget_advanced_styling( $widget_id, $widget );
 
 			// Apply slider arrow color
-			if( $this->check_and_return( $widget, 'slider_arrow_color' ) ) layers_inline_styles( '#' . $widget_id, 'color', array( 'selectors' => array( '.arrows a' ), 'color' => $this->check_and_return( $widget, 'slider_arrow_color' ) ) );
-			if( $this->check_and_return( $widget, 'slider_arrow_color' ) ) layers_inline_styles( '#' . $widget_id, 'border', array( 'selectors' => array( 'span.swiper-pagination-switch' ), 'border' => array( 'color' => $this->check_and_return( $widget, 'slider_arrow_color' ) ) ) );
-			if( $this->check_and_return( $widget, 'slider_arrow_color' ) ) layers_inline_styles( '#' . $widget_id, 'background', array( 'selectors' => array( 'span.swiper-pagination-switch' ), 'background' => array( 'color' => $this->check_and_return( $widget, 'slider_arrow_color' ) ) ) );
-			if( $this->check_and_return( $widget, 'slider_arrow_color' ) ) layers_inline_styles( '#' . $widget_id, 'background', array( 'selectors' => array( 'span.swiper-pagination-switch.swiper-active-switch' ), 'background' => array( 'color' => 'transparent !important' ) ) );
+			if( $this->check_and_return( $widget, 'slider_arrow_color' ) ) $this->inline_css .= layers_inline_styles( '#' . $widget_id, 'color', array( 'selectors' => array( '.arrows a' ), 'color' => $this->check_and_return( $widget, 'slider_arrow_color' ) ) );
+			if( $this->check_and_return( $widget, 'slider_arrow_color' ) ) $this->inline_css .= layers_inline_styles( '#' . $widget_id, 'border', array( 'selectors' => array( 'span.swiper-pagination-switch' ), 'border' => array( 'color' => $this->check_and_return( $widget, 'slider_arrow_color' ) ) ) );
+			if( $this->check_and_return( $widget, 'slider_arrow_color' ) ) $this->inline_css .= layers_inline_styles( '#' . $widget_id, 'background', array( 'selectors' => array( 'span.swiper-pagination-switch' ), 'background' => array( 'color' => $this->check_and_return( $widget, 'slider_arrow_color' ) ) ) );
+			if( $this->check_and_return( $widget, 'slider_arrow_color' ) ) $this->inline_css .= layers_inline_styles( '#' . $widget_id, 'background', array( 'selectors' => array( 'span.swiper-pagination-switch.swiper-active-switch' ), 'background' => array( 'color' => 'transparent !important' ) ) );
 
 
 			// Get slider height css
@@ -215,9 +219,9 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 							$item = $widget[ 'slides' ][ $slide_key ];
 
 							// Set the background styling
-							if( !empty( $item['design'][ 'background' ] ) ) layers_inline_styles( '#' . $widget_id . '-' . $slide_key , 'background', array( 'background' => $item['design'][ 'background' ] ) );
-							if( !empty( $item['design']['fonts'][ 'color' ] ) ) layers_inline_styles( '#' . $widget_id . '-' . $slide_key , 'color', array( 'selectors' => array( 'h3.heading', 'h3.heading a', 'div.excerpt' ) , 'color' => $item['design']['fonts'][ 'color' ] ) );
-							if( !empty( $item['design']['fonts'][ 'shadow' ] ) ) layers_inline_styles( '#' . $widget_id . '-' . $slide_key , 'text-shadow', array( 'selectors' => array( 'h3.heading', 'h3.heading a',  'div.excerpt' )  , 'text-shadow' => $item['design']['fonts'][ 'shadow' ] ) );
+							if( !empty( $item['design'][ 'background' ] ) ) $this->inline_css .= layers_inline_styles( '#' . $widget_id . '-' . $slide_key , 'background', array( 'background' => $item['design'][ 'background' ] ) );
+							if( !empty( $item['design']['fonts'][ 'color' ] ) ) $this->inline_css .= layers_inline_styles( '#' . $widget_id . '-' . $slide_key , 'color', array( 'selectors' => array( 'h3.heading', 'h3.heading a', 'div.excerpt' ) , 'color' => $item['design']['fonts'][ 'color' ] ) );
+							if( !empty( $item['design']['fonts'][ 'shadow' ] ) ) $this->inline_css .= layers_inline_styles( '#' . $widget_id . '-' . $slide_key , 'text-shadow', array( 'selectors' => array( 'h3.heading', 'h3.heading a',  'div.excerpt' )  , 'text-shadow' => $item['design']['fonts'][ 'shadow' ] ) );
 
 
 							// Set Featured Media
@@ -320,84 +324,84 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 
 					<?php do_action( 'layers_after_slider_widget_inner', $this, $widget ); ?>
 
-				</section>
+					<?php if ( isset( $wp_customize ) ) $this->print_inline_css();
 
-		 	<?php } ?>
+					/**
+					 * Slider javascript initialize
+					 */
+					$swiper_js_obj = str_replace( '-' , '_' , $this->get_layers_field_id( 'slider' ) ); ?>
+				 	<script>
+						jQuery(function($){
 
-			<?php
-			/**
-			 * Slider javascript initialize
-			 */
-			$swiper_js_obj = str_replace( '-' , '_' , $this->get_layers_field_id( 'slider' ) ); ?>
-		 	<script>
-				jQuery(function($){
+							var <?php echo $swiper_js_obj; ?> = $('#<?php echo $widget_id; ?>').swiper({
+							mode:'horizontal'
+							,bulletClass: 'swiper-pagination-switch'
+							,bulletActiveClass: 'swiper-active-switch swiper-visible-switch'
+							,paginationClickable: true
+							,watchActiveIndex: true
+							<?php if( 'fade' ==  $this->check_and_return( $widget, 'animation_type' ) ) { ?>
+								,effect: '<?php echo $widget['animation_type']; ?>'
+							<?php } else if( 'parallax' ==  $this->check_and_return( $widget, 'animation_type' ) ) { ?>
+								,speed: 700
+								,parallax: true
+								<?php } ?>
+								<?php if( isset( $widget['show_slider_dots'] ) && ( !empty( $widget[ 'slides' ] ) && 1 < count( $widget[ 'slides' ] ) ) ) { ?>
+								,pagination: '.<?php echo $this->get_layers_field_id( 'pages' ); ?>'
+								<?php } ?>
+								<?php if( 1 < count( $widget[ 'slides' ] ) ) { ?>
+									,loop: true
+							<?php } else { ?>
+								,loop: false
+								,noSwiping: true
+								,allowSwipeToPrev: false
+								,allowSwipeToNext: false
+								<?php } ?>
+								<?php if( isset( $widget['autoplay_slides'] ) && isset( $widget['slide_time'] ) && is_numeric( $widget['slide_time'] ) ) {?>
+									, autoplay: <?php echo ($widget['slide_time']*1000); ?>
+								<?php }?>
+								<?php if( isset( $wp_customize ) && $this->check_and_return( $widget, 'focus_slide' ) ) { ?>
+									,initialSlide: <?php echo $this->check_and_return( $widget, 'focus_slide' ); ?>
+								<?php } ?>
+							});
 
-					var <?php echo $swiper_js_obj; ?> = $('#<?php echo $widget_id; ?>').swiper({
-					mode:'horizontal'
-					,bulletClass: 'swiper-pagination-switch'
-					,bulletActiveClass: 'swiper-active-switch swiper-visible-switch'
-					,paginationClickable: true
-					,watchActiveIndex: true
-					<?php if( 'fade' ==  $this->check_and_return( $widget, 'animation_type' ) ) { ?>
-						,effect: '<?php echo $widget['animation_type']; ?>'
-					<?php } else if( 'parallax' ==  $this->check_and_return( $widget, 'animation_type' ) ) { ?>
-						,speed: 700
-						,parallax: true
-						<?php } ?>
-						<?php if( isset( $widget['show_slider_dots'] ) && ( !empty( $widget[ 'slides' ] ) && 1 < count( $widget[ 'slides' ] ) ) ) { ?>
-						,pagination: '.<?php echo $this->get_layers_field_id( 'pages' ); ?>'
-						<?php } ?>
-						<?php if( 1 < count( $widget[ 'slides' ] ) ) { ?>
-							,loop: true
-					<?php } else { ?>
-						,loop: false
-						,noSwiping: true
-						,allowSwipeToPrev: false
-						,allowSwipeToNext: false
-						<?php } ?>
-						<?php if( isset( $widget['autoplay_slides'] ) && isset( $widget['slide_time'] ) && is_numeric( $widget['slide_time'] ) ) {?>
-							, autoplay: <?php echo ($widget['slide_time']*1000); ?>
-						<?php }?>
-						<?php if( isset( $wp_customize ) && $this->check_and_return( $widget, 'focus_slide' ) ) { ?>
-							,initialSlide: <?php echo $this->check_and_return( $widget, 'focus_slide' ); ?>
-						<?php } ?>
-					});
+							<?php if( 1 < count( $widget[ 'slides' ] ) ) { ?>
+								// Allow keyboard control
+								<?php echo $swiper_js_obj; ?>.enableKeyboardControl();
+							<?php } // if > 1 slide ?>
 
-					<?php if( 1 < count( $widget[ 'slides' ] ) ) { ?>
-						// Allow keyboard control
-						<?php echo $swiper_js_obj; ?>.enableKeyboardControl();
-					<?php } // if > 1 slide ?>
+							<?php if( TRUE == $this->check_and_return( $widget , 'autoheight_slides' ) ) { ?>
+								layers_swiper_resize( <?php echo $swiper_js_obj; ?> );
+								$(window).resize(function(){
+									layers_swiper_resize( <?php echo $swiper_js_obj; ?> );
+								});
+							<?php } ?>
 
-					<?php if( TRUE == $this->check_and_return( $widget , 'autoheight_slides' ) ) { ?>
-						layers_swiper_resize( <?php echo $swiper_js_obj; ?> );
-						$(window).resize(function(){
-							layers_swiper_resize( <?php echo $swiper_js_obj; ?> );
+							$('#<?php echo $widget_id; ?>').find('.arrows a').on( 'click' , function(e){
+								e.preventDefault();
+
+								// "Hi Mom"
+								$that = $(this);
+
+								if( $that.hasClass( 'swiper-pagination-switch' ) ){
+									// Anchors
+									<?php echo $swiper_js_obj; ?>.slideTo( $that.index() );
+								} else if( $that.hasClass( 'l-left-arrow' ) ){
+									// Previous
+									<?php echo $swiper_js_obj; ?>.slidePrev();
+								} else if( $that.hasClass( 'l-right-arrow' ) ){
+									// Next
+									<?php echo $swiper_js_obj; ?>.slideNext();
+								}
+
+								return false;
+							});
+
+							<?php echo $swiper_js_obj; ?>.init();
 						});
-					<?php } ?>
+					</script>
 
-					$('#<?php echo $widget_id; ?>').find('.arrows a').on( 'click' , function(e){
-						e.preventDefault();
-
-						// "Hi Mom"
-						$that = $(this);
-
-						if( $that.hasClass( 'swiper-pagination-switch' ) ){
-							// Anchors
-							<?php echo $swiper_js_obj; ?>.slideTo( $that.index() );
-						} else if( $that.hasClass( 'l-left-arrow' ) ){
-							// Previous
-							<?php echo $swiper_js_obj; ?>.slidePrev();
-						} else if( $that.hasClass( 'l-right-arrow' ) ){
-							// Next
-							<?php echo $swiper_js_obj; ?>.slideNext();
-						}
-
-						return false;
-					});
-
-					<?php echo $swiper_js_obj; ?>.init();
-				});
-			</script>
+				</section>
+		 	<?php } ?>
 		<?php }
 
 		/**

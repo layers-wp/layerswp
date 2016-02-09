@@ -84,7 +84,10 @@ if( !class_exists( 'Layers_Contact_Widget' ) ) {
 		*  Widget front end display
 		*/
 	 	function widget( $args, $instance ) {
-	 		 global $wp_customize;
+			global $wp_customize, $layers_inline_css;
+
+			$this->old_inline_css = $layers_inline_css;
+			$this->inline_css = '';
 
 			// Turn $args array into variables.
 			extract( $args );
@@ -203,13 +206,15 @@ if( !class_exists( 'Layers_Contact_Widget' ) ) {
 
 				<?php do_action( 'layers_after_contact_widget_inner', $this, $widget ); ?>
 
+				<?php if ( isset( $wp_customize ) ) $this->print_inline_css(); ?>
+
 			</section>
 
 			<?php if ( !isset( $wp_customize ) ) {
 				wp_enqueue_script( LAYERS_THEME_SLUG . " -map-api","//maps.googleapis.com/maps/api/js?sensor=false");
 				wp_enqueue_script( LAYERS_THEME_SLUG . "-map-trigger", get_template_directory_uri()."/core/widgets/js/maps.js", array( "jquery" ), LAYERS_VERSION );
-			}  // Enqueue the map js ?>
-		<?php }
+			}  // Enqueue the map js
+		}
 
 		/**
 		*  Widget update

@@ -14,6 +14,7 @@
 * @param    string         $wrapper_class  Class of HTML wrapper
 * @echo     string                          Post Meta HTML
 */
+global $wp_customize;
 
 if( !function_exists( 'layers_bread_crumbs' ) ) {
 	function layers_bread_crumbs( $wrapper = 'nav', $wrapper_class = 'bread-crumbs', $seperator = '/' ) {
@@ -931,12 +932,12 @@ add_action ( 'wp_footer', 'layers_add_additional_footer_scripts' );
 if( !function_exists( 'layers_add_google_analytics' ) ) {
 	function layers_add_google_analytics() {
 		global $wp_customize;
-		
+
 		// Bail if in customizer.
 		if( isset( $wp_customize ) ) return;
 
 		$analytics_id = layers_get_theme_mod( 'header-google-id' );
-		
+
 		if ( '' != $analytics_id ) { ?>
 			<script>
 				(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -1152,6 +1153,8 @@ if( !function_exists( 'layers_inline_styles' ) ) {
 
 		// Add the new CSS to the existing CSS
 		$layers_inline_css .= $inline_css;
+
+		return $inline_css;
 	}
 } // layers_inline_styles
 
@@ -1553,13 +1556,10 @@ add_action( 'layers_after_header_inner', 'layers_execute_inline_style_block' );
 
 // Widgets Styles:
 // Widgets with this new hook will write their styles inside the widget by this hook.
-add_action( 'layers_after_widget_inner', 'layers_execute_inline_style_block' );
-
-// Widgets Styles:
-// This is backup to make sure that all styles are dumped before the next widget.
-// Covers against a widget not yet using our hooks. Uses a WordPress hook called on
-// every widget.
-add_filter( 'widget_display_callback', 'layers_execute_inline_style_block' );
+if( !isset( $wp_customize ) ){
+	add_action( 'layers_after_widget_inner', 'layers_execute_inline_style_block' );
+	add_filter( 'widget_display_callback', 'layers_execute_inline_style_block' );
+}
 
 // Footer Styles:
 add_action( 'layers_after_footer_inner', 'layers_execute_inline_style_block' );
@@ -1570,12 +1570,12 @@ add_action( 'wp_footer', 'layers_execute_inline_style_block' );
 
 function layers_execute_inline_style_block( $filter_arg ) {
 	global $layers_inline_css;
-	
+
 	// Tesing: Disable.
 	// return false;
-	
+
 	if ( isset( $layers_inline_css ) && '' !==  $layers_inline_css ) {
-		
+
 		// Testing: Output
 		/*
 		if ( 'widget_display_callback' == current_filter() ) {
@@ -1589,11 +1589,11 @@ function layers_execute_inline_style_block( $filter_arg ) {
 			</pre>";
 		}
 		*/
-		
+
 		echo '<style type="text/css">' . $layers_inline_css . '</style>';
 		$layers_inline_css = '';
 	}
-	
+
 	// If this is a filter, then return the main arg.
 	return $filter_arg;
 }

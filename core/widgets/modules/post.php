@@ -105,6 +105,10 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 		*  Widget front end display
 		*/
 		function widget( $args, $instance ) {
+			global $wp_customize, $layers_inline_css;
+
+			$this->old_inline_css = $layers_inline_css;
+			$this->inline_css = '';
 
 			// Turn $args array into variables.
 			extract( $args );
@@ -357,20 +361,22 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 
 				<?php do_action( 'layers_after_post_widget_inner', $this, $widget ); ?>
 
-			</section>
+				<?php if ( isset( $wp_customize ) ) $this->print_inline_css();
 
-			<?php if( 'list-masonry' == $this->check_and_return( $widget , 'design', 'liststyle' ) ) { ?>
-				<script>
-					jQuery(function($){
-						layers_masonry_settings[ '<?php echo $widget_id; ?>' ] = [{
-								itemSelector: '.layers-masonry-column',
-								gutter: <?php echo ( isset( $widget['design'][ 'gutter' ] ) ? 20 : 0 ); ?>
-							}];
+				if( 'list-masonry' == $this->check_and_return( $widget , 'design', 'liststyle' ) ) { ?>
+					<script>
+						jQuery(function($){
+							layers_masonry_settings[ '<?php echo $widget_id; ?>' ] = [{
+									itemSelector: '.layers-masonry-column',
+									gutter: <?php echo ( isset( $widget['design'][ 'gutter' ] ) ? 20 : 0 ); ?>
+								}];
 
-						$('#<?php echo $widget_id; ?>').find('.list-masonry').layers_masonry( layers_masonry_settings[ '<?php echo $widget_id; ?>' ][0] );
-					});
-				</script>
-			<?php } // masonry trigger ?>
+							$('#<?php echo $widget_id; ?>').find('.list-masonry').layers_masonry( layers_masonry_settings[ '<?php echo $widget_id; ?>' ][0] );
+						});
+					</script>
+				<?php } // masonry trigger ?>
+
+				</section>
 
 			<?php // Reset WP_Query
 				wp_reset_postdata();

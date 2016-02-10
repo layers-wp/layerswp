@@ -1157,7 +1157,6 @@ jQuery(function($) {
 			$(group).find( '.layers-widget-dynamic-linking-select').each( function( j, element ) {
 				
 				var related_type_select = $(element).parents('.layers-form-collection').find('[id$="-link_type"]');
-				var related_type_text = related_type_select.val();
 				
 				$(element).layersSlct2({
 					ajax: {
@@ -1167,17 +1166,19 @@ jQuery(function($) {
 						data: function(term, page) {
 							
 							return {
-								action    :'layers_widget_linking_searches',
-								link_type :related_type_text,
-								term      :term,
-								page      :page,
+								action    : 'layers_widget_linking_searches',
+								link_type : related_type_select.val(),
+								term      : term,
+								page      : page,
 							};
 						},
 						results: function(data, params) {
 							
+							console.log( data.more );
+							
 							return {
-								results: data,
-								more: true,
+								results: data.results,
+								more: data.more,
 							};
 						},
 						cache: true
@@ -1199,10 +1200,13 @@ jQuery(function($) {
 								data     : {
 									action    : 'layers_widget_linking_initial_selections',
 									post_id   : id,
-									link_type : related_type_text,
+									link_type : related_type_select.val(),
 								},
 								success: function( data ) {
-									callback({ id: data.id, text: data.text });
+									callback({
+										id: data.id,
+										text: data.text
+									});
 								}
 							});
 						}

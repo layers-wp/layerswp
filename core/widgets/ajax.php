@@ -149,8 +149,10 @@ if( ! class_exists( 'Layers_Widget_Ajax' ) ) {
 			
 			$link_type = $_GET['link_type'];
 			
+			$more = FALSE;
+			
 			// Data collection.
-			$data_collection = array();
+			$results_collection = array();
 			
 			switch ( $link_type ) {
 				
@@ -159,7 +161,6 @@ if( ! class_exists( 'Layers_Widget_Ajax' ) ) {
 					/**
 					 * Post
 					 */
-				
 					if ( isset( $_GET['term'] ) && '' !== $_GET['term'] ) {
 						// Only search if there is a post to start with.
 						
@@ -176,12 +177,18 @@ if( ! class_exists( 'Layers_Widget_Ajax' ) ) {
 
 						// Loop and collect the data.
 						while ( have_posts() ) : the_post();
-							$data_collection[] = array(
+							$results_collection[] = array(
 								'id' => $post->ID,
 								// 'text' => $post->post_title,
 								'text' => $post->post_title . ' (' . $post->post_type . ')',
 							);
 						endwhile;
+						
+						// Search the posts.
+						$args['paged'] = intval( $_GET['page'] ) + 1;
+						query_posts( $args );
+						$more = have_posts();
+						
 					}
 					
 					break;
@@ -191,11 +198,10 @@ if( ! class_exists( 'Layers_Widget_Ajax' ) ) {
 					/**
 					 * Post-Type Archive
 					 */
-					
 					$post_types = get_post_types( array(), 'objects' );
 					
 					foreach ( $post_types as $post_type => $post_type_value ) {
-						$data_collection[] = array(
+						$results_collection[] = array(
 							'id' => $post_type,
 							'text' => $post_type_value->name,
 						);
@@ -213,7 +219,10 @@ if( ! class_exists( 'Layers_Widget_Ajax' ) ) {
 			}
 			
 			// Echo the data in the format that Select-2 can use.
-			echo json_encode( $data_collection );
+			echo json_encode( array(
+				'results' => $results_collection,
+				'more'    => $more,
+			) );
 			
 			die();
 		}
@@ -226,7 +235,7 @@ if( ! class_exists( 'Layers_Widget_Ajax' ) ) {
 			$link_type = $_POST['link_type'];
 			
 			// Data collection.
-			$data_collection = array();
+			$results_collection = array();
 			
 			switch ( $link_type ) {
 				
@@ -240,7 +249,7 @@ if( ! class_exists( 'Layers_Widget_Ajax' ) ) {
 						
 						$post_id = $_POST['post_id'];
 						
-						$data_collection = array(
+						$results_collection = array(
 							'id'   => $post_id,
 							'text' => get_the_title( $post_id ) . ' (' . get_post_type( $post_id ) . ')',
 						);
@@ -266,7 +275,7 @@ if( ! class_exists( 'Layers_Widget_Ajax' ) ) {
 			}
 			
 			// Echo the data in the format that Select-2 can use.
-			echo json_encode( $data_collection );
+			echo json_encode( $results_collection );
 			
 			die();
 		}

@@ -17,12 +17,12 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 			/**
 			* Widget variables
 			*
-		 	* @param  	string    		$widget_title    	Widget title
-		 	* @param  	string    		$widget_id    		Widget slug for use as an ID/classname
-		 	* @param  	string    		$post_type    		(optional) Post type for use in widget options
-		 	* @param  	string    		$taxonomy    		(optional) Taxonomy slug for use as an ID/classname
-		 	* @param  	array 			$checkboxes    	(optional) Array of checkbox names to be saved in this widget. Don't forget these please!
-		 	*/
+			* @param  	string    		$widget_title    	Widget title
+			* @param  	string    		$widget_id    		Widget slug for use as an ID/classname
+			* @param  	string    		$post_type    		(optional) Post type for use in widget options
+			* @param  	string    		$taxonomy    		(optional) Taxonomy slug for use as an ID/classname
+			* @param  	array 			$checkboxes    	(optional) Array of checkbox names to be saved in this widget. Don't forget these please!
+			*/
 			$this->widget_title = __( 'Content' , 'layerswp' );
 			$this->widget_id = 'column';
 			$this->post_type = '';
@@ -203,37 +203,11 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 								$use_image_ratio ,
 								$featurevideo
 							);
-
-							// Set the column link
-							// $link = FALSE;
-							$link_type = $this->check_and_return( $item , 'link_type' );
 							
-							switch ( $link_type ) {
-								case 'post':
-									$link = get_permalink( $this->check_and_return( $item , 'link_post' ) );
-									break;
-									
-								case 'post_type_archive':
-									break;
-								
-								case 'taxonomy_archive':
-									break;
-
-								case 'custom':
-								default:
-									$link = $this->check_and_return( $item , 'link' );
-									break;
-							}
+							// Get the button array.
+							$link_array = $this->check_and_return_link( $item, 'button' );
 							
-							// Link is a number - so is probs a post_id (Testing) (Disabled).
-							/*if ( is_numeric( $item['link'] ) ) {
-								if ( $post_link = get_permalink( $item['link'] ) ) {
-									$item['link'] = $post_link;
-								}
-							}*/
-							
-
- 							/**
+							/**
 							* Set Individual Column CSS
 							*/
 							$classes = array();
@@ -277,11 +251,11 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 								<div class="<?php echo $column_inner_classes; ?>">
 									<?php if( NULL != $media ) { ?>
 										<div class="media-image <?php echo ( ( isset( $item['design'][ 'imageratios' ] ) && 'image-round' == $item['design'][ 'imageratios' ] ) ? 'image-rounded' : '' ); ?>">
-											<?php if ( $link ) { ?>
-												<a href="<?php echo $link; ?>">
+											<?php if ( $link_array['link'] ) { ?>
+												<a href="<?php echo $link_array['link']; ?>" <?php echo ( '_blank' == $link_array['target'] ) ? 'target="_blank"' : '' ; ?>>
 											<?php  } ?>
 												<?php echo $media; ?>
-											<?php if ( $link ) { ?>
+											<?php if ( $link_array['link'] ) { ?>
 												</a>
 											<?php  } ?>
 										</div>
@@ -291,11 +265,11 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 										<div class="media-body <?php echo ( isset( $item['design']['fonts'][ 'align' ] ) ) ? $item['design']['fonts'][ 'align' ] : ''; ?>">
 											<?php if( $this->check_and_return( $item, 'title') ) { ?>
 												<h5 class="heading">
-													<?php if ( $link ) { ?>
-														<a href="<?php echo $link; ?>">
+													<?php if ( $link_array['link'] ) { ?>
+														<a href="<?php echo $link_array['link']; ?>" <?php echo ( '_blank' == $link_array['target'] ) ? 'target="_blank"' : '' ; ?>>
 													<?php } ?>
 														<?php echo $item['title']; ?>
-													<?php if ( $link ) { ?>
+													<?php if ( $link_array['link'] ) { ?>
 														</a>
 													<?php } ?>
 												</h5>
@@ -303,9 +277,9 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 											<?php if( $this->check_and_return( $item, 'excerpt' ) ) { ?>
 												<div class="excerpt"><?php layers_the_content( $item['excerpt'] ); ?></div>
 											<?php } ?>
-											<?php if ( $link && $this->check_and_return( $item , 'link_text' ) ) { ?>
-												<a href="<?php echo $link; ?>" class="button btn-<?php echo $this->check_and_return( $item , 'design' , 'fonts' , 'size' ); ?>">
-													<?php echo $item['link_text']; ?>
+											<?php if ( $link_array['link'] && $link_array['text'] ) { ?>
+												<a href="<?php echo $link_array['link']; ?>" class="button btn-<?php echo $this->check_and_return( $item , 'design' , 'fonts' , 'size' ); ?>" <?php echo ( '_blank' == $link_array['target'] ) ? 'target="_blank"' : '' ; ?>>
+													<?php echo $link_array['text']; ?>
 												</a>
 											<?php } ?>
 										</div>
@@ -539,156 +513,25 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 							); ?>
 						</p>
 						
+						<?php
+						// Fix widget's that were created before dynamic linking structure.
+						$widget = $this->convert_legacy_widget_links( $widget, 'button' );
+						?>
+						
 						<div class="layers-form-item">
-							
 							<label>
 								<?php _e( 'Button' , 'layerswp' ); ?>
 							</label>
-							
-							<div class="layers-form-collection closed">
-								<div class="layers-form-collection-header">
-									<span data-mimic-selector="#<?php echo $this->get_layers_field_id( 'link_text' ); ?>">
-										<?php echo isset( $widget['link_text'] ) ? $widget['link_text'] : '' ; ?>
-									</span>
-									<span class="layers-form-collection-header-sub layers-form-collection-header-sub-1">
-										 - <span data-mimic-selector="#<?php echo $this->get_layers_field_id( 'link_type' ); ?>"></span>
-									</span>
-									<span class="layers-form-collection-header-sub layers-form-collection-header-sub-2">
-										 - <span data-mimic-selector="#<?php echo $this->get_layers_field_id( 'link_target' ); ?>"></span>
-									</span>
-								</div>
-								<div class="layers-form-collection-content">
-								
-									<!-- Content -->
-									
-									<div class="layers-row">
-										<p class="layers-form-item layers-column layers-span-6">
-											<label for="<?php echo $this->get_layers_field_id( 'link_type' ); ?>"><?php _e( 'Link Type' , 'layerswp' ); ?></label>
-											<?php echo $this->form_elements()->input(
-												array(
-													'type' => 'select',
-													'name' => $this->get_layers_field_name( 'link_type' ),
-													'id' => $this->get_layers_field_id( 'link_type' ),
-													// 'placeholder' => __( 'http://' , 'layerswp' ),
-													'options' => array(
-														'custom'            => __( 'Custom', 'layerswp' ),
-														'post'              => __( 'Page, Post, Custom Post Type', 'layerswp' ),
-														// 'post_type_archive' => __( 'Post Archives (incl. Custom Post Types)', 'layerswp' ),
-														// 'taxonomy_archive'  => __( 'Taxonomy Archives (incl. Custom Taxonomies)', 'layerswp' ),
-													),
-													'value' => ( isset( $widget['link_type'] ) ) ? $widget['link_type'] : NULL ,
-													'class' => 'layers-text',
-												)
-											); ?>
-										</p>
-										<div class="layers-form-item layers-column layers-span-6">
-											
-											<label for="<?php echo $this->get_layers_field_id( 'link' ); ?>"><?php _e( 'Link' , 'layerswp' ); ?></label>
-											
-											<div class="layers-form-item layers-link-type-ux layers-link-type-ux-link" data-show-if-selector= "#<?php echo $this->get_layers_field_id( 'link_type' ); ?>" data-show-if-value="custom">
-												<label>
-													<?php _e( 'Custom', 'layerswp' ) ?>
-												</label>
-												<?php echo $this->form_elements()->input(
-													array(
-														'type' => 'text',
-														'name' => $this->get_layers_field_name( 'link' ),
-														'id' => $this->get_layers_field_id( 'link' ),
-														'placeholder' => __( 'http://' , 'layerswp' ),
-														'value' => ( isset( $widget['link'] ) ) ? $widget['link'] : NULL ,
-														'class' => 'layers-text',
-													)
-												); ?>
-											</div>
-											
-											<div class="layers-form-item layers-link-type-ux layers-link-type-ux-link_post" data-show-if-selector= "#<?php echo $this->get_layers_field_id( 'link_type' ); ?>" data-show-if-value="post">
-												<label>
-													<?php _e( 'Post/Page', 'layerswp' ) ?>
-												</label>
-												<?php echo $this->form_elements()->input(
-													array(
-														'type' => 'hidden',
-														'name' => $this->get_layers_field_name( 'link_post' ),
-														'id' => $this->get_layers_field_id( 'link_post' ),
-														'placeholder' => __( '-- Choose --' , 'layerswp' ),
-														'value' => ( isset( $widget['link_post'] ) ) ? $widget['link_post'] : NULL ,
-														'class' => 'layers-text layers-widget-dynamic-linking-select',
-													)
-												); ?>
-											</div>
-											
-											<div class="layers-form-item layers-link-type-ux layers-link-type-ux-link_post_type_archive" data-show-if-selector= "#<?php echo $this->get_layers_field_id( 'link_type' ); ?>" data-show-if-value="post_type_archive">
-												<label>
-													<?php _e( 'Post Archives', 'layerswp' ) ?>
-												</label>
-												<?php echo $this->form_elements()->input(
-													array(
-														'type' => 'hidden',
-														'name' => $this->get_layers_field_name( 'link_post_type_archive' ),
-														'id' => $this->get_layers_field_id( 'link_post_type_archive' ),
-														'placeholder' => __( 'http://' , 'layerswp' ),
-														'value' => ( isset( $widget['link_post_type_archive'] ) ) ? $widget['link_post_type_archive'] : NULL ,
-														'class' => 'layers-text layers-widget-dynamic-linking-select',
-													)
-												); ?>
-											</div>
-											
-											<div class="layers-form-item layers-link-type-ux layers-link-type-ux-link_taxonomy_archive" data-show-if-selector= "#<?php echo $this->get_layers_field_id( 'link_type' ); ?>" data-show-if-value="taxonomy_archive">
-												<label>
-													<?php _e( 'Taxonomy Archives', 'layerswp' ) ?>
-												</label>
-												<?php echo $this->form_elements()->input(
-													array(
-														'type' => 'hidden',
-														'name' => $this->get_layers_field_name( 'link_taxonomy_archive' ),
-														'id' => $this->get_layers_field_id( 'link_taxonomy_archive' ),
-														'placeholder' => __( 'http://' , 'layerswp' ),
-														'value' => ( isset( $widget['link_taxonomy_archive'] ) ) ? $widget['link_taxonomy_archive'] : NULL ,
-														'class' => 'layers-text layers-widget-dynamic-linking-select',
-													)
-												); ?>
-											</div>
-											
-										</div>
-										
-									</div>
-									
-									<div class="layers-row">
-										<p class="layers-form-item layers-column layers-span-6">
-											<label for="<?php echo $this->get_layers_field_id( 'link_text' ); ?>"><?php _e( 'Text' , 'layerswp' ); ?></label>
-											<?php echo $this->form_elements()->input(
-												array(
-													'type' => 'text',
-													'name' => $this->get_layers_field_name( 'link_text' ),
-													'id' => $this->get_layers_field_id( 'link_text' ),
-													'placeholder' => __( 'e.g. "Read More"' , 'layerswp' ),
-													'value' => ( isset( $widget['link_text'] ) ) ? $widget['link_text'] : NULL ,
-												)
-											); ?>
-										</p>
-										<p class="layers-form-item layers-column layers-span-6">
-											<label for="<?php echo $this->get_layers_field_id( 'link_target' ); ?>"><?php _e( 'Target' , 'layerswp' ); ?></label>
-											<?php echo $this->form_elements()->input(
-												array(
-													'type' => 'select',
-													'name' => $this->get_layers_field_name( 'link_target' ),
-													'id' => $this->get_layers_field_id( 'link_target' ),
-													// 'placeholder' => __( 'e.g. "Read More"' , 'layerswp' ),
-													'options' => array(
-														'_self' => __( 'Same Tab', 'layerswp' ),
-														'_blank' => __( 'New Tab', 'layerswp' ),
-													),
-													'value' => ( isset( $widget['link_target'] ) ) ? $widget['link_target'] : NULL ,
-												)
-											); ?>
-										</p>
-									</div>
-									
-									<!-- /Content -->
-									
-								</div>
-							</div>
-							
+							<?php echo $this->form_elements()->input(
+								array(
+									'type' => 'dynamic_linking',
+									'name' => $this->get_layers_field_name( 'button' ),
+									'id' => $this->get_layers_field_id( 'button' ),
+									// 'placeholder' => __( 'Short Excerpt' , 'layerswp' ),
+									'value' => ( isset( $widget['button'] ) ) ? $widget['button'] : NULL ,
+									// 'class' => 'layers-form-item layers-textarea',
+								)
+							); ?>
 						</div>
 						
 					</div>

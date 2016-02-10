@@ -115,10 +115,9 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 		*  Widget front end display
 		*/
 	 	function widget( $args, $instance ) {
-			global $wp_customize, $layers_inline_css;
+			global $wp_customize;
 
-			$this->old_inline_css = $layers_inline_css;
-			$this->inline_css = '';
+			$this->backup_inline_css();
 
 			// Turn $args array into variables.
 			extract( $args );
@@ -322,9 +321,10 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 						<?php } // foreach slides ?>
 					</div>
 
-					<?php do_action( 'layers_after_slider_widget_inner', $this, $widget ); ?>
+					<?php do_action( 'layers_after_slider_widget_inner', $this, $widget );
 
-					<?php if ( isset( $wp_customize ) ) $this->print_inline_css();
+					// Print the Inline Styles for this Widget
+					$this->print_inline_css();
 
 					/**
 					 * Slider javascript initialize

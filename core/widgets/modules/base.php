@@ -18,6 +18,23 @@ if( !class_exists( 'Layers_Widget' ) ) {
 
 		public $inline_css;
 
+
+
+		/**
+		* If there is inline CSS back it up while we run this widget
+		*
+		*/
+
+		function backup_inline_css(){
+
+			global $layers_inline_css;
+
+			$this->old_inline_css = $layers_inline_css;
+
+			$layers_inline_css = '';
+			$this->inline_css = '';
+		}
+
 		/**
 		* If there is inline CSS to print in this widget, do so at the bottom of the widget
 		*

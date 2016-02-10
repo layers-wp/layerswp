@@ -179,7 +179,7 @@ class Layers_Widgets {
 		$layers_sidebar_key = 'obox-layers-builder-' . $post_id;
 
 		$migrator = new Layers_Widget_Migrator();
-		$migrator::clear_page_sidebars_widget( $layers_sidebar_key );
+		$migrator->clear_page_sidebars_widget( $layers_sidebar_key );
 	}
 
 	public function add_revision_fields( $fields ) {

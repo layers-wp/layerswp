@@ -105,10 +105,9 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 		*  Widget front end display
 		*/
 		function widget( $args, $instance ) {
-			global $wp_customize, $layers_inline_css;
+			global $wp_customize;
 
-			$this->old_inline_css = $layers_inline_css;
-			$this->inline_css = '';
+			$this->backup_inline_css();
 
 			// Turn $args array into variables.
 			extract( $args );
@@ -138,10 +137,10 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 			}
 
 			// Apply Styling
-			layers_inline_styles( '#' . $widget_id, 'background', array( 'background' => $widget['design'][ 'background' ] ) );
-			layers_inline_styles( '#' . $widget_id, 'color', array( 'selectors' => array( '.section-title h3.heading' , '.section-title div.excerpt' ) , 'color' => $widget['design']['fonts'][ 'color' ] ) );
-			layers_inline_styles( '#' . $widget_id, 'background', array( 'selectors' => array( '.thumbnail-body' ) , 'background' => array( 'color' => $this->check_and_return( $widget, 'design', 'column-background-color' ) ) ) );
-			layers_inline_button_styles( '#' . $widget_id, 'button', array( 'selectors' => array( '.thumbnail-body a.button' ) ,'button' => $this->check_and_return( $widget, 'design', 'buttons' ) ) );
+			$this->inline_css .= layers_inline_styles( '#' . $widget_id, 'background', array( 'background' => $widget['design'][ 'background' ] ) );
+			$this->inline_css .= layers_inline_styles( '#' . $widget_id, 'color', array( 'selectors' => array( '.section-title h3.heading' , '.section-title div.excerpt' ) , 'color' => $widget['design']['fonts'][ 'color' ] ) );
+			$this->inline_css .= layers_inline_styles( '#' . $widget_id, 'background', array( 'selectors' => array( '.thumbnail-body' ) , 'background' => array( 'color' => $this->check_and_return( $widget, 'design', 'column-background-color' ) ) ) );
+			$this->inline_css .= layers_inline_button_styles( '#' . $widget_id, 'button', array( 'selectors' => array( '.thumbnail-body a.button' ) ,'button' => $this->check_and_return( $widget, 'design', 'buttons' ) ) );
 
 			// Apply the advanced widget styling
 			$this->apply_widget_advanced_styling( $widget_id, $widget );
@@ -359,9 +358,10 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 					</div>
 				<?php } ?>
 
-				<?php do_action( 'layers_after_post_widget_inner', $this, $widget ); ?>
+				<?php do_action( 'layers_after_post_widget_inner', $this, $widget );
 
-				<?php if ( isset( $wp_customize ) ) $this->print_inline_css();
+				// Print the Inline Styles for this Widget
+				$this->print_inline_css();
 
 				if( 'list-masonry' == $this->check_and_return( $widget , 'design', 'liststyle' ) ) { ?>
 					<script>

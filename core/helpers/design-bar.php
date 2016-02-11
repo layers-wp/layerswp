@@ -217,6 +217,20 @@ class Layers_Design_Controller {
 			$form_args['class'] = $form_args['input-class'];
 		}
 
+		$data_show_if = array();
+		if ( isset( $form_args['data']['show-if-selector'] ) ){
+			$data_show_if['show-if-selector'] = 'data-show-if-selector="' . esc_attr( $form_args['data']['show-if-selector'] ) . '"';
+			unset( $form_args['data']['show-if-selector'] );
+		}
+		if ( isset( $form_args['data']['show-if-value'] ) ) {
+			$data_show_if['show-if-value'] = 'data-show-if-value="' . esc_attr( $form_args['data']['show-if-value'] ) . '"';
+			unset( $form_args['data']['show-if-value'] );
+		}
+		if ( isset( $form_args['data']['show-if-operator'] ) ) {
+			$data_show_if['show-if-operator'] = 'data-show-if-operator="' . esc_attr( $form_args['data']['show-if-operator'] ) . '"';
+			unset( $form_args['data']['show-if-operator'] );
+		}
+		
 		// Prep Class
 		$class = array();
 		$class[] = 'layers-form-item';
@@ -228,7 +242,7 @@ class Layers_Design_Controller {
 			unset( $form_args['class'] );
 		}
 		?>
-		<div class="<?php echo esc_attr( implode( ' ', $class ) ); ?>">
+		<div class="<?php echo esc_attr( implode( ' ', $class ) ); ?>" <?php echo implode( ' ', $data_show_if ); ?> >
 
 			<?php if ( 'checkbox' != $form_args['type'] && isset( $form_args['label'] ) && '' != $form_args['label'] ) { ?>
 				<label><?php echo esc_html( $form_args['label'] ); ?></label>

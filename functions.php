@@ -182,7 +182,8 @@ if( ! function_exists( 'layers_setup' ) ) {
 		if( isset($_GET["activated"]) && $pagenow = "themes.php" ) { //&& '' == get_option( 'layers_welcome' )
 
 			// Enable Intercom on activation
-			update_option( 'layers_enable_intercom' , '1' );
+			if( FALSE === get_option( 'layers_enable_intercom' ) )
+				update_option( 'layers_enable_intercom' , '1' );
 
 			update_option( 'layers_welcome' , 1);
 

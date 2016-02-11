@@ -5,6 +5,7 @@
 ### xx Xxx 2016
 
 * **Fix** - Fixed `layers_get_builder_pages()` so that it gets all possible post_status, especially auto_draft. *SOB*
+* **Fix** - Fixed Layers Marketplace price in the modal. *MP*
 
 =======
 ##1.2.11

@@ -130,7 +130,7 @@ jQuery(function($) {
 		*/
 		var decoded_description = $("<div/>").html( $json.description ).text();
 		$modal.find( '.theme-description' ).html( decoded_description + ' <a href="' + $url + '" target="_blank">Read More</a>' );
-		$modal.find( '.theme-price' ).text( $price );
+		$modal.find( '.theme-price' ).text( '$' + $price );
 		$modal.find( '.theme-tags' ).text( $json.summary );
 
 		/**
@@ -145,8 +145,10 @@ jQuery(function($) {
 
 		if( 1 > $( $id ).next( 'div.l_admin-product' ).length ){
 			$next = $('.l_admin-products .l_admin-product').eq(0).attr( 'id' );
+			console.log( '0' );
 		} else {
 			$next = $( $id ).next().attr( 'id' );
+			console.log( '1' );
 		}
 		$modal.find( '.right' ).attr( 'data-view-item' , $next );
 

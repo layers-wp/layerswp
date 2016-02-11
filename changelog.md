@@ -6,6 +6,7 @@
 
 * **Fix** - Fixed `layers_get_builder_pages()` so that it gets all possible post_status, especially auto_draft. *SOB*
 * **Fix** - Fixed Layers Marketplace price in the modal. *MP*
+* **Fix** - Fixed T_PAAMAYIM_NEKUDOTAYIM error. *MP*
 
 =======
 ##1.2.11

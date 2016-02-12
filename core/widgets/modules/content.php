@@ -520,7 +520,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 						
 						<div class="layers-form-item">
 							<label>
-								<?php _e( 'Button' , 'layerswp' ); ?>
+								<?php _e( 'Insert Link' , 'layerswp' ); ?>
 							</label>
 							<?php echo $this->form_elements()->input(
 								array(

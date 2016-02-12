@@ -1156,6 +1156,12 @@ jQuery(function($) {
 			 */
 			$(group).find( '.layers-widget-dynamic-linking-select').each( function( j, element ) {
 				
+				var initial_selection = {
+					id   : $(element).val(),
+					text : $(element).attr( 'data-initial-display' ),
+				};
+				var placeholder = $(element).attr( 'placeholder' );
+				
 				var related_type_select = $(element).parents('.layers-form-collection').find('[id$="-link_type"]');
 				
 				$(element).layersSlct2({
@@ -1174,7 +1180,7 @@ jQuery(function($) {
 						},
 						results: function(data, params) {
 							
-							console.log( data.more );
+							// console.log( data.more );
 							
 							return {
 								results: data.results,
@@ -1190,7 +1196,10 @@ jQuery(function($) {
 					},
 					initSelection: function(element, callback) {
 						
-						// convert the value to a Name by doing reverse-lookup of the id.
+						callback( initial_selection );
+						
+						// convert the value to a Name by doing reverse-lookup of the id. - Replaced this method with the ajax-free method above.
+						/*
 						var id = $(element).val();
 						if (id !== "") {
 							jQuery.ajax({
@@ -1210,6 +1219,7 @@ jQuery(function($) {
 								}
 							});
 						}
+						*/
 					},
 					formatSelection: function(data) {
 						
@@ -1239,15 +1249,38 @@ jQuery(function($) {
 				// Update the heading on change of any input/select.
 				$(element).find('select, input').on( 'change keyup layers_init_linking', function(){
 					
+					// Get the link text.
 					var link_text = $(element).find('[id$="-link_text"]').val();
-					var link_target = $(element).find('[id$="-link_target"]').find(":selected").text();
+					
+					// Get the link type.
+					var link_type = $(element).find('[id$="-link_type"]').val();
+
+					// Get the link value.
+					var link_input = $(element).find('[name$="link_type_' + link_type + ']"]');
+
+					console.log( link_input );
+					
+					link_value = '';
+					if ( 'custom' == link_type )
+						link_value = link_input.val();
+					else if ( 'post' == link_type )
+						link_value = link_input.attr('data-initial-display');
+					
+					
+					// Compile the display content.
+					var display_content = '';
 					
 					if ( '' != link_text )
-						var new_text = link_text + '<span class="layers-form-collection-header-sub layers-form-collection-header-sub-2"> - ' + link_target + '</span>';
-					else
-						var new_text = '&nbsp;';
+						display_content += link_text + ' ';
 					
-					$collection_heading.html( new_text );
+					if ( '' != link_value )
+						display_content  += '<i>' + link_value + '</i>';
+					
+										
+					// If nothing is set then throw out &nbsp; to hold the space.
+					if ( '' == display_content ) display_content = '&nbsp;';
+					
+					$collection_heading.html( display_content );
 				});
 				
 				// Ping an intial update at the start.

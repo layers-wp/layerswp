@@ -159,17 +159,6 @@ if( ! function_exists( 'layers_setup' ) ) {
 			'size' => 'large',
 		) );
 
-		/**
-		 * Add Partial Refresh Support
-		 */
-
-		add_filter( 'customize_widget_partial_refreshable_layers-widget-map', '__return_true' );
-		add_filter( 'customize_widget_partial_refreshable_layers-widget-column', '__return_true' );
-		add_filter( 'customize_widget_partial_refreshable_layers-widget-slide', '__return_true' );
-		add_filter( 'customize_widget_partial_refreshable_layers-widget-post', '__return_true' );
-
-		add_theme_support( 'customize-partial-refresh-widgets' );
-
 		// Automatic Feed Links
 		add_theme_support( 'automatic-feed-links' );
 

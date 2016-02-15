@@ -1554,18 +1554,11 @@ add_action( 'layers_list_post_content', 'layers_excerpt_action' );
 // Header Styles:
 add_action( 'layers_after_header_inner', 'layers_execute_inline_style_block' );
 
-// Widgets Styles:
-// Widgets with this new hook will write their styles inside the widget by this hook.
-if( !isset( $wp_customize ) ){
-	add_action( 'layers_after_widget_inner', 'layers_execute_inline_style_block' );
-	add_filter( 'widget_display_callback', 'layers_execute_inline_style_block' );
-}
-
 // Footer Styles:
 add_action( 'layers_after_footer_inner', 'layers_execute_inline_style_block' );
 
 // Final Styles:
-// Safety - dump one final styles.
+// Safety - dump one final style block as a catch-all.
 add_action( 'wp_footer', 'layers_execute_inline_style_block' );
 
 function layers_execute_inline_style_block( $filter_arg ) {
@@ -1575,20 +1568,6 @@ function layers_execute_inline_style_block( $filter_arg ) {
 	// return false;
 
 	if ( isset( $layers_inline_css ) && '' !==  $layers_inline_css ) {
-
-		// Testing: Output
-		/*
-		if ( 'widget_display_callback' == current_filter() ) {
-			echo "<pre> <em>----- STYLE DUMP! (Safety dump, widget doesn't have the required `layers_after_widget_inner` action) -----</em>v
-			$layers_inline_css
-			</pre>";
-		}
-		else {
-			echo "<pre> <em>----- STYLE DUMP! (Widget has the new required `layers_after_widget_inner` action) -----</em>
-			$layers_inline_css
-			</pre>";
-		}
-		*/
 
 		echo '<style type="text/css">' . $layers_inline_css . '</style>';
 		$layers_inline_css = '';

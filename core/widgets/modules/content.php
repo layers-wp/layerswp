@@ -85,8 +85,11 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 						'size' => 'medium',
 						'color' => NULL,
 						'shadow' => NULL
-					)
-				)
+					),
+				),
+				'button' => array(
+					'link_target' => '',
+				),
 			) );
 
 		}
@@ -527,9 +530,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 									'type' => 'dynamic_linking',
 									'name' => $this->get_layers_field_name( 'button' ),
 									'id' => $this->get_layers_field_id( 'button' ),
-									// 'placeholder' => __( 'Short Excerpt' , 'layerswp' ),
-									'value' => ( isset( $widget['button'] ) ) ? $widget['button'] : NULL ,
-									// 'class' => 'layers-form-item layers-textarea',
+									'value' => ( isset( $widget['button'] ) ) ? $widget['button'] : NULL,
 								)
 							); ?>
 						</div>

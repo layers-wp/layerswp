@@ -250,7 +250,10 @@ class Layers_Form_Elements {
 			/**
 			* Select 'icons' such as the column selector
 			*/
-			case 'select-icons' : ?>
+			case 'select-icons' :
+				
+				$input_type = ( 1 == count( $input->options ) ) ? 'checkbox' : 'radio';
+				?>
 				<div class="layers-select-icons">
 					<?php foreach( $input->options as $key => $value ) {
 						if ( is_array( $value ) ) {
@@ -268,10 +271,12 @@ class Layers_Form_Elements {
 							$class = "icon-{$key}";
 							$data_string = '';
 						}
+						
+						$data_string .= 'data-value="' . $input->value . '" ';
 						?>
 						<label
 							href=""
-							class="layers-icon-wrapper <?php if( $key == $input->value ) echo 'layers-active'; ?>"
+							class="layers-icon-wrapper <?php if ( $key == $input->value ) echo 'layers-active'; ?>"
 							for="<?php echo esc_attr( $input->id ) ,'-', esc_attr( $key ); ?>"
 							<?php echo $data_string ?>
 							>
@@ -280,8 +285,8 @@ class Layers_Form_Elements {
 								<?php echo esc_html( $name ); ?>
 							</span>
 						</label>
-						<input type="radio" <?php echo implode ( ' ' , $input_props ); ?> id="<?php echo esc_attr( $input->id ) ,'-', esc_attr( $key ); ?>" value="<?php echo esc_attr( $key ); ?>" <?php checked( $input->value , $key , true ); ?> class="l_admin-hide" />
-					<?php } // foreach options ?>
+						<input type="<?php echo $input_type ?>" <?php echo implode ( ' ' , $input_props ); ?> id="<?php echo esc_attr( $input->id ), '-', esc_attr( $key ); ?>" value="<?php echo esc_attr( $key ); ?>" <?php checked( $input->value, $key, true ); ?> />
+					<?php } ?>
 				</div>
 			<?php break;
 			/**
@@ -655,6 +660,8 @@ class Layers_Form_Elements {
 			*/
 			case 'dynamic_linking' : ?>
 				<div class="layers-form-collection closed">
+					
+					<!-- Header -->
 					<div class="layers-form-collection-header">
 						<?php if ( isset( $input->value->link_text ) ) { ?>
 							<span data-mimic-selector="#<?php echo "{$input->id}-link_text"; ?>">
@@ -664,9 +671,11 @@ class Layers_Form_Elements {
 							&nbsp;
 						<?php } ?>
 					</div>
+					<!-- / Header -->
+					
+					<!-- Content -->
 					<div class="layers-form-collection-content">
 					
-						<!-- Content -->
 						<div class="layers-row">
 							<div class="layers-form-item layers-column layers-span-5">
 								<label for="<?php echo "{$input->id}-link_type"; ?>">
@@ -691,7 +700,7 @@ class Layers_Form_Elements {
 									)
 								); ?>
 							</div>
-							<div class="layers-form-item layers-column layers-span-6">
+							<div class="layers-form-item layers-column layers-span-7 layers-link-type-ux-holder">
 								<label for="<?php echo "{$input->id}-link_type_custom"; ?>">
 									&nbsp;
 								</label>
@@ -713,7 +722,6 @@ class Layers_Form_Elements {
 										)
 									); ?>
 								</div>
-								
 								<div class="layers-form-item layers-link-type-ux layers-link-type-ux-link_type_post" data-show-if-selector= "#<?php echo "{$input->id}-link_type"; ?>" data-show-if-value="post" data-tip="<?php _e( 'Choose Your Link', 'layerswp' ) ?>">
 									<label>
 										<?php _e( 'Post/Page', 'layerswp' ) ?>
@@ -736,7 +744,6 @@ class Layers_Form_Elements {
 									);
 									?>
 								</div>
-								
 								<div class="layers-form-item layers-link-type-ux layers-link-type-ux-link_type_post_type_archive" data-show-if-selector= "#<?php echo "{$input->id}-link_type"; ?>" data-show-if-value="post_type_archive" data-tip="<?php _e( 'Choose Your Link', 'layerswp' ) ?>">
 									<label>
 										<?php _e( 'Post Archives', 'layerswp' ) ?>
@@ -752,7 +759,6 @@ class Layers_Form_Elements {
 										)
 									); ?>
 								</div>
-								
 								<div class="layers-form-item layers-link-type-ux layers-link-type-ux-link_type_taxonomy_archive" data-show-if-selector= "#<?php echo "{$input->id}-link_type"; ?>" data-show-if-value="taxonomy_archive" data-tip="<?php _e( 'Choose Your Link', 'layerswp' ) ?>">
 									<label>
 										<?php _e( 'Taxonomy Archives', 'layerswp' ) ?>
@@ -768,22 +774,16 @@ class Layers_Form_Elements {
 										)
 									); ?>
 								</div>
-								
-							</div>
-							<div class="layers-form-item layers-column layers-span-1">
-								<label for="<?php echo "{$input->id}-target"; ?>">
-									&nbsp;
-								</label>
-								<div class="layers-visuals-item layers-icon-group">
+								<div class="layers-visuals-item layers-icon-group layers-link-type-ux-link_target">
 									<?php echo $this->input(
 										array(
 											'type' => 'select-icons',
 											'name' => "{$input->name}[link_target]",
 											'id' => "{$input->id}-link_target",
 											'placeholder' => __( 'e.g. http://facebook.com/oboxthemes', 'layers-pro' ),
-											'value' => ( isset( $widget['network_type'] ) ) ? $widget['network_type'] : NULL ,
+											'value' => ( isset( $input->value->link_target ) ) ? $input->value->link_target : NULL,
 											'options' => array(
-												'new' => array(
+												'_blank' => array(
 													'name'   => 'New Tab',
 													'class' => 'fa fa-share-square-o',
 													'data' => array(
@@ -793,33 +793,9 @@ class Layers_Form_Elements {
 											)
 									) ); ?>
 								</div>
-								
-								<?php /* echo $this->input(
-									array(
-										'type' => 'button',
-										'name' => "{$input->name}[link_target]",
-										'id' => "{$input->id}-link_target",
-										'label' => __( 'New Tab', 'layerswp' ),
-										'value' => ( isset( $input->value->link_target ) ) ? $input->value->link_target : NULL,
-									)
-								); */ ?>
-								
-								<?php /* echo $this->input(
-									array(
-										'type' => 'select',
-										'name' => "{$input->name}[link_target]",
-										'id' => "{$input->id}-link_target",
-										// 'placeholder' => __( 'e.g. "Read More"' , 'layerswp' ),
-										'options' => array(
-											'_self' => __( 'Same Tab', 'layerswp' ),
-											'_blank' => __( 'New Tab', 'layerswp' ),
-										),
-										'value' => ( isset( $input->value->link_target ) ) ? $input->value->link_target : NULL,
-									)
-								); */ ?>
 							</div>
-							
 						</div>
+						
 						<div class="layers-row">
 							<div class="layers-form-item layers-column layers-span-12">
 								<label for="<?php echo "{$input->id}-link_text"; ?>">
@@ -836,9 +812,10 @@ class Layers_Form_Elements {
 								); ?>
 							</div>
 						</div>
-						<!-- /Content -->
 						
 					</div>
+					<!-- / Content -->
+					
 				</div>
 				
 			<?php break;

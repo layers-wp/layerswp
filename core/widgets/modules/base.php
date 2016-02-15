@@ -539,7 +539,7 @@ if( !class_exists( 'Layers_Widget' ) ) {
 			$link_array['text'] = isset( $item[$button_key]['link_text'] ) ? $item[$button_key]['link_text'] : FALSE;
 			
 			// Get the link_target.
-			$link_array['target'] = isset( $item[$button_key]['link_target'] ) ? $item[$button_key]['link_target'] : FALSE;
+			$link_array['target'] = isset( $item[$button_key]['link_target'] ) ? '_blank' : FALSE;
 			
 			return $link_array;
 		}

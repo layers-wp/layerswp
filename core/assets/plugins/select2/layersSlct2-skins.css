@@ -8,13 +8,16 @@
 */
 .tpx-layersSlct2-container {
 	/*font-family: 'Helvetica Neue', Helvetica, sans-serif;*/
+	padding-right: 30px;
+	border: 1px solid #DDD;
+	box-shadow: inset 1px 1px 2px rgba(0, 0, 0, 0.1);
 }
 .tpx-layersSlct2-container .layersSlct2-choice {
 	height: 34px;
-	background-image: none;
+	background: none !important;
 	border-radius: 0;
-	border-color: rgb(221, 221, 221);
-	box-shadow: inset 1px 1px 2px rgba(0, 0, 0, 0.1);
+	border: 0;
+	box-shadow: none;
 }
 .tpx-layersSlct2-container .layersSlct2-choice > .layersSlct2-chosen {
 	line-height: 35px;
@@ -26,6 +29,7 @@
 	background-color: transparent;
 	width: 25px;
 	border-left: 0px solid rgba(0, 0, 0, 0.2);
+	display: none;
 }
 .tpx-layersSlct2-container .layersSlct2-choice .layersSlct2-arrow b {
 	display: none;

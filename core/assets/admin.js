@@ -446,25 +446,43 @@ jQuery(function($) {
 	});
 
 	$( document ).on( 'click' , '.layers-select-icons label.layers-icon-wrapper' , function(e){
-		// "Hi Mom"
-		$that = $(this);
-
+		
+		// Cache elements.
+		var $label = $(this);
+		
+		var $input = $('#' + $label.attr( 'for' ));
+		// var $input = $label.siblings('input');
+		
 		// Get the input value
-		$value = $('#' + $that.attr( 'for' ) ).val();
+		var $value = $input.val();
 
 		// Capture the closest fellow form items
-		$form_items = $that.closest( '.layers-form-item' ).siblings( '.layers-form-item' ).length
-
+		$form_items = $label.closest( '.layers-form-item' ).siblings( '.layers-form-item' ).length;
 		if( 0 == $form_items ){
-			$that.closest( '.layers-pop-menu-wrapper' ).siblings( '.layers-icon-wrapper' ).find( 'span[class^="icon-"]' ).attr( 'class', 'icon-' + $value );
+			$label.closest( '.layers-pop-menu-wrapper' ).siblings( '.layers-icon-wrapper' ).find( 'span[class^="icon-"]' ).attr( 'class', 'icon-' + $value );
 		}
 
 		// Toggle active state
-		$that.trigger( 'layers-design-bar-menu', $that );
-		$that.addClass( 'layers-active' );
-
-		// Close siblings
-		$that.siblings( '.layers-icon-wrapper' ).removeClass( 'layers-active' );
+		$label.trigger( 'layers-design-bar-menu', $label );
+		
+		// De-activate siblings
+		$label.siblings( '.layers-icon-wrapper' ).removeClass( 'layers-active' );
+		
+		if ( 'checkbox' == $input.attr('type') ) {
+			
+			// Input is a 'checkbox' when there's only one single button - so make it toggle on/off.
+			if ( $label.hasClass( 'layers-active' ) ) {
+				$label.removeClass( 'layers-active' );
+			}
+			else {
+				$label.addClass( 'layers-active' );
+			}
+		}
+		else {
+			
+			// Input is a 'radio' when there's multiple buttons - so make them behave like radio.
+			$label.addClass( 'layers-active' );
+		}
 	});
 
 	$( document ).on( 'click' , '[id^="layers-customize"] .layers-visuals-item' , function(e){
@@ -1257,8 +1275,6 @@ jQuery(function($) {
 
 					// Get the link value.
 					var link_input = $(element).find('[name$="link_type_' + link_type + ']"]');
-
-					console.log( link_input );
 					
 					link_value = '';
 					if ( 'custom' == link_type )

@@ -1221,6 +1221,8 @@ if( !function_exists( 'layers_apply_inline_styles' ) ) {
 
 		$layers_inline_css = apply_filters( 'layers_inline_css', $layers_inline_css );
 
+		if( '' == $layers_inline_css || FALSE == $layers_inline_css ) return;
+
 		wp_enqueue_style(
 			LAYERS_THEME_SLUG . '-inline-styles',
 			get_template_directory_uri() . '/assets/css/inline.css'
@@ -1239,6 +1241,8 @@ add_action( 'get_footer' , 'layers_apply_inline_styles', 100 );
 */
 if( !function_exists( 'layers_apply_custom_styles' ) ) {
 	function layers_apply_custom_styles(){
+
+		if( '' == layers_get_theme_mod( 'custom-css' ) || FALSE == layers_get_theme_mod( 'custom-css' ) ) return;
 
 		wp_enqueue_style(
 			LAYERS_THEME_SLUG . '-custom-styles',

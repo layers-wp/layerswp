@@ -492,7 +492,7 @@ if( !function_exists( 'layers_apply_customizer_styles' ) ) {
 
 	}
 }
-add_action( 'wp_enqueue_scripts', 'layers_apply_customizer_styles', 100 );
+add_action( 'wp_enqueue_scripts', 'layers_apply_customizer_styles', 50 );
 
 /**
  * Helper that simply adds an invert class to an array of classes.

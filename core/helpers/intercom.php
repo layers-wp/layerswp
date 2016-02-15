@@ -136,7 +136,7 @@ class Layers_Intercom {
 		}
 
 		// jsonify the settings
-		$settings_json = json_encode( (object) $json, ( defined( 'JSON_PRETTY_PRINT' ) ? JSON_PRETTY_PRINT : FALSE ) ); ?>
+		$settings_json = json_encode( (object) $json, ( defined( 'JSON_PRETTY_PRINT' ) ? JSON_PRETTY_PRINT : TRUE ) ); ?>
 
 		<script>window.intercomSettings = <?php echo $settings_json; ?>;</script>
 

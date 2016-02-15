@@ -1,8 +1,8 @@
 # Layers Changelog
 
 =======
-##1.X.XX
-### xx Xxx 2016
+##1.2.12
+### 17 Feb 2016
 
 * **Fix** - Fixed `layers_get_builder_pages()` so that it gets all possible post_status, especially auto_draft. *SOB*
 * **Fix** - Fixed Layers Marketplace price in the modal. *MP*

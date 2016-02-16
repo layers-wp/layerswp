@@ -294,9 +294,6 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 										<?php if( '' != $item['title'] || '' != $item['excerpt'] || '' != $link_array['link'] ) { ?>
 											<div class="copy-container">
 												<div class="section-title <?php echo ( isset( $item['design']['fonts'][ 'size' ] ) ? $item['design']['fonts'][ 'size' ] : '' ); ?>">
-													
-													<?php s( $link_array ); ?>
-													
 													<?php if( $this->check_and_return( $item , 'title' ) ) { ?>
 														<h3 data-swiper-parallax="-100" class="heading"><?php echo $item['title']; ?></h3>
 													<?php } ?>

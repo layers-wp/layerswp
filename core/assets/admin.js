@@ -445,13 +445,12 @@ jQuery(function($) {
 		$that.parent( 'li.layers-visuals-item' ).siblings().not( $that.parent() ).removeClass( 'layers-active' );
 	});
 
-	$( document ).on( 'click' , '.layers-select-icons label.layers-icon-wrapper' , function(e){
+	$( document ).on( 'mousedown' , '.layers-select-icons label.layers-icon-wrapper' , function(e){
 		
 		// Cache elements.
 		var $label = $(this);
 		
 		var $input = $('#' + $label.attr( 'for' ));
-		// var $input = $label.siblings('input');
 		
 		// Get the input value
 		var $value = $input.val();
@@ -1290,7 +1289,7 @@ jQuery(function($) {
 						display_content += link_text + ' ';
 					
 					if ( '' != link_value )
-						display_content  += '<i>' + link_value + '</i>';
+						display_content  += '<i title="' + link_value + '">' + link_value + '</i>';
 					
 										
 					// If nothing is set then throw out &nbsp; to hold the space.

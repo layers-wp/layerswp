@@ -512,15 +512,14 @@ if( !class_exists( 'Layers_Widget' ) ) {
 			$link_array = array();
 			
 			// Get the link based on the link type.
-			$link_type = isset( $item[$button_key]['link_type'] ) ? $item[$button_key]['link_type'] : FALSE;
-			$link_array['type'] = $link_type;
+			$link_array['type'] = isset( $item[$button_key]['link_type'] ) ? $item[$button_key]['link_type'] : '';
 			
-			switch ( $link_type ) {
+			switch ( $link_array['type'] ) {
 				case 'post':
 						if ( isset( $item[$button_key]['link_type_post'] ) && is_numeric( $item[$button_key]['link_type_post'] ) )
 							$link_array['link'] = get_permalink( $item[$button_key]['link_type_post'] );
 						else
-							$link_array['link'] = FALSE;
+							$link_array['link'] = '';
 					break;
 				
 				case 'post_type_archive':
@@ -531,15 +530,15 @@ if( !class_exists( 'Layers_Widget' ) ) {
 				
 				case 'custom':
 				default:
-					$link_array['link'] = isset( $item[$button_key]['link_type_custom'] ) ? $item[$button_key]['link_type_custom'] : FALSE;
+					$link_array['link'] = isset( $item[$button_key]['link_type_custom'] ) ? $item[$button_key]['link_type_custom'] : '';
 					break;
 			}
 			
 			// Get the link_text.
-			$link_array['text'] = isset( $item[$button_key]['link_text'] ) ? $item[$button_key]['link_text'] : FALSE;
+			$link_array['text'] = isset( $item[$button_key]['link_text'] ) ? $item[$button_key]['link_text'] : '';
 			
 			// Get the link_target.
-			$link_array['target'] = isset( $item[$button_key]['link_target'] ) ? '_blank' : FALSE;
+			$link_array['target'] = isset( $item[$button_key]['link_target'] ) ? '_blank' : '';
 			
 			return $link_array;
 		}

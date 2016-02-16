@@ -658,7 +658,7 @@ class Layers_Form_Elements {
 			/**
 			* Dynamic Linking Interface
 			*/
-			case 'dynamic_linking' : ?>
+			case 'link-group' : ?>
 				<div class="layers-form-collection closed">
 					
 					<!-- Header -->

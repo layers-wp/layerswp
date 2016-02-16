@@ -207,8 +207,10 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 								$featurevideo
 							);
 							
-							// Get the button array.
-							$link_array = $this->check_and_return_link( $item, 'button' );
+							// Get the link array.
+							$link_array       = $this->check_and_return_link( $item, 'button' );
+							$link_href_attr   = ( $link_array['link'] ) ? 'href="' . esc_url( $link_array['link'] ) . '"' : '';
+							$link_target_attr = ( '_blank' == $link_array['target'] ) ? 'target="_blank"' : '';
 							
 							/**
 							* Set Individual Column CSS
@@ -255,7 +257,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 									<?php if( NULL != $media ) { ?>
 										<div class="media-image <?php echo ( ( isset( $item['design'][ 'imageratios' ] ) && 'image-round' == $item['design'][ 'imageratios' ] ) ? 'image-rounded' : '' ); ?>">
 											<?php if ( $link_array['link'] ) { ?>
-												<a href="<?php echo $link_array['link']; ?>" <?php echo ( '_blank' == $link_array['target'] ) ? 'target="_blank"' : '' ; ?>>
+												<a <?php echo $link_href_attr; ?> <?php echo $link_target_attr; ?>>
 											<?php  } ?>
 												<?php echo $media; ?>
 											<?php if ( $link_array['link'] ) { ?>
@@ -269,7 +271,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 											<?php if( $this->check_and_return( $item, 'title') ) { ?>
 												<h5 class="heading">
 													<?php if ( $link_array['link'] ) { ?>
-														<a href="<?php echo $link_array['link']; ?>" <?php echo ( '_blank' == $link_array['target'] ) ? 'target="_blank"' : '' ; ?>>
+														<a <?php echo $link_href_attr; ?> <?php echo $link_target_attr; ?>>
 													<?php } ?>
 														<?php echo $item['title']; ?>
 													<?php if ( $link_array['link'] ) { ?>
@@ -281,7 +283,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 												<div class="excerpt"><?php layers_the_content( $item['excerpt'] ); ?></div>
 											<?php } ?>
 											<?php if ( $link_array['link'] && $link_array['text'] ) { ?>
-												<a href="<?php echo $link_array['link']; ?>" class="button btn-<?php echo $this->check_and_return( $item , 'design' , 'fonts' , 'size' ); ?>" <?php echo ( '_blank' == $link_array['target'] ) ? 'target="_blank"' : '' ; ?>>
+												<a <?php echo $link_href_attr; ?> class="button btn-<?php echo $this->check_and_return( $item , 'design' , 'fonts' , 'size' ); ?>" <?php echo $link_target_attr; ?>>
 													<?php echo $link_array['text']; ?>
 												</a>
 											<?php } ?>
@@ -527,7 +529,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 							</label>
 							<?php echo $this->form_elements()->input(
 								array(
-									'type' => 'dynamic_linking',
+									'type' => 'link-group',
 									'name' => $this->get_layers_field_name( 'button' ),
 									'id' => $this->get_layers_field_id( 'button' ),
 									'value' => ( isset( $widget['button'] ) ) ? $widget['button'] : NULL,

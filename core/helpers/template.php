@@ -14,6 +14,7 @@
 * @param    string         $wrapper_class  Class of HTML wrapper
 * @echo     string                          Post Meta HTML
 */
+global $wp_customize;
 
 if( !function_exists( 'layers_bread_crumbs' ) ) {
 	function layers_bread_crumbs( $wrapper = 'nav', $wrapper_class = 'bread-crumbs', $seperator = '/' ) {
@@ -415,8 +416,6 @@ if( !function_exists( 'layers_apply_customizer_styles' ) ) {
 		* Header Colors
 		*/
 
-		// Opacity
-		//$bg_opacity = ( layers_get_theme_mod( 'header-overlay') ) ? .5 : 1 ;
 		$bg_opacity = 1;
 
 		// Apply the BG Color
@@ -428,24 +427,6 @@ if( !function_exists( 'layers_apply_customizer_styles' ) ) {
 			// Add Invert if the color is not light
 			if ( 'dark' == layers_is_light_or_dark( $header_color ) ){
 				add_filter( 'layers_header_class', 'layers_add_invert_class' );
-			}
-		}
-
-		/**
-		* Footer Colors
-		*/
-
-		if( '' != $footer_color ) {
-			// Apply the BG Color
-			layers_inline_styles( '.footer-site', 'background', array(
-				'background' => array(
-					'color' => $footer_color,
-				),
-			) );
-
-			// Add Invert if the color is dark
-			if ( 'dark' == layers_is_light_or_dark( $footer_color ) ){
-				add_filter( 'layers_footer_site_class', 'layers_add_invert_class' );
 			}
 		}
 
@@ -490,30 +471,28 @@ if( !function_exists( 'layers_apply_customizer_styles' ) ) {
 				),
 			));
 		}
-	}
-}
-add_action( 'wp_enqueue_scripts', 'layers_apply_customizer_styles', 100 );
 
-/**
- * Apply Customizer settings to site housing
- */
-if( !function_exists( 'layers_apply_customizer_general_styles_general' ) ) {
-	function layers_apply_customizer_general_styles_general() {
+		/**
+		* Footer Colors
+		*/
 
-		// Footer
-		layers_inline_styles( '.footer-site', 'background', array(
-			'background' => array(
-				'repeat' => layers_get_theme_mod( 'footer-background-repeat' ),
-				'position' => layers_get_theme_mod( 'footer-background-position' ),
-				'stretch' => layers_get_theme_mod( 'footer-background-stretch' ),
-				'image' => layers_get_theme_mod( 'footer-background-image' ),
-				'fixed' => false, // hardcode (not an option)
-			),
-		));
+		if( '' != $footer_color ) {
+			// Apply the BG Color
+			layers_inline_styles( '.footer-site', 'background', array(
+				'background' => array(
+					'color' => $footer_color,
+				),
+			) );
+
+			// Add Invert if the color is dark
+			if ( 'dark' == layers_is_light_or_dark( $footer_color ) ){
+				add_filter( 'layers_footer_site_class', 'layers_add_invert_class' );
+			}
+		}
 
 	}
 }
-add_action( 'wp_enqueue_scripts', 'layers_apply_customizer_general_styles_general', 100 );
+add_action( 'wp_enqueue_scripts', 'layers_apply_customizer_styles', 50 );
 
 /**
  * Helper that simply adds an invert class to an array of classes.
@@ -801,17 +780,6 @@ if( !function_exists( 'layers_get_theme_mod' ) ) {
 		// Set theme option default
 		$default = ( isset( $layers_customizer_defaults[ $name ][ 'value' ] ) ? $layers_customizer_defaults[ $name ][ 'value' ] : FALSE );
 
-		// If color control always return a value
-		/*
-		@TODO: Bring this back in at a later date, if necessary
-		if (
-				isset( $layers_customizer_defaults[ $name ][ 'type' ] ) &&
-				'layers-color' == $layers_customizer_defaults[ $name ][ 'type' ]
-			){
-			$default = '';
-		}
- 		*/
-
 		// Get theme option
 		$theme_mod = get_theme_mod( $name, $default );
 
@@ -931,12 +899,12 @@ add_action ( 'wp_footer', 'layers_add_additional_footer_scripts' );
 if( !function_exists( 'layers_add_google_analytics' ) ) {
 	function layers_add_google_analytics() {
 		global $wp_customize;
-		
+
 		// Bail if in customizer.
 		if( isset( $wp_customize ) ) return;
 
 		$analytics_id = layers_get_theme_mod( 'header-google-id' );
-		
+
 		if ( '' != $analytics_id ) { ?>
 			<script>
 				(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -1152,6 +1120,8 @@ if( !function_exists( 'layers_inline_styles' ) ) {
 
 		// Add the new CSS to the existing CSS
 		$layers_inline_css .= $inline_css;
+
+		return $inline_css;
 	}
 } // layers_inline_styles
 
@@ -1210,6 +1180,26 @@ if( !function_exists( 'layers_inline_button_styles' ) ) {
 }
 
 /**
+ * Add Style Blocks inside the widget (to avoid FOUC).
+ */
+
+// Apply pre-generated styles
+add_action( 'wp_head', 'layers_execute_inline_style_block' );
+
+function layers_execute_inline_style_block( $filter_arg ) {
+	global $layers_inline_css;
+
+	if ( isset( $layers_inline_css ) && '' !==  $layers_inline_css ) {
+
+		echo '<style type="text/css" id="layers-inline-styles-header">' . $layers_inline_css . '</style>';
+		$layers_inline_css = '';
+	}
+
+	// If this is a filter, then return the main arg.
+	return $filter_arg;
+}
+
+/**
 * Apply Inline Styles
 */
 if( !function_exists( 'layers_apply_inline_styles' ) ) {
@@ -1217,6 +1207,8 @@ if( !function_exists( 'layers_apply_inline_styles' ) ) {
 		global $layers_inline_css;
 
 		$layers_inline_css = apply_filters( 'layers_inline_css', $layers_inline_css );
+
+		if( '' == $layers_inline_css || FALSE == $layers_inline_css ) return;
 
 		wp_enqueue_style(
 			LAYERS_THEME_SLUG . '-inline-styles',
@@ -1236,6 +1228,8 @@ add_action( 'get_footer' , 'layers_apply_inline_styles', 100 );
 */
 if( !function_exists( 'layers_apply_custom_styles' ) ) {
 	function layers_apply_custom_styles(){
+
+		if( '' == layers_get_theme_mod( 'custom-css' ) || FALSE == layers_get_theme_mod( 'custom-css' ) ) return;
 
 		wp_enqueue_style(
 			LAYERS_THEME_SLUG . '-custom-styles',

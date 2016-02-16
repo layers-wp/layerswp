@@ -147,7 +147,7 @@ if( ! function_exists( 'layers_setup' ) ) {
 		load_theme_textdomain('layerswp', get_template_directory() . '/languages');
 
 		/**
-		 * Add theme support
+		 * Add Site Logo Support
 		 */
 
 		// Custom Site Logo

@@ -110,8 +110,8 @@ jQuery(function($) {
     *
 	* Target your .container, .wrapper, .post, etc.
     */
-	
-	$(".media-image, .thumbnail-media, .widget.slide .image-container").fitVids();
+
+	$(".media-image, .thumbnail-media, .widget.slide .image-container, .post .thumbnail").fitVids();
 
     /**
     * 6 - Layers Custom Easing
@@ -136,7 +136,7 @@ function layers_swiper_resize( s ){
 	// Find the highest slide, and set the Swiper container to that height.
     var height = 0;
     s.slides.each(function( key, slide ){
-        
+
         var slide_height = jQuery(slide).find( '.container' ).outerHeight();
         if ( jQuery(slide).find( '.content' ).outerHeight() ) slide_height += jQuery(slide).find( '.content' ).outerHeight();
         if ( jQuery(slide).find( '.content' ).height() ) slide_height -= jQuery(slide).find( '.content' ).height();
@@ -167,32 +167,32 @@ function layers_apply_overlay_header_styles() {
         $first_element = $content_wrapper.children().eq(0);
 
         if( $first_element.hasClass( 'slide' ) ) {
-            
+
             // Reset previous incase this is being re-aplied due to window resize.
             $first_element.find('.swiper-slide > .content' ).css('padding-top', '' );
 
             var padding_top = $first_element.find('.swiper-slide > .content' ).eq(0).css('padding-top').replace('px', '');
             padding_top = ( '' != padding_top ) ? parseInt( padding_top ) : 0 ;
-            
+
             // First element is Slider Widget.
             $first_element.find('.swiper-slide > .content').css({ 'paddingTop': padding_top + $header.outerHeight() });
-            
+
             jQuery('body').addClass( 'header-overlay-no-push' );
         }
         else if( $first_element.hasClass('title-container') ) {
 
             // Reset previous incase this is being re-aplied due to window resize.
             $first_element.css('padding-top', '' );
-            
+
             var padding_top = $first_element.css('padding-top').replace('px', '');
             padding_top = ( '' != padding_top ) ? parseInt( padding_top ) : 0 ;
-            
+
             // First element is Title (eg WooCommerce).
             $first_element.css({ 'paddingTop': $header.outerHeight() + padding_top });
             jQuery('body').addClass( 'header-overlay-no-push' );
         }
         else{
-            
+
             // Reset previous incase this is being re-aplied due to window resize.
             $content_wrapper.css('padding-top', '' );
 

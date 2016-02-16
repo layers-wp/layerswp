@@ -16,6 +16,44 @@ if( !class_exists( 'Layers_Widget' ) ) {
 
 		public $item_count;
 
+		public $inline_css;
+
+
+
+		/**
+		* If there is inline CSS back it up while we run this widget
+		*
+		*/
+
+		function backup_inline_css(){
+
+			global $layers_inline_css;
+
+			$this->old_inline_css = $layers_inline_css;
+
+			$layers_inline_css = '';
+			$this->inline_css = '';
+		}
+
+		/**
+		* If there is inline CSS to print in this widget, do so at the bottom of the widget
+		*
+		* @return   string   If there is CSS to return, returns the CSS wrapped in a <style> tag
+		*/
+
+		function print_inline_css(){
+
+			global $layers_inline_css;
+
+			if( '' !== $this->inline_css ) {
+				echo '<style type="text/css"> /* INLINE WIDGET CSS */
+				' . trim( $this->inline_css ) . '
+				</style>';
+			}
+
+			$layers_inline_css = $this->old_inline_css;
+		}
+
 		/**
 		* Check option with isset() and echo it out if it exists, if it does not exist, return false
 		*

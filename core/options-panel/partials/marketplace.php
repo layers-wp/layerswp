@@ -252,7 +252,7 @@ $all_categories = array(); ?>
 										</a>
 									</div>
 								</label>
-								<input  class="l_admin-product-json" type="hidden" value='<?php echo htmlspecialchars( json_encode( $details ) ); ?>' />
+								<input  class="l_admin-product-json" type="hidden" value="<?php echo htmlspecialchars( json_encode( $details ) ); ?>" />
 							</div>
 						<?php } // Get Preset Layouts ?>
 					<?php } ?>
@@ -377,7 +377,7 @@ $all_categories = array(); ?>
 						<?php _e( 'Preview' , 'layerswp' ); ?>
 					</a>
 					<a href="" class="button btn-secondary theme-buy-link" target="_blank">
-						<span class="l_admin-price">
+						<span class="l_admin-price theme-price">
 							$<?php echo (float) ($details->price_cents/100); ?>
 						</span>
 						<?php _e( 'Buy Now', 'layerswp' ); ?>

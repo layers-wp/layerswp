@@ -147,7 +147,7 @@ if( ! function_exists( 'layers_setup' ) ) {
 		load_theme_textdomain('layerswp', get_template_directory() . '/languages');
 
 		/**
-		 * Add theme support
+		 * Add Site Logo Support
 		 */
 
 		// Custom Site Logo
@@ -180,6 +180,10 @@ if( ! function_exists( 'layers_setup' ) ) {
 		* Welcome Redirect
 		*/
 		if( isset($_GET["activated"]) && $pagenow = "themes.php" ) { //&& '' == get_option( 'layers_welcome' )
+
+			// Enable Intercom on activation
+			if( FALSE === get_option( 'layers_enable_intercom' ) )
+				update_option( 'layers_enable_intercom' , '1' );
 
 			update_option( 'layers_welcome' , 1);
 
@@ -325,7 +329,7 @@ if( ! function_exists( 'layers_scripts' ) ) {
 		*/
 
 		wp_enqueue_script(
-			LAYERS_THEME_SLUG . '-plugins-js' ,
+			LAYERS_THEME_SLUG . '-plugins' ,
 			get_template_directory_uri() . '/assets/js/plugins.js',
 			array(
 				'jquery',
@@ -334,7 +338,7 @@ if( ! function_exists( 'layers_scripts' ) ) {
 		); // Sticky-Kit
 
 		wp_enqueue_script(
-			LAYERS_THEME_SLUG . '-framework-js' ,
+			LAYERS_THEME_SLUG . '-framework' ,
 			get_template_directory_uri() . '/assets/js/layers.framework.js',
 			array(
 				'jquery',
@@ -343,7 +347,7 @@ if( ! function_exists( 'layers_scripts' ) ) {
 			true
 		); // Framework
 
-		wp_localize_script( LAYERS_THEME_SLUG . '-framework-js', 'layers_script_settings', array(
+		wp_localize_script( LAYERS_THEME_SLUG . '-framework', 'layers_script_settings', array(
 			'header_sticky_breakpoint' => apply_filters( 'layers_sticky_header_breakpoint', 270 ),
 		) );
 

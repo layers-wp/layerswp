@@ -95,6 +95,9 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 		*  Widget front end display
 		*/
 		function widget( $args, $instance ) {
+			global $wp_customize;
+
+			$this->backup_inline_css();
 
 			// Turn $args array into variables.
 			extract( $args );
@@ -112,8 +115,8 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 			if( 'list-masonry' == $this->check_and_return( $widget , 'design', 'liststyle' ) ) $this->enqueue_masonry();
 
 			// Set the background styling
-			if( !empty( $widget['design'][ 'background' ] ) ) layers_inline_styles( '#' . $widget_id, 'background', array( 'background' => $widget['design'][ 'background' ] ) );
-			if( !empty( $widget['design']['fonts'][ 'color' ] ) ) layers_inline_styles( '#' . $widget_id, 'color', array( 'selectors' => array( '.section-title h3.heading' , '.section-title div.excerpt' ) , 'color' => $widget['design']['fonts'][ 'color' ] ) );
+			if( !empty( $widget['design'][ 'background' ] ) ) $this->inline_css .= layers_inline_styles( '#' . $widget_id, 'background', array( 'background' => $widget['design'][ 'background' ] ) );
+			if( !empty( $widget['design']['fonts'][ 'color' ] ) ) $this->inline_css .= layers_inline_styles( '#' . $widget_id, 'color', array( 'selectors' => array( '.section-title h3.heading' , '.section-title div.excerpt' ) , 'color' => $widget['design']['fonts'][ 'color' ] ) );
 
 			// Apply the advanced widget styling
 			$this->apply_widget_advanced_styling( $widget_id, $widget );
@@ -168,9 +171,9 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 							$item = $widget[ 'columns' ][ $column_key ];
 
 							// Set the background styling
-							if( !empty( $item['design'][ 'background' ] ) ) layers_inline_styles( '#' . $widget_id . '-' . $column_key , 'background', array( 'background' => $item['design'][ 'background' ] ) );
-							if( !empty( $item['design']['fonts'][ 'color' ] ) ) layers_inline_styles( '#' . $widget_id . '-' . $column_key , 'color', array( 'selectors' => array( 'h5.heading a', 'h5.heading' , 'div.excerpt' , 'div.excerpt p' ) , 'color' => $item['design']['fonts'][ 'color' ] ) );
-							if( !empty( $item['design']['fonts'][ 'shadow' ] ) ) layers_inline_styles( '#' . $widget_id . '-' . $column_key , 'text-shadow', array( 'selectors' => array( 'h5.heading a', 'h5.heading' , 'div.excerpt' , 'div.excerpt p' )  , 'text-shadow' => $item['design']['fonts'][ 'shadow' ] ) );
+							if( !empty( $item['design'][ 'background' ] ) ) $this->inline_css .= layers_inline_styles( '#' . $widget_id . '-' . $column_key , 'background', array( 'background' => $item['design'][ 'background' ] ) );
+							if( !empty( $item['design']['fonts'][ 'color' ] ) ) $this->inline_css .= layers_inline_styles( '#' . $widget_id . '-' . $column_key , 'color', array( 'selectors' => array( 'h5.heading a', 'h5.heading' , 'div.excerpt' , 'div.excerpt p' ) , 'color' => $item['design']['fonts'][ 'color' ] ) );
+							if( !empty( $item['design']['fonts'][ 'shadow' ] ) ) $this->inline_css .= layers_inline_styles( '#' . $widget_id . '-' . $column_key , 'text-shadow', array( 'selectors' => array( 'h5.heading a', 'h5.heading' , 'div.excerpt' , 'div.excerpt p' )  , 'text-shadow' => $item['design']['fonts'][ 'shadow' ] ) );
 
 							if( !isset( $item[ 'width' ] ) ) $item[ 'width' ] = $this->column_defaults[ 'width' ];
 
@@ -279,24 +282,28 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 							</div>
 						<?php } ?>
 					</div>
-				<?php } ?>
+				<?php }
 
-				<?php do_action( 'layers_after_content_widget_inner', $this, $widget ); ?>
+				do_action( 'layers_after_content_widget_inner', $this, $widget );
+
+				// Print the Inline Styles for this Widget
+				$this->print_inline_css();
+
+				if( 'list-masonry' == $this->check_and_return( $widget , 'design', 'liststyle' ) ) { ?>
+					<script>
+						jQuery(function($){
+							layers_masonry_settings[ '<?php echo $widget_id; ?>' ] = [{
+									itemSelector: '.layers-masonry-column',
+									layoutMode: 'masonry',
+									gutter: <?php echo ( isset( $widget['design'][ 'gutter' ] ) ? 20 : 0 ); ?>
+								}];
+
+							$('#<?php echo $widget_id; ?>').find('.list-masonry').layers_masonry( layers_masonry_settings[ '<?php echo $widget_id; ?>' ][0] );
+						});
+					</script>
+				<?php } // masonry trigger ?>
 
 			</section>
-			<?php if( 'list-masonry' == $this->check_and_return( $widget , 'design', 'liststyle' ) ) { ?>
-				<script>
-					jQuery(function($){
-						layers_masonry_settings[ '<?php echo $widget_id; ?>' ] = [{
-								itemSelector: '.layers-masonry-column',
-								layoutMode: 'masonry',
-								gutter: <?php echo ( isset( $widget['design'][ 'gutter' ] ) ? 20 : 0 ); ?>
-							}];
-
-						$('#<?php echo $widget_id; ?>').find('.list-masonry').layers_masonry( layers_masonry_settings[ '<?php echo $widget_id; ?>' ][0] );
-					});
-				</script>
-			<?php } // masonry trigger ?>
 		<?php }
 
 		/**

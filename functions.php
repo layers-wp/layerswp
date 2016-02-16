@@ -329,7 +329,7 @@ if( ! function_exists( 'layers_scripts' ) ) {
 		*/
 
 		wp_enqueue_script(
-			LAYERS_THEME_SLUG . '-plugins-js' ,
+			LAYERS_THEME_SLUG . '-plugins' ,
 			get_template_directory_uri() . '/assets/js/plugins.js',
 			array(
 				'jquery',
@@ -338,7 +338,7 @@ if( ! function_exists( 'layers_scripts' ) ) {
 		); // Sticky-Kit
 
 		wp_enqueue_script(
-			LAYERS_THEME_SLUG . '-framework-js' ,
+			LAYERS_THEME_SLUG . '-framework' ,
 			get_template_directory_uri() . '/assets/js/layers.framework.js',
 			array(
 				'jquery',
@@ -347,7 +347,7 @@ if( ! function_exists( 'layers_scripts' ) ) {
 			true
 		); // Framework
 
-		wp_localize_script( LAYERS_THEME_SLUG . '-framework-js', 'layers_script_settings', array(
+		wp_localize_script( LAYERS_THEME_SLUG . '-framework', 'layers_script_settings', array(
 			'header_sticky_breakpoint' => apply_filters( 'layers_sticky_header_breakpoint', 270 ),
 		) );
 

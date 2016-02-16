@@ -41,9 +41,16 @@ jQuery(document).ready(function($){
 		$( '.l_admin-modal-container' ).hide().removeClass( 'l_admin-hide' ).fadeIn( 350 );
 		$( '#adminmenu' ).fadeOut();
 
-		$( '#layers_preset_page_title' ).val( $title );
+		$( '#layers_preset_page_title' ).prop( 'placeholder', $title );
 	});
 
+	$(document).on( 'keyup', '#layers_preset_page_title', function(e){
+		if( '' == $(this).val() ){
+			$( '#layers-preset-proceed' ).attr( 'disabled', 'disabled' );
+		} else {
+			$( '#layers-preset-proceed' ).removeAttr( 'disabled' );
+		}
+	});
 
 	/**
 	* 2 - Cancel And Close Modal

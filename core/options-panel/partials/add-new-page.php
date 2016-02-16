@@ -36,7 +36,7 @@ $find_builder_page = layers_get_builder_pages(); ?>
 			</p>
 
 			<p id="layers-preset-layout-next-button">
-				<a id="layers-preset-proceed" href="" class="button button-primary btn-large" data-post_id="" data-location="">
+				<a id="layers-preset-proceed" href="" class="button button-primary btn-large disable" disabled="disabled" data-post_id="" data-location="">
 					<?php _e( 'Proceed to Customizer' , 'layerswp' ); ?>
 				</a>
 				<a id="layers-preset-cancel" href="" class="button btn-link btn-large pull-right">

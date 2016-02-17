@@ -623,10 +623,11 @@ if( ! function_exists( 'layers_admin_scripts' ) ) {
 		);
 		wp_localize_script(
 			LAYERS_THEME_SLUG . '-admin' ,
-			"layers_admin_params",
+			'layers_admin_params',
 			array(
 				'backup_pages_nonce' => wp_create_nonce( 'layers-backup-pages' ),
-				'backup_pages_success_message' => __('Your pages have been successfully backed up!', 'layerswp' )
+				'backup_pages_success_message' => __('Your pages have been successfully backed up!', 'layerswp' ),
+				'nonce_layers_widget_linking' => wp_create_nonce( 'nonce_layers_widget_linking' ),
 			)
 		);
 		

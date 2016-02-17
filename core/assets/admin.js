@@ -1193,6 +1193,7 @@ jQuery(function($) {
 								link_type : related_type_select.val(),
 								term      : term,
 								page      : page,
+								nonce     : layers_admin_params.nonce_layers_widget_linking,
 							};
 						},
 						results: function(data, params) {
@@ -1227,6 +1228,7 @@ jQuery(function($) {
 									action    : 'layers_widget_linking_initial_selections',
 									post_id   : id,
 									link_type : related_type_select.val(),
+									nonce     : layers_admin_params.nonce_layers_widget_linking,
 								},
 								success: function( data ) {
 									callback({

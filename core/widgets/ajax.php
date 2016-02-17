@@ -144,8 +144,8 @@ if( ! class_exists( 'Layers_Widget_Ajax' ) ) {
 		
 		function widget_linking_searches(){
 			global $post;
-			// if( ! check_ajax_referer( 'layers-widget-actions', 'nonce', false ) ) die( 'You threw a Nonce exception' ); // Nonce
-			// if( 'add-column' == $_POST[ 'widget_action'] ) { }
+			
+			if ( ! check_ajax_referer( 'nonce_layers_widget_linking', 'nonce', false ) ) die( 'You threw a Nonce exception' ); // Nonce
 			
 			$link_type = $_GET['link_type'];
 			
@@ -229,8 +229,8 @@ if( ! class_exists( 'Layers_Widget_Ajax' ) ) {
 		
 		function widget_linking_initial_selections(){
 			global $post;
-			// if( ! check_ajax_referer( 'layers-widget-actions', 'nonce', false ) ) die( 'You threw a Nonce exception' ); // Nonce
-			// if( 'add-column' == $_POST[ 'widget_action'] ) { }
+			
+			if ( ! check_ajax_referer( 'nonce_layers_widget_linking', 'nonce', false ) ) die( 'You threw a Nonce exception' ); // Nonce
 			
 			$link_type = $_POST['link_type'];
 			

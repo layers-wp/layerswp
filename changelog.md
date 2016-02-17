@@ -8,6 +8,7 @@
 * **Fix** - Fixed Layers Marketplace price in the modal. *MP*
 * **Fix** - Fixed T_PAAMAYIM_NEKUDOTAYIM error. *MP*
 * **Tweak** - When adding a new page, we no longer prefill the page title block, we simply use a placeholder. *MP*
+* **Enhancement** - Implemented new Linking Interface in widgets: link to existing content (pages, posts, etc) using search functionality + enables 'open-in-new-tab' functionality *SOB*
 
 =======
 ##1.2.11

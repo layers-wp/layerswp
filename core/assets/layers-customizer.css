@@ -1158,7 +1158,7 @@ div[id*='layers-widget'] .widget-control-actions .alignright{
 			}
 
 			/*--------------------------------*/
-			/*- LINK FIELD - TARGET ----------*/	
+			/*- LINK FIELD - TARGET ----------*/
 			.layers-link-field-link_target {
 				position: absolute;
 				bottom: 20px;
@@ -1173,7 +1173,7 @@ div[id*='layers-widget'] .widget-control-actions .alignright{
 				width: 100%;
 				max-width: 100%;
 				box-sizing: border-box;
-				padding-left: 2px !important;
+				padding-left: 3px !important;
 				padding-right: 4px !important;
 				line-height: 3px;
 			}
@@ -1184,6 +1184,9 @@ div[id*='layers-widget'] .widget-control-actions .alignright{
 				position: relative;
 				top: 2px;
 				left: 2px;
+			}
+			.layers-link-field-link_target .layers-icon-wrapper .icon-new-window{
+				font-size: 16px;
 			}
 
 /*-----------------------*/

@@ -10,7 +10,7 @@
 /**
  * The current version of the theme. Use a random number for SCRIPT_DEBUG mode
  */
-define( 'LAYERS_VERSION', '1.2.11' );
+define( 'LAYERS_VERSION', '1.2.12' );
 define( 'LAYERS_TEMPLATE_URI' , get_template_directory_uri() );
 define( 'LAYERS_TEMPLATE_DIR' , get_template_directory() );
 define( 'LAYERS_THEME_TITLE' , 'Layers' );
@@ -244,7 +244,7 @@ add_action( 'after_switch_theme' , 'layers_resore_site', 50 );
 */
 if( ! function_exists( 'layers_register_standard_sidebars' ) ) {
 	function layers_register_standard_sidebars(){
-		
+
 		/**
 		 * Register Standard Sidebars
 		 */
@@ -313,7 +313,7 @@ if( ! function_exists( 'layers_register_standard_sidebars' ) ) {
 				'after_title'   => '</h5>',
 			) );
 		}
-		
+
 	}
 }
 add_action( 'widgets_init' , 'layers_register_standard_sidebars' , 50 );
@@ -429,7 +429,7 @@ add_action( 'wp_enqueue_scripts' , 'layers_scripts' );
 if( ! function_exists( 'layers_admin_scripts' ) ) {
 	function layers_admin_scripts(){
 		global $pagenow, $wp_customize;
-		
+
 		/**
 		 * Tip-Tip (renamed to layerTip )
 		 */
@@ -446,7 +446,7 @@ if( ! function_exists( 'layers_admin_scripts' ) ) {
 			LAYERS_VERSION,
 			true
 		);
-		
+
 		/**
 		 * LayersSlct2 (also enqueued by Storekit and WooCommerce).
 		 */
@@ -468,7 +468,7 @@ if( ! function_exists( 'layers_admin_scripts' ) ) {
 			array( 'jquery' ),
 			LAYERS_VERSION
 		);
-		
+
 		/**
 		 * FontAwesome
 		 */
@@ -478,8 +478,8 @@ if( ! function_exists( 'layers_admin_scripts' ) ) {
 			array(),
 			LAYERS_VERSION
 		);
-		
-		
+
+
 		/**
 		 * Main Admin CSS's
 		 */
@@ -491,7 +491,7 @@ if( ! function_exists( 'layers_admin_scripts' ) ) {
 		);
 
 		if ( isset( $wp_customize ) ) {
-			
+
 			/**
 			 * Admin Customizer (only)
 			 */
@@ -503,7 +503,7 @@ if( ! function_exists( 'layers_admin_scripts' ) ) {
 			);
 		}
 		else {
-			
+
 			/**
 			 * Admin Dashboard (only)
 			 */
@@ -514,8 +514,8 @@ if( ! function_exists( 'layers_admin_scripts' ) ) {
 				LAYERS_VERSION
 			);
 		}
-		
-		
+
+
 		/**
 		 * Admin Editor
 		 */
@@ -532,8 +532,8 @@ if( ! function_exists( 'layers_admin_scripts' ) ) {
 			LAYERS_VERSION,
 			true
 		);
-		
-		
+
+
 		/**
 		 * Admin Migrator
 		 */
@@ -565,8 +565,8 @@ if( ! function_exists( 'layers_admin_scripts' ) ) {
 					'preset_layout_nonce' => wp_create_nonce( 'layers-migrator-preset-layouts' ),
 				)
 		);
-		
-		
+
+
 		/**
 		 * Discover More Photos
 		 */
@@ -578,8 +578,8 @@ if( ! function_exists( 'layers_admin_scripts' ) ) {
 			),
 			LAYERS_VERSION
 		);
-		
-		
+
+
 		/**
 		 * Admin Onboarding
 		 */
@@ -609,8 +609,8 @@ if( ! function_exists( 'layers_admin_scripts' ) ) {
 				'step_done_message' => __( 'Done!' , 'layerswp' )
 			)
 		);
-		
-		
+
+
 		/**
 		 * Admin JS
 		 */
@@ -634,7 +634,7 @@ if( ! function_exists( 'layers_admin_scripts' ) ) {
 				'nonce_layers_widget_linking' => wp_create_nonce( 'nonce_layers_widget_linking' ),
 			)
 		);
-		
+
 		wp_enqueue_media();
 
 	}

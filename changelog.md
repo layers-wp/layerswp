@@ -7,6 +7,9 @@
 * **Fix** - Fixed `layers_get_builder_pages()` so that it gets all possible post_status, especially auto_draft. *SOB*
 * **Fix** - Fixed Layers Marketplace price in the modal. *MP*
 * **Fix** - Fixed T_PAAMAYIM_NEKUDOTAYIM error. *MP*
+* **Fix** - Pagination is now fixed when your blog page is set as the home page. *MP*
+* **Fix** - Invalid characters in the CSS description. *MP*
+* **Tweak** - CSS now loads mainly in the site's header, core widgets have CSS blocks beneath them, avoiding FOUC. *MP*
 * **Tweak** - When adding a new page, we no longer prefill the page title block, we simply use a placeholder. *MP*
 * **Enhancement** - Implemented new Linking Interface in widgets: link to existing content (pages, posts, etc) using search functionality + enables 'open-in-new-tab' functionality *SOB*
 

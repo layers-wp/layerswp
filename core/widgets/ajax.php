@@ -164,10 +164,13 @@ if( ! class_exists( 'Layers_Widget_Ajax' ) ) {
 					if ( isset( $_GET['term'] ) && '' !== $_GET['term'] ) {
 						// Only search if there is a post to start with.
 						
+						$post_types_to_search = get_post_types( array( 'public' => TRUE ) );
+						unset( $post_types_to_search['attachment'] );
+						
 						$args = array();
 						$args['posts_per_page'] = 3;
 						$args['paged'] = $_GET['page'];
-						$args['post_type'] = get_post_types();
+						$args['post_type'] = $post_types_to_search;
 						
 						// Add filter for the 'LIKE' Title DB search.
 						add_filter( 'posts_where', 'post_title_search_filter', 10, 2 );

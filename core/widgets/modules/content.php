@@ -87,9 +87,6 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 						'shadow' => NULL
 					),
 				),
-				'button' => array(
-					'link_target' => '',
-				),
 			) );
 
 		}

@@ -68,8 +68,6 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 			$this->register_repeater_defaults( 'slide', 2, array(
 				'title' => __( 'Slider Title', 'layerswp' ),
 				'excerpt' => __( 'Short Excerpt', 'layerswp' ),
-				'link' => NULL,
-				'link_text' => __( 'See More', 'layerswp' ),
 				'design' => array(
 					'imagealign' => 'image-top',
 					'imageratios' => NULL,
@@ -84,7 +82,12 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 						'size' => 'large',
 						'shadow' => ''
 					)
-				)
+				),
+				'button' => array(
+					'link_type' => 'custom',
+					'link_type_custom' => '#',
+					'link_text' => __( 'See More', 'layerswp' ),
+				),
 			) );
 
 		}

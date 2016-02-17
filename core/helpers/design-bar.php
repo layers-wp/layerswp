@@ -843,7 +843,7 @@ class Layers_Design_Controller {
 				'name' => $this->get_layers_field_name( 'advanced', 'customcss' ),
 				'id' => $this->get_layers_field_id( 'advanced', 'customcss' ),
 				'value' => ( isset( $this->values['advanced']['customcss'] ) ) ? $this->values['advanced']['customcss'] : NULL,
-				'placeholder' => ".classname {\n\tbackground: #333;\n}"
+				'placeholder' => ".classname { color: #333; }"
 			),
 			'padding' => array(
 				'type' => 'trbl-fields',

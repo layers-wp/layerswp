@@ -1175,7 +1175,7 @@ jQuery(function($) {
 				
 				var initial_selection = {
 					id   : $(element).val(),
-					text : $(element).attr( 'data-initial-display' ),
+					text : $(element).attr( 'data-display-text' ),
 				};
 				var placeholder = $(element).attr( 'placeholder' );
 				
@@ -1198,8 +1198,6 @@ jQuery(function($) {
 						},
 						results: function(data, params) {
 							
-							// console.log( data.more );
-							
 							return {
 								results: data.results,
 								more: data.more,
@@ -1216,7 +1214,7 @@ jQuery(function($) {
 						
 						callback( initial_selection );
 						
-						// convert the value to a Name by doing reverse-lookup of the id. - Replaced this method with the ajax-free method above.
+						// Convert the value to a Name by doing reverse-lookup of the id. - Replaced this method with the ajax-free method above.
 						/*
 						var id = $(element).val();
 						if (id !== "") {
@@ -1250,6 +1248,10 @@ jQuery(function($) {
 					width: '100%',
 				});
 				
+				$(element).on('change', function(e) {
+					$(element).attr( 'data-display-text', e.added.text ).trigger('layers_init_linking');
+				})
+				
 			});
 			
 			/**
@@ -1281,8 +1283,7 @@ jQuery(function($) {
 					if ( 'custom' == link_type )
 						link_value = link_input.val();
 					else if ( 'post' == link_type )
-						link_value = link_input.attr('data-initial-display');
-					
+						link_value = link_input.attr('data-display-text');
 					
 					// Compile the display content.
 					var display_content = '';
@@ -1291,9 +1292,9 @@ jQuery(function($) {
 						display_content += link_text + ' ';
 					
 					if ( '' != link_value )
-						display_content  += '<i title="' + link_value + '">' + link_value + '</i>';
+						display_content  += '<i title="' + link_value + '">' + link_value + '</i> ';
 					
-										
+							
 					// If nothing is set then throw out &nbsp; to hold the space.
 					if ( '' == display_content ) display_content = '&nbsp;';
 					

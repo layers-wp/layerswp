@@ -663,13 +663,7 @@ class Layers_Form_Elements {
 					
 					<!-- Header -->
 					<div class="layers-form-collection-header">
-						<?php if ( isset( $input->value->link_text ) ) { ?>
-							<span data-mimic-selector="#<?php echo "{$input->id}-link_text"; ?>">
-								<?php echo $input->value->link_text; ?>
-							</span>
-						<?php } else { ?>
-							&nbsp;
-						<?php } ?>
+						<?php echo ( isset( $input->value->link_text ) ) ? $input->value->link_text : '&nbsp' ; ?>
 					</div>
 					<!-- / Header -->
 					
@@ -728,7 +722,7 @@ class Layers_Form_Elements {
 									</label>
 									<?php
 									$initial_post_id = isset( $input->value->link_type_post ) ? $input->value->link_type_post : 0 ;
-									$initial_display = get_the_title( $initial_post_id );
+									$initial_display = get_the_title( $initial_post_id ) . ' (' . get_post_type( $initial_post_id ) . ')';
 									echo $this->input(
 										array(
 											'type' => 'hidden',
@@ -738,7 +732,7 @@ class Layers_Form_Elements {
 											'value' => ( isset( $input->value->link_type_post ) ) ? $input->value->link_type_post : NULL,
 											'class' => 'layers-text layers-widget-dynamic-linking-select',
 											'data' => array(
-												'initial-display' => $initial_display,
+												'display-text' => $initial_display,
 											),
 										)
 									);

@@ -31,6 +31,7 @@
  * 18 - Reset to Default
  * 19 - Linking from one section/panel to another.
  * 20 - Init Tip-Tip
+ * 21 - Linking-UX
  *
  * Author: Obox Themes
  * Author URI: http://www.oboxthemes.com/
@@ -101,11 +102,18 @@ jQuery(function($) {
 	*
 	* Extend jQuery easing with custom Layers easing function for UI animations - eg slideUp, slideDown
 	*/
-
-	jQuery.extend( jQuery.easing, { layersEaseInOut: function (x, t, b, c, d) {
+	
+	// easeInOutQuad
+	/*jQuery.extend( jQuery.easing, { layersEaseInOut: function (x, t, b, c, d) {
 		if ((t/=d/2) < 1) return c/2*t*t + b;
 		return -c/2 * ((--t)*(t-2) - 1) + b;
-	}});
+	}});*/
+	
+	// easeInOutQuint
+    jQuery.extend( jQuery.easing, { layersEaseInOut: function (x, t, b, c, d) {
+        if ((t/=d/2) < 1) return c/2*t*t*t*t*t + b;
+        return c/2*((t-=2)*t*t*t*t + 2) + b;
+    }});
 
 	/**
 	* 3 - Media Uploaders
@@ -437,26 +445,43 @@ jQuery(function($) {
 		$that.parent( 'li.layers-visuals-item' ).siblings().not( $that.parent() ).removeClass( 'layers-active' );
 	});
 
-	$( document ).on( 'click' , '.layers-select-icons label.layers-icon-wrapper' , function(e){
-		// "Hi Mom"
-		$that = $(this);
-
+	$( document ).on( 'mousedown' , '.layers-select-icons label.layers-icon-wrapper' , function(e){
+		
+		// Cache elements.
+		var $label = $(this);
+		
+		var $input = $('#' + $label.attr( 'for' ));
+		
 		// Get the input value
-		$value = $('#' + $that.attr( 'for' ) ).val();
+		var $value = $input.val();
 
 		// Capture the closest fellow form items
-		$form_items = $that.closest( '.layers-form-item' ).siblings( '.layers-form-item' ).length
-
+		$form_items = $label.closest( '.layers-form-item' ).siblings( '.layers-form-item' ).length;
 		if( 0 == $form_items ){
-			$that.closest( '.layers-pop-menu-wrapper' ).siblings( '.layers-icon-wrapper' ).find( 'span[class^="icon-"]' ).attr( 'class', 'icon-' + $value );
+			$label.closest( '.layers-pop-menu-wrapper' ).siblings( '.layers-icon-wrapper' ).find( 'span[class^="icon-"]' ).attr( 'class', 'icon-' + $value );
 		}
 
 		// Toggle active state
-		$that.trigger( 'layers-design-bar-menu', $that );
-		$that.addClass( 'layers-active' );
-
-		// Close siblings
-		$that.siblings( '.layers-icon-wrapper' ).removeClass( 'layers-active' );
+		$label.trigger( 'layers-design-bar-menu', $label );
+		
+		// De-activate siblings
+		$label.siblings( '.layers-icon-wrapper' ).removeClass( 'layers-active' );
+		
+		if ( 'checkbox' == $input.attr('type') ) {
+			
+			// Input is a 'checkbox' when there's only one single button - so make it toggle on/off.
+			if ( $label.hasClass( 'layers-active' ) ) {
+				$label.removeClass( 'layers-active' );
+			}
+			else {
+				$label.addClass( 'layers-active' );
+			}
+		}
+		else {
+			
+			// Input is a 'radio' when there's multiple buttons - so make them behave like radio.
+			$label.addClass( 'layers-active' );
+		}
 	});
 
 	$( document ).on( 'click' , '[id^="layers-customize"] .layers-visuals-item' , function(e){
@@ -573,34 +598,34 @@ jQuery(function($) {
 	if ( $('body.wp-customizer').length ) {
 		// Customizer
 		
-		// Init interface in all except widgets on load
-		layers_init_show_if( $( '#customize-theme-controls > ul > li.accordion-section' ).not( '#accordion-panel-widgets' ) );
+			// Init interface in all except widgets on load
+			layers_init_show_if( $( '#customize-theme-controls > ul > li.accordion-section' ).not( '#accordion-panel-widgets' ) );
 		
-		// Init interface inside widgets
-		$( document ).on( 'layers-interface-init', '.widget, .layers-accordions', function( e ){
-			// 'this' is the widget
-			layers_init_show_if( $(this), true );
-		});
+			// Init interface inside widgets
+			$( document ).on( 'layers-interface-init', '.widget, .layers-accordions', function( e ){
+				// 'this' is the widget
+				layers_init_show_if( $(this), true );
+			});
 	}
-	else{
+	else {
 		// Not Customizer
 		layers_init_show_if( $( 'body' ), true );
 	}
-	
+
 	function layers_init_show_if( $element_s, $run_instantly ){
 
 		$element_s.each( function( i, group ) {
 
 			$(group).find( '[data-show-if-selector]').each( function( j, element ) {
-				
+
 				var $target_element = $(element);
 
 				var $source_element_selector = $target_element.attr( 'data-show-if-selector' );
 
 				layers_enqueue_init( function(){
-					
+
 					layers_apply_show_if( $source_element_selector );
-					
+
 					$( document ).on( 'change', $source_element_selector, function(e){
 						layers_apply_show_if( $source_element_selector );
 					});
@@ -618,7 +643,7 @@ jQuery(function($) {
 			var $target_value   = $target_element.data( 'show-if-value' ).toString();
 			var $source_element = $( $target_element.data( 'show-if-selector' ).toString() );
 			var $operator       = $target_element.data( 'show-if-operator' );
-
+			
 			if ( $source_element.attr('type') == 'checkbox' ) {
 				$source_element_value = ( $source_element.is(':checked') ) ? 'true' : 'false' ;
 			}
@@ -630,12 +655,12 @@ jQuery(function($) {
 				layers_show_if_display( 'hide', $target_element );
 				return false;
 			}
-
+			
 			// Apply the chosen Operator (default: ==)
 			switch( $operator ) {
-
+				
 				case '!=':
-
+					
 					if ( $target_value.trim() != $source_element_value.trim() )
 						layers_show_if_display( 'show', $target_element ); // Show
 					else
@@ -687,10 +712,10 @@ jQuery(function($) {
 						layers_show_if_display( 'hide', $target_element ); // Hide
 					
 					break;
-
+				
 				case '==':
 				default:
-
+					
 					if ( $target_value.trim() == $source_element_value.trim() )
 						layers_show_if_display( 'show', $target_element ); // Show
 					else
@@ -698,12 +723,12 @@ jQuery(function($) {
 					
 					break;
 			}
-
+			
 		});
 	}
 
 	function layers_show_if_display( $state, $target_element ) {
-
+		
 		// Calculate the reveal animation type.
 		var animation_type = 'none';
 		
@@ -721,7 +746,7 @@ jQuery(function($) {
 		}
 
 		if ( 'hide' == $state ) {
-
+			
 			// Hide
 			if( animation_type == 'slideDown' ){
 				$target_element.slideUp( { duration: 550, easing: 'layersEaseInOut', complete: function(){
@@ -733,7 +758,7 @@ jQuery(function($) {
 			}
 		}
 		else {
-
+			
 			// Show
 			if( animation_type == 'slideDown' ){
 				$target_element.removeClass( 'l_admin-hide' );
@@ -1125,5 +1150,189 @@ jQuery(function($) {
 			});
 		});
 	}
+
+	/**
+	* 21 - Linking-UX
+	*/
+
+	// Init interface in all except widgets on load
+	layers_init_form_collections( $( '#customize-theme-controls > ul > li.accordion-section' ).not( '#accordion-panel-widgets' ) );
+
+	// Init interface inside widgets
+	$( document ).on( 'layers-interface-init', '.widget, .layers-accordions', function( e ){
+
+		// 'this' is the widget
+		layers_init_form_collections( $(this) );
+	});
+
+	function layers_init_form_collections( $element_s ){
+		$element_s.each( function( i, group ) {
+			
+			/**
+			 * Get the link-type inputs and convert them to layersSlct2.
+			 */
+			$(group).find( '.layers-widget-dynamic-linking-select').each( function( j, element ) {
+				
+				var initial_selection = {
+					id   : $(element).val(),
+					text : $(element).attr( 'data-display-text' ),
+				};
+				var placeholder = $(element).attr( 'placeholder' );
+				
+				var related_type_select = $(element).parents('.layers-form-collection').find('[id$="-link_type"]');
+				
+				$(element).layersSlct2({
+					ajax: {
+						url: ajaxurl,
+						dataType: 'json',
+						quietMillis: 250,
+						data: function(term, page) {
+							
+							return {
+								action    : 'layers_widget_linking_searches',
+								link_type : related_type_select.val(),
+								term      : term,
+								page      : page,
+								nonce     : layers_admin_params.nonce_layers_widget_linking,
+							};
+						},
+						results: function(data, params) {
+							
+							return {
+								results: data.results,
+								more: data.more,
+							};
+						},
+						cache: true
+					},
+					escapeMarkup: function(markup) {
+						
+						// let our custom formatter work
+						return markup;
+					},
+					initSelection: function(element, callback) {
+						
+						callback( initial_selection );
+						
+						// Convert the value to a Name by doing reverse-lookup of the id. - Replaced this method with the ajax-free method above.
+						/*
+						var id = $(element).val();
+						if (id !== "") {
+							jQuery.ajax({
+								type     : 'post',
+								dataType : 'json',
+								url      : ajaxurl,
+								data     : {
+									action    : 'layers_widget_linking_initial_selections',
+									post_id   : id,
+									link_type : related_type_select.val(),
+									nonce     : layers_admin_params.nonce_layers_widget_linking,
+								},
+								success: function( data ) {
+									callback({
+										id: data.id,
+										text: data.text
+									});
+								}
+							});
+						}
+						*/
+					},
+					formatSelection: function(data) {
+						
+						return data.text;
+					},
+					containerCssClass: 'tpx-layersSlct2-container',
+					dropdownCssClass: 'tpx-layersSlct2-drop',
+					minimumInputLength: 1,
+					width: '100%',
+				});
+				
+				$(element).on('change', function(e) {
+					$(element).attr( 'data-display-text', e.added.text ).trigger('layers_init_linking');
+				})
+				
+			});
+			
+			/**
+			 * Dynamic updating of the Linking-UX heading.
+			 */
+			$(group).find('.layers-form-collection').each( function( j, element ) {
+				
+				// Cache elements.
+				var $collection_holder = $(element);
+				var $collection_content = $collection_holder.find('.layers-form-collection-content');
+				var $collection_heading = $collection_holder.find('.layers-form-collection-header');
+				
+				// Hide content part - like an accordion.
+				$collection_content.hide();
+				
+				// Update the heading on change of any input/select.
+				$(element).find('select, input').on( 'change keyup layers_init_linking', function(){
+					
+					// Get the link text.
+					var link_text = $(element).find('[id$="-link_text"]').val();
+					
+					// Get the link type.
+					var link_type = $(element).find('[id$="-link_type"]').val();
+
+					// Get the link value.
+					var link_input = $(element).find('[name$="link_type_' + link_type + ']"]');
+					
+					link_value = '';
+					if ( 'custom' == link_type )
+						link_value = link_input.val();
+					else if ( 'post' == link_type )
+						link_value = link_input.attr('data-display-text');
+					
+					// Compile the display content.
+					var display_content = '';
+					
+					if ( '' != link_text )
+						display_content += link_text + ' ';
+					
+					if ( '' != link_value )
+						display_content  += '<i title="' + link_value + '">' + link_value + '</i> ';
+					
+							
+					// If nothing is set then throw out &nbsp; to hold the space.
+					if ( '' == display_content ) display_content = '&nbsp;';
+					
+					$collection_heading.html( display_content );
+				});
+				
+				// Ping an intial update at the start.
+				$(element).find('select, input').eq(0).trigger('layers_init_linking');
+			});
+		});
+	}
+	
+	// Accordion-type panel of the Linking-UX
+	$(document).on('click', '.layers-form-collection-header', function(){
+		
+		/**
+		 * Show the current panel.
+		 */
+		$collection_holder = $(this).closest('.layers-form-collection');
+		$collection_content = $collection_holder.find('.layers-form-collection-content');
+		
+		if ( $collection_holder.hasClass('closed') ) {
+			$collection_holder.removeClass('closed');
+			$collection_content.slideDown({ easing: 'layersEaseInOut', duration: 250 });
+		}
+		else{
+			$collection_holder.addClass('closed');
+			$collection_content.slideUp({ easing: 'layersEaseInOut', duration: 250 });
+		}
+		
+		/**
+		 * Hide the other panel (that are still showing)
+		 */
+		$other_collection_holders = $('.layers-form-collection:not(".closed")').not( $collection_holder );
+		$other_collection_contents = $other_collection_holders.find('.layers-form-collection-content');
+		
+		$other_collection_holders.addClass('closed');
+		$other_collection_contents.slideUp({ easing: 'layersEaseInOut', duration: 250 });
+	});
 
 });

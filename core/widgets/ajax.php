@@ -7,7 +7,7 @@
  * @since Layers 1.0.0
  */
 
-if( !class_exists( 'Layers_Widget_Ajax' ) ) {
+if( ! class_exists( 'Layers_Widget_Ajax' ) ) {
 
 	class Layers_Widget_Ajax {
 
@@ -35,6 +35,10 @@ if( !class_exists( 'Layers_Widget_Ajax' ) ) {
 			add_action( 'wp_ajax_layers_slider_widget_actions', array( $this, 'slider_widget_actions' ) );
 			add_action( 'wp_ajax_layers_content_widget_actions', array( $this, 'content_widget_actions' ) );
 			add_action( 'wp_ajax_layers_widget_new_repeater_item', array( $this, 'widget_new_repeater_item' ) );
+			
+			// Widget Link Actions
+			add_action( 'wp_ajax_layers_widget_linking_searches', array( $this, 'widget_linking_searches' ) );
+			add_action( 'wp_ajax_layers_widget_linking_initial_selections', array( $this, 'widget_linking_initial_selections' ) );
 		}
 		function slider_widget_actions(){
 
@@ -137,7 +141,156 @@ if( !class_exists( 'Layers_Widget_Ajax' ) ) {
 			}
 			die();
 		}
+		
+		function widget_linking_searches(){
+			global $post;
+			
+			if ( ! check_ajax_referer( 'nonce_layers_widget_linking', 'nonce', false ) ) die( 'You threw a Nonce exception' ); // Nonce
+			
+			$link_type = $_GET['link_type'];
+			
+			$more = FALSE;
+			
+			// Data collection.
+			$results_collection = array();
+			
+			switch ( $link_type ) {
+				
+				case 'post':
+				
+					/**
+					 * Post
+					 */
+					if ( isset( $_GET['term'] ) && '' !== $_GET['term'] ) {
+						// Only search if there is a post to start with.
+						
+						$post_types_to_search = get_post_types( array( 'public' => TRUE ) );
+						unset( $post_types_to_search['attachment'] );
+						
+						$args = array();
+						$args['posts_per_page'] = 3;
+						$args['paged'] = $_GET['page'];
+						$args['post_type'] = $post_types_to_search;
+						
+						// Add filter for the 'LIKE' Title DB search.
+						add_filter( 'posts_where', 'post_title_search_filter', 10, 2 );
+						
+						// Search the posts.
+						query_posts( $args );
 
+						// Loop and collect the data.
+						while ( have_posts() ) : the_post();
+							$results_collection[] = array(
+								'id' => $post->ID,
+								// 'text' => $post->post_title,
+								'text' => $post->post_title . ' (' . $post->post_type . ')',
+							);
+						endwhile;
+						
+						// Search the posts.
+						$args['paged'] = intval( $_GET['page'] ) + 1;
+						query_posts( $args );
+						$more = have_posts();
+						
+					}
+					
+					break;
+				
+				case 'post_type_archive':
+					
+					/**
+					 * Post-Type Archive
+					 */
+					$post_types = get_post_types( array(), 'objects' );
+					
+					foreach ( $post_types as $post_type => $post_type_value ) {
+						$results_collection[] = array(
+							'id' => $post_type,
+							'text' => $post_type_value->name,
+						);
+					}
+					
+					break;
+				
+				case 'taxonomy_archive':
+					
+					/**
+					 * Post-Type Archive
+					 */
+					
+					break;
+			}
+			
+			// Echo the data in the format that Select-2 can use.
+			echo json_encode( array(
+				'results' => $results_collection,
+				'more'    => $more,
+			) );
+			
+			die();
+		}
+		
+		function widget_linking_initial_selections(){
+			global $post;
+			
+			if ( ! check_ajax_referer( 'nonce_layers_widget_linking', 'nonce', false ) ) die( 'You threw a Nonce exception' ); // Nonce
+			
+			$link_type = $_POST['link_type'];
+			
+			// Data collection.
+			$results_collection = array();
+			
+			switch ( $link_type ) {
+				
+				case 'post':
+				
+					/**
+					 * Post
+					 */
+				
+					if ( isset( $_POST['post_id'] ) && '' !== $_POST['post_id'] ) {
+						
+						$post_id = $_POST['post_id'];
+						
+						$results_collection = array(
+							'id'   => $post_id,
+							'text' => get_the_title( $post_id ) . ' (' . get_post_type( $post_id ) . ')',
+						);
+					}
+					
+					break;
+				
+				case 'post_type_archive':
+					
+					/**
+					 * Post-Type Archive
+					 */
+					
+					break;
+				
+				case 'taxonomy_archive':
+					
+					/**
+					 * Post-Type Archive
+					 */
+					
+					break;
+			}
+			
+			// Echo the data in the format that Select-2 can use.
+			echo json_encode( $results_collection );
+			
+			die();
+		}
+
+	}
+	
+	function post_title_search_filter( $where, &$wp_query ) {
+		global $wpdb;
+		if ( isset( $_GET['term'] ) && $term = $_GET['term'] ) {
+			$where .= ' AND ' . $wpdb->posts . '.post_title LIKE \'' . esc_sql( $wpdb->esc_like( $term ) ) . '%\'';
+		}
+		return $where;
 	}
 
 	function layers_register_widget_ajax(){

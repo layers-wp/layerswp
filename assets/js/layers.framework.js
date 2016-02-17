@@ -119,6 +119,7 @@ jQuery(function($) {
     * Extend jQuery easing with custom Layers easing function for UI animations - eg slideUp, slideDown
     */
 
+    // easeInOutQuad
     jQuery.extend( jQuery.easing, { layersEaseInOut: function (x, t, b, c, d) {
         if ((t/=d/2) < 1) return c/2*t*t + b;
         return -c/2 * ((--t)*(t-2) - 1) + b;

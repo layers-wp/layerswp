@@ -1,10 +1,10 @@
- /*
+/*
  * TipTip
  * Copyright 2010 Drew Wilson
  * www.drewwilson.com
  * code.drewwilson.com/entry/tiptip-jquery-plugin
  *
- * Layers: changed 'tipTip' to 'layersTip' so we don;t clash with others using tip tip, and we are not stuck using one top plugin forever.
+ * Layers: rename 'tipTip'->'layersTip' - to avoid script clashes if other plugin/themes load the same script.
  *
  * Version 1.3   -   Updated: Mar. 23, 2010
  *

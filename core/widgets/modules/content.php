@@ -17,12 +17,12 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 			/**
 			* Widget variables
 			*
-		 	* @param  	string    		$widget_title    	Widget title
-		 	* @param  	string    		$widget_id    		Widget slug for use as an ID/classname
-		 	* @param  	string    		$post_type    		(optional) Post type for use in widget options
-		 	* @param  	string    		$taxonomy    		(optional) Taxonomy slug for use as an ID/classname
-		 	* @param  	array 			$checkboxes    	(optional) Array of checkbox names to be saved in this widget. Don't forget these please!
-		 	*/
+			* @param  	string    		$widget_title    	Widget title
+			* @param  	string    		$widget_id    		Widget slug for use as an ID/classname
+			* @param  	string    		$post_type    		(optional) Post type for use in widget options
+			* @param  	string    		$taxonomy    		(optional) Taxonomy slug for use as an ID/classname
+			* @param  	array 			$checkboxes    	(optional) Array of checkbox names to be saved in this widget. Don't forget these please!
+			*/
 			$this->widget_title = __( 'Content' , 'layerswp' );
 			$this->widget_id = 'column';
 			$this->post_type = '';
@@ -85,8 +85,11 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 						'size' => 'medium',
 						'color' => NULL,
 						'shadow' => NULL
-					)
-				)
+					),
+				),
+				'button' => array(
+					'link_target' => '',
+				),
 			) );
 
 		}
@@ -134,7 +137,6 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 			$widget_container_class = implode( ' ', apply_filters( 'layers_content_widget_container_class' , $widget_container_class ) ); ?>
 			<?php echo $this->custom_anchor( $widget ); ?>
 			<section id="<?php echo esc_attr( $widget_id ); ?>" class="<?php echo esc_attr( $widget_container_class ); ?>">
-
 
 				<?php do_action( 'layers_before_content_widget_inner', $this, $widget ); ?>
 
@@ -207,11 +209,13 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 								$use_image_ratio ,
 								$featurevideo
 							);
-
-							// Set the column link
-							$link = $this->check_and_return( $item , 'link' );
-
- 							/**
+							
+							// Get the link array.
+							$link_array       = $this->check_and_return_link( $item, 'button' );
+							$link_href_attr   = ( $link_array['link'] ) ? 'href="' . esc_url( $link_array['link'] ) . '"' : '';
+							$link_target_attr = ( '_blank' == $link_array['target'] ) ? 'target="_blank"' : '';
+							
+							/**
 							* Set Individual Column CSS
 							*/
 							$classes = array();
@@ -255,9 +259,13 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 								<div class="<?php echo $column_inner_classes; ?>">
 									<?php if( NULL != $media ) { ?>
 										<div class="media-image <?php echo ( ( isset( $item['design'][ 'imageratios' ] ) && 'image-round' == $item['design'][ 'imageratios' ] ) ? 'image-rounded' : '' ); ?>">
-											<?php if( NULL != $link ) { ?><a href="<?php echo $link; ?>"><?php  } ?>
+											<?php if ( $link_array['link'] ) { ?>
+												<a <?php echo $link_href_attr; ?> <?php echo $link_target_attr; ?>>
+											<?php  } ?>
 												<?php echo $media; ?>
-											<?php if( NULL != $link ) { ?></a><?php  } ?>
+											<?php if ( $link_array['link'] ) { ?>
+												</a>
+											<?php  } ?>
 										</div>
 									<?php } ?>
 
@@ -265,16 +273,22 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 										<div class="media-body <?php echo ( isset( $item['design']['fonts'][ 'align' ] ) ) ? $item['design']['fonts'][ 'align' ] : ''; ?>">
 											<?php if( $this->check_and_return( $item, 'title') ) { ?>
 												<h5 class="heading">
-													<?php if( NULL != $link && ! ( isset( $item['link'] ) && $this->check_and_return( $item , 'link_text' ) ) ) { ?><a href="<?php echo $item['link']; ?>"><?php } ?>
+													<?php if ( $link_array['link'] ) { ?>
+														<a <?php echo $link_href_attr; ?> <?php echo $link_target_attr; ?>>
+													<?php } ?>
 														<?php echo $item['title']; ?>
-													<?php if( NULL != $link && ! ( isset( $item['link'] ) && $this->check_and_return( $item , 'link_text' ) ) ) { ?></a><?php } ?>
+													<?php if ( $link_array['link'] ) { ?>
+														</a>
+													<?php } ?>
 												</h5>
 											<?php } ?>
 											<?php if( $this->check_and_return( $item, 'excerpt' ) ) { ?>
 												<div class="excerpt"><?php layers_the_content( $item['excerpt'] ); ?></div>
 											<?php } ?>
-											<?php if( isset( $item['link'] ) && $this->check_and_return( $item , 'link_text' ) ) { ?>
-												<a href="<?php echo $item['link']; ?>" class="button btn-<?php echo $this->check_and_return( $item , 'design' , 'fonts' , 'size' ); ?>"><?php echo $item['link_text']; ?></a>
+											<?php if ( $link_array['link'] && $link_array['text'] ) { ?>
+												<a <?php echo $link_href_attr; ?> class="button btn-<?php echo $this->check_and_return( $item , 'design' , 'fonts' , 'size' ); ?>" <?php echo $link_target_attr; ?>>
+													<?php echo $link_array['text']; ?>
+												</a>
 											<?php } ?>
 										</div>
 									<?php } ?>
@@ -510,33 +524,26 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 								)
 							); ?>
 						</p>
-						<div class="layers-row">
-							<p class="layers-form-item layers-column layers-span-6">
-								<label for="<?php echo $this->get_layers_field_id( 'link_text' ); ?>"><?php _e( 'Button Link' , 'layerswp' ); ?></label>
-								<?php echo $this->form_elements()->input(
-									array(
-										'type' => 'text',
-										'name' => $this->get_layers_field_name( 'link' ),
-										'id' => $this->get_layers_field_id( 'link' ),
-										'placeholder' => __( 'http://' , 'layerswp' ),
-										'value' => ( isset( $widget['link'] ) ) ? $widget['link'] : NULL ,
-										'class' => 'layers-text',
-									)
-								); ?>
-							</p>
-							<p class="layers-form-item layers-column layers-span-6">
-								<label for="<?php echo $this->get_layers_field_id( 'link_text' ); ?>"><?php _e( 'Button Text' , 'layerswp' ); ?></label>
-								<?php echo $this->form_elements()->input(
-									array(
-										'type' => 'text',
-										'name' => $this->get_layers_field_name( 'link_text' ),
-										'id' => $this->get_layers_field_id( 'link_text' ),
-										'placeholder' => __( 'e.g. "Read More"' , 'layerswp' ),
-										'value' => ( isset( $widget['link_text'] ) ) ? $widget['link_text'] : NULL ,
-									)
-								); ?>
-							</p>
+						
+						<?php
+						// Fix widget's that were created before dynamic linking structure.
+						$widget = $this->convert_legacy_widget_links( $widget, 'button' );
+						?>
+						
+						<div class="layers-form-item">
+							<label>
+								<?php _e( 'Insert Link' , 'layerswp' ); ?>
+							</label>
+							<?php echo $this->form_elements()->input(
+								array(
+									'type' => 'link-group',
+									'name' => $this->get_layers_field_name( 'button' ),
+									'id' => $this->get_layers_field_id( 'button' ),
+									'value' => ( isset( $widget['button'] ) ) ? $widget['button'] : NULL,
+								)
+							); ?>
 						</div>
+						
 					</div>
 				</section>
 			</li>

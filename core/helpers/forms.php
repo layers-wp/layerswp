@@ -250,7 +250,10 @@ class Layers_Form_Elements {
 			/**
 			* Select 'icons' such as the column selector
 			*/
-			case 'select-icons' : ?>
+			case 'select-icons' :
+				
+				$input_type = ( 1 == count( $input->options ) ) ? 'checkbox' : 'radio';
+				?>
 				<div class="layers-select-icons">
 					<?php foreach( $input->options as $key => $value ) {
 						if ( is_array( $value ) ) {
@@ -268,10 +271,12 @@ class Layers_Form_Elements {
 							$class = "icon-{$key}";
 							$data_string = '';
 						}
+						
+						$data_string .= 'data-value="' . $input->value . '" ';
 						?>
 						<label
 							href=""
-							class="layers-icon-wrapper <?php if( $key == $input->value ) echo 'layers-active'; ?>"
+							class="layers-icon-wrapper <?php if ( $key == $input->value ) echo 'layers-active'; ?>"
 							for="<?php echo esc_attr( $input->id ) ,'-', esc_attr( $key ); ?>"
 							<?php echo $data_string ?>
 							>
@@ -280,8 +285,8 @@ class Layers_Form_Elements {
 								<?php echo esc_html( $name ); ?>
 							</span>
 						</label>
-						<input type="radio" <?php echo implode ( ' ' , $input_props ); ?> id="<?php echo esc_attr( $input->id ) ,'-', esc_attr( $key ); ?>" value="<?php echo esc_attr( $key ); ?>" <?php checked( $input->value , $key , true ); ?> class="l_admin-hide" />
-					<?php } // foreach options ?>
+						<input type="<?php echo $input_type ?>" <?php echo implode ( ' ' , $input_props ); ?> id="<?php echo esc_attr( $input->id ), '-', esc_attr( $key ); ?>" value="<?php echo esc_attr( $key ); ?>" <?php checked( $input->value, $key, true ); ?> />
+					<?php } ?>
 				</div>
 			<?php break;
 			/**
@@ -572,7 +577,7 @@ class Layers_Form_Elements {
 			case 'button' :
 				$tag = ( isset( $input->tag ) &&'' != $input->tag ) ? $input->tag : 'button';
 				$href = ( isset( $input->href ) && '' != $input->href ) ? 'href="' . $input->href . '"' : ''; ?>
-				<<?php echo $tag; ?>  <?php if( NULL == $input_props[ 'class' ] ) { ?>class="layers-button btn-medium"<?php } ?> <?php echo $href ?> <?php echo implode ( ' ' , $input_props ); ?> data-button_text="<?php echo esc_attr( $input->label ); ?>">
+				<<?php echo $tag; ?>  <?php if( NULL == $input_props[ 'class' ] ) echo 'class="layers-button btn-medium"'; ?> <?php echo $href ?> <?php echo implode ( ' ' , $input_props ); ?> data-button_text="<?php echo esc_attr( $input->label ); ?>">
 					<?php echo esc_attr( $input->label ); ?>
 				</<?php echo $tag; ?>>
 			<?php break;
@@ -647,14 +652,175 @@ class Layers_Form_Elements {
 				<div class="layers-row">
 					<?php echo $input->html; ?>
 				</div>
-
+			
 			<?php break;
+				
+			/**
+			* Dynamic Linking Interface
+			*/
+			case 'link-group' : ?>
+				<div class="layers-form-collection layers-link-group closed">
+					
+					<!-- Header -->
+					<div class="layers-form-collection-header">
+						<?php echo ( isset( $input->value->link_text ) ) ? $input->value->link_text : '&nbsp' ; ?>
+					</div>
+					<!-- / Header -->
+					
+					<!-- Content -->
+					<div class="layers-form-collection-content">
+					
+						<div class="layers-row">
+							<div class="layers-form-item layers-column layers-span-5">
+								<label for="<?php echo "{$input->id}-link_type"; ?>">
+									<?php _e( 'Link' , 'layerswp' ); ?>
+								</label>
+								<?php echo $this->input(
+									array(
+										'type' => 'select',
+										'name' => "{$input->name}[link_type]",
+										'id' => "{$input->id}-link_type",
+										'options' => array(
+											'custom'            => __( 'Custom', 'layerswp' ),
+											'post'              => __( 'Existing Content', 'layerswp' ), // Page, Post, Custom Post Type
+											// 'post_type_archive' => __( 'Post Archives (incl. Custom Post Types)', 'layerswp' ),
+											// 'taxonomy_archive'  => __( 'Taxonomy Archives (incl. Custom Taxonomies)', 'layerswp' ),
+										),
+										'value' => ( isset( $input->value->link_type ) ) ? $input->value->link_type : NULL,
+										'class' => 'layers-text',
+										'data' => array(
+											'tip' => __( 'Choose Link Type', 'layerswp' ),
+										),
+									)
+								); ?>
+							</div>
+							<div class="layers-form-item layers-column layers-span-7 layers-link-field-holder">
+								<label for="<?php echo "{$input->id}-link_type_custom"; ?>">
+									&nbsp;
+								</label>
+								<div class="layers-form-item layers-link-field layers-link-field-link_type_custom" data-show-if-selector= "#<?php echo "{$input->id}-link_type"; ?>" data-show-if-value="custom" data-tip="<?php _e( 'Choose Your Link', 'layerswp' ) ?>">
+									<label>
+										<?php _e( 'Custom', 'layerswp' ) ?>
+									</label>
+									<?php echo $this->input(
+										array(
+											'type' => 'text',
+											'name' => "{$input->name}[link_type_custom]",
+											'id' => "{$input->id}-link_type_custom",
+											'placeholder' => __( 'http://' , 'layerswp' ),
+											'value' => ( isset( $input->value->link_type_custom ) ) ? $input->value->link_type_custom : NULL,
+											'class' => 'layers-text',
+											'data' => array(
+												'tip' => __( 'Link', 'layerswp' ),
+											),
+										)
+									); ?>
+								</div>
+								<div class="layers-form-item layers-link-field layers-link-field-link_type_post" data-show-if-selector= "#<?php echo "{$input->id}-link_type"; ?>" data-show-if-value="post" data-tip="<?php _e( 'Choose Your Link', 'layerswp' ) ?>">
+									<label>
+										<?php _e( 'Post/Page', 'layerswp' ) ?>
+									</label>
+									<?php
+									$initial_post_id = isset( $input->value->link_type_post ) ? $input->value->link_type_post : 0 ;
+									$initial_display = get_the_title( $initial_post_id ) . ' (' . get_post_type( $initial_post_id ) . ')';
+									echo $this->input(
+										array(
+											'type' => 'hidden',
+											'name' => "{$input->name}[link_type_post]",
+											'id' => "{$input->id}-link_type_post",
+											'placeholder' => __( '-- Choose --' , 'layerswp' ),
+											'value' => ( isset( $input->value->link_type_post ) ) ? $input->value->link_type_post : NULL,
+											'class' => 'layers-text layers-widget-dynamic-linking-select',
+											'data' => array(
+												'display-text' => $initial_display,
+											),
+										)
+									);
+									?>
+								</div>
+								<div class="layers-form-item layers-link-field layers-link-field-link_type_post_type_archive" data-show-if-selector= "#<?php echo "{$input->id}-link_type"; ?>" data-show-if-value="post_type_archive" data-tip="<?php _e( 'Choose Your Link', 'layerswp' ) ?>">
+									<label>
+										<?php _e( 'Post Archives', 'layerswp' ) ?>
+									</label>
+									<?php echo $this->input(
+										array(
+											'type' => 'hidden',
+											'name' => "{$input->name}[link_type_post_type_archive]",
+											'id' => "{$input->id}-link_type_post_type_archive",
+											'placeholder' => __( 'http://' , 'layerswp' ),
+											'value' => ( isset( $input->value->link_type_post_type_archive ) ) ? $input->value->link_type_post_type_archive : NULL,
+											'class' => 'layers-text layers-widget-dynamic-linking-select',
+										)
+									); ?>
+								</div>
+								<div class="layers-form-item layers-link-field layers-link-field-link_type_taxonomy_archive" data-show-if-selector= "#<?php echo "{$input->id}-link_type"; ?>" data-show-if-value="taxonomy_archive" data-tip="<?php _e( 'Choose Your Link', 'layerswp' ) ?>">
+									<label>
+										<?php _e( 'Taxonomy Archives', 'layerswp' ) ?>
+									</label>
+									<?php echo $this->input(
+										array(
+											'type' => 'hidden',
+											'name' => "{$input->name}[link_type_taxonomy_archive]",
+											'id' => "{$input->id}-link_type_taxonomy_archive",
+											'placeholder' => __( 'http://' , 'layerswp' ),
+											'value' => ( isset( $input->value->link_type_taxonomy_archive ) ) ? $input->value->link_type_taxonomy_archive : NULL,
+											'class' => 'layers-text layers-widget-dynamic-linking-select',
+										)
+									); ?>
+								</div>
+								<div class="layers-visuals-item layers-icon-group layers-link-field-link_target">
+									<?php echo $this->input(
+										array(
+											'type' => 'select-icons',
+											'name' => "{$input->name}[link_target]",
+											'id' => "{$input->id}-link_target",
+											'placeholder' => __( 'e.g. http://facebook.com/oboxthemes', 'layers-pro' ),
+											'value' => ( isset( $input->value->link_target ) ) ? $input->value->link_target : NULL,
+											'options' => array(
+												'_blank' => array(
+													'name'   => 'New Tab',
+													'class' => 'fa fa-share-square-o',
+													'data' => array(
+														'tip' => 'Open in New Tab',
+													),
+												),
+											)
+									) ); ?>
+								</div>
+							</div>
+						</div>
+						
+						<div class="layers-row">
+							<div class="layers-form-item layers-column layers-span-12">
+								<label for="<?php echo "{$input->id}-link_text"; ?>">
+									<?php _e( 'Text' , 'layerswp' ); ?>
+								</label>
+								<?php echo $this->input(
+									array(
+										'type' => 'text',
+										'name' => "{$input->name}[link_text]",
+										'id' => "{$input->id}-link_text",
+										'placeholder' => __( 'e.g. "Read More"' , 'layerswp' ),
+										'value' => ( isset( $input->value->link_text ) ) ? $input->value->link_text : NULL,
+									)
+								); ?>
+							</div>
+						</div>
+						
+					</div>
+					<!-- / Content -->
+					
+				</div>
+				
+			<?php break;
+			
 			/**
 			* Default to hidden field
 			*/
 			default : ?>
 				<input type="hidden" <?php echo implode ( ' ' , $input_props ); ?> value="<?php echo $input->value; ?>" />
-		<?php }
+			<?php
+		}
 
 	}
 

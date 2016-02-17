@@ -383,12 +383,12 @@ class Layers_Widgets {
 
 		// Localize Scripts
 		wp_localize_script(
-				LAYERS_THEME_SLUG . '-admin-widgets' ,
-				"layers_widget_params",
-				array(
-						'nonce' => wp_create_nonce( 'layers-widget-actions' )
-					)
-			);
+			LAYERS_THEME_SLUG . '-admin-widgets' ,
+			'layers_widget_params',
+			array(
+				'nonce' => wp_create_nonce( 'layers-widget-actions' ),
+			)
+		);
 	}
 
 	/**

@@ -149,7 +149,7 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 			if( 'layout-full-screen' != $this->check_and_return( $widget , 'design', 'layout' ) && FALSE == $this->check_and_return( $widget , 'autoheight_slides' ) && $this->check_and_return( $widget , 'slide_height' ) ) {
 				$slider_height_css = 'height: ' . $widget['slide_height'] . 'px; ';
 			}
-
+			
 			/**
 			* Generate the widget container class
 			*/
@@ -237,6 +237,11 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 							} else {
 								$use_image_ratio = 'large';
 							}
+							
+							// Get the button array.
+							$link_array       = $this->check_and_return_link( $item, 'button' );
+							$link_href_attr   = ( $link_array['link'] ) ? 'href="' . esc_url( $link_array['link'] ) . '"' : '';
+							$link_target_attr = ( '_blank' == $link_array['target'] ) ? 'target="_blank"' : '';
 
  							/**
 							* Set Individual Slide CSS
@@ -265,11 +270,12 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 							// Set link entire slide or not
 							$slide_wrapper_tag = 'div';
 							$slide_wrapper_href = '';
-							if( $this->check_and_return( $item, 'link' ) && ! $this->check_and_return( $item , 'link_text' ) ) {
+							
+							if( $link_array['link'] && ! $link_array['text'] ) {
 								$slide_wrapper_tag = 'a';
-								$slide_wrapper_href = 'href="' . esc_url( $item['link'] ) . '"';
+								$slide_wrapper_href = $link_href_attr;
 							} ?>
-							<<?php echo $slide_wrapper_tag; ?> <?php echo $slide_wrapper_href; ?> class="<?php echo $slide_class; ?>" id="<?php echo $widget_id; ?>-<?php echo $slide_key; ?>" style="float: left; <?php echo $slider_height_css; ?>">
+							<<?php echo $slide_wrapper_tag; ?> <?php echo $slide_wrapper_href; ?> class="<?php echo $slide_class; ?>" id="<?php echo $widget_id; ?>-<?php echo $slide_key; ?>" style="float: left; <?php echo $slider_height_css; ?>" <?php echo $link_target_attr; ?>>
 
 								<?php do_action( 'layers_before_slider_widget_item_inner', $this, $item, $widget ); ?>
 
@@ -288,7 +294,7 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 
 								<div class="<?php echo $overlay_classes; ?>" >
 									<div class="container clearfix">
-										<?php if( '' != $item['title'] || '' != $item['excerpt'] || '' != $item['link'] ) { ?>
+										<?php if( '' != $item['title'] || '' != $item['excerpt'] || '' != $link_array['link'] ) { ?>
 											<div class="copy-container">
 												<div class="section-title <?php echo ( isset( $item['design']['fonts'][ 'size' ] ) ? $item['design']['fonts'][ 'size' ] : '' ); ?>">
 													<?php if( $this->check_and_return( $item , 'title' ) ) { ?>
@@ -297,8 +303,10 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 													<?php if( $this->check_and_return( $item , 'excerpt' ) ) { ?>
 														<div data-swiper-parallax="-300" class="excerpt"><?php layers_the_content( $item['excerpt'] ); ?></div>
 													<?php } ?>
-													<?php if( 'div' == $slide_wrapper_tag && $this->check_and_return( $item, 'link' ) && $this->check_and_return( $item , 'link_text' ) ) { ?>
-														<a data-swiper-parallax="-200" href="<?php echo $item['link']; ?>" class="button btn-<?php echo $this->check_and_return( $item , 'design' , 'fonts' , 'size' ); ?>"><?php echo $item['link_text']; ?></a>
+													<?php if( 'div' == $slide_wrapper_tag && $link_array['link'] && $link_array['text'] ) { ?>
+														<a data-swiper-parallax="-200" <?php echo $link_href_attr; ?> <?php echo $link_target_attr; ?> class="button btn-<?php echo $this->check_and_return( $item , 'design' , 'fonts' , 'size' ); ?>">
+															<?php echo $link_array['text']; ?>
+														</a>
 													<?php } ?>
 												</div>
 											</div>
@@ -661,32 +669,26 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 								)
 							); ?>
 						</p>
-						<div class="layers-row">
-							<p class="layers-form-item layers-column layers-span-6">
-								<label for="<?php echo $this->get_layers_field_id( 'link' ); ?>"><?php _e( 'Button Link' , 'layerswp' ); ?></label>
-								<?php echo $this->form_elements()->input(
-									array(
-										'type' => 'text',
-										'name' => $this->get_layers_field_name( 'link' ),
-										'id' => $this->get_layers_field_id( 'link' ),
-										'placeholder' => __( 'http://' , 'layerswp' ),
-										'value' => ( isset( $widget['link'] ) ) ? $widget['link'] : NULL ,
-									)
-								); ?>
-							</p>
-							<p class="layers-form-item layers-column layers-span-6">
-								<label for="<?php echo $this->get_layers_field_id( 'link' ); ?>"><?php _e( 'Button Text' , 'layerswp' ); ?></label>
-								<?php echo $this->form_elements()->input(
-									array(
-										'type' => 'text',
-										'name' => $this->get_layers_field_name( 'link_text' ),
-										'id' => $this->get_layers_field_id( 'link_text' ),
-										'placeholder' => __( 'e.g. "Read More"' , 'layerswp' ),
-										'value' => ( isset( $widget['link_text'] ) ) ? $widget['link_text'] : NULL ,
-									)
-								); ?>
-							</p>
+						
+						<?php
+						// Fix widget's that were created before dynamic linking structure.
+						$widget = $this->convert_legacy_widget_links( $widget, 'button' );
+						?>
+						
+						<div class="layers-form-item">
+							<label>
+								<?php _e( 'Insert Link' , 'layerswp' ); ?>
+							</label>
+							<?php echo $this->form_elements()->input(
+								array(
+									'type' => 'link-group',
+									'name' => $this->get_layers_field_name( 'button' ),
+									'id' => $this->get_layers_field_id( 'button' ),
+									'value' => ( isset( $widget['button'] ) ) ? $widget['button'] : NULL,
+								)
+							); ?>
 						</div>
+						
 					</div>
 				</section>
 			</li>

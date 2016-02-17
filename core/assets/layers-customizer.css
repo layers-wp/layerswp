@@ -1076,24 +1076,6 @@ div[id*='layers-widget'] .widget-control-actions .alignright{
 		display: none;
 	}
 	
-	/*----------------------------*/
-	/*- LINKING 2.0 UX -----------*/
-	.layers-link-type-ux{
-		position: relative;
-	}
-	.layers-link-type-ux input {
-		padding-right: 33px !important;
-	}
-	.layers-link-type-ux label{
-		position: absolute;
-		top: -18px;
-		right: 0;
-		font-style: italic;
-		opacity: .15;
-		font-weight: normal;
-		display: none;
-	}
-	
 	/*------------------------------------*/
 	/*- FORM COLLECTIONS (E.G. BUTTONS) --*/
 	.layers-form-collection {
@@ -1120,65 +1102,89 @@ div[id*='layers-widget'] .widget-control-actions .alignright{
 	.layers-form-collection.closed:hover{
 		border-color: #ccc;
 	}
-	.layers-form-collection.closed .layers-form-collection-header{
-	}
-	.layers-form-collection-header:after{
-		display: block;
-		padding: 0 10px;
-		position: absolute;
-		top: 0;
-		right: 0;
-		z-index: 1;
-		content: "\f0c1";
-		font: 400 14px/47px fontawesome;
-		color: #aaa;
-		cursor: pointer;
-		line-height: 36px;
-		transition: .2s;
-	}
-	.layers-form-collection-header:hover:after{
-		color: #9A9A9A;
-	}
-	.layers-form-collection-header i {
-		color: #B3B3B3;
-		font-style: normal;
-	}
-	.layers-form-collection-content {
-		padding: 18px 18px;
-	}
-	.closed .layers-form-collection-content{
-		overflow: hidden;
-	}
-	.layers-form-collection .layers-visuals-item.layers-icon-group {
-	}
-	.layers-form-collection .layers-select-icons {
-		width: 100%;
-	}
-	.layers-form-collection .layers-icon-wrapper {
-		width: 100%;
-		max-width: 100%;
-		box-sizing: border-box;
-		padding-left: 2px !important;
-		padding-right: 4px !important;
-		line-height: 3px;
-	}
-	.layers-form-collection .layers-icon-wrapper .fa {
-		position: relative;
-		top: 2px;
-		left: 2px;
-	}
-	.layers-form-collection .layers-icon-wrapper input {
-	}
-	.layers-link-type-ux-holder {
-		position: relative;
-	}
-	.layers-link-type-ux-link_target {
-		position: absolute;
-		bottom: 20px;
-		z-index: 10000000;
-		right: 6px;
-		overflow: visible;
-	}
+
+		/*------------------------------------*/
+		/*- FORM COLLECTIONS - HEADER --------*/
+		.layers-form-collection-header:after{
+			display: block;
+			padding: 0 10px;
+			position: absolute;
+			top: 0;
+			right: 0;
+			z-index: 1;
+			content: "\f0c1";
+			font: 400 14px/47px fontawesome;
+			color: #aaa;
+			cursor: pointer;
+			line-height: 36px;
+			transition: .2s;
+		}
+		.layers-form-collection-header:hover:after{
+			color: #9A9A9A;
+		}
+		.layers-form-collection-header i {
+			color: #B3B3B3;
+			font-style: normal;
+		}
+
+		/*------------------------------------*/
+		/*- FORM COLLECTIONS - CONTENT -------*/
+		.layers-form-collection-content {
+			padding: 18px 18px;
+		}
+		.layers-form-collection.closed .layers-form-collection-content{
+			overflow: hidden;
+		}
+
+		/*---------------------------------------------------------*/
+		/*- FORM COLLECTIONS - LINK-GROUP SPECIFIC ELEMENTS -------*/
+			
+			/*------------------------*/
+			/*- LINK FIELDS ----------*/	
+			.layers-link-field{
+				position: relative;
+			}
+			.layers-link-field input {
+				padding-right: 33px !important;
+			}
+			.layers-link-field label{
+				position: absolute;
+				top: -18px;
+				right: 0;
+				font-style: italic;
+				opacity: .15;
+				font-weight: normal;
+				display: none;
+			}
+
+			/*--------------------------------*/
+			/*- LINK FIELD - TARGET ----------*/	
+			.layers-link-field-link_target {
+				position: absolute;
+				bottom: 20px;
+				z-index: 10000000;
+				right: 6px;
+				overflow: visible;
+			}
+			.layers-link-field-link_target .layers-select-icons {
+				width: 100%;
+			}
+			.layers-link-field-link_target .layers-icon-wrapper {
+				width: 100%;
+				max-width: 100%;
+				box-sizing: border-box;
+				padding-left: 2px !important;
+				padding-right: 4px !important;
+				line-height: 3px;
+			}
+			.layers-link-field-link_target .layers-icon-wrapper:hover{
+				box-shadow: none;
+			}
+			.layers-link-field-link_target .layers-icon-wrapper .fa {
+				position: relative;
+				top: 2px;
+				left: 2px;
+			}
 
 /*-----------------------*/
 /*- CUSTOM CSS EDITOR ---*/

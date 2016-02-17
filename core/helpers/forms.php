@@ -659,7 +659,7 @@ class Layers_Form_Elements {
 			* Dynamic Linking Interface
 			*/
 			case 'link-group' : ?>
-				<div class="layers-form-collection closed">
+				<div class="layers-form-collection layers-link-group closed">
 					
 					<!-- Header -->
 					<div class="layers-form-collection-header">
@@ -700,11 +700,11 @@ class Layers_Form_Elements {
 									)
 								); ?>
 							</div>
-							<div class="layers-form-item layers-column layers-span-7 layers-link-type-ux-holder">
+							<div class="layers-form-item layers-column layers-span-7 layers-link-field-holder">
 								<label for="<?php echo "{$input->id}-link_type_custom"; ?>">
 									&nbsp;
 								</label>
-								<div class="layers-form-item layers-link-type-ux layers-link-type-ux-link_type_custom" data-show-if-selector= "#<?php echo "{$input->id}-link_type"; ?>" data-show-if-value="custom" data-tip="<?php _e( 'Choose Your Link', 'layerswp' ) ?>">
+								<div class="layers-form-item layers-link-field layers-link-field-link_type_custom" data-show-if-selector= "#<?php echo "{$input->id}-link_type"; ?>" data-show-if-value="custom" data-tip="<?php _e( 'Choose Your Link', 'layerswp' ) ?>">
 									<label>
 										<?php _e( 'Custom', 'layerswp' ) ?>
 									</label>
@@ -722,7 +722,7 @@ class Layers_Form_Elements {
 										)
 									); ?>
 								</div>
-								<div class="layers-form-item layers-link-type-ux layers-link-type-ux-link_type_post" data-show-if-selector= "#<?php echo "{$input->id}-link_type"; ?>" data-show-if-value="post" data-tip="<?php _e( 'Choose Your Link', 'layerswp' ) ?>">
+								<div class="layers-form-item layers-link-field layers-link-field-link_type_post" data-show-if-selector= "#<?php echo "{$input->id}-link_type"; ?>" data-show-if-value="post" data-tip="<?php _e( 'Choose Your Link', 'layerswp' ) ?>">
 									<label>
 										<?php _e( 'Post/Page', 'layerswp' ) ?>
 									</label>
@@ -744,7 +744,7 @@ class Layers_Form_Elements {
 									);
 									?>
 								</div>
-								<div class="layers-form-item layers-link-type-ux layers-link-type-ux-link_type_post_type_archive" data-show-if-selector= "#<?php echo "{$input->id}-link_type"; ?>" data-show-if-value="post_type_archive" data-tip="<?php _e( 'Choose Your Link', 'layerswp' ) ?>">
+								<div class="layers-form-item layers-link-field layers-link-field-link_type_post_type_archive" data-show-if-selector= "#<?php echo "{$input->id}-link_type"; ?>" data-show-if-value="post_type_archive" data-tip="<?php _e( 'Choose Your Link', 'layerswp' ) ?>">
 									<label>
 										<?php _e( 'Post Archives', 'layerswp' ) ?>
 									</label>
@@ -759,7 +759,7 @@ class Layers_Form_Elements {
 										)
 									); ?>
 								</div>
-								<div class="layers-form-item layers-link-type-ux layers-link-type-ux-link_type_taxonomy_archive" data-show-if-selector= "#<?php echo "{$input->id}-link_type"; ?>" data-show-if-value="taxonomy_archive" data-tip="<?php _e( 'Choose Your Link', 'layerswp' ) ?>">
+								<div class="layers-form-item layers-link-field layers-link-field-link_type_taxonomy_archive" data-show-if-selector= "#<?php echo "{$input->id}-link_type"; ?>" data-show-if-value="taxonomy_archive" data-tip="<?php _e( 'Choose Your Link', 'layerswp' ) ?>">
 									<label>
 										<?php _e( 'Taxonomy Archives', 'layerswp' ) ?>
 									</label>
@@ -774,7 +774,7 @@ class Layers_Form_Elements {
 										)
 									); ?>
 								</div>
-								<div class="layers-visuals-item layers-icon-group layers-link-type-ux-link_target">
+								<div class="layers-visuals-item layers-icon-group layers-link-field-link_target">
 									<?php echo $this->input(
 										array(
 											'type' => 'select-icons',

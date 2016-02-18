@@ -1,6 +1,12 @@
 # Layers Changelog
 
 =======
+##1.2.13
+### 18 Feb 2016
+
+* **Fix** - Custom classes inside widgets now work correctly. *MP*
+
+=======
 ##1.2.12
 ### 17 Feb 2016
 

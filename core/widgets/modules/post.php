@@ -142,9 +142,6 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 			$this->inline_css .= layers_inline_styles( '#' . $widget_id, 'background', array( 'selectors' => array( '.thumbnail-body' ) , 'background' => array( 'color' => $this->check_and_return( $widget, 'design', 'column-background-color' ) ) ) );
 			$this->inline_css .= layers_inline_button_styles( '#' . $widget_id, 'button', array( 'selectors' => array( '.thumbnail-body a.button' ) ,'button' => $this->check_and_return( $widget, 'design', 'buttons' ) ) );
 
-			// Apply the advanced widget styling
-			$this->apply_widget_advanced_styling( $widget_id, $widget );
-
 			// Set Image Sizes
 			if( isset( $widget['design'][ 'imageratios' ] ) ){
 
@@ -379,9 +376,12 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 				</section>
 
 			<?php // Reset WP_Query
-				wp_reset_postdata();
-			?>
-		<?php }
+			wp_reset_postdata();
+
+			// Apply the advanced widget styling
+			$this->apply_widget_advanced_styling( $widget_id, $widget );
+
+		}
 
 		/**
 		*  Widget update

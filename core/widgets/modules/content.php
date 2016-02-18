@@ -118,9 +118,6 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 			if( !empty( $widget['design'][ 'background' ] ) ) $this->inline_css .= layers_inline_styles( '#' . $widget_id, 'background', array( 'background' => $widget['design'][ 'background' ] ) );
 			if( !empty( $widget['design']['fonts'][ 'color' ] ) ) $this->inline_css .= layers_inline_styles( '#' . $widget_id, 'color', array( 'selectors' => array( '.section-title h3.heading' , '.section-title div.excerpt' ) , 'color' => $widget['design']['fonts'][ 'color' ] ) );
 
-			// Apply the advanced widget styling
-			$this->apply_widget_advanced_styling( $widget_id, $widget );
-
 			/**
 			* Generate the widget container class
 			*/
@@ -206,12 +203,12 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 								$use_image_ratio ,
 								$featurevideo
 							);
-							
+
 							// Get the link array.
 							$link_array       = $this->check_and_return_link( $item, 'button' );
 							$link_href_attr   = ( $link_array['link'] ) ? 'href="' . esc_url( $link_array['link'] ) . '"' : '';
 							$link_target_attr = ( '_blank' == $link_array['target'] ) ? 'target="_blank"' : '';
-							
+
 							/**
 							* Set Individual Column CSS
 							*/
@@ -315,7 +312,10 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 				<?php } // masonry trigger ?>
 
 			</section>
-		<?php }
+		<?php
+			// Apply the advanced widget styling
+			$this->apply_widget_advanced_styling( $widget_id, $widget );
+		}
 
 		/**
 		*  Widget update
@@ -521,12 +521,12 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 								)
 							); ?>
 						</p>
-						
+
 						<?php
 						// Fix widget's that were created before dynamic linking structure.
 						$widget = $this->convert_legacy_widget_links( $widget, 'button' );
 						?>
-						
+
 						<div class="layers-form-item">
 							<label>
 								<?php _e( 'Insert Link' , 'layerswp' ); ?>
@@ -540,7 +540,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 								)
 							); ?>
 						</div>
-						
+
 					</div>
 				</section>
 			</li>

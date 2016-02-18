@@ -137,9 +137,6 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 			// Enqueue Scipts when needed
 			$this->enqueue_scripts();
 
-			// Apply the advanced widget styling
-			$this->apply_widget_advanced_styling( $widget_id, $widget );
-
 			// Apply slider arrow color
 			if( $this->check_and_return( $widget, 'slider_arrow_color' ) ) $this->inline_css .= layers_inline_styles( '#' . $widget_id, 'color', array( 'selectors' => array( '.arrows a' ), 'color' => $this->check_and_return( $widget, 'slider_arrow_color' ) ) );
 			if( $this->check_and_return( $widget, 'slider_arrow_color' ) ) $this->inline_css .= layers_inline_styles( '#' . $widget_id, 'border', array( 'selectors' => array( 'span.swiper-pagination-switch' ), 'border' => array( 'color' => $this->check_and_return( $widget, 'slider_arrow_color' ) ) ) );
@@ -152,7 +149,7 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 			if( 'layout-full-screen' != $this->check_and_return( $widget , 'design', 'layout' ) && FALSE == $this->check_and_return( $widget , 'autoheight_slides' ) && $this->check_and_return( $widget , 'slide_height' ) ) {
 				$slider_height_css = 'height: ' . $widget['slide_height'] . 'px; ';
 			}
-			
+
 			/**
 			* Generate the widget container class
 			*/
@@ -240,7 +237,7 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 							} else {
 								$use_image_ratio = 'large';
 							}
-							
+
 							// Get the button array.
 							$link_array       = $this->check_and_return_link( $item, 'button' );
 							$link_href_attr   = ( $link_array['link'] ) ? 'href="' . esc_url( $link_array['link'] ) . '"' : '';
@@ -273,7 +270,7 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 							// Set link entire slide or not
 							$slide_wrapper_tag = 'div';
 							$slide_wrapper_href = '';
-							
+
 							if( $link_array['link'] && ! $link_array['text'] ) {
 								$slide_wrapper_tag = 'a';
 								$slide_wrapper_href = $link_href_attr;
@@ -412,8 +409,12 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 					</script>
 
 				</section>
-		 	<?php } ?>
-		<?php }
+			<?php }
+
+			// Apply the advanced widget styling
+			$this->apply_widget_advanced_styling( $widget_id, $widget );
+
+		}
 
 		/**
 		*  Widget update
@@ -672,12 +673,12 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 								)
 							); ?>
 						</p>
-						
+
 						<?php
 						// Fix widget's that were created before dynamic linking structure.
 						$widget = $this->convert_legacy_widget_links( $widget, 'button' );
 						?>
-						
+
 						<div class="layers-form-item">
 							<label>
 								<?php _e( 'Insert Link' , 'layerswp' ); ?>
@@ -691,7 +692,7 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 								)
 							); ?>
 						</div>
-						
+
 					</div>
 				</section>
 			</li>

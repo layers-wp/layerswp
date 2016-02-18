@@ -107,9 +107,6 @@ if( !class_exists( 'Layers_Contact_Widget' ) ) {
 			if( !empty( $widget['design'][ 'background' ] ) ) $this->inline_css .= layers_inline_styles( '#' . $widget_id, 'background', array( 'background' => $widget['design'][ 'background' ] ) );
 			if( !empty( $widget['design']['fonts'][ 'color' ] ) ) $this->inline_css .= layers_inline_styles( '#' . $widget_id, 'color', array( 'selectors' => array( '.section-title h3.heading' , '.section-title div.excerpt' , '.section-title small', '.form.content' , 'form p' , 'form label' ) , 'color' => $widget['design']['fonts'][ 'color' ] ) );
 
-			// Apply the advanced widget styling
-			$this->apply_widget_advanced_styling( $widget_id, $widget );
-
 			// Set the map & form widths
 			if( isset( $hasmap ) ) {
 				$form_class = 'span-6';
@@ -214,6 +211,9 @@ if( !class_exists( 'Layers_Contact_Widget' ) ) {
 				wp_enqueue_script( LAYERS_THEME_SLUG . " -map-api","//maps.googleapis.com/maps/api/js?sensor=false");
 				wp_enqueue_script( LAYERS_THEME_SLUG . "-map-trigger", get_template_directory_uri()."/core/widgets/js/maps.js", array( "jquery" ), LAYERS_VERSION );
 			}  // Enqueue the map js
+
+			// Apply the advanced widget styling
+			$this->apply_widget_advanced_styling( $widget_id, $widget );
 		}
 
 		/**

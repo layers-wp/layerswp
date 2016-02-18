@@ -721,8 +721,8 @@ class Layers_Form_Elements {
 										<?php _e( 'Post/Page', 'layerswp' ) ?>
 									</label>
 									<?php
-									$initial_post_id = isset( $input->value->link_type_post ) ? $input->value->link_type_post : 0 ;
-									$initial_display = get_the_title( $initial_post_id ) . ' (' . get_post_type( $initial_post_id ) . ')';
+									$initial_post_id = ( isset( $input->value->link_type_post ) && '' !== $input->value->link_type_post ) ? $input->value->link_type_post : 0 ;
+									$initial_display = ( 0 !== $initial_post_id ) ? get_the_title( $initial_post_id ) . ' (' . get_post_type( $initial_post_id ) . ')' : '' ;
 									echo $this->input(
 										array(
 											'type' => 'hidden',

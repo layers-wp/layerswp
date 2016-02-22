@@ -361,7 +361,7 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 				$this->print_inline_css();
 
 				if( 'list-masonry' == $this->check_and_return( $widget , 'design', 'liststyle' ) ) { ?>
-					<script>
+					<script type='text/javascript'>
 						jQuery(function($){
 							layers_masonry_settings[ '<?php echo $widget_id; ?>' ] = [{
 									itemSelector: '.layers-masonry-column',

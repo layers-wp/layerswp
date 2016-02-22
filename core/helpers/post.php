@@ -280,6 +280,7 @@ if( ! function_exists( 'layers_get_builder_page_content' ) ) {
 		$page_content = "";
 		$page_content = trim( ob_get_clean() );
 		$page_content = preg_replace('#<script(.*?)>(.*?)</script>#is', '', $page_content);
+		$page_content = preg_replace('#<style(.*?)>(.*?)</style>#is', '', $page_content);
 		$page_content = wp_kses( $page_content, array(
 			'a' => array(
 				'href' => array(),

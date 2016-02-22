@@ -338,7 +338,7 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 					 * Slider javascript initialize
 					 */
 					$swiper_js_obj = str_replace( '-' , '_' , $this->get_layers_field_id( 'slider' ) ); ?>
-				 	<script>
+					<script type='text/javascript'>
 						jQuery(function($){
 
 							var <?php echo $swiper_js_obj; ?> = $('#<?php echo $widget_id; ?>').swiper({

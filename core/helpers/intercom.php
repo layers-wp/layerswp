@@ -135,6 +135,8 @@ class Layers_Intercom {
 			$json[ 'launched_at' ] = strtotime( $launchpad['launchdate'] );
 		}
 
+		$json[ 'Custom CSS' ] = (bool) layers_get_theme_mod( 'custom-css' );
+
 		// jsonify the settings
 		$settings_json = json_encode( (object) $json, ( defined( 'JSON_PRETTY_PRINT' ) ? JSON_PRETTY_PRINT : TRUE ) ); ?>
 

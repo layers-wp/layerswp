@@ -40,8 +40,6 @@ jQuery(document).ready(function($){
 		$( '.l_admin-modal-container' ).find( '.l_admin-media-image' ).html( $button.find('img') );
 		$( '.l_admin-modal-container' ).hide().removeClass( 'l_admin-hide' ).fadeIn( 350 );
 		$( '#adminmenu' ).fadeOut();
-
-		$( '#layers_preset_page_title' ).prop( 'placeholder', $title );
 	});
 
 	$(document).on( 'keyup', '#layers_preset_page_title', function(e){

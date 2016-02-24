@@ -1,6 +1,14 @@
 # Layers Changelog
 
 =======
+##1.2.xx
+### xx Feb 2016
+
+* **Fix** - Removed all custom CSS being output from `the_content();` in Layers Pages. *MP*
+* **Fix** - Fixed Google Maps API warning when using the contact widget. *MP*
+
+
+=======
 ##1.2.13
 ### 18 Feb 2016
 

@@ -6,6 +6,8 @@
 
 * **Fix** - Removed all custom CSS being output from `the_content();` in Layers Pages. *MP*
 * **Fix** - Fixed Google Maps API warning when using the contact widget. *MP*
+* **Fix** - Full width footer no longer touches sides, padding left-right has been added. *DP*
+* **Fix** - Fixed Image-botton icon. *DP*
 
 
 =======

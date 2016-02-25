@@ -156,7 +156,9 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 						</div>
 					</div>
 				<?php } ?>
-				<?php if ( ! empty( $widget[ 'columns' ] ) ) { ?>
+				<?php if ( ! empty( $widget[ 'columns' ] ) ) {
+					// Set total width
+					$total_width = 0; ?>
 					<div class="row <?php echo $this->get_widget_layout_class( $widget ); ?> <?php echo $this->check_and_return( $widget , 'design', 'liststyle' ); ?>">
 						<?php foreach ( explode( ',', $widget[ 'column_ids' ] ) as $column_key ) {
 
@@ -175,6 +177,16 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 
 							// Add the correct span class
 							$span_class = 'span-' . $item[ 'width' ];
+
+							// Add .last to the final column
+                            $total_width += $item[ 'width' ];
+
+                            if( 12 == $total_width ) {
+                                $span_class .= ' last';
+                                $total_width = 0;
+                            } elseif( $total_width > 12 ) {
+                                $total_width = 0;
+                            }
 
 							// Set Featured Media
 							$featureimage = $this->check_and_return( $item , 'design' , 'featuredimage' );

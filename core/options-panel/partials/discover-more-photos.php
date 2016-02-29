@@ -43,7 +43,7 @@ $api = new Layers_API(); ?>
             <a class="layers-button btn-primary btn-large" href="http://bit.ly/layers-photodune" target="_blank"><?php _e( 'Find the Perfect Photo' , 'layerswp' ); ?></a>
         </p>
     </div>
-<?php if( !isset( $_GET[ 'tab' ] ) || ( isset( $_GET[ 'tab' ] ) && 'upsell_media' == $_GET[ 'tab' ] ) ) { ?>
+<?php if( !isset( $_GET[ 'tab' ] ) || ( isset( $_GET[ 'tab' ] ) && 'upsell_media' !== $_GET[ 'tab' ] ) ) { ?>
     </script>
 <?php } ?>
 <!-- /Uderscore Temnplate -->

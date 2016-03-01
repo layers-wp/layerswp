@@ -159,7 +159,9 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 				<?php if ( ! empty( $widget[ 'columns' ] ) ) {
 
 					$column_ids = explode( ',', $widget[ 'column_ids' ] );
+
 					// Set total width
+					$col_no = 0;
 					$first_last_class = '';
 					$row_width = 0; ?>
 					<div class="row <?php echo $this->get_widget_layout_class( $widget ); ?> <?php echo $this->check_and_return( $widget , 'design', 'liststyle' ); ?>">
@@ -170,9 +172,9 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 
 							// Setup the relevant slide
 							$item = $widget[ 'columns' ][ $column_key ];
-							if( isset( $widget[ 'columns' ][ next( $column_ids ) ] ) )
-								$next_item = $widget[ 'columns' ][ next( $column_ids ) ];
-
+							if( isset( $column_ids[ ($col_no+1) ] ) ) {
+								$next_item = $widget[ 'columns' ][ $column_ids[ ($col_no+1) ] ];
+							}
 							// Set the background styling
 							if( !empty( $item['design'][ 'background' ] ) ) $this->inline_css .= layers_inline_styles( '#' . $widget_id . '-' . $column_key , 'background', array( 'background' => $item['design'][ 'background' ] ) );
 							if( !empty( $item['design']['fonts'][ 'color' ] ) ) $this->inline_css .= layers_inline_styles( '#' . $widget_id . '-' . $column_key , 'color', array( 'selectors' => array( 'h5.heading a', 'h5.heading' , 'div.excerpt' , 'div.excerpt p' ) , 'color' => $item['design']['fonts'][ 'color' ] ) );
@@ -183,25 +185,29 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 							// Add the correct span class
 							$span_class = 'span-' . $item[ 'width' ];
 
+							$col_no++;
 							$max = 12;
+							$initial_width = $row_width;
 							$item_width = $item[ 'width' ];
 							$next_item_width = ( isset( $next_item[ 'width' ] ) ? $next_item[ 'width' ] : 0 );
-							$initial_width = $row_width;
 							$row_width += $item_width;
 
-echo '<!-- Initial: ' . $initial_width . '
+echo '
+<!-- Col #: ' . $col_no . '
+Initial: ' . $initial_width . '
 Row Width: ' . $row_width . '
+Row Width Next: ' . ( $next_item_width + $row_width ) . '
 This Item Width: ' . $item_width . '
-Next Item Width: ' . $next_item_width . '-->';
+Next Item Width: ' . $next_item_width . '-->' ;
 
-							if( 0 == $initial_width ){
+							if(  $max == $row_width ){
+								$first_last_class = 'last';
+								$row_width = 0;
+							} elseif(  $max < $next_item_width + $row_width ){
+								$first_last_class = 'last';
+								$row_width = 0;
+							} elseif( 0 == $initial_width ){
 								$first_last_class = 'first';
-							} elseif(  12 == $row_width ){
-								$first_last_class = 'last';
-								$row_width = 0;
-							} elseif(  12 < $next_item_width + $row_width ){
-								$first_last_class = 'last';
-								$row_width = 0;
 							} else {
 								$first_last_class = '';
 							}

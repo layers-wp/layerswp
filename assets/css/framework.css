@@ -189,17 +189,26 @@ object{
 
 	/*---------------------------*/
 	/*- GRIDS -------------------*/
-	.column{
+    .row{
+        display: flex;
+        flex-flow: row wrap;
+        margin-left: -10px;
+        margin-right: -10px;
+    }
+    [class*='column']{
+        flex: 0 0 calc((100% / 12) - 20px);
+        margin-left: 10px;
+        margin-right: 10px;
 		margin-bottom: 20px;
 		position: relative;
-		max-width: 100%;
-	}
+		max-width: calc(100% - 20px);
+    }
+    .column.span-12{
+        min-width: calc(((100% / 12) * 12) - 20px);
+    }
 	.column-flush{
 		margin: 0;
 		position: relative;
-	}
-	.row .column:last-child{
-		margin-right: 0;
 	}
 
 	.middled,
@@ -264,6 +273,7 @@ object{
 	/*---------------------------*/
 	/*- CONTAINER ---------------*/
 	.container{
+		width: 100%;
 		max-width: 1040px;
 		margin: auto;
 		padding: 0 20px;

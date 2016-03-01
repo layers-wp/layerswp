@@ -21,28 +21,15 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 /*- COLUMNS ---------------------*/
 
     /*---------------------------*/
-    /*- SPAN - 1 ----------------*/
-    .column.span-1{
-        float: left;
-        width: 15%;
-        margin-right: 2%;
-    }
-    .column-flush.span-1{
-        float: left;
-        width: 16.6667%;;
+    /*- SPAN - 2 GOES SPAN 6 ----*/
+    .column.span-2{
+        min-width: calc(((100% / 12) * 6) - 20px);
     }
 
     /*---------------------------*/
-    /*- SPAN - 2 ----------------*/
-    .column.span-2{
-        float: left;
-        width: 48%;
-        margin-right: 4%;
-    }
-    .column-flush.span-2{
-        float: left;
-        width: 50%;
-        margin-right: 0%;
+    /*- SPAN - 3 GOES SPAN 12 ---*/
+    .column.span-3{
+        min-width: calc(((100% / 12) * 12) - 20px);
     }
 
 
@@ -165,36 +152,18 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 /*--------------------------------------------------------------*/
 @media only screen and (min-width: 481px){
 
-    /*---------------------------*/
-    /*- COLUMNS -----------------*/
-    .column{
-        float: left;
-        margin-right: 2%;
-    }
-    .column-flush{
-        float: left;
-    }
 
     /*---------------------------*/
     /*- SPAN - 4 ----------------*/
     .column.span-4{
-        float: left;
-        width: 32%;
-        margin-right: 2%;
+        min-width: calc(((100% / 12) * 4) - 20px);
     }
-    .column-flush.span-4{
-        float: left;
-        width: 33.33333%;
-    }
+
 
     /*---------------------------*/
     /*- SPAN - 6 ----------------*/
     .column.span-6{
-        width: 49%;
-        margin-right: 2%;
-    }
-    .column-flush.span-6{
-        width: 50%;
+        min-width: calc(((100% / 12) * 6) - 20px);
     }
 
     /*---------------------------*/
@@ -273,33 +242,16 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 @media only screen and (min-width: 481px) and (max-width: 768px){
 
     /*---------------------------*/
-    /*- SPAN - 2 ----------------*/
+    /*- SPAN - 2 GOES SPAN 4 ----*/
     .column.span-2{
-        float: left;
-        width: 32%;
-        margin-right: 2%;
+        min-width: calc(((100% / 12) * 4) - 20px);
     }
-    .column-flush.span-2{
-        float: left;
-        width: 33.33333%;
-    }
-/*    .span-2 + .span-2:not(:nth-child(3n+3)){
-        margin-right: 0;
-    }
-    .span-2 + .span-2 + .column:not(.span-2){
-        clear: both;
-    }*/
+
 
     /*---------------------------*/
-    /*- SPAN - 3 ----------------*/
+    /*- SPAN - 3 GOES SPAN 6 ----*/
     .column.span-3{
-        float: left;
-        width: 49%;
-        margin-right: 2%;
-    }
-    .column-flush.span-3{
-        float: left;
-        width: 50%;
+        min-width: calc(((100% / 12) * 6) - 20px);
     }
 
         /*-----------------------*/
@@ -330,48 +282,23 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
         /*-----------------------*/
         /*- DBL-SIDEBAR ---------*/
         /* This CSS caters for 2 column sidebar layouts */
+        .column.span-8{
+            min-width: calc(((100% / 12) * 12) - 20px);
+            /* Set the main column to fullwidth */
+        }
         .sidebar.span-4{
-            width: 100%;
-            clear: left;
-            float: none;
+            display: flex;
+            flex-flow: row wrap;
+            min-width: calc((100% / 12) * 12);
+            margin-left: 0px;
+            margin-right: 0px;
+            /* Set the sidebar to full width and apply flexbox */
         }
         .sidebar.span-4 .widget{
-            float: left;
-            width: 31.3%;
-            margin-right: 2%;
-            margin-bottom: 2%;
+            flex: 0 0 calc(((100% / 12) * 4) - 20px);
+            margin: 0 10px 20px;
+            /* align widgets in rows of 3 */
         }
-        .sidebar.span-4 .widget:nth-child(3n+3){
-            margin-right: 0;
-        }
-        .sidebar.span-4 .widget:nth-child(3n+4){
-            clear: left;
-        }
-
-
-    /*---------------------------*/
-    /*- LARGE COLUMNS -----------*/
-    .column.span-7,
-    .column.span-8,
-    .column.span-9,
-    .column.span-10,
-    .column.span-11,
-    .column.span-12{
-        float: none;
-        clear: both;
-        margin-right: 0;
-    }
-    .column-flush.span-7,
-    .column-flush.span-8,
-    .column-flush.span-9,
-    .column-flush.span-10,
-    .column-flush.span-11,
-    .column-flush.span-12{
-        float: none;
-        clear: both;
-        margin-right: 0;
-    }
-
 }
 
 /*--------------------------------------------------------------*/
@@ -468,46 +395,30 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 }
 
-
+/*--------------------------------------------------------------*/
+/*- BETWEEN TABLET AND DESKTOP ---------------------------------*/
+/*--------------------------------------------------------------*/
 @media only screen and (min-width: 601px) and (max-width: 860px){
 
     /*---------------------------*/
     /*- SPAN - 5 ----------------*/
     .column.span-5{
-        width: 49%;
-        margin-right: 2%;
-    }
-    .column-flush.span-5{
-        width: 50%;
-    }
-    .column.span-5 + .span-5{
-        margin-right: 0;
+        min-width: calc(((100% / 12) * 6) - 20px);
     }
 
     /*---------------------------*/
     /*- SPAN - 10 ---------------*/
-    .column.span-10,
-    .column-flush.span-10{
-        width: 100%;
-        margin-right: 0;
+    .column.span-10{
+        min-width: calc(((100% / 12) * 12) - 20px);
     }
 
     /*---------------------------*/
     /*- COMBINATIONS ------------*/
-    .column.span-5 + .span-5 + .span-2{
-        width: 100%;
-    }
+    .column.span-5 + .span-5 + .span-2{}
+    .column.span-7 + .span-5{}
+    .column.span-10 + .span-2{}
 
-    .column.span-7 + .span-5{
-        width: 40.5%;
-    }
-    .column-flush.span-7 + .span-5{
-        width: 41.66665%;
-    }
 
-    .column.span-10 + .span-2{
-        width: 49%;
-    }
 }
 
 /*--------------------------------------------------------------*/
@@ -520,33 +431,33 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
     /*---------------------------*/
     /*- COLUMN WIDTHS -----------*/
-    .span-1{width: 6.5%;}
-    .span-2{width: 15%;}
-    .span-3{width: 23.5%;}
-    .span-4{width: 33.33333%;}
-    .span-5{width: 40.5%;}
-    .span-7{width: 57.5%;}
-    .span-8{width: 66%;}
-    .span-9{width: 74.5%;}
-    .span-10{width: 83%;}
-    .span-11{width: 91.5%;}
-    .span-12{
-        clear: both;
-        float: none;
+    .column.span-1{
+        min-width: calc((100% / 12) - 20px);
     }
-
-    /*---------------------------*/
-    /*- FLUSH COLUMNS -----------*/
-    .column-flush.span-1{width: 8.333333%;}
-    .column-flush.span-2{width: 16.6667%;}
-    .column-flush.span-3{width: 25%;}
-    .column-flush.span-5{width: 41.66665%;}
-    .column-flush.span-7{width: 58.1%;}
-    .column-flush.span-8{width: 66.65%;}
-    .column-flush.span-9{width: 74.7%;}
-    .column-flush.span-10{width: 83%;}
-    .column-flush.span-11{width: 91.3%;}
-    .column-flush.span-12{width: 100%;}
+    .column.span-2{
+        min-width: calc(((100% / 12) * 2) - 20px);
+    }
+    .column.span-3{
+        min-width: calc(((100% / 12) * 3) - 20px);
+    }
+    .column.span-5{
+        min-width: calc(((100% / 12) * 5) - 20px);
+    }
+    .column.span-7{
+        min-width: calc(((100% / 12) * 7) - 20px);
+    }
+    .column.span-8{
+        min-width: calc(((100% / 12) * 8) - 20px);
+    }
+    .column.span-9{
+        min-width: calc(((100% / 12) * 9) - 20px);
+    }
+    .column.span-10{
+        min-width: calc(((100% / 12) * 10) - 20px);
+    }
+    .column.span-11{
+        min-width: calc(((100% / 12) * 11) - 20px);
+    }
 
     /*---------------------------*/
     /*- GUTTERS -----------------*/
@@ -597,20 +508,6 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
     .pull-right-9{margin-right: -76.5%;}
     .pull-right-10{margin-right: -85%;}
     .pull-right-11{margin-right: -93.5%;}
-
-
-    /*---------------------------*/
-    /*- MARGIN RESET ------------*/
-    .column.last{
-        margin-right: 0;
-    }
-
-    /*---------------------------*/
-    /*- CLEAR RESET -------------*/
-    .column.last + .column{
-        clear: both;
-    }
-
 
 
 /*-------------------------------*/

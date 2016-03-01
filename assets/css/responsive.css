@@ -45,6 +45,7 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
         margin-right: 0%;
     }
 
+
     /*---------------------------*/
     /*- MASONRY -----------------*/
     .container.list-masonry{
@@ -282,6 +283,12 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
         float: left;
         width: 33.33333%;
     }
+/*    .span-2 + .span-2:not(:nth-child(3n+3)){
+        margin-right: 0;
+    }
+    .span-2 + .span-2 + .column:not(.span-2){
+        clear: both;
+    }*/
 
     /*---------------------------*/
     /*- SPAN - 3 ----------------*/

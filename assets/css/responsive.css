@@ -418,6 +418,23 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
     .column.span-7 + .span-5{}
     .column.span-10 + .span-2{}
 
+    /*---------------------------*/
+    /*- COMBINATIONS ------------*/
+    .column.span-5 + .span-5 + .span-2{
+        width: 100%;
+    }
+
+    /*.column.span-7 + .span-5{
+        width: 40.5%;
+    }
+    .column-flush.span-7 + .span-5{
+        width: 41.66665%;
+    }
+
+    .column.span-10 + .span-2{
+        width: 49%;
+    }*/
+
 
 }
 

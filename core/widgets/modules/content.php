@@ -192,13 +192,13 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 							$next_item_width = ( isset( $next_item[ 'width' ] ) ? $next_item[ 'width' ] : 0 );
 							$row_width += $item_width;
 
-echo '
+/* echo '
 <!-- Col #: ' . $col_no . '
 Initial: ' . $initial_width . '
 Row Width: ' . $row_width . '
 Row Width Next: ' . ( $next_item_width + $row_width ) . '
 This Item Width: ' . $item_width . '
-Next Item Width: ' . $next_item_width . '-->' ;
+Next Item Width: ' . $next_item_width . '-->' ; */
 
 							if(  $max == $row_width ){
 								$first_last_class = 'last';

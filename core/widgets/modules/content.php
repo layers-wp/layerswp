@@ -157,16 +157,21 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 					</div>
 				<?php } ?>
 				<?php if ( ! empty( $widget[ 'columns' ] ) ) {
+
+					$column_ids = explode( ',', $widget[ 'column_ids' ] );
 					// Set total width
-					$total_width = 0; ?>
+					$first_last_class = '';
+					$row_width = 0; ?>
 					<div class="row <?php echo $this->get_widget_layout_class( $widget ); ?> <?php echo $this->check_and_return( $widget , 'design', 'liststyle' ); ?>">
-						<?php foreach ( explode( ',', $widget[ 'column_ids' ] ) as $column_key ) {
+						<?php foreach ( $column_ids as $column_key ) {
 
 							// Make sure we've got a column going on here
 							if( !isset( $widget[ 'columns' ][ $column_key ] ) ) continue;
 
 							// Setup the relevant slide
 							$item = $widget[ 'columns' ][ $column_key ];
+							if( isset( $widget[ 'columns' ][ next( $column_ids ) ] ) )
+								$next_item = $widget[ 'columns' ][ next( $column_ids ) ];
 
 							// Set the background styling
 							if( !empty( $item['design'][ 'background' ] ) ) $this->inline_css .= layers_inline_styles( '#' . $widget_id . '-' . $column_key , 'background', array( 'background' => $item['design'][ 'background' ] ) );
@@ -178,15 +183,28 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 							// Add the correct span class
 							$span_class = 'span-' . $item[ 'width' ];
 
-							// Add .last to the final column
-                            $total_width += $item[ 'width' ];
+							$max = 12;
+							$item_width = $item[ 'width' ];
+							$next_item_width = ( isset( $next_item[ 'width' ] ) ? $next_item[ 'width' ] : 0 );
+							$initial_width = $row_width;
+							$row_width += $item_width;
 
-                            if( 12 == $total_width ) {
-                                $span_class .= ' last';
-                                $total_width = 0;
-                            } elseif( $total_width > 12 ) {
-                                $total_width = 0;
-                            }
+echo '<!-- Initial: ' . $initial_width . '
+Row Width: ' . $row_width . '
+This Item Width: ' . $item_width . '
+Next Item Width: ' . $next_item_width . '-->';
+
+							if( 0 == $initial_width ){
+								$first_last_class = 'first';
+							} elseif(  12 == $row_width ){
+								$first_last_class = 'last';
+								$row_width = 0;
+							} elseif(  12 < $next_item_width + $row_width ){
+								$first_last_class = 'last';
+								$row_width = 0;
+							} else {
+								$first_last_class = '';
+							}
 
 							// Set Featured Media
 							$featureimage = $this->check_and_return( $item , 'design' , 'featuredimage' );
@@ -228,6 +246,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 							$classes[] = 'layers-masonry-column';
 							$classes[] = $this->id_base . '-' . $column_key;
 							$classes[] = $span_class;
+							$classes[] = ( '' != $first_last_class ? $first_last_class : '' );
 							$classes[] = ( 'list-masonry' == $this->check_and_return( $widget, 'design', 'liststyle' ) ? 'no-gutter' : '' );
 							$classes[] = 'column' . ( 'on' != $this->check_and_return( $widget, 'design', 'gutter' ) ? '-flush' : '' );
 							$classes[] = $this->check_and_return( $item, 'design', 'advanced', 'customclass' ); // Apply custom class from design-bar's advanced control.

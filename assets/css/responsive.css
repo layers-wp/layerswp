@@ -31,8 +31,7 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 		float: left;
 		width: 16.6667%;;
 	}
-	.column.span-1:nth-child(6n+6),
-	.column-flush.span-1:nth-child(6n+6){
+	[class*='column'].span-1:nth-child(6n+6){
 		margin-right: 0;
 	}
 
@@ -48,15 +47,14 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 		width: 50%;
 		margin-right: 0%;
 	}
-	.column.span-2:nth-child(2n),
-	.column-flush.span-2:nth-child(2n+2){
+	[class*='column'].span-2:nth-child(2n){
 		margin-right: 0;
 	}
 
 	/*---------------------------*/
 	/*- CLEARING SPANS ----------*/
 	.column.span-1:nth-child(6n+7),
-	.column.span-2:nth-child(2n+3){
+	[class*='column'].span-2:nth-child(2n+3){
 		clear: left;
 	}
 

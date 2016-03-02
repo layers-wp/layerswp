@@ -20,7 +20,7 @@ get_header(); ?>
 		<?php if ( have_posts()) : ?>
 			<section <?php layers_center_column_class(); ?>>
 
-				<div class="row push-bottom woocommerce-result-count-container">
+				<div class="woocommerce-result-count-container push-bottom clearfix">
 					<?php  do_action('woocommerce_before_shop_loop'); ?>
 				</div>
 

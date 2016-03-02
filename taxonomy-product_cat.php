@@ -20,7 +20,7 @@ get_header(); ?>
         <?php if ( have_posts()) : ?>
             <section <?php layers_center_column_class(); ?>>
 
-                <div class="row push-bottom woocommerce-result-count-container">
+                <div class="woocommerce-result-count-container push-bottom clearfix">
                     <?php  do_action('woocommerce_before_shop_loop'); ?>
                 </div>
 
@@ -45,4 +45,5 @@ get_header(); ?>
         */
         layers_maybe_get_sidebar( 'right-woocommerce-sidebar', implode( ' ', layers_get_wrapper_class( 'right_woocommerce_sidebar', 'column pull-right sidebar span-3 no-gutter' ) ) ); ?>
 </section>
+
 <?php get_footer();

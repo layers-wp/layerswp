@@ -10,7 +10,7 @@
 
 get_header(); ?>
 
-<section id="post-<?php the_ID(); ?>" <?php post_class( 'container content-main clearfix' ); ?>>
+<div id="post-<?php the_ID(); ?>" <?php post_class( 'container content-main clearfix' ); ?>>
     <div class="row">
         <?php get_sidebar( 'left' ); ?>
 
@@ -22,6 +22,6 @@ get_header(); ?>
             <?php endif; // if has_post() ?>
         </article>
     </div>
-</section>
+</div>
 
 <?php get_footer();

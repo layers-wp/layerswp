@@ -332,10 +332,10 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 					<script>
 						jQuery(function($){
 							layers_masonry_settings[ '<?php echo $widget_id; ?>' ] = [{
-									itemSelector: '.layers-masonry-column',
-									layoutMode: 'masonry',
-									gutter: <?php echo ( isset( $widget['design'][ 'gutter' ] ) ? 20 : 0 ); ?>
-								}];
+								itemSelector: '.layers-masonry-column',
+								layoutMode: 'masonry',
+								gutter: <?php echo ( isset( $widget['design'][ 'gutter' ] ) ? 20 : 0 ); ?>
+							}];
 
 							$('#<?php echo $widget_id; ?>').find('.list-masonry').layers_masonry( layers_masonry_settings[ '<?php echo $widget_id; ?>' ][0] );
 						});

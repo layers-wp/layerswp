@@ -191,9 +191,11 @@ object{
 	/*- GRIDS -------------------*/
 	.row{
 		display: flex;
-		flex-flow: row wrap;
+		flex-flow: row;
+		flex-wrap: wrap;
 		margin-left: -10px;
 		margin-right: -10px;
+		position: relative;
 	}
 	[class*='column']{
 		flex: 0 0 calc((100% / 12) - 20px);
@@ -203,6 +205,11 @@ object{
 		position: relative;
 		max-width: calc(100% - 20px);
 	}
+
+	.layers-masonry-column .row{
+		flex-direction: column;
+	}
+
 	.column.span-12{
 		min-width: calc(((100% / 12) * 12) - 20px);
 	}

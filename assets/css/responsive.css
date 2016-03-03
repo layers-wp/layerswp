@@ -23,7 +23,7 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 	/*---------------------------*/
 	/*- SPAN - 2 GOES SPAN 6 ----*/
 	.column.span-2{
-		min-width: calc(((100% / 12) * 6) - 20px);
+		min-width: calc(((100% / 12) * 6) - 20px);§
 	}
 
 	/*---------------------------*/
@@ -33,15 +33,6 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 	.column.span-5,
 	.column.span-6{
 		min-width: calc(((100% / 12) * 12) - 20px);
-	}
-
-	/*---------------------------*/
-	/*- MASONRY -----------------*/
-	.container.list-masonry{
-		padding: 0 20px;
-	}
-	.container.list-masonry .column{
-		position: static !important;
 	}
 
 /*-------------------------------*/
@@ -154,13 +145,11 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 /*--------------------------------------------------------------*/
 @media only screen and (min-width: 481px){
 
-
 	/*---------------------------*/
 	/*- SPAN - 4 ----------------*/
 	.column.span-4{
 		min-width: calc(((100% / 12) * 4) - 20px);
 	}
-
 
 	/*---------------------------*/
 	/*- SPAN - 6 ----------------*/
@@ -329,6 +318,17 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 @media only screen and (max-width: 768px){
 
 	/*---------------------------*/
+	/*- MASONRY -----------------*/
+	.container.list-masonry{
+		padding: 0 10px;
+	}
+	.list-masonry .column{
+		position: static !important;
+		margin-left: 10px;
+		margin-right: 10px;
+	}
+
+	/*---------------------------*/
 	/*- HEADER INLINE -----------*/
 	.header-inline .container{
 		-webkit-justify-content: space-between;
@@ -450,33 +450,27 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 	/*---------------------------*/
 	/*- COLUMN WIDTHS -----------*/
-	.column.span-1{
-		min-width: calc((100% / 12) - 20px);
-	}
-	.column.span-2{
-		min-width: calc(((100% / 12) * 2) - 20px);
-	}
-	.column.span-3{
-		min-width: calc(((100% / 12) * 3) - 20px);
-	}
-	.column.span-5{
-		min-width: calc(((100% / 12) * 5) - 20px);
-	}
-	.column.span-7{
-		min-width: calc(((100% / 12) * 7) - 20px);
-	}
-	.column.span-8{
-		min-width: calc(((100% / 12) * 8) - 20px);
-	}
-	.column.span-9{
-		min-width: calc(((100% / 12) * 9) - 20px);
-	}
-	.column.span-10{
-		min-width: calc(((100% / 12) * 10) - 20px);
-	}
-	.column.span-11{
-		min-width: calc(((100% / 12) * 11) - 20px);
-	}
+	.column.span-1{min-width: calc((100% / 12) - 20px);}
+	.column.span-2{min-width: calc(((100% / 12) * 2) - 20px);}
+	.column.span-3{min-width: calc(((100% / 12) * 3) - 20px);}
+	.column.span-5{min-width: calc(((100% / 12) * 5) - 20px);}
+	.column.span-7{min-width: calc(((100% / 12) * 7) - 20px);}
+	.column.span-8{min-width: calc(((100% / 12) * 8) - 20px);}
+	.column.span-9{min-width: calc(((100% / 12) * 9) - 20px);}
+	.column.span-10{min-width: calc(((100% / 12) * 10) - 20px);}
+	.column.span-11{min-width: calc(((100% / 12) * 11) - 20px);}
+
+	/*- * REVIEW * --------------*/
+	/*- MASONRY COLUMNS ---------*/
+	.list-masonry .column.span-1{max-width: calc((100% / 12) - 20px);}
+	.list-masonry .column.span-2{max-width: calc(((100% / 12) * 2) - 20px);}
+	.list-masonry .column.span-3{max-width: calc(((100% / 12) * 3) - 20px);}
+	.list-masonry .column.span-5{max-width: calc(((100% / 12) * 5) - 20px);}
+	.list-masonry .column.span-7{max-width: calc(((100% / 12) * 7) - 20px);}
+	.list-masonry .column.span-8{max-width: calc(((100% / 12) * 8) - 20px);}
+	.list-masonry .column.span-9{max-width: calc(((100% / 12) * 9) - 20px);}
+	.list-masonry .column.span-10{max-width: calc(((100% / 12) * 10) - 20px);}
+	.list-masonry .column.span-11{max-width: calc(((100% / 12) * 11) - 20px);}
 
 	/*---------------------------*/
 	/*- GUTTERS -----------------*/

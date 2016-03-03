@@ -246,7 +246,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 								$classes[] = $this->id_base . '-' . $column_key;
 								$classes[] = $span_class;
 								$classes[] = ( '' != $first_last_class ? $first_last_class : '' );
-								$classes[] = ( 'list-masonry' == $this->check_and_return( $widget, 'design', 'liststyle' ) ? 'no-gutter' : '' );
+								$classes[] = ( 'list-masonry' == $this->check_and_return( $widget, 'design', 'liststyle' ) ? '' : '' );
 								$classes[] = 'column' . ( 'on' != $this->check_and_return( $widget, 'design', 'gutter' ) ? '-flush' : '' );
 								$classes[] = $this->check_and_return( $item, 'design', 'advanced', 'customclass' ); // Apply custom class from design-bar's advanced control.
 								if( $this->check_and_return( $item, 'design' , 'background', 'image' ) || '' != $this->check_and_return( $item, 'design' , 'background', 'color' ) ) {

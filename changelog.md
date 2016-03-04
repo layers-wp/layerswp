@@ -8,6 +8,7 @@
 * **Fix** - Fixed Google Maps API warning when using the contact widget. *MP*
 * **Fix** - Full width footer no longer touches sides, padding left-right has been added. *DP*
 * **Fix** - Fixed Image-botton icon. *DP*
+* **Enhancement** - Entirely new grid code which allows for different columns in the same content widget, using flexbox and calc() *DP*
 
 
 =======

@@ -205,17 +205,18 @@ object{
 		position: relative;
 		max-width: calc(100% - 20px);
 	}
+	.column-flush{
+		margin: 0;
+		position: relative;
+		max-width: 100%;
+	}
 
 	.layers-masonry-column .row{
 		flex-direction: column;
 	}
 
-	.column.span-12{
+	[class*='column'].span-12{
 		min-width: calc(((100% / 12) * 12) - 20px);
-	}
-	.column-flush{
-		margin: 0;
-		position: relative;
 	}
 
 	.middled,

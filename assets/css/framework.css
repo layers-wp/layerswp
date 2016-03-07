@@ -131,6 +131,7 @@ pre{
 	font-size: 85%;
 	font-weight: 700;
 	font-family: "Courier New", Courier, monospace;
+	text-transform: initial;
 }
 strong{
 	font-weight: 700;

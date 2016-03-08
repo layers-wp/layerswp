@@ -1,7 +1,7 @@
 # Layers Changelog
 
 =======
-##1.2.xx
+##1.3.xx
 ### xx Feb 2016
 
 * **Fix** - Removed all custom CSS being output from `the_content();` in Layers Pages. *MP*

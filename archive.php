@@ -9,7 +9,7 @@
 get_header(); ?>
 <?php get_template_part( 'partials/header' , 'page-title' ); ?>
 
-<section class="container content-main archive clearfix">
+<div class="container content-main archive clearfix">
 	<div class="row">
 		<?php get_sidebar( 'left' ); ?>
 
@@ -25,6 +25,6 @@ get_header(); ?>
 
 		<?php get_sidebar( 'right' ); ?>
 	</div>
-</section>
+</div>
 
 <?php get_footer();

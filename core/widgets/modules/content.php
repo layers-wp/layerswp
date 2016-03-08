@@ -130,7 +130,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 			$widget_container_class[] = $this->get_widget_spacing_class( $widget );
 			$widget_container_class = implode( ' ', apply_filters( 'layers_content_widget_container_class' , $widget_container_class ) ); ?>
 			<?php echo $this->custom_anchor( $widget ); ?>
-			<section id="<?php echo esc_attr( $widget_id ); ?>" class="<?php echo esc_attr( $widget_container_class ); ?>">
+			<div id="<?php echo esc_attr( $widget_id ); ?>" class="<?php echo esc_attr( $widget_container_class ); ?>">
 
 				<?php do_action( 'layers_before_content_widget_inner', $this, $widget ); ?>
 
@@ -342,7 +342,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 					</script>
 				<?php } // masonry trigger ?>
 
-			</section>
+			</div>
 		<?php
 			// Apply the advanced widget styling
 			$this->apply_widget_advanced_styling( $widget_id, $widget );

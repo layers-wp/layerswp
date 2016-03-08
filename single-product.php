@@ -9,7 +9,7 @@ get_header(); ?>
 
 <?php get_template_part( 'partials/header' , 'page-title' ); ?>
 
-<section id="post-<?php the_ID(); ?>" <?php post_class( 'content-main product row' ); ?>>
+<div id="post-<?php the_ID(); ?>" <?php post_class( 'content-main product row' ); ?>>
 
     <?php /**
     * Maybe show the left sidebar
@@ -46,6 +46,6 @@ get_header(); ?>
     */
     layers_maybe_get_sidebar( 'right-woocommerce-sidebar', implode( ' ', layers_get_wrapper_class( 'right_woocommerce_sidebar', 'column pull-right sidebar span-3 no-gutter' ) ) ); ?>
 
-</section>
+</div>
 
 <?php get_footer();

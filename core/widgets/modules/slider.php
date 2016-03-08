@@ -191,7 +191,7 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 
 			<?php if( ! empty( $widget[ 'slides' ] ) ) { ?>
 				<?php echo $this->custom_anchor( $widget ); ?>
-				<section id="<?php echo esc_attr( $widget_id ); ?>" class="<?php echo esc_attr( $widget_container_class ); ?>" style="<?php echo esc_attr( $slider_height_css ); ?>">
+				<div id="<?php echo esc_attr( $widget_id ); ?>" class="<?php echo esc_attr( $widget_container_class ); ?>" style="<?php echo esc_attr( $slider_height_css ); ?>">
 
 					<?php do_action( 'layers_before_slider_widget_inner', $this, $widget ); ?>
 
@@ -408,7 +408,7 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 						});
 					</script>
 
-				</section>
+				</div>
 			<?php }
 
 			// Apply the advanced widget styling

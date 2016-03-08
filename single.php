@@ -8,10 +8,9 @@
 
 get_header(); ?>
 
-<section id="post-<?php the_ID(); ?>" <?php post_class( 'content-main clearfix' ); ?>>
+<div id="post-<?php the_ID(); ?>" <?php post_class( 'content-main clearfix' ); ?>>
 	<?php do_action('layers_before_post_loop'); ?>
 	<div class="row">
-
 		<?php get_sidebar( 'left' ); ?>
 
 		<?php if( have_posts() ) : ?>
@@ -27,6 +26,6 @@ get_header(); ?>
 		<?php get_sidebar( 'right' ); ?>
 	</div>
 	<?php do_action('layers_after_post_loop'); ?>
-</section>
+</div>
 
 <?php get_footer();

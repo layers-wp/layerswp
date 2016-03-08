@@ -8,7 +8,7 @@
 <body <?php body_class(); ?>>
 	<?php get_sidebar( 'off-canvas'); ?>
 	<?php do_action( 'layers_before_site_wrapper' ); ?>
-	<section <?php layer_site_wrapper_class(); ?>>
+	<div <?php layer_site_wrapper_class(); ?>>
 
 		<?php do_action( 'layers_before_header' ); ?>
 
@@ -28,4 +28,4 @@
 
 		<?php do_action( 'layers_after_header' ); ?>
 
-		<section id="wrapper-content" <?php layers_wrapper_class( 'wrapper_content', 'wrapper-content' ); ?>>
+		<div id="wrapper-content" <?php layers_wrapper_class( 'wrapper_content', 'wrapper-content' ); ?>>

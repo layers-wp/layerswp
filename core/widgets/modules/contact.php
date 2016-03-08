@@ -125,7 +125,7 @@ if( !class_exists( 'Layers_Contact_Widget' ) ) {
 			$widget_container_class = array();
 			$widget_container_class[] = 'widget';
 			$widget_container_class[] = 'layers-contact-widget';
-			$widget_container_class[] = 'row';
+			$widget_container_class[] = 'clearfix';
 			$widget_container_class[] = 'content-vertical-massive';
 			$widget_container_class[] = 'layers-contact-widget';
 			$widget_container_class[] = $this->check_and_return( $widget , 'design', 'advanced', 'customclass' ); // Apply custom class from design-bar's advanced control.
@@ -133,7 +133,7 @@ if( !class_exists( 'Layers_Contact_Widget' ) ) {
 			if( !$show_title_or_excerpt && !$show_address_or_contactform  ) $widget_container_class[] = 'no-inset-top no-inset-bottom';
 			$widget_container_class = implode( ' ', apply_filters( 'layers_contact_widget_container_class' , $widget_container_class ) ); ?>
 			<?php echo $this->custom_anchor( $widget ); ?>
-			<section id="<?php echo esc_attr( $widget_id ); ?>" class="<?php echo esc_attr( $widget_container_class ); ?>">
+			<div id="<?php echo esc_attr( $widget_id ); ?>" class="<?php echo esc_attr( $widget_container_class ); ?>">
 
 				<?php do_action( 'layers_before_contact_widget_inner', $this, $widget ); ?>
 
@@ -205,7 +205,7 @@ if( !class_exists( 'Layers_Contact_Widget' ) ) {
 				// Print the Inline Styles for this Widget
 				$this->print_inline_css(); ?>
 
-			</section>
+			</div>
 
 			<?php if ( !isset( $wp_customize ) ) {
 				wp_enqueue_script( LAYERS_THEME_SLUG . " -map-api","//maps.googleapis.com/maps/api/js");
@@ -431,6 +431,7 @@ if( !class_exists( 'Layers_Contact_Widget' ) ) {
 								</p>
 							</div>
 						</div>
+					</div>
 				</section>
 			</div>
 

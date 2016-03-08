@@ -8,7 +8,7 @@
 
 get_header(); ?>
 
-<section class="container content-main archive clearfix">
+<div class="container content-main archive clearfix">
     <?php get_sidebar( 'left' ); ?>
 
     <?php if( have_posts() ) : ?>
@@ -21,5 +21,5 @@ get_header(); ?>
     <?php endif; // if has_post() ?>
 
     <?php get_sidebar( 'right' ); ?>
-</section>
+</div>
 <?php get_footer();

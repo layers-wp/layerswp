@@ -7,7 +7,7 @@
  */
 
 do_action('layers_before_comments'); ?>
-<section id="comments" class="push-top-large">
+<div id="comments" class="push-top-large">
 	<?php if ( have_comments() ) { ?>
 		<div class="section-title small">
 			<h3 class="heading comment-title">
@@ -39,5 +39,5 @@ do_action('layers_before_comments'); ?>
 
 	<?php comment_form();  ?>
 
-</section><!-- #comments .comments-area -->
+</div><!-- #comments .comments-area -->
 <?php do_action('layers_after_comments');

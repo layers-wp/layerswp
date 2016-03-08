@@ -9,8 +9,9 @@
 * **Fix** - Full width footer no longer touches sides, padding left-right has been added. *DP*
 * **Fix** - Fixed Image-botton icon. *DP*
 * **Fix** - Fixed aligncenter bug in blog posts which stopped images from centering. *DP*
+* **Tweak** - Replaced all <section> containers with <div> in order to reverse engineer better SEO as Layers progresses. *DP*
+* **Tweak** - Fixed associated CSS where section[class] was used. *DP*
 * **Enhancement** - Entirely new grid code which allows for different columns in the same content widget, using flexbox and calc() *DP*
-
 
 =======
 ##1.2.13

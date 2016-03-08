@@ -1977,20 +1977,20 @@ object{
 
 		/*-----------------------*/
 		/*- ANIMATION -----------*/
-		.nav ul li > .sub-menu > li{
+		.header-site .nav ul li > .sub-menu > li{
 			opacity: 0;
 			transform: translate3d(0, 5px, 0);
 			transition: 0.25s opacity ease-in-out 0.05s,
 						0.25s transform ease-in-out 0.05s;
 		}
-		.nav ul li:hover > .sub-menu > li{
+		.header-site .nav ul li:hover > .sub-menu > li{
 			opacity: 1;
 			transform: translate3d(0, 0, 0);
 		}
-		.nav ul li:hover > .sub-menu > li:nth-child(2){transition-delay: 0.07s;}
-		.nav ul li:hover > .sub-menu > li:nth-child(3){transition-delay: 0.09s;}
-		.nav ul li:hover > .sub-menu > li:nth-child(4){transition-delay: 0.11s;}
-		.nav ul li:hover > .sub-menu > li:nth-child(5){transition-delay: 0.13s;}
+		.header-site .nav ul li:hover > .sub-menu > li:nth-child(2){transition-delay: 0.07s;}
+		.header-site .nav ul li:hover > .sub-menu > li:nth-child(3){transition-delay: 0.09s;}
+		.header-site .nav ul li:hover > .sub-menu > li:nth-child(4){transition-delay: 0.11s;}
+		.header-site .nav ul li:hover > .sub-menu > li:nth-child(5){transition-delay: 0.13s;}
 
 	/*---------------------------*/
 	/*- ABOLUTE NAV -------------*/
@@ -2685,9 +2685,11 @@ object{
 		background: none;
 		color: #fff;
 	}
+	.invert .sub-menu,
 	.invert .sub-menu li a{
 		background: none;
 	}
+	.header-site.invert .sub-menu,
 	.header-site.invert .sub-menu li a{
 		background: #fff;
 		color: #000;

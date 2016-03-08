@@ -1976,7 +1976,7 @@ object{
 		}
 
 		/*-----------------------*/
-		/*- ANIMATION -----------*/
+		/*- SUB MENU ANIMATION --*/
 		.header-site .nav ul li > .sub-menu > li{
 			opacity: 0;
 			transform: translate3d(0, 5px, 0);

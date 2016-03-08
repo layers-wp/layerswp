@@ -243,7 +243,7 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 }
 
 /*--------------------------------------------------------------*/
-/*-  AWKWARD SIZE BETWEEN PHONE LANDSCAPE AND TABS -------------*/
+/*-  AWKWARD SIZE BETWEEN PHONE LANDSCAPE AND TABLET -----------*/
 /*--------------------------------------------------------------*/
 @media only screen and (min-width: 481px) and (max-width: 768px){
 
@@ -268,26 +268,8 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 		/*-----------------------*/
 		/*- MULTI-SIDEBAR -------*/
 		/* This CSS caters for 3 column sidebar layouts */
-		.sidebar.span-3{
-			width: 31.3%;
-		}
-		.sidebar.span-3 + .span-6{
-			width: 66.7%;
-		}
-		.sidebar.span-3 + .span-6 + .span-3{
-			width: 100%;
-		}
-		.sidebar.span-3 + .span-6 + .span-3 .widget{
-			float: left;
-			width: 31.3%;
-			margin-right: 2%;
-			margin-bottom: 2%;
-		}
-		.sidebar.span-3 + .span-6 + .span-3 .widget:nth-child(3n+3){
-			margin-right: 0;
-		}
-		.sidebar.span-3 + .span-6 + .span-3 .widget:nth-child(3n+4){
-			clear: left;
+		.column.span-3 + .span-6{
+			min-width: calc(((100% / 12) * 12) - 20px);
 		}
 
 		/*-----------------------*/
@@ -297,7 +279,7 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 			min-width: calc(((100% / 12) * 12) - 20px);
 			/* Set the main column to fullwidth */
 		}
-		.sidebar.span-4{
+		.column.sidebar{
 			display: flex;
 			flex-flow: row wrap;
 			min-width: calc((100% / 12) * 12);
@@ -305,15 +287,21 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 			margin-right: 0px;
 			/* Set the sidebar to full width and apply flexbox */
 		}
-		.sidebar.span-4 .widget{
-			flex: 0 0 calc(((100% / 12) * 4) - 20px);
+		.column.sidebar .widget{
+			flex: 0 0 calc(((100% / 12) * 6) - 20px);
 			margin: 0 10px 20px;
-			/* align widgets in rows of 3 */
+			/* align widgets in rows of 2 */
 		}
+
+	/*---------------------------*/
+	/*- SPAN - 9 GOES SPAN 12 ---*/
+	.column.span-9{
+		min-width: calc(((100% / 12) * 12) - 20px);
+	}
 }
 
 /*--------------------------------------------------------------*/
-/*-  AWKWARD SIZE BETWEEN PHONE LANDSCAPE AND TABS -------------*/
+/*-  AWKWARD SIZE BETWEEN PHONE LANDSCAPE AND TABLET -----------*/
 /*--------------------------------------------------------------*/
 @media only screen and (min-width: 601px) and (max-width: 782px){
 

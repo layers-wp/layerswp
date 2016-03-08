@@ -1884,7 +1884,7 @@ object{
 		visibility: hidden;
 		opacity: 0;
 		position: absolute;
-		top: 30px;
+		top: 50px;
 		left: 0;
 		border: 2px solid #ddd;
 		z-index: 5;
@@ -1940,7 +1940,8 @@ object{
 		box-shadow: 3px 3px 0px rgba(0, 0, 0, 0.05);
 	}
 	.nav-vertical li:hover > .sub-menu{
-		top: -3px; left: 140px;
+		top: -3px;
+		left: 140px;
 	}
 	.nav-vertical li:hover > .sub-menu .sub-menu{
 		left: 155px;
@@ -1973,6 +1974,23 @@ object{
 		.header-site .menu-item-has-children > a:hover:after{
 			opacity: 0.8;
 		}
+
+		/*-----------------------*/
+		/*- ANIMATION -----------*/
+		.nav ul li > .sub-menu > li{
+			opacity: 0;
+			transform: translate3d(0, 5px, 0);
+			transition: 0.25s opacity ease-in-out 0.05s,
+						0.25s transform ease-in-out 0.05s;
+		}
+		.nav ul li:hover > .sub-menu > li{
+			opacity: 1;
+			transform: translate3d(0, 0, 0);
+		}
+		.nav ul li:hover > .sub-menu > li:nth-child(2){transition-delay: 0.07s;}
+		.nav ul li:hover > .sub-menu > li:nth-child(3){transition-delay: 0.09s;}
+		.nav ul li:hover > .sub-menu > li:nth-child(4){transition-delay: 0.11s;}
+		.nav ul li:hover > .sub-menu > li:nth-child(5){transition-delay: 0.13s;}
 
 	/*---------------------------*/
 	/*- ABOLUTE NAV -------------*/
@@ -2666,9 +2684,6 @@ object{
 	.invert .nav-vertical li a:hover{
 		background: none;
 		color: #fff;
-	}
-	.invert .sub-menu{
-		background: none;
 	}
 	.invert .sub-menu li a{
 		background: none;

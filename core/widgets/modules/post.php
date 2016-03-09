@@ -352,8 +352,8 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 					</div><!-- /row -->
 				</div>
 				<?php if( isset( $widget['show_pagination'] ) ) { ?>
-					<div class="row products container list-grid">
-						<?php layers_pagination( array( 'query' => $post_query ), 'div', 'pagination row span-12 text-center' ); ?>
+					<div class="container">
+						<?php layers_pagination( array( 'query' => $post_query ), 'div', 'pagination clearfix' ); ?>
 					</div>
 				<?php } ?>
 

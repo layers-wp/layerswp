@@ -194,9 +194,11 @@ object{
 		display: flex;
 		flex-flow: row;
 		flex-wrap: wrap;
+		position: relative;
+	}
+	.container .row{
 		margin-left: -10px;
 		margin-right: -10px;
-		position: relative;
 	}
 	[class*='column']{
 		flex: 0 0 calc((100% / 12) - 20px);
@@ -218,6 +220,9 @@ object{
 
 	[class*='column'].span-12{
 		min-width: calc(((100% / 12) * 12) - 20px);
+	}
+	.column-flush.span-12{
+		min-width: calc((100% / 12) * 12);
 	}
 
 	.middled,

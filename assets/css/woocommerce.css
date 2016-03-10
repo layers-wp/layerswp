@@ -517,14 +517,14 @@ p.stars span a:focus{
 	.entry-content ul{
 		list-style: disc;
 		margin: 0 0 16px;
-		border: none;
+		border: none !important;
 	}
 	.entry-content ul li{
 		list-style: disc;
 		padding: 0;
 		margin: 0 0 6px 26px;
 		background: none;
-		border: none;
+		border: none !important;
 	}
 	.entry-content ol{
 		list-style: decimal;
@@ -1420,6 +1420,7 @@ p.stars span a:focus{
 	.woocommerce-tabs .tabs li{
 		float: none;
 		margin-bottom: 3px;
+		margin-right: 0;
 	}
 	.woocommerce-tabs .tabs a{
 	}

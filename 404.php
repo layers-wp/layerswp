@@ -8,7 +8,7 @@
 
 get_header(); ?>
 
-<section class="post content-main clearfix container">
+<div class="post content-main clearfix container">
     <div class="row">
 
         <?php get_sidebar( 'left' ); ?>
@@ -19,6 +19,6 @@ get_header(); ?>
 
         <?php get_sidebar( 'right' ); ?>
     </div>
-</section>
+</div>
 
 <?php get_footer();

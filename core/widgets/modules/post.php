@@ -213,8 +213,8 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 			$widget_container_class = array();
 			$widget_container_class[] = 'widget';
 			$widget_container_class[] = 'layers-post-widget';
-			$widget_container_class[] = 'row';
 			$widget_container_class[] = 'content-vertical-massive';
+			$widget_container_class[] = 'clearfix';
 			$widget_container_class[] = $this->check_and_return( $widget , 'design', 'advanced', 'customclass' ); // Apply custom class from design-bar's advanced control.
 			$widget_container_class[] = $this->get_widget_spacing_class( $widget );
 			$widget_container_class = implode( ' ', apply_filters( 'layers_post_widget_container_class' , $widget_container_class ) ); ?>
@@ -244,114 +244,116 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 						</div>
 					</div>
 				<?php } ?>
-				<div class="row <?php echo $this->get_widget_layout_class( $widget ); ?> <?php echo $this->check_and_return( $widget , 'design', 'liststyle' ); ?>">
-					<?php if( $post_query->have_posts() ) { ?>
-						<?php while( $post_query->have_posts() ) {
-							$post_query->the_post();
+				<div class="<?php echo $this->get_widget_layout_class( $widget ); ?> <?php echo $this->check_and_return( $widget , 'design', 'liststyle' ); ?>">
+					<div class="row">
+						<?php if( $post_query->have_posts() ) { ?>
+							<?php while( $post_query->have_posts() ) {
+								$post_query->the_post();
 
-							if( 'list-list' == $widget['design'][ 'liststyle' ] ) { ?>
-								<article id="post-<?php the_ID(); ?>" class="row push-bottom-large">
-									<?php if( isset( $widget['show_titles'] ) ) { ?>
-										<header class="section-title large">
-											<h1 class="heading"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h1>
-										</header>
-									<?php } ?>
+								if( 'list-list' == $widget['design'][ 'liststyle' ] ) { ?>
+									<article id="post-<?php the_ID(); ?>" class="row push-bottom-large">
+										<?php if( isset( $widget['show_titles'] ) ) { ?>
+											<header class="section-title large">
+												<h1 class="heading"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h1>
+											</header>
+										<?php } ?>
 
-									<?php // Layers Featured Media );
-									if( isset( $widget['show_media'] ) ) {
-										echo layers_post_featured_media(
-											array(
-												'postid' => get_the_ID(),
-												'wrap_class' => 'thumbnail push-bottom span-5 column' .  ( 'image-round' == $this->check_and_return( $widget, 'design', 'imageratios' ) ? ' image-rounded' : '' ),
-												'size' => $use_image_ratio
-											)
-										);
-									} // if Show Media ?>
+										<?php // Layers Featured Media );
+										if( isset( $widget['show_media'] ) ) {
+											echo layers_post_featured_media(
+												array(
+													'postid' => get_the_ID(),
+													'wrap_class' => 'thumbnail push-bottom span-5 column' .  ( 'image-round' == $this->check_and_return( $widget, 'design', 'imageratios' ) ? ' image-rounded' : '' ),
+													'size' => $use_image_ratio
+												)
+											);
+										} // if Show Media ?>
 
-									<?php if( isset( $widget['show_excerpts'] ) || $widget['show_call_to_action'] || ! empty( $layers_post_meta_to_display ) ) { ?>
-										<div class="column span-7">
-											<?php if( isset( $widget['show_excerpts'] ) ) {
-												if( isset( $widget['excerpt_length'] ) && '' == $widget['excerpt_length'] ) {
-													echo '<div class="copy push-bottom">';
-														the_content();
-													echo '</div>';
-												} else if( isset( $widget['excerpt_length'] ) && 0 != $widget['excerpt_length'] && strlen( get_the_excerpt() ) > $widget['excerpt_length'] ){
-													echo '<div class="copy push-bottom">' . substr( get_the_excerpt() , 0 , $widget['excerpt_length'] ) . '&#8230;</div>';
-												} else if( '' != get_the_excerpt() ){
-													echo '<div class="copy push-bottom">' . get_the_excerpt() . '</div>';
-												}
-											}; ?>
-
-											<?php layers_post_meta( get_the_ID(), $layers_post_meta_to_display, 'footer' , 'meta-info push-bottom ' . ( '' != $this->check_and_return( $widget, 'design', 'column-background-color' ) && 'dark' == layers_is_light_or_dark( $this->check_and_return( $widget, 'design', 'column-background-color' ) ) ? 'invert' : '' ) );?>
-
-											<?php if( isset( $widget['show_call_to_action'] ) && $this->check_and_return( $widget , 'call_to_action' ) ) { ?>
-												<p><a href="<?php the_permalink(); ?>" class="button"><?php echo $widget['call_to_action']; ?></a></p>
-											<?php } // show call to action ?>
-										</div>
-									<?php } ?>
-								</article>
-							<?php } else {
-								/**
-								* Set Individual Column CSS
-								*/
-								$post_column_class = array();
-								$post_column_class[] = 'layers-masonry-column';
-								$post_column_class[] = 'thumbnail';
-								$post_column_class[] = ( 'list-masonry' == $this->check_and_return( $widget, 'design', 'liststyle' ) ? 'no-gutter' : '' );
-								$post_column_class[] = 'column' . ( 'on' != $this->check_and_return( $widget, 'design', 'gutter' ) ? '-flush' : '' );
-								$post_column_class[] = $span_class;
-								$post_column_class[] = ( 'overlay' == $this->check_and_return( $widget , 'text_style' ) ? 'with-overlay' : ''  ) ;
-								$post_column_class[] = ( '' != $this->check_and_return( $widget, 'design', 'column-background-color' ) && 'dark' == layers_is_light_or_dark( $this->check_and_return( $widget, 'design', 'column-background-color' ) ) ? 'invert' : '' );
-								$post_column_class = implode( ' ' , $post_column_class ); ?>
-
-								<article class="<?php echo $post_column_class; ?>" data-cols="<?php echo $col_count; ?>">
-									<?php // Layers Featured Media
-									if( isset( $widget['show_media'] ) ) {
-										echo layers_post_featured_media(
-											array(
-												'postid' => get_the_ID(),
-												'wrap_class' => 'thumbnail-media' .  ( ( 'image-round' == $this->check_and_return( $widget, 'design', 'imageratios' ) ) ? ' image-rounded' : '' ),
-												'size' => $use_image_ratio,
-												'hide_href' => false
-											)
-										);
-									} // if Show Media ?>
-									<?php if( isset( $widget['show_titles'] ) || isset( $widget['show_excerpts'] ) ) { ?>
-										<div class="thumbnail-body">
-											<div class="overlay">
-												<?php if( isset( $widget['show_titles'] ) ) { ?>
-													<header class="article-title">
-														<h4 class="heading"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h4>
-													</header>
-												<?php } ?>
+										<?php if( isset( $widget['show_excerpts'] ) || $widget['show_call_to_action'] || ! empty( $layers_post_meta_to_display ) ) { ?>
+											<div class="column span-7">
 												<?php if( isset( $widget['show_excerpts'] ) ) {
 													if( isset( $widget['excerpt_length'] ) && '' == $widget['excerpt_length'] ) {
-														echo '<div class="excerpt">';
+														echo '<div class="copy push-bottom">';
 															the_content();
 														echo '</div>';
 													} else if( isset( $widget['excerpt_length'] ) && 0 != $widget['excerpt_length'] && strlen( get_the_excerpt() ) > $widget['excerpt_length'] ){
-														echo '<div class="excerpt">' . substr( get_the_excerpt() , 0 , $widget['excerpt_length'] ) . '&#8230;</div>';
+														echo '<div class="copy push-bottom">' . substr( get_the_excerpt() , 0 , $widget['excerpt_length'] ) . '&#8230;</div>';
 													} else if( '' != get_the_excerpt() ){
-														echo '<div class="excerpt">' . get_the_excerpt() . '</div>';
+														echo '<div class="copy push-bottom">' . get_the_excerpt() . '</div>';
 													}
 												}; ?>
-												<?php if( 'overlay' != $this->check_and_return( $widget, 'text_style' ) ) { ?>
-													<?php layers_post_meta( get_the_ID(), $layers_post_meta_to_display, 'footer' , 'meta-info ' . ( '' != $this->check_and_return( $widget, 'design', 'column-background-color' ) && 'dark' == layers_is_light_or_dark( $this->check_and_return( $widget, 'design', 'column-background-color' ) ) ? 'invert' : '' ) );?>
-												<?php } // Don't show meta if we have chosen overlay ?>
+
+												<?php layers_post_meta( get_the_ID(), $layers_post_meta_to_display, 'footer' , 'meta-info push-bottom ' . ( '' != $this->check_and_return( $widget, 'design', 'column-background-color' ) && 'dark' == layers_is_light_or_dark( $this->check_and_return( $widget, 'design', 'column-background-color' ) ) ? 'invert' : '' ) );?>
+
 												<?php if( isset( $widget['show_call_to_action'] ) && $this->check_and_return( $widget , 'call_to_action' ) ) { ?>
-													<a href="<?php the_permalink(); ?>" class="button"><?php echo $widget['call_to_action']; ?></a>
+													<p><a href="<?php the_permalink(); ?>" class="button"><?php echo $widget['call_to_action']; ?></a></p>
 												<?php } // show call to action ?>
 											</div>
-										</div>
-									<?php } // if show titles || show excerpt ?>
-								</article>
-							<?php }; // if list-list == liststyle ?>
-						<?php }; // while have_posts ?>
-					<?php }; // if have_posts ?>
+										<?php } ?>
+									</article>
+								<?php } else {
+									/**
+									* Set Individual Column CSS
+									*/
+									$post_column_class = array();
+									$post_column_class[] = 'layers-masonry-column';
+									$post_column_class[] = 'thumbnail';
+									$post_column_class[] = ( 'list-masonry' == $this->check_and_return( $widget, 'design', 'liststyle' ) ? 'no-gutter' : '' );
+									$post_column_class[] = 'column' . ( 'on' != $this->check_and_return( $widget, 'design', 'gutter' ) ? '-flush' : '' );
+									$post_column_class[] = $span_class;
+									$post_column_class[] = ( 'overlay' == $this->check_and_return( $widget , 'text_style' ) ? 'with-overlay' : ''  ) ;
+									$post_column_class[] = ( '' != $this->check_and_return( $widget, 'design', 'column-background-color' ) && 'dark' == layers_is_light_or_dark( $this->check_and_return( $widget, 'design', 'column-background-color' ) ) ? 'invert' : '' );
+									$post_column_class = implode( ' ' , $post_column_class ); ?>
+
+									<article class="<?php echo $post_column_class; ?>" data-cols="<?php echo $col_count; ?>">
+										<?php // Layers Featured Media
+										if( isset( $widget['show_media'] ) ) {
+											echo layers_post_featured_media(
+												array(
+													'postid' => get_the_ID(),
+													'wrap_class' => 'thumbnail-media' .  ( ( 'image-round' == $this->check_and_return( $widget, 'design', 'imageratios' ) ) ? ' image-rounded' : '' ),
+													'size' => $use_image_ratio,
+													'hide_href' => false
+												)
+											);
+										} // if Show Media ?>
+										<?php if( isset( $widget['show_titles'] ) || isset( $widget['show_excerpts'] ) ) { ?>
+											<div class="thumbnail-body">
+												<div class="overlay">
+													<?php if( isset( $widget['show_titles'] ) ) { ?>
+														<header class="article-title">
+															<h4 class="heading"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h4>
+														</header>
+													<?php } ?>
+													<?php if( isset( $widget['show_excerpts'] ) ) {
+														if( isset( $widget['excerpt_length'] ) && '' == $widget['excerpt_length'] ) {
+															echo '<div class="excerpt">';
+																the_content();
+															echo '</div>';
+														} else if( isset( $widget['excerpt_length'] ) && 0 != $widget['excerpt_length'] && strlen( get_the_excerpt() ) > $widget['excerpt_length'] ){
+															echo '<div class="excerpt">' . substr( get_the_excerpt() , 0 , $widget['excerpt_length'] ) . '&#8230;</div>';
+														} else if( '' != get_the_excerpt() ){
+															echo '<div class="excerpt">' . get_the_excerpt() . '</div>';
+														}
+													}; ?>
+													<?php if( 'overlay' != $this->check_and_return( $widget, 'text_style' ) ) { ?>
+														<?php layers_post_meta( get_the_ID(), $layers_post_meta_to_display, 'footer' , 'meta-info ' . ( '' != $this->check_and_return( $widget, 'design', 'column-background-color' ) && 'dark' == layers_is_light_or_dark( $this->check_and_return( $widget, 'design', 'column-background-color' ) ) ? 'invert' : '' ) );?>
+													<?php } // Don't show meta if we have chosen overlay ?>
+													<?php if( isset( $widget['show_call_to_action'] ) && $this->check_and_return( $widget , 'call_to_action' ) ) { ?>
+														<a href="<?php the_permalink(); ?>" class="button"><?php echo $widget['call_to_action']; ?></a>
+													<?php } // show call to action ?>
+												</div>
+											</div>
+										<?php } // if show titles || show excerpt ?>
+									</article>
+								<?php }; // if list-list == liststyle ?>
+							<?php }; // while have_posts ?>
+						<?php }; // if have_posts ?>
+					</div><!-- /row -->
 				</div>
 				<?php if( isset( $widget['show_pagination'] ) ) { ?>
-					<div class="row products container list-grid">
-						<?php layers_pagination( array( 'query' => $post_query ), 'div', 'pagination row span-12 text-center' ); ?>
+					<div class="container">
+						<?php layers_pagination( array( 'query' => $post_query ), 'div', 'pagination clearfix' ); ?>
 					</div>
 				<?php } ?>
 

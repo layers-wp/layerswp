@@ -131,6 +131,7 @@ pre{
 	font-size: 85%;
 	font-weight: 700;
 	font-family: "Courier New", Courier, monospace;
+	text-transform: initial;
 }
 strong{
 	font-weight: 700;
@@ -189,17 +190,39 @@ object{
 
 	/*---------------------------*/
 	/*- GRIDS -------------------*/
-	.column{
+	.row{
+		display: flex;
+		flex-flow: row;
+		flex-wrap: wrap;
+		position: relative;
+	}
+	.container .row{
+		margin-left: -10px;
+		margin-right: -10px;
+	}
+	[class*='column']{
+		flex: 0 0 calc((100% / 12) - 20px);
+		margin-left: 10px;
+		margin-right: 10px;
 		margin-bottom: 20px;
 		position: relative;
-		max-width: 100%;
+		max-width: calc(100% - 20px);
 	}
 	.column-flush{
 		margin: 0;
 		position: relative;
+		max-width: 100%;
 	}
-	.row .column:last-child{
-		margin-right: 0;
+
+	.layers-masonry-column .row{
+		flex-direction: column;
+	}
+
+	[class*='column'].span-12{
+		min-width: calc(((100% / 12) * 12) - 20px);
+	}
+	.column-flush.span-12{
+		min-width: calc((100% / 12) * 12);
 	}
 
 	.middled,
@@ -216,7 +239,7 @@ object{
 	.container.list-masonry{
 		max-width: 1000px;
 		padding: 0;
-		position:relative;
+		position: relative;
 	}
 	.container.list-masonry > *:not(.masonry-loading){
 		opacity: 0;
@@ -236,7 +259,12 @@ object{
 		overflow: hidden;
 		opacity: 0;
 	}
-	.container.list-masonry .column{
+	.list-masonry .row{
+		margin-left: 0px;
+		margin-right: 0px;
+	}
+	.list-masonry .column{
+		margin-left: 0;
 		margin-right: 0;
 	}
 
@@ -851,11 +879,11 @@ object{
 	.close-canvas:hover{
 		color: #fff;
 	}
-	.admin-bar section[class*=' off-canvas-'] .close-canvas{
+	.admin-bar div[class*=' off-canvas-'] .close-canvas{
 		top: 32px;
 	}
 
-	section[class*=' off-canvas-']{
+	div[class*=' off-canvas-']{
 		padding-top: 30px;
 		position: fixed;
 		top: 0;
@@ -866,7 +894,7 @@ object{
 		transition: all 0.3s ease-in-out 0s;
 		font-size: 1.4rem;
 	}
-	.admin-bar section[class*=' off-canvas-']{
+	.admin-bar div[class*=' off-canvas-']{
 		padding-top: 66px;
 	}
 	.off-canvas-right{
@@ -907,34 +935,34 @@ object{
 
 	/*---------------------------*/
 	/*- OFF CANVAS WIDGETS ------*/
-	section[class*=' off-canvas-'] .sub-menu li{
+	div[class*=' off-canvas-'] .sub-menu li{
 		width: auto;
 	}
-	section[class*=' off-canvas-'] li{
+	div[class*=' off-canvas-'] li{
 		padding: 5px 0;
 	}
-	section[class*=' off-canvas-'] li a{
+	div[class*=' off-canvas-'] li a{
 		color: rgba(255, 255, 255, 0.8);
 	}
-	section[class*=' off-canvas-'] .section-nav-title{
+	div[class*=' off-canvas-'] .section-nav-title{
 		color: #888;
 	}
-	section[class*=' off-canvas-'] .widget.widget_nav_menu{
+	div[class*=' off-canvas-'] .widget.widget_nav_menu{
 		padding: 20px;
 	}
-	section[class*=' off-canvas-'] .widget.widget_nav_menu li{
+	div[class*=' off-canvas-'] .widget.widget_nav_menu li{
 		display: block;
 		margin: 0;
 		text-align: left;
 	}
-	section[class*=' off-canvas-'] .searchform label{
+	div[class*=' off-canvas-'] .searchform label{
 		display: none;
 	}
-	section[class*=' off-canvas-'] .searchform input[type="text"]{
+	div[class*=' off-canvas-'] .searchform input[type="text"]{
 		background: none repeat scroll 0% 0% rgb(51, 51, 51);
 		border: 2px solid rgb(85, 85, 85);
 	}
-	section[class*=' off-canvas-'] .searchform input[type="submit"]{
+	div[class*=' off-canvas-'] .searchform input[type="submit"]{
 		display: block;
 		width: 100%;
 		height: 32px;
@@ -945,19 +973,19 @@ object{
 
 		/*-----------------------*/
 		/*- OFF CANVAS MENU -----*/
-		section[class*=' off-canvas-'] .nav-mobile{
+		div[class*=' off-canvas-'] .nav-mobile{
 			margin-top: 0;
 			padding-top: 0;
 			position: relative;
 			z-index: 1;
 		}
-		.admin-bar section[class*=' off-canvas-'] .nav-mobile{
+		.admin-bar div[class*=' off-canvas-'] .nav-mobile{
 			padding-top: 20px;
 		}
-		section[class*=' off-canvas-'] .nav-vertical li{
+		div[class*=' off-canvas-'] .nav-vertical li{
 			padding: 0;
 		}
-		section[class*=' off-canvas-'] .nav-vertical .sub-menu{
+		div[class*=' off-canvas-'] .nav-vertical .sub-menu{
 			display: block;
 			width: auto;
 			visibility: visible;
@@ -967,7 +995,7 @@ object{
 			box-shadow: none;
 			font-size: 1.2rem;
 		}
-		section[class*=' off-canvas-'] .nav-vertical .sub-menu li{
+		div[class*=' off-canvas-'] .nav-vertical .sub-menu li{
 			border: none;
 		}
 
@@ -1861,7 +1889,7 @@ object{
 		visibility: hidden;
 		opacity: 0;
 		position: absolute;
-		top: 30px;
+		top: 50px;
 		left: 0;
 		border: 2px solid #ddd;
 		z-index: 5;
@@ -1917,7 +1945,8 @@ object{
 		box-shadow: 3px 3px 0px rgba(0, 0, 0, 0.05);
 	}
 	.nav-vertical li:hover > .sub-menu{
-		top: -3px; left: 140px;
+		top: -3px;
+		left: 140px;
 	}
 	.nav-vertical li:hover > .sub-menu .sub-menu{
 		left: 155px;
@@ -1950,6 +1979,23 @@ object{
 		.header-site .menu-item-has-children > a:hover:after{
 			opacity: 0.8;
 		}
+
+		/*-----------------------*/
+		/*- SUB MENU ANIMATION --*/
+		.header-site .nav ul li > .sub-menu > li{
+			opacity: 0;
+			transform: translate3d(0, 5px, 0);
+			transition: 0.25s opacity ease-in-out 0.05s,
+						0.25s transform ease-in-out 0.05s;
+		}
+		.header-site .nav ul li:hover > .sub-menu > li{
+			opacity: 1;
+			transform: translate3d(0, 0, 0);
+		}
+		.header-site .nav ul li:hover > .sub-menu > li:nth-child(2){transition-delay: 0.07s;}
+		.header-site .nav ul li:hover > .sub-menu > li:nth-child(3){transition-delay: 0.09s;}
+		.header-site .nav ul li:hover > .sub-menu > li:nth-child(4){transition-delay: 0.11s;}
+		.header-site .nav ul li:hover > .sub-menu > li:nth-child(5){transition-delay: 0.13s;}
 
 	/*---------------------------*/
 	/*- ABOLUTE NAV -------------*/
@@ -2487,6 +2533,9 @@ object{
 		float: right;
 	}
 	.aligncenter{
+		clear: both;
+		margin-left: auto;
+		margin-right: auto;
 		text-align: center;
 	}
 	.bypostauthor{
@@ -2641,12 +2690,11 @@ object{
 		background: none;
 		color: #fff;
 	}
-	.invert .sub-menu{
-		background: none;
-	}
+	.invert .sub-menu,
 	.invert .sub-menu li a{
 		background: none;
 	}
+	.header-site.invert .sub-menu,
 	.header-site.invert .sub-menu li a{
 		background: #fff;
 		color: #000;

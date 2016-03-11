@@ -102,13 +102,13 @@ jQuery(function($) {
 	*
 	* Extend jQuery easing with custom Layers easing function for UI animations - eg slideUp, slideDown
 	*/
-	
+
 	// easeInOutQuad
 	/*jQuery.extend( jQuery.easing, { layersEaseInOut: function (x, t, b, c, d) {
 		if ((t/=d/2) < 1) return c/2*t*t + b;
 		return -c/2 * ((--t)*(t-2) - 1) + b;
 	}});*/
-	
+
 	// easeInOutQuint
     jQuery.extend( jQuery.easing, { layersEaseInOut: function (x, t, b, c, d) {
         if ((t/=d/2) < 1) return c/2*t*t*t*t*t + b;
@@ -417,7 +417,7 @@ jQuery(function($) {
 		$tab_container = $tab_nav.siblings('.l_admin-tab-content');
 
 		// Show/Hide tabs
-		$tab_container.find( 'section.l_admin-tab-content' ).eq( $i ).slideDown().siblings( 'section.l_admin-tab-content' ).slideUp();
+		$tab_container.find( 'section.layers-tab-content' ).eq( $i ).addClass('l_admin-show').removeClass('l_admin-hide').slideDown().siblings( 'section.l_admin-tab-content' ).addClass('l_admin-hide').removeClass('l_admin-show').slideUp();
 	});
 
 
@@ -446,12 +446,12 @@ jQuery(function($) {
 	});
 
 	$( document ).on( 'mousedown' , '.layers-select-icons label.layers-icon-wrapper' , function(e){
-		
+
 		// Cache elements.
 		var $label = $(this);
-		
+
 		var $input = $('#' + $label.attr( 'for' ));
-		
+
 		// Get the input value
 		var $value = $input.val();
 
@@ -463,12 +463,12 @@ jQuery(function($) {
 
 		// Toggle active state
 		$label.trigger( 'layers-design-bar-menu', $label );
-		
+
 		// De-activate siblings
 		$label.siblings( '.layers-icon-wrapper' ).removeClass( 'layers-active' );
-		
+
 		if ( 'checkbox' == $input.attr('type') ) {
-			
+
 			// Input is a 'checkbox' when there's only one single button - so make it toggle on/off.
 			if ( $label.hasClass( 'layers-active' ) ) {
 				$label.removeClass( 'layers-active' );
@@ -478,7 +478,7 @@ jQuery(function($) {
 			}
 		}
 		else {
-			
+
 			// Input is a 'radio' when there's multiple buttons - so make them behave like radio.
 			$label.addClass( 'layers-active' );
 		}
@@ -597,10 +597,10 @@ jQuery(function($) {
 
 	if ( $('body.wp-customizer').length ) {
 		// Customizer
-		
+
 			// Init interface in all except widgets on load
 			layers_init_show_if( $( '#customize-theme-controls > ul > li.accordion-section' ).not( '#accordion-panel-widgets' ) );
-		
+
 			// Init interface inside widgets
 			$( document ).on( 'layers-interface-init', '.widget, .layers-accordions', function( e ){
 				// 'this' is the widget
@@ -643,7 +643,7 @@ jQuery(function($) {
 			var $target_value   = $target_element.data( 'show-if-value' ).toString();
 			var $source_element = $( $target_element.data( 'show-if-selector' ).toString() );
 			var $operator       = $target_element.data( 'show-if-operator' );
-			
+
 			if ( $source_element.attr('type') == 'checkbox' ) {
 				$source_element_value = ( $source_element.is(':checked') ) ? 'true' : 'false' ;
 			}
@@ -655,17 +655,17 @@ jQuery(function($) {
 				layers_show_if_display( 'hide', $target_element );
 				return false;
 			}
-			
+
 			// Apply the chosen Operator (default: ==)
 			switch( $operator ) {
-				
+
 				case '!=':
-					
+
 					if ( $target_value.trim() != $source_element_value.trim() )
 						layers_show_if_display( 'show', $target_element ); // Show
 					else
 						layers_show_if_display( 'hide', $target_element ); // Hide
-					
+
 					break;
 
 				case '!==':
@@ -674,7 +674,7 @@ jQuery(function($) {
 						layers_show_if_display( 'show', $target_element ); // Show
 					else
 						layers_show_if_display( 'hide', $target_element ); // Hide
-					
+
 					break;
 
 				case '>':
@@ -683,7 +683,7 @@ jQuery(function($) {
 						layers_show_if_display( 'show', $target_element ); // Show
 					else
 						layers_show_if_display( 'hide', $target_element ); // Hide
-					
+
 					break;
 
 				case '<':
@@ -692,7 +692,7 @@ jQuery(function($) {
 						layers_show_if_display( 'show', $target_element ); // Show
 					else
 						layers_show_if_display( 'hide', $target_element ); // Hide
-					
+
 					break;
 
 				case '>=':
@@ -701,7 +701,7 @@ jQuery(function($) {
 						layers_show_if_display( 'show', $target_element ); // Show
 					else
 						layers_show_if_display( 'hide', $target_element ); // Hide
-					
+
 					break;
 
 				case '<=':
@@ -710,43 +710,43 @@ jQuery(function($) {
 						layers_show_if_display( 'show', $target_element ); // Show
 					else
 						layers_show_if_display( 'hide', $target_element ); // Hide
-					
+
 					break;
-				
+
 				case '==':
 				default:
-					
+
 					if ( $target_value.trim() == $source_element_value.trim() )
 						layers_show_if_display( 'show', $target_element ); // Show
 					else
 						layers_show_if_display( 'hide', $target_element ); // Hide
-					
+
 					break;
 			}
-			
+
 		});
 	}
 
 	function layers_show_if_display( $state, $target_element ) {
-		
+
 		// Calculate the reveal animation type.
 		var animation_type = 'none';
-		
+
 		// Get the right target element depending on what kind of component this is (is Customize Control or Design-Bar item)
 		if ( $target_element.hasClass('l_option-customize-control') ){
-			
+
 			// Target element is - Customize Control (entire control)
 			$target_element = $target_element.parent('.customize-control');
 			animation_type = 'slideDown';
 		}
 		else if ( $target_element.hasClass('layers-design-bar-form-item') ) {
-			
+
 			// Target element is - Design Bar (form-item)
 			animation_type = 'slideDown';
 		}
 
 		if ( 'hide' == $state ) {
-			
+
 			// Hide
 			if( animation_type == 'slideDown' ){
 				$target_element.slideUp( { duration: 550, easing: 'layersEaseInOut', complete: function(){
@@ -758,7 +758,7 @@ jQuery(function($) {
 			}
 		}
 		else {
-			
+
 			// Show
 			if( animation_type == 'slideDown' ){
 				$target_element.removeClass( 'l_admin-hide' );
@@ -1167,27 +1167,27 @@ jQuery(function($) {
 
 	function layers_init_form_collections( $element_s ){
 		$element_s.each( function( i, group ) {
-			
+
 			/**
 			 * Get the link-type inputs and convert them to layersSlct2.
 			 */
 			$(group).find( '.layers-widget-dynamic-linking-select').each( function( j, element ) {
-				
+
 				var initial_selection = {
 					id   : $(element).val(),
 					text : $(element).attr( 'data-display-text' ),
 				};
 				var placeholder = $(element).attr( 'placeholder' );
-				
+
 				var related_type_select = $(element).parents('.layers-form-collection').find('[id$="-link_type"]');
-				
+
 				$(element).layersSlct2({
 					ajax: {
 						url: ajaxurl,
 						dataType: 'json',
 						quietMillis: 250,
 						data: function(term, page) {
-							
+
 							return {
 								action    : 'layers_widget_linking_searches',
 								link_type : related_type_select.val(),
@@ -1197,7 +1197,7 @@ jQuery(function($) {
 							};
 						},
 						results: function(data, params) {
-							
+
 							return {
 								results: data.results,
 								more: data.more,
@@ -1206,14 +1206,14 @@ jQuery(function($) {
 						cache: true
 					},
 					escapeMarkup: function(markup) {
-						
+
 						// let our custom formatter work
 						return markup;
 					},
 					initSelection: function(element, callback) {
-						
+
 						callback( initial_selection );
-						
+
 						// Convert the value to a Name by doing reverse-lookup of the id. - Replaced this method with the ajax-free method above.
 						/*
 						var id = $(element).val();
@@ -1239,7 +1239,7 @@ jQuery(function($) {
 						*/
 					},
 					formatSelection: function(data) {
-						
+
 						return data.text;
 					},
 					containerCssClass: 'tpx-layersSlct2-container',
@@ -1247,75 +1247,75 @@ jQuery(function($) {
 					minimumInputLength: 1,
 					width: '100%',
 				});
-				
+
 				$(element).on('change', function(e) {
 					$(element).attr( 'data-display-text', e.added.text ).trigger('layers_init_linking');
 				})
-				
+
 			});
-			
+
 			/**
 			 * Dynamic updating of the Linking-UX heading.
 			 */
 			$(group).find('.layers-form-collection').each( function( j, element ) {
-				
+
 				// Cache elements.
 				var $collection_holder = $(element);
 				var $collection_content = $collection_holder.find('.layers-form-collection-content');
 				var $collection_heading = $collection_holder.find('.layers-form-collection-header');
-				
+
 				// Hide content part - like an accordion.
 				$collection_content.hide();
-				
+
 				// Update the heading on change of any input/select.
 				$(element).find('select, input').on( 'change keyup layers_init_linking', function(){
-					
+
 					// Get the link text.
 					var link_text = $(element).find('[id$="-link_text"]').val();
-					
+
 					// Get the link type.
 					var link_type = $(element).find('[id$="-link_type"]').val();
 
 					// Get the link value.
 					var link_input = $(element).find('[name$="link_type_' + link_type + ']"]');
-					
+
 					link_value = '';
 					if ( 'custom' == link_type )
 						link_value = link_input.val();
 					else if ( 'post' == link_type )
 						link_value = link_input.attr('data-display-text');
-					
+
 					// Compile the display content.
 					var display_content = '';
-					
+
 					if ( '' != link_text )
 						display_content += link_text + ' ';
-					
+
 					if ( '' != link_value )
 						display_content  += '<i title="' + link_value + '">' + link_value + '</i> ';
-					
-							
+
+
 					// If nothing is set then throw out &nbsp; to hold the space.
 					if ( '' == display_content ) display_content = '&nbsp;';
-					
+
 					$collection_heading.html( display_content );
 				});
-				
+
 				// Ping an intial update at the start.
 				$(element).find('select, input').eq(0).trigger('layers_init_linking');
 			});
 		});
 	}
-	
+
 	// Accordion-type panel of the Linking-UX
 	$(document).on('click', '.layers-form-collection-header', function(){
-		
+
 		/**
 		 * Show the current panel.
 		 */
 		$collection_holder = $(this).closest('.layers-form-collection');
 		$collection_content = $collection_holder.find('.layers-form-collection-content');
-		
+
 		if ( $collection_holder.hasClass('closed') ) {
 			$collection_holder.removeClass('closed');
 			$collection_content.slideDown({ easing: 'layersEaseInOut', duration: 250 });
@@ -1324,13 +1324,13 @@ jQuery(function($) {
 			$collection_holder.addClass('closed');
 			$collection_content.slideUp({ easing: 'layersEaseInOut', duration: 250 });
 		}
-		
+
 		/**
 		 * Hide the other panel (that are still showing)
 		 */
 		$other_collection_holders = $('.layers-form-collection:not(".closed")').not( $collection_holder );
 		$other_collection_contents = $other_collection_holders.find('.layers-form-collection-content');
-		
+
 		$other_collection_holders.addClass('closed');
 		$other_collection_contents.slideUp({ easing: 'layersEaseInOut', duration: 250 });
 	});

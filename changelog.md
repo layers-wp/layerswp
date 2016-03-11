@@ -8,6 +8,7 @@
 * **Fix** - Fixed Google Maps API warning when using the contact widget. *MP*
 * **Fix** - Full width footer no longer touches sides, padding left-right has been added. *DP*
 * **Fix** - Fixed Image-botton icon. *DP*
+* **Fix** - CSS Class hiding customizer panel titles. *MP*
 * **Enchancement** - Limited Messenger to administrators for sites, to avoid editors & subscribers from getting an Messenger popup. *MP*
 
 

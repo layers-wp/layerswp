@@ -4,6 +4,7 @@
  *
  * @package Layers
  * @since Layers 1.0.0
+ * @version     2.3.0
  */
 
 get_header(); ?>

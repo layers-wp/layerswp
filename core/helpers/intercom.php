@@ -48,7 +48,7 @@ class Layers_Intercom {
 		global $current_user, $wpdb, $wp_version, $wp_customize;
 
 		// Don't load in the customizer, or if we're not logged in; don't even try it.
-		if( !is_user_logged_in() || !is_admin() )
+		if( !is_user_logged_in() || !is_admin() || !current_user_can( 'administrator' ) )
 			return;
 
 		// Get current user info

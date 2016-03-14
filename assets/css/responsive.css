@@ -22,7 +22,7 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 	/*---------------------------*/
 	/*- SPAN - 2 GOES SPAN 6 ----*/
-	.column.span-2{
+	.span-2{
 		width: calc(((100% / 12) * 6) - 20px);
 	}
 	.column-flush.span-2{
@@ -31,10 +31,10 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 	/*---------------------------*/
 	/*- REST GO SPAN 12 ---------*/
-	.column.span-3,
-	.column.span-4,
-	.column.span-5,
-	.column.span-6{
+	.span-3,
+	.span-4,
+	.span-5,
+	.span-6{
 		width: calc(((100% / 12) * 12) - 20px);
 	}
 	.column-flush.span-3,
@@ -155,7 +155,7 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 	/*---------------------------*/
 	/*- SPAN - 4 ----------------*/
-	.column.span-4{
+	.span-4{
 		width: calc(((100% / 12) * 4) - 20px);
 	}
 	.column-flush.span-4{
@@ -164,8 +164,8 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 	/*---------------------------*/
 	/*- SPAN - 6 ----------------*/
-	.column.span-5,
-	.column.span-6{
+	.span-5,
+	.span-6{
 		width: calc(((100% / 12) * 6) - 20px);
 	}
 	.column-flush.span-5,
@@ -250,7 +250,7 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 	/*---------------------------*/
 	/*- SPAN - 2 GOES SPAN 4 ----*/
-	.column.span-2{
+	.span-2{
 		width: calc(((100% / 12) * 4) - 20px);
 	}
 	.column-flush.span-2{
@@ -259,7 +259,7 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 	/*---------------------------*/
 	/*- SPAN - 3 GOES SPAN 6 ----*/
-	.column.span-3{
+	.span-3{
 		width: calc(((100% / 12) * 6) - 20px);
 	}
 	.column-flush.span-3{
@@ -269,14 +269,14 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 		/*-----------------------*/
 		/*- MULTI-SIDEBAR -------*/
 		/* This CSS caters for 3 column sidebar layouts */
-		.column.span-3 + .span-6{
+		.span-3 + .span-6{
 			width: calc(((100% / 12) * 12) - 20px);
 		}
 
 		/*-----------------------*/
 		/*- DBL-SIDEBAR ---------*/
 		/* This CSS caters for 2 column sidebar layouts */
-		.column.span-8{
+		.span-8{
 			width: calc(((100% / 12) * 12) - 20px);
 			/* Set the main column to fullwidth */
 		}
@@ -296,7 +296,7 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 	/*---------------------------*/
 	/*- SPAN - 9 GOES SPAN 12 ---*/
-	.column.span-9{
+	.span-9{
 		width: calc(((100% / 12) * 12) - 20px);
 	}
 }
@@ -413,19 +413,19 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 	/*---------------------------*/
 	/*- SPAN - 10 ---------------*/
-	.column.span-10{
+	.span-10{
 		width: calc(((100% / 12) * 12) - 20px);
 	}
 
 	/*---------------------------*/
 	/*- COMBINATIONS ------------*/
-	.column.span-5 + .span-5 + .span-2{}
-	.column.span-7 + .span-5{}
-	.column.span-10 + .span-2{}
+	.span-5 + .span-5 + .span-2{}
+	.span-7 + .span-5{}
+	.span-10 + .span-2{}
 
 	/*---------------------------*/
 	/*- COMBINATIONS ------------*/
-	.column.span-5 + .span-5 + .span-2{
+	.span-5 + .span-5 + .span-2{
 		width: 100%;
 	}
 
@@ -442,15 +442,15 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 	/*---------------------------*/
 	/*- COLUMN WIDTHS -----------*/
-	.column.span-1{width: calc((100% / 12) - 20px);}
-	.column.span-2{width: calc(((100% / 12) * 2) - 20px);}
-	.column.span-3{width: calc(((100% / 12) * 3) - 20px);}
-	.column.span-5{width: calc(((100% / 12) * 5) - 20px);}
-	.column.span-7{width: calc(((100% / 12) * 7) - 20px);}
-	.column.span-8{width: calc(((100% / 12) * 8) - 20px);}
-	.column.span-9{width: calc(((100% / 12) * 9) - 20px);}
-	.column.span-10{width: calc(((100% / 12) * 10) - 20px);}
-	.column.span-11{width: calc(((100% / 12) * 11) - 20px);}
+	.span-1{width: calc((100% / 12) - 20px);}
+	.span-2{width: calc(((100% / 12) * 2) - 20px);}
+	.span-3{width: calc(((100% / 12) * 3) - 20px);}
+	.span-5{width: calc(((100% / 12) * 5) - 20px);}
+	.span-7{width: calc(((100% / 12) * 7) - 20px);}
+	.span-8{width: calc(((100% / 12) * 8) - 20px);}
+	.span-9{width: calc(((100% / 12) * 9) - 20px);}
+	.span-10{width: calc(((100% / 12) * 10) - 20px);}
+	.span-11{width: calc(((100% / 12) * 11) - 20px);}
 
 	/*---------------------------*/
 	/*- FLUSH COLUMNS -----------*/

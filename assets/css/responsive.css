@@ -331,11 +331,7 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 	.container.list-masonry{
 		padding: 0 10px;
 	}
-	.list-masonry .column{
-		/*position: static !important;*/
-		margin-left: 10px;
-		margin-right: 10px;
-	}
+
 
 	/*---------------------------*/
 	/*- HEADER INLINE -----------*/

@@ -237,8 +237,8 @@ object{
 	/*---------------------------*/
 	/*- MASONRY -----------------*/
 	.container.list-masonry{
-		max-width: 1000px;
-		padding: 0;
+		max-width: 1040px;
+		padding: 0 10px;
 		position: relative;
 	}
 	.container.list-masonry > *:not(.masonry-loading){

@@ -23,10 +23,10 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 	/*---------------------------*/
 	/*- SPAN - 2 GOES SPAN 6 ----*/
 	.column.span-2{
-		min-width: calc(((100% / 12) * 6) - 20px);
+		width: calc(((100% / 12) * 6) - 20px);
 	}
 	.column-flush.span-2{
-		min-width: calc(((100% / 12) * 6));
+		width: calc(((100% / 12) * 6));
 	}
 
 	/*---------------------------*/
@@ -35,18 +35,17 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 	.column.span-4,
 	.column.span-5,
 	.column.span-6{
-		min-width: calc(((100% / 12) * 12) - 20px);
+		width: calc(((100% / 12) * 12) - 20px);
 	}
 	.column-flush.span-3,
 	.column-flush.span-4,
 	.column-flush.span-5,
 	.column-flush.span-6{
-		min-width: calc(((100% / 12) * 12));
+		width: calc(((100% / 12) * 12));
 	}
 
 /*-------------------------------*/
 /*- NAVIGATION ------------------*/
-
 
 	/*-------------------------------*/
 	/*- HEADER RIGHT REPSONSIVE NAV -*/
@@ -157,19 +156,21 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 	/*---------------------------*/
 	/*- SPAN - 4 ----------------*/
 	.column.span-4{
-		min-width: calc(((100% / 12) * 4) - 20px);
+		width: calc(((100% / 12) * 4) - 20px);
 	}
 	.column-flush.span-4{
-		min-width: calc((100% / 12) * 4);
+		width: calc((100% / 12) * 4);
 	}
 
 	/*---------------------------*/
 	/*- SPAN - 6 ----------------*/
+	.column.span-5,
 	.column.span-6{
-		min-width: calc(((100% / 12) * 6) - 20px);
+		width: calc(((100% / 12) * 6) - 20px);
 	}
+	.column-flush.span-5,
 	.column-flush.span-6{
-		min-width: calc((100% / 12) * 6);
+		width: calc((100% / 12) * 6);
 	}
 
 	/*---------------------------*/
@@ -250,33 +251,33 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 	/*---------------------------*/
 	/*- SPAN - 2 GOES SPAN 4 ----*/
 	.column.span-2{
-		min-width: calc(((100% / 12) * 4) - 20px);
+		width: calc(((100% / 12) * 4) - 20px);
 	}
 	.column-flush.span-2{
-		min-width: calc((100% / 12) * 4);
+		width: calc((100% / 12) * 4);
 	}
 
 	/*---------------------------*/
 	/*- SPAN - 3 GOES SPAN 6 ----*/
 	.column.span-3{
-		min-width: calc(((100% / 12) * 6) - 20px);
+		width: calc(((100% / 12) * 6) - 20px);
 	}
 	.column-flush.span-3{
-		min-width: calc((100% / 12) * 6);
+		width: calc((100% / 12) * 6);
 	}
 
 		/*-----------------------*/
 		/*- MULTI-SIDEBAR -------*/
 		/* This CSS caters for 3 column sidebar layouts */
 		.column.span-3 + .span-6{
-			min-width: calc(((100% / 12) * 12) - 20px);
+			width: calc(((100% / 12) * 12) - 20px);
 		}
 
 		/*-----------------------*/
 		/*- DBL-SIDEBAR ---------*/
 		/* This CSS caters for 2 column sidebar layouts */
 		.column.span-8{
-			min-width: calc(((100% / 12) * 12) - 20px);
+			width: calc(((100% / 12) * 12) - 20px);
 			/* Set the main column to fullwidth */
 		}
 		.column.sidebar{
@@ -296,7 +297,7 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 	/*---------------------------*/
 	/*- SPAN - 9 GOES SPAN 12 ---*/
 	.column.span-9{
-		min-width: calc(((100% / 12) * 12) - 20px);
+		width: calc(((100% / 12) * 12) - 20px);
 	}
 }
 
@@ -331,7 +332,7 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 		padding: 0 10px;
 	}
 	.list-masonry .column{
-		position: static !important;
+		/*position: static !important;*/
 		margin-left: 10px;
 		margin-right: 10px;
 	}
@@ -411,15 +412,9 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 @media only screen and (min-width: 601px) and (max-width: 860px){
 
 	/*---------------------------*/
-	/*- SPAN - 5 ----------------*/
-	.column.span-5{
-		min-width: calc(((100% / 12) * 6) - 20px);
-	}
-
-	/*---------------------------*/
 	/*- SPAN - 10 ---------------*/
 	.column.span-10{
-		min-width: calc(((100% / 12) * 12) - 20px);
+		width: calc(((100% / 12) * 12) - 20px);
 	}
 
 	/*---------------------------*/
@@ -434,17 +429,6 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 		width: 100%;
 	}
 
-	/*.column.span-7 + .span-5{
-		width: 40.5%;
-	}
-	.column-flush.span-7 + .span-5{
-		width: 41.66665%;
-	}
-
-	.column.span-10 + .span-2{
-		width: 49%;
-	}*/
-
 
 }
 
@@ -458,50 +442,27 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 	/*---------------------------*/
 	/*- COLUMN WIDTHS -----------*/
-	.column.span-1{min-width: calc((100% / 12) - 20px);}
-	.column.span-2{min-width: calc(((100% / 12) * 2) - 20px);}
-	.column.span-3{min-width: calc(((100% / 12) * 3) - 20px);}
-	.column.span-5{min-width: calc(((100% / 12) * 5) - 20px);}
-	.column.span-7{min-width: calc(((100% / 12) * 7) - 20px);}
-	.column.span-8{min-width: calc(((100% / 12) * 8) - 20px);}
-	.column.span-9{min-width: calc(((100% / 12) * 9) - 20px);}
-	.column.span-10{min-width: calc(((100% / 12) * 10) - 20px);}
-	.column.span-11{min-width: calc(((100% / 12) * 11) - 20px);}
+	.column.span-1{width: calc((100% / 12) - 20px);}
+	.column.span-2{width: calc(((100% / 12) * 2) - 20px);}
+	.column.span-3{width: calc(((100% / 12) * 3) - 20px);}
+	.column.span-5{width: calc(((100% / 12) * 5) - 20px);}
+	.column.span-7{width: calc(((100% / 12) * 7) - 20px);}
+	.column.span-8{width: calc(((100% / 12) * 8) - 20px);}
+	.column.span-9{width: calc(((100% / 12) * 9) - 20px);}
+	.column.span-10{width: calc(((100% / 12) * 10) - 20px);}
+	.column.span-11{width: calc(((100% / 12) * 11) - 20px);}
 
 	/*---------------------------*/
 	/*- FLUSH COLUMNS -----------*/
-	.column-flush.span-1{min-width: calc(100% / 12);}
-	.column-flush.span-2{min-width: calc((100% / 12) * 2);}
-	.column-flush.span-3{min-width: calc((100% / 12) * 3);}
-	.column-flush.span-5{min-width: calc((100% / 12) * 5);}
-	.column-flush.span-7{min-width: calc((100% / 12) * 7);}
-	.column-flush.span-8{min-width: calc((100% / 12) * 8);}
-	.column-flush.span-9{min-width: calc((100% / 12) * 9);}
-	.column-flush.span-10{min-width: calc((100% / 12) * 10);}
-	.column-flush.span-11{min-width: calc((100% / 12) * 11);}
-
-	/*.column-flush.span-1{width: 8.333333%;}
-	.column-flush.span-2{width: 16.6667%;}
-	.column-flush.span-3{width: 25%;}
-	.column-flush.span-5{width: 41.66665%;}
-	.column-flush.span-7{width: 58.1%;}
-	.column-flush.span-8{width: 66.65%;}
-	.column-flush.span-9{width: 74.7%;}
-	.column-flush.span-10{width: 83%;}
-	.column-flush.span-11{width: 91.3%;}
-	.column-flush.span-12{width: 100%;}*/
-
-	/*- * REVIEW * --------------*/
-	/*- MASONRY COLUMNS ---------*/
-	.list-masonry .column.span-1{max-width: calc((100% / 12) - 20px);}
-	.list-masonry .column.span-2{max-width: calc(((100% / 12) * 2) - 20px);}
-	.list-masonry .column.span-3{max-width: calc(((100% / 12) * 3) - 20px);}
-	.list-masonry .column.span-5{max-width: calc(((100% / 12) * 5) - 20px);}
-	.list-masonry .column.span-7{max-width: calc(((100% / 12) * 7) - 20px);}
-	.list-masonry .column.span-8{max-width: calc(((100% / 12) * 8) - 20px);}
-	.list-masonry .column.span-9{max-width: calc(((100% / 12) * 9) - 20px);}
-	.list-masonry .column.span-10{max-width: calc(((100% / 12) * 10) - 20px);}
-	.list-masonry .column.span-11{max-width: calc(((100% / 12) * 11) - 20px);}
+	.column-flush.span-1{width: calc(100% / 12);}
+	.column-flush.span-2{width: calc((100% / 12) * 2);}
+	.column-flush.span-3{width: calc((100% / 12) * 3);}
+	.column-flush.span-5{width: calc((100% / 12) * 5);}
+	.column-flush.span-7{width: calc((100% / 12) * 7);}
+	.column-flush.span-8{width: calc((100% / 12) * 8);}
+	.column-flush.span-9{width: calc((100% / 12) * 9);}
+	.column-flush.span-10{width: calc((100% / 12) * 10);}
+	.column-flush.span-11{width: calc((100% / 12) * 11);}
 
 	/*---------------------------*/
 	/*- GUTTERS -----------------*/

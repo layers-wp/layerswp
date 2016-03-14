@@ -201,12 +201,12 @@ object{
 		margin-right: -10px;
 	}
 	[class*='column']{
-		flex: 0 0 calc((100% / 12) - 20px);
 		margin-left: 10px;
 		margin-right: 10px;
 		margin-bottom: 20px;
 		position: relative;
 		max-width: calc(100% - 20px);
+		/*flex: 0 0 calc((100% / 12) - 20px);*/
 	}
 	.column-flush{
 		margin: 0;
@@ -1996,6 +1996,8 @@ object{
 		.header-site .nav ul li:hover > .sub-menu > li:nth-child(3){transition-delay: 0.09s;}
 		.header-site .nav ul li:hover > .sub-menu > li:nth-child(4){transition-delay: 0.11s;}
 		.header-site .nav ul li:hover > .sub-menu > li:nth-child(5){transition-delay: 0.13s;}
+		.header-site .nav ul li:hover > .sub-menu > li:nth-child(6){transition-delay: 0.15s;}
+		.header-site .nav ul li:hover > .sub-menu > li:nth-child(7){transition-delay: 0.17s;}
 
 	/*---------------------------*/
 	/*- ABOLUTE NAV -------------*/

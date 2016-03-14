@@ -14,7 +14,7 @@
 
 		<?php get_template_part( 'partials/header' , 'secondary' ); ?>
 
-		<header <?php layers_header_class(); ?> >
+		<section <?php layers_header_class(); ?> >
 			<?php do_action( 'layers_before_header_inner' ); ?>
 			<div class="<?php if( 'layout-fullwidth' != layers_get_theme_mod( 'header-width' ) ) echo 'container'; ?> header-block">
 				<?php if( 'header-logo-center' == layers_get_theme_mod( 'header-menu-layout' ) ) {
@@ -24,8 +24,8 @@
 				} // if centered header ?>
 			</div>
 			<?php do_action( 'layers_after_header_inner' ); ?>
-		</header>
+		</section>
 
 		<?php do_action( 'layers_after_header' ); ?>
 
-		<div id="wrapper-content" <?php layers_wrapper_class( 'wrapper_content', 'wrapper-content' ); ?>>
+		<section id="wrapper-content" <?php layers_wrapper_class( 'wrapper_content', 'wrapper-content' ); ?>>

@@ -389,7 +389,7 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 	/*---------------------------*/
 	/*- CLOSE OFF CANVAS --------*/
-	.admin-bar div[class*=' off-canvas-'] .close-canvas{
+	.admin-bar section[class*=' off-canvas-'] .close-canvas{
 		top: 46px;
 	}
 
@@ -759,7 +759,7 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 	/*---------------------------*/
 	/*- OFF CANVAS MENU ---------*/
-	div[class*=' off-canvas-'] .nav-mobile{
+	section[class*=' off-canvas-'] .nav-mobile{
 		display: none;
 	}
 

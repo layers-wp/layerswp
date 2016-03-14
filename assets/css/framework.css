@@ -218,7 +218,7 @@ object{
 		flex-direction: column;
 	}
 
-	[class*='column'].span-12{
+	.span-12{
 		min-width: calc(((100% / 12) * 12) - 20px);
 	}
 	.column-flush.span-12{
@@ -385,6 +385,9 @@ object{
 		float: left;
 	}
 	.column .pull-right,
+	.column.pull-right{
+		order: 2;
+	}
 	.pull-right{
 		float: right;
 	}
@@ -879,11 +882,11 @@ object{
 	.close-canvas:hover{
 		color: #fff;
 	}
-	.admin-bar div[class*=' off-canvas-'] .close-canvas{
+	.admin-bar section[class*=' off-canvas-'] .close-canvas{
 		top: 32px;
 	}
 
-	div[class*=' off-canvas-']{
+	section[class*=' off-canvas-']{
 		padding-top: 30px;
 		position: fixed;
 		top: 0;
@@ -894,7 +897,7 @@ object{
 		transition: all 0.3s ease-in-out 0s;
 		font-size: 1.4rem;
 	}
-	.admin-bar div[class*=' off-canvas-']{
+	.admin-bar section[class*=' off-canvas-']{
 		padding-top: 66px;
 	}
 	.off-canvas-right{
@@ -935,34 +938,34 @@ object{
 
 	/*---------------------------*/
 	/*- OFF CANVAS WIDGETS ------*/
-	div[class*=' off-canvas-'] .sub-menu li{
+	section[class*=' off-canvas-'] .sub-menu li{
 		width: auto;
 	}
-	div[class*=' off-canvas-'] li{
+	section[class*=' off-canvas-'] li{
 		padding: 5px 0;
 	}
-	div[class*=' off-canvas-'] li a{
+	section[class*=' off-canvas-'] li a{
 		color: rgba(255, 255, 255, 0.8);
 	}
-	div[class*=' off-canvas-'] .section-nav-title{
+	section[class*=' off-canvas-'] .section-nav-title{
 		color: #888;
 	}
-	div[class*=' off-canvas-'] .widget.widget_nav_menu{
+	section[class*=' off-canvas-'] .widget.widget_nav_menu{
 		padding: 20px;
 	}
-	div[class*=' off-canvas-'] .widget.widget_nav_menu li{
+	section[class*=' off-canvas-'] .widget.widget_nav_menu li{
 		display: block;
 		margin: 0;
 		text-align: left;
 	}
-	div[class*=' off-canvas-'] .searchform label{
+	section[class*=' off-canvas-'] .searchform label{
 		display: none;
 	}
-	div[class*=' off-canvas-'] .searchform input[type="text"]{
+	section[class*=' off-canvas-'] .searchform input[type="text"]{
 		background: none repeat scroll 0% 0% rgb(51, 51, 51);
 		border: 2px solid rgb(85, 85, 85);
 	}
-	div[class*=' off-canvas-'] .searchform input[type="submit"]{
+	section[class*=' off-canvas-'] .searchform input[type="submit"]{
 		display: block;
 		width: 100%;
 		height: 32px;
@@ -973,19 +976,19 @@ object{
 
 		/*-----------------------*/
 		/*- OFF CANVAS MENU -----*/
-		div[class*=' off-canvas-'] .nav-mobile{
+		section[class*=' off-canvas-'] .nav-mobile{
 			margin-top: 0;
 			padding-top: 0;
 			position: relative;
 			z-index: 1;
 		}
-		.admin-bar div[class*=' off-canvas-'] .nav-mobile{
+		.admin-bar section[class*=' off-canvas-'] .nav-mobile{
 			padding-top: 20px;
 		}
-		div[class*=' off-canvas-'] .nav-vertical li{
+		section[class*=' off-canvas-'] .nav-vertical li{
 			padding: 0;
 		}
-		div[class*=' off-canvas-'] .nav-vertical .sub-menu{
+		section[class*=' off-canvas-'] .nav-vertical .sub-menu{
 			display: block;
 			width: auto;
 			visibility: visible;
@@ -995,7 +998,7 @@ object{
 			box-shadow: none;
 			font-size: 1.2rem;
 		}
-		div[class*=' off-canvas-'] .nav-vertical .sub-menu li{
+		section[class*=' off-canvas-'] .nav-vertical .sub-menu li{
 			border: none;
 		}
 

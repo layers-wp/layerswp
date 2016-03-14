@@ -283,8 +283,8 @@ if( ! function_exists( 'layers_register_standard_sidebars' ) ) {
 			register_sidebar( array(
 				'id'		=> LAYERS_THEME_SLUG . '-footer-' . $footer,
 				'name'		=> __( 'Footer ', 'layerswp' ) . $footer,
-				'before_widget'	=> '<div id="%1$s" class="widget %2$s">',
-				'after_widget'	=> '</div>',
+				'before_widget'	=> '<aside id="%1$s" class="widget %2$s">',
+				'after_widget'	=> '</aside>',
 				'before_title'	=> '<h5 class="section-nav-title">',
 				'after_title'	=> '</h5>',
 			) );

@@ -3,11 +3,11 @@
 				<a href="#top"><?php _e( 'Back to top' , 'layerswp' ); ?></a>
 			</div> <!-- back-to-top -->
 
-		</div>
+		</section>
 
 		<?php do_action( 'layers_before_footer' ); ?>
 
-		<footer id="footer" <?php layers_wrapper_class( 'footer_site', 'footer-site' ); ?>>
+		<section id="footer" <?php layers_wrapper_class( 'footer_site', 'footer-site' ); ?>>
 			<?php do_action( 'layers_before_footer_inner' ); ?>
 			<div class="<?php if( 'layout-fullwidth' != layers_get_theme_mod( 'footer-width' ) ) echo 'container'; ?> content clearfix">
 				<?php // Do logic related to the footer widget area count
@@ -48,7 +48,7 @@
 			<?php if( false != layers_get_theme_mod( 'show-layers-badge' ) ) { ?>
 				<?php _e( sprintf( '<a class="created-using-layers" target="_blank" tooltip="Built with Layers" href="%s"><span>Built with Layers</span></a>', 'http://www.layerswp.com' ) , 'layerswp' ); ?>
 			<?php } ?>
-		</footer><!-- END / FOOTER -->
+		</section><!-- END / FOOTER -->
 		<?php do_action( 'layers_after_footer' ); ?>
 
 	</div><!-- END / MAIN SITE #wrapper -->

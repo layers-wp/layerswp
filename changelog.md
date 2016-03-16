@@ -9,6 +9,7 @@
 * **Fix** - Full width footer no longer touches sides, padding left-right has been added. *DP*
 * **Fix** - Fixed Image-Bottom icon. *DP*
 * **Fix** - CSS Class hiding customizer panel titles. *MP*
+* **Enchancement** - Added the Kanit Google font to the font list. *MP*
 * **Enchancement** - Updated WooCommerce template override versions. *MP*
 * **Enchancement** - Limited Messenger to administrators for sites, to avoid editors & subscribers from getting an Messenger popup. *MP*
 * **Enchancement** - Added device width to viewport meta. *MP*

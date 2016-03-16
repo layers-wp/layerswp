@@ -836,7 +836,6 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 		float: right;
 	}
 
-
 	.swiper-slide.image-right .copy-container + .image-container,
 	.swiper-slide.image-left .copy-container + .image-container{
 		margin-top: 0;

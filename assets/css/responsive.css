@@ -30,7 +30,7 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 	}
 
 	/*---------------------------*/
-	/*- CLEARING SPANS ----------*/
+	/*- CLEARING COLS - FALLBACK */
 	.row .column.span-1:nth-child(6n+7),
 	.row .column.span-2:nth-child(2n+3){
 		clear: left;
@@ -314,7 +314,7 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 @media only screen and (min-width: 601px) and (max-width: 782px){
 
 	/*---------------------------*/
-	/*- CLEARING SPANS ----------*/
+	/*- CLEARING COLS - FALLBACK */
 	.row .column.span-2:nth-child(3n+4),
 	.row .column.span-3:nth-child(2n+3){
 		clear: left;
@@ -525,7 +525,7 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 	.pull-right-11{margin-right: -93.5%;}
 
 	/*---------------------------*/
-	/*- CLEAR RESET -------------*/
+	/*- CLEARING COLS - FALLBACK */
 	.row .span-2:nth-child(6n+7),
 	.row .span-3:nth-child(4n+5),
 	.row .span-4:nth-child(3n+4),

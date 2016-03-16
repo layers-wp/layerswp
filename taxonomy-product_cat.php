@@ -2,7 +2,7 @@
 /**
  * The template for displaying Woo Commerce products
  *
- * @package Layers
+ * @package WooCommerce
  * @since Layers 1.0.0
  * @version     1.6.4
  */

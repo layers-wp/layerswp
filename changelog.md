@@ -1,17 +1,17 @@
 # Layers Changelog
 
 =======
-##1.2.xx
-### xx Feb 2016
+##1.2.14
+### 16 Feb 2016
 
 * **Fix** - Removed all custom CSS being output from `the_content();` in Layers Pages. *MP*
 * **Fix** - Fixed Google Maps API warning when using the contact widget. *MP*
 * **Fix** - Full width footer no longer touches sides, padding left-right has been added. *DP*
-* **Fix** - Fixed Image-botton icon. *DP*
+* **Fix** - Fixed Image-Bottom icon. *DP*
 * **Fix** - CSS Class hiding customizer panel titles. *MP*
 * **Enchancement** - Updated WooCommerce template override versions. *MP*
 * **Enchancement** - Limited Messenger to administrators for sites, to avoid editors & subscribers from getting an Messenger popup. *MP*
-
+* **Enchancement** - Added device width to viewport meta. *MP*
 
 =======
 ##1.2.13

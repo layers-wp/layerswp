@@ -165,7 +165,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 					$first_last_class = '';
 					$row_width = 0; ?>
 					<div class="<?php echo $this->get_widget_layout_class( $widget ); ?> <?php echo $this->check_and_return( $widget , 'design', 'liststyle' ); ?>">
-						<div class="row">
+						<div class="grid">
 							<?php foreach ( $column_ids as $column_key ) {
 
 								// Make sure we've got a column going on here

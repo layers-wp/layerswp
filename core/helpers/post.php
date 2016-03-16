@@ -122,7 +122,7 @@ if( !function_exists( 'layers_comment' ) ) {
 	function layers_comment($comment, $args, $depth) {
 		$GLOBALS['comment'] = $comment;?>
 		<?php if( 2  < $depth && isset( $GLOBALS['lastdepth'] ) && $depth != $GLOBALS['lastdepth'] ) { ?>
-			<div class="row comments-nested push-top">
+			<div class="grid comments-nested push-top">
 		<?php } ?>
 		<div <?php comment_class( 'content well' ); ?> id="comment-<?php comment_ID(); ?>">
 			<div class="avatar push-bottom clearfix">

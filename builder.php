@@ -15,7 +15,7 @@ do_action('before_layers_builder_widgets');
 if ( post_password_required() ) { ?>
 	<div id="post-<?php the_ID(); ?>" <?php post_class( 'content-main clearfix' ); ?>>
 		<?php do_action('layers_before_post_loop'); ?>
-		<div class="row">
+		<div class="grid">
 			<?php do_action('layers_before_private_post'); ?>
 			<div class="story">
 				<?php echo get_the_password_form(); ?>

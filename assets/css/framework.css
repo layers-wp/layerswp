@@ -190,31 +190,40 @@ object{
 
 	/*---------------------------*/
 	/*- GRIDS -------------------*/
-	.row{
+	.grid{
 		display: flex;
 		flex-flow: row;
 		flex-wrap: wrap;
 		position: relative;
 	}
-	.container .row{
+	.container .grid{
 		margin-left: -10px;
 		margin-right: -10px;
 	}
-	[class*='column']{
-		margin-left: 10px;
-		margin-right: 10px;
-		margin-bottom: 20px;
-		position: relative;
-		max-width: calc(100% - 20px);
-		/*flex: 0 0 calc((100% / 12) - 20px);*/
-	}
-	.column-flush{
-		margin: 0;
-		position: relative;
-		max-width: 100%;
-	}
 
-	.layers-masonry-column .row{
+		/*-----------------------*/
+		/*- COLUMN SETUP --------*/
+		[class*='column']{
+			margin-left: 10px;
+			margin-right: 10px;
+			margin-bottom: 20px;
+			position: relative;
+			max-width: calc(100% - 20px);
+			/*flex: 0 0 calc((100% / 12) - 20px);*/
+		}
+		.column-flush{
+			margin: 0;
+			position: relative;
+			max-width: 100%;
+		}
+
+		/*-----------------------*/
+		/*- FALLBACK ------------*/
+		.row .column{
+			float: left;
+		}
+
+	.layers-masonry-column .grid{
 		flex-direction: column;
 	}
 
@@ -259,7 +268,7 @@ object{
 		overflow: hidden;
 		opacity: 0;
 	}
-	.list-masonry .row{
+	.list-masonry .grid{
 		margin-left: 0px;
 		margin-right: 0px;
 	}

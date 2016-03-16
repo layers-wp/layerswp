@@ -9,7 +9,7 @@
 get_header(); ?>
 
 <div class="post content-main clearfix container">
-    <div class="row">
+    <div class="grid">
 
         <?php get_sidebar( 'left' ); ?>
 

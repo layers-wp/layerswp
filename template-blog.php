@@ -11,7 +11,7 @@ get_header();
 do_action( 'layers_before_blog_template' );
 get_template_part( 'partials/header' , 'page-title' ); ?>
 <div class="container content-main archive clearfix">
-	<div class="row">
+	<div class="grid">
 		<?php get_sidebar( 'left' ); ?>
 
 		<?php

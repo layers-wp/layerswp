@@ -245,13 +245,13 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 					</div>
 				<?php } ?>
 				<div class="<?php echo $this->get_widget_layout_class( $widget ); ?> <?php echo $this->check_and_return( $widget , 'design', 'liststyle' ); ?>">
-					<div class="row">
+					<div class="grid">
 						<?php if( $post_query->have_posts() ) { ?>
 							<?php while( $post_query->have_posts() ) {
 								$post_query->the_post();
 
 								if( 'list-list' == $widget['design'][ 'liststyle' ] ) { ?>
-									<article id="post-<?php the_ID(); ?>" class="row push-bottom-large">
+									<article id="post-<?php the_ID(); ?>" class="clearfix push-bottom-large">
 										<?php if( isset( $widget['show_titles'] ) ) { ?>
 											<header class="section-title large">
 												<h1 class="heading"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h1>

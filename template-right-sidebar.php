@@ -11,7 +11,7 @@
 get_header(); ?>
 
 <div id="post-<?php the_ID(); ?>" <?php post_class( 'container content-main clearfix' ); ?>>
-    <div class="row">
+    <div class="grid">
         <article <?php layers_center_column_class(); ?>>
             <?php if( have_posts() ) : ?>
                 <?php while( have_posts() ) : the_post(); ?>

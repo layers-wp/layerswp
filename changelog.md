@@ -12,6 +12,7 @@
 * **Tweak** - Replaced all <section> containers with <div> in order to reverse engineer better SEO as Layers progresses. *DP*
 * **Tweak** - Fixed associated CSS where section[class] was used. *DP*
 * **Tweak** - Fixed WooCommerce tab alignment issue in responsive mode. *DP*
+* **Tweak** - .story img changed from 98% to 100% width. *DP*
 * **Enhancement** - Entirely new grid code which allows for different columns in the same content widget, using flexbox and calc(). *DP*
 * **Enhancement** - Added subtle animation to .sub-menu drop down. *DP*
 

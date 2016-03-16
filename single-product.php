@@ -10,7 +10,7 @@ get_header(); ?>
 <?php get_template_part( 'partials/header' , 'page-title' ); ?>
 
 <div id="post-<?php the_ID(); ?>" <?php post_class( 'content-main product' ); ?>>
-	<div class="row">
+	<div class="grid">
 		<?php /**
 		* Maybe show the left sidebar
 		*/
@@ -22,7 +22,7 @@ get_header(); ?>
 				<div <?php layers_center_column_class(); ?>>
 					<div class="product-top clearfix">
 						<?php do_action( 'woocommerce_before_single_product', $post, $_product ); ?>
-						<div class="row">
+						<div class="grid">
 
 							<!-- Show the Images -->
 							<div class="column product-images span-6 <?php echo ( 'advanced-layout-right' == layers_get_theme_mod( 'woocommerce-product-page-layout' ) ) ? 'pull-right no-gutter' : '' ?>">

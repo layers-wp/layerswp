@@ -15,7 +15,7 @@
 
 				<?php if( 0 != $footer_sidebar_count ) { ?>
 					<?php do_action( 'layers_before_footer_sidebar' ); ?>
-					<div class="row">
+					<div class="grid">
 						<?php // Default Sidebar count to 4
 						if( '' == $footer_sidebar_count ) $footer_sidebar_count = 4;
 
@@ -31,7 +31,7 @@
 				<?php } // if 0 != sidebars ?>
 
 				<?php do_action( 'layers_before_footer_copyright' ); ?>
-				<div class="row copyright">
+				<div class="grid copyright">
 					<?php if( '' != layers_get_theme_mod( 'footer-copyright-text' ) ) {  ?>
 						<div class="column span-6">
 							<p class="site-text"><?php echo layers_get_theme_mod( 'footer-copyright-text' ); ?></p>

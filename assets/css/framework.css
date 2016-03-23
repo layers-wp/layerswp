@@ -1661,12 +1661,14 @@ object{
 		margin-bottom: 20px;
 	}
 	.panel ul{
-		border: 2px solid #ddd;
+		margin: 0;
+		padding: 0;
+		border: 2px solid rgba(0, 0, 0, 0.05);
 	}
 	.panel li{
 		padding: 10px;
 		background-color: #fff;
-		border-top: 2px solid #ddd;
+		border-top: 2px solid rgba(0, 0, 0, 0.05);
 	}
 	.panel li:first-child{
 		border-top: none;

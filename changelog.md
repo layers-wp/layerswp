@@ -8,6 +8,7 @@
 * **Fix** - Fixed Google Maps API warning when using the contact widget. *MP*
 * **Fix** - Full width footer no longer touches sides, padding left-right has been added. *DP*
 * **Fix** - Fixed Image-botton icon. *DP*
+* **Fix** - Onboarding typo's. *DP*
 * **Fix** - Fixed aligncenter bug in blog posts which stopped images from centering. *DP*
 * **Tweak** - Replaced all <section> containers with <div> in order to reverse engineer better SEO as Layers progresses. *DP*
 * **Tweak** - Fixed associated CSS where section[class] was used. *DP*

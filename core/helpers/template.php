@@ -899,12 +899,12 @@ add_action ( 'wp_footer', 'layers_add_additional_footer_scripts' );
 if( !function_exists( 'layers_add_google_analytics' ) ) {
 	function layers_add_google_analytics() {
 		global $wp_customize;
-		
+
 		// Bail if in customizer.
 		if( isset( $wp_customize ) ) return;
 
 		$analytics_id = layers_get_theme_mod( 'header-google-id' );
-		
+
 		if ( '' != $analytics_id ) { ?>
 			<script>
 				(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -1047,7 +1047,7 @@ if( !function_exists( 'layers_inline_styles' ) ) {
 			case 'font-family' :
 
 				if( '' == $args[ 'font-family' ] ) return ;
-				$css .= 'font-family: ' . $args[ 'font-family' ] . ', "Helvetica Neue", Helvetica, sans-serif;';
+				$css .= 'font-family: "' . $args[ 'font-family' ] . '", Helvetica, sans-serif;';
 
 			break;
 

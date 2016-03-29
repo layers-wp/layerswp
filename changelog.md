@@ -13,6 +13,7 @@
 * **Tweak** - .story img changed from 98% to 100% width. *DP*
 * **Enhancement** - Entirely new grid code which allows for different columns in the same content widget, using flexbox and calc(). *DP*
 * **Enhancement** - Added subtle animation to .sub-menu drop down. *DP*
+* **Enhancement** - Added margin and padding (top and bottom) to the Content widget columns (See design-bar > advanced). *SOB*
 
 =======
 ##1.2.14

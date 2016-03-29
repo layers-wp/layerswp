@@ -25,6 +25,7 @@ jQuery(document).ready(function($){
 })
 
 function layers_check_address($){
+
 	jQuery('.layers-map').each(function(){
 		//"Hi Mom"
 		$that = $(this);
@@ -42,7 +43,7 @@ function layers_check_address($){
 
 		var latlng = new google.maps.LatLng( latitude, longitude );
 
-		$map = new google.maps.Map( $that[0] ,
+		var $map = new google.maps.Map( $that[0] ,
 			{
 				scrollwheel: false,
 				zoom: $that.data('zoom-level'),

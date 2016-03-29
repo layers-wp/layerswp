@@ -3,6 +3,8 @@
 =======
 ##1.5.0
 ### 14 Apr 2016
+
+* **Fix** - Fixed multiple maps on one page. *MP*
 * **Fix** - Full width footer no longer touches sides, padding left-right has been added. *DP*
 * **Fix** - Fixed Image-botton icon. *DP*
 * **Fix** - Onboarding typo's. *DP*

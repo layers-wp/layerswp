@@ -355,6 +355,18 @@ if( ! function_exists( 'layers_scripts' ) ) {
 			wp_enqueue_script( 'comment-reply' );
 		} // Comment reply script
 
+		wp_register_script(
+			LAYERS_THEME_SLUG . " -map-api",
+			"//maps.googleapis.com/maps/api/js"
+		);
+
+		wp_register_script(
+			LAYERS_THEME_SLUG . "-map-trigger",
+			get_template_directory_uri()."/core/widgets/js/maps.js",
+			array( "jquery" ),
+			LAYERS_VERSION
+		);
+
 		/**
 		* Front end Styles
 		*/

@@ -181,6 +181,10 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 								if( !empty( $item['design']['fonts'][ 'color' ] ) ) $this->inline_css .= layers_inline_styles( '#' . $widget_id . '-' . $column_key , 'color', array( 'selectors' => array( 'h5.heading a', 'h5.heading' , 'div.excerpt' , 'div.excerpt p' ) , 'color' => $item['design']['fonts'][ 'color' ] ) );
 								if( !empty( $item['design']['fonts'][ 'shadow' ] ) ) $this->inline_css .= layers_inline_styles( '#' . $widget_id . '-' . $column_key , 'text-shadow', array( 'selectors' => array( 'h5.heading a', 'h5.heading' , 'div.excerpt' , 'div.excerpt p' )  , 'text-shadow' => $item['design']['fonts'][ 'shadow' ] ) );
 
+								// Set column margin & padding
+								if ( !empty( $item['design']['advanced']['margin'] ) ) $this->inline_css .= layers_inline_styles( "#{$widget_id}-{$column_key}", 'margin', array( 'margin' => $item['design']['advanced']['margin'] ) );
+								if ( !empty( $item['design']['advanced']['padding'] ) ) $this->inline_css .= layers_inline_styles( "#{$widget_id}-{$column_key}", 'padding', array( 'padding' => $item['design']['advanced']['padding'] ) );
+								
 								if( !isset( $item[ 'width' ] ) ) $item[ 'width' ] = $this->column_defaults[ 'width' ];
 
 								// Add the correct span class
@@ -517,7 +521,29 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 							),
 							'advanced' => array(
 								'elements' => array(
-									'customclass'
+									'customclass',
+									'padding' => array(
+										'type' => 'trbl-fields',
+										'label' => __( 'Padding (px)', 'layerswp' ),
+										'name' => $this->get_layers_field_name( 'design', 'advanced', 'padding' ),
+										'id' => $this->get_layers_field_id( 'design', 'advanced', 'padding' ),
+										'value' => ( isset( $widget['design']['advanced']['padding'] ) ) ? $widget['design']['advanced']['padding'] : NULL,
+										'fields' => array(
+											'top',
+											'bottom',
+										),
+									),
+									'margin' => array(
+										'type' => 'trbl-fields',
+										'label' => __( 'Margin (px)', 'layerswp' ),
+										'name' => $this->get_layers_field_name( 'design', 'advanced', 'margin' ),
+										'id' => $this->get_layers_field_id( 'design', 'advanced', 'margin' ),
+										'value' => ( isset( $widget['design']['advanced']['margin'] ) ) ? $widget['design']['advanced']['margin'] : NULL,
+										'fields' => array(
+											'top',
+											'bottom',
+										),
+									),
 								),
 								'elements_combine' => 'replace',
 							),

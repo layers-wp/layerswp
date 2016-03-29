@@ -10,8 +10,8 @@
 
 get_header(); ?>
 
-<section id="post-<?php the_ID(); ?>" <?php post_class( 'container content-main clearfix' ); ?>>
-    <div class="row">
+<div id="post-<?php the_ID(); ?>" <?php post_class( 'container content-main clearfix' ); ?>>
+    <div class="grid">
         <article <?php layers_center_column_class(); ?>>
             <?php if( have_posts() ) : ?>
                 <?php while( have_posts() ) : the_post(); ?>
@@ -22,6 +22,6 @@ get_header(); ?>
 
         <?php get_sidebar( 'right' ); ?>
     </div>
-</section>
+</div>
 
 <?php get_footer();

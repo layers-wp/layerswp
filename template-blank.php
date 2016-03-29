@@ -12,16 +12,16 @@ get_header(); ?>
 
 <?php get_template_part( 'partials/header' , 'page-title' ); ?>
 
-<section id="post-<?php the_ID(); ?>" <?php post_class( 'container content-main clearfix' ); ?>>
+<div id="post-<?php the_ID(); ?>" <?php post_class( 'container content-main clearfix' ); ?>>
     <?php if( have_posts() ) : ?>
         <?php while( have_posts() ) : the_post(); ?>
-            <div class="row">
-                <article class="column span-12">
+            <div class="grid">
+                <div class="column span-12">
                     <?php get_template_part( 'partials/content', 'single' ); ?>
-                </article>
+                </div>
             </div>
         <?php endwhile; // while has_post(); ?>
     <?php endif; // if has_post() ?>
-</section>
+</div>
 
 <?php get_footer();

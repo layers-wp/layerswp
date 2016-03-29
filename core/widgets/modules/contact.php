@@ -125,7 +125,7 @@ if( !class_exists( 'Layers_Contact_Widget' ) ) {
 			$widget_container_class = array();
 			$widget_container_class[] = 'widget';
 			$widget_container_class[] = 'layers-contact-widget';
-			$widget_container_class[] = 'row';
+			$widget_container_class[] = 'clearfix';
 			$widget_container_class[] = 'content-vertical-massive';
 			$widget_container_class[] = 'layers-contact-widget';
 			$widget_container_class[] = $this->check_and_return( $widget , 'design', 'advanced', 'customclass' ); // Apply custom class from design-bar's advanced control.
@@ -133,7 +133,7 @@ if( !class_exists( 'Layers_Contact_Widget' ) ) {
 			if( !$show_title_or_excerpt && !$show_address_or_contactform  ) $widget_container_class[] = 'no-inset-top no-inset-bottom';
 			$widget_container_class = implode( ' ', apply_filters( 'layers_contact_widget_container_class' , $widget_container_class ) ); ?>
 			<?php echo $this->custom_anchor( $widget ); ?>
-			<section id="<?php echo esc_attr( $widget_id ); ?>" class="<?php echo esc_attr( $widget_container_class ); ?>">
+			<div id="<?php echo esc_attr( $widget_id ); ?>" class="<?php echo esc_attr( $widget_container_class ); ?>">
 
 				<?php do_action( 'layers_before_contact_widget_inner', $this, $widget ); ?>
 
@@ -191,7 +191,7 @@ if( !class_exists( 'Layers_Contact_Widget' ) ) {
 									$map_center =  $widget['google_maps_long_lat'];
 								} ?>
 								<div class="layers-map" style="height: <?php echo esc_attr( $widget['map_height'] ); ?>px; overflow: hidden;">
-									<img src="https://maps.googleapis.com/maps/api/staticmap?center=<?php echo esc_attr( $map_center ); ?>&zoom=<?php echo ( isset( $widget['google_maps_zoom'] ) ? $widget['google_maps_zoom'] : 14 ) ; ?>&size=1960x<?php echo $widget['map_height']; ?>&scale=2&markers=color:red|<?php echo esc_attr( $map_center ); ?>" class="google-map-img" />
+									<img src="https://maps.googleapis.com/maps/api/staticmap?center=<?php echo esc_attr( $map_center ); ?>&zoom=<?php echo ( isset( $widget['google_maps_zoom'] ) ? $widget['google_maps_zoom'] : 14 ) ; ?>&size=1960x<?php echo ( isset( $widget['map_height'] ) && '' != $widget['map_height'] ) ? $widget['map_height'] : 400; ?>&scale=2&markers=color:red|<?php echo esc_attr( $map_center ); ?>" class="google-map-img" />
 								</div>
 							<?php } else { ?>
 								<div class="layers-map" style="height: <?php echo esc_attr( $widget['map_height'] ); ?>px;" data-zoom-level="<?php echo ( isset( $widget['google_maps_zoom'] ) ? $widget['google_maps_zoom'] : 14 ); ?>" <?php if( '' != $widget['google_maps_location'] ) { ?>data-location="<?php echo $widget['google_maps_location']; ?>"<?php } ?> <?php if( '' != $widget['google_maps_long_lat'] ) { ?>data-longlat="<?php echo $widget['google_maps_long_lat']; ?>"<?php } ?>></div>
@@ -205,7 +205,7 @@ if( !class_exists( 'Layers_Contact_Widget' ) ) {
 				// Print the Inline Styles for this Widget
 				$this->print_inline_css(); ?>
 
-			</section>
+			</div>
 
 			<?php if ( !isset( $wp_customize ) ) {
 				wp_enqueue_script( LAYERS_THEME_SLUG . " -map-api","//maps.googleapis.com/maps/api/js");
@@ -431,6 +431,7 @@ if( !class_exists( 'Layers_Contact_Widget' ) ) {
 								</p>
 							</div>
 						</div>
+					</div>
 				</section>
 			</div>
 

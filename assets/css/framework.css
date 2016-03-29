@@ -131,6 +131,7 @@ pre{
 	font-size: 85%;
 	font-weight: 700;
 	font-family: "Courier New", Courier, monospace;
+	text-transform: initial;
 }
 strong{
 	font-weight: 700;
@@ -189,17 +190,48 @@ object{
 
 	/*---------------------------*/
 	/*- GRIDS -------------------*/
-	.column{
-		margin-bottom: 20px;
-		position: relative;
-		max-width: 100%;
-	}
-	.column-flush{
-		margin: 0;
+	.grid{
+		display: flex;
+		flex-flow: row;
+		flex-wrap: wrap;
 		position: relative;
 	}
-	.row .column:last-child{
-		margin-right: 0;
+	.container .grid{
+		margin-left: -10px;
+		margin-right: -10px;
+	}
+
+		/*-----------------------*/
+		/*- COLUMN SETUP --------*/
+		[class*='column']{
+			margin-left: 10px;
+			margin-right: 10px;
+			margin-bottom: 20px;
+			position: relative;
+			max-width: calc(100% - 20px);
+			/*flex: 0 0 calc((100% / 12) - 20px);*/
+		}
+		.column-flush{
+			margin: 0;
+			position: relative;
+			max-width: 100%;
+		}
+
+		/*-----------------------*/
+		/*- FALLBACK ------------*/
+		.row .column{
+			float: left;
+		}
+
+	.layers-masonry-column .grid{
+		flex-direction: column;
+	}
+
+	.span-12{
+		min-width: calc(((100% / 12) * 12) - 20px);
+	}
+	.column-flush.span-12{
+		min-width: calc((100% / 12) * 12);
 	}
 
 	.middled,
@@ -214,9 +246,9 @@ object{
 	/*---------------------------*/
 	/*- MASONRY -----------------*/
 	.container.list-masonry{
-		max-width: 1000px;
-		padding: 0;
-		position:relative;
+		max-width: 1040px;
+		padding: 0 10px;
+		position: relative;
 	}
 	.container.list-masonry > *:not(.masonry-loading){
 		opacity: 0;
@@ -236,7 +268,12 @@ object{
 		overflow: hidden;
 		opacity: 0;
 	}
-	.container.list-masonry .column{
+	.list-masonry .grid{
+		margin-left: 0px;
+		margin-right: 0px;
+	}
+	.list-masonry .column{
+		margin-left: 0;
 		margin-right: 0;
 	}
 
@@ -357,6 +394,9 @@ object{
 		float: left;
 	}
 	.column .pull-right,
+	.column.pull-right{
+		order: 2;
+	}
 	.pull-right{
 		float: right;
 	}
@@ -1621,12 +1661,14 @@ object{
 		margin-bottom: 20px;
 	}
 	.panel ul{
-		border: 2px solid #ddd;
+		margin: 0;
+		padding: 0;
+		border: 2px solid rgba(0, 0, 0, 0.05);
 	}
 	.panel li{
 		padding: 10px;
 		background-color: #fff;
-		border-top: 2px solid #ddd;
+		border-top: 2px solid rgba(0, 0, 0, 0.05);
 	}
 	.panel li:first-child{
 		border-top: none;
@@ -1861,7 +1903,7 @@ object{
 		visibility: hidden;
 		opacity: 0;
 		position: absolute;
-		top: 30px;
+		top: 50px;
 		left: 0;
 		border: 2px solid #ddd;
 		z-index: 5;
@@ -1917,7 +1959,8 @@ object{
 		box-shadow: 3px 3px 0px rgba(0, 0, 0, 0.05);
 	}
 	.nav-vertical li:hover > .sub-menu{
-		top: -3px; left: 140px;
+		top: -3px;
+		left: 140px;
 	}
 	.nav-vertical li:hover > .sub-menu .sub-menu{
 		left: 155px;
@@ -1950,6 +1993,25 @@ object{
 		.header-site .menu-item-has-children > a:hover:after{
 			opacity: 0.8;
 		}
+
+		/*-----------------------*/
+		/*- SUB MENU ANIMATION --*/
+		.header-site .nav ul li > .sub-menu > li{
+			opacity: 0;
+			transform: translate3d(0, 5px, 0);
+			transition: 0.25s opacity ease-in-out 0.05s,
+						0.25s transform ease-in-out 0.05s;
+		}
+		.header-site .nav ul li:hover > .sub-menu > li{
+			opacity: 1;
+			transform: translate3d(0, 0, 0);
+		}
+		.header-site .nav ul li:hover > .sub-menu > li:nth-child(2){transition-delay: 0.07s;}
+		.header-site .nav ul li:hover > .sub-menu > li:nth-child(3){transition-delay: 0.09s;}
+		.header-site .nav ul li:hover > .sub-menu > li:nth-child(4){transition-delay: 0.11s;}
+		.header-site .nav ul li:hover > .sub-menu > li:nth-child(5){transition-delay: 0.13s;}
+		.header-site .nav ul li:hover > .sub-menu > li:nth-child(6){transition-delay: 0.15s;}
+		.header-site .nav ul li:hover > .sub-menu > li:nth-child(7){transition-delay: 0.17s;}
 
 	/*---------------------------*/
 	/*- ABOLUTE NAV -------------*/
@@ -2487,6 +2549,9 @@ object{
 		float: right;
 	}
 	.aligncenter{
+		clear: both;
+		margin-left: auto;
+		margin-right: auto;
 		text-align: center;
 	}
 	.bypostauthor{
@@ -2641,12 +2706,11 @@ object{
 		background: none;
 		color: #fff;
 	}
-	.invert .sub-menu{
-		background: none;
-	}
+	.invert .sub-menu,
 	.invert .sub-menu li a{
 		background: none;
 	}
+	.header-site.invert .sub-menu,
 	.header-site.invert .sub-menu li a{
 		background: #fff;
 		color: #000;

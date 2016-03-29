@@ -21,57 +21,38 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 /*- COLUMNS ---------------------*/
 
 	/*---------------------------*/
-	/*- SPAN - 1 ----------------*/
-	.column.span-1{
-		float: left;
-		width: 15%;
-		margin-right: 2%;
-	}
-	.column-flush.span-1{
-		float: left;
-		width: 16.6667%;;
-	}
-	.column.span-1:nth-child(6n+6),
-	.column-flush.span-1:nth-child(6n+6){
-		margin-right: 0;
-	}
-
-	/*---------------------------*/
-	/*- SPAN - 2 ----------------*/
-	.column.span-2{
-		float: left;
-		width: 48%;
-		margin-right: 4%;
+	/*- SPAN - 2 GOES SPAN 6 ----*/
+	.span-2{
+		width: calc(((100% / 12) * 6) - 20px);
 	}
 	.column-flush.span-2{
-		float: left;
-		width: 50%;
-		margin-right: 0%;
-	}
-	.column.span-2:nth-child(2n),
-	.column-flush.span-2:nth-child(2n+2){
-		margin-right: 0;
+		width: calc(((100% / 12) * 6));
 	}
 
 	/*---------------------------*/
-	/*- CLEARING SPANS ----------*/
-	.column.span-1:nth-child(6n+7),
-	.column.span-2:nth-child(2n+3){
+	/*- CLEARING COLS - FALLBACK */
+	.row .column.span-1:nth-child(6n+7),
+	.row .column.span-2:nth-child(2n+3){
 		clear: left;
 	}
 
 	/*---------------------------*/
-	/*- MASONRY -----------------*/
-	.container.list-masonry{
-		padding: 0 20px;
+	/*- REST GO SPAN 12 ---------*/
+	.span-3,
+	.span-4,
+	.span-5,
+	.span-6{
+		width: calc(((100% / 12) * 12) - 20px);
 	}
-	.container.list-masonry .column{
-		position: static !important;
+	.column-flush.span-3,
+	.column-flush.span-4,
+	.column-flush.span-5,
+	.column-flush.span-6{
+		width: calc(((100% / 12) * 12));
 	}
 
 /*-------------------------------*/
 /*- NAVIGATION ------------------*/
-
 
 	/*-------------------------------*/
 	/*- HEADER RIGHT REPSONSIVE NAV -*/
@@ -180,51 +161,23 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 @media only screen and (min-width: 481px){
 
 	/*---------------------------*/
-	/*- COLUMNS -----------------*/
-	.column{
-		float: left;
-		margin-right: 2%;
-	}
-	.column-flush{
-		float: left;
-	}
-
-	/*---------------------------*/
-	/*- SPAN - 3 ----------------*/
-	.column.span-3:nth-child(4n+4),
-	.column-flush.span-4:nth-child(4n+4){
-		margin-right: 0;
-	}
-
-	/*---------------------------*/
 	/*- SPAN - 4 ----------------*/
-	.column.span-4{
-		float: left;
-		width: 32%;
-		margin-right: 2%;
+	.span-4{
+		width: calc(((100% / 12) * 4) - 20px);
 	}
 	.column-flush.span-4{
-		float: left;
-		width: 33.33333%;
-	}
-	.column.span-4:last-child,
-	.column.span-4:nth-child(3n+3),
-	.column-flush.span-4:nth-child(3n+3){
-		margin-right: 0;
+		width: calc((100% / 12) * 4);
 	}
 
 	/*---------------------------*/
 	/*- SPAN - 6 ----------------*/
-	.column.span-6{
-		width: 49%;
-		margin-right: 2%;
+	.span-5,
+	.span-6{
+		width: calc(((100% / 12) * 6) - 20px);
 	}
+	.column-flush.span-5,
 	.column-flush.span-6{
-		width: 50%;
-	}
-	.column.span-6:nth-child(2n+2),
-	.column-flush.span-6:nth-child(2n+2){
-		margin-right: 0;
+		width: calc((100% / 12) * 6);
 	}
 
 	/*---------------------------*/
@@ -298,125 +251,74 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 }
 
 /*--------------------------------------------------------------*/
-/*-  AWKWARD SIZE BETWEEN PHONE LANDSCAPE AND TABS -------------*/
+/*-  AWKWARD SIZE BETWEEN PHONE LANDSCAPE AND TABLET -----------*/
 /*--------------------------------------------------------------*/
 @media only screen and (min-width: 481px) and (max-width: 768px){
 
 	/*---------------------------*/
-	/*- SPAN - 2 ----------------*/
-	.column.span-2{
-		float: left;
-		width: 32%;
-		margin-right: 2%;
+	/*- SPAN - 2 GOES SPAN 4 ----*/
+	.span-2{
+		width: calc(((100% / 12) * 4) - 20px);
 	}
 	.column-flush.span-2{
-		float: left;
-		width: 33.33333%;
-	}
-	.column.span-2:nth-child(3n+3),
-	.column-flush.span-2:nth-child(3n+3){
-		margin-right: 0;
+		width: calc((100% / 12) * 4);
 	}
 
 	/*---------------------------*/
-	/*- SPAN - 3 ----------------*/
-	.column.span-3{
-		float: left;
-		width: 49%;
-		margin-right: 2%;
+	/*- SPAN - 3 GOES SPAN 6 ----*/
+	.span-3{
+		width: calc(((100% / 12) * 6) - 20px);
 	}
 	.column-flush.span-3{
-		float: left;
-		width: 50%;
-	}
-	.column.span-3:nth-child(2n+2),
-	.column-flush.span-3:nth-child(2n+2){
-		margin-right: 0;
+		width: calc((100% / 12) * 6);
 	}
 
 		/*-----------------------*/
 		/*- MULTI-SIDEBAR -------*/
 		/* This CSS caters for 3 column sidebar layouts */
-		.sidebar.span-3{
-			width: 31.3%;
-		}
-		.sidebar.span-3 + .span-6{
-			width: 66.7%;
-		}
-		.sidebar.span-3 + .span-6 + .span-3{
-			width: 100%;
-		}
-		.sidebar.span-3 + .span-6 + .span-3 .widget{
-			float: left;
-			width: 31.3%;
-			margin-right: 2%;
-			margin-bottom: 2%;
-		}
-		.sidebar.span-3 + .span-6 + .span-3 .widget:nth-child(3n+3){
-			margin-right: 0;
-		}
-		.sidebar.span-3 + .span-6 + .span-3 .widget:nth-child(3n+4){
-			clear: left;
+		.span-3 + .span-6{
+			width: calc(((100% / 12) * 12) - 20px);
 		}
 
 		/*-----------------------*/
 		/*- DBL-SIDEBAR ---------*/
 		/* This CSS caters for 2 column sidebar layouts */
-		.sidebar.span-4{
-			width: 100%;
-			clear: left;
-			float: none;
+		.span-8{
+			width: calc(((100% / 12) * 12) - 20px);
+			/* Set the main column to fullwidth */
 		}
-		.sidebar.span-4 .widget{
-			float: left;
-			width: 31.3%;
-			margin-right: 2%;
-			margin-bottom: 2%;
+		.column.sidebar{
+			display: flex;
+			flex-flow: row wrap;
+			min-width: calc((100% / 12) * 12);
+			margin-left: 0px;
+			margin-right: 0px;
+			/* Set the sidebar to full width and apply flexbox */
 		}
-		.sidebar.span-4 .widget:nth-child(3n+3){
-			margin-right: 0;
+		.column.sidebar .widget{
+			flex: 0 0 calc(((100% / 12) * 6) - 20px);
+			margin: 0 10px 20px;
+			/* align widgets in rows of 2 */
 		}
-		.sidebar.span-4 .widget:nth-child(3n+4){
-			clear: left;
-		}
-
-
-	/*---------------------------*/
-	/*- LARGE COLUMNS -----------*/
-	.column.span-7,
-	.column.span-8,
-	.column.span-9,
-	.column.span-10,
-	.column.span-11,
-	.column.span-12{
-		float: none;
-		clear: both;
-		margin-right: 0;
-	}
-	.column-flush.span-7,
-	.column-flush.span-8,
-	.column-flush.span-9,
-	.column-flush.span-10,
-	.column-flush.span-11,
-	.column-flush.span-12{
-		float: none;
-		clear: both;
-		margin-right: 0;
-	}
 
 	/*---------------------------*/
-	/*- CLEARING SPANS ----------*/
-	.column.span-2:nth-child(3n+4),
-	.column.span-3:nth-child(2n+3){
-		clear: left;
+	/*- SPAN - 9 GOES SPAN 12 ---*/
+	.span-9{
+		width: calc(((100% / 12) * 12) - 20px);
 	}
-
 }
 
 /*--------------------------------------------------------------*/
-/*-  AWKWARD SIZE BETWEEN PHONE LANDSCAPE AND TABS -------------*/
+/*-  AWKWARD SIZE BETWEEN PHONE LANDSCAPE AND TABLET -----------*/
 /*--------------------------------------------------------------*/
 @media only screen and (min-width: 601px) and (max-width: 782px){
+
+	/*---------------------------*/
+	/*- CLEARING COLS - FALLBACK */
+	.row .column.span-2:nth-child(3n+4),
+	.row .column.span-3:nth-child(2n+3){
+		clear: left;
+	}
 
 	/*-----------------------*/
 	/*- HEADER IN ADMIN MODE */
@@ -437,6 +339,13 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 /*- EVERYTHING UP TO TABLET ------------------------------------*/
 /*--------------------------------------------------------------*/
 @media only screen and (max-width: 768px){
+
+	/*---------------------------*/
+	/*- MASONRY -----------------*/
+	.container.list-masonry{
+		padding: 0 10px;
+	}
+
 
 	/*---------------------------*/
 	/*- HEADER INLINE -----------*/
@@ -500,53 +409,37 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 	/*---------------------------*/
 	/*- OFF CANVAS SIDEBAR ------*/
-	.admin-bar section[class*=" off-canvas-"]{
+	.admin-bar div[class*=" off-canvas-"]{
 		padding-top: 47px;
 	}
 
 
 }
 
-
+/*--------------------------------------------------------------*/
+/*- BETWEEN TABLET AND DESKTOP ---------------------------------*/
+/*--------------------------------------------------------------*/
 @media only screen and (min-width: 601px) and (max-width: 860px){
 
 	/*---------------------------*/
-	/*- SPAN - 5 ----------------*/
-	.column.span-5{
-		width: 49%;
-		margin-right: 2%;
-	}
-	.column-flush.span-5{
-		width: 50%;
-	}
-	.column.span-5 + .span-5{
-		margin-right: 0;
-	}
-
-	/*---------------------------*/
 	/*- SPAN - 10 ---------------*/
-	.column.span-10,
-	.column-flush.span-10{
-		width: 100%;
-		margin-right: 0;
+	.span-10{
+		width: calc(((100% / 12) * 12) - 20px);
 	}
 
 	/*---------------------------*/
 	/*- COMBINATIONS ------------*/
-	.column.span-5 + .span-5 + .span-2{
+	.span-5 + .span-5 + .span-2{}
+	.span-7 + .span-5{}
+	.span-10 + .span-2{}
+
+	/*---------------------------*/
+	/*- COMBINATIONS ------------*/
+	.span-5 + .span-5 + .span-2{
 		width: 100%;
 	}
 
-	.column.span-7 + .span-5{
-		width: 40.5%;
-	}
-	.column-flush.span-7 + .span-5{
-		width: 41.66665%;
-	}
 
-	.column.span-10 + .span-2{
-		width: 49%;
-	}
 }
 
 /*--------------------------------------------------------------*/
@@ -559,33 +452,27 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 	/*---------------------------*/
 	/*- COLUMN WIDTHS -----------*/
-	.span-1{width: 6.5%;}
-	.span-2{width: 15%;}
-	.span-3{width: 23.5%;}
-	.span-4{width: 33.33333%;}
-	.span-5{width: 40.5%;}
-	.span-7{width: 57.5%;}
-	.span-8{width: 66%;}
-	.span-9{width: 74.5%;}
-	.span-10{width: 83%;}
-	.span-11{width: 91.5%;}
-	.span-12{
-		clear: both;
-		float: none;
-	}
+	.span-1{width: calc((100% / 12) - 20px);}
+	.span-2{width: calc(((100% / 12) * 2) - 20px);}
+	.span-3{width: calc(((100% / 12) * 3) - 20px);}
+	.span-5{width: calc(((100% / 12) * 5) - 20px);}
+	.span-7{width: calc(((100% / 12) * 7) - 20px);}
+	.span-8{width: calc(((100% / 12) * 8) - 20px);}
+	.span-9{width: calc(((100% / 12) * 9) - 20px);}
+	.span-10{width: calc(((100% / 12) * 10) - 20px);}
+	.span-11{width: calc(((100% / 12) * 11) - 20px);}
 
 	/*---------------------------*/
 	/*- FLUSH COLUMNS -----------*/
-	.column-flush.span-1{width: 8.333333%;}
-	.column-flush.span-2{width: 16.6667%;}
-	.column-flush.span-3{width: 25%;}
-	.column-flush.span-5{width: 41.66665%;}
-	.column-flush.span-7{width: 58.1%;}
-	.column-flush.span-8{width: 66.65%;}
-	.column-flush.span-9{width: 74.7%;}
-	.column-flush.span-10{width: 83%;}
-	.column-flush.span-11{width: 91.3%;}
-	.column-flush.span-12{width: 100%;}
+	.column-flush.span-1{width: calc(100% / 12);}
+	.column-flush.span-2{width: calc((100% / 12) * 2);}
+	.column-flush.span-3{width: calc((100% / 12) * 3);}
+	.column-flush.span-5{width: calc((100% / 12) * 5);}
+	.column-flush.span-7{width: calc((100% / 12) * 7);}
+	.column-flush.span-8{width: calc((100% / 12) * 8);}
+	.column-flush.span-9{width: calc((100% / 12) * 9);}
+	.column-flush.span-10{width: calc((100% / 12) * 10);}
+	.column-flush.span-11{width: calc((100% / 12) * 11);}
 
 	/*---------------------------*/
 	/*- GUTTERS -----------------*/
@@ -637,18 +524,8 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 	.pull-right-10{margin-right: -85%;}
 	.pull-right-11{margin-right: -93.5%;}
 
-
 	/*---------------------------*/
-	/*- MARGIN RESET ------------*/
-	.row .span-1:nth-child(12n+12),
-	.row .span-2:nth-child(6n+6),
-	.row .span-4:nth-child(3n+3),
-	.row .span-6:nth-child(2n+2){
-		margin-right: 0;
-	}
-
-	/*---------------------------*/
-	/*- CLEAR RESET -------------*/
+	/*- CLEARING COLS - FALLBACK */
 	.row .span-2:nth-child(6n+7),
 	.row .span-3:nth-child(4n+5),
 	.row .span-4:nth-child(3n+4),
@@ -656,18 +533,6 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 		clear: left;
 	}
 
-	/*---------------------------*/
-	/*- EXCEPTIONS --------------*/
-	.column.span-3 + .column.span-6 + .column.span-3{
-		margin-left: 2%;
-	}
-	.column.span-9 + .column.span-3{
-		margin-right: 0;
-	}
-	.column.span-12,
-	.column-flush.span-12{
-		margin-right: 0;
-	}
 
 /*-------------------------------*/
 /*- HEADERS ---------------------*/
@@ -970,7 +835,6 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 	.swiper-slide.text-right .excerpt{
 		float: right;
 	}
-
 
 	.swiper-slide.image-right .copy-container + .image-container,
 	.swiper-slide.image-left .copy-container + .image-container{

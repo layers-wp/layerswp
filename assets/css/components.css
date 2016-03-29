@@ -287,7 +287,7 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
     .story img{
         display: block;
-        max-width: 98%;
+        max-width: 100%;
         height: auto;
     }
 

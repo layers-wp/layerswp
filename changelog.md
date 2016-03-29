@@ -1,12 +1,25 @@
 # Layers Changelog
 
 =======
+##1.5.0
+### 14 Apr 2016
+* **Fix** - Full width footer no longer touches sides, padding left-right has been added. *DP*
+* **Fix** - Fixed Image-botton icon. *DP*
+* **Fix** - Onboarding typo's. *DP*
+* **Fix** - Fixed aligncenter bug in blog posts which stopped images from centering. *DP*
+* **Tweak** - Replaced all <section> containers with <div> in order to reverse engineer better SEO as Layers progresses. *DP*
+* **Tweak** - Fixed associated CSS where section[class] was used. *DP*
+* **Tweak** - Fixed WooCommerce tab alignment issue in responsive mode. *DP*
+* **Tweak** - .story img changed from 98% to 100% width. *DP*
+* **Enhancement** - Entirely new grid code which allows for different columns in the same content widget, using flexbox and calc(). *DP*
+* **Enhancement** - Added subtle animation to .sub-menu drop down. *DP*
+
+=======
 ##1.2.14
 ### 16 Feb 2016
 
 * **Fix** - Removed all custom CSS being output from `the_content();` in Layers Pages. *MP*
 * **Fix** - Fixed Google Maps API warning when using the contact widget. *MP*
-* **Fix** - Full width footer no longer touches sides, padding left-right has been added. *DP*
 * **Fix** - Fixed Image-Bottom icon. *DP*
 * **Fix** - CSS Class hiding customizer panel titles. *MP*
 * **Enchancement** - Added the Kanit Google font to the font list. *MP*

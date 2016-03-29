@@ -8,8 +8,8 @@
 
 get_header(); ?>
 
-<section id="post-<?php the_ID(); ?>" <?php post_class( 'content-main clearfix' ); ?>>
-	<div class="row">
+<div id="post-<?php the_ID(); ?>" <?php post_class( 'content-main clearfix' ); ?>>
+	<div class="grid">
 
 		<?php get_sidebar( 'left' ); ?>
 
@@ -25,6 +25,6 @@ get_header(); ?>
 
 		<?php get_sidebar( 'right' ); ?>
 	</div>
-</section>
+</div>
 
 <?php get_footer();

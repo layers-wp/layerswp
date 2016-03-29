@@ -8,9 +8,9 @@
 
 get_header(); ?>
 
-<section id="post-<?php the_ID(); ?>" <?php post_class( 'container content-main clearfix' ); ?>>
+<div id="post-<?php the_ID(); ?>" <?php post_class( 'container content-main clearfix' ); ?>>
 	<?php do_action('layers_before_page_loop'); ?>
-    <div class="row">
+    <div class="grid">
         <?php if( have_posts() ) : ?>
             <?php while( have_posts() ) : the_post(); ?>
                 <article <?php layers_center_column_class(); ?>>
@@ -20,6 +20,6 @@ get_header(); ?>
         <?php endif; // if has_post() ?>
     </div>
     <?php do_action('layers_after_page_loop'); ?>
-</section>
+</div>
 
 <?php get_footer();

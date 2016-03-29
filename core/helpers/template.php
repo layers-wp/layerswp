@@ -1006,19 +1006,19 @@ if( !function_exists( 'layers_inline_styles' ) ) {
 				$trbl_args = $args[ $type ];
 
 				if( isset( $trbl_args['top'] ) && '' != $trbl_args['top'] ){
-					$css .= $type . '-top: ' . $trbl_args['top'] . '; ';
+					$css .= $type . '-top: ' . $trbl_args['top'] . 'px; ';
 				}
 
 				if( isset( $trbl_args['right'] ) && '' != $trbl_args['right'] ){
-					$css .= $type . '-right: ' . $trbl_args['right'] . '; ';
+					$css .= $type . '-right: ' . $trbl_args['right'] . 'px; ';
 				}
 
 				if( isset( $trbl_args['bottom'] ) && '' != $trbl_args['bottom'] ){
-					$css .= $type . '-bottom: ' . $trbl_args['bottom'] . '; ';
+					$css .= $type . '-bottom: ' . $trbl_args['bottom'] . 'px; ';
 				}
 
 				if( isset( $trbl_args['left'] ) && '' != $trbl_args['left'] ){
-					$css .= $type . '-left: ' . $trbl_args['left'] . '; ';
+					$css .= $type . '-left: ' . $trbl_args['left'] . 'px; ';
 				}
 
 			break;

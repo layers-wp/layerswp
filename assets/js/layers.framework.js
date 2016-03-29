@@ -65,7 +65,7 @@ jQuery(function($) {
     */
 
     // Set site header element
-    $header_sticky = $("header.header-sticky");
+    $header_sticky = $("section.header-sticky");
 
 	// Handle scroll passsing the go-sticky position.
 	$("body").waypoint({

@@ -251,7 +251,7 @@ class Layers_Form_Elements {
 			* Select 'icons' such as the column selector
 			*/
 			case 'select-icons' :
-				
+
 				$input_type = ( 1 == count( $input->options ) ) ? 'checkbox' : 'radio';
 				?>
 				<div class="layers-select-icons">
@@ -271,7 +271,7 @@ class Layers_Form_Elements {
 							$class = "icon-{$key}";
 							$data_string = '';
 						}
-						
+
 						$data_string .= 'data-value="' . $input->value . '" ';
 						?>
 						<label
@@ -303,7 +303,21 @@ class Layers_Form_Elements {
 				$allow_tags = ( isset( $input->allow_tags ) && is_array( $input->allow_tags ) ? implode( ',' , $input->allow_tags ) : array() );
 
 				// Add custom button support
-				$allow_buttons = ( isset( $input->allow_buttons ) && is_array( $input->allow_buttons ) ? $input->allow_buttons : array( 'sep','bold','italic','underline','strikeThrough','createLink','insertOrderedList','insertUnorderedList','removeFormat','html' ) );
+				$default_allowed_buttons = array(
+					'sep',
+					'bold',
+					'italic',
+					'emoticons',
+					'underline',
+					'strikeThrough',
+					'insertLink',
+					'formatOL',
+					'formatUL',
+					'clearFormatting',
+					'html'
+				);
+
+				$allow_buttons = ( isset( $input->allow_buttons ) && is_array( $input->allow_buttons ) ? $input->allow_buttons : $default_allowed_buttons );
 
 				// Check for disabling of standard buttons
 				if( isset( $input->disallow_buttons ) && is_array( $input->disallow_buttons ) ) {
@@ -652,24 +666,24 @@ class Layers_Form_Elements {
 				<div class="layers-row">
 					<?php echo $input->html; ?>
 				</div>
-			
+
 			<?php break;
-				
+
 			/**
 			* Dynamic Linking Interface
 			*/
 			case 'link-group' : ?>
 				<div class="layers-form-collection layers-link-group closed">
-					
+
 					<!-- Header -->
 					<div class="layers-form-collection-header">
 						<?php echo ( isset( $input->value->link_text ) ) ? $input->value->link_text : '&nbsp' ; ?>
 					</div>
 					<!-- / Header -->
-					
+
 					<!-- Content -->
 					<div class="layers-form-collection-content">
-					
+
 						<div class="layers-row">
 							<div class="layers-form-item layers-column layers-span-5">
 								<label for="<?php echo "{$input->id}-link_type"; ?>">
@@ -789,7 +803,7 @@ class Layers_Form_Elements {
 								</div>
 							</div>
 						</div>
-						
+
 						<div class="layers-row">
 							<div class="layers-form-item layers-column layers-span-12">
 								<label for="<?php echo "{$input->id}-link_text"; ?>">
@@ -806,14 +820,14 @@ class Layers_Form_Elements {
 								); ?>
 							</div>
 						</div>
-						
+
 					</div>
 					<!-- / Content -->
-					
+
 				</div>
-				
+
 			<?php break;
-			
+
 			/**
 			* Default to hidden field
 			*/

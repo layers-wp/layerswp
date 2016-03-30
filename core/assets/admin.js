@@ -798,7 +798,6 @@ jQuery(function($) {
 				var $id = $(element)[0].id;
 
 				layers_enqueue_init( function(){
-
 					layers_init_editor( $id );
 				}, $run_instantly );
 			});
@@ -815,58 +814,53 @@ jQuery(function($) {
 			allowScript: true,
 			allowStyle: true,
 			convertMailAddresses: true,
-			inlineMode: false,
-			initOnClick: false,
-			imageButtons: [ 'removeImage' ],
+			toolbarInline: false,
+			initOnClick: true,
+			imageEditButtons: [ 'removeImage' ],
 			key: 'YWd1WDPTa1ZNRGe1OC1c1==',
 			mediaManager: false,
-			pasteImage: false,
-			paragraphy: true,
-			plainPaste: false,
+			imagePaste: false,
+			enter: $.FroalaEditor.ENTER_P,
+			pastePlain: false,
 			typingTimer: 1000,
 			zIndex: 99,
 		};
 
 		if( $editor.data( 'allowed-buttons' ) ) {
-			$editor_data.buttons = $editor.data( 'allowed-buttons' ).split(',');
+			$editor_data.toolbarButtons = $editor.data( 'allowed-buttons' ).split(',');
 		}
 
 		if( $editor.data( 'allowed-tags' ) ) {
 			if( '' !== $editor.data ){
-				$editor_data.allowedTags = $editor.data( 'allowed-tags' ).split(',');
+				$editor_data.htmlAllowedTags = $editor.data( 'allowed-tags' ).split(',');
 			}
 		}
 
 		// Editor events
-		$editor.editable( $editor_data )
-			.on('editable.contentChanged', function (e, editor) {
-				$editor.layers_trigger_change();
-			})
-			.on('editable.focus', function (e, editor) {
-				// Show toolbar on editor focus
-				editor.$box.removeClass('froala-toolbar-hide');
-			})
-			.on('editable.blur', function (e, editor) {
-				// siwtch to using click outside rather
-				//editor.$box.addClass('froala-toolbar-hide');
-			});
+		$editor.froalaEditor( $editor_data ).on('froalaEditor.contentChanged froalaEditor.input', function (e, editor) {
+			$editor.layers_trigger_change();
+		});
+/*
+		$(document).on( 'blur', 'textarea.fr-code', function(){
+			$(this).layers_trigger_change();
+		});
+*/
+
 
 		// Fix for 'clear formatting' button not working - envokes sending change to customizer prev
 		$(document).on( 'click', '.fr-bttn[data-cmd="removeFormat"]', function(){
 			var $editor = $(this).closest('.layers-form-item').find('.layers-rte');
 			_.defer( function(arguments) {
-				$editor.editable('blur');
-				$editor.editable('focus');
+				$editor.froalaEditor('blur');
+				$editor.froalaEditor('focus');
 			});
 		});
-
-		// Add froala-toolbar-hide class to all editors parent box on startup, to hide toolbar
-		$editor.data('fa.editable').$box.addClass('froala-toolbar-hide');
 	}
 
 	// Close editor toolbar on click outside active editor
+	/*
 	$(document).on( 'mousedown', function(){
-		$('.froala-box:not(.froala-toolbar-hide)').each(function(){
+		$('.fr-box:not(.fr-toolbar-hide)').each(function(){
 
 			// If the editor is in HTML view then switch back.
 			$rte_active_html_button = $(this).find( '.active[data-cmd="html"]' );
@@ -876,14 +870,15 @@ jQuery(function($) {
 			}
 
 			// Then hide the toolbar
-			$(this).addClass('froala-toolbar-hide');
+			$(this).addClass('fr-toolbar-hide');
 		});
 	});
-	$(document).on( 'mousedown', '.froala-box', function(e){
+*/
+	$(document).on( 'mousedown', '.fr-box', function(e){
 		$('.froala-box').not( $(this) ).addClass('froala-toolbar-hide');
 		e.stopPropagation();
 	});
-	$(document).on( 'mousedown', '.froala-popup', function(e){
+	$(document).on( 'mousedown', '.fr-popup', function(e){
 		e.stopPropagation();
 	});
 
@@ -1139,12 +1134,6 @@ jQuery(function($) {
 					'defaultPosition' : 'top',
 					'edgeOffset' : 3,
 					'maxWidth' : '300px'
-					//'enter' : function() {
-					//	//jQuery("#tiptip_holder").addClass("cx_tip_tip");
-					//	jQuery("#tiptip_holder #tiptip_content").addClass('cx_tip_tip');
-					//}
-					//'keepAlive' : true,
-					//'activation' : 'click'
 				});
 
 			});

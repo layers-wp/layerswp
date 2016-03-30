@@ -840,11 +840,6 @@ jQuery(function($) {
 		$editor.froalaEditor( $editor_data ).on('froalaEditor.contentChanged froalaEditor.input', function (e, editor) {
 			$editor.layers_trigger_change();
 		});
-/*
-		$(document).on( 'blur', 'textarea.fr-code', function(){
-			$(this).layers_trigger_change();
-		});
-*/
 
 
 		// Fix for 'clear formatting' button not working - envokes sending change to customizer prev
@@ -873,7 +868,7 @@ jQuery(function($) {
 			$(this).addClass('fr-toolbar-hide');
 		});
 	});
-*/
+	*/
 	$(document).on( 'mousedown', '.fr-box', function(e){
 		$('.froala-box').not( $(this) ).addClass('froala-toolbar-hide');
 		e.stopPropagation();

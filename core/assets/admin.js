@@ -1013,25 +1013,6 @@ jQuery(function($) {
 		init_tip_tip( $( document ) );
 	}
 
-<<<<<<< HEAD
-	function init_tip_tip( $element_s, $run_instantly ){
-
-		$element_s.each( function( i, group ) {
-
-			$(group).find( '[data-tip]').each( function( j, element ) {
-
-				// Tooltips
-				$(element).layersTip({
-					'attribute' : 'data-tip',
-					'fadeIn' : 300,
-					'fadeOut' : 300,
-					'delay' : 200,
-					'defaultPosition' : 'top',
-					'edgeOffset' : 3,
-					'maxWidth' : '300px'
-				});
-
-=======
 	function init_tip_tip( $element_s ){
 
 		$element_s.find( '[data-tip]').each( function( j, element ) {
@@ -1051,7 +1032,6 @@ jQuery(function($) {
 				//}
 				//'keepAlive' : true,
 				//'activation' : 'click'
->>>>>>> 6a3f6042c20cfc47d3a3d8985f296fb70a57c494
 			});
 		});
 	}

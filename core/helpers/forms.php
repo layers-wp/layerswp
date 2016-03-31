@@ -182,11 +182,16 @@ class Layers_Form_Elements {
 				$range_input_props['max'] = ( NULL !== $input->max ) ? 'max="' .  $input->max . '"' : NULL ;
 				$range_input_props['step'] = ( NULL !== $input->step ) ? 'step="' .  $input->step . '"' : NULL ;
 				$range_input_props['placeholder'] = ( NULL !== $input->placeholder ) ? 'placeholder="' .  $input->placeholder . '"' : NULL ;
-
+				
 				if ( isset( $input->value ) && '' !== $input->value )
 					$range_input_props['value'] = 'value="' .  $input->value . '"';
 				elseif ( isset( $input->placeholder ) )
 					$range_input_props['value'] = 'value="' .  $input->placeholder . '"';
+				
+				// Add the disabled to the number field if a placeholder is set and it's the same as the value.
+				// the javascript does this too so it will be live applied when the range slider is dragged.
+				if ( isset( $input->placeholder ) && $input->placeholder == $input->value )
+					$number_input_props['class'] = 'class="layers-range-disabled"';
 				?>
 				<div class="layers-row">
 					<div class="layers-column layers-span-9">

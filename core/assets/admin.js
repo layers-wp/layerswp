@@ -909,23 +909,26 @@ jQuery(function($) {
 	/**
 	 * 17 - Customizer Control - Range Slider
 	 */
+	
 	$( document ).on( 'input change', '.layers-column input[type="range"]', function( e ){
 		
 		// Push changes to the Number input.
 		var $range_field = $(this);
 		var $number_field = $(this).parent().parent().find('input[type="number"]');
-
-		if ( $range_field.attr( 'placeholder' ) && $range_field.attr( 'placeholder' ) == $range_field.val() ) {
+		
+		if ( $range_field.attr( 'placeholder' ) && $range_field.attr( 'placeholder' ) === $range_field.val() ) {
 			
 			// If the range-slider is moved and there's a placeholder set
 			// and the slider stops on the placeholder value then empty
 			// the number field so ntohing is applied.
 			$number_field.val('');
+			$number_field.addClass( 'layers-range-disabled' );
 		}
 		else {
 			
 			// Set the number value to equal this range.
 			$number_field.val( $range_field.val() );
+			$number_field.removeClass( 'layers-range-disabled' );
 		}
 
 		layers_debounce_range_input( $number_field );
@@ -948,6 +951,7 @@ jQuery(function($) {
 			$range_field.val( $number_field.val() );
 		}
 	});
+	
 	var layers_debounce_range_input = _.debounce( function( element ){
 		$( element ).layers_trigger_change();
 	}, 550, false );

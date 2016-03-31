@@ -928,8 +928,14 @@ div[id*='layers-widget'] .widget-control-actions .alignright{
 	.layers-form-item input:disabled{
 		background: #F7F7F7;
 	}
-	.l_option-customize-control .layers-form-item input[type="range"]{
+	.layers-form-item input[type="range"]{
+		display: block;
 		height: 36px;
+		padding: 0;
+		width: 95%;
+	}
+	.layers-form-item input[type="number"].layers-range-disabled {
+		background: #F5F5F5;
 	}
 	.layers-form-item textarea {
 		min-height: 100px;

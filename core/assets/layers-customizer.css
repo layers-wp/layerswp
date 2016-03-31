@@ -1864,7 +1864,7 @@ button[data-cmd="html"].fr-btn.fr-active{
 	}
 	.fr-view ul,
 	.fr-view ol{
-		margin: 0;
+		margin: 0 0 0 20px;
 		padding-bottom: 10px;
 	}
 	.fr-view ul {
@@ -1905,6 +1905,9 @@ button[data-cmd="html"].fr-btn.fr-active{
 		display: block;
 		position: relative;
 
+	}
+	.fr-view a{
+		border-bottom: 1px dotted;
 	}
 
 /*---------------------------*/

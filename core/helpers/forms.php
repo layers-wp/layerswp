@@ -304,10 +304,8 @@ class Layers_Form_Elements {
 
 				// Add custom button support
 				$default_allowed_buttons = array(
-					'sep',
 					'bold',
 					'italic',
-					'emoticons',
 					'underline',
 					'strikeThrough',
 					'insertLink',

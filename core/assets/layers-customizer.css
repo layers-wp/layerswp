@@ -1077,7 +1077,7 @@ div[id*='layers-widget'] .widget-control-actions .alignright{
 	.layers-sync-setting-holder.layers-use-widget-value .layers-global-setting{
 		display: none;
 	}
-	
+
 	/*------------------------------------*/
 	/*- FORM COLLECTIONS (E.G. BUTTONS) --*/
 	.layers-form-collection {
@@ -1140,9 +1140,9 @@ div[id*='layers-widget'] .widget-control-actions .alignright{
 
 		/*---------------------------------------------------------*/
 		/*- FORM COLLECTIONS - LINK-GROUP SPECIFIC ELEMENTS -------*/
-			
+
 			/*------------------------*/
-			/*- LINK FIELDS ----------*/	
+			/*- LINK FIELDS ----------*/
 			.layers-link-field{
 				position: relative;
 			}
@@ -1660,6 +1660,10 @@ div[id*='layers-widget'] .widget-control-actions .alignright{
 		top: 44px !important;
 		right: auto;
 		transition: all 0.1s ease-in-out 0.1s;
+	}
+	.layers-visuals-horizontal .layers-visuals-item.layers-last .layers-pop-menu-wrapper{
+		left: auto;
+		right: 0;
 	}
 	.layers-visuals-horizontal .layers-pop-menu-wrapper.layers-small{
 		width: auto;

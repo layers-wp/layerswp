@@ -210,7 +210,7 @@ jQuery(function($) {
 	/**
 	* 4 -Background Selectors
 	*/
-	
+
 	$(document).on( 'click', '.layers-background-selector li' , function(e){
 		e.preventDefault();
 
@@ -245,7 +245,7 @@ jQuery(function($) {
 		/**
 		 * Customizer
 		 */
-		
+
 		$( document ).on( 'layers-interface-init', function( e, element ){
 			layers_set_color_selector( $(element) );
 		});
@@ -255,7 +255,7 @@ jQuery(function($) {
 		/**
 		 * Not Customizer
 		 */
-		
+
 		layers_set_color_selector( $('body') );
 	}
 
@@ -292,16 +292,16 @@ jQuery(function($) {
 	/**
 	* 6 - Sortable Columns
 	*/
-	
+
 	$( document ).on( 'layers-interface-init', function( e, element ){
 		layers_init_sortable_columns( $(element) );
 	});
 
 	function layers_init_sortable_columns( $element_s ){
-		
+
 		// Bail if no sortable
 		if( $.sortable == undefined ) return;
-		
+
 		$($element_s).find( '.layers-sortable').sortable({
 			placeholder: "layers-sortable-drop"
 		});
@@ -310,11 +310,11 @@ jQuery(function($) {
 	/**
 	* 7 - Tabs
 	*/
-	
+
 	$( document ).on( 'click' , '.l_admin-tabs li, .l_admin-tabs li a' , function(e){
-		
+
 		e.preventDefault();
-		
+
 		// "Hi Mom"
 		$that = $(this);
 
@@ -336,9 +336,9 @@ jQuery(function($) {
 	/**
 	* 8 - Design Controller toggles
 	*/
-	
+
 	$( document ).on( 'click', function(e) {
-		
+
 		var eventTarget = $(e.target);
 
 		// close any pop-ups that arent the target of the current click
@@ -346,7 +346,7 @@ jQuery(function($) {
 	});
 
 	$( document ).on( 'click' , '.widget ul.layers-visuals-wrapper > li.layers-visuals-item > a.layers-icon-wrapper' , function(e){
-		
+
 		e.preventDefault();
 
 		// "Hi Mom"
@@ -439,7 +439,7 @@ jQuery(function($) {
 	*/
 
 	$( document ).on( 'layers-widget-scroll' , '.widget' , function(e){
-		
+
 		// "Hi Mom"
 		$that = $(this);
 
@@ -502,11 +502,11 @@ jQuery(function($) {
 	*/
 
 	if ( $('body.wp-customizer').length ) {
-		
+
 		/**
 		 * Customizer
 		 */
-		
+
 		// Init interface in all except widgets on load
 		layers_init_show_if( $( '#customize-theme-controls > ul > li.accordion-section' ).not( '#accordion-panel-widgets' ) );
 
@@ -516,11 +516,11 @@ jQuery(function($) {
 		});
 	}
 	else {
-		
+
 		/**
 		 * Not Customizer
 		 */
-		
+
 		layers_init_show_if( $( 'body' ) );
 	}
 
@@ -678,7 +678,7 @@ jQuery(function($) {
 	/**
 	* 13 - Init RTE Editors
 	*/
-	
+
 	$( document ).on( 'layers-interface-init', function( e, element ){
 		layers_init_editors( $(element) );
 	});
@@ -694,7 +694,7 @@ jQuery(function($) {
 
 			// Set the ID for this element
 			var $id = $(element)[0].id;
-			
+
 			layers_init_editor( $id );
 		});
 	}
@@ -709,58 +709,48 @@ jQuery(function($) {
 			allowScript: true,
 			allowStyle: true,
 			convertMailAddresses: true,
-			inlineMode: false,
-			initOnClick: false,
-			imageButtons: [ 'removeImage' ],
+			toolbarInline: false,
+			initOnClick: true,
+			imageEditButtons: [ 'removeImage' ],
 			key: 'YWd1WDPTa1ZNRGe1OC1c1==',
 			mediaManager: false,
-			pasteImage: false,
-			paragraphy: true,
-			plainPaste: false,
+			imagePaste: false,
+			enter: $.FroalaEditor.ENTER_P,
+			pastePlain: false,
 			typingTimer: 1000,
 			zIndex: 99,
 		};
 
 		if( $editor.data( 'allowed-buttons' ) ) {
-			$editor_data.buttons = $editor.data( 'allowed-buttons' ).split(',');
+			$editor_data.toolbarButtons = $editor.data( 'allowed-buttons' ).split(',');
 		}
 
 		if( $editor.data( 'allowed-tags' ) ) {
 			if( '' !== $editor.data ){
-				$editor_data.allowedTags = $editor.data( 'allowed-tags' ).split(',');
+				$editor_data.htmlAllowedTags = $editor.data( 'allowed-tags' ).split(',');
 			}
 		}
 
 		// Editor events
-		$editor.editable( $editor_data )
-			.on('editable.contentChanged', function (e, editor) {
-				$editor.layers_trigger_change();
-			})
-			.on('editable.focus', function (e, editor) {
-				// Show toolbar on editor focus
-				editor.$box.removeClass('froala-toolbar-hide');
-			})
-			.on('editable.blur', function (e, editor) {
-				// siwtch to using click outside rather
-				//editor.$box.addClass('froala-toolbar-hide');
-			});
+		$editor.froalaEditor( $editor_data ).on('froalaEditor.contentChanged froalaEditor.input', function (e, editor) {
+			$editor.layers_trigger_change();
+		});
+
 
 		// Fix for 'clear formatting' button not working - envokes sending change to customizer prev
 		$(document).on( 'click', '.fr-bttn[data-cmd="removeFormat"]', function(){
 			var $editor = $(this).closest('.layers-form-item').find('.layers-rte');
 			_.defer( function(arguments) {
-				$editor.editable('blur');
-				$editor.editable('focus');
+				$editor.froalaEditor('blur');
+				$editor.froalaEditor('focus');
 			});
 		});
-
-		// Add froala-toolbar-hide class to all editors parent box on startup, to hide toolbar
-		$editor.data('fa.editable').$box.addClass('froala-toolbar-hide');
 	}
 
 	// Close editor toolbar on click outside active editor
+	/*
 	$(document).on( 'mousedown', function(){
-		$('.froala-box:not(.froala-toolbar-hide)').each(function(){
+		$('.fr-box:not(.fr-toolbar-hide)').each(function(){
 
 			// If the editor is in HTML view then switch back.
 			$rte_active_html_button = $(this).find( '.active[data-cmd="html"]' );
@@ -770,28 +760,29 @@ jQuery(function($) {
 			}
 
 			// Then hide the toolbar
-			$(this).addClass('froala-toolbar-hide');
+			$(this).addClass('fr-toolbar-hide');
 		});
 	});
-	$(document).on( 'mousedown', '.froala-box', function(e){
+	*/
+	$(document).on( 'mousedown', '.fr-box', function(e){
 		$('.froala-box').not( $(this) ).addClass('froala-toolbar-hide');
 		e.stopPropagation();
 	});
-	$(document).on( 'mousedown', '.froala-popup', function(e){
+	$(document).on( 'mousedown', '.fr-popup', function(e){
 		e.stopPropagation();
 	});
 
 	/**
 	* 14 - Custom Widget Initialization Events
 	*/
-	
+
 	/**
 	* Trigger 'layers-interface-init' when:
 	* 1. widget is focused first time
 	* 2. accordion element is added inside widget
 	* to allow for just-in-time init instead of massive bulk init.
 	*/
-	
+
 	$( document ).on( 'widget-added', function( e, widget ){
 		var $widget = $(widget);
 		layers_expand_widget( $widget, e );
@@ -803,7 +794,7 @@ jQuery(function($) {
 		var $widget = $widget_li.find( '.widget' );
 
 		if( 'expand' == e.type ){
-			
+
 			// duplicate call to 'layers_expand_widget' in-case 'click' is not triggered
 			// eg 'shift-click' on widget in customizer-preview.
 			layers_expand_widget( $widget, e );
@@ -831,20 +822,20 @@ jQuery(function($) {
 			$widget_li.removeClass('layers-collapsing');
 		}
 	});
-	
+
 	function layers_expand_widget( $widget, e ){
-		
+
 		var $widget_li = $($widget).closest('.customize-control-widget_form');
-		
+
 		// Instant user feedback
 		$widget_li.addClass('layers-focussed');
-		
+
 		// Instantly remove other classes on other widgets.
 		$('.customize-control-widget_form.layers-focussed, .customize-control-widget_form.layers-loading').not( $widget_li ).removeClass('layers-focussed layers-loading');
 
 		// Handle the first time Init of a widget.
 		if ( ! $widget_li.hasClass( 'layers-loading' ) && ! $widget_li.hasClass( 'layers-initialized' ) ){
-			
+
 			$widget_li.addClass( 'layers-loading' );
 			$widget_li.addClass( 'layers-initialized' );
 
@@ -861,16 +852,16 @@ jQuery(function($) {
 			}
 		}
 	}
-	
+
 	/**
 	* Trigger 'layers-interface-init' when:
 	* 1. Accordion Panel/Section is expanded (opened)
 	*/
 	$( document ).on( 'expanded', '.control-section:not(.control-section-sidebar):not(#accordion-panel-widgets)  ', function(e){
-		
+
 		// Bail if we've a;ready initialized this.
 		if ( $(this).hasClass('layers-initialized') ) return;
-		
+
 		// Add the 'initialized' class and trigger the event.
 		$(this).addClass('layers-initialized');
 		$(document).trigger('layers-interface-init', $(this) );
@@ -897,7 +888,7 @@ jQuery(function($) {
 	 */
 
 	$( document ).on( 'layers-interface-init', function( e, element ){
-		
+
 		// Add the peek buttons to all the Layers Widget actions.
 		$(element).find('.widget-control-actions .alignleft').prepend('<span class="layers-widget-peek-button dashicons dashicons-visibility">');
 	});
@@ -911,13 +902,19 @@ jQuery(function($) {
 	 */
 	
 	$( document ).on( 'input change', '.layers-column input[type="range"]', function( e ){
-		
+
 		// Push changes to the Number input.
 		var $range_field = $(this);
 		var $number_field = $(this).parent().parent().find('input[type="number"]');
+<<<<<<< HEAD
 		
 		if ( $range_field.attr( 'placeholder' ) && $range_field.attr( 'placeholder' ) === $range_field.val() ) {
 			
+=======
+
+		if ( $range_field.attr( 'placeholder' ) && $range_field.attr( 'placeholder' ) == $range_field.val() ) {
+
+>>>>>>> 8005e8c31e0b4a1ecf94eced546c7cf1e569a1b6
 			// If the range-slider is moved and there's a placeholder set
 			// and the slider stops on the placeholder value then empty
 			// the number field so ntohing is applied.
@@ -925,7 +922,7 @@ jQuery(function($) {
 			$number_field.addClass( 'layers-range-disabled' );
 		}
 		else {
-			
+
 			// Set the number value to equal this range.
 			$number_field.val( $range_field.val() );
 			$number_field.removeClass( 'layers-range-disabled' );
@@ -934,19 +931,19 @@ jQuery(function($) {
 		layers_debounce_range_input( $number_field );
 	});
 	$( document ).on( 'input change', '.layers-column input[type="number"]', function( e ){
-		
+
 		// Push changes to the Range input.
 		var $number_field = $(this);
 		var $range_field = $(this).parent().parent().find('input[type="range"]');
 
 		if ( '' == $number_field.val() && $range_field.attr( 'placeholder' ) ) {
-			
+
 			// If number field is emptied and there's a placeholder set then
 			// set the range slider so it reflects the placeholder too.
 			$range_field.val( $range_field.attr( 'placeholder' ) );
 		}
 		else {
-			
+
 			// Set the range to equal this number value.
 			$range_field.val( $number_field.val() );
 		}
@@ -959,9 +956,9 @@ jQuery(function($) {
 	/**
 	 * 18 - Reset to Default
 	 */
-	
+
 	$( document ).on( 'click', '.customize-control-default', function( e ){
-		
+
 		var $refresh_button = $(this);
 		var $control_holder = $refresh_button.closest('.customize-control');
 		var $default_value = $refresh_button.attr('data-default');
@@ -989,7 +986,7 @@ jQuery(function($) {
 	 *
 	 * Use class `customizer-link` and href `#target-panel-or-section-id`
 	 */
-	
+
 	$( document ).on( 'click', '.customizer-link', function( e ){
 
 		$link              = $(this);
@@ -1052,17 +1049,17 @@ jQuery(function($) {
 	/**
 	* 21 - Linking-UX
 	*/
-	
+
 	$( document ).on( 'layers-interface-init', function( e, element ){
 		layers_init_form_collections( $(element) );
 	});
 
 	function layers_init_form_collections( $element_s ){
-		
+
 		/**
 		 * Get the link-type inputs and convert them to layersSlct2.
 		 */
-		
+
 		$element_s.find( '.layers-widget-dynamic-linking-select').each( function( j, element ) {
 
 			var initial_selection = {

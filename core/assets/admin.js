@@ -906,15 +906,9 @@ jQuery(function($) {
 		// Push changes to the Number input.
 		var $range_field = $(this);
 		var $number_field = $(this).parent().parent().find('input[type="number"]');
-<<<<<<< HEAD
 		
-		if ( $range_field.attr( 'placeholder' ) && $range_field.attr( 'placeholder' ) === $range_field.val() ) {
-			
-=======
-
 		if ( $range_field.attr( 'placeholder' ) && $range_field.attr( 'placeholder' ) == $range_field.val() ) {
-
->>>>>>> 8005e8c31e0b4a1ecf94eced546c7cf1e569a1b6
+			
 			// If the range-slider is moved and there's a placeholder set
 			// and the slider stops on the placeholder value then empty
 			// the number field so ntohing is applied.

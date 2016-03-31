@@ -238,7 +238,14 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 								
 								// Set Image Size
 								if( isset( $item['design']['featuredimage-size'] ) && 0 != $item['design']['featuredimage-size'] && '' != $item['design']['featuredimage-size'] ) {
-									$this->inline_css .= layers_inline_styles( "#{$widget_id}-{$column_key} .media-image img", array( 'css' => array( 'max-width' => $item['design'][ 'featuredimage-size' ].'px' ) ) );
+									$image_width = $item['design'][ 'featuredimage-size' ].'px';
+									$this->inline_css .= layers_inline_styles( "
+										@media only screen and ( min-width: 769px ) {
+											#{$widget_id}-{$column_key} .media-image img {
+												max-width : {$image_width};
+											}
+										}
+									");
 								}
 
 								// Get the link array.

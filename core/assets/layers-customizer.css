@@ -72,10 +72,6 @@ div#widgets-right div[id*='obox-layers-builder']{
 	}
 	/*- Layers Widget Loading -*/
 	.customize-control-widget_form.wide-widget-control div[id*='layers-widget'] .widget-top:after{
-		/* background-image: url( images/spinner-on-blue.gif ); */
-		/* background-position: 50% 50%; */
-		/* background-repeat: no-repeat; */
-		/* background-color: #0BA6E0; */
 		color: #FFF9F7;
 		font-size: 10px;
 		font-weight: 900;
@@ -92,6 +88,11 @@ div#widgets-right div[id*='obox-layers-builder']{
 		right: 6px;
 		top: 15px;
 		opacity: 0;
+	}
+	.customize-control-widget_form.wide-widget-control.layers-loading div[id*='layers-widget'] .widget-top {
+		transition: 0s !important;
+		background: #0BA6E0 !important;
+		border-color: #0E77A5 !important;
 	}
 	.customize-control-widget_form.wide-widget-control.layers-loading div[id*='layers-widget'] .widget-top:after{
 		opacity: 1;
@@ -111,8 +112,9 @@ div#widgets-right div[id*='obox-layers-builder']{
 	}
 	.customize-control-widget_form.wide-widget-control.layers-focussed .widget .widget-top{
 		background: #0BA6E0 !important;
-		border-color: #0E77A5;
+		border-color: #0B6F9A;
 		color: #3D454E;
+		box-shadow: 0 1px 1px rgba(0,0,0,0.18);
 	}
 	.customize-control-widget_form.wide-widget-control.layers-focussed .widget .widget-top h3{
 		color: white;

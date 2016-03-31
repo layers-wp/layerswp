@@ -530,7 +530,9 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 										'value' => ( isset( $widget['design']['advanced']['padding'] ) ) ? $widget['design']['advanced']['padding'] : NULL,
 										'fields' => array(
 											'top',
+											'right',
 											'bottom',
+											'left',
 										),
 									),
 									'margin' => array(

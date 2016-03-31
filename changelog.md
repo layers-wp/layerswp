@@ -10,10 +10,13 @@
 * **Fix** - Fixed Image-botton icon. *DP*
 * **Fix** - Onboarding typo's. *DP*
 * **Fix** - Fixed aligncenter bug in blog posts which stopped images from centering. *DP*
+* **Fix** - Last item in in horizontal design bar Drop down now opens right: 0 to avoid overflow bug. *DP*
 * **Tweak** - Replaced all <section> containers with <div> in order to reverse engineer better SEO as Layers progresses. *DP*
 * **Tweak** - Fixed associated CSS where section[class] was used. *DP*
 * **Tweak** - Fixed WooCommerce tab alignment issue in responsive mode. *DP*
 * **Tweak** - .story img changed from 98% to 100% width. *DP*
+* **Tweak** - Change how `layers-interface-init` Javascript event is triggered so it can be used to initialize not only the Widgets but also the Customizer Controls. *SOB*
+* **Tweak** - Remove `layer_enqueue_init()` function - it's no longer needed now that the Customizer only loads Widget forms when needed, not all at once resulting in Firefox hanging. *SOB*
 * **Enhancement** - Entirely new grid code which allows for different columns in the same content widget, using flexbox and calc(). *DP*
 * **Enhancement** - Added subtle animation to .sub-menu drop down. *DP*
 * **Enhancement** - Added margin and padding (top and bottom) to the Content widget columns (See design-bar > advanced). *SOB*

@@ -22,9 +22,8 @@ jQuery(document).ready(function($){
 	* 1 - Sortable items
 	*/
 	
-	$( document ).on( 'layers-interface-init', '.widget, .layers-accordions', function( e ){
-		// 'this' is the widget
-		layers_set_column_sortable( $(this) );
+	$( document ).on( 'layers-interface-init', function( e, element ){
+		layers_set_column_sortable( $(element) );
 	});
 
 	function layers_set_column_sortable( $element_s ){
@@ -186,7 +185,7 @@ jQuery(document).ready(function($){
 				$repeater_input.val( $item_guids.join() ).layers_trigger_change();
 
 				// Trigger interface init. will trigger init of elemnts eg colorpickers etc
-				$item.trigger('layers-interface-init');
+				$( document ).trigger( 'layers-interface-init', $item );
 				
 				// Remove loading class
 				$repeater_add_button.removeClass('layers-loading-button');

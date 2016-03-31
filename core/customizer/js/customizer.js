@@ -49,9 +49,9 @@
 			 * 1 - Trigger Custom Customizer Init Events.
 			 *
 			 * Trigger high level events on the document that let us know when the
-			 * Customizer and Customizer Preview have initialized - so the we know
-			 * the DOM has been modified by WP and we can proceed to make DOM mods
-			 * of our own.
+			 * Customizer and Customizer Preview have initialized - so we know the
+			 * DOM has been modified by WP and we can proceed to make DOM mods of
+			 * our own.
 			 */
 			
 			// e.g. $( document ).on( 'layers-customizer-init', function(){ /* do something... */ });

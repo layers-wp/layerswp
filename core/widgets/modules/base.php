@@ -173,7 +173,7 @@ if( !class_exists( 'Layers_Widget' ) ) {
 						if( isset( $values[ $field ] ) && '' != $values[ $field ] && is_numeric( $values[ $field ] ) ) {
 
 							// If value is set, and is number, then add 'px' to it
-							$values[ $field ] .= 'px';
+							// $values[ $field ] .= 'px';
 						}
 					}
 

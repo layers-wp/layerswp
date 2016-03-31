@@ -37,17 +37,15 @@
 	});
 
 	// 1.b - Accodian Init
-
-	// Init interface inside widgets
-	$( document ).on( 'layers-interface-init', '.widget, .layers-accordions', function( e ){
-		// 'this' is the widget
-		layers_init_accordians( $(this) );
+	
+	$( document ).on( 'layers-interface-init', function( e, element ){
+		layers_init_accordians( $(element) );
 	});
 
 	function layers_init_accordians( $element_s ){
 
 		$element_s.find( '.layers-accordions' ).each( function(){
-
+			
 			$that = $(this);
 
 			$that.find( 'li.layers-accordion-item' ).first().addClass( 'open' );

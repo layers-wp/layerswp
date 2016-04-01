@@ -759,6 +759,13 @@ class Layers_Design_Controller {
 				'name' => $this->get_layers_field_name( 'background', 'darken' ),
 				'id' => $this->get_layers_field_id( 'background', 'darken' ),
 				'value' => ( isset( $this->values['background']['darken'] ) ) ? $this->values['background']['darken'] : NULL
+			),
+			'background-fixed' => array(
+				'type' => 'checkbox',
+				'label' => __( 'Fixed', 'layerswp' ),
+				'name' => $this->widget['name'] . '[background][fixed]',
+				'id' => $this->widget['id'] . '-background-fixed',
+				'value' => ( isset( $this->values['background']['fixed'] ) ) ? $this->values['background']['fixed'] : NULL
 			)
 		);
 

@@ -1745,6 +1745,14 @@ div[id*='layers-widget'] .widget-control-actions .alignright{
 	padding: 5px 6px;
 }
 
+.layers-form-item .fr-wrapper .fr-placeholder {
+	margin: 8px;
+	font-size: 14px;
+}
+
+.layers-form-item .fr-basic .fr-wrapper .fr-placeholder {
+	margin: 0 !important;
+}
 
 .layers-form-item .fr-element.fr-view p{
 	font-size: 14px;

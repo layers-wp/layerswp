@@ -10,12 +10,12 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 @font-face {
     font-family: 'layers-icons';
-    src:    url('icon-fonts/layers-icons.eot?l77pcx');
-    src:    url('icon-fonts/layers-icons.eot?l77pcx#iefix') format('embedded-opentype'),
-        url('icon-fonts/layers-icons.woff2?l77pcx') format('woff2'),
-        url('icon-fonts/layers-icons.ttf?l77pcx') format('truetype'),
-        url('icon-fonts/layers-icons.woff?l77pcx') format('woff'),
-        url('icon-fonts/layers-icons.svg?l77pcx#layers-icons') format('svg');
+    src:    url('icon-fonts/layers-icons.eot?32qo76');
+    src:    url('icon-fonts/layers-icons.eot?32qo76#iefix') format('embedded-opentype'),
+        url('icon-fonts/layers-icons.woff2?32qo76') format('woff2'),
+        url('icon-fonts/layers-icons.ttf?32qo76') format('truetype'),
+        url('icon-fonts/layers-icons.woff?32qo76') format('woff'),
+        url('icon-fonts/layers-icons.svg?32qo76#layers-icons') format('svg');
     font-weight: normal;
     font-style: normal;
 }
@@ -35,6 +35,12 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
     -moz-osx-font-smoothing: grayscale;
 }
 
+.l-cross:before {
+    content: "\e900";
+}
+.l-tick:before {
+    content: "\e901";
+}
 .l-pencil:before {
     content: "\f040";
 }

@@ -9,9 +9,15 @@
 	api( 'site_logo_header_text', function( value ) {
 		value.bind( function( to ) {
 			if ( true === to ) {
-				$( $classes ).show();
+				$( $classes ).css({
+					'position': 'static',
+					'clip': 'auto'
+				});
 			} else {
-				$( $classes ).hide();
+				$( $classes ).css({
+					'position': 'absolute',
+					'clip': 'rect(1px 1px 1px 1px)'
+				});
 			}
 		});
 	});

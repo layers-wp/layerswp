@@ -1714,6 +1714,7 @@ object{
 		font-weight: 700;
 	}
 	.site-logo-link,
+	.logo .custom-logo-link,
 	.mark{
 		display: inline-block;
 		vertical-align: middle;
@@ -1721,6 +1722,7 @@ object{
 		font-size: 0;
 	}
 	.site-logo-link img,
+	.custom-logo-link img,
 	.mark img{
 		display: inline-block;
 		max-height: 40px;
@@ -1731,7 +1733,7 @@ object{
 		display: inline-block;
 		vertical-align: middle;
 	}
-	.site-logo-link + .site-description{
+	.site-logo-link + .site-description, .custom-logo-link + .site-description{
 		margin-left: 10px;
 	}
 	.mark + .sitename{

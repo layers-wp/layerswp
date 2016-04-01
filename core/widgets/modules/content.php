@@ -31,6 +31,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 
 			/* Widget settings. */
 			$widget_ops = array(
+				'customize_selective_refresh' => true,
 				'classname'   => 'obox-layers-' . $this->widget_id .'-widget',
 				'description' => __( 'This widget is used to display your ', 'layerswp' ) . $this->widget_title . '.',
 			);
@@ -184,7 +185,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 								// Set column margin & padding
 								if ( !empty( $item['design']['advanced']['margin'] ) ) $this->inline_css .= layers_inline_styles( "#{$widget_id}-{$column_key}", 'margin', array( 'margin' => $item['design']['advanced']['margin'] ) );
 								if ( !empty( $item['design']['advanced']['padding'] ) ) $this->inline_css .= layers_inline_styles( "#{$widget_id}-{$column_key}", 'padding', array( 'padding' => $item['design']['advanced']['padding'] ) );
-								
+
 								if( !isset( $item[ 'width' ] ) ) $item[ 'width' ] = $this->column_defaults[ 'width' ];
 
 								// Add the correct span class

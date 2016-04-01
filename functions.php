@@ -130,6 +130,11 @@ if( ! function_exists( 'layers_setup' ) ) {
 		 */
 		add_theme_support( 'post-thumbnails' );
 
+		/**
+		 * Add support for partial widget refresh
+		 */
+		add_theme_support( 'customize-selective-refresh-widgets' );
+
 		// Set Large Image Sizes
 		add_image_size( 'layers-square-large', 1000, 1000, true );
 		add_image_size( 'layers-portrait-large', 720, 1000, true );
@@ -150,11 +155,17 @@ if( ! function_exists( 'layers_setup' ) ) {
 		 */
 
 		// Custom Site Logo
-		add_theme_support( 'site-logo', array(
+		if( !function_exists( 'the_custom_logo' ) ){
+			$logo_support = 'site-logo';
+		} else {
+			$logo_support = 'custom-logo';
+		}
+		add_theme_support( $logo_support, array(
 			'header-text' => array(
 				'sitetitle',
 				'tagline',
 			),
+			'flex-width' => true,
 			'size' => 'large',
 		) );
 

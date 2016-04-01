@@ -16,15 +16,13 @@ class Site_Logo_Image_Control extends WP_Customize_Control {
 	public function __construct( $wp_customize, $control_id, $args = array() ) {
 		// declare these first so they can be overridden
 		$this->l10n = array(
-			'upload' =>      __( 'Add logo' , 'layerswp' ),
-			'set' =>         __( 'Set as logo' , 'layerswp' ),
-			'choose' =>      __( 'Choose logo' , 'layerswp' ),
-			'change' =>      __( 'Change logo' , 'layerswp' ),
-			'remove' =>      __( 'Remove logo' , 'layerswp' ),
-			'placeholder' => __( 'No logo set' , 'layerswp' ),
+			'upload' =>      __( 'Add logo', 'jetpack' ),
+			'set' =>         __( 'Set as logo', 'jetpack' ),
+			'choose' =>      __( 'Choose logo', 'jetpack' ),
+			'change' =>      __( 'Change logo', 'jetpack' ),
+			'remove' =>      __( 'Remove logo', 'jetpack' ),
+			'placeholder' => __( 'No logo set', 'jetpack' ),
 		);
-
-		$this->directory_uri = LAYERS_TEMPLATE_URI . '/core/third-party/site-logo/';
 
 		parent::__construct( $wp_customize, $control_id, $args );
 	}
@@ -57,8 +55,8 @@ class Site_Logo_Image_Control extends WP_Customize_Control {
 		wp_enqueue_media();
 
 		// Enqueue our control script and styles.
-		wp_enqueue_style( 'site-logo-control', $this->directory_uri . 'css/site-logo-control.css' );
-		wp_enqueue_script( 'site-logo-control',$this->directory_uri . 'js/site-logo-control.js', array( 'media-views', 'customize-controls', 'underscore' ), '', true );
+		wp_enqueue_style( 'site-logo-control', plugins_url( '../css/site-logo-control.css', __FILE__ ) );
+		wp_enqueue_script( 'site-logo-control', plugins_url( '../js/site-logo-control.js', __FILE__ ), array( 'media-views', 'customize-controls', 'underscore' ), '', true );
 	}
 
 	/**

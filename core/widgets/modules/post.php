@@ -40,6 +40,7 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 
 			/* Widget settings. */
 			$widget_ops = array(
+				'customize_selective_refresh' => true,
 				'classname'   => 'obox-layers-' . $this->widget_id .'-widget',
 				'description' => __( 'This widget is used to display your ', 'layerswp' ) . $this->widget_title . '.',
 			);

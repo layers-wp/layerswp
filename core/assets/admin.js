@@ -1026,12 +1026,6 @@ jQuery(function($) {
 				'defaultPosition' : 'top',
 				'edgeOffset' : 3,
 				'maxWidth' : '300px'
-				//'enter' : function() {
-				//	//jQuery("#tiptip_holder").addClass("cx_tip_tip");
-				//	jQuery("#tiptip_holder #tiptip_content").addClass('cx_tip_tip');
-				//}
-				//'keepAlive' : true,
-				//'activation' : 'click'
 			});
 		});
 	}

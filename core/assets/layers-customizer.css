@@ -2828,7 +2828,7 @@ li[id*='customize-control-layers'].customize-control .layers-form-item:after{
 
 	/*-----------------------------*/
 	/*- SPECIFIC FORM TYPES -------*/
-	.customize-control customize-control-layers-seperator{
+	.customize-control .customize-control-layers-seperator{
 		border: 0;
 		border-top: 0;
 		border-bottom: 1px solid #EEE;
@@ -2838,9 +2838,11 @@ li[id*='customize-control-layers'].customize-control .layers-form-item:after{
 		margin: 0 6px 3px 0;
 		box-shadow: 0 1px 1px rgba(0,0,0,0.08);
 	}
+	li[id*='customize-control-layers'].customize-control.customize-control-image .actions
 	li[id*='customize-control-layers'].customize-control.customize-control-image .actions{
 		margin-bottom: 0;
 	}
+	#customize-control-custom_logo .thumbnail-image img,
 	.customize-control-site_logo .current img{
 		display: block;
 		max-width: 100%;

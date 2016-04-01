@@ -130,11 +130,6 @@ if( ! function_exists( 'layers_setup' ) ) {
 		 */
 		add_theme_support( 'post-thumbnails' );
 
-		/**
-		 * Add support for partial widget refresh
-		 */
-		add_theme_support( 'customize-selective-refresh-widgets' );
-
 		// Set Large Image Sizes
 		add_image_size( 'layers-square-large', 1000, 1000, true );
 		add_image_size( 'layers-portrait-large', 720, 1000, true );

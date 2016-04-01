@@ -35,14 +35,13 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 
 	 		/* Widget settings. */
 			$widget_ops = array(
-				//'customize_selective_refresh' => true,
+				'customize_selective_refresh' => true,
 				'classname'   => 'obox-layers-' . $this->widget_id .'-widget',
 				'description' => __( 'This widget is used to display your ', 'layerswp' ) . $this->widget_id . '.',
 			);
 
 			/* Widget control settings. */
 			$control_ops = array(
-				'transport'    => 'postMessage',
 				'width'   => LAYERS_WIDGET_WIDTH_LARGE,
 				'height'  => NULL,
 				'id_base' => LAYERS_THEME_SLUG . '-widget-' . $this->widget_id,

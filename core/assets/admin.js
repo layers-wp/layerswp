@@ -717,7 +717,7 @@ jQuery(function($) {
 			imagePaste: false,
 			enter: $.FroalaEditor.ENTER_P,
 			pastePlain: false,
-			typingTimer: 1000,
+			typingTimer: 1500,
 			zIndex: 99,
 		};
 
@@ -900,15 +900,15 @@ jQuery(function($) {
 	/**
 	 * 17 - Customizer Control - Range Slider
 	 */
-	
+
 	$( document ).on( 'input change', '.layers-column input[type="range"]', function( e ){
 
 		// Push changes to the Number input.
 		var $range_field = $(this);
 		var $number_field = $(this).parent().parent().find('input[type="number"]');
-		
+
 		if ( $range_field.attr( 'placeholder' ) && $range_field.attr( 'placeholder' ) == $range_field.val() ) {
-			
+
 			// If the range-slider is moved and there's a placeholder set
 			// and the slider stops on the placeholder value then empty
 			// the number field so ntohing is applied.
@@ -942,7 +942,7 @@ jQuery(function($) {
 			$range_field.val( $number_field.val() );
 		}
 	});
-	
+
 	var layers_debounce_range_input = _.debounce( function( element ){
 		$( element ).layers_trigger_change();
 	}, 550, false );

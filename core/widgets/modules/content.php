@@ -213,8 +213,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 								$featureimage = $this->check_and_return( $item , 'design' , 'featuredimage' );
 								$featurevideo = $this->check_and_return( $item , 'design' , 'featuredvideo' );
 
-								// Set Image Sizes
-
+								// Calculate which cut based on ratio.
 								if( isset( $item['design'][ 'imageratios' ] ) ){
 
 									// Translate Image Ratio into something usable
@@ -230,12 +229,24 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 									if( 4 > $item['width'] ) $use_image_ratio = 'medium';
 									else $use_image_ratio = 'full';
 								}
-
+								
 								$media = layers_get_feature_media(
 									$featureimage ,
 									$use_image_ratio ,
 									$featurevideo
 								);
+								
+								// Set Image Size
+								if( isset( $item['design']['featuredimage-size'] ) && 0 != $item['design']['featuredimage-size'] && '' != $item['design']['featuredimage-size'] ) {
+									$image_width = $item['design'][ 'featuredimage-size' ].'px';
+									$this->inline_css .= layers_inline_styles( "
+										@media only screen and ( min-width: 769px ) {
+											#{$widget_id}-{$column_key} .media-image img {
+												max-width : {$image_width};
+											}
+										}
+									");
+								}
 
 								// Get the link array.
 								$link_array       = $this->check_and_return_link( $item, 'button' );

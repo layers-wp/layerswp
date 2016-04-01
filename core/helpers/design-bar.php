@@ -539,6 +539,7 @@ class Layers_Design_Controller {
 			),
 			'imageratios' => array(
 				'type' => 'select-icons',
+				'label' => __( 'Image Ratio', 'layerswp' ),
 				'name' => $this->get_layers_field_name( 'imageratios' ),
 				'id' => $this->get_layers_field_id( 'imageratios' ),
 				'value' => ( isset( $this->values['imageratios'] ) ) ? $this->values['imageratios'] : NULL,
@@ -551,6 +552,17 @@ class Layers_Design_Controller {
 				),
 				'wrapper' => 'div',
 				'wrapper-class' => 'layers-icon-group layers-icon-group-outline'
+			),
+			'featuredimage-size' => array(
+				'type' => 'range',
+				'label' => __( 'Image Size (px)', 'layerswp' ),
+				'name' => $this->get_layers_field_name( 'featuredimage-size' ),
+				'id' => $this->get_layers_field_id( 'featuredimage-size' ),
+				'value' => ( isset( $this->values['featuredimage-size'] ) ) ? $this->values['featuredimage-size'] : 0,
+				'min' => 0,
+				'max' => 1040,
+				'step' => 1,
+				'placeholder' => 0,
 			),
 		);
 

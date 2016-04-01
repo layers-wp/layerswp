@@ -350,21 +350,6 @@ class Layers_Widgets {
 		) );
 		wp_enqueue_script( LAYERS_THEME_SLUG . '-admin-repeater-widget' );
 
-		// Tiny MCE Initiator
-		wp_register_script(
-			LAYERS_THEME_SLUG . '-admin-tinymce' ,
-			get_template_directory_uri() . '/core/widgets/js/tinymce.js' ,
-			array(
-				'editor',
-				'word-count',
-				'quicktags',
-				'wplink',
-				'wp-fullscreen'
-			),
-			LAYERS_VERSION,
-			true
-		);
-
 		// Widget accordians
 		wp_enqueue_script(
 			LAYERS_THEME_SLUG . '-admin-widgets' ,

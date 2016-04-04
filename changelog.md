@@ -13,6 +13,7 @@
 * **Fix** - Last item in in horizontal design bar Drop down now opens right: 0 to avoid overflow bug. *DP*
 * **Tweak** - Replaced all <section> containers with <div> in order to reverse engineer better SEO as Layers progresses. *DP*
 * **Tweak** - Fixed associated CSS where section[class] was used. *DP*
+* **Tweak** - Show Address and Show Form are now defaulted to on in the conact widget. *MP*
 * **Tweak** - Fixed WooCommerce tab alignment issue in responsive mode. *DP*
 * **Tweak** - .story img changed from 98% to 100% width. *DP*
 * **Tweak** - Change how `layers-interface-init` Javascript event is triggered so it can be used to initialize not only the Widgets but also the Customizer Controls. *SOB*

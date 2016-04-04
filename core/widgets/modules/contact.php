@@ -60,6 +60,7 @@ if( !class_exists( 'Layers_Contact_Widget' ) ) {
 				'contact_form' => NULL,
 				'address_shown' => NULL,
 				'show_google_map' => 'on',
+				'show_address' => 'on',
 				'show_contact_form' => 'on',
 				'google_maps_location' => NULL,
 				'google_maps_long_lat' => NULL,

@@ -698,7 +698,8 @@ jQuery(function($) {
 				allowStyle: true,
 				convertMailAddresses: true,
 				toolbarInline: false,
-				initOnClick: true,
+				// initOnClick: true,
+				initOnClick: false,
 				imageEditButtons: [ 'removeImage' ],
 				key: 'YWd1WDPTa1ZNRGe1OC1c1==',
 				mediaManager: false,
@@ -727,9 +728,27 @@ jQuery(function($) {
 			$editor.froalaEditor( $editor_config );
 			
 			// Attach events to editor.
-			$editor.on( 'froalaEditor.contentChanged froalaEditor.input', function (e, editor) {
-				$editor.layers_trigger_change();
-			});
+			// $editor.on( 'froalaEditor.contentChanged froalaEditor.input', function (e, editor) {
+			// 	$editor.layers_trigger_change();
+			// });
+			
+			// Add froala-toolbar-hide class to all editors parent box on startup, to hide toolbar
+			$editor.addClass('froala-toolbar-hide');
+			
+			// Editor events - OLD
+			$editor
+				.on('froalaEditor.contentChanged froalaEditor.input', function (e, editor) {
+					$editor.layers_trigger_change();
+				})
+				.on('froalaEditor.focus', function (e, editor) {
+					// Show toolbar on editor focus
+					$editor.removeClass('froala-toolbar-hide');
+				})
+				.on('froalaEditor.blur', function (e, editor) {
+					// siwtch to using click outside rather
+					//editor.$box.addClass('froala-toolbar-hide');
+				});
+			
 		});
 		
 	}
@@ -742,29 +761,29 @@ jQuery(function($) {
 			$editor.froalaEditor('focus');
 		});
 	});
-
+	
 	// Close editor toolbar on click outside active editor
-	/*
 	$(document).on( 'mousedown', function(){
-		$('.fr-box:not(.fr-toolbar-hide)').each(function(){
+		$('.froala-box:not(.froala-toolbar-hide)').each(function(){
 
 			// If the editor is in HTML view then switch back.
+			/*
 			$rte_active_html_button = $(this).find( '.active[data-cmd="html"]' );
 			$rte_textarea = $(this).siblings('textarea');
 			if ( 0 < $rte_active_html_button.length && 0 < $rte_textarea.length ){
 				//$rte_textarea.editable( 'exec', 'html' );
 			}
+			*/
 
 			// Then hide the toolbar
-			$(this).addClass('fr-toolbar-hide');
+			$(this).addClass('froala-toolbar-hide');
 		});
 	});
-	*/
-	$(document).on( 'mousedown', '.fr-box', function(e){
+	$(document).on( 'mousedown', '.froala-box', function(e){
 		$('.froala-box').not( $(this) ).addClass('froala-toolbar-hide');
 		e.stopPropagation();
 	});
-	$(document).on( 'mousedown', '.fr-popup', function(e){
+	$(document).on( 'mousedown', '.froala-popup', function(e){
 		e.stopPropagation();
 	});
 

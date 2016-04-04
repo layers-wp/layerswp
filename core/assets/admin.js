@@ -684,68 +684,64 @@ jQuery(function($) {
 	});
 
 	function layers_init_editors( $element_s ){
-
+		
 		$element_s.find('.layers-rte').each( function( j, element ) {
+			
+			var $editor = $(element);
 
-			// If I am already an RTE, do nothing
-			if( $(element).siblings( '.froala-box' ).length > 0 ) {
-				return true;
+			// Bail if I'm already an RTE.
+			if ( $editor.siblings( '.froala-box' ).length > 0 ) return true;
+			
+			// Default editor config.
+			var $editor_config = {
+				allowScript: true,
+				allowStyle: true,
+				convertMailAddresses: true,
+				toolbarInline: false,
+				initOnClick: true,
+				imageEditButtons: [ 'removeImage' ],
+				key: 'YWd1WDPTa1ZNRGe1OC1c1==',
+				mediaManager: false,
+				imagePaste: false,
+				enter: $.FroalaEditor.ENTER_P,
+				pastePlain: false,
+				typingTimer: 1500,
+				zIndex: 99,
+			};
+			
+			if ( $editor.data( 'allowed-buttons' ) ) {
+				var allowed_buttons = $editor.data( 'allowed-buttons' ).split(',');
+				$editor_config.toolbarButtons = allowed_buttons;
+				$editor_config.toolbarButtonsMD = allowed_buttons;
+				$editor_config.toolbarButtonsSM = allowed_buttons;
+				$editor_config.toolbarButtonsXS = allowed_buttons;
 			}
 
-			// Set the ID for this element
-			var $id = $(element)[0].id;
-
-			layers_init_editor( $id );
-		});
-	}
-
-	function layers_init_editor( $id ){
-
-		var $editor = $( '#' + $id );
-
-		if( $editor.hasClass( 'layers-rte' ) );
-
-		var $editor_data = {
-			allowScript: true,
-			allowStyle: true,
-			convertMailAddresses: true,
-			toolbarInline: false,
-			initOnClick: true,
-			imageEditButtons: [ 'removeImage' ],
-			key: 'YWd1WDPTa1ZNRGe1OC1c1==',
-			mediaManager: false,
-			imagePaste: false,
-			enter: $.FroalaEditor.ENTER_P,
-			pastePlain: false,
-			typingTimer: 1500,
-			zIndex: 99,
-		};
-
-		if( $editor.data( 'allowed-buttons' ) ) {
-			$editor_data.toolbarButtons = $editor.data( 'allowed-buttons' ).split(',');
-		}
-
-		if( $editor.data( 'allowed-tags' ) ) {
-			if( '' !== $editor.data ){
-				$editor_data.htmlAllowedTags = $editor.data( 'allowed-tags' ).split(',');
+			if( $editor.data( 'allowed-tags' ) ) {
+				if( '' !== $editor.data ){
+					$editor_config.htmlAllowedTags = $editor.data( 'allowed-tags' ).split(',');
+				}
 			}
-		}
 
-		// Editor events
-		$editor.froalaEditor( $editor_data ).on('froalaEditor.contentChanged froalaEditor.input', function (e, editor) {
-			$editor.layers_trigger_change();
-		});
-
-
-		// Fix for 'clear formatting' button not working - envokes sending change to customizer prev
-		$(document).on( 'click', '.fr-bttn[data-cmd="removeFormat"]', function(){
-			var $editor = $(this).closest('.layers-form-item').find('.layers-rte');
-			_.defer( function(arguments) {
-				$editor.froalaEditor('blur');
-				$editor.froalaEditor('focus');
+			// Init editor.
+			$editor.froalaEditor( $editor_config );
+			
+			// Attach events to editor.
+			$editor.on( 'froalaEditor.contentChanged froalaEditor.input', function (e, editor) {
+				$editor.layers_trigger_change();
 			});
 		});
+		
 	}
+	
+	// Fix for 'clear formatting' button not working - envokes sending change to customizer prev
+	$(document).on( 'click', '.fr-bttn[data-cmd="removeFormat"]', function(){
+		var $editor = $(this).closest('.layers-form-item').find('.layers-rte');
+		_.defer( function(arguments) {
+			$editor.froalaEditor('blur');
+			$editor.froalaEditor('focus');
+		});
+	});
 
 	// Close editor toolbar on click outside active editor
 	/*

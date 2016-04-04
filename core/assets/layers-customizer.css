@@ -1728,6 +1728,7 @@ div[id*='layers-widget'] .widget-control-actions .alignright{
 	font-size: 14px;
 	min-height: 60px;
 	box-shadow: inset 1px 1px 2px rgba(0, 0, 0, 0.1);
+	width: 100%;
 }
 
 .layers-form-item .fr-code-view .fr-element.fr-view{
@@ -1779,9 +1780,12 @@ div[id*='layers-widget'] .widget-control-actions .alignright{
 	box-shadow: none;
 }
 
-.layers-form-item .fr-box.fr-toolbar-hide .f-basic{
+.layers-form-item .fr-box .fr-toolbar {
+	overflow: hidden;
+}
+.layers-form-item .fr-box.fr-toolbar-hide .fr-toolbar{
 	transform: translate( 0, 30px );
-	height: 0;
+	height: 0px;
 	opacity:0;
 }
 

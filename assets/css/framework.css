@@ -192,8 +192,9 @@ object{
 	/*- GRIDS -------------------*/
 	.grid{
 		display: -webkit-flex;
-		flex-flow: row;
-		flex-wrap: wrap;
+		-webkit-flex-flow: row;
+		-webkit-flex-wrap: wrap;
+		-webkit-align-items: flex-start;
 
 		display: flex;
 		flex-flow: row;

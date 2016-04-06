@@ -726,13 +726,15 @@ jQuery(function($) {
 			// Init editor.
 			$editor.froalaEditor( $editor_config );
 			
+			$editor.froalaEditor('toolbar.hide');
+			
 			// Attach events to editor.
 			// $editor.on( 'froalaEditor.contentChanged froalaEditor.input', function (e, editor) {
 			// 	$editor.layers_trigger_change();
 			// });
 			
 			// Add fr-toolbar-hide class to all editors parent box on startup, to hide toolbar
-			$editor.data('froala.editor').$box.addClass('fr-toolbar-hide');
+			// $editor.data('froala.editor').$box.addClass('fr-toolbar-hide');
 			
 			// Editor events - OLD
 			$editor
@@ -741,8 +743,23 @@ jQuery(function($) {
 				})
 				.on('froalaEditor.focus', function (e, editor) {
 					// Show toolbar on editor focus
+					$editor.froalaEditor('toolbar.show');
+
+					console.log( editor );
+				})
+				.on('froalaEditor.blur', function (e, editor) {
+					// siwtch to using click outside rather
+					$editor.froalaEditor('toolbar.hide');
+
+
+				});
+				
+				/*
+				.on('froalaEditor.focus', function (e, editor) {
+					// Show toolbar on editor focus
 					editor.$box.removeClass('fr-toolbar-hide');
 				});
+				*/
 				/*
 				.on('froalaEditor.blur', function (e, editor) {
 					// siwtch to using click outside rather

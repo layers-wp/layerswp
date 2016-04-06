@@ -191,9 +191,14 @@ object{
 	/*---------------------------*/
 	/*- GRIDS -------------------*/
 	.grid{
+		display: -webkit-flex;
+		flex-flow: row;
+		flex-wrap: wrap;
+
 		display: flex;
 		flex-flow: row;
 		flex-wrap: wrap;
+
 		position: relative;
 	}
 	.container .grid{
@@ -224,6 +229,7 @@ object{
 		}
 
 	.layers-masonry-column .grid{
+		-webkit-flex-direction: column;
 		flex-direction: column;
 	}
 

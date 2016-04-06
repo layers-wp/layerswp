@@ -152,7 +152,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 								<h3 class="heading"><?php echo $widget['title'] ?></h3>
 							<?php } ?>
 							<?php if( '' != $widget['excerpt'] ) { ?>
-								<div class="excerpt"><?php echo $widget['excerpt']; ?></div>
+								<div class="excerpt"><?php layers_the_content( $widget['excerpt'] ); ?></div>
 							<?php } ?>
 						</div>
 					</div>

@@ -763,17 +763,16 @@ jQuery(function($) {
 	});
 	
 	// Close editor toolbar on click outside active editor
+	/*
 	$(document).on( 'mousedown', function(){
 		$('.fr-box:not(.fr-toolbar-hide)').each(function(){
 
 			// If the editor is in HTML view then switch back.
-			/*
-			$rte_active_html_button = $(this).find( '.active[data-cmd="html"]' );
-			$rte_textarea = $(this).siblings('textarea');
-			if ( 0 < $rte_active_html_button.length && 0 < $rte_textarea.length ){
-				//$rte_textarea.editable( 'exec', 'html' );
-			}
-			*/
+			// $rte_active_html_button = $(this).find( '.active[data-cmd="html"]' );
+			// $rte_textarea = $(this).siblings('textarea');
+			// if ( 0 < $rte_active_html_button.length && 0 < $rte_textarea.length ){
+			// 	//$rte_textarea.editable( 'exec', 'html' );
+			// }
 
 			// Then hide the toolbar
 			$(this).addClass('fr-toolbar-hide');
@@ -786,6 +785,7 @@ jQuery(function($) {
 	$(document).on( 'mousedown', '.froala-popup', function(e){
 		e.stopPropagation();
 	});
+	*/
 
 	/**
 	* 14 - Custom Widget Initialization Events

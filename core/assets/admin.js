@@ -684,19 +684,20 @@ jQuery(function($) {
 	});
 
 	function layers_init_editors( $element_s ){
-		
+
 		$element_s.find('.layers-rte').each( function( j, element ) {
-			
+
 			var $editor = $(element);
 
 			// Bail if I'm already an RTE.
 			if ( $editor.siblings( '.fr-box' ).length > 0 ) return true;
-			
+
 			// Default editor config.
 			var $editor_config = {
 				allowScript: true,
 				allowStyle: true,
 				convertMailAddresses: true,
+				codeMirror: false,
 				toolbarInline: false,
 				initOnClick: false,
 				imageEditButtons: [ 'removeImage' ],
@@ -708,7 +709,7 @@ jQuery(function($) {
 				typingTimer: 1500,
 				zIndex: 99,
 			};
-			
+
 			if ( $editor.data( 'allowed-buttons' ) ) {
 				var allowed_buttons = $editor.data( 'allowed-buttons' ).split(',');
 				$editor_config.toolbarButtons = allowed_buttons;
@@ -725,34 +726,35 @@ jQuery(function($) {
 
 			// Init editor.
 			$editor.froalaEditor( $editor_config );
-			
+
 			// Attach events to editor.
-			// $editor.on( 'froalaEditor.contentChanged froalaEditor.input', function (e, editor) {
-			// 	$editor.layers_trigger_change();
-			// });
-			
+			$editor.on( 'froalaEditor.contentChanged froalaEditor.input', function (e, editor) {
+				$editor.layers_trigger_change();
+			});
+
 			// Add fr-toolbar-hide class to all editors parent box on startup, to hide toolbar
 			$editor.data('froala.editor').$box.addClass('fr-toolbar-hide');
-			
+
 			// Editor events - OLD
 			$editor
 				.on('froalaEditor.contentChanged froalaEditor.input', function (e, editor) {
-					editor.layers_trigger_change();
+					$editor.layers_trigger_change();
 				})
 				.on('froalaEditor.focus', function (e, editor) {
 					// Show toolbar on editor focus
 					editor.$box.removeClass('fr-toolbar-hide');
-				});
-				/*
-				.on('froalaEditor.blur', function (e, editor) {
-					// siwtch to using click outside rather
-					editor.$box.addClass('fr-toolbar-hide');
-				});
-				*/
+				});/*
+				.on('froalaEditor.blur', function (e, editor, t, b ) {
+					console.log( e, editor, t, b );
+					// Show toolbar on editor focus
+					//	 console.log( $editor. );
+					//	$editor.froalaEditor( 'codeView.toggle' );
+				})*/
+
 		});
-		
+
 	}
-	
+
 	// Fix for 'clear formatting' button not working - envokes sending change to customizer prev
 	$(document).on( 'click', '.fr-bttn[data-cmd="removeFormat"]', function(){
 		var $editor = $(this).closest('.layers-form-item').find('.layers-rte');
@@ -761,19 +763,10 @@ jQuery(function($) {
 			$editor.froalaEditor('focus');
 		});
 	});
-	
+
 	// Close editor toolbar on click outside active editor
 	$(document).on( 'mousedown', function(){
-		$('.fr-box:not(.fr-toolbar-hide)').each(function(){
-
-			// If the editor is in HTML view then switch back.
-			/*
-			$rte_active_html_button = $(this).find( '.active[data-cmd="html"]' );
-			$rte_textarea = $(this).siblings('textarea');
-			if ( 0 < $rte_active_html_button.length && 0 < $rte_textarea.length ){
-				//$rte_textarea.editable( 'exec', 'html' );
-			}
-			*/
+		$('.fr-box:not(.fr-toolbar-hide)').each(function( e, editor ){
 
 			// Then hide the toolbar
 			$(this).addClass('fr-toolbar-hide');

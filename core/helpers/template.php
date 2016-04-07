@@ -1135,6 +1135,8 @@ if( !function_exists( 'layers_inline_styles' ) ) {
 if( !function_exists( 'layers_inline_button_styles' ) ) {
 	function layers_inline_button_styles( $container_id = NULL, $type = 'background' , $args = array() ){
 
+		$styles = '';
+
 		// Auto text color based on background color
 		if( isset( $args[ 'button' ][ 'background-color' ] ) && NULL !== layers_is_light_or_dark( $args[ 'button' ][ 'background-color' ] ) ){
 
@@ -1147,10 +1149,10 @@ if( !function_exists( 'layers_inline_button_styles' ) ) {
 			else if ( 'dark' == layers_is_light_or_dark( $background_darker ) ) {
 				$args['button']['color'] = '#FFFFFF';
 			}
-		}
 
-		// Add styling for the standard colors
-		layers_inline_styles( $container_id, $type, $args );
+			// Add styling for the standard colors
+			$styles .= layers_inline_styles( $container_id, $type, $args );
+		}
 
 		// Add styling for the hover colors
 		if( isset( $args['selectors'] ) ) {
@@ -1175,7 +1177,11 @@ if( !function_exists( 'layers_inline_button_styles' ) ) {
 		}
 
 		// Apply hover colors
-		if( isset( $hover_args ) ) layers_inline_styles( $container_id, $type, $hover_args );
+		if( isset( $hover_args ) ) {
+			$styles .= layers_inline_styles( $container_id, $type, $hover_args );// Add styling for the standard colors
+		}
+
+		return $styles;
 	}
 }
 

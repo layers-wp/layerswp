@@ -684,14 +684,14 @@ jQuery(function($) {
 	});
 
 	function layers_init_editors( $element_s ){
-		
+
 		$element_s.find('.layers-rte').each( function( j, element ) {
-			
+
 			var $editor = $(element);
 
 			// Bail if I'm already an RTE.
 			if ( $editor.siblings( '.fr-box' ).length > 0 ) return true;
-			
+
 			// Default editor config.
 			var $editor_config = {
 				allowScript: true,
@@ -709,7 +709,7 @@ jQuery(function($) {
 				typingTimer: 1500,
 				zIndex: 99,
 			};
-			
+
 			if ( $editor.data( 'allowed-buttons' ) ) {
 				var allowed_buttons = $editor.data( 'allowed-buttons' ).split(',');
 				$editor_config.toolbarButtons = allowed_buttons;
@@ -726,10 +726,10 @@ jQuery(function($) {
 
 			// Init editor.
 			$editor.froalaEditor( $editor_config );
-			
+
 			// Hide the toolbar at the start.
 			$editor.froalaEditor('toolbar.hide');
-			
+
 			// Editor events
 			$editor
 				.on('froalaEditor.contentChanged froalaEditor.input', function (e, editor) {
@@ -742,9 +742,9 @@ jQuery(function($) {
 					$editor.froalaEditor('toolbar.hide');
 				});
 		});
-		
+
 	}
-	
+
 	// Fix for 'clear formatting' button not working - envokes sending change to customizer prev
 	$(document).on( 'click', '.fr-bttn[data-cmd="removeFormat"]', function(){
 		var $editor = $(this).closest('.layers-form-item').find('.layers-rte');
@@ -753,31 +753,6 @@ jQuery(function($) {
 			$editor.froalaEditor('focus');
 		});
 	});
-	
-	// Close editor toolbar on click outside active editor
-	/*
-	$(document).on( 'mousedown', function(){
-		$('.fr-box:not(.fr-toolbar-hide)').each(function(){
-
-			// If the editor is in HTML view then switch back.
-			// $rte_active_html_button = $(this).find( '.active[data-cmd="html"]' );
-			// $rte_textarea = $(this).siblings('textarea');
-			// if ( 0 < $rte_active_html_button.length && 0 < $rte_textarea.length ){
-			// 	//$rte_textarea.editable( 'exec', 'html' );
-			// }
-
-			// Then hide the toolbar
-			$(this).addClass('fr-toolbar-hide');
-		});
-	});
-	$(document).on( 'mousedown', '.fr-box', function(e){
-		$('.fr-box').not( $(this) ).addClass('fr-toolbar-hide');
-		e.stopPropagation();
-	});
-	$(document).on( 'mousedown', '.froala-popup', function(e){
-		e.stopPropagation();
-	});
-	*/
 
 	/**
 	* 14 - Custom Widget Initialization Events

@@ -21,6 +21,8 @@
 * **Enhancement** - Entirely new grid code which allows for different columns in the same content widget, using flexbox and calc(). *DP*
 * **Enhancement** - Added subtle animation to .sub-menu drop down. *DP*
 * **Enhancement** - Added margin and padding (top and bottom) to the Content widget columns (See design-bar > advanced). *SOB*
+* **Enhancement** - Added 6 new icons to the Layers back end font family h1-h6 to cater for new SEO features. *DP*
+
 
 =======
 ##1.2.14

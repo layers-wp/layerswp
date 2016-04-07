@@ -149,11 +149,14 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 						$section_title_class[] = ( $this->check_and_return( $widget, 'design', 'background' , 'color' ) && 'dark' == layers_is_light_or_dark( $this->check_and_return( $widget, 'design', 'background' , 'color' ) ) ? 'invert' : '' );
 						$section_title_class = implode( ' ', $section_title_class );
 						
-						// if( isset( $widget['design']['fonts']['heading-type'] ) ) s( $widget['design']['fonts']['heading-type'] );
+						/**
+						 * Get Heading Type - for SEO
+						 */
+						$heading_type = ( isset( $widget['design']['fonts']['heading-type'] ) ) ? $widget['design']['fonts']['heading-type'] : 'h3' ;
 						?>
 						<div class="<?php echo $section_title_class; ?>">
 							<?php if( '' != $widget['title'] ) { ?>
-								<h3 class="heading"><?php echo $widget['title'] ?></h3>
+								<<?php echo $heading_type; ?> class="heading"><?php echo $widget['title'] ?></<?php echo $heading_type; ?>>
 							<?php } ?>
 							<?php if( '' != $widget['excerpt'] ) { ?>
 								<div class="excerpt"><?php echo $widget['excerpt']; ?></div>

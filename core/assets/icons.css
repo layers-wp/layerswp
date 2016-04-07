@@ -1,11 +1,11 @@
 @font-face {
     font-family: 'layers-interface';
-    src:    url('fonts/layers-interface.eot?t1a49h');
-    src:    url('fonts/layers-interface.eot?t1a49h#iefix') format('embedded-opentype'),
-        url('fonts/layers-interface.woff2?t1a49h') format('woff2'),
-        url('fonts/layers-interface.ttf?t1a49h') format('truetype'),
-        url('fonts/layers-interface.woff?t1a49h') format('woff'),
-        url('fonts/layers-interface.svg?t1a49h#layers-interface') format('svg');
+    src:    url('fonts/layers-interface.eot?gcf9d5');
+    src:    url('fonts/layers-interface.eot?gcf9d5#iefix') format('embedded-opentype'),
+        url('fonts/layers-interface.woff2?gcf9d5') format('woff2'),
+        url('fonts/layers-interface.ttf?gcf9d5') format('truetype'),
+        url('fonts/layers-interface.woff?gcf9d5') format('woff'),
+        url('fonts/layers-interface.svg?gcf9d5#layers-interface') format('svg');
     font-weight: normal;
     font-style: normal;
 }
@@ -25,6 +25,24 @@
     -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-heading-1:before {
+    content: "\e902";
+}
+.icon-heading-2:before {
+    content: "\e903";
+}
+.icon-heading-3:before {
+    content: "\e904";
+}
+.icon-heading-4:before {
+    content: "\e905";
+}
+.icon-heading-5:before {
+    content: "\e906";
+}
+.icon-heading-6:before {
+    content: "\e907";
+}
 .icon-desktop:before {
     content: "\e632";
 }

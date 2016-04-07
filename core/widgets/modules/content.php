@@ -68,7 +68,8 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 						'align' => 'text-left',
 						'size' => 'medium',
 						'color' => NULL,
-						'shadow' => NULL
+						'shadow' => NULL,
+						'heading-type' => 'h3',
 					)
 				),
 			);
@@ -85,7 +86,8 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 						'align' => 'text-left',
 						'size' => 'medium',
 						'color' => NULL,
-						'shadow' => NULL
+						'shadow' => NULL,
+						'heading-type' => 'h5',
 					),
 				),
 			) );
@@ -301,7 +303,13 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 
 									$column_inner_classes[] = $this->check_and_return( $item, 'design', 'imagealign' );
 									$column_inner_classes[] = $this->check_and_return( $item, 'design', 'fonts' , 'size' );
-									$column_inner_classes = implode( ' ', $column_inner_classes ); ?>
+									$column_inner_classes = implode( ' ', $column_inner_classes );
+									
+									/**
+									 * Get Heading Type - for SEO
+									 */
+									$heading_type = ( isset( $item['design']['fonts']['heading-type'] ) ) ? $item['design']['fonts']['heading-type'] : 'h5' ;
+									?>
 
 									<div class="<?php echo $column_inner_classes; ?>">
 										<?php if( NULL != $media ) { ?>
@@ -319,7 +327,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 										<?php if( $this->check_and_return( $item, 'title' ) || $this->check_and_return( $item, 'excerpt' ) || $this->check_and_return( $item, 'link_text' ) ) { ?>
 											<div class="media-body <?php echo ( isset( $item['design']['fonts'][ 'align' ] ) ) ? $item['design']['fonts'][ 'align' ] : ''; ?>">
 												<?php if( $this->check_and_return( $item, 'title') ) { ?>
-													<h5 class="heading">
+													<<?php echo $heading_type ?> class="heading">
 														<?php if ( $link_array['link'] ) { ?>
 															<a <?php echo $link_href_attr; ?> <?php echo $link_target_attr; ?>>
 														<?php } ?>
@@ -327,7 +335,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 														<?php if ( $link_array['link'] ) { ?>
 															</a>
 														<?php } ?>
-													</h5>
+													</<?php echo $heading_type ?>>
 												<?php } ?>
 												<?php if( $this->check_and_return( $item, 'excerpt' ) ) { ?>
 													<div class="excerpt"><?php layers_the_content( $item['excerpt'] ); ?></div>
@@ -486,7 +494,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 											'label' => __( 'Heading Type (for seo)', 'layerswp' ),
 											'name' => $this->get_layers_field_name( 'design', 'fonts', 'heading-type' ),
 											'id' => $this->get_layers_field_id( 'design', 'fonts', 'heading-type' ),
-											'value' => ( isset( $this->values['design']['fonts']['heading-type'] ) ) ? $this->values['design']['fonts']['heading-type'] : NULL,
+											'value' => ( isset( $widget['design']['fonts']['heading-type'] ) ) ? $widget['design']['fonts']['heading-type'] : NULL,
 											'options' => array(
 												'h1' => array( 'name' => __( 'H1', 'layerswp' ), 'class' => 'icon-font-size', 'data' => '' ),
 												'h2' => array( 'name' => __( 'H2', 'layerswp' ), 'class' => 'icon-font-size', 'data' => '' ),
@@ -552,7 +560,28 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 							'background',
 							'featuredimage',
 							'imagealign',
-							'fonts',
+							'fonts' => array(
+								'elements' => array(
+									'heading-type' => array(
+										'type' => 'select-icons',
+										'label' => __( 'Heading Type (for seo)', 'layerswp' ),
+										'name' => $this->get_layers_field_name( 'design', 'fonts', 'heading-type' ),
+										'id' => $this->get_layers_field_id( 'design', 'fonts', 'heading-type' ),
+										'value' => ( isset( $widget['design']['fonts']['heading-type'] ) ) ? $widget['design']['fonts']['heading-type'] : NULL,
+										'options' => array(
+											'h1' => array( 'name' => __( 'H1', 'layerswp' ), 'class' => 'icon-font-size', 'data' => '' ),
+											'h2' => array( 'name' => __( 'H2', 'layerswp' ), 'class' => 'icon-font-size', 'data' => '' ),
+											'h3' => array( 'name' => __( 'H3', 'layerswp' ), 'class' => 'icon-font-size', 'data' => '' ),
+											'h4' => array( 'name' => __( 'H4', 'layerswp' ), 'class' => 'icon-font-size', 'data' => '' ),
+											'h5' => array( 'name' => __( 'H5', 'layerswp' ), 'class' => 'icon-font-size', 'data' => '' ),
+											'h6' => array( 'name' => __( 'H6', 'layerswp' ), 'class' => 'icon-font-size', 'data' => '' ),
+										),
+										'wrapper' => 'div',
+										'wrapper-class' => 'layers-icon-group layers-icon-group-outline'
+									),
+								),
+								'elements_combine' => 'merge',
+							),
 							'width' => array(
 								'icon-css' => 'icon-columns',
 								'label' => 'Column Width',

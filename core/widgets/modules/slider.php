@@ -81,7 +81,8 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 					'fonts' => array(
 						'align' => 'text-center',
 						'size' => 'large',
-						'shadow' => ''
+						'shadow' => '',
+						'heading-type' => 'h3',
 					)
 				),
 				'button' => array(
@@ -280,7 +281,8 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 
 								<?php do_action( 'layers_before_slider_widget_item_inner', $this, $item, $widget ); ?>
 
-								<?php /**
+								<?php
+								/**
 								* Set Overlay CSS Classes
 								*/
 								$overlay_class = array();
@@ -291,7 +293,13 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 								if( '' != $this->check_and_return( $item, 'design' , 'background', 'image' ) || '' != $this->check_and_return( $item, 'design' , 'background', 'color' ) ) {
 									$overlay_class[] = 'content';
 								}
-								$overlay_classes = implode( ' ', $overlay_class ); ?>
+								$overlay_classes = implode( ' ', $overlay_class );
+								
+								/**
+								 * Get Heading Type - for SEO
+								 */
+								$heading_type = ( isset( $item['design']['fonts']['heading-type'] ) ) ? $item['design']['fonts']['heading-type'] : 'h3';
+								?>
 
 								<div class="<?php echo $overlay_classes; ?>" >
 									<div class="container clearfix">
@@ -299,7 +307,7 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 											<div class="copy-container">
 												<div class="section-title <?php echo ( isset( $item['design']['fonts'][ 'size' ] ) ? $item['design']['fonts'][ 'size' ] : '' ); ?>">
 													<?php if( $this->check_and_return( $item , 'title' ) ) { ?>
-														<h3 data-swiper-parallax="-100" class="heading"><?php echo $item['title']; ?></h3>
+														<<?php echo $heading_type ?> data-swiper-parallax="-100" class="heading"><?php echo $item['title']; ?></<?php echo $heading_type ?>>
 													<?php } ?>
 													<?php if( $this->check_and_return( $item , 'excerpt' ) ) { ?>
 														<div data-swiper-parallax="-300" class="excerpt"><?php layers_the_content( $item['excerpt'] ); ?></div>
@@ -635,7 +643,28 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 									),
 								),
 							),
-							'fonts',
+							'fonts' => array(
+								'elements' => array(
+									'heading-type' => array(
+										'type' => 'select-icons',
+										'label' => __( 'Heading Type (for seo)', 'layerswp' ),
+										'name' => $this->get_layers_field_name( 'design', 'fonts', 'heading-type' ),
+										'id' => $this->get_layers_field_id( 'design', 'fonts', 'heading-type' ),
+										'value' => ( isset( $widget['design']['fonts']['heading-type'] ) ) ? $widget['design']['fonts']['heading-type'] : NULL,
+										'options' => array(
+											'h1' => array( 'name' => __( 'H1', 'layerswp' ), 'class' => 'icon-font-size', 'data' => '' ),
+											'h2' => array( 'name' => __( 'H2', 'layerswp' ), 'class' => 'icon-font-size', 'data' => '' ),
+											'h3' => array( 'name' => __( 'H3', 'layerswp' ), 'class' => 'icon-font-size', 'data' => '' ),
+											'h4' => array( 'name' => __( 'H4', 'layerswp' ), 'class' => 'icon-font-size', 'data' => '' ),
+											'h5' => array( 'name' => __( 'H5', 'layerswp' ), 'class' => 'icon-font-size', 'data' => '' ),
+											'h6' => array( 'name' => __( 'H6', 'layerswp' ), 'class' => 'icon-font-size', 'data' => '' ),
+										),
+										'wrapper' => 'div',
+										'wrapper-class' => 'layers-icon-group layers-icon-group-outline'
+									),
+								),
+								'elements_combine' => 'merge',
+							),
 							'advanced' => array(
 								'elements' => array(
 									'customclass'

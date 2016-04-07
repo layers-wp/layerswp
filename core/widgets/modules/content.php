@@ -68,7 +68,8 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 						'align' => 'text-left',
 						'size' => 'medium',
 						'color' => NULL,
-						'shadow' => NULL
+						'shadow' => NULL,
+						'heading-type' => 'h3',
 					)
 				),
 			);
@@ -85,7 +86,8 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 						'align' => 'text-left',
 						'size' => 'medium',
 						'color' => NULL,
-						'shadow' => NULL
+						'shadow' => NULL,
+						'heading-type' => 'h5',
 					),
 				),
 			) );
@@ -492,7 +494,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 											'label' => __( 'Heading Type (for seo)', 'layerswp' ),
 											'name' => $this->get_layers_field_name( 'design', 'fonts', 'heading-type' ),
 											'id' => $this->get_layers_field_id( 'design', 'fonts', 'heading-type' ),
-											'value' => ( isset( $this->values['design']['fonts']['heading-type'] ) ) ? $this->values['design']['fonts']['heading-type'] : NULL,
+											'value' => ( isset( $widget['design']['fonts']['heading-type'] ) ) ? $widget['design']['fonts']['heading-type'] : NULL,
 											'options' => array(
 												'h1' => array( 'name' => __( 'H1', 'layerswp' ), 'class' => 'icon-font-size', 'data' => '' ),
 												'h2' => array( 'name' => __( 'H2', 'layerswp' ), 'class' => 'icon-font-size', 'data' => '' ),
@@ -565,7 +567,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 										'label' => __( 'Heading Type (for seo)', 'layerswp' ),
 										'name' => $this->get_layers_field_name( 'design', 'fonts', 'heading-type' ),
 										'id' => $this->get_layers_field_id( 'design', 'fonts', 'heading-type' ),
-										'value' => ( isset( $this->values['design']['fonts']['heading-type'] ) ) ? $this->values['design']['fonts']['heading-type'] : NULL,
+										'value' => ( isset( $widget['design']['fonts']['heading-type'] ) ) ? $widget['design']['fonts']['heading-type'] : NULL,
 										'options' => array(
 											'h1' => array( 'name' => __( 'H1', 'layerswp' ), 'class' => 'icon-font-size', 'data' => '' ),
 											'h2' => array( 'name' => __( 'H2', 'layerswp' ), 'class' => 'icon-font-size', 'data' => '' ),

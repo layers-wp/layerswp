@@ -484,31 +484,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 							),
 							$widget, // Widget Values
 							apply_filters( 'layers_column_widget_design_bar_components', array( // Components
-								// 'layout',
-								// 'background',
-								// 'advanced'
-								'fonts' => array(
-									'elements' => array(
-										'heading-type' => array(
-											'type' => 'select-icons',
-											'label' => __( 'Heading Type (for seo)', 'layerswp' ),
-											'name' => $this->get_layers_field_name( 'design', 'fonts', 'heading-type' ),
-											'id' => $this->get_layers_field_id( 'design', 'fonts', 'heading-type' ),
-											'value' => ( isset( $widget['design']['fonts']['heading-type'] ) ) ? $widget['design']['fonts']['heading-type'] : NULL,
-											'options' => array(
-												'h1' => array( 'name' => __( 'H1', 'layerswp' ), 'class' => 'icon-font-size', 'data' => '' ),
-												'h2' => array( 'name' => __( 'H2', 'layerswp' ), 'class' => 'icon-font-size', 'data' => '' ),
-												'h3' => array( 'name' => __( 'H3', 'layerswp' ), 'class' => 'icon-font-size', 'data' => '' ),
-												'h4' => array( 'name' => __( 'H4', 'layerswp' ), 'class' => 'icon-font-size', 'data' => '' ),
-												'h5' => array( 'name' => __( 'H5', 'layerswp' ), 'class' => 'icon-font-size', 'data' => '' ),
-												'h6' => array( 'name' => __( 'H6', 'layerswp' ), 'class' => 'icon-font-size', 'data' => '' ),
-											),
-											'wrapper' => 'div',
-											'wrapper-class' => 'layers-icon-group layers-icon-group-outline'
-										),
-									),
-									'elements_combine' => 'merge',
-								),
+								'fonts',
 							) )
 						); ?>
 						
@@ -560,28 +536,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 							'background',
 							'featuredimage',
 							'imagealign',
-							'fonts' => array(
-								'elements' => array(
-									'heading-type' => array(
-										'type' => 'select-icons',
-										'label' => __( 'Heading Type (for seo)', 'layerswp' ),
-										'name' => $this->get_layers_field_name( 'design', 'fonts', 'heading-type' ),
-										'id' => $this->get_layers_field_id( 'design', 'fonts', 'heading-type' ),
-										'value' => ( isset( $widget['design']['fonts']['heading-type'] ) ) ? $widget['design']['fonts']['heading-type'] : NULL,
-										'options' => array(
-											'h1' => array( 'name' => __( 'H1', 'layerswp' ), 'class' => 'icon-font-size', 'data' => '' ),
-											'h2' => array( 'name' => __( 'H2', 'layerswp' ), 'class' => 'icon-font-size', 'data' => '' ),
-											'h3' => array( 'name' => __( 'H3', 'layerswp' ), 'class' => 'icon-font-size', 'data' => '' ),
-											'h4' => array( 'name' => __( 'H4', 'layerswp' ), 'class' => 'icon-font-size', 'data' => '' ),
-											'h5' => array( 'name' => __( 'H5', 'layerswp' ), 'class' => 'icon-font-size', 'data' => '' ),
-											'h6' => array( 'name' => __( 'H6', 'layerswp' ), 'class' => 'icon-font-size', 'data' => '' ),
-										),
-										'wrapper' => 'div',
-										'wrapper-class' => 'layers-icon-group layers-icon-group-outline'
-									),
-								),
-								'elements_combine' => 'merge',
-							),
+							'fonts',
 							'width' => array(
 								'icon-css' => 'icon-columns',
 								'label' => 'Column Width',

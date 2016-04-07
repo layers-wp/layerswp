@@ -487,12 +487,24 @@ jQuery(function($) {
 	});
 
 	function layers_init_add_last_class( $element_s ){
-
-		$element_s.find( '.layers-visuals-wrapper').each( function( j, element ) {
-
-			if( $(element).find( 'li' ).length > 4 ){
-				$(element).find( 'li' ).eq(-1).addClass( 'layers-last' );
-				$(element).find( 'li' ).eq(-2).addClass( 'layers-last' );
+		
+		$element_s.find( '.layers-design-bar').each( function( j, element ) {
+			
+			var $design_bar = $(element);
+			var $design_bar_li = $design_bar.children('ul').children('li');
+			
+			if( $design_bar_li.length > 4 ){
+				
+				if ( $design_bar.hasClass('layers-align-right') ) {
+					
+					$design_bar_li.eq(0).addClass( 'layers-last' );
+					$design_bar_li.eq(1).addClass( 'layers-last' );
+				}
+				else {
+					
+					$design_bar_li.eq(-1).addClass( 'layers-last' );
+					$design_bar_li.eq(-2).addClass( 'layers-last' );
+				}
 			}
 		});
 	}

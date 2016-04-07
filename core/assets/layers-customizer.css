@@ -1337,7 +1337,7 @@ div[id*='layers-widget'] .widget-control-actions .alignright{
 		width: 90px;
 		height: 100%;
 		background: #f5f5f5;
-		z-index: 102;
+		z-index: 103;
 	}
 	.layers-design-bar + .layers-container-large{
 		width: calc(100% - 90px);
@@ -1758,17 +1758,6 @@ div[id*='layers-widget'] .widget-control-actions .alignright{
 		left: auto;
 		right: 0;
 	}
-		
-		/*----------------------------*/
-		/*- HORIZONTAL ALIGN RIGHT ---*/
-		.layers-visuals-horizontal.layers-align-right .layers-visuals-item.layers-active .layers-pop-menu-wrapper{
-			left: auto;
-			right: 0;
-		}
-		.layers-visuals-horizontal.layers-align-right .layers-visuals-item.layers-last .layers-pop-menu-wrapper{
-			right: auto;
-			left: 0;
-		}
 
 	.layers-visuals-horizontal .layers-pop-menu-wrapper.layers-small{
 		width: auto;

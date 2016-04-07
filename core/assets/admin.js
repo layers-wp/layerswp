@@ -697,6 +697,7 @@ jQuery(function($) {
 				allowScript: true,
 				allowStyle: true,
 				convertMailAddresses: true,
+				codeMirror: false,
 				toolbarInline: false,
 				initOnClick: false,
 				imageEditButtons: [ 'removeImage' ],

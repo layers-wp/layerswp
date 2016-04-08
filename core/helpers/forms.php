@@ -278,10 +278,15 @@ class Layers_Form_Elements {
 						}
 
 						$data_string .= 'data-value="' . $input->value . '" ';
+						
+						// Allow for setting of a default selection.
+						$checked = FALSE;
+						if ( $input->value && $input->value == $key ) $checked = TRUE;
+						elseif ( ! $input->value && isset( $input->default ) && $input->default == $key ) $checked = TRUE;
 						?>
 						<label
 							href=""
-							class="layers-icon-wrapper <?php if ( $key == $input->value ) echo 'layers-active'; ?>"
+							class="layers-icon-wrapper <?php if ( $checked ) echo 'layers-active'; ?>"
 							for="<?php echo esc_attr( $input->id ) ,'-', esc_attr( $key ); ?>"
 							<?php echo $data_string ?>
 							>
@@ -290,7 +295,7 @@ class Layers_Form_Elements {
 								<?php echo esc_html( $name ); ?>
 							</span>
 						</label>
-						<input type="<?php echo $input_type ?>" <?php echo implode ( ' ' , $input_props ); ?> id="<?php echo esc_attr( $input->id ), '-', esc_attr( $key ); ?>" value="<?php echo esc_attr( $key ); ?>" <?php checked( $input->value, $key, true ); ?> />
+						<input type="<?php echo $input_type ?>" <?php echo implode ( ' ' , $input_props ); ?> id="<?php echo esc_attr( $input->id ), '-', esc_attr( $key ); ?>" value="<?php echo esc_attr( $key ); ?>" <?php checked( $checked, true, true ); ?> />
 					<?php } ?>
 				</div>
 			<?php break;

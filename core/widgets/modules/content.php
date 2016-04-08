@@ -68,7 +68,8 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 						'align' => 'text-left',
 						'size' => 'medium',
 						'color' => NULL,
-						'shadow' => NULL
+						'shadow' => NULL,
+						'heading-type' => 'h3',
 					)
 				),
 			);
@@ -85,7 +86,8 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 						'align' => 'text-left',
 						'size' => 'medium',
 						'color' => NULL,
-						'shadow' => NULL
+						'shadow' => NULL,
+						'heading-type' => 'h5',
 					),
 				),
 			) );
@@ -118,7 +120,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 			// Set the background styling
 			if( !empty( $widget['design'][ 'background' ] ) ) $this->inline_css .= layers_inline_styles( '#' . $widget_id, 'background', array( 'background' => $widget['design'][ 'background' ] ) );
 			if( !empty( $widget['design']['fonts'][ 'color' ] ) ) $this->inline_css .= layers_inline_styles( '#' . $widget_id, 'color', array( 'selectors' => array( '.section-title h3.heading' , '.section-title div.excerpt' ) , 'color' => $widget['design']['fonts'][ 'color' ] ) );
-
+			
 			/**
 			* Generate the widget container class
 			*/
@@ -138,7 +140,8 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 				<?php if ( NULL !== $this->check_and_return( $widget , 'title' ) || NULL !== $this->check_and_return( $widget , 'excerpt' ) ) { ?>
 
 					<div class="container clearfix">
-						<?php /**
+						<?php
+						/**
 						* Generate the Section Title Classes
 						*/
 						$section_title_class = array();
@@ -146,10 +149,16 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 						$section_title_class[] = $this->check_and_return( $widget , 'design', 'fonts', 'size' );
 						$section_title_class[] = $this->check_and_return( $widget , 'design', 'fonts', 'align' );
 						$section_title_class[] = ( $this->check_and_return( $widget, 'design', 'background' , 'color' ) && 'dark' == layers_is_light_or_dark( $this->check_and_return( $widget, 'design', 'background' , 'color' ) ) ? 'invert' : '' );
-						$section_title_class = implode( ' ', $section_title_class ); ?>
+						$section_title_class = implode( ' ', $section_title_class );
+						
+						/**
+						 * Get Heading Type - for SEO
+						 */
+						$heading_type = ( isset( $widget['design']['fonts']['heading-type'] ) ) ? $widget['design']['fonts']['heading-type'] : 'h3' ;
+						?>
 						<div class="<?php echo $section_title_class; ?>">
 							<?php if( '' != $widget['title'] ) { ?>
-								<h3 class="heading"><?php echo $widget['title'] ?></h3>
+								<<?php echo $heading_type; ?> class="heading"><?php echo $widget['title'] ?></<?php echo $heading_type; ?>>
 							<?php } ?>
 							<?php if( '' != $widget['excerpt'] ) { ?>
 								<div class="excerpt"><?php echo $widget['excerpt']; ?></div>
@@ -294,7 +303,13 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 
 									$column_inner_classes[] = $this->check_and_return( $item, 'design', 'imagealign' );
 									$column_inner_classes[] = $this->check_and_return( $item, 'design', 'fonts' , 'size' );
-									$column_inner_classes = implode( ' ', $column_inner_classes ); ?>
+									$column_inner_classes = implode( ' ', $column_inner_classes );
+									
+									/**
+									 * Get Heading Type - for SEO
+									 */
+									$heading_type = ( isset( $item['design']['fonts']['heading-type'] ) ) ? $item['design']['fonts']['heading-type'] : 'h5' ;
+									?>
 
 									<div class="<?php echo $column_inner_classes; ?>">
 										<?php if( NULL != $media ) { ?>
@@ -312,7 +327,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 										<?php if( $this->check_and_return( $item, 'title' ) || $this->check_and_return( $item, 'excerpt' ) || $this->check_and_return( $item, 'link_text' ) ) { ?>
 											<div class="media-body <?php echo ( isset( $item['design']['fonts'][ 'align' ] ) ) ? $item['design']['fonts'][ 'align' ] : ''; ?>">
 												<?php if( $this->check_and_return( $item, 'title') ) { ?>
-													<h5 class="heading">
+													<<?php echo $heading_type ?> class="heading">
 														<?php if ( $link_array['link'] ) { ?>
 															<a <?php echo $link_href_attr; ?> <?php echo $link_target_attr; ?>>
 														<?php } ?>
@@ -320,7 +335,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 														<?php if ( $link_array['link'] ) { ?>
 															</a>
 														<?php } ?>
-													</h5>
+													</<?php echo $heading_type ?>>
 												<?php } ?>
 												<?php if( $this->check_and_return( $item, 'excerpt' ) ) { ?>
 													<div class="excerpt"><?php layers_the_content( $item['excerpt'] ); ?></div>
@@ -430,7 +445,6 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 							)
 						)
 					),
-					'fonts',
 					'background',
 					'advanced'
 				) )
@@ -444,7 +458,8 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 				) ); ?>
 
 				<section class="layers-accordion-section layers-content">
-					<p class="layers-form-item">
+					<div class="layers-form-item">
+						
 						<?php echo $this->form_elements()->input(
 							array(
 								'type' => 'text',
@@ -455,8 +470,26 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 								'class' => 'layers-text layers-large'
 							)
 						); ?>
-					</p>
-					<p class="layers-form-item">
+						
+						<?php $this->design_bar(
+							'top', // CSS Class Name
+							array( // Widget Object
+								'name' => $this->get_layers_field_name( 'design' ),
+								'id' => $this->get_layers_field_id( 'design' ),
+								'widget_id' => $this->widget_id,
+								'show_trash' => FALSE,
+								'container_class' => 'poopy',
+								'inline' => TRUE,
+								'align' => 'right',
+							),
+							$widget, // Widget Values
+							apply_filters( 'layers_column_widget_design_bar_components', array( // Components
+								'fonts',
+							) )
+						); ?>
+						
+					</div>
+					<div class="layers-form-item">
 						<?php echo $this->form_elements()->input(
 							array(
 								'type' => 'rte',
@@ -467,7 +500,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 								'class' => 'layers-textarea layers-large'
 							)
 						); ?>
-					</p>
+					</div>
 				</section>
 
 				<section class="layers-accordion-section layers-content">

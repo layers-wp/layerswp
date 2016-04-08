@@ -81,7 +81,8 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 					'fonts' => array(
 						'align' => 'text-center',
 						'size' => 'large',
-						'shadow' => ''
+						'shadow' => '',
+						'heading-type' => 'h3',
 					)
 				),
 				'button' => array(
@@ -280,7 +281,8 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 
 								<?php do_action( 'layers_before_slider_widget_item_inner', $this, $item, $widget ); ?>
 
-								<?php /**
+								<?php
+								/**
 								* Set Overlay CSS Classes
 								*/
 								$overlay_class = array();
@@ -291,7 +293,13 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 								if( '' != $this->check_and_return( $item, 'design' , 'background', 'image' ) || '' != $this->check_and_return( $item, 'design' , 'background', 'color' ) ) {
 									$overlay_class[] = 'content';
 								}
-								$overlay_classes = implode( ' ', $overlay_class ); ?>
+								$overlay_classes = implode( ' ', $overlay_class );
+								
+								/**
+								 * Get Heading Type - for SEO
+								 */
+								$heading_type = ( isset( $item['design']['fonts']['heading-type'] ) ) ? $item['design']['fonts']['heading-type'] : 'h3';
+								?>
 
 								<div class="<?php echo $overlay_classes; ?>" >
 									<div class="container clearfix">
@@ -299,7 +307,7 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 											<div class="copy-container">
 												<div class="section-title <?php echo ( isset( $item['design']['fonts'][ 'size' ] ) ? $item['design']['fonts'][ 'size' ] : '' ); ?>">
 													<?php if( $this->check_and_return( $item , 'title' ) ) { ?>
-														<h3 data-swiper-parallax="-100" class="heading"><?php echo $item['title']; ?></h3>
+														<<?php echo $heading_type ?> data-swiper-parallax="-100" class="heading"><?php echo $item['title']; ?></<?php echo $heading_type ?>>
 													<?php } ?>
 													<?php if( $this->check_and_return( $item , 'excerpt' ) ) { ?>
 														<div data-swiper-parallax="-300" class="excerpt"><?php layers_the_content( $item['excerpt'] ); ?></div>

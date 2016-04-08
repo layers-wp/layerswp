@@ -222,36 +222,37 @@
 			/**
 			 * Deep linking into Controls.
 			 */
-			 
-			var enable_deep_linking = false;
-			if ( 1 == layers_customizer_params.enable_deep_linking ) enable_deep_linking = true;
-			
-			// Open item if hash is set.
-			if ( window.location.hash ) {
-
-				var $hash = window.location.hash.split('#')[1];
-				var $element = $( '#' + $hash );
-				
-				if ( $element.length ) {
-					
-					$hash_record = $hash;
-					
-					$element
-						.children('.accordion-section-title')
-						.click();
-					
-					$element
-						.children('.widget')
-						.find('.widget-title')
-						.click();
-				}
-			}
-			
 			if ( 1 == layers_customizer_params.enable_deep_linking ) {
+				
+				
+				// Open item if hash is set.
+				if ( window.location.hash ) {
+
+					var $hash = window.location.hash.split('#')[1];
+					var $element = $( '#' + $hash );
+					
+					console.log('POOP!', $element);
+					
+					if ( $element.length ) {
+						
+						$hash_record = $hash;
+						
+						// Controls
+						$element
+							.children('.accordion-section-title')
+							.click();
+						
+						// Widgets
+						$element
+							.children('.widget')
+							.find('.widget-title')
+							.click();
+					}
+				}
+				
 				
 				// Accordion Open (set the hash)
 				$(document).on( 'click', '.accordion-section-title', function(){
-					if ( !enable_deep_linking ) return false;
 					
 					var $element = $(this);
 					var $parent_accordion = $element.parent('li.accordion-section');
@@ -265,6 +266,7 @@
 				});
 				// Section Back-Button (set the hash)
 				$(document).on( 'click', '.customize-section-back', function(){
+					
 					var $element = $(this);
 					var $parent_accordion = $element.parents('li.accordion-section').eq(1);
 					
@@ -277,14 +279,32 @@
 				});
 				// Panel Back-Button (set the hash)
 				$(document).on( 'click', '.customize-panel-back', function(){
+					
 					window.location.hash = '';
 					$hash_record = '';
 				});
 				
+				
+				$(document).on( 'expanded', 'li.customize-control-widget_form', function( e ){
+					
+					var $widget_li = $(this);
+					
+					console.log( $widget_li );
+					
+					// Bail if this is not a control.
+					if ( ! $widget_li.length ) return;
+					
+					var $id = $widget_li.attr('id');
+					window.location.hash = $id;
+					$hash_record = $id;
+				});
+				
 				// Widget Open (set the hash)
-				$(document).on( 'click', '.widget-title', function(){
+				/*$(document).on( 'click', '.widget-title', function(){
 					var $element = $(this);
 					var $parent_accordion = $element.parents('li.customize-control-widget_form');
+					
+					console.log( $parent_accordion );
 					
 					// Bail if this is not a control.
 					if ( ! $parent_accordion.length ) return;
@@ -292,7 +312,7 @@
 					var $id = $parent_accordion.attr('id');
 					window.location.hash = $id;
 					$hash_record = $id;
-				});
+				});*/
 				// Widget Close (set the hash)
 				$(document).on( 'click', '.widget-control-close', function(){
 					var $element = $(this);

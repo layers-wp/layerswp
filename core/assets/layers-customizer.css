@@ -166,7 +166,6 @@ div#widgets-right div[id*='obox-layers-builder']{
 		border-top: none !important;
 		border-right: none !important;
 		opacity: 0;
-		z-index: 2;
 		overflow: hidden;
 		box-shadow: 3px 0 3px rgba(0, 0, 0, 0.1);
 		transform: translate3d(-10px, 0, 0);
@@ -312,7 +311,7 @@ div[id*='layers-widget'] .widget-control-actions .alignright{
 }
 .layers-container-large{
 	position: relative;
-	z-index: 99;
+/* 	z-index: 99; */
 }
 .layers-content-small{
 	padding: 10px;
@@ -451,7 +450,7 @@ div[id*='layers-widget'] .widget-control-actions .alignright{
 		float: left;
 		width: 16px;
 		margin: 0 1px 1px 0 !important;
-		padding: 3px 9px !important;
+		padding: 3px 7px !important;
 		background: rgb(255, 255, 255);
 		border: 1px solid #EAEAEA;
 		border-radius: 3px;
@@ -1119,7 +1118,6 @@ div[id*='layers-widget'] .widget-control-actions .alignright{
 			position: absolute;
 			top: 0;
 			right: 0;
-			z-index: 1;
 			content: "\f0c1";
 			font: 400 14px/47px fontawesome;
 			color: #aaa;
@@ -1170,7 +1168,6 @@ div[id*='layers-widget'] .widget-control-actions .alignright{
 			.layers-link-field-link_target {
 				position: absolute;
 				bottom: 20px;
-				z-index: 10000000;
 				right: 6px;
 				overflow: visible;
 			}
@@ -1196,6 +1193,48 @@ div[id*='layers-widget'] .widget-control-actions .alignright{
 			.layers-link-field-link_target .layers-icon-wrapper .icon-new-window{
 				font-size: 16px;
 			}
+	
+	/*--------------------*/
+	/*- INPUT SWITCHER ---*/
+	
+	.layers-switch {
+		right: 30px;
+		top: 33px;
+		font-size: 10px;
+		font-weight: bold;
+	}
+	.layers-switch > a {
+		background: white;
+		border: 1px solid #E0E0E0;
+		min-width: 30px;
+		display: inline-block;
+		text-align: center;
+		line-height: 22px;
+		border-radius: 3px;
+		color: #353535;
+	}
+	.layers-switch > ul {
+		position: absolute;
+		display: inline-block;
+		background: #FFF;
+		/* width: 200px; */
+		white-space: nowrap;
+		right: 0;
+		top: 27px;
+		padding: 5px;
+		border: 1px solid #E0E0E0;
+		border-radius: 2px;
+	}
+	.layers-switch > ul > li {
+		display: inline-block;
+		background: green;
+		/* float: left; */
+		margin: 0;
+	}
+	.layers-switch > ul > li > a {
+		display: inline-block;
+	}
+
 
 /*-----------------------*/
 /*- CUSTOM CSS EDITOR ---*/
@@ -1295,10 +1334,10 @@ div[id*='layers-widget'] .widget-control-actions .alignright{
 	.layers-design-bar{
 		position: absolute;
 		right: 0;
-		z-index: 100;
 		width: 90px;
 		height: 100%;
 		background: #f5f5f5;
+		z-index: 103;
 	}
 	.layers-design-bar + .layers-container-large{
 		width: calc(100% - 90px);
@@ -1474,6 +1513,7 @@ div[id*='layers-widget'] .widget-control-actions .alignright{
 	/*- SETTINGS POP MENU -------*/
 	.layers-pop-menu-wrapper{
 		position: absolute;
+		z-index: 100000000;
 		top: 5px;
 		right: 100px;
 		width: 220px;
@@ -1486,8 +1526,8 @@ div[id*='layers-widget'] .widget-control-actions .alignright{
 		visibility: hidden;
 		opacity: 0;
 		transition: all 0.15s ease-in-out 0.1s;
-		-webkit-transform: translate3d(0px, 0px, 0px);
-		transform: translate3d(0px, 0px, 0px);
+		/* 		-webkit-transform: translate3d(0px, 0px, 0px); */
+		/* transform: translate3d(0px, 0px, 0px); */
 		box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.1);
 	}
 	.layers-visuals-item.layers-last .layers-pop-menu-wrapper{
@@ -1567,6 +1607,7 @@ div[id*='layers-widget'] .widget-control-actions .alignright{
 		width: auto;
 		padding: 0px;
 		border-bottom: 1px solid #eee;
+		z-index: 101;
 	}
 	.layers-visuals.layers-visuals-horizontal .layers-visuals-title{
 		float: left;
@@ -1597,6 +1638,52 @@ div[id*='layers-widget'] .widget-control-actions .alignright{
 	.layers-visuals-horizontal .layers-visuals-item [class*="icon-"]{
 		font-size: 16px;
 	}
+	
+		/*---------------------------------------*/
+		/*- SETTINGS - HORIZONTAL ALIGN-RIGHT ---*/
+		.layers-content .layers-visuals.layers-visuals-horizontal.layers-align-right {
+			float: right;
+		}
+
+		/*--------------------------------------*/
+		/*- SETTINGS - HORIZONTAL AS BUTTONS ---*/
+		.layers-visuals.layers-visuals-horizontal.layers-visuals-inline{
+			margin: 0;
+			border: 0;
+		}
+		.layers-visuals.layers-visuals-horizontal.layers-visuals-inline > .layers-visuals-title{
+			display: none;
+		}
+		.layers-visuals.layers-visuals-horizontal.layers-visuals-inline > ul {
+			padding: 0;
+		}
+		.layers-visuals.layers-visuals-horizontal.layers-visuals-inline > ul > li{
+			border: 0;
+			padding: 0 4px 0 0;
+		}
+		.layers-visuals.layers-visuals-horizontal.layers-visuals-inline > ul > li:last-child{
+			border: 0;
+			padding-right: 0;
+		}
+		.layers-visuals.layers-visuals-horizontal.layers-visuals-inline > ul > li > a {
+			margin: 0;
+			box-shadow: none;
+			background: #FFFFFF;
+			border-color: #DCDCDC;
+			color: #6D6D6D;
+		}
+		.layers-visuals-horizontal.layers-visuals-inline .layers-visuals-item.layers-active .layers-pop-menu-wrapper {
+			top: 35px !important;
+		}
+
+		/*-------------------------------*/
+		/*- SETTINGS - CONTENT BUTTON ---*/
+		.layers-visuals.layers-visuals-horizontal.layers-visuals-inline{
+			position: absolute;
+			z-index: 102;
+			top: 28px;
+			right: 26px;
+		}
 
 		/*-----------------------*/
 		/*- TOOL TIP ------------*/
@@ -1671,6 +1758,7 @@ div[id*='layers-widget'] .widget-control-actions .alignright{
 		left: auto;
 		right: 0;
 	}
+
 	.layers-visuals-horizontal .layers-pop-menu-wrapper.layers-small{
 		width: auto;
 	}

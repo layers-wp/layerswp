@@ -35,7 +35,7 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 
 	 		/* Widget settings. */
 			$widget_ops = array(
-				'customize_selective_refresh' => true,
+
 				'classname'   => 'obox-layers-' . $this->widget_id .'-widget',
 				'description' => __( 'This widget is used to display your ', 'layerswp' ) . $this->widget_id . '.',
 			);
@@ -294,7 +294,7 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 									$overlay_class[] = 'content';
 								}
 								$overlay_classes = implode( ' ', $overlay_class );
-								
+
 								/**
 								 * Get Heading Type - for SEO
 								 */

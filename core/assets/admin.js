@@ -487,14 +487,14 @@ jQuery(function($) {
 	});
 
 	function layers_init_add_last_class( $element_s ){
-		
+
 		$element_s.find( '.layers-design-bar').each( function( j, element ) {
-			
+
 			var $design_bar = $(element);
 			var $design_bar_li = $design_bar.children('ul').children('li');
-			
+
 			if ( $design_bar.hasClass('layers-align-right') || $design_bar_li.length > 4 ) {
-				
+
 				$design_bar_li.eq(-1).addClass( 'layers-last' );
 				$design_bar_li.eq(-2).addClass( 'layers-last' );
 			}
@@ -741,9 +741,6 @@ jQuery(function($) {
 				})
 				.on('froalaEditor.focus', function (e, editor) {
 					$editor.froalaEditor('toolbar.show');
-				})
-				.on('froalaEditor.blur', function (e, editor) {
-					$editor.froalaEditor('toolbar.hide');
 				});
 		});
 

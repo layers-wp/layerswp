@@ -218,7 +218,7 @@ class Layers_Design_Controller {
 
 	private function render_trash_control(){
 
-		if( isset( $this->args['show_trash'] ) ) { ?>
+		if( isset( $this->args['show_trash'] ) && TRUE === $this->args['show_trash'] ) { ?>
 		<li class="layers-visuals-item layers-pull-right">
 			<a href="" class="layers-icon-wrapper layers-icon-error">
 				<span class="icon-trash" data-number="<?php echo $this->args['number']; ?>"></span>

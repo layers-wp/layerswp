@@ -529,7 +529,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 							'id' => $this->get_layers_field_id( 'design' ),
 							'widget_id' => $this->widget_id . '_item',
 							'number' => $this->number,
-							'show_trash' => FALSE,
+							'show_trash' => TRUE,
 						),
 						$widget, // Widget Values
 						apply_filters( 'layers_column_widget_column_design_bar_components', array( // Components

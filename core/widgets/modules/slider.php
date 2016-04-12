@@ -270,6 +270,8 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 								$slide_class[] = $item['design']['fonts'][ 'align' ];
 							}
 							$slide_class[] = $this->check_and_return( $item, 'design', 'advanced', 'customclass' ); // Apply custom class from design-bar's advanced control.
+
+							$slide_class = apply_filters( 'layers_slider_widget_item_class', $slide_class, $this, $item, $widget );
 							$slide_class = implode( ' ', $slide_class );
 
 							// Set link entire slide or not

@@ -135,7 +135,7 @@ if( !class_exists( 'Layers_Contact_Widget' ) ) {
 
 			if( !$show_title_or_excerpt && !$show_address_or_contactform  ) $widget_container_class[] = 'no-inset-top no-inset-bottom';
 
-			$widget_container_class = apply_filters( 'layers_contact_widget_container_class' , $widget_container_class, $widget, $this );
+			$widget_container_class = apply_filters( 'layers_contact_widget_container_class' , $widget_container_class, $this, $widget );
 			$widget_container_class = implode( ' ', $widget_container_class ); ?>
 
 			<?php echo $this->custom_anchor( $widget ); ?>

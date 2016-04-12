@@ -131,7 +131,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 			$widget_container_class[] = $this->check_and_return( $widget , 'design', 'advanced', 'customclass' ); // Apply custom class from design-bar's advanced control.
 			$widget_container_class[] = $this->get_widget_spacing_class( $widget );
 
-			$widget_container_class = apply_filters( 'layers_content_widget_container_class' , $widget_container_class, $widget, $this );
+			$widget_container_class = apply_filters( 'layers_content_widget_container_class' , $widget_container_class, $this, $widget );
 			$widget_container_class = implode( ' ', $widget_container_class ); ?>
 
 			<?php echo $this->custom_anchor( $widget ); ?>

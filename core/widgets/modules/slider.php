@@ -30,14 +30,15 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 			$this->checkboxes = array(
 					'show_slider_arrows',
 					'show_slider_dots',
-					'autoplay_slides'
+					'autoplay_slides',
+					'autoheight_slides',
 				);
 
 	 		/* Widget settings. */
 			$widget_ops = array(
 
 				'classname'   => 'obox-layers-' . $this->widget_id .'-widget',
-				'description' => __( 'This widget is used to display your ', 'layerswp' ) . $this->widget_id . '.',
+				'description' => __( 'This widget is used to display slides and can be used to display a page-banner.', 'layerswp' ) ,
 			);
 
 			/* Widget control settings. */
@@ -73,12 +74,13 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 					'imagealign' => 'image-top',
 					'imageratios' => NULL,
 					'background' => array(
-						'color' => '#444',
+						'color' => '#f8f8f8',
 						'position' => 'center',
 						'repeat' => 'no-repeat',
 						'size' => 'cover'
 					),
 					'fonts' => array(
+						'color' => NULL,
 						'align' => 'text-center',
 						'size' => 'large',
 						'shadow' => '',
@@ -87,7 +89,7 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 				),
 				'button' => array(
 					'link_type' => 'custom',
-					'link_type_custom' => '#',
+					'link_type_custom' => '#more',
 					'link_text' => __( 'See More', 'layerswp' ),
 				),
 			) );
@@ -164,6 +166,7 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 			$widget_container_class[] = $this->check_and_return( $widget , 'design', 'advanced', 'customclass' ); // Apply custom class from design-bar's advanced control.
 			$widget_container_class[] = $this->get_widget_spacing_class( $widget );
 			$widget_container_class[] = $this->get_widget_layout_class( $widget );
+
 			if( $this->check_and_return( $widget , 'autoheight_slides' ) ) {
 				if( FALSE !== ( $fullwidth = array_search( 'full-screen', $widget_container_class ) ) ){
 					unset( $widget_container_class[ $fullwidth ] );
@@ -171,7 +174,7 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 				$widget_container_class[] = 'auto-height';
 			}
 
-			if( isset( $widget['design']['layout'] ) && '' != $widget['design']['layout'] ) {
+			if( $this->check_and_return( $widget , 'design', 'layout') ) {
 				// Slider layout eg 'slider-layout-full-screen'
 				$widget_container_class[] = 'slider-' . $widget['design']['layout'];
 			}
@@ -189,9 +192,8 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 			/**
 			 * Slider HTML
 			 */
-			?>
 
-			<?php if( ! empty( $widget[ 'slides' ] ) ) { ?>
+			if( ! empty( $widget[ 'slides' ] ) ) { ?>
 				<?php echo $this->custom_anchor( $widget ); ?>
 				<div id="<?php echo esc_attr( $widget_id ); ?>" class="<?php echo esc_attr( $widget_container_class ); ?>" style="<?php echo esc_attr( $slider_height_css ); ?>">
 

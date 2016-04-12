@@ -26,7 +26,7 @@ class Layers_Design_Controller {
 
 		// If there is no args information provided, can the operation
 		if( NULL == $args ) return;
-		
+
 		// Set args, merged with defaults.
 		$defaults = array(
 			'container_class' => '', // Optional unique css classes
@@ -59,16 +59,16 @@ class Layers_Design_Controller {
 	}
 
 	public function render_design_bar() {
-		
+
 		$container_class = array();
 		$container_class[] = 'layers-design-bar';
 		$container_class[] = ( 'side' == $this->type ? 'layers-design-bar-right' : 'layers-design-bar-horizontal' );
 		$container_class[] = ( 'side' == $this->type ? 'layers-pull-right' : 'layers-visuals-horizontal' );
 		$container_class[] = 'layers-visuals';
-		
+
 		// Apply custom container classes passed by args.
 		$container_class[] = $this->args['container_class'];
-		
+
 		// Apply `left`, `right`, align to the container class.
 		switch ( $this->args['align'] ) {
 			case 'left':
@@ -78,7 +78,7 @@ class Layers_Design_Controller {
 				$container_class[] = 'layers-align-right';
 				break;
 		}
-		
+
 		// Apply `inline`.
 		if ( TRUE === $this->args['inline'] ){
 			$container_class[] = 'layers-visuals-inline';
@@ -217,8 +217,8 @@ class Layers_Design_Controller {
 	<?php }
 
 	private function render_trash_control(){
-		
-		if( isset( $this->args['show_trash'] ) && TRUE === $this->args['show_trash'] ) { ?>
+
+		if( isset( $this->args['show_trash'] ) ) { ?>
 		<li class="layers-visuals-item layers-pull-right">
 			<a href="" class="layers-icon-wrapper layers-icon-error">
 				<span class="icon-trash" data-number="<?php echo $this->args['number']; ?>"></span>
@@ -254,7 +254,7 @@ class Layers_Design_Controller {
 			$data_show_if['show-if-operator'] = 'data-show-if-operator="' . esc_attr( $form_args['data']['show-if-operator'] ) . '"';
 			unset( $form_args['data']['show-if-operator'] );
 		}
-		
+
 		// Prep Class
 		$class = array();
 		$class[] = 'layers-form-item';

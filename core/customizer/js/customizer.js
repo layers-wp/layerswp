@@ -231,8 +231,6 @@
 					var $hash = window.location.hash.split('#')[1];
 					var $element = $( '#' + $hash );
 					
-					console.log('POOP!', $element);
-					
 					if ( $element.length ) {
 						
 						$hash_record = $hash;

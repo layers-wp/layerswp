@@ -287,8 +287,6 @@
 					
 					var $widget_li = $(this);
 					
-					console.log( $widget_li );
-					
 					// Bail if this is not a control.
 					if ( ! $widget_li.length ) return;
 					

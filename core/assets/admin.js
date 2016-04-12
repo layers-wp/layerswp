@@ -573,7 +573,7 @@ jQuery(function($) {
 				case '!=':
 					
 					$.each( $target_value, function( index, val ) {
-						if ( $target_value.trim() != $source_element_value.trim() )
+						if ( val.trim() != $source_element_value.trim() )
 							$action = 'show';
 					});
 					
@@ -582,7 +582,7 @@ jQuery(function($) {
 				case '!==':
 					
 					$.each( $target_value, function( index, val ) {
-						if ( $target_value.trim() !== $source_element_value.trim() )
+						if ( val.trim() !== $source_element_value.trim() )
 							$action = 'show';
 					});
 					
@@ -591,7 +591,7 @@ jQuery(function($) {
 				case '>':
 					
 					$.each( $target_value, function( index, val ) {
-						if ( $target_value.trim() > $source_element_value.trim() )
+						if ( val.trim() > $source_element_value.trim() )
 							$action = 'show';
 					});
 					
@@ -600,7 +600,7 @@ jQuery(function($) {
 				case '<':
 					
 					$.each( $target_value, function( index, val ) {
-						if ( $target_value.trim() < $source_element_value.trim() )
+						if ( val.trim() < $source_element_value.trim() )
 							$action = 'show';
 					});
 					
@@ -609,7 +609,7 @@ jQuery(function($) {
 				case '>=':
 					
 					$.each( $target_value, function( index, val ) {
-						if ( $target_value.trim() >= $source_element_value.trim() )
+						if ( val.trim() >= $source_element_value.trim() )
 							$action = 'show';
 					});
 					
@@ -618,7 +618,7 @@ jQuery(function($) {
 				case '<=':
 					
 					$.each( $target_value, function( index, val ) {
-						if ( $target_value.trim() <= $source_element_value.trim() )
+						if ( val.trim() <= $source_element_value.trim() )
 							$action = 'show';
 					});
 					

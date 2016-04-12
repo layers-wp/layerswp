@@ -627,7 +627,7 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 							'id' => $this->get_layers_field_id( 'design' ),
 							'widget_id' => $this->widget_id . '_item',
 							'number' => $this->number,
-							'show_trash' => FALSE
+							'show_trash' => TRUE
 						), // Widget Object
 						$widget, // Widget Values
 						apply_filters( 'layers_slide_widget_slide_design_bar_components', array( // Components

@@ -31,7 +31,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 
 			/* Widget settings. */
 			$widget_ops = array(
-				'customize_selective_refresh' => true,
+
 				'classname'   => 'obox-layers-' . $this->widget_id .'-widget',
 				'description' => __( 'This widget is used to display your ', 'layerswp' ) . $this->widget_title . '.',
 			);
@@ -120,7 +120,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 			// Set the background styling
 			if( !empty( $widget['design'][ 'background' ] ) ) $this->inline_css .= layers_inline_styles( '#' . $widget_id, 'background', array( 'background' => $widget['design'][ 'background' ] ) );
 			if( !empty( $widget['design']['fonts'][ 'color' ] ) ) $this->inline_css .= layers_inline_styles( '#' . $widget_id, 'color', array( 'selectors' => array( '.section-title h3.heading' , '.section-title div.excerpt' ) , 'color' => $widget['design']['fonts'][ 'color' ] ) );
-			
+
 			/**
 			* Generate the widget container class
 			*/
@@ -150,7 +150,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 						$section_title_class[] = $this->check_and_return( $widget , 'design', 'fonts', 'align' );
 						$section_title_class[] = ( $this->check_and_return( $widget, 'design', 'background' , 'color' ) && 'dark' == layers_is_light_or_dark( $this->check_and_return( $widget, 'design', 'background' , 'color' ) ) ? 'invert' : '' );
 						$section_title_class = implode( ' ', $section_title_class );
-						
+
 						/**
 						 * Get Heading Type - for SEO
 						 */
@@ -239,13 +239,13 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 									if( 4 > $item['width'] ) $use_image_ratio = 'medium';
 									else $use_image_ratio = 'full';
 								}
-								
+
 								$media = layers_get_feature_media(
 									$featureimage ,
 									$use_image_ratio ,
 									$featurevideo
 								);
-								
+
 								// Set Image Size
 								if( isset( $item['design']['featuredimage-size'] ) && 0 != $item['design']['featuredimage-size'] && '' != $item['design']['featuredimage-size'] ) {
 									$image_width = $item['design'][ 'featuredimage-size' ].'px';
@@ -304,7 +304,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 									$column_inner_classes[] = $this->check_and_return( $item, 'design', 'imagealign' );
 									$column_inner_classes[] = $this->check_and_return( $item, 'design', 'fonts' , 'size' );
 									$column_inner_classes = implode( ' ', $column_inner_classes );
-									
+
 									/**
 									 * Get Heading Type - for SEO
 									 */
@@ -459,7 +459,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 
 				<section class="layers-accordion-section layers-content">
 					<div class="layers-form-item">
-						
+
 						<?php echo $this->form_elements()->input(
 							array(
 								'type' => 'text',
@@ -470,7 +470,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 								'class' => 'layers-text layers-large'
 							)
 						); ?>
-						
+
 						<?php $this->design_bar(
 							'top', // CSS Class Name
 							array( // Widget Object
@@ -478,7 +478,6 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 								'id' => $this->get_layers_field_id( 'design' ),
 								'widget_id' => $this->widget_id,
 								'show_trash' => FALSE,
-								'container_class' => 'poopy',
 								'inline' => TRUE,
 								'align' => 'right',
 							),
@@ -487,7 +486,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 								'fonts',
 							) )
 						); ?>
-						
+
 					</div>
 					<div class="layers-form-item">
 						<?php echo $this->form_elements()->input(
@@ -529,7 +528,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 							'id' => $this->get_layers_field_id( 'design' ),
 							'widget_id' => $this->widget_id . '_item',
 							'number' => $this->number,
-							'show_trash' => FALSE,
+							'show_trash' => TRUE,
 						),
 						$widget, // Widget Values
 						apply_filters( 'layers_column_widget_column_design_bar_components', array( // Components

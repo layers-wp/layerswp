@@ -231,8 +231,6 @@
 					var $hash = window.location.hash.split('#')[1];
 					var $element = $( '#' + $hash );
 					
-					console.log('POOP!', $element);
-					
 					if ( $element.length ) {
 						
 						$hash_record = $hash;
@@ -288,8 +286,6 @@
 				$(document).on( 'expanded', 'li.customize-control-widget_form', function( e ){
 					
 					var $widget_li = $(this);
-					
-					console.log( $widget_li );
 					
 					// Bail if this is not a control.
 					if ( ! $widget_li.length ) return;

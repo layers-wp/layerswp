@@ -472,17 +472,18 @@ if( !function_exists( 'layers_apply_customizer_styles' ) ) {
 			));
 		}
 
-/**
-		* Footer Colors
- */
+		/**
+		 * Footer Colors.
+		 */
 
 		if( '' != $footer_color ) {
+			
 			// Apply the BG Color
-		layers_inline_styles( '.footer-site', 'background', array(
-			'background' => array(
-					'color' => $footer_color,
-			),
-		));
+			layers_inline_styles( '.footer-site', 'background', array(
+				'background' => array(
+						'color' => $footer_color,
+				),
+			));
 
 			// Add Invert if the color is dark
 			if ( 'dark' == layers_is_light_or_dark( $footer_color ) ){

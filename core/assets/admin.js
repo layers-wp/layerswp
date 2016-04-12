@@ -549,90 +549,94 @@ jQuery(function($) {
 		$( '[data-show-if-selector="' + $source_element_selector_new + '"]' ).each(function(){
 
 			var $target_element = $(this);
-			var $target_value   = $target_element.data( 'show-if-value' ).toString();
+			var $target_value   = $target_element.data( 'show-if-value' ).toString().split(',');
 			var $source_element = $( $target_element.data( 'show-if-selector' ).toString() );
 			var $operator       = $target_element.data( 'show-if-operator' );
-
-			if ( $source_element.attr('type') == 'checkbox' ) {
+			
+			// Get value based on the type of input being used.
+			if ( $source_element.attr('type') == 'checkbox' )
 				$source_element_value = ( $source_element.is(':checked') ) ? 'true' : 'false' ;
-			}
-			else {
+			else
 				$source_element_value = $source_element.val();
-			}
-
+			
+			// Bail if there's no source element to refference.
 			if ( 'undefined' === typeof( $source_element_value ) ) {
 				layers_show_if_display( 'hide', $target_element );
 				return false;
 			}
+			
+			var $action = 'hide';
 
-			// Apply the chosen Operator (default: ==)
+			// Compare based on the chosen operator (default: ==)
 			switch( $operator ) {
 
 				case '!=':
-
-					if ( $target_value.trim() != $source_element_value.trim() )
-						layers_show_if_display( 'show', $target_element ); // Show
-					else
-						layers_show_if_display( 'hide', $target_element ); // Hide
-
+					
+					$.each( $target_value, function( index, val ) {
+						if ( $target_value.trim() != $source_element_value.trim() )
+							$action = 'show';
+					});
+					
 					break;
 
 				case '!==':
-
-					if ( $target_value.trim() !== $source_element_value.trim() )
-						layers_show_if_display( 'show', $target_element ); // Show
-					else
-						layers_show_if_display( 'hide', $target_element ); // Hide
-
+					
+					$.each( $target_value, function( index, val ) {
+						if ( $target_value.trim() !== $source_element_value.trim() )
+							$action = 'show';
+					});
+					
 					break;
 
 				case '>':
-
-					if ( $target_value.trim() > $source_element_value.trim() )
-						layers_show_if_display( 'show', $target_element ); // Show
-					else
-						layers_show_if_display( 'hide', $target_element ); // Hide
-
+					
+					$.each( $target_value, function( index, val ) {
+						if ( $target_value.trim() > $source_element_value.trim() )
+							$action = 'show';
+					});
+					
 					break;
 
 				case '<':
-
-					if ( $target_value.trim() < $source_element_value.trim() )
-						layers_show_if_display( 'show', $target_element ); // Show
-					else
-						layers_show_if_display( 'hide', $target_element ); // Hide
-
+					
+					$.each( $target_value, function( index, val ) {
+						if ( $target_value.trim() < $source_element_value.trim() )
+							$action = 'show';
+					});
+					
 					break;
 
 				case '>=':
-
-					if ( $target_value.trim() >= $source_element_value.trim() )
-						layers_show_if_display( 'show', $target_element ); // Show
-					else
-						layers_show_if_display( 'hide', $target_element ); // Hide
-
+					
+					$.each( $target_value, function( index, val ) {
+						if ( $target_value.trim() >= $source_element_value.trim() )
+							$action = 'show';
+					});
+					
 					break;
 
 				case '<=':
-
-					if ( $target_value.trim() <= $source_element_value.trim() )
-						layers_show_if_display( 'show', $target_element ); // Show
-					else
-						layers_show_if_display( 'hide', $target_element ); // Hide
-
+					
+					$.each( $target_value, function( index, val ) {
+						if ( $target_value.trim() <= $source_element_value.trim() )
+							$action = 'show';
+					});
+					
 					break;
 
 				case '==':
 				default:
-
-					if ( $target_value.trim() == $source_element_value.trim() )
-						layers_show_if_display( 'show', $target_element ); // Show
-					else
-						layers_show_if_display( 'hide', $target_element ); // Hide
-
+				
+					$.each( $target_value, function( index, val ) {
+						if ( val.trim() == $source_element_value.trim() )
+							$action = 'show';
+					});
+					
 					break;
 			}
-
+			
+			// Apply the result of the above compare.
+			layers_show_if_display( $action, $target_element ); // Show
 		});
 	}
 

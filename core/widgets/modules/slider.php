@@ -663,7 +663,6 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 									'name' => $this->get_layers_field_name( 'title' ),
 									'id' => $this->get_layers_field_id( 'title' ),
 									'placeholder' => __( 'Enter a Title' , 'layerswp' ),
-									'placeholder' => __( 'Enter title here' , 'layerswp' ),
 									'value' => ( isset( $widget['title'] ) ) ? $widget['title'] : NULL ,
 									'class' => 'layers-text'
 								)

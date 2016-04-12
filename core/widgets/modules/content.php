@@ -478,7 +478,6 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 								'id' => $this->get_layers_field_id( 'design' ),
 								'widget_id' => $this->widget_id,
 								'show_trash' => FALSE,
-								'container_class' => 'poopy',
 								'inline' => TRUE,
 								'align' => 'right',
 							),

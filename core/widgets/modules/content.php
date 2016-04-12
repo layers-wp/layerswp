@@ -33,7 +33,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 			$widget_ops = array(
 
 				'classname'   => 'obox-layers-' . $this->widget_id .'-widget',
-				'description' => __( 'This widget is used to display your ', 'layerswp' ) . $this->widget_title . '.',
+				'description' => __( 'This widget is used to display text and images in a flexible grid.', 'layerswp' ),
 			);
 
 			/* Widget control settings. */
@@ -127,11 +127,13 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 			$widget_container_class = array();
 			$widget_container_class[] = 'widget';
 			$widget_container_class[] = 'layers-content-widget';
-
 			$widget_container_class[] = 'content-vertical-massive';
 			$widget_container_class[] = $this->check_and_return( $widget , 'design', 'advanced', 'customclass' ); // Apply custom class from design-bar's advanced control.
 			$widget_container_class[] = $this->get_widget_spacing_class( $widget );
-			$widget_container_class = implode( ' ', apply_filters( 'layers_content_widget_container_class' , $widget_container_class ) ); ?>
+
+			$widget_container_class = apply_filters( 'layers_content_widget_container_class' , $widget_container_class, $widget, $this );
+			$widget_container_class = implode( ' ', $widget_container_class ); ?>
+
 			<?php echo $this->custom_anchor( $widget ); ?>
 			<div id="<?php echo esc_attr( $widget_id ); ?>" class="<?php echo esc_attr( $widget_container_class ); ?>">
 
@@ -157,10 +159,10 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 						$heading_type = ( isset( $widget['design']['fonts']['heading-type'] ) ) ? $widget['design']['fonts']['heading-type'] : 'h3' ;
 						?>
 						<div class="<?php echo $section_title_class; ?>">
-							<?php if( '' != $widget['title'] ) { ?>
+							<?php if( '' != $this->check_and_return( $widget, 'title' ) ) { ?>
 								<<?php echo $heading_type; ?> class="heading"><?php echo $widget['title'] ?></<?php echo $heading_type; ?>>
 							<?php } ?>
-							<?php if( '' != $widget['excerpt'] ) { ?>
+							<?php if( '' != $this->check_and_return( $widget, 'excerpt' ) ) { ?>
 								<div class="excerpt"><?php echo $widget['excerpt']; ?></div>
 							<?php } ?>
 						</div>

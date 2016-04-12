@@ -187,7 +187,8 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 				$widget_container_class[] = 'single-slide';
 			}
 
-			$widget_container_class = implode( ' ', apply_filters( 'layers_slider_widget_container_class' , $widget_container_class ) );
+			$widget_container_class = apply_filters( 'layers_slider_widget_container_class' , $widget_container_class, $widget, $this );
+			$widget_container_class = implode( ' ', $widget_container_class );
 
 			/**
 			 * Slider HTML

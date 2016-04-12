@@ -132,8 +132,12 @@ if( !class_exists( 'Layers_Contact_Widget' ) ) {
 			$widget_container_class[] = 'layers-contact-widget';
 			$widget_container_class[] = $this->check_and_return( $widget , 'design', 'advanced', 'customclass' ); // Apply custom class from design-bar's advanced control.
 			$widget_container_class[] = $this->get_widget_spacing_class( $widget );
+
 			if( !$show_title_or_excerpt && !$show_address_or_contactform  ) $widget_container_class[] = 'no-inset-top no-inset-bottom';
-			$widget_container_class = implode( ' ', apply_filters( 'layers_contact_widget_container_class' , $widget_container_class ) ); ?>
+
+			$widget_container_class = apply_filters( 'layers_contact_widget_container_class' , $widget_container_class, $widget, $this );
+			$widget_container_class = implode( ' ', $widget_container_class ); ?>
+
 			<?php echo $this->custom_anchor( $widget ); ?>
 			<div id="<?php echo esc_attr( $widget_id ); ?>" class="<?php echo esc_attr( $widget_container_class ); ?>">
 
@@ -151,10 +155,10 @@ if( !class_exists( 'Layers_Contact_Widget' ) ) {
 						$section_title_class[] = ( $this->check_and_return( $widget, 'design', 'background' , 'color' ) && 'dark' == layers_is_light_or_dark( $this->check_and_return( $widget, 'design', 'background' , 'color' ) ) ? 'invert' : '' );
 						$section_title_class = implode( ' ', $section_title_class ); ?>
 						<div class="<?php echo $section_title_class; ?>">
-							<?php if( '' != $widget['title'] ) { ?>
+							<?php if( '' != $this->check_and_return( $widget, 'title' ) ) { ?>
 								<h3 class="heading"><?php echo $widget['title']; ?></h3>
 							<?php } ?>
-							<?php if( '' != $widget['excerpt'] ) { ?>
+							<?php if( '' != $this->check_and_return( $widget, 'excerpt' ) ) { ?>
 								<div class="excerpt"><?php echo $widget['excerpt']; ?></div>
 							<?php } ?>
 						</div>

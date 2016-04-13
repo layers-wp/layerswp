@@ -113,14 +113,10 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 			// Turn $args array into variables.
 			extract( $args );
 
-			// $instance Defaults
-			$instance_defaults = $this->defaults;
+			// Apply defaults if widget is new (empty)
+			if ( empty( $instance ) ) $instance = wp_parse_args( $instance, $this->defaults );
 
-			// If we have information in this widget, then ignore the defaults
-			if( !empty( $instance ) ) $instance_defaults = array();
-
-			// Parse $instance
-			$widget = wp_parse_args( $instance, $instance_defaults );
+			$widget = $instance;
 
 			// Enqueue Masonry if need be
 			if( 'list-masonry' == $this->check_and_return( $widget , 'design', 'liststyle' ) ) $this->enqueue_masonry();
@@ -410,14 +406,10 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 		*/
 		function form( $instance ){
 
-			// $instance Defaults
-			$instance_defaults = $this->defaults;
+			// Apply defaults if widget is new (empty)
+			if ( empty( $instance ) ) $instance = wp_parse_args( $instance, $this->defaults );
 
-			// If we have information in this widget, then ignore the defaults
-			if( !empty( $instance ) ) $instance_defaults = array();
-
-			// Parse $instance
-			$widget = wp_parse_args( $instance, $instance_defaults );
+			$widget = $instance;
 
 			$this->design_bar(
 				'side', // CSS Class Name

@@ -93,13 +93,10 @@ if( !class_exists( 'Layers_Contact_Widget' ) ) {
 			// Turn $args array into variables.
 			extract( $args );
 
-			// $instance Defaults
-			$instance_defaults = $this->defaults;
+			// Apply defaults if widget is new (empty)
+			if ( empty( $instance ) ) $instance = wp_parse_args( $instance, $this->defaults );
 
-			// If we have information in this widget, then ignore the defaults
-			if( !empty( $instance ) ) $instance_defaults = array();
-
-			$widget = wp_parse_args( $instance , $instance_defaults );
+			$widget = $instance;
 
 			// Check if we have a map present
 			if( isset( $widget['show_google_map'] ) && ( '' != $widget['google_maps_location'] || '' != $widget['google_maps_long_lat'] ) ) {
@@ -240,14 +237,10 @@ if( !class_exists( 'Layers_Contact_Widget' ) ) {
 		*/
 		function form( $instance ){
 
-			// $instance Defaults
-			$instance_defaults = $this->defaults;
+			// Apply defaults if widget is new (empty)
+			if ( empty( $instance ) ) $instance = wp_parse_args( $instance, $this->defaults );
 
-			// If we have information in this widget, then ignore the defaults
-			if( !empty( $instance ) ) $instance_defaults = array();
-
-			// Parse $instance
-			$widget = wp_parse_args( $instance, $instance_defaults );
+			$widget = $instance;
 
 			$this->design_bar(
 				'side', // CSS Class Name

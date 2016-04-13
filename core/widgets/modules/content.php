@@ -197,7 +197,9 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 								if( !isset( $item[ 'width' ] ) ) $item[ 'width' ] = $this->column_defaults[ 'width' ];
 								
 								// Set the button styling
-								$this->inline_css .= layers_pro_apply_widget_button_styling( $this, $item, array( "#{$widget_id}-{$column_key} .button" ) );
+								if ( function_exists( 'layers_pro_apply_widget_button_styling' ) ) {
+									$this->inline_css .= layers_pro_apply_widget_button_styling( $this, $item, array( "#{$widget_id}-{$column_key} .button" ) );
+								}
 
 								// Add the correct span class
 								$span_class = 'span-' . $item[ 'width' ];

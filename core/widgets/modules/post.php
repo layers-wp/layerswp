@@ -137,7 +137,12 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 			$this->inline_css .= layers_inline_styles( '#' . $widget_id, 'background', array( 'background' => $widget['design'][ 'background' ] ) );
 			$this->inline_css .= layers_inline_styles( '#' . $widget_id, 'color', array( 'selectors' => array( '.section-title h3.heading' , '.section-title div.excerpt' ) , 'color' => $widget['design']['fonts'][ 'color' ] ) );
 			$this->inline_css .= layers_inline_styles( '#' . $widget_id, 'background', array( 'selectors' => array( '.thumbnail-body' ) , 'background' => array( 'color' => $this->check_and_return( $widget, 'design', 'column-background-color' ) ) ) );
-			$this->inline_css .= layers_inline_button_styles( '#' . $widget_id, 'button', array( 'selectors' => array( '.thumbnail-body a.button' ) ,'button' => $this->check_and_return( $widget, 'design', 'buttons' ) ) );
+			
+			// Apply Button Styling.
+			$this->inline_css .= layers_inline_button_styles( "#{$widget_id}", 'button', array( 'selectors' => array( '.thumbnail-body a.button' ) ,'button' => $this->check_and_return( $widget, 'design', 'buttons' ) ) );
+			
+			// Apply Layers Pro Button Styling.
+			$this->inline_css .= layers_pro_apply_widget_button_styling( $this, $widget, array( "#{$widget_id} .thumbnail-body a.button" ) );
 
 			// Set Image Sizes
 			if( isset( $widget['design'][ 'imageratios' ] ) ){

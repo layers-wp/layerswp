@@ -27,7 +27,7 @@ class Layers_Design_Controller {
 		// If there is no args information provided, can the operation
 		if( NULL == $args ) return;
 
-		// Set args, merged with defaults.
+		// Store args (merged with defaults)
 		$defaults = array(
 			'container_class' => '', // Optional unique css classes
 			'align' => 'left', // left | right
@@ -35,10 +35,13 @@ class Layers_Design_Controller {
 		);
 		$this->args = wp_parse_args( $args, $defaults );
 
-		// Set type side | top
+		// Store type (side | top)
 		$this->type = $type;
+		
+		// Store widget instance
+		$this->instance = $instance;
 
-		// Set widget values as an object ( we like working with objects )
+		// Store widget values
 		if( empty( $instance ) ) {
 			$this->values = array( 'design' => NULL );
 		} elseif( isset( $instance[ 'design' ] ) ) {
@@ -47,7 +50,7 @@ class Layers_Design_Controller {
 			$this->values = NULL;
 		}
 
-		// Setup the components for use
+		// Store components & custom_components
 		$this->components = $components;
 		$this->custom_components = $custom_components;
 

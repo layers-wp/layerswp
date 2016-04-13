@@ -23,7 +23,7 @@ get_template_part( 'partials/header' , 'page-title' ); ?>
 		) );
 
 		if ( $wp_query->have_posts() ) : ?>
-			<div <?php layers_center_column_class(); ?>>
+			<div id="post-list" <?php layers_center_column_class(); ?>>
 				<?php while ( $wp_query->have_posts() ) : $wp_query->the_post();
 					global $post; ?>
 					<?php get_template_part( 'partials/content' , 'list' ); ?>

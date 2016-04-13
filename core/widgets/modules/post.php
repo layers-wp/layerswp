@@ -42,7 +42,7 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 			$widget_ops = array(
 
 				'classname'   => 'obox-layers-' . $this->widget_id .'-widget',
-				'description' => __( 'This widget is used to display your ', 'layerswp' ) . $this->widget_title . '.',
+				'description' => __( 'This widget is used to display your posts in a flexible grid.', 'layerswp' ),
 			);
 
 			/* Widget control settings. */
@@ -135,7 +135,7 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 
 			// Apply Styling
 			$this->inline_css .= layers_inline_styles( '#' . $widget_id, 'background', array( 'background' => $widget['design'][ 'background' ] ) );
-			$this->inline_css .= layers_inline_styles( '#' . $widget_id, 'color', array( 'selectors' => array( '.section-title h3.heading' , '.section-title div.excerpt' ) , 'color' => $widget['design']['fonts'][ 'color' ] ) );
+			$this->inline_css .= layers_inline_styles( '#' . $widget_id, 'color', array( 'selectors' => array( '.section-title .heading' , '.section-title div.excerpt' ) , 'color' => $widget['design']['fonts'][ 'color' ] ) );
 			$this->inline_css .= layers_inline_styles( '#' . $widget_id, 'background', array( 'selectors' => array( '.thumbnail-body' ) , 'background' => array( 'color' => $this->check_and_return( $widget, 'design', 'column-background-color' ) ) ) );
 			
 			// Apply Button Styling.
@@ -213,13 +213,18 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 			* Generate the widget container class
 			*/
 			$widget_container_class = array();
+
 			$widget_container_class[] = 'widget';
 			$widget_container_class[] = 'layers-post-widget';
 			$widget_container_class[] = 'content-vertical-massive';
 			$widget_container_class[] = 'clearfix';
+			$widget_container_class[] = ( 'on' == $this->check_and_return( $widget , 'design', 'background', 'darken' ) ? 'darken' : '' );
 			$widget_container_class[] = $this->check_and_return( $widget , 'design', 'advanced', 'customclass' ); // Apply custom class from design-bar's advanced control.
 			$widget_container_class[] = $this->get_widget_spacing_class( $widget );
-			$widget_container_class = implode( ' ', apply_filters( 'layers_post_widget_container_class' , $widget_container_class ) ); ?>
+
+			$widget_container_class = apply_filters( 'layers_post_widget_container_class' , $widget_container_class, $this, $widget );
+			$widget_container_class = implode( ' ', $widget_container_class );  ?>
+
 			<?php echo $this->custom_anchor( $widget ); ?>
 			<div id="<?php echo esc_attr( $widget_id ); ?>" class="<?php echo esc_attr( $widget_container_class ); ?>">
 
@@ -237,10 +242,10 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 						$section_title_class[] = ( $this->check_and_return( $widget, 'design', 'background' , 'color' ) && 'dark' == layers_is_light_or_dark( $this->check_and_return( $widget, 'design', 'background' , 'color' ) ) ? 'invert' : '' );
 						$section_title_class = implode( ' ', $section_title_class ); ?>
 						<div class="<?php echo $section_title_class; ?>">
-							<?php if( '' != $widget['title'] ) { ?>
+							<?php if( '' != $this->check_and_return( $widget, 'title' )  ) { ?>
 								<h3 class="heading"><?php echo $widget['title'] ?></h3>
 							<?php } ?>
-							<?php if( '' != $widget['excerpt'] ) { ?>
+							<?php if( '' != $this->check_and_return( $widget, 'excerpt' )  ) { ?>
 								<div class="excerpt"><?php echo $widget['excerpt']; ?></div>
 							<?php } ?>
 						</div>

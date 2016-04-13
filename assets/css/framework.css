@@ -628,7 +628,7 @@ object{
 		color: rgba(0, 0, 0, 0.45);
 		font-size: 1.2rem;
 	}
-	.row.copyright{
+	.grid.copyright{
 		padding-top: 0;
 		padding-bottom: 0;
 	}
@@ -646,7 +646,7 @@ object{
 	.copyright .nav-horizontal a:hover{
 		background: none;
 	}
-	.row + .copyright{
+	.grid + .copyright{
 		padding-top: 20px;
 		border-top: 2px solid rgba(0, 0, 0, 0.15);
 	}

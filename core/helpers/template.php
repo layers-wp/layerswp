@@ -477,7 +477,7 @@ if( !function_exists( 'layers_apply_customizer_styles' ) ) {
 		 */
 
 		if( '' != $footer_color ) {
-			
+
 			// Apply the BG Color
 			layers_inline_styles( '.footer-site', 'background', array(
 				'background' => array(
@@ -1544,3 +1544,32 @@ if( !function_exists( 'layers_excerpt_action' ) ) {
 	}
 }
 add_action( 'layers_list_post_content', 'layers_excerpt_action' );
+
+
+/**
+ * Set Header meta data, such as OG support
+ *
+ */
+if( !function_exists( 'layers_header_meta' ) ) {
+	function layers_header_meta(){ ?>
+		<head prefix="og: http://ogp.me/ns#">
+		<?php if( is_single() ) { ?>
+			<meta property="og:title" content="<?php the_title(); ?>" />
+			<meta property="og:type" content="website" />
+			<meta property="og:url" content="<?php the_permalink(); ?>" />
+			<?php if( has_post_thumbnail() ){
+				$image_url = wp_get_attachment_url( get_post_thumbnail_id() ); ?>
+				<meta property="og:image" content="<?php echo $image_url; ?>" />
+			<?php } ?>
+		<?php } else { ?>
+			<meta property="og:title" content="<?php wp_title(); ?>" />
+			<meta property="og:type" content="website" />
+			<meta property="og:url" content="<?php home_url(); ?>" />
+			<?php $logo = get_option( 'site_logo' );
+			if( is_array( $logo ) && isset( $logo[ 'url' ] ) ){ ?>
+				<meta property="og:image" content="<?php echo esc_url( $logo['url'] ); ?>" />
+			<?php } ?>
+		<?php }
+	}
+}
+add_action( 'wp_head', 'layers_header_meta' );

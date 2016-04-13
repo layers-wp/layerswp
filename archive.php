@@ -14,7 +14,7 @@ get_header(); ?>
 		<?php get_sidebar( 'left' ); ?>
 
 		<?php if( have_posts() ) : ?>
-			<div <?php layers_center_column_class(); ?>>
+			<div id="post-list" <?php layers_center_column_class(); ?>>
 				<?php while( have_posts() ) : the_post(); ?>
 					<?php get_template_part( 'partials/content' , 'list' ); ?>
 				<?php endwhile; // while has_post(); ?>

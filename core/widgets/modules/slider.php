@@ -183,7 +183,8 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 				$widget_container_class[] = 'single-slide';
 			}
 
-			$widget_container_class = implode( ' ', apply_filters( 'layers_slider_widget_container_class' , $widget_container_class ) );
+			$widget_container_class = apply_filters( 'layers_slider_widget_container_class' , $widget_container_class, $this, $widget );
+			$widget_container_class = implode( ' ', $widget_container_class );
 
 			/**
 			 * Slider HTML
@@ -219,8 +220,8 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 
 							// Set the background styling
 							if( !empty( $item['design'][ 'background' ] ) ) $this->inline_css .= layers_inline_styles( '#' . $widget_id . '-' . $slide_key , 'background', array( 'background' => $item['design'][ 'background' ] ) );
-							if( !empty( $item['design']['fonts'][ 'color' ] ) ) $this->inline_css .= layers_inline_styles( '#' . $widget_id . '-' . $slide_key , 'color', array( 'selectors' => array( 'h3.heading', 'h3.heading a', 'div.excerpt' ) , 'color' => $item['design']['fonts'][ 'color' ] ) );
-							if( !empty( $item['design']['fonts'][ 'shadow' ] ) ) $this->inline_css .= layers_inline_styles( '#' . $widget_id . '-' . $slide_key , 'text-shadow', array( 'selectors' => array( 'h3.heading', 'h3.heading a',  'div.excerpt' )  , 'text-shadow' => $item['design']['fonts'][ 'shadow' ] ) );
+							if( !empty( $item['design']['fonts'][ 'color' ] ) ) $this->inline_css .= layers_inline_styles( '#' . $widget_id . '-' . $slide_key , 'color', array( 'selectors' => array( '.heading', '.heading a', 'div.excerpt' ) , 'color' => $item['design']['fonts'][ 'color' ] ) );
+							if( !empty( $item['design']['fonts'][ 'shadow' ] ) ) $this->inline_css .= layers_inline_styles( '#' . $widget_id . '-' . $slide_key , 'text-shadow', array( 'selectors' => array( '.heading', '.heading a',  'div.excerpt' )  , 'text-shadow' => $item['design']['fonts'][ 'shadow' ] ) );
 
 							// Set the button styling
 							$this->inline_css .= layers_pro_apply_widget_button_styling( $this, $item, array( "#{$widget_id}-{$slide_key} .button" ) );
@@ -267,6 +268,8 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 								$slide_class[] = $item['design']['fonts'][ 'align' ];
 							}
 							$slide_class[] = $this->check_and_return( $item, 'design', 'advanced', 'customclass' ); // Apply custom class from design-bar's advanced control.
+
+							$slide_class = apply_filters( 'layers_slider_widget_item_class', $slide_class, $this, $item, $widget );
 							$slide_class = implode( ' ', $slide_class );
 
 							// Set link entire slide or not

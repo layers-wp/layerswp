@@ -273,6 +273,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 								$classes[] = 'layers-masonry-column';
 								$classes[] = $this->id_base . '-' . $column_key;
 								$classes[] = $span_class;
+			$widget_container_class[] = ( 'on' == $this->check_and_return( $item , 'design', 'background', 'darken' ) ? 'darken' : '' );
 								$classes[] = ( '' != $first_last_class ? $first_last_class : '' );
 								$classes[] = ( 'list-masonry' == $this->check_and_return( $widget, 'design', 'liststyle' ) ? '' : '' );
 								$classes[] = 'column' . ( 'on' != $this->check_and_return( $widget, 'design', 'gutter' ) ? '-flush' : '' );

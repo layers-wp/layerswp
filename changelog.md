@@ -21,6 +21,7 @@
 * **Tweak** - Remove `layer_enqueue_init()` function - it's no longer needed now that the Customizer only loads Widget forms when needed, not all at once resulting in Firefox hanging. *SOB*
 * **Enhancement** - Entirely new grid code which allows for different columns in the same content widget, using flexbox and calc(). *DP*
 * **Enhancement** - Added subtle animation to .sub-menu drop down. *DP*
+* **Enhancement** - Added Open Graph meta support. *MP*
 * **Enhancement** - Added margin and padding (top and bottom) to the Content widget columns (See design-bar > advanced). *SOB*
 * **Enhancement** - Added 6 new icons to the Layers back end font family h1-h6 to cater for new SEO features. *DP*
 * **Developer** - 'show_trash' declaration in the design bar now requires an explicit TRUE flag. *MP*

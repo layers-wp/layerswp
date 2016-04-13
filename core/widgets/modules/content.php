@@ -283,7 +283,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 									$classes[] = 'has-image';
 								}
 
-								$classes = apply_filters( 'layers_content_widget_item_class', $classes, $this, $item, $widget );
+								$classes = apply_filters( 'layers_content_widget_item_class', $classes, $this, $item );
 								$classes = implode( ' ', $classes ); ?>
 
 								<div id="<?php echo $widget_id; ?>-<?php echo $column_key; ?>" class="<?php echo esc_attr( $classes ); ?>">

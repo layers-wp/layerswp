@@ -191,7 +191,6 @@ class Layers_Design_Controller {
 
 
 		if( isset( $this->args[ 'widget_id' ] ) ){
-			echo 'layers_design_bar_' . $key . '_' . $this->args[ 'widget_id' ] . '_elements';
 			$elements = apply_filters(
 					'layers_design_bar_' . $key . '_' . $this->args[ 'widget_id' ] . '_elements',
 					$elements,

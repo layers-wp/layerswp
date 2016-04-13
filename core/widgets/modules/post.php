@@ -551,7 +551,7 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 					'imageratios',
 					'background',
 					'advanced',
-				) )
+				), $this, $widget )
 			); ?>
 			<div class="layers-container-large">
 

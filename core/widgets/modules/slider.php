@@ -558,9 +558,9 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 						),
 					),
 				),
-				'advanced'
-			) );
-
+				'advanced',
+			), $this, $widget );
+	
 			// Legacy application of this filter - Do Not Use! (will be removed soon)
 			$components = apply_filters( 'layers_slide_widget_design_bar_custom_components', $components );
 
@@ -644,7 +644,7 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 								),
 								'elements_combine' => 'replace',
 							),
-						) )
+						), $this, $widget )
 					); ?>
 					<div class="layers-row">
 						<p class="layers-form-item">

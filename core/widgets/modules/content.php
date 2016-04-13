@@ -438,10 +438,9 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 						)
 					),
 					'background',
-					'advanced'
-				) )
-			);
-			?>
+					'advanced',
+				), $this, $widget )
+			); ?>
 			<div class="layers-container-large" id="layers-column-widget-<?php echo $this->number; ?>">
 
 				<?php $this->form_elements()->header( array(
@@ -476,7 +475,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 							$widget, // Widget Values
 							apply_filters( 'layers_column_widget_design_bar_components', array( // Components
 								'fonts',
-							) )
+							), $this, $widget )
 						); ?>
 
 					</div>
@@ -585,9 +584,8 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 								),
 								'elements_combine' => 'replace',
 							),
-						) )
-					);
-					?>
+						), $this, $widget )
+					); ?>
 					<div class="layers-row">
 						<p class="layers-form-item">
 							<label for="<?php echo $this->get_layers_field_id( 'title' ); ?>"><?php _e( 'Title' , 'layerswp' ); ?></label>

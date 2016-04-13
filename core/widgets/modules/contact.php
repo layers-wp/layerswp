@@ -130,6 +130,7 @@ if( !class_exists( 'Layers_Contact_Widget' ) ) {
 			$widget_container_class[] = 'clearfix';
 			$widget_container_class[] = 'content-vertical-massive';
 			$widget_container_class[] = 'layers-contact-widget';
+			$widget_container_class[] = ( 'on' == $this->check_and_return( $widget , 'design', 'background', 'darken' ) ? 'darken' : '' );
 			$widget_container_class[] = $this->check_and_return( $widget , 'design', 'advanced', 'customclass' ); // Apply custom class from design-bar's advanced control.
 			$widget_container_class[] = $this->get_widget_spacing_class( $widget );
 

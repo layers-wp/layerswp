@@ -12,7 +12,7 @@
 * **Fix** - Onboarding typo's. *DP*
 * **Fix** - Fixed aligncenter bug in blog posts which stopped images from centering. *DP*
 * **Fix** - Last item in in horizontal design bar Drop down now opens right: 0 to avoid overflow bug. *DP*
-* **Tweak** - Replaced all <section> containers with <div> in order to reverse engineer better SEO as Layers progresses. *DP*
+* **Tweak** - Replaced all `<section />` containers with `<div />` in order to reverse engineer better SEO as Layers progresses. *DP*
 * **Tweak** - Fixed associated CSS where section[class] was used. *DP*
 * **Tweak** - Show Address and Show Form are now defaulted to on in the conact widget. *MP*
 * **Tweak** - Fixed WooCommerce tab alignment issue in responsive mode. *DP*
@@ -25,9 +25,11 @@
 * **Enhancement** - Added margin and padding (top and bottom) to the Content widget columns (See design-bar > advanced). *SOB*
 * **Enhancement** - Added 6 new icons to the Layers back end font family h1-h6 to cater for new SEO features. *DP*
 * **Enhancement** - Darken now works on all widgets. *DP*
+* **Enhancement** - Feature list (tick/cross) added to components CSS as part of new cheat-sheet CSS. *DP*
 * **Developer** - 'show_trash' declaration in the design bar now requires an explicit TRUE flag. *MP*
 * **Developer** - `id="post-<?php the_ID(); ?>"` now applies to the `<article>` wrapper in single posts & pages. *MP*
- * **Developer** - Added `id="post-list"` to post archive containers. *MP*
+* **Developer** - Added `id="post-list"` to post archive containers. *MP*
+* **Developer** - Changed Off-canvas sidebar from a `section` to `div`. *MP*
 
 =======
 ##1.2.14

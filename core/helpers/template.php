@@ -470,6 +470,13 @@ if( !function_exists( 'layers_apply_customizer_styles' ) ) {
 					'border-bottom-color' => layers_too_light_then_dark( $main_color ),
 				),
 			));
+			
+			// Debugging:
+			if ( isset( $_GET['layers-test-buttons'] ) ) {
+				echo '<pre style="font-size:11px;">';
+				echo 'This should not happen!';
+				echo '</pre>';
+			}
 		}
 
 		/**

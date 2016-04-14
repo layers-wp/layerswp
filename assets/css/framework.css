@@ -479,6 +479,19 @@ object{
 	}
 
 /*-------------------------------*/
+/*- DEFINE ----------------------*/
+
+	.define{
+		border: 1px solid rgba(0, 0, 0, 0.1);
+	}
+	.define-top{
+		border-top: 1px solid rgba(0, 0, 0, 0.1);
+	}
+	.define-bottom{
+		border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+	}
+
+/*-------------------------------*/
 /*- HEADERS ---------------------*/
 
 	.header-site{
@@ -892,11 +905,11 @@ object{
 	.close-canvas:hover{
 		color: #fff;
 	}
-	.admin-bar section[class*=' off-canvas-'] .close-canvas{
+	.admin-bar div[class*=' off-canvas-'] .close-canvas{
 		top: 32px;
 	}
 
-	section[class*=' off-canvas-']{
+	div[class*=' off-canvas-']{
 		padding-top: 30px;
 		position: fixed;
 		top: 0;
@@ -907,7 +920,7 @@ object{
 		transition: all 0.3s ease-in-out 0s;
 		font-size: 1.4rem;
 	}
-	.admin-bar section[class*=' off-canvas-']{
+	.admin-bar div[class*=' off-canvas-']{
 		padding-top: 66px;
 	}
 	.off-canvas-right{

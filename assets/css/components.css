@@ -62,9 +62,6 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 		height: 100%;
 		position: relative;
 	}
-	.overlay.darken{
-		background: rgba(0, 0, 0, 0.2);
-	}
 	.auto-height .swiper-slide .overlay{
 		padding-top: 60px;
 		padding-bottom: 60px;
@@ -191,6 +188,57 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 			right: 10px;
 			opacity: 1;
 		}
+
+/*-------------------------------*/
+/*- FEATURE LIST (tick/cross) ---*/
+/*-------------------------------*/
+
+	.feature-list .media-body .excerpt ol,
+	.feature-list .media-body .excerpt ul{
+		list-style: none;
+		margin: 0;
+		padding: 0;
+	}
+	.feature-list .excerpt del,
+	.feature-list .excerpt s{
+		text-decoration: none;
+	}
+	.feature-list .excerpt del:before,
+	.feature-list .excerpt s:before{
+		margin-right: 8px;
+		content: "\e900";
+		font-family: 'layers-icons';
+		font-size: 1.4rem;
+	}
+	.feature-list .excerpt em{
+		font-style: normal;
+	}
+	.feature-list .excerpt em:before{
+		margin-right: 8px;
+		content: "\e901";
+		font-family: 'layers-icons';
+		font-size: 1.4rem;
+	}
+
+/*-------------------------------*/
+/*- DARKEN ----------------------*/
+/*-------------------------------*/
+
+	.darken{
+		position: relative;
+	}
+	.overlay.darken{
+		background: rgba(0, 0, 0, 0.2);
+	}
+	:not(.overlay).darken .container:before{
+		content: " ";
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background: rgba(0, 0, 0, 0.2);
+	}
 
 /*-------------------------------*/
 /*- AVATAR ----------------------*/

@@ -469,7 +469,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 								'id' => $this->get_layers_field_id( 'title' ) ,
 								'placeholder' => __( 'Enter title here' , 'layerswp' ),
 								'value' => ( isset( $widget['title'] ) ) ? $widget['title'] : NULL ,
-								'class' => 'layers-text layers-large'
+								'class' => 'layers-text layers-large layers-input-has-controls',
 							)
 						); ?>
 

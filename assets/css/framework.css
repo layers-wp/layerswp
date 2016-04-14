@@ -479,6 +479,19 @@ object{
 	}
 
 /*-------------------------------*/
+/*- DEFINE ----------------------*/
+
+	.define{
+		border: 1px solid rgba(0, 0, 0, 0.1);
+	}
+	.define-top{
+		border-top: 1px solid rgba(0, 0, 0, 0.1);
+	}
+	.define-bottom{
+		border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+	}
+
+/*-------------------------------*/
 /*- HEADERS ---------------------*/
 
 	.header-site{

@@ -69,7 +69,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 						'size' => 'medium',
 						'color' => NULL,
 						'shadow' => NULL,
-						'heading-type' => 'h3',
+						'heading-type' => 'h2',
 					)
 				),
 			);
@@ -87,7 +87,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 						'size' => 'medium',
 						'color' => NULL,
 						'shadow' => NULL,
-						'heading-type' => 'h5',
+						'heading-type' => 'h3',
 					),
 				),
 			) );
@@ -153,7 +153,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 						/**
 						 * Get Heading Type - for SEO
 						 */
-						$heading_type = ( isset( $widget['design']['fonts']['heading-type'] ) ) ? $widget['design']['fonts']['heading-type'] : 'h3' ;
+						$heading_type = ( isset( $widget['design']['fonts']['heading-type'] ) ) ? $widget['design']['fonts']['heading-type'] : 'h2' ;
 						?>
 						<div class="<?php echo $section_title_class; ?>">
 							<?php if( '' != $this->check_and_return( $widget, 'title' ) ) { ?>
@@ -315,7 +315,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 									/**
 									 * Get Heading Type - for SEO
 									 */
-									$heading_type = ( isset( $item['design']['fonts']['heading-type'] ) ) ? $item['design']['fonts']['heading-type'] : 'h5' ;
+									$heading_type = ( isset( $item['design']['fonts']['heading-type'] ) ) ? $item['design']['fonts']['heading-type'] : 'h3' ;
 									?>
 
 									<div class="<?php echo $column_inner_classes; ?>">

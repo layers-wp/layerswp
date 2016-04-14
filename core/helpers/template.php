@@ -454,7 +454,7 @@ if( !function_exists( 'layers_apply_customizer_styles' ) ) {
 					'background-color' => $main_color,
 				)
 			));
-
+			
 			// Content - Links
 			layers_inline_styles( array(
 				'selectors' => array( '.copy a:not(.button)', '.story a:not(.button)' ),
@@ -472,9 +472,10 @@ if( !function_exists( 'layers_apply_customizer_styles' ) ) {
 			));
 			
 			// Debugging:
-			if ( isset( $_GET['layers-test-buttons'] ) ) {
+			global $wp_customize;
+			if ( $wp_customize && ( ( bool ) layers_get_theme_mod( 'dev-switch-button-css-testing' ) ) ) {
 				echo '<pre style="font-size:11px;">';
-				echo 'This should not happen!';
+				echo 'RE: Buttons - This should not happen if Layers Pro is active!';
 				echo '</pre>';
 			}
 		}

@@ -905,12 +905,13 @@ div[id*='layers-widget'] .widget-control-actions .alignright{
 	.layers-form-item textarea {
 		display: block;
 		width: 100%;
-		padding: 8px;
+		height: 36px;
+		padding: 0 8px;
 		margin: 0;
-		line-height: 18px;
 		background: #fff;
 		border: 1px solid #ddd;
 		box-shadow: inset 1px 1px 2px rgba(0, 0, 0, 0.1);
+		line-height: 28px;
 	}
 	.layers-form-item select {
 		display: block;
@@ -1009,7 +1010,7 @@ div[id*='layers-widget'] .widget-control-actions .alignright{
 	.layers-form-item input[type=password].layers-large,
 	.layers-form-item input[type=link].layers-large{
 		font-size: 20px;
-		line-height: 28px;
+		height: 42px;
 	}
 	.customize-control .layers-textarea.layers-large{
 		font-size: 16px;

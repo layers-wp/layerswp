@@ -52,7 +52,7 @@ class Layers_Intercom {
 			return;
 
 		// Get current user info
-		get_currentuserinfo();
+		$current_user = wp_get_current_user();
 
 		/**
 		 * Basic Intercom settings

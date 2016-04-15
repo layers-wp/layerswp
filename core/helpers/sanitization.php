@@ -50,5 +50,5 @@ if( !function_exists( 'layers_sanitize_js') ) {
 
 		return trim( $safe_text );
 	}
-} // layers_sanitize_number
+} // layers_sanitize_js
 

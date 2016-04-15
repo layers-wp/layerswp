@@ -947,6 +947,7 @@ div[id*='layers-widget'] .widget-control-actions .alignright{
 	}
 	.layers-form-item input[type=text].layers-color-selector.wp-color-picker{
 		float: left;
+		height: auto;
 		padding: 3px;
 		border-top-left-radius: 3px;
 		border-bottom-left-radius: 3px;

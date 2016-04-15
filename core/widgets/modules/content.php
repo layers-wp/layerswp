@@ -309,11 +309,16 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 									$column_inner_classes[] = $this->check_and_return( $item, 'design', 'imagealign' );
 									$column_inner_classes[] = $this->check_and_return( $item, 'design', 'fonts' , 'size' );
 									$column_inner_classes = implode( ' ', $column_inner_classes );
-
+									
 									/**
 									 * Get Heading Type - for SEO
 									 */
 									$heading_type = ( isset( $item['design']['fonts']['heading-type'] ) ) ? $item['design']['fonts']['heading-type'] : 'h3' ;
+									
+									/**
+									 * Button Size.
+									 */
+									$button_size = $this->check_and_return( $item , 'design' , 'buttons-size' ) ? 'btn-' . $this->check_and_return( $item , 'design' , 'buttons-size' ) : '' ;
 									?>
 
 									<div class="<?php echo $column_inner_classes; ?>">
@@ -346,7 +351,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 													<div class="excerpt"><?php layers_the_content( $item['excerpt'] ); ?></div>
 												<?php } ?>
 												<?php if ( $link_array['link'] && $link_array['text'] ) { ?>
-													<a <?php echo $link_href_attr; ?> class="button btn-<?php echo $this->check_and_return( $item , 'design' , 'fonts' , 'size' ); ?>" <?php echo $link_target_attr; ?>>
+													<a <?php echo $link_href_attr; ?> class="button <?php echo $button_size; ?>" <?php echo $link_target_attr; ?>>
 														<?php echo $link_array['text']; ?>
 													</a>
 												<?php } ?>

@@ -304,8 +304,14 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 								 * Get Heading Type - for SEO
 								 */
 								$heading_type = ( isset( $item['design']['fonts']['heading-type'] ) ) ? $item['design']['fonts']['heading-type'] : 'h3';
+								
+								/**
+								 * Button Size.
+								 */
+								$button_size = $this->check_and_return( $item , 'design' , 'buttons-size' ) ? 'btn-' . $this->check_and_return( $item , 'design' , 'buttons-size' ) : '' ;
+								$button_size = ( '' === $button_size &&  $this->check_and_return( $item , 'design' , 'fonts' , 'size' ) && $this->check_and_return( $item , 'design' , 'fonts' , 'size' ) ) ? 'btn-' . $this->check_and_return( $item , 'design' , 'fonts' , 'size' ) : '' ;
 								?>
-
+								
 								<div class="<?php echo $overlay_classes; ?>" >
 									<div class="container clearfix">
 										<?php if( '' != $item['title'] || '' != $item['excerpt'] || '' != $link_array['link'] ) { ?>
@@ -318,7 +324,7 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 														<div data-swiper-parallax="-300" class="excerpt"><?php layers_the_content( $item['excerpt'] ); ?></div>
 													<?php } ?>
 													<?php if( 'div' == $slide_wrapper_tag && $link_array['link'] && $link_array['text'] ) { ?>
-														<a data-swiper-parallax="-200" <?php echo $link_href_attr; ?> <?php echo $link_target_attr; ?> class="button btn-<?php echo $this->check_and_return( $item , 'design' , 'fonts' , 'size' ); ?>">
+														<a data-swiper-parallax="-200" <?php echo $link_href_attr; ?> <?php echo $link_target_attr; ?> class="button <?php echo $button_size; ?>">
 															<?php echo $link_array['text']; ?>
 														</a>
 													<?php } ?>

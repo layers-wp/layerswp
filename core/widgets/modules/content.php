@@ -279,12 +279,10 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 								$classes[] = ( 'list-masonry' == $this->check_and_return( $widget, 'design', 'liststyle' ) ? '' : '' );
 								$classes[] = 'column' . ( 'on' != $this->check_and_return( $widget, 'design', 'gutter' ) ? '-flush' : '' );
 								$classes[] = $this->check_and_return( $item, 'design', 'advanced', 'customclass' ); // Apply custom class from design-bar's advanced control.
-								if( $this->check_and_return( $item, 'design' , 'background', 'image' ) || '' != $this->check_and_return( $item, 'design' , 'background', 'color' ) ) {
+								if( $this->check_and_return( $item, 'design' , 'background', 'image' ) || '' != $this->check_and_return( $item, 'design' , 'background', 'color' ) )
 									$classes[] = 'content';
-								}
-								if( false != $media ) {
+								if( false != $media )
 									$classes[] = 'has-image';
-								}
 
 								$classes = apply_filters( 'layers_content_widget_item_class', $classes, $this, $item );
 								$classes = implode( ' ', $classes ); ?>

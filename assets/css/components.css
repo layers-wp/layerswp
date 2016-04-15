@@ -190,6 +190,37 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 		}
 
 /*-------------------------------*/
+/*- FEATURE LIST (tick/cross) ---*/
+/*-------------------------------*/
+
+	.feature-list .media-body .excerpt ol,
+	.feature-list .media-body .excerpt ul{
+		list-style: none;
+		margin: 0;
+		padding: 0;
+	}
+	.feature-list .excerpt del,
+	.feature-list .excerpt s{
+		text-decoration: none;
+	}
+	.feature-list .excerpt del:before,
+	.feature-list .excerpt s:before{
+		margin-right: 8px;
+		content: "\e900";
+		font-family: 'layers-icons';
+		font-size: 1.4rem;
+	}
+	.feature-list .excerpt em{
+		font-style: normal;
+	}
+	.feature-list .excerpt em:before{
+		margin-right: 8px;
+		content: "\e901";
+		font-family: 'layers-icons';
+		font-size: 1.4rem;
+	}
+
+/*-------------------------------*/
 /*- DARKEN ----------------------*/
 /*-------------------------------*/
 

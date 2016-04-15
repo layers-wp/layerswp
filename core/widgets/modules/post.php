@@ -578,6 +578,7 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 
 					<div class="layers-row layers-push-bottom">
 						<p class="layers-form-item">
+							
 							<?php echo $this->form_elements()->input(
 								array(
 									'type' => 'text',
@@ -588,9 +589,26 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 									'class' => 'layers-text layers-large'
 								)
 							); ?>
+							
+							<?php $this->design_bar(
+								'top', // CSS Class Name
+								array( // Widget Object
+									'name' => $this->get_layers_field_name( 'design' ),
+									'id' => $this->get_layers_field_id( 'design' ),
+									'widget_id' => $this->widget_id,
+									'show_trash' => FALSE,
+									'inline' => TRUE,
+									'align' => 'right',
+								),
+								$widget, // Widget Values
+								apply_filters( 'layers_post_widget_design_bar_components', array( // Components
+									'fonts',
+								), $this, $widget )
+							); ?>
+							
 						</p>
-
 						<p class="layers-form-item">
+							
 							<?php echo $this->form_elements()->input(
 								array(
 									'type' => 'rte',
@@ -601,6 +619,7 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 									'class' => 'layers-textarea layers-large'
 								)
 							); ?>
+							
 						</p>
 						<?php // Grab the terms as an array and loop 'em to generate the $options for the input
 						$terms = get_terms( $this->taxonomy , array( 'hide_empty' => false ) );

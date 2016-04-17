@@ -195,10 +195,11 @@ class Layers_Design_Controller {
 
 		if( isset( $this->args[ 'widget_id' ] ) ){
 			$elements = apply_filters(
-					'layers_design_bar_' . $key . '_' . $this->args[ 'widget_id' ] . '_elements',
-					$elements,
-					$this
-				);
+				'layers_design_bar_' . $key . '_' . $this->args[ 'widget_id' ] . '_elements',
+				$elements,
+				$this
+			);
+			// s( 'layers_design_bar_' . $key . '_' . $this->args[ 'widget_id' ] . '_elements' );
 		} ?>
 
 		<li class="layers-design-bar-nav-item layers-visuals-item">

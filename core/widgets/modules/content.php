@@ -288,7 +288,8 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 								$classes = implode( ' ', $classes ); ?>
 
 								<div id="<?php echo $widget_id; ?>-<?php echo $column_key; ?>" class="<?php echo esc_attr( $classes ); ?>">
-									<?php /**
+									<?php
+									/**
 									* Set Overlay CSS Classes
 									*/
 									$column_inner_classes = array();
@@ -464,7 +465,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 
 				<section class="layers-accordion-section layers-content">
 					<div class="layers-form-item">
-
+					
 						<?php echo $this->form_elements()->input(
 							array(
 								'type' => 'text',
@@ -475,7 +476,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 								'class' => 'layers-text layers-large layers-input-has-controls',
 							)
 						); ?>
-
+						
 						<?php $this->design_bar(
 							'top', // CSS Class Name
 							array( // Widget Object
@@ -491,9 +492,10 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 								'fonts',
 							), $this, $widget )
 						); ?>
-
+						
 					</div>
 					<div class="layers-form-item">
+					
 						<?php echo $this->form_elements()->input(
 							array(
 								'type' => 'rte',
@@ -504,12 +506,14 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 								'class' => 'layers-textarea layers-large'
 							)
 						); ?>
+						
 					</div>
 				</section>
-
 				<section class="layers-accordion-section layers-content">
 					<div class="layers-form-item">
+					
 						<?php $this->repeater( 'column', $widget ); ?>
+						
 					</div>
 				</section>
 

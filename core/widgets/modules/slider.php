@@ -129,8 +129,10 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 			// Turn $args array into variables.
 			extract( $args );
 
-			// Apply defaults if widget is new (empty)
-			if ( empty( $instance ) ) $instance = wp_parse_args( $instance, $this->defaults );
+			// Use defaults if $instance is empty.
+			if( empty( $instance ) && ! empty( $this->defaults ) ) {
+				$instance = wp_parse_args( $instance, $this->defaults );
+			}
 
 			// Enqueue Scipts when needed
 			$this->enqueue_scripts();
@@ -462,8 +464,10 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 		*/
 		function form( $instance ){
 
-			// Apply defaults if widget is new (empty)
-			if ( empty( $instance ) ) $instance = wp_parse_args( $instance, $this->defaults );
+			// Use defaults if $instance is empty.
+			if( empty( $instance ) && ! empty( $this->defaults ) ) {
+				$instance = wp_parse_args( $instance, $this->defaults );
+			}
 			
 			$components = apply_filters( 'layers_slide_widget_design_bar_components', array(
 				'layout' => array(

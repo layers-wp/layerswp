@@ -113,8 +113,10 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 			// Turn $args array into variables.
 			extract( $args );
 
-			// Apply defaults if widget is new (empty)
-			if ( empty( $instance ) ) $instance = wp_parse_args( $instance, $this->defaults );
+			// Use defaults if $instance is empty.
+			if( empty( $instance ) && ! empty( $this->defaults ) ) {
+				$instance = wp_parse_args( $instance, $this->defaults );
+			}
 
 			// Enqueue Masonry if need be
 			if( 'list-masonry' == $this->check_and_return( $instance , 'design', 'liststyle' ) ) $this->enqueue_masonry();
@@ -418,8 +420,10 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 		*/
 		function form( $instance ){
 
-			// Apply defaults if widget is new (empty)
-			if ( empty( $instance ) ) $instance = wp_parse_args( $instance, $this->defaults );
+			// Use defaults if $instance is empty.
+			if( empty( $instance ) && ! empty( $this->defaults ) ) {
+				$instance = wp_parse_args( $instance, $this->defaults );
+			}
 
 			$this->design_bar(
 				'side', // CSS Class Name

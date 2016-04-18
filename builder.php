@@ -24,9 +24,11 @@ if ( post_password_required() ) { ?>
 		</div>
 		<?php do_action('layers_after_post_loop'); ?>
 	</div>
-<?php } else {
-	dynamic_sidebar( 'obox-layers-builder-' . $post->ID );
-}
+<?php } else { ?>
+	<div id="<?php echo 'obox-layers-builder-' . $post->ID; ?>">
+		<?php dynamic_sidebar( 'obox-layers-builder-' . $post->ID ); ?>
+	</div>
+<?php }
 
 do_action('after_layers_builder_widgets');
 

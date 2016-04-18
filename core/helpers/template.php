@@ -454,7 +454,7 @@ if( !function_exists( 'layers_apply_customizer_styles' ) ) {
 					'background-color' => $main_color,
 				)
 			));
-			
+
 			// Content - Links
 			layers_inline_styles( array(
 				'selectors' => array( '.copy a:not(.button)', '.story a:not(.button)' ),
@@ -470,7 +470,7 @@ if( !function_exists( 'layers_apply_customizer_styles' ) ) {
 					'border-bottom-color' => layers_too_light_then_dark( $main_color ),
 				),
 			));
-			
+
 			// Debugging:
 			global $wp_customize;
 			if ( $wp_customize && ( ( bool ) layers_get_theme_mod( 'dev-switch-button-css-testing' ) ) ) {
@@ -1560,7 +1560,6 @@ add_action( 'layers_list_post_content', 'layers_excerpt_action' );
  */
 if( !function_exists( 'layers_header_meta' ) ) {
 	function layers_header_meta(){ ?>
-		<head prefix="og: http://ogp.me/ns#">
 		<?php if( is_single() ) { ?>
 			<meta property="og:title" content="<?php the_title(); ?>" />
 			<meta property="og:type" content="website" />
@@ -1581,3 +1580,17 @@ if( !function_exists( 'layers_header_meta' ) ) {
 	}
 }
 add_action( 'wp_head', 'layers_header_meta' );
+
+
+/**
+ * Set Blank menu function which is used as a fallback in the Layers Menus
+ *
+ * @return string Blank space
+ *
+ */
+
+if( !function_exists( 'layers_blank_menu' ) ) {
+	function layers_blank_menu(){
+		echo '';
+	}
+}

@@ -137,7 +137,7 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 			$this->inline_css .= layers_inline_styles( '#' . $widget_id, 'background', array( 'background' => $instance['design'][ 'background' ] ) );
 			$this->inline_css .= layers_inline_styles( '#' . $widget_id, 'color', array( 'selectors' => array( '.section-title .heading' , '.section-title div.excerpt' ) , 'color' => $instance['design']['fonts'][ 'color' ] ) );
 			$this->inline_css .= layers_inline_styles( '#' . $widget_id, 'background', array( 'selectors' => array( '.thumbnail-body' ) , 'background' => array( 'color' => $this->check_and_return( $instance, 'design', 'column-background-color' ) ) ) );
-			
+
 			// Apply Button Styling.
 			if ( function_exists( 'layers_pro_apply_widget_button_styling' ) ) {
 				// Apply Layers Pro Button Styling.
@@ -250,7 +250,7 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 								<h3 class="heading"><?php echo $instance['title'] ?></h3>
 							<?php } ?>
 							<?php if( '' != $this->check_and_return( $instance, 'excerpt' )  ) { ?>
-								<div class="excerpt"><?php echo $instance['excerpt']; ?></div>
+								<div class="excerpt"><?php echo layers_the_content( $instance['excerpt'] ); ?></div>
 							<?php } ?>
 						</div>
 					</div>
@@ -578,7 +578,7 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 
 					<div class="layers-row layers-push-bottom">
 						<div class="layers-form-item">
-							
+
 							<?php echo $this->form_elements()->input(
 								array(
 									'type' => 'text',
@@ -589,7 +589,7 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 									'class' => 'layers-text layers-large'
 								)
 							); ?>
-							
+
 							<?php $this->design_bar(
 								'top', // CSS Class Name
 								array( // Widget Object
@@ -605,10 +605,10 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 									'fonts',
 								), $this, $instance )
 							); ?>
-							
+
 						</div>
 						<div class="layers-form-item">
-							
+
 							<?php echo $this->form_elements()->input(
 								array(
 									'type' => 'rte',
@@ -619,7 +619,7 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 									'class' => 'layers-textarea layers-large'
 								)
 							); ?>
-							
+
 						</div>
 						<?php // Grab the terms as an array and loop 'em to generate the $options for the input
 						$terms = get_terms( $this->taxonomy , array( 'hide_empty' => false ) );

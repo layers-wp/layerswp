@@ -160,7 +160,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 								<<?php echo $heading_type; ?> class="heading"><?php echo $instance['title'] ?></<?php echo $heading_type; ?>>
 							<?php } ?>
 							<?php if( '' != $this->check_and_return( $instance, 'excerpt' ) ) { ?>
-								<div class="excerpt"><?php echo $instance['excerpt']; ?></div>
+								<div class="excerpt"><?php echo layers_the_content( $instance['excerpt'] ); ?></div>
 							<?php } ?>
 						</div>
 					</div>
@@ -187,15 +187,15 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 								}
 								// Set the background styling
 								if( !empty( $item_instance['design'][ 'background' ] ) ) $this->inline_css .= layers_inline_styles( '#' . $widget_id . '-' . $column_key , 'background', array( 'background' => $item_instance['design'][ 'background' ] ) );
-								if( !empty( $item_instance['design']['fonts'][ 'color' ] ) ) $this->inline_css .= layers_inline_styles( '#' . $widget_id . '-' . $column_key , 'color', array( 'selectors' => array( 'h5.heading a', 'h5.heading' , 'div.excerpt' , 'div.excerpt p' ) , 'color' => $item_instance['design']['fonts'][ 'color' ] ) );
-								if( !empty( $item_instance['design']['fonts'][ 'shadow' ] ) ) $this->inline_css .= layers_inline_styles( '#' . $widget_id . '-' . $column_key , 'text-shadow', array( 'selectors' => array( 'h5.heading a', 'h5.heading' , 'div.excerpt' , 'div.excerpt p' )  , 'text-shadow' => $item_instance['design']['fonts'][ 'shadow' ] ) );
+								if( !empty( $item_instance['design']['fonts'][ 'color' ] ) ) $this->inline_css .= layers_inline_styles( '#' . $widget_id . '-' . $column_key , 'color', array( 'selectors' => array( '.heading a', '.heading' , 'div.excerpt' , 'div.excerpt p' ) , 'color' => $item_instance['design']['fonts'][ 'color' ] ) );
+								if( !empty( $item_instance['design']['fonts'][ 'shadow' ] ) ) $this->inline_css .= layers_inline_styles( '#' . $widget_id . '-' . $column_key , 'text-shadow', array( 'selectors' => array( '.heading a', '.heading' , 'div.excerpt' , 'div.excerpt p' )  , 'text-shadow' => $item_instance['design']['fonts'][ 'shadow' ] ) );
 
 								// Set column margin & padding
 								if ( !empty( $item_instance['design']['advanced']['margin'] ) ) $this->inline_css .= layers_inline_styles( "#{$widget_id}-{$column_key}", 'margin', array( 'margin' => $item_instance['design']['advanced']['margin'] ) );
 								if ( !empty( $item_instance['design']['advanced']['padding'] ) ) $this->inline_css .= layers_inline_styles( "#{$widget_id}-{$column_key}", 'padding', array( 'padding' => $item_instance['design']['advanced']['padding'] ) );
 
 								if( !isset( $item_instance[ 'width' ] ) ) $item_instance[ 'width' ] = $this->column_defaults[ 'width' ];
-								
+
 								// Set the button styling
 								if ( function_exists( 'layers_pro_apply_widget_button_styling' ) ) {
 									$this->inline_css .= layers_pro_apply_widget_button_styling( $this, $item_instance, array( "#{$widget_id}-{$column_key} .button" ) );
@@ -310,12 +310,12 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 									$column_inner_classes[] = $this->check_and_return( $item_instance, 'design', 'imagealign' );
 									$column_inner_classes[] = $this->check_and_return( $item_instance, 'design', 'fonts' , 'size' );
 									$column_inner_classes = implode( ' ', $column_inner_classes );
-									
+
 									/**
 									 * Get Heading Type - for SEO
 									 */
 									$heading_type = ( isset( $item_instance['design']['fonts']['heading-type'] ) ) ? $item_instance['design']['fonts']['heading-type'] : 'h3' ;
-									
+
 									/**
 									 * Button Size.
 									 */
@@ -465,7 +465,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 
 				<section class="layers-accordion-section layers-content">
 					<div class="layers-form-item">
-					
+
 						<?php echo $this->form_elements()->input(
 							array(
 								'type' => 'text',
@@ -476,7 +476,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 								'class' => 'layers-text layers-large layers-input-has-controls',
 							)
 						); ?>
-						
+
 						<?php $this->design_bar(
 							'top', // CSS Class Name
 							array( // Widget Object
@@ -492,10 +492,10 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 								'fonts',
 							), $this, $instance )
 						); ?>
-						
+
 					</div>
 					<div class="layers-form-item">
-					
+
 						<?php echo $this->form_elements()->input(
 							array(
 								'type' => 'rte',
@@ -506,14 +506,14 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 								'class' => 'layers-textarea layers-large'
 							)
 						); ?>
-						
+
 					</div>
 				</section>
 				<section class="layers-accordion-section layers-content">
 					<div class="layers-form-item">
-					
+
 						<?php $this->repeater( 'column', $instance ); ?>
-						
+
 					</div>
 				</section>
 

@@ -308,13 +308,15 @@ p.stars span a:focus{
 
 		/*-------------------*/
 		/*- PRODUCT THUMBS --*/
+		.thumbnails.columns-3{
+			margin-left: 0;
+			margin-right: 0;
+			max-width: 100%;
+		}
 		.thumbnails a{
 			display: inline-block;
-			width: 23.5%;
-			margin: 10px 2% 0 0;
-		}
-		.thumbnails a:nth-child(4n+4){
-			margin-right: 0;
+			width: calc(((100% / 12) * 3) - 10px);
+			margin: 10px 10px 0 0;
 		}
 		.thumbnails a img{
 			display: block;

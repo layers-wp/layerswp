@@ -24,7 +24,7 @@ get_header(); ?>
 					<?php  do_action('woocommerce_before_shop_loop'); ?>
 				</div>
 
-				<ul class="products row">
+				<ul class="products grid">
 
 					<?php // Sub category listing
 					woocommerce_product_subcategories(); ?>

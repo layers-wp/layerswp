@@ -105,17 +105,17 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 			// Turn $args array into variables.
 			extract( $args );
 
-			// Apply defaults if widget is new (empty)
-			if ( empty( $instance ) ) $instance = wp_parse_args( $instance, $this->defaults );
-
-			$widget = $instance;
+			// Use defaults if $instance is empty.
+			if( empty( $instance ) && ! empty( $this->defaults ) ) {
+				$instance = wp_parse_args( $instance, $this->defaults );
+			}
 
 			// Enqueue Masonry if need be
-			if( 'list-masonry' == $this->check_and_return( $widget , 'design', 'liststyle' ) ) $this->enqueue_masonry();
+			if( 'list-masonry' == $this->check_and_return( $instance , 'design', 'liststyle' ) ) $this->enqueue_masonry();
 
 			// Set the background styling
-			if( !empty( $widget['design'][ 'background' ] ) ) $this->inline_css .= layers_inline_styles( '#' . $widget_id, 'background', array( 'background' => $widget['design'][ 'background' ] ) );
-			if( !empty( $widget['design']['fonts'][ 'color' ] ) ) $this->inline_css .= layers_inline_styles( '#' . $widget_id, 'color', array( 'selectors' => array( '.section-title .heading' , '.section-title div.excerpt' ) , 'color' => $widget['design']['fonts'][ 'color' ] ) );
+			if( !empty( $instance['design'][ 'background' ] ) ) $this->inline_css .= layers_inline_styles( '#' . $widget_id, 'background', array( 'background' => $instance['design'][ 'background' ] ) );
+			if( !empty( $instance['design']['fonts'][ 'color' ] ) ) $this->inline_css .= layers_inline_styles( '#' . $widget_id, 'color', array( 'selectors' => array( '.section-title .heading' , '.section-title div.excerpt' ) , 'color' => $instance['design']['fonts'][ 'color' ] ) );
 
 			/**
 			* Generate the widget container class
@@ -124,19 +124,19 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 			$widget_container_class[] = 'widget';
 			$widget_container_class[] = 'layers-content-widget';
 			$widget_container_class[] = 'content-vertical-massive';
-			$widget_container_class[] = ( 'on' == $this->check_and_return( $widget , 'design', 'background', 'darken' ) ? 'darken' : '' );
-			$widget_container_class[] = $this->check_and_return( $widget , 'design', 'advanced', 'customclass' ); // Apply custom class from design-bar's advanced control.
-			$widget_container_class[] = $this->get_widget_spacing_class( $widget );
+			$widget_container_class[] = ( 'on' == $this->check_and_return( $instance , 'design', 'background', 'darken' ) ? 'darken' : '' );
+			$widget_container_class[] = $this->check_and_return( $instance , 'design', 'advanced', 'customclass' ); // Apply custom class from design-bar's advanced control.
+			$widget_container_class[] = $this->get_widget_spacing_class( $instance );
 
-			$widget_container_class = apply_filters( 'layers_content_widget_container_class' , $widget_container_class, $this, $widget );
+			$widget_container_class = apply_filters( 'layers_content_widget_container_class' , $widget_container_class, $this, $instance );
 			$widget_container_class = implode( ' ', $widget_container_class ); ?>
 
-			<?php echo $this->custom_anchor( $widget ); ?>
+			<?php echo $this->custom_anchor( $instance ); ?>
 			<div id="<?php echo esc_attr( $widget_id ); ?>" class="<?php echo esc_attr( $widget_container_class ); ?>">
 
-				<?php do_action( 'layers_before_content_widget_inner', $this, $widget ); ?>
+				<?php do_action( 'layers_before_content_widget_inner', $this, $instance ); ?>
 
-				<?php if ( NULL !== $this->check_and_return( $widget , 'title' ) || NULL !== $this->check_and_return( $widget , 'excerpt' ) ) { ?>
+				<?php if ( NULL !== $this->check_and_return( $instance , 'title' ) || NULL !== $this->check_and_return( $instance , 'excerpt' ) ) { ?>
 
 					<div class="container clearfix">
 						<?php
@@ -145,69 +145,69 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 						*/
 						$section_title_class = array();
 						$section_title_class[] = 'section-title clearfix';
-						$section_title_class[] = $this->check_and_return( $widget , 'design', 'fonts', 'size' );
-						$section_title_class[] = $this->check_and_return( $widget , 'design', 'fonts', 'align' );
-						$section_title_class[] = ( $this->check_and_return( $widget, 'design', 'background' , 'color' ) && 'dark' == layers_is_light_or_dark( $this->check_and_return( $widget, 'design', 'background' , 'color' ) ) ? 'invert' : '' );
+						$section_title_class[] = $this->check_and_return( $instance , 'design', 'fonts', 'size' );
+						$section_title_class[] = $this->check_and_return( $instance , 'design', 'fonts', 'align' );
+						$section_title_class[] = ( $this->check_and_return( $instance, 'design', 'background' , 'color' ) && 'dark' == layers_is_light_or_dark( $this->check_and_return( $instance, 'design', 'background' , 'color' ) ) ? 'invert' : '' );
 						$section_title_class = implode( ' ', $section_title_class );
 
 						/**
 						 * Get Heading Type - for SEO
 						 */
-						$heading_type = ( isset( $widget['design']['fonts']['heading-type'] ) ) ? $widget['design']['fonts']['heading-type'] : 'h2' ;
+						$heading_type = ( isset( $instance['design']['fonts']['heading-type'] ) ) ? $instance['design']['fonts']['heading-type'] : 'h2' ;
 						?>
 						<div class="<?php echo $section_title_class; ?>">
-							<?php if( '' != $this->check_and_return( $widget, 'title' ) ) { ?>
-								<<?php echo $heading_type; ?> class="heading"><?php echo $widget['title'] ?></<?php echo $heading_type; ?>>
+							<?php if( '' != $this->check_and_return( $instance, 'title' ) ) { ?>
+								<<?php echo $heading_type; ?> class="heading"><?php echo $instance['title'] ?></<?php echo $heading_type; ?>>
 							<?php } ?>
-							<?php if( '' != $this->check_and_return( $widget, 'excerpt' ) ) { ?>
-								<div class="excerpt"><?php echo $widget['excerpt']; ?></div>
+							<?php if( '' != $this->check_and_return( $instance, 'excerpt' ) ) { ?>
+								<div class="excerpt"><?php echo $instance['excerpt']; ?></div>
 							<?php } ?>
 						</div>
 					</div>
 				<?php } ?>
-				<?php if ( ! empty( $widget[ 'columns' ] ) ) {
+				<?php if ( ! empty( $instance[ 'columns' ] ) ) {
 
-					$column_ids = explode( ',', $widget[ 'column_ids' ] );
+					$column_ids = explode( ',', $instance[ 'column_ids' ] );
 
 					// Set total width
 					$col_no = 0;
 					$first_last_class = '';
 					$row_width = 0; ?>
-					<div class="<?php echo $this->get_widget_layout_class( $widget ); ?> <?php echo $this->check_and_return( $widget , 'design', 'liststyle' ); ?>">
+					<div class="<?php echo $this->get_widget_layout_class( $instance ); ?> <?php echo $this->check_and_return( $instance , 'design', 'liststyle' ); ?>">
 						<div class="grid">
 							<?php foreach ( $column_ids as $column_key ) {
 
 								// Make sure we've got a column going on here
-								if( !isset( $widget[ 'columns' ][ $column_key ] ) ) continue;
+								if( !isset( $instance[ 'columns' ][ $column_key ] ) ) continue;
 
 								// Setup the relevant slide
-								$item = $widget[ 'columns' ][ $column_key ];
+								$item_instance = $instance[ 'columns' ][ $column_key ];
 								if( isset( $column_ids[ ($col_no+1) ] ) ) {
-									$next_item = $widget[ 'columns' ][ $column_ids[ ($col_no+1) ] ];
+									$next_item = $instance[ 'columns' ][ $column_ids[ ($col_no+1) ] ];
 								}
 								// Set the background styling
-								if( !empty( $item['design'][ 'background' ] ) ) $this->inline_css .= layers_inline_styles( '#' . $widget_id . '-' . $column_key , 'background', array( 'background' => $item['design'][ 'background' ] ) );
-								if( !empty( $item['design']['fonts'][ 'color' ] ) ) $this->inline_css .= layers_inline_styles( '#' . $widget_id . '-' . $column_key , 'color', array( 'selectors' => array( 'h5.heading a', 'h5.heading' , 'div.excerpt' , 'div.excerpt p' ) , 'color' => $item['design']['fonts'][ 'color' ] ) );
-								if( !empty( $item['design']['fonts'][ 'shadow' ] ) ) $this->inline_css .= layers_inline_styles( '#' . $widget_id . '-' . $column_key , 'text-shadow', array( 'selectors' => array( 'h5.heading a', 'h5.heading' , 'div.excerpt' , 'div.excerpt p' )  , 'text-shadow' => $item['design']['fonts'][ 'shadow' ] ) );
+								if( !empty( $item_instance['design'][ 'background' ] ) ) $this->inline_css .= layers_inline_styles( '#' . $widget_id . '-' . $column_key , 'background', array( 'background' => $item_instance['design'][ 'background' ] ) );
+								if( !empty( $item_instance['design']['fonts'][ 'color' ] ) ) $this->inline_css .= layers_inline_styles( '#' . $widget_id . '-' . $column_key , 'color', array( 'selectors' => array( 'h5.heading a', 'h5.heading' , 'div.excerpt' , 'div.excerpt p' ) , 'color' => $item_instance['design']['fonts'][ 'color' ] ) );
+								if( !empty( $item_instance['design']['fonts'][ 'shadow' ] ) ) $this->inline_css .= layers_inline_styles( '#' . $widget_id . '-' . $column_key , 'text-shadow', array( 'selectors' => array( 'h5.heading a', 'h5.heading' , 'div.excerpt' , 'div.excerpt p' )  , 'text-shadow' => $item_instance['design']['fonts'][ 'shadow' ] ) );
 
 								// Set column margin & padding
-								if ( !empty( $item['design']['advanced']['margin'] ) ) $this->inline_css .= layers_inline_styles( "#{$widget_id}-{$column_key}", 'margin', array( 'margin' => $item['design']['advanced']['margin'] ) );
-								if ( !empty( $item['design']['advanced']['padding'] ) ) $this->inline_css .= layers_inline_styles( "#{$widget_id}-{$column_key}", 'padding', array( 'padding' => $item['design']['advanced']['padding'] ) );
+								if ( !empty( $item_instance['design']['advanced']['margin'] ) ) $this->inline_css .= layers_inline_styles( "#{$widget_id}-{$column_key}", 'margin', array( 'margin' => $item_instance['design']['advanced']['margin'] ) );
+								if ( !empty( $item_instance['design']['advanced']['padding'] ) ) $this->inline_css .= layers_inline_styles( "#{$widget_id}-{$column_key}", 'padding', array( 'padding' => $item_instance['design']['advanced']['padding'] ) );
 
-								if( !isset( $item[ 'width' ] ) ) $item[ 'width' ] = $this->column_defaults[ 'width' ];
+								if( !isset( $item_instance[ 'width' ] ) ) $item_instance[ 'width' ] = $this->column_defaults[ 'width' ];
 								
 								// Set the button styling
 								if ( function_exists( 'layers_pro_apply_widget_button_styling' ) ) {
-									$this->inline_css .= layers_pro_apply_widget_button_styling( $this, $item, array( "#{$widget_id}-{$column_key} .button" ) );
+									$this->inline_css .= layers_pro_apply_widget_button_styling( $this, $item_instance, array( "#{$widget_id}-{$column_key} .button" ) );
 								}
 
 								// Add the correct span class
-								$span_class = 'span-' . $item[ 'width' ];
+								$span_class = 'span-' . $item_instance[ 'width' ];
 
 								$col_no++;
 								$max = 12;
 								$initial_width = $row_width;
-								$item_width = $item[ 'width' ];
+								$item_width = $item_instance[ 'width' ];
 								$next_item_width = ( isset( $next_item[ 'width' ] ) ? $next_item[ 'width' ] : 0 );
 								$row_width += $item_width;
 
@@ -224,23 +224,23 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 								}
 
 								// Set Featured Media
-								$featureimage = $this->check_and_return( $item , 'design' , 'featuredimage' );
-								$featurevideo = $this->check_and_return( $item , 'design' , 'featuredvideo' );
+								$featureimage = $this->check_and_return( $item_instance , 'design' , 'featuredimage' );
+								$featurevideo = $this->check_and_return( $item_instance , 'design' , 'featuredvideo' );
 
 								// Calculate which cut based on ratio.
-								if( isset( $item['design'][ 'imageratios' ] ) ){
+								if( isset( $item_instance['design'][ 'imageratios' ] ) ){
 
 									// Translate Image Ratio into something usable
-									$image_ratio = layers_translate_image_ratios( $item['design'][ 'imageratios' ] );
+									$image_ratio = layers_translate_image_ratios( $item_instance['design'][ 'imageratios' ] );
 
-									if( !isset( $item[ 'width' ] ) ) $item[ 'width' ] = 6;
+									if( !isset( $item_instance[ 'width' ] ) ) $item_instance[ 'width' ] = 6;
 
-									if( 4 >= $item['width'] && 'layout-fullwidth' != $this->check_and_return( $widget, 'design', 'layout' ) ) $use_image_ratio = $image_ratio . '-medium';
+									if( 4 >= $item_instance['width'] && 'layout-fullwidth' != $this->check_and_return( $instance, 'design', 'layout' ) ) $use_image_ratio = $image_ratio . '-medium';
 
 									else $use_image_ratio = $image_ratio . '-large';
 
 								} else {
-									if( 4 > $item['width'] ) $use_image_ratio = 'medium';
+									if( 4 > $item_instance['width'] ) $use_image_ratio = 'medium';
 									else $use_image_ratio = 'full';
 								}
 
@@ -251,8 +251,8 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 								);
 
 								// Set Image Size
-								if( isset( $item['design']['featuredimage-size'] ) && 0 != $item['design']['featuredimage-size'] && '' != $item['design']['featuredimage-size'] ) {
-									$image_width = $item['design'][ 'featuredimage-size' ].'px';
+								if( isset( $item_instance['design']['featuredimage-size'] ) && 0 != $item_instance['design']['featuredimage-size'] && '' != $item_instance['design']['featuredimage-size'] ) {
+									$image_width = $item_instance['design'][ 'featuredimage-size' ].'px';
 									$this->inline_css .= layers_inline_styles( "
 										@media only screen and ( min-width: 769px ) {
 											#{$widget_id}-{$column_key} .media-image img {
@@ -263,7 +263,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 								}
 
 								// Get the link array.
-								$link_array       = $this->check_and_return_link( $item, 'button' );
+								$link_array       = $this->check_and_return_link( $item_instance, 'button' );
 								$link_href_attr   = ( $link_array['link'] ) ? 'href="' . esc_url( $link_array['link'] ) . '"' : '';
 								$link_target_attr = ( '_blank' == $link_array['target'] ) ? 'target="_blank"' : '';
 
@@ -274,17 +274,17 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 								$classes[] = 'layers-masonry-column';
 								$classes[] = $this->id_base . '-' . $column_key;
 								$classes[] = $span_class;
-								$classes[] = ( 'on' == $this->check_and_return( $item , 'design', 'background', 'darken' ) ? 'darken' : '' );
+								$classes[] = ( 'on' == $this->check_and_return( $item_instance , 'design', 'background', 'darken' ) ? 'darken' : '' );
 								$classes[] = ( '' != $first_last_class ? $first_last_class : '' );
-								$classes[] = ( 'list-masonry' == $this->check_and_return( $widget, 'design', 'liststyle' ) ? '' : '' );
-								$classes[] = 'column' . ( 'on' != $this->check_and_return( $widget, 'design', 'gutter' ) ? '-flush' : '' );
-								$classes[] = $this->check_and_return( $item, 'design', 'advanced', 'customclass' ); // Apply custom class from design-bar's advanced control.
-								if( $this->check_and_return( $item, 'design' , 'background', 'image' ) || '' != $this->check_and_return( $item, 'design' , 'background', 'color' ) )
+								$classes[] = ( 'list-masonry' == $this->check_and_return( $instance, 'design', 'liststyle' ) ? '' : '' );
+								$classes[] = 'column' . ( 'on' != $this->check_and_return( $instance, 'design', 'gutter' ) ? '-flush' : '' );
+								$classes[] = $this->check_and_return( $item_instance, 'design', 'advanced', 'customclass' ); // Apply custom class from design-bar's advanced control.
+								if( $this->check_and_return( $item_instance, 'design' , 'background', 'image' ) || '' != $this->check_and_return( $item_instance, 'design' , 'background', 'color' ) )
 									$classes[] = 'content';
 								if( false != $media )
 									$classes[] = 'has-image';
 
-								$classes = apply_filters( 'layers_content_widget_item_class', $classes, $this, $item );
+								$classes = apply_filters( 'layers_content_widget_item_class', $classes, $this, $item_instance );
 								$classes = implode( ' ', $classes ); ?>
 
 								<div id="<?php echo $widget_id; ?>-<?php echo $column_key; ?>" class="<?php echo esc_attr( $classes ); ?>">
@@ -294,37 +294,37 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 									*/
 									$column_inner_classes = array();
 									$column_inner_classes[] = 'media';
-									if( !$this->check_and_return( $widget, 'design', 'gutter' ) ) {
+									if( !$this->check_and_return( $instance, 'design', 'gutter' ) ) {
 										$column_inner_classes[] = 'no-push-bottom';
 									}
-									if( $this->check_and_return( $item, 'design', 'background' , 'color' ) ) {
-										if( 'dark' == layers_is_light_or_dark( $this->check_and_return( $item, 'design', 'background' , 'color' ) ) ) {
+									if( $this->check_and_return( $item_instance, 'design', 'background' , 'color' ) ) {
+										if( 'dark' == layers_is_light_or_dark( $this->check_and_return( $item_instance, 'design', 'background' , 'color' ) ) ) {
 											$column_inner_classes[] = 'invert';
 										}
 									} else {
-										if( $this->check_and_return( $widget, 'design', 'background' , 'color' ) && 'dark' == layers_is_light_or_dark( $this->check_and_return( $widget, 'design', 'background' , 'color' ) ) ) {
+										if( $this->check_and_return( $instance, 'design', 'background' , 'color' ) && 'dark' == layers_is_light_or_dark( $this->check_and_return( $instance, 'design', 'background' , 'color' ) ) ) {
 											$column_inner_classes[] = 'invert';
 										}
 									}
 
-									$column_inner_classes[] = $this->check_and_return( $item, 'design', 'imagealign' );
-									$column_inner_classes[] = $this->check_and_return( $item, 'design', 'fonts' , 'size' );
+									$column_inner_classes[] = $this->check_and_return( $item_instance, 'design', 'imagealign' );
+									$column_inner_classes[] = $this->check_and_return( $item_instance, 'design', 'fonts' , 'size' );
 									$column_inner_classes = implode( ' ', $column_inner_classes );
 									
 									/**
 									 * Get Heading Type - for SEO
 									 */
-									$heading_type = ( isset( $item['design']['fonts']['heading-type'] ) ) ? $item['design']['fonts']['heading-type'] : 'h3' ;
+									$heading_type = ( isset( $item_instance['design']['fonts']['heading-type'] ) ) ? $item_instance['design']['fonts']['heading-type'] : 'h3' ;
 									
 									/**
 									 * Button Size.
 									 */
-									$button_size = $this->check_and_return( $item , 'design' , 'buttons-size' ) ? 'btn-' . $this->check_and_return( $item , 'design' , 'buttons-size' ) : '' ;
+									$button_size = $this->check_and_return( $item_instance , 'design' , 'buttons-size' ) ? 'btn-' . $this->check_and_return( $item_instance , 'design' , 'buttons-size' ) : '' ;
 									?>
 
 									<div class="<?php echo $column_inner_classes; ?>">
 										<?php if( NULL != $media ) { ?>
-											<div class="media-image <?php echo ( ( isset( $item['design'][ 'imageratios' ] ) && 'image-round' == $item['design'][ 'imageratios' ] ) ? 'image-rounded' : '' ); ?>">
+											<div class="media-image <?php echo ( ( isset( $item_instance['design'][ 'imageratios' ] ) && 'image-round' == $item_instance['design'][ 'imageratios' ] ) ? 'image-rounded' : '' ); ?>">
 												<?php if ( $link_array['link'] ) { ?>
 													<a <?php echo $link_href_attr; ?> <?php echo $link_target_attr; ?>>
 												<?php  } ?>
@@ -335,21 +335,21 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 											</div>
 										<?php } ?>
 
-										<?php if( $this->check_and_return( $item, 'title' ) || $this->check_and_return( $item, 'excerpt' ) || $this->check_and_return( $item, 'link_text' ) ) { ?>
-											<div class="media-body <?php echo ( isset( $item['design']['fonts'][ 'align' ] ) ) ? $item['design']['fonts'][ 'align' ] : ''; ?>">
-												<?php if( $this->check_and_return( $item, 'title') ) { ?>
+										<?php if( $this->check_and_return( $item_instance, 'title' ) || $this->check_and_return( $item_instance, 'excerpt' ) || $this->check_and_return( $item_instance, 'link_text' ) ) { ?>
+											<div class="media-body <?php echo ( isset( $item_instance['design']['fonts'][ 'align' ] ) ) ? $item_instance['design']['fonts'][ 'align' ] : ''; ?>">
+												<?php if( $this->check_and_return( $item_instance, 'title') ) { ?>
 													<<?php echo $heading_type ?> class="heading">
 														<?php if ( $link_array['link'] ) { ?>
 															<a <?php echo $link_href_attr; ?> <?php echo $link_target_attr; ?>>
 														<?php } ?>
-															<?php echo $item['title']; ?>
+															<?php echo $item_instance['title']; ?>
 														<?php if ( $link_array['link'] ) { ?>
 															</a>
 														<?php } ?>
 													</<?php echo $heading_type ?>>
 												<?php } ?>
-												<?php if( $this->check_and_return( $item, 'excerpt' ) ) { ?>
-													<div class="excerpt"><?php layers_the_content( $item['excerpt'] ); ?></div>
+												<?php if( $this->check_and_return( $item_instance, 'excerpt' ) ) { ?>
+													<div class="excerpt"><?php layers_the_content( $item_instance['excerpt'] ); ?></div>
 												<?php } ?>
 												<?php if ( $link_array['link'] && $link_array['text'] ) { ?>
 													<a <?php echo $link_href_attr; ?> class="button <?php echo $button_size; ?>" <?php echo $link_target_attr; ?>>
@@ -365,18 +365,18 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 					</div>
 				<?php }
 
-				do_action( 'layers_after_content_widget_inner', $this, $widget );
+				do_action( 'layers_after_content_widget_inner', $this, $instance );
 
 				// Print the Inline Styles for this Widget
 				$this->print_inline_css();
 
-				if( 'list-masonry' == $this->check_and_return( $widget , 'design', 'liststyle' ) ) { ?>
+				if( 'list-masonry' == $this->check_and_return( $instance , 'design', 'liststyle' ) ) { ?>
 					<script>
 						jQuery(function($){
 							layers_masonry_settings[ '<?php echo $widget_id; ?>' ] = [{
 								itemSelector: '.layers-masonry-column',
 								layoutMode: 'masonry',
-								gutter: <?php echo ( isset( $widget['design'][ 'gutter' ] ) ? 20 : 0 ); ?>
+								gutter: <?php echo ( isset( $instance['design'][ 'gutter' ] ) ? 20 : 0 ); ?>
 							}];
 
 							$('#<?php echo $widget_id; ?>').find('.list-masonry').layers_masonry( layers_masonry_settings[ '<?php echo $widget_id; ?>' ][0] );
@@ -387,7 +387,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 			</div>
 		<?php
 			// Apply the advanced widget styling
-			$this->apply_widget_advanced_styling( $widget_id, $widget );
+			$this->apply_widget_advanced_styling( $widget_id, $instance );
 		}
 
 		/**
@@ -413,10 +413,10 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 		*/
 		function form( $instance ){
 
-			// Apply defaults if widget is new (empty)
-			if ( empty( $instance ) ) $instance = wp_parse_args( $instance, $this->defaults );
-
-			$widget = $instance;
+			// Use defaults if $instance is empty.
+			if( empty( $instance ) && ! empty( $this->defaults ) ) {
+				$instance = wp_parse_args( $instance, $this->defaults );
+			}
 
 			$this->design_bar(
 				'side', // CSS Class Name
@@ -425,7 +425,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 					'id' => $this->get_layers_field_id( 'design' ),
 					'widget_id' => $this->widget_id,
 				),
-				$widget, // Widget Values
+				$instance, // Widget Values
 				apply_filters( 'layers_column_widget_design_bar_components', array( // Components
 					'layout',
 					'liststyle' => array(
@@ -437,7 +437,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 								'type' => 'select-icons',
 								'name' => $this->get_layers_field_name( 'design', 'liststyle' ) ,
 								'id' =>  $this->get_layers_field_id( 'design', 'liststyle' ) ,
-								'value' => ( isset( $widget['design'][ 'liststyle' ] ) ) ? $widget['design'][ 'liststyle' ] : NULL,
+								'value' => ( isset( $instance['design'][ 'liststyle' ] ) ) ? $instance['design'][ 'liststyle' ] : NULL,
 								'options' => array(
 									'list-grid' => __( 'Grid' , 'layerswp' ),
 									'list-masonry' => __( 'Masonry' , 'layerswp' )
@@ -448,13 +448,13 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 								'label' => __( 'Gutter' , 'layerswp' ),
 								'name' => $this->get_layers_field_name( 'design', 'gutter' ) ,
 								'id' =>  $this->get_layers_field_id( 'design', 'gutter' ) ,
-								'value' => ( isset( $widget['design']['gutter'] ) ) ? $widget['design']['gutter'] : NULL
+								'value' => ( isset( $instance['design']['gutter'] ) ) ? $instance['design']['gutter'] : NULL
 							)
 						)
 					),
 					'background',
 					'advanced',
-				), $this, $widget )
+				), $this, $instance )
 			); ?>
 			<div class="layers-container-large" id="layers-column-widget-<?php echo $this->number; ?>">
 
@@ -472,7 +472,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 								'name' => $this->get_layers_field_name( 'title' ) ,
 								'id' => $this->get_layers_field_id( 'title' ) ,
 								'placeholder' => __( 'Enter title here' , 'layerswp' ),
-								'value' => ( isset( $widget['title'] ) ) ? $widget['title'] : NULL ,
+								'value' => ( isset( $instance['title'] ) ) ? $instance['title'] : NULL ,
 								'class' => 'layers-text layers-large layers-input-has-controls',
 							)
 						); ?>
@@ -487,10 +487,10 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 								'inline' => TRUE,
 								'align' => 'right',
 							),
-							$widget, // Widget Values
+							$instance, // Widget Values
 							apply_filters( 'layers_column_widget_design_bar_components', array( // Components
 								'fonts',
-							), $this, $widget )
+							), $this, $instance )
 						); ?>
 						
 					</div>
@@ -502,7 +502,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 								'name' => $this->get_layers_field_name( 'excerpt' ) ,
 								'id' => $this->get_layers_field_id( 'excerpt' ) ,
 								'placeholder' =>  __( 'Short Excerpt' , 'layerswp' ),
-								'value' => ( isset( $widget['excerpt'] ) ) ? $widget['excerpt'] : NULL ,
+								'value' => ( isset( $instance['excerpt'] ) ) ? $instance['excerpt'] : NULL ,
 								'class' => 'layers-textarea layers-large'
 							)
 						); ?>
@@ -512,7 +512,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 				<section class="layers-accordion-section layers-content">
 					<div class="layers-form-item">
 					
-						<?php $this->repeater( 'column', $widget ); ?>
+						<?php $this->repeater( 'column', $instance ); ?>
 						
 					</div>
 				</section>
@@ -521,12 +521,12 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 
 		<?php }
 
-		function column_item( $item_guid, $widget ) {
+		function column_item( $item_guid, $instance ) {
 			?>
 			<li class="layers-accordion-item" data-guid="<?php echo esc_attr( $item_guid ); ?>">
 				<a class="layers-accordion-title">
 					<span>
-						<?php _e( 'Column' , 'layerswp' ); ?><span class="layers-detail"><?php echo ( isset( $widget['title'] ) ? ': ' . substr( stripslashes( strip_tags( $widget['title'] ) ), 0 , 50 ) : NULL ); ?><?php echo ( isset( $widget['title'] ) && strlen( $widget['title'] ) > 50 ? '...' : NULL ); ?></span>
+						<?php _e( 'Column' , 'layerswp' ); ?><span class="layers-detail"><?php echo ( isset( $instance['title'] ) ? ': ' . substr( stripslashes( strip_tags( $instance['title'] ) ), 0 , 50 ) : NULL ); ?><?php echo ( isset( $instance['title'] ) && strlen( $instance['title'] ) > 50 ? '...' : NULL ); ?></span>
 					</span>
 				</a>
 				<section class="layers-accordion-section layers-content">
@@ -539,7 +539,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 							'number' => $this->number,
 							'show_trash' => TRUE,
 						),
-						$widget, // Widget Values
+						$instance, // Widget Values
 						apply_filters( 'layers_column_widget_column_design_bar_components', array( // Components
 							'background',
 							'featuredimage',
@@ -554,7 +554,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 										'label' => __( '' , 'layerswp' ),
 										'name' => $this->get_layers_field_name( 'width' ),
 										'id' => $this->get_layers_field_id( 'width' ),
-										'value' => ( isset( $widget['width'] ) ) ? $widget['width'] : NULL,
+										'value' => ( isset( $instance['width'] ) ) ? $instance['width'] : NULL,
 										'options' => array(
 											'1' => __( '1 of 12 columns' , 'layerswp' ),
 											'2' => __( '2 of 12 columns' , 'layerswp' ),
@@ -580,7 +580,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 										'label' => __( 'Padding (px)', 'layerswp' ),
 										'name' => $this->get_layers_field_name( 'design', 'advanced', 'padding' ),
 										'id' => $this->get_layers_field_id( 'design', 'advanced', 'padding' ),
-										'value' => ( isset( $widget['design']['advanced']['padding'] ) ) ? $widget['design']['advanced']['padding'] : NULL,
+										'value' => ( isset( $instance['design']['advanced']['padding'] ) ) ? $instance['design']['advanced']['padding'] : NULL,
 										'fields' => array(
 											'top',
 											'right',
@@ -593,7 +593,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 										'label' => __( 'Margin (px)', 'layerswp' ),
 										'name' => $this->get_layers_field_name( 'design', 'advanced', 'margin' ),
 										'id' => $this->get_layers_field_id( 'design', 'advanced', 'margin' ),
-										'value' => ( isset( $widget['design']['advanced']['margin'] ) ) ? $widget['design']['advanced']['margin'] : NULL,
+										'value' => ( isset( $instance['design']['advanced']['margin'] ) ) ? $instance['design']['advanced']['margin'] : NULL,
 										'fields' => array(
 											'top',
 											'bottom',
@@ -602,7 +602,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 								),
 								'elements_combine' => 'replace',
 							),
-						), $this, $widget )
+						), $this, $instance )
 					); ?>
 					<div class="layers-row">
 						<p class="layers-form-item">
@@ -613,7 +613,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 									'name' => $this->get_layers_field_name( 'title' ),
 									'id' => $this->get_layers_field_id( 'title' ),
 									'placeholder' => __( 'Enter title here' , 'layerswp' ),
-									'value' => ( isset( $widget['title'] ) ) ? $widget['title'] : NULL ,
+									'value' => ( isset( $instance['title'] ) ) ? $instance['title'] : NULL ,
 									'class' => 'layers-text'
 								)
 							); ?>
@@ -626,7 +626,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 									'name' => $this->get_layers_field_name( 'excerpt' ),
 									'id' => $this->get_layers_field_id( 'excerpt' ),
 									'placeholder' => __( 'Short Excerpt' , 'layerswp' ),
-									'value' => ( isset( $widget['excerpt'] ) ) ? $widget['excerpt'] : NULL ,
+									'value' => ( isset( $instance['excerpt'] ) ) ? $instance['excerpt'] : NULL ,
 									'class' => 'layers-form-item layers-textarea',
 									'rows' => 6
 								)
@@ -635,7 +635,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 
 						<?php
 						// Fix widget's that were created before dynamic linking structure.
-						$widget = $this->convert_legacy_widget_links( $widget, 'button' );
+						$instance = $this->convert_legacy_widget_links( $instance, 'button' );
 						?>
 
 						<div class="layers-form-item">
@@ -647,7 +647,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 									'type' => 'link-group',
 									'name' => $this->get_layers_field_name( 'button' ),
 									'id' => $this->get_layers_field_id( 'button' ),
-									'value' => ( isset( $widget['button'] ) ) ? $widget['button'] : NULL,
+									'value' => ( isset( $instance['button'] ) ) ? $instance['button'] : NULL,
 								)
 							); ?>
 						</div>

@@ -63,33 +63,33 @@ if( !class_exists( 'Layers_Widget' ) ) {
 		* @param    string   $array_level_2   Array level two to check for (optional)
 		* @return   string   false if not set, otherwise returns value
 		*/
-		function check_and_return( $widget = NULL, $option = NULL, $array_level_1 = NULL, $array_level_2 = NULL ){
+		function check_and_return( $instance = NULL, $option = NULL, $array_level_1 = NULL, $array_level_2 = NULL ){
 
 			// If there is no widget object then bail
-			if( NULL == $widget ) return;
+			if( NULL == $instance ) return;
 
-			if( ! isset( $widget[$option] ) ){
+			if( ! isset( $instance[$option] ) ){
 				return false;
 			} else {
-				$widget_option = $widget[$option];
+				$instance_option = $instance[$option];
 			}
 
 			if( NULL != $array_level_1 ){
-				if( ! isset( $widget_option[$array_level_1] ) ){
+				if( ! isset( $instance_option[$array_level_1] ) ){
 					return false;
-				} elseif( '' != $widget_option[$array_level_1] ){
+				} elseif( '' != $instance_option[$array_level_1] ){
 					if( NULL != $array_level_2 ){
-						if( ! isset( $widget_option[$array_level_1][$array_level_2] ) ){
+						if( ! isset( $instance_option[$array_level_1][$array_level_2] ) ){
 							return false;
-						} elseif( '' != $widget_option[$array_level_1][$array_level_2] ) {
-							return $widget_option[$array_level_1][$array_level_2];
+						} elseif( '' != $instance_option[$array_level_1][$array_level_2] ) {
+							return $instance_option[$array_level_1][$array_level_2];
 						}
-					} elseif( '' != $widget_option[$array_level_1] )  {
-						return $widget_option[$array_level_1];
+					} elseif( '' != $instance_option[$array_level_1] )  {
+						return $instance_option[$array_level_1];
 					}
 				}
-			} elseif( '' != $widget_option ){
-				return $widget_option;
+			} elseif( '' != $instance_option ){
+				return $instance_option;
 			}
 
 		}
@@ -99,16 +99,16 @@ if( !class_exists( 'Layers_Widget' ) ) {
 		*
 		* @return  	string 	widget layout class
 		*/
-		function get_widget_layout_class( $widget = NULL ){
+		function get_widget_layout_class( $instance = NULL ){
 
-			if( NULL == $widget ) return;
+			if( NULL == $instance ) return;
 
 			// Setup the layout class for boxed/full width/full screen
-			if( 'layout-boxed' == $this->check_and_return( $widget , 'design' , 'layout' ) ) {
+			if( 'layout-boxed' == $this->check_and_return( $instance , 'design' , 'layout' ) ) {
 				$layout_class = 'container';
-			} elseif('layout-full-screen' == $this->check_and_return( $widget , 'design' , 'layout' ) ) {
+			} elseif('layout-full-screen' == $this->check_and_return( $instance , 'design' , 'layout' ) ) {
 				$layout_class = 'full-screen';
-			} elseif( 'layout-full-width' == $this->check_and_return( $widget , 'design' , 'layout' ) ) {
+			} elseif( 'layout-full-width' == $this->check_and_return( $instance , 'design' , 'layout' ) ) {
 				$layout_class = 'full-width';
 			} else {
 				$layout_class = '';
@@ -122,22 +122,22 @@ if( !class_exists( 'Layers_Widget' ) ) {
 		*
 		* @return   string   Class names.
 		*/
-		function get_widget_spacing_class( $widget = NULL ){
+		function get_widget_spacing_class( $instance = NULL ){
 
-			if( NULL == $widget ) return;
+			if( NULL == $instance ) return;
 
 			// Setup the class for all the kinds of margin and padding
 			$classes = array();
 
-			if( $this->check_and_return( $widget , 'design' , 'advanced', 'margin-top' ) ) $classes[] = 'margin-top-' . $this->check_and_return( $widget , 'design' , 'advanced', 'margin-top' );
-			if( $this->check_and_return( $widget , 'design' , 'advanced', 'margin-right' ) ) $classes[] = 'margin-right-' . $this->check_and_return( $widget , 'design' , 'advanced', 'margin-right' );
-			if( $this->check_and_return( $widget , 'design' , 'advanced', 'margin-bottom' ) ) $classes[] = 'margin-bottom-' . $this->check_and_return( $widget , 'design' , 'advanced', 'margin-bottom' );
-			if( $this->check_and_return( $widget , 'design' , 'advanced', 'margin-left' ) ) $classes[] = 'margin-left-' . $this->check_and_return( $widget , 'design' , 'advanced', 'margin-left' );
+			if( $this->check_and_return( $instance , 'design' , 'advanced', 'margin-top' ) ) $classes[] = 'margin-top-' . $this->check_and_return( $instance , 'design' , 'advanced', 'margin-top' );
+			if( $this->check_and_return( $instance , 'design' , 'advanced', 'margin-right' ) ) $classes[] = 'margin-right-' . $this->check_and_return( $instance , 'design' , 'advanced', 'margin-right' );
+			if( $this->check_and_return( $instance , 'design' , 'advanced', 'margin-bottom' ) ) $classes[] = 'margin-bottom-' . $this->check_and_return( $instance , 'design' , 'advanced', 'margin-bottom' );
+			if( $this->check_and_return( $instance , 'design' , 'advanced', 'margin-left' ) ) $classes[] = 'margin-left-' . $this->check_and_return( $instance , 'design' , 'advanced', 'margin-left' );
 
-			if( $this->check_and_return( $widget , 'design' , 'advanced', 'padding-top' ) ) $classes[] = 'padding-top-' . $this->check_and_return( $widget , 'design' , 'advanced', 'padding-top' );
-			if( $this->check_and_return( $widget , 'design' , 'advanced', 'padding-right' ) ) $classes[] = 'padding-right-' . $this->check_and_return( $widget , 'design' , 'advanced', 'padding-right' );
-			if( $this->check_and_return( $widget , 'design' , 'advanced', 'padding-bottom' ) ) $classes[] = 'padding-bottom-' . $this->check_and_return( $widget , 'design' , 'advanced', 'padding-bottom' );
-			if( $this->check_and_return( $widget , 'design' , 'advanced', 'padding-left' ) ) $classes[] = 'padding-left-' . $this->check_and_return( $widget , 'design' , 'advanced', 'padding-left' );
+			if( $this->check_and_return( $instance , 'design' , 'advanced', 'padding-top' ) ) $classes[] = 'padding-top-' . $this->check_and_return( $instance , 'design' , 'advanced', 'padding-top' );
+			if( $this->check_and_return( $instance , 'design' , 'advanced', 'padding-right' ) ) $classes[] = 'padding-right-' . $this->check_and_return( $instance , 'design' , 'advanced', 'padding-right' );
+			if( $this->check_and_return( $instance , 'design' , 'advanced', 'padding-bottom' ) ) $classes[] = 'padding-bottom-' . $this->check_and_return( $instance , 'design' , 'advanced', 'padding-bottom' );
+			if( $this->check_and_return( $instance , 'design' , 'advanced', 'padding-left' ) ) $classes[] = 'padding-left-' . $this->check_and_return( $instance , 'design' , 'advanced', 'padding-left' );
 
 			$classes = implode( ' ', $classes );
 
@@ -148,13 +148,13 @@ if( !class_exists( 'Layers_Widget' ) ) {
 		* Apply advanced styles to widget instance
 		*
 		* @param   string   $widget_id   id css selector of widget
-		* @param   object   $widget      Widget object to use
+		* @param   object   $instance      Widget object to use
 		*/
 
-		function apply_widget_advanced_styling( $widget_id, $widget = NULL ){
+		function apply_widget_advanced_styling( $widget_id, $instance = NULL ){
 
 			// We need a widget to get the settings from
-			if( NULL == $widget ) return;
+			if( NULL == $instance ) return;
 
 			/**
 			 * Apply Margin & Padding
@@ -166,7 +166,7 @@ if( !class_exists( 'Layers_Widget' ) ) {
 			foreach ( $types as $type ) {
 
 				// Get the TopRightBottomLeft TRBL array of values
-				$values = $this->check_and_return( $widget , 'design' , 'advanced', $type );
+				$values = $this->check_and_return( $instance , 'design' , 'advanced', $type );
 
 				if( NULL != $values && is_array( $values ) ) {
 					foreach ( $fields as $field ) {
@@ -178,7 +178,7 @@ if( !class_exists( 'Layers_Widget' ) ) {
 					}
 
 					// Apply the TRBL styles
-					if ( 'padding' == $type && isset( $widget['slides'] ) && 1 <= count( $widget['slides'] ) ){
+					if ( 'padding' == $type && isset( $instance['slides'] ) && 1 <= count( $instance['slides'] ) ){
 						layers_inline_styles( '#' . $widget_id . ' .swiper-slide > .content', $type, array( $type => $values ) );
 					}
 					else{
@@ -191,7 +191,7 @@ if( !class_exists( 'Layers_Widget' ) ) {
 			/**
 			 * Custom CSS
 			 */
-			if( $this->check_and_return( $widget, 'design', 'advanced', 'customcss' ) ) layers_inline_styles( NULL, 'css', array( 'css' => $this->check_and_return( $widget, 'design', 'advanced', 'customcss' )  ) );
+			if( $this->check_and_return( $instance, 'design', 'advanced', 'customcss' ) ) layers_inline_styles( NULL, 'css', array( 'css' => $this->check_and_return( $instance, 'design', 'advanced', 'customcss' )  ) );
 
 		}
 
@@ -447,11 +447,11 @@ if( !class_exists( 'Layers_Widget' ) ) {
 		 * @param  string  $type    Unique singular slug for the type of repeater. Must just be unique to this widget e.g. button (not buttons).
 		 * @param  array   $widget  The widget object.
 		 */
-		function repeater( $type, $widget = array() ) {
+		function repeater( $type, $instance = array() ) {
 
 			// If we have some items, let's break out their IDs into an array
-			if ( isset( $widget["{$type}_ids"] ) && '' !== $widget["{$type}_ids"] ) {
-				$items = explode( ',' , $widget["{$type}_ids"] );
+			if ( isset( $instance["{$type}_ids"] ) && '' !== $instance["{$type}_ids"] ) {
+				$items = explode( ',' , $instance["{$type}_ids"] );
 			}
 			else {
 				$items = array();
@@ -483,7 +483,7 @@ if( !class_exists( 'Layers_Widget' ) ) {
 					'type'  => 'hidden',
 					'name'  => $this->get_layers_field_name( "{$type}_ids" ),
 					'id'    => $this->get_layers_field_id( "{$type}_ids" ),
-					'value' => ( isset( $widget["{$type}_ids"] ) ) ? $widget["{$type}_ids"] : NULL,
+					'value' => ( isset( $instance["{$type}_ids"] ) ) ? $instance["{$type}_ids"] : NULL,
 					'class' => 'layers-repeater-input',
 				) );
 				?>
@@ -494,15 +494,15 @@ if( !class_exists( 'Layers_Widget' ) ) {
 					if( isset( $items ) && is_array( $items ) ) {
 
 						// This fixes the first-test widgets that had items with singular naming like 'slide' instead of 'slides'.
-						if ( isset( $widget["$type"] ) ) { $widget["{$type}s"] = $widget["$type"]; unset( $widget["$type"] ); }
+						if ( isset( $instance["$type"] ) ) { $instance["{$type}s"] = $instance["$type"]; unset( $instance["$type"] ); }
 
 						foreach( $items as $item_guid ) {
 
 							// Last check that this item definitely exists so no error while trying to render it.
-							if ( ! isset( $widget["{$type}s"][$item_guid] ) ) continue;
+							if ( ! isset( $instance["{$type}s"][$item_guid] ) ) continue;
 
 							// Get just the required item part from the widget instance array.
-							$item_instance = $widget["{$type}s"][$item_guid];
+							$item_instance = $instance["{$type}s"][$item_guid];
 
 							// Settings this will add these prefixes to both the get_layers_field_id(),
 							// and get_layers_field_name() string construction.
@@ -529,33 +529,33 @@ if( !class_exists( 'Layers_Widget' ) ) {
 		/**
 		 * The main function that outputs the repeater form item.
 		 *
-		 * @param  array   $widget  The widget object. We'll deal with the rest
+		 * @param  array   $instance  The widget object. We'll deal with the rest
 		 */
 
-		public function custom_anchor( $widget = NULL ){
+		public function custom_anchor( $instance = NULL ){
 
-			if( NULL == $widget ) return;
+			if( NULL == $instance ) return;
 
-			if( $this->check_and_return( $widget,  'design', 'advanced', 'anchor' ) ) { ?>
-				<a name="<?php echo esc_attr( $this->check_and_return( $widget,  'design', 'advanced', 'anchor' ) ); ?>"></a>
+			if( $this->check_and_return( $instance,  'design', 'advanced', 'anchor' ) ) { ?>
+				<a name="<?php echo esc_attr( $this->check_and_return( $instance,  'design', 'advanced', 'anchor' ) ); ?>"></a>
 			<?php }
 		}
 
-		public function check_and_return_link( $item, $button_key ) {
+		public function check_and_return_link( $instance, $button_key ) {
 
 			// Fix widget's that were created before dynamic linking structure.
-			$item = $this->convert_legacy_widget_links( $item, $button_key );
+			$instance = $this->convert_legacy_widget_links( $instance, $button_key );
 
 			// Collection.
 			$link_array = array();
 
 			// Get the link based on the link type.
-			$link_array['type'] = isset( $item[$button_key]['link_type'] ) ? $item[$button_key]['link_type'] : '';
+			$link_array['type'] = isset( $instance[$button_key]['link_type'] ) ? $instance[$button_key]['link_type'] : '';
 
 			switch ( $link_array['type'] ) {
 				case 'post':
-						if ( isset( $item[$button_key]['link_type_post'] ) && is_numeric( $item[$button_key]['link_type_post'] ) )
-							$link_array['link'] = get_permalink( $item[$button_key]['link_type_post'] );
+						if ( isset( $instance[$button_key]['link_type_post'] ) && is_numeric( $instance[$button_key]['link_type_post'] ) )
+							$link_array['link'] = get_permalink( $instance[$button_key]['link_type_post'] );
 						else
 							$link_array['link'] = '';
 					break;
@@ -568,38 +568,38 @@ if( !class_exists( 'Layers_Widget' ) ) {
 
 				case 'custom':
 				default:
-					$link_array['link'] = isset( $item[$button_key]['link_type_custom'] ) ? $item[$button_key]['link_type_custom'] : '';
+					$link_array['link'] = isset( $instance[$button_key]['link_type_custom'] ) ? $instance[$button_key]['link_type_custom'] : '';
 					break;
 			}
 
 			// Get the link_text.
-			$link_array['text'] = isset( $item[$button_key]['link_text'] ) ? $item[$button_key]['link_text'] : '';
+			$link_array['text'] = isset( $instance[$button_key]['link_text'] ) ? $instance[$button_key]['link_text'] : '';
 
 			// Get the link_target.
-			$link_array['target'] = isset( $item[$button_key]['link_target'] ) ? '_blank' : '';
+			$link_array['target'] = isset( $instance[$button_key]['link_target'] ) ? '_blank' : '';
 
 			return $link_array;
 		}
 
-		public function convert_legacy_widget_links( $item, $button_key ) {
+		public function convert_legacy_widget_links( $instance, $button_key ) {
 
 			// Convert the Old Widget Format.
-			if ( isset( $item['link'] ) ) {
-				$item[$button_key]['link_type'] = 'custom';
-				$item[$button_key]['link_type_custom'] = $item['link'];
-				unset( $item['link'] );
+			if ( isset( $instance['link'] ) ) {
+				$instance[$button_key]['link_type'] = 'custom';
+				$instance[$button_key]['link_type_custom'] = $instance['link'];
+				unset( $instance['link'] );
 			}
-			if ( isset( $item['link_text'] ) ) {
-				$item[$button_key]['link_text'] = $item['link_text'];
-				unset( $item['link_text'] );
+			if ( isset( $instance['link_text'] ) ) {
+				$instance[$button_key]['link_text'] = $instance['link_text'];
+				unset( $instance['link_text'] );
 			}
 
 			// Remove New-Old Widget Format.
-			if ( isset( $item['link_type'] ) ) unset( $item['link_type'] );
-			if ( isset( $item['link_post'] ) ) unset( $item['link_post'] );
-			if ( isset( $item['link_target'] ) ) unset( $item['link_target'] );
+			if ( isset( $instance['link_type'] ) ) unset( $instance['link_type'] );
+			if ( isset( $instance['link_post'] ) ) unset( $instance['link_post'] );
+			if ( isset( $instance['link_target'] ) ) unset( $instance['link_target'] );
 
-			return $item;
+			return $instance;
 		}
 
 	}

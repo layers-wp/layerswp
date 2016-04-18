@@ -328,7 +328,7 @@ if( !class_exists( 'Layers_Contact_Widget' ) ) {
 
 				<section class="layers-accordion-section layers-content">
 					<div class="layers-row layers-push-bottom clearfix">
-						<p class="layers-form-item">
+						<div class="layers-form-item">
 							
 							<?php echo $this->form_elements()->input(
 								array(
@@ -357,8 +357,8 @@ if( !class_exists( 'Layers_Contact_Widget' ) ) {
 								), $this, $widget )
 							); ?>
 							
-						</p>
-						<p class="layers-form-item">
+						</div>
+						<div class="layers-form-item">
 							
 							<?php echo $this->form_elements()->input(
 								array(
@@ -371,7 +371,7 @@ if( !class_exists( 'Layers_Contact_Widget' ) ) {
 								)
 							); ?>
 							
-						</p>
+						</div>
 					</div>
 					<div class="layers-row clearfix">
 						<div class="layers-panel">

@@ -1683,8 +1683,8 @@ div[id*='layers-widget'] .widget-control-actions .alignright{
 		.layers-visuals.layers-visuals-horizontal.layers-visuals-inline{
 			position: absolute;
 			z-index: 102;
-			top: 28px;
-			right: 26px;
+			top: 26px;
+			right: 25px;
 		}
 
 		/*-----------------------*/

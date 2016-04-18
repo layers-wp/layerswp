@@ -577,7 +577,7 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 				<section class="layers-accordion-section layers-content">
 
 					<div class="layers-row layers-push-bottom">
-						<p class="layers-form-item">
+						<div class="layers-form-item">
 							
 							<?php echo $this->form_elements()->input(
 								array(
@@ -606,8 +606,8 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 								), $this, $widget )
 							); ?>
 							
-						</p>
-						<p class="layers-form-item">
+						</div>
+						<div class="layers-form-item">
 							
 							<?php echo $this->form_elements()->input(
 								array(
@@ -620,7 +620,7 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 								)
 							); ?>
 							
-						</p>
+						</div>
 						<?php // Grab the terms as an array and loop 'em to generate the $options for the input
 						$terms = get_terms( $this->taxonomy , array( 'hide_empty' => false ) );
 						if( !is_wp_error( $terms ) ) { ?>

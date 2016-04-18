@@ -214,27 +214,27 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 							if( !isset( $instance[ 'slides' ][ $slide_key ] ) ) continue;
 
 							// Setup the relevant slide
-							$item = $instance[ 'slides' ][ $slide_key ];
+							$item_instance = $instance[ 'slides' ][ $slide_key ];
 
 							// Set the background styling
-							if( !empty( $item['design'][ 'background' ] ) ) $this->inline_css .= layers_inline_styles( '#' . $widget_id . '-' . $slide_key , 'background', array( 'background' => $item['design'][ 'background' ] ) );
-							if( !empty( $item['design']['fonts'][ 'color' ] ) ) $this->inline_css .= layers_inline_styles( '#' . $widget_id . '-' . $slide_key , 'color', array( 'selectors' => array( '.heading', '.heading a', 'div.excerpt' ) , 'color' => $item['design']['fonts'][ 'color' ] ) );
-							if( !empty( $item['design']['fonts'][ 'shadow' ] ) ) $this->inline_css .= layers_inline_styles( '#' . $widget_id . '-' . $slide_key , 'text-shadow', array( 'selectors' => array( '.heading', '.heading a',  'div.excerpt' )  , 'text-shadow' => $item['design']['fonts'][ 'shadow' ] ) );
+							if( !empty( $item_instance['design'][ 'background' ] ) ) $this->inline_css .= layers_inline_styles( '#' . $widget_id . '-' . $slide_key , 'background', array( 'background' => $item_instance['design'][ 'background' ] ) );
+							if( !empty( $item_instance['design']['fonts'][ 'color' ] ) ) $this->inline_css .= layers_inline_styles( '#' . $widget_id . '-' . $slide_key , 'color', array( 'selectors' => array( '.heading', '.heading a', 'div.excerpt' ) , 'color' => $item_instance['design']['fonts'][ 'color' ] ) );
+							if( !empty( $item_instance['design']['fonts'][ 'shadow' ] ) ) $this->inline_css .= layers_inline_styles( '#' . $widget_id . '-' . $slide_key , 'text-shadow', array( 'selectors' => array( '.heading', '.heading a',  'div.excerpt' )  , 'text-shadow' => $item_instance['design']['fonts'][ 'shadow' ] ) );
 
 							// Set the button styling
 							if ( function_exists( 'layers_pro_apply_widget_button_styling' ) ) {
-								$this->inline_css .= layers_pro_apply_widget_button_styling( $this, $item, array( "#{$widget_id}-{$slide_key} .button" ) );
+								$this->inline_css .= layers_pro_apply_widget_button_styling( $this, $item_instance, array( "#{$widget_id}-{$slide_key} .button" ) );
 							}
 
 							// Set Featured Media
-							$featureimage = $this->check_and_return( $item , 'design' , 'featuredimage' );
-							$featurevideo = $this->check_and_return( $item , 'design' , 'featuredvideo' );
+							$featureimage = $this->check_and_return( $item_instance , 'design' , 'featuredimage' );
+							$featurevideo = $this->check_and_return( $item_instance , 'design' , 'featuredvideo' );
 
 							// Set Image Sizes
-							if( isset( $item['design'][ 'imageratios' ] ) ){
+							if( isset( $item_instance['design'][ 'imageratios' ] ) ){
 
 									// Translate Image Ratio into something usable
-									$image_ratio = layers_translate_image_ratios( $item['design'][ 'imageratios' ] );
+									$image_ratio = layers_translate_image_ratios( $item_instance['design'][ 'imageratios' ] );
 									$use_image_ratio = $image_ratio . '-medium';
 
 							} else {
@@ -242,7 +242,7 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 							}
 
 							// Get the button array.
-							$link_array       = $this->check_and_return_link( $item, 'button' );
+							$link_array       = $this->check_and_return_link( $item_instance, 'button' );
 							$link_href_attr   = ( $link_array['link'] ) ? 'href="' . esc_url( $link_array['link'] ) . '"' : '';
 							$link_target_attr = ( '_blank' == $link_array['target'] ) ? 'target="_blank"' : '';
 
@@ -251,25 +251,25 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 							*/
 							$slide_class = array();
 							$slide_class[] = 'swiper-slide';
-							if( $this->check_and_return( $item, 'design', 'background' , 'color' ) ) {
-								if( 'dark' == layers_is_light_or_dark( $this->check_and_return( $item, 'design', 'background' , 'color' ) ) ) {
+							if( $this->check_and_return( $item_instance, 'design', 'background' , 'color' ) ) {
+								if( 'dark' == layers_is_light_or_dark( $this->check_and_return( $item_instance, 'design', 'background' , 'color' ) ) ) {
 									$slide_class[] = 'invert';
 								}
 							} else {
 								$slide_class[] = 'invert';
 							}
-							if( false != $this->check_and_return( $item , 'image' ) || 'image-left' == $item['design'][ 'imagealign' ] || 'image-top' == $item['design'][ 'imagealign' ] ) {
+							if( false != $this->check_and_return( $item_instance , 'image' ) || 'image-left' == $item_instance['design'][ 'imagealign' ] || 'image-top' == $item_instance['design'][ 'imagealign' ] ) {
 								$slide_class[] = 'has-image';
 							}
-							if( isset( $item['design'][ 'imagealign' ] ) && '' != $item['design'][ 'imagealign' ] ) {
-								$slide_class[] = $item['design'][ 'imagealign' ];
+							if( isset( $item_instance['design'][ 'imagealign' ] ) && '' != $item_instance['design'][ 'imagealign' ] ) {
+								$slide_class[] = $item_instance['design'][ 'imagealign' ];
 							}
-							if( isset( $item['design']['fonts'][ 'align' ] ) && '' != $item['design']['fonts'][ 'align' ] ) {
-								$slide_class[] = $item['design']['fonts'][ 'align' ];
+							if( isset( $item_instance['design']['fonts'][ 'align' ] ) && '' != $item_instance['design']['fonts'][ 'align' ] ) {
+								$slide_class[] = $item_instance['design']['fonts'][ 'align' ];
 							}
-							$slide_class[] = $this->check_and_return( $item, 'design', 'advanced', 'customclass' ); // Apply custom class from design-bar's advanced control.
+							$slide_class[] = $this->check_and_return( $item_instance, 'design', 'advanced', 'customclass' ); // Apply custom class from design-bar's advanced control.
 
-							$slide_class = apply_filters( 'layers_slider_widget_item_class', $slide_class, $this, $item, $instance );
+							$slide_class = apply_filters( 'layers_slider_widget_item_class', $slide_class, $this, $item_instance, $instance );
 							$slide_class = implode( ' ', $slide_class );
 
 							// Set link entire slide or not
@@ -282,7 +282,7 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 							} ?>
 							<<?php echo $slide_wrapper_tag; ?> <?php echo $slide_wrapper_href; ?> class="<?php echo $slide_class; ?>" id="<?php echo $widget_id; ?>-<?php echo $slide_key; ?>" style="float: left; <?php echo $slider_height_css; ?>" <?php echo $link_target_attr; ?>>
 
-								<?php do_action( 'layers_before_slider_widget_item_inner', $this, $item, $instance ); ?>
+								<?php do_action( 'layers_before_slider_widget_item_inner', $this, $item_instance, $instance ); ?>
 
 								<?php
 								/**
@@ -290,10 +290,10 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 								*/
 								$overlay_class = array();
 								$overlay_class[] = 'overlay';
-								if( isset( $item['design'][ 'background' ][ 'darken' ] ) ) {
+								if( isset( $item_instance['design'][ 'background' ][ 'darken' ] ) ) {
 									$overlay_class[] = 'darken';
 								}
-								if( '' != $this->check_and_return( $item, 'design' , 'background', 'image' ) || '' != $this->check_and_return( $item, 'design' , 'background', 'color' ) ) {
+								if( '' != $this->check_and_return( $item_instance, 'design' , 'background', 'image' ) || '' != $this->check_and_return( $item_instance, 'design' , 'background', 'color' ) ) {
 									$overlay_class[] = 'content';
 								}
 								$overlay_classes = implode( ' ', $overlay_class );
@@ -301,25 +301,25 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 								/**
 								 * Get Heading Type - for SEO
 								 */
-								$heading_type = ( isset( $item['design']['fonts']['heading-type'] ) ) ? $item['design']['fonts']['heading-type'] : 'h3';
+								$heading_type = ( isset( $item_instance['design']['fonts']['heading-type'] ) ) ? $item_instance['design']['fonts']['heading-type'] : 'h3';
 								
 								/**
 								 * Button Size.
 								 */
-								$button_size = $this->check_and_return( $item , 'design' , 'buttons-size' ) ? 'btn-' . $this->check_and_return( $item , 'design' , 'buttons-size' ) : '' ;
-								$button_size = ( '' === $button_size &&  $this->check_and_return( $item , 'design' , 'fonts' , 'size' ) && $this->check_and_return( $item , 'design' , 'fonts' , 'size' ) ) ? 'btn-' . $this->check_and_return( $item , 'design' , 'fonts' , 'size' ) : '' ;
+								$button_size = $this->check_and_return( $item_instance , 'design' , 'buttons-size' ) ? 'btn-' . $this->check_and_return( $item_instance , 'design' , 'buttons-size' ) : '' ;
+								$button_size = ( '' === $button_size &&  $this->check_and_return( $item_instance , 'design' , 'fonts' , 'size' ) && $this->check_and_return( $item_instance , 'design' , 'fonts' , 'size' ) ) ? 'btn-' . $this->check_and_return( $item_instance , 'design' , 'fonts' , 'size' ) : '' ;
 								?>
 								
 								<div class="<?php echo $overlay_classes; ?>" >
 									<div class="container clearfix">
-										<?php if( '' != $item['title'] || '' != $item['excerpt'] || '' != $link_array['link'] ) { ?>
+										<?php if( '' != $item_instance['title'] || '' != $item_instance['excerpt'] || '' != $link_array['link'] ) { ?>
 											<div class="copy-container">
-												<div class="section-title <?php echo ( isset( $item['design']['fonts'][ 'size' ] ) ? $item['design']['fonts'][ 'size' ] : '' ); ?>">
-													<?php if( $this->check_and_return( $item , 'title' ) ) { ?>
-														<<?php echo $heading_type ?> data-swiper-parallax="-100" class="heading"><?php echo $item['title']; ?></<?php echo $heading_type ?>>
+												<div class="section-title <?php echo ( isset( $item_instance['design']['fonts'][ 'size' ] ) ? $item_instance['design']['fonts'][ 'size' ] : '' ); ?>">
+													<?php if( $this->check_and_return( $item_instance , 'title' ) ) { ?>
+														<<?php echo $heading_type ?> data-swiper-parallax="-100" class="heading"><?php echo $item_instance['title']; ?></<?php echo $heading_type ?>>
 													<?php } ?>
-													<?php if( $this->check_and_return( $item , 'excerpt' ) ) { ?>
-														<div data-swiper-parallax="-300" class="excerpt"><?php layers_the_content( $item['excerpt'] ); ?></div>
+													<?php if( $this->check_and_return( $item_instance , 'excerpt' ) ) { ?>
+														<div data-swiper-parallax="-300" class="excerpt"><?php layers_the_content( $item_instance['excerpt'] ); ?></div>
 													<?php } ?>
 													<?php if( 'div' == $slide_wrapper_tag && $link_array['link'] && $link_array['text'] ) { ?>
 														<a data-swiper-parallax="-200" <?php echo $link_href_attr; ?> <?php echo $link_target_attr; ?> class="button <?php echo $button_size; ?>">
@@ -330,7 +330,7 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 											</div>
 										<?php } // if title || excerpt ?>
 										<?php if( $featureimage || $featurevideo ) { ?>
-											<div class="image-container <?php echo ( 'image-round' ==  $this->check_and_return( $item, 'design',  'imageratios' ) ? 'image-rounded' : '' ); ?>">
+											<div class="image-container <?php echo ( 'image-round' ==  $this->check_and_return( $item_instance, 'design',  'imageratios' ) ? 'image-rounded' : '' ); ?>">
 												<?php echo layers_get_feature_media(
 													$featureimage ,
 													$use_image_ratio ,
@@ -341,7 +341,7 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 									</div> <!-- .container -->
 								</div> <!-- .overlay -->
 
-								<?php do_action( 'layers_after_slider_widget_item_inner', $this, $item, $instance ); ?>
+								<?php do_action( 'layers_after_slider_widget_item_inner', $this, $item_instance, $instance ); ?>
 
 							</<?php echo $slide_wrapper_tag; ?>>
 						<?php } // foreach slides ?>

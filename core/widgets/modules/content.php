@@ -179,33 +179,33 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 								if( !isset( $instance[ 'columns' ][ $column_key ] ) ) continue;
 
 								// Setup the relevant slide
-								$item = $instance[ 'columns' ][ $column_key ];
+								$item_instance = $instance[ 'columns' ][ $column_key ];
 								if( isset( $column_ids[ ($col_no+1) ] ) ) {
 									$next_item = $instance[ 'columns' ][ $column_ids[ ($col_no+1) ] ];
 								}
 								// Set the background styling
-								if( !empty( $item['design'][ 'background' ] ) ) $this->inline_css .= layers_inline_styles( '#' . $widget_id . '-' . $column_key , 'background', array( 'background' => $item['design'][ 'background' ] ) );
-								if( !empty( $item['design']['fonts'][ 'color' ] ) ) $this->inline_css .= layers_inline_styles( '#' . $widget_id . '-' . $column_key , 'color', array( 'selectors' => array( 'h5.heading a', 'h5.heading' , 'div.excerpt' , 'div.excerpt p' ) , 'color' => $item['design']['fonts'][ 'color' ] ) );
-								if( !empty( $item['design']['fonts'][ 'shadow' ] ) ) $this->inline_css .= layers_inline_styles( '#' . $widget_id . '-' . $column_key , 'text-shadow', array( 'selectors' => array( 'h5.heading a', 'h5.heading' , 'div.excerpt' , 'div.excerpt p' )  , 'text-shadow' => $item['design']['fonts'][ 'shadow' ] ) );
+								if( !empty( $item_instance['design'][ 'background' ] ) ) $this->inline_css .= layers_inline_styles( '#' . $widget_id . '-' . $column_key , 'background', array( 'background' => $item_instance['design'][ 'background' ] ) );
+								if( !empty( $item_instance['design']['fonts'][ 'color' ] ) ) $this->inline_css .= layers_inline_styles( '#' . $widget_id . '-' . $column_key , 'color', array( 'selectors' => array( 'h5.heading a', 'h5.heading' , 'div.excerpt' , 'div.excerpt p' ) , 'color' => $item_instance['design']['fonts'][ 'color' ] ) );
+								if( !empty( $item_instance['design']['fonts'][ 'shadow' ] ) ) $this->inline_css .= layers_inline_styles( '#' . $widget_id . '-' . $column_key , 'text-shadow', array( 'selectors' => array( 'h5.heading a', 'h5.heading' , 'div.excerpt' , 'div.excerpt p' )  , 'text-shadow' => $item_instance['design']['fonts'][ 'shadow' ] ) );
 
 								// Set column margin & padding
-								if ( !empty( $item['design']['advanced']['margin'] ) ) $this->inline_css .= layers_inline_styles( "#{$widget_id}-{$column_key}", 'margin', array( 'margin' => $item['design']['advanced']['margin'] ) );
-								if ( !empty( $item['design']['advanced']['padding'] ) ) $this->inline_css .= layers_inline_styles( "#{$widget_id}-{$column_key}", 'padding', array( 'padding' => $item['design']['advanced']['padding'] ) );
+								if ( !empty( $item_instance['design']['advanced']['margin'] ) ) $this->inline_css .= layers_inline_styles( "#{$widget_id}-{$column_key}", 'margin', array( 'margin' => $item_instance['design']['advanced']['margin'] ) );
+								if ( !empty( $item_instance['design']['advanced']['padding'] ) ) $this->inline_css .= layers_inline_styles( "#{$widget_id}-{$column_key}", 'padding', array( 'padding' => $item_instance['design']['advanced']['padding'] ) );
 
-								if( !isset( $item[ 'width' ] ) ) $item[ 'width' ] = $this->column_defaults[ 'width' ];
+								if( !isset( $item_instance[ 'width' ] ) ) $item_instance[ 'width' ] = $this->column_defaults[ 'width' ];
 								
 								// Set the button styling
 								if ( function_exists( 'layers_pro_apply_widget_button_styling' ) ) {
-									$this->inline_css .= layers_pro_apply_widget_button_styling( $this, $item, array( "#{$widget_id}-{$column_key} .button" ) );
+									$this->inline_css .= layers_pro_apply_widget_button_styling( $this, $item_instance, array( "#{$widget_id}-{$column_key} .button" ) );
 								}
 
 								// Add the correct span class
-								$span_class = 'span-' . $item[ 'width' ];
+								$span_class = 'span-' . $item_instance[ 'width' ];
 
 								$col_no++;
 								$max = 12;
 								$initial_width = $row_width;
-								$item_width = $item[ 'width' ];
+								$item_width = $item_instance[ 'width' ];
 								$next_item_width = ( isset( $next_item[ 'width' ] ) ? $next_item[ 'width' ] : 0 );
 								$row_width += $item_width;
 
@@ -222,23 +222,23 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 								}
 
 								// Set Featured Media
-								$featureimage = $this->check_and_return( $item , 'design' , 'featuredimage' );
-								$featurevideo = $this->check_and_return( $item , 'design' , 'featuredvideo' );
+								$featureimage = $this->check_and_return( $item_instance , 'design' , 'featuredimage' );
+								$featurevideo = $this->check_and_return( $item_instance , 'design' , 'featuredvideo' );
 
 								// Calculate which cut based on ratio.
-								if( isset( $item['design'][ 'imageratios' ] ) ){
+								if( isset( $item_instance['design'][ 'imageratios' ] ) ){
 
 									// Translate Image Ratio into something usable
-									$image_ratio = layers_translate_image_ratios( $item['design'][ 'imageratios' ] );
+									$image_ratio = layers_translate_image_ratios( $item_instance['design'][ 'imageratios' ] );
 
-									if( !isset( $item[ 'width' ] ) ) $item[ 'width' ] = 6;
+									if( !isset( $item_instance[ 'width' ] ) ) $item_instance[ 'width' ] = 6;
 
-									if( 4 >= $item['width'] && 'layout-fullwidth' != $this->check_and_return( $instance, 'design', 'layout' ) ) $use_image_ratio = $image_ratio . '-medium';
+									if( 4 >= $item_instance['width'] && 'layout-fullwidth' != $this->check_and_return( $instance, 'design', 'layout' ) ) $use_image_ratio = $image_ratio . '-medium';
 
 									else $use_image_ratio = $image_ratio . '-large';
 
 								} else {
-									if( 4 > $item['width'] ) $use_image_ratio = 'medium';
+									if( 4 > $item_instance['width'] ) $use_image_ratio = 'medium';
 									else $use_image_ratio = 'full';
 								}
 
@@ -249,8 +249,8 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 								);
 
 								// Set Image Size
-								if( isset( $item['design']['featuredimage-size'] ) && 0 != $item['design']['featuredimage-size'] && '' != $item['design']['featuredimage-size'] ) {
-									$image_width = $item['design'][ 'featuredimage-size' ].'px';
+								if( isset( $item_instance['design']['featuredimage-size'] ) && 0 != $item_instance['design']['featuredimage-size'] && '' != $item_instance['design']['featuredimage-size'] ) {
+									$image_width = $item_instance['design'][ 'featuredimage-size' ].'px';
 									$this->inline_css .= layers_inline_styles( "
 										@media only screen and ( min-width: 769px ) {
 											#{$widget_id}-{$column_key} .media-image img {
@@ -261,7 +261,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 								}
 
 								// Get the link array.
-								$link_array       = $this->check_and_return_link( $item, 'button' );
+								$link_array       = $this->check_and_return_link( $item_instance, 'button' );
 								$link_href_attr   = ( $link_array['link'] ) ? 'href="' . esc_url( $link_array['link'] ) . '"' : '';
 								$link_target_attr = ( '_blank' == $link_array['target'] ) ? 'target="_blank"' : '';
 
@@ -272,17 +272,17 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 								$classes[] = 'layers-masonry-column';
 								$classes[] = $this->id_base . '-' . $column_key;
 								$classes[] = $span_class;
-								$classes[] = ( 'on' == $this->check_and_return( $item , 'design', 'background', 'darken' ) ? 'darken' : '' );
+								$classes[] = ( 'on' == $this->check_and_return( $item_instance , 'design', 'background', 'darken' ) ? 'darken' : '' );
 								$classes[] = ( '' != $first_last_class ? $first_last_class : '' );
 								$classes[] = ( 'list-masonry' == $this->check_and_return( $instance, 'design', 'liststyle' ) ? '' : '' );
 								$classes[] = 'column' . ( 'on' != $this->check_and_return( $instance, 'design', 'gutter' ) ? '-flush' : '' );
-								$classes[] = $this->check_and_return( $item, 'design', 'advanced', 'customclass' ); // Apply custom class from design-bar's advanced control.
-								if( $this->check_and_return( $item, 'design' , 'background', 'image' ) || '' != $this->check_and_return( $item, 'design' , 'background', 'color' ) )
+								$classes[] = $this->check_and_return( $item_instance, 'design', 'advanced', 'customclass' ); // Apply custom class from design-bar's advanced control.
+								if( $this->check_and_return( $item_instance, 'design' , 'background', 'image' ) || '' != $this->check_and_return( $item_instance, 'design' , 'background', 'color' ) )
 									$classes[] = 'content';
 								if( false != $media )
 									$classes[] = 'has-image';
 
-								$classes = apply_filters( 'layers_content_widget_item_class', $classes, $this, $item );
+								$classes = apply_filters( 'layers_content_widget_item_class', $classes, $this, $item_instance );
 								$classes = implode( ' ', $classes ); ?>
 
 								<div id="<?php echo $widget_id; ?>-<?php echo $column_key; ?>" class="<?php echo esc_attr( $classes ); ?>">
@@ -295,8 +295,8 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 									if( !$this->check_and_return( $instance, 'design', 'gutter' ) ) {
 										$column_inner_classes[] = 'no-push-bottom';
 									}
-									if( $this->check_and_return( $item, 'design', 'background' , 'color' ) ) {
-										if( 'dark' == layers_is_light_or_dark( $this->check_and_return( $item, 'design', 'background' , 'color' ) ) ) {
+									if( $this->check_and_return( $item_instance, 'design', 'background' , 'color' ) ) {
+										if( 'dark' == layers_is_light_or_dark( $this->check_and_return( $item_instance, 'design', 'background' , 'color' ) ) ) {
 											$column_inner_classes[] = 'invert';
 										}
 									} else {
@@ -305,24 +305,24 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 										}
 									}
 
-									$column_inner_classes[] = $this->check_and_return( $item, 'design', 'imagealign' );
-									$column_inner_classes[] = $this->check_and_return( $item, 'design', 'fonts' , 'size' );
+									$column_inner_classes[] = $this->check_and_return( $item_instance, 'design', 'imagealign' );
+									$column_inner_classes[] = $this->check_and_return( $item_instance, 'design', 'fonts' , 'size' );
 									$column_inner_classes = implode( ' ', $column_inner_classes );
 									
 									/**
 									 * Get Heading Type - for SEO
 									 */
-									$heading_type = ( isset( $item['design']['fonts']['heading-type'] ) ) ? $item['design']['fonts']['heading-type'] : 'h3' ;
+									$heading_type = ( isset( $item_instance['design']['fonts']['heading-type'] ) ) ? $item_instance['design']['fonts']['heading-type'] : 'h3' ;
 									
 									/**
 									 * Button Size.
 									 */
-									$button_size = $this->check_and_return( $item , 'design' , 'buttons-size' ) ? 'btn-' . $this->check_and_return( $item , 'design' , 'buttons-size' ) : '' ;
+									$button_size = $this->check_and_return( $item_instance , 'design' , 'buttons-size' ) ? 'btn-' . $this->check_and_return( $item_instance , 'design' , 'buttons-size' ) : '' ;
 									?>
 
 									<div class="<?php echo $column_inner_classes; ?>">
 										<?php if( NULL != $media ) { ?>
-											<div class="media-image <?php echo ( ( isset( $item['design'][ 'imageratios' ] ) && 'image-round' == $item['design'][ 'imageratios' ] ) ? 'image-rounded' : '' ); ?>">
+											<div class="media-image <?php echo ( ( isset( $item_instance['design'][ 'imageratios' ] ) && 'image-round' == $item_instance['design'][ 'imageratios' ] ) ? 'image-rounded' : '' ); ?>">
 												<?php if ( $link_array['link'] ) { ?>
 													<a <?php echo $link_href_attr; ?> <?php echo $link_target_attr; ?>>
 												<?php  } ?>
@@ -333,21 +333,21 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 											</div>
 										<?php } ?>
 
-										<?php if( $this->check_and_return( $item, 'title' ) || $this->check_and_return( $item, 'excerpt' ) || $this->check_and_return( $item, 'link_text' ) ) { ?>
-											<div class="media-body <?php echo ( isset( $item['design']['fonts'][ 'align' ] ) ) ? $item['design']['fonts'][ 'align' ] : ''; ?>">
-												<?php if( $this->check_and_return( $item, 'title') ) { ?>
+										<?php if( $this->check_and_return( $item_instance, 'title' ) || $this->check_and_return( $item_instance, 'excerpt' ) || $this->check_and_return( $item_instance, 'link_text' ) ) { ?>
+											<div class="media-body <?php echo ( isset( $item_instance['design']['fonts'][ 'align' ] ) ) ? $item_instance['design']['fonts'][ 'align' ] : ''; ?>">
+												<?php if( $this->check_and_return( $item_instance, 'title') ) { ?>
 													<<?php echo $heading_type ?> class="heading">
 														<?php if ( $link_array['link'] ) { ?>
 															<a <?php echo $link_href_attr; ?> <?php echo $link_target_attr; ?>>
 														<?php } ?>
-															<?php echo $item['title']; ?>
+															<?php echo $item_instance['title']; ?>
 														<?php if ( $link_array['link'] ) { ?>
 															</a>
 														<?php } ?>
 													</<?php echo $heading_type ?>>
 												<?php } ?>
-												<?php if( $this->check_and_return( $item, 'excerpt' ) ) { ?>
-													<div class="excerpt"><?php layers_the_content( $item['excerpt'] ); ?></div>
+												<?php if( $this->check_and_return( $item_instance, 'excerpt' ) ) { ?>
+													<div class="excerpt"><?php layers_the_content( $item_instance['excerpt'] ); ?></div>
 												<?php } ?>
 												<?php if ( $link_array['link'] && $link_array['text'] ) { ?>
 													<a <?php echo $link_href_attr; ?> class="button <?php echo $button_size; ?>" <?php echo $link_target_attr; ?>>

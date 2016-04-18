@@ -541,21 +541,21 @@ if( !class_exists( 'Layers_Widget' ) ) {
 			<?php }
 		}
 
-		public function check_and_return_link( $item, $button_key ) {
+		public function check_and_return_link( $instance, $button_key ) {
 
 			// Fix widget's that were created before dynamic linking structure.
-			$item = $this->convert_legacy_widget_links( $item, $button_key );
+			$instance = $this->convert_legacy_widget_links( $instance, $button_key );
 
 			// Collection.
 			$link_array = array();
 
 			// Get the link based on the link type.
-			$link_array['type'] = isset( $item[$button_key]['link_type'] ) ? $item[$button_key]['link_type'] : '';
+			$link_array['type'] = isset( $instance[$button_key]['link_type'] ) ? $instance[$button_key]['link_type'] : '';
 
 			switch ( $link_array['type'] ) {
 				case 'post':
-						if ( isset( $item[$button_key]['link_type_post'] ) && is_numeric( $item[$button_key]['link_type_post'] ) )
-							$link_array['link'] = get_permalink( $item[$button_key]['link_type_post'] );
+						if ( isset( $instance[$button_key]['link_type_post'] ) && is_numeric( $instance[$button_key]['link_type_post'] ) )
+							$link_array['link'] = get_permalink( $instance[$button_key]['link_type_post'] );
 						else
 							$link_array['link'] = '';
 					break;
@@ -568,38 +568,38 @@ if( !class_exists( 'Layers_Widget' ) ) {
 
 				case 'custom':
 				default:
-					$link_array['link'] = isset( $item[$button_key]['link_type_custom'] ) ? $item[$button_key]['link_type_custom'] : '';
+					$link_array['link'] = isset( $instance[$button_key]['link_type_custom'] ) ? $instance[$button_key]['link_type_custom'] : '';
 					break;
 			}
 
 			// Get the link_text.
-			$link_array['text'] = isset( $item[$button_key]['link_text'] ) ? $item[$button_key]['link_text'] : '';
+			$link_array['text'] = isset( $instance[$button_key]['link_text'] ) ? $instance[$button_key]['link_text'] : '';
 
 			// Get the link_target.
-			$link_array['target'] = isset( $item[$button_key]['link_target'] ) ? '_blank' : '';
+			$link_array['target'] = isset( $instance[$button_key]['link_target'] ) ? '_blank' : '';
 
 			return $link_array;
 		}
 
-		public function convert_legacy_widget_links( $item, $button_key ) {
+		public function convert_legacy_widget_links( $instance, $button_key ) {
 
 			// Convert the Old Widget Format.
-			if ( isset( $item['link'] ) ) {
-				$item[$button_key]['link_type'] = 'custom';
-				$item[$button_key]['link_type_custom'] = $item['link'];
-				unset( $item['link'] );
+			if ( isset( $instance['link'] ) ) {
+				$instance[$button_key]['link_type'] = 'custom';
+				$instance[$button_key]['link_type_custom'] = $instance['link'];
+				unset( $instance['link'] );
 			}
-			if ( isset( $item['link_text'] ) ) {
-				$item[$button_key]['link_text'] = $item['link_text'];
-				unset( $item['link_text'] );
+			if ( isset( $instance['link_text'] ) ) {
+				$instance[$button_key]['link_text'] = $instance['link_text'];
+				unset( $instance['link_text'] );
 			}
 
 			// Remove New-Old Widget Format.
-			if ( isset( $item['link_type'] ) ) unset( $item['link_type'] );
-			if ( isset( $item['link_post'] ) ) unset( $item['link_post'] );
-			if ( isset( $item['link_target'] ) ) unset( $item['link_target'] );
+			if ( isset( $instance['link_type'] ) ) unset( $instance['link_type'] );
+			if ( isset( $instance['link_post'] ) ) unset( $instance['link_post'] );
+			if ( isset( $instance['link_target'] ) ) unset( $instance['link_target'] );
 
-			return $item;
+			return $instance;
 		}
 
 	}

@@ -594,7 +594,7 @@ object{
 		width: 100%;
 		z-index: 100;
 	}
-	.header-site.header-overlay:not(.is_stuck){
+	.header-overlay-no-push .header-overlay:not(.is_stuck){
 		background: transparent;
 	}
 

@@ -282,7 +282,7 @@ class Layers_Form_Elements {
 						// Allow for setting of a default selection.
 						$checked = FALSE;
 						if ( $input->value && $input->value == $key ) $checked = TRUE;
-						elseif ( ! $input->value && isset( $input->default ) && $input->default == $key ) $checked = TRUE;
+						// elseif ( ! $input->value && isset( $input->default ) && $input->default == $key ) $checked = TRUE; // Not Using Anymore
 						?>
 						<label
 							href=""

@@ -76,7 +76,8 @@ if( !class_exists( 'Layers_Contact_Widget' ) ) {
 						'align' => 'text-center',
 						'size' => 'medium',
 						'color' => NULL,
-						'shadow' => NULL
+						'shadow' => NULL,
+						'heading-type' => 'h3',
 					)
 				)
 			);
@@ -97,11 +98,15 @@ if( !class_exists( 'Layers_Contact_Widget' ) ) {
 			if( empty( $instance ) && ! empty( $this->defaults ) ) {
 				$instance = wp_parse_args( $instance, $this->defaults );
 			}
+			
+			// Mix in new/unset defaults on every instance load (NEW)
+			$instance = $this->apply_defaults( $instance );
 
 			// Check if we have a map present
 			if( isset( $instance['show_google_map'] ) && ( '' != $instance['google_maps_location'] || '' != $instance['google_maps_long_lat'] ) ) {
 				$hasmap = true;
 			}
+			
 			// Set the background styling
 			if( !empty( $instance['design'][ 'background' ] ) ) $this->inline_css .= layers_inline_styles( '#' . $widget_id, 'background', array( 'background' => $instance['design'][ 'background' ] ) );
 			if( !empty( $instance['design']['fonts'][ 'color' ] ) ) $this->inline_css .= layers_inline_styles( '#' . $widget_id, 'color', array( 'selectors' => array( '.section-title .heading' , '.section-title div.excerpt' , '.section-title small', '.form.content' , 'form p' , 'form label' ) , 'color' => $instance['design']['fonts'][ 'color' ] ) );
@@ -154,7 +159,9 @@ if( !class_exists( 'Layers_Contact_Widget' ) ) {
 						$section_title_class = implode( ' ', $section_title_class ); ?>
 						<div class="<?php echo $section_title_class; ?>">
 							<?php if( '' != $this->check_and_return( $instance, 'title' ) ) { ?>
-								<h3 class="heading"><?php echo $instance['title']; ?></h3>
+								<<?php echo $this->check_and_return( 'design', 'fonts', 'heading-type' ); ?> class="heading">
+									<?php echo $instance['title']; ?>
+								</<?php echo $this->check_and_return( 'design', 'fonts', 'heading-type' ); ?>>
 							<?php } ?>
 							<?php if( '' != $this->check_and_return( $instance, 'excerpt' ) ) { ?>
 								<div class="excerpt"><?php echo layers_the_content( $instance['excerpt'] ); ?></div>
@@ -246,7 +253,10 @@ if( !class_exists( 'Layers_Contact_Widget' ) ) {
 			if( empty( $instance ) && ! empty( $this->defaults ) ) {
 				$instance = wp_parse_args( $instance, $this->defaults );
 			}
-
+			
+			// Mix in new/unset defaults on every instance load (NEW)
+			$instance = $this->apply_defaults( $instance );
+			
 			$this->design_bar(
 				'side', // CSS Class Name
 				array( // Widget Object
@@ -352,7 +362,7 @@ if( !class_exists( 'Layers_Contact_Widget' ) ) {
 									'align' => 'right',
 								),
 								$instance, // Widget Values
-								apply_filters( 'layers_map_widget_design_bar_components', array( // Components
+								apply_filters( 'layers_map_widget_inline_design_bar_components', array( // Components
 									'fonts',
 								), $this, $instance )
 							); ?>

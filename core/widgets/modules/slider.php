@@ -133,6 +133,9 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 			if( empty( $instance ) && ! empty( $this->defaults ) ) {
 				$instance = wp_parse_args( $instance, $this->defaults );
 			}
+			
+			// Mix in new/unset defaults on every instance load (NEW)
+			$instance = $this->apply_defaults( $instance );
 
 			// Enqueue Scipts when needed
 			$this->enqueue_scripts();
@@ -217,6 +220,9 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 
 							// Setup the relevant slide
 							$item_instance = $instance[ 'slides' ][ $slide_key ];
+							
+							// Mix in new/unset defaults on every instance load (NEW)
+							$item_instance = $this->apply_defaults( $item_instance, 'slide' );
 
 							// Set the background styling
 							if( !empty( $item_instance['design'][ 'background' ] ) ) $this->inline_css .= layers_inline_styles( '#' . $widget_id . '-' . $slide_key , 'background', array( 'background' => $item_instance['design'][ 'background' ] ) );
@@ -301,11 +307,6 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 								$overlay_classes = implode( ' ', $overlay_class );
 
 								/**
-								 * Get Heading Type - for SEO
-								 */
-								$heading_type = ( isset( $item_instance['design']['fonts']['heading-type'] ) ) ? $item_instance['design']['fonts']['heading-type'] : 'h3';
-								
-								/**
 								 * Button Size.
 								 */
 								$button_size = $this->check_and_return( $item_instance , 'design' , 'buttons-size' ) ? 'btn-' . $this->check_and_return( $item_instance , 'design' , 'buttons-size' ) : '' ;
@@ -318,7 +319,9 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 											<div class="copy-container">
 												<div class="section-title <?php echo ( isset( $item_instance['design']['fonts'][ 'size' ] ) ? $item_instance['design']['fonts'][ 'size' ] : '' ); ?>">
 													<?php if( $this->check_and_return( $item_instance , 'title' ) ) { ?>
-														<<?php echo $heading_type ?> data-swiper-parallax="-100" class="heading"><?php echo $item_instance['title']; ?></<?php echo $heading_type ?>>
+														<<?php echo $this->check_and_return( 'design', 'fonts', 'heading-type' ); ?> data-swiper-parallax="-100" class="heading">
+															<?php echo $item_instance['title']; ?>
+														</<?php echo $this->check_and_return( 'design', 'fonts', 'heading-type' ); ?>>
 													<?php } ?>
 													<?php if( $this->check_and_return( $item_instance , 'excerpt' ) ) { ?>
 														<div data-swiper-parallax="-300" class="excerpt"><?php layers_the_content( $item_instance['excerpt'] ); ?></div>
@@ -469,6 +472,9 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 				$instance = wp_parse_args( $instance, $this->defaults );
 			}
 			
+			// Mix in new/unset defaults on every instance load (NEW)
+			$instance = $this->apply_defaults( $instance );
+			
 			$components = apply_filters( 'layers_slide_widget_design_bar_components', array(
 				'layout' => array(
 					'icon-css' => 'icon-layout-fullwidth',
@@ -616,12 +622,15 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 
 		<?php }
 
-		function slide_item( $item_guid, $instance ) {
+		function slide_item( $item_guid, $item_instance ) {
+			
+			// Mix in new/unset defaults on every instance load (NEW)
+			$item_instance = $this->apply_defaults( $item_instance, 'slide' );
 			?>
 			<li class="layers-accordion-item <?php echo $this->item_count; ?>" data-guid="<?php echo $item_guid; ?>">
 				<a class="layers-accordion-title">
 					<span>
-						<?php _e( 'Slide' , 'layerswp' ); ?><span class="layers-detail"><?php echo ( isset( $instance['title'] ) ? ': ' . substr( stripslashes( strip_tags( $instance['title'] ) ), 0 , 50 ) : NULL ); ?><?php echo ( isset( $instance['title'] ) && strlen( $instance['title'] ) > 50 ? '...' : NULL ); ?></span>
+						<?php _e( 'Slide' , 'layerswp' ); ?><span class="layers-detail"><?php echo ( isset( $item_instance['title'] ) ? ': ' . substr( stripslashes( strip_tags( $item_instance['title'] ) ), 0 , 50 ) : NULL ); ?><?php echo ( isset( $item_instance['title'] ) && strlen( $item_instance['title'] ) > 50 ? '...' : NULL ); ?></span>
 					</span>
 				</a>
 				<section class="layers-accordion-section layers-content">
@@ -634,7 +643,7 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 							'number' => $this->number,
 							'show_trash' => TRUE
 						), // Widget Object
-						$instance, // Widget Values
+						$item_instance, // Widget Values
 						apply_filters( 'layers_slide_widget_slide_design_bar_components', array( // Components
 							'background',
 							'featuredimage',
@@ -657,7 +666,7 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 								),
 								'elements_combine' => 'replace',
 							),
-						), $this, $instance )
+						), $this, $item_instance )
 					); ?>
 					<div class="layers-row">
 						<p class="layers-form-item">
@@ -668,7 +677,7 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 									'name' => $this->get_layers_field_name( 'title' ),
 									'id' => $this->get_layers_field_id( 'title' ),
 									'placeholder' => __( 'Enter a Title' , 'layerswp' ),
-									'value' => ( isset( $instance['title'] ) ) ? $instance['title'] : NULL ,
+									'value' => ( isset( $item_instance['title'] ) ) ? $item_instance['title'] : NULL ,
 									'class' => 'layers-text'
 								)
 							); ?>
@@ -681,7 +690,7 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 									'name' => $this->get_layers_field_name( 'excerpt' ),
 									'id' => $this->get_layers_field_id( 'excerpt' ),
 									'placeholder' => __( 'Short Excerpt' , 'layerswp' ),
-									'value' => ( isset( $instance['excerpt'] ) ) ? $instance['excerpt'] : NULL ,
+									'value' => ( isset( $item_instance['excerpt'] ) ) ? $item_instance['excerpt'] : NULL ,
 									'disallow_buttons' => array( 'insertOrderedList','insertUnorderedList' ),
 									'class' => 'layers-textarea',
 									'rows' => 6
@@ -691,7 +700,7 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 
 						<?php
 						// Fix widget's that were created before dynamic linking structure.
-						$instance = $this->convert_legacy_widget_links( $instance, 'button' );
+						$item_instance = $this->convert_legacy_widget_links( $item_instance, 'button' );
 						?>
 
 						<div class="layers-form-item">
@@ -703,7 +712,7 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 									'type' => 'link-group',
 									'name' => $this->get_layers_field_name( 'button' ),
 									'id' => $this->get_layers_field_id( 'button' ),
-									'value' => ( isset( $instance['button'] ) ) ? $instance['button'] : NULL,
+									'value' => ( isset( $item_instance['button'] ) ) ? $item_instance['button'] : NULL,
 								)
 							); ?>
 						</div>

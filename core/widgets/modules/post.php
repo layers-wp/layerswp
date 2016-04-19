@@ -93,7 +93,8 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 						'align' => 'text-left',
 						'size' => 'medium',
 						'color' => NULL,
-						'shadow' => NULL
+						'shadow' => NULL,
+						'heading-type' => 'h3',
 					),
 					'buttons' => array(
 						'buttons-size' => 'medium',
@@ -117,6 +118,9 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 			if( empty( $instance ) && ! empty( $this->defaults ) ) {
 				$instance = wp_parse_args( $instance, $this->defaults );
 			}
+			
+			// Mix in new/unset defaults on every instance load (NEW)
+			$instance = $this->apply_defaults( $instance );
 
 			// Enqueue Masonry if need be
 			if( 'list-masonry' == $this->check_and_return( $instance , 'design', 'liststyle' ) ) $this->enqueue_masonry();
@@ -247,7 +251,9 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 						$section_title_class = implode( ' ', $section_title_class ); ?>
 						<div class="<?php echo $section_title_class; ?>">
 							<?php if( '' != $this->check_and_return( $instance, 'title' )  ) { ?>
-								<h3 class="heading"><?php echo $instance['title'] ?></h3>
+								<<?php echo $this->check_and_return( 'design', 'fonts', 'heading-type' ); ?> class="heading">
+									<?php echo $instance['title'] ?>
+								</<?php echo $this->check_and_return( 'design', 'fonts', 'heading-type' ); ?>>
 							<?php } ?>
 							<?php if( '' != $this->check_and_return( $instance, 'excerpt' )  ) { ?>
 								<div class="excerpt"><?php echo layers_the_content( $instance['excerpt'] ); ?></div>
@@ -424,6 +430,9 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 			if( empty( $instance ) && ! empty( $this->defaults ) ) {
 				$instance = wp_parse_args( $instance, $this->defaults );
 			}
+			
+			// Mix in new/unset defaults on every instance load (NEW)
+			$instance = $this->apply_defaults( $instance );
 
 			$this->design_bar(
 				'side', // CSS Class Name
@@ -601,7 +610,7 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 									'align' => 'right',
 								),
 								$instance, // Widget Values
-								apply_filters( 'layers_post_widget_design_bar_components', array( // Components
+								apply_filters( 'layers_post_widget_inline_design_bar_components', array( // Components
 									'fonts',
 								), $this, $instance )
 							); ?>

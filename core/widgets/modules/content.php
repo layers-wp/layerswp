@@ -91,7 +91,6 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 					),
 				),
 			) );
-
 		}
 
 		/**
@@ -185,6 +184,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 								if( isset( $column_ids[ ($col_no+1) ] ) ) {
 									$next_item = $instance[ 'columns' ][ $column_ids[ ($col_no+1) ] ];
 								}
+								
 								// Set the background styling
 								if( !empty( $item_instance['design'][ 'background' ] ) ) $this->inline_css .= layers_inline_styles( '#' . $widget_id . '-' . $column_key , 'background', array( 'background' => $item_instance['design'][ 'background' ] ) );
 								if( !empty( $item_instance['design']['fonts'][ 'color' ] ) ) $this->inline_css .= layers_inline_styles( '#' . $widget_id . '-' . $column_key , 'color', array( 'selectors' => array( 'h5.heading a', 'h5.heading' , 'div.excerpt' , 'div.excerpt p' ) , 'color' => $item_instance['design']['fonts'][ 'color' ] ) );
@@ -385,7 +385,8 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 				<?php } // masonry trigger ?>
 
 			</div>
-		<?php
+			<?php
+			
 			// Apply the advanced widget styling
 			$this->apply_widget_advanced_styling( $widget_id, $instance );
 		}

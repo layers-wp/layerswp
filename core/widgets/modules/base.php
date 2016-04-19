@@ -97,7 +97,6 @@ if( !class_exists( 'Layers_Widget' ) ) {
 			} elseif( '' != $instance_option ){
 				return $instance_option;
 			}
-
 		}
 
 		/**

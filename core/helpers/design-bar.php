@@ -199,7 +199,6 @@ class Layers_Design_Controller {
 				$elements,
 				$this
 			);
-			// s( 'layers_design_bar_' . $key . '_' . $this->args[ 'widget_id' ] . '_elements' );
 		} ?>
 
 		<li class="layers-design-bar-nav-item layers-visuals-item">

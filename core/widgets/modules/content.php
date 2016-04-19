@@ -108,7 +108,10 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 			if( empty( $instance ) && ! empty( $this->defaults ) ) {
 				$instance = wp_parse_args( $instance, $this->defaults );
 			}
-
+			
+			// Mix in new/unset defaults on every instance load (NEW)
+			$instance = $this->apply_defaults( $instance );
+			
 			// Enqueue Masonry if need be
 			if( 'list-masonry' == $this->check_and_return( $instance , 'design', 'liststyle' ) ) $this->enqueue_masonry();
 
@@ -178,9 +181,15 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 
 								// Make sure we've got a column going on here
 								if( !isset( $instance[ 'columns' ][ $column_key ] ) ) continue;
-
-								// Setup the relevant slide
-								$item_instance = $instance[ 'columns' ][ $column_key ];
+								
+								// Setup Internal Vars.
+								$item_instance = $instance['columns'][ $column_key ];
+								$item_id_attr  = "{$widget_id}-tabs-{$column_key}";
+								
+								// Mix in new/unset defaults on every instance load (NEW)
+								$item_instance = $this->apply_defaults( $item_instance, 'column' );
+								
+								// Get the Next Column for use later.
 								if( isset( $column_ids[ ($col_no+1) ] ) ) {
 									$next_item = $instance[ 'columns' ][ $column_ids[ ($col_no+1) ] ];
 								}
@@ -418,6 +427,9 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 			if( empty( $instance ) && ! empty( $this->defaults ) ) {
 				$instance = wp_parse_args( $instance, $this->defaults );
 			}
+			
+			// Mix in new/unset defaults on every instance load (NEW)
+			$instance = $this->apply_defaults( $instance );
 
 			$this->design_bar(
 				'side', // CSS Class Name
@@ -523,6 +535,9 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 		<?php }
 
 		function column_item( $item_guid, $instance ) {
+			
+			// Mix in new/unset defaults on every instance load (NEW)
+			$item_instance = $this->apply_defaults( $item_instance, 'column' );
 			?>
 			<li class="layers-accordion-item" data-guid="<?php echo esc_attr( $item_guid ); ?>">
 				<a class="layers-accordion-title">

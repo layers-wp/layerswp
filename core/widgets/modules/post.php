@@ -117,6 +117,9 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 			if( empty( $instance ) && ! empty( $this->defaults ) ) {
 				$instance = wp_parse_args( $instance, $this->defaults );
 			}
+			
+			// Mix in new/unset defaults on every instance load (NEW)
+			$instance = $this->apply_defaults( $instance );
 
 			// Enqueue Masonry if need be
 			if( 'list-masonry' == $this->check_and_return( $instance , 'design', 'liststyle' ) ) $this->enqueue_masonry();
@@ -424,6 +427,9 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 			if( empty( $instance ) && ! empty( $this->defaults ) ) {
 				$instance = wp_parse_args( $instance, $this->defaults );
 			}
+			
+			// Mix in new/unset defaults on every instance load (NEW)
+			$instance = $this->apply_defaults( $instance );
 
 			$this->design_bar(
 				'side', // CSS Class Name

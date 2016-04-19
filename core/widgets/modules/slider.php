@@ -133,6 +133,9 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 			if( empty( $instance ) && ! empty( $this->defaults ) ) {
 				$instance = wp_parse_args( $instance, $this->defaults );
 			}
+			
+			// Mix in new/unset defaults on every instance load (NEW)
+			$instance = $this->apply_defaults( $instance );
 
 			// Enqueue Scipts when needed
 			$this->enqueue_scripts();
@@ -217,6 +220,9 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 
 							// Setup the relevant slide
 							$item_instance = $instance[ 'slides' ][ $slide_key ];
+							
+							// Mix in new/unset defaults on every instance load (NEW)
+							$item_instance = $this->apply_defaults( $item_instance, 'slide' );
 
 							// Set the background styling
 							if( !empty( $item_instance['design'][ 'background' ] ) ) $this->inline_css .= layers_inline_styles( '#' . $widget_id . '-' . $slide_key , 'background', array( 'background' => $item_instance['design'][ 'background' ] ) );
@@ -469,6 +475,9 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 				$instance = wp_parse_args( $instance, $this->defaults );
 			}
 			
+			// Mix in new/unset defaults on every instance load (NEW)
+			$instance = $this->apply_defaults( $instance );
+			
 			$components = apply_filters( 'layers_slide_widget_design_bar_components', array(
 				'layout' => array(
 					'icon-css' => 'icon-layout-fullwidth',
@@ -617,6 +626,9 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 		<?php }
 
 		function slide_item( $item_guid, $instance ) {
+			
+			// Mix in new/unset defaults on every instance load (NEW)
+			$item_instance = $this->apply_defaults( $item_instance, 'slide' );
 			?>
 			<li class="layers-accordion-item <?php echo $this->item_count; ?>" data-guid="<?php echo $item_guid; ?>">
 				<a class="layers-accordion-title">

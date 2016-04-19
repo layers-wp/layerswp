@@ -538,7 +538,7 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 /*- HEADERS ---------------------*/
 
 	.header-site .container{
-		padding: 20px;
+		padding: 20px 0;
 	}
 
 	/*---------------------------*/

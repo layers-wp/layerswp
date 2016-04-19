@@ -153,9 +153,9 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 						?>
 						<div class="<?php echo $section_title_class; ?>">
 							<?php if( '' != $this->check_and_return( $instance, 'title' ) ) { ?>
-								<<?php echo $this->check_and_return( 'design', 'fonts', 'heading-type' ); ?> class="heading">
+								<<?php echo $this->check_and_return( $instance, 'design', 'fonts', 'heading-type' ); ?> class="heading">
 									<?php echo $instance['title'] ?>
-								</<?php echo $this->check_and_return( 'design', 'fonts', 'heading-type' ); ?>>
+								</<?php echo $this->check_and_return( $instance, 'design', 'fonts', 'heading-type' ); ?>>
 							<?php } ?>
 							<?php if( '' != $this->check_and_return( $instance, 'excerpt' ) ) { ?>
 								<div class="excerpt"><?php echo layers_the_content( $instance['excerpt'] ); ?></div>
@@ -338,7 +338,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 										<?php if( $this->check_and_return( $item_instance, 'title' ) || $this->check_and_return( $item_instance, 'excerpt' ) || $this->check_and_return( $item_instance, 'link_text' ) ) { ?>
 											<div class="media-body <?php echo ( isset( $item_instance['design']['fonts'][ 'align' ] ) ) ? $item_instance['design']['fonts'][ 'align' ] : ''; ?>">
 												<?php if( $this->check_and_return( $item_instance, 'title') ) { ?>
-													<<?php echo $this->check_and_return( 'design', 'fonts', 'heading-type' ) ?> class="heading">
+													<<?php echo $this->check_and_return( $item_instance, 'design', 'fonts', 'heading-type' ) ?> class="heading">
 														<?php if ( $link_array['link'] ) { ?>
 															<a <?php echo $link_href_attr; ?> <?php echo $link_target_attr; ?>>
 														<?php } ?>
@@ -346,7 +346,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 														<?php if ( $link_array['link'] ) { ?>
 															</a>
 														<?php } ?>
-													</<?php echo $this->check_and_return( 'design', 'fonts', 'heading-type' ) ?>>
+													</<?php echo $this->check_and_return( $item_instance, 'design', 'fonts', 'heading-type' ) ?>>
 												<?php } ?>
 												<?php if( $this->check_and_return( $item_instance, 'excerpt' ) ) { ?>
 													<div class="excerpt"><?php layers_the_content( $item_instance['excerpt'] ); ?></div>

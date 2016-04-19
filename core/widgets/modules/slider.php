@@ -319,9 +319,9 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 											<div class="copy-container">
 												<div class="section-title <?php echo ( isset( $item_instance['design']['fonts'][ 'size' ] ) ? $item_instance['design']['fonts'][ 'size' ] : '' ); ?>">
 													<?php if( $this->check_and_return( $item_instance , 'title' ) ) { ?>
-														<<?php echo $this->check_and_return( 'design', 'fonts', 'heading-type' ); ?> data-swiper-parallax="-100" class="heading">
+														<<?php echo $this->check_and_return( $item_instance, 'design', 'fonts', 'heading-type' ); ?> data-swiper-parallax="-100" class="heading">
 															<?php echo $item_instance['title']; ?>
-														</<?php echo $this->check_and_return( 'design', 'fonts', 'heading-type' ); ?>>
+														</<?php echo $this->check_and_return( $item_instance, 'design', 'fonts', 'heading-type' ); ?>>
 													<?php } ?>
 													<?php if( $this->check_and_return( $item_instance , 'excerpt' ) ) { ?>
 														<div data-swiper-parallax="-300" class="excerpt"><?php layers_the_content( $item_instance['excerpt'] ); ?></div>

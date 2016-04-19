@@ -18,7 +18,13 @@ if( !class_exists( 'Layers_Widget' ) ) {
 
 		public $inline_css;
 
-
+		//  Defaults
+		
+		public $defaults = array();
+		
+		public $merge_defaults = array();
+		
+		public $merge_repeater_defaults = array();
 
 		/**
 		* If there is inline CSS back it up while we run this widget
@@ -392,6 +398,31 @@ if( !class_exists( 'Layers_Widget' ) ) {
 				$defaults_collection[] = func_get_arg( $i );
 				$i++;
 			}
+			
+			
+			// Store the defaults so they can be merged in each time the widget is called.
+			// It must be done now before the repeater defaults are merged into the main defaults.
+			
+			// Main Defaults.
+			if ( empty( $this->merge_defaults ) && isset( $this->defaults ) ) {
+				$this->merge_defaults = $this->defaults;
+				
+				// Debugging:
+				// echo '<pre>';
+				// var_dump( $this->merge_defaults );
+				// echo '</pre>';
+			}
+			
+			// Repeater Defaults.
+			if ( ! isset( $this->merge_repeater_defaults[$type] ) ) {
+				$this->merge_repeater_defaults[$type] = end( $defaults_collection );
+				
+				// Debugging:
+				// echo '<pre>';
+				// var_dump( $this->merge_repeater_defaults );
+				// echo '</pre>';
+			}
+			
 
 			// Create array of random guid's to the specified size.
 			$repeat_ids_array = array();
@@ -602,5 +633,118 @@ if( !class_exists( 'Layers_Widget' ) ) {
 			return $instance;
 		}
 
+		/**
+		 * This helper will merge in additional defaults into the defaults of either
+		 * the main widget instance, or it's repeater-items (like columns, slides).
+		 *
+		 * @param    array    $instance Widget instance supplied by WP
+		 * @param    string   $item_key Optional - If this is specified it means it must be applied only to the repeater-items (like columns, slides)
+		 * @return   array    $instance with the merged in new defaults
+		 */
+		function apply_defaults( $instance, $item_key = NULL ) {
+			
+			// Store the defaults so they can be merged in each time the widget is called.
+			// It must be done now before the repeater defaults are merged into the main defaults.
+			// This is also done in register_repeater_defaults, but must be done again here,
+			// in case this is not a widget with repeater(s).
+			
+			// Main Defaults.
+			if ( empty( $this->merge_defaults ) && isset( $this->defaults ) ) {
+				$this->merge_defaults = $this->defaults;
+				
+				// Debugging:
+				// echo '<pre>';
+				// var_dump( $this->merge_defaults );
+				// echo '</pre>';
+			}
+			
+			if ( $item_key ) {
+				
+				// Repeater instance.
+				if ( isset( $this->merge_repeater_defaults[$item_key] ) ) {
+					
+					// Debugging:
+					// echo '<pre>';
+					// var_dump( $this->get_defaults( $instance, $this->merge_repeater_defaults[$item_key] ) );
+					// echo '</pre>';
+					
+					return $this->get_defaults( $instance, $this->merge_repeater_defaults[$item_key] );
+				}
+				if ( isset( $this->merge_repeater_defaults[rtrim( $item_key, 's' )] ) ) {
+					
+					// Debugging:
+					// echo '<pre>';
+					// var_dump( $this->get_defaults( $instance, $this->merge_repeater_defaults[rtrim( $item_key, 's' )] ) );
+					// echo '</pre>';
+					
+					return $this->get_defaults( $instance, $this->merge_repeater_defaults[rtrim( $item_key, 's' )] );
+				}
+			}
+			else {
+				
+				// Main widget instance.
+				
+				// Debugging:
+				// echo '<pre>';
+				// var_dump( $this->get_defaults( $instance, $this->merge_defaults ) );
+				// echo '</pre>';
+				
+				return $this->get_defaults( $instance, $this->merge_defaults );
+			}
+		}
+		
+		/**
+		 * Helper - Recurring function for checkling and applying additional defaults.
+		 */
+		function get_defaults( $instance, $defaults ) {
+			
+			// Loop through the supplied defaults.
+			foreach ( $defaults as $default_key => $default_value ) {
+				
+				if ( is_array( $default_value ) ) {
+					
+					if ( ! isset( $instance[$default_key] ) ) {
+						// This element doesnt even exist in the intance yet so apply the whole branch.
+						$instance[$default_key] = $default_value;
+						
+						// Debugging:
+						// echo '<pre>';
+						// echo "Add: $default_key:";
+						// var_dump( $default_value );
+						// echo '</pre>';
+					}
+					else{
+						// Check this branch recurrsively.
+						$instance[$default_key] = $this->get_defaults( $instance[$default_key], $default_value );
+					}
+				}
+				else {
+					
+					/*if ( isset( $instance[$default_key] ) && NULL == $instance[$default_key] ) {
+						
+						// if the value exists and is null, apply the default.
+						$instance[$default_key] = $default_value;
+						
+						// Debugging:
+						// echo '<pre>';
+						// echo "Add: $default_key: $default_value";
+						// echo '</pre>';
+					}*/
+					if ( ! isset( $instance[$default_key] ) && NULL !== $default_value ) {
+						
+						// if the value does not, apply the default.
+						$instance[$default_key] = $default_value;
+						
+						// Debugging:
+						// echo '<pre>';
+						// echo "Add: $default_key: $default_value";
+						// echo '</pre>';
+					}
+				}
+			}
+			
+			return $instance;
+		}
+		
 	}
 }

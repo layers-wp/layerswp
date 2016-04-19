@@ -488,7 +488,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 								'align' => 'right',
 							),
 							$instance, // Widget Values
-							apply_filters( 'layers_column_widget_design_bar_components', array( // Components
+							apply_filters( 'layers_column_widget_inline_design_bar_components', array( // Components
 								'fonts',
 							), $this, $instance )
 						); ?>

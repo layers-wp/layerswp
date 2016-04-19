@@ -352,7 +352,7 @@ if( !class_exists( 'Layers_Contact_Widget' ) ) {
 									'align' => 'right',
 								),
 								$instance, // Widget Values
-								apply_filters( 'layers_map_widget_design_bar_components', array( // Components
+								apply_filters( 'layers_map_widget_inline_design_bar_components', array( // Components
 									'fonts',
 								), $this, $instance )
 							); ?>

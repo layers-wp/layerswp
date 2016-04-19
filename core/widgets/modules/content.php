@@ -58,7 +58,6 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 				'design' => array(
 					'layout' => 'layout-boxed',
 					'liststyle' => 'list-grid',
-					'columns' => '3',
 					'gutter' => 'on',
 					'background' => array(
 						'position' => 'center',

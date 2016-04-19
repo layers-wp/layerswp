@@ -307,11 +307,6 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 								$overlay_classes = implode( ' ', $overlay_class );
 
 								/**
-								 * Get Heading Type - for SEO
-								 */
-								$heading_type = ( isset( $item_instance['design']['fonts']['heading-type'] ) ) ? $item_instance['design']['fonts']['heading-type'] : 'h3';
-								
-								/**
 								 * Button Size.
 								 */
 								$button_size = $this->check_and_return( $item_instance , 'design' , 'buttons-size' ) ? 'btn-' . $this->check_and_return( $item_instance , 'design' , 'buttons-size' ) : '' ;

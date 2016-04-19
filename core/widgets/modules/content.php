@@ -151,11 +151,6 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 						$section_title_class[] = $this->check_and_return( $instance , 'design', 'fonts', 'align' );
 						$section_title_class[] = ( $this->check_and_return( $instance, 'design', 'background' , 'color' ) && 'dark' == layers_is_light_or_dark( $this->check_and_return( $instance, 'design', 'background' , 'color' ) ) ? 'invert' : '' );
 						$section_title_class = implode( ' ', $section_title_class );
-
-						/**
-						 * Get Heading Type - for SEO
-						 */
-						$heading_type = ( isset( $instance['design']['fonts']['heading-type'] ) ) ? $instance['design']['fonts']['heading-type'] : 'h2' ;
 						?>
 						<div class="<?php echo $section_title_class; ?>">
 							<?php if( '' != $this->check_and_return( $instance, 'title' ) ) { ?>
@@ -319,11 +314,6 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 									$column_inner_classes[] = $this->check_and_return( $item_instance, 'design', 'imagealign' );
 									$column_inner_classes[] = $this->check_and_return( $item_instance, 'design', 'fonts' , 'size' );
 									$column_inner_classes = implode( ' ', $column_inner_classes );
-									
-									/**
-									 * Get Heading Type - for SEO
-									 */
-									$heading_type = ( isset( $item_instance['design']['fonts']['heading-type'] ) ) ? $item_instance['design']['fonts']['heading-type'] : 'h3' ;
 									
 									/**
 									 * Button Size.

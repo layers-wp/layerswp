@@ -107,7 +107,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 			if( empty( $instance ) && ! empty( $this->defaults ) ) {
 				$instance = wp_parse_args( $instance, $this->defaults );
 			}
-			
+
 			// Mix in new/unset defaults on every instance load (NEW)
 			$instance = $this->apply_defaults( $instance );
 			
@@ -158,7 +158,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 								</<?php echo $this->check_and_return( 'design', 'fonts', 'heading-type' ); ?>>
 							<?php } ?>
 							<?php if( '' != $this->check_and_return( $instance, 'excerpt' ) ) { ?>
-								<div class="excerpt"><?php echo $instance['excerpt']; ?></div>
+								<div class="excerpt"><?php echo layers_the_content( $instance['excerpt'] ); ?></div>
 							<?php } ?>
 						</div>
 					</div>
@@ -177,9 +177,9 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 
 								// Make sure we've got a column going on here
 								if( !isset( $instance[ 'columns' ][ $column_key ] ) ) continue;
-								
+
 								// Setup Internal Vars.
-								$item_instance = $instance['columns'][ $column_key ];
+								$item_instance = $instance[ 'columns' ][ $column_key ];
 								$item_id_attr  = "{$widget_id}-tabs-{$column_key}";
 								
 								// Mix in new/unset defaults on every instance load (NEW)
@@ -192,8 +192,8 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 								
 								// Set the background styling
 								if( !empty( $item_instance['design'][ 'background' ] ) ) $this->inline_css .= layers_inline_styles( '#' . $widget_id . '-' . $column_key , 'background', array( 'background' => $item_instance['design'][ 'background' ] ) );
-								if( !empty( $item_instance['design']['fonts'][ 'color' ] ) ) $this->inline_css .= layers_inline_styles( '#' . $widget_id . '-' . $column_key , 'color', array( 'selectors' => array( 'h5.heading a', 'h5.heading' , 'div.excerpt' , 'div.excerpt p' ) , 'color' => $item_instance['design']['fonts'][ 'color' ] ) );
-								if( !empty( $item_instance['design']['fonts'][ 'shadow' ] ) ) $this->inline_css .= layers_inline_styles( '#' . $widget_id . '-' . $column_key , 'text-shadow', array( 'selectors' => array( 'h5.heading a', 'h5.heading' , 'div.excerpt' , 'div.excerpt p' )  , 'text-shadow' => $item_instance['design']['fonts'][ 'shadow' ] ) );
+								if( !empty( $item_instance['design']['fonts'][ 'color' ] ) ) $this->inline_css .= layers_inline_styles( '#' . $widget_id . '-' . $column_key , 'color', array( 'selectors' => array( '.heading a', '.heading' , 'div.excerpt' , 'div.excerpt p' ) , 'color' => $item_instance['design']['fonts'][ 'color' ] ) );
+								if( !empty( $item_instance['design']['fonts'][ 'shadow' ] ) ) $this->inline_css .= layers_inline_styles( '#' . $widget_id . '-' . $column_key , 'text-shadow', array( 'selectors' => array( '.heading a', '.heading' , 'div.excerpt' , 'div.excerpt p' )  , 'text-shadow' => $item_instance['design']['fonts'][ 'shadow' ] ) );
 
 								// Set column margin & padding
 								if ( !empty( $item_instance['design']['advanced']['margin'] ) ) $this->inline_css .= layers_inline_styles( "#{$widget_id}-{$column_key}", 'margin', array( 'margin' => $item_instance['design']['advanced']['margin'] ) );
@@ -385,7 +385,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 				<?php } // masonry trigger ?>
 
 			</div>
-			<?php
+		<?php
 			
 			// Apply the advanced widget styling
 			$this->apply_widget_advanced_styling( $widget_id, $instance );
@@ -418,7 +418,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 			if( empty( $instance ) && ! empty( $this->defaults ) ) {
 				$instance = wp_parse_args( $instance, $this->defaults );
 			}
-			
+
 			// Mix in new/unset defaults on every instance load (NEW)
 			$instance = $this->apply_defaults( $instance );
 

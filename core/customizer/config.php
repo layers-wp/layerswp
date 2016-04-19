@@ -366,12 +366,6 @@ class Layers_Customizer_Config {
 				'type'     => 'layers-checkbox',
 				'label'    => __( 'Transparent Overlay' , 'layerswp' ),
 				'default'	=> FALSE,
-				/*
-				'linked' => array(
-					'show-if-selector' => '#layers-header-sticky',
-					'show-if-value' => 'true',
-				),
-				*/
 			),
 			'header-upsell-layers-pro' => array(
 				'type'  => 'layers-heading',

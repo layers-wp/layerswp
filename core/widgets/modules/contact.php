@@ -164,7 +164,7 @@ if( !class_exists( 'Layers_Contact_Widget' ) ) {
 								</<?php echo $this->check_and_return( 'design', 'fonts', 'heading-type' ); ?>>
 							<?php } ?>
 							<?php if( '' != $this->check_and_return( $instance, 'excerpt' ) ) { ?>
-								<div class="excerpt"><?php echo $instance['excerpt']; ?></div>
+								<div class="excerpt"><?php echo layers_the_content( $instance['excerpt'] ); ?></div>
 							<?php } ?>
 						</div>
 					</div>
@@ -339,7 +339,7 @@ if( !class_exists( 'Layers_Contact_Widget' ) ) {
 				<section class="layers-accordion-section layers-content">
 					<div class="layers-row layers-push-bottom clearfix">
 						<div class="layers-form-item">
-							
+
 							<?php echo $this->form_elements()->input(
 								array(
 									'type' => 'text',
@@ -350,7 +350,7 @@ if( !class_exists( 'Layers_Contact_Widget' ) ) {
 									'class' => 'layers-text layers-large'
 								)
 							); ?>
-							
+
 							<?php $this->design_bar(
 								'top', // CSS Class Name
 								array( // Widget Object
@@ -366,10 +366,10 @@ if( !class_exists( 'Layers_Contact_Widget' ) ) {
 									'fonts',
 								), $this, $instance )
 							); ?>
-							
+
 						</div>
 						<div class="layers-form-item">
-							
+
 							<?php echo $this->form_elements()->input(
 								array(
 									'type' => 'rte',
@@ -380,7 +380,7 @@ if( !class_exists( 'Layers_Contact_Widget' ) ) {
 									'class' => 'layers-textarea layers-large'
 								)
 							); ?>
-							
+
 						</div>
 					</div>
 					<div class="layers-row clearfix">

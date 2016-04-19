@@ -526,7 +526,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 
 		<?php }
 
-		function column_item( $item_guid, $instance ) {
+		function column_item( $item_guid, $item_instance ) {
 			
 			// Mix in new/unset defaults on every instance load (NEW)
 			$item_instance = $this->apply_defaults( $item_instance, 'column' );
@@ -534,7 +534,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 			<li class="layers-accordion-item" data-guid="<?php echo esc_attr( $item_guid ); ?>">
 				<a class="layers-accordion-title">
 					<span>
-						<?php _e( 'Column' , 'layerswp' ); ?><span class="layers-detail"><?php echo ( isset( $instance['title'] ) ? ': ' . substr( stripslashes( strip_tags( $instance['title'] ) ), 0 , 50 ) : NULL ); ?><?php echo ( isset( $instance['title'] ) && strlen( $instance['title'] ) > 50 ? '...' : NULL ); ?></span>
+						<?php _e( 'Column' , 'layerswp' ); ?><span class="layers-detail"><?php echo ( isset( $item_instance['title'] ) ? ': ' . substr( stripslashes( strip_tags( $item_instance['title'] ) ), 0 , 50 ) : NULL ); ?><?php echo ( isset( $item_instance['title'] ) && strlen( $item_instance['title'] ) > 50 ? '...' : NULL ); ?></span>
 					</span>
 				</a>
 				<section class="layers-accordion-section layers-content">
@@ -547,7 +547,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 							'number' => $this->number,
 							'show_trash' => TRUE,
 						),
-						$instance, // Widget Values
+						$item_instance, // Widget Values
 						apply_filters( 'layers_column_widget_column_design_bar_components', array( // Components
 							'background',
 							'featuredimage',
@@ -562,7 +562,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 										'label' => __( '' , 'layerswp' ),
 										'name' => $this->get_layers_field_name( 'width' ),
 										'id' => $this->get_layers_field_id( 'width' ),
-										'value' => ( isset( $instance['width'] ) ) ? $instance['width'] : NULL,
+										'value' => ( isset( $item_instance['width'] ) ) ? $item_instance['width'] : NULL,
 										'options' => array(
 											'1' => __( '1 of 12 columns' , 'layerswp' ),
 											'2' => __( '2 of 12 columns' , 'layerswp' ),
@@ -588,7 +588,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 										'label' => __( 'Padding (px)', 'layerswp' ),
 										'name' => $this->get_layers_field_name( 'design', 'advanced', 'padding' ),
 										'id' => $this->get_layers_field_id( 'design', 'advanced', 'padding' ),
-										'value' => ( isset( $instance['design']['advanced']['padding'] ) ) ? $instance['design']['advanced']['padding'] : NULL,
+										'value' => ( isset( $item_instance['design']['advanced']['padding'] ) ) ? $item_instance['design']['advanced']['padding'] : NULL,
 										'fields' => array(
 											'top',
 											'right',
@@ -601,7 +601,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 										'label' => __( 'Margin (px)', 'layerswp' ),
 										'name' => $this->get_layers_field_name( 'design', 'advanced', 'margin' ),
 										'id' => $this->get_layers_field_id( 'design', 'advanced', 'margin' ),
-										'value' => ( isset( $instance['design']['advanced']['margin'] ) ) ? $instance['design']['advanced']['margin'] : NULL,
+										'value' => ( isset( $item_instance['design']['advanced']['margin'] ) ) ? $item_instance['design']['advanced']['margin'] : NULL,
 										'fields' => array(
 											'top',
 											'bottom',
@@ -610,7 +610,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 								),
 								'elements_combine' => 'replace',
 							),
-						), $this, $instance )
+						), $this, $item_instance )
 					); ?>
 					<div class="layers-row">
 						<p class="layers-form-item">
@@ -621,7 +621,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 									'name' => $this->get_layers_field_name( 'title' ),
 									'id' => $this->get_layers_field_id( 'title' ),
 									'placeholder' => __( 'Enter title here' , 'layerswp' ),
-									'value' => ( isset( $instance['title'] ) ) ? $instance['title'] : NULL ,
+									'value' => ( isset( $item_instance['title'] ) ) ? $item_instance['title'] : NULL ,
 									'class' => 'layers-text'
 								)
 							); ?>
@@ -634,7 +634,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 									'name' => $this->get_layers_field_name( 'excerpt' ),
 									'id' => $this->get_layers_field_id( 'excerpt' ),
 									'placeholder' => __( 'Short Excerpt' , 'layerswp' ),
-									'value' => ( isset( $instance['excerpt'] ) ) ? $instance['excerpt'] : NULL ,
+									'value' => ( isset( $item_instance['excerpt'] ) ) ? $item_instance['excerpt'] : NULL ,
 									'class' => 'layers-form-item layers-textarea',
 									'rows' => 6
 								)
@@ -643,7 +643,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 
 						<?php
 						// Fix widget's that were created before dynamic linking structure.
-						$instance = $this->convert_legacy_widget_links( $instance, 'button' );
+						$item_instance = $this->convert_legacy_widget_links( $item_instance, 'button' );
 						?>
 
 						<div class="layers-form-item">
@@ -655,7 +655,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 									'type' => 'link-group',
 									'name' => $this->get_layers_field_name( 'button' ),
 									'id' => $this->get_layers_field_id( 'button' ),
-									'value' => ( isset( $instance['button'] ) ) ? $instance['button'] : NULL,
+									'value' => ( isset( $item_instance['button'] ) ) ? $item_instance['button'] : NULL,
 								)
 							); ?>
 						</div>

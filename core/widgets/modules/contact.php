@@ -267,7 +267,6 @@ if( !class_exists( 'Layers_Contact_Widget' ) ) {
 				$instance, // Widget Values
 				apply_filters( 'layers_map_widget_design_bar_components' , array( // Components
 					'layout',
-					'fonts',
 					'display' => array(
 						'icon-css' => 'icon-display',
 						'label' => __( 'Display', 'layerswp' ),

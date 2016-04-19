@@ -158,7 +158,9 @@ if( !class_exists( 'Layers_Contact_Widget' ) ) {
 						$section_title_class = implode( ' ', $section_title_class ); ?>
 						<div class="<?php echo $section_title_class; ?>">
 							<?php if( '' != $this->check_and_return( $instance, 'title' ) ) { ?>
-								<h3 class="heading"><?php echo $instance['title']; ?></h3>
+								<<?php echo $this->check_and_return( 'design', 'fonts', 'heading-type' ); ?> class="heading">
+									<?php echo $instance['title']; ?>
+								</<?php echo $this->check_and_return( 'design', 'fonts', 'heading-type' ); ?>>
 							<?php } ?>
 							<?php if( '' != $this->check_and_return( $instance, 'excerpt' ) ) { ?>
 								<div class="excerpt"><?php echo $instance['excerpt']; ?></div>

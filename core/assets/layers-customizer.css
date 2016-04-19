@@ -1013,6 +1013,9 @@ div[id*='layers-widget'] .widget-control-actions .alignright{
 		font-size: 20px;
 		height: 42px;
 	}
+	.layers-input-has-controls{
+		padding-right: 50px;
+	}
 	.customize-control .layers-textarea.layers-large{
 		font-size: 16px;
 		line-height: 28px;
@@ -1692,7 +1695,8 @@ div[id*='layers-widget'] .widget-control-actions .alignright{
 		.layers-visuals-horizontal .layers-icon-description{
 			position: absolute;
 			top: 43px;
-			left: -50%;
+			left: 50%;
+			margin-left: -50px;
 			width: 100px;
 			padding: 3px;
 			background: rgba(0, 0, 0, 0.7);
@@ -1717,7 +1721,13 @@ div[id*='layers-widget'] .widget-control-actions .alignright{
 			transform: translate3d(0, -5px, 0);
 			transition: all 0.1s ease-in-out;
 		}
+			/*-------------------*/
+			/*- LAST ITEM -------*/
+			.layers-visuals-horizontal .layers-last .layers-icon-description{
+				left: auto;
+				right: 0;
 
+			}
 		/*-----------------------*/
 		/*- TOOL TIP TIP --------*/
 		.layers-visuals-horizontal .layers-icon-description:before{
@@ -1726,7 +1736,7 @@ div[id*='layers-widget'] .widget-control-actions .alignright{
 			border-width: 0 6px 6px 6px;
 			content: "";
 			position: absolute;
-			right: 48px;
+			left: 46px;
 			top: -6px;
 			z-index: 99;
 			visibility: hidden;
@@ -1743,6 +1753,12 @@ div[id*='layers-widget'] .widget-control-actions .alignright{
 			visibility: hidden;
 			transition: all 0.1s ease-in-out;
 		}
+			/*-------------------*/
+			/*- LAST ITEM -------*/
+			.layers-visuals-horizontal .layers-last .layers-icon-description:before{
+				left: auto;
+				right: 10px;
+			}
 
 
 	.layers-visuals-horizontal .layers-pop-menu-wrapper{

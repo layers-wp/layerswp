@@ -93,7 +93,8 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 						'align' => 'text-left',
 						'size' => 'medium',
 						'color' => NULL,
-						'shadow' => NULL
+						'shadow' => NULL,
+						'heading-type' => 'h3',
 					),
 					'buttons' => array(
 						'buttons-size' => 'medium',

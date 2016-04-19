@@ -76,7 +76,8 @@ if( !class_exists( 'Layers_Contact_Widget' ) ) {
 						'align' => 'text-center',
 						'size' => 'medium',
 						'color' => NULL,
-						'shadow' => NULL
+						'shadow' => NULL,
+						'heading-type' => 'h3',
 					)
 				)
 			);

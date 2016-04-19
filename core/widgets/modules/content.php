@@ -69,7 +69,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 						'size' => 'medium',
 						'color' => NULL,
 						'shadow' => NULL,
-						'heading-type' => 'h2',
+						'heading-type' => 'h3',
 					)
 				),
 			);
@@ -87,7 +87,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 						'size' => 'medium',
 						'color' => NULL,
 						'shadow' => NULL,
-						'heading-type' => 'h3',
+						'heading-type' => 'h5',
 					),
 				),
 			) );

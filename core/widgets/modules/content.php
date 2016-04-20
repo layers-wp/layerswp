@@ -79,6 +79,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 				'excerpt' => __( 'Give us a brief description of the service that you are promoting. Try keep it short so that it is easy for people to scan your page.', 'layerswp' ),
 				'width' => '4',
 				'design' => array(
+					'featuredimage-size' => '',
 					'imagealign' => 'image-top',
 					'background' => NULL,
 					'fonts' => array(

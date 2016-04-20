@@ -560,7 +560,7 @@ jQuery(function($) {
 				$source_element_value = $source_element.val();
 			
 			// Bail if there's no source element to refference.
-			if ( 'undefined' === typeof( $source_element_value ) ) {
+			if ( 'undefined' === typeof( $source_element_value ) || null === $source_element_value ) {
 				layers_show_if_display( 'hide', $target_element );
 				return false;
 			}

@@ -231,7 +231,12 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 			$widget_container_class[] = $this->get_widget_spacing_class( $instance );
 
 			$widget_container_class = apply_filters( 'layers_post_widget_container_class' , $widget_container_class, $this, $instance );
-			$widget_container_class = implode( ' ', $widget_container_class );  ?>
+			$widget_container_class = implode( ' ', $widget_container_class );
+			
+			/**
+			 * Button Size.
+			 */
+			$button_size = $this->check_and_return( $instance, 'design', 'buttons-size' ) ? 'btn-' . $this->check_and_return( $instance, 'design', 'buttons-size' ) : '' ; ?>
 
 			<?php echo $this->custom_anchor( $instance ); ?>
 			<div id="<?php echo esc_attr( $widget_id ); ?>" class="<?php echo esc_attr( $widget_container_class ); ?>">
@@ -303,7 +308,7 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 													<?php layers_post_meta( get_the_ID(), $layers_post_meta_to_display, 'footer' , 'meta-info push-bottom ' . ( '' != $this->check_and_return( $instance, 'design', 'column-background-color' ) && 'dark' == layers_is_light_or_dark( $this->check_and_return( $instance, 'design', 'column-background-color' ) ) ? 'invert' : '' ) );?>
 
 													<?php if( isset( $instance['show_call_to_action'] ) && $this->check_and_return( $instance , 'call_to_action' ) ) { ?>
-														<p><a href="<?php the_permalink(); ?>" class="button"><?php echo $instance['call_to_action']; ?></a></p>
+														<p><a href="<?php the_permalink(); ?>" class="button <?php echo $button_size; ?>"><?php echo $instance['call_to_action']; ?></a></p>
 													<?php } // show call to action ?>
 												</div>
 											<?php } ?>
@@ -357,7 +362,7 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 															<?php layers_post_meta( get_the_ID(), $layers_post_meta_to_display, 'footer' , 'meta-info ' . ( '' != $this->check_and_return( $instance, 'design', 'column-background-color' ) && 'dark' == layers_is_light_or_dark( $this->check_and_return( $instance, 'design', 'column-background-color' ) ) ? 'invert' : '' ) );?>
 														<?php } // Don't show meta if we have chosen overlay ?>
 														<?php if( isset( $instance['show_call_to_action'] ) && $this->check_and_return( $instance , 'call_to_action' ) ) { ?>
-															<a href="<?php the_permalink(); ?>" class="button"><?php echo $instance['call_to_action']; ?></a>
+															<a href="<?php the_permalink(); ?>" class="button <?php echo $button_size; ?>"><?php echo $instance['call_to_action']; ?></a>
 														<?php } // show call to action ?>
 													</div>
 												</div>

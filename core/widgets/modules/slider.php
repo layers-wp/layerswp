@@ -305,12 +305,11 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 									$overlay_class[] = 'content';
 								}
 								$overlay_classes = implode( ' ', $overlay_class );
-
+								
 								/**
 								 * Button Size.
 								 */
 								$button_size = $this->check_and_return( $item_instance , 'design' , 'buttons-size' ) ? 'btn-' . $this->check_and_return( $item_instance , 'design' , 'buttons-size' ) : '' ;
-								$button_size = ( '' === $button_size &&  $this->check_and_return( $item_instance , 'design' , 'fonts' , 'size' ) && $this->check_and_return( $item_instance , 'design' , 'fonts' , 'size' ) ) ? 'btn-' . $this->check_and_return( $item_instance , 'design' , 'fonts' , 'size' ) : '' ;
 								?>
 								
 								<div class="<?php echo $overlay_classes; ?>" >

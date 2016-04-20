@@ -532,153 +532,149 @@ jQuery(function($) {
 
 		$element_s.find( '[data-show-if-selector]').each( function( j, element ) {
 
-			var $target_element = $(element);
-
-			var $source_element_selector = $target_element.attr( 'data-show-if-selector' );
-
-			layers_apply_show_if( $source_element_selector );
-
-			$( document ).on( 'change', $source_element_selector, function(e){
-				layers_apply_show_if( $source_element_selector );
+			var $this_element   = $(element);
+			var $compare_element = $( $this_element.attr( 'data-show-if-selector' ) );
+			
+			// Apply once on startup.
+			layers_apply_show_if( $this_element, $compare_element );
+			
+			// Apply any time target element is changed.
+			$( document ).on( 'change', $compare_element, function(e){
+				layers_apply_show_if( $this_element, $compare_element );
 			});
 		});
 	}
 
-	function layers_apply_show_if( $source_element_selector_new ){
+	function layers_apply_show_if( $this_element, $compare_element ){
+		
+		var $this_element_value = $this_element.data( 'show-if-value' ).toString().split(',');
+		var $operator           = $this_element.data( 'show-if-operator' );
 
-		$( '[data-show-if-selector="' + $source_element_selector_new + '"]' ).each(function(){
+		// Get value based on the type of input being used.
+		if ( $compare_element.attr('type') == 'checkbox' )
+			$compare_element_value = ( $compare_element.is(':checked') ) ? 'true' : 'false' ;
+		else
+			$compare_element_value = $compare_element.val();
 
-			var $target_element = $(this);
-			var $target_value   = $target_element.data( 'show-if-value' ).toString().split(',');
-			var $source_element = $( $target_element.data( 'show-if-selector' ).toString() );
-			var $operator       = $target_element.data( 'show-if-operator' );
-			
-			// Get value based on the type of input being used.
-			if ( $source_element.attr('type') == 'checkbox' )
-				$source_element_value = ( $source_element.is(':checked') ) ? 'true' : 'false' ;
-			else
-				$source_element_value = $source_element.val();
-			
-			// Bail if there's no source element to refference.
-			if ( 'undefined' === typeof( $source_element_value ) || null === $source_element_value ) {
-				layers_show_if_display( 'hide', $target_element );
-				return false;
-			}
-			
-			var $action = 'hide';
+		// Bail if there's no source element to refference.
+		if ( 'undefined' === typeof( $compare_element_value ) || null === $compare_element_value ) {
+			layers_show_if_display( 'hide', $this_element );
+			return false;
+		}
 
-			// Compare based on the chosen operator (default: ==)
-			switch( $operator ) {
+		var $action = 'hide';
 
-				case '!=':
-					
-					$.each( $target_value, function( index, val ) {
-						if ( val.trim() != $source_element_value.trim() )
-							$action = 'show';
-					});
-					
-					break;
+		// Compare based on the chosen operator (default: ==)
+		switch( $operator ) {
 
-				case '!==':
-					
-					$.each( $target_value, function( index, val ) {
-						if ( val.trim() !== $source_element_value.trim() )
-							$action = 'show';
-					});
-					
-					break;
+			case '!=':
 
-				case '>':
-					
-					$.each( $target_value, function( index, val ) {
-						if ( val.trim() > $source_element_value.trim() )
-							$action = 'show';
-					});
-					
-					break;
+				$.each( $this_element_value, function( index, val ) {
+					if ( val.trim() != $compare_element_value.trim() )
+						$action = 'show';
+				});
 
-				case '<':
-					
-					$.each( $target_value, function( index, val ) {
-						if ( val.trim() < $source_element_value.trim() )
-							$action = 'show';
-					});
-					
-					break;
+				break;
 
-				case '>=':
-					
-					$.each( $target_value, function( index, val ) {
-						if ( val.trim() >= $source_element_value.trim() )
-							$action = 'show';
-					});
-					
-					break;
+			case '!==':
 
-				case '<=':
-					
-					$.each( $target_value, function( index, val ) {
-						if ( val.trim() <= $source_element_value.trim() )
-							$action = 'show';
-					});
-					
-					break;
+				$.each( $this_element_value, function( index, val ) {
+					if ( val.trim() !== $compare_element_value.trim() )
+						$action = 'show';
+				});
 
-				case '==':
-				default:
-				
-					$.each( $target_value, function( index, val ) {
-						if ( val.trim() == $source_element_value.trim() )
-							$action = 'show';
-					});
-					
-					break;
-			}
-			
-			// Apply the result of the above compare.
-			layers_show_if_display( $action, $target_element ); // Show
-		});
+				break;
+
+			case '>':
+
+				$.each( $this_element_value, function( index, val ) {
+					if ( val.trim() > $compare_element_value.trim() )
+						$action = 'show';
+				});
+
+				break;
+
+			case '<':
+
+				$.each( $this_element_value, function( index, val ) {
+					if ( val.trim() < $compare_element_value.trim() )
+						$action = 'show';
+				});
+
+				break;
+
+			case '>=':
+
+				$.each( $this_element_value, function( index, val ) {
+					if ( val.trim() >= $compare_element_value.trim() )
+						$action = 'show';
+				});
+
+				break;
+
+			case '<=':
+
+				$.each( $this_element_value, function( index, val ) {
+					if ( val.trim() <= $compare_element_value.trim() )
+						$action = 'show';
+				});
+
+				break;
+
+			case '==':
+			default:
+
+				$.each( $this_element_value, function( index, val ) {
+					if ( val.trim() == $compare_element_value.trim() )
+						$action = 'show';
+				});
+
+				break;
+		}
+
+		// Apply the result of the above compare.
+		layers_show_if_display( $action, $this_element );
 	}
 
-	function layers_show_if_display( $state, $target_element ) {
+	function layers_show_if_display( $action, $element ) {
 
 		// Calculate the reveal animation type.
 		var animation_type = 'none';
 
 		// Get the right target element depending on what kind of component this is (is Customize Control or Design-Bar item)
-		if ( $target_element.hasClass('l_option-customize-control') ){
+		if ( $element.hasClass('l_option-customize-control') ){
 
 			// Target element is - Customize Control (entire control)
-			$target_element = $target_element.parent('.customize-control');
+			$element = $element.parent('.customize-control');
 			animation_type = 'slideDown';
 		}
-		else if ( $target_element.hasClass('layers-design-bar-form-item') ) {
+		else if ( $element.hasClass('layers-design-bar-form-item') ) {
 
 			// Target element is - Design Bar (form-item)
 			animation_type = 'slideDown';
 		}
 
-		if ( 'hide' == $state ) {
+		if ( 'hide' == $action ) {
 
 			// Hide
 			if( animation_type == 'slideDown' ){
-				$target_element.slideUp( { duration: 550, easing: 'layersEaseInOut', complete: function(){
-					$target_element.addClass( 'l_admin-hide' );
+				$element.slideUp( { duration: 550, easing: 'layersEaseInOut', complete: function(){
+					$element.addClass( 'l_admin-hide' );
 				} } );
 			}
 			else{
-				$target_element.addClass( 'l_admin-hide' );
+				$element.addClass( 'l_admin-hide' );
 			}
 		}
 		else {
 
 			// Show
 			if( animation_type == 'slideDown' ){
-				$target_element.removeClass( 'l_admin-hide' );
-				$target_element.slideDown( { duration: 550, easing: 'layersEaseInOut' } );
+				$element.removeClass( 'l_admin-hide' );
+				$element.slideDown( { duration: 550, easing: 'layersEaseInOut' } );
 			}
 			else{
-				$target_element.removeClass( 'l_admin-hide' );
+				$element.removeClass( 'l_admin-hide' );
 			}
 		}
 	}

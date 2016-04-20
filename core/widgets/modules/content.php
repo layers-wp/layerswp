@@ -202,8 +202,10 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 								if( !isset( $item_instance[ 'width' ] ) ) $item_instance[ 'width' ] = $this->column_defaults[ 'width' ];
 								
 								// Set the button styling
+								$button_size = '';
 								if ( function_exists( 'layers_pro_apply_widget_button_styling' ) ) {
 									$this->inline_css .= layers_pro_apply_widget_button_styling( $this, $item_instance, array( "#{$widget_id}-{$column_key} .button" ) );
+									$button_size = $this->check_and_return( $item_instance , 'design' , 'buttons-size' ) ? 'btn-' . $this->check_and_return( $item_instance , 'design' , 'buttons-size' ) : '' ;
 								}
 
 								// Add the correct span class
@@ -315,11 +317,6 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 									$column_inner_classes[] = $this->check_and_return( $item_instance, 'design', 'imagealign' );
 									$column_inner_classes[] = $this->check_and_return( $item_instance, 'design', 'fonts' , 'size' );
 									$column_inner_classes = implode( ' ', $column_inner_classes );
-									
-									/**
-									 * Button Size.
-									 */
-									$button_size = $this->check_and_return( $item_instance , 'design' , 'buttons-size' ) ? 'btn-' . $this->check_and_return( $item_instance , 'design' , 'buttons-size' ) : '' ;
 									?>
 
 									<div class="<?php echo $column_inner_classes; ?>">

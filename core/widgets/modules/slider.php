@@ -230,7 +230,9 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 							if( !empty( $item_instance['design']['fonts'][ 'shadow' ] ) ) $this->inline_css .= layers_inline_styles( '#' . $widget_id . '-' . $slide_key , 'text-shadow', array( 'selectors' => array( '.heading', '.heading a',  'div.excerpt' )  , 'text-shadow' => $item_instance['design']['fonts'][ 'shadow' ] ) );
 
 							// Set the button styling
+							$button_size = '';
 							if ( function_exists( 'layers_pro_apply_widget_button_styling' ) ) {
+								$button_size = $this->check_and_return( $item_instance , 'design' , 'buttons-size' ) ? 'btn-' . $this->check_and_return( $item_instance , 'design' , 'buttons-size' ) : '' ;
 								$this->inline_css .= layers_pro_apply_widget_button_styling( $this, $item_instance, array( "#{$widget_id}-{$slide_key} .button" ) );
 							}
 
@@ -304,13 +306,7 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 								if( '' != $this->check_and_return( $item_instance, 'design' , 'background', 'image' ) || '' != $this->check_and_return( $item_instance, 'design' , 'background', 'color' ) ) {
 									$overlay_class[] = 'content';
 								}
-								$overlay_classes = implode( ' ', $overlay_class );
-								
-								/**
-								 * Button Size.
-								 */
-								$button_size = $this->check_and_return( $item_instance , 'design' , 'buttons-size' ) ? 'btn-' . $this->check_and_return( $item_instance , 'design' , 'buttons-size' ) : '' ;
-								?>
+								$overlay_classes = implode( ' ', $overlay_class ); ?>
 								
 								<div class="<?php echo $overlay_classes; ?>" >
 									<div class="container clearfix">

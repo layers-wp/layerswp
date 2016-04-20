@@ -143,9 +143,11 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 			$this->inline_css .= layers_inline_styles( '#' . $widget_id, 'background', array( 'selectors' => array( '.thumbnail-body' ) , 'background' => array( 'color' => $this->check_and_return( $instance, 'design', 'column-background-color' ) ) ) );
 
 			// Apply Button Styling.
+			$button_size = '';
 			if ( function_exists( 'layers_pro_apply_widget_button_styling' ) ) {
 				// Apply Layers Pro Button Styling.
 				$this->inline_css .= layers_pro_apply_widget_button_styling( $this, $instance, array( "#{$widget_id} .thumbnail-body a.button" ) );
+				$button_size = $this->check_and_return( $instance, 'design', 'buttons-size' ) ? 'btn-' . $this->check_and_return( $instance, 'design', 'buttons-size' ) : '' ;
 			}
 			else {
 				// Apply Button Styling.
@@ -231,13 +233,7 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 			$widget_container_class[] = $this->get_widget_spacing_class( $instance );
 
 			$widget_container_class = apply_filters( 'layers_post_widget_container_class' , $widget_container_class, $this, $instance );
-			$widget_container_class = implode( ' ', $widget_container_class );
-			
-			/**
-			 * Button Size.
-			 */
-			$button_size = $this->check_and_return( $instance, 'design', 'buttons-size' ) ? 'btn-' . $this->check_and_return( $instance, 'design', 'buttons-size' ) : '' ; ?>
-
+			$widget_container_class = implode( ' ', $widget_container_class ); ?>
 			<?php echo $this->custom_anchor( $instance ); ?>
 			<div id="<?php echo esc_attr( $widget_id ); ?>" class="<?php echo esc_attr( $widget_container_class ); ?>">
 

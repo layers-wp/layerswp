@@ -39,7 +39,7 @@ jQuery(function($) {
     /**
     * 2 - Container padding on first widgets for header fixed
     */
-    $(window).on('load resize', function() {
+    $(window).on('load', function() {
         layers_apply_overlay_header_styles();
     });
 
@@ -152,7 +152,7 @@ function layers_swiper_resize( s ){
 /**
  * 8 - Container padding on first widgets for header fixed - helper funcion.
  */
-
+var $first_element;
 function layers_apply_overlay_header_styles() {
 
     // Get header.
@@ -165,7 +165,7 @@ function layers_apply_overlay_header_styles() {
     if( $header.hasClass( 'header-overlay' ) ) {
 
         // Get first element.
-        $first_element = $content_wrapper.children().eq(0);
+        if( ! $first_element ) $first_element = $content_wrapper.children().eq(0);
 
         if( $first_element.hasClass( 'slide' ) && !$first_element.hasClass( '.full-screen' ) ) {
 

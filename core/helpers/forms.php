@@ -209,7 +209,17 @@ class Layers_Form_Elements {
 				<input type="checkbox" <?php echo implode ( ' ' , $input_props ); ?> <?php checked( $input->value , 'on' ); ?>/>
 				<?php if( isset( $input->label ) ) { ?>
 					<label for="<?php echo esc_attr( $input->id ); ?>"><?php echo esc_html( $input->label ); ?></label>
-				<?php } // if isset label ?>
+				<?php } ?>
+				<?php
+				// Prepare sibling checkbox for parity/existance check.
+				$duplicate_input_props = array();
+				foreach ( $input_props as $key => $val ) {
+					if ( 0 === strpos( $val, 'id=' ) ) $duplicate_input_props[$key] = rtrim( $val, '"' ) . '-CHECKBOX"';
+					else if ( 0 === strpos( $val, 'name=' ) ) $duplicate_input_props[$key] = rtrim( $val, ']"' ) . '-CHECKBOX]"';
+					else $duplicate_input_props[$key] = $val;
+				}
+				?>
+				<input type="hidden" value="on" style="display: none;" <?php echo implode ( ' ' , $duplicate_input_props ); ?>>
 			<?php break;
 			/**
 			* Radio Buttons

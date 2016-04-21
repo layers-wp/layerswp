@@ -729,9 +729,14 @@ if( !class_exists( 'Layers_Widget' ) ) {
 						// echo "Add: $default_key: $default_value";
 						// echo '</pre>';
 					}*/
-					if ( ! isset( $instance[$default_key] ) && NULL !== $default_value ) {
+					
+					if (
+							! isset( $instance[$default_key] ) && // If set means the input has had defaults applied already - hence don't apply.
+							! isset( $instance["{$default_key}-CHECKBOX"] ) && // look for sibling '-CHECKBOX' - If exists means the checkbox has had defaults applied already - hence don't apply.
+							NULL !== $default_value
+						) {
 						
-						// if the value does not, apply the default.
+						// Apply the default.
 						$instance[$default_key] = $default_value;
 						
 						// Debugging:

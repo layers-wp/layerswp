@@ -8,6 +8,9 @@
 
 			// Load template tags.
 			require_once( dirname( __FILE__ ) . '/site-logo/inc/functions.php' );
+
+			// Load backwards-compatible template tags.
+			require( dirname( __FILE__ ) . '/site-logo/inc/compat.php' );
 		}
 	}
 }

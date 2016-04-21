@@ -1370,8 +1370,7 @@ p.stars span a:focus{
 		text-align: center;
 	}
 
-	table .product-thumbnail,
-	table .product-quantity{
+	table .product-thumbnail{
 		display: none;
 	}
 	table .actions{

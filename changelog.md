@@ -18,6 +18,7 @@
 * **Tweak** - Show Address and Show Form are now defaulted to on in the conact widget. *MP*
 * **Tweak** - Fixed WooCommerce tab alignment issue in responsive mode. *DP*
 * **Tweak** - .story img changed from 98% to 100% width. *DP*
+* **Tweak** - Re-added product quantity in the mobile cart view. *MP*
 * **Tweak** - Change how `layers-interface-init` Javascript event is triggered so it can be used to initialize not only the Widgets but also the Customizer Controls. *SOB*
 * **Tweak** - Remove `layer_enqueue_init()` function - it's no longer needed now that the Customizer only loads Widget forms when needed, not all at once resulting in Firefox hanging. *SOB*
 * **Enhancement** - Entirely new grid code which allows for different columns in the same content widget, using flexbox and calc(). *DP*

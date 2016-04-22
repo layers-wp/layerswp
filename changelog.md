@@ -2,7 +2,7 @@
 
 =======
 ##1.5.0
-### 14 Apr 2016
+### 22 Apr 2016
 
 * **Fix** - Added `"` marks around fonts when using Google fonts, so that now fonts with a space in the name load without issue. *MP*
 * **Fix** - Fixed multiple maps on one page. *MP*

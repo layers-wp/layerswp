@@ -623,7 +623,7 @@ $page_content .= '* ' . $data->name. '
 		$results = array(
 				'post_id' => $import_data[ 'post_id' ],
 				'data_report' => $import_progress,
-				'customizer_location' => admin_url() . 'customize.php?url=' . esc_url( get_the_permalink( $import_data[ 'post_id' ] ) )
+				'customizer_location' => admin_url() . 'customize.php?url=' . esc_url( get_permalink( $import_data[ 'post_id' ] ) )
 			);
 
 		do_action( 'layers_backup_sidebars_widgets' );
@@ -777,7 +777,7 @@ $page_content .= '* ' . $data->name. '
 			'post_id' => $new_page_id,
 			'post_title' => esc_attr( $page_title ),
 			'data_report' => $import_progress,
-			'customizer_location' => admin_url() . 'customize.php?url=' . esc_url( get_the_permalink( $new_page_id ) )
+			'customizer_location' => admin_url() . 'customize.php?url=' . esc_url( get_permalink( $new_page_id ) )
 		);
 
 		die( json_encode( $results ) );

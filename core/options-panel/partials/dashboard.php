@@ -97,9 +97,9 @@ $theme_info = wp_get_theme( 'layerswp' ); ?>
 									<li>
 										<a class="l_admin-page-list-title" href="<?php echo admin_url( 'post.php?post=' . $page->ID . '&action=edit' ); ?>"><?php echo $page->post_title; ?></a>
 										<span class="l_admin-page-edit-links">
-											<a href="<?php echo admin_url( 'customize.php?url=' . esc_url( get_the_permalink( $page->ID ) ) ); ?>"><?php _e( 'Edit Layout' , 'layerswp' ); ?></a> |
+											<a href="<?php echo admin_url( 'customize.php?url=' . esc_url( get_permalink( $page->ID ) ) ); ?>"><?php _e( 'Edit Layout' , 'layerswp' ); ?></a> |
 											<a href="<?php echo admin_url( 'post.php?post=' . $page->ID . '&action=edit' ); ?>"><?php _e( 'Edit' , 'layerswp' ); ?></a> |
-											<a href="<?php echo get_the_permalink( $page->ID ); ?>"><?php _e( 'View' , 'layerswp' ); ?></a>
+											<a href="<?php echo get_permalink( $page->ID ); ?>"><?php _e( 'View' , 'layerswp' ); ?></a>
 										</span>
 									</li>
 								<?php }?>

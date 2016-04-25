@@ -122,7 +122,7 @@ class Layers_Custom_Meta {
 						</p>
 					</div>
 					<div class="l_admin-button-well clearfix">
-						<a href="<?php echo admin_url() . 'customize.php?url=' . esc_url( get_the_permalink() ); ?>" class="button btn-massive btn-primary btn-full <?php echo ( 'auto-draft' == $post->post_status ? 'disable' : '' ); ?>" id="<?php echo ( isset( $post->ID ) ? 'builder-button-' . $post->ID : 'builder-button-' . rand(0,1) ); ?>">
+						<a href="<?php echo admin_url() . 'customize.php?url=' . esc_url( get_permalink() ); ?>" class="button btn-massive btn-primary btn-full <?php echo ( 'auto-draft' == $post->post_status ? 'disable' : '' ); ?>" id="<?php echo ( isset( $post->ID ) ? 'builder-button-' . $post->ID : 'builder-button-' . rand(0,1) ); ?>">
 							<?php ( 'auto-draft' == $post->post_status ? _e( 'Start' , 'layerswp' ) : _e( 'Edit Your Page' , 'layerswp' ) ); ?>
 						</a>
 					</div>
@@ -172,7 +172,7 @@ class Layers_Custom_Meta {
 
 		// Add our button
 		if ( $can_edit_post && 'builder.php' == get_page_template_slug( $post->ID ) ) {
-			$actions['builder'] = '<a href="' . admin_url( 'customize.php?url=' . esc_url( get_the_permalink() ) ) . '" title="' . esc_attr( __( 'Edit Layout' , 'layerswp' ) ) . '">' . __( 'Edit Layout' , 'layerswp' ) . '</a>';
+			$actions['builder'] = '<a href="' . admin_url( 'customize.php?url=' . esc_url( get_permalink() ) ) . '" title="' . esc_attr( __( 'Edit Layout' , 'layerswp' ) ) . '">' . __( 'Edit Layout' , 'layerswp' ) . '</a>';
 		}
 
 		return $actions;

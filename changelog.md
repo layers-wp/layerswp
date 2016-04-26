@@ -1,6 +1,13 @@
 # Layers Changelog
 
 =======
+##1.5.1
+### 26 Apr 2016
+
+* **Fix** - Changed some legacy references from `plugins_url()` to `LAYERS_TEMPLATE_URI`. *SOB*
+* **Tweak** - Changed `get_the_permalink()` to `get_permalink()`. *SOB*
+
+=======
 ##1.5.0
 ### 22 Apr 2016
 

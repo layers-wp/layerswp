@@ -63,13 +63,15 @@ class Layers_Customizer_Regsitrar {
 		$this->move_default_controls( $this->config->default_controls );
 
 		// Change 'Widgets' panel title to 'Edit Layout'
-		$wp_customize->add_panel(
-			'widgets', array(
-				'priority' => 0,
-				'title' => __('Edit Layout' , 'layerswp' ),
-				'description' => Layers_Customizer::get_instance()->render_builder_page_dropdown() . __('Use this area to add widgets to your page, use the (Layers) widgets for the Body section.' , 'layerswp' ),
-			)
-		);
+		if ( method_exists( $wp_customize, 'add_panel' ) ) { // `add_panel` only arrived in WP 4.0
+			$wp_customize->add_panel(
+				'widgets', array(
+					'priority' => 0,
+					'title' => __( 'Edit Layout' , 'layerswp' ),
+					'description' => Layers_Customizer::get_instance()->render_builder_page_dropdown() . __('Use this area to add widgets to your page, use the (Layers) widgets for the Body section.' , 'layerswp' ),
+				)
+			);
+		}
 	}
 
 	/**
@@ -482,6 +484,8 @@ class Layers_Customizer_Regsitrar {
 	*/
 
 	public function move_default_panels( $panels = array() ){
+		
+		if ( ! method_exists( $this->customizer, 'get_panel' ) ) return; // `get_panel` only arrived in WP 4.0
 
 		foreach( $panels as $panel_key => $panel_data ){
 
@@ -502,7 +506,6 @@ class Layers_Customizer_Regsitrar {
 
 		// Remove the theme switcher Panel, Layers isn't ready for that
 		$this->customizer->remove_section( 'themes' );
-
 	}
 
 	/**

@@ -1430,6 +1430,7 @@ div[id*='layers-widget'] .widget-control-actions .alignright{
 	.layers-visuals-item .layers-icon-error:hover{
 		background-color: #FF5353;
 		border-color: #BC3F39;
+		box-shadow: 0 1px 0 #BC3F39;
 		color: #fff;
 	}
 	.layers-trbl-fields-wrapper:after{

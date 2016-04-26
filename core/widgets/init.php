@@ -94,7 +94,7 @@ class Layers_Widgets {
 		register_sidebar( array(
 			'id'		=> 'obox-layers-builder-' . $post_id,
 			'name'		=> $post_title . __( ' Body' , 'layerswp' ),
-			'before_widget'	=> '<div id="%1$s" class="widget %2$s">',
+			'before_widget'	=> '<div id="%1$s" class="widget container push-bottom-medium %2$s">',
 			'after_widget'	=> '</div>',
 			'before_title'	=> '<div class="section-title clearfix"><h4 class="heading">',
 			'after_title'	=> '</h4></div>',

@@ -6,9 +6,11 @@
  * @package Layers
  * @since Layers 1.0.0
  * Contents
- * 1 - Sortable items
- * 2 - Item Removal
- * 3 - Item Addition
+ * 1 - Define Repeater Plugin
+ * 2 - Init Repeaters
+ * 3 - Remove Item
+ * 4 - Add Item
+ * 5 - Update Item Title
  *
  * Author: Obox Themes
  * Author URI: http://www.oboxthemes.com/
@@ -18,13 +20,17 @@
 
 jQuery(document).ready(function($){
 	
+	/**
+	* 1 - Define Repeater Plugin
+	*/
+	
 	$.fn.layersRepeater = function( options ) {
 
 		// Apply defaults to the options
         $.extend( options, options, {});
 
 		return this.each(function() {
-
+			
 			var $repeater = $(this);
 
 			$repeater.find( 'ul.layers-accordions-sortable' ).sortable({
@@ -137,22 +143,18 @@ jQuery(document).ready(function($){
 	};
 
 	/**
-	* 1 - Sort Items
+	* 2 - Init Init Repeaters
 	*/
 
 	$( document ).on( 'layers-interface-init', function( e, element ){
-		layers_set_column_sortable( $(element) );
-	});
-
-	function layers_set_column_sortable( $element_s ){
 		
-		$element_s.find( '.layers-widget-repeater' ).each( function(){
+		$(element).find( '.layers-widget-repeater' ).each( function(){
 			$(this).layersRepeater();
 		});
-	}
+	});
 
 	/**
-	* 2 - Remove Item
+	* 3 - Remove Item
 	*/
 	
 	$(document).on( 'click' , '.layers-widget-repeater .layers-icon-error' , function(e){
@@ -201,7 +203,8 @@ jQuery(document).ready(function($){
 					$repeater_input.val( $column_guids.join() ).layers_trigger_change();
 
 					// Reset Sortable Items
-					layers_set_column_sortable( $that );
+					// layers_set_column_sortable( $that );
+					$repeater.find( 'ul.layers-accordions-sortable' ).sortable('refresh');
 				}});
 
 			}, 700 );
@@ -210,7 +213,7 @@ jQuery(document).ready(function($){
 	});
 
 	/**
-	* 3 - Add Item
+	* 4 - Add Item
 	*/
 	
 	$(document).on( 'click', '.layers-widget-repeater-add-item' , function(e){
@@ -222,7 +225,7 @@ jQuery(document).ready(function($){
 	});
 
 	/**
-	* 3 - Update Title
+	* 5 - Update Item Title
 	*/
 
 	$(document).on( 'keyup' , 'ul[id^="column_list_"] input[id*="-title"]' , function(e){

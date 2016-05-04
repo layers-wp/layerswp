@@ -2154,6 +2154,7 @@ button[data-cmd="html"].fr-btn.fr-active{
 	}
 	.btn-primary:hover{
 		background: #008EC2;
+		border-color: #006799;
 		color: #fff;
 	}
 

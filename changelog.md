@@ -1,5 +1,12 @@
 # Layers Changelog
 
+
+=======
+##1.5.2
+### xx May 2016
+
+* **Fix** - Fixed sub-category listing pages. *MP*
+
 =======
 ##1.5.1
 ### 26 Apr 2016

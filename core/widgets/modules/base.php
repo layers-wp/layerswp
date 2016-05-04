@@ -474,11 +474,17 @@ if( !class_exists( 'Layers_Widget' ) ) {
 		/**
 		 * The main function that outputs the repeater form item.
 		 *
-		 * @param  string  $type    Unique singular slug for the type of repeater. Must just be unique to this widget e.g. button (not buttons).
-		 * @param  array   $widget  The widget object.
+		 * @param  string  $type      Unique singular slug for the type of repeater. Must just be unique to this widget e.g. button (not buttons).
+		 * @param  array   $widget    The widget object.
+		 * @param  array   $options   Optional. Options args Array.
 		 */
-		function repeater( $type, $instance = array() ) {
-
+		function repeater( $type, $instance = array(), $options = array() ) {
+			
+			// Apply defaults to options.
+			$options = wp_parse_args( $options, array(
+				'show_add_button' => TRUE,
+			) );
+			
 			// If we have some items, let's break out their IDs into an array
 			if ( isset( $instance["{$type}_ids"] ) && '' !== $instance["{$type}_ids"] ) {
 				$items = explode( ',' , $instance["{$type}_ids"] );
@@ -550,9 +556,12 @@ if( !class_exists( 'Layers_Widget' ) ) {
 					}
 					?>
 				</ul>
-				<button class="layers-button btn-full layers-widget-repeater-add-item add-new-widget">
-					<?php _e( 'Add New' , 'layerswp' ) ; ?> <?php echo ucfirst( $type ); ?>
-				</button>
+				
+				<?php if ( $options['show_add_button'] ) { ?>
+					<button class="layers-button btn-full layers-widget-repeater-add-item add-new-widget">
+						<?php _e( 'Add New' , 'layerswp' ) ; ?> <?php echo ucfirst( $type ); ?>
+					</button>
+				<?php } ?>
 			</div>
 		<?php }
 

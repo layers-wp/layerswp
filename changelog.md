@@ -1,10 +1,18 @@
 # Layers Changelog
 
+
+=======
+##1.5.2
+### xx May 2016
+
+* **Fix** - Fixed sub-category listing pages. *MP*
+
 =======
 ##1.5.1
 ### 26 Apr 2016
 
 * **Fix** - Changed some legacy references from `plugins_url()` to `LAYERS_TEMPLATE_URI`. *SOB*
+* **Fix** - Fixed standard widget layout on Layers pages. *MP*
 * **Tweak** - Changed `get_the_permalink()` to `get_permalink()`. *SOB*
 
 =======

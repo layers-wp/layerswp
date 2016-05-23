@@ -5,8 +5,6 @@
  * @package Layers
  * @since Layers 1.0.0
  */
-global $layers_page_title_shown;
-$layers_page_title_shown = 1;
 
 /**
 * Fetch the site title array

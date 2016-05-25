@@ -8,11 +8,11 @@
 
 global $post, $layers_post_meta_to_display;
 
-$layers_page_title_shown = apply_filters( 'layers_page_title_shown', FALSE );
-
 do_action('layers_before_single_post');
 
-if ( $layers_page_title_shown ) { ?>
+$layers_page_title_shown = apply_filters( 'layers_page_title_shown', TRUE );
+
+if( $layers_page_title_shown ) { ?>
 	<?php do_action('layers_before_single_post_title'); ?>
 	<header class="section-title large">
 		<?php if( 'post' == get_post_type() ) { ?>

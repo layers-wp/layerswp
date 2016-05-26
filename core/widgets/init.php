@@ -178,8 +178,10 @@ class Layers_Widgets {
 
 		$layers_sidebar_key = 'obox-layers-builder-' . $post_id;
 
-		$migrator = new Layers_Widget_Migrator();
-		$migrator->clear_page_sidebars_widget( $layers_sidebar_key );
+		if( class_exists( 'Layers_Widget_Migrator' ) ) {
+			$migrator = new Layers_Widget_Migrator();
+			$migrator->clear_page_sidebars_widget( $layers_sidebar_key );
+		}
 	}
 
 	public function add_revision_fields( $fields ) {
@@ -223,11 +225,15 @@ class Layers_Widgets {
 
 			$parent  = get_post( $parent_id );
 
-			$migrator = new Layers_Widget_Migrator();
-			$export_data = $migrator->page_widget_data( $parent );
+			if( class_exists( 'Layers_Widget_Migrator' ) ) {
 
-			if ( false !== $export_data )
-				add_metadata( 'post', $post_id, '_layers_widget_order', $migrator->page_widgets_as_content( $export_data ) );
+				$migrator = new Layers_Widget_Migrator();
+				$export_data = $migrator->page_widget_data( $parent );
+
+				if ( false !== $export_data )
+					add_metadata( 'post', $post_id, '_layers_widget_order', $migrator->page_widgets_as_content( $export_data ) );
+
+			}
 		}
 	}
 

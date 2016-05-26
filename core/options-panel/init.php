@@ -426,7 +426,7 @@ class Layers_Options_Panel {
 					</div>
 				</div>
 				<div class="l_admin-button-well">
-					<a href="http://codecanyon.net/item/layers-pro-extended-customization-for-layers/11225042?ref=obox&utm_source=layers%20theme&utm_medium=link&utm_campaign=Layers%20Pro%20Upsell&utm_content=WP%20Dashboard" target="_blank" class="button button-primary">
+					<a href="https://layerswp.com/layers-pro/?ref=obox&utm_source=layers%20theme&utm_medium=link&utm_campaign=Layers%20Pro%20Upsell&utm_content=WP%20Dashboard" target="_blank" class="button button-primary">
 						<?php _e( 'Get Layers Pro' , 'layerswp' ); ?>
 					</a>
 					<a href="http://www.layerswp.com/layers-pro/?utm_source=layers%20theme&utm_medium=link&utm_campaign=Layers%20Pro%20Upsell&utm_content=WP%20Dashboard" target="_blank" class="button btn-link"><?php _e( 'Find Out More' , 'layerswp' ); ?></a>

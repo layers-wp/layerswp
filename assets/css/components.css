@@ -757,6 +757,74 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 		color: rgba(255, 255, 255, 1);
 	}
 
+/*---------------------------*/
+/*- NOTICE STYLING ----------*/
+
+	.success{
+		display: inline-block;
+		padding: 5px 10px;
+		background: #fff;
+		border: 1px solid #A3C567;
+		font-weight: bold;
+		color: #A3C567;
+		border-left:  4px solid #A3C567;
+	}
+
+	/*-----------------------*/
+	/*- STATUS NOTICE -------*/
+	.status-notice{
+		display: block;
+		margin-bottom: 10px;
+		border: 1px solid;
+		color: #fff;
+		font-weight: bold;
+		overflow: hidden;
+		text-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+		line-height: 32px;
+	}
+	a.status-notice:hover{
+		color: #fff;
+		text-decoration: none;
+	}
+	a.status-notice:hover span{
+		text-decoration: underline;
+	}
+	.status-notice [class^="icon-"],
+	.status-notice [class*=" icon-"]{
+		float: left;
+		width: 32px;
+		border-right: 1px solid rgba(0, 0, 0, 0.2);
+		text-align: center;
+		font-size: 14px;
+		line-height: 32px;
+	}
+	.status-notice-heading{
+		margin: 0;
+		padding: 0;
+		font-size: 12px;
+		font-weight: bold;
+		line-height: 12px;
+	}
+	.status-notice-heading span{
+		float: left;
+		padding: 10px 0 10px 8px;
+		overflow: hidden;
+	}
+
+		/*-------------------*/
+		/*- STATUS COLORS ---*/
+		.status-good{
+			background: #A3C567;
+			border-color: #93B25E;
+		}
+		.status-neutral{
+			background: #2EA2CC;
+			border-color: #0074A2;
+		}
+		.status-bad{
+			background: #E1574C;
+			border-color: #B0453D;
+		}
 
 /*-------------------------------*/
 /*- RESPONSIVE COMPONENTS -------*/

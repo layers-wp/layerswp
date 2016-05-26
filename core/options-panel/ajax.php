@@ -230,7 +230,11 @@ if( !class_exists( 'Layers_Onboarding_Ajax' ) ) {
 									'url' => $get_attachment[0]
 								);
 
-							update_option( $option_key, $site_logo_array );
+							if( !function_exists( 'the_custom_logo' ) ){
+								update_option( $option_key, $site_logo_array );
+							} else {
+								set_theme_mod( 'custom_logo' , $clean_option_value );
+							}
 
 							$return_message = array(
 								'success' => true,

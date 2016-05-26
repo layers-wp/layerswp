@@ -13,7 +13,7 @@ if ( ! isset( $layers_page_title_shown ) ) $layers_page_title_shown = FALSE;
 
 do_action('layers_before_single_post');
 
-if ( ! $layers_page_title_shown && ! empty( $details ) ) { ?>
+if ( ! $layers_page_title_shown ) { ?>
 	<?php do_action('layers_before_single_post_title'); ?>
 	<header class="section-title large">
 		<?php if( 'post' == get_post_type() ) { ?>

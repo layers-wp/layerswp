@@ -103,7 +103,6 @@ if( ! class_exists( 'Layers_Widget_Ajax' ) ) {
 			$item_type     = $_POST['item_type']; // e.g. button
 			$item_class    = $_POST['item_class' ]; // e.g. Layers_Call_To_Action_Widget
 			$item_function = "{$item_type}_item";
-			$instance      = $_POST['instance'];
 
 			// Init the related widgets class - so we can get to the new_item() function.
 			$widget = new $item_class();
@@ -114,16 +113,21 @@ if( ! class_exists( 'Layers_Widget_Ajax' ) ) {
 			if( 'add-item' == $_POST['widget_action'] ) {
 
 				// Parse the posted instance so it gets converted to the normal WP layout.
-				parse_str( $instance, $data );
-				$instance  = current( current( $data ) );
+				parse_str( $_POST['item_instance'], $item_instance );
+				$item_instance = current( current( $item_instance ) );
 
-				if ( isset( $instance["{$item_type}s"] ) && ! empty( $instance["{$item_type}s"] ) ) {
-					$item_instance = end( $instance["{$item_type}s"] );
-					//$last_guid = key( $instance["{$item_type}s"] );
+				if ( isset( $item_instance["{$item_type}s"] ) && ! empty( $item_instance["{$item_type}s"] ) ) {
+					
+					$item_instance = end( $item_instance["{$item_type}s"] );
 				}
 				else {
-					// Required - $instance Defaults
+					// Required - $item_instance Defaults
 					$item_instance = $widget->get_repeater_defaults( $item_type, NULL );
+				}
+				
+				if ( isset( $_POST['merge_instance'] ) ) {
+					parse_str( $_POST['merge_instance'], $merge_instance );
+					$item_instance = wp_parse_args( $merge_instance, $item_instance );
 				}
 
 				// Generate a new GUID.

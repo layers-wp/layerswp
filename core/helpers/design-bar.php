@@ -98,7 +98,7 @@ class Layers_Design_Controller {
 				$this->render_trash_control(); ?>
 				<?php if( 'side' == $this->type && !class_exists( 'Layers_Pro' ) ) { ?>
 					<li class="layers-visuals-item layers-pro-upsell">
-						<a href="https://layerswp.com/layers-pro/?ref=obox&utm_source=layers%20theme&utm_medium=link&utm_campaign=Layers%20Pro%20Upsell&utm_content=Widget%20Design%20Bar" target="_blank">
+						<a href="https://www.layerswp.com/layers-pro/?ref=obox&utm_source=layers%20theme&utm_medium=link&utm_campaign=Layers%20Pro%20Upsell&utm_content=Widget%20Design%20Bar" target="_blank">
 							<?php _e( 'Upgrade to Layers Pro', 'layerswp' ); ?>
 						</a>
 					</li>

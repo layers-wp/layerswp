@@ -7,7 +7,7 @@
 
 * **Fix** - Fixed sub-category listing pages. *MP*
 * **Fix** - Updated Layers Pro upsell links.*MP*
-* **Fix** - Added `if( class_exists( 'Layers_Widget_Migrator' ) )` where needed. *MP*
+* **Fix** - Added conditional statements around `Layers_Widget_Migrator` where needed. *MP*
 
 
 =======

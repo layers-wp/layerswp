@@ -3,14 +3,9 @@
 
 =======
 ##1.5.2
-### xx May 2016
-
-* **Fix** - Fixed sub-category listing pages. *MP*
-
-=======
-##1.5.2
 ### 30 May 2016
 
+* **Fix** - Fixed sub-category listing pages. *MP*
 * **Fix** - Updated Layers Pro upsell links.*MP*
 
 =======

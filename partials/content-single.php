@@ -6,13 +6,14 @@
  * @since Layers 1.0.0
  */
 
-global $post, $layers_post_meta_to_display;
+global $post, $layers_post_meta_to_display, $layers_page_title_shown;
+
+// Make sure $layers_page_title_shown exists before we check it.
+if ( ! isset( $layers_page_title_shown ) ) $layers_page_title_shown = FALSE;
 
 do_action('layers_before_single_post');
 
-$layers_page_title_shown = apply_filters( 'layers_page_title_shown', TRUE );
-
-if( $layers_page_title_shown ) { ?>
+if ( ! $layers_page_title_shown && ! empty( $details ) ) { ?>
 	<?php do_action('layers_before_single_post_title'); ?>
 	<header class="section-title large">
 		<?php if( 'post' == get_post_type() ) { ?>
@@ -28,7 +29,11 @@ if( $layers_page_title_shown ) { ?>
 		<?php do_action('layers_after_single_title'); ?>
 	</header>
 	<?php do_action('layers_after_single_post_title'); ?>
-<?php }
+	<?php
+	
+	// Record that we have shown page title - to avoid double titles showing.
+	$layers_page_title_shown = TRUE;
+}
 
 /**
 * Display the Featured Thumbnail

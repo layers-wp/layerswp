@@ -8,6 +8,7 @@
 * **Fix** - Fixed sub-category listing pages. *MP*
 * **Fix** - Updated Layers Pro upsell links.*MP*
 * **Fix** - Added conditional statements around `Layers_Widget_Migrator` where needed. *MP*
+* **Tweak** - Added a check to make sure that we never output two main titles on one page - Blank Page template. *SOB*
 
 
 =======

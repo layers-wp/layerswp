@@ -32,9 +32,17 @@ class Layers_Widgets {
 		$module_dir = '/core/widgets/modules/';
 
 		// Setup some defined variables to use in each widget
-		define( 'LAYERS_WIDGET_WIDTH_TINY' , 500 );
-		define( 'LAYERS_WIDGET_WIDTH_SMALL' , 660 );
-		define( 'LAYERS_WIDGET_WIDTH_LARGE' , 980 );
+		
+		if ( isset( $wp_customize ) ) {
+			define( 'LAYERS_WIDGET_WIDTH_TINY' , 500 );
+			define( 'LAYERS_WIDGET_WIDTH_SMALL' , 660 );
+			define( 'LAYERS_WIDGET_WIDTH_LARGE' , 980 );
+		}
+		else {
+			define( 'LAYERS_WIDGET_WIDTH_TINY' , NULL );
+			define( 'LAYERS_WIDGET_WIDTH_SMALL' , NULL );
+			define( 'LAYERS_WIDGET_WIDTH_LARGE' , NULL );
+		}
 
 		// Include ajax functions
 		require_once get_template_directory() . $widget_dir . 'ajax.php';

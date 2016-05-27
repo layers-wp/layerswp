@@ -12,6 +12,33 @@
 .l_admin-hide{ display: none !important; }
 .l_admin-soft-hide{ display: none; }
 
+.widgets-php .widget[id*='layers-widget'] .widget-inside .widget-content {
+	 display: none !important;
+}
+.widgets-php .widget[id*='layers-widget'] .widget-inside .widget-control-actions {
+	margin: 13px 0 0;
+}
+.widgets-php .widget[id*='layers-widget'] .widget-inside .widget-control-actions .alignleft {
+	line-height: 28px;
+}
+/*.widgets-php .widget[id*='layers-widget'] .widget-inside:after {
+	content: 'Go to "Appearance - Customize" to edit this widget';
+	display: block;
+	padding: 14px;
+	background: rgb(255, 247, 225);
+	margin: -1px -15px -15px;
+	text-align: center;
+}*/
+.widgets-php .widget[id*='layers-widget'] .layers-appearance-widget-notification {
+	display: block;
+	padding: 14px;
+	background: rgb(255, 247, 225);
+	border: 1px solid rgb(243, 235, 212);
+	margin: 19px 0 6px;
+	text-align: center;
+	border-radius: 2px;
+}
+
 /*---------------------------*/
 /*- THE GRID ----------------*/
 

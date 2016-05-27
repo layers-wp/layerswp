@@ -43,6 +43,7 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 
 			/* Widget control settings. */
 			$control_ops = array(
+				'width'   => NULL,
 				'width'   => LAYERS_WIDGET_WIDTH_LARGE,
 				'height'  => NULL,
 				'id_base' => LAYERS_THEME_SLUG . '-widget-' . $this->widget_id,
@@ -461,7 +462,7 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 		* We use regular HTML here, it makes reading the widget much easier than if we used just php to echo all the HTML out.
 		*/
 		function form( $instance ){
-
+			
 			// Use defaults if $instance is empty.
 			if( empty( $instance ) && ! empty( $this->defaults ) ) {
 				$instance = wp_parse_args( $instance, $this->defaults );
@@ -469,6 +470,9 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 			
 			// Mix in new/unset defaults on every instance load (NEW)
 			$instance = $this->apply_defaults( $instance );
+			
+			// Collect widget HTML.
+			ob_start();
 			
 			$components = apply_filters( 'layers_slide_widget_design_bar_components', array(
 				'layout' => array(
@@ -615,7 +619,15 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 
 			</div>
 
-		<?php }
+			<?php
+			
+			$html = ob_get_clean();
+			
+			// Strip excess html from widget if not in customizer.
+			if ( ! $this->is_cutomizer() ) $html = $this->strip_widget_form_html( $html );
+			
+			echo $html;
+		}
 
 		function slide_item( $item_guid, $item_instance ) {
 			

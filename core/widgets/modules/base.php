@@ -25,7 +25,7 @@ if( !class_exists( 'Layers_Widget' ) ) {
 		public $merge_defaults = array();
 		
 		public $merge_repeater_defaults = array();
-
+		
 		/**
 		* If there is inline CSS back it up while we run this widget
 		*
@@ -757,6 +757,43 @@ if( !class_exists( 'Layers_Widget' ) ) {
 			}
 			
 			return $instance;
+		}
+		
+		/**
+		 * Helper that checks if we are in the customizer.
+		 */
+		public function is_cutomizer( $display_notification = FALSE ) {
+			
+			global $wp_customize;
+			
+			// Check if we're in customizer.
+			$bool = isset( $wp_customize );
+			
+			// Display notification if we are in the customizer.
+			if ( ! $bool && $display_notification ) {
+				
+				?>
+				<div class="layers-appearance-widget-notification">
+					<?php echo sprintf( __( 'Go to <a href="%s">Appearance > Customize</a> to edit this Layers widget', 'layerswp' ), admin_url( '/customize.php' ) ); ?>
+				</div>
+				<?php
+			}
+			
+			return $bool;
+		}
+		
+		/**
+		 * Helper strip excess html form a widget form.
+		 */
+		public function strip_widget_form_html( $html ) {
+			
+			// Strip excess HTML if not in customizer.
+			$html = strip_tags( $html, '<input> <textarea> <select>' );
+			
+			// Strip css class names so that certain JS doesn't init.
+			$html = str_replace( array( 'layers-color-selector', 'wp-color-picker' ), '', $html );
+			
+			return $html;
 		}
 		
 	}

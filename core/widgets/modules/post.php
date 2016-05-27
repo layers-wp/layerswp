@@ -47,6 +47,7 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 
 			/* Widget control settings. */
 			$control_ops = array(
+				'width'   => NULL,
 				'width'   => LAYERS_WIDGET_WIDTH_SMALL,
 				'height'  => NULL,
 				'id_base' => LAYERS_THEME_SLUG . '-widget-' . $this->widget_id,
@@ -426,7 +427,7 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 		*
 		*/
 		function form( $instance ){
-
+			
 			// Use defaults if $instance is empty.
 			if( empty( $instance ) && ! empty( $this->defaults ) ) {
 				$instance = wp_parse_args( $instance, $this->defaults );
@@ -434,6 +435,9 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 			
 			// Mix in new/unset defaults on every instance load (NEW)
 			$instance = $this->apply_defaults( $instance );
+			
+			// Collect widget HTML.
+			ob_start();
 
 			$this->design_bar(
 				'side', // CSS Class Name
@@ -681,7 +685,16 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 				</section>
 
 			</div>
-		<?php } // Form
+			<?php
+			
+			$html = ob_get_clean();
+			
+			// Strip excess html from widget if not in customizer.
+			if ( ! $this->is_cutomizer() ) $html = $this->strip_widget_form_html( $html );
+			
+			echo $html;
+		}
+		
 	} // Class
 
 	// Add our function to the widgets_init hook.

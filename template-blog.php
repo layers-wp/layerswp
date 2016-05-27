@@ -15,7 +15,8 @@ get_template_part( 'partials/header' , 'page-title' ); ?>
 		<?php get_sidebar( 'left' ); ?>
 
 		<?php
-		$paged = ( get_query_var( 'page' ) ? get_query_var( 'page' ) : 1 );
+		$page = ( get_query_var( 'page' ) ? get_query_var( 'page' ) : 1 );
+		$paged = ( get_query_var( 'paged' ) ? get_query_var( 'paged' ) : $page );
 		$wp_query = new WP_Query( array(
 			'post_type' => 'post',
 			'paged'     => $paged,

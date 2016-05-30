@@ -530,7 +530,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 			$html = ob_get_clean();
 			
 			// Strip excess html from widget if not in customizer.
-			if ( ! $this->is_cutomizer() ) $html = $this->strip_widget_form_html( $html );
+			if ( ! $this->is_cutomizer( TRUE ) ) $html = $this->strip_widget_form_html( $html );
 			
 			echo $html;
 		}

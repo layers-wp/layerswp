@@ -793,6 +793,8 @@ if( !class_exists( 'Layers_Widget' ) ) {
 			// Strip css class names so that certain JS doesn't init.
 			$html = str_replace( array( 'layers-color-selector', 'wp-color-picker' ), '', $html );
 			
+			$html = '<div class="layers-stripped-widget-html">' . $html . '</div>';
+			
 			return $html;
 		}
 		

@@ -13,7 +13,7 @@
 .l_admin-soft-hide{ display: none; }
 
 .widgets-php .widget[id*='layers-widget'] .widget-inside .widget-content .layers-stripped-widget-html {
-	 /* display: none !important; */
+	 display: none !important;
 }
 .widgets-php .widget[id*='layers-widget'] .widget-inside .widget-control-actions {
 	margin: 13px 0 0;
@@ -34,7 +34,7 @@
 	padding: 14px;
 	background: rgb(255, 247, 225);
 	border: 2px solid #F9EED6;
-	margin: 15px 0 1px;
+	margin: 15px 0 15px;
 	text-align: center;
 	border-radius: 2px;
 }

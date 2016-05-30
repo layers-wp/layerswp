@@ -2,6 +2,12 @@
 
 
 =======
+##1.5.3
+### 30 May 2016
+
+* **Fix** - WooCommerce grid update during checkout. *DP*
+
+=======
 ##1.5.2
 ### 30 May 2016
 

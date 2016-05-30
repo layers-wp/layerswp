@@ -788,7 +788,7 @@ if( !class_exists( 'Layers_Widget' ) ) {
 		public function strip_widget_form_html( $html ) {
 			
 			// Strip excess HTML if not in customizer.
-			$html = strip_tags( $html, '<input> <textarea> <select>' );
+			$html = strip_tags( $html, '<input> <textarea> <select> <option>' );
 			
 			// Strip css class names so that certain JS doesn't init.
 			$html = str_replace( array( 'layers-color-selector', 'wp-color-picker' ), '', $html );

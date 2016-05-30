@@ -13,7 +13,7 @@
 .l_admin-soft-hide{ display: none; }
 
 .widgets-php .widget[id*='layers-widget'] .widget-inside .widget-content .layers-stripped-widget-html {
-	 display: none !important;
+	 /* display: none !important; */
 }
 .widgets-php .widget[id*='layers-widget'] .widget-inside .widget-control-actions {
 	margin: 13px 0 0;

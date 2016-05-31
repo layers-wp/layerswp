@@ -1,5 +1,10 @@
 # Layers Changelog
 
+=======
+##1.5.x
+### XX Xxx 2016
+
+* **Fix** - Bring back shift-click to edit Layers widgets in the Customizer. This was removed by changes in the widget container format in a recent WP update. *SOB*
 
 =======
 ##1.5.3

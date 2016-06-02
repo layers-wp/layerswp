@@ -754,6 +754,40 @@ jQuery(function($) {
 			$editor.froalaEditor('focus');
 		});
 	});
+	
+	// Fix issue where Firefox performance slows down chronically while RTE's are still focussed by cursor.
+	$(document).on( 'blur', '.fr-box .fr-element.fr-view', function(e){
+		
+		// Cache sister textarea.
+		$textarea = $(e.target).parents('.fr-box').siblings('textarea');
+
+		// Use near-instant timeout to make sure new element has time to get focus.
+		setTimeout( function(){
+			
+			// Cache newly focussed element.
+			$newly_focussed_element = jQuery(':focus');
+
+			// Here is the fix:
+			// If the next clicked element is a normal element (not a form field)
+			// then Froala does not register the defocus of it's resource heavy
+			// editor. So if the newly_focussed_element is not a form field then
+			// we help by invisibly focussing Froala's hidden sister textarea which
+			// releases the resource heavy Froala editor and returns performance
+			// to it's nomral state.
+			if (
+					! $newly_focussed_element.is('input') &&
+					! $newly_focussed_element.is('textarea') &&
+					! $newly_focussed_element.is('select') &&
+					! $newly_focussed_element.parents().hasClass('fr-view') &&
+					! $newly_focussed_element.hasClass('fr-view')
+				) {
+				
+				// Focus hidden sister textarea (show, FOCUS, then hide again - is needed for focus to trigger correctly).
+				$textarea.show().focus().hide();
+			}
+
+		}, 1 );
+	});
 
 	/**
 	* 14 - Custom Widget Initialization Events
@@ -761,7 +795,7 @@ jQuery(function($) {
 
 	/**
 	* Trigger 'layers-interface-init' when:
-	* 1. widget is focused first time
+	* 1. widget is focussed first time
 	* 2. accordion element is added inside widget
 	* to allow for just-in-time init instead of massive bulk init.
 	*/

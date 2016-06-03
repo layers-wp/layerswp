@@ -1,5 +1,16 @@
 # Layers Changelog
 
+=======
+##1.5.x
+### XX Xxx 2016
+
+* **Fix** - Bring back shift-click to edit Layers widgets in the Customizer. This was removed by changes in the widget container format in a recent WP update. *SOB*
+
+=======
+##1.5.3
+### 30 May 2016
+
+* **Fix** - WooCommerce grid update during checkout. *DP*
 
 =======
 ##1.5.2
@@ -8,6 +19,7 @@
 * **Fix** - Fixed sub-category listing pages. *MP*
 * **Fix** - Updated Layers Pro upsell links.*MP*
 * **Fix** - Added conditional statements around `Layers_Widget_Migrator` where needed. *MP*
+* **Tweak** - Added a check to make sure that we never output two main titles on one page - Blank Page template. *SOB*
 
 
 =======

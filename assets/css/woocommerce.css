@@ -819,9 +819,9 @@ p.stars span a:focus{
 	/*-----------------------*/
 	/*- COUPON FORM ---------*/
 	.checkout_coupon{
-		padding: 30px;
+		padding: 10px;
 		margin-bottom: 20px;
-		background: #3D4E47;
+		background: #f5f5f5;
 		margin-top: -1px;
 	}
 	.checkout_coupon p{
@@ -1085,6 +1085,7 @@ p.stars span a:focus{
 		list-style: none;
 	}
 	.woocommerce .order_details li:last-child{
+		border-bottom: none;
 	}
 	.woocommerce .order_details:empty{
 		display: none;
@@ -1439,8 +1440,8 @@ p.stars span a:focus{
 	.col2-set{
 		overflow: hidden;
 		float: left;
-		width: 57.5%;
-		margin-right: 2%;
+		width: calc(((100% / 12) * 7) - 20px);
+		margin-right: 20px;
 		margin-bottom: 40px;
 	}
 
@@ -1448,8 +1449,7 @@ p.stars span a:focus{
 	/*- ORDER REVIEW ------------*/
 	#order_review{
 		float: left;
-		width: 41%;
-		padding: 37px;
+		width: calc(((100% / 12) * 5) - 20px);
 	}
 
 }

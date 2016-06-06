@@ -511,9 +511,6 @@ jQuery(function($) {
 		 * Customizer
 		 */
 
-		// Init interface in all except widgets on load
-		layers_init_show_if( $( '#customize-theme-controls > ul > li.accordion-section' ).not( '#accordion-panel-widgets' ) );
-
 		$( document ).on( 'layers-interface-init', function( e, element ){
 			// 'this' is the widget
 			layers_init_show_if( $(element) );

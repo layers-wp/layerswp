@@ -521,17 +521,17 @@ jQuery(function($) {
 		 * Not Customizer
 		 */
 
-		layers_init_show_if( $( 'body' ) );
+		layers_init_show_if( $('body') );
 	}
 
 	function layers_init_show_if( $element_s ){
 
 		$element_s.find( '[data-show-if-selector]').each( function( j, element ) {
 
-			var $this_element   = $(element);
+			var $this_element    = $(element);
 			var $compare_element = $( $this_element.attr( 'data-show-if-selector' ) );
 			
-			// Apply once on startup.
+			// Apply show-if to the element once on startup.
 			layers_apply_show_if( $this_element, $compare_element );
 			
 			// Apply any time target element is changed.

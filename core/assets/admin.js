@@ -534,8 +534,11 @@ jQuery(function($) {
 			// Apply show-if to the element once on startup.
 			layers_apply_show_if( $this_element, $compare_element );
 			
-			// Apply any time target element is changed.
-			$( document ).on( 'change', $compare_element, function(e){
+			// Apply show-if to the element when this element is changed.
+			/*$( document ).on( 'change', $compare_element, function(e){
+				layers_apply_show_if( $this_element, $compare_element );
+			});*/
+			$( $compare_element ).on( 'change', function(e){
 				layers_apply_show_if( $this_element, $compare_element );
 			});
 		});

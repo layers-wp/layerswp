@@ -512,7 +512,6 @@ jQuery(function($) {
 		 */
 
 		$( document ).on( 'layers-interface-init', function( e, element ){
-			// 'this' is the widget
 			layers_init_show_if( $(element) );
 		});
 	}

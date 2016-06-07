@@ -194,6 +194,11 @@ if( ! function_exists( 'layers_setup' ) ) {
 
 			wp_safe_redirect( admin_url('admin.php?page=' . LAYERS_THEME_SLUG . '-get-started'));
 		}
+		
+		/**
+		 * Add support for Partial Widget Refresh.
+		 */
+		add_theme_support( 'customize-selective-refresh-widgets' );
 
 	} // function layers_setup
 } // if !function layers_setup

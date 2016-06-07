@@ -34,6 +34,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 
 				'classname'   => 'obox-layers-' . $this->widget_id .'-widget',
 				'description' => __( 'This widget is used to display text and images in a flexible grid.', 'layerswp' ),
+				'customize_selective_refresh' => TRUE,
 			);
 
 			/* Widget control settings. */
@@ -134,7 +135,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 			$widget_container_class = implode( ' ', $widget_container_class ); ?>
 
 			<?php echo $this->custom_anchor( $instance ); ?>
-			<div id="<?php echo esc_attr( $widget_id ); ?>" class="<?php echo esc_attr( $widget_container_class ); ?>">
+			<div id="<?php echo esc_attr( $widget_id ); ?>" class="<?php echo esc_attr( $widget_container_class ); ?>" <?php echo $this->get_partial_refresh_data_atts( $args['before_widget'] ); ?> >
 
 				<?php do_action( 'layers_before_content_widget_inner', $this, $instance ); ?>
 
@@ -383,7 +384,8 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 				<?php } // masonry trigger ?>
 
 			</div>
-		<?php
+			
+			<?php
 			
 			// Apply the advanced widget styling
 			$this->apply_widget_advanced_styling( $widget_id, $instance );

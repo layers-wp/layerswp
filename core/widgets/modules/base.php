@@ -759,5 +759,23 @@ if( !class_exists( 'Layers_Widget' ) ) {
 			return $instance;
 		}
 		
+		/**
+		 * Helper - takes widget $args['before_widget'], strips out the needed data-attributes,
+		 * and returns it as an isolated string. This is enables Partial Widget refresh by
+		 * JavascScript in the Customizer preview (Thanks to Weston).
+		 */
+		function get_partial_refresh_data_atts( $before_widget_arg ) {
+			
+			preg_match_all(
+				'/(data-customize-partial-id|data-customize-partial-type|data-customize-partial-placement-context|data-customize-widget-id)=("[^"]*")/i',
+				$before_widget_arg,
+				$result
+			);
+			
+			$atts = ( isset( $result[0] ) && is_array( $result[0] ) ) ? implode( $result[0], ' ' ) : '' ;
+			
+			return $atts;
+		}
+		
 	}
 }

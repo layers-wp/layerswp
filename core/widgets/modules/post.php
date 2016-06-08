@@ -42,6 +42,7 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 			$widget_ops = array(
 				'classname' => 'obox-layers-' . $this->widget_id .'-widget',
 				'description' => __( 'This widget is used to display your posts in a flexible grid.', 'layerswp' ),
+				'customize_selective_refresh' => TRUE,
 			);
 
 			/* Widget control settings. */
@@ -234,7 +235,7 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 			$widget_container_class = apply_filters( 'layers_post_widget_container_class' , $widget_container_class, $this, $instance );
 			$widget_container_class = implode( ' ', $widget_container_class ); ?>
 			<?php echo $this->custom_anchor( $instance ); ?>
-			<div id="<?php echo esc_attr( $widget_id ); ?>" class="<?php echo esc_attr( $widget_container_class ); ?>">
+			<div id="<?php echo esc_attr( $widget_id ); ?>" class="<?php echo esc_attr( $widget_container_class ); ?>" <?php echo $this->get_partial_refresh_data_atts( $args['before_widget'] ); ?>>
 
 				<?php do_action( 'layers_before_post_widget_inner', $this, $instance ); ?>
 

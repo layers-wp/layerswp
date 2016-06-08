@@ -28,23 +28,22 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 			$this->post_type = '';
 			$this->taxonomy = '';
 			$this->checkboxes = array(
-					'show_slider_arrows',
-					'show_slider_dots',
-					'autoplay_slides',
-					'autoheight_slides',
-				);
+				'show_slider_arrows',
+				'show_slider_dots',
+				'autoplay_slides',
+				'autoheight_slides',
+			);
 
 	 		/* Widget settings. */
 			$widget_ops = array(
-
-				'classname'   => 'obox-layers-' . $this->widget_id .'-widget',
+				'classname' => 'obox-layers-' . $this->widget_id .'-widget',
 				'description' => __( 'This widget is used to display slides and can be used to display a page-banner.', 'layerswp' ) ,
 			);
 
 			/* Widget control settings. */
 			$control_ops = array(
-				'width'   => LAYERS_WIDGET_WIDTH_LARGE,
-				'height'  => NULL,
+				'width' => LAYERS_WIDGET_WIDTH_LARGE,
+				'height' => NULL,
 				'id_base' => LAYERS_THEME_SLUG . '-widget-' . $this->widget_id,
 			);
 

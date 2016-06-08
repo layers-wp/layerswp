@@ -40,15 +40,14 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 
 			/* Widget settings. */
 			$widget_ops = array(
-
-				'classname'   => 'obox-layers-' . $this->widget_id .'-widget',
+				'classname' => 'obox-layers-' . $this->widget_id .'-widget',
 				'description' => __( 'This widget is used to display your posts in a flexible grid.', 'layerswp' ),
 			);
 
 			/* Widget control settings. */
 			$control_ops = array(
-				'width'   => LAYERS_WIDGET_WIDTH_SMALL,
-				'height'  => NULL,
+				'width' => LAYERS_WIDGET_WIDTH_SMALL,
+				'height' => NULL,
 				'id_base' => LAYERS_THEME_SLUG . '-widget-' . $this->widget_id,
 			);
 

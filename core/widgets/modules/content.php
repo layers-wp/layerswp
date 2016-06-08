@@ -31,16 +31,15 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 
 			/* Widget settings. */
 			$widget_ops = array(
-
-				'classname'   => 'obox-layers-' . $this->widget_id .'-widget',
+				'classname' => 'obox-layers-' . $this->widget_id .'-widget',
 				'description' => __( 'This widget is used to display text and images in a flexible grid.', 'layerswp' ),
 				'customize_selective_refresh' => TRUE,
 			);
 
 			/* Widget control settings. */
 			$control_ops = array(
-				'width'   => LAYERS_WIDGET_WIDTH_LARGE,
-				'height'  => NULL,
+				'width' => LAYERS_WIDGET_WIDTH_LARGE,
+				'height' => NULL,
 				'id_base' => LAYERS_THEME_SLUG . '-widget-' . $this->widget_id,
 			);
 
@@ -135,7 +134,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 			$widget_container_class = implode( ' ', $widget_container_class ); ?>
 
 			<?php echo $this->custom_anchor( $instance ); ?>
-			<div id="<?php echo esc_attr( $widget_id ); ?>" class="<?php echo esc_attr( $widget_container_class ); ?>" <?php echo $this->get_partial_refresh_data_atts( $args['before_widget'] ); ?> >
+			<div id="<?php echo esc_attr( $widget_id ); ?>" class="<?php echo esc_attr( $widget_container_class ); ?>" <?php echo $this->get_partial_refresh_data_atts( $args['before_widget'] ); ?>>
 
 				<?php do_action( 'layers_before_content_widget_inner', $this, $instance ); ?>
 

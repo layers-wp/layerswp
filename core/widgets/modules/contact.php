@@ -28,21 +28,21 @@ if( !class_exists( 'Layers_Contact_Widget' ) ) {
 			$this->post_type = '';
 			$this->taxonomy = '';
 			$this->checkboxes = array(
-					'show_google_map',
-					'show_address',
-					'show_contact_form'
-				);
+				'show_google_map',
+				'show_address',
+				'show_contact_form'
+			);
 
 	 		/* Widget settings. */
 			$widget_ops = array(
-
-				'classname'   => 'obox-layers-' . $this->widget_id .'-widget',
+				'classname' => 'obox-layers-' . $this->widget_id .'-widget',
 				'description' => __( 'This widget is used to display your ', 'layerswp' ) . $this->widget_title . '.',
 			);
 
 			/* Widget control settings. */
-			$control_ops = array( 'width' => LAYERS_WIDGET_WIDTH_SMALL,
-				'height'  => NULL,
+			$control_ops = array(
+				'width' => LAYERS_WIDGET_WIDTH_SMALL,
+				'height' => NULL,
 				'id_base' => LAYERS_THEME_SLUG . '-widget-' . $this->widget_id
 			);
 

@@ -140,9 +140,11 @@ if( !class_exists( 'Layers_Contact_Widget' ) ) {
 			if( !$show_title_or_excerpt && !$show_address_or_contactform  ) $widget_container_class[] = 'no-inset-top no-inset-bottom';
 
 			$widget_container_class = apply_filters( 'layers_contact_widget_container_class' , $widget_container_class, $this, $instance );
-			$widget_container_class = implode( ' ', $widget_container_class ); ?>
-
-			<?php echo $this->custom_anchor( $instance ); ?>
+			$widget_container_class = implode( ' ', $widget_container_class );
+			
+			// Custom Anchor Tag
+			echo $this->custom_anchor( $instance ); ?>
+			
 			<div id="<?php echo esc_attr( $widget_id ); ?>" class="<?php echo esc_attr( $widget_container_class ); ?>" <?php echo $this->get_partial_refresh_data_atts( $args['before_widget'] ); ?>>
 
 				<?php do_action( 'layers_before_contact_widget_inner', $this, $instance ); ?>

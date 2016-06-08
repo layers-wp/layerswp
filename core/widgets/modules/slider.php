@@ -194,7 +194,11 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 			 */
 
 			if( ! empty( $instance[ 'slides' ] ) ) { ?>
-				<?php echo $this->custom_anchor( $instance ); ?>
+				
+				<?php
+				// Custom Anchor Tag
+				echo $this->custom_anchor( $instance ); ?>
+				
 				<div id="<?php echo esc_attr( $widget_id ); ?>" class="<?php echo esc_attr( $widget_container_class ); ?>" style="<?php echo esc_attr( $slider_height_css ); ?>" <?php echo $this->get_partial_refresh_data_atts( $args['before_widget'] ); ?>>
 
 					<?php do_action( 'layers_before_slider_widget_inner', $this, $instance ); ?>

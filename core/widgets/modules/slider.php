@@ -12,7 +12,7 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 		/**
 		*  Widget construction
 		*/
-	 	function Layers_Slider_Widget(){
+	 	function __construct() {
 
 			/**
 			* Widget variables

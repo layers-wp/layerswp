@@ -12,7 +12,7 @@ if( !class_exists( 'Layers_Contact_Widget' ) ) {
 		/**
 		*  Widget construction
 		*/
-	 	function Layers_Contact_Widget(){
+	 	function __construct() {
 
 			/**
 			* Widget variables

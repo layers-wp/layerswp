@@ -12,7 +12,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 		/**
 		*  Widget construction
 		*/
-		function Layers_Content_Widget(){
+		function __construct() {
 
 			/**
 			* Widget variables

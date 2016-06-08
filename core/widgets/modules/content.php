@@ -133,7 +133,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 			$widget_container_class = apply_filters( 'layers_content_widget_container_class' , $widget_container_class, $this, $instance );
 			$widget_container_class = implode( ' ', $widget_container_class );
 
-			// Custom Anchor Tag
+			// Custom Anchor
 			echo $this->custom_anchor( $instance ); ?>
 			
 			<div id="<?php echo esc_attr( $widget_id ); ?>" class="<?php echo esc_attr( $widget_container_class ); ?>" <?php echo $this->get_partial_refresh_data_atts( $args['before_widget'] ); ?>>

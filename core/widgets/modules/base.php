@@ -1,4 +1,5 @@
-<?php  /**
+<?php
+/**
  * Layers Widget Class
  *
  * This file is used to register the base layers widget Class

@@ -94,6 +94,12 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 	}
 
 	/*---------------------------*/
+	/*- SLIDER HEIGHT -----------*/
+	.swiper-container.full-screen{
+		height: 100vh;
+	}
+
+	/*---------------------------*/
 	/*- SLIDER ALIGNMENT --------*/
 	.swiper-slide.image-top .container{
 		flex-direction: column-reverse;

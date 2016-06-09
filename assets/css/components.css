@@ -98,6 +98,9 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 	.swiper-container.full-screen{
 		height: 100vh ;
 	}
+	.layers-header-overlay .swiper-container.full-screen .container{
+		padding-top: 4%;
+	}
 
 	/*---------------------------*/
 	/*- SLIDER ALIGNMENT --------*/

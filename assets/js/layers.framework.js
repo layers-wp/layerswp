@@ -178,8 +178,9 @@ function layers_apply_overlay_header_styles() {
             padding_top = ( '' != padding_top ) ? parseInt( padding_top ) : 0 ;
 
             // First element is Slider Widget.
-            $first_element.css( 'height', ( $header_height + $first_element_height ) );
-            $first_element.find('.swiper-slide' ).css( 'height', ( $header_height + $first_element_height ) );
+            // $first_element.css( 'height', ( $header_height + $first_element_height ) );
+            // $first_element.find('.swiper-slide' ).css( 'height', ( $header_height + $first_element_height ) );
+            // $first_element.css( 'height', ( $first_element_height - $header_height ) );
 
             jQuery('body').addClass( 'header-overlay-no-push' );
         }

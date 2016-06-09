@@ -277,7 +277,7 @@ jQuery(function($) {
 				if( 'undefined' !== typeof event && 'click' === event.type ){
 					
 					// Ping a chnage to the main input - the value will be ''.
-					$( event.target ).siblings('.layers-color-selector').trigger('change');
+					$( event.target ).layers_trigger_change();
 				}
 			},
 			palettes: [ '#000000', '#FFFFFF', '#E2594E', '#F39C12', '#FFCD03', '#A2C661', '#009EEC', '#934F8C' ],
@@ -287,7 +287,7 @@ jQuery(function($) {
 	// Debounce function for color changing.
 	var layers_debounce_color_input = _.debounce( function( element ){
 		$( element ).layers_trigger_change();
-	}, 200, false );
+	}, 400, false );
 
 	/**
 	* 6 - Sortable Columns

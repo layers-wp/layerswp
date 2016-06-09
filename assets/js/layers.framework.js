@@ -32,8 +32,8 @@ jQuery(function($) {
     layers_match_to_screen_height();
 
     function layers_match_to_screen_height(){
-        $( '.full-screen' ).css( 'height' , $(window).height() );
-        $( '.full-screen' ).find( '.swiper-slide .overlay' ).css( 'height' , $(window).height() );
+        /*$( '.full-screen' ).css( 'height' , $(window).height() );
+        $( '.full-screen' ).find( '.swiper-slide .overlay' ).css( 'height' , $(window).height() );*/
     }
 
     /**
@@ -150,7 +150,7 @@ function layers_swiper_resize( s ){
 }
 
 /**
- * 8 - Container padding on first widgets for header fixed - helper funcion.
+ * 8 - Container padding on first widgets for header fixed - helper function.
  */
 var $first_element;
 function layers_apply_overlay_header_styles() {

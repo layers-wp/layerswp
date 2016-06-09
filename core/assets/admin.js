@@ -265,19 +265,19 @@ jQuery(function($) {
 		$element.find('.layers-color-selector').wpColorPicker({
 			change: function(event, ui){
 				if( 'undefined' !== typeof event ){
-
-					//Update the color input
-					$(event.target).val( ui.color.toString() );
+					
+					// Update the color input
+					$( event.target ).val( ui.color.toString() );
 
 					// Debounce the color changes
-					layers_debounce_color_input( event.target );
+					layers_debounce_color_input( $( event.target ) );
 				}
 			},
 			clear: function(event) {
-				if( 'undefined' !== typeof event ){
-
-					// Debounce the reset change
-					layers_debounce_color_input( jQuery(event.target).parent('.wp-picker-input-wrap').find('.wp-color-picker') );
+				if( 'undefined' !== typeof event && 'click' === event.type ){
+					
+					// Ping a chnage to the main input - the value will be ''.
+					$( event.target ).siblings('.layers-color-selector').trigger('change');
 				}
 			},
 			palettes: [ '#000000', '#FFFFFF', '#E2594E', '#F39C12', '#FFCD03', '#A2C661', '#009EEC', '#934F8C' ],

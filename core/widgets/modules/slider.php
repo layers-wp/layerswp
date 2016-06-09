@@ -427,6 +427,15 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 							});
 
 							<?php echo $swiper_js_obj; ?>.init();
+							
+							// Do stuff if this is the first widget.
+							if ( ! $('#<?php echo $widget_id; ?>').prev('.widget').length ) {
+								if ( ! $('#<?php echo $widget_id; ?>').hasClass( '.full-screen' ) ) {
+									jQuery('.header-site.header-overlay').css( 'transition', '0s' );
+									setTimeout( function(){ jQuery('.header-site.header-overlay').css( 'transition', '' ); }, 1000 );
+									jQuery('body').addClass( 'header-overlay-no-push' );
+								}
+							}
 						});
 					</script>
 

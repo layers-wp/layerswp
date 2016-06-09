@@ -169,6 +169,7 @@ function layers_apply_overlay_header_styles() {
 
         if( $first_element.hasClass( 'slide' ) && !$first_element.hasClass( '.full-screen' ) ) {
 
+            /*
             // Reset previous incase this is being re-aplied due to window resize.
             $first_element.find('.swiper-slide > .content' ).css('padding-top', '' );
 
@@ -180,7 +181,8 @@ function layers_apply_overlay_header_styles() {
             // First element is Slider Widget.
             // $first_element.css( 'height', ( $header_height + $first_element_height ) );
             // $first_element.find('.swiper-slide' ).css( 'height', ( $header_height + $first_element_height ) );
-            // $first_element.css( 'height', ( $first_element_height - $header_height ) );
+            $first_element.css( 'height', ( $first_element_height - $header_height ) );
+            */
 
             jQuery('body').addClass( 'header-overlay-no-push' );
         }

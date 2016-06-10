@@ -332,65 +332,81 @@ jQuery(function($) {
 		$tab_container.find( 'section.layers-tab-content' ).eq( $i ).addClass('l_admin-show').removeClass('l_admin-hide').slideDown().siblings( 'section.l_admin-tab-content' ).addClass('l_admin-hide').removeClass('l_admin-show').slideUp();
 	});
 
-
 	/**
 	* 8 - Design Controller toggles
 	*/
-
+	
+	// WIDGET - Design Bar Flyout Menus e.g. Layout, List Style, Advanced.
+	var $menu_is_open = false;
+	// Close any previously opened menu's.
 	$( document ).on( 'click', function(e) {
-
-		var eventTarget = $(e.target);
-
-		// close any pop-ups that arent the target of the current click
-		$('.widget .layers-visuals-item.layers-active' ).not( eventTarget.closest('.layers-visuals-item') ).removeClass( 'layers-active' );
+		
+		// Only ever do this if there is a previously opened item
+		// is less taxing than searching the entire Customizer DOM
+		// for open items every clivk in the customizer.
+		if ( $menu_is_open ) {
+			
+			var $opened = $('.widget .layers-visuals-item.layers-active' ).not( $(e.target).parents('li.layers-visuals-item') );
+			
+			if ( $opened.length ) {
+				
+				$opened.removeClass( 'layers-active' );
+				$menu_is_open = false;
+			}
+		}
 	});
-
-	$( document ).on( 'click' , '.widget ul.layers-visuals-wrapper > li.layers-visuals-item > a.layers-icon-wrapper' , function(e){
+	// Open the clicked menu.
+	$( document ).on( 'click', '.widget ul.layers-visuals-wrapper > li.layers-visuals-item > a.layers-icon-wrapper', function(e){
 
 		e.preventDefault();
 
 		// "Hi Mom"
 		$that = $(this);
-
-		// Toggle active state
-		$that.trigger( 'layers-design-bar-menu', $that );
-		$that.parent( 'li.layers-visuals-item' ).toggleClass( 'layers-active' );
-
+		
 		// Close Siblings
 		$that.parent( 'li.layers-visuals-item' ).siblings().not( $that.parent() ).removeClass( 'layers-active' );
-	});
 
+		// Toggle active state
+		// $that.trigger( 'layers-design-bar-menu', $that ); // Deprecated event.
+		$that.parent( 'li.layers-visuals-item' ).toggleClass( 'layers-active' );
+		
+		$menu_is_open = ( $that.parent( 'li.layers-visuals-item' ).hasClass('layers-active') );
+	});
+	
+	// WIDGET - Select Icon Group e.g. Text Align (left, right, center, justify).
 	$( document ).on( 'mousedown' , '.layers-select-icons label.layers-icon-wrapper' , function(e){
 
 		// Cache elements.
 		var $label = $(this);
+		var $input = $('#' + $label.attr('for'));
 
-		var $input = $('#' + $label.attr( 'for' ));
-
-		// Get the input value
+		// Get input value
 		var $value = $input.val();
+		
+		// De-activate siblings
+		$label.siblings( '.layers-icon-wrapper' ).removeClass( 'layers-active' );
 
-		// Capture the closest fellow form items
-		$form_items = $label.closest( '.layers-form-item' ).siblings( '.layers-form-item' ).length;
-		if( 0 == $form_items ){
-			$label.closest( '.layers-pop-menu-wrapper' ).siblings( '.layers-icon-wrapper' ).find( 'span[class^="icon-"]' ).attr( 'class', 'icon-' + $value );
+		// When the the whole flyout-menu is one Select Icon Group e.g. a widget's Layout (Boxed, Full-Width)
+		// then set the parents Icon to what is being selected now - helpful to the user, it can be seen at a glance.
+		$is_form_item = $label.closest( '.layers-form-item' ).siblings( '.layers-form-item' ).length;
+		if ( 0 == $is_form_item ) {
+			$label
+				.closest( '.layers-pop-menu-wrapper' )
+				.siblings( '.layers-icon-wrapper' )
+				.find( 'span[class^="icon-"]' )
+				.attr( 'class', 'icon-' + $value );
 		}
 
 		// Toggle active state
-		$label.trigger( 'layers-design-bar-menu', $label );
-
-		// De-activate siblings
-		$label.siblings( '.layers-icon-wrapper' ).removeClass( 'layers-active' );
+		// $label.trigger( 'layers-design-bar-menu', $label );
 
 		if ( 'checkbox' == $input.attr('type') ) {
 
 			// Input is a 'checkbox' when there's only one single button - so make it toggle on/off.
-			if ( $label.hasClass( 'layers-active' ) ) {
+			if ( $label.hasClass( 'layers-active' ) )
 				$label.removeClass( 'layers-active' );
-			}
-			else {
+			else
 				$label.addClass( 'layers-active' );
-			}
 		}
 		else {
 
@@ -398,27 +414,30 @@ jQuery(function($) {
 			$label.addClass( 'layers-active' );
 		}
 	});
-
+	
+	// CUSTOMIZE CONTROLS - Select Icon Group e.g. Header Width (Boxed, Full-Width)
 	$( document ).on( 'click' , '[id^="layers-customize"] .layers-visuals-item' , function(e){
+		
 		// "Hi Mom"
 		$that = $(this);
-
-		// Toggle active state
-		$that.trigger( 'layers-design-bar-menu', $that );
-		$that.addClass( 'layers-active' );
-
+		
 		// Close siblings
 		$that.siblings( '.layers-visuals-item' ).removeClass( 'layers-active' );
 
+		// Toggle active state
+		// $that.trigger( 'layers-design-bar-menu', $that );
+		$that.addClass( 'layers-active' );
 	});
-	$( document ).on( 'layers-design-bar-menu', '.layers-visuals-item', function( e, menu_item ){
+	/*$( document ).on( 'layers-design-bar-menu', '.layers-visuals-item', function( e, menu_item ){
 		$img = $(this).find( 'img[data-src]' );
 		$img.each(function(){
 			$(this).attr( 'src', $(this).data( 'src' ) );
 		});
-	});
-
-	$( document ).on( 'click' , '.accordion-section-title' , function(e){
+	});*/
+	
+	/*
+	// Not sure what these leemnts are/were.
+	$( document ).on( 'click', '.accordion-section-title', function(e){
 		// "Hi Mom"
 		$that = $(this);
 
@@ -433,6 +452,7 @@ jQuery(function($) {
 			$(this).attr( 'src', $(this).data( 'src' ) );
 		});
 	});
+	*/
 
 	/**
 	* 9 - Widget Focussing

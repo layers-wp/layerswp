@@ -98,7 +98,7 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 	.swiper-container.full-screen{
 		height: 100vh ;
 	}
-	.layers-header-overlay .swiper-container .container{
+	.layers-header-overlay .wrapper-content .widget:first-child.swiper-container .container{
 		padding-top: 4%;
 	}
 

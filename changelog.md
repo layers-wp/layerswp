@@ -4,6 +4,7 @@
 ##1.5.x
 ### XX Xxx 2016
 
+* **Fix** - Fixed sub-menus when header menu is not yet set. *MP*
 * **Fix** - Bring back shift-click to edit Layers widgets in the Customizer. This was removed by changes in the widget container format in a recent WP update. *SOB*
 
 =======

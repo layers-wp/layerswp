@@ -31,6 +31,7 @@
  * 19 - Linking from one section/panel to another.
  * 20 - Init Tip-Tip
  * 21 - Linking-UX
+ * 22 - Force Customizer refresh if Widget exists that's not partial-widget-refresh
  *
  * Author: Obox Themes
  * Author URI: http://www.oboxthemes.com/
@@ -1255,5 +1256,74 @@ jQuery(function($) {
 		$other_collection_holders.addClass('closed');
 		$other_collection_contents.slideUp({ easing: 'layersEaseInOut', duration: 250 });
 	});
+	
+	/**
+	* 22 - Force Customizer refresh if Widget exists that's not partial-widget-refresh.
+	*
+	* This is required because we don't use the `$args['before_widget'], $args['after_widget']` as our surrounding
+	* tags on our widgets, as our framework needs full control of the attributes like `class`. We have solved this
+	* in our internal widgets, but we cannot be sure that there aren't any 3rd party Layers based Widgets that
+	* have not yet applied our fix. So in the case that there are non `customize_selective_refresh` enabled Widgets
+	* then we will hard-refresh the customizer if the widgets are Reordered, Added, Deleted. Only on pages that have
+	* Widgets that are not `customize_selective_refresh` enabled.
+	*/
+	$(document).on( 'layers-customizer-init', function(){
+		
+		// Reorder Widgets.
+		$('.accordion-section-content').on( 'sortupdate', function( event, ui ){
+			var $widget_li = ui.item;
+			possibly_refresh_customizer( $widget_li );
+		});
+		
+		// Add Widget.
+		$( document ).on( 'widget-added', function( e, widget ){
+			var $widget = $(widget);
+			possibly_refresh_customizer( $widget );
+		});
+
+		// Delete Widget.
+		$('.accordion-section-content').on( 'click', '.widget-control-remove', function(e){
+			var $widget = $(this).closest('.customize-control-widget_form');
+			possibly_refresh_customizer( $widget );
+		});
+		
+	});
+	
+	function possibly_refresh_customizer( $widget ) {
+		
+		// Keep note if there are any non PWR widgets.
+		var $all_partial_refresh_widget_enabled = true;
+
+		if ( ! wp.customize.Widgets.data.selectiveRefreshableWidgets[ $widget.find('input[name=id_base]').val() ] ) {
+
+			// The current widget clicked is not PWR so note this.
+			$all_partial_refresh_widget_enabled = false;
+		}
+		else {
+
+			// Loop through the widget on the same page as the one that was just interacted with.
+			$widget.closest('.ui-sortable').find('input[name=id_base]').each(function(index, el){
+
+				// Get the widget type.
+				var widget_type = $(el).val();
+
+				// Check if the current widget is PWR enabled.
+				if ( ! wp.customize.Widgets.data.selectiveRefreshableWidgets[widget_type] ) {
+
+					// If not PWR then note this.
+					$all_partial_refresh_widget_enabled = false;
+				}
+			});
+		}
+		
+		// If there was a non PWR then refresh the Customizer Preview.
+		if ( ! $all_partial_refresh_widget_enabled ) {
+
+			// setTimeout delay so that the accordion is finished updating.
+			setTimeout( function(){
+				wp.customize.previewer.refresh();
+			}, 600 );
+		}
+	}
 
 });

@@ -6,6 +6,11 @@
 
 * **Fix** - Fixed sub-menus when header menu is not yet set. *MP*
 * **Fix** - Bring back shift-click to edit Layers widgets in the Customizer. This was removed by changes in the widget container format in a recent WP update. *SOB*
+* **Fix** - Masonry layout in the customizer fixed. *SOB*
+* **Fix** - Changed all widgets to use the regular php `__construct()` method. *SOB*
+* **Fix** - Bring back shift-click to edit Layers widgets in the Customizer. This was removed by changes in the widget container format in a recent WP update. *SOB*
+* **Tweak** - Changed `show-if` functionality to improve JS performance. *SOB*
+* **Tweak** - Fix issue where Firefox performance slows down while RTE's are still focussed by cursor. *SOB*
 
 =======
 ##1.5.3

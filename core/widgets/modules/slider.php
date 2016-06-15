@@ -436,6 +436,9 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 									jQuery('body').addClass( 'header-overlay-no-push' );
 								}
 							}
+							
+							// Fade-in slider after it's been initilaized (FOUC).
+							$( '#<?php echo $widget_id; ?>' ).addClass('loaded');
 						});
 					</script>
 

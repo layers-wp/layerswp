@@ -371,17 +371,17 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 				$this->print_inline_css();
 
 				if( 'list-masonry' == $this->check_and_return( $instance , 'design', 'liststyle' ) ) { ?>
-					<script>
+					
+					<script type='text/javascript'>
 						jQuery(function($){
-							layers_masonry_settings[ '<?php echo $widget_id; ?>' ] = [{
+							$('#<?php echo $widget_id; ?> .list-masonry .grid').layers_masonry({
 								itemSelector: '.layers-masonry-column',
 								layoutMode: 'masonry',
-								gutter: <?php echo ( isset( $instance['design'][ 'gutter' ] ) ? 20 : 0 ); ?>
-							}];
-
-							$('#<?php echo $widget_id; ?>').find('.list-masonry').layers_masonry( layers_masonry_settings[ '<?php echo $widget_id; ?>' ][0] );
+								gutter: <?php echo ( isset( $instance['design'][ 'gutter' ] ) ? 20 : 0 ); ?>,
+							});
 						});
 					</script>
+					
 				<?php } // masonry trigger ?>
 
 			</div>

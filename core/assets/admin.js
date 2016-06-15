@@ -685,9 +685,6 @@ jQuery(function($) {
 	$( document ).on( 'layers-interface-init', function( e, element ){
 		layers_init_editors( $(element) );
 	});
-	
-	// Debugging
-	// $editor_has_run_once = false;
 
 	function layers_init_editors( $element_s ){
 
@@ -698,12 +695,6 @@ jQuery(function($) {
 			// Bail if I'm already an RTE.
 			if ( $editor.siblings( '.fr-box' ).length > 0 ) return true;
 			
-			// Debugging - init a simple froala once then bail.
-			// if ( $editor_has_run_once ) return;
-			// $editor.froalaEditor();
-			// $editor_has_run_once = true;
-			// return false;
-
 			// Default editor config.
 			var $editor_config = {
 				allowScript: true,

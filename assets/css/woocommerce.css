@@ -1169,34 +1169,34 @@ p.stars span a:focus{
 
 	/*-----------------------*/
 	/*- OFF-CANVAS CART -----*/
-	section[class*=' off-canvas-'] .widget_shopping_cart{
+	div[class*=' off-canvas-'] .widget_shopping_cart{
 		padding: 0;
 		margin-left: 20px;
 		margin-right: 20px;
 		background: rgba(0, 0, 0, 0.4);
 	}
-	section[class*=' off-canvas-'] .widget_shopping_cart .section-nav-title{
+	div[class*=' off-canvas-'] .widget_shopping_cart .section-nav-title{
 		padding: 10px;
 		margin-bottom: 0;
 	}
-	section[class*=' off-canvas-'] .cart_list li{
+	div[class*=' off-canvas-'] .cart_list li{
 		padding: 10px;
 		border-bottom-color: rgba(255, 255, 255, 0.1);
 	}
-	section[class*=' off-canvas-'] .widget_shopping_cart .total{
+	div[class*=' off-canvas-'] .widget_shopping_cart .total{
 		margin: 10px;
 	}
-	section[class*=' off-canvas-'] .widget_shopping_cart .buttons{
+	div[class*=' off-canvas-'] .widget_shopping_cart .buttons{
 		padding: 10px 10px 5px;
 	}
-	section[class*=' off-canvas-'] .widget_shopping_cart .button{
+	div[class*=' off-canvas-'] .widget_shopping_cart .button{
 		display: block;
 		width: 100%;
 		margin-right: 0;
 		margin-bottom: 5px;
 		background: rgba(0, 0, 0, 0.65);
 	}
-	section[class*=' off-canvas-'] .widget_shopping_cart .button:hover{
+	div[class*=' off-canvas-'] .widget_shopping_cart .button:hover{
 		background: rgba(0, 0, 0, 0.85);
 	}
 

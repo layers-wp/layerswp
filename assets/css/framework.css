@@ -250,10 +250,10 @@ object{
 		padding: 0 10px;
 		position: relative;
 	}
-	.container.list-masonry > *:not(.masonry-loading){
+	.container.list-masonry .grid.loaded > *:not(.masonry-loading){
 		opacity: 0;
 	}
-	.container.list-masonry.loaded > *:not(.masonry-loading){
+	.container.list-masonry .grid.loaded > *:not(.masonry-loading){
 		opacity: 1;
 	}
 	.container.list-masonry .masonry-loading{

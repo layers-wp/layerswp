@@ -5,6 +5,8 @@
 ### XX Xxx 2016
 
 * **Fix** - Bring back shift-click to edit Layers widgets in the Customizer. This was removed by changes in the widget container format in a recent WP update. *SOB*
+* **Fix** - Gallery captions now display correctly in blog posts. *DP*
+* **Fix** - Images in posts are no longer display: block which was forcing them onto a new line. *DP*
 
 =======
 ##1.5.3

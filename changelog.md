@@ -4,8 +4,14 @@
 ##1.5.x
 ### XX Xxx 2016
 
+* **Enhancement** - Enable partial-widget-refresh - changes to widgets will be sent by JS and not require a page refresh (We still need to refresh the page if a widget exists that's not partial-widget-refresh enabled). *SOB*
+* **Enhancement** - Fade-in the Slider only after it has been initialized. *SOB*
 * **Fix** - Fixed sub-menus when header menu is not yet set. *MP*
 * **Fix** - Bring back shift-click to edit Layers widgets in the Customizer. This was removed by changes in the widget container format in a recent WP update. *SOB*
+* **Fix** - Fix color picker JS 'Clear' button that would trigger event loop infinitely. *SOB*
+* **Tweak** - Rewrite part of our admin.js to imporve performance e.g. Design Bar Flyout Menus, Widget Select Icon Groups, Customize Control Select Icon Groups. *SOB*
+* **Tweak** - Move the slider-is-first-widget JS to the widget PHP to improve FOUC. *SOB*
+* **Tweak** - Change full-screen slide from using js, to use CSS to improve FOUC. *SOB*
 
 =======
 ##1.5.3

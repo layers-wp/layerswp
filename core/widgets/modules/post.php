@@ -238,7 +238,7 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 			// Custom Anchor
 			echo $this->custom_anchor( $instance ); ?>
 			
-			<div id="<?php echo esc_attr( $widget_id ); ?>" class="<?php echo esc_attr( $widget_container_class ); ?>" <?php echo $this->get_partial_refresh_data_atts( $args['before_widget'] ); ?>>
+			<div id="<?php echo esc_attr( $widget_id ); ?>" class="<?php echo esc_attr( $widget_container_class ); ?>" <?php $this->selective_refresh_atts( $args ); ?>>
 
 				<?php do_action( 'layers_before_post_widget_inner', $this, $instance ); ?>
 

@@ -765,17 +765,19 @@ if( !class_exists( 'Layers_Widget' ) ) {
 		 * and returns it as an isolated string. This is enables Partial Widget refresh by
 		 * JavascScript in the Customizer preview (Thanks to Weston).
 		 */
-		function get_partial_refresh_data_atts( $before_widget_arg ) {
+		function selective_refresh_atts( $args ) {
+			
+			$before_widget = isset( $args['before_widget'] ) ? $args['before_widget'] : '' ;
 			
 			preg_match_all(
 				'/(data-customize-partial-id|data-customize-partial-type|data-customize-partial-placement-context|data-customize-widget-id)=("[^"]*")/i',
-				$before_widget_arg,
+				$before_widget,
 				$result
 			);
 			
 			$atts = ( isset( $result[0] ) && is_array( $result[0] ) ) ? implode( $result[0], ' ' ) : '' ;
 			
-			return $atts;
+			echo $atts;
 		}
 		
 	}

@@ -4,7 +4,7 @@
 ##1.5.x
 ### XX Xxx 2016
 
-* **Enhancement** - Enable partial-widget-refresh - changes to widgets will be sent by JS and not require a page refresh (We still need to refresh the page if a widget exists that's not partial-widget-refresh enabled). *SOB*
+* **Enhancement** - Enable WordPress Selective Widget Refresh - widgets update much faster by sending changes via JS, no page refresh required. *SOB*
 * **Enhancement** - Fade-in the Slider only after it has been initialized. *SOB*
 * **Fix** - Fixed sub-menus when header menu is not yet set. *MP*
 * **Fix** - Bring back shift-click to edit Layers widgets in the Customizer. This was removed by changes in the widget container format in a recent WP update. *SOB*

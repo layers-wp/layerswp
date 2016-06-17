@@ -162,6 +162,7 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 			$widget_container_class[] = 'row';
 			$widget_container_class[] = 'slide';
 			$widget_container_class[] = 'swiper-container';
+			$widget_container_class[] = 'loading'; // `loading` will be changed to `loaded` to fade in the slider.
 			$widget_container_class[] = $this->check_and_return( $instance , 'design', 'advanced', 'customclass' ); // Apply custom class from design-bar's advanced control.
 			$widget_container_class[] = $this->get_widget_spacing_class( $instance );
 			$widget_container_class[] = $this->get_widget_layout_class( $instance );
@@ -438,7 +439,7 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 							}
 							
 							// Fade-in slider after it's been initilaized (FOUC).
-							$( '#<?php echo $widget_id; ?>' ).addClass('loaded');
+							$( '#<?php echo $widget_id; ?>' ).removeClass('loading').addClass('loaded');
 						});
 					</script>
 

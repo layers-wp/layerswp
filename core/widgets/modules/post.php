@@ -118,7 +118,7 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 			if( empty( $instance ) && ! empty( $this->defaults ) ) {
 				$instance = wp_parse_args( $instance, $this->defaults );
 			}
-			
+
 			// Mix in new/unset defaults on every instance load (NEW)
 			$instance = $this->apply_defaults( $instance );
 
@@ -234,10 +234,10 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 
 			$widget_container_class = apply_filters( 'layers_post_widget_container_class' , $widget_container_class, $this, $instance );
 			$widget_container_class = implode( ' ', $widget_container_class );
-			
+
 			// Custom Anchor
 			echo $this->custom_anchor( $instance ); ?>
-			
+
 			<div id="<?php echo esc_attr( $widget_id ); ?>" class="<?php echo esc_attr( $widget_container_class ); ?>" <?php $this->selective_refresh_atts( $args ); ?>>
 
 				<?php do_action( 'layers_before_post_widget_inner', $this, $instance ); ?>
@@ -386,12 +386,10 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 				if( 'list-masonry' == $this->check_and_return( $instance , 'design', 'liststyle' ) ) { ?>
 					<script type='text/javascript'>
 						jQuery(function($){
-							layers_masonry_settings[ '<?php echo $widget_id; ?>' ] = [{
-									itemSelector: '.layers-masonry-column',
-									gutter: <?php echo ( isset( $instance['design'][ 'gutter' ] ) ? 20 : 0 ); ?>
-								}];
-
-							$('#<?php echo $widget_id; ?>').find('.list-masonry').layers_masonry( layers_masonry_settings[ '<?php echo $widget_id; ?>' ][0] );
+							$('#<?php echo $widget_id; ?>').find('.list-masonry').layers_masonry({
+								itemSelector: '.layers-masonry-column',
+								gutter: <?php echo ( isset( $instance['design'][ 'gutter' ] ) ? 20 : 0 ); ?>
+							});
 						});
 					</script>
 				<?php } // masonry trigger ?>
@@ -434,7 +432,7 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 			if( empty( $instance ) && ! empty( $this->defaults ) ) {
 				$instance = wp_parse_args( $instance, $this->defaults );
 			}
-			
+
 			// Mix in new/unset defaults on every instance load (NEW)
 			$instance = $this->apply_defaults( $instance );
 

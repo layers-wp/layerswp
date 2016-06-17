@@ -369,7 +369,7 @@ jQuery(function($) {
 		$that.parent( 'li.layers-visuals-item' ).siblings().not( $that.parent() ).removeClass( 'layers-active' );
 
 		// Toggle active state
-		// $that.trigger( 'layers-design-bar-menu', $that ); // Deprecated event.
+		$that.trigger( 'layers-design-bar-menu', $that ); // Deprecated event.
 		$that.parent( 'li.layers-visuals-item' ).toggleClass( 'layers-active' );
 
 		$menu_is_open = ( $that.parent( 'li.layers-visuals-item' ).hasClass('layers-active') );
@@ -400,7 +400,7 @@ jQuery(function($) {
 		}
 
 		// Toggle active state
-		// $label.trigger( 'layers-design-bar-menu', $label );
+		$label.trigger( 'layers-design-bar-menu', $label );
 
 		if ( 'checkbox' == $input.attr('type') ) {
 
@@ -427,16 +427,17 @@ jQuery(function($) {
 		$that.siblings( '.layers-visuals-item' ).removeClass( 'layers-active' );
 
 		// Toggle active state
-		// $that.trigger( 'layers-design-bar-menu', $that );
+		$that.trigger( 'layers-design-bar-menu', $that );
 		$that.addClass( 'layers-active' );
 	});
 
-	/*$( document ).on( 'layers-design-bar-menu', '.layers-visuals-item', function( e, menu_item ){
+	$( document ).on( 'layers-design-bar-menu', '.layers-visuals-item', function( e, menu_item ){
 		$img = $(this).find( 'img[data-src]' );
+
 		$img.each(function(){
 			$(this).attr( 'src', $(this).data( 'src' ) );
 		});
-	});*/
+	});
 
 	/**
 	* 9 - Widget Focussing

@@ -6,13 +6,12 @@
  * @package Layers
  * @since Layers 1.0.0
  * Contents
- * 1 - Screen height matching
- * 2 - Container padding on first widgets for header fixed
- * 3 - Offsite sidebar Toggles
- * 4 - Sticky Header
- * 5 - FitVids
- * 6 - Layers Custom Easing
- * 7 - Swiper Height Matching Functions
+ * 1 - Container padding on first widgets for header fixed
+ * 2 - Offsite sidebar Toggles
+ * 3 - Sticky Header
+ * 4 - FitVids
+ * 5 - Layers Custom Easing
+ * 6 - Swiper Height Matching Functions
  *
  * Author: Obox Themes
  * Author URI: http://www.oboxthemes.com/
@@ -22,29 +21,14 @@
 jQuery(function($) {
 
     /**
-    * 1 - Screen Height Matching
-    */
-
-    $(window).resize(function(){
-        layers_match_to_screen_height();
-    });
-
-    layers_match_to_screen_height();
-
-    function layers_match_to_screen_height(){
-        /*$( '.full-screen' ).css( 'height' , $(window).height() );
-        $( '.full-screen' ).find( '.swiper-slide .overlay' ).css( 'height' , $(window).height() );*/
-    }
-
-    /**
-    * 2 - Container padding on first widgets for header fixed
+    * 1 - Container padding on first widgets for header fixed
     */
     $(window).on('load', function() {
         layers_apply_overlay_header_styles();
     });
 
     /**
-    * 3 - Offsite sidebar Toggles
+    * 2 - Offsite sidebar Toggles
     */
     $(document).on( 'click' , '[data-toggle^="#"]'  , function(e){
         e.preventDefault();
@@ -61,7 +45,7 @@ jQuery(function($) {
     });
 
     /**
-    * 4 - Sticky Header
+    * 3 - Sticky Header
     */
 
     // Set site header element
@@ -106,7 +90,7 @@ jQuery(function($) {
 	});
 
 	/**
-    * 5 - FitVids resposive video embeds.
+    * 4 - FitVids resposive video embeds.
     *
 	* Target your .container, .wrapper, .post, etc.
     */
@@ -114,7 +98,7 @@ jQuery(function($) {
 	$(".media-image, .thumbnail-media, .widget.slide .image-container, .post .thumbnail").fitVids();
 
     /**
-    * 6 - Layers Custom Easing
+    * 5 - Layers Custom Easing
     *
     * Extend jQuery easing with custom Layers easing function for UI animations - eg slideUp, slideDown
     */
@@ -128,7 +112,7 @@ jQuery(function($) {
 }(jQuery));
 
 /**
-* 7 - Swiper Height Matching Functions
+* 6 - Swiper Height Matching Functions
 *
 */
 

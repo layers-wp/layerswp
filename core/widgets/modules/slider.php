@@ -133,7 +133,7 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 			if( empty( $instance ) && ! empty( $this->defaults ) ) {
 				$instance = wp_parse_args( $instance, $this->defaults );
 			}
-			
+
 			// Mix in new/unset defaults on every instance load (NEW)
 			$instance = $this->apply_defaults( $instance );
 
@@ -194,11 +194,11 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 			 */
 
 			if( ! empty( $instance[ 'slides' ] ) ) { ?>
-				
+
 				<?php
 				// Custom Anchor
 				echo $this->custom_anchor( $instance ); ?>
-				
+
 				<div id="<?php echo esc_attr( $widget_id ); ?>" class="<?php echo esc_attr( $widget_container_class ); ?>" style="<?php echo esc_attr( $slider_height_css ); ?>" <?php echo $this->get_partial_refresh_data_atts( $args['before_widget'] ); ?>>
 
 					<?php do_action( 'layers_before_slider_widget_inner', $this, $instance ); ?>
@@ -224,7 +224,7 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 
 							// Setup the relevant slide
 							$item_instance = $instance[ 'slides' ][ $slide_key ];
-							
+
 							// Mix in new/unset defaults on every instance load (NEW)
 							$item_instance = $this->apply_defaults( $item_instance, 'slide' );
 
@@ -311,7 +311,7 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 									$overlay_class[] = 'content';
 								}
 								$overlay_classes = implode( ' ', $overlay_class ); ?>
-								
+
 								<div class="<?php echo $overlay_classes; ?>" >
 									<div class="container clearfix">
 										<?php if( '' != $item_instance['title'] || '' != $item_instance['excerpt'] || '' != $link_array['link'] ) { ?>
@@ -427,7 +427,7 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 							});
 
 							<?php echo $swiper_js_obj; ?>.init();
-							
+
 							// Do stuff if this is the first widget.
 							if ( ! $('#<?php echo $widget_id; ?>').prev('.widget').length ) {
 								if ( ! $('#<?php echo $widget_id; ?>').hasClass( '.full-screen' ) ) {
@@ -436,7 +436,7 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 									jQuery('body').addClass( 'header-overlay-no-push' );
 								}
 							}
-							
+
 							// Fade-in slider after it's been initilaized (FOUC).
 							$( '#<?php echo $widget_id; ?>' ).addClass('loaded');
 						});
@@ -482,10 +482,10 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 			if( empty( $instance ) && ! empty( $this->defaults ) ) {
 				$instance = wp_parse_args( $instance, $this->defaults );
 			}
-			
+
 			// Mix in new/unset defaults on every instance load (NEW)
 			$instance = $this->apply_defaults( $instance );
-			
+
 			$components = apply_filters( 'layers_slide_widget_design_bar_components', array(
 				'layout' => array(
 					'icon-css' => 'icon-layout-fullwidth',
@@ -590,7 +590,7 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 				),
 				'advanced',
 			), $this, $instance );
-	
+
 			// Legacy application of this filter - Do Not Use! (will be removed soon)
 			$components = apply_filters( 'layers_slide_widget_design_bar_custom_components', $components );
 
@@ -634,7 +634,7 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 		<?php }
 
 		function slide_item( $item_guid, $item_instance ) {
-			
+
 			// Mix in new/unset defaults on every instance load (NEW)
 			$item_instance = $this->apply_defaults( $item_instance, 'slide' );
 			?>

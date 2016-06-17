@@ -266,7 +266,7 @@ jQuery(function($) {
 		$element.find('.layers-color-selector').wpColorPicker({
 			change: function(event, ui){
 				if( 'undefined' !== typeof event ){
-					
+
 					// Update the color input
 					$( event.target ).val( ui.color.toString() );
 
@@ -276,7 +276,7 @@ jQuery(function($) {
 			},
 			clear: function(event) {
 				if( 'undefined' !== typeof event && 'click' === event.type ){
-					
+
 					// Ping a chnage to the main input - the value will be ''.
 					$( event.target ).layers_trigger_change();
 				}
@@ -336,21 +336,22 @@ jQuery(function($) {
 	/**
 	* 8 - Design Controller toggles
 	*/
-	
+
 	// WIDGET - Design Bar Flyout Menus e.g. Layout, List Style, Advanced.
 	var $menu_is_open = false;
+
 	// Close any previously opened menu's.
 	$( document ).on( 'click', function(e) {
-		
+
 		// Only ever do this if there is a previously opened item
 		// is less taxing than searching the entire Customizer DOM
-		// for open items every clivk in the customizer.
+		// for open items every click in the customizer.
 		if ( $menu_is_open ) {
-			
+
 			var $opened = $('.widget .layers-visuals-item.layers-active' ).not( $(e.target).parents('li.layers-visuals-item') );
-			
+
 			if ( $opened.length ) {
-				
+
 				$opened.removeClass( 'layers-active' );
 				$menu_is_open = false;
 			}
@@ -363,17 +364,17 @@ jQuery(function($) {
 
 		// "Hi Mom"
 		$that = $(this);
-		
+
 		// Close Siblings
 		$that.parent( 'li.layers-visuals-item' ).siblings().not( $that.parent() ).removeClass( 'layers-active' );
 
 		// Toggle active state
 		// $that.trigger( 'layers-design-bar-menu', $that ); // Deprecated event.
 		$that.parent( 'li.layers-visuals-item' ).toggleClass( 'layers-active' );
-		
+
 		$menu_is_open = ( $that.parent( 'li.layers-visuals-item' ).hasClass('layers-active') );
 	});
-	
+
 	// WIDGET - Select Icon Group e.g. Text Align (left, right, center, justify).
 	$( document ).on( 'mousedown' , '.layers-select-icons label.layers-icon-wrapper' , function(e){
 
@@ -383,7 +384,7 @@ jQuery(function($) {
 
 		// Get input value
 		var $value = $input.val();
-		
+
 		// De-activate siblings
 		$label.siblings( '.layers-icon-wrapper' ).removeClass( 'layers-active' );
 
@@ -415,13 +416,13 @@ jQuery(function($) {
 			$label.addClass( 'layers-active' );
 		}
 	});
-	
+
 	// CUSTOMIZE CONTROLS - Select Icon Group e.g. Header Width (Boxed, Full-Width)
 	$( document ).on( 'click' , '[id^="layers-customize"] .layers-visuals-item' , function(e){
-		
+
 		// "Hi Mom"
 		$that = $(this);
-		
+
 		// Close siblings
 		$that.siblings( '.layers-visuals-item' ).removeClass( 'layers-active' );
 
@@ -429,31 +430,13 @@ jQuery(function($) {
 		// $that.trigger( 'layers-design-bar-menu', $that );
 		$that.addClass( 'layers-active' );
 	});
+
 	/*$( document ).on( 'layers-design-bar-menu', '.layers-visuals-item', function( e, menu_item ){
 		$img = $(this).find( 'img[data-src]' );
 		$img.each(function(){
 			$(this).attr( 'src', $(this).data( 'src' ) );
 		});
 	});*/
-	
-	/*
-	// Not sure what these leemnts are/were.
-	$( document ).on( 'click', '.accordion-section-title', function(e){
-		// "Hi Mom"
-		$that = $(this);
-
-		var $related_accordion = $that.closest('.accordion-section').find('.accordion-section-content');
-
-		// Toggle active state
-		$related_accordion.trigger( 'layers-design-bar-menu', $that );
-	});
-	$( document ).on( 'layers-design-bar-menu', '.accordion-section-content', function( e, menu_item ){
-		$img = $(this).find( 'img[data-src]' );
-		$img.each(function(){
-			$(this).attr( 'src', $(this).data( 'src' ) );
-		});
-	});
-	*/
 
 	/**
 	* 9 - Widget Focussing
@@ -551,10 +534,10 @@ jQuery(function($) {
 
 			var $this_element    = $(element);
 			var $compare_element = $( $this_element.attr( 'data-show-if-selector' ) );
-			
+
 			// Apply show-if to the element once on startup.
 			layers_apply_show_if( $this_element, $compare_element );
-			
+
 			// Apply show-if to the element when this element is changed.
 			/*$( document ).on( 'change', $compare_element, function(e){
 				layers_apply_show_if( $this_element, $compare_element );
@@ -566,7 +549,7 @@ jQuery(function($) {
 	}
 
 	function layers_apply_show_if( $this_element, $compare_element ){
-		
+
 		var $this_element_value = $this_element.data( 'show-if-value' ).toString().split(',');
 		var $operator           = $this_element.data( 'show-if-operator' );
 
@@ -706,7 +689,7 @@ jQuery(function($) {
 	$( document ).on( 'layers-interface-init', function( e, element ){
 		layers_init_editors( $(element) );
 	});
-	
+
 	// Debugging
 	// $editor_has_run_once = false;
 
@@ -718,7 +701,7 @@ jQuery(function($) {
 
 			// Bail if I'm already an RTE.
 			if ( $editor.siblings( '.fr-box' ).length > 0 ) return true;
-			
+
 			// Debugging - init a simple froala once then bail.
 			// if ( $editor_has_run_once ) return;
 			// $editor.froalaEditor();
@@ -783,16 +766,16 @@ jQuery(function($) {
 			$editor.froalaEditor('focus');
 		});
 	});
-	
+
 	// Fix issue where Firefox performance slows down chronically while RTE's are still focussed by cursor.
 	$(document).on( 'blur', '.fr-box .fr-element.fr-view', function(e){
-		
+
 		// Cache sister textarea.
 		$textarea = $(e.target).parents('.fr-box').siblings('textarea');
 
 		// Use near-instant timeout to make sure new element has time to get focus.
 		setTimeout( function(){
-			
+
 			// Cache newly focussed element.
 			$newly_focussed_element = jQuery(':focus');
 
@@ -810,7 +793,7 @@ jQuery(function($) {
 					! $newly_focussed_element.parents().hasClass('fr-view') &&
 					! $newly_focussed_element.hasClass('fr-view')
 				) {
-				
+
 				// Focus hidden sister textarea (show, FOCUS, then hide again - is needed for focus to trigger correctly).
 				$textarea.show().focus().hide();
 			}
@@ -1256,7 +1239,7 @@ jQuery(function($) {
 		$other_collection_holders.addClass('closed');
 		$other_collection_contents.slideUp({ easing: 'layersEaseInOut', duration: 250 });
 	});
-	
+
 	/**
 	* 22 - Force Customizer refresh if Widget exists that's not partial-widget-refresh.
 	*
@@ -1268,13 +1251,13 @@ jQuery(function($) {
 	* Widgets that are not `customize_selective_refresh` enabled.
 	*/
 	$(document).on( 'layers-customizer-init', function(){
-		
+
 		// Reorder Widgets.
 		$('.accordion-section-content').on( 'sortupdate', function( event, ui ){
 			var $widget_li = ui.item;
 			possibly_refresh_customizer( $widget_li );
 		});
-		
+
 		// Add Widget.
 		$( document ).on( 'widget-added', function( e, widget ){
 			var $widget = $(widget);
@@ -1286,11 +1269,11 @@ jQuery(function($) {
 			var $widget = $(this).closest('.customize-control-widget_form');
 			possibly_refresh_customizer( $widget );
 		});
-		
+
 	});
-	
+
 	function possibly_refresh_customizer( $widget ) {
-		
+
 		// Keep note if there are any non PWR widgets.
 		var $all_partial_refresh_widget_enabled = true;
 
@@ -1315,7 +1298,7 @@ jQuery(function($) {
 				}
 			});
 		}
-		
+
 		// If there was a non PWR then refresh the Customizer Preview.
 		if ( ! $all_partial_refresh_widget_enabled ) {
 

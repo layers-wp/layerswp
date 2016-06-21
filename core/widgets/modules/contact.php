@@ -99,7 +99,7 @@ if( !class_exists( 'Layers_Contact_Widget' ) ) {
 			if( empty( $instance ) && ! empty( $this->defaults ) ) {
 				$instance = wp_parse_args( $instance, $this->defaults );
 			}
-			
+
 			// Mix in new/unset defaults on every instance load (NEW)
 			$instance = $this->apply_defaults( $instance );
 
@@ -107,7 +107,7 @@ if( !class_exists( 'Layers_Contact_Widget' ) ) {
 			if( isset( $instance['show_google_map'] ) && ( '' != $instance['google_maps_location'] || '' != $instance['google_maps_long_lat'] ) ) {
 				$hasmap = true;
 			}
-			
+
 			// Set the background styling
 			if( !empty( $instance['design'][ 'background' ] ) ) $this->inline_css .= layers_inline_styles( '#' . $widget_id, 'background', array( 'background' => $instance['design'][ 'background' ] ) );
 			if( !empty( $instance['design']['fonts'][ 'color' ] ) ) $this->inline_css .= layers_inline_styles( '#' . $widget_id, 'color', array( 'selectors' => array( '.section-title .heading' , '.section-title div.excerpt' , '.section-title small', '.form.content' , 'form p' , 'form label' ) , 'color' => $instance['design']['fonts'][ 'color' ] ) );
@@ -123,6 +123,9 @@ if( !class_exists( 'Layers_Contact_Widget' ) ) {
 			// Set Display Variables
 			$show_address_or_contactform = ( ( '' != $instance['address_shown'] && isset( $instance['show_address'] ) ) || ( $this->check_and_return( $instance, 'contact_form' ) && $this->check_and_return( $instance, 'show_contact_form' ) ) ) ? TRUE : FALSE ;
 			$show_title_or_excerpt = ( '' != $instance['title'] || '' != $instance['excerpt'] ) ? TRUE : FALSE ;
+
+			// Apply the advanced widget styling
+			$this->apply_widget_advanced_styling( $widget_id, $instance );
 
 			/**
 			* Generate the widget container class
@@ -141,10 +144,10 @@ if( !class_exists( 'Layers_Contact_Widget' ) ) {
 
 			$widget_container_class = apply_filters( 'layers_contact_widget_container_class' , $widget_container_class, $this, $instance );
 			$widget_container_class = implode( ' ', $widget_container_class );
-			
+
 			// Custom Anchor
 			echo $this->custom_anchor( $instance ); ?>
-			
+
 			<div id="<?php echo esc_attr( $widget_id ); ?>" class="<?php echo esc_attr( $widget_container_class ); ?>" <?php $this->selective_refresh_atts( $args ); ?>>
 
 				<?php do_action( 'layers_before_contact_widget_inner', $this, $instance ); ?>
@@ -225,9 +228,6 @@ if( !class_exists( 'Layers_Contact_Widget' ) ) {
 				wp_enqueue_script( LAYERS_THEME_SLUG . " -map-api" );
 				wp_enqueue_script( LAYERS_THEME_SLUG . "-map-trigger" );
 			}  // Enqueue the map js
-
-			// Apply the advanced widget styling
-			$this->apply_widget_advanced_styling( $widget_id, $instance );
 		}
 
 		/**
@@ -256,10 +256,10 @@ if( !class_exists( 'Layers_Contact_Widget' ) ) {
 			if( empty( $instance ) && ! empty( $this->defaults ) ) {
 				$instance = wp_parse_args( $instance, $this->defaults );
 			}
-			
+
 			// Mix in new/unset defaults on every instance load (NEW)
 			$instance = $this->apply_defaults( $instance );
-			
+
 			$this->design_bar(
 				'side', // CSS Class Name
 				array( // Widget Object

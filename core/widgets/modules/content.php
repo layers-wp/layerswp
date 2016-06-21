@@ -111,13 +111,16 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 
 			// Mix in new/unset defaults on every instance load (NEW)
 			$instance = $this->apply_defaults( $instance );
-			
+
 			// Enqueue Masonry if need be
 			if( 'list-masonry' == $this->check_and_return( $instance , 'design', 'liststyle' ) ) $this->enqueue_masonry();
 
 			// Set the background styling
 			if( !empty( $instance['design'][ 'background' ] ) ) $this->inline_css .= layers_inline_styles( '#' . $widget_id, 'background', array( 'background' => $instance['design'][ 'background' ] ) );
 			if( !empty( $instance['design']['fonts'][ 'color' ] ) ) $this->inline_css .= layers_inline_styles( '#' . $widget_id, 'color', array( 'selectors' => array( '.section-title .heading' , '.section-title div.excerpt' ) , 'color' => $instance['design']['fonts'][ 'color' ] ) );
+
+			// Apply the advanced widget styling
+			$this->apply_widget_advanced_styling( $widget_id, $instance );
 
 			/**
 			* Generate the widget container class
@@ -135,7 +138,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 
 			// Custom Anchor
 			echo $this->custom_anchor( $instance ); ?>
-			
+
 			<div id="<?php echo esc_attr( $widget_id ); ?>" class="<?php echo esc_attr( $widget_container_class ); ?>" <?php $this->selective_refresh_atts( $args ); ?>>
 
 				<?php do_action( 'layers_before_content_widget_inner', $this, $instance ); ?>
@@ -184,15 +187,15 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 								// Setup Internal Vars.
 								$item_instance = $instance[ 'columns' ][ $column_key ];
 								$item_id_attr  = "{$widget_id}-tabs-{$column_key}";
-								
+
 								// Mix in new/unset defaults on every instance load (NEW)
 								$item_instance = $this->apply_defaults( $item_instance, 'column' );
-								
+
 								// Get the Next Column for use later.
 								if( isset( $column_ids[ ($col_no+1) ] ) ) {
 									$next_item = $instance[ 'columns' ][ $column_ids[ ($col_no+1) ] ];
 								}
-								
+
 								// Set the background styling
 								if( !empty( $item_instance['design'][ 'background' ] ) ) $this->inline_css .= layers_inline_styles( '#' . $widget_id . '-' . $column_key , 'background', array( 'background' => $item_instance['design'][ 'background' ] ) );
 								if( !empty( $item_instance['design']['fonts'][ 'color' ] ) ) $this->inline_css .= layers_inline_styles( '#' . $widget_id . '-' . $column_key , 'color', array( 'selectors' => array( '.heading a', '.heading' , 'div.excerpt' , 'div.excerpt p' ) , 'color' => $item_instance['design']['fonts'][ 'color' ] ) );
@@ -203,7 +206,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 								if ( !empty( $item_instance['design']['advanced']['padding'] ) ) $this->inline_css .= layers_inline_styles( "#{$widget_id}-{$column_key}", 'padding', array( 'padding' => $item_instance['design']['advanced']['padding'] ) );
 
 								if( !isset( $item_instance[ 'width' ] ) ) $item_instance[ 'width' ] = $this->column_defaults[ 'width' ];
-								
+
 								// Set the button styling
 								$button_size = '';
 								if ( function_exists( 'layers_pro_apply_widget_button_styling' ) ) {
@@ -371,7 +374,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 				$this->print_inline_css();
 
 				if( 'list-masonry' == $this->check_and_return( $instance , 'design', 'liststyle' ) ) { ?>
-					
+
 					<script type='text/javascript'>
 						jQuery(function($){
 							$('#<?php echo $widget_id; ?> .list-masonry .grid').layers_masonry({
@@ -381,16 +384,10 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 							});
 						});
 					</script>
-					
-				<?php } // masonry trigger ?>
 
+				<?php } // masonry trigger ?>
 			</div>
-			
-			<?php
-			
-			// Apply the advanced widget styling
-			$this->apply_widget_advanced_styling( $widget_id, $instance );
-		}
+		<?php 	}
 
 		/**
 		*  Widget update
@@ -470,7 +467,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 
 				<section class="layers-accordion-section layers-content">
 					<div class="layers-form-item">
-					
+
 						<?php echo $this->form_elements()->input(
 							array(
 								'type' => 'text',
@@ -481,7 +478,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 								'class' => 'layers-text layers-large layers-input-has-controls',
 							)
 						); ?>
-						
+
 						<?php $this->design_bar(
 							'top', // CSS Class Name
 							array( // Widget Object
@@ -497,10 +494,10 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 								'fonts',
 							), $this, $instance )
 						); ?>
-						
+
 					</div>
 					<div class="layers-form-item">
-					
+
 						<?php echo $this->form_elements()->input(
 							array(
 								'type' => 'rte',
@@ -511,14 +508,14 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 								'class' => 'layers-textarea layers-large'
 							)
 						); ?>
-						
+
 					</div>
 				</section>
 				<section class="layers-accordion-section layers-content">
 					<div class="layers-form-item">
-					
+
 						<?php $this->repeater( 'column', $instance ); ?>
-						
+
 					</div>
 				</section>
 
@@ -527,7 +524,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 		<?php }
 
 		function column_item( $item_guid, $item_instance ) {
-			
+
 			// Mix in new/unset defaults on every instance load (NEW)
 			$item_instance = $this->apply_defaults( $item_instance, 'column' );
 			?>

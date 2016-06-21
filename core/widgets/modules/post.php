@@ -219,6 +219,9 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 			if( isset( $instance['show_categories'] ) ) $layers_post_meta_to_display[] = 'categories';
 			if( isset( $instance['show_tags'] ) ) $layers_post_meta_to_display[] = 'tags';
 
+			// Apply the advanced widget styling
+			$this->apply_widget_advanced_styling( $widget_id, $instance );
+
 			/**
 			* Generate the widget container class
 			*/
@@ -398,9 +401,6 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 
 			<?php // Reset WP_Query
 			wp_reset_postdata();
-
-			// Apply the advanced widget styling
-			$this->apply_widget_advanced_styling( $widget_id, $instance );
 
 		}
 

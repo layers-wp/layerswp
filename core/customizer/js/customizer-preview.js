@@ -57,23 +57,54 @@
 				 * 3 - Customizer UX Enhancements
 				 */
 				
-				// Edit widget buttons
-				/*
-				$( '.widget' ).each( function( index, val ) {
+				// UX to help with widget opening.
+				$( '.widget[id^=layers-widget]' ).each( function( index, val ) {
 
-					var $that = $(this);
-
-					// Add Edit Buttons
-					var $button = $( '<button class="layers-edit-widget">Edit</button>' );
-					$that.append( $button );
-
-					// Send event to parent on click
-					$button.click( function( event ) {
-						var $widget_id = $button.parent( '.widget' ).attr( 'id' );
-						self.preview.send( 'layers-open-widget', { 'id' : 'customize-control-widget_' + $widget_id } );
+					var $widget = $(this);
+					var $widget_id = $widget.attr( 'id' );
+					
+					// Add the helper Title.
+					$widget.attr( 'title', 'Shift-click to edit this widget.' );
+					
+					/**
+					 * Open Widget on Shift-Click (custom code required after WordPress changed widget containers).
+					 */
+					
+					$( document ).on( 'click', '#' + $widget_id, function( e ) {
+						
+						// Only proceed if a shift-click.
+						if ( ! e.shiftKey ) return;
+						
+						e.preventDefault();
+						
+						// Send/Trigger the focus widget.
+						self.preview.send( 'focus-widget-control', $widget_id );
 					});
+					
+					/**
+					 * Open Widget Button.
+					 */
+					if ( false ) {
+						
+						// Add Edit Buttons.
+						var $button = $( '<button class="layers-edit-widget">Edit</button>' );
+						$widget.append( $button );
+
+						// Send event to parent on click
+						$button.click( function( event ) {
+							
+							// Old Method
+							/*self.preview.send( 'layers-open-widget', {
+								'id' : 'customize-control-widget_' + $widget_id,
+							});*/
+							
+							// New WP method.
+							self.preview.send( 'focus-widget-control', $widget_id );
+						});
+					}
+					
 				});
-				*/
+				
 				
 				// Close all widgets when clickign anywhere in document.
 				$( document ).on( 'click', function( e ){

@@ -12,7 +12,7 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 		/**
 		*  Widget construction
 		*/
-		function Layers_Post_Widget(){
+		function __construct() {
 
 			/**
 			* Widget variables
@@ -40,15 +40,15 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 
 			/* Widget settings. */
 			$widget_ops = array(
-
-				'classname'   => 'obox-layers-' . $this->widget_id .'-widget',
+				'classname' => 'obox-layers-' . $this->widget_id .'-widget',
 				'description' => __( 'This widget is used to display your posts in a flexible grid.', 'layerswp' ),
+				'customize_selective_refresh' => TRUE,
 			);
 
 			/* Widget control settings. */
 			$control_ops = array(
-				'width'   => LAYERS_WIDGET_WIDTH_SMALL,
-				'height'  => NULL,
+				'width' => LAYERS_WIDGET_WIDTH_SMALL,
+				'height' => NULL,
 				'id_base' => LAYERS_THEME_SLUG . '-widget-' . $this->widget_id,
 			);
 
@@ -118,7 +118,7 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 			if( empty( $instance ) && ! empty( $this->defaults ) ) {
 				$instance = wp_parse_args( $instance, $this->defaults );
 			}
-			
+
 			// Mix in new/unset defaults on every instance load (NEW)
 			$instance = $this->apply_defaults( $instance );
 
@@ -219,6 +219,9 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 			if( isset( $instance['show_categories'] ) ) $layers_post_meta_to_display[] = 'categories';
 			if( isset( $instance['show_tags'] ) ) $layers_post_meta_to_display[] = 'tags';
 
+			// Apply the advanced widget styling
+			$this->apply_widget_advanced_styling( $widget_id, $instance );
+
 			/**
 			* Generate the widget container class
 			*/
@@ -233,9 +236,12 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 			$widget_container_class[] = $this->get_widget_spacing_class( $instance );
 
 			$widget_container_class = apply_filters( 'layers_post_widget_container_class' , $widget_container_class, $this, $instance );
-			$widget_container_class = implode( ' ', $widget_container_class ); ?>
-			<?php echo $this->custom_anchor( $instance ); ?>
-			<div id="<?php echo esc_attr( $widget_id ); ?>" class="<?php echo esc_attr( $widget_container_class ); ?>">
+			$widget_container_class = implode( ' ', $widget_container_class );
+
+			// Custom Anchor
+			echo $this->custom_anchor( $instance ); ?>
+
+			<div id="<?php echo esc_attr( $widget_id ); ?>" class="<?php echo esc_attr( $widget_container_class ); ?>" <?php $this->selective_refresh_atts( $args ); ?>>
 
 				<?php do_action( 'layers_before_post_widget_inner', $this, $instance ); ?>
 
@@ -383,12 +389,10 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 				if( 'list-masonry' == $this->check_and_return( $instance , 'design', 'liststyle' ) ) { ?>
 					<script type='text/javascript'>
 						jQuery(function($){
-							layers_masonry_settings[ '<?php echo $widget_id; ?>' ] = [{
-									itemSelector: '.layers-masonry-column',
-									gutter: <?php echo ( isset( $instance['design'][ 'gutter' ] ) ? 20 : 0 ); ?>
-								}];
-
-							$('#<?php echo $widget_id; ?>').find('.list-masonry').layers_masonry( layers_masonry_settings[ '<?php echo $widget_id; ?>' ][0] );
+							$('#<?php echo $widget_id; ?>').find('.list-masonry').layers_masonry({
+								itemSelector: '.layers-masonry-column',
+								gutter: <?php echo ( isset( $instance['design'][ 'gutter' ] ) ? 20 : 0 ); ?>
+							});
 						});
 					</script>
 				<?php } // masonry trigger ?>
@@ -397,9 +401,6 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 
 			<?php // Reset WP_Query
 			wp_reset_postdata();
-
-			// Apply the advanced widget styling
-			$this->apply_widget_advanced_styling( $widget_id, $instance );
 
 		}
 
@@ -431,7 +432,7 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 			if( empty( $instance ) && ! empty( $this->defaults ) ) {
 				$instance = wp_parse_args( $instance, $this->defaults );
 			}
-			
+
 			// Mix in new/unset defaults on every instance load (NEW)
 			$instance = $this->apply_defaults( $instance );
 

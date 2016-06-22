@@ -1,5 +1,24 @@
 # Layers Changelog
 
+=======
+##1.5.5
+### xx Xxxx 2016
+
+* **Fix** - Fixed word-wrap issue in .story and .copy divs. *DP*
+
+=======
+##1.5.4
+### 22 June 2016
+
+* **Enhancement** - Updated Font Awesome to version 4.6.3 *MP*
+* **Enhancement** - Enable WordPress Selective Widget Refresh - widgets update much faster by sending changes via JS, no page refresh required. *SOB*
+* **Enhancement** - Fade-in the Slider only after it has been initialized. *SOB*
+* **Fix** - Fixed sub-menus when header menu is not yet set. *MP*
+* **Fix** - Bring back shift-click to edit Layers widgets in the Customizer. This was removed by changes in the widget container format in a recent WP update. *SOB*
+* **Fix** - off-canvas cart buttons are no longer breaking. *DP*
+* **Fix** - Gallery captions now display correctly in blog posts. *DP*
+* **Fix** - Images in posts are no longer display: block which was forcing them onto a new line. *DP*
+
 
 =======
 ##1.5.3

@@ -1,4 +1,5 @@
-<?php  /**
+<?php
+/**
  * Layers Widget Class
  *
  * This file is used to register the base layers widget Class
@@ -19,11 +20,11 @@ if( !class_exists( 'Layers_Widget' ) ) {
 		public $inline_css;
 
 		//  Defaults
-		
+
 		public $defaults = array();
-		
+
 		public $merge_defaults = array();
-		
+
 		public $merge_repeater_defaults = array();
 
 		/**
@@ -161,6 +162,8 @@ if( !class_exists( 'Layers_Widget' ) ) {
 			// We need a widget to get the settings from
 			if( NULL == $instance ) return;
 
+			if( !isset( $this->inline_css ) ) $this->inline_css = '';
+
 			/**
 			 * Apply Margin & Padding
 			 */
@@ -184,10 +187,10 @@ if( !class_exists( 'Layers_Widget' ) ) {
 
 					// Apply the TRBL styles
 					if ( 'padding' == $type && isset( $instance['slides'] ) && 1 <= count( $instance['slides'] ) ){
-						layers_inline_styles( '#' . $widget_id . ' .swiper-slide > .content', $type, array( $type => $values ) );
+						$this->inline_css .= layers_inline_styles( '#' . $widget_id . ' .swiper-slide > .content', $type, array( $type => $values ) );
 					}
 					else{
-						layers_inline_styles( '#' . $widget_id, $type, array( $type => $values ) );
+						$this->inline_css .= layers_inline_styles( '#' . $widget_id, $type, array( $type => $values ) );
 					}
 
 				}
@@ -196,7 +199,7 @@ if( !class_exists( 'Layers_Widget' ) ) {
 			/**
 			 * Custom CSS
 			 */
-			if( $this->check_and_return( $instance, 'design', 'advanced', 'customcss' ) ) layers_inline_styles( NULL, 'css', array( 'css' => $this->check_and_return( $instance, 'design', 'advanced', 'customcss' )  ) );
+			if( $this->check_and_return( $instance, 'design', 'advanced', 'customcss' ) ) $this->inline_css .= layers_inline_styles( NULL, 'css', array( 'css' => $this->check_and_return( $instance, 'design', 'advanced', 'customcss' )  ) );
 
 		}
 
@@ -397,31 +400,31 @@ if( !class_exists( 'Layers_Widget' ) ) {
 				$defaults_collection[] = func_get_arg( $i );
 				$i++;
 			}
-			
-			
+
+
 			// Store the defaults so they can be merged in each time the widget is called.
 			// It must be done now before the repeater defaults are merged into the main defaults.
-			
+
 			// Main Defaults.
 			if ( empty( $this->merge_defaults ) && isset( $this->defaults ) ) {
 				$this->merge_defaults = $this->defaults;
-				
+
 				// Debugging:
 				// echo '<pre>';
 				// var_dump( $this->merge_defaults );
 				// echo '</pre>';
 			}
-			
+
 			// Repeater Defaults.
 			if ( ! isset( $this->merge_repeater_defaults[$type] ) ) {
 				$this->merge_repeater_defaults[$type] = end( $defaults_collection );
-				
+
 				// Debugging:
 				// echo '<pre>';
 				// var_dump( $this->merge_repeater_defaults );
 				// echo '</pre>';
 			}
-			
+
 
 			// Create array of random guid's to the specified size.
 			$repeat_ids_array = array();
@@ -479,12 +482,12 @@ if( !class_exists( 'Layers_Widget' ) ) {
 		 * @param  array   $options   Optional. Options args Array.
 		 */
 		function repeater( $type, $instance = array(), $options = array() ) {
-			
+
 			// Apply defaults to options.
 			$options = wp_parse_args( $options, array(
 				'show_add_button' => TRUE,
 			) );
-			
+
 			// If we have some items, let's break out their IDs into an array
 			if ( isset( $instance["{$type}_ids"] ) && '' !== $instance["{$type}_ids"] ) {
 				$items = explode( ',' , $instance["{$type}_ids"] );
@@ -556,7 +559,7 @@ if( !class_exists( 'Layers_Widget' ) ) {
 					}
 					?>
 				</ul>
-				
+
 				<?php if ( $options['show_add_button'] ) { ?>
 					<button class="layers-button btn-full layers-widget-repeater-add-item add-new-widget">
 						<?php _e( 'Add New' , 'layerswp' ) ; ?> <?php echo ucfirst( $type ); ?>
@@ -650,71 +653,71 @@ if( !class_exists( 'Layers_Widget' ) ) {
 		 * @return   array    $instance with the merged in new defaults
 		 */
 		function apply_defaults( $instance, $item_key = NULL ) {
-			
+
 			// Store the defaults so they can be merged in each time the widget is called.
 			// It must be done now before the repeater defaults are merged into the main defaults.
 			// This is also done in register_repeater_defaults, but must be done again here,
 			// in case this is not a widget with repeater(s).
-			
+
 			// Main Defaults.
 			if ( empty( $this->merge_defaults ) && isset( $this->defaults ) ) {
 				$this->merge_defaults = $this->defaults;
-				
+
 				// Debugging:
 				// echo '<pre>';
 				// var_dump( $this->merge_defaults );
 				// echo '</pre>';
 			}
-			
+
 			if ( $item_key ) {
-				
+
 				// Repeater instance.
 				if ( isset( $this->merge_repeater_defaults[$item_key] ) ) {
-					
+
 					// Debugging:
 					// echo '<pre>';
 					// var_dump( $this->get_defaults( $instance, $this->merge_repeater_defaults[$item_key] ) );
 					// echo '</pre>';
-					
+
 					return $this->get_defaults( $instance, $this->merge_repeater_defaults[$item_key] );
 				}
 				if ( isset( $this->merge_repeater_defaults[rtrim( $item_key, 's' )] ) ) {
-					
+
 					// Debugging:
 					// echo '<pre>';
 					// var_dump( $this->get_defaults( $instance, $this->merge_repeater_defaults[rtrim( $item_key, 's' )] ) );
 					// echo '</pre>';
-					
+
 					return $this->get_defaults( $instance, $this->merge_repeater_defaults[rtrim( $item_key, 's' )] );
 				}
 			}
 			else {
-				
+
 				// Main widget instance.
-				
+
 				// Debugging:
 				// echo '<pre>';
 				// var_dump( $this->get_defaults( $instance, $this->merge_defaults ) );
 				// echo '</pre>';
-				
+
 				return $this->get_defaults( $instance, $this->merge_defaults );
 			}
 		}
-		
+
 		/**
 		 * Helper - Recurring function for checkling and applying additional defaults.
 		 */
 		function get_defaults( $instance, $defaults ) {
-			
+
 			// Loop through the supplied defaults.
 			foreach ( $defaults as $default_key => $default_value ) {
-				
+
 				if ( is_array( $default_value ) ) {
-					
+
 					if ( ! isset( $instance[$default_key] ) ) {
 						// This element doesnt even exist in the intance yet so apply the whole branch.
 						$instance[$default_key] = $default_value;
-						
+
 						// Debugging:
 						// echo '<pre>';
 						// echo "Add: $default_key:";
@@ -727,27 +730,27 @@ if( !class_exists( 'Layers_Widget' ) ) {
 					}
 				}
 				else {
-					
+
 					/*if ( isset( $instance[$default_key] ) && NULL == $instance[$default_key] ) {
-						
+
 						// if the value exists and is null, apply the default.
 						$instance[$default_key] = $default_value;
-						
+
 						// Debugging:
 						// echo '<pre>';
 						// echo "Add: $default_key: $default_value";
 						// echo '</pre>';
 					}*/
-					
+
 					if (
 							! isset( $instance[$default_key] ) && // If set means the input has had defaults applied already - hence don't apply.
 							! isset( $instance["{$default_key}-CHECKBOX"] ) && // look for sibling '-CHECKBOX' - If exists means the checkbox has had defaults applied already - hence don't apply.
 							NULL !== $default_value
 						) {
-						
+
 						// Apply the default.
 						$instance[$default_key] = $default_value;
-						
+
 						// Debugging:
 						// echo '<pre>';
 						// echo "Add: $default_key: $default_value";
@@ -755,9 +758,29 @@ if( !class_exists( 'Layers_Widget' ) ) {
 					}
 				}
 			}
-			
+
 			return $instance;
 		}
-		
+
+		/**
+		 * Helper - takes widget $args['before_widget'], strips out the needed data-attributes,
+		 * and returns it as an isolated string. This is enables Partial Widget refresh by
+		 * JavascScript in the Customizer preview (Thanks to Weston).
+		 */
+		function selective_refresh_atts( $args ) {
+
+			$before_widget = isset( $args['before_widget'] ) ? $args['before_widget'] : '' ;
+
+			preg_match_all(
+				'/(data-customize-partial-id|data-customize-partial-type|data-customize-partial-placement-context|data-customize-widget-id)=("[^"]*")/i',
+				$before_widget,
+				$result
+			);
+
+			$atts = ( isset( $result[0] ) && is_array( $result[0] ) ) ? implode( $result[0], ' ' ) : '' ;
+
+			echo $atts;
+		}
+
 	}
 }

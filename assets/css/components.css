@@ -48,6 +48,13 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 	.swiper-container.container{
 		padding: 0px;
 	}
+	.swiper-container.loading{
+		opacity: 0;
+		transition: .2s ease-in-out;
+	}
+	.swiper-container.loaded {
+		transition: .2s ease-in-out;
+	}
 
 	/*---------------------------*/
 	/*- SLIDER DEFAULTS ---------*/
@@ -91,6 +98,15 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 	.slide:not(.single-slide) .swiper-slide{
 		cursor: -webkit-grab;
 		cursor: -moz-grab;
+	}
+
+	/*---------------------------*/
+	/*- SLIDER HEIGHT -----------*/
+	.swiper-container.full-screen{
+		height: 100vh ;
+	}
+	.layers-header-overlay .wrapper-content .widget:first-child.swiper-container .container{
+		padding-top: 4%;
 	}
 
 	/*---------------------------*/
@@ -287,6 +303,7 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 	.story{
 		font-size: 1.6rem;
+		word-wrap: break-word;
 	}
 	.story p{
 		margin-bottom: 20px;
@@ -295,10 +312,7 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 		margin-bottom: 26px;
 	}
 	.story a:not(.button){
-		border-bottom: 1px solid #ddd;
-	}
-	.story a:not(.button):hover{
-		border-color: #999;
+		text-decoration: underline;
 	}
 	.story ul{
 		list-style: disc;
@@ -334,9 +348,11 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 	}
 
 	.story img{
-		display: block;
 		max-width: 100%;
 		height: auto;
+	}
+	.story img.align-center{
+		display: block;
 	}
 
 	.story h1{
@@ -387,7 +403,19 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 		.wp-caption{
 			max-width: 100%;
 			padding: 10px;
+			background: #f0f0f0;
 		}
+		.wp-caption-text{
+			padding: 10px 5px 5px;
+			margin: 0;
+			color: #777;
+			font-size: 1.4rem;
+		}
+		.wp-caption p.wp-caption-text{
+			padding: 10px 5px 5px;
+			margin: 0;
+		}
+
 		.wp-caption.alignright,
 		.story img.alignright{
 			float: right;
@@ -399,12 +427,31 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 			max-width: 320px;
 			margin: 0 20px 10px 0;
 		}
-		.wp-caption p.wp-caption-text{
-			padding: 10px 5px 5px;
-			margin: 0;
-		}
 		.wp-caption.alignnone{
 			margin: 5px 20px 20px 0;
+		}
+
+		.gallery-caption{
+			font-size: 1.2rem;
+		}
+		.bypostauthor{
+			color: #777;
+		}
+
+		.alignleft{
+			float: left;
+		}
+		.alignright{
+			float: right;
+		}
+		.aligncenter{
+			clear: both;
+			margin-left: auto;
+			margin-right: auto;
+			text-align: center;
+		}
+		.wp-caption.aligncenter{
+			margin-bottom: 20px;
 		}
 
 /*-------------------------------*/

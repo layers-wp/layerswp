@@ -192,7 +192,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 								$item_instance = $this->apply_defaults( $item_instance, 'column' );
 
 								// Get the Next Column for use later.
-								if( isset( $instance[ 'columns' ][ $column_ids[ ($col_no+1) ] ] ) ) {
+								if( isset( $column_ids[ ($col_no+1) ] ) && isset( $instance[ 'columns' ][ $column_ids[ ($col_no+1) ] ] ) ) {
 									$next_item = $instance[ 'columns' ][ $column_ids[ ($col_no+1) ] ];
 								}
 

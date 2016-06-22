@@ -338,7 +338,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 											</div>
 										<?php } ?>
 
-										<?php if( $this->check_and_return( $item_instance, 'title' ) || $this->check_and_return( $item_instance, 'excerpt' ) || $this->check_and_return( $item_instance, 'link_text' ) ) { ?>
+										<?php if( $this->check_and_return( $item_instance, 'title' ) || $this->check_and_return( $item_instance, 'excerpt' ) || ( $link_array['link'] && $link_array['text'] ) ) { ?>
 											<div class="media-body <?php echo ( isset( $item_instance['design']['fonts'][ 'align' ] ) ) ? $item_instance['design']['fonts'][ 'align' ] : ''; ?>">
 												<?php if( $this->check_and_return( $item_instance, 'title') ) { ?>
 													<<?php echo $this->check_and_return( $item_instance, 'design', 'fonts', 'heading-type' ) ?> class="heading">

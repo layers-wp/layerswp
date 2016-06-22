@@ -1,6 +1,12 @@
 # Layers Changelog
 
 =======
+##1.5.5
+### xx Xxxx 2016
+
+* **Fix** - Fixed word-wrap issue in .story and .copy divs. *DP*
+
+=======
 ##1.5.4
 ### 22 June 2016
 

@@ -303,6 +303,7 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 	.story{
 		font-size: 1.6rem;
+		word-wrap: break-word;
 	}
 	.story p{
 		margin-bottom: 20px;

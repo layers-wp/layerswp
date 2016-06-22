@@ -1,9 +1,10 @@
 # Layers Changelog
 
 =======
-##1.5.x
-### XX Xxx 2016
+##1.5.4
+### 22 June 2016
 
+* **Enhancement** - Updated Font Awesome to version 4.6.3 *MP*
 * **Enhancement** - Enable WordPress Selective Widget Refresh - widgets update much faster by sending changes via JS, no page refresh required. *SOB*
 * **Enhancement** - Fade-in the Slider only after it has been initialized. *SOB*
 * **Fix** - Fixed sub-menus when header menu is not yet set. *MP*

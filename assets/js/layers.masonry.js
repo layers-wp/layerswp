@@ -114,10 +114,10 @@ jQuery(function($){
         }
 
         // Hide items
-        $masonry_container.find( '.layers-masonry-column' ).not( $final_filter ).removeClass('active').hide();
+        $masonry_container.find( '.layers-masonry-column' ).not( $final_filter ).removeClass('active').addClass( 'hide' );
 
         // Show items
-        $masonry_container.find( '.layers-masonry-column' ).filter( $final_filter ).addClass('active').show();
+        $masonry_container.find( '.layers-masonry-column' ).filter( $final_filter ).addClass('active').removeClass( 'hide' );
 
         // Relayout if Masonry
         if( $is_masonry ){

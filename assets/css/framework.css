@@ -2325,6 +2325,9 @@ object{
 		position: relative;
 		overflow: hidden;
 	}
+	.thumbnail.hide{
+		display: none;
+	}
 	.thumbnail-title{
 		padding: 0 20px 20px;
 	}

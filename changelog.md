@@ -6,6 +6,7 @@
 
 * **Fix** - Fixed word-wrap issue in .story and .copy divs. *DP*
 * **Tweak** - Nav Pill CSS has slightly more padding for better text alignment. *DP*
+* **Enhancement** - Added .meta-info-vertical to override inline meta items for the project pages. *DP*
 
 =======
 ##1.5.4

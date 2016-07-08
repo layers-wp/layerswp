@@ -123,7 +123,7 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 			$instance = $this->apply_defaults( $instance );
 
 			// Enqueue Masonry if need be
-			if( 'list-masonry' == $this->check_and_return( $instance , 'design', 'liststyle' ) ) $this->enqueue_masonry();
+			if( 'list-masonry' == $this->check_and_return( $instance , 'design', 'liststyle' ) ) layers_enqueue_masonry();
 
 			// Set the span class for each column
 			if( 'list-list' == $instance['design'][ 'liststyle' ] ) {

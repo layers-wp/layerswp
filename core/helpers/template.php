@@ -1594,3 +1594,22 @@ if( !function_exists( 'layers_blank_menu' ) ) {
 		echo '';
 	}
 }
+
+/**
+* Enqueue Masonry when needed.
+*/
+function layers_enqueue_masonry() {
+	
+	// Enqueue Wordpress Masonry
+	wp_enqueue_script( 'masonry' );
+	
+	// Enqueue Layers Masonry
+	wp_enqueue_script(
+		LAYERS_THEME_SLUG . '-layers-masonry-js' ,
+		get_template_directory_uri() . '/assets/js/layers.masonry.js',
+		array(
+			'jquery'
+		),
+		LAYERS_VERSION
+	);
+}

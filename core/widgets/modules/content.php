@@ -113,7 +113,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 			$instance = $this->apply_defaults( $instance );
 
 			// Enqueue Masonry if need be
-			if( 'list-masonry' == $this->check_and_return( $instance , 'design', 'liststyle' ) ) layers_enqueue_masonry();
+			if( 'list-masonry' == $this->check_and_return( $instance , 'design', 'liststyle' ) ) $this->enqueue_masonry();
 
 			// Set the background styling
 			if( !empty( $instance['design'][ 'background' ] ) ) $this->inline_css .= layers_inline_styles( '#' . $widget_id, 'background', array( 'background' => $instance['design'][ 'background' ] ) );

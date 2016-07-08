@@ -207,6 +207,11 @@ class Layers_Customizer_Config {
 			'priority' => 45,
 		);
 
+		$layers_customizer_sections[ 'site-scripts' ] = array(
+			'title' =>__( 'Additional Scripts' , 'layerswp' ),
+			'panel' => 'site-settings',
+		);
+
 		$layers_customizer_sections[ 'site-colors' ] = array(
 			'title' =>__( 'Colors' , 'layerswp' ),
 			'panel' => 'site-settings',
@@ -231,11 +236,6 @@ class Layers_Customizer_Config {
 
 		$layers_customizer_sections[ 'header-layout' ] = array(
 			'title' =>__( 'Styling' , 'layerswp' ),
-			'panel' => 'header',
-		);
-
-		$layers_customizer_sections[ 'header-scripts' ] = array(
-			'title' =>__( 'Additional Scripts' , 'layerswp' ),
 			'panel' => 'header',
 		);
 
@@ -488,18 +488,30 @@ class Layers_Customizer_Config {
 			),
 		);
 
-		// Header -> Additional Scripts
-		$layers_customizer_controls['header-scripts'] = array(
+
+		$layers_customizer_controls['site-scripts'] = array(
 			'header-google-id' => array(
 				'type'     => 'layers-text',
 				'label'    => __( 'Google Analytics ID' , 'layerswp' ),
 				'description' => __( 'Enter in your Google Analytics ID to enable website traffic reporting. eg. "UA-xxxxxx-xx' , 'layerswp' ),
 				'default' => '',
 			),
+			'google-maps-api' => array(
+				'type'     => 'layers-text',
+				'label'    => __( 'Google Maps API Key' , 'layerswp' ),
+				'description' => __( sprintf( 'Enter in your Maps API Key to enable your contact widget. <a href="%s" target="_blank">Click Here</a> to get your API Key.', 'https://developers.google.com/maps/documentation/javascript/get-api-key' ), 'layerswp' ),
+				'default' => '',
+			),
 			'header-custom-scripts' => array(
 				'type'     => 'layers-code',
-				'label'    => __( 'Custom Scripts' , 'layerswp' ),
+				'label'    => __( 'Custom Header Scripts' , 'layerswp' ),
 				'description' => __( 'Enter in any custom script to include in your site\'s header. Be sure to use double quotes for strings.' , 'layerswp' ),
+				'default' => '',
+			),
+			'footer-custom-scripts' => array(
+				'type'     => 'layers-code',
+				'label'    => __( 'Custom Footer Scripts' , 'layerswp' ),
+				'description' => __( 'Enter in any custom script to include in your site\'s footer. Be sure to use double quotes for strings.' , 'layerswp' ),
 				'default' => '',
 			),
 		);
@@ -546,16 +558,6 @@ class Layers_Customizer_Config {
 				'class' => 'layers-upsell-tag',
 				'label'    => __( 'Upgrade to Layers Pro' , 'layerswp' ),
 				'description' => __( 'Want more control over your Footer Layout? <a target="_blank" href="https://www.layerswp.com/layers-pro/?ref=obox&utm_source=layers%20theme&utm_medium=link&utm_campaign=Layers%20Pro%20Upsell&utm_content=Site%20Settings%20Footer%20Layout">Purchase Layers Pro</a> to unlock the full power of Layers!' , 'layerswp' ),
-			),
-		);
-
-		// Footer -> Additional Scripts
-		$layers_customizer_controls['footer-scripts'] = array(
-			'footer-custom-scripts' => array(
-				'type'     => 'layers-code',
-				'label'    => __( 'Custom Scripts' , 'layerswp' ),
-				'description' => __( 'Enter in any custom script to include in your site\'s footer. Be sure to use double quotes for strings.' , 'layerswp' ),
-				'default' => '',
 			),
 		);
 

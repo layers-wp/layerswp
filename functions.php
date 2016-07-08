@@ -366,9 +366,11 @@ if( ! function_exists( 'layers_scripts' ) ) {
 			wp_enqueue_script( 'comment-reply' );
 		} // Comment reply script
 
+		https://maps.googleapis.com/maps/api/jsYOUR_API_KEY&callback=initMap
+
 		wp_register_script(
 			LAYERS_THEME_SLUG . " -map-api",
-			"//maps.googleapis.com/maps/api/js"
+			"//maps.googleapis.com/maps/api/js?key=" . layers_get_theme_mod( 'google-maps-api' )
 		);
 
 		wp_register_script(

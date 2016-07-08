@@ -443,7 +443,21 @@ if( ! function_exists( 'layers_scripts' ) ) {
 			array(),
 			LAYERS_VERSION
 		); // Font Awesome
-
+		
+		
+		// Swiper Slider
+		wp_register_script(
+			LAYERS_THEME_SLUG . '-slider-js',
+			get_template_directory_uri() . '/core/widgets/js/swiper.js',
+			array( 'jquery' ),
+			LAYERS_VERSION
+		);
+		wp_register_style(
+			LAYERS_THEME_SLUG . '-slider',
+			get_template_directory_uri() . '/core/widgets/css/swiper.css',
+			array(),
+			LAYERS_VERSION
+		);
 	}
 }
 add_action( 'wp_enqueue_scripts' , 'layers_scripts' );

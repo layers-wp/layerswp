@@ -369,17 +369,7 @@ if( !class_exists( 'Layers_Widget' ) ) {
 		* Enqueue Masonry When Need Be
 		*/
 		function enqueue_masonry(){
-
-			wp_enqueue_script( 'masonry' ); // Wordpress Masonry
-
-			wp_enqueue_script(
-				LAYERS_THEME_SLUG . '-layers-masonry-js' ,
-				get_template_directory_uri() . '/assets/js/layers.masonry.js',
-				array(
-					'jquery'
-				),
-				LAYERS_VERSION
-			); // Layers Masonry Function
+			wp_enqueue_script( LAYERS_THEME_SLUG . '-layers-masonry-js' );
 		}
 
 		/**

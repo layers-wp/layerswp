@@ -458,6 +458,18 @@ if( ! function_exists( 'layers_scripts' ) ) {
 			array(),
 			LAYERS_VERSION
 		);
+		
+		// Layers Masonry.
+		wp_register_script(
+			LAYERS_THEME_SLUG . '-layers-masonry-js',
+			get_template_directory_uri() . '/assets/js/layers.masonry.js',
+			array(
+				'jquery',
+				'masonry', // Wordpress Masonry
+			),
+			LAYERS_VERSION
+		);
+		
 	}
 }
 add_action( 'wp_enqueue_scripts' , 'layers_scripts' );

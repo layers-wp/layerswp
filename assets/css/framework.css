@@ -1904,8 +1904,9 @@ object{
 		border: 2px solid #ddd;
 		color: #8f8f8f;
 		font-weight: 700;
-		padding: 0 10px;
+		padding: 2px 10px;
 		border-radius: 3px;
+		display: block;
 	}
 	.nav-pills a:hover{
 		background-color: #8f8f8f;

@@ -2,8 +2,9 @@
 
 =======
 ##1.5.5
-### xx Xxxx 2016
+### xx July 2016
 
+* **Enhancement** - Added the Google Maps API Key input, reconfigured the position of the script inputs. *DP*
 * **Fix** - Fixed word-wrap issue in .story and .copy divs. *DP*
 
 =======

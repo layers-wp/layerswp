@@ -551,6 +551,28 @@ div[id*='layers-widget'] .widget-control-actions .alignright{
 		margin: 0 0 0 5px;
 	}
 
+	/*--------------------------------------------------------------------------------------*/
+	/*- SET ICON GROUP INLINE (add `'class' => 'layers-select-icons-inline'` to control) ---*/
+	.layers-select-icons-inline .layers-visuals-wrapper.layers-visuals-inline {
+		border-radius: 6px;
+		padding: 5px 1px 0px 5px;
+		display: inline-block;
+		box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.05), inset 0 -1px 0px rgba(0, 0, 0, 0.06), 0 1px 1px rgba(0, 0, 0, 0.017);
+	}
+	.layers-select-icons-inline .layers-visuals-wrapper.layers-visuals-inline .layers-icon-wrapper {
+		margin: 0;
+	}
+	.layers-select-icons-inline .layers-visuals-wrapper.layers-visuals-inline .layers-visuals-item {
+		float: left;
+		margin: 0 4px 5px 0;
+	}
+	.layers-select-icons-inline .layers-visuals-wrapper.layers-visuals-inline .layers-visuals-item:not(.layers-active) .layers-icon-wrapper {
+		margin: 0;
+	}
+	.layers-select-icons-inline .layers-visuals-wrapper.layers-visuals-inline .layers-visuals-item .layers-icon-description {
+		display: none;
+	}
+
 /*---------------------------*/
 /*- THE GRID ----------------*/
 

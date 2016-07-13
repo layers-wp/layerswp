@@ -1274,6 +1274,10 @@ jQuery(function($) {
 	});
 
 	function possibly_refresh_customizer( $widget ) {
+		
+		// Bail if old version of WP and SelectvieRfresh is not available yet.
+		if ( undefined == wp.customize.Widgets.data.selectiveRefreshableWidgets )
+			return false;
 
 		// Keep note if there are any non PWR widgets.
 		var $all_partial_refresh_widget_enabled = true;

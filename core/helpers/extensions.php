@@ -43,9 +43,7 @@ if ( !function_exists( 'layers_load_templates' ) ) {
 		$file = $template;
 
 		// Check if a custom template exists in the theme folder, if not, load the plugin template file
-		if ( $theme_file = locate_template(  $template_slug ) ) {
-			$file = $theme_file;
-		} elseif( !empty( $template_locations ) ) {
+		if( !empty( $template_locations ) ) {
 
 			// Loop through the registered template locations
 			foreach( $template_locations as $location ){
@@ -59,6 +57,8 @@ if ( !function_exists( 'layers_load_templates' ) ) {
 					break;
 				}
 			}
+		} elseif ( $theme_file = locate_template(  $template_slug ) ) {
+			$file = $theme_file;
 		}
 
 		return apply_filters( 'layers_template_' . $template, $file );

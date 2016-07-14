@@ -1063,8 +1063,7 @@ p.stars span a:focus{
 	/*-----------------------*/
 	/*- MY ACCOUNT NAVIGATION */
 	.woocommerce-MyAccount-navigation{
-		float: left;
-		width: calc(((100% / 12) * 2) - 20px);
+		margin-bottom: 20px;
 	}
 	.woocommerce-MyAccount-navigation ul{
 		border: 2px solid rgba(0, 0, 0, 0.1);
@@ -1080,8 +1079,6 @@ p.stars span a:focus{
 	/*-----------------------*/
 	/*- MY ACCOUNT CONTENT --*/
 	.woocommerce-MyAccount-content{
-		float: right;
-		width: calc(((100% / 12) * 10) - 20px);
 		overflow: hidden;
 	}
 
@@ -1487,6 +1484,21 @@ p.stars span a:focus{
 	#order_review{
 		float: left;
 		width: calc(((100% / 12) * 5) - 20px);
+	}
+
+	/*-----------------------*/
+	/*- MY ACCOUNT NAVIGATION */
+	.woocommerce-MyAccount-navigation{
+		float: left;
+		width: calc(((100% / 12) * 2) - 20px);
+	}
+
+	/*-----------------------*/
+	/*- MY ACCOUNT CONTENT --*/
+	.woocommerce-MyAccount-content{
+		float: right;
+		width: calc(((100% / 12) * 10) - 20px);
+		overflow: hidden;
 	}
 
 }

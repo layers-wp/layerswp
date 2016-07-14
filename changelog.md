@@ -10,6 +10,7 @@
 * **Tweak** - Change the way we enqueue our slider script and css to rather use the WP register & enqueue functions. Allow us to enqueue wherever needed. *SOB*
 * **Tweak** - Change the way we enqueue our masonry script, same as above. *SOB*
 * **Enhancement** - Added .meta-info-vertical to override inline meta items for the project pages. *DP*
+* **Enhancement** - Added new WooCommerce My Account Page CSS. *DP*
 
 =======
 ##1.5.4

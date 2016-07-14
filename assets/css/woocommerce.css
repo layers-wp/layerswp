@@ -1085,6 +1085,10 @@ p.stars span a:focus{
 		overflow: hidden;
 	}
 
+	.woocommerce-MyAccount-content h2,
+	.woocommerce-MyAccount-content h3{
+		margin-bottom: 1.6rem;
+	}
 	.woocommerce-MyAccount-content p{
 		margin-bottom: 1.6rem;
 	}

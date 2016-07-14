@@ -1058,6 +1058,40 @@ p.stars span a:focus{
 		}
 
 /*---------------------------*/
+/*- MY ACCOUNT --------------*/
+
+	/*-----------------------*/
+	/*- MY ACCOUNT NAVIGATION */
+	.woocommerce-MyAccount-navigation{
+		margin-bottom: 20px;
+	}
+	.woocommerce-MyAccount-navigation ul{
+		border: 2px solid rgba(0, 0, 0, 0.1);
+	}
+	.woocommerce-MyAccount-navigation li:not(:last-child){
+		border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+	}
+	.woocommerce-MyAccount-navigation a{
+		display: block;
+		padding: 8px;
+	}
+
+	/*-----------------------*/
+	/*- MY ACCOUNT CONTENT --*/
+	.woocommerce-MyAccount-content{
+		overflow: hidden;
+	}
+
+	.woocommerce-MyAccount-content h2,
+	.woocommerce-MyAccount-content h3{
+		margin-bottom: 1.6rem;
+	}
+	.woocommerce-MyAccount-content p{
+		margin-bottom: 1.6rem;
+	}
+
+
+/*---------------------------*/
 /*- INFORMATION PAGES -------*/
 
 	.col2-set .title{
@@ -1450,6 +1484,21 @@ p.stars span a:focus{
 	#order_review{
 		float: left;
 		width: calc(((100% / 12) * 5) - 20px);
+	}
+
+	/*-----------------------*/
+	/*- MY ACCOUNT NAVIGATION */
+	.woocommerce-MyAccount-navigation{
+		float: left;
+		width: calc(((100% / 12) * 2) - 20px);
+	}
+
+	/*-----------------------*/
+	/*- MY ACCOUNT CONTENT --*/
+	.woocommerce-MyAccount-content{
+		float: right;
+		width: calc(((100% / 12) * 10) - 20px);
+		overflow: hidden;
 	}
 
 }

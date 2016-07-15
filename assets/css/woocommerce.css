@@ -1065,6 +1065,12 @@ p.stars span a:focus{
 	.woocommerce-MyAccount-navigation{
 		margin-bottom: 20px;
 	}
+	.story .woocommerce-MyAccount-navigation ul,
+	.story .woocommerce-MyAccount-navigation li{
+		list-style: none !important;
+		padding: 0px;
+		margin: 0px;
+	}
 	.woocommerce-MyAccount-navigation ul{
 		border: 2px solid rgba(0, 0, 0, 0.1);
 	}

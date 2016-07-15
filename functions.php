@@ -10,7 +10,7 @@
 /**
  * The current version of the theme. Use a random number for SCRIPT_DEBUG mode
  */
-define( 'LAYERS_VERSION', '1.5.4' );
+define( 'LAYERS_VERSION', '1.5.5' );
 define( 'LAYERS_TEMPLATE_URI' , get_template_directory_uri() );
 define( 'LAYERS_TEMPLATE_DIR' , get_template_directory() );
 define( 'LAYERS_THEME_TITLE' , 'Layers' );
@@ -443,8 +443,8 @@ if( ! function_exists( 'layers_scripts' ) ) {
 			array(),
 			LAYERS_VERSION
 		); // Font Awesome
-		
-		
+
+
 		// Swiper Slider
 		wp_register_script(
 			LAYERS_THEME_SLUG . '-slider-js',
@@ -458,7 +458,7 @@ if( ! function_exists( 'layers_scripts' ) ) {
 			array(),
 			LAYERS_VERSION
 		);
-		
+
 		// Layers Masonry.
 		wp_register_script(
 			LAYERS_THEME_SLUG . '-layers-masonry-js',
@@ -469,7 +469,7 @@ if( ! function_exists( 'layers_scripts' ) ) {
 			),
 			LAYERS_VERSION
 		);
-		
+
 	}
 }
 add_action( 'wp_enqueue_scripts' , 'layers_scripts' );

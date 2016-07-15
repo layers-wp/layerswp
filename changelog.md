@@ -2,9 +2,16 @@
 
 =======
 ##1.5.5
-### xx Xxxx 2016
+### 15 July 2016
 
-* **Fix** - Fixed word-wrap issue in .story and .copy divs. *DP*
+* **Enhancement** - Added the Google Maps API Key input, reconfigured the position of the script inputs. *MP*
+* **Enhancement** - Added .meta-info-vertical to override inline meta items for the project pages. *DP*
+* **Enhancement** - Added .meta-info-vertical to override inline meta items for the project pages. *DP*
+* **Enhancement** - Added new WooCommerce My Account Page CSS. *DP*
+* **Fix** - Fixed word-wrap issue in `.story` and `.copy` divs. *DP*
+* **Tweak** - Nav Pill CSS has slightly more padding for better text alignment. *DP*
+* **Tweak** - Change the way we enqueue our slider script and css to rather use the WP register & enqueue functions. Allow us to enqueue wherever needed. *SOB*
+* **Tweak** - Change the way we enqueue our masonry script, same as above. *SOB*
 
 =======
 ##1.5.4

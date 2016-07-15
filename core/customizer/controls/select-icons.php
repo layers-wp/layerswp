@@ -43,16 +43,26 @@ if( !class_exists( 'Layers_Customize_Select_Icon_Control' ) ) {
 				<?php endif; ?>
 
 				<ul class="layers-visuals-wrapper layers-visuals-inline layers-clearfix">
-					<?php foreach ( $this->choices as $value => $label ) : ?>
-							<li class="layers-visuals-item <?php if( $value == $this->value() ) echo 'layers-active'; ?>">
-								<label class="layers-icon-wrapper layers-select-images">
-									<span class="icon-<?php echo $value; ?>"></span>
-									<span class="layers-icon-description">
-										<?php echo $label; ?>
-									</span>
-									<input class="l_admin-hide" type="radio" value="<?php echo esc_attr( $value ); ?>" name="<?php echo esc_attr( $name ); ?>" <?php $this->link(); checked( $this->value(), $value ); ?> />
-								</label>
-							</li>
+					<?php foreach ( $this->choices as $key => $value ) :
+						
+						if ( is_array( $value ) ) {
+							$label = $value['name'];
+							$class = $value['class'];
+						}
+						else {
+							$label = $value;
+							$class = "icon-{$key}";
+						}
+						?>
+						<li class="layers-visuals-item <?php if( $key == $this->value() ) echo 'layers-active'; ?>">
+							<label class="layers-icon-wrapper layers-select-images">
+								<span class="<?php echo $class; ?>"></span>
+								<span class="layers-icon-description">
+									<?php echo $label; ?>
+								</span>
+								<input class="l_admin-hide" type="radio" value="<?php echo esc_attr( $key ); ?>" name="<?php echo esc_attr( $name ); ?>" <?php $this->link(); checked( $this->value(), $key ); ?> />
+							</label>
+						</li>
 					<?php endforeach; ?>
 				</ul>
 

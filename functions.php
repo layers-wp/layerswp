@@ -10,7 +10,7 @@
 /**
  * The current version of the theme. Use a random number for SCRIPT_DEBUG mode
  */
-define( 'LAYERS_VERSION', '1.5.4' );
+define( 'LAYERS_VERSION', '1.5.5' );
 define( 'LAYERS_TEMPLATE_URI' , get_template_directory_uri() );
 define( 'LAYERS_TEMPLATE_DIR' , get_template_directory() );
 define( 'LAYERS_THEME_TITLE' , 'Layers' );
@@ -366,9 +366,11 @@ if( ! function_exists( 'layers_scripts' ) ) {
 			wp_enqueue_script( 'comment-reply' );
 		} // Comment reply script
 
+		https://maps.googleapis.com/maps/api/jsYOUR_API_KEY&callback=initMap
+
 		wp_register_script(
 			LAYERS_THEME_SLUG . " -map-api",
-			"//maps.googleapis.com/maps/api/js"
+			"//maps.googleapis.com/maps/api/js?key=" . layers_get_theme_mod( 'google-maps-api' )
 		);
 
 		wp_register_script(
@@ -441,6 +443,32 @@ if( ! function_exists( 'layers_scripts' ) ) {
 			array(),
 			LAYERS_VERSION
 		); // Font Awesome
+
+
+		// Swiper Slider
+		wp_register_script(
+			LAYERS_THEME_SLUG . '-slider-js',
+			get_template_directory_uri() . '/core/widgets/js/swiper.js',
+			array( 'jquery' ),
+			LAYERS_VERSION
+		);
+		wp_register_style(
+			LAYERS_THEME_SLUG . '-slider',
+			get_template_directory_uri() . '/core/widgets/css/swiper.css',
+			array(),
+			LAYERS_VERSION
+		);
+
+		// Layers Masonry.
+		wp_register_script(
+			LAYERS_THEME_SLUG . '-layers-masonry-js',
+			get_template_directory_uri() . '/assets/js/layers.masonry.js',
+			array(
+				'jquery',
+				'masonry', // Wordpress Masonry
+			),
+			LAYERS_VERSION
+		);
 
 	}
 }

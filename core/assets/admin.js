@@ -555,10 +555,18 @@ jQuery(function($) {
 		var $operator           = $this_element.data( 'show-if-operator' );
 
 		// Get value based on the type of input being used.
-		if ( $compare_element.attr('type') == 'checkbox' )
+		if ( $compare_element.attr('type') == 'checkbox' ) {
+			// Checkbox
 			$compare_element_value = ( $compare_element.is(':checked') ) ? 'true' : 'false' ;
-		else
+		}
+		else if ( $compare_element.hasClass( 'customize-control customize-control-layers-select-icons' ) ) {
+			// Select icons
+			$compare_element_value = $compare_element.find('input:checked').val();
+		}
+		else {
+			// All other inputs
 			$compare_element_value = $compare_element.val();
+		}
 
 		// Bail if there's no source element to refference.
 		if ( 'undefined' === typeof( $compare_element_value ) || null === $compare_element_value ) {
@@ -1274,6 +1282,10 @@ jQuery(function($) {
 	});
 
 	function possibly_refresh_customizer( $widget ) {
+		
+		// Bail if old version of WP and SelectvieRfresh is not available yet.
+		if ( undefined == wp.customize.Widgets.data.selectiveRefreshableWidgets )
+			return false;
 
 		// Keep note if there are any non PWR widgets.
 		var $all_partial_refresh_widget_enabled = true;

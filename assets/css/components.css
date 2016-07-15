@@ -512,6 +512,11 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 			display: inline-block;
 			margin-right: 15px;
 		}
+		.single .meta-info-vertical .meta-item{
+			display: block;
+			margin-right: 0;
+		}
+
 
 /*-------------------------------*/
 /*- COMMENTS --------------------*/

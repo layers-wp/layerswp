@@ -1896,10 +1896,17 @@ object{
 
 	/*---------------------------*/
 	/*- PILL NAV ----------------*/
+	.nav-pills {}
+	.nav-pills li {
+		display: inline-block;
+	}
 	.nav-pills a{
 		border: 2px solid #ddd;
 		color: #8f8f8f;
 		font-weight: 700;
+		padding: 2px 10px;
+		border-radius: 3px;
+		display: block;
 	}
 	.nav-pills a:hover{
 		background-color: #8f8f8f;
@@ -2318,6 +2325,9 @@ object{
 		display: block;
 		position: relative;
 		overflow: hidden;
+	}
+	.thumbnail.hide{
+		display: none;
 	}
 	.thumbnail-title{
 		padding: 0 20px 20px;

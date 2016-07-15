@@ -113,7 +113,9 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 			$instance = $this->apply_defaults( $instance );
 
 			// Enqueue Masonry if need be
-			if( 'list-masonry' == $this->check_and_return( $instance , 'design', 'liststyle' ) ) $this->enqueue_masonry();
+			if( 'list-masonry' == $this->check_and_return( $instance , 'design', 'liststyle' ) ) {
+				wp_enqueue_script( LAYERS_THEME_SLUG . '-layers-masonry-js' );
+			}
 
 			// Set the background styling
 			if( !empty( $instance['design'][ 'background' ] ) ) $this->inline_css .= layers_inline_styles( '#' . $widget_id, 'background', array( 'background' => $instance['design'][ 'background' ] ) );

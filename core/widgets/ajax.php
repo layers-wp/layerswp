@@ -186,7 +186,6 @@ if( ! class_exists( 'Layers_Widget_Ajax' ) ) {
 						while ( have_posts() ) : the_post();
 							$results_collection[] = array(
 								'id' => $post->ID,
-								// 'text' => $post->post_title,
 								'text' => $post->post_title . ' (' . $post->post_type . ')',
 							);
 						endwhile;

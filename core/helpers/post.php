@@ -68,8 +68,8 @@ if( !function_exists( 'layers_post_meta' ) ) {
 
 					if( 'post' == get_post_type( $post_id ) ){
 						$the_tags = get_the_tags( $post_id );
-					} elseif( 'portfolio' == get_post_type( $post_id ) ) {
-						$the_tags = get_the_terms( $post_id , 'portfolio-tag' );
+					} elseif( 'layers-project' == get_post_type( $post_id ) ) {
+						$the_tags = get_the_terms( $post_id , 'project-tag' );
 					} else {
 						$the_tags = FALSE;
 					}

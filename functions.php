@@ -365,12 +365,12 @@ if( ! function_exists( 'layers_scripts' ) ) {
 		if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 			wp_enqueue_script( 'comment-reply' );
 		} // Comment reply script
-
+		
+		// Google Maps
 		wp_register_script(
 			LAYERS_THEME_SLUG . " -map-api",
 			"//maps.googleapis.com/maps/api/js?key=" . layers_get_theme_mod( 'google-maps-api' )
 		);
-
 		wp_register_script(
 			LAYERS_THEME_SLUG . "-map-trigger",
 			get_template_directory_uri()."/core/widgets/js/maps.js",

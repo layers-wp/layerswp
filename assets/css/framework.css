@@ -2393,6 +2393,15 @@ object{
 		margin: 20px 0 0;
 	}
 
+		/*-----------------------*/
+		/*- THUMBNAIL ALIGNMENT -*/
+		.thumbnail-body .article-title + .excerpt{
+			margin-top: 10px;
+		}
+		.thumbnail-body .article-title + .meta-info{
+			margin-top: 10px;
+		}
+
 
 /*-------------------------------*/
 /*- COPY STYLING ----------------*/

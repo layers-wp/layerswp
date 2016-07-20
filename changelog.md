@@ -1,6 +1,13 @@
 # Layers Changelog
 
 =======
+##1.5.6
+### 15 July 2016
+
+* **Fix** - Fixed thumbnail body + title spacing. *DP*
+* **Fix** - Fixed "logged-in-as" styling (text directly below comment title). *DP*
+
+=======
 ##1.5.5
 ### 15 July 2016
 

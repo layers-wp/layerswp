@@ -499,3 +499,23 @@ if( !function_exists( 'layers_post_featured_media' ) ) {
 		return apply_filters('layers_post_featured_media', $output);
 	}
 } // layers_post_featured_media
+
+/**
+* Post Featured Media
+*
+* @param int $postid ID for post
+*
+* @return   book  TRUE or FALSE depending on whether or not a video has been added to the post
+*/
+if( !function_exists( 'layers_post_has_video' ) ) {
+	function layers_post_has_video( $postid = FALSE ){
+		if( FALSE == $postid ) {
+			global $post;
+			$postid = $post->ID;
+		}
+
+		$post_meta = get_post_meta( $postid, 'layers', true );
+
+		return ( isset( $post_meta[ 'video-url' ] )  && '' != $post_meta[ 'video-url' ] ? TRUE : FALSE );
+	}
+}

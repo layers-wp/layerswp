@@ -1408,7 +1408,7 @@
 		box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.1);
 	}
 
-	.layers-icon-wrapper + input[type="radio"]{
+	.layers-icon-wrapper input[type="radio"]{
 		display: none;
 	}
 

@@ -1366,6 +1366,53 @@
 	}
 
 /*-----------------------*/
+/*- ICON-WRAPPERS -------*/
+
+	.layers-select-icons{
+		overflow: hidden;
+		padding: 5px 0;
+		margin: -15px 0 15px
+	}
+	.layers-icon-wrapper{
+		vertical-align: middle;
+		display: inline-block;
+		width: 130px;
+		padding: 0;
+		margin: 0 5px 0 0;
+		border: 1px solid #ddd;
+		border-radius: 4px;
+		cursor: pointer;
+		font-size: 0px; /*-- HACK --*/
+	}
+	.layers-icon-wrapper [class^="icon-"],
+	.layers-icon-wrapper [class*=" icon-"]{
+		display: inline-block;
+		vertical-align: middle;
+		padding: 6px;
+		border-right: 1px solid #ddd;
+		font-size: 16px;
+	}
+	.layers-icon-wrapper .layers-icon-description{
+		display: inline-block;
+		vertical-align: middle;
+		padding: 5px;
+		opacity: 0.75;
+		font-size: 11px;
+		font-weight: 600;
+		text-transform: none;
+	}
+	.layers-icon-wrapper.layers-active{
+		background: #e7e7e7;
+		border-color: #ccc;
+		color: #444;
+		box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.1);
+	}
+
+	.layers-icon-wrapper + input[type="radio"]{
+		display: none;
+	}
+
+/*-----------------------*/
 /*- BACKUP PAGE ---------*/
 
 	.l_admin-load-bar{
@@ -1847,7 +1894,7 @@
 		.l_admin-button.l_admin-proceed-to-customizer.disable-tip:hover:after{
 			opacity: 0 !important;
 		}
-		
+
 		/*----------------------*/
 		/*- INTERCOM SLIDE -----*/
 		#layers-intercom-data-policy-link {

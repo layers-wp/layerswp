@@ -95,7 +95,7 @@ if( !class_exists( 'Layers_Onboarding_Ajax' ) ) {
 
 		}
 
-		public function dismiss_setup_step( $step_key = NULL, $skip_nonce = FALSE ){
+		public function dismiss_setup_step( $step_key = NULL, $skip_nonce = FALSE, $send_json = TRUE ){
 
 			if( !$skip_nonce && !check_ajax_referer( 'layers-dashboard-dismiss-setup-step', 'layers_dashboard_dismiss_setup_step_nonce', false ) ) die( 'You threw a Nonce exception' ); // Nonce
 
@@ -114,7 +114,9 @@ if( !class_exists( 'Layers_Onboarding_Ajax' ) ) {
 
 			update_option( 'layers_dismissed_setup_steps', $dismissed_setup_steps );
 
-			die( json_encode( array( 'success' => true, 'message' => __( 'Setup step dismissed' , 'layerswp' ) ) ) );
+			if( $send_json ) {
+				die( json_encode( array( 'success' => true, 'message' => __( 'Setup step dismissed' , 'layerswp' ) ) ) );
+			}
 		}
 
 		public function set_theme_mods(){
@@ -128,7 +130,7 @@ if( !class_exists( 'Layers_Onboarding_Ajax' ) ) {
 			);
 
 			if( isset( $_POST[ 'setup_step_key' ] ) ) {
-				$this->dismiss_setup_step( $_POST[ 'setup_step_key' ], TRUE );
+				$this->dismiss_setup_step( $_POST[ 'setup_step_key' ], TRUE, FALSE );
 			}
 
 			foreach ( $data as $option_key => $option_value ) {

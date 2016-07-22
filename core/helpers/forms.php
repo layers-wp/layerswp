@@ -182,12 +182,12 @@ class Layers_Form_Elements {
 				$range_input_props['max'] = ( NULL !== $input->max ) ? 'max="' .  $input->max . '"' : NULL ;
 				$range_input_props['step'] = ( NULL !== $input->step ) ? 'step="' .  $input->step . '"' : NULL ;
 				$range_input_props['placeholder'] = ( NULL !== $input->placeholder ) ? 'placeholder="' .  $input->placeholder . '"' : NULL ;
-				
+
 				if ( isset( $input->value ) && '' !== $input->value )
 					$range_input_props['value'] = 'value="' .  $input->value . '"';
 				elseif ( isset( $input->placeholder ) )
 					$range_input_props['value'] = 'value="' .  $input->placeholder . '"';
-				
+
 				// Add the disabled to the number field if a placeholder is set and it's the same as the value.
 				// the javascript does this too so it will be live applied when the range slider is dragged.
 				if ( isset( $input->placeholder ) && $input->placeholder == $input->value )
@@ -288,7 +288,7 @@ class Layers_Form_Elements {
 						}
 
 						$data_string .= 'data-value="' . $input->value . '" ';
-						
+
 						// Allow for setting of a default selection.
 						$checked = FALSE;
 						if ( $input->value && $input->value == $key ) $checked = TRUE;
@@ -304,8 +304,8 @@ class Layers_Form_Elements {
 							<span class="layers-icon-description">
 								<?php echo esc_html( $name ); ?>
 							</span>
+							<input type="<?php echo $input_type ?>" <?php echo implode ( ' ' , $input_props ); ?> id="<?php echo esc_attr( $input->id ), '-', esc_attr( $key ); ?>" value="<?php echo esc_attr( $key ); ?>" <?php checked( $checked, true, true ); ?> />
 						</label>
-						<input type="<?php echo $input_type ?>" <?php echo implode ( ' ' , $input_props ); ?> id="<?php echo esc_attr( $input->id ), '-', esc_attr( $key ); ?>" value="<?php echo esc_attr( $key ); ?>" <?php checked( $checked, true, true ); ?> />
 					<?php } ?>
 				</div>
 			<?php break;

@@ -1384,12 +1384,19 @@
 		cursor: pointer;
 		font-size: 0px; /*-- HACK --*/
 	}
+	.layers-icon-wrapper:hover{
+		box-shadow: 0 1px 0 rgba(0, 0, 0, 0), 0px 1px 0px #006799;
+		background: #008EC2;
+		border-color: #006799;
+		color: #fff;
+	}
+
 	.layers-icon-wrapper [class^="icon-"],
 	.layers-icon-wrapper [class*=" icon-"]{
 		display: inline-block;
 		vertical-align: middle;
 		padding: 6px;
-		border-right: 1px solid #ddd;
+		border-right: 1px solid rgba(0, 0, 0, 0.1);
 		font-size: 16px;
 	}
 	.layers-icon-wrapper .layers-icon-description{

@@ -554,10 +554,11 @@ div[id*='layers-widget'] .widget-control-actions .alignright{
 	/*--------------------------------------------------------------------------------------*/
 	/*- SET ICON GROUP INLINE (add `'class' => 'layers-select-icons-inline'` to control) ---*/
 	.layers-select-icons-inline .layers-visuals-wrapper.layers-visuals-inline {
-		border-radius: 6px;
+		/* border-radius: 6px; */
+		/* box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.05), inset 0 -1px 0px rgba(0, 0, 0, 0.06), 0 1px 1px rgba(0, 0, 0, 0.017); */
 		padding: 5px 1px 0px 5px;
 		display: inline-block;
-		box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.05), inset 0 -1px 0px rgba(0, 0, 0, 0.06), 0 1px 1px rgba(0, 0, 0, 0.017);
+		padding: 0;
 	}
 	.layers-select-icons-inline .layers-visuals-wrapper.layers-visuals-inline .layers-icon-wrapper {
 		margin: 0;

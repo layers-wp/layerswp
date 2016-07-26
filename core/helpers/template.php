@@ -504,7 +504,7 @@ if( !function_exists( 'layers_apply_customizer_styles' ) ) {
 add_action( 'wp_enqueue_scripts', 'layers_apply_customizer_styles', 50 );
 
 /**
- * Helper that simply adds an invert class to an array of classes.
+ * Helpers that simply add/remove the invert class to an array of classes.
  * For use in conjunction with Filters.
  *
  * @param array $class Existing array of classes passed by the filter.
@@ -512,7 +512,12 @@ add_action( 'wp_enqueue_scripts', 'layers_apply_customizer_styles', 50 );
 if( !function_exists( 'layers_add_invert_class' ) ) {
 	function layers_add_invert_class( $classes ) {
 		$classes[] = 'invert';
-
+		return $classes;
+	}
+}
+if( !function_exists( 'layers_remove_invert_class' ) ) {
+	function layers_remove_invert_class( $classes ) {
+		$classes = array_diff( $classes, array( 'invert' ) );
 		return $classes;
 	}
 }
@@ -527,9 +532,12 @@ if( !function_exists( 'layers_add_invert_class' ) ) {
  */
 if( !function_exists( 'layers_maybe_set_invert' ) ) {
 	function layers_maybe_set_invert( $color, $hook ) {
-
-		if ( 'dark' == layers_is_light_or_dark( $color ) ){
+		
+		if ( 'dark' == layers_is_light_or_dark( $color ) ) {
 			return add_filter( $hook, 'layers_add_invert_class' );
+		}
+		else {
+			return add_filter( $hook, 'layers_remove_invert_class' );
 		}
 	}
 }

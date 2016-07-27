@@ -261,27 +261,33 @@ jQuery(function($) {
 	}
 
 	function layers_set_color_selector( $element ){
+		
+		$element.find('.layers-color-selector').each( function( index, element ) {
+			
+			var $color_input = $(this);
+			
+			// Initialize the individual color-picker
+			$color_input.wpColorPicker({
+				change: function(event, ui){
+					if( 'undefined' !== typeof event ){
 
-		// Initialize the individual color-picker
-		$element.find('.layers-color-selector').wpColorPicker({
-			change: function(event, ui){
-				if( 'undefined' !== typeof event ){
+						// Update the color input
+						$( event.target ).val( ui.color.toString() );
 
-					// Update the color input
-					$( event.target ).val( ui.color.toString() );
-
-					// Debounce the color changes
-					layers_debounce_color_input( $( event.target ) );
-				}
-			},
-			clear: function(event) {
-				if( 'undefined' !== typeof event && 'click' === event.type ){
-
-					// Ping a chnage to the main input - the value will be ''.
-					$( event.target ).layers_trigger_change();
-				}
-			},
-			palettes: [ '#000000', '#FFFFFF', '#E2594E', '#F39C12', '#FFCD03', '#A2C661', '#009EEC', '#934F8C' ],
+						// Debounce the color changes
+						layers_debounce_color_input( $( event.target ) );
+					}
+				},
+				clear: function(event) {
+					if( 'undefined' !== typeof event && 'click' === event.type ){
+						
+						// Ping a change to the main input - the value will be ''.
+						$( $color_input ).layers_trigger_change();
+					}
+				},
+				palettes: [ '#000000', '#FFFFFF', '#E2594E', '#F39C12', '#FFCD03', '#A2C661', '#009EEC', '#934F8C' ],
+			});
+			
 		});
 	}
 

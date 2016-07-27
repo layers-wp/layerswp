@@ -1,6 +1,12 @@
 # Layers Changelog
 
 =======
+##1.5.X
+### XX Xxxx 2016
+
+* **Fix** - Fixed 'Clear' not working on the Customizer Controls colors. *SOB*
+
+=======
 ##1.5.6
 ### 15 July 2016
 

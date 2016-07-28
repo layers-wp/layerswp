@@ -74,16 +74,16 @@ class Layers_API {
 				'excerpt-label' => __( 'by highest rating' , 'layerswp' ),
 			),
 			'price-asc' => array(
-				'label' => __( 'Price: Low to Ligh' ),
-				'excerpt-label' => __( 'by least expensive' ),
+				'label' => __( 'Price: Low to Ligh' , 'layerswp' ),
+				'excerpt-label' => __( 'by least expensive' , 'layerswp' ),
 			),
 			'price-desc' => array(
-				'label' => __( 'Price: High to Low' ),
-				'excerpt-label' => __( 'by most expensive' ),
+				'label' => __( 'Price: High to Low' , 'layerswp' ),
+				'excerpt-label' => __( 'by most expensive' , 'layerswp' ),
 			),
 			'trending-desc' => array(
-				'label' => __( 'Trending Items' , 'layerswp' ),
-				'excerpt-label' => __( 'by trending' ),
+				'label' => __( 'Trending Items' , 'layerswp' , 'layerswp' ),
+				'excerpt-label' => __( 'by trending' , 'layerswp' ),
 			),
 		);
 

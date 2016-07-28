@@ -9,7 +9,7 @@ $api = new Layers_API(); ?>
 
         <div class="layers-section-title layers-large layers-text-center layers-push-bottom-large">
             <div class="layers-heading">
-                <?php _e( 'Can’t find the perfect image?' , 'layerswp' ); ?>
+                <?php _e( "Can't find the perfect image?" , "layerswp" ); ?>
             </div>
             <div class="layers-excerpt">
                 <?php _e( sprintf( 'Visit <a href="%s" target="_blank">Photodune</a> and find just the right photos for your site at incredibly affordable prices' , 'http://bit.ly/layers-photodune' ) , 'layerswp' ); ?>

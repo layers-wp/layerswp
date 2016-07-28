@@ -82,7 +82,7 @@ class Layers_API {
 				'excerpt-label' => __( 'by most expensive' , 'layerswp' ),
 			),
 			'trending-desc' => array(
-				'label' => __( 'Trending Items' , 'layerswp' , 'layerswp' ),
+				'label' => __( 'Trending Items' , 'layerswp' ),
 				'excerpt-label' => __( 'by trending' , 'layerswp' ),
 			),
 		);

@@ -86,13 +86,13 @@ jQuery(function($){
 
         // Target the masonry container
         $masonry_container = $( '#' + $masonry_container_id );
+        
+        // Get the main Masonry Grid element.
+        $masonry_grid = $masonry_container.find('.list-masonry .grid');
+        if ( 0 == $masonry_grid.length ) $masonry_grid = $masonry_container.find('.list-masonry');
 
         // Set whether is Masonry or not
-        if( 0 != $masonry_container.find('.list-masonry').length ){
-            $is_masonry = true;
-        } else {
-            $is_masonry = false;
-        }
+        $is_masonry = ( 0 != $masonry_grid.length );
 
         if( '' == $filter) {
             // Toggle button
@@ -120,7 +120,7 @@ jQuery(function($){
 
         // Relayout if Masonry
         if( $is_masonry ){
-            $masonry_container.find('.list-masonry .grid').masonry( 'layout' );
+            $masonry_grid.masonry( 'layout' );
         }
     });
 });

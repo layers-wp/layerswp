@@ -391,9 +391,9 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 				if( 'list-masonry' == $this->check_and_return( $instance , 'design', 'liststyle' ) ) { ?>
 					<script type='text/javascript'>
 						jQuery(function($){
-							$('#<?php echo $widget_id; ?>').find('.list-masonry').layers_masonry({
+							$('#<?php echo $widget_id; ?>').find('.list-masonry .grid').layers_masonry({
 								itemSelector: '.layers-masonry-column',
-								gutter: <?php echo ( isset( $instance['design'][ 'gutter' ] ) ? 20 : 0 ); ?>
+								gutter: <?php echo ( isset( $instance['design'][ 'gutter' ] ) ? 20 : 0 ); ?>,
 							});
 						});
 					</script>

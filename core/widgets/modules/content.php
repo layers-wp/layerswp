@@ -381,7 +381,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 
 					<script type='text/javascript'>
 						jQuery(function($){
-							$('#<?php echo $widget_id; ?> .list-masonry .grid').layers_masonry({
+							$('#<?php echo $widget_id; ?>').find('.list-masonry .grid').layers_masonry({
 								itemSelector: '.layers-masonry-column',
 								layoutMode: 'masonry',
 								gutter: <?php echo ( isset( $instance['design'][ 'gutter' ] ) ? 20 : 0 ); ?>,

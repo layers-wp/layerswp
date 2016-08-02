@@ -50,6 +50,13 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 	.column-flush.span-6{
 		width: calc(((100% / 12) * 12));
 	}
+	
+	/*---------------------------*/
+	/*- MASONRY -----------------*/
+	.list-masonry .grid{
+		margin-left: 10px;
+		margin-right: -10px;
+	}
 
 /*-------------------------------*/
 /*- NAVIGATION ------------------*/

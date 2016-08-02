@@ -72,7 +72,6 @@
 
 jQuery(function($){
 
-
     $('.layers-masonry-filter li').on( 'click' , function(e){
         e.preventDefault();
 
@@ -121,7 +120,7 @@ jQuery(function($){
 
         // Relayout if Masonry
         if( $is_masonry ){
-            $masonry_container.find('.list-masonry').masonry( 'layout' );
+            $masonry_container.find('.list-masonry .grid').masonry( 'layout' );
         }
     });
 });

@@ -276,6 +276,10 @@ object{
 		margin-left: 0;
 		margin-right: 0;
 	}
+	.container-full-width.list-masonry .grid{
+		margin-left: 0px;
+		margin-right: 0px;
+	}
 
 /*-------------------------------*/
 /*- CONTENT CONTAINERS ----------*/

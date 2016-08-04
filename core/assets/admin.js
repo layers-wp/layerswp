@@ -564,7 +564,7 @@ jQuery(function($) {
 			// Checkbox
 			$compare_element_value = ( $compare_element.is(':checked') ) ? 'true' : 'false' ;
 		}
-		else if ( $compare_element.closest( '.layers-select-icons' ) && $compare_element.closest( 'fieldset.layers-post-meta' ) ) {
+		else if ( 0 < $compare_element.closest( '.layers-select-icons' ).length && 0 < $compare_element.closest( 'fieldset.layers-post-meta' ).length ) {
 
 			// Select icons
 			$compare_element_value = $compare_element.parent().find('input:checked').val();

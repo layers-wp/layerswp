@@ -114,7 +114,7 @@ if( !class_exists( 'Layers_Widget' ) ) {
 				$layout_class = 'container';
 			} elseif('layout-full-screen' == $this->check_and_return( $instance , 'design' , 'layout' ) ) {
 				$layout_class = 'full-screen';
-			} elseif( 'layout-full-width' == $this->check_and_return( $instance , 'design' , 'layout' ) ) {
+			} elseif( 'layout-fullwidth' == $this->check_and_return( $instance , 'design' , 'layout' ) ) {
 				$layout_class = 'full-width';
 			} else {
 				$layout_class = '';

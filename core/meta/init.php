@@ -324,9 +324,24 @@ class Layers_Custom_Meta {
 					<section class="l_admin-accordion-section l_admin-content l_admin-tab-content <?php if( isset( $hide_tab ) ) echo 'l_admin-hide'; ?> customize-control"> <?php // @TODO: Remove .customizer-control class ?>
 						<div class="l_admin-row clearfix">
 							<?php if( isset( $meta_option[ 'elements' ] ) ) { ?>
-								<fieldset>
-									<?php foreach( $meta_option[ 'elements' ] as $input_key => $input ) { ?>
-										<p class="l_admin-form-item">
+								<fieldset class="layers-post-meta">
+									<?php foreach( $meta_option[ 'elements' ] as $input_key => $input ) {
+										$data = '';
+										if( isset( $input[ 'data' ] ) ) {
+
+											if( isset( $input[ 'data' ][ 'show-if-value' ] ) ) {
+												$data .= ' data-show-if-selector="' . esc_attr( $input[ 'data' ][ 'show-if-selector' ] ) . '" ';
+											}
+
+											if( isset( $input[ 'data' ][ 'show-if-value' ] ) ) {
+												$data .= ' data-show-if-value="' . esc_attr( $input[ 'data' ][ 'show-if-value' ] ) . '" ';
+											}
+
+											if( isset( $input[ 'data' ][ 'show-if-operator' ] ) ) {
+												$data .= ' data-show-if-operator="' . esc_attr( $input[ 'data' ][ 'show-if-operator' ] ) . '" ';
+											}
+										} ?>
+										<p class="l_admin-form-item" <?php echo $data; ?>>
 											<label><?php echo $input[ 'label' ]; ?></label>
 											<?php  echo $form_elements->input(
 												array(

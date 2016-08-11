@@ -549,6 +549,25 @@ function layers_options_panel_menu(){
 		);
 	}
 
+	// Filter for extension submenus
+	$ext_menus = array();
+	$ext_menus = apply_filters( LAYERS_THEME_SLUG . '_ext_menus', $ext_menus );
+
+	if( is_array( $ext_menus ) ){
+		foreach ( $ext_menus as $ext_menu ){
+
+			add_submenu_page(
+				LAYERS_THEME_SLUG . '-dashboard',
+				esc_html( $ext_menu['name'] ),
+				esc_html( $ext_menu['label'] ),
+				'edit_theme_options',
+				LAYERS_THEME_SLUG . '-' . strtolower( str_replace( ' ', '-', $ext_menu['name'] ) ),
+				$ext_menu['callback']
+			);
+
+		}
+	}
+
 	// Customize
 	$customize = add_submenu_page(
 		LAYERS_THEME_SLUG . '-dashboard',

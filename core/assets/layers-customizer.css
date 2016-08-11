@@ -3195,6 +3195,9 @@ li[id*='customize-control-layers'].customize-control .layers-form-item:after{
 		margin-bottom: 6px;
 		margin-top: -6px;
 	}
+	.l_option-customize-control.l_option-customize-control-font.group .description {
+		margin-top: 6px;
+	}
 
 		/*---------------------------*/
 		/*- GROUP INPUTS ------------*/

@@ -1,6 +1,12 @@
 # Layers Changelog
 
 =======
+##1.5.7
+### xx Aug 2016
+
+* **Fix** - Columns widths from span-4 to span-11 no longer collapse when masonry or video content is in there. *DP*
+
+=======
 ##1.5.6
 ### 11 Aug 2016
 

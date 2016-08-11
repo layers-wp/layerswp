@@ -41,16 +41,26 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 	.span-3,
 	.span-4,
 	.span-5,
-	.span-6{
+	.span-6,
+	.span-7,
+	.span-8,
+	.span-9,
+	.span-10,
+	.span-11{
 		width: calc(((100% / 12) * 12) - 20px);
 	}
 	.column-flush.span-3,
 	.column-flush.span-4,
 	.column-flush.span-5,
-	.column-flush.span-6{
+	.column-flush.span-6,
+	.column-flush.span-7,
+	.column-flush.span-8,
+	.column-flush.span-9,
+	.column-flush.span-10,
+	.column-flush.span-11{
 		width: calc(((100% / 12) * 12));
 	}
-	
+
 	/*---------------------------*/
 	/*- MASONRY -----------------*/
 	.list-masonry .grid{
@@ -179,11 +189,13 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 	/*---------------------------*/
 	/*- SPAN - 6 ----------------*/
 	.span-5,
-	.span-6{
+	.span-6,
+	.span-7{
 		width: calc(((100% / 12) * 6) - 20px);
 	}
 	.column-flush.span-5,
-	.column-flush.span-6{
+	.column-flush.span-6,
+	.column-flush.span-7{
 		width: calc((100% / 12) * 6);
 	}
 

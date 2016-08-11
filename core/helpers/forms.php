@@ -806,7 +806,7 @@ class Layers_Form_Elements {
 											'type' => 'select-icons',
 											'name' => "{$input->name}[link_target]",
 											'id' => "{$input->id}-link_target",
-											'placeholder' => __( 'e.g. http://facebook.com/oboxthemes', 'layers-pro' ),
+											'placeholder' => __( 'e.g. http://facebook.com/oboxthemes', 'layerswp' ),
 											'value' => ( isset( $input->value->link_target ) ) ? $input->value->link_target : NULL,
 											'options' => array(
 												'_blank' => array(

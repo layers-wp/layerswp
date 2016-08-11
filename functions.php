@@ -10,11 +10,11 @@
 /**
  * The current version of the theme. Use a random number for SCRIPT_DEBUG mode
  */
-define( 'LAYERS_VERSION', '1.5.5' );
+define( 'LAYERS_VERSION', '1.5.6' );
 define( 'LAYERS_TEMPLATE_URI' , get_template_directory_uri() );
 define( 'LAYERS_TEMPLATE_DIR' , get_template_directory() );
-define( 'LAYERS_THEME_TITLE' , 'Layers' );
-define( 'LAYERS_THEME_SLUG' , 'layers' );
+define( 'LAYERS_THEME_TITLE' , 'layerswp' );
+define( 'LAYERS_THEME_SLUG' , 'layerswp' );
 define( 'LAYERS_BUILDER_TEMPLATE' , 'builder.php' );
 
 /**
@@ -365,7 +365,7 @@ if( ! function_exists( 'layers_scripts' ) ) {
 		if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 			wp_enqueue_script( 'comment-reply' );
 		} // Comment reply script
-		
+
 		// Google Maps
 		wp_register_script(
 			LAYERS_THEME_SLUG . '-map-api',

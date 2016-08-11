@@ -245,12 +245,12 @@ class Layers_Customizer_Config {
 		);
 
 		$layers_customizer_sections[ 'blog-archive' ] = array(
-			'title' => __( 'Archive', 'layers-pro' ),
+			'title' => __( 'Archive', 'layerswp' ),
 			'panel' => 'blog-archive-single',
 		);
 
 		$layers_customizer_sections['blog-single' ] = array(
-			'title' => __( 'Posts &amp; Pages', 'layers-pro' ),
+			'title' => __( 'Posts &amp; Pages', 'layerswp' ),
 			'panel' => 'blog-archive-single',
 		);
 

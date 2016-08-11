@@ -1,10 +1,13 @@
 # Layers Changelog
 
 =======
-##1.5.X
-### XX Xxxx 2016
+##1.5.6
+### 11 Aug 2016
 
 * **Fix** - Fixed 'Clear' not working on the Customizer Controls colors. *SOB*
+* **Fix** - Fixed erroneous map URL sitting in `functions.php`. *MP*
+* **Enhancement** - Improved styling of range sliders in the customizer. *SOB*
+
 
 =======
 ##1.5.6

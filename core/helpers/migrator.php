@@ -507,7 +507,7 @@ $page_content .= '* ' . $data->name. '
 	*  Get attachment ID from URL, used when importing images
 	*/
 
-	function get_attachment_id_from_url($img_tag) {
+	public function get_attachment_id_from_url($img_tag) {
 		global $wpdb;
 
 		if( is_object( $img_tag ) ) return;

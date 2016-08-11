@@ -532,7 +532,7 @@ if( !function_exists( 'layers_remove_invert_class' ) ) {
  */
 if( !function_exists( 'layers_maybe_set_invert' ) ) {
 	function layers_maybe_set_invert( $color, $hook ) {
-		
+
 		if ( 'dark' == layers_is_light_or_dark( $color ) ) {
 			return add_filter( $hook, 'layers_add_invert_class' );
 		}

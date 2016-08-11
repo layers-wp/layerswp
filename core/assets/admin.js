@@ -261,11 +261,11 @@ jQuery(function($) {
 	}
 
 	function layers_set_color_selector( $element ){
-		
+
 		$element.find('.layers-color-selector').each( function( index, element ) {
-			
+
 			var $color_input = $(this);
-			
+
 			// Initialize the individual color-picker
 			$color_input.wpColorPicker({
 				change: function(event, ui){
@@ -280,14 +280,14 @@ jQuery(function($) {
 				},
 				clear: function(event) {
 					if( 'undefined' !== typeof event && 'click' === event.type ){
-						
+
 						// Ping a change to the main input - the value will be ''.
 						$( $color_input ).layers_trigger_change();
 					}
 				},
 				palettes: [ '#000000', '#FFFFFF', '#E2594E', '#F39C12', '#FFCD03', '#A2C661', '#009EEC', '#934F8C' ],
 			});
-			
+
 		});
 	}
 
@@ -336,7 +336,7 @@ jQuery(function($) {
 		$tab_container = $tab_nav.siblings('.l_admin-tab-content');
 
 		// Show/Hide tabs
-		$tab_container.find( 'section.layers-tab-content' ).eq( $i ).addClass('l_admin-show').removeClass('l_admin-hide').slideDown().siblings( 'section.l_admin-tab-content' ).addClass('l_admin-hide').removeClass('l_admin-show').slideUp();
+		$tab_container.find( 'section.l_admin-tab-content' ).eq( $i ).addClass('l_admin-show').removeClass('l_admin-hide').slideDown().siblings( 'section.l_admin-tab-content' ).addClass('l_admin-hide').removeClass('l_admin-show').slideUp();
 	});
 
 	/**
@@ -564,7 +564,12 @@ jQuery(function($) {
 			// Checkbox
 			$compare_element_value = ( $compare_element.is(':checked') ) ? 'true' : 'false' ;
 		}
-		else if ( $compare_element.hasClass( 'customize-control customize-control-layers-select-icons' ) ) {
+		else if ( 0 < $compare_element.closest( '.layers-select-icons' ).length && 0 < $compare_element.closest( 'fieldset.layers-post-meta' ).length ) {
+
+			// Select icons
+			$compare_element_value = $compare_element.parent().find('input:checked').val();
+
+		} else if ( $compare_element.hasClass( 'customize-control customize-control-layers-select-icons' ) ) {
 			// Select icons
 			$compare_element_value = $compare_element.find('input:checked').val();
 		}
@@ -1287,7 +1292,7 @@ jQuery(function($) {
 	});
 
 	function possibly_refresh_customizer( $widget ) {
-		
+
 		// Bail if old version of WP and SelectvieRfresh is not available yet.
 		if ( undefined == wp.customize.Widgets.data.selectiveRefreshableWidgets )
 			return false;

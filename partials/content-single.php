@@ -58,7 +58,7 @@ if ( '' != get_the_content() ) { ?>
 	wp_link_pages( array(
 		'link_before'   => '<span>',
 		'link_after'    => '</span>',
-		'before'        => '<p class="inner-post-pagination">' . __('<span>Pages:</span>', 'ocmx'),
+		'before'        => '<p class="inner-post-pagination">' . __('<span>Pages:</span>', 'layerswp'),
 		'after'     => '</p>'
 	)); ?>
 

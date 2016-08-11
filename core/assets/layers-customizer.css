@@ -3121,8 +3121,8 @@ li[id*='customize-control-layers'].customize-control .layers-form-item:after{
 	.l_option-range-wrapper input[type="range"],
 	.l_option-customize-control-range input[type="range"]{
 		width: 95%;
-		display: inline-block;
-		height: 35px;
+		display: block;
+		height: 30px;
 		padding: 0;
 		margin: 0;
 		border: initial;
@@ -3131,8 +3131,15 @@ li[id*='customize-control-layers'].customize-control .layers-form-item:after{
 	}
 	.l_option-range-wrapper input[type="number"],
 	.l_option-customize-control-range input[type="number"] {
-		/* width: 25%; */
+		height: 30px;
 		display: inline-block;
+		box-shadow: inset 1px 1px 1px rgba(0, 0, 0, 0.04);
+	}
+	.l_option-customize-control-range:not(.group) > .layers-form-item {
+		border: 1px solid rgb(221, 221, 221);
+		border-radius: 2px;
+		padding: 6px;
+		box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.02);
 	}
 
 	/*----------------------*/

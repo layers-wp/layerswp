@@ -13,8 +13,8 @@
 define( 'LAYERS_VERSION', '1.5.5' );
 define( 'LAYERS_TEMPLATE_URI' , get_template_directory_uri() );
 define( 'LAYERS_TEMPLATE_DIR' , get_template_directory() );
-define( 'LAYERS_THEME_TITLE' , 'Layers' );
-define( 'LAYERS_THEME_SLUG' , 'layers' );
+define( 'LAYERS_THEME_TITLE' , 'layerswp' );
+define( 'LAYERS_THEME_SLUG' , 'layerswp' );
 define( 'LAYERS_BUILDER_TEMPLATE' , 'builder.php' );
 
 /**

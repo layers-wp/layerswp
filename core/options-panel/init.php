@@ -346,7 +346,7 @@ class Layers_Options_Panel {
 		if( !defined( 'LAYERS_DISABLE_MARKETPLACE' ) ){
 			wp_add_dashboard_widget(
 				'layers-addons',
-				__( 'Layers Themes, Style Kits &amp; Extensions', 'layers' ),
+				__( 'Layers Themes, Style Kits &amp; Extensions', 'layerswp' ),
 				array( &$this, 'layers_dashboard_widget' ),
 				NULL,
 				array(
@@ -358,7 +358,7 @@ class Layers_Options_Panel {
 		if( !class_exists( 'Layers_WooCommerce' ) && class_exists( 'WooCommerce' )  ) {
 			wp_add_dashboard_widget(
 				'layers-storekit',
-				__( 'Upgrade WooCommerce with StoreKit', 'layers' ),
+				__( 'Upgrade WooCommerce with StoreKit', 'layerswp' ),
 				array( &$this, 'layers_dashboard_widget' ),
 				NULL,
 				array(
@@ -371,7 +371,7 @@ class Layers_Options_Panel {
 		if( !class_exists( 'Layers_Pro' ) ) {
 			wp_add_dashboard_widget(
 				'layers-pro',
-				__( 'Get Even More with Layers Pro', 'layers' ),
+				__( 'Get Even More with Layers Pro', 'layerswp' ),
 				array( &$this, 'layers_dashboard_widget' ),
 				NULL,
 				array(

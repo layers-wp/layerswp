@@ -388,17 +388,14 @@ class Layers_Options_Panel {
 				<div class="l_admin-section-title l_admin-tiny">
 					<p class="l_admin-excerpt">
 						<?php _e( 'Looking for a theme or plugin to achieve something unique with your website?
-							Browse the massive Layers Marketplace on Envato and take your site to the next level.' , 'layerswp' ); ?>
+							Browse the Layers Marketplace and take your site to the next level.' , 'layerswp' ); ?>
 					</p>
 				</div>
 				<div class="l_admin-button-well">
-					<a href="<?php echo admin_url( 'admin.php?page=layers-marketplace&type=themes' ); ?>" class="button button-primary">
+					<a href="https://www.layerswp.com/product-category/themes/?ref=obox&utm_source=layers%20theme&utm_medium=link&utm_campaign=Layers%20Pro%20Upsell&utm_content=WP%20Dashboard%20Theme%20Button" class="button button-primary">
 						<?php _e( 'Themes' , 'layerswp' ); ?>
 					</a>
-					<a href="<?php echo admin_url( 'admin.php?page=layers-marketplace&type=stylekits' ); ?>" class="button button-primary">
-						<?php _e( 'Style Kits' , 'layerswp' ); ?>
-					</a>
-					<a href="<?php echo admin_url( 'admin.php?page=layers-marketplace&type=extensions' ); ?>" class="button button-primary">
+					<a href="https://www.layerswp.com/product-category/extensions/?ref=obox&utm_source=layers%20theme&utm_medium=link&utm_campaign=Layers%20Pro%20Upsell&utm_content=WP%20Dashboard%20Theme%20Button" class="button button-primary">
 						<?php _e( 'Extensions' , 'layerswp' ); ?>
 					</a>
 				</div>
@@ -415,6 +412,7 @@ class Layers_Options_Panel {
 								<ul class="l_admin-ticks-wp">
 									<li><?php _e( 'Make the logo bigger' , 'layerswp' ); ?></li>
 									<li><?php _e( 'Add video backgrounds' , 'layerswp' ); ?></li>
+									<li><?php _e( 'Add parallax backgrounds' , 'layerswp' ); ?></li>
 									<li><?php _e( 'Add a header background image' , 'layerswp' ); ?></li>
 									<li><?php _e( 'Full button styling control' , 'layerswp' ); ?></li>
 									<li><?php _e( 'New customization controls' , 'layerswp' ); ?></li>

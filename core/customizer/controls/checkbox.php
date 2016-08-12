@@ -26,7 +26,7 @@ if( !class_exists( 'Layers_Customize_Checkbox_Control' ) ) {
 				<?php if ( '' != $this->heading_divider ) { ?>
 					<?php $this->render_heading_divider( $this->heading_divider ); ?>
 				<?php } ?>
-				
+
 				<div class="layers-form-item layers-checkbox-wrapper">
 					<?php echo $form_elements->input(
 						array(
@@ -44,6 +44,8 @@ if( !class_exists( 'Layers_Customize_Checkbox_Control' ) ) {
 						<?php echo $this->description; ?>
 					</div>
 				<?php endif; ?>
+
+			</div>
 
 			</div>
 			<?php

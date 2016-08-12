@@ -219,7 +219,7 @@ class Layers_Form_Elements {
 					else $duplicate_input_props[$key] = $val;
 				}
 				?>
-				<input type="hidden" value="on" style="display: none;" <?php echo implode ( ' ' , $duplicate_input_props ); ?>
+				<input type="hidden" value="on" style="display: none;" <?php echo implode ( ' ' , $duplicate_input_props ); ?> />
 			<?php break;
 			/**
 			* Radio Buttons

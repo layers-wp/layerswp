@@ -1598,6 +1598,9 @@ div[id*='layers-widget'] .widget-control-actions .alignright{
 	.layers-pop-menu-setting input[type='checkbox'] + label{
 		margin-bottom: 0;
 	}
+	.layers-pop-menu-setting input[type='checkbox']:disabled + label{
+		color: rgba(0, 0, 0, 0.5);
+	}
 	.layers-form-item.layers-form-item-advanced {
 		background-color: #FDFDFD;
 	}
@@ -2862,6 +2865,20 @@ input[type=radio]:checked + .layers-settings-icon span{
 		font-size: 11px;
 		font-weight: bold;
 		line-height: 18px;
+	}
+	.layers-inline-upsell{
+		text-transform: uppercase;
+		padding: 0px 4px;
+		margin: 0 0 0 3px;
+		border: 1px solid #696969;
+		border-radius: 100px;
+		color: #000;
+		font-size: 9px;
+		line-height: 1;
+		opacity: .4;
+	}
+	.layers-inline-upsell a{
+		font-weight: bold;
 	}
 
 

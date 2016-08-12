@@ -386,7 +386,7 @@ class Layers_Customizer_Config {
 					'type'  => 'layers-heading',
 					'class' => 'layers-upsell-tag',
 					'label'    => __( 'Upgrade to Layers Pro' , 'layerswp' ),
-					'description' => __( 'Want more blog customzation? <a target="_blank" href="https://www.layerswp.com/layers-pro/?ref=obox&utm_source=layers%20theme&utm_medium=link&utm_campaign=Layers%20Pro%20Upsell&utm_content=Blog%20Styling">Purchase Layers Pro</a> and take control over your posts!' , 'layerswp' ),
+					'description' => __( 'Want to customize the colors in your blog pages? <a target="_blank" href="https://www.layerswp.com/layers-pro/?ref=obox&utm_source=layers%20theme&utm_medium=link&utm_campaign=Layers%20Pro%20Upsell&utm_content=Blog%20Styling">Purchase Layers Pro</a> and gain full control over your blog!' , 'layerswp' ),
 				),
 			);
 		}
@@ -411,7 +411,7 @@ class Layers_Customizer_Config {
 				'type'  => 'layers-heading',
 				'class' => 'layers-upsell-tag',
 				'label'    => __( 'Upgrade to Layers Pro' , 'layerswp' ),
-				'description' => __( 'Want more blog customzation? <a target="_blank" href="https://www.layerswp.com/layers-pro/?ref=obox&utm_source=layers%20theme&utm_medium=link&utm_campaign=Layers%20Pro%20Upsell&utm_content=Blog%20Single">Purchase Layers Pro</a> and take control over your posts!' , 'layerswp' ),
+				'description' => __( 'Gain more layout and information customization options in your blog post pages by <a target="_blank" href="https://www.layerswp.com/layers-pro/?ref=obox&utm_source=layers%20theme&utm_medium=link&utm_campaign=Layers%20Pro%20Upsell&utm_content=Blog%20Single">upgrading to Layers Pro</a>.' , 'layerswp' ),
 			),
 		);
 
@@ -435,7 +435,7 @@ class Layers_Customizer_Config {
 				'type'  => 'layers-heading',
 				'class' => 'layers-upsell-tag',
 				'label'    => __( 'Upgrade to Layers Pro' , 'layerswp' ),
-				'description' => __( 'Want more blog customzation? <a target="_blank" href="https://www.layerswp.com/layers-pro/?ref=obox&utm_source=layers%20theme&utm_medium=link&utm_campaign=Layers%20Pro%20Upsell&utm_content=Blog%20Archive">Purchase Layers Pro</a> and take control over your post archive!' , 'layerswp' ),
+				'description' => __( 'Gain more layout and information customization options in your blog archive pages by <a target="_blank" href="https://www.layerswp.com/layers-pro/?ref=obox&utm_source=layers%20theme&utm_medium=link&utm_campaign=Layers%20Pro%20Upsell&utm_content=Blog%20Archive">upgrading to Layers Pro</a>.' , 'layerswp' ),
 			),
 		);
 

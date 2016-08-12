@@ -554,6 +554,22 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 							'featuredimage',
 							'imagealign',
 							'fonts',
+							'buttons' => array(
+								'icon-css' => 'icon-call-to-action',
+								'label' => __( 'Buttons', 'layerswp' ),
+								'elements' => array(
+									'layers-pro-upsell' =>array(
+										'type' => 'html',
+										'html' => '<div class="layers-upsell-tag">
+													<span class="customize-control-title">Upgrade to Layers Pro</span>
+													<div class="description customize-control-description">
+														Want more control over your button styling and sizes? <a target="_blank" href="https://www.layerswp.com/layers-pro/?ref=obox&amp;utm_source=layers%20theme&amp;utm_medium=link&amp;utm_campaign=Layers%20Pro%20Upsell&amp;utm_content=Widget%20Button%20Control">Purchase Layers Pro</a> to unlock the full power of Layers!
+													</div>
+												</div>'
+									)
+								),
+								'elements_combine' => 'replace',
+							),
 							'width' => array(
 								'icon-css' => 'icon-columns',
 								'label' => 'Column Width',

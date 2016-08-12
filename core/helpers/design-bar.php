@@ -773,6 +773,19 @@ class Layers_Design_Controller {
 					'show-if-operator' => '!=='
 				),
 			),
+			'background-parallax' => array(
+				'type' => 'checkbox',
+				'label' => __( 'Parallax (Available in <a href="https://www.layerswp.com/layers-pro/?ref=obox&amp;utm_source=layers%20theme&amp;utm_medium=link&amp;utm_campaign=Layers%20Pro%20Upsell&amp;utm_content=Widget%20Parallax%20Upsell" target="_blank">Layers Pro</a>)', 'layerswp' ),
+				'name' => $this->get_layers_field_name( 'background', 'stretch' ),
+				'id' => $this->get_layers_field_id( 'background', 'stretch' ),
+				'value' => ( isset( $this->values['background']['stretch'] ) ) ? $this->values['background']['stretch'] : NULL,
+				'data' => array(
+					'show-if-selector' => '#' . $this->get_layers_field_id( 'background', 'image' ),
+					'show-if-value' => '',
+					'show-if-operator' => '!=='
+				),
+				'disabled' => true
+			),
 			'background-stretch' => array(
 				'type' => 'checkbox',
 				'label' => __( 'Stretch', 'layerswp' ),
@@ -791,11 +804,6 @@ class Layers_Design_Controller {
 				'name' => $this->get_layers_field_name( 'background', 'darken' ),
 				'id' => $this->get_layers_field_id( 'background', 'darken' ),
 				'value' => ( isset( $this->values['background']['darken'] ) ) ? $this->values['background']['darken'] : NULL,
-				'data' => array(
-					'show-if-selector' => '#' . $this->get_layers_field_id( 'background', 'image' ),
-					'show-if-value' => '',
-					'show-if-operator' => '!=='
-				),
 			)
 		);
 

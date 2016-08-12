@@ -244,6 +244,11 @@ class Layers_Customizer_Config {
 			'panel' => 'header',
 		);
 
+		$layers_customizer_sections[ 'blog-styling' ] = array(
+			'title' => __( 'Styling', 'layers-pro' ),
+			'panel' => 'blog-archive-single',
+		);
+
 		$layers_customizer_sections[ 'blog-archive' ] = array(
 			'title' => __( 'Archive', 'layerswp' ),
 			'panel' => 'blog-archive-single',
@@ -372,6 +377,15 @@ class Layers_Customizer_Config {
 				'class' => 'layers-upsell-tag',
 				'label'    => __( 'Upgrade to Layers Pro' , 'layerswp' ),
 				'description' => __( 'Want more control over your Header Layout? <a target="_blank" href="https://www.layerswp.com/layers-pro/?ref=obox&utm_source=layers%20theme&utm_medium=link&utm_campaign=Layers%20Pro%20Upsell&utm_content=Site%20Settings%20Header%20Layout">Purchase Layers Pro</a> to unlock the full power of Layers!' , 'layerswp' ),
+			),
+		);
+
+		$layers_customizer_controls['blog-styling'] = array(
+			'blog-styling-upsell-layers-pro' => array(
+				'type'  => 'layers-heading',
+				'class' => 'layers-upsell-tag',
+				'label'    => __( 'Upgrade to Layers Pro' , 'layerswp' ),
+				'description' => __( 'Want more blog customzation? <a target="_blank" href="https://www.layerswp.com/layers-pro/?ref=obox&utm_source=layers%20theme&utm_medium=link&utm_campaign=Layers%20Pro%20Upsell&utm_content=Blog%20Styling">Purchase Layers Pro</a> and take control over your posts!' , 'layerswp' ),
 			),
 		);
 

@@ -52,7 +52,7 @@ jQuery(function($) {
 		});
 	}
 
-	$(document).on( 'click' , '.onbard-next-step' , function(e){
+	$(document).on( 'click' , '.onboard-next-step' , function(e){
 		e.preventDefault();
 
 		// "Hi Mom"
@@ -70,7 +70,7 @@ jQuery(function($) {
 			$progress_indicator_message = $progress_indicator.data( 'busy-message' );
 
 			$that.text( $progress_indicator_message ).attr( 'disabled' , 'disabled' ).addClass( 'disable disable-tip' );
-			
+
 			$id = $( 'input[name="layes-preset-layout"]:checked' ).val();
 
 			// No template selected

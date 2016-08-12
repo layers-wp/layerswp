@@ -42,7 +42,7 @@ $layers_migrator = new Layers_Widget_Migrator(); ?>
 						</div>
 					</div>
 					<div class="l_admin-button-well">
-						<a class="l_admin-button btn-primary l_admin-pull-right onbard-next-step" href=""><?php _e( 'Let\'s get started &rarr;' , 'layerswp' ); ?></a>
+						<a class="l_admin-button btn-primary l_admin-pull-right onboard-next-step" href=""><?php _e( 'Let\'s get started &rarr;' , 'layerswp' ); ?></a>
 					</div>
 				</div>
 				<div class="l_admin-column l_admin-span-4 no-gutter">
@@ -156,6 +156,7 @@ $layers_migrator = new Layers_Widget_Migrator(); ?>
 									'retail' => __( 'Retail', 'layerswp' ),
 									'shopping' => __( 'Shopping', 'layerswp' ),
 									'software' => __( 'Software', 'layerswp' ),
+									'sport' => __( 'Sport', 'layerswp' ),
 									'travel' => __( 'Travel', 'layerswp' ),
 									'technology' => __( 'Technology', 'layerswp' ),
 									'restaurants-cafes' => __( 'Restaurants &amp; Cafes', 'layerswp' ),
@@ -165,6 +166,13 @@ $layers_migrator = new Layers_Widget_Migrator(); ?>
 								'class' => 'l_admin-large',
 							) );
 							?>
+
+							<div class="l_admin-checkbox-wrapper l_admin-large l_admin-form-item l_admin-push-top">
+								<input id="layers-info-developer" name="layers_info_developer" value="developer" type="checkbox" <?php if( TRUE == get_option( 'layers_info_developer' ) ) : ?>checked="checked"<?php endif; ?> />
+								<label for="layers-info-developer">
+									<?php _e( 'I\'m a Developer', 'layerswp' ); ?>
+								</label>
+							</div>
 						</div>
 
 						<div class="l_admin-form-item">
@@ -194,7 +202,7 @@ $layers_migrator = new Layers_Widget_Migrator(); ?>
 
 					<div class="l_admin-button-well">
 						<span class="l_admin-save-progress l_admin-hide l_admin-button btn-link" data-busy-message="<?php _e( 'Saving your Site Name' , 'layerswp' ); ?>"></span>
-						<a class="l_admin-button btn-primary l_admin-pull-right onbard-next-step" href="">
+						<a class="l_admin-button btn-primary l_admin-pull-right onboard-next-step" href="">
 							<?php _e( 'Next Step &rarr;' , 'layerswp' ); ?>
 						</a>
 					</div>
@@ -246,7 +254,7 @@ $layers_migrator = new Layers_Widget_Migrator(); ?>
 					</div>
 					<div class="l_admin-button-well">
 						<span class="l_admin-save-progress l_admin-hide l_admin-button btn-link" data-busy-message="<?php _e( 'Creating Page(s)', 'layerswp' ); ?>"></span>
-						<a class="l_admin-button btn-primary l_admin-pull-right onbard-next-step" href=""><?php _e( 'Next Step &rarr;' , 'layerswp' ); ?></a>
+						<a class="l_admin-button btn-primary l_admin-pull-right onboard-next-step" href=""><?php _e( 'Next Step &rarr;' , 'layerswp' ); ?></a>
 					</div>
 				</div>
 				<div class="l_admin-column l_admin-span-4 no-gutter">
@@ -306,7 +314,7 @@ $layers_migrator = new Layers_Widget_Migrator(); ?>
 						</div>
 						<div class="l_admin-button-well">
 							<span class="l_admin-save-progress l_admin-hide l_admin-button btn-link" data-busy-message="<?php _e( 'Saving Your Preference' , 'layerswp' ); ?>"></span>
-							<a class="l_admin-button btn-primary l_admin-pull-right onbard-next-step" href=""><?php _e( 'Next Step &rarr;' , 'layerswp' ); ?></a>
+							<a class="l_admin-button btn-primary l_admin-pull-right onboard-next-step" href=""><?php _e( 'Next Step &rarr;' , 'layerswp' ); ?></a>
 						</div>
 					</div>
 					<div class="l_admin-column l_admin-span-4 no-gutter">
@@ -350,7 +358,7 @@ $layers_migrator = new Layers_Widget_Migrator(); ?>
 						</div>
 					</div>
 					<div class="l_admin-button-well">
-						<a class="l_admin-button btn-primary l_admin-pull-right onbard-next-step" href=""><?php _e( 'Got it, Next Step &rarr;' , 'layerswp' ); ?></a>
+						<a class="l_admin-button btn-primary l_admin-pull-right onboard-next-step" href=""><?php _e( 'Got it, Next Step &rarr;' , 'layerswp' ); ?></a>
 					</div>
 				</div>
 				<div class="l_admin-column l_admin-span-6 no-gutter l_admin-demo-video">
@@ -378,7 +386,7 @@ $layers_migrator = new Layers_Widget_Migrator(); ?>
 						</div>
 					</div>
 					<div class="l_admin-button-well">
-						<a class="l_admin-button btn-primary l_admin-pull-right onbard-next-step" href=""><?php _e( 'Next Step &rarr;' , 'layerswp' ); ?></a>
+						<a class="l_admin-button btn-primary l_admin-pull-right onboard-next-step" href=""><?php _e( 'Next Step &rarr;' , 'layerswp' ); ?></a>
 					</div>
 				</div>
 				<div class="l_admin-column l_admin-span-8 no-gutter l_admin-demo-video">
@@ -411,7 +419,7 @@ $layers_migrator = new Layers_Widget_Migrator(); ?>
 						</div>
 					</div>
 					<div class="l_admin-button-well">
-						<a class="l_admin-button btn-primary l_admin-pull-right onbard-next-step" href=""><?php _e( 'Next Step &rarr;' , 'layerswp' ); ?></a>
+						<a class="l_admin-button btn-primary l_admin-pull-right onboard-next-step" href=""><?php _e( 'Next Step &rarr;' , 'layerswp' ); ?></a>
 					</div>
 				</div>
 				<div class="l_admin-column l_admin-span-6 no-gutter l_admin-demo-video">
@@ -460,7 +468,7 @@ $layers_migrator = new Layers_Widget_Migrator(); ?>
 					</div>
 					<div class="l_admin-button-well">
 						<span class="l_admin-save-progress l_admin-hide l_admin-button btn-link" data-busy-message="<?php _e( 'Updating your Logo' , 'layerswp' ); ?>"></span>
-						<a class="l_admin-button btn-primary l_admin-pull-right onbard-next-step" href=""><?php _e( 'Next Step &rarr;' , 'layerswp' ); ?></a>
+						<a class="l_admin-button btn-primary l_admin-pull-right onboard-next-step" href=""><?php _e( 'Next Step &rarr;' , 'layerswp' ); ?></a>
 					</div>
 				</div>
 				<div class="l_admin-column l_admin-span-4 no-gutter">
@@ -521,7 +529,7 @@ $layers_migrator = new Layers_Widget_Migrator(); ?>
 					</div>
 					<div class="l_admin-button-well">
 						<span class="l_admin-save-progress l_admin-hide l_admin-button btn-link" data-busy-message="<?php _e( 'Creating your Page' , 'layerswp' ); ?>"></span>
-						<a class="l_admin-button btn-primary l_admin-pull-right onbard-next-step l_admin-proceed-to-customizer disable l_admin-tooltip" tooltip="<?php _e( 'First choose a layout' , 'layerswp' ); ?>" href=""><?php _e( 'Start Building' , 'layerswp' ); ?></a>
+						<a class="l_admin-button btn-primary l_admin-pull-right onboard-next-step l_admin-proceed-to-customizer disable l_admin-tooltip" tooltip="<?php _e( 'First choose a layout' , 'layerswp' ); ?>" href=""><?php _e( 'Start Building' , 'layerswp' ); ?></a>
 					</div>
 				</div>
 			</div>

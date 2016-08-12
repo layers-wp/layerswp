@@ -2853,14 +2853,15 @@ input[type=radio]:checked + .layers-settings-icon span{
 	.l_option-customize-control.l_option-customize-control-heading.layers-upsell-tag
 	.customize-control-title{
 		display: inline-block;
+		padding: 0px 5px;
 		margin-bottom: 2px;
-		padding: 1px 5px;
 		background: #009EEC;
 		border-radius: 3px;
 		color: #FFF;
 		text-transform: uppercase;
 		font-size: 11px;
 		font-weight: bold;
+		line-height: 18px;
 	}
 
 

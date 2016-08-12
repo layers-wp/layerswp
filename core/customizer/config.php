@@ -449,6 +449,7 @@ class Layers_Customizer_Config {
 			'header-background-color' => array(
 				'label' => '',
 				'subtitle'		=> __( 'Header Color' , 'layerswp' ),
+				'class' => 'group',
 				'description' => __( 'This affects the background colors of your site header and page titles.', 'layerswp' ),
 				'type'		=> 'layers-color',
 				'default'	=> '#F3F3F3',
@@ -456,6 +457,7 @@ class Layers_Customizer_Config {
 			'site-accent-color' => array(
 				'label' => '',
 				'subtitle' => __( 'Site Accent Color', 'layerswp' ),
+				'class' => 'group',
 				'description' => __( 'Choose a color for your buttons and links.', 'layerswp' ),
 				'type' => 'layers-color',
 				'default' => FALSE,
@@ -463,6 +465,7 @@ class Layers_Customizer_Config {
 			'footer-background-color' => array(
 				'label' => '',
 				'subtitle' => __( 'Footer Color' , 'layerswp' ),
+				'class' => 'group',
 				'description' => __( 'This affects the background color of your site footer.', 'layerswp' ),
 				'type' => 'layers-color',
 				'default' => '#F3F3F3',

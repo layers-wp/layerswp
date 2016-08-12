@@ -5,6 +5,7 @@
 ### xx Aug 2016
 
 * **Fix** - Columns widths from span-4 to span-11 no longer collapse when masonry or video content is in there. *DP*
+* **Tweak** - Tweaked the column width of shop list pages (was previously span-3, now span-4). *DP*
 
 =======
 ##1.5.6
@@ -24,6 +25,7 @@
 * **Fix** - Marketplace link overrides Layers Pages link on Dashboard tabs. Thanks @easterncoder !
 * **Fix** - Fixed `</script>` tag bug in the Discover Photos tab. Thanks @tokkonopapa !
 * **Tweak** - Removed the Chrome FOUC fix that would re-apply font-size to the body in the Customizer to prevent FOUC. *SOB*
+
 =======
 ##1.5.5
 ### 15 July 2016

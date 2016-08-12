@@ -669,7 +669,9 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 										'html' => '<div class="layers-upsell-tag">
 											<span class="layers-upsell-title">Upgrade to Layers Pro</span>
 											<div class="description customize-control-description">
-												Want more control over your button styling and sizes? <a target="_blank" href="https://www.layerswp.com/layers-pro/?ref=obox&amp;utm_source=layers%20theme&amp;utm_medium=link&amp;utm_campaign=Layers%20Pro%20Upsell&amp;utm_content=Widget%20Button%20Control">Purchase Layers Pro</a> to unlock the full power of Layers!
+												Want more control over your button styling and sizes?
+												<a target="_blank" href="https://www.layerswp.com/layers-pro/?ref=obox&amp;utm_source=layers%20theme&amp;utm_medium=link&amp;utm_campaign=Layers%20Pro%20Upsell&amp;utm_content=Widget%20Button%20Control">Purchase Layers Pro</a>
+												and gain more control over your button styling!
 											</div>
 										</div>'
 									)

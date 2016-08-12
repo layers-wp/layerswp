@@ -775,7 +775,7 @@ class Layers_Design_Controller {
 			),
 			'background-parallax' => array(
 				'type' => 'checkbox',
-				'label' => __( 'Parallax (Get with <a href="https://www.layerswp.com/layers-pro/?ref=obox&amp;utm_source=layers%20theme&amp;utm_medium=link&amp;utm_campaign=Layers%20Pro%20Upsell&amp;utm_content=Widget%20Parallax%20Upsell" target="_blank">Layers Pro</a>)', 'layerswp' ),
+				'label' => __( 'Parallax <span class="layers-inline-upsell">(Get with <a href="https://www.layerswp.com/layers-pro/?ref=obox&amp;utm_source=layers%20theme&amp;utm_medium=link&amp;utm_campaign=Layers%20Pro%20Upsell&amp;utm_content=Widget%20Parallax%20Upsell" target="_blank">Layers Pro</a>)</span>', 'layerswp' ),
 				'name' => $this->get_layers_field_name( 'background', 'stretch' ),
 				'id' => $this->get_layers_field_id( 'background', 'stretch' ),
 				'value' => ( isset( $this->values['background']['stretch'] ) ) ? $this->values['background']['stretch'] : NULL,

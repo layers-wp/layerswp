@@ -380,15 +380,16 @@ class Layers_Customizer_Config {
 			),
 		);
 
-		$layers_customizer_controls['blog-styling'] = array(
-			'blog-styling-upsell-layers-pro' => array(
-				'type'  => 'layers-heading',
-				'class' => 'layers-upsell-tag',
-				'label'    => __( 'Upgrade to Layers Pro' , 'layerswp' ),
-				'description' => __( 'Want more blog customzation? <a target="_blank" href="https://www.layerswp.com/layers-pro/?ref=obox&utm_source=layers%20theme&utm_medium=link&utm_campaign=Layers%20Pro%20Upsell&utm_content=Blog%20Styling">Purchase Layers Pro</a> and take control over your posts!' , 'layerswp' ),
-			),
-		);
-
+		if( !class_exists( 'Layers_Pro' ) ){
+			$layers_customizer_controls['blog-styling'] = array(
+				'blog-styling-upsell-layers-pro' => array(
+					'type'  => 'layers-heading',
+					'class' => 'layers-upsell-tag',
+					'label'    => __( 'Upgrade to Layers Pro' , 'layerswp' ),
+					'description' => __( 'Want more blog customzation? <a target="_blank" href="https://www.layerswp.com/layers-pro/?ref=obox&utm_source=layers%20theme&utm_medium=link&utm_campaign=Layers%20Pro%20Upsell&utm_content=Blog%20Styling">Purchase Layers Pro</a> and take control over your posts!' , 'layerswp' ),
+				),
+			);
+		}
 		// Site Settings -> Sidebars
 		$layers_customizer_controls['blog-single'] = array(
 			'single-sidebar-heading' => array(

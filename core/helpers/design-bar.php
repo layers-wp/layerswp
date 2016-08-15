@@ -720,23 +720,22 @@ class Layers_Design_Controller {
 		$defaults['label'] = __( 'Background', 'layerswp' );
 
 		// Add elements
-		$defaults['elements'] = array(
-			'background-color' => array(
+		$defaults['elements']['background-color'] => array(
 				'type' => 'color',
 				'label' => __( 'Background Color', 'layerswp' ),
 				'name' => $this->get_layers_field_name( 'background', 'color' ),
 				'id' => $this->get_layers_field_id( 'background', 'color' ),
 				'value' => ( isset( $this->values['background']['color'] ) ) ? $this->values['background']['color'] : NULL
-			),
-			'background-image' => array(
+			);
+		$defaults['elements']['background-image'] => array(
 				'type' => 'image',
 				'label' => __( 'Background Image', 'layerswp' ),
 				'button_label' => __( 'Choose Image', 'layerswp' ),
 				'name' => $this->get_layers_field_name( 'background', 'image' ),
 				'id' => $this->get_layers_field_id( 'background', 'image' ),
 				'value' => ( isset( $this->values['background']['image'] ) ) ? $this->values['background']['image'] : NULL,
-			),
-			'background-repeat' => array(
+			);
+		$defaults['elements']['background-repeat'] => array(
 				'type' => 'select',
 				'label' => __( 'Background Repeat', 'layerswp' ),
 				'name' => $this->get_layers_field_name( 'background', 'repeat' ),
@@ -753,8 +752,8 @@ class Layers_Design_Controller {
 					'show-if-value' => '',
 					'show-if-operator' => '!=='
 				),
-			),
-			'background-position' => array(
+			);
+		$defaults['elements']['background-position'] => rray(
 				'type' => 'select',
 				'label' => __( 'Background Position', 'layerswp' ),
 				'name' => $this->get_layers_field_name( 'background', 'position' ),
@@ -772,20 +771,22 @@ class Layers_Design_Controller {
 					'show-if-value' => '',
 					'show-if-operator' => '!=='
 				),
-			),
-			'background-parallax' => array(
-				'type' => 'checkbox',
-				'label' => __( 'Parallax <span class="layers-inline-upsell">Available in <a href="https://www.layerswp.com/layers-pro/?ref=obox&amp;utm_source=layers%20theme&amp;utm_medium=link&amp;utm_campaign=Layers%20Pro%20Upsell&amp;utm_content=Widget%20Parallax%20Upsell" target="_blank">Pro</a></span>', 'layerswp' ),
-				'name' => $this->get_layers_field_name( 'background', 'parallax' ),
-				'id' => $this->get_layers_field_id( 'background', 'parallax' ),
-				'data' => array(
-					'show-if-selector' => '#' . $this->get_layers_field_id( 'background', 'image' ),
-					'show-if-value' => '',
-					'show-if-operator' => '!=='
-				),
-				'disabled' => true
-			),
-			'background-stretch' => array(
+			);
+		if( !class_exists( 'Layers_Pro' ) ) {
+			$defaults['elements']['background-parallax'] => array(
+					'type' => 'checkbox',
+					'label' => __( 'Parallax <span class="layers-inline-upsell">Available in <a href="https://www.layerswp.com/layers-pro/?ref=obox&amp;utm_source=layers%20theme&amp;utm_medium=link&amp;utm_campaign=Layers%20Pro%20Upsell&amp;utm_content=Widget%20Parallax%20Upsell" target="_blank">Pro</a></span>', 'layerswp' ),
+					'name' => $this->get_layers_field_name( 'background', 'parallax' ),
+					'id' => $this->get_layers_field_id( 'background', 'parallax' ),
+					'data' => array(
+						'show-if-selector' => '#' . $this->get_layers_field_id( 'background', 'image' ),
+						'show-if-value' => '',
+						'show-if-operator' => '!=='
+					),
+					'disabled' => true
+				);
+		}
+		$defaults['elements']['background-stretch'] => array(
 				'type' => 'checkbox',
 				'label' => __( 'Stretch', 'layerswp' ),
 				'name' => $this->get_layers_field_name( 'background', 'stretch' ),
@@ -796,8 +797,8 @@ class Layers_Design_Controller {
 					'show-if-value' => '',
 					'show-if-operator' => '!=='
 				),
-			),
-			'background-darken' => array(
+			);
+		$defaults['elements']['background-darken'] => array(
 				'type' => 'checkbox',
 				'label' => __( 'Darken', 'layerswp' ),
 				'name' => $this->get_layers_field_name( 'background', 'darken' ),

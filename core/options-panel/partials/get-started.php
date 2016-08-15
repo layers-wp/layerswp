@@ -168,8 +168,8 @@ $layers_migrator = new Layers_Widget_Migrator(); ?>
 							?>
 
 							<div class="l_admin-checkbox-wrapper l_admin-large l_admin-form-item l_admin-push-top">
-								<input id="layers-info-developer" name="layers_info_developer" value="developer" type="checkbox" <?php if( TRUE == get_option( 'layers_info_developer' ) ) : ?>checked="checked"<?php endif; ?> />
-								<label for="layers-info-developer">
+								<input id="layers_info_developer" name="layers_info_developer" value="developer" type="checkbox" <?php if( TRUE == get_option( 'layers_info_developer' ) ) : ?>checked="checked"<?php endif; ?> />
+								<label for="layers_info_developer">
 									<?php _e( 'I\'m a Developer', 'layerswp' ); ?>
 								</label>
 							</div>

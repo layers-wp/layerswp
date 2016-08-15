@@ -120,6 +120,10 @@ class Layers_Intercom {
 			$json[ 'StoreKit' ] = LAYERS_STOREKIT_VER;
 		}
 
+		if( class_exists( 'Layers_Showcase' ) && defined( 'LAYERS_SHOWCASE_VER' ) ) {
+			$json[ 'Showcase' ] = LAYERS_SHOWCASE_VER;
+		}
+
 		if( class_exists( 'Layers_Pro' ) && defined( 'LAYERS_PRO_VER' ) ) {
 			$json[ 'Layers Pro' ] = LAYERS_PRO_VER;
 		}

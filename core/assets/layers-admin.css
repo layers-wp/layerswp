@@ -607,9 +607,9 @@
 		line-height: 28px;
 	}
 	.l_admin-form-item select.l_admin-large{
-		font-size: 14px;
-		padding-top: 11px;
-		padding-bottom: 11px;
+		font-size: 20px;
+		height: 46px;
+		padding: 0 4px;
 	}
 
 	/* Hide Number Input Controls */

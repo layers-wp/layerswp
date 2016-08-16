@@ -143,7 +143,35 @@ class Layers_API {
 			return new WP_Error( __( 'Error' , 'layerswp' ) , __( 'Something broke and we can\'t load the stream' , 'layerswp' ) );
 		}
 	}
+/*
+	public function get_layers_list( $p_type = 'themes' ){
 
+		$product_types = array(
+			'themes' => 83,
+			'extensions' => 81
+		);
+
+		$wp_products = wp_remote_get( 'https://www.layerswp.com/wp-json/wc/v1/products/?consumer_key=ck_324a919034336d898e5cad5fba64e15655807883&consumer_secret=cs_72856900dffc56cbf27bda601d734c9e6c29127c&category=' . $$product_types[ $p_type ] );
+
+		$product_list = json_decode( wp_remote_retrieve_body( $wp_products ) );
+
+		echo "<pre>";
+		print_r( $product_list );
+		echo "</pre>";
+
+		die();
+
+		if( is_wp_error( $product_list ) ) {
+
+			// Return an error if we have one
+			return $api_call;
+		} else {
+
+			// If the call is successful, well then send back decoded JSON
+			return json_decode( $api_call );
+		}
+	}
+*/
 	/**
 	* Give us a list of available extensions
 	*/
@@ -227,4 +255,5 @@ class Layers_API {
 		}
 
 	}
+
 }

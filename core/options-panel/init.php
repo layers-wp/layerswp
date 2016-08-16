@@ -589,24 +589,18 @@ function layers_options_panel_menu(){
 
 		$marketplace_extensions = add_submenu_page(
 			LAYERS_THEME_SLUG . '-marketplace',
-			__( 'Extensions' , 'layerswp' ),
-			__( 'Extensions' , 'layerswp' ),
+			__( 'Third Party' , 'layerswp' ),
+			__( 'Third Party' , 'layerswp' ),
 			'edit_theme_options',
-			'admin.php?page=layers-marketplace&type=extensions'
+			'admin.php?page=layers-marketplace&marketplace=envato'
 		);
-		$marketplace_stylekits = add_submenu_page(
-			LAYERS_THEME_SLUG . '-marketplace',
-			__( 'Style Kits' , 'layerswp' ),
-			__( 'Style Kits' , 'layerswp' ),
-			'edit_theme_options',
-			'admin.php?page=layers-marketplace&type=stylekits'
-		);
+
 
 		// This modifies the Layers submenu item - must be done here as $submenu
 		// is only created if $submenu items are added using add_submenu_page
 
 		if( isset( $submenu[ 'layers-marketplace' ] ) ) {
-			$submenu[LAYERS_THEME_SLUG . '-marketplace'][0][0] = __( 'Themes' , 'layerswp' );
+			$submenu[LAYERS_THEME_SLUG . '-marketplace'][0][0] = __( 'Official' , 'layerswp' );
 		}
 
 	}

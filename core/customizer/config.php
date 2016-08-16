@@ -643,7 +643,7 @@ class Layers_Customizer_Config {
 					'type'  => 'layers-heading',
 					'class' => 'layers-upsell-tag',
 					'label'    => __( 'Upgrade to Layers Pro' , 'layerswp' ),
-					'description' => __( 'Want to customize the color of your menus as well as their hover states? <a target="_blank" href="https://www.layerswp.com/layers-pro/?ref=obox&utm_source=layers%20theme&utm_medium=link&utm_campaign=Layers%20Pro%20Upsell&utm_content=Menu%20Styling">Purchase Layers Pro</a> and gain full control over your button styling!' , 'layerswp' ),
+					'description' => __( 'Customize your menu colors, spacing and styles but upgrading to <a target="_blank" href="https://www.layerswp.com/layers-pro/?ref=obox&utm_source=layers%20theme&utm_medium=link&utm_campaign=Layers%20Pro%20Upsell&utm_content=Menu%20Styling">Layers Pro</a>.' , 'layerswp' ),
 				),
 			);
 

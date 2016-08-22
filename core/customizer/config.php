@@ -212,6 +212,13 @@ class Layers_Customizer_Config {
 			'panel' => 'site-settings',
 		);
 
+		if( !class_exists( 'Layers_Pro' ) ) {
+			$layers_customizer_sections[ 'buttons'] = array(
+				'title' => __( 'Buttons', 'layerswp' ),
+				'panel' => 'site-settings',
+			);
+		}
+
 		$layers_customizer_sections[ 'site-colors' ] = array(
 			'title' =>__( 'Colors' , 'layerswp' ),
 			'panel' => 'site-settings',
@@ -244,8 +251,15 @@ class Layers_Customizer_Config {
 			'panel' => 'header',
 		);
 
+		if( !class_exists( 'Layers_Pro' ) ) {
+			$layers_customizer_sections[ 'header-menu-styling' ] = array(
+				'title' =>__( 'Menu Styling' , 'layerswp' ),
+				'panel' => 'header',
+			);
+		}
+
 		$layers_customizer_sections[ 'blog-styling' ] = array(
-			'title' => __( 'Styling', 'layers-pro' ),
+			'title' => __( 'Styling', 'layerswp' ),
 			'panel' => 'blog-archive-single',
 		);
 
@@ -379,17 +393,6 @@ class Layers_Customizer_Config {
 				'description' => __( 'Want more control over your Header Layout? <a target="_blank" href="https://www.layerswp.com/layers-pro/?ref=obox&utm_source=layers%20theme&utm_medium=link&utm_campaign=Layers%20Pro%20Upsell&utm_content=Site%20Settings%20Header%20Layout">Purchase Layers Pro</a> to unlock the full power of Layers!' , 'layerswp' ),
 			),
 		);
-
-		if( !class_exists( 'Layers_Pro' ) ){
-			$layers_customizer_controls['blog-styling'] = array(
-				'blog-styling-upsell-layers-pro' => array(
-					'type'  => 'layers-heading',
-					'class' => 'layers-upsell-tag',
-					'label'    => __( 'Upgrade to Layers Pro' , 'layerswp' ),
-					'description' => __( 'Want to customize the colors in your blog pages? <a target="_blank" href="https://www.layerswp.com/layers-pro/?ref=obox&utm_source=layers%20theme&utm_medium=link&utm_campaign=Layers%20Pro%20Upsell&utm_content=Blog%20Styling">Purchase Layers Pro</a> and gain full control over your blog!' , 'layerswp' ),
-				),
-			);
-		}
 		// Site Settings -> Sidebars
 		$layers_customizer_controls['blog-single'] = array(
 			'single-sidebar-heading' => array(
@@ -628,6 +631,40 @@ class Layers_Customizer_Config {
 				),
 			);
 		} // if WooCommerce
+
+		/*
+		* Layers Pro Upsells
+		*/
+
+		if( !class_exists( 'Layers_Pro' ) ){
+
+			$layers_customizer_controls[ 'header-menu-styling' ] = array(
+				'menu-upsell-layers-pro' => array(
+					'type'  => 'layers-heading',
+					'class' => 'layers-upsell-tag',
+					'label'    => __( 'Upgrade to Layers Pro' , 'layerswp' ),
+					'description' => __( 'Customize your menu colors, spacing and styles but upgrading to <a target="_blank" href="https://www.layerswp.com/layers-pro/?ref=obox&utm_source=layers%20theme&utm_medium=link&utm_campaign=Layers%20Pro%20Upsell&utm_content=Menu%20Styling">Layers Pro</a>.' , 'layerswp' ),
+				),
+			);
+
+			$layers_customizer_controls['buttons'] = array(
+				'buttons-upsell-layers-pro' => array(
+					'type'  => 'layers-heading',
+					'class' => 'layers-upsell-tag',
+					'label'    => __( 'Upgrade to Layers Pro' , 'layerswp' ),
+					'description' => __( 'Want to customize the color of your buttons as well as their hover states? <a target="_blank" href="https://www.layerswp.com/layers-pro/?ref=obox&utm_source=layers%20theme&utm_medium=link&utm_campaign=Layers%20Pro%20Upsell&utm_content=Buttons">Purchase Layers Pro</a> and gain full control over your button styling!' , 'layerswp' ),
+				),
+			);
+
+			$layers_customizer_controls['blog-styling'] = array(
+				'blog-styling-upsell-layers-pro' => array(
+					'type'  => 'layers-heading',
+					'class' => 'layers-upsell-tag',
+					'label'    => __( 'Upgrade to Layers Pro' , 'layerswp' ),
+					'description' => __( 'Want to customize the colors in your blog pages? <a target="_blank" href="https://www.layerswp.com/layers-pro/?ref=obox&utm_source=layers%20theme&utm_medium=link&utm_campaign=Layers%20Pro%20Upsell&utm_content=Blog%20Styling">Purchase Layers Pro</a> and gain full control over your blog!' , 'layerswp' ),
+				),
+			);
+		}
 
 		do_action( 'layers_customizer_controls_modify' );
 

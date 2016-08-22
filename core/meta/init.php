@@ -313,7 +313,7 @@ class Layers_Custom_Meta {
 			<div class="l_admin-nav l_admin-nav-tabs">
 				<ul class="l_admin-tabs clearfix">
 					<?php foreach( $this->custom_meta[ $meta_index ]['custom-meta'] as $key => $meta_option ){ ?>
-						<li <?php if( !isset( $inactive ) ) echo 'class="active"'; ?>><a href="#"><?php echo $meta_option[ 'title' ]; ?></a></li>
+						<li class="<?php if( ! isset( $inactive ) ) echo 'active'; ?> <?php echo esc_attr( 'l_admin-tab-' . sanitize_title( $key ) ); ?>" ><a href="#"><?php echo $meta_option[ 'title' ]; ?></a></li>
 						<?php $inactive=1; ?>
 					<?php } // foreach $this->custom_meta[ $post_type ]['custom-meta']  ?>
 				</ul>
@@ -321,7 +321,7 @@ class Layers_Custom_Meta {
 			<!-- Tab Content -->
 			<div class="l_admin-tab-content">
 				<?php foreach( $this->custom_meta[ $meta_index ]['custom-meta'] as $key => $meta_option ){ ?>
-					<section class="l_admin-accordion-section l_admin-content l_admin-tab-content <?php if( isset( $hide_tab ) ) echo 'l_admin-hide'; ?> customize-control"> <?php // @TODO: Remove .customizer-control class ?>
+					<section class="l_admin-accordion-section l_admin-content l_admin-tab-content <?php echo esc_attr( 'l_admin-tab-content-' . sanitize_title( $key ) ); ?> <?php if( isset( $hide_tab ) ) echo 'l_admin-hide'; ?> customize-control"> <?php // @TODO: Remove .customizer-control class ?>
 						<div class="l_admin-row clearfix">
 							<?php if( isset( $meta_option[ 'elements' ] ) ) { ?>
 								<fieldset class="layers-post-meta">

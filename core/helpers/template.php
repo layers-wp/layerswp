@@ -358,16 +358,13 @@ if( !function_exists( 'layers_get_page_title' ) ) {
 if( !function_exists( 'layers_body_class' ) ) {
 	function layers_body_class( $classes ){
 
-		$header_sticky_option	= layers_get_theme_mod( 'header-sticky' );
-		$header_overlay_option	= layers_get_theme_mod( 'header-overlay');
-
 		// Handle sticky / not sticky
-		if( TRUE == $header_sticky_option ){
+		if( TRUE == layers_get_theme_mod( 'header-sticky' ) ){
 			$classes[] = 'layers-header-sticky';
 		}
 
 		// Handle overlay / not overlay
-		if( TRUE == $header_overlay_option ){
+		if( TRUE == layers_get_theme_mod( 'header-overlay') ){
 			$classes[] = 'layers-header-overlay';
 		}
 

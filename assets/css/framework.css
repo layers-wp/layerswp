@@ -2777,3 +2777,23 @@ object{
 	.footer-site.invert .section-nav-title{
 		color: rgba(255,255,255,0.55);
 	}
+
+/*------------------------*/
+/*- ANIMATIONS -----------*/
+#wrapper-content > * {
+	opacity: 0;
+	transform: translateY(30%);
+	transition: .3s;
+	-webkit-transition-timing-function: cubic-bezier(0.25,0.1,0.25,1);
+}
+#wrapper-content > *:nth-child(even) {
+/* 	transform: translateX(-20%); */
+}
+#wrapper-content > *:nth-child(odd) {
+/* 	transform: translateX(20%); */
+}
+#wrapper-content > *.layers-scroll-aimate-seen {
+	opacity: 1;
+	transform: translateY(0);
+	transform: translateX(0);
+}

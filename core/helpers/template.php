@@ -372,6 +372,11 @@ if( !function_exists( 'layers_body_class' ) ) {
 		if( layers_is_post_list_template() || is_archive() || is_singular( 'post' ) ) {
 			$classes[] = 'layers-post-page';
 		}
+		
+		// Handle overlay / not overlay
+		if( TRUE || TRUE == layers_get_theme_mod( 'layers-scroll-animations' ) ){
+			$classes[] = 'layers-scroll-aimate';
+		}
 
 		return apply_filters( 'layers_body_class', $classes );
 	}

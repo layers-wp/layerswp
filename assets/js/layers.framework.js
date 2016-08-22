@@ -108,6 +108,33 @@ jQuery(function($) {
 		if ((t/=d/2) < 1) return c/2*t*t + b;
 		return -c/2 * ((--t)*(t-2) - 1) + b;
 	}});
+	
+	/**
+	* X - Scroll Animations.
+	*
+	*/
+
+	if ( $('body').hasClass('layers-scroll-aimate') ) {
+		
+		$('#wrapper-content > *').waypoint({
+			offset 	: '60%',
+			handler	: function(direction) {
+				if ( 'down' == direction ) {
+					
+					$(this)
+						.removeClass('layers-scroll-aimate-going-up')
+						.addClass('layers-scroll-aimate-going-down')
+						.addClass('layers-scroll-aimate-seen');
+				}
+				if ( 'up' == direction ) {
+					
+					$(this)
+						.removeClass('layers-scroll-aimate-going-down')
+						.addClass('layers-scroll-aimate-going-up');
+				}
+			}
+		});
+	}
 
 }(jQuery));
 

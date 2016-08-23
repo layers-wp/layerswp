@@ -116,8 +116,8 @@ jQuery(function($) {
 
 	if ( $('body').hasClass('layers-scroll-aimate') ) {
 		
-		$('#wrapper-content > *').waypoint({
-			offset 	: '60%',
+		$('#wrapper-content > *, #footer').waypoint({
+			offset 	: '97%',
 			handler	: function(direction) {
 				if ( 'down' == direction ) {
 					
@@ -134,6 +134,9 @@ jQuery(function($) {
 				}
 			}
 		});
+
+		
+		$('#wrapper-content > *');
 	}
 
 }(jQuery));

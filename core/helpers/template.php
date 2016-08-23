@@ -374,7 +374,7 @@ if( !function_exists( 'layers_body_class' ) ) {
 		}
 		
 		// Handle overlay / not overlay
-		if( TRUE || TRUE == layers_get_theme_mod( 'layers-scroll-animations' ) ){
+		if( TRUE == layers_get_theme_mod( 'enable-scroll-animations' ) ){
 			$classes[] = 'layers-scroll-aimate';
 		}
 

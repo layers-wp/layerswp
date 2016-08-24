@@ -2,31 +2,34 @@
 $api = new Layers_API();
 $layers_migrator = new Layers_Widget_Migrator();
 
+// Get Site to Ping
+$valid_marketplaces = array( 'layerswp' , 'envato' );
+$marketplace = isset( $_GET[ 'marketplace' ] ) ? $_GET[ 'marketplace' ] : 'layerswp';
+if( !in_array( $marketplace, $valid_marketplaces ) ) return;
+
+// Get Product Type
 $valid_types = array( 'stylekits' , 'extensions' , 'themes' );
-
 $type = isset( $_GET[ 'type' ] ) ? $_GET[ 'type' ] : 'themes';
-
 if( !in_array( $type, $valid_types ) ) return;
 
+// Set link and header variables
 switch( $type ){
 	case 'stylekits' :
 		$excerpt = __( 'Style Kits' , 'layerswp' );
-		$products = $api->get_stylekit_list();
 		$site_key = 'cc';
-		$fallback_url = 'http://bit.ly/layers-stylekits';
 		break;
 	case 'extensions' :
 		$excerpt = __( 'Extensions' , 'layerswp' );
-		$products = $api->get_extension_list();
 		$site_key = 'cc';
-		$fallback_url = 'http://bit.ly/layers-extensions';
 		break;
 	default :
 		$excerpt = __( 'Themes' , 'layerswp' );
-		$products = $api->get_theme_list();
 		$site_key = 'tf';
-		$fallback_url = 'http://bit.ly/layers-themes';
 };
+
+// Get product lists
+$products = $api->get_product_list( $marketplace, $type );
+$fallback_url = 'http://bit.ly/layers-' . $type;
 
 wp_enqueue_script( 'accordion' );
 

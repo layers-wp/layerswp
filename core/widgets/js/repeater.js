@@ -228,7 +228,7 @@ jQuery(document).ready(function($){
 	* 5 - Update Item Title
 	*/
 
-	$(document).on( 'keyup' , 'ul[id^="column_list_"] input[id*="-title"]' , function(e){
+	$(document).on( 'keyup' , '.layers-widget-repeater > ul input[id*="-title"], .layers-widget-repeater > ul input[id*="-button-link_text"]', function(e){
 
 		// "Hi Mom"
 		$that = $(this);

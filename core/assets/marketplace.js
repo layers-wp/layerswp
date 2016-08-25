@@ -122,10 +122,10 @@ jQuery(function($) {
 		var $url = $( $id ).data( 'url' );
 
 		$modal.find( '.theme-details-link' ).attr( 'href' , $url );
-		if( 'undefined' !== typeof $json.demo_url ){
-			$modal.find( '.theme-demo-link' ).show().attr( 'href' , $json.demo_url + '&type=demo&slug=' + $( $id ).data( 'slug' ) );
-		} else {
+		if( '' == $json.demo_url ){
 			$modal.find( '.theme-demo-link' ).hide();
+		} else {
+			$modal.find( '.theme-demo-link' ).show().attr( 'href' , $json.demo_url + '&type=demo&slug=' + $( $id ).data( 'slug' ) );
 		}
 		$modal.find( '.theme-buy-link' ).attr( 'href' , $url + "&type=purchase" );
 		$modal.find( '.theme-details-link, .theme-demo-link, .theme-buy-link' ).attr( 'data-item', $json.name ).attr( 'data-price', '$ ' + $price );

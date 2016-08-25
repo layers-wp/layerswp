@@ -444,6 +444,23 @@ jQuery(function($) {
 			$(this).attr( 'src', $(this).data( 'src' ) );
 		});
 	});
+	
+	// Set the correct element as checked on init - for elements that are added after page load.
+	// eg javascript added elements like the repeater items.
+	$( document ).on( 'layers-interface-init', function( e, element ){
+		
+		$(element).find( '.layers-icon-group').each( function( j, element ) {
+
+			$select_group = $(element);
+			$select_item = $select_group.find('input[checked]');
+			$select_item_label = $select_item.parents('label');
+			
+			$select_group.find('.layers-active').removeClass('layers-active');
+			
+			$select_item_label.trigger('mousedown');
+			$select_item_label.addClass('layers-active');
+		});
+	});
 
 	/**
 	* 9 - Widget Focussing

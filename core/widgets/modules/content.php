@@ -541,6 +541,9 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 					<span>
 						<?php echo ucfirst( $type ); ?><span class="layers-detail"><?php if ( isset( $item_instance['title'] ) ) echo $this->format_repeater_title( $item_instance['title'] ); ?></span>
 					</span>
+					<span class="layers-accordion-duplicate">
+						<?php _e( 'Duplicate' , 'layerswp' ); ?>
+					</span>
 				</a>
 				
 				<section class="layers-accordion-section layers-content">

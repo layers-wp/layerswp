@@ -141,6 +141,111 @@ jQuery(document).ready(function($){
 			$(this).data( 'layers_repeater', repeater_object );
 		});
 	};
+	
+	
+	function add_item( $repeater, $item_to_duplicate ) {
+		
+		// Get elements
+		$repeater              = $repeater;
+		$repeater_add_button   = $repeater.find('.layers-widget-repeater-add-item');
+		$repeater_list         = $repeater.find('.layers-accordions');
+		$repeater_input        = $repeater.find('.layers-repeater-input');
+		$repeater_new_item_tpl = $repeater.find('.layers-widget-repeater-template');
+		$widget_form           = $repeater.parents('.widget-content');
+
+		// Generate a new unique guid.
+		$guid = Math.floor((Math.random() * 999) + 1);
+
+		// Get the template text.
+		$repeater_new_item_tpl_text = $repeater_new_item_tpl.text();
+		// Convert it to an jQuery element.
+		$new_item = $( $repeater_new_item_tpl_text );
+		
+		// Get all the inputs so we can save them for reffernece.
+		$new_item_data = $new_item.find('select, hidden, textarea, input:not([type=radio]), input:checked').serializeArray();
+		
+		// Convert the template back to text again, so we can do string replace on it.
+		$repeater_new_item_tpl = $new_item.wrapAll('<div>').parent().html();
+		// Do string replace, with the new unique guid.
+		$repeater_new_item_tpl_text = $repeater_new_item_tpl.replace( /-_-_-name-_-_-/g, $guid );
+		// Convert it back to jQuery element again.
+		$new_item = $( $repeater_new_item_tpl_text );
+		
+		// If we've passed an element to refference then lets grab the data from it.
+		if ( $item_to_duplicate ) {
+			
+			$( $new_item_data ).each(function( index ){
+				
+				// Do string replaces on the name so we know the refference field and the original field.
+				$original_name = $new_item_data[index].name;
+				$new_item_data[index].name = $original_name.replace( /-_-_-name-_-_-/g, $guid );
+				$new_item_data[index].name_to_get = $original_name.replace( /-_-_-name-_-_-/g, $item_to_duplicate );
+				
+				// Ge the refference field and the original field.
+				$field = $new_item.find( '[name="' + $new_item_data[index].name + '"]' );
+				$field_to_get = $repeater.find( '[name="' + $new_item_data[index].name_to_get + '"]' );
+								
+				if ( $field.is(':radio') ) {
+
+					// Checkobox
+					$new_value = $field_to_get.filter(':checked');
+					if ( $new_value.length ) {
+						
+						// Uncheck all.
+						$field.removeAttr('checked');
+						$field.prop( 'checked', false );
+						
+						// Check the correct field.
+						$new_field = $field.filter('[value="' + $new_value.val() + '"]');
+						$new_field.prop( 'checked', true );
+						$new_field.attr( 'checked', 'checked' );
+					}
+				}
+				else {
+
+					// Inuput, Select, etc
+					$field.val( $field_to_get.val() );
+				}
+			});
+		}
+
+		// Hide the section so just title is showing.
+		$new_item.find('.layers-accordion-section').hide();
+
+		// Append item HTML
+		$repeater_list.append($new_item);
+
+		// Append item IDs to the items input
+		$new_item_guids = [];
+		$repeater_list.find( 'li.layers-accordion-item' ).each(function(){
+			$new_item_guids.push( $(this).data( 'guid' ) );
+		});
+
+		// Trigger change for ajax save
+		$repeater_input.val( $new_item_guids.join() ).layers_trigger_change();
+
+		// Trigger interface init. will trigger init of elements eg colorpickers etc
+		$(document).trigger( 'layers-interface-init', $new_item );
+		
+		// Remove loading class
+		$repeater_add_button.removeClass('layers-loading-button');
+
+		// Add Open Class to item
+		setTimeout( function(){
+			$new_item.find('.layers-accordion-title').trigger('click');
+		}, 300 );
+	}
+	
+	$( document ).on( 'click', '.layers-accordion-duplicate', function( e, element ){
+		
+		$repeater = $(this).closest('.layers-widget-repeater');
+		$repeater_item_clicked = $(this).closest('.layers-accordion-item');
+		$repeater_item_clicked_guid = $repeater_item_clicked.attr('data-guid');
+
+		add_item( $repeater, $repeater_item_clicked_guid );
+		
+		return false;
+	});
 
 	/**
 	* 2 - Init Init Repeaters
@@ -242,5 +347,6 @@ jQuery(document).ready(function($){
 		// Update the accordian title
 		$that.closest( '.layers-accordion-item' ).find( 'span.layers-detail' ).text( $string );
 	});
+	
 
 }); //jQuery

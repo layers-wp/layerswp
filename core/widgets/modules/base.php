@@ -549,6 +549,16 @@ if( !class_exists( 'Layers_Widget' ) ) {
 					}
 					?>
 				</ul>
+				
+				<?php
+				// Settings this will add these prefixes to both the get_layers_field_id(),
+				// and get_layers_field_name() string construction.
+				$this->field_attribute_prefixes = array( "{$type}s", '-_-_-name-_-_-' );
+				?>
+				<script type="text/html" id="tmpl-my-template" class="layers-widget-repeater-template">
+					<?php $this->$function_name( '-_-_-name-_-_-', array() ); ?>
+				</script>
+				<?php unset( $this->field_attribute_prefixes ); ?>
 
 				<?php if ( $options['show_add_button'] ) { ?>
 					<button class="layers-button btn-full layers-widget-repeater-add-item add-new-widget">

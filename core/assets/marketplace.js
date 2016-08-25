@@ -64,6 +64,14 @@ jQuery(function($) {
 	/**
 	* 3 - Modal population script
 	*/
+
+	function layers_marketplace_hide_preview(){
+		$( '.theme-preview' ).html('').hide();
+		$( '.theme-about' ).removeClass( 'l_admin-hide' ).show();
+
+		$( '.theme-demo-link' ).text( $( '.theme-demo-link' ).data( 'show-preview-label' ) );
+	}
+
 	$(document).on( 'click', '#layers-marketplace [data-view-item^="product-details-"]', function(e){
 		e.preventDefault();
 
@@ -76,6 +84,7 @@ jQuery(function($) {
 		var $json = jQuery.parseJSON( $my_data );
 
 		var $showing_preview = false;
+		var $demo_url = $json.demo_url;
 
 		$modal = $( '.theme-overlay' );
 
@@ -103,14 +112,16 @@ jQuery(function($) {
 		/**
 		* Product Preview
 		*/
+
+		layers_marketplace_hide_preview();
+
 		$( '.theme-demo-link' ).on( 'click', function( e ){
+
 			e.preventDefault();
 
-			if( 'undefined' !== typeof( $json.allow_demo ) && '' !== $json.demo_url && false == $showing_preview ){
+			if( 'undefined' !== typeof( $json.allow_demo ) && '' !== $demo_url && 0 == $( '.theme-preview iframe' ).length ){
 
-				$showing_preview = true;
-
-				$iframe = $( '<iframe />' ).attr( 'src', $json.demo_url );
+				$iframe = $( '<iframe />' ).attr( 'src', $demo_url );
 				$iframe.attr( 'height', $( '.theme-preview' ).outerHeight() );
 
 				$( '.theme-preview' ).html( $iframe ).removeClass( 'l_admin-hide' ).show();
@@ -119,13 +130,7 @@ jQuery(function($) {
 
 				$(this).text( $(this).data( 'hide-preview-label' ) );
 			} else {
-
-				$showing_preview = false;
-
-				$( '.theme-preview' ).html('').hide();
-				$( '.theme-about' ).removeClass( 'l_admin-hide' ).show();
-
-				$(this).text( $(this).data( 'show-preview-label' ) );
+				layers_marketplace_hide_preview()
 			}
 		});
 
@@ -238,6 +243,9 @@ jQuery(function($) {
 	marketplace_sort();
 
 	function marketplace_sort(){
+
+		if( $( 'div.l_admin-products' ).count == 0 ) return;
+
 		// If this is the first time the page is loading fade in the products
 		$( '.l_admin-marketplace-loading' ).fadeOut( 350 );
 

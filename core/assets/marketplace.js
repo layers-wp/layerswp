@@ -186,12 +186,12 @@ jQuery(function($) {
 
 	$(document).on( 'click', '.theme-demo-link', function(e){
 
-		e.preventDefault();
-
 		var $demo_url = $(this).attr( 'data-demo-url' );
 		var $allow_demo = $(this).attr( 'data-allow-demo' );
 
 		if( 'true' == $allow_demo && '' !== $demo_url && 0 == $( '.theme-preview iframe' ).length ){
+
+			e.preventDefault();
 
 			$iframe = $( '<iframe />' ).attr( 'src', $demo_url );
 			$iframe.attr( 'height', $( '.theme-preview' ).outerHeight() );

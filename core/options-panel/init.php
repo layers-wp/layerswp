@@ -110,7 +110,7 @@ class Layers_Options_Panel {
 	/**
 	* Complex Header with Menu
 	*/
-	public function marketplace_header( $title = NULL, $excerpt = NULL ){
+	public function marketplace_header( $title = NULL, $excerpt = NULL, $marketplace = 'layerswp' ){
 
 		$api = new Layers_API();
 
@@ -123,7 +123,11 @@ class Layers_Options_Panel {
 				<h2 class="l_admin-heading" id="layers-options-header">
 					<?php echo esc_html( $title ); ?>
 					<span class="l_admin-small">
-						<?php _e( sprintf( 'Powered by <a href="%s">Envato</a>', 'http://www.themeforest.net/?ref=obox' ), 'layerswp' ); ?>
+					<?php if( 'envato' == $marketplace ){ ?>
+							<?php _e( sprintf( 'Powered by <a href="%s">Envato</a>', 'http://www.themeforest.net/?ref=obox' ), 'layerswp' ); ?>
+					<?php } else { ?>
+							<?php _e( sprintf( 'Powered by <a href="%s">Layers</a>', 'https://www.layerswp.com' ), 'layerswp' ); ?>
+					<?php } ?>
 					</span>
 				</h2>
 			<?php } ?>
@@ -589,8 +593,8 @@ function layers_options_panel_menu(){
 
 		$marketplace_extensions = add_submenu_page(
 			LAYERS_THEME_SLUG . '-marketplace',
-			__( 'Third Party' , 'layerswp' ),
-			__( 'Third Party' , 'layerswp' ),
+			__( 'Envato' , 'layerswp' ),
+			__( 'Envato' , 'layerswp' ),
 			'edit_theme_options',
 			'admin.php?page=layers-marketplace&marketplace=envato'
 		);

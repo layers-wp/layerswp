@@ -204,6 +204,7 @@ class Layers_API {
 				$product[ 'price' ] = (float) ($p_details->price_cents/100);
 				$product[ 'trending' ] = ( isset( $p_details->trending ) && '1' == $p_details->trending ? 1 : 0 );
 				$product[ 'demo_url' ] = ( isset( $p_details->previews->live_site->url ) ? $p_details->previews->live_site->url : '' );
+				$product[ 'allow_demo' ] = FALSE;
 				 /**
 				* Get images and/or video
 				**/

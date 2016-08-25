@@ -365,7 +365,7 @@ $all_categories = array(); ?>
 					<a href="" class="button button-secondary theme-details-link" target="_blank">
 						<?php _e( 'More Info' , 'layerswp' ); ?>
 					</a>
-					<a href="" class="button button-secondary theme-demo-link" data-hide-preview-label="<?php _e( 'Hide Preview', 'layerswp' ); ?>" data-show-preview-label="<?php _e( 'Preview', 'layerswp' ); ?>" target="_blank">
+					<a href="" class="button button-secondary theme-demo-link" data-demo-url='' data-hide-preview-label="<?php _e( 'Hide Preview', 'layerswp' ); ?>" data-show-preview-label="<?php _e( 'Preview', 'layerswp' ); ?>" target="_blank">
 						<?php _e( 'Preview' , 'layerswp' ); ?>
 					</a>
 					<a href="" class="button btn-secondary theme-buy-link" target="_blank">

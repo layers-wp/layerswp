@@ -66,7 +66,8 @@ jQuery(function($) {
 	*/
 
 	function layers_marketplace_hide_preview(){
-		$( '.theme-preview' ).html('').hide();
+		$( '.theme-preview iframe' ).remove();
+		$( '.theme-preview' ).hide();
 		$( '.theme-about' ).removeClass( 'l_admin-hide' ).show();
 
 		$( '.theme-demo-link' ).text( $( '.theme-demo-link' ).data( 'show-preview-label' ) );
@@ -81,11 +82,8 @@ jQuery(function($) {
 
 		var $my_data = $( $id ).find( 'input' ).val();
 
-		var $json = jQuery.parseJSON( $my_data );
-
-		var $showing_preview = false;
-		var $demo_url = $json.demo_url;
-
+		var $json = '';
+		$json = jQuery.parseJSON( $my_data );
 		$modal = $( '.theme-overlay' );
 
 		/**
@@ -115,25 +113,8 @@ jQuery(function($) {
 
 		layers_marketplace_hide_preview();
 
-		$( '.theme-demo-link' ).on( 'click', function( e ){
-
-			e.preventDefault();
-
-			if( 'undefined' !== typeof( $json.allow_demo ) && '' !== $demo_url && 0 == $( '.theme-preview iframe' ).length ){
-
-				$iframe = $( '<iframe />' ).attr( 'src', $demo_url );
-				$iframe.attr( 'height', $( '.theme-preview' ).outerHeight() );
-
-				$( '.theme-preview' ).html( $iframe ).removeClass( 'l_admin-hide' ).show();
-
-				$( '.theme-about' ).addClass( 'l_admin-hide' ).hide();
-
-				$(this).text( $(this).data( 'hide-preview-label' ) );
-			} else {
-				layers_marketplace_hide_preview()
-			}
-		});
-
+		$( '.theme-demo-link' ).attr( 'data-allow-demo', $json.allow_demo );
+		$( '.theme-demo-link' ).attr( 'data-demo-url', $json.demo_url );
 
 		/**
 		* Product Links
@@ -142,7 +123,7 @@ jQuery(function($) {
 
 		$modal.find( '.theme-details-link' ).attr( 'href' , $url );
 		if( 'undefined' !== typeof $json.demo_url ){
-			$modal.find( '.theme-demo-link' ).show().attr( 'href' , $url + '&type=demo&slug=' + $( $id ).data( 'slug' ) );
+			$modal.find( '.theme-demo-link' ).show().attr( 'href' , $json.demo_url + '&type=demo&slug=' + $( $id ).data( 'slug' ) );
 		} else {
 			$modal.find( '.theme-demo-link' ).hide();
 		}
@@ -203,6 +184,28 @@ jQuery(function($) {
 
 	});
 
+	$(document).on( 'click', '.theme-demo-link', function(e){
+
+		e.preventDefault();
+
+		var $demo_url = $(this).attr( 'data-demo-url' );
+		var $allow_demo = $(this).attr( 'data-allow-demo' );
+
+		if( 'true' == $allow_demo && '' !== $demo_url && 0 == $( '.theme-preview iframe' ).length ){
+
+			$iframe = $( '<iframe />' ).attr( 'src', $demo_url );
+			$iframe.attr( 'height', $( '.theme-preview' ).outerHeight() );
+
+			$( '.theme-preview' ).html( $iframe ).removeClass( 'l_admin-hide' ).show();
+
+			$( '.theme-about' ).addClass( 'l_admin-hide' ).hide();
+
+			$(this).text( $(this).data( 'hide-preview-label' ) );
+		} else {
+			layers_marketplace_hide_preview()
+		}
+
+	});
 	/**
 	* 4 - Marketplace Filter and Search functions
 	*/

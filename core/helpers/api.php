@@ -153,20 +153,16 @@ class Layers_API {
 		}
 
 		if( is_wp_error( $product_list ) ) return $product_list;
-
+/*
 		echo '<pre>';
 		print_r( $product_list );
 		echo '</pre>';
+		die();
+*/
 
 		$response = $this->translate_list( $product_list );
 
-		echo '<pre>';
-		print_r( $response );
-		echo '</pre>';
-
-		die( "$marketplace, $type" );
-
-		die();
+		return json_decode( $response );
 
 	}
 
@@ -190,19 +186,24 @@ class Layers_API {
 
 				$envato_url = 'http://www.layerswp.com/go-envato/?id=' . esc_attr( $p_details->id ) . '&item=' . esc_attr( $p_details->name ). '&site=' . $site_key;
 
+				$categories = explode( '/', $p_details->classification );
+
 				$product[ 'id' ] = (int) $p_details->id;
 				$product[ 'url' ] = esc_attr( $envato_url );
 				$product[ 'name' ] = esc_attr( $p_details->name );
+				$product[ 'description' ] = esc_attr( $p_details->description );
 				$product[ 'tags' ] = strtolower( implode( ',', $p_details->tags ) );
-				$product[ 'categories' ] = strtolower( $p_details->classification );
+				$product[ 'categories' ] = strtolower( implode( ',', $categories ) );
 				$product[ 'slug' ] = sanitize_title( $p_details->name );
 				$product[ 'updated' ] = strtotime( $p_details->updated_at );
 				$product[ 'sales' ] = esc_attr( $p_details->number_of_sales );
 				$product[ 'rating' ] = ( $p_details->rating->count > 0 ? ceil( $p_details->rating->rating ) : '' ) ;
 				$product[ 'author' ] = $p_details->author_username;
+				$product[ 'author_image' ] = $p_details->author_image;
+				$product[ 'author_url' ] = $p_details->author_url;
 				$product[ 'price' ] = (float) ($p_details->price_cents/100);
 				$product[ 'trending' ] = ( isset( $p_details->trending ) && '1' == $p_details->trending ? 1 : 0 );
-
+				$product[ 'demo_url' ] = ( isset( $p_details->previews->live_site->url ) ? $p_details->previews->live_site->url : '' );
 				 /**
 				* Get images and/or video
 				**/
@@ -226,18 +227,28 @@ class Layers_API {
 
 				$product = array();
 
+				$utm = '?utm_source=marketplace&utm_medium=link&utm_term=' . $p_details->name . '&utm_campaign=Layers%20Marketplace';
+				$demo_utm = '?utm_source=marketplace&utm_medium=preview&utm_term=' . $p_details->name . '&utm_campaign=Layers%20Marketplace%20Preview';
+
 				$product[ 'id' ] = (int) $p_details->id;
 				$product[ 'name' ] = esc_attr( $p_details->name );
-				$product[ 'url' ] = esc_attr( $p_details->permalink );
+				$product[ 'short_description' ] = $p_details->short_description;
+				$product[ 'description' ] = $p_details->description;
+				$product[ 'url' ] = esc_attr( $p_details->permalink . $utm );
 				$product[ 'slug' ] = sanitize_title( $p_details->slug );
 				$product[ 'updated' ] = strtotime( $p_details->date_modified );
 				$product[ 'sales' ] = esc_attr( $p_details->total_sales );
 				$product[ 'author' ] = 'Obox';
-				$product[ 'price' ] = (float) ($p_details->price/100);
+				$product[ 'author_image' ] = 'https://0.s3.envato.com/files/86093381/tf-avatar-2.jpg';
+				$product[ 'author_url' ] = 'https://layerswp.com/';
+				$product[ 'price' ] = (float) ($p_details->price);
+				$product[ 'demo_url' ] = ( isset( $p_details->demo_url ) && '' != $p_details->demo_url ? $p_details->demo_url . $demo_utm : '' );
+				$product[ 'allow_demo' ] = (bool) ( isset( $p_details->demo_url ) && '' != $p_details->demo_url ? 1 : 0 );
 				$product[ 'trending' ] = 0;
 
+
 				$tags = array();
-				foreach( $p_details->categories as $p_tag_key => $p_tag_details ){
+				foreach( $p_details->tags as $p_tag_key => $p_tag_details ){
 					$tags[] = $p_tag_details->slug;
 				}
 				$product[ 'tags' ] = strtolower( implode( ',', $tags ) );
@@ -255,6 +266,8 @@ class Layers_API {
 				foreach( $p_details->images as $img_key => $img_detail ){
 					$product[ 'is_img' ] = 1;
 					$product[ 'media_src' ] = $img_detail->src;
+
+					break;
 				}
 
 				$response[] = $product;

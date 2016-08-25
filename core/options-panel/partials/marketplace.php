@@ -63,20 +63,22 @@ $all_categories = array(); ?>
 					</div>
 					<ul class="l_admin-list l_admin-page-list">
 						<li <?php if( 'themes' == $type ) { ?>class="active"<?php } ?>>
-							<a href="<?php echo admin_url( 'admin.php?page=layers-marketplace&type=themes' ); ?>">
+							<a href="<?php echo admin_url( 'admin.php?page=layers-marketplace&type=themes&marketplace=' . $marketplace ); ?>">
 								<?php _e( 'Themes' , 'layerswp' ); ?>
 							</a>
 						</li>
 						<li <?php if( 'extensions' == $type ) { ?>class="active"<?php } ?>>
-							<a href="<?php echo admin_url( 'admin.php?page=layers-marketplace&type=extensions' ); ?>">
+							<a href="<?php echo admin_url( 'admin.php?page=layers-marketplace&type=extensions&marketplace=' . $marketplace ); ?>">
 								<?php _e( 'Extensions' , 'layerswp' ); ?>
 							</a>
 						</li>
-						<li <?php if( 'stylekits' == $type ) { ?>class="active"<?php } ?>>
-							<a href="<?php echo admin_url( 'admin.php?page=layers-marketplace&type=stylekits' ); ?>">
-								<?php _e( 'Style Kits' , 'layerswp' ); ?>
-							</a>
-						</li>
+						<?php if( 'envato' == $marketplace ) { ?>
+							<li <?php if( 'stylekits' == $type ) { ?>class="active"<?php } ?>>
+								<a href="<?php echo admin_url( 'admin.php?page=layers-marketplace&type=stylekits&marketplace=' . $marketplace ); ?>">
+									<?php _e( 'Style Kits' , 'layerswp' ); ?>
+								</a>
+							</li>
+						<?php } ?>
 					</ul>
 
 				</div>
@@ -149,13 +151,13 @@ $all_categories = array(); ?>
 
 					<div class="l_admin-products l_admin-hide">
 
-						<?php foreach( $products->matches as $key => $details ) {
+						<?php foreach( $products as $key => $details ) {
 
-							if( FALSE === in_array(  ucfirst( strtolower( $details->author_username ) ), $all_authors ) ){
-								$all_authors[] = ucfirst( strtolower( $details->author_username ) );
+							if( FALSE === in_array(  ucfirst( strtolower( $details->author ) ), $all_authors ) ){
+								$all_authors[] = ucfirst( strtolower( $details->author ) );
 							}
 
-							foreach( explode( '/', $details->classification ) as $c_value ){
+							foreach( explode( ',', $details->categories ) as $c_value ){
 								if( isset( $all_categories[$c_value] ) ) {
 									$c_count = $all_categories[ $c_value ][ 'count' ];
 								} else {
@@ -167,7 +169,7 @@ $all_categories = array(); ?>
 							}
 							ksort( $all_categories );
 
-							foreach( $details->tags as $t_key => $t_value ) {
+							foreach( explode( ',', $details->tags ) as $t_key => $t_value ) {
 								if( isset( $all_tags[$t_value] ) ) {
 									$t_count = $all_tags[ $t_value ][ 'count' ];
 								} else {
@@ -183,43 +185,28 @@ $all_categories = array(); ?>
 							<div
 								id="product-details-<?php echo $details->id; ?>" class="l_admin-column l_admin-span-6 l_admin-product l_admin-animate" tabindex="0"
 								data-id="<?php echo $details->id; ?>"
-								data-url="<?php echo esc_attr( $envato_url ); ?>"
-								data-tags="<?php echo strtolower( implode( ',', $details->tags ) ); ?>"
-								data-categories="<?php echo strtolower( $details->classification ); ?>"
+								data-url="<?php echo esc_attr( $details->url ); ?>"
+								data-demo_url="<?php echo esc_attr( $details->demo_url ); ?>"
+								data-tags="<?php echo strtolower( $details->tags ); ?>"
+								data-categories="<?php echo strtolower( $details->categories ); ?>"
 								data-slug="<?php echo sanitize_title( $details->name ); ?>"
-								data-updated="<?php echo strtotime( $details->updated_at ); ?>"
+								data-updated="<?php echo strtotime( $details->updated ); ?>"
 								data-name="<?php echo esc_attr( $details->name ); ?>"
-								data-sales="<?php echo esc_attr( $details->number_of_sales ); ?>"
-								data-rating="<?php echo ( $details->rating->count > 0 ? ceil( $details->rating->rating ) : '' ) ; ?>"
-								data-author="<?php echo $details->author_username; ?>"
-								data-price="<?php echo (float) ($details->price_cents/100); ?>"
+								data-sales="<?php echo esc_attr( $details->sales ); ?>"
+								data-rating="<?php echo ( $details->rating ); ?>"
+								data-author="<?php echo $details->author; ?>"
+								data-price="<?php echo (float) ($details->price); ?>"
 								data-trending="<?php echo ( isset( $details->trending ) && '1' == $details->trending ? 1 : 0 ); ?>">
 								<label for="layers-preset-layout-<?php echo esc_attr( $details->id ); ?>-radio">
 
-									<?php /**
-									* Get images and/or video
-									**/
-									$previews = $details->previews;
-
-									if ( isset( $previews->icon_with_landscape_preview->landscape_url ) && strpos( $previews->icon_with_landscape_preview->landscape_url, '//' ) ) {
-										$is_img = 1;
-										$image_src = $previews->icon_with_landscape_preview->landscape_url ;
-									} else if ( isset( $previews->icon_with_video_preview->landscape_url ) && strpos( $previews->icon_with_video_preview->landscape_url, '//' ) ) {
-										$is_img = 1;
-	                           			$image_src = $previews->icon_with_video_preview->landscape_url ;
-									} else if ( isset( $previews->icon_with_video_preview->video_url ) && strpos( $previews->icon_with_video_preview->video_url, '//' ) ) {
-										$is_img = 0;
-										$video_src = $previews->icon_with_video_preview->video_url ;
-									} ?>
-
 									<div class="l_admin-product-extra-info l_admin-animate">
 										<span class="l_admin-pull-left l_admin-sales-count">
-											<?php echo esc_attr( $details->number_of_sales ); ?> sales
+											<?php echo sprintf( _n( '%s sale', '%s sales', $details->sales, 'layerswp' ), $details->sales ); ?>
 										</span>
-										<?php if( isset( $details->rating ) && 3 <= $details->rating->count && 2<= $details->rating->rating ) { ?>
+										<?php if( isset( $details->rating ) ) { ?>
 											<div class="l_admin-pull-right theme-rating star-rating l_admin-push-left-small">
 												<?php for( $i = 1; $i < 6; $i++ ){ ?>
-													<?php if( ceil( $details->rating->rating ) >= $i ) { ?>
+													<?php if( ceil( $details->rating ) >= $i ) { ?>
 														<span class="star star-full"></span>
 													<?php } else { ?>
 														<span class="star star-empty"></span>
@@ -229,12 +216,12 @@ $all_categories = array(); ?>
 										<?php } ?>
 									</div>
 
-									<?php if( isset( $image_src ) ) { ?>
+									<?php if ( isset( $details->media_src ) ) { ?>
 										<div class="l_admin-product-screenshot" data-view-item="product-details-<?php echo $details->id; ?>">
-											<?php if( 1 == $is_img ) { ?>
-												<img src="<?php echo esc_url( $image_src ); ?>" />
+											<?php if( 1 == $details->is_img ) { ?>
+												<img src="<?php echo esc_url( $details->media_src ); ?>" />
 											<?php } else { ?>
-												<?php layers_show_html5_video( esc_url( $video_src ) ); ?>
+												<?php layers_show_html5_video( esc_url( $details->media_src ) ); ?>
 											<?php } ?>
 										</div>
 									<?php } ?>
@@ -242,14 +229,16 @@ $all_categories = array(); ?>
 									<h3 class="l_admin-product-name" id="<?php echo esc_attr( $details->id ); ?>">
 										<?php echo esc_html( $details->name ); ?>
 									</h3>
-
+									<?php if( isset( $details->short_description ) ) { ?>
+										<div class="l_admin-excerpt"><?php echo $details->short_description; ?></div>
+									<?php } ?>
 									<div class="l_admin-marketplace-actions">
 										<a class="l_admin-pull-left button" data-item="<?php echo esc_attr( $details->name ); ?>" data-view-item="product-details-<?php echo $details->id; ?>" href="<?php echo $envato_url; ?>" target="_blank">
 											<?php _e( 'Details' , 'layerswp' ); ?>
 										</a>
-										<a class="l_admin-pull-right button btn-secondary" href="<?php echo $envato_url; ?>&type=purchase" target="_blank" data-item="<?php echo esc_attr( $details->name ); ?>" data-price="$ <?php echo (float) ($details->price_cents/100); ?>">
+										<a class="l_admin-pull-right button btn-secondary" href="<?php echo $details->url; ?>&type=purchase" target="_blank" data-item="<?php echo esc_attr( $details->name ); ?>" data-price="$ <?php echo (float) ($details->price); ?>">
 											<span class="l_admin-price">
-												$<?php echo (float) ($details->price_cents/100); ?>
+												$<?php echo (float) ($details->price); ?>
 											</span>
 											<?php _e( 'Buy Now' , 'layerswp' ); ?>
 										</a>
@@ -376,12 +365,12 @@ $all_categories = array(); ?>
 					<a href="" class="button button-secondary theme-details-link" target="_blank">
 						<?php _e( 'More Info' , 'layerswp' ); ?>
 					</a>
-					<a href="" class="button button-secondary theme-demo-link" target="_blank">
+					<a href="" class="button button-secondary theme-demo-link" data-hide-preview-label="<?php _e( 'Hide Preview', 'layerswp' ); ?>" data-show-preview-label="<?php _e( 'Preview', 'layerswp' ); ?>" target="_blank">
 						<?php _e( 'Preview' , 'layerswp' ); ?>
 					</a>
 					<a href="" class="button btn-secondary theme-buy-link" target="_blank">
 						<span class="l_admin-price theme-price">
-							$<?php echo (float) ($details->price_cents/100); ?>
+							$<?php echo (float) ($details->price); ?>
 						</span>
 						<?php _e( 'Buy Now', 'layerswp' ); ?>
 					</a>

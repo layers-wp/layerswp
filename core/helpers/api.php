@@ -144,15 +144,182 @@ class Layers_API {
 		}
 	}
 
+	public function get_product_list( $marketplace = 'layerswp' , $type = 'themes' ){
+
+		if( 'layerswp' == $marketplace ) {
+			$product_list = $this->get_layers_list( $type );
+		} else {
+			$product_list = $this->get_envato_list( $type );
+		}
+
+		if( is_wp_error( $product_list ) ) return $product_list;
+/*
+		echo '<pre>';
+		print_r( $product_list );
+		echo '</pre>';
+		die();
+*/
+
+		$response = $this->translate_list( $product_list );
+
+		return json_decode( $response );
+
+	}
+
+	public function translate_list( $product_list = array() ){
+
+		if( empty( $product_list ) ) return;
+
+		$response = array();
+
+		if( isset( $product_list->matches ) ){
+
+			foreach( $product_list->matches as $p_key => $p_details ){
+
+				$product = array();
+
+				if( 'themeforest.net' == $p_details->site ){
+					$site_key = 'tf';
+				} else {
+					$site_key = 'cc';
+				}
+
+				$envato_url = 'http://www.layerswp.com/go-envato/?id=' . esc_attr( $p_details->id ) . '&item=' . esc_attr( $p_details->name ). '&site=' . $site_key;
+
+				$categories = explode( '/', $p_details->classification );
+
+				$product[ 'id' ] = (int) $p_details->id;
+				$product[ 'url' ] = esc_attr( $envato_url );
+				$product[ 'name' ] = esc_attr( $p_details->name );
+				$product[ 'description' ] = esc_attr( $p_details->description );
+				$product[ 'tags' ] = strtolower( implode( ',', $p_details->tags ) );
+				$product[ 'categories' ] = strtolower( implode( ',', $categories ) );
+				$product[ 'slug' ] = sanitize_title( $p_details->name );
+				$product[ 'updated' ] = strtotime( $p_details->updated_at );
+				$product[ 'sales' ] = esc_attr( $p_details->number_of_sales );
+				$product[ 'rating' ] = ( $p_details->rating->count > 0 ? ceil( $p_details->rating->rating ) : '' ) ;
+				$product[ 'author' ] = $p_details->author_username;
+				$product[ 'author_image' ] = $p_details->author_image;
+				$product[ 'author_url' ] = $p_details->author_url;
+				$product[ 'price' ] = (float) ($p_details->price_cents/100);
+				$product[ 'trending' ] = ( isset( $p_details->trending ) && '1' == $p_details->trending ? 1 : 0 );
+				$product[ 'demo_url' ] = ( isset( $p_details->previews->live_site->url ) ? $p_details->previews->live_site->url : '' );
+				$product[ 'allow_demo' ] = FALSE;
+				 /**
+				* Get images and/or video
+				**/
+				$previews = $p_details->previews;
+
+				if ( isset( $previews->icon_with_landscape_preview->landscape_url ) && strpos( $previews->icon_with_landscape_preview->landscape_url, '//' ) ) {
+					$product[ 'is_img' ] = 1;
+					$product[ 'media_src' ] = $previews->icon_with_landscape_preview->landscape_url ;
+				} else if ( isset( $previews->icon_with_video_preview->landscape_url ) && strpos( $previews->icon_with_video_preview->landscape_url, '//' ) ) {
+					$product[ 'is_img' ] = 1;
+           			$product[ 'media_src' ] = $previews->icon_with_video_preview->landscape_url ;
+				} else if ( isset( $previews->icon_with_video_preview->video_url ) && strpos( $previews->icon_with_video_preview->video_url, '//' ) ) {
+					$product[ 'is_img' ] = 0;
+					$product[ 'media_src' ] = $previews->icon_with_video_preview->video_url ;
+				}
+
+				$response[] = $product;
+			}
+		} else {
+			foreach( $product_list as $p_key => $p_details ){
+
+				$product = array();
+
+				$utm = '?utm_source=marketplace&utm_medium=link&utm_term=' . $p_details->name . '&utm_campaign=Layers%20Marketplace';
+				$demo_utm = '?utm_source=marketplace&utm_medium=preview&utm_term=' . $p_details->name . '&utm_campaign=Layers%20Marketplace%20Preview';
+
+				$product[ 'id' ] = (int) $p_details->id;
+				$product[ 'name' ] = esc_attr( $p_details->name );
+				$product[ 'short_description' ] = $p_details->short_description;
+				$product[ 'description' ] = $p_details->description;
+				$product[ 'url' ] = esc_attr( $p_details->permalink . $utm );
+				$product[ 'slug' ] = sanitize_title( $p_details->slug );
+				$product[ 'updated' ] = strtotime( $p_details->date_modified );
+				$product[ 'sales' ] = esc_attr( $p_details->total_sales );
+				$product[ 'author' ] = 'Obox';
+				$product[ 'author_image' ] = 'https://0.s3.envato.com/files/86093381/tf-avatar-2.jpg';
+				$product[ 'author_url' ] = 'https://layerswp.com/';
+				$product[ 'price' ] = (float) ($p_details->price);
+				$product[ 'demo_url' ] = ( isset( $p_details->demo_url ) && '' != $p_details->demo_url ? $p_details->demo_url . $demo_utm : '' );
+				$product[ 'allow_demo' ] = (bool) ( isset( $p_details->demo_url ) && '' != $p_details->demo_url ? 1 : 0 );
+				$product[ 'trending' ] = 0;
+
+
+				$tags = array();
+				foreach( $p_details->tags as $p_tag_key => $p_tag_details ){
+					$tags[] = $p_tag_details->slug;
+				}
+				$product[ 'tags' ] = strtolower( implode( ',', $tags ) );
+
+				$categories = array();
+				foreach( $p_details->categories as $p_cat_key => $p_cat_details ){
+					$categories[] = $p_cat_details->slug;
+				}
+				$product[ 'categories' ] = strtolower( implode( ',', $categories ) );
+				$product[ 'rating' ] = ( $p_details->rating_count > 0 ? ceil( $details->average_rating ) : '' ) ;
+
+				 /**
+				* Get images and/or video
+				**/
+				foreach( $p_details->images as $img_key => $img_detail ){
+					$product[ 'is_img' ] = 1;
+					$product[ 'media_src' ] = $img_detail->src;
+
+					break;
+				}
+
+				$response[] = $product;
+			}
+		}
+
+		return json_encode( $response );
+
+	}
+
+	public function get_layers_list( $p_type = 'themes' ){
+
+		$product_types = array(
+			'themes' => 83,
+			'extensions' => 81
+		);
+
+		$api_call = wp_remote_get( 'https://www.layerswp.com/wp-json/wc/v1/products/?consumer_key=
+ck_850f668ddbad3705ecd10fe4f010dcc6e849a5ae
+&consumer_secret=cs_5c46a37a8890a4c2aa2af3c0226a6d489c6e7f70&category=' . $product_types[ $p_type ] );
+
+		if( is_wp_error( $api_call ) ) {
+
+			// Return an error if we have one
+			return $api_call;
+		} else {
+
+			// If the call is successful, well then send back decoded JSON
+			return json_decode( wp_remote_retrieve_body( $api_call ) );
+		}
+	}
+
 	/**
 	* Give us a list of available extensions
 	*/
-	public function get_stylekit_list(){
+	public function get_envato_list( $p_type = 'themes' ){
 		// Set the right end point to use
 		$endpoint = 'discovery/search/search/item';
 
 		// Specify a query string here we tell the API what search parameters to use
-		$query_string = 'site=codecanyon.net&category=skins/layers-wp-style-kits';
+		switch( $p_type ){
+			case 'stylekits' :
+				$query_string = 'site=codecanyon.net&category=skins/layers-wp-style-kits';
+				break;
+			case 'extensions' :
+				$query_string = 'site=codecanyon.net&compatible_with=Layers%20WP';
+				break;
+			default:
+				$query_string = 'site=themeforest.net&compatible_with=Layers%20WP';
+				break;
+		}
 
 		// Do the API call
 		$api_call = $this->do_envato_api_call( $endpoint, $query_string, 'get' );
@@ -168,48 +335,6 @@ class Layers_API {
 		}
 	}
 
-	public function get_theme_list(){
-		$endpoint = 'discovery/search/search/item';
-
-		// Specify a query string here we tell the API what search parameters to use
-		$query_string = 'site=themeforest.net&compatible_with=Layers%20WP';
-
-		// Do the API call
-		$api_call = $this->do_envato_api_call( $endpoint, $query_string, 'get' );
-
-		if( is_wp_error( $api_call ) ) {
-
-			// Return an error if we have one
-			return $api_call;
-		} else {
-
-			// If the call is successful, well then send back decoded JSON
-			return json_decode( $api_call );
-		}
-	}
-
-	/**
-	* Give us a list of available extensions
-	*/
-	public function get_extension_list(){
-		$endpoint = 'discovery/search/search/item';
-
-		// Specify a query string here we tell the API what search parameters to use
-		$query_string = 'site=codecanyon.net&compatible_with=Layers%20WP';
-
-		// Do the API call
-		$api_call = $this->do_envato_api_call( $endpoint, $query_string, 'get' );
-
-		if( is_wp_error( $api_call ) ) {
-
-			// Return an error if we have one
-			return $api_call;
-		} else {
-
-			// If the call is successful, well then send back decoded JSON
-			return json_decode( $api_call );
-		}
-	}
 	public function get_popular( $site = 'themeforest' ){
 		$endpoint = 'market/popular:' . $site . '.json';
 
@@ -227,4 +352,5 @@ class Layers_API {
 		}
 
 	}
+
 }

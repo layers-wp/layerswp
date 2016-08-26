@@ -2068,6 +2068,11 @@
 		border-top: 1px solid #eee;
 	}
 
+	#layers-marketplace .l_admin-product .l_admin-excerpt{
+		margin: -15px 0 0 0;
+		padding: 0px 15px;
+	}
+
 	#layers-marketplace .l_admin-marketplace-actions .theme-rating{
 		padding-top: 4px;
 	}
@@ -2096,6 +2101,18 @@
 		margin: 0;
 		padding: 0;
 		text-decoration: none;
+	}
+
+	#layers-marketplace .theme-overlay .theme-preview{
+		display: block;
+		height: 90%;
+	}
+
+	#layers-marketplace .theme-overlay iframe{
+		display: block;
+		margin-top: 50px;
+		width: 100%;
+		height: 100%;
 	}
 
 	@media only screen and (max-width: 1440px){

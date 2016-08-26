@@ -64,6 +64,15 @@ jQuery(function($) {
 	/**
 	* 3 - Modal population script
 	*/
+
+	function layers_marketplace_hide_preview(){
+		$( '.theme-preview iframe' ).remove();
+		$( '.theme-preview' ).hide();
+		$( '.theme-about' ).removeClass( 'l_admin-hide' ).show();
+
+		$( '.theme-demo-link' ).text( $( '.theme-demo-link' ).data( 'show-preview-label' ) );
+	}
+
 	$(document).on( 'click', '#layers-marketplace [data-view-item^="product-details-"]', function(e){
 		e.preventDefault();
 
@@ -73,8 +82,8 @@ jQuery(function($) {
 
 		var $my_data = $( $id ).find( 'input' ).val();
 
-		var $json = jQuery.parseJSON( $my_data );
-
+		var $json = '';
+		$json = jQuery.parseJSON( $my_data );
 		$modal = $( '.theme-overlay' );
 
 		/**
@@ -91,24 +100,21 @@ jQuery(function($) {
 		/**
 		* Product Meta
 		*/
-		$price = $json.price_cents/100;
+		$price = $json.price;
 		$modal.find( '.theme-author-img' ).attr( 'src' , $json.author_image );
 		$modal.find( '.theme-author' ).attr( 'href' , $json.author_url )
-		$modal.find( '.theme-author' ).text( 'By ' + $json.author_username );
-		$sales_word = ( $json.number_of_sales == 1 ? ' sale' : ' sales' );
-		$modal.find( '.theme-sales' ).html( $json.number_of_sales + $sales_word);
+		$modal.find( '.theme-author' ).text( 'By ' + $json.author );
+		$sales_word = ( $json.sales == 1 ? ' sale' : ' sales' );
+		$modal.find( '.theme-sales' ).html( $json.sales + $sales_word);
 
 		/**
 		* Product Preview
-
-		if( 'undefined' !== typeof( $json.previews.live_site.url ) ){
-			$iframe = $( '<iframe />' ).attr( 'src', $json.previews.live_site.url );
-			$( '.theme-preview' ).html( $iframe ).removeClass( 'l_admin-hide' ).show();
-			$( '.theme-about' ).hide();
-		} else {
-			$( '.theme-about' ).addClass( 'l_admin-hide' ).show();
-		}
 		*/
+
+		layers_marketplace_hide_preview();
+
+		$( '.theme-demo-link' ).attr( 'data-allow-demo', $json.allow_demo );
+		$( '.theme-demo-link' ).attr( 'data-demo-url', $json.demo_url );
 
 		/**
 		* Product Links
@@ -116,10 +122,10 @@ jQuery(function($) {
 		var $url = $( $id ).data( 'url' );
 
 		$modal.find( '.theme-details-link' ).attr( 'href' , $url );
-		if( 'undefined' !== typeof $json.previews.live_site ){
-			$modal.find( '.theme-demo-link' ).show().attr( 'href' , $url + '&type=demo&slug=' + $( $id ).data( 'slug' ) );
-		} else {
+		if( '' == $json.demo_url ){
 			$modal.find( '.theme-demo-link' ).hide();
+		} else {
+			$modal.find( '.theme-demo-link' ).show().attr( 'href' , $json.demo_url + '&type=demo&slug=' + $( $id ).data( 'slug' ) );
 		}
 		$modal.find( '.theme-buy-link' ).attr( 'href' , $url + "&type=purchase" );
 		$modal.find( '.theme-details-link, .theme-demo-link, .theme-buy-link' ).attr( 'data-item', $json.name ).attr( 'data-price', '$ ' + $price );
@@ -157,12 +163,12 @@ jQuery(function($) {
 		*/
 		$modal.find( '.theme-rating' ).html('');
 
-		if( 3 >= $json.rating.count ){
+		if( $json.rating ){
 			$modal.find( '.theme-rating' ).hide();
 		} else {
 			$modal.find( '.theme-rating' ).show();
 			for( i = 1; i < 6; i++ ){
-				if( i <= Math.round( $json.rating.rating ) ){
+				if( i <= Math.round( $json.rating ) ){
 					$star_class = 'star star-full';
 				} else {
 					$star_class = 'star star-empty';
@@ -178,6 +184,28 @@ jQuery(function($) {
 
 	});
 
+	$(document).on( 'click', '.theme-demo-link', function(e){
+
+		var $demo_url = $(this).attr( 'data-demo-url' );
+		var $allow_demo = $(this).attr( 'data-allow-demo' );
+
+		if( 'true' == $allow_demo && '' !== $demo_url && 0 == $( '.theme-preview iframe' ).length ){
+
+			e.preventDefault();
+
+			$iframe = $( '<iframe />' ).attr( 'src', $demo_url );
+			$iframe.attr( 'height', $( '.theme-preview' ).outerHeight() );
+
+			$( '.theme-preview' ).html( $iframe ).removeClass( 'l_admin-hide' ).show();
+
+			$( '.theme-about' ).addClass( 'l_admin-hide' ).hide();
+
+			$(this).text( $(this).data( 'hide-preview-label' ) );
+		} else {
+			layers_marketplace_hide_preview()
+		}
+
+	});
 	/**
 	* 4 - Marketplace Filter and Search functions
 	*/
@@ -218,6 +246,9 @@ jQuery(function($) {
 	marketplace_sort();
 
 	function marketplace_sort(){
+
+		if( $( 'div.l_admin-products' ).count == 0 ) return;
+
 		// If this is the first time the page is loading fade in the products
 		$( '.l_admin-marketplace-loading' ).fadeOut( 350 );
 

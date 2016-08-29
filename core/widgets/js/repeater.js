@@ -53,97 +53,25 @@ jQuery(document).ready(function($){
 					$repeater_input.val( $item_guids.join() ).layers_trigger_change();
 				}
 			});
-
-			var repeater_object = {
-				add_item : function( args ){
-					
-					// Get elements
-					$repeater            = $repeater;
-					$repeater_add_button = $repeater.find('.layers-widget-repeater-add-item');
-					$repeater_list       = $repeater.find('.layers-accordions');
-					$repeater_input      = $repeater.find('.layers-repeater-input');
-					$widget_form         = $repeater.parents('.widget-content');
-
-					// Get data
-					var data_repeater_type    = $repeater.attr( 'data-repeater-type' );
-					var data_repeater_number  = $repeater.attr( 'data-repeater-number' );
-					var data_repeater_class   = $repeater.attr( 'data-repeater-class' );
-					var data_repeater_id_base = $repeater.attr( 'data-repeater-id-base' );
-
-					// Add loading class
-					$repeater_add_button.addClass('layers-loading-button');
-
-					// Serialize input data
-					$serialized_item_inputs = $repeater_list.find( 'li.layers-accordion-item' ).last().find( 'textarea, input, select, checkbox' ).serialize();
-
-					$post_data = {
-						action          : 'layers_widget_new_repeater_item',
-						widget_action   : 'add-item',
-						item_type       : data_repeater_type,
-						item_class      : data_repeater_class,
-						item_instance   : $serialized_item_inputs,
-						id_base         : data_repeater_id_base,
-						number          : data_repeater_number,
-						nonce           : layers_widget_params.nonce,
-					};
-					
-					// -
-					if ( null != args && args.hasOwnProperty('merge_instance') )
-						$post_data['merge_instance'] = args.merge_instance;
-					
-					// Merge the extra data into the post data - so they are available to the item_xxx() function.
-					if ( null != args && args.hasOwnProperty('merge_post_data') )
-						$.extend( $post_data, $post_data, args.merge_post_data );
-										
-					$.post(
-						ajaxurl,
-						$post_data,
-						function(data){
-
-							// Set item
-							$item = $(data);
-
-							$item.find('.layers-accordion-section').hide();
-
-							// Append item HTML
-							$repeater_list.append($item);
-
-							// Append item IDs to the items input
-							$item_guids = [];
-							$repeater_list.find( 'li.layers-accordion-item' ).each(function(){
-								$item_guids.push( $(this).data( 'guid' ) );
-							});
-
-							// Trigger change for ajax save
-							$repeater_input.val( $item_guids.join() ).layers_trigger_change();
-
-							// Trigger interface init. will trigger init of elements eg colorpickers etc
-							$(document).trigger( 'layers-interface-init', $item );
-
-							// Remove loading class
-							$repeater_add_button.removeClass('layers-loading-button');
-							
-							// Custom Complete Function - passed as an arg.
-							if ( null != args && args.hasOwnProperty('complete') )
-								args.complete();
-
-							// Add Open Class to item
-							setTimeout( function(){
-								$item.find('.layers-accordion-title').trigger('click');
-							}, 300 );
-						}
-					);
-
-				},
-			};
-			
-			// Save the repeater as data - so it can be accessed to execute methods.
-			$(this).data( 'layers_repeater', repeater_object );
 		});
 	};
 	
+	/**
+	* 2 - Init Init Repeaters
+	*/
+
+	$( document ).on( 'layers-interface-init', function( e, element ){
+		
+		$(element).find( '.layers-widget-repeater' ).each( function(){
+			$(this).layersRepeater();
+		});
+	});
 	
-	function add_item( $repeater, $item_to_duplicate ) {
+	/**
+	* 3 - Add Item Function (used for 'add item', 'duplicate item')
+	*/
+	
+	function add_item( $repeater, $duplicate_guid ) {
 		
 		// Get elements
 		$repeater              = $repeater;
@@ -152,10 +80,15 @@ jQuery(document).ready(function($){
 		$repeater_input        = $repeater.find('.layers-repeater-input');
 		$repeater_new_item_tpl = $repeater.find('.layers-widget-repeater-template');
 		$widget_form           = $repeater.parents('.widget-content');
+		$duplicate_element     = $repeater_list.find('[data-guid="' + $duplicate_guid + '"]');
 
 		// Generate a new unique guid.
-		$guid = Math.floor((Math.random() * 999) + 1);
-
+		//$guid = Math.floor( ( Math.random() * 999 ) + 1 );
+		$guid = false;
+		while( ! $guid || $repeater.find('[data-guid="' + $guid + '"]').length ) {
+			$guid = _.random(100, 999);
+		}
+		
 		// Get the template text.
 		$repeater_new_item_tpl_text = $repeater_new_item_tpl.text();
 		// Convert it to an jQuery element.
@@ -167,19 +100,19 @@ jQuery(document).ready(function($){
 		// Convert the template back to text again, so we can do string replace on it.
 		$repeater_new_item_tpl = $new_item.wrapAll('<div>').parent().html();
 		// Do string replace, with the new unique guid.
-		$repeater_new_item_tpl_text = $repeater_new_item_tpl.replace( /-_-_-name-_-_-/g, $guid );
+		$repeater_new_item_tpl_text = $repeater_new_item_tpl.replace( /{{{{guid}}}}/g, $guid );
 		// Convert it back to jQuery element again.
 		$new_item = $( $repeater_new_item_tpl_text );
 		
 		// If we've passed an element to refference then lets grab the data from it.
-		if ( $item_to_duplicate ) {
+		if ( $duplicate_element.length ) {
 			
 			$( $new_item_data ).each(function( index ){
 				
 				// Do string replaces on the name so we know the refference field and the original field.
 				$original_name = $new_item_data[index].name;
-				$new_item_data[index].name = $original_name.replace( /-_-_-name-_-_-/g, $guid );
-				$new_item_data[index].name_to_get = $original_name.replace( /-_-_-name-_-_-/g, $item_to_duplicate );
+				$new_item_data[index].name = $original_name.replace( /{{{{guid}}}}/g, $guid );
+				$new_item_data[index].name_to_get = $original_name.replace( /{{{{guid}}}}/g, $duplicate_guid );
 				
 				// Ge the refference field and the original field.
 				$field = $new_item.find( '[name="' + $new_item_data[index].name + '"]' );
@@ -211,9 +144,13 @@ jQuery(document).ready(function($){
 
 		// Hide the section so just title is showing.
 		$new_item.find('.layers-accordion-section').hide();
+		$new_item.addClass('layers-accordion-item-hidden');
 
 		// Append item HTML
-		$repeater_list.append($new_item);
+		if ( $duplicate_element.length )
+			$duplicate_element.after($new_item);
+		else
+			$repeater_list.append($new_item);
 
 		// Append item IDs to the items input
 		$new_item_guids = [];
@@ -231,10 +168,16 @@ jQuery(document).ready(function($){
 		$repeater_add_button.removeClass('layers-loading-button');
 
 		// Add Open Class to item
+		$hidden_items = $repeater.find('.layers-accordion-item-hidden');
+		$hidden_items.removeClass('layers-accordion-item-hidden');
 		setTimeout( function(){
-			$new_item.find('.layers-accordion-title').trigger('click');
-		}, 300 );
+			$hidden_items.find('.layers-accordion-title').trigger('click');
+		}, 600 );
 	}
+	
+	/**
+	* 4 - Duplicate Item
+	*/
 	
 	$( document ).on( 'click', '.layers-accordion-duplicate', function( e, element ){
 		
@@ -246,20 +189,34 @@ jQuery(document).ready(function($){
 		
 		return false;
 	});
-
-	/**
-	* 2 - Init Init Repeaters
-	*/
-
+	// Add the duplciated buttons, so that we don't have to add them in the HTML.
 	$( document ).on( 'layers-interface-init', function( e, element ){
-		
-		$(element).find( '.layers-widget-repeater' ).each( function(){
-			$(this).layersRepeater();
+		$(element).find( '.layers-accordion-title' ).each( function(){
+			if ( ! $(this).find('.layers-accordion-duplicate').length ) {
+				$(this).append( $('<span class="layers-accordion-duplicate">'+ repeateri18n.duplicate_text +'</span>') );
+			}
 		});
 	});
 
 	/**
-	* 3 - Remove Item
+	* 4 - Add Item
+	*/
+	
+	$(document).on( 'click', '.layers-widget-repeater-add-item' , function(e){
+		
+		e.preventDefault();
+		$repeater           = $(this).closest('.layers-widget-repeater');
+		$last_repeater_item = $repeater.find('ul.layers-accordions > li.layers-accordion-item:last-child');
+		if ( $last_repeater_item.length )
+			$last_repeater_guid = $last_repeater_item.attr('data-guid');
+		else
+			$last_repeater_guid = 0;
+		
+		add_item( $repeater, $last_repeater_guid );
+	});
+	
+	/**
+	* 5 - Remove Item
 	*/
 	
 	$(document).on( 'click' , '.layers-widget-repeater .layers-icon-error' , function(e){
@@ -271,7 +228,7 @@ jQuery(document).ready(function($){
 
 		// Confirmation message @TODO: Make JS confirmation column
 
-		if( false === confirm( contentwidgeti18n.confirm_message ) ) return;
+		if( false === confirm( repeateri18n.confirm_message ) ) return;
 
 		// Get elements
 		$repeater_delete_button = $(this);
@@ -315,18 +272,6 @@ jQuery(document).ready(function($){
 			}, 700 );
 
 		}, 500 );
-	});
-
-	/**
-	* 4 - Add Item
-	*/
-	
-	$(document).on( 'click', '.layers-widget-repeater-add-item' , function(e){
-		
-		e.preventDefault();
-		$repeater = $(this).closest('.layers-widget-repeater');
-		$repeater_obj = $repeater.data( 'layers_repeater' );
-		$repeater_obj.add_item();
 	});
 
 	/**

@@ -553,10 +553,10 @@ if( !class_exists( 'Layers_Widget' ) ) {
 				<?php
 				// Settings this will add these prefixes to both the get_layers_field_id(),
 				// and get_layers_field_name() string construction.
-				$this->field_attribute_prefixes = array( "{$type}s", '-_-_-name-_-_-' );
+				$this->field_attribute_prefixes = array( "{$type}s", '{{{{guid}}}}' );
 				?>
 				<script type="text/html" id="tmpl-my-template" class="layers-widget-repeater-template">
-					<?php $this->$function_name( '-_-_-name-_-_-', array() ); ?>
+					<?php $this->$function_name( '{{{{guid}}}}', array() ); ?>
 				</script>
 				<?php unset( $this->field_attribute_prefixes ); ?>
 
@@ -565,6 +565,7 @@ if( !class_exists( 'Layers_Widget' ) ) {
 						<?php _e( 'Add New' , 'layerswp' ) ; ?> <?php echo ucfirst( $type ); ?>
 					</button>
 				<?php } ?>
+				
 			</div>
 		<?php }
 		

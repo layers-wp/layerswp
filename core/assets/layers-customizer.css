@@ -264,6 +264,15 @@ div[id*='layers-widget'] .widget-control-actions a:hover{
 div[id*='layers-widget'] .widget-control-actions .widget-control-remove{
 	background-color: #FF5353;
 	border-color: #BC3F39;
+	font-weight: 600;
+}
+div[id*='layers-widget'] .widget-control-actions .layers-widget-duplicate-button{
+	/* font-size: 14px; */
+	line-height: 22px;
+	height: 22px;
+	font-weight: 600;
+	vertical-align: bottom;
+	cursor: pointer;
 }
 div[id*='layers-widget'] .widget-control-actions .widget-control-remove:hover{
 	background-color: #F2413D;

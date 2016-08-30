@@ -933,6 +933,21 @@ jQuery(function($) {
 	});
 
 	/**
+	* Trigger 'layers-widget-interface-init' when:
+	* 1. Widget Accordion Panel is expanded (opened)
+	*/
+	$( document ).on( 'expanded', '.control-section#accordion-panel-widgets li.control-section-sidebar', function(e){
+
+		// Bail if we've a;ready initialized this.
+		if ( $(this).hasClass('layers-initialized') ) return;
+
+		// Add the 'initialized' class and trigger the event.
+		$(this).addClass('layers-initialized');
+		console.log( $(this) );
+		$(document).trigger('layers-widget-interface-init', $(this) );
+	});
+
+	/**
 	* 15 - Intercom checkbox
 	*/
 
@@ -947,6 +962,30 @@ jQuery(function($) {
 		}
 
 	});
+
+	/**
+	 * Duplicate Widgets.
+	 */
+	
+	$( document ).on( 'layers-interface-init', function( e, element ){
+		// Add the duplicate widget button to all the Layers Widget actions.
+		$(element).find('.widget-control-actions .alignleft .widget-control-remove').after('<a class="layers-widget-duplicate-button" title="Duplicate Widget">Duplicate</a>');
+	});
+
+	$( document ).on( 'click', '.layers-widget-duplicate-button', function( e, element ){
+		$button = $(this);
+		$this_widget_form = $button.parents('.widget-inside');
+		$widget_panel_holder = $button.parents('.control-subsection.open');
+		$add_widgets_button =  $widget_panel_holder.find('.add-new-widget');
+
+		// Get the widget type.
+		$widget_id = $this_widget_form.find('[name="id_base"]').val();
+
+		$add_widgets_button.click();
+		$('#available-widgets-list').find('[id^="widget-tpl-'+ $widget_id +'"]').click();
+	});
+
+
 
 	/**
 	 * 16 - Widget Peek/hide to preview changes

@@ -354,6 +354,7 @@ class Layers_Widgets {
 		wp_localize_script( LAYERS_THEME_SLUG . '-admin-repeater-widget' , 'repeateri18n', array(
 			'confirm_message' => __( 'Are you sure you want to remove this column?' , 'layerswp' ),
 			'duplicate_text' => __( 'Duplicate' , 'layerswp' ),
+			'edit_text' => __( 'Edit' , 'layerswp' ),
 		) );
 		wp_enqueue_script( LAYERS_THEME_SLUG . '-admin-repeater-widget' );
 

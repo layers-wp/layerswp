@@ -193,7 +193,8 @@ jQuery(document).ready(function($){
 	$( document ).on( 'layers-interface-init', function( e, element ){
 		$(element).find( '.layers-accordion-title' ).each( function(){
 			if ( ! $(this).find('.layers-accordion-duplicate').length ) {
-				$(this).append( $('<span class="layers-accordion-duplicate">'+ repeateri18n.duplicate_text +'</span>') );
+				$(this).append( $('<span class="layers-accordion-duplicate" title="' + repeateri18n.duplicate_text + '"></span>') );
+				$(this).append( $('<span class="layers-accordion-edit" title="' + repeateri18n.edit_text + '"></span>') );
 			}
 		});
 	});

@@ -277,7 +277,7 @@ class Layers_Options_Panel {
 						'link' => admin_url( 'edit.php?post_type=page&amp;filter=layers' ),
 					),
 					'layers-marketplace' => array(
-						'label' => 'Layers Extras',
+						'label' => 'Layers Add Ons',
 						'link' => admin_url( 'admin.php?page=layers-marketplace' ),
 					),
 				)
@@ -393,7 +393,7 @@ class Layers_Options_Panel {
 				<div class="l_admin-section-title l_admin-tiny">
 					<p class="l_admin-excerpt">
 						<?php _e( 'Looking for a theme or plugin to achieve something unique with your website?
-							Browse the Layers Extras and take your site to the next level.' , 'layerswp' ); ?>
+							Browse the Layers Add Ons and take your site to the next level.' , 'layerswp' ); ?>
 					</p>
 				</div>
 				<div class="l_admin-button-well">
@@ -578,8 +578,8 @@ function layers_options_panel_menu(){
 	if( !defined( 'LAYERS_DISABLE_MARKETPLACE' ) ){
 		// dashboard Page
 		$marketplace = add_menu_page(
-			__( 'Layers Extras' , 'layerswp' ),
-			__( 'Layers Extras' , 'layerswp' ),
+			__( 'Layers Add Ons' , 'layerswp' ),
+			__( 'Layers Add Ons' , 'layerswp' ),
 			'edit_theme_options',
 			LAYERS_THEME_SLUG . '-marketplace',
 			'layers_options_panel_ui',

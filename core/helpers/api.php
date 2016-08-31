@@ -235,7 +235,7 @@ class Layers_API {
 				$product[ 'url' ] = esc_attr( $p_details->permalink . $utm );
 				$product[ 'slug' ] = sanitize_title( $p_details->slug );
 				$product[ 'updated' ] = strtotime( $p_details->date_modified );
-				$product[ 'sales' ] = esc_attr( $p_details->total_sales );
+				$product[ 'sales' ] = 0
 				$product[ 'author' ] = 'Obox';
 				$product[ 'author_image' ] = 'https://0.s3.envato.com/files/86093381/tf-avatar-2.jpg';
 				$product[ 'author_url' ] = 'https://layerswp.com/';

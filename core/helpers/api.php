@@ -153,12 +153,12 @@ class Layers_API {
 		}
 
 		if( is_wp_error( $product_list ) ) return $product_list;
-/*
+
 		echo '<pre>';
 		print_r( $product_list );
 		echo '</pre>';
 		die();
-*/
+
 
 		$response = $this->translate_list( $product_list );
 

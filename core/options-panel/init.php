@@ -277,7 +277,7 @@ class Layers_Options_Panel {
 						'link' => admin_url( 'edit.php?post_type=page&amp;filter=layers' ),
 					),
 					'layers-marketplace' => array(
-						'label' => 'Marketplace',
+						'label' => 'Layers Extras',
 						'link' => admin_url( 'admin.php?page=layers-marketplace' ),
 					),
 				)

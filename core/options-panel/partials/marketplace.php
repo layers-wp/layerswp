@@ -37,7 +37,7 @@ $all_categories = array(); ?>
 
 <section id="layers-marketplace" class="l_admin-area-wrapper">
 
-	<?php $this->marketplace_header( 'Marketplace', '', $marketplace ); ?>
+	<?php $this->marketplace_header( 'Layers Extras', '', $marketplace ); ?>
 
 	<div class="l_admin-well l_admin-content">
 		<div class="l_admin-browser l_admin-row ">

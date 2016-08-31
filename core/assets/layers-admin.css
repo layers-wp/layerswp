@@ -1927,6 +1927,10 @@
 	}
 	.l_admin-products{
 		clear: both;
+		display: flex;
+		flex-flow: row;
+		flex-wrap: wrap;
+		position: relative;
 	}
 	.l_admin-product{
 		box-sizing: border-box;

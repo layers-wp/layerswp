@@ -2,8 +2,8 @@
 $api = new Layers_API();
 $layers_migrator = new Layers_Widget_Migrator();
 
-
-if( !in_array( $marketplace, $valid_marketplaces ) ) return;
+// Get Site to Ping
+$marketplace = ( 'layers-envato-marketplace' == $_GET[ 'page' ] ? 'envato' : 'layerswp' );
 
 // Get Product Type
 $valid_types = array( 'stylekits' , 'extensions' , 'themes' );

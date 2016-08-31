@@ -412,6 +412,7 @@ jQuery(function($) {
 	$(window).bind( 'resize', function(){
 		marketplace_resize();
 	});
+	setTimeout( 'marketplace_resize' , 3000 );
 
 	function  marketplace_resize(){
 

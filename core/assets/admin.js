@@ -963,9 +963,9 @@ jQuery(function($) {
 	});
 
 	/**
-	 * Duplicate Widgets.
+	 * Duplicate Widgets. (disabled)
 	 */
-	
+	/*
 	$( document ).on( 'layers-interface-init', function( e, element ){
 		// Add the duplicate widget button to all the Layers Widget actions.
 		$(element).find('.widget-control-actions .alignleft .widget-control-remove').after('<a class="layers-widget-duplicate-button" title="Duplicate Widget">Duplicate</a>');
@@ -983,8 +983,7 @@ jQuery(function($) {
 		$add_widgets_button.click();
 		$('#available-widgets-list').find('[id^="widget-tpl-'+ $widget_id +'"]').click();
 	});
-
-
+	*/
 
 	/**
 	 * 16 - Widget Peek/hide to preview changes

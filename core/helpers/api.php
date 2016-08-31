@@ -152,12 +152,13 @@ class Layers_API {
 			$product_list = $this->get_envato_list( $type );
 		}
 
-		if( is_wp_error( $product_list ) ) return $product_list;
-
 		echo '<pre>';
 		print_r( $product_list );
 		echo '</pre>';
 		die();
+
+		if( is_wp_error( $product_list ) ) return $product_list;
+
 
 
 		$response = $this->translate_list( $product_list );

@@ -161,7 +161,7 @@ jQuery(function($) {
 		*/
 		$modal.find( '.theme-rating' ).html('');
 
-		if( $json.rating ){
+		if( 3 > $json.rating_count ){
 			$modal.find( '.theme-rating' ).hide();
 		} else {
 			$modal.find( '.theme-rating' ).show();

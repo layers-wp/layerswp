@@ -204,7 +204,7 @@ $all_categories = array(); ?>
 													<?php echo sprintf( _n( '%s sale', '%s sales', $details->sales, 'layerswp' ), $details->sales ); ?>
 												</span>
 											<?php } ?>
-											<?php if( isset( $details->rating ) && 3 > $details->rating_count ) { ?>
+											<?php if( isset( $details->rating ) && 3 < $details->rating_count ) { ?>
 												<div class="l_admin-pull-right theme-rating star-rating l_admin-push-left-small">
 													<?php for( $i = 1; $i < 6; $i++ ){ ?>
 														<?php if( ceil( $details->rating ) >= $i ) { ?>

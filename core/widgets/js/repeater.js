@@ -168,7 +168,7 @@ jQuery(document).ready(function($){
 				}
 			});
 		}
-
+		
 		// Hide the section so just title is showing.
 		$new_item.find('.layers-accordion-section').hide();
 		$new_item.addClass('layers-accordion-item-adding');
@@ -195,6 +195,9 @@ jQuery(document).ready(function($){
 		
 		// Remove loading class
 		$repeater_add_button.removeClass('layers-loading-button');
+
+		// Auto-update the title
+		update_titles( $new_item );
 
 		// Add Open Class to item
 		$hidden_items = $repeater.find('.layers-accordion-item-adding-hidden');
@@ -313,21 +316,30 @@ jQuery(document).ready(function($){
 	/**
 	* 5 - Update Item Title
 	*/
-
-	$(document).on( 'keyup' , '.layers-widget-repeater > ul input[id*="-title"], .layers-widget-repeater > ul input[id*="-button-link_text"]', function(e){
+	$(document).on( 'keyup', '.layers-widget-repeater > ul input[id*="-title"], .layers-widget-repeater > ul input[id*="-button-link_text"]', function(e){
 
 		// "Hi Mom"
 		$that = $(this);
 
+		$repeater_item = $that.closest('.layers-accordion-item');
+
+		update_titles( $repeater_item );
+	});
+
+	function update_titles( $repeater_item ) {
+		
+		// "Hi Mom"
+		$title_field = $repeater_item.find( 'input[id*="-title"], input[id*="-button-link_text"]' );
+
 		// Set the string value
-		$val = $that.val().toString().substr( 0 , 51 );
+		$val = $title_field.val().substr( 0 , 51 );
 
 		// Set the Title
 		$string = ': ' + ( $val.length > 50 ? $val + '...' : $val );
 
 		// Update the accordian title
-		$that.closest( '.layers-accordion-item' ).find( 'span.layers-detail' ).text( $string );
-	});
+		$title_field.closest( '.layers-accordion-item' ).find( 'span.layers-detail' ).text( $string );
+	}
 	
 
 }); //jQuery

@@ -45,7 +45,7 @@ $all_categories = array(); ?>
 			<div class="l_admin-column l_admin-span-3 l_admin-marketplace-filter">
 				<div class="l_admin-section-title l_admin-tiny">
 					<h3 class="l_admin-heading">
-						<?php _e( 'Marketplace Filters' , 'layerswp' ); ?>
+						<?php _e( 'Filters' , 'layerswp' ); ?>
 					</h3>
 					<?php if( !is_wp_error( $products ) ) { ?>
 						<p class="l_admin-excerpt">

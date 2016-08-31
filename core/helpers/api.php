@@ -226,10 +226,17 @@ class Layers_API {
 				$product = array();
 
 				$utm = '?utm_source=marketplace&utm_medium=link&utm_term=' . $p_details->name . '&utm_campaign=Layers%20Marketplace';
+
 				$demo_utm = '?utm_source=marketplace&utm_medium=preview&utm_term=' . $p_details->name . '&utm_campaign=Layers%20Marketplace%20Preview';
 
+				if( isset( $p_details->sub_title ) && '' != $p_details->sub_title ){
+					$p_name = $p_details->name . ' - ' . $p_details->sub_title;
+				} else {
+					$p_name = $p_details->name;
+				}
+
 				$product[ 'id' ] = (int) $p_details->id;
-				$product[ 'name' ] = esc_attr( $p_details->name );
+				$product[ 'name' ] = esc_attr( $p_name );
 				$product[ 'short_description' ] = $p_details->short_description;
 				$product[ 'description' ] = $p_details->description;
 				$product[ 'url' ] = esc_attr( $p_details->permalink . $utm );

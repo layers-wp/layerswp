@@ -133,15 +133,12 @@ $theme_info = wp_get_theme( 'layerswp' ); ?>
 								<h3 class="l_admin-heading"><?php _e( 'Themes &amp; Extensions' , 'layerswp' ); ?></h3>
 								<p class="l_admin-excerpt">
 									<?php _e( 'Looking for a theme or plugin to achieve something unique with your website?
-										Browse the Layers Marketplace and take your site to the next level.' , 'layerswp' ); ?>
+										Browse the Layers Extras and take your site to the next level.' , 'layerswp' ); ?>
 								</p>
 							</div>
 							<div class="l_admin-button-well">
-								<a href="https://www.layerswp.com/product-category/themes/?ref=obox&utm_source=layers%20theme&utm_medium=link&utm_campaign=Layers%20Pro%20Upsell&utm_content=WP%20Dashboard%20Theme%20Button" class="button button-primary">
-									<?php _e( 'Themes' , 'layerswp' ); ?>
-								</a>
-								<a href="https://www.layerswp.com/product-category/extensions/?ref=obox&utm_source=layers%20theme&utm_medium=link&utm_campaign=Layers%20Pro%20Upsell&utm_content=WP%20Dashboard%20Theme%20Button" class="button button-primary">
-									<?php _e( 'Extensions' , 'layerswp' ); ?>
+								<a href="<?php echo admin_url( 'admin.php?page=layers-marketplace' ); ?>" class="button button-primary">
+									<?php _e( 'Themes &amp; Extensions' , 'layerswp' ); ?>
 								</a>
 							</div>
 						</div>

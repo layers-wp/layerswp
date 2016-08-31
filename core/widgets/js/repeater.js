@@ -83,7 +83,6 @@ jQuery(document).ready(function($){
 		$duplicate_element     = $repeater_list.find('[data-guid="' + $duplicate_guid + '"]');
 
 		// Generate a new unique guid.
-		//$guid = Math.floor( ( Math.random() * 999 ) + 1 );
 		$guid = false;
 		while( ! $guid || $repeater.find('[data-guid="' + $guid + '"]').length ) {
 			$guid = _.random(100, 999);
@@ -93,8 +92,9 @@ jQuery(document).ready(function($){
 		$repeater_new_item_tpl_text = $repeater_new_item_tpl.text();
 		// Convert it to an jQuery element.
 		$new_item = $( $repeater_new_item_tpl_text );
+		$new_item.find('input[type="checkbox"]').prop( 'checked', true ); // Pre-check all checkbox, so the following serialize knows they exist.
 		
-		// Get all the inputs so we can save them for reffernece.
+		// Get all the inputs so we can save them for reference.
 		$new_item_data = $new_item.find('select, hidden, textarea, input:not([type=radio]), input:checked').serializeArray();
 		
 		// Convert the template back to text again, so we can do string replace on it.
@@ -104,40 +104,67 @@ jQuery(document).ready(function($){
 		// Convert it back to jQuery element again.
 		$new_item = $( $repeater_new_item_tpl_text );
 		
-		// If we've passed an element to refference then lets grab the data from it.
+		// If we've passed an element to reference then lets grab the data from it.
 		if ( $duplicate_element.length ) {
 			
 			$( $new_item_data ).each(function( index ){
 				
-				// Do string replaces on the name so we know the refference field and the original field.
+				// Do string replaces on the name so we know the reference field and the original field.
 				$original_name = $new_item_data[index].name;
 				$new_item_data[index].name = $original_name.replace( /{{{{guid}}}}/g, $guid );
 				$new_item_data[index].name_to_get = $original_name.replace( /{{{{guid}}}}/g, $duplicate_guid );
 				
-				// Ge the refference field and the original field.
-				$field = $new_item.find( '[name="' + $new_item_data[index].name + '"]' );
-				$field_to_get = $repeater.find( '[name="' + $new_item_data[index].name_to_get + '"]' );
-								
-				if ( $field.is(':radio') ) {
+				// Ge the reference field and the original field.
+				$new_field = $new_item.find( '[name="' + $new_item_data[index].name + '"]' );
+				$duplicated_field = $repeater.find( '[name="' + $new_item_data[index].name_to_get + '"]' );
+				
+				// Update the new field values with the duplicated field values.
+				if ( $new_field.is(':radio') ) {
 
-					// Checkobox
-					$new_value = $field_to_get.filter(':checked');
-					if ( $new_value.length ) {
+					// Radio
+					$duplicated_field = $duplicated_field.filter(':checked');
+					if ( $duplicated_field.length ) {
 						
-						// Uncheck all.
-						$field.removeAttr('checked');
-						$field.prop( 'checked', false );
+						// Un-check all.
+						$new_field.removeAttr('checked');
+						$new_field.prop( 'checked', false );
 						
 						// Check the correct field.
-						$new_field = $field.filter('[value="' + $new_value.val() + '"]');
+						$new_field = $new_field.filter('[value="' + $duplicated_field.val() + '"]');
+						$new_field.prop( 'checked', true );
+						$new_field.attr( 'checked', 'checked' );
+					}
+				}
+				else if ( $new_field.is(':checkbox') ) {
+
+					// Checkbox
+					$duplicated_field = $duplicated_field.filter(':checked');
+					if ( $duplicated_field.length ) {
+						
+						// Check the correct field.
 						$new_field.prop( 'checked', true );
 						$new_field.attr( 'checked', 'checked' );
 					}
 				}
 				else {
 
-					// Inuput, Select, etc
-					$field.val( $field_to_get.val() );
+					// Input, Select, etc
+					$new_field.val( $duplicated_field.val() );
+				}
+				
+				// Special behaviour for Image Select items.
+				if ( $duplicated_field.parents('.layers-image-container').length ) {
+					
+					// Get elements.
+					$new_field_container        = $new_field.parents('.layers-image-container');
+					$duplicated_field_contianer = $duplicated_field.parents('.layers-image-container');
+					
+					// Duplicate the duplicated fields image.
+					$new_field_container.find('.layers-image-display')
+						.replaceWith( $duplicated_field_contianer.find('.layers-image-display') );
+					
+					// Add 'Has Image' Class.
+					$new_field_container.addClass('layers-has-image');
 				}
 			});
 		}

@@ -404,29 +404,4 @@ jQuery(function($) {
 		$( $valid_products.join(", ") ).removeClass( 'l_admin-hide' );
 		$( $invalid_products.join(", ") ).addClass( 'l_admin-hide' );
 	}
-
-	/**
-	* 5 - Marketplace Filter and Search functions
-	*/
-
-	/*$(window).bind( 'resize', function(){
-		marketplace_resize();
-	});
-	setTimeout( 'marketplace_resize' , 3000 );
-
-	function  marketplace_resize(){
-
-		var max_height = 0;
-		var max_img_height = 0;
-
-		$( '.l_admin-product' ).each(function(){
-
-			if( 0 < $(this).find( 'img' ).length && max_img_height < $(this).find( 'img' ).outerHeight() ){
-				max_img_height = $(this).find( 'img' ).outerHeight();
-			}
-		});
-
-		$( '.l_admin-product .l_admin-product-screenshot' ).height( max_img_height );
-	}*/
-
 });

@@ -2,9 +2,7 @@
 $api = new Layers_API();
 $layers_migrator = new Layers_Widget_Migrator();
 
-// Get Site to Ping
-$valid_marketplaces = array( 'layerswp' , 'envato' );
-$marketplace = isset( $_GET[ 'marketplace' ] ) ? $_GET[ 'marketplace' ] : 'layerswp';
+
 if( !in_array( $marketplace, $valid_marketplaces ) ) return;
 
 // Get Product Type

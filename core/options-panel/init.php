@@ -81,6 +81,7 @@ class Layers_Options_Panel {
 
 		// Layers Marketplace is on it's own top level menu, so we have to shimmy it in
 		$this->valid_page_slugs[] = 'layers-marketplace';
+		$this->valid_page_slugs[] = 'layers-envato-marketplace';
 	}
 
 	/**

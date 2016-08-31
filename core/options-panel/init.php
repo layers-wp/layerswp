@@ -596,7 +596,8 @@ function layers_options_panel_menu(){
 			__( 'Envato' , 'layerswp' ),
 			__( 'Envato' , 'layerswp' ),
 			'edit_theme_options',
-			'admin.php?page=layers-marketplace&marketplace=envato'
+			LAYERS_THEME_SLUG . '-envato-marketplace',
+			'layers_options_panel_ui'
 		);
 
 

@@ -152,11 +152,6 @@ class Layers_API {
 			$product_list = $this->get_envato_list( $type );
 		}
 
-		echo '<pre>';
-		print_r( $product_list );
-		echo '</pre>';
-		die();
-
 		if( is_wp_error( $product_list ) ) return $product_list;
 
 
@@ -288,6 +283,10 @@ class Layers_API {
 		);
 
 		$api_call = wp_remote_get( 'https://www.layerswp.com/wp-json/wc/v1/products/?consumer_key=
+ck_850f668ddbad3705ecd10fe4f010dcc6e849a5ae
+&consumer_secret=cs_5c46a37a8890a4c2aa2af3c0226a6d489c6e7f70&category=' . $product_types[ $p_type ] );
+
+die( 'https://www.layerswp.com/wp-json/wc/v1/products/?consumer_key=
 ck_850f668ddbad3705ecd10fe4f010dcc6e849a5ae
 &consumer_secret=cs_5c46a37a8890a4c2aa2af3c0226a6d489c6e7f70&category=' . $product_types[ $p_type ] );
 

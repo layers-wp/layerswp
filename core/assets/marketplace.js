@@ -105,7 +105,8 @@ jQuery(function($) {
 		$modal.find( '.theme-author' ).attr( 'href' , $json.author_url )
 		$modal.find( '.theme-author' ).text( 'By ' + $json.author );
 		$sales_word = ( $json.sales == 1 ? ' sale' : ' sales' );
-		$modal.find( '.theme-sales' ).html( $json.sales + $sales_word);
+		$modal.find( '.theme-sales' ).html( $json.sales + $sales_word).show();
+		if( 0 == $json.sales ) $modal.find( '.theme-sales' ).hide();
 
 		/**
 		* Product Preview

@@ -943,7 +943,6 @@ jQuery(function($) {
 
 		// Add the 'initialized' class and trigger the event.
 		$(this).addClass('layers-initialized');
-		console.log( $(this) );
 		$(document).trigger('layers-widget-interface-init', $(this) );
 	});
 

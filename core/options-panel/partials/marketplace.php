@@ -55,32 +55,33 @@ $all_categories = array(); ?>
 
 					<input id="layers-marketplace-search" type="search" placeholder="<?php _e( 'Search...' , 'layerswp' ); ?>"/>
 				</div>
-				<div class="l_admin-panel">
-					<div class="l_admin-panel-title">
-						<h3 class="l_admin-heading"><?php _e( 'Product Type' , 'layerswp' ); ?></h3>
-					</div>
-					<ul class="l_admin-list l_admin-page-list">
-						<li <?php if( 'themes' == $type ) { ?>class="active"<?php } ?>>
-							<a href="<?php echo admin_url( 'admin.php?page=' . $current_page . '&type=themes&marketplace=' . $marketplace ); ?>">
-								<?php _e( 'Themes' , 'layerswp' ); ?>
-							</a>
-						</li>
-						<li <?php if( 'extensions' == $type ) { ?>class="active"<?php } ?>>
-							<a href="<?php echo admin_url( 'admin.php?page=' . $current_page . '&type=extensions&marketplace=' . $marketplace ); ?>">
-								<?php _e( 'Extensions' , 'layerswp' ); ?>
-							</a>
-						</li>
-						<?php if( 'envato' == $marketplace ) { ?>
-							<li <?php if( 'stylekits' == $type ) { ?>class="active"<?php } ?>>
-								<a href="<?php echo admin_url( 'admin.php?page=' . $current_page . '&type=stylekits&marketplace=' . $marketplace ); ?>">
-									<?php _e( 'Style Kits' , 'layerswp' ); ?>
+				<?php if( 'layerswp' != $marketplace ) { ?>
+					<div class="l_admin-panel">
+						<div class="l_admin-panel-title">
+							<h3 class="l_admin-heading"><?php _e( 'Product Type' , 'layerswp' ); ?></h3>
+						</div>
+						<ul class="l_admin-list l_admin-page-list">
+							<li <?php if( 'themes' == $type ) { ?>class="active"<?php } ?>>
+								<a href="<?php echo admin_url( 'admin.php?page=' . $current_page . '&type=themes&marketplace=' . $marketplace ); ?>">
+									<?php _e( 'Themes' , 'layerswp' ); ?>
 								</a>
 							</li>
-						<?php } ?>
-					</ul>
+							<li <?php if( 'extensions' == $type ) { ?>class="active"<?php } ?>>
+								<a href="<?php echo admin_url( 'admin.php?page=' . $current_page . '&type=extensions&marketplace=' . $marketplace ); ?>">
+									<?php _e( 'Extensions' , 'layerswp' ); ?>
+								</a>
+							</li>
+							<?php if( 'envato' == $marketplace ) { ?>
+								<li <?php if( 'stylekits' == $type ) { ?>class="active"<?php } ?>>
+									<a href="<?php echo admin_url( 'admin.php?page=' . $current_page . '&type=stylekits&marketplace=' . $marketplace ); ?>">
+										<?php _e( 'Style Kits' , 'layerswp' ); ?>
+									</a>
+								</li>
+							<?php } ?>
+						</ul>
 
-				</div>
-
+					</div>
+				<?php } ?>
 				<div class="accordion-container">
 					<div class="l_admin-panel accordion-section open">
 						<div class="l_admin-panel-title accordion-section-title">
@@ -308,7 +309,7 @@ $all_categories = array(); ?>
 					jQuery( '#layers-marketplace-authors' ).append( jQuery( '<option value="'+ username.toString().toLowerCase() + '">' + username + '</option>') );
 				});
 			<?php } else { ?>
-				jQuery( '#layers-marketplace-authors' ).parent().remove();
+				jQuery( '#layers-marketplace-authors' ).parent().hide();
 			<?php } ?>
 
 			var layers_market_cats = jQuery.parseJSON( '<?php echo json_encode( $all_categories ); ?>' );

@@ -578,8 +578,8 @@ function layers_options_panel_menu(){
 	if( !defined( 'LAYERS_DISABLE_MARKETPLACE' ) ){
 		// dashboard Page
 		$marketplace = add_menu_page(
-			__( 'Layers Add Ons' , 'layerswp' ),
-			__( 'Layers Add Ons' , 'layerswp' ),
+			__( 'Add Ons' , 'layerswp' ),
+			__( 'Add Ons' , 'layerswp' ),
 			'edit_theme_options',
 			LAYERS_THEME_SLUG . '-marketplace',
 			'layers_options_panel_ui',

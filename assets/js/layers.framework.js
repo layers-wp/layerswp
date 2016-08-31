@@ -20,36 +20,36 @@
 */
 jQuery(function($) {
 
-    /**
-    * 1 - Container padding on first widgets for header fixed
-    */
-    $(window).on('load', function() {
-        layers_apply_overlay_header_styles();
-    });
+	/**
+	* 1 - Container padding on first widgets for header fixed
+	*/
+	$(window).on('load', function() {
+		layers_apply_overlay_header_styles();
+	});
 
-    /**
-    * 2 - Offsite sidebar Toggles
-    */
-    $(document).on( 'click' , '[data-toggle^="#"]'  , function(e){
-        e.preventDefault();
+	/**
+	* 2 - Offsite sidebar Toggles
+	*/
+	$(document).on( 'click' , '[data-toggle^="#"]'  , function(e){
+		e.preventDefault();
 
-        // "Hi Mom"
-        $that = $(this);
+		// "Hi Mom"
+		$that = $(this);
 
-        // Setup target ID
-        $target = $that.data( 'toggle' );
+		// Setup target ID
+		$target = $that.data( 'toggle' );
 
-        // Toggle .open class
-        $( $target ).toggleClass( $that.data( 'toggle-class' ) );
+		// Toggle .open class
+		$( $target ).toggleClass( $that.data( 'toggle-class' ) );
 
-    });
+	});
 
-    /**
-    * 3 - Sticky Header
-    */
+	/**
+	* 3 - Sticky Header
+	*/
 
-    // Set site header element
-    $header_sticky = $("section.header-sticky");
+	// Set site header element
+	$header_sticky = $("section.header-sticky");
 
 	// Handle scroll passsing the go-sticky position.
 	$("body").waypoint({
@@ -90,24 +90,24 @@ jQuery(function($) {
 	});
 
 	/**
-    * 4 - FitVids resposive video embeds.
-    *
+	* 4 - FitVids resposive video embeds.
+	*
 	* Target your .container, .wrapper, .post, etc.
-    */
+	*/
 
 	$(".media-image, .thumbnail-media, .widget.slide .image-container, .post .thumbnail").fitVids();
 
-    /**
-    * 5 - Layers Custom Easing
-    *
-    * Extend jQuery easing with custom Layers easing function for UI animations - eg slideUp, slideDown
-    */
+	/**
+	* 5 - Layers Custom Easing
+	*
+	* Extend jQuery easing with custom Layers easing function for UI animations - eg slideUp, slideDown
+	*/
 
-    // easeInOutQuad
-    jQuery.extend( jQuery.easing, { layersEaseInOut: function (x, t, b, c, d) {
-        if ((t/=d/2) < 1) return c/2*t*t + b;
-        return -c/2 * ((--t)*(t-2) - 1) + b;
-    }});
+	// easeInOutQuad
+	jQuery.extend( jQuery.easing, { layersEaseInOut: function (x, t, b, c, d) {
+		if ((t/=d/2) < 1) return c/2*t*t + b;
+		return -c/2 * ((--t)*(t-2) - 1) + b;
+	}});
 
 }(jQuery));
 
@@ -119,18 +119,18 @@ jQuery(function($) {
 function layers_swiper_resize( s ){
 
 	// Find the highest slide, and set the Swiper container to that height.
-    var height = 0;
-    s.slides.each(function( key, slide ){
+	var height = 0;
+	s.slides.each(function( key, slide ){
 
-        var slide_height = jQuery(slide).find( '.container' ).outerHeight();
-        if ( jQuery(slide).find( '.content' ).outerHeight() ) slide_height += jQuery(slide).find( '.content' ).outerHeight();
-        if ( jQuery(slide).find( '.content' ).height() ) slide_height -= jQuery(slide).find( '.content' ).height();
+		var slide_height = jQuery(slide).find( '.container' ).outerHeight();
+		if ( jQuery(slide).find( '.content' ).outerHeight() ) slide_height += jQuery(slide).find( '.content' ).outerHeight();
+		if ( jQuery(slide).find( '.content' ).height() ) slide_height -= jQuery(slide).find( '.content' ).height();
 
-        if( height < slide_height ){
-            height = slide_height;
-        }
-    });
-    s.container.css({ height: height+'px' });
+		if( height < slide_height ){
+			height = slide_height;
+		}
+	});
+	s.container.css({ height: height+'px' });
 }
 
 /**
@@ -139,60 +139,60 @@ function layers_swiper_resize( s ){
 var $first_element;
 function layers_apply_overlay_header_styles() {
 
-    // Get header.
-    $header = jQuery( '.header-site' );
-    $header_height = $header.outerHeight();
+	// Get header.
+	$header = jQuery( '.header-site' );
+	$header_height = $header.outerHeight();
 
-    // Get content wrapper.
-    $content_wrapper = jQuery( '#wrapper-content' );
+	// Get content wrapper.
+	$content_wrapper = jQuery( '#wrapper-content' );
 
-    if( $header.hasClass( 'header-overlay' ) ) {
+	if( $header.hasClass( 'header-overlay' ) ) {
 
-        // Get first element.
-        if( ! $first_element ) $first_element = $content_wrapper.children().eq(0);
+		// Get first element.
+		if( ! $first_element ) $first_element = $content_wrapper.children().eq(0);
 
-        if( $first_element.hasClass( 'slide' ) && !$first_element.hasClass( '.full-screen' ) ) {
+		if( $first_element.hasClass( 'slide' ) && !$first_element.hasClass( '.full-screen' ) ) {
 
-            /*
-            // Reset previous incase this is being re-aplied due to window resize.
-            $first_element.find('.swiper-slide > .content' ).css('padding-top', '' );
+			/*
+			// Reset previous incase this is being re-aplied due to window resize.
+			$first_element.find('.swiper-slide > .content' ).css('padding-top', '' );
 
-            $first_element_height = $first_element.outerHeight();
+			$first_element_height = $first_element.outerHeight();
 
-            var padding_top = $first_element.find('.swiper-slide > .content' ).eq(0).css('padding-top').replace('px', '');
-            padding_top = ( '' != padding_top ) ? parseInt( padding_top ) : 0 ;
+			var padding_top = $first_element.find('.swiper-slide > .content' ).eq(0).css('padding-top').replace('px', '');
+			padding_top = ( '' != padding_top ) ? parseInt( padding_top ) : 0 ;
 
-            // First element is Slider Widget.
-            // $first_element.css( 'height', ( $header_height + $first_element_height ) );
-            // $first_element.find('.swiper-slide' ).css( 'height', ( $header_height + $first_element_height ) );
-            $first_element.css( 'height', ( $first_element_height - $header_height ) );
-            */
+			// First element is Slider Widget.
+			// $first_element.css( 'height', ( $header_height + $first_element_height ) );
+			// $first_element.find('.swiper-slide' ).css( 'height', ( $header_height + $first_element_height ) );
+			$first_element.css( 'height', ( $first_element_height - $header_height ) );
+			*/
 
-            jQuery('body').addClass( 'header-overlay-no-push' );
-        }
-        else if( $first_element.hasClass('title-container') ) {
+			jQuery('body').addClass( 'header-overlay-no-push' );
+		}
+		else if( $first_element.hasClass('title-container') ) {
 
-            // Reset previous incase this is being re-aplied due to window resize.
-            $first_element.css('padding-top', '' );
+			// Reset previous incase this is being re-aplied due to window resize.
+			$first_element.css('padding-top', '' );
 
-            var padding_top = $first_element.css('padding-top').replace('px', '');
-            padding_top = ( '' != padding_top ) ? parseInt( padding_top ) : 0 ;
+			var padding_top = $first_element.css('padding-top').replace('px', '');
+			padding_top = ( '' != padding_top ) ? parseInt( padding_top ) : 0 ;
 
-            // First element is Title (eg WooCommerce).
-            $first_element.css({ 'paddingTop': $header_height + padding_top });
-            jQuery('body').addClass( 'header-overlay-no-push' );
-        }
-        else{
+			// First element is Title (eg WooCommerce).
+			$first_element.css({ 'paddingTop': $header_height + padding_top });
+			jQuery('body').addClass( 'header-overlay-no-push' );
+		}
+		else{
 
-            // Reset previous incase this is being re-aplied due to window resize.
-            $content_wrapper.css('padding-top', '' );
+			// Reset previous incase this is being re-aplied due to window resize.
+			$content_wrapper.css('padding-top', '' );
 
-            var padding_top = $content_wrapper.css('padding-top').replace('px', '');
-            padding_top = ( '' != padding_top ) ? parseInt( padding_top ) : 0 ;
+			var padding_top = $content_wrapper.css('padding-top').replace('px', '');
+			padding_top = ( '' != padding_top ) ? parseInt( padding_top ) : 0 ;
 
-            // Pad the site to compensate for overlay header.
-            $content_wrapper.css( 'paddingTop', $header_height + padding_top );
-        }
+			// Pad the site to compensate for overlay header.
+			$content_wrapper.css( 'paddingTop', $header_height + padding_top );
+		}
 
-    }
+	}
 }

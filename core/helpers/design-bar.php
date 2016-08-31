@@ -415,7 +415,7 @@ class Layers_Design_Controller {
 					'2' => __( '2 Columns', 'layerswp' ),
 					'3' => __( '3 Columns', 'layerswp' ),
 					'4' => __( '4 Columns', 'layerswp' ),
-					'6' => __( '6 Columns', 'layerswp' )
+					'6' => __( '6 Columns', 'layerswp' ),
 				)
 			),
 			'color' => array(
@@ -516,7 +516,7 @@ class Layers_Design_Controller {
 				'options' => array(
 					'image-left' => __( 'Left', 'layerswp' ),
 					'image-right' => __( 'Right', 'layerswp' ),
-					'image-top' => __( 'Top', 'layerswp' )
+					'image-top' => __( 'Top', 'layerswp' ),
 				)
 			),
 		);

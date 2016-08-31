@@ -557,6 +557,22 @@ if( !class_exists( 'Layers_Widget' ) ) {
 				<?php } ?>
 			</div>
 		<?php }
+		
+		/**
+		 * Helper function to display the repeater title when the Widget first loads.
+		 * There's also JS that will update this title as the title input is typed into.
+		 *
+		 * @param  string $text The existing value of the widget title.
+		 * @return string       Formetted title eg ` : Pretty Title...`.
+		 */
+		public function format_repeater_title( $text ) {
+			
+			$text = substr( stripslashes( strip_tags( $text ) ), 0 , 50 ); // Shorten the text to a max character width.
+			if ( strlen( $text ) > 50 ) $text .= '...'; // Add `...` if the text is over a certain length.
+			if ( $text ) $text = ': ' . $text; // Add ` : ` to the beginning.
+			
+			return $text;
+		}
 
 		/**
 		 * The main function that outputs the repeater form item.

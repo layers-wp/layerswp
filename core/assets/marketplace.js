@@ -187,9 +187,9 @@ jQuery(function($) {
 		var $demo_url = $(this).attr( 'data-demo-url' );
 		var $allow_demo = $(this).attr( 'data-allow-demo' );
 
-		if( 'true' == $allow_demo && '' !== $demo_url && 0 == $( '.theme-preview iframe' ).length ){
+		if( 'true' == $allow_demo ) e.preventDefault();
 
-			e.preventDefault();
+		if( 'true' == $allow_demo && '' !== $demo_url && 0 == $( '.theme-preview iframe' ).length ){
 
 			$iframe = $( '<iframe />' ).attr( 'src', $demo_url );
 			$iframe.attr( 'height', $( '.theme-preview' ).outerHeight() );

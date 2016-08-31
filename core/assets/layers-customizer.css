@@ -2358,7 +2358,10 @@ button[data-cmd="html"].fr-btn.fr-active{
 		animation-fill-mode: forwards;
 		-webkit-animation-fill-mode: forwards;
 	}
-	.layers-accordion-item.layers-accordion-item-hidden {
+	.layers-accordion-item.layers-accordion-item-adding {
+		transition: .2s ease-in-out;
+	}
+	.layers-accordion-item.layers-accordion-item-adding-hidden {
 		opacity: 0 !important;
 		transform: scale(.96) !important;
 	}
@@ -2375,6 +2378,12 @@ button[data-cmd="html"].fr-btn.fr-active{
 		color: #555;
 		cursor: pointer;
 
+	}
+	.layers-accordion-item.layers-accordion-item-adding-flash {
+		border-color: #009eec !important;
+/* 		animation: layers-accordion-item-flash-animation 2s;
+		animation-fill-mode: forwards;
+		-webkit-animation-fill-mode: forwards; */
 	}
 	.layers-accordion-item.open .layers-accordion-title{
 		background: #f5f5f5;
@@ -2427,7 +2436,7 @@ button[data-cmd="html"].fr-btn.fr-active{
 	}
 	.layers-accordion-title .layers-accordion-edit:hover,
 	.layers-accordion-title .layers-accordion-duplicate:hover {
-		background: rgba(1,1,1,0.03);
+		background: rgba(1,1,1,0.05);
 	}
 	.layers-accordion-item:hover .layers-accordion-title .layers-accordion-duplicate,
 	.layers-accordion-item.open .layers-accordion-title .layers-accordion-duplicate {
@@ -2470,6 +2479,15 @@ button[data-cmd="html"].fr-btn.fr-active{
 		}
 	}
 
+	@keyframes layers-accordion-item-flash-animation {
+		40% {
+			border-color: #009eec;
+		}
+		100% {
+
+		}
+	}
+
 /*---------------------------*/
 /*- ACCORDIONS - SORTABLE ---*/
 
@@ -2478,7 +2496,6 @@ button[data-cmd="html"].fr-btn.fr-active{
 		margin-bottom: 10px;
 		border: 1px solid #E8E8E8;
 		box-shadow: 0 1px 1px rgba(0, 0, 0, 0.02);
-		transition: .2s ease-in-out;
 	}
 	.layers-accordions-sortable .layers-accordion-item:hover{
 		border-color: #ccc;

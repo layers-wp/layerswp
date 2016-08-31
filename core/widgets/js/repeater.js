@@ -171,7 +171,9 @@ jQuery(document).ready(function($){
 
 		// Hide the section so just title is showing.
 		$new_item.find('.layers-accordion-section').hide();
-		$new_item.addClass('layers-accordion-item-hidden');
+		$new_item.addClass('layers-accordion-item-adding');
+		$new_item.addClass('layers-accordion-item-adding-hidden');
+		$new_item.addClass('layers-accordion-item-adding-flash');
 
 		// Append item HTML
 		if ( $duplicate_element.length )
@@ -195,11 +197,17 @@ jQuery(document).ready(function($){
 		$repeater_add_button.removeClass('layers-loading-button');
 
 		// Add Open Class to item
-		$hidden_items = $repeater.find('.layers-accordion-item-hidden');
-		$hidden_items.removeClass('layers-accordion-item-hidden');
+		$hidden_items = $repeater.find('.layers-accordion-item-adding-hidden');
+		$hidden_items.removeClass('layers-accordion-item-adding-hidden');
 		setTimeout( function(){
 			$hidden_items.find('.layers-accordion-title').trigger('click');
-		}, 600 );
+		}, 200 );
+		setTimeout( function(){
+			$hidden_items.removeClass('layers-accordion-item-adding-flash');
+		}, 1000 );
+		setTimeout( function(){
+			$hidden_items.removeClass('layers-accordion-item-adding');
+		}, 1500 );
 	}
 	
 	/**

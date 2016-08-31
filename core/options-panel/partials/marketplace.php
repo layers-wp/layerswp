@@ -299,13 +299,17 @@ $all_categories = array(); ?>
 			}
 		</style>
 		<script>
-			// Fill the author select box
-			var layers_market_authors = jQuery.parseJSON( '<?php echo json_encode( $all_authors ); ?>' );
-			layers_market_authors.sort();
+			<?php if( 1 < count( $all_authors ) ) { ?>
+				// Fill the author select box
+				var layers_market_authors = jQuery.parseJSON( '<?php echo json_encode( $all_authors ); ?>' );
+				layers_market_authors.sort();
 
-			jQuery.each( layers_market_authors, function( key, username ){
-				jQuery( '#layers-marketplace-authors' ).append( jQuery( '<option value="'+ username.toString().toLowerCase() + '">' + username + '</option>') );
-			});
+				jQuery.each( layers_market_authors, function( key, username ){
+					jQuery( '#layers-marketplace-authors' ).append( jQuery( '<option value="'+ username.toString().toLowerCase() + '">' + username + '</option>') );
+				});
+			<?php } else { ?>
+				jQuery( '#layers-marketplace-authors' ).parent().remove();
+			<?php } ?>
 
 			var layers_market_cats = jQuery.parseJSON( '<?php echo json_encode( $all_categories ); ?>' );
 

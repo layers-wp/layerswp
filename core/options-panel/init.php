@@ -592,7 +592,7 @@ function layers_options_panel_menu(){
 
 		add_action('admin_print_scripts-' . $marketplace, array( $layers_options_panel, 'enqueue_marketplace_scripts') );
 
-		$marketplace_extensions = add_submenu_page(
+		$marketplace_envato = add_submenu_page(
 			LAYERS_THEME_SLUG . '-marketplace',
 			__( 'Envato' , 'layerswp' ),
 			__( 'Envato' , 'layerswp' ),
@@ -601,6 +601,7 @@ function layers_options_panel_menu(){
 			'layers_options_panel_ui'
 		);
 
+		add_action('admin_print_scripts-' . $marketplace_envato, array( $layers_options_panel, 'enqueue_marketplace_scripts') );
 
 		// This modifies the Layers submenu item - must be done here as $submenu
 		// is only created if $submenu items are added using add_submenu_page

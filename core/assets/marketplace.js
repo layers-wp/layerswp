@@ -151,10 +151,8 @@ jQuery(function($) {
 
 		if( 1 > $( $id ).next( 'div.l_admin-product' ).length ){
 			$next = $('.l_admin-products .l_admin-product').eq(0).attr( 'id' );
-			console.log( '0' );
 		} else {
 			$next = $( $id ).next().attr( 'id' );
-			console.log( '1' );
 		}
 		$modal.find( '.right' ).attr( 'data-view-item' , $next );
 

@@ -1,7 +1,7 @@
 <?php // Get the API up and running for the plugin listing
 $api = new Layers_API();
 $layers_migrator = new Layers_Widget_Migrator();
-
+$current_page = $_GET[ 'page' ];
 // Get Site to Ping
 $marketplace = ( 'layers-envato-marketplace' == $_GET[ 'page' ] ? 'envato' : 'layerswp' );
 
@@ -61,18 +61,18 @@ $all_categories = array(); ?>
 					</div>
 					<ul class="l_admin-list l_admin-page-list">
 						<li <?php if( 'themes' == $type ) { ?>class="active"<?php } ?>>
-							<a href="<?php echo admin_url( 'admin.php?page=layers-marketplace&type=themes&marketplace=' . $marketplace ); ?>">
+							<a href="<?php echo admin_url( 'admin.php?page=' . $current_page . '&type=themes&marketplace=' . $marketplace ); ?>">
 								<?php _e( 'Themes' , 'layerswp' ); ?>
 							</a>
 						</li>
 						<li <?php if( 'extensions' == $type ) { ?>class="active"<?php } ?>>
-							<a href="<?php echo admin_url( 'admin.php?page=layers-marketplace&type=extensions&marketplace=' . $marketplace ); ?>">
+							<a href="<?php echo admin_url( 'admin.php?page=' . $current_page . '&type=extensions&marketplace=' . $marketplace ); ?>">
 								<?php _e( 'Extensions' , 'layerswp' ); ?>
 							</a>
 						</li>
 						<?php if( 'envato' == $marketplace ) { ?>
 							<li <?php if( 'stylekits' == $type ) { ?>class="active"<?php } ?>>
-								<a href="<?php echo admin_url( 'admin.php?page=layers-marketplace&type=stylekits&marketplace=' . $marketplace ); ?>">
+								<a href="<?php echo admin_url( 'admin.php?page=' . $current_page . '&type=stylekits&marketplace=' . $marketplace ); ?>">
 									<?php _e( 'Style Kits' , 'layerswp' ); ?>
 								</a>
 							</li>

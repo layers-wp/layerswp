@@ -154,8 +154,6 @@ class Layers_API {
 
 		if( is_wp_error( $product_list ) ) return $product_list;
 
-
-
 		$response = $this->translate_list( $product_list );
 
 		return json_decode( $response );
@@ -194,6 +192,7 @@ class Layers_API {
 				$product[ 'updated' ] = strtotime( $p_details->updated_at );
 				$product[ 'sales' ] = esc_attr( $p_details->number_of_sales );
 				$product[ 'rating' ] = ( $p_details->rating->count > 0 ? ceil( $p_details->rating->rating ) : '' ) ;
+				$product[ 'rating_count' ] = $p_details->rating->count;
 				$product[ 'author' ] = $p_details->author_username;
 				$product[ 'author_image' ] = $p_details->author_image;
 				$product[ 'author_url' ] = $p_details->author_url;
@@ -256,6 +255,7 @@ class Layers_API {
 				}
 				$product[ 'categories' ] = strtolower( implode( ',', $categories ) );
 				$product[ 'rating' ] = ( $p_details->rating_count > 0 ? ceil( $details->average_rating ) : '' ) ;
+				$product[ 'rating_count' ] = $p_details->rating_count;
 
 				 /**
 				* Get images and/or video

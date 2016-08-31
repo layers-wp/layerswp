@@ -197,23 +197,26 @@ $all_categories = array(); ?>
 								data-price="<?php echo (float) ($details->price); ?>"
 								data-trending="<?php echo ( isset( $details->trending ) && '1' == $details->trending ? 1 : 0 ); ?>">
 								<label for="layers-preset-layout-<?php echo esc_attr( $details->id ); ?>-radio">
-
-									<div class="l_admin-product-extra-info l_admin-animate">
-										<span class="l_admin-pull-left l_admin-sales-count">
-											<?php echo sprintf( _n( '%s sale', '%s sales', $details->sales, 'layerswp' ), $details->sales ); ?>
-										</span>
-										<?php if( isset( $details->rating ) ) { ?>
-											<div class="l_admin-pull-right theme-rating star-rating l_admin-push-left-small">
-												<?php for( $i = 1; $i < 6; $i++ ){ ?>
-													<?php if( ceil( $details->rating ) >= $i ) { ?>
-														<span class="star star-full"></span>
-													<?php } else { ?>
-														<span class="star star-empty"></span>
+									<?php if( 10 < $details->sales || 3 < $details->rating_count ) { ?>
+										<div class="l_admin-product-extra-info l_admin-animate">
+											<?php if( 10 < $details->sales ) { ?>
+												<span class="l_admin-pull-left l_admin-sales-count">
+													<?php echo sprintf( _n( '%s sale', '%s sales', $details->sales, 'layerswp' ), $details->sales ); ?>
+												</span>
+											<?php } ?>
+											<?php if( isset( $details->rating ) && 3 < $details->rating_count ) { ?>
+												<div class="l_admin-pull-right theme-rating star-rating l_admin-push-left-small">
+													<?php for( $i = 1; $i < 6; $i++ ){ ?>
+														<?php if( ceil( $details->rating ) >= $i ) { ?>
+															<span class="star star-full"></span>
+														<?php } else { ?>
+															<span class="star star-empty"></span>
+														<?php } ?>
 													<?php } ?>
-												<?php } ?>
-											</div>
-										<?php } ?>
-									</div>
+												</div>
+											<?php } ?>
+										</div>
+									<?php } ?>
 
 									<?php if ( isset( $details->media_src ) ) { ?>
 										<div class="l_admin-product-screenshot" data-view-item="product-details-<?php echo $details->id; ?>">

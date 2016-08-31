@@ -409,7 +409,7 @@ jQuery(function($) {
 	* 5 - Marketplace Filter and Search functions
 	*/
 
-	$(window).bind( 'resize', function(){
+	/*$(window).bind( 'resize', function(){
 		marketplace_resize();
 	});
 	setTimeout( 'marketplace_resize' , 3000 );
@@ -427,6 +427,6 @@ jQuery(function($) {
 		});
 
 		$( '.l_admin-product .l_admin-product-screenshot' ).height( max_img_height );
-	}
+	}*/
 
 });

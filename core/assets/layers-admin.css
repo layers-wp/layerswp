@@ -1969,7 +1969,7 @@
 	}
 
 	.l_admin-product-screenshot{
-		height: 296px;
+		max-height: 296px;
 		overflow-x: hidden;
 	}
 	.l_admin-product-screenshot img{

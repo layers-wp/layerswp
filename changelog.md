@@ -4,6 +4,7 @@
 ##1.5.7
 ### 01 Sep 2016
 
+* **Fix** - Fixed Google Maps API on the front-end of the site. *MP*
 * **Fix** - Columns widths from span-4 to span-11 no longer collapse when masonry or video content is in there. *DP*
 * **Fix** - Fix repeater titles (Content, Slider, etc) so they dynamically display and dynamically update. *SOB*
 * **Tweak** - Tweaked the column width of shop list pages (was previously span-3, now span-4). *DP*

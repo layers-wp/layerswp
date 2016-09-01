@@ -112,8 +112,6 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 			// Mix in new/unset defaults on every instance load (NEW)
 			$instance = $this->apply_defaults( $instance );
 
-			wp_enqueue_script( LAYERS_THEME_SLUG . '-map-api' );
-
 			// Enqueue Masonry if need be
 			if( 'list-masonry' == $this->check_and_return( $instance , 'design', 'liststyle' ) ) {
 				wp_enqueue_script( LAYERS_THEME_SLUG . '-layers-masonry-js' );
@@ -528,7 +526,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 		<?php }
 
 		function column_item( $item_guid, $item_instance ) {
-			
+
 			// Required - Get the name of this type.
 			$type = str_replace( '_item', '', __FUNCTION__ );
 
@@ -536,13 +534,13 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 			$item_instance = $this->apply_defaults( $item_instance, 'column' );
 			?>
 			<li class="layers-accordion-item" data-guid="<?php echo esc_attr( $item_guid ); ?>">
-				
+
 				<a class="layers-accordion-title">
 					<span>
 						<?php echo ucfirst( $type ); ?><span class="layers-detail"><?php if ( isset( $item_instance['title'] ) ) echo $this->format_repeater_title( $item_instance['title'] ); ?></span>
 					</span>
 				</a>
-				
+
 				<section class="layers-accordion-section layers-content">
 					<?php $this->design_bar(
 						'top', // CSS Class Name

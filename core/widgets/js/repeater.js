@@ -157,15 +157,19 @@ jQuery(document).ready(function($){
 
 					// Get elements.
 					$new_field_container        = $new_field.parents('.layers-image-container');
-					$duplicated_field_contianer = $duplicated_field.parents('.layers-image-container');
+					$duplicated_field_container = $duplicated_field.parents('.layers-image-container');
+
+					// Get Image HTML
+					var $duplicated_field_image = $duplicated_field_container.find('.layers-image-display').clone();
 
 					// Duplicate the duplicated fields image.
-					$new_field_container.find('.layers-image-display')
-						.replaceWith( $duplicated_field_contianer.find('.layers-image-display') );
+					$new_field_container.find('.layers-image-display').replaceWith( $duplicated_field_image );
 
 					// Add 'Has Image' Class.
 					$new_field_container.addClass('layers-has-image');
+
 				}
+
 			});
 		}
 

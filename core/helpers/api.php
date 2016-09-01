@@ -293,6 +293,13 @@ class Layers_API {
 
 		// &category=' . $product_types[ $p_type ]
 
+		$cache_key = 'layers_wp_marketplace';
+
+		if( FALSE !== get_transient( $cache_key ) ) {
+
+			return json_decode( get_transient( $cache_key ) );
+		}
+
 		$api_call = wp_remote_get( 'https://www.layerswp.com/wp-json/wc/v1/products/?consumer_key=ck_850f668ddbad3705ecd10fe4f010dcc6e849a5ae&consumer_secret=cs_5c46a37a8890a4c2aa2af3c0226a6d489c6e7f70' );
 
 		if( is_wp_error( $api_call ) ) {
@@ -300,6 +307,8 @@ class Layers_API {
 			// Return an error if we have one
 			return $api_call;
 		} else {
+
+			set_transient( $cache_key , wp_remote_retrieve_body( $api_call ), 60 );
 
 			// If the call is successful, well then send back decoded JSON
 			return json_decode( wp_remote_retrieve_body( $api_call ) );

@@ -444,6 +444,23 @@ jQuery(function($) {
 			$(this).attr( 'src', $(this).data( 'src' ) );
 		});
 	});
+	
+	// Set the correct element as checked on init - for elements that are added after page load.
+	// eg javascript added elements like the repeater items.
+	$( document ).on( 'layers-interface-init', function( e, element ){
+		
+		$(element).find( '.layers-icon-group').each( function( j, element ) {
+
+			$select_group = $(element);
+			$select_item = $select_group.find('input[checked]');
+			$select_item_label = $select_item.parents('label');
+			
+			$select_group.find('.layers-active').removeClass('layers-active');
+			
+			$select_item_label.trigger('mousedown');
+			$select_item_label.addClass('layers-active');
+		});
+	});
 
 	/**
 	* 9 - Widget Focussing
@@ -916,6 +933,20 @@ jQuery(function($) {
 	});
 
 	/**
+	* Trigger 'layers-widget-interface-init' when:
+	* 1. Widget Accordion Panel is expanded (opened)
+	*/
+	$( document ).on( 'expanded', '.control-section#accordion-panel-widgets li.control-section-sidebar', function(e){
+
+		// Bail if we've a;ready initialized this.
+		if ( $(this).hasClass('layers-initialized') ) return;
+
+		// Add the 'initialized' class and trigger the event.
+		$(this).addClass('layers-initialized');
+		$(document).trigger('layers-widget-interface-init', $(this) );
+	});
+
+	/**
 	* 15 - Intercom checkbox
 	*/
 
@@ -930,6 +961,29 @@ jQuery(function($) {
 		}
 
 	});
+
+	/**
+	 * Duplicate Widgets. (disabled)
+	 */
+	/*
+	$( document ).on( 'layers-interface-init', function( e, element ){
+		// Add the duplicate widget button to all the Layers Widget actions.
+		$(element).find('.widget-control-actions .alignleft .widget-control-remove').after('<a class="layers-widget-duplicate-button" title="Duplicate Widget">Duplicate</a>');
+	});
+
+	$( document ).on( 'click', '.layers-widget-duplicate-button', function( e, element ){
+		$button = $(this);
+		$this_widget_form = $button.parents('.widget-inside');
+		$widget_panel_holder = $button.parents('.control-subsection.open');
+		$add_widgets_button =  $widget_panel_holder.find('.add-new-widget');
+
+		// Get the widget type.
+		$widget_id = $this_widget_form.find('[name="id_base"]').val();
+
+		$add_widgets_button.click();
+		$('#available-widgets-list').find('[id^="widget-tpl-'+ $widget_id +'"]').click();
+	});
+	*/
 
 	/**
 	 * 16 - Widget Peek/hide to preview changes

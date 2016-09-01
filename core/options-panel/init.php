@@ -81,6 +81,7 @@ class Layers_Options_Panel {
 
 		// Layers Marketplace is on it's own top level menu, so we have to shimmy it in
 		$this->valid_page_slugs[] = 'layers-marketplace';
+		$this->valid_page_slugs[] = 'layers-envato-marketplace';
 	}
 
 	/**
@@ -110,7 +111,7 @@ class Layers_Options_Panel {
 	/**
 	* Complex Header with Menu
 	*/
-	public function marketplace_header( $title = NULL, $excerpt = NULL ){
+	public function marketplace_header( $title = NULL, $excerpt = NULL, $marketplace = 'layerswp' ){
 
 		$api = new Layers_API();
 
@@ -123,7 +124,11 @@ class Layers_Options_Panel {
 				<h2 class="l_admin-heading" id="layers-options-header">
 					<?php echo esc_html( $title ); ?>
 					<span class="l_admin-small">
-						<?php _e( sprintf( 'Powered by <a href="%s">Envato</a>', 'http://www.themeforest.net/?ref=obox' ), 'layerswp' ); ?>
+					<?php if( 'envato' == $marketplace ){ ?>
+							<?php _e( sprintf( 'Powered by <a href="%s">Envato</a>', 'http://www.themeforest.net/?ref=obox' ), 'layerswp' ); ?>
+					<?php } else { ?>
+							<?php _e( sprintf( 'Powered by <a href="%s">Layers</a>', 'https://www.layerswp.com' ), 'layerswp' ); ?>
+					<?php } ?>
 					</span>
 				</h2>
 			<?php } ?>
@@ -272,7 +277,7 @@ class Layers_Options_Panel {
 						'link' => admin_url( 'edit.php?post_type=page&amp;filter=layers' ),
 					),
 					'layers-marketplace' => array(
-						'label' => 'Marketplace',
+						'label' => 'Layers Add Ons',
 						'link' => admin_url( 'admin.php?page=layers-marketplace' ),
 					),
 				)
@@ -346,7 +351,7 @@ class Layers_Options_Panel {
 		if( !defined( 'LAYERS_DISABLE_MARKETPLACE' ) ){
 			wp_add_dashboard_widget(
 				'layers-addons',
-				__( 'Layers Themes, Style Kits &amp; Extensions', 'layerswp' ),
+				__( 'Layers Themes &amp; Extensions', 'layerswp' ),
 				array( &$this, 'layers_dashboard_widget' ),
 				NULL,
 				array(
@@ -388,15 +393,12 @@ class Layers_Options_Panel {
 				<div class="l_admin-section-title l_admin-tiny">
 					<p class="l_admin-excerpt">
 						<?php _e( 'Looking for a theme or plugin to achieve something unique with your website?
-							Browse the Layers Marketplace and take your site to the next level.' , 'layerswp' ); ?>
+							Browse the Layers Add Ons and take your site to the next level.' , 'layerswp' ); ?>
 					</p>
 				</div>
 				<div class="l_admin-button-well">
-					<a href="https://www.layerswp.com/product-category/themes/?ref=obox&utm_source=layers%20theme&utm_medium=link&utm_campaign=Layers%20Pro%20Upsell&utm_content=WP%20Dashboard%20Theme%20Button" class="button button-primary">
-						<?php _e( 'Themes' , 'layerswp' ); ?>
-					</a>
-					<a href="https://www.layerswp.com/product-category/extensions/?ref=obox&utm_source=layers%20theme&utm_medium=link&utm_campaign=Layers%20Pro%20Upsell&utm_content=WP%20Dashboard%20Theme%20Button" class="button button-primary">
-						<?php _e( 'Extensions' , 'layerswp' ); ?>
+					<a href="<?php echo admin_url( 'admin.php?page=layers-marketplace' ); ?>" class="button button-primary">
+						<?php _e( 'Themes &amp; Extensions' , 'layerswp' ); ?>
 					</a>
 				</div>
 			<?php } ?>
@@ -576,8 +578,8 @@ function layers_options_panel_menu(){
 	if( !defined( 'LAYERS_DISABLE_MARKETPLACE' ) ){
 		// dashboard Page
 		$marketplace = add_menu_page(
-			__( 'Marketplace' , 'layerswp' ),
-			__( 'Marketplace' , 'layerswp' ),
+			__( 'Add Ons' , 'layerswp' ),
+			__( 'Add Ons' , 'layerswp' ),
 			'edit_theme_options',
 			LAYERS_THEME_SLUG . '-marketplace',
 			'layers_options_panel_ui',
@@ -587,26 +589,22 @@ function layers_options_panel_menu(){
 
 		add_action('admin_print_scripts-' . $marketplace, array( $layers_options_panel, 'enqueue_marketplace_scripts') );
 
-		$marketplace_extensions = add_submenu_page(
+		$marketplace_envato = add_submenu_page(
 			LAYERS_THEME_SLUG . '-marketplace',
-			__( 'Extensions' , 'layerswp' ),
-			__( 'Extensions' , 'layerswp' ),
+			__( 'Envato Marketplace' , 'layerswp' ),
+			__( 'Envato Marketplace' , 'layerswp' ),
 			'edit_theme_options',
-			'admin.php?page=layers-marketplace&type=extensions'
+			LAYERS_THEME_SLUG . '-envato-marketplace',
+			'layers_options_panel_ui'
 		);
-		$marketplace_stylekits = add_submenu_page(
-			LAYERS_THEME_SLUG . '-marketplace',
-			__( 'Style Kits' , 'layerswp' ),
-			__( 'Style Kits' , 'layerswp' ),
-			'edit_theme_options',
-			'admin.php?page=layers-marketplace&type=stylekits'
-		);
+
+		add_action('admin_print_scripts-' . $marketplace_envato, array( $layers_options_panel, 'enqueue_marketplace_scripts') );
 
 		// This modifies the Layers submenu item - must be done here as $submenu
 		// is only created if $submenu items are added using add_submenu_page
 
 		if( isset( $submenu[ 'layers-marketplace' ] ) ) {
-			$submenu[LAYERS_THEME_SLUG . '-marketplace'][0][0] = __( 'Themes' , 'layerswp' );
+			$submenu[LAYERS_THEME_SLUG . '-marketplace'][0][0] = __( 'Official' , 'layerswp' );
 		}
 
 	}

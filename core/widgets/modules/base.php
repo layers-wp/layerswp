@@ -549,14 +549,41 @@ if( !class_exists( 'Layers_Widget' ) ) {
 					}
 					?>
 				</ul>
+				
+				<?php
+				// Settings this will add these prefixes to both the get_layers_field_id(),
+				// and get_layers_field_name() string construction.
+				$this->field_attribute_prefixes = array( "{$type}s", '{{{{guid}}}}' );
+				?>
+				<script type="text/html" id="tmpl-my-template" class="layers-widget-repeater-template">
+					<?php $this->$function_name( '{{{{guid}}}}', array() ); ?>
+				</script>
+				<?php unset( $this->field_attribute_prefixes ); ?>
 
 				<?php if ( $options['show_add_button'] ) { ?>
 					<button class="layers-button btn-full layers-widget-repeater-add-item add-new-widget">
 						<?php _e( 'Add New' , 'layerswp' ) ; ?> <?php echo ucfirst( $type ); ?>
 					</button>
 				<?php } ?>
+				
 			</div>
 		<?php }
+		
+		/**
+		 * Helper function to display the repeater title when the Widget first loads.
+		 * There's also JS that will update this title as the title input is typed into.
+		 *
+		 * @param  string $text The existing value of the widget title.
+		 * @return string       Formetted title eg ` : Pretty Title...`.
+		 */
+		public function format_repeater_title( $text ) {
+			
+			$text = substr( stripslashes( strip_tags( $text ) ), 0 , 50 ); // Shorten the text to a max character width.
+			if ( strlen( $text ) > 50 ) $text .= '...'; // Add `...` if the text is over a certain length.
+			if ( $text ) $text = ': ' . $text; // Add ` : ` to the beginning.
+			
+			return $text;
+		}
 
 		/**
 		 * The main function that outputs the repeater form item.

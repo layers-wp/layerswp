@@ -300,8 +300,6 @@
 					var $element = $(this);
 					var $parent_accordion = $element.parents('li.customize-control-widget_form');
 					
-					console.log( $parent_accordion );
-					
 					// Bail if this is not a control.
 					if ( ! $parent_accordion.length ) return;
 					

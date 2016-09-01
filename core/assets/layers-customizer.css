@@ -2409,16 +2409,6 @@ button[data-cmd="html"].fr-btn.fr-active{
 	.layers-accordion-item.open .layers-accordion-title .layers-accordion-edit{
 		color: #6d6d6d;
 	}
-	.layers-accordion-title .layers-accordion-duplicate {
-		padding: 0px 8px;
-		text-transform: uppercase;
-		cursor: pointer;
-		position: absolute;
-		right: 36px;
-		top: 0;
-		padding: 0 13px;
-		opacity: 0;
-	}
 	.layers-accordion-title .layers-accordion-edit{
 		display: block;
 		padding: 0 11px;
@@ -2430,6 +2420,17 @@ button[data-cmd="html"].fr-btn.fr-active{
 		content: '\e00d';
 		font: 400 14px/37px layers-interface;
 	}
+	.layers-accordion-title .layers-accordion-duplicate {
+		padding: 0px 8px;
+		text-transform: uppercase;
+		cursor: pointer;
+		position: absolute;
+		right: 31px;
+		top: 0;
+		padding: 0 13px;
+		opacity: 0;
+		visibility: hidden;
+	}
 	.layers-accordion-title .layers-accordion-duplicate:after {
 		font: normal normal normal 14px/1 FontAwesome;
 		content: "\f0c5";
@@ -2438,9 +2439,10 @@ button[data-cmd="html"].fr-btn.fr-active{
 	.layers-accordion-title .layers-accordion-duplicate:hover {
 		background: rgba(1,1,1,0.05);
 	}
-	.layers-accordion-item:hover .layers-accordion-title .layers-accordion-duplicate,
 	.layers-accordion-item.open .layers-accordion-title .layers-accordion-duplicate {
 		opacity: 1;
+		visibility: visible;
+		right: 36px;
 	}
 	.layers-accordion-item:first-child .layers-accordion-title{
 		border-top-width: 0;

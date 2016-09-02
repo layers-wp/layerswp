@@ -1,6 +1,14 @@
 # Layers Changelog
 
 =======
+##1.5.8
+### 02 Sep 2016
+
+* **Fix** - Fixed Duplicate button for widgets which have no accordian titles. *MP*
+* **Enhancement** - Added a `Header Menu` font selector. *MP*
+
+
+=======
 ##1.5.7
 ### 01 Sep 2016
 

@@ -342,7 +342,7 @@ class Layers_Customizer_Config {
 			),
 			'menu-fonts' => array(
 				'type' => 'layers-font',
-				'label'    => __( 'Menus' , 'layerswp' ),
+				'label'    => __( 'Header Menu' , 'layerswp' ),
 				'selectors' => '.header-site nav.nav-horizontal .menu li',
 				'choices' => layers_get_google_font_options(),
 			),

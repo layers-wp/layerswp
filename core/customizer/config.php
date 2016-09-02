@@ -340,6 +340,12 @@ class Layers_Customizer_Config {
 				'selectors' => 'h1,h2,h3,h4,h5,h6, .heading',
 				'choices' => layers_get_google_font_options(),
 			),
+			'menu-fonts' => array(
+				'type' => 'layers-font',
+				'label'    => __( 'Menus' , 'layerswp' ),
+				'selectors' => '.header-site nav.nav-horizontal .menu li',
+				'choices' => layers_get_google_font_options(),
+			),
 			'form-fonts' => array(
 				'type' => 'layers-font',
 				'label'    => __( 'Buttons' , 'layerswp' ),

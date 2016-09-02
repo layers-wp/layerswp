@@ -336,6 +336,8 @@ jQuery(document).ready(function($){
 		// "Hi Mom"
 		$title_field = $repeater_item.find( 'input[id*="-title"], input[id*="-button-link_text"]' );
 
+		if( 'undefined' == typeof( $title_field.val() ) ) return;
+
 		// Set the string value
 		$val = $title_field.val().substr( 0 , 51 );
 

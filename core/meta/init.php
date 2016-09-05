@@ -128,61 +128,6 @@ class Layers_Custom_Meta {
 					</div>
 				</div>
 
-				<?php // Grab the current page layout
-				$current_page_layout = get_post_meta( get_the_ID(), 'layers_page_layout' , true );
-
-				// Get the page layout selectors
-				$page_layouts = array(
-					'no-sidebar' => array(
-						'icon-css' => 'layout-fullwidth',
-						'label' => __( 'No Sidebar', '' )
-					),
-					'left-sidebar' => array(
-						'icon-css' => 'sidebar-left',
-						'label' => __( 'Left Sidebar', '' )
-					),
-					'right-sidebar' => array(
-						'icon-css' => 'sidebar-right',
-						'label' => __( 'Right Sidebar', '' )
-					),
-					'left-right-sidebar' => array(
-						'icon-css' => 'sidebar-left-right',
-						'label' => __( 'Left &amp; Right Sidebar', '' )
-					),
-				); ?>
-				<style>
-					#layers-page-sidebar-layout .layers-icon-wrapper [class^="icon-"]{
-						border: none;
-						border-bottom: 1px #ccc solid;
-						font-size: 80px;
-						padding: 10px;
-						text-align: center;
-						width: 84%;
-					}
-					#layers-page-sidebar-layout .layers-icon-wrapper .layers-icon-description{
-						font-size: 12px;
-						text-align: center;
-					}
-				</style>
-
-				<div class="l_admin-row">
-					<div class="layers-select-icons">
-						<div id="layers-page-sidebar-layout" class="postbox l_admin-content">
-							<?php foreach( $page_layouts as $pl_value => $pl_details ){ ?>
-								<label href="" class="layers-icon-wrapper <?php if( $pl_value == $current_page_layout ) echo 'layers-active'; ?>" for="page-layout-<?php echo $pl_value; ?>" data-value="<?php echo $pl_value; ?>">
-									<span class="icon-<?php echo $pl_details[ 'icon-css' ]; ?>"></span>
-									<span class="layers-icon-description">
-										<?php echo $pl_details[ 'label' ]; ?>
-									</span>
-									<input type="radio" <?php if( $pl_value == $current_page_layout ) echo 'checked="checked"'; ?> name="layers-page-layout" class="layers-select-icons" id="page-layout-<?php echo $pl_value; ?>" value="<?php echo $pl_value; ?>">
-								</label>
-							<?php }?>
-						</div>
-
-					</div>
-
-				</div>
-
 				<div class="l_admin-row">
 
 					<div class="l_admin-column l_admin-span-4 postbox l_admin-content">
@@ -451,11 +396,6 @@ class Layers_Custom_Meta {
 				update_post_meta( $post_id, LAYERS_THEME_SLUG, $_REQUEST[ $form_key ] );
 			} // if isset( $this->custom_meta[ $post_type ] )
 		} // if nonce
-
-		// Update Layers Layout Selection
-		if( isset( $_REQUEST[ 'layers-page-layout' ] ) )
-			update_post_meta( $post_id, 'layers_page_layout', $_REQUEST[ 'layers-page-layout' ] );
-
 	}
 }
 

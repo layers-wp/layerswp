@@ -366,7 +366,7 @@ class Layers_Customizer_Config {
 					'header-logo-center-top' => __( 'Logo Center Top' , 'layerswp' ),
 					'header-logo-top' => __( 'Logo Top' , 'layerswp' ),
 					'header-logo-center' => __( 'Logo Center' , 'layerswp' ),
-					'header-side' => __( 'Side Header' , 'layerswp' ),
+					'header-sidebar' => __( 'Header Sidebar' , 'layerswp' ),
 				),
 			),
 			'header-width' => array(
@@ -379,7 +379,7 @@ class Layers_Customizer_Config {
 				),
 				'linked'    => array(
   					'show-if-selector' => "#layers-header-menu-layout",
-  					'show-if-value' => 'header-side',
+  					'show-if-value' => 'header-sidebar',
   					'show-if-operator' => '!==',
   				),
 			),
@@ -388,7 +388,7 @@ class Layers_Customizer_Config {
 				'heading_divider' => __( 'Sticky Header' , 'layerswp' ),
 				'linked'    => array(
   					'show-if-selector' => "#layers-header-menu-layout",
-  					'show-if-value' => 'header-side',
+  					'show-if-value' => 'header-sidebar',
   					'show-if-operator' => '!==',
   				),
 			),
@@ -399,7 +399,7 @@ class Layers_Customizer_Config {
 				'default'	=> FALSE,
 				'linked'    => array(
   					'show-if-selector' => "#layers-header-menu-layout",
-  					'show-if-value' => 'header-side',
+  					'show-if-value' => 'header-sidebar',
   					'show-if-operator' => '!==',
   				),
 			),
@@ -409,7 +409,7 @@ class Layers_Customizer_Config {
 				'default'	=> FALSE,
 				'linked'    => array(
   					'show-if-selector' => "#layers-header-menu-layout",
-  					'show-if-value' => 'header-side',
+  					'show-if-value' => 'header-sidebar',
   					'show-if-operator' => '!==',
   				),
 			),

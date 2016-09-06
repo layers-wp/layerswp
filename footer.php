@@ -5,7 +5,7 @@
 
 		</section>
 
-		<?php if ( 'header-side' == layers_get_theme_mod( 'header-menu-layout' ) ) { ?>
+		<?php if ( 'header-sidebar' == layers_get_theme_mod( 'header-menu-layout' ) ) { ?>
 			</div><!-- /header side wrapper -->
 		<?php } ?>
 

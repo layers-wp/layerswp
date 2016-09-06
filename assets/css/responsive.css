@@ -204,6 +204,9 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 	.header-secondary{
 		display: block;
 	}
+	.header-side .header-secondary .container{
+		max-width: none;
+	}
 
 	/*---------------------------*/
 	/*- MEDIA BLOCK -------------*/
@@ -718,6 +721,7 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 			padding: 0;
 			text-align: left;
 		}
+
 		/*-----------------------------*/
 		/*- VERTICAL MENU POSITIONING -*/
 		.header-side-wrapper .header-site .nav li > .sub-menu,
@@ -732,6 +736,17 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 		}
 		.header-side-wrapper .header-site .menu-item-has-children > a::after {
 			content: "\e600";
+		}
+
+		/*-----------------------------*/
+		/*- HEADER CART POSITIONING ---*/
+		.header-side-wrapper .header-site .header-cart{
+			margin-left: 0px;
+			width: 280px;
+			position: fixed;
+			bottom: 0px;
+			left: 0px;
+			border-radius: 0px;
 		}
 
 	/*---------------------------*/

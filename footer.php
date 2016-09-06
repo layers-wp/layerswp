@@ -5,6 +5,10 @@
 
 		</section>
 
+		<?php if ( 'side' == layers_get_theme_mod( 'header-position' ) ) { ?>
+			<div class="">
+		<?php } ?>
+
 		<?php do_action( 'layers_before_footer' ); ?>
 
 		<section id="footer" <?php layers_wrapper_class( 'footer_site', 'footer-site' ); ?>>

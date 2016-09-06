@@ -14,6 +14,10 @@
 
 		<?php get_template_part( 'partials/header' , 'secondary' ); ?>
 
+		<?php if ( 'side' == layers_get_theme_mod( 'header-position' ) ) { ?>
+			<div class="">
+		<?php } ?>
+
 		<section <?php layers_header_class(); ?> >
 			<?php do_action( 'layers_before_header_inner' ); ?>
 			<div class="<?php if( 'layout-fullwidth' != layers_get_theme_mod( 'header-width' ) ) echo 'container'; ?> header-block">

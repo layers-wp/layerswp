@@ -378,7 +378,7 @@ class Layers_Customizer_Config {
 					'layout-fullwidth' => __( 'Full Width' , 'layerswp' ),
 				),
 				'linked'    => array(
-  					'show-if-selector' => "#layers-header-menu-layout",
+  					'show-if-selector' => "#customize-control-layers-header-menu-layout",
   					'show-if-value' => 'header-sidebar',
   					'show-if-operator' => '!==',
   				),
@@ -387,7 +387,7 @@ class Layers_Customizer_Config {
 				'type'  => 'layers-heading',
 				'heading_divider' => __( 'Sticky Header' , 'layerswp' ),
 				'linked'    => array(
-  					'show-if-selector' => "#layers-header-menu-layout",
+  					'show-if-selector' => "#customize-control-layers-header-menu-layout",
   					'show-if-value' => 'header-sidebar',
   					'show-if-operator' => '!==',
   				),
@@ -398,7 +398,7 @@ class Layers_Customizer_Config {
 				'class'		=> 'layers-pull-top layers-pull-bottom',
 				'default'	=> FALSE,
 				'linked'    => array(
-  					'show-if-selector' => "#layers-header-menu-layout",
+  					'show-if-selector' => "#customize-control-layers-header-menu-layout",
   					'show-if-value' => 'header-sidebar',
   					'show-if-operator' => '!==',
   				),
@@ -408,7 +408,7 @@ class Layers_Customizer_Config {
 				'label'    => __( 'Transparent Overlay' , 'layerswp' ),
 				'default'	=> FALSE,
 				'linked'    => array(
-  					'show-if-selector' => "#layers-header-menu-layout",
+  					'show-if-selector' => "#customize-control-layers-header-menu-layout",
   					'show-if-value' => 'header-sidebar',
   					'show-if-operator' => '!==',
   				),

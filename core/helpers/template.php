@@ -366,12 +366,12 @@ if( !function_exists( 'layers_body_class' ) ) {
 		$classes[] = $header_menu_layout;
 
 		// Handle sticky / not sticky
-		if( TRUE == $header_sticky_option ){
+		if( TRUE == $header_sticky_option && 'header-sidebar' != $header_menu_layout ){
 			$classes[] = 'layers-header-sticky';
 		}
 
 		// Handle overlay / not overlay
-		if( TRUE == $header_overlay_option ){
+		if( TRUE == $header_overlay_option && 'header-sidebar' != $header_menu_layout ){
 			$classes[] = 'layers-header-overlay';
 		}
 

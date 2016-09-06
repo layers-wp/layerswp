@@ -356,13 +356,17 @@ class Layers_Customizer_Config {
 
 		// Site Settings -> Layout
 		$layers_customizer_controls['header-layout'] = array(
-			'header-position' => array(
-				'type'     => 'layers-select',
-				'heading_divider' => __( 'Header Position' , 'layerswp' ),
-				'default' => 'top',
+			'header-menu-layout' => array(
+				'type'     => 'layers-select-icons',
+				'heading_divider' => __( 'Header Arrangement' , 'layerswp' ),
+				'default' => 'header-logo-left',
 				'choices' => array(
-					'top' => __( 'Top' , 'layerswp' ),
-					'side' => __( 'Side' , 'layerswp' ),
+					'header-logo-left' => __( 'Logo Left' , 'layerswp' ),
+					'header-logo-right' => __( 'Logo Right' , 'layerswp' ),
+					'header-logo-center-top' => __( 'Logo Center Top' , 'layerswp' ),
+					'header-logo-top' => __( 'Logo Top' , 'layerswp' ),
+					'header-logo-center' => __( 'Logo Center' , 'layerswp' ),
+					'header-side' => __( 'Side Header' , 'layerswp' ),
 				),
 			),
 			'header-width' => array(
@@ -374,25 +378,8 @@ class Layers_Customizer_Config {
 					'layout-fullwidth' => __( 'Full Width' , 'layerswp' ),
 				),
 				'linked'    => array(
-  					'show-if-selector' => "#layers-header-position",
-  					'show-if-value' => 'side',
-  					'show-if-operator' => '!==',
-  				),
-			),
-			'header-menu-layout' => array(
-				'type'     => 'layers-select-icons',
-				'heading_divider' => __( 'Header Arrangement' , 'layerswp' ),
-				'default' => 'header-logo-left',
-				'choices' => array(
-					'header-logo-left' => __( 'Logo Left' , 'layerswp' ),
-					'header-logo-right' => __( 'Logo Right' , 'layerswp' ),
-					'header-logo-center-top' => __( 'Logo Center Top' , 'layerswp' ),
-					'header-logo-top' => __( 'Logo Top' , 'layerswp' ),
-					'header-logo-center' => __( 'Logo Center' , 'layerswp' ),
-				),
-				'linked'    => array(
-  					'show-if-selector' => "#layers-header-position",
-  					'show-if-value' => 'side',
+  					'show-if-selector' => "#layers-header-menu-layout",
+  					'show-if-value' => 'header-side',
   					'show-if-operator' => '!==',
   				),
 			),
@@ -400,8 +387,8 @@ class Layers_Customizer_Config {
 				'type'  => 'layers-heading',
 				'heading_divider' => __( 'Sticky Header' , 'layerswp' ),
 				'linked'    => array(
-  					'show-if-selector' => "#layers-header-position",
-  					'show-if-value' => 'side',
+  					'show-if-selector' => "#layers-header-menu-layout",
+  					'show-if-value' => 'header-side',
   					'show-if-operator' => '!==',
   				),
 			),
@@ -411,8 +398,8 @@ class Layers_Customizer_Config {
 				'class'		=> 'layers-pull-top layers-pull-bottom',
 				'default'	=> FALSE,
 				'linked'    => array(
-  					'show-if-selector' => "#layers-header-position",
-  					'show-if-value' => 'side',
+  					'show-if-selector' => "#layers-header-menu-layout",
+  					'show-if-value' => 'header-side',
   					'show-if-operator' => '!==',
   				),
 			),
@@ -421,8 +408,8 @@ class Layers_Customizer_Config {
 				'label'    => __( 'Transparent Overlay' , 'layerswp' ),
 				'default'	=> FALSE,
 				'linked'    => array(
-  					'show-if-selector' => "#layers-header-position",
-  					'show-if-value' => 'side',
+  					'show-if-selector' => "#layers-header-menu-layout",
+  					'show-if-value' => 'header-side',
   					'show-if-operator' => '!==',
   				),
 			),

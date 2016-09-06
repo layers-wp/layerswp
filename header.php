@@ -14,8 +14,9 @@
 
 		<?php get_template_part( 'partials/header' , 'secondary' ); ?>
 
-		<?php if ( 'side' == layers_get_theme_mod( 'header-position' ) ) { ?>
+		<?php if ( 'header-side' == layers_get_theme_mod( 'header-menu-layout' ) ) { ?>
 			<div class="header-side-wrapper"><!-- header side wrapper -->
+
 		<?php } ?>
 
 		<section <?php layers_header_class(); ?> >

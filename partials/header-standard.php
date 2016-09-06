@@ -7,6 +7,7 @@ if( 'header-sidebar' == $header_menu_layout ) {
 } else {
 	$nav_class = 'nav-horizontal';
 } ?>
+
 <nav class="nav <?php echo esc_attr( $nav_class ); ?>">
     <?php do_action( 'layers_before_header_nav' ); ?>
 

@@ -588,7 +588,7 @@ if( !function_exists( 'layers_get_header_class' ) ) {
 			$classes[] = 'header-left';
 		} else if( 'header-logo-right' == $header_align_option ){
 			$classes[] = 'header-right';
-		} else if( 'header-logo-top' == $header_align_option || 'header-sidebar' == $header_menu_layout ){
+		} else if( 'header-logo-top' == $header_align_option ){
 			$classes[] = 'nav-clear';
 		} else if( 'header-logo-center-top' == $header_align_option ){
 			$classes[] = 'header-center';

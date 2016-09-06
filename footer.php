@@ -6,7 +6,7 @@
 		</section>
 
 		<?php if ( 'side' == layers_get_theme_mod( 'header-position' ) ) { ?>
-			<div class="">
+			</div><!-- /header side wrapper -->
 		<?php } ?>
 
 		<?php do_action( 'layers_before_footer' ); ?>

@@ -44,7 +44,7 @@ if( !class_exists( 'Layers_Customize_Select_Icon_Control' ) ) {
 
 				<ul class="layers-visuals-wrapper layers-visuals-inline layers-clearfix">
 					<?php foreach ( $this->choices as $key => $value ) :
-						
+
 						if ( is_array( $value ) ) {
 							$label = $value['name'];
 							$class = $value['class'];
@@ -60,7 +60,7 @@ if( !class_exists( 'Layers_Customize_Select_Icon_Control' ) ) {
 								<span class="layers-icon-description">
 									<?php echo $label; ?>
 								</span>
-								<input class="l_admin-hide" type="radio" value="<?php echo esc_attr( $key ); ?>" name="<?php echo esc_attr( $name ); ?>" <?php $this->link(); checked( $this->value(), $key ); ?> />
+								<input class="l_admin-hide" type="radio" value="<?php echo esc_attr( $key ); ?>" id="<?php echo esc_attr( $this->id ); ?>-<?php echo $key; ?>" name="<?php echo esc_attr( $name ); ?>" <?php $this->link(); checked( $this->value(), $key ); ?> />
 							</label>
 						</li>
 					<?php endforeach; ?>

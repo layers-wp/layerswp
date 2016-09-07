@@ -1,3 +1,5 @@
+<?php do_action( 'layers_before_footer' ); ?>
+
 <section id="footer" <?php layers_wrapper_class( 'footer_site', 'footer-site' ); ?>>
 	<?php do_action( 'layers_before_footer_inner' ); ?>
 	<div class="<?php if( 'layout-fullwidth' != layers_get_theme_mod( 'footer-width' ) ) echo 'container'; ?> content clearfix">
@@ -40,3 +42,6 @@
 		<?php _e( sprintf( '<a class="created-using-layers" target="_blank" tooltip="Built with Layers" href="%s"><span>Built with Layers</span></a>', 'http://www.layerswp.com' ) , 'layerswp' ); ?>
 	<?php } ?>
 </section><!-- END / FOOTER -->
+
+
+<?php do_action( 'layers_after_footer' ); ?>

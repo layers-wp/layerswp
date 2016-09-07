@@ -25,7 +25,7 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 		-webkit-flex-direction: row;
 		flex-direction: row;
 	}
-	.advanced-layout-left header{
+	.advanced-layout-left .header-site{
 		order: 1;
 		width: 20%;
 	}
@@ -33,7 +33,7 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 		order: 2;
 		width: 80%;
 	}
-	.advanced-layout-right header{
+	.advanced-layout-right .header-site{
 		order: 2;
 		width: 20%;
 	}

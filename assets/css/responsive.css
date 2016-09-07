@@ -204,8 +204,9 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 	.header-secondary{
 		display: block;
 	}
-	.header-side .header-secondary .container{
+	.body-header-sidebar .header-secondary .container{
 		max-width: none;
+		padding: 0 10px;
 	}
 
 	/*---------------------------*/

@@ -1,6 +1,13 @@
 # Layers Changelog
 
 =======
+##1.6.0
+### 14 Sep 2016
+
+* **Fix** - Full width map no longer has 10px gutters to the left and right of the map. *DP*
+* **Enhancement** - Added new Header Sidebar layout option. *MP*
+
+=======
 ##1.5.8
 ### 05 Sep 2016
 

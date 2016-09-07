@@ -715,10 +715,10 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 			display: block;
 			width: 100%;
 		}
-		.header-side-wrapper .nav-horizontal li{
+		.header-side-wrapper .header-site .nav-horizontal li{
 			float: none;
 		}
-		.header-side-wrapper .nav-horizontal > ul > li > a{
+		.header-side-wrapper .header-site .nav-horizontal > ul > li > a{
 			padding: 0;
 			text-align: left;
 		}

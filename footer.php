@@ -13,7 +13,7 @@
 		<?php if ( 'header-sidebar' == layers_get_theme_mod( 'header-menu-layout' ) ) { ?>
 			</div><!-- /header side wrapper -->
 		<?php } else {
-			 get_template_part( 'partials/footer' , 'standard' );
+			get_template_part( 'partials/footer' , 'standard' );
 		}?>
 
 	</div><!-- END / MAIN SITE #wrapper -->

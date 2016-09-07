@@ -727,6 +727,9 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 	.row.has-map{
 		padding-top: 0;
 	}
+	.full-width .layers-map{
+		margin: 0 -10px;
+	}
 	.layers-map img{
 		width: auto;
 		max-width: none;

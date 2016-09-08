@@ -717,6 +717,7 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 		}
 		.header-side-wrapper .header-site .nav-horizontal li{
 			float: none;
+			margin: 0;
 		}
 		.header-side-wrapper .header-site .nav-horizontal > ul > li > a{
 			padding: 0;
@@ -725,18 +726,19 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 		/*-----------------------------*/
 		/*- VERTICAL MENU POSITIONING -*/
+		.header-side-wrapper .header-site .menu-item-has-children > a::after {
+			content: "\e600";
+		}
 		.header-side-wrapper .header-site .nav li > .sub-menu,
 		.header-side-wrapper .header-site .nav li .children{
 			top: 0;
-			left: 210px;
+			left: 200px;
+			right: auto;
 		}
 		.header-side-wrapper .header-site .nav li:hover > .sub-menu,
 		.header-side-wrapper .header-site .nav li:hover .children{
 			top: 0;
 			left: 200px;
-		}
-		.header-side-wrapper .header-site .menu-item-has-children > a::after {
-			content: "\e600";
 		}
 
 		/*-----------------------------*/

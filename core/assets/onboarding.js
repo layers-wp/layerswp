@@ -81,7 +81,7 @@ jQuery(function($) {
 
 			var $page_data = {
 				action: 'layers_create_builder_page_from_preset',
-				post_title: ( 'undefined' == typeof( $( '#preset_page_title' ).val() ) ? false : $( '#preset_page_title' ).val() ),
+				post_title: ( 'undefined' == typeof( $( '#preset_page_title' ).val() ) ? $title : $( '#preset_page_title' ).val() ),
 				preset_nonce: layers_onboarding_params.preset_layout_nonce,
 				widget_data: $.parseJSON( $widget_data )
 			};
@@ -92,7 +92,7 @@ jQuery(function($) {
 					'created layers page',
 					{
 						"Template Type": $title,
-						"Page Name": ( 'undefined' == typeof( $( '#preset_page_title' ).val() ) ? false : $( '#preset_page_title' ).val() )
+						"Page Name": ( 'undefined' == typeof( $( '#preset_page_title' ).val() ) ? $title : $( '#preset_page_title' ).val() )
 					}
 				);
 				$(document).layers_intercom_event( 'completed onboarding' );

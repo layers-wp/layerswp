@@ -7,6 +7,7 @@
 * **Fix** - Full width map no longer has 10px gutters to the left and right of the map. *DP*
 * **Fix** - Updated the preset layout, page import and duplicate page nonce actions to be more specific as not to be confused by any other nonce actions. *MP*
 * **Enhancement** - Added new Header Sidebar layout option. *MP*
+* **Enhancement** - Updated the Waypoints plugin to version 4.0. *MP*
 * **Enhancement** - Added the default theme color to the onboarding for Child Themes. *MP*
 
 =======

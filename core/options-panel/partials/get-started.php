@@ -186,7 +186,7 @@ $layers_migrator = new Layers_Widget_Migrator(); ?>
 								'type' => 'color',
 								'name' => 'site_color',
 								'id' => 'site_color',
-								'value' => ( get_theme_mod( 'layers-header-background-color' ) ) ? get_theme_mod( 'layers-header-background-color' ) : '#009eec',
+								'value' => ( layers_get_theme_mod( 'header-background-color' ) ) ? layers_get_theme_mod( 'header-background-color' ) : '#009eec',
 							) );
 							?>
 						</div>

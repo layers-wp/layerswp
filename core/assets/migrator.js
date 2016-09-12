@@ -85,7 +85,7 @@ jQuery(document).ready(function($){
 		var $page_data = {
 				action: 'layers_create_builder_page_from_preset',
 				post_title: $( '#layers_preset_page_title' ).val(),
-				nonce: layers_migrator_params.preset_layout_nonce,
+				preset_nonce: layers_migrator_params.preset_layout_nonce,
 				widget_data: $.parseJSON( $widget_data ),
 			};
 
@@ -143,7 +143,7 @@ jQuery(document).ready(function($){
 				var $page_data = {
 						action: 'layers_import_widgets',
 						post_id: $that.data('post-id'),
-						nonce: layers_migrator_params.import_layout_nonce,
+						import_nonce: layers_migrator_params.import_layout_nonce,
 						widget_data: import_data,
 					};
 
@@ -186,7 +186,7 @@ jQuery(document).ready(function($){
 				action: 'layers_duplicate_builder_page',
 				post_id: $that.data('post-id'),
 				post_title: $('#title').val(),
-				nonce: layers_migrator_params.duplicate_layout_nonce
+				duplicate_nonce: layers_migrator_params.duplicate_layout_nonce
 			};
 
 		$.post(

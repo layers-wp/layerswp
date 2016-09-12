@@ -609,7 +609,7 @@ $page_content .= '* ' . $data->name. '
 
 	public function do_ajax_import(){
 
-		if( !check_ajax_referer( 'layers-migrator-import', 'nonce', false ) ) die( 'You threw a Nonce exception' ); // Nonce
+		if( !check_ajax_referer( 'layers-migrator-import', 'import_nonce', false ) ) die( 'You threw a Nonce exception' ); // Nonce
 
 		// Set the page ID
 		$import_data[ 'post_id' ] = $_POST[ 'post_id' ];
@@ -639,7 +639,7 @@ $page_content .= '* ' . $data->name. '
 
 	public function do_ajax_duplicate(){
 
-		if( !check_ajax_referer( 'layers-migrator-duplicate', 'nonce', false ) ) die( 'You threw a Nonce exception' ); // Nonce
+		if( !check_ajax_referer( 'layers-migrator-duplicate', 'duplicate_nonce', false ) ) die( 'You threw a Nonce exception' ); // Nonce
 
 		// We need a page title and post ID for this to work
 		if( !isset( $_POST[ 'post_title' ] ) || !isset( $_POST[ 'post_id' ]  ) ) return;
@@ -696,7 +696,7 @@ $page_content .= '* ' . $data->name. '
 	public function create_builder_page_from_preset(){
 		global $layers_widgets, $wpdb;
 
-		if( !check_ajax_referer( 'layers-migrator-preset-layouts', 'nonce', false ) ) die( 'You threw a Nonce exception' ); // Nonce
+		if( FALSE == check_ajax_referer( 'layers-migrator-preset-layouts', 'preset_nonce', false ) ) die( 'You threw a Nonce exception' ); // Nonce
 
 
 		remove_action('pre_post_update', 'wp_save_post_revision');

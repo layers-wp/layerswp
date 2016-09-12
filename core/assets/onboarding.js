@@ -83,7 +83,7 @@ jQuery(function($) {
 				action: 'layers_create_builder_page_from_preset',
 				post_title: ( undefined == $( '#preset_page_title' ) ? false : $( '#preset_page_title' ).val() ),
 				widget_data: $.parseJSON( $widget_data ),
-				nonce: layers_onboarding_params.preset_layout_nonce
+				preset_nonce: layers_onboarding_params.preset_layout_nonce
 			};
 
 			/** Log Event on Intercom **/

@@ -392,7 +392,10 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 							<?php } // if > 1 slide ?>
 
 							<?php if( TRUE == $this->check_and_return( $instance , 'autoheight_slides' ) ) { ?>
-								layers_swiper_resize( <?php echo $swiper_js_obj; ?> );
+								$( '#<?php echo esc_attr( $widget_id ); ?>' ).imagesLoaded(function(){
+									layers_swiper_resize( <?php echo $swiper_js_obj; ?> );
+								});
+
 								$(window).resize(function(){
 									layers_swiper_resize( <?php echo $swiper_js_obj; ?> );
 								});
@@ -623,7 +626,7 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 		<?php }
 
 		function slide_item( $item_guid, $item_instance ) {
-			
+
 			// Required - Get the name of this type.
 			$type = str_replace( '_item', '', __FUNCTION__ );
 
@@ -631,13 +634,13 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 			$item_instance = $this->apply_defaults( $item_instance, 'slide' );
 			?>
 			<li class="layers-accordion-item <?php echo $this->item_count; ?>" data-guid="<?php echo $item_guid; ?>">
-				
+
 				<a class="layers-accordion-title">
 					<span>
 						<?php echo ucfirst( $type ); ?><span class="layers-detail"><?php if ( isset( $item_instance['title'] ) ) echo $this->format_repeater_title( $item_instance['title'] ); ?></span>
 					</span>
 				</a>
-				
+
 				<section class="layers-accordion-section layers-content">
 					<?php $this->design_bar(
 						'top', // CSS Class Name

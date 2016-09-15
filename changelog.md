@@ -1,6 +1,13 @@
 # Layers Changelog
 
 =======
+##1.6.1
+### xx Sep 2016
+
+* **Fix** - Added ImagesLoaded to the slider resize trigger. *MP*
+
+
+=======
 ##1.6.0
 ### 13 Sep 2016
 

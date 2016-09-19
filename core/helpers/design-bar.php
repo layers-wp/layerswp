@@ -897,22 +897,6 @@ class Layers_Design_Controller {
 
 		// Add elements
 		$defaults['elements'] = array(
-			'customclass' => array(
-				'type' => 'text',
-				'label' => __( 'Custom Class(es)', 'layerswp' ),
-				'name' => $this->get_layers_field_name( 'advanced', 'customclass' ),
-				'id' => $this->get_layers_field_id( 'advanced', 'customclass' ),
-				'value' => ( isset( $this->values['advanced']['customclass'] ) ) ? $this->values['advanced']['customclass'] : NULL,
-				'placeholder' => 'example-class'
-			),
-			'customcss' => array(
-				'type' => 'textarea',
-				'label' => __( 'Custom CSS', 'layerswp' ),
-				'name' => $this->get_layers_field_name( 'advanced', 'customcss' ),
-				'id' => $this->get_layers_field_id( 'advanced', 'customcss' ),
-				'value' => ( isset( $this->values['advanced']['customcss'] ) ) ? $this->values['advanced']['customcss'] : NULL,
-				'placeholder' => ".classname { color: #333; }"
-			),
 			'padding' => array(
 				'type' => 'trbl-fields',
 				'label' => __( 'Padding (px)', 'layerswp' ),
@@ -933,6 +917,22 @@ class Layers_Design_Controller {
 				'name' => $this->get_layers_field_name( 'advanced', 'anchor' ) ,
 				'id' => $this->get_layers_field_id( 'advanced', 'anchor' ) ,
 				'value' => ( isset( $this->values['advanced']['anchor'] ) ) ? $this->values['advanced']['anchor'] : NULL
+			),
+			'customclass' => array(
+				'type' => 'text',
+				'label' => __( 'Custom Class(es)', 'layerswp' ),
+				'name' => $this->get_layers_field_name( 'advanced', 'customclass' ),
+				'id' => $this->get_layers_field_id( 'advanced', 'customclass' ),
+				'value' => ( isset( $this->values['advanced']['customclass'] ) ) ? $this->values['advanced']['customclass'] : NULL,
+				'placeholder' => 'example-class'
+			),
+			'customcss' => array(
+				'type' => 'textarea',
+				'label' => __( 'Custom CSS', 'layerswp' ),
+				'name' => $this->get_layers_field_name( 'advanced', 'customcss' ),
+				'id' => $this->get_layers_field_id( 'advanced', 'customcss' ),
+				'value' => ( isset( $this->values['advanced']['customcss'] ) ) ? $this->values['advanced']['customcss'] : NULL,
+				'placeholder' => ".classname { color: #333; }"
 			),
 			'widget-id' => array(
 				'type' => 'text',

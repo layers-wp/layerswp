@@ -398,21 +398,11 @@ if( !class_exists( 'Layers_Widget' ) ) {
 			// Main Defaults.
 			if ( empty( $this->merge_defaults ) && isset( $this->defaults ) ) {
 				$this->merge_defaults = $this->defaults;
-
-				// Debugging:
-				// echo '<pre>';
-				// var_dump( $this->merge_defaults );
-				// echo '</pre>';
 			}
 
 			// Repeater Defaults.
 			if ( ! isset( $this->merge_repeater_defaults[$type] ) ) {
 				$this->merge_repeater_defaults[$type] = end( $defaults_collection );
-
-				// Debugging:
-				// echo '<pre>';
-				// var_dump( $this->merge_repeater_defaults );
-				// echo '</pre>';
 			}
 
 
@@ -549,7 +539,7 @@ if( !class_exists( 'Layers_Widget' ) ) {
 					}
 					?>
 				</ul>
-				
+
 				<?php
 				// Settings this will add these prefixes to both the get_layers_field_id(),
 				// and get_layers_field_name() string construction.
@@ -565,10 +555,10 @@ if( !class_exists( 'Layers_Widget' ) ) {
 						<?php _e( 'Add New' , 'layerswp' ) ; ?> <?php echo ucfirst( $type ); ?>
 					</button>
 				<?php } ?>
-				
+
 			</div>
 		<?php }
-		
+
 		/**
 		 * Helper function to display the repeater title when the Widget first loads.
 		 * There's also JS that will update this title as the title input is typed into.
@@ -577,11 +567,11 @@ if( !class_exists( 'Layers_Widget' ) ) {
 		 * @return string       Formetted title eg ` : Pretty Title...`.
 		 */
 		public function format_repeater_title( $text ) {
-			
+
 			$text = substr( stripslashes( strip_tags( $text ) ), 0 , 50 ); // Shorten the text to a max character width.
 			if ( strlen( $text ) > 50 ) $text .= '...'; // Add `...` if the text is over a certain length.
 			if ( $text ) $text = ': ' . $text; // Add ` : ` to the beginning.
-			
+
 			return $text;
 		}
 
@@ -679,11 +669,6 @@ if( !class_exists( 'Layers_Widget' ) ) {
 			// Main Defaults.
 			if ( empty( $this->merge_defaults ) && isset( $this->defaults ) ) {
 				$this->merge_defaults = $this->defaults;
-
-				// Debugging:
-				// echo '<pre>';
-				// var_dump( $this->merge_defaults );
-				// echo '</pre>';
 			}
 
 			if ( $item_key ) {
@@ -691,19 +676,9 @@ if( !class_exists( 'Layers_Widget' ) ) {
 				// Repeater instance.
 				if ( isset( $this->merge_repeater_defaults[$item_key] ) ) {
 
-					// Debugging:
-					// echo '<pre>';
-					// var_dump( $this->get_defaults( $instance, $this->merge_repeater_defaults[$item_key] ) );
-					// echo '</pre>';
-
 					return $this->get_defaults( $instance, $this->merge_repeater_defaults[$item_key] );
 				}
 				if ( isset( $this->merge_repeater_defaults[rtrim( $item_key, 's' )] ) ) {
-
-					// Debugging:
-					// echo '<pre>';
-					// var_dump( $this->get_defaults( $instance, $this->merge_repeater_defaults[rtrim( $item_key, 's' )] ) );
-					// echo '</pre>';
 
 					return $this->get_defaults( $instance, $this->merge_repeater_defaults[rtrim( $item_key, 's' )] );
 				}
@@ -711,12 +686,6 @@ if( !class_exists( 'Layers_Widget' ) ) {
 			else {
 
 				// Main widget instance.
-
-				// Debugging:
-				// echo '<pre>';
-				// var_dump( $this->get_defaults( $instance, $this->merge_defaults ) );
-				// echo '</pre>';
-
 				return $this->get_defaults( $instance, $this->merge_defaults );
 			}
 		}
@@ -735,11 +704,6 @@ if( !class_exists( 'Layers_Widget' ) ) {
 						// This element doesnt even exist in the intance yet so apply the whole branch.
 						$instance[$default_key] = $default_value;
 
-						// Debugging:
-						// echo '<pre>';
-						// echo "Add: $default_key:";
-						// var_dump( $default_value );
-						// echo '</pre>';
 					}
 					else{
 						// Check this branch recurrsively.
@@ -747,17 +711,6 @@ if( !class_exists( 'Layers_Widget' ) ) {
 					}
 				}
 				else {
-
-					/*if ( isset( $instance[$default_key] ) && NULL == $instance[$default_key] ) {
-
-						// if the value exists and is null, apply the default.
-						$instance[$default_key] = $default_value;
-
-						// Debugging:
-						// echo '<pre>';
-						// echo "Add: $default_key: $default_value";
-						// echo '</pre>';
-					}*/
 
 					if (
 							! isset( $instance[$default_key] ) && // If set means the input has had defaults applied already - hence don't apply.
@@ -768,10 +721,6 @@ if( !class_exists( 'Layers_Widget' ) ) {
 						// Apply the default.
 						$instance[$default_key] = $default_value;
 
-						// Debugging:
-						// echo '<pre>';
-						// echo "Add: $default_key: $default_value";
-						// echo '</pre>';
 					}
 				}
 			}

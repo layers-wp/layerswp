@@ -1420,6 +1420,14 @@ div[id*='layers-widget'] .widget-control-actions .alignright{
 		height: 30px;
 	}
 
+	.layers-design-bar .layers-form-item textarea[id*='-customcss']{
+		font-family: monospace;
+		font-size: 12px;
+		padding: 8px;
+		line-height: 18px;
+	}
+
+
 	/*---------------------------*/
 	/*- ICON-GROUP - DESIGN-BAR -*/
 

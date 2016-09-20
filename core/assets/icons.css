@@ -1,30 +1,48 @@
 @font-face {
-	font-family: 'layers-interface';
-	src:  url('fonts/layers-interface.eot?i1qur');
-	src:  url('fonts/layers-interface.eot?i1qur#iefix') format('embedded-opentype'),
-		url('fonts/layers-interface.woff2?i1qur') format('woff2'),
-		url('fonts/layers-interface.ttf?i1qur') format('truetype'),
-		url('fonts/layers-interface.woff?i1qur') format('woff'),
-		url('fonts/layers-interface.svg?i1qur#layers-interface') format('svg');
-	font-weight: normal;
-	font-style: normal;
+  font-family: 'layers-interface';
+  src:  url('fonts/layers-interface.eot?l8ac2j');
+  src:  url('fonts/layers-interface.eot?l8ac2j#iefix') format('embedded-opentype'),
+    url('fonts/layers-interface.woff2?l8ac2j') format('woff2'),
+    url('fonts/layers-interface.ttf?l8ac2j') format('truetype'),
+    url('fonts/layers-interface.woff?l8ac2j') format('woff'),
+    url('fonts/layers-interface.svg?l8ac2j#layers-interface') format('svg');
+  font-weight: normal;
+  font-style: normal;
 }
 
 [class^="icon-"], [class*=" icon-"] {
-	/* use !important to prevent issues with browser extensions that change fonts */
-	font-family: 'layers-interface' !important;
-	speak: none;
-	font-style: normal;
-	font-weight: normal;
-	font-variant: normal;
-	text-transform: none;
-	line-height: 1;
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'layers-interface' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
 
-	/* Better Font Rendering =========== */
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-font-strike-through:before {
+  content: "\e909";
+}
+.icon-font-sizing:before {
+  content: "\e90a";
+}
+.icon-font-bold:before {
+  content: "\e90b";
+}
+.icon-font-italic:before {
+  content: "\e90c";
+}
+.icon-font-text-transform:before {
+  content: "\e90d";
+}
+.icon-font-underline:before {
+  content: "\e90e";
+}
 .icon-heading-1:before {
   content: "\e902";
 }
@@ -75,6 +93,9 @@
 }
 .icon-sidebar-left:before {
   content: "\e62d";
+}
+.icon-header-sidebar:before {
+  content: "\e908";
 }
 .icon-header-logo-left:before {
   content: "\e601";
@@ -210,8 +231,5 @@
 }
 .icon-arrow-right:before {
   content: "\e630";
-}
-.icon-header-sidebar:before {
-  content: "\e908";
 }
 

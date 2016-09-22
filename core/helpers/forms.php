@@ -276,8 +276,8 @@ class Layers_Form_Elements {
 				<div class="layers-select-icons">
 					<?php foreach( $input->options as $key => $value ) {
 						if ( is_array( $value ) ) {
-							$name = $value['name'];
-							$class = $value['class'];
+							$name = ( isset( $value['name'] ) ? $value['name'] : '' );
+							$class = ( isset( $value['class'] ) ? $value['class'] : '' );
 							$data_string = '';
 							if ( ! empty( $value['data'] ) ) {
 								foreach ( $value['data'] as $data_key => $data_value) {

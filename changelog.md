@@ -6,7 +6,6 @@
 
 * **Fix** - Added ImagesLoaded to the slider resize trigger. *MP*
 * **Enhancement** - Added new icon fonts for typography management. *DP*
-* **Enhancement** - Added .collapse for the ability to hide elements in mobile view. *DP*
 
 
 =======

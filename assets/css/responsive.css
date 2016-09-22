@@ -171,14 +171,6 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 		margin: 0 10px 0 0;
 	}
 
-/*-------------------------------*/
-/*- DISPLAY CONTROLLERS ---------*/
-
-	/*---------------------------*/
-	/*- HIDE ON MOBILE ----------*/
-	.collapse{
-		display: none;
-	}
 
 }
 

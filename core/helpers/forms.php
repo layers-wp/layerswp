@@ -267,8 +267,12 @@ class Layers_Form_Elements {
 			*/
 			case 'select-icons' :
 
-				$input_type = ( 1 == count( $input->options ) ) ? 'checkbox' : 'radio';
-				?>
+				if( isset( $input->input_type ) ){
+					$input_type = $input->input_type;
+				} else {
+					$input_type = ( 1 == count( $input->options ) ) ? 'checkbox' : 'radio';
+				} ?>
+
 				<div class="layers-select-icons">
 					<?php foreach( $input->options as $key => $value ) {
 						if ( is_array( $value ) ) {

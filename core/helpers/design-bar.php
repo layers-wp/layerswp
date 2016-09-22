@@ -194,6 +194,7 @@ class Layers_Design_Controller {
 
 
 		if( isset( $this->args[ 'widget_id' ] ) ){
+			// echo 'layers_design_bar_' . $key . '_' . $this->args[ 'widget_id' ] . '_elements';
 			$elements = apply_filters(
 				'layers_design_bar_' . $key . '_' . $this->args[ 'widget_id' ] . '_elements',
 				$elements,
@@ -280,7 +281,13 @@ class Layers_Design_Controller {
 				<<?php echo $form_args['wrapper']; ?> <?php if ( $form_args['wrapper-class'] ) echo 'class="' . $form_args['wrapper-class'] . '"'; ?>>
 			<?php } ?>
 
-			<?php echo $this->form_elements->input( $form_args ); ?>
+			<?php if( isset( $form_args['group'] ) && is_array( $form_args['group'] ) ) {
+				foreach( $form_args[ 'group' ] as $input_key => $input_args ){
+					echo $this->form_elements->input( $input_args );
+				}
+			} else {
+				echo $this->form_elements->input( $form_args );
+			}?>
 
 			<?php if ( isset( $form_args['wrapper'] ) ) { ?>
 				</<?php echo $form_args['wrapper']; ?>>

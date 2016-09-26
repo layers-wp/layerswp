@@ -5,6 +5,7 @@
 ### xx Sep 2016
 
 * **Fix** - Added ImagesLoaded to the slider resize trigger. *MP*
+* **Fix** - Updated Marketplace queries. *MP*
 * **Enhancement** - Added new icon fonts for typography management. *DP*
 
 

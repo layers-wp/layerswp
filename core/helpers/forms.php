@@ -305,9 +305,11 @@ class Layers_Form_Elements {
 							<?php echo $data_string ?>
 							>
 							<span class="<?php echo esc_attr( $class ); ?>"></span>
-							<span class="layers-icon-description">
-								<?php echo esc_html( $name ); ?>
-							</span>
+							<?php if( '' != $name ) { ?>
+								<span class="layers-icon-description">
+									<?php echo esc_html( $name ); ?>
+								</span>
+							<?php } ?>
 							<input type="<?php echo $input_type ?>" <?php echo implode ( ' ' , $input_props ); ?> id="<?php echo esc_attr( $input->id ), '-', esc_attr( $key ); ?>" value="<?php echo esc_attr( $key ); ?>" <?php checked( $checked, true, true ); ?> />
 						</label>
 					<?php } ?>

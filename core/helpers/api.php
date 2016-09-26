@@ -223,6 +223,8 @@ class Layers_API {
 		} else {
 			foreach( $product_list as $p_key => $p_details ){
 
+				if( isset( $p_details->status ) && 'publish' !=  $p_details->status ) continue;
+
 				$product = array();
 
 				$utm = '?utm_source=marketplace&utm_medium=link&utm_content=' . $p_details->name . '&utm_campaign=Layers%20Marketplace';

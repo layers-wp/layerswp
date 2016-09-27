@@ -1563,10 +1563,11 @@ div[id*='layers-widget'] .widget-control-actions .alignright{
 		top: 5px;
 		right: 100px;
 		width: 220px;
+		max-height: 320px; /*browser compatibility*/
+		max-height: 50vh;
 		background: #f5f5f5;
 		border: 1px solid #ddd;
 		border-radius: 3px;
-		max-height: 320px;
 		overflow: hidden;
 		overflow-y: scroll;
 		visibility: hidden;

@@ -604,7 +604,6 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 							),
 							'advanced' => array(
 								'elements' => array(
-									'customclass',
 									'padding' => array(
 										'type' => 'trbl-fields',
 										'label' => __( 'Padding (px)', 'layerswp' ),
@@ -629,6 +628,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 											'bottom',
 										),
 									),
+									'customclass',
 								),
 								'elements_combine' => 'replace',
 							),

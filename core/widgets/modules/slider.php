@@ -357,6 +357,9 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 
 							var <?php echo $swiper_js_obj; ?> = $('#<?php echo $widget_id; ?>').swiper({
 							mode:'horizontal'
+							,onInit: function(s){
+								$(document).trigger( 'layers-slider-init', s);
+							}
 							,bulletClass: 'swiper-pagination-switch'
 							,bulletActiveClass: 'swiper-active-switch swiper-visible-switch'
 							,paginationClickable: true

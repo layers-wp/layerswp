@@ -354,8 +354,7 @@ if( ! function_exists( 'layers_scripts' ) ) {
 			array(
 				'jquery',
 			),
-			LAYERS_VERSION,
-			true
+			LAYERS_VERSION
 		); // Framework
 
 		wp_localize_script( LAYERS_THEME_SLUG . '-framework', 'layers_script_settings', array(

@@ -1364,6 +1364,8 @@ function layers_get_vimeo_id($url) {
 
 	if (false !== $result && isset( $matches[3] ) ) {
 		return $matches[3];
+	} else {
+		return $url;
 	}
 	return false;
 }

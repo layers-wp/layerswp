@@ -152,6 +152,8 @@ function layers_apply_overlay_header_styles() {
 		// Get first element.
 		if( ! $first_element ) $first_element = $content_wrapper.children().eq(0);
 
+		if( 'A' == $first_element.prop("tagName") ) $first_element = $content_wrapper.children( '.widget' ).eq(0);
+
 		if( $first_element.hasClass( 'slide' ) && !$first_element.hasClass( '.full-screen' ) ) {
 
 			/*

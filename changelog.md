@@ -4,6 +4,7 @@
 ##1.6.1
 ### xx Sep 2016
 
+* **Fix** - Fixed Header Overlay when adding an anchor to the first slide on a page. *MP*
 * **Fix** - Added ImagesLoaded to the slider resize trigger. *MP*
 * **Fix** - Updated Marketplace queries. *MP*
 * **Enhancement** - Added new icon fonts for typography management. *DP*

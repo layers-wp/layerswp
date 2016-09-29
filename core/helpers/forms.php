@@ -160,12 +160,6 @@ class Layers_Form_Elements {
 				<input type="text" <?php echo implode ( ' ' , $input_props ); ?> value="<?php echo esc_attr( $input->value ); ?>" />
 			<?php break;
 			/**
-			* URL Inputs
-			*/
-			case 'url' : ?>
-				<input type="url" <?php echo implode ( ' ' , $input_props ); ?> value="<?php echo esc_attr( $input->value ); ?>" />
-			<?php break;
-			/**
 			* Number Inputs
 			*/
 			case 'number' :

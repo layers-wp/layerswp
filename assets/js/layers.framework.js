@@ -32,6 +32,7 @@ jQuery(function($) {
 	* 2 - Offsite sidebar Toggles
 	*/
 	$(document).on( 'click' , '[data-toggle^="#"]'  , function(e){
+
 		e.preventDefault();
 
 		// "Hi Mom"
@@ -42,6 +43,8 @@ jQuery(function($) {
 
 		// Toggle .open class
 		$( $target ).toggleClass( $that.data( 'toggle-class' ) );
+
+		return false;
 
 	});
 

@@ -551,7 +551,7 @@ class Layers_Design_Controller {
 		$defaults['icon-css'] = 'icon-featured-image';
 
 		// Add a Label
-		$defaults['label'] = __( 'Featured Image', 'layerswp' );
+		$defaults['label'] = __( 'Featured Media', 'layerswp' );
 
 		// Add a Wrapper Class
 		$defaults['wrapper-class'] = 'layers-pop-menu-wrapper layers-animate layers-content-small';
@@ -560,7 +560,14 @@ class Layers_Design_Controller {
 		$defaults['elements'] = array(
 			'featuredimage' => array(
 				'type' => 'image',
-				'label' => __( 'Featured Image', 'layerswp' ),
+				'label' => __( 'Featured Media', 'layerswp' ),
+				'name' => $this->get_layers_field_name( 'featuredimage' ),
+				'id' => $this->get_layers_field_id( 'featuredimage' ),
+				'value' => ( isset( $this->values['featuredimage'] ) ) ? $this->values['featuredimage'] : NULL
+			),
+			'featuredimage' => array(
+				'type' => 'image',
+				'label' => __( 'Featured Media', 'layerswp' ),
 				'name' => $this->get_layers_field_name( 'featuredimage' ),
 				'id' => $this->get_layers_field_id( 'featuredimage' ),
 				'value' => ( isset( $this->values['featuredimage'] ) ) ? $this->values['featuredimage'] : NULL

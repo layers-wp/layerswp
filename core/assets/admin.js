@@ -112,27 +112,39 @@ jQuery(function($) {
 			attachment = file_frame.state().get('selection').first().toJSON();
 
 			// Remove any old image
-			$container.find('img').remove();
+			$container.find('img video').remove();
 
 			// Fade in Remove button
 			$container.find('.layers-image-remove').fadeIn();
 
 			// Set attachment to the large/medium size if they're defined
-			if ( undefined !== attachment.sizes.medium )  {
-				$attachment = attachment.sizes.medium;
-			} else if( undefined !== attachment.sizes.large ) {
-				$attachment = attachment.sizes.large;
-			} else {
-				$attachment = attachment;
-			}
+			if( 'image' == attachment.type ) {
 
-			// Create new image object
-			var $image = $('<img />').attr({
-				class  : 'image-reveal',
-				src    :  $attachment.url,
-				height :  $attachment.height,
-				width  : $attachment.width
-			});
+				if ( undefined !== attachment.sizes.medium )  {
+					$attachment = attachment.sizes.medium;
+				} else if( undefined !== attachment.sizes.large ) {
+					$attachment = attachment.sizes.large;
+				} else {
+					$attachment = attachment;
+				}
+
+				// Create new image object
+				var $image = $('<img />').attr({
+					class  : 'image-reveal',
+					src    :  $attachment.url,
+					height :  $attachment.height,
+					width  : $attachment.width
+				});
+
+			} else{
+
+				// Create new image object
+				var $image = $('<img />').attr({
+					class  : 'image-reveal',
+					src    :  attachment.icon
+				});
+
+			}
 
 			$container.children('.layers-image-display').eq(0).append( $image );
 

@@ -1288,9 +1288,26 @@ if( !function_exists( 'layers_get_feature_media' ) ) {
 		// Return dimensions
 		$image_dimensions = layers_get_image_sizes( $size );
 
+		// Mime Type
+		$mime_type = get_post_mime_type( $attachmentid );
+
+
 		// Check for an image
 		if( NULL != $attachmentid && '' != $attachmentid ){
-			$use_image = wp_get_attachment_image( $attachmentid , $size);
+			if( preg_match('/video\/*/', $mime_type ) ){
+				$image_ratio = explode( '-',  $size );
+
+				if( count( $image_ratio ) == 3 ){
+
+					$ratio = $image_ratio[1];
+				} else {
+					$ratio = 'landscape';
+				}
+
+				$use_video = layers_get_html5_video( wp_get_attachment_url( $attachmentid ), $image_dimensions['width'], $ratio );
+			} else {
+				$use_image = wp_get_attachment_image( $attachmentid , $size);
+			}
 		}
 
 		// Check for a video
@@ -1454,7 +1471,20 @@ if ( ! function_exists( 'layers_menu_fallback' ) ) {
 } // layers_light_or_dark
 
 /**
- * Standard menu fallback
+ * Get HTML Video Code
+ */
+
+if ( ! function_exists( 'layers_show_html5_video' ) ) {
+	function layers_get_html5_video( $src = NULL , $width = 490, $ratio = 'landscape' ) {
+		if( NULL == $src ) return;
+
+		return '<video width="' . $width . '" controls>
+			<source src="' . $src . '?v=' . LAYERS_VERSION . '" type="video/'. substr( $src, -3, 3) .'">' . __( 'Your browser does not support the video tag.' , 'layerswp' ) . '</video>';
+	}
+} // layers_get_html5_video
+
+/**
+ * Output HTML Video Code
  */
 
 if ( ! function_exists( 'layers_show_html5_video' ) ) {

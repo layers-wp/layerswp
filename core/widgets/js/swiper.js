@@ -3359,7 +3359,6 @@
             if (s.callPlugins) s.callPlugins(eventName, arguments[1], arguments[2], arguments[3], arguments[4], arguments[5]);
         };
         s.on = function (eventName, handler) {
-        	console.log( eventName );
             eventName = normalizeEventName(eventName);
             if (!s.emitterEventListeners[eventName]) s.emitterEventListeners[eventName] = [];
             s.emitterEventListeners[eventName].push(handler);

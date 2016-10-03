@@ -475,6 +475,8 @@ if( ! function_exists( 'layers_stylesheet' ) ) {
 			array() ,
 			LAYERS_VERSION
 		);
+
+		do_action( 'layers_enqueue_stylesheet' );
 	}
 }
 add_action( 'wp_enqueue_scripts' , 'layers_stylesheet', 100 );

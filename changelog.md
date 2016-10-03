@@ -7,7 +7,10 @@
 * **Fix** - Fixed Header Overlay when adding an anchor to the first slide on a page. *MP*
 * **Fix** - Added ImagesLoaded to the slider resize trigger. *MP*
 * **Fix** - Updated Marketplace queries. *MP*
+* **Fix** - Mobile Sidebar toggle now works in the customizer. *MP*
 * **Enhancement** - Added new icon fonts for typography management. *DP*
+* **Enhancement** - Updated OG meta to accept featured image and excerpt for pages. *MP*
+* **Developer Enhancement** - Added ability to group controls in one Design Bar form area using the `group` option, which accepts any form array args. *MP*
 
 
 =======

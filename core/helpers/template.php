@@ -1605,9 +1605,14 @@ add_action( 'layers_list_post_content', 'layers_excerpt_action' );
  *
  */
 if( !function_exists( 'layers_header_meta' ) ) {
-	function layers_header_meta(){ ?>
-		<?php if( is_single() ) { ?>
+	function layers_header_meta(){
+		wp_reset_query();
+
+		if( is_single() || is_page() ) { ?>
 			<meta property="og:title" content="<?php the_title(); ?>" />
+			<?php if( '' != get_the_excerpt() ) { ?>
+				<meta property="og:description" content="<?php echo esc_attr( get_the_excerpt() ); ?>" />
+			<?php } ?>
 			<meta property="og:type" content="website" />
 			<meta property="og:url" content="<?php the_permalink(); ?>" />
 			<?php if( has_post_thumbnail() ){
@@ -1616,6 +1621,7 @@ if( !function_exists( 'layers_header_meta' ) ) {
 			<?php } ?>
 		<?php } else { ?>
 			<meta property="og:title" content="<?php wp_title(); ?>" />
+			<meta property="og:description" content="<?php echo get_bloginfo( 'description' ); ?>" />
 			<meta property="og:type" content="website" />
 			<meta property="og:url" content="<?php home_url(); ?>" />
 			<?php $logo = get_option( 'site_logo' );

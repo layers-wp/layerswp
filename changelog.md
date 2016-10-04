@@ -2,7 +2,7 @@
 
 =======
 ##1.6.1
-### xx Sep 2016
+### 04 Oct 2016
 
 * **Fix** - Fixed Header Overlay when adding an anchor to the first slide on a page. *MP*
 * **Fix** - Added ImagesLoaded to the slider resize trigger. *MP*

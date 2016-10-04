@@ -172,7 +172,7 @@ $layers_migrator = new Layers_Widget_Migrator(); ?>
 
 						<div class="l_admin-form-item">
 							<label for="layers-info-developer">
-								<?php _e( 'What is Your Skill Level?', 'layerswp' ); ?>
+								<?php _e( 'What is your skill level?', 'layerswp' ); ?>
 							</label>
 							<?php
 							echo $form_elements->input( array(
@@ -181,11 +181,11 @@ $layers_migrator = new Layers_Widget_Migrator(); ?>
 								'id' => 'layers_info_developer',
 								'value' => get_option( 'layers_info_developer' ),
 								'options' => array(
-									'beginner' => __( 'I\'m not a designer/developer. I just need a website for myself.', 'layerswp' ),
-									'learning' => __( 'I am learning to become a designer/developer.', 'layerswp' ),
-									'wordpress_developer' => __( 'I am a theme/plugin developer.', 'layerswp' ),
-									'freelance' => __( 'I am a freelance designer/developer.', 'layerswp' ),
-									'agency' => __( 'I am  a designer/developer at an agency or organization.', 'layerswp' ),
+									'beginner' => __( 'I\'m not a designer / developer. I just need a website for myself.', 'layerswp' ),
+									'learning' => __( 'I am learning to become a designer / developer.', 'layerswp' ),
+									'wordpress_developer' => __( 'I am a theme / plugin developer.', 'layerswp' ),
+									'freelance' => __( 'I am a freelance designer / developer.', 'layerswp' ),
+									'agency' => __( 'I am  a designer / developer at an agency or organization.', 'layerswp' ),
 								),
 								'class' => 'l_admin-large',
 							) );

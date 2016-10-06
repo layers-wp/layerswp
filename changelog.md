@@ -1,6 +1,12 @@
 # Layers Changelog
 
 =======
+##1.6.2
+### 06 Oct 2016
+
+* **Fix** - Fixed sticky header feature. *MP*
+
+=======
 ##1.6.1
 ### 04 Oct 2016
 

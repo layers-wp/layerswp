@@ -603,7 +603,6 @@ jQuery(function($) {
 			// Select icons
 			$compare_element_value = $compare_element.find('input:checked').val();
 
-			console.log( $compare_element_value );
 		}
 		else {
 			// All other inputs

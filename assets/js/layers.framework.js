@@ -12,6 +12,7 @@
  * 4 - FitVids
  * 5 - Layers Custom Easing
  * 6 - Swiper Height Matching Functions
+ * 7 - Container padding on first widgets for header fixed - helper function.
  *
  * Author: Obox Themes
  * Author URI: http://www.oboxthemes.com/
@@ -24,6 +25,7 @@ jQuery(function($) {
 	/**
 	* 1 - Container padding on first widgets for header fixed
 	*/
+
 	$(window).on('load', function() {
 		layers_apply_overlay_header_styles();
 	});
@@ -31,6 +33,7 @@ jQuery(function($) {
 	/**
 	* 2 - Offsite sidebar Toggles
 	*/
+
 	$(document).on( 'click' , '[data-toggle^="#"]'  , function(e){
 
 		e.preventDefault();
@@ -47,7 +50,6 @@ jQuery(function($) {
 		return false;
 
 	});
-
 	/**
 	* 3 - Sticky Header
 	*/
@@ -113,7 +115,7 @@ jQuery(function($) {
 		return -c/2 * ((--t)*(t-2) - 1) + b;
 	}});
 
-}(jQuery));
+});
 
 /**
 * 6 - Swiper Height Matching Functions
@@ -138,8 +140,9 @@ function layers_swiper_resize( s ){
 }
 
 /**
- * 8 - Container padding on first widgets for header fixed - helper function.
+ * 7 - Container padding on first widgets for header fixed - helper function.
  */
+
 var $first_element;
 function layers_apply_overlay_header_styles() {
 
@@ -159,20 +162,19 @@ function layers_apply_overlay_header_styles() {
 
 		if( $first_element.hasClass( 'slide' ) && !$first_element.hasClass( '.full-screen' ) ) {
 
-			/*
 			// Reset previous incase this is being re-aplied due to window resize.
-			$first_element.find('.swiper-slide > .content' ).css('padding-top', '' );
+			// $first_element.find('.swiper-slide > .content' ).css('padding-top', '' );
 
-			$first_element_height = $first_element.outerHeight();
+			// $first_element_height = $first_element.outerHeight();
 
-			var padding_top = $first_element.find('.swiper-slide > .content' ).eq(0).css('padding-top').replace('px', '');
-			padding_top = ( '' != padding_top ) ? parseInt( padding_top ) : 0 ;
+			// var padding_top = $first_element.find('.swiper-slide > .content' ).eq(0).css('padding-top').replace('px', '');
+			// padding_top = ( '' != padding_top ) ? parseInt( padding_top ) : 0 ;
 
 			// First element is Slider Widget.
 			// $first_element.css( 'height', ( $header_height + $first_element_height ) );
 			// $first_element.find('.swiper-slide' ).css( 'height', ( $header_height + $first_element_height ) );
-			$first_element.css( 'height', ( $first_element_height - $header_height ) );
-			*/
+			// $first_element.css( 'height', ( $first_element_height - $header_height ) );
+
 
 			jQuery('body').addClass( 'header-overlay-no-push' );
 		}

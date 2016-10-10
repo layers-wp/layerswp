@@ -30,13 +30,13 @@ if( !function_exists( 'layers_bread_crumbs' ) ) {
 					<?php } ?>
 					<?php if( $current == count( $breadcrumbs ) ) { ?>
 
-						<li><span class="current"><?php echo $bc_details[ 'label' ]; ?></span></li>
+						<li data-key="<?php echo $bc_key; ?>"><span class="current"><?php echo $bc_details[ 'label' ]; ?></span></li>
 					<?php } elseif( FALSE == $bc_details[ 'link' ] ) { ?>
 
-						<li><?php echo $bc_details[ 'label' ]; ?></li>
+						<li data-key="<?php echo $bc_key; ?>"><?php echo $bc_details[ 'label' ]; ?></li>
 					<?php } else { ?>
 
-						<li><a href="<?php echo $bc_details[ 'link' ]; ?>"><?php echo $bc_details[ 'label' ]; ?></a></li>
+						<li data-key="<?php echo $bc_key; ?>"><a href="<?php echo $bc_details[ 'link' ]; ?>"><?php echo $bc_details[ 'label' ]; ?></a></li>
 					<?php } ?>
 				<?php $current++;
 				} ?>
@@ -115,7 +115,7 @@ if( !function_exists( 'layers_get_bread_crumbs' ) ) {
 				if( !empty( $parentpage ) ) {
 
 
-					$breadcrumbs[ $pt_slug. '_page' ] = array(
+					$breadcrumbs[ $pt_slug. '_archive_page' ] = array(
 						'link' => get_permalink( $parentpage->ID ),
 						'label' => $parentpage->post_title,
 					);
@@ -124,6 +124,23 @@ if( !function_exists( 'layers_get_bread_crumbs' ) ) {
 
 			};
 
+		} elseif( is_category() ){
+			$parentpage = layers_get_template_link( 'template-blog.php' );
+
+			if( empty( $parentpage ) ) {
+				$parentpage = get_page( get_option( 'page_for_posts' ) );
+			}
+
+			// Display page if it has been found
+			if( !empty( $parentpage ) ) {
+
+
+				$breadcrumbs[ 'post_archive_page' ] = array(
+					'link' => get_permalink( $parentpage->ID ),
+					'label' => $parentpage->post_title,
+				);
+
+			}
 		}
 
 		/* Categories, Taxonomies & Parent Pages

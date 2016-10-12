@@ -18,20 +18,21 @@
  * 6 - Sortable Columns
  * 7 - Tabs
  * 8 - Design Controller toggles
- * 9 - Widget Focussing
- * 10 - Trigger input changes
- * 11 - Add Last Class to Design Bar Elements
- * 12 - Show/Hide linked elements
- * 13 - Init RTE Editors
- * 14 - Custom Widget Initialization Events
- * 15 - Intercom checkbox
- * 16 - Widget Peek/hide to preview changes
- * 17 - Customizer Control - Range Slider
- * 18 - Reset to Default
- * 19 - Linking from one section/panel to another.
- * 20 - Init Tip-Tip
- * 21 - Linking-UX
- * 22 - Force Customizer refresh if Widget exists that's not partial-widget-refresh
+ * 9 - Design Bar Accordions
+ * 10 - Widget Focussing
+ * 11 - Trigger input changes
+ * 12 - Add Last Class to Design Bar Elements
+ * 13 - Show/Hide linked elements
+ * 14 - Init RTE Editors
+ * 15 - Custom Widget Initialization Events
+ * 16 - Intercom checkbox
+ * 17 - Widget Peek/hide to preview changes
+ * 18 - Customizer Control - Range Slider
+ * 19 - Reset to Default
+ * 20 - Linking from one section/panel to another.
+ * 21 - Init Tip-Tip
+ * 22 - Linking-UX
+ * 23 - Force Customizer refresh if Widget exists that's not partial-widget-refresh
  *
  * Author: Obox Themes
  * Author URI: http://www.oboxthemes.com/
@@ -507,7 +508,7 @@ jQuery(function($) {
 	}
 
 	/**
-	* 9 - Widget Focussing
+	* 10 - Widget Focussing
 	*/
 
 	$( document ).on( 'layers-widget-scroll' , '.widget' , function(e){
@@ -541,7 +542,7 @@ jQuery(function($) {
 	}
 
 	/**
-	* 10 - Trigger input changes
+	* 11 - Trigger input changes
 	*/
 
 	$.fn.layers_trigger_change = function() {
@@ -550,7 +551,7 @@ jQuery(function($) {
 	};
 
 	/**
-	* 11 - Add Last Class to Elements
+	* 12 - Add Last Class to Elements
 	*/
 
 	$( document ).on( 'layers-interface-init', function( e, element ){
@@ -573,7 +574,7 @@ jQuery(function($) {
 	}
 
 	/**
-	* 12 - Show/Hide linked elements
+	* 13 - Show/Hide linked elements
 	*/
 
 	if ( $('body.wp-customizer').length ) {
@@ -765,7 +766,7 @@ jQuery(function($) {
 	}
 
 	/**
-	* 13 - Init RTE Editors
+	* 14 - Init RTE Editors
 	*/
 
 	$( document ).on( 'layers-interface-init', function( e, element ){
@@ -884,7 +885,7 @@ jQuery(function($) {
 	});
 
 	/**
-	* 14 - Custom Widget Initialization Events
+	* 15 - Custom Widget Initialization Events
 	*/
 
 	/**
@@ -993,7 +994,7 @@ jQuery(function($) {
 	});
 
 	/**
-	* 15 - Intercom checkbox
+	* 16 - Intercom checkbox
 	*/
 
 	$(document).on( 'change', '#layers-enable-intercom', function(e){
@@ -1032,7 +1033,7 @@ jQuery(function($) {
 	*/
 
 	/**
-	 * 16 - Widget Peek/hide to preview changes
+	 * 17 - Widget Peek/hide to preview changes
 	 */
 
 	$( document ).on( 'layers-interface-init', function( e, element ){
@@ -1046,7 +1047,7 @@ jQuery(function($) {
 	$(document).on( 'mouseleave', '.layers-widget-peek-button', function(){ $(this).closest('.widget-inside').removeClass('layers-peek-widget'); } );
 
 	/**
-	 * 17 - Customizer Control - Range Slider
+	 * 18 - Customizer Control - Range Slider
 	 */
 
 	$( document ).on( 'input change', '.layers-column input[type="range"]', function( e ){
@@ -1096,7 +1097,7 @@ jQuery(function($) {
 	}, 550, false );
 
 	/**
-	 * 18 - Reset to Default
+	 * 19 - Reset to Default
 	 */
 
 	$( document ).on( 'click', '.customize-control-default', function( e ){
@@ -1124,7 +1125,7 @@ jQuery(function($) {
 	});
 
 	/**
-	 * 19 - Linking from one section/panel to another.
+	 * 20 - Linking from one section/panel to another.
 	 *
 	 * Use class `customizer-link` and href `#target-panel-or-section-id`
 	 */
@@ -1143,7 +1144,7 @@ jQuery(function($) {
 	});
 
 	/**
-	* 20 - Init Tip-Tip
+	* 21 - Init Tip-Tip
 	*/
 
 	if ( $('body.wp-customizer').length ) {
@@ -1183,7 +1184,7 @@ jQuery(function($) {
 	}
 
 	/**
-	* 21 - Linking-UX
+	* 22 - Linking-UX
 	*/
 
 	$( document ).on( 'layers-interface-init', function( e, element ){
@@ -1360,7 +1361,7 @@ jQuery(function($) {
 	});
 
 	/**
-	* 22 - Force Customizer refresh if Widget exists that's not partial-widget-refresh.
+	* 23 - Force Customizer refresh if Widget exists that's not partial-widget-refresh.
 	*
 	* This is required because we don't use the `$args['before_widget'], $args['after_widget']` as our surrounding
 	* tags on our widgets, as our framework needs full control of the attributes like `class`. We have solved this

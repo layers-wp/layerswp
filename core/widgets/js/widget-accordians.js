@@ -57,12 +57,6 @@
 
 	}
 
-	// 1.c - Accodian Widget Click
-
-	$( document ).on( 'click' , '#available-widgets div[id^="widget-tpl-layers-"]' , function(){
-		//layers_init_accordians();
-	});
-
 	/**
 	* 2 - Widget Peep Function
 	*/

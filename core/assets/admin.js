@@ -473,6 +473,38 @@ jQuery(function($) {
 			$select_item_label.addClass('layers-active');
 		});
 	});
+	
+	/**
+	* 9 - Design Bar Accordions
+	*/
+
+	// 1.a - Accordian Click
+
+	$( document ).on( 'click' , '.layers-group-start-wrapper' , function(e){
+		e.preventDefault();
+
+		// Toggle this accordian
+		$me = $(this).closest( '.layers-design-bar-group' );
+		$me.toggleClass( 'layers-design-bar-group-open' );
+		$me.find( '.layers-design-bar-group-inner' ).slideToggle({ easing: 'layersEaseInOut', duration: 250 });
+
+		// Close non-active accordians
+		// $siblings = $me.siblings();
+		// $siblings.removeClass( 'layers-design-bar-group-open' );
+		// $siblings.find( '.layers-accordion-section' ).slideUp({ easing: 'layersEaseInOut', duration: 250 });
+	});
+	
+	// 1.b - Accodian Init
+	
+	$( document ).on( 'layers-interface-init', function( e, element ){
+		layers_init_accordians( $(element) );
+	});
+
+	function layers_init_accordians( $element_s ){
+		$element_s.find( '.layers-design-bar-group .layers-design-bar-group-inner' ).each( function(){
+			$(this).hide();
+		});
+	}
 
 	/**
 	* 9 - Widget Focussing

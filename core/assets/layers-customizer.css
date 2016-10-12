@@ -867,8 +867,9 @@ div[id*='layers-widget'] .widget-control-actions .alignright{
 	}
 	.layers-form-item label{
 		display: block;
-		margin-bottom: 2px;
-		font-size: 11px;
+		margin-bottom: 5px;
+		font-size: 10px;
+		line-height: 13px;
 		text-transform: uppercase;
 		color: #777;
 		font-weight: 600;
@@ -918,11 +919,11 @@ div[id*='layers-widget'] .widget-control-actions .alignright{
 	}
 
 	li[id*='customize-control-layers'].customize-control .wp-picker-holder{
-		position: absolute;
-		z-index: 10000;
+		/* position: absolute; */
+		/* z-index: 10000; */
 	}
 	li[id*='customize-control-layers'].customize-control .wp-picker-holder .iris-picker{
-		box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+		/* box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1); */
 		border-radius: 2px;
 	}
 
@@ -978,6 +979,7 @@ div[id*='layers-widget'] .widget-control-actions .alignright{
 	}
 	.layers-form-item input[type=text].layers-color-selector.wp-color-picker{
 		float: left;
+		display: inline-block;
 		height: auto;
 		padding: 3px;
 		border-top-left-radius: 3px;
@@ -993,7 +995,50 @@ div[id*='layers-widget'] .widget-control-actions .alignright{
 		border-bottom-left-radius: 0;
 		box-shadow: none;
 		border-left: 0;
+		/* float: right; */
 	}
+		
+		/*------------------------------------*/
+		/*- DESIGN BAR COLOR PICKERS ---------*/
+		.layers-design-bar-form-item input[type=text].layers-color-selector.wp-color-picker{
+	        float: left;
+	        display: inline-block;
+	        height: auto;
+	        padding: 3px;
+	        border-top-left-radius: 3px;
+	        border-bottom-left-radius: 3px;
+	    }
+	    .layers-design-bar-form-item.layers-color-wrapper label {
+	        position: absolute;
+	        font-size: 13px;
+	        font-weight: normal;
+	        text-transform: none;
+	        margin: 2px 0;
+	    }
+	    .layers-design-bar-form-item .wp-picker-container {
+	        text-align: right;
+	        width: 100%;
+	    }
+	    .layers-design-bar-form-item .wp-color-result {
+	        display: inline-block;
+	        width: 8px;
+	        height: 16px;
+	        border-radius: 100px;
+	        margin: 0 -1px 0 0 !important;
+	        box-shadow: 0 1px 0px rgba(0,0,0,0.03) !important;
+	        border: 1px solid rgba(0,0,0,0.1);
+	    }
+	    .layers-design-bar-form-item .wp-color-result:after {
+	        display: none;
+	    }
+	    .layers-design-bar-form-item .wp-picker-input-wrap {
+	        display: block !important;
+	        width: 90px;
+	        white-space: nowrap;
+	        margin-top: -18px;
+	        position: relative;
+	    }
+		
 	.editible{
 		clear: both;
 		color: #000;
@@ -1402,6 +1447,7 @@ div[id*='layers-widget'] .widget-control-actions .alignright{
 	.layers-design-bar .layers-form-item input[type="link"],
 	.layers-design-bar .layers-form-item textarea{
 		padding: 0 8px;
+		margin-top: 3px;
 		margin-bottom: 3px;
 		height: 30px;
 		border: 1px solid #ddd;
@@ -1574,6 +1620,7 @@ div[id*='layers-widget'] .widget-control-actions .alignright{
 		opacity: 0;
 		transition: all 0.15s ease-in-out 0.1s;
 		box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.1);
+		padding: 0 10px;
 	}
 	.layers-visuals-item.layers-last .layers-pop-menu-wrapper{
 		top: auto;
@@ -1600,16 +1647,16 @@ div[id*='layers-widget'] .widget-control-actions .alignright{
 	.layers-pop-menu-setting .layers-form-item{
 		padding: 10px;
 		margin: 0 -10px;
-		border-bottom: 1px solid rgba(0,0,0,0.08);
+		border-bottom: 1px solid #e5e5e5;
 		opacity: 0;
 		transition: 0.25s opacity ease-in-out 0.25s, 0.25s transform ease-in-out 0.25s;
 	}
 	.layers-pop-menu-setting .layers-form-item:first-child{
-		padding-top: 0;
+		/* padding-top: 0; */
 	}
 	.layers-pop-menu-setting .layers-form-item:last-child{
-		margin-bottom: -10px; /*because the container has 10px padding*/
-		border-bottom: none;
+		/* margin-bottom: -10px; */ /*because the container has 10px padding*/
+		/* border-bottom: none; */
 	}
 	.layers-pop-menu-setting input[type='checkbox'] + label{
 		margin-bottom: 0;
@@ -1862,6 +1909,93 @@ div[id*='layers-widget'] .widget-control-actions .alignright{
 	.layers-active .layers-pop-menu-setting .layers-icon-wrapper{
 		opacity: 1;
 		transform: translate3d(0, 0, 0);
+	}
+
+	/*---------------------------*/
+	/*- GROUPS ------------------*/
+	.layers-design-bar-group {
+		/* box-shadow: inset 0 0 1px rgba(255, 0, 0, 0.68); */
+		margin: 0 -10px 0;
+		padding: 0 10px;
+		overflow: hidden;
+		border-bottom: 1px solid #e5e5e5;
+	}
+
+	.layers-design-bar-group.layers-design-bar-group-open {
+		/* box-shadow: inset 0 1px 0px rgba(0, 0, 0, 0.02); */
+		/* background: rgba(0,0,0,0.02); */
+	}
+	
+	.layers-design-bar-group .layers-group-start-wrapper {
+		
+	}
+	.layers-design-bar-group.layers-design-bar-group-open .layers-group-start-wrapper {
+		/* background: #ececec; */
+	}
+	
+	.layers-design-bar-group .layers-form-item {
+		margin: 0;
+		padding: 9px 0 9px;
+	}
+	.layers-design-bar-group .layers-form-item:first-child {
+		/* padding-top: 7px; */
+	}
+	.layers-design-bar-group .layers-form-item:last-child {
+		/* border-bottom: 0 !important; */
+	}
+	.layers-design-bar-group .layers-group-start-wrapper {
+		border-bottom: none;
+		cursor: pointer;
+		padding: 7px 9px;
+		margin: 0 -10px;
+	}
+	/*.layers-design-bar-group .layers-group-start-wrapper:before {
+		content: "";
+		position: absolute;
+		width: 100%;
+		border-bottom: 1px solid rgba(0,0,0,0.1);
+		margin: 0 -10px;
+		bottom: 0;
+	}*/
+	.layers-group-start-wrapper label {
+		margin-bottom: 0;
+	}
+	.layers-group-start-wrapper:after {
+		font-family: "fontawesome";
+		content: "\f067";
+		position: absolute;
+		right: 6px;
+		top: 6px;
+		background: white;
+		border-radius: 100px;
+		line-height: 15px;
+		height: auto;
+		padding: 0;
+		width: 15px;
+		text-align: center;
+		font-size: 10px;
+		font-weight: normal;
+		color: #7b7b7b;
+	}
+
+		.layers-design-bar-group.layers-design-bar-group-open .layers-group-start-wrapper:after {
+			content: "\f068";
+			color: white;
+			background: #636363;
+			/* border: 2px solid #444444; */
+		}
+
+	.layers-form-item.layers-group-end-wrapper {
+		display: none;
+	}
+	.layers-design-bar-group-inner {
+		padding-bottom: 10px;
+		border-top: 1px dotted #dedede;
+	}
+	.layers-design-bar-group-inner:after {
+		display: block;
+		content: '';
+		margin-bottom: -11px;
 	}
 
 /*-------------------------------*/
@@ -2893,7 +3027,7 @@ input[type=radio]:checked + .layers-settings-icon span{
 .wp-picker-container .iris-picker{
 	width: 200px !important;
 	height: 170px !important;
-	border-radius: 3px;
+	border-radius: 3px !important;
 }
 .wp-picker-container .iris-border .iris-picker-inner{
 	width: 200px;

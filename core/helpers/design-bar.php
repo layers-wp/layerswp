@@ -271,33 +271,48 @@ class Layers_Design_Controller {
 			unset( $form_args['class'] );
 		}
 		?>
-		<div class="<?php echo esc_attr( implode( ' ', $class ) ); ?>" <?php echo implode( ' ', $data_show_if ); ?> >
+		
+		<?php if ( 'group-start' == $form_args['type'] ) { ?>
+			<div class="layers-design-bar-group">
+		<?php } ?>
+		
+			<div class="<?php echo esc_attr( implode( ' ', $class ) ); ?>" <?php echo implode( ' ', $data_show_if ); ?> >
+				
+				<?php if ( 'checkbox' != $form_args['type'] && isset( $form_args['label'] ) && '' != $form_args['label'] ) { ?>
+					<label><?php echo esc_html( $form_args['label'] ); ?></label>
+				<?php } ?>
 
-			<?php if ( 'checkbox' != $form_args['type'] && isset( $form_args['label'] ) && '' != $form_args['label'] ) { ?>
-				<label><?php echo esc_html( $form_args['label'] ); ?></label>
+				<?php if ( isset( $form_args['wrapper'] ) ) { ?>
+					<<?php echo $form_args['wrapper']; ?> <?php if ( $form_args['wrapper-class'] ) echo 'class="' . $form_args['wrapper-class'] . '"'; ?>>
+				<?php } ?>
+
+				<?php if( isset( $form_args['group'] ) && is_array( $form_args['group'] ) ) {
+					foreach( $form_args[ 'group' ] as $input_key => $input_args ){
+						echo $this->form_elements->input( $input_args );
+					}
+				} else {
+					echo $this->form_elements->input( $form_args );
+				}?>
+
+				<?php if ( isset( $form_args['wrapper'] ) ) { ?>
+					</<?php echo $form_args['wrapper']; ?>>
+				<?php } ?>
+
+				<?php if ( isset( $form_args['description'] ) ) { ?>
+					<div class="layers-form-item-description"><?php echo $form_args['description']; ?></div>
+				<?php } ?>
+
+			</div>
+		
+			<?php if ( 'group-start' == $form_args['type'] ) { ?>
+				<div class="layers-design-bar-group-inner">
 			<?php } ?>
-
-			<?php if ( isset( $form_args['wrapper'] ) ) { ?>
-				<<?php echo $form_args['wrapper']; ?> <?php if ( $form_args['wrapper-class'] ) echo 'class="' . $form_args['wrapper-class'] . '"'; ?>>
-			<?php } ?>
-
-			<?php if( isset( $form_args['group'] ) && is_array( $form_args['group'] ) ) {
-				foreach( $form_args[ 'group' ] as $input_key => $input_args ){
-					echo $this->form_elements->input( $input_args );
-				}
-			} else {
-				echo $this->form_elements->input( $form_args );
-			}?>
-
-			<?php if ( isset( $form_args['wrapper'] ) ) { ?>
-				</<?php echo $form_args['wrapper']; ?>>
-			<?php } ?>
-
-			<?php if ( isset( $form_args['description'] ) ) { ?>
-				<div class="layers-form-item-description"><?php echo $form_args['description']; ?></div>
-			<?php } ?>
-
-		</div>
+		
+		<?php if ( 'group-end' == $form_args['type'] ) { ?>
+				</div>
+			</div>
+		<?php } ?>
+		
 		<?php
 	}
 

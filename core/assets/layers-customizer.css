@@ -521,6 +521,12 @@ div[id*='layers-widget'] .widget-control-actions .alignright{
 	}
 
 	/*---------------------------*/
+	/*- ICON-GROUP FULL-WIDTH ---*/
+	.layers-icon-group.layers-icon-group-full-width{
+		display: block;
+	}
+
+	/*---------------------------*/
 	/*- ICON-GROUP LARGE --------*/
 	.layers-icon-group-large .layers-icon-wrapper > span{
 		line-height: 16px;
@@ -1038,6 +1044,16 @@ div[id*='layers-widget'] .widget-control-actions .alignright{
 	        margin-top: -18px;
 	        position: relative;
 	    }
+
+	    /*------------------------------------*/
+		/*- CUSTOM ICONS ---------------------*/
+		.layers-icon-group .layers-icon-wrapper .fa-bold,
+	    .layers-icon-group .layers-icon-wrapper .fa-italic,
+	    .layers-icon-group .layers-icon-wrapper .fa-underline,
+	    .layers-icon-group .layers-icon-wrapper .fa-strikethrough{
+	    	font-size: 11px;
+	    	line-height: 16px;
+	    }
 		
 	.editible{
 		clear: both;
@@ -1527,7 +1543,7 @@ div[id*='layers-widget'] .widget-control-actions .alignright{
 	}
 	.layers-row.layers-trbl-row{
 		padding: 0 !important;
-		margin-bottom: 16px;
+		margin-bottom: 14px !important;
 	}
 	.layers-row.layers-trbl-row .layers-column-flush{
 		/* width: 25%; */
@@ -1553,7 +1569,7 @@ div[id*='layers-widget'] .widget-control-actions .alignright{
 		top: 100%;*/
 		width: 100%;
 		margin: 6px 0 0;
-		color: #AEAEAE;
+		/* color: #AEAEAE; */
 		font-size: 10px;
 		text-align: center;
 		line-height: 12px;

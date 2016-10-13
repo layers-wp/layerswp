@@ -260,6 +260,11 @@ class Layers_Design_Controller {
 			unset( $form_args['data']['show-if-operator'] );
 		}
 
+		// If `wrapper-class` is specified then make sure `wrapper` is set so we have a parent to put the wrapper class.
+		if ( ! isset( $form_args['wrapper'] ) && isset( $form_args['wrapper-class'] ) ) {
+			$form_args['wrapper'] = 'div';
+		}
+		
 		// Prep Class
 		$class = array();
 		$class[] = 'layers-form-item';

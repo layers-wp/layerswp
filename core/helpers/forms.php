@@ -682,6 +682,140 @@ class Layers_Form_Elements {
 				</div>
 
 			<?php break;
+			
+			/**
+			* Inline Numbers (can be customized to be a group of any numbers)
+			*/
+			case 'inline-numbers-fields' : ?>
+
+				<?php $fields = array(
+					'top' => __( 'Top' , 'layerswp' ),
+					'right' => __( 'Right' , 'layerswp' ),
+					'bottom' => __( 'Bottom' , 'layerswp' ),
+					'left' => __( 'Left' , 'layerswp' ),
+				); ?>
+
+				<?php
+				// If caller only wants chosen few fields can customise the labels e.g.
+				// (1) 'fields' => array( 'top' => 'Top (px)' ) one field 'top' with cusotmized label 'Top (px)'.
+				// (2) 'fields' => array( 'top' ) one field 'top' with standard label 'Top'.
+				if( ! empty( $input->fields ) ) {
+					$new_fields = array();
+					foreach ( $input->fields as $key => $value ) {
+
+						if ( is_numeric( $key ) ) {
+							// Array element type: [ 'bottom' ]
+							if ( isset( $fields[$value] ) ){ // Make sure that what the user spcified is avalid field of TRBL.
+								$new_fields[$value] = $fields[$value];
+							}
+						}
+						else {
+							// Array element type: [ 'bottom' => 'Bottom (px)' ]
+							$new_fields[$key] = $value;
+						}
+					}
+					$fields = $new_fields;
+
+					// If the fields chosen were incorrect then bail.
+					if ( empty( $fields ) ) return;
+				}
+
+				// Calculate column span based on the number of resulting fields.
+				$field_span = ( 12 / count( $fields ) );
+				?>
+				<div class="layers-row layers-input layers-trbl-row">
+
+					<?php foreach ( $fields as $key => $label ) : ?>
+						<div class="layers-column-flush layers-span-<?php echo esc_attr( $field_span ); ?>">
+							<?php echo $this->input(
+								array(
+									'type' => 'number',
+									'name' => ( isset( $input->name ) ) ? "{$input->name}[$key]" : '',
+									'id' => "{$input->id}-{$key}",
+									'value' => ( isset( $input->value->$key ) ) ? $input->value->$key : NULL,
+									'class' => 'l_admin-hide-controls',
+									'data' => array(
+										'customize-setting-link' => "{$input->id}-{$key}",
+									),
+								)
+							); ?>
+							<label for="<?php echo esc_attr( $input->id ) . '-' . $key; ?>"><?php echo esc_html( $label ); ?></label>
+						</div>
+					<?php endforeach; ?>
+
+				</div>
+
+			<?php break;
+			
+			/**
+			* Border Style.
+			*/
+			case 'border-style-fields' : ?>
+
+				<?php $fields = array(
+					'width' => __( 'Top' , 'layerswp' ),
+					'style' => __( 'Style' , 'layerswp' ),
+					'radius' => __( 'Radius' , 'layerswp' ),
+				); ?>
+
+				<?php
+				// If caller only wants chosen few fields can customise the labels e.g.
+				// (1) 'fields' => array( 'top' => 'Top (px)' ) one field 'top' with cusotmized label 'Top (px)'.
+				// (2) 'fields' => array( 'top' ) one field 'top' with standard label 'Top'.
+				if( ! empty( $input->fields ) ) {
+					$new_fields = array();
+					foreach ( $input->fields as $key => $value ) {
+
+						if ( is_numeric( $key ) ) {
+							// Array element type: [ 'bottom' ]
+							if ( isset( $fields[$value] ) ){ // Make sure that what the user spcified is avalid field of TRBL.
+								$new_fields[$value] = $fields[$value];
+							}
+						}
+						else {
+							// Array element type: [ 'bottom' => 'Bottom (px)' ]
+							$new_fields[$key] = $value;
+						}
+					}
+					$fields = $new_fields;
+
+					// If the fields chosen were incorrect then bail.
+					if ( empty( $fields ) ) return;
+				}
+
+				// Calculate column span based on the number of resulting fields.
+				$field_span = ( 12 / count( $fields ) );
+				?>
+				<div class="layers-row layers-input layers-trbl-row">
+
+					<?php foreach ( $fields as $key => $label ) : ?>
+						<div class="layers-column-flush layers-span-<?php echo esc_attr( $field_span ); ?>">
+							<?php echo $this->input(
+								array(
+									'type' => ( 'style' == $key ) ? 'select' : 'number',
+									'name' => ( isset( $input->name ) ) ? "{$input->name}[$key]" : '',
+									'id' => "{$input->id}-{$key}",
+									'value' => ( isset( $input->value->$key ) ) ? $input->value->$key : NULL,
+									'class' => 'l_admin-hide-controls',
+									'data' => array(
+										'customize-setting-link' => "{$input->id}-{$key}",
+									),
+									'options' => array(
+										'solid' => 'Solid',
+										'dotted' => 'Dotted',
+										'dashed' => 'Dashed',
+									),
+								)
+							); ?>
+							<label for="<?php echo esc_attr( $input->id ) . '-' . $key; ?>"><?php echo esc_html( $label ); ?></label>
+						</div>
+					<?php endforeach; ?>
+
+				</div>
+
+			<?php break;
+			
+			
 			/**
 			* Free form HTML
 			*/

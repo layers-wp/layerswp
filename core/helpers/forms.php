@@ -153,6 +153,9 @@ class Layers_Form_Elements {
 		$input_props['mimic-setting'] = isset( $input->mimic_setting ) ? 'data-mimic-setting="' . $input->mimic_setting . '"' : NULL ;
 
 		if( NULL != $input->data ) { foreach( $input->data as $data_key => $data_value ){ $input_props[ 'data-' . $data_key ] = 'data-' . $data_key . '="' . esc_attr( $data_value ) . '"'; } }
+		
+		// Allow combined switch for the inline fields - combined will make the fields looked together/condensed/combined.
+		$combined = ( boolean )( isset( $input->{'wrapper-class'} ) && FALSE !== strpos( $input->{'wrapper-class'}, 'layers-trbl-combined' ) );
 
 		// Switch our input type
 		switch( $input->type ) {
@@ -659,10 +662,10 @@ class Layers_Form_Elements {
 				// Calculate column span based on the number of resulting fields.
 				$field_span = ( 12 / count( $fields ) );
 				?>
-				<div class="layers-row layers-input layers-trbl-row">
+				<div class="layers-row layers-trbl-row <?php echo $combined ? 'layers-input' : '' ; ?>">
 
 					<?php foreach ( $fields as $key => $label ) : ?>
-						<div class="layers-column-flush layers-span-<?php echo esc_attr( $field_span ); ?>">
+						<div class="<?php echo $combined ? 'layers-column-flush' : 'layers-column' ; ?> layers-span-<?php echo esc_attr( $field_span ); ?>">
 							<?php echo $this->input(
 								array(
 									'type' => 'number',
@@ -723,10 +726,10 @@ class Layers_Form_Elements {
 				// Calculate column span based on the number of resulting fields.
 				$field_span = ( 12 / count( $fields ) );
 				?>
-				<div class="layers-row layers-input layers-trbl-row">
+				<div class="layers-row layers-trbl-row <?php echo $combined ? 'layers-input' : '' ; ?>">
 
 					<?php foreach ( $fields as $key => $label ) : ?>
-						<div class="layers-column-flush layers-span-<?php echo esc_attr( $field_span ); ?>">
+						<div class="<?php echo $combined ? 'layers-column-flush' : 'layers-column' ; ?> layers-span-<?php echo esc_attr( $field_span ); ?>">
 							<?php echo $this->input(
 								array(
 									'type' => 'number',
@@ -786,10 +789,10 @@ class Layers_Form_Elements {
 				// Calculate column span based on the number of resulting fields.
 				$field_span = ( 12 / count( $fields ) );
 				?>
-				<div class="layers-row layers-input layers-trbl-row">
+				<div class="layers-row layers-trbl-row <?php echo $combined ? 'layers-input' : '' ; ?>">
 
 					<?php foreach ( $fields as $key => $label ) : ?>
-						<div class="layers-column-flush layers-span-<?php echo esc_attr( $field_span ); ?>">
+						<div class="<?php echo $combined ? 'layers-column-flush' : 'layers-column' ; ?> layers-span-<?php echo esc_attr( $field_span ); ?>">
 							<?php echo $this->input(
 								array(
 									'type' => ( 'style' == $key ) ? 'select' : 'number',

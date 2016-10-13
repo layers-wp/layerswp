@@ -308,6 +308,12 @@ jQuery(function($) {
 	var layers_debounce_color_input = _.debounce( function( element ){
 		$( element ).layers_trigger_change();
 	}, 400, false );
+	
+	// Enable clickingf of the Label to envoke the color picker.
+	$(document).on( 'click', '.layers-color-wrapper label', function(){
+		var $holder = $(this).parents('.layers-color-wrapper');
+		$holder.find('a.wp-color-result').click();
+	});
 
 	/**
 	* 6 - Sortable Columns

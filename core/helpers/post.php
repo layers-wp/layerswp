@@ -438,7 +438,7 @@ if( ! function_exists( 'layers_add_builder_edit_button_css' ) ) {
 			<style>
 			#wp-admin-bar-layers-edit-layout .ab-icon:before{
 				font-family: "layers-interface" !important;
-				content: "\e62f" !important;
+				content: "\e91e" !important;
 				font-size: 16px !important;
 			}
 			</style>

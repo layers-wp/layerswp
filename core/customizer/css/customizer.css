@@ -96,7 +96,7 @@
 		visibility: visible;
 		transform: translate3d(0, 0, 0);
 	}
-		
+
 		/*-------------------*/
 		/*- ITEM ANIMATION --*/
 		#customize-controls-layers-actions ul.layers-customizer-nav li.layers-hover ul li{transition-delay: 0.25s;}
@@ -112,7 +112,7 @@
 
 .customize-controls-layers-button-dashboard-main:after{
 	font-family: "layers-interface" !important;
-	content: "\e62f" !important;
+	content: "\e91e" !important;
 	font-size: 15px !important;
 }
 a.customize-controls-layers-button{
@@ -141,7 +141,7 @@ a.customize-controls-layers-button i{
 }
 .layers-button-icon-dashboard:after{
 	font-family: "layers-interface" !important;
-	content: "\e62f" !important;
+	content: "\e91e" !important;
 	font-size: 15px !important;
 }
 a.customize-controls-layers-button:hover{

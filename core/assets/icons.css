@@ -1,11 +1,11 @@
 @font-face {
 	font-family: 'layers-interface';
-	src:  url('fonts/layers-interface.eot?94257i');
-	src:  url('fonts/layers-interface.eot?94257i#iefix') format('embedded-opentype'),
-		url('fonts/layers-interface.woff2?94257i') format('woff2'),
-		url('fonts/layers-interface.ttf?94257i') format('truetype'),
-		url('fonts/layers-interface.woff?94257i') format('woff'),
-		url('fonts/layers-interface.svg?94257i#layers-interface') format('svg');
+	src:  url('fonts/layers-interface.eot?tr3gsi');
+	src:  url('fonts/layers-interface.eot?tr3gsi#iefix') format('embedded-opentype'),
+		url('fonts/layers-interface.woff2?tr3gsi') format('woff2'),
+		url('fonts/layers-interface.ttf?tr3gsi') format('truetype'),
+		url('fonts/layers-interface.woff?tr3gsi') format('woff'),
+		url('fonts/layers-interface.svg?tr3gsi#layers-interface') format('svg');
 	font-weight: normal;
 	font-style: normal;
 }
@@ -34,6 +34,18 @@
 .icon-font-weight-bold:before {
 	content: "\e902";
 }
+.icon-background-repeat:before {
+	content: "\e913";
+}
+.icon-background-repeat-vertical:before {
+	content: "\e914";
+}
+.icon-background-repeat-horizontal:before {
+	content: "\e915";
+}
+.icon-background-no-repeat:before {
+	content: "\e916";
+}
 .icon-border-bottom:before {
 	content: "\e90f";
 }
@@ -45,18 +57,6 @@
 }
 .icon-border-top:before {
 	content: "\e912";
-}
-.icon-background-no-repeat:before {
-	content: "\e913";
-}
-.icon-background-repeat-horizontal:before {
-	content: "\e914";
-}
-.icon-background-repeat-vertical:before {
-	content: "\e915";
-}
-.icon-background-repeat:before {
-	content: "\e916";
 }
 .icon-hover-default:before {
 	content: "\e917";
@@ -115,14 +115,14 @@
 .icon-tablet:before {
 	content: "\e634";
 }
+.icon-layers-logo:before {
+	content: "\e91e";
+}
 .icon-help:before {
 	content: "\e631";
 }
 .icon-pencil:before {
 	content: "\e00d";
-}
-.icon-layers-logo:before {
-	content: "\e62f";
 }
 .icon-featured-image:before {
 	content: "\e629";
@@ -276,5 +276,17 @@
 }
 .icon-arrow-right:before {
 	content: "\e630";
+}
+.icon-plus-invert:before {
+	content: "\e91f";
+}
+.icon-minus-invert:before {
+	content: "\e920";
+}
+.icon-plus:before {
+	content: "\e921";
+}
+.icon-minus:before {
+	content: "\e922";
 }
 

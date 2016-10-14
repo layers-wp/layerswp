@@ -191,6 +191,7 @@ object{
 	/*---------------------------*/
 	/*- GRIDS -------------------*/
 	.grid{
+    display:-webkit-flex;
 		display: flex;
 		flex-flow: row;
 		flex-wrap: wrap;
@@ -229,9 +230,11 @@ object{
 
 	.span-12{
 		min-width: calc(((100% / 12) * 12) - 20px);
+		width: calc(100% - 20px);
 	}
 	.column-flush.span-12{
 		min-width: calc((100% / 12) * 12);
+		width: 100%;
 	}
 
 	.middled,

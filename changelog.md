@@ -1,6 +1,12 @@
 # Layers Changelog
 
 =======
+##1.6.3
+### xx Oct 2016
+
+* **Enhancement** - New icon fonts added to Layers Interface icon set. *DP*
+
+=======
 ##1.6.2
 ### 06 Oct 2016
 

@@ -818,6 +818,50 @@ class Layers_Form_Elements {
 
 			<?php break;
 			
+			/**
+			* Tabs.
+			*/
+			case 'tabs' : ?>
+
+				<?php
+				// Bail if no tabs.
+				if ( empty( $input->tabs ) ) return;
+
+				// Calculate column span based on the number of resulting tabs.
+				$field_span = ( 12 / count( $input->tabs ) );
+				
+				// Loop count.
+				$i = 0;
+				?>
+				<div class="layers-row layers-interface-tabs">
+					
+					<?php foreach ( $input->tabs as $key => $tab ) : ?>
+						<div class="layers-column layers-span-<?php echo esc_attr( $field_span ); ?>">
+							
+							<?php echo $this->input(
+								array(
+									'type' => 'hidden',
+									'name' => ( isset( $input->name ) ) ? "{$input->name}[$key]" : '',
+									'id' => "{$input->id}-{$key}",
+									'value' => ( isset( $input->value->$key ) ) ? $input->value->$key : NULL,
+									'class' => '',
+									'data' => array(
+										'customize-setting-link' => "{$input->id}-{$key}",
+									),
+								)
+							); ?>
+							
+							<label class="layers-interface-tab <?php echo ( 0 == $i ) ? 'layers-interface-tab-active' : '' ; ?>" for="<?php echo esc_attr( $tab['tab-id'] ); ?>">
+								<?php echo esc_html( $tab['label'] ); ?>
+							</label>
+							
+						</div>
+						<?php $i++; ?>
+					<?php endforeach; ?>
+					
+				</div>
+
+			<?php break;
 			
 			/**
 			* Free form HTML

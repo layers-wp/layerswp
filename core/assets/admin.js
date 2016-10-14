@@ -19,20 +19,21 @@
  * 7 - Tabs
  * 8 - Design Controller toggles
  * 9 - Design Bar Accordions
- * 10 - Widget Focussing
- * 11 - Trigger input changes
- * 12 - Add Last Class to Design Bar Elements
- * 13 - Show/Hide linked elements
- * 14 - Init RTE Editors
- * 15 - Custom Widget Initialization Events
- * 16 - Intercom checkbox
- * 17 - Widget Peek/hide to preview changes
- * 18 - Customizer Control - Range Slider
- * 19 - Reset to Default
- * 20 - Linking from one section/panel to another.
- * 21 - Init Tip-Tip
- * 22 - Linking-UX
- * 23 - Force Customizer refresh if Widget exists that's not partial-widget-refresh
+ * 10 - Design Bar Tabs
+ * 11 - Widget Focussing
+ * 12 - Trigger input changes
+ * 13 - Add Last Class to Design Bar Elements
+ * 14 - Show/Hide linked elements
+ * 15 - Init RTE Editors
+ * 16 - Custom Widget Initialization Events
+ * 17 - Intercom checkbox
+ * 18 - Widget Peek/hide to preview changes
+ * 19 - Customizer Control - Range Slider
+ * 20 - Reset to Default
+ * 21 - Linking from one section/panel to another.
+ * 22 - Init Tip-Tip
+ * 23 - Linking-UX
+ * 24 - Force Customizer refresh if Widget exists that's not partial-widget-refresh
  *
  * Author: Obox Themes
  * Author URI: http://www.oboxthemes.com/
@@ -485,7 +486,7 @@ jQuery(function($) {
 	* 9 - Design Bar Accordions
 	*/
 
-	// 1.a - Accordian Click
+	// 1.a - Tabs Click
 
 	$( document ).on( 'click' , '.layers-group-start-wrapper' , function(e){
 		e.preventDefault();
@@ -514,7 +515,48 @@ jQuery(function($) {
 	}
 
 	/**
-	* 10 - Widget Focussing
+	* 10 - Design Bar Tabs
+	*/
+
+	// 1.a - Tabs Click
+
+	$( document ).on( 'click' , '.layers-interface-tabs label' , function(e){
+		e.preventDefault();
+
+		// Toggle this accordian
+		$current_tab = $(this);
+		$tabs_buttons_holder = $(this).closest( '.layers-interface-tabs' );
+		$other_tabs = $tabs_buttons_holder.find('label').not($current_tab);
+		
+		$current_tab.addClass('layers-interface-tab-active');
+		$other_tabs.removeClass('layers-interface-tab-active');
+		
+		$current_tab.each(function(){
+			$related_tab_id = $(this).attr('for');
+			console.log( $related_tab_id );
+			$( '#' + $related_tab_id ).slideDown({ easing: 'layersEaseInOut', duration: 250 });
+		});
+		$other_tabs.each(function(){
+			$related_tab_id = $(this).attr('for');
+			console.log( $related_tab_id );
+			$( '#' + $related_tab_id ).slideUp({ easing: 'layersEaseInOut', duration: 250 });
+		});
+	});
+	
+	// 1.b - Accodian Init
+	
+	$( document ).on( 'layers-interface-init', function( e, element ){
+		layers_init_tabs( $(element) );
+	});
+
+	function layers_init_tabs( $element_s ){
+		$element_s.find( '.layers-interface-tabs').each( function(){
+			$(this).find('label').eq(0).click();
+		});
+	}
+
+	/**
+	* 11 - Widget Focussing
 	*/
 
 	$( document ).on( 'layers-widget-scroll' , '.widget' , function(e){
@@ -548,7 +590,7 @@ jQuery(function($) {
 	}
 
 	/**
-	* 11 - Trigger input changes
+	* 12 - Trigger input changes
 	*/
 
 	$.fn.layers_trigger_change = function() {
@@ -557,7 +599,7 @@ jQuery(function($) {
 	};
 
 	/**
-	* 12 - Add Last Class to Elements
+	* 13 - Add Last Class to Elements
 	*/
 
 	$( document ).on( 'layers-interface-init', function( e, element ){
@@ -580,7 +622,7 @@ jQuery(function($) {
 	}
 
 	/**
-	* 13 - Show/Hide linked elements
+	* 14 - Show/Hide linked elements
 	*/
 
 	if ( $('body.wp-customizer').length ) {
@@ -772,7 +814,7 @@ jQuery(function($) {
 	}
 
 	/**
-	* 14 - Init RTE Editors
+	* 15 - Init RTE Editors
 	*/
 
 	$( document ).on( 'layers-interface-init', function( e, element ){
@@ -891,7 +933,7 @@ jQuery(function($) {
 	});
 
 	/**
-	* 15 - Custom Widget Initialization Events
+	* 16 - Custom Widget Initialization Events
 	*/
 
 	/**
@@ -1000,7 +1042,7 @@ jQuery(function($) {
 	});
 
 	/**
-	* 16 - Intercom checkbox
+	* 17 - Intercom checkbox
 	*/
 
 	$(document).on( 'change', '#layers-enable-intercom', function(e){
@@ -1039,7 +1081,7 @@ jQuery(function($) {
 	*/
 
 	/**
-	 * 17 - Widget Peek/hide to preview changes
+	 * 18 - Widget Peek/hide to preview changes
 	 */
 
 	$( document ).on( 'layers-interface-init', function( e, element ){
@@ -1053,7 +1095,7 @@ jQuery(function($) {
 	$(document).on( 'mouseleave', '.layers-widget-peek-button', function(){ $(this).closest('.widget-inside').removeClass('layers-peek-widget'); } );
 
 	/**
-	 * 18 - Customizer Control - Range Slider
+	 * 19 - Customizer Control - Range Slider
 	 */
 
 	$( document ).on( 'input change', '.layers-column input[type="range"]', function( e ){
@@ -1103,7 +1145,7 @@ jQuery(function($) {
 	}, 550, false );
 
 	/**
-	 * 19 - Reset to Default
+	 * 20 - Reset to Default
 	 */
 
 	$( document ).on( 'click', '.customize-control-default', function( e ){
@@ -1131,7 +1173,7 @@ jQuery(function($) {
 	});
 
 	/**
-	 * 20 - Linking from one section/panel to another.
+	 * 21 - Linking from one section/panel to another.
 	 *
 	 * Use class `customizer-link` and href `#target-panel-or-section-id`
 	 */
@@ -1150,7 +1192,7 @@ jQuery(function($) {
 	});
 
 	/**
-	* 21 - Init Tip-Tip
+	* 22 - Init Tip-Tip
 	*/
 
 	if ( $('body.wp-customizer').length ) {
@@ -1190,7 +1232,7 @@ jQuery(function($) {
 	}
 
 	/**
-	* 22 - Linking-UX
+	* 23 - Linking-UX
 	*/
 
 	$( document ).on( 'layers-interface-init', function( e, element ){
@@ -1367,7 +1409,7 @@ jQuery(function($) {
 	});
 
 	/**
-	* 23 - Force Customizer refresh if Widget exists that's not partial-widget-refresh.
+	* 24 - Force Customizer refresh if Widget exists that's not partial-widget-refresh.
 	*
 	* This is required because we don't use the `$args['before_widget'], $args['after_widget']` as our surrounding
 	* tags on our widgets, as our framework needs full control of the attributes like `class`. We have solved this

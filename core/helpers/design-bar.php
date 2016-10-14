@@ -232,7 +232,6 @@ class Layers_Design_Controller {
 	<?php }
 	}
 
-
 	/**
 	 * Load input HTML
 	 *
@@ -275,13 +274,50 @@ class Layers_Design_Controller {
 			$class[] = $form_args['class'];
 			unset( $form_args['class'] );
 		}
-		?>
 		
-		<?php if ( 'group-start' == $form_args['type'] ) { ?>
+		if ( 'group-start' == $form_args['type'] ) {
+			
+			// Group Start.
+			?>
 			<div class="layers-design-bar-group">
-		<?php } ?>
+				
+				<div class="<?php echo esc_attr( implode( ' ', $class ) ); ?>" <?php echo implode( ' ', $data_show_if ); ?>>
+					<label><?php echo esc_html( $form_args['label'] ); ?></label>
+					<?php echo $this->form_elements->input( $form_args ); ?>
+				</div>
+				
+				<div class="layers-design-bar-group-inner">
+			<?php
+		}
+		elseif ( 'group-end' == $form_args['type'] ) {
+			
+			// Group End.
+			?>
+				</div>
+			</div>
+			<?php
+		}
 		
-			<div class="<?php echo esc_attr( implode( ' ', $class ) ); ?>" <?php echo implode( ' ', $data_show_if ); ?> >
+		elseif ( 'tab-start' == $form_args['type'] ) {
+			
+			// Tab Start.
+			?>
+			<div class="layers-design-bar-tab" id="<?php echo esc_attr( $form_args['id'] ); ?>">
+			<?php
+		}
+		elseif ( 'tab-end' == $form_args['type'] ) {
+			
+			// Tab End.
+			?>
+			</div>
+			<?php
+		}
+		
+		else {
+			
+			// Everything else.
+			?>
+			<div class="<?php echo esc_attr( implode( ' ', $class ) ); ?>" <?php echo implode( ' ', $data_show_if ); ?>>
 				
 				<?php if ( 'checkbox' != $form_args['type'] && isset( $form_args['label'] ) && '' != $form_args['label'] ) { ?>
 					<label><?php echo esc_html( $form_args['label'] ); ?></label>
@@ -308,17 +344,8 @@ class Layers_Design_Controller {
 				<?php } ?>
 
 			</div>
-		
-			<?php if ( 'group-start' == $form_args['type'] ) { ?>
-				<div class="layers-design-bar-group-inner">
-			<?php } ?>
-		
-		<?php if ( 'group-end' == $form_args['type'] ) { ?>
-				</div>
-			</div>
-		<?php } ?>
-		
-		<?php
+			<?php
+		}
 	}
 
 	/**

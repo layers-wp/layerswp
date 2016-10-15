@@ -1006,7 +1006,7 @@ div[id*='layers-widget'] .widget-control-actions .alignright{
 		border-left: 0;
 		/* float: right; */
 	}
-		
+
 		/*------------------------------------*/
 		/*- DESIGN BAR COLOR PICKERS ---------*/
 		.layers-design-bar-form-item input[type=text].layers-color-selector.wp-color-picker{
@@ -1057,7 +1057,7 @@ div[id*='layers-widget'] .widget-control-actions .alignright{
 	    	font-size: 11px;
 	    	line-height: 16px;
 	    }
-		
+
 	.editible{
 		clear: both;
 		color: #000;
@@ -1601,11 +1601,11 @@ div[id*='layers-widget'] .widget-control-actions .alignright{
 		border: 1px solid rgba(0, 0, 0, 0);
 		/* border: none; */
 	}
-		
+
 		.layers-trbl-seperated .layers-row.layers-trbl-row {
 			/* background: none; */
 		}
-	
+
 	/*.layers-trbl-combined .layers-column {
 		margin: 0;
 	}
@@ -1993,14 +1993,17 @@ div[id*='layers-widget'] .widget-control-actions .alignright{
 	}
 
 	.layers-design-bar-group.layers-design-bar-group-open {
+		border-bottom-width: 2px;
+		background: #f9f9f9;
+		box-shadow: inset 0 1px 0 #e5e5e5;
 	}
-	
+
 	.layers-design-bar-group .layers-group-start-wrapper {
-		
+
 	}
 	.layers-design-bar-group.layers-design-bar-group-open .layers-group-start-wrapper {
 	}
-	
+
 	.layers-design-bar-group .layers-form-item {
 		margin: 0;
 		padding: 9px 0 9px;
@@ -2028,7 +2031,9 @@ div[id*='layers-widget'] .widget-control-actions .alignright{
 		padding: 0;
 		font-size: 16px;
 		font-weight: normal;
-		color: #7b7b7b;
+		color: #fff;
+		background: #9b9b9b;
+		border-radius: 100%;
 	}
 
 		.layers-design-bar-group.layers-design-bar-group-open .layers-group-start-wrapper:after {

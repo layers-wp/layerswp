@@ -123,7 +123,7 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 			$instance = $this->apply_defaults( $instance );
 
 			// Enqueue Masonry if need be
-			if( 'list-masonry' == $this->check_and_return( $instance , 'design', 'liststyle' ) ) {
+			if( 'list-masonry' == $this->check_and_return( $instance , 'design', 'liststyle' ) || $wp_customize ) {
 				wp_enqueue_script( LAYERS_THEME_SLUG . '-layers-masonry-js' );
 			}
 

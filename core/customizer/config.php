@@ -544,6 +544,12 @@ class Layers_Customizer_Config {
 				'description' => __( 'Enter in your Google Analytics ID to enable website traffic reporting. eg. "UA-xxxxxx-xx' , 'layerswp' ),
 				'default' => '',
 			),
+			'disable-google-logged-in' => array(
+				'type'     => 'layers-checkbox',
+				'label'    => __( 'Disable Google Analytics for logged in users' , 'layerswp' ),
+				'description' => __( 'Check this box if you want to disable analytics for any logged in user.' , 'layerswp' ),
+				'default' => '',
+			),
 			'google-maps-api' => array(
 				'type'     => 'layers-text',
 				'label'    => __( 'Google Maps API Key' , 'layerswp' ),

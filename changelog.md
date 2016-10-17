@@ -1,6 +1,13 @@
 # Layers Changelog
 
 =======
+##1.6.3
+### xx Oct 2016
+
+* **Fix** - When adding a new post-widget and enabling Masonry in the customizer, it no longer breaks. *MP*
+* **Enhancement** - Added a toggle to disable analytics when logged in. *MP*
+
+=======
 ##1.6.2
 ### 06 Oct 2016
 

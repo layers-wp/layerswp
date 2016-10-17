@@ -1051,6 +1051,8 @@ if( !function_exists( 'layers_add_google_analytics' ) ) {
 
 		$analytics_id = layers_get_theme_mod( 'header-google-id' );
 
+		if( TRUE == layers_get_theme_mod( 'disable-google-logged-in' ) && is_user_logged_in() ) return;
+
 		if ( '' != $analytics_id ) { ?>
 			<script>
 				(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){

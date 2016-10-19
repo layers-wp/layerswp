@@ -168,7 +168,7 @@ class Layers_Form_Elements {
 			case 'number' :
 				$input_props['min'] = ( isset( $input->min ) ) ? 'min="' .  $input->min . '"' : NULL ;
 				$input_props['max'] = ( isset( $input->max ) ) ? 'max="' .  $input->max . '"' : NULL ;
-				$input_props['step'] = ( isset( $input->step ) ) ? 'step="' .  $input->step . '"' : NULL ; ?>
+				$input_props['step'] = ( isset( $input->step ) ) ? 'step="' .  $input->step . '"' : 'step="any"' ; ?>
 				<input type="number" <?php echo implode ( ' ' , $input_props ); ?> value="<?php echo $input->value; ?>" />
 			<?php break;
 			/**

@@ -405,20 +405,18 @@ jQuery(function($) {
 	$( document ).on( 'mousedown' , '.layers-select-icons label.layers-icon-wrapper' , function(e){
 
 		// Cache elements.
-		var $label = $(this);
-		var $input = $('#' + $label.attr('for'));
+		var $current_label = $(this);
+		var $current_input = $('#' + $current_label.attr('for'));
+		var $sibling_labels = $current_label.siblings( '.layers-icon-wrapper' );
 
 		// Get input value
-		var $value = $input.val();
-
-		// De-activate siblings
-		$label.siblings( '.layers-icon-wrapper' ).removeClass( 'layers-active' );
+		var $value = $current_input.val();
 
 		// When the the whole flyout-menu is one Select Icon Group e.g. a widget's Layout (Boxed, Full-Width)
 		// then set the parents Icon to what is being selected now - helpful to the user, it can be seen at a glance.
-		$is_form_item = $label.closest( '.layers-form-item' ).siblings( '.layers-form-item' ).length;
+		$is_form_item = $current_label.closest( '.layers-form-item' ).siblings( '.layers-form-item' ).length;
 		if ( 0 == $is_form_item ) {
-			$label
+			$current_label
 				.closest( '.layers-pop-menu-wrapper' )
 				.siblings( '.layers-icon-wrapper' )
 				.find( 'span[class^="icon-"]' )
@@ -426,20 +424,31 @@ jQuery(function($) {
 		}
 
 		// Toggle active state
-		$label.trigger( 'layers-design-bar-menu', $label );
+		$current_label.trigger( 'layers-design-bar-menu', $current_label );
 
-		if ( 'checkbox' == $input.attr('type') ) {
-
+		
+		if ( 'checkbox' == $current_input.attr('type') ) {
+			
 			// Input is a 'checkbox' when there's only one single button - so make it toggle on/off.
-			if ( $label.hasClass( 'layers-active' ) )
-				$label.removeClass( 'layers-active' );
-			else
-				$label.addClass( 'layers-active' );
+
+			if ( $current_label.hasClass( 'layers-active' ) ) {
+				// Activate current.
+				$current_label.removeClass( 'layers-active' );
+			}
+			else {
+				// De-activate siblings.
+				$current_label.addClass( 'layers-active' );
+			}
 		}
 		else {
-
+			
 			// Input is a 'radio' when there's multiple buttons - so make them behave like radio.
-			$label.addClass( 'layers-active' );
+			
+			// Activate current.
+			$current_label.addClass( 'layers-active' );
+			
+			// De-activate siblings.
+			$sibling_labels.removeClass( 'layers-active' );
 		}
 	});
 
@@ -533,12 +542,10 @@ jQuery(function($) {
 		
 		$current_tab.each(function(){
 			$related_tab_id = $(this).attr('for');
-			console.log( $related_tab_id );
 			$( '#' + $related_tab_id ).slideDown({ easing: 'layersEaseInOut', duration: 250 });
 		});
 		$other_tabs.each(function(){
 			$related_tab_id = $(this).attr('for');
-			console.log( $related_tab_id );
 			$( '#' + $related_tab_id ).slideUp({ easing: 'layersEaseInOut', duration: 250 });
 		});
 	});

@@ -314,7 +314,15 @@ class Layers_Form_Elements {
 									<?php echo esc_html( $name ); ?>
 								</span>
 							<?php } ?>
-							<input type="<?php echo $input_type ?>" <?php echo implode ( ' ' , $input_props ); ?> id="<?php echo esc_attr( $input->id ), '-', esc_attr( $key ); ?>" value="<?php echo esc_attr( $key ); ?>" <?php checked( $checked, true, true ); ?> />
+							
+							<input
+								type="<?php echo $input_type ?>"
+								<?php echo implode ( ' ' , $input_props ); ?>
+								id="<?php echo esc_attr( $input->id ), '-', esc_attr( $key ); ?>"
+								value="<?php echo esc_attr( $key ); ?>"
+								<?php checked( $checked, true, true ); ?>
+							/>
+							
 						</label>
 					<?php } ?>
 				</div>
@@ -626,71 +634,7 @@ class Layers_Form_Elements {
 			<?php break;
 			
 			/**
-			* Top / Right / Bottom / Left Fields
-			*/
-			case 'trbl-fields' : ?>
-
-				<?php $fields = array(
-					'top' => __( 'Top' , 'layerswp' ),
-					'right' => __( 'Right' , 'layerswp' ),
-					'bottom' => __( 'Bottom' , 'layerswp' ),
-					'left' => __( 'Left' , 'layerswp' ),
-				); ?>
-
-				<?php
-				// If caller only wants chosen few fields can customise the labels e.g.
-				// (1) 'fields' => array( 'top' => 'Top (px)' ) one field 'top' with cusotmized label 'Top (px)'.
-				// (2) 'fields' => array( 'top' ) one field 'top' with standard label 'Top'.
-				if( ! empty( $input->fields ) ) {
-					$new_fields = array();
-					foreach ( $input->fields as $key => $value ) {
-
-						if ( is_numeric( $key ) ) {
-							// Array element type: [ 'bottom' ]
-							if ( isset( $fields[$value] ) ){ // Make sure that what the user spcified is avalid field of TRBL.
-								$new_fields[$value] = $fields[$value];
-							}
-						}
-						else {
-							// Array element type: [ 'bottom' => 'Bottom (px)' ]
-							$new_fields[$key] = $value;
-						}
-					}
-					$fields = $new_fields;
-
-					// If the fields chosen were incorrect then bail.
-					if ( empty( $fields ) ) return;
-				}
-
-				// Calculate column span based on the number of resulting fields.
-				$field_span = ( 12 / count( $fields ) );
-				?>
-				<div class="layers-row layers-inline-field-row <?php echo $combined ? 'layers-input' : '' ; ?>">
-
-					<?php foreach ( $fields as $key => $label ) : ?>
-						<div class="<?php echo $combined ? 'layers-column-flush' : 'layers-column' ; ?> layers-span-<?php echo esc_attr( $field_span ); ?>">
-							<?php echo $this->input(
-								array(
-									'type' => 'number',
-									'name' => ( isset( $input->name ) ) ? "{$input->name}[$key]" : '',
-									'id' => "{$input->id}-{$key}",
-									'value' => ( isset( $input->value->$key ) ) ? $input->value->$key : NULL,
-									'class' => 'l_admin-hide-controls',
-									'data' => array(
-										'customize-setting-link' => "{$input->id}-{$key}",
-									),
-								)
-							); ?>
-							<label for="<?php echo esc_attr( $input->id ) . '-' . $key; ?>"><?php echo esc_html( $label ); ?></label>
-						</div>
-					<?php endforeach; ?>
-
-				</div>
-
-			<?php break;
-			
-			/**
-			* Inline Numbers (can be customized to be a group of any numbers)
+			* Inline Numbers (can be customized to be a group of any numbers).
 			*/
 			case 'inline-numbers-fields' : ?>
 
@@ -754,12 +698,76 @@ class Layers_Form_Elements {
 			<?php break;
 			
 			/**
-			* Border Style.
+			* TRBL Fields (Top/Right/Bottom/Left).
+			*/
+			case 'trbl-fields' : ?>
+
+				<?php $fields = array(
+					'top' => __( 'Top' , 'layerswp' ),
+					'right' => __( 'Right' , 'layerswp' ),
+					'bottom' => __( 'Bottom' , 'layerswp' ),
+					'left' => __( 'Left' , 'layerswp' ),
+				); ?>
+
+				<?php
+				// If caller only wants chosen few fields can customise the labels e.g.
+				// (1) 'fields' => array( 'top' => 'Top (px)' ) one field 'top' with cusotmized label 'Top (px)'.
+				// (2) 'fields' => array( 'top' ) one field 'top' with standard label 'Top'.
+				if( ! empty( $input->fields ) ) {
+					$new_fields = array();
+					foreach ( $input->fields as $key => $value ) {
+
+						if ( is_numeric( $key ) ) {
+							// Array element type: [ 'bottom' ]
+							if ( isset( $fields[$value] ) ){ // Make sure that what the user spcified is avalid field of TRBL.
+								$new_fields[$value] = $fields[$value];
+							}
+						}
+						else {
+							// Array element type: [ 'bottom' => 'Bottom (px)' ]
+							$new_fields[$key] = $value;
+						}
+					}
+					$fields = $new_fields;
+
+					// If the fields chosen were incorrect then bail.
+					if ( empty( $fields ) ) return;
+				}
+
+				// Calculate column span based on the number of resulting fields.
+				$field_span = ( 12 / count( $fields ) );
+				?>
+				<div class="layers-row layers-inline-field-row <?php echo $combined ? 'layers-input' : '' ; ?>">
+
+					<?php foreach ( $fields as $key => $label ) : ?>
+						<div class="<?php echo $combined ? 'layers-column-flush' : 'layers-column' ; ?> layers-span-<?php echo esc_attr( $field_span ); ?>">
+							<?php echo $this->input(
+								array(
+									'type' => 'number',
+									'name' => ( isset( $input->name ) ) ? "{$input->name}[$key]" : '',
+									'id' => "{$input->id}-{$key}",
+									'value' => ( isset( $input->value->$key ) ) ? $input->value->$key : NULL,
+									'class' => 'l_admin-hide-controls',
+									'data' => array(
+										'customize-setting-link' => "{$input->id}-{$key}",
+									),
+								)
+							); ?>
+							<label for="<?php echo esc_attr( $input->id ) . '-' . $key; ?>"><?php echo esc_html( $label ); ?></label>
+						</div>
+					<?php endforeach; ?>
+
+				</div>
+
+			<?php break;
+			
+			/**
+			* Border Style (inline fields).
 			*/
 			case 'border-style-fields' : ?>
 
 				<?php $fields = array(
-					'width' => __( 'Top' , 'layerswp' ),
+					'width' => __( 'Width' , 'layerswp' ),
 					'style' => __( 'Style' , 'layerswp' ),
 					'radius' => __( 'Radius' , 'layerswp' ),
 				); ?>

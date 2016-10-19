@@ -171,6 +171,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 						</div>
 					</div>
 				<?php } ?>
+				
 				<?php if ( ! empty( $instance[ 'columns' ] ) ) {
 
 					$column_ids = explode( ',', $instance[ 'column_ids' ] );
@@ -297,6 +298,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 								$classes = implode( ' ', $classes ); ?>
 
 								<div id="<?php echo $widget_id; ?>-<?php echo $column_key; ?>" class="<?php echo esc_attr( $classes ); ?>">
+									
 									<?php
 									/**
 									* Set Overlay CSS Classes

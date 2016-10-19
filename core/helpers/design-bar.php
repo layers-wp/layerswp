@@ -963,7 +963,7 @@ class Layers_Design_Controller {
 				'label' => __( 'Padding (px)', 'layerswp' ),
 				'name' => $this->get_layers_field_name( 'advanced', 'padding' ),
 				'id' => $this->get_layers_field_id( 'advanced', 'padding' ),
-				'value' => ( isset( $this->values['advanced']['padding'] ) ) ? $this->values['advanced']['padding'] : NULL
+				'value' => ( isset( $this->values['advanced']['padding'] ) ) ? $this->values['advanced']['padding'] : NULL,
 				'wrapper-class' => 'layers-inline-field-combined',
 			),
 			'margin' => array(
@@ -971,7 +971,7 @@ class Layers_Design_Controller {
 				'label' => __( 'Margin (px)', 'layerswp' ),
 				'name' => $this->get_layers_field_name( 'advanced', 'margin' ),
 				'id' => $this->get_layers_field_id( 'advanced', 'margin' ),
-				'value' => ( isset( $this->values['advanced']['margin'] ) ) ? $this->values['advanced']['margin'] : NULL
+				'value' => ( isset( $this->values['advanced']['margin'] ) ) ? $this->values['advanced']['margin'] : NULL,
 				'wrapper-class' => 'layers-inline-field-combined',
 			),
 			'anchor' => array(

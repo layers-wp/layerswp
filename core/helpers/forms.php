@@ -307,6 +307,7 @@ class Layers_Form_Elements {
 							for="<?php echo esc_attr( $input->id ) ,'-', esc_attr( $key ); ?>"
 							<?php echo $data_string ?>
 							>
+							
 							<span class="<?php echo esc_attr( $class ); ?>"></span>
 							<?php if( '' != $name ) { ?>
 								<span class="layers-icon-description">
@@ -612,6 +613,7 @@ class Layers_Form_Elements {
 			case 'color' : ?>
 				<input type="text" <?php echo implode ( ' ' , $input_props ); ?> value="<?php echo $input->value; ?>" class="layers-color-selector" />
 			<?php break;
+			
 			/**
 			* Button Selector
 			*/
@@ -622,6 +624,7 @@ class Layers_Form_Elements {
 					<?php echo esc_attr( $input->label ); ?>
 				</<?php echo $tag; ?>>
 			<?php break;
+			
 			/**
 			* Top / Right / Bottom / Left Fields
 			*/

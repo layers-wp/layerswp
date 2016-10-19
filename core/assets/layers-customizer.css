@@ -1538,30 +1538,26 @@ div[id*='layers-widget'] .widget-control-actions .alignright{
 		box-shadow: 0 1px 0 #BC3F39;
 		color: #fff;
 	}
-	.layers-trbl-fields-wrapper:after{
+	.layers-inline-field-wrapper:after{
 		content: '';
 		display: block;
 		clear: both;
 		float: none;
 	}
-	.layers-trbl-combined .layers-row.layers-trbl-row{
+	.layers-inline-field-combined .layers-row.layers-inline-field-row{
 		padding: 0 !important;
 		margin-bottom: 20px;
 		height: 30px;
 		box-sizing: border-box;
 	}
-	.layers-trbl-combined .layers-column-flush {
+	.layers-inline-field-combined .layers-column-flush {
 		margin: -1px 0;
 	}
-	.layers-row.layers-trbl-row .layers-column > :first-child{
-		/* margin-bottom: 0; */
-	}
-	.layers-row.layers-trbl-row .layers-column-flush{
-		/* width: 25%; */
+	.layers-row.layers-inline-field-row .layers-column-flush{
 		position: relative;
 		font-weight: normal;
 	}
-	.layers-row.layers-trbl-row .layers-column-flush:after{
+	.layers-row.layers-inline-field-row .layers-column-flush:after{
 		display:block;
 		width:1px;
 		height: 12px;
@@ -1572,51 +1568,35 @@ div[id*='layers-widget'] .widget-control-actions .alignright{
 		content:'';
 		background: rgba(0, 0, 0, 0.08);
 	}
-	.layers-row.layers-trbl-row .layers-column-flush:last-child:after{
+	.layers-row.layers-inline-field-row .layers-column-flush:last-child:after{
 		display:none;
 	}
-	.layers-row.layers-trbl-row .layers-column label,
-	.layers-row.layers-trbl-row .layers-column-flush label{
-		/*position: absolute;
-		top: 100%;*/
+	.layers-row.layers-inline-field-row .layers-column label,
+	.layers-row.layers-inline-field-row .layers-column-flush label{
 		width: 100%;
 		margin: 6px 0 0;
-		/* color: #AEAEAE; */
 		font-size: 10px;
 		text-align: center;
 		line-height: 12px;
 		font-weight: normal;
 	}
-	.layers-row.layers-trbl-row .layers-column input,
-	.layers-row.layers-trbl-row .layers-column-flush input{
+	.layers-row.layers-inline-field-row .layers-column input,
+	.layers-row.layers-inline-field-row .layers-column-flush input{
 		text-align: center;
 		font-weight: bold;
 	}
-	.layers-row.layers-trbl-row .layers-column-flush input{
+	.layers-row.layers-inline-field-row .layers-column-flush input{
 		padding-left: 3px;
 		padding-right: 3px;
 		margin: 0;
 		background: none;
 		box-shadow: none;
 		border: 1px solid rgba(0, 0, 0, 0);
-		/* border: none; */
 	}
-
-		.layers-trbl-seperated .layers-row.layers-trbl-row {
-			/* background: none; */
-		}
-
-	/*.layers-trbl-combined .layers-column {
-		margin: 0;
+	.layers-row.layers-inline-field-row input[type="number"] {
+		padding-left: 0;
+		padding-right: 0;
 	}
-	.layers-trbl-combined .layers-column input[type] {
-		border: 0;
-		box-shadow: inset 0 0 8px red;
-	}
-	.layers-trbl-combined .layers-span-4 {
-		width: 33.33%;
-	}*/
-
 
 	/*---------------------------*/
 	/*- DESIGN BAR TABS ---------*/

@@ -1964,39 +1964,23 @@ div[id*='layers-widget'] .widget-control-actions .alignright{
 	}
 
 	/*---------------------------*/
-	/*- GROUPS ------------------*/
+	/*- DESIGN-BAR GROUPS -------*/
 	.layers-design-bar-group {
 		margin: 0 -10px 0;
 		padding: 0 10px;
 		overflow: hidden;
 		border-bottom: 1px solid #e5e5e5;
 	}
-
-	.layers-design-bar-group.layers-design-bar-group-open {
-		border-bottom-width: 2px;
-		background: #f9f9f9;
-		box-shadow: inset 0 1px 0 #e5e5e5;
-	}
-
-	.layers-design-bar-group .layers-group-start-wrapper {
-
-	}
-	.layers-design-bar-group.layers-design-bar-group-open .layers-group-start-wrapper {
-	}
-
 	.layers-design-bar-group .layers-form-item {
 		margin: 0;
 		padding: 9px 0 9px;
-	}
-	.layers-design-bar-group .layers-form-item:first-child {
-	}
-	.layers-design-bar-group .layers-form-item:last-child {
 	}
 	.layers-design-bar-group .layers-group-start-wrapper {
 		border-bottom: none;
 		cursor: pointer;
 		padding: 7px 9px;
 		margin: 0 -10px;
+		transition: .2s;
 	}
 	.layers-group-start-wrapper label {
 		margin-bottom: 0;
@@ -2016,12 +2000,6 @@ div[id*='layers-widget'] .widget-control-actions .alignright{
 		border-radius: 100%;
 		box-shadow: 0px 1px 0px rgba(0, 0, 0, 0.05);
 	}
-
-		.layers-design-bar-group.layers-design-bar-group-open .layers-group-start-wrapper:after {
-			content: "\e922";
-			box-shadow: 0px -2px 0px rgba(0, 0, 0, 0.1);
-		}
-
 	.layers-form-item.layers-group-end-wrapper {
 		display: none;
 	}
@@ -2034,6 +2012,27 @@ div[id*='layers-widget'] .widget-control-actions .alignright{
 		content: '';
 		margin-bottom: -11px;
 	}
+		
+		/*---------------------------*/
+		/*- OPEN & HOVER STATES -----*/
+		.layers-design-bar-group.layers-design-bar-group-open {
+			border-bottom-width: 2px;
+			background: #f9f9f9;
+			box-shadow: inset 0 1px 0 #e5e5e5;
+		}
+		.layers-design-bar-group.layers-design-bar-group-open .layers-group-start-wrapper:after {
+			content: "\e922";
+			box-shadow: 0px -2px 0px rgba(0, 0, 0, 0.1);
+		}
+		.layers-design-bar-group.layers-design-bar-group-open .layers-group-start-wrapper {
+
+		}
+		.layers-design-bar-group .layers-group-start-wrapper:hover {
+			background: rgba(255,255,255,0.6);
+		}
+		.layers-design-bar-group.layers-design-bar-group-open .layers-group-start-wrapper:hover {
+			background: transparent;
+		}
 
 /*-------------------------------*/
 /*- RICH TEXT EDITING -----------*/

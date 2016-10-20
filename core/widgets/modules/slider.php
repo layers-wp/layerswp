@@ -129,10 +129,10 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 			$this->enqueue_scripts();
 
 			// Apply slider arrow color
-			if( $this->check_and_return( $instance, 'slider_arrow_color' ) ) $this->inline_css .= layers_inline_styles( '#' . $widget_id, 'color', array( 'selectors' => array( '.arrows a' ), 'color' => $this->check_and_return( $instance, 'slider_arrow_color' ) ) );
-			if( $this->check_and_return( $instance, 'slider_arrow_color' ) ) $this->inline_css .= layers_inline_styles( '#' . $widget_id, 'border', array( 'selectors' => array( 'span.swiper-pagination-switch' ), 'border' => array( 'color' => $this->check_and_return( $instance, 'slider_arrow_color' ) ) ) );
-			if( $this->check_and_return( $instance, 'slider_arrow_color' ) ) $this->inline_css .= layers_inline_styles( '#' . $widget_id, 'background', array( 'selectors' => array( 'span.swiper-pagination-switch' ), 'background' => array( 'color' => $this->check_and_return( $instance, 'slider_arrow_color' ) ) ) );
-			if( $this->check_and_return( $instance, 'slider_arrow_color' ) ) $this->inline_css .= layers_inline_styles( '#' . $widget_id, 'background', array( 'selectors' => array( 'span.swiper-pagination-switch.swiper-active-switch' ), 'background' => array( 'color' => 'transparent !important' ) ) );
+			if( $this->check_and_return( $instance, 'slider_arrow_color' ) ) $this->inline_css .= layers_inline_styles( "#{$widget_id}", 'color', array( 'selectors' => array( '.arrows a' ), 'color' => $this->check_and_return( $instance, 'slider_arrow_color' ) ) );
+			if( $this->check_and_return( $instance, 'slider_arrow_color' ) ) $this->inline_css .= layers_inline_styles( "#{$widget_id}", 'border', array( 'selectors' => array( 'span.swiper-pagination-switch' ), 'border' => array( 'color' => $this->check_and_return( $instance, 'slider_arrow_color' ) ) ) );
+			if( $this->check_and_return( $instance, 'slider_arrow_color' ) ) $this->inline_css .= layers_inline_styles( "#{$widget_id}", 'background', array( 'selectors' => array( 'span.swiper-pagination-switch' ), 'background' => array( 'color' => $this->check_and_return( $instance, 'slider_arrow_color' ) ) ) );
+			if( $this->check_and_return( $instance, 'slider_arrow_color' ) ) $this->inline_css .= layers_inline_styles( "#{$widget_id}", 'background', array( 'selectors' => array( 'span.swiper-pagination-switch.swiper-active-switch' ), 'background' => array( 'color' => 'transparent !important' ) ) );
 
 
 			// Get slider height css
@@ -148,6 +148,7 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 			* Generate the widget container class
 			*/
 			$widget_container_class = array();
+			$widget_container_class[] = $widget_id;
 			$widget_container_class[] = 'widget';
 			$widget_container_class[] = 'layers-slider-widget';
 			$widget_container_class[] = 'row';
@@ -221,9 +222,9 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 							$item_instance = $this->apply_defaults( $item_instance, 'slide' );
 
 							// Set the background styling
-							if( !empty( $item_instance['design'][ 'background' ] ) ) $this->inline_css .= layers_inline_styles( '#' . $widget_id . '-' . $slide_key , 'background', array( 'background' => $item_instance['design'][ 'background' ] ) );
-							if( !empty( $item_instance['design']['fonts'][ 'color' ] ) ) $this->inline_css .= layers_inline_styles( '#' . $widget_id . '-' . $slide_key , 'color', array( 'selectors' => array( '.heading', '.heading a', 'div.excerpt' ) , 'color' => $item_instance['design']['fonts'][ 'color' ] ) );
-							if( !empty( $item_instance['design']['fonts'][ 'shadow' ] ) ) $this->inline_css .= layers_inline_styles( '#' . $widget_id . '-' . $slide_key , 'text-shadow', array( 'selectors' => array( '.heading', '.heading a',  'div.excerpt' )  , 'text-shadow' => $item_instance['design']['fonts'][ 'shadow' ] ) );
+							if( !empty( $item_instance['design'][ 'background' ] ) ) $this->inline_css .= layers_inline_styles( "#{$widget_id}-{$slide_key}", 'background', array( 'background' => $item_instance['design'][ 'background' ] ) );
+							if( !empty( $item_instance['design']['fonts'][ 'color' ] ) ) $this->inline_css .= layers_inline_styles( "#{$widget_id}-{$slide_key}", 'color', array( 'selectors' => array( '.heading', '.heading a', 'div.excerpt' ) , 'color' => $item_instance['design']['fonts'][ 'color' ] ) );
+							if( !empty( $item_instance['design']['fonts'][ 'shadow' ] ) ) $this->inline_css .= layers_inline_styles( "#{$widget_id}-{$slide_key}", 'text-shadow', array( 'selectors' => array( '.heading', '.heading a',  'div.excerpt' )  , 'text-shadow' => $item_instance['design']['fonts'][ 'shadow' ] ) );
 
 							// Set the button styling
 							$button_size = '';
@@ -256,6 +257,7 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 							* Set Individual Slide CSS
 							*/
 							$slide_class = array();
+							$slide_class[] = "{$widget_id}-{$slide_key}";
 							$slide_class[] = 'swiper-slide';
 							if( $this->check_and_return( $item_instance, 'design', 'background' , 'color' ) ) {
 								if( 'dark' == layers_is_light_or_dark( $this->check_and_return( $item_instance, 'design', 'background' , 'color' ) ) ) {
@@ -286,7 +288,7 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 								$slide_wrapper_tag = 'a';
 								$slide_wrapper_href = $link_href_attr;
 							} ?>
-							<<?php echo $slide_wrapper_tag; ?> <?php echo $slide_wrapper_href; ?> class="<?php echo $slide_class; ?>" id="<?php echo $widget_id; ?>-<?php echo $slide_key; ?>" style="float: left; <?php echo $slider_height_css; ?>" <?php echo $link_target_attr; ?>>
+							<<?php echo $slide_wrapper_tag; ?> <?php echo $slide_wrapper_href; ?> id="<?php echo esc_attr( "{$widget_id}-{$slide_key}" ); ?>" class="<?php echo esc_attr( $slide_class ); ?>" style="float: left; <?php echo $slider_height_css; ?>" <?php echo $link_target_attr; ?>>
 
 								<?php do_action( 'layers_before_slider_widget_item_inner', $this, $item_instance, $instance ); ?>
 

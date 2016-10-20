@@ -140,9 +140,9 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 			}
 
 			// Apply Styling
-			$this->inline_css .= layers_inline_styles( '#' . $widget_id, 'background', array( 'background' => $instance['design'][ 'background' ] ) );
-			$this->inline_css .= layers_inline_styles( '#' . $widget_id, 'color', array( 'selectors' => array( '.section-title .heading' , '.section-title div.excerpt' ) , 'color' => $instance['design']['fonts'][ 'color' ] ) );
-			$this->inline_css .= layers_inline_styles( '#' . $widget_id, 'background', array( 'selectors' => array( '.thumbnail-body' ) , 'background' => array( 'color' => $this->check_and_return( $instance, 'design', 'column-background-color' ) ) ) );
+			$this->inline_css .= layers_inline_styles( "#{$widget_id}", 'background', array( 'background' => $instance['design'][ 'background' ] ) );
+			$this->inline_css .= layers_inline_styles( "#{$widget_id}", 'color', array( 'selectors' => array( '.section-title .heading' , '.section-title div.excerpt' ) , 'color' => $instance['design']['fonts'][ 'color' ] ) );
+			$this->inline_css .= layers_inline_styles( "#{$widget_id}", 'background', array( 'selectors' => array( '.thumbnail-body' ) , 'background' => array( 'color' => $this->check_and_return( $instance, 'design', 'column-background-color' ) ) ) );
 
 			// Apply Button Styling.
 			$button_size = '';
@@ -228,7 +228,7 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 			* Generate the widget container class
 			*/
 			$widget_container_class = array();
-
+			$widget_container_class[] = $widget_id;
 			$widget_container_class[] = 'widget';
 			$widget_container_class[] = 'layers-post-widget';
 			$widget_container_class[] = 'content-vertical-massive';

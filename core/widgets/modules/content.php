@@ -118,8 +118,8 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 			}
 
 			// Set the background styling
-			if( !empty( $instance['design'][ 'background' ] ) ) $this->inline_css .= layers_inline_styles( '#' . $widget_id, 'background', array( 'background' => $instance['design'][ 'background' ] ) );
-			if( !empty( $instance['design']['fonts'][ 'color' ] ) ) $this->inline_css .= layers_inline_styles( '#' . $widget_id, 'color', array( 'selectors' => array( '.section-title .heading' , '.section-title div.excerpt' ) , 'color' => $instance['design']['fonts'][ 'color' ] ) );
+			if( !empty( $instance['design'][ 'background' ] ) ) $this->inline_css .= layers_inline_styles( "#{$widget_id}", 'background', array( 'background' => $instance['design'][ 'background' ] ) );
+			if( !empty( $instance['design']['fonts'][ 'color' ] ) ) $this->inline_css .= layers_inline_styles( "#{$widget_id}", 'color', array( 'selectors' => array( '.section-title .heading' , '.section-title div.excerpt' ) , 'color' => $instance['design']['fonts'][ 'color' ] ) );
 
 			// Apply the advanced widget styling
 			$this->apply_widget_advanced_styling( $widget_id, $instance );
@@ -128,6 +128,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 			* Generate the widget container class
 			*/
 			$widget_container_class = array();
+			$widget_container_class[] = $widget_id;
 			$widget_container_class[] = 'widget';
 			$widget_container_class[] = 'layers-content-widget';
 			$widget_container_class[] = 'content-vertical-massive';
@@ -200,9 +201,9 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 								}
 
 								// Set the background styling
-								if( !empty( $item_instance['design'][ 'background' ] ) ) $this->inline_css .= layers_inline_styles( '#' . $widget_id . '-' . $column_key , 'background', array( 'background' => $item_instance['design'][ 'background' ] ) );
-								if( !empty( $item_instance['design']['fonts'][ 'color' ] ) ) $this->inline_css .= layers_inline_styles( '#' . $widget_id . '-' . $column_key , 'color', array( 'selectors' => array( '.heading a', '.heading' , 'div.excerpt' , 'div.excerpt p' ) , 'color' => $item_instance['design']['fonts'][ 'color' ] ) );
-								if( !empty( $item_instance['design']['fonts'][ 'shadow' ] ) ) $this->inline_css .= layers_inline_styles( '#' . $widget_id . '-' . $column_key , 'text-shadow', array( 'selectors' => array( '.heading a', '.heading' , 'div.excerpt' , 'div.excerpt p' )  , 'text-shadow' => $item_instance['design']['fonts'][ 'shadow' ] ) );
+								if( !empty( $item_instance['design'][ 'background' ] ) ) $this->inline_css .= layers_inline_styles( "#{$widget_id}-{$column_key}", 'background', array( 'background' => $item_instance['design'][ 'background' ] ) );
+								if( !empty( $item_instance['design']['fonts'][ 'color' ] ) ) $this->inline_css .= layers_inline_styles( "#{$widget_id}-{$column_key}", 'color', array( 'selectors' => array( '.heading a', '.heading' , 'div.excerpt' , 'div.excerpt p' ) , 'color' => $item_instance['design']['fonts'][ 'color' ] ) );
+								if( !empty( $item_instance['design']['fonts'][ 'shadow' ] ) ) $this->inline_css .= layers_inline_styles( "#{$widget_id}-{$column_key}", 'text-shadow', array( 'selectors' => array( '.heading a', '.heading' , 'div.excerpt' , 'div.excerpt p' )  , 'text-shadow' => $item_instance['design']['fonts'][ 'shadow' ] ) );
 
 								// Set column margin & padding
 								if ( !empty( $item_instance['design']['advanced']['margin'] ) ) $this->inline_css .= layers_inline_styles( "#{$widget_id}-{$column_key}", 'margin', array( 'margin' => $item_instance['design']['advanced']['margin'] ) );
@@ -281,6 +282,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 								* Set Individual Column CSS
 								*/
 								$classes = array();
+								$classes[] = "{$widget_id}-{$column_key}";
 								$classes[] = 'layers-masonry-column';
 								$classes[] = $this->id_base . '-' . $column_key;
 								$classes[] = $span_class;
@@ -297,7 +299,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 								$classes = apply_filters( 'layers_content_widget_item_class', $classes, $this, $item_instance );
 								$classes = implode( ' ', $classes ); ?>
 
-								<div id="<?php echo $widget_id; ?>-<?php echo $column_key; ?>" class="<?php echo esc_attr( $classes ); ?>">
+								<div id="<?php echo "{$widget_id}-{$column_key}"; ?>" class="<?php echo esc_attr( $classes ); ?>">
 									
 									<?php
 									/**

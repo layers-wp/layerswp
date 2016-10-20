@@ -310,7 +310,7 @@ jQuery(function($) {
 		$( element ).layers_trigger_change();
 	}, 400, false );
 	
-	// Enable clickingf of the Label to envoke the color picker.
+	// Enable clicking of the Label to envoke the color picker.
 	$(document).on( 'click', '.layers-color-wrapper label', function(){
 		var $holder = $(this).parents('.layers-color-wrapper');
 		$holder.find('a.wp-color-result').click();

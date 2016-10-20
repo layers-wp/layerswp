@@ -480,6 +480,9 @@ div[id*='layers-widget'] .widget-control-actions .alignright{
 	.layers-icon-group .layers-icon-wrapper img{
 		max-width: 100%;
 	}
+	.layers-form-item > .layers-icon-group {
+		display: block;
+	}
 
 	/*---------------------------*/
 	/*- ICON-GROUP OUTLINED -----*/
@@ -1494,10 +1497,8 @@ div[id*='layers-widget'] .widget-control-actions .alignright{
 		line-height: 18px;
 	}
 
-
 	/*---------------------------*/
 	/*- ICON-GROUP - DESIGN-BAR -*/
-
 	.layers-design-bar .layers-visuals-item{
 		position: relative;
 		padding: 1px;
@@ -1544,14 +1545,18 @@ div[id*='layers-widget'] .widget-control-actions .alignright{
 		clear: both;
 		float: none;
 	}
-	.layers-inline-field-combined .layers-row.layers-inline-field-row{
+	.layers-design-bar .layers-form-item .layers-inline-field-row{
 		padding: 0 !important;
-		margin-bottom: 20px;
+		margin: 0 0 15px;
 		height: 30px;
 		box-sizing: border-box;
 	}
-	.layers-inline-field-combined .layers-column-flush {
-		margin: -1px 0;
+	.layers-inline-field-row .layers-column-flush {
+		margin-top: -1px;
+		margin-bottom: -1px;
+	}
+	.layers-inline-field-row .layers-column {
+		margin-bottom: -2px !important;
 	}
 	.layers-row.layers-inline-field-row .layers-column-flush{
 		position: relative;
@@ -1574,24 +1579,29 @@ div[id*='layers-widget'] .widget-control-actions .alignright{
 	.layers-row.layers-inline-field-row .layers-column label,
 	.layers-row.layers-inline-field-row .layers-column-flush label{
 		width: 100%;
-		margin: 6px 0 0;
+		margin: 5px 0 0;
 		font-size: 10px;
 		text-align: center;
 		line-height: 12px;
 		font-weight: normal;
 	}
 	.layers-row.layers-inline-field-row .layers-column input,
-	.layers-row.layers-inline-field-row .layers-column-flush input{
+	.layers-row.layers-inline-field-row .layers-column-flush input,
+	.layers-row.layers-inline-field-row .layers-column select,
+	.layers-row.layers-inline-field-row .layers-column-flush select{
 		text-align: center;
 		font-weight: bold;
-	}
-	.layers-row.layers-inline-field-row .layers-column-flush input{
 		padding-left: 3px;
 		padding-right: 3px;
 		margin: 0;
+	}
+	.layers-row.layers-inline-field-row .layers-column-flush input{
 		background: none;
 		box-shadow: none;
 		border: 1px solid rgba(0, 0, 0, 0);
+	}
+	.layers-row.layers-inline-field-row .layers-column input {
+		
 	}
 	.layers-row.layers-inline-field-row input[type="number"] {
 		padding-left: 0;
@@ -1704,11 +1714,10 @@ div[id*='layers-widget'] .widget-control-actions .alignright{
 		transition: 0.25s opacity ease-in-out 0.25s, 0.25s transform ease-in-out 0.25s;
 	}
 	.layers-pop-menu-setting .layers-form-item:first-child{
-		/* padding-top: 0; */
+		
 	}
 	.layers-pop-menu-setting .layers-form-item:last-child{
-		/* margin-bottom: -10px; */ /*because the container has 10px padding*/
-		/* border-bottom: none; */
+		
 	}
 	.layers-pop-menu-setting input[type='checkbox'] + label{
 		margin-bottom: 0;
@@ -1973,7 +1982,7 @@ div[id*='layers-widget'] .widget-control-actions .alignright{
 	}
 	.layers-design-bar-group .layers-form-item {
 		margin: 0;
-		padding: 9px 0 9px;
+		padding: 9px 0;
 	}
 	.layers-design-bar-group .layers-group-start-wrapper {
 		border-bottom: none;
@@ -2028,10 +2037,15 @@ div[id*='layers-widget'] .widget-control-actions .alignright{
 
 		}
 		.layers-design-bar-group .layers-group-start-wrapper:hover {
+
 			background: rgba(255,255,255,0.6);
+
 		}
 		.layers-design-bar-group.layers-design-bar-group-open .layers-group-start-wrapper:hover {
+
 			background: transparent;
+
+
 		}
 
 /*-------------------------------*/

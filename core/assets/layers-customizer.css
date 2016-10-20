@@ -1050,6 +1050,16 @@ div[id*='layers-widget'] .widget-control-actions .alignright{
 	        margin-top: -18px;
 	        position: relative;
 	    }
+	    	
+	    	/*------------------------------------*/
+			/*- COLOR PICKER OPEN ----------------*/
+	    	.layers-design-bar-form-item .wp-picker-container.wp-picker-active {
+				margin-top: 25px;
+			}
+			.layers-design-bar-form-item .wp-picker-container.wp-picker-active .wp-color-result{
+				position: relative;
+				top: 3px;
+			}
 
 	    /*------------------------------------*/
 		/*- CUSTOM ICONS ---------------------*/

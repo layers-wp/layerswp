@@ -187,10 +187,10 @@ if( !class_exists( 'Layers_Widget' ) ) {
 
 					// Apply the TRBL styles
 					if ( 'padding' == $type && isset( $instance['slides'] ) && 1 <= count( $instance['slides'] ) ){
-						$this->inline_css .= layers_inline_styles( "#{$widget_id} .swiper-slide > .content", $type, array( $type => $values ) );
+						$this->inline_css .= layers_inline_styles( ".{$widget_id} .swiper-slide > .content", $type, array( $type => $values ) );
 					}
 					else{
-						$this->inline_css .= layers_inline_styles( "#{$widget_id}", $type, array( $type => $values ) );
+						$this->inline_css .= layers_inline_styles( ".{$widget_id}", $type, array( $type => $values ) );
 					}
 
 				}

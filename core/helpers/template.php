@@ -485,6 +485,9 @@ if( !function_exists( 'layers_body_class' ) ) {
 		$header_sticky_option	= layers_get_theme_mod( 'header-sticky' );
 		$header_overlay_option	= layers_get_theme_mod( 'header-overlay');
 
+		$left_sidebar_active = layers_can_show_sidebar( 'left-sidebar' );
+		$right_sidebar_active = layers_can_show_sidebar( 'right-sidebar' );
+
 		// Handle menu layout
 		$classes[] = 'body-' . $header_menu_layout;
 
@@ -501,6 +504,10 @@ if( !function_exists( 'layers_body_class' ) ) {
 		// Add class that spans across all post archives and single pages
 		if( layers_is_post_list_template() || is_archive() || is_singular( 'post' ) ) {
 			$classes[] = 'layers-post-page';
+		}
+
+		if( is_single() && !$left_sidebar_active && !$right_sidebar_active ){
+			$classes[] = 'no-sidebar';
 		}
 
 		return apply_filters( 'layers_body_class', $classes );
@@ -677,7 +684,6 @@ if( !function_exists( 'layers_maybe_set_invert' ) ) {
  */
 if( !function_exists( 'layers_get_header_class' ) ) {
 	function layers_get_header_class( $class = '' ){
-
 
 		$header_menu_layout		= layers_get_theme_mod( 'header-menu-layout');
 		$header_align_option = layers_get_theme_mod( 'header-menu-layout' );

@@ -500,15 +500,15 @@ jQuery(function($) {
 	$( document ).on( 'click' , '.layers-group-start-wrapper' , function(e){
 		e.preventDefault();
 
-		// Toggle this accordian
+		// Toggle clicked accordian.
 		$me = $(this).closest( '.layers-design-bar-group' );
 		$me.toggleClass( 'layers-design-bar-group-open' );
 		$me.find( '.layers-design-bar-group-inner' ).slideToggle({ easing: 'layersEaseInOut', duration: 250 });
 
-		// Close non-active accordians
-		// $siblings = $me.siblings();
-		// $siblings.removeClass( 'layers-design-bar-group-open' );
-		// $siblings.find( '.layers-accordion-section' ).slideUp({ easing: 'layersEaseInOut', duration: 250 });
+		// Close other open accordians.
+		$siblings = $me.siblings('.layers-design-bar-group-open');
+		$siblings.removeClass( 'layers-design-bar-group-open' );
+		$siblings.find('.layers-design-bar-group-inner').slideUp({ easing: 'layersEaseInOut', duration: 250 });
 	});
 	
 	// 1.b - Accodian Init

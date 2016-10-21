@@ -306,7 +306,7 @@ if( !function_exists( 'layers_get_bread_crumbs' ) ) {
 
 			$breadcrumbs[ 'search_term' ] = array(
 				'link' => FALSE,
-				'label' => get_search_query,
+				'label' => get_search_query(),
 			);
 
 		} elseif( is_tax() ) {

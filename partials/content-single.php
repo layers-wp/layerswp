@@ -15,7 +15,8 @@ do_action('layers_before_single_post');
 
 if ( ! $layers_page_title_shown ) { ?>
 	<?php do_action('layers_before_single_post_title'); ?>
-	<header class="section-title large">
+
+	<header <?php echo layers_wrapper_class( 'single_post_title', 'section-title large' ); ?>>
 		<?php if( 'post' == get_post_type() ) { ?>
 			<?php do_action('layers_before_single_title_meta'); ?>
 				<?php /**
@@ -28,9 +29,10 @@ if ( ! $layers_page_title_shown ) { ?>
 			<h1 class="heading"><?php the_title(); ?></h1>
 		<?php do_action('layers_after_single_title'); ?>
 	</header>
+
 	<?php do_action('layers_after_single_post_title'); ?>
 	<?php
-	
+
 	// Record that we have shown page title - to avoid double titles showing.
 	$layers_page_title_shown = TRUE;
 }

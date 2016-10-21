@@ -506,8 +506,16 @@ if( !function_exists( 'layers_body_class' ) ) {
 			$classes[] = 'layers-post-page';
 		}
 
-		if( is_single() && !$left_sidebar_active && !$right_sidebar_active ){
+		if( ( is_single() || is_archive() ) && !$left_sidebar_active && !$right_sidebar_active ){
 			$classes[] = 'no-sidebar';
+		}
+
+		if( ( is_single() || is_archive() ) && $left_sidebar_active ) {
+			$classes[] = 'left-sidebar';
+		}
+
+		if( ( is_single() || is_archive() ) && $right_sidebar_active ) {
+			$classes[] = 'right-sidebar';
 		}
 
 		return apply_filters( 'layers_body_class', $classes );

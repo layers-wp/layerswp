@@ -7,6 +7,7 @@
 * **Fix** - When adding a new post-widget and enabling Masonry in the customizer, it no longer breaks. *MP*
 * **Enhancement** - Added a toggle to disable analytics when logged in. *MP*
 * **Enhancement** - New icon fonts added to Layers Interface icon set. *DP*
+* **Enhancement** - Input type "image" no longer spans 100% of the screen. *DP*
 
 =======
 ##1.6.2

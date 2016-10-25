@@ -90,7 +90,7 @@ class Layers_API {
 		return $this->sort_options;
 	}
 
-	private function do_envato_api_call( $endpoint = 'market/total-items.json', $query_string = NULL , $method = 'get', $timeout = 5 ){
+	private function do_envato_api_call( $type = 'themes', $endpoint = 'market/total-items.json', $query_string = NULL , $method = 'get', $timeout = 5 ){
 
 		$default_query_string = 'page_size=100&sort_by=updated&sort_direction=desc';
 
@@ -100,7 +100,7 @@ class Layers_API {
 		$remote_url = self::ENVATO_API_URL . $endpoint . $query_string;
 
 		// Set the query transient key
-		$cache_key = 'lmp_' . $query_string;
+		$cache_key = 'emp_' . $type;
 
 		// Quick cache dumper
 		$dump_cache = 0;
@@ -223,7 +223,7 @@ class Layers_API {
 		} else {
 			foreach( $product_list as $p_key => $p_details ){
 
-				if( isset( $p_details->status ) && 'publish' !=  $p_details->status ) continue;
+				if( isset( $p_details->status ) && 'publish' !=  $p_details->status || !isset( $p_details->status ) ) continue;
 
 				$product = array();
 
@@ -295,7 +295,7 @@ class Layers_API {
 
 		// &category=' . $product_types[ $p_type ]
 
-		$cache_key = 'layers_wp_marketplace';
+		$cache_key = 'lmp';
 
 		if( FALSE !== get_transient( $cache_key ) ) {
 
@@ -338,7 +338,7 @@ class Layers_API {
 		}
 
 		// Do the API call
-		$api_call = $this->do_envato_api_call( $endpoint, $query_string, 'get' );
+		$api_call = $this->do_envato_api_call( $p_type, $endpoint, $query_string, 'get' );
 
 		if( is_wp_error( $api_call ) ) {
 
@@ -355,7 +355,7 @@ class Layers_API {
 		$endpoint = 'market/popular:' . $site . '.json';
 
 		// Do the API call
-		$api_call = $this->do_envato_api_call( $endpoint, '', 'get', 2 );
+		$api_call = $this->do_envato_api_call( 'gr', $endpoint, '', 'get', 2 );
 
 		if( is_wp_error( $api_call ) ) {
 

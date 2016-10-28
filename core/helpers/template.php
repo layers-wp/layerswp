@@ -1603,7 +1603,7 @@ if( !function_exists( 'layers_translate_image_ratios' ) ) {
 
 if ( ! function_exists( 'layers_menu_fallback' ) ) {
 	function layers_menu_fallback() {
-		echo '<ul id="nav" class="clearfix">';
+		echo '<ul id="nav" class="menu">';
 			wp_list_pages('title_li=&');
 		echo '</ul>';
 	}

@@ -4,6 +4,7 @@
 ##1.6.3
 ### xx Oct 2016
 
+* **Fix** - Menu fonts now apply to the automatic header menu (page list). *MP*
 * **Fix** - When adding a new post-widget and enabling Masonry in the customizer, it no longer breaks. *MP*
 * **Enhancement** - Added a toggle to disable analytics when logged in. *MP*
 * **Enhancement** - New icon fonts added to Layers Interface icon set. *DP*

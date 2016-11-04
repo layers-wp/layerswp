@@ -234,7 +234,7 @@ if( !function_exists( 'layers_get_bread_crumbs' ) ) {
 					$term = get_term_by( 'id' , $term_id , $taxonomy );
 
 					$breadcrumbs[ $term->slug ] = array(
-						'link' => et_term_link( $term_id , $taxonomy ),
+						'link' => get_term_link( $term_id , $taxonomy ),
 						'label' => $term->name,
 					);
 				}

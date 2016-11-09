@@ -2,7 +2,7 @@
 
 =======
 ##1.6.3
-### xx Oct 2016
+### 09 Nov 2016
 
 * **Fix** - Menu fonts now apply to the automatic header menu (page list). *MP*
 * **Fix** - When adding a new post-widget and enabling Masonry in the customizer, it no longer breaks. *MP*

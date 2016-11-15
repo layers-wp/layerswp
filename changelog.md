@@ -1,6 +1,12 @@
 # Layers Changelog
 
 =======
+##1.6.4
+### ?? Nov 2016
+
+* **Fix** - Layers icon font no longer shows a broken layers logo. *DP*
+
+=======
 ##1.6.3
 ### 09 Nov 2016
 

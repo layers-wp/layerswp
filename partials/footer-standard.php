@@ -27,12 +27,11 @@
 		<div class="grid copyright">
 			<?php if( '' != layers_get_theme_mod( 'footer-copyright-text' ) ) {  ?>
 				<div class="column span-6">
+					<?php wp_nav_menu( array( 'theme_location' => LAYERS_THEME_SLUG . '-footer' , 'container' => 'nav', 'container_class' => 'nav nav-horizontal pull-right lt-footer-left', 'fallback_cb' => false )); ?>
 					<p class="site-text"><?php echo layers_get_theme_mod( 'footer-copyright-text' ); ?></p>
 				</div>
 			<?php } ?>
-			<div class="column span-6 clearfix t-right">
-				<?php wp_nav_menu( array( 'theme_location' => LAYERS_THEME_SLUG . '-footer' , 'container' => 'nav', 'container_class' => 'nav nav-horizontal pull-right', 'fallback_cb' => false )); ?>
-			</div>
+			<div class="column span-6 clearfix t-right"></div>
 		</div>
 		<?php do_action( 'layers_after_footer_copyright' ); ?>
 	</div>

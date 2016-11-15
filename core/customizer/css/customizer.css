@@ -112,7 +112,7 @@
 
 .customize-controls-layers-button-dashboard-main:after{
 	font-family: "layers-interface" !important;
-	content: "\e91e" !important;
+	content: "\e62f" !important;
 	font-size: 15px !important;
 }
 a.customize-controls-layers-button{
@@ -141,7 +141,7 @@ a.customize-controls-layers-button i{
 }
 .layers-button-icon-dashboard:after{
 	font-family: "layers-interface" !important;
-	content: "\e91e" !important;
+	content: "\e62f" !important;
 	font-size: 15px !important;
 }
 a.customize-controls-layers-button:hover{

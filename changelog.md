@@ -5,6 +5,8 @@
 ### ?? Nov 2016
 
 * **Fix** - Layers icon font no longer shows a broken layers logo. *DP*
+* **Fix** - Fixed compatability with Endurance Page Cache plugin. *MP*
+* **Fix** - Fixed Static Blog page where sidebar would fall below content. *MP*
 
 =======
 ##1.6.3

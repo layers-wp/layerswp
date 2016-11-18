@@ -390,7 +390,6 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 							});
 
 							<?php if( 1 < count( $instance[ 'slides' ] ) ) { ?>
-								// Allow keyboard control
 								<?php echo $swiper_js_obj; ?>.enableKeyboardControl();
 							<?php } // if > 1 slide ?>
 

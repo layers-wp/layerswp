@@ -2,7 +2,7 @@
 
 =======
 ##1.6.4
-### ?? Nov 2016
+### 18 Nov 2016
 
 * **Fix** - Layers icon font no longer shows a broken layers logo. *DP*
 * **Fix** - Fixed compatability with Endurance Page Cache plugin. *MP*

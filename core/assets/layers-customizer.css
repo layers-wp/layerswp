@@ -15,6 +15,9 @@
 
 /*------------------------------------*/
 /*- CUSTOMIZER Look&Feel OVERRIDES ---*/
+a{
+	text-decoration: none;
+}
 #customize-theme-controls .accordion-section-content{
 	background: #fff; /*-- Make the accordions white --*/
 }

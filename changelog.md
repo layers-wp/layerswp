@@ -1,6 +1,12 @@
 # Layers Changelog
 
 =======
+##1.6.5
+### ?? Nov 2016
+
+* **Enhancement** - Removed underlines from icons in preparation for WordPress 4.7. *DP*
+
+=======
 ##1.6.4
 ### 18 Nov 2016
 

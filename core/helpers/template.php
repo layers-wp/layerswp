@@ -132,7 +132,7 @@ if( !function_exists( 'layers_get_bread_crumbs' ) ) {
 			}
 
 			// Display page if it has been found
-			if( !empty( $parentpage ) ) {
+			if( !empty( $parentpage ) && 'post' !== $parentpage->post_type ) {
 
 
 				$breadcrumbs[ 'post_archive_page' ] = array(
@@ -1396,6 +1396,9 @@ add_action( 'get_footer' , 'layers_apply_inline_styles', 100 );
 */
 if( !function_exists( 'layers_apply_custom_styles' ) ) {
 	function layers_apply_custom_styles(){
+		global $wp_version;
+
+		if( !class_exists( 'Layers_DevKit' ) && !function_exists( 'wp_update_custom_css_post' ) ) return;
 
 		if( '' == layers_get_theme_mod( 'custom-css' ) || FALSE == layers_get_theme_mod( 'custom-css' ) ) return;
 
@@ -1499,6 +1502,7 @@ function layers_get_youtube_id($url) {
 		)               # End host alternatives.
 		([\w-]{10,12})  # Allow 10-12 for 11 char youtube id.
 		$%x';
+
 	$result = preg_match($pattern, $url, $matches);
 
 	if (false !== $result) {
@@ -1805,3 +1809,36 @@ if( !function_exists( 'layers_get_template_link' ) ){
 		return $post;
 	}
 }
+
+/**
+ * Translate Custom CSS for 4.7 and beyond
+ *
+ * @param string $page for template php name
+ * @return Post Object
+ *
+ */
+if( !function_exists( 'layers_translate_css' ) ){
+	function layers_translate_css(){
+
+		global $wp_version;
+
+		if( function_exists( 'wp_update_custom_css_post' ) ){
+
+			$wp_css = wp_get_custom_css();
+
+			$layers_css = layers_get_theme_mod( 'custom-css' );
+
+			if( '' !== $layers_css ){
+
+				$combined_css = $wp_css . $layers_css;
+
+				remove_theme_mod( 'layers-custom-css' );
+
+				wp_update_custom_css_post( $combined_css );
+			}
+
+		}
+
+	}
+}
+add_action( 'admin_init', 'layers_translate_css' );

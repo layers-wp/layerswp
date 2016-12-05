@@ -2,9 +2,10 @@
 
 =======
 ##1.6.5
-### ?? Nov 2016
+### 05 Dec 2016
 
 * **Enhancement** - Removed underlines from icons in preparation for WordPress 4.7. *DP*
+* **Enhancement** - Updated theme to utilize the new Additional CSS block in WordPress 4.7. *DP*
 
 =======
 ##1.6.4

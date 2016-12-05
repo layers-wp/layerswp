@@ -303,7 +303,7 @@ class Layers_Customizer_Config {
 
 	private function controls(){
 
-		global $layers_customizer_controls;
+		global $layers_customizer_controls, $wp_version;
 
 		// Setup some folder variables
 		$customizer_dir = '/core/customizer/';
@@ -616,19 +616,21 @@ class Layers_Customizer_Config {
 		);
 
 		// CSS
-		$layers_customizer_controls['css'] = array(
-			'custom-css' => array(
-				'type'     => 'layers-code',
-				'placeholder'	=> ".classname {\n\tbackground: #333;\n}",
-				'sanitize_callback' => FALSE
-			),
-			'upsell-devkit-heading' => array(
-				'type'  => 'layers-heading',
-				'class' => 'layers-upsell-tag',
-				'label'    => __( 'Upgrade to DevKit' , 'layerswp' ),
-				'description' => __( 'Want the best CSS customization interface? <a target="_blank" href="http://bit.ly/layers-devkit">Purchase DevKit</a> and save bundles of time!' , 'layerswp' ),
-			),
-		);
+		if( version_compare( $wp_version, '4.7', '<' ) ){
+			$layers_customizer_controls['css'] = array(
+				'custom-css' => array(
+					'type'     => 'layers-code',
+					'placeholder'	=> ".classname {\n\tbackground: #333;\n}",
+					'sanitize_callback' => FALSE
+				),
+				'upsell-devkit-heading' => array(
+					'type'  => 'layers-heading',
+					'class' => 'layers-upsell-tag',
+					'label'    => __( 'Upgrade to DevKit' , 'layerswp' ),
+					'description' => __( 'Want the best CSS customization interface? <a target="_blank" href="http://bit.ly/layers-devkit">Purchase DevKit</a> and save bundles of time!' , 'layerswp' ),
+				),
+			);
+		}
 
 		if( class_exists( 'WooCommerce' ) ) {
 			$layers_customizer_controls[ 'woocommerce-sidebars' ] = array(

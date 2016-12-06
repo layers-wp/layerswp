@@ -1398,7 +1398,7 @@ if( !function_exists( 'layers_apply_custom_styles' ) ) {
 	function layers_apply_custom_styles(){
 		global $wp_version;
 
-		if( !class_exists( 'Layers_DevKit' ) && !function_exists( 'wp_update_custom_css_post' ) ) return;
+		if( !class_exists( 'Layers_DevKit' ) || !function_exists( 'wp_update_custom_css_post' ) ) return;
 
 		if( '' == layers_get_theme_mod( 'custom-css' ) || FALSE == layers_get_theme_mod( 'custom-css' ) ) return;
 
@@ -1822,7 +1822,7 @@ if( !function_exists( 'layers_translate_css' ) ){
 
 		global $wp_version;
 
-		if( function_exists( 'wp_update_custom_css_post' ) ){
+		if( !class_exists( 'Layers_DevKit' ) && function_exists( 'wp_update_custom_css_post' ) ){
 
 			$wp_css = wp_get_custom_css();
 

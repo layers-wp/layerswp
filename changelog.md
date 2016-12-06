@@ -4,6 +4,7 @@
 ##1.6.5
 ### 05 Dec 2016
 
+* **Enhancement** - Added Poppins Google Font. *MP*
 * **Enhancement** - Removed underlines from icons in preparation for WordPress 4.7. *DP*
 * **Enhancement** - Updated theme to utilize the new Additional CSS block in WordPress 4.7. *DP*
 

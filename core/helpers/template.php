@@ -1398,8 +1398,6 @@ if( !function_exists( 'layers_apply_custom_styles' ) ) {
 	function layers_apply_custom_styles(){
 		global $wp_version;
 
-		if( !class_exists( 'Layers_DevKit' ) || !function_exists( 'wp_update_custom_css_post' ) ) return;
-
 		if( '' == layers_get_theme_mod( 'custom-css' ) || FALSE == layers_get_theme_mod( 'custom-css' ) ) return;
 
 		wp_enqueue_style(
@@ -1841,4 +1839,4 @@ if( !function_exists( 'layers_translate_css' ) ){
 
 	}
 }
-add_action( 'admin_init', 'layers_translate_css' );
+add_action( 'init', 'layers_translate_css' );

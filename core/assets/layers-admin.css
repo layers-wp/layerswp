@@ -9,8 +9,17 @@
 
 @import url(icons.css?v=1.6.0);
 
-.l_admin-hide{ display: none !important; }
-.l_admin-soft-hide{ display: none; }
+/*------------------------------------*/
+/*- CUSTOMIZER Look&Feel OVERRIDES ---*/
+a{
+	text-decoration: none;
+}
+.l_admin-hide{
+	display: none !important;
+}
+.l_admin-soft-hide{
+	display: none;
+}
 
 /*---------------------------*/
 /*- THE GRID ----------------*/
@@ -1482,7 +1491,7 @@
 		border-bottom: 2px solid #ddd;
 	}
 	#toplevel_page_layers-marketplace .wp-menu-image:before, #toplevel_page_layers-dashboard .wp-menu-image:before{
-		content: "\e91e";
+		content: "\e62f";
 		font-family: "layers-interface";
 		font-weight: normal;
 		font-size: 16px;

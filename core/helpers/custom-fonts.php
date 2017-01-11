@@ -2699,6 +2699,12 @@ if ( ! function_exists( 'layers_get_google_fonts' ) ) {
 				'subsets' => array( 'latin', 'latin-ext', ),
 				'category' => 'sans-serif',
 			),
+			'Poppins' => array( 'label' => 'Poppins',
+				'variants' => array( 'regular','300','400','500','600', '700'),
+				'subsets' => array( 'devanagari', 'latin-ext', ),
+				'category' => 'sans-serif',
+			),
+
 			'Port Lligat Sans' => array( 'label' => 'Port Lligat Sans',
 				'variants' => array( 'regular', ),
 				'subsets' => array( 'latin', ),

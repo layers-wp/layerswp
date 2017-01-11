@@ -1,11 +1,11 @@
 @font-face {
 	font-family: 'layers-interface';
-	src:  url('fonts/layers-interface.eot?tr3gsi');
-	src:  url('fonts/layers-interface.eot?tr3gsi#iefix') format('embedded-opentype'),
-		url('fonts/layers-interface.woff2?tr3gsi') format('woff2'),
-		url('fonts/layers-interface.ttf?tr3gsi') format('truetype'),
-		url('fonts/layers-interface.woff?tr3gsi') format('woff'),
-		url('fonts/layers-interface.svg?tr3gsi#layers-interface') format('svg');
+	src:  url('fonts/layers-interface.eot?rx0hez');
+	src:  url('fonts/layers-interface.eot?rx0hez#iefix') format('embedded-opentype'),
+		url('fonts/layers-interface.woff2?rx0hez') format('woff2'),
+		url('fonts/layers-interface.ttf?rx0hez') format('truetype'),
+		url('fonts/layers-interface.woff?rx0hez') format('woff'),
+		url('fonts/layers-interface.svg?rx0hez#layers-interface') format('svg');
 	font-weight: normal;
 	font-style: normal;
 }
@@ -116,10 +116,10 @@
 	content: "\e634";
 }
 .icon-layers-logo:before {
-	content: "\e91e";
+	content: "\e62f";
 }
 .icon-help:before {
-	content: "\e631";
+	content: "\e91f";
 }
 .icon-pencil:before {
 	content: "\e00d";
@@ -278,15 +278,14 @@
 	content: "\e630";
 }
 .icon-plus-invert:before {
-	content: "\e91f";
-}
-.icon-minus-invert:before {
 	content: "\e920";
 }
-.icon-plus:before {
+.icon-minus-invert:before {
 	content: "\e921";
 }
-.icon-minus:before {
+.icon-plus:before {
 	content: "\e922";
 }
-
+.icon-minus:before {
+	content: "\e923";
+}

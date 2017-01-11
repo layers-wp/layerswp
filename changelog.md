@@ -1,10 +1,31 @@
 # Layers Changelog
 
 =======
-##1.6.3
-### xx Oct 2016
+##1.6.5
+### 05 Dec 2016
 
+* **Enhancement** - Added Poppins Google Font. *MP*
+* **Enhancement** - Removed underlines from icons in preparation for WordPress 4.7. *DP*
+* **Enhancement** - Updated theme to utilize the new Additional CSS block in WordPress 4.7. *DP*
+
+=======
+##1.6.4
+### 18 Nov 2016
+
+* **Fix** - Layers icon font no longer shows a broken layers logo. *DP*
+* **Fix** - Fixed compatability with Endurance Page Cache plugin. *MP*
+* **Fix** - Fixed Static Blog page where sidebar would fall below content. *MP*
+
+=======
+##1.6.3
+### 09 Nov 2016
+
+* **Fix** - Menu fonts now apply to the automatic header menu (page list). *MP*
+* **Fix** - When adding a new post-widget and enabling Masonry in the customizer, it no longer breaks. *MP*
+* **Fix** - Breadcrumbs bug in category view when static blog page has not been set is now fixed. *MP*
+* **Enhancement** - Added a toggle to disable analytics when logged in. *MP*
 * **Enhancement** - New icon fonts added to Layers Interface icon set. *DP*
+* **Enhancement** - Input type "image" no longer spans 100% of the screen. *DP*
 
 =======
 ##1.6.2

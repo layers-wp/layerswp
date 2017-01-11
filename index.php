@@ -6,20 +6,23 @@
  * @since Layers 1.0.0
  */
 
-get_header(); ?>
-
+get_header();
+do_action( 'layers_before_index' ); ?>
 <div class="container content-main archive clearfix">
-    <?php get_sidebar( 'left' ); ?>
+    <div class="grid">
+        <?php get_sidebar( 'left' ); ?>
+        <?php if (have_posts() ) : ?>
+            <div id="post-list" <?php layers_center_column_class(); ?>>
+                <?php while ( have_posts() ) : the_post();
+                    global $post; ?>
+                    <?php get_template_part( 'partials/content' , 'list' ); ?>
+                <?php endwhile; // while has_post(); ?>
+                <?php layers_pagination(); ?>
+            </div>
+        <?php endif; // if has_post() ?>
 
-    <?php if( have_posts() ) : ?>
-        <div <?php layers_center_column_class(); ?>>
-            <?php while( have_posts() ) : the_post(); ?>
-                <?php get_template_part( 'partials/content' , 'list' ); ?>
-            <?php endwhile; // while has_post(); ?>
-            <?php the_posts_pagination(); ?>
-        </div>
-    <?php endif; // if has_post() ?>
-
-    <?php get_sidebar( 'right' ); ?>
+        <?php get_sidebar( 'right' ); ?>
+    </div>
 </div>
-<?php get_footer();
+<?php do_action( 'layers_after_index' );
+get_footer();

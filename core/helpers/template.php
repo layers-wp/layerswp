@@ -132,7 +132,7 @@ if( !function_exists( 'layers_get_bread_crumbs' ) ) {
 			}
 
 			// Display page if it has been found
-			if( !empty( $parentpage ) ) {
+			if( !empty( $parentpage ) && 'post' !== $parentpage->post_type ) {
 
 
 				$breadcrumbs[ 'post_archive_page' ] = array(
@@ -234,7 +234,7 @@ if( !function_exists( 'layers_get_bread_crumbs' ) ) {
 					$term = get_term_by( 'id' , $term_id , $taxonomy );
 
 					$breadcrumbs[ $term->slug ] = array(
-						'link' => et_term_link( $term_id , $taxonomy ),
+						'link' => get_term_link( $term_id , $taxonomy ),
 						'label' => $term->name,
 					);
 				}
@@ -306,7 +306,7 @@ if( !function_exists( 'layers_get_bread_crumbs' ) ) {
 
 			$breadcrumbs[ 'search_term' ] = array(
 				'link' => FALSE,
-				'label' => get_search_query,
+				'label' => get_search_query(),
 			);
 
 		} elseif( is_tax() ) {
@@ -485,6 +485,9 @@ if( !function_exists( 'layers_body_class' ) ) {
 		$header_sticky_option	= layers_get_theme_mod( 'header-sticky' );
 		$header_overlay_option	= layers_get_theme_mod( 'header-overlay');
 
+		$left_sidebar_active = layers_can_show_sidebar( 'left-sidebar' );
+		$right_sidebar_active = layers_can_show_sidebar( 'right-sidebar' );
+
 		// Handle menu layout
 		$classes[] = 'body-' . $header_menu_layout;
 
@@ -501,6 +504,18 @@ if( !function_exists( 'layers_body_class' ) ) {
 		// Add class that spans across all post archives and single pages
 		if( layers_is_post_list_template() || is_archive() || is_singular( 'post' ) ) {
 			$classes[] = 'layers-post-page';
+		}
+
+		if( ( is_single() || is_archive() ) && !$left_sidebar_active && !$right_sidebar_active ){
+			$classes[] = 'no-sidebar';
+		}
+
+		if( ( is_single() || is_archive() ) && $left_sidebar_active ) {
+			$classes[] = 'left-sidebar';
+		}
+
+		if( ( is_single() || is_archive() ) && $right_sidebar_active ) {
+			$classes[] = 'right-sidebar';
 		}
 
 		return apply_filters( 'layers_body_class', $classes );
@@ -677,7 +692,6 @@ if( !function_exists( 'layers_maybe_set_invert' ) ) {
  */
 if( !function_exists( 'layers_get_header_class' ) ) {
 	function layers_get_header_class( $class = '' ){
-
 
 		$header_menu_layout		= layers_get_theme_mod( 'header-menu-layout');
 		$header_align_option = layers_get_theme_mod( 'header-menu-layout' );
@@ -1051,6 +1065,8 @@ if( !function_exists( 'layers_add_google_analytics' ) ) {
 
 		$analytics_id = layers_get_theme_mod( 'header-google-id' );
 
+		if( TRUE == layers_get_theme_mod( 'disable-google-logged-in' ) && is_user_logged_in() ) return;
+
 		if ( '' != $analytics_id ) { ?>
 			<script>
 				(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -1380,6 +1396,7 @@ add_action( 'get_footer' , 'layers_apply_inline_styles', 100 );
 */
 if( !function_exists( 'layers_apply_custom_styles' ) ) {
 	function layers_apply_custom_styles(){
+		global $wp_version;
 
 		if( '' == layers_get_theme_mod( 'custom-css' ) || FALSE == layers_get_theme_mod( 'custom-css' ) ) return;
 
@@ -1483,6 +1500,7 @@ function layers_get_youtube_id($url) {
 		)               # End host alternatives.
 		([\w-]{10,12})  # Allow 10-12 for 11 char youtube id.
 		$%x';
+
 	$result = preg_match($pattern, $url, $matches);
 
 	if (false !== $result) {
@@ -1587,7 +1605,7 @@ if( !function_exists( 'layers_translate_image_ratios' ) ) {
 
 if ( ! function_exists( 'layers_menu_fallback' ) ) {
 	function layers_menu_fallback() {
-		echo '<ul id="nav" class="clearfix">';
+		echo '<ul id="nav" class="menu">';
 			wp_list_pages('title_li=&');
 		echo '</ul>';
 	}
@@ -1789,3 +1807,36 @@ if( !function_exists( 'layers_get_template_link' ) ){
 		return $post;
 	}
 }
+
+/**
+ * Translate Custom CSS for 4.7 and beyond
+ *
+ * @param string $page for template php name
+ * @return Post Object
+ *
+ */
+if( !function_exists( 'layers_translate_css' ) ){
+	function layers_translate_css(){
+
+		global $wp_version;
+
+		if( !class_exists( 'Layers_DevKit' ) && function_exists( 'wp_update_custom_css_post' ) ){
+
+			$wp_css = wp_get_custom_css();
+
+			$layers_css = layers_get_theme_mod( 'custom-css' );
+
+			if( '' !== $layers_css ){
+
+				$combined_css = $wp_css . $layers_css;
+
+				remove_theme_mod( 'layers-custom-css' );
+
+				wp_update_custom_css_post( $combined_css );
+			}
+
+		}
+
+	}
+}
+add_action( 'init', 'layers_translate_css' );

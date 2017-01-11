@@ -392,7 +392,6 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 							});
 
 							<?php if( 1 < count( $instance[ 'slides' ] ) ) { ?>
-								// Allow keyboard control
 								<?php echo $swiper_js_obj; ?>.enableKeyboardControl();
 							<?php } // if > 1 slide ?>
 
@@ -409,17 +408,13 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 							$('#<?php echo $widget_id; ?>').find('.arrows a').on( 'click' , function(e){
 								e.preventDefault();
 
-								// "Hi Mom"
 								$that = $(this);
 
 								if( $that.hasClass( 'swiper-pagination-switch' ) ){
-									// Anchors
 									<?php echo $swiper_js_obj; ?>.slideTo( $that.index() );
 								} else if( $that.hasClass( 'l-left-arrow' ) ){
-									// Previous
 									<?php echo $swiper_js_obj; ?>.slidePrev();
 								} else if( $that.hasClass( 'l-right-arrow' ) ){
-									// Next
 									<?php echo $swiper_js_obj; ?>.slideNext();
 								}
 
@@ -427,8 +422,6 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 							});
 
 							<?php echo $swiper_js_obj; ?>.init();
-
-							// Do stuff if this is the first widget.
 							if ( ! $('#<?php echo $widget_id; ?>').prev('.widget').length ) {
 								if ( ! $('#<?php echo $widget_id; ?>').hasClass( '.full-screen' ) ) {
 									jQuery('.header-site.header-overlay').css( 'transition', '0s' );
@@ -437,7 +430,6 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 								}
 							}
 
-							// Fade-in slider after it's been initilaized (FOUC).
 							$( '#<?php echo $widget_id; ?>' ).removeClass('loading').addClass('loaded');
 						});
 					</script>

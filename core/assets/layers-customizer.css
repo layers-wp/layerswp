@@ -1053,7 +1053,7 @@ div[id*='layers-widget'] .widget-control-actions .alignright{
 	        margin-top: -18px;
 	        position: relative;
 	    }
-	    	
+
 	    	/*------------------------------------*/
 			/*- COLOR PICKER OPEN ----------------*/
 	    	.layers-design-bar-form-item .wp-picker-container.wp-picker-active {
@@ -1614,7 +1614,7 @@ div[id*='layers-widget'] .widget-control-actions .alignright{
 		border: 1px solid rgba(0, 0, 0, 0);
 	}
 	.layers-row.layers-inline-field-row .layers-column input {
-		
+
 	}
 	.layers-row.layers-inline-field-row input[type="number"] {
 		padding-left: 0;
@@ -1727,10 +1727,10 @@ div[id*='layers-widget'] .widget-control-actions .alignright{
 		transition: 0.25s opacity ease-in-out 0.25s, 0.25s transform ease-in-out 0.25s;
 	}
 	.layers-pop-menu-setting .layers-form-item:first-child{
-		
+
 	}
 	.layers-pop-menu-setting .layers-form-item:last-child{
-		
+
 	}
 	.layers-pop-menu-setting input[type='checkbox'] + label{
 		margin-bottom: 0;
@@ -2009,7 +2009,7 @@ div[id*='layers-widget'] .widget-control-actions .alignright{
 	}
 	.layers-group-start-wrapper:after {
 		font-family: layers-interface;
-		content: "\e921";
+		content: "\e922";
 		position: absolute;
 		right: 10px;
 		top: 6px;
@@ -2020,7 +2020,7 @@ div[id*='layers-widget'] .widget-control-actions .alignright{
 		color: #fff;
 		background: #9b9b9b;
 		border-radius: 100%;
-		box-shadow: 0px 1px 0px rgba(0, 0, 0, 0.05);
+		box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
 	}
 	.layers-form-item.layers-group-end-wrapper {
 		display: none;
@@ -2034,7 +2034,7 @@ div[id*='layers-widget'] .widget-control-actions .alignright{
 		content: '';
 		margin-bottom: -11px;
 	}
-		
+
 		/*---------------------------*/
 		/*- OPEN & HOVER STATES -----*/
 		.layers-design-bar-group.layers-design-bar-group-open {
@@ -2043,8 +2043,8 @@ div[id*='layers-widget'] .widget-control-actions .alignright{
 			box-shadow: inset 0 1px 0 #e5e5e5;
 		}
 		.layers-design-bar-group.layers-design-bar-group-open .layers-group-start-wrapper:after {
-			content: "\e922";
-			box-shadow: 0px -2px 0px rgba(0, 0, 0, 0.1);
+			content: "\e923";
+			box-shadow: 0px -2px 1px rgba(0, 0, 0, 0.1);
 		}
 		.layers-design-bar-group.layers-design-bar-group-open .layers-group-start-wrapper {
 

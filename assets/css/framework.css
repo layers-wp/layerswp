@@ -2795,14 +2795,14 @@ object{
 
 /*------------------------*/
 /*- ANIMATIONS -----------*/
-.layers-scroll-aimate #wrapper-content > *:not( :nth-child(1) ):not( :nth-child(2) ) {
+.layers-scroll-animate #wrapper-content > *:not( :nth-child(1) ):not( :nth-child(2) ) {
 	opacity: 0;
 	transform: translateY(30%) scale(2);
 	transition: .4s;
 	transition-timing-function: cubic-bezier(0.25,0.1,0.25,1);
 	-webkit-transition-timing-function: cubic-bezier(0.25,0.1,0.25,1);
 }
-.layers-scroll-aimate #wrapper-content > *.layers-scroll-aimate-going-down:not( :nth-child(1) ):not( :nth-child(2) ) {
+.layers-scroll-animate #wrapper-content > *.layers-scroll-animate-going-down:not( :nth-child(1) ):not( :nth-child(2) ) {
 	opacity: 1;
 	transform: translateX(0) scale(1);
 }

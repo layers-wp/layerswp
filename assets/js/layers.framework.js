@@ -114,35 +114,36 @@ jQuery(function($) {
 		if ((t/=d/2) < 1) return c/2*t*t + b;
 		return -c/2 * ((--t)*(t-2) - 1) + b;
 	}});
-	
+
 	/**
 	* X - Scroll Animations.
 	*
 	*/
 
-	if ( $('body').hasClass('layers-scroll-aimate') ) {
-		
-		$('#wrapper-content > *, #footer').waypoint({
-			offset 	: '97%',
+	if ( $('body').hasClass('layers-scroll-animate') ) {
+
+		$('#wrapper-content > .widget, #footer').waypoint({
+			offset 	: '75%',
 			handler	: function(direction) {
+
+				var $element = $( this.element );
+
 				if ( 'down' == direction ) {
-					
-					$(this)
-						.removeClass('layers-scroll-aimate-going-up')
-						.addClass('layers-scroll-aimate-going-down')
-						.addClass('layers-scroll-aimate-seen');
+
+					$element
+						.removeClass('layers-scroll-animate-going-up')
+						.addClass('layers-scroll-animate-going-down')
+						.addClass('layers-scroll-animate-seen');
 				}
 				if ( 'up' == direction ) {
-					
-					$(this)
-						.removeClass('layers-scroll-aimate-going-down')
-						.addClass('layers-scroll-aimate-going-up');
+
+					$element
+						.removeClass('layers-scroll-animate-going-down')
+						.addClass('layers-scroll-animate-going-up');
 				}
 			}
 		});
 
-		
-		$('#wrapper-content > *');
 	}
 
 });

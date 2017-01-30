@@ -267,13 +267,17 @@ class Layers_Form_Elements {
 			*/
 			case 'select-icons' :
 
-				$input_type = ( 1 == count( $input->options ) ) ? 'checkbox' : 'radio';
-				?>
+				if( isset( $input->input_type ) ){
+					$input_type = $input->input_type;
+				} else {
+					$input_type = ( 1 == count( $input->options ) ) ? 'checkbox' : 'radio';
+				} ?>
+
 				<div class="layers-select-icons">
 					<?php foreach( $input->options as $key => $value ) {
 						if ( is_array( $value ) ) {
-							$name = $value['name'];
-							$class = $value['class'];
+							$name = ( isset( $value['name'] ) ? $value['name'] : '' );
+							$class = ( isset( $value['class'] ) ? $value['class'] : '' );
 							$data_string = '';
 							if ( ! empty( $value['data'] ) ) {
 								foreach ( $value['data'] as $data_key => $data_value) {
@@ -301,9 +305,11 @@ class Layers_Form_Elements {
 							<?php echo $data_string ?>
 							>
 							<span class="<?php echo esc_attr( $class ); ?>"></span>
-							<span class="layers-icon-description">
-								<?php echo esc_html( $name ); ?>
-							</span>
+							<?php if( '' != $name ) { ?>
+								<span class="layers-icon-description">
+									<?php echo esc_html( $name ); ?>
+								</span>
+							<?php } ?>
 							<input type="<?php echo $input_type ?>" <?php echo implode ( ' ' , $input_props ); ?> id="<?php echo esc_attr( $input->id ), '-', esc_attr( $key ); ?>" value="<?php echo esc_attr( $key ); ?>" <?php checked( $checked, true, true ); ?> />
 						</label>
 					<?php } ?>
@@ -372,7 +378,7 @@ class Layers_Form_Elements {
 					<a href="#uploadimage" class="layers-image-upload-button button layers-button btn-full <?php echo ( $has_image ) ? 'layers-has-image' : '' ; ?>"
 						data-title="<?php _e( 'Select an Image' , 'layerswp' ); ?>"
 						data-button_text="<?php _e( 'Use Image' , 'layerswp' ); ?>">
-						<?php echo ( isset( $input->button_label ) ? $input->button_label : __( 'Choose Image' , 'layerswp' ) ); ?>
+						<?php echo ( isset( $input->button_label ) ? $input->button_label : __( 'Choose Media' , 'layerswp' ) ); ?>
 					</a>
 
 					<?php echo $this->input(

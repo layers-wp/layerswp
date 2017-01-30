@@ -357,6 +357,9 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 
 							var <?php echo $swiper_js_obj; ?> = $('#<?php echo $widget_id; ?>').swiper({
 							mode:'horizontal'
+							,onInit: function(s){
+								$(document).trigger( 'layers-slider-init', s);
+							}
 							,bulletClass: 'swiper-pagination-switch'
 							,bulletActiveClass: 'swiper-active-switch swiper-visible-switch'
 							,paginationClickable: true
@@ -387,12 +390,14 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 							});
 
 							<?php if( 1 < count( $instance[ 'slides' ] ) ) { ?>
-								// Allow keyboard control
 								<?php echo $swiper_js_obj; ?>.enableKeyboardControl();
 							<?php } // if > 1 slide ?>
 
 							<?php if( TRUE == $this->check_and_return( $instance , 'autoheight_slides' ) ) { ?>
-								layers_swiper_resize( <?php echo $swiper_js_obj; ?> );
+								$( '#<?php echo esc_attr( $widget_id ); ?>' ).imagesLoaded(function(){
+									layers_swiper_resize( <?php echo $swiper_js_obj; ?> );
+								});
+
 								$(window).resize(function(){
 									layers_swiper_resize( <?php echo $swiper_js_obj; ?> );
 								});
@@ -401,17 +406,13 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 							$('#<?php echo $widget_id; ?>').find('.arrows a').on( 'click' , function(e){
 								e.preventDefault();
 
-								// "Hi Mom"
 								$that = $(this);
 
 								if( $that.hasClass( 'swiper-pagination-switch' ) ){
-									// Anchors
 									<?php echo $swiper_js_obj; ?>.slideTo( $that.index() );
 								} else if( $that.hasClass( 'l-left-arrow' ) ){
-									// Previous
 									<?php echo $swiper_js_obj; ?>.slidePrev();
 								} else if( $that.hasClass( 'l-right-arrow' ) ){
-									// Next
 									<?php echo $swiper_js_obj; ?>.slideNext();
 								}
 
@@ -419,8 +420,6 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 							});
 
 							<?php echo $swiper_js_obj; ?>.init();
-
-							// Do stuff if this is the first widget.
 							if ( ! $('#<?php echo $widget_id; ?>').prev('.widget').length ) {
 								if ( ! $('#<?php echo $widget_id; ?>').hasClass( '.full-screen' ) ) {
 									jQuery('.header-site.header-overlay').css( 'transition', '0s' );
@@ -429,7 +428,6 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 								}
 							}
 
-							// Fade-in slider after it's been initilaized (FOUC).
 							$( '#<?php echo $widget_id; ?>' ).removeClass('loading').addClass('loaded');
 						});
 					</script>
@@ -623,7 +621,7 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 		<?php }
 
 		function slide_item( $item_guid, $item_instance ) {
-			
+
 			// Required - Get the name of this type.
 			$type = str_replace( '_item', '', __FUNCTION__ );
 
@@ -631,13 +629,13 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 			$item_instance = $this->apply_defaults( $item_instance, 'slide' );
 			?>
 			<li class="layers-accordion-item <?php echo $this->item_count; ?>" data-guid="<?php echo $item_guid; ?>">
-				
+
 				<a class="layers-accordion-title">
 					<span>
 						<?php echo ucfirst( $type ); ?><span class="layers-detail"><?php if ( isset( $item_instance['title'] ) ) echo $this->format_repeater_title( $item_instance['title'] ); ?></span>
 					</span>
 				</a>
-				
+
 				<section class="layers-accordion-section layers-content">
 					<?php $this->design_bar(
 						'top', // CSS Class Name

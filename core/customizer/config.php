@@ -309,7 +309,7 @@ class Layers_Customizer_Config {
 
 	private function controls(){
 
-		global $layers_customizer_controls;
+		global $layers_customizer_controls, $wp_version;
 
 		// Setup some folder variables
 		$customizer_dir = '/core/customizer/';
@@ -346,6 +346,12 @@ class Layers_Customizer_Config {
 				'selectors' => 'h1,h2,h3,h4,h5,h6, .heading',
 				'choices' => layers_get_google_font_options(),
 			),
+			'menu-fonts' => array(
+				'type' => 'layers-font',
+				'label'    => __( 'Header Menu' , 'layerswp' ),
+				'selectors' => '.header-site nav.nav-horizontal .menu li',
+				'choices' => layers_get_google_font_options(),
+			),
 			'form-fonts' => array(
 				'type' => 'layers-font',
 				'label'    => __( 'Buttons' , 'layerswp' ),
@@ -356,15 +362,6 @@ class Layers_Customizer_Config {
 
 		// Site Settings -> Layout
 		$layers_customizer_controls['header-layout'] = array(
-			'header-width' => array(
-				'type'     => 'layers-select-icons',
-				'heading_divider' => __( 'Header Width' , 'layerswp' ),
-				'default' => 'layout-boxed',
-				'choices' => array(
-					'layout-boxed' => __( 'Boxed' , 'layerswp' ),
-					'layout-fullwidth' => __( 'Full Width' , 'layerswp' ),
-				),
-			),
 			'header-menu-layout' => array(
 				'type'     => 'layers-select-icons',
 				'heading_divider' => __( 'Header Arrangement' , 'layerswp' ),
@@ -375,22 +372,52 @@ class Layers_Customizer_Config {
 					'header-logo-center-top' => __( 'Logo Center Top' , 'layerswp' ),
 					'header-logo-top' => __( 'Logo Top' , 'layerswp' ),
 					'header-logo-center' => __( 'Logo Center' , 'layerswp' ),
+					'header-sidebar' => __( 'Header Sidebar' , 'layerswp' ),
 				),
+			),
+			'header-width' => array(
+				'type'     => 'layers-select-icons',
+				'heading_divider' => __( 'Header Width' , 'layerswp' ),
+				'default' => 'layout-boxed',
+				'choices' => array(
+					'layout-boxed' => __( 'Boxed' , 'layerswp' ),
+					'layout-fullwidth' => __( 'Full Width' , 'layerswp' ),
+				),
+				'linked'    => array(
+  					'show-if-selector' => "#customize-control-layers-header-menu-layout",
+  					'show-if-value' => 'header-sidebar',
+  					'show-if-operator' => '!==',
+  				),
 			),
 			'header-position-heading' => array(
 				'type'  => 'layers-heading',
 				'heading_divider' => __( 'Sticky Header' , 'layerswp' ),
+				'linked'    => array(
+  					'show-if-selector' => "#customize-control-layers-header-menu-layout",
+  					'show-if-value' => 'header-sidebar',
+  					'show-if-operator' => '!==',
+  				),
 			),
 			'header-sticky' => array(
 				'type'		=> 'layers-checkbox',
 				'label'		=> __( 'Sticky' , 'layerswp' ),
 				'class'		=> 'layers-pull-top layers-pull-bottom',
 				'default'	=> FALSE,
+				'linked'    => array(
+  					'show-if-selector' => "#customize-control-layers-header-menu-layout",
+  					'show-if-value' => 'header-sidebar',
+  					'show-if-operator' => '!==',
+  				),
 			),
 			'header-overlay' => array(
 				'type'     => 'layers-checkbox',
 				'label'    => __( 'Transparent Overlay' , 'layerswp' ),
 				'default'	=> FALSE,
+				'linked'    => array(
+  					'show-if-selector' => "#customize-control-layers-header-menu-layout",
+  					'show-if-value' => 'header-sidebar',
+  					'show-if-operator' => '!==',
+  				),
 			),
 			'header-upsell-layers-pro' => array(
 				'type'  => 'layers-heading',
@@ -533,6 +560,12 @@ class Layers_Customizer_Config {
 				'description' => __( 'Enter in your Google Analytics ID to enable website traffic reporting. eg. "UA-xxxxxx-xx' , 'layerswp' ),
 				'default' => '',
 			),
+			'disable-google-logged-in' => array(
+				'type'     => 'layers-checkbox',
+				'label'    => __( 'Disable Google Analytics for logged in users' , 'layerswp' ),
+				'description' => __( 'Check this box if you want to disable analytics for any logged in user.' , 'layerswp' ),
+				'default' => '',
+			),
 			'google-maps-api' => array(
 				'type'     => 'layers-text',
 				'label'    => __( 'Google Maps API Key' , 'layerswp' ),
@@ -599,19 +632,21 @@ class Layers_Customizer_Config {
 		);
 
 		// CSS
-		$layers_customizer_controls['css'] = array(
-			'custom-css' => array(
-				'type'     => 'layers-code',
-				'placeholder'	=> ".classname {\n\tbackground: #333;\n}",
-				'sanitize_callback' => FALSE
-			),
-			'upsell-devkit-heading' => array(
-				'type'  => 'layers-heading',
-				'class' => 'layers-upsell-tag',
-				'label'    => __( 'Upgrade to DevKit' , 'layerswp' ),
-				'description' => __( 'Want the best CSS customization interface? <a target="_blank" href="http://bit.ly/layers-devkit">Purchase DevKit</a> and save bundles of time!' , 'layerswp' ),
-			),
-		);
+		if( version_compare( $wp_version, '4.7', '<' ) ){
+			$layers_customizer_controls['css'] = array(
+				'custom-css' => array(
+					'type'     => 'layers-code',
+					'placeholder'	=> ".classname {\n\tbackground: #333;\n}",
+					'sanitize_callback' => FALSE
+				),
+				'upsell-devkit-heading' => array(
+					'type'  => 'layers-heading',
+					'class' => 'layers-upsell-tag',
+					'label'    => __( 'Upgrade to DevKit' , 'layerswp' ),
+					'description' => __( 'Want the best CSS customization interface? <a target="_blank" href="http://bit.ly/layers-devkit">Purchase DevKit</a> and save bundles of time!' , 'layerswp' ),
+				),
+			);
+		}
 
 		if( class_exists( 'WooCommerce' ) ) {
 			$layers_customizer_controls[ 'woocommerce-sidebars' ] = array(

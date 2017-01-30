@@ -90,7 +90,7 @@ class Layers_API {
 		return $this->sort_options;
 	}
 
-	private function do_envato_api_call( $endpoint = 'market/total-items.json', $query_string = NULL , $method = 'get', $timeout = 5 ){
+	private function do_envato_api_call( $type = 'themes', $endpoint = 'market/total-items.json', $query_string = NULL , $method = 'get', $timeout = 5 ){
 
 		$default_query_string = 'page_size=100&sort_by=updated&sort_direction=desc';
 
@@ -100,7 +100,7 @@ class Layers_API {
 		$remote_url = self::ENVATO_API_URL . $endpoint . $query_string;
 
 		// Set the query transient key
-		$cache_key = 'lmp_' . $query_string;
+		$cache_key = 'emp_' . $type;
 
 		// Quick cache dumper
 		$dump_cache = 0;
@@ -223,11 +223,13 @@ class Layers_API {
 		} else {
 			foreach( $product_list as $p_key => $p_details ){
 
+				if( isset( $p_details->status ) && 'publish' !=  $p_details->status || !isset( $p_details->status ) ) continue;
+
 				$product = array();
 
-				$utm = '?utm_source=marketplace&utm_medium=link&utm_term=' . $p_details->name . '&utm_campaign=Layers%20Marketplace';
+				$utm = '?utm_source=marketplace&utm_medium=link&utm_content=' . $p_details->name . '&utm_campaign=Layers%20Marketplace';
 
-				$demo_utm = '?utm_source=marketplace&utm_medium=preview&utm_term=' . $p_details->name . '&utm_campaign=Layers%20Marketplace%20Preview';
+				$demo_utm = '?utm_source=marketplace&utm_medium=preview&utm_content=' . $p_details->name . '&utm_campaign=Layers%20Marketplace%20Preview';
 
 				if( isset( $p_details->sub_title ) && '' != $p_details->sub_title ){
 					$p_name = $p_details->name . ' - ' . $p_details->sub_title;
@@ -293,14 +295,22 @@ class Layers_API {
 
 		// &category=' . $product_types[ $p_type ]
 
-		$api_call = wp_remote_get( 'https://www.layerswp.com/wp-json/wc/v1/products/?consumer_key=ck_850f668ddbad3705ecd10fe4f010dcc6e849a5ae
-&consumer_secret=cs_5c46a37a8890a4c2aa2af3c0226a6d489c6e7f70' );
+		$cache_key = 'lmp';
+
+		if( FALSE !== get_transient( $cache_key ) ) {
+
+			return json_decode( get_transient( $cache_key ) );
+		}
+
+		$api_call = wp_remote_get( 'https://www.layerswp.com/wp-json/wc/v1/products/?consumer_key=ck_850f668ddbad3705ecd10fe4f010dcc6e849a5ae&consumer_secret=cs_5c46a37a8890a4c2aa2af3c0226a6d489c6e7f70' );
 
 		if( is_wp_error( $api_call ) ) {
 
 			// Return an error if we have one
 			return $api_call;
 		} else {
+
+			set_transient( $cache_key , wp_remote_retrieve_body( $api_call ), 60 );
 
 			// If the call is successful, well then send back decoded JSON
 			return json_decode( wp_remote_retrieve_body( $api_call ) );
@@ -328,7 +338,7 @@ class Layers_API {
 		}
 
 		// Do the API call
-		$api_call = $this->do_envato_api_call( $endpoint, $query_string, 'get' );
+		$api_call = $this->do_envato_api_call( $p_type, $endpoint, $query_string, 'get' );
 
 		if( is_wp_error( $api_call ) ) {
 
@@ -345,7 +355,7 @@ class Layers_API {
 		$endpoint = 'market/popular:' . $site . '.json';
 
 		// Do the API call
-		$api_call = $this->do_envato_api_call( $endpoint, '', 'get', 2 );
+		$api_call = $this->do_envato_api_call( 'gr', $endpoint, '', 'get', 2 );
 
 		if( is_wp_error( $api_call ) ) {
 

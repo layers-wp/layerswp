@@ -7,10 +7,19 @@
  License URI: http://www.gnu.org/licenses/gpl-2.0.html
 */
 
-@import url(icons.css);
+@import url(icons.css?v=1.6.0);
 
-.l_admin-hide{ display: none !important; }
-.l_admin-soft-hide{ display: none; }
+/*------------------------------------*/
+/*- CUSTOMIZER Look&Feel OVERRIDES ---*/
+a{
+	text-decoration: none;
+}
+.l_admin-hide{
+	display: none !important;
+}
+.l_admin-soft-hide{
+	display: none;
+}
 
 /*---------------------------*/
 /*- THE GRID ----------------*/

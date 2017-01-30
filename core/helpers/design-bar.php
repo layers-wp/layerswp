@@ -194,6 +194,7 @@ class Layers_Design_Controller {
 
 
 		if( isset( $this->args[ 'widget_id' ] ) ){
+			// echo 'layers_design_bar_' . $key . '_' . $this->args[ 'widget_id' ] . '_elements';
 			$elements = apply_filters(
 				'layers_design_bar_' . $key . '_' . $this->args[ 'widget_id' ] . '_elements',
 				$elements,
@@ -280,7 +281,13 @@ class Layers_Design_Controller {
 				<<?php echo $form_args['wrapper']; ?> <?php if ( $form_args['wrapper-class'] ) echo 'class="' . $form_args['wrapper-class'] . '"'; ?>>
 			<?php } ?>
 
-			<?php echo $this->form_elements->input( $form_args ); ?>
+			<?php if( isset( $form_args['group'] ) && is_array( $form_args['group'] ) ) {
+				foreach( $form_args[ 'group' ] as $input_key => $input_args ){
+					echo $this->form_elements->input( $input_args );
+				}
+			} else {
+				echo $this->form_elements->input( $form_args );
+			}?>
 
 			<?php if ( isset( $form_args['wrapper'] ) ) { ?>
 				</<?php echo $form_args['wrapper']; ?>>
@@ -544,7 +551,7 @@ class Layers_Design_Controller {
 		$defaults['icon-css'] = 'icon-featured-image';
 
 		// Add a Label
-		$defaults['label'] = __( 'Featured Image', 'layerswp' );
+		$defaults['label'] = __( 'Featured Media', 'layerswp' );
 
 		// Add a Wrapper Class
 		$defaults['wrapper-class'] = 'layers-pop-menu-wrapper layers-animate layers-content-small';
@@ -553,7 +560,14 @@ class Layers_Design_Controller {
 		$defaults['elements'] = array(
 			'featuredimage' => array(
 				'type' => 'image',
-				'label' => __( 'Featured Image', 'layerswp' ),
+				'label' => __( 'Featured Media', 'layerswp' ),
+				'name' => $this->get_layers_field_name( 'featuredimage' ),
+				'id' => $this->get_layers_field_id( 'featuredimage' ),
+				'value' => ( isset( $this->values['featuredimage'] ) ) ? $this->values['featuredimage'] : NULL
+			),
+			'featuredimage' => array(
+				'type' => 'image',
+				'label' => __( 'Featured Media', 'layerswp' ),
 				'name' => $this->get_layers_field_name( 'featuredimage' ),
 				'id' => $this->get_layers_field_id( 'featuredimage' ),
 				'value' => ( isset( $this->values['featuredimage'] ) ) ? $this->values['featuredimage'] : NULL
@@ -897,22 +911,6 @@ class Layers_Design_Controller {
 
 		// Add elements
 		$defaults['elements'] = array(
-			'customclass' => array(
-				'type' => 'text',
-				'label' => __( 'Custom Class(es)', 'layerswp' ),
-				'name' => $this->get_layers_field_name( 'advanced', 'customclass' ),
-				'id' => $this->get_layers_field_id( 'advanced', 'customclass' ),
-				'value' => ( isset( $this->values['advanced']['customclass'] ) ) ? $this->values['advanced']['customclass'] : NULL,
-				'placeholder' => 'example-class'
-			),
-			'customcss' => array(
-				'type' => 'textarea',
-				'label' => __( 'Custom CSS', 'layerswp' ),
-				'name' => $this->get_layers_field_name( 'advanced', 'customcss' ),
-				'id' => $this->get_layers_field_id( 'advanced', 'customcss' ),
-				'value' => ( isset( $this->values['advanced']['customcss'] ) ) ? $this->values['advanced']['customcss'] : NULL,
-				'placeholder' => ".classname { color: #333; }"
-			),
 			'padding' => array(
 				'type' => 'trbl-fields',
 				'label' => __( 'Padding (px)', 'layerswp' ),
@@ -933,6 +931,22 @@ class Layers_Design_Controller {
 				'name' => $this->get_layers_field_name( 'advanced', 'anchor' ) ,
 				'id' => $this->get_layers_field_id( 'advanced', 'anchor' ) ,
 				'value' => ( isset( $this->values['advanced']['anchor'] ) ) ? $this->values['advanced']['anchor'] : NULL
+			),
+			'customclass' => array(
+				'type' => 'text',
+				'label' => __( 'Custom Class(es)', 'layerswp' ),
+				'name' => $this->get_layers_field_name( 'advanced', 'customclass' ),
+				'id' => $this->get_layers_field_id( 'advanced', 'customclass' ),
+				'value' => ( isset( $this->values['advanced']['customclass'] ) ) ? $this->values['advanced']['customclass'] : NULL,
+				'placeholder' => 'example-class'
+			),
+			'customcss' => array(
+				'type' => 'textarea',
+				'label' => __( 'Custom CSS', 'layerswp' ),
+				'name' => $this->get_layers_field_name( 'advanced', 'customcss' ),
+				'id' => $this->get_layers_field_id( 'advanced', 'customcss' ),
+				'value' => ( isset( $this->values['advanced']['customcss'] ) ) ? $this->values['advanced']['customcss'] : NULL,
+				'placeholder' => ".classname { color: #333; }"
 			),
 			'widget-id' => array(
 				'type' => 'text',

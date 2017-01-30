@@ -96,7 +96,7 @@
 		visibility: visible;
 		transform: translate3d(0, 0, 0);
 	}
-		
+
 		/*-------------------*/
 		/*- ITEM ANIMATION --*/
 		#customize-controls-layers-actions ul.layers-customizer-nav li.layers-hover ul li{transition-delay: 0.25s;}

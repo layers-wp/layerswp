@@ -18,231 +18,354 @@ global $wp_customize;
 
 if( !function_exists( 'layers_bread_crumbs' ) ) {
 	function layers_bread_crumbs( $wrapper = 'nav', $wrapper_class = 'bread-crumbs', $seperator = '/' ) {
-		global $post; ?>
+		global $post;
+
+		$current = 1;
+		$breadcrumbs = layers_get_bread_crumbs(); ?>
 		<<?php echo $wrapper; ?> class="<?php echo esc_attr( $wrapper_class ); ?>">
 			<ul>
-				<?php /* Home */ ?>
-				<li><a href="<?php echo home_url(); ?>"><?php _e('Home' , 'layerswp' ); ?></a></li>
-
-				<?php
-
-				/* Base Page
-					- Shop
-					- Search
-					- Post type parent page
-				*/
-				if( is_search() ) { ?>
-					<li><?php echo esc_html( $seperator ); ?></li>
-					<li><?php _e('Search' , 'layerswp' ); ?></li>
-				<?php } elseif( function_exists('is_shop') && ( is_post_type_archive( 'product' ) || ( get_post_type() == "product") ) ) { ?>
-					<li><?php echo esc_html( $seperator ); ?></li>
-					<?php if( function_exists( 'woocommerce_get_page_id' )  && '-1' != woocommerce_get_page_id('shop') ) { ?>
-						<?php $shop_page_id = woocommerce_get_page_id('shop'); ?>
-						<?php $shop_page = get_post( $shop_page_id ); ?>
-						<?php if( is_object ( $shop_page ) ) { ?>
-							<li><a href="<?php echo get_permalink( $shop_page->ID ); ?>"><?php echo $shop_page->post_title; ?></a></li>
-						<?php } ?>
-					<?php } else { ?>
-						<li><a href="#"><?php _e( 'Shop' , 'layerswp' ); ?></a></li>
-					<?php }
-				} elseif( is_post_type_archive() || is_singular() || is_tax() ) {
-
-					// Get the post type object
-					$post_type = get_post_type_object( get_post_type() );
-
-					// Check if we have the relevant information we need to query the page
-					if( !empty( $post_type ) && isset( $post_type->labels->slug ) ) {
-
-						// Query template
-						$parentpage = get_template_link( $post_type->labels->slug .".php");
-
-						// Display page if it has been found
-						if( !empty( $parentpage ) ) { ?>
-							<li><?php echo esc_html( $seperator ); ?></li>
-							<li><a href="<?php echo get_permalink($parentpage->ID); ?>"><?php echo $parentpage->post_title; ?></a></li>
-						<?php }
-					};
-
-				}
-
-				/* Categories, Taxonomies & Parent Pages
-
-					- Page parents
-					- Category & Taxonomy parents
-					- Category for current post
-					- Taxonomy for current post
-				*/
-
-				if( is_page() ) {
-
-					// Start with this page's parent ID
-					$parent_id = $post->post_parent;
-
-					// Loop through parent pages and grab their IDs
-					while( $parent_id ) {
-						$page = get_post($parent_id);
-						$parent_pages[] = $page->ID;
-						$parent_id = $page->post_parent;
-					}
-
-					// If there are parent pages, output them
-					if( isset( $parent_pages ) && is_array($parent_pages) ) {
-						$parent_pages = array_reverse($parent_pages);
-						foreach ( $parent_pages as $page_id ) { ?>
-							<!-- Parent page title -->
-							<li><?php echo esc_html( $seperator ); ?></li>
-							<li><a href="<?php echo get_permalink( $page_id ); ?>"><?php echo get_the_title( $page_id ); ?></a></li>
-						<?php }
-					}
-
-				} elseif( is_category() || is_tax() ) {
-
-					// Get the taxonomy object
-					if( is_category() ) {
-						$category_title = single_cat_title( "", false );
-						$category_id = get_cat_ID( $category_title );
-						$category_object = get_category( $category_id );
-
-						if( is_object( $category_object ) ) {
-							$term = $category_object->slug;
-						} else {
-							$term = '';
-						}
-
-						$taxonomy = 'category';
-						$term_object = get_term_by( 'slug', $term , $taxonomy );
-					} else {
-						$term = get_query_var('term' );
-						$taxonomy = get_query_var( 'taxonomy' );
-						$term_object = get_term_by( 'slug', $term , $taxonomy );
-					}
-
-					if( is_object( $term_object ) )
-						$parent_id = $term_object->parent;
-					else
-						$parent_id = FALSE;
-
-					// Start with this terms's parent ID
-
-					// Loop through parent terms and grab their IDs
-					while( $parent_id ) {
-						$cat = get_term_by( 'id' , $parent_id , $taxonomy );
-						$parent_terms[] = $cat->term_id;
-						$parent_id = $cat->parent;
-					}
-
-					// If there are parent terms, output them
-					if( isset( $parent_terms ) && is_array($parent_terms) ) {
-						$parent_terms = array_reverse($parent_terms);
-
-						foreach ( $parent_terms as $term_id ) {
-							$term = get_term_by( 'id' , $term_id , $taxonomy ); ?>
-
-							<li><?php echo esc_html( $seperator ); ?></li>
-							<li><a href="<?php echo get_term_link( $term_id , $taxonomy ); ?>"><?php echo $term->name; ?></a></li>
-
-						<?php }
-					}
-
-				} elseif ( is_single() && get_post_type() == 'post' ) {
-
-					// Get all post categories but use the first one in the array
-					$category_array = get_the_category();
-
-					foreach ( $category_array as $category ) { ?>
-
+				<?php foreach( $breadcrumbs as $bc_key => $bc_details ){ ?>
+					<?php if( 1 != $current ) { ?>
 						<li><?php echo esc_html( $seperator ); ?></li>
-						<li><a href="<?php echo get_category_link( $category->term_id ); ?>"><?php echo get_cat_name( $category->term_id ); ?></a></li>
+					<?php } ?>
+					<?php if( $current == count( $breadcrumbs ) ) { ?>
 
-					<?php }
+						<li data-key="<?php echo $bc_key; ?>"><span class="current"><?php echo $bc_details[ 'label' ]; ?></span></li>
+					<?php } elseif( FALSE == $bc_details[ 'link' ] ) { ?>
 
-				} elseif( is_singular() ) {
+						<li data-key="<?php echo $bc_key; ?>"><?php echo $bc_details[ 'label' ]; ?></li>
+					<?php } else { ?>
 
-					// Get the post type object
-					$post_type = get_post_type_object( get_post_type() );
-
-					// If this is a product, make sure we're using the right term slug
-					if( is_post_type_archive( 'product' ) || ( get_post_type() == "product" ) ) {
-						$taxonomy = 'product_cat';
-					} elseif( !empty( $post_type ) && isset( $post_type->taxonomies[0] ) ) {
-						$taxonomy = $post_type->taxonomies[0];
-					};
-
-					if( isset( $taxonomy ) && !is_wp_error( $taxonomy ) ) {
-						// Get the terms
-						$terms = get_the_terms( get_the_ID(), $taxonomy );
-
-						// If this term is legal, proceed
-						if( is_array( $terms ) ) {
-
-							// Loop over the terms for this post
-							foreach ( $terms as $term ) { ?>
-
-								<li><?php echo esc_html( $seperator ); ?></li>
-								<li><a href="<?php echo get_term_link( $term->slug, $taxonomy ); ?>"><?php echo $term->name; ?></a></li>
-
-							<?php }
-						}
-					}
+						<li data-key="<?php echo $bc_key; ?>"><a href="<?php echo $bc_details[ 'link' ]; ?>"><?php echo $bc_details[ 'label' ]; ?></a></li>
+					<?php } ?>
+				<?php $current++;
 				} ?>
-
-				<?php /* Current Page / Post / Post Type
-
-					- Page / Page / Post type title
-					- Search term
-					- Curreny Taxonomy
-					- Current Tag
-					- Current Category
-				*/
-
-				if( is_singular() ) { ?>
-
-					<li><?php echo esc_html( $seperator ); ?></li>
-					<li><span class="current"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></span></li>
-
-				<?php } elseif ( is_search() ) { ?>
-
-					<li><?php echo esc_html( $seperator ); ?></li>
-					<li><span class="current">"<?php echo get_search_query(); ?>"</span></li>
-
-				<?php } elseif( is_tax() ) {
-
-					// Get this term's details
-					$term = get_term_by( 'slug', get_query_var('term' ), get_query_var( 'taxonomy' ) ); ?>
-
-					<li><?php echo esc_html( $seperator ); ?></li>
-					<li><span class="current"><?php echo $term->name; ?></span></li>
-
-				<?php  } elseif( is_tag() ) { ?>
-
-					<li><?php echo esc_html( $seperator ); ?></li>
-					<li><span class="current"><?php echo single_tag_title(); ?></span></li>
-
-				<?php } elseif( is_category() ) { ?>
-
-					<li><?php echo esc_html( $seperator ); ?></li>
-					<li><span class="current"><?php echo single_cat_title(); ?></span></li>
-
-				<?php } elseif ( is_archive() && is_month() ) { ?>
-
-					<li><?php echo esc_html( $seperator ); ?></li>
-					<li><span class="current"><?php echo get_the_date( 'F Y' ); ?></span></li>
-
-				<?php } elseif ( is_archive() && is_year() ) { ?>
-
-					<li><?php echo esc_html( $seperator ); ?></li>
-					<li><span class="current"><?php echo get_the_date( 'Y' ); ?></span></li>
-
-				<?php } elseif ( is_archive() && is_author() ) { ?>
-
-					<li><?php echo esc_html( $seperator ); ?></li>
-					<li><span class="current"><?php echo get_the_author(); ?></span></li>
-
-				<?php } ?>
 			</ul>
 		</<?php echo $wrapper; ?>>
 	<?php }
 } // layers_post_meta
+
+/**
+* Get breadcrumbs
+*
+* @return     array        Breadcrumb array
+*/
+if( !function_exists( 'layers_get_bread_crumbs' ) ) {
+	function layers_get_bread_crumbs(){
+		global $post;
+
+		$breadcrumbs = array();
+
+		$breadcrumbs[ 'home' ] = array(
+			'link' => home_url(),
+			'label' => __( 'Home', 'layerswp')
+		);
+
+		if( is_search() ) {
+
+			$breadcrumbs[ 'search' ] = array(
+				'link' => FALSE,
+				'label' => __( 'Search', 'layerswp' ),
+			);
+
+		} elseif( function_exists('is_shop') && ( is_post_type_archive( 'product' ) || ( get_post_type() == "product") ) ) {
+
+			if( function_exists( 'woocommerce_get_page_id' )  && '-1' != woocommerce_get_page_id('shop') ) {
+
+				$shop_page_id = woocommerce_get_page_id('shop');
+				$shop_page = get_post( $shop_page_id );
+
+				if( is_object ( $shop_page ) ) {
+
+					$breadcrumbs[ 'shop_page' ] = array(
+						'link' => get_permalink( $shop_page->ID ),
+						'label' => $shop_page->post_title,
+					);
+
+				}
+
+			} else {
+
+				$breadcrumbs[ 'shop_page' ] = array(
+					'link' => FALSE,
+					'label' => __( 'Shop' , 'layerswp' ),
+				);
+			}
+
+		} elseif( is_post_type_archive() || is_singular() || is_tax() ) {
+
+			// Get the post type object
+			$post_type = get_post_type_object( get_post_type() );
+
+			// Check if we have the relevant information we need to query the page
+			if( !empty( $post_type ) ) {
+
+				// Query template
+				if( isset( $post_type->has_archive) ) {
+
+					$pt_slug = $post_type->has_archive;
+				} elseif( isset( $post_type->labels->slug ) ) {
+
+					$pt_slug = $post_type->labels->slug;
+				}
+
+				$parentpage = layers_get_template_link( 'template-' . $pt_slug . '.php' );
+
+				// Display page if it has been found
+				if( !empty( $parentpage ) ) {
+
+
+					$breadcrumbs[ $pt_slug. '_archive_page' ] = array(
+						'link' => get_permalink( $parentpage->ID ),
+						'label' => $parentpage->post_title,
+					);
+
+				}
+
+			};
+
+		} elseif( is_category() ){
+			$parentpage = layers_get_template_link( 'template-blog.php' );
+
+			if( empty( $parentpage ) ) {
+				$parentpage = get_page( get_option( 'page_for_posts' ) );
+			}
+
+			// Display page if it has been found
+			if( !empty( $parentpage ) && 'post' !== $parentpage->post_type ) {
+
+
+				$breadcrumbs[ 'post_archive_page' ] = array(
+					'link' => get_permalink( $parentpage->ID ),
+					'label' => $parentpage->post_title,
+				);
+
+			}
+		}
+
+		/* Categories, Taxonomies & Parent Pages
+
+			- Page parents
+			- Category & Taxonomy parents
+			- Category for current post
+			- Taxonomy for current post
+		*/
+
+		if( is_page() ) {
+
+			// Start with this page's parent ID
+			$parent_id = $post->post_parent;
+
+			// Loop through parent pages and grab their IDs
+			while( $parent_id ) {
+
+				$page = get_post($parent_id);
+				$parent_pages[] = $page->ID;
+				$parent_id = $page->post_parent;
+
+			}
+
+			// If there are parent pages, output them
+			if( isset( $parent_pages ) && is_array($parent_pages) ) {
+
+				$parent_pages = array_reverse($parent_pages);
+
+				foreach ( $parent_pages as $page_id ) {
+
+					$c_page = get_page( $page_id );
+
+					$breadcrumbs[ $c_page->post_name . '_page' ] = array(
+						'link' => get_permalink( $page_id ),
+						'label' => $c_page->post_title,
+					);
+				}
+
+			}
+
+		} elseif( is_category() || is_tax() ) {
+
+			// Get the taxonomy object
+			if( is_category() ) {
+
+				$category_title = single_cat_title( "", false );
+				$category_id = get_cat_ID( $category_title );
+				$category_object = get_category( $category_id );
+
+				if( is_object( $category_object ) ) {
+					$term = $category_object->slug;
+				} else {
+					$term = '';
+				}
+
+				$taxonomy = 'category';
+				$term_object = get_term_by( 'slug', $term , $taxonomy );
+
+			} else {
+
+				$term = get_query_var('term' );
+				$taxonomy = get_query_var( 'taxonomy' );
+				$term_object = get_term_by( 'slug', $term , $taxonomy );
+
+			}
+
+			if( is_object( $term_object ) )
+				$parent_id = $term_object->parent;
+			else
+				$parent_id = FALSE;
+
+			// Start with this terms's parent ID
+
+			// Loop through parent terms and grab their IDs
+			while( $parent_id ) {
+
+				$cat = get_term_by( 'id' , $parent_id , $taxonomy );
+				$parent_terms[] = $cat->term_id;
+				$parent_id = $cat->parent;
+
+			}
+
+			// If there are parent terms, output them
+			if( isset( $parent_terms ) && is_array($parent_terms) ) {
+
+				$parent_terms = array_reverse($parent_terms);
+
+				foreach ( $parent_terms as $term_id ) {
+
+					$term = get_term_by( 'id' , $term_id , $taxonomy );
+
+					$breadcrumbs[ $term->slug ] = array(
+						'link' => get_term_link( $term_id , $taxonomy ),
+						'label' => $term->name,
+					);
+				}
+
+			}
+
+		} elseif ( is_single() && get_post_type() == 'post' ) {
+
+			// Get all post categories but use the first one in the array
+			$category_array = get_the_category();
+
+			foreach ( $category_array as $category ) {
+
+				$breadcrumbs[  $category->slug ] = array(
+					'link' => get_category_link( $category->term_id ),
+					'label' => get_cat_name( $category->term_id ),
+				);
+
+			}
+
+		} elseif( is_singular() ) {
+
+			// Get the post type object
+			$post_type = get_post_type_object( get_post_type() );
+
+			// If this is a product, make sure we're using the right term slug
+			if( is_post_type_archive( 'product' ) || ( get_post_type() == "product" ) ) {
+				$taxonomy = 'product_cat';
+			} elseif( !empty( $post_type ) && isset( $post_type->taxonomies[0] ) ) {
+				$taxonomy = $post_type->taxonomies[0];
+			};
+
+			if( isset( $taxonomy ) && !is_wp_error( $taxonomy ) ) {
+				// Get the terms
+				$terms = get_the_terms( get_the_ID(), $taxonomy );
+
+				// If this term is legal, proceed
+				if( is_array( $terms ) ) {
+
+					// Loop over the terms for this post
+					foreach ( $terms as $term ) {
+
+						$breadcrumbs[  $term->slug ] = array(
+							'link' => get_term_link( $term->slug, $taxonomy ),
+							'label' => $term->name,
+						);
+					}
+				}
+			}
+		}
+
+		/* Current Page / Post / Post Type
+
+			- Page / Page / Post type title
+			- Search term
+			- Curreny Taxonomy
+			- Current Tag
+			- Current Category
+		*/
+
+		if( is_singular() ) {
+
+			$breadcrumbs[ $post->post_name ] = array(
+				'link' => get_the_permalink(),
+				'label' => get_the_title(),
+			);
+
+		} elseif ( is_search() ) {
+
+			$breadcrumbs[ 'search_term' ] = array(
+				'link' => FALSE,
+				'label' => get_search_query(),
+			);
+
+		} elseif( is_tax() ) {
+
+			// Get this term's details
+			$term = get_term_by( 'slug', get_query_var('term' ), get_query_var( 'taxonomy' ) );
+
+			$breadcrumbs[ 'taxonomy' ] = array(
+				'link' => FALSE,
+				'label' => $term->name,
+			);
+
+		} elseif( is_tag() ) {
+
+			// Get this term's details
+			$term = get_term_by( 'slug', get_query_var('term' ), get_query_var( 'taxonomy' ) );
+
+			$breadcrumbs[ 'tag' ] = array(
+				'link' => FALSE,
+				'label' => single_tag_title( '', FALSE ),
+			);
+
+		} elseif( is_category() ) {
+
+			// Get this term's details
+			$term = get_term_by( 'slug', get_query_var('term' ), get_query_var( 'taxonomy' ) );
+
+			$breadcrumbs[ 'category' ] = array(
+				'link' => FALSE,
+				'label' => single_cat_title( '', FALSE ),
+			);
+
+		} elseif ( is_archive() && is_month() ) {
+
+			$breadcrumbs[ 'month' ] = array(
+				'link' => FALSE,
+				'label' => get_the_date( 'F Y' ),
+			);
+
+		} elseif ( is_archive() && is_year() ) {
+
+			$breadcrumbs[ 'year' ] = array(
+				'link' => FALSE,
+				'label' => get_the_date( 'F Y' ),
+			);
+
+
+		} elseif ( is_archive() && is_author() ) {
+
+			$breadcrumbs[ 'author' ] = array(
+				'link' => FALSE,
+				'label' => get_the_author(),
+			);
+
+		}
+
+		return apply_filters( 'layers_breadcrumbs' , $breadcrumbs );
+	}
+}
 
 /**
 * Print pagination
@@ -302,7 +425,7 @@ if( !function_exists( 'layers_get_page_title' ) ) {
 		$title_array = array();
 
 		if(!empty($parentpage) && !is_search()) {
-			$parentpage = get_template_link(get_post_type().".php");
+			$parentpage = layers_get_template_link( get_post_type().".php");
 			$title_array['title'] = $parentpage->post_title;
 			if($parentpage->post_excerpt != ''){ $title_array['excerpt'] = $parentpage->post_excerpt; }
 
@@ -358,13 +481,23 @@ if( !function_exists( 'layers_get_page_title' ) ) {
 if( !function_exists( 'layers_body_class' ) ) {
 	function layers_body_class( $classes ){
 
+		$header_menu_layout		= layers_get_theme_mod( 'header-menu-layout');
+		$header_sticky_option	= layers_get_theme_mod( 'header-sticky' );
+		$header_overlay_option	= layers_get_theme_mod( 'header-overlay');
+
+		$left_sidebar_active = layers_can_show_sidebar( 'left-sidebar' );
+		$right_sidebar_active = layers_can_show_sidebar( 'right-sidebar' );
+
+		// Handle menu layout
+		$classes[] = 'body-' . $header_menu_layout;
+
 		// Handle sticky / not sticky
-		if( TRUE == layers_get_theme_mod( 'header-sticky' ) ){
+		if( TRUE == $header_sticky_option && 'header-sidebar' != $header_menu_layout ){
 			$classes[] = 'layers-header-sticky';
 		}
 
 		// Handle overlay / not overlay
-		if( TRUE == layers_get_theme_mod( 'header-overlay') ){
+		if( TRUE == $header_overlay_option && 'header-sidebar' != $header_menu_layout ){
 			$classes[] = 'layers-header-overlay';
 		}
 
@@ -372,10 +505,22 @@ if( !function_exists( 'layers_body_class' ) ) {
 		if( layers_is_post_list_template() || is_archive() || is_singular( 'post' ) ) {
 			$classes[] = 'layers-post-page';
 		}
-		
+
 		// Handle overlay / not overlay
 		if( TRUE == layers_get_theme_mod( 'enable-scroll-animations' ) ){
 			$classes[] = 'layers-scroll-aimate';
+		}
+
+		if( ( is_single() || is_archive() ) && !$left_sidebar_active && !$right_sidebar_active ){
+			$classes[] = 'no-sidebar';
+		}
+
+		if( ( is_single() || is_archive() ) && $left_sidebar_active ) {
+			$classes[] = 'left-sidebar';
+		}
+
+		if( ( is_single() || is_archive() ) && $right_sidebar_active ) {
+			$classes[] = 'right-sidebar';
 		}
 
 		return apply_filters( 'layers_body_class', $classes );
@@ -553,6 +698,7 @@ if( !function_exists( 'layers_maybe_set_invert' ) ) {
 if( !function_exists( 'layers_get_header_class' ) ) {
 	function layers_get_header_class( $class = '' ){
 
+		$header_menu_layout		= layers_get_theme_mod( 'header-menu-layout');
 		$header_align_option = layers_get_theme_mod( 'header-menu-layout' );
 		$header_sticky_option = layers_get_theme_mod( 'header-sticky' );
 		$header_overlay_option = layers_get_theme_mod( 'header-overlay');
@@ -565,12 +711,12 @@ if( !function_exists( 'layers_get_header_class' ) ) {
 		$classes[] = 'header-site';
 
 		// Handle sticky / not sticky
-		if( TRUE == $header_sticky_option ){
+		if( TRUE == $header_sticky_option && 'header-sidebar' != $header_menu_layout ){
 			$classes[] = 'header-sticky';
 		}
 
 		// Handle overlay / not overlay
-		if( TRUE == $header_overlay_option ){
+		if( TRUE == $header_overlay_option && 'header-sidebar' != $header_menu_layout ){
 			$classes[] = 'header-overlay';
 		}
 
@@ -924,6 +1070,8 @@ if( !function_exists( 'layers_add_google_analytics' ) ) {
 
 		$analytics_id = layers_get_theme_mod( 'header-google-id' );
 
+		if( TRUE == layers_get_theme_mod( 'disable-google-logged-in' ) && is_user_logged_in() ) return;
+
 		if ( '' != $analytics_id ) { ?>
 			<script>
 				(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -1253,6 +1401,7 @@ add_action( 'get_footer' , 'layers_apply_inline_styles', 100 );
 */
 if( !function_exists( 'layers_apply_custom_styles' ) ) {
 	function layers_apply_custom_styles(){
+		global $wp_version;
 
 		if( '' == layers_get_theme_mod( 'custom-css' ) || FALSE == layers_get_theme_mod( 'custom-css' ) ) return;
 
@@ -1284,9 +1433,26 @@ if( !function_exists( 'layers_get_feature_media' ) ) {
 		// Return dimensions
 		$image_dimensions = layers_get_image_sizes( $size );
 
+		// Mime Type
+		$mime_type = get_post_mime_type( $attachmentid );
+
+
 		// Check for an image
 		if( NULL != $attachmentid && '' != $attachmentid ){
-			$use_image = wp_get_attachment_image( $attachmentid , $size);
+			if( preg_match('/video\/*/', $mime_type ) ){
+				$image_ratio = explode( '-',  $size );
+
+				if( count( $image_ratio ) == 3 ){
+
+					$ratio = $image_ratio[1];
+				} else {
+					$ratio = 'landscape';
+				}
+
+				$use_video = layers_get_html5_video( wp_get_attachment_url( $attachmentid ), $image_dimensions['width'], $ratio );
+			} else {
+				$use_image = wp_get_attachment_image( $attachmentid , $size);
+			}
 		}
 
 		// Check for a video
@@ -1339,6 +1505,7 @@ function layers_get_youtube_id($url) {
 		)               # End host alternatives.
 		([\w-]{10,12})  # Allow 10-12 for 11 char youtube id.
 		$%x';
+
 	$result = preg_match($pattern, $url, $matches);
 
 	if (false !== $result) {
@@ -1360,6 +1527,8 @@ function layers_get_vimeo_id($url) {
 
 	if (false !== $result && isset( $matches[3] ) ) {
 		return $matches[3];
+	} else {
+		return $url;
 	}
 	return false;
 }
@@ -1441,14 +1610,27 @@ if( !function_exists( 'layers_translate_image_ratios' ) ) {
 
 if ( ! function_exists( 'layers_menu_fallback' ) ) {
 	function layers_menu_fallback() {
-		echo '<ul id="nav" class="clearfix">';
+		echo '<ul id="nav" class="menu">';
 			wp_list_pages('title_li=&');
 		echo '</ul>';
 	}
 } // layers_light_or_dark
 
 /**
- * Standard menu fallback
+ * Get HTML Video Code
+ */
+
+if ( ! function_exists( 'layers_show_html5_video' ) ) {
+	function layers_get_html5_video( $src = NULL , $width = 490, $ratio = 'landscape' ) {
+		if( NULL == $src ) return;
+
+		return '<video width="' . $width . '" controls>
+			<source src="' . $src . '?v=' . LAYERS_VERSION . '" type="video/'. substr( $src, -3, 3) .'">' . __( 'Your browser does not support the video tag.' , 'layerswp' ) . '</video>';
+	}
+} // layers_get_html5_video
+
+/**
+ * Output HTML Video Code
  */
 
 if ( ! function_exists( 'layers_show_html5_video' ) ) {
@@ -1569,9 +1751,14 @@ add_action( 'layers_list_post_content', 'layers_excerpt_action' );
  *
  */
 if( !function_exists( 'layers_header_meta' ) ) {
-	function layers_header_meta(){ ?>
-		<?php if( is_single() ) { ?>
+	function layers_header_meta(){
+		wp_reset_query();
+
+		if( is_single() || is_page() ) { ?>
 			<meta property="og:title" content="<?php the_title(); ?>" />
+			<?php if( '' != get_the_excerpt() ) { ?>
+				<meta property="og:description" content="<?php echo esc_attr( get_the_excerpt() ); ?>" />
+			<?php } ?>
 			<meta property="og:type" content="website" />
 			<meta property="og:url" content="<?php the_permalink(); ?>" />
 			<?php if( has_post_thumbnail() ){
@@ -1580,6 +1767,7 @@ if( !function_exists( 'layers_header_meta' ) ) {
 			<?php } ?>
 		<?php } else { ?>
 			<meta property="og:title" content="<?php wp_title(); ?>" />
+			<meta property="og:description" content="<?php echo get_bloginfo( 'description' ); ?>" />
 			<meta property="og:type" content="website" />
 			<meta property="og:url" content="<?php home_url(); ?>" />
 			<?php $logo = get_option( 'site_logo' );
@@ -1604,3 +1792,56 @@ if( !function_exists( 'layers_blank_menu' ) ) {
 		echo '';
 	}
 }
+
+/**
+ * Get page object for page template
+ *
+ * @param string $page for template php name
+ * @return Post Object
+ *
+ */
+if( !function_exists( 'layers_get_template_link' ) ){
+	function layers_get_template_link($page){
+		global $wpdb;
+
+		$get_meta = $wpdb->get_row("SELECT * FROM ".$wpdb->postmeta." WHERE `meta_key` = '_wp_page_template' AND  `meta_value` = '".$page."'");
+		if(isset($get_meta->post_id))
+			$post = get_post($get_meta->post_id);
+		else
+			$post = null;
+		return $post;
+	}
+}
+
+/**
+ * Translate Custom CSS for 4.7 and beyond
+ *
+ * @param string $page for template php name
+ * @return Post Object
+ *
+ */
+if( !function_exists( 'layers_translate_css' ) ){
+	function layers_translate_css(){
+
+		global $wp_version;
+
+		if( !class_exists( 'Layers_DevKit' ) && function_exists( 'wp_update_custom_css_post' ) ){
+
+			$wp_css = wp_get_custom_css();
+
+			$layers_css = layers_get_theme_mod( 'custom-css' );
+
+			if( '' !== $layers_css ){
+
+				$combined_css = $wp_css . $layers_css;
+
+				remove_theme_mod( 'layers-custom-css' );
+
+				wp_update_custom_css_post( $combined_css );
+			}
+
+		}
+
+	}
+}
+add_action( 'init', 'layers_translate_css' );

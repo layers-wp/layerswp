@@ -10,7 +10,7 @@
 /**
  * The current version of the theme. Use a random number for SCRIPT_DEBUG mode
  */
-define( 'LAYERS_VERSION', '1.5.7' );
+define( 'LAYERS_VERSION', '1.6.5' );
 define( 'LAYERS_TEMPLATE_URI' , get_template_directory_uri() );
 define( 'LAYERS_TEMPLATE_DIR' , get_template_directory() );
 define( 'LAYERS_THEME_TITLE' , 'Layers' );
@@ -354,8 +354,7 @@ if( ! function_exists( 'layers_scripts' ) ) {
 			array(
 				'jquery',
 			),
-			LAYERS_VERSION,
-			true
+			LAYERS_VERSION
 		); // Framework
 
 		wp_localize_script( LAYERS_THEME_SLUG . '-framework', 'layers_script_settings', array(
@@ -419,13 +418,6 @@ if( ! function_exists( 'layers_scripts' ) ) {
 			); // Woocommerce
 		}
 
-		wp_enqueue_style(
-			LAYERS_THEME_SLUG . '-style' ,
-			get_stylesheet_uri(),
-			array() ,
-			LAYERS_VERSION
-		);
-
 		if( is_admin_bar_showing() ) {
 			wp_enqueue_style(
 				LAYERS_THEME_SLUG . '-admin',
@@ -472,6 +464,22 @@ if( ! function_exists( 'layers_scripts' ) ) {
 }
 add_action( 'wp_enqueue_scripts' , 'layers_scripts' );
 
+/**
+*  Enqueue Layers stylesheet last
+*/
+if( ! function_exists( 'layers_stylesheet' ) ) {
+	function layers_stylesheet(){
+		wp_enqueue_style(
+			LAYERS_THEME_SLUG . '-style' ,
+			get_stylesheet_uri(),
+			array() ,
+			LAYERS_VERSION
+		);
+
+		do_action( 'layers_enqueue_stylesheet' );
+	}
+}
+add_action( 'wp_enqueue_scripts' , 'layers_stylesheet', 100 );
 /**
 *  Enqueue admin end styles and scripts
 */

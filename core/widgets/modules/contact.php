@@ -225,7 +225,7 @@ if( !class_exists( 'Layers_Contact_Widget' ) ) {
 			</div>
 
 			<?php if ( !isset( $wp_customize ) ) {
-				wp_enqueue_script( LAYERS_THEME_SLUG . " -map-api" );
+				wp_enqueue_script( LAYERS_THEME_SLUG . "-map-api" );
 				wp_enqueue_script( LAYERS_THEME_SLUG . "-map-trigger" );
 			}  // Enqueue the map js
 		}

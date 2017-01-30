@@ -112,27 +112,39 @@ jQuery(function($) {
 			attachment = file_frame.state().get('selection').first().toJSON();
 
 			// Remove any old image
-			$container.find('img').remove();
+			$container.find('img video').remove();
 
 			// Fade in Remove button
 			$container.find('.layers-image-remove').fadeIn();
 
 			// Set attachment to the large/medium size if they're defined
-			if ( undefined !== attachment.sizes.medium )  {
-				$attachment = attachment.sizes.medium;
-			} else if( undefined !== attachment.sizes.large ) {
-				$attachment = attachment.sizes.large;
-			} else {
-				$attachment = attachment;
-			}
+			if( 'image' == attachment.type ) {
 
-			// Create new image object
-			var $image = $('<img />').attr({
-				class  : 'image-reveal',
-				src    :  $attachment.url,
-				height :  $attachment.height,
-				width  : $attachment.width
-			});
+				if ( undefined !== attachment.sizes.medium )  {
+					$attachment = attachment.sizes.medium;
+				} else if( undefined !== attachment.sizes.large ) {
+					$attachment = attachment.sizes.large;
+				} else {
+					$attachment = attachment;
+				}
+
+				// Create new image object
+				var $image = $('<img />').attr({
+					class  : 'image-reveal',
+					src    :  $attachment.url,
+					height :  $attachment.height,
+					width  : $attachment.width
+				});
+
+			} else{
+
+				// Create new image object
+				var $image = $('<img />').attr({
+					class  : 'image-reveal',
+					src    :  attachment.icon
+				});
+
+			}
 
 			$container.children('.layers-image-display').eq(0).append( $image );
 
@@ -444,19 +456,19 @@ jQuery(function($) {
 			$(this).attr( 'src', $(this).data( 'src' ) );
 		});
 	});
-	
+
 	// Set the correct element as checked on init - for elements that are added after page load.
 	// eg javascript added elements like the repeater items.
 	$( document ).on( 'layers-interface-init', function( e, element ){
-		
+
 		$(element).find( '.layers-icon-group').each( function( j, element ) {
 
 			$select_group = $(element);
 			$select_item = $select_group.find('input[checked]');
 			$select_item_label = $select_item.parents('label');
-			
+
 			$select_group.find('.layers-active').removeClass('layers-active');
-			
+
 			$select_item_label.trigger('mousedown');
 			$select_item_label.addClass('layers-active');
 		});
@@ -587,8 +599,10 @@ jQuery(function($) {
 			$compare_element_value = $compare_element.parent().find('input:checked').val();
 
 		} else if ( $compare_element.hasClass( 'customize-control customize-control-layers-select-icons' ) ) {
+
 			// Select icons
 			$compare_element_value = $compare_element.find('input:checked').val();
+
 		}
 		else {
 			// All other inputs

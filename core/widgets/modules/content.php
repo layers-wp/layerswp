@@ -112,8 +112,6 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 			// Mix in new/unset defaults on every instance load (NEW)
 			$instance = $this->apply_defaults( $instance );
 
-			wp_enqueue_script( LAYERS_THEME_SLUG . '-map-api' );
-
 			// Enqueue Masonry if need be
 			if( 'list-masonry' == $this->check_and_return( $instance , 'design', 'liststyle' ) ) {
 				wp_enqueue_script( LAYERS_THEME_SLUG . '-layers-masonry-js' );
@@ -270,13 +268,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 								// Set Image Size
 								if( isset( $item_instance['design']['featuredimage-size'] ) && 0 != $item_instance['design']['featuredimage-size'] && '' != $item_instance['design']['featuredimage-size'] ) {
 									$image_width = $item_instance['design'][ 'featuredimage-size' ].'px';
-									$this->inline_css .= layers_inline_styles( "
-										@media only screen and ( min-width: 769px ) {
-											#{$widget_id}-{$column_key} .media-image img {
-												max-width : {$image_width};
-											}
-										}
-									");
+									$this->inline_css .= layers_inline_styles( "#{$widget_id}-{$column_key} .media-image img { max-width : {$image_width}; }");
 								}
 
 								// Get the link array.
@@ -528,7 +520,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 		<?php }
 
 		function column_item( $item_guid, $item_instance ) {
-			
+
 			// Required - Get the name of this type.
 			$type = str_replace( '_item', '', __FUNCTION__ );
 
@@ -536,13 +528,13 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 			$item_instance = $this->apply_defaults( $item_instance, 'column' );
 			?>
 			<li class="layers-accordion-item" data-guid="<?php echo esc_attr( $item_guid ); ?>">
-				
+
 				<a class="layers-accordion-title">
 					<span>
 						<?php echo ucfirst( $type ); ?><span class="layers-detail"><?php if ( isset( $item_instance['title'] ) ) echo $this->format_repeater_title( $item_instance['title'] ); ?></span>
 					</span>
 				</a>
-				
+
 				<section class="layers-accordion-section layers-content">
 					<?php $this->design_bar(
 						'top', // CSS Class Name
@@ -606,7 +598,6 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 							),
 							'advanced' => array(
 								'elements' => array(
-									'customclass',
 									'padding' => array(
 										'type' => 'trbl-fields',
 										'label' => __( 'Padding (px)', 'layerswp' ),
@@ -631,6 +622,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 											'bottom',
 										),
 									),
+									'customclass',
 								),
 								'elements_combine' => 'replace',
 							),

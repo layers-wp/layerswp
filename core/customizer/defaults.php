@@ -86,8 +86,10 @@ class Layers_Customizer_Defaults {
 */
 if( !function_exists( 'layers_set_customizer_defaults' ) ) {
 	function layers_set_customizer_defaults(){
+
 		$layers_customizer_defaults = Layers_Customizer_Defaults::get_instance();
 	}
 }
 add_action( 'customize_register' , 'layers_set_customizer_defaults' );
-add_action( 'wp' , 'layers_set_customizer_defaults');
+add_action( 'wp', 'layers_set_customizer_defaults');
+add_action( 'admin_init', 'layers_set_customizer_defaults');

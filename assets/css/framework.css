@@ -192,6 +192,7 @@ object{
 	/*---------------------------*/
 	/*- GRIDS -------------------*/
 	.grid{
+    display:-webkit-flex;
 		display: flex;
 		flex-flow: row;
 		flex-wrap: wrap;
@@ -230,9 +231,11 @@ object{
 
 	.span-12{
 		min-width: calc(((100% / 12) * 12) - 20px);
+		width: calc(100% - 20px);
 	}
 	.column-flush.span-12{
 		min-width: calc((100% / 12) * 12);
+		width: 100%;
 	}
 
 	.middled,
@@ -534,6 +537,7 @@ object{
 	.responsive-nav{
 		padding: 0;
 		margin: 0 0 0 20px;
+		cursor: pointer;
 	}
 	.responsive-nav .l-menu{
 		display: block;
@@ -617,6 +621,7 @@ object{
 	.header-secondary .sub-menu{
 		display: none;
 	}
+
 
 /*-------------------------------*/
 /*- FOOTER ----------------------*/
@@ -1053,20 +1058,23 @@ object{
 		-webkit-appearance: none;
 		outline: 0;
 	}
-	input[type=email],
-	input[type=text],
-	input[type=url],
-	input[type=search],
-	input[type=password],
-	input[type=number],
-	input[type=tel],
-	input[type=date]{
+	input[type="email"],
+	input[type="text"],
+	input[type="url"],
+	input[type="search"],
+	input[type="password"],
+	input[type="number"],
+	input[type="tel"],
+	input[type="date"]{
 		max-width: 500px;
 		padding: 0 8px;
 		height: 36px;
 		-webkit-appearance: none;
 		-moz-appearance: none;
 		font-size: 1.5rem;
+	}
+	input[type="image"]{
+		width: auto;
 	}
 	textarea{
 		padding: 10px 8px;
@@ -2213,6 +2221,12 @@ object{
 		display: block;
 		margin: auto;
 	}
+	.media-image video{
+		width: 100%;
+		height: auto;
+		object-fit: fill;
+	}
+
 	.media-image.small img{
 		max-width: 64px;
 	}

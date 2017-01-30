@@ -132,7 +132,7 @@ class Layers_Intercom {
 			$json[ 'Site Category' ] = get_option( 'info_site_usage' );
 		}
 
-		$json[ 'Developer' ] = ( get_option( 'layers_info_developer' ) ? 1 : 0 );
+		$json[ 'Skill Level' ] = get_option( 'layers_info_developer' );
 
 
 		$json[ 'Launchpad' ] = ( class_exists( 'apollo_launchpad' ) ? 1 : 0 );

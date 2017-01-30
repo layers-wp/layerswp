@@ -168,12 +168,28 @@ $layers_migrator = new Layers_Widget_Migrator(); ?>
 							?>
 
 
-							<div class="l_admin-checkbox-wrapper l_admin-form-item l_admin-push-top">
-								<input id="layers-info-developer" name="layers_info_developer" value="developer" type="checkbox" <?php if( TRUE == get_option( 'layers_info_developer' ) ) : ?>checked="checked"<?php endif; ?> />
-								<label for="layers-info-developer">
-									<?php _e( 'I\'m a website developer', 'layerswp' ); ?>
-								</label>
-							</div>
+						</div>
+
+						<div class="l_admin-form-item">
+							<label for="layers-info-developer">
+								<?php _e( 'What is your skill level?', 'layerswp' ); ?>
+							</label>
+							<?php
+							echo $form_elements->input( array(
+								'type' => 'select',
+								'name' => 'layers_info_developer',
+								'id' => 'layers_info_developer',
+								'value' => get_option( 'layers_info_developer' ),
+								'options' => array(
+									'beginner' => __( 'I\'m not a designer / developer. I just need a website for myself.', 'layerswp' ),
+									'learning' => __( 'I am learning to become a designer / developer.', 'layerswp' ),
+									'wordpress_developer' => __( 'I am a theme / plugin developer.', 'layerswp' ),
+									'freelance' => __( 'I am a freelance designer / developer.', 'layerswp' ),
+									'agency' => __( 'I am  a designer / developer at an agency or organization.', 'layerswp' ),
+								),
+								'class' => 'l_admin-large',
+							) );
+								?>
 						</div>
 
 						<div class="l_admin-form-item">
@@ -186,7 +202,7 @@ $layers_migrator = new Layers_Widget_Migrator(); ?>
 								'type' => 'color',
 								'name' => 'site_color',
 								'id' => 'site_color',
-								'value' => ( get_theme_mod( 'layers-header-background-color' ) ) ? get_theme_mod( 'layers-header-background-color' ) : '#009eec',
+								'value' => ( layers_get_theme_mod( 'header-background-color' ) ) ? layers_get_theme_mod( 'header-background-color' ) : '#009eec',
 							) );
 							?>
 						</div>

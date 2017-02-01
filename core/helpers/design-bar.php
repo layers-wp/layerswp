@@ -263,7 +263,7 @@ class Layers_Design_Controller {
 		if ( ! isset( $form_args['wrapper'] ) && isset( $form_args['wrapper-class'] ) ) {
 			$form_args['wrapper'] = 'div';
 		}
-		
+
 		// Prep Class
 		$class = array();
 		$class[] = 'layers-form-item';
@@ -274,51 +274,51 @@ class Layers_Design_Controller {
 			$class[] = $form_args['class'];
 			unset( $form_args['class'] );
 		}
-		
+
 		if ( 'group-start' == $form_args['type'] ) {
-			
+
 			// Group Start.
 			?>
 			<div class="layers-design-bar-group">
-				
+
 				<div class="<?php echo esc_attr( implode( ' ', $class ) ); ?>" <?php echo implode( ' ', $data_show_if ); ?>>
 					<label><?php echo esc_html( $form_args['label'] ); ?></label>
 					<?php echo $this->form_elements->input( $form_args ); ?>
 				</div>
-				
+
 				<div class="layers-design-bar-group-inner">
 			<?php
 		}
 		elseif ( 'group-end' == $form_args['type'] ) {
-			
+
 			// Group End.
 			?>
 				</div>
 			</div>
 			<?php
 		}
-		
+
 		elseif ( 'tab-start' == $form_args['type'] ) {
-			
+
 			// Tab Start.
 			?>
 			<div class="layers-design-bar-tab" id="<?php echo esc_attr( $form_args['id'] ); ?>">
 			<?php
 		}
 		elseif ( 'tab-end' == $form_args['type'] ) {
-			
+
 			// Tab End.
 			?>
 			</div>
 			<?php
 		}
-		
+
 		else {
-			
+
 			// Everything else.
 			?>
 			<div class="<?php echo esc_attr( implode( ' ', $class ) ); ?>" <?php echo implode( ' ', $data_show_if ); ?>>
-				
+
 				<?php if ( 'checkbox' != $form_args['type'] && isset( $form_args['label'] ) && '' != $form_args['label'] ) { ?>
 					<label><?php echo esc_html( $form_args['label'] ); ?></label>
 				<?php } ?>
@@ -780,6 +780,11 @@ class Layers_Design_Controller {
 		// Add a Label
 		$defaults['label'] = __( 'Background', 'layerswp' );
 
+		$defaults['elements']['background-color-start'] = array(
+			'type' => 'group-start',
+			'label' => __( 'Background Color', 'layerswp' ),
+		);
+
 		// Add elements
 		$defaults['elements']['background-color'] = array(
 				'type' => 'color',
@@ -788,51 +793,80 @@ class Layers_Design_Controller {
 				'id' => $this->get_layers_field_id( 'background', 'color' ),
 				'value' => ( isset( $this->values['background']['color'] ) ) ? $this->values['background']['color'] : NULL
 			);
-		$defaults['elements']['background-image'] = array(
-				'type' => 'image',
-				'label' => __( 'Background Image', 'layerswp' ),
-				'button_label' => __( 'Choose Image', 'layerswp' ),
-				'name' => $this->get_layers_field_name( 'background', 'image' ),
-				'id' => $this->get_layers_field_id( 'background', 'image' ),
-				'value' => ( isset( $this->values['background']['image'] ) ) ? $this->values['background']['image'] : NULL,
-			);
-		$defaults['elements']['background-repeat'] = array(
-				'type' => 'select',
-				'label' => __( 'Background Repeat', 'layerswp' ),
-				'name' => $this->get_layers_field_name( 'background', 'repeat' ),
-				'id' => $this->get_layers_field_id( 'background', 'repeat' ),
-				'value' => ( isset( $this->values['background']['repeat'] ) ) ? $this->values['background']['repeat'] : NULL,
-				'options' => array(
-					'no-repeat' => __( 'No Repeat', 'layerswp' ),
-					'repeat' => __( 'Repeat', 'layerswp' ),
-					'repeat-x' => __( 'Repeat Horizontal', 'layerswp' ),
-					'repeat-y' => __( 'Repeat Vertical', 'layerswp' )
-				),
+
+		$defaults['elements']['background-color-end'] = array(
+			'type' => 'group-end',
+		);
+
+		$defaults['elements']['background-image-start'] = array(
+			'type' => 'group-start',
+			'label' => __( 'Background Image', 'layerswp' ),
+		);
+			$defaults['elements']['background-image'] = array(
+					'type' => 'image',
+					'label' => __( 'Background Image', 'layerswp' ),
+					'button_label' => __( 'Choose Image', 'layerswp' ),
+					'name' => $this->get_layers_field_name( 'background', 'image' ),
+					'id' => $this->get_layers_field_id( 'background', 'image' ),
+					'value' => ( isset( $this->values['background']['image'] ) ) ? $this->values['background']['image'] : NULL,
+				);
+			$defaults['elements']['background-stretch'] = array(
+				'type' => 'checkbox',
+				'label' => __( 'Stretch', 'layerswp' ),
+				'name' => $this->get_layers_field_name( 'background', 'stretch' ),
+				'id' => $this->get_layers_field_id( 'background', 'stretch' ),
+				'value' => ( isset( $this->values['background']['stretch'] ) ) ? $this->values['background']['stretch'] : NULL,
 				'data' => array(
 					'show-if-selector' => '#' . $this->get_layers_field_id( 'background', 'image' ),
 					'show-if-value' => '',
 					'show-if-operator' => '!=='
 				),
 			);
-		$defaults['elements']['background-position'] = array(
-				'type' => 'select',
-				'label' => __( 'Background Position', 'layerswp' ),
-				'name' => $this->get_layers_field_name( 'background', 'position' ),
-				'id' => $this->get_layers_field_id( 'background', 'position' ),
-				'value' => ( isset( $this->values['background']['position'] ) ) ? $this->values['background']['position'] : NULL,
-				'options' => array(
-					'center' => __( 'Center', 'layerswp' ),
-					'top' => __( 'Top', 'layerswp' ),
-					'bottom' => __( 'Bottom', 'layerswp' ),
-					'left' => __( 'Left', 'layerswp' ),
-					'right' => __( 'Right', 'layerswp' )
-				),
-				'data' => array(
-					'show-if-selector' => '#' . $this->get_layers_field_id( 'background', 'image' ),
-					'show-if-value' => '',
-					'show-if-operator' => '!=='
-				),
-			);
+			$defaults['elements']['background-repeat'] = array(
+					'type' => 'select-icons',
+					'label' => __( 'Background Repeat', 'layerswp' ),
+					'name' => $this->get_layers_field_name( 'background', 'repeat' ),
+					'id' => $this->get_layers_field_id( 'background', 'repeat' ),
+					'value' => ( isset( $this->values['background']['repeat'] ) ) ? $this->values['background']['repeat'] : NULL,
+					'options' => array(
+						'no-repeat' => array( 'name' => __( 'No Repeat', 'layerswp' ), 'class' => 'icon-background-no-repeat' ),
+						'repeat' => array( 'name' => __( 'Repeat', 'layerswp' ), 'class' => 'icon-background-repeat' ),
+						'repeat-x' => array( 'name' => __( 'Repeat Horizontal', 'layerswp' ), 'class' => 'icon-background-repeat-horizontal' ),
+						'repeat-y' => array( 'name' => __( 'Repeat Vertical', 'layerswp' ), 'class' => 'icon-background-repeat-vertical' ),
+					),
+					'wrapper' => 'div',
+					'wrapper-class' => 'layers-icon-group layers-icon-group-outline',
+					'data' => array(
+						'show-if-selector' => '#' . $this->get_layers_field_id( 'background', 'image' ),
+						'show-if-value' => '',
+						'show-if-operator' => '!=='
+					),
+				);
+
+			$defaults['elements']['background-position'] = array(
+					'type' => 'select',
+					'label' => __( 'Background Position', 'layerswp' ),
+					'name' => $this->get_layers_field_name( 'background', 'position' ),
+					'id' => $this->get_layers_field_id( 'background', 'position' ),
+					'value' => ( isset( $this->values['background']['position'] ) ) ? $this->values['background']['position'] : NULL,
+					'options' => array(
+						'center' => __( 'Center', 'layerswp' ),
+						'top' => __( 'Top', 'layerswp' ),
+						'bottom' => __( 'Bottom', 'layerswp' ),
+						'left' => __( 'Left', 'layerswp' ),
+						'right' => __( 'Right', 'layerswp' )
+					),
+					'data' => array(
+						'show-if-selector' => '#' . $this->get_layers_field_id( 'background', 'image' ),
+						'show-if-value' => '',
+						'show-if-operator' => '!=='
+					),
+				);
+
+		$defaults['elements']['background-image-end'] = array(
+			'type' => 'group-end',
+		);
+
 		if( !class_exists( 'Layers_Pro' ) ) {
 			$defaults['elements']['background-parallax'] = array(
 					'type' => 'checkbox',
@@ -847,18 +881,6 @@ class Layers_Design_Controller {
 					'disabled' => true
 				);
 		}
-		$defaults['elements']['background-stretch'] = array(
-				'type' => 'checkbox',
-				'label' => __( 'Stretch', 'layerswp' ),
-				'name' => $this->get_layers_field_name( 'background', 'stretch' ),
-				'id' => $this->get_layers_field_id( 'background', 'stretch' ),
-				'value' => ( isset( $this->values['background']['stretch'] ) ) ? $this->values['background']['stretch'] : NULL,
-				'data' => array(
-					'show-if-selector' => '#' . $this->get_layers_field_id( 'background', 'image' ),
-					'show-if-value' => '',
-					'show-if-operator' => '!=='
-				),
-			);
 		$defaults['elements']['background-darken'] = array(
 				'type' => 'checkbox',
 				'label' => __( 'Darken', 'layerswp' ),

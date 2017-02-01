@@ -57,6 +57,8 @@ class Layers_Customizer {
 			require_once get_template_directory() . $controls_dir . 'code.php';
 			require_once get_template_directory() . $controls_dir . 'color.php';
 			require_once get_template_directory() . $controls_dir . 'font.php';
+			require_once get_template_directory() . $controls_dir . 'group-start.php';
+			require_once get_template_directory() . $controls_dir . 'group-end.php';
 			require_once get_template_directory() . $controls_dir . 'heading.php';
 			require_once get_template_directory() . $controls_dir . 'number.php';
 			require_once get_template_directory() . $controls_dir . 'range.php';

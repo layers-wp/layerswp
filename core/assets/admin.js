@@ -522,6 +522,49 @@ jQuery(function($) {
 			$(this).hide();
 		});
 	}
+	
+	/**
+	* 10 NEW - Control Accordions
+	*/
+
+	// 1.a - Accodian Init
+	
+	$( document ).on( 'layers-interface-init', function( e, element ){
+		layers_init_control_accordians( $(element) );
+	});
+
+	function layers_init_control_accordians( $element_s ){
+		
+		$element_s.find( '.l_option-customize-control-group-start' ).each( function(){
+
+			var $control_group_start = $(this).closest('.customize-control-layers-group-start');
+			var $parent_holder = $control_group_start.parent('.control-section');
+			var $control_group_end = $control_group_start.nextAll('.customize-control-layers-group-end').eq(0);
+			var $sibling_controls = $control_group_start.nextUntil('.customize-control-layers-group-end');
+			
+			// Close all child elements.
+			$sibling_controls.slideUp(0);
+			$control_group_start.addClass('closed');
+			$control_group_end.addClass('closed');
+			
+			// Enable the click open/closed.
+			$control_group_start.on( 'click', function() {
+				
+				if ( $control_group_start.hasClass('closed') ) {
+					$control_group_start.removeClass('closed');
+					$sibling_controls.slideDown({ duration: 250, easing: 'layersEaseInOut' });
+				}
+				else {
+					$control_group_start.addClass('closed');
+					$sibling_controls.slideUp({ duration: 250, easing: 'layersEaseInOut' });
+				}
+			});
+			
+			/*$control_group_start.css({'background':'red'});
+			$control_group_end.css({'background':'red'});
+			$sibling_controls.css({'background':'yellow'});*/
+		});
+	}
 
 	/**
 	* 10 - Design Bar Tabs

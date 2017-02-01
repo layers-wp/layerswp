@@ -2052,13 +2052,9 @@ div[id*='layers-widget'] .widget-control-actions .alignright{
 		.layers-design-bar-group .layers-group-start-wrapper:hover {
 
 			background: rgba(255,255,255,0.6);
-
 		}
 		.layers-design-bar-group.layers-design-bar-group-open .layers-group-start-wrapper:hover {
-
 			background: transparent;
-
-
 		}
 
 /*-------------------------------*/

@@ -514,10 +514,10 @@ jQuery(function($) {
 	// 1.b - Accodian Init
 	
 	$( document ).on( 'layers-interface-init', function( e, element ){
-		layers_init_accordians( $(element) );
+		layers_init_widget_accordians( $(element) );
 	});
 
-	function layers_init_accordians( $element_s ){
+	function layers_init_widget_accordians( $element_s ){
 		$element_s.find( '.layers-design-bar-group .layers-design-bar-group-inner' ).each( function(){
 			$(this).hide();
 		});

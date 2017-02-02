@@ -844,18 +844,19 @@ class Layers_Design_Controller {
 				);
 
 			$defaults['elements']['background-position'] = array(
-					'type' => 'select',
+					'type' => 'select-icons',
 					'label' => __( 'Background Position', 'layerswp' ),
 					'name' => $this->get_layers_field_name( 'background', 'position' ),
 					'id' => $this->get_layers_field_id( 'background', 'position' ),
 					'value' => ( isset( $this->values['background']['position'] ) ) ? $this->values['background']['position'] : NULL,
 					'options' => array(
-						'center' => __( 'Center', 'layerswp' ),
-						'top' => __( 'Top', 'layerswp' ),
-						'bottom' => __( 'Bottom', 'layerswp' ),
-						'left' => __( 'Left', 'layerswp' ),
-						'right' => __( 'Right', 'layerswp' )
+						'center' => array( 'name' => __( 'Center', 'layerswp' ), 'class' => 'icon-background-position-center' ),
+						'top' => array( 'name' => __( 'Top', 'layerswp' ), 'class' => 'icon-background-position-top' ),
+						'bottom' => array( 'name' => __( 'Bottom', 'layerswp' ), 'class' => 'icon-background-position-bottom' ),
+						'left' => array( 'name' => __( 'Left', 'layerswp' ), 'class' => 'icon-background-position-left' ),
+						'right' => array( 'name' => __( 'Right', 'layerswp' ), 'class' => 'icon-background-position-right' ),
 					),
+					'wrapper-class' => 'layers-icon-group layers-icon-group-outline',
 					'data' => array(
 						'show-if-selector' => '#' . $this->get_layers_field_id( 'background', 'image' ),
 						'show-if-value' => '',

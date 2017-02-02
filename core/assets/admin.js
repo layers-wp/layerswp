@@ -721,6 +721,7 @@ jQuery(function($) {
 
 		// Get value based on the type of input being used.
 		if ( $compare_element.attr('type') == 'checkbox' ) {
+			
 			// Checkbox
 			$compare_element_value = ( $compare_element.is(':checked') ) ? 'true' : 'false' ;
 		}
@@ -728,14 +729,14 @@ jQuery(function($) {
 
 			// Select icons
 			$compare_element_value = $compare_element.parent().find('input:checked').val();
-
-		} else if ( $compare_element.hasClass( 'customize-control customize-control-layers-select-icons' ) ) {
+		}
+		else if ( $compare_element.hasClass( 'customize-control customize-control-layers-select-icons' ) ) {
 
 			// Select icons
 			$compare_element_value = $compare_element.find('input:checked').val();
-
 		}
 		else {
+			
 			// All other inputs
 			$compare_element_value = $compare_element.val();
 		}

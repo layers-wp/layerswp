@@ -55,7 +55,7 @@ if( !class_exists( 'Layers_Customize_TRBL_Control' ) ) {
 								'bottom' => get_option( "{$this->id}-bottom" ),
 								'left' => get_option( "{$this->id}-left" ),
 							),
-								'fields' => $this->fields,
+							'fields' => $this->fields,
 						)
 					); ?>
 				</div>

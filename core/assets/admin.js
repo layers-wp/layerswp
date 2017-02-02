@@ -524,13 +524,13 @@ jQuery(function($) {
 	}
 	
 	/**
-	* 10 NEW - Control Accordions
+	* XX - Control Accordions
 	*/
-
-	// 1.a - Accodian Init
 	
 	$( document ).on( 'layers-interface-init', function( e, element ){
-		layers_init_control_accordians( $(element) );
+		setTimeout(function() {
+			layers_init_control_accordians( $(element) );
+		}, 650 );
 	});
 
 	function layers_init_control_accordians( $element_s ){
@@ -551,11 +551,15 @@ jQuery(function($) {
 			$control_group_start.on( 'click', function() {
 				
 				if ( $control_group_start.hasClass('closed') ) {
+					
 					$control_group_start.removeClass('closed');
+					$control_group_end.removeClass('closed');
 					$sibling_controls.slideDown({ duration: 250, easing: 'layersEaseInOut' });
 				}
 				else {
+					
 					$control_group_start.addClass('closed');
+					$control_group_end.addClass('closed');
 					$sibling_controls.slideUp({ duration: 250, easing: 'layersEaseInOut' });
 				}
 			});
@@ -563,6 +567,60 @@ jQuery(function($) {
 			/*$control_group_start.css({'background':'red'});
 			$control_group_end.css({'background':'red'});
 			$sibling_controls.css({'background':'yellow'});*/
+		});
+	}
+
+	/**
+	* XX - GROUPS
+	*/
+	
+	$( document ).on( 'layers-interface-init', function( e, element ){
+		layers_init_control_groups( $(element) );
+	});
+
+	function layers_init_control_groups( $element_s ){
+		
+		// Add `li_group` class to the parent - saves us having to peek into the children of the li each time to see if it's a group.
+		$element_s.find('.l_option-customize-control.group').each( function(){
+			var $control_li = $(this).parent('li');
+			$control_li.addClass('li_group');
+			if ( $(this).hasClass('layers-push-top-small') ) {
+				$control_li.addClass('li_group_push_top');
+			}
+		});
+		
+		layers_repaint_control_groups( $element_s );
+	}
+	
+	function layers_repaint_control_groups( $element_s ){
+		
+		$element_s.find('li.li_group').each( function(){
+			
+			// Get elements.
+			var $control_li = $(this); // Get current element.
+			var $control_li_prev_visible = $(this).prevAll('li:visible').not( $control_li ).first(); // Get previous visible element.
+			var $control_li_next_visible = $(this).nextAll('li:visible').not( $control_li ).first(); // Get next visible element.
+			
+			// Remove any first | last classes to start.
+			$control_li.removeClass('li_group_first li_group_last');
+			
+			if (
+					! $control_li_prev_visible.hasClass('li_group') ||
+					$control_li.hasClass('li_group_push_top')
+				) {
+				
+				// First in a group.
+				$control_li.addClass('li_group_first');
+			}
+			
+			if (
+					! $control_li_next_visible.hasClass('li_group') ||
+					$control_li_next_visible.hasClass('li_group_push_top')
+				) {
+				
+				// Last in a group.
+				$control_li.addClass('li_group_last');
+			}
 		});
 	}
 
@@ -696,6 +754,9 @@ jQuery(function($) {
 
 	function layers_init_show_if( $element_s ){
 
+		var $has_control_groups = ( 0 !== $element_s.find('.l_option-customize-control.group').length );
+		var $single_set_timeout;
+		
 		$element_s.find( '[data-show-if-selector]').each( function( j, element ) {
 
 			var $this_element    = $(element);
@@ -703,6 +764,13 @@ jQuery(function($) {
 
 			// Apply show-if to the element once on startup.
 			layers_apply_show_if( $this_element, $compare_element );
+			
+			if ( $has_control_groups ) {
+				clearTimeout( $single_set_timeout );
+				$single_set_timeout = setTimeout(function() {
+					layers_repaint_control_groups( $element_s );
+				}, 600 );
+			}
 
 			// Apply show-if to the element when this element is changed.
 			/*$( document ).on( 'change', $compare_element, function(e){
@@ -710,6 +778,13 @@ jQuery(function($) {
 			});*/
 			$( $compare_element ).on( 'change', function(e){
 				layers_apply_show_if( $this_element, $compare_element );
+				
+				if ( $has_control_groups ) {
+					clearTimeout( $single_set_timeout );
+					$single_set_timeout = setTimeout(function() {
+						layers_repaint_control_groups( $element_s );
+					}, 600 );
+				}
 			});
 		});
 	}

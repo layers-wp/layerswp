@@ -543,24 +543,31 @@ jQuery(function($) {
 			var $sibling_controls = $control_group_start.nextUntil('.customize-control-layers-group-end');
 			
 			// Close all child elements.
-			$sibling_controls.slideUp(0);
-			$control_group_start.addClass('closed');
-			$control_group_end.addClass('closed');
+			$sibling_controls.stop(true, false).slideUp(0);
+			$( $control_group_start.add( $control_group_end ) ).addClass('closed');
 			
 			// Enable the click open/closed.
 			$control_group_start.on( 'click', function() {
 				
 				if ( $control_group_start.hasClass('closed') ) {
 					
-					$control_group_start.removeClass('closed');
-					$control_group_end.removeClass('closed');
-					$sibling_controls.slideDown({ duration: 250, easing: 'layersEaseInOut' });
+					$( $control_group_start.add( $control_group_end ) )
+						.removeClass('closed closing')
+						.addClass('open opening');
+					
+					$sibling_controls
+						.stop(true, false)
+						.slideDown({ duration: 250, easing: 'layersEaseInOut' });
 				}
 				else {
 					
-					$control_group_start.addClass('closed');
-					$control_group_end.addClass('closed');
-					$sibling_controls.slideUp({ duration: 250, easing: 'layersEaseInOut' });
+					$( $control_group_start.add( $control_group_end ) )
+						.removeClass('open opening')
+						.addClass('closed closing');
+					
+					$sibling_controls
+						.stop(true, false)
+						.slideUp({ duration: 250, easing: 'layersEaseInOut' });
 				}
 			});
 			
@@ -906,18 +913,22 @@ jQuery(function($) {
 
 			// Target element is - Customize Control (entire control)
 			$element = $element.parent('.customize-control');
-			animation_type = 'slideDown';
+			animation_type = 'slide';
 		}
 		else if ( $element.hasClass('layers-design-bar-form-item') ) {
 
 			// Target element is - Design Bar (form-item)
-			animation_type = 'slideDown';
+			animation_type = 'slide';
 		}
 
 		if ( 'hide' == $action ) {
 
+			$element
+				.removeClass('l_admin-show-if-visible')
+				.addClass('l_admin-show-if-hidden');
+			
 			// Hide
-			if( animation_type == 'slideDown' ){
+			if( animation_type == 'slide' ){
 				$element.slideUp( { duration: 550, easing: 'layersEaseInOut', complete: function(){
 					$element.addClass( 'l_admin-hide' );
 				} } );
@@ -927,9 +938,13 @@ jQuery(function($) {
 			}
 		}
 		else {
+			
+			$element
+				.removeClass('l_admin-show-if-hidden')
+				.addClass('l_admin-show-if-visible');
 
 			// Show
-			if( animation_type == 'slideDown' ){
+			if( animation_type == 'slide' ){
 				$element.removeClass( 'l_admin-hide' );
 				$element.slideDown( { duration: 550, easing: 'layersEaseInOut' } );
 			}
@@ -1143,10 +1158,21 @@ jQuery(function($) {
 	* Trigger 'layers-interface-init' when:
 	* 1. Accordion Panel/Section is expanded (opened)
 	*/
-	$( document ).on( 'expanded', '.control-section:not(.control-section-sidebar):not(#accordion-panel-widgets)  ', function(e){
+	$( document ).on( 'expanded', '.control-section:not(.control-section-sidebar):not(#accordion-panel-widgets)', function(e){
 
 		// Bail if we've a;ready initialized this.
 		if ( $(this).hasClass('layers-initialized') ) return;
+		
+		// Old WP versions: check if theres nested accordions with controls that will also get init'd.
+		// If so then mark these children accordions as `layers-initialized` so that their contained
+		// controls don't get double init'd when they are expanded next.
+		// This will result in e.g. two `click` event being added to a control.
+		$(this).find('.control-section').each(function() {
+			if ( $(this).children('ul').length ) {
+				console.log('MARK NESTED INIT!');
+				$(this).addClass('layers-initialized');
+			}
+		});
 
 		// Add the 'initialized' class and trigger the event.
 		$(this).addClass('layers-initialized');

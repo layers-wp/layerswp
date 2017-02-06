@@ -476,104 +476,127 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 			$instance = $this->apply_defaults( $instance );
 
 			$components = apply_filters( 'layers_slide_widget_design_bar_components', array(
-				'layout' => array(
-					'icon-css' => 'icon-layout-fullwidth',
-					'label' => __( 'Layout', 'layerswp' ),
-					'wrapper-class' => 'layers-pop-menu-wrapper layers-small',
-					'elements' => array(
-						'layout' => array(
-							'type' => 'select-icons',
-							'label' => __( '' , 'layerswp' ),
-							'name' => $this->get_layers_field_name( 'design', 'layout' ) ,
-							'id' => $this->get_layers_field_id( 'design', 'layout' ) ,
-							'value' => ( isset( $instance['design']['layout'] ) ) ? $instance['design']['layout'] : NULL,
-							'options' => array(
-								'layout-boxed' => __( 'Boxed' , 'layerswp' ),
-								'layout-fullwidth' => __( 'Full Width' , 'layerswp' ),
-								'layout-full-screen' => __( 'Full Screen' , 'layerswp' )
-							),
-						),
-					),
-				),
 				'display' => array(
 					'icon-css' => 'icon-slider',
-					'label' => __( 'Slider', 'layerswp' ),
+					'label' => __( 'Settings', 'layerswp' ),
 					'elements' => array(
-						'autoheight_slides' => array(
-							'type' => 'checkbox',
-							'name' => $this->get_layers_field_name( 'autoheight_slides' ) ,
-							'id' => $this->get_layers_field_id( 'autoheight_slides' ) ,
-							'value' => ( isset( $instance['autoheight_slides'] ) ) ? $instance['autoheight_slides'] : NULL,
-							'label' => __( 'Auto Height Slides' , 'layerswp' ),
+						'slider-layout-start' => array(
+							'type' => 'group-start',
+							'label' => __( 'Layout', 'layerswp' ),
 						),
-						'slide_height' => array(
-							'type' => 'number',
-							'name' => $this->get_layers_field_name( 'slide_height' ) ,
-							'id' => $this->get_layers_field_id( 'slide_height' ) ,
-							'value' => ( isset( $instance['slide_height'] ) ) ? $instance['slide_height'] : NULL,
-							'label' => __( 'Slider Height (px)' , 'layerswp' ),
-							'data' => array(
-								'show-if-selector' => '#' . $this->get_layers_field_id( 'autoheight_slides' ),
-								'show-if-value' => 'false',
+							'layout' => array(
+								'type' => 'select-icons',
+								'label' => __( '' , 'layerswp' ),
+								'name' => $this->get_layers_field_name( 'design', 'layout' ) ,
+								'id' => $this->get_layers_field_id( 'design', 'layout' ) ,
+								'value' => ( isset( $instance['design']['layout'] ) ) ? $instance['design']['layout'] : NULL,
+								'options' => array(
+									'layout-boxed' => __( 'Boxed' , 'layerswp' ),
+									'layout-fullwidth' => __( 'Full Width' , 'layerswp' ),
+									'layout-full-screen' => __( 'Full Screen' , 'layerswp' )
+								),
+								'wrapper' => 'div',
+								'wrapper-class' => 'layers-icon-group layers-icon-group-outline',
 							),
-						),
-						'show_slider_arrows' => array(
-							'type' => 'checkbox',
-							'name' => $this->get_layers_field_name( 'show_slider_arrows' ) ,
-							'id' => $this->get_layers_field_id( 'show_slider_arrows' ) ,
-							'value' => ( isset(  $instance['show_slider_arrows'] ) ) ?  $instance['show_slider_arrows'] : NULL,
-							'label' => __( 'Show Slider Arrows' , 'layerswp' ),
-						),
-						'slider_arrow_color' => array(
-							'type' => 'color',
-							'name' => $this->get_layers_field_name( 'slider_arrow_color' ) ,
-							'id' => $this->get_layers_field_id( 'slider_arrow_color' ) ,
-							'value' => ( isset( $instance['slider_arrow_color'] ) ) ? $instance['slider_arrow_color'] : NULL,
-							'label' => __( 'Slider Controls Color' , 'layerswp' ),
-							'data' => array(
-								'show-if-selector' => '#' . $this->get_layers_field_id( 'show_slider_arrows' ),
-								'show-if-value' => 'true',
+							'autoheight_slides' => array(
+								'type' => 'checkbox',
+								'name' => $this->get_layers_field_name( 'autoheight_slides' ) ,
+								'id' => $this->get_layers_field_id( 'autoheight_slides' ) ,
+								'value' => ( isset( $instance['autoheight_slides'] ) ) ? $instance['autoheight_slides'] : NULL,
+								'label' => __( 'Auto Height Slides' , 'layerswp' ),
 							),
-						),
-						'show_slider_dots' => array(
-							'type' => 'checkbox',
-							'name' => $this->get_layers_field_name( 'show_slider_dots' ) ,
-							'id' => $this->get_layers_field_id( 'show_slider_dots' ) ,
-							'value' => ( isset(  $instance['show_slider_dots'] ) ) ?  $instance['show_slider_dots'] : NULL,
-							'label' => __( 'Show Slider Dots' , 'layerswp' ),
-						),
-						'animation_type' => array(
-							'type' => 'select',
-							'name' => $this->get_layers_field_name( 'animation_type' ) ,
-							'id' => $this->get_layers_field_id( 'animation_type' ) ,
-							'value' => ( isset(  $instance['animation_type'] ) ) ?  $instance['animation_type'] : 'slide',
-							'label' => __( 'Animation Type' , 'layerswp' ),
-							'options' => array(
-								'slide' => __( 'Slide', 'layerswp' ),
-								'fade' => __( 'Fade', 'layerswp' ),
-								'parallax' => __( 'Parallax', 'layerswp' ),
+							'slide_height' => array(
+								'type' => 'number',
+								'name' => $this->get_layers_field_name( 'slide_height' ) ,
+								'id' => $this->get_layers_field_id( 'slide_height' ) ,
+								'value' => ( isset( $instance['slide_height'] ) ) ? $instance['slide_height'] : NULL,
+								'label' => __( 'Slider Height (px)' , 'layerswp' ),
+								'data' => array(
+									'show-if-selector' => '#' . $this->get_layers_field_id( 'autoheight_slides' ),
+									'show-if-value' => 'false',
+								),
 							),
+
+						'slider-layout-end' => array(
+							'type' => 'group-end',
 						),
-						'autoplay_slides' => array(
-							'type' => 'checkbox',
-							'name' => $this->get_layers_field_name( 'autoplay_slides' ) ,
-							'id' => $this->get_layers_field_id( 'autoplay_slides' ) ,
-							'value' => ( isset( $instance['autoplay_slides'] ) ) ? $instance['autoplay_slides'] : NULL,
-							'label' => __( 'Autoplay Slides' , 'layerswp' ),
+
+						'slider-navigation-start' => array(
+							'type' => 'group-start',
+							'label' => __( 'Navigation', 'layerswp' ),
 						),
-						'slide_time' => array(
-							'type' => 'number',
-							'name' => $this->get_layers_field_name( 'slide_time' ) ,
-							'id' => $this->get_layers_field_id( 'slide_time' ) ,
-							'min' => 1,
-							'max' => 10,
-							'placeholder' => __( 'Time in seconds, eg. 2' , 'layerswp' ),
-							'value' => ( isset( $instance['slide_time'] ) ) ? $instance['slide_time'] : NULL,
-							'label' => __( 'Slide Interval (seconds)' , 'layerswp' ),
-							'data' => array(
-								'show-if-selector' => '#' . $this->get_layers_field_id( 'autoplay_slides' ),
-								'show-if-value' => 'true',
+
+							'show_slider_arrows' => array(
+								'type' => 'checkbox',
+								'name' => $this->get_layers_field_name( 'show_slider_arrows' ) ,
+								'id' => $this->get_layers_field_id( 'show_slider_arrows' ) ,
+								'value' => ( isset(  $instance['show_slider_arrows'] ) ) ?  $instance['show_slider_arrows'] : NULL,
+								'label' => __( 'Show Slider Arrows' , 'layerswp' ),
 							),
+							'slider_arrow_color' => array(
+								'type' => 'color',
+								'name' => $this->get_layers_field_name( 'slider_arrow_color' ) ,
+								'id' => $this->get_layers_field_id( 'slider_arrow_color' ) ,
+								'value' => ( isset( $instance['slider_arrow_color'] ) ) ? $instance['slider_arrow_color'] : NULL,
+								'label' => __( 'Slider Controls Color' , 'layerswp' ),
+								'data' => array(
+									'show-if-selector' => '#' . $this->get_layers_field_id( 'show_slider_arrows' ),
+									'show-if-value' => 'true',
+								),
+							),
+							'show_slider_dots' => array(
+								'type' => 'checkbox',
+								'name' => $this->get_layers_field_name( 'show_slider_dots' ) ,
+								'id' => $this->get_layers_field_id( 'show_slider_dots' ) ,
+								'value' => ( isset(  $instance['show_slider_dots'] ) ) ?  $instance['show_slider_dots'] : NULL,
+								'label' => __( 'Show Slider Dots' , 'layerswp' ),
+							),
+
+						'slider-navigation-end' => array(
+							'type' => 'group-end',
+						),
+
+						'slider-animation-start' => array(
+							'type' => 'group-start',
+							'label' => __( 'Animation', 'layerswp' ),
+						),
+
+							'animation_type' => array(
+								'type' => 'select',
+								'name' => $this->get_layers_field_name( 'animation_type' ) ,
+								'id' => $this->get_layers_field_id( 'animation_type' ) ,
+								'value' => ( isset(  $instance['animation_type'] ) ) ?  $instance['animation_type'] : 'slide',
+								'label' => __( 'Animation Type' , 'layerswp' ),
+								'options' => array(
+									'slide' => __( 'Slide', 'layerswp' ),
+									'fade' => __( 'Fade', 'layerswp' ),
+									'parallax' => __( 'Parallax', 'layerswp' ),
+								),
+							),
+							'autoplay_slides' => array(
+								'type' => 'checkbox',
+								'name' => $this->get_layers_field_name( 'autoplay_slides' ) ,
+								'id' => $this->get_layers_field_id( 'autoplay_slides' ) ,
+								'value' => ( isset( $instance['autoplay_slides'] ) ) ? $instance['autoplay_slides'] : NULL,
+								'label' => __( 'Autoplay Slides' , 'layerswp' ),
+							),
+							'slide_time' => array(
+								'type' => 'number',
+								'name' => $this->get_layers_field_name( 'slide_time' ) ,
+								'id' => $this->get_layers_field_id( 'slide_time' ) ,
+								'min' => 1,
+								'max' => 10,
+								'placeholder' => __( 'Time in seconds, eg. 2' , 'layerswp' ),
+								'value' => ( isset( $instance['slide_time'] ) ) ? $instance['slide_time'] : NULL,
+								'label' => __( 'Slide Interval (seconds)' , 'layerswp' ),
+								'data' => array(
+									'show-if-selector' => '#' . $this->get_layers_field_id( 'autoplay_slides' ),
+									'show-if-value' => 'true',
+								),
+							),
+							
+						'slider-animation-end' => array(
+							'type' => 'group-end',
 						),
 					),
 				),
@@ -685,7 +708,9 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 							),
 							'advanced' => array(
 								'elements' => array(
-									'customclass'
+										
+									'customclass',
+
 								),
 								'elements_combine' => 'replace',
 							),

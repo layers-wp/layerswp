@@ -981,51 +981,73 @@ class Layers_Design_Controller {
 
 		// Add elements
 		$defaults['elements'] = array(
-			'padding' => array(
-				'type' => 'trbl-fields',
-				'label' => __( 'Padding (px)', 'layerswp' ),
-				'name' => $this->get_layers_field_name( 'advanced', 'padding' ),
-				'id' => $this->get_layers_field_id( 'advanced', 'padding' ),
-				'value' => ( isset( $this->values['advanced']['padding'] ) ) ? $this->values['advanced']['padding'] : NULL,
-				'wrapper-class' => 'layers-inline-field-combined',
+			'advanced-margin-padding-start' => array(
+				'type' => 'group-start',
+				'label' => __( 'Margin &amp; Padding', 'layerswp' ),
 			),
-			'margin' => array(
-				'type' => 'trbl-fields',
-				'label' => __( 'Margin (px)', 'layerswp' ),
-				'name' => $this->get_layers_field_name( 'advanced', 'margin' ),
-				'id' => $this->get_layers_field_id( 'advanced', 'margin' ),
-				'value' => ( isset( $this->values['advanced']['margin'] ) ) ? $this->values['advanced']['margin'] : NULL,
-				'wrapper-class' => 'layers-inline-field-combined',
+				'padding' => array(
+					'type' => 'trbl-fields',
+					'label' => __( 'Padding (px)', 'layerswp' ),
+					'name' => $this->get_layers_field_name( 'advanced', 'padding' ),
+					'id' => $this->get_layers_field_id( 'advanced', 'padding' ),
+					'value' => ( isset( $this->values['advanced']['padding'] ) ) ? $this->values['advanced']['padding'] : NULL,
+					'wrapper-class' => 'layers-inline-field-combined',
+				),
+				'margin' => array(
+					'type' => 'trbl-fields',
+					'label' => __( 'Margin (px)', 'layerswp' ),
+					'name' => $this->get_layers_field_name( 'advanced', 'margin' ),
+					'id' => $this->get_layers_field_id( 'advanced', 'margin' ),
+					'value' => ( isset( $this->values['advanced']['margin'] ) ) ? $this->values['advanced']['margin'] : NULL,
+					'wrapper-class' => 'layers-inline-field-combined',
+				),
+			'advanced-margin-padding-end' => array(
+				'type' => 'group-end',
 			),
-			'anchor' => array(
-				'type' => 'text',
-				'label' => __( 'Custom Anchor', 'layerswp' ),
-				'name' => $this->get_layers_field_name( 'advanced', 'anchor' ) ,
-				'id' => $this->get_layers_field_id( 'advanced', 'anchor' ) ,
-				'value' => ( isset( $this->values['advanced']['anchor'] ) ) ? $this->values['advanced']['anchor'] : NULL
+			'advanced-anchor-start' => array(
+				'type' => 'group-start',
+				'label' => __( 'Anchor &amp; Widget ID', 'layerswp' ),
 			),
-			'customclass' => array(
-				'type' => 'text',
-				'label' => __( 'Custom Class(es)', 'layerswp' ),
-				'name' => $this->get_layers_field_name( 'advanced', 'customclass' ),
-				'id' => $this->get_layers_field_id( 'advanced', 'customclass' ),
-				'value' => ( isset( $this->values['advanced']['customclass'] ) ) ? $this->values['advanced']['customclass'] : NULL,
-				'placeholder' => 'example-class'
+				'anchor' => array(
+					'type' => 'text',
+					'label' => __( 'Custom Anchor', 'layerswp' ),
+					'name' => $this->get_layers_field_name( 'advanced', 'anchor' ) ,
+					'id' => $this->get_layers_field_id( 'advanced', 'anchor' ) ,
+					'value' => ( isset( $this->values['advanced']['anchor'] ) ) ? $this->values['advanced']['anchor'] : NULL
+				),
+				'widget-id' => array(
+					'type' => 'text',
+					'label' => __( 'Widget ID', 'layerswp' ),
+					'disabled' => FALSE,
+					'value' => '#'  . str_replace( 'widget-layers', 'layers', str_ireplace( '-design' , '', $this->args['id'] ) )
+				),
+			'advanced-anchor-end' => array(
+				'type' => 'group-end',
 			),
-			'customcss' => array(
-				'type' => 'textarea',
-				'label' => __( 'Custom CSS', 'layerswp' ),
-				'name' => $this->get_layers_field_name( 'advanced', 'customcss' ),
-				'id' => $this->get_layers_field_id( 'advanced', 'customcss' ),
-				'value' => ( isset( $this->values['advanced']['customcss'] ) ) ? $this->values['advanced']['customcss'] : NULL,
-				'placeholder' => ".classname { color: #333; }"
+			'advanced-css-start' => array(
+				'type' => 'group-start',
+				'label' => __( 'Custom Classes & CSS', 'layerswp' ),
 			),
-			'widget-id' => array(
-				'type' => 'text',
-				'label' => __( 'Widget ID', 'layerswp' ),
-				'disabled' => FALSE,
-				'value' => '#'  . str_replace( 'widget-layers', 'layers', str_ireplace( '-design' , '', $this->args['id'] ) )
-			)
+				'customclass' => array(
+					'type' => 'text',
+					'label' => __( 'Custom Class(es)', 'layerswp' ),
+					'name' => $this->get_layers_field_name( 'advanced', 'customclass' ),
+					'id' => $this->get_layers_field_id( 'advanced', 'customclass' ),
+					'value' => ( isset( $this->values['advanced']['customclass'] ) ) ? $this->values['advanced']['customclass'] : NULL,
+					'placeholder' => 'example-class'
+				),
+				'customcss' => array(
+					'type' => 'textarea',
+					'label' => __( 'Custom CSS', 'layerswp' ),
+					'name' => $this->get_layers_field_name( 'advanced', 'customcss' ),
+					'id' => $this->get_layers_field_id( 'advanced', 'customcss' ),
+					'value' => ( isset( $this->values['advanced']['customcss'] ) ) ? $this->values['advanced']['customcss'] : NULL,
+					'placeholder' => ".classname { color: #333; }"
+				),
+			'advanced-css-end' => array(
+				'type' => 'group-end',
+			),
+
 		);
 
 		$args = $this->merge_component( $defaults, $args );

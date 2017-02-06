@@ -401,8 +401,10 @@ jQuery(function($) {
 		$menu_is_open = ( $that.parent( 'li.layers-visuals-item' ).hasClass('layers-active') );
 	});
 
-	// WIDGET - Select Icon Group e.g. Text Align (left, right, center, justify).
+	// WIDGET - Select Icon Group e.g. Text Align (left, right, center, justify).x
 	$( document ).on( 'mousedown' , '.layers-select-icons label.layers-icon-wrapper' , function(e){
+
+		console.log( ".layers-select-icons label.layers-icon-wrapper" );
 
 		// Cache elements.
 		var $current_label = $(this);
@@ -415,12 +417,20 @@ jQuery(function($) {
 		// When the the whole flyout-menu is one Select Icon Group e.g. a widget's Layout (Boxed, Full-Width)
 		// then set the parents Icon to what is being selected now - helpful to the user, it can be seen at a glance.
 		$is_form_item = $current_label.closest( '.layers-form-item' ).siblings( '.layers-form-item' ).length;
-		if ( 0 == $is_form_item ) {
+
+		$in_design_group = $current_label.closest( '.layers-design-bar-group-inner' ).length;
+
+		if ( 0 == $is_form_item && 0 == $in_design_group ) {
+
+			console.log( "I am a selector" );
+			console.log( $value );
+
 			$current_label
 				.closest( '.layers-pop-menu-wrapper' )
 				.siblings( '.layers-icon-wrapper' )
 				.find( 'span[class^="icon-"]' )
 				.attr( 'class', 'icon-' + $value );
+
 		}
 
 		// Toggle active state

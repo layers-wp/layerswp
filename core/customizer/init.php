@@ -50,15 +50,17 @@ class Layers_Customizer {
 			// Include The Panel and Section Registration Class
 			require_once get_template_directory() . $customizer_dir . 'registration.php';
 
-			// Include control classes
+			// Include base control class.
 			require_once get_template_directory() . $controls_dir . 'base.php';
+			
+			// Include control classes.
+			require_once get_template_directory() . $controls_dir . 'accordion-start.php';
+			require_once get_template_directory() . $controls_dir . 'accordion-end.php';
 			require_once get_template_directory() . $controls_dir . 'button.php';
 			require_once get_template_directory() . $controls_dir . 'checkbox.php';
 			require_once get_template_directory() . $controls_dir . 'code.php';
 			require_once get_template_directory() . $controls_dir . 'color.php';
 			require_once get_template_directory() . $controls_dir . 'font.php';
-			require_once get_template_directory() . $controls_dir . 'group-start.php';
-			require_once get_template_directory() . $controls_dir . 'group-end.php';
 			require_once get_template_directory() . $controls_dir . 'heading.php';
 			require_once get_template_directory() . $controls_dir . 'number.php';
 			require_once get_template_directory() . $controls_dir . 'range.php';

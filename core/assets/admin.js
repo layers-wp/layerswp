@@ -497,7 +497,7 @@ jQuery(function($) {
 
 	// 1.a - Tabs Click
 
-	$( document ).on( 'click' , '.layers-group-start-wrapper' , function(e){
+	$( document ).on( 'click' , '.layers-accordion-start-wrapper' , function(e){
 		e.preventDefault();
 
 		// Toggle clicked accordian.
@@ -535,16 +535,19 @@ jQuery(function($) {
 
 	function layers_init_control_accordians( $element_s ){
 		
-		$element_s.find( '.l_option-customize-control-group-start' ).each( function(){
+		$element_s.find( '.l_option-customize-control-accordion-start-standard' ).each( function(){
 
-			var $control_group_start = $(this).closest('.customize-control-layers-group-start');
-			var $parent_holder = $control_group_start.parent('.control-section');
-			var $control_group_end = $control_group_start.nextAll('.customize-control-layers-group-end').eq(0);
-			var $sibling_controls = $control_group_start.nextUntil('.customize-control-layers-group-end');
+			var $control_group_start = $(this).closest('.customize-control-layers-accordion-start');
+			var $parent_holder       = $control_group_start.parent('.control-section');
+			var $control_group_end   = $control_group_start.nextAll('.customize-control-layers-accordion-end').eq(0);
+			var $sibling_controls    = $control_group_start.nextUntil('.customize-control-layers-accordion-end');
 			
 			// Close all child elements.
-			$sibling_controls.stop(true, false).slideUp(0);
-			$( $control_group_start.add( $control_group_end ) ).addClass('closed');
+			if ( ! $(this).hasClass( 'accordion-open' ) ) {
+				$sibling_controls.stop(true, false).slideUp(0);
+				$( $control_group_start.add( $control_group_end ) ).addClass('closed');
+				$control_group_start.removeClass( 'accordion-open' );
+			}
 			
 			// Enable the click open/closed.
 			$control_group_start.on( 'click', function() {

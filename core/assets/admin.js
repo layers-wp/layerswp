@@ -67,7 +67,7 @@ jQuery(function($) {
 
 	// 3.a - Image Remove Button
 	var file_frame;
-	$(document).on( 'click' , '.layers-image-container .layers-image-remove' , function(e){
+	$(document).on( 'click', '.layers-image-container .layers-image-remove', function(e){
 		e.preventDefault();
 
 		// "Hi Mom"
@@ -85,7 +85,7 @@ jQuery(function($) {
 	});
 
 	// 3.b - Image Upload Button
-	$(document).on( 'click' , '.layers-image-upload-button' , function(e){
+	$(document).on( 'click', '.layers-image-upload-button', function(e){
 		e.preventDefault();
 
 		// "Hi Mom"
@@ -164,7 +164,7 @@ jQuery(function($) {
 	});
 
 	// 3.c - General File Remove Button
-	$(document).on( 'click' , '.layers-file-remove' , function(e){
+	$(document).on( 'click', '.layers-file-remove', function(e){
 		e.preventDefault();
 
 		// "Hi Mom"
@@ -179,7 +179,7 @@ jQuery(function($) {
 	});
 
 	// 3.d - General File Upload Button
-	$(document).on( 'click' , '.layers-regular-uploader' , function(e){
+	$(document).on( 'click', '.layers-regular-uploader', function(e){
 		e.preventDefault();
 
 		// "Hi Mom"
@@ -226,7 +226,7 @@ jQuery(function($) {
 	* 4 -Background Selectors
 	*/
 
-	$(document).on( 'click', '.layers-background-selector li' , function(e){
+	$(document).on( 'click', '.layers-background-selector li', function(e){
 		e.preventDefault();
 
 		// "Hi Mom"
@@ -338,7 +338,7 @@ jQuery(function($) {
 	* 7 - Tabs
 	*/
 
-	$( document ).on( 'click' , '.l_admin-tabs li, .l_admin-tabs li a' , function(e){
+	$( document ).on( 'click', '.l_admin-tabs li, .l_admin-tabs li a', function(e){
 
 		e.preventDefault();
 
@@ -402,7 +402,7 @@ jQuery(function($) {
 	});
 
 	// WIDGET - Select Icon Group e.g. Text Align (left, right, center, justify).x
-	$( document ).on( 'mousedown' , '.layers-select-icons label.layers-icon-wrapper' , function(e){
+	$( document ).on( 'mousedown', '.layers-select-icons label.layers-icon-wrapper', function(e){
 
 		console.log( ".layers-select-icons label.layers-icon-wrapper" );
 
@@ -463,7 +463,7 @@ jQuery(function($) {
 	});
 
 	// CUSTOMIZE CONTROLS - Select Icon Group e.g. Header Width (Boxed, Full-Width)
-	$( document ).on( 'click' , '[id^="layers-customize"] .layers-visuals-item' , function(e){
+	$( document ).on( 'click', '[id^="layers-customize"] .layers-visuals-item', function(e){
 
 		// "Hi Mom"
 		$that = $(this);
@@ -507,7 +507,7 @@ jQuery(function($) {
 
 	// 1.a - Tabs Click
 
-	$( document ).on( 'click' , '.layers-accordion-start-wrapper' , function(e){
+	$( document ).on( 'click', '.layers-group-start-wrapper', function(e){
 		e.preventDefault();
 
 		// Toggle clicked accordian.
@@ -545,26 +545,34 @@ jQuery(function($) {
 
 	function layers_init_control_accordians( $element_s ){
 		
-		$element_s.find( '.l_option-customize-control-accordion-start-standard' ).each( function(){
+		$element_s.find( '.l_option-customize-control-accordion-start, .l_option-customize-control-accordion-end' ).each( function(){
+			var $accordion_position = ( $(this).hasClass('l_option-customize-control-accordion-start') ) ? 'start' : 'end' ;
+			var $accordion_type = ( $(this).hasClass( 'l_option-customize-control-accordion-' + $accordion_position + '-standard' ) ) ? 'standard' : 'group' ;
+			var $control_accordion_li = $(this).closest( '.customize-control' );
+			$control_accordion_li.addClass( 'customize-control-layers-accordion-' + $accordion_position + '-' + $accordion_type );
+		});
+		
+		$element_s.find( '.l_option-customize-control-accordion-start' ).each( function(){
+			
+			var $accordion_type = ( $(this).hasClass('l_option-customize-control-accordion-start-standard') ) ? 'standard' : 'group' ;
 
-			var $control_group_start = $(this).closest('.customize-control-layers-accordion-start');
-			var $parent_holder       = $control_group_start.parent('.control-section');
-			var $control_group_end   = $control_group_start.nextAll('.customize-control-layers-accordion-end').eq(0);
-			var $sibling_controls    = $control_group_start.nextUntil('.customize-control-layers-accordion-end');
+			var $control_accordion_start = $(this).closest( '.customize-control-layers-accordion-start-' + $accordion_type );
+			var $control_accordion_end   = $control_accordion_start.nextAll( '.customize-control-layers-accordion-end-' + $accordion_type ).eq(0);
+			var $sibling_controls    = $control_accordion_start.nextUntil( '.customize-control-layers-accordion-end-' + $accordion_type );
 			
 			// Close all child elements.
 			if ( ! $(this).hasClass( 'accordion-open' ) ) {
 				$sibling_controls.stop(true, false).slideUp(0);
-				$( $control_group_start.add( $control_group_end ) ).addClass('closed');
-				$control_group_start.removeClass( 'accordion-open' );
+				$( $control_accordion_start.add( $control_accordion_end ) ).addClass('closed');
+				$control_accordion_start.removeClass( 'accordion-open' );
 			}
 			
 			// Enable the click open/closed.
-			$control_group_start.on( 'click', function() {
+			$control_accordion_start.on( 'click', function() {
 				
-				if ( $control_group_start.hasClass('closed') ) {
+				if ( $control_accordion_start.hasClass('closed') ) {
 					
-					$( $control_group_start.add( $control_group_end ) )
+					$( $control_accordion_start.add( $control_accordion_end ) )
 						.removeClass('closed closing')
 						.addClass('open opening');
 					
@@ -574,7 +582,7 @@ jQuery(function($) {
 				}
 				else {
 					
-					$( $control_group_start.add( $control_group_end ) )
+					$( $control_accordion_start.add( $control_accordion_end ) )
 						.removeClass('open opening')
 						.addClass('closed closing');
 					
@@ -583,10 +591,6 @@ jQuery(function($) {
 						.slideUp({ duration: 250, easing: 'layersEaseInOut' });
 				}
 			});
-			
-			/*$control_group_start.css({'background':'red'});
-			$control_group_end.css({'background':'red'});
-			$sibling_controls.css({'background':'yellow'});*/
 		});
 	}
 
@@ -601,11 +605,14 @@ jQuery(function($) {
 	function layers_init_control_groups( $element_s ){
 		
 		// Add `li_group` class to the parent - saves us having to peek into the children of the li each time to see if it's a group.
-		$element_s.find('.l_option-customize-control.group').each( function(){
+		$element_s.find('.l_option-customize-control.group:not(.l_option-customize-control-accordion-end)').each( function(){
 			var $control_li = $(this).parent('li');
 			$control_li.addClass('li_group');
-			if ( $(this).hasClass('layers-push-top-small') ) {
+			if ( -1 != $(this).attr('class').indexOf( 'layers-push-top' ) ) {
 				$control_li.addClass('li_group_push_top');
+			}
+			if ( -1 != $(this).attr('class').indexOf( 'layers-push-bottom' ) ) {
+				$control_li.addClass('li_group_push_bottom');
 			}
 		});
 		
@@ -650,7 +657,7 @@ jQuery(function($) {
 
 	// 1.a - Tabs Click
 
-	$( document ).on( 'click' , '.layers-interface-tabs label' , function(e){
+	$( document ).on( 'click', '.layers-interface-tabs label', function(e){
 		e.preventDefault();
 
 		// Toggle this accordian
@@ -687,7 +694,7 @@ jQuery(function($) {
 	* 11 - Widget Focussing
 	*/
 
-	$( document ).on( 'layers-widget-scroll' , '.widget' , function(e){
+	$( document ).on( 'layers-widget-scroll', '.widget', function(e){
 
 		// "Hi Mom"
 		$that = $(this);

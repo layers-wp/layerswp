@@ -68,6 +68,7 @@ class Layers_Customizer {
 			require_once get_template_directory() . $controls_dir . 'select-icons.php';
 			require_once get_template_directory() . $controls_dir . 'select-images.php';
 			require_once get_template_directory() . $controls_dir . 'seperator.php';
+			require_once get_template_directory() . $controls_dir . 'switch.php';
 			require_once get_template_directory() . $controls_dir . 'rte.php';
 			require_once get_template_directory() . $controls_dir . 'text.php';
 			require_once get_template_directory() . $controls_dir . 'textarea.php';

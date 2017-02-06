@@ -26,9 +26,9 @@ if( !class_exists( 'Layers_Customize_Color_Control' ) ) {
 					<?php $this->render_heading_divider( $this->heading_divider ); ?>
 				<?php } ?>
 
-				<?php if ( '' != $this->label ) { ?>
+				<?php /* if ( '' != $this->label ) { ?>
 					<span class="customize-control-title"><?php echo $this->label; ?></span>
-				<?php } ?>
+				<?php } */ ?>
 
 				<?php if ( '' != $this->subtitle ) : ?>
 					<label class="layers-form-row"><?php echo $this->subtitle; ?></label>
@@ -41,6 +41,11 @@ if( !class_exists( 'Layers_Customize_Color_Control' ) ) {
 				<?php endif; ?>
 
 				<div class="layers-form-item">
+					
+					<?php if ( '' != $this->label ) { ?>
+						<label><?php echo $this->label; ?></label>
+					<?php } ?>
+						
 					<?php echo $form_elements->input(
 						array(
 							'type' => 'color',
@@ -50,6 +55,7 @@ if( !class_exists( 'Layers_Customize_Color_Control' ) ) {
 							'data' => $this->get_customize_data(),
 						)
 					); ?>
+					
 				</div>
 
 			</div>

@@ -604,15 +604,15 @@ jQuery(function($) {
 
 	function layers_init_control_groups( $element_s ){
 		
-		// Add `li_group` class to the parent - saves us having to peek into the children of the li each time to see if it's a group.
+		// Add `li-group` class to the parent - saves us having to peek into the children of the li each time to see if it's a group.
 		$element_s.find('.l_option-customize-control.group:not(.l_option-customize-control-accordion-end)').each( function(){
 			var $control_li = $(this).parent('li');
-			$control_li.addClass('li_group');
+			$control_li.addClass('li-group');
 			if ( -1 != $(this).attr('class').indexOf( 'layers-push-top' ) ) {
-				$control_li.addClass('li_group_push_top');
+				$control_li.addClass('li-group-push-top');
 			}
 			if ( -1 != $(this).attr('class').indexOf( 'layers-push-bottom' ) ) {
-				$control_li.addClass('li_group_push_bottom');
+				$control_li.addClass('li-group-push-bottom');
 			}
 		});
 		
@@ -621,7 +621,7 @@ jQuery(function($) {
 	
 	function layers_repaint_control_groups( $element_s ){
 		
-		$element_s.find('li.li_group').each( function(){
+		$element_s.find('li.li-group').each( function(){
 			
 			// Get elements.
 			var $control_li = $(this); // Get current element.
@@ -629,24 +629,24 @@ jQuery(function($) {
 			var $control_li_next_visible = $(this).nextAll('li:visible').not( $control_li ).first(); // Get next visible element.
 			
 			// Remove any first | last classes to start.
-			$control_li.removeClass('li_group_first li_group_last');
+			$control_li.removeClass('li-group-first li-group-last');
 			
 			if (
-					! $control_li_prev_visible.hasClass('li_group') ||
-					$control_li.hasClass('li_group_push_top')
+					! $control_li_prev_visible.hasClass('li-group') ||
+					$control_li.hasClass('li-group-push-top')
 				) {
 				
 				// First in a group.
-				$control_li.addClass('li_group_first');
+				$control_li.addClass('li-group-first');
 			}
 			
 			if (
-					! $control_li_next_visible.hasClass('li_group') ||
-					$control_li_next_visible.hasClass('li_group_push_top')
+					! $control_li_next_visible.hasClass('li-group') ||
+					$control_li_next_visible.hasClass('li-group-push-top')
 				) {
 				
 				// Last in a group.
-				$control_li.addClass('li_group_last');
+				$control_li.addClass('li-group-last');
 			}
 		});
 	}

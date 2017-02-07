@@ -56,6 +56,7 @@ class Layers_Customizer {
 			// Include control classes.
 			require_once get_template_directory() . $controls_dir . 'accordion-start.php';
 			require_once get_template_directory() . $controls_dir . 'accordion-end.php';
+			require_once get_template_directory() . $controls_dir . 'border-style.php';
 			require_once get_template_directory() . $controls_dir . 'button.php';
 			require_once get_template_directory() . $controls_dir . 'checkbox.php';
 			require_once get_template_directory() . $controls_dir . 'code.php';

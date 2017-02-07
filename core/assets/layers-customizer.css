@@ -1006,18 +1006,22 @@ div[id*='layers-widget'] .widget-control-actions .alignright{
 		border-bottom-left-radius: 0;
 		box-shadow: none;
 		border-left: 0;
-		/* float: right; */
+		height: 24px;
+		line-height: 22px;
+		padding: 0 8px 1px;
+		font-size: 11px;
 	}
 
 		/*------------------------------------*/
 		/*- DESIGN BAR COLOR PICKERS ---------*/
-		.layers-design-bar-form-item input[type=text].layers-color-selector.wp-color-picker{
+		.layers-form-item.layers-color-wrapper input[type=text].layers-color-selector.wp-color-picker{
 	        float: left;
 	        display: inline-block;
 	        height: auto;
 	        padding: 3px;
 	        border-top-left-radius: 3px;
 	        border-bottom-left-radius: 3px;
+	        background: white;
 	    }
 	    .layers-design-bar-form-item.layers-color-wrapper label {
 	        position: absolute;
@@ -1461,7 +1465,7 @@ div[id*='layers-widget'] .widget-control-actions .alignright{
 		width: 30px;
 		height: 18px;
 		position: relative;
-		top: 7px;
+		top: 0px;
 		right: 0;
 		position: absolute;
 		margin: 0;
@@ -1479,22 +1483,23 @@ div[id*='layers-widget'] .widget-control-actions .alignright{
 		border-radius: 100px;
 		background: white;
 		position: absolute;
-		right: 14px;
-		top: 10px;
+		right: 15px;
+		top: 3px;
 		width: 12px;
 		height: 12px;
 		box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
 		transition: all 0.2s 0.2s ease-in-out;
 	}
-	.layers-switch-wrapper label{
+	li[id*='customize-control-layers'].customize-control .l_option-customize-control.l_option-customize-control-switch .layers-form-item.layers-switch-wrapper label{
 		clear: none;
 		display: block;
 		font-size: 13px;
 		text-transform: none;
-		line-height: 18px;
+		line-height: normal;
 		font-weight: 400;
 		position: relative;
 		padding-right: 36px;
+		margin: 0 0 15px;
 	}
 	.layers-invert .layers-switch-wrapper label{
 		color: #ccc;
@@ -1631,11 +1636,11 @@ div[id*='layers-widget'] .widget-control-actions .alignright{
 		clear: both;
 		float: none;
 	}
-	.layers-design-bar .layers-form-item .layers-inline-field-row{
+	.layers-inline-field-row{
 		padding: 0 !important;
-		margin: 0 0 15px;
-		height: 30px;
-		box-sizing: border-box;
+		margin: 0 0 15px !important;
+		height: 30px !important;
+		box-sizing: border-box !important;
 	}
 	.layers-inline-field-row .layers-column-flush {
 		margin-top: -1px;
@@ -1681,8 +1686,9 @@ div[id*='layers-widget'] .widget-control-actions .alignright{
 		padding-right: 3px;
 		margin: 0;
 	}
-	.layers-row.layers-inline-field-row .layers-column-flush input{
-		background: none;
+	.layers-row.layers-inline-field-row .layers-column-flush input,
+	.layers-row.layers-inline-field-row .layers-column-flush select{
+		background: none !important;
 		box-shadow: none;
 		border: 1px solid rgba(0, 0, 0, 0);
 	}
@@ -3692,7 +3698,8 @@ li[id*='customize-control-layers'].customize-control .layers-form-item:after{
 		/*---------------------------*/
 		/*- GROUP INPUTS ------------*/
 		.l_option-customize-control.group:not(.l_option-customize-control-color) input,
-		.l_option-customize-control.group select{
+		.l_option-customize-control.group select,
+		.l_option-customize-control.group .layers-input {
 			line-height: 28px;
 			height: 29px;
 			font-size: 13px;

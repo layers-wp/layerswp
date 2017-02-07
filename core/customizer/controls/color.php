@@ -34,13 +34,7 @@ if( !class_exists( 'Layers_Customize_Color_Control' ) ) {
 					<label class="layers-form-row"><?php echo $this->subtitle; ?></label>
 				<?php endif; ?>
 
-				<?php if ( '' != $this->description ) : ?>
-					<div class="description customize-control-description">
-						<?php echo $this->description; ?>
-					</div>
-				<?php endif; ?>
-
-				<div class="layers-form-item">
+				<div class="layers-form-item layers-color-wrapper">
 					
 					<?php if ( '' != $this->label ) { ?>
 						<label><?php echo $this->label; ?></label>
@@ -57,6 +51,12 @@ if( !class_exists( 'Layers_Customize_Color_Control' ) ) {
 					); ?>
 					
 				</div>
+				
+				<?php if ( '' != $this->description ) : ?>
+					<div class="description customize-control-description">
+						<?php echo $this->description; ?>
+					</div>
+				<?php endif; ?>
 
 			</div>
 			<?php

@@ -40,6 +40,8 @@ if( !class_exists( 'Layers_Customize_Control' ) ) {
 		public $max;
 		
 		public $step;
+		
+		public $input_class;
 
 		/**
 		* Render content must be overwrittedn by etending class as this renders the control.

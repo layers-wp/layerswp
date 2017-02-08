@@ -111,10 +111,14 @@ jQuery(function($) {
 			// We set multiple to false so only get one image from the uploader
 			attachment = file_frame.state().get('selection').first().toJSON();
 
-			// Remove any old image
 			$container.find('img video').remove();
 
 			// Fade in Remove button
+            // Remove any old image
+
+			// Also trigger click event on image-remove to go by the flow of
+			// previously selected image removal
+            $container.find('.layers-image-remove').trigger('click');
 			$container.find('.layers-image-remove').fadeIn();
 
 			// Set attachment to the large/medium size if they're defined

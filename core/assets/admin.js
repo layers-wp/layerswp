@@ -311,8 +311,14 @@ jQuery(function($) {
 	}, 400, false );
 	
 	// Enable clicking of the Label to envoke the color picker.
-	$(document).on( 'click', '.layers-color-wrapper label', function(){
+	$(document).on( 'click', '.layers-color-wrapper label, .layers-color-wrapper .customize-control-description', function(){
 		var $holder = $(this).parents('.layers-color-wrapper');
+		$holder.find('a.wp-color-result').click();
+	});
+	
+	// Enable clicking of the Description to envoke the color picker.
+	$(document).on( 'click', '.l_option-customize-control-color .customize-control-description', function(){
+		var $holder = $(this).parents('.l_option-customize-control-color ');
 		$holder.find('a.wp-color-result').click();
 	});
 
@@ -554,39 +560,50 @@ jQuery(function($) {
 		
 		$element_s.find( '.l_option-customize-control-accordion-start' ).each( function(){
 			
+			// Get accordion type.
 			var $accordion_type = ( $(this).hasClass('l_option-customize-control-accordion-start-standard') ) ? 'standard' : 'group' ;
-
-			var $control_accordion_start = $(this).closest( '.customize-control-layers-accordion-start-' + $accordion_type );
-			var $control_accordion_end   = $control_accordion_start.nextAll( '.customize-control-layers-accordion-end-' + $accordion_type ).eq(0);
-			var $sibling_controls    = $control_accordion_start.nextUntil( '.customize-control-layers-accordion-end-' + $accordion_type );
 			
-			// Close all child elements.
-			if ( ! $(this).hasClass( 'accordion-open' ) ) {
-				$sibling_controls.stop(true, false).slideUp(0);
-				$( $control_accordion_start.add( $control_accordion_end ) ).addClass('closed');
-				$control_accordion_start.removeClass( 'accordion-open' );
-			}
+			// Cache elements.
+			var $control_accordion_start         = $(this).closest( '.customize-control-layers-accordion-start-' + $accordion_type );
+			var $control_accordion_end           = $control_accordion_start.nextAll( '.customize-control-layers-accordion-end-' + $accordion_type ).eq(0);
+			var $control_accordion_start_and_end = $control_accordion_start.add( $control_accordion_end );
+			var $sibling_controls                = $control_accordion_start.nextUntil( '.customize-control-layers-accordion-end-' + $accordion_type );
 			
 			// Enable the click open/closed.
 			$control_accordion_start.on( 'click', function() {
 				
-				if ( $control_accordion_start.hasClass('closed') ) {
+				if ( $control_accordion_start.hasClass( 'closed' ) ) {
 					
-					$( $control_accordion_start.add( $control_accordion_end ) )
-						.removeClass('closed closing')
-						.addClass('open opening');
+					/**
+					 * Open.
+					 */
+					
+					$control_accordion_start_and_end
+						.addClass( 'open' )
+						.removeClass( 'closed' );
 					
 					$sibling_controls
+						.addClass( 'open-' + $accordion_type )
+						.removeClass( 'closed-' + $accordion_type );
+					
+					$sibling_controls
+						.not( '.closed-group' )
 						.stop(true, false)
 						.slideDown({ duration: 250, easing: 'layersEaseInOut' });
 				}
 				else {
 					
-					$( $control_accordion_start.add( $control_accordion_end ) )
-						.removeClass('open opening')
-						.addClass('closed closing');
+					/**
+					 * Close.
+					 */
+					
+					$control_accordion_start_and_end
+						.addClass( 'closed' )
+						.removeClass( 'open' );
 					
 					$sibling_controls
+						.addClass( 'closed-' + $accordion_type )
+						.removeClass( 'open-' + $accordion_type )
 						.stop(true, false)
 						.slideUp({ duration: 250, easing: 'layersEaseInOut' });
 				}
@@ -599,10 +616,10 @@ jQuery(function($) {
 	*/
 	
 	$( document ).on( 'layers-interface-init', function( e, element ){
-		layers_init_control_groups( $(element) );
+		layers_paint_control_groups( $(element) );
 	});
 
-	function layers_init_control_groups( $element_s ){
+	function layers_paint_control_groups( $element_s ){
 		
 		// Add `li-group` class to the parent - saves us having to peek into the children of the li each time to see if it's a group.
 		$element_s.find('.l_option-customize-control.group:not(.l_option-customize-control-accordion-end)').each( function(){
@@ -625,11 +642,11 @@ jQuery(function($) {
 			
 			// Get elements.
 			var $control_li = $(this); // Get current element.
-			var $control_li_prev_visible = $(this).prevAll('li:visible').not( $control_li ).first(); // Get previous visible element.
-			var $control_li_next_visible = $(this).nextAll('li:visible').not( $control_li ).first(); // Get next visible element.
+			var $control_li_prev_visible = $(this).prevAll('li:visible').first(); // Get previous visible element.
+			var $control_li_next_visible = $(this).nextAll('li:visible').first(); // Get next visible element.
 			
 			// Remove any first | last classes to start.
-			$control_li.removeClass('li-group-first li-group-last');
+			$control_li.removeClass('li-group-first li-group-last li-group-last-tight');
 			
 			if (
 					! $control_li_prev_visible.hasClass('li-group') ||
@@ -647,6 +664,15 @@ jQuery(function($) {
 				
 				// Last in a group.
 				$control_li.addClass('li-group-last');
+			}
+			
+			if (
+					$control_li_next_visible.next().hasClass('li-group') &&
+					$control_li_next_visible.next().hasClass('customize-control-layers-accordion-start-group')
+				) {
+				
+				// Last in a group, and next one is group too.
+				$control_li.addClass('li-group-last-tight');
 			}
 		});
 	}

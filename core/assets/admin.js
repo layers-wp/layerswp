@@ -998,7 +998,90 @@ jQuery(function($) {
 		$('#available-widgets-list').find('[id^="widget-tpl-'+ $widget_id +'"]').click();
 	});
 	*/
+    /**
+	 * Before delete of widget
+     */
+    $.fn.layersWrapClick = function(before, after) {
+        // Get and store the original click handler.
+		$(this).each(function() {
 
+			// Check if wrap click function was already used previously
+			var alreadyWrapped = $._data(this, 'wrapped');
+
+			// If so no need to wrap it again
+			if (alreadyWrapped) {
+				return;
+			}
+			// Set the wrapped data to true
+            $._data(this, 'wrapped', true);
+
+			// Get all the click events for the click of the button
+            var clickEvents = $._data(this, 'events');
+
+            // If no click events then set it to null
+            clickEvents = clickEvents && clickEvents.click ? clickEvents.click: null;
+
+            var allClickHandlers = [];
+            if (clickEvents && clickEvents.length) {
+                try {
+                	// store all the click events in array
+                    $.each(clickEvents, function(index, click) {
+                        allClickHandlers.push(click.handler);
+                    });
+
+                    var _self = $(this);
+                    // Remove click event from object.
+                    _self.off('click');
+
+                    // Add new click event with before and after functions.
+                    return _self.click(function(e) {
+
+                    	// Assuming that before call will allow execution of next/original call
+                        var continueAfterBeforeCall = true;
+
+                        // Assuming original call will allow execution of after call
+                        var continueAfterCall = true;
+
+                        // If there is a before function specified then call it
+						// and check the return value
+                        if (before && before.call) {
+                            continueAfterBeforeCall = before.call(_self, e) !== false;
+                        }
+                        // If before call allows further continuation, then proceed with
+						// Original call
+                        if (continueAfterBeforeCall && allClickHandlers.length) {
+                        	// Execute each and every event handler attached originally
+                            $.each(allClickHandlers, function(index, _orgClick) {
+                                if (_orgClick.call) {
+                                    continueAfterCall = _orgClick.call(_self, e) !== false && continueAfterCall;
+                                }
+                            });
+                        }
+
+                        // If any of the call don't allow continuation of after call
+						// do not execute the after call
+                        if(continueAfterCall && after && after.call) {
+                            after.call(_self, e);
+                        }
+                    });
+                } catch (ex) {
+                	// In case of any exception during the process
+					// log the exception
+					// @todo: Handle the exception
+                    console.log(ex);
+                }
+            }
+		});
+    };
+
+    $( document ).on( 'layers-interface-init', function(){
+    	if (layers_customizer_params && layers_customizer_params.confirm_delete_text) {
+			// Wrap around the original click event added by core wordpress.
+            $('a.widget-control-remove').layersWrapClick(function() {
+                return confirm(layers_customizer_params.confirm_delete_text);
+            });
+		}
+	});
 	/**
 	 * 16 - Widget Peek/hide to preview changes
 	 */

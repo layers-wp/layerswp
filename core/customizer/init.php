@@ -112,6 +112,7 @@ class Layers_Customizer {
 				'nonce' => wp_create_nonce( 'layers-customizer-actions' ),
 				'builder_page' => ( isset( $_GET[ 'layers-builder' ] ) ? TRUE : FALSE ),
 				'enable_deep_linking' => ( get_theme_mod( 'layers-dev-switch-customizer-state-record' ) ),
+                'confirm_delete_text' => __('Are you sure you want to delete this widget?', 'layerswp'),
 			)
 		);
 	}

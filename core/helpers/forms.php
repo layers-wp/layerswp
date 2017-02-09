@@ -154,9 +154,6 @@ class Layers_Form_Elements {
 
 		if( NULL != $input->data ) { foreach( $input->data as $data_key => $data_value ){ $input_props[ 'data-' . $data_key ] = 'data-' . $data_key . '="' . esc_attr( $data_value ) . '"'; } }
 		
-		// Allow combined switch for the inline fields - combined will make the fields looked together/condensed/combined.
-		$input_props['flush'] = ( boolean )( isset( $input->flush ) && TRUE === $input->flush );
-
 		// Switch our input type
 		switch( $input->type ) {
 			case 'text' : ?>
@@ -672,18 +669,31 @@ class Layers_Form_Elements {
 
 				// Calculate column span based on the number of resulting fields.
 				$field_span = ( 12 / count( $fields ) );
+				
+				// Normalize the 'class' attr.
+				if ( ! isset( $input_props['class'] ) ) {
+					$input_props['class'] = 'class=""';
+				}
+				
+				$is_flush = FALSE;
+				if ( FALSE !== strpos( $input_props['class'], 'inline-fields-flush' ) ) {
+					$input_props['class'] = str_replace( 'inline-fields-flush', 'layers-input layers-inline-field-row-flush', $input_props['class'] );
+					$is_flush = TRUE;
+				}
+				
+				$input_props['class'] = str_replace( 'class="', 'class="layers-row layers-inline-field-row ', $input_props['class'] );
 				?>
-				<div class="layers-row layers-inline-field-row <?php echo $input_props['flush'] ? 'layers-input layers-inline-field-row-flush' : '' ; ?>">
-
+				
+				<div <?php echo $input_props['class']; ?>>
 					<?php foreach ( $fields as $key => $label ) : ?>
-						<div class="<?php echo $input_props['flush'] ? 'layers-column-flush' : 'layers-column' ; ?> layers-span-<?php echo esc_attr( $field_span ); ?>">
+						<div class="<?php echo ( $is_flush ) ? 'layers-column-flush' : 'layers-column' ; ?> layers-span-<?php echo esc_attr( $field_span ); ?>">
 							<?php echo $this->input(
 								array(
 									'type' => 'number',
 									'name' => ( isset( $input->name ) ) ? "{$input->name}[$key]" : '',
 									'id' => "{$input->id}-{$key}",
 									'value' => ( isset( $input->value->$key ) ) ? $input->value->$key : NULL,
-									'class' => 'l_admin-hide-controls',
+									'class' => "l_admin-hide-controls",
 									'data' => array(
 										'customize-setting-link' => "{$input->id}-{$key}",
 									),
@@ -692,9 +702,8 @@ class Layers_Form_Elements {
 							<label for="<?php echo esc_attr( $input->id ) . '-' . $key; ?>"><?php echo esc_html( $label ); ?></label>
 						</div>
 					<?php endforeach; ?>
-
 				</div>
-
+				
 			<?php break;
 			
 			/**
@@ -736,11 +745,24 @@ class Layers_Form_Elements {
 
 				// Calculate column span based on the number of resulting fields.
 				$field_span = ( 12 / count( $fields ) );
+				
+				// Normalize the 'class' attr.
+				if ( ! isset( $input_props['class'] ) ) {
+					$input_props['class'] = 'class=""';
+				}
+				
+				$is_flush = FALSE;
+				if ( FALSE !== strpos( $input_props['class'], 'inline-fields-flush' ) ) {
+					$input_props['class'] = str_replace( 'inline-fields-flush', 'layers-input layers-inline-field-row-flush', $input_props['class'] );
+					$is_flush = TRUE;
+				}
+				
+				$input_props['class'] = str_replace( 'class="', 'class="layers-row layers-inline-field-row ', $input_props['class'] );
 				?>
-				<div class="layers-row layers-inline-field-row <?php echo $input_props['flush'] ? 'layers-input layers-inline-field-row-flush' : '' ; ?>">
-
+				
+				<div <?php echo $input_props['class']; ?>>
 					<?php foreach ( $fields as $key => $label ) : ?>
-						<div class="<?php echo $input_props['flush'] ? 'layers-column-flush' : 'layers-column' ; ?> layers-span-<?php echo esc_attr( $field_span ); ?>">
+						<div class="<?php echo ( $is_flush ) ? 'layers-column-flush' : 'layers-column' ; ?> layers-span-<?php echo esc_attr( $field_span ); ?>">
 							<?php echo $this->input(
 								array(
 									'type' => 'number',
@@ -756,7 +778,6 @@ class Layers_Form_Elements {
 							<label for="<?php echo esc_attr( $input->id ) . '-' . $key; ?>"><?php echo esc_html( $label ); ?></label>
 						</div>
 					<?php endforeach; ?>
-
 				</div>
 
 			<?php break;
@@ -799,11 +820,23 @@ class Layers_Form_Elements {
 
 				// Calculate column span based on the number of resulting fields.
 				$field_span = ( 12 / count( $fields ) );
+				
+				// Normalize the 'class' attr.
+				if ( ! isset( $input_props['class'] ) ) {
+					$input_props['class'] = 'class=""';
+				}
+				
+				$is_flush = FALSE;
+				if ( FALSE !== strpos( $input_props['class'], 'inline-fields-flush' ) ) {
+					$input_props['class'] = str_replace( 'inline-fields-flush', 'layers-input layers-inline-field-row-flush', $input_props['class'] );
+					$is_flush = TRUE;
+				}
+				
+				$input_props['class'] = str_replace( 'class="', 'class="layers-row layers-inline-field-row ', $input_props['class'] );
 				?>
-				<div class="layers-row layers-inline-field-row <?php echo $input_props['flush'] ? 'layers-input layers-inline-field-row-flush' : '' ; ?>">
-
+				<div <?php echo $input_props['class']; ?>>
 					<?php foreach ( $fields as $key => $label ) : ?>
-						<div class="<?php echo $input_props['flush'] ? 'layers-column-flush' : 'layers-column' ; ?> layers-span-<?php echo esc_attr( $field_span ); ?>">
+						<div class="<?php echo ( $is_flush ) ? 'layers-column-flush' : 'layers-column' ; ?> layers-span-<?php echo esc_attr( $field_span ); ?>">
 							<?php echo $this->input(
 								array(
 									'type' => ( 'style' == $key ) ? 'select' : 'number',

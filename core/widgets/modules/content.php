@@ -605,45 +605,44 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 									'advanced-margin-padding-start' => array(
 										'type' => 'group-start',
 										'label' => __( 'Margin &amp; Padding', 'layerswp' ),
-									),	
-										'padding' => array(
-											'type' => 'trbl-fields',
-											'label' => __( 'Padding (px)', 'layerswp' ),
-											'name' => $this->get_layers_field_name( 'design', 'advanced', 'padding' ),
-											'id' => $this->get_layers_field_id( 'design', 'advanced', 'padding' ),
-											'value' => ( isset( $item_instance['design']['advanced']['padding'] ) ) ? $item_instance['design']['advanced']['padding'] : NULL,
-											'fields' => array(
-												'top',
-												'right',
-												'bottom',
-												'left',
-											),
+									),
+									'padding' => array(
+										'type' => 'trbl-fields',
+										'label' => __( 'Padding (px)', 'layerswp' ),
+										'name' => $this->get_layers_field_name( 'design', 'advanced', 'padding' ),
+										'id' => $this->get_layers_field_id( 'design', 'advanced', 'padding' ),
+										'value' => ( isset( $item_instance['design']['advanced']['padding'] ) ) ? $item_instance['design']['advanced']['padding'] : NULL,
+										'fields' => array(
+											'top',
+											'right',
+											'bottom',
+											'left',
 										),
-										'margin' => array(
-											'type' => 'trbl-fields',
-											'label' => __( 'Margin (px)', 'layerswp' ),
-											'name' => $this->get_layers_field_name( 'design', 'advanced', 'margin' ),
-											'id' => $this->get_layers_field_id( 'design', 'advanced', 'margin' ),
-											'value' => ( isset( $item_instance['design']['advanced']['margin'] ) ) ? $item_instance['design']['advanced']['margin'] : NULL,
-											'fields' => array(
-												'top',
-												'bottom',
-											),
+										'input_class' => 'inline-fields-flush',
+									),
+									'margin' => array(
+										'type' => 'trbl-fields',
+										'label' => __( 'Margin (px)', 'layerswp' ),
+										'name' => $this->get_layers_field_name( 'design', 'advanced', 'margin' ),
+										'id' => $this->get_layers_field_id( 'design', 'advanced', 'margin' ),
+										'value' => ( isset( $item_instance['design']['advanced']['margin'] ) ) ? $item_instance['design']['advanced']['margin'] : NULL,
+										'fields' => array(
+											'top',
+											'bottom',
 										),
+										'input_class' => 'inline-fields-flush',
+									),
 									'advanced-margin-padding-end' => array(
 										'type' => 'group-end',
 									),
 									'advanced-custom-class-start' => array(
 										'type' => 'group-start',
 										'label' => __( 'Custom Classes', 'layerswp' ),
-									),	
-										
-										'customclass',
-
+									),
+									'customclass',
 									'advanced-custom-class-end' => array(
 										'type' => 'group-end'
-									)
-
+									),
 								),
 								'elements_combine' => 'replace',
 							),

@@ -240,11 +240,6 @@ class Layers_Design_Controller {
 	 */
 	public function render_input( $form_args = array() ) {
 
-		// If input-class then set it to 'class' arg that the form->input expects.
-		if ( isset( $form_args['input-class'] ) ) {
-			$form_args['class'] = $form_args['input-class'];
-		}
-
 		$data_show_if = array();
 		if ( isset( $form_args['data']['show-if-selector'] ) ){
 			$data_show_if['show-if-selector'] = 'data-show-if-selector="' . esc_attr( $form_args['data']['show-if-selector'] ) . '"';
@@ -273,6 +268,11 @@ class Layers_Design_Controller {
 			// Grab the class if specified.
 			$class[] = $form_args['class'];
 			unset( $form_args['class'] );
+		}
+		
+		// If input_class then set it to 'class' arg that the form->input expects.
+		if ( isset( $form_args['input_class'] ) ) {
+			$form_args['class'] = $form_args['input_class'];
 		}
 
 		if ( 'group-start' == $form_args['type'] ) {
@@ -992,7 +992,7 @@ class Layers_Design_Controller {
 					'name' => $this->get_layers_field_name( 'advanced', 'padding' ),
 					'id' => $this->get_layers_field_id( 'advanced', 'padding' ),
 					'value' => ( isset( $this->values['advanced']['padding'] ) ) ? $this->values['advanced']['padding'] : NULL,
-					'wrapper-class' => 'layers-inline-field-combined',
+					'input_class' => 'inline-fields-flush',
 				),
 				'margin' => array(
 					'type' => 'trbl-fields',
@@ -1000,7 +1000,7 @@ class Layers_Design_Controller {
 					'name' => $this->get_layers_field_name( 'advanced', 'margin' ),
 					'id' => $this->get_layers_field_id( 'advanced', 'margin' ),
 					'value' => ( isset( $this->values['advanced']['margin'] ) ) ? $this->values['advanced']['margin'] : NULL,
-					'wrapper-class' => 'layers-inline-field-combined',
+					'input_class' => 'inline-fields-flush',
 				),
 			'advanced-margin-padding-end' => array(
 				'type' => 'group-end',

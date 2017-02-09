@@ -266,6 +266,16 @@ class Layers_Customizer_Regsitrar {
 						$control_data
 					)
 				);
+			} else if( 'layers-switch' == $control_data['type'] ) {
+
+				// Add Control
+				$this->customizer->add_control(
+					new Layers_Customize_Switch_Control(
+						$this->customizer,
+						$setting_key,
+						$control_data
+					)
+				);
 			} else if( 'layers-select' == $control_data['type'] ) {
 
 				// Add Control
@@ -405,6 +415,46 @@ class Layers_Customizer_Regsitrar {
 						$control_data
 					)
 				);
+			} else if( 'layers-border-style-fields' == $control_data['type'] ) {
+
+				// Add extra settings fields for Width, Style, Radius.
+				$this->customizer->add_setting(
+					$setting_key . '-width',
+					array(
+						'default'    => ( isset( $control_data['default'] ) ? $control_data['default'] : NULL ) ,
+						'type'       => 'theme_mod',
+						'capability' => 'manage_options',
+						'sanitize_callback' => $this->add_sanitize_callback( $control_data )
+					)
+				);
+				$this->customizer->add_setting(
+					$setting_key . '-style',
+					array(
+						'default'    => ( isset( $control_data['default'] ) ? $control_data['default'] : NULL ) ,
+						'type'       => 'theme_mod',
+						'capability' => 'manage_options',
+						'sanitize_callback' => $this->add_sanitize_callback( $control_data )
+					)
+				);
+				$this->customizer->add_setting(
+					$setting_key . '-radius',
+					array(
+						'default'    => ( isset( $control_data['default'] ) ? $control_data['default'] : NULL ) ,
+						'type'       => 'theme_mod',
+						'capability' => 'manage_options',
+						'sanitize_callback' => $this->add_sanitize_callback( $control_data )
+					)
+				);
+				
+				// Add Control
+				$this->customizer->add_control(
+					new Layers_Customize_Border_Style_Control(
+						$this->customizer,
+						$setting_key,
+						$control_data
+					)
+				);
+				
 			} else if( 'text' == $control_data['type'] ) {
 
 				// Add Control

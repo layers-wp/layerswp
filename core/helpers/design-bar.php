@@ -864,31 +864,32 @@ class Layers_Design_Controller {
 					),
 				);
 
+				if( !class_exists( 'Layers_Pro' ) ) {
+					$defaults['elements']['background-parallax'] = array(
+							'type' => 'checkbox',
+							'label' => __( 'Parallax <span class="layers-inline-upsell">Available in <a href="https://www.layerswp.com/layers-pro/?ref=obox&amp;utm_source=layers%20theme&amp;utm_medium=link&amp;utm_campaign=Layers%20Pro%20Upsell&amp;utm_content=Widget%20Parallax%20Upsell" target="_blank">Pro</a></span>', 'layerswp' ),
+							'name' => $this->get_layers_field_name( 'background', 'parallax' ),
+							'id' => $this->get_layers_field_id( 'background', 'parallax' ),
+							'data' => array(
+								'show-if-selector' => '#' . $this->get_layers_field_id( 'background', 'image' ),
+								'show-if-value' => '',
+								'show-if-operator' => '!=='
+							),
+							'disabled' => true
+						);
+				}
+				
+				$defaults['elements']['background-darken'] = array(
+					'type' => 'checkbox',
+					'label' => __( 'Darken', 'layerswp' ),
+					'name' => $this->get_layers_field_name( 'background', 'darken' ),
+					'id' => $this->get_layers_field_id( 'background', 'darken' ),
+					'value' => ( isset( $this->values['background']['darken'] ) ) ? $this->values['background']['darken'] : NULL,
+				);
+
 		$defaults['elements']['background-image-end'] = array(
 			'type' => 'group-end',
 		);
-
-		if( !class_exists( 'Layers_Pro' ) ) {
-			$defaults['elements']['background-parallax'] = array(
-					'type' => 'checkbox',
-					'label' => __( 'Parallax <span class="layers-inline-upsell">Available in <a href="https://www.layerswp.com/layers-pro/?ref=obox&amp;utm_source=layers%20theme&amp;utm_medium=link&amp;utm_campaign=Layers%20Pro%20Upsell&amp;utm_content=Widget%20Parallax%20Upsell" target="_blank">Pro</a></span>', 'layerswp' ),
-					'name' => $this->get_layers_field_name( 'background', 'parallax' ),
-					'id' => $this->get_layers_field_id( 'background', 'parallax' ),
-					'data' => array(
-						'show-if-selector' => '#' . $this->get_layers_field_id( 'background', 'image' ),
-						'show-if-value' => '',
-						'show-if-operator' => '!=='
-					),
-					'disabled' => true
-				);
-		}
-		$defaults['elements']['background-darken'] = array(
-				'type' => 'checkbox',
-				'label' => __( 'Darken', 'layerswp' ),
-				'name' => $this->get_layers_field_name( 'background', 'darken' ),
-				'id' => $this->get_layers_field_id( 'background', 'darken' ),
-				'value' => ( isset( $this->values['background']['darken'] ) ) ? $this->values['background']['darken'] : NULL,
-			);
 
 		$args = $this->merge_component( $defaults, $args );
 

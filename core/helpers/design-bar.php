@@ -373,16 +373,24 @@ class Layers_Design_Controller {
 
 		// Add elements
 		$defaults['elements'] = array(
-			'layout' => array(
-				'type' => 'select-icons',
-				'name' => $this->get_layers_field_name( 'layout' ),
-				'id' => $this->get_layers_field_id( 'layout' ),
-				'value' => ( isset( $this->values['layout'] ) ) ? $this->values['layout'] : NULL,
-				'options' => array(
-					'layout-boxed' => __( 'Boxed', 'layerswp' ),
-					'layout-fullwidth' => __( 'Full Width', 'layerswp' )
-				)
-			)
+			'layout-start' => array(
+				'label' => __( 'Layout' , 'layerswp' ),
+				'type' => 'group-start'
+			),
+				'layout' => array(
+					'type' => 'select-icons',
+					'name' => $this->get_layers_field_name( 'layout' ),
+					'id' => $this->get_layers_field_id( 'layout' ),
+					'value' => ( isset( $this->values['layout'] ) ) ? $this->values['layout'] : NULL,
+					'options' => array(
+						'layout-boxed' => __( 'Boxed', 'layerswp' ),
+						'layout-fullwidth' => __( 'Full Width', 'layerswp' )
+					),
+					'wrapper-class' => 'layers-icon-group layers-icon-group-outline'
+				),
+			'layout-end' => array(
+				'type' => 'group-end'
+			),
 		);
 
 		$args = $this->merge_component( $defaults, $args );
@@ -730,40 +738,72 @@ class Layers_Design_Controller {
 
 		// Add elements
 		$defaults['elements'] = array(
-			'fonts-align' => array(
-				'type' => 'select-icons',
-				'label' => __( 'Text Align', 'layerswp' ),
-				'name' => $this->get_layers_field_name( 'fonts', 'align' ),
-				'id' => $this->get_layers_field_id( 'fonts', 'align' ),
-				'value' => ( isset( $this->values['fonts']['align'] ) ) ? $this->values['fonts']['align'] : NULL,
-				'options' => array(
-					'text-left' => __( 'Left', 'layerswp' ),
-					'text-center' => __( 'Center', 'layerswp' ),
-					'text-right' => __( 'Right', 'layerswp' ),
-					'text-justify' => __( 'Justify', 'layerswp' )
+			'fonts-align-start' => array(
+				'type' => 'group-start',
+				'label' => __( 'Size &amp; Alignment', 'layerswp' ),
+			),
+				'fonts-align' => array(
+					'type' => 'select-icons',
+					'label' => __( 'Text Alignment', 'layerswp' ),
+					'name' => $this->get_layers_field_name( 'fonts', 'align' ),
+					'id' => $this->get_layers_field_id( 'fonts', 'align' ),
+					'value' => ( isset( $this->values['fonts']['align'] ) ) ? $this->values['fonts']['align'] : NULL,
+					'options' => array(
+						'text-left' => __( 'Left', 'layerswp' ),
+						'text-center' => __( 'Center', 'layerswp' ),
+						'text-right' => __( 'Right', 'layerswp' ),
+						'text-justify' => __( 'Justify', 'layerswp' )
+					),
+					'wrapper' => 'div',
+					'wrapper-class' => 'layers-icon-group layers-icon-group-outline'
 				),
-				'wrapper' => 'div',
-				'wrapper-class' => 'layers-icon-group layers-icon-group-outline'
+				'fonts-size' => array(
+					'type' => 'select',
+					'label' => __( 'Text Size', 'layerswp' ),
+					'name' => $this->get_layers_field_name( 'fonts', 'size' ),
+					'id' => $this->get_layers_field_id( 'fonts', 'size' ),
+					'value' => ( isset( $this->values['fonts']['size'] ) ) ? $this->values['fonts']['size'] : NULL,
+					'options' => array(
+						'small' => __( 'Small', 'layerswp' ),
+						'medium' => __( 'Medium', 'layerswp' ),
+						'large' => __( 'Large', 'layerswp' )
+					)
+				),
+			'fonts-align-end' => array(
+				'type' => 'group-end',
 			),
-			'fonts-size' => array(
-				'type' => 'select',
-				'label' => __( 'Text Size', 'layerswp' ),
-				'name' => $this->get_layers_field_name( 'fonts', 'size' ),
-				'id' => $this->get_layers_field_id( 'fonts', 'size' ),
-				'value' => ( isset( $this->values['fonts']['size'] ) ) ? $this->values['fonts']['size'] : NULL,
-				'options' => array(
-					'small' => __( 'Small', 'layerswp' ),
-					'medium' => __( 'Medium', 'layerswp' ),
-					'large' => __( 'Large', 'layerswp' )
-				)
+
+			'fonts-header-style-start' => array(
+				'type' => 'group-start',
+				'label' => __( 'Header Styling', 'layerswp' ),
 			),
-			'fonts-color' => array(
-				'type' => 'color',
-				'label' => __( 'Text Color', 'layerswp' ),
-				'name' => $this->get_layers_field_name( 'fonts', 'color' ),
-				'id' => $this->get_layers_field_id( 'fonts', 'color' ),
-				'value' => ( isset( $this->values['fonts']['color'] ) ) ? $this->values['fonts']['color'] : NULL
-			)
+				
+				'fonts-color' => array(
+					'type' => 'color',
+					'label' => __( 'Text Color', 'layerswp' ),
+					'name' => $this->get_layers_field_name( 'fonts', 'color' ),
+					'id' => $this->get_layers_field_id( 'fonts', 'color' ),
+					'value' => ( isset( $this->values['fonts']['color'] ) ) ? $this->values['fonts']['color'] : NULL
+				),
+
+			'fonts-header-style-end' => array(
+				'type' => 'group-end',
+			),
+			'fonts-excerpt-style-start' => array(
+				'type' => 'group-start',
+				'label' => __( 'Excerpt Styling', 'layerswp' ),
+			),
+				'fonts-excerpt-color' => array(
+					'type' => 'color',
+					'label' => __( 'Text Color', 'layerswp' ),
+					'name' => $this->get_layers_field_name( 'fonts', 'excerpt', 'color' ),
+					'id' => $this->get_layers_field_id( 'fonts', 'excerpt', 'color' ),
+					'value' => ( isset( $this->values['fonts']['excerpt']['color'] ) ) ? $this->values['fonts']['excerpt']['color'] : NULL
+				),
+			'fonts-excerpt-style-end' => array(
+				'type' => 'group-end',
+			),
+
 		);
 
 		$args = $this->merge_component( $defaults, $args );

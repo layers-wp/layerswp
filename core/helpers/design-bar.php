@@ -737,74 +737,98 @@ class Layers_Design_Controller {
 		$defaults['wrapper-class'] = 'layers-pop-menu-wrapper layers-animate layers-content-small';
 
 		// Add elements
-		$defaults['elements'] = array(
-			'fonts-align-start' => array(
-				'type' => 'group-start',
-				'label' => __( 'Size &amp; Alignment', 'layerswp' ),
-			),
-				'fonts-align' => array(
-					'type' => 'select-icons',
-					'label' => __( 'Text Alignment', 'layerswp' ),
-					'name' => $this->get_layers_field_name( 'fonts', 'align' ),
-					'id' => $this->get_layers_field_id( 'fonts', 'align' ),
-					'value' => ( isset( $this->values['fonts']['align'] ) ) ? $this->values['fonts']['align'] : NULL,
-					'options' => array(
-						'text-left' => __( 'Left', 'layerswp' ),
-						'text-center' => __( 'Center', 'layerswp' ),
-						'text-right' => __( 'Right', 'layerswp' ),
-						'text-justify' => __( 'Justify', 'layerswp' )
-					),
-					'wrapper' => 'div',
-					'wrapper-class' => 'layers-icon-group layers-icon-group-outline'
-				),
-				'fonts-size' => array(
-					'type' => 'select',
-					'label' => __( 'Text Size', 'layerswp' ),
-					'name' => $this->get_layers_field_name( 'fonts', 'size' ),
-					'id' => $this->get_layers_field_id( 'fonts', 'size' ),
-					'value' => ( isset( $this->values['fonts']['size'] ) ) ? $this->values['fonts']['size'] : NULL,
-					'options' => array(
-						'small' => __( 'Small', 'layerswp' ),
-						'medium' => __( 'Medium', 'layerswp' ),
-						'large' => __( 'Large', 'layerswp' )
-					)
-				),
-			'fonts-align-end' => array(
-				'type' => 'group-end',
-			),
-
-			'fonts-header-style-start' => array(
-				'type' => 'group-start',
-				'label' => __( 'Header Styling', 'layerswp' ),
-			),
-				
-				'fonts-color' => array(
-					'type' => 'color',
-					'label' => __( 'Text Color', 'layerswp' ),
-					'name' => $this->get_layers_field_name( 'fonts', 'color' ),
-					'id' => $this->get_layers_field_id( 'fonts', 'color' ),
-					'value' => ( isset( $this->values['fonts']['color'] ) ) ? $this->values['fonts']['color'] : NULL
-				),
-
-			'fonts-header-style-end' => array(
-				'type' => 'group-end',
-			),
-			'fonts-excerpt-style-start' => array(
-				'type' => 'group-start',
-				'label' => __( 'Excerpt Styling', 'layerswp' ),
-			),
-				'fonts-excerpt-color' => array(
-					'type' => 'color',
-					'label' => __( 'Text Color', 'layerswp' ),
-					'name' => $this->get_layers_field_name( 'fonts', 'excerpt', 'color' ),
-					'id' => $this->get_layers_field_id( 'fonts', 'excerpt', 'color' ),
-					'value' => ( isset( $this->values['fonts']['excerpt']['color'] ) ) ? $this->values['fonts']['excerpt']['color'] : NULL
-				),
-			'fonts-excerpt-style-end' => array(
-				'type' => 'group-end',
-			),
-
+		$defaults['elements']['fonts-align-start'] = array(
+			'type' => 'group-start',
+			'label' => __( 'Size &amp; Alignment', 'layerswp' ),
 		);
+			$defaults['elements']['fonts-align'] = array(
+				'type' => 'select-icons',
+				'label' => __( 'Text Alignment', 'layerswp' ),
+				'name' => $this->get_layers_field_name( 'fonts', 'align' ),
+				'id' => $this->get_layers_field_id( 'fonts', 'align' ),
+				'value' => ( isset( $this->values['fonts']['align'] ) ) ? $this->values['fonts']['align'] : NULL,
+				'options' => array(
+					'text-left' => __( 'Left', 'layerswp' ),
+					'text-center' => __( 'Center', 'layerswp' ),
+					'text-right' => __( 'Right', 'layerswp' ),
+					'text-justify' => __( 'Justify', 'layerswp' )
+				),
+				'wrapper' => 'div',
+				'wrapper-class' => 'layers-icon-group layers-icon-group-outline'
+			);
+			$defaults['elements']['fonts-size'] = array(
+				'type' => 'select',
+				'label' => __( 'Text Size', 'layerswp' ),
+				'name' => $this->get_layers_field_name( 'fonts', 'size' ),
+				'id' => $this->get_layers_field_id( 'fonts', 'size' ),
+				'value' => ( isset( $this->values['fonts']['size'] ) ) ? $this->values['fonts']['size'] : NULL,
+				'options' => array(
+					'small' => __( 'Small', 'layerswp' ),
+					'medium' => __( 'Medium', 'layerswp' ),
+					'large' => __( 'Large', 'layerswp' )
+				)
+			);
+
+		$defaults['elements']['fonts-align-end'] = array(
+			'type' => 'group-end',
+		);
+
+		$defaults['elements']['fonts-header-style-start'] = array(
+			'type' => 'group-start',
+			'label' => __( 'Header Styling', 'layerswp' ),
+		);
+
+			$defaults['elements']['fonts-color'] = array(
+				'type' => 'color',
+				'label' => __( 'Text Color', 'layerswp' ),
+				'name' => $this->get_layers_field_name( 'fonts', 'color' ),
+				'id' => $this->get_layers_field_id( 'fonts', 'color' ),
+				'value' => ( isset( $this->values['fonts']['color'] ) ) ? $this->values['fonts']['color'] : NULL
+			);
+
+			if( !class_exists( 'Layers_Pro' ) ) {
+				$defaults['elements']['fonts-header-upsell'] = array(
+					'type' => 'html',
+					'html' => '<div class="layers-upsell-tag">
+						<span class="layers-upsell-title">Upgrade to Layers Pro</span>
+							<div class="description customize-control-description">
+							Want to bold, italic or fine-tune your header size? <a target="_blank" href="https://www.layerswp.com/layers-pro/?ref=obox&amp;utm_source=layers%20theme&amp;utm_medium=link&amp;utm_campaign=Layers%20Pro%20Upsell&amp;utm_content=Widget%Font%20Styling">Purchase Layers Pro</a>!
+							</div>
+						</div>'
+					);
+			}
+
+		$defaults['elements']['fonts-header-style-end'] = array(
+			'type' => 'group-end',
+		);
+		$defaults['elements']['fonts-excerpt-style-start'] = array(
+			'type' => 'group-start',
+			'label' => __( 'Excerpt Styling', 'layerswp' ),
+		);
+			$defaults['elements']['fonts-excerpt-color'] = array(
+				'type' => 'color',
+				'label' => __( 'Text Color', 'layerswp' ),
+				'name' => $this->get_layers_field_name( 'fonts', 'excerpt', 'color' ),
+				'id' => $this->get_layers_field_id( 'fonts', 'excerpt', 'color' ),
+				'value' => ( isset( $this->values['fonts']['excerpt']['color'] ) ) ? $this->values['fonts']['excerpt']['color'] : NULL
+			);
+
+			if( !class_exists( 'Layers_Pro' ) ) {
+				$defaults['elements']['fonts-upsell'] = array(
+					'type' => 'html',
+					'html' => '<div class="layers-upsell-tag">
+						<span class="layers-upsell-title">Upgrade to Layers Pro</span>
+							<div class="description customize-control-description">
+							Want to bold, italic or fine-tune your excerpt size? <a target="_blank" href="https://www.layerswp.com/layers-pro/?ref=obox&amp;utm_source=layers%20theme&amp;utm_medium=link&amp;utm_campaign=Layers%20Pro%20Upsell&amp;utm_content=Widget%Font%20Styling">Purchase Layers Pro</a>!
+							</div>
+						</div>'
+					);
+			}
+
+		$defaults['elements']['fonts-excerpt-style-end'] = array(
+			'type' => 'group-end',
+		);
+		
 
 		$args = $this->merge_component( $defaults, $args );
 

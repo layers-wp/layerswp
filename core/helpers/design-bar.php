@@ -605,42 +605,53 @@ class Layers_Design_Controller {
 
 		// Add elements
 		$defaults['elements'] = array(
-			'featuredimage' => array(
-				'type' => 'image',
-				'label' => __( 'Featured Media', 'layerswp' ),
-				'name' => $this->get_layers_field_name( 'featuredimage' ),
-				'id' => $this->get_layers_field_id( 'featuredimage' ),
-				'value' => ( isset( $this->values['featuredimage'] ) ) ? $this->values['featuredimage'] : NULL
+
+			'featuredimage-start' => array(
+				'type' => 'group-start',
+				'label' => __( 'Featured Image', 'layerswp' ),
 			),
-			'featuredimage' => array(
-				'type' => 'image',
-				'label' => __( 'Featured Media', 'layerswp' ),
-				'name' => $this->get_layers_field_name( 'featuredimage' ),
-				'id' => $this->get_layers_field_id( 'featuredimage' ),
-				'value' => ( isset( $this->values['featuredimage'] ) ) ? $this->values['featuredimage'] : NULL
-			),
-			'featuredvideo' => array(
-				'type' => 'text',
-				'label' => __( 'Video URL (oEmbed)', 'layerswp' ),
-				'name' => $this->get_layers_field_name( 'featuredvideo' ),
-				'id' => $this->get_layers_field_id( 'featuredvideo' ),
-				'value' => ( isset( $this->values['featuredvideo'] ) ) ? $this->values['featuredvideo'] : NULL
-			),
-			'imageratios' => array(
-				'type' => 'select-icons',
-				'label' => __( 'Image Ratio', 'layerswp' ),
-				'name' => $this->get_layers_field_name( 'imageratios' ),
-				'id' => $this->get_layers_field_id( 'imageratios' ),
-				'value' => ( isset( $this->values['imageratios'] ) ) ? $this->values['imageratios'] : NULL,
-				'options' => array(
-					'image-portrait' => __( 'Portrait', 'layerswp' ),
-					'image-landscape' => __( 'Landscape', 'layerswp' ),
-					'image-square' => __( 'Square', 'layerswp' ),
-					'image-no-crop' => __( 'None', 'layerswp' ),
-					'image-round' => __( 'Round', 'layerswp' ),
+
+				'featuredimage' => array(
+					'type' => 'image',
+					'label' => __( 'Featured Media', 'layerswp' ),
+					'name' => $this->get_layers_field_name( 'featuredimage' ),
+					'id' => $this->get_layers_field_id( 'featuredimage' ),
+					'value' => ( isset( $this->values['featuredimage'] ) ) ? $this->values['featuredimage'] : NULL
 				),
-				'wrapper' => 'div',
-				'wrapper-class' => 'layers-icon-group layers-icon-group-outline'
+				'imageratios' => array(
+					'type' => 'select-icons',
+					'label' => __( 'Image Ratio', 'layerswp' ),
+					'name' => $this->get_layers_field_name( 'imageratios' ),
+					'id' => $this->get_layers_field_id( 'imageratios' ),
+					'value' => ( isset( $this->values['imageratios'] ) ) ? $this->values['imageratios'] : NULL,
+					'options' => array(
+						'image-portrait' => __( 'Portrait', 'layerswp' ),
+						'image-landscape' => __( 'Landscape', 'layerswp' ),
+						'image-square' => __( 'Square', 'layerswp' ),
+						'image-no-crop' => __( 'None', 'layerswp' ),
+						'image-round' => __( 'Round', 'layerswp' ),
+					),
+					'wrapper' => 'div',
+					'wrapper-class' => 'layers-icon-group layers-icon-group-outline'
+				),
+			'featuredimage-end' => array(
+				'type' => 'group-end',
+			),
+
+			'featuredvideo-start' => array(
+				'type' => 'group-start',
+				'label' => __( 'Featured Video', 'layerswp' ),
+			),
+				'featuredvideo' => array(
+					'type' => 'text',
+					'label' => __( 'Video URL (oEmbed)', 'layerswp' ),
+					'description' => __( '<strong>TIP:</strong> Paste links from YouTube, Vimeo, DailyMotion, Twitter or Flickr.', 'layerswp' ),
+					'name' => $this->get_layers_field_name( 'featuredvideo' ),
+					'id' => $this->get_layers_field_id( 'featuredvideo' ),
+					'value' => ( isset( $this->values['featuredvideo'] ) ) ? $this->values['featuredvideo'] : NULL
+				),
+			'featuredvideo-end' => array(
+				'type' => 'group-end',
 			),
 		);
 

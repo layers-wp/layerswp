@@ -452,122 +452,147 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 						'icon-css' => 'icon-display',
 						'label' => __( 'Display', 'layerswp' ),
 						'elements' => array(
-							'text_style' => array(
-								'type' => 'select',
-								'name' => $this->get_layers_field_name( 'text_style' ) ,
-								'id' => $this->get_layers_field_id( 'text_style' ) ,
-								'value' => ( isset( $instance['text_style'] ) ) ? $instance['text_style'] : NULL,
-								'label' => __( 'Title &amp; Excerpt Position' , 'layerswp' ),
-								'options' => array(
-										'regular' => __( 'Regular' , 'layerswp' ),
-										'overlay' => __( 'Overlay' , 'layerswp' )
-								)
+							'text-style-start' => array(
+								'type' => 'group-start',
+								'label' => __( 'Title &amp; Excerpt Display', 'layerswp' ),
 							),
-							'show_pagination' => array(
-								'type' => 'checkbox',
-								'name' => $this->get_layers_field_name( 'show_pagination' ) ,
-								'id' => $this->get_layers_field_id( 'show_pagination' ) ,
-								'value' => ( isset( $instance['show_pagination'] ) ) ? $instance['show_pagination'] : NULL,
-								'label' => __( 'Show Pagination' , 'layerswp' )
-							),
-							'show_media' => array(
-								'type' => 'checkbox',
-								'name' => $this->get_layers_field_name( 'show_media' ) ,
-								'id' => $this->get_layers_field_id( 'show_media' ) ,
-								'value' => ( isset( $instance['show_media'] ) ) ? $instance['show_media'] : NULL,
-								'label' => __( 'Show Featured Images' , 'layerswp' )
-							),
-							'show_titles' => array(
-								'type' => 'checkbox',
-								'name' => $this->get_layers_field_name( 'show_titles' ) ,
-								'id' => $this->get_layers_field_id( 'show_titles' ) ,
-								'value' => ( isset( $instance['show_titles'] ) ) ? $instance['show_titles'] : NULL,
-								'label' => __( 'Show  Post Titles' , 'layerswp' )
-							),
-							'show_excerpts' => array(
-								'type' => 'checkbox',
-								'name' => $this->get_layers_field_name( 'show_excerpts' ) ,
-								'id' => $this->get_layers_field_id( 'show_excerpts' ) ,
-								'value' => ( isset( $instance['show_excerpts'] ) ) ? $instance['show_excerpts'] : NULL,
-								'label' => __( 'Show Post Excerpts' , 'layerswp' ),
-								'data' => array(
-									'show-if-selector' => '#' . $this->get_layers_field_id( 'text_style' ),
-									'show-if-value' => 'overlay',
-									'show-if-operator' => '!='
+								'text_style' => array(
+									'type' => 'select',
+									'name' => $this->get_layers_field_name( 'text_style' ) ,
+									'id' => $this->get_layers_field_id( 'text_style' ) ,
+									'value' => ( isset( $instance['text_style'] ) ) ? $instance['text_style'] : NULL,
+									'label' => __( '' , 'layerswp' ),
+									'options' => array(
+											'regular' => __( 'Regular' , 'layerswp' ),
+											'overlay' => __( 'Overlay' , 'layerswp' )
+									)
 								),
-							),
-							'excerpt_length' => array(
-								'type' => 'number',
-								'name' => $this->get_layers_field_name( 'excerpt_length' ) ,
-								'id' => $this->get_layers_field_id( 'excerpt_length' ) ,
-								'min' => 0,
-								'max' => 10000,
-								'value' => ( isset( $instance['excerpt_length'] ) ) ? $instance['excerpt_length'] : NULL,
-								'label' => __( 'Excerpts Length' , 'layerswp' ),
-								'data' => array( 'show-if-selector' => '#' . $this->get_layers_field_id( 'show_excerpts' ), 'show-if-value' => 'true' ),
-							),
-							'show_dates' => array(
-								'type' => 'checkbox',
-								'name' => $this->get_layers_field_name( 'show_dates' ) ,
-								'id' => $this->get_layers_field_id( 'show_dates' ) ,
-								'value' => ( isset( $instance['show_dates'] ) ) ? $instance['show_dates'] : NULL,
-								'label' => __( 'Show Post Dates' , 'layerswp' ),
-								'data' => array(
-									'show-if-selector' => '#' . $this->get_layers_field_id( 'text_style' ),
-									'show-if-value' => 'overlay',
-									'show-if-operator' => '!='
+								'show_titles' => array(
+									'type' => 'checkbox',
+									'name' => $this->get_layers_field_name( 'show_titles' ) ,
+									'id' => $this->get_layers_field_id( 'show_titles' ) ,
+									'value' => ( isset( $instance['show_titles'] ) ) ? $instance['show_titles'] : NULL,
+									'label' => __( 'Show  Post Titles' , 'layerswp' )
 								),
-							),
-							'show_author' => array(
-								'type' => 'checkbox',
-								'name' => $this->get_layers_field_name( 'show_author' ) ,
-								'id' => $this->get_layers_field_id( 'show_author' ) ,
-								'value' => ( isset( $instance['show_author'] ) ) ? $instance['show_author'] : NULL,
-								'label' => __( 'Show Post Author' , 'layerswp' ),
-								'data' => array(
-									'show-if-selector' => '#' . $this->get_layers_field_id( 'text_style' ),
-									'show-if-value' => 'overlay',
-									'show-if-operator' => '!='
+								'show_excerpts' => array(
+									'type' => 'checkbox',
+									'name' => $this->get_layers_field_name( 'show_excerpts' ) ,
+									'id' => $this->get_layers_field_id( 'show_excerpts' ) ,
+									'value' => ( isset( $instance['show_excerpts'] ) ) ? $instance['show_excerpts'] : NULL,
+									'label' => __( 'Show Post Excerpts' , 'layerswp' ),
+									'data' => array(
+										'show-if-selector' => '#' . $this->get_layers_field_id( 'text_style' ),
+										'show-if-value' => 'overlay',
+										'show-if-operator' => '!='
+									),
 								),
-							),
-							'show_tags' => array(
-								'type' => 'checkbox',
-								'name' => $this->get_layers_field_name( 'show_tags' ) ,
-								'id' => $this->get_layers_field_id( 'show_tags' ) ,
-								'value' => ( isset( $instance['show_tags'] ) ) ? $instance['show_tags'] : NULL,
-								'label' => __( 'Show Tags' , 'layerswp' ),
-								'data' => array(
-									'show-if-selector' => '#' . $this->get_layers_field_id( 'text_style' ),
-									'show-if-value' => 'overlay',
-									'show-if-operator' => '!='
+								'excerpt_length' => array(
+									'type' => 'number',
+									'name' => $this->get_layers_field_name( 'excerpt_length' ) ,
+									'id' => $this->get_layers_field_id( 'excerpt_length' ) ,
+									'min' => 0,
+									'max' => 10000,
+									'value' => ( isset( $instance['excerpt_length'] ) ) ? $instance['excerpt_length'] : NULL,
+									'label' => __( 'Excerpts Length' , 'layerswp' ),
+									'data' => array( 'show-if-selector' => '#' . $this->get_layers_field_id( 'show_excerpts' ), 'show-if-value' => 'true' ),
 								),
+							'text-style-end' => array(
+								'type' => 'group-end',
 							),
-							'show_categories' => array(
-								'type' => 'checkbox',
-								'name' => $this->get_layers_field_name( 'show_categories' ) ,
-								'id' => $this->get_layers_field_id( 'show_categories' ) ,
-								'value' => ( isset( $instance['show_categories'] ) ) ? $instance['show_categories'] : NULL,
-								'label' => __( 'Show Categories' , 'layerswp' ),
-								'data' => array(
-									'show-if-selector' => '#' . $this->get_layers_field_id( 'text_style' ),
-									'show-if-value' => 'overlay',
-									'show-if-operator' => '!='
+							'meta-start' => array(
+								'type' => 'group-start',
+								'label' => __( 'Meta Settings', 'layerswp' ),
+							),
+
+								'show_pagination' => array(
+									'type' => 'checkbox',
+									'name' => $this->get_layers_field_name( 'show_pagination' ) ,
+									'id' => $this->get_layers_field_id( 'show_pagination' ) ,
+									'value' => ( isset( $instance['show_pagination'] ) ) ? $instance['show_pagination'] : NULL,
+									'label' => __( 'Show Pagination' , 'layerswp' )
 								),
+								'show_media' => array(
+									'type' => 'checkbox',
+									'name' => $this->get_layers_field_name( 'show_media' ) ,
+									'id' => $this->get_layers_field_id( 'show_media' ) ,
+									'value' => ( isset( $instance['show_media'] ) ) ? $instance['show_media'] : NULL,
+									'label' => __( 'Show Featured Images' , 'layerswp' )
+								),
+								'show_dates' => array(
+									'type' => 'checkbox',
+									'name' => $this->get_layers_field_name( 'show_dates' ) ,
+									'id' => $this->get_layers_field_id( 'show_dates' ) ,
+									'value' => ( isset( $instance['show_dates'] ) ) ? $instance['show_dates'] : NULL,
+									'label' => __( 'Show Post Dates' , 'layerswp' ),
+									'data' => array(
+										'show-if-selector' => '#' . $this->get_layers_field_id( 'text_style' ),
+										'show-if-value' => 'overlay',
+										'show-if-operator' => '!='
+									),
+								),
+								'show_author' => array(
+									'type' => 'checkbox',
+									'name' => $this->get_layers_field_name( 'show_author' ) ,
+									'id' => $this->get_layers_field_id( 'show_author' ) ,
+									'value' => ( isset( $instance['show_author'] ) ) ? $instance['show_author'] : NULL,
+									'label' => __( 'Show Post Author' , 'layerswp' ),
+									'data' => array(
+										'show-if-selector' => '#' . $this->get_layers_field_id( 'text_style' ),
+										'show-if-value' => 'overlay',
+										'show-if-operator' => '!='
+									),
+								),
+								'show_tags' => array(
+									'type' => 'checkbox',
+									'name' => $this->get_layers_field_name( 'show_tags' ) ,
+									'id' => $this->get_layers_field_id( 'show_tags' ) ,
+									'value' => ( isset( $instance['show_tags'] ) ) ? $instance['show_tags'] : NULL,
+									'label' => __( 'Show Tags' , 'layerswp' ),
+									'data' => array(
+										'show-if-selector' => '#' . $this->get_layers_field_id( 'text_style' ),
+										'show-if-value' => 'overlay',
+										'show-if-operator' => '!='
+									),
+								),
+								'show_categories' => array(
+									'type' => 'checkbox',
+									'name' => $this->get_layers_field_name( 'show_categories' ) ,
+									'id' => $this->get_layers_field_id( 'show_categories' ) ,
+									'value' => ( isset( $instance['show_categories'] ) ) ? $instance['show_categories'] : NULL,
+									'label' => __( 'Show Categories' , 'layerswp' ),
+									'data' => array(
+										'show-if-selector' => '#' . $this->get_layers_field_id( 'text_style' ),
+										'show-if-value' => 'overlay',
+										'show-if-operator' => '!='
+									),
+								),
+
+							'meta-end' => array(
+								'type' => 'group-end',
 							),
-							'show_call_to_action' => array(
-								'type' => 'checkbox',
-								'name' => $this->get_layers_field_name( 'show_call_to_action' ) ,
-								'id' => $this->get_layers_field_id( 'show_call_to_action' ) ,
-								'value' => ( isset( $instance['show_call_to_action'] ) ) ? $instance['show_call_to_action'] : NULL,
-								'label' => __( 'Show "Read More" Buttons' , 'layerswp' ),
+							'cta-start' => array(
+								'type' => 'group-start',
+								'label' => __( 'Read More Button', 'layerswp' ),
 							),
-							'call_to_action' => array(
-								'type' => 'text',
-								'name' => $this->get_layers_field_name( 'call_to_action' ) ,
-								'id' => $this->get_layers_field_id( 'call_to_action' ) ,
-								'value' => ( isset( $instance['call_to_action'] ) ) ? $instance['call_to_action'] : NULL,
-								'label' => __( '"Read More" Text' , 'layerswp' ),
-								'data' => array( 'show-if-selector' => '#' . $this->get_layers_field_id( 'show_call_to_action' ), 'show-if-value' => 'true' ),
+
+								'show_call_to_action' => array(
+									'type' => 'checkbox',
+									'name' => $this->get_layers_field_name( 'show_call_to_action' ) ,
+									'id' => $this->get_layers_field_id( 'show_call_to_action' ) ,
+									'value' => ( isset( $instance['show_call_to_action'] ) ) ? $instance['show_call_to_action'] : NULL,
+									'label' => __( 'Show "Read More" Buttons' , 'layerswp' ),
+								),
+								'call_to_action' => array(
+									'type' => 'text',
+									'name' => $this->get_layers_field_name( 'call_to_action' ) ,
+									'id' => $this->get_layers_field_id( 'call_to_action' ) ,
+									'value' => ( isset( $instance['call_to_action'] ) ) ? $instance['call_to_action'] : NULL,
+									'label' => __( '"Read More" Text' , 'layerswp' ),
+									'data' => array( 'show-if-selector' => '#' . $this->get_layers_field_id( 'show_call_to_action' ), 'show-if-value' => 'true' ),
+								),
+								
+							'cta-end' => array(
+								'type' => 'group-end',
 							),
 						),
 					),

@@ -964,46 +964,9 @@ jQuery(function($) {
 		$(document).trigger('layers-widget-interface-init', $(this) );
 	});
 
-	/**
-	* 15 - Intercom checkbox
-	*/
 
-	$(document).on( 'change', '#layers-enable-intercom', function(e){
-
-		if( 'undefined' !== typeof Intercom ){
-			if( !$(this).prop('checked') ){
-				Intercom('shutdown');
-			} else if( 'undefined' !== typeof window.intercomSettings ){
-				Intercom('boot', window.intercomSettings );
-			}
-		}
-
-	});
-
-	/**
-	 * Duplicate Widgets. (disabled)
-	 */
-	/*
-	$( document ).on( 'layers-interface-init', function( e, element ){
-		// Add the duplicate widget button to all the Layers Widget actions.
-		$(element).find('.widget-control-actions .alignleft .widget-control-remove').after('<a class="layers-widget-duplicate-button" title="Duplicate Widget">Duplicate</a>');
-	});
-
-	$( document ).on( 'click', '.layers-widget-duplicate-button', function( e, element ){
-		$button = $(this);
-		$this_widget_form = $button.parents('.widget-inside');
-		$widget_panel_holder = $button.parents('.control-subsection.open');
-		$add_widgets_button =  $widget_panel_holder.find('.add-new-widget');
-
-		// Get the widget type.
-		$widget_id = $this_widget_form.find('[name="id_base"]').val();
-
-		$add_widgets_button.click();
-		$('#available-widgets-list').find('[id^="widget-tpl-'+ $widget_id +'"]').click();
-	});
-	*/
     /**
-	 * Before delete of widget
+	 * Add Widget Delete Confirm Box
      */
     $.fn.layersWrapClick = function(before, after) {
         // Get and store the original click handler.
@@ -1086,6 +1049,24 @@ jQuery(function($) {
             });
 		}
 	});
+
+
+	/**
+	* 15 - Intercom checkbox
+	*/
+
+	$(document).on( 'change', '#layers-enable-intercom', function(e){
+
+		if( 'undefined' !== typeof Intercom ){
+			if( !$(this).prop('checked') ){
+				Intercom('shutdown');
+			} else if( 'undefined' !== typeof window.intercomSettings ){
+				Intercom('boot', window.intercomSettings );
+			}
+		}
+
+	});
+
 	/**
 	 * 16 - Widget Peek/hide to preview changes
 	 */

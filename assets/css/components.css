@@ -663,6 +663,23 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 			display: block;
 			text-align: left;
 		}
+		/*-- For Bug: No sub menu displayed in widgets --*/
+		.sidebar .widget.widget_nav_menu .sub-menu {
+			background-color: transparent;
+			visibility: visible;
+			opacity: 1;
+			position: relative;
+			top: auto;
+			left: auto;
+			border: none;
+		}
+		.sidebar .widget.widget_nav_menu .sub-menu li a {
+			padding: 0;
+		}
+		.sidebar .widget.widget_nav_menu .sub-menu li a:hover {
+			background-color: transparent;
+			color: rgba(0, 0, 0, 1);
+		}
 
 
 	/*---------------------------*/

@@ -239,7 +239,17 @@ class Layers_Design_Controller {
 	 * @return   array       $array      Array of options, all standard DOM input options
 	 */
 	public function render_input( $form_args = array() ) {
-
+		
+		// Set defaults.
+		$defaults = array(
+			'wrapper' => NULL,
+			'wrapper-class' => '',
+		);
+		
+		// Apply defaults.
+		$form_args = wp_parse_args( $form_args, $defaults );
+		
+	
 		$data_show_if = array();
 		if ( isset( $form_args['data']['show-if-selector'] ) ){
 			$data_show_if['show-if-selector'] = 'data-show-if-selector="' . esc_attr( $form_args['data']['show-if-selector'] ) . '"';
@@ -266,7 +276,7 @@ class Layers_Design_Controller {
 		$class[] = 'layers-design-bar-form-item';
 		if ( isset( $form_args['class'] ) ) {
 			// Grab the class if specified.
-			$class[] = $form_args['class'];
+			$class = array_merge( $class, explode( ' ', $form_args['class'] ) );
 			unset( $form_args['class'] );
 		}
 		
@@ -316,6 +326,24 @@ class Layers_Design_Controller {
 		else {
 
 			// Everything else.
+			
+			/*
+			 * Convert 'class' setting to 'wrapper-class' for Select-Icons - allows us to use the same syntax for the Customizer Controls and the Widgets.
+			 * e.g. `'class' => 'layers-icon-group-inline layers-icon-group-inline-outline icon-group-inline-flexible layers-span-12',`
+			 */
+			if ( in_array( 'layers-icon-group-inline', $class ) ) {
+				$form_args['wrapper'] = 'div';
+				$form_args['wrapper-class'] .= ' layers-icon-group';
+				if ( ( $key = array_search( 'layers-icon-group-inline', $class ) ) !== false ) { unset( $class[$key] ); } // Unset once used.
+			}
+			if ( in_array( 'layers-icon-group-inline-outline', $class ) ) {
+				$form_args['wrapper-class'] .= ' layers-icon-group-inline-outline';
+				if ( ( $key = array_search( 'layers-icon-group-inline-outline', $class ) ) !== false ) { unset( $class[$key] ); } // Unset once used.
+			}
+			if ( in_array( 'layers-icon-group-inline-flexible', $class ) ) {
+				$form_args['wrapper-class'] .= ' layers-icon-group-inline-flexible';
+				if ( ( $key = array_search( 'layers-icon-group-inline-flexible', $class ) ) !== false ) { unset( $class[$key] ); } // Unset once used.
+			}
 			?>
 			<div class="<?php echo esc_attr( implode( ' ', $class ) ); ?>" <?php echo implode( ' ', $data_show_if ); ?>>
 
@@ -324,7 +352,7 @@ class Layers_Design_Controller {
 				<?php } ?>
 
 				<?php if ( isset( $form_args['wrapper'] ) ) { ?>
-					<<?php echo $form_args['wrapper']; ?> <?php if ( $form_args['wrapper-class'] ) echo 'class="' . $form_args['wrapper-class'] . '"'; ?>>
+					<<?php echo $form_args['wrapper']; ?> <?php if ( isset( $form_args['wrapper-class'] ) ) echo 'class="' . $form_args['wrapper-class'] . '"'; ?>>
 				<?php } ?>
 
 				<?php if( isset( $form_args['group'] ) && is_array( $form_args['group'] ) ) {
@@ -639,8 +667,7 @@ class Layers_Design_Controller {
 					'image-no-crop' => __( 'None', 'layerswp' ),
 					'image-round' => __( 'Round', 'layerswp' ),
 				),
-				'wrapper' => 'div',
-				'wrapper-class' => 'layers-icon-group layers-icon-group-outline'
+				'class' => 'layers-icon-group-inline layers-icon-group-inline-outline'
 			),
 		);
 
@@ -731,8 +758,7 @@ class Layers_Design_Controller {
 					'text-right' => __( 'Right', 'layerswp' ),
 					'text-justify' => __( 'Justify', 'layerswp' )
 				),
-				'wrapper' => 'div',
-				'wrapper-class' => 'layers-icon-group layers-icon-group-outline'
+				'class' => 'layers-icon-group-inline layers-icon-group-inline-outline'
 			),
 			'fonts-size' => array(
 				'type' => 'select',
@@ -834,13 +860,12 @@ class Layers_Design_Controller {
 						'repeat-x' => array( 'name' => __( 'Repeat Horizontal', 'layerswp' ), 'class' => 'icon-background-repeat-horizontal' ),
 						'repeat-y' => array( 'name' => __( 'Repeat Vertical', 'layerswp' ), 'class' => 'icon-background-repeat-vertical' ),
 					),
-					'wrapper' => 'div',
-					'wrapper-class' => 'layers-icon-group layers-icon-group-outline',
 					'data' => array(
 						'show-if-selector' => '#' . $this->get_layers_field_id( 'background', 'image' ),
 						'show-if-value' => '',
 						'show-if-operator' => '!=='
 					),
+					'class' => 'layers-icon-group-inline layers-icon-group-inline-outline',
 				);
 
 			$defaults['elements']['background-position'] = array(
@@ -856,12 +881,12 @@ class Layers_Design_Controller {
 						'left' => array( 'name' => __( 'Left', 'layerswp' ), 'class' => 'icon-background-position-left' ),
 						'right' => array( 'name' => __( 'Right', 'layerswp' ), 'class' => 'icon-background-position-right' ),
 					),
-					'wrapper-class' => 'layers-icon-group layers-icon-group-outline',
 					'data' => array(
 						'show-if-selector' => '#' . $this->get_layers_field_id( 'background', 'image' ),
 						'show-if-value' => '',
 						'show-if-operator' => '!=='
 					),
+					'class' => 'layers-icon-group-inline layers-icon-group-inline-outline',
 				);
 
 		$defaults['elements']['background-image-end'] = array(

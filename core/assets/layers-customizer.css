@@ -489,7 +489,7 @@ div[id*='layers-widget'] .widget-control-actions .alignright{
 
 	/*---------------------------*/
 	/*- ICON-GROUP OUTLINED -----*/
-	.layers-icon-group.layers-icon-group-outline{
+	.layers-icon-group.layers-icon-group-inline-outline{
 		padding: 2px 1px 1px 2px;
 		background: #fff;
 		border-radius: 3px;
@@ -497,29 +497,29 @@ div[id*='layers-widget'] .widget-control-actions .alignright{
 		box-sizing: border-box;
 	}
 
-	.layers-icon-group.layers-icon-group-outline .layers-icon-wrapper{
+	.layers-icon-group.layers-icon-group-inline-outline .layers-icon-wrapper{
 		border-color: transparent;
 		box-shadow: none;
 	}
 
-	.layers-icon-group.layers-icon-group-outline .layers-icon-wrapper:focus{
+	.layers-icon-group.layers-icon-group-inline-outline .layers-icon-wrapper:focus{
 		box-shadow: none;
 	}
-	.layers-icon-group.layers-icon-group-outline .layers-icon-wrapper:hover{
+	.layers-icon-group.layers-icon-group-inline-outline .layers-icon-wrapper:hover{
 		box-shadow: 0 1px 0 rgba(0, 0, 0, 0), 0px 1px 0px #006799;
 		background: #008EC2;
 		border-color: #006799;
 		color: #fff;
 	}
-	.layers-icon-group.layers-icon-group-outline.layers-active > .layers-icon-wrapper,
-	.layers-icon-group.layers-icon-group-outline.layers-active > .layers-icon-wrapper:hover{
+	.layers-icon-group.layers-icon-group-inline-outline.layers-active > .layers-icon-wrapper,
+	.layers-icon-group.layers-icon-group-inline-outline.layers-active > .layers-icon-wrapper:hover{
 		background: #e7e7e7;
 		border-color: #ccc;
 		color: #444;
 		box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.1);
 	}
-	.layers-icon-group.layers-icon-group-outline .layers-icon-wrapper.layers-active,
-	.layers-icon-group.layers-icon-group-outline .layers-icon-wrapper.layers-active:hover{
+	.layers-icon-group.layers-icon-group-inline-outline .layers-icon-wrapper.layers-active,
+	.layers-icon-group.layers-icon-group-inline-outline .layers-icon-wrapper.layers-active:hover{
 		background: #e7e7e7;
 		border-color: #ccc;
 		color: #444;
@@ -528,10 +528,10 @@ div[id*='layers-widget'] .widget-control-actions .alignright{
 
 	/*---------------------------*/
 	/*- ICON-GROUP FULL-WIDTH ---*/
-	.layers-icon-group.layers-icon-group-full-width{
+	.layers-icon-group.layers-icon-group-inline-flexible{
 		display: block;
 	}
-	.layers-icon-group.layers-icon-group-full-width .layers-icon-wrapper {
+	.layers-icon-group.layers-icon-group-inline-flexible .layers-icon-wrapper {
 		width: auto;
 	}
 
@@ -577,25 +577,47 @@ div[id*='layers-widget'] .widget-control-actions .alignright{
 		margin: 0 0 0 5px;
 	}
 
-	/*--------------------------------------------------------------------------------------*/
-	/*- SET ICON GROUP INLINE (add `'class' => 'layers-select-icons-inline'` to control) ---*/
-	.layers-select-icons-inline .layers-visuals-wrapper.layers-visuals-inline{
+	/*------------------------------------------------------------*/
+	/*- SET ICON GROUP INLINE ------------------------------------*/
+	/*- add `'class' => 'layers-icon-group-inline'` to control -*/
+	.layers-icon-group-inline .layers-visuals-wrapper.layers-visuals-inline{
 		padding: 5px 1px 0px 5px;
 		display: inline-block;
 		padding: 0;
 	}
-	.layers-select-icons-inline .layers-visuals-wrapper.layers-visuals-inline .layers-icon-wrapper{
+	.layers-icon-group-inline .layers-visuals-wrapper.layers-visuals-inline .layers-icon-wrapper{
 		margin: 0;
 	}
-	.layers-select-icons-inline .layers-visuals-wrapper.layers-visuals-inline .layers-visuals-item{
+	.layers-icon-group-inline .layers-visuals-wrapper.layers-visuals-inline .layers-visuals-item{
+		float: left;
+		margin: 0 1px 1px 0;
+	}
+	.layers-icon-group-inline .layers-visuals-wrapper.layers-visuals-inline .layers-visuals-item:not(.layers-active) .layers-icon-wrapper{
+		margin: 0;
+	}
+	.layers-icon-group-inline .layers-visuals-wrapper.layers-visuals-inline .layers-visuals-item .layers-icon-description{
+		display: none;
+	}
+	
+	/*--------------------------------------------------------------------------------------*/
+	/*- SET ICON GROUP INLINE & OUTLINE ----------------------------------------------------*/
+	/*- add `'class' => 'layers-icon-group-inline layers-icon-group-inline-outline'` to control -*/
+	.layers-icon-group-inline.layers-icon-group-inline-outline .layers-visuals-wrapper.layers-visuals-inline{
+		padding: 2px 1px 1px 2px;
+		background: #fff;
+		border-radius: 3px;
+		border: 1px solid #ddd;
+		box-sizing: border-box;
+	}
+	.layers-icon-group-inline.layers-icon-group-inline-outline  .layers-visuals-item{
 		float: left;
 		margin: 0 4px 5px 0;
 	}
-	.layers-select-icons-inline .layers-visuals-wrapper.layers-visuals-inline .layers-visuals-item:not(.layers-active) .layers-icon-wrapper{
-		margin: 0;
+	.layers-icon-group-inline.layers-icon-group-inline-outline  .layers-visuals-item .layers-icon-wrapper{
+		padding: 3px 7px;
 	}
-	.layers-select-icons-inline .layers-visuals-wrapper.layers-visuals-inline .layers-visuals-item .layers-icon-description{
-		display: none;
+	.layers-icon-group-inline.layers-icon-group-inline-outline  .layers-visuals-item [class*="icon-"] {
+		font-size: 16px;
 	}
 
 /*---------------------------*/
@@ -1029,7 +1051,10 @@ div[id*='layers-widget'] .widget-control-actions .alignright{
 	        font-size: 13px;
 	        font-weight: normal;
 	        text-transform: none;
-	        margin: 2px 0;
+	        margin: 0;
+	        padding: 2px 0 3px;
+	        width: 100%;
+	        box-sizing: border-box;
 	    }
 	    .layers-design-bar-form-item .wp-picker-container {
 	        text-align: right;
@@ -3548,6 +3573,8 @@ li[id*='customize-control-layers'].customize-control .layers-form-item:after{
 		margin-bottom: 6px;
 		display: inline-block;
 		position: absolute;
+		width: 100%;
+		box-sizing: border-box;
 	}
 	.l_option-customize-control-color input[type=text].layers-color-selector.wp-color-picker{
 		float: left;
@@ -3711,7 +3738,7 @@ li[id*='customize-control-layers'].customize-control .layers-form-item:after{
 			background: #FBFBFB;
 		}
 		.l_option-customize-control.group input[type="number"]{
-				padding-right: 0;
+				/* padding-right: 0; */
 		}
 		.l_option-customize-control.group:not(.l_option-customize-control-color) input[type="range"]{
 			background: transparent;

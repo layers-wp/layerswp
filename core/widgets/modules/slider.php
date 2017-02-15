@@ -495,8 +495,7 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 									'layout-fullwidth' => __( 'Full Width' , 'layerswp' ),
 									'layout-full-screen' => __( 'Full Screen' , 'layerswp' )
 								),
-								'wrapper' => 'div',
-								'wrapper-class' => 'layers-icon-group layers-icon-group-outline',
+								'class' => 'layers-icon-group-inline layers-icon-group-inline-outline',
 							),
 							'autoheight_slides' => array(
 								'type' => 'checkbox',

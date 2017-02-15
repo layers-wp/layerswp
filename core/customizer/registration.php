@@ -196,15 +196,20 @@ class Layers_Customizer_Regsitrar {
 			
 			// Add the default into the control data so it can be accessed if needed.
 			$control_data[ 'default' ] = isset( $control_data['default'] ) ? $control_data['default'] : NULL ;
+			
+			// Set Transport Method.
+			$transport = 'refresh';
+			// $transport = 'postMessage';
 
 			// Add Setting
 			$this->customizer->add_setting(
 				$setting_key,
 				array(
-					'default'    => ( isset( $control_data['default'] ) ? $control_data['default'] : NULL ) ,
-					'type'       => 'theme_mod',
-					'capability' => 'manage_options',
-					'sanitize_callback' => $this->add_sanitize_callback( $control_data )
+					'default'           => ( isset( $control_data['default'] ) ? $control_data['default'] : NULL ) ,
+					'type'              => 'theme_mod',
+					'capability'        => 'manage_options',
+					'sanitize_callback' => $this->add_sanitize_callback( $control_data ),
+					'transport'         => $transport,
 				)
 			);
 

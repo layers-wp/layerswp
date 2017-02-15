@@ -239,7 +239,7 @@ class Layers_Design_Controller {
 	 * @return   array       $array      Array of options, all standard DOM input options
 	 */
 	public function render_input( $form_args = array() ) {
-		
+
 		// Set defaults.
 		$defaults = array(
 			'wrapper' => NULL,
@@ -248,7 +248,6 @@ class Layers_Design_Controller {
 		
 		// Apply defaults.
 		$form_args = wp_parse_args( $form_args, $defaults );
-		
 	
 		$data_show_if = array();
 		if ( isset( $form_args['data']['show-if-selector'] ) ){
@@ -401,6 +400,10 @@ class Layers_Design_Controller {
 
 		// Add elements
 		$defaults['elements'] = array(
+			'layout-start' => array(
+				'label' => __( 'Layout' , 'layerswp' ),
+				'type' => 'group-start'
+			),
 			'layout' => array(
 				'type' => 'select-icons',
 				'name' => $this->get_layers_field_name( 'layout' ),
@@ -408,9 +411,13 @@ class Layers_Design_Controller {
 				'value' => ( isset( $this->values['layout'] ) ) ? $this->values['layout'] : NULL,
 				'options' => array(
 					'layout-boxed' => __( 'Boxed', 'layerswp' ),
-					'layout-fullwidth' => __( 'Full Width', 'layerswp' )
-				)
-			)
+					'layout-fullwidth' => __( 'Full Width', 'layerswp' ),
+				),
+				'class' => 'layers-icon-group-inline layers-icon-group-inline-outline',
+			),
+			'layout-end' => array(
+				'type' => 'group-end'
+			),
 		);
 
 		$args = $this->merge_component( $defaults, $args );
@@ -633,26 +640,18 @@ class Layers_Design_Controller {
 
 		// Add elements
 		$defaults['elements'] = array(
+
+			'featuredimage-start' => array(
+				'type' => 'group-start',
+				'label' => __( 'Featured Image', 'layerswp' ),
+			),
+
 			'featuredimage' => array(
 				'type' => 'image',
 				'label' => __( 'Featured Media', 'layerswp' ),
 				'name' => $this->get_layers_field_name( 'featuredimage' ),
 				'id' => $this->get_layers_field_id( 'featuredimage' ),
 				'value' => ( isset( $this->values['featuredimage'] ) ) ? $this->values['featuredimage'] : NULL
-			),
-			'featuredimage' => array(
-				'type' => 'image',
-				'label' => __( 'Featured Media', 'layerswp' ),
-				'name' => $this->get_layers_field_name( 'featuredimage' ),
-				'id' => $this->get_layers_field_id( 'featuredimage' ),
-				'value' => ( isset( $this->values['featuredimage'] ) ) ? $this->values['featuredimage'] : NULL
-			),
-			'featuredvideo' => array(
-				'type' => 'text',
-				'label' => __( 'Video URL (oEmbed)', 'layerswp' ),
-				'name' => $this->get_layers_field_name( 'featuredvideo' ),
-				'id' => $this->get_layers_field_id( 'featuredvideo' ),
-				'value' => ( isset( $this->values['featuredvideo'] ) ) ? $this->values['featuredvideo'] : NULL
 			),
 			'imageratios' => array(
 				'type' => 'select-icons',
@@ -668,6 +667,25 @@ class Layers_Design_Controller {
 					'image-round' => __( 'Round', 'layerswp' ),
 				),
 				'class' => 'layers-icon-group-inline layers-icon-group-inline-outline'
+			),
+			'featuredimage-end' => array(
+				'type' => 'group-end',
+			),
+
+			'featuredvideo-start' => array(
+				'type' => 'group-start',
+				'label' => __( 'Featured Video', 'layerswp' ),
+			),
+				'featuredvideo' => array(
+					'type' => 'text',
+					'label' => __( 'Video URL (oEmbed)', 'layerswp' ),
+					'description' => __( '<strong>TIP:</strong> Paste links from YouTube, Vimeo, DailyMotion, Twitter or Flickr.', 'layerswp' ),
+					'name' => $this->get_layers_field_name( 'featuredvideo' ),
+					'id' => $this->get_layers_field_id( 'featuredvideo' ),
+					'value' => ( isset( $this->values['featuredvideo'] ) ) ? $this->values['featuredvideo'] : NULL
+				),
+			'featuredvideo-end' => array(
+				'type' => 'group-end',
 			),
 		);
 
@@ -745,10 +763,13 @@ class Layers_Design_Controller {
 		$defaults['wrapper-class'] = 'layers-pop-menu-wrapper layers-animate layers-content-small';
 
 		// Add elements
-		$defaults['elements'] = array(
-			'fonts-align' => array(
+		$defaults['elements']['fonts-align-start'] = array(
+			'type' => 'group-start',
+			'label' => __( 'Size &amp; Alignment', 'layerswp' ),
+		);
+			$defaults['elements']['fonts-align'] = array(
 				'type' => 'select-icons',
-				'label' => __( 'Text Align', 'layerswp' ),
+				'label' => __( 'Text Alignment', 'layerswp' ),
 				'name' => $this->get_layers_field_name( 'fonts', 'align' ),
 				'id' => $this->get_layers_field_id( 'fonts', 'align' ),
 				'value' => ( isset( $this->values['fonts']['align'] ) ) ? $this->values['fonts']['align'] : NULL,
@@ -758,9 +779,9 @@ class Layers_Design_Controller {
 					'text-right' => __( 'Right', 'layerswp' ),
 					'text-justify' => __( 'Justify', 'layerswp' )
 				),
-				'class' => 'layers-icon-group-inline layers-icon-group-inline-outline'
-			),
-			'fonts-size' => array(
+				'class' => 'layers-icon-group-inline layers-icon-group-inline-outline',
+			);
+			$defaults['elements']['fonts-size'] = array(
 				'type' => 'select',
 				'label' => __( 'Text Size', 'layerswp' ),
 				'name' => $this->get_layers_field_name( 'fonts', 'size' ),
@@ -771,15 +792,68 @@ class Layers_Design_Controller {
 					'medium' => __( 'Medium', 'layerswp' ),
 					'large' => __( 'Large', 'layerswp' )
 				)
-			),
-			'fonts-color' => array(
+			);
+
+		$defaults['elements']['fonts-align-end'] = array(
+			'type' => 'group-end',
+		);
+
+		$defaults['elements']['fonts-header-style-start'] = array(
+			'type' => 'group-start',
+			'label' => __( 'Header Styling', 'layerswp' ),
+		);
+
+			$defaults['elements']['fonts-color'] = array(
 				'type' => 'color',
 				'label' => __( 'Text Color', 'layerswp' ),
 				'name' => $this->get_layers_field_name( 'fonts', 'color' ),
 				'id' => $this->get_layers_field_id( 'fonts', 'color' ),
 				'value' => ( isset( $this->values['fonts']['color'] ) ) ? $this->values['fonts']['color'] : NULL
-			)
 		);
+
+			if( !class_exists( 'Layers_Pro' ) ) {
+				$defaults['elements']['fonts-header-upsell'] = array(
+					'type' => 'html',
+					'html' => '<div class="layers-upsell-tag">
+						<span class="layers-upsell-title">Upgrade to Layers Pro</span>
+							<div class="description customize-control-description">
+							Want to bold, italic or fine-tune your header size? <a target="_blank" href="https://www.layerswp.com/layers-pro/?ref=obox&amp;utm_source=layers%20theme&amp;utm_medium=link&amp;utm_campaign=Layers%20Pro%20Upsell&amp;utm_content=Widget%Font%20Styling">Purchase Layers Pro</a>!
+							</div>
+						</div>'
+					);
+			}
+
+		$defaults['elements']['fonts-header-style-end'] = array(
+			'type' => 'group-end',
+		);
+		$defaults['elements']['fonts-excerpt-style-start'] = array(
+			'type' => 'group-start',
+			'label' => __( 'Excerpt Styling', 'layerswp' ),
+		);
+			$defaults['elements']['fonts-excerpt-color'] = array(
+				'type' => 'color',
+				'label' => __( 'Text Color', 'layerswp' ),
+				'name' => $this->get_layers_field_name( 'fonts', 'excerpt', 'color' ),
+				'id' => $this->get_layers_field_id( 'fonts', 'excerpt', 'color' ),
+				'value' => ( isset( $this->values['fonts']['excerpt']['color'] ) ) ? $this->values['fonts']['excerpt']['color'] : NULL
+			);
+
+			if( !class_exists( 'Layers_Pro' ) ) {
+				$defaults['elements']['fonts-upsell'] = array(
+					'type' => 'html',
+					'html' => '<div class="layers-upsell-tag">
+						<span class="layers-upsell-title">Upgrade to Layers Pro</span>
+							<div class="description customize-control-description">
+							Want to bold, italic or fine-tune your excerpt size? <a target="_blank" href="https://www.layerswp.com/layers-pro/?ref=obox&amp;utm_source=layers%20theme&amp;utm_medium=link&amp;utm_campaign=Layers%20Pro%20Upsell&amp;utm_content=Widget%Font%20Styling">Purchase Layers Pro</a>!
+							</div>
+						</div>'
+					);
+			}
+
+		$defaults['elements']['fonts-excerpt-style-end'] = array(
+			'type' => 'group-end',
+		);
+		
 
 		$args = $this->merge_component( $defaults, $args );
 
@@ -889,10 +963,6 @@ class Layers_Design_Controller {
 					'class' => 'layers-icon-group-inline layers-icon-group-inline-outline',
 				);
 
-		$defaults['elements']['background-image-end'] = array(
-			'type' => 'group-end',
-		);
-
 		if( !class_exists( 'Layers_Pro' ) ) {
 			$defaults['elements']['background-parallax'] = array(
 					'type' => 'checkbox',
@@ -907,6 +977,7 @@ class Layers_Design_Controller {
 					'disabled' => true
 				);
 		}
+				
 		$defaults['elements']['background-darken'] = array(
 				'type' => 'checkbox',
 				'label' => __( 'Darken', 'layerswp' ),
@@ -914,6 +985,10 @@ class Layers_Design_Controller {
 				'id' => $this->get_layers_field_id( 'background', 'darken' ),
 				'value' => ( isset( $this->values['background']['darken'] ) ) ? $this->values['background']['darken'] : NULL,
 			);
+
+		$defaults['elements']['background-image-end'] = array(
+			'type' => 'group-end',
+		);
 
 		$args = $this->merge_component( $defaults, $args );
 

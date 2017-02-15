@@ -565,7 +565,8 @@ div[id*='layers-widget'] .widget-control-actions .alignright{
 		text-align: left;
 	}
 	.layers-visuals-wrapper.layers-visuals-inline .layers-icon-wrapper{
-		padding: 5px; margin: 0 0 5px;
+		padding: 5px;
+		margin: 0 0 5px;
 	}
 	.layers-visuals-wrapper.layers-visuals-inline .layers-icon-wrapper [class^="icon-"],
 	.layers-visuals-wrapper.layers-visuals-inline .layers-icon-wrapper [class*=" icon-"]{

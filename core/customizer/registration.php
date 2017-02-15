@@ -181,10 +181,12 @@ class Layers_Customizer_Regsitrar {
 			
 			// Add Control.
 			if ( $this->customizer->get_section( $panel_section_key ) ) {
+				
 				// Section exists without 'layers-' prepended, so add control to it.
 				$control_data[ 'section' ] = $panel_section_key;
 			}
 			else {
+				
 				// Section exists with 'layers-' prepended, so add control to it.
 				$control_data[ 'section' ] = $this->prefix . $panel_section_key;
 			}
@@ -216,7 +218,8 @@ class Layers_Customizer_Regsitrar {
 						$control_data
 					)
 				);
-			} else if( 'layers-select-icons' == $control_data['type'] ) {
+				
+			} else if ( 'layers-select-icons' == $control_data['type'] ) {
 
 				// Add Control
 				$this->customizer->add_control(
@@ -226,7 +229,8 @@ class Layers_Customizer_Regsitrar {
 						$control_data
 					)
 				);
-			} else if( 'layers-seperator' == $control_data['type'] ) {
+				
+			} else if ( 'layers-seperator' == $control_data['type'] ) {
 
 				// Add Control
 				$this->customizer->add_control(
@@ -236,7 +240,8 @@ class Layers_Customizer_Regsitrar {
 						$control_data
 					)
 				);
-			} else if( 'layers-heading' == $control_data['type'] ) {
+				
+			} else if ( 'layers-heading' == $control_data['type'] ) {
 
 				// Add Control
 				$this->customizer->add_control(
@@ -246,7 +251,8 @@ class Layers_Customizer_Regsitrar {
 						$control_data
 					)
 				);
-			} else if( 'layers-color' == $control_data['type'] ) {
+				
+			} else if ( 'layers-color' == $control_data['type'] ) {
 
 				// Add Control
 				$this->customizer->add_control(
@@ -256,7 +262,8 @@ class Layers_Customizer_Regsitrar {
 						$control_data
 					)
 				);
-			} else if( 'layers-checkbox' == $control_data['type'] ) {
+				
+			} else if ( 'layers-checkbox' == $control_data['type'] ) {
 
 				// Add Control
 				$this->customizer->add_control(
@@ -266,7 +273,8 @@ class Layers_Customizer_Regsitrar {
 						$control_data
 					)
 				);
-			} else if( 'layers-switch' == $control_data['type'] ) {
+				
+			} else if ( 'layers-switch' == $control_data['type'] ) {
 
 				// Add Control
 				$this->customizer->add_control(
@@ -276,7 +284,8 @@ class Layers_Customizer_Regsitrar {
 						$control_data
 					)
 				);
-			} else if( 'layers-select' == $control_data['type'] ) {
+				
+			} else if ( 'layers-select' == $control_data['type'] ) {
 
 				// Add Control
 				$this->customizer->add_control(
@@ -286,7 +295,8 @@ class Layers_Customizer_Regsitrar {
 						$control_data
 					)
 				);
-			} else if( 'layers-textarea' == $control_data['type'] ) {
+				
+			} else if ( 'layers-textarea' == $control_data['type'] ) {
 
 				// Add Control
 				$this->customizer->add_control(
@@ -296,7 +306,8 @@ class Layers_Customizer_Regsitrar {
 						$control_data
 					)
 				);
-			} else if( 'layers-rte' == $control_data['type'] ) {
+				
+			} else if ( 'layers-rte' == $control_data['type'] ) {
 
 				// Add Control
 				$this->customizer->add_control(
@@ -307,7 +318,7 @@ class Layers_Customizer_Regsitrar {
 					)
 				);
 
-			} else if( 'layers-font' == $control_data['type'] ) {
+			} else if ( 'layers-font' == $control_data['type'] ) {
 
 				// Add Control
 				$this->customizer->add_control(
@@ -317,6 +328,7 @@ class Layers_Customizer_Regsitrar {
 						$control_data
 					)
 				);
+				
 			} else if ( 'layers-button' == $control_data['type'] ) {
 
 				// Add Control
@@ -327,7 +339,8 @@ class Layers_Customizer_Regsitrar {
 						$control_data
 					)
 				);
-			} else if( 'layers-code' == $control_data['type'] ) {
+				
+			} else if ( 'layers-code' == $control_data['type'] ) {
 
 				// Add Control
 				$this->customizer->add_control(
@@ -337,7 +350,8 @@ class Layers_Customizer_Regsitrar {
 						$control_data
 					)
 				);
-			} else if( 'layers-text' == $control_data['type'] ) {
+				
+			} else if ( 'layers-text' == $control_data['type'] ) {
 
 				// Add Control
 				$this->customizer->add_control(
@@ -347,7 +361,8 @@ class Layers_Customizer_Regsitrar {
 						$control_data
 					)
 				);
-			} else if( 'layers-number' == $control_data['type'] ) {
+				
+			} else if ( 'layers-number' == $control_data['type'] ) {
 
 				// Add Control
 				$this->customizer->add_control(
@@ -357,7 +372,8 @@ class Layers_Customizer_Regsitrar {
 						$control_data
 					)
 				);
-			} else if( 'layers-range' == $control_data['type'] ) {
+				
+			} else if ( 'layers-range' == $control_data['type'] ) {
 
 				// Add Control
 				$this->customizer->add_control(
@@ -367,7 +383,8 @@ class Layers_Customizer_Regsitrar {
 						$control_data
 					)
 				);
-			} else if( 'layers-trbl-fields' == $control_data['type'] ) {
+				
+			} else if ( 'layers-trbl-fields' == $control_data['type'] ) {
 
 				// Add extra settings fields for Top/Right/Bottom/Left
 				$this->customizer->add_setting(
@@ -415,7 +432,8 @@ class Layers_Customizer_Regsitrar {
 						$control_data
 					)
 				);
-			} else if( 'layers-border-style-fields' == $control_data['type'] ) {
+				
+			} else if ( 'layers-border-style-fields' == $control_data['type'] ) {
 
 				// Add extra settings fields for Width, Style, Radius.
 				$this->customizer->add_setting(
@@ -455,7 +473,7 @@ class Layers_Customizer_Regsitrar {
 					)
 				);
 				
-			} else if( 'text' == $control_data['type'] ) {
+			} else if ( 'text' == $control_data['type'] ) {
 
 				// Add Control
 				$this->customizer->add_control(
@@ -465,7 +483,8 @@ class Layers_Customizer_Regsitrar {
 						$control_data
 					)
 				);
-			} else if( 'color' == $control_data['type'] ) {
+				
+			} else if ( 'color' == $control_data['type'] ) {
 
 				// Add Control
 				$this->customizer->add_control(
@@ -475,7 +494,8 @@ class Layers_Customizer_Regsitrar {
 						$control_data
 					)
 				);
-			} else if( 'upload' == $control_data['type'] ) {
+				
+			} else if ( 'upload' == $control_data['type'] ) {
 
 				// Add Control
 				$this->customizer->add_control(
@@ -485,7 +505,8 @@ class Layers_Customizer_Regsitrar {
 						$control_data
 					)
 				);
-			} else if( 'image' == $control_data['type'] ) {
+				
+			} else if ( 'image' == $control_data['type'] ) {
 
 				// Add Control
 				$this->customizer->add_control(
@@ -495,7 +516,8 @@ class Layers_Customizer_Regsitrar {
 						$control_data
 					)
 				);
-			} else if( 'background-image' == $control_data['type'] ) {
+				
+			} else if ( 'background-image' == $control_data['type'] ) {
 
 				// Add Control
 				$this->customizer->add_control(
@@ -505,7 +527,8 @@ class Layers_Customizer_Regsitrar {
 						$control_data
 					)
 				);
-			} else if( 'header-image' == $control_data['type'] ) {
+				
+			} else if ( 'header-image' == $control_data['type'] ) {
 
 				// Add Control
 				$this->customizer->add_control(
@@ -515,7 +538,8 @@ class Layers_Customizer_Regsitrar {
 						$control_data
 					)
 				);
-			} else if( 'layers-accordion-start' == $control_data['type'] ) {
+				
+			} else if ( 'layers-accordion-start' == $control_data['type'] ) {
 
 				// Add Control
 				$this->customizer->add_control(
@@ -525,7 +549,8 @@ class Layers_Customizer_Regsitrar {
 						$control_data
 					)
 				);
-			} else if( 'layers-accordion-end' == $control_data['type'] ) {
+				
+			} else if ( 'layers-accordion-end' == $control_data['type'] ) {
 
 				// Add Control
 				$this->customizer->add_control(
@@ -535,6 +560,7 @@ class Layers_Customizer_Regsitrar {
 						$control_data
 					)
 				);
+				
 			} else {
 
 				// Add Control

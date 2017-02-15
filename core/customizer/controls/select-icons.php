@@ -54,7 +54,7 @@ if( !class_exists( 'Layers_Customize_Select_Icon_Control' ) ) {
 							$class = "icon-{$key}";
 						}
 						?>
-						<li class="layers-visuals-item <?php if( $key == $this->value() ) echo 'layers-active'; ?>">
+						<li class="layers-visuals-item <?php if ( $key == $this->value() ) echo 'layers-active'; ?>">
 							<label class="layers-icon-wrapper layers-select-images">
 								<span class="<?php echo $class; ?>"></span>
 								<span class="layers-icon-description">

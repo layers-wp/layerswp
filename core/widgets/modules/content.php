@@ -182,6 +182,15 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 					$first_last_class = '';
 					$row_width = 0; ?>
 					<div class="<?php echo $this->get_widget_layout_class( $instance ); ?> <?php echo $this->check_and_return( $instance , 'design', 'liststyle' ); ?>">
+						
+						<?php
+						// s( layers_get_theme_mod( 'comments-body-borders-active-TEST' ) );
+						// s( layers_get_theme_mod( 'comments-body-borders-active-top' ) );
+						// s( layers_get_theme_mod( 'comments-body-borders-active-right' ) );
+						// s( layers_get_theme_mod( 'comments-body-borders-active-bottom' ) );
+						// s( layers_get_theme_mod( 'comments-body-borders-active-left' ) );
+						?>
+					
 						<div class="grid">
 							<?php foreach ( $column_ids as $column_key ) {
 

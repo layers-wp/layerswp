@@ -235,6 +235,23 @@ class Layers_Customizer_Regsitrar {
 					)
 				);
 				
+				// Add extra settings fields for each choice key
+				if ( isset( $control_data['multi_select'] ) && isset( $control_data['choices'] ) ) {
+					
+					foreach ( $control_data['choices'] as $key => $choices ) {
+						
+						$this->customizer->add_setting(
+							"{$setting_key}-{$key}",
+							array(
+								'default'    => ( isset( $control_data['default'] ) ? $control_data['default'] : NULL ),
+								'type'       => 'theme_mod',
+								'capability' => 'manage_options',
+								'sanitize_callback' => $this->add_sanitize_callback( $control_data ),
+							)
+						);
+					}
+				}
+				
 			} else if ( 'layers-seperator' == $control_data['type'] ) {
 
 				// Add Control

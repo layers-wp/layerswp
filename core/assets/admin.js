@@ -466,17 +466,47 @@ jQuery(function($) {
 	});
 
 	// CUSTOMIZE CONTROLS - Select Icon Group e.g. Header Width (Boxed, Full-Width)
-	$( document ).on( 'click', '[id^="layers-customize"] .layers-visuals-item', function(e){
+	$( document ).on( 'click', '[id^="layers-customize"] .layers-visuals-item input', function(e){
 
-		// "Hi Mom"
-		$that = $(this);
+		e.stopPropagation();
+		
+		// Cache elements.
+		var $current_input = $(this);
+		var $current_li = $current_input.parents('.layers-visuals-item');
+		var $current_label = $current_li.find('label');
+		var $sibling_elements = $current_li.siblings( '.layers-visuals-item' );
 
-		// Close siblings
-		$that.siblings( '.layers-visuals-item' ).removeClass( 'layers-active' );
+		if (
+				1 < $sibling_elements.length &&
+				$sibling_elements.eq(0).find('input').prop('name') !== $current_li.find('input').prop('name')
+			) {
+			
+			/**
+			 * Multi-Select.
+			 */
 
-		// Toggle active state
-		$that.trigger( 'layers-design-bar-menu', $that );
-		$that.addClass( 'layers-active' );
+			if ( $current_li.hasClass( 'layers-active' ) ) {
+				$current_li.removeClass( 'layers-active' );
+				// $current_input.prop( 'checked', false );
+			}
+			else {
+				$current_li.addClass( 'layers-active' );
+				// $current_input.prop( 'checked', true );
+			}
+		}
+		else {
+			
+			/**
+			 * Single Select.
+			 */
+
+			// Uncheck all siblings.
+			$sibling_elements.removeClass( 'layers-active' );
+
+			// Check the current selected element.
+			// $current_li.trigger( 'layers-design-bar-menu', $current_li );
+			$current_li.addClass( 'layers-active' );
+		}
 	});
 
 	$( document ).on( 'layers-design-bar-menu', '.layers-visuals-item', function( e, menu_item ){

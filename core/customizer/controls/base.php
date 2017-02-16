@@ -42,6 +42,8 @@ if( !class_exists( 'Layers_Customize_Control' ) ) {
 		public $step;
 		
 		public $input_class;
+		
+		public $multi_select = FALSE;
 
 		/**
 		* Render content must be overwrittedn by etending class as this renders the control.

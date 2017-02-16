@@ -324,11 +324,13 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 										$post_column_class = array();
 										$post_column_class[] = 'layers-masonry-column';
 										$post_column_class[] = 'thumbnail';
-										$post_column_class[] = ( 'list-masonry' == $this->check_and_return( $instance, 'design', 'liststyle' ) ? 'no-gutter' : '' );
-										$post_column_class[] = 'column' . ( 'on' != $this->check_and_return( $instance, 'design', 'gutter' ) ? '-flush' : '' );
 										$post_column_class[] = $span_class;
+										$post_column_class[] = ( 'list-masonry' == $this->check_and_return( $instance, 'design', 'liststyle' ) ? 'no-gutter' : '' );
+										$post_column_class[] = ( 'on' != $this->check_and_return( $instance, 'design', 'gutter' ) ? 'column-flush' : 'column' );
 										$post_column_class[] = ( 'overlay' == $this->check_and_return( $instance , 'text_style' ) ? 'with-overlay' : ''  ) ;
+										$post_column_class[] = ( '' != $this->check_and_return( $instance, 'design' , 'column-text-align' ) ? $this->check_and_return( $instance, 'design' , 'column-text-align' ) : 'text-left'  ) ;
 										$post_column_class[] = ( '' != $this->check_and_return( $instance, 'design', 'column-background-color' ) && 'dark' == layers_is_light_or_dark( $this->check_and_return( $instance, 'design', 'column-background-color' ) ) ? 'invert' : '' );
+										$post_column_class[] = ( 'list-masonry' == $this->check_and_return( $instance, 'design', 'liststyle' ) ? 'no-gutter' : '' );
 										$post_column_class = implode( ' ' , $post_column_class ); ?>
 
 										<article class="<?php echo $post_column_class; ?>" data-cols="<?php echo $col_count; ?>">
@@ -598,7 +600,6 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 					),
 					'columns',
 					'buttons',
-					'liststyle',
 					'imageratios',
 					'background',
 					'advanced',

@@ -399,12 +399,12 @@ class Layers_Design_Controller {
 		$defaults['wrapper-class'] = 'layers-pop-menu-wrapper layers-animate layers-small';
 
 		// Add elements
-		$defaults['elements'] = array(
-			'layout-start' => array(
-				'label' => __( 'Layout' , 'layerswp' ),
-				'type' => 'group-start'
-			),
-			'layout' => array(
+		$defaults['elements']['layout-start'] = array(
+			'label' => __( 'Layout' , 'layerswp' ),
+			'type' => 'group-start'
+		);
+
+			$defaults['elements']['layout'] = array(
 				'type' => 'select-icons',
 				'name' => $this->get_layers_field_name( 'layout' ),
 				'id' => $this->get_layers_field_id( 'layout' ),
@@ -414,15 +414,15 @@ class Layers_Design_Controller {
 					'layout-fullwidth' => __( 'Full Width', 'layerswp' ),
 				),
 				'class' => 'layers-icon-group-inline layers-icon-group-inline-outline',
-			),
-			'layout-end' => array(
-				'type' => 'group-end'
-			),
+			);
+
+		$defaults['elements']['layout-end'] = array(
+			'type' => 'group-end'
 		);
 
 		$args = $this->merge_component( $defaults, $args );
 
-		$this->render_control( $key, apply_filters( 'layerswp_layout_component_args', $args, $key, $this->type, $this->args, $this->values ) );
+		$this->render_control( $key, apply_filters( 'layers_layout_component_args', $args, $key, $this->type, $this->args, $this->values, $this ) );
 	}
 
 	/**
@@ -449,23 +449,21 @@ class Layers_Design_Controller {
 		$defaults['wrapper-class'] = 'layers-pop-menu-wrapper layers-animate layers-small';
 
 		// Add elements
-		$defaults['elements'] = array(
-			'liststyle' => array(
-				'type' => 'select-icons',
-				'name' => $this->get_layers_field_name( 'liststyle' ),
-				'id' => $this->get_layers_field_id( 'liststyle' ),
-				'value' => ( isset( $this->values['liststyle'] ) ) ? $this->values['liststyle'] : NULL,
-				'options' => array(
-					'list-grid' => __( 'Grid', 'layerswp' ),
-					'list-list' => __( 'List', 'layerswp' ),
-					'list-masonry' => __( 'Masonry', 'layerswp' )
-				)
+		$defaults['elements']['liststyle'] = array(
+			'type' => 'select-icons',
+			'name' => $this->get_layers_field_name( 'liststyle' ),
+			'id' => $this->get_layers_field_id( 'liststyle' ),
+			'value' => ( isset( $this->values['liststyle'] ) ) ? $this->values['liststyle'] : NULL,
+			'options' => array(
+				'list-grid' => __( 'Grid', 'layerswp' ),
+				'list-list' => __( 'List', 'layerswp' ),
+				'list-masonry' => __( 'Masonry', 'layerswp' )
 			)
 		);
 
 		$args = $this->merge_component( $defaults, $args );
 
-		$this->render_control( $key, apply_filters( 'layerswp_liststyle_component_args', $args, $key, $this->type, $this->args, $this->values ) );
+		$this->render_control( $key, apply_filters( 'layers_liststyle_component_args', $args, $key, $this->type, $this->args, $this->values, $this ) );
 	}
 
 	/**
@@ -492,8 +490,13 @@ class Layers_Design_Controller {
 		$defaults['wrapper-class'] = 'layers-pop-menu-wrapper layers-animate layers-content-small';
 
 		// Add elements
-		$defaults['elements'] = array(
-			'columns' => array(
+		
+		$defaults['elements']['column=layout-start'] = array(
+			'type' => 'group-start',
+			'label' => __( 'Layout', 'layerswp' ),
+		);
+
+			$defaults['elements']['columns'] = array(
 				'type' => 'select',
 				'label' => __( 'Columns', 'layerswp' ),
 				'name' => $this->get_layers_field_name( 'columns' ),
@@ -506,26 +509,72 @@ class Layers_Design_Controller {
 					'4' => __( '4 Columns', 'layerswp' ),
 					'6' => __( '6 Columns', 'layerswp' ),
 				)
-			),
-			'color' => array(
-				'type' => 'color',
-				'label' => __( 'Background Color', 'layerswp' ),
-				'name' => $this->get_layers_field_name( 'column-background-color' ),
-				'id' => $this->get_layers_field_id( 'columns-background-color' ),
-				'value' => ( isset( $this->values['column-background-color'] ) ) ? $this->values['column-background-color'] : NULL
-			),
-			'gutter' => array(
+			);
+
+			$defaults['elements']['gutter'] = array(
 				'type' => 'checkbox',
 				'label' => __( 'Gutter', 'layerswp' ),
 				'name' => $this->get_layers_field_name( 'gutter' ),
 				'id' => $this->get_layers_field_id( 'gutter' ),
 				'value' => ( isset( $this->values['gutter'] ) ) ? $this->values['gutter'] : NULL
-			)
+			);
+
+			// Only show this for the Post widget (Post Carousel widget doesn't use this option, meanwhile 3rd party authors would already have liststyle separate )
+			if( 'post' == $this->args[ 'widget_id' ] ) {
+				$defaults['elements']['liststyle'] = array(
+					'type' => 'select-icons',
+					'label' => __( 'List Style', 'layerswp' ),
+					'name' => $this->get_layers_field_name( 'liststyle' ),
+					'id' => $this->get_layers_field_id( 'liststyle' ),
+					'value' => ( isset( $this->values['liststyle'] ) ) ? $this->values['liststyle'] : NULL,
+					'options' => array(
+						'list-grid' => __( 'Grid', 'layerswp' ),
+						'list-list' => __( 'List', 'layerswp' ),
+						'list-masonry' => __( 'Masonry', 'layerswp' )
+					),
+					'class' => 'layers-icon-group-inline layers-icon-group-inline-outline',
+				);
+			}
+
+			$defaults['elements']['column-textalign'] = array(
+				'type' => 'select-icons',
+				'label' => __( 'Text Align', 'layerswp' ),
+				'name' => $this->get_layers_field_name( 'column-text-align' ),
+				'id' => $this->get_layers_field_id( 'column-text-align' ),
+				'value' => ( isset( $this->values['column-text-align'] ) ) ? $this->values['column-text-align'] : NULL,
+				'options' => array(
+					'text-left' => __( 'Left', 'layerswp' ),
+					'text-center' => __( 'Center', 'layerswp' ),
+					'text-right' => __( 'Right', 'layerswp' ),
+					'text-justify' => __( 'Justify', 'layerswp' )
+				),
+				'class' => 'layers-icon-group-inline layers-icon-group-inline-outline',
+			);
+
+		$defaults['elements']['column-layout-end'] = array(
+			'type' => 'group-end',
+		);
+
+		$defaults['elements']['column-styling-start'] = array(
+			'type' => 'group-start',
+			'label' => __( 'Styling', 'layerswp' ),
+		);
+
+			$defaults['elements']['column-background-color'] = array(
+				'type' => 'background-color',
+				'label' => __( 'Background Color', 'layerswp' ),
+				'name' => $this->get_layers_field_name( 'column-background-color' ),
+				'id' => $this->get_layers_field_id( 'columns-background-color' ),
+				'value' => ( isset( $this->values['column-background-color'] ) ) ? $this->values['column-background-color'] : NULL
+			);
+
+		$defaults['elements']['column-styling-end'] = array(
+			'type' => 'group-end',
 		);
 
 		$args = $this->merge_component( $defaults, $args );
 
-		$this->render_control( $key, apply_filters( 'layerswp_columns_component_args', $args, $key, $this->type, $this->args, $this->values ) );
+		$this->render_control( $key, apply_filters( 'layers_columns_component_args', $args, $key, $this->type, $this->args, $this->values, $this ) );
 	}
 
 	/**
@@ -552,24 +601,22 @@ class Layers_Design_Controller {
 		$defaults['wrapper-class'] = 'layers-pop-menu-wrapper layers-animate layers-content-small';
 
 		// Add elements
-		$defaults['elements'] = array(
-			'textalign' => array(
-				'type' => 'select-icons',
-				'name' => $this->get_layers_field_name( 'textalign' ),
-				'id' => $this->get_layers_field_id( 'textalign' ),
-				'value' => ( isset( $this->values['textalign'] ) ) ? $this->values['textalign'] : NULL,
-				'options' => array(
-					'text-left' => __( 'Left', 'layerswp' ),
-					'text-center' => __( 'Center', 'layerswp' ),
-					'text-right' => __( 'Right', 'layerswp' ),
-					'text-justify' => __( 'Justify', 'layerswp' )
-				)
+		$defaults['elements']['textalign'] = array(
+			'type' => 'select-icons',
+			'name' => $this->get_layers_field_name( 'textalign' ),
+			'id' => $this->get_layers_field_id( 'textalign' ),
+			'value' => ( isset( $this->values['textalign'] ) ) ? $this->values['textalign'] : NULL,
+			'options' => array(
+				'text-left' => __( 'Left', 'layerswp' ),
+				'text-center' => __( 'Center', 'layerswp' ),
+				'text-right' => __( 'Right', 'layerswp' ),
+				'text-justify' => __( 'Justify', 'layerswp' )
 			)
 		);
 
 		$args = $this->merge_component( $defaults, $args );
 
-		$this->render_control( $key, apply_filters( 'layerswp_textalign_component_args', $args, $key, $this->type, $this->args, $this->values ) );
+		$this->render_control( $key, apply_filters( 'layers_textalign_component_args', $args, $key, $this->type, $this->args, $this->values, $this ) );
 	}
 
 	/**
@@ -596,23 +643,21 @@ class Layers_Design_Controller {
 		$defaults['wrapper-class'] = 'layers-pop-menu-wrapper layers-animate layers-small';
 
 		// Add elements
-		$defaults['elements'] = array(
-			'imagealign' => array(
-				'type' => 'select-icons',
-				'name' => $this->get_layers_field_name( 'imagealign' ),
-				'id' => $this->get_layers_field_id( 'imagealign' ),
-				'value' => ( isset( $this->values['imagealign'] ) ) ? $this->values['imagealign'] : NULL,
-				'options' => array(
-					'image-left' => __( 'Left', 'layerswp' ),
-					'image-right' => __( 'Right', 'layerswp' ),
-					'image-top' => __( 'Top', 'layerswp' ),
-				)
-			),
+		$defaults['elements']['imagealign'] = array(
+			'type' => 'select-icons',
+			'name' => $this->get_layers_field_name( 'imagealign' ),
+			'id' => $this->get_layers_field_id( 'imagealign' ),
+			'value' => ( isset( $this->values['imagealign'] ) ) ? $this->values['imagealign'] : NULL,
+			'options' => array(
+				'image-left' => __( 'Left', 'layerswp' ),
+				'image-right' => __( 'Right', 'layerswp' ),
+				'image-top' => __( 'Top', 'layerswp' ),
+			)
 		);
 
 		$args = $this->merge_component( $defaults, $args );
 
-		$this->render_control( $key, apply_filters( 'layerswp_imagealign_component_args', $args, $key, $this->type, $this->args, $this->values ) );
+		$this->render_control( $key, apply_filters( 'layers_imagealign_component_args', $args, $key, $this->type, $this->args, $this->values, $this ) );
 	}
 
 	/**
@@ -639,21 +684,20 @@ class Layers_Design_Controller {
 		$defaults['wrapper-class'] = 'layers-pop-menu-wrapper layers-animate layers-content-small';
 
 		// Add elements
-		$defaults['elements'] = array(
+		$defaults['elements']['featuredimage-start'] = array(
+			'type' => 'group-start',
+			'label' => __( 'Featured Image', 'layerswp' ),
+		);
 
-			'featuredimage-start' => array(
-				'type' => 'group-start',
-				'label' => __( 'Featured Image', 'layerswp' ),
-			),
-
-			'featuredimage' => array(
+			$defaults['elements']['featuredimage'] = array(
 				'type' => 'image',
 				'label' => __( 'Featured Media', 'layerswp' ),
 				'name' => $this->get_layers_field_name( 'featuredimage' ),
 				'id' => $this->get_layers_field_id( 'featuredimage' ),
 				'value' => ( isset( $this->values['featuredimage'] ) ) ? $this->values['featuredimage'] : NULL
-			),
-			'imageratios' => array(
+			);
+
+			$defaults['elements']['imageratios'] = array(
 				'type' => 'select-icons',
 				'label' => __( 'Image Ratio', 'layerswp' ),
 				'name' => $this->get_layers_field_name( 'imageratios' ),
@@ -667,31 +711,33 @@ class Layers_Design_Controller {
 					'image-round' => __( 'Round', 'layerswp' ),
 				),
 				'class' => 'layers-icon-group-inline layers-icon-group-inline-outline'
-			),
-			'featuredimage-end' => array(
-				'type' => 'group-end',
-			),
+			);
 
-			'featuredvideo-start' => array(
-				'type' => 'group-start',
-				'label' => __( 'Featured Video', 'layerswp' ),
-			),
-				'featuredvideo' => array(
-					'type' => 'text',
-					'label' => __( 'Video URL (oEmbed)', 'layerswp' ),
-					'description' => __( '<strong>TIP:</strong> Paste links from YouTube, Vimeo, DailyMotion, Twitter or Flickr.', 'layerswp' ),
-					'name' => $this->get_layers_field_name( 'featuredvideo' ),
-					'id' => $this->get_layers_field_id( 'featuredvideo' ),
-					'value' => ( isset( $this->values['featuredvideo'] ) ) ? $this->values['featuredvideo'] : NULL
-				),
-			'featuredvideo-end' => array(
-				'type' => 'group-end',
-			),
+		$defaults['elements']['featuredimage-end'] = array(
+			'type' => 'group-end',
+		);
+
+		$defaults['elements']['featuredvideo-start'] = array(
+			'type' => 'group-start',
+			'label' => __( 'Featured Video', 'layerswp' ),
+		);
+			
+			$defaults['elements']['featuredvideo'] = array(
+				'type' => 'text',
+				'label' => __( 'Video URL (oEmbed)', 'layerswp' ),
+				'description' => __( '<strong>TIP:</strong> Paste links from YouTube, Vimeo, DailyMotion, Twitter or Flickr.', 'layerswp' ),
+				'name' => $this->get_layers_field_name( 'featuredvideo' ),
+				'id' => $this->get_layers_field_id( 'featuredvideo' ),
+				'value' => ( isset( $this->values['featuredvideo'] ) ) ? $this->values['featuredvideo'] : NULL
+			);
+
+		$defaults['elements']['featuredvideo-end'] = array(
+			'type' => 'group-end',
 		);
 
 		$args = $this->merge_component( $defaults, $args );
 
-		$this->render_control( $key, apply_filters( 'layerswp_featuredimage_component_args', $args, $key, $this->type, $this->args, $this->values ) );
+		$this->render_control( $key, apply_filters( 'layers_featuredimage_component_args', $args, $key, $this->type, $this->args, $this->values, $this ) );
 	}
 
 	/**
@@ -718,25 +764,23 @@ class Layers_Design_Controller {
 		$defaults['wrapper-class'] = 'layers-pop-menu-wrapper layers-animate layers-small';
 
 		// Add elements
-		$defaults['elements'] = array(
-			'imageratio' => array(
-				'type' => 'select-icons',
-				'name' => $this->get_layers_field_name( 'imageratios' ),
-				'id' => $this->get_layers_field_id( 'imageratios' ),
-				'value' => ( isset( $this->values['imageratios'] ) ) ? $this->values['imageratios'] : NULL,
-				'options' => array(
-					'image-portrait' => __( 'Portrait', 'layerswp' ),
-					'image-landscape' => __( 'Landscape', 'layerswp' ),
-					'image-square' => __( 'Square', 'layerswp' ),
-					'image-no-crop' => __( 'None', 'layerswp' ),
-					'image-round' => __( 'Round', 'layerswp' )
-				)
-			),
+		$defaults['elements']['imageratio'] = array(
+			'type' => 'select-icons',
+			'name' => $this->get_layers_field_name( 'imageratios' ),
+			'id' => $this->get_layers_field_id( 'imageratios' ),
+			'value' => ( isset( $this->values['imageratios'] ) ) ? $this->values['imageratios'] : NULL,
+			'options' => array(
+				'image-portrait' => __( 'Portrait', 'layerswp' ),
+				'image-landscape' => __( 'Landscape', 'layerswp' ),
+				'image-square' => __( 'Square', 'layerswp' ),
+				'image-no-crop' => __( 'None', 'layerswp' ),
+				'image-round' => __( 'Round', 'layerswp' )
+			)
 		);
 
 		$args = $this->merge_component( $defaults, $args );
 
-		$this->render_control( $key, apply_filters( 'layerswp_imageratios_component_args', $args, $key, $this->type, $this->args, $this->values ) );
+		$this->render_control( $key, apply_filters( 'layers_imageratios_component_args', $args, $key, $this->type, $this->args, $this->values, $this ) );
 	}
 
 	/**
@@ -767,6 +811,7 @@ class Layers_Design_Controller {
 			'type' => 'group-start',
 			'label' => __( 'Size &amp; Alignment', 'layerswp' ),
 		);
+
 			$defaults['elements']['fonts-align'] = array(
 				'type' => 'select-icons',
 				'label' => __( 'Text Alignment', 'layerswp' ),
@@ -781,6 +826,7 @@ class Layers_Design_Controller {
 				),
 				'class' => 'layers-icon-group-inline layers-icon-group-inline-outline',
 			);
+
 			$defaults['elements']['fonts-size'] = array(
 				'type' => 'select',
 				'label' => __( 'Text Size', 'layerswp' ),
@@ -809,7 +855,7 @@ class Layers_Design_Controller {
 				'name' => $this->get_layers_field_name( 'fonts', 'color' ),
 				'id' => $this->get_layers_field_id( 'fonts', 'color' ),
 				'value' => ( isset( $this->values['fonts']['color'] ) ) ? $this->values['fonts']['color'] : NULL
-		);
+			);
 
 			if( !class_exists( 'Layers_Pro' ) ) {
 				$defaults['elements']['fonts-header-upsell'] = array(
@@ -826,10 +872,12 @@ class Layers_Design_Controller {
 		$defaults['elements']['fonts-header-style-end'] = array(
 			'type' => 'group-end',
 		);
+
 		$defaults['elements']['fonts-excerpt-style-start'] = array(
 			'type' => 'group-start',
 			'label' => __( 'Excerpt Styling', 'layerswp' ),
 		);
+
 			$defaults['elements']['fonts-excerpt-color'] = array(
 				'type' => 'color',
 				'label' => __( 'Text Color', 'layerswp' ),
@@ -853,11 +901,10 @@ class Layers_Design_Controller {
 		$defaults['elements']['fonts-excerpt-style-end'] = array(
 			'type' => 'group-end',
 		);
-		
 
 		$args = $this->merge_component( $defaults, $args );
 
-		$this->render_control( $key, apply_filters( 'layerswp_font_component_args', $args, $key, $this->type, $this->args, $this->values ) );
+		$this->render_control( $key, apply_filters( 'layers_font_component_args', $args, $key, $this->type, $this->args, $this->values, $this ) );
 	}
 
 	/**
@@ -885,8 +932,8 @@ class Layers_Design_Controller {
 			'label' => __( 'Background Color', 'layerswp' ),
 		);
 
-		// Add elements
-		$defaults['elements']['background-color'] = array(
+			// Add elements
+			$defaults['elements']['background-color'] = array(
 				'type' => 'color',
 				'label' => __( 'Background Color', 'layerswp' ),
 				'name' => $this->get_layers_field_name( 'background', 'color' ),
@@ -902,14 +949,16 @@ class Layers_Design_Controller {
 			'type' => 'group-start',
 			'label' => __( 'Background Image', 'layerswp' ),
 		);
+
 			$defaults['elements']['background-image'] = array(
-					'type' => 'image',
-					'label' => __( 'Background Image', 'layerswp' ),
-					'button_label' => __( 'Choose Image', 'layerswp' ),
-					'name' => $this->get_layers_field_name( 'background', 'image' ),
-					'id' => $this->get_layers_field_id( 'background', 'image' ),
-					'value' => ( isset( $this->values['background']['image'] ) ) ? $this->values['background']['image'] : NULL,
-				);
+				'type' => 'image',
+				'label' => __( 'Background Image', 'layerswp' ),
+				'button_label' => __( 'Choose Image', 'layerswp' ),
+				'name' => $this->get_layers_field_name( 'background', 'image' ),
+				'id' => $this->get_layers_field_id( 'background', 'image' ),
+				'value' => ( isset( $this->values['background']['image'] ) ) ? $this->values['background']['image'] : NULL,
+			);
+
 			$defaults['elements']['background-stretch'] = array(
 				'type' => 'checkbox',
 				'label' => __( 'Stretch', 'layerswp' ),
@@ -922,49 +971,50 @@ class Layers_Design_Controller {
 					'show-if-operator' => '!=='
 				),
 			);
+			
 			$defaults['elements']['background-repeat'] = array(
-					'type' => 'select-icons',
-					'label' => __( 'Background Repeat', 'layerswp' ),
-					'name' => $this->get_layers_field_name( 'background', 'repeat' ),
-					'id' => $this->get_layers_field_id( 'background', 'repeat' ),
-					'value' => ( isset( $this->values['background']['repeat'] ) ) ? $this->values['background']['repeat'] : NULL,
-					'options' => array(
-						'no-repeat' => array( 'name' => __( 'No Repeat', 'layerswp' ), 'class' => 'icon-background-no-repeat' ),
-						'repeat' => array( 'name' => __( 'Repeat', 'layerswp' ), 'class' => 'icon-background-repeat' ),
-						'repeat-x' => array( 'name' => __( 'Repeat Horizontal', 'layerswp' ), 'class' => 'icon-background-repeat-horizontal' ),
-						'repeat-y' => array( 'name' => __( 'Repeat Vertical', 'layerswp' ), 'class' => 'icon-background-repeat-vertical' ),
-					),
-					'data' => array(
-						'show-if-selector' => '#' . $this->get_layers_field_id( 'background', 'image' ),
-						'show-if-value' => '',
-						'show-if-operator' => '!=='
-					),
-					'class' => 'layers-icon-group-inline layers-icon-group-inline-outline',
-				);
+				'type' => 'select-icons',
+				'label' => __( 'Background Repeat', 'layerswp' ),
+				'name' => $this->get_layers_field_name( 'background', 'repeat' ),
+				'id' => $this->get_layers_field_id( 'background', 'repeat' ),
+				'value' => ( isset( $this->values['background']['repeat'] ) ) ? $this->values['background']['repeat'] : NULL,
+				'options' => array(
+					'no-repeat' => array( 'name' => __( 'No Repeat', 'layerswp' ), 'class' => 'icon-background-no-repeat' ),
+					'repeat' => array( 'name' => __( 'Repeat', 'layerswp' ), 'class' => 'icon-background-repeat' ),
+					'repeat-x' => array( 'name' => __( 'Repeat Horizontal', 'layerswp' ), 'class' => 'icon-background-repeat-horizontal' ),
+					'repeat-y' => array( 'name' => __( 'Repeat Vertical', 'layerswp' ), 'class' => 'icon-background-repeat-vertical' ),
+				),
+				'data' => array(
+					'show-if-selector' => '#' . $this->get_layers_field_id( 'background', 'image' ),
+					'show-if-value' => '',
+					'show-if-operator' => '!=='
+				),
+				'class' => 'layers-icon-group-inline layers-icon-group-inline-outline',
+			);
 
 			$defaults['elements']['background-position'] = array(
-					'type' => 'select-icons',
-					'label' => __( 'Background Position', 'layerswp' ),
-					'name' => $this->get_layers_field_name( 'background', 'position' ),
-					'id' => $this->get_layers_field_id( 'background', 'position' ),
-					'value' => ( isset( $this->values['background']['position'] ) ) ? $this->values['background']['position'] : NULL,
-					'options' => array(
-						'center' => array( 'name' => __( 'Center', 'layerswp' ), 'class' => 'icon-background-position-center' ),
-						'top' => array( 'name' => __( 'Top', 'layerswp' ), 'class' => 'icon-background-position-top' ),
-						'bottom' => array( 'name' => __( 'Bottom', 'layerswp' ), 'class' => 'icon-background-position-bottom' ),
-						'left' => array( 'name' => __( 'Left', 'layerswp' ), 'class' => 'icon-background-position-left' ),
-						'right' => array( 'name' => __( 'Right', 'layerswp' ), 'class' => 'icon-background-position-right' ),
-					),
-					'data' => array(
-						'show-if-selector' => '#' . $this->get_layers_field_id( 'background', 'image' ),
-						'show-if-value' => '',
-						'show-if-operator' => '!=='
-					),
-					'class' => 'layers-icon-group-inline layers-icon-group-inline-outline',
-				);
+				'type' => 'select-icons',
+				'label' => __( 'Background Position', 'layerswp' ),
+				'name' => $this->get_layers_field_name( 'background', 'position' ),
+				'id' => $this->get_layers_field_id( 'background', 'position' ),
+				'value' => ( isset( $this->values['background']['position'] ) ) ? $this->values['background']['position'] : NULL,
+				'options' => array(
+					'center' => array( 'name' => __( 'Center', 'layerswp' ), 'class' => 'icon-background-position-center' ),
+					'top' => array( 'name' => __( 'Top', 'layerswp' ), 'class' => 'icon-background-position-top' ),
+					'bottom' => array( 'name' => __( 'Bottom', 'layerswp' ), 'class' => 'icon-background-position-bottom' ),
+					'left' => array( 'name' => __( 'Left', 'layerswp' ), 'class' => 'icon-background-position-left' ),
+					'right' => array( 'name' => __( 'Right', 'layerswp' ), 'class' => 'icon-background-position-right' ),
+				),
+				'data' => array(
+					'show-if-selector' => '#' . $this->get_layers_field_id( 'background', 'image' ),
+					'show-if-value' => '',
+					'show-if-operator' => '!=='
+				),
+				'class' => 'layers-icon-group-inline layers-icon-group-inline-outline',
+			);
 
-		if( !class_exists( 'Layers_Pro' ) ) {
-			$defaults['elements']['background-parallax'] = array(
+			if( !class_exists( 'Layers_Pro' ) ) {
+				$defaults['elements']['background-parallax'] = array(
 					'type' => 'checkbox',
 					'label' => __( 'Parallax <span class="layers-inline-upsell">Available in <a href="https://www.layerswp.com/layers-pro/?ref=obox&amp;utm_source=layers%20theme&amp;utm_medium=link&amp;utm_campaign=Layers%20Pro%20Upsell&amp;utm_content=Widget%20Parallax%20Upsell" target="_blank">Pro</a></span>', 'layerswp' ),
 					'name' => $this->get_layers_field_name( 'background', 'parallax' ),
@@ -976,9 +1026,9 @@ class Layers_Design_Controller {
 					),
 					'disabled' => true
 				);
-		}
-				
-		$defaults['elements']['background-darken'] = array(
+			}
+					
+			$defaults['elements']['background-darken'] = array(
 				'type' => 'checkbox',
 				'label' => __( 'Darken', 'layerswp' ),
 				'name' => $this->get_layers_field_name( 'background', 'darken' ),
@@ -992,7 +1042,7 @@ class Layers_Design_Controller {
 
 		$args = $this->merge_component( $defaults, $args );
 
-		$this->render_control( $key, apply_filters( 'layerswp_background_component_args', $args, $key, $this->type, $this->args, $this->values ) );
+		$this->render_control( $key, apply_filters( 'layers_background_component_args', $args, $key, $this->type, $this->args, $this->values, $this ) );
 	}
 
 	/**
@@ -1016,31 +1066,27 @@ class Layers_Design_Controller {
 		$defaults['label'] = __( 'Buttons', 'layerswp' );
 
 		// Add elements
-		$defaults['elements'] = array(
+		
+		$defaults['elements']['buttons-size'] = array(
+			'type' => 'select',
+			'label' => __( 'Size', 'layerswp' ),
+			'name' => $this->get_layers_field_name( 'buttons', 'buttons-size' ),
+			'id' => $this->get_layers_field_id( 'buttons', 'buttons-size' ),
+			'value' => ( isset( $this->values['buttons']['buttons-size'] ) ) ? $this->values['buttons']['buttons-size'] : NULL,
+			'options' => array(
+				'small' => __( 'Small', 'layerswp' ),
+				'medium' => __( 'Medium', 'layerswp' ),
+				'large' => __( 'Large', 'layerswp' )
+			)
+		);
 
-			// New
-			'buttons-size' => array(
-				'type' => 'select',
-				'label' => __( 'Size', 'layerswp' ),
-				'name' => $this->get_layers_field_name( 'buttons', 'buttons-size' ),
-				'id' => $this->get_layers_field_id( 'buttons', 'buttons-size' ),
-				'value' => ( isset( $this->values['buttons']['buttons-size'] ) ) ? $this->values['buttons']['buttons-size'] : NULL,
-				'options' => array(
-					'small' => __( 'Small', 'layerswp' ),
-					'medium' => __( 'Medium', 'layerswp' ),
-					'large' => __( 'Large', 'layerswp' )
-				)
-			),
-
-			// Only this one used to be here.
-			'buttons-background-color' => array(
-				'type' => 'color',
-				'label' => __( 'Background Color', 'layerswp' ),
-				'name' => $this->get_layers_field_name( 'buttons', 'background-color' ),
-				'id' => $this->get_layers_field_id( 'buttons', 'background-color' ),
-				'value' => ( isset( $this->values['buttons']['background-color'] ) ) ? $this->values['buttons']['background-color'] : NULL
-			),
-
+		// Only this one used to be here.
+		$defaults['elements']['buttons-background-color'] = array(
+			'type' => 'color',
+			'label' => __( 'Background Color', 'layerswp' ),
+			'name' => $this->get_layers_field_name( 'buttons', 'background-color' ),
+			'id' => $this->get_layers_field_id( 'buttons', 'background-color' ),
+			'value' => ( isset( $this->values['buttons']['background-color'] ) ) ? $this->values['buttons']['background-color'] : NULL
 		);
 
 		if( !class_exists( 'Layers_Pro' ) ) {
@@ -1057,7 +1103,7 @@ class Layers_Design_Controller {
 
 		$args = $this->merge_component( $defaults, $args );
 
-		$this->render_control( $key, apply_filters( 'layerswp_button_colors_component_args', $args, $key, $this->type, $this->args, $this->values ) );
+		$this->render_control( $key, apply_filters( 'layers_button_colors_component_args', $args, $key, $this->type, $this->args, $this->values, $this ) );
 	}
 	/**
 	 * Advanced - Static Option
@@ -1080,79 +1126,87 @@ class Layers_Design_Controller {
 		$defaults['label'] = __( 'Advanced', 'layerswp' );
 
 		// Add elements
-		$defaults['elements'] = array(
-			'advanced-margin-padding-start' => array(
-				'type' => 'group-start',
-				'label' => __( 'Margin &amp; Padding', 'layerswp' ),
-			),
-				'padding' => array(
-					'type' => 'trbl-fields',
-					'label' => __( 'Padding (px)', 'layerswp' ),
-					'name' => $this->get_layers_field_name( 'advanced', 'padding' ),
-					'id' => $this->get_layers_field_id( 'advanced', 'padding' ),
-					'value' => ( isset( $this->values['advanced']['padding'] ) ) ? $this->values['advanced']['padding'] : NULL,
-					'input_class' => 'inline-fields-flush',
-				),
-				'margin' => array(
-					'type' => 'trbl-fields',
-					'label' => __( 'Margin (px)', 'layerswp' ),
-					'name' => $this->get_layers_field_name( 'advanced', 'margin' ),
-					'id' => $this->get_layers_field_id( 'advanced', 'margin' ),
-					'value' => ( isset( $this->values['advanced']['margin'] ) ) ? $this->values['advanced']['margin'] : NULL,
-					'input_class' => 'inline-fields-flush',
-				),
-			'advanced-margin-padding-end' => array(
-				'type' => 'group-end',
-			),
-			'advanced-anchor-start' => array(
-				'type' => 'group-start',
-				'label' => __( 'Anchor &amp; Widget ID', 'layerswp' ),
-			),
-				'anchor' => array(
-					'type' => 'text',
-					'label' => __( 'Custom Anchor', 'layerswp' ),
-					'name' => $this->get_layers_field_name( 'advanced', 'anchor' ) ,
-					'id' => $this->get_layers_field_id( 'advanced', 'anchor' ) ,
-					'value' => ( isset( $this->values['advanced']['anchor'] ) ) ? $this->values['advanced']['anchor'] : NULL
-				),
-				'widget-id' => array(
-					'type' => 'text',
-					'label' => __( 'Widget ID', 'layerswp' ),
-					'disabled' => FALSE,
-					'value' => '#'  . str_replace( 'widget-layers', 'layers', str_ireplace( '-design' , '', $this->args['id'] ) )
-				),
-			'advanced-anchor-end' => array(
-				'type' => 'group-end',
-			),
-			'advanced-css-start' => array(
-				'type' => 'group-start',
-				'label' => __( 'Custom Classes & CSS', 'layerswp' ),
-			),
-				'customclass' => array(
-					'type' => 'text',
-					'label' => __( 'Custom Class(es)', 'layerswp' ),
-					'name' => $this->get_layers_field_name( 'advanced', 'customclass' ),
-					'id' => $this->get_layers_field_id( 'advanced', 'customclass' ),
-					'value' => ( isset( $this->values['advanced']['customclass'] ) ) ? $this->values['advanced']['customclass'] : NULL,
-					'placeholder' => 'example-class'
-				),
-				'customcss' => array(
-					'type' => 'textarea',
-					'label' => __( 'Custom CSS', 'layerswp' ),
-					'name' => $this->get_layers_field_name( 'advanced', 'customcss' ),
-					'id' => $this->get_layers_field_id( 'advanced', 'customcss' ),
-					'value' => ( isset( $this->values['advanced']['customcss'] ) ) ? $this->values['advanced']['customcss'] : NULL,
-					'placeholder' => ".classname { color: #333; }"
-				),
-			'advanced-css-end' => array(
-				'type' => 'group-end',
-			),
+		$defaults['elements']['advanced-margin-padding-start'] = array(
+			'type' => 'group-start',
+			'label' => __( 'Margin &amp; Padding', 'layerswp' ),
+		);
 
+			$defaults['elements']['padding'] = array(
+				'type' => 'trbl-fields',
+				'label' => __( 'Padding (px)', 'layerswp' ),
+				'name' => $this->get_layers_field_name( 'advanced', 'padding' ),
+				'id' => $this->get_layers_field_id( 'advanced', 'padding' ),
+				'value' => ( isset( $this->values['advanced']['padding'] ) ) ? $this->values['advanced']['padding'] : NULL,
+				'input_class' => 'inline-fields-flush',
+			);
+
+			$defaults['elements']['margin'] = array(
+				'type' => 'trbl-fields',
+				'label' => __( 'Margin (px)', 'layerswp' ),
+				'name' => $this->get_layers_field_name( 'advanced', 'margin' ),
+				'id' => $this->get_layers_field_id( 'advanced', 'margin' ),
+				'value' => ( isset( $this->values['advanced']['margin'] ) ) ? $this->values['advanced']['margin'] : NULL,
+				'input_class' => 'inline-fields-flush',
+			);
+
+		$defaults['elements']['advanced-margin-padding-end'] = array(
+			'type' => 'group-end',
+		);
+
+		$defaults['elements']['advanced-anchor-start'] = array(
+			'type' => 'group-start',
+			'label' => __( 'Anchor &amp; Widget ID', 'layerswp' ),
+		);
+
+			$defaults['elements']['anchor'] = array(
+				'type' => 'text',
+				'label' => __( 'Custom Anchor', 'layerswp' ),
+				'name' => $this->get_layers_field_name( 'advanced', 'anchor' ) ,
+				'id' => $this->get_layers_field_id( 'advanced', 'anchor' ) ,
+				'value' => ( isset( $this->values['advanced']['anchor'] ) ) ? $this->values['advanced']['anchor'] : NULL
+			);
+
+			$defaults['elements']['widget-id'] = array(
+				'type' => 'text',
+				'label' => __( 'Widget ID', 'layerswp' ),
+				'disabled' => FALSE,
+				'value' => '#'  . str_replace( 'widget-layers', 'layers', str_ireplace( '-design' , '', $this->args['id'] ) )
+			);
+
+		$defaults['elements']['advanced-anchor-end'] = array(
+			'type' => 'group-end',
+		);
+
+		$defaults['elements']['advanced-css-start'] = array(
+			'type' => 'group-start',
+			'label' => __( 'Custom Classes & CSS', 'layerswp' ),
+		);
+
+			$defaults['elements']['customclass'] = array(
+				'type' => 'text',
+				'label' => __( 'Custom Class(es)', 'layerswp' ),
+				'name' => $this->get_layers_field_name( 'advanced', 'customclass' ),
+				'id' => $this->get_layers_field_id( 'advanced', 'customclass' ),
+				'value' => ( isset( $this->values['advanced']['customclass'] ) ) ? $this->values['advanced']['customclass'] : NULL,
+				'placeholder' => 'example-class'
+			);
+
+			$defaults['elements']['customcss'] = array(
+				'type' => 'textarea',
+				'label' => __( 'Custom CSS', 'layerswp' ),
+				'name' => $this->get_layers_field_name( 'advanced', 'customcss' ),
+				'id' => $this->get_layers_field_id( 'advanced', 'customcss' ),
+				'value' => ( isset( $this->values['advanced']['customcss'] ) ) ? $this->values['advanced']['customcss'] : NULL,
+				'placeholder' => ".classname { color: #333; }"
+			);
+
+		$defaults['elements']['advanced-css-end'] = array(
+			'type' => 'group-end',
 		);
 
 		$args = $this->merge_component( $defaults, $args );
 
-		$this->render_control( $key, apply_filters( 'layerswp_advanced_component_args', $args, $key, $this->type, $this->args, $this->values ) );
+		$this->render_control( $key, apply_filters( 'layers_advanced_component_args', $args, $key, $this->type, $this->args, $this->values, $this ) );
 	}
 
 	/**
@@ -1171,7 +1225,7 @@ class Layers_Design_Controller {
 			return;
 
 		// Render Control
-		$this->render_control( $key, apply_filters( 'layerswp_custom_component_args', $args, $key, $this->type, $this->args, $this->values ) );
+		$this->render_control( $key, apply_filters( 'layers_custom_component_args', $args, $key, $this->type, $this->args, $this->values, $this ) );
 	}
 
 	/**

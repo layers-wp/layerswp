@@ -409,9 +409,7 @@ jQuery(function($) {
 
 	// WIDGET - Select Icon Group e.g. Text Align (left, right, center, justify).x
 	$( document ).on( 'mousedown', '.layers-select-icons label.layers-icon-wrapper', function(e){
-
-		console.log( ".layers-select-icons label.layers-icon-wrapper" );
-
+		
 		// Cache elements.
 		var $current_label = $(this);
 		var $current_input = $('#' + $current_label.attr('for'));

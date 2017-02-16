@@ -46,9 +46,9 @@ if( !class_exists( 'Layers_Customize_Text_Control' ) ) {
 						array(
 							'type' => 'text',
 							'label' => ( isset( $this->label ) ? $this->label : '' ),
-							'name' => '' ,
+							'name' => '',
 							'id' =>  $this->id,
-								'value' => stripslashes( $this->value() ),
+							'value' => stripslashes( $this->value() ),
 							'data' => $this->get_customize_data(),
 							'placeholder' => $this->placeholder,
 						)

@@ -422,9 +422,9 @@ jQuery(function($) {
 		// then set the parents Icon to what is being selected now - helpful to the user, it can be seen at a glance.
 		$is_form_item = $current_label.closest( '.layers-form-item' ).siblings( '.layers-form-item' ).length;
 
-		$in_design_group = $current_label.closest( '.layers-design-bar-group-inner' ).length;
+		$in_design_group = ( 0 == $current_label.closest( '.layers-design-bar-group-inner' ).length );
 
-		if ( 0 == $is_form_item && 0 == $in_design_group ) {
+		if ( 0 == $is_form_item && $in_design_group ) {
 
 			console.log( "I am a selector" );
 			console.log( $value );
@@ -434,7 +434,6 @@ jQuery(function($) {
 				.siblings( '.layers-icon-wrapper' )
 				.find( 'span[class^="icon-"]' )
 				.attr( 'class', 'icon-' + $value );
-
 		}
 
 		// Toggle active state

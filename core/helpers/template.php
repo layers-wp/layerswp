@@ -506,6 +506,11 @@ if( !function_exists( 'layers_body_class' ) ) {
 			$classes[] = 'layers-post-page';
 		}
 
+		// Handle overlay / not overlay
+		if( TRUE == layers_get_theme_mod( 'enable-scroll-animations' ) ){
+			$classes[] = 'layers-scroll-animate';
+		}
+
 		if( ( is_single() || is_archive() ) && !$left_sidebar_active && !$right_sidebar_active ){
 			$classes[] = 'no-sidebar';
 		}
@@ -1120,8 +1125,22 @@ if( !function_exists( 'layers_inline_styles' ) ) {
 				// Set the background array
 				$bg_args = $args['background'];
 
-				if( isset( $bg_args['color'] ) && '' != $bg_args['color'] ){
-					$css .= 'background-color: ' . $bg_args['color'] . '; ';
+	
+				if(	 isset( $bg_args['style'] ) && 'transparent' == $bg_args['style'] ){
+						$css .= 'background-color: transparent; ';
+
+				} else if( isset( $bg_args['style'] ) && 'gradient' == $bg_args['style'] ){
+
+					if( !isset( $bg_args['image'] ) || ( isset( $bg_args['image'] ) && '' == $bg_args['image'] ) ){
+						$css .= 'background: linear-gradient( ' . $bg_args[ 'gradient-direction' ] . 'deg , ' . $bg_args[ 'gradient-start-color' ] . ', ' . $bg_args['gradient-end-color'] . ');';
+					}
+
+				} else {
+
+					if( isset( $bg_args['color'] ) && '' != $bg_args['color'] ){
+						$css .= 'background-color: ' . $bg_args['color'] . '; ';
+					}
+
 				}
 
 				if( isset( $bg_args['repeat'] ) && '' != $bg_args['repeat'] ){
@@ -1144,6 +1163,7 @@ if( !function_exists( 'layers_inline_styles' ) ) {
 					$image = wp_get_attachment_image_src( $bg_args['image'] , 'full' );
 					$css.= 'background-image: url(\'' . $image[0] .'\');';
 				}
+
 			break;
 
 			case 'button' :

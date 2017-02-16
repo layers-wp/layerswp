@@ -354,7 +354,7 @@ class Layers_Design_Controller {
 					<<?php echo $form_args['wrapper']; ?> <?php if ( isset( $form_args['wrapper-class'] ) ) echo 'class="' . $form_args['wrapper-class'] . '"'; ?>>
 				<?php } ?>
 
-				<?php if( isset( $form_args['group'] ) && is_array( $form_args['group'] ) ) {
+				<?php if ( isset( $form_args['group'] ) && is_array( $form_args['group'] ) ) {
 					foreach( $form_args[ 'group' ] as $input_key => $input_args ){
 						echo $this->form_elements->input( $input_args );
 					}

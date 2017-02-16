@@ -422,7 +422,7 @@ class Layers_Design_Controller {
 
 		$args = $this->merge_component( $defaults, $args );
 
-		$this->render_control( $key, apply_filters( 'layerswp_layout_component_args', $args, $key, $this->type, $this->args, $this->values ) );
+		$this->render_control( $key, apply_filters( 'layers_layout_component_args', $args, $key, $this->type, $this->args, $this->values ) );
 	}
 
 	/**
@@ -465,7 +465,7 @@ class Layers_Design_Controller {
 
 		$args = $this->merge_component( $defaults, $args );
 
-		$this->render_control( $key, apply_filters( 'layerswp_liststyle_component_args', $args, $key, $this->type, $this->args, $this->values ) );
+		$this->render_control( $key, apply_filters( 'layers_liststyle_component_args', $args, $key, $this->type, $this->args, $this->values ) );
 	}
 
 	/**
@@ -525,7 +525,7 @@ class Layers_Design_Controller {
 
 		$args = $this->merge_component( $defaults, $args );
 
-		$this->render_control( $key, apply_filters( 'layerswp_columns_component_args', $args, $key, $this->type, $this->args, $this->values ) );
+		$this->render_control( $key, apply_filters( 'layers_columns_component_args', $args, $key, $this->type, $this->args, $this->values ) );
 	}
 
 	/**
@@ -569,7 +569,7 @@ class Layers_Design_Controller {
 
 		$args = $this->merge_component( $defaults, $args );
 
-		$this->render_control( $key, apply_filters( 'layerswp_textalign_component_args', $args, $key, $this->type, $this->args, $this->values ) );
+		$this->render_control( $key, apply_filters( 'layers_textalign_component_args', $args, $key, $this->type, $this->args, $this->values ) );
 	}
 
 	/**
@@ -612,7 +612,7 @@ class Layers_Design_Controller {
 
 		$args = $this->merge_component( $defaults, $args );
 
-		$this->render_control( $key, apply_filters( 'layerswp_imagealign_component_args', $args, $key, $this->type, $this->args, $this->values ) );
+		$this->render_control( $key, apply_filters( 'layers_imagealign_component_args', $args, $key, $this->type, $this->args, $this->values ) );
 	}
 
 	/**
@@ -691,7 +691,7 @@ class Layers_Design_Controller {
 
 		$args = $this->merge_component( $defaults, $args );
 
-		$this->render_control( $key, apply_filters( 'layerswp_featuredimage_component_args', $args, $key, $this->type, $this->args, $this->values ) );
+		$this->render_control( $key, apply_filters( 'layers_featuredimage_component_args', $args, $key, $this->type, $this->args, $this->values ) );
 	}
 
 	/**
@@ -736,7 +736,7 @@ class Layers_Design_Controller {
 
 		$args = $this->merge_component( $defaults, $args );
 
-		$this->render_control( $key, apply_filters( 'layerswp_imageratios_component_args', $args, $key, $this->type, $this->args, $this->values ) );
+		$this->render_control( $key, apply_filters( 'layers_imageratios_component_args', $args, $key, $this->type, $this->args, $this->values ) );
 	}
 
 	/**
@@ -857,7 +857,7 @@ class Layers_Design_Controller {
 
 		$args = $this->merge_component( $defaults, $args );
 
-		$this->render_control( $key, apply_filters( 'layerswp_font_component_args', $args, $key, $this->type, $this->args, $this->values ) );
+		$this->render_control( $key, apply_filters( 'layers_font_component_args', $args, $key, $this->type, $this->args, $this->values ) );
 	}
 
 	/**
@@ -992,7 +992,7 @@ class Layers_Design_Controller {
 
 		$args = $this->merge_component( $defaults, $args );
 
-		$this->render_control( $key, apply_filters( 'layerswp_background_component_args', $args, $key, $this->type, $this->args, $this->values ) );
+		$this->render_control( $key, apply_filters( 'layers_background_component_args', $args, $key, $this->type, $this->args, $this->values ) );
 	}
 
 	/**
@@ -1057,7 +1057,7 @@ class Layers_Design_Controller {
 
 		$args = $this->merge_component( $defaults, $args );
 
-		$this->render_control( $key, apply_filters( 'layerswp_button_colors_component_args', $args, $key, $this->type, $this->args, $this->values ) );
+		$this->render_control( $key, apply_filters( 'layers_button_colors_component_args', $args, $key, $this->type, $this->args, $this->values ) );
 	}
 	/**
 	 * Advanced - Static Option
@@ -1152,7 +1152,7 @@ class Layers_Design_Controller {
 
 		$args = $this->merge_component( $defaults, $args );
 
-		$this->render_control( $key, apply_filters( 'layerswp_advanced_component_args', $args, $key, $this->type, $this->args, $this->values ) );
+		$this->render_control( $key, apply_filters( 'layers_advanced_component_args', $args, $key, $this->type, $this->args, $this->values ) );
 	}
 
 	/**
@@ -1171,7 +1171,7 @@ class Layers_Design_Controller {
 			return;
 
 		// Render Control
-		$this->render_control( $key, apply_filters( 'layerswp_custom_component_args', $args, $key, $this->type, $this->args, $this->values ) );
+		$this->render_control( $key, apply_filters( 'layers_custom_component_args', $args, $key, $this->type, $this->args, $this->values ) );
 	}
 
 	/**

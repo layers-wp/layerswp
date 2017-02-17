@@ -424,6 +424,10 @@ div[id*='layers-widget'] .widget-control-actions .alignright{
 }
 .layers-visuals-item input{
 	display: none;
+	/* display: block !important; */
+	/* margin-top: 3px !important; */
+	/* height: 16px !important; */
+	/* line-height: normal !important; */
 }
 .layers-visuals-item .layers-icon-wrapper:focus{
 	box-shadow: none;

@@ -43,24 +43,57 @@ if( !class_exists( 'Layers_Customize_Select_Icon_Control' ) ) {
 				<?php endif; ?>
 
 				<ul class="layers-visuals-wrapper layers-visuals-inline layers-clearfix">
-					<?php foreach ( $this->choices as $key => $value ) :
-
-						if ( is_array( $value ) ) {
-							$label = $value['name'];
-							$class = $value['class'];
+					<?php foreach ( $this->choices as $key => $choice ) :
+						
+						// Allow for setting custom Name & Class-Name by passing array.
+						if ( is_array( $choice ) ) {
+							$label = $choice['name'];
+							$class = $choice['class'];
 						}
 						else {
-							$label = $value;
+							$label = $choice;
 							$class = "icon-{$key}";
 						}
+						
+						// Get the checked state.
+						$checked = FALSE;
+						if ( $this->multi_select ) {
+							
+							// Multi-Select.
+							if ( get_theme_mod( "{$this->id}-{$key}" ) === $key ) $checked = TRUE; // Radio (Testing).
+							if ( get_theme_mod( "{$this->id}-{$key}" ) === '1' ) $checked = TRUE; // Checkbox
+						}
+						else {
+							
+							// Single.
+							if ( $this->value() == $key ) $checked = TRUE;
+						}
 						?>
-						<li class="layers-visuals-item <?php if ( $key == $this->value() ) echo 'layers-active'; ?>">
-							<label class="layers-icon-wrapper layers-select-images">
+						<li class="layers-visuals-item <?php if ( $checked ) echo 'layers-active'; ?>">
+							<label class="layers-icon-wrapper layers-select-images" for="<?php echo esc_attr( "{$this->id}-{$key}" ); ?>">
+								
 								<span class="<?php echo $class; ?>"></span>
+								
 								<span class="layers-icon-description">
 									<?php echo $label; ?>
 								</span>
-								<input class="l_admin-hide" type="radio" value="<?php echo esc_attr( $key ); ?>" id="<?php echo esc_attr( $this->id ); ?>-<?php echo $key; ?>" name="<?php echo esc_attr( $name ); ?>" <?php $this->link(); checked( $this->value(), $key ); ?> />
+								
+								<input
+									value="<?php echo esc_attr( $key ); ?>"
+									id="<?php echo esc_attr( "{$this->id}-{$key}" ); ?>"
+									<?php if ( $this->multi_select ) { ?>
+										type="checkbox"
+										name="<?php echo esc_attr( "{$this->id}-{$key}" ); ?>"
+										data-customize-setting-link="<?php echo esc_attr( "{$this->id}-{$key}" ); ?>"
+									<?php } else { ?>
+										type="radio"
+										name="<?php echo esc_attr( "{$this->id}" ); ?>"
+										<?php $this->link(); ?>
+									<?php } ?>
+									<?php checked( $checked, true, true ); ?>
+									class="l_admin-hide"
+								/>
+									
 							</label>
 						</li>
 					<?php endforeach; ?>

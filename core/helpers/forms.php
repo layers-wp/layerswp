@@ -266,37 +266,64 @@ class Layers_Form_Elements {
 			* Select 'icons' such as the column selector
 			*/
 			case 'select-icons' :
+			
+				$input_type = 'radio';
 
-				if( isset( $input->input_type ) ){
+				if ( isset( $input->input_type ) ){
 					$input_type = $input->input_type;
-				} else {
-					$input_type = ( 1 == count( $input->options ) ) ? 'checkbox' : 'radio';
-				} ?>
+				}
+				else if ( isset( $input->multi_select ) && TRUE == $input->multi_select ) {
+					$input_type = 'checkbox';
+				}
+				else if ( 1 == count( $input->options ) ) {
+					$input_type = 'checkbox';
+				}
+				
+				// s( $input->value );
+				?>
 
 				<div class="layers-select-icons">
-					<?php foreach( $input->options as $key => $value ) {
-						if ( is_array( $value ) ) {
-							$name = ( isset( $value['name'] ) ? $value['name'] : '' );
-							$class = ( isset( $value['class'] ) ? $value['class'] : '' );
+					<?php foreach( $input->options as $key => $option ) {
+						
+						// Allow us to modify this locally.
+						$modified_input_props = $input_props;
+						
+						if ( is_array( $option ) ) {
+							$name = ( isset( $option['name'] ) ? $option['name'] : '' );
+							$class = ( isset( $option['class'] ) ? $option['class'] : '' );
 							$data_string = '';
-							if ( ! empty( $value['data'] ) ) {
-								foreach ( $value['data'] as $data_key => $data_value) {
+							if ( ! empty( $option['data'] ) ) {
+								foreach ( $option['data'] as $data_key => $data_value) {
 									$data_string .= 'data-' . esc_attr( $data_key ) . '="' . $data_value . '" ';
 								}
 							}
 						}
 						else {
-							$name = $value;
+							$name = $option;
 							$class = "icon-{$key}";
 							$data_string = '';
 						}
 
-						$data_string .= 'data-value="' . $input->value . '" ';
-
-						// Allow for setting of a default selection.
+						$data_string .= 'data-value="' . $key . '" ';
+						
+						
+						if ( isset( $input->multi_select ) && TRUE == $input->multi_select ) {
+							
+							$modified_input_props['name'] = str_replace( ']"', '][' . $key . ']"', $modified_input_props['name'] );
+						}
+						
+						// Get the checked state.
 						$checked = FALSE;
-						if ( $input->value && $input->value == $key ) $checked = TRUE;
-						// elseif ( ! $input->value && isset( $input->default ) && $input->default == $key ) $checked = TRUE; // Not Using Anymore
+						
+						if ( is_array( $input->value ) ) {
+							if ( in_array( $key, $input->value ) ) $checked = TRUE;
+						}
+						else if ( is_object( $input->value ) ) {
+							if ( isset( $input->value->{$key} ) ) $checked = TRUE;
+						}
+						else {
+							if ( $input->value && $input->value == $key ) $checked = TRUE;
+						}
 						?>
 						<label
 							href=""
@@ -314,7 +341,7 @@ class Layers_Form_Elements {
 							
 							<input
 								type="<?php echo $input_type ?>"
-								<?php echo implode ( ' ' , $input_props ); ?>
+								<?php echo implode ( ' ' , $modified_input_props ); ?>
 								id="<?php echo esc_attr( $input->id ), '-', esc_attr( $key ); ?>"
 								value="<?php echo esc_attr( $key ); ?>"
 								<?php checked( $checked, true, true ); ?>

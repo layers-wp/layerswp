@@ -51,9 +51,9 @@ if( !class_exists( 'Layers_Customize_Border_Style_Control' ) ) {
 							'name' => '',
 							'id' => $this->id,
 							'value' => array(
-								'width' => get_option( "{$this->id}-width" ),
-								'style' => get_option( "{$this->id}-style" ),
-								'radius' => get_option( "{$this->id}-radius" ),
+								'width' => get_theme_mod( "{$this->id}-width" ),
+								'style' => get_theme_mod( "{$this->id}-style" ),
+								'radius' => get_theme_mod( "{$this->id}-radius" ),
 							),
 							'class' => $this->input_class,
 						)

@@ -561,7 +561,7 @@ class Layers_Design_Controller {
 		);
 
 			$defaults['elements']['column-background-color'] = array(
-				'type' => 'background-color',
+				'type' => 'color',
 				'label' => __( 'Background Color', 'layerswp' ),
 				'name' => $this->get_layers_field_name( 'column-background-color' ),
 				'id' => $this->get_layers_field_id( 'columns-background-color' ),

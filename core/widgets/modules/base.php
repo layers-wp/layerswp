@@ -49,7 +49,7 @@ if( !class_exists( 'Layers_Widget' ) ) {
 		*/
 
 		function print_inline_css(){
-
+			
 			global $layers_inline_css;
 
 			if( '' !== $this->inline_css ) {

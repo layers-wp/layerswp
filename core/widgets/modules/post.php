@@ -142,6 +142,7 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 			// Apply Styling
 			$this->inline_css .= layers_inline_styles( "#{$widget_id}", 'background', array( 'background' => $instance['design'][ 'background' ] ) );
 			$this->inline_css .= layers_inline_styles( "#{$widget_id}", 'color', array( 'selectors' => array( '.section-title .heading' , '.section-title div.excerpt' ) , 'color' => $instance['design']['fonts'][ 'color' ] ) );
+			$this->inline_css .= layers_inline_styles( "#{$widget_id}", 'color', array( 'selectors' => array( '.thumbnail-body .heading a', '.thumbnail-body .excerpt', '.thumbnail-body footer', '.thumbnail-body footer a' ) , 'color' => $this->check_and_return( $instance, 'design', 'column-text-color' ) ) );
 
 			if( '' != $this->check_and_return(  $instance, 'design', 'column', 'background', 'style' ) ){
 

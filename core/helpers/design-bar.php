@@ -559,6 +559,13 @@ class Layers_Design_Controller {
 			'type' => 'group-start',
 			'label' => __( 'Styling', 'layerswp' ),
 		);
+			$defaults['elements']['column-text-color'] = array(
+				'type' => 'color',
+				'label' => __( 'Text Color', 'layerswp' ),
+				'name' => $this->get_layers_field_name( 'column-text-color' ),
+				'id' => $this->get_layers_field_id( 'columns-text-color' ),
+				'value' => ( isset( $this->values['column-text-color'] ) ) ? $this->values['column-text-color'] : NULL
+			);
 
 			$defaults['elements']['column-background-color'] = array(
 				'type' => 'color',

@@ -140,11 +140,16 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 			}
 
 			// Apply Styling
-			$this->inline_css .= layers_inline_styles( "#{$widget_id}", 'background', array( 'background' => $instance['design'][ 'background' ] ) );
-			$this->inline_css .= layers_inline_styles( "#{$widget_id}", 'color', array( 'selectors' => array( '.section-title .heading' , '.section-title div.excerpt' ) , 'color' => $instance['design']['fonts'][ 'color' ] ) );
-			$this->inline_css .= layers_inline_styles( "#{$widget_id}", 'color', array( 'selectors' => array( '.thumbnail-body .heading a', '.thumbnail-body .excerpt', '.thumbnail-body footer', '.thumbnail-body footer a' ) , 'color' => $this->check_and_return( $instance, 'design', 'column-text-color' ) ) );
+			if( NULL !== $this->check_and_return( $instance, 'design', 'background' ) ) 
+				$this->inline_css .= layers_inline_styles( "#{$widget_id}", 'background', array( 'background' => $this->check_and_return( $instance, 'design', 'background' ) ) );
 
-			if( '' != $this->check_and_return(  $instance, 'design', 'column', 'background', 'style' ) ){
+			if( NULL !== $this->check_and_return( $instance, 'design', 'fonts', 'color' ) ) 
+				$this->inline_css .= layers_inline_styles( "#{$widget_id}", 'color', array( 'selectors' => array( '.section-title .heading' , '.section-title div.excerpt' ) , 'color' => $this->check_and_return( $instance, 'design', 'fonts', 'color' ) ) );
+			
+			if( NULL !== $this->check_and_return( $instance, 'design', 'column-text-color' ) ) 
+				$this->inline_css .= layers_inline_styles( "#{$widget_id}", 'color', array( 'selectors' => array( '.thumbnail-body .heading a', '.thumbnail-body .excerpt', '.thumbnail-body footer', '.thumbnail-body footer a' ) , 'color' => $this->check_and_return( $instance, 'design', 'column-text-color' ) ) );
+
+			if( NULL !== $this->check_and_return(  $instance, 'design', 'column', 'background', 'style' ) ){
 
 				$bg_args = array(
 					'color' => $this->check_and_return( $instance, 'design', 'column-background-color' )
@@ -152,7 +157,7 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 
 				$bg_args = array_merge( $this->check_and_return(  $instance, 'design', 'column', 'background' ), $bg_args );
 
-			} else {
+			} else if( NULL !== $this->check_and_return( $instance, 'design', 'design', 'column-background-color' ) ){
 				$bg_args = array(
 					'background' => array(
 						'color' => $this->check_and_return( $instance, 'design', 'design', 'column-background-color'
@@ -161,7 +166,8 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 				);
 			}
 
-			$this->inline_css .= layers_inline_styles( "#{$widget_id}", 'background', array( 'selectors' => array( '.thumbnail-body' ), 'background' => $bg_args ) );
+			if( isset( $bg_args ) )
+				$this->inline_css .= layers_inline_styles( "#{$widget_id}", 'background', array( 'selectors' => array( '.thumbnail-body' ), 'background' => $bg_args ) );
 
 			// Apply Button Styling.
 			$button_size = '';
@@ -407,7 +413,7 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 				<?php do_action( 'layers_after_post_widget_inner', $this, $instance );
 
 				// Print the Inline Styles for this Widget
-				$this->print_inline_css();
+				$this->print_inline_css( $this, $instance );;
 
 				if( 'list-masonry' == $this->check_and_return( $instance , 'design', 'liststyle' ) ) { ?>
 					<script type='text/javascript'>

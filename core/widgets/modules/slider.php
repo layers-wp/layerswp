@@ -348,7 +348,7 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 					<?php do_action( 'layers_after_slider_widget_inner', $this, $instance );
 
 					// Print the Inline Styles for this Widget
-					$this->print_inline_css();
+					$this->print_inline_css( $this, $instance );
 
 					/**
 					 * Slider javascript initialize

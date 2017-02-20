@@ -221,7 +221,7 @@ if( !class_exists( 'Layers_Contact_Widget' ) ) {
 				<?php do_action( 'layers_after_contact_widget_inner', $this, $instance );
 
 				// Print the Inline Styles for this Widget
-				$this->print_inline_css(); ?>
+				$this->print_inline_css( $this, $instance );; ?>
 
 			</div>
 

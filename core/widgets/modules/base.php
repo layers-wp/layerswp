@@ -48,9 +48,11 @@ if( !class_exists( 'Layers_Widget' ) ) {
 		* @return   string   If there is CSS to return, returns the CSS wrapped in a <style> tag
 		*/
 
-		function print_inline_css(){
+		function print_inline_css( $widget = array(), $instance = array() ){
 			
 			global $layers_inline_css;
+
+			$this->inline_css = apply_filters( 'layers_widget_' . $this->widget_id . '_inline_css', $layers_inline_css, $widget, $instance );
 
 			if( '' !== $this->inline_css ) {
 				echo '<style type="text/css"> /* INLINE WIDGET CSS */

@@ -1139,7 +1139,7 @@ class Layers_Design_Controller {
 		);
 
 			$defaults['elements']['padding'] = array(
-				'type' => 'trbl-fields',
+				'type' => 'inline-numbers-fields',
 				'label' => __( 'Padding (px)', 'layerswp' ),
 				'name' => $this->get_layers_field_name( 'advanced', 'padding' ),
 				'id' => $this->get_layers_field_id( 'advanced', 'padding' ),
@@ -1148,7 +1148,7 @@ class Layers_Design_Controller {
 			);
 
 			$defaults['elements']['margin'] = array(
-				'type' => 'trbl-fields',
+				'type' => 'inline-numbers-fields',
 				'label' => __( 'Margin (px)', 'layerswp' ),
 				'name' => $this->get_layers_field_name( 'advanced', 'margin' ),
 				'id' => $this->get_layers_field_id( 'advanced', 'margin' ),

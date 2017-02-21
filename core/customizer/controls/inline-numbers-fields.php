@@ -8,11 +8,11 @@
  * @since Layers 1.0.0
  */
 
-if( !class_exists( 'Layers_Customize_TRBL_Control' ) ) {
+if( !class_exists( 'Layers_Customize_Inline_Numbers_Fields_Control' ) ) {
 
-	class Layers_Customize_TRBL_Control extends Layers_Customize_Control {
+	class Layers_Customize_Inline_Numbers_Fields_Control extends Layers_Customize_Control {
 
-		public $type = 'layers-trbl-fields';
+		public $type = 'layers-numbers-fields';
 
 		public $fields = array();
 
@@ -47,7 +47,7 @@ if( !class_exists( 'Layers_Customize_TRBL_Control' ) ) {
 				<div class="layers-form-item <?php echo ( $this->colspan ) ? esc_attr( "layers-column-flush layers-span-{$this->colspan}" ) : '' ?>">
 					<?php echo $form_elements->input(
 						array(
-							'type' => 'trbl-fields',
+							'type' => 'inline-numbers-fields',
 							'name' => '',
 							'id' => $this->id,
 							'value' => array(

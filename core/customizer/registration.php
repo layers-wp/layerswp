@@ -406,49 +406,62 @@ class Layers_Customizer_Regsitrar {
 					)
 				);
 				
-			} else if ( 'layers-trbl-fields' == $control_data['type'] ) {
+			} else if (
+					'layers-numbers-fields' == $control_data['type'] ||
+					'layers-trbl-fields' == $control_data['type']
+				) {
+				
+				// Set the default fields.
+				$default_fields = array(
+					'top' => __( 'Top', 'layerswp' ),
+					'right' => __( 'Right', 'layerswp' ),
+					'bottom' => __( 'Bottom', 'layerswp' ),
+					'left' => __( 'Left', 'layerswp' ),
+				);
+				
+				// If caller only wants chosen few fields can customise the labels e.g.
+				// (1) 'fields' => array( 'top' => 'Top (px)' ) one field 'top' with cusotmized label 'Top (px)'.
+				// (2) 'fields' => array( 'top' ) one field 'top' with standard label 'Top'.
+				if( ! empty( $control_data['fields'] ) ) {
+					$new_fields = array();
+					foreach ( $control_data['fields'] as $key => $label ) {
 
-				// Add extra settings fields for Top/Right/Bottom/Left
-				$this->customizer->add_setting(
-					$setting_key . '-top',
-					array(
-						'default'    => ( isset( $control_data['default'] ) ? $control_data['default'] : NULL ) ,
-						'type'       => 'theme_mod',
-						'capability' => 'manage_options',
-						'sanitize_callback' => $this->add_sanitize_callback( $control_data )
-					)
-				);
-				$this->customizer->add_setting(
-					$setting_key . '-right',
-					array(
-						'default'    => ( isset( $control_data['default'] ) ? $control_data['default'] : NULL ) ,
-						'type'       => 'theme_mod',
-						'capability' => 'manage_options',
-						'sanitize_callback' => $this->add_sanitize_callback( $control_data )
-					)
-				);
-				$this->customizer->add_setting(
-					$setting_key . '-bottom',
-					array(
-						'default'    => ( isset( $control_data['default'] ) ? $control_data['default'] : NULL ) ,
-						'type'       => 'theme_mod',
-						'capability' => 'manage_options',
-						'sanitize_callback' => $this->add_sanitize_callback( $control_data )
-					)
-				);
-				$this->customizer->add_setting(
-					$setting_key . '-left',
-					array(
-						'default'    => ( isset( $control_data['default'] ) ? $control_data['default'] : NULL ) ,
-						'type'       => 'theme_mod',
-						'capability' => 'manage_options',
-						'sanitize_callback' => $this->add_sanitize_callback( $control_data )
-					)
-				);
+						if ( is_numeric( $key ) ) {
+							
+							// Array element type: [ 'bottom' ]
+							if ( isset( $default_fields[$label] ) ){ // Make sure that what the user spcified is a valid field of TRBL.
+								$new_fields[$label] = $default_fields[$label];
+							}
+						}
+						else {
+							
+							// Array element type: [ 'bottom' => 'Bottom (px)' ]
+							$new_fields[$key] = $label;
+						}
+					}
+					$default_fields = $new_fields;
+
+					// If the fields chosen were incorrect then bail.
+					if ( empty( $default_fields ) ) return;
+				}
+				
+				// Add the extra settings fields.
+				foreach ( $default_fields as $key => $label ) {
+					
+					$this->customizer->add_setting(
+						"{$setting_key}-{$key}",
+						array(
+							'default'    => ( isset( $control_data['default'] ) ? $control_data['default'] : NULL ) ,
+							'type'       => 'theme_mod',
+							'capability' => 'manage_options',
+							'sanitize_callback' => $this->add_sanitize_callback( $control_data )
+						)
+					);
+				}
 				
 				// Add Control
 				$this->customizer->add_control(
-					new Layers_Customize_TRBL_Control(
+					new Layers_Customize_Inline_Numbers_Fields_Control(
 						$this->customizer,
 						$setting_key,
 						$control_data

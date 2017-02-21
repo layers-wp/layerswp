@@ -63,6 +63,7 @@ class Layers_Customizer {
 			require_once get_template_directory() . $controls_dir . 'color.php';
 			require_once get_template_directory() . $controls_dir . 'font.php';
 			require_once get_template_directory() . $controls_dir . 'heading.php';
+			require_once get_template_directory() . $controls_dir . 'inline-numbers-fields.php';
 			require_once get_template_directory() . $controls_dir . 'number.php';
 			require_once get_template_directory() . $controls_dir . 'range.php';
 			require_once get_template_directory() . $controls_dir . 'select.php';
@@ -73,7 +74,6 @@ class Layers_Customizer {
 			require_once get_template_directory() . $controls_dir . 'rte.php';
 			require_once get_template_directory() . $controls_dir . 'text.php';
 			require_once get_template_directory() . $controls_dir . 'textarea.php';
-			require_once get_template_directory() . $controls_dir . 'trbl.php';
 
 			// Enqueue Styles
 			add_action( 'customize_controls_print_footer_scripts', array( $this, 'admin_enqueue_scripts' ) );

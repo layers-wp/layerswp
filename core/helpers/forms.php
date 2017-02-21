@@ -675,16 +675,17 @@ class Layers_Form_Elements {
 			/**
 			* Inline Number Fields (can be customized to be a group of any numbers e.g. X, Y, Blur, Spread).
 			*/
-			case 'inline-numbers-fields' : ?>
-
-				<?php $fields = array(
+			case 'inline-numbers-fields' :
+			case 'trbl-fields' : // Legacy fields type, was replaced by the more versatile inline-numbers-fields.
+				
+				// Set the default fields if none are specified.
+				$default_fields = array(
 					'top' => __( 'Top', 'layerswp' ),
 					'right' => __( 'Right', 'layerswp' ),
 					'bottom' => __( 'Bottom', 'layerswp' ),
 					'left' => __( 'Left', 'layerswp' ),
-				); ?>
-
-				<?php
+				);
+				
 				// If caller only wants chosen few fields can customise the labels e.g.
 				// (1) 'fields' => array( 'top' => 'Top (px)' ) one field 'top' with cusotmized label 'Top (px)'.
 				// (2) 'fields' => array( 'top' ) one field 'top' with standard label 'Top'.
@@ -694,8 +695,8 @@ class Layers_Form_Elements {
 
 						if ( is_numeric( $key ) ) {
 							// Array element type: [ 'bottom' ]
-							if ( isset( $fields[$value] ) ){ // Make sure that what the user spcified is avalid field of TRBL.
-								$new_fields[$value] = $fields[$value];
+							if ( isset( $default_fields[$value] ) ){ // Make sure that what the user spcified is a valid field of TRBL.
+								$new_fields[$value] = $default_fields[$value];
 							}
 						}
 						else {
@@ -703,14 +704,14 @@ class Layers_Form_Elements {
 							$new_fields[$key] = $value;
 						}
 					}
-					$fields = $new_fields;
+					$default_fields = $new_fields;
 
 					// If the fields chosen were incorrect then bail.
-					if ( empty( $fields ) ) return;
+					if ( empty( $default_fields ) ) return;
 				}
 
 				// Calculate column span based on the number of resulting fields.
-				$field_span = ( 12 / count( $fields ) );
+				$field_span = ( 12 / count( $default_fields ) );
 				
 				// Normalize the 'class' attr.
 				if ( ! isset( $input_props['class'] ) ) {
@@ -727,7 +728,7 @@ class Layers_Form_Elements {
 				?>
 				
 				<div <?php echo $input_props['class']; ?>>
-					<?php foreach ( $fields as $key => $label ) : ?>
+					<?php foreach ( $default_fields as $key => $label ) : ?>
 						<div class="<?php echo ( $is_flush ) ? 'layers-column-flush' : 'layers-column' ; ?> layers-span-<?php echo esc_attr( $field_span ); ?>">
 							<?php echo $this->input(
 								array(
@@ -746,82 +747,6 @@ class Layers_Form_Elements {
 					<?php endforeach; ?>
 				</div>
 				
-			<?php break;
-			
-			/**
-			* Inline TRBL Fields (Top, Right, Bottom, Left).
-			*/
-			case 'trbl-fields' : ?>
-
-				<?php $fields = array(
-					'top' => __( 'Top', 'layerswp' ),
-					'right' => __( 'Right', 'layerswp' ),
-					'bottom' => __( 'Bottom', 'layerswp' ),
-					'left' => __( 'Left', 'layerswp' ),
-				); ?>
-
-				<?php
-				// If caller only wants chosen few fields can customise the labels e.g.
-				// (1) 'fields' => array( 'top' => 'Top (px)' ) one field 'top' with cusotmized label 'Top (px)'.
-				// (2) 'fields' => array( 'top' ) one field 'top' with standard label 'Top'.
-				if( ! empty( $input->fields ) ) {
-					$new_fields = array();
-					foreach ( $input->fields as $key => $value ) {
-
-						if ( is_numeric( $key ) ) {
-							// Array element type: [ 'bottom' ]
-							if ( isset( $fields[$value] ) ){ // Make sure that what the user spcified is avalid field of TRBL.
-								$new_fields[$value] = $fields[$value];
-							}
-						}
-						else {
-							// Array element type: [ 'bottom' => 'Bottom (px)' ]
-							$new_fields[$key] = $value;
-						}
-					}
-					$fields = $new_fields;
-
-					// If the fields chosen were incorrect then bail.
-					if ( empty( $fields ) ) return;
-				}
-
-				// Calculate column span based on the number of resulting fields.
-				$field_span = ( 12 / count( $fields ) );
-				
-				// Normalize the 'class' attr.
-				if ( ! isset( $input_props['class'] ) ) {
-					$input_props['class'] = 'class=""';
-				}
-				
-				$is_flush = FALSE;
-				if ( FALSE !== strpos( $input_props['class'], 'inline-fields-flush' ) ) {
-					$input_props['class'] = str_replace( 'inline-fields-flush', 'layers-input layers-inline-field-row-flush', $input_props['class'] );
-					$is_flush = TRUE;
-				}
-				
-				$input_props['class'] = str_replace( 'class="', 'class="layers-row layers-inline-field-row ', $input_props['class'] );
-				?>
-				
-				<div <?php echo $input_props['class']; ?>>
-					<?php foreach ( $fields as $key => $label ) : ?>
-						<div class="<?php echo ( $is_flush ) ? 'layers-column-flush' : 'layers-column' ; ?> layers-span-<?php echo esc_attr( $field_span ); ?>">
-							<?php echo $this->input(
-								array(
-									'type' => 'number',
-									'name' => ( isset( $input->name ) ) ? "{$input->name}[$key]" : '',
-									'id' => "{$input->id}-{$key}",
-									'value' => ( isset( $input->value->$key ) ) ? $input->value->$key : NULL,
-									'class' => 'l_admin-hide-controls',
-									'data' => array(
-										'customize-setting-link' => "{$input->id}-{$key}",
-									),
-								)
-							); ?>
-							<label for="<?php echo esc_attr( $input->id ) . '-' . $key; ?>"><?php echo esc_html( $label ); ?></label>
-						</div>
-					<?php endforeach; ?>
-				</div>
-
 			<?php break;
 			
 			/**

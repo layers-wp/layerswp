@@ -407,7 +407,7 @@ class Layers_Customizer_Regsitrar {
 				);
 				
 			} else if (
-					'layers-numbers-fields' == $control_data['type'] ||
+					'layers-inline-numbers-fields' == $control_data['type'] ||
 					'layers-trbl-fields' == $control_data['type']
 				) {
 				

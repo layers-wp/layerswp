@@ -12,7 +12,7 @@ if( !class_exists( 'Layers_Customize_Inline_Numbers_Fields_Control' ) ) {
 
 	class Layers_Customize_Inline_Numbers_Fields_Control extends Layers_Customize_Control {
 
-		public $type = 'layers-numbers-fields';
+		public $type = 'layers-inline-numbers-fields';
 
 		public $fields = array();
 

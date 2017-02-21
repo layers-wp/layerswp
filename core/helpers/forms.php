@@ -845,7 +845,7 @@ class Layers_Form_Elements {
 
 						if ( is_numeric( $key ) ) {
 							// Array element type: [ 'bottom' ]
-							if ( isset( $fields[$value] ) ){ // Make sure that what the user spcified is avalid field of TRBL.
+							if ( isset( $fields[$value] ) ){ // Make sure that what the user spcified is a valid field of TRBL.
 								$new_fields[$value] = $fields[$value];
 							}
 						}

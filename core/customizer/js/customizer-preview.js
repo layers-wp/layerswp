@@ -147,5 +147,36 @@
 		// Initialize Layers Preview
 		api.LayersCustomizerPreview.init();
 	} );
+	
+	
+	/**
+	 * Test. Handle postMessage Controls.
+	 */
+	
+	wp.customize( 'layers-comments-body-background-style', function( value ) {
+		value.bind( function( newval ) {
+			remove_comments_body_styling();
+		});
+	} );
+	
+	function remove_comments_body_styling() {
+		
+		var $css = $('#layers-inline-styles-header').text();
+
+		$css = $css.split("\n");
+
+		$.each( $css, function( index, value ){
+
+			if ( undefined !== value && -1 !== value.indexOf( '/* COMMENT STYLING */' ) ) {
+				console.log( value );
+				$css.splice( index, 1 );
+			}
+		});
+
+		$css = $css.join("\n");
+
+		$('#layers-inline-styles-header').text( $css );
+	}
+	
 
 } )( window.wp, jQuery );

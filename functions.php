@@ -710,3 +710,74 @@ if( !function_exists( 'layers_excerpt_class' ) ) {
 } // layers_excerpt_class
 add_filter( "the_excerpt", "layers_excerpt_class" );
 add_filter( "get_the_excerpt", "layers_excerpt_class" );
+
+
+
+/**
+ * Test - Partial refresh of the Comment Body styles.
+ */
+
+function register_comment_body_partials( WP_Customize_Manager $wp_customize ) {
+ 
+	// Abort if selective refresh is not available.
+	if ( ! isset( $wp_customize->selective_refresh ) ) return;
+ 
+	/*$wp_customize->selective_refresh->add_partial( 'comments_body_background_style', array(
+		'selector' => '.comment-list > .comment.well',
+		'settings' => array(
+			'layers-comments-body-background-style',
+			'layers-comments-body-background-gradient-direction',
+		),
+		'render_callback' => function() {
+			return 'New Content!';
+		},
+	) );*/
+	
+	$wp_customize->selective_refresh->add_partial( 'comments_body_background_content', array(
+		'selector' => '.layers-comment-form-styling',
+		'settings' => array(
+			'layers-comments-body-background-style',
+			'layers-comments-body-background-gradient-direction',
+			// 'layers-comments-body-borders-active-top',
+			// 'layers-comments-body-borders-active-right',
+			// 'layers-comments-body-borders-active-bottom',
+			// 'layers-comments-body-borders-active-left',
+			// 'layers-comments-body-border-style-width',
+			// 'layers-comments-body-border-style-style',
+			// 'layers-comments-body-border-style-radius',
+			'layers-comments-body-border-color',
+			// 'layers-comments-body-margin-top',
+			// 'layers-comments-body-margin-right',
+			// 'layers-comments-body-margin-bottom',
+			// 'layers-comments-body-margin-left',
+			// 'layers-comments-body-padding-top',
+			// 'layers-comments-body-padding-right',
+			// 'layers-comments-body-padding-bottom',
+			// 'layers-comments-body-padding-left',
+			// 'layers-comments-body-shadow-style-x',
+			// 'layers-comments-body-shadow-style-y',
+			// 'layers-comments-body-shadow-style-blur',
+			// 'layers-comments-body-shadow-style-shadow',
+			'layers-comments-body-shadow-color',
+		),
+		'render_callback' => function() {
+			
+			$settings = layers_pro_get_comment_body_control_settings( 'comments-body' );
+			$styles = layers_pro_apply_control_comment_body_styling( $settings, array(
+				'.comment-list > .comment.well',
+				'.comment-list > .comment-respond',
+			) );
+			
+			echo "<style>{$styles}</style>";
+		},
+	) );
+	
+}
+add_action( 'customize_register', 'register_comment_body_partials' );
+
+// Add temp element to target for the partial - as we are not replacingh content, but rather just adding a <style> block.
+function my_comment_form_element() {
+	
+	echo '<div class="layers-comment-form-styling"></div>';
+}
+add_action( 'comment_form_before', 'my_comment_form_element' );

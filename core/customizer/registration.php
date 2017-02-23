@@ -199,9 +199,11 @@ class Layers_Customizer_Regsitrar {
 			
 			// Set Transport Method.
 			$transport = 'refresh';
-			// $transport = 'postMessage';
+			if ( isset( $control_data['transport'] ) ) {
+				$transport = $control_data['transport'];
+			}
 
-			// Add Setting
+			// Add Setting.
 			$this->customizer->add_setting(
 				$setting_key,
 				array(

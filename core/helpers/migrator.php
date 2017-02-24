@@ -41,7 +41,7 @@ class Layers_Widget_Migrator {
 	*/
 
 	function get_translated_dir_uri(){
-		return str_replace('/', '\/', get_template_directory_uri() );
+		return str_replace('/', '\/', LAYERS_TEMPLATE_URI );
 	}
 
 	/**

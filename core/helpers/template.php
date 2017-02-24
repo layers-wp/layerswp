@@ -1380,7 +1380,7 @@ if( !function_exists( 'layers_apply_inline_styles' ) ) {
 
 		wp_enqueue_style(
 			LAYERS_THEME_SLUG . '-inline-styles',
-			get_template_directory_uri() . '/assets/css/inline.css'
+			LAYERS_TEMPLATE_URI . '/assets/css/inline.css'
 		);
 
 		wp_add_inline_style(
@@ -1404,7 +1404,7 @@ if( !function_exists( 'layers_apply_custom_styles' ) ) {
 
 		wp_enqueue_style(
 			LAYERS_THEME_SLUG . '-custom-styles',
-			get_template_directory_uri() . '/assets/css/custom.css'
+			LAYERS_TEMPLATE_URI . '/assets/css/custom.css'
 		);
 		wp_add_inline_style(
 			LAYERS_THEME_SLUG . '-custom-styles',

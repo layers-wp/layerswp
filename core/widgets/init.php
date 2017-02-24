@@ -37,14 +37,14 @@ class Layers_Widgets {
 		define( 'LAYERS_WIDGET_WIDTH_LARGE' , 980 );
 
 		// Include ajax functions
-		require_once get_template_directory() . $widget_dir . 'ajax.php';
+		require_once LAYERS_TEMPLATE_DIR . $widget_dir . 'ajax.php';
 
 		// Include necessary widgets
-		require_once get_template_directory() . $module_dir . 'base.php'; // Basis of all Layers Widgets
-		require_once get_template_directory() . $module_dir . 'contact.php';
-		require_once get_template_directory() . $module_dir . 'content.php';
-		require_once get_template_directory() . $module_dir . 'post.php';
-		require_once get_template_directory() . $module_dir . 'slider.php';
+		require_once LAYERS_TEMPLATE_DIR . $module_dir . 'base.php'; // Basis of all Layers Widgets
+		require_once LAYERS_TEMPLATE_DIR . $module_dir . 'contact.php';
+		require_once LAYERS_TEMPLATE_DIR . $module_dir . 'content.php';
+		require_once LAYERS_TEMPLATE_DIR . $module_dir . 'post.php';
+		require_once LAYERS_TEMPLATE_DIR . $module_dir . 'slider.php';
 
 		// Enqueue Styles
 		add_action( 'admin_enqueue_scripts', array( $this, 'admin_enqueue_scripts' ) , 50 );
@@ -322,7 +322,7 @@ class Layers_Widgets {
 		// Banner Widget
 		wp_register_script(
 			LAYERS_THEME_SLUG . '-admin-slider-widget' ,
-			get_template_directory_uri() . '/core/widgets/js/slider.js' ,
+			LAYERS_TEMPLATE_URI . '/core/widgets/js/slider.js' ,
 			array(),
 			LAYERS_VERSION,
 			true
@@ -334,7 +334,7 @@ class Layers_Widgets {
 		// Content Widget
 		wp_register_script(
 			LAYERS_THEME_SLUG . '-admin-content-widget' ,
-			get_template_directory_uri() . '/core/widgets/js/content.js' ,
+			LAYERS_TEMPLATE_URI . '/core/widgets/js/content.js' ,
 			array(),
 			LAYERS_VERSION,
 			true
@@ -346,7 +346,7 @@ class Layers_Widgets {
 		// Repeatable Widget
 		wp_register_script(
 			LAYERS_THEME_SLUG . '-admin-repeater-widget' ,
-			get_template_directory_uri() . '/core/widgets/js/repeater.js' ,
+			LAYERS_TEMPLATE_URI . '/core/widgets/js/repeater.js' ,
 			array(),
 			LAYERS_VERSION,
 			true
@@ -361,7 +361,7 @@ class Layers_Widgets {
 		// Widget accordians
 		wp_enqueue_script(
 			LAYERS_THEME_SLUG . '-admin-widgets' ,
-			get_template_directory_uri() . '/core/widgets/js/widget-accordians.js' ,
+			LAYERS_TEMPLATE_URI . '/core/widgets/js/widget-accordians.js' ,
 			array(
 				LAYERS_THEME_SLUG . '-admin-slider-widget',
 				LAYERS_THEME_SLUG . '-admin-content-widget',
@@ -430,7 +430,7 @@ if( !function_exists( 'layers_backup_page_sidebars_widgets' ) ) {
 
 		// If the migrator class does not exist, then force load the migrator.php file
 		if( !class_exists( 'Layers_Widget_Migrator' ) ) {
-			require get_template_directory() . '/core/helpers/migrator.php';
+			require LAYERS_TEMPLATE_DIR . '/core/helpers/migrator.php';
 		}
 
 		// Prep the migrator

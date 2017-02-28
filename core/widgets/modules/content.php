@@ -28,6 +28,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 			$this->post_type = '';
 			$this->taxonomy = '';
 			$this->checkboxes = array();
+			$this->support_lightbox = true;
 
 			/* Widget settings. */
 			$widget_ops = array(
@@ -249,33 +250,6 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 									$first_last_class = '';
 								}
 
-								// Set Featured Media
-								$featureimage = $this->check_and_return( $item_instance , 'design' , 'featuredimage' );
-								$featurevideo = $this->check_and_return( $item_instance , 'design' , 'featuredvideo' );
-
-								// Calculate which cut based on ratio.
-								if( isset( $item_instance['design'][ 'imageratios' ] ) ){
-
-									// Translate Image Ratio into something usable
-									$image_ratio = layers_translate_image_ratios( $item_instance['design'][ 'imageratios' ] );
-
-									if( !isset( $item_instance[ 'width' ] ) ) $item_instance[ 'width' ] = 6;
-
-									if( 4 >= $item_instance['width'] && 'layout-fullwidth' != $this->check_and_return( $instance, 'design', 'layout' ) ) $use_image_ratio = $image_ratio . '-medium';
-
-									else $use_image_ratio = $image_ratio . '-large';
-
-								} else {
-									if( 4 > $item_instance['width'] ) $use_image_ratio = 'medium';
-									else $use_image_ratio = 'full';
-								}
-
-								$media = layers_get_feature_media(
-									$featureimage ,
-									$use_image_ratio ,
-									$featurevideo
-								);
-
 								// Set Image Size
 								if( isset( $item_instance['design']['featuredimage-size'] ) && 0 != $item_instance['design']['featuredimage-size'] && '' != $item_instance['design']['featuredimage-size'] ) {
 									$image_width = $item_instance['design'][ 'featuredimage-size' ].'px';
@@ -302,7 +276,25 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 								$classes[] = $this->check_and_return( $item_instance, 'design', 'advanced', 'customclass' ); // Apply custom class from design-bar's advanced control.
 								if( $this->check_and_return( $item_instance, 'design' , 'background', 'image' ) || '' != $this->check_and_return( $item_instance, 'design' , 'background', 'color' ) )
 									$classes[] = 'content';
-								if( false != $media )
+								
+								// Calculate which cut based on ratio.
+								if( isset( $item_instance['design'][ 'imageratios' ] ) ){
+
+									// Translate Image Ratio into something usable
+									$image_ratio = layers_translate_image_ratios( $item_instance['design'][ 'imageratios' ] );
+
+									if( !isset( $item_instance[ 'width' ] ) ) $item_instance[ 'width' ] = 6;
+
+									if( 4 >= $item_instance['width'] && 'layout-fullwidth' != $this->check_and_return( $instance, 'design', 'layout' ) ) $use_image_ratio = $image_ratio . '-medium';
+
+									else $use_image_ratio = $image_ratio . '-large';
+
+								} else {
+									if( 4 > $item_instance['width'] ) $use_image_ratio = 'medium';
+									else $use_image_ratio = 'full';
+								}
+
+								if( $this->check_and_return( $item_instance , 'design' , 'featuredimage' ) || $this->check_and_return( $item_instance , 'design' , 'featuredvideo' ) )
 									$classes[] = 'has-image';
 
 								$classes = apply_filters( 'layers_content_widget_item_class', $classes, $this, $item_instance );
@@ -335,17 +327,9 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 									?>
 
 									<div class="<?php echo $column_inner_classes; ?>">
-										<?php if( NULL != $media ) { ?>
-											<div class="media-image <?php echo ( ( isset( $item_instance['design'][ 'imageratios' ] ) && 'image-round' == $item_instance['design'][ 'imageratios' ] ) ? 'image-rounded' : '' ); ?>">
-												<?php if ( $link_array['link'] ) { ?>
-													<a <?php echo $link_href_attr; ?> <?php echo $link_target_attr; ?>>
-												<?php  } ?>
-													<?php echo $media; ?>
-												<?php if ( $link_array['link'] ) { ?>
-													</a>
-												<?php  } ?>
-											</div>
-										<?php } ?>
+										
+										<?php // Display featured image
+										$this->featured_media( 'media-image', $item_instance ); ?>
 
 										<?php if( $this->check_and_return( $item_instance, 'title' ) || $this->check_and_return( $item_instance, 'excerpt' ) || ( $link_array['link'] && $link_array['text'] ) ) { ?>
 											<div class="media-body <?php echo ( isset( $item_instance['design']['fonts'][ 'align' ] ) ) ? $item_instance['design']['fonts'][ 'align' ] : ''; ?>">
@@ -435,6 +419,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 					'name' => $this->get_layers_field_name( 'design' ),
 					'id' => $this->get_layers_field_id( 'design' ),
 					'widget_id' => $this->widget_id,
+					'widget_object' => $this,
 				),
 				$instance, // Widget Values
 				apply_filters( 'layers_column_widget_design_bar_components', array( // Components
@@ -494,6 +479,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 								'name' => $this->get_layers_field_name( 'design' ),
 								'id' => $this->get_layers_field_id( 'design' ),
 								'widget_id' => $this->widget_id,
+								'widget_object' => $this,
 								'show_trash' => FALSE,
 								'inline' => TRUE,
 								'align' => 'right',
@@ -555,6 +541,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 							'name' => $this->get_layers_field_name( 'design' ),
 							'id' => $this->get_layers_field_id( 'design' ),
 							'widget_id' => $this->widget_id . '_item',
+							'widget_object' => $this,
 							'number' => $this->number,
 							'show_trash' => TRUE,
 						),

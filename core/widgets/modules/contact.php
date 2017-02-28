@@ -32,6 +32,7 @@ if( !class_exists( 'Layers_Contact_Widget' ) ) {
 				'show_address',
 				'show_contact_form'
 			);
+			$this->support_lightbox = true;
 
 	 		/* Widget settings. */
 			$widget_ops = array(
@@ -264,6 +265,7 @@ if( !class_exists( 'Layers_Contact_Widget' ) ) {
 			$this->design_bar(
 				'side', // CSS Class Name
 				array( // Widget Object
+					'widget_this' => $this,
 					'name' => $this->get_layers_field_name( 'design' ),
 					'id' => $this->get_layers_field_id( 'design' ),
 					'widget_id' => $this->widget_id,
@@ -357,6 +359,7 @@ if( !class_exists( 'Layers_Contact_Widget' ) ) {
 							<?php $this->design_bar(
 								'top', // CSS Class Name
 								array( // Widget Object
+									'widget_object' => $this,
 									'name' => $this->get_layers_field_name( 'design' ),
 									'id' => $this->get_layers_field_id( 'design' ),
 									'widget_id' => $this->widget_id,

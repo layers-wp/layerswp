@@ -37,6 +37,7 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 					'show_categories',
 					'show_call_to_action'
 				); // @TODO: Try make this more dynamic, or leave a different note reminding users to change this if they add/remove checkboxes
+			$this->support_lightbox = true;
 
 			/* Widget settings. */
 			$widget_ops = array(
@@ -471,6 +472,7 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 					'name' => $this->get_layers_field_name( 'design' ),
 					'id' => $this->get_layers_field_id( 'design' ),
 					'widget_id' => $this->widget_id,
+					'widget_object' => $this,
 				),
 				$instance, // Widget Values
 				apply_filters( 'layers_post_widget_design_bar_components' , array( // Components
@@ -656,6 +658,7 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 							<?php $this->design_bar(
 								'top', // CSS Class Name
 								array( // Widget Object
+									'widget_object' => $this,
 									'name' => $this->get_layers_field_name( 'design' ),
 									'id' => $this->get_layers_field_id( 'design' ),
 									'widget_id' => $this->widget_id,

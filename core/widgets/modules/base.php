@@ -19,6 +19,8 @@ if( !class_exists( 'Layers_Widget' ) ) {
 
 		public $inline_css;
 
+		public $support_lightbox = false;
+
 		//  Defaults
 
 		public $defaults = array();
@@ -748,6 +750,82 @@ if( !class_exists( 'Layers_Widget' ) ) {
 			$atts = ( isset( $result[0] ) && is_array( $result[0] ) ) ? implode( $result[0], ' ' ) : '' ;
 
 			echo $atts;
+		}
+
+		/**
+		 * Display widget featured image
+		 *
+		 * @param    string   $css_class Optional - Specify the CSS class to apply to the wrapping <div />
+		 * @param    array    $instance Widget instance supplied by WP
+		 * @return   html 	  Output of the featured media
+		 */
+
+		function featured_media( $css_class = '', $instance = array(), $show_link = true ){
+		
+			if( empty( $instance ) ) return;
+
+			// Set Featured Media
+			$featureimage = $this->check_and_return( $instance , 'design' , 'featuredimage' );
+			$featurevideo = $this->check_and_return( $instance , 'design' , 'featuredvideo' );
+
+			// Fallback for the column width
+			if( !isset( $instance[ 'width' ] ) ) $instance[ 'width' ] = 6;
+
+			// Calculate which cut based on ratio.
+			if( $this->check_and_return( $instance, 'design', 'imageratios' ) ){
+
+
+				// Translate Image Ratio into something usable
+				$image_ratio = layers_translate_image_ratios( $this->check_and_return( $instance, 'design', 'imageratios' ) );
+
+				if( 4 >= $instance['width'] && 'layout-fullwidth' != $this->check_and_return( $instance, 'design', 'layout' ) ) $use_image_ratio = $image_ratio . '-medium';
+
+				else $use_image_ratio = $image_ratio . '-large';
+
+			} else {
+				if( 4 > $instance['width'] ) $use_image_ratio = 'medium';
+				else $use_image_ratio = 'full';
+			}
+
+			$media = layers_get_feature_media( $featureimage , $use_image_ratio , $featurevideo );
+
+			// Open in lightbox, this is a Layers Pro feature
+			if( $this->check_and_return( $instance, 'design', 'open-lightbox' ) ){
+
+				// Get direct link to image
+				$image_link = wp_get_attachment_url( $featureimage );
+
+				// Create link
+				$href   = 'href="' . $image_link . '" ';
+				$target = '';
+			} else {
+
+				// Create link
+				$link_array = $this->check_and_return_link( $instance, 'button' );
+				$href   = ( $link_array['link'] ) ? 'href="' . esc_url( $link_array['link'] ) . '"' : '';
+				$target = ( '_blank' == $link_array['target'] ) ? 'target="_blank"' : '';
+			}
+
+			$image_container_class = array();
+			$image_container_class[] = $css_class;
+			$image_container_class[] = ( 'image-round' == $this->check_and_return( $instance , 'design',  'imageratios' ) ? 'image-rounded' : '' );
+			$image_container_class = implode( ' ', $image_container_class );
+
+			if( NULL != $media ) { ?>
+
+				<div class="<?php echo $image_container_class; ?>">
+					<?php if (  TRUE == $show_link && '' != $href ) { ?>
+						<a <?php echo $href; ?> <?php echo $target; ?>>
+							<?php // Output image or video
+							echo $media; ?>
+						</a>
+					<?php } else {
+						// Output image or video
+						echo $media;
+					} ?>
+				</div>
+
+			<?php }			
 		}
 
 	}

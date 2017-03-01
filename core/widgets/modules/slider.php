@@ -233,21 +233,6 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 								$this->inline_css .= layers_pro_apply_widget_button_styling( $this, $item_instance, array( ".{$widget_id}-{$slide_key} .button" ) );
 							}
 
-							// Set Featured Media
-							$featureimage = $this->check_and_return( $item_instance , 'design' , 'featuredimage' );
-							$featurevideo = $this->check_and_return( $item_instance , 'design' , 'featuredvideo' );
-
-							// Set Image Sizes
-							if( isset( $item_instance['design'][ 'imageratios' ] ) ){
-
-									// Translate Image Ratio into something usable
-									$image_ratio = layers_translate_image_ratios( $item_instance['design'][ 'imageratios' ] );
-									$use_image_ratio = $image_ratio . '-medium';
-
-							} else {
-								$use_image_ratio = 'large';
-							}
-
 							// Get the button array.
 							$link_array       = $this->check_and_return_link( $item_instance, 'button' );
 							$link_href_attr   = ( $link_array['link'] ) ? 'href="' . esc_url( $link_array['link'] ) . '"' : '';
@@ -327,15 +312,10 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 												</div>
 											</div>
 										<?php } // if title || excerpt ?>
-										<?php if( $featureimage || $featurevideo ) { ?>
-											<div class="image-container <?php echo ( 'image-round' ==  $this->check_and_return( $item_instance, 'design',  'imageratios' ) ? 'image-rounded' : '' ); ?>">
-												<?php echo layers_get_feature_media(
-													$featureimage ,
-													$use_image_ratio ,
-													$featurevideo
-												); ?>
-											</div>
-										<?php } // if $item image  ?>
+										
+										<?php // Display featured image
+										$this->featured_media( 'image-container', $item_instances, FALSE ); ?>
+
 									</div> <!-- .container -->
 								</div> <!-- .overlay -->
 
@@ -611,6 +591,7 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 					'name' => $this->get_layers_field_name( 'design' ),
 					'id' => $this->get_layers_field_id( 'design' ),
 					'widget_id' => $this->widget_id,
+					'widget_object' => $this,
 				),
 				$instance, // Widget Values
 				$components // Components
@@ -663,13 +644,14 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 				<section class="layers-accordion-section layers-content">
 					<?php $this->design_bar(
 						'top', // CSS Class Name
-						array(
+						array( // Widget Object
 							'name' => $this->get_layers_field_name( 'design' ),
 							'id' => $this->get_layers_field_id( 'design' ),
 							'widget_id' => $this->widget_id . '_item',
+							'widget_object' => $this,
 							'number' => $this->number,
 							'show_trash' => TRUE
-						), // Widget Object
+						),
 						$item_instance, // Widget Values
 						apply_filters( 'layers_slide_widget_slide_design_bar_components', array( // Components
 							'background',

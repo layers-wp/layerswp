@@ -425,7 +425,7 @@ div[id*='layers-widget'] .widget-control-actions .alignright{
 .layers-visuals-item input{
 	display: none;
 	/* display: block !important; */
-	/* margin-top: 3px !important; */
+	/* margin: 3px 0 !important; */
 	/* height: 16px !important; */
 	/* line-height: normal !important; */
 }

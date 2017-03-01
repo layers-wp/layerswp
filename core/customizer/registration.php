@@ -249,6 +249,7 @@ class Layers_Customizer_Regsitrar {
 								'type'       => 'theme_mod',
 								'capability' => 'manage_options',
 								'sanitize_callback' => $this->add_sanitize_callback( $control_data ),
+								'transport'  => $transport,
 							)
 						);
 					}
@@ -456,7 +457,8 @@ class Layers_Customizer_Regsitrar {
 							'default'    => ( isset( $control_data['default'] ) ? $control_data['default'] : NULL ) ,
 							'type'       => 'theme_mod',
 							'capability' => 'manage_options',
-							'sanitize_callback' => $this->add_sanitize_callback( $control_data )
+							'sanitize_callback' => $this->add_sanitize_callback( $control_data ),
+							'transport'  => $transport,
 						)
 					);
 				}
@@ -479,7 +481,8 @@ class Layers_Customizer_Regsitrar {
 						'default'    => ( isset( $control_data['default'] ) ? $control_data['default'] : NULL ) ,
 						'type'       => 'theme_mod',
 						'capability' => 'manage_options',
-						'sanitize_callback' => $this->add_sanitize_callback( $control_data )
+						'sanitize_callback' => $this->add_sanitize_callback( $control_data ),
+						'transport'  => $transport,
 					)
 				);
 				$this->customizer->add_setting(
@@ -488,7 +491,8 @@ class Layers_Customizer_Regsitrar {
 						'default'    => ( isset( $control_data['default'] ) ? $control_data['default'] : NULL ) ,
 						'type'       => 'theme_mod',
 						'capability' => 'manage_options',
-						'sanitize_callback' => $this->add_sanitize_callback( $control_data )
+						'sanitize_callback' => $this->add_sanitize_callback( $control_data ),
+						'transport'  => $transport,
 					)
 				);
 				$this->customizer->add_setting(
@@ -497,7 +501,8 @@ class Layers_Customizer_Regsitrar {
 						'default'    => ( isset( $control_data['default'] ) ? $control_data['default'] : NULL ) ,
 						'type'       => 'theme_mod',
 						'capability' => 'manage_options',
-						'sanitize_callback' => $this->add_sanitize_callback( $control_data )
+						'sanitize_callback' => $this->add_sanitize_callback( $control_data ),
+						'transport'  => $transport,
 					)
 				);
 				

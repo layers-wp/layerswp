@@ -43,6 +43,25 @@ if( !class_exists( 'Layers_Customize_Inline_Numbers_Fields_Control' ) ) {
 				<?php if ( '' != $this->subtitle ) : ?>
 					<label class="layers-form-row"><?php echo $this->subtitle; ?></label>
 				<?php endif; ?>
+				
+				<?php
+				// Default to TRBL if no fields are set.
+				if ( empty( $this->fields ) ) {
+					
+					$this->fields = array(
+						'top' => 'Top',
+						'right' => 'Right',
+						'bottom' => 'Bottom',
+						'left' => 'Left',
+					);
+				}
+				
+				// Get the values if any set.
+				$values = array();
+				foreach ( $this->fields as $field_key => $field_value ) {
+					$values[$field_key] = get_theme_mod( "{$this->id}-{$field_key}" );
+				}
+				?>
 
 				<div class="layers-form-item <?php echo ( $this->colspan ) ? esc_attr( "layers-column-flush layers-span-{$this->colspan}" ) : '' ?>">
 					<?php echo $form_elements->input(
@@ -50,12 +69,7 @@ if( !class_exists( 'Layers_Customize_Inline_Numbers_Fields_Control' ) ) {
 							'type' => 'inline-numbers-fields',
 							'name' => '',
 							'id' => $this->id,
-							'value' => array(
-								'top' => get_option( "{$this->id}-top" ),
-								'right' => get_option( "{$this->id}-right" ),
-								'bottom' => get_option( "{$this->id}-bottom" ),
-								'left' => get_option( "{$this->id}-left" ),
-							),
+							'value' => $values,
 							'fields' => $this->fields,
 							'class' => $this->input_class,
 						)

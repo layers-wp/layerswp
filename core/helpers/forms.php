@@ -710,8 +710,9 @@ class Layers_Form_Elements {
 					if ( empty( $default_fields ) ) return;
 				}
 
-				// Calculate column span based on the number of resulting fields.
+				// Calculate column span based on the number of resulting fields. (2.4 = 5 columns)
 				$field_span = ( 12 / count( $default_fields ) );
+				$field_span = str_replace( '.', '-', $field_span );
 				
 				// Normalize the 'class' attr.
 				if ( ! isset( $input_props['class'] ) ) {

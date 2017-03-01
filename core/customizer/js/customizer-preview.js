@@ -10,6 +10,7 @@
 * 2 - Fix customizer FOUC during render
 * 3 - Customizer UX Enhancements
 * 4 - Remove all '#' href's in Preview
+* 5 - Helper funciton removes specific line from any css <style> block
 *
 * Author: Obox Themes
 * Author URI: http://www.oboxthemes.com/
@@ -148,35 +149,37 @@
 		api.LayersCustomizerPreview.init();
 	} );
 	
+} )( window.wp, jQuery );
+
+
+/**
+ * 5 - Helper function removes specific line from any CSS <style> block
+ */
+function layers_remove_styling_line( $search_string ) {
 	
-	/**
-	 * Test. Handle postMessage Controls.
-	 */
-	
-	wp.customize( 'layers-comments-body-background-style', function( value ) {
-		value.bind( function( newval ) {
-			remove_comments_body_styling();
-		});
-	} );
-	
-	function remove_comments_body_styling() {
+	// Loop all <style> blocks.
+	$('style').each(function(index, el) {
 		
-		var $css = $('#layers-inline-styles-header').text();
-
+		// Cache elements.
+		var $style_block = $(this);
+		
+		// Get the CSS text.
+		var $css = $style_block.text();
+		
+		// Convert CSS text to array split on lines.
 		$css = $css.split("\n");
-
-		$.each( $css, function( index, value ){
-
-			if ( undefined !== value && -1 !== value.indexOf( '/* COMMENT STYLING */' ) ) {
-				console.log( value );
+		
+		// Loop each line, search for the string, remove it if it's found.
+		jQuery.each( $css, function( index, value ){
+			if ( undefined !== value && -1 !== value.indexOf( $search_string ) ) {
 				$css.splice( index, 1 );
 			}
 		});
-
+		
+		// Convert CSS from array back to it's initial format.
 		$css = $css.join("\n");
-
-		$('#layers-inline-styles-header').text( $css );
-	}
-	
-
-} )( window.wp, jQuery );
+		
+		// Put the CSS back in the <style> block.
+		$style_block.text( $css );
+	});
+}

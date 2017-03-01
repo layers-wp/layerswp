@@ -684,6 +684,7 @@ div[id*='layers-widget'] .widget-control-actions .alignright{
 
 	.layers-column-flush.layers-span-1{width: 8.333333%;}
 	.layers-column-flush.layers-span-2{width: 16.6667%;}
+	.layers-column-flush.layers-span-2-4{width: 20%;}
 	.layers-column-flush.layers-span-3{width: 25%;}
 	.layers-column-flush.layers-span-4{width: 33.33333%;}
 	.layers-column-flush.layers-span-5{width: 41.66665%;}

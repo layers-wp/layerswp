@@ -314,7 +314,7 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 										<?php } // if title || excerpt ?>
 										
 										<?php // Display featured image
-										$this->featured_media( 'image-container', $item_instances, FALSE ); ?>
+										$this->featured_media( 'image-container', $item_instance, FALSE ); ?>
 
 									</div> <!-- .container -->
 								</div> <!-- .overlay -->

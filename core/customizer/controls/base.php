@@ -44,6 +44,8 @@ if( !class_exists( 'Layers_Customize_Control' ) ) {
 		public $input_class;
 		
 		public $multi_select = FALSE;
+		
+		public $tabs;
 
 		/**
 		* Render content must be overwrittedn by etending class as this renders the control.

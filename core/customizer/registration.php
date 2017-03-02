@@ -602,6 +602,17 @@ class Layers_Customizer_Regsitrar {
 						$control_data
 					)
 				);
+			
+			} else if ( 'layers-tabs' == $control_data['type'] ) {
+
+				// Add Control
+				$this->customizer->add_control(
+					new Layers_Customize_Tabs_Control(
+						$this->customizer,
+						$setting_key,
+						$control_data
+					)
+				);
 				
 			} else {
 

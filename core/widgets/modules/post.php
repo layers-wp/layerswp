@@ -156,7 +156,13 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 					'color' => $this->check_and_return( $instance, 'design', 'column-background-color' )
 				);
 
-				$bg_args = array_merge( $this->check_and_return(  $instance, 'design', 'column', 'background' ), $bg_args );
+				if( !is_array( $this->check_and_return(  $instance, 'design', 'column', 'background' ) ) ){
+					$bg = $this->check_and_return(  $instance, 'design', 'column', 'background' );
+				} else {
+					$bg = array();
+				}
+
+				$bg_args = array_merge( , $bg_args );
 
 			} else if( NULL !== $this->check_and_return( $instance, 'design', 'design', 'column-background-color' ) ){
 				$bg_args = array(

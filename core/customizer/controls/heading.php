@@ -1,7 +1,8 @@
-<?php  /**
- * Radio Control
+<?php
+/**
+ * Heading Control
  *
- * This file is used to register and display the custom Layers Radio Checkbox
+ * This file is used to register and display the custom Layers Heading Control.
  *
  * @package Layers
  * @since Layers 1.0.0

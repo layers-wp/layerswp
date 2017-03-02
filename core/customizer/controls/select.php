@@ -1,7 +1,8 @@
-<?php  /**
+<?php
+/**
  * Select
  *
- * This file is used to register and display the custom Layers Select Box
+ * This file is used to register and display the custom Layers Select Box.
  *
  * @package Layers
  * @since Layers 1.0.0

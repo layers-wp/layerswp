@@ -2,10 +2,10 @@
 /**
  * Border Style Fields (Width, Style, Radius)
  *
- * This file is used to register and display the custom Layers TRBL field
+ * This file is used to register and display the custom Layers Border Style Fields.
  *
  * @package Layers
- * @since Layers 1.0.0
+ * @since Layers 1.6.5
  */
 
 if( !class_exists( 'Layers_Customize_Border_Style_Control' ) ) {

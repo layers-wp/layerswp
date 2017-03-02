@@ -1,7 +1,8 @@
-<?php  /**
+<?php
+/**
  * Text
  *
- * This file is used to register and display the custom Layers Text
+ * This file is used to register and display the custom Layers Text.
  *
  * @package Layers
  * @since Layers 1.0.0

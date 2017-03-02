@@ -1,7 +1,8 @@
-<?php  /**
+<?php
+/**
  * Font Image
  *
- * This file is used to register and display the custom Layers Font Image
+ * This file is used to register and display the custom Layers Font Image.
  *
  * @package Layers
  * @since Layers 1.0.0

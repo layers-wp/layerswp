@@ -1,7 +1,8 @@
-<?php  /**
+<?php
+/**
  * RTE
  *
- * This file is used to register and display the custom Layers RTE
+ * This file is used to register and display the custom Layers RTE.
  *
  * @package Layers
  * @since Layers 1.0.0

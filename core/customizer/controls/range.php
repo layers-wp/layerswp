@@ -1,7 +1,8 @@
-<?php  /**
- * range
+<?php
+/**
+ * Range
  *
- * This file is used to register and display the custom Layers range
+ * This file is used to register and display the custom Layers Range.
  *
  * @package Layers
  * @since Layers 1.0.0

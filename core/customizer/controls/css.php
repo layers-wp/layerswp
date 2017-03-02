@@ -1,7 +1,8 @@
-<?php  /**
+<?php
+/**
  * CSS
  *
- * This file is used to register and display the custom Layers CSS
+ * This file is used to register and display the custom Layers CSS.
  *
  * @package Layers
  * @since Layers 1.0.0

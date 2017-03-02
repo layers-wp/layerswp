@@ -1,7 +1,8 @@
-<?php  /**
+<?php
+/**
  * Button
  *
- * This file is used to register and display the custom Layers Button
+ * This file is used to register and display the custom Layers Button.
  *
  * @package Layers
  * @since Layers 1.0.0

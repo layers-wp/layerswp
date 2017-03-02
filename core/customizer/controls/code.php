@@ -1,7 +1,8 @@
-<?php  /**
+<?php
+/**
  * Code
  *
- * This file is used to register and display the custom Layers Code
+ * This file is used to register and display the custom Layers Code.
  *
  * @package Layers
  * @since Layers 1.0.0

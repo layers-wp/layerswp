@@ -1,11 +1,11 @@
 <?php
 /**
- * TRBL Fields (Top, Right, Bottm, Left)
+ * Inline Numbers Fields
  *
- * This file is used to register and display the custom Layers TRBL field
+ * This file is used to register and display the custom Layers Inline Numbers Fields (defaults to Top, Right, Bottm, Left).
  *
  * @package Layers
- * @since Layers 1.0.0
+ * @since Layers 1.6.5
  */
 
 if( !class_exists( 'Layers_Customize_Inline_Numbers_Fields_Control' ) ) {

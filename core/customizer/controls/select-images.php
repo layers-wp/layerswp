@@ -1,7 +1,8 @@
-<?php  /**
+<?php
+/**
  * Select Image
  *
- * This file is used to register and display the custom Layers Select Image
+ * This file is used to register and display the custom Layers Select Image.
  *
  * @package Layers
  * @since Layers 1.0.0

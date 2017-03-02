@@ -1,7 +1,8 @@
-<?php  /**
+<?php
+/**
  * Textarea
  *
- * This file is used to register and display the custom Layers Textarea
+ * This file is used to register and display the custom Layers Textarea.
  *
  * @package Layers
  * @since Layers 1.0.0

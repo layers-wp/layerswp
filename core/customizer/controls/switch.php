@@ -1,10 +1,11 @@
-<?php  /**
- * Checkbox
+<?php
+/**
+ * Switch
  *
- * This file is used to register and display the custom Layers Checkbox
+ * This file is used to register and display the custom Layers Switch.
  *
  * @package Layers
- * @since Layers 1.0.0
+ * @since Layers 1.6.5
  */
 
 if( !class_exists( 'Layers_Customize_Switch_Control' ) ) {

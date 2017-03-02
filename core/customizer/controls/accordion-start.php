@@ -1,11 +1,11 @@
 <?php
 /**
- * Color Control
+ * Accordion Start Control
  *
- * This file is used to register and display the custom Layers Color Control
+ * This file is used to register and display the custom Layers Accordion Start.
  *
  * @package Layers
- * @since Layers 1.0.0
+ * @since Layers 1.6.5
  */
 
 if( !class_exists( 'Layers_Customize_Accordion_Start_Control' ) ) {

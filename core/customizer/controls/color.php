@@ -2,7 +2,7 @@
 /**
  * Color Control
  *
- * This file is used to register and display the custom Layers Color Control
+ * This file is used to register and display the custom Layers Color Control.
  *
  * @package Layers
  * @since Layers 1.0.0

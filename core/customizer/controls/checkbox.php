@@ -1,7 +1,8 @@
-<?php  /**
+<?php
+/**
  * Checkbox
  *
- * This file is used to register and display the custom Layers Checkbox
+ * This file is used to register and display the custom Layers Checkbox.
  *
  * @package Layers
  * @since Layers 1.0.0

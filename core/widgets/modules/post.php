@@ -162,7 +162,7 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 					$bg = array();
 				}
 
-				$bg_args = array_merge( , $bg_args );
+				$bg_args = array_merge( $bg , $bg_args );
 
 			} else if( NULL !== $this->check_and_return( $instance, 'design', 'design', 'column-background-color' ) ){
 				$bg_args = array(

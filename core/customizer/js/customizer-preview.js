@@ -155,13 +155,13 @@
 /**
  * 5 - Helper function removes specific line from any CSS <style> block
  */
-function layers_remove_styling_line( $search_string ) {
+function layers_remove_styling_line( $search_string, $exclude_style_blocks ) {
 	
 	// Loop all <style> blocks.
-	$('style').each(function(index, el) {
+	jQuery('style').not( $exclude_style_blocks ).each(function(index, el) {
 		
 		// Cache elements.
-		var $style_block = $(this);
+		var $style_block = jQuery(this);
 		
 		// Get the CSS text.
 		var $css = $style_block.text();

@@ -425,7 +425,7 @@ div[id*='layers-widget'] .widget-control-actions .alignright{
 .layers-visuals-item input{
 	display: none;
 	/* display: block !important; */
-	/* margin-top: 3px !important; */
+	/* margin: 3px 0 !important; */
 	/* height: 16px !important; */
 	/* line-height: normal !important; */
 }
@@ -602,7 +602,7 @@ div[id*='layers-widget'] .widget-control-actions .alignright{
 	.layers-icon-group-inline .layers-visuals-wrapper.layers-visuals-inline .layers-visuals-item .layers-icon-description{
 		display: none;
 	}
-	
+
 	/*--------------------------------------------------------------------------------------*/
 	/*- SET ICON GROUP INLINE & OUTLINE ----------------------------------------------------*/
 	/*- add `'class' => 'layers-icon-group-inline layers-icon-group-inline-outline'` to control -*/
@@ -1468,7 +1468,7 @@ div[id*='layers-widget'] .widget-control-actions .alignright{
 		line-height: 18px;
 		font-weight: 400;
 	}
-		
+
 		/* CHECKED */
 		.layers-radio-wrapper input[type=radio]:checked + label:before{
 			background-color: #0289C0;
@@ -1535,13 +1535,13 @@ div[id*='layers-widget'] .widget-control-actions .alignright{
 	.layers-invert .layers-switch-wrapper label{
 		color: #ccc;
 	}
-		
+
 		/* HOVER */
 		.layers-switch-wrapper label:hover:before{
 			background: #c7c7c7;
 			box-shadow: inset 0 1px 0px rgba(0, 0, 0, 0.1);
 		}
-		
+
 		/* CHECKED */
 		.layers-switch-wrapper input[type=checkbox]:checked + label:before{
 			background-color: #0289C0;
@@ -3209,8 +3209,8 @@ input[type=radio]:checked + .layers-settings-icon span{
 	width: 20px !important;
 }
 
-	
-	
+
+
 
 
 /*---------------------------*/
@@ -3556,7 +3556,7 @@ li[id*='customize-control-layers'].customize-control .layers-form-item:after{
 	li[id*='customize-control-layers'].customize-control .l_option-customize-control-checkbox .description{
 		margin-top: .2em;
 	}
-	
+
 	/*----------------------*/
 	/*- SWITCH (CHECKBOX) --*/
 	li[id*='customize-control-layers'].customize-control .l_option-customize-control.l_option-customize-control-switch {
@@ -3629,7 +3629,7 @@ li[id*='customize-control-layers'].customize-control .layers-form-item:after{
 			position: relative;
 			top: 3px;
 		}
-	
+
 
 	/*-------------------------------*/
 	/*- CUSTOMIZER CONTROL GROUPS -- */
@@ -3696,7 +3696,7 @@ li[id*='customize-control-layers'].customize-control .layers-form-item:after{
 	li[id*='customize-control-layers'].customize-control .l_option-customize-control.group.layers-push-top-small {
 		margin-top: 2px !important;
 	}
-		
+
 		/*---------------------------------*/
 		/*- FIRST & LAST GROUP ELEMENTS -- */
 		li[id*='customize-control-layers'].customize-control.li-group-first .l_option-customize-control{
@@ -3710,7 +3710,7 @@ li[id*='customize-control-layers'].customize-control .layers-form-item:after{
 			margin-bottom: 6px;
 		}
 		li[id*='customize-control-layers'].customize-control.li-group-last.li-group-last-tight .l_option-customize-control{
-			margin-bottom: 2px;
+			margin-bottom: 4px;
 		}
 		li[id*='customize-control-layers'].customize-control.li-group-last .l_option-customize-control:after{
 			opacity: 0;
@@ -3756,7 +3756,7 @@ li[id*='customize-control-layers'].customize-control .layers-form-item:after{
 		.l_option-customize-control.group.l_option-customize-control-checkbox label{
 			margin-bottom: 6px;
 		}
-	
+
 	/*--------------------------------------------*/
 	/*- CUSTOMIZER CONTROL ACCORDIONS (STANDARD) -*/
 	li[id*='customize-control-layers'].customize-control-layers-accordion-start-standard {
@@ -3805,7 +3805,7 @@ li[id*='customize-control-layers'].customize-control .layers-form-item:after{
 		margin: 6px -12px 12px;
 		position: relative;
 	}
-		
+
 		/*--------------------------*/
 		/*- HOVER (STANDARD) ------*/
 		li[id*='customize-control-layers'].customize-control .l_option-customize-control-accordion-start-standard:hover:after {
@@ -3825,7 +3825,7 @@ li[id*='customize-control-layers'].customize-control .layers-form-item:after{
 		li[id*='customize-control-layers'].customize-control-layers-accordion-start.closed .l_option-customize-control.l_option-customize-control-accordion-start-standard:after {
 			content: "\e922";
 		}
-	
+
 	/*------------------------------------------*/
 	/*- CUSTOMIZER CONTROL ACCORDIONS (GROUPS) -*/
 	li[id*='customize-control-layers'].customize-control .l_option-customize-control-accordion-start {
@@ -3863,26 +3863,29 @@ li[id*='customize-control-layers'].customize-control .layers-form-item:after{
 		/* box-shadow: 0 0 30px rgba(255, 0, 0, 0.08) inset; */
 		padding-top: 7px;
 		padding-bottom: 6px;
-		margin-bottom: -8px;
+		/*margin-bottom: -8px;*/
 		position: relative;
 		z-index: 1;
+	}
+	li[id*='customize-control-layers'].customize-control.open .l_option-customize-control-accordion-start.group{
+		border-bottom: 1px solid rgba(0, 0, 0, 0.08);
 	}
 	li[id*='customize-control-layers'].customize-control .l_option-customize-control.l_option-customize-control-accordion-start.group:after {
 		top: 8px;
 		right: 9px;
 	}
-		
+
 		/*--------------------------*/
 		/*- HOVER (GROUPS) ------*/
 		li[id*='customize-control-layers'].customize-control .l_option-customize-control.l_option-customize-control-accordion-start.group:hover:after{
 			color: #bbbbbb !important;
 			background: white !important;
 		}
-		
+
 		/*------------------------*/
 		/*- CLOSED (GROUPS) ------*/
 		li[id*='customize-control-layers'].customize-control.closed .l_option-customize-control.l_option-customize-control-accordion-start.group {
-			margin-bottom: 12px;
+			margin-bottom: 4px;
 			border-bottom-left-radius: 3px;
 			border-bottom-right-radius: 3px;
 			padding-top: 7px;

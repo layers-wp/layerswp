@@ -420,7 +420,7 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 				<?php do_action( 'layers_after_post_widget_inner', $this, $instance );
 
 				// Print the Inline Styles for this Widget
-				$this->print_inline_css( $this, $instance );;
+				$this->print_inline_css( $this, $instance );
 
 				if( 'list-masonry' == $this->check_and_return( $instance , 'design', 'liststyle' ) ) { ?>
 					<script type='text/javascript'>

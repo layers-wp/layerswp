@@ -388,12 +388,19 @@ if( ! function_exists( 'layers_scripts' ) ) {
 			LAYERS_VERSION
 		);
 
+        wp_enqueue_style(
+            LAYERS_THEME_SLUG . '-animate',
+            get_template_directory_uri() . '/assets/css/animate.css',
+            array(),
+            LAYERS_VERSION
+        ); // Animations
+
 		wp_enqueue_style(
 			LAYERS_THEME_SLUG . '-components',
 			get_template_directory_uri() . '/assets/css/components.css',
 			array(),
 			LAYERS_VERSION
-		); // Compontents
+		); // Components
 
 		wp_enqueue_style(
 			LAYERS_THEME_SLUG . '-responsive',

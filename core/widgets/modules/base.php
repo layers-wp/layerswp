@@ -64,7 +64,7 @@ if( !class_exists( 'Layers_Widget' ) ) {
 		/**
 		* Check option with isset() and echo it out if it exists, if it does not exist, return false
 		*
-		* @param    array    $widget          Widget Object
+		* @param    array    $instance          Widget Object
 		* @param    string   $option          Widget option to check on
 		* @param    string   $array_level_1   Array level one to check for (optional)
 		* @param    string   $array_level_2   Array level two to check for (optional)

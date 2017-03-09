@@ -18,6 +18,8 @@ if( !class_exists( 'Layers_Widget' ) ) {
 		public $item_count;
 
 		public $inline_css;
+		
+		public $animation_class;
 
 		//  Defaults
 
@@ -41,7 +43,24 @@ if( !class_exists( 'Layers_Widget' ) ) {
 			$layers_inline_css = '';
 			$this->inline_css = '';
 		}
-
+		
+		
+		/**
+         * If an animation class is specified in the class then apply the class
+         *
+		 * @param $instance
+		 *
+		 * @return string
+		 */
+		public function get_animation_class($instance) {
+		    if (
+                'on' === $this->check_and_return( $instance , 'design', 'advanced', 'animation' ) &&
+                strlen($this->animation_class) !== 0
+            ) {
+		       return 'do-animate animated-1s ' . $this->animation_class;
+            }
+            return '';
+        }
 		/**
 		* If there is inline CSS to print in this widget, do so at the bottom of the widget
 		*
@@ -64,7 +83,7 @@ if( !class_exists( 'Layers_Widget' ) ) {
 		/**
 		* Check option with isset() and echo it out if it exists, if it does not exist, return false
 		*
-		* @param    array    $widget          Widget Object
+		* @param    array    $instance          Widget Object
 		* @param    string   $option          Widget option to check on
 		* @param    string   $array_level_1   Array level one to check for (optional)
 		* @param    string   $array_level_2   Array level two to check for (optional)

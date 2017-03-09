@@ -8,6 +8,8 @@
  */
 if( !class_exists( 'Layers_Contact_Widget' ) ) {
 	class Layers_Contact_Widget extends Layers_Widget {
+	    
+	    public $animation_class = 'x-fade-in-up delay-200';
 
 		/**
 		*  Widget construction
@@ -79,6 +81,9 @@ if( !class_exists( 'Layers_Contact_Widget' ) ) {
 						'color' => NULL,
 						'shadow' => NULL,
 						'heading-type' => 'h3',
+					),
+					'advanced' => array (
+						'animation' => 'on',
 					)
 				)
 			);
@@ -139,6 +144,7 @@ if( !class_exists( 'Layers_Contact_Widget' ) ) {
 			$widget_container_class[] = ( 'on' == $this->check_and_return( $instance , 'design', 'background', 'darken' ) ? 'darken' : '' );
 			$widget_container_class[] = $this->check_and_return( $instance , 'design', 'advanced', 'customclass' ); // Apply custom class from design-bar's advanced control.
 			$widget_container_class[] = $this->get_widget_spacing_class( $instance );
+		    $widget_container_class[] = $this->get_animation_class( $instance );
 
 			if( !$show_title_or_excerpt && !$show_address_or_contactform  ) $widget_container_class[] = 'no-inset-top no-inset-bottom';
 

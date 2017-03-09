@@ -179,6 +179,34 @@ jQuery(function($) {
 
 	}
 
+	// For all the animations on page animate as soon as the
+	// scrolling reaches 20% above the widget
+
+  $('.do-animate').waypoint({
+    handler: function() {
+
+    	// Get the element
+    	var element = $(this.element);
+    	// Split all the class names as array
+      var classList = element.attr("class").split(/\s+/);
+
+      // The standard procedure is we x-ify the animation class name and remove the x
+			// as soon as the offset limit is reached
+      $.each(classList, function (i, cls) {
+      	if (cls.match("^x-")) {
+      		element.removeClass(cls);
+      		element.addClass(cls.replace('x-', ''));
+				}
+			});
+      // Animation only occurs once, so as soon as animation is
+			// done remove the waypoint monitor and do-animate class
+			// from element to prevent multiple event binding
+      element.removeClass('do-animate');
+      this.destroy();
+    },
+		offset: '80%'
+  })
+
 });
 
 /**

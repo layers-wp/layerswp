@@ -8,6 +8,8 @@
  */
 if( !class_exists( 'Layers_Slider_Widget' ) ) {
 	class Layers_Slider_Widget extends Layers_Widget {
+	    
+	    public $animation_class = "x-fade-in delay-200";
 
 		/**
 		*  Widget construction
@@ -64,6 +66,11 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 				'show_slider_arrows' => 'on',
 				'show_slider_dots' => 'on',
 				'animation_type' => 'slide',
+				'design' => array(
+					'advanced' => array (
+						'animation' => 'on',
+					)
+				),
 			);
 
 			/* Setup Widget Repeater Defaults */
@@ -157,6 +164,7 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 			$widget_container_class[] = $this->check_and_return( $instance , 'design', 'advanced', 'customclass' ); // Apply custom class from design-bar's advanced control.
 			$widget_container_class[] = $this->get_widget_spacing_class( $instance );
 			$widget_container_class[] = $this->get_widget_layout_class( $instance );
+		    $widget_container_class[] = $this->get_animation_class( $instance );
 
 			if( $this->check_and_return( $instance , 'autoheight_slides' ) ) {
 				if( FALSE !== ( $fullwidth = array_search( 'full-screen', $widget_container_class ) ) ){

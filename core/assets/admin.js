@@ -111,10 +111,14 @@ jQuery(function($) {
 			// We set multiple to false so only get one image from the uploader
 			attachment = file_frame.state().get('selection').first().toJSON();
 
-			// Remove any old image
 			$container.find('img video').remove();
 
 			// Fade in Remove button
+            // Remove any old image
+
+			// Also trigger click event on image-remove to go by the flow of
+			// previously selected image removal
+            $container.find('.layers-image-remove').trigger('click');
 			$container.find('.layers-image-remove').fadeIn();
 
 			// Set attachment to the large/medium size if they're defined
@@ -960,6 +964,93 @@ jQuery(function($) {
 		$(document).trigger('layers-widget-interface-init', $(this) );
 	});
 
+
+    /**
+	 * Add Widget Delete Confirm Box
+     */
+    $.fn.layersWrapClick = function(before, after) {
+        // Get and store the original click handler.
+		$(this).each(function() {
+
+			// Check if wrap click function was already used previously
+			var alreadyWrapped = $._data(this, 'wrapped');
+
+			// If so no need to wrap it again
+			if (alreadyWrapped) {
+				return;
+			}
+			// Set the wrapped data to true
+            $._data(this, 'wrapped', true);
+
+			// Get all the click events for the click of the button
+            var clickEvents = $._data(this, 'events');
+
+            // If no click events then set it to null
+            clickEvents = clickEvents && clickEvents.click ? clickEvents.click: null;
+
+            var allClickHandlers = [];
+            if (clickEvents && clickEvents.length) {
+                try {
+                	// store all the click events in array
+                    $.each(clickEvents, function(index, click) {
+                        allClickHandlers.push(click.handler);
+                    });
+
+                    var _self = $(this);
+                    // Remove click event from object.
+                    _self.off('click');
+
+                    // Add new click event with before and after functions.
+                    return _self.click(function(e) {
+
+                    	// Assuming that before call will allow execution of next/original call
+                        var continueAfterBeforeCall = true;
+
+                        // Assuming original call will allow execution of after call
+                        var continueAfterCall = true;
+
+                        // If there is a before function specified then call it
+						// and check the return value
+                        if (before && before.call) {
+                            continueAfterBeforeCall = before.call(_self, e) !== false;
+                        }
+                        // If before call allows further continuation, then proceed with
+						// Original call
+                        if (continueAfterBeforeCall && allClickHandlers.length) {
+                        	// Execute each and every event handler attached originally
+                            $.each(allClickHandlers, function(index, _orgClick) {
+                                if (_orgClick.call) {
+                                    continueAfterCall = _orgClick.call(_self, e) !== false && continueAfterCall;
+                                }
+                            });
+                        }
+
+                        // If any of the call don't allow continuation of after call
+						// do not execute the after call
+                        if(continueAfterCall && after && after.call) {
+                            after.call(_self, e);
+                        }
+                    });
+                } catch (ex) {
+                	// In case of any exception during the process
+					// log the exception
+					// @todo: Handle the exception
+                    console.log(ex);
+                }
+            }
+		});
+    };
+
+    $( document ).on( 'layers-interface-init', function(){
+    	if (layers_customizer_params && layers_customizer_params.confirm_delete_text) {
+			// Wrap around the original click event added by core wordpress.
+            $('a.widget-control-remove').layersWrapClick(function() {
+                return confirm(layers_customizer_params.confirm_delete_text);
+            });
+		}
+	});
+
+
 	/**
 	* 15 - Intercom checkbox
 	*/
@@ -975,29 +1066,6 @@ jQuery(function($) {
 		}
 
 	});
-
-	/**
-	 * Duplicate Widgets. (disabled)
-	 */
-	/*
-	$( document ).on( 'layers-interface-init', function( e, element ){
-		// Add the duplicate widget button to all the Layers Widget actions.
-		$(element).find('.widget-control-actions .alignleft .widget-control-remove').after('<a class="layers-widget-duplicate-button" title="Duplicate Widget">Duplicate</a>');
-	});
-
-	$( document ).on( 'click', '.layers-widget-duplicate-button', function( e, element ){
-		$button = $(this);
-		$this_widget_form = $button.parents('.widget-inside');
-		$widget_panel_holder = $button.parents('.control-subsection.open');
-		$add_widgets_button =  $widget_panel_holder.find('.add-new-widget');
-
-		// Get the widget type.
-		$widget_id = $this_widget_form.find('[name="id_base"]').val();
-
-		$add_widgets_button.click();
-		$('#available-widgets-list').find('[id^="widget-tpl-'+ $widget_id +'"]').click();
-	});
-	*/
 
 	/**
 	 * 16 - Widget Peek/hide to preview changes

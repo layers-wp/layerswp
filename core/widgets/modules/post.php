@@ -156,7 +156,13 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 					'color' => $this->check_and_return( $instance, 'design', 'column-background-color' )
 				);
 
-				$bg_args = array_merge( $this->check_and_return(  $instance, 'design', 'column', 'background' ), $bg_args );
+				if( !is_array( $this->check_and_return(  $instance, 'design', 'column', 'background' ) ) ){
+					$bg = $this->check_and_return(  $instance, 'design', 'column', 'background' );
+				} else {
+					$bg = array();
+				}
+
+				$bg_args = array_merge( $bg , $bg_args );
 
 			} else if( NULL !== $this->check_and_return( $instance, 'design', 'design', 'column-background-color' ) ){
 				$bg_args = array(
@@ -414,7 +420,7 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 				<?php do_action( 'layers_after_post_widget_inner', $this, $instance );
 
 				// Print the Inline Styles for this Widget
-				$this->print_inline_css( $this, $instance );;
+				$this->print_inline_css( $this, $instance );
 
 				if( 'list-masonry' == $this->check_and_return( $instance , 'design', 'liststyle' ) ) { ?>
 					<script type='text/javascript'>

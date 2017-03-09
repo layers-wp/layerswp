@@ -2139,7 +2139,7 @@ div[id*='layers-widget'] .widget-control-actions .alignright{
 	}
 	.layers-design-bar-group-inner {
 		padding-bottom: 10px;
-		border-top: 1px dotted #dedede;
+		border-top: 1px dotted rgba(0, 0, 0, 0.15);
 	}
 	.layers-design-bar-group-inner:after {
 		display: block;

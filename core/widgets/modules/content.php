@@ -8,6 +8,8 @@
  */
 if( !class_exists( 'Layers_Content_Widget' ) ) {
 	class Layers_Content_Widget extends Layers_Widget {
+		
+		public $animation_class = 'x-fade-in-up delay-200';
 
 		/**
 		*  Widget construction
@@ -69,6 +71,9 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 						'color' => NULL,
 						'shadow' => NULL,
 						'heading-type' => 'h3',
+					),
+					'advanced' => array (
+						'animation' => 'on',
 					)
 				),
 			);
@@ -131,8 +136,10 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 			$widget_container_class[] = 'widget';
 			$widget_container_class[] = 'layers-content-widget';
 			$widget_container_class[] = 'content-vertical-massive';
-			$widget_container_class[] = ( 'on' == $this->check_and_return( $instance , 'design', 'background', 'darken' ) ? 'darken' : '' );
-            $widget_container_class[] = 'animated-1s fadeInUp delay-200';
+			$widget_container_class[] = ( 'on' === $this->check_and_return( $instance , 'design', 'background', 'darken' ) ? 'darken' : '' );
+			
+			// Only enable animation if enabled form advance settings
+            $widget_container_class[] = $this->get_animation_class( $instance );
 			$widget_container_class[] = $this->check_and_return( $instance , 'design', 'advanced', 'customclass' ); // Apply custom class from design-bar's advanced control.
 			$widget_container_class[] = $this->get_widget_spacing_class( $instance );
 
@@ -158,7 +165,6 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 						$section_title_class[] = $this->check_and_return( $instance , 'design', 'fonts', 'size' );
 						$section_title_class[] = $this->check_and_return( $instance , 'design', 'fonts', 'align' );
 						$section_title_class[] = ( $this->check_and_return( $instance, 'design', 'background' , 'color' ) && 'dark' == layers_is_light_or_dark( $this->check_and_return( $instance, 'design', 'background' , 'color' ) ) ? 'invert' : '' );
-                        //$section_title_class[] = 'animated-1s fadeInUp delay-200';
 						$section_title_class = implode( ' ', $section_title_class );
 						?>
 						<div class="<?php echo $section_title_class; ?>">
@@ -290,7 +296,6 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 								$classes[] = ( 'list-masonry' == $this->check_and_return( $instance, 'design', 'liststyle' ) ? '' : '' );
 								$classes[] = 'column' . ( 'on' != $this->check_and_return( $instance, 'design', 'gutter' ) ? '-flush' : '' );
 								$classes[] = $this->check_and_return( $item_instance, 'design', 'advanced', 'customclass' ); // Apply custom class from design-bar's advanced control.
-                                //$classes[] = 'animated-1s fadeInUp delay-700';
 								if( $this->check_and_return( $item_instance, 'design' , 'background', 'image' ) || '' != $this->check_and_return( $item_instance, 'design' , 'background', 'color' ) )
 									$classes[] = 'content';
 								if( false != $media )

@@ -25,101 +25,6 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
     animation-delay: 0.3s;
 }
 
-.delay-400 {
-    -webkit-animation-delay: 0.4s;
-    animation-delay: 0.4s;
-}
-
-.delay-500 {
-    -webkit-animation-delay: 0.5s;
-    animation-delay: 0.5s;
-}
-
-.delay-600 {
-    -webkit-animation-delay: 0.6s;
-    animation-delay: 0.6s;
-}
-
-.delay-700 {
-    -webkit-animation-delay: 0.7s;
-    animation-delay: 0.7s;
-}
-
-.delay-800 {
-    -webkit-animation-delay: 0.8s;
-    animation-delay: 0.8s;
-}
-
-.delay-900 {
-    -webkit-animation-delay: 0.9s;
-    animation-delay: 0.9s;
-}
-
-.delay-1000 {
-    -webkit-animation-delay: 1s;
-    animation-delay: 1s;
-}
-
-.delay-1100 {
-    -webkit-animation-delay: 1.1s;
-    animation-delay: 1.1s;
-}
-
-.delay-1200 {
-    -webkit-animation-delay: 1.2s;
-    animation-delay: 1.2s;
-}
-
-.delay-1300 {
-    -webkit-animation-delay: 1.3s;
-    animation-delay: 1.3s;
-}
-
-.delay-1400 {
-    -webkit-animation-delay: 1.4s;
-    animation-delay: 1.4s;
-}
-
-.delay-1500 {
-    -webkit-animation-delay: 1.5s;
-    animation-delay: 1.5s;
-}
-
-.delay-1600 {
-    -webkit-animation-delay: 1.6s;
-    animation-delay: 1.6s;
-}
-
-.delay-1700 {
-    -webkit-animation-delay: 1.7s;
-    animation-delay: 1.7s;
-}
-
-.delay-1800 {
-    -webkit-animation-delay: 1.8s;
-    animation-delay: 1.8s;
-}
-
-.delay-1900 {
-    -webkit-animation-delay: 1.9s;
-    animation-delay: 1.9s;
-}
-
-.delay-2000 {
-    -webkit-animation-delay: 2s;
-    animation-delay: 2s;
-}
-
-.delay-2100 {
-    -webkit-animation-delay: 2.1s;
-    animation-delay: 2.1s;
-}
-
-.delay-2200 {
-    -webkit-animation-delay: 2.2s;
-    animation-delay: 2.2s;
-}
-
 /*--------------------------------------------------*/
 /*- Basic animation duration ** REUSABLE CLASS** ---*/
 .animated-1s {
@@ -135,7 +40,7 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 /*---------------------------*/
 /*- Support for Safari 4+ ---*/
-@-webkit-keyframes fadeInUp {
+@-webkit-keyframes fade-in-up {
     from {
         opacity: 0;
         -webkit-transform: translate3d(0, 5%, 0);
@@ -150,7 +55,7 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 /*---------------------------*/
 /*- Support for Firefox 5+ --*/
-@-moz-keyframes fadeInUp {
+@-moz-keyframes fade-in-up {
     from {
         opacity: 0;
         -moz-transform: translate3d(0, 5%, 0);
@@ -165,7 +70,7 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 /*---------------------------*/
 /*- Support for Opera 12+ ---*/
-@-o-keyframes fadeInUp {
+@-o-keyframes fade-in-up {
     from {
         opacity: 0;
         -o-transform: translate3d(0, 5%, 0);
@@ -180,7 +85,7 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 /*---------------------------*/
 /*- Support for CSS3 ---*/
-@keyframes fadeInUp {
+@keyframes fade-in-up {
     from {
         opacity: 0;
         -webkit-transform: translate3d(0, 10px, 0);
@@ -197,9 +102,68 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
     }
 }
 
-.fadeInUp {
-    -webkit-animation-name: fadeInUp; /* Safari 4+ */
-    -moz-animation-name: fadeInUp; /* Fx 5+ */
-    -o-animation-name: fadeInUp; /* Opera 12+ */
-    animation-name: fadeInUp; /* IE 10+, Fx 29+ */
+.fade-in-up {
+    -webkit-animation-name: fade-in-up; /* Safari 4+ */
+    -moz-animation-name: fade-in-up; /* Fx 5+ */
+    -o-animation-name: fade-in-up; /* Opera 12+ */
+    animation-name: fade-in-up; /* IE 10+, Fx 29+ */
+}
+
+/*--------------------------------------------------------------*/
+/*- Fade In animation -------------------------------------*/
+/*--------------------------------------------------------------*/
+
+/*---------------------------*/
+/*- Support for Safari 4+ ---*/
+@-webkit-keyframes fade-in {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/*---------------------------*/
+/*- Support for Firefox 5+ --*/
+@-moz-keyframes fade-in {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/*---------------------------*/
+/*- Support for Opera 12+ ---*/
+@-o-keyframes fade-in {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/*---------------------------*/
+/*- Support for CSS3 ---*/
+@keyframes fade-in {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.fade-in {
+    -webkit-animation-name: fade-in; /* Safari 4+ */
+    -moz-animation-name: fade-in; /* Fx 5+ */
+    -o-animation-name: fade-in; /* Opera 12+ */
+    animation-name: fade-in; /* IE 10+, Fx 29+ */
+}
+
+.do-animate {
+    opacity: 0;
 }

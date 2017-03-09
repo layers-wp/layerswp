@@ -578,26 +578,21 @@ jQuery(function($) {
 
 	function layers_init_control_accordians( $element_s ){
 		
-		$element_s.find( '.l_option-customize-control-accordion-start, .l_option-customize-control-accordion-end' ).each( function(){
-			var $accordion_position = ( $(this).hasClass('l_option-customize-control-accordion-start') ) ? 'start' : 'end' ;
-			var $accordion_type = ( $(this).hasClass( 'l_option-customize-control-accordion-' + $accordion_position + '-standard' ) ) ? 'standard' : 'group' ;
-			var $control_accordion_li = $(this).closest( '.customize-control' );
-			$control_accordion_li.addClass( 'customize-control-layers-accordion-' + $accordion_position + '-' + $accordion_type );
-		});
-		
-		$element_s.find( '.l_option-customize-control-accordion-start' ).each( function(){
-			
-			// Get accordion type.
-			var $accordion_type = ( $(this).hasClass('l_option-customize-control-accordion-start-standard') ) ? 'standard' : 'group' ;
+		$( $element_s.find( '.l_option-customize-control-accordion-start' ).get().reverse() ).each( function(){
 			
 			// Cache elements.
-			var $control_accordion_start         = $(this).closest( '.customize-control-layers-accordion-start-' + $accordion_type );
-			var $control_accordion_end           = $control_accordion_start.nextAll( '.customize-control-layers-accordion-end-' + $accordion_type ).eq(0);
+			var $control_accordion_start         = $(this).closest( '.customize-control-layers-accordion-start' );
+			var $control_accordion_end           = $( '#' + $control_accordion_start.prop('id').replace( 'accordion-start', 'accordion-end' ) );
 			var $control_accordion_start_and_end = $control_accordion_start.add( $control_accordion_end );
-			var $sibling_controls                = $control_accordion_start.nextUntil( '.customize-control-layers-accordion-end-' + $accordion_type );
+			var $sibling_controls                = $control_accordion_start.nextUntil( $control_accordion_end );
 			
 			// Enable the click open/closed.
 			$control_accordion_start.on( 'click', function() {
+				
+				init_control_accordions();
+			});
+			
+			function init_control_accordions() {
 				
 				if ( $control_accordion_start.hasClass( 'closed' ) ) {
 					
@@ -610,12 +605,9 @@ jQuery(function($) {
 						.removeClass( 'closed' );
 					
 					$sibling_controls
-						.addClass( 'open-' + $accordion_type )
-						.removeClass( 'closed-' + $accordion_type );
-					
-					$sibling_controls
-						.not( '.closed-group' )
-						.stop(true, false)
+						.filter( "[data-closed-by=" + $control_accordion_start.prop('id') + "]" )
+						.attr( 'data-closed-by', '' )
+						.stop( true, false )
 						.slideDown({ duration: 250, easing: 'layersEaseInOut' });
 				}
 				else {
@@ -629,27 +621,34 @@ jQuery(function($) {
 						.removeClass( 'open' );
 					
 					$sibling_controls
-						.addClass( 'closed-' + $accordion_type )
-						.removeClass( 'open-' + $accordion_type )
-						.stop(true, false)
+						.not('[data-closed-by^="customize-control-"], [data-closed-by="layers-show-if-closed"]')
+						.attr( 'data-closed-by', $control_accordion_start.prop('id') )
+						.stop( true, false )
 						.slideUp({ duration: 250, easing: 'layersEaseInOut' });
 				}
-			});
+				
+				// Repaint the group styling after the accordions open or close.
+				setTimeout(function() {
+					layers_repaint_control_styles( $element_s );
+				}, 300 );
+			}
+			
+			init_control_accordions();
 		});
 	}
 
 	/**
-	* XX - GROUPS
-	*/
+	 * XX - Paint special styles onto the Groups and Accordions.
+	 */
 	
 	$( document ).on( 'layers-interface-init', function( e, element ){
-		layers_paint_control_groups( $(element) );
+		layers_paint_control_styles( $(element) );
 	});
 
-	function layers_paint_control_groups( $element_s ){
+	function layers_paint_control_styles( $element_s ){
 		
 		// Add `li-group` class to the parent - saves us having to peek into the children of the li each time to see if it's a group.
-		$element_s.find('.l_option-customize-control.group:not(.l_option-customize-control-accordion-end)').each( function(){
+		$element_s.find('.l_option-customize-control.group').each( function(){
 			var $control_li = $(this).parent('li');
 			$control_li.addClass('li-group');
 			if ( -1 != $(this).attr('class').indexOf( 'layers-push-top' ) ) {
@@ -660,47 +659,72 @@ jQuery(function($) {
 			}
 		});
 		
-		layers_repaint_control_groups( $element_s );
+		layers_repaint_control_styles( $element_s );
 	}
 	
-	function layers_repaint_control_groups( $element_s ){
+	function layers_repaint_control_styles( $element_s ){
 		
-		$element_s.find('li.li-group').each( function(){
+		$element_s.find('li.li-group, li.customize-control-layers-accordion-start').each( function(){
 			
 			// Get elements.
 			var $control_li = $(this); // Get current element.
 			var $control_li_prev_visible = $(this).prevAll('li:visible').first(); // Get previous visible element.
 			var $control_li_next_visible = $(this).nextAll('li:visible').first(); // Get next visible element.
 			
-			// Remove any first | last classes to start.
+			// Remove all classes first.
 			$control_li.removeClass('li-group-first li-group-last li-group-last-tight');
 			
-			if (
-					! $control_li_prev_visible.hasClass('li-group') ||
-					$control_li.hasClass('li-group-push-top')
-				) {
-				
-				// First in a group.
-				$control_li.addClass('li-group-first');
+			// Don't waste time repainting if element is invisible.
+			if ( ! $control_li.is(':visible') ) return;
+			
+			/**
+			 * Groups.
+			 */
+			if ( $control_li.hasClass('li-group') ) {
+
+				/**
+				 * First in a group.
+				 */
+				if (
+						! $control_li_prev_visible.hasClass('li-group') ||
+						$control_li.hasClass('li-group-push-top')
+					) {
+
+					$control_li.addClass('li-group-first');
+				}
+
+				/**
+				 * Last in a group.
+				 */
+				if (
+						! $control_li_next_visible.hasClass('li-group') ||
+						$control_li_next_visible.hasClass('customize-control-layers-accordion-start') ||
+						$control_li_next_visible.hasClass('li-group-push-top')
+					) {
+
+					$control_li.addClass('li-group-last');
+				}
 			}
 			
-			if (
-					! $control_li_next_visible.hasClass('li-group') ||
-					$control_li_next_visible.hasClass('li-group-push-top')
-				) {
-				
-				// Last in a group.
-				$control_li.addClass('li-group-last');
+			/**
+			 * Standard Accordions.
+			 */
+			
+			if ( $control_li.not('.li-group').hasClass('customize-control-layers-accordion-start') ) {
+
+				/**
+				 * This standard accordion is directly after another.
+				 */
+				if ( $control_li.prev().hasClass('customize-control-layers-accordion-end') ) {
+					
+					$control_li.addClass('li-prev-is-accordion');
+				}
 			}
 			
-			if (
-					$control_li_next_visible.next().hasClass('li-group') &&
-					$control_li_next_visible.next().hasClass('customize-control-layers-accordion-start-group')
-				) {
-				
-				// Last in a group, and next one is group too.
-				$control_li.addClass('li-group-last-tight');
-			}
+			// Debugging.
+			/*if ( 'customize-control-layers-comments-name-accordion-start' == $control_li.attr( 'id' ) ) {
+				console.log( $control_li.prev().attr('id') );
+			}*/
 		});
 	}
 
@@ -848,21 +872,19 @@ jQuery(function($) {
 			if ( $has_control_groups ) {
 				clearTimeout( $single_set_timeout );
 				$single_set_timeout = setTimeout(function() {
-					layers_repaint_control_groups( $element_s );
+					layers_repaint_control_styles( $element_s );
 				}, 600 );
 			}
 
 			// Apply show-if to the element when this element is changed.
-			/*$( document ).on( 'change', $compare_element, function(e){
-				layers_apply_show_if( $this_element, $compare_element );
-			});*/
 			$( $compare_element ).on( 'change', function(e){
+				
 				layers_apply_show_if( $this_element, $compare_element );
 				
 				if ( $has_control_groups ) {
 					clearTimeout( $single_set_timeout );
 					$single_set_timeout = setTimeout(function() {
-						layers_repaint_control_groups( $element_s );
+						layers_repaint_control_styles( $element_s );
 					}, 600 );
 				}
 			});
@@ -998,7 +1020,8 @@ jQuery(function($) {
 
 			$element
 				.removeClass('l_admin-show-if-visible')
-				.addClass('l_admin-show-if-hidden');
+				.addClass('l_admin-show-if-hidden')
+				.attr( 'data-closed-by', 'layers-show-if-closed' );
 			
 			// Hide
 			if( animation_type == 'slide' ){
@@ -1014,7 +1037,8 @@ jQuery(function($) {
 			
 			$element
 				.removeClass('l_admin-show-if-hidden')
-				.addClass('l_admin-show-if-visible');
+				.addClass('l_admin-show-if-visible')
+				.attr( 'data-closed-by', '' );
 
 			// Show
 			if( animation_type == 'slide' ){

@@ -3706,13 +3706,13 @@ li[id*='customize-control-layers'].customize-control .layers-form-item:after{
 			border-top-right-radius: 4px;
 			margin-top: 0;
 		}
+		li[id*='customize-control-layers'].customize-control.li-group-last {
+			padding-bottom: 3px;
+		}
 		li[id*='customize-control-layers'].customize-control.li-group-last .l_option-customize-control{
 			border-bottom-left-radius: 4px;
 			border-bottom-right-radius: 4px;
-			margin-bottom: 6px;
-		}
-		li[id*='customize-control-layers'].customize-control.li-group-last.li-group-last-tight .l_option-customize-control{
-			margin-bottom: 2px;
+			margin-bottom: 1px;
 		}
 		li[id*='customize-control-layers'].customize-control.li-group-last .l_option-customize-control:after{
 			opacity: 0;
@@ -3761,21 +3761,21 @@ li[id*='customize-control-layers'].customize-control .layers-form-item:after{
 	
 	/*--------------------------------------------*/
 	/*- CUSTOMIZER CONTROL ACCORDIONS (STANDARD) -*/
-	li[id*='customize-control-layers'].customize-control-layers-accordion-start-standard {
+	li[id*='customize-control-layers'].customize-control-layers-accordion-start {
 		margin-bottom: -1px;
 	}
-	li[id*='customize-control-layers'].customize-control-layers-accordion-start-standard .l_option-customize-control,
-	li[id*='customize-control-layers'].customize-control-layers-accordion-end-standard .l_option-customize-control {
+	li[id*='customize-control-layers'].customize-control-layers-accordion-start .l_option-customize-control,
+	li[id*='customize-control-layers'].customize-control-layers-accordion-end .l_option-customize-control {
 		transition: .25s;
 	}
-	li[id*='customize-control-layers'].customize-control .l_option-customize-control-accordion-start-standard {
+	li[id*='customize-control-layers'].customize-control:not(.li-group) .l_option-customize-control-accordion-start {
 		border-top: 1px solid #e1e1e1;
 		border-bottom: 1px solid #e1e1e1;
 		padding: 0 12px;
 		margin: 12px -12px 12px;
 		position: relative;
 	}
-	li[id*='customize-control-layers'].customize-control .l_option-customize-control-accordion-start-standard:after {
+	li[id*='customize-control-layers'].customize-control:not(.li-group) .l_option-customize-control-accordion-start:after {
 		font-family: layers-interface;
 		content: "\e923";
 		position: absolute;
@@ -3790,41 +3790,41 @@ li[id*='customize-control-layers'].customize-control .layers-form-item:after{
 		border-radius: 100%;
 		box-shadow: 0px 0px 0px 2px white inset;
 	}
-	li[id*='customize-control-layers'].customize-control .l_option-customize-control-accordion-start-standard {
-		border-left: 3px solid transparent;
-	}
-	li[id*='customize-control-layers'].customize-control .l_option-customize-control-accordion-start-standard .customize-control-title {
+	li[id*='customize-control-layers'].customize-control:not(.li-group) .customize-control-title {
 		padding: 0;
 		margin: 0;
 		font-size: 13px;
 		font-weight: 700;
 		line-height: 28px;
 	}
-	li[id*='customize-control-layers'].customize-control-layers-accordion-end .l_option-customize-control-accordion-end-standard {
+	li[id*='customize-control-layers'].customize-control:not(.li-group) .l_option-customize-control-accordion-end {
 		height: 0px;
 		border-bottom: 1px solid #e1e1e1;
 		padding: 0 12px;
-		margin: 6px -12px 12px;
+		margin: 9px -12px 12px;
 		position: relative;
+	}
+	li[id*='customize-control-layers'].customize-control.li-prev-is-accordion {
+		margin-top: -25px;
 	}
 		
 		/*--------------------------*/
 		/*- HOVER (STANDARD) ------*/
-		li[id*='customize-control-layers'].customize-control .l_option-customize-control-accordion-start-standard:hover:after {
+		li[id*='customize-control-layers'].customize-control:not(.li-group) .l_option-customize-control:hover:after {
 			color: #bbbbbb !important;
 			background: white !important;
 		}
 
 		/*--------------------------*/
 		/*- CLOSED (STANDARD) ------*/
-		li[id*='customize-control-layers'].customize-control-layers-accordion-start.closed .l_option-customize-control {
+		li[id*='customize-control-layers'].customize-control.customize-control-layers-accordion-start.closed:not(.li-group) .l_option-customize-control {
 			margin-bottom: 0px;
 		}
-		li[id*='customize-control-layers'].customize-control-layers-accordion-end.closed .l_option-customize-control {
+		li[id*='customize-control-layers'].customize-control.customize-control-layers-accordion-end.closed:not(.li-group) .l_option-customize-control {
 			margin-top: 0px;
 			padding: 0;
 		}
-		li[id*='customize-control-layers'].customize-control-layers-accordion-start.closed .l_option-customize-control.l_option-customize-control-accordion-start-standard:after {
+		li[id*='customize-control-layers'].customize-control.customize-control-layers-accordion-start.closed:not(.li-group) .l_option-customize-control:after {
 			content: "\e922";
 		}
 	
@@ -3855,14 +3855,16 @@ li[id*='customize-control-layers'].customize-control .layers-form-item:after{
 		transition: .15s;
 		opacity: 1;
 	}
-	li[id*='customize-control-layers'].customize-control .l_option-customize-control-accordion-end.l_option-customize-control-accordion-end-group {
+	li[id*='customize-control-layers'].customize-control .l_option-customize-control-accordion-end.li-group {
 		height: 0px;
 		border: none;
 		padding: 0;
 		margin: 0;
 	}
+	li.customize-control-layers-accordion-end.li-group {
+		display: none !important;
+	}
 	li[id*='customize-control-layers'].customize-control .l_option-customize-control-accordion-start.group {
-		/* box-shadow: 0 0 30px rgba(255, 0, 0, 0.08) inset; */
 		padding-top: 7px;
 		padding-bottom: 6px;
 		margin-bottom: -8px;
@@ -3884,7 +3886,7 @@ li[id*='customize-control-layers'].customize-control .layers-form-item:after{
 		/*------------------------*/
 		/*- CLOSED (GROUPS) ------*/
 		li[id*='customize-control-layers'].customize-control.closed .l_option-customize-control.l_option-customize-control-accordion-start.group {
-			margin-bottom: 12px;
+			margin-bottom: 1px;
 			border-bottom-left-radius: 3px;
 			border-bottom-right-radius: 3px;
 			padding-top: 7px;

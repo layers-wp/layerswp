@@ -115,6 +115,37 @@ jQuery(function($) {
 		return -c/2 * ((--t)*(t-2) - 1) + b;
 	}});
 
+	/**
+	* X - Scroll Animations.
+	*
+	*/
+
+	if ( $('body').hasClass('layers-scroll-animate') ) {
+
+		$('#wrapper-content > .widget, #footer').waypoint({
+			offset 	: '75%',
+			handler	: function(direction) {
+
+				var $element = $( this.element );
+
+				if ( 'down' == direction ) {
+
+					$element
+						.removeClass('layers-scroll-animate-going-up')
+						.addClass('layers-scroll-animate-going-down')
+						.addClass('layers-scroll-animate-seen');
+				}
+				if ( 'up' == direction ) {
+
+					$element
+						.removeClass('layers-scroll-animate-going-down')
+						.addClass('layers-scroll-animate-going-up');
+				}
+			}
+		});
+
+	}
+
 });
 
 /**

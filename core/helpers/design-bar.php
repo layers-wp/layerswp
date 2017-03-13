@@ -491,14 +491,13 @@ class Layers_Design_Controller {
 
 		// Add elements
 		
-		$defaults['elements']['column=layout-start'] = array(
+		$defaults['elements']['column-layout-start'] = array(
 			'type' => 'group-start',
-			'label' => __( 'Layout', 'layerswp' ),
+			'label' => __( 'Columns', 'layerswp' ),
 		);
 
 			$defaults['elements']['columns'] = array(
 				'type' => 'select',
-				'label' => __( 'Columns', 'layerswp' ),
 				'name' => $this->get_layers_field_name( 'columns' ),
 				'id' => $this->get_layers_field_id( 'columns' ),
 				'value' => ( isset( $this->values['columns'] ) ) ? $this->values['columns'] : NULL,
@@ -519,11 +518,19 @@ class Layers_Design_Controller {
 				'value' => ( isset( $this->values['gutter'] ) ) ? $this->values['gutter'] : NULL
 			);
 
-			// Only show this for the Post widget (Post Carousel widget doesn't use this option, meanwhile 3rd party authors would already have liststyle separate )
-			if( 'post' == $this->args[ 'widget_id' ] ) {
+		$defaults['elements']['column-layout-end'] = array(
+			'type' => 'group-end',
+		);
+
+		// Only show this for the Post widget (Post Carousel widget doesn't use this option, meanwhile 3rd party authors would already have liststyle separate )
+		if( 'post' == $this->args[ 'widget_id' ] ) {
+
+			$defaults['elements']['column-list-style-start'] = array(
+				'type' => 'group-start',
+				'label' => __( 'List Style', 'layerswp' ),
+			);
 				$defaults['elements']['liststyle'] = array(
 					'type' => 'select-icons',
-					'label' => __( 'List Style', 'layerswp' ),
 					'name' => $this->get_layers_field_name( 'liststyle' ),
 					'id' => $this->get_layers_field_id( 'liststyle' ),
 					'value' => ( isset( $this->values['liststyle'] ) ) ? $this->values['liststyle'] : NULL,
@@ -534,11 +541,20 @@ class Layers_Design_Controller {
 					),
 					'class' => 'layers-icon-group-inline layers-icon-group-inline-outline',
 				);
-			}
+			$defaults['elements']['column-list-style-end'] = array(
+				'type' => 'group-end',
+			);
+
+		}
+
+		$defaults['elements']['column-text-align-start'] = array(
+			'type' => 'group-start',
+			'label' => __( 'Text Alignment &amp; Color', 'layerswp' ),
+		);
+
 
 			$defaults['elements']['column-textalign'] = array(
 				'type' => 'select-icons',
-				'label' => __( 'Text Align', 'layerswp' ),
 				'name' => $this->get_layers_field_name( 'column-text-align' ),
 				'id' => $this->get_layers_field_id( 'column-text-align' ),
 				'value' => ( isset( $this->values['column-text-align'] ) ) ? $this->values['column-text-align'] : NULL,
@@ -551,14 +567,7 @@ class Layers_Design_Controller {
 				'class' => 'layers-icon-group-inline layers-icon-group-inline-outline',
 			);
 
-		$defaults['elements']['column-layout-end'] = array(
-			'type' => 'group-end',
-		);
-
-		$defaults['elements']['column-styling-start'] = array(
-			'type' => 'group-start',
-			'label' => __( 'Styling', 'layerswp' ),
-		);
+		
 			$defaults['elements']['column-text-color'] = array(
 				'type' => 'color',
 				'label' => __( 'Text Color', 'layerswp' ),
@@ -566,6 +575,15 @@ class Layers_Design_Controller {
 				'id' => $this->get_layers_field_id( 'columns-text-color' ),
 				'value' => ( isset( $this->values['column-text-color'] ) ) ? $this->values['column-text-color'] : NULL
 			);
+
+		$defaults['elements']['column-text-align-end'] = array(
+			'type' => 'group-end',
+		);
+
+		$defaults['elements']['column-background-start'] = array(
+			'type' => 'group-start',
+			'label' => __( 'Background Color', 'layerswp' ),
+		);
 
 			$defaults['elements']['column-background-color'] = array(
 				'type' => 'color',
@@ -575,7 +593,7 @@ class Layers_Design_Controller {
 				'value' => ( isset( $this->values['column-background-color'] ) ) ? $this->values['column-background-color'] : NULL
 			);
 
-		$defaults['elements']['column-styling-end'] = array(
+		$defaults['elements']['column-background-end'] = array(
 			'type' => 'group-end',
 		);
 

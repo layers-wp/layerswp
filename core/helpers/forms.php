@@ -444,7 +444,7 @@ class Layers_Form_Elements {
 					<a href="#uploadimage" class="layers-image-upload-button button layers-button btn-full <?php echo ( $has_image ) ? 'layers-has-image' : '' ; ?>"
 						data-title="<?php _e( 'Select an Image', 'layerswp' ); ?>"
 						data-button_text="<?php _e( 'Use Image', 'layerswp' ); ?>">
-						<?php echo ( isset( $input->button_label ) ? $input->button_label : __( 'Choose Media', 'layerswp' ) ); ?>
+						<?php echo ( isset( $input->button_label ) ? $input->button_label : __( 'Choose Image', 'layerswp' ) ); ?>
 					</a>
 
 					<?php echo $this->input(

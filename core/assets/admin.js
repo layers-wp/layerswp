@@ -397,12 +397,22 @@ jQuery(function($) {
 		// "Hi Mom"
 		$that = $(this);
 
+		// Cache container element
+		$li_container = $that.parent( 'li.layers-visuals-item' );
+
 		// Close Siblings
-		$that.parent( 'li.layers-visuals-item' ).siblings().not( $that.parent() ).removeClass( 'layers-active' );
+		$li_container.toggleClass( 'layers-active' );
+
+		$li_container.siblings().not( $that.parent() ).removeClass( 'layers-active' );
+
+		$group_element = $li_container.find( '.layers-design-bar-group' ).eq(0);
+
+		if( !$group_element.hasClass( 'layers-design-bar-group-open' ) )
+			$group_element.find( '.layers-group-start-wrapper' ).trigger( 'click' );
+		
 
 		// Toggle active state
 		$that.trigger( 'layers-design-bar-menu', $that ); // Deprecated event.
-		$that.parent( 'li.layers-visuals-item' ).toggleClass( 'layers-active' );
 
 		$menu_is_open = ( $that.parent( 'li.layers-visuals-item' ).hasClass('layers-active') );
 	});
@@ -425,9 +435,6 @@ jQuery(function($) {
 		$in_design_group = ( 0 == $current_label.closest( '.layers-design-bar-group-inner' ).length );
 
 		if ( 0 == $is_form_item && $in_design_group ) {
-
-			console.log( "I am a selector" );
-			console.log( $value );
 
 			$current_label
 				.closest( '.layers-pop-menu-wrapper' )

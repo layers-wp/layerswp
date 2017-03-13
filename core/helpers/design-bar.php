@@ -698,7 +698,6 @@ class Layers_Design_Controller {
 
 			$defaults['elements']['featuredimage'] = array(
 				'type' => 'image',
-				'label' => __( 'Featured Media', 'layerswp' ),
 				'name' => $this->get_layers_field_name( 'featuredimage' ),
 				'id' => $this->get_layers_field_id( 'featuredimage' ),
 				'value' => ( isset( $this->values['featuredimage'] ) ) ? $this->values['featuredimage'] : NULL
@@ -726,12 +725,11 @@ class Layers_Design_Controller {
 
 		$defaults['elements']['featuredvideo-start'] = array(
 			'type' => 'group-start',
-			'label' => __( 'Featured Video', 'layerswp' ),
+			'label' => __( 'Featured Video (oEmbed)', 'layerswp' ),
 		);
 			
 			$defaults['elements']['featuredvideo'] = array(
 				'type' => 'text',
-				'label' => __( 'Video URL (oEmbed)', 'layerswp' ),
 				'description' => __( '<strong>TIP:</strong> Paste links from YouTube, Vimeo, DailyMotion, Twitter or Flickr.', 'layerswp' ),
 				'name' => $this->get_layers_field_name( 'featuredvideo' ),
 				'id' => $this->get_layers_field_id( 'featuredvideo' ),

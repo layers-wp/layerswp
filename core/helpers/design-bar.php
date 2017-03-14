@@ -396,7 +396,7 @@ class Layers_Design_Controller {
 		$defaults['label'] = __( 'Layout', 'layerswp' );
 
 		// Add a Wrapper Class
-		$defaults['wrapper-class'] = 'layers-pop-menu-wrapper layers-animate layers-small';
+		$defaults['wrapper-class'] = 'layers-pop-menu-wrapper layers-animate ';
 
 		// Add elements
 		$defaults['elements']['layout-start'] = array(
@@ -415,6 +415,26 @@ class Layers_Design_Controller {
 				),
 				'class' => 'layers-icon-group-inline layers-icon-group-inline-outline',
 			);
+
+
+			$defaults['elements']['padding'] = array(
+				'type' => 'inline-numbers-fields',
+				'label' => __( 'Padding (px)', 'layerswp' ),
+				'name' => $this->get_layers_field_name( 'advanced', 'padding' ),
+				'id' => $this->get_layers_field_id( 'advanced', 'padding' ),
+				'value' => ( isset( $this->values['advanced']['padding'] ) ) ? $this->values['advanced']['padding'] : NULL,
+				'input_class' => 'inline-fields-flush',
+			);
+
+			$defaults['elements']['margin'] = array(
+				'type' => 'inline-numbers-fields',
+				'label' => __( 'Margin (px)', 'layerswp' ),
+				'name' => $this->get_layers_field_name( 'advanced', 'margin' ),
+				'id' => $this->get_layers_field_id( 'advanced', 'margin' ),
+				'value' => ( isset( $this->values['advanced']['margin'] ) ) ? $this->values['advanced']['margin'] : NULL,
+				'input_class' => 'inline-fields-flush',
+			);
+
 
 		$defaults['elements']['layout-end'] = array(
 			'type' => 'group-end'
@@ -1149,33 +1169,7 @@ class Layers_Design_Controller {
 		$defaults['label'] = __( 'Advanced', 'layerswp' );
 
 		// Add elements
-		$defaults['elements']['advanced-margin-padding-start'] = array(
-			'type' => 'group-start',
-			'label' => __( 'Margin &amp; Padding', 'layerswp' ),
-		);
-
-			$defaults['elements']['padding'] = array(
-				'type' => 'inline-numbers-fields',
-				'label' => __( 'Padding (px)', 'layerswp' ),
-				'name' => $this->get_layers_field_name( 'advanced', 'padding' ),
-				'id' => $this->get_layers_field_id( 'advanced', 'padding' ),
-				'value' => ( isset( $this->values['advanced']['padding'] ) ) ? $this->values['advanced']['padding'] : NULL,
-				'input_class' => 'inline-fields-flush',
-			);
-
-			$defaults['elements']['margin'] = array(
-				'type' => 'inline-numbers-fields',
-				'label' => __( 'Margin (px)', 'layerswp' ),
-				'name' => $this->get_layers_field_name( 'advanced', 'margin' ),
-				'id' => $this->get_layers_field_id( 'advanced', 'margin' ),
-				'value' => ( isset( $this->values['advanced']['margin'] ) ) ? $this->values['advanced']['margin'] : NULL,
-				'input_class' => 'inline-fields-flush',
-			);
-
-		$defaults['elements']['advanced-margin-padding-end'] = array(
-			'type' => 'group-end',
-		);
-
+		
 		$defaults['elements']['advanced-anchor-start'] = array(
 			'type' => 'group-start',
 			'label' => __( 'Anchor &amp; Widget ID', 'layerswp' ),

@@ -502,7 +502,7 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 
 						'slider-navigation-start' => array(
 							'type' => 'group-start',
-							'label' => __( 'Navigation', 'layerswp' ),
+							'label' => __( 'Slider Navigation', 'layerswp' ),
 						),
 
 							'show_slider_arrows' => array(
@@ -512,23 +512,23 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 								'value' => ( isset(  $instance['show_slider_arrows'] ) ) ?  $instance['show_slider_arrows'] : NULL,
 								'label' => __( 'Show Slider Arrows' , 'layerswp' ),
 							),
-							'slider_arrow_color' => array(
-								'type' => 'color',
-								'name' => $this->get_layers_field_name( 'slider_arrow_color' ) ,
-								'id' => $this->get_layers_field_id( 'slider_arrow_color' ) ,
-								'value' => ( isset( $instance['slider_arrow_color'] ) ) ? $instance['slider_arrow_color'] : NULL,
-								'label' => __( 'Slider Controls Color' , 'layerswp' ),
-								'data' => array(
-									'show-if-selector' => '#' . $this->get_layers_field_id( 'show_slider_arrows' ),
-									'show-if-value' => 'true',
-								),
-							),
 							'show_slider_dots' => array(
 								'type' => 'checkbox',
 								'name' => $this->get_layers_field_name( 'show_slider_dots' ) ,
 								'id' => $this->get_layers_field_id( 'show_slider_dots' ) ,
 								'value' => ( isset(  $instance['show_slider_dots'] ) ) ?  $instance['show_slider_dots'] : NULL,
 								'label' => __( 'Show Slider Dots' , 'layerswp' ),
+							),
+							'slider_arrow_color' => array(
+								'type' => 'color',
+								'name' => $this->get_layers_field_name( 'slider_arrow_color' ) ,
+								'id' => $this->get_layers_field_id( 'slider_arrow_color' ) ,
+								'value' => ( isset( $instance['slider_arrow_color'] ) ) ? $instance['slider_arrow_color'] : NULL,
+								'label' => __( 'Navigation Color' , 'layerswp' ),
+								'data' => array(
+									'show-if-selector' => '#' . $this->get_layers_field_id( 'show_slider_arrows' ),
+									'show-if-value' => 'true',
+								),
 							),
 
 						'slider-navigation-end' => array(
@@ -537,7 +537,7 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 
 						'slider-animation-start' => array(
 							'type' => 'group-start',
-							'label' => __( 'Animation', 'layerswp' ),
+							'label' => __( 'Animation Type', 'layerswp' ),
 						),
 
 							'animation_type' => array(
@@ -545,7 +545,6 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 								'name' => $this->get_layers_field_name( 'animation_type' ) ,
 								'id' => $this->get_layers_field_id( 'animation_type' ) ,
 								'value' => ( isset(  $instance['animation_type'] ) ) ?  $instance['animation_type'] : 'slide',
-								'label' => __( 'Animation Type' , 'layerswp' ),
 								'options' => array(
 									'slide' => __( 'Slide', 'layerswp' ),
 									'fade' => __( 'Fade', 'layerswp' ),

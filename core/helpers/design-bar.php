@@ -1196,12 +1196,11 @@ class Layers_Design_Controller {
 
 		$defaults['elements']['advanced-css-start'] = array(
 			'type' => 'group-start',
-			'label' => __( 'Custom Classes & CSS', 'layerswp' ),
+			'label' => __( 'Custom Classes', 'layerswp' ),
 		);
 
 			$defaults['elements']['customclass'] = array(
 				'type' => 'text',
-				'label' => __( 'Custom Class(es)', 'layerswp' ),
 				'name' => $this->get_layers_field_name( 'advanced', 'customclass' ),
 				'id' => $this->get_layers_field_id( 'advanced', 'customclass' ),
 				'value' => ( isset( $this->values['advanced']['customclass'] ) ) ? $this->values['advanced']['customclass'] : NULL,

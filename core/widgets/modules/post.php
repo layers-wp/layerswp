@@ -489,7 +489,7 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 						'elements' => array(
 							'text-style-start' => array(
 								'type' => 'group-start',
-								'label' => __( 'Title &amp; Excerpt Display', 'layerswp' ),
+								'label' => __( 'Title &amp; Excerpt Position', 'layerswp' ),
 							),
 								'text_style' => array(
 									'type' => 'select',
@@ -501,6 +501,13 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 											'regular' => __( 'Regular' , 'layerswp' ),
 											'overlay' => __( 'Overlay' , 'layerswp' )
 									)
+								),
+								'show_media' => array(
+									'type' => 'checkbox',
+									'name' => $this->get_layers_field_name( 'show_media' ) ,
+									'id' => $this->get_layers_field_id( 'show_media' ) ,
+									'value' => ( isset( $instance['show_media'] ) ) ? $instance['show_media'] : NULL,
+									'label' => __( 'Show Featured Images' , 'layerswp' )
 								),
 								'show_titles' => array(
 									'type' => 'checkbox',
@@ -531,13 +538,6 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 									'label' => __( 'Excerpts Length' , 'layerswp' ),
 									'data' => array( 'show-if-selector' => '#' . $this->get_layers_field_id( 'show_excerpts' ), 'show-if-value' => 'true' ),
 								),
-							'text-style-end' => array(
-								'type' => 'group-end',
-							),
-							'meta-start' => array(
-								'type' => 'group-start',
-								'label' => __( 'Meta Settings', 'layerswp' ),
-							),
 
 								'show_pagination' => array(
 									'type' => 'checkbox',
@@ -546,13 +546,13 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 									'value' => ( isset( $instance['show_pagination'] ) ) ? $instance['show_pagination'] : NULL,
 									'label' => __( 'Show Pagination' , 'layerswp' )
 								),
-								'show_media' => array(
-									'type' => 'checkbox',
-									'name' => $this->get_layers_field_name( 'show_media' ) ,
-									'id' => $this->get_layers_field_id( 'show_media' ) ,
-									'value' => ( isset( $instance['show_media'] ) ) ? $instance['show_media'] : NULL,
-									'label' => __( 'Show Featured Images' , 'layerswp' )
-								),
+							'text-style-end' => array(
+								'type' => 'group-end',
+							),
+							'meta-start' => array(
+								'type' => 'group-start',
+								'label' => __( 'Meta Settings', 'layerswp' ),
+							),
 								'show_dates' => array(
 									'type' => 'checkbox',
 									'name' => $this->get_layers_field_name( 'show_dates' ) ,

@@ -3896,3 +3896,12 @@ li[id*='customize-control-layers'].customize-control .layers-form-item:after{
 			content: "\e922";
 			top: 7px;
 		}
+	
+	/*-------------------------------*/
+	/*- CUSTOMIZER CONTROL TABS -----*/
+	.customize-control-layers-tab-start {
+		display: none !important;
+	}
+	.customize-control-layers-tab-end {
+		display: none !important;
+	}

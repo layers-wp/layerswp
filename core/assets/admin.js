@@ -393,6 +393,7 @@ jQuery(function($) {
 			}
 		}
 	});
+	
 	// Open the clicked menu.
 	$( document ).on( 'click', '.widget ul.layers-visuals-wrapper > li.layers-visuals-item > a.layers-icon-wrapper', function(e){
 
@@ -614,6 +615,8 @@ jQuery(function($) {
 					 */
 					
 					$control_accordion_start_and_end
+						// .filter( "[data-closed-by=" + $control_accordion_start.prop('id') + "]" )
+						// .attr( 'data-closed-by', '' )
 						.addClass( 'open' )
 						.removeClass( 'closed' );
 					
@@ -622,6 +625,13 @@ jQuery(function($) {
 						.attr( 'data-closed-by', '' )
 						.stop( true, false )
 						.slideDown({ duration: 250, easing: 'layersEaseInOut' });
+					
+					// We need to click any tabs to re-initialize them.
+					$sibling_controls.each( function( index, el ) {
+						$(el).find('.l_option-customize-control-tabs').each( function( index, el ) {
+							$(el).find('.layers-interface-tab-active').click();
+						});
+					});
 				}
 				else {
 					
@@ -630,11 +640,13 @@ jQuery(function($) {
 					 */
 					
 					$control_accordion_start_and_end
+						// .not('[data-closed-by^="customize-control-"], [data-closed-by="layers-show-if-closed"]')
+						// .attr( 'data-closed-by', $control_accordion_start.prop('id') )
 						.addClass( 'closed' )
 						.removeClass( 'open' );
 					
 					$sibling_controls
-						.not('[data-closed-by^="customize-control-"], [data-closed-by="layers-show-if-closed"]')
+						.not('[data-closed-by^="layers-customize-control-"], [data-closed-by^="customize-control-"], [data-closed-by="layers-show-if-closed"]')
 						.attr( 'data-closed-by', $control_accordion_start.prop('id') )
 						.stop( true, false )
 						.slideUp({ duration: 250, easing: 'layersEaseInOut' });
@@ -649,7 +661,90 @@ jQuery(function($) {
 			init_control_accordions();
 		});
 	}
+	
+	/**
+	 * XX - Control Tabs
+	 */
 
+	// XX.a - Tabs Init
+	
+	$( document ).on( 'layers-interface-init', function( e, element ){
+		setTimeout(function() {
+			layers_init_control_tabs( $(element) );
+		}, 700 );
+	});
+
+	function layers_init_control_tabs( $element_s ){
+		
+		$element_s.find('.l_option-customize-control-tabs .layers-interface-tab').each( function( index, element ) {
+			
+			// Cache elements.
+			var $current_tab               = $(this);
+			var $current_tab_parent        = $current_tab.parents('.l_option-customize-control');
+			var $other_tabs                = $current_tab_parent.find('.layers-interface-tab').not( $current_tab );
+			var $all_tabs                  = $current_tab_parent.find('.layers-interface-tab');
+			
+			// Enable the click open/closed.
+			$current_tab.on( 'click', function() {
+				
+				// Get the parents id.
+				$current_tab_parent_id = $current_tab_parent.attr('id');
+				
+				
+				$current_tab.addClass('layers-interface-tab-active');
+				$other_tabs.removeClass('layers-interface-tab-active');
+				
+				
+				$all_tabs.each( function( index, element ) {
+					
+					// Get the corresposnding intended tab.
+					$tab_id = $(element).attr('for');
+					
+					var $tab               = $(this);
+					var $tab_start         = $( '#' + $tab_id );
+					var $tab_end           = $( '#' + $tab_start.prop('id').replace( 'tab-start', 'tab-end' ) );
+					var $tab_start_and_end = $tab_start.add( $tab_end );
+					var $tab_siblings      = $tab_start.nextUntil( $tab_end );
+					
+					if ( $tab.hasClass( 'layers-interface-tab-active' ) ) {
+						
+						/**
+						 * Open.
+						 */
+						
+						$tab_siblings
+							.filter( "[data-closed-by=" + $current_tab_parent_id + "]" )
+							.attr( 'data-closed-by', '' )
+							.stop( true, false )
+							.slideDown({ duration: 250, easing: 'layersEaseInOut', done: function(){ /*$(this).attr( 'style', '' )*/ } });
+					}
+					else {
+						
+						/**
+						 * Close.
+						 */
+						
+						$tab_siblings
+							.not('[data-closed-by^="layers-customize-control-"], [data-closed-by^="customize-control-"], [data-closed-by="layers-show-if-closed"]')
+							.attr( 'data-closed-by', $current_tab_parent_id )
+							.stop( true, false )
+							.slideUp({ duration: 250, easing: 'layersEaseInOut', done: function(){ /*$(this).attr( 'style', '' )*/ } });
+					}
+				});
+				
+				// Repaint the group styling after the accordions open or close.
+				setTimeout( function() {
+					layers_repaint_control_styles( $element_s );
+				}, 300 );
+				
+			});
+		});
+		
+		
+		$element_s.find('.l_option-customize-control-tabs .layers-interface-tab').eq(0).click();
+		
+	}
+	
 	/**
 	 * 11 - Paint special styles onto the Groups and Accordions.
 	 */
@@ -747,7 +842,7 @@ jQuery(function($) {
 
 	// 12.a - Tabs Click
 
-	$( document ).on( 'click', '.layers-interface-tabs label', function(e){
+	$( document ).on( 'click', '.layers-design-bar .layers-interface-tabs label', function(e){
 		e.preventDefault();
 
 		// Toggle this accordian
@@ -775,7 +870,7 @@ jQuery(function($) {
 	});
 
 	function layers_init_tabs( $element_s ){
-		$element_s.find( '.layers-interface-tabs').each( function(){
+		$element_s.find( '.layers-design-bar .layers-interface-tabs').each( function(){
 			$(this).find('label').eq(0).click();
 		});
 	}

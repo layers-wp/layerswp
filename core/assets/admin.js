@@ -19,35 +19,39 @@
  * 7 - Tabs
  * 8 - Design Controller toggles
  * 9 - Design Bar Accordions
- * 10 - Design Bar Tabs
- * 11 - Widget Focussing
- * 12 - Trigger input changes
- * 13 - Add Last Class to Design Bar Elements
- * 14 - Show/Hide linked elements
- * 15 - Init RTE Editors
- * 16 - Custom Widget Initialization Events
- * 17 - Intercom checkbox
- * 18 - Widget Peek/hide to preview changes
- * 19 - Customizer Control - Range Slider
- * 20 - Reset to Default
- * 21 - Linking from one section/panel to another.
- * 22 - Init Tip-Tip
- * 23 - Linking-UX
- * 24 - Force Customizer refresh if Widget exists that's not partial-widget-refresh
+ * 10 - Control Accordions
+ * 11 - Paint special styles onto the Groups and Accordions
+ * 12 - Design Bar Tabs
+ * 12.a - Tabs Click
+ * 12.b - Tabs Init
+ * 13 - Widget Focussing
+ * 14 - Trigger input changes
+ * 15 - Add Last Class to Design Bar Elements
+ * 16 - Show/Hide linked elements
+ * 17 - Init RTE Editors
+ * 18 - Custom Widget Initialization Events
+ * 19 - Intercom checkbox
+ * 20 - Widget Peek/hide to preview changes
+ * 21 - Customizer Control - Range Slider
+ * 22 - Reset to Default
+ * 23 - Linking from one section/panel to another.
+ * 24 - Init Tip-Tip
+ * 25 - Linking-UX
+ * 26 - Force Customizer refresh if Widget exists that's not partial-widget-refresh
  *
  * Author: Obox Themes
  * Author URI: http://www.oboxthemes.com/
  * License: GNU General Public License v2 or later
  * License URI: http://www.gnu.org/licenses/gpl-2.0.html
-*/
+ */
 
 jQuery(function($) {
 
 	/**
-	* 2 - Layers Custom Easing
-	*
-	* Extend jQuery easing with custom Layers easing function for UI animations - eg slideUp, slideDown
-	*/
+	 * 2 - Layers Custom Easing
+	 *
+	 * Extend jQuery easing with custom Layers easing function for UI animations - eg slideUp, slideDown
+	 */
 
 	// easeInOutQuad
 	/*jQuery.extend( jQuery.easing, { layersEaseInOut: function (x, t, b, c, d) {
@@ -62,8 +66,8 @@ jQuery(function($) {
     }});
 
 	/**
-	* 3 - Media Uploaders
-	*/
+	 * 3 - Media Uploaders
+	 */
 
 	// 3.a - Image Remove Button
 	var file_frame;
@@ -223,8 +227,8 @@ jQuery(function($) {
 	});
 
 	/**
-	* 4 -Background Selectors
-	*/
+	 * 4 -Background Selectors
+	 */
 
 	$(document).on( 'click', '.layers-background-selector li', function(e){
 		e.preventDefault();
@@ -252,8 +256,8 @@ jQuery(function($) {
 	});
 
 	/**
-	* 5 - Color Selectors
-	*/
+	 * 5 - Color Selectors
+	 */
 
 	if ( $('body.wp-customizer').length ) {
 
@@ -323,8 +327,8 @@ jQuery(function($) {
 	});
 
 	/**
-	* 6 - Sortable Columns
-	*/
+	 * 6 - Sortable Columns
+	 */
 
 	$( document ).on( 'layers-interface-init', function( e, element ){
 		layers_init_sortable_columns( $(element) );
@@ -341,8 +345,8 @@ jQuery(function($) {
 	}
 
 	/**
-	* 7 - Tabs
-	*/
+	 * 7 - Tabs
+	 */
 
 	$( document ).on( 'click', '.l_admin-tabs li, .l_admin-tabs li a', function(e){
 
@@ -366,8 +370,8 @@ jQuery(function($) {
 	});
 
 	/**
-	* 8 - Design Controller toggles
-	*/
+	 * 8 - Design Controller toggles
+	 */
 
 	// WIDGET - Design Bar Flyout Menus e.g. Layout, List Style, Advanced.
 	var $menu_is_open = false;
@@ -542,10 +546,10 @@ jQuery(function($) {
 	});
 	
 	/**
-	* 9 - Design Bar Accordions
-	*/
+	 * 9 - Design Bar Accordions
+	 */
 
-	// 1.a - Tabs Click
+	// 9.a - Accordion Click
 
 	$( document ).on( 'click', '.layers-group-start-wrapper', function(e){
 		e.preventDefault();
@@ -561,7 +565,7 @@ jQuery(function($) {
 		$siblings.find('.layers-design-bar-group-inner').slideUp({ easing: 'layersEaseInOut', duration: 250 });
 	});
 	
-	// 1.b - Accodian Init
+	// 9.b - Accordion Init
 	
 	$( document ).on( 'layers-interface-init', function( e, element ){
 		layers_init_widget_accordians( $(element) );
@@ -574,8 +578,10 @@ jQuery(function($) {
 	}
 	
 	/**
-	* XX - Control Accordions
-	*/
+	 * 10 - Control Accordions
+	 */
+
+	// 10.a - Accordion Init
 	
 	$( document ).on( 'layers-interface-init', function( e, element ){
 		setTimeout(function() {
@@ -645,7 +651,7 @@ jQuery(function($) {
 	}
 
 	/**
-	 * XX - Paint special styles onto the Groups and Accordions.
+	 * 11 - Paint special styles onto the Groups and Accordions.
 	 */
 	
 	$( document ).on( 'layers-interface-init', function( e, element ){
@@ -736,10 +742,10 @@ jQuery(function($) {
 	}
 
 	/**
-	* 10 - Design Bar Tabs
-	*/
+	 * 12 - Design Bar Tabs
+	 */
 
-	// 1.a - Tabs Click
+	// 12.a - Tabs Click
 
 	$( document ).on( 'click', '.layers-interface-tabs label', function(e){
 		e.preventDefault();
@@ -762,7 +768,7 @@ jQuery(function($) {
 		});
 	});
 	
-	// 1.b - Accodian Init
+	// 12.b - Tabs Init
 	
 	$( document ).on( 'layers-interface-init', function( e, element ){
 		layers_init_tabs( $(element) );
@@ -775,8 +781,8 @@ jQuery(function($) {
 	}
 
 	/**
-	* 11 - Widget Focussing
-	*/
+	 * 13 - Widget Focussing
+	 */
 
 	$( document ).on( 'layers-widget-scroll', '.widget', function(e){
 
@@ -809,8 +815,8 @@ jQuery(function($) {
 	}
 
 	/**
-	* 12 - Trigger input changes
-	*/
+	 * 14 - Trigger input changes
+	 */
 
 	$.fn.layers_trigger_change = function() {
 		// Trigger 'change' and 'blur' to reset the customizer
@@ -818,8 +824,8 @@ jQuery(function($) {
 	};
 
 	/**
-	* 13 - Add Last Class to Elements
-	*/
+	 * 15 - Add Last Class to Design Bar Elements
+	 */
 
 	$( document ).on( 'layers-interface-init', function( e, element ){
 		layers_init_add_last_class( $(element) );
@@ -841,8 +847,8 @@ jQuery(function($) {
 	}
 
 	/**
-	* 14 - Show/Hide linked elements
-	*/
+	 * 16 - Show/Hide linked elements
+	 */
 
 	if ( $('body.wp-customizer').length ) {
 
@@ -1059,8 +1065,8 @@ jQuery(function($) {
 	}
 
 	/**
-	* 15 - Init RTE Editors
-	*/
+	 * 17 - Init RTE Editors
+	 */
 
 	$( document ).on( 'layers-interface-init', function( e, element ){
 		layers_init_editors( $(element) );
@@ -1178,15 +1184,15 @@ jQuery(function($) {
 	});
 
 	/**
-	* 16 - Custom Widget Initialization Events
-	*/
+	 * 18 - Custom Widget Initialization Events
+	 */
 
 	/**
-	* Trigger 'layers-interface-init' when:
-	* 1. widget is focussed first time
-	* 2. accordion element is added inside widget
-	* to allow for just-in-time init instead of massive bulk init.
-	*/
+	 * Trigger 'layers-interface-init' when:
+	 * 1. widget is focussed first time
+	 * 2. accordion element is added inside widget
+	 * to allow for just-in-time init instead of massive bulk init.
+	 */
 
 	$( document ).on( 'widget-added', function( e, widget ){
 		var $widget = $(widget);
@@ -1259,9 +1265,9 @@ jQuery(function($) {
 	}
 
 	/**
-	* Trigger 'layers-interface-init' when:
-	* 1. Accordion Panel/Section is expanded (opened)
-	*/
+	 * Trigger 'layers-interface-init' when:
+	 * 1. Accordion Panel/Section is expanded (opened)
+	 */
 	$( document ).on( 'expanded', '.control-section:not(.control-section-sidebar):not(#accordion-panel-widgets)', function(e){
 
 		// Bail if we've a;ready initialized this.
@@ -1284,9 +1290,9 @@ jQuery(function($) {
 	});
 
 	/**
-	* Trigger 'layers-widget-interface-init' when:
-	* 1. Widget Accordion Panel is expanded (opened)
-	*/
+	 * Trigger 'layers-widget-interface-init' when:
+	 * 1. Widget Accordion Panel is expanded (opened)
+	 */
 	$( document ).on( 'expanded', '.control-section#accordion-panel-widgets li.control-section-sidebar', function(e){
 
 		// Bail if we've a;ready initialized this.
@@ -1298,8 +1304,8 @@ jQuery(function($) {
 	});
 
 	/**
-	* 17 - Intercom checkbox
-	*/
+	 * 19 - Intercom checkbox
+	 */
 
 	$(document).on( 'change', '#layers-enable-intercom', function(e){
 
@@ -1337,7 +1343,7 @@ jQuery(function($) {
 	*/
 
 	/**
-	 * 18 - Widget Peek/hide to preview changes
+	 * 20 - Widget Peek/hide to preview changes
 	 */
 
 	$( document ).on( 'layers-interface-init', function( e, element ){
@@ -1351,7 +1357,7 @@ jQuery(function($) {
 	$(document).on( 'mouseleave', '.layers-widget-peek-button', function(){ $(this).closest('.widget-inside').removeClass('layers-peek-widget'); } );
 
 	/**
-	 * 19 - Customizer Control - Range Slider
+	 * 21 - Customizer Control - Range Slider
 	 */
 
 	$( document ).on( 'input change', '.layers-column input[type="range"]', function( e ){
@@ -1401,7 +1407,7 @@ jQuery(function($) {
 	}, 550, false );
 
 	/**
-	 * 20 - Reset to Default
+	 * 22 - Reset to Default
 	 */
 
 	$( document ).on( 'click', '.customize-control-default', function( e ){
@@ -1429,7 +1435,7 @@ jQuery(function($) {
 	});
 
 	/**
-	 * 21 - Linking from one section/panel to another.
+	 * 23 - Linking from one section/panel to another.
 	 *
 	 * Use class `customizer-link` and href `#target-panel-or-section-id`
 	 */
@@ -1448,8 +1454,8 @@ jQuery(function($) {
 	});
 
 	/**
-	* 22 - Init Tip-Tip
-	*/
+	 * 24 - Init Tip-Tip
+	 */
 
 	if ( $('body.wp-customizer').length ) {
 
@@ -1488,8 +1494,8 @@ jQuery(function($) {
 	}
 
 	/**
-	* 23 - Linking-UX
-	*/
+	 * 25 - Linking-UX
+	 */
 
 	$( document ).on( 'layers-interface-init', function( e, element ){
 		layers_init_form_collections( $(element) );
@@ -1665,15 +1671,16 @@ jQuery(function($) {
 	});
 
 	/**
-	* 24 - Force Customizer refresh if Widget exists that's not partial-widget-refresh.
-	*
-	* This is required because we don't use the `$args['before_widget'], $args['after_widget']` as our surrounding
-	* tags on our widgets, as our framework needs full control of the attributes like `class`. We have solved this
-	* in our internal widgets, but we cannot be sure that there aren't any 3rd party Layers based Widgets that
-	* have not yet applied our fix. So in the case that there are non `customize_selective_refresh` enabled Widgets
-	* then we will hard-refresh the customizer if the widgets are Reordered, Added, Deleted. Only on pages that have
-	* Widgets that are not `customize_selective_refresh` enabled.
-	*/
+	 * 26 - Force Customizer refresh if Widget exists that's not partial-widget-refresh.
+	 *
+	 * This is required because we don't use the `$args['before_widget'], $args['after_widget']` as our surrounding
+	 * tags on our widgets, as our framework needs full control of the attributes like `class`. We have solved this
+	 * in our internal widgets, but we cannot be sure that there aren't any 3rd party Layers based Widgets that
+	 * have not yet applied our fix. So in the case that there are non `customize_selective_refresh` enabled Widgets
+	 * then we will hard-refresh the customizer if the widgets are Reordered, Added, Deleted. Only on pages that have
+	 * Widgets that are not `customize_selective_refresh` enabled.
+	 */
+	
 	$(document).on( 'layers-customizer-init', function(){
 
 		// Reorder Widgets.

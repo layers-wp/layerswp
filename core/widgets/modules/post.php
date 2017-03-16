@@ -156,7 +156,7 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 					'color' => $this->check_and_return( $instance, 'design', 'column-background-color' )
 				);
 
-				if( !is_array( $this->check_and_return(  $instance, 'design', 'column', 'background' ) ) ){
+				if( is_array( $this->check_and_return(  $instance, 'design', 'column', 'background' ) ) ){
 					$bg = $this->check_and_return(  $instance, 'design', 'column', 'background' );
 				} else {
 					$bg = array();

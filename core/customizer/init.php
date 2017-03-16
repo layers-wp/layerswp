@@ -72,6 +72,8 @@ class Layers_Customizer {
 			require_once get_template_directory() . $controls_dir . 'seperator.php';
 			require_once get_template_directory() . $controls_dir . 'switch.php';
 			require_once get_template_directory() . $controls_dir . 'tabs.php';
+			require_once get_template_directory() . $controls_dir . 'tab-start.php';
+			require_once get_template_directory() . $controls_dir . 'tab-end.php';
 			require_once get_template_directory() . $controls_dir . 'rte.php';
 			require_once get_template_directory() . $controls_dir . 'text.php';
 			require_once get_template_directory() . $controls_dir . 'textarea.php';

@@ -624,7 +624,7 @@ class Layers_Design_Controller {
 
 	/**
 	 * Text Align - Static Option
-	 *
+	 *https://soundcloud.com/deardeerrecords/dear-deer-radioshow-050-robert-babicz
 	 * @param    array       $args       Additional arguments to pass to this function
 	 */
 	public function textalign_component( $args = array() ) {
@@ -825,7 +825,6 @@ class Layers_Design_Controller {
 
 		$this->render_control( $key, apply_filters( 'layers_imageratios_component_args', $args, $key, $this->type, $this->args, $this->values, $this ) );
 	}
-
 	/**
 	 * Fonts - Static Option
 	 *
@@ -839,6 +838,73 @@ class Layers_Design_Controller {
 
 		// Set a key for this input
 		$key = 'fonts';
+
+		// Setup icon CSS
+		$defaults['icon-css'] = 'icon-font-size';
+
+		// Add a Label
+		$defaults['label'] = __( 'Text', 'layerswp' );
+
+		// Add a Wrapper Class
+		$defaults['wrapper-class'] = 'layers-pop-menu-wrapper layers-animate layers-content-small';
+
+		// Add elements
+		$defaults['elements'] = array(
+			'fonts-align' => array(
+				'type' => 'select-icons',
+				'label' => __( 'Text Align', 'layerswp' ),
+				'name' => $this->get_layers_field_name( 'fonts', 'align' ),
+				'id' => $this->get_layers_field_id( 'fonts', 'align' ),
+				'value' => ( isset( $this->values['fonts']['align'] ) ) ? $this->values['fonts']['align'] : NULL,
+				'options' => array(
+					'text-left' => __( 'Left', 'layerswp' ),
+					'text-center' => __( 'Center', 'layerswp' ),
+					'text-right' => __( 'Right', 'layerswp' ),
+					'text-justify' => __( 'Justify', 'layerswp' )
+				),
+				'wrapper' => 'div',
+				'wrapper-class' => 'layers-icon-group layers-icon-group-outline'
+			),
+			'fonts-size' => array(
+				'type' => 'select',
+				'label' => __( 'Text Size', 'layerswp' ),
+				'name' => $this->get_layers_field_name( 'fonts', 'size' ),
+				'id' => $this->get_layers_field_id( 'fonts', 'size' ),
+				'value' => ( isset( $this->values['fonts']['size'] ) ) ? $this->values['fonts']['size'] : NULL,
+				'options' => array(
+					'small' => __( 'Small', 'layerswp' ),
+					'medium' => __( 'Medium', 'layerswp' ),
+					'large' => __( 'Large', 'layerswp' )
+				)
+			),
+			'fonts-color' => array(
+				'type' => 'color',
+				'label' => __( 'Text Color', 'layerswp' ),
+				'name' => $this->get_layers_field_name( 'fonts', 'color' ),
+				'id' => $this->get_layers_field_id( 'fonts', 'color' ),
+				'value' => ( isset( $this->values['fonts']['color'] ) ) ? $this->values['fonts']['color'] : NULL
+			)
+		);
+
+		$args = $this->merge_component( $defaults, $args );
+
+		$this->render_control( $key, apply_filters( 'layerswp_font_component_args', $args, $key, $this->type, $this->args, $this->values ) );
+	}
+
+
+	/**
+	 * Fonts - Static Option
+	 *
+	 * @param    array       $args       Additional arguments to pass to this function
+	 */
+	public function header_excerpt_component( $args = array() ) {
+
+		// If there is no args information provided, can the operation
+		if ( NULL == $this->args )
+			return;
+
+		// Set a key for this input
+		$key = 'header_excerpt';
 
 		// Setup icon CSS
 		$defaults['icon-css'] = 'icon-font-size';
@@ -947,7 +1013,7 @@ class Layers_Design_Controller {
 
 		$args = $this->merge_component( $defaults, $args );
 
-		$this->render_control( $key, apply_filters( 'layers_font_component_args', $args, $key, $this->type, $this->args, $this->values, $this ) );
+		$this->render_control( $key, apply_filters( 'layers_header_excerpt_component_args', $args, $key, $this->type, $this->args, $this->values, $this ) );
 	}
 
 	/**

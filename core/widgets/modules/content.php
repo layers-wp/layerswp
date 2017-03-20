@@ -486,7 +486,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 							),
 							$instance, // Widget Values
 							apply_filters( 'layers_column_widget_inline_design_bar_components', array( // Components
-								'fonts',
+								'header_excerpt',
 							), $this, $instance )
 						); ?>
 
@@ -550,7 +550,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 							'background',
 							'featuredimage',
 							'imagealign',
-							'fonts',
+							'header_excerpt',
 							'buttons' => array(
 								'icon-css' => 'icon-call-to-action',
 								'label' => __( 'Buttons', 'layerswp' ),

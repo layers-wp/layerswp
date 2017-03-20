@@ -1259,6 +1259,7 @@ jQuery(function($) {
 				codeMirror: false,
 				toolbarInline: false,
 				initOnClick: false,
+				tooltips: false,
 				imageEditButtons: [ 'removeImage' ],
 				key: 'YWd1WDPTa1ZNRGe1OC1c1==',
 				mediaManager: false,

@@ -667,7 +667,7 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 									),
 								),
 							),
-							'fonts',
+							'header_excerpt',
 							'buttons' => array(
 								'icon-css' => 'icon-call-to-action',
 								'label' => __( 'Buttons', 'layerswp' ),

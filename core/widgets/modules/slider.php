@@ -223,8 +223,16 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 
 							// Set the background styling
 							if( !empty( $item_instance['design'][ 'background' ] ) ) $this->inline_css .= layers_inline_styles( ".{$widget_id}-{$slide_key}", 'background', array( 'background' => $item_instance['design'][ 'background' ] ) );
-							if( !empty( $item_instance['design']['fonts'][ 'color' ] ) ) $this->inline_css .= layers_inline_styles( ".{$widget_id}-{$slide_key}", 'color', array( 'selectors' => array( '.heading', '.heading a', 'div.excerpt' ) , 'color' => $item_instance['design']['fonts'][ 'color' ] ) );
-							if( !empty( $item_instance['design']['fonts'][ 'shadow' ] ) ) $this->inline_css .= layers_inline_styles( ".{$widget_id}-{$slide_key}", 'text-shadow', array( 'selectors' => array( '.heading', '.heading a',  'div.excerpt' )  , 'text-shadow' => $item_instance['design']['fonts'][ 'shadow' ] ) );
+							
+							if( NULL !== $this->check_and_return( $item_instance, 'design', 'fonts', 'color' ) )	 
+								$this->inline_css .= layers_inline_styles( ".{$widget_id}-{$slide_key}", 'color', array( 'selectors' => array( '.heading', '.heading a', 'div.excerpt' ) , 'color' => $this->check_and_return( $item_instance, 'design', 'fonts', 'color' ) ) );
+
+
+							if( NULL !== $this->check_and_return( $item_instance, 'design', 'fonts', 'excerpt-color' ) )	 
+								$this->inline_css .= layers_inline_styles( ".{$widget_id}-{$slide_key}", 'color', array( 'selectors' => array( 'div.excerpt, div.excerpt a' ) , 'color' => $this->check_and_return( $item_instance, 'design', 'fonts', 'excerpt-color' ) ) );
+
+							
+							if( NULL !== $this->check_and_return( $item_instance, 'design', 'fonts', 'shadow' ) ) $this->inline_css .= layers_inline_styles( ".{$widget_id}-{$slide_key}", 'text-shadow', array( 'selectors' => array( '.heading', '.heading a',  'div.excerpt' )  , 'text-shadow' => $this->check_and_return( $item_instance, 'design', 'fonts', 'shadow' ) ) );
 
 							// Set the button styling
 							$button_size = '';

@@ -990,9 +990,9 @@ class Layers_Design_Controller {
 			$defaults['elements']['fonts-excerpt-color'] = array(
 				'type' => 'color',
 				'label' => __( 'Text Color', 'layerswp' ),
-				'name' => $this->get_layers_field_name( 'fonts', 'excerpt', 'color' ),
+				'name' => $this->get_layers_field_name( 'fonts', 'excerpt-color' ),
 				'id' => $this->get_layers_field_id( 'fonts', 'excerpt', 'color' ),
-				'value' => ( isset( $this->values['fonts']['excerpt']['color'] ) ) ? $this->values['fonts']['excerpt']['color'] : NULL
+				'value' => ( isset( $this->values['fonts']['excerpt-color'] ) ) ? $this->values['fonts']['excerpt-color'] : NULL
 			);
 
 			if( !class_exists( 'Layers_Pro' ) ) {

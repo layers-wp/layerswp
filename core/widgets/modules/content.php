@@ -119,8 +119,15 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 			}
 
 			// Set the background styling
-			if( !empty( $instance['design'][ 'background' ] ) ) $this->inline_css .= layers_inline_styles( ".{$widget_id}", 'background', array( 'background' => $instance['design'][ 'background' ] ) );
-			if( !empty( $instance['design']['fonts'][ 'color' ] ) ) $this->inline_css .= layers_inline_styles( ".{$widget_id}", 'color', array( 'selectors' => array( '.section-title .heading' , '.section-title div.excerpt' ) , 'color' => $instance['design']['fonts'][ 'color' ] ) );
+			if( NULL !== $this->check_and_return( $instance, 'design', 'background' ) ) 
+				$this->inline_css .= layers_inline_styles( "#{$widget_id}", 'background', array( 'background' => $this->check_and_return( $instance, 'design', 'background' ) ) );
+
+
+			if( NULL !== $this->check_and_return( $instance, 'design', 'fonts', 'color' ) ) 
+				$this->inline_css .= layers_inline_styles( "#{$widget_id}", 'color', array( 'selectors' => array( '.section-title .heading' , '.section-title div.excerpt' ) , 'color' => $this->check_and_return( $instance, 'design', 'fonts', 'color' ) ) );
+
+			if( NULL !== $this->check_and_return( $instance, 'design', 'fonts', 'excerpt-color' ) ) 
+				$this->inline_css .= layers_inline_styles( "#{$widget_id}", 'color', array( 'selectors' => array( '.section-title div.excerpt' ) , 'color' => $this->check_and_return( $instance, 'design', 'fonts', 'excerpt-color' ) ) );
 
 			// Apply the advanced widget styling
 			$this->apply_widget_advanced_styling( $widget_id, $instance );
@@ -211,13 +218,25 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 								}
 
 								// Set the background styling
-								if( !empty( $item_instance['design'][ 'background' ] ) ) $this->inline_css .= layers_inline_styles( ".{$widget_id}-{$column_key}", 'background', array( 'background' => $item_instance['design'][ 'background' ] ) );
-								if( !empty( $item_instance['design']['fonts'][ 'color' ] ) ) $this->inline_css .= layers_inline_styles( ".{$widget_id}-{$column_key}", 'color', array( 'selectors' => array( '.heading a', '.heading' , 'div.excerpt' , 'div.excerpt p' ) , 'color' => $item_instance['design']['fonts'][ 'color' ] ) );
-								if( !empty( $item_instance['design']['fonts'][ 'shadow' ] ) ) $this->inline_css .= layers_inline_styles( ".{$widget_id}-{$column_key}", 'text-shadow', array( 'selectors' => array( '.heading a', '.heading' , 'div.excerpt' , 'div.excerpt p' )  , 'text-shadow' => $item_instance['design']['fonts'][ 'shadow' ] ) );
+								if( NULL !== $this->check_and_return( $item_instance, 'design', 'background' ) ) 
+									$this->inline_css .= layers_inline_styles( ".{$widget_id}-{$column_key}", 'background', array( 'background' => $this->check_and_return( $item_instance, 'design', 'background' ) ) );
+
+
+								if( NULL !== $this->check_and_return( $item_instance, 'design', 'fonts', 'color' ) )	 
+									$this->inline_css .= layers_inline_styles( ".{$widget_id}-{$column_key}", 'color', array( 'selectors' => array( '.heading', '.heading a', 'div.excerpt' ) , 'color' => $this->check_and_return( $item_instance, 'design', 'fonts', 'color' ) ) );
+
+								if( NULL !== $this->check_and_return( $item_instance, 'design', 'fonts', 'excerpt-color' ) )	 
+									$this->inline_css .= layers_inline_styles( ".{$widget_id}-{$column_key}", 'color', array( 'selectors' => array( 'div.excerpt, div.excerpt a' ) , 'color' => $this->check_and_return( $item_instance, 'design', 'fonts', 'excerpt-color' ) ) );
+
+								if( NULL !== $this->check_and_return( $item_instance, 'design', 'fonts', 'shadow' ) )
+									$this->inline_css .= layers_inline_styles( ".{$widget_id}-{$column_key}", 'text-shadow', array( 'selectors' => array( '.heading a', '.heading' , 'div.excerpt' , 'div.excerpt p' )  , 'text-shadow' => $this->check_and_return( $item_instance, 'design', 'fonts', 'shadow' ) ) );
 
 								// Set column margin & padding
-								if ( !empty( $item_instance['design']['advanced']['margin'] ) ) $this->inline_css .= layers_inline_styles( ".{$widget_id}-{$column_key}", 'margin', array( 'margin' => $item_instance['design']['advanced']['margin'] ) );
-								if ( !empty( $item_instance['design']['advanced']['padding'] ) ) $this->inline_css .= layers_inline_styles( ".{$widget_id}-{$column_key}", 'padding', array( 'padding' => $item_instance['design']['advanced']['padding'] ) );
+								if( NULL !== $this->check_and_return( $item_instance, 'design', 'advanced', 'margin' ) )
+									$this->inline_css .= layers_inline_styles( ".{$widget_id}-{$column_key}", 'margin', array( 'margin' => $this->check_and_return( $item_instance, 'design', 'advanced', 'margin' ) ) );
+								
+								if( NULL !== $this->check_and_return( $item_instance, 'design', 'advanced', 'padding' ) )
+									$this->inline_css .= layers_inline_styles( ".{$widget_id}-{$column_key}", 'padding', array( 'padding' => $this->check_and_return( $item_instance, 'design', 'advanced', 'padding' ) ) );
 
 								if( !isset( $item_instance[ 'width' ] ) ) $item_instance[ 'width' ] = $this->column_defaults[ 'width' ];
 

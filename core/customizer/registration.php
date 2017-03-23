@@ -245,7 +245,7 @@ class Layers_Customizer_Regsitrar {
 						$this->customizer->add_setting(
 							"{$setting_key}-{$key}",
 							array(
-								'default'    => ( isset( $control_data['default'] ) ? $control_data['default'] : NULL ),
+								'default'    => ( ( isset( $control_data['default'] ) && $key == $control_data['default'] ) ? $control_data['default'] : NULL ),
 								'type'       => 'theme_mod',
 								'capability' => 'manage_options',
 								'sanitize_callback' => $this->add_sanitize_callback( $control_data ),

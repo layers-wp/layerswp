@@ -127,7 +127,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 				$this->inline_css .= layers_inline_styles( "#{$widget_id}", 'color', array( 'selectors' => array( '.section-title .heading' , '.section-title div.excerpt' ) , 'color' => $this->check_and_return( $instance, 'design', 'fonts', 'color' ) ) );
 
 			if( NULL !== $this->check_and_return( $instance, 'design', 'fonts', 'excerpt-color' ) ) 
-				$this->inline_css .= layers_inline_styles( "#{$widget_id}", 'color', array( 'selectors' => array( '.section-title div.excerpt' ) , 'color' => $this->check_and_return( $instance, 'design', 'fonts', 'excerpt-color' ) ) );
+				$this->inline_css .= layers_inline_styles( "#{$widget_id}", 'color', array( 'selectors' => array( '.section-title div.excerpt, .section-title div.excerpt p, .section-title div.excerpt a' ) , 'color' => $this->check_and_return( $instance, 'design', 'fonts', 'excerpt-color' ) ) );
 
 			// Apply the advanced widget styling
 			$this->apply_widget_advanced_styling( $widget_id, $instance );
@@ -226,7 +226,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 									$this->inline_css .= layers_inline_styles( ".{$widget_id}-{$column_key}", 'color', array( 'selectors' => array( '.heading', '.heading a', 'div.excerpt' ) , 'color' => $this->check_and_return( $item_instance, 'design', 'fonts', 'color' ) ) );
 
 								if( NULL !== $this->check_and_return( $item_instance, 'design', 'fonts', 'excerpt-color' ) )	 
-									$this->inline_css .= layers_inline_styles( ".{$widget_id}-{$column_key}", 'color', array( 'selectors' => array( 'div.excerpt, div.excerpt a' ) , 'color' => $this->check_and_return( $item_instance, 'design', 'fonts', 'excerpt-color' ) ) );
+									$this->inline_css .= layers_inline_styles( ".{$widget_id}-{$column_key}", 'color', array( 'selectors' => array( 'div.excerpt, div.excerpt p, div.excerpt a' ) , 'color' => $this->check_and_return( $item_instance, 'design', 'fonts', 'excerpt-color' ) ) );
 
 								if( NULL !== $this->check_and_return( $item_instance, 'design', 'fonts', 'shadow' ) )
 									$this->inline_css .= layers_inline_styles( ".{$widget_id}-{$column_key}", 'text-shadow', array( 'selectors' => array( '.heading a', '.heading' , 'div.excerpt' , 'div.excerpt p' )  , 'text-shadow' => $this->check_and_return( $item_instance, 'design', 'fonts', 'shadow' ) ) );

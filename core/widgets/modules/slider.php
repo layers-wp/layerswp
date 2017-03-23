@@ -229,7 +229,7 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 
 
 							if( NULL !== $this->check_and_return( $item_instance, 'design', 'fonts', 'excerpt-color' ) )	 
-								$this->inline_css .= layers_inline_styles( ".{$widget_id}-{$slide_key}", 'color', array( 'selectors' => array( 'div.excerpt, div.excerpt a' ) , 'color' => $this->check_and_return( $item_instance, 'design', 'fonts', 'excerpt-color' ) ) );
+								$this->inline_css .= layers_inline_styles( ".{$widget_id}-{$slide_key}", 'color', array( 'selectors' => array( 'div.excerpt, div.excerpt p,  div.excerpt a' ) , 'color' => $this->check_and_return( $item_instance, 'design', 'fonts', 'excerpt-color' ) ) );
 
 							
 							if( NULL !== $this->check_and_return( $item_instance, 'design', 'fonts', 'shadow' ) ) $this->inline_css .= layers_inline_styles( ".{$widget_id}-{$slide_key}", 'text-shadow', array( 'selectors' => array( '.heading', '.heading a',  'div.excerpt' )  , 'text-shadow' => $this->check_and_return( $item_instance, 'design', 'fonts', 'shadow' ) ) );

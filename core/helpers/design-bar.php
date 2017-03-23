@@ -1061,7 +1061,6 @@ class Layers_Design_Controller {
 
 			$defaults['elements']['background-image'] = array(
 				'type' => 'image',
-				'label' => __( 'Background Image', 'layerswp' ),
 				'button_label' => __( 'Choose Image', 'layerswp' ),
 				'name' => $this->get_layers_field_name( 'background', 'image' ),
 				'id' => $this->get_layers_field_id( 'background', 'image' ),

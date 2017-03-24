@@ -1052,7 +1052,10 @@ jQuery(function($) {
 			});
 		});
 		
-		$element_s.find('.l_option-customize-control-tabs .layers-interface-tab').eq(0).click();
+		// Click the first tab on startup.
+		$element_s.find('.l_option-customize-control-tabs .layers-interface-tabs').each( function( index, el ) {
+			$(el).find('.layers-interface-tab').eq(0).click();
+		});
 	}
 	
 	/**

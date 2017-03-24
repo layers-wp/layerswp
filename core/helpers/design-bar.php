@@ -1066,20 +1066,6 @@ class Layers_Design_Controller {
 				'id' => $this->get_layers_field_id( 'background', 'image' ),
 				'value' => ( isset( $this->values['background']['image'] ) ) ? $this->values['background']['image'] : NULL,
 			);
-
-			$defaults['elements']['background-stretch'] = array(
-				'type' => 'checkbox',
-				'label' => __( 'Stretch', 'layerswp' ),
-				'name' => $this->get_layers_field_name( 'background', 'stretch' ),
-				'id' => $this->get_layers_field_id( 'background', 'stretch' ),
-				'value' => ( isset( $this->values['background']['stretch'] ) ) ? $this->values['background']['stretch'] : NULL,
-				'data' => array(
-					'show-if-selector' => '#' . $this->get_layers_field_id( 'background', 'image' ),
-					'show-if-value' => '',
-					'show-if-operator' => '!=='
-				),
-			);
-			
 			$defaults['elements']['background-repeat'] = array(
 				'type' => 'select-icons',
 				'label' => __( 'Background Repeat', 'layerswp' ),
@@ -1120,6 +1106,20 @@ class Layers_Design_Controller {
 				),
 				'class' => 'layers-icon-group-inline layers-icon-group-inline-outline',
 			);
+
+			$defaults['elements']['background-stretch'] = array(
+				'type' => 'checkbox',
+				'label' => __( 'Stretch', 'layerswp' ),
+				'name' => $this->get_layers_field_name( 'background', 'stretch' ),
+				'id' => $this->get_layers_field_id( 'background', 'stretch' ),
+				'value' => ( isset( $this->values['background']['stretch'] ) ) ? $this->values['background']['stretch'] : NULL,
+				'data' => array(
+					'show-if-selector' => '#' . $this->get_layers_field_id( 'background', 'image' ),
+					'show-if-value' => '',
+					'show-if-operator' => '!=='
+				),
+			);
+			
 
 			if( !class_exists( 'Layers_Pro' ) ) {
 				$defaults['elements']['background-parallax'] = array(

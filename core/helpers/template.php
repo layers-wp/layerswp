@@ -1275,16 +1275,37 @@ if( !function_exists( 'layers_inline_styles' ) ) {
 		$inline_css = '';
 
 		// If there is a container ID specified, append it to the beginning of the declaration
-		if( NULL !== $container_id ) {
-			$inline_css = ' ' . $container_id . ' ' . $inline_css;
-		}
 
 		if( isset( $args['selectors'] ) ) {
             if ( is_string( $args['selectors'] ) && '' != $args['selectors'] ) {
-            	$inline_css .= $args['selectors'];
+
+				if( NULL !== $container_id ) {
+					$inline_css = ' ' . $container_id;
+				}
+
+            	$inline_css .= ' ' . $args['selectors'];
+
             } else if( is_array( $args['selectors'] ) && !empty( $args['selectors'] ) ){
-            	$inline_css .= implode( ', ' . $inline_css . ' ',  $args['selectors'] );
+            	
+            	$first = TRUE;
+            	
+            	foreach( $args['selectors'] as $s ) {
+
+            		if( !$first )
+            			$inline_css .= ', ';
+
+
+					if( NULL !== $container_id ) {
+						$inline_css .= $container_id;
+					}
+
+            		$inline_css .= ' ' . $s;
+
+            		$first = FALSE;
+            	}
             }
+		} else if( NULL !== $container_id ) {
+			$inline_css = ' ' . $container_id . ' ' . $inline_css;
 		}
 
 		// Apply inline CSS

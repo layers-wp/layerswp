@@ -159,52 +159,110 @@ jQuery(function($) {
 			offset 	: '75%',
 			handler	: function(direction) {
 
-				var $element = $( this.element );
+                // Get the element
+                var element = $(this.element);
+                // Split all the class names as array
+                var classList = element.attr("class").split(/\s+/);
 
-				if ( 'down' == direction ) {
+                // The standard procedure is we x-ify the animation class name and remove the x
+                // as soon as the offset limit is reached
+                $.each(classList, function (i, cls) {
+                    if (cls.match("^layers-default-")) {
+                        element.removeClass(cls);
+                        element.addClass(cls.replace('layers-default-', ''));
+                    }
+                });
+                // Animation only occurs once, so as soon as animation is
+                // done remove the waypoint monitor and do-animate class
+                // from element to prevent multiple event binding
+                element.removeClass('do-animate');
+                this.destroy();
 
-					$element
-						.removeClass('layers-scroll-animate-going-up')
-						.addClass('layers-scroll-animate-going-down')
-						.addClass('layers-scroll-animate-seen');
-				}
-				if ( 'up' == direction ) {
+                //var $element = $( this.element );
 
-					$element
-						.removeClass('layers-scroll-animate-going-down')
-						.addClass('layers-scroll-animate-going-up');
-				}
+				//if ( 'down' == direction ) {
+
+					// $element
+					// 	.removeClass('layers-scroll-animate-going-up')
+					// 	.addClass('layers-scroll-animate-going-down')
+					// 	.addClass('layers-scroll-animate-seen');
+				//}
+				//if ( 'up' == direction ) {
+
+					// $element
+					// 	.removeClass('layers-scroll-animate-going-down')
+					// 	.addClass('layers-scroll-animate-going-up');
+				//}
 			}
 		});
 
 	}
 
+    /**
+	 * Animation handler for most of the animation regarding
+	 * do-animate
+     */
+	var animationHandler = function (replacementClass, addDefaultAnimation) {
+		// Using closure for more dynamic functions
+		return function () {
+            // Get the element
+            var element = $(this.element);
+            // Split all the class names as array
+            var classList = element.attr("class").split(/\s+/);
+
+            var hasAnimation = false;
+            // The standard procedure is we x-ify the animation class name and remove the x
+            // as soon as the offset limit is reached
+            $.each(classList, function (i, cls) {
+                if (cls.match("^" + replacementClass + "-")) {
+                    element.removeClass(cls);
+                    element.addClass(cls.replace(replacementClass + '-', ''));
+                    hasAnimation = true;
+                }
+            });
+
+            if (!hasAnimation && addDefaultAnimation) {
+                element.addClass('fade-in-up');
+            }
+            // Animation only occurs once, so as soon as animation is
+            // done remove the waypoint monitor and do-animate class
+            // from element to prevent multiple event binding
+            element.removeClass('do-animate');
+            this.destroy();
+		}
+    };
+
+    if ( $('body').hasClass('layers-scroll-animate') ) {
+		var sectionsToAnimate = [
+			"#wrapper-content > .widget",
+			//"#footer",
+			".title-container .title",
+			"#post-list .post",
+			".sidebar",
+			".header-site",
+			"#wrapper-content .grid > article"
+		];
+
+		$(sectionsToAnimate.join(",")).not(".do-animate").addClass("do-animate animated-1s");
+        $("#footer").addClass("animated-1s");
+
+        $('.do-animate').waypoint({
+            offset 	: '75%',
+            handler	: animationHandler('layers-default', true)
+        });
+        $('#footer').waypoint({
+            offset 	: '90%',
+            handler	: animationHandler('layers-default', true)
+        });
+        $('body').removeClass('opacity-0');
+    }
+
 	// For all the animations on page animate as soon as the
-	// scrolling reaches 20% above the widget
+	// scrolling reaches 25% above the widget
 
 	$('.do-animate').waypoint({
-		handler: function() {
-
-			// Get the element
-			var element = $(this.element);
-			// Split all the class names as array
-			var classList = element.attr("class").split(/\s+/);
-
-			// The standard procedure is we x-ify the animation class name and remove the x
-			// as soon as the offset limit is reached
-			$.each(classList, function (i, cls) {
-				if (cls.match("^x-")) {
-					element.removeClass(cls);
-					element.addClass(cls.replace('x-', ''));
-				}
-			});
-			// Animation only occurs once, so as soon as animation is
-			// done remove the waypoint monitor and do-animate class
-			// from element to prevent multiple event binding
-			element.removeClass('do-animate');
-			this.destroy();
-    	},
-		offset: '65%'
+		handler: animationHandler('x', false),
+		offset: '75%'
   	});
 });
 

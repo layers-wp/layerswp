@@ -916,25 +916,11 @@ class Layers_Design_Controller {
 		$defaults['wrapper-class'] = 'layers-pop-menu-wrapper layers-animate layers-content-small';
 
 		// Add elements
-		$defaults['elements']['fonts-align-start'] = array(
+		$defaults['elements']['fonts-size-start'] = array(
 			'type' => 'group-start',
-			'label' => __( 'Size &amp; Alignment', 'layerswp' ),
+			'label' => __( 'Text Size', 'layerswp' ),
 		);
 
-			$defaults['elements']['fonts-align'] = array(
-				'type' => 'select-icons',
-				'label' => __( 'Text Alignment', 'layerswp' ),
-				'name' => $this->get_layers_field_name( 'fonts', 'align' ),
-				'id' => $this->get_layers_field_id( 'fonts', 'align' ),
-				'value' => ( isset( $this->values['fonts']['align'] ) ) ? $this->values['fonts']['align'] : NULL,
-				'options' => array(
-					'text-left' => __( 'Left', 'layerswp' ),
-					'text-center' => __( 'Center', 'layerswp' ),
-					'text-right' => __( 'Right', 'layerswp' ),
-					'text-justify' => __( 'Justify', 'layerswp' )
-				),
-				'class' => 'layers-icon-group-inline layers-icon-group-inline-outline',
-			);
 
 			$defaults['elements']['fonts-size'] = array(
 				'type' => 'select',
@@ -947,6 +933,29 @@ class Layers_Design_Controller {
 					'medium' => __( 'Medium', 'layerswp' ),
 					'large' => __( 'Large', 'layerswp' )
 				)
+			);
+
+		$defaults['elements']['fonts-size-end'] = array(
+			'type' => 'group-end',
+		);
+
+		$defaults['elements']['fonts-align-start'] = array(
+			'type' => 'group-start',
+			'label' => __( 'Text Alignment', 'layerswp' ),
+		);
+
+			$defaults['elements']['fonts-align'] = array(
+				'type' => 'select-icons',
+				'name' => $this->get_layers_field_name( 'fonts', 'align' ),
+				'id' => $this->get_layers_field_id( 'fonts', 'align' ),
+				'value' => ( isset( $this->values['fonts']['align'] ) ) ? $this->values['fonts']['align'] : NULL,
+				'options' => array(
+					'text-left' => __( 'Left', 'layerswp' ),
+					'text-center' => __( 'Center', 'layerswp' ),
+					'text-right' => __( 'Right', 'layerswp' ),
+					'text-justify' => __( 'Justify', 'layerswp' )
+				),
+				'class' => 'layers-icon-group-inline layers-icon-group-inline-outline',
 			);
 
 		$defaults['elements']['fonts-align-end'] = array(

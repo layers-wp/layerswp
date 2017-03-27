@@ -44,6 +44,8 @@ div#widgets-right div[id*='obox-layers-builder']{
 	border-width: 1px;
 }
 
+.layers-hide{ display: none; }
+
 /*----------------------------------*/
 /*- HIDING NON LAYERS WIDGETS ------*/
 #available-widgets .widget-tpl{}

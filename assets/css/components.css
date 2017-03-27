@@ -1,4 +1,3 @@
-body{ display: none !important; }
 /*-
 
 Description: This is a stylesheet containing styling for specific theme components.
@@ -532,9 +531,6 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 	.comment .comment:last-child{
 		margin-bottom: 0;
 	}
-	.comment .comment-reply-link{
-		border: none;
-	}
 
 /*-------------------------------*/
 /*- COMMENTS FORM ---------------*/
@@ -547,7 +543,7 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 	}
 	.comment-respond{
 		clear: both;
-		margin-top: 30px;
+		margin-top: 6%;
 	}
 	.comment-list .comment-respond{
 		margin-top: 0;

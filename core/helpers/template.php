@@ -509,6 +509,7 @@ if( !function_exists( 'layers_body_class' ) ) {
 		// Handle overlay / not overlay
 		if( TRUE == layers_get_theme_mod( 'enable-scroll-animations' ) ){
 			$classes[] = 'layers-scroll-animate';
+            $classes[] = 'opacity-0';
 		}
 
 		if( ( is_single() || is_archive() ) && !$left_sidebar_active && !$right_sidebar_active ){
@@ -709,6 +710,7 @@ if( !function_exists( 'layers_get_header_class' ) ) {
 
 		// Add the general site header class
 		$classes[] = 'header-site';
+        // $classes[] = 'do-animate animated-1s delay-200 layers-default-fade-in-down';
 
 		// Handle sticky / not sticky
 		if( TRUE == $header_sticky_option && 'header-sidebar' != $header_menu_layout ){

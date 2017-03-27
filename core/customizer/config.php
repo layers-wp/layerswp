@@ -231,8 +231,8 @@ class Layers_Customizer_Config {
 			'priority' => 55,
 		);
 		
-		$layers_customizer_sections[ 'animation' ] = array(
-			'title' =>__( 'Animation' , 'layerswp' ),
+		$layers_customizer_sections[ 'general' ] = array(
+			'title' =>__( 'General' , 'layerswp' ),
 			'panel' => 'site-settings',
 			'priority' => 55,
 		);
@@ -515,11 +515,15 @@ class Layers_Customizer_Config {
 		);
 		
 		// Site Settings -> Animation
-		$layers_customizer_controls['animation'] = array(
+		$layers_customizer_controls['general'] = array(
+            'header-general' => array(
+                'type'  => 'layers-heading',
+                'label'    => __( 'General' , 'layerswp' ),
+            ),
 			'enable-scroll-animations' => array(
 				'type'     => 'layers-checkbox',
-				'label'    => __( 'Enable Scroll Animation' , 'layerswp' ),
-				'description' => __( "Choose whether youd like all your page elements to animate in when you scroll down your page." , 'layerswp' ),
+				'label'    => __( 'Enable Smooth Scroll' , 'layerswp' ),
+				'description' => __( "Choose whether you would like all your page elements to animate in when you scroll down your page." , 'layerswp' ),
 				'default' => '',
 			),
 		);

@@ -109,9 +109,16 @@ if( !class_exists( 'Layers_Contact_Widget' ) ) {
 				$hasmap = true;
 			}
 
-			// Set the background styling
-			if( !empty( $instance['design'][ 'background' ] ) ) $this->inline_css .= layers_inline_styles( ".{$widget_id}", 'background', array( 'background' => $instance['design'][ 'background' ] ) );
-			if( !empty( $instance['design']['fonts'][ 'color' ] ) ) $this->inline_css .= layers_inline_styles( ".{$widget_id}", 'color', array( 'selectors' => array( '.section-title .heading' , '.section-title div.excerpt' , '.section-title small', '.form.content' , 'form p' , 'form label' ) , 'color' => $instance['design']['fonts'][ 'color' ] ) );
+			// Apply Styling
+			if( NULL !== $this->check_and_return( $instance, 'design', 'background' ) ) 
+				$this->inline_css .= layers_inline_styles( "#{$widget_id}", 'background', array( 'background' => $this->check_and_return( $instance, 'design', 'background' ) ) );
+
+			if( NULL !== $this->check_and_return( $instance, 'design', 'fonts', 'color' ) ) 
+				$this->inline_css .= layers_inline_styles( "#{$widget_id}", 'color', array( 'selectors' => array( '.section-title .heading' , '.section-title div.excerpt' ) , 'color' => $this->check_and_return( $instance, 'design', 'fonts', 'color' ) ) );
+
+			if( NULL !== $this->check_and_return( $instance, 'design', 'fonts', 'excerpt-color' ) ) 
+				$this->inline_css .= layers_inline_styles( "#{$widget_id}", 'color', array( 'selectors' => array( '.section-title div.excerpt', '.section-title div.excerpt p' , '.section-title div.excerpt a' ) , 'color' => $this->check_and_return( $instance, 'design', 'fonts', 'excerpt-color' ) ) );
+			
 
 			// Set the map & form widths
 			if( isset( $hasmap ) ) {

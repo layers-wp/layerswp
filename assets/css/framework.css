@@ -2794,7 +2794,7 @@ object{
 	}
 
 /*------------------------*/
-/*- ANIMATIONS -----------*/
+/*- ANIMATIONS -----------
 .layers-scroll-animate #wrapper-content > *:not( :nth-child(1) ):not( :nth-child(2) ) {
 	opacity: 0;
 	transform: translateY(30%) scale(2);
@@ -2805,4 +2805,4 @@ object{
 .layers-scroll-animate #wrapper-content > *.layers-scroll-animate-going-down:not( :nth-child(1) ):not( :nth-child(2) ) {
 	opacity: 1;
 	transform: translateX(0) scale(1);
-}
+}*/

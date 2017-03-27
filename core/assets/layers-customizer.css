@@ -604,7 +604,7 @@ div[id*='layers-widget'] .widget-control-actions .alignright{
 	.layers-icon-group-inline .layers-visuals-wrapper.layers-visuals-inline .layers-visuals-item .layers-icon-description{
 		display: none;
 	}
-	
+
 	/*--------------------------------------------------------------------------------------*/
 	/*- SET ICON GROUP INLINE & OUTLINE ----------------------------------------------------*/
 	/*- add `'class' => 'layers-icon-group-inline layers-icon-group-inline-outline'` to control -*/
@@ -1470,7 +1470,7 @@ div[id*='layers-widget'] .widget-control-actions .alignright{
 		line-height: 18px;
 		font-weight: 400;
 	}
-		
+
 		/* CHECKED */
 		.layers-radio-wrapper input[type=radio]:checked + label:before{
 			background-color: #0289C0;
@@ -1537,13 +1537,13 @@ div[id*='layers-widget'] .widget-control-actions .alignright{
 	.layers-invert .layers-switch-wrapper label{
 		color: #ccc;
 	}
-		
+
 		/* HOVER */
 		.layers-switch-wrapper label:hover:before{
 			background: #c7c7c7;
 			box-shadow: inset 0 1px 0px rgba(0, 0, 0, 0.1);
 		}
-		
+
 		/* CHECKED */
 		.layers-switch-wrapper input[type=checkbox]:checked + label:before{
 			background-color: #0289C0;
@@ -3213,8 +3213,8 @@ input[type=radio]:checked + .layers-settings-icon span{
 	width: 20px !important;
 }
 
-	
-	
+
+
 
 
 /*---------------------------*/
@@ -3560,7 +3560,7 @@ li[id*='customize-control-layers'].customize-control .layers-form-item:after{
 	li[id*='customize-control-layers'].customize-control .l_option-customize-control-checkbox .description{
 		margin-top: .2em;
 	}
-	
+
 	/*----------------------*/
 	/*- SWITCH (CHECKBOX) --*/
 	li[id*='customize-control-layers'].customize-control .l_option-customize-control.l_option-customize-control-switch {
@@ -3633,7 +3633,7 @@ li[id*='customize-control-layers'].customize-control .layers-form-item:after{
 			position: relative;
 			top: 3px;
 		}
-	
+
 
 	/*-------------------------------*/
 	/*- CUSTOMIZER CONTROL GROUPS -- */
@@ -3671,15 +3671,19 @@ li[id*='customize-control-layers'].customize-control .layers-form-item:after{
 		line-height: 1.5em;
 	}
 	li[id*='customize-control-layers'].customize-control.li-group{
-		
+
 	}
 	li[id*='customize-control-layers'].customize-control .l_option-customize-control.group{
 		display: list-item;
 		box-sizing: border-box;
 		padding: 9px 9px 6px 9px;
-		background: #f6f6f6 none repeat scroll 0% 0%;
+		background: #f6f6f6;
 		position: relative;
 		transition: border-radius .25s ease-in-out, all 0s;
+	}
+	/* ACCORDION OPEN */
+	li[id*='customize-control-layers'].customize-control.open .l_option-customize-control.group{
+		background: #d9d9d9;
 	}
 	li[id*='customize-control-layers'].customize-control .l_option-customize-control.group:after{
 		content: "";
@@ -3700,7 +3704,7 @@ li[id*='customize-control-layers'].customize-control .layers-form-item:after{
 	li[id*='customize-control-layers'].customize-control .l_option-customize-control.group.layers-push-top-small {
 		margin-top: 2px !important;
 	}
-		
+
 		/*---------------------------------*/
 		/*- FIRST & LAST GROUP ELEMENTS -- */
 		li[id*='customize-control-layers'].customize-control.li-group-first .l_option-customize-control{
@@ -3708,7 +3712,7 @@ li[id*='customize-control-layers'].customize-control .layers-form-item:after{
 			border-top-right-radius: 4px;
 		}
 		li[id*='customize-control-layers'].customize-control.li-group-last {
-			
+
 		}
 		li[id*='customize-control-layers'].customize-control.li-group-last .l_option-customize-control{
 			border-bottom-left-radius: 4px;
@@ -3758,7 +3762,7 @@ li[id*='customize-control-layers'].customize-control .layers-form-item:after{
 		.l_option-customize-control.group.l_option-customize-control-checkbox label{
 			margin-bottom: 6px;
 		}
-	
+
 	/*--------------------------------------------*/
 	/*- CUSTOMIZER CONTROL ACCORDIONS (STANDARD) -*/
 	li[id*='customize-control-layers'].customize-control-layers-accordion-start:not(.li-group) {
@@ -3807,7 +3811,7 @@ li[id*='customize-control-layers'].customize-control .layers-form-item:after{
 	li[id*='customize-control-layers'].customize-control.li-prev-is-accordion {
 		margin-top: -25px;
 	}
-		
+
 		/*--------------------------*/
 		/*- HOVER (STANDARD) ------*/
 		li[id*='customize-control-layers'].customize-control:not(.li-group) .l_option-customize-control:hover:after {
@@ -3827,7 +3831,7 @@ li[id*='customize-control-layers'].customize-control .layers-form-item:after{
 		li[id*='customize-control-layers'].customize-control.customize-control-layers-accordion-start.closed:not(.li-group) .l_option-customize-control:after {
 			content: "\e922";
 		}
-	
+
 	/*------------------------------------------*/
 	/*- CUSTOMIZER CONTROL ACCORDIONS (GROUPS) -*/
 	li[id*='customize-control-layers'].customize-control .l_option-customize-control-accordion-start {
@@ -3879,14 +3883,14 @@ li[id*='customize-control-layers'].customize-control .layers-form-item:after{
 	li[id*='customize-control-layers'].customize-control.customize-control-layers-accordion-start .l_option-customize-control.group label {
 		margin-bottom: 0;
 	}
-		
+
 		/*--------------------------*/
 		/*- HOVER (GROUPS) ------*/
 		li[id*='customize-control-layers'].customize-control .l_option-customize-control.l_option-customize-control-accordion-start.group:hover:after{
 			color: #bbbbbb !important;
 			background: white !important;
 		}
-		
+
 		/*------------------------*/
 		/*- CLOSED (GROUPS) ------*/
 		li[id*='customize-control-layers'].customize-control.closed .l_option-customize-control.l_option-customize-control-accordion-start.group {
@@ -3899,7 +3903,7 @@ li[id*='customize-control-layers'].customize-control .layers-form-item:after{
 			top: 7px;
 			right: 9px;
 		}
-	
+
 	/*-------------------------------*/
 	/*- CUSTOMIZER CONTROL TABS -----*/
 	.customize-control-layers-tab-start {

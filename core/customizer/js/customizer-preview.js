@@ -153,12 +153,12 @@
 
 
 /**
- * 5 - Helper function removes specific line from any CSS <style> block
+ * 5 - Helper function removes specific line from any CSS <style> block and adds new CSS at the last point that CSS was found.
  */
-function layers_remove_styling_line( $search_string, $exclude_style_blocks ) {
+function layers_replace_customizer_css( $search_string, $new_css ) {
 	
 	// Loop all <style> blocks.
-	jQuery('style').not( $exclude_style_blocks ).each(function(index, el) {
+	jQuery('style').each(function(index, el) {
 		
 		// Cache elements.
 		var $style_block = jQuery(this);
@@ -169,12 +169,29 @@ function layers_remove_styling_line( $search_string, $exclude_style_blocks ) {
 		// Convert CSS text to array split on lines.
 		$css = $css.split("\n");
 		
+		var $found_at_index = false;
+		
 		// Loop each line, search for the string, remove it if it's found.
 		jQuery.each( $css, function( index, value ){
 			if ( undefined !== value && -1 !== value.indexOf( $search_string ) ) {
+				
+				// Remove this line.
 				$css.splice( index, 1 );
+				
+				// Record the last index that we matched CSS, so we can insert new CSS there later.
+				$found_at_index = index;
 			}
 		});
+		
+		// Insert new CSS if we found any.
+		if ( false !== $found_at_index ) {
+			
+			// First Convert the CSS passed to the JS function.
+			$new_css = decodeURIComponent( $new_css );
+			
+			// Insert the CSS.
+			$css.splice( $found_at_index, 1, $new_css );
+		}
 		
 		// Convert CSS from array back to it's initial format.
 		$css = $css.join("\n");

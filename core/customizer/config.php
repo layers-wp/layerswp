@@ -70,33 +70,34 @@ class Layers_Customizer_Config {
 
 		// Set intial config.
 		$layers_customizer_panels = array(
-			'site-settings' => array(
-							'title' => __( 'Site Settings' , 'layerswp' ),
-							'description' => __( 'Control your content\'s default layout.' , 'layerswp' ), // @TODO Put a helper here
-							'priority' => 40
-						),
+            'site-settings' => array(
+                'title' => __( 'Site Settings' , 'layerswp' ),
+                'description' => __( 'Control your content\'s default layout.' , 'layerswp' ), // @TODO Put a helper here
+                'priority' => 40
+            ),
+
 			'header' => array(
-							'title' => __( 'Header' , 'layerswp' ),
-							'description' => __( 'Control your header\'s logo, layout, colors and font.' , 'layerswp' ), // @TODO Put a helper here
-							'priority' => 60
-						),
+                'title' => __( 'Header' , 'layerswp' ),
+                'description' => __( 'Control your header\'s logo, layout, colors and font.' , 'layerswp' ), // @TODO Put a helper here
+                'priority' => 60
+            ),
 
 			'blog-archive-single' => array(
-							'title' => __( 'Blog' , 'layerswp' ),
-							'description' => __( 'Control your sites\'s sidebars and blog layout.' , 'layerswp' ), // @TODO Put a helper here
-							'priority' => 70
-						),
+                'title' => __( 'Blog' , 'layerswp' ),
+                'description' => __( 'Control your sites\'s sidebars and blog layout.' , 'layerswp' ), // @TODO Put a helper here
+                'priority' => 70
+            ),
 
 			'footer' => array(
-							'title' => __( 'Footer' , 'layerswp' ),
-							'description' => __( 'Control your footer\'s custom text, widget areas and layout.' , 'layerswp' ), // @TODO Put a helper here
-							'priority' => 80
-						),
+                'title' => __( 'Footer' , 'layerswp' ),
+                'description' => __( 'Control your footer\'s custom text, widget areas and layout.' , 'layerswp' ), // @TODO Put a helper here
+                'priority' => 80
+            ),
 
 			'woocommerce' => array(
-							'title' => __( 'WooCommerce' , 'layerswp' ),
-							'priority' => 100
-						),
+                'title' => __( 'WooCommerce' , 'layerswp' ),
+                'priority' => 100
+            ),
 		);
 
 		return apply_filters( 'layers_customizer_panels', $layers_customizer_panels );
@@ -207,6 +208,12 @@ class Layers_Customizer_Config {
 			'priority' => 45,
 		);
 
+        $layers_customizer_sections[ 'animations' ] = array(
+            'title' =>__( 'Animations' , 'layerswp' ),
+            'panel' => 'site-settings',
+            'priority' => 45,
+        );
+
 		$layers_customizer_sections[ 'site-scripts' ] = array(
 			'title' =>__( 'Additional Scripts' , 'layerswp' ),
 			'panel' => 'site-settings',
@@ -227,12 +234,6 @@ class Layers_Customizer_Config {
 
 		$layers_customizer_sections[ 'fonts' ] = array(
 			'title' =>__( 'Fonts' , 'layerswp' ),
-			'panel' => 'site-settings',
-			'priority' => 55,
-		);
-		
-		$layers_customizer_sections[ 'general' ] = array(
-			'title' =>__( 'General' , 'layerswp' ),
 			'panel' => 'site-settings',
 			'priority' => 55,
 		);
@@ -514,8 +515,8 @@ class Layers_Customizer_Config {
 			),
 		);
 		
-		// Site Settings -> Animation
-		$layers_customizer_controls['general'] = array(
+		// Site Settings -> General
+		$layers_customizer_controls['animations'] = array(
             'header-general' => array(
                 'type'  => 'layers-heading',
                 'label'    => __( 'General' , 'layerswp' ),
@@ -523,8 +524,7 @@ class Layers_Customizer_Config {
 			'enable-scroll-animations' => array(
 				'type'     => 'layers-checkbox',
 				'label'    => __( 'Enable Smooth Scroll' , 'layerswp' ),
-				'description' => __( "Choose whether you would like all your page elements to animate in when you scroll down your page." , 'layerswp' ),
-				'default' => '',
+				'default' => TRUE,
 			),
 		);
 

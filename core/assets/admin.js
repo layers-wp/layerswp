@@ -1121,7 +1121,8 @@ jQuery(function($) {
 							$control_li.hasClass('li-group') &&
 							$control_li.hasClass('customize-control-layers-accordion-start')
 						) ||
-						$control_li.hasClass('li-group-push-top')
+						$control_li.hasClass('li-group-push-top') ||
+						! $control_li_prev_visible.hasClass('li-group')
 					) {
 
 					$control_li.addClass('li-group-first');

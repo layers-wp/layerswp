@@ -199,7 +199,10 @@ class Layers_Customizer_Regsitrar {
 			
 			// Set Transport Method.
 			$transport = 'refresh';
-			if ( isset( $control_data['transport'] ) ) {
+			if ( isset( $control_data['partial'] ) ) {
+				$transport = 'postMessage';
+			}
+			else if ( isset( $control_data['transport'] ) ) {
 				$transport = $control_data['transport'];
 			}
 

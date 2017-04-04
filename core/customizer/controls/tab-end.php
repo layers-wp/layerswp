@@ -15,6 +15,9 @@ if( !class_exists( 'Layers_Customize_Tab_End_Control' ) ) {
 		public $type = 'layers-tab-end';
 
 		public function render_content() {
+			
+			$form_elements = new Layers_Form_Elements();
+			
 			?>
 			<div
 				id="layers-customize-control-<?php echo esc_attr( $this->id ); ?>"
@@ -34,6 +37,18 @@ if( !class_exists( 'Layers_Customize_Tab_End_Control' ) ) {
 				<?php if ( '' != $this->label ) { ?>
 					<span class="customize-control-title"><?php echo $this->label; ?></span>
 				<?php } ?>
+				
+				<?php echo $form_elements->input(
+					array(
+						'type' => 'hidden',
+						'label' => ( isset( $this->label ) ? $this->label : '' ),
+						'name' => '',
+						'id' =>  $this->id,
+						'value' => stripslashes( $this->value() ),
+						'data' => $this->get_customize_data(),
+						'placeholder' => $this->placeholder,
+					)
+				); ?>
 				
 			</div>
 			<?php

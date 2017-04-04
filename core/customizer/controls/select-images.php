@@ -43,6 +43,7 @@ if( !class_exists( 'Layers_Customize_Select_Image_Control' ) ) {
 				<?php endif; ?>
 				
 				<div class="layers-form-item">
+					
 					<?php echo $form_elements->input(
 						array(
 							'type' => 'image',
@@ -53,6 +54,7 @@ if( !class_exists( 'Layers_Customize_Select_Image_Control' ) ) {
 							'data' => $this->get_customize_data(),
 						)
 					); ?>
+					
 				</div>
 				
 			</div>

@@ -37,6 +37,18 @@ if( !class_exists( 'Layers_Customize_Tabs_Control' ) ) {
 						'tabs' => $this->tabs,
 					)
 				); ?>
+				
+				<?php echo $form_elements->input(
+					array(
+						'type' => 'hidden',
+						'label' => ( isset( $this->label ) ? $this->label : '' ),
+						'name' => '',
+						'id' =>  $this->id,
+						'value' => stripslashes( $this->value() ),
+						'data' => $this->get_customize_data(),
+						'placeholder' => $this->placeholder,
+					)
+				); ?>
 
 			</div>
 			<?php

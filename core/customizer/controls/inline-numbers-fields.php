@@ -45,6 +45,7 @@ if( !class_exists( 'Layers_Customize_Inline_Numbers_Fields_Control' ) ) {
 				<?php endif; ?>
 				
 				<?php
+				
 				// Default to TRBL if no fields are set.
 				if ( empty( $this->fields ) ) {
 					
@@ -75,6 +76,18 @@ if( !class_exists( 'Layers_Customize_Inline_Numbers_Fields_Control' ) ) {
 						)
 					); ?>
 				</div>
+				
+				<?php echo $form_elements->input(
+					array(
+						'type' => 'hidden',
+						'label' => ( isset( $this->label ) ? $this->label : '' ),
+						'name' => '',
+						'id' =>  $this->id,
+						'value' => stripslashes( $this->value() ),
+						'data' => $this->get_customize_data(),
+						'placeholder' => $this->placeholder,
+					)
+				); ?>
 
 			</div>
 			<?php

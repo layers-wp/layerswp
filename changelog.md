@@ -4,7 +4,10 @@
 ##1.6.6
 ### 04 April 2017
 
-* **Enhancement** - WooCommerce 3.0 compatability *MP*
+* **Enhancement** - WooCommerce 3.0 compatability. *MP*
+* **Enhancement** - Selecting a new image inside the image controller now clears the old image. *MP*
+* **Enhancement** - Clicking out of the sidebar now closes it. *MP*
+* **Enhancement** - Added confirmation modal when removing a widget. *MP*
 * **Enhancement** - Added the option to disable the Layers Open Graph tags. *MP*
 
 =======

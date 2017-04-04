@@ -1,6 +1,13 @@
 # Layers Changelog
 
 =======
+##1.6.6
+### 04 April 2017
+
+* **Enhancement** - WooCommerce 3.0 compatability *MP*
+* **Enhancement** - Added the option to disable the Layers Open Graph tags. *MP*
+
+=======
 ##1.6.5
 ### 05 Dec 2016
 

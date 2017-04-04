@@ -1749,6 +1749,8 @@ if( !function_exists( 'layers_header_meta' ) ) {
 	function layers_header_meta(){
 		wp_reset_query();
 
+		if( FALSE == layers_get_theme_mod( 'open-graph-support' ) ) return;
+
 		if( is_single() || is_page() ) { ?>
 			<meta property="og:title" content="<?php the_title(); ?>" />
 			<?php if( '' != get_the_excerpt() ) { ?>

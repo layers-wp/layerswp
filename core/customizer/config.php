@@ -550,6 +550,12 @@ class Layers_Customizer_Config {
 				'description' => __( 'Check this box if you want to disable analytics for any logged in user.' , 'layerswp' ),
 				'default' => '',
 			),
+			'open-graph-support' => array(
+				'type'     => 'layers-checkbox',
+				'label'    => __( 'Open Graph Support' , 'layerswp' ),
+				'description' => __( 'Enable Open Graph support for rich Facebook and Twitter sharing.' , 'layerswp' ),
+				'default' => TRUE,
+			),
 			'google-maps-api' => array(
 				'type'     => 'layers-text',
 				'label'    => __( 'Google Maps API Key' , 'layerswp' ),

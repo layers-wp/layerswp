@@ -30,7 +30,7 @@ get_header(); ?>
 					woocommerce_product_subcategories(); ?>
 
 					<?php while (have_posts()) :  the_post(); ?>
-							<?php woocommerce_get_template_part( 'content' , 'product' ); ?>
+							<?php wc_get_template_part( 'content' , 'product' ); ?>
 					<?php endwhile; ?>
 				</ul>
 

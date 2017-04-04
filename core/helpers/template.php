@@ -70,9 +70,9 @@ if( !function_exists( 'layers_get_bread_crumbs' ) ) {
 
 		} elseif( function_exists('is_shop') && ( is_post_type_archive( 'product' ) || ( get_post_type() == "product") ) ) {
 
-			if( function_exists( 'woocommerce_get_page_id' )  && '-1' != woocommerce_get_page_id('shop') ) {
+			if( function_exists( 'wc_get_page_id' )  && '-1' != wc_get_page_id('shop') ) {
 
-				$shop_page_id = woocommerce_get_page_id('shop');
+				$shop_page_id = wc_get_page_id('shop');
 				$shop_page = get_post( $shop_page_id );
 
 				if( is_object ( $shop_page ) ) {
@@ -430,8 +430,8 @@ if( !function_exists( 'layers_get_page_title' ) ) {
 			if($parentpage->post_excerpt != ''){ $title_array['excerpt'] = $parentpage->post_excerpt; }
 
 		} elseif( function_exists('is_shop') && ( is_post_type_archive( 'product' ) || ( get_post_type() == "product") ) ) {
-			if( function_exists( 'woocommerce_get_page_id' )  && -1 != woocommerce_get_page_id('shop') ) {
-				$shop_page = get_post( woocommerce_get_page_id('shop') );
+			if( function_exists( 'wc_get_page_id' )  && -1 != wc_get_page_id('shop') ) {
+				$shop_page = get_post( wc_get_page_id('shop') );
 				if( is_object( $shop_page ) ) {
 					$title_array['title' ] = $shop_page->post_title;
 				}

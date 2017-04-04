@@ -22,22 +22,22 @@ get_header(); ?>
 				<?php global $product; $_product = $product; ?>
 				<div <?php layers_center_column_class(); ?>>
 					<div class="product-top clearfix">
-						<?php do_action( 'woocommerce_before_single_product', $post, $_product ); ?>
+						<?php do_action( 'woocommerce_before_single_product' ); ?>
 						<div class="grid">
 
 							<!-- Show the Images -->
 							<div class="column product-images span-6 <?php echo ( 'advanced-layout-right' == layers_get_theme_mod( 'woocommerce-product-page-layout' ) ) ? 'pull-right no-gutter' : '' ?>">
-								<?php do_action( 'woocommerce_before_single_product_summary', $post, $_product ); ?>
+								<?php do_action( 'woocommerce_before_single_product_summary' ); ?>
 							</div>
 
 							<!-- Show the Product Summary -->
 							<div class="column purchase-options-container span-6">
-								<?php do_action( 'woocommerce_single_product_summary', $post, $_product ); ?>
+								<?php do_action( 'woocommerce_single_product_summary' ); ?>
 							</div>
 						</div>
 					</div>
 
-					<?php do_action( 'woocommerce_after_single_product_summary', $post, isset($_product) ); ?>
+					<?php do_action( 'woocommerce_after_single_product_summary' ); ?>
 				</div>
 			<?php endwhile; // while has_post(); ?>
 		<?php endif; // if has_post() ?>

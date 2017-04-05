@@ -584,6 +584,23 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 						'slider-animation-end' => array(
 							'type' => 'group-end',
 						),
+
+						'slider-margin-start' => array(
+							'type' => 'group-start',
+							'label' => __( 'Margin', 'layerswp' ),
+						),
+
+							'margin' => array(
+								'type' => 'inline-numbers-fields',
+								'name' => $this->get_layers_field_name( 'design', 'advanced', 'margin' ),
+								'id' => $this->get_layers_field_id( 'design', 'advanced', 'margin' ),
+								'value' => ( isset( $instance['design']['advanced']['margin'] ) ) ? $instance['design']['advanced']['margin'] : NULL,
+								'input_class' => 'inline-fields-flush',
+							),
+							
+						'slider-margin-end' => array(
+							'type' => 'group-end',
+						),
 					),
 				),
 				'advanced',

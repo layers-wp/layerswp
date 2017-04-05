@@ -200,6 +200,13 @@ if( ! function_exists( 'layers_setup' ) ) {
 		 */
 		add_theme_support( 'customize-selective-refresh-widgets' );
 
+		/**
+		 * Add theme support for WooCommerce Gallery
+		 */
+		add_theme_support( 'wc-product-gallery-zoom' );
+		add_theme_support( 'wc-product-gallery-lightbox' );
+		add_theme_support( 'wc-product-gallery-slider' );
+
 	} // function layers_setup
 } // if !function layers_setup
 add_action( 'after_setup_theme' , 'layers_setup', 100 );

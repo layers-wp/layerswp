@@ -763,7 +763,7 @@ class Layers_Design_Controller {
 
 		$defaults['elements']['featuredvideo-start'] = array(
 			'type' => 'group-start',
-			'label' => __( 'Featured Video (oEmbed)', 'layerswp' ),
+			'label' => __( 'Featured Video', 'layerswp' ),
 		);
 			
 			$defaults['elements']['featuredvideo'] = array(

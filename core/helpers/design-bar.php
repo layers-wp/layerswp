@@ -569,12 +569,20 @@ class Layers_Design_Controller {
 
 		$defaults['elements']['column-text-align-start'] = array(
 			'type' => 'group-start',
-			'label' => __( 'Text Alignment &amp; Color', 'layerswp' ),
+			'label' => __( 'Text Style', 'layerswp' ),
 		);
-
+		
+			$defaults['elements']['column-text-color'] = array(
+				'type' => 'color',
+				'label' => __( 'Text Color', 'layerswp' ),
+				'name' => $this->get_layers_field_name( 'column-text-color' ),
+				'id' => $this->get_layers_field_id( 'columns-text-color' ),
+				'value' => ( isset( $this->values['column-text-color'] ) ) ? $this->values['column-text-color'] : NULL
+			);
 
 			$defaults['elements']['column-textalign'] = array(
 				'type' => 'select-icons',
+				'label' => __( 'Text Alignment', 'layerswp' ),
 				'name' => $this->get_layers_field_name( 'column-text-align' ),
 				'id' => $this->get_layers_field_id( 'column-text-align' ),
 				'value' => ( isset( $this->values['column-text-align'] ) ) ? $this->values['column-text-align'] : NULL,
@@ -585,15 +593,6 @@ class Layers_Design_Controller {
 					'text-justify' => __( 'Justify', 'layerswp' )
 				),
 				'class' => 'layers-icon-group-inline layers-icon-group-inline-outline',
-			);
-
-		
-			$defaults['elements']['column-text-color'] = array(
-				'type' => 'color',
-				'label' => __( 'Text Color', 'layerswp' ),
-				'name' => $this->get_layers_field_name( 'column-text-color' ),
-				'id' => $this->get_layers_field_id( 'columns-text-color' ),
-				'value' => ( isset( $this->values['column-text-color'] ) ) ? $this->values['column-text-color'] : NULL
 			);
 
 		$defaults['elements']['column-text-align-end'] = array(

@@ -556,7 +556,6 @@ if( !function_exists( 'layers_apply_customizer_styles' ) ) {
 		*/
 		$main_color = layers_get_theme_mod( 'site-accent-color' , TRUE );
 		$header_color = layers_get_theme_mod( 'header-background-color', FALSE );
-		$header_color_no_default = layers_get_theme_mod( 'header-background-color', TRUE );
 		$footer_color = layers_get_theme_mod( 'footer-background-color', FALSE );
 
 		/**
@@ -641,11 +640,10 @@ if( !function_exists( 'layers_apply_customizer_styles' ) ) {
 			));
 
 			// Add Invert if the color is dark
-			if ( 'dark' == layers_is_light_or_dark( $footer_color ) ){
+			if ( 'dark' == layers_is_light_or_dark( $footer_color ) ) {
 				add_filter( 'layers_footer_site_class', 'layers_add_invert_class' );
-	}
-}
-
+			}
+		}
 	}
 }
 add_action( 'wp_enqueue_scripts', 'layers_apply_customizer_styles', 50 );

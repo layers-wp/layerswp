@@ -125,21 +125,28 @@ if( ! function_exists( 'layers_remove_config_element' ) ) {
 /**
  * Function used to get all the settings that pertain to a specific partial key.
  *
- * @param  string $key      Key string
+ * @param  string $key Key string
+ * @return array       Array of settings keys.
  */
+
 if( ! function_exists( 'layers_get_partial_settings' ) ) {
 	function layers_get_partial_settings( $key ) {
 		
+		// Get the main Layers controls (config array).
 		$config = Layers_Customizer_Config::get_instance();
 		$controls = $config->controls;
 		
+		// Collect the new partials.
 		$partial_controls = array();
 		
+		// Loop our config groups, to get to our controls.
 		foreach ( $controls as $group_key => $group_array ) {
 			
+			// Loop our controls.
 			foreach ( $group_array as $control_key => $control_array ) {
 				
-				if ( isset( $control_array['partial'] ) ) {
+				// Check each control to see if it's setting is realted to the partial key.
+				if ( isset( $control_array['partial'] ) && $key == $control_array['partial'] ) {
 					
 					$partial_controls[] = "layers-{$control_key}";
 				}
@@ -157,11 +164,12 @@ if( ! function_exists( 'layers_get_partial_settings' ) ) {
  * @param  array  $controls Config array
  * @return array            Config array
  */
-if( ! function_exists( 'layers_set_partial_keys' ) ) {
+
+if ( ! function_exists( 'layers_set_partial_keys' ) ) {
 	function layers_set_partial_keys( $key, $controls ) {
 		
+		// Loop all the controls and add the partial key.
 		foreach ( $controls as $controls_key => $controls_setting ) {
-			
 			$controls[$controls_key]['partial'] = $key;
 		}
 		

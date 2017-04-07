@@ -8,8 +8,6 @@
  */
 if( !class_exists( 'Layers_Contact_Widget' ) ) {
 	class Layers_Contact_Widget extends Layers_Widget {
-	    
-	    public $animation_class = 'x-fade-in-up delay-200';
 
 		/**
 		*  Widget construction

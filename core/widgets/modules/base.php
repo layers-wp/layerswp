@@ -18,8 +18,8 @@ if( !class_exists( 'Layers_Widget' ) ) {
 		public $item_count;
 
 		public $inline_css;
-		
-		public $animation_class;
+
+        public $animation_class = 'x-fade-in-up delay-200';
 
 		//  Defaults
 

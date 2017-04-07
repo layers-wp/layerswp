@@ -8,8 +8,6 @@
  */
 if( !class_exists( 'Layers_Post_Widget' ) ) {
 	class Layers_Post_Widget extends Layers_Widget {
-
-	    public $animation_class = 'x-fade-in-up delay-200';
 	    
 		/**
 		*  Widget construction

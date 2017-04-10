@@ -512,6 +512,22 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 									'value' => ( isset( $instance['show_media'] ) ) ? $instance['show_media'] : NULL,
 									'label' => __( 'Show Featured Images' , 'layerswp' )
 								),
+								'imageratios' => array(
+									'type' => 'select-icons',
+									'label' => __( 'Image Ratios', 'layerswp' ),
+									'name' => $this->get_layers_field_name( 'design', 'imageratios' ),
+									'id' => $this->get_layers_field_id( 'design', 'imageratios' ),
+									'value' => ( isset( $this->values['imageratios'] ) ) ? $this->values['imageratios'] : NULL,
+									'options' => array(
+										'image-portrait' => __( 'Portrait', 'layerswp' ),
+										'image-landscape' => __( 'Landscape', 'layerswp' ),
+										'image-square' => __( 'Square', 'layerswp' ),
+										'image-no-crop' => __( 'None', 'layerswp' ),
+										'image-round' => __( 'Round', 'layerswp' ),
+									),
+									'class' => 'layers-icon-group-inline layers-icon-group-inline-outline',
+									'data' => array( 'show-if-selector' => '#' . $this->get_layers_field_id( 'show_media' ), 'show-if-value' => 'true' ),
+								),
 								'show_titles' => array(
 									'type' => 'checkbox',
 									'name' => $this->get_layers_field_name( 'show_titles' ) ,
@@ -636,7 +652,6 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 					),
 					'columns',
 					'buttons',
-					'imageratios',
 					'background',
 					'advanced',
 				), $this, $instance )

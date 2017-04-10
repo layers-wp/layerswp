@@ -545,6 +545,69 @@ if( !function_exists( 'layers_is_post_list_template' ) ) {
 	}
 }
 
+
+// /**
+//  * Register Header partials.
+//  */
+// add_action( 'customize_register', 'layers_register_header_partials' );
+// function layers_register_header_partials( $wp_customize ) {
+		
+// 	// Add Global partial.
+// 	$wp_customize->selective_refresh->add_partial(
+// 		'layers_header_customization_partial',
+// 		array(
+// 			'selector' => '.layers_header_partial_holder',
+// 			'settings' => layers_get_partial_settings( 'layers_header_customization_partial' ),
+// 			'render_callback' => 'layers_apply_header_customizations',
+// 		)
+// 	);
+// }
+
+// /**
+//  * Add temp element to target for the partial as we are not replacing content,
+//  * but rather just adding a <style> block, and it allows the little pen icon to appear.
+//  */
+// add_action( 'wp_footer', 'layers_add_header_partial_holder' );
+// function layers_add_header_partial_holder() {
+// 	global $wp_customize;
+// 	if ( $wp_customize ) {
+// 		echo '<div class="layers_header_partial_holder"></div>';
+// 	}
+// }
+
+// /**
+//  * Apply Herder customizations.
+//  */
+// add_action( 'wp_enqueue_scripts', 'layers_apply_header_customizations', 60 );
+// function layers_apply_header_customizations() {
+	
+// 	// Bail if not Layers.
+// 	$theme = wp_get_theme();
+// 	if ( 'layerswp' !== $theme->template ) return;
+	
+	
+// 	// Collect CSS.
+// 	$css = '';
+	
+// 	/**
+// 	 * Body - Background.
+// 	 */
+// 	$bg_color = layers_get_theme_mod( 'body-background-color', FALSE );
+// 	if( '' != $bg_color ) {
+// 		$css .= layers_inline_styles("
+// 			/***layers_header_styling***/ .wrapper-content {
+// 				background-color: {$bg_color};
+// 			}
+// 		");
+// 	}
+	
+	
+// 	// If this function is used by a partial too - this replaces the lines by JS.
+// 	layers_pro_replace_customizer_css( '/***layers_header_styling***/', $css );
+// }
+	
+
+
 /**
  * Apply Customizer settings to site housing
  */
@@ -556,7 +619,6 @@ if( !function_exists( 'layers_apply_customizer_styles' ) ) {
 		*/
 		$main_color = layers_get_theme_mod( 'site-accent-color' , TRUE );
 		$header_color = layers_get_theme_mod( 'header-background-color', FALSE );
-		$header_color_no_default = layers_get_theme_mod( 'header-background-color', TRUE );
 		$footer_color = layers_get_theme_mod( 'footer-background-color', FALSE );
 
 		/**
@@ -641,11 +703,10 @@ if( !function_exists( 'layers_apply_customizer_styles' ) ) {
 			));
 
 			// Add Invert if the color is dark
-			if ( 'dark' == layers_is_light_or_dark( $footer_color ) ){
+			if ( 'dark' == layers_is_light_or_dark( $footer_color ) ) {
 				add_filter( 'layers_footer_site_class', 'layers_add_invert_class' );
-	}
-}
-
+			}
+		}
 	}
 }
 add_action( 'wp_enqueue_scripts', 'layers_apply_customizer_styles', 50 );

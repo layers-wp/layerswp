@@ -506,6 +506,7 @@ object{
 		background-position: center;
 		background-repeat: no-repeat;
 		position: relative;
+		z-index: 5;
 	}
 
 	.header-site .container,

@@ -34,6 +34,8 @@ if( !class_exists( 'Layers_Customize_Accordion_End_Control' ) ) {
 				<?php echo $this->get_linked_data(); ?>
 				>
 				
+				<?php do_action( 'layers-control-inside', $this ); ?>
+				
 				<?php echo $form_elements->input(
 					array(
 						'type' => 'hidden',

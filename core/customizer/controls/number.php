@@ -24,6 +24,9 @@ if( !class_exists( 'Layers_Customize_Number_Control' ) ) {
 
 				<?php $this->render_history_actions(); ?>
 
+				
+				<?php do_action( 'layers-control-inside', $this ); ?>
+				
 				<?php if ( '' != $this->heading_divider ) { ?>
 					<?php $this->render_heading_divider( $this->heading_divider ); ?>
 				<?php } ?>

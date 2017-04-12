@@ -34,6 +34,8 @@ if( !class_exists( 'Layers_Customize_Tab_End_Control' ) ) {
 				<?php echo $this->get_linked_data(); ?>
 				>
 				
+				<?php do_action( 'layers-control-inside', $this ); ?>
+				
 				<?php if ( '' != $this->label ) { ?>
 					<span class="customize-control-title"><?php echo $this->label; ?></span>
 				<?php } ?>

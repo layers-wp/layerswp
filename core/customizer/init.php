@@ -45,7 +45,7 @@ class Layers_Customizer {
 		// Include The Default Settings Class
 		require_once get_template_directory() . $customizer_dir . 'defaults.php';
 
-		if( isset( $wp_customize ) ) {
+		if ( isset( $wp_customize ) ) {
 			
 			// Include The Panel and Section Registration Class
 			require_once get_template_directory() . $customizer_dir . 'registration.php';

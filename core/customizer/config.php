@@ -513,7 +513,7 @@ class Layers_Customizer_Config {
 			'dev-switch-active' => array(
 				'type'     => 'layers-checkbox',
 				'label'    => __( 'Dev Switches Active' , 'layerswp' ),
-				'description' => __( 'Unckecking this will immediately remove this panel. To switch it back on you will need to add #layers-develop to your url.' , 'layerswp' ),
+				'description' => __( 'Unckecking this will immediately remove this panel. To switch it back on you will need to add #layers-dev-switches to your url.' , 'layerswp' ),
 				'default' => '',
 			),
 			'dev-switch-customizer-state-record' => array(

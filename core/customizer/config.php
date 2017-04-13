@@ -326,7 +326,7 @@ class Layers_Customizer_Config {
 			'typekit-id' => array(
 				'type' => 'layers-text',
 				'label'    => __( 'Typekit ID' , 'layerswp' ),
-				'description' => sprintf( __( 'For more information on obtaining your Typekit ID, see <a href="%s" target="_blank">follow this link</a>.', 'layerswp' ), 'http://help.typekit.com/customer/portal/articles/6780' ),
+				'description' => sprintf( __( 'For more information on obtaining your Typekit ID, <a href="%s" target="_blank">follow this link</a>.', 'layerswp' ), 'http://help.typekit.com/customer/portal/articles/6780' ),
 			),
 			'body-fonts' => array(
 				'type' => 'layers-font',

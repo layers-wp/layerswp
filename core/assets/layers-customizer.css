@@ -1799,7 +1799,7 @@ div[id*='layers-widget'] .widget-control-actions .alignright{
 		right: 100px;
 		width: 220px;
 		max-height: 320px; /*browser compatibility*/
-		max-height: 60vh;
+		max-height: 50vh;
 		background: #f5f5f5;
 		border: 1px solid #ddd;
 		border-radius: 3px;

@@ -45,7 +45,7 @@ class Layers_Customizer {
 		// Include The Default Settings Class
 		require_once get_template_directory() . $customizer_dir . 'defaults.php';
 
-		if( isset( $wp_customize ) ) {
+		if ( isset( $wp_customize ) ) {
 			
 			// Include The Panel and Section Registration Class
 			require_once get_template_directory() . $customizer_dir . 'registration.php';
@@ -89,6 +89,9 @@ class Layers_Customizer {
 			
 			// Advanced Active Callback functionality - disabled
 			add_filter( 'customize_control_active', array( $this, 'customize_active_controls' ), 10, 2 );
+			
+			// Render a partial indicator  - for devs.
+			add_action( 'layers-control-inside', array( $this, 'render_partial_switch' ) );
 		}
 	}
 
@@ -260,6 +263,35 @@ class Layers_Customizer {
 		return $arg1;
 	}
 
+	
+	/**
+	* Render the Reset-to-Default and possible other history buttons.
+	*/
+	public function render_partial_switch( $control ) {
+		
+		// Bail on certain types.
+		if (
+				'layers-heading' == $control->type ||
+				'layers-tabs' == $control->type ||
+				'layers-accordion-end' == $control->type ||
+				'layers-accordion-start' == $control->type ||
+				'layers-button' == $control->type ||
+				'layers-seperator' == $control->type ||
+				'layers-tab-end' == $control->type ||
+				'layers-tab-start' == $control->type
+			) {
+			return false;
+		}
+		
+		if ( ( bool ) layers_get_theme_mod( 'dev-switch-control-partial-display' ) ) {
+			if ( isset( $control->partial ) ) {
+				echo '<span class="layers-control-has-partial" alt="' . $control->partial . '">partial</span>';
+			}
+			else {
+				echo '<span class="layers-control-has-partial">no-partial</span>';
+			}
+		}
+	}
 }
 
 /**

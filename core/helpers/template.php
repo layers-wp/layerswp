@@ -759,7 +759,7 @@ if( !function_exists( 'layers_maybe_set_invert' ) ) {
 if( !function_exists( 'layers_get_header_class' ) ) {
 	function layers_get_header_class( $class = '' ){
 
-		$header_menu_layout		= layers_get_theme_mod( 'header-menu-layout');
+		$header_menu_layout = layers_get_theme_mod( 'header-menu-layout');
 		$header_align_option = layers_get_theme_mod( 'header-menu-layout' );
 		$header_sticky_option = layers_get_theme_mod( 'header-sticky' );
 		$header_overlay_option = layers_get_theme_mod( 'header-overlay');

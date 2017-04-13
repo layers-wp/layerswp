@@ -140,7 +140,7 @@ class Layers_Form_Elements {
 		// If the value of this element is in fact a collection of inputs, turn it into an object, it's nicer to work with
 		if( NULL != $input->value && is_array( $input->value ) ) $input->value = (object) $input->value;
 
-		if( !is_object( $input->value ) ) $input->value = stripslashes( $input->value );
+		if( !is_object( $input->value ) && !is_array( $input->value ) ) $input->value = stripslashes( $input->value );
 
 		// Create the input attributes
 		$input_props = array();

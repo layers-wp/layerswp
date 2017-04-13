@@ -149,6 +149,19 @@ if( ! function_exists( 'layers_get_partial_settings' ) ) {
 				if ( isset( $control_array['partial'] ) && $key == $control_array['partial'] ) {
 					
 					$partial_controls[] = "layers-{$control_key}";
+					
+					if ( isset( $control_array['type'] ) ) {
+						
+						if ( 'layers-inline-numbers-fields' == $control_array['type'] ) {
+							
+							/*array(
+								'top' => __( 'Top', 'layerswp' ),
+								'right' => __( 'Right', 'layerswp' ),
+								'bottom' => __( 'Bottom', 'layerswp' ),
+								'left' => __( 'Left', 'layerswp' ),
+							);*/
+						}
+					}
 				}
 			}
 		}

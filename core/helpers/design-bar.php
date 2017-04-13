@@ -538,19 +538,12 @@ class Layers_Design_Controller {
 				'value' => ( isset( $this->values['gutter'] ) ) ? $this->values['gutter'] : NULL
 			);
 
-		$defaults['elements']['column-layout-end'] = array(
-			'type' => 'group-end',
-		);
+			// Only show this for the Post widget (Post Carousel widget doesn't use this option, meanwhile 3rd party authors would already have liststyle separate )
+			if( 'post' == $this->args[ 'widget_id' ] ) {
 
-		// Only show this for the Post widget (Post Carousel widget doesn't use this option, meanwhile 3rd party authors would already have liststyle separate )
-		if( 'post' == $this->args[ 'widget_id' ] ) {
-
-			$defaults['elements']['column-list-style-start'] = array(
-				'type' => 'group-start',
-				'label' => __( 'List Style', 'layerswp' ),
-			);
 				$defaults['elements']['liststyle'] = array(
 					'type' => 'select-icons',
+					'label' => __( 'List Style' , 'layerswp' ),
 					'name' => $this->get_layers_field_name( 'liststyle' ),
 					'id' => $this->get_layers_field_id( 'liststyle' ),
 					'value' => ( isset( $this->values['liststyle'] ) ) ? $this->values['liststyle'] : NULL,
@@ -561,11 +554,12 @@ class Layers_Design_Controller {
 					),
 					'class' => 'layers-icon-group-inline layers-icon-group-inline-outline',
 				);
-			$defaults['elements']['column-list-style-end'] = array(
-				'type' => 'group-end',
-			);
 
-		}
+			}
+
+		$defaults['elements']['column-layout-end'] = array(
+			'type' => 'group-end',
+		);
 
 		$defaults['elements']['column-text-align-start'] = array(
 			'type' => 'group-start',

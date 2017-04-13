@@ -753,6 +753,11 @@ class Layers_Design_Controller {
 					'image-no-crop' => __( 'None', 'layerswp' ),
 					'image-round' => __( 'Round', 'layerswp' ),
 				),
+				'data' => array(
+					'show-if-selector' => '#' . $widget->get_layers_field_id( 'featuredimage' ),
+					'show-if-value' => '',
+					'show-if-operator' => '!==',
+				),
 				'class' => 'layers-icon-group-inline layers-icon-group-inline-outline'
 			);
 

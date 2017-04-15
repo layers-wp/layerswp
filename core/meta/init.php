@@ -34,7 +34,7 @@ class Layers_Custom_Meta {
 		$meta_dir = '/core/meta/';
 
 		// Include Config file(s)
-		require_once get_template_directory() . $meta_dir . 'config.php';
+		require_once LAYERS_TEMPLATE_DIR . $meta_dir . 'config.php';
 
 
 		// Instantiate meta config class
@@ -72,7 +72,7 @@ class Layers_Custom_Meta {
 		// Customizer general
 		wp_enqueue_script(
 			LAYERS_THEME_SLUG . '-admin-meta' ,
-			get_template_directory_uri() . '/core/meta/js/meta.js' ,
+			LAYERS_TEMPLATE_URI . '/core/meta/js/meta.js' ,
 			array(
 				'backbone',
 				'jquery',

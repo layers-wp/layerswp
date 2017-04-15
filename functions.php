@@ -49,37 +49,37 @@ add_action( 'template_redirect', 'layers_set_content_width' );
 /*
  * Third Party Scripts
  */
-require_once get_template_directory() . '/core/third-party/site-logo.php';
+require_once LAYERS_TEMPLATE_DIR . '/core/third-party/site-logo.php';
 
 /*
  * Load Widgets
  */
-require_once get_template_directory() . '/core/widgets/init.php';
+require_once LAYERS_TEMPLATE_DIR . '/core/widgets/init.php';
 
 /*
  * Load Customizer Support
  */
-require_once get_template_directory() . '/core/customizer/init.php';
+require_once LAYERS_TEMPLATE_DIR . '/core/customizer/init.php';
 
 /*
  * Load Custom Post Meta
  */
-require_once get_template_directory() . '/core/meta/init.php';
+require_once LAYERS_TEMPLATE_DIR . '/core/meta/init.php';
 
 /*
  * Load Front-end helpers
  */
-require_once get_template_directory() . '/core/helpers/color.php';
-require_once get_template_directory() . '/core/helpers/controls.php';
-require_once get_template_directory() . '/core/helpers/custom-fonts.php';
-require_once get_template_directory() . '/core/helpers/extensions.php';
-require_once get_template_directory() . '/core/helpers/post.php';
-require_once get_template_directory() . '/core/helpers/post-types.php';
-require_once get_template_directory() . '/core/helpers/sanitization.php';
-require_once get_template_directory() . '/core/helpers/template.php';
-require_once get_template_directory() . '/core/helpers/woocommerce.php';
+require_once LAYERS_TEMPLATE_DIR . '/core/helpers/color.php';
+require_once LAYERS_TEMPLATE_DIR . '/core/helpers/controls.php';
+require_once LAYERS_TEMPLATE_DIR . '/core/helpers/custom-fonts.php';
+require_once LAYERS_TEMPLATE_DIR . '/core/helpers/extensions.php';
+require_once LAYERS_TEMPLATE_DIR . '/core/helpers/post.php';
+require_once LAYERS_TEMPLATE_DIR . '/core/helpers/post-types.php';
+require_once LAYERS_TEMPLATE_DIR . '/core/helpers/sanitization.php';
+require_once LAYERS_TEMPLATE_DIR . '/core/helpers/template.php';
+require_once LAYERS_TEMPLATE_DIR . '/core/helpers/woocommerce.php';
 if( !defined( 'LAYERS_DISABLE_INTERCOM' ) ){
-	require_once get_template_directory() . '/core/helpers/intercom.php';
+	require_once LAYERS_TEMPLATE_DIR . '/core/helpers/intercom.php';
 }
 
 /*
@@ -87,19 +87,19 @@ if( !defined( 'LAYERS_DISABLE_INTERCOM' ) ){
  */
 if( is_admin() ){
 	// Include form item class
-	require_once get_template_directory() . '/core/helpers/forms.php';
+	require_once LAYERS_TEMPLATE_DIR . '/core/helpers/forms.php';
 
 	// Include design bar class
-	require_once get_template_directory() . '/core/helpers/design-bar.php';
+	require_once LAYERS_TEMPLATE_DIR . '/core/helpers/design-bar.php';
 
 	// Include API class
-	require_once get_template_directory() . '/core/helpers/api.php';
+	require_once LAYERS_TEMPLATE_DIR . '/core/helpers/api.php';
 
 	// Include widget export/import class
-	require_once get_template_directory() . '/core/helpers/migrator.php';
+	require_once LAYERS_TEMPLATE_DIR . '/core/helpers/migrator.php';
 
 	//Load Options Panel
-	require_once get_template_directory() . '/core/options-panel/init.php';
+	require_once LAYERS_TEMPLATE_DIR . '/core/options-panel/init.php';
 }
 
 if( ! function_exists( 'layers_setup' ) ) {
@@ -143,7 +143,7 @@ if( ! function_exists( 'layers_setup' ) ) {
 		/**
 		 * Add text domain
 		 */
-		load_theme_textdomain('layerswp', get_template_directory() . '/languages');
+		load_theme_textdomain('layerswp', LAYERS_TEMPLATE_DIR . '/languages');
 
 		/**
 		 * Add Site Logo Support
@@ -341,7 +341,7 @@ if( ! function_exists( 'layers_scripts' ) ) {
 
 		wp_enqueue_script(
 			LAYERS_THEME_SLUG . '-plugins' ,
-			get_template_directory_uri() . '/assets/js/plugins.js',
+			LAYERS_TEMPLATE_URI . '/assets/js/plugins.js',
 			array(
 				'jquery',
 			),
@@ -350,7 +350,7 @@ if( ! function_exists( 'layers_scripts' ) ) {
 
 		wp_enqueue_script(
 			LAYERS_THEME_SLUG . '-framework' ,
-			get_template_directory_uri() . '/assets/js/layers.framework.js',
+			LAYERS_TEMPLATE_URI . '/assets/js/layers.framework.js',
 			array(
 				'jquery',
 			),
@@ -372,7 +372,7 @@ if( ! function_exists( 'layers_scripts' ) ) {
 		);
 		wp_register_script(
 			LAYERS_THEME_SLUG . '-map-trigger',
-			get_template_directory_uri().'/core/widgets/js/maps.js',
+			LAYERS_TEMPLATE_URI.'/core/widgets/js/maps.js',
 			array( 'jquery' ),
 			LAYERS_VERSION
 		);
@@ -383,28 +383,28 @@ if( ! function_exists( 'layers_scripts' ) ) {
 
 		wp_enqueue_style(
 			LAYERS_THEME_SLUG . '-framework' ,
-			get_template_directory_uri() . '/assets/css/framework.css',
+			LAYERS_TEMPLATE_URI . '/assets/css/framework.css',
 			array() ,
 			LAYERS_VERSION
 		);
 
 		wp_enqueue_style(
 			LAYERS_THEME_SLUG . '-components',
-			get_template_directory_uri() . '/assets/css/components.css',
+			LAYERS_TEMPLATE_URI . '/assets/css/components.css',
 			array(),
 			LAYERS_VERSION
 		); // Compontents
 
 		wp_enqueue_style(
 			LAYERS_THEME_SLUG . '-responsive',
-			get_template_directory_uri() . '/assets/css/responsive.css',
+			LAYERS_TEMPLATE_URI . '/assets/css/responsive.css',
 			array(),
 			LAYERS_VERSION
 		); // Responsive
 
 		wp_enqueue_style(
 			LAYERS_THEME_SLUG . '-icon-fonts',
-			get_template_directory_uri() . '/assets/css/layers-icons.css',
+			LAYERS_TEMPLATE_URI . '/assets/css/layers-icons.css',
 			array(),
 			LAYERS_VERSION
 		); // Icon Font
@@ -412,7 +412,7 @@ if( ! function_exists( 'layers_scripts' ) ) {
 		if( class_exists( 'WooCommerce' ) ) {
 			wp_enqueue_style(
 				LAYERS_THEME_SLUG . '-woocommerce',
-				get_template_directory_uri() . '/assets/css/woocommerce.css',
+				LAYERS_TEMPLATE_URI . '/assets/css/woocommerce.css',
 				array(),
 				LAYERS_VERSION
 			); // Woocommerce
@@ -421,7 +421,7 @@ if( ! function_exists( 'layers_scripts' ) ) {
 		if( is_admin_bar_showing() ) {
 			wp_enqueue_style(
 				LAYERS_THEME_SLUG . '-admin',
-				get_template_directory_uri() . '/core/assets/icons.css',
+				LAYERS_TEMPLATE_URI . '/core/assets/icons.css',
 				array(),
 				LAYERS_VERSION
 			); // Admin CSS
@@ -429,7 +429,7 @@ if( ! function_exists( 'layers_scripts' ) ) {
 
 		wp_register_style(
 			LAYERS_THEME_SLUG . '-font-awesome',
-			get_template_directory_uri() . '/core/assets/plugins/font-awesome/font-awesome.min.css',
+			LAYERS_TEMPLATE_URI . '/core/assets/plugins/font-awesome/font-awesome.min.css',
 			array(),
 			LAYERS_VERSION
 		); // Font Awesome
@@ -438,13 +438,13 @@ if( ! function_exists( 'layers_scripts' ) ) {
 		// Swiper Slider
 		wp_register_script(
 			LAYERS_THEME_SLUG . '-slider-js',
-			get_template_directory_uri() . '/core/widgets/js/swiper.js',
+			LAYERS_TEMPLATE_URI . '/core/widgets/js/swiper.js',
 			array( 'jquery' ),
 			LAYERS_VERSION
 		);
 		wp_register_style(
 			LAYERS_THEME_SLUG . '-slider',
-			get_template_directory_uri() . '/core/widgets/css/swiper.css',
+			LAYERS_TEMPLATE_URI . '/core/widgets/css/swiper.css',
 			array(),
 			LAYERS_VERSION
 		);
@@ -452,7 +452,7 @@ if( ! function_exists( 'layers_scripts' ) ) {
 		// Layers Masonry.
 		wp_register_script(
 			LAYERS_THEME_SLUG . '-layers-masonry-js',
-			get_template_directory_uri() . '/assets/js/layers.masonry.js',
+			LAYERS_TEMPLATE_URI . '/assets/js/layers.masonry.js',
 			array(
 				'jquery',
 				'masonry', // Wordpress Masonry
@@ -492,13 +492,13 @@ if( ! function_exists( 'layers_admin_scripts' ) ) {
 		 */
 		wp_enqueue_style(
 			LAYERS_THEME_SLUG . '-tip-tip' ,
-			get_template_directory_uri() . '/core/assets/plugins/tip-tip/jquery.tipTip.css',
+			LAYERS_TEMPLATE_URI . '/core/assets/plugins/tip-tip/jquery.tipTip.css',
 			array(),
 			LAYERS_VERSION
 		);
 		wp_enqueue_script(
 			LAYERS_THEME_SLUG . '-tip-tip' ,
-			get_template_directory_uri() . '/core/assets/plugins/tip-tip/jquery.tipTip.js',
+			LAYERS_TEMPLATE_URI . '/core/assets/plugins/tip-tip/jquery.tipTip.js',
 			array( 'jquery' ),
 			LAYERS_VERSION,
 			true
@@ -509,19 +509,19 @@ if( ! function_exists( 'layers_admin_scripts' ) ) {
 		 */
 		wp_enqueue_style(
 			'layersSlct2',
-			get_template_directory_uri() . '/core/assets/plugins/select2/layersSlct2.css',
+			LAYERS_TEMPLATE_URI . '/core/assets/plugins/select2/layersSlct2.css',
 			array(),
 			LAYERS_VERSION
 		);
 		wp_enqueue_style(
 			'layersSlct2-skins',
-			get_template_directory_uri() . '/core/assets/plugins/select2/layersSlct2-skins.css',
+			LAYERS_TEMPLATE_URI . '/core/assets/plugins/select2/layersSlct2-skins.css',
 			array(),
 			LAYERS_VERSION
 		);
 		wp_enqueue_script(
 			'layersSlct2',
-			get_template_directory_uri() . '/core/assets/plugins/select2/layersSlct2.js',
+			LAYERS_TEMPLATE_URI . '/core/assets/plugins/select2/layersSlct2.js',
 			array( 'jquery' ),
 			LAYERS_VERSION
 		);
@@ -531,7 +531,7 @@ if( ! function_exists( 'layers_admin_scripts' ) ) {
 		 */
 		wp_enqueue_style(
 			LAYERS_THEME_SLUG . '-admin-font-awesome',
-			get_template_directory_uri() . '/core/assets/plugins/font-awesome/font-awesome.min.css',
+			LAYERS_TEMPLATE_URI . '/core/assets/plugins/font-awesome/font-awesome.min.css',
 			array(),
 			LAYERS_VERSION
 		);
@@ -542,7 +542,7 @@ if( ! function_exists( 'layers_admin_scripts' ) ) {
 		 */
 		wp_enqueue_style(
 			LAYERS_THEME_SLUG . '-global',
-			get_template_directory_uri() . '/core/assets/layers-global.css',
+			LAYERS_TEMPLATE_URI . '/core/assets/layers-global.css',
 			array(),
 			LAYERS_VERSION
 		);
@@ -554,7 +554,7 @@ if( ! function_exists( 'layers_admin_scripts' ) ) {
 			 */
 			wp_enqueue_style(
 				LAYERS_THEME_SLUG . '-customizer',
-				get_template_directory_uri() . '/core/assets/layers-customizer.css',
+				LAYERS_TEMPLATE_URI . '/core/assets/layers-customizer.css',
 				array(),
 				LAYERS_VERSION
 			);
@@ -566,7 +566,7 @@ if( ! function_exists( 'layers_admin_scripts' ) ) {
 			 */
 			wp_enqueue_style(
 				LAYERS_THEME_SLUG . '-admin',
-				get_template_directory_uri() . '/core/assets/layers-admin.css',
+				LAYERS_TEMPLATE_URI . '/core/assets/layers-admin.css',
 				array(),
 				LAYERS_VERSION
 			);
@@ -578,13 +578,13 @@ if( ! function_exists( 'layers_admin_scripts' ) ) {
 		 */
 		wp_enqueue_style(
 			LAYERS_THEME_SLUG . '-admin-editor',
-			get_template_directory_uri() . '/core/assets/plugins/froala/editor.css',
+			LAYERS_TEMPLATE_URI . '/core/assets/plugins/froala/editor.css',
 			array(),
 			LAYERS_VERSION
 		);
 		wp_enqueue_script(
 			LAYERS_THEME_SLUG . '-admin-editor' ,
-			get_template_directory_uri() . '/core/assets/plugins/froala/editor.min.js' ,
+			LAYERS_TEMPLATE_URI . '/core/assets/plugins/froala/editor.min.js' ,
 			array( 'jquery' ),
 			LAYERS_VERSION,
 			true
@@ -596,7 +596,7 @@ if( ! function_exists( 'layers_admin_scripts' ) ) {
 		 */
 		wp_enqueue_script(
 			LAYERS_THEME_SLUG . '-admin-migrator' ,
-			get_template_directory_uri() . '/core/assets/migrator.js' ,
+			LAYERS_TEMPLATE_URI . '/core/assets/migrator.js' ,
 			array(
 				'media-upload'
 			),
@@ -629,7 +629,7 @@ if( ! function_exists( 'layers_admin_scripts' ) ) {
 		 */
 		wp_enqueue_script(
 			LAYERS_THEME_SLUG . '-media-views' ,
-			get_template_directory_uri() . '/core/assets/media-views.js',
+			LAYERS_TEMPLATE_URI . '/core/assets/media-views.js',
 			array(
 				'media-views'
 			),
@@ -642,7 +642,7 @@ if( ! function_exists( 'layers_admin_scripts' ) ) {
 		 */
 		wp_enqueue_script(
 			LAYERS_THEME_SLUG . '-admin-onboarding' ,
-			get_template_directory_uri() . '/core/assets/onboarding.js',
+			LAYERS_TEMPLATE_URI . '/core/assets/onboarding.js',
 			array(
 					'jquery'
 				),
@@ -673,7 +673,7 @@ if( ! function_exists( 'layers_admin_scripts' ) ) {
 		 */
 		wp_enqueue_script(
 			LAYERS_THEME_SLUG . '-admin' ,
-			get_template_directory_uri() . '/core/assets/admin.js',
+			LAYERS_TEMPLATE_URI . '/core/assets/admin.js',
 			array(
 				'jquery',
 				'jquery-ui-sortable',

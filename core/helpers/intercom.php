@@ -35,7 +35,7 @@ class Layers_Intercom {
 
 		wp_enqueue_script(
 			LAYERS_THEME_SLUG . '-intercom' ,
-			get_template_directory_uri() . '/core/assets/intercom.js',
+			LAYERS_TEMPLATE_URI . '/core/assets/intercom.js',
 			array(
 				'jquery',
 			),

@@ -41,33 +41,33 @@ class Layers_Customizer {
 		$controls_dir = '/core/customizer/controls/';
 
 		// Include Config file(s)
-		require_once get_template_directory() . $customizer_dir . 'config.php';
+		require_once LAYERS_TEMPLATE_DIR . $customizer_dir . 'config.php';
 		// Include The Default Settings Class
-		require_once get_template_directory() . $customizer_dir . 'defaults.php';
+		require_once LAYERS_TEMPLATE_DIR . $customizer_dir . 'defaults.php';
 
 		if( isset( $wp_customize ) ) {
 			
 			// Include The Panel and Section Registration Class
-			require_once get_template_directory() . $customizer_dir . 'registration.php';
+			require_once LAYERS_TEMPLATE_DIR . $customizer_dir . 'registration.php';
 
 			// Include control classes
-			require_once get_template_directory() . $controls_dir . 'base.php';
-			require_once get_template_directory() . $controls_dir . 'button.php';
-			require_once get_template_directory() . $controls_dir . 'checkbox.php';
-			require_once get_template_directory() . $controls_dir . 'code.php';
-			require_once get_template_directory() . $controls_dir . 'color.php';
-			require_once get_template_directory() . $controls_dir . 'font.php';
-			require_once get_template_directory() . $controls_dir . 'heading.php';
-			require_once get_template_directory() . $controls_dir . 'number.php';
-			require_once get_template_directory() . $controls_dir . 'range.php';
-			require_once get_template_directory() . $controls_dir . 'select.php';
-			require_once get_template_directory() . $controls_dir . 'select-icons.php';
-			require_once get_template_directory() . $controls_dir . 'select-images.php';
-			require_once get_template_directory() . $controls_dir . 'seperator.php';
-			require_once get_template_directory() . $controls_dir . 'rte.php';
-			require_once get_template_directory() . $controls_dir . 'text.php';
-			require_once get_template_directory() . $controls_dir . 'textarea.php';
-			require_once get_template_directory() . $controls_dir . 'trbl.php';
+			require_once LAYERS_TEMPLATE_DIR . $controls_dir . 'base.php';
+			require_once LAYERS_TEMPLATE_DIR . $controls_dir . 'button.php';
+			require_once LAYERS_TEMPLATE_DIR . $controls_dir . 'checkbox.php';
+			require_once LAYERS_TEMPLATE_DIR . $controls_dir . 'code.php';
+			require_once LAYERS_TEMPLATE_DIR . $controls_dir . 'color.php';
+			require_once LAYERS_TEMPLATE_DIR . $controls_dir . 'font.php';
+			require_once LAYERS_TEMPLATE_DIR . $controls_dir . 'heading.php';
+			require_once LAYERS_TEMPLATE_DIR . $controls_dir . 'number.php';
+			require_once LAYERS_TEMPLATE_DIR . $controls_dir . 'range.php';
+			require_once LAYERS_TEMPLATE_DIR . $controls_dir . 'select.php';
+			require_once LAYERS_TEMPLATE_DIR . $controls_dir . 'select-icons.php';
+			require_once LAYERS_TEMPLATE_DIR . $controls_dir . 'select-images.php';
+			require_once LAYERS_TEMPLATE_DIR . $controls_dir . 'seperator.php';
+			require_once LAYERS_TEMPLATE_DIR . $controls_dir . 'rte.php';
+			require_once LAYERS_TEMPLATE_DIR . $controls_dir . 'text.php';
+			require_once LAYERS_TEMPLATE_DIR . $controls_dir . 'textarea.php';
+			require_once LAYERS_TEMPLATE_DIR . $controls_dir . 'trbl.php';
 
 			// Enqueue Styles
 			add_action( 'customize_controls_print_footer_scripts', array( $this, 'admin_enqueue_scripts' ) );
@@ -98,7 +98,7 @@ class Layers_Customizer {
 		// Customizer general
 		wp_enqueue_script(
 			LAYERS_THEME_SLUG . '-admin-customizer' ,
-			get_template_directory_uri() . '/core/customizer/js/customizer.js' ,
+			LAYERS_TEMPLATE_URI . '/core/customizer/js/customizer.js' ,
 			array(
 				'customize-controls',
 				'wp-color-picker'
@@ -125,14 +125,14 @@ class Layers_Customizer {
 
 		wp_enqueue_script(
 			LAYERS_THEME_SLUG . '-admin-customizer-preview',
-			get_template_directory_uri() . '/core/customizer/js/customizer-preview.js',
+			LAYERS_TEMPLATE_URI . '/core/customizer/js/customizer-preview.js',
 			array( 'customize-preview-widgets' ),
 			LAYERS_VERSION
 		);
 
 		wp_enqueue_style(
 			LAYERS_THEME_SLUG . '-admin-customizer-preview',
-			get_template_directory_uri() . '/core/customizer/css/customizer-preview.css',
+			LAYERS_TEMPLATE_URI . '/core/customizer/css/customizer-preview.css',
 			array(),
 			LAYERS_VERSION
 		);
@@ -146,7 +146,7 @@ class Layers_Customizer {
 
 		wp_enqueue_style(
 			LAYERS_THEME_SLUG . '-admin-customizer',
-			get_template_directory_uri() . '/core/customizer/css/customizer.css',
+			LAYERS_TEMPLATE_URI . '/core/customizer/css/customizer.css',
 			array(),
 			LAYERS_VERSION
 		);

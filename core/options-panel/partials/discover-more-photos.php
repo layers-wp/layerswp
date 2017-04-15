@@ -35,7 +35,7 @@ $api = new Layers_API(); ?>
                    <?php } ?>
                 <?php }
             } else { ?>
-                <img src="<?php echo get_template_directory_uri(); ?>/core/assets/images/more-photos.jpg" />
+                <img src="<?php echo LAYERS_TEMPLATE_URI; ?>/core/assets/images/more-photos.jpg" />
             <?php } ?>
         </div>
 

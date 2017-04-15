@@ -406,7 +406,7 @@ class Layers_Options_Panel {
 				<div class="l_admin-section-title l_admin-tiny l_admin-no-push-bottom">
 					<div class="l_admin-media l_admin-image-left">
 						<div class="l_admin-media-image l_admin-small">
-							<img src="<?php echo get_template_directory_uri(); ?>/core/assets/images/thumb-layers-pro.png" alt="LayersPro" />
+							<img src="<?php echo LAYERS_TEMPLATE_URI; ?>/core/assets/images/thumb-layers-pro.png" alt="LayersPro" />
 						</div>
 						<div class="l_admin-media-body">
 							<div class="l_admin-excerpt">
@@ -436,7 +436,7 @@ class Layers_Options_Panel {
 				<div class="l_admin-section-title l_admin-tiny l_admin-no-push-bottom">
 					<div class="l_admin-media l_admin-image-left">
 						<div class="l_admin-media-image l_admin-small">
-							<img src="<?php echo get_template_directory_uri(); ?>/core/assets/images/thumb-storekit.png" alt="StoreKit" />
+							<img src="<?php echo LAYERS_TEMPLATE_URI; ?>/core/assets/images/thumb-storekit.png" alt="StoreKit" />
 						</div>
 						<div class="l_admin-media-body">
 							<h3 class="l_admin-heading"><?php _e( 'Boost your sales with StoreKit!' , 'layerswp' ); ?></h3>
@@ -472,7 +472,7 @@ class Layers_Options_Panel {
 		);
 		wp_enqueue_script(
 			LAYERS_THEME_SLUG . '-dashboard' ,
-			get_template_directory_uri() . '/core/assets/dashboard.js',
+			LAYERS_TEMPLATE_URI . '/core/assets/dashboard.js',
 			array(
 				'jquery',
 			),
@@ -494,7 +494,7 @@ class Layers_Options_Panel {
 
 		wp_enqueue_script(
 			LAYERS_THEME_SLUG . '-marketplace' ,
-			get_template_directory_uri() . '/core/assets/marketplace.js',
+			LAYERS_TEMPLATE_URI . '/core/assets/marketplace.js',
 			array(
 				'jquery',
 			),

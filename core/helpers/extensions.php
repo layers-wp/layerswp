@@ -95,8 +95,8 @@ if ( !function_exists( 'layers_locate_plugin_templates' ) ) {
 				$located = get_stylesheet_directory() . '/' . $template_name;
 				break;
 
-			} else if ( file_exists( get_template_directory() . '/' . $template_name) ) {
-				$located = get_template_directory() . '/' . $template_name;
+			} else if ( file_exists( LAYERS_TEMPLATE_DIR . '/' . $template_name) ) {
+				$located = LAYERS_TEMPLATE_DIR . '/' . $template_name;
 				break;
 
 			} elseif( !empty( $template_locations ) ) {

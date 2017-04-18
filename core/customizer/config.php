@@ -18,6 +18,8 @@ class Layers_Customizer_Config {
 	public $sections;
 
 	public $controls;
+	
+	public $partials;
 
 	private static $instance; // stores singleton class
 
@@ -57,6 +59,9 @@ class Layers_Customizer_Config {
 
 		// Init and store controls
 		$this->controls = $this->controls();
+		
+		// Init the partials. They will fill later.
+		$this->partials = array();
     }
 
 	/**

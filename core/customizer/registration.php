@@ -55,7 +55,7 @@ class Layers_Customizer_Regsitrar {
 
 		// Start registration with the panels & sections
 		$this->register_panels( $this->config->panels );
-		$this->register_sections ( $this->config->sections );
+		$this->register_sections( $this->config->sections );
 
 		// Move default sections into Layers Panels
 		$this->move_default_panels( $this->config->default_panels );
@@ -154,7 +154,7 @@ class Layers_Customizer_Regsitrar {
 			$section_priority++;
 
 			// Register Sections for this Panel
-			$this->register_controls ( $section_key , $this->config->controls );
+			$this->register_controls( $section_key, $this->config->controls );
 		}
 
 	}
@@ -218,6 +218,15 @@ class Layers_Customizer_Regsitrar {
 				)
 			);
 
+			// Store Partial.
+			if ( isset( $control_data['partial'] ) ) {
+				// Create initial array if there isn't one yet.
+				if ( ! isset( $this->config->partials[ $control_data['partial'] ] ) ) {
+					$this->config->partials[ $control_data['partial'] ] = array();
+				}
+				$this->config->partials[ $control_data['partial'] ][] = $setting_key;
+			}
+			
 			if ( 'layers-select-images' == $control_data['type'] ) {
 				
 				// Add Control
@@ -255,6 +264,10 @@ class Layers_Customizer_Regsitrar {
 								'transport'  => $transport,
 							)
 						);
+						if ( isset( $control_data['partial'] ) ) {
+							// Store Partial.
+							$this->config->partials[ $control_data['partial'] ][] = "{$setting_key}-{$key}";
+						}
 					}
 				}
 				
@@ -464,6 +477,10 @@ class Layers_Customizer_Regsitrar {
 							'transport'  => $transport,
 						)
 					);
+					if ( isset( $control_data['partial'] ) ) {
+						// Store Partial.
+						$this->config->partials[ $control_data['partial'] ][] = "{$setting_key}-{$key}";
+					}
 				}
 				
 				// Add Control
@@ -479,7 +496,7 @@ class Layers_Customizer_Regsitrar {
 
 				// Add extra settings fields for Width, Style, Radius.
 				$this->customizer->add_setting(
-					$setting_key . '-width',
+					"{$setting_key}-width",
 					array(
 						'default'    => ( isset( $control_data['default'] ) ? $control_data['default'] : NULL ) ,
 						'type'       => 'theme_mod',
@@ -488,8 +505,13 @@ class Layers_Customizer_Regsitrar {
 						'transport'  => $transport,
 					)
 				);
+				if ( isset( $control_data['partial'] ) ) {
+					// Store Partial.
+					$this->config->partials[ $control_data['partial'] ][] = "{$setting_key}-width";
+				}
+				
 				$this->customizer->add_setting(
-					$setting_key . '-style',
+					"{$setting_key}-style",
 					array(
 						'default'    => ( isset( $control_data['default'] ) ? $control_data['default'] : NULL ) ,
 						'type'       => 'theme_mod',
@@ -498,8 +520,13 @@ class Layers_Customizer_Regsitrar {
 						'transport'  => $transport,
 					)
 				);
+				if ( isset( $control_data['partial'] ) ) {
+					// Store Partial.
+					$this->config->partials[ $control_data['partial'] ][] = "{$setting_key}-style";
+				}
+				
 				$this->customizer->add_setting(
-					$setting_key . '-radius',
+					"{$setting_key}-radius",
 					array(
 						'default'    => ( isset( $control_data['default'] ) ? $control_data['default'] : NULL ) ,
 						'type'       => 'theme_mod',
@@ -508,6 +535,10 @@ class Layers_Customizer_Regsitrar {
 						'transport'  => $transport,
 					)
 				);
+				if ( isset( $control_data['partial'] ) ) {
+					// Store Partial.
+					$this->config->partials[ $control_data['partial'] ][] = "{$setting_key}-radius";
+				}
 				
 				// Add Control
 				$this->customizer->add_control(
@@ -785,4 +816,4 @@ function layers_register_customizer(){
 	$layers_customizer_reg = Layers_Customizer_Regsitrar::get_instance();
 }
 
-add_action( 'customize_register', 'layers_register_customizer', 99 );
+add_action( 'customize_register', 'layers_register_customizer', 95 );

@@ -190,13 +190,15 @@ function layers_replace_customizer_css( $search_string, $new_css ) {
 			$new_css = decodeURIComponent( $new_css );
 			
 			// Insert the CSS.
-			$css.splice( $found_at_index, 1, $new_css );
+			$css.splice( $found_at_index, 0, $new_css );
+			
+			// Convert CSS from array back to it's initial format.
+			$css = $css.join("\n");
+			
+			// Put the CSS back in the <style> block.
+			$style_block.text( $css );
+			
+			console.log( $css );
 		}
-		
-		// Convert CSS from array back to it's initial format.
-		$css = $css.join("\n");
-		
-		// Put the CSS back in the <style> block.
-		$style_block.text( $css );
 	});
 }

@@ -175,8 +175,8 @@ function layers_replace_customizer_css( $search_string, $new_css ) {
 		jQuery.each( $css, function( index, value ){
 			if ( undefined !== value && -1 !== value.indexOf( $search_string ) ) {
 				
-				// Remove this line.
-				$css.splice( index, 1 );
+				// Empty this line.
+				$css[index] = '';
 				
 				// Record the last index that we matched CSS, so we can insert new CSS there later.
 				$found_at_index = index;
@@ -190,15 +190,13 @@ function layers_replace_customizer_css( $search_string, $new_css ) {
 			$new_css = decodeURIComponent( $new_css );
 			
 			// Insert the CSS.
-			$css.splice( $found_at_index, 0, $new_css );
-			
-			// Convert CSS from array back to it's initial format.
-			$css = $css.join("\n");
-			
-			// Put the CSS back in the <style> block.
-			$style_block.text( $css );
-			
-			console.log( $css );
+			$css.splice( $found_at_index, 1, $new_css );
 		}
+		
+		// Convert CSS from array back to it's initial format.
+		$css = $css.join("\n");
+		
+		// Put the CSS back in the <style> block.
+		$style_block.text( $css );
 	});
 }

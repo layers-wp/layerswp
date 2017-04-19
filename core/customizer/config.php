@@ -208,12 +208,6 @@ class Layers_Customizer_Config {
 			'priority' => 45,
 		);
 
-        $layers_customizer_sections[ 'animations' ] = array(
-            'title' =>__( 'Animations' , 'layerswp' ),
-            'panel' => 'site-settings',
-            'priority' => 45,
-        );
-
 		$layers_customizer_sections[ 'site-scripts' ] = array(
 			'title' =>__( 'Additional Scripts' , 'layerswp' ),
 			'panel' => 'site-settings',
@@ -512,19 +506,6 @@ class Layers_Customizer_Config {
 				'class' => 'layers-upsell-tag',
 				'label'    => __( 'Upgrade to Layers Pro' , 'layerswp' ),
 				'description' => __( 'Want more color customzation? <a target="_blank" href="https://www.layerswp.com/layers-pro/?ref=obox&utm_source=layers%20theme&utm_medium=link&utm_campaign=Layers%20Pro%20Upsell&utm_content=Footer%20Layout">Purchase Layers Pro</a> and get the full box of crayons!' , 'layerswp' ),
-			),
-		);
-		
-		// Site Settings -> General
-		$layers_customizer_controls['animations'] = array(
-            'header-general' => array(
-                'type'  => 'layers-heading',
-                'label'    => __( 'General' , 'layerswp' ),
-            ),
-			'enable-scroll-animations' => array(
-				'type'     => 'layers-checkbox',
-				'label'    => __( 'Enable Smooth Scroll' , 'layerswp' ),
-				'default' => TRUE,
 			),
 		);
 

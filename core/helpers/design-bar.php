@@ -948,15 +948,6 @@ class Layers_Design_Controller {
 				'value' => ( isset( $this->values['advanced']['customcss'] ) ) ? $this->values['advanced']['customcss'] : NULL,
 				'placeholder' => ".classname { color: #333; }"
 			),
-            // Add option to check for widget if it should be animate or not.
-            // @todo Add proper label
-			'animation' => array(
-				'type' => 'checkbox',
-				'label' => __( 'Animation', 'layerswp' ),
-				'name' => $this->get_layers_field_name( 'advanced', 'animation' ),
-				'id' => $this->get_layers_field_id( 'advanced', 'animation' ),
-				'value' => ( isset( $this->values['advanced']['animation'] ) ) ? $this->values['advanced']['animation'] : NULL,
-			),
 			'widget-id' => array(
 				'type' => 'text',
 				'label' => __( 'Widget ID', 'layerswp' ),

@@ -1740,6 +1740,9 @@ div[id*='layers-widget'] .widget-control-actions .alignright{
 	.layers-interface-tabs {
 		margin-bottom: -5px;
 	}
+	.layers-interface-tabs .layers-column {
+		margin-bottom: 0;
+	}
 	label.layers-interface-tab {
 		text-align: center;
 		padding: 4px 9px;

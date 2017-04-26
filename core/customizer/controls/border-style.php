@@ -1,17 +1,18 @@
-<?php  /**
- * TRBL Field (Top, Right, Bottm, Left)
+<?php
+/**
+ * Border Style Fields (Width, Style, Radius)
  *
- * This file is used to register and display the custom Layers TRBL field
+ * This file is used to register and display the custom Layers Border Style Fields.
  *
  * @package Layers
- * @since Layers 1.0.0
+ * @since Layers 1.6.5
  */
 
-if( !class_exists( 'Layers_Customize_TRBL_Control' ) ) {
+if( !class_exists( 'Layers_Customize_Border_Style_Control' ) ) {
 
-	class Layers_Customize_TRBL_Control extends Layers_Customize_Control {
+	class Layers_Customize_Border_Style_Control extends Layers_Customize_Control {
 
-		public $type = 'layers-trbl-fields';
+		public $type = 'layers-border-style-fields';
 
 		public $fields = array();
 
@@ -22,8 +23,8 @@ if( !class_exists( 'Layers_Customize_TRBL_Control' ) ) {
 			$values = false; ?>
 
 			<div id="layers-customize-control-<?php echo esc_attr( $this->id ); ?>" class="l_option-customize-control l_option-customize-control-<?php echo esc_attr( str_replace( 'layers-', '', $this->type ) ); ?> <?php echo esc_attr( $this->class ); ?>" <?php echo $this->get_linked_data(); ?> >
-
-				<?php $this->render_history_actions(); ?>
+			
+				<?php do_action( 'layers-control-inside', $this ); ?>
 
 				<?php if ( '' != $this->heading_divider ) { ?>
 					<?php $this->render_heading_divider( $this->heading_divider ); ?>
@@ -46,16 +47,15 @@ if( !class_exists( 'Layers_Customize_TRBL_Control' ) ) {
 				<div class="layers-form-item <?php echo ( $this->colspan ) ? esc_attr( "layers-column-flush layers-span-{$this->colspan}" ) : '' ?>">
 					<?php echo $form_elements->input(
 						array(
-							'type' => 'trbl-fields',
+							'type' => 'border-style-fields',
 							'name' => '',
 							'id' => $this->id,
 							'value' => array(
-								'top' => get_option( "{$this->id}-top" ),
-								'right' => get_option( "{$this->id}-right" ),
-								'bottom' => get_option( "{$this->id}-bottom" ),
-								'left' => get_option( "{$this->id}-left" ),
+								'width' => get_theme_mod( "{$this->id}-width" ),
+								'style' => get_theme_mod( "{$this->id}-style" ),
+								'radius' => get_theme_mod( "{$this->id}-radius" ),
 							),
-								'fields' => $this->fields,
+							'class' => $this->input_class,
 						)
 					); ?>
 				</div>

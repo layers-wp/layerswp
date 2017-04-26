@@ -40,6 +40,14 @@ if( !class_exists( 'Layers_Customize_Control' ) ) {
 		public $max;
 		
 		public $step;
+		
+		public $input_class;
+		
+		public $multi_select = FALSE;
+		
+		public $tabs;
+		
+		public $partial;
 
 		/**
 		* Render content must be overwrittedn by etending class as this renders the control.

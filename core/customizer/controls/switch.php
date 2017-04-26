@@ -1,18 +1,18 @@
 <?php
 /**
- * Checkbox
+ * Switch
  *
- * This file is used to register and display the custom Layers Checkbox.
+ * This file is used to register and display the custom Layers Switch.
  *
  * @package Layers
- * @since Layers 1.0.0
+ * @since Layers 1.6.5
  */
 
-if( !class_exists( 'Layers_Customize_Checkbox_Control' ) ) {
+if( !class_exists( 'Layers_Customize_Switch_Control' ) ) {
 
-	class Layers_Customize_Checkbox_Control extends Layers_Customize_Control {
+	class Layers_Customize_Switch_Control extends Layers_Customize_Control {
 
-		public $type = 'layers-checkbox';
+		public $type = 'layers-switch';
 
 		public function render_content() {
 
@@ -28,10 +28,10 @@ if( !class_exists( 'Layers_Customize_Checkbox_Control' ) ) {
 					<?php $this->render_heading_divider( $this->heading_divider ); ?>
 				<?php } ?>
 
-				<div class="layers-form-item layers-checkbox-wrapper">
+				<div class="layers-form-item layers-switch-wrapper">
 					<?php echo $form_elements->input(
 						array(
-							'type' => 'checkbox',
+							'type' => 'switch',
 							'label' => $this->label,
 							'name' => '',
 							'id' => $this->id,
@@ -45,9 +45,7 @@ if( !class_exists( 'Layers_Customize_Checkbox_Control' ) ) {
 						<?php echo $this->description; ?>
 					</div>
 				<?php endif; ?>
-
-			</div>
-
+				
 			</div>
 			<?php
 		}

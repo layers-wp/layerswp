@@ -10,6 +10,7 @@
 * 2 - Fix customizer FOUC during render
 * 3 - Customizer UX Enhancements
 * 4 - Remove all '#' href's in Preview
+* 5 - Helper funciton removes specific line from any css <style> block
 *
 * Author: Obox Themes
 * Author URI: http://www.oboxthemes.com/
@@ -147,5 +148,55 @@
 		// Initialize Layers Preview
 		api.LayersCustomizerPreview.init();
 	} );
-
+	
 } )( window.wp, jQuery );
+
+
+/**
+ * 5 - Helper function removes specific line from any CSS <style> block and adds new CSS at the last point that CSS was found.
+ */
+function layers_replace_customizer_css( $search_string, $new_css ) {
+	
+	// Loop all <style> blocks.
+	jQuery('style').each(function(index, el) {
+		
+		// Cache elements.
+		var $style_block = jQuery(this);
+		
+		// Get the CSS text.
+		var $css = $style_block.text();
+		
+		// Convert CSS text to array split on lines.
+		$css = $css.split("\n");
+		
+		var $found_at_index = false;
+		
+		// Loop each line, search for the string, remove it if it's found.
+		jQuery.each( $css, function( index, value ){
+			if ( undefined !== value && -1 !== value.indexOf( $search_string ) ) {
+				
+				// Empty this line.
+				$css[index] = '';
+				
+				// Record the last index that we matched CSS, so we can insert new CSS there later.
+				$found_at_index = index;
+			}
+		});
+		
+		// Insert new CSS if we found any.
+		if ( false !== $found_at_index ) {
+			
+			// First Convert the CSS passed to the JS function.
+			$new_css = decodeURIComponent( $new_css );
+			
+			// Insert the CSS.
+			$css.splice( $found_at_index, 1, $new_css );
+		}
+		
+		// Convert CSS from array back to it's initial format.
+		$css = $css.join("\n");
+		
+		// Put the CSS back in the <style> block.
+		$style_block.text( $css );
+	});
+}

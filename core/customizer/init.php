@@ -45,29 +45,38 @@ class Layers_Customizer {
 		// Include The Default Settings Class
 		require_once get_template_directory() . $customizer_dir . 'defaults.php';
 
-		if( isset( $wp_customize ) ) {
+		if ( isset( $wp_customize ) ) {
 			
 			// Include The Panel and Section Registration Class
 			require_once get_template_directory() . $customizer_dir . 'registration.php';
 
-			// Include control classes
+			// Include base control class.
 			require_once get_template_directory() . $controls_dir . 'base.php';
+			
+			// Include control classes.
+			require_once get_template_directory() . $controls_dir . 'accordion-start.php';
+			require_once get_template_directory() . $controls_dir . 'accordion-end.php';
+			require_once get_template_directory() . $controls_dir . 'border-style.php';
 			require_once get_template_directory() . $controls_dir . 'button.php';
 			require_once get_template_directory() . $controls_dir . 'checkbox.php';
 			require_once get_template_directory() . $controls_dir . 'code.php';
 			require_once get_template_directory() . $controls_dir . 'color.php';
 			require_once get_template_directory() . $controls_dir . 'font.php';
 			require_once get_template_directory() . $controls_dir . 'heading.php';
+			require_once get_template_directory() . $controls_dir . 'inline-numbers-fields.php';
 			require_once get_template_directory() . $controls_dir . 'number.php';
 			require_once get_template_directory() . $controls_dir . 'range.php';
 			require_once get_template_directory() . $controls_dir . 'select.php';
 			require_once get_template_directory() . $controls_dir . 'select-icons.php';
 			require_once get_template_directory() . $controls_dir . 'select-images.php';
 			require_once get_template_directory() . $controls_dir . 'seperator.php';
+			require_once get_template_directory() . $controls_dir . 'switch.php';
+			require_once get_template_directory() . $controls_dir . 'tabs.php';
+			require_once get_template_directory() . $controls_dir . 'tab-start.php';
+			require_once get_template_directory() . $controls_dir . 'tab-end.php';
 			require_once get_template_directory() . $controls_dir . 'rte.php';
 			require_once get_template_directory() . $controls_dir . 'text.php';
 			require_once get_template_directory() . $controls_dir . 'textarea.php';
-			require_once get_template_directory() . $controls_dir . 'trbl.php';
 
 			// Enqueue Styles
 			add_action( 'customize_controls_print_footer_scripts', array( $this, 'admin_enqueue_scripts' ) );
@@ -80,6 +89,9 @@ class Layers_Customizer {
 			
 			// Advanced Active Callback functionality - disabled
 			add_filter( 'customize_control_active', array( $this, 'customize_active_controls' ), 10, 2 );
+			
+			// Render a partial indicator  - for devs.
+			add_action( 'layers-control-inside', array( $this, 'render_partial_switch' ) );
 		}
 	}
 
@@ -252,6 +264,35 @@ class Layers_Customizer {
 		return $arg1;
 	}
 
+	
+	/**
+	* Render the Reset-to-Default and possible other history buttons.
+	*/
+	public function render_partial_switch( $control ) {
+		
+		// Bail on certain types.
+		if (
+				'layers-heading' == $control->type ||
+				'layers-tabs' == $control->type ||
+				'layers-accordion-end' == $control->type ||
+				'layers-accordion-start' == $control->type ||
+				'layers-button' == $control->type ||
+				'layers-seperator' == $control->type ||
+				'layers-tab-end' == $control->type ||
+				'layers-tab-start' == $control->type
+			) {
+			return false;
+		}
+		
+		if ( ( bool ) layers_get_theme_mod( 'dev-switch-control-partial-display' ) ) {
+			if ( isset( $control->partial ) ) {
+				echo '<span class="layers-control-has-partial" alt="' . $control->partial . '">partial</span>';
+			}
+			else {
+				echo '<span class="layers-control-has-partial">no-partial</span>';
+			}
+		}
+	}
 }
 
 /**

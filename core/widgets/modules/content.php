@@ -190,14 +190,6 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 					$row_width = 0; ?>
 					<div class="<?php echo $this->get_widget_layout_class( $instance ); ?> <?php echo $this->check_and_return( $instance , 'design', 'liststyle' ); ?>">
 						
-						<?php
-						// s( layers_get_theme_mod( 'comments-body-borders-active-TEST' ) );
-						// s( layers_get_theme_mod( 'comments-body-borders-active-top' ) );
-						// s( layers_get_theme_mod( 'comments-body-borders-active-right' ) );
-						// s( layers_get_theme_mod( 'comments-body-borders-active-bottom' ) );
-						// s( layers_get_theme_mod( 'comments-body-borders-active-left' ) );
-						?>
-					
 						<div class="grid">
 							<?php foreach ( $column_ids as $column_key ) {
 
@@ -217,14 +209,14 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 								}
 
 								// Set the background styling
-								if( NULL !== $this->check_and_return( $item_instance, 'design', 'background' ) ) 
+								if( NULL !== $this->check_and_return( $item_instance, 'design', 'background' ) )
 									$this->inline_css .= layers_inline_styles( ".{$widget_id}-{$column_key}", 'background', array( 'background' => $this->check_and_return( $item_instance, 'design', 'background' ) ) );
-
-
-								if( NULL !== $this->check_and_return( $item_instance, 'design', 'fonts', 'color' ) )	 
+								
+								
+								if( NULL !== $this->check_and_return( $item_instance, 'design', 'fonts', 'color' ) )
 									$this->inline_css .= layers_inline_styles( ".{$widget_id}-{$column_key}", 'color', array( 'selectors' => array( '.heading', '.heading a', 'div.excerpt' ) , 'color' => $this->check_and_return( $item_instance, 'design', 'fonts', 'color' ) ) );
 
-								if( NULL !== $this->check_and_return( $item_instance, 'design', 'fonts', 'excerpt-color' ) )	 
+								if( NULL !== $this->check_and_return( $item_instance, 'design', 'fonts', 'excerpt-color' ) )
 									$this->inline_css .= layers_inline_styles( ".{$widget_id}-{$column_key}", 'color', array( 'selectors' => array( 'div.excerpt', 'div.excerpt p', 'div.excerpt a' ) , 'color' => $this->check_and_return( $item_instance, 'design', 'fonts', 'excerpt-color' ) ) );
 
 								if( NULL !== $this->check_and_return( $item_instance, 'design', 'fonts', 'shadow' ) )

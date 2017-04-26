@@ -136,37 +136,8 @@ if( ! function_exists( 'layers_get_partial_settings' ) ) {
 		$config = Layers_Customizer_Config::get_instance();
 		$controls = $config->controls;
 		
-		// Collect the new partials.
-		$partial_controls = array();
-		
-		// Loop our config groups, to get to our controls.
-		foreach ( $controls as $group_key => $group_array ) {
-			
-			// Loop our controls.
-			foreach ( $group_array as $control_key => $control_array ) {
-				
-				// Check each control to see if it's setting is realted to the partial key.
-				if ( isset( $control_array['partial'] ) && $key == $control_array['partial'] ) {
-					
-					$partial_controls[] = "layers-{$control_key}";
-					
-					if ( isset( $control_array['type'] ) ) {
-						
-						if ( 'layers-inline-numbers-fields' == $control_array['type'] ) {
-							
-							/*array(
-								'top' => __( 'Top', 'layerswp' ),
-								'right' => __( 'Right', 'layerswp' ),
-								'bottom' => __( 'Bottom', 'layerswp' ),
-								'left' => __( 'Left', 'layerswp' ),
-							);*/
-						}
-					}
-				}
-			}
-		}
-		
-		return $partial_controls;
+		// Get the partials from the config.
+		return ( isset( $config->partials[$key] ) ? $config->partials[$key] : array() );
 	}
 }
 

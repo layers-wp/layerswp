@@ -175,8 +175,8 @@ function layers_replace_customizer_css( $search_string, $new_css ) {
 		jQuery.each( $css, function( index, value ){
 			if ( undefined !== value && -1 !== value.indexOf( $search_string ) ) {
 				
-				// Remove this line.
-				$css.splice( index, 1 );
+				// Empty this line.
+				$css[index] = '';
 				
 				// Record the last index that we matched CSS, so we can insert new CSS there later.
 				$found_at_index = index;

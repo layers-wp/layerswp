@@ -18,6 +18,8 @@ if( !class_exists( 'Layers_Customize_Select_Icon_Control' ) ) {
 
 			// Exit if there are no choises
 			if ( empty( $this->choices ) ) return;
+			
+			$form_elements = new Layers_Form_Elements();
 
 			$name = '_customize-radio-' . $this->id; ?>
 
@@ -99,6 +101,16 @@ if( !class_exists( 'Layers_Customize_Select_Icon_Control' ) ) {
 						</li>
 					<?php endforeach; ?>
 				</ul>
+				
+				<?php echo $form_elements->input(
+					array(
+						'type' => 'hidden',
+						'label' => '',
+						'name' => '' ,
+						'id' =>  $this->id,
+						'data' => $this->get_customize_data(),
+					)
+				); ?>
 
 			</div>
 			<?php

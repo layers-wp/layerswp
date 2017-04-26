@@ -250,7 +250,7 @@ class Layers_Customizer_Regsitrar {
 				);
 				
 				// Add extra settings fields for each choice key
-				if ( isset( $control_data['multi_select'] ) && isset( $control_data['choices'] ) ) {
+				if ( isset( $control_data['choices'] ) && isset( $control_data['multi_select'] ) ) {
 					
 					foreach ( $control_data['choices'] as $key => $choices ) {
 						
@@ -264,6 +264,7 @@ class Layers_Customizer_Regsitrar {
 								'transport'  => $transport,
 							)
 						);
+						
 						if ( isset( $control_data['partial'] ) ) {
 							// Store Partial.
 							$this->config->partials[ $control_data['partial'] ][] = "{$setting_key}-{$key}";

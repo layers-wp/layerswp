@@ -31,7 +31,7 @@ if( !class_exists( 'Layers_Customize_Switch_Control' ) ) {
 				<div class="layers-form-item layers-switch-wrapper">
 					<?php echo $form_elements->input(
 						array(
-							'type' => 'checkbox',
+							'type' => 'switch',
 							'label' => $this->label,
 							'name' => '',
 							'id' => $this->id,
@@ -45,9 +45,7 @@ if( !class_exists( 'Layers_Customize_Switch_Control' ) ) {
 						<?php echo $this->description; ?>
 					</div>
 				<?php endif; ?>
-
-			</div>
-
+				
 			</div>
 			<?php
 		}

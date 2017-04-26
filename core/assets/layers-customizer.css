@@ -1488,11 +1488,12 @@ div[id*='layers-widget'] .widget-control-actions .alignright{
 		clear: both;
 		margin: 0 0 8px;
 	}
-	.layers-switch-wrapper input[type=submit], .layers-switch-wrapper button{
+	.layers-switch-wrapper input[type=submit],
+	.layers-switch-wrapper button{
 		float: left;
 		margin: 0;
 	}
-	.layers-switch-wrapper label:before{
+	.layers-switch-wrapper .layers-switch-icon:before{
 		content:"";
 		display: inline-block;
 		width: 30px;
@@ -1511,7 +1512,7 @@ div[id*='layers-widget'] .widget-control-actions .alignright{
 		vertical-align: middle;
 		box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.04);
 	}
-	.layers-switch-wrapper label:after{
+	.layers-switch-wrapper .layers-switch-icon:after{
 		content: "";
 		border-radius: 100px;
 		background: white;
@@ -1523,7 +1524,8 @@ div[id*='layers-widget'] .widget-control-actions .alignright{
 		box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
 		transition: all 0.2s 0.2s ease-in-out;
 	}
-	li[id*='customize-control-layers'].customize-control .l_option-customize-control.l_option-customize-control-switch .layers-form-item.layers-switch-wrapper label{
+	.layers-switch-wrapper label,
+	.l_option-customize-control.l_option-customize-control-switch label{
 		clear: none;
 		display: block;
 		font-size: 13px;
@@ -1539,19 +1541,19 @@ div[id*='layers-widget'] .widget-control-actions .alignright{
 	}
 
 		/* HOVER */
-		.layers-switch-wrapper label:hover:before{
+		.layers-switch-wrapper .layers-switch-icon:hover:before{
 			background: #c7c7c7;
 			box-shadow: inset 0 1px 0px rgba(0, 0, 0, 0.1);
 		}
 
 		/* CHECKED */
-		.layers-switch-wrapper input[type=checkbox]:checked + label:before{
+		.layers-switch-wrapper input[type=checkbox]:checked + label > .layers-switch-icon:before{
 			background-color: #0289C0;
 			background-position: 0 0;
 			border-color: #0289C0;
 			box-shadow: none;
 		}
-		.layers-switch-wrapper input[type=checkbox]:checked + label:after{
+		.layers-switch-wrapper input[type=checkbox]:checked + label > .layers-switch-icon:after{
 			right: 3px;
 		}
 

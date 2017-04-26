@@ -346,7 +346,12 @@ class Layers_Design_Controller {
 			?>
 			<div class="<?php echo esc_attr( implode( ' ', $class ) ); ?>" <?php echo implode( ' ', $data_show_if ); ?>>
 
-				<?php if ( 'checkbox' != $form_args['type'] && isset( $form_args['label'] ) && '' != $form_args['label'] ) { ?>
+				<?php if (
+					'checkbox' != $form_args['type'] &&
+					'switch' != $form_args['type'] &&
+					isset( $form_args['label'] ) &&
+					'' != $form_args['label']
+					) { ?>
 					<label><?php echo esc_html( $form_args['label'] ); ?></label>
 				<?php } ?>
 

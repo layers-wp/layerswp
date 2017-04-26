@@ -212,11 +212,20 @@ class Layers_Form_Elements {
 			/**
 			* Checkbox (here we look for on/NULL, that's how WP widgets save them)
 			*/
-			case 'checkbox' : ?>
+			case 'checkbox' :
+			case 'switch' : ?>
+				
 				<input type="checkbox" <?php echo implode ( ' ', $input_props ); ?> <?php checked( $input->value , 'on' ); ?>/>
+				
 				<?php if( isset( $input->label ) ) { ?>
-					<label for="<?php echo esc_attr( $input->id ); ?>"><?php echo $input->label; ?></label>
+					<label for="<?php echo esc_attr( $input->id ); ?>">
+						<?php echo $input->label; ?>
+						<?php if ( 'switch' == $input->type ) { ?>
+							<span class="layers-switch-icon"></span>
+						<?php } ?>
+					</label>
 				<?php } ?>
+				
 				<?php
 				// Prepare sibling checkbox for parity/existance check.
 				$duplicate_input_props = array();
@@ -226,7 +235,9 @@ class Layers_Form_Elements {
 					else $duplicate_input_props[$key] = $val;
 				}
 				?>
+				
 				<input type="hidden" value="on" style="display: none;" <?php echo implode ( ' ', $duplicate_input_props ); ?> />
+				
 			<?php break;
 			
 			/**

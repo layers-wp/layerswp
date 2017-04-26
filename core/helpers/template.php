@@ -1380,7 +1380,8 @@ if( !function_exists( 'layers_inline_styles' ) ) {
 		$inline_css = str_replace( "\n", '', $inline_css );
 		$inline_css = str_replace( "\r", '', $inline_css );
 		$inline_css = str_replace( "\t", '', $inline_css );
-		$inline_css = "\n" . $inline_css;
+		// $inline_css = "\n" . $inline_css;
+		$inline_css = "\n\n" . $inline_css; // Debugging: double line breaks helps visually with debugging.
 
 		// Add the new CSS to the existing CSS
 		$layers_inline_css .= $inline_css;

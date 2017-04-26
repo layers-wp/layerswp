@@ -1060,8 +1060,9 @@ class Layers_Form_Elements {
 			/**
 			* Default (default to hidden field).
 			*/
-			default : ?>
-				<input type="hidden" <?php echo implode ( ' ', $input_props ); ?> value="<?php echo $input->value; ?>" />
+
+			default :   ?>
+				<input type="hidden" <?php echo implode ( ' ' , $input_props ); ?> value="<?php echo ( isset( $input->value ) && is_string( $input->value ) ? $input->value : '' ); ?>" />
 			<?php
 		}
 

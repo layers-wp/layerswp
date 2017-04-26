@@ -1,0 +1,247 @@
+/*-
+
+Description: This is a stylesheet containing animation.
+
+Author: Obox Themes
+Author URI: http://www.oboxthemes.com/
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+*/
+
+/*--------------------------------------------------*/
+/*- Adding delays for Top-to-bottom strategy--------*/
+.delay-100 {
+    -webkit-animation-delay: 0.1s;
+    animation-delay: 0.1s;
+}
+
+.delay-200 {
+    -webkit-animation-delay: 0.2s;
+    animation-delay: 0.2s;
+}
+
+.delay-300 {
+    -webkit-animation-delay: 0.3s;
+    animation-delay: 0.3s;
+}
+
+/*--------------------------------------------------*/
+/*- Basic animation duration ** REUSABLE CLASS** ---*/
+.animated-1s {
+    -webkit-animation-duration: 1s;
+    animation-duration: 1s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+}
+
+/*--------------------------------------------------------------*/
+/*- Fade In & Up animation -------------------------------------*/
+/*--------------------------------------------------------------*/
+
+/*---------------------------*/
+/*- Support for Safari 4+ ---*/
+@-webkit-keyframes fade-in-up {
+    from {
+        opacity: 0;
+        -webkit-transform: translate3d(0, 5%, 0);
+        transform: translate3d(0, 5%, 0);
+    }
+    to {
+        opacity: 1;
+        -webkit-transform: none;
+        transform: none;
+    }
+}
+
+/*---------------------------*/
+/*- Support for Firefox 5+ --*/
+@-moz-keyframes fade-in-up {
+    from {
+        opacity: 0;
+        -moz-transform: translate3d(0, 5%, 0);
+        transform: translate3d(0, 5%, 0);
+    }
+    to {
+        opacity: 1;
+        -moz-transform: none;
+        transform: none;
+    }
+}
+
+/*---------------------------*/
+/*- Support for Opera 12+ ---*/
+@-o-keyframes fade-in-up {
+    from {
+        opacity: 0;
+        -o-transform: translate3d(0, 5%, 0);
+        transform: translate3d(0, 5%, 0);
+    }
+    to {
+        opacity: 1;
+        -o-transform: none;
+        transform: none;
+    }
+}
+
+/*---------------------------*/
+/*- Support for CSS3 ---*/
+@keyframes fade-in-up {
+    from {
+        opacity: 0;
+        -webkit-transform: translate3d(0, 10px, 0);
+        -moz-transform: translate3d(0, 10px, 0);
+        -o-transform: translate3d(0, 10px, 0);
+        transform: translate3d(0, 10px, 0);
+    }
+    to {
+        opacity: 1;
+        -webkit-transform: none;
+        -moz-transform: none;
+        -o-transform: none;
+        transform: none;
+    }
+}
+
+.fade-in-up {
+    -webkit-animation-name: fade-in-up; /* Safari 4+ */
+    -moz-animation-name: fade-in-up; /* Fx 5+ */
+    -o-animation-name: fade-in-up; /* Opera 12+ */
+    animation-name: fade-in-up; /* IE 10+, Fx 29+ */
+}
+
+/*--------------------------------------------------------------*/
+/*- Fade In & Down animation -------------------------------------*/
+/*--------------------------------------------------------------*/
+
+/*---------------------------*/
+/*- Support for Safari 4+ ---*/
+@-webkit-keyframes fade-in-down {
+    from {
+        opacity: 0;
+        -webkit-transform: translate3d(0, -5%, 0);
+        transform: translate3d(0, -5%, 0);
+    }
+    to {
+        opacity: 1;
+        -webkit-transform: none;
+        transform: none;
+    }
+}
+
+/*---------------------------*/
+/*- Support for Firefox 5+ --*/
+@-moz-keyframes fade-in-down {
+    from {
+        opacity: 0;
+        -moz-transform: translate3d(0, -5%, 0);
+        transform: translate3d(0, -5%, 0);
+    }
+    to {
+        opacity: 1;
+        -moz-transform: none;
+        transform: none;
+    }
+}
+
+/*---------------------------*/
+/*- Support for Opera 12+ ---*/
+@-o-keyframes fade-in-down {
+    from {
+        opacity: 0;
+        -o-transform: translate3d(0, -5%, 0);
+        transform: translate3d(0, -5%, 0);
+    }
+    to {
+        opacity: 1;
+        -o-transform: none;
+        transform: none;
+    }
+}
+
+/*---------------------------*/
+/*- Support for CSS3 ---*/
+@keyframes fade-in-down {
+    from {
+        opacity: 0;
+        -webkit-transform: translate3d(0, -10px, 0);
+        -moz-transform: translate3d(0, -10px, 0);
+        -o-transform: translate3d(0, -10px, 0);
+        transform: translate3d(0, -10px, 0);
+    }
+    to {
+        opacity: 1;
+        -webkit-transform: none;
+        -moz-transform: none;
+        -o-transform: none;
+        transform: none;
+    }
+}
+
+.fade-in-down {
+    -webkit-animation-name: fade-in-down; /* Safari 4+ */
+    -moz-animation-name: fade-in-down; /* Fx 5+ */
+    -o-animation-name: fade-in-down; /* Opera 12+ */
+    animation-name: fade-in-down; /* IE 10+, Fx 29+ */
+}
+
+/*--------------------------------------------------------------*/
+/*- Fade In animation -------------------------------------*/
+/*--------------------------------------------------------------*/
+
+/*---------------------------*/
+/*- Support for Safari 4+ ---*/
+@-webkit-keyframes fade-in {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/*---------------------------*/
+/*- Support for Firefox 5+ --*/
+@-moz-keyframes fade-in {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/*---------------------------*/
+/*- Support for Opera 12+ ---*/
+@-o-keyframes fade-in {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/*---------------------------*/
+/*- Support for CSS3 ---*/
+@keyframes fade-in {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.fade-in {
+    -webkit-animation-name: fade-in; /* Safari 4+ */
+    -moz-animation-name: fade-in; /* Fx 5+ */
+    -o-animation-name: fade-in; /* Opera 12+ */
+    animation-name: fade-in; /* IE 10+, Fx 29+ */
+}
+
+.do-animate {
+    opacity: 0;
+}
+.opacity-0 {
+    opacity: 0;
+}

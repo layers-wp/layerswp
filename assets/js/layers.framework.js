@@ -50,6 +50,39 @@ jQuery(function($) {
 		return false;
 
 	});
+
+    // Remove toggle on click of area which is not affected by toggle
+    $(document).on( 'click' , function(e) {
+
+        $('[data-toggle^="#"]').each(function() {
+            var $that = $(this);
+
+            // Get the target with hash
+            var $target =  $that.data( 'toggle' );
+
+            // Get the target id without hash
+            var $targetId = $target.replace(/^#/,'');
+
+            // Get the toggle class
+            var toggleClass = $that.data( 'toggle-class' );
+
+            if (
+                // If click is not made on the element itself
+            e.target.id != $targetId &&
+            // And if click is not inside the element
+            !$( e.target ).parents($target).size() &&
+            // And the target element has the toggled class
+            $( $target ).hasClass(toggleClass)
+            ) {
+                // Try to close it
+                $( $target ).toggleClass(toggleClass);
+
+                // Even if a single element is closed then prevent the default
+                // click that was executed
+                e.preventDefault && e.preventDefault();
+            }
+        });
+    });
 	/**
 	* 3 - Sticky Header
 	*/
@@ -114,7 +147,6 @@ jQuery(function($) {
 		if ((t/=d/2) < 1) return c/2*t*t + b;
 		return -c/2 * ((--t)*(t-2) - 1) + b;
 	}});
-
 });
 
 /**

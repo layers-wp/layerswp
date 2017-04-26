@@ -8,7 +8,7 @@
  */
 if( !class_exists( 'Layers_Post_Widget' ) ) {
 	class Layers_Post_Widget extends Layers_Widget {
-
+	    
 		/**
 		*  Widget construction
 		*/
@@ -99,8 +99,11 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 					),
 					'buttons' => array(
 						'buttons-size' => 'medium',
+					),
+					'advanced' => array (
+						'animation' => 'on',
 					)
-				)
+				),
 			);
 		}
 
@@ -271,6 +274,7 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 			$widget_container_class[] = ( 'on' == $this->check_and_return( $instance , 'design', 'background', 'darken' ) ? 'darken' : '' );
 			$widget_container_class[] = $this->check_and_return( $instance , 'design', 'advanced', 'customclass' ); // Apply custom class from design-bar's advanced control.
 			$widget_container_class[] = $this->get_widget_spacing_class( $instance );
+			$widget_container_class[] = $this->get_animation_class( $instance );
 
 			$widget_container_class = apply_filters( 'layers_post_widget_container_class' , $widget_container_class, $this, $instance );
 			$widget_container_class = implode( ' ', $widget_container_class );

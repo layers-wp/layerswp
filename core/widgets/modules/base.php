@@ -55,9 +55,13 @@ if( !class_exists( 'Layers_Widget' ) ) {
 		 * @return string
 		 */
 		public function get_animation_class($instance) {
+			
+			global $wp_customize;
+
 		    if (
                 'on' === $this->check_and_return( $instance , 'design', 'advanced', 'animation' ) &&
-                strlen($this->animation_class) !== 0
+                strlen($this->animation_class) !== 0 &&
+                !$wp_customize
             ) {
 		       return 'do-animate delay-200 translucent animated-1s ' . $this->animation_class;
             }

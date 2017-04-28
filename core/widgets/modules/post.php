@@ -510,7 +510,7 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 									)
 								),
 								'show_media' => array(
-									'type' => 'switch',
+									'type' => 'checkbox',
 									'name' => $this->get_layers_field_name( 'show_media' ) ,
 									'id' => $this->get_layers_field_id( 'show_media' ) ,
 									'value' => ( isset( $instance['show_media'] ) ) ? $instance['show_media'] : NULL,
@@ -533,14 +533,14 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 									'data' => array( 'show-if-selector' => '#' . $this->get_layers_field_id( 'show_media' ), 'show-if-value' => 'true' ),
 								),
 								'show_titles' => array(
-									'type' => 'switch',
+									'type' => 'checkbox',
 									'name' => $this->get_layers_field_name( 'show_titles' ) ,
 									'id' => $this->get_layers_field_id( 'show_titles' ) ,
 									'value' => ( isset( $instance['show_titles'] ) ) ? $instance['show_titles'] : NULL,
 									'label' => __( 'Show  Post Titles' , 'layerswp' )
 								),
 								'show_excerpts' => array(
-									'type' => 'switch',
+									'type' => 'checkbox',
 									'name' => $this->get_layers_field_name( 'show_excerpts' ) ,
 									'id' => $this->get_layers_field_id( 'show_excerpts' ) ,
 									'value' => ( isset( $instance['show_excerpts'] ) ) ? $instance['show_excerpts'] : NULL,
@@ -562,7 +562,7 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 									'data' => array( 'show-if-selector' => '#' . $this->get_layers_field_id( 'show_excerpts' ), 'show-if-value' => 'true' ),
 								),
 								'show_pagination' => array(
-									'type' => 'switch',
+									'type' => 'checkbox',
 									'name' => $this->get_layers_field_name( 'show_pagination' ) ,
 									'id' => $this->get_layers_field_id( 'show_pagination' ) ,
 									'value' => ( isset( $instance['show_pagination'] ) ) ? $instance['show_pagination'] : NULL,

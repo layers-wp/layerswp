@@ -1343,47 +1343,6 @@ div[id*='layers-widget'] .widget-control-actions .alignright{
 				font-size: 16px;
 			}
 
-	/*--------------------*/
-	/*- INPUT SWITCHER ---*/
-
-	.layers-switch{
-		right: 30px;
-		top: 33px;
-		font-size: 10px;
-		font-weight: bold;
-	}
-	.layers-switch > a{
-		background: white;
-		border: 1px solid #E0E0E0;
-		min-width: 30px;
-		display: inline-block;
-		text-align: center;
-		line-height: 22px;
-		border-radius: 3px;
-		color: #353535;
-	}
-	.layers-switch > ul{
-		position: absolute;
-		display: inline-block;
-		background: #FFF;
-		/* width: 200px; */
-		white-space: nowrap;
-		right: 0;
-		top: 27px;
-		padding: 5px;
-		border: 1px solid #E0E0E0;
-		border-radius: 2px;
-	}
-	.layers-switch > ul > li{
-		display: inline-block;
-		background: green;
-		/* float: left; */
-		margin: 0;
-	}
-	.layers-switch > ul > li > a{
-		display: inline-block;
-	}
-
 
 /*-----------------------*/
 /*- CUSTOM CSS EDITOR ---*/
@@ -1408,7 +1367,9 @@ div[id*='layers-widget'] .widget-control-actions .alignright{
 		float: left;
 		margin: 0;
 	}
-	.layers-checkbox-wrapper label:before{
+
+	/* OLD STYLE CHECKBOX */
+	/*.layers-checkbox-wrapper label:before{
 		content:"";
 		display: inline-block;
 		width: 16px;
@@ -1421,7 +1382,7 @@ div[id*='layers-widget'] .widget-control-actions .alignright{
 		border-radius: 2px;
 		transition: all 0.2s ease-in-out;
 		vertical-align: bottom;
-	}
+	} */
 	.layers-checkbox-wrapper input[type=checkbox]:checked + label:before{
 		background-color: #0289C0;
 		background-position: 0 0;
@@ -1481,19 +1442,19 @@ div[id*='layers-widget'] .widget-control-actions .alignright{
 
 	/*-------------------*/
 	/*- SWITCH --------*/
-	.layers-switch-wrapper input[type=checkbox]{
+	.layers-checkbox-wrapper input[type=checkbox]{
 		display: none;
 	}
-	.layers-switch-wrapper{
+	.layers-checkbox-wrapper{
 		clear: both;
 		margin: 0 0 8px;
 	}
-	.layers-switch-wrapper input[type=submit],
-	.layers-switch-wrapper button{
+	.layers-checkbox-wrapper input[type=submit],
+	.layers-checkbox-wrapper button{
 		float: left;
 		margin: 0;
 	}
-	.layers-switch-wrapper .layers-switch-icon:before{
+	.layers-checkbox-wrapper .layers-switch-icon:before{
 		content:"";
 		display: inline-block;
 		width: 30px;
@@ -1512,7 +1473,7 @@ div[id*='layers-widget'] .widget-control-actions .alignright{
 		vertical-align: middle;
 		box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.04);
 	}
-	.layers-switch-wrapper .layers-switch-icon:after{
+	.layers-checkbox-wrapper .layers-switch-icon:after{
 		content: "";
 		border-radius: 100px;
 		background: white;
@@ -1524,7 +1485,7 @@ div[id*='layers-widget'] .widget-control-actions .alignright{
 		box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
 		transition: all 0.2s 0.2s ease-in-out;
 	}
-	.layers-switch-wrapper label,
+	.layers-checkbox-wrapper label,
 	.l_option-customize-control.l_option-customize-control-switch label{
 		clear: none;
 		display: block;
@@ -1536,24 +1497,24 @@ div[id*='layers-widget'] .widget-control-actions .alignright{
 		padding-right: 36px;
 		margin: 0 0 11px;
 	}
-	.layers-invert .layers-switch-wrapper label{
+	.layers-invert .layers-checkbox-wrapper label{
 		color: #ccc;
 	}
 
 		/* HOVER */
-		.layers-switch-wrapper .layers-switch-icon:hover:before{
+		.layers-checkbox-wrapper .layers-switch-icon:hover:before{
 			background: #c7c7c7;
 			box-shadow: inset 0 1px 0px rgba(0, 0, 0, 0.1);
 		}
 
 		/* CHECKED */
-		.layers-switch-wrapper input[type=checkbox]:checked + label > .layers-switch-icon:before{
+		.layers-checkbox-wrapper input[type=checkbox]:checked + label > .layers-switch-icon:before{
 			background-color: #0289C0;
 			background-position: 0 0;
 			border-color: #0289C0;
 			box-shadow: none;
 		}
-		.layers-switch-wrapper input[type=checkbox]:checked + label > .layers-switch-icon:after{
+		.layers-checkbox-wrapper input[type=checkbox]:checked + label > .layers-switch-icon:after{
 			right: 3px;
 		}
 

@@ -212,17 +212,14 @@ class Layers_Form_Elements {
 			/**
 			* Checkbox (here we look for on/NULL, that's how WP widgets save them)
 			*/
-			case 'checkbox' :
-			case 'switch' : ?>
+			case 'checkbox' : ?>
 				
 				<input type="checkbox" <?php echo implode ( ' ', $input_props ); ?> <?php checked( $input->value , 'on' ); ?>/>
 				
 				<?php if( isset( $input->label ) ) { ?>
 					<label for="<?php echo esc_attr( $input->id ); ?>">
 						<?php echo $input->label; ?>
-						<?php if ( 'switch' == $input->type ) { ?>
-							<span class="layers-switch-icon"></span>
-						<?php } ?>
+						<span class="layers-switch-icon"></span>
 					</label>
 				<?php } ?>
 				

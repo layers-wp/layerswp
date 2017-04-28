@@ -70,7 +70,6 @@ class Layers_Customizer {
 			require_once get_template_directory() . $controls_dir . 'select-icons.php';
 			require_once get_template_directory() . $controls_dir . 'select-images.php';
 			require_once get_template_directory() . $controls_dir . 'seperator.php';
-			require_once get_template_directory() . $controls_dir . 'switch.php';
 			require_once get_template_directory() . $controls_dir . 'tabs.php';
 			require_once get_template_directory() . $controls_dir . 'tab-start.php';
 			require_once get_template_directory() . $controls_dir . 'tab-end.php';

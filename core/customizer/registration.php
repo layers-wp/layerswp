@@ -316,17 +316,6 @@ class Layers_Customizer_Regsitrar {
 					)
 				);
 				
-			} else if ( 'layers-switch' == $control_data['type'] ) {
-
-				// Add Control
-				$this->customizer->add_control(
-					new Layers_Customize_Switch_Control(
-						$this->customizer,
-						$setting_key,
-						$control_data
-					)
-				);
-				
 			} else if ( 'layers-select' == $control_data['type'] ) {
 
 				// Add Control

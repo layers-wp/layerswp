@@ -44,7 +44,7 @@ if( !function_exists( 'layers_post_meta' ) ) {
 					$meta_to_display[] = '<span class="meta-item meta-author"><i class="l-user"></i> ' . layers_get_the_author( $post_id ) . '</span>';
 					break;
 				case 'categories' :
-					$categories = '';
+					$categories = array();
 
 					// Use different terms for different post types
 					if( 'post' == get_post_type( $post_id ) ){
@@ -64,7 +64,7 @@ if( !function_exists( 'layers_post_meta' ) ) {
 					$meta_to_display[] = '<span class="meta-item meta-category"><i class="l-folder-open-o"></i> ' . implode( __( ', ' , 'layerswp' ), $categories ) . '</span>';
 					break;
 				case 'tags' :
-					$tags = '';
+					$tags = array();
 
 					if( 'post' == get_post_type( $post_id ) ){
 						$the_tags = get_the_tags( $post_id );

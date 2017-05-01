@@ -926,7 +926,6 @@ class Layers_Design_Controller {
 			'label' => __( 'Text Size', 'layerswp' ),
 		);
 
-
 			$defaults['elements']['fonts-size'] = array(
 				'type' => 'select',
 				'label' => __( 'Text Size', 'layerswp' ),
@@ -967,35 +966,39 @@ class Layers_Design_Controller {
 			'type' => 'group-end',
 		);
 
-		$defaults['elements']['fonts-header-style-start'] = array(
-			'type' => 'group-start',
-			'label' => __( 'Header Styling', 'layerswp' ),
-		);
+		if( $this->args[ 'widget_id' ] != 'layers-pro-tabs' && $this->args[ 'widget_id' ] != 'layers-pro-accordions' ){
+				$defaults['elements']['fonts-header-style-start'] = array(
+					'type' => 'group-start',
+					'label' => __( 'Header Styling', 'layerswp' ),
+				);
 
-			$defaults['elements']['fonts-color'] = array(
-				'type' => 'color',
-				'label' => __( 'Text Color', 'layerswp' ),
-				'name' => $this->get_layers_field_name( 'fonts', 'color' ),
-				'id' => $this->get_layers_field_id( 'fonts', 'color' ),
-				'value' => ( isset( $this->values['fonts']['color'] ) ) ? $this->values['fonts']['color'] : NULL
-			);
-
-			if( !class_exists( 'Layers_Pro' ) ) {
-				$defaults['elements']['fonts-header-upsell'] = array(
-					'type' => 'html',
-					'html' => '<div class="layers-upsell-tag">
-						<span class="layers-upsell-title">Upgrade to Layers Pro</span>
-							<div class="description customize-control-description">
-							Want to bold, italic or fine-tune your header size? <a target="_blank" href="https://www.layerswp.com/layers-pro/?ref=obox&amp;utm_source=layers%20theme&amp;utm_medium=link&amp;utm_campaign=Layers%20Pro%20Upsell&amp;utm_content=Widget%Font%20Styling">Purchase Layers Pro</a>!
-							</div>
-						</div>'
+					$defaults['elements']['fonts-color'] = array(
+						'type' => 'color',
+						'label' => __( 'Text Color', 'layerswp' ),
+						'name' => $this->get_layers_field_name( 'fonts', 'color' ),
+						'id' => $this->get_layers_field_id( 'fonts', 'color' ),
+						'value' => ( isset( $this->values['fonts']['color'] ) ) ? $this->values['fonts']['color'] : NULL
 					);
-			}
 
-		$defaults['elements']['fonts-header-style-end'] = array(
-			'type' => 'group-end',
-		);
+					if( !class_exists( 'Layers_Pro' ) ) {
+						$defaults['elements']['fonts-header-upsell'] = array(
+							'type' => 'html',
+							'html' => '<div class="layers-upsell-tag">
+								<span class="layers-upsell-title">Upgrade to Layers Pro</span>
+									<div class="description customize-control-description">
+									Want to bold, italic or fine-tune your header size? <a target="_blank" href="https://www.layerswp.com/layers-pro/?ref=obox&amp;utm_source=layers%20theme&amp;utm_medium=link&amp;utm_campaign=Layers%20Pro%20Upsell&amp;utm_content=Widget%Font%20Styling">Purchase Layers Pro</a>!
+									</div>
+								</div>'
+							);
+					}
 
+				$defaults['elements']['fonts-header-style-end'] = array(
+					'type' => 'group-end',
+				);
+
+		}
+
+	
 		$defaults['elements']['fonts-excerpt-style-start'] = array(
 			'type' => 'group-start',
 			'label' => __( 'Excerpt Styling', 'layerswp' ),

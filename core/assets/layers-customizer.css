@@ -119,7 +119,7 @@ div#widgets-right div[id*='obox-layers-builder']{
 		background: #0BA6E0 !important;
 		border-color: #0B6F9A;
 		color: #3D454E;
-		box-shadow: 0 1px 1px rgba(0,0,0,0.18);
+		box-shadow: 0 1px 1px rgba(0, 0, 0, 0.18);
 	}
 	.customize-control-widget_form.wide-widget-control.layers-focussed .widget .widget-top h3{
 		color: white;
@@ -309,7 +309,7 @@ div[id*='layers-widget'] .widget-control-actions .alignright{
 	height: 24px;
 	box-sizing: border-box;
 	text-align: center;
-	text-shadow: 0 1px 0 rgba(0,0,0,0.2);
+	text-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);
 	cursor: pointer;
 }
 .widget-inside.layers-peek-widget{
@@ -1027,7 +1027,7 @@ div[id*='layers-widget'] .widget-control-actions .alignright{
 		border-bottom-left-radius: 3px;
 	}
 	.layers-form-item .wp-picker-input-wrap{
-		box-shadow: 0 1px 1px rgba(0,0,0,0.05);
+		box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
 		border-radius: 3px;
 	}
 	.layers-form-item .wp-picker-input-wrap .button{
@@ -1070,11 +1070,11 @@ div[id*='layers-widget'] .widget-control-actions .alignright{
 	    .layers-design-bar-form-item .wp-color-result {
 	        display: inline-block;
 	        width: 8px;
-	        height: 16px;
+	        height: 14px;
 	        border-radius: 100px;
 	        margin: 0 -1px 0 0 !important;
-	        box-shadow: 0 1px 0px rgba(0,0,0,0.03) !important;
-	        border: 1px solid rgba(0,0,0,0.1);
+	        box-shadow: 0 1px 0px rgba(0, 0, 0, 0.03) !important;
+	        border: 2px solid rgba(0, 0, 0, 0.15);
 	    }
 	    .layers-design-bar-form-item .wp-color-result:after {
 	        display: none;
@@ -1719,7 +1719,7 @@ div[id*='layers-widget'] .widget-control-actions .alignright{
 		color: #fff;
 	}
 	label.layers-interface-tab.layers-interface-tab-active {
-		box-shadow: inset 0 1px 1px rgba(0,0,0,0.15);
+		box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.15);
 		color: #777;
 		background: rgba(0, 0, 0, 0.09);
 		border: 1px solid rgba(0, 0, 0, 0.18);
@@ -3335,7 +3335,7 @@ div#tiptip_holder{
 	line-height: 1.5em;
 	box-shadow: none;
 	border: 0;
-	background: rgba(0,0,0,0.75);
+	background: rgba(0, 0, 0, 0.75);
 }
 #tiptip_holder.tip_top #tiptip_arrow{
 	border-top-color: rgba(255,255,255,0.35);
@@ -3351,19 +3351,19 @@ div#tiptip_holder{
 }
 #tiptip_holder.tip_top #tiptip_arrow_inner{
 	margin-top: -6px;
-	border-top-color: rgba(0,0,0,0.75);
+	border-top-color: rgba(0, 0, 0, 0.75);
 }
 #tiptip_holder.tip_bottom #tiptip_arrow_inner{
 	margin-top: -6px;
-	border-bottom-color: rgba(0,0,0,0.75);
+	border-bottom-color: rgba(0, 0, 0, 0.75);
 }
 #tiptip_holder.tip_right #tiptip_arrow_inner{
 	margin-left: -6px;
-	border-right-color: rgba(0,0,0,0.75);
+	border-right-color: rgba(0, 0, 0, 0.75);
 }
 #tiptip_holder.tip_left #tiptip_arrow_inner{
 	margin-left: -6px;
-	border-left-color: rgba(0,0,0,0.75);
+	border-left-color: rgba(0, 0, 0, 0.75);
 }
 
 
@@ -3406,7 +3406,7 @@ li[id*='customize-control-layers'].customize-control .layers-form-item:after{
 	}
 	.layers-form-item .wp-color-result{
 		margin: 0 6px 3px 0;
-		box-shadow: 0 1px 1px rgba(0,0,0,0.08);
+		box-shadow: 0 1px 1px rgba(0, 0, 0, 0.08);
 	}
 	li[id*='customize-control-layers'].customize-control.customize-control-image .actions
 	li[id*='customize-control-layers'].customize-control.customize-control-image .actions{
@@ -3576,8 +3576,8 @@ li[id*='customize-control-layers'].customize-control .layers-form-item:after{
 		height: 16px;
 		border-radius: 100px;
 		margin: 1px -1px 0 0 !important;
-		box-shadow: 0 1px 0px rgba(0,0,0,0.03) !important;
-		border: 1px solid rgba(0,0,0,0.1);
+		box-shadow: 0 1px 0px rgba(0, 0, 0, 0.03) !important;
+		border: 2px solid rgba(0, 0, 0, 0.15);
 	}
 	.l_option-customize-control-color .wp-color-result:after {
 		display: none;

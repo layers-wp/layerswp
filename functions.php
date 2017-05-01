@@ -516,20 +516,20 @@ if( ! function_exists( 'layers_admin_scripts' ) ) {
 		 * LayersSlct2 (also enqueued by Storekit and WooCommerce).
 		 */
 		wp_enqueue_style(
-			'layersSlct2',
-			get_template_directory_uri() . '/core/assets/plugins/select2/layersSlct2.css',
+			LAYERS_THEME_SLUG . 'select-2',
+			get_template_directory_uri() . '/core/assets/plugins/select2/select-2.css',
 			array(),
 			LAYERS_VERSION
 		);
 		wp_enqueue_style(
-			'layersSlct2-skins',
-			get_template_directory_uri() . '/core/assets/plugins/select2/layersSlct2-skins.css',
+			LAYERS_THEME_SLUG . 'select-2-skins',
+			get_template_directory_uri() . '/core/assets/plugins/select2/select-2-skins.css',
 			array(),
 			LAYERS_VERSION
 		);
 		wp_enqueue_script(
-			'layersSlct2',
-			get_template_directory_uri() . '/core/assets/plugins/select2/layersSlct2.js',
+			LAYERS_THEME_SLUG . 'select-2',
+			get_template_directory_uri() . '/core/assets/plugins/select2/select-2.js',
 			array( 'jquery' ),
 			LAYERS_VERSION
 		);

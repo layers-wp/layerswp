@@ -23,6 +23,8 @@ if( !class_exists( 'Layers_Widget' ) ) {
 
 		public $support_lightbox = false;
 
+		public $custom_fonts = array();
+
 		//  Defaults
 
 		public $defaults = array();
@@ -75,7 +77,7 @@ if( !class_exists( 'Layers_Widget' ) ) {
 
 		function print_inline_css( $widget = array(), $instance = array() ){
 			
-			global $layers_inline_css;
+			global $layers_inline_css, $wp_customize;
 			$this->inline_css = apply_filters( 'layers_widget_' . $this->widget_id . '_inline_css', $layers_inline_css, $widget, $instance );
 
 			if( '' !== $this->inline_css ) {
@@ -85,6 +87,61 @@ if( !class_exists( 'Layers_Widget' ) ) {
 			}
 
 			$layers_inline_css = $this->old_inline_css;
+
+			if( !$wp_customize )
+				$this->enqueue_custom_fonts();
+		}
+		/**
+		* Get custom Google font path for use in the inline widget CSS
+		*
+		* @param $font_family Font family select value from widget
+		*
+		* @return   string   If there is a font path to return, do so
+		*/
+
+		function get_custom_font_uri( $font_family ){
+
+			$all_fonts = layers_get_google_fonts();
+
+			$family = urlencode( $font_family . ':' . join( ',', layers_get_google_font_variants( $font_family, $all_fonts[ $font_family ]['variants'] ) ) );
+
+			$request = '//fonts.googleapis.com/css?family=' . $family;
+
+			return $request;
+		}
+
+		function enqueue_custom_fonts(){
+			
+			if( !isset( $this->custom_fonts ) || ( isset( $this->custom_fonts ) && empty( $this->custom_fonts ) ) ) return;
+
+			// De-dupe the fonts
+			$this->custom_fonts = array_unique( $this->custom_fonts );
+			$all_fonts = layers_get_google_fonts();
+			
+			// Validate each font and convert to URL format
+			foreach ( $this->custom_fonts as $font ) {
+				$font = trim( $font );
+
+				// Verify that the font exists
+				if ( array_key_exists( $font, $all_fonts ) ) {
+					// Build the family name and variant string (e.g., "Open+Sans:regular,italic,700")
+					$family[] = urlencode( $font . ':' . join( ',', layers_get_google_font_variants( $font, $all_fonts[ $font ]['variants'] ) ) );
+				}
+			}
+
+			// Convert from array to string
+			if ( empty( $family ) ) {
+				return '';
+			} else {
+				$request = '//fonts.googleapis.com/css?family=' . implode( '|', $family );
+			}
+
+			wp_enqueue_style(
+				LAYERS_THEME_SLUG . '-' . $this->widget_id . '-fonts',
+				$request,
+				array(),
+				LAYERS_VERSION
+			);
 		}
 
 		/**

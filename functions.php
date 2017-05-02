@@ -726,7 +726,6 @@ if( !function_exists( 'layers_excerpt_class' ) ) {
 add_filter( "the_excerpt", "layers_excerpt_class" );
 add_filter( "get_the_excerpt", "layers_excerpt_class" );
 
-
 function layers_pro_update_notice(){
 	if( defined( 'LAYERS_PRO_VER' ) && version_compare( LAYERS_PRO_VER, '2.0.0', '<' ) ){ ?>
 		<div class="updated is-dismissible notice">

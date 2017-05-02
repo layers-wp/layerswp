@@ -121,3 +121,42 @@ if( ! function_exists( 'layers_remove_config_element' ) ) {
 		return $config;
 	}
 }
+
+/**
+ * Function used to get all the settings that pertain to a specific partial key.
+ *
+ * @param  string $key Key string
+ * @return array       Array of settings keys.
+ */
+
+if( ! function_exists( 'layers_get_partial_settings' ) ) {
+	function layers_get_partial_settings( $key ) {
+		
+		// Get the main Layers controls (config array).
+		$config = Layers_Customizer_Config::get_instance();
+		$controls = $config->controls;
+		
+		// Get the partials from the config.
+		return ( isset( $config->partials[$key] ) ? $config->partials[$key] : array() );
+	}
+}
+
+/**
+ * Function used to merge a parial key into all the elements in an existing config array.
+ *
+ * @param  string $key      Key string
+ * @param  array  $controls Config array
+ * @return array            Config array
+ */
+
+if ( ! function_exists( 'layers_set_partial_keys' ) ) {
+	function layers_set_partial_keys( $key, $controls ) {
+		
+		// Loop all the controls and add the partial key.
+		foreach ( $controls as $controls_key => $controls_setting ) {
+			$controls[$controls_key]['partial'] = $key;
+		}
+		
+		return $controls;
+	}
+}

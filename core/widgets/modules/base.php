@@ -19,6 +19,12 @@ if( !class_exists( 'Layers_Widget' ) ) {
 
 		public $inline_css;
 
+        public $animation_class = 'x-fade-in-up';
+
+		public $support_lightbox = false;
+
+		public $custom_fonts = array();
+
 		//  Defaults
 
 		public $defaults = array();
@@ -41,30 +47,107 @@ if( !class_exists( 'Layers_Widget' ) ) {
 			$layers_inline_css = '';
 			$this->inline_css = '';
 		}
+		
+		
+		/**
+         * If an animation class is specified in the class then apply the class
+         *
+		 * @param $instance
+		 *
+		 * @return string
+		 */
+		public function get_animation_class($instance) {
+			
+			global $wp_customize;
 
+		    if (
+                'on' === $this->check_and_return( $instance , 'design', 'advanced', 'animation' ) &&
+                strlen($this->animation_class) !== 0 &&
+                !$wp_customize
+            ) {
+		       return 'do-animate delay-200 translucent animated-1s ' . $this->animation_class;
+            }
+            return '';
+        }
 		/**
 		* If there is inline CSS to print in this widget, do so at the bottom of the widget
 		*
 		* @return   string   If there is CSS to return, returns the CSS wrapped in a <style> tag
 		*/
 
-		function print_inline_css(){
-
-			global $layers_inline_css;
+		function print_inline_css( $widget = array(), $instance = array() ){
+			
+			global $layers_inline_css, $wp_customize;
+			$this->inline_css = apply_filters( 'layers_widget_' . $this->widget_id . '_inline_css', $layers_inline_css, $widget, $instance );
 
 			if( '' !== $this->inline_css ) {
-				echo '<style type="text/css"> /* INLINE WIDGET CSS */
+				echo '<style id="layers_widget_' . $this->widget_id . '_inline_css" type="text/css"> /* INLINE WIDGET CSS */
 				' . trim( $this->inline_css ) . '
 				</style>';
 			}
 
 			$layers_inline_css = $this->old_inline_css;
+
+			if( !$wp_customize )
+				$this->enqueue_custom_fonts();
+		}
+		/**
+		* Get custom Google font path for use in the inline widget CSS
+		*
+		* @param $font_family Font family select value from widget
+		*
+		* @return   string   If there is a font path to return, do so
+		*/
+
+		function get_custom_font_uri( $font_family ){
+
+			$all_fonts = layers_get_google_fonts();
+
+			$family = urlencode( $font_family . ':' . join( ',', layers_get_google_font_variants( $font_family, $all_fonts[ $font_family ]['variants'] ) ) );
+
+			$request = '//fonts.googleapis.com/css?family=' . $family;
+
+			return $request;
+		}
+
+		function enqueue_custom_fonts(){
+			
+			if( !isset( $this->custom_fonts ) || ( isset( $this->custom_fonts ) && empty( $this->custom_fonts ) ) ) return;
+
+			// De-dupe the fonts
+			$this->custom_fonts = array_unique( $this->custom_fonts );
+			$all_fonts = layers_get_google_fonts();
+			
+			// Validate each font and convert to URL format
+			foreach ( $this->custom_fonts as $font ) {
+				$font = trim( $font );
+
+				// Verify that the font exists
+				if ( array_key_exists( $font, $all_fonts ) ) {
+					// Build the family name and variant string (e.g., "Open+Sans:regular,italic,700")
+					$family[] = urlencode( $font . ':' . join( ',', layers_get_google_font_variants( $font, $all_fonts[ $font ]['variants'] ) ) );
+				}
+			}
+
+			// Convert from array to string
+			if ( empty( $family ) ) {
+				return '';
+			} else {
+				$request = '//fonts.googleapis.com/css?family=' . implode( '|', $family );
+			}
+
+			wp_enqueue_style(
+				LAYERS_THEME_SLUG . '-' . $this->widget_id . '-fonts',
+				$request,
+				array(),
+				LAYERS_VERSION
+			);
 		}
 
 		/**
 		* Check option with isset() and echo it out if it exists, if it does not exist, return false
 		*
-		* @param    array    $widget          Widget Object
+		* @param    array    $instance          Widget Object
 		* @param    string   $option          Widget option to check on
 		* @param    string   $array_level_1   Array level one to check for (optional)
 		* @param    string   $array_level_2   Array level two to check for (optional)
@@ -187,10 +270,10 @@ if( !class_exists( 'Layers_Widget' ) ) {
 
 					// Apply the TRBL styles
 					if ( 'padding' == $type && isset( $instance['slides'] ) && 1 <= count( $instance['slides'] ) ){
-						$this->inline_css .= layers_inline_styles( '#' . $widget_id . ' .swiper-slide > .content', $type, array( $type => $values ) );
+						$this->inline_css .= layers_inline_styles( ".{$widget_id} .swiper-slide > .content", $type, array( $type => $values ) );
 					}
 					else{
-						$this->inline_css .= layers_inline_styles( '#' . $widget_id, $type, array( $type => $values ) );
+						$this->inline_css .= layers_inline_styles( ".{$widget_id}", $type, array( $type => $values ) );
 					}
 
 				}
@@ -746,6 +829,82 @@ if( !class_exists( 'Layers_Widget' ) ) {
 			$atts = ( isset( $result[0] ) && is_array( $result[0] ) ) ? implode( $result[0], ' ' ) : '' ;
 
 			echo $atts;
+		}
+
+		/**
+		 * Display widget featured image
+		 *
+		 * @param    string   $css_class Optional - Specify the CSS class to apply to the wrapping <div />
+		 * @param    array    $instance Widget instance supplied by WP
+		 * @return   html 	  Output of the featured media
+		 */
+
+		function featured_media( $css_class = '', $instance = array(), $show_link = true ){
+		
+			if( empty( $instance ) ) return;
+
+			// Set Featured Media
+			$featureimage = $this->check_and_return( $instance , 'design' , 'featuredimage' );
+			$featurevideo = $this->check_and_return( $instance , 'design' , 'featuredvideo' );
+
+			// Fallback for the column width
+			if( !isset( $instance[ 'width' ] ) ) $instance[ 'width' ] = 6;
+
+			// Calculate which cut based on ratio.
+			if( $this->check_and_return( $instance, 'design', 'imageratios' ) ){
+
+
+				// Translate Image Ratio into something usable
+				$image_ratio = layers_translate_image_ratios( $this->check_and_return( $instance, 'design', 'imageratios' ) );
+
+				if( 4 >= $instance['width'] && 'layout-fullwidth' != $this->check_and_return( $instance, 'design', 'layout' ) ) $use_image_ratio = $image_ratio . '-medium';
+
+				else $use_image_ratio = $image_ratio . '-large';
+
+			} else {
+				if( 4 > $instance['width'] ) $use_image_ratio = 'medium';
+				else $use_image_ratio = 'full';
+			}
+
+			$media = layers_get_feature_media( $featureimage , $use_image_ratio , $featurevideo );
+
+			// Open in lightbox, this is a Layers Pro feature
+			if( $this->check_and_return( $instance, 'design', 'open-lightbox' ) ){
+
+				// Get direct link to image
+				$image_link = wp_get_attachment_url( $featureimage );
+
+				// Create link
+				$href   = 'href="' . $image_link . '" ';
+				$target = '';
+			} else {
+
+				// Create link
+				$link_array = $this->check_and_return_link( $instance, 'button' );
+				$href   = ( $link_array['link'] ) ? 'href="' . esc_url( $link_array['link'] ) . '"' : '';
+				$target = ( '_blank' == $link_array['target'] ) ? 'target="_blank"' : '';
+			}
+
+			$image_container_class = array();
+			$image_container_class[] = $css_class;
+			$image_container_class[] = ( 'image-round' == $this->check_and_return( $instance , 'design',  'imageratios' ) ? 'image-rounded' : '' );
+			$image_container_class = implode( ' ', $image_container_class );
+
+			if( NULL != $media ) { ?>
+
+				<div class="<?php echo $image_container_class; ?>">
+					<?php if (  TRUE == $show_link && '' != $href ) { ?>
+						<a <?php echo $href; ?> <?php echo $target; ?>>
+							<?php // Output image or video
+							echo $media; ?>
+						</a>
+					<?php } else {
+						// Output image or video
+						echo $media;
+					} ?>
+				</div>
+
+			<?php }			
 		}
 
 	}

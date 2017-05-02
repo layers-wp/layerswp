@@ -32,6 +32,7 @@ if( !class_exists( 'Layers_Contact_Widget' ) ) {
 				'show_address',
 				'show_contact_form'
 			);
+			$this->support_lightbox = true;
 
 	 		/* Widget settings. */
 			$widget_ops = array(
@@ -79,6 +80,9 @@ if( !class_exists( 'Layers_Contact_Widget' ) ) {
 						'color' => NULL,
 						'shadow' => NULL,
 						'heading-type' => 'h3',
+					),
+					'advanced' => array (
+						'animation' => 'on',
 					)
 				)
 			);
@@ -108,9 +112,16 @@ if( !class_exists( 'Layers_Contact_Widget' ) ) {
 				$hasmap = true;
 			}
 
-			// Set the background styling
-			if( !empty( $instance['design'][ 'background' ] ) ) $this->inline_css .= layers_inline_styles( '#' . $widget_id, 'background', array( 'background' => $instance['design'][ 'background' ] ) );
-			if( !empty( $instance['design']['fonts'][ 'color' ] ) ) $this->inline_css .= layers_inline_styles( '#' . $widget_id, 'color', array( 'selectors' => array( '.section-title .heading' , '.section-title div.excerpt' , '.section-title small', '.form.content' , 'form p' , 'form label' ) , 'color' => $instance['design']['fonts'][ 'color' ] ) );
+			// Apply Styling
+			if( NULL !== $this->check_and_return( $instance, 'design', 'background' ) ) 
+				$this->inline_css .= layers_inline_styles( "#{$widget_id}", 'background', array( 'background' => $this->check_and_return( $instance, 'design', 'background' ) ) );
+
+			if( NULL !== $this->check_and_return( $instance, 'design', 'fonts', 'color' ) ) 
+				$this->inline_css .= layers_inline_styles( "#{$widget_id}", 'color', array( 'selectors' => array( '.section-title .heading' , '.section-title div.excerpt' ) , 'color' => $this->check_and_return( $instance, 'design', 'fonts', 'color' ) ) );
+
+			if( NULL !== $this->check_and_return( $instance, 'design', 'fonts', 'excerpt-color' ) ) 
+				$this->inline_css .= layers_inline_styles( "#{$widget_id}", 'color', array( 'selectors' => array( '.section-title div.excerpt', '.section-title div.excerpt p' , '.section-title div.excerpt a' ) , 'color' => $this->check_and_return( $instance, 'design', 'fonts', 'excerpt-color' ) ) );
+			
 
 			// Set the map & form widths
 			if( isset( $hasmap ) ) {
@@ -131,6 +142,7 @@ if( !class_exists( 'Layers_Contact_Widget' ) ) {
 			* Generate the widget container class
 			*/
 			$widget_container_class = array();
+			$widget_container_class[] = $widget_id;
 			$widget_container_class[] = 'widget';
 			$widget_container_class[] = 'layers-contact-widget';
 			$widget_container_class[] = 'clearfix';
@@ -139,6 +151,7 @@ if( !class_exists( 'Layers_Contact_Widget' ) ) {
 			$widget_container_class[] = ( 'on' == $this->check_and_return( $instance , 'design', 'background', 'darken' ) ? 'darken' : '' );
 			$widget_container_class[] = $this->check_and_return( $instance , 'design', 'advanced', 'customclass' ); // Apply custom class from design-bar's advanced control.
 			$widget_container_class[] = $this->get_widget_spacing_class( $instance );
+		    $widget_container_class[] = $this->get_animation_class( $instance );
 
 			if( !$show_title_or_excerpt && !$show_address_or_contactform  ) $widget_container_class[] = 'no-inset-top no-inset-bottom';
 
@@ -220,7 +233,7 @@ if( !class_exists( 'Layers_Contact_Widget' ) ) {
 				<?php do_action( 'layers_after_contact_widget_inner', $this, $instance );
 
 				// Print the Inline Styles for this Widget
-				$this->print_inline_css(); ?>
+				$this->print_inline_css( $this, $instance );; ?>
 
 			</div>
 
@@ -263,6 +276,7 @@ if( !class_exists( 'Layers_Contact_Widget' ) ) {
 			$this->design_bar(
 				'side', // CSS Class Name
 				array( // Widget Object
+					'widget_this' => $this,
 					'name' => $this->get_layers_field_name( 'design' ),
 					'id' => $this->get_layers_field_id( 'design' ),
 					'widget_id' => $this->widget_id,
@@ -356,6 +370,7 @@ if( !class_exists( 'Layers_Contact_Widget' ) ) {
 							<?php $this->design_bar(
 								'top', // CSS Class Name
 								array( // Widget Object
+									'widget_object' => $this,
 									'name' => $this->get_layers_field_name( 'design' ),
 									'id' => $this->get_layers_field_id( 'design' ),
 									'widget_id' => $this->widget_id,
@@ -365,7 +380,7 @@ if( !class_exists( 'Layers_Contact_Widget' ) ) {
 								),
 								$instance, // Widget Values
 								apply_filters( 'layers_map_widget_inline_design_bar_components', array( // Components
-									'fonts',
+									'header_excerpt',
 								), $this, $instance )
 							); ?>
 

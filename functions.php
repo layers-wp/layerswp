@@ -10,7 +10,7 @@
 /**
  * The current version of the theme. Use a random number for SCRIPT_DEBUG mode
  */
-define( 'LAYERS_VERSION', '1.6.6' );
+define( 'LAYERS_VERSION', '2.0.0' );
 define( 'LAYERS_TEMPLATE_URI' , get_template_directory_uri() );
 define( 'LAYERS_TEMPLATE_DIR' , get_template_directory() );
 define( 'LAYERS_THEME_TITLE' , 'Layers' );
@@ -395,12 +395,20 @@ if( ! function_exists( 'layers_scripts' ) ) {
 			LAYERS_VERSION
 		);
 
+		// Commenting for now as we need to do add animation only to layers-pro
+//        wp_enqueue_style(
+//            LAYERS_THEME_SLUG . '-animate',
+//            get_template_directory_uri() . '/assets/css/animate.css',
+//            array(),
+//            LAYERS_VERSION
+//        ); // Animations
+
 		wp_enqueue_style(
 			LAYERS_THEME_SLUG . '-components',
 			get_template_directory_uri() . '/assets/css/components.css',
 			array(),
 			LAYERS_VERSION
-		); // Compontents
+		); // Components
 
 		wp_enqueue_style(
 			LAYERS_THEME_SLUG . '-responsive',
@@ -515,20 +523,20 @@ if( ! function_exists( 'layers_admin_scripts' ) ) {
 		 * LayersSlct2 (also enqueued by Storekit and WooCommerce).
 		 */
 		wp_enqueue_style(
-			'layersSlct2',
-			get_template_directory_uri() . '/core/assets/plugins/select2/layersSlct2.css',
+			LAYERS_THEME_SLUG . 'select-2',
+			get_template_directory_uri() . '/core/assets/plugins/select2/select-2.css',
 			array(),
 			LAYERS_VERSION
 		);
 		wp_enqueue_style(
-			'layersSlct2-skins',
-			get_template_directory_uri() . '/core/assets/plugins/select2/layersSlct2-skins.css',
+			LAYERS_THEME_SLUG . 'select-2-skins',
+			get_template_directory_uri() . '/core/assets/plugins/select2/select-2-skins.css',
 			array(),
 			LAYERS_VERSION
 		);
 		wp_enqueue_script(
-			'layersSlct2',
-			get_template_directory_uri() . '/core/assets/plugins/select2/layersSlct2.js',
+			LAYERS_THEME_SLUG . 'select-2',
+			get_template_directory_uri() . '/core/assets/plugins/select2/select-2.js',
 			array( 'jquery' ),
 			LAYERS_VERSION
 		);

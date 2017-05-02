@@ -28,6 +28,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 			$this->post_type = '';
 			$this->taxonomy = '';
 			$this->checkboxes = array();
+			$this->support_lightbox = true;
 
 			/* Widget settings. */
 			$widget_ops = array(
@@ -69,6 +70,9 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 						'color' => NULL,
 						'shadow' => NULL,
 						'heading-type' => 'h3',
+					),
+					'advanced' => array (
+						'animation' => 'on',
 					)
 				),
 			);
@@ -118,8 +122,15 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 			}
 
 			// Set the background styling
-			if( !empty( $instance['design'][ 'background' ] ) ) $this->inline_css .= layers_inline_styles( '#' . $widget_id, 'background', array( 'background' => $instance['design'][ 'background' ] ) );
-			if( !empty( $instance['design']['fonts'][ 'color' ] ) ) $this->inline_css .= layers_inline_styles( '#' . $widget_id, 'color', array( 'selectors' => array( '.section-title .heading' , '.section-title div.excerpt' ) , 'color' => $instance['design']['fonts'][ 'color' ] ) );
+			if( NULL !== $this->check_and_return( $instance, 'design', 'background' ) ) 
+				$this->inline_css .= layers_inline_styles( "#{$widget_id}", 'background', array( 'background' => $this->check_and_return( $instance, 'design', 'background' ) ) );
+
+
+			if( NULL !== $this->check_and_return( $instance, 'design', 'fonts', 'color' ) ) 
+				$this->inline_css .= layers_inline_styles( "#{$widget_id}", 'color', array( 'selectors' => array( '.section-title .heading' , '.section-title div.excerpt' ) , 'color' => $this->check_and_return( $instance, 'design', 'fonts', 'color' ) ) );
+
+			if( NULL !== $this->check_and_return( $instance, 'design', 'fonts', 'excerpt-color' ) ) 
+				$this->inline_css .= layers_inline_styles( "#{$widget_id}", 'color', array( 'selectors' => array( '.section-title div.excerpt' , '.section-title div.excerpt p', '.section-title div.excerpt a' ) , 'color' => $this->check_and_return( $instance, 'design', 'fonts', 'excerpt-color' ) ) );
 
 			// Apply the advanced widget styling
 			$this->apply_widget_advanced_styling( $widget_id, $instance );
@@ -131,7 +142,10 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 			$widget_container_class[] = 'widget';
 			$widget_container_class[] = 'layers-content-widget';
 			$widget_container_class[] = 'content-vertical-massive';
-			$widget_container_class[] = ( 'on' == $this->check_and_return( $instance , 'design', 'background', 'darken' ) ? 'darken' : '' );
+			$widget_container_class[] = ( 'on' === $this->check_and_return( $instance , 'design', 'background', 'darken' ) ? 'darken' : '' );
+			
+			// Only enable animation if enabled form advance settings
+            $widget_container_class[] = $this->get_animation_class( $instance );
 			$widget_container_class[] = $this->check_and_return( $instance , 'design', 'advanced', 'customclass' ); // Apply custom class from design-bar's advanced control.
 			$widget_container_class[] = $this->get_widget_spacing_class( $instance );
 
@@ -171,6 +185,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 						</div>
 					</div>
 				<?php } ?>
+				
 				<?php if ( ! empty( $instance[ 'columns' ] ) ) {
 
 					$column_ids = explode( ',', $instance[ 'column_ids' ] );
@@ -180,6 +195,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 					$first_last_class = '';
 					$row_width = 0; ?>
 					<div class="<?php echo $this->get_widget_layout_class( $instance ); ?> <?php echo $this->check_and_return( $instance , 'design', 'liststyle' ); ?>">
+						
 						<div class="grid">
 							<?php foreach ( $column_ids as $column_key ) {
 
@@ -199,20 +215,32 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 								}
 
 								// Set the background styling
-								if( !empty( $item_instance['design'][ 'background' ] ) ) $this->inline_css .= layers_inline_styles( '#' . $widget_id . '-' . $column_key , 'background', array( 'background' => $item_instance['design'][ 'background' ] ) );
-								if( !empty( $item_instance['design']['fonts'][ 'color' ] ) ) $this->inline_css .= layers_inline_styles( '#' . $widget_id . '-' . $column_key , 'color', array( 'selectors' => array( '.heading a', '.heading' , 'div.excerpt' , 'div.excerpt p' ) , 'color' => $item_instance['design']['fonts'][ 'color' ] ) );
-								if( !empty( $item_instance['design']['fonts'][ 'shadow' ] ) ) $this->inline_css .= layers_inline_styles( '#' . $widget_id . '-' . $column_key , 'text-shadow', array( 'selectors' => array( '.heading a', '.heading' , 'div.excerpt' , 'div.excerpt p' )  , 'text-shadow' => $item_instance['design']['fonts'][ 'shadow' ] ) );
+								if( NULL !== $this->check_and_return( $item_instance, 'design', 'background' ) )
+									$this->inline_css .= layers_inline_styles( ".{$widget_id}-{$column_key}", 'background', array( 'background' => $this->check_and_return( $item_instance, 'design', 'background' ) ) );
+								
+								
+								if( NULL !== $this->check_and_return( $item_instance, 'design', 'fonts', 'color' ) )
+									$this->inline_css .= layers_inline_styles( ".{$widget_id}-{$column_key}", 'color', array( 'selectors' => array( '.heading', '.heading a', 'div.excerpt' ) , 'color' => $this->check_and_return( $item_instance, 'design', 'fonts', 'color' ) ) );
+
+								if( NULL !== $this->check_and_return( $item_instance, 'design', 'fonts', 'excerpt-color' ) )
+									$this->inline_css .= layers_inline_styles( ".{$widget_id}-{$column_key}", 'color', array( 'selectors' => array( 'div.excerpt', 'div.excerpt p', 'div.excerpt a' ) , 'color' => $this->check_and_return( $item_instance, 'design', 'fonts', 'excerpt-color' ) ) );
+
+								if( NULL !== $this->check_and_return( $item_instance, 'design', 'fonts', 'shadow' ) )
+									$this->inline_css .= layers_inline_styles( ".{$widget_id}-{$column_key}", 'text-shadow', array( 'selectors' => array( '.heading a', '.heading' , 'div.excerpt' , 'div.excerpt p' )  , 'text-shadow' => $this->check_and_return( $item_instance, 'design', 'fonts', 'shadow' ) ) );
 
 								// Set column margin & padding
-								if ( !empty( $item_instance['design']['advanced']['margin'] ) ) $this->inline_css .= layers_inline_styles( "#{$widget_id}-{$column_key}", 'margin', array( 'margin' => $item_instance['design']['advanced']['margin'] ) );
-								if ( !empty( $item_instance['design']['advanced']['padding'] ) ) $this->inline_css .= layers_inline_styles( "#{$widget_id}-{$column_key}", 'padding', array( 'padding' => $item_instance['design']['advanced']['padding'] ) );
+								if( NULL !== $this->check_and_return( $item_instance, 'design', 'advanced', 'margin' ) )
+									$this->inline_css .= layers_inline_styles( ".{$widget_id}-{$column_key}", 'margin', array( 'margin' => $this->check_and_return( $item_instance, 'design', 'advanced', 'margin' ) ) );
+								
+								if( NULL !== $this->check_and_return( $item_instance, 'design', 'advanced', 'padding' ) )
+									$this->inline_css .= layers_inline_styles( ".{$widget_id}-{$column_key}", 'padding', array( 'padding' => $this->check_and_return( $item_instance, 'design', 'advanced', 'padding' ) ) );
 
 								if( !isset( $item_instance[ 'width' ] ) ) $item_instance[ 'width' ] = $this->column_defaults[ 'width' ];
 
 								// Set the button styling
 								$button_size = '';
 								if ( function_exists( 'layers_pro_apply_widget_button_styling' ) ) {
-									$this->inline_css .= layers_pro_apply_widget_button_styling( $this, $item_instance, array( "#{$widget_id}-{$column_key} .button" ) );
+									$this->inline_css .= layers_pro_apply_widget_button_styling( $this, $item_instance, array( ".{$widget_id}-{$column_key} .button" ) );
 									$button_size = $this->check_and_return( $item_instance , 'design' , 'buttons-size' ) ? 'btn-' . $this->check_and_return( $item_instance , 'design' , 'buttons-size' ) : '' ;
 								}
 
@@ -238,10 +266,27 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 									$first_last_class = '';
 								}
 
-								// Set Featured Media
-								$featureimage = $this->check_and_return( $item_instance , 'design' , 'featuredimage' );
-								$featurevideo = $this->check_and_return( $item_instance , 'design' , 'featuredvideo' );
+								// Get the link array.
+								$link_array       = $this->check_and_return_link( $item_instance, 'button' );
+								$link_href_attr   = ( $link_array['link'] ) ? 'href="' . esc_url( $link_array['link'] ) . '"' : '';
+								$link_target_attr = ( '_blank' == $link_array['target'] ) ? 'target="_blank"' : '';
 
+								/**
+								* Set Individual Column CSS
+								*/
+								$classes = array();
+								$classes[] = "{$widget_id}-{$column_key}";
+								$classes[] = 'layers-masonry-column';
+								$classes[] = $this->id_base . '-' . $column_key;
+								$classes[] = $span_class;
+								$classes[] = ( 'on' == $this->check_and_return( $item_instance , 'design', 'background', 'darken' ) ? 'darken' : '' );
+								$classes[] = ( '' != $first_last_class ? $first_last_class : '' );
+								$classes[] = ( 'list-masonry' == $this->check_and_return( $instance, 'design', 'liststyle' ) ? '' : '' );
+								$classes[] = 'column' . ( 'on' != $this->check_and_return( $instance, 'design', 'gutter' ) ? '-flush' : '' );
+								$classes[] = $this->check_and_return( $item_instance, 'design', 'advanced', 'customclass' ); // Apply custom class from design-bar's advanced control.
+								if( $this->check_and_return( $item_instance, 'design' , 'background', 'image' ) || '' != $this->check_and_return( $item_instance, 'design' , 'background', 'color' ) )
+									$classes[] = 'content';
+								
 								// Calculate which cut based on ratio.
 								if( isset( $item_instance['design'][ 'imageratios' ] ) ){
 
@@ -259,44 +304,14 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 									else $use_image_ratio = 'full';
 								}
 
-								$media = layers_get_feature_media(
-									$featureimage ,
-									$use_image_ratio ,
-									$featurevideo
-								);
-
-								// Set Image Size
-								if( isset( $item_instance['design']['featuredimage-size'] ) && 0 != $item_instance['design']['featuredimage-size'] && '' != $item_instance['design']['featuredimage-size'] ) {
-									$image_width = $item_instance['design'][ 'featuredimage-size' ].'px';
-									$this->inline_css .= layers_inline_styles( "#{$widget_id}-{$column_key} .media-image img { max-width : {$image_width}; }");
-								}
-
-								// Get the link array.
-								$link_array       = $this->check_and_return_link( $item_instance, 'button' );
-								$link_href_attr   = ( $link_array['link'] ) ? 'href="' . esc_url( $link_array['link'] ) . '"' : '';
-								$link_target_attr = ( '_blank' == $link_array['target'] ) ? 'target="_blank"' : '';
-
-								/**
-								* Set Individual Column CSS
-								*/
-								$classes = array();
-								$classes[] = 'layers-masonry-column';
-								$classes[] = $this->id_base . '-' . $column_key;
-								$classes[] = $span_class;
-								$classes[] = ( 'on' == $this->check_and_return( $item_instance , 'design', 'background', 'darken' ) ? 'darken' : '' );
-								$classes[] = ( '' != $first_last_class ? $first_last_class : '' );
-								$classes[] = ( 'list-masonry' == $this->check_and_return( $instance, 'design', 'liststyle' ) ? '' : '' );
-								$classes[] = 'column' . ( 'on' != $this->check_and_return( $instance, 'design', 'gutter' ) ? '-flush' : '' );
-								$classes[] = $this->check_and_return( $item_instance, 'design', 'advanced', 'customclass' ); // Apply custom class from design-bar's advanced control.
-								if( $this->check_and_return( $item_instance, 'design' , 'background', 'image' ) || '' != $this->check_and_return( $item_instance, 'design' , 'background', 'color' ) )
-									$classes[] = 'content';
-								if( false != $media )
+								if( $this->check_and_return( $item_instance , 'design' , 'featuredimage' ) || $this->check_and_return( $item_instance , 'design' , 'featuredvideo' ) )
 									$classes[] = 'has-image';
 
 								$classes = apply_filters( 'layers_content_widget_item_class', $classes, $this, $item_instance );
 								$classes = implode( ' ', $classes ); ?>
 
-								<div id="<?php echo $widget_id; ?>-<?php echo $column_key; ?>" class="<?php echo esc_attr( $classes ); ?>">
+								<div id="<?php echo "{$widget_id}-{$column_key}"; ?>" class="<?php echo esc_attr( $classes ); ?>">
+									
 									<?php
 									/**
 									* Set Overlay CSS Classes
@@ -322,17 +337,9 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 									?>
 
 									<div class="<?php echo $column_inner_classes; ?>">
-										<?php if( NULL != $media ) { ?>
-											<div class="media-image <?php echo ( ( isset( $item_instance['design'][ 'imageratios' ] ) && 'image-round' == $item_instance['design'][ 'imageratios' ] ) ? 'image-rounded' : '' ); ?>">
-												<?php if ( $link_array['link'] ) { ?>
-													<a <?php echo $link_href_attr; ?> <?php echo $link_target_attr; ?>>
-												<?php  } ?>
-													<?php echo $media; ?>
-												<?php if ( $link_array['link'] ) { ?>
-													</a>
-												<?php  } ?>
-											</div>
-										<?php } ?>
+										
+										<?php // Display featured image
+										$this->featured_media( 'media-image', $item_instance ); ?>
 
 										<?php if( $this->check_and_return( $item_instance, 'title' ) || $this->check_and_return( $item_instance, 'excerpt' ) || ( $link_array['link'] && $link_array['text'] ) ) { ?>
 											<div class="media-body <?php echo ( isset( $item_instance['design']['fonts'][ 'align' ] ) ) ? $item_instance['design']['fonts'][ 'align' ] : ''; ?>">
@@ -367,7 +374,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 				do_action( 'layers_after_content_widget_inner', $this, $instance );
 
 				// Print the Inline Styles for this Widget
-				$this->print_inline_css();
+				$this->print_inline_css( $this, $instance );
 
 				if( 'list-masonry' == $this->check_and_return( $instance , 'design', 'liststyle' ) ) { ?>
 
@@ -422,6 +429,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 					'name' => $this->get_layers_field_name( 'design' ),
 					'id' => $this->get_layers_field_id( 'design' ),
 					'widget_id' => $this->widget_id,
+					'widget_object' => $this,
 				),
 				$instance, // Widget Values
 				apply_filters( 'layers_column_widget_design_bar_components', array( // Components
@@ -481,13 +489,14 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 								'name' => $this->get_layers_field_name( 'design' ),
 								'id' => $this->get_layers_field_id( 'design' ),
 								'widget_id' => $this->widget_id,
+								'widget_object' => $this,
 								'show_trash' => FALSE,
 								'inline' => TRUE,
 								'align' => 'right',
 							),
 							$instance, // Widget Values
 							apply_filters( 'layers_column_widget_inline_design_bar_components', array( // Components
-								'fonts',
+								'header_excerpt',
 							), $this, $instance )
 						); ?>
 
@@ -542,6 +551,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 							'name' => $this->get_layers_field_name( 'design' ),
 							'id' => $this->get_layers_field_id( 'design' ),
 							'widget_id' => $this->widget_id . '_item',
+							'widget_object' => $this,
 							'number' => $this->number,
 							'show_trash' => TRUE,
 						),
@@ -550,7 +560,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 							'background',
 							'featuredimage',
 							'imagealign',
-							'fonts',
+							'header_excerpt',
 							'buttons' => array(
 								'icon-css' => 'icon-call-to-action',
 								'label' => __( 'Buttons', 'layerswp' ),
@@ -598,8 +608,12 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 							),
 							'advanced' => array(
 								'elements' => array(
+									'advanced-margin-padding-start' => array(
+										'type' => 'group-start',
+										'label' => __( 'Margin &amp; Padding', 'layerswp' ),
+									),
 									'padding' => array(
-										'type' => 'trbl-fields',
+										'type' => 'inline-numbers-fields',
 										'label' => __( 'Padding (px)', 'layerswp' ),
 										'name' => $this->get_layers_field_name( 'design', 'advanced', 'padding' ),
 										'id' => $this->get_layers_field_id( 'design', 'advanced', 'padding' ),
@@ -610,9 +624,10 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 											'bottom',
 											'left',
 										),
+										'input_class' => 'inline-fields-flush',
 									),
 									'margin' => array(
-										'type' => 'trbl-fields',
+										'type' => 'inline-numbers-fields',
 										'label' => __( 'Margin (px)', 'layerswp' ),
 										'name' => $this->get_layers_field_name( 'design', 'advanced', 'margin' ),
 										'id' => $this->get_layers_field_id( 'design', 'advanced', 'margin' ),
@@ -621,8 +636,19 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 											'top',
 											'bottom',
 										),
+										'input_class' => 'inline-fields-flush',
+									),
+									'advanced-margin-padding-end' => array(
+										'type' => 'group-end',
+									),
+									'advanced-custom-class-start' => array(
+										'type' => 'group-start',
+										'label' => __( 'Custom Classes', 'layerswp' ),
 									),
 									'customclass',
+									'advanced-custom-class-end' => array(
+										'type' => 'group-end'
+									),
 								),
 								'elements_combine' => 'replace',
 							),

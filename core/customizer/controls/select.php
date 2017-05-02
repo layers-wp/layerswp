@@ -1,7 +1,8 @@
-<?php  /**
+<?php
+/**
  * Select
  *
- * This file is used to register and display the custom Layers Select Box
+ * This file is used to register and display the custom Layers Select Box.
  *
  * @package Layers
  * @since Layers 1.0.0
@@ -23,8 +24,8 @@ if( !class_exists( 'Layers_Customize_Select_Control' ) ) {
 			$values = false; ?>
 
 			<div id="layers-customize-control-<?php echo esc_attr( $this->id ); ?>" class="l_option-customize-control l_option-customize-control-<?php echo esc_attr( str_replace( 'layers-', '', $this->type ) ); ?> <?php echo esc_attr( $this->class ); ?>" <?php echo $this->get_linked_data(); ?> >
-
-				<?php $this->render_history_actions(); ?>
+				
+				<?php do_action( 'layers-control-inside', $this ); ?>
 
 				<?php if ( '' != $this->heading_divider ) { ?>
 					<?php $this->render_heading_divider( $this->heading_divider ); ?>
@@ -45,6 +46,7 @@ if( !class_exists( 'Layers_Customize_Select_Control' ) ) {
 				<?php endif; ?>
 
 				<div class="layers-form-item layers-select-wrapper <?php echo ( $this->colspan ) ? esc_attr( "layers-column-flush layers-span-{$this->colspan}" ) : '' ?>">
+					
 					<?php echo $form_elements->input(
 						array(
 							'type' => 'select',
@@ -55,6 +57,7 @@ if( !class_exists( 'Layers_Customize_Select_Control' ) ) {
 							'data' => $this->get_customize_data(),
 						)
 					); ?>
+					
 				</div>
 
 			</div>

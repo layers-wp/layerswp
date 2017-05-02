@@ -8,6 +8,8 @@
  */
 if( !class_exists( 'Layers_Slider_Widget' ) ) {
 	class Layers_Slider_Widget extends Layers_Widget {
+	    
+	    public $animation_class = "x-fade-in delay-200";
 
 		/**
 		*  Widget construction
@@ -64,6 +66,11 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 				'show_slider_arrows' => 'on',
 				'show_slider_dots' => 'on',
 				'animation_type' => 'slide',
+				'design' => array(
+					'advanced' => array (
+						'animation' => 'on',
+					)
+				),
 			);
 
 			/* Setup Widget Repeater Defaults */
@@ -129,10 +136,10 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 			$this->enqueue_scripts();
 
 			// Apply slider arrow color
-			if( $this->check_and_return( $instance, 'slider_arrow_color' ) ) $this->inline_css .= layers_inline_styles( '#' . $widget_id, 'color', array( 'selectors' => array( '.arrows a' ), 'color' => $this->check_and_return( $instance, 'slider_arrow_color' ) ) );
-			if( $this->check_and_return( $instance, 'slider_arrow_color' ) ) $this->inline_css .= layers_inline_styles( '#' . $widget_id, 'border', array( 'selectors' => array( 'span.swiper-pagination-switch' ), 'border' => array( 'color' => $this->check_and_return( $instance, 'slider_arrow_color' ) ) ) );
-			if( $this->check_and_return( $instance, 'slider_arrow_color' ) ) $this->inline_css .= layers_inline_styles( '#' . $widget_id, 'background', array( 'selectors' => array( 'span.swiper-pagination-switch' ), 'background' => array( 'color' => $this->check_and_return( $instance, 'slider_arrow_color' ) ) ) );
-			if( $this->check_and_return( $instance, 'slider_arrow_color' ) ) $this->inline_css .= layers_inline_styles( '#' . $widget_id, 'background', array( 'selectors' => array( 'span.swiper-pagination-switch.swiper-active-switch' ), 'background' => array( 'color' => 'transparent !important' ) ) );
+			if( $this->check_and_return( $instance, 'slider_arrow_color' ) ) $this->inline_css .= layers_inline_styles( ".{$widget_id}", 'color', array( 'selectors' => array( '.arrows a' ), 'color' => $this->check_and_return( $instance, 'slider_arrow_color' ) ) );
+			if( $this->check_and_return( $instance, 'slider_arrow_color' ) ) $this->inline_css .= layers_inline_styles( ".{$widget_id}", 'border', array( 'selectors' => array( 'span.swiper-pagination-switch' ), 'border' => array( 'color' => $this->check_and_return( $instance, 'slider_arrow_color' ) ) ) );
+			if( $this->check_and_return( $instance, 'slider_arrow_color' ) ) $this->inline_css .= layers_inline_styles( ".{$widget_id}", 'background', array( 'selectors' => array( 'span.swiper-pagination-switch' ), 'background' => array( 'color' => $this->check_and_return( $instance, 'slider_arrow_color' ) ) ) );
+			if( $this->check_and_return( $instance, 'slider_arrow_color' ) ) $this->inline_css .= layers_inline_styles( ".{$widget_id}", 'background', array( 'selectors' => array( 'span.swiper-pagination-switch.swiper-active-switch' ), 'background' => array( 'color' => 'transparent !important' ) ) );
 
 
 			// Get slider height css
@@ -148,6 +155,7 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 			* Generate the widget container class
 			*/
 			$widget_container_class = array();
+			$widget_container_class[] = $widget_id;
 			$widget_container_class[] = 'widget';
 			$widget_container_class[] = 'layers-slider-widget';
 			$widget_container_class[] = 'row';
@@ -157,6 +165,7 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 			$widget_container_class[] = $this->check_and_return( $instance , 'design', 'advanced', 'customclass' ); // Apply custom class from design-bar's advanced control.
 			$widget_container_class[] = $this->get_widget_spacing_class( $instance );
 			$widget_container_class[] = $this->get_widget_layout_class( $instance );
+		    $widget_container_class[] = $this->get_animation_class( $instance );
 
 			if( $this->check_and_return( $instance , 'autoheight_slides' ) ) {
 				if( FALSE !== ( $fullwidth = array_search( 'full-screen', $widget_container_class ) ) ){
@@ -221,30 +230,23 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 							$item_instance = $this->apply_defaults( $item_instance, 'slide' );
 
 							// Set the background styling
-							if( !empty( $item_instance['design'][ 'background' ] ) ) $this->inline_css .= layers_inline_styles( '#' . $widget_id . '-' . $slide_key , 'background', array( 'background' => $item_instance['design'][ 'background' ] ) );
-							if( !empty( $item_instance['design']['fonts'][ 'color' ] ) ) $this->inline_css .= layers_inline_styles( '#' . $widget_id . '-' . $slide_key , 'color', array( 'selectors' => array( '.heading', '.heading a', 'div.excerpt' ) , 'color' => $item_instance['design']['fonts'][ 'color' ] ) );
-							if( !empty( $item_instance['design']['fonts'][ 'shadow' ] ) ) $this->inline_css .= layers_inline_styles( '#' . $widget_id . '-' . $slide_key , 'text-shadow', array( 'selectors' => array( '.heading', '.heading a',  'div.excerpt' )  , 'text-shadow' => $item_instance['design']['fonts'][ 'shadow' ] ) );
+							if( !empty( $item_instance['design'][ 'background' ] ) ) $this->inline_css .= layers_inline_styles( ".{$widget_id}-{$slide_key}", 'background', array( 'background' => $item_instance['design'][ 'background' ] ) );
+							
+							if( NULL !== $this->check_and_return( $item_instance, 'design', 'fonts', 'color' ) )	 
+								$this->inline_css .= layers_inline_styles( ".{$widget_id}-{$slide_key}", 'color', array( 'selectors' => array( '.heading', '.heading a', 'div.excerpt' ) , 'color' => $this->check_and_return( $item_instance, 'design', 'fonts', 'color' ) ) );
+
+
+							if( NULL !== $this->check_and_return( $item_instance, 'design', 'fonts', 'excerpt-color' ) )	 
+								$this->inline_css .= layers_inline_styles( ".{$widget_id}-{$slide_key}", 'color', array( 'selectors' => array( 'div.excerpt', 'div.excerpt p',  'div.excerpt a' ) , 'color' => $this->check_and_return( $item_instance, 'design', 'fonts', 'excerpt-color' ) ) );
+
+							
+							if( NULL !== $this->check_and_return( $item_instance, 'design', 'fonts', 'shadow' ) ) $this->inline_css .= layers_inline_styles( ".{$widget_id}-{$slide_key}", 'text-shadow', array( 'selectors' => array( '.heading', '.heading a',  'div.excerpt' )  , 'text-shadow' => $this->check_and_return( $item_instance, 'design', 'fonts', 'shadow' ) ) );
 
 							// Set the button styling
 							$button_size = '';
 							if ( function_exists( 'layers_pro_apply_widget_button_styling' ) ) {
 								$button_size = $this->check_and_return( $item_instance , 'design' , 'buttons-size' ) ? 'btn-' . $this->check_and_return( $item_instance , 'design' , 'buttons-size' ) : '' ;
-								$this->inline_css .= layers_pro_apply_widget_button_styling( $this, $item_instance, array( "#{$widget_id}-{$slide_key} .button" ) );
-							}
-
-							// Set Featured Media
-							$featureimage = $this->check_and_return( $item_instance , 'design' , 'featuredimage' );
-							$featurevideo = $this->check_and_return( $item_instance , 'design' , 'featuredvideo' );
-
-							// Set Image Sizes
-							if( isset( $item_instance['design'][ 'imageratios' ] ) ){
-
-									// Translate Image Ratio into something usable
-									$image_ratio = layers_translate_image_ratios( $item_instance['design'][ 'imageratios' ] );
-									$use_image_ratio = $image_ratio . '-medium';
-
-							} else {
-								$use_image_ratio = 'large';
+								$this->inline_css .= layers_pro_apply_widget_button_styling( $this, $item_instance, array( ".{$widget_id}-{$slide_key} .button" ) );
 							}
 
 							// Get the button array.
@@ -256,6 +258,7 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 							* Set Individual Slide CSS
 							*/
 							$slide_class = array();
+							$slide_class[] = "{$widget_id}-{$slide_key}";
 							$slide_class[] = 'swiper-slide';
 							if( $this->check_and_return( $item_instance, 'design', 'background' , 'color' ) ) {
 								if( 'dark' == layers_is_light_or_dark( $this->check_and_return( $item_instance, 'design', 'background' , 'color' ) ) ) {
@@ -286,7 +289,7 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 								$slide_wrapper_tag = 'a';
 								$slide_wrapper_href = $link_href_attr;
 							} ?>
-							<<?php echo $slide_wrapper_tag; ?> <?php echo $slide_wrapper_href; ?> class="<?php echo $slide_class; ?>" id="<?php echo $widget_id; ?>-<?php echo $slide_key; ?>" style="float: left; <?php echo $slider_height_css; ?>" <?php echo $link_target_attr; ?>>
+							<<?php echo $slide_wrapper_tag; ?> <?php echo $slide_wrapper_href; ?> id="<?php echo esc_attr( "{$widget_id}-{$slide_key}" ); ?>" class="<?php echo esc_attr( $slide_class ); ?>" style="float: left; <?php echo $slider_height_css; ?>" <?php echo $link_target_attr; ?>>
 
 								<?php do_action( 'layers_before_slider_widget_item_inner', $this, $item_instance, $instance ); ?>
 
@@ -325,15 +328,10 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 												</div>
 											</div>
 										<?php } // if title || excerpt ?>
-										<?php if( $featureimage || $featurevideo ) { ?>
-											<div class="image-container <?php echo ( 'image-round' ==  $this->check_and_return( $item_instance, 'design',  'imageratios' ) ? 'image-rounded' : '' ); ?>">
-												<?php echo layers_get_feature_media(
-													$featureimage ,
-													$use_image_ratio ,
-													$featurevideo
-												); ?>
-											</div>
-										<?php } // if $item image  ?>
+										
+										<?php // Display featured image
+										$this->featured_media( 'image-container', $item_instance, FALSE ); ?>
+
 									</div> <!-- .container -->
 								</div> <!-- .overlay -->
 
@@ -346,7 +344,7 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 					<?php do_action( 'layers_after_slider_widget_inner', $this, $instance );
 
 					// Print the Inline Styles for this Widget
-					$this->print_inline_css();
+					$this->print_inline_css( $this, $instance );
 
 					/**
 					 * Slider javascript initialize
@@ -474,104 +472,142 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 			$instance = $this->apply_defaults( $instance );
 
 			$components = apply_filters( 'layers_slide_widget_design_bar_components', array(
-				'layout' => array(
-					'icon-css' => 'icon-layout-fullwidth',
-					'label' => __( 'Layout', 'layerswp' ),
-					'wrapper-class' => 'layers-pop-menu-wrapper layers-small',
-					'elements' => array(
-						'layout' => array(
-							'type' => 'select-icons',
-							'label' => __( '' , 'layerswp' ),
-							'name' => $this->get_layers_field_name( 'design', 'layout' ) ,
-							'id' => $this->get_layers_field_id( 'design', 'layout' ) ,
-							'value' => ( isset( $instance['design']['layout'] ) ) ? $instance['design']['layout'] : NULL,
-							'options' => array(
-								'layout-boxed' => __( 'Boxed' , 'layerswp' ),
-								'layout-fullwidth' => __( 'Full Width' , 'layerswp' ),
-								'layout-full-screen' => __( 'Full Screen' , 'layerswp' )
-							),
-						),
-					),
-				),
 				'display' => array(
 					'icon-css' => 'icon-slider',
-					'label' => __( 'Slider', 'layerswp' ),
+					'label' => __( 'Settings', 'layerswp' ),
 					'elements' => array(
-						'autoheight_slides' => array(
-							'type' => 'checkbox',
-							'name' => $this->get_layers_field_name( 'autoheight_slides' ) ,
-							'id' => $this->get_layers_field_id( 'autoheight_slides' ) ,
-							'value' => ( isset( $instance['autoheight_slides'] ) ) ? $instance['autoheight_slides'] : NULL,
-							'label' => __( 'Auto Height Slides' , 'layerswp' ),
+						'slider-layout-start' => array(
+							'type' => 'group-start',
+							'label' => __( 'Layout', 'layerswp' ),
 						),
-						'slide_height' => array(
-							'type' => 'number',
-							'name' => $this->get_layers_field_name( 'slide_height' ) ,
-							'id' => $this->get_layers_field_id( 'slide_height' ) ,
-							'value' => ( isset( $instance['slide_height'] ) ) ? $instance['slide_height'] : NULL,
-							'label' => __( 'Slider Height (px)' , 'layerswp' ),
-							'data' => array(
-								'show-if-selector' => '#' . $this->get_layers_field_id( 'autoheight_slides' ),
-								'show-if-value' => 'false',
+							'layout' => array(
+								'type' => 'select-icons',
+								'label' => __( '' , 'layerswp' ),
+								'name' => $this->get_layers_field_name( 'design', 'layout' ) ,
+								'id' => $this->get_layers_field_id( 'design', 'layout' ) ,
+								'value' => ( isset( $instance['design']['layout'] ) ) ? $instance['design']['layout'] : NULL,
+								'options' => array(
+									'layout-boxed' => __( 'Boxed' , 'layerswp' ),
+									'layout-fullwidth' => __( 'Full Width' , 'layerswp' ),
+									'layout-full-screen' => __( 'Full Screen' , 'layerswp' )
+								),
+								'class' => 'layers-icon-group-inline layers-icon-group-inline-outline',
 							),
-						),
-						'show_slider_arrows' => array(
-							'type' => 'checkbox',
-							'name' => $this->get_layers_field_name( 'show_slider_arrows' ) ,
-							'id' => $this->get_layers_field_id( 'show_slider_arrows' ) ,
-							'value' => ( isset(  $instance['show_slider_arrows'] ) ) ?  $instance['show_slider_arrows'] : NULL,
-							'label' => __( 'Show Slider Arrows' , 'layerswp' ),
-						),
-						'slider_arrow_color' => array(
-							'type' => 'color',
-							'name' => $this->get_layers_field_name( 'slider_arrow_color' ) ,
-							'id' => $this->get_layers_field_id( 'slider_arrow_color' ) ,
-							'value' => ( isset( $instance['slider_arrow_color'] ) ) ? $instance['slider_arrow_color'] : NULL,
-							'label' => __( 'Slider Controls Color' , 'layerswp' ),
-							'data' => array(
-								'show-if-selector' => '#' . $this->get_layers_field_id( 'show_slider_arrows' ),
-								'show-if-value' => 'true',
+							'autoheight_slides' => array(
+								'type' => 'checkbox',
+								'name' => $this->get_layers_field_name( 'autoheight_slides' ) ,
+								'id' => $this->get_layers_field_id( 'autoheight_slides' ) ,
+								'value' => ( isset( $instance['autoheight_slides'] ) ) ? $instance['autoheight_slides'] : NULL,
+								'label' => __( 'Auto Height Slides' , 'layerswp' ),
 							),
-						),
-						'show_slider_dots' => array(
-							'type' => 'checkbox',
-							'name' => $this->get_layers_field_name( 'show_slider_dots' ) ,
-							'id' => $this->get_layers_field_id( 'show_slider_dots' ) ,
-							'value' => ( isset(  $instance['show_slider_dots'] ) ) ?  $instance['show_slider_dots'] : NULL,
-							'label' => __( 'Show Slider Dots' , 'layerswp' ),
-						),
-						'animation_type' => array(
-							'type' => 'select',
-							'name' => $this->get_layers_field_name( 'animation_type' ) ,
-							'id' => $this->get_layers_field_id( 'animation_type' ) ,
-							'value' => ( isset(  $instance['animation_type'] ) ) ?  $instance['animation_type'] : 'slide',
-							'label' => __( 'Animation Type' , 'layerswp' ),
-							'options' => array(
-								'slide' => __( 'Slide', 'layerswp' ),
-								'fade' => __( 'Fade', 'layerswp' ),
-								'parallax' => __( 'Parallax', 'layerswp' ),
+							'slide_height' => array(
+								'type' => 'number',
+								'name' => $this->get_layers_field_name( 'slide_height' ) ,
+								'id' => $this->get_layers_field_id( 'slide_height' ) ,
+								'value' => ( isset( $instance['slide_height'] ) ) ? $instance['slide_height'] : NULL,
+								'label' => __( 'Slider Height (px)' , 'layerswp' ),
+								'data' => array(
+									'show-if-selector' => '#' . $this->get_layers_field_id( 'autoheight_slides' ),
+									'show-if-value' => 'false',
+								),
 							),
+
+						'slider-layout-end' => array(
+							'type' => 'group-end',
 						),
-						'autoplay_slides' => array(
-							'type' => 'checkbox',
-							'name' => $this->get_layers_field_name( 'autoplay_slides' ) ,
-							'id' => $this->get_layers_field_id( 'autoplay_slides' ) ,
-							'value' => ( isset( $instance['autoplay_slides'] ) ) ? $instance['autoplay_slides'] : NULL,
-							'label' => __( 'Autoplay Slides' , 'layerswp' ),
+
+						'slider-navigation-start' => array(
+							'type' => 'group-start',
+							'label' => __( 'Slider Navigation', 'layerswp' ),
 						),
-						'slide_time' => array(
-							'type' => 'number',
-							'name' => $this->get_layers_field_name( 'slide_time' ) ,
-							'id' => $this->get_layers_field_id( 'slide_time' ) ,
-							'min' => 1,
-							'max' => 10,
-							'placeholder' => __( 'Time in seconds, eg. 2' , 'layerswp' ),
-							'value' => ( isset( $instance['slide_time'] ) ) ? $instance['slide_time'] : NULL,
-							'label' => __( 'Slide Interval (seconds)' , 'layerswp' ),
-							'data' => array(
-								'show-if-selector' => '#' . $this->get_layers_field_id( 'autoplay_slides' ),
-								'show-if-value' => 'true',
+
+							'show_slider_arrows' => array(
+								'type' => 'checkbox',
+								'name' => $this->get_layers_field_name( 'show_slider_arrows' ) ,
+								'id' => $this->get_layers_field_id( 'show_slider_arrows' ) ,
+								'value' => ( isset(  $instance['show_slider_arrows'] ) ) ?  $instance['show_slider_arrows'] : NULL,
+								'label' => __( 'Show Slider Arrows' , 'layerswp' ),
 							),
+							'show_slider_dots' => array(
+								'type' => 'checkbox',
+								'name' => $this->get_layers_field_name( 'show_slider_dots' ) ,
+								'id' => $this->get_layers_field_id( 'show_slider_dots' ) ,
+								'value' => ( isset(  $instance['show_slider_dots'] ) ) ?  $instance['show_slider_dots'] : NULL,
+								'label' => __( 'Show Slider Dots' , 'layerswp' ),
+							),
+							'slider_arrow_color' => array(
+								'type' => 'color',
+								'name' => $this->get_layers_field_name( 'slider_arrow_color' ) ,
+								'id' => $this->get_layers_field_id( 'slider_arrow_color' ) ,
+								'value' => ( isset( $instance['slider_arrow_color'] ) ) ? $instance['slider_arrow_color'] : NULL,
+								'label' => __( 'Navigation Color' , 'layerswp' ),
+								'data' => array(
+									'show-if-selector' => '#' . $this->get_layers_field_id( 'show_slider_arrows' ),
+									'show-if-value' => 'true',
+								),
+							),
+
+						'slider-navigation-end' => array(
+							'type' => 'group-end',
+						),
+
+						'slider-animation-start' => array(
+							'type' => 'group-start',
+							'label' => __( 'Animation Type', 'layerswp' ),
+						),
+
+							'animation_type' => array(
+								'type' => 'select',
+								'name' => $this->get_layers_field_name( 'animation_type' ) ,
+								'id' => $this->get_layers_field_id( 'animation_type' ) ,
+								'value' => ( isset(  $instance['animation_type'] ) ) ?  $instance['animation_type'] : 'slide',
+								'options' => array(
+									'slide' => __( 'Slide', 'layerswp' ),
+									'fade' => __( 'Fade', 'layerswp' ),
+									'parallax' => __( 'Parallax', 'layerswp' ),
+								),
+							),
+							'autoplay_slides' => array(
+								'type' => 'checkbox',
+								'name' => $this->get_layers_field_name( 'autoplay_slides' ) ,
+								'id' => $this->get_layers_field_id( 'autoplay_slides' ) ,
+								'value' => ( isset( $instance['autoplay_slides'] ) ) ? $instance['autoplay_slides'] : NULL,
+								'label' => __( 'Autoplay Slides' , 'layerswp' ),
+							),
+							'slide_time' => array(
+								'type' => 'number',
+								'name' => $this->get_layers_field_name( 'slide_time' ) ,
+								'id' => $this->get_layers_field_id( 'slide_time' ) ,
+								'min' => 1,
+								'max' => 10,
+								'placeholder' => __( 'Time in seconds, eg. 2' , 'layerswp' ),
+								'value' => ( isset( $instance['slide_time'] ) ) ? $instance['slide_time'] : NULL,
+								'label' => __( 'Slide Interval (seconds)' , 'layerswp' ),
+								'data' => array(
+									'show-if-selector' => '#' . $this->get_layers_field_id( 'autoplay_slides' ),
+									'show-if-value' => 'true',
+								),
+							),
+							
+						'slider-animation-end' => array(
+							'type' => 'group-end',
+						),
+
+						'slider-margin-start' => array(
+							'type' => 'group-start',
+							'label' => __( 'Margin', 'layerswp' ),
+						),
+
+							'margin' => array(
+								'type' => 'inline-numbers-fields',
+								'name' => $this->get_layers_field_name( 'design', 'advanced', 'margin' ),
+								'id' => $this->get_layers_field_id( 'design', 'advanced', 'margin' ),
+								'value' => ( isset( $instance['design']['advanced']['margin'] ) ) ? $instance['design']['advanced']['margin'] : NULL,
+								'input_class' => 'inline-fields-flush',
+							),
+							
+						'slider-margin-end' => array(
+							'type' => 'group-end',
 						),
 					),
 				),
@@ -587,6 +623,7 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 					'name' => $this->get_layers_field_name( 'design' ),
 					'id' => $this->get_layers_field_id( 'design' ),
 					'widget_id' => $this->widget_id,
+					'widget_object' => $this,
 				),
 				$instance, // Widget Values
 				$components // Components
@@ -639,13 +676,14 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 				<section class="layers-accordion-section layers-content">
 					<?php $this->design_bar(
 						'top', // CSS Class Name
-						array(
+						array( // Widget Object
 							'name' => $this->get_layers_field_name( 'design' ),
 							'id' => $this->get_layers_field_id( 'design' ),
 							'widget_id' => $this->widget_id . '_item',
+							'widget_object' => $this,
 							'number' => $this->number,
 							'show_trash' => TRUE
-						), // Widget Object
+						),
 						$item_instance, // Widget Values
 						apply_filters( 'layers_slide_widget_slide_design_bar_components', array( // Components
 							'background',
@@ -662,7 +700,7 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 									),
 								),
 							),
-							'fonts',
+							'header_excerpt',
 							'buttons' => array(
 								'icon-css' => 'icon-call-to-action',
 								'label' => __( 'Buttons', 'layerswp' ),
@@ -683,7 +721,9 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 							),
 							'advanced' => array(
 								'elements' => array(
-									'customclass'
+										
+									'customclass',
+
 								),
 								'elements_combine' => 'replace',
 							),

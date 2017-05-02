@@ -55,7 +55,7 @@ class Layers_Customizer_Regsitrar {
 
 		// Start registration with the panels & sections
 		$this->register_panels( $this->config->panels );
-		$this->register_sections ( $this->config->sections );
+		$this->register_sections( $this->config->sections );
 
 		// Move default sections into Layers Panels
 		$this->move_default_panels( $this->config->default_panels );
@@ -154,7 +154,7 @@ class Layers_Customizer_Regsitrar {
 			$section_priority++;
 
 			// Register Sections for this Panel
-			$this->register_controls ( $section_key , $this->config->controls );
+			$this->register_controls( $section_key, $this->config->controls );
 		}
 
 	}
@@ -181,10 +181,12 @@ class Layers_Customizer_Regsitrar {
 			
 			// Add Control.
 			if ( $this->customizer->get_section( $panel_section_key ) ) {
+				
 				// Section exists without 'layers-' prepended, so add control to it.
 				$control_data[ 'section' ] = $panel_section_key;
 			}
 			else {
+				
 				// Section exists with 'layers-' prepended, so add control to it.
 				$control_data[ 'section' ] = $this->prefix . $panel_section_key;
 			}
@@ -194,18 +196,37 @@ class Layers_Customizer_Regsitrar {
 			
 			// Add the default into the control data so it can be accessed if needed.
 			$control_data[ 'default' ] = isset( $control_data['default'] ) ? $control_data['default'] : NULL ;
+			
+			// Set Transport Method.
+			$transport = 'refresh';
+			if ( isset( $control_data['partial'] ) ) {
+				$transport = 'postMessage';
+			}
+			else if ( isset( $control_data['transport'] ) ) {
+				$transport = $control_data['transport'];
+			}
 
-			// Add Setting
+			// Add Setting.
 			$this->customizer->add_setting(
 				$setting_key,
 				array(
-					'default'    => ( isset( $control_data['default'] ) ? $control_data['default'] : NULL ) ,
-					'type'       => 'theme_mod',
-					'capability' => 'manage_options',
-					'sanitize_callback' => $this->add_sanitize_callback( $control_data )
+					'default'           => ( isset( $control_data['default'] ) ? $control_data['default'] : NULL ) ,
+					'type'              => 'theme_mod',
+					'capability'        => 'manage_options',
+					'sanitize_callback' => $this->add_sanitize_callback( $control_data ),
+					'transport'         => $transport,
 				)
 			);
 
+			// Store Partial.
+			if ( isset( $control_data['partial'] ) ) {
+				// Create initial array if there isn't one yet.
+				if ( ! isset( $this->config->partials[ $control_data['partial'] ] ) ) {
+					$this->config->partials[ $control_data['partial'] ] = array();
+				}
+				$this->config->partials[ $control_data['partial'] ][] = $setting_key;
+			}
+			
 			if ( 'layers-select-images' == $control_data['type'] ) {
 				
 				// Add Control
@@ -216,7 +237,8 @@ class Layers_Customizer_Regsitrar {
 						$control_data
 					)
 				);
-			} else if( 'layers-select-icons' == $control_data['type'] ) {
+				
+			} else if ( 'layers-select-icons' == $control_data['type'] ) {
 
 				// Add Control
 				$this->customizer->add_control(
@@ -226,7 +248,31 @@ class Layers_Customizer_Regsitrar {
 						$control_data
 					)
 				);
-			} else if( 'layers-seperator' == $control_data['type'] ) {
+				
+				// Add extra settings fields for each choice key
+				if ( isset( $control_data['choices'] ) && isset( $control_data['multi_select'] ) ) {
+					
+					foreach ( $control_data['choices'] as $key => $choices ) {
+						
+						$this->customizer->add_setting(
+							"{$setting_key}-{$key}",
+							array(
+								'default'    => ( ( isset( $control_data['default'] ) && $key == $control_data['default'] ) ? $control_data['default'] : NULL ),
+								'type'       => 'theme_mod',
+								'capability' => 'manage_options',
+								'sanitize_callback' => $this->add_sanitize_callback( $control_data ),
+								'transport'  => $transport,
+							)
+						);
+						
+						if ( isset( $control_data['partial'] ) ) {
+							// Store Partial.
+							$this->config->partials[ $control_data['partial'] ][] = "{$setting_key}-{$key}";
+						}
+					}
+				}
+				
+			} else if ( 'layers-seperator' == $control_data['type'] ) {
 
 				// Add Control
 				$this->customizer->add_control(
@@ -236,7 +282,8 @@ class Layers_Customizer_Regsitrar {
 						$control_data
 					)
 				);
-			} else if( 'layers-heading' == $control_data['type'] ) {
+				
+			} else if ( 'layers-heading' == $control_data['type'] ) {
 
 				// Add Control
 				$this->customizer->add_control(
@@ -246,7 +293,8 @@ class Layers_Customizer_Regsitrar {
 						$control_data
 					)
 				);
-			} else if( 'layers-color' == $control_data['type'] ) {
+				
+			} else if ( 'layers-color' == $control_data['type'] ) {
 
 				// Add Control
 				$this->customizer->add_control(
@@ -256,7 +304,8 @@ class Layers_Customizer_Regsitrar {
 						$control_data
 					)
 				);
-			} else if( 'layers-checkbox' == $control_data['type'] ) {
+				
+			} else if ( 'layers-checkbox' == $control_data['type'] ) {
 
 				// Add Control
 				$this->customizer->add_control(
@@ -266,7 +315,8 @@ class Layers_Customizer_Regsitrar {
 						$control_data
 					)
 				);
-			} else if( 'layers-select' == $control_data['type'] ) {
+				
+			} else if ( 'layers-select' == $control_data['type'] ) {
 
 				// Add Control
 				$this->customizer->add_control(
@@ -276,7 +326,8 @@ class Layers_Customizer_Regsitrar {
 						$control_data
 					)
 				);
-			} else if( 'layers-textarea' == $control_data['type'] ) {
+				
+			} else if ( 'layers-textarea' == $control_data['type'] ) {
 
 				// Add Control
 				$this->customizer->add_control(
@@ -286,7 +337,8 @@ class Layers_Customizer_Regsitrar {
 						$control_data
 					)
 				);
-			} else if( 'layers-rte' == $control_data['type'] ) {
+				
+			} else if ( 'layers-rte' == $control_data['type'] ) {
 
 				// Add Control
 				$this->customizer->add_control(
@@ -297,7 +349,7 @@ class Layers_Customizer_Regsitrar {
 					)
 				);
 
-			} else if( 'layers-font' == $control_data['type'] ) {
+			} else if ( 'layers-font' == $control_data['type'] ) {
 
 				// Add Control
 				$this->customizer->add_control(
@@ -307,6 +359,7 @@ class Layers_Customizer_Regsitrar {
 						$control_data
 					)
 				);
+				
 			} else if ( 'layers-button' == $control_data['type'] ) {
 
 				// Add Control
@@ -317,7 +370,8 @@ class Layers_Customizer_Regsitrar {
 						$control_data
 					)
 				);
-			} else if( 'layers-code' == $control_data['type'] ) {
+				
+			} else if ( 'layers-code' == $control_data['type'] ) {
 
 				// Add Control
 				$this->customizer->add_control(
@@ -327,7 +381,8 @@ class Layers_Customizer_Regsitrar {
 						$control_data
 					)
 				);
-			} else if( 'layers-text' == $control_data['type'] ) {
+				
+			} else if ( 'layers-text' == $control_data['type'] ) {
 
 				// Add Control
 				$this->customizer->add_control(
@@ -337,7 +392,8 @@ class Layers_Customizer_Regsitrar {
 						$control_data
 					)
 				);
-			} else if( 'layers-number' == $control_data['type'] ) {
+				
+			} else if ( 'layers-number' == $control_data['type'] ) {
 
 				// Add Control
 				$this->customizer->add_control(
@@ -347,7 +403,8 @@ class Layers_Customizer_Regsitrar {
 						$control_data
 					)
 				);
-			} else if( 'layers-range' == $control_data['type'] ) {
+				
+			} else if ( 'layers-range' == $control_data['type'] ) {
 
 				// Add Control
 				$this->customizer->add_control(
@@ -357,55 +414,132 @@ class Layers_Customizer_Regsitrar {
 						$control_data
 					)
 				);
-			} else if( 'layers-trbl-fields' == $control_data['type'] ) {
+				
+			} else if (
+					'layers-inline-numbers-fields' == $control_data['type'] ||
+					'layers-trbl-fields' == $control_data['type']
+				) {
+				
+				// Set the default fields.
+				$default_fields = array(
+					'top' => __( 'Top', 'layerswp' ),
+					'right' => __( 'Right', 'layerswp' ),
+					'bottom' => __( 'Bottom', 'layerswp' ),
+					'left' => __( 'Left', 'layerswp' ),
+				);
+				
+				// If caller only wants chosen few fields can customise the labels e.g.
+				// (1) 'fields' => array( 'top' => 'Top (px)' ) one field 'top' with cusotmized label 'Top (px)'.
+				// (2) 'fields' => array( 'top' ) one field 'top' with standard label 'Top'.
+				if( ! empty( $control_data['fields'] ) ) {
+					$new_fields = array();
+					foreach ( $control_data['fields'] as $key => $label ) {
 
-				// Add extra settings fields for Top/Right/Bottom/Left
-				$this->customizer->add_setting(
-					$setting_key . '-top',
-					array(
-						'default'    => ( isset( $control_data['default'] ) ? $control_data['default'] : NULL ) ,
-						'type'       => 'theme_mod',
-						'capability' => 'manage_options',
-						'sanitize_callback' => $this->add_sanitize_callback( $control_data )
-					)
-				);
-				$this->customizer->add_setting(
-					$setting_key . '-right',
-					array(
-						'default'    => ( isset( $control_data['default'] ) ? $control_data['default'] : NULL ) ,
-						'type'       => 'theme_mod',
-						'capability' => 'manage_options',
-						'sanitize_callback' => $this->add_sanitize_callback( $control_data )
-					)
-				);
-				$this->customizer->add_setting(
-					$setting_key . '-bottom',
-					array(
-						'default'    => ( isset( $control_data['default'] ) ? $control_data['default'] : NULL ) ,
-						'type'       => 'theme_mod',
-						'capability' => 'manage_options',
-						'sanitize_callback' => $this->add_sanitize_callback( $control_data )
-					)
-				);
-				$this->customizer->add_setting(
-					$setting_key . '-left',
-					array(
-						'default'    => ( isset( $control_data['default'] ) ? $control_data['default'] : NULL ) ,
-						'type'       => 'theme_mod',
-						'capability' => 'manage_options',
-						'sanitize_callback' => $this->add_sanitize_callback( $control_data )
-					)
-				);
+						if ( is_numeric( $key ) ) {
+							
+							// Array element type: [ 'bottom' ]
+							if ( isset( $default_fields[$label] ) ){ // Make sure that what the user spcified is a valid field of TRBL.
+								$new_fields[$label] = $default_fields[$label];
+							}
+						}
+						else {
+							
+							// Array element type: [ 'bottom' => 'Bottom (px)' ]
+							$new_fields[$key] = $label;
+						}
+					}
+					$default_fields = $new_fields;
+
+					// If the fields chosen were incorrect then bail.
+					if ( empty( $default_fields ) ) return;
+				}
+				
+				// Add the extra settings fields.
+				foreach ( $default_fields as $key => $label ) {
+					
+					$this->customizer->add_setting(
+						"{$setting_key}-{$key}",
+						array(
+							'default'    => ( isset( $control_data['default'] ) ? $control_data['default'] : NULL ) ,
+							'type'       => 'theme_mod',
+							'capability' => 'manage_options',
+							'sanitize_callback' => $this->add_sanitize_callback( $control_data ),
+							'transport'  => $transport,
+						)
+					);
+					if ( isset( $control_data['partial'] ) ) {
+						// Store Partial.
+						$this->config->partials[ $control_data['partial'] ][] = "{$setting_key}-{$key}";
+					}
+				}
 				
 				// Add Control
 				$this->customizer->add_control(
-					new Layers_Customize_TRBL_Control(
+					new Layers_Customize_Inline_Numbers_Fields_Control(
 						$this->customizer,
 						$setting_key,
 						$control_data
 					)
 				);
-			} else if( 'text' == $control_data['type'] ) {
+				
+			} else if ( 'layers-border-style-fields' == $control_data['type'] ) {
+
+				// Add extra settings fields for Width, Style, Radius.
+				$this->customizer->add_setting(
+					"{$setting_key}-width",
+					array(
+						'default'    => ( isset( $control_data['default'] ) ? $control_data['default'] : NULL ) ,
+						'type'       => 'theme_mod',
+						'capability' => 'manage_options',
+						'sanitize_callback' => $this->add_sanitize_callback( $control_data ),
+						'transport'  => $transport,
+					)
+				);
+				if ( isset( $control_data['partial'] ) ) {
+					// Store Partial.
+					$this->config->partials[ $control_data['partial'] ][] = "{$setting_key}-width";
+				}
+				
+				$this->customizer->add_setting(
+					"{$setting_key}-style",
+					array(
+						'default'    => ( isset( $control_data['default'] ) ? $control_data['default'] : NULL ) ,
+						'type'       => 'theme_mod',
+						'capability' => 'manage_options',
+						'sanitize_callback' => $this->add_sanitize_callback( $control_data ),
+						'transport'  => $transport,
+					)
+				);
+				if ( isset( $control_data['partial'] ) ) {
+					// Store Partial.
+					$this->config->partials[ $control_data['partial'] ][] = "{$setting_key}-style";
+				}
+				
+				$this->customizer->add_setting(
+					"{$setting_key}-radius",
+					array(
+						'default'    => ( isset( $control_data['default'] ) ? $control_data['default'] : NULL ) ,
+						'type'       => 'theme_mod',
+						'capability' => 'manage_options',
+						'sanitize_callback' => $this->add_sanitize_callback( $control_data ),
+						'transport'  => $transport,
+					)
+				);
+				if ( isset( $control_data['partial'] ) ) {
+					// Store Partial.
+					$this->config->partials[ $control_data['partial'] ][] = "{$setting_key}-radius";
+				}
+				
+				// Add Control
+				$this->customizer->add_control(
+					new Layers_Customize_Border_Style_Control(
+						$this->customizer,
+						$setting_key,
+						$control_data
+					)
+				);
+				
+			} else if ( 'text' == $control_data['type'] ) {
 
 				// Add Control
 				$this->customizer->add_control(
@@ -415,7 +549,8 @@ class Layers_Customizer_Regsitrar {
 						$control_data
 					)
 				);
-			} else if( 'color' == $control_data['type'] ) {
+				
+			} else if ( 'color' == $control_data['type'] ) {
 
 				// Add Control
 				$this->customizer->add_control(
@@ -425,7 +560,8 @@ class Layers_Customizer_Regsitrar {
 						$control_data
 					)
 				);
-			} else if( 'upload' == $control_data['type'] ) {
+				
+			} else if ( 'upload' == $control_data['type'] ) {
 
 				// Add Control
 				$this->customizer->add_control(
@@ -435,7 +571,8 @@ class Layers_Customizer_Regsitrar {
 						$control_data
 					)
 				);
-			} else if( 'image' == $control_data['type'] ) {
+				
+			} else if ( 'image' == $control_data['type'] ) {
 
 				// Add Control
 				$this->customizer->add_control(
@@ -445,7 +582,8 @@ class Layers_Customizer_Regsitrar {
 						$control_data
 					)
 				);
-			} else if( 'background-image' == $control_data['type'] ) {
+				
+			} else if ( 'background-image' == $control_data['type'] ) {
 
 				// Add Control
 				$this->customizer->add_control(
@@ -455,7 +593,8 @@ class Layers_Customizer_Regsitrar {
 						$control_data
 					)
 				);
-			} else if( 'header-image' == $control_data['type'] ) {
+				
+			} else if ( 'header-image' == $control_data['type'] ) {
 
 				// Add Control
 				$this->customizer->add_control(
@@ -465,6 +604,62 @@ class Layers_Customizer_Regsitrar {
 						$control_data
 					)
 				);
+				
+			} else if ( 'layers-accordion-start' == $control_data['type'] ) {
+
+				// Add Control
+				$this->customizer->add_control(
+					new Layers_Customize_Accordion_Start_Control(
+						$this->customizer,
+						$setting_key,
+						$control_data
+					)
+				);
+				
+			} else if ( 'layers-accordion-end' == $control_data['type'] ) {
+
+				// Add Control
+				$this->customizer->add_control(
+					new Layers_Customize_Accordion_End_Control(
+						$this->customizer,
+						$setting_key,
+						$control_data
+					)
+				);
+			
+			} else if ( 'layers-tabs' == $control_data['type'] ) {
+
+				// Add Control
+				$this->customizer->add_control(
+					new Layers_Customize_Tabs_Control(
+						$this->customizer,
+						$setting_key,
+						$control_data
+					)
+				);
+				
+			} else if ( 'layers-tab-start' == $control_data['type'] ) {
+
+				// Add Control
+				$this->customizer->add_control(
+					new Layers_Customize_Tab_Start_Control(
+						$this->customizer,
+						$setting_key,
+						$control_data
+					)
+				);
+				
+			} else if ( 'layers-tab-end' == $control_data['type'] ) {
+
+				// Add Control
+				$this->customizer->add_control(
+					new Layers_Customize_Tab_End_Control(
+						$this->customizer,
+						$setting_key,
+						$control_data
+					)
+				);
+			
 			} else {
 
 				// Add Control
@@ -611,4 +806,4 @@ function layers_register_customizer(){
 	$layers_customizer_reg = Layers_Customizer_Regsitrar::get_instance();
 }
 
-add_action( 'customize_register', 'layers_register_customizer', 99 );
+add_action( 'customize_register', 'layers_register_customizer', 95 );

@@ -100,6 +100,7 @@ body{
 	background-color: #454545;
 	color: rgba(0, 0, 0, 0.55);
 	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	overflow: hidden;
 }
 
 h1,
@@ -505,6 +506,7 @@ object{
 		background-position: center;
 		background-repeat: no-repeat;
 		position: relative;
+		z-index: 5;
 	}
 
 	.header-site .container,
@@ -2791,3 +2793,17 @@ object{
 	.footer-site.invert .section-nav-title{
 		color: rgba(255,255,255,0.55);
 	}
+
+/*------------------------*/
+/*- ANIMATIONS -----------
+.layers-scroll-animate #wrapper-content > *:not( :nth-child(1) ):not( :nth-child(2) ) {
+	opacity: 0;
+	transform: translateY(30%) scale(2);
+	transition: .4s;
+	transition-timing-function: cubic-bezier(0.25,0.1,0.25,1);
+	-webkit-transition-timing-function: cubic-bezier(0.25,0.1,0.25,1);
+}
+.layers-scroll-animate #wrapper-content > *.layers-scroll-animate-going-down:not( :nth-child(1) ):not( :nth-child(2) ) {
+	opacity: 1;
+	transform: translateX(0) scale(1);
+}*/

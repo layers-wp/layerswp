@@ -1,6 +1,17 @@
 # Layers Changelog
 
 =======
+##2.0.0
+### 02 May 2017
+
+* **Enhancement** - All widgets now use accorcion interface. *MP*
+* **Enhancement** - Framework preparation for Layers Pro 2. *MP*
+* **Enhancement** - Updated Web Sans font. *MP*
+* **Fix** - Fixed warning when enabling tags in post lists. *MP*
+
+
+
+=======
 ##1.6.6
 ### 04 April 2017
 

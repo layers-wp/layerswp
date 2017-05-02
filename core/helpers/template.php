@@ -506,6 +506,11 @@ if( !function_exists( 'layers_body_class' ) ) {
 			$classes[] = 'layers-post-page';
 		}
 
+		// Handle overlay / not overlay
+		if( TRUE == layers_get_theme_mod( 'enable-scroll-animations' ) ){
+			$classes[] = 'layers-scroll-animate';
+		}
+
 		if( ( is_single() || is_archive() ) && !$left_sidebar_active && !$right_sidebar_active ){
 			$classes[] = 'no-sidebar';
 		}
@@ -540,6 +545,69 @@ if( !function_exists( 'layers_is_post_list_template' ) ) {
 	}
 }
 
+
+// /**
+//  * Register Header partials.
+//  */
+// add_action( 'customize_register', 'layers_register_header_partials' );
+// function layers_register_header_partials( $wp_customize ) {
+		
+// 	// Add Global partial.
+// 	$wp_customize->selective_refresh->add_partial(
+// 		'layers_header_customization_partial',
+// 		array(
+// 			'selector' => '.layers_header_partial_holder',
+// 			'settings' => layers_get_partial_settings( 'layers_header_customization_partial' ),
+// 			'render_callback' => 'layers_apply_header_customizations',
+// 		)
+// 	);
+// }
+
+// /**
+//  * Add temp element to target for the partial as we are not replacing content,
+//  * but rather just adding a <style> block, and it allows the little pen icon to appear.
+//  */
+// add_action( 'wp_footer', 'layers_add_header_partial_holder' );
+// function layers_add_header_partial_holder() {
+// 	global $wp_customize;
+// 	if ( $wp_customize ) {
+// 		echo '<div class="layers_header_partial_holder"></div>';
+// 	}
+// }
+
+// /**
+//  * Apply Herder customizations.
+//  */
+// add_action( 'wp_enqueue_scripts', 'layers_apply_header_customizations', 60 );
+// function layers_apply_header_customizations() {
+	
+// 	// Bail if not Layers.
+// 	$theme = wp_get_theme();
+// 	if ( 'layerswp' !== $theme->template ) return;
+	
+	
+// 	// Collect CSS.
+// 	$css = '';
+	
+// 	/**
+// 	 * Body - Background.
+// 	 */
+// 	$bg_color = layers_get_theme_mod( 'body-background-color', FALSE );
+// 	if( '' != $bg_color ) {
+// 		$css .= layers_inline_styles("
+// 			/***layers_header_styling***/ .wrapper-content {
+// 				background-color: {$bg_color};
+// 			}
+// 		");
+// 	}
+	
+	
+// 	// If this function is used by a partial too - this replaces the lines by JS.
+// 	layers_pro_replace_customizer_css( '/***layers_header_styling***/', $css );
+// }
+	
+
+
 /**
  * Apply Customizer settings to site housing
  */
@@ -551,7 +619,6 @@ if( !function_exists( 'layers_apply_customizer_styles' ) ) {
 		*/
 		$main_color = layers_get_theme_mod( 'site-accent-color' , TRUE );
 		$header_color = layers_get_theme_mod( 'header-background-color', FALSE );
-		$header_color_no_default = layers_get_theme_mod( 'header-background-color', TRUE );
 		$footer_color = layers_get_theme_mod( 'footer-background-color', FALSE );
 
 		/**
@@ -636,11 +703,10 @@ if( !function_exists( 'layers_apply_customizer_styles' ) ) {
 			));
 
 			// Add Invert if the color is dark
-			if ( 'dark' == layers_is_light_or_dark( $footer_color ) ){
+			if ( 'dark' == layers_is_light_or_dark( $footer_color ) ) {
 				add_filter( 'layers_footer_site_class', 'layers_add_invert_class' );
-	}
-}
-
+			}
+		}
 	}
 }
 add_action( 'wp_enqueue_scripts', 'layers_apply_customizer_styles', 50 );
@@ -693,7 +759,7 @@ if( !function_exists( 'layers_maybe_set_invert' ) ) {
 if( !function_exists( 'layers_get_header_class' ) ) {
 	function layers_get_header_class( $class = '' ){
 
-		$header_menu_layout		= layers_get_theme_mod( 'header-menu-layout');
+		$header_menu_layout = layers_get_theme_mod( 'header-menu-layout');
 		$header_align_option = layers_get_theme_mod( 'header-menu-layout' );
 		$header_sticky_option = layers_get_theme_mod( 'header-sticky' );
 		$header_overlay_option = layers_get_theme_mod( 'header-overlay');
@@ -1120,8 +1186,22 @@ if( !function_exists( 'layers_inline_styles' ) ) {
 				// Set the background array
 				$bg_args = $args['background'];
 
-				if( isset( $bg_args['color'] ) && '' != $bg_args['color'] ){
-					$css .= 'background-color: ' . $bg_args['color'] . '; ';
+	
+				if(	 isset( $bg_args['style'] ) && 'transparent' == $bg_args['style'] ){
+						$css .= 'background-color: transparent; ';
+
+				} else if( isset( $bg_args['style'] ) && 'gradient' == $bg_args['style'] ){
+
+					if( !isset( $bg_args['image'] ) || ( isset( $bg_args['image'] ) && '' == $bg_args['image'] ) ){
+						$css .= 'background: linear-gradient( ' . $bg_args[ 'gradient-direction' ] . 'deg , ' . $bg_args[ 'gradient-start-color' ] . ', ' . $bg_args['gradient-end-color'] . ');';
+					}
+
+				} else {
+
+					if( isset( $bg_args['color'] ) && '' != $bg_args['color'] ){
+						$css .= 'background-color: ' . $bg_args['color'] . '; ';
+					}
+
 				}
 
 				if( isset( $bg_args['repeat'] ) && '' != $bg_args['repeat'] ){
@@ -1144,6 +1224,7 @@ if( !function_exists( 'layers_inline_styles' ) ) {
 					$image = wp_get_attachment_image_src( $bg_args['image'] , 'full' );
 					$css.= 'background-image: url(\'' . $image[0] .'\');';
 				}
+
 			break;
 
 			case 'button' :
@@ -1255,16 +1336,37 @@ if( !function_exists( 'layers_inline_styles' ) ) {
 		$inline_css = '';
 
 		// If there is a container ID specified, append it to the beginning of the declaration
-		if( NULL !== $container_id ) {
-			$inline_css = ' ' . $container_id . ' ' . $inline_css;
-		}
 
 		if( isset( $args['selectors'] ) ) {
             if ( is_string( $args['selectors'] ) && '' != $args['selectors'] ) {
-            	$inline_css .= $args['selectors'];
+
+				if( NULL !== $container_id ) {
+					$inline_css = ' ' . $container_id;
+				}
+
+            	$inline_css .= ' ' . $args['selectors'];
+
             } else if( is_array( $args['selectors'] ) && !empty( $args['selectors'] ) ){
-            	$inline_css .= implode( ', ' . $inline_css . ' ',  $args['selectors'] );
+            	
+            	$first = TRUE;
+            	
+            	foreach( $args['selectors'] as $s ) {
+
+            		if( !$first )
+            			$inline_css .= ', ';
+
+
+					if( NULL !== $container_id ) {
+						$inline_css .= $container_id;
+					}
+
+            		$inline_css .= ' ' . $s;
+
+            		$first = FALSE;
+            	}
             }
+		} else if( NULL !== $container_id ) {
+			$inline_css = ' ' . $container_id . ' ' . $inline_css;
 		}
 
 		// Apply inline CSS
@@ -1278,7 +1380,8 @@ if( !function_exists( 'layers_inline_styles' ) ) {
 		$inline_css = str_replace( "\n", '', $inline_css );
 		$inline_css = str_replace( "\r", '', $inline_css );
 		$inline_css = str_replace( "\t", '', $inline_css );
-		$inline_css = "\n" . $inline_css;
+		// $inline_css = "\n" . $inline_css;
+		$inline_css = "\n\n" . $inline_css; // Debugging: double line breaks helps visually with debugging.
 
 		// Add the new CSS to the existing CSS
 		$layers_inline_css .= $inline_css;

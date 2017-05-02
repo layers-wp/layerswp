@@ -1,7 +1,8 @@
-<?php  /**
+<?php
+/**
  * Select Image
  *
- * This file is used to register and display the custom Layers Select Image
+ * This file is used to register and display the custom Layers Select Image.
  *
  * @package Layers
  * @since Layers 1.0.0
@@ -20,8 +21,8 @@ if( !class_exists( 'Layers_Customize_Select_Image_Control' ) ) {
 			$values = false; ?>
 
 			<div id="layers-customize-control-<?php echo esc_attr( $this->id ); ?>" class="l_option-customize-control l_option-customize-control-<?php echo esc_attr( str_replace( 'layers-', '', $this->type ) ); ?> <?php echo esc_attr( $this->class ); ?>" <?php echo $this->get_linked_data(); ?> >
-
-				<?php $this->render_history_actions(); ?>
+				
+				<?php do_action( 'layers-control-inside', $this ); ?>
 
 				<?php if ( '' != $this->heading_divider ) { ?>
 					<?php $this->render_heading_divider( $this->heading_divider ); ?>
@@ -42,6 +43,7 @@ if( !class_exists( 'Layers_Customize_Select_Image_Control' ) ) {
 				<?php endif; ?>
 				
 				<div class="layers-form-item">
+					
 					<?php echo $form_elements->input(
 						array(
 							'type' => 'image',
@@ -52,6 +54,7 @@ if( !class_exists( 'Layers_Customize_Select_Image_Control' ) ) {
 							'data' => $this->get_customize_data(),
 						)
 					); ?>
+					
 				</div>
 				
 			</div>

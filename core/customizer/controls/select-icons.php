@@ -1,7 +1,8 @@
-<?php  /**
- * Radio Control
+<?php
+/**
+ * Select Icons Control
  *
- * This file is used to register and display the custom Layers Radio Checkbox
+ * This file is used to register and display the custom Layers Select Icons.
  *
  * @package Layers
  * @since Layers 1.0.0
@@ -17,12 +18,14 @@ if( !class_exists( 'Layers_Customize_Select_Icon_Control' ) ) {
 
 			// Exit if there are no choises
 			if ( empty( $this->choices ) ) return;
+			
+			$form_elements = new Layers_Form_Elements();
 
 			$name = '_customize-radio-' . $this->id; ?>
 
 			<div id="layers-customize-control-<?php echo esc_attr( $this->id ); ?>" class="l_option-customize-control l_option-customize-control-<?php echo esc_attr( str_replace( 'layers-', '', $this->type ) ); ?> <?php echo esc_attr( $this->class ); ?>" <?php echo $this->get_linked_data(); ?> >
-
-				<?php $this->render_history_actions(); ?>
+				
+				<?php do_action( 'layers-control-inside', $this ); ?>
 
 				<?php if ( '' != $this->heading_divider ) { ?>
 					<?php $this->render_heading_divider( $this->heading_divider ); ?>
@@ -43,28 +46,71 @@ if( !class_exists( 'Layers_Customize_Select_Icon_Control' ) ) {
 				<?php endif; ?>
 
 				<ul class="layers-visuals-wrapper layers-visuals-inline layers-clearfix">
-					<?php foreach ( $this->choices as $key => $value ) :
-
-						if ( is_array( $value ) ) {
-							$label = $value['name'];
-							$class = $value['class'];
+					<?php foreach ( $this->choices as $key => $choice ) :
+						
+						// Allow for setting custom Name & Class-Name by passing array.
+						if ( is_array( $choice ) ) {
+							$label = $choice['name'];
+							$class = $choice['class'];
 						}
 						else {
-							$label = $value;
+							$label = $choice;
 							$class = "icon-{$key}";
 						}
+						
+						// Get the checked state.
+						$checked = FALSE;
+						if ( $this->multi_select ) {
+							
+							// Multi-Select.
+							if ( get_theme_mod( "{$this->id}-{$key}" ) === $key ) $checked = TRUE; // Radio (Testing).
+							if ( get_theme_mod( "{$this->id}-{$key}" ) === '1' ) $checked = TRUE; // Checkbox
+						}
+						else {
+							
+							// Single.
+							if ( $this->value() == $key ) $checked = TRUE;
+						}
 						?>
-						<li class="layers-visuals-item <?php if( $key == $this->value() ) echo 'layers-active'; ?>">
-							<label class="layers-icon-wrapper layers-select-images">
+						<li class="layers-visuals-item <?php if ( $checked ) echo 'layers-active'; ?>">
+							<label class="layers-icon-wrapper layers-select-images" for="<?php echo esc_attr( "{$this->id}-{$key}" ); ?>">
+								
 								<span class="<?php echo $class; ?>"></span>
+								
 								<span class="layers-icon-description">
 									<?php echo $label; ?>
 								</span>
-								<input class="l_admin-hide" type="radio" value="<?php echo esc_attr( $key ); ?>" id="<?php echo esc_attr( $this->id ); ?>-<?php echo $key; ?>" name="<?php echo esc_attr( $name ); ?>" <?php $this->link(); checked( $this->value(), $key ); ?> />
+								
+								<input
+									value="<?php echo esc_attr( $key ); ?>"
+									id="<?php echo esc_attr( "{$this->id}-{$key}" ); ?>"
+									<?php if ( $this->multi_select ) { ?>
+										type="checkbox"
+										name="<?php echo esc_attr( "{$this->id}-{$key}" ); ?>"
+										data-customize-setting-link="<?php echo esc_attr( "{$this->id}-{$key}" ); ?>"
+									<?php } else { ?>
+										type="radio"
+										name="<?php echo esc_attr( "{$this->id}" ); ?>"
+										<?php $this->link(); ?>
+									<?php } ?>
+									<?php checked( $checked, true, true ); ?>
+									class="l_admin-hide"
+								/>
+									
 							</label>
 						</li>
 					<?php endforeach; ?>
 				</ul>
+				
+				<?php echo $form_elements->input(
+					array(
+						'type' => 'hidden',
+						'label' => '',
+						'name' => '' ,
+						'id' =>  $this->id,
+						'data' => $this->get_customize_data(),
+					)
+				); ?>
 
 			</div>
 			<?php

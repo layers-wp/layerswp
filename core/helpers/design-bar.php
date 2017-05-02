@@ -928,7 +928,6 @@ class Layers_Design_Controller {
 
 			$defaults['elements']['fonts-size'] = array(
 				'type' => 'select',
-				'label' => __( 'Text Size', 'layerswp' ),
 				'name' => $this->get_layers_field_name( 'fonts', 'size' ),
 				'id' => $this->get_layers_field_id( 'fonts', 'size' ),
 				'value' => ( isset( $this->values['fonts']['size'] ) ) ? $this->values['fonts']['size'] : NULL,
@@ -986,7 +985,7 @@ class Layers_Design_Controller {
 							'html' => '<div class="layers-upsell-tag">
 								<span class="layers-upsell-title">Upgrade to Layers Pro</span>
 									<div class="description customize-control-description">
-									Want to bold, italic or fine-tune your header size? <a target="_blank" href="https://www.layerswp.com/layers-pro/?ref=obox&amp;utm_source=layers%20theme&amp;utm_medium=link&amp;utm_campaign=Layers%20Pro%20Upsell&amp;utm_content=Widget%Font%20Styling">Purchase Layers Pro</a>!
+									Use unique Google Fonts, bold, italicize or fine-tune your fonts with <a target="_blank" href="https://www.layerswp.com/layers-pro/?ref=obox&amp;utm_source=layers%20theme&amp;utm_medium=link&amp;utm_campaign=Layers%20Pro%20Upsell&amp;utm_content=Widget%Font%20Styling">Layers Pro</a>!
 									</div>
 								</div>'
 							);
@@ -1018,7 +1017,7 @@ class Layers_Design_Controller {
 					'html' => '<div class="layers-upsell-tag">
 						<span class="layers-upsell-title">Upgrade to Layers Pro</span>
 							<div class="description customize-control-description">
-							Want to bold, italic or fine-tune your excerpt size? <a target="_blank" href="https://www.layerswp.com/layers-pro/?ref=obox&amp;utm_source=layers%20theme&amp;utm_medium=link&amp;utm_campaign=Layers%20Pro%20Upsell&amp;utm_content=Widget%Font%20Styling">Purchase Layers Pro</a>!
+								Use unique Google Fonts, capitalize, strike through or fine-tune your excerpt with <a target="_blank" href="https://www.layerswp.com/layers-pro/?ref=obox&amp;utm_source=layers%20theme&amp;utm_medium=link&amp;utm_campaign=Layers%20Pro%20Upsell&amp;utm_content=Widget%Font%20Styling">Layers Pro</a>!
 							</div>
 						</div>'
 					);

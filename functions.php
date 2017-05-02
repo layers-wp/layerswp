@@ -10,7 +10,7 @@
 /**
  * The current version of the theme. Use a random number for SCRIPT_DEBUG mode
  */
-define( 'LAYERS_VERSION', '2.0.0' );
+define( 'LAYERS_VERSION', '2.0.1' );
 define( 'LAYERS_TEMPLATE_URI' , get_template_directory_uri() );
 define( 'LAYERS_TEMPLATE_DIR' , get_template_directory() );
 define( 'LAYERS_THEME_TITLE' , 'Layers' );
@@ -725,3 +725,12 @@ if( !function_exists( 'layers_excerpt_class' ) ) {
 } // layers_excerpt_class
 add_filter( "the_excerpt", "layers_excerpt_class" );
 add_filter( "get_the_excerpt", "layers_excerpt_class" );
+
+function layers_pro_update_notice(){
+	if( defined( 'LAYERS_PRO_VER' ) && version_compare( LAYERS_PRO_VER, '2.0.0', '<' ) ){ ?>
+		<div class="updated is-dismissible notice">
+			<p><?php echo sprintf( 'To make the most of Layers 2, it is recommended that you also update <strong>Layers Pro</strong> to version 2. <a href="%s" target="_blank">Click here</a> to read how you can update. All your settings will be retained.', 'http://docs.layerswp.com/doc/how-to-update-layers-exensions/' ); ?></p>
+		</div>
+	<?php }
+}
+add_action( 'admin_notices', 'layers_pro_update_notice' );

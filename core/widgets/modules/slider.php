@@ -609,6 +609,23 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 						'slider-margin-end' => array(
 							'type' => 'group-end',
 						),
+
+						'slider-padding-start' => array(
+							'type' => 'group-start',
+							'label' => __( 'Padding', 'layerswp' ),
+						),
+
+							'padding' => array(
+								'type' => 'inline-numbers-fields',
+								'name' => $this->get_layers_field_name( 'design', 'advanced', 'padding' ),
+								'id' => $this->get_layers_field_id( 'design', 'advanced', 'padding' ),
+								'value' => ( isset( $instance['design']['advanced']['padding'] ) ) ? $instance['design']['advanced']['padding'] : NULL,
+								'input_class' => 'inline-fields-flush',
+							),
+							
+						'slider-padding-end' => array(
+							'type' => 'group-end',
+						),
 					),
 				),
 				'advanced',

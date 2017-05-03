@@ -1,6 +1,13 @@
 # Layers Changelog
 
 =======
+##2.0.1
+### 04 May 2017
+
+* **Fix** - Re-added padding settings in the slider widget. *MP*
+* **Fix** - Fixed margin and padding settings in the content widget. *MP*
+
+=======
 ##2.0.0
 ### 02 May 2017
 

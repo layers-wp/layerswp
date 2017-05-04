@@ -692,6 +692,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 						), $this, $item_instance )
 					); ?>
 					<div class="layers-row">
+						
 						<p class="layers-form-item">
 							<label for="<?php echo $this->get_layers_field_id( 'title' ); ?>"><?php _e( 'Title' , 'layerswp' ); ?></label>
 							<?php echo $this->form_elements()->input(
@@ -705,6 +706,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 								)
 							); ?>
 						</p>
+						
 						<p class="layers-form-item">
 							<label for="<?php echo $this->get_layers_field_id( 'excerpt' ); ?>"><?php _e( 'Excerpt' , 'layerswp' ); ?></label>
 							<?php echo $this->form_elements()->input(
@@ -733,7 +735,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 								)
 							); ?>
 						</div>
-
+						
 					</div>
 				</section>
 			</li>

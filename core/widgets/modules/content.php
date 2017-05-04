@@ -566,6 +566,9 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 
 			// Required - Get the name of this type.
 			$type = str_replace( '_item', '', __FUNCTION__ );
+			
+			// Fix widget's that were created before dynamic linking structure.
+			$item_instance = $this->convert_legacy_widget_links( $item_instance, 'button' );
 
 			// Mix in new/unset defaults on every instance load (NEW)
 			$item_instance = $this->apply_defaults( $item_instance, 'column' );
@@ -716,12 +719,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 								)
 							); ?>
 						</p>
-
-						<?php
-						// Fix widget's that were created before dynamic linking structure.
-						$item_instance = $this->convert_legacy_widget_links( $item_instance, 'button' );
-						?>
-
+						
 						<div class="layers-form-item">
 							<label>
 								<?php _e( 'Insert Link' , 'layerswp' ); ?>

@@ -512,21 +512,21 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 								),
 							),
 
-							'margin' => array(
-								'type' => 'inline-numbers-fields',
-								'label' => __( 'Margin (px)', 'layerswp' ),
-								'name' => $this->get_layers_field_name( 'design', 'advanced', 'margin' ),
-								'id' => $this->get_layers_field_id( 'design', 'advanced', 'margin' ),
-								'value' => ( isset( $instance['design']['advanced']['margin'] ) ) ? $instance['design']['advanced']['margin'] : NULL,
-								'input_class' => 'inline-fields-flush',
-							),
-
 							'padding' => array(
 								'type' => 'inline-numbers-fields',
 								'label' => __( 'Padding (px)', 'layerswp' ),
 								'name' => $this->get_layers_field_name( 'design', 'advanced', 'padding' ),
 								'id' => $this->get_layers_field_id( 'design', 'advanced', 'padding' ),
 								'value' => ( isset( $instance['design']['advanced']['padding'] ) ) ? $instance['design']['advanced']['padding'] : NULL,
+								'input_class' => 'inline-fields-flush',
+							),
+
+							'margin' => array(
+								'type' => 'inline-numbers-fields',
+								'label' => __( 'Margin (px)', 'layerswp' ),
+								'name' => $this->get_layers_field_name( 'design', 'advanced', 'margin' ),
+								'id' => $this->get_layers_field_id( 'design', 'advanced', 'margin' ),
+								'value' => ( isset( $instance['design']['advanced']['margin'] ) ) ? $instance['design']['advanced']['margin'] : NULL,
 								'input_class' => 'inline-fields-flush',
 							),
 

@@ -123,6 +123,9 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 
 			// Turn $args array into variables.
 			extract( $args );
+			
+			// Allow anyone to modify the instance.
+			$instance = apply_filters( 'layers_modify_widget_instance', $instance, $this->widget_id, FALSE );
 
 			// Use defaults if $instance is empty.
 			if( empty( $instance ) && ! empty( $this->defaults ) ) {
@@ -225,6 +228,9 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 
 							// Setup the relevant slide
 							$item_instance = $instance[ 'slides' ][ $slide_key ];
+							
+							// Allow anyone to modify the instance.
+							$item_instance = apply_filters( 'layers_modify_widget_instance', $item_instance, $this->widget_id, FALSE );
 
 							// Mix in new/unset defaults on every instance load (NEW)
 							$item_instance = $this->apply_defaults( $item_instance, 'slide' );
@@ -467,6 +473,9 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 			if( empty( $instance ) && ! empty( $this->defaults ) ) {
 				$instance = wp_parse_args( $instance, $this->defaults );
 			}
+			
+			// Allow anyone to modify the instance.
+			$instance = apply_filters( 'layers_modify_widget_instance', $instance, $this->widget_id, FALSE );
 
 			// Mix in new/unset defaults on every instance load (NEW)
 			$instance = $this->apply_defaults( $instance );
@@ -662,6 +671,9 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 
 			// Required - Get the name of this type.
 			$type = str_replace( '_item', '', __FUNCTION__ );
+			
+			// Allow anyone to modify the instance.
+			$item_instance = apply_filters( 'layers_modify_widget_instance', $item_instance, $this->widget_id, $item_guid );
 
 			// Mix in new/unset defaults on every instance load (NEW)
 			$item_instance = $this->apply_defaults( $item_instance, 'slide' );

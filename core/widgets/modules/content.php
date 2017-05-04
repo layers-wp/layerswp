@@ -107,6 +107,9 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 
 			// Turn $args array into variables.
 			extract( $args );
+			
+			// Allow anyone to modify the instance.
+			$instance = apply_filters( 'layers_modify_widget_instance', $instance, $this->widget_id, FALSE );
 
 			// Use defaults if $instance is empty.
 			if( empty( $instance ) && ! empty( $this->defaults ) ) {
@@ -205,6 +208,9 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 								// Setup Internal Vars.
 								$item_instance = $instance[ 'columns' ][ $column_key ];
 								$item_id_attr  = "{$widget_id}-tabs-{$column_key}";
+								
+								// Allow anyone to modify the instance.
+								$item_instance = apply_filters( 'layers_modify_widget_instance', $item_instance, $this->widget_id, FALSE );
 
 								// Mix in new/unset defaults on every instance load (NEW)
 								$item_instance = $this->apply_defaults( $item_instance, 'column' );
@@ -453,6 +459,9 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 			if( empty( $instance ) && ! empty( $this->defaults ) ) {
 				$instance = wp_parse_args( $instance, $this->defaults );
 			}
+			
+			// Allow anyone to modify the instance.
+			$instance = apply_filters( 'layers_modify_widget_instance', $instance, $this->widget_id, FALSE );
 
 			// Mix in new/unset defaults on every instance load (NEW)
 			$instance = $this->apply_defaults( $instance );
@@ -569,6 +578,9 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 			
 			// Fix widget's that were created before dynamic linking structure.
 			$item_instance = $this->convert_legacy_widget_links( $item_instance, 'button' );
+			
+			// Allow anyone to modify the instance.
+			$item_instance = apply_filters( 'layers_modify_widget_instance', $item_instance, $this->widget_id, $item_guid );
 
 			// Mix in new/unset defaults on every instance load (NEW)
 			$item_instance = $this->apply_defaults( $item_instance, 'column' );

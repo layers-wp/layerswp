@@ -7,6 +7,7 @@
 * **Enhancement** - All widgets now use accorcion interface. *MP*
 * **Enhancement** - Framework preparation for Layers Pro 2. *MP*
 * **Enhancement** - Updated Web Sans font. *MP*
+* **Tweak** - Moved slider Margin & Padding to the layouts tab, inline with the ther widgets. *MP*
 * **Fix** - Fixed warning when enabling tags in post lists. *MP*
 
 

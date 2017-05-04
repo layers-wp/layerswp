@@ -512,6 +512,24 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 								),
 							),
 
+							'margin' => array(
+								'type' => 'inline-numbers-fields',
+								'label' => __( 'Margin (px)', 'layerswp' ),
+								'name' => $this->get_layers_field_name( 'design', 'advanced', 'margin' ),
+								'id' => $this->get_layers_field_id( 'design', 'advanced', 'margin' ),
+								'value' => ( isset( $instance['design']['advanced']['margin'] ) ) ? $instance['design']['advanced']['margin'] : NULL,
+								'input_class' => 'inline-fields-flush',
+							),
+
+							'padding' => array(
+								'type' => 'inline-numbers-fields',
+								'label' => __( 'Padding (px)', 'layerswp' ),
+								'name' => $this->get_layers_field_name( 'design', 'advanced', 'padding' ),
+								'id' => $this->get_layers_field_id( 'design', 'advanced', 'padding' ),
+								'value' => ( isset( $instance['design']['advanced']['padding'] ) ) ? $instance['design']['advanced']['padding'] : NULL,
+								'input_class' => 'inline-fields-flush',
+							),
+
 						'slider-layout-end' => array(
 							'type' => 'group-end',
 						),
@@ -590,40 +608,6 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 							),
 							
 						'slider-animation-end' => array(
-							'type' => 'group-end',
-						),
-
-						'slider-margin-start' => array(
-							'type' => 'group-start',
-							'label' => __( 'Margin', 'layerswp' ),
-						),
-
-							'margin' => array(
-								'type' => 'inline-numbers-fields',
-								'name' => $this->get_layers_field_name( 'design', 'advanced', 'margin' ),
-								'id' => $this->get_layers_field_id( 'design', 'advanced', 'margin' ),
-								'value' => ( isset( $instance['design']['advanced']['margin'] ) ) ? $instance['design']['advanced']['margin'] : NULL,
-								'input_class' => 'inline-fields-flush',
-							),
-							
-						'slider-margin-end' => array(
-							'type' => 'group-end',
-						),
-
-						'slider-padding-start' => array(
-							'type' => 'group-start',
-							'label' => __( 'Padding', 'layerswp' ),
-						),
-
-							'padding' => array(
-								'type' => 'inline-numbers-fields',
-								'name' => $this->get_layers_field_name( 'design', 'advanced', 'padding' ),
-								'id' => $this->get_layers_field_id( 'design', 'advanced', 'padding' ),
-								'value' => ( isset( $instance['design']['advanced']['padding'] ) ) ? $instance['design']['advanced']['padding'] : NULL,
-								'input_class' => 'inline-fields-flush',
-							),
-							
-						'slider-padding-end' => array(
 							'type' => 'group-end',
 						),
 					),

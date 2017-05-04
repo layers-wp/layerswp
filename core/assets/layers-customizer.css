@@ -1764,8 +1764,8 @@ div[id*='layers-widget'] .widget-control-actions .alignright{
 		top: 5px;
 		right: 100px;
 		width: 220px;
-		max-height: 320px; /*browser compatibility*/
-		max-height: 50vh;
+		max-height: 420px; /*browser compatibility*/
+		max-height: 75vh;
 		background: #f5f5f5;
 		border: 1px solid #ddd;
 		border-radius: 3px;
@@ -1777,6 +1777,10 @@ div[id*='layers-widget'] .widget-control-actions .alignright{
 		box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.1);
 		padding: 0 10px;
 	}
+		.layers-accordions .layers-pop-menu-wrapper{
+			max-height: 50vh;
+		}
+
 	.layers-visuals-item.layers-last .layers-pop-menu-wrapper{
 		top: auto;
 		bottom: 5px;

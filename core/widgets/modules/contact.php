@@ -82,7 +82,7 @@ if( !class_exists( 'Layers_Contact_Widget' ) ) {
 						'heading-type' => 'h3',
 					),
 					'advanced' => array (
-						'animation' => 'on',
+						'animation' => layers_get_theme_mod( 'enable-animations' ),
 					)
 				)
 			);
@@ -98,6 +98,9 @@ if( !class_exists( 'Layers_Contact_Widget' ) ) {
 
 			// Turn $args array into variables.
 			extract( $args );
+			
+			// Allow anyone to modify the instance.
+			$instance = apply_filters( 'layers_modify_widget_instance', $instance, $this->widget_id, FALSE );
 
 			// Use defaults if $instance is empty.
 			if( empty( $instance ) && ! empty( $this->defaults ) ) {
@@ -269,6 +272,9 @@ if( !class_exists( 'Layers_Contact_Widget' ) ) {
 			if( empty( $instance ) && ! empty( $this->defaults ) ) {
 				$instance = wp_parse_args( $instance, $this->defaults );
 			}
+			
+			// Allow anyone to modify the instance.
+			$instance = apply_filters( 'layers_modify_widget_instance', $instance, $this->widget_id, FALSE );
 
 			// Mix in new/unset defaults on every instance load (NEW)
 			$instance = $this->apply_defaults( $instance );

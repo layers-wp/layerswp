@@ -68,7 +68,7 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 				'animation_type' => 'slide',
 				'design' => array(
 					'advanced' => array (
-						'animation' => 'on',
+						'animation' => layers_get_theme_mod( 'enable-animations' ),
 					)
 				),
 			);
@@ -123,6 +123,9 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 
 			// Turn $args array into variables.
 			extract( $args );
+			
+			// Allow anyone to modify the instance.
+			$instance = apply_filters( 'layers_modify_widget_instance', $instance, $this->widget_id, FALSE );
 
 			// Use defaults if $instance is empty.
 			if( empty( $instance ) && ! empty( $this->defaults ) ) {
@@ -225,6 +228,9 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 
 							// Setup the relevant slide
 							$item_instance = $instance[ 'slides' ][ $slide_key ];
+							
+							// Allow anyone to modify the instance.
+							$item_instance = apply_filters( 'layers_modify_widget_instance', $item_instance, $this->widget_id, FALSE );
 
 							// Mix in new/unset defaults on every instance load (NEW)
 							$item_instance = $this->apply_defaults( $item_instance, 'slide' );
@@ -467,6 +473,9 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 			if( empty( $instance ) && ! empty( $this->defaults ) ) {
 				$instance = wp_parse_args( $instance, $this->defaults );
 			}
+			
+			// Allow anyone to modify the instance.
+			$instance = apply_filters( 'layers_modify_widget_instance', $instance, $this->widget_id, FALSE );
 
 			// Mix in new/unset defaults on every instance load (NEW)
 			$instance = $this->apply_defaults( $instance );
@@ -510,6 +519,24 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 									'show-if-selector' => '#' . $this->get_layers_field_id( 'autoheight_slides' ),
 									'show-if-value' => 'false',
 								),
+							),
+
+							'padding' => array(
+								'type' => 'inline-numbers-fields',
+								'label' => __( 'Padding (px)', 'layerswp' ),
+								'name' => $this->get_layers_field_name( 'design', 'advanced', 'padding' ),
+								'id' => $this->get_layers_field_id( 'design', 'advanced', 'padding' ),
+								'value' => ( isset( $instance['design']['advanced']['padding'] ) ) ? $instance['design']['advanced']['padding'] : NULL,
+								'input_class' => 'inline-fields-flush',
+							),
+
+							'margin' => array(
+								'type' => 'inline-numbers-fields',
+								'label' => __( 'Margin (px)', 'layerswp' ),
+								'name' => $this->get_layers_field_name( 'design', 'advanced', 'margin' ),
+								'id' => $this->get_layers_field_id( 'design', 'advanced', 'margin' ),
+								'value' => ( isset( $instance['design']['advanced']['margin'] ) ) ? $instance['design']['advanced']['margin'] : NULL,
+								'input_class' => 'inline-fields-flush',
 							),
 
 						'slider-layout-end' => array(
@@ -592,23 +619,6 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 						'slider-animation-end' => array(
 							'type' => 'group-end',
 						),
-
-						'slider-margin-start' => array(
-							'type' => 'group-start',
-							'label' => __( 'Margin', 'layerswp' ),
-						),
-
-							'margin' => array(
-								'type' => 'inline-numbers-fields',
-								'name' => $this->get_layers_field_name( 'design', 'advanced', 'margin' ),
-								'id' => $this->get_layers_field_id( 'design', 'advanced', 'margin' ),
-								'value' => ( isset( $instance['design']['advanced']['margin'] ) ) ? $instance['design']['advanced']['margin'] : NULL,
-								'input_class' => 'inline-fields-flush',
-							),
-							
-						'slider-margin-end' => array(
-							'type' => 'group-end',
-						),
 					),
 				),
 				'advanced',
@@ -661,6 +671,9 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 
 			// Required - Get the name of this type.
 			$type = str_replace( '_item', '', __FUNCTION__ );
+			
+			// Allow anyone to modify the instance.
+			$item_instance = apply_filters( 'layers_modify_widget_instance', $item_instance, $this->widget_id, $item_guid );
 
 			// Mix in new/unset defaults on every instance load (NEW)
 			$item_instance = $this->apply_defaults( $item_instance, 'slide' );

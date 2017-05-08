@@ -72,7 +72,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 						'heading-type' => 'h3',
 					),
 					'advanced' => array (
-						'animation' => 'on',
+						'animation' => layers_get_theme_mod( 'enable-animations' ),
 					)
 				),
 			);
@@ -107,6 +107,9 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 
 			// Turn $args array into variables.
 			extract( $args );
+			
+			// Allow anyone to modify the instance.
+			$instance = apply_filters( 'layers_modify_widget_instance', $instance, $this->widget_id, FALSE );
 
 			// Use defaults if $instance is empty.
 			if( empty( $instance ) && ! empty( $this->defaults ) ) {
@@ -205,6 +208,9 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 								// Setup Internal Vars.
 								$item_instance = $instance[ 'columns' ][ $column_key ];
 								$item_id_attr  = "{$widget_id}-tabs-{$column_key}";
+								
+								// Allow anyone to modify the instance.
+								$item_instance = apply_filters( 'layers_modify_widget_instance', $item_instance, $this->widget_id, FALSE );
 
 								// Mix in new/unset defaults on every instance load (NEW)
 								$item_instance = $this->apply_defaults( $item_instance, 'column' );
@@ -453,6 +459,9 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 			if( empty( $instance ) && ! empty( $this->defaults ) ) {
 				$instance = wp_parse_args( $instance, $this->defaults );
 			}
+			
+			// Allow anyone to modify the instance.
+			$instance = apply_filters( 'layers_modify_widget_instance', $instance, $this->widget_id, FALSE );
 
 			// Mix in new/unset defaults on every instance load (NEW)
 			$instance = $this->apply_defaults( $instance );
@@ -566,6 +575,12 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 
 			// Required - Get the name of this type.
 			$type = str_replace( '_item', '', __FUNCTION__ );
+			
+			// Fix widget's that were created before dynamic linking structure.
+			$item_instance = $this->convert_legacy_widget_links( $item_instance, 'button' );
+			
+			// Allow anyone to modify the instance.
+			$item_instance = apply_filters( 'layers_modify_widget_instance', $item_instance, $this->widget_id, $item_guid );
 
 			// Mix in new/unset defaults on every instance load (NEW)
 			$item_instance = $this->apply_defaults( $item_instance, 'column' );
@@ -689,6 +704,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 						), $this, $item_instance )
 					); ?>
 					<div class="layers-row">
+						
 						<p class="layers-form-item">
 							<label for="<?php echo $this->get_layers_field_id( 'title' ); ?>"><?php _e( 'Title' , 'layerswp' ); ?></label>
 							<?php echo $this->form_elements()->input(
@@ -702,6 +718,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 								)
 							); ?>
 						</p>
+						
 						<p class="layers-form-item">
 							<label for="<?php echo $this->get_layers_field_id( 'excerpt' ); ?>"><?php _e( 'Excerpt' , 'layerswp' ); ?></label>
 							<?php echo $this->form_elements()->input(
@@ -716,12 +733,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 								)
 							); ?>
 						</p>
-
-						<?php
-						// Fix widget's that were created before dynamic linking structure.
-						$item_instance = $this->convert_legacy_widget_links( $item_instance, 'button' );
-						?>
-
+						
 						<div class="layers-form-item">
 							<label>
 								<?php _e( 'Insert Link' , 'layerswp' ); ?>
@@ -735,7 +747,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 								)
 							); ?>
 						</div>
-
+						
 					</div>
 				</section>
 			</li>

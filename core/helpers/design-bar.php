@@ -204,7 +204,7 @@ class Layers_Design_Controller {
 			);
 		} ?>
 
-		<li class="layers-design-bar-nav-item layers-visuals-item">
+		<li class="layers-design-bar-nav-item layers-visuals-item" data-filter="<?php echo 'layers_design_bar_' . $key . '_' . $this->args[ 'widget_id' ] . '_elements'; ?>">
 			<a href="" class="layers-icon-wrapper">
 				<span class="<?php echo esc_attr( $icon_css ); ?>"></span>
 				<span class="layers-icon-description">

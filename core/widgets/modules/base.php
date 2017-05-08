@@ -61,7 +61,7 @@ if( !class_exists( 'Layers_Widget' ) ) {
 			global $wp_customize;
 
 		    if (
-                'on' === $this->check_and_return( $instance , 'design', 'advanced', 'animation' ) &&
+                TRUE === $this->check_and_return( $instance , 'design', 'advanced', 'animation' ) &&
                 strlen($this->animation_class) !== 0 &&
                 !$wp_customize
             ) {
@@ -264,16 +264,16 @@ if( !class_exists( 'Layers_Widget' ) ) {
 						if( isset( $values[ $field ] ) && '' != $values[ $field ] && is_numeric( $values[ $field ] ) ) {
 
 							// If value is set, and is number, then add 'px' to it
-							// $values[ $field ] .= 'px';
+							//$values[ $field ] .= 'px';
 						}
 					}
 
 					// Apply the TRBL styles
 					if ( 'padding' == $type && isset( $instance['slides'] ) && 1 <= count( $instance['slides'] ) ){
-						$this->inline_css .= layers_inline_styles( ".{$widget_id} .swiper-slide > .content", $type, array( $type => $values ) );
+						$this->inline_css .= layers_inline_styles( "#{$widget_id} .swiper-slide > .content", $type, array( $type => $values ) );
 					}
 					else{
-						$this->inline_css .= layers_inline_styles( ".{$widget_id}", $type, array( $type => $values ) );
+						$this->inline_css .= layers_inline_styles( "#{$widget_id}", $type, array( $type => $values ) );
 					}
 
 				}

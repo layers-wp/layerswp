@@ -61,7 +61,7 @@ if( !class_exists( 'Layers_Widget' ) ) {
 			global $wp_customize;
 
 		    if (
-                'on' === $this->check_and_return( $instance , 'design', 'advanced', 'animation' ) &&
+                TRUE === $this->check_and_return( $instance , 'design', 'advanced', 'animation' ) &&
                 strlen($this->animation_class) !== 0 &&
                 !$wp_customize
             ) {

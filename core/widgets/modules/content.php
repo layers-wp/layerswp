@@ -72,7 +72,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 						'heading-type' => 'h3',
 					),
 					'advanced' => array (
-						'animation' => 'on',
+						'animation' => layers_get_theme_mod( 'enable-animations' ),
 					)
 				),
 			);

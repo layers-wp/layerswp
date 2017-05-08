@@ -68,7 +68,7 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 				'animation_type' => 'slide',
 				'design' => array(
 					'advanced' => array (
-						'animation' => 'on',
+						'animation' => layers_get_theme_mod( 'enable-animations' ),
 					)
 				),
 			);

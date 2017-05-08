@@ -1,6 +1,12 @@
 # Layers Changelog
 
 =======
+##2.0.1
+### 08 May 2017
+
+* **Fix** - Fixed margin & padding setting in widgets. *MP*
+
+=======
 ##2.0.0
 ### 02 May 2017
 

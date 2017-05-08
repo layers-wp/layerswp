@@ -101,7 +101,7 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 						'buttons-size' => 'medium',
 					),
 					'advanced' => array (
-						'animation' => 'on',
+						'animation' => layers_get_theme_mod( 'enable-animations' ),
 					)
 				),
 			);

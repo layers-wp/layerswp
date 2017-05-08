@@ -82,7 +82,7 @@ if( !class_exists( 'Layers_Contact_Widget' ) ) {
 						'heading-type' => 'h3',
 					),
 					'advanced' => array (
-						'animation' => 'on',
+						'animation' => layers_get_theme_mod( 'enable-animations' ),
 					)
 				)
 			);

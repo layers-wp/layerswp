@@ -161,6 +161,11 @@ class Layers_Customizer {
 			array(),
 			LAYERS_VERSION
 		);
+		wp_style_add_data( 
+			LAYERS_THEME_SLUG . '-admin-customizer',
+			'rtl', 
+			'replace' 
+		);
 	}
 
 	/**

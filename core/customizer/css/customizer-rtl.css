@@ -1,0 +1,222 @@
+/*
+ Customizer Specific CSS
+
+ Author: Obox Themes
+ Author URI: http://www.oboxthemes.com/
+ License: GNU General Public License v2 or later
+ License URI: http://www.gnu.org/licenses/gpl-2.0.html
+*/
+
+.layers-customizer-pages-dropdown{
+	border-bottom: 1px solid rgb(241, 241, 241);
+	padding: 8px 0 18px;
+	margin: 0 0 12px 0;
+}
+.layers-customizer-pages-dropdown label{
+
+}
+.layers-customizer-pages-dropdown select{
+	width: 100%;
+}
+
+/*---------------------------*/
+/*- CUSOTMIZER MENUS --------*/
+#customize-controls-layers-actions{
+	display: none;
+	right: 48px;
+	top: 0;
+	position: absolute;
+	vertical-align: bottom;
+	font-family: 'Open Sans', sans-serif;
+}
+#customize-controls-layers-actions ul.layers-customizer-nav{
+	display:block;
+	vertical-align: bottom;
+	margin: 0;
+}
+#customize-controls-layers-actions ul.layers-customizer-nav li{
+	display:block;
+	margin: 0;
+	vertical-align: bottom;
+}
+#customize-controls-layers-actions ul.layers-customizer-nav > li > a,
+#customize-controls-layers-actions ul.layers-customizer-nav > li > span {
+	width: 48px;
+	height: 45px;
+	background: transparent;
+	border-left: 1px solid #ddd;
+	color: #555;
+	text-align: center;
+	line-height: 45px;
+	transition: background .1s ease-in-out;
+	position: relative;
+	display: block;
+	text-indent: initial;
+	cursor: pointer;
+}
+#customize-controls-layers-actions ul.layers-customizer-nav > li:hover > a,
+#customize-controls-layers-actions ul.layers-customizer-nav > li:hover > span {
+	background: #fff;
+}
+
+
+	/*-----------------------*/
+	/*- DROP MENU -----------*/
+	#customize-controls-layers-actions ul.layers-customizer-nav li ul{
+		position: absolute;
+		min-width: 299px;
+		margin-right: -48px;
+		background: transparent;
+		box-shadow: 0 6px 0px rgba(0, 0, 0, 0.1), 0 1px 0px rgba(0, 0, 0, 0.1);
+
+		opacity: 0;
+		visibility: hidden;
+		transform: translate3d(0, 6px, 0);
+		transition: background 0.2s ease-in-out, transform 0.2s ease-in-out, opacity 0.2s ease-in-out, visibility 0.2s ease-in-out;
+	}
+	#customize-controls-layers-actions ul.layers-customizer-nav li.layers-hover ul{
+		background: #f5f5f5;
+		opacity: 1;
+		visibility: visible;
+		transform: translate3d(0, 0, 0);
+		transition: background 0.2s ease-in-out, transform 0.2s ease-in-out, opacity 0.2s ease-in-out, visibility 0.2s ease-in-out;
+	}
+	#customize-controls-layers-actions ul.layers-customizer-nav li ul li{
+		border-top: 1px solid #eee;
+		opacity: 0;
+		visibility: hidden;
+		transform: translate3d(0, 3px, 0);
+		transition: transform 0.1s ease-in-out, opacity 0.1s ease-in-out, visibility 0.1s ease-in-out;
+	}
+	#customize-controls-layers-actions ul.layers-customizer-nav li ul li:first-child{
+		border-top-color: #e0e0e0;
+	}
+	#customize-controls-layers-actions ul.layers-customizer-nav li.layers-hover ul li{
+		opacity: 1;
+		visibility: visible;
+		transform: translate3d(0, 0, 0);
+	}
+
+		/*-------------------*/
+		/*- ITEM ANIMATION --*/
+		#customize-controls-layers-actions ul.layers-customizer-nav li.layers-hover ul li{transition-delay: 0.25s;}
+		#customize-controls-layers-actions ul.layers-customizer-nav li.layers-hover ul li:nth-child(2){transition-delay: 0.27s;}
+		#customize-controls-layers-actions ul.layers-customizer-nav li.layers-hover ul li:nth-child(3){transition-delay: 0.29s;}
+		#customize-controls-layers-actions ul.layers-customizer-nav li.layers-hover ul li:nth-child(4){transition-delay: 0.31s;}
+		#customize-controls-layers-actions ul.layers-customizer-nav li.layers-hover ul li:nth-child(5){transition-delay: 0.33s;}
+
+	#customize-controls-layers-actions ul.layers-customizer-nav li ul a{
+		padding: 0 14px 0 17px;
+		border: none;
+	}
+
+.customize-controls-layers-button-dashboard-main:after{
+	font-family: "layers-interface" !important;
+	content: "\e62f" !important;
+	font-size: 15px !important;
+}
+a.customize-controls-layers-button{
+	width: auto;
+	z-index: 10000;
+	font-size: 14px;
+	color: #555;
+	line-height: 45px;
+	display: block;
+	text-indent: initial;
+	white-space: nowrap;
+	text-align: right;
+}
+a.customize-controls-layers-button i{
+	line-height: inherit;
+	vertical-align: middle;
+	margin-left: 11px;
+	height: auto;
+	font-size: 20px;
+	position: relative;
+	top: -1px;
+	width: 22px;
+	text-align: center;
+	display: inline-block;
+	font-style: normal;
+}
+.layers-button-icon-dashboard:after{
+	font-family: "layers-interface" !important;
+	content: "\e62f" !important;
+	font-size: 15px !important;
+}
+a.customize-controls-layers-button:hover{
+	background: #fff;
+	border-color: #ccc;
+	color: #000;
+	outline: none;
+	-webkit-box-shadow: none;
+	box-shadow: none;
+}
+a.customize-controls-layers-button-preview .icon{
+	font-size: 18px;
+}
+.customize-control-site_icon .actions {
+	margin-bottom: 0;
+}
+
+/*-------------------*/
+/*- TOOL TIP --------*/
+.layers-tooltip .layers-tooltip-text{
+	position: absolute;
+	top: 50px;
+	right: 50%;
+	width: 120px;
+	height: 24px;
+	box-sizing: border-box;
+	margin-right: -60px;
+	padding: 3px;
+	background: rgba(0, 0, 0, 0.7);
+	border-radius: 3px;
+	color: #FFF !important;
+	font-size: 11px !important;
+	font-weight: normal !important;
+	font-family: "Open Sans";
+	text-align: center;
+	line-height: 18px;
+	overflow: visible;
+	opacity: 0;
+	visibility: hidden;
+	transform: translate3d(0, -5px, 0);
+	transition: all 0.05s ease-in-out;
+}
+.layers-tooltip-text{
+	visibility: hidden;
+}
+.layers-tooltip:hover .layers-tooltip-text{
+	opacity: 1;
+	visibility: visible;
+	transform: translate3d(0, 0, 0);
+	transition: all 0.2s ease-in-out 0.25s;
+	z-index: 100;
+}
+.layers-tooltip .layers-tooltip-text.layers-tooltip-text-tiny{
+	width: 70px;
+}
+.layers-tooltip .layers-tooltip-text.layers-tooltip-text-large{
+	width: 136px;
+	margin-right: -68px;
+}
+
+.layers-tooltip .layers-tooltip-text:before{
+	border: solid;
+	border-color: rgba(0, 0, 0, 0.7) rgba(0, 0, 0, 0);
+	border-width: 0 6px 6px 6px;
+	content: "";
+	position: absolute;
+	right: 50%;
+	margin-right: -6px;
+	top: -6px;
+	z-index: 99;
+	transition: all 0.05s ease-in-out;
+}
+.layers-tooltip.layers-tooltip-left .layers-tooltip-text{
+	margin-right: -20px;
+}
+.layers-tooltip.layers-tooltip-left .layers-tooltip-text:before{
+	right: 20px;
+}

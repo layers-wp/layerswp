@@ -1,9 +1,14 @@
 # Layers Changelog
 
 =======
+##2.0.2
+### 06 June 2017
+
+* **Enhancement** - Adjusted Sidebar in V. Customizer to cope with new responsive settings in WP 4.8. *DP*
+
+=======
 ##2.0.1
 ### 08 May 2017
-
 * **Fix** - Fixed margin & padding setting in widgets. *MP*
 
 =======

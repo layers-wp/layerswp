@@ -187,6 +187,23 @@ div#widgets-right div[id*='obox-layers-builder']{
 		overflow-y: visible;
 		transform: translate3d(0, 0, 0);
 	}
+		/*-- WIDGET POP OUT OPEN POSITION FOR DIFFERENT SCREEN SIZES --*/
+		@media only screen and (min-width: 601px) and (max-width: 1666px){
+			.customize-control-widget_form.wide-widget-control.expanded div[id*='layers-widget'] .widget-inside{
+				left: 300px;
+			}
+		}
+		@media only screen and (min-width: 1667px) and (max-width: 3332px){
+			.customize-control-widget_form.wide-widget-control.expanded div[id*='layers-widget'] .widget-inside{
+				left: 18%;
+			}
+		}
+		@media only screen and (min-width: 3333px){
+			.customize-control-widget_form.wide-widget-control.expanded div[id*='layers-widget'] .widget-inside{
+				left: 600px;
+			}
+		}
+
 	/*-- Closing --*/
 	.customize-control-widget_form.wide-widget-control.expanded.layers-collapsing div[id*='layers-widget'] .widget-inside{
 		transform: translate3d(-10px, 0, 0);

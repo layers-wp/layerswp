@@ -179,6 +179,7 @@ div#widgets-right div[id*='obox-layers-builder']{
 		background-position: 50% 20%;
 		background-repeat: no-repeat;
 		background-color: #F5F5F5;
+		z-index: 11;
 	}
 	/*-- Open --*/
 	.customize-control-widget_form.wide-widget-control.expanded div[id*='layers-widget'] .widget-inside{
@@ -187,22 +188,6 @@ div#widgets-right div[id*='obox-layers-builder']{
 		overflow-y: visible;
 		transform: translate3d(0, 0, 0);
 	}
-		/*-- WIDGET POP OUT OPEN POSITION FOR DIFFERENT SCREEN SIZES --*/
-		@media only screen and (min-width: 601px) and (max-width: 1666px){
-			.customize-control-widget_form.wide-widget-control.expanded div[id*='layers-widget'] .widget-inside{
-				left: 300px;
-			}
-		}
-		@media only screen and (min-width: 1667px) and (max-width: 3332px){
-			.customize-control-widget_form.wide-widget-control.expanded div[id*='layers-widget'] .widget-inside{
-				left: 18%;
-			}
-		}
-		@media only screen and (min-width: 3333px){
-			.customize-control-widget_form.wide-widget-control.expanded div[id*='layers-widget'] .widget-inside{
-				left: 600px;
-			}
-		}
 
 	/*-- Closing --*/
 	.customize-control-widget_form.wide-widget-control.expanded.layers-collapsing div[id*='layers-widget'] .widget-inside{
@@ -229,12 +214,33 @@ div#widgets-right div[id*='obox-layers-builder']{
 	/*- COLLAPSED SIDEBAR ------------*/
 	.collapsed .customize-control-widget_form.wide-widget-control div[id*='layers-widget'] .widget-inside{
 		width: 0;
-		left: -300px;
+		left: -30px;
 		transition-delay: none;
 	}
 	.collapsed .customize-control-widget_form.wide-widget-control div[id*='layers-widget'] .widget-inside .form{
 		opacity: 0;
 		transition-delay: none;
+	}
+
+	/*-----------------------------*/
+	/*-- WIDGET POPOUT POSITION FOR DIFFERENT SCREEN SIZES --*/
+	@media only screen and (min-width: 601px) and (max-width: 1666px){
+		.customize-control-widget_form.wide-widget-control .widget-inside,
+		.customize-control-widget_form.wide-widget-control.expanded div[id*='layers-widget'] .widget-inside{
+			left: 300px;
+		}
+	}
+	@media only screen and (min-width: 1667px) and (max-width: 3332px){
+		.customize-control-widget_form.wide-widget-control .widget-inside,
+		.customize-control-widget_form.wide-widget-control.expanded div[id*='layers-widget'] .widget-inside{
+			left: 18%;
+		}
+	}
+	@media only screen and (min-width: 3333px){
+		.customize-control-widget_form.wide-widget-control .widget-inside,
+		.customize-control-widget_form.wide-widget-control.expanded div[id*='layers-widget'] .widget-inside{
+			left: 600px;
+		}
 	}
 
 	/*-----------------------------*/

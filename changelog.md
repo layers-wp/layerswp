@@ -1,6 +1,12 @@
 # Layers Changelog
 
 =======
+##2.0.3
+### 12 June 2017
+
+* **Fix** - Brought back the remove and close buttons from the widgets which went missing in WP 4.8. *MP*
+
+=======
 ##2.0.2
 ### 06 June 2017
 

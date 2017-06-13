@@ -273,7 +273,8 @@ div[id*='layers-widget'] .widget-control-actions{
 	border-radius: 100px;
 	font-size: 0px;
 }
-div[id*='layers-widget'] .widget-control-actions a{
+div[id*='layers-widget'] .widget-control-actions a,
+div[id*='layers-widget'] .widget-control-actions button {
 	display: inline-block;
 	padding: 0 8px;
 	margin: 0 0 0 5px;
@@ -285,9 +286,12 @@ div[id*='layers-widget'] .widget-control-actions a{
 	font-weight: 600;
 	line-height: 22px;
 	color: #fff;
+	text-decoration: none;
 }
-div[id*='layers-widget'] .widget-control-actions a:hover{
+div[id*='layers-widget'] .widget-control-actions a:hover,
+div[id*='layers-widget'] .widget-control-actions button:hover {
 	background: #1E8CBE;
+	color: white;
 }
 div[id*='layers-widget'] .widget-control-actions .widget-control-remove{
 	background-color: #FF5353;

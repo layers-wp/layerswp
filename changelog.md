@@ -4,8 +4,9 @@
 ##2.0.4
 ### 16 June 2017
 
-* **Fix** - Fixed attachment pages which weren't showing images. *MP*
-* **Fix** - Fixed comments showing up for password protected posts. *MP*
+* **Fix** - Attachment pages which weren't showing images. *MP*
+* **Fix** - Comments showing up for password protected posts. *MP*
+* **Fix** - Full screen slider JS was using the wrong selector. *MP*
 
 
 

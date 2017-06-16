@@ -1,6 +1,15 @@
 # Layers Changelog
 
 =======
+##2.0.4
+### 16 June 2017
+
+* **Fix** - Fixed attachment pages which weren't showing images. *MP*
+* **Fix** - Fixed comments showing up for password protected posts. *MP*
+
+
+
+=======
 ##2.0.3
 ### 12 June 2017
 

@@ -9,7 +9,6 @@
 * **Fix** - Full screen slider JS was using the wrong selector. *MP*
 
 
-
 =======
 ##2.0.3
 ### 12 June 2017

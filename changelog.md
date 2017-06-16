@@ -1,6 +1,15 @@
 # Layers Changelog
 
 =======
+##2.0.4
+### 16 June 2017
+
+* **Fix** - Attachment pages which weren't showing images. *MP*
+* **Fix** - Comments showing up for password protected posts. *MP*
+* **Fix** - Full screen slider JS was using the wrong selector. *MP*
+
+
+=======
 ##2.0.3
 ### 12 June 2017
 

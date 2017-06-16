@@ -84,6 +84,7 @@ if( 'post' == get_post_type() ) {
 /**
 * Display the Post Comments
 */
-comments_template();
+if ( comments_open() )
+	comments_template();
 
 do_action('layers_after_single_post');

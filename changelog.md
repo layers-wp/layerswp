@@ -1,6 +1,12 @@
 # Layers Changelog
 
 =======
+##2.0.5
+### 10 July 2017
+
+* **Enhancement** - Unit Test Styling added. *DP*
+
+=======
 ##2.0.4
 ### 16 June 2017
 

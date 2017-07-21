@@ -394,6 +394,11 @@ if( ! function_exists( 'layers_scripts' ) ) {
 			array() ,
 			LAYERS_VERSION
 		);
+		wp_style_add_data( 
+			LAYERS_THEME_SLUG . '-framework' ,
+			'rtl', 
+			'replace' 
+		); // Framework RTL
 
 		// Commenting for now as we need to do add animation only to layers-pro
 //        wp_enqueue_style(
@@ -416,6 +421,11 @@ if( ! function_exists( 'layers_scripts' ) ) {
 			array(),
 			LAYERS_VERSION
 		); // Responsive
+		wp_style_add_data( 
+			LAYERS_THEME_SLUG . '-responsive',
+			'rtl', 
+			'replace' 
+		); // Responsive RTL
 
 		wp_enqueue_style(
 			LAYERS_THEME_SLUG . '-icon-fonts',
@@ -431,6 +441,11 @@ if( ! function_exists( 'layers_scripts' ) ) {
 				array(),
 				LAYERS_VERSION
 			); // Woocommerce
+			wp_style_add_data( 
+				LAYERS_THEME_SLUG . '-woocommerce',
+				'rtl', 
+				'replace' 
+			); // Woocommerce RTL
 		}
 
 		if( is_admin_bar_showing() ) {
@@ -573,6 +588,11 @@ if( ! function_exists( 'layers_admin_scripts' ) ) {
 				array(),
 				LAYERS_VERSION
 			);
+			wp_style_add_data( 
+				LAYERS_THEME_SLUG . '-customizer',
+				'rtl', 
+				'replace' 
+			);
 		}
 		else {
 
@@ -585,6 +605,12 @@ if( ! function_exists( 'layers_admin_scripts' ) ) {
 				array(),
 				LAYERS_VERSION
 			);
+			wp_style_add_data( 
+				LAYERS_THEME_SLUG . '-admin',
+				'rtl', 
+				'replace' 
+			);
+
 		}
 
 

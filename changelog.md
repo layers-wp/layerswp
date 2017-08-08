@@ -1,9 +1,35 @@
 # Layers Changelog
 
 =======
+##2.0.5
+### 10 July 2017
+
+* **Enhancement** - Unit Test Styling added. *DP*
+
+=======
+##2.0.4
+### 16 June 2017
+
+* **Fix** - Attachment pages which weren't showing images. *MP*
+* **Fix** - Comments showing up for password protected posts. *MP*
+* **Fix** - Full screen slider JS was using the wrong selector. *MP*
+
+
+=======
+##2.0.3
+### 12 June 2017
+
+* **Fix** - Brought back the remove and close buttons from the widgets which went missing in WP 4.8. *MP*
+
+=======
+##2.0.2
+### 06 June 2017
+
+* **Enhancement** - Adjusted Sidebar in V. Customizer to cope with new responsive settings in WP 4.8. *DP*
+
+=======
 ##2.0.1
 ### 08 May 2017
-
 * **Fix** - Fixed margin & padding setting in widgets. *MP*
 
 =======

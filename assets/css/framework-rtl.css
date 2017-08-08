@@ -113,7 +113,9 @@ h6{
 	font-weight: 400;
 }
 
-code{
+code,
+tt,
+kbd{
 	display: inline;
 	padding: 4px 6px;
 	background-color: #eee;
@@ -122,7 +124,6 @@ code{
 	font-weight: 700;
 	font-family: "Courier New", Courier, monospace;
 }
-
 pre{
 	padding: 20px 20px 0;
 	margin-bottom: 20px;
@@ -133,9 +134,23 @@ pre{
 	font-weight: 700;
 	font-family: "Courier New", Courier, monospace;
 	text-transform: initial;
+	overflow-y: scroll;
 }
 strong{
 	font-weight: 700;
+}
+s,
+strike,
+del{
+	text-decoration: line-through;
+}
+u,
+ins{
+	text-decoration: underline;
+}
+abbr[title],
+acronym[title]{
+	text-decoration: underline dotted;
 }
 small{
 	color: rgba(0, 0, 0, 0.5);
@@ -150,6 +165,15 @@ a:hover{
 img{
 	max-width: 100%;
 	height: auto;
+}
+sub, sup {
+	font-size: 75%;
+	line-height: 0;
+	position: relative;
+	vertical-align: baseline;
+}
+sup{
+	top: -0.5em;
 }
 iframe,
 embed,

@@ -162,6 +162,12 @@ div#widgets-right div[id*='obox-layers-builder']{
 	/*- WIDGET SETTINGS POP OUT -*/
 
 	/*-- Static --*/
+	.customize-control-widget_form.wide-widget-control .widget-inside {
+		left: 345px;
+	}
+	.wp-full-overlay-sidebar{
+		min-width: 345px;
+	}
 	.customize-control-widget_form.wide-widget-control div[id*='layers-widget'] .widget-inside{
 		width: 660px;
 		height: 100%;
@@ -180,6 +186,7 @@ div#widgets-right div[id*='obox-layers-builder']{
 		background-repeat: no-repeat;
 		background-color: #F5F5F5;
 	}
+
 	/*-- Open --*/
 	.customize-control-widget_form.wide-widget-control.expanded div[id*='layers-widget'] .widget-inside{
 		opacity: 1;

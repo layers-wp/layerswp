@@ -162,6 +162,12 @@ div#widgets-right div[id*='obox-layers-builder']{
 	/*- WIDGET SETTINGS POP OUT -*/
 
 	/*-- Static --*/
+	.customize-control-widget_form.wide-widget-control .widget-inside {
+		right: 345px;
+	}
+	.wp-full-overlay-sidebar{
+		min-width: 345px;
+	}
 	.customize-control-widget_form.wide-widget-control div[id*='layers-widget'] .widget-inside{
 		width: 660px;
 		height: 100%;

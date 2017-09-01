@@ -11,7 +11,7 @@
  * The current version of the theme. Use a random number for SCRIPT_DEBUG mode
  */
 
-define( 'LAYERS_VERSION', '2.0.5' );
+define( 'LAYERS_VERSION', '2.0.6' );
 define( 'LAYERS_TEMPLATE_URI' , get_template_directory_uri() );
 define( 'LAYERS_TEMPLATE_DIR' , get_template_directory() );
 define( 'LAYERS_THEME_TITLE' , 'Layers' );
@@ -395,6 +395,11 @@ if( ! function_exists( 'layers_scripts' ) ) {
 			array() ,
 			LAYERS_VERSION
 		);
+		wp_style_add_data( 
+			LAYERS_THEME_SLUG . '-framework' ,
+			'rtl', 
+			'replace' 
+		); // Framework RTL
 
 		// Commenting for now as we need to do add animation only to layers-pro
 //        wp_enqueue_style(
@@ -417,6 +422,11 @@ if( ! function_exists( 'layers_scripts' ) ) {
 			array(),
 			LAYERS_VERSION
 		); // Responsive
+		wp_style_add_data( 
+			LAYERS_THEME_SLUG . '-responsive',
+			'rtl', 
+			'replace' 
+		); // Responsive RTL
 
 		wp_enqueue_style(
 			LAYERS_THEME_SLUG . '-icon-fonts',
@@ -432,6 +442,11 @@ if( ! function_exists( 'layers_scripts' ) ) {
 				array(),
 				LAYERS_VERSION
 			); // Woocommerce
+			wp_style_add_data( 
+				LAYERS_THEME_SLUG . '-woocommerce',
+				'rtl', 
+				'replace' 
+			); // Woocommerce RTL
 		}
 
 		if( is_admin_bar_showing() ) {
@@ -574,6 +589,11 @@ if( ! function_exists( 'layers_admin_scripts' ) ) {
 				array(),
 				LAYERS_VERSION
 			);
+			wp_style_add_data( 
+				LAYERS_THEME_SLUG . '-customizer',
+				'rtl', 
+				'replace' 
+			);
 		}
 		else {
 
@@ -586,6 +606,12 @@ if( ! function_exists( 'layers_admin_scripts' ) ) {
 				array(),
 				LAYERS_VERSION
 			);
+			wp_style_add_data( 
+				LAYERS_THEME_SLUG . '-admin',
+				'rtl', 
+				'replace' 
+			);
+
 		}
 
 

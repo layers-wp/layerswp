@@ -1,6 +1,12 @@
 # Layers Changelog
 
 =======
+##2.0.6
+### 01 September 2017
+
+* **Enhancement** - Added support for RTL in the customizer. *MP*
+
+=======
 ##2.0.5
 ### 10 July 2017
 

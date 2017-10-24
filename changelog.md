@@ -1,6 +1,13 @@
 # Layers Changelog
 
 =======
+##2.0.7
+### 01 November 2017
+
+* **Enhancement** - Added more detailed class names to the blog single page for easier CSS declaration. *DP*
+* **Fix** - Fixed some default WooCommerce styling, taking their new class names into consideration. *DP*
+
+=======
 ##2.0.6
 ### 01 September 2017
 

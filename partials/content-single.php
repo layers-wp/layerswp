@@ -46,7 +46,11 @@ if( is_attachment() ) {
 	echo layers_post_featured_media( array( 'postid' => get_the_ID(), 'wrap_class' => 'thumbnail push-bottom', 'size' => 'large' ) );
 }
 
-if ( '' != get_the_content() ) { ?>
+ob_start();
+the_content();
+$content = trim( ob_get_clean() );
+
+if ( '' !== $content ) { ?>
 	<?php do_action('layers_before_single_content'); ?>
 
 	<?php if( 'template-blank.php' != get_page_template_slug() ) { ?>
@@ -56,7 +60,7 @@ if ( '' != get_the_content() ) { ?>
 	<?php /**
 	* Display the Content
 	*/
-	the_content(); ?>
+	echo $content; ?>
 
 	<?php /**
 	* Display In-Post Pagination
@@ -73,7 +77,7 @@ if ( '' != get_the_content() ) { ?>
 	<?php } ?>
 
 	<?php do_action('layers_after_single_content'); ?>
-<?php } // '' != get_the_content()
+<?php }
 
 /**
  * Only show post meta for posts

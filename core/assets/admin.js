@@ -323,16 +323,16 @@ jQuery(function($) {
 		$( element ).layers_trigger_change();
 	}, 400, false );
 	
-	// Enable clicking of the Label to envoke the color picker.
-	$(document).on( 'click', '.layers-color-wrapper label, .layers-color-wrapper .customize-control-description', function(){
+	// Enable clicking of the Label or Description to envoke the color picker (Design-Bar)
+	$(document).on( 'click', '.layers-color-wrapper > label', function(){
 		var $holder = $(this).parents('.layers-color-wrapper');
-		$holder.find('a.wp-color-result').click();
+		$holder.find('a.wp-color-result, button.wp-color-result').click();
 	});
 	
-	// Enable clicking of the Description to envoke the color picker.
-	$(document).on( 'click', '.l_option-customize-control-color .customize-control-description', function(){
+	// Enable clicking of the Label or Description to envoke the color picker (Controls)
+	$(document).on( 'click', '.l_option-customize-control-color > label, .l_option-customize-control-color > .customize-control-description', function(){
 		var $holder = $(this).parents('.l_option-customize-control-color ');
-		$holder.find('a.wp-color-result').click();
+		$holder.find('a.wp-color-result, button.wp-color-result').click();
 	});
 
 	/**

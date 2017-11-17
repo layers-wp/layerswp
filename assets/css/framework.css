@@ -265,7 +265,8 @@ object{
 	.middled,
 	.row .column.middled{
 		float: none;
-		margin: auto;
+		margin-left: auto;
+		margin-right: auto;
 	}
 	.no-gutter{
 		margin-right: 0 !important;

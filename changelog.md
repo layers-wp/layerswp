@@ -1,6 +1,12 @@
 # Layers Changelog
 
 =======
+##2.0.8
+### XX Xxxxxxx 2017
+
+* **Fix** - Fix our customized color pickers after the recent WP update has changed the HTML structure (with backwards compatibility). *SOB*
+
+=======
 ##2.0.7
 ### 01 November 2017
 

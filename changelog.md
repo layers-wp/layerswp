@@ -2,9 +2,10 @@
 
 =======
 ##2.0.8
-### XX Xxxxxxx 2017
+### 17 November 2017
 
-* **Fix** - Fix our customized color pickers after the recent WP update has changed the HTML structure (with backwards compatibility). *SOB*
+* **Fix** - Fixed "delete_theme_mod" warning when changing themes. *MP*
+* **Fix** - Fixed our customized color pickers after the recent WP update has changed the HTML structure (with backwards compatibility). *SOB*
 
 =======
 ##2.0.7

@@ -197,11 +197,15 @@ class Layers_Design_Controller {
 			
 			// echo '<pre>' . 'layers_design_bar_' . $key . '_' . $this->args[ 'widget_id' ] . '_elements' . '</pre>';
 
-			$elements = apply_filters(
-				'layers_design_bar_' . $key . '_' . $this->args[ 'widget_id' ] . '_elements',
-				$elements,
-				$this
-			);
+			if( isset( $this->args[ 'widget_id' ] ) ){
+
+				$elements = apply_filters(
+					'layers_design_bar_' . $key . '_' . $this->args[ 'widget_id' ] . '_elements',
+					$elements,
+					$this
+				);
+				
+			}
 		} ?>
 
 		<li class="layers-design-bar-nav-item layers-visuals-item" data-filter="<?php echo 'layers_design_bar_' . $key . '_' . $this->args[ 'widget_id' ] . '_elements'; ?>">

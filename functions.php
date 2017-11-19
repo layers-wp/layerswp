@@ -249,7 +249,7 @@ function layers_resore_site(){
 		$layers_wgt_backup = get_theme_mod( 'sidebars_widgets' );
 		if( isset( $layers_wgt_backup[ 'data' ] ) ) {
 			update_option( 'sidebars_widgets', $layers_wgt_backup );
-			delete_theme_mod( 'sidebars_widgets' );
+			remove_theme_mod( 'sidebars_widgets' );
 		}
 	}
 

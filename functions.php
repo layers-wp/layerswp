@@ -11,7 +11,7 @@
  * The current version of the theme. Use a random number for SCRIPT_DEBUG mode
  */
 
-define( 'LAYERS_VERSION', '2.0.6' );
+define( 'LAYERS_VERSION', '2.0.7' );
 define( 'LAYERS_TEMPLATE_URI' , get_template_directory_uri() );
 define( 'LAYERS_TEMPLATE_DIR' , get_template_directory() );
 define( 'LAYERS_THEME_TITLE' , 'Layers' );
@@ -250,7 +250,7 @@ function layers_resore_site(){
 		$layers_wgt_backup = get_theme_mod( 'sidebars_widgets' );
 		if( isset( $layers_wgt_backup[ 'data' ] ) ) {
 			update_option( 'sidebars_widgets', $layers_wgt_backup );
-			delete_theme_mod( 'sidebars_widgets' );
+			remove_theme_mod( 'sidebars_widgets' );
 		}
 	}
 

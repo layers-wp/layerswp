@@ -265,7 +265,8 @@ object{
 	.middled,
 	.row .column.middled{
 		float: none;
-		margin: auto;
+		margin-left: auto;
+		margin-right: auto;
 	}
 	.no-gutter{
 		margin-right: 0 !important;
@@ -980,17 +981,17 @@ object{
 
 	/*---------------------------*/
 	/*- WRAPPER POSITIONING -----*/
-	.open + .wrapper-site{
+	.off-canvas-right.open ~ .wrapper-site{
+		left: -240px;
 		opacity: 0.85;
 	}
-	.off-canvas-right.open + .wrapper-site{
-		left: -240px;
-	}
-	.off-canvas-left.open + .wrapper-site{
+	.off-canvas-left.open ~ .wrapper-site{
 		left: 240px;
+		opacity: 0.85;
 	}
-	.off-canvas-top.open + .wrapper-site{
+	.off-canvas-top.open ~ .wrapper-site{
 		top: 200px;
+		opacity: 0.85;
 	}
 
 	/*---------------------------*/

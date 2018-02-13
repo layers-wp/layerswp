@@ -205,8 +205,10 @@ p.stars span a:focus{
 /*- PRODUCTS SETUP ----------*/
 .products{
 	overflow: hidden;
+	width: 100%;
 }
 .products .product{
+	float: left;
 	position: relative;
 	padding: 20px 20px 20px;
 	margin-bottom: 20px;

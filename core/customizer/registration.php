@@ -136,10 +136,13 @@ class Layers_Customizer_Regsitrar {
 					// Panel exists without 'layers-' prepended, so add the section to that panel.
 					$section_data[ 'panel' ] = $section_data[ 'panel' ];
 				}
-				else {
+				else if( 'woocommerce' != $section_data[ 'panel' ] || class_exists( 'Layers_WooCommerce' ) ) {
 					// Panel exists with 'layers-' prepended, so add the section to that panel.
 					$section_data[ 'panel' ] = $this->prefix . $section_data[ 'panel' ];
 				}
+
+			} elseif( isset( $section_data[ 'panel' ] ) ) {
+				$section->panel = $section_data[ 'panel' ];
 			}
 
 			if( !isset( $section_data[ 'priority' ] ) ) {
@@ -701,6 +704,10 @@ class Layers_Customizer_Regsitrar {
 
 		// Remove the theme switcher Panel, Layers isn't ready for that
 		$this->customizer->remove_section( 'themes' );
+
+		if( class_exists( 'Layers_WooCommerce' ) ){
+			$this->customizer->remove_control( 'woocommerce_catalog_columns' );
+		}
 	}
 
 	/**

@@ -27,7 +27,7 @@ get_header(); ?>
 				<ul class="products grid">
 
 					<?php // Sub category listing
-					woocommerce_product_loop_start(); ?>
+					if( function_exists( 'woocommerce_product_loop_start' ) ) woocommerce_product_loop_start(); ?>
 
 					<?php while (have_posts()) :  the_post(); ?>
 							<?php wc_get_template_part( 'content' , 'product' ); ?>

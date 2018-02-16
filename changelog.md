@@ -1,6 +1,13 @@
 # Layers Changelog
 
 =======
+##2.0.9
+### 16 Feburary 2017
+
+* **Fix** - Updated Layers WooCommerce customizer options to fit into the defauly WooCommerce panel. *MP*
+* **Fix** - Updated the product archive page to support the new Category loop. *MP*
+
+=======
 ##2.0.8
 ### 17 November 2017
 

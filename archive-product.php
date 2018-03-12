@@ -20,14 +20,12 @@ get_header(); ?>
 		<?php if ( have_posts()) : ?>
 			<div <?php layers_center_column_class(); ?>>
 
-				<div class="woocommerce-result-count-container push-bottom clearfix">
-					<?php  do_action('woocommerce_before_shop_loop'); ?>
-				</div>
+				<?php get_template_part( 'partials/woocommerce', 'before-shop-loop' ); ?>
+
+				<?php // Sub category listing
+				if( function_exists( 'woocommerce_product_loop_start' ) ) woocommerce_product_loop_start(); ?>
 
 				<ul class="products grid">
-
-					<?php // Sub category listing
-					if( function_exists( 'woocommerce_product_loop_start' ) ) woocommerce_product_loop_start(); ?>
 
 					<?php while (have_posts()) :  the_post(); ?>
 							<?php wc_get_template_part( 'content' , 'product' ); ?>

@@ -204,6 +204,8 @@ p.stars span a:focus{
 /*---------------------------*/
 /*- PRODUCTS SETUP ----------*/
 .products{
+	margin-left: -10px;
+    margin-right: -10px;
 	overflow: hidden;
 	width: 100%;
 }
@@ -215,6 +217,11 @@ p.stars span a:focus{
 	background: #f5f5f5;
 	overflow: hidden;
 }
+.products .product-category{
+	margin-left: 10px;
+	max-width: 100%;
+}
+
 .products .stock{
 	margin: 10px 0 0;
 }

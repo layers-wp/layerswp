@@ -25,6 +25,8 @@ get_header(); ?>
 				<?php // Sub category listing
 				if( function_exists( 'woocommerce_product_loop_start' ) ) woocommerce_product_loop_start(); ?>
 
+				<?php woocommerce_product_loop_end(); ?>
+
 				<ul class="products grid">
 
 					<?php while (have_posts()) :  the_post(); ?>
@@ -33,8 +35,6 @@ get_header(); ?>
 				</ul>
 
 				<?php layers_pagination(); ?>
-
-				<?php woocommerce_product_loop_end(); ?>
 
 			</div>
 		<?php endif; ?>

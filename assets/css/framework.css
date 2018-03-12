@@ -229,7 +229,7 @@ object{
 
 		/*-----------------------*/
 		/*- COLUMN SETUP --------*/
-		[class*='column']{
+		[class*='column']:not([class*='columns-']){
 			margin-left: 10px;
 			margin-right: 10px;
 			margin-bottom: 20px;

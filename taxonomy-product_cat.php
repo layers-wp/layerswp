@@ -28,7 +28,7 @@ get_header(); ?>
 				<ul class="products grid">
 
 					<?php // Sub category listing
-					woocommerce_product_subcategories(); ?>
+					woocommerce_output_product_categories(); ?>
 
 					<?php while (have_posts()) :  the_post(); ?>
 							<?php wc_get_template_part( 'content' , 'product' ); ?>

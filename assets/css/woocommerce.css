@@ -209,6 +209,20 @@ p.stars span a:focus{
 	overflow: hidden;
 	width: 100%;
 }
+.products.columns-1,
+.products.columns-2,
+.products.columns-3,
+.products.columns-4,
+.products.columns-5,
+.products.columns-6,
+.products.columns-7,
+.products.columns-8,
+.products.columns-9,
+.products.columns-10,
+.products.columns-11,
+.products.columns-12{
+	max-width: 100%;
+}
 .products .product{
 	float: left;
 	position: relative;

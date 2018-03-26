@@ -1,18 +1,14 @@
 # Layers Changelog
 
 =======
-##2.0.9
-### 16 Feburary 2017
-
-* **Fix** - Updated Layers WooCommerce customizer options to fit into the defauly WooCommerce panel. *MP*
-* **Fix** - Updated the product archive page to support the new Category loop. *MP*
-
-=======
 ##2.0.8
-### 17 November 2017
+### 26 March 2018
 
 * **Fix** - Fixed "delete_theme_mod" warning when changing themes. *MP*
 * **Fix** - Fixed our customized color pickers after the recent WP update has changed the HTML structure (with backwards compatibility). *SOB*
+* **Fix** - Updated Layers WooCommerce customizer options to fit into the defauly WooCommerce panel. *MP*
+* **Fix** - Updated the product archive page to support the new Category loop. *MP*
+* **Fix** - Updated WooCommerce templates, including new logic around displaying the product filter. *MP*
 
 =======
 ##2.0.7

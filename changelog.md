@@ -1,6 +1,11 @@
 # Layers Changelog
 
 
+##2.0.9
+### 26 March 2018
+
+* **Fix** - Fixed issue with columns jumping down lines. *MP*
+
 ##2.0.8
 ### 26 March 2018
 

@@ -16,7 +16,6 @@
 
 		<?php if ( 'header-sidebar' == layers_get_theme_mod( 'header-menu-layout' ) ) { ?>
 			<div class="header-side-wrapper"><!-- header side wrapper -->
-
 		<?php } ?>
 
 		<section <?php layers_header_class(); ?>>

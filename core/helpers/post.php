@@ -200,7 +200,13 @@ if( !function_exists( 'layers_post_class' ) ) {
 
 			$classes[] = 'column';
 			// Honor WC loop columns filter
-			$wc_span = 12 / apply_filters( 'loop_shop_columns', 3 );
+
+			if( !class_exists( 'Layers_WooCommerce' ) ) {
+				$wc_span = 12 / wc_get_loop_prop( 'columns' );
+			} else {
+				$wc_span = 12 / apply_filters( 'loop_shop_columns', 3 );
+			}
+			// Set the allowed spans 
 			$spans = array(12, 6, 3, 2, 1);
 			$span  = in_array($wc_span, $spans) ? $wc_span : 4;
 			$classes[] = 'span-'.$span;

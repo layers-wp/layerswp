@@ -98,12 +98,15 @@ class Layers_Customizer_Config {
                 'description' => __( 'Control your footer\'s custom text, widget areas and layout.' , 'layerswp' ), // @TODO Put a helper here
                 'priority' => 80
             ),
-
-			'woocommerce' => array(
-                'title' => __( 'WooCommerce' , 'layerswp' ),
-                'priority' => 100
-            ),
 		);
+
+		if( class_exists( 'Layers_WooCommerce' ) ){
+			$layers_customizer_panels['woocommerce'] = array(
+                'title' => __( 'StoreKit' , 'layerswp' ),
+                'priority' => 100
+            );
+		}
+
 
 		return apply_filters( 'layers_customizer_panels', $layers_customizer_panels );
 	}

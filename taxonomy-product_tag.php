@@ -4,7 +4,7 @@
  *
  * @package Layers
  * @since Layers 1.0.0
- * @version     1.6.4
+ * @version     3.3.0
  */
 
 get_header(); ?>
@@ -20,13 +20,11 @@ get_header(); ?>
 
 		<?php if ( have_posts()) : ?>
 			<div <?php layers_center_column_class(); ?>>
-
-				<div class="woocommerce-result-count-container push-bottom clearfix">
-					<?php  do_action('woocommerce_before_shop_loop'); ?>
-				</div>
+				
+				<?php get_template_part( 'partials/woocommerce', 'before-shop-loop' ); ?>
 
 				<?php // Sub category listing
-				woocommerce_product_subcategories(); ?>
+				if( function_exists( 'woocommerce_product_loop_start' ) ) woocommerce_product_loop_start(); ?>
 
 				<ul class="products grid">
 					<?php while (have_posts()) :  the_post(); ?>

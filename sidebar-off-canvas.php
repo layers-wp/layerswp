@@ -1,7 +1,7 @@
 <div class="wrapper invert off-canvas-right" id="off-canvas-right">
     <a class="close-canvas" data-toggle="#off-canvas-right" data-toggle-class="open">
         <i class="l-close"></i>
-        <?php _e( "Close", LAYERS_THEME_SLUG ); ?>
+        <?php _e( "Close", 'layerswp' ); ?>
     </a>
 
     <div class="content nav-mobile clearfix">

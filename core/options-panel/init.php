@@ -364,11 +364,11 @@ class Layers_Options_Panel {
 			<?php if( 'woocommerce' == $args[ 'args' ][ 'type' ] ) { ?>
 				<div class="l_admin-section-title l_admin-tiny">
 					<p class="l_admin-excerpt">
-						<?php _e( 'Have you thought about starting an online Store? We recommend using WooCommerce above all other eCommerce solutions.' , 'layerswp' ); ?>
+						<?php _e( 'Looking to start an online store? We recommend WooCommerce, the best eCommerce solution for WordPress.' , 'layerswp' ); ?>
 					</p>
 				</div>
 				<div class="l_admin-button-well">
-					<a href="https://woocommerce.com/?aff=3074&cid=1061174">
+					<a href="https://woocommerce.com/?aff=3074&cid=1061174" target="_blank" class="button button-primary">
 						<?php _e( 'Get WooCommerce Now' , 'layerswp' ); ?>
 					</a>
 				</div>

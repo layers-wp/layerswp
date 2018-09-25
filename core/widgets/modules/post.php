@@ -527,7 +527,7 @@ if( !class_exists( 'Layers_Post_Widget' ) ) {
 									'label' => __( 'Image Ratios', 'layerswp' ),
 									'name' => $this->get_layers_field_name( 'design', 'imageratios' ),
 									'id' => $this->get_layers_field_id( 'design', 'imageratios' ),
-									'value' => ( isset( $this->values['imageratios'] ) ) ? $this->values['imageratios'] : NULL,
+									'value' => ( isset( $instance['imageratios'] ) ) ? $instance['imageratios'] : NULL,
 									'options' => array(
 										'image-portrait' => __( 'Portrait', 'layerswp' ),
 										'image-landscape' => __( 'Landscape', 'layerswp' ),

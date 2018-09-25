@@ -127,18 +127,36 @@ $theme_info = wp_get_theme( 'layerswp' ); ?>
 				</div>
 
 				<div class="l_admin-column l_admin-span-5">
-					<?php if( !defined( 'LAYERS_DISABLE_MARKETPLACE' ) ){ ?>
+					<?php if( !defined( 'LAYERS_DISABLE_MARKETPLACE' ) && !class_exists( 'Layers_Pro' ) ){ ?>
 						<div class="l_admin-panel l_admin-push-bottom">
-							<div class="l_admin-section-title l_admin-content l_admin-tiny">
-								<h3 class="l_admin-heading"><?php _e( 'Themes &amp; Extensions' , 'layerswp' ); ?></h3>
-								<p class="l_admin-excerpt">
-									<?php _e( 'Looking for a theme or plugin to achieve something unique with your website?
-										Browse the Layers Add Ons and take your site to the next level.' , 'layerswp' ); ?>
-								</p>
+							<div class="l_admin-panel-title">
+								<h4 class="l_admin-heading"><?php _e( 'Get Even More with Layers Pro' , 'layerswp' ); ?></h4>
 							</div>
-							<div class="l_admin-button-well">
-								<a href="<?php echo admin_url( 'admin.php?page=layers-marketplace' ); ?>" class="button button-primary">
-									<?php _e( 'Themes &amp; Extensions' , 'layerswp' ); ?>
+							<div class="l_admin-media l_admin-image-left l_admin-content l_admin-no-push-bottom">
+								<div class="l_admin-media l_admin-image-left">
+									<div class="l_admin-media-image l_admin-small">
+										<img src="<?php echo get_template_directory_uri(); ?>/core/assets/images/thumb-layers-pro.png" alt="LayersPro" />
+									</div>
+									<div class="l_admin-media-body">
+										<div class="l_admin-excerpt">
+											<p><?php _e( 'Layers Pro unlocks customizability in the Layers framework.' , 'layerswp' ); ?></p>
+											<ul class="l_admin-ticks-wp">
+												<li><?php _e( 'Make the logo bigger' , 'layerswp' ); ?></li>
+												<li><?php _e( 'Add video backgrounds' , 'layerswp' ); ?></li>
+												<li><?php _e( 'Add parallax backgrounds' , 'layerswp' ); ?></li>
+												<li><?php _e( 'Add a header background image' , 'layerswp' ); ?></li>
+												<li><?php _e( 'Full button styling control' , 'layerswp' ); ?></li>
+												<li><?php _e( 'New customization controls' , 'layerswp' ); ?></li>
+												<li><?php _e( 'Get more control over your blog' , 'layerswp' ); ?></li>
+												<li><?php _e( '4 new widgets' , 'layerswp' ); ?></li>
+											</ul>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="l_admin-button-well l_admin-text-right">
+								<a href="https://www.layerswp.com/layers-pro/?ref=obox&utm_source=layers%20theme&utm_medium=link&utm_campaign=Layers%20Pro%20Upsell&utm_content=WP%20Dashboard" target="_blank" class="button button-primary">
+									<?php _e( 'Get Layers Pro' , 'layerswp' ); ?>
 								</a>
 							</div>
 						</div>
@@ -245,48 +263,6 @@ $theme_info = wp_get_theme( 'layerswp' ); ?>
 
 				</div>
 
-			</div>
-		</div>
-	</div>
-</section>
-<section class="l_admin-area-wrapper">
-	<div class="l_admin-well-alt l_admin-content">
-
-		<div class="l_admin-section-title l_admin-small">
-			<h3 class="l_admin-heading"><?php _e( 'Layers News' , 'layerswp' ); ?></h3>
-		</div>
-
-		<div id="layers-dashboard-news-feed" class="l_admin-row" data-layers-feed="news" data-layers-feed-count="3">
-			<div class="l_admin-column l_admin-span-3 l_admin-panel" data-loading="1">
-				<div class="l_admin-content">
-					<div class="l_admin-section-title l_admin-tiny">
-						<h4 class="l_admin-heading"><?php _e( 'Loading Layers News' , 'layerswp' ); ?></h4>
-					</div>
-				</div>
-			</div>
-			<div class="l_admin-column l_admin-span-3">
-				<div class="l_admin-panel l_admin-content clearfix">
-					<div class="l_admin-section-title l_admin-tiny">
-						<h3 class="l_admin-heading"><?php _e( 'Stay in the Loop' , 'layerswp' ); ?></h3>
-						<p class="l_admin-excerpt">
-							<?php _e( 'Sign up to our monthly newsletter to find out when we launch new features, products.' , 'layerswp' ); ?>
-						</p>
-					</div>
-					<form id="layers-dashboard-newsletter" action="//oboxthemes.us10.list-manage.com/subscribe/post?u=5b9a020fcf797987098cc7bca&amp;id=069cfedbbc" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" target="_blank"  validate>
-						<div id="mc_embed_signup_scroll" class="l_admin-form-item l_admin-form-inline">
-							<div class="mc-field-group">
-								<label for="mce-EMAIL"><?php _e( 'Email Address' , 'layerswp' ); ?></label>
-								<input type="email" value="" name="EMAIL" class="required email l_admin-form-inline input" id="mce-EMAIL">
-								<button type="submit" name="subscribe" id="mc-embedded-subscribe" class="button button-primary"><?php _e( 'Subscribe' , 'layerswp' ); ?></button><input type="hidden" name="SIGNUP" id="SIGNUP" value="layerswp" />
-							</div>
-							<div id="mce-responses" class="clear">
-								<div class="response" id="mce-error-response" style="display:none"></div>
-								<div class="response" id="mce-success-response" style="display:none"></div>
-							</div> <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
-							<div style="position: absolute; left: -5000px;"><input type="text" name="b_5b9a020fcf797987098cc7bca_069cfedbbc" tabindex="-1" value=""></div>
-						</div>
-					</form>
-				</div>
 			</div>
 		</div>
 	</div>

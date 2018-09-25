@@ -35,6 +35,9 @@ class Layers_Options_Panel {
 		// Exit on missing ABSPATH
 		if ( ! defined( 'ABSPATH' ) ) exit;
 
+		if( isset( $_GET[ 'page' ] ) && 'layers-marketplace' == $_GET[ 'page' ] )
+			wp_redirect( 'https://www.layerswp.com/layers-pro/?ref=obox&utm_source=layers%20theme&utm_medium=link&utm_campaign=Layers%20Pro%20Upsell&utm_content=Dashboard%20Menu' );
+
 		global $pagenow, $wp_customize;
 
 		// Setup some folder variables
@@ -43,12 +46,6 @@ class Layers_Options_Panel {
 		$this->set_valid_page_slugs();
 
 		add_action( 'wp_dashboard_setup', array( &$this, 'layers_add_dashboard_widgets' ) );
-
-		if( !defined( 'LAYERS_DISABLE_MARKETPLACE' ) ){
-			add_filter( 'media_upload_tabs', array( &$this, 'upload_upsell_media_tab' ) );
-			add_action( 'media_upload_upsell_media', array( &$this, 'upload_upsell_media_form' ) );
-			add_action( 'print_media_templates', array( &$this, 'upload_upsell_media_template' ) );
-		}
 	}
 
 	public function init() {
@@ -205,19 +202,6 @@ class Layers_Options_Panel {
 		// Include Partials, we're using require so that inside the partial we can use $this to access the header and footer
 		require $this->options_panel_dir . 'partials/' . $partial . '.php';
 	}
-	public function upload_upsell_media_template(){
-		$this->body( 'discover-more-photos' );
-	}
-
-	function upload_upsell_media_tab($tabs) {
-		$tabs['upsell_media'] = __( 'Discover More' , 'layerswp' );
-		return $tabs;
-	}
-
-	// call the new tab with wp_iframe
-	function upload_upsell_media_form() {
-		wp_iframe( array( &$this, 'upload_upsell_media_template' ) );
-	}
 
 	/**
 	* Footer
@@ -277,8 +261,8 @@ class Layers_Options_Panel {
 						'link' => admin_url( 'edit.php?post_type=page&amp;filter=layers' ),
 					),
 					'layers-marketplace' => array(
-						'label' => 'Layers Add Ons',
-						'link' => admin_url( 'admin.php?page=layers-marketplace' ),
+						'label' => 'Layers Pro',
+						'link' => 'http://www.layerswp.com/layers-pro/?utm_source=layers%20theme&utm_medium=link&utm_campaign=Layers%20Pro%20Upsell&utm_content=WP%20Dashboard',
 					),
 				)
 		);
@@ -348,30 +332,18 @@ class Layers_Options_Panel {
 	}
 
 	public function layers_add_dashboard_widgets(){
-		if( !defined( 'LAYERS_DISABLE_MARKETPLACE' ) ){
+		if( !class_exists( 'WooCommerce' ) ){
 			wp_add_dashboard_widget(
-				'layers-addons',
-				__( 'Layers Themes &amp; Extensions', 'layerswp' ),
+				'layers-woocommerce',
+				__( 'Start an Online Store', 'layerswp' ),
 				array( &$this, 'layers_dashboard_widget' ),
 				NULL,
 				array(
-					'type' => 'addons'
+					'type' => 'woocommerce'
 				)
 			);
 		}
 
-		if( !class_exists( 'Layers_WooCommerce' ) && class_exists( 'WooCommerce' )  ) {
-			wp_add_dashboard_widget(
-				'layers-storekit',
-				__( 'Upgrade WooCommerce with StoreKit', 'layerswp' ),
-				array( &$this, 'layers_dashboard_widget' ),
-				NULL,
-				array(
-					'type' => 'upsell-storekit'
-				)
-			);
-
-		}
 
 		if( !class_exists( 'Layers_Pro' ) ) {
 			wp_add_dashboard_widget(
@@ -389,16 +361,15 @@ class Layers_Options_Panel {
 
 	function layers_dashboard_widget( $var, $args ){ ?>
 		<div class="l_admin-wp-dashboard-panel">
-			<?php if( 'addons' == $args[ 'args' ][ 'type' ] ) { ?>
+			<?php if( 'woocommerce' == $args[ 'args' ][ 'type' ] ) { ?>
 				<div class="l_admin-section-title l_admin-tiny">
 					<p class="l_admin-excerpt">
-						<?php _e( 'Looking for a theme or plugin to achieve something unique with your website?
-							Browse the Layers Add Ons and take your site to the next level.' , 'layerswp' ); ?>
+						<?php _e( 'Looking to start an online store? We recommend WooCommerce, the best eCommerce solution for WordPress.' , 'layerswp' ); ?>
 					</p>
 				</div>
 				<div class="l_admin-button-well">
-					<a href="<?php echo admin_url( 'admin.php?page=layers-marketplace' ); ?>" class="button button-primary">
-						<?php _e( 'Themes &amp; Extensions' , 'layerswp' ); ?>
+					<a href="https://woocommerce.com/?aff=3074&cid=1061174" target="_blank" class="button button-primary">
+						<?php _e( 'Get WooCommerce Now' , 'layerswp' ); ?>
 					</a>
 				</div>
 			<?php } ?>
@@ -527,6 +498,7 @@ function layers_options_panel_menu(){
 
 	add_action('admin_print_scripts-' . $dashboard, array( $layers_options_panel, 'enqueue_dashboard_scripts') );
 
+
 	// Add Preset Pages
 	$add_new_page = add_submenu_page(
 		LAYERS_THEME_SLUG . '-dashboard',
@@ -567,19 +539,13 @@ function layers_options_panel_menu(){
 		LAYERS_THEME_SLUG . '-get-started',
 		'layers_options_panel_ui'
 	);
-
-	// This modifies the Layers submenu item - must be done here as $submenu
-	// is only created if $submenu items are added using add_submenu_page
-	if( isset( $submenu[ 'layers-dashboard' ] ) ) {
-		$submenu[LAYERS_THEME_SLUG . '-dashboard'][0][0] = __( 'Dashboard' , 'layerswp' );
-	}
-
 	// Marketplace
-	if( !defined( 'LAYERS_DISABLE_MARKETPLACE' ) ){
+	if( !defined( 'LAYERS_DISABLE_MARKETPLACE' ) && !class_exists( 'Layers_Pro' ) ){ 
 		// dashboard Page
-		$marketplace = add_menu_page(
-			__( 'Add Ons' , 'layerswp' ),
-			__( 'Add Ons' , 'layerswp' ),
+		$marketplace = add_submenu_page(
+			LAYERS_THEME_SLUG . '-dashboard',
+			__( 'Layers Pro' , 'layerswp' ),
+			__( 'Layers Pro' , 'layerswp' ),
 			'edit_theme_options',
 			LAYERS_THEME_SLUG . '-marketplace',
 			'layers_options_panel_ui',
@@ -589,24 +555,12 @@ function layers_options_panel_menu(){
 
 		add_action('admin_print_scripts-' . $marketplace, array( $layers_options_panel, 'enqueue_marketplace_scripts') );
 
-		$marketplace_envato = add_submenu_page(
-			LAYERS_THEME_SLUG . '-marketplace',
-			__( 'Envato Marketplace' , 'layerswp' ),
-			__( 'Envato Marketplace' , 'layerswp' ),
-			'edit_theme_options',
-			LAYERS_THEME_SLUG . '-envato-marketplace',
-			'layers_options_panel_ui'
-		);
+	}
 
-		add_action('admin_print_scripts-' . $marketplace_envato, array( $layers_options_panel, 'enqueue_marketplace_scripts') );
-
-		// This modifies the Layers submenu item - must be done here as $submenu
-		// is only created if $submenu items are added using add_submenu_page
-
-		if( isset( $submenu[ 'layers-marketplace' ] ) ) {
-			$submenu[LAYERS_THEME_SLUG . '-marketplace'][0][0] = __( 'Official' , 'layerswp' );
-		}
-
+	// This modifies the Layers submenu item - must be done here as $submenu
+	// is only created if $submenu items are added using add_submenu_page
+	if( isset( $submenu[ 'layers-dashboard' ] ) ) {
+		$submenu[LAYERS_THEME_SLUG . '-dashboard'][0][0] = __( 'Dashboard' , 'layerswp' );
 	}
 }
 
@@ -616,7 +570,12 @@ add_action( 'admin_menu' , 'layers_options_panel_menu' , 50 );
 *  Kicking this off with the 'ad' hook
 */
 
-function layers_options_panel_ui(){
+function layers_options_panel_ui( $args ){
+
+	if( 'layers-marketplace' == $_GET[ 'page' ] ){
+		wp_redirect( 'https://www.layerswp.com/layers-pro/?ref=obox&utm_source=layers%20theme&utm_medium=link&utm_campaign=Layers%20Pro%20Upsell&utm_content=Dashboard%20Menu' );
+	}
+	
 	$layers_options_panel = new Layers_Options_Panel();
 	$layers_options_panel->init();
 }

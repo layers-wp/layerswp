@@ -1,5 +1,11 @@
 # Layers Changelog
 
+##2.0.10
+### 25 September 2018
+
+* **Fix** - Fixed image ratio button in Posts Widget *MP*
+* **Enhancement** - Removed soon to be redundant Marketplace *MP*
+
 ##2.0.9
 ### 26 March 2018
 

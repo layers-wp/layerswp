@@ -1,5 +1,10 @@
 # Layers Changelog
 
+##2.0.11
+### 25 September 2018
+
+* **Fix** - PHP 7+ Issues *MP*
+
 ##2.0.10
 ### 25 September 2018
 

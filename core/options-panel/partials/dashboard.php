@@ -156,7 +156,7 @@ $theme_info = wp_get_theme( 'layerswp' ); ?>
 							</div>
 							<div class="l_admin-button-well l_admin-text-right">
 								<a href="https://www.layerswp.com/layers-pro/?ref=obox&utm_source=layers%20theme&utm_medium=link&utm_campaign=Layers%20Pro%20Upsell&utm_content=WP%20Dashboard" target="_blank" class="button button-primary">
-									<?php _e( 'Get Layers Pro' , 'layerswp' ); ?>
+									<?php _e( 'Get Elementor Pro' , 'layerswp' ); ?>
 								</a>
 							</div>
 						</div>

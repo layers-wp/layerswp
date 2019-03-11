@@ -56,10 +56,12 @@ if( !function_exists( 'layers_post_meta' ) ) {
 					}
 
 					// If there are no categories, skip to the next case
-					if( !$the_categories ) continue;
+					if( !$the_categories ) break;
 
 					foreach ( $the_categories as $category ){
-						$categories[] = ' <a href="'.get_category_link( $category->term_id ).'" title="' . esc_attr( sprintf( __( "View all posts in %s", LAYERS_THEME_SLUG ), $category->name ) ) . '">'.$category->name.'</a>';
+						if( is_array($categories) ) {
+							$categories[] = ' <a href="'.get_category_link( $category->term_id ).'" title="' . esc_attr( sprintf( __( "View all posts in %s", LAYERS_THEME_SLUG ), $category->name ) ) . '">'.$category->name.'</a>';
+						}
 					}
 					$meta_to_display[] = '<span class="meta-item meta-category"><i class="l-folder-open-o"></i> ' . implode( __( ', ' , 'layerswp' ), $categories ) . '</span>';
 					break;
@@ -75,10 +77,12 @@ if( !function_exists( 'layers_post_meta' ) ) {
 					}
 
 					// If there are no tags, skip to the next case
-					if( !$the_tags ) continue;
+					if( !$the_tags ) break;
 
 					foreach ( $the_tags as $tag ){
-						$tags[] = ' <a href="'.get_term_link( $tag ).'" title="' . esc_attr( sprintf( __( "View all posts tagged %s", LAYERS_THEME_SLUG ), $tag->name ) ) . '">'.$tag->name.'</a>';
+						if( is_array( $tags ) ) {
+							$tags[] = ' <a href="'.get_term_link( $tag ).'" title="' . esc_attr( sprintf( __( "View all posts tagged %s", LAYERS_THEME_SLUG ), $tag->name ) ) . '">'.$tag->name.'</a>';
+						}
 					}
 					$meta_to_display[] = '<span class="meta-item meta-tags"><i class="l-tags"></i> ' . implode( __( ', ' , 'layerswp' ), $tags ) . '</span>';
 					break;

@@ -641,7 +641,7 @@ if( !class_exists( 'Layers_Slider_Widget' ) ) {
 			<div class="layers-container-large" id="layers-slide-widget-<?php echo esc_attr( $this->number ); ?>">
 
 				<?php $this->form_elements()->header( array(
-					'title' =>'Sliders',
+					'title' =>__( 'Sliders' , 'layerswp' ),
 					'icon_class' =>'slider'
 				) ); ?>
 

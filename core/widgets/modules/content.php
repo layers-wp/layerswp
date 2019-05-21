@@ -508,7 +508,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 			<div class="layers-container-large" id="layers-column-widget-<?php echo $this->number; ?>">
 
 				<?php $this->form_elements()->header( array(
-					'title' =>'Content',
+					'title' =>__( 'Content' , 'layerswp' ),
 					'icon_class' =>'text'
 				) ); ?>
 
@@ -630,7 +630,7 @@ if( !class_exists( 'Layers_Content_Widget' ) ) {
 							),
 							'width' => array(
 								'icon-css' => 'icon-columns',
-								'label' => 'Column Width',
+								'label' => __( 'Column Width' , 'layerswp' ),
 								'elements' => array(
 									'layout' => array(
 										'type' => 'select',

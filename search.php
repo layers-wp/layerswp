@@ -23,7 +23,7 @@ get_template_part( 'partials/header' , 'page-title' ); ?>
 			</div>
 		<?php else : ?>
 			<div class="story">
-				<h3><?php _e( 'No Posts Found', 'layerswp' ); ?></h3>
+				<h3><?php _e( 'No posts found', 'layerswp' ); ?></h3>
 				<p><?php _e( 'There are no posts which match your query, please try a different search term.', 'layerswp' ); ?></p>
 				<?php echo get_search_form(); ?>
 			</div>

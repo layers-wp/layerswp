@@ -16,7 +16,7 @@ do_action('layers_before_comments'); ?>
 		<div class="section-title small">
 			<h3 class="heading comment-title">
 				<?php
-					printf( _n( 'One Comment on &ldquo;%2$s&rdquo;', '%1$s Comments on &ldquo;%2$s&rdquo;', get_comments_number(), LAYERS_THEME_SLUG ),
+					printf( _n( 'One Comment on &ldquo;%2$s&rdquo;', '%1$s Comments on &ldquo;%2$s&rdquo;', get_comments_number(), 'layerswp' ),
 						number_format_i18n( get_comments_number() ),
 						'<span>' . get_the_title() . '</span>' );
 				?>

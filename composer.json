@@ -1,0 +1,16 @@
+{
+    "name": "obox/layerswp",
+    "description": "WordPress Theme framework focused on extending the WordPress core functionality to include layout building through the WordPress Visual Customizer",
+    "type": "wordpress-theme",
+    "require": {
+        "composer/installers": "^1.0",
+        "php": "^5.3.2"
+    },
+    "license": "GPL",
+    "authors": [
+        {
+            "name": "Obox",
+            "email": "layers@obox.co.za"
+        }
+    ]
+}

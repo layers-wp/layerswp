@@ -826,7 +826,7 @@ if( !class_exists( 'Layers_Widget' ) ) {
 				$result
 			);
 
-			$atts = ( isset( $result[0] ) && is_array( $result[0] ) ) ? implode( $result[0], ' ' ) : '' ;
+			$atts = ( isset( $result[0] ) && is_array( $result[0] ) ) ? implode( ' ', $result[0] ) : '' ;
 
 			echo $atts;
 		}
